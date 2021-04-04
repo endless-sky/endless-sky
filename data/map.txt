@@ -7139,7 +7139,7 @@ system Convector
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/giant
+		sprite star/f-giant
 		distance 13.0749
 		period 7.27748
 	object
@@ -8704,7 +8704,7 @@ system Edusa
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/giant
+		sprite star/g-giant
 		period 10
 	object
 		sprite planet/ice4
@@ -11240,7 +11240,7 @@ system Gerenus
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/giant
+		sprite star/k-giant
 		period 8.42267
 	object
 		sprite planet/gas4-hot
@@ -15107,7 +15107,7 @@ system Levana
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/giant
+		sprite star/a-giant
 		distance 17.197
 		period 9.08241
 		offset 180
@@ -17970,7 +17970,7 @@ system Oblate
 	fleet "Large Core Pirates" 1000
 	fleet "Large Syndicate" 3000
 	object
-		sprite star/giant
+		sprite star/m-giant
 		period 10
 	object
 		sprite planet/ice4
@@ -18028,7 +18028,7 @@ system Orbona
 	fleet "Large Southern Pirates" 3200
 	fleet "Human Miners" 1500
 	object
-		sprite star/giant
+		sprite star/b-giant
 		distance 20.2539
 		period 9.71046
 	object
@@ -19642,7 +19642,7 @@ system Prosa
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/giant
+		sprite star/o-giant
 		offset 180
 		period 7
 	object
