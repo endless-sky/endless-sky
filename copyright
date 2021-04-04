@@ -1073,9 +1073,65 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Nate Graham (under the same license).
 
 Files:
+ images/star/a-dwarf*
+ images/star/a-giant*
+ images/star/a-supergiant*
+ images/star/a0*
+ images/star/a3*
+ images/star/a5*
+ images/star/a8*
+ images/star/b-dwarf*
+ images/star/b-giant*
+ images/star/b-supergiant*
+ images/star/b0*
+ images/star/b3*
+ images/star/b5*
+ images/star/b8*
+ images/star/black-hole* 
  images/star/carbon*
+ images/star/f-dwarf*
+ images/star/f-giant*
+ images/star/f-supergiant*
+ images/star/f0*
+ images/star/f3*
+ images/star/f5-old*
+ images/star/f5*
+ images/star/f8*
+ images/star/g-dwarf*
+ images/star/g-giant*
+ images/star/g-supergiant*
+ images/star/g0-old*
+ images/star/g0*
+ images/star/g3*
+ images/star/g5-old*
+ images/star/g5*
+ images/star/g8*
+ images/star/k-dwarf*
+ images/star/k-giant*
+ images/star/k-supergiant*
+ images/star/k0-old*
+ images/star/k0*
+ images/star/k3*
+ images/star/k5-old*
+ images/star/k5*
+ images/star/k8*
+ images/star/l-dwarf*
+ images/star/m-dwarf*
+ images/star/m-giant*
+ images/star/m-supergiant*
+ images/star/m0*
+ images/star/m3*
+ images/star/m5*
+ images/star/m8*
+ images/star/nova*
  images/star/nova-old*
- images/star/black-hole*
+ images/star/o-dwarf*
+ images/star/o-giant*
+ images/star/o-supergiant*
+ images/star/o0*
+ images/star/o3*
+ images/star/o5*
+ images/star/o8*
 Copyright: Matteo "Lead" M.
 License: CC-BY-SA-4.0
 

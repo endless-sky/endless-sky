@@ -10228,6 +10228,9 @@ system Fasitopfar
 		sprite star/nova
 		period 1000
 	object
+		sprite star/nova-core
+		period 1000
+	object
 		sprite planet/lava1
 		distance 863.513
 		period 491.812
@@ -13678,6 +13681,9 @@ system Kasikfar
 	trade Plastic 320
 	object
 		sprite star/nova
+		period 1000
+	object
+		sprite star/nova-core
 		period 1000
 	object
 		sprite planet/rock13-b
@@ -18690,6 +18696,10 @@ system Peresedersi
 		period 1000
 		offset 190
 	object
+		sprite star/nova-core
+		period 1000
+		offset 190
+	object
 		sprite planet/lava5
 		distance 1567.08
 		period 755.066
@@ -18850,6 +18860,10 @@ system Persitar
 	trade Plastic 500
 	object
 		sprite star/nova
+		period 1000
+		offset 260
+	object
+		sprite star/nova-core
 		period 1000
 		offset 260
 	object
