@@ -52,6 +52,8 @@ public:
 			// When a second label is given, then the second is to jump to on false.
 			// Does not cause the game to step, except when no step was done since last BRANCH or GOTO.
 			BRANCH,
+			// Step that calls another test to handle some generic common actions.
+			CALL,
 			// Step that adds game-data, either in the config-directories or in the game directly.
 			INJECT,
 			// Step that performs input (key, mouse, command). Does cause the game to step (to proces the inputs).
@@ -111,14 +113,14 @@ public:
 	friend class Test;
 	public:
 		// Pointer to the test we are running.
-		const Test *testToRun = nullptr;
+		std::vector<const Test *> testToRun;
 		
 		
 	protected:
 		// Teststep to run.
-		unsigned int stepToRun = 0;
+		std::vector<unsigned int> stepToRun = { 0 };
 		unsigned int watchdog = 0;
-		std::set<unsigned int> branchesSinceGameStep;
+		std::set<std::vector<unsigned int>> branchesSinceGameStep;
 	};
 	
 	

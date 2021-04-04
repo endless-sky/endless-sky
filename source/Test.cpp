@@ -48,6 +48,7 @@ namespace{
 		{Test::TestStep::Type::APPLY, "apply"},
 		{Test::TestStep::Type::ASSERT, "assert"},
 		{Test::TestStep::Type::BRANCH, "branch"},
+		{Test::TestStep::Type::CALL, "call"},
 		{Test::TestStep::Type::INJECT, "inject"},
 		{Test::TestStep::Type::INPUT, "input"},
 		{Test::TestStep::Type::LABEL, "label"},
@@ -223,6 +224,16 @@ void Test::LoadSequence(const DataNode &node)
 					step.jumpOnFalseTarget = child.Token(2);
 				step.conditions.Load(child);
 				break;
+			case TestStep::Type::CALL:
+				if(child.Size() < 2)
+				{
+					status = Status::BROKEN;
+					child.PrintTrace("Error: Invalid use of \"call\" without name of called (sub)test:");
+					return;
+				}
+				else
+					step.nameOrLabel = child.Token(1);
+				break;
 			case TestStep::Type::INJECT:
 				if(child.Size() < 2)
 				{
@@ -372,11 +383,20 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 	if(status == Status::BROKEN)
 		Fail(context, player, "Test has a broken status.");
 	
-	if(context.stepToRun >= steps.size())
+	if(context.stepToRun.back() >= steps.size())
 	{
-		// Done, no failures, exit the game with exitcode success.
-		menuPanels.Quit();
-		return;
+		context.testToRun.pop_back();
+		context.stepToRun.pop_back();
+		
+		if(context.stepToRun.empty())
+		{
+			// Done, no failures, exit the game with exitcode success.
+			menuPanels.Quit();
+			return;
+		}
+		else
+			// Step beyond the call statement we just finished.
+			++(context.stepToRun.back());
 	}
 	
 	// All processing was done just before this step started.
@@ -391,17 +411,17 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 		else if(context.watchdog > 1)
 			--(context.watchdog);
 		
-		const TestStep &stepToRun = steps[context.stepToRun];
+		const TestStep &stepToRun = steps[context.stepToRun.back()];
 		switch(stepToRun.stepType)
 		{
 			case TestStep::Type::APPLY:
 				stepToRun.conditions.Apply(player.Conditions());
-				++(context.stepToRun);
+				++(context.stepToRun.back());
 				break;
 			case TestStep::Type::ASSERT:
 				if(!stepToRun.conditions.Test(player.Conditions()))
 					Fail(context, player, "asserted false");
-				++(context.stepToRun);
+				++(context.stepToRun.back());
 				break;
 			case TestStep::Type::BRANCH:
 				// If we encounter a branch entry twice, then resume the gameloop before the second encounter.
@@ -412,13 +432,18 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 					continueGameLoop = true;
 					break;
 				}
-				context.branchesSinceGameStep.insert(context.stepToRun);
+				context.branchesSinceGameStep.emplace(context.stepToRun);
 				if(stepToRun.conditions.Test(player.Conditions()))
-					context.stepToRun = jumpTable.find(stepToRun.jumpOnTrueTarget)->second;
+					context.stepToRun.back() = jumpTable.find(stepToRun.jumpOnTrueTarget)->second;
 				else if(!stepToRun.jumpOnFalseTarget.empty())
-					context.stepToRun = jumpTable.find(stepToRun.jumpOnFalseTarget)->second;
+					context.stepToRun.back() = jumpTable.find(stepToRun.jumpOnFalseTarget)->second;
 				else
-					++(context.stepToRun);
+					++(context.stepToRun.back());
+				break;
+			case TestStep::Type::CALL:
+				// Put the called test on the stack and start it from 0.
+				context.testToRun.push_back((GameData::Tests()).Get(stepToRun.nameOrLabel));
+				context.stepToRun.push_back(0);
 				break;
 			case TestStep::Type::INJECT:
 				{
@@ -427,7 +452,7 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 					if(!testData->Inject())
 						Fail(context, player, "injecting data failed");
 				}
-				++(context.stepToRun);
+				++(context.stepToRun.back());
 				break;
 			case TestStep::Type::INPUT:
 				if(stepToRun.command)
@@ -466,27 +491,27 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 				// TODO: handle mouse inputs
 				// Make sure that we run a gameloop to process the input.
 				continueGameLoop = true;
-				++(context.stepToRun);
+				++(context.stepToRun.back());
 				break;
 			case TestStep::Type::LABEL:
-				++(context.stepToRun);
+				++(context.stepToRun.back());
 				break;
 			case TestStep::Type::NAVIGATE:
 				player.TravelPlan().clear();
 				player.TravelPlan() = stepToRun.travelPlan;
 				player.SetTravelDestination(stepToRun.travelDestination);
-				++(context.stepToRun);
+				++(context.stepToRun.back());
 				break;
 			case TestStep::Type::WATCHDOG:
 				context.watchdog = stepToRun.watchdog;
-				++(context.stepToRun);
+				++(context.stepToRun.back());
 				break;
 			default:
 				Fail(context, player, "Unknown step type");
 				break;
 		}
 	}
-	while(context.stepToRun < steps.size() && !continueGameLoop);
+	while(context.stepToRun.back() < steps.size() && !continueGameLoop);
 }
 
 
@@ -502,9 +527,9 @@ const string &Test::StatusText() const
 void Test::Fail(const Context &context, const PlayerInfo &player, const string &testFailReason) const
 {
 	string message = "Test failed";
-	if(context.stepToRun < steps.size())
-		message += " at step " + to_string(1 + context.stepToRun) + " (" +
-			STEPTYPE_TO_TEXT.at(steps[context.stepToRun].stepType) + ")";
+	if(!context.stepToRun.empty() && context.stepToRun.back() < steps.size())
+		message += " at step " + to_string(1 + context.stepToRun.back()) + " (" +
+			STEPTYPE_TO_TEXT.at(steps[context.stepToRun.back()].stepType) + ")";
 	
 	if(!testFailReason.empty())
 		message += ": " + testFailReason;
