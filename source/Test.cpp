@@ -232,6 +232,7 @@ void Test::LoadSequence(const DataNode &node)
 				}
 				else
 					step.nameOrLabel = child.Token(1);
+				break;
 			case TestStep::Type::INPUT:
 				step.LoadInput(child);
 				break;
