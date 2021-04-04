@@ -2057,10 +2057,13 @@ void Ship::DoGeneration()
 		if(attributes.Get("fuel consumption") <= fuel)
 		{
 			// Also, only convert fuel if it won't create more power than the batteries can hold.
-			scale = min(1., (attributes.Get("energy capacity") - energy) / attributes.Get("fuel energy"));
-			fuel -= scale * attributes.Get("fuel consumption");
-			energy += scale * attributes.Get("fuel energy");
-			heat += scale * attributes.Get("fuel heat");
+			if(energy < attributes.Get("energy capacity"))
+			{
+				double scale = min(1., (attributes.Get("energy capacity") - energy) / attributes.Get("fuel energy"));
+				fuel -= scale * attributes.Get("fuel consumption");
+				energy += scale * attributes.Get("fuel energy");
+				heat += scale * attributes.Get("fuel heat");
+			}
 		}
 		
 		// Apply active cooling. The fraction of full cooling to apply equals
