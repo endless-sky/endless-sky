@@ -4379,6 +4379,9 @@ system Antevorta
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
+		sprite star/carbon-core
+		period 10
+	object
 		sprite star/carbon
 		period 10
 	object
@@ -14226,6 +14229,9 @@ system "Kor Ak'Mari"
 	trade Plastic 524
 	fleet "Korath Raid" 2800
 	object
+		sprite star/carbon-core
+		period 100
+	object
 		sprite star/carbon
 		period 100
 	object
@@ -21304,7 +21310,10 @@ system Saquergen
 	trade Metal 276
 	trade Plastic 328
 	object
-		sprite star/nova
+		sprite star/nova-core-old
+		period 1000
+	object
+		sprite star/nova-old
 		period 1000
 	object
 		sprite planet/lava2
