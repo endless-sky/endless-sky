@@ -2054,13 +2054,18 @@ void Ship::DoGeneration()
 		heat -= coolingEfficiency * attributes.Get("cooling");
 		
 		// Convert fuel into energy and heat only when the required amount of fuel is available.
-		if(attributes.Get("fuel consumption") <= fuel)
+		if((attributes.Get("fuel consumption") + attributes.Get("regenerative fuel consumption")) <= fuel)
 		{
 			// Also, only convert fuel if it won't create more power than the batteries can hold.
-			if(energy < attributes.Get("energy capacity"))
+			double scale = min(1., (attributes.Get("energy capacity") - energy) / attributes.Get("fuel energy"));
+			// "regenerative fuel consumption" can run in reverse
+			if (scale < 0)
+				fuel -= scale * attributes.Get("regenerative fuel consumption");
+			else
+				fuel -= scale * (attributes.Get("fuel consumption") + attributes.Get("regenerative fuel consumption"));
+			// the only case where this fails is if no fuel consumption has occurred in the first place
+			if(scale >= 0 || attributes.Get("regenerative fuel consumption"))
 			{
-				double scale = min(1., (attributes.Get("energy capacity") - energy) / attributes.Get("fuel energy"));
-				fuel -= scale * attributes.Get("fuel consumption");
 				energy += scale * attributes.Get("fuel energy");
 				heat += scale * attributes.Get("fuel heat");
 			}
