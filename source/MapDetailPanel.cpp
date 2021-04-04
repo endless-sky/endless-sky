@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "Color.h"
 #include "Command.h"
+#include "CoreStartData.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
 #include "text/Font.h"
@@ -39,7 +40,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
-#include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Trade.h"
@@ -49,6 +49,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
+#include <limits>
 #include <set>
 #include <utility>
 #include <vector>
@@ -104,7 +105,7 @@ void MapDetailPanel::Step()
 	MapPanel::Step();
 	if(!player.GetPlanet())
 		DoHelp("map");
-	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= GameData::Start().GetDate() + 12)
+	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
 		DoHelp("map advanced ports");
 }
 

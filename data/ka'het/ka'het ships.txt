@@ -32,7 +32,7 @@ ship "Maeri'het"
 		"energy capacity" 10000
 		"energy generation" 28.3
 		"heat generation" 32
-		"hull repair" 0.3
+		"hull repair rate" 0.3
 		"shield heat" 4.9
 		"cloak" .023
 		"cloaking energy" 11.8
@@ -133,7 +133,7 @@ ship "Telis'het"
 		"energy capacity" 28000
 		"energy generation" 37.4
 		"heat generation" 40
-		"hull repair" 0.5
+		"hull repair rate" 0.5
 		"shield energy" 0.3
 		"shield heat" 9.2
 		weapon
@@ -270,7 +270,7 @@ ship "Vareti'het"
 		"energy capacity" 41000
 		"energy generation" 61.2
 		"heat generation" 46
-		"hull repair" 0.55
+		"hull repair rate" 0.55
 		"shield heat" 11.3
 		weapon
 			"blast radius" 400
@@ -354,6 +354,7 @@ ship "Vareti'het" "Vareti'het (EMP)"
 	turret 13.5 16.5
 
 ship "Vareti'het" "Vareti'het (EMP, Disable-able)"
+	"uncapturable"
 	outfits
 		"Ka'het Nullifier"
 		"Ka'het Ravager Beam" 4

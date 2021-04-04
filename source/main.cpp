@@ -149,7 +149,7 @@ int main(int argc, char *argv[])
 	Preferences::Set("fullscreen", GameWindow::IsFullscreen());
 	Screen::SetRaw(GameWindow::Width(), GameWindow::Height());
 	Preferences::Save();
-
+	
 	Audio::Quit();
 	GameWindow::Quit();
 	
@@ -260,7 +260,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			showCursor = shouldShowCursor;
 			SDL_ShowCursor(showCursor);
 		}
-
+		
 		// Switch off fast-forward if the player is not in flight or flight-related screen
 		// (for example when the boarding dialog shows up or when the player lands). The player
 		// can switch fast-forward on again when flight is resumed.
@@ -310,7 +310,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
 		
 		GameWindow::Step();
-
+		
 		timer.Wait();
 		
 		// If the player ended this frame in-game, count the elapsed time as played time.
@@ -351,7 +351,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky 0.9.13-alpha" << endl;
+	cerr << "Endless Sky ver. 0.9.13-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;

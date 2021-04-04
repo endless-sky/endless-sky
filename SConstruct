@@ -31,6 +31,10 @@ chroot_name = os.environ.get('SCHROOT_CHROOT_NAME', '')
 if 'steamrt' in chroot_name:
 	env.Append(LINKFLAGS = ["-static-libstdc++"])
 
+# Don't spawn a console window by default on Windows builds.
+if is_windows_host:
+	env.Append(LINKFLAGS = ["-mwindows"])
+
 opts = Variables()
 opts.AddVariables(
 	EnumVariable("mode", "Compilation mode", "release", allowed_values=("release", "debug", "profile")),
@@ -69,7 +73,6 @@ game_libs = [
 	"png.dll",
 	"turbojpeg.dll",
 	"jpeg.dll",
-	"mad.dll",
 	"openal32.dll",
 	"glew32.dll",
 	"opengl32",
@@ -128,6 +131,8 @@ test = env.Program(
 	CPPPATH=(env.get('CPPPATH', []) + [pathjoin('tests', 'include')]),
 	# Do not link against the actual implementations of SDL, OpenGL, etc.
 	LIBS=[],
+	# Pass the necessary link flags for a console program.
+	LINKFLAGS=[x for x in env.get('LINKFLAGS', []) if x not in ('-mwindows',)]
 )
 # Invoking scons with the `build-tests` target will build the unit test framework
 env.Alias("build-tests", test)

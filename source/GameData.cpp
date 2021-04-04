@@ -102,7 +102,7 @@ namespace {
 	Set<Sale<Outfit>> defaultOutfitSales;
 	
 	Politics politics;
-	StartConditions startConditions;
+	vector<StartConditions> startConditions;
 	
 	Trade trade;
 	map<const System *, map<string, int>> purchases;
@@ -224,11 +224,18 @@ bool GameData::BeginLoad(const char * const *argv)
 	AddJumpRange(System::DEFAULT_NEIGHBOR_DISTANCE);
 	UpdateSystems();
 	// And, update the ships with the outfits we've now finished loading.
-	for(auto &it : ships)
+	for(auto &&it : ships)
 		it.second.FinishLoading(true);
-	for(auto &it : persons)
+	for(auto &&it : persons)
 		it.second.FinishLoading();
-	startConditions.FinishLoading();
+	for(auto &&it : startConditions)
+		it.FinishLoading();
+	
+	// Remove any invalid starting conditions, so the game does not use incomplete data.
+	startConditions.erase(remove_if(startConditions.begin(), startConditions.end(),
+			[](const StartConditions &it) noexcept -> bool { return !it.IsValid(); }),
+		startConditions.end()
+	);
 	
 	// Store the current state, to revert back to later.
 	defaultFleets = fleets;
@@ -278,9 +285,9 @@ void GameData::CheckReferences()
 	for(const auto &it : conversations)
 		if(it.second.IsEmpty())
 			Warn("conversation", it.first);
-	// The "intro" conversation must invoke the prompt to set the player's name.
-	if(!conversations.Get("intro")->IsValidIntro())
-		Files::LogError("Error: the \"intro\" conversation must contain a \"name\" node.");
+	// The "default intro" conversation must invoke the prompt to set the player's name.
+	if(!conversations.Get("default intro")->IsValidIntro())
+		Files::LogError("Error: the \"default intro\" conversation must contain a \"name\" node.");
 	// Effects are serialized as a part of ships.
 	for(auto &&it : effects)
 		if(it.second.Name().empty())
@@ -846,7 +853,7 @@ Politics &GameData::GetPolitics()
 
 
 
-const StartConditions &GameData::Start()
+const vector<StartConditions> &GameData::StartOptions()
 {
 	return startConditions;
 }
@@ -1071,8 +1078,23 @@ void GameData::LoadFile(const string &path, bool debugMode)
 		}
 		else if(key == "shipyard" && node.Size() >= 2)
 			shipSales.Get(node.Token(1))->Load(node, ships);
-		else if(key == "start")
-			startConditions.Load(node);
+		else if(key == "start" && node.HasChildren())
+		{
+			// This node may either declare an immutable starting scenario, or one that is open to extension
+			// by other nodes (e.g. plugins may customize the basic start, rather than provide a unique start).
+			if(node.Size() == 1)
+				startConditions.emplace_back(node);
+			else
+			{
+				const string &identifier = node.Token(1);
+				auto existingStart = find_if(startConditions.begin(), startConditions.end(),
+					[&identifier](const StartConditions &it) noexcept -> bool { return it.Identifier() == identifier; });
+				if(existingStart != startConditions.end())
+					existingStart->Load(node);
+				else
+					startConditions.emplace_back(node);
+			}
+		}
 		else if(key == "system" && node.Size() >= 2)
 			systems.Get(node.Token(1))->Load(node, planets);
 		else if((key == "test") && node.Size() >= 2)

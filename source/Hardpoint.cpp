@@ -246,6 +246,10 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 	if(offset.Length() > range)
 		return false;
 	
+	// Precompute the number of visuals that will be added.
+	visuals.reserve(visuals.size() + outfit->FireEffects().size()
+		+ outfit->HitEffects().size() + outfit->DieEffects().size());
+	
 	// Firing effects are displayed at the anti-missile hardpoint that just fired.
 	Angle aim(offset);
 	angle = aim - ship.Facing();

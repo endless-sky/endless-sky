@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "text/alignment.hpp"
 #include "Command.h"
+#include "CoreStartData.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
 #include "FillShader.h"
@@ -37,7 +38,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
-#include "StartConditions.h"
 #include "System.h"
 #include "text/truncate.hpp"
 #include "UI.h"
@@ -191,7 +191,7 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 void MissionPanel::Step()
 {
 	MapPanel::Step();
-	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= GameData::Start().GetDate() + 12)
+	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
 		DoHelp("map advanced");
 	DoHelp("jobs");
 }
@@ -711,8 +711,7 @@ void MissionPanel::DrawMissionInfo()
 	
 	info.SetString("today", player.GetDate().ToString());
 	
-	const Interface *interface = GameData::Interfaces().Get("mission");
-	interface->Draw(info, this);
+	GameData::Interfaces().Get("mission")->Draw(info, this);
 	
 	// If a mission is selected, draw its descriptive text.
 	if(availableIt != available.end())
