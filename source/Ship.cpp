@@ -2067,7 +2067,7 @@ void Ship::DoGeneration()
 			if(scale >= 0 || attributes.Get("regenerative fuel consumption"))
 			{
 				energy += scale * attributes.Get("fuel energy");
-				heat += scale * attributes.Get("fuel heat");
+				heat += max(0., scale * attributes.Get("fuel heat"));
 			}
 		}
 		
