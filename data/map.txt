@@ -21327,7 +21327,7 @@ system Saquergen
 		sprite star/nova-old
 		period 1000
 	object
-		sprite star/nova-core-old
+		sprite star/nova-old-core
 		period 1000
 	object
 		sprite planet/lava2
