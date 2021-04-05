@@ -175,6 +175,9 @@ star "star/nova-old"
 star "star/wr"
 	power 0.4
 	wind 4
+star "neutron"
+	power 0.1
+	wind 0.1
 
 # Dwarves scaled like stars.
 star "star/o-dwarf"
