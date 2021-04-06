@@ -2003,6 +2003,20 @@ void Ship::DoGeneration()
 	// maximum capacity for the rest of the turn, but must be clamped to the
 	// maximum here before they gain more. This is so that, for example, a ship
 	// with no batteries but a good generator can still move.
+
+	// Run fuel consumption in reverse to get rid of excess energy from the last frame
+	// so that energy CAN be available for the frame, but if it isn't used, then the
+	// fuel consumption retroactively didn't happen, and we just don't talk about it.
+	// This also has the effect of shutting off fuel consumption completely if another
+	// energy-generating alternative can cover energy usage for the previous frame.
+	if(attributes.Get("fuel consumption") && energy > attributes.Get("energy capacity"))
+	{
+		double scale = min(1., (energy - attributes.Get("energy capacity")) / attributes.Get("fuel energy"));
+		energy -= scale * attributes.Get("fuel energy");
+		heat -= scale * attributes.Get("fuel heat");
+		fuel += scale * attributes.Get("fuel consumption");
+	}
+
 	energy = min(energy, attributes.Get("energy capacity"));
 	fuel = min(fuel, attributes.Get("fuel capacity"));
 	
@@ -2049,27 +2063,22 @@ void Ship::DoGeneration()
 		
 		double coolingEfficiency = CoolingEfficiency();
 		energy += attributes.Get("energy generation") - attributes.Get("energy consumption");
-		fuel += attributes.Get("fuel generation");
+
+		double fuelGeneration = attributes.Get("fuel generation");
+		double fuelGenEnergy = attributes.Get("fuel generation energy") / fuelGeneration;
+		double fuelGenHeat = attributes.Get("fuel generation heat") / fuelGeneration;
+		DoRepair(fuel, fuelGeneration, attributes.Get("fuel capacity"), energy, fuelGenEnergy, fuel, 0., heat, fuelGenHeat);
+		
 		heat += attributes.Get("heat generation");
 		heat -= coolingEfficiency * attributes.Get("cooling");
 		
 		// Convert fuel into energy and heat only when the required amount of fuel is available.
-		if((attributes.Get("fuel consumption") + attributes.Get("regenerative fuel consumption")) <= fuel)
+		if(attributes.Get("fuel consumption") <= fuel)
 		{
-			// Also, only convert fuel if it won't create more power than the batteries can hold.
-			double scale = min(1., (attributes.Get("energy capacity") - energy) / attributes.Get("fuel energy"));
-			scale = max(-1., scale);
-			// "regenerative fuel consumption" can run in reverse
-			if (scale < 0)
-				fuel -= scale * attributes.Get("regenerative fuel consumption");
-			else
-				fuel -= scale * (attributes.Get("fuel consumption") + attributes.Get("regenerative fuel consumption"));
-			// the only case where this fails is if no fuel consumption has occurred in the first place
-			if(scale >= 0 || attributes.Get("regenerative fuel consumption"))
-			{
-				energy += scale * attributes.Get("fuel energy");
-				heat += max(0., scale * attributes.Get("fuel heat"));
-			}
+			double fuelEnergy = attributes.Get("fuel energy");
+			double fuelConsumption = attributes.Get("fuel consumption") / fuelEnergy;
+			double fuelHeat = attributes.Get("fuel heat") / fuelEnergy;
+			DoRepair(energy, fuelEnergy, attributes.Get("energy capacity") + fuelEnergy, energy, 0., fuel, fuelConsumption, heat, fuelHeat);
 		}
 		
 		// Apply active cooling. The fraction of full cooling to apply equals
