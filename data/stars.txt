@@ -176,8 +176,8 @@ star "star/wr"
 	power 0.4
 	wind 4
 star "star/neutron"
-	power 0.1
-	wind 0.1
+	power 4
+	wind 0.4
 
 # Dwarves scaled like stars.
 star "star/o-dwarf"
