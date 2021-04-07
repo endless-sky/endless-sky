@@ -1,0 +1,635 @@
+# Copyright (c) 2016 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Grubbing Crisis Initial"
+	invisible
+	to offer
+		has "known to the heliarchs"
+		random < 2
+		#these criteria are incomplete
+	source
+		government "Coalition"
+		attributes "kimek"
+	on offer
+		event "grubbing ground crisis"
+		conversation
+			`An event triggers when you're in Kimek space somewhere announcing a crisis on a Kimek world (Third Umber?) that does not have a well-developed biosphere. The Kimek have been setting up an isolated valley on this world to act as a grubbing ground, because at present the entire population has had to migrate there. No Kimek are born on this world.`
+			`	The first generation of Kimek grubs have nearly matured, but a major storm has caused huge damage to the delicate ecology of the nascent grubbing ground. As a result, jobs will appear on every Kimek world to take emergency supplies of plants, bugs, animals, and biodegradables, to be dumped into the valley.`
+
+event "grubbing ground crisis"
+
+phrase "grub savior invertebrates"
+	word
+		`You deliver the invertebrates to a harried Kimek scientist on <planet>'s spaceport. A host of assistants inspect the shipment and implore you to bring more before transferring <payment> and rushing off.`
+
+phrase "grub savior caged small animals"
+	word
+		`You deliver the small animals to a harried Kimek scientist on <planet>'s spaceport. A host of assistants inspect the shipment and implore you to bring more before transferring <payment> and rushing off.`
+
+phrase "grub savior seed crates"
+	word
+		`You deliver the seed crates to a harried Kimek scientist on <planet>'s spaceport. A host of assistants inspect the shipment and implore you to bring more before transferring <payment> and rushing off.`
+
+phrase "grub savior caged birds"
+	word
+		`You deliver the birds to a harried Kimek scientist on <planet>'s spaceport. A host of assistants inspect the shipment and implore you to bring more before transferring <payment> and rushing off.`
+
+phrase "grub savior food stock biodegradables"
+	word
+		`You deliver the food stock biodegradables to a harried Kimek scientist on <planet>'s spaceport. A host of assistants inspect the shipment and implore you to bring more before transferring <payment> and rushing off.`
+
+#Jobs for the Job Board located at the end of the file.
+
+
+
+
+
+
+
+
+
+
+mission "FoA: Transport Invertebrates 50t"
+	job
+	repeat
+	name "Transport 50t of Invertebrates to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Invertebrates" 50
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 35
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" ++
+		payment 50000 1000
+		dialog phrase "grub savior invertebrates"
+
+
+mission "FoA: Transport Invertebrates 100t"
+	job
+	repeat
+	name "Transport 100t of Invertebrates to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Invertebrates" 100
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 85
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" +2
+		payment 100000 1000
+		dialog phrase "grub savior invertebrates"
+
+
+mission "FoA: Transport Invertebrates 200t"
+	job
+	repeat
+	name "Transport 200t of Invertebrates to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Invertebrates" 200
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 165
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" +4
+		payment 200000 1000
+		dialog phrase "grub savior invertebrates"
+
+
+mission "FoA: Transport Invertebrates 500t"
+	job
+	repeat
+	name "Transport 500t of Invertebrates to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Invertebrates" 500
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 450
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" +10
+		payment 500000 1000
+		dialog phrase "grub savior invertebrates"
+
+
+mission "FoA: Transport Invertebrates 1000t"
+	job
+	repeat
+	name "Transport 10000t of Invertebrates to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Invertebrates" 1000
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 900
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" +20
+		payment 1000000 1000
+		dialog phrase "grub savior invertebrates"
+
+
+
+mission "FoA: Transport Caged Small Animals 50t"
+	job
+	repeat
+	name "Transport 50t of Caged Small Animals to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Caged Small Animals" 50
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 35
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" ++
+		payment 50000 1000
+		dialog phrase "grub savior caged small animals"
+
+
+mission "FoA: Transport Caged Small Animals 100t"
+	job
+	repeat
+	name "Transport 100t of Caged Small Animals to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Caged Small Animals" 100
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 85
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" +2
+		payment 100000 1000
+		dialog phrase "grub savior caged small animals"
+
+
+mission "FoA: Transport Caged Small Animals 200t"
+	job
+	repeat
+	name "Transport 200t of Caged Small Animals to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Caged Small Animals" 200
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 165
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" +4
+		payment 200000 1000
+		dialog phrase "grub savior caged small animals"
+
+
+mission "FoA: Transport Caged Small Animals 500t"
+	job
+	repeat
+	name "Transport 500t of Caged Small Animals to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Caged Small Animals" 500
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 450
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" +10
+		payment 500000 1000
+		dialog phrase "grub savior caged small animals"
+
+
+mission "FoA: Transport Caged Small Animals 1000t"
+	job
+	repeat
+	name "Transport 1000t of Caged Small Animals to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Caged Small Animals" 1000
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 900
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" +20
+		payment 1000000 1000
+		dialog phrase "grub savior caged small animals"
+
+
+
+mission "FoA: Transport Seed Crates 50t"
+	job
+	repeat
+	name "Transport 50t of Seed Crates to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Seed Crates" 50
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 35
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" ++
+		payment 50000 1000
+		dialog phrase "grub savior seed crates"
+
+
+mission "FoA: Transport Seed Crates 100t"
+	job
+	repeat
+	name "Transport 100t of Seed Crates to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Seed Crates" 100
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 85
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" +2
+		payment 100000 1000
+		dialog phrase "grub savior seed crates"
+
+
+mission "FoA: Transport Seed Crates 200t"
+	job
+	repeat
+	name "Transport 200t of Seed Crates to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Seed Crates" 200
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 165
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" +4
+		payment 200000 1000
+		dialog phrase "grub savior seed crates"
+
+
+mission "FoA: Transport Seed Crates 500t"
+	job
+	repeat
+	name "Transport 500t of Seed Crates to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Seed Crates" 500
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 450
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" +10
+		payment 500000 1000
+		dialog phrase "grub savior seed crates"
+
+
+mission "FoA: Transport Seed Crates 1000t"
+	job
+	repeat
+	name "Transport 1000t of Seed Crates to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Seed Crates" 1000
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 900
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" +20
+		payment 1000000 1000
+		dialog phrase "grub savior seed crates"
+
+
+
+mission "FoA: Transport Caged Birds 50t"
+	job
+	repeat
+	name "Transport 50t of Caged Birds to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Caged Birds" 50
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 35
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" ++
+		payment 50000 1000
+		dialog phrase "grub savior caged birds"
+
+
+mission "FoA: Transport Caged Birds 100t"
+	job
+	repeat
+	name "Transport 100t of Caged Birds to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Caged Birds" 100
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 85
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" +2
+		payment 100000 1000
+		dialog phrase "grub savior caged birds"
+
+
+mission "FoA: Transport Caged Birds 200t"
+	job
+	repeat
+	name "Transport 200t of Caged Birds to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Caged Birds" 200
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 165
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" +4
+		payment 200000 1000
+		dialog phrase "grub savior caged birds"
+
+
+mission "FoA: Transport Caged Birds 500t"
+	job
+	repeat
+	name "Transport 500t of Caged Birds to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Caged Birds" 500
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 450
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" +10
+		payment 500000 1000
+		dialog phrase "grub savior caged birds"
+
+
+mission "FoA: Transport Caged Birds 1000t"
+	job
+	repeat
+	name "Transport 1000t of Caged Birds to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Caged Birds" 1000
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 900
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" +20
+		payment 1000000 1000
+		dialog phrase "grub savior caged birds"
+
+
+
+mission "FoA: Transport Food Stock Biodegradables 50t"
+	job
+	repeat
+	name "Transport 50t of Food Stock Biodegradables to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Food Stock Biodegradables" 50
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 35
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" ++
+		payment 50000 1000
+		dialog phrase "grub savior food stock biodegradables"
+
+
+mission "FoA: Transport Food Stock Biodegradables 100t"
+	job
+	repeat
+	name "Transport 100t of Food Stock Biodegradables to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Food Stock Biodegradables" 100
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 85
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" +2
+		payment 100000 1000
+		dialog phrase "grub savior food stock biodegradables"
+
+
+mission "FoA: Transport Food Stock Biodegradables 200t"
+	job
+	repeat
+	name "Transport 200t of Food Stock Biodegradables to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Food Stock Biodegradables" 200
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 165
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" +4
+		payment 200000 1000
+		dialog phrase "grub savior food stock biodegradables"
+
+
+mission "FoA: Transport Food Stock Biodegradables 500t"
+	job
+	repeat
+	name "Transport 500t of Food Stock Biodegradables to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Food Stock Biodegradables" 500
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 450
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" +10
+		payment 500000 1000
+		dialog phrase "grub savior food stock biodegradables"
+
+
+mission "FoA: Transport Food Stock Biodegradables 1000t"
+	job
+	repeat
+	name "Transport 1000t of Food Stock Biodegradables to <planet>"
+	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
+	cargo "Food Stock Biodegradables" 1000
+	to offer
+		has "grubbing ground crisis"
+		not "grubbing ground resolved"
+		random < 70
+		"cargo space" > 900
+	source
+		government "Coalition"
+		attributes "kimek"
+	destination "Third Umber"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"grub savior" +20
+		payment 1000000 1000
+		dialog phrase "grub savior food stock biodegradables"
