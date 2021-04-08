@@ -108,7 +108,7 @@ color "map orbits fleet destination" 1. 1. 1. 1.
 
 
 interface "menu background"
-	sprite "_menu/g0"
+	sprite "_menu/g5"
 		center 0 -280
 	sprite "_menu/forest2"
 		center 0 280
