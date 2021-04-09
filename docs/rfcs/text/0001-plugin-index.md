@@ -70,25 +70,25 @@ Each Plugin has its own Manifest, which contains a map with the following conten
 
 A typical Manifest might look like this:
 ```yaml
-- name: My Awesome Plugin!
-- authors: HelpfulContributor
-- homepage: https://github.com/HelpfulContributor/ES-Plugin
-- license: GPL-3.0-or-later
-- version: v1.1
-- shortDescription: A small plugin for Endless Sky expressing my compassion for the game!
-- description: >- # One of the many ways to do multiline-strings in YAML. This version allows for linebreaks, but strips them away while parsing. See https://yaml-multiline.info/
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant. Mauris augue neque gravida in. Ultricies integer quis auctor elit.
-    Suspendisse ultrices gravida dictum fusce ut placerat. Sollicitudin tempor id eu nisl nunc mi. Molestie at elementum eu facilisis sed odio morbi quis commodo.
-    Justo donec enim diam vulputate ut pharetra sit amet aliquam. Ut venenatis tellus in metus vulputate eu scelerisque felis.
-    Elementum curabitur vitae nunc sed velit. Sit amet consectetur adipiscing elit duis tristique sollicitudin nibh sit. Feugiat scelerisque varius morbi enim.
-- url: https://github.com/HelpfulContributor/ES-Plugin/archive/v1.1.zip
-- iconUrl: https://raw.githubusercontent.com/HelpfulContributor/ES-Plugin/v1.1/icon.png
-- autoupdate:
-  - type: tag
-  # We can omit `update_url`, since `homepage` also resolves to a valid git URL.
-  - url: https://github.com/HelpfulContributor/ES-Plugin/archive/$version.zip # Specifies what to set `url` to if an update has been found. Notice the $version substitution
-  - iconUrl: https://raw.githubusercontent.com/HelpfulContributor/ES-Plugin/$version/icon.png # Dito
+name: My Awesome Plugin!
+authors: HelpfulContributor
+homepage: https://github.com/HelpfulContributor/ES-Plugin
+license: GPL-3.0-or-later
+version: v1.1
+shortDescription: A small plugin for Endless Sky expressing my compassion for the game!
+description: >- # One of the many ways to do multiline-strings in YAML. This version allows for linebreaks, but strips them away while parsing. See https://yaml-multiline.info/
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  Ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant. Mauris augue neque gravida in. Ultricies integer quis auctor elit.
+  Suspendisse ultrices gravida dictum fusce ut placerat. Sollicitudin tempor id eu nisl nunc mi. Molestie at elementum eu facilisis sed odio morbi quis commodo.
+  Justo donec enim diam vulputate ut pharetra sit amet aliquam. Ut venenatis tellus in metus vulputate eu scelerisque felis.
+  Elementum curabitur vitae nunc sed velit. Sit amet consectetur adipiscing elit duis tristique sollicitudin nibh sit. Feugiat scelerisque varius morbi enim.
+url: https://github.com/HelpfulContributor/ES-Plugin/archive/v1.1.zip
+iconUrl: https://raw.githubusercontent.com/HelpfulContributor/ES-Plugin/v1.1/icon.png
+autoupdate:
+  type: tag
+# We can omit `update_url`, since `homepage` also resolves to a valid git URL.
+  url: https://github.com/HelpfulContributor/ES-Plugin/archive/$version.zip # Specifies what to set `url` to if an update has been found. Notice the $version substitution
+  iconUrl: https://raw.githubusercontent.com/HelpfulContributor/ES-Plugin/$version/icon.png # Dito
 ```
 
 Now let's say `@HelpfulContributor` releases a new version `v2.0`. They do so by pushing a new tag to their git repository.
@@ -97,24 +97,24 @@ The Plugin Index's CI will periodically run the autoupdate script over all Manif
 
 Thus, the Manifest would now look like this:
 ```yaml
-- name: My Awesome Plugin!
-- authors: HelpfulContributor
-- homepage: https://github.com/HelpfulContributor/ES-Plugin
-- license: GPL-3.0-or-later
-- version: v2.0 # Changed automatically
-- shortDescription: A small plugin for Endless Sky expressing my compassion for the game!
-- description: >-
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant. Mauris augue neque gravida in. Ultricies integer quis auctor elit.
-    Suspendisse ultrices gravida dictum fusce ut placerat. Sollicitudin tempor id eu nisl nunc mi. Molestie at elementum eu facilisis sed odio morbi quis commodo.
-    Justo donec enim diam vulputate ut pharetra sit amet aliquam. Ut venenatis tellus in metus vulputate eu scelerisque felis.
-    Elementum curabitur vitae nunc sed velit. Sit amet consectetur adipiscing elit duis tristique sollicitudin nibh sit. Feugiat scelerisque varius morbi enim.
-- url: https://github.com/HelpfulContributor/ES-Plugin/archive/v2.0.zip # Changed because there was an update key with the same name
-- iconUrl: https://raw.githubusercontent.com/HelpfulContributor/ES-Plugin/v2.0/icon.png # Dito
-- autoupdate:
-  - type: tag
-  - url: https://github.com/HelpfulContributor/ES-Plugin/archive/$version.zipsubstitution
-  - iconUrl: https://raw.githubusercontent.com/HelpfulContributor/ES-Plugin/$version/icon.png
+name: My Awesome Plugin!
+authors: HelpfulContributor
+homepage: https://github.com/HelpfulContributor/ES-Plugin
+license: GPL-3.0-or-later
+version: v2.0 # Changed automatically
+shortDescription: A small plugin for Endless Sky expressing my compassion for the game!
+description: >-
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  Ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant. Mauris augue neque gravida in. Ultricies integer quis auctor elit.
+  Suspendisse ultrices gravida dictum fusce ut placerat. Sollicitudin tempor id eu nisl nunc mi. Molestie at elementum eu facilisis sed odio morbi quis commodo.
+  Justo donec enim diam vulputate ut pharetra sit amet aliquam. Ut venenatis tellus in metus vulputate eu scelerisque felis.
+  Elementum curabitur vitae nunc sed velit. Sit amet consectetur adipiscing elit duis tristique sollicitudin nibh sit. Feugiat scelerisque varius morbi enim.
+url: https://github.com/HelpfulContributor/ES-Plugin/archive/v2.0.zip # Changed because there was an update key with the same name
+iconUrl: https://raw.githubusercontent.com/HelpfulContributor/ES-Plugin/v2.0/icon.png # Dito
+autoupdate:
+  type: tag
+  url: https://github.com/HelpfulContributor/ES-Plugin/archive/$version.zipsubstitution
+  iconUrl: https://raw.githubusercontent.com/HelpfulContributor/ES-Plugin/$version/icon.png
 ```
 
 This changed Manifest can then be PR'd back to the Plugin Index's master branch.
