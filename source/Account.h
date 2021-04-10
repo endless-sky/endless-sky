@@ -29,16 +29,6 @@ class DataWriter;
 // over time.
 class Account : public ConditionsProvider {
 public:
-	static const std::string NET_WORTH;
-	static const std::string CREDITS;
-	static const std::string UNPAID_MORTGAGES;
-	static const std::string UNPAID_FINES;
-	static const std::string UNPAID_SALARIES;
-	static const std::string UNPAID_MAINTENANCE;
-	static const std::string CREDIT_SCORE;
-	
-	
-public:
 	// Default constructor.
 	Account();
 	
