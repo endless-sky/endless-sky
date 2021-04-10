@@ -151,7 +151,7 @@ mission "FoA: Transport Invertebrates 500t"
 mission "FoA: Transport Invertebrates 1000t"
 	job
 	repeat
-	name "Transport 10000t of Invertebrates to <planet>"
+	name "Transport 1000t of Invertebrates to <planet>"
 	description "Transport this <cargo> to the world of <planet>, where it will be used to address the crisis with their new grubbing ground."
 	cargo "Invertebrates" 1000
 	to offer
