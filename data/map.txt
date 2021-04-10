@@ -6368,8 +6368,8 @@ system Cardea
 	pos -89.1297 417.242
 	government Uninhabited
 	attributes "ember waste" "wormhole"
-	habitable 851.84
-	belt 1725
+	habitable 900
+	belt 1775
 	haze _menu/haze-red
 	link Nenia
 	link Antevorta
@@ -6395,28 +6395,28 @@ system Cardea
 	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/k5-old
-		distance 47.5
+		distance 85
 		period 12.6901
 		offset 180
 	object
 		sprite star/k5
-		distance 47.5
+		distance 85
 		period 12.6901
 	object
 		sprite planet/desert7-b
-		distance 260.94
+		distance 310.94
 		period 57.7686
 	object
 		sprite planet/rock2-b
-		distance 629.55
+		distance 679.55
 		period 216.484
 	object
 		sprite planet/miranda-b
-		distance 969.79
+		distance 1019.79
 		period 413.902
 	object
 		sprite planet/neptune-b
-		distance 1490.63
+		distance 1540.63
 		period 788.743
 		object
 			sprite planet/callisto
@@ -6424,11 +6424,11 @@ system Cardea
 			period 17.0401
 	object "Ember Threshold"
 		sprite planet/wormhole-red
-		distance 2500
+		distance 2550
 		period 1713.14
 	object "Ember Wormhole"
 		sprite planet/wormhole-red
-		distance 3252.92
+		distance 3302.92
 		period 2542.68
 
 system Castor
