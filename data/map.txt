@@ -18041,11 +18041,11 @@ system Orbona
 	fleet "Human Miners" 1500
 	object
 		sprite star/b-giant
-		distance 20.2539
+		distance 25
 		period 9.71046
 	object
 		sprite star/k0
-		distance 98.7461
+		distance 100
 		period 9.71046
 		offset 180
 	object
