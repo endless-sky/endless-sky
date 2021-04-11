@@ -8347,66 +8347,66 @@ system Dokdobaru
 		period 360
 	object
 		sprite planet/lava3-b
-		distance 3030.14
+		distance 812
 		period 360
 	object
 		sprite "planet/ringworld left"
-		distance 3030.14
+		distance 812
 		period 360
 		offset -30
 	object "Kuwaru Efreti"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset -50
 	object
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset -70
 	object
 		sprite "planet/ringworld right"
-		distance 3030.14
+		distance 812
 		period 360
 		offset -90
 	object
 		sprite "planet/ringworld right"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 40
 	object
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 60
 	object
 		sprite "planet/ringworld left"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 80
 	object
 		sprite "planet/ringworld right"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 130
 	object
 		sprite "planet/ringworld left"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 150
 	object
 		sprite "planet/ringworld right"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 180
 	object
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 200
 	object
 		sprite "planet/ringworld left"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 220
 
@@ -9069,146 +9069,146 @@ system Ekuarik
 		period 10
 	object
 		sprite planet/lava6-b
-		distance 3030.14
+		distance 812
 		period 360
 	object
 		sprite "planet/ringworld right"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 30
 	object
 		sprite "planet/ringworld left"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 50
 	object
 		sprite "planet/ringworld right"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 75
 	object "Ring of Wisdom"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 95
 	object
 		sprite "planet/ringworld left"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 115
 	object
 		sprite "planet/ringworld right"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 150
 	object
 		sprite "planet/ringworld left"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 170
 	object
 		sprite "planet/ringworld right"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 200
 	object "Ring of Wisdom"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 220
 	object "Ring of Wisdom"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 240
 	object
 		sprite "planet/ringworld left"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 260
 	object
 		sprite "planet/ringworld right"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 280
 	object "Ring of Wisdom"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 300
 	object
 		sprite "planet/ringworld left"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 320
 	object
 		sprite planet/panels1
-		distance 3104.78
+		distance 830
 		period 360
 		offset 82
 	object
 		sprite planet/panels2
-		distance 3104.78
+		distance 830
 		period 360
 		offset 90
 	object
 		sprite planet/panels1
-		distance 3104.78
+		distance 830
 		period 360
 		offset 99
 	object
 		sprite planet/panels1
-		distance 3104.78
+		distance 830
 		period 360
 		offset 112
 	object
 		sprite planet/panels1
-		distance 2980.49
+		distance 800
 		period 360
 		offset 207
 	object
 		sprite planet/panels2
-		distance 2980.49
+		distance 800
 		period 360
 		offset 216
 	object
 		sprite planet/panels1
-		distance 2980.49
+		distance 800
 		period 360
 		offset 225
 	object
 		sprite planet/panels4
-		distance 2980.49
+		distance 800
 		period 360
 		offset 234
 	object
 		sprite planet/panels3
-		distance 3104.78
+		distance 830
 		period 360
 		offset 221
 	object
 		sprite planet/panels5
-		distance 3104.78
+		distance 830
 		period 360
 		offset 239
 	object
 		sprite planet/panels2
-		distance 3104.78
+		distance 830
 		period 360
 		offset 253
 	object
 		sprite planet/panels1
-		distance 2980.49
+		distance 800
 		period 360
 		offset 281
 	object
 		sprite planet/panels4
-		distance 2980.49
+		distance 800
 		period 360
 		offset 298
 	object
 		sprite planet/panels2
-		distance 2980.49
+		distance 800
 		period 360
 		offset 312
 
@@ -9433,56 +9433,56 @@ system Enif
 		period 10
 	object
 		sprite planet/lava5-b
-		distance 3030.14
+		distance 812
 		period 360
 	object Lagrange
 		sprite planet/station0
-		distance 3030.14
+		distance 812
 		period 360
 		offset 180
 	object
 		sprite "planet/ringworld left"
-		distance 3030.14
+		distance 812
 		period 360
 		offset -30
 	object
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset -50
 	object
 		sprite "planet/ringworld right"
-		distance 3030.14
+		distance 812
 		period 360
 		offset -70
 	object
 		sprite "planet/ringworld left"
-		distance 3030.14
+		distance 812
 		period 360
 		offset -90
 	object
 		sprite "planet/ringworld right"
-		distance 3030.14
+		distance 812
 		period 360
 		offset -110
 	object
 		sprite "planet/ringworld right"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 40
 	object
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 60
 	object
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 80
 	object
 		sprite "planet/ringworld left"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 100
 
@@ -12515,91 +12515,91 @@ system "Hevru Hai"
 		period 10
 	object "Alta Hai"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 	object "Alta Hai"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 20
 	object "Alta Hai"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 40
 	object "Alta Hai"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 60
 	object "Alta Hai"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 80
 	object "Alta Hai"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 100
 	object "Alta Hai"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 120
 	object "Alta Hai"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 140
 	object "Alta Hai"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 160
 	object "Alta Hai"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 180
 	object "Alta Hai"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 200
 	object "Alta Hai"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 220
 	object "Alta Hai"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 240
 	object "Alta Hai"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 260
 	object "Alta Hai"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 280
 	object "Alta Hai"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 300
 	object "Alta Hai"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 320
 	object "Alta Hai"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 340
 
@@ -14057,181 +14057,181 @@ system "Ki War Ek"
 		period 10
 	object
 		sprite planet/lava4-b
-		distance 3030.14
+		distance 812
 		period 360
 	object
 		sprite "planet/ringworld right"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 65
 	object
 		sprite "planet/ringworld left"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 85
 	object
 		sprite "planet/ringworld right"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 100
 	object
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 120
 	object
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 140
 	object "Ring of Power"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 160
 	object "Ring of Power"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 180
 	object "Ring of Power"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 200
 	object "Ring of Power"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 220
 	object "Ring of Power"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 240
 	object
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 260
 	object
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 280
 	object
 		sprite "planet/ringworld left"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 300
 	object
 		sprite planet/panels1
-		distance 2980.49
+		distance 800
 		period 360
 		offset 122
 	object
 		sprite planet/panels2
-		distance 2980.49
+		distance 800
 		period 360
 		offset 138
 	object
 		sprite planet/panels1
-		distance 2980.49
+		distance 800
 		period 360
 		offset 148
 	object
 		sprite planet/panels3
-		distance 2980.49
+		distance 800
 		period 360
 		offset 157
 	object
 		sprite planet/panels1
-		distance 2980.49
+		distance 800
 		period 360
 		offset 164
 	object
 		sprite planet/panels2
-		distance 2980.49
+		distance 800
 		period 360
 		offset 171
 	object
 		sprite planet/panels5
-		distance 2980.49
+		distance 800
 		period 360
 		offset 189
 	object
 		sprite planet/panels4
-		distance 2980.49
+		distance 800
 		period 360
 		offset 204
 	object
 		sprite planet/panels2
-		distance 2980.49
+		distance 800
 		period 360
 		offset 214
 	object
 		sprite planet/panels2
-		distance 2980.49
+		distance 800
 		period 360
 		offset 226
 	object
 		sprite planet/panels2
-		distance 2980.49
+		distance 800
 		period 360
 		offset 240
 	object
 		sprite planet/panels2
-		distance 2980.49
+		distance 800
 		period 360
 		offset 258
 	object
 		sprite planet/panels3
-		distance 3104.78
+		distance 830
 		period 360
 		offset 145
 	object
 		sprite planet/panels5
-		distance 3104.78
+		distance 830
 		period 360
 		offset 163
 	object
 		sprite planet/panels3
-		distance 3104.78
+		distance 830
 		period 360
 		offset 178
 	object
 		sprite planet/panels1
-		distance 3104.78
+		distance 830
 		period 360
 		offset 185
 	object
 		sprite planet/panels2
-		distance 3104.78
+		distance 830
 		period 360
 		offset 191
 	object
 		sprite planet/panels4
-		distance 3104.78
+		distance 830
 		period 360
 		offset 200
 	object
 		sprite planet/panels5
-		distance 3104.78
+		distance 830
 		period 360
 		offset 218
 	object
 		sprite planet/panels2
-		distance 3104.78
+		distance 830
 		period 360
 		offset 228
 	object
 		sprite planet/panels1
-		distance 3104.78
+		distance 830
 		period 360
 		offset 245
 	object
 		sprite planet/panels1
-		distance 3104.78
+		distance 830
 		period 360
 		offset 250
 
@@ -20065,261 +20065,261 @@ system Quaru
 		period 10
 	object "Ring of Friendship"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 	object "Ring of Friendship"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 20
 	object "Ring of Friendship"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 40
 	object "Ring of Friendship"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 60
 	object "Ring of Friendship"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 80
 	object "Ring of Friendship"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 100
 	object "Ring of Friendship"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 120
 	object "Ring of Friendship"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 140
 	object "Ring of Friendship"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 160
 	object "Ring of Friendship"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 180
 	object "Ring of Friendship"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 200
 	object "Ring of Friendship"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 220
 	object "Ring of Friendship"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 240
 	object "Ring of Friendship"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 260
 	object "Ring of Friendship"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 280
 	object "Ring of Friendship"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 300
 	object "Ring of Friendship"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 320
 	object "Ring of Friendship"
 		sprite planet/ringworld
-		distance 3030.14
+		distance 812
 		period 360
 		offset 340
 	object
 		sprite planet/panels1
-		distance 2980.49
+		distance 800
 		period 360
 		offset 21
 	object
 		sprite planet/panels2
-		distance 2980.49
+		distance 800
 		period 360
 		offset 32
 	object
 		sprite planet/panels1
-		distance 2980.49
+		distance 800
 		period 360
 		offset 44
 	object
 		sprite planet/panels3
-		distance 2980.49
+		distance 800
 		period 360
 		offset 53
 	object
 		sprite planet/panels2
-		distance 2980.49
+		distance 800
 		period 360
 		offset 62
 	object
 		sprite planet/panels1
-		distance 2980.49
+		distance 800
 		period 360
 		offset 66
 	object
 		sprite planet/panels4
-		distance 2980.49
+		distance 800
 		period 360
 		offset 73
 	object
 		sprite planet/panels5
-		distance 2980.49
+		distance 800
 		period 360
 		offset 87
 	object
 		sprite planet/panels3
-		distance 2980.49
+		distance 800
 		period 360
 		offset 95
 	object
 		sprite planet/panels2
-		distance 2980.49
+		distance 800
 		period 360
 		offset 104
 	object
 		sprite planet/panels4
-		distance 2980.49
+		distance 800
 		period 360
 		offset 116
 	object
 		sprite planet/panels1
-		distance 2980.49
+		distance 800
 		period 360
 		offset 125
 	object
 		sprite planet/panels2
-		distance 2980.49
+		distance 800
 		period 360
 		offset 134
 	object
 		sprite planet/panels2
-		distance 2980.49
+		distance 800
 		period 360
 		offset 149
 	object
 		sprite planet/panels2
-		distance 3104.78
+		distance 830
 		period 360
 		offset 29
 	object
 		sprite planet/panels1
-		distance 3104.78
+		distance 830
 		period 360
 		offset 38
 	object
 		sprite planet/panels1
-		distance 3104.78
+		distance 830
 		period 360
 		offset 42
 	object
 		sprite planet/panels3
-		distance 3104.78
+		distance 830
 		period 360
 		offset 55
 	object
 		sprite planet/panels2
-		distance 3104.78
+		distance 830
 		period 360
 		offset 64
 	object
 		sprite planet/panels5
-		distance 3104.78
+		distance 830
 		period 360
 		offset 78
 	object
 		sprite planet/panels3
-		distance 3104.78
+		distance 830
 		period 360
 		offset 92
 	object
 		sprite planet/panels5
-		distance 3104.78
+		distance 830
 		period 360
 		offset 106
 	object
 		sprite planet/panels2
-		distance 3104.78
+		distance 830
 		period 360
 		offset 120
 	object
 		sprite planet/panels1
-		distance 3104.78
+		distance 830
 		period 360
 		offset 132
 	object
 		sprite planet/panels1
-		distance 3104.78
+		distance 830
 		period 360
 		offset 145
 	object
 		sprite planet/panels1
-		distance 2980.49
+		distance 800
 		period 360
 		offset 185
 	object
 		sprite planet/panels3
-		distance 2980.49
+		distance 800
 		period 360
 		offset 197
 	object
 		sprite planet/panels2
-		distance 2980.49
+		distance 800
 		period 360
 		offset 207
 	object
 		sprite planet/panels5
-		distance 2980.49
+		distance 800
 		period 360
 		offset 218
 	object
 		sprite planet/panels2
-		distance 2980.49
+		distance 800
 		period 360
 		offset 231
 	object
 		sprite planet/panels2
-		distance 2980.49
+		distance 800
 		period 360
 		offset 244
 	object
 		sprite planet/panels2
-		distance 3104.78
+		distance 830
 		period 360
 		offset 198
 	object
 		sprite planet/panels3
-		distance 3104.78
+		distance 830
 		period 360
 		offset 212
 	object
 		sprite planet/panels4
-		distance 3104.78
+		distance 830
 		period 360
 		offset 237
 
@@ -25794,52 +25794,52 @@ system "World's End"
 		period 10
 	object
 		sprite "planet/ringworld right"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 0
 	object
 		sprite "planet/ringworld left"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 20
 	object
 		sprite "planet/ringworld right"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 50
 	object
 		sprite "planet/ringworld left"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 70
 	object
 		sprite "planet/ringworld right"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 140
 	object
 		sprite "planet/ringworld left"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 160
 	object
 		sprite "planet/ringworld right"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 180
 	object
 		sprite "planet/ringworld left"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 200
 	object
 		sprite "planet/ringworld right"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 270
 	object
 		sprite "planet/ringworld left"
-		distance 3030.14
+		distance 812
 		period 360
 		offset 290
 
