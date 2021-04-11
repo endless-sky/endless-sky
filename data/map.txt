@@ -26715,7 +26715,7 @@ planet Cornucopia
 		fleet "Large Militia" 12
 
 planet "Corral of Meblumem"
-	attributes arach mining farming
+	attributes arach mining farming longcows
 	landscape land/fields13-sfiera
 	description `The Corral of Meblumem is home to two major industries: uranium mining, and longcow ranching. The long lifetime of the longcows means that their bodies can easily accumulate dangerous loads of heavy metals if exposed to them, so the two industries are kept separated by conservation zones dozens of kilometers wide. The dark strips of primal forests separating the red-brown pit mines from the tan and light green of the pastures makes the land look like a stained-glass patchwork from above.`
 	spaceport `The spaceport is a small facility, a five-story tower and some warehouses surrounded by landing pads, with tall fences around them to make sure that a herd of longcows does not accidentally wander in. Outside the fences, longcows mill about like hundred-ton centipedes, and visiting spacecraft are strictly required to approach using repulsors only rather than their main thrusters to avoid spooking the cattle.`
@@ -28034,7 +28034,7 @@ planet "Mereti Station"
 	security 0
 
 planet "Miblulub's Plenty"
-	attributes arach farming
+	attributes arach farming longcows
 	landscape land/fields7
 	description `Miblulub's Plenty was the first colony created by the Arachi outside of their home system, founded at a time when their home world could not produce enough food to reliably feed its entire population. This planet has long seasons and plentiful rainfall that make its temperate zones ideal for farming, while the grasslands near the tropics are mostly used for longcow ranching. Longcows are a distinctive and ill-behaved species of multi-legged cattle; their meat is a key part of the Arach diet.`
 	spaceport `Although most of this planet is rural agricultural land, the spaceport is on the outskirts of a large and prosperous city. Ten thousand years ago, in the early days of Arach interstellar travel, this city was the home of the wealthy investors and business people who funded the farming settlements, and who moved here with their families to escape the pollution and conflict on their home world of Ahr.`
@@ -28143,7 +28143,7 @@ planet Nasqueron
 	description `Beneath Nasqueron's cloudy surface is a complex and thriving ecosystem of gas-dwelling organisms, from the massive void sprites all the way down to bacteria that inhabit tiny water droplets suspended in the air. Although the void sprites mostly feed on these organisms, it appears that in order to grow into their adult form or to give birth to young, they also need rare minerals that they can only find by feeding on asteroids, far beyond the planet's atmosphere.`
 
 planet "Nearby Jade"
-	attributes kimek farming urban
+	attributes kimek farming urban longcows
 	landscape land/fields12-sfiera
 	description `Aside from fish, the Kimek diet is mostly vegetarian, but a few centuries ago an Arach entrepreneur decided to start ranching longcows here. It is an ideal world for ranching, with plenty of grassy fields. The ranches have begun a major industry, although generally only the wealthiest of Kimek are willing to spend money on longcow meat.`
 	spaceport `The spaceport is at the very center of a city that is laid out with perfect radial symmetry: six sectors, each with their own markets, schools, and other public services, and clusters of skyscrapers that can each house a million individuals. The spaceport itself is also symmetrical, with a concourse in the center and smaller and smaller landing pads radiating out from it so that the largest freighters have easiest access.`
@@ -29259,7 +29259,7 @@ planet Sunracer
 		fleet "Large Syndicate" 10
 
 planet "Tebuteb's Table"
-	attributes arach farming
+	attributes arach farming longcows
 	landscape land/fields11-sfiera
 	description `This world is home to House Garbarag, the Arachi guild of farmers and ranchers. On private ranches far from the cities, they experiment with raising new breeds of longcows, a unique species of cattle that grow a new body segment each year and can reach more than thirty meters in length. The meat from a single longcow can feed a village for a month.`
 	description `	Longcows are typically docile and slow-moving, but when frightened one of them can do as much damage as an entire herd of stampeding terrestrial cattle.`
