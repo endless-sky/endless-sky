@@ -1431,15 +1431,14 @@ mission "Coalition Games"
 					decline
 			label end
 			`	"Most grateful, we are," the Saryd says.`
-			`	As you help them bring their luggage into your ship, they introduce themselves: the Saryd is called Ulmodi, the Kimek is Pairri, and the Arach is Tumub. They settle in their bunks to rest for the upcoming event, though as soon as Pairri closes her bunk's door you hear some slight noises. It sounds like she's doing push-ups - or maybe squats; you can't really tell how a Kimek would name such exercises.`
-			`	Ulmodi later comes talk to you, seeming a bit worried about not making it in time, as they need to be there by <date>, but you assure him it won't be a problem, especially considering you even have a jump drive to get there faster. Once he's back in his bunk, you set the route and prepare to leave.`
+			`	As you help them bring their luggage into your ship, they introduce themselves: the Saryd is called Ulmodi, the Kimek is Pairri, and the Arach is Tumub. They settle in their bunks to rest for the upcoming event, and you plot out a route to <destination>.`
 				accept
 	on complete
 		"coalition jobs" += 3
 		payment 300000
 		conversation
 			`As the athletes leave your ship and hand you your pay of <payment>, Pairri stretches her legs, trying to get eye-level with you. You crouch, and she says, "Incapable of arriving on time, a mutual friend of ours was. Available, their ticket is." She extends one of her legs to you, holding a small, coin-like piece. It has a symbol like the old Olympic Games on Earth, except with three interlocked rings instead of five.`
-			`	"Very long and tiring, for a first timer the games can be. Reading an entire novel in an hour, it is like," Tumub explains. "Understand, we would, if too busy to watch them, you are."`
+			`	"Very long and tiring, for a first timer the games can be," Tumub explains. "Understand, we would, if too busy to watch them, you are."`
 			`	"Still, much joy, it would bring us, if to watch the games, you chose," says Ulmodi. "Rare, such a chance is, to show an outsider the wonders of our games."`
 			choice
 				`	"Thank you. I would be glad to view the games."`
