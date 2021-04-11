@@ -1393,3 +1393,288 @@ mission "Arachi Cartoonist 2"
 				accept
 			label noship
 			`	"Ah, I see. Well, just a reference it would be, so the name matters not, I suppose. Anyway, thanks again Captain."`
+
+
+
+mission "Coalition Games"
+	name "Coalition Athletes"
+	description "Transport three athletes to <destination> by <date> where they will compete in the Coalition games."
+	deadline
+	passengers 3
+	source
+		near "Homeward" 3 12
+		government "Coalition"
+	destination "Far Home"
+	to offer
+		"coalition jobs" >= 35
+		month == 7
+	on offer
+		require "Jump Drive"
+		conversation
+			`You're approached by a group consisting of a Saryd, Kimek, and Arach. The Saryd speaks and the small box around his neck translates after he stops.`
+			`	"The astonishing sojourner, with great joy we salute."`
+			`	You greet the group, and the Kimek continues the conversation. "The season of joy and camaraderie, we find ourselves in. Upon us, the Coalition games are."`
+			`	The Arach speaks last, asking, "To <destination> by <day>, we must go. Compete to our hardest, we will. Transport us, would you, if upon <payment>, you agreed on?"`
+			choice
+				`	"That sounds good. I'll bring you there."`
+					goto end
+				`	"Sorry, I'm not looking for any transport jobs right now."`
+					decline
+				`	"Coalition games?"`
+			`	"To determine the athlete with the most merit, a competition it is," the Saryd says.`
+			`	"A candidate for the rank of Heliarch, one becomes, if one of the victors, one is," the Kimek adds.`
+			`	"Trained hard, we have. To prove our worth in the games, we wish," the Arach ends, and they once again look at you as if expecting an answer to their original question.`
+			choice
+				`	"Sounds like you're all really excited about this. Alright, I'll bring you there."`
+					goto end
+				`	"Well I wish you luck then, but sadly I'm not looking for any transport jobs right now."`
+					decline
+			label end
+			`	"Most grateful, we are," the Saryd says.`
+			`	As you help them bring their luggage into your ship, they introduce themselves: the Saryd is called Ulmodi, the Kimek is Pairri, and the Arach is Tumub. They settle in their bunks to rest for the upcoming event, though as soon as Pairri closes her bunk's door you hear some slight noises. It sounds like she's doing push-ups - or maybe squats; you can't really tell how a Kimek would name such exercises.`
+			`	Ulmodi later comes talk to you, seeming a bit worried about not making it in time, as they need to be there by <date>, but you assure him it won't be a problem, especially considering you even have a jump drive to get there faster. Once he's back in his bunk, you set the route and prepare to leave.`
+				accept
+	on complete
+		"coalition jobs" += 3
+		payment 300000
+		conversation
+			`As the athletes leave your ship and hand you your pay of <payment>, Pairri stretches her legs, trying to get eye-level with you. You crouch, and she says, "Incapable of arriving on time, a mutual friend of ours was. Available, their ticket is." She extends one of her legs to you, holding a small, coin-like piece. It has a symbol like the old Olympic Games on Earth, except with three interlocked rings instead of five.`
+			`	"Very long and tiring, for a first timer the games can be. Reading an entire novel in an hour, it is like," Tumub explains. "Understand, we would, if too busy to watch them, you are."`
+			`	"Still, much joy, it would bring us, if to watch the games, you chose," says Ulmodi. "Rare, such a chance is, to show an outsider the wonders of our games."`
+			choice
+				`	"Thank you. I would be glad to view the games."`
+				`	"I'm honored, but sadly I have other matters to attend to right now."`
+					decline
+			`	You take the "ticket," and they start explaining how the games work.`
+			`	"Separate competitions, each species has," Tumub says. "To value each one's history, it is so."`
+			`	"A grand, cooperative match, at the end of it all takes place," Ulmodi further details. "Teams consisting of all three species, formed they are. A joyous, unmatched experience, the last spectacle is."`
+			`	Since they need to leave to prepare for the games, they can't tell you about each sport, but assure you that you'll like them. You find a Heliarch agent who quickly points you to the line where people are checking in with their own tickets. The line must be thousands long, but you barely spend ten minutes in it. The Heliarchs taking care of admissions are incredibly efficient and keep things organized.`
+			`	After that, you find yet another Heliarch who shows you where you should go for each competition. Three massive transports, similar in design to old-school bullet trains, each take you to a different "arena" for a different type of game.`
+			`	They also explain that you'll take a separate train to go to the "grand spectacle" at the end of the Games, which will be available for boarding in any one of the three arenas after those matches are done. You thank them for the explanation and decide on which train to take.`
+			choice
+				`	(Take the train to the Saryd game.)`
+					goto saryd
+				`	(Take the train to the Kimek game.)`
+					goto kimek
+				`	(Take the train to the Arachi game.)`
+					goto arachi
+			
+			
+			label choice
+			branch "seen all"
+				has "coalition games: saryd"
+				has "coalition games: kimek"
+				has "coalition games: arachi"
+			
+			branch "seen saryd, kimek"
+				has "coalition games: saryd"
+				has "coalition games: kimek"
+			
+			branch "seen saryd, arachi"
+				has "coalition games: saryd"
+				has "coalition games: arachi"
+			
+			branch "seen only saryd"
+				has "coalition games: saryd"
+			
+			branch "seen kimek, arachi"
+				has "coalition games: kimek"
+				has "coalition games: arachi"
+			
+			branch "seen only kimek"
+				has "coalition games: kimek"
+			
+			branch "seen only arachi"
+				has "coalition games: arachi"
+			
+			label "seen only saryd"
+			choice
+				`	(Take the train to the Kimek game.)`
+					goto kimek
+				`	(Take the train to the Arachi game.)`
+					goto arachi
+				`	(Take the train to the cooperative game.)`
+					goto nwp
+			
+			label "seen only kimek"
+			choice
+				`	(Take the train to the Saryd game.)`
+					goto saryd
+				`	(Take the train to the Arachi game.)`
+					goto arachi
+				`	(Take the train to the cooperative game.)`
+					goto wp
+			
+			label "seen only arachi"
+			choice
+				`	(Take the train to the Saryd game.)`
+					goto saryd
+				`	(Take the train to the Kimek game.)`
+					goto kimek
+				`	(Take the train to the cooperative game.)`
+					goto nwp
+			
+			label "seen saryd, kimek"
+			choice
+				`	(Take the train to the Arachi game.)`
+					goto arachi
+				`	(Take the train to the cooperative game.)`
+					goto wp
+			
+			label "seen saryd, arachi"
+			choice
+				`	(Take the train to the Kimek game.)`
+					goto kimek
+				`	(Take the train to the cooperative game.)`
+					goto nwp
+			
+			label "seen kimek, arachi"
+			choice
+				`	(Take the train to the Saryd game.)`
+					goto saryd
+				`	(Take the train to the cooperative game.)`
+					goto wp
+			
+			label "seen all"
+			choice
+				`	(Take the last train.)`
+					goto wp
+				
+			
+			label saryd
+			apply
+				set "coalition games: saryd"
+			`	You arrive at a massive, crescent shaped stadium that wraps around the side of a huge valley, where the Saryd events are being held. Within the valley lies a track, beginning at a long line of starting gates, then splitting as it disappears into a forest, which covers most of the valley. The track reappears closer to another stadium, this one located in the valley below. The airspace above the valley is buzzing with small drones which are transmitting live footage to the dozens of cinema-sized screens placed around the stadium for those that can't get a clear view or can't see from this distance.`
+			`	By the gates, you see a long line of Saryds forming, and one of the drones gets closer, passing by the contestants as they wait, some gesturing at the camera as if greeting the spectators, while an announcer speaks some brief lines. Judging by how many the drone passes by, there must be a few hundred Saryds competing in this game. Minutes after all contestants have readied, an alarm sounds, and the whole crowd roars. The gates open: the Saryds burst from the gates with wheeled machines, similar to chariots, attached to them. They are also carrying bows and arrows.`
+			`	The contestants scatter among a variety of paths leading into the increasingly dense forest. As the Saryds approach, targets begin popping up from behind bushes and trees that they attempt to shoot at without stopping. As they continue to move, the mass of contestants becomes obscured by the forest, forcing you to turn and look at the massive monitors to continue seeing what is going on.`
+			`	One participant takes a corner going too fast, and their "chariot" slams into a tree. He slows to a stop and throws his bow into the ground. The drones don't transmit sound, but it's clear from his reaction he's been disqualified. Over the din of the crowd, you hear voices coming through the speakers, likely commentators.`
+			`	As they move deeper, tall brambles and ledges become more common among the path, and the targets appear faster and faster. A Saryd navigates one section perfectly, nailing seven different targets in a row while not leaving so much as a scratch on his chariot. You notice his picture on another monitor rises several positions, putting him near the front. It seems that hitting more targets counts towards a point system.`
+			`	Saryd begin striding out through the other side of the forest, crossing a finish line along the way. Only thirty contestants seem to have finished the race, a fraction of the hundreds that started it. The monitors switch over to a ground crew interviewing the finishers. You notice Ulmodi on screen, cheerily speaking to the interviewers. He seems to have finished fourth.`
+			`	With the event over, the crowd disperses under the supervision of Heliarch agents. The agents guide the audience to rooms with many large elevators. You board one of the elevators, which begins descending down into the valley. During the descent, a Saryd Heliarch agent approaches you and begins speaking through her translation device. "Enjoyed the event have you, human?"`
+			choice
+				`	"It was a very entertaining event. I can see why the crowd was excited the whole time."`
+				`	"I think the event would have been more interesting had I known what exactly was going on."`
+			`	The elevator finishes its descent and the doors open. The Heliarch agent nods at your response. "Hope that you enjoy this next event, I do," she says as she begins guiding the audience along a path leading to the next stadium. Upon entering, you find a rectangular court of some sort in the center. Small mounds dot the stadium grounds, while six large holes are arranged evenly around the sides of the field.`
+			`	After the audience is seated, an announcer once again comes on the loudspeaker. Sensing your confusion, a Kimek sitting next to you with a translation device explains that the winning contestants from the previous event are resting, and the next event will be starting shortly. As you sit waiting among the alien beings feeling a little out of place, you realize you're probably the first human ever to witness these games.`
+			`	Half an hour passes before the thirty Saryds, holding what looks like fancy polo mallets, enter the grounds and are divided into six teams of different colors. The members of each team are introduced to the crowd and you see that Ulmodi is on the blue team. After the introductions, several large spheres are placed at the center of the stadium in a circle and one member from each team stands around them.`
+			`	The game starts. It's some sort of mix between polo, billiards, and golf. The teams trot around for a while, and rapidly rush to the spheres once they see an opening in the others' defenses. As they hit the spheres with their mallets, they roll around the mounds, curving all over and sometimes even accidentally being flung into the audience; fortunately, nets are in place to keep the spheres within the playing area.`
+			`	Eventually, a sphere finds its way into a hole, which lights up with the color of the team who scored: red. Much of the crowd jumps up and screams. You're not sure if everyone is a fan of the red team or if they're cheering simply because a point was scored. The sphere is brought back up automatically via a tube close to the hole and it's back in the game.`
+			`	The game continues, and each team accumulates a few points. The blue team, leading, scores a fifth point, and the crowd's reaction is the loudest you've seen yet. The entire blue team gathers and celebrates as the commentators begin speaking. The Kimek with the translator explains what is happening.`
+			`	"The winning score, they have reached! The winners, the blue team are!" they say, still in a cheering mood. After everyone settles down, the members of the teams are shown on a replay screen, going from the team that scored the least all the way to the blue team at the end. Between the two events, Ulmodi is placed third. He and the rest of the top twenty contestants celebrate by running laps around the arena.`
+			`	After the celebration has died down, the teams gather for a moment of sportsmanship before leaving the arena. The crowd begins to file out. You get back to where the train dropped you off and see that another one has arrived on the opposite side. A Heliarch agent explains that it is headed to the final arena where the cooperative game will take place.`
+				goto choice
+			
+			
+			label kimek
+			apply
+				set "coalition games: kimek"
+			`	The overly-packed train takes you to a savanna plain, with a colossal cylindrical skyscraper that looks like a stadium that has been vertically stretched tenfold. Upon entering, you look up and see that the ceiling consists of a large circle in the center connected to the walls by beams, with a net below the circle that spans the entire room. Looking through the net, you can see that the same set up is repeated above it, and again above that. You count at least twenty floors of these circles surrounded by nets.`
+			`	You ask a Heliarch agent where Pairri will be competing, and they check a computer before pointing you to the sixteenth floor. After a crowded elevator ride, you find a seat. The seating area on each floor is massive, perhaps big enough to seat a hundred thousand audience members. Among the thousands of Kimek on this floor alone, you spot an occasional group of Arachi or a loner Saryd. Everyone eagerly waits for the event to begin.`
+			`	Bridges extend from just under the seating area to the circular platform in the middle of the floor. Kimek begin to fill the platform and are divided into two teams by Heliarch agents. Each team must consist of several hundred Kimek. The Heliarchs leave, and after a long whistle is blown, the two teams charge at one another.`
+			`	Within a few seconds, dozens of Kimek have been thrown from the platform onto the net below where they are helped into the surrounding seats by workers. Looking through the net, you can see that this is being repeated on each floor. It looks like a collective sumo match as the teams attempt to throw their opponents off the edge. Another whistle blows after enough have fallen out, and the remaining Kimek stop fighting. Heliarch agents return to the ring and organize those left into two teams. They depart, and the whistle blows once more. The fighters have more space to maneuver this time, so almost a minute passes before any fall.`
+			`	This process repeats a few more times. Finally, those that remain after several rounds - less than a tenth of those that entered - are gathered in the center. They leave the ring, and you become unsure if the game has ended.`
+			`	You feel something tap the top of your head and turn around to see an Arach sitting behind you. "Confused, the human visitor is?" their little box translates.`
+			choice
+				`	"Yes. I have no idea what is going on."`
+				`	"I think I somewhat understand, but an explanation would be helpful."`
+			`	They briefly breakdown the competition during this break. "Numerous, the Kimek are, so more athletes, they have," they say. "Over a thousand, at first enter each floor. Redone, the teams are, once in half, that number is cut. The true game begins, when one hundred remain."`
+			`	As if on cue, the hundred remaining contestants reenter the ring, this time wearing what looks like goggles, perhaps as protective gear. Instead of being split into two teams to fight, they are divided into pairs. Each pair move to miniature rings drawn on the floor.`
+			`	Above the large arena, monitors display the fighters and show their score: fighters that lose a match don't leave, but instead rotate counter-clockwise, fighting others to try and climb back up to the winning spots. You see that Pairri is set to fight close to where you're sitting, so you get a good view of her fights. While she is short even by Kimek standards, she stands her ground and manages to beat some slightly larger opponents, driving them out of the circular limit of the rink.`
+			`	After many of these rounds and rotational swap outs, it seems as though the game has ended, as no new pairs are formed. Then, Pairri and one other Kimek move to a circle in the center of the field. "Undefeated, both of them are," the Arach behind you says. "The floor victor, the winner of this final match will be." Pairri's opponent is much bigger than she is, so this will be a difficult fight.`
+			`	The whistle sounds again, and Pairri charges, pressuring her opponent toward the edge. They redirect the force by going to their side, and the fight quickly turns into a battle of attrition near the edge of the ring. Her opponent repositions themself closer to the middle and tries to charge, but she closes the gap. They continue wrestling before Pairri presses the other Kimek towards the border again. Suddenly, her opponent manages to grip her with their frontal legs, and by lifting their own body with the other four, manages to push her off the ground and into the air.`
+			`	Both fall outside the ring, but Pairri hits the ground first. You hear the whistle once again, and as they get up and approach each other for what must be the Kimek equivalent of a handshake, it becomes clear that Pairri has lost.`
+			`	With the event finally over, the audience begins to leave. Heliarch agents make sure everyone leaving the floor proceeds in an orderly fashion, and you take the elevators back down, returning to the entrance. You see a second train there, and the Arach that talked to you explains that it leads to where the cooperative game will take place.`
+				goto choice
+			
+			
+			label arachi
+			apply
+				set "coalition games: arachi"
+			`	When the train stops, you find yourself inside a building akin to a spaceport, only the ships are a mix between a helicopter and a raft. Other visitors start boarding the flying platforms, and you approach one of them. The rafts have adjustable seats. Their default position is designed for Arachi, but moving a few parts makes them capable of accommodating Kimek and even Saryds. You manage to adjust your seat to a configuration that's comfortable for humans.`
+			`	Once the 'rafts' are full, they leave their docks and depart the port. You're greeted by a lush rainforest as you leave the building. Massive trees emerge from a carpet of green below that seems to shimmer with the movement of different animals below the brush. Bird-like creatures with funneled beaks, startled by the engines, appear from the canopies in large flocks and soar through the forest. In the distance, there is a river so wide you believed it to be an ocean before a Heliarch agent informed you otherwise.`
+			`	You approach a cluster of the colossal trees. Smaller rafts begin to become visible nearby, each with a different symbol on it. The Heliarch agents on your own raft are busy preparing to land, so you ask a Saryd seated next to you what they mean after noticing they're carrying a translation box.`
+			`	"The multiple Arach houses, the symbols represent," she says. "To be patrons of athletes, a custom of members of the great houses it is."`
+			`	The rafts near the center of the cluster and begin to lower. Now that you're up close, you can make out details you couldn't before: they're similar to oak trees, but have leaves several times larger. Vines hang from the branches, many of which extend to other trees.`
+			`	As you get even closer, you realize most are not vines, but ropes: they connect the trees in an intricate, scattered web. Dozens of medium-sized rafts position themselves under the ropes and gather into groups. You can see they're attaching something to the rafts but can't make it out. After a few minutes, they move away, revealing they have attached large nets between rafts that will sit below each rope. Finally, a large raft - perhaps the largest here - orients itself above everyone. Multiple large monitors are attached to its bottom. They display the symbols of the Arachi houses you noticed on the rafts earlier, then a list of participants from each house follows.`
+			`	"Damaged, the forest would be, if grand colosseums here were built," the Saryd says. "This setup, every year is prepared. For the games, it is designed."`
+			`	The participants' rafts hover near the top of the largest, central tree, and all of them leave, staying at the very top of the crown, as the rafts move away. As the spectator rafts start passing closer to the top of the tree to see the contestants, you spot Tumub amidst the crowd. He sees you, and stands up higher by stretching his legs, perking his head up to say hello. You also notice that there's a symbol painted on the top of his abdomen representing an Arach house. The painting depicts multiple Arach legs interlocked with each other, as if forming a tightly knit web.`
+			`	You are told by the Saryd that it is the symbol for house Debdo, the Arach house that specialises in the service industries. They're about to pinpoint the other symbols and tell you which house each one represents, but a short siren goes off, and the contestants start moving down the main tree. You do your best to follow Tumub's movements, yet shortly after the game begins you lose his position as the groups of Arachi all move rapidly to other trees, holding onto the ropes.`
+			`	The rope web lets Arachi spread quickly. Some lead directly to the top, but most attach to lower branches with other ropes leading further up the tree. Whenever an Arach reaches the top of the tree, they begin scouring the upper canopy, sometimes nearly burrowing themselves in.`
+			`	They eventually find shiny, colored rings among the treetops, which they attach to their legs and then carry on to other trees. There's a variety of methods: some work their way clockwise around the tree, some counterclockwise, and some with no pattern at all, often heading to the central tree and taking a new route.`
+			`	A couple Arachi that have already been to three different treetops struggle to cross a straight rope leading to their fourth. Suddenly, their legs give out, and they fall down into the nets below. You notice the Heliarchs in your raft are passing some of the rings around so the spectators can feel their weight themselves. When one is passed to you, you hold it with both arms, yet it still nearly falls down. The Heliarch explains the rings are made with the same alloys used in Arach ship hulls, and are thus incredibly dense and heavy.`
+			`	As more and more competitors clear the trees of the needed rings, each needs to retrieve a ring from one every tree. The order at which they approach the trees is part of their strategy: the ropes leading to sections that require climbing are nearly impossible for those with too many rings. Those that successfully collect all their rings without falling return to the center tree. There are thirty left, and Tumub is among them. The rings are removed, and a scoreboard ranks the competitors by the time it took for them to collect all the rings. Tumub is placed fifth.`
+			`	The thirty that completed the course are given heavy suits of armor carried by three separate cargo rafts. As they don the bulky suits, the rafts holding the nets below the ropes rearrange themselves and their nets to form a long, straight line. Two larger rafts approach the middle with a thin, metallic pipe connecting them. The Arachi are placed on the pipe and must balance themselves with their armor as long as possible.` 
+			`	"A test of one's endurance, this stage is," the Saryd says. "Proud of both their ships' and their own resilience, the Arachi are. To hold on the longest, the objective is." All are able to stay on for roughly a minute, but soon the competitors begin falling one after another. After two minutes, only four are left, but even they fall before another fifteen seconds pass.`
+			`	After the results are merged, Tumub has climbed to second. He, along with the other Arachi in the top twenty, celebrate enthusiastically. Dark storm clouds are rapidly approaching the cluster of trees, so it isn't long before everyone is on rafts returning to the port.`
+			`	When you step off the raft, you see that aside from the train that brought you here, another one is now ready to depart. As she leaves the raft too, the Saryd that was sitting next to you explains that it leads to the grounds where the cooperative game will happen.`
+				goto choice
+			
+			
+			label wp
+			`	This train is larger than the others you've seen today, and its design mimics Heliarch warships in its meshing of Coalition styles. It takes you to an area similar to a spaceport where you board one of the few hundred ring-shaped flying rafts. As you sit down, you notice the seats, which face the inside of the ring, are mobile. You can't help but feel uneasy being on a gigantic alien roundabout that doesn't seem to match any safety regulations you know of.`
+			`	As you're watching the mechanics here perform various safety checks on the raft, you hear what you by now recognize as Kimek speech from the seat to your right.`
+			`	"Enjoyed the games, have you, Captain?" The small box translates just as you turn around, seeing that Pairri has taken her own seat besides yours. "Spectating my earlier match, you were, yes?"`
+			choice
+				`	"Yeah, you did pretty good."`
+					goto prettygood
+				`	"Wait, why are you up here with the viewers?"`
+					goto why
+			
+			label nwp
+			`	This train is larger than the others you've seen today, and its design mimics Heliarch warships in its meshing of Coalition styles. It takes you to an area similar to a spaceport where you board one of the few hundred ring-shaped flying rafts. As you sit down, you notice the seats, which face the inside of the ring, are mobile. You can't help but feel uneasy being on a gigantic alien roundabout that doesn't seem to match any safety regulations you know of.`
+			`	As you're watching the mechanics here perform various safety checks on the raft, you hear what you by now recognize as Kimek speech from the seat to your right.`
+			`	"Enjoyed the games, have you, Captain?" The small box translates just as you turn around, seeing that Pairri has taken her own seat besides yours.`
+			choice
+				`	"Yeah, though I didn't have time to stop by your own match, sorry."`
+					goto notime
+				`	"Wait, why are you up here with the viewers?"`
+					goto why
+			
+			label notime
+			`	She mumbles something that the box doesn't bother translating, and then she says, "Cost me the match, impatience did," she says. "Still, much younger than most Kimek there, I am. Glad to have gotten so far, I feel."`
+				goto coop-game
+			
+			label prettygood
+			`	"Cost me the match, impatience did," she says. "Still, much younger than most Kimek there, I am. Glad to have gotten so far, I feel."`
+				goto coop-game
+			
+			label why
+			`	"For the Kimek victors only, the cooperative match is reserved. Team up with Tumub and Ulmodi, my opponent will."`
+			
+			label coop-game
+			`	She starts to say something else, but the ring begins taking off, leaving the docks. Out in the open, you're overlooking a massive track separated from the rest of the wilderness by a perfectly rectangular border of trees. Immediately under you are the contestants in twenty groups of three. As the ring ascends, small monitors light up in front of you, and Pairri inputs the a command for yours to focus on Tumub and Ulmodi, who, conveniently, happen to be in the same group.`
+			`	Up above, you can finally see the entire stage: a long, mostly flat stretch of land, leading to a rocky wall, cuts to form a perfect right angle with the ground. At the top, there is a river bank with many logs laid on the ground. The river itself is not terribly big, but the current seems to be potent enough that the boats moving around the waters have some difficulty turning at times.`
+			`	The twenty teams line up. The Saryds are attached to a chariot carrying the other two members of each team. Zooming in on Tumub, you see that he is helping the Kimek of their group check a bag with some tools. He has a similar bag on his back.`
+			`	"In many ways we differ, when it comes to physical form," Pairri speaks to you. "Different tasks, each member is assigned. For the sake of fairness, it is so."`
+			choice
+				`	"What are they carrying in those bags?"`
+				`	"So is pulling those chariots the 'task' of the Saryds?"`
+			`	A loud airhorn interrupts Pairri as she is about to answer, and the Saryds start galloping toward the wall. The Kimek and Arachi of each chariot do their best to stay on, as their Saryd teammates give their all to the race.`
+			`	The Saryds have to begin breaking two thirds of the way to the wall to avoid crashing into it. It's still a very tight race as every team reaches the wall. The Saryds immediately lay down to rest as the Arachi unstrap the chariots. Meanwhile, the Kimek are already climbing the wall, carrying their small bags.`
+			`	Before long, all have reached the top. They open their bags and pull out a multitude of tools and rope.`
+			`	"To cross the river, one of the goals of the game is," says Pairri. "To build the raft, the Kimek's task is is."`
+			`	Back at the bottom, the Arachi are preparing for the climb. Each has a large piece of cloth attached to some elastic-like fabric which they wear over their bodies like climbing equipment. The Saryds climb in the cloth, and after a few short test climbs for stability, the Arachi start climbing.`
+			`	Tumub's movements appear very calculated. Never having more than one leg not touching the wall at a time and carefully looking for the best spots to anchor himself on, he continues carrying Ulmodi's much larger frame up the stone barrier.`
+			`	As soon as they finish the climb, the Saryds get up, unstrap the fabric from the Arachi, and start carrying their exhausted companions toward the now nearly complete raft. The Saryds lay the Arachi beside the raft and help the Kimek properly secure the ropes. The Kimek and Saryds help the Arachi get on and start pushing the raft to the lake. The Saryds get onto them shortly before they touch the water, and the Kimek wait until the last second.`
+			`	After focusing on Ulmodi and Tumub for a while, you notice that the Kimek from their group has picked up three small paddles and is working to fight the river's flow. Ulmodi grabs a tool that looks like a combination between a shovel and pickaxe from its spot wedged between two logs. He uses the pick side to grab onto some rocks sticking up and pulls, tilting the boat back on course.`
+			`	About halfway across, Tumub has caught his breath and is manning the sail. Standing up on two legs, he opens it up and skillfully manages it using the ropes, altering the direction of the sail to better adapt to the changing needs of the turbulent vessel.`
+			`	As you and Pairri cheer for the group, you notice that not everyone is having the same success crossing. Two rafts, unable to fight the stream, have drifted dangerously far down the river. Heliarch boats speed toward them, rescuing the competitors before anyone is hurt.`
+			`	In total, eighteen teams make it across the river. The race was extremely close the whole time, but Ulmodi, Tumub, and their Kimek parter win second place by a hair. The competitors celebrate with their team and later gather to commend their opponents while the crowd cheers in all three Coalition languages.`
+			`	Everyone grows quiet, however, as three Heliarch Punishers land right in front of the athletes. One Heliarch, wearing the same type of circlet you saw in the Ring of Friendship, emerges from each ship, presumably their captains. There is one Arach, one Saryd, and one Kimek.`
+			`	"Deemed worthy, some have been. The winners, the Heliarchs shall now announce," Pairri says. As the Heliarchs start speaking, she tries to summarize and let the box translate it, but the device is unable to keep up with the rate at which she speaks. Judging by the audience's reaction during pauses, they must be giving some sort of grand finale speech.`
+			`	After they finish, the monitor switches to a black screen, which after a moment displays live footage of one of the athletes, a Kimek. A Saryd is next, then another Kimek, followed by an Arach. Tumub's and Ulmodi's faces are shown next, and Pairri makes a sound that you think sounds like an excited scream - or, at least, a Kimek version of such a thing.`
+			`	"Selected, my friends have been!" She says. "Made it, they have!"`
+			`	A few more words are said after the crowd has settled, and the six that were selected are invited into the Punishers. Pairri explains they are being considered for the rank of Heliarch and will go to the Ring of Friendship to continue their journey.`
+			`	The ring platforms head back to the building, and you board the train with Pairri to head back to one of the previous arenas, and from there to where your ship is docked at. During the train rides she used some device to call friends and family members, who congratulate her on getting so far. She can't seem to contact Ulmodi or Tumub, though.`
+			`	"Busy with the Heliarchs they must be." She guesses. "That there with them I am not, a shame it is."`
+			choice
+				`	"So are they Heliarchs now?"`
+				`	"You almost won this time, so I'm sure you'll make it next time."`
+					goto nexttime
+			`	"Not yet. A few more short trials they must pass, before elevated to that rank they are." She explains. "Similar to the standard process, it is. Only, for those selected during the games, much faster said process is."`
+				goto ending
+			label nexttime
+			`	"Thanks Captain. Even if next year watching my matches you are not, do my best I promise I will. Better than this last time I will do."`
+			label ending
+			`	A dozen Kimek suddenly come running towards you two, and Pairri tells you it's her family. She tries to introduce you to all of them, but they seem much more interested in telling her how proud they were to see her compete than they are in meeting you. After they calm down a bit, you say goodbye to Pairri, wish her good luck for next year's games, and head back to your ship.`
+				decline
