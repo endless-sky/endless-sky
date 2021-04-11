@@ -1,0 +1,177 @@
+# Copyright (c) 2021 by Arachi-Lover
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+
+news "heliarch news"
+	location
+		government "Coalition" "Heliarch"
+	name
+		word
+			"Heliarch broadcast"
+	message
+		word
+			"A sizable crowd is watching one of the monitors in the spaceport, where an interviewer is speaking to a Heliarch agent. You learn from someone in the crowd that the agent was until recently a professional athlete."
+			"A news broadcast shows footage of many Heliarch agents arresting a group of terrorists. The Heliarch who was supervising the operation is later interviewed, explaining that the now prisoners were found to have stolen government equipment."
+
+news "heliarch propaganda"
+	location
+		government "Coalition" "Heliarch"
+	name
+		word
+			"Heliarch propaganda"
+	message
+		word
+			"A short film plays on a monitor during a commercial break. A young Saryd walks in a forest, looking to his sides every few seconds to take in the view. Eventually he turns to see another Saryd, both surprised. As he approaches her and the two start talking, the camera pans out to a rising sun over the forest."
+			"A local screen shows a stressed Saryd working at a computer late at night. The door creaks, and she looks back to find her children peeking. She puts them to sleep, and then goes to bed herself. After waking up, she finds nobody around the house. She goes outside, seeing the children, along with their father, admiring the sun rising."
+			"After a government broadcast, a timelapse plays on a spaceport monitor, showcasing Ring of Friendship gaining more and more solar panels on its exterior over the centuries."
+
+news "longcow rancher"
+	location
+		attributes "arach" "longcows"
+	name
+		word
+			"Longcow rancher"
+	message
+		word
+			`"Caring for longcows, hard work it is. Too much space they take up. Too many legs."`
+			`"Never been around an angry longcow, have you? Word of advice, avoid their sides you should."`
+			`"Stopped using vaccines on longcows, long ago we did. Remember which leg to apply them on, we never could."`
+			`"Wish understand my jokes, my beauties could. Many kicks out of them, they would get."`
+			`"Fresh steak here! First leg steak, second leg steak... a discount for tenth leg steak there is!"`
+			"You see a rancher walk out of a shop with a trolley full of bells. You wonder if they are for multiple longcows, or just a particularly long one."
+
+news "kimek farmer"
+	location
+		attributes "kimek" "farming"
+	name
+		word
+			"Kimek farmer"
+	message
+		word
+			`"When starting out on this business, I was, lost in the farm I got. Tricky to tell where you are, it is, when green is all you see."`
+			`"A Heliarch agent, I once was. Too stressful, it was for me, so this job I took. Messages from colleagues, I still get, but if see the fruits I plant here, they could, definetly join me, they would."`
+			`"Some fresh produce would you like, Captain? If purchase these, you do, teach you a family recipe I could. I'm sure that love it, a human would. Probably."`
+			"After noticing you looking at the produce, the farmer asks if you would like some free samples, before grabbing an entire box with various fruits and vegetables, and handing it to you."
+			"Dozens of farmers in different stands call out to you as you walk by the spaceport, asking you to take a look at the special prices of today's 'food expo.' You later look into it, and turns out yesterday there also was an expo, as well as the day before that. Tomorrow's starts the moment today's ends."
+
+news "heliarch agent"
+	location
+		government "Coalition" "Heliarch"
+	name
+		word
+			"Heliarch agent"
+	message
+		word
+			`"Protect and serve."`
+			`"If any assistance you need, at your disposal I am."`
+			`"If any trouble you find, report it to us you must."`
+			`"Saryd, Kimek, Arach, human, no matter what species, to protect all of our citizens committed we are."`
+			`"Enjoy my post well enough, I do, but still to get a break during the Coalition games to watch them, I am."`
+			`"Part of a Punisher crew, I am. Land, refuel, rest, and back to working on that magnificient ship I am!"`
+			`"Offered the position of elder, I actually have been. Only, not interested in that governing activity, I am."`
+			`"Apologies, but make haste I must. Gone missing some garrison guns have, and back to cleaning Stalker engines I will be, if find them I don't!"`
+			`"Difficult sometimes it is, to be a mediator. If careful with my words I am not, a Saryd might think an Arach talking about longcows has insulted their mother."`
+			"An agent is trying to calm down a small crowd outside a local bar. After some minutes the more agitated drunkards are convinced to accompany the agent to a nearby Heliarch office."
+
+news "heliarch candidate"
+	location
+		government "Heliarch"
+	name
+		word
+			"Heliarch candidate"
+	message
+		word
+			`"Laws, history, theory, too much of it I have read, and still behind I am..."`
+			`"As part of my trials, read the works of elder Elirom, I had to. Exceeded my expectations, his books have."`
+			`"To prove our dedication and show our potential, the trials we candidates go through are. Though difficult, we're sure to be apt to serve once passed, we have."`
+
+news "coalition ad"
+	location
+		government "Coalition"
+	name
+		word
+			"Advertisemet"
+	message
+		word
+			"You see a commercial where a Saryd sits down after a workout, and as the camera spins it switches to a Kimek studying, and then to an Arach watching sports while cheering. It seems to be an ad for a brand of foldable chairs."
+			"A commercial for house Debdo plays on a local monitor, with various scenes of tourist spots being accompanied by an upbeat, serene jingle."
+			"An ad shows various graphs of what you guess are stock values. An Arach leg swipes the view and the graphs begin fluctuating a lot more to one side. At the end the logo of house Plumtab flashes on the screen."
+			"An ad for an energy drink is on display on a local shop. A Kimek is down on the ground in the middle of the streets, struggling to move, as a crowd gathers around them. When they get the drink, they jump up and bolt past the crowd, and then proceed to climb up a skyscraper. At the end a disclaimer advises against Saryds consuming the drink."
+
+news "arach tourist"
+	location
+		government "Coalition"
+		attributes "tourism"
+		not attributes "arach" "station"
+	name
+		word
+			"Arach tourist"
+	message
+		word
+			`"Ever since another child I had, extended my vacation period and increased my holiday pay, the government has."`
+			`"Much better than I expected, the food here is. Still, beat longcow steak, nothing here does."`
+			`"That the streets here were too narrow for us Arachi, I had heard, but no problem so far I've had."`
+
+news "kimek tourist"
+	location
+		government "Coalition"
+		attributes "tourism"
+		not attributes "kimek" "station"
+	name
+		word
+			"Kimek tourist"
+	message
+		word
+			`"Come here with a caravan, I have. Cheaper it was, but stick together we must, and too tight the schedule they set up is, barely appreciate the sights, I can!"`
+			`"Asked me to bring them some gifts from my trip, my family has, but fit them all in my luggage I cannot, and only half of the gifts purchased I have!"`
+			`"From an arcology I am, so to me twice vacation a trip to a planet without them is."`
+
+news "saryd tourist"
+	location
+		government "Coalition"
+		attributes "tourism"
+		not attributes "saryd" "station"
+	name
+		word
+			"Saryd tourist"
+	message
+		word
+			`"From far away I've come, and for weeks sleeping in a ship I was. My first time traveling to another planet, it is, so not used to being so far from nature, I was. No idea how other Saryds make it as pilots, I have."`
+			`"Truly breathtaking, the sights of this world are. The cuisine, too, greatly enjoyed I have. If only the locals had a more civil sense of attire."`
+			`"Climb up walls, the denizens of this world can. Otherworldy it is, to see them do so in the distinct architecture of some buildings here."`
+
+news "coalition researcher"
+	location
+		government "Coalition"
+		attributes "research"
+	name
+		word
+			"Researcher"
+	message
+		word
+			`"Pardon me, but providing me with a blood sample, would you mind? Interested in how the human immune system differs from our own, I am."`
+			`"To Ring of Wisdom I frequently travel. Held there, many great conferences are."`
+			`"Move to Ring of Wisdom, I wish to. So many advanced facilities for testing it has, so much easier to get a hold of complex chemicals..."`
+			`"A Saryd Traveler I recently purchased. Not much of a pilot I am, but being a science vessel, adequate facilities the model still has. More importantly, no rude neighbors to interrupt my team's research, a spaceship has."`
+
+news "coalition researcher yottrite"
+	to show
+		has "Coalition Yottrite 9: done"
+	location
+		government "Coalition"
+		attributes "research"
+	name
+		word
+			"Researcher"
+	message
+		word
+			`"Seems that interesting findings, the research on yottrite has yielded. Proud of having helped us learn more, you should be."`
+			`"Now that more information on yottrite we have, wonder if house Ablomab will ask for samples to experiment on, I do."`
+			`"Kill for the papers on the yottrite research, I would, but still confidential the information is."`
