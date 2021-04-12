@@ -175,3 +175,55 @@ news "coalition researcher yottrite"
 			`"Seems that interesting findings, the research on yottrite has yielded. Proud of having helped us learn more, you should be."`
 			`"Now that more information on yottrite we have, wonder if house Ablomab will ask for samples to experiment on, I do."`
 			`"Kill for the papers on the yottrite research, I would, but still confidential the information is."`
+
+news "coalition ringworld worker"
+	location
+		government "Heliarch"
+		attributes "station"
+	name
+		word
+			"Ringworld engineer"
+			"Ringworld worker"
+			"Construction supervisor"
+			"Solar panel engineer"
+			"Solar panel welder"
+			"Maintenance worker"
+	message
+		word
+			`"Just arrived here, I have. So glad that finally accepted for this job, I was!"`
+			`"Food, lodging, an important job with a good pay, and a wonderful view. Ask for, what more could I?"`
+			`"The means to finish construction of the two remaining rings, we still don't have, but one day, complete they shall be."`
+			`"Wholly safe, our Coalition is, but here, even safer I feel. What is there to fear, when in an indestructible station you are?"`
+			`"Still researching the alloys that make up the rings, our top scientists are, so only adding supplementary solar panels, we are."`
+
+news "coalition spaceport worker"
+	location
+		government "Coalition" "Heliarch"
+	name
+		word
+			"Spaceport worker"
+	message
+		word
+			`"Since with captains of other species, we deal, translation boxes, we are issued. Simple tools for us, but too expensive for many to purchase, they are, so to enjoy the opportunity to use them, we try."`
+			`"Three different styles of ships, we deal with daily, so never on autopilot we can be, or else refuel one incorrectly, we might."`
+			`"Inspect every crate before it is put on a ship, the Heliarchs do. A tedious process, it is."`
+
+news "coalition merchant"
+	location
+		government "Coalition" "Heliarch"
+	name
+		word
+			"Saryd captain"
+			"Kimek captain"
+			"Arach captain"
+			"Saryd pilot"
+			"Kimek pilot"
+			"Arach pilot"
+	message
+		word
+			`"Enough money for my first ship, I didn't have, so split the cost of a Runabout, me and an online friend did. Picked another ship, we should have, too difficult flying alone to their planet, it was."`
+			`"Enough money for my first ship, I didn't have, so a loan from house Plumtab, I took. Read the interest rates a bit better, I should have..."`
+			`"On a Hulk, my first job in a spaceship was. Thought falling apart it was, I had, when to a Spindle it switched."`
+			`"Liked my ship so much, a Kimek passenger did, that decided to live in it, they have. For 'transport' they still pay, so mind it I do not."`
+			`"Jealous of you, I am. If a jump drive I had, bypass the gap between Saryd and Arach space, I could, and quickly earn a fortune, I would."`
+			`"Agreed to transport some Saryd graduates for a 'field trip', I once did. Almost arrested, I was."`
