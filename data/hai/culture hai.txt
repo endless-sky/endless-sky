@@ -28,11 +28,11 @@ mission "ZZCU Theater Chat"
 		conversation
 			`As you are walking through the spaceport, you come across the uncommon pairing of a Hai and a human, their conversation standing out by virtue of speaking the common tongue of humanity.`
 			`	"Oh, oh, Gemanari, this looks interesting!" The human woman looks to be in her late sixties and, when you turn to look, seems to be clucking over a holographic advertisement for a theater show. "This looks adorable, doesn't it? Oh, and it says they're using ripple ray refractive holographic flight effects!"`
-			`	The advertisement does indeed look very impressive and you pause to observe for a moment.`
+			`	The advertisement does indeed look very impressive, and you pause to observe for a moment.`
 			`	The Hai, presumably Gemanari, also appears to be a more mature lady who squints at it and wrinkles her nose. "Ugh, that's the Germontian interpretation though."`
-			`	This receives a puzzled look to which Gemanari thinks for a second before clarifying, "You would say the Social Darwinist interpretation."`
-			`	The lady grimaces and makes like she's vomiting, "I can't believe you still have those schools of thought in a society this old."`
-			`	"Oh we don't really, at least not in scientific circles, but a compelling story will outlive such things. I can't stand it personally but it is a classic." When the lady looks unimpressed Gemanari titters and takes her gently by the arm to steer her away again. "Don't worry Alinta, I think the Misheep Wah'uden company is running my preferred interpretation on <destination> at the moment. We can see if they have any cheap tickets. Of course my aunt would insist that the hundred and eighty-third version is the only real one but she always..."`
+			`	This receives a puzzled look to which Gemanari thinks for a second before clarifying. "You would say the Social Darwinist interpretation."`
+			`	The lady grimaces and makes like she's vomiting. "I can't believe you still have those schools of thought in a society this old."`
+			`	"Oh we don't really, at least not in scientific circles, but a compelling story will outlive such things. I can't stand it personally, but it is a classic." When the lady looks unimpressed, Gemanari titters and takes her gently by the arm to steer her away again. "Don't worry Alinta; I think the Misheep Wah'uden company is running my preferred interpretation on <destination> at the moment. We can see if they have any cheap tickets. Of course my aunt would insist that the hundred and eighty-third version is the only real one, but she always..."`
 			`	You lose the conversation as they trail away from you, leaving you to wonder just what was so special about the hundred and eighty-third version of a play about a prehistoric flying Hai found frozen in the ice.`
 				decline
 
@@ -45,22 +45,22 @@ mission "ZZCU Musical Entertainment Expo"
 		random < 1
 	on offer
 		conversation
-			`While stopped in the spaceport waiting for refueling you are surprised by how hard it is to find somewhere to sit and have a meal & a drink. It seems Hai have crammed themselves into every bar or similar venue with a public display screen, arrayed in sashes and mantles and all manner of other paraphernalia which, near as you can tell, looks like... team sport merchandise?`
-			`	You're not really an expert on exactly what such things look like in Hai society and so when you finally find somewhere to sit, at a bar for lack of any other options, you ask the tired looking bartender what exactly is going on.`
+			`While stopped in the spaceport waiting for refueling, you are surprised by how hard it is to find somewhere to sit & have a meal and a drink. It seems Hai have crammed themselves into every bar or similar venue with a public display screen, arrayed in sashes and mantles and all manner of other paraphernalia which, near as you can tell, look like... team sport merchandise?`
+			`	You're not really an expert on what such things look like in Hai society and so when you finally find somewhere to sit, at a bar for lack of any other options, you ask the tired-looking bartender what exactly is going on.`
 			`	"Oh this? They're all here for the Musical Entertainment Expo streams. Unfortunately, none of them start drinking until at least one of their teams has announced something of worth," he says with an exasperated eye-roll.`
 			choice
-				`	"Sure, can I just get some food here?"`
+				`	"Okay. Can I just get some food here?"`
 					goto wrapup
-				`	"Whats the Musical Entertainment Expo?"`
+				`	"What's the Musical Entertainment Expo?"`
 				`	"Why don't they start drinking yet?"`
-			`	"Well you see, the big music labels do a lot of talent scouting all year round, they all have a department that is solely dedicated to finding and assembling new music groups to be the next big thing. It's tradition to celebrate only after you've committed to the journey with a new band. Every three years the industry holds ME2, which is what you're seeing up there, to debut their next round of bands and to tease any mid-season releases they might have in the works."`
+			`	"Well you see, the big music labels do a lot of talent scouting all year round. They all have departments solely dedicated to finding and assembling new music groups to be the next big thing. It's tradition to celebrate only after you've committed to the journey with a new band. Every three years the industry holds ME2, which is what you're seeing up there, to debut their next round of bands and to tease any mid-season releases they might have in the works."`
 			choice
 				`	"Your music comes off a production line?"`
 					goto production
 				`	"Do you not have musicians trying to make it on their own?"` 
 			`	"Oh for sure, but mostly just to get picked up by one of these companies."`
 			label production
-			`	The bartender chuckles. "We've been doing pop music for longer than your people have had fire, it's about the experience of being a fan of a group as it rises to fame and stardom. A dedicated Hai can go back and find a song for almost any possible life experience in almost any possible genre. It's the journey, and the personalities, that are what it's all about."`
+			`	The bartender chuckles. "We've been doing pop music for longer than your people have had fire. It's about the experience of being a fan of a group as it rises to fame and stardom. A dedicated Hai can go back and find a song for almost any possible life experience in almost any possible genre. It's the journey, and the personalities, that are what it's all about."`
 			choice
 				`	"How strange."`
 				`	"How interesting."`
@@ -85,19 +85,19 @@ mission "ZZCU The Meme Wars 1"
 				has "language: Wanderer"
 			`	As you watch, the triangular elder being holoprojected seems to flicker and then fizzles out as the battery unit fades, apparently under the assault of the root vegetable which appears to do a victory dance, before proceeding to act out something that makes precisely no sense to you.`
 			`	A little further on you encounter two different groups of protesters weaving in and out of the spaceport's entrances like some kind of conga line. The triangular elder and opposing root vegetable make several reappearances on their placards, some of them holographically animated.`
-			`	A different security guard, this one in regular attire, appears at your elbow. "You look a little lost but don't worry, it's just a meme war. Carry on with your business and don't touch the meme items, no one should bother you over it."`
+			`	A different security guard, this one in regular attire, appears at your elbow. "You look a little lost. Don't worry, it's just a meme war. Carry on with your business and don't touch the meme items, and no one should bother you over it."`
 			`	You thank the security guard for his advice and go about what you were doing as the baffling conflict continues around you.`
 				decline
 			label translator
 			`	As you watch, the triangular elder being holoprojected seems to flicker and then fizzles out as the battery unit fades, apparently under the assault of the root vegetable which appears to do a victory dance. To your surprise your translator pipes up, "[Victory, Success] for the true and square root that is more [significant, meaningful] than the tripartite [system, tradition] of the elders!"`
 			`	A little further on you encounter two different groups of protesters weaving in and out of the spaceport's entrances like some kind of conga line. The triangular elder and opposing root vegetable make several reappearances on their placards, some of them holographically animated.`
-			`	A different security guard, this one in regular attire, appears at your elbow. "You look a little lost but don't worry, it's just a meme war. Carry on with your business and don't touch the meme items, no one should bother you over it."`
+			`	A different security guard, this one in regular attire, appears at your elbow. "You look a little lost. Don't worry, it's just a meme war. Carry on with your business and don't touch the meme items, and no one should bother you over it."`
 			choice
 				`	"Sure, will do."`
 					goto done
 				`	"Your elders have a tripartite system?"`
-			`	The security guard chuckles and says, "Oh you can understand? They don't really, but it's a very old joke from an old campaign that there are only three tenets the elders care about, and they're all the ones that affect us the least."`
-			`	When you ask what has triggered this now he says, "Oh, the latest education priorities came out with a four tenet focus, on the same day that an elder accidentally quoted the old campaign. It has been very entertaining."`
+			`	The security guard chuckles and says, "Oh you can understand? They don't really, but it's a very old joke from a bygone political campaign that there are only three tenets the elders care about, and they're all the ones that affect us the least."`
+			`	When you ask what has triggered this, he says, "Oh, the latest education priorities came out with a four tenet focus, on the same day that an elder accidentally quoted the old campaign. It has been very entertaining."`
 			choice
 				`	"How strange."`
 				`	"Sounds fun."`
