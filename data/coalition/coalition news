@@ -131,7 +131,7 @@ news "kimek tourist"
 		word
 			`"Come here with a caravan, I have. Cheaper it was, but stick together we must, and too tight the schedule they set up is, barely appreciate the sights, I can!"`
 			`"Asked me to bring them some gifts from my trip, my family has, but fit them all in my luggage I cannot, and only half of the gifts purchased I have!"`
-			`"From an arcology I am, so to me twice vacation a trip to a planet without them is."`
+			`"From an arcology I am, so to me twice the vacation, a trip to a planet without them is."`
 
 news "saryd tourist"
 	location
