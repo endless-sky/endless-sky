@@ -74,8 +74,6 @@ mission "Small Interlibrary Loan [2]"
 		payment 0 170
 		dialog phrase "generic cargo delivery payment"
 
-
-
 mission "Small Interlibrary Loan [3]"
 	job
 	repeat
@@ -212,7 +210,6 @@ mission "Small Library Media Delivery [2]"
 
 
 
-
 mission "Bulk Interlibrary Loan [0]"
 	job
 	repeat
@@ -306,6 +303,8 @@ mission "Bulk Library Media Delivery [1]"
 	on complete
 		payment 3500 160
 		dialog phrase "generic cargo delivery payment"
+
+
 
 mission "Large Bulk Interlibrary Loan [0]"
 	job
@@ -421,6 +420,8 @@ mission "Librarian Transport [2]"
 	on complete
 		payment 1500 150
 		dialog phrase "generic passenger dropoff payment"
+
+
 
 mission "Library Assistant Transport [0]"
 	job
@@ -566,11 +567,6 @@ mission "Library Team Transport"
 		dialog phrase "generic passenger dropoff payment"
 
 
-
-
-
-
-########################################################################
 
 mission "Small Interlibrary Return [0]"
 	job
@@ -825,10 +821,6 @@ mission "Large Bulk Interlibrary Return [1]"
 
 
 
-
-
-
-
 mission "Librarian Return [0]"
 	job
 	repeat
@@ -1023,8 +1015,6 @@ mission "Library Team Return [1]"
 
 
 
-
-
 mission "Library Supplies [0]"
 	job
 	repeat
@@ -1214,12 +1204,7 @@ mission "Large Bulk Library Supplies [2]"
 
 
 
-########################################################################
-
-# Smuggling to Alexandria. Payments are high because you are going
-# deep into Republic space.
-
-
+# Smuggling to Alexandria. Payments are high because you are going deep into Republic space.
 mission "Library Smuggling [0]"
 	job
 	repeat
