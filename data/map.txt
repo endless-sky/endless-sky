@@ -26158,7 +26158,7 @@ planet Ada
 		fleet "Large Republic" 16
 
 planet Ahr
-	attributes arach factory tourism shipping urban
+	attributes arach factory tourism shipping urban folklore
 	landscape land/forest4
 	description `The homeworld of the Arach people, Ahr is a metropolitan world with nearly nine billion inhabitants, enough that they cannot all be fed by what this world produces. The government maintains a storehouse with a month's supply of food in each major metropolitan center, as well as a collection of bioreactors, built according to Kimek designs, that can produce a tasteless but nutritious paste as emergency rations in the unlikely event that shipments of food from off-world are somehow disrupted for a prolonged period of time.`
 	spaceport `A constant line of cargo barges and trucks streams through this spaceport city, collecting goods to be distributed to the outlying suburbs and neighboring cities. Inside the main terminal, members of all three Coalition species mix freely, but the Heliarch agents and interpreters here are all Arach.`
@@ -26479,7 +26479,7 @@ planet "Brass Second"
 	outfitter "Coalition Basics"
 
 planet "Bright Echo"
-	attributes saryd tourism urban
+	attributes saryd tourism urban folklore
 	landscape land/dmottl1
 	description `This is the first world that the Saryds colonized outside of their own solar system. Although somewhat colder than their native planet, it developed into a thriving metropolitan world. The original settlers planned out in exacting detail how every part of the planet's land mass should be used, in order to satisfy their aesthetic ideal of blending residential areas with parks and farms. Large areas have also been set aside as undeveloped wilderness.`
 	spaceport `The spaceport is in what, by Saryd standards, is a major city, with scattered skyscrapers surrounded by forests and grassy park land along with smaller dwellings and occasional factories or power plants. The city is built on either side of one of this continent's largest rivers, a few kilometers downstream from a dam and hydroelectric plant. Here, the river cuts through a deep gorge, and the graceful bridges that cross the gorge are often shrouded in mist.`
@@ -26589,7 +26589,7 @@ planet Celeatis
 	description `Celeatis is a barren planet with mountains covering most of the surface. Even in the few flat highlands, the terrain is too sterile for any kind of vegetation to grow naturally. On some slopes, the outline of an outpost can still be recognized, but they are all uninhabited: some of the villages have been partially destroyed, and large amounts of dust cover the remains to the point that the original color can't be recognized anymore.`
 
 planet "Celestial Third"
-	attributes kimek farming factory urban
+	attributes kimek farming factory urban folklore
 	landscape land/fields4
 	description `Celestial Third is the breadbasket of Kimek space. Most of its land mass is used for farming, augmented by seaweed farms and fisheries in the oceans and factories near the equator producing yeast and bacterial cultures as nutritional supplements. The first settlers came here more than thirteen thousand years ago, at a time when their home world had run out of arable land for farming and food was desperately needed.`
 	spaceport `The constant stream of freighters passing through this spaceport is a testament to how much food is needed to feed the densely populated Kimek worlds, in particular their homeworld in the neighboring star system. The city that hosts the spaceport has also become something of a tourist destination for those with adventurous culinary tastes; restaurants here serve recipes native to each of the Coalition species, along with some dishes that blend their three cuisines in unique and sometimes surprising ways.`
@@ -26689,7 +26689,7 @@ planet Cloudfire
 	security 0.9
 
 planet "Cold Horizon"
-	attributes saryd tourism
+	attributes saryd tourism folklore
 	landscape land/snow11-sfiera
 	description `In the early mornings on Cold Horizon, the trees are often coated in a thin layer of glittering frost that burns away a few hours after sunrise. In the short summer season, flocks of migratory birds arrive in the forest, bringing a cacophony of music and a riot of color to the otherwise serene woodlands.`
 	description `	Half a billion Saryds live here, drawn not so much by the planet's resources, which are scarce, as by its natural beauty.`
@@ -26928,7 +26928,7 @@ planet Dustmaker
 	security 0.2
 
 planet "Dwelling of Speloog"
-	attributes arach shipping urban
+	attributes arach shipping urban folklore
 	landscape land/fog4
 	description `With a wide band of tropical rainforests around its equator, this planet's climate is ideal for the Arach. Several billion of them live here, and many of the workers assisting with the expansion of the Heliarch ringworlds come from this planet.`
 	spaceport `The air in the spaceport facility is uncomfortably damp, and you imagine that you can see a thin sheen of moss or algae on nearly every surface here that receives any sunlight. Except for the largest cargo bays, all the rooms smell faintly of mildew.`
@@ -27731,7 +27731,7 @@ planet "Kessel Sepret"
 	security 0
 
 planet "Ki Patek Ka"
-	attributes kimek farming tourism urban
+	attributes kimek farming tourism urban folklore
 	landscape land/fields10-sfiera
 	description `This is the Kimek home world. Before they developed spaceflight, billions of Kimek died either from famine or from civil wars brought on by overpopulation. Today, every major city still has "hunger towers": kilometer-high skyscrapers where yeast and bacterial cultures are grown in massive vats in order to provide a bland but stable source of emergency rations if the crops and the food shipments from off-world should ever fail.`
 	spaceport `Nearly all the land mass on Ki Patek Ka is covered in cities; the only undeveloped land is the high mountain peaks and the ice caps near the poles. The spaceport alone is larger than most human cities, stretching from horizon to horizon, with a ship taking off or landing every few seconds. The sheer number of people here - mostly Kimek, but a fair number of Saryds and Arachi as well - is overwhelming.`
@@ -27956,7 +27956,7 @@ planet Mani
 		fleet "Small Deep Security" 11
 
 planet "Market of Gupta"
-	attributes arach shipping
+	attributes arach shipping folklore
 	landscape land/mountain16-striker
 	description `This mountain world is the home base of House Mallob, the powerful Arach guild in charge of commerce and shipping. All the Arach starships that are currently in use were designed here, and many of them are manufactured here as well. The motto of House Mallob's shipyards is "strong as the mountains, spacious as the skies," referring to their focus on durable hulls and high cargo capacity.`
 	spaceport `This spaceport serves as the primary repair and service center for the Arach merchant marine. At any given time hundreds of ships may be in dry-dock here to have new equipment installed or their engines or internal systems tuned for better efficiency. Meanwhile, thousands of analysts and software experts work to plan out delivery routes, schedules, and supply chains for the merchant fleets to ensure that goods are always delivered where they will be most needed, and will earn the best profit. House Mallob's finances and organizational structure are legendary for their complexity.`
@@ -28034,7 +28034,7 @@ planet "Mereti Station"
 	security 0
 
 planet "Miblulub's Plenty"
-	attributes arach farming
+	attributes arach farming folklore
 	landscape land/fields7
 	description `Miblulub's Plenty was the first colony created by the Arachi outside of their home system, founded at a time when their home world could not produce enough food to reliably feed its entire population. This planet has long seasons and plentiful rainfall that make its temperate zones ideal for farming, while the grasslands near the tropics are mostly used for longcow ranching. Longcows are a distinctive and ill-behaved species of multi-legged cattle; their meat is a key part of the Arach diet.`
 	spaceport `Although most of this planet is rural agricultural land, the spaceport is on the outskirts of a large and prosperous city. Ten thousand years ago, in the early days of Arach interstellar travel, this city was the home of the wealthy investors and business people who funded the farming settlements, and who moved here with their families to escape the pollution and conflict on their home world of Ahr.`
@@ -28623,7 +28623,7 @@ planet Rand
 		fleet "Large Militia" 8
 
 planet "Refuge of Belugt"
-	attributes arach tourism urban
+	attributes arach tourism urban folklore
 	landscape land/beach9-sfiera
 	description `Billions of Arachi live on this warm ocean world. It is home to House Debdo, one of the largest of the great Arach houses, which is composed of those who are employed in various service industries. This is a popular tourist destination not just for the Arachi, but for the Kimek as well and even a few particularly adventuresome Saryds.`
 	spaceport `Many of the Kimek and Arachi tourists here are rather scantily clad, wearing what must be their equivalent of swimwear. Of the few Saryds who are mingling with them, most are clad from head to hoof in thin white robes that block the glaring sun. Apparently Saryds have a more conservative sense of modesty than the other Coalition species.`
@@ -28770,7 +28770,7 @@ planet "Safaresk Enlai"
 	security 0
 
 planet "Sandy Two"
-	attributes kimek factory farming urban
+	attributes kimek factory farming urban folklore
 	landscape land/badlands1
 	description `This world is relatively hot and dry by human standards, but nearly ideal for the Kimek, and more than fifteen billion of them live here in cities where the skyscrapers are so densely packed that many of the streets never receive direct sunlight. The residential areas tend to be spread out along the banks of rivers, so the cities are linear, with factories and other industry on their fringes. Access to limitless skilled labor makes it cheap to manufacture almost anything here.`
 	spaceport `The spaceport facility is on an island in the center of a river, surrounded by a city so large that the rows of skyscrapers stretch all the way to the horizon. Civilian aircraft, boats, and cargo trucks swarm around the spaceport, bringing goods and people to and from the residences and the outlying factories.`
@@ -28792,7 +28792,7 @@ planet "Sarisa Fentra"
 	description `	In the oceans, bizarre and corrupted creatures frolic.`
 
 planet Saros
-	attributes saryd tourism urban
+	attributes saryd tourism urban folklore
 	landscape land/valley12-harro
 	description `The homeworld of the Saryds still bears some scars from the adolescence of their species, particularly in its lack of biodiversity. But over thousands of years, they have returned significant portions of the planet to their original wilderness state. The planet's population currently stands at just over two billion, in part due to the fact that Saryds live very long lives and many of them choose to dedicate their lives to serving society in other ways rather than raising children.`
 	spaceport `The main spaceport is on the outskirts of a large city near the planet's equator, supposedly not far from the place where the Saryds launched their first rockets to explore their own solar system. It has all the standard accoutrements of a tourist trap, including stall after stall of vendors selling food or articles of clothing, and mobs of wide-eyed visitors wandering about and generally getting in the way of the merchant captains trying to conduct actual business here.`
@@ -28831,7 +28831,7 @@ planet "Second Rose"
 	"required reputation" 15
 
 planet "Second Viridian"
-	attributes kimek farming urban
+	attributes kimek farming urban folklore
 	landscape land/hills5-sfiera
 	description `More than ten billion Kimek live here, most of them living in one of several arcologies near the equator: massive structures that reach nearly a kilometer tall and may house over half a billion individuals. As a result, despite the large population most of the land is either undeveloped or used for farming.`
 	description `	The Kimek arcologies are said to be able to recycle more than 99% of the waste produced in them each day, which is what makes it feasible for so many Kimek to live in such close proximity.`
@@ -28934,7 +28934,7 @@ planet "Setar Fort"
 	outfitter "Korath Basics"
 
 planet "Shadow of Leaves"
-	attributes saryd urban
+	attributes saryd urban folklore
 	landscape land/snow10-sfiera
 	description `Saryds are particularly drawn to forested environments, and as a result this world has become heavily populated. Rather than gathering in tightly packed cities with skyscrapers and busy roads, they have spread out evenly across the whole land area in a sort of endless suburban sprawl. But enough patches of forest have been maintained between the roads and housing compounds that from orbit, at a first glance, the planet looks pristine and uninhabited.`
 	spaceport `The spaceport is built at the base of a mountain. At the peak of the mountain is the Starlit University, one of the premier Saryd institutions of higher learning, elevated above the ordinary world of the forest below so that the students can remain detached and focused on their education.`
@@ -29681,7 +29681,7 @@ planet "Warm Slope"
 	outfitter "Coalition Basics"
 
 planet "Warm Wind"
-	attributes saryd tourism
+	attributes saryd tourism folklore
 	landscape land/fog1
 	description `The tropical rainforests of Warm Wind are unusual: instead of rivers on the surface, water flows through intricate underground networks of caves that span entire continents. The trees have evolved deep and strong roots that can pierce through the limestone into the subterranean rivers in order to draw a constant supply of water even in the dry seasons. The Saryds have explored only a tiny fraction of the caves.`
 	spaceport `The spaceport village is built on a volcanic highland where the inhabitants do not need to worry about their houses disappearing overnight into one of the limestone sinkholes that pockmark this planet's tropics. In place of trees, the village is full of trellised arches and spires; vines grow on the trellises, and moss grows on the vines, watered by the fog that sweeps up every evening from the rainforest below.`
