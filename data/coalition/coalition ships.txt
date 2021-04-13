@@ -1418,7 +1418,7 @@ ship "Kimek Spire"
 	explode "large explosion" 20
 	explode "huge explosion" 5
 	"final explode" "final explosion large"
-	description `The Spire is the largest passenger transport in Coalition space, able to carry nearly two hundred individuals... as long as they're comfortable staying in the tiny bunk rooms that are primarily designed to meet the needs of a Kimek. Most of the ceilings are too short for a Saryd to stand up straight, and the beds are too small for an Arach to stretch their legs out comfortably.`
+	description `The Spire is the largest passenger transport in Coalition space, able to carry nearly three hundred individuals... as long as they're comfortable staying in the tiny bunk rooms that are primarily designed to meet the needs of a Kimek. Most of the ceilings are too short for a Saryd to stand up straight, and the beds are too small for an Arach to stretch their legs out comfortably.`
 
 ship "Kimek Thistle"
 	sprite "ship/kimek thistle"
