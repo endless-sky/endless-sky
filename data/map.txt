@@ -22885,7 +22885,7 @@ system "Sol Kimek"
 		distance 137.16
 		period 31.1342
 	object "Ki Patek Ka"
-		sprite planet/ocean1
+		sprite planet/cloud6
 		distance 679.68
 		period 343.442
 		offset 43.5788
