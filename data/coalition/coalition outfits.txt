@@ -171,6 +171,18 @@ outfit "Cooling Module"
 	"cooling energy" 1.4
 	description "This cooling module consumes energy. To conserve power, it does not ramp up to full strength unless a ship is very close to overheating."
 
+outfit "Fuel Module"
+	category "Systems"
+	licenses
+		Coalition
+	cost 350000
+	thumbnail "outfit/fuel module"
+	"mass" 19
+	"outfit space" -19
+	"fuel capacity" 400
+	description "In their early days of space exploration, the Saryds developed these to travel far away without worrying too much about their fuel."
+	description "	Nowadays, nearly every system on the Coalition has refuelling facilities, but some captains still find use in the extra jumps these modules offer."
+
 outfit "Scanning Module"
 	category "Systems"
 	licenses
