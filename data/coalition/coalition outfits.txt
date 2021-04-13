@@ -175,7 +175,7 @@ outfit "Fuel Module"
 	category "Systems"
 	licenses
 		Coalition
-	cost 350000
+	cost 250000
 	thumbnail "outfit/fuel module"
 	"mass" 19
 	"outfit space" -19
