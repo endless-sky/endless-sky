@@ -1393,3 +1393,57 @@ mission "Arachi Cartoonist 2"
 				accept
 			label noship
 			`	"Ah, I see. Well, just a reference it would be, so the name matters not, I suppose. Anyway, thanks again Captain."`
+
+mission "Coalition Folklore: Saryd"
+	minor
+	invisible
+	to offer
+		random < 3
+	source
+		attributes "saryd" "folklore"
+	on offer
+		conversation
+			`Walking by the spaceport, you're approached by a Saryd in unusually traditional clothing, even by Saryd standards.`
+			`	"Greetings, Captain. Interested in participating in a cultural celebration, would you be?" He asks.`
+			choice
+				`	"What sort of celebration?"`
+				`	"Sorry, I'm busy right now."`
+					decline
+			`	"A celebration of Saryd folklore, it is," he explains. "Though for a long time among the stars we've lived, timeless classics from before our spacefaring age, we still celebrate. A set of theatrical plays about some of them, today we are hosting, and come watch them for free, anyone can."`
+			choice
+				`	"I've always got time for a story, lead the way."`
+				`	"I'm not much of a fan of plays, I'll pass."`
+					decline
+			`	You follow him to outside the spaceport city, and deep into a nearby forest. On the way there, several other Saryds in ancient garbs are guiding others who were also intrigued by the offer.`
+			`	You arrive to a clearing with three different paths to take, and you can make out a faint light deep into each of them. After a few minutes it seems all Saryds involved in the celebration have arrived, as they grab three caskets from behind a bush, and lay them before you and the others they brought here.`
+			`	"Now friends, choose your path, you must," one of the Saryds says, and many from the crowd grab small objects from the caskets, seemingly already familiar with this. You move forward to look into the caskets, and see that each one has different things inside: the left one is full of seeds, the middle one full of seashells, and the right one full of feathers.`
+			choice
+				`	(Grab a seed.)`
+					goto seed
+				`	(Grab a seashell.)`
+					goto pearl
+				`	(Grab a feather.)`
+			`	Once you have the feather in your hands, the organizers tell you to go through the path on the right, and so you do.`
+			`	The light you had seen turns out to be a bonfire, and you find a spot to sit on one of the logs close to it, while keeping your eyes on the small stage in front of you. After the audience is all here, the curtains open, to reveal many small figures made out of what looks like paper, in a style that loosely resembles origami.`
+			`	Entering a clearing, a Saryd huntress with gray hair stalks a large bird resting on a rock. She moves on the borders of the clearing, hiding behind bushes and small trees, looking for the best spot from which to snipe at the bird, her bow and arrow ready in her hands. It's only when she is nearing a large entrance to the clearing, on the opposite side of where she entered, that she finds the spot, and takes aim.`
+			`	She is disrupted when she hears a loud roar, and jumps to the ground to dodge the beast that had come behind her: you're unsure how accurate the paper's depiction of the creature is, but you can only describe it as a hedgelion, a bit larger than lions from Earth, and with various quills where its mane should be. The quills continue in a line on its back, reaching the tip of the tail.`
+			`	Having dodged the pounce, she runs past the bird, looking for cover, but the forest isn't dense enough to block the beast's advance. It attacks again, and wounds the top of one of her frontal legs. She kicks it with another leg, and readies an arrow, but it only scratches its face. The animal gets on its hind legs to swipe down at her, but is stunned, for the bird has attacked its eyes, blinding it. The huntress is swift to take aim, and an arrow pierces the creature's torso. Once it's fallen the bird flies away, and the curtains close.`
+				goto end
+			label seed
+			`	Once you have the seed in your hands, the organizers tell you to go through the path on the left, and so you do.`
+			`	The light you had seen turns out to be a bonfire, and you find a spot to sit on one of the logs close to it, while keeping your eyes on the small stage in front of you. After the audience is all here, the curtains open, to reveal many small figures made out of what looks like paper, in a style that loosely resembles origami.`
+			`	The central figure is a young Saryd boy, who is galloping in a dense forest, as the sound effects of thunder grow increasingly frequent. Lightning strikes one of the trees on the way, and it falls in flames, blocking the boy's path, so he turns to run elsewhere. Another lightning bolt, and another tree falls. After a few more repetitions, the boy is too tired to run anymore, hurt by some of the flames and now limping through the forest.`
+			`	Whimpering as the thunder grows closer once more, he spots a tree unlike the others, a great oak with branches thicker than the trees around him, so he goes to it. Laying down at the base of that largest tree, he falls asleep, and the curtain closes.`
+			`	It opens once again after a few moments, with the boy waking up in darkness. When he gets up, rumbling sounds are accompanie by rays of light reaching the ground, and he realizes the great oak had lowered its branches around him, and as it lifts them up once again, it knocks back several trees that had fallen on them during the storm. The sun as his guide, the boy manages to leave the forest, and the curtains close again.`
+				goto end
+			label pearl
+			`	Once you have the seashell in your hands, the organizers tell you to go through the path on the middle, and so you do.`
+			`	The light you had seen turns out to be a bonfire, and you find a spot to sit on one of the logs close to it, while keeping your eyes on the small stage in front of you. After the audience is all here, the curtains open, to reveal many small figures made out of what looks like paper, in a style that loosely resembles origami.`
+			`	A Saryd is on a boat, fishing at sea. He feels a bite, but once he reels it in there is nothing on the hook. He feels another bite, and again finds nothing. Time and again, he looks to the hook to find the bait still there, intact, but continues to feel the bites, that are sometimes so blatant even the boat moves a little. The day moves by quickly, with a piece of paper representing the sun moving swiftly from one side of the "sky" to the other.`
+			`	Once it is night, the waves grow increasingly stronger, and the Saryd stops fishing altogether, putting the rod on the boat and trying to steer it back to shore, but he can't find the shore. A huge wave that goes beyond the stage's top approaches, and engulfs the boat.`
+			`	The fisherman kicks and strugles for air, having lost his boat and still at the mercy of the great waves. The view on the stage starts going down, following the kicks, and something starts rising up to meet the Saryd's legs. As it raises the view back with it, a whale comes to the surface, gently and with care, as if trying to serve as ground for the sailor. Another wave is approaching, large enough to engulf them both, but the whale keeps on going up, until it is out of the water.`
+			`	As it flies through the night sky, the whale is careful to not drop the Saryd, always waiting for him to find stable footing before turning. For the rest of the night, the whale slowly dances in the sky, and when morning comes and the waves subside, it goes back to the sea, and swims close to shore. Once the Saryd is at the beach, he turns back to see the whale's tail hitting the water, as it dives deep once again, and the curtains close.`
+			label end
+			`	People in the audience start getting up and preparing to leave, and you follow them. Once you're back at the clearing, you return the small object back to its casket after seeing others do the same, and the organizers guide everyone back to the spaceport.`
+			`	Once there, the Saryd who first approached you says "That you enjoyed the spectacle, I hope," and bids you farewell.`
+				decline
