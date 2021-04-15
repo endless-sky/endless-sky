@@ -166,13 +166,13 @@ void PlayerInfoPanel::Draw()
 		interfaceInfo.SetCondition("enable logbook");
 	
 	// Draw the interface.
-	const Interface *interface = GameData::Interfaces().Get("info panel");
-	interface->Draw(interfaceInfo, this);
+	const Interface *infoPanelUi = GameData::Interfaces().Get("info panel");
+	infoPanelUi->Draw(interfaceInfo, this);
 	
 	// Draw the player and fleet info sections.
 	zones.clear();
-	DrawPlayer(interface->GetBox("player"));
-	DrawFleet(interface->GetBox("fleet"));
+	DrawPlayer(infoPanelUi->GetBox("player"));
+	DrawFleet(infoPanelUi->GetBox("fleet"));
 }
 
 

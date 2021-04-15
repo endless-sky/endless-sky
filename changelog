@@ -12,7 +12,7 @@ Version 0.9.13:
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@Amazinite, @Anarchist2, @Arachi-Lover, @arkhne, @beccabunny, @Darcman99, @FixItYondu, @Galaucus, @infinitewarp, @MCOfficer, @michel-slm, @pega3, @Rakete1111, @roadrunner56, @tatami4, @tehhowch, @Terin, @thebigh2014, @Thunderforge, @tux2603, @W1zrad, @waterhouse, @Zitchas)
-      * The Subsidurial person ship can now appear in uninhabited systems as intended. (@Zitchas)
+      * The Subsidurial person ship can now appear in uninhabited systems as intended. (@Zitchas, @Terin)
       * "Deep Mystery Cube [3]" no longer offers on stations. (@Anarchist2)
       * Corrected the hull mass of the Faes'mar. (@Amazinite)
       * Tinker's tribute is now properly restored after the main plot. (@Zitchas)
@@ -31,6 +31,7 @@ Version 0.9.13:
       * The Remembrance Day jobs now properly have a deadline. (@Amazinite)
       * Shortened the descriptions of some jobs as to not overflow the UI. (@Amazinite)
       * Added missing "variant" keyword to NPC fleets in several Wanderer missions. (@tehhowch)
+      * Remnant "tech retrieval" missions have more appropriate destinations. (@jerith)
     * Engine bugs:
       * Missions with illegal cargo that fail when scanned can no longer be scanned again before landing. (@Amazinite)
       * The outfitter will no longer allow purchasing licensed outfits under certain circumstances where the player didn't have a license. (@Rakete1111)
@@ -77,6 +78,7 @@ Version 0.9.13:
         * Created an epilogue mission for Barmy Edward. (@beccabunny, @Darcman99)
         * Created a mission where you can inform the Remnant about the research that the Deep are doing on the Ember Waste. (@Amazinite, @Zitchas)
         * The player will now be warned the first time their pirate attraction is greater than 50%. (@Amazinite)
+        * Added a boarding mission about a secret slave ship (@Pointedstick, @oo13)
       * New outfits and ships:
         * Created an ammo storage outfit for Finisher torpedoes. (@Arachi-Lover)
         * Ka'het ships now have power generation and storage outfits. (@beccabunny)
