@@ -227,3 +227,45 @@ news "coalition merchant"
 			`"Liked my ship so much, a Kimek passenger did, that decided to live in it, they have. For 'transport' they still pay, so mind it I do not."`
 			`"Jealous of you, I am. If a jump drive I had, bypass the gap between Saryd and Arach space, I could, and quickly earn a fortune, I would."`
 			`"Agreed to transport some Saryd graduates for a 'field trip', I once did. Almost arrested, I was."`
+
+news "arach civilian"
+	location
+		attributes "arach"
+	name
+		word
+			"Local Arach"
+	message
+		word
+			`"Arrested close to where my counsins work, the terrorists on the news were. Notice anything wrong with them, they never did."`
+			`"Always rising, the sun in these broadcasts is, but a night shift I work, so see it for myself, I never can..."`
+			`"To Ring of Wisdom, a researcher friend of mine has gone. Always there, our wisest mingle, but remain here, few do. Difficult for us, sometimes it is."`
+			`"Always mixing up our Houses, Kimek and Saryd tourists are. Mind it, I do not, but angry, sometimes my friends get."`
+			`"Learnt my language, some Kimek friends have, but so fast they speak, that difficult to understand them, it is."`
+
+news "kimek civilian"
+	location
+		attributes "kimek"
+	name
+		word
+			"Local Kimek"
+	message
+		word
+			`"Arrested close to where my counsins work, the terrorists on the news were. Notice anything wrong with them, they never did."`
+			`"Always rising, the sun in these broadcasts is, but a night shift I work, so see it for myself, I never can..."`
+			`"To Ring of Wisdom, a researcher friend of mine has gone. Always there, our wisest mingle, but remain here, few do. Difficult for us, sometimes it is."`
+			`"Tired of dealing with faulty translation boxes, my sister got, so learning to speak Arachi, she is."`
+			`"Much more reserved than us, the Saryds are. So long do they live for, that difficult to understand their habits, it can be."`
+
+news "saryd civilian"
+	location
+		attributes "saryd"
+	name
+		word
+			"Local Saryd"
+	message
+		word
+			`"Arrested close to where my counsins work, the terrorists on the news were. Notice anything wrong with them, they never did."`
+			`"Always rising, the sun in these broadcasts is, but a night shift I work, so see it for myself, I never can..."`
+			`"To Ring of Wisdom, a researcher friend of mine has gone. Always there, our wisest mingle, but remain here, few do. Difficult for us, sometimes it is."`
+			`"Troubling it is, when their children, Kimek and Arach tourists bring. Climb up everywhere, they try."`
+			`"Travel to new places, I used to, but infinite, our planets are not, so seen them all by now I have."`
