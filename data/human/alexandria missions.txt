@@ -754,7 +754,7 @@ mission "ZZ Alexandria Library Card: Third Volume: Step 3"
 			`	You say, "It's an obsolete navigational system taught to all pilots. The constellations are drawn as they would look from the center of the galaxy. The crosses and ovals show the planet or moon."`
 			`	"I see!" says Sophia. "The constellations would change slower there due to the distance to the stars. It's obvious which ones we go to."`
 			`	"That doesn't tell us where the keys are on the planets though," says Daemos.`
-			`	Sophia smiles, "On that matter, I can help you. My Quarg collaborators say the keys should appear on the Navy's gamma ray sensors as glitches, filtered out by quality control code. They already have the locations in their sensor logs' raw data stream. You just have to tell them the frequencies to look for."`
+			`	Sophia smiles. "On that matter, I can help you. My Quarg collaborators say the keys should appear on the Navy's gamma ray sensors as glitches, filtered out by quality control code. They already have the locations in their sensor logs' raw data stream. You just have to tell them the frequencies to look for."`
 			`	She hands you a data pad and says, "Take this to the Navy research center on New Austria. They'll know what to do."`
 			choice
 				`	(Continue.)`
@@ -1060,7 +1060,7 @@ mission "Alexandria Library Card: Return"
 			`	"As you recall from the first two books, the Chal Jub Paqmey contain an opera about a merchant, Hod Qav (of unspecified gender) destined to be the greatest warrior of the era. The first book, the Paq wa'DIch, describes Hod Qav leaving their clan Botolphstone and wandering a continent that seems vast. The second book, the Paq cha'DIch, describes the continent's politics descending into chaos and civil war. Meanwhile, the merchant wanders distracted, fighting bandits, gathering weapons, and hoarding money.`
 			`	"In the third book, the Paq WejDIch, the merchant joins the war, fighting for the side they view as right. Eventually, the merchant re-unites their continent and brings peace.`
 			`	"In the fourth book, the Paq LoSDIch, tells of Hod Qav finding the ship Supghor, so large it can cross oceans. Hod Qav wanders the world discovering new civilizations that nobody from Botolphstone had even heard of.`
-			`	"Oddly, instructins in the Chal Jub Paqmey say the third and fourth books can be reversed when the opera is performed. HoD Qav can explore the world and gather power, and then return to their continent to bring peace. Or, the merchant can bring peace to their continent and then explore the world."`
+			`	"Oddly, instructions in the Chal Jub Paqmey say the third and fourth books can be reversed when the opera is performed. HoD Qav can explore the world and gather power, and then return to their continent to bring peace. Or, the merchant can bring peace to their continent and then explore the world."`
 				goto questions
 			label accept
 			`	"Finally."`
@@ -1200,7 +1200,7 @@ mission "Alexandria Library Card: Completion"
 			`	"The first two books merely introduce the world. The first book describes the merchant exploring the vast continent surrounding their clan Botolphstone. The second describes the beginning of a civil war as the continent degrades into chaos. Meanwhile, the merchant ignores the problem while fighting bandits, getting rich, and buying weapons. After all, how is a lowly merchant to save the world?"`
 			choice
 				`	(Continue.)`
-				`	Change the subject.`
+				`	(Change the subject.)`
 					goto questions
 			`	"In the third book, HoD Qav awakens to the problems of his continent. The merchant leads heroes against villains and re-unites the continent, restoring peace. Meanwhile, as any good merchant would, HoD Qav gets fabulously wealthy.`
 			`	"The fourth book tells of HoD Qav's travel across the world aboard a giant ship that can cross oceans. The merchant gathers vast resources and builds an armada while seeing sights nobody in Botolphstone had ever dreamed of.`
@@ -1223,7 +1223,7 @@ mission "Alexandria Library Card: Completion"
 					goto juggling
 				`	"Books?"`
 					goto "library books"
-				`	"Change the subject."`
+				`	(Change the subject.)`
 					goto questions
 				`	"End the conversation."`
 					goto end
@@ -1252,8 +1252,7 @@ mission "Access to Alexandria"
 	invisible
 	name "Access to Alexandria"
 	description `Access to Alexandria`
-	# I have seen this mission mysteriously disappear unless I
-	# have a "repeat 2" here:
+	# I have seen this mission mysteriously disappear unless I have a "repeat 2" here:
 	repeat 2
 	source
 		not attributes uninhabited
