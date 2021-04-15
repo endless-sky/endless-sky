@@ -652,7 +652,7 @@ mission "Alexandria Library Card: Third Volume: Step 2"
 				accept
 			label "met quarg"
 			`	You recognize the word <planet>. It's one of the planets owned by the Quarg connected to human space. "Are the experts you need to speak to Quarg?" you ask.`
-			`	Daemos is surprised. "You know of the Quarg? You are more well-traveled than I assumed. But no, the person I wanted to speak to is a former student of mine. She's currently researching xenolinguistics on <planet> alongside the Quarg. Are you ready?"
+			`	Daemos is surprised. "You know of the Quarg? You are more well-traveled than I assumed. But no, the person I wanted to speak to is a former student of mine. She's currently researching xenolinguistics on <planet> alongside the Quarg. Are you ready?"`
 				goto response
 	on visit
 		dialog `You've forgotten your strange friend or his pencils. Perhaps they're in one of your escorts?`
