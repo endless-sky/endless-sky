@@ -3679,11 +3679,11 @@ mission "Remnant: Bounty 3"
 	job
 	repeat
 	name "Remnant bounty"
-	description "Hunt down a Korath ship that is lurking in Remnant territory, then return to <planet> to receive your payment of <payment>."
+	description "Hunt down a crippled Korath ship that is lurking in Remnant territory, then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
 	to offer
-		has "Remnant: Cognizance 4: Done"
+		has "Remnant: Cognizance 4: failed"
 		random < 60
 	npc kill
 		government "Korath"
@@ -4059,7 +4059,7 @@ mission "Remnant: Bounty 4"
 	source
 		government "Remnant"
 	to offer
-		has "Remnant: Cognizance 14: Done"
+		has "Remnant: Cognizance 14: done"
 		random < 60
 	npc kill
 		government "Korath"
