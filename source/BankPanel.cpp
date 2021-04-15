@@ -12,15 +12,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "BankPanel.h"
 
+#include "text/alignment.hpp"
 #include "Color.h"
 #include "Dialog.h"
-#include "Format.h"
+#include "text/DisplayText.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "Table.h"
+#include "text/Table.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include <string>
@@ -71,10 +74,10 @@ void BankPanel::Draw()
 {
 	// Set up the table that will contain most of the information.
 	Table table;
-	for(int x : COLUMN)
-		table.AddColumn(x, Table::LEFT);
+	for(auto x : COLUMN)
+		table.AddColumn(x);
 	// The last column is for the "pay extra" button.
-	table.AddColumn(MAX_X - 20, Table::RIGHT);
+	table.AddColumn(MAX_X - 20, {Alignment::RIGHT});
 	table.SetHighlight(MIN_X + 10, MAX_X - 10);
 	table.DrawAt(Point(0., FIRST_Y));
 	
@@ -211,7 +214,8 @@ void BankPanel::Draw()
 		totalPayment -= income[0] + income[1];
 		
 		static const string LABEL[] = {"", "Your Salary Income", "Your Tribute Income", "Your Salary and Tribute Income"};
-		table.Draw(LABEL[(income[0] != 0) + 2 * (income[1] != 0)]);
+		const auto incomeLayout = Layout(310, Truncate::BACK);
+		table.DrawCustom({LABEL[(income[0] != 0) + 2 * (income[1] != 0)], incomeLayout});
 		// For crew salaries, only the "payment" field needs to be shown.
 		table.Advance(3);
 		table.Draw(-(income[0] + income[1]));
@@ -227,7 +231,8 @@ void BankPanel::Draw()
 	// Draw the credit score.
 	table.DrawAt(Point(0., FIRST_Y + 210.));
 	string credit = "Your credit score is " + to_string(player.Accounts().CreditScore()) + ".";
-	table.Draw(credit);
+	const auto scoreLayout = Layout(460, Truncate::MIDDLE);
+	table.DrawCustom({credit, scoreLayout});
 	table.Advance(5);
 	
 	// Report whether the player qualifies for a new loan.
@@ -238,7 +243,8 @@ void BankPanel::Draw()
 		amount = "You qualify for a new loan of up to " + Format::Credits(qualify) + " credits.";
 	if(qualify && selectedRow >= mortgageRows)
 		table.DrawHighlight(back);
-	table.Draw(amount, unselected);
+	const auto amountLayout = Layout(380, Truncate::MIDDLE);
+	table.DrawCustom({amount, amountLayout}, unselected);
 	if(qualify)
 	{
 		table.Advance(4);
@@ -246,7 +252,7 @@ void BankPanel::Draw()
 	}
 	
 	// Draw the "Pay All" button.
-	const Interface *interface = GameData::Interfaces().Get("bank");
+	const Interface *bankUi = GameData::Interfaces().Get("bank");
 	Information info;
 	if((salariesOwed || maintenanceDue) && player.Accounts().Credits() > 0)
 		info.SetCondition("can pay");
@@ -254,7 +260,7 @@ void BankPanel::Draw()
 		for(const Mortgage &mortgage : player.Accounts().Mortgages())
 			if(mortgage.Principal() <= player.Accounts().Credits())
 				info.SetCondition("can pay");
-	interface->Draw(info, this);
+	bankUi->Draw(info, this);
 }
 
 
@@ -267,12 +273,17 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == SDLK_DOWN && selectedRow < mortgageRows)
 		++selectedRow;
 	else if(key == SDLK_RETURN && selectedRow < mortgageRows)
+	{
 		GetUI()->Push(new Dialog(this, &BankPanel::PayExtra,
 			"Paying off part of this debt will reduce your daily payments and the "
 			"interest that it costs you. How many extra credits will you pay?"));
-	else if(key == SDLK_RETURN && qualify)
+		DoHelp("bank advanced");
+	}
+	else if(key == SDLK_RETURN && qualify) {
 		GetUI()->Push(new Dialog(this, &BankPanel::NewMortgage,
 			"Borrow how many credits?"));
+		DoHelp("bank advanced");
+	}
 	else if(key == 'a')
 	{
 		// Pay all mortgages, skipping any you cannot afford to pay entirely.

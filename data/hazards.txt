@@ -1,0 +1,65 @@
+# Copyright (c) 2020 by Zitchas
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+hazard "Ember Waste Base Heat"
+	"duration" 1 200
+	"strength" 0.25 1.75
+	"range" 20000
+	weapon
+		"relative heat damage" 0.00035
+
+hazard "Ember Waste Base Storm"
+	"duration" 300 1500
+	"strength" 1 3
+	"range" 10000
+	"environmental effect" "ion hazard" 20
+	weapon
+		"ion damage" 0.5
+		"shield damage" 5
+		"hull damage" 0.01
+
+effect "ion hazard"
+	sprite "effect/spark"
+		"frame rate" 30
+		"random start frame"
+	"lifetime" 120
+	"random lifetime" 60
+	"random spin" 10
+	"random velocity" 2
+
+
+
+hazard "Black Hole Accretion Disk"
+	"constant strength"
+	"range" 600
+	weapon
+		"hit effect" "nano spark"
+		"damage dropoff" 150 600
+		"dropoff modifier" 0
+		"relative shield damage" .0018
+
+hazard "Black Hole Event Horizon"
+	"constant strength"
+	"range" 150
+	weapon
+		"hit effect" "nano spark"
+		"damage dropoff" 0 150
+		"dropoff modifier" 0
+		"relative hull damage" .0009
+		"piercing" 10
+
+hazard "Black Hole Gravity"
+	"constant strength"
+	"range" 2500
+	weapon
+		"gravitational"
+		"hit force" -25
+		"damage dropoff" 150 2500
+		"dropoff modifier" 0

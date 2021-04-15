@@ -538,6 +538,32 @@ outfit "Plasma Turret"
 		"heat damage" 340
 	description "The Plasma Turret is a pair of plasma cannons mounted on a turret so that they can fire in any direction. It is a fearsome weapon, but only the largest of ships have the space and the energy that it requires."
 
+outfit "Plasma Repeater"
+	category "Guns"
+	cost 274000
+	thumbnail "outfit/plasma repeater"
+	"mass" 32
+	"outfit space" -32
+	"weapon capacity" -32
+	"gun ports" -1
+	weapon
+		sprite "projectile/plasma"
+			"frame rate" 3
+		sound "plasma"
+		"hit effect" "plasma explosion"
+		"lifetime" 38
+		"velocity" 12
+		"inaccuracy" 5
+		"reload" 7
+		"firing energy" 13
+		"firing heat" 100
+		"shield damage" 33
+		"hull damage" 13
+		"heat damage" 144
+		"hit force" 19
+	description `Decades after buying the rights for the Plasma Cannon, Kraz Cybernetics put this weapon on the shelves of every high-end outfitter of the Southern Rim. The repeater has so far proved immensely popular amongst any who braved testing it, and is shaping up to become an essential deterrent for anyone who flaunts their haul for pirate plunder.`
+	description `	Derived from the original Plasma Cannon, this heavier version trades off its larger bursts for a much faster rate of fire. Although the smaller bursts of superheated plasma deal far less damage than its predecessor, the volume of fire results in more damage to the target overall.`
+
 effect "plasma explosion"
 	sprite "effect/plasma explosion"
 		"no repeat"
@@ -652,15 +678,15 @@ outfit "Meteor Missile Launcher"
 		"hit effect" "missile hit"
 		"inaccuracy" 5
 		"velocity" 11
-		"lifetime" 490
+		"lifetime" 350
 		"reload" 80
 		"firing energy" 1
 		"firing heat" 20
 		"acceleration" 1
 		"drag" .1
-		"turn" 1.35
-		"homing" 3
-		"infrared tracking" .8
+		"turn" 1.8
+		"homing" 1
+		"infrared tracking" .65
 		"shield damage" 260
 		"hull damage" 160
 		"hit force" 220
@@ -714,7 +740,7 @@ outfit "Sidewinder Missile Launcher"
 		"hit effect" "missile hit"
 		"inaccuracy" 4
 		"velocity" 14
-		"lifetime" 470
+		"lifetime" 350
 		"reload" 60
 		"firing energy" 1
 		"firing heat" 15
@@ -824,8 +850,8 @@ outfit "Torpedo Launcher"
 		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
-		"velocity" 6
-		"lifetime" 600
+		"velocity" 7
+		"lifetime" 900
 		"reload" 150
 		"firing energy" 2
 		"firing heat" 45
@@ -886,8 +912,8 @@ outfit "Typhoon Launcher"
 		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
-		"velocity" 5
-		"lifetime" 600
+		"velocity" 6
+		"lifetime" 1100
 		"reload" 120
 		"firing energy" 4
 		"firing heat" 50
@@ -896,8 +922,8 @@ outfit "Typhoon Launcher"
 		"turn" 1.5
 		"homing" 4
 		"optical tracking" .9
-		"shield damage" 880
-		"hull damage" 880
+		"shield damage" 920
+		"hull damage" 920
 		"hit force" 450
 		"missile strength" 40
 	description "Typhoon Torpedoes are an improved torpedo technology; they do considerably more damage than ordinary torpedoes. However, they are also much slower, because they are intended mostly for use against large and slow-moving capital ships. As a result, sufficiently skilled pilots can often dodge around them."

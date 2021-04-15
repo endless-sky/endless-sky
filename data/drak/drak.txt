@@ -53,7 +53,7 @@ outfit "Drak Draining Field"
 		"firing energy" 20
 		"firing heat" 5
 		"firing force" 30
-		"hit force" 50
+		"hit force" 100
 		"shield damage" 50
 		"ion damage" .5
 		"disruption damage" 1
@@ -92,8 +92,8 @@ outfit "Drak Turret"
 		"hit effect" "drak bolt impact"
 		"inaccuracy" 1
 		"turret turn" 4.
-		"velocity" 36
-		"lifetime" 30
+		"velocity" 30
+		"lifetime" 36
 		"reload" 16
 		"firing energy" 160
 		"firing heat" 160
@@ -204,6 +204,8 @@ ship "Archon"
 		"shield energy" 100
 		"hull repair rate" 100
 		"hull energy" 100
+		"ion protection" 3
+		"ion resistance" 1
 		"ramscoop" 100
 		weapon
 			"blast radius" 200

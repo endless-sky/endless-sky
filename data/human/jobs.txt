@@ -2737,6 +2737,127 @@ mission "Bounty Hunting (Small, Boarding, Entering)"
 		payment 175000
 		dialog "The government of <planet> gratefully pays you <payment> for apprehending the criminal."
 
+mission "Bounty Hunting (Small, Hidden)"
+	name "Disguised bandit near <system>"
+	description "A low-end pirate warship named the <npc> is posing as a merchant ship near the <system> system. Select merchant ships until you find a ship with a matching name, then destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		"combat rating" > 300
+		random < 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty (Disguised)"
+		personality heroic staying
+		system
+			distance 1 2
+		fleet
+			names "pirate"
+			variant
+				"Firebird"
+			variant
+				"Firebird (Missile)"
+			variant
+				"Splinter"
+			variant
+				"Splinter (Laser)"
+			variant
+				"Osprey"
+			variant
+				"Osprey (Laser)"
+			variant
+				"Bastion"
+			variant
+				"Manta"
+			variant
+				"Manta (Proton)"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 250000
+		dialog phrase "generic bounty hunting payment dialog"
+
+mission "Bounty Hunting (Medium, Hidden)"
+	name "Disguised pirate near <system>"
+	description "A medium pirate warship named the <npc> is posing as a merchant ship near the <system> system. Select merchant ships until you find a ship with a matching name, then destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		"combat rating" > 400
+		random < 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty (Disguised)"
+		personality heroic staying
+		system
+			distance 1 2
+		fleet
+			names "pirate"
+			variant
+				"Protector"
+			variant
+				"Protector (Laser)"
+			variant
+				"Osprey (Missile)"
+			variant
+				"Bastion (Heavy)"
+			variant
+				"Bastion (Laser)"
+			variant
+				"Firebird (Plasma)"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 350000
+		dialog phrase "generic bounty hunting payment dialog"
+
+mission "Bounty Hunting (Big, Hidden)"
+	name "Disguised warlord near <system>"
+	description "A heavy warship known as the <npc> is posing as a merchant ship near the <system> system. Select merchant ships until you find a ship with a matching name, then destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		"combat rating" > 500
+		random < 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty (Disguised)"
+		personality heroic staying
+		system
+			distance 1 2
+		fleet
+			names "pirate"
+			variant
+				"Leviathan"
+			variant
+				"Leviathan (Heavy)"
+			variant
+				"Leviathan (Laser)"
+			variant
+				"Falcon"
+			variant
+				"Falcon (Heavy)"
+			variant
+				"Falcon (Laser)"
+			variant
+				"Vanguard"
+			variant
+				"Vanguard (Particle)"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 450000
+		dialog phrase "generic bounty hunting payment dialog"
+
 mission "Bounty Hunting (Medium, Boarding, Entering)"
 	name "Stolen warship near <system>"
 	description "A wanted criminal and several accomplices are fleeing in a stolen warship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminals to <destination> to stand trial on <date>. Reward for capture: <payment>."
@@ -3042,6 +3163,50 @@ mission "Bounty Hunting (Marauder X)"
 	on complete
 		payment 750000
 		dialog phrase "generic fleet bounty hunting payment dialog"
+
+
+
+mission "Raid Warning"
+	invisible
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	to offer
+		"pirate attraction" >= 15
+	on offer
+		conversation
+			`When you enter the <origin> spaceport, you're almost immediately stopped by a grizzled old man. "You some kinda rookie, or you asking for a death wish?" he asks.`
+			choice
+				`	"Excuse me?"`
+					goto advice
+				`	"Yeah, I'm pretty fresh. Is there something I'm doing wrong by walking in here?"`
+				`	"I've been piloting for a while. I think I know what I'm doing."`
+					goto think
+			`	The old man chuckles. "Ain't nothing wrong with walking in here. It's what you're flying in with that's the issue.`
+				goto advice
+			
+			label think
+			`	The old man chuckles. "Well I don't think so after what I've seen.`
+			
+			label advice
+			`	"I seen those ships of yours. That fleet is juicy pickings for pirates if I've ever seen it." You look confusedly at the man. "Oh, do I need to spell it out for you? Pirates love to take out soft targets with lots of potential cargo, and your fleet is looking pretty heavy on cargo space with hardly any defenses."`
+			choice
+				`	"Oh, so that's why I've been seeing pirates everywhere I go."`
+				`	"So what should I do about that?"`
+					goto solution
+				`	"Don't you think I know that already?"`
+					goto rebuff
+			`	"What, you think they just had it out for you because you look funny? No, pirates have their reasons.`
+			label solution
+			`	"Either get yourself more guns in that fleet or get rid of some cargo space. Park your ships, sell them, doesn't matter, so long as the pirates don't see them, or you make it not worth it to try and steal whatever you might have. Pirates see a bunch of freighters flying around unprotected and they're going to take their chances. Doesn't matter if you actually have anything or not."`
+			choice
+				`	"Thanks for the advice."`
+				`	"I'll make sure to go do that. Thanks."`
+			`	"No problem. Just looking out for a fellow captain. No use in getting got because you didn't know any better. But now you do." The man gives you a firm pat on the back before walking off.`
+				decline
+			
+			label rebuff
+			`	"Sure doesn't look like it." The man gives an exaggerated shrug and starts to walk off. "Alright then, get yourself killed. Not like I used to haul cargo from one end of the galaxy to the other for fifty years or anything." The man gets further and further away, continuing to grumble about "kids these days" and other such things until you can no longer hear him.`
+				decline
 
 
 

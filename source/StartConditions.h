@@ -13,40 +13,59 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef START_CONDITIONS_H_
 #define START_CONDITIONS_H_
 
-#include "Account.h"
-#include "ConditionSet.h"
-#include "Date.h"
+#include "CoreStartData.h"
 
-#include <list>
+#include "ConditionSet.h"
+#include "Conversation.h"
+
+#include <string>
+#include <vector>
 
 class DataNode;
-class Planet;
 class Ship;
-class System;
+class Sprite;
 
 
 
-class StartConditions {
+class StartConditions : public CoreStartData {
 public:
+	StartConditions() = default;
+	explicit StartConditions(const DataNode &node);
+	
 	void Load(const DataNode &node);
 	// Finish loading the ship definitions.
 	void FinishLoading();
 	
-	Date GetDate() const;
-	const Planet *GetPlanet() const;
-	const System *GetSystem() const;
-	const Account &GetAccounts() const;
-	const ConditionSet &GetConditions() const;
-	const std::list<Ship> &Ships() const;
+	// A valid start scenario has a valid system, planet, and conversation.
+	// Any ships given to the player must also be valid models.
+	bool IsValid() const;
+	
+	const ConditionSet &GetConditions() const noexcept;
+	const std::vector<Ship> &Ships() const noexcept;
+	
+	// Get this start's intro conversation.
+	const Conversation &GetConversation() const;
+	
+	// Information needed for the scenario picker.
+	const Sprite *GetThumbnail() const noexcept;
+	const std::string &GetDisplayName() const noexcept;
+	const std::string &GetDescription() const noexcept;
 	
 	
 private:
-	Date date;
-	const Planet *planet = nullptr;
-	const System *system = nullptr;
-	Account accounts;
+	// Conditions that will be set for any pilot that begins with this scenario.
 	ConditionSet conditions;
-	std::list<Ship> ships;
+	// Ships that a new pilot begins with (rather than being required to purchase one).
+	std::vector<Ship> ships;
+	
+	// The conversation to display when a game begins with this scenario.
+	Conversation conversation;
+	const Conversation *stockConversation = nullptr;
+	
+	const Sprite *thumbnail = nullptr;
+	// The user-friendly display name for this starting scenario.
+	std::string name;
+	std::string description;
 };
 
 

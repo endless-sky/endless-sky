@@ -170,6 +170,7 @@ void DistanceMap::Init(const Ship *ship)
 	{
 		hyperspaceFuel = ship->HyperdriveFuel();
 		jumpFuel = ship->JumpDriveFuel();
+		jumpRange = ship->JumpRange();
 		// If hyperjumps and non-hyper jumps cost the same amount, there is no
 		// need to check hyperjump paths at all.
 		if(hyperspaceFuel == jumpFuel)
@@ -220,9 +221,9 @@ void DistanceMap::Init(const Ship *ship)
 				{
 					// If we're seeking a path toward a "source," travel through
 					// wormholes in the reverse of the normal direction.
-					const System *link = source ?
-						object.GetPlanet()->WormholeSource(top.next) :
-						object.GetPlanet()->WormholeDestination(top.next);
+					const System &link = source ?
+						*object.GetPlanet()->WormholeSource(top.next) :
+						*object.GetPlanet()->WormholeDestination(top.next);
 					if(HasBetter(link, top))
 						continue;
 					
@@ -233,9 +234,9 @@ void DistanceMap::Init(const Ship *ship)
 					// it takes but not others.)
 					if(ship && !object.GetPlanet()->IsAccessible(ship))
 						continue;
-					if(player && !player->HasVisited(object.GetPlanet()))
+					if(player && !player->HasVisited(*object.GetPlanet()))
 						continue;
-					if(player && !(player->HasVisited(top.next) && player->HasVisited(link)))
+					if(player && !(player->HasVisited(*top.next) && player->HasVisited(link)))
 						continue;
 					
 					Add(link, top);
@@ -255,15 +256,15 @@ void DistanceMap::Init(const Ship *ship)
 bool DistanceMap::Propagate(Edge edge, bool useJump)
 {
 	edge.fuel += (useJump ? jumpFuel : hyperspaceFuel);
-	for(const System *link : (useJump ? edge.next->Neighbors() : edge.next->Links()))
+	for(const System *link : (useJump ? edge.next->JumpNeighbors(jumpRange) : edge.next->Links()))
 	{
 		// Find out whether we already have a better path to this system, and
 		// check whether this link can be traveled. If this route is being
 		// selected by the player, they are constrained to known routes.
-		if(HasBetter(link, edge) || !CheckLink(edge.next, link, useJump))
+		if(HasBetter(*link, edge) || !CheckLink(*edge.next, *link, useJump))
 			continue;
 		
-		Add(link, edge);
+		Add(*link, edge);
 		if(!--maxCount)
 			return false;
 	}
@@ -273,21 +274,21 @@ bool DistanceMap::Propagate(Edge edge, bool useJump)
 
 
 // Check if we already have a better path to the given system.
-bool DistanceMap::HasBetter(const System *to, const Edge &edge)
+bool DistanceMap::HasBetter(const System &to, const Edge &edge)
 {
-	auto it = route.find(to);
+	auto it = route.find(&to);
 	return (it != route.end() && !(it->second < edge));
 }
 
 
 
 // Add the given path to the record.
-void DistanceMap::Add(const System *to, Edge edge)
+void DistanceMap::Add(const System &to, Edge edge)
 {
 	// This is the best path we have found so far to this system, but it is
 	// conceivable that a better one will be found.
-	route[to] = edge;
-	edge.next = to;
+	route[&to] = edge;
+	edge.next = &to;
 	if(maxDistance < 0 || edge.days < maxDistance)
 		edges.emplace(edge);
 }
@@ -297,7 +298,7 @@ void DistanceMap::Add(const System *to, Edge edge)
 // Check whether the given link is travelable. If no player was given in the
 // constructor then this is always true; otherwise, the player must know
 // that the given link exists.
-bool DistanceMap::CheckLink(const System *from, const System *to, bool useJump) const
+bool DistanceMap::CheckLink(const System &from, const System &to, bool useJump) const
 {
 	if(!player)
 		return true;
@@ -309,7 +310,9 @@ bool DistanceMap::CheckLink(const System *from, const System *to, bool useJump) 
 	// the two systems that you can jump between them, you can plot a course
 	// between them even if neither system is explored. Otherwise, you need to
 	// know if a link exists, so you must have explored at least one of them.
-	if(useJump && from->Position().Distance(to->Position()) <= System::NEIGHBOR_DISTANCE)
+	// The jump range of a system overrides the jump range of this ship.
+	double distance = from.JumpRange() ? from.JumpRange() : jumpRange;
+	if(useJump && from.Position().Distance(to.Position()) <= distance)
 		return true;
 	
 	return (player->HasVisited(from) || player->HasVisited(to));

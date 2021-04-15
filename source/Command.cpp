@@ -15,7 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Format.h"
+#include "text/Format.h"
 
 #include <SDL2/SDL.h>
 
@@ -125,8 +125,8 @@ void Command::LoadSettings(const string &path)
 	for(const auto &it : description)
 		commands[it.second] = it.first;
 	
-	// Each command can only have one keycode, but misconfigured settings can
-	// temporarily cause one keycode to be used for two commands.
+	// Each command can only have one keycode, one keycode can be assigned
+	// to multiple commands.
 	for(const DataNode &node : file)
 	{
 		auto it = commands.find(node.Token(0));
@@ -156,11 +156,11 @@ void Command::SaveSettings(const string &path)
 {
 	DataWriter out(path);
 	
-	for(const auto &it : commandForKeycode)
+	for(const auto &it : keycodeForCommand)
 	{
-		auto dit = description.find(it.second);
+		auto dit = description.find(it.first);
 		if(dit != description.end())
-			out.Write(dit->second, it.first);
+			out.Write(dit->second, it.second);
 	}
 }
 

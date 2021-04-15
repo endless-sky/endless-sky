@@ -141,7 +141,7 @@ mission "Intro [2 Transport]"
 	on complete
 		payment 15000
 		conversation
-			`As you made the final landing descent to the surface of Earth, Chuck and Sarah were staring out the window in rapt attention, pointing out landmarks on the planet's surface. James joins in by telling you all about some of the history of the cities you are flying over. Carl, meanwhile, has spent the entire journey playing a handheld video game, and only glances out the window when the ship shakes from turbulence. As they all grab their luggage and step off your ship to explore humanity's homeworld, he is still immersed in the game.`
+			`As you make the final landing descent to the surface of Earth, Chuck and Sarah stare out the window in rapt attention, pointing out landmarks on the planet's surface. James joins in by telling you all about some of the history of the cities you are flying over. Carl, meanwhile, has spent the entire journey playing a handheld video game, and only glances out the window when the ship shakes from turbulence. As they all grab their luggage and step off your ship to explore humanity's homeworld, he is still immersed in the game.`
 			`	As you collect your payment, James pulls the parents aside and says, "Watch out for pickpockets, okay? And take it from an experienced captain, you do not want to be out after dark here. Play it safe, and have a great time."`
 			`	After they leave, James shakes his head ruefully. "It'll probably be a decade before that kid is old enough to realize what he's missing out on. Waste of money, doing a trip like this with a teenage boy. They should've gone to Skymoot and seen the dragons instead; I'm sure that would interest him a lot more than historical museums and ancient cities." Then, he picks up his luggage and adds, "Same deal as before. If you want to keep traveling together, meet me in the spaceport."`
 
@@ -161,13 +161,13 @@ mission "Intro [3 Transport]"
 	on offer
 		conversation
 			`The spaceport on <origin> is so big and crowded that it takes a long time to find James. The sheer number of people here is almost overwhelming. Homeless men wrapped in old army blankets beg money from well-dressed businessmen. Soldiers in Navy uniforms walk by in groups of ten or twenty, all marching in unison. Starship captains haggle with merchants over trade goods and jobs. Flashes of light come from various landing bays as welders make repairs.`
-			`	When you find James, he's standing by a window, looking out at the city, watching the starships taking off and landing in a continuous stream. "This is it," he says, "where our race began. The world that all the tourists want to visit, and that no one wants to live on. Ten billion people, more industry and exports than any other place in the galaxy. But underneath it all, poverty of a completely different sort from what you've got in the Dirt Belt."`
+			`	When you find James, he's standing by a window, looking out at the city, watching the starships taking off and landing in a continuous stream. "This is it," he says, "where our race began. The world that all the tourists want to visit, and that no one wants to live on. Twenty billion people, more industry and exports than any other place in the galaxy. But underneath it all, poverty of a completely different sort from what you've got in the Dirt Belt."`
 			`	After taking one last glance out the window, he says, "Anyway, we're nearing my destination. Are you willing to take me on one last trip? I need to get to <destination>, and of course I'll pay you quite well to take me there."`
 			choice
 				`	"Of course."`
 				`	"Sorry, but I was planning on heading out in a different direction from here."`
 					decline
-			`	Once again you walk back to your ship with James. Once you get there, as he's stowing his luggage, you pull up the information your computer has on <planet>. It's one of the "paradise worlds," terraformed to have a perfect climate, accessible only to the very wealthy. You wonder whether James is going to be able to fit in there.`
+			`	Once again you walk back to your ship with James. Once you get there, as he's stowing his luggage, you pull up the information your computer has on <planet>. It's one of the "Paradise Worlds," terraformed to have a perfect climate, accessible only to the very wealthy. You wonder whether James is going to be able to fit in there.`
 				accept
 	
 	on complete
@@ -296,7 +296,7 @@ mission "Intro [3 Freighter]"
 				`	"Sure, I can take you there."`
 				`	"Sorry, I was thinking of heading in a different direction from here."`
 					decline
-			`	Once again you walk back to your ship with James. Once you get there, as he's stowing his luggage, you pull up the information your computer has on <planet>. It's one of the "paradise worlds," terraformed to have a perfect climate, accessible only to the very wealthy. You wonder whether James is going to be able to fit in there.`
+			`	Once again you walk back to your ship with James. Once you get there, as he's stowing his luggage, you pull up the information your computer has on <planet>. It's one of the "Paradise Worlds," terraformed to have a perfect climate, accessible only to the very wealthy. You wonder whether James is going to be able to fit in there.`
 				accept
 	
 	on complete
@@ -370,7 +370,7 @@ mission "Intro [2 Interceptor]"
 		conversation
 			`You find James in the spaceport bar, talking with a woman wearing a business suit. The expression on James's face is growing increasingly concerned as she speaks. Seeing you come in, he waves to you and you join them at the table.`
 			`	"Hello <first>," says James. "This is Marissa, a senior manager at the mines." You shake hands with her.`
-			`	"Here's the deal," says Marissa. "Most of the gemstones we mine here are industrial grade, not pretty enough to be worth using as anything but sandpaper grit or drill bits. But every once in a while we happen on some higher quality gems. No one in this sector has the money to spend on jewelry, so we ship them north to the paradise worlds.`
+			`	"Here's the deal," says Marissa. "Most of the gemstones we mine here are industrial grade, not pretty enough to be worth using as anything but sandpaper grit or drill bits. But every once in a while we happen on some higher quality gems. No one in this sector has the money to spend on jewelry, so we ship them north to the Paradise Worlds.`
 			`	"But in the past few months, every shipment we've sent has been attacked by a pirate ship, the Hammer of Thor. We don't have the money to pay a bounty hunter to take out the Hammer, so instead we're going to pay you to outrun it. Is the <ship> a fast ship?"`
 			choice
 				`	"As fast as they come. Nothing bigger than a fighter could chase it down."`
@@ -422,7 +422,7 @@ mission "Intro [3 Interceptor]"
 				`	"Of course."`
 				`	"Sorry, I think I'll go hunt some pirates instead."`
 					decline
-			`	Once again you walk back to your ship with James. Once you get there, as he's stowing his luggage, you pull up the information your computer has on <planet>. It's one of the "paradise worlds," terraformed to have a perfect climate, accessible only to the very wealthy. You wonder whether James is going to be able to fit in there.`
+			`	Once again you walk back to your ship with James. Once you get there, as he's stowing his luggage, you pull up the information your computer has on <planet>. It's one of the "Paradise Worlds," terraformed to have a perfect climate, accessible only to the very wealthy. You wonder whether James is going to be able to fit in there.`
 				accept
 	
 	on complete
@@ -472,7 +472,7 @@ conversation "end of intro missions"
 		goto more
 	
 	label aliens
-	`	"I've spoken with the Quarg a few times, but what captain hasn't? You'll find them down south by Tarazed. I haven't met any other aliens," he pauses for a moment, " as far as I'm aware, that is, but I'm sure they're out there if you go looking hard enough. I've explored all of Republic space in my many years, but there are far more systems out there that we don't even know how to reach.`
+	`	"I've spoken with the Quarg a few times, but what captain hasn't? You'll find them down south by Tarazed. I haven't met any other aliens," he pauses for a moment, "as far as I'm aware, that is, but I'm sure they're out there if you go looking hard enough. I've explored all of Republic space in my many years, but there are far more systems out there that we don't even know how to reach.`
 		goto more
 	
 	label trade
@@ -480,7 +480,7 @@ conversation "end of intro missions"
 		goto more
 	
 	label jobs
-	`	"Getting good jobs is more about having the space to accept the good jobs than it is finding them, but if you're looking for jobs that pay well for little effort, then you'll want to watch out around the holidays. There's always a big celebration on Earth every Earth Day, so pay attention to the job board in the months leading up to that. The people down in the Rim have some month-long celebration every August that you should look out for too.`
+	`	"Getting good jobs is more about having the space to accept the good jobs than it is finding them, but if you're looking for jobs that pay well for little effort, then you'll want to watch out around the holidays. There's always a big celebration on Earth every April 22nd, Earth Day, so pay attention to the job board in the months leading up to that. The people down in the Rim have some month-long celebration every August that you should look out for too.`
 	
 	label more
 	`	"Anything else you want to ask me?"`

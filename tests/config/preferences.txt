@@ -1,0 +1,30 @@
+"Automatic aiming" 1
+"Automatic firing" 1
+"help: bank" 1
+"help: basics 1" 1
+"help: basics 2" 1
+"help: dead" 1
+"help: disabled" 1
+"help: friendly disabled" 1
+"help: hiring" 1
+"help: jobs" 1
+"help: lost 1" 1
+"help: lost 2" 1
+"help: lost 3" 1
+"help: lost 4" 1
+"help: lost 5" 1
+"help: lost 6" 1
+"help: lost 7" 1
+"help: map" 1
+"help: map advanced" 1
+"help: map advanced ports" 1
+"help: map advanced shops" 1
+"help: multiple ship controls" 1
+"help: multiple ships" 1
+"help: navigation" 1
+"help: outfitter" 1
+"help: outfitter 2" 1
+"help: outfitter 3" 1
+"help: ship info" 1
+"help: stranded" 1
+"help: trading" 1

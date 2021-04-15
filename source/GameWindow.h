@@ -13,12 +13,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef GAMEWINDOW_H_
 #define GAMEWINDOW_H_
 
+#include "Preferences.h"
+
 #include <string>
 
 // This class is a collection of global functions for handling SDL_Windows.
-class GameWindow
-{
+class GameWindow {
 public:
+	static std::string SDLVersions();
 	static bool Init();
 	static void Quit();
 	
@@ -31,10 +33,13 @@ public:
 	// Handle resize events of the main window.
 	static void AdjustViewport();
 	
+	// Attempt to set the game's VSync setting.
+	static bool SetVSync(Preferences::VSync state);
+	
 	// Last known windowed-mode width & height.
 	static int Width();
 	static int Height();
-	// 
+	
 	static bool IsMaximized();
 	static bool IsFullscreen();
 	static void ToggleFullscreen();	
@@ -44,7 +49,7 @@ public:
 	
 	// Print the error message in the terminal, error file, and message box.
 	// Checks for video system errors and records those as well.
-	static void ExitWithError(const std::string& message);
+	static void ExitWithError(const std::string& message, bool doPopUp = true);
 };
 
 

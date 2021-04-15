@@ -191,7 +191,7 @@ mission "Kestrel Available"
 	destination "Wayfarer"
 	on offer
 		conversation
-			scene ship/kestrel
+			scene thumbnail/kestrel
 			`You receive a message from Charles Atinoda, the ship designer at Tarazed Corporation: "Captain <last>, we are pleased to inform you that our latest warship is now available for sale here on Wayfarer. We've taken all your feedback into account in the final design. Thank you again!"`
 				decline
 
@@ -308,8 +308,8 @@ ship "Kestrel"
 		"Hyperdrive"
 	engine -14 177
 	engine 14 177
-	fighter -46 106 under
-	fighter 46 106 under
+	bay "Fighter" -46 106 under
+	bay "Fighter" 46 106 under
 	gun -75 57 "Torpedo Launcher"
 	gun 75 57 "Torpedo Launcher"
 	gun -53 61 "Particle Cannon"

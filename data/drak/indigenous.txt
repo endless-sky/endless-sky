@@ -25,10 +25,13 @@ ship "Subsidurial"
 		"thrust" 10
 		"turn" 800
 		"hull repair rate" 3
+		"ion protection" 3
+		"ion resistance" 1
 		"energy capacity" 1
 		"inscrutable" 1
 		"gaslining" 1
 		"hyperdrive" 1
+		"jump speed" .2
 	outfits
 		Mouthparts? 3
 	gun 0 -97 Mouthparts?
@@ -53,9 +56,11 @@ effect "subsidurial death"
 
 ship "Void Sprite"
 	noun "creature"
-	sprite "ship/void sprite adult"
-		"frame rate" 3.2
+	sprite "ship/void sprite/void sprite adult"
+		"frame rate" 14.3
+		"random start frame"
 		rewind
+	thumbnail "thumbnail/void sprite adult"
 	"never disabled"
 	attributes
 		category "Medium Warship"
@@ -69,14 +74,16 @@ ship "Void Sprite"
 		"thrust" 20
 		"turn" 900
 		"hull repair rate" 3
+		"ion protection" 3
+		"ion resistance" 1
 		"energy capacity" 1
 		"fuel capacity" 1
 		"inscrutable" 1
 		"gaslining" 1
 	outfits
 		Mouthparts? 2
-	gun -4 -111
-	gun 6 -111
+	gun 0 -156
+	gun 0 -156
 	leak "blood" 40 40
 	explode "blood" 40
 	"final explode" "void sprite adult death"
@@ -102,9 +109,11 @@ effect "void sprite adult death"
 
 
 ship "Void Sprite" "Void Sprite (Infant)"
-	sprite "ship/void sprite infant"
-		"frame rate" 7.4
+	sprite "ship/void sprite/void sprite infant"
+		"frame rate" 24.7
+		"random start frame"
 		rewind
+	thumbnail "thumbnail/void sprite infant"
 	"never disabled"
 	attributes
 		category "Light Warship"
@@ -118,6 +127,8 @@ ship "Void Sprite" "Void Sprite (Infant)"
 		"thrust" 18
 		"turn" 450
 		"hull repair rate" 1
+		"ion protection" 3
+		"ion resistance" 1
 		"energy capacity" 1
 		"fuel capacity" 1
 		"inscrutable" 1
@@ -161,6 +172,8 @@ ship "Ember Waste Node"
 		"thrust" 80
 		"turn" 3500
 		"hull repair rate" 3
+		"ion protection" 3
+		"ion resistance" 1
 		"energy capacity" 100
 		"energy generation" 1
 		"fuel capacity" 200

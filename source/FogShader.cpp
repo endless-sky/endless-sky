@@ -160,14 +160,14 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 		previousRows = rows;
 		
 		// This buffer will hold the mask image.
-		vector<unsigned char> buffer(rows * columns, LIMIT);
+		auto buffer = vector<unsigned char>(static_cast<size_t>(rows) * columns, LIMIT);
 	
 		// For each system the player knows about, its "distance" pixel in the
 		// buffer should be set to 0.
 		for(const auto &it : GameData::Systems())
 		{
 			const System &system = it.second;
-			if(system.Name().empty() || !player.HasVisited(&system))
+			if(!system.IsValid() || !player.HasVisited(system))
 				continue;
 			Point pos = zoom * (system.Position() + center);
 		
