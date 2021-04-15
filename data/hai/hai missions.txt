@@ -1321,7 +1321,7 @@ mission "Pirate Troubles [1]: Stormhold"
 event "scar's hideout"
 	system "Danoa"
 		object
-			sprite star/m4
+			sprite star/m3
 			period 10
 		object
 			sprite planet/desert7-b
