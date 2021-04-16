@@ -1061,7 +1061,14 @@ void GameData::LoadFile(const string &path, bool debugMode)
 		else if(key == "mission" && node.Size() >= 2)
 			missions.Get(node.Token(1))->Load(node);
 		else if(key == "outfit" && node.Size() >= 2)
-			outfits.Get(node.Token(1))->Load(node);
+			if(node.Size() > 2)
+			{
+				// Allow outfits to inherit attributes from parents
+				const string &name = node.Token((node.Size() > 2) ? 2 : 1);
+				outfits.Get(name)->Load(node);
+			}
+			else
+				outfits.Get(node.Token(1))->Load(node);
 		else if(key == "outfitter" && node.Size() >= 2)
 			outfitSales.Get(node.Token(1))->Load(node, outfits);
 		else if(key == "person" && node.Size() >= 2)

@@ -118,10 +118,24 @@ const vector<string> Outfit::CATEGORIES = {
 
 void Outfit::Load(const DataNode &node)
 {
-	if(node.Size() >= 2)
+	if(node.Size() == 2)
 	{
 		name = node.Token(1);
 		pluralName = name + 's';
+	}
+	else if(node.Size() >= 3)
+	{
+		name = node.Token(2);
+		pluralName = name + 's';
+		
+		const Outfit *parent = GameData::Outfits().Get(node.Token(1));
+		
+		// Copy data over from the parent outfit.
+		category = parent->Category();
+		thumbnail = parent->Thumbnail();
+		cost = parent->Cost();
+		mass = parent->Mass();
+		attributes = parent->Attributes();
 	}
 	isDefined = true;
 	

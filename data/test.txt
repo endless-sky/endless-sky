@@ -1,0 +1,16 @@
+outfit "Jump Drive" "Quarg Jump Drive"
+	thumbnail "star/a0"
+	"jump fuel" 150
+	description `Quarg jump drives use less fuel thank Korath jump drives.`
+	
+outfit "Jump Drive" "Pug Jump Drive"
+	"jump fuel" 100
+	description `Haha, bork.`
+
+outfitter "for show"
+	"Jump Drive"
+	"Quarg Jump Drive"
+	"Pug Jump Drive"
+	
+planet "New Austria"
+	outfitter "for show"
