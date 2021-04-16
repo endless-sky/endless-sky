@@ -236,7 +236,7 @@ news "arach civilian"
 			"Local Arach"
 	message
 		word
-			`"Arrested close to where my counsins work, the terrorists on the news were. Notice anything wrong with them, they never did."`
+			`"Arrested close to where my cousins work, the terrorists on the news were. Notice anything wrong with them, they never did."`
 			`"Always rising, the sun in these broadcasts is, but a night shift I work, so see it for myself, I never can..."`
 			`"To Ring of Wisdom, a researcher friend of mine has gone. Always there, our wisest mingle, but remain here, few do. Difficult for us, sometimes it is."`
 			`"Always mixing up our Houses, Kimek and Saryd tourists are. Mind it, I do not, but angry, sometimes my friends get."`
@@ -250,7 +250,7 @@ news "kimek civilian"
 			"Local Kimek"
 	message
 		word
-			`"Arrested close to where my counsins work, the terrorists on the news were. Notice anything wrong with them, they never did."`
+			`"Arrested close to where my cousins work, the terrorists on the news were. Notice anything wrong with them, they never did."`
 			`"Always rising, the sun in these broadcasts is, but a night shift I work, so see it for myself, I never can..."`
 			`"To Ring of Wisdom, a researcher friend of mine has gone. Always there, our wisest mingle, but remain here, few do. Difficult for us, sometimes it is."`
 			`"Tired of dealing with faulty translation boxes, my sister got, so learning to speak Arachi, she is."`
@@ -264,7 +264,7 @@ news "saryd civilian"
 			"Local Saryd"
 	message
 		word
-			`"Arrested close to where my counsins work, the terrorists on the news were. Notice anything wrong with them, they never did."`
+			`"Arrested close to where my cousins work, the terrorists on the news were. Notice anything wrong with them, they never did."`
 			`"Always rising, the sun in these broadcasts is, but a night shift I work, so see it for myself, I never can..."`
 			`"To Ring of Wisdom, a researcher friend of mine has gone. Always there, our wisest mingle, but remain here, few do. Difficult for us, sometimes it is."`
 			`"Troubling it is, when their children, Kimek and Arach tourists bring. Climb up everywhere, they try."`
