@@ -128,18 +128,6 @@ ship "Korath Dredger" "Korath Dredger (Hyperdrive)"
 		"Thruster (Asteroid Class)"
 		"Hyperdrive"
 		"Jump Drive (Broken)"
-		
-	turret -37.5 -152.5 "Korath Warder"
-	turret 37.5 -152.5 "Korath Warder"
-	turret 0 -153 "Korath Grab-Strike"
-	turret -42 -28 "Korath Banisher"
-	turret 42 -28 "Korath Banisher"
-	turret -86 128.5 "Korath Grab-Strike"
-	turret 86 128.5 "Korath Grab-Strike"
-	engine 0 179
-	engine -32 164 .7
-	engine 32 164 .7
-	description "After the Korath were exiled from their homelands, efficient resource collection became a priority. World-ships were too precious to risk on dangerous forays, and Raiders lacked the cargo capacity. The Dredger was born as an answer to this problem, featuring an abundance of cargo and passenger space, with formidable defensive armament. With such a complement, these bulky ships can also offer potent support for frontline Raiders."
 
 
 ship "Korath Raider"
