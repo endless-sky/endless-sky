@@ -360,7 +360,11 @@ news "remnant comprehensible"
 		word
 			". "
 		word
-			"From this angle, all you can "
+			"From this angle, "
+			"Without them facing you, "
+		word
+			"all you can "
+			"what you can "
 		word
 			"make out"
 			"catch"
