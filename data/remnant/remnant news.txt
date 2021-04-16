@@ -368,6 +368,8 @@ news "remnant comprehensible"
 		word
 			"make out"
 			"catch"
+			"see"
+			"discern"
 		word
 			" is that they are "
 		word
