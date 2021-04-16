@@ -111,7 +111,6 @@ ship "Korath Dredger" "Korath Dredger (Crippled)"
 
 
 ship "Korath Dredger" "Korath Dredger (Hyperdrive)"
-	sprite "ship/dredger"
 	outfits
 		"Korath Banisher" 2
 		"Korath Grab-Strike" 3
