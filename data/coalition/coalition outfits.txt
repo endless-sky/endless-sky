@@ -180,7 +180,7 @@ outfit "Fuel Module"
 	"mass" 19
 	"outfit space" -19
 	"fuel capacity" 400
-	description "In their early days of space exploration, the Saryds developed these to travel far away without worrying too much about their fuel."
+	description "In their early days of space exploration, the Saryds developed the fuel module to travel far from Saros without worrying about becoming stranded without fuel."
 	description "	Nowadays, nearly every system on the Coalition has refuelling facilities, but some captains still find use in the extra jumps these modules offer."
 
 outfit "Scanning Module"
