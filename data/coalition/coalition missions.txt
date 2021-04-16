@@ -1403,7 +1403,7 @@ mission "Coalition Folklore: Saryd"
 		attributes "saryd" "folklore"
 	on offer
 		conversation
-			`Walking by the spaceport, you're approached by a Saryd in unusually traditional clothing, even by Saryd standards. Silk robes not too different from human kimonos cover most of his body, and thin ropes tightly wrap around the fabric near his hoofs.`
+			`Walking through the spaceport, you're approached by a Saryd in unusually traditional clothing, even by Saryd standards. Silk robes not too different from human kimonos cover most of his body, and thin ropes tightly wrap around the fabric near his hoofs.`
 			`	"Greetings, Captain. Interested in participating in a cultural celebration, would you be?" He asks.`
 			choice
 				`	"What sort of celebration?"`
