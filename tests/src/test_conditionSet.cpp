@@ -15,34 +15,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // Include only the tested class's header.
 #include "../../source/ConditionSet.h"
 
-// Include DataFile & DataNode, to enable creating non-empty ConditionSets.
-#include "../../source/DataFile.h"
-#include "../../source/DataNode.h"
+// Include a helper for creating well-formed DataNodes (to enable creating non-empty ConditionSets).
+#include "datanode-factory.h"
 
 // ... and any system includes needed for the test file.
 #include <map>
-#include <sstream>
 #include <string>
-#include <vector>
 
 namespace { // test namespace
 
 // #region mock data
-// Method to convert text input into consumable DataNodes.
-std::vector<DataNode> AsDataNodes(std::string text)
-{
-	std::stringstream in;
-	in.str(text);
-	const auto file = DataFile{in};
-	
-	return std::vector<DataNode>{std::begin(file), std::end(file)};
-}
-// Convert the text to a list of nodes, and return the first node.
-const DataNode AsDataNode(std::string text)
-{
-	auto nodes = AsDataNodes(text);
-	return nodes.empty() ? DataNode{} : *nodes.begin();
-}
 // #endregion mock data
 
 
