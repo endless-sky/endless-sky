@@ -38,7 +38,9 @@ TEST_CASE( "DataNode Basics", "[DataNode]" ) {
 	using T = DataNode;
 	SECTION( "Class Traits" ) {
 		CHECK_FALSE( std::is_trivial<T>::value );
-		CHECK_FALSE( std::is_standard_layout<T>::value );
+		// The class layout apparently satisfies StandardLayoutType when building/testing for Steam, but false otherwise.
+		// This may change in the future, with the expectation of false everywhere (due to the list<DataNode> field).
+		// CHECK_FALSE( std::is_standard_layout<T>::value );
 		CHECK( std::is_nothrow_destructible<T>::value );
 		CHECK_FALSE( std::is_trivially_destructible<T>::value );
 	}
