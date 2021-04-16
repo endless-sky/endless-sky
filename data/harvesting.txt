@@ -10,8 +10,8 @@
 
 minable "aluminum"
 	sprite "asteroid/silicon/spin"
-	hull 1000
-	payload "Aluminum" 40
+	hull 700
+	payload "Aluminum" 144
 	explode "smoke" 40
 	explode "bolide" 40
 	explode "final explosion large"
@@ -19,7 +19,7 @@ minable "aluminum"
 outfit "Aluminum"
 	plural "Aluminum"
 	category "Special"
-	cost 1800
+	cost 350
 	thumbnail "outfit/harvested aluminum"
 	"flotsam sprite" "effect/flotsam aluminum"
 	"mass" 1
@@ -30,7 +30,7 @@ outfit "Aluminum"
 minable "copper"
 	sprite "asteroid/gold/spin"
 	hull 1200
-	payload "Copper" 20
+	payload "Copper" 100
 	explode "smoke" 20
 	explode "bolide" 20
 	explode "final explosion small"
@@ -38,7 +38,7 @@ minable "copper"
 outfit "Copper"
 	plural "Copper"
 	category "Special"
-	cost 3000
+	cost 600
 	thumbnail "outfit/harvested copper"
 	"flotsam sprite" "effect/flotsam copper"
 	"mass" 1
@@ -48,8 +48,8 @@ outfit "Copper"
 
 minable "gold"
 	sprite "asteroid/gold/spin"
-	hull 2800
-	payload "Gold" 16
+	hull 1600
+	payload "Gold" 96
 	explode "smoke" 20
 	explode "bolide" 20
 	explode "final explosion small"
@@ -57,7 +57,7 @@ minable "gold"
 outfit "Gold"
 	plural "Gold"
 	category "Special"
-	cost 8000
+	cost 1200
 	thumbnail "outfit/harvested gold"
 	"flotsam sprite" "effect/flotsam gold"
 	"mass" 1
@@ -67,8 +67,8 @@ outfit "Gold"
 
 minable "iron"
 	sprite "asteroid/iron/spin"
-	hull 1600
-	payload "Iron" 50
+	hull 1300
+	payload "Iron" 256
 	explode "smoke" 40
 	explode "bolide" 40
 	explode "final explosion large"
@@ -76,18 +76,18 @@ minable "iron"
 outfit "Iron"
 	plural "Iron"
 	category "Special"
-	cost 1200
+	cost 190
 	thumbnail "outfit/harvested iron"
 	"flotsam sprite" "effect/flotsam iron"
 	"mass" 1
 	"installable" -1
-	description "Although it is one of the most common metals, iron is also one of the most useful."
+	description "Although it is one of the most common elements, iron is also one of the most useful due to it's high strength."
 
 
 minable "lead"
 	sprite "asteroid/lead/spin"
-	hull 800
-	payload "Lead" 32
+	hull 600
+	payload "Lead" 120
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "final explosion medium"
@@ -95,18 +95,17 @@ minable "lead"
 outfit "Lead"
 	plural "Lead"
 	category "Special"
-	cost 900
+	cost 180
 	thumbnail "outfit/harvested lead"
 	"flotsam sprite" "effect/flotsam lead"
 	"mass" 1
 	"installable" -1
-	description "As one of the densest non-radioactive elements, lead has been the material of choice for bullets ever since the invention of firearms. Its other uses are limited by regulations for preventing lead poisoning."
-
+	description "As a soft, dense, non-radioactive element, lead has been the material of choice for bullets and radiation shielding for over a millenium. Its other uses are limited by regulations for preventing lead poisoning."
 
 minable "neodymium"
 	sprite "asteroid/iron/spin"
-	hull 3600
-	payload "Neodymium" 40
+	hull 4000
+	payload "Neodymium" 240
 	explode "smoke" 40
 	explode "bolide" 40
 	explode "final explosion large"
@@ -114,7 +113,7 @@ minable "neodymium"
 outfit "Neodymium"
 	plural "Neodymium"
 	category "Special"
-	cost 3800
+	cost 700
 	thumbnail "outfit/harvested neodymium"
 	"flotsam sprite" "effect/flotsam neodymium"
 	"mass" 1
@@ -124,8 +123,8 @@ outfit "Neodymium"
 
 minable "platinum"
 	sprite "asteroid/silver/spin"
-	hull 4000
-	payload "Platinum" 16
+	hull 3800
+	payload "Platinum" 88
 	explode "smoke" 20
 	explode "bolide" 20
 	explode "final explosion small"
@@ -133,7 +132,7 @@ minable "platinum"
 outfit "Platinum"
 	plural "Platinum"
 	category "Special"
-	cost 10000
+	cost 1600
 	thumbnail "outfit/harvested platinum"
 	"flotsam sprite" "effect/flotsam platinum"
 	"mass" 1
@@ -143,8 +142,8 @@ outfit "Platinum"
 
 minable "silicon"
 	sprite "asteroid/silicon/spin"
-	hull 400
-	payload "Silicon" 50
+	hull 500
+	payload "Silicon" 148
 	explode "smoke" 40
 	explode "bolide" 40
 	explode "final explosion large"
@@ -152,7 +151,7 @@ minable "silicon"
 outfit "Silicon"
 	plural "Silicon"
 	category "Special"
-	cost 400
+	cost 170
 	thumbnail "outfit/harvested silicon"
 	"flotsam sprite" "effect/flotsam silicon"
 	"mass" 1
@@ -162,8 +161,8 @@ outfit "Silicon"
 
 minable "silver"
 	sprite "asteroid/silver/spin"
-	hull 2000
-	payload "Silver" 20
+	hull 1600
+	payload "Silver" 96
 	explode "smoke" 20
 	explode "bolide" 20
 	explode "final explosion small"
@@ -171,7 +170,7 @@ minable "silver"
 outfit "Silver"
 	plural "Silver"
 	category "Special"
-	cost 6000
+	cost 1000
 	thumbnail "outfit/harvested silver"
 	"flotsam sprite" "effect/flotsam silver"
 	"mass" 1
@@ -181,8 +180,8 @@ outfit "Silver"
 
 minable "titanium"
 	sprite "asteroid/titanium/spin"
-	hull 2400
-	payload "Titanium" 32
+	hull 2100
+	payload "Titanium" 140
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "final explosion medium"
@@ -190,7 +189,7 @@ minable "titanium"
 outfit "Titanium"
 	plural "Titanium"
 	category "Special"
-	cost 2500
+	cost 500
 	thumbnail "outfit/harvested titanium"
 	"flotsam sprite" "effect/flotsam titanium"
 	"mass" 1
@@ -200,8 +199,8 @@ outfit "Titanium"
 
 minable "tungsten"
 	sprite "asteroid/titanium/spin"
-	hull 4800
-	payload "Tungsten" 24
+	hull 4200
+	payload "Tungsten" 116
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "final explosion medium"
@@ -209,7 +208,7 @@ minable "tungsten"
 outfit "Tungsten"
 	plural "Tungsten"
 	category "Special"
-	cost 4500
+	cost 800
 	thumbnail "outfit/harvested tungsten"
 	"flotsam sprite" "effect/flotsam tungsten"
 	"mass" 1
@@ -219,8 +218,8 @@ outfit "Tungsten"
 
 minable "uranium"
 	sprite "asteroid/lead/spin"
-	hull 3200
-	payload "Uranium" 24
+	hull 2800
+	payload "Uranium" 112
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "final explosion medium"
@@ -228,7 +227,7 @@ minable "uranium"
 outfit "Uranium"
 	plural "Uranium"
 	category "Special"
-	cost 5000
+	cost 900
 	thumbnail "outfit/harvested uranium"
 	"flotsam sprite" "effect/flotsam uranium"
 	"mass" 1
@@ -239,7 +238,7 @@ outfit "Uranium"
 minable "yottrite"
 	sprite "asteroid/yottrite/spin"
 	hull 20000
-	payload "Yottrite" 7
+	payload "Yottrite" 43
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "final explosion medium"
@@ -247,7 +246,7 @@ minable "yottrite"
 outfit "Yottrite"
 	plural "Yottrite"
 	category "Special"
-	cost 200000
+	cost 32500
 	thumbnail "outfit/harvested yottrite"
 	"flotsam sprite" "effect/flotsam yottrite"
 	"mass" 3.14
