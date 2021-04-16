@@ -6524,7 +6524,7 @@ system Cardea
 		period 1713.14
 	object "Ember Wormhole"
 		sprite planet/wormhole-red
-		distance 14195.37
+		distance 13995.37
 		period 2542.68
 
 system Castor
@@ -7284,7 +7284,7 @@ system Convector
 			period 14.6327
 	object "Ember Reaches"
 		sprite planet/wormhole-red
-		distance 31250.09
+		distance 13250.09
 		period 3331.32
 
 system "Cor Caroli"
@@ -8859,7 +8859,7 @@ system Edusa
 		period 252.585
 	object "Remnant Wormhole"
 		sprite planet/wormhole-red
-		distance 15232.55
+		distance 13832.55
 		period 1675.01
 
 system Egeria
@@ -9759,7 +9759,7 @@ system Esix
 			period 18.3265
 	object "Graveyard Wormhole (Unstable)"
 		sprite planet/wormhole-red
-		distance 15987.92
+		distance 13987.92
 		period 2242.12
 		offset 278.315
 
@@ -13197,7 +13197,7 @@ system Insitor
 			period 24.7983
 	object "Ember Wormhole"
 		sprite planet/wormhole-red
-		distance 21474.41
+		distance 14000
 		period 5502.41
 
 system "Io Lowe"
@@ -18478,7 +18478,7 @@ system Ossipago
 		period 412.4
 	object "Ember Graveyard"
 		sprite planet/wormhole-red
-		distance 16261.39
+		distance 13961.39
 		period 770.273
 	object
 		sprite planet/gas10-b
@@ -20832,7 +20832,7 @@ system Relifer
 			period 40.0477
 	object "Graveyard Wormhole (Unstable)"
 		sprite planet/wormhole-red
-		distance 15217.29
+		distance 13917.29
 		period 894.456
 		offset 114.016
 
