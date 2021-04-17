@@ -81,7 +81,7 @@ namespace {
 	Set<Minable> minables;
 	Set<Mission> missions;
 	Set<Outfit> outfits;
-	map<const Outfit *, vector<const Outfit *>> outfitVariants; // Used to locate the variants of a given outfit
+	map<const Outfit *, vector<const Outfit *>> outfitVariants; // Used to locate the variants of a given outfit.
 	Set<Person> persons;
 	Set<Phrase> phrases;
 	Set<Planet> planets;
@@ -1070,11 +1070,11 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			missions.Get(node.Token(1))->Load(node);
 		else if(key == "outfit" && node.Size() >= 2)
 		{
-			// Allow outfits to inherit attributes from parents
+			// Allow outfits to inherit attributes from parents.
 			const string &name = node.Token((node.Size() > 2) ? 2 : 1);
 			outfits.Get(name)->Load(node);
 			
-			// If this outfit is a variant add it to the map of variants
+			// If this outfit is a variant add it to the map of variants.
 			if(node.Size() > 2)
 				outfitVariants[outfits.Get(node.Token(1))].emplace_back(outfits.Get(name));
 		}
