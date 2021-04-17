@@ -431,7 +431,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 					available += ship->Cargo().Get(it.first);
 					available += ship->OutfitCount(it.first);
 					
-					// Check this outfit's variants
+					// Check for this outfit's variants
 					if (GameData::OutfitVariants().find(it.first) != GameData::OutfitVariants().end())
 						for(const auto &outfit : GameData::OutfitVariants().at(it.first))
 						{
@@ -448,7 +448,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 			available += boardingShip ? flagship->Cargo().Get(it.first)
 					: CountInCargo(it.first, player);
 			
-			// Check this outfit's variants
+			// Check for this outfit's variants
 			if (GameData::OutfitVariants().find(it.first) != GameData::OutfitVariants().end())
 				for(const Outfit *outfit : GameData::OutfitVariants().at(it.first))
 				{

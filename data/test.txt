@@ -4,6 +4,7 @@ outfit "Jump Drive" "Quarg Jump Drive"
 	description `Quarg jump drives use less fuel thank Korath jump drives.`
 	
 outfit "Jump Drive" "Pug Jump Drive"
+	cost 100
 	"jump fuel" 100
 	description `Haha, bork.`
 
@@ -32,5 +33,5 @@ mission "Variant Test 2"
 		require "Pug Jump Drive" 2 # This should only work if you have a pug jump drive
 	
 		conversation
-			`Meow?`
+			`You have a Pug Jump Drive! Wowzer!`
 				decline
