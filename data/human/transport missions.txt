@@ -3278,7 +3278,7 @@ mission "Spacediving professionals disaster"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment -10000
-		dialog "As you descend through the upper atmosphere, the skydivers jump from your ship. Some minutes into the jump disaster strikes; the skydivers start moving very spasticly. It's unclear if the spacesuits or the oxygen supplies were at fault, but it looks unlikely that any of the skydivers makes it safely to the ground. Authorities investigate the incident and although they don't find serious wrongdoings on your part, they still fine you <payment> for enabling such a dangerous and deadly act."
+		dialog "As you descend through the upper atmosphere, the skydivers jump from your ship. Some minutes into the jump disaster strikes; the skydivers start moving in an uncontrolled manner. It's unclear if the spacesuits or the oxygen supplies were at fault, but it looks unlikely that any of the skydivers makes it safely to the ground. Authorities investigate the incident and although they don't find serious wrongdoings on your part, they still fine you <payment> for enabling such a dangerous and deadly act."
 
 
 
