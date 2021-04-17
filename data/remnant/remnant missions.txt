@@ -347,8 +347,8 @@ mission "Remnant: Defense 2"
 mission "Remnant: Bounty"
 	job
 	repeat
-	name "Remnant bounty"
-	description "Hunt down a crippled Korath ship that is lurking in Remnant territory, then return to <planet> to receive your payment of <payment>."
+	name "Crippled Raider Bounty"
+	description "A crippled Korath ship is lurking in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
 	to offer
@@ -2509,13 +2509,13 @@ event "remnant salvage available"
 mission "Remnant: Bounty 2"
 	job
 	repeat
-	name "Remnant bounty"
-	description "Hunt down a Korath ship that is lurking in Remnant territory, then return to <planet> to receive your payment of <payment>."
+	name "Troublesome Raider Bounty"
+	description "A Korath ship is proving troublesome in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
 	to offer
 		has "Remnant: Salvage 4: offered"
-		random < 60
+		random < 50
 	npc kill
 		government "Korath"
 		personality heroic vindictive target uninterested waiting marked
@@ -3678,13 +3678,13 @@ mission "Remnant: Cognizance 4"
 mission "Remnant: Bounty 3"
 	job
 	repeat
-	name "Remnant bounty"
-	description "Hunt down a crippled Korath ship that is lurking in Remnant territory, then return to <planet> to receive your payment of <payment>."
+	name "Damaged Dredger Bounty"
+	description "A damaged Korath ship is lurking in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
 	to offer
 		has "Remnant: Cognizance 4: failed"
-		random < 60
+		random < 40
 	npc kill
 		government "Korath"
 		personality heroic vindictive target uninterested waiting marked
@@ -3699,7 +3699,7 @@ mission "Remnant: Bounty 3"
 	on visit
 		dialog phrase "generic bounty hunting on visit"
 	on complete
-		payment 500000
+		payment 400000
 		dialog "A Remnant military leader thanks you for hunting down the Korath ship <npc>, and gives you the agreed-upon payment of <payment>."
 
 
@@ -4054,13 +4054,13 @@ mission "Remnant: Cognizance 14"
 mission "Remnant: Bounty 4"
 	job
 	repeat
-	name "Remnant bounty"
-	description "Hunt down a Korath ship that is lurking in Remnant territory, then return to <planet> to receive your payment of <payment>."
+	name "Marauding Dredger Bounty"
+	description "A Korath ship is marauding through Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
 	to offer
 		has "Remnant: Cognizance 14: done"
-		random < 60
+		random < 30
 	npc kill
 		government "Korath"
 		personality heroic vindictive target uninterested waiting marked
@@ -4075,7 +4075,7 @@ mission "Remnant: Bounty 4"
 	on visit
 		dialog phrase "generic bounty hunting on visit"
 	on complete
-		payment 600000
+		payment 500000
 		dialog "A Remnant military leader thanks you for hunting down the Korath ship <npc>, and gives you the agreed-upon payment of <payment>."
 
 
