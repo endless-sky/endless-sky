@@ -51,7 +51,7 @@ To compile and also run unit tests, the "test" target can be used:
 ```
 
 The produced test binary will be invoked with a reasonable set of arguments. To run any test benchmarks, you will need to invoke the test binary directly. Refer to the build pipeline definitions for the current required arguments.
-More information on unit tests can be found in the project's "tests" directory.
+More information on unit tests can be found in the project's "tests" directory, or by running the binary with the `--tests` flag.
 
 
 
@@ -84,7 +84,7 @@ If you used the defaults for MinGW up to this point, add "New" and enter the fol
 
 From there, restart your command line if you had one open, and simply `cd` to your Endless Sky directory, then type `mingw32-make.exe -f .winmake`. (`make`'s standard `-j N` flag is supported, to increase the number of active parallel build tasks to N.)
 
-Before the game will run the first time, however, you will need to skip down to the instructions at **Running the game** below.
+**IMPORTANT: ** Before the game will run the first time, you will need to skip down to the instructions at **Running the game** below.
 
 
 ### Building with Code::Blocks
@@ -103,6 +103,8 @@ With the workspace open, you can double-click a project in the left-hand menu to
 For example, when making lots of changes to the game, you will generally have the "endless-sky-lib" project active, so that you can ensure changes compile without needing to fully link things together into the actual game binary. After making changes, you would then activate the "EndlessSky" project and use the "Build & Run" option with the "Release" target, which will fully link the compiled code into the small, performant executable.
 
 You can continue making tweaks to files that belong to the "endless-sky-lib" project without reactivating it, so that "Build & Run" will still launch the game with your latest tweaks. Should you experience some show-stopper bug in your modified game, you would then change to the "Debug" build target to help determine the source(s) of the issue.
+
+**IMPORTANT: ** Before the game will run the first time, you will need to skip down to the instructions at **Running the game** below.
 
 
 ### Building with other IDEs
@@ -128,8 +130,6 @@ For Endless Sky to run on Windows, it needs various .dll files included in the b
   - zlib1.dll
 
 For the **bolded** libraries, those will need to be included from your MinGW installation, instead. By default, you can go to `C:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin`, and copy those libraries to your Endless Sky directory to overwrite the current ones.
-
-**TODO:** Incorporate these libraries into the provided zip, so the user only has to copy from one source.
 
 Once all the libraries in place, the game is ready to run! You have three options depending on how you built it:
 
