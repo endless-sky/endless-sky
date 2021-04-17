@@ -1074,13 +1074,9 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			const string &name = node.Token((node.Size() > 2) ? 2 : 1);
 			outfits.Get(name)->Load(node);
 			
+			// If this outfit is a variant add it to the map of variants
 			if(node.Size() > 2)
-			{
-				// If this outfit is a variant add it to the map of variants
-				std::vector<const Outfit *>::iterator pos = outfitVariants[outfits.Get(node.Token(1))].begin();
-				outfitVariants[outfits.Get(node.Token(1))].insert(pos, outfits.Get(name));
-				node.PrintTrace("Added \"" + outfitVariants[outfits.Get(node.Token(1))][0]->Name() + "\" to \"" + node.Token(1) + "\"'s list of variants.");
-			}
+				outfitVariants[outfits.Get(node.Token(1))].emplace_back(outfits.Get(name));
 		}
 		else if(key == "outfitter" && node.Size() >= 2)
 			outfitSales.Get(node.Token(1))->Load(node, outfits);
