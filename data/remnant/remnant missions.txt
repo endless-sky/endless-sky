@@ -1060,6 +1060,128 @@ mission "Remnant: Learn Sign Follow Up"
 			`	"Congratulations, Captain <last>!" the director signs. "Your fluency is good enough that even those unwilling to sing with a stranger should be comfortable working with you. At this rate you will be one of us in more ways than just by blood. I look forward to seeing what results from your work with us." The director is interrupted by the arrival of other Remnant asking for something and bids you farewell with an apologetic gesture.`
 				decline
 
+	
+mission "Remnant Rescue"
+	job
+	repeat
+	name "Search and Rescue: Starling"
+	description "The ship, <npc>, has gone missing during a scouting mission in the Ember Wastes. Find them, and help them return to <destination>."
+	source
+		government "Remnant"
+	to offer
+		has "Remnant: Learn Sign Follow Up: offered"
+		random < 30
+	npc accompany save
+		system
+			attributes "ember waste"
+			not attributes "ka'het"
+			not attributes "inaccessible"
+			not attributes "graveyard"
+			not government "Remnant"
+			not system "Perfica"
+			not system "Farinus"
+		personality derelict timid plunders
+		government "Remnant"
+		fleet
+			names "remnant"
+			variant
+				Starling
+	on complete
+		payment 200000
+		dialog
+			`The captain of <npc> comes to thank you personally before your communicator notifies you of a resource allocation of <payment>.`
+
+	
+mission "Remnant Rescue 2"
+	job
+	repeat
+	name "Search and Rescue: Gull"
+	description "The ship, <npc>, has gone missing during a tech retreival mission in the Ember Wastes. Find them, and help them return to <destination>."
+	source
+		government "Remnant"
+	to offer
+		has "Remnant: Learn Sign Follow Up: offered"
+		random < 30
+	npc accompany save
+		system
+			attributes "ember waste"
+			not attributes "ka'het"
+			not attributes "inaccessible"
+			not attributes "graveyard"
+			not government "Remnant"
+			not system "Perfica"
+			not system "Farinus"
+		personality derelict timid plunders
+		government "Remnant"
+		fleet
+			names "remnant"
+			variant
+				Gull
+	on complete
+		payment 300000
+		dialog
+			`The captain of <npc> comes to thank you personally before your communicator notifies you of a resource allocation of <payment>.`
+
+	
+mission "Remnant Rescue 3"
+	job
+	repeat
+	name "Search and Rescue: Pelican"
+	description "The ship, <npc>, has gone missing during a supply run in the Ember Wastes. Find them, and help them return to <destination>."
+	source
+		government "Remnant"
+	to offer
+		has "Remnant: Learn Sign Follow Up: offered"
+		random < 30
+	npc accompany save
+		system
+			attributes "ember waste"
+			not attributes "ka'het"
+			not attributes "inaccessible"
+			not attributes "graveyard"
+			not government "Remnant"
+			not system "Perfica"
+			not system "Farinus"
+		personality derelict timid plunders
+		government "Remnant"
+		fleet
+			names "remnant"
+			variant
+				Starling
+	on complete
+		payment 300000
+		dialog
+			`The captain of <npc> comes to thank you personally before your communicator notifies you of a resource allocation of <payment>.`
+
+	
+mission "Remnant Rescue 4"
+	job
+	repeat
+	name "Search and Rescue: Albatross"
+	description "A distress signal has been received <npc> in the Graveyard. Hurry there, find them, and help them return safely to <destination>."
+	source
+		government "Remnant"
+	to offer
+		has "Remnant: Learn Sign Follow Up: offered"
+		has "First Contact: Ka'het: Remnant 1B: offered"
+		random < 30
+	npc accompany save
+		system
+			attributes "graveyard"
+			not attributes "inaccessible"
+			not government "Remnant"
+			not system "Perfica"
+			not system "Farinus"
+		personality escort derelict heroic plunders
+		government "Remnant"
+		fleet
+			names "remnant"
+			variant
+				Albatross
+	on complete
+		payment 500000
+		dialog
+			`The captain of <npc> comes to thank you personally before your communicator notifies you of a resource allocation of <payment>.`
 
 
 mission "Remnant: Deep Surveillance"
