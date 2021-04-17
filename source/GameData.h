@@ -111,6 +111,7 @@ public:
 	static const Set<Mission> &Missions();
 	static const Set<News> &SpaceportNews();
 	static const Set<Outfit> &Outfits();
+	static const std::map<const Outfit *, std::vector<const Outfit *>> &OutfitVariants();
 	static const Set<Sale<Outfit>> &Outfitters();
 	static const Set<Person> &Persons();
 	static const Set<Phrase> &Phrases();

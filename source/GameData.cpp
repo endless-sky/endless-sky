@@ -81,6 +81,7 @@ namespace {
 	Set<Minable> minables;
 	Set<Mission> missions;
 	Set<Outfit> outfits;
+	map<const Outfit *, vector<const Outfit *>> outfitVariants; // Used to locate the variants of a given outfit
 	Set<Person> persons;
 	Set<Phrase> phrases;
 	Set<Planet> planets;
@@ -776,6 +777,13 @@ const Set<Outfit> &GameData::Outfits()
 
 
 
+const map<const Outfit *, vector<const Outfit *>> &GameData::OutfitVariants()
+{
+	return outfitVariants;
+}
+
+
+
 const Set<Sale<Outfit>> &GameData::Outfitters()
 {
 	return outfitSales;
@@ -1061,14 +1069,19 @@ void GameData::LoadFile(const string &path, bool debugMode)
 		else if(key == "mission" && node.Size() >= 2)
 			missions.Get(node.Token(1))->Load(node);
 		else if(key == "outfit" && node.Size() >= 2)
+		{
+			// Allow outfits to inherit attributes from parents
+			const string &name = node.Token((node.Size() > 2) ? 2 : 1);
+			outfits.Get(name)->Load(node);
+			
 			if(node.Size() > 2)
 			{
-				// Allow outfits to inherit attributes from parents
-				const string &name = node.Token((node.Size() > 2) ? 2 : 1);
-				outfits.Get(name)->Load(node);
+				// If this outfit is a variant add it to the map of variants
+				std::vector<const Outfit *>::iterator pos = outfitVariants[outfits.Get(node.Token(1))].begin();
+				outfitVariants[outfits.Get(node.Token(1))].insert(pos, outfits.Get(name));
+				node.PrintTrace("Added \"" + outfitVariants[outfits.Get(node.Token(1))][0]->Name() + "\" to \"" + node.Token(1) + "\"'s list of variants.");
 			}
-			else
-				outfits.Get(node.Token(1))->Load(node);
+		}
 		else if(key == "outfitter" && node.Size() >= 2)
 			outfitSales.Get(node.Token(1))->Load(node, outfits);
 		else if(key == "person" && node.Size() >= 2)

@@ -14,3 +14,23 @@ outfitter "for show"
 	
 planet "New Austria"
 	outfitter "for show"
+	
+mission "Variant Test 1"
+	landing
+	
+	on offer
+		require "Jump Drive" 2 # This should work with the pug and quarg variants
+	
+		conversation
+			`You have some sort of jump drive.`
+				decline
+		
+mission "Variant Test 2"
+	landing
+		
+	on offer
+		require "Pug Jump Drive" 2 # This should only work if you have a pug jump drive
+	
+		conversation
+			`Meow?`
+				decline
