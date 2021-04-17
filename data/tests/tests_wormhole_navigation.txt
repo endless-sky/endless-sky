@@ -114,7 +114,7 @@ test-data "Wormhole Navigation"
 		visited "Heia Due"
 		"visited planet" "Wormhole Alpha"
 
-test-data "Ember Wastes	Navigation"
+test-data "Ember Wastes Navigation"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
