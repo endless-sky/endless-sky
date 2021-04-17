@@ -1607,8 +1607,7 @@ mission "Coalition Games"
 			
 			
 			label wp
-			`	This train is larger than the others you've seen today, and its design mimics Heliarch warships in its meshing of Coalition styles. It takes you to an area similar to a spaceport where you board one of the few hundred ring-shaped flying rafts. As you sit down, you notice the seats, which face the inside of the ring, are mobile. You can't help but feel uneasy being on a gigantic alien roundabout that doesn't seem to match any safety regulations you know of.`
-			`	As you're watching the mechanics here perform various safety checks on the raft, you hear what you by now recognize as Kimek speech from the seat to your right.`
+			`	Unlike the other trains, this one mimics Heliarch warships in design, meshing the three styles of Coalition ships. It brings you to a large hangar, where you're instructed to board one of the hundreds of ring-shaped flying rafts available. All seats face the inside of the ring, and you take the one that looks best suited for a human. As you're watching the mechanics here perform various safety checks on the raft, you hear what you by now recognize as Kimek speech from the seat to your right.`
 			`	"Enjoyed the games, have you, Captain?" The small box translates just as you turn around, seeing that Pairri has taken her own seat besides yours. "Spectating my earlier match, you were, yes?"`
 			choice
 				`	"Yeah, you did pretty good."`
@@ -1617,8 +1616,7 @@ mission "Coalition Games"
 					goto why
 			
 			label nwp
-			`	This train is larger than the others you've seen today, and its design mimics Heliarch warships in its meshing of Coalition styles. It takes you to an area similar to a spaceport where you board one of the few hundred ring-shaped flying rafts. As you sit down, you notice the seats, which face the inside of the ring, are mobile. You can't help but feel uneasy being on a gigantic alien roundabout that doesn't seem to match any safety regulations you know of.`
-			`	As you're watching the mechanics here perform various safety checks on the raft, you hear what you by now recognize as Kimek speech from the seat to your right.`
+			`	Unlike the other trains, this one mimics Heliarch warships in design, meshing the three styles of Coalition ships. It brings you to a large hangar, where you're instructed to board one of the hundreds of ring-shaped flying rafts available. All seats face the inside of the ring, and you take the one that looks best suited for a human. As you're watching the mechanics here perform various safety checks on the raft, you hear what you by now recognize as Kimek speech from the seat to your right.`
 			`	"Enjoyed the games, have you, Captain?" The small box translates just as you turn around, seeing that Pairri has taken her own seat besides yours.`
 			choice
 				`	"Yeah, though I didn't have time to stop by your own match, sorry."`
@@ -1627,21 +1625,21 @@ mission "Coalition Games"
 					goto why
 			
 			label notime
-			`	She mumbles something that the box doesn't bother translating, and then she says, "Cost me the match, impatience did," she says. "Still, much younger than most Kimek there, I am. Glad to have gotten so far, I feel."`
+			`	She mumbles something that the box doesn't pick up, and then says, "Cost me the match, impatience did," she says. "Still, much younger than most Kimek there, I am. Glad to have gotten so far, I feel."`
 				goto coop-game
 			
 			label prettygood
-			`	"Cost me the match, impatience did," she says. "Still, much younger than most Kimek there, I am. Glad to have gotten so far, I feel."`
+			`	"Thank you. Glad to have gotten so far, I feel. Disappointing, defeat is, but try harder next year, I shall," she says."`
 				goto coop-game
 			
 			label why
 			`	"For the Kimek victors only, the cooperative match is reserved. Team up with Tumub and Ulmodi, my opponent will."`
 			
 			label coop-game
-			`	She starts to say something else, but the ring begins taking off, leaving the docks. Out in the open, you're overlooking a massive track separated from the rest of the wilderness by a perfectly rectangular border of trees. Immediately under you are the contestants in twenty groups of three. As the ring ascends, small monitors light up in front of you, and Pairri inputs the a command for yours to focus on Tumub and Ulmodi, who, conveniently, happen to be in the same group.`
-			`	Up above, you can finally see the entire stage: a long, mostly flat stretch of land, leading to a rocky wall, cuts to form a perfect right angle with the ground. At the top, there is a river bank with many logs laid on the ground. The river itself is not terribly big, but the current seems to be potent enough that the boats moving around the waters have some difficulty turning at times.`
-			`	The twenty teams line up. The Saryds are attached to a chariot carrying the other two members of each team. Zooming in on Tumub, you see that he is helping the Kimek of their group check a bag with some tools. He has a similar bag on his back.`
-			`	"In many ways we differ, when it comes to physical form," Pairri speaks to you. "Different tasks, each member is assigned. For the sake of fairness, it is so."`
+			`	Once the mechanics are done, the ring gradually rises up in the air, and then fully takes off, leaving the hangar. Out in the open, you're overlooking a massive track separated from the surrounding wilderness by a perfectly rectangular border of trees. Immediately under you are the contestants, in twenty groups of three, close to a starting line. As you're brought closer to the teams, small monitors light up in front of you, and Pairri inputs the command for yours to focus on Tumub and Ulmodi, who are in a team with the Kimek that beat Pairri in her match.`
+			`	The monitor also allows you to switch to a camera view of the entire stage: a long, mostly flat stretch of land, leading to a rocky wall that is cut to form a perfect right angle with the ground. At the top, there is a river bank with many logs laid on the ground. The river itself is not terribly big, but the current is strong enough that the many boats in the waters need to constantly adjust their position.`
+			`	Pairri draws your attention back to the line, where judges have the twenty teams line up. A chariot carrying the other two members of each team is attached to the Saryds, who seem to be working themselves up, hitting their hoofs repeatedly on the ground. Meanwhile, the Kimek and Arachi are securing bags full of tools and large pieces of fabric to their chariots.`
+			`	"In many ways we differ, when it comes to physical form," Pairri says. "So in the cooperative match, different tasks, each member of a team is assigned. For the sake of fairness, it is so."`
 			choice
 				`	"What are they carrying in those bags?"`
 				`	"So is pulling those chariots the 'task' of the Saryds?"`
