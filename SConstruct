@@ -108,7 +108,7 @@ def RecursiveGlob(pattern, dir_name=buildDirectory):
 		if isinstance(sub_dir, Dir)]
 	# Add source files in this directory, except for main.cpp
 	matches += Glob(pathjoin(str(dir_name), pattern))
-	matches = [i for i in matches if not "main.cpp" in str(i)]
+	matches = [i for i in matches if not "/main.cpp" in str(i)]
 	return matches
 
 # By default, invoking scons will build the backing archive file and then the game binary.
