@@ -1086,10 +1086,15 @@ mission "Remnant Rescue"
 			names "remnant"
 			variant
 				Starling
+			variant
+				Gull
 	on complete
 		payment 200000
 		dialog
 			`The captain of <npc> comes to thank you personally before your communicator notifies you of a resource allocation of <payment>.`
+	on visit
+		dialog
+			`You have returned, yet the <npc> is still lost.`
 
 	
 mission "Remnant Rescue 2"
@@ -1115,13 +1120,19 @@ mission "Remnant Rescue 2"
 		government "Remnant"
 		fleet
 			names "remnant"
-			variant
+			variant 7
 				Gull
+			variant 3
+				Starling
+			variant 3
+				Pelican
 	on complete
 		payment 300000
 		dialog
 			`The captain of <npc> comes to thank you personally before your communicator notifies you of a resource allocation of <payment>.`
-
+	on visit
+		dialog
+			`You have returned, yet the <npc> is still lost.`
 	
 mission "Remnant Rescue 3"
 	job
@@ -1146,13 +1157,17 @@ mission "Remnant Rescue 3"
 		government "Remnant"
 		fleet
 			names "remnant"
-			variant
-				Starling
+			variant 7
+				Pelican
+			variant 2
+				Gull
 	on complete
 		payment 300000
 		dialog
 			`The captain of <npc> comes to thank you personally before your communicator notifies you of a resource allocation of <payment>.`
-
+	on visit
+		dialog
+			`You have returned, yet the <npc> is still lost.`
 	
 mission "Remnant Rescue 4"
 	job
@@ -1176,19 +1191,26 @@ mission "Remnant Rescue 4"
 		government "Remnant"
 		fleet
 			names "remnant"
-			variant
+			variant 8
 				Albatross
+			variant 2
+				Ibis
+				"Petrel" 2
+				"Tern" 4
 	on complete
 		payment 500000
 		dialog
 			`The captain of <npc> comes to thank you personally before your communicator notifies you of a resource allocation of <payment>.`
-	
-	
+	on visit
+		dialog
+			`You have returned, yet the <npc> has not.`
+
+			
 mission "Remnant Rescue 5"
 	job
 	repeat
 	name "Search and Rescue: Terminus"
-	description "While scouting around Terminus, <npc> has stopped reporting in. Found out what happened and return to <destination>."
+	description "While scouting around Terminus, <npc> has stopped reporting in. Find out what happened and return to <destination>."
 	source
 		government "Remnant"
 	to offer
@@ -1201,9 +1223,9 @@ mission "Remnant Rescue 5"
 		government "Remnant"
 		fleet
 			names "remnant"
-			variant
+			variant 6
 				Gull
-			variant
+			variant 3
 				Starling
 	on complete
 		payment 500000
@@ -1212,7 +1234,8 @@ mission "Remnant Rescue 5"
 	on visit
 		dialog 
 			`You have returned, but there is still no word from the missing ship.`
-	
+		
+
 
 mission "Remnant: Deep Surveillance"
 	name "Investigate Ivan"
