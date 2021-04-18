@@ -2751,7 +2751,6 @@ mission "Wanderers Ap'arak 3: Pug 2"
 mission "Wanderers Pug Hostile"
 	landing
 	invisible
-	deadline 1
 	source
 		government "Wanderer"
 	to offer
@@ -2760,7 +2759,7 @@ mission "Wanderers Pug Hostile"
 	on offer
 		conversation
 			`Having defeated the Pug ships guarding Wanderer space, you receive a message from Sobari Tele'ek: "We are [aware? incredulous?] of reports that you have [exterminated, eradicated] our Keepers in the Ap'arak system. This is unacceptable! From now on, you are no longer welcome in our [territory, space]."`
-				launch
+				flee
 		"reputation: Wanderer" <?= -1
 
 mission "Wanderers Ap'arak 3"
