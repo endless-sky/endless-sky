@@ -1091,7 +1091,7 @@ mission "Remnant Rescue"
 	on complete
 		payment 200000
 		dialog
-			`The captain of <npc> comes to thank you personally before your communicator notifies you of a resource allocation of <payment>.`
+			`Your communicator notifies you of a resource allocation of <payment>.`
 	on visit
 		dialog
 			`You have returned, yet the <npc> is still lost.`
@@ -1129,7 +1129,7 @@ mission "Remnant Rescue 2"
 	on complete
 		payment 300000
 		dialog
-			`The captain of <npc> comes to thank you personally before your communicator notifies you of a resource allocation of <payment>.`
+			`Your communicator notifies you of a resource allocation of <payment>, along with a brief note of thanks.`
 	on visit
 		dialog
 			`You have returned, yet the <npc> is still lost.`
@@ -1164,7 +1164,7 @@ mission "Remnant Rescue 3"
 	on complete
 		payment 300000
 		dialog
-			`The captain of <npc> comes to thank you personally before your communicator notifies you of a resource allocation of <payment>.`
+			`Your communicator notifies you of a resource allocation of <payment>, and also a thank you from the captain of <npc>.`
 	on visit
 		dialog
 			`You have returned, yet the <npc> is still lost.`
@@ -1179,7 +1179,7 @@ mission "Remnant Rescue 4"
 	to offer
 		has "Remnant: Learn Sign Follow Up: offered"
 		has "First Contact: Ka'het: Remnant 1B: offered"
-		random < 30
+		random < 20
 	npc accompany save
 		system
 			attributes "graveyard"
@@ -1213,10 +1213,10 @@ mission "Remnant Rescue 5"
 		government "Remnant"
 	to offer
 		has "Remnant: Learn Sign Follow Up: offered"
-		random < 30
+		random < 20
 	npc accompany save
 		system
-			near "Terminus" 5
+			near "Terminus" 4
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -1228,7 +1228,7 @@ mission "Remnant Rescue 5"
 	on complete
 		payment 500000
 		dialog
-			`The captain of <npc> comes to thank you personally before your communicator notifies you of a resource allocation of <payment>.`
+			`Worried that they would never see the Embers again, the captain of <npc> personally thanks you for returning them home before your communicator notifies you of a resource allocation of <payment>.`
 	on visit
 		dialog 
 			`You have returned, but there is still no word from the missing ship.`
