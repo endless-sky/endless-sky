@@ -1714,10 +1714,10 @@ phrase "friendly civilian"
 	word
 		" "
 	word
-		"ship crooks, than having a crooked ship."
-		"ship slugs, than having a sluggish ship."
-		"ship bad bands, than having your ship badly banned."
-		"be working hard at shipping, than having your ship hardly working."
+		"ship crooks, than have a crooked ship."
+		"ship slugs, than have a sluggish ship."
+		"ship bad bands, than have your ship badly banned."
+		"be working hard at shipping, than have your ship hardly working."
 
 
 phrase "friendly civilian"
@@ -1754,7 +1754,7 @@ phrase "friendly civilian"
 		" and "
 	word
 		"claimed to be"
-		"told my crew to be"
+		"told my crew that they were"
 	word
 		" "
 	word
@@ -1763,7 +1763,7 @@ phrase "friendly civilian"
 	word
 		", "
 	word
-		"and suddenly it disappeared."
+		"and suddenly they disappeared."
 		"but the only travel he did was to a mental institution."
 		"I still don't know how she got into my spaceship."
 		"the thing looked bigger on the inside than on the outside."
