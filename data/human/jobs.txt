@@ -2672,7 +2672,7 @@ mission "Bounty Hunting (tiny)"
 		payment 40000
 		dialog phrase "generic bounty hunting payment dialog"
 
-mission "Bounty Hunting (veryTiny)"
+mission "Bounty Hunting (Very Tiny)"
 	name "Wanted pirate near <system>"
 	description "A small pirate fighter named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
 	repeat
