@@ -2705,7 +2705,6 @@ mission "Bounty Hunting (veryTiny)"
 				"Wasp (Plasma)"
 			variant
 				"Wasp (Proton)"
-			
 		dialog phrase "generic hunted bounty eliminated dialog"
 	on visit
 		dialog phrase "generic bounty hunting on visit"
