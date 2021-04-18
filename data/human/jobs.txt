@@ -2665,7 +2665,6 @@ mission "Bounty Hunting (tiny)"
 				"Fury (Laser)"
 			variant
 				"Fury (Bomber)"
-			
 		dialog phrase "generic hunted bounty eliminated dialog"
 	on visit
 		dialog phrase "generic bounty hunting on visit"
