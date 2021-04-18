@@ -1089,6 +1089,7 @@ mission "Remnant Rescue"
 			variant
 				Gull
 	on complete
+		"rescue missions" ++
 		payment 200000
 		dialog
 			`Your communicator notifies you of a resource allocation of <payment>.`
@@ -1127,6 +1128,7 @@ mission "Remnant Rescue 2"
 			variant 3
 				Pelican
 	on complete
+		"rescue missions" ++
 		payment 300000
 		dialog
 			`Your communicator notifies you of a resource allocation of <payment>, along with a brief note of thanks.`
@@ -1162,6 +1164,7 @@ mission "Remnant Rescue 3"
 			variant 2
 				Gull
 	on complete
+		"rescue missions" ++
 		payment 300000
 		dialog
 			`Your communicator notifies you of a resource allocation of <payment>, and also a thank you from the captain of the <npc>.`
@@ -1196,6 +1199,7 @@ mission "Remnant Rescue 4"
 			variant 2
 				Ibis
 	on complete
+		"rescue missions" ++
 		payment 500000
 		dialog
 			`The captain of the <npc> comes to thank you personally before your communicator notifies you of a resource allocation of <payment>.`
@@ -1226,6 +1230,7 @@ mission "Remnant Rescue 5"
 			variant 3
 				Starling
 	on complete
+		"rescue missions" ++
 		payment 500000
 		dialog
 			`Worried that they would never see the Embers again, the captain of the <npc> personally thanks you for bringing them home, even before your communicator notifies you of a resource allocation of <payment>.`
