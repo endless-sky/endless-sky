@@ -1195,8 +1195,6 @@ mission "Remnant Rescue 4"
 				Albatross
 			variant 2
 				Ibis
-				"Petrel" 2
-				"Tern" 4
 	on complete
 		payment 500000
 		dialog
