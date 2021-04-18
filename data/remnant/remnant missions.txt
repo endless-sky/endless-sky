@@ -1065,7 +1065,7 @@ mission "Remnant Rescue"
 	job
 	repeat
 	name "Search and Rescue: Scout"
-	description "The ship, <npc>, has gone missing during a scouting mission in the Ember Wastes. Find them and help them return to <destination>."
+	description "A ship, the <npc>, has gone missing during a scouting mission in the Ember Wastes. Find them and help them return to <destination>."
 	source
 		government "Remnant"
 	to offer
@@ -1094,14 +1094,14 @@ mission "Remnant Rescue"
 			`Your communicator notifies you of a resource allocation of <payment>.`
 	on visit
 		dialog
-			`You have returned, yet the <npc> is still lost.`
+			`You have returned, yet the <npc> is still missing.`
 
 	
 mission "Remnant Rescue 2"
 	job
 	repeat
 	name "Search and Rescue: Retrieval"
-	description "The ship, <npc>, has gone missing during a tech retreival mission in the Ember Wastes. Find them and help them return to <destination>."
+	description "A ship, the <npc>, has gone missing during a tech retreival mission in the Ember Wastes. Find them and help them return to <destination>."
 	source
 		government "Remnant"
 	to offer
@@ -1132,13 +1132,13 @@ mission "Remnant Rescue 2"
 			`Your communicator notifies you of a resource allocation of <payment>, along with a brief note of thanks.`
 	on visit
 		dialog
-			`You have returned, yet the <npc> is still lost.`
+			`You have returned, yet the <npc> is still missing.`
 	
 mission "Remnant Rescue 3"
 	job
 	repeat
 	name "Search and Rescue: Supply Ship"
-	description "The ship, <npc>, has gone missing on a supply run in the Ember Wastes. Find them and help them return to <destination>."
+	description "A ship, the <npc>, has gone missing on a supply run in the Ember Wastes. Find them and help them return to <destination>."
 	source
 		government "Remnant"
 	to offer
@@ -1164,16 +1164,16 @@ mission "Remnant Rescue 3"
 	on complete
 		payment 300000
 		dialog
-			`Your communicator notifies you of a resource allocation of <payment>, and also a thank you from the captain of <npc>.`
+			`Your communicator notifies you of a resource allocation of <payment>, and also a thank you from the captain of the <npc>.`
 	on visit
 		dialog
-			`You have returned, yet the <npc> is still lost.`
+			`You have returned, yet the <npc> is still missing.`
 	
 mission "Remnant Rescue 4"
 	job
 	repeat
 	name "Distress Signal: Graveyard"
-	description "A distress signal has been received from <npc> in the Graveyard. Hurry there, find them, and help them return safely to <destination>."
+	description "A distress signal has been received from the <npc> in the Graveyard. Hurry there, find them, and help them return safely to <destination>."
 	source
 		government "Remnant"
 	to offer
@@ -1198,7 +1198,7 @@ mission "Remnant Rescue 4"
 	on complete
 		payment 500000
 		dialog
-			`The captain of <npc> comes to thank you personally before your communicator notifies you of a resource allocation of <payment>.`
+			`The captain of the <npc> comes to thank you personally before your communicator notifies you of a resource allocation of <payment>.`
 	on visit
 		dialog
 			`You have returned, yet the <npc> has not.`
@@ -1208,7 +1208,7 @@ mission "Remnant Rescue 5"
 	job
 	repeat
 	name "Search and Rescue: Terminus"
-	description "While scouting around Terminus, <npc> has stopped reporting in. Find out what happened and return to <destination>."
+	description "While scouting around Terminus, the <npc> has stopped reporting in. Find out what happened and return to <destination>."
 	source
 		government "Remnant"
 	to offer
@@ -1228,7 +1228,7 @@ mission "Remnant Rescue 5"
 	on complete
 		payment 500000
 		dialog
-			`Worried that they would never see the Embers again, the captain of <npc> personally thanks you for returning them home before your communicator notifies you of a resource allocation of <payment>.`
+			`Worried that they would never see the Embers again, the captain of the <npc> personally thanks you for bringing them home, even before your communicator notifies you of a resource allocation of <payment>.`
 	on visit
 		dialog 
 			`You have returned, but there is still no word from the missing ship.`
