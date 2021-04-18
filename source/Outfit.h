@@ -45,6 +45,7 @@ public:
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
 	// "attributes" node.
 	void Load(const DataNode &node);
+	void FinishLoading();
 	bool IsDefined() const;
 	
 	const std::string &Name() const;
@@ -97,7 +98,9 @@ public:
 	
 private:
 	bool isDefined = false;
+	bool isVariant = false;
 	std::string name;
+	std::string parentName;
 	std::string pluralName;
 	std::string category;
 	std::string description;
@@ -126,6 +129,11 @@ private:
 	std::map<const Sound *, int> jumpInSounds;
 	std::map<const Sound *, int> jumpOutSounds;
 	const Sprite *flotsamSprite = nullptr;
+	
+	bool hasCategory = false;
+	bool hasThumbnail = false;
+	bool hasCost = false;
+	bool hasMass = false;
 };
 
 

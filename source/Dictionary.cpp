@@ -89,3 +89,17 @@ double Dictionary::Get(const string &key) const
 {
 	return Get(key.c_str());
 }
+
+
+
+bool Dictionary::Has(const char *key) const
+{
+	return Search(key, *this).second;
+}
+
+
+
+bool Dictionary::Has(const string &key) const
+{
+	return Has(key.c_str());
+}

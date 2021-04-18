@@ -126,23 +126,19 @@ void Outfit::Load(const DataNode &node)
 	else if(node.Size() >= 3)
 	{
 		name = node.Token(2);
+		parentName = node.Token(1);
 		pluralName = name + 's';
-		
-		const Outfit *parent = GameData::Outfits().Get(node.Token(1));
-		
-		// Copy data over from the parent outfit.
-		category = parent->Category();
-		thumbnail = parent->Thumbnail();
-		cost = parent->Cost();
-		mass = parent->Mass();
-		attributes = parent->Attributes();
+		isVariant = true;
 	}
 	isDefined = true;
 	
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "category" && child.Size() >= 2)
+		{
+			hasCategory = true;
 			category = child.Token(1);
+		}
 		else if(child.Token(0) == "plural" && child.Size() >= 2)
 			pluralName = child.Token(1);
 		else if(child.Token(0) == "flare sprite" && child.Size() >= 2)
@@ -185,7 +181,10 @@ void Outfit::Load(const DataNode &node)
 		else if(child.Token(0) == "flotsam sprite" && child.Size() >= 2)
 			flotsamSprite = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
+		{
+			hasThumbnail = true;
 			thumbnail = SpriteSet::Get(child.Token(1));
+		}
 		else if(child.Token(0) == "weapon")
 			LoadWeapon(child);
 		else if(child.Token(0) == "ammo" && child.Size() >= 2)
@@ -201,9 +200,15 @@ void Outfit::Load(const DataNode &node)
 			description += '\n';
 		}
 		else if(child.Token(0) == "cost" && child.Size() >= 2)
+		{
+			hasCost = true;
 			cost = child.Value(1);
+		}
 		else if(child.Token(0) == "mass" && child.Size() >= 2)
+		{
+			hasMass = true;
 			mass = child.Value(1);
+		}
 		else if(child.Token(0) == "licenses")
 		{
 			for(const DataNode &grand : child)
@@ -254,6 +259,29 @@ void Outfit::Load(const DataNode &node)
 	};
 	convertScan("outfit");
 	convertScan("cargo");
+}
+
+
+
+void Outfit::FinishLoading()
+{
+	const Outfit *parent = GameData::Outfits().Get(parentName);
+		
+	// Copy data over from the parent outfit.
+	if(!hasCategory)
+		category = parent->Category();
+	if(!hasThumbnail)
+		thumbnail = parent->Thumbnail();
+	if(!hasCost)
+		cost = parent->Cost();
+	if(!hasMass)
+		mass = parent->Mass();
+	
+	for(const auto &it : parent->Attributes())
+	{
+		if(!attributes.Has(it.first))
+			attributes[it.first] = it.second;
+	}
 }
 
 
