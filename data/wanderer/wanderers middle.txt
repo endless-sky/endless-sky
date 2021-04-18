@@ -8,6 +8,18 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+mission "Wanderers: Pre-Colony"
+	landing
+	source "Spera Anatrusk"
+	to offer
+		has "event: wanderers: the eye opens"
+		not "event: wanderers: spera anatrusk colony"
+	on offer
+		conversation
+			`With the Eye fully opened, Wanderer ships have begun flooding into this region of space. This desolate planet seems to be of particular interest to them, with drones rapidly surveying in all directions, and a small outpost beginning to form.`
+			`	As you land on the outskirts of this settlement, one of the workers comes up to your ship and explains that this planet will be the staging ground for the Wanderers to explore this new region, but it will take a few weeks to finish. They suggest getting your bearings in these systems before returning to help, as many ships will be needed to help heal the many ruined planets here.`
+				decline
+
 mission "Wanderers: Surveying 1"
 	landing
 	name "Wanderer Surveying"

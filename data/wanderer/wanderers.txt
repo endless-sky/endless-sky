@@ -955,6 +955,8 @@ event "wanderers: the eye opens"
 			sprite planet/wormhole
 			distance 2331.95
 			period 2518.05
+	system Kaliptari
+		government "Wanderer"
 
 event "wanderers: derecho mass production"
 	fleet "Wanderer Defense"
