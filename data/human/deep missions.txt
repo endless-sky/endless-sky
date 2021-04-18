@@ -1448,7 +1448,7 @@ mission "Deep: Remnant 2"
 
 conversation "deep: remnant"
 	branch "on second mission" "on first mission"
-		has "Deep: Remnant A: done"
+		has "Deep: Remnant 1: done"
 	
 	label "on first mission"
 	`You contact Ivan after you land and he sends you directions to his research lab, located on the outskirts of the city. "Quite the distance from my office, but we work with what we have," he comments. When you arrive, you hardly have time to greet Ivan, Rayna, and the others before Ivan begins discussing what they have learned from the quantum keystones.`
