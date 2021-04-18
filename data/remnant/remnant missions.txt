@@ -1182,7 +1182,37 @@ mission "Remnant Rescue 4"
 		payment 500000
 		dialog
 			`The captain of <npc> comes to thank you personally before your communicator notifies you of a resource allocation of <payment>.`
-
+	
+	
+mission "Remnant Rescue 5"
+	job
+	repeat
+	name "Search and Rescue: Terminus"
+	description "While scouting around Terminus, <npc> has stopped reporting in. Found out what happened and return to <destination>."
+	source
+		government "Remnant"
+	to offer
+		has "Remnant: Learn Sign Follow Up: offered"
+		random < 30
+	npc accompany save
+		system
+			near "Terminus" 5
+		personality derelict timid plunders
+		government "Remnant"
+		fleet
+			names "remnant"
+			variant
+				Gull
+			variant
+				Starling
+	on complete
+		payment 500000
+		dialog
+			`The captain of <npc> comes to thank you personally before your communicator notifies you of a resource allocation of <payment>.`
+	on visit
+		dialog 
+			`You have returned, but there is still no word from the missing ship.`
+	
 
 mission "Remnant: Deep Surveillance"
 	name "Investigate Ivan"
