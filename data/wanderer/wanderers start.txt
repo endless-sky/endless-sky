@@ -2749,7 +2749,6 @@ mission "Wanderers Ap'arak 3: Pug 2"
 		never
 
 mission "Wanderers Pug Hostile"
-	priority
 	landing
 	invisible
 	deadline 1
