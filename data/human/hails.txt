@@ -1754,20 +1754,16 @@ phrase "friendly civilian"
 		" and "
 	word
 		"claimed to be"
-		"told my crew that they were"
 	word
 		" "
 	word
 		"a time traveller"
 		"from another time"
 	word
-		", "
-	word
-		"and suddenly they disappeared."
-		"but the only travel he did was to a mental institution."
-		"I still don't know how she got into my spaceship."
-		"the thing looked bigger on the inside than on the outside."
-		"and some weirdos were flying around it on hoverboards."
+		", and suddenly they disappeared."
+		", but the only travel he did was to a mental institution."
+		". I still don't know how she got into my spaceship."
+		". The thing looked bigger on the inside than on the outside."
 
 phrase "friendly civilian"
 	word
