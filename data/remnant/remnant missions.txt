@@ -1064,7 +1064,7 @@ mission "Remnant: Learn Sign Follow Up"
 mission "Remnant Rescue"
 	job
 	repeat
-	name "Search and Rescue: Starling"
+	name "Search and Rescue: Scout"
 	description "The ship, <npc>, has gone missing during a scouting mission in the Ember Wastes. Find them, and help them return to <destination>."
 	source
 		government "Remnant"
@@ -1095,7 +1095,7 @@ mission "Remnant Rescue"
 mission "Remnant Rescue 2"
 	job
 	repeat
-	name "Search and Rescue: Gull"
+	name "Search and Rescue: Retrieval"
 	description "The ship, <npc>, has gone missing during a tech retreival mission in the Ember Wastes. Find them, and help them return to <destination>."
 	source
 		government "Remnant"
@@ -1126,8 +1126,8 @@ mission "Remnant Rescue 2"
 mission "Remnant Rescue 3"
 	job
 	repeat
-	name "Search and Rescue: Pelican"
-	description "The ship, <npc>, has gone missing during a supply run in the Ember Wastes. Find them, and help them return to <destination>."
+	name "Search and Rescue: Supply Ship"
+	description "The ship, <npc>, has gone missing on a supply run in the Ember Wastes. Find them, and help them return to <destination>."
 	source
 		government "Remnant"
 	to offer
@@ -1157,8 +1157,8 @@ mission "Remnant Rescue 3"
 mission "Remnant Rescue 4"
 	job
 	repeat
-	name "Search and Rescue: Albatross"
-	description "A distress signal has been received <npc> in the Graveyard. Hurry there, find them, and help them return safely to <destination>."
+	name "Distress Signal: Graveyard"
+	description "A distress signal has been received from <npc> in the Graveyard. Hurry there, find them, and help them return safely to <destination>."
 	source
 		government "Remnant"
 	to offer
