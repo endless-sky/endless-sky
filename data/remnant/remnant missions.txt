@@ -1070,7 +1070,7 @@ mission "Remnant: Deep Surveillance"
 		government "Remnant"
 	stopover "Valhalla"
 	to offer
-		has "License: Remnant"
+		has "license: Remnant"
 		or
 			and
 				has "Terminus Exploration: done"
