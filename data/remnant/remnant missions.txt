@@ -1098,6 +1098,71 @@ mission "Remnant Rescue"
 			`You have returned, yet the <npc> is still missing.`
 
 	
+ship "Rescue Dummy"
+	sprite "ship/behemoth"
+	attributes
+		"heat dissipation" 1
+		"hull" 1
+		"mass" 10
+		"drag" 1
+		"automaton" 1
+		"energy generation" 1
+		"thrust" 30
+		"turn" 30
+	outfits
+		"Suicide Gun"
+	gun 0 0
+
+outfit "Suicide Gun"
+	"category" guns
+	thumbnail "outfit/unknown"
+	"gun ports" -1
+	weapon
+		velocity 100
+		lifetime 10
+		reload 1
+		"blast radius" 900
+		"shield damage" 0.01
+		"hull damage" 1
+
+						
+mission "Remnant Rescue 1B"
+	job
+	repeat
+	name "Search and Rescue: Scout"
+	description "A ship, the <npc>, has gone missing during a scouting mission in the Ember Wastes. Find them and help them return to <destination>."
+	source
+		government "Remnant"
+	to offer
+		has "Remnant: Learn Sign Follow Up: offered"
+		random < 5
+	npc kill
+		system
+			attributes "ember waste"
+			not attributes "ka'het"
+			not attributes "inaccessible"
+			not attributes "graveyard"
+			not government "Remnant"
+			not system "Perfica"
+			not system "Farinus"
+		personality staying heroic nemesis unconstrained
+		government "Test Dummy"
+		fleet
+			names "remnant"
+			variant
+				"Rescue Dummy"
+		dialog
+			`As you enter the system, your sensors pick up a lot of debris. Further analysis confirms your worst fears. The <npc> is destroyed. You frantically spend the next few hours searching for survivors, your hope sinking with every minute that passes.`
+	on complete
+		"rescue missions" ++
+		payment 200000
+		dialog
+			`You land, and with sorrow hanging heavy on your heart, report that the <npc> was lost.`
+	on visit
+		dialog
+			`You have returned, yet the <npc> is still missing.`
+	
+	
 mission "Remnant Rescue 2"
 	job
 	repeat
@@ -1135,7 +1200,45 @@ mission "Remnant Rescue 2"
 	on visit
 		dialog
 			`You have returned, yet the <npc> is still missing.`
+
 	
+mission "Remnant Rescue 2B"
+	job
+	repeat
+	name "Search and Rescue: Retrieval"
+	description "A ship, the <npc>, has gone missing during a tech retreival mission in the Ember Wastes. Find them and help them return to <destination>."
+	source
+		government "Remnant"
+	to offer
+		has "Remnant: Learn Sign Follow Up: offered"
+		random < 5
+	npc kill
+		system
+			attributes "ember waste"
+			not attributes "ka'het"
+			not attributes "inaccessible"
+			not attributes "graveyard"
+			not government "Remnant"
+			not system "Perfica"
+			not system "Farinus"
+		personality staying heroic nemesis unconstrained
+		government "Test Dummy"
+		fleet
+			names "remnant"
+			variant
+				"Rescue Dummy"
+		dialog
+			`As you enter the system, your sensors pick up a lot of debris. Further analysis confirms your worst fears. The <npc> is destroyed. You frantically spend the next few hours searching for survivors, your hope sinking with every minute that passes.`
+	on complete
+		"rescue missions" ++
+		payment 300000
+		dialog
+			`You land, and with sorrow hanging heavy on your heart, report that the <npc> was lost.`
+	on visit
+		dialog
+			`You have returned, yet the <npc> is still missing.`
+	
+			
 mission "Remnant Rescue 3"
 	job
 	repeat
@@ -1171,6 +1274,44 @@ mission "Remnant Rescue 3"
 	on visit
 		dialog
 			`You have returned, yet the <npc> is still missing.`
+	
+	
+mission "Remnant Rescue 3B"
+	job
+	repeat
+	name "Search and Rescue: Supply Ship"
+	description "A ship, the <npc>, has gone missing on a supply run in the Ember Wastes. Find them and help them return to <destination>."
+	source
+		government "Remnant"
+	to offer
+		has "Remnant: Learn Sign Follow Up: offered"
+		random < 5
+	npc kill
+		system
+			attributes "ember waste"
+			not attributes "ka'het"
+			not attributes "inaccessible"
+			not attributes "graveyard"
+			not government "Remnant"
+			not system "Perfica"
+			not system "Farinus"
+		personality staying heroic nemesis unconstrained
+		government "Test Dummy"
+		fleet
+			names "remnant"
+			variant
+				"Rescue Dummy"
+		dialog
+			`As you enter the system, your sensors pick up a lot of debris. Further analysis confirms your worst fears. The <npc> is destroyed. You frantically spend the next few hours searching for survivors, your hope sinking with every minute that passes.`
+	on complete
+		"rescue missions" ++
+		payment 300000
+		dialog
+			`You land, and with sorrow hanging heavy on your heart, report that the <npc> was lost.`
+	on visit
+		dialog
+			`You have returned, yet the <npc> is still missing.`
+
 	
 mission "Remnant Rescue 4"
 	job
