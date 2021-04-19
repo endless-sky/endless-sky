@@ -395,6 +395,8 @@ bool MissionPanel::Click(int x, int y, int clicks)
 		}
 	if(system)
 	{
+		bool newSystem = selectedSystem != system;
+
 		Select(system);
 		int options = available.size() + accepted.size();
 		// If you just aborted your last mission, it is possible that neither
@@ -406,7 +408,33 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			else
 				acceptedIt = accepted.begin();
 		}
-		while(options--)
+
+
+		// When clicking a new system, Select the first available mission
+		// (instead of continuing from wherever the iterator happens to be)
+		if(newSystem)
+		{
+			auto firstExistingIt = find_if(available.begin(), available.end(),
+				[&system](const Mission &m) { return Involves(m, system);});
+
+			if(firstExistingIt != available.end())
+			{
+				availableIt = firstExistingIt;
+				acceptedIt = accepted.end();
+			}
+			else
+			{
+				firstExistingIt = find_if(accepted.begin(), accepted.end(),
+					[&system](const Mission &m) { return m.IsVisible() && Involves(m, system);});
+
+				if(firstExistingIt != accepted.end())
+				{
+					availableIt = available.end();
+					acceptedIt = firstExistingIt;
+				}
+			}
+		}
+		else while(options--)
 		{
 			if(availableIt != available.end())
 			{
