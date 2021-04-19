@@ -19489,7 +19489,7 @@ system Postverta
 		sprite planet/sheragi_postverta
 		distance 1408
 		period 554
-	
+
 system Prakacha'a
 	pos -35.1114 -802.607
 	government Wanderer

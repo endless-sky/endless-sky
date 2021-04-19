@@ -675,7 +675,7 @@ mission "Sheragi Archaeology: The Box 2"
 	on complete
 		payment 500000
 		event "cube stolen" 20 30
-		log `Took a mysterious Sheragi data cube that Albert Foster dug up on Zug to a trusted friend on Vinci. John will take some time to see how exactly it works, and tell me when it's done.`
+		log `Took a mysterious Sheragi data cube that Albert Foster dug up on Zug to a trusted friend on Vinci. John will take some time to see how exactly it works, and send a message when it's done.`
 		conversation
 			`You arrive on Vinci and carry the cube to the address Foster gave you. You find that John has been waiting for you. "So, Foster is up to no good again, huh?" He laughs as he lets you into his lab.`
 			choice
