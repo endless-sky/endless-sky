@@ -47,8 +47,10 @@ public:
 	void Load(const DataNode &node);
 	void FinishLoading();
 	bool IsDefined() const;
+	bool IsVariant() const;
 	
 	const std::string &Name() const;
+	const std::string &ParentName() const;
 	void SetName(const std::string &name);
 	const std::string &PluralName() const;
 	const std::string &Category() const;

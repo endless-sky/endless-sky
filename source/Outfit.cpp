@@ -265,6 +265,9 @@ void Outfit::Load(const DataNode &node)
 
 void Outfit::FinishLoading()
 {
+	if(!isVariant)
+		return;
+	
 	const Outfit *parent = GameData::Outfits().Get(parentName);
 		
 	// Copy data over from the parent outfit.
@@ -276,7 +279,6 @@ void Outfit::FinishLoading()
 		cost = parent->Cost();
 	if(!hasMass)
 		mass = parent->Mass();
-	
 	for(const auto &it : parent->Attributes())
 	{
 		if(!attributes.Has(it.first))
@@ -294,11 +296,25 @@ bool Outfit::IsDefined() const
 
 
 
+bool Outfit::IsVariant() const
+{
+	return isVariant;
+}
+
+
+
 // When writing to the player's save, the reference name is used even if this
 // outfit was not fully defined (i.e. belongs to an inactive plugin).
 const string &Outfit::Name() const
 {
 	return name;
+}
+
+
+
+const string &Outfit::ParentName() const
+{
+	return parentName;
 }
 
 
