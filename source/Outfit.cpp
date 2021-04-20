@@ -268,13 +268,13 @@ void Outfit::FinishLoading()
 	const Outfit *parent = GameData::Outfits().Get(parentName);
 		
 	// Copy data over from the parent outfit.
-	if(!hasCategory)
+	if(category.empty())
 		category = parent->Category();
-	if(!hasThumbnail)
+	if(!thumbnail)
 		thumbnail = parent->Thumbnail();
-	if(!hasCost)
+	if(!cost)
 		cost = parent->Cost();
-	if(!hasMass)
+	if(!mass)
 		mass = parent->Mass();
 	
 	for(const auto &it : parent->Attributes())
