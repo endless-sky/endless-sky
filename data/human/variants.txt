@@ -1990,7 +1990,81 @@ ship "Sparrow" "Sparrow (Patrol)"
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
+ship "Sparrow" "Sparrow (Blaster)"
+	outfits
+		"Energy Blaster" 2
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
 
+
+ship "Sparrow" "Sparrow (Modified)"
+	outfits
+		"Modified Blaster" 2
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
+
+ship "Sparrow" "Sparrow (Meteor)"
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
+
+ship "Sparrow" "Sparrow (Sidewinder)"
+	outfits
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
+
+ship "Sparrow" "Sparrow (Heavy_laser)"
+	outfits
+		"Heavy Laser"
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
+
+ship "Sparrow" "Sparrow (Rocket)"
+	outfits
+		"Heavy Rocket Launcher"
+		"Heavy Rocket" 20
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
+
+ship "Sparrow" "Sparrow (Javelin)"
+	outfits
+		"Javelin Pod" 2
+		"Javelin Storage Crate" 2
+		"Javelin" 600
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
 
 
 ship "Splinter" "Splinter (Laser)"

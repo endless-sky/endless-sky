@@ -27,26 +27,154 @@ fleet "Small Southern Merchants"
 		"Clipper (Heavy)"
 	variant 10
 		"Clipper (Speedy)"
-	variant 10
+	variant 2
 		"Star Barge" 2
 		"Sparrow"
-	variant 10
+	variant 1
+		"Star Barge" 2
+		"Sparrow (Blaster)"
+	variant 1
+		"Star Barge" 2
+		"Sparrow (Modified)"
+	variant 1
+		"Star Barge" 2
+		"Sparrow (Meteor)"
+	variant 1
+		"Star Barge" 2
+		"Sparrow (Sidewinder)"
+	variant 1
+		"Star Barge" 2
+		"Sparrow (Heavy_laser)"
+	variant 1
+		"Star Barge" 2
+		"Sparrow (Gatling)"
+	variant 1
+		"Star Barge" 2
+		"Sparrow (Rocket)"
+	variant 1
+		"Star Barge" 2
+		"Sparrow (Javelin)"
+	variant 2
 		"Star Barge (Armed)" 2
 		"Sparrow"
-	variant 10
+	variant 1
+		"Star Barge (Armed)" 2
+		"Sparrow (Blaster)"
+	variant 1
+		"Star Barge (Armed)" 2
+		"Sparrow (Modified)"
+	variant 1
+		"Star Barge (Armed)" 2
+		"Sparrow (Meteor)"
+	variant 1
+		"Star Barge (Armed)" 2
+		"Sparrow (Sidewinder)"
+	variant 1
+		"Star Barge (Armed)" 2
+		"Sparrow (Heavy_laser)"
+	variant 1
+		"Star Barge (Armed)" 2
+		"Sparrow (Gatling)"
+	variant 1
+		"Star Barge (Armed)" 2
+		"Sparrow (Rocket)"
+	variant 1
+		"Star Barge (Armed)" 2
+		"Sparrow (Javelin)"
+	variant 2
 		"Star Barge (Armed)"
 		"Star Barge"
 		"Sparrow"
+	variant 1
+		"Star Barge (Armed)" 
+		"Star Barge"
+		"Sparrow (Blaster)"
+	variant 1
+		"Star Barge (Armed)" 
+		"Star Barge"
+		"Sparrow (Modified)"
+	variant 1
+		"Star Barge (Armed)" 
+		"Star Barge"
+		"Sparrow (Meteor)"
+	variant 1
+		"Star Barge (Armed)" 
+		"Star Barge"
+		"Sparrow (Sidewinder)"
+	variant 1
+		"Star Barge (Armed)" 
+		"Star Barge"
+		"Sparrow (Heavy_laser)"
+	variant 1
+		"Star Barge (Armed)" 
+		"Star Barge"
+		"Sparrow (Gatling)"
+	variant 1
+		"Star Barge (Armed)" 
+		"Star Barge"
+		"Sparrow (Rocket)"
+	variant 1
+		"Star Barge (Armed)"
+		"Star Barge" 
+		"Sparrow (Javelin)"
 	variant 30
 		"Freighter"
 	variant 10
 		"Freighter (Fancy)"
-	variant 10
+	variant 2
 		"Freighter"
 		"Sparrow"
-	variant 10
+	variant 1
+		"Freighter"
+		"Sparrow (Blaster)"
+	variant 1
+		"Freighter"
+		"Sparrow (Modified)"
+	variant 1
+		"Freighter"
+		"Sparrow (Meteor)"
+	variant 1
+		"Freighter"
+		"Sparrow (Sidewinder)"
+	variant 1
+		"Freighter"
+		"Sparrow (Heavy_laser)"
+	variant 1
+		"Freighter"
+		"Sparrow (Gatling)"
+	variant 1
+		"Freighter"
+		"Sparrow (Rocket)"
+	variant 1
+		"Freighter"
+		"Sparrow (Javelin)"
+	variant 2
 		"Freighter (Fancy)"
 		"Sparrow"
+	variant 1
+		"Freighter (Fancy)"
+		"Sparrow (Blaster)"
+	variant 1
+		"Freighter (Fancy)"
+		"Sparrow (Modified)"
+	variant 1
+		"Freighter (Fancy)"
+		"Sparrow (Meteor)"
+	variant 1
+		"Freighter (Fancy)"
+		"Sparrow (Sidewinder)"
+	variant 1
+		"Freighter (Fancy)"
+		"Sparrow (Heavy_laser)"
+	variant 1
+		"Freighter (Fancy)"
+		"Sparrow (Gatling)"
+	variant 1
+		"Freighter (Fancy)"
+		"Sparrow (Rocket)"
+	variant 1
+		"Freighter (Fancy)"
+		"Sparrow (Javelin)"
 	variant 20
 		"Blackbird"
 	variant 1
@@ -84,13 +212,69 @@ fleet "Large Southern Merchants"
 	variant 10
 		"Freighter (Fancy)"
 		"Hawk"
-	variant 30
+	variant 6
 		"Freighter" 2
 		"Sparrow" 2
-	variant 10
+	variant 3
+		"Freighter" 2
+		"Sparrow (Blaster)" 2
+	variant 3
+		"Freighter" 2
+		"Sparrow (Modified)" 2
+	variant 3
+		"Freighter" 2
+		"Sparrow (Meteor)" 2
+	variant 3
+		"Freighter" 2
+		"Sparrow (Sidewinder)" 2
+	variant 3
+		"Freighter" 2
+		"Sparrow (Heavy_laser)" 2
+	variant 3
+		"Freighter" 2
+		"Sparrow (Gatling)" 2
+	variant 3
+		"Freighter" 2
+		"Sparrow (Rocket)" 2
+	variant 3
+		"Freighter" 2
+		"Sparrow (Javelin)" 2
+	variant 2
 		"Freighter (Fancy)"
 		"Freighter"
 		"Sparrow" 2
+	variant 1
+		"Freighter (Fancy)"
+		"Freighter"
+		"Sparrow (Blaster)" 2
+	variant 1
+		"Freighter (Fancy)"
+		"Freighter"
+		"Sparrow (Modified)" 2
+	variant 1
+		"Freighter (Fancy)"
+		"Freighter"
+		"Sparrow (Meteor)" 2
+	variant 1
+		"Freighter (Fancy)"
+		"Freighter"
+		"Sparrow (Sidewinder)" 2
+	variant 1
+		"Freighter (Fancy)"
+		"Freighter"
+		"Sparrow (Heavy_laser)" 2
+	variant 1
+		"Freighter (Fancy)"
+		"Freighter"
+		"Sparrow (Gatling)" 2
+	variant 1
+		"Freighter (Fancy)"
+		"Freighter"
+		"Sparrow (Rocket)" 2
+	variant 1
+		"Freighter (Fancy)"
+		"Freighter"
+		"Sparrow (Javelin)" 2
 	variant 30
 		"Argosy"
 	variant 20
@@ -119,12 +303,60 @@ fleet "Large Southern Merchants"
 	variant 10
 		"Bastion (Laser)"
 		"Argosy (Laser)"
-	variant 10
+	variant 2
 		"Bastion"
 		"Freighter" 3
 		"Star Barge" 4
 		"Fury"
 		"Sparrow" 2
+	variant 1
+		"Bastion"
+		"Freighter" 3
+		"Star Barge" 4
+		"Fury"
+		"Sparrow (Blaster)" 2
+	variant 1
+		"Bastion"
+		"Freighter" 3
+		"Star Barge" 4
+		"Fury"
+		"Sparrow (Modified)" 2
+	variant 1
+		"Bastion"
+		"Freighter" 3
+		"Star Barge" 4
+		"Fury"
+		"Sparrow (Meteor)" 2
+	variant 1
+		"Bastion"
+		"Freighter" 3
+		"Star Barge" 4
+		"Fury"
+		"Sparrow (Sidewinder)" 2
+	variant 1
+		"Bastion"
+		"Freighter" 3
+		"Star Barge" 4
+		"Fury"
+		"Sparrow (Heavy_laser)" 2
+	variant 1
+		"Bastion"
+		"Freighter" 3
+		"Star Barge" 4
+		"Fury"
+		"Sparrow (Gatling)" 2
+	variant 1
+		"Bastion"
+		"Freighter" 3
+		"Star Barge" 4
+		"Fury"
+		"Sparrow (Rocket)" 2
+	variant 1
+		"Bastion"
+		"Freighter" 3
+		"Star Barge" 4
+		"Fury"
+		"Sparrow (Javelin)" 2
 	variant 3
 		"Bastion (Heavy)"
 		"Freighter (Fancy)" 3
@@ -139,9 +371,33 @@ fleet "Large Southern Merchants"
 	variant 10
 		"Argosy (Turret)"
 		"Argosy (Missile)"
-	variant 10
+	variant 2
 		"Blackbird"
 		"Sparrow" 2
+	variant 1
+		"Blackbird"
+		"Sparrow (Blaster)" 2
+	variant 1
+		"Blackbird"
+		"Sparrow (Modified)" 2
+	variant 1
+		"Blackbird"
+		"Sparrow (Meteor)" 2
+	variant 1
+		"Blackbird"
+		"Sparrow (Sidewinder)" 2
+	variant 1
+		"Blackbird"
+		"Sparrow (Heavy_laser)" 2
+	variant 1
+		"Blackbird"
+		"Sparrow (Gatling)" 2
+	variant 1
+		"Blackbird"
+		"Sparrow (Rocket)" 2
+	variant 1
+		"Blackbird"
+		"Sparrow (Javelin)" 2
 	variant 2
 		"Bactrian"
 		"Dagger" 3
@@ -438,9 +694,33 @@ fleet "Small Northern Merchants"
 	variant 5
 		"Freighter (Proton)"
 		"Shuttle" 4
-	variant 10
+	variant 2
 		"Freighter" 3
 		"Sparrow" 1
+	variant 1
+		"Freighter" 3
+		"Sparrow (Blaster)"
+	variant 1
+		"Freighter" 3
+		"Sparrow (Modified)"
+	variant 1
+		"Freighter" 3
+		"Sparrow (Meteor)"
+	variant 1
+		"Freighter" 3
+		"Sparrow (Sidewinder)"
+	variant 1
+		"Freighter" 3
+		"Sparrow (Heavy_laser)"
+	variant 1
+		"Freighter" 3
+		"Sparrow (Gatling)"
+	variant 1
+		"Freighter" 3
+		"Sparrow (Rocket)"
+	variant 1
+		"Freighter" 3
+		"Sparrow (Javelin)"
 	variant 10
 		"Blackbird"
 	variant 3
@@ -572,9 +852,33 @@ fleet "Large Northern Merchants"
 	variant 2
 		"Bulk Freighter"
 		"Headhunter (Particle)" 2
-	variant 10
+	variant 2
 		"Bulk Freighter"
 		"Sparrow" 2
+	variant 1
+		"Bulk Freighter"
+		"Sparrow (Blaster)" 2
+	variant 1
+		"Bulk Freighter"
+		"Sparrow (Modified)" 2
+	variant 1
+		"Bulk Freighter"
+		"Sparrow (Meteor)" 2
+	variant 1
+		"Bulk Freighter"
+		"Sparrow (Sidewinder)" 2
+	variant 1
+		"Bulk Freighter"
+		"Sparrow (Heavy_laser)" 2
+	variant 1
+		"Bulk Freighter"
+		"Sparrow (Gatling)" 2
+	variant 1
+		"Bulk Freighter"
+		"Sparrow (Rocket)" 2
+	variant 1
+		"Bulk Freighter"
+		"Sparrow (Javelin)" 2
 	variant 4
 		"Bulk Freighter (Heavy)"
 		"Sparrow" 2
@@ -590,10 +894,42 @@ fleet "Large Northern Merchants"
 	variant 10
 		"Behemoth" 2
 		"Firebird" 1
-	variant 10
+	variant 2
 		"Freighter" 4
 		"Sparrow" 2
 		"Firebird" 1
+	variant 1
+		"Freighter" 4
+		"Firebird" 1
+		"Sparrow (Blaster)" 2
+	variant 1
+		"Freighter" 4
+		"Firebird" 1
+		"Sparrow (Modified)" 2
+	variant 1
+		"Freighter" 4
+		"Firebird" 1
+		"Sparrow (Meteor)" 2
+	variant 1
+		"Freighter" 4
+		"Firebird" 1
+		"Sparrow (Sidewinder)" 2
+	variant 1
+		"Freighter" 4
+		"Firebird" 1
+		"Sparrow (Heavy_laser)" 2
+	variant 1
+		"Freighter" 4
+		"Firebird" 1
+		"Sparrow (Gatling)" 2
+	variant 1
+		"Freighter" 4
+		"Firebird" 1
+		"Sparrow (Rocket)" 2
+	variant 1
+		""Freighter" 4
+		"Firebird" 1
+		"Sparrow (Javelin)" 2
 	variant 3
 		"Freighter (Fancy)" 4
 		"Sparrow" 2
@@ -683,9 +1019,33 @@ fleet "Small Human Merchants (Hai)"
 	variant 5
 		"Freighter (Hai)"
 		"Shuttle" 4
-	variant 10
+	variant 2
 		"Freighter" 3
 		"Sparrow" 1
+	variant 1
+		"Freighter" 3
+		"Sparrow (Blaster)"
+	variant 1
+		"Freighter" 3
+		"Sparrow (Modified)"
+	variant 1
+		"Freighter" 3
+		"Sparrow (Meteor)"
+	variant 1
+		"Freighter" 3
+		"Sparrow (Sidewinder)"
+	variant 1
+		"Freighter" 3
+		"Sparrow (Heavy_laser)"
+	variant 1
+		"Freighter" 3
+		"Sparrow (Gatling)"
+	variant 1
+		"Freighter" 3
+		"Sparrow (Rocket)"
+	variant 1
+		"Freighter" 3
+		"Sparrow (Javelin)"
 	variant 3
 		"Mule (Hai Engines)"
 		"Dagger"
@@ -789,9 +1149,33 @@ fleet "Large Human Merchants (Hai)"
 	variant 2
 		"Bulk Freighter (Hai)"
 		"Headhunter (Hai)" 2
-	variant 10
+	variant 2
 		"Bulk Freighter"
 		"Sparrow" 2
+	variant 1
+		"Bulk Freighter"
+		"Sparrow (Blaster)"
+	variant 1
+		"Bulk Freighter"
+		"Sparrow (Modified)"
+	variant 1
+		"Bulk Freighter"
+		"Sparrow (Meteor)"
+	variant 1
+		"Bulk Freighter"
+		"Sparrow (Sidewinder)"
+	variant 1
+		"Bulk Freighter"
+		"Sparrow (Heavy_laser)"
+	variant 1
+		"Bulk Freighter"
+		"Sparrow (Gatling)"
+	variant 1
+		"Bulk Freighter"
+		"Sparrow (Rocket)"
+	variant 1
+		"Bulk Freighter"
+		"Sparrow (Javelin)"
 	variant 4
 		"Bulk Freighter (Heavy)"
 		"Sparrow" 2
@@ -807,10 +1191,41 @@ fleet "Large Human Merchants (Hai)"
 	variant 10
 		"Behemoth" 2
 		"Firebird (Hai Weapons)" 1
-	variant 10
+	variant 2
 		"Freighter (Hai)" 4
 		"Sparrow" 2
 		"Firebird" 1
+	variant 1
+		"Freighter (Hai)" 4
+		"Firebird" 1
+		"Sparrow (Blaster)" 2
+	variant 1
+		"Freighter (Hai)" 4
+		"Firebird" 1
+		"Sparrow (Modified)" 2
+	variant 1
+		"Freighter (Hai)" 4
+		"Firebird" 1
+		"Sparrow (Meteor)" 2
+	variant 1
+		"Freighter (Hai)" 4
+		"Firebird" 1
+		"Sparrow (Sidewinder)" 2
+	variant 1"Freighter (Hai)" 4
+		"Firebird" 1"Bulk Freighter"
+		"Sparrow (Heavy_laser)" 2
+	variant 1
+		"Freighter (Hai)" 4
+		"Firebird" 1
+		"Sparrow (Gatling)" 2
+	variant 1
+		"Freighter (Hai)" 4
+		"Firebird" 1
+		"Sparrow (Rocket)" 2
+	variant 1
+		"Freighter (Hai)" 4
+		"Firebird" 1
+		"Sparrow (Javelin)" 2
 	variant 3
 		"Freighter (Fancy)" 4
 		"Sparrow" 2
@@ -1095,8 +1510,25 @@ fleet "Small Militia"
 	variant 2
 		"Fury (Laser)"
 		"Fury (Missile)"
-	variant 10
+	variant 2
 		"Sparrow" 2
+	variant 1
+
+		"Sparrow (Blaster)" 2
+	variant 1
+		"Sparrow (Modified)" 2
+	variant 1
+		"Sparrow (Meteor)" 2
+	variant 1
+		"Sparrow (Sidewinder)" 2
+	variant 1
+		"Sparrow (Heavy_laser)" 2
+	variant 1
+		"Sparrow (Gatling)" 2
+	variant 1
+		"Sparrow (Rocket)" 2
+	variant 1
+		"Sparrow (Javelin)" 2
 	variant 2
 		"Hawk"
 	variant 1
@@ -1666,8 +2098,24 @@ fleet "Small Southern Pirates"
 	personality
 		disables plunders harvests
 		confusion 20
-	variant 8
+	variant 1
 		"Sparrow"
+	variant 1
+		"Sparrow (Blaster)"
+	variant 1
+		"Sparrow (Modified)"
+	variant 1
+		"Sparrow (Meteor)"
+	variant 1
+		"Sparrow (Sidewinder)"
+	variant 1
+		"Sparrow (Heavy_laser)"
+	variant 1
+		"Sparrow (Gatling)"
+	variant 1
+		"Sparrow (Rocket)"
+	variant 1
+		"Sparrow (Javelin)"
 	variant 3
 		"Hawk"
 	variant 2
@@ -1737,6 +2185,22 @@ fleet "Large Southern Pirates"
 		plunders harvests
 	variant 2
 		"Sparrow" 4
+	variant 1
+		"Sparrow (Blaster)"
+	variant 1
+		"Sparrow (Modified)"
+	variant 1
+		"Sparrow (Meteor)"
+	variant 1
+		"Sparrow (Sidewinder)"
+	variant 1
+		"Sparrow (Heavy_laser)"
+	variant 1
+		"Sparrow (Gatling)"
+	variant 1
+		"Sparrow (Rocket)"
+	variant 1
+		"Sparrow (Javelin)"
 	variant 1
 		"Sparrow (Gatling)" 3
 	variant 5
@@ -1970,6 +2434,22 @@ fleet "Small Core Pirates"
 		"Quicksilver (Proton)"
 	variant 2
 		"Sparrow"
+	variant 1
+		"Sparrow (Blaster)"
+	variant 1
+		"Sparrow (Modified)"
+	variant 1
+		"Sparrow (Meteor)"
+	variant 1
+		"Sparrow (Sidewinder)"
+	variant 1
+		"Sparrow (Heavy_laser)"
+	variant 1
+		"Sparrow (Gatling)"
+	variant 1
+		"Sparrow (Rocket)"
+	variant 1
+		"Sparrow (Javelin)"
 	variant 3
 		"Hawk"
 	variant 2
@@ -2079,8 +2559,24 @@ fleet "Small Northern Pirates"
 	personality
 		disables plunders harvests
 		confusion 20
-	variant 5
+	variant 1
 		"Sparrow"
+	variant 1
+		"Sparrow (Blaster)"
+	variant 1
+		"Sparrow (Modified)"
+	variant 1
+		"Sparrow (Meteor)"
+	variant 1
+		"Sparrow (Sidewinder)"
+	variant 1
+		"Sparrow (Heavy_laser)"
+	variant 1
+		"Sparrow (Gatling)"
+	variant 1
+		"Sparrow (Rocket)"
+	variant 1
+		"Sparrow (Javelin)"
 	variant 3
 		"Fury"
 	variant 1
