@@ -1394,6 +1394,8 @@ mission "Arachi Cartoonist 2"
 			label noship
 			`	"Ah, I see. Well, just a reference it would be, so the name matters not, I suppose. Anyway, thanks again Captain."`
 
+
+
 mission "Coalition Folklore: Saryd"
 	minor
 	invisible
