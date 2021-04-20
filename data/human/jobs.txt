@@ -2575,7 +2575,141 @@ mission "Recycle garbage"
 		payment
 		payment 20000
 
+mission "Bounty Hunting (verySmall)"
+	name "Wanted pirate near <system>"
+	description "A light pirate warship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		"combat rating" > 200
+		random < 40
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 2
+		fleet
+			names "pirate"
+			variant
+				"Quicksilver"
+			variant
+				"Quicksilver (Proton)"
+			variant
+				"Raven"
+			variant
+				"Raven (Heavy)"
+			variant
+				"Raven (Afterburner)"
+			variant
+				"Headhunter"
+			variant
+				"Headhunter (Strike)"
+			variant
+				"Headhunter (Particle)"
+			variant
+				"Clipper"
+			variant
+				"Clipper (Heavy)"
+			variant
+				"Clipper (Speedy)"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 80000
+		dialog phrase "generic bounty hunting payment dialog"
 
+
+mission "Bounty Hunting (tiny)"
+	name "Wanted pirate near <system>"
+	description "A well armed pirate fighter named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		"combat rating" > 100
+		random < 40
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 2
+		fleet
+			names "pirate"
+			variant
+				"Hawk"
+			variant
+				"Hawk (Rocket)"
+			variant
+				"Hawk (Speedy)"
+			variant
+				"Hawk (Bomber)"
+			variant
+				"Berserker"
+			variant
+				"Berserker (Afterburner)"
+			variant
+				"Berserker (Strike)"
+			variant
+				"Fury"
+			variant
+				"Fury (Missile)"
+			variant
+				"Fury (Heavy)"
+			variant
+				"Fury (Laser)"
+			variant
+				"Fury (Bomber)"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 40000
+		dialog phrase "generic bounty hunting payment dialog"
+
+mission "Bounty Hunting (Very Tiny)"
+	name "Wanted pirate near <system>"
+	description "A small pirate fighter named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		"combat rating" > 50
+		random < 40
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 2
+		fleet
+			names "pirate"
+			variant
+				"Sparrow"
+			variant
+				"Wasp"
+			variant
+				"Wasp (Gatling)"
+			variant
+				"Wasp (Javelin)"
+			variant
+				"Wasp (Meteor)"
+			variant
+				"Wasp (Plasma)"
+			variant
+				"Wasp (Proton)"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 20000
+		dialog phrase "generic bounty hunting payment dialog"
 
 mission "Bounty Hunting (Small)"
 	name "Wanted bandit near <system>"
