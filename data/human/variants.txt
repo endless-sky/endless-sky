@@ -2056,9 +2056,9 @@ ship "Sparrow" "Sparrow (Rocket)"
 
 ship "Sparrow" "Sparrow (Javelin)"
 	outfits
-		"Javelin Pod" 2
-		"Javelin Storage Crate" 2
-		"Javelin" 600
+		"Javelin Pod"
+		"Javelin Storage Crate"
+		"Javelin" 300
 		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
