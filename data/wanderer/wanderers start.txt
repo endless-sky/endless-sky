@@ -2721,6 +2721,8 @@ mission "Wanderers Ap'arak 2"
 
 
 
+# TODO: When "complete anywhere" functionality is available, 
+# condense the following three missions into a single mission
 mission "Wanderers Ap'arak 3: Pug"
 	landing
 	invisible
