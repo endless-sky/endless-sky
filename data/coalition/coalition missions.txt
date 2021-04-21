@@ -1434,7 +1434,7 @@ mission "Coalition Folklore: Kimek"
 				`	(Go help slow down the attackers.)`
 					goto defw
 			label defr
-			`	You join the others in looking for heavy objects, finding some crates behind the small shack, which the Arachi bring to the gate, and then some Kimek take some of the logs from one of the staircases, burying one end in the ground, while the other touches the gate. The liquid poured on the attackers did slow them down for some minutes, but once you're done they're already banging at the gate. Most of those inside the fort, including the Saryd, head to the main gate to try and keep it closed, but some Kimek head around the back to check on the smaller gate.`
+			`	You join the others in looking for heavy objects, finding some crates behind the small shack, which a couple of Arach help bring to the gate. Some Kimek take logs stashed under a staircase and bring them as well, burying one end in the ground, while the other touches the gate. The liquid poured on the attackers does slow them down for some minutes, but once you're done they're already banging at the gate. Most of those inside the fort, particularly the Saryd that have joined in, head to the main gate to try and keep it closed, but some Kimek head around the back to check on the smaller gate.`
 			choice
 				`	(Help keep the main gate closed.)`
 					goto defrw
