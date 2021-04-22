@@ -1400,7 +1400,7 @@ mission "Coalition Folklore: Saryd"
 	minor
 	invisible
 	to offer
-		random < 3
+		random < 30
 	source
 		attributes "saryd" "folklore"
 	on offer
