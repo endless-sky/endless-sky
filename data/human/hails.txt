@@ -1919,12 +1919,15 @@ phrase "friendly navy"
 	word
 		" "
 	word
+		"pirates"
+		"criminals"
 		"our adversaries"
 		"our enemies"
 		"terrorists"
 	word
 		" is "
 	word
+		"preferable"
 		"better"
 		"more efficient"
 		"more desired"
