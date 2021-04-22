@@ -1400,7 +1400,7 @@ mission "Coalition Folklore: Kimek"
 	minor
 	invisible
 	to offer
-		random < 3
+		random < 30
 	source
 		attributes "kimek" "folklore"
 	on offer
