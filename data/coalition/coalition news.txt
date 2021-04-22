@@ -19,6 +19,7 @@ news "heliarch news"
 		word
 			"A sizable crowd is watching one of the monitors in the spaceport, where an interviewer is speaking to a Heliarch agent. You learn from someone in the crowd that the agent was a professional athlete until recently."
 			"A news broadcast shows footage of many Heliarch agents arresting a group of terrorists. The Heliarch who was supervising the operation is later interviewed, explaining that the now prisoners were found to have stolen government equipment."
+			"The news show a Heliarch elder giving a short speech in a ship launching ceremony. After they finish, the brand new Heliarch warships are shown heading to their first patrol."
 
 news "heliarch propaganda"
 	location
@@ -31,6 +32,7 @@ news "heliarch propaganda"
 			"A short film plays on a monitor during a commercial break. A young Saryd walks in a forest, looking to his sides every few seconds to take in the view. Eventually he turns to see another Saryd, both surprised. As he approaches her and the two start talking, the camera pans out to a rising sun over the forest."
 			"A local screen shows a stressed Saryd working at a computer late at night. The door creaks, and she looks back to find her children peeking. She puts them to sleep and then goes to bed herself. After waking up, she finds nobody around the house. She goes outside, seeing the children, along with their father, admiring the sun rising."
 			"After a government broadcast, a timelapse plays on a spaceport monitor, showcasing Ring of Friendship gaining more and more solar panels on its exterior over the centuries."
+			"During a break, a recruitment advertisement plays. A recruit of each species is shown putting on their brand new uniforms, then training on some sort of obstacle track, and then the view switches to troops marching in unison in the Academy of Cadets of Belug's Plunge."
 
 news "longcow rancher"
 	location
