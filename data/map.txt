@@ -26930,7 +26930,7 @@ planet Dustmaker
 planet "Dwelling of Speloog"
 	attributes arach shipping urban
 	landscape land/fog4
-	description `With a wide band of tropical rainforests around its equator, this planet's climate is ideal for the Arach. Several billion of them live here, and many of the workers assisting with the expansion of the Heliarch ringworlds come from this planet.`
+	description `With a wide band of tropical rainforests around its equator, this planet's climate is ideal for the Arachi. Several billion of them live here, and many of the workers assisting with the expansion of the Heliarch ringworlds come from this planet.`
 	spaceport `The air in the spaceport facility is uncomfortably damp, and you imagine that you can see a thin sheen of moss or algae on nearly every surface here that receives any sunlight. Except for the largest cargo bays, all the rooms smell faintly of mildew.`
 	spaceport `	One entire wing of the spaceport is dedicated to the Heliarch recruitment office for construction workers, and the waiting room is packed; many Coalition citizens are excited at the chance to help build something that will last thousands of years.`
 	outfitter "Coalition Basics"
