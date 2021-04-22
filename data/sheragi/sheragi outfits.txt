@@ -290,7 +290,7 @@ outfit "Shard Fabricator"
 		sprite "projectile/shardactive"
 			"frame rate" 30
 			"random start frame"
-		sound "grab-strike"
+		sound "shard fabricator"
 		icon "icon/shard"
 		"fire effect" "basic launch"
 		"hit effect" "shard impact"
