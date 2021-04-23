@@ -81,6 +81,8 @@ news "heliarch agent"
 			`"Apologies, but make haste I must. Gone missing some garrison guns have, and back to cleaning Stalker engines I will be, if find them I don't!"`
 			`"Difficult sometimes it is, to be a mediator. If careful with my words I am not, a Saryd might think an Arach talking about longcows has insulted their mother."`
 			"An agent is trying to calm down a small crowd outside a local bar. After some minutes, the more agitated drunkards are convinced to accompany the agent to a nearby Heliarch office."
+			"A pair of agents passes by you. Most passerby give them a wide berth."
+			`"A pilot, I once was. Learned from an older sibling, I did."`
 
 news "heliarch candidate"
 	location
@@ -162,6 +164,9 @@ news "coalition researcher"
 			`"To Ring of Wisdom I frequently travel. Held there, many great conferences are."`
 			`"Move to Ring of Wisdom, I wish to. So many advanced facilities for testing it has, so much easier to get a hold of complex chemicals..."`
 			`"A Saryd Traveler I recently purchased. Not much of a pilot I am, but being a science vessel, adequate facilities the model still has. More importantly, no rude neighbors to interrupt my team's research, a spaceship has."`
+			`A Saryd engrossed in a tablet displayed strange characters almost walks into you. "Excuse me," it mutters before continuing on its way.`
+			`"A lecture in nanotechnology, I am here to present. Unclear on whether I would be teaching faculty or students, the invitation was."`
+			`"Earned a degree in xenobiology, I did some time ago. Under a top researcher in the field, I work now."`
 
 news "coalition researcher yottrite"
 	to show
@@ -197,6 +202,8 @@ news "coalition ringworld worker"
 			`"The means to finish construction of the two remaining rings, we still don't have, but one day, complete they shall be."`
 			`"Wholly safe, our Coalition is, but here, even safer I feel. What is there to fear, when in an indestructible station you are?"`
 			`"Still researching the alloys that make up the rings, our top scientists are, so only adding supplementary solar panels, we are."`
+			"A small section of the area is roped off. An Arach has removed a floor panel and is busy reconfiguring circuitry below."
+			`"Friend, please step aside." A Kimek gestures to a large cart filled with tools and equipment, and you move to let it pass.`
 
 news "coalition spaceport worker"
 	location
@@ -229,6 +236,8 @@ news "coalition merchant"
 			`"Liked my ship so much, a Kimek passenger did, that decided to live in it, they have. For 'transport' they still pay, so mind it I do not."`
 			`"Jealous of you, I am. If a jump drive I had, bypass the gap between Saryd and Arach space, I could, and quickly earn a fortune, I would."`
 			`"Agreed to transport some Saryd graduates for a 'field trip', I once did. Almost arrested, I was."`
+			"The spacefarer is assisting the rest of their crew in unloading cargo from a ship."
+			`"Used to fly with me, my brother did, but now become a Heliarch, he has."`
 
 news "arach civilian"
 	location
