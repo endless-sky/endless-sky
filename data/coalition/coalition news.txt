@@ -294,4 +294,4 @@ news "coalition vendor"
 			`"Interested in this tapestry, are you? Of the finest longcow hide, it is made. A special discount, for you I could make."`
 			`"Interested in these ringworld keychains, are you? For you, only 30 credits!"`
 			`"Caught your eye, this necklace has? Real hedgelion quills, these are. Great luck, they bring, for those generous enough to make a purchase."`
-			`"Arcology miniatures? Arachi armor replicas? Multipurpose gardening tools? For all of those, the best prices I have!"`
+			`"Arcology miniatures? Arachi armor replicas? Multipurpose gardening tools? For all of those and more, the best prices I have!"`
