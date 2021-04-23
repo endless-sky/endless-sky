@@ -164,7 +164,7 @@ news "coalition researcher"
 			`"To Ring of Wisdom I frequently travel. Held there, many great conferences are."`
 			`"Move to Ring of Wisdom, I wish to. So many advanced facilities for testing it has, so much easier to get a hold of complex chemicals..."`
 			`"A Saryd Traveler I recently purchased. Not much of a pilot I am, but being a science vessel, adequate facilities the model still has. More importantly, no rude neighbors to interrupt my team's research, a spaceship has."`
-			`A Saryd engrossed in a tablet displayed strange characters almost walks into you. "Excuse me," it mutters before continuing on its way.`
+			`A Saryd engrossed in a tablet displayed strange characters almost walks into you. "Excuse me," they mutter before continuing on their way.`
 			`"A lecture in nanotechnology, I am here to present. Unclear on whether I would be teaching faculty or students, the invitation was."`
 			`"Earned a degree in xenobiology, I did some time ago. Under a top researcher in the field, I work now."`
 
@@ -203,7 +203,7 @@ news "coalition ringworld worker"
 			`"Wholly safe, our Coalition is, but here, even safer I feel. What is there to fear, when in an indestructible station you are?"`
 			`"Still researching the alloys that make up the rings, our top scientists are, so only adding supplementary solar panels, we are."`
 			"A small section of the area is roped off. An Arach has removed a floor panel and is busy reconfiguring circuitry below."
-			`"Friend, please step aside." A Kimek gestures to a large cart filled with tools and equipment, and you move to let it pass.`
+			`"Friend, please step aside." A Kimek gestures to a large cart filled with tools and equipment, and you move to let them pass.`
 
 news "coalition spaceport worker"
 	location
@@ -280,3 +280,18 @@ news "saryd civilian"
 			`"To Ring of Wisdom, a researcher friend of mine has gone. Always there, our wisest mingle, but remain here, few do. Difficult for us, sometimes it is."`
 			`"Troubling it is, when their children, Kimek and Arach tourists bring. Climb up everywhere, they try."`
 			`"Travel to new places, I used to, but infinite, our planets are not, so seen them all by now I have."`
+
+news "coalition vendor"
+	location
+		government "Coalition"
+		not attributes "station" "uninhabited"
+	name
+		word
+			"Street vendor"
+	message
+		word
+			`"Purchase some Saryd cakes, would you like to? Homemade, they are."`
+			`"Interested in this tapestry, are you? Of the finest longcow hide, it is made. A special discount, for you I could make."`
+			`"Interested in these ringworld keychains, are you? For you, only 30 credits!"`
+			`"Caught your eye, this necklace has? Real hedgelion quills, these are. Great luck, they bring, for those generous enough to make a purchase."`
+			`"Arcology miniatures? Arachi armor replicas? Multipurpose gardening tools? For all of those, the best prices I have!"`
