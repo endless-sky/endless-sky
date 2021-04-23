@@ -67,6 +67,8 @@ fleet "Heliarch"
 		"Heliarch Interdictor (Ions)"
 	variant 1
 		"Heliarch Interdictor (Missile)"
+	variant 1
+		"Heliarch Interdictor (Scrappy)"
 	variant 2
 		"Heliarch Hunter (Interdicting)"
 	variant 2
