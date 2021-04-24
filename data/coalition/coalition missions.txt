@@ -1168,7 +1168,7 @@ mission "Saryd Couple 4"
 	destination "Far Garden"
 	on offer
 		conversation
-			`Inturi heads right to the shipyard, and you help him with the purchase itself. He says that alhough he has worked in many ships over the years, he never went to the shipyard for more than picking up some parts for repair, or to polish a newly produced model.`
+			`Inturi heads right to the shipyard, and you help him with the purchase itself. He says that although he has worked in many ships over the years, he never went to the shipyard for more than picking up some parts for repair, or to polish a newly produced model.`
 			`	Only when you're with him inside the Arach vessel do you think of asking if he even knows how to fly a ship, but he reassures you that it won't be a problem.`
 			`	"To work as a copilot for an old friend, my first job was. Worry about me crashing the ship, you need not," he jokes.`
 			`	He says he will wait for your lead and follow you to <destination> once you depart.`
