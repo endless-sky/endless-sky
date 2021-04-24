@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Body.h"
 #include "DataNode.h"
 #include "Effect.h"
+#include "Files.h"
 #include "GameData.h"
 #include "SpriteSet.h"
 
@@ -126,19 +127,15 @@ void Outfit::Load(const DataNode &node)
 	else if(node.Size() >= 3)
 	{
 		name = node.Token(2);
-		parentName = node.Token(1);
+		parent = GameData::Outfits().Get(node.Token(1));
 		pluralName = name + 's';
-		isVariant = true;
 	}
 	isDefined = true;
 	
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "category" && child.Size() >= 2)
-		{
-			hasCategory = true;
 			category = child.Token(1);
-		}
 		else if(child.Token(0) == "plural" && child.Size() >= 2)
 			pluralName = child.Token(1);
 		else if(child.Token(0) == "flare sprite" && child.Size() >= 2)
@@ -181,10 +178,7 @@ void Outfit::Load(const DataNode &node)
 		else if(child.Token(0) == "flotsam sprite" && child.Size() >= 2)
 			flotsamSprite = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
-		{
-			hasThumbnail = true;
 			thumbnail = SpriteSet::Get(child.Token(1));
-		}
 		else if(child.Token(0) == "weapon")
 			LoadWeapon(child);
 		else if(child.Token(0) == "ammo" && child.Size() >= 2)
@@ -200,15 +194,9 @@ void Outfit::Load(const DataNode &node)
 			description += '\n';
 		}
 		else if(child.Token(0) == "cost" && child.Size() >= 2)
-		{
-			hasCost = true;
 			cost = child.Value(1);
-		}
 		else if(child.Token(0) == "mass" && child.Size() >= 2)
-		{
-			hasMass = true;
 			mass = child.Value(1);
-		}
 		else if(child.Token(0) == "licenses")
 		{
 			for(const DataNode &grand : child)
@@ -265,10 +253,17 @@ void Outfit::Load(const DataNode &node)
 
 void Outfit::FinishLoading()
 {
-	if(!isVariant)
+	if(!parent)
 		return;
-	
-	const Outfit *parent = GameData::Outfits().Get(parentName);
+	if(!parent->IsDefined())
+		return;
+		
+	// At the moment variant variants are not allowed.
+	if(parent->IsVariant())
+	{
+		Files::LogError("Warning: outfit \"" + name + "\" is a variant of a variant and will not be fully loaded.");
+		return;
+	}
 		
 	// Copy data over from the parent outfit.
 	if(category.empty())
@@ -298,7 +293,7 @@ bool Outfit::IsDefined() const
 
 bool Outfit::IsVariant() const
 {
-	return isVariant;
+	return parent;
 }
 
 
@@ -308,13 +303,6 @@ bool Outfit::IsVariant() const
 const string &Outfit::Name() const
 {
 	return name;
-}
-
-
-
-const string &Outfit::ParentName() const
-{
-	return parentName;
 }
 
 

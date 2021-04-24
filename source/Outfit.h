@@ -100,13 +100,12 @@ public:
 	
 private:
 	bool isDefined = false;
-	bool isVariant = false;
 	std::string name;
-	std::string parentName;
 	std::string pluralName;
 	std::string category;
 	std::string description;
 	const Sprite *thumbnail = nullptr;
+	const Outfit *parent = nullptr;
 	int64_t cost = 0;
 	double mass = 0.;
 	// Licenses needed to purchase this item.
@@ -131,11 +130,6 @@ private:
 	std::map<const Sound *, int> jumpInSounds;
 	std::map<const Sound *, int> jumpOutSounds;
 	const Sprite *flotsamSprite = nullptr;
-	
-	bool hasCategory = false;
-	bool hasThumbnail = false;
-	bool hasCost = false;
-	bool hasMass = false;
 };
 
 
