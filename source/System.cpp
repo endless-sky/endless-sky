@@ -652,7 +652,7 @@ double System::SolarWind() const
 bool System::IsInhabited(const Ship *ship) const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet())
+		if(object.GetPlanet() && object.GetPlanet()->IsValid())
 		{
 			const Planet &planet = *object.GetPlanet();
 			if(!planet.IsWormhole() && planet.IsInhabited() && planet.IsAccessible(ship))
@@ -668,7 +668,7 @@ bool System::IsInhabited(const Ship *ship) const
 bool System::HasFuelFor(const Ship &ship) const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet() && object.GetPlanet()->HasFuelFor(ship))
+		if(object.GetPlanet() && object.GetPlanet()->IsValid() && object.GetPlanet()->HasFuelFor(ship))
 			return true;
 	
 	return false;
@@ -680,7 +680,7 @@ bool System::HasFuelFor(const Ship &ship) const
 bool System::HasShipyard() const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet() && object.GetPlanet()->HasShipyard())
+		if(object.GetPlanet() && object.GetPlanet()->IsValid() && object.GetPlanet()->HasShipyard())
 			return true;
 	
 	return false;
@@ -692,7 +692,7 @@ bool System::HasShipyard() const
 bool System::HasOutfitter() const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet() && object.GetPlanet()->HasOutfitter())
+		if(object.GetPlanet() && object.GetPlanet()->IsValid() && object.GetPlanet()->HasOutfitter())
 			return true;
 	
 	return false;

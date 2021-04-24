@@ -139,7 +139,7 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 	// Visiting a system is sufficient to know what ports are available on its planets.
 	double value = -.5;
 	for(const StellarObject &object : system->Objects())
-		if(object.GetPlanet())
+		if(object.GetPlanet() && object.GetPlanet()->IsValid())
 		{
 			const auto &outfitter = object.GetPlanet()->Outfitter();
 			if(outfitter.Has(selected))
@@ -212,7 +212,8 @@ void MapOutfitterPanel::DrawItems()
 			{
 				isForSale = false;
 				for(const StellarObject &object : selectedSystem->Objects())
-					if(object.GetPlanet() && object.GetPlanet()->Outfitter().Has(outfit))
+					if(object.GetPlanet() && object.GetPlanet()->IsValid()
+							&& object.GetPlanet()->Outfitter().Has(outfit))
 					{
 						isForSale = true;
 						break;

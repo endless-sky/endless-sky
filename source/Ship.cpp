@@ -1543,7 +1543,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				else
 				{
 					for(const StellarObject &object : currentSystem->Objects())
-						if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+						if(object.GetPlanet() && object.GetPlanet()->IsValid() && object.GetPlanet()->HasSpaceport())
 						{
 							target = object.Position();
 							break;

@@ -592,7 +592,7 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 			{
 				bool matches = SetsIntersect(attr, system->Attributes());
 				for(const StellarObject &object : system->Objects())
-					if(object.GetPlanet())
+					if(object.GetPlanet() && object.GetPlanet()->IsValid())
 						matches |= SetsIntersect(attr, object.GetPlanet()->Attributes());
 				
 				if(!matches)
