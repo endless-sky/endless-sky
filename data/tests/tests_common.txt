@@ -141,3 +141,25 @@ test-data "Three Earthly Barges"
 		visited "Alpha Centauri"
 		visited "Vega"
 		visited "Menkent"
+
+
+test "Load First Savegame"
+	status partial
+	description "Helper function to load the first savegame. Typically used directly after save-game inject."
+	sequence
+		input
+			key l
+		input
+			key l
+			
+			
+test "Depart"
+	status partial
+	description "Helper function to depart from a planet."
+	sequence
+		input
+			key d
+		# The game needs 2 gamesteps for processing the launch before commands like the jump command can be given.
+		# Using empty inputs to trigger those game loops.
+		input
+		input

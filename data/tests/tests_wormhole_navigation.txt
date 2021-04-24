@@ -240,12 +240,9 @@ test "Tests - Wormhole Navigation"
 	status active
 	description "Tests - Navigation to and from Hai space, to test wormhole functionality"
 	sequence
-		# Create/inject the savegame, go to the load screen and load the first (and only) savegame.
+		# Create/inject the savegame and load it.
 		inject "Wormhole Navigation"
-		input
-			key l
-		input
-			key l
+		call "Load First Savegame"
 		# Set desired travel plan.
 		navigate
 			travel Betelgeuse
@@ -262,11 +259,7 @@ test "Tests - Wormhole Navigation"
 			travel Rajak
 			travel Hassaleh
 			travel Rigel
-		# Launch.
-		input
-			key d
-		input
-		input
+		call "Depart"
 		# Give jump command.
 		input
 			command	jump
@@ -323,12 +316,9 @@ test "Tests - Ember Wastes Navigation"
 	status active
 	description "Tests - Navigation to and from the Ember Wastes, testing wormholes that require outfits to land"
 	sequence
-		# Create/inject the savegame, go to the load screen and load the first (and only) savegame.
+		# Create/inject the savegame and load it.
 		inject "Ember Wastes Navigation"
-		input
-			key l
-		input
-			key l
+		call "Load First Savegame"
 		# Set desired travel plan.
 		navigate
 			travel "Tania Australis"
@@ -360,11 +350,7 @@ test "Tests - Ember Wastes Navigation"
 			travel Terminus
 			travel Limen
 			travel Mora
-		# Launch.
-		input
-			key d
-		input
-		input
+		call "Depart"
 		# Give jump command.
 		input
 			command	jump

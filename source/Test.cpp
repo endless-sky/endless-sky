@@ -42,6 +42,7 @@ namespace{
 		{Test::Status::BROKEN, "broken"},
 		{Test::Status::KNOWN_FAILURE, "known failure"},
 		{Test::Status::MISSING_FEATURE, "missing feature"},
+		{Test::Status::PARTIAL, "partial"},
 	};
 	
 	const map<Test::TestStep::Type, const string> STEPTYPE_TO_TEXT = {

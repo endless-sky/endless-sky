@@ -35,7 +35,7 @@ class System;
 class Test {
 public:
 	// Status indicators for the test that we selected (if any).
-	enum class Status {ACTIVE, BROKEN, KNOWN_FAILURE, MISSING_FEATURE};
+	enum class Status {ACTIVE, PARTIAL, BROKEN, KNOWN_FAILURE, MISSING_FEATURE};
 	
 	
 public:

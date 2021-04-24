@@ -56,12 +56,9 @@ test "Test-Framework - UI Keyboard controls"
 	status active
 	description "Tests if the in-game panels can be controlled by keypresses"
 	sequence
-		# Create/inject the savegame, go to the load screen and load the first (and only) savegame.
+		# Create/inject the savegame and load it.
 		inject "Three Earthly Barges"
-		input
-			key l
-		input
-			key l
+		call "Load First Savegame"
 		# Enter and leave jobs
 		input
 			key j
@@ -99,18 +96,13 @@ test "Test-Framework - Load and depart"
 	status active
 	description "Test with only a departure. Mostly tests the testframework itself."
 	sequence
-		# Create/inject the savegame, go to the load screen and load the first (and only) savegame.
+		# Create/inject the savegame and load it.
 		inject "Three Earthly Barges"
-		input
-			key l
-		input
-			key l
+		call "Load First Savegame"
 		# Check startup conditions.
 		assert
 			"ships: Light Freighter" = 3
-		# Launch.
-		input
-			key d
+		call "Depart"
 		# Re-check startup conditions.
 		assert
 			"ships: Light Freighter" = 3
@@ -143,24 +135,15 @@ test "Test-Framework - Navigate"
 	status active
 	description "Test-Framework - Navigation to other star system"
 	sequence
-		# Create/inject the savegame, go to the load screen and load the first (and only) savegame.
+		# Create/inject the savegame and load it.
 		inject "Three Earthly Barges"
-		input
-			key l
-		input
-			key l
+		call "Load First Savegame"
 		# Set desired travel plan.
 		navigate
 			travel "Alpha Centauri"
 			travel "Sol"
 			travel "Alpha Centauri"
-		# Launch.
-		input
-			key d
-		# The game needs 2 gamesteps for processing the launch before the jump command can be given.
-		# Sending empty inputs causes the game to make a step. The game also steps every time it encounters a branch for a second time.
-		input
-		input
+		call "Depart"
 		# Give jump command.
 		input
 			command	jump
