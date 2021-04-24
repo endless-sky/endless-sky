@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 
 #include <algorithm>
+#include <iterator>
 
 using namespace std;
 
@@ -47,17 +48,17 @@ namespace {
 		// are part of the sprite name, not a frame index.
 		return (IsBlend(path[pos]) ? pos : end);
 	}
-
+	
 	// Log an error if frames are missing in one of the paths vectors.
-	void LogIfMissingFrames(const vector<string>& frameData, size_t expectedCount, const string &prefix, bool is2x)
+	void LogIfMissingFrames(const vector<string> &frameData, size_t expectedCount, const string &prefix, bool is2x)
 	{
 		auto isMissing = [](const string &s) noexcept -> bool { return s.empty(); };
-		const auto firstMissingIt = find_if(frameData.begin(), frameData.end(), isMissing);
-		const auto totalEmpty = count_if(firstMissingIt, frameData.end(), isMissing);
-		const auto totalMissing = expectedCount - min(frameData.size(), expectedCount) + totalEmpty;
-		if(!totalMissing)
+		auto endIt = frameData.begin() + min(expectedCount, frameData.size());
+		const auto firstMissingIt = find_if(frameData.begin(), endIt, isMissing);
+		if(firstMissingIt == endIt)
 			return;
-
+		
+		const auto totalMissing = count_if(firstMissingIt, endIt, isMissing);
 		const size_t firstMissingIndex = distance(frameData.begin(), firstMissingIt);
 		Files::LogError(prefix + "missing " + (is2x ? "@2x " : "") + "frame " + to_string(firstMissingIndex) +
 				" (" + to_string(totalMissing) + " missing in total).");
