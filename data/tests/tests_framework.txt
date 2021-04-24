@@ -116,6 +116,29 @@ test "Test-Framework - Load and depart"
 			"ships: Light Freighter" = 3
 
 
+test "Test-Framework - Recursive Calls"
+	status active
+	description "Test-Framework - Test for calls to other functions"
+	sequence
+		apply
+			"test: callLoopControl" = "test: callLoopControl" + 1
+		branch loopBreak
+			"test: callLoopControl" > 10
+		# Use recursive call to get callLoopControl above 10.
+		call "Test-Framework - Recursive Calls"
+		label loopBreak
+
+
+test "Test-Framework - Calling other functions"
+	status active
+	description "Test-Framework - Test for calls to other functions"
+	sequence
+		call "Test-Framework - UI Keyboard controls"
+		call "Test-Framework - Empty Test Sequence"
+		call "Test-Framework - Empty Testcase"
+		call "Test-Framework - Conditions Arithmetic and Loops"
+
+
 test "Test-Framework - Navigate"
 	status active
 	description "Test-Framework - Navigation to other star system"

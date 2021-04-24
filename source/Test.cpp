@@ -382,7 +382,13 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 		
 	if(status == Status::BROKEN)
 		Fail(context, player, "Test has a broken status.");
+
+	// Track if we need to return to the main gameloop.
+	bool continueGameLoop = false;
 	
+	// If the step to run is beyond the end of the steps, then we finished
+	// the current test (and step to the step higher in the stack or we are
+	// done testing if we are at toplevel).
 	if(context.stepToRun.back() >= steps.size())
 	{
 		context.testToRun.pop_back();
@@ -397,13 +403,15 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 		else
 			// Step beyond the call statement we just finished.
 			++(context.stepToRun.back());
+		
+		// We changed the active test or are quitting, so don't run the current one.
+		continueGameLoop = true;
 	}
 	
 	// All processing was done just before this step started.
 	context.branchesSinceGameStep.clear();
 	
-	bool continueGameLoop = false;
-	do
+	while(context.stepToRun.back() < steps.size() && !continueGameLoop)
 	{
 		// Fail if we encounter a watchdog timeout
 		if(context.watchdog == 1)
@@ -441,9 +449,13 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 					++(context.stepToRun.back());
 				break;
 			case TestStep::Type::CALL:
+				if(!(GameData::Tests()).Has(stepToRun.nameOrLabel))
+					Fail(context, player, "Calling non-existing test \"" + stepToRun.nameOrLabel + "\"");
 				// Put the called test on the stack and start it from 0.
 				context.testToRun.push_back((GameData::Tests()).Get(stepToRun.nameOrLabel));
 				context.stepToRun.push_back(0);
+				// Break the loop to switch to the test just pushed.
+				continueGameLoop = true;
 				break;
 			case TestStep::Type::INJECT:
 				{
@@ -511,7 +523,6 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 				break;
 		}
 	}
-	while(context.stepToRun.back() < steps.size() && !continueGameLoop);
 }
 
 
