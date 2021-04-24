@@ -330,7 +330,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		vector<const Planet *> planetVector;
 		if(!personality.IsSurveillance())
 			for(const StellarObject &object : system.Objects())
-				if(object.GetPlanet() && object.GetPlanet()->IsValid() && object.GetPlanet()->HasSpaceport()
+				if(object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
 						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					planetVector.push_back(object.GetPlanet());
 	
@@ -341,7 +341,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			// Prefer to launch from inhabited planets, but launch from
 			// uninhabited ones if there is no other option.
 			for(const StellarObject &object : system.Objects())
-				if(object.GetPlanet() && object.GetPlanet()->IsValid() && !object.GetPlanet()->GetGovernment()->IsEnemy(government))
+				if(object.HasValidPlanet() && !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					planetVector.push_back(object.GetPlanet());
 			options = planetVector.size();
 			if(!options)
@@ -577,7 +577,7 @@ pair<Point, double> Fleet::ChooseCenter(const System &system)
 {
 	auto centers = vector<pair<Point, double>>();
 	for(const StellarObject &object : system.Objects())
-		if(object.GetPlanet() && object.GetPlanet()->IsValid() && object.GetPlanet()->HasSpaceport())
+		if(object.HasValidPlanet() && object.GetPlanet()->HasSpaceport())
 			centers.emplace_back(object.Position(), object.Radius());
 	
 	if(centers.empty())
