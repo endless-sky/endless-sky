@@ -2678,6 +2678,32 @@ phrase "syndicate fighter"
 
 # Pirate names:
 
+phrase "pirate"
+	phrase
+		"pirate subphrase 1" 131
+		"pirate subphrase 2" 19504
+		"pirate subphrase 3" 15720
+		"pirate subphrase 4" 12880
+		"pirate subphrase 5" 3500
+		"pirate subphrase 6" 6700
+		"pirate subphrase 7" 4482
+		"pirate subphrase 8" 184
+		"pirate subphrase 9" 3060
+		"pirate subphrase 10" 648
+		"pirate subphrase 11" 20
+		"pirate subphrase 12" 17
+		"pirate subphrase 13" 26
+		"pirate subphrase 14" 21
+		"pirate subphrase 15" 17
+		"pirate subphrase 16" 11
+		"pirate subphrase 17" 7
+		"pirate subphrase 18" 5
+
+phrase "bounty hunter"
+	phrase
+		"bounty hunter subphrase 1" 897
+		"bounty hunter subphrase 2" 729
+
 # All of these should sound good when preceded by the word "of" or when "'s" is added onto the end
 phrase "sinister names"
 	word
@@ -3087,7 +3113,7 @@ phrase "bad outcomes"
 		"Wrath"
 		"Blackness"
 
-phrase "pirate"
+phrase "pirate subphrase 1"
 	word
 		"Indian Queen"
 		"Happy Return"
@@ -3221,39 +3247,39 @@ phrase "pirate"
 		"Danegeld"
 		"Terror"
 
-phrase "pirate"
+phrase "pirate subphrase 2" 
 	phrase
-		"pirate adjectives that don't work as titles"
-		"pirate adjectives that work as titles"
+		"pirate adjectives that don't work as titles" 66
+		"pirate adjectives that work as titles" 50
 	word
 		" "
 	phrase
-		"pirate nouns"
-		"pirate nouns that work after bad outcomes"
-		"bad outcomes"
+		"pirate nouns" 107
+		"pirate nouns that work after bad outcomes" 27
+		"bad outcomes" 50
 
-phrase "pirate"
+phrase "pirate subphrase 3"
 	phrase
-		"pirate adjectives that don't work before singular nouns"
-		"pirate adjectives that don't work as titles"
-		"pirate adjectives that work as titles"
+		"pirate adjectives that don't work before singular nouns" 15
+		"pirate adjectives that don't work as titles" 66
+		"pirate adjectives that work as titles" 50
 	word
 		" "
 	phrase
-		"sinister names"
-		"bad outcomes"
+		"sinister names" 70
+		"bad outcomes" 50
 
-phrase "pirate"
+phrase "pirate subphrase 4"
 	phrase
 		"sinister names"
 	word
 		"'s "
 	phrase
-		"pirate nouns"
-		"pirate nouns that work after bad outcomes"
-		"bad outcomes"
+		"pirate nouns" 107
+		"pirate nouns that work after bad outcomes" 27
+		"bad outcomes" 50
 
-phrase "pirate"
+phrase "pirate subphrase 5"
 	phrase
 		"sinister names"
 	word
@@ -3261,20 +3287,21 @@ phrase "pirate"
 	phrase
 		"pirate adjectives that work as titles"
 
-phrase "pirate"
+phrase "pirate subphrase 6"
 	phrase
-		"pirate nouns"
-		"pirate nouns that work after bad outcomes"
+		"pirate nouns" 107
+		"pirate nouns that work after bad outcomes" 27
 	word
 		" of "
 	phrase
 		"bad outcomes"
 
-phrase "pirate"
+phrase "pirate subphrase 7"
 	phrase
 		"bad outcomes"
-		"pirate adjectives that work as titles"
-		"pirate adjectives that don't work as titles"
+		"bad outcomes" 50
+		"pirate adjectives that work as titles" 50
+		"pirate adjectives that don't work as titles" 66
 	word
 		" "
 	phrase
@@ -3282,11 +3309,11 @@ phrase "pirate"
 
 phrase "pirate"
 	phrase
-		"pirate nouns"
-		"pirate nouns that work after bad outcomes"
-		"bad outcomes"
+		"pirate nouns" 107
+		"pirate nouns that work after bad outcomes" 27
+		"bad outcomes" 50
 
-phrase "pirate"
+phrase "pirate subphrase 9"
 	word
 		"Blood"
 		"Night"
@@ -3411,7 +3438,7 @@ phrase "pirate"
 		"fink"
 		"spot"
 
-phrase "pirate"
+phrase "pirate subphrase 10"
 	word
 		"No"
 		"No More"
@@ -3469,7 +3496,7 @@ phrase "pirate"
 		"Boys"
 
 # Historical male pirates
-phrase "pirate"
+phrase "pirate subphrase 11"
 	word
 		"Blackbeard"
 		"Edward Teach"
@@ -3493,7 +3520,7 @@ phrase "pirate"
 		"Kanhoji Angre"
 
 # Historical female pirates
-phrase "pirate"
+phrase "pirate subphrase 12"
 	word
 		"Lady Killigrew"
 		"Ching Shih"
@@ -3514,7 +3541,7 @@ phrase "pirate"
 		"Anne Dieu-le-Veut"
 
 # Historical pirate ships
-phrase "pirate"
+phrase "pirate subphrase 13"
 	word
 		"Queen Anne's Revenge"
 		"Whydah"
@@ -3544,7 +3571,7 @@ phrase "pirate"
 		"Margaret"
 
 # Historical ghost ships
-phrase "pirate"
+phrase "pirate subphrase 14"
 	word
 		"Flying Dutchman"
 		"Caleuche"
@@ -3569,7 +3596,7 @@ phrase "pirate"
 		"Teignmouth Electron"
 
 # Fictional male pirates
-phrase "pirate"
+phrase "pirate subphrase 15"
 	word
 		"Black Corsair"
 		"Captain Flint"
@@ -3590,7 +3617,7 @@ phrase "pirate"
 		"Jack Shandy"
 
 # Fictional female pirates
-phrase "pirate"
+phrase "pirate subphrase 16"
 	word
 		"Helen Tavrel"
 		"Valeria of the Red Brotherhood"
@@ -3605,7 +3632,7 @@ phrase "pirate"
 		"Elaine Marley"
 
 # Fictional pirate ships
-phrase "pirate"
+phrase "pirate subphrase 17"
 	word
 		"Jolly Roger"
 		"Black Freighter"
@@ -3616,7 +3643,7 @@ phrase "pirate"
 		"Wild Cat"
 
 # Fictional ghost ships
-phrase "pirate"
+phrase "pirate subphrase 18"
 	word
 		"Three Skeleton Key"
 		"Ampoliros"
@@ -3624,7 +3651,7 @@ phrase "pirate"
 		"Antonia Graza"
 		"Mortzestus"
 
-phrase "bounty hunter"
+phrase "bounty hunter subphrase 1"
 	word
 		"Iron"
 		"Brass"
@@ -3695,7 +3722,7 @@ phrase "bounty hunter"
 		"Fury"
 		"Rivets"
 
-phrase "bounty hunter"
+phrase "bounty hunter subphrase 2"
 	word
 		"Bars"
 		"Chains"
