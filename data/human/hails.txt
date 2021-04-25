@@ -1942,6 +1942,7 @@ phrase "friendly syndicate"
 		"Star Barge"
 		"Bulk Freighter"
 		"Freighter"
+		"Combined Freighter"
 	word
 		"."
 		
@@ -1954,6 +1955,7 @@ phrase "friendly syndicate"
 		"Bulk Freighter:"
 		"Freighter:"
 		"Star Barge:"
+		"Combined Freighter:"
 	word
 		" "
 	word

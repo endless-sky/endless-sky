@@ -389,13 +389,13 @@ mission "FWC Nuke Supply 1B"
 	
 	on offer
 		conversation
-			`You land on <origin> and meet up with the grim-faced captain of a Bulk Freighter named the Blue Yonder. "The cargo is already loaded up," he says, "and I'm ready to go. The sooner we get this stuff out of my cargo hold and I can get back to shipping food and medicine, the better. I really hope you folks on Council know what you're doing."`
+			`You land on <origin> and meet up with the grim-faced captain of a Combined Freighter named the Blue Yonder. "The cargo is already loaded up," he says, "and I'm ready to go. The sooner we get this stuff out of my cargo hold and I can get back to shipping food and medicine, the better. I really hope you folks on Council know what you're doing."`
 				accept
 	
 	npc accompany save
 		personality escort timid
 		government Merchant
-		ship "Bulk Freighter" "F.S. Blue Yonder"
+		ship "Combined Freighter" "F.S. Blue Yonder"
 	
 	on visit
 		dialog "You have reached <planet>, but the Blue Yonder is not here yet! Better depart and wait for them to arrive in this star system."
@@ -424,7 +424,7 @@ mission "FWC Nuke Supply 1C"
 	npc accompany save
 		personality escort timid
 		government Merchant
-		ship "Bulk Freighter" "F.S. Blue Yonder"
+		ship "Combined Freighter" "F.S. Blue Yonder"
 
 
 

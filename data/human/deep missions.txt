@@ -43,7 +43,7 @@ mission "Deep: Syndicate Convoy"
 		fleet
 			names "civilian"
 			variant
-				"Bulk Freighter" 2
+				"Combined Freighter" 2
 				"Mule"
 	npc
 		government "Merchant"

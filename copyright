@@ -709,7 +709,7 @@ Files:
  images/ship/star?queen*
  images/ship/localworldship*
  images/ship/arrow*
- images/ship/bulk?freighter*
+ images/ship/combined?freighter*
  images/ship/freighter*
  images/ship/protector*
  images/ship/star?barge*
@@ -730,7 +730,7 @@ Files:
  images/thumbnail/shuttle*
  images/thumbnail/star?queen*
  images/thumbnail/arrow*
- images/thumbnail/bulk?freighter*
+ images/thumbnail/combined?freighter*
  images/thumbnail/freighter*
  images/thumbnail/protector*
  images/thumbnail/star?barge*
@@ -931,6 +931,13 @@ Files:
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 Comment: Derived from work by Michael Zahniser (under the same licence) and Red-57 (under the same licence).
+
+Files:
+ images/ship/bulk?freighter*
+ images/thumbnail/bulk?freighter*
+Copyright: Lia Gerty (https://github.com/ravenshining)
+License: CC-BY-SA-4.0
+Comment: Derived from work by Michael Zahniser (under the same licence) and Becca Tomaso (under the same licence).
 
 Files:
  images/_menu/haze-blackbody+*

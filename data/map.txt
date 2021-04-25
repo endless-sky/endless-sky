@@ -2062,7 +2062,7 @@ system Adhara
 	trade Metal 210
 	trade Plastic 440
 	fleet "Small Northern Merchants" 600
-	fleet "Large Northern Merchants" 800
+	fleet "Large Northern Merchants" 840
 	fleet "Small Deep Security" 900
 	fleet "Small Deep Merchants" 600
 	fleet "Large Deep Security" 2400
@@ -2493,7 +2493,8 @@ system Aldebaran
 	trade Metal 265
 	trade Plastic 479
 	fleet "Small Northern Merchants" 600
-	fleet "Large Northern Merchants" 600
+	fleet "Large Northern Merchants" 630
+	fleet "Northern Combined Freighters" 6000
 	fleet "Paradise Merchants" 1000
 	fleet "Small Republic" 800
 	fleet "Large Republic" 400
@@ -2730,7 +2731,7 @@ system Algieba
 	fleet "Small Republic" 1400
 	fleet "Large Republic" 5000
 	fleet "Small Northern Merchants" 400
-	fleet "Large Northern Merchants" 600
+	fleet "Large Northern Merchants" 630
 	object
 		sprite star/f0
 		distance 5.86085
@@ -2924,7 +2925,8 @@ system Alheka
 	trade Metal 388
 	trade Plastic 477
 	fleet "Small Northern Merchants" 1000
-	fleet "Large Northern Merchants" 3000
+	fleet "Large Northern Merchants" 3150
+	fleet "Northern Combined Freighters" 30000
 	fleet "Small Republic" 1500
 	fleet "Large Republic" 4400
 	fleet "Republic Logistics" 4600
@@ -2983,7 +2985,8 @@ system Alhena
 	trade Metal 313
 	trade Plastic 415
 	fleet "Small Northern Merchants" 500
-	fleet "Large Northern Merchants" 700
+	fleet "Large Northern Merchants" 740
+	fleet "Northern Combined Freighters" 7000
 	fleet "Small Republic" 1100
 	fleet "Large Republic" 1600
 	fleet "Republic Logistics" 3000
@@ -3693,7 +3696,8 @@ system "Alpha Centauri"
 	trade Metal 393
 	trade Plastic 253
 	fleet "Small Northern Merchants" 800
-	fleet "Large Northern Merchants" 1000
+	fleet "Large Northern Merchants" 1050
+	fleet "Northern Combined Freighters" 10000
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 6000
 	object
@@ -3814,7 +3818,8 @@ system Alphard
 	trade Metal 284
 	trade Plastic 496
 	fleet "Small Northern Merchants" 500
-	fleet "Large Northern Merchants" 900
+	fleet "Large Northern Merchants" 950
+	fleet "Northern Combined Freighters" 9000
 	fleet "Paradise Merchants" 1500
 	fleet "Small Deep Merchants" 2000
 	fleet "Small Republic" 3000
@@ -3993,7 +3998,8 @@ system Altair
 	fleet "Small Core Merchants" 400
 	fleet "Large Core Merchants" 600
 	fleet "Small Northern Merchants" 1000
-	fleet "Large Northern Merchants" 3000
+	fleet "Large Northern Merchants" 3150
+	fleet "Northern Combined Freighters" 30000
 	fleet "Small Republic" 3000
 	fleet "Large Republic" 6000
 	fleet "Republic Logistics" 6000
@@ -4062,7 +4068,8 @@ system Aludra
 	fleet "Large Deep Security" 3000
 	fleet "Large Deep Merchants" 1000
 	fleet "Small Northern Merchants" 500
-	fleet "Large Northern Merchants" 1200
+	fleet "Large Northern Merchants" 1260
+	fleet "Northern Combined Freighters" 12000
 	fleet "Human Miners" 5000
 	object
 		sprite star/k0
@@ -4807,7 +4814,8 @@ system Aspidiske
 	trade Metal 247
 	trade Plastic 295
 	fleet "Small Northern Merchants" 800
-	fleet "Large Northern Merchants" 2000
+	fleet "Large Northern Merchants" 2100
+	fleet "Northern Combined Freighters" 20000
 	fleet "Small Deep Security" 2000
 	fleet "Small Deep Merchants" 1400
 	fleet "Large Deep Merchants" 3000
@@ -4936,7 +4944,8 @@ system Avior
 	trade Metal 331
 	trade Plastic 299
 	fleet "Small Northern Merchants" 900
-	fleet "Large Northern Merchants" 3000
+	fleet "Large Northern Merchants" 3150
+	fleet "Northern Combined Freighters" 30000
 	fleet "Small Deep Security" 2800
 	fleet "Small Deep Merchants" 1500
 	fleet "Large Deep Security" 10000
@@ -5454,7 +5463,8 @@ system Betelgeuse
 	trade Metal 384
 	trade Plastic 470
 	fleet "Small Northern Merchants" 2000
-	fleet "Large Northern Merchants" 800
+	fleet "Large Northern Merchants" 840
+	fleet "Northern Combined Freighters" 8000
 	fleet "Small Republic" 2500
 	fleet "Large Republic" 3500
 	fleet "Republic Logistics" 6000
@@ -6139,7 +6149,8 @@ system Canopus
 	trade Metal 323
 	trade Plastic 485
 	fleet "Small Northern Merchants" 900
-	fleet "Large Northern Merchants" 700
+	fleet "Large Northern Merchants" 740
+	fleet "Northern Combined Freighters" 7000
 	fleet "Small Republic" 1100
 	fleet "Large Republic" 2500
 	fleet "Republic Logistics" 4500
@@ -6193,7 +6204,8 @@ system Capella
 	trade Metal 336
 	trade Plastic 499
 	fleet "Small Northern Merchants" 500
-	fleet "Large Northern Merchants" 800
+	fleet "Large Northern Merchants" 840
+	fleet "Northern Combined Freighters" 8000
 	fleet "Paradise Merchants" 700
 	fleet "Small Republic" 800
 	fleet "Large Republic" 1400
@@ -6325,7 +6337,7 @@ system Cardax
 	trade Metal 311
 	trade Plastic 424
 	fleet "Small Northern Merchants" 1200
-	fleet "Large Northern Merchants" 3000
+	fleet "Large Northern Merchants" 3150
 	fleet "Small Northern Pirates" 1000
 	fleet "Large Northern Pirates" 3000
 	fleet "Small Core Pirates" 3000
@@ -6458,7 +6470,8 @@ system Castor
 	trade Metal 275
 	trade Plastic 467
 	fleet "Small Northern Merchants" 600
-	fleet "Large Northern Merchants" 800
+	fleet "Large Northern Merchants" 840
+	fleet "Northern Combined Freighters" 8000
 	fleet "Paradise Merchants" 800
 	fleet "Small Republic" 1000
 	fleet "Large Republic" 500
@@ -7969,7 +7982,8 @@ system Denebola
 	trade Metal 489
 	trade Plastic 253
 	fleet "Small Northern Merchants" 800
-	fleet "Large Northern Merchants" 2000
+	fleet "Large Northern Merchants" 2100
+	fleet "Northern Combined Freighters" 20000
 	fleet "Small Republic" 1000
 	fleet "Large Republic" 2000
 	object
@@ -8382,7 +8396,8 @@ system Dubhe
 	trade Metal 262
 	trade Plastic 489
 	fleet "Small Northern Merchants" 1200
-	fleet "Large Northern Merchants" 4000
+	fleet "Large Northern Merchants" 4200
+	fleet "Northern Combined Freighters" 40000
 	fleet "Small Deep Security" 2000
 	fleet "Small Deep Merchants" 3000
 	fleet "Large Deep Security" 7000
@@ -9102,7 +9117,7 @@ system Elnath
 	trade Metal 244
 	trade Plastic 476
 	fleet "Small Northern Merchants" 4000
-	fleet "Large Northern Merchants" 9000
+	fleet "Large Northern Merchants" 9450
 	fleet "Paradise Merchants" 8000
 	fleet "Small Republic" 7000
 	fleet "Large Republic" 20000
@@ -9372,7 +9387,8 @@ system "Epsilon Leonis"
 	trade Metal 216
 	trade Plastic 389
 	fleet "Small Northern Merchants" 700
-	fleet "Large Northern Merchants" 1400
+	fleet "Large Northern Merchants" 1470
+	fleet "Northern Combined Freighters" 14000
 	fleet "Small Deep Security" 2000
 	fleet "Small Deep Merchants" 1600
 	fleet "Large Deep Security" 6000
@@ -9644,7 +9660,7 @@ system Eteron
 	trade Metal 419
 	trade Plastic 380
 	fleet "Small Northern Merchants" 1000
-	fleet "Large Northern Merchants" 1500
+	fleet "Large Northern Merchants" 1580
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 4000
 	fleet "Small Northern Pirates" 1000
@@ -9837,7 +9853,7 @@ system Fala
 	trade Metal 448
 	trade Plastic 441
 	fleet "Small Northern Merchants" 1600
-	fleet "Large Northern Merchants" 3000
+	fleet "Large Northern Merchants" 3150
 	fleet "Small Republic" 4000
 	fleet "Small Northern Pirates" 2000
 	fleet "Large Northern Pirates" 4000
@@ -11573,7 +11589,8 @@ system Gomeisa
 	trade Metal 228
 	trade Plastic 451
 	fleet "Small Northern Merchants" 600
-	fleet "Large Northern Merchants" 1300
+	fleet "Large Northern Merchants" 1370
+	fleet "Northern Combined Freighters" 13000
 	fleet "Small Deep Security" 1800
 	fleet "Small Deep Merchants" 3000
 	fleet "Large Deep Security" 4000
@@ -14918,7 +14935,8 @@ system Kursa
 	trade Metal 285
 	trade Plastic 441
 	fleet "Small Northern Merchants" 2000
-	fleet "Large Northern Merchants" 3000
+	fleet "Large Northern Merchants" 3150
+	fleet "Northern Combined Freighters" 30000
 	fleet "Paradise Merchants" 3000
 	fleet "Small Northern Pirates" 4000
 	fleet "Large Northern Pirates" 8000
@@ -15761,7 +15779,8 @@ system Markeb
 	trade Metal 389
 	trade Plastic 306
 	fleet "Small Northern Merchants" 1000
-	fleet "Large Northern Merchants" 2500
+	fleet "Large Northern Merchants" 2630
+	fleet "Northern Combined Freighters" 25000
 	fleet "Small Deep Security" 4000
 	fleet "Small Deep Merchants" 2000
 	fleet "Large Deep Security" 8000
@@ -15941,7 +15960,7 @@ system Mebsuta
 	trade Metal 385
 	trade Plastic 420
 	fleet "Small Northern Merchants" 3000
-	fleet "Large Northern Merchants" 5000
+	fleet "Large Northern Merchants" 5250
 	fleet "Small Northern Pirates" 4000
 	fleet "Large Northern Pirates" 8000
 	fleet "Small Republic" 12000
@@ -16343,7 +16362,8 @@ system Menkalinan
 	trade Metal 324
 	trade Plastic 472
 	fleet "Small Northern Merchants" 500
-	fleet "Large Northern Merchants" 800
+	fleet "Large Northern Merchants" 840
+	fleet "Northern Combined Freighters" 8000
 	fleet "Small Republic" 800
 	fleet "Large Republic" 2000
 	fleet "Republic Logistics" 2000
@@ -16547,7 +16567,8 @@ system Merak
 	fleet "Small Southern Merchants" 600
 	fleet "Small Northern Merchants" 800
 	fleet "Large Southern Merchants" 2000
-	fleet "Large Northern Merchants" 1500
+	fleet "Large Northern Merchants" 1580
+	fleet "Northern Combined Freighters" 15000
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 4000
 	object
@@ -16674,7 +16695,8 @@ system Miaplacidus
 	trade Metal 344
 	trade Plastic 489
 	fleet "Small Northern Merchants" 600
-	fleet "Large Northern Merchants" 900
+	fleet "Large Northern Merchants" 950
+	fleet "Northern Combined Freighters" 9000
 	fleet "Paradise Merchants" 900
 	fleet "Small Republic" 1500
 	fleet "Large Republic" 3000
@@ -17139,7 +17161,7 @@ system Mirzam
 	trade Metal 363
 	trade Plastic 463
 	fleet "Small Northern Merchants" 2000
-	fleet "Large Northern Merchants" 2000
+	fleet "Large Northern Merchants" 2100
 	fleet "Small Republic" 3000
 	fleet "Large Republic" 4000
 	fleet "Small Northern Pirates" 5000
@@ -17487,7 +17509,8 @@ system Naos
 	trade Metal 339
 	trade Plastic 297
 	fleet "Small Northern Merchants" 600
-	fleet "Large Northern Merchants" 1500
+	fleet "Large Northern Merchants" 1580
+	fleet "Northern Combined Freighters" 15000
 	fleet "Small Deep Security" 2400
 	fleet "Small Deep Merchants" 1200
 	fleet "Large Deep Security" 5000
@@ -17702,7 +17725,7 @@ system Nihal
 	trade Metal 232
 	trade Plastic 481
 	fleet "Small Northern Merchants" 800
-	fleet "Large Northern Merchants" 1200
+	fleet "Large Northern Merchants" 1260
 	fleet "Paradise Merchants" 1800
 	fleet "Small Northern Pirates" 3000
 	fleet "Large Northern Pirates" 5000
@@ -18883,7 +18906,8 @@ system Phact
 	trade Metal 252
 	trade Plastic 460
 	fleet "Small Northern Merchants" 2000
-	fleet "Large Northern Merchants" 2000
+	fleet "Large Northern Merchants" 2100
+	fleet "Northern Combined Freighters" 20000
 	fleet "Small Republic" 6000
 	fleet "Large Republic" 9000
 	fleet "Republic Logistics" 6000
@@ -18957,7 +18981,7 @@ system Phecda
 	trade Metal 413
 	trade Plastic 326
 	fleet "Small Northern Merchants" 700
-	fleet "Large Northern Merchants" 1000
+	fleet "Large Northern Merchants" 1050
 	fleet "Small Southern Merchants" 700
 	fleet "Large Southern Merchants" 1000
 	fleet "Small Republic" 5000
@@ -19070,7 +19094,8 @@ system Phurad
 	trade Metal 279
 	trade Plastic 476
 	fleet "Small Northern Merchants" 800
-	fleet "Large Northern Merchants" 1500
+	fleet "Large Northern Merchants" 1580
+	fleet "Northern Combined Freighters" 15000
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 5000
 	fleet "Small Northern Pirates" 9000
@@ -19356,7 +19381,8 @@ system Pollux
 	trade Metal 346
 	trade Plastic 481
 	fleet "Small Northern Merchants" 500
-	fleet "Large Northern Merchants" 800
+	fleet "Large Northern Merchants" 840
+	fleet "Northern Combined Freighters" 8000
 	fleet "Paradise Merchants" 600
 	fleet "Small Republic" 1500
 	fleet "Large Republic" 4500
@@ -19414,7 +19440,7 @@ system Porrima
 	trade Metal 490
 	trade Plastic 381
 	fleet "Small Northern Merchants" 2000
-	fleet "Large Northern Merchants" 6000
+	fleet "Large Northern Merchants" 6300
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Republic" 8000
@@ -19597,7 +19623,8 @@ system Procyon
 	trade Metal 429
 	trade Plastic 472
 	fleet "Small Northern Merchants" 700
-	fleet "Large Northern Merchants" 1200
+	fleet "Large Northern Merchants" 1260
+	fleet "Northern Combined Freighters" 12000
 	fleet "Paradise Merchants" 900
 	fleet "Small Republic" 1500
 	fleet "Large Republic" 3000
@@ -20310,7 +20337,7 @@ system Regor
 	trade Metal 255
 	trade Plastic 277
 	fleet "Small Northern Merchants" 2000
-	fleet "Large Northern Merchants" 6000
+	fleet "Large Northern Merchants" 6300
 	fleet "Small Deep Security" 3600
 	fleet "Small Deep Merchants" 2400
 	fleet "Large Deep Security" 8000
@@ -20593,7 +20620,7 @@ system Rigel
 	trade Metal 302
 	trade Plastic 472
 	fleet "Small Northern Merchants" 2000
-	fleet "Large Northern Merchants" 4000
+	fleet "Large Northern Merchants" 4200
 	fleet "Small Republic" 3500
 	fleet "Large Republic" 7000
 	fleet "Republic Logistics" 7000
@@ -21186,7 +21213,7 @@ system Saiph
 	trade Metal 281
 	trade Plastic 473
 	fleet "Small Northern Merchants" 1200
-	fleet "Large Northern Merchants" 2000
+	fleet "Large Northern Merchants" 2100
 	fleet "Small Northern Pirates" 2000
 	fleet "Large Northern Pirates" 3000
 	fleet "Small Republic" 4000
@@ -22488,7 +22515,8 @@ system Sirius
 	trade Metal 480
 	trade Plastic 366
 	fleet "Small Northern Merchants" 500
-	fleet "Large Northern Merchants" 700
+	fleet "Large Northern Merchants" 740
+	fleet "Northern Combined Freighters" 7000
 	fleet "Paradise Merchants" 800
 	fleet "Small Republic" 1000
 	fleet "Large Republic" 2500
@@ -22717,7 +22745,8 @@ system Sol
 	trade Metal 402
 	trade Plastic 272
 	fleet "Small Northern Merchants" 300
-	fleet "Large Northern Merchants" 500
+	fleet "Large Northern Merchants" 530
+	fleet "Northern Combined Freighters" 5000
 	fleet "Paradise Merchants" 800
 	fleet "Small Republic" 600
 	fleet "Large Republic" 900
@@ -23082,7 +23111,7 @@ system Sospi
 	trade Metal 311
 	trade Plastic 414
 	fleet "Small Northern Merchants" 1500
-	fleet "Large Northern Merchants" 3000
+	fleet "Large Northern Merchants" 3150
 	fleet "Small Northern Pirates" 1000
 	fleet "Large Northern Pirates" 2000
 	fleet "Small Republic" 5000
@@ -23459,7 +23488,7 @@ system Suhail
 	trade Metal 259
 	trade Plastic 277
 	fleet "Small Northern Merchants" 4000
-	fleet "Large Northern Merchants" 9000
+	fleet "Large Northern Merchants" 9450
 	fleet "Small Deep Security" 10000
 	fleet "Small Deep Merchants" 3000
 	fleet "Large Deep Merchants" 7000
@@ -23706,7 +23735,8 @@ system Talita
 	trade Metal 290
 	trade Plastic 469
 	fleet "Small Northern Merchants" 600
-	fleet "Large Northern Merchants" 900
+	fleet "Large Northern Merchants" 950
+	fleet "Northern Combined Freighters" 9000
 	fleet "Paradise Merchants" 800
 	fleet "Small Republic" 1000
 	fleet "Large Republic" 4000
@@ -23771,7 +23801,7 @@ system "Tania Australis"
 	trade Metal 351
 	trade Plastic 390
 	fleet "Small Northern Merchants" 1000
-	fleet "Large Northern Merchants" 2000
+	fleet "Large Northern Merchants" 2100
 	fleet "Small Republic" 3000
 	fleet "Small Northern Pirates" 4000
 	fleet "Large Northern Pirates" 9000
@@ -23968,7 +23998,8 @@ system Tejat
 	trade Metal 345
 	trade Plastic 492
 	fleet "Small Northern Merchants" 700
-	fleet "Large Northern Merchants" 1500
+	fleet "Large Northern Merchants" 1580
+	fleet "Northern Combined Freighters" 15000
 	fleet "Paradise Merchants" 1200
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 2000
@@ -24776,7 +24807,8 @@ system Vega
 	trade Metal 356
 	trade Plastic 315
 	fleet "Small Northern Merchants" 800
-	fleet "Large Northern Merchants" 3000
+	fleet "Large Northern Merchants" 3150
+	fleet "Northern Combined Freighters" 30000
 	fleet "Small Republic" 1600
 	fleet "Large Republic" 5000
 	fleet "Human Miners" 5000
@@ -24885,7 +24917,7 @@ system Volax
 	trade Metal 260
 	trade Plastic 423
 	fleet "Small Northern Merchants" 1500
-	fleet "Large Northern Merchants" 3000
+	fleet "Large Northern Merchants" 3150
 	fleet "Small Northern Pirates" 1000
 	fleet "Large Northern Pirates" 3000
 	fleet "Small Republic" 5000
@@ -25213,7 +25245,8 @@ system Wazn
 	trade Metal 246
 	trade Plastic 433
 	fleet "Small Northern Merchants" 700
-	fleet "Large Northern Merchants" 1500
+	fleet "Large Northern Merchants" 1580
+	fleet "Northern Combined Freighters" 15000
 	fleet "Paradise Merchants" 1800
 	fleet "Small Republic" 2500
 	fleet "Large Republic" 5000
@@ -25800,7 +25833,8 @@ system Zosma
 	trade Metal 271
 	trade Plastic 498
 	fleet "Small Northern Merchants" 800
-	fleet "Large Northern Merchants" 1200
+	fleet "Large Northern Merchants" 1260
+	fleet "Northern Combined Freighters" 12000
 	fleet "Paradise Merchants" 2500
 	fleet "Small Deep Security" 1000
 	fleet "Small Deep Merchants" 4000

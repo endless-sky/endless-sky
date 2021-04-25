@@ -762,7 +762,7 @@ ship "Bulk Freighter"
 	thumbnail "thumbnail/bulk freighter"
 	attributes
 		category "Heavy Freighter"
-		"cost" 9400000
+		"cost" 9500000
 		"shields" 4000
 		"hull" 7600
 		"required crew" 6
@@ -812,7 +812,64 @@ ship "Bulk Freighter"
 	explode "large explosion" 35
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description "The Bulk Freighter is the ultimate cargo ship, able to carry as much cargo as four ordinary Syndicate Freighters. It is also, however, an incredibly slow ship and difficult to maneuver, especially when loaded down with cargo. Some freight caravans use ordinary freighters instead of bulk freighters just to avoid the hassle of constantly having to wait for the Bulk Freighter to properly align itself for hyperspace travel."
+	description "The Bulk Freighter is the ultimate cargo ship, able to carry as much cargo as four ordinary Syndicate Freighters. Its on-board gearing allow it to service even the most primitive colonies, though dock workers in busier spaceports often joke that it would be simpler to dock smaller freighters within its gigantic holds. It is also an incredibly slow ship and difficult to maneuver, especially when loaded down with cargo. Some freight caravans use ordinary freighters instead of bulk freighters just to avoid the hassle of constantly having to wait for the Bulk Freighter to properly align itself for hyperspace travel."
+
+ship "Combined Freighter"
+	sprite "ship/combined freighter"
+	thumbnail "thumbnail/combined freighter"
+	attributes
+		category "Heavy Freighter"
+		"cost" 9300000
+		"shields" 4100
+		"hull" 7500
+		"required crew" 6
+		"bunks" 18
+		"mass" 870
+		"drag" 16
+		"heat dissipation" .55
+		"fuel capacity" 600
+		"cargo space" 600
+		"outfit space" 410
+		"weapon capacity" 180
+		"engine capacity" 85
+		weapon
+			"blast radius" 120
+			"shield damage" 1200
+			"hull damage" 600
+			"hit force" 1800
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Laser Turret" 3
+		"Heavy Anti-Missile Turret" 2
+		
+		"RT-I Radiothermal"
+		"LP144a Battery Pack"
+		"D23-QP Shield Generator"
+		"Laser Rifle"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Scram Drive"
+		
+	engine -20 195.5
+	engine 20 195.5
+	gun -23.5 -182 "Sidewinder Missile Launcher"
+	gun 23.5 -182 "Sidewinder Missile Launcher"
+	turret 0 -90.5 "Laser Turret"
+	turret 0 -40.5 "Heavy Anti-Missile Turret"
+	turret 0 9.5 "Laser Turret"
+	turret 0 59.5 "Heavy Anti-Missile Turret"
+	turret 0 109 "Laser Turret"
+	leak "leak" 40 50
+	leak "flame" 30 80
+	leak "big leak" 50 30
+	explode "small explosion" 15
+	explode "medium explosion" 25
+	explode "large explosion" 35
+	explode "huge explosion" 20
+	"final explode" "final explosion large"
+	description "The Combined Freighter is a newer, more popular configuration of the Bulk Freighter that replaces two-thirds of the loose cargo holds with intermodal containers for more efficient turnaround in larger, better-equipped ports. As with its geared cousin, however, it remains an incredibly slow ship and difficult to maneuver, especially when loaded down with cargo. Some freight caravans use ordinary freighters instead of bulk freighters just to avoid the hassle of constantly having to wait for the Bulk Freighter to properly align itself for hyperspace travel."
 
 
 

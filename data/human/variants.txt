@@ -453,6 +453,79 @@ ship "Bulk Freighter" "Bulk Freighter (Proton)"
 		"A375 Atomic Steering"
 		"Scram Drive"
 
+ship "Combined Freighter" "Combined Freighter (Blaster)"
+	outfits
+		"Quad Blaster Turret" 5
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"Fusion Reactor"
+		"LP072a Battery Pack"
+		"D94-YV Shield Generator"
+		"Water Coolant System"
+		"Outfits Expansion" 2
+		"Laser Rifle"
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Scram Drive"
+
+
+ship "Combined Freighter" "Combined Freighter (Hai)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Pulse Turret" 2
+		"Chameleon Anti-Missile" 3
+		"RT-I Radiothermal"
+		"Hai Ravine Batteries"
+		"D23-QP Shield Generator"
+		"Pulse Rifle" 2
+		"X3700 Ion Thruster"
+		`"Benga" Atomic Steering`
+		`"Basrem" Atomic Steering`
+		"Scram Drive"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Chameleon Anti-Missile"
+	turret "Chameleon Anti-Missile"
+	turret "Chameleon Anti-Missile"
+
+
+ship "Combined Freighter" "Combined Freighter (Heavy)"
+	outfits
+		"Laser Turret" 2
+		"Heavy Laser Turret" 2
+		"Heavy Anti-Missile Turret"
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"Fission Reactor"
+		"LP072a Battery Pack"
+		"D94-YV Shield Generator"
+		"Outfits Expansion"
+		"Laser Rifle" 3
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Scram Drive"
+	turret "Laser Turret"
+	turret "Laser Turret"
+	turret "Heavy Anti-Missile Turret"
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
+
+
+ship "Combined Freighter" "Combined Freighter (Proton)"
+	outfits
+		"Proton Turret" 3
+		"Heavy Anti-Missile Turret"
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"Fission Reactor"
+		"LP072a Battery Pack"
+		"D94-YV Shield Generator"
+		"Outfits Expansion"
+		"Laser Rifle"
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Scram Drive"
 
 
 ship "Carrier" "Carrier (Jump)"
