@@ -26241,6 +26241,9 @@ planet "Alta Hai"
 	spaceport `If this section of the ring is any indication, there must be trillions of Quarg here. Since the construction work on the ring has long since ended, many of them seem to spend their time with creative or scientific endeavors instead. The spaceport is decorated with artwork of every imaginable kind: sculptures, mobiles, paintings, music, and even one hallway that cycles through various artificial odors, some of them intensely unpleasant to your human senses.`
 	bribe 0
 	security 0.9
+	tribute 100000
+		threshold 8000
+		fleet Quarg 300
 
 planet Amazon
 	attributes core tourism oil frontier
@@ -26966,6 +26969,9 @@ planet Echo
 	government Quarg
 	bribe 0
 	security 0.9
+	tribute 2000
+		threshold 8000
+		fleet Quarg 4
 
 planet "Elek Kartanu"
 	attributes korath
@@ -27201,6 +27207,9 @@ planet Forpelog
 	spaceport `Your ship is docked on a metal pad immediately outside the dome of the city, which towers over you. Immediately after you landed, a smaller canopy unfolded around your ship, sealing it in and providing enough air for you to breathe as you make your way inside. The stark, lifeless badlands outside give way to bustling streets and lush blue foliage within. No other human beings are in sight.`
 	bribe 0
 	security 0.9
+	tribute 1000
+		threshold 8000
+		fleet Quarg 2
 
 planet Foundry
 	attributes core factory urban
@@ -27378,6 +27387,9 @@ planet Grakhord
 	spaceport `Here, you feel like a young child lost among a crowd of tall, indifferent adults. The average adult Quarg is over three meters tall, and although they move slowly and gracefully, on their long legs they easily speed by you. Worse, the counters for the merchant exchange, bank, and job board are high enough that you can barely see over them. But, the Quarg have helpfully provided stepping stools stashed under the counters so that shorter humans can carry out business without having to constantly crane their necks upwards.`
 	bribe 0
 	security 0.9
+	tribute 2000
+		threshold 8000
+		fleet Quarg 4
 
 planet "Graveyard Wormhole (Unstable)"
 	attributes "requires: quantum keystone"
@@ -27798,6 +27810,9 @@ planet "Kuwaru Efreti"
 	spaceport `	Although the spaceport offers all the usual amenities, including a small merchant's exchange for trading goods, you feel slightly self-conscious about breaking the silence of the station to speak to anyone.`
 	bribe 0
 	security 1
+	tribute 50000
+		threshold 8000
+		fleet Quarg 100
 
 planet Lagrange
 	attributes quarg tourism station
@@ -27806,6 +27821,9 @@ planet Lagrange
 	spaceport `In the docking section are flexible, oddly organic-looking tubes that snaked out to connect to your ship as it approached. Walking through the tube and into the station was a somewhat disconcerting experience. Inside, crowds of human tourists gawk at the tall, thin Quarg, who for the most part seem unfazed by the attention. The station is perfectly clean; every surface shines.`
 	bribe 0
 	security 0.9
+	tribute 6000
+		threshold 8000
+		fleet Quarg 40
 
 planet "Laki Nemparu"
 	attributes korath efret
