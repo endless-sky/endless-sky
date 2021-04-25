@@ -1070,10 +1070,10 @@ mission "Remnant: Deep Surveillance"
 		government "Remnant"
 	stopover "Valhalla"
 	to offer
-		has "License: Remnant"
+		has "license: Remnant"
 		or
 			and
-				has "Terminus Exploration: done"
+				has "Terminus exploration: done"
 				not "Deep: Remnant 0: done"
 			has "Deep: Remnant Research: done"
 	on offer
@@ -3088,7 +3088,7 @@ mission "Remnant: Keystone Research 1"
 			`	"Greetings, <first>! I trust you are settling in among us?" he signs using simple gestures. "I picked up a rumor that you are learning our language, too." You sign the affirmative as you sit down. "Good, that is useful." He pauses, then continues, "I never introduced myself before. My name is Aeolus, and I help manage resource logistics for our fleets." He eyes you for a moment, then ventures, "You came in here with the appearance of looking for something. Is there something on your mind?"`
 			choice
 				`	"How is the outfit business going?"`
-				`	"That last job payed rather well. Do you have any more like it?"`
+				`	"That last job paid rather well. Do you have any more like it?"`
 					goto crystaljobs
 			`	"Well, fairly well. Stocks are up, there are quite a few new outfits in the current, and some recent supply line disruptions have been resolved," he gestures appreciatively. "I am told that we have you to thank for some of that.`
 			`	"Those 'quantum keystones' you brought back have been quite interesting. The process of dismantling them for analysis yielded some intriguing results." He notices your expression. "Oh, you were expecting me to sell them, weren't you?"`
