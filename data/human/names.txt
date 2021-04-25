@@ -72,7 +72,7 @@ phrase "civilian"
 		"civilian subphrase 11" 339360
 		"civilian subphrase 12" 6080
 		"civilian subphrase 13" 4900
-		"civilian subphrase 14" 22050
+		"civilian subphrase 14" 39200
 		"civilian subphrase 15" 15620
 
 phrase "adjectives"
@@ -533,28 +533,14 @@ phrase "plural nouns"
 		"Tides"
 		"Forms"
 		"Motes"
-		# Need to duplicate these because not all the words in the 'female titles' phrase could be pluralized by simply adding 's' to the end
-		"Ladies"
-		"Princesses"
-		"Queens"
-		"Empresses"
-		"Duchesses"
-		"Mistresses"
-		# Need to duplicate these here as well to prevent the male titles from showing up way too often relative to the female ones
-		"Lords"
-		"Princes"
-		"Kings"
-		"Emperors"
-		"Dukes"
-		"Barons"
-		"Masters"
-		# Need to duplicate gender-neutral titles as well
-		"Saints"
-		"Captains"
-		"Champions"
-		"Admirals"
-		"Sovereigns"
-		"Commodores"
+		"${female titles}%s"
+		"${male titles}s"
+		"${gender-neutral titles}s"
+	# Plural forms of some female titles are special cases.
+	replace
+		"ss%s" "sses"
+		"y%s" "ies"
+		"%"	""
 
 phrase "nouns of indeterminate quantity"
 	word
@@ -675,7 +661,6 @@ phrase "things you can be of"
 		"the-nouns" 205
 		"nouns of indeterminate quantity" 101
 
-# Make sure to add any additions to the "plural nouns" list in plural form
 phrase "male titles"
 	word
 		"Lord"
@@ -686,7 +671,6 @@ phrase "male titles"
 		"Baron"
 		"Master"
 
-# Make sure to add any additions to the "plural nouns" list in plural form
 phrase "female titles"
 	word
 		"Lady"
@@ -696,7 +680,6 @@ phrase "female titles"
 		"Duchess"
 		"Mistress"
 
-# Make sure to add any additions to the "plural nouns" list in plural form
 phrase "gender-neutral titles"
 	word
 		"Saint"
@@ -1572,11 +1555,15 @@ phrase "civilian subphrase 3"
 		"female titles" 1
 		"gender-neutral titles" 1
 	word
-		"'s "
+		"%'s "
 	phrase
 		"singular nouns" 201
 		"plural nouns" 110
 		"nouns of indeterminate quantity" 101
+	# When making a word ending in "s" possessive, only add an apostrophe.
+	replace
+		"s%'s" "s'"
+		"%" ""
 
 # e.g.:
 # Words and Changes
@@ -1810,15 +1797,15 @@ phrase "civilian subphrase 14"
 		"Zhou"
 		"Zhuang"
 	word
-		"" 24
-		" II"
-		" III"
-		" Hu"
-		" Shan"
-		" Tang"
-		" Chuan"
-		" Shun"
-		" Gang"
+		" "
+	word
+		"${somtimes a successor}" 6
+		"Hu"
+		"Shan"
+		"Tang"
+		"Chuan"
+		"Shun"
+		"Gang"
 
 phrase "civilian subphrase 15"
 	# These should ideally all be single-syllable words
@@ -2959,7 +2946,7 @@ phrase "pirate nouns"
 		"Ghost"
 		"Rum"
 		"Snakes"
-		"Abbatoir"
+		"Abattoir"
 		"Asylum"
 		"Sausage"
 		"Striker"
@@ -3003,7 +2990,6 @@ phrase "pirate nouns"
 		"Slayer"
 		"Vulture"
 
-# Many of these also appear in "pirate nouns", but only some of those words work after "bad outcomes", which is why it's a separate list
 phrase "pirate nouns that work after bad outcomes"
 	word
 		"Ship"
@@ -3031,8 +3017,8 @@ phrase "pirate nouns that work after bad outcomes"
 		"Devil"
 		"God"
 		"Hydra"
-		"Blade"
 		"Army"
+		"Ark"
 
 phrase "bad outcomes"
 	word
@@ -3247,11 +3233,15 @@ phrase "pirate subphrase 4"
 	phrase
 		"sinister names"
 	word
-		"'s "
+		"%'s "
 	phrase
 		"pirate nouns" 107
 		"pirate nouns that work after bad outcomes" 27
 		"bad outcomes" 50
+	# When making a word ending in "s" possessive, only add an apostrophe.
+	replace
+		"s%'s" "s'"
+		"%" ""
 
 phrase "pirate subphrase 5"
 	phrase
