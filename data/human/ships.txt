@@ -998,22 +998,22 @@ ship "Class C Freighter"
 		
 	engine -20 195.5
 	engine 20 195.5
+	turret 0 -90.5 "Heavy Laser Turret"
 	turret 0 -40.5 "Heavy Anti-Missile Turret"
-	turret 0 9.5 "Heavy Laser Turret"
 	turret 0 59.5 "Heavy Anti-Missile Turret"
 	turret 0 109 "Heavy Laser Turret"
-	bay "Drone" -66 -115 left
-	bay "Drone" -66 -65 left
-	bay "Drone" -66 -15 left
-	bay "Drone" -66 35 left
-	bay "Drone" -66 85 left
-	bay "Drone" -66 135 left
-	bay "Drone" 66 -115 right
-	bay "Drone" 66 -65 right
-	bay "Drone" 66 -15 right
-	bay "Drone" 66 35 right
-	bay "Drone" 66 85 right
-	bay "Drone" 66 135 right
+	bay "Drone" -60 -115 left
+	bay "Drone" -60 -65 left
+	bay "Drone" -60 -15 left
+	bay "Drone" -60 35 left
+	bay "Drone" -60 85 left
+	bay "Drone" -60 135 left
+	bay "Drone" 60 -115 right
+	bay "Drone" 60 -65 right
+	bay "Drone" 60 -15 right
+	bay "Drone" 60 35 right
+	bay "Drone" 60 85 right
+	bay "Drone" 60 135 right
 	leak "leak" 30 50
 	leak "flame" 50 80
 	leak "big leak" 40 30
