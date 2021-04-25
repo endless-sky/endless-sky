@@ -1804,7 +1804,7 @@ mission "Remnant: Tech Retrieval"
 
 mission "Remnant: Heavy Laser"
 	name "Retrieve Heavy Lasers"
-	description "A Remnant engineer has offered to pay you <payment> in return for delivering two heavy lasers to <planet> for them to study."
+	description "A Remnant engineer has asked you for a delivery of two heavy lasers to <planet> for them to study."
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -1845,7 +1845,7 @@ mission "Remnant: Heavy Laser"
 
 mission "Remnant: Plasma Cannon"
 	name "Retrieve Plasma Cannons"
-	description "A Remnant engineer has offered to pay you <payment> in exchange for delivering two plasma cannons to a team on <planet>."
+	description "A Remnant engineer has offered you a reward in exchange for delivering two plasma cannons to a team on <planet>."
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -1934,7 +1934,7 @@ mission "Remnant: Catalytic Ramscoop"
 
 mission "Remnant: Electron Beam"
 	name "Retrieve Electron Beams for the Remnant"
-	description "A Remnant engineer has offered you <payment> for delivering two electron beams to a testing range on <planet>."
+	description "A Remnant engineer has offered you a reward for delivering two electron beams to a testing range on <planet>."
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -1959,7 +1959,7 @@ mission "Remnant: Electron Beam"
 			label familiar
 			`	Given what you know about Taely, you decide to skip the spaceport proper and head for the shipyard. After a frustrating half hour spent wandering around trying to find her, you finally encounter a helpful weapons tech who says they can check the weapon on Taely's behalf.`
 			label next
-			`	You accompany her back to your ship, where she examines the electron beam. "This could be useful. Focusing energy into continuous beams has been a popular idea for centuries. It is very useful to know that they have finally managed to make it into an effective weapon."`
+			`	You accompany her back to your ship, where she examines the electron beam. "This could be useful. Focusing energy into continuous beams has been a popular idea for centuries. It is very useful to know that they have finally managed to make it into an effective weapon. If you could deliver two electron beams to one of our testing ranges on <planet> you would be well compensated."`
 				accept
 	on visit
 		dialog `You have returned to <planet>, but you don't have the two electron beams that Taely requested. Go buy two electron beams before returning.`
