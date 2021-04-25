@@ -70,7 +70,7 @@ string Phrase::Get() const
 	{
 		if(!part.choices.empty())
 		{
-			const auto &choice = part.choices[Random::Int(part.choices.size())];
+			const auto &choice = part.Get();
 			for(const auto &element : choice)
 				result += element.second ? element.second->Get() : element.first;
 		}
@@ -108,7 +108,9 @@ Phrase::Choice::Choice(const DataNode &node, bool isPhraseName)
 	// The given datanode should not have any children.
 	if(node.HasChildren())
 		node.begin()->PrintTrace("Skipping unrecognized child node:");
-
+	
+	weight = (node.Size() >= 2 ? node.Value(1) : 1);
+	
 	if(isPhraseName)
 	{
 		emplace_back(string{}, GameData::Phrases().Get(node.Token(0)));
@@ -151,6 +153,18 @@ Phrase::Choice::Choice(const DataNode &node, bool isPhraseName)
 
 
 
+// Pick a random choice from this part given their weights.
+const Phrase::Choice &Phrase::Part::Get() const
+{
+	unsigned index = 0;
+	for(int choice = Random::Int(total); choice >= choices[index].weight; ++index)
+		choice -= choices[index].weight;
+	
+	return choices[index];
+}
+
+
+
 // Forwarding constructor, for use with emplace/emplace_back.
 Phrase::Sentence::Sentence(const DataNode &node, const Phrase *parent)
 {
@@ -175,10 +189,16 @@ void Phrase::Sentence::Load(const DataNode &node, const Phrase *parent)
 		
 		if(child.Token(0) == "word")
 			for(const DataNode &grand : child)
+			{
 				part.choices.emplace_back(grand);
+				part.total += part.choices.back().weight;
+			}
 		else if(child.Token(0) == "phrase")
 			for(const DataNode &grand : child)
+			{
 				part.choices.emplace_back(grand, true);
+				part.total += part.choices.back().weight;
+			}
 		else if(child.Token(0) == "replace")
 			for(const DataNode &grand : child)
 				part.replacements.emplace_back(grand.Token(0), grand.Size() >= 2 ? grand.Token(1) : string{});
