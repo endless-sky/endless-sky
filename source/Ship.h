@@ -479,6 +479,7 @@ private:
 	bool isCapturable = true;
 	bool isInvisible = false;
 	int customSwizzle = -1;
+	double heatFactor = 1.5;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
 	// Cached values for figuring out when anti-missile is in range.
