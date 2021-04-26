@@ -42,10 +42,12 @@ public:
 	
 	// Get the radius of this planet, i.e. how close you must be to land.
 	double Radius() const;
-	// If it is possible to land on this planet, this returns the Planet
-	// objects that gives more information about it. Otherwise, this
-	// function will just return nullptr.
+	
+	// Determine if this object represents a planet with valid data.
+	bool HasValidPlanet() const;
+	// Get this object's planet, if any. It may or may not be fully defined.
 	const Planet *GetPlanet() const;
+	
 	// Only planets that you can land on have names.
 	const std::string &Name() const;
 	// If it is impossible to land on this planet, get the message
