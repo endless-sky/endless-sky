@@ -303,6 +303,8 @@ void Ship::Load(const DataNode &node)
 		}
 		else if(key == "never disabled")
 			neverDisabled = true;
+		else if(key == "cookable")
+			cookable = true;
 		else if(key == "uncapturable")
 			isCapturable = false;
 		else if(((key == "fighter" || key == "drone") && child.Size() >= 3) ||
@@ -2009,7 +2011,12 @@ void Ship::DoGeneration()
 	
 	heat -= heat * HeatDissipation();
 	if(heat > MaximumHeat())
-		isOverheated = true;
+		if(cookable) {
+			hull = MinimumHull() - 1;
+		}
+		else {
+			isOverheated = true;
+		}
 	else if(heat < .9 * MaximumHeat())
 		isOverheated = false;
 	
