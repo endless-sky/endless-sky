@@ -475,6 +475,7 @@ private:
 	bool isSteering = false;
 	double steeringDirection = 0.;
 	bool neverDisabled = false;
+	bool cookable = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
 	int customSwizzle = -1;
