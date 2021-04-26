@@ -1613,7 +1613,7 @@ mission "Coalition Games"
 			
 			
 			label wp
-			`	Unlike the other trains, this one blatantly mimics Heliarch warships in design, clearly meshing the three styles of Coalition ships. It brings you to a large hangar, where you're instructed to board one of hundreds of ring-shaped flying rafts available. All seats face the inside of the ring, and you take the one that looks best suited for a human. As you idly watch the mechanics here perform various preflight safety checks on the raft, you hear what you by now recognize as Kimek speech from the seat to your right.`
+			`	Unlike the other trains, this one blatantly mimics Heliarch warships in design, clearly meshing the three styles of Coalition ships. It brings you to a large hangar, where you're instructed to board one of hundreds of ring-shaped flying rafts available. All seats face the inside of the ring, and you take the one that looks easiest to rearrange for human use. As you idly watch the mechanics here perform various preflight safety checks on the raft, you hear what you by now recognize as Kimek speech from the seat to your right.`
 			`	"Enjoyed the games, have you, Captain?" The small box translates just as you turn around, seeing that Pairri has taken her own seat besides yours. "Spectating my earlier match, you were, yes?"`
 			choice
 				`	"Yeah, you did pretty well."`
@@ -1622,7 +1622,7 @@ mission "Coalition Games"
 					goto why
 			
 			label nwp
-			`	Unlike the other trains, this one blatantly mimics Heliarch warships in design, clearly meshing the three styles of Coalition ships. It brings you to a large hangar, where you're instructed to board one of hundreds of ring-shaped flying rafts available. All seats face the inside of the ring, and you take the one that looks best suited for a human. As you idly watch the mechanics here perform various preflight safety checks on the raft, you hear what you by now recognize as Kimek speech from the seat to your right.`
+			`	Unlike the other trains, this one blatantly mimics Heliarch warships in design, clearly meshing the three styles of Coalition ships. It brings you to a large hangar, where you're instructed to board one of hundreds of ring-shaped flying rafts available. All seats face the inside of the ring, and you take the one that looks easiest to rearrange for human use. As you idly watch the mechanics here perform various preflight safety checks on the raft, you hear what you by now recognize as Kimek speech from the seat to your right.`
 			`	"Enjoyed the games, have you, Captain?" The small box translates just as you turn around, seeing that Pairri has taken her own seat besides yours.`
 			choice
 				`	"Yeah, though I didn't have time to stop by your own match, sorry."`
