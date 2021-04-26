@@ -26771,8 +26771,8 @@ planet Darkcloak
 	description `	Although the Hai tend to be an easygoing and nonviolent species, there are always a few in each generation that yearn for excitement, warfare, and conquest. These "Unfettered" Hai have built a major military base here, and they launch raids from here on convoys traveling through the nearby systems.`
 	spaceport `The occupants of this spaceport are not visibly different from the Hai you have encountered elsewhere, but they seem much more tense, angry, and hostile. As the only human here, you are being watched very closely, but no one threatens you directly.`
 	spaceport `	It is likely that most of the goods available for trade here were stolen from one of the nearby Hai systems.`
-	shipyard "Hai Basics"
-	outfitter "Hai Basics"
+	shipyard "Unfettered Basics"
+	outfitter "Unfettered Basics"
 
 planet Darkmetal
 	attributes hai mining "hai tourism"
