@@ -2011,7 +2011,7 @@ void Ship::DoGeneration()
 	
 	heat -= heat * HeatDissipation();
 	if(heat > MaximumHeat())
-		if(cookable) {
+		if(cookable && heat > MaximumHeat()*1.2) {
 			hull = MinimumHull() - 1;
 		}
 		else {
