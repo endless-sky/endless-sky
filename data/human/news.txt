@@ -654,7 +654,6 @@ news "reporter"
 			"Read this! 'The Real UGLIEST Starship that Lionheart Don't Want You to Know About!'"
 			"Look at my new article! 'The Protector - Actually a SCAM?'"
 			"Look at this! 'Five Reasons Why Captains Should Check Spaceports More Often - Number Two Will Make You Cry!'"
-			`Read my new article! 'Ten Things the Quarg Are Hiding from Us - Number Seven Will Surprise You!'`
 		word
 			`"`
 
