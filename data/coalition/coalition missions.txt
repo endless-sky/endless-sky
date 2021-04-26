@@ -1139,7 +1139,7 @@ mission "Saryd Couple 3"
 	destination "Saros"
 	on offer
 		conversation
-			`The couple leaves your ship and heads to a real estate agency. From what they told you during the trip, they have about 1,500,000 credits they can spend, which they claim is in line with the standard properties in the most valued (and most sought-after) locations here, and that they should still have enough money to pay you afterwards.`
+			`The couple leaves your ship and heads to a real estate agency. From what they told you during the trip, they have about two and a half million credits they can spend, which they claim is in line with the standard properties in the most valued (and most sought-after) locations here, and that they should still have enough money to pay you afterwards.`
 			`	They return from consulting, the both of them with disappointed looks on their faces. Inturi starts looking at the ships landing and departing while Aunaris comes talk to you.`
 			`	"Kept watch of one property, for months we had. On a mountain village, overlooking a lake, and with access to a nearby forest, it is. A few days ago, purchased it was," she sighs. "Available, another plot of land neighboring it is, but over half our funds, the land alone costs."`
 			`	Inturi then looks over, as if he had just received a shock, and says, "That's it! A ship! Live in a ship, we could!"`
@@ -1168,7 +1168,7 @@ mission "Saryd Couple 4"
 	destination "Far Garden"
 	on offer
 		conversation
-			`Inturi heads right to the shipyard, and you help him with the purchase itself. He says that alhough he has worked in many ships over the years, he never went to the shipyard for more than picking up some parts for repair, or to polish a newly produced model.`
+			`Inturi heads right to the shipyard, and you help him with the purchase itself. He says that although he has worked in many ships over the years, he never went to the shipyard for more than picking up some parts for repair, or to polish a newly produced model.`
 			`	Only when you're with him inside the Arach vessel do you think of asking if he even knows how to fly a ship, but he reassures you that it won't be a problem.`
 			`	"To work as a copilot for an old friend, my first job was. Worry about me crashing the ship, you need not," he jokes.`
 			`	He says he will wait for your lead and follow you to <destination> once you depart.`
