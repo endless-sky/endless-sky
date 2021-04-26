@@ -1070,10 +1070,10 @@ mission "Remnant: Deep Surveillance"
 		government "Remnant"
 	stopover "Valhalla"
 	to offer
-		has "License: Remnant"
+		has "license: Remnant"
 		or
 			and
-				has "Terminus Exploration: done"
+				has "Terminus exploration: done"
 				not "Deep: Remnant 0: done"
 			has "Deep: Remnant Research: done"
 	on offer
@@ -1804,7 +1804,7 @@ mission "Remnant: Tech Retrieval"
 
 mission "Remnant: Heavy Laser"
 	name "Retrieve Heavy Lasers"
-	description "A Remnant engineer has offered to pay you <payment> in return for delivering two heavy lasers to <planet> for them to study."
+	description "A Remnant engineer has asked you for a delivery of two heavy lasers to <planet> for them to study."
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -1845,7 +1845,7 @@ mission "Remnant: Heavy Laser"
 
 mission "Remnant: Plasma Cannon"
 	name "Retrieve Plasma Cannons"
-	description "A Remnant engineer has offered to pay you <payment> in exchange for delivering two plasma cannons to a team on <planet>."
+	description "A Remnant engineer has offered you a reward in exchange for delivering two plasma cannons to a team on <planet>."
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -1934,7 +1934,7 @@ mission "Remnant: Catalytic Ramscoop"
 
 mission "Remnant: Electron Beam"
 	name "Retrieve Electron Beams for the Remnant"
-	description "A Remnant engineer has offered you <payment> for delivering two electron beams to a testing range on <planet>."
+	description "A Remnant engineer has offered you a reward for delivering two electron beams to a testing range on <planet>."
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -1959,7 +1959,7 @@ mission "Remnant: Electron Beam"
 			label familiar
 			`	Given what you know about Taely, you decide to skip the spaceport proper and head for the shipyard. After a frustrating half hour spent wandering around trying to find her, you finally encounter a helpful weapons tech who says they can check the weapon on Taely's behalf.`
 			label next
-			`	You accompany her back to your ship, where she examines the electron beam. "This could be useful. Focusing energy into continuous beams has been a popular idea for centuries. It is very useful to know that they have finally managed to make it into an effective weapon."`
+			`	You accompany her back to your ship, where she examines the electron beam. "This could be useful. Focusing energy into continuous beams has been a popular idea for centuries. It is very useful to know that they have finally managed to make it into an effective weapon. If you could deliver two electron beams to one of our testing ranges on <planet> you would be well compensated."`
 				accept
 	on visit
 		dialog `You have returned to <planet>, but you don't have the two electron beams that Taely requested. Go buy two electron beams before returning.`
@@ -4121,7 +4121,7 @@ mission "Remnant: Cognizance 18"
 				`	"Okay, let's go."`
 					goto letsgo
 			label goodidea
-			`	Chilia signs with a resolute tone. "Is it a good idea? Maybe, maybe not. Is it the best idea we have so far? Yes." He sighs. "I fully expect the Archon to interfere: they do have long memories. As best we can tell, they can pick out who is leading a fleet, so you should expect to them to talk to you. That is, if they do not simply start shooting, anyway."`
+			`	Chilia signs with a resolute tone. "Is it a good idea? Maybe, maybe not. Is it the best idea we have so far? Yes." He sighs. "I fully expect the Archon to interfere: they do have long memories. As best we can tell, they can pick out who is leading a fleet, so you should expect them to talk to you. That is, if they do not simply start shooting, anyway."`
 			label letsgo
 			`	Chilia continues. "You don't need to actually land anywhere in Nenia this time, Captain. Just make sure the Pelicans get there, load up, and return safely." The two stand up and get ready to leave. "May the Embers burn bright for you, Captain." With that, they disembark and quickly clear the blast area around the landing pad. Around you a large group of Pelicans are warming up, each one synchronizing to your IFF and confirming their status.`
 				accept
@@ -4364,7 +4364,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 		outfit "Research Laboratory"
 		conversation
 			`You follow the directions of the starport control and settle onto a pad next to the outfitter. You barely have a chance to finish your landing checks before a team of Remnant have a compact pod waiting on your loading ramp. Once you open the cargo bay doors, they pick it up and maneuver it inside. They start securing it to the ship while Dawn and one of the scientists approaches you.`
-			`	"We have loaded the research laboratory onboard. The team will install it if they can find the space, but if they do not, it will be secured in the cargo bay," The Remnant scientist explains. "Before you depart, please verify that the laboratory is installed in the correct location. You know your ship better that we do, after all." She turns back to Dawn and makes a gesture of respect. "Embers guide your path, Seeker." With that, she strides away into the hive of activity that is the outfitting bays.`
+			`	"We have loaded the research laboratory onboard. The team will install it if they can find the space, but if they do not, it will be secured in the cargo bay," The Remnant scientist explains. "Before you depart, please verify that the laboratory is installed in the correct location. You know your ship better than we do, after all." She turns back to Dawn and makes a gesture of respect. "Embers guide your path, Seeker." With that, she strides away into the hive of activity that is the outfitting bays.`
 			choice
 				`	"So, what is our next step?"`
 					goto labnext
@@ -4552,7 +4552,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 				`	"Are there any special adjustments needed?"`
 				`	"The <ship> is ready to go."`
 					goto readyforstorms
-			`	"Well, I expect you are already set up to handle the normal Ember Waste heat, correct?" She continues without waiting for you to reply. "The Ember Waste storms primarily are a risk to electrical systems - typically by draining your power. So you can compensate by ensuring that you have some excess available to use. I know some captains carry extra generators to ensure they always have extra power, but others instead carry extra crystal capacitors so they can outlast the storm. In theory, you could just accept that the your ship will be shut down during the height of the storm, and reboot everything afterwards. So long as no threats are present, it is safe, but somewhat nerve-wracking. Which strategy fits the <ship> is up to you."`
+			`	"Well, I expect you are already set up to handle the normal Ember Waste heat, correct?" She continues without waiting for you to reply. "The Ember Waste storms primarily are a risk to electrical systems - typically by draining your power. So you can compensate by ensuring that you have some excess available to use. I know some captains carry extra generators to ensure they always have extra power, but others instead carry extra crystal capacitors so they can outlast the storm. In theory, you could just accept that your ship will be shut down during the height of the storm, and reboot everything afterwards. So long as no threats are present, it is safe, but somewhat nerve-wracking. Which strategy fits the <ship> is up to you."`
 			label readyforstorms
 			`	"I will settle into a bunk to do some pre-calculations. Please let me know when we arrive in Aescolanus."`
 				accept

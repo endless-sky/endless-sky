@@ -481,7 +481,7 @@ void MapDetailPanel::DrawInfo()
 		set<const Planet *> shown;
 		const Sprite *planetSprite = SpriteSet::Get("ui/map planet");
 		for(const StellarObject &object : selectedSystem->Objects())
-			if(object.GetPlanet())
+			if(object.HasSprite() && object.HasValidPlanet())
 			{
 				// The same "planet" may appear multiple times in one system,
 				// providing multiple landing and departure points (e.g. ringworlds).
@@ -674,7 +674,7 @@ void MapDetailPanel::DrawOrbits()
 			continue;
 		
 		Point pos = orbitCenter + object.Position() * scale;
-		if(object.GetPlanet() && object.GetPlanet()->IsAccessible(player.Flagship()))
+		if(object.HasValidPlanet() && object.GetPlanet()->IsAccessible(player.Flagship()))
 			planets[object.GetPlanet()] = pos;
 		
 		const float *rgb = Radar::GetColor(object.RadarType(player.Flagship())).Get();

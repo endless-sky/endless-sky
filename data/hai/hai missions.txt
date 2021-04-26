@@ -1378,7 +1378,7 @@ mission "Pirate Troubles [2]"
 		event "scar's hideout"
 		conversation
 			`After having visited various pirate worlds asking about Scar's Legion, you believe that you know where their hideout is.`
-			`	You know that the leader of Scar's Legion use to talk about wanting a hollowed out asteroid as a base. You also know that Scar's Legion has recently been very active in the uninhabited systems of the Far North. You conclude that the gang's hideout could is likely an asteroid located in one of a few systems that are in proximity to the wormhole that leads to the Hai. You mark <waypoints> on your map and get ready to confront them.`
+			`	You know that the leader of Scar's Legion used to talk about wanting a hollowed out asteroid as a base. You also know that Scar's Legion has recently been very active in the uninhabited systems of the Far North. You conclude that the gang's hideout is likely an asteroid located in one of a few systems that are in proximity to the wormhole that leads to the Hai. You mark <waypoints> on your map and get ready to confront them.`
 				accept
 	to complete
 		never
