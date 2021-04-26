@@ -1359,7 +1359,7 @@ outfit "Gatling Gun"
 	weapon
 		sprite "projectile/tinyflare"
 			"random start frame"
-		sound "explosion tiny"
+		sound "gatling"
 		ammo "Gatling Gun Ammo"
 		icon "icon/gat"
 		"inaccuracy" 2
