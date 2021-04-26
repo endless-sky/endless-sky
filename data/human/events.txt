@@ -983,6 +983,7 @@ event "fw conservatory founded"
 
 
 event "Thule becomes independent"
+	"reputation: Independent" >?= 10
 	system Men
 		government "Independent"
 		fleet "Small Independent" 400
