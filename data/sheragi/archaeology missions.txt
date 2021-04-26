@@ -1330,6 +1330,8 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			`	After patching as many micrometeorite holes as you can find, you use your ship's own life support to restore the Emerald Sword's atmosphere, and connect your ship's power to it to get the ship's systems minimally functional. Once it's in breathable condition, the crew boards the ship and begins getting to work. With the freshly pressurized atmosphere, you can't help but think that it smells like a tomb.`
 			`	Foster divides the crew up into various groups to explore the massive vessel and report back with their findings. "We may be here for a while. There's no telling how long it will take us to get this thing operational again. It has been many thousands of years after all," he says. Foster immediately begins inspecting one of the many Sheragi remains on board, while Eyama, Rakei, and Desyo each explore the ship with their own groups.`
 			`	Within half an hour, the entire ship is swarming with crew members hard at work studying the ship (and the remains of its prior inhabitants) and attempting to get it operational.`
+			
+			label researchers
 			choice
 				`	(Look for Foster to see what he's doing.)`
 				`	(Look for Eyama to see what she's doing.)`
@@ -1341,6 +1343,14 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 				`	(Return to your ship and wait until the Emerald Sword is operational.)`
 					goto end
 			
+			branch "spokewithfoster" "fosterconversation"
+				has "spoke with foster"
+
+			label spokewithfoster
+			`	(You have already talked to Foster.)
+				goto researchers
+			
+			label fosterconversation
 			apply
 				set "spoke with foster"
 			`	You find Foster in a room that appears to have been expanded beyond its original size and converted into a farming facility of some sort. There are rows of dried out soil, its nutrients long gone, with sunlamps suspended above. While most of the crew with Foster is busy studying the farm itself, his attention seems to be on a mummified Sheragi corpse slumped over against one of the walls. You notice that the corpse has a prosthetic wing attached to it, which has survived far better than its host.`
@@ -1372,9 +1382,17 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			label fosterend
 			`	Foster stands back up and steps away from the corpse. "I should get back to exploring the rest of the ship. No use in staring at corpses all day."`
 			`	You leave the area and see that the large door that was blocking the way into the area is laying against a wall. Foster mentioned that the door had been welded shut, so the crew must have removed it somehow to investigate the area. You notice a large dent in the middle of the door. You aren't sure if that's because of the crew getting into the facility, or from the ship's previous inhabitants attempting to break in.`
-				goto end
+				goto researchers
 			
-			label eyama
+			label eyama			
+			branch "spokewitheyama" "eyamaconversation"
+				has "spoke with eyama"
+
+			label spokewitheyama
+			`	(You have already talked to Eyama.)
+				goto researchers
+			
+			label eyamaconversation
 			apply
 				set "spoke with eyama"
 			`	You find Eyama investigating the living quarters of the ship, which consists of long halls lined on either side by bunk rooms. Many of the doors are already opened, suggesting that Eyama has already been through many of them. She comes out of one of the bunk rooms after looking through it and notices you. "Captain <last>! What brings you here?" she asks.`
@@ -1422,9 +1440,17 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			`	She then flips more pages. "Some of the Sheragi left to go to the planet, while others stayed behind. It doesn't sound like the split was amiable."`
 			`	She continues to flip through the pages as they eventually turn blank. She then goes back and stops on the last written page. "Part of the remaining crew locked themselves in the hydroponic farm wing of the ship, leaving the rest of the crew with limited amounts of food. 'I'm scared and I don't know what to do.'" Eyama stops reading and closes the book, looking teary eyed. "That was the last line."`
 			`	Eyama wipes a tear from her face. "A sad story, but there are plenty of sad stories in this place. No use in lingering on this one." Eyama puts the book under her arm and walks out into the hallway, going back to checking the living quarters.`
-				goto end
+				goto researchers
 			
-			label rakei
+			label rakei			
+			branch "spokewithrakei" "rakeiconversation"
+				has "spoke with rakei"
+
+			label spokewithrakei
+			`	(You have already talked to Rakei.)
+				goto researchers
+			
+			label rakeiconversation
 			apply
 				set "spoke with rakei"
 			`	As you are looking for Rakei, you hear a low hum begin emanating through the ship, followed by the dim glow of the emergency lights being replaced by the bright main lights. You eventually find Rakei with her crew walking through the halls of the underbelly of the ship. "Greetings, Captain," she says. "Is there something you need?"`
@@ -1458,9 +1484,17 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			label fighter
 			`	Rakei hops onto the top of the fighter, looking for a way in. She finds a hatch and opens it, looking shocked at what she sees. "Wait. I think these fighters are autonomous. I'm not seeing any signs of a life supports system, or even a way that a Sheragi could pilot this. There's barely even enough room for a younger Sheragi to fit into here. If the Sheragi couldn't have piloted these then why is there one missing?"`
 			`	Rakei closes the hatch and hops down from the fighter. "We still need to get other systems working before the ship is fully functional, so we can take a look at these fighters later. And maybe we'll find the missing fighter on the planet."`
-				goto end
+				goto researchers
 			
-			label desyo
+			label desyo			
+			branch "spokewithdesyo" "desyoconversation"
+				has "spoke with desyo"
+
+			label spokewithdesyo
+			`	(You have already talked to Desyo.)
+				goto researchers
+			
+			label desyoconversation
 			apply
 				set "spoke with desyo"
 			`	You find Desyo in the cockpit of the ship, overseeing a crew attempting to take control of the ship's computer systems. Makeshift scaffolding has been put in place just so that the crew can reach the controls. "Hello there, Captain," Desyo greets you as you walk in through the massive doorway. "Is there anything I can help you with?"`
@@ -1497,6 +1531,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			`	"How's your computer doing?" you ask.`
 			`	Desyo finds the computer on the other side of the room with a severely cracked screen, but somehow still functional. "Sturdy piece of hardware, isn't it?" she jokes. She begins tapping away at the keys as she squints at the screen. "I can still make out some of what I was able to pull from the cube. It looks like... that cube had some information on a weapon. Some sort of... chemical weapon? It seems to include... mention of coordinates. But that's all I was able to get. Whatever coordinates they were are lost to time."`
 			`	The crew are still standing around in shock as Desyo fiddles with her damaged computer. She looks up to see everyone staring at her. "Well, let's get back to work. We're not going to make any progress just standing around."`
+				goto researchers
 			
 			label end
 			`	You return to your ship, and after a few hours Foster contacts you saying that the ship is in operational condition. It'll need to be landed on the planet in this system so that the jump drive can be installed, though.`
