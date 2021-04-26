@@ -13,6 +13,7 @@ ship "Maeri'het"
 	sprite "ship/maeri'het"
 	thumbnail "thumbnail/maeri'het"
 	"never disabled"
+	"cookable"
 	attributes
 		category "Light Warship"
 		"cost" 13800000
@@ -22,7 +23,7 @@ ship "Maeri'het"
 		"bunks" 1
 		"mass" 390
 		"drag" 3.8
-		"heat dissipation" .4
+		"heat dissipation" .44
 		"fuel capacity" 800
 		"ramscoop" 0.58
 		"cargo space" 43
@@ -74,9 +75,11 @@ ship "Maeri'het"
 
 ship "Maeri'het" "Maeri'het (Disable-able)"
 	"uncapturable"
+	"cookable"
 
 ship "Maeri'het" "Maeri'het (EMP)"
 	"never disabled"
+	"cookable"
 	outfits
 		"EMP Torpedo" 32
 		"Ka'het Ravager Turret"
@@ -94,6 +97,7 @@ ship "Maeri'het" "Maeri'het (EMP)"
 
 ship "Maeri'het" "Maeri'het (EMP, Disable-able)"
 	"uncapturable"
+	"cookable"
 	outfits
 		"EMP Torpedo" 32
 		"Ka'het Ravager Turret"
@@ -114,6 +118,7 @@ ship "Telis'het"
 	sprite "ship/telis'het"
 	thumbnail "thumbnail/telis'het"
 	"never disabled"
+	"cookable"
 	attributes
 		category "Medium Warship"
 		"cost" 32600000
@@ -123,7 +128,7 @@ ship "Telis'het"
 		"bunks" 1
 		"mass" 820
 		"drag" 6.9
-		"heat dissipation" .35
+		"heat dissipation" .385
 		"fuel capacity" 800
 		"ramscoop" 0.82
 		"cargo space" 71
@@ -177,9 +182,11 @@ ship "Telis'het"
 
 ship "Telis'het" "Telis'het (Disable-able)"
 	"uncapturable"
+	"cookable"
 
 ship "Telis'het" "Telis'het (EMP)"
 	"never disabled"
+	"cookable"
 	outfits
 		"Ka'het EMP Deployer" 4
 		"Ka'het Annihilator Turret"
@@ -198,6 +205,7 @@ ship "Telis'het" "Telis'het (EMP)"
 
 ship "Telis'het" "Telis'het (EMP, Disable-able)"
 	"uncapturable"
+	"cookable"
 	outfits
 		"Ka'het EMP Deployer" 4
 		"Ka'het Annihilator Turret"
@@ -216,6 +224,7 @@ ship "Telis'het" "Telis'het (EMP, Disable-able)"
 
 ship "Telis'het" "Telis'het (Guns)"
 	"never disabled"
+	"cookable"
 	outfits
 		"Ka'het Ravager Beam" 4
 		"Ka'het Annihilator Turret" 5
@@ -232,6 +241,7 @@ ship "Telis'het" "Telis'het (Guns)"
 
 ship "Telis'het" "Telis'het (Guns, Disable-able)"
 	"uncapturable"
+	"cookable"
 	outfits
 		"Ka'het Ravager Beam" 4
 		"Ka'het Annihilator Turret" 5
@@ -251,6 +261,7 @@ ship "Vareti'het"
 	sprite ship/vareti'het
 	thumbnail "thumbnail/vareti'het"
 	"never disabled"
+	"cookable"
 	attributes
 		category "Heavy Warship"
 		cost 53800000
@@ -260,7 +271,7 @@ ship "Vareti'het"
 		"bunks" 1
 		"mass" 1520
 		"drag" 11.9
-		"heat dissipation" 0.3
+		"heat dissipation" 0.33
 		"fuel capacity" 700
 		"ramscoop" 0.97
 		"cargo space" 108
@@ -319,9 +330,11 @@ ship "Vareti'het"
 
 ship "Vareti'het" "Vareti'het (Disable-able)"
 	"uncapturable"
+	"cookable"
 
 ship "Vareti'het" "Vareti'het (EMP)"
 	"never disabled"
+	"cookable"
 	outfits
 		"Ka'het Nullifier"
 		"Ka'het Ravager Beam" 4
@@ -355,6 +368,7 @@ ship "Vareti'het" "Vareti'het (EMP)"
 
 ship "Vareti'het" "Vareti'het (EMP, Disable-able)"
 	"uncapturable"
+	"cookable"
 	outfits
 		"Ka'het Nullifier"
 		"Ka'het Ravager Beam" 4
@@ -388,6 +402,7 @@ ship "Vareti'het" "Vareti'het (EMP, Disable-able)"
 
 ship "Vareti'het" "Vareti'het (Strong)"
 	"never disabled"
+	"cookable"
 	outfits
 		"Ka'het Nullifier"
 		"Ka'het Annihilator" 6
@@ -418,6 +433,7 @@ ship "Vareti'het" "Vareti'het (Strong)"
 
 ship "Vareti'het" "Vareti'het (Strong, Disable-able)"
 	"uncapturable"
+	"cookable"
 	outfits
 		"Ka'het Nullifier"
 		"Ka'het Annihilator" 6
