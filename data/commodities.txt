@@ -198,7 +198,7 @@ trade
 		"high-tensile fibers"
 		"jet fuel"
 		"lacquer"
-		"laquer thinner"
+		"lacquer thinner"
 		"methanal formaldehyde"
 		"mylar"
 		"nylon fiber"
