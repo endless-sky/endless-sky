@@ -4547,12 +4547,12 @@ mission "Remnant: Expanded Horizons Storms 1"
 				`	"Sure; I am always willing to help."`
 				`	"Not today, sorry."`
 					decline
-			`	"Excellent! You already have a research laboratory onboard, and it has all the equipment I need. Now, before we head out, you should know that the goal of this mission is to do some analysis on the leading edge of a storm that will be breaking on the system shortly. We will not have to stay for the whole storm, but we will have to be there for at least the first part."`
+			`	"Excellent! You already have a research laboratory onboard, and it has all the equipment I need. Now, before we head out, you should know that the goal of this mission is to do some analysis on the leading edge of a storm that will be breaking on the system shortly. We do not need to weather the entire storm, but we will have to be there for at least the first part."`
 			choice
 				`	"Are there any special adjustments needed?"`
 				`	"The <ship> is ready to go."`
 					goto readyforstorms
-			`	"Well, I expect you are already set up to handle the normal Ember Waste heat, correct?" She continues without waiting for you to reply. "The Ember Waste storms primarily are a risk to electrical systems - typically by draining your power. So you can compensate by ensuring that you have some excess available to use. I know some captains carry extra generators to ensure they always have extra power, but others instead carry extra crystal capacitors so they can outlast the storm. In theory, you could just accept that your ship will be shut down during the height of the storm, and reboot everything afterwards. So long as no threats are present, it is safe, but somewhat nerve-wracking. Which strategy fits the <ship> is up to you."`
+			`	"Well, I expect you are already set up to handle the normal Ember Waste heat, correct?" She continues without waiting for you to reply. "The Ember Waste storms are primarily a danger to electrical systems - typically by draining your power. So you can compensate by ensuring that you have some excess available for use. I know some captains carry extra generators to ensure they always have extra power, but others instead carry extra crystal capacitors so they can outlast the storm. In theory, you could just accept that your ship will be shut down during the height of the storm, and simply reboot everything afterwards. So long as no threats are present, it is safe but somewhat nerve-wracking. Which strategy fits the <ship> is up to you."`
 			label readyforstorms
 			`	"I will settle into a bunk to do some pre-calculations. Please let me know when we arrive in Aescolanus."`
 				accept
@@ -4563,7 +4563,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 		system "Aescolanus"
 		ship "_Ion Timer Ship" "Timer"
 		personality unconstrained heroic nemesis
-		dialog `As the storm starts to swell around you, the instrumentation chimes to indicate that it has collected all the data it needs. Dawn quickly begins the shutdown routine to protect the equipment against potential damage, and gives you the OK to return to <planet>.`
+		dialog `As the storm starts to swell around you, the instrumentation chimes to indicate that it has collected all the data it needs. Dawn quickly begins the shutdown routine to protect the equipment against potential damage, giving you the OK to return back to <planet>.`
 	on complete
 		payment 250000
 		conversation
@@ -4591,7 +4591,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 				`	"Thanks! I think that is all the details I can handle right now."`
 					goto stormend
 			label stormresume
-			`	"Not really, although it does contribute. Most of the red glow seems to be the result of clouds of hydrogen gases at aproximately 2710 degrees, rather like the process documented by early Earth astronomers investigating nebulae. Except for most of these clouds, there is no obvious source of energy to keep the hydrogen excited. Obviously there is still energy being added to the system, but..." She trails off and gestures depreciatingly. "One more mystery to keep us alert and attentive."`
+			`	"Not really, although it does contribute to it. Most of the red glow seems to be the result of clouds of hydrogen gases at aproximately 2710 degrees, rather like the process documented by early Earth astronomers investigating nebulae. Except for most of these clouds, there is no obvious source of energy to keep the hydrogen excited. Obviously there is still energy being added to the system, but..." She trails off and gestures depreciatingly. "One more mystery to keep us alert and attentive."`
 			`	She smiles thoughtfully, and the display changes with the red haze vanishing and a silvery haze replacing it. "But that is where today's research comes in. We have been measuring these storms since we arrived in the Ember Waste. The human eye can only pick out a few of them on the display, but our algorithms have identified a significant number of ripples of energy." She appears thoughtful.`
 			`	"It is almost like watching the surface of a pond during a rainstorm: The surface appears to be chaotic, but with detailed enough instrumentation, one can pick out individual ripples and trace their paths backwards... Except we have yet to find an actual source for any of them. We can trace every ripple on a pond in a storm and find its origin, but we have yet to learn the dance that we have lived in for half a millennia."`
 			choice
