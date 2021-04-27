@@ -168,7 +168,14 @@ effect "final explosion medium"
 effect "final explosion large"
 	sound "final explosion large"
 
+effect "asteroid crunch small"
+	sound "asteroid crunch small"
 
+effect "asteroid crunch medium"
+	sound "asteroid crunch medium"
+	
+effect "asteroid crunch large"
+	sound "asteroid crunch large"	
 
 effect "basic launch"
 	sprite "effect/smoke"

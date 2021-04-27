@@ -643,6 +643,17 @@ Copyright: Copyright Mike Koenig
 License: CC-BY-SA-3.0
 Comment: Taken from http://soundbible.com/1151-Grenade.html
 
+Files: 
+ sounds/asteroid crunch small.wav
+ sounds/asteroid crunch medium.wav
+License: public-domain
+Comment: Derived from https://freesound.org/people/AlanCat/sounds/381645/
+
+Files: sounds/asteroid crunch large.wav
+Copyright: Copyright "BW_Clowes"
+License: CC-BY-3.0
+Comment: Derived from https://freesound.org/people/BW_Clowes/sounds/128126/
+
 Files: images/effect/explosion/pug/*
 Copyright: Vilhelm (https://github.com/Vilhelm16)
 License: CC-BY-SA-4.0
