@@ -100,7 +100,7 @@ news "cute story in Hai space"
 			"I saw a Hai wearing the cutest bonnet the other day. When I get back to human space, I'm definitely getting a pet squirrel."
 			"Do you see that Hai woman carrying her baby? Doesn't it look like a long-tailed teddy-bear? The Hai are so cute."
 			"Do you ever wonder what the Hai would think if they saw an actual squirrel? Do they even know that squirrels exist? Are squirrels just miniature versions of the Hai? I'm so lost."
-			"I always felt so rejected working as a servant on Shangri-la. Ever since I bought a ticket and ended up in Hai space, everyone around me has made me feel like I'm worth something."
+			"I always felt so rejected working as a servant on Shangri-la. Ever since I hitched a ride with a hippy who wanted to visit a 'land with giant squirrels' and ended up in Hai space, everyone around me has made me feel like I'm worth something."
 			"I bet if I bought a giant squirrel costume I could make my Hai friends think I was a complete stranger. They'd probably get a kick out of that."
 			"A traveling theater group passed through here a few days ago. They performed an adorable scene about a merchant captain who gives up his life and settles down with his family on Icelake."
 		word
@@ -118,7 +118,7 @@ news "cute hai story in Hai space"
 			`"`
 		word
 			"Humans are always so curious when they discover our space past the wormhole. It is truly our pleasure to welcome them all and be amongst them."
-			"The little bit of hair that humans have on the tops of their head are so cute. I love how many ways they style it."
+			"The little bit of hair that humans have on the top of their head is so cute. I love how many ways they style it."
 			"Did you see the recent movie about the young human and Hai that had fallen in love? It brought me much joy and sadness at the same time."
 			"I played Chess for the first time last week. I didn't follow what my friends were saying about 'kings' and 'bishops' and 'pawns', but it seemed like they enjoyed the time."
 			"I had a very nice dream about a human captain who took me on a journey outside Hai space. When I woke up on this morning, I met a kind man who was planning a trip to his homeland and when I asked, he said I could come with him. I think it is such a funny coincidence."
@@ -204,7 +204,6 @@ news "concerned hai in Hai space"
 			"It would be smart to follow trade routes that only visit Hai and human space. One would not wish to experience the business of our northern brethren."
 			"Seeing so many human ships come by with such extensive weapons feels very reminiscent of past times, unfortunately."
 			"Rations are very often sent to those starving to the north of here, but such actions are very often not met with similar kindness. Take such a task very carefully."
-			"I fear what may happen to those who attempt to disrupt the Quarg to the south. They do stay out of the way, but do become retaliatory if initiated."
 		word
 			`"`
 
@@ -259,7 +258,6 @@ news "businessperson in hai space"
 		word
 			`"`
 		word
-			"Real estate values for Greenwater homes have skyrocketed in recent months, so I'm taking advantage of this opportunity as much as I can!"
 			"None of the economic models that I've run can explain why the walnut market never stops growing. Sure they're pretty popular, but this has to be a bubble, right? Right?!"
 			"I've noticed a rise in the number of human cuisine-focused establishment in this area. Hopefully a sizable investment in food imports could help my portfolio recover."
 			"I think I can coast for a while off my Darkmetal mine investments, they never seem to fail me. Maybe I can even get that crazy Hai motorcycle I've been eyeing up soon."
