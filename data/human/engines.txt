@@ -582,7 +582,7 @@ outfit "AR120 Reverse Thruster"
 
 outfit "Capybara Reverse Thruster"
 	category "Engines"
-	"cost" 140000
+	"cost" 20000
 	thumbnail "outfit/reverse thruster plasma"
 	"mass" 20
 	"outfit space" -20
