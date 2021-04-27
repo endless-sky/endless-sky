@@ -306,6 +306,8 @@ public:
 	double MaximumHeat() const;
 	// Calculate the multiplier for cooling efficiency.
 	double CoolingEfficiency() const;
+	// Get the heat level at which a ship is instantly disabled
+	double cookHeatFactor() const;
 	
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
@@ -479,7 +481,6 @@ private:
 	bool isCapturable = true;
 	bool isInvisible = false;
 	int customSwizzle = -1;
-	double cookHeatFactor = 1.5;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
 	// Cached values for figuring out when anti-missile is in range.
