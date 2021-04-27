@@ -24,7 +24,7 @@ ship "Maeri'het"
 		"mass" 390
 		"drag" 3.8
 		"heat dissipation" .8
-		"cook heat factor" 1.2
+		"cook temperature" 1.2
 		"fuel capacity" 800
 		"ramscoop" 0.58
 		"cargo space" 43
@@ -130,7 +130,7 @@ ship "Telis'het"
 		"mass" 820
 		"drag" 6.9
 		"heat dissipation" .7
-		"cook heat factor" 1.2
+		"cook temperature" 1.2
 		"fuel capacity" 800
 		"ramscoop" 0.82
 		"cargo space" 71
@@ -274,7 +274,7 @@ ship "Vareti'het"
 		"mass" 1520
 		"drag" 11.9
 		"heat dissipation" 0.6
-		"cook heat factor" 1.2
+		"cook temperature" 1.2
 		"fuel capacity" 700
 		"ramscoop" 0.97
 		"cargo space" 108
