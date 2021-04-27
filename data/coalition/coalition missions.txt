@@ -1441,7 +1441,7 @@ mission "Coalition Folklore: Arach"
 					goto end
 				`	(Leave.)`
 			label leaveearly
-			`	You thank the Arach beside you for inviting you here, and head to the exit, being back at your ship a few minutes after leaving.`
+			`	You thank the Arach beside you for inviting you here, and while she doesn't seem to pay you much mind, you can feel the gazes of other Arachi patrons on you, whispering among themselves as you leave. A few minutes after leaving, you're back at your ship.`
 				decline
 			label end
 			`	The theater workers leave one after the other, leaving you and the other guests with an empty stage. After a while, the lights are turned off. About ten minutes later, however, you hear the curtains open, as some violins start to play in unison, not from where the orchestra was seated, but as if they were all over the theater, behind you and even up on the balconies. A strong light comes from the stage, most of it blocked by a tall, dark figure, but it isn't an actor, seemingly being made of some sort of wooden parts, kept up by thin wires you can barely spot when looking at the top of the stage. The violins' song is disrupted by dull, successive drum hits, at which point the figure moves, with "arms" opening to the sides, and becoming even taller, as it stands up. It is a humanoid creature, and it begins to slowly move around the stage, as if dancing in a pendulum. Cellos join in with the violin screams, and are followed by a choir, though you cannot understand what they said. You do recognize, however, that it isn't being sung in any language of the Coalition.`
