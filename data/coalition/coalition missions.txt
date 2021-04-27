@@ -1409,7 +1409,7 @@ mission "Coalition: Alpha Encounter"
 		not planet "Secret Sky" "Remote Blue" "Bloptab's Furnace" "Ahr"
 	on offer
 		conversation
-			`You walk around the spaceport for a few minutes, when suddenly you're tackle into the ground, with whoever attacked you pinning you down, holding your arms behind your back to restrain you. When you manage to look back, you see a man of human appearance, with very long hair and wearing an intricate necklace of gold. His most notable trait, however, is his green skin - an Alpha.`
+			`You walk around the spaceport for a few minutes, when suddenly you're tackled into the ground, with whoever attacked you pinning you down, holding your arms behind your back to restrain you. When you manage to look back, you see a man of human appearance, with very long hair and wearing an intricate necklace of gold. His most notable trait, however, is his green skin - an Alpha.`
 			`	Your eyes don't meet for long, though, as he looks to his side and lets go of your arms to try and block an Arach that swoops in with a tackle, knocking him off of you. They wrestle for a while, as you get up, but it doesn't take long for the Arach Heliarch to restrain the Alpha, with all eight legs firmly holding his arms to his torso, as the Arach rests her entire body weight on the Alpha's back. A Saryd Heliarch approaches you, telling you that "Keep your distance, you must," and then looking at the Alpha. "What reason for attacking this person, did you have?"`
 			`	The Alpha, still struggling to try and get out of the Arach's grip, ignores the question, looking at you instead, and asking, "You're with the Navy, aren't you? Finally figured out I was here?"`
 			branch navy
