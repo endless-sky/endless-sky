@@ -408,7 +408,6 @@ outfitter "Kraz Basics"
 	"Brig"
 
 outfitter "Kraz Advanced"
-	"Capybara Reverse Thruster"
 	"Chipmunk Plasma Thruster"
 	"Chipmunk Plasma Steering"
 	"S3 Thermionic"
