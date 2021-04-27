@@ -306,8 +306,10 @@ public:
 	double MaximumHeat() const;
 	// Calculate the multiplier for cooling efficiency.
 	double CoolingEfficiency() const;
-	// Get the heat level at which a ship is instantly disabled
+	// Get the heat level at which a ship is instantly disabled.
 	double CookHeatFactor() const;
+	// Get the damage multiplier for hull damage when overheating.
+	double CookDamageFactor() const;
 	
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
