@@ -12,7 +12,7 @@ ship "Quarg Skylark"
 	sprite "ship/skylark"
 	thumbnail "thumbnail/skylark"
 	attributes
-		category "Heavy Warship"
+		category "Medium Warship"
 		"cost" 5900000
 		"shields" 120000
 		"hull" 70000
