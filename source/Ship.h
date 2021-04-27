@@ -307,7 +307,7 @@ public:
 	// Calculate the multiplier for cooling efficiency.
 	double CoolingEfficiency() const;
 	// Get the heat level at which a ship is instantly disabled
-	double cookHeatFactor() const;
+	double CookHeatFactor() const;
 	
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
