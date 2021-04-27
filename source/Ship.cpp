@@ -2011,7 +2011,7 @@ void Ship::DoGeneration()
 	if(heat > MaximumHeat())
 	{
 		isOverheated = true;
-		if(cookHeatFactor() && heat > MaximumHeat()*cookHeatFactor()) {
+		if(CookHeatFactor() && heat > MaximumHeat()*CookHeatFactor()) {
 			hull = MinimumHull() - 1;
 		}
 	}
