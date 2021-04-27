@@ -173,10 +173,11 @@ effect "asteroid crunch small"
 
 effect "asteroid crunch medium"
 	sound "asteroid crunch medium"
-	
+
 effect "asteroid crunch large"
 	sound "asteroid crunch large"
-	
+
+
 
 effect "basic launch"
 	sprite "effect/smoke"
