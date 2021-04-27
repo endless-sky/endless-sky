@@ -1402,7 +1402,7 @@ mission "Coalition: Alpha Encounter"
 	to offer
 		has "Coalition: First Contact: done"
 		has "remembrance day: offered"
-		random = 1
+		random < 1
 	source
 		government "Coalition"
 		not attributes "station"
