@@ -19489,7 +19489,7 @@ system Postverta
 		sprite planet/sheragi_postverta
 		distance 1408
 		period 554
-	
+
 system Prakacha'a
 	pos -35.1114 -802.607
 	government Wanderer
@@ -26234,7 +26234,7 @@ planet Allhome
 	security 0.6
 
 planet "Alta Hai"
-	attributes quarg station
+	attributes quarg "hai quarg" station
 	landscape land/station2
 	description `This is a complete Quarg ringworld, the product of millennia of construction effort which has consumed every other stellar object in this system in order to provide the raw materials. The inner edge of the ring is filled with solar panels, hydroponic gardens, living quarters, and sunlit common spaces. The outer edge contains hangars and docks for ships, and storage facilities for cargo.`
 	description `	Massive station-keeping thrusters on the ring's exterior keep its orbit from becoming unstable.`
@@ -26771,8 +26771,8 @@ planet Darkcloak
 	description `	Although the Hai tend to be an easygoing and nonviolent species, there are always a few in each generation that yearn for excitement, warfare, and conquest. These "Unfettered" Hai have built a major military base here, and they launch raids from here on convoys traveling through the nearby systems.`
 	spaceport `The occupants of this spaceport are not visibly different from the Hai you have encountered elsewhere, but they seem much more tense, angry, and hostile. As the only human here, you are being watched very closely, but no one threatens you directly.`
 	spaceport `	It is likely that most of the goods available for trade here were stolen from one of the nearby Hai systems.`
-	shipyard "Hai Basics"
-	outfitter "Hai Basics"
+	shipyard "Unfettered Basics"
+	outfitter "Unfettered Basics"
 
 planet Darkmetal
 	attributes hai mining "hai tourism"
@@ -26930,7 +26930,7 @@ planet Dustmaker
 planet "Dwelling of Speloog"
 	attributes arach shipping urban
 	landscape land/fog4
-	description `With a wide band of tropical rainforests around its equator, this planet's climate is ideal for the Arach. Several billion of them live here, and many of the workers assisting with the expansion of the Heliarch ringworlds come from this planet.`
+	description `With a wide band of tropical rainforests around its equator, this planet's climate is ideal for the Arachi. Several billion of them live here, and many of the workers assisting with the expansion of the Heliarch ringworlds come from this planet.`
 	spaceport `The air in the spaceport facility is uncomfortably damp, and you imagine that you can see a thin sheen of moss or algae on nearly every surface here that receives any sunlight. Except for the largest cargo bays, all the rooms smell faintly of mildew.`
 	spaceport `	One entire wing of the spaceport is dedicated to the Heliarch recruitment office for construction workers, and the waiting room is packed; many Coalition citizens are excited at the chance to help build something that will last thousands of years.`
 	outfitter "Coalition Basics"
@@ -26959,7 +26959,7 @@ planet Eavine
 	description `Although its climate is very cold and most of the surface is covered in snow, Eavine has a crust rich with rare metals and minerals hard to find elsewhere. Entire valleys on the surface have been completely stripped of their resources, likely used in the massive complex of half buried buildings which appears to be the only settlement on this moon that remains today.`
 
 planet Echo
-	attributes quarg moon
+	attributes quarg "human quarg" moon
 	landscape land/desert2
 	description `This is a small Quarg outpost, which you suspect was built mostly to keep an eye on Tarazed Corporation and their alien-influenced research on the planet below. Like most Quarg worlds, the gravity is much too low here for it to be a feasible human colony, and although there is an atmosphere, it is too thin for a human being to breathe. Supposedly the Quarg have lungs designed for a continuous one way airflow, like a bird's lungs, rather than the ordinary in and out flow of human lungs; this is what enables them to survive on low-gravity, low-atmosphere worlds.`
 	spaceport `This outpost was really not designed with human beings in mind. The indoor air is not pressurized, so even there you need an oxygen mask to be able to breathe comfortably. And all the rooms and hallways are taller and narrower than you are used to. The station feels like a maze, full of winding passageways with no clear order or pattern to them, although perhaps the order would be readily apparent if you had an alien mind.`
@@ -27195,7 +27195,7 @@ planet Follower
 		fleet "Small Republic" 86
 
 planet Forpelog
-	attributes quarg moon
+	attributes quarg "human quarg" moon
 	landscape land/canyon03
 	description `Forpelog is a Quarg mining world, barely habitable by their standards and, because of its low gravity, unsuitable for long-term human habitation. The Quarg city is a marvel of advanced technology, entirely enclosed within glass and steel, with gardens and terraces where alien trees and plants grow. Outside the city, the landscape is rugged and beautiful, but the atmosphere is too thin to breathe and contains almost no oxygen.`
 	spaceport `Your ship is docked on a metal pad immediately outside the dome of the city, which towers over you. Immediately after you landed, a smaller canopy unfolded around your ship, sealing it in and providing enough air for you to breathe as you make your way inside. The stark, lifeless badlands outside give way to bustling streets and lush blue foliage within. No other human beings are in sight.`
@@ -27372,7 +27372,7 @@ planet Glory
 		fleet "Large Republic" 16
 
 planet Grakhord
-	attributes quarg moon
+	attributes quarg "human quarg" moon
 	landscape land/badlands6
 	description `Although human beings who do not mind living in low gravity are welcome to settle here, Grakhord is part of Quarg territory, and has been terraformed to meet their environmental needs rather than those of human beings. The full extent of the Quarg mining operations here are not known, but rumors say that they have tunnels reaching down almost halfway to the moon's core, and Quarg ships can also sometimes be seen harvesting hydrogen gas from the upper atmosphere of the gas giant that Grakhord orbits.`
 	spaceport `Here, you feel like a young child lost among a crowd of tall, indifferent adults. The average adult Quarg is over three meters tall, and although they move slowly and gracefully, on their long legs they easily speed by you. Worse, the counters for the merchant exchange, bank, and job board are high enough that you can barely see over them. But, the Quarg have helpfully provided stepping stools stashed under the counters so that shorter humans can carry out business without having to constantly crane their necks upwards.`
@@ -27791,7 +27791,7 @@ planet Kumkapi
 	government Uninhabited
 
 planet "Kuwaru Efreti"
-	attributes quarg station
+	attributes quarg "korath quarg" station
 	landscape land/station2
 	description `This Quarg ringworld is almost half completed, but there are no signs of active construction, and your ship's sensors picked up no energy signals from any section of the ring except for this one. You also observed superficial weapon scars on some parts of the ring, damage that the Quarg have not bothered to repair - although clearly the attackers did not possess weapons powerful enough to do any serious harm to the ring.`
 	spaceport `Despite their size, the Quarg are generally almost silent when they move, and there seem to be very few of them left inhabiting this ringworld. As you walk through some parts of the spaceport it is utterly silent and seemingly deserted, and you are jolted by surprise each time the illusion of solitude is broken by a Quarg emerging suddenly from a doorway and striding silently past you. Every once in a while, louder footsteps announce the presence of a group of Korath visiting the station.`
@@ -27800,7 +27800,7 @@ planet "Kuwaru Efreti"
 	security 1
 
 planet Lagrange
-	attributes quarg tourism station
+	attributes quarg "human quarg" tourism station
 	landscape land/station5
 	description `The Quarg built this station centuries ago, before they began construction on the ringworld. From the dark side of the station, the ring is visible as a thin bright filament stretching out to either side of the system's sun. The ring itself is closed to human visitors, but tour shuttles depart from here on a regular basis, giving human tourists a closer view of this engineering feat that is so far beyond anything human beings have ever attempted to build.`
 	spaceport `In the docking section are flexible, oddly organic-looking tubes that snaked out to connect to your ship as it approached. Walking through the tube and into the station was a somewhat disconcerting experience. Inside, crowds of human tourists gawk at the tall, thin Quarg, who for the most part seem unfazed by the attention. The station is perfectly clean; every surface shines.`
