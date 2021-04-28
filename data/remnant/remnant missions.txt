@@ -1159,7 +1159,7 @@ mission "Remnant Rescue 1B"
 		"rescue missions" ++
 		payment 200000
 		dialog
-			`You land, and with sorrow hanging heavy on your heart, report that the <npc> was lost.`
+			`You land, and with heavy heart, report that the <npc> was lost with all hands.`
 	on visit
 		dialog
 			`You have returned, yet the <npc> is still missing.`
@@ -1237,7 +1237,7 @@ mission "Remnant Rescue 2B"
 		"rescue missions" ++
 		payment 300000
 		dialog
-			`You land, and with sorrow hanging heavy on your heart, report that the <npc> was lost.`
+			`You land, and with heavy heart, report that the <npc> was lost with all hands.`
 	on visit
 		dialog
 			`You have returned, yet the <npc> is still missing.`
@@ -1313,7 +1313,7 @@ mission "Remnant Rescue 3B"
 		"rescue missions" ++
 		payment 300000
 		dialog
-			`You land, and with sorrow hanging heavy on your heart, report that the <npc> was lost.`
+			`You land, and with heavy heart, report that the <npc> was lost with all hands.`
 	on visit
 		dialog
 			`You have returned, yet the <npc> is still missing.`
