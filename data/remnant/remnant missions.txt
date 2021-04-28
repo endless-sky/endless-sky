@@ -1152,7 +1152,7 @@ mission "Remnant Rescue 1B"
 			variant
 				"Rescue Dummy"
 		dialog
-			`As you enter the system, your sensors pick up a lot of debris. Further analysis confirms your worst fears. The <npc> is destroyed. You frantically spend the next few hours searching for survivors, your hope sinking with every minute that passes.`
+			`As you enter the system, your sensors pick up a lot of debris. Further analysis confirms your worst fears. The <npc> has been destroyed. You frantically spend the next few hours searching for survivors, your hope sinking with every passing minute.`
 	on complete
 		"rescue missions" ++
 		payment 200000
