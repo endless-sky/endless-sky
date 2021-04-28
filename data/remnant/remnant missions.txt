@@ -1080,6 +1080,7 @@ mission "Remnant Rescue"
 			not government "Remnant"
 			not system "Perfica"
 			not system "Farinus"
+			not system "Edusa"
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -1097,7 +1098,7 @@ mission "Remnant Rescue"
 		dialog
 			`You have returned, yet the <npc> is still missing.`
 
-	
+# The Rescue Dummy is meant to suicide as soon as possible on entering the randomized system.
 ship "Rescue Dummy"
 	sprite "ship/behemoth"
 	attributes
@@ -1145,6 +1146,7 @@ mission "Remnant Rescue 1B"
 			not government "Remnant"
 			not system "Perfica"
 			not system "Farinus"
+			not system "Edusa"
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -1182,6 +1184,7 @@ mission "Remnant Rescue 2"
 			not government "Remnant"
 			not system "Perfica"
 			not system "Farinus"
+			not system "Edusa"
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -1221,6 +1224,7 @@ mission "Remnant Rescue 2B"
 			not government "Remnant"
 			not system "Perfica"
 			not system "Farinus"
+			not system "Edusa"
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -1258,6 +1262,7 @@ mission "Remnant Rescue 3"
 			not government "Remnant"
 			not system "Perfica"
 			not system "Farinus"
+			not system "Edusa"
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -1295,6 +1300,7 @@ mission "Remnant Rescue 3B"
 			not government "Remnant"
 			not system "Perfica"
 			not system "Farinus"
+			not system "Edusa"
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -1331,6 +1337,7 @@ mission "Remnant Rescue 4"
 			not government "Remnant"
 			not system "Perfica"
 			not system "Farinus"
+			not system "Edusa"
 		personality escort derelict heroic plunders
 		government "Remnant"
 		fleet
