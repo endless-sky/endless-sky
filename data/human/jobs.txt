@@ -887,7 +887,7 @@ mission "Escort (Large, Core, Dangerous Destination)"
 		fleet
 			names "civilian"
 			variant
-				"Combined Freighter"
+				"Container Transport"
 	on complete
 		payment 120000
 		dialog phrase "generic safe escort completion dialog"
@@ -933,7 +933,7 @@ mission "Escort (Large, Core, Dangerous Origin)"
 		fleet
 			names "civilian"
 			variant
-				"Combined Freighter"
+				"Container Transport"
 	on complete
 		payment 120000
 		dialog phrase "generic safe escort completion dialog"
@@ -980,7 +980,7 @@ mission "Escort (Extra Large, Core, Dangerous Destination)"
 		fleet
 			names "civilian"
 			variant
-				"Combined Freighter"
+				"Container Transport"
 	on complete
 		payment 150000
 		dialog phrase "generic safe escort completion dialog"
@@ -1033,7 +1033,7 @@ mission "Escort (Extra Large, Core, Dangerous Origin)"
 		fleet
 			names "civilian"
 			variant
-				"Combined Freighter"
+				"Container Transport"
 	on complete
 		payment 150000
 		dialog phrase "generic safe escort completion dialog"

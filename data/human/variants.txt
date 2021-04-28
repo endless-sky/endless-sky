@@ -453,7 +453,7 @@ ship "Bulk Freighter" "Bulk Freighter (Proton)"
 		"A375 Atomic Steering"
 		"Scram Drive"
 
-ship "Combined Freighter" "Combined Freighter (Blaster)"
+ship "Container Transport" "Container Transport (Blaster)"
 	outfits
 		"Quad Blaster Turret" 5
 		"Meteor Missile Launcher" 2
@@ -469,7 +469,7 @@ ship "Combined Freighter" "Combined Freighter (Blaster)"
 		"Scram Drive"
 
 
-ship "Combined Freighter" "Combined Freighter (Hai)"
+ship "Container Transport" "Container Transport (Hai)"
 	outfits
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 90
@@ -490,7 +490,7 @@ ship "Combined Freighter" "Combined Freighter (Hai)"
 	turret "Chameleon Anti-Missile"
 
 
-ship "Combined Freighter" "Combined Freighter (Heavy)"
+ship "Container Transport" "Container Transport (Heavy)"
 	outfits
 		"Laser Turret" 2
 		"Heavy Laser Turret" 2
@@ -512,7 +512,7 @@ ship "Combined Freighter" "Combined Freighter (Heavy)"
 	turret "Heavy Laser Turret"
 
 
-ship "Combined Freighter" "Combined Freighter (Proton)"
+ship "Container Transport" "Container Transport (Proton)"
 	outfits
 		"Proton Turret" 3
 		"Heavy Anti-Missile Turret"

@@ -275,12 +275,12 @@ fleet "Large Core Merchants"
 		"Splinter" 1
 	variant 1
 		"Bulk Freighter (Blaster)"
-		"Combined Freighter (Heavy)"
+		"Container Transport (Heavy)"
 		"Quicksilver" 1
 		"Splinter (Laser)" 1
 	variant 1
 		"Bulk Freighter (Blaster)"
-		"Combined Freighter (Proton)"
+		"Container Transport (Proton)"
 		"Quicksilver" 1
 		"Splinter (Proton)" 1
 	variant 10
@@ -335,52 +335,52 @@ fleet "Large Core Merchants"
 	variant 2
 		"Arrow"
 	variant 40
-		"Combined Freighter"
+		"Container Transport"
 		"Wasp (Proton)" 2
 	variant 40
-		"Combined Freighter"
+		"Container Transport"
 		"Wasp"
 		"Wasp (Meteor)"
 	variant 15
-		"Combined Freighter (Blaster)"
+		"Container Transport (Blaster)"
 		"Wasp" 2
 	variant 8
-		"Combined Freighter (Heavy)"
+		"Container Transport (Heavy)"
 		"Wasp (Proton)" 2
 	variant 8
-		"Combined Freighter (Proton)"
+		"Container Transport (Proton)"
 		"Wasp (Proton)" 2
 	variant 8
-		"Combined Freighter (Proton)"
+		"Container Transport (Proton)"
 		"Wasp"
 		"Wasp (Meteor)"
 	variant 15
-		"Combined Freighter"
+		"Container Transport"
 	variant 8
-		"Combined Freighter (Blaster)"
+		"Container Transport (Blaster)"
 	variant 4
-		"Combined Freighter (Heavy)"
+		"Container Transport (Heavy)"
 	variant 4
-		"Combined Freighter (Proton)"
+		"Container Transport (Proton)"
 	variant 8
-		"Combined Freighter" 2
+		"Container Transport" 2
 		"Quicksilver" 1
 		"Splinter" 1
 	variant 8
-		"Combined Freighter" 2
+		"Container Transport" 2
 		"Protector" 1
 	variant 8
-		"Combined Freighter" 2
+		"Container Transport" 2
 		"Wasp" 3
 		"Wasp (Meteor)" 2
 	variant 8
-		"Combined Freighter" 2
+		"Container Transport" 2
 		"Vanguard" 1
 	variant 1
-		"Combined Freighter (Proton)" 2
+		"Container Transport (Proton)" 2
 		"Protector (Proton)" 1
 	variant 1
-		"Combined Freighter (Heavy)" 2
+		"Container Transport (Heavy)" 2
 		"Vanguard (Missile)" 1
 
 fleet "Paradise Merchants"
@@ -699,7 +699,7 @@ fleet "Large Northern Merchants"
 	variant 1
 		"Scout (Speedy)" 3
 
-fleet "Northern Combined Freighters"
+fleet "Northern Container Transports"
 	government "Merchant"
 	names "civilian"
 	cargo 8
@@ -707,25 +707,25 @@ fleet "Northern Combined Freighters"
 		confusion 30
 		timid frugal appeasing
 	variant 2
-		"Combined Freighter"
+		"Container Transport"
 		"Headhunter" 2
 	variant 1
-		"Combined Freighter"
+		"Container Transport"
 		"Headhunter (Particle)" 2
 	variant 5
-		"Combined Freighter"
+		"Container Transport"
 		"Sparrow" 2
 	variant 2
-		"Combined Freighter (Heavy)"
+		"Container Transport (Heavy)"
 		"Sparrow" 2
 	variant 1
-		"Combined Freighter (Heavy)"
+		"Container Transport (Heavy)"
 		"Berserker" 2
 	variant 1
-		"Combined Freighter (Heavy)"
+		"Container Transport (Heavy)"
 		"Berserker (Afterburner)" 2
 	variant 2
-		"Combined Freighter (Blaster)"
+		"Container Transport (Blaster)"
 		"Sparrow" 2
 
 
@@ -949,25 +949,25 @@ fleet "Large Human Merchants (Hai)"
 	variant 1
 		"Scout (Speedy)" 3
 	variant 1
-		"Combined Freighter (Hai)"
+		"Container Transport (Hai)"
 		"Headhunter" 2
 	variant 1
-		"Combined Freighter (Hai)"
+		"Container Transport (Hai)"
 		"Headhunter (Hai)" 2
 	variant 3
-		"Combined Freighter"
+		"Container Transport"
 		"Sparrow" 2
 	variant 1
-		"Combined Freighter (Heavy)"
+		"Container Transport (Heavy)"
 		"Sparrow" 2
 	variant 1
-		"Combined Freighter (Hai)"
+		"Container Transport (Hai)"
 		"Berserker" 2
 	variant 1
-		"Combined Freighter (Hai)"
+		"Container Transport (Hai)"
 		"Berserker (Afterburner)" 2
 	variant 1
-		"Combined Freighter (Blaster)"
+		"Container Transport (Blaster)"
 		"Sparrow" 2
 
 fleet "Human Miners"

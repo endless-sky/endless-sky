@@ -709,7 +709,7 @@ Files:
  images/ship/star?queen*
  images/ship/localworldship*
  images/ship/arrow*
- images/ship/combined?freighter*
+ images/ship/container?transport*
  images/ship/freighter*
  images/ship/protector*
  images/ship/star?barge*
@@ -730,7 +730,7 @@ Files:
  images/thumbnail/shuttle*
  images/thumbnail/star?queen*
  images/thumbnail/arrow*
- images/thumbnail/combined?freighter*
+ images/thumbnail/container?transport*
  images/thumbnail/freighter*
  images/thumbnail/protector*
  images/thumbnail/star?barge*
