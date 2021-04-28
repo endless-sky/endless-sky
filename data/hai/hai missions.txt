@@ -260,13 +260,13 @@ mission "Ask the Hai about the Unfettered"
 				`	"That's all I wanted to know. Thanks."`
 					decline
 			label drak
-			`	"No," he says, "it is a story they invented, that the Hai were destined to be masters of the galaxy but the Drak and the Quarg prevented us. The story is not true. Our civilization beyond the wormhole was brought down by infighting and unwise governance. Amid the wreckage we studied and thought and argued and came to believe that we could rule a small territory with stability and peace, or hold more worlds but with constant turmoil. We chose stability, and relinquished those worlds."`
+			`	"No," he says, "it is a story they invented, that the Hai were destined to be masters of the galaxy but the Drak and the Quarg prevented us. The story is not true. Our civilization beyond the wormhole was brought down by infighting and unwise governance. Amid the wreckage we studied and thought and argued and came to believe that we could rule a small territory with stability and peace, or hold more worlds but with constant turmoil. We chose stability and relinquished those worlds."`
 			choice
 				`	"So you don't think the Drak are keeping us all in cages?"`
 				`	"That's all I wanted to know. Thanks."`
 					decline
 			`	He thinks about the question for a while, then says, "Sometimes we make a fire for cooking food. The fire consumes much wood, and the flames are tall, too wild and hot to cook food well. Then the wood becomes coals that burn slowly with no flames or smoke, and when you gather them they are good for roasting meat or even baking bread. Perhaps each species must consume many worlds and many resources before learning to burn slowly, and the wisdom of the Drak is to allow them to do so. But when they find balance, as we did, they no longer need so much space."`
-			`	You thank him for taking time to speak with you, and say goodbye.`
+			`	You thank him for taking time to speak with you and say goodbye.`
 				decline
 
 
@@ -359,7 +359,7 @@ mission "Unfettered Jump Drive 2"
 				`	"Yes, I will sell you my jump drive."`
 			`	Once again, they swap your jump drive for a hyperdrive, and pay you far more than you could sell a jump drive for anywhere else. "We will tell the other true Hai to offer you jobs in our job boards," they tell you, "and remember that we need still more jump drives."`
 			choice
-				`	"Then I will find more, and bring them to you."`
+				`	"Then I will find more and bring them to you."`
 					accept
 				`	"Can you tell me what you are using them for?"`
 			`	"Not yet. If you further prove your friendship, perhaps we will." You assure them that you will continue to do your best to assist them.`
@@ -489,7 +489,7 @@ mission "Unfettered returning home"
 				`	(No.)`
 					defer
 			`	You grab a flashlight and open the hatch, and find a juvenile Hai there, with a large satchel slung over his shoulder. "You are the <first> <last>, yes?" he says. You nod. He says, "Is it true what is written here?"`
-			`	In his hands he is holding a piece of foil paper. You recognize it as the wrapper from one of the food rations that you have been transporting to the Unfettered, the "tribute" that they demand from the peaceful Hai. But having never unwrapped one of the rations, you had not realized that there is writing on the inside, a few words in the angular alphabet of the Hai. The Unfettered youth sees your look of confusion, and translates the message. "It says, 'Hai-home is your home too. Rejoin your people.'"`
+			`	In his hands he is holding a piece of foil paper. You recognize it as the wrapper from one of the food rations that you have been transporting to the Unfettered, the "tribute" that they demand from the peaceful Hai. But having never unwrapped one of the rations, you had not realized that there is writing on the inside, a few words in the angular alphabet of the Hai. The Unfettered youth sees your look of confusion and translates the message. "It says, 'Hai-home is your home too. Rejoin your people.'"`
 			choice
 				`	"I think it is true. The Hai who gave this tribute said they hoped the Unfettered would turn from violence and be reconciled with them."`
 					goto true
@@ -510,15 +510,15 @@ mission "Unfettered returning home"
 			`	Disappointed, the youth leaves. You hope you made the right choice.`
 				decline
 			label end
-			`	You show the youth to one of your bunk rooms, and tell him to stay hidden there until you reach Hai-home.`
+			`	You show the youth to one of your bunk rooms and tell him to stay hidden there until you reach Hai-home.`
 				accept
 	
 	on visit
-		dialog `You look for the young Hai, but realize that he took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
+		dialog `You look for the young Hai but realize that he took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		payment 100000
 		dialog
-			`You need not have worried about the reception the Unfettered youth would receive here on Hai-home. Scarcely minutes after you hesitantly contact the Hai government, a happy crowd has gathered around your ship. When he steps out of the hatchway, he looks stunned at being welcomed so warmly. One of the Hai governors thanks you for transporting him, and pays you <payment>.`
+			`You need not have worried about the reception the Unfettered youth would receive here on Hai-home. Scarcely minutes after you hesitantly contact the Hai government, a happy crowd has gathered around your ship. When he steps out of the hatchway, he looks stunned at being welcomed so warmly. One of the Hai governors' thanks you for transporting him, and pays you <payment>.`
 		"reputation: Hai" += 10
 
 
@@ -576,7 +576,7 @@ mission "Returning Home"
 				accept
 			
 	on visit
-		dialog `You look for Elliot, but realize that he took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
+		dialog `You look for Elliot but realize that he took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		payment 45000
 		conversation
@@ -628,7 +628,7 @@ mission "Unwanted Cargo"
 	on offer
 		conversation
 			`The "Check Cargo" light for your ship begins blinking when you land, meaning that a cargo crate may have come loose in flight. You shut off the ship's engines and walk to the cargo hold.`
-			`	You check every cargo crate in the hold, but can't find anything wrong. Right as you decide to leave, one of the smaller crates begins rocking back and forth.`
+			`	You check every cargo crate in the hold but can't find anything wrong. Right as you decide to leave, one of the smaller crates begins rocking back and forth.`
 			branch translator
 				has "language: Wanderer"
 				
@@ -1593,7 +1593,7 @@ mission "Nanachi 1"
 				`	"If you're interested, I could try to help you find a job."`
 					goto "positive1"
 				`	"I've been there before; trust me, it gets better. I wish you the best of luck on finding a job."`
-			`	She nods in sad understanding, and continues to swap focus from the job board to the papers in her hand.`
+			`	She nods in sad understanding and continues to swap focus from the job board to the papers in her hand.`
 			choice
 				`	(Help her out anyway.)`
 					goto "positive1"
@@ -1602,7 +1602,7 @@ mission "Nanachi 1"
 			label "positive1"
 			`	Her ears twitch a bit, and her previously crestfallen eyes light up as she nearly jumps in joy at your offer. "Thank you so much Captain! My name is Nanachi, I promise I won't cause any trouble at all, just a few quick jobs and I'm sure I'll be fine by myself!"`
 			`	You introduce yourself to Nanachi and shake her paw. "Can you show me your ship so I can look for jobs it's best suited for?" you ask.`
-			`	She hesitates a bit, but leads you to her ship. You were expecting a small Hai ship, but to your surprise she shows you a rather beat-up Heavy Shuttle docked near your own ship.`
+			`	She hesitates a bit but leads you to her ship. You were expecting a small Hai ship, but to your surprise she shows you a rather beat-up Heavy Shuttle docked near your own ship.`
 			`	"You took a loan to buy a human ship?" you ask.`
 			`	She looks at the ground, as if ashamed of it. "It'd take way too long for me to qualify for a loan for even an Aphid, but I recently met a human merchant who wanted to sell his old ship; it was difficult, but I managed to convince him to sell it to me instead of going to the shipyard office. I paid him its full price, but even for this one I had to take out the biggest loan I could. Its cargo hold isn't very impressive but it has more bunks than our smallest ships, if that helps."`
 			choice
@@ -2055,7 +2055,7 @@ mission "Strider: Remnant 3"
 			`	"Do not fear, for we have something else. For many decades, we have been fighting and plundering Korath raiders from the Core. Their ships contain outfits capable of hull repair through the use of small robots. We have been unable to reproduce these robots with ease, but we may be able to provide for you our research and a number of samples that you may use."`
 			`	"We too have encountered these Korath," Yashili says in response. "Although, we had not taken their technology. This may be of great use to us."`
 			`	"We would like to ask something in trade, however: a copy of your astronomical records. The history of the galaxy itself is a mystery to us, and we would like to learn more about it."`
-			`	Ambassador Yashili looks thoughtful, then nods. "Historical astronomical data is scientifically valuable, as is learning how to repair our ships in flight. This seems a fair trade. We should be able to have the data for you shortly. We only need use of Captain <first>'s ship to access the hyperspace communiation relays." Yashili nods to another member of the delegation, who then scurries off to your ship.`
+			`	Ambassador Yashili looks thoughtful, then nods. "Historical astronomical data is scientifically valuable, as is learning how to repair our ships in flight. This seems a fair trade. We should be able to have the data for you shortly. We only need use of Captain <first>'s ship to access the hyperspace communication relays." Yashili nods to another member of the delegation, who then scurries off to your ship.`
 			`	"I imagine there will be a large amount of data to transfer," Rayn says. "Let us pass the time."`
 			`	Ambassador Yashili and Rayn settle into diplomatic small talk. The conversational dance between a group of professional diplomats and a secretive group that are currently playing the role of nomadic desert traders is an odd one.`
 			`	"While we wait, I am curious how you met these Remnant, Captain," Yashili says.`
@@ -2210,7 +2210,7 @@ mission "Strider 3"
 			
 			label coalition
 			`	"I hope the Coalition treated you well," one of the elders says.`
-			`	"They were an interesting group. Very enthusiatic about meeting new people, although very touchy on the subject of the Quarg."`
+			`	"They were an interesting group. Very enthusiastic about meeting new people, although very touchy on the subject of the Quarg."`
 			
 			label next
 			`	Yashili then hands the copy of the data to Osen. "You'll be needing this," she says.`
