@@ -31,7 +31,7 @@ news "food in Hai space"
 			"It's been really tough trying new foods here because almost everything conflicts with my nut allergies."
 			"Where I grew up, walnuts were considered a delicacy. Now that I'm here, I eat like a king!"
 			"My buddy tells me of some nearby smoothie bar that has a drink made from the extract of a 'rare green oval nut'. She said it tastes like nothing she's had back in human space, but I don't buy her story for a second."
-			"If it weren't the human settlements that decided to catch fish, I'd be stuck having to eat nuts and these really long carrot... turnip... things."
+			"If it weren't for the human settlements that decided to catch fish, I'd be stuck having to eat nuts and these really long carrot... turnip... things."
 		word
 			`"`
 
@@ -120,7 +120,7 @@ news "cute hai story in Hai space"
 			"Humans are always so curious when they discover our space past the wormhole. It is truly our pleasure to welcome them all and be amongst them."
 			"The little bit of hair that humans have on the top of their head is so cute. I love how many ways they style it."
 			"Did you see the recent movie about the young human and Hai that had fallen in love? It brought me much joy and sadness at the same time."
-			"I played Chess for the first time last week. I didn't follow what my friends were saying about 'kings' and 'bishops' and 'pawns', but it seemed like they enjoyed the time."
+			"I played chess for the first time last week. I didn't follow what my friends were saying about 'kings' and 'bishops' and 'pawns', but it seemed like they enjoyed the time."
 			"I had a very nice dream about a human captain who took me on a journey outside Hai space. When I woke up on this morning, I met a kind man who was planning a trip to his homeland and when I asked, he said I could come with him. I think it is such a funny coincidence."
 			"My children are so excited when they see humans arrive in ships. To their knowledge, these humans must come from distant and wondrous lands beyond their imagination."
 		word
@@ -143,8 +143,8 @@ news "there might be riots on allhome Hai"
 			`"`
 		word
 			"I overheard some very loud music in the spaceport some time ago. Does all human music sound like that?"
-			"I can not believe There Might Be Riots truly came back! I have been waiting since last time they were here."
-			"After that band stopped through here a while ago, the spaceport has been playing their music around the clock. It is making me feel crazy!"
+			"I can't believe There Might Be Riots really came back! I've been waiting since last time they were here."
+			"After that band stopped through here a while ago, the spaceport has been playing their music around the clock. It's making me feel crazy!"
 			"All of the There Might Be Riots merchandise sold out immediately after they opened the shop. It isn't fair!"
 		word
 			`"`
@@ -202,8 +202,8 @@ news "concerned hai in Hai space"
 		word
 			"Be careful should you choose to fly up north. Too many human captains who don't know any better become victims to those Hai seeking great trouble."
 			"It would be smart to follow trade routes that only visit Hai and human space. One would not wish to experience the business of our northern brethren."
-			"Seeing so many human ships come by with such extensive weapons feels very reminiscent of past times, unfortunately."
-			"Rations are very often sent to those starving to the north of here, but such actions are very often not met with similar kindness. Take such a task very carefully."
+			"Seeing so many human ships come by with such extensive weaponry feels very reminiscent of past times, unfortunately."
+			"Rations are very often sent to those starving to the north of here, but such actions are almost never met with similar kindness. Take such a task very carefully."
 		word
 			`"`
 
@@ -242,7 +242,7 @@ news "human reaction to Greenwater outfitter"
 		word
 			"I've been stranded here for ages waiting for the right parts to fix my ship. Finally I don't have to stay at that dank and musty hotel."
 			"I was weighting the need for Hai technology on my ship due to their high prices. Thankfully I've been able to outfit it with human tech so I don't have to pay such great amounts!"
-			"I had a good thing going before this outfitter showed up. I could transport human ship parts before there was any competition at all, now my services are practically useless!"
+			"I had a good thing going before this outfitter showed up. I could transport human ship parts before there was any competition at all. Now my services are practically useless!"
 		word
 			`"`
 
@@ -260,7 +260,7 @@ news "businessperson in hai space"
 		word
 			"None of the economic models that I've run can explain why the walnut market never stops growing. Sure they're pretty popular, but this has to be a bubble, right? Right?!"
 			"I've noticed a rise in the number of human cuisine-focused establishment in this area. Hopefully a sizable investment in food imports could help my portfolio recover."
-			"I think I can coast for a while off my Darkmetal mine investments, they never seem to fail me. Maybe I can even get that crazy Hai motorcycle I've been eyeing up soon."
+			"I think I can coast for a while off my Darkmetal mine investments; they never seem to fail me. Maybe I can even get that crazy Hai motorcycle I've been eyeing up soon."
 		word
 			`"`
 
@@ -324,7 +324,7 @@ news "hai advertisement in Hai space"
 		word
 			`"`
 		word
-			"Are regular tree nuts too very normal and bland? Ibrahim's Exotic Nut Shack fulfills all your many desires for exciting, flavorful nut varieties."
+			"Are regular tree nuts too normal and bland? Ibrahim's Exotic Nut Shack fulfills all your many desires for exciting, flavorful nut varieties."
 			"Come to relax inside the many tranquil hot springs of Mirrorlake by visiting the great paradise of Freezewarm Resort & Spa."
 			"Professional full-body fur stylists are available for hire at the nearby Eliana's Styling Center! Acquire a new and fashionable look, or even dye your fur coloring!"
 		word
