@@ -1451,5 +1451,5 @@ mission "Coalition: Alpha Encounter"
 			label others
 			`	"Others? Oh, you misunderstood me. I took a crew of brigands and pirates, they're all long dead now, most of old age. I'd say they made the right choice in coming with me, no matter how much they protested that the aliens here were too alien."`
 			label end
-			`	The Heliarchs inform you that the medic has arrived, and have them treat your bruises. Although the Alpha was right in that you weren't injured much, the Heliarchs insist on cleaning up your injuries. Once they're done, an agent escorts you back to your ship.`
+			`	The Heliarchs inform you that the medic has arrived, and have you go with them further down the hallway, to a room where they treat your bruises. Although the Alpha was right in that you weren't injured much, the Heliarchs insist on cleaning up your injuries. Once they're done, an agent escorts you back to your ship.`
 				decline
