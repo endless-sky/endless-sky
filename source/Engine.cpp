@@ -1218,6 +1218,7 @@ void Engine::EnterSystem()
 					raidFleet->Place(*system, newShips);
 					Messages::Add("Your fleet has attracted the interest of a "
 							+ raidGovernment->GetName() + " raiding party.");
+					pirateRaid = true;
 				}
 	}
 	

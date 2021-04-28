@@ -124,3 +124,7 @@ help "trading"
 
 help "friendly disabled"
 	`This ship is disabled and needs your help to patch them up! Pressing <Board selected ship> will fly you to their ship and get them up and running again. Just be sure to do it when no one is trying to kill you, or they could get caught in the crossfire!`
+
+help "pirate raid"
+	`Your fleet has attracted the interest of a raiding party! By having too much cargo space in your fleet without enough defenses, word will get out that you're an easy target, and raiders have the possibility of waiting in ambush each jump you make.`
+	`The chance of drawing attention can be seen on the Player Info Panel with <View player info>. To reduce that chance, when on a planet, you can use the Player Info Panel to park ships with lots of cargo space, by selecting them and clicking the Park button at the bottom, or by selling them. Alternatively, you can arm your freighters with offensive weaponry, or buy interceptor or warship escorts to deter the raiders in the first place.`

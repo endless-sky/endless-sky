@@ -87,6 +87,9 @@ public:
 	void Click(const Point &from, const Point &to, bool hasShift);
 	void RClick(const Point &point);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
+
+	// Tutorial boolean set by pirate raids to be read by MainPanel
+	bool pirateRaid;
 	
 	
 private:

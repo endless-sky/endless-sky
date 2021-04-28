@@ -123,6 +123,8 @@ void MainPanel::Step()
 				GetUI()->Push(new Dialog(GameData::HelpMessage(message)));
 			}
 		}
+		if(isActive && engine.pirateRaid)
+			DoHelp("pirate raid");
 	}
 	
 	engine.Step(isActive);
