@@ -81,7 +81,7 @@ news "heliarch agent"
 			`"Apologies, but make haste I must. Gone missing some garrison guns have, and back to cleaning Stalker engines I will be, if find them I don't!"`
 			`"Difficult sometimes it is, to be a mediator. If careful with my words I am not, a Saryd might think an Arach talking about longcows has insulted their mother."`
 			"An agent is trying to calm down a small crowd outside a local bar. After some minutes, the more agitated drunkards are convinced to accompany the agent to a nearby Heliarch office."
-			"A pair of agents passes by you. Most passerby give them a wide berth."
+			"A pair of agents passes by you. Most of the spaceport crowd gives them a wide berth."
 			`"A pilot, I once was. Learned from an older sibling, I did."`
 
 news "heliarch candidate"
