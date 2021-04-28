@@ -1064,7 +1064,7 @@ mission "Remnant: Learn Sign Follow Up"
 
 mission "Remnant: Deep Surveillance"
 	name "Investigate Ivan"
-	description "Travel to <destination> where Ivan's office is in order to ask him what he knows about the Ember Waste."
+	description "Travel to <stopovers> where Ivan's office is in order to ask him what he knows about the Ember Waste, then return to <destination> with your findings."
 	minor
 	source
 		government "Remnant"
