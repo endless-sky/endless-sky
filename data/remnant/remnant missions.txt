@@ -1065,7 +1065,7 @@ mission "Remnant Rescue"
 	job
 	repeat
 	name "Search and Rescue: Scout"
-	description "A ship, the <npc>, has gone missing during a scouting mission in the Ember Wastes. Find them and help them return to <destination>."
+	description "The <npc> has gone missing during a scouting mission in the Ember Wastes. Find them and help them return to <destination>."
 	source
 		government "Remnant"
 	to offer
@@ -1131,7 +1131,7 @@ mission "Remnant Rescue 1B"
 	job
 	repeat
 	name "Search and Rescue: Scout"
-	description "A ship, the <npc>, has gone missing during a scouting mission in the Ember Wastes. Find them and help them return to <destination>."
+	description "The <npc> has gone missing during a scouting mission in the Ember Wastes. Find them and help them return to <destination>."
 	source
 		government "Remnant"
 	to offer
@@ -1169,7 +1169,7 @@ mission "Remnant Rescue 2"
 	job
 	repeat
 	name "Search and Rescue: Retrieval"
-	description "A ship, the <npc>, has gone missing during a tech retreival mission in the Ember Wastes. Find them and help them return to <destination>."
+	description "The <npc> has gone missing during a tech retrieval mission in the Ember Wastes. Find them and help them return to <destination>."
 	source
 		government "Remnant"
 	to offer
@@ -1209,7 +1209,7 @@ mission "Remnant Rescue 2B"
 	job
 	repeat
 	name "Search and Rescue: Retrieval"
-	description "A ship, the <npc>, has gone missing during a tech retreival mission in the Ember Wastes. Find them and help them return to <destination>."
+	description "The <npc> has gone missing during a tech retrieval mission in the Ember Wastes. Find them and help them return to <destination>."
 	source
 		government "Remnant"
 	to offer
@@ -1247,7 +1247,7 @@ mission "Remnant Rescue 3"
 	job
 	repeat
 	name "Search and Rescue: Supply Ship"
-	description "A ship, the <npc>, has gone missing on a supply run in the Ember Wastes. Find them and help them return to <destination>."
+	description "The <npc> has gone missing on a supply run in the Ember Wastes. Find them and help them return to <destination>."
 	source
 		government "Remnant"
 	to offer
@@ -1285,7 +1285,7 @@ mission "Remnant Rescue 3B"
 	job
 	repeat
 	name "Search and Rescue: Supply Ship"
-	description "A ship, the <npc>, has gone missing on a supply run in the Ember Wastes. Find them and help them return to <destination>."
+	description "The <npc> has gone missing on a supply run in the Ember Wastes. Find them and help them return to <destination>."
 	source
 		government "Remnant"
 	to offer
