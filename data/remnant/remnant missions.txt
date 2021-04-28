@@ -1228,7 +1228,7 @@ mission "Remnant Rescue 2B"
 			variant
 				"Rescue Dummy"
 		dialog
-			`As you enter the system, your sensors pick up a lot of debris. Further analysis confirms your worst fears. The <npc> is destroyed. You frantically spend the next few hours searching for survivors, your hope sinking with every minute that passes.`
+			`As you enter the system, your sensors pick up a lot of debris. Further analysis confirms your worst fears. The <npc> has been destroyed. You frantically spend the next few hours searching for survivors, your hope sinking with every passing minute.`
 	on complete
 		"rescue missions" ++
 		payment 300000
@@ -1302,7 +1302,7 @@ mission "Remnant Rescue 3B"
 			variant
 				"Rescue Dummy"
 		dialog
-			`As you enter the system, your sensors pick up a lot of debris. Further analysis confirms your worst fears. The <npc> is destroyed. You frantically spend the next few hours searching for survivors, your hope sinking with every minute that passes.`
+			`As you enter the system, your sensors pick up a lot of debris. Further analysis confirms your worst fears. The <npc> has been destroyed. You frantically spend the next few hours searching for survivors, your hope sinking with every passing minute.`
 	on complete
 		"rescue missions" ++
 		payment 300000
@@ -1343,7 +1343,7 @@ mission "Remnant Rescue 4"
 		"rescue missions" ++
 		payment 500000
 		dialog
-			`Upon landing the captain of the <npc> meets you at your ship to thank you personally for rescuing them from the Graveyard, leaving you with a heartfelt "May the Embers burn bright for you." `
+			`Upon landing, the captain of the <npc> meets you at your ship to thank you personally for rescuing them from the Graveyard, leaving you with a heartfelt sentence: "May the Embers burn bright for you." `
 			`Soon after, your communicator notifies you of a resource allocation of <payment>.`
 	on visit
 		dialog
