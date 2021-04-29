@@ -4299,9 +4299,9 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"You want me to take you to a black hole?!"`
 				`	"Sorry, I'm not interested in visiting a black hole."`
 					decline
-			`	She looks momentarily surprised by your reaction. "Yes, exactly that. Current gravitational repulsor engines can nullify most of the gravitational pull, and an extra thermoelectric cooler or two should be sufficient to manage the heat. As such, the risks are mangeable so long as you do not try to approach the event horizon.`
+			`	She looks momentarily surprised by your reaction. "Yes, exactly that. Current gravitational repulsor engines can nullify most of the gravitational pull, and an extra thermoelectric cooler or two should be sufficient to manage the heat. As such, the risks are manageable so long as you do not try to approach the event horizon.`
 			label scienceequipment
-			`	"For this mission in specific, however, we will need some scientific equipment that is actually hardwired into your ship, not just carried along with us. When we arrive on <planet>, they will have the equipment ready to install. Just be aware that it will require six tons of outfit space and a scientist to run it, so you will need a free bunk for them, too.`
+			`	"For this particular mission, we will need some additional scientific equipment that is actually hardwired into your ship, not just carried along with us. When we arrive on <planet>, they will have the equipment ready to install. Just be aware that it will require six tons of outfit space and a scientist to run it, so you will need a free bunk for them, too.`
 			`	"Once the laboratory module is installed, it will simply be a matter of traveling to Sagittarius A*. After our measurements, recordings, and observations are complete, we will return and report on our findings."`
 			`	She glances down at her half-finished meal. "I am already packed and ready to go. I will meet you onboard the <ship> as soon as I am done eating."`
 			branch dawnsymbiont
