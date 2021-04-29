@@ -3131,7 +3131,7 @@ mission "Remnant: Keystone Research 1"
 				`	(Decline.)`
 					decline
 			label crystaldecision
-			`	"Great. They would like you to pick up another 19 keystones. Two differences this time: first, we would like you to pick them up from several different planets. And second, by the time you reach Hai space, we will have made arrangements so the shipments will be already paid for and waiting for you. Pick up the first stones on Allhome, then the next set on Greenwater. I will have a list sent to you by the time you reach Greenwater."`
+			`	"Great. They would like you to pick up another 19 keystones. Two differences this time: first, we would like you to pick them up from several different planets. And second, by the time you reach Hai space, we will have made arrangements so the shipments will be already paid for and waiting for you. Pick up the first stones on Greenwater, then the next set on Allhome. I will have a list sent to you by the time you reach Allhome."`
 			`	"That being said, if you happen to pick up any additional keystones, you can turn them into the logistics office. They will handle the distribution and compensate you accordingly."`
 			choice
 				`	"Wait, how will you get this all set up?"`
@@ -3209,7 +3209,6 @@ mission "Remnant: Keystone Research 3"
 				accept
 	on stopover
 		dialog
-			`You quickly locate and load the shipment of quantum keystones. The packaging comes with brochures and images depicting comfortable-looking Hai relaxing on a spaceship observation deck. "Guaranteed to provide the smoothest flight for your passengers!" reads one of the labels.`
 	on complete
 		payment 250000
 		dialog
@@ -3228,7 +3227,7 @@ mission "Remnant: Keystone Research 3A"
 		has "Remnant: Keystone Research 3: active"
 	on offer
 		conversation
-			`Sure enough, there is a pair of crates waiting for you. This one depicts of a pair of distinguished elderly Hai relaxing in front of a matte painting.`
+			`You quickly locate and load the shipment of quantum keystones. The packaging comes with brochures and images depicting comfortable-looking Hai relaxing on a spaceship observation deck. "Guaranteed to provide the smoothest flight for your passengers!" reads one of the labels.`
 				accept
 
 
@@ -3242,6 +3241,10 @@ mission "Remnant: Keystone Research 3B"
 	cargo "Keystones" 2
 	to offer
 		has "Remnant: Keystone Research 3A: active"
+	on offer
+		conversation
+			`Sure enough, there is a pair of crates waiting for you. This time the brochure depicts a pair of distinguished elderly Hai relaxing in front of a matte painting.`
+				accept
 
 
 
@@ -3315,7 +3318,7 @@ mission "Remnant: Keystone Research 4"
 	cargo "Keystones" 19
 	to offer
 		has "Remnant: Keystone Research 3: done"
-	on accept
+	on offer
 		dialog
 			`As you were reading the previous message, a freight hauler arrives with the last few crates and starts unloading them. Looking over the assembled stack, you note that each crate bears the logos and advertisements for a different organization, shipper, or enterprise. The second message turns out to be a confirmation that you have picked up 19 keystones. While there are no new instructions, the subtext is clear: Time to head back.`
 	on complete
