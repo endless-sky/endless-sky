@@ -2011,8 +2011,8 @@ void Ship::DoGeneration()
 	if(heat > MaximumHeat())
 	{
 		isOverheated = true;
-		if(CookHeatFactor() && heat > MaximumHeat()*CookHeatFactor()) {
-			hull -= CookDamageFactor()* heat / MaximumHeat();
+		if(CookHeatFactor() && Heat() > CookHeatFactor()) {
+			hull -= CookDamageFactor()* Heat();
 		}
 	}
 	else if(heat < .9 * MaximumHeat())
@@ -2994,7 +2994,7 @@ double Ship::CookHeatFactor() const
 // Get the damage multiplier for hull damage when overheating.
 double Ship::CookDamageFactor() const
 {
-	return attributes.Get("cook damage");
+	return attributes.Get("cooking rate");
 }
 
 
