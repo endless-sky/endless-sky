@@ -17,7 +17,7 @@ mission "Wanderers: Pre-Colony"
 	on offer
 		conversation
 			`With the Eye fully opened, Wanderer ships have begun flooding into this region of space. This desolate planet seems to be of particular interest to them, with drones rapidly surveying in all directions, and a small outpost beginning to form.`
-			`	As you land on the outskirts of this settlement, one of the workers comes up to your ship and explains that this planet will be the staging ground for the Wanderers to explore this new region, but it will take a few weeks to finish. They suggest getting your bearings in these systems before returning to help, as many ships will be needed to help heal the many ruined planets here.`
+			`	As you land on the outskirts of this settlement, one of the workers comes up to you as you leave your ship. "[Greetings, welcome], it is [delightful, pleasing] to see you have come to show your interest in our exploration. Unfortunately, there exists much [hazard, risk] on a world we know so little about. This will be our staging ground to [explore, catalogue] this new region, but it will take some time to be assured of the [safety, security] of our outpost. I suggest you take time to [orient, locate] yourself in these systems while we set up before returning to help. Of course you are welcome when we have [determined, established] safety, there will be many ships needed to help heal the many ruined planets here.`
 				decline
 
 mission "Wanderers: Surveying 1"
