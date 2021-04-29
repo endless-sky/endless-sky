@@ -2907,12 +2907,14 @@ mission "Remnant: Broken Jump Drive job"
 
 
 mission "Remnant: Face to Maw 1"
-	minor
 	name "Talk to Plume about the void sprites"
 	description "Plume would be very interested in a report on what happened with the void sprites."
 	landing
 	to offer
 		has "event: remnant: return the samples timer"
+		or
+			not "Remnant: Cognizance 1: offered"
+			has "Remnant: Cognizance 19: done"
 	source
 		system "Nenia"
 	destination "Aventine"
