@@ -2723,12 +2723,13 @@ mission "Wanderers Ap'arak 2"
 
 # TODO: When "complete anywhere" functionality is available, 
 # condense the following three missions into a single mission
-mission "Wanderers Ap'arak 3: Pug"
+mission "Wanderers Ap'arak 3: Pug 1"
 	landing
 	invisible
 	source "Varu Tev'kei"
 	to offer
 		has "Wanderers Ap'arak 2: done"
+		not "Wanderers Ap'arak 3: offered"
 	npc save
 		personality staying unconstrained uninterested
 		government "Pug (Wanderer)"
@@ -2742,7 +2743,7 @@ mission "Wanderers Ap'arak 3: Pug 2"
 	source "Varu Tev'kei"
 	to offer
 		has "Wanderers Ap'arak 2: done"
-		not "Wanderers Ap'arak 3: done"
+		not "Wanderers Ap'arak 3: offered"
 	npc save
 		personality staying unconstrained uninterested
 		government "Pug (Wanderer)"
@@ -2762,6 +2763,7 @@ mission "Wanderers Pug Hostile"
 		conversation
 			`Having defeated the Pug ships guarding Wanderer space, you receive a message from Sobari Tele'ek: "We are [aware? incredulous?] of reports that you have [exterminated, eradicated] our Keepers in the Ap'arak system. This is unacceptable! From now on, you are no longer welcome in our [territory, space]."`
 				flee
+		set "Wanderers Ap'arak 3: Pug: done"
 		"reputation: Wanderer" <?= -1
 
 mission "Wanderers Ap'arak 3"
