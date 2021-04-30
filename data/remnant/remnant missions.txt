@@ -1429,7 +1429,7 @@ mission "Remnant: Deep Surveillance"
 			`	You ascend the stairs of the Institute, the massive building looming over you as you approach. Its more ancient design makes the building stand out from the rest of the district, the entrance being guarded by massive marble pillars that manage to not clash with the metallic sheen of the rest of the buildings. The interior is similarly impressive, with a massive lobby area centered by an impressive water fountain.`
 			`	You approach one of the receptionist desks and ask to see Ivan Haataja. "It looks like he's available right now," she says. "We'll let him know you're coming and have someone here to escort you to Doctor Haataja's office shortly."`
 			`	You're escorted through what seems like endless hallways and stairwells, the entire building being as impressively decorated as the lobby, before finally coming to Ivan's office. You thank the escort for bringing you here (as you would have been lost for hours without him, surely why they have people just for escorting guests) and knock on Ivan's door.`
-			`	Ivan opens to door with a big smile on his face. "Captain <last>! So great to see you here. Please, have a seat." Ivan ushers you inside his office, an impressively large room with a window wall overseeing a beautiful courtyard. You sit down in a cushioned chair on the opposite side of a desk. You lean back into the chair and get comfortable. "I know the chairs are cozy," Ivan says. "Don't fall asleep on me though."`
+			`	Ivan opens the door with a big smile on his face. "Captain <last>! So great to see you here. Please, have a seat." Ivan ushers you inside his office, an impressively large room with a window wall overseeing a beautiful courtyard. You sit down in a cushioned chair on the opposite side of a desk. You lean back into the chair and get comfortable. "I know the chairs are cozy," Ivan says. "Don't fall asleep on me though."`
 			branch second
 				"retrieved information" == 2
 			`	Ivan then takes a seat in his own cushioned chair. "Welcome to my office. This is miles above what I'm used to. After gaining the attention of the Deep government with the discoveries we were making, they immediately had my office moved from the dingy complex it used to be at to here. I have you to thank for much of that work .`
@@ -3857,7 +3857,7 @@ mission "Remnant: Cognizance 9"
 				`	"What do you mean?"`
 				`	"Let's get on with it."`
 					goto skipinfo
-			`	"Well, this place is fairly old. It was built shortly after we learned how to build Starlings - which is where we learned of the troubles of extending the cloaking field beyond small ships. I don't know the mechanics behind it, but it has taken close to two centuries of study and development for cloaks to be feasible on large ships." We had plenty of puffins back then, and the techniques for building high-pressure systems were well understood. The Alphas hadn't shown any interest in gas giants or 'gaslined ships' as we call them, so having somewhere like this to hide in makes sense. Best place to hide is somewhere no one will look, right?" With that, he nods to himself, climbs to his feet, and heads towards the suit locker.`
+			`	"Well, this place is fairly old. It was built shortly after we learned how to build Starlings - which is where we learned of the troubles of extending the cloaking field beyond small ships. I don't know the mechanics behind it, but it has taken close to two centuries of study and development for cloaks to be feasible on large ships. We had plenty of puffins back then, and the techniques for building high-pressure systems were well understood. The Alphas hadn't shown any interest in gas giants or 'gaslined ships' as we call them, so having somewhere like this to hide in makes sense. Best place to hide is somewhere no one will look, right?" With that, he nods to himself, climbs to his feet, and heads towards the suit locker.`
 			label skipinfo
 			`	"The station should be pressurized with a normal atmosphere, but it has been running on standby for ages with just yearly maintenance. It is time to get this place up and running again." With two of you operating your ship's loading equipment, everything is transferred in short order. You notice that the last crate includes a substantial amount of field rations and survival gear. It looks like Gavriil is planning on staying here for a while.`
 			`	As he heads off deeper into the station, you receive a notification that 'Remnant Logistics' has made a deposit of <payment> to your account.`
@@ -3943,7 +3943,7 @@ mission "Remnant: Cognizance 12"
 	on complete
 		event "remnant: postverta reveal"
 		conversation
-			`You arrive at the hidden station on <planet> where Gavriil is waiting to offload the atmospheric gases. His team quickly hooks the Puffins up to ports on the bay walls, and hidden equipment starts pumping its contents into the system. After a few minutes, they disconnect the ships, and you and the Puffins head up to the Pelican to refill your reservoirs and ferry it down to the station.`
+			`You arrive at the hidden station on <planet> where Gavriil is waiting to offload the atmospheric gases. His team quickly hooks the Puffins up to ports on the bay walls, and hidden equipment starts pumping their contents into the system. After a few minutes, they disconnect the ships, and you and the Puffins head up to the Pelican to refill your reservoirs and ferry it down to the station.`
 			`	As the last load starts to empty into the station, another tech comes up to you. "Captain, we just received a message from Prefect Chilia. He would like you to meet him on Viminal as soon as possible." You nod and start to run checks on the <ship>, making ready to leave once the cargo is done unloading.` 
 
 
@@ -4299,9 +4299,9 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"You want me to take you to a black hole?!"`
 				`	"Sorry, I'm not interested in visiting a black hole."`
 					decline
-			`	She looks momentarily surprised by your reaction. "Yes, exactly that. Current gravitational repulsor engines can nullify most of the gravitational pull, and an extra thermoelectric cooler or two should be sufficient to manage the heat. As such, the risks are mangeable so long as you do not try to approach the event horizon.`
+			`	She looks momentarily surprised by your reaction. "Yes, exactly that. Current gravitational repulsor engines can nullify most of the gravitational pull, and an extra thermoelectric cooler or two should be sufficient to manage the heat. As such, the risks are manageable so long as you do not try to approach the event horizon.`
 			label scienceequipment
-			`	"For this mission in specific, however, we will need some scientific equipment that is actually hardwired into your ship, not just carried along with us. When we arrive on <planet>, they will have the equipment ready to install. Just be aware that it will require six tons of outfit space and a scientist to run it, so you will need a free bunk for them, too.`
+			`	"For this particular mission, we will need some additional scientific equipment that is actually hardwired into your ship, not just carried along with us. When we arrive on <planet>, they will have the equipment ready to install. Just be aware that it will require six tons of outfit space and a scientist to run it, so you will need a free bunk for them, too.`
 			`	"Once the laboratory module is installed, it will simply be a matter of traveling to Sagittarius A*. After our measurements, recordings, and observations are complete, we will return and report on our findings."`
 			`	She glances down at her half-finished meal. "I am already packed and ready to go. I will meet you onboard the <ship> as soon as I am done eating."`
 			branch dawnsymbiont
@@ -4547,7 +4547,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 		conversation
 			`As you cross the starport, you are suddenly ambushed by Dawn appearing out of a side hallway. "Captain <first>! I have been hoping to catch you. I need some help." She hurries up, waving a datapad full of charts. "I have some additional leads for my research project, and I need a pilot who can take me out to Aescolanus." She looks at you hopefully.`
 			choice
-				`	"Sure; I am always willing to help."`
+				`	"Sure, I am always willing to help."`
 				`	"Not today, sorry."`
 					decline
 			`	"Excellent! You already have a research laboratory onboard, and it has all the equipment I need. Now, before we head out, you should know that the goal of this mission is to do some analysis on the leading edge of a storm that will be breaking on the system shortly. We do not need to weather the entire storm, but we will have to be there for at least the first part."`
