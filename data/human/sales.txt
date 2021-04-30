@@ -64,6 +64,7 @@ shipyard "Navy Basics"
 	"Lance"
 	"Combat Drone"
 	"Surveillance Drone"
+	"Dropship"
 
 shipyard "Navy Advanced"
 	"Frigate"

@@ -226,8 +226,8 @@ void MapPanel::DrawButtons(const string &condition)
 		info.SetCondition("max zoom");
 	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
 		info.SetCondition("min zoom");
-	const Interface *interface = GameData::Interfaces().Get("map buttons");
-	interface->Draw(info, this);
+	const Interface *mapButtonUi = GameData::Interfaces().Get("map buttons");
+	mapButtonUi->Draw(info, this);
 }
 
 
@@ -751,7 +751,7 @@ void MapPanel::UpdateCache()
 				{
 					double size = 0;
 					for(const StellarObject &object : system.Objects())
-						if(object.GetPlanet())
+						if(object.HasSprite() && object.HasValidPlanet())
 							size += object.GetPlanet()->Shipyard().size();
 					value = size ? min(10., size) / 10. : -1.;
 				}
@@ -759,7 +759,7 @@ void MapPanel::UpdateCache()
 				{
 					double size = 0;
 					for(const StellarObject &object : system.Objects())
-						if(object.GetPlanet())
+						if(object.HasSprite() && object.HasValidPlanet())
 							size += object.GetPlanet()->Outfitter().size();
 					value = size ? min(60., size) / 60. : -1.;
 				}
@@ -769,7 +769,7 @@ void MapPanel::UpdateCache()
 					bool some = false;
 					colorSystem = false;
 					for(const StellarObject &object : system.Objects())
-						if(object.GetPlanet() && !object.GetPlanet()->IsWormhole()
+						if(object.HasSprite() && object.HasValidPlanet() && !object.GetPlanet()->IsWormhole()
 							&& object.GetPlanet()->IsAccessible(player.Flagship()))
 						{
 							bool visited = player.HasVisited(*object.GetPlanet());
@@ -803,7 +803,7 @@ void MapPanel::UpdateCache()
 				bool canLand = false;
 				bool hasSpaceport = false;
 				for(const StellarObject &object : system.Objects())
-					if(object.GetPlanet())
+					if(object.HasSprite() && object.HasValidPlanet())
 					{
 						const Planet *planet = object.GetPlanet();
 						hasSpaceport |= !planet->IsWormhole() && planet->HasSpaceport();
@@ -899,7 +899,8 @@ void MapPanel::DrawTravelPlan()
 		bool systemJumpRange = previous->JumpRange() > 0.;
 		bool isWormhole = false;
 		for(const StellarObject &object : previous->Objects())
-			isWormhole |= (object.GetPlanet() && player.HasVisited(*object.GetPlanet())
+			isWormhole |= (object.HasSprite() && object.HasValidPlanet()
+				&& player.HasVisited(*object.GetPlanet())
 				&& !object.GetPlanet()->Description().empty()
 				&& player.HasVisited(*previous) && player.HasVisited(*next)
 				&& object.GetPlanet()->WormholeDestination(previous) == next);

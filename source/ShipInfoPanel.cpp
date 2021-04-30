@@ -106,15 +106,15 @@ void ShipInfoPanel::Draw()
 		interfaceInfo.SetCondition("enable logbook");
 	
 	// Draw the interface.
-	const Interface *interface = GameData::Interfaces().Get("info panel");
-	interface->Draw(interfaceInfo, this);
+	const Interface *infoPanelUi = GameData::Interfaces().Get("info panel");
+	infoPanelUi->Draw(interfaceInfo, this);
 	
 	// Draw all the different information sections.
 	ClearZones();
-	Rectangle cargoBounds = interface->GetBox("cargo");
-	DrawShipStats(interface->GetBox("stats"));
-	DrawOutfits(interface->GetBox("outfits"), cargoBounds);
-	DrawWeapons(interface->GetBox("weapons"));
+	Rectangle cargoBounds = infoPanelUi->GetBox("cargo");
+	DrawShipStats(infoPanelUi->GetBox("stats"));
+	DrawOutfits(infoPanelUi->GetBox("outfits"), cargoBounds);
+	DrawWeapons(infoPanelUi->GetBox("weapons"));
 	DrawCargo(cargoBounds);
 	
 	// If the player hovers their mouse over a ship attribute, show its tooltip.

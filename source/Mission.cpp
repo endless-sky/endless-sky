@@ -1216,7 +1216,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	DistanceMap distance(path);
 	jumps += distance.Days(result.destination->GetSystem());
-	int payload = result.cargoSize + 10 * result.passengers;
+	int64_t payload = static_cast<int64_t>(result.cargoSize) + 10 * static_cast<int64_t>(result.passengers);
 	
 	// Set the deadline, if requested.
 	if(deadlineBase || deadlineMultiplier)

@@ -31,6 +31,10 @@ chroot_name = os.environ.get('SCHROOT_CHROOT_NAME', '')
 if 'steamrt' in chroot_name:
 	env.Append(LINKFLAGS = ["-static-libstdc++"])
 
+# Don't spawn a console window by default on Windows builds.
+if is_windows_host:
+	env.Append(LINKFLAGS = ["-mwindows"])
+
 opts = Variables()
 opts.AddVariables(
 	EnumVariable("mode", "Compilation mode", "release", allowed_values=("release", "debug", "profile")),
@@ -70,7 +74,6 @@ game_libs = [
 	"png.dll",
 	"turbojpeg.dll",
 	"jpeg.dll",
-	"mad.dll",
 	"openal.dll",
 	"glew32.dll",
 	"opengl32",
@@ -113,7 +116,8 @@ def RecursiveGlob(pattern, dir_name=buildDirectory):
 	matches = [RecursiveGlob(pattern, sub_dir) for sub_dir in Glob(pathjoin(str(dir_name), "*"))
 		if isinstance(sub_dir, Dir)]
 	# Add source files in this directory, except for main.cpp
-	matches += Glob(pathjoin(str(dir_name), pattern), exclude=["*/main.cpp"])
+	matches += Glob(pathjoin(str(dir_name), pattern))
+	matches = [i for i in matches if not "/main.cpp" in str(i)]
 	return matches
 
 # By default, invoking scons will build the backing archive file and then the game binary.
@@ -137,6 +141,8 @@ test = env.Program(
 	CPPPATH=(env.get('CPPPATH', []) + [pathjoin('tests', 'include')]),
 	# Do not link against the actual implementations of SDL, OpenGL, etc.
 	LIBS=[],
+	# Pass the necessary link flags for a console program.
+	LINKFLAGS=[x for x in env.get('LINKFLAGS', []) if x not in ('-mwindows',)]
 )
 # Invoking scons with the `build-tests` target will build the unit test framework
 env.Alias("build-tests", test)

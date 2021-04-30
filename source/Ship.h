@@ -62,8 +62,13 @@ public:
 	class Bay {
 	public:
 		Bay(double x, double y, std::string category) : point(x * .5, y * .5), category(category) {}
+		Bay(Bay &&) = default;
+		Bay &operator=(Bay &&) = default;
+		~Bay() = default;
+		
 		// Copying a bay does not copy the ship inside it.
 		Bay(const Bay &b) : point(b.point), category(b.category), side(b.side), facing(b.facing), launchEffects(b.launchEffects) {}
+		Bay &operator=(const Bay &b) { return *this = Bay(b); }
 		
 		Point point;
 		std::shared_ptr<Ship> ship;

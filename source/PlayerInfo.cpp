@@ -43,6 +43,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cmath>
 #include <ctime>
 #include <iterator>
+#include <limits>
 #include <sstream>
 #include <stdexcept>
 
@@ -199,7 +200,7 @@ void PlayerInfo::Load(const string &path)
 						}
 		}
 		else if(child.Token(0) == "account")
-			accounts.Load(child);
+			accounts.Load(child, true);
 		else if(child.Token(0) == "cargo")
 			cargo.Load(child);
 		else if(child.Token(0) == "basis")
@@ -1418,7 +1419,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 				continue;
 			
 			// Figure out how much income you get for selling this cargo.
-			int64_t value = commodity.second * system->Trade(commodity.first);
+			int64_t value = commodity.second * static_cast<int64_t>(system->Trade(commodity.first));
 			income += value;
 			
 			int original = originalTotals[commodity.first];

@@ -587,7 +587,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == 'b' || ((key == 'i' || key == 'c') && selectedOutfit && (player.Cargo().Get(selectedOutfit)
 			|| (player.Storage() && player.Storage()->Get(selectedOutfit)))))
 	{
-		if(!CanBuy())
+		if(!CanBuy(key == 'i' || key == 'c'))
 			FailBuy();
 		else
 		{

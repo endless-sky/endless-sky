@@ -258,7 +258,7 @@ tip "piercing protection:"
 	`Protection against weapons that pierce shields. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in damage leak, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "radar jamming:"
-	`Reduces the ability of missiles that use radar to track your ship.`
+	`Reduces the ability of radar-guided missiles to track your ship. The more radar jamming is installed, the greater the distance at which missiles can be jammed, and the greater the chance that a jammed missile will fly off in a random direction.`
 
 tip "ramscoop:"
 	`Replenishes fuel by harvesting the stellar wind. Ramscoops are more effective when closer to a star. If you add more than one ramscoop, each additional one is less effective: you need four ramscoops to achieve double the recharge rate that one ramscoop provides.`
@@ -564,13 +564,13 @@ tip "tracking:"
 	`How well this weapon maintains its target lock.`
 
 tip "optical tracking:"
-	`How well this weapon maintains an optical target lock, which depend on the size of the target.`
+	`How well this weapon maintains an optical target lock, which depends on the size of the target.`
 
 tip "infrared tracking:"
-	`How well this weapon maintains an infrared target lock, which depends on the target ship's heat level.`
+	`How well this weapon maintains an infrared target lock, which depends on the target ship's heat level and distance from the missile; IR-guided missiles become more accurate the closer they are to their targets.`
 
 tip "radar tracking:"
-	`How well this weapon maintains a radar target lock, which can be interrupted by a ship with radar jamming installed.`
+	`How well this weapon maintains a radar target lock; negatively affected by the target ship's radar jamming equipment.`
 
 tip "piercing:"
 	`This percentage of this weapon's damage always leaks through to the hull.`

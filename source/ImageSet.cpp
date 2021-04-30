@@ -16,6 +16,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Mask.h"
 #include "Sprite.h"
 
+#include <algorithm>
+#include <iterator>
+
 using namespace std;
 
 namespace {
@@ -44,6 +47,21 @@ namespace {
 		// If there is not a blending mode specifier before the numbers, they
 		// are part of the sprite name, not a frame index.
 		return (IsBlend(path[pos]) ? pos : end);
+	}
+	
+	// Log an error if frames are missing in one of the paths vectors.
+	void LogIfMissingFrames(const vector<string> &frameData, size_t expectedCount, const string &prefix, bool is2x)
+	{
+		auto isMissing = [](const string &s) noexcept -> bool { return s.empty(); };
+		auto endIt = frameData.begin() + min(expectedCount, frameData.size());
+		const auto firstMissingIt = find_if(frameData.begin(), endIt, isMissing);
+		if(firstMissingIt == endIt)
+			return;
+		
+		const auto totalMissing = count_if(firstMissingIt, endIt, isMissing);
+		const size_t firstMissingIndex = distance(frameData.begin(), firstMissingIt);
+		Files::LogError(prefix + "missing " + (is2x ? "@2x " : "") + "frame " + to_string(firstMissingIndex) +
+				" (" + to_string(totalMissing) + " missing in total).");
 	}
 }
 
@@ -174,15 +192,10 @@ void ImageSet::Check() const
 	if(paths[1].size() > paths[0].size())
 		Files::LogError(prefix + to_string(paths[1].size() - paths[0].size())
 				+ " extra frames for the @2x sprite will be ignored.");
-	
-	for(size_t i = 0; i < paths[0].size(); ++i)
-	{
-		if(paths[0][i].empty())
-			Files::LogError(prefix + "missing frame " + to_string(i) + ".");
-		
-		if(!paths[1].empty() && (i >= paths[1].size() || paths[1][i].empty()))
-			Files::LogError(prefix + "missing @2x frame " + to_string(i) + ".");
-	}
+
+	LogIfMissingFrames(paths[0], paths[0].size(), prefix, false);
+	if(!paths[1].empty())
+		LogIfMissingFrames(paths[1], paths[0].size(), prefix, true);
 }
 
 

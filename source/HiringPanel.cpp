@@ -50,7 +50,7 @@ void HiringPanel::Draw()
 	// Draw a line in the same place as the trading and bank panels.
 	FillShader::Fill(Point(-60., 95.), Point(480., 1.), *GameData::Colors().Get("medium"));
 	
-	const Interface *interface = GameData::Interfaces().Get("hiring");
+	const Interface *hiring = GameData::Interfaces().Get("hiring");
 	Information info;
 	
 	int flagshipBunks = flagship.Attributes().Get("bunks");
@@ -97,7 +97,7 @@ void HiringPanel::Draw()
 	if(maxFire)
 		info.SetCondition("can fire");
 	
-	interface->Draw(info, this);
+	hiring->Draw(info, this);
 }
 
 

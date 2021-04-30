@@ -264,8 +264,7 @@ mission "Wanderers: First Mereti Attack"
 			`	You return as quickly as possible to your ship and prepare to join the other defenders...`
 				launch
 	on visit
-		dialog
-			`There are still Kor Mereti drones circling overhead. You should help the Wanderers to drive them off.`
+		dialog `There are still Kor Mereti drones circling overhead. You should help the Wanderers to drive them off.`
 	npc evade
 		government "Kor Mereti"
 		system Kaliptari
@@ -1287,6 +1286,8 @@ mission "Wanderers: Mentors 2"
 		government "Wanderer"
 		personality escort
 		ship "Riptide" "Green Talon"
+	on visit
+		dialog `You've reached <planet>, but you left the Wanderer ship behind. Better depart and wait for it to arrive.`
 
 
 
@@ -1383,7 +1384,7 @@ mission "Wanderers: Tour 2"
 			`	Rek talks with them for a while, then explains to you, "They want to be in control of their own journey, rather than being no more than 'living cargo' aboard an alien ship. It sounds like this is a matter of honor." Since it seems like the only option, you agree to let them follow you to <planet> in their own ship.`
 				accept
 	on visit
-		dialog "You've reached your destination, but the Korath ship is not here yet."
+		dialog `You've reached <planet>, but the Korath ship isn't here yet. Better depart and wait for it to arrive.`
 	npc accompany save
 		government "Kor Efret"
 		personality escort
@@ -1412,7 +1413,7 @@ mission "Wanderers: Tour 3"
 			`	You agree to escort the Kor Efret ship on a journey through the wormhole to <planet>.`
 				accept
 	on visit
-		dialog "You've reached your destination, but the Korath ship is not here yet."
+		dialog `You've reached <planet>, but the Korath ship isn't here yet. Better depart and wait for it to arrive.`
 	npc accompany save
 		government "Kor Efret"
 		personality escort
@@ -1434,7 +1435,7 @@ mission "Wanderers: Tour 4"
 			`	The Korath are eager to see more places of natural beauty like this one, and the Wanderer leaders suggest that they travel to <planet> next, to see how the Wanderers have built farms that will produce rich crops year after year without depleting the soil.`
 				accept
 	on visit
-		dialog "You've reached your destination, but the Korath ship is not here yet."
+		dialog `You've reached <planet>, but the Korath ship isn't here yet. Better depart and wait for it to arrive.`
 	npc accompany save
 		government "Kor Efret"
 		personality escort
@@ -1463,7 +1464,7 @@ mission "Wanderers: Tour 5"
 			`	You agree to escort the Korath ship to <planet>. Hopefully they won't be blown to bits by an Unfettered fleet; that would be quite a diplomatic disaster.`
 				accept
 	on visit
-		dialog "You've reached your destination, but the Korath ship is not here yet."
+		dialog `You've reached <planet>, but the Korath ship isn't here yet. Better depart and wait for it to arrive.`
 	npc accompany save
 		government "Kor Efret"
 		personality escort
@@ -1492,7 +1493,7 @@ mission "Wanderers: Tour 6"
 			`	Rek tries to assure them that in their own territory, they will be working and living side by side with the Wanderers, in joint control of their worlds. It's not clear if they believe her. "We have seen enough," says the same Korath. "We will return to our world now." You agree to escort them back through the Eye and to make sure they reach <planet> safely.`
 				accept
 	on visit
-		dialog "You've reached your destination, but the Korath ship is not here yet."
+		dialog `You've reached <planet>, but the Korath ship isn't here yet. Better depart and wait for it to arrive.`
 	npc accompany save
 		government "Kor Efret"
 		personality escort
@@ -2019,6 +2020,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Cruiser"
 				"Combat Drone" 4
 				"Frigate"
@@ -2041,6 +2043,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Cruiser"
 				"Combat Drone" 4
 				"Frigate"
@@ -2048,6 +2051,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Carrier"
 				"Lance" 4
 				"Combat Drone" 6
@@ -2207,6 +2211,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Cruiser"
 				"Combat Drone" 4
 				"Frigate"
@@ -2226,6 +2231,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Frigate (Mark II)"
@@ -2233,6 +2239,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
@@ -2748,6 +2755,7 @@ mission "Wanderers: Sestor: Drones in Alnilam"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Cruiser"
 				"Combat Drone" 4
 				"Frigate" 2
@@ -2755,6 +2763,7 @@ mission "Wanderers: Sestor: Drones in Alnilam"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Carrier"
 				"Lance" 4
 				"Combat Drone" 6
