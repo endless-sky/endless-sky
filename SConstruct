@@ -76,6 +76,7 @@ game_libs = [
 	"opengl32",
 	"pangocairo-1.0.dll",
 	"pango-1.0.dll",
+	"glib-2.0.dll",
 	"gobject-2.0.dll",
 	"cairo.dll",
 	"fontconfig.dll",
@@ -90,7 +91,7 @@ game_libs = [
 ]
 env.Append(LIBS = game_libs)
 if not is_windows_host:
-	env.ParseConfig("$PKG_CONFIG_PATH --cflags --libs pangocairo --libs fontconfig")
+	env.ParseConfig("$PKG_CONFIG_PATH --cflags --libs pangocairo fontconfig")
 
 # libmad is not in the Steam runtime, so link it statically:
 if 'steamrt_scout_i386' in chroot_name:
