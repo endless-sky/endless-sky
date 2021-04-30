@@ -241,7 +241,7 @@ news "human reaction to Greenwater outfitter"
 			`"`
 		word
 			"I've been stranded here for ages waiting for the right parts to fix my ship. Finally I don't have to stay at that dank and musty hotel."
-			"I was weighting the need for Hai technology on my ship due to their high prices. Thankfully I've been able to outfit it with human tech so I don't have to pay such great amounts!"
+			"I was weighing the need for Hai technology on my ship due to their high prices. Thankfully I've been able to outfit it with human tech so I don't have to pay such great amounts!"
 			"I had a good thing going before this outfitter showed up. I could transport human ship parts before there was any competition at all. Now my services are practically useless!"
 		word
 			`"`
@@ -251,7 +251,7 @@ news "businessperson in hai space"
 		government "Hai"
 	name
 		word
-			"Businiessperson"
+			"Businessperson"
 			"Professional investor"
 			"Retiree"
 	message
