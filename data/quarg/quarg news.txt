@@ -295,7 +295,7 @@ news "merchant on quarg planets in human space"
 		word
 			`"`
 		word
-			"The Quargs go out of their way to keep piracy at bay in these systems. "
+			"The Quarg go out of their way to keep piracy at bay in these systems. "
 		word
 			"I could fly a fleet of "
 		word
