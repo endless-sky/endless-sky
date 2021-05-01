@@ -364,7 +364,7 @@ news "reporter on quarg planets in human space"
 		word
 			" "
 		word
-			"Things Tarazed Corporation Stole from the Quargs'"
+			"Things Tarazed Corporation Stole from the Quarg!"
 			"Things the Quarg helped Tarazed Corporation With!"
 			"Secrets Humanity Learned from the Quarg!"
 		word
