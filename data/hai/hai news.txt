@@ -302,7 +302,8 @@ news "human advertisement in Hai space"
 		government "Hai"
 		attributes "human tourism"
 	name
-		"Holographic advertisement"
+		word
+			"Holographic advertisement"
 	message
 		word
 			`"`
@@ -319,7 +320,8 @@ news "hai advertisement in Hai space"
 		government "Hai"
 		attributes "hai tourism"
 	name
-		"Holographic advertisement"
+		word
+			"Holographic advertisement"
 	message
 		word
 			`"`
