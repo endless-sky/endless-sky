@@ -100,7 +100,7 @@ news "linguist on quarg planets in human and hai space"
 		word
 			" "
 		word
-			"for a decace"
+			"for a decade"
 			"for years"
 			"for the most part of my career"
 			"all my life"
