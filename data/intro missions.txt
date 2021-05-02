@@ -9,7 +9,6 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 mission "Intro [0]"
-	priority
 	name "Passenger to <planet>"
 	description "This old-timer captain offered to ride along with you to <destination>, and to give you some tips along the way."
 	landing

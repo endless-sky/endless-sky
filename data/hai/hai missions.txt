@@ -273,7 +273,6 @@ mission "Ask the Hai about the Unfettered"
 
 mission "Unfettered Jump Drive 1"
 	name "More Jump Drives"
-	minor
 	description "The Unfettered Hai have promised you rich rewards if you bring them more jump drives."
 	landing
 	to offer
@@ -333,7 +332,6 @@ mission "Unfettered Jump Drive 1"
 
 mission "Unfettered Jump Drive 2"
 	name "More Jump Drives"
-	minor
 	description "The Unfettered Hai have promised you rich rewards, and more information about their plans, if you bring them more jump drives."
 	landing
 	to offer
@@ -376,7 +374,6 @@ mission "Unfettered Jump Drive 2"
 
 mission "Unfettered Jump Drive 3"
 	name "More Jump Drives"
-	minor
 	description "If you find more jump drives, you can sell them to the Unfettered Hai for considerably more money than they are worth elsewhere."
 	landing
 	to offer
