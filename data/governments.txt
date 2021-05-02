@@ -295,27 +295,6 @@ government "Korath"
 	
 	"player reputation" -10
 
-# A friendly Korath Exiles Government for interaction with the "Korath" that doesn't involve guns.
-government "Korath (Friendly)"
-	"display name" "Korath"
-	swizzle 0
-	color .8 .5 .1
-	"crew attack" 1.4
-	"crew defense" 2.6
-	language "Korath"
-	# Penalties are set to 0 to prevent soft-locking.
-	"penalty for"
-		assist 0
-		disable 0
-		board 0
-		capture 0
-		destroy 0
-	
-	"attitude toward"
-		"Remnant" 1
-	
-	"player reputation" 1
-
 government "Korath Nanobots"
 	"player reputation" -1000
 	"bribe" 0
