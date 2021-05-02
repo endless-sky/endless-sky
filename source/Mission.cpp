@@ -457,21 +457,21 @@ bool Mission::IsValid() const
 	
 	// Actions triggered when entering a system should reference valid systems.
 	for(auto &&it : onEnter)
-		if(!it.first->IsValid() || !it.second.IsValid())
+		if(!it.first->IsValid() || !it.second.Validate().empty())
 			return false;
 	for(auto &&it : actions)
-		if(!it.second.IsValid())
+		if(!it.second.Validate().empty())
 			return false;
 	// Generic "on enter" may use a LocationFilter that exclusively references invalid content.
 	for(auto &&action : genericOnEnter)
-		if(!action.IsValid())
+		if(!action.Validate().empty())
 			return false;
 	if(!clearanceFilter.IsValid())
 		return false;
 	
 	// The instantiated NPCs should also be valid.
 	for(auto &&npc : NPCs())
-		if(!npc.IsValid())
+		if(!npc.Validate().empty())
 			return false;
 	
 	return true;
@@ -1277,11 +1277,13 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	
 	// Instantiate the NPCs. This also fills in the "<npc>" substitution.
-	if(any_of(npcs.begin(), npcs.end(), [](const NPC &n) noexcept -> bool
-		{ return !n.IsValid(true); }))
+	string reason;
+	for(auto &&n : npcs)
+		reason = n.Validate(true);
+	if(!reason.empty())
 	{
-		// Should these be `runtime_error`s?
-		Files::LogError("Instantiation Error: NPC template in mission \"" + Identifier() + "\" uses invalid data");
+		Files::LogError("Instantiation Error: NPC template in mission \""
+			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const NPC &npc : npcs)
@@ -1289,31 +1291,49 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
-	auto ait = find_if(actions.begin(), actions.end(), [](const pair<const Trigger, MissionAction> &it) noexcept -> bool
-		{ return !it.second.IsValid(); });
+	auto ait = actions.begin();
+	for( ; ait != actions.end(); ++ait)
+	{
+		reason = ait->second.Validate();
+		if(!reason.empty())
+			break;
+	}
 	if(ait != actions.end())
 	{
-		Files::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) + "\" in mission \"" + Identifier() + "\" uses invalid data.");
+		Files::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) + "\" in mission \""
+			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const auto &it : actions)
 		result.actions[it.first] = it.second.Instantiate(subs, source, jumps, payload);
 	
-	auto oit = find_if(onEnter.begin(), onEnter.end(), [](const pair<const System *const, MissionAction> &it) noexcept -> bool
-		{ return !it.first->IsValid() || !it.second.IsValid(); });
+	auto oit = onEnter.begin();
+	for( ; oit != onEnter.end(); ++oit)
+	{
+		reason = oit->first->IsValid() ? oit->second.Validate() : "trigger system";
+		if(!reason.empty())
+			break;
+	}
 	if(oit != onEnter.end())
 	{
-		Files::LogError("Instantiation Error: Action \"on enter '" + oit->first->Name() + "'\" in mission \"" + Identifier() + "\" uses invalid data.");
+		Files::LogError("Instantiation Error: Action \"on enter '" + oit->first->Name() + "'\" in mission \""
+			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const auto &it : onEnter)
 		result.onEnter[it.first] = it.second.Instantiate(subs, source, jumps, payload);
 	
-	auto eit = find_if(genericOnEnter.begin(), genericOnEnter.end(), [](const MissionAction &a) noexcept -> bool
-		{ return !a.IsValid(); });
+	auto eit = genericOnEnter.begin();
+	for( ; eit != genericOnEnter.end(); ++eit)
+	{
+		reason = eit->Validate();
+		if(!reason.empty())
+			break;
+	}
 	if(eit != genericOnEnter.end())
 	{
-		Files::LogError("Instantiation Error: Generic \"on enter\" action in mission \"" + Identifier() + "\" uses invalid data.");
+		Files::LogError("Instantiation Error: Generic \"on enter\" action in mission \""
+			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const MissionAction &action : genericOnEnter)

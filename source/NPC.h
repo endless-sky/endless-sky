@@ -52,7 +52,8 @@ public:
 	void Save(DataWriter &out) const;
 	
 	// Determine if this NPC or NPC template uses well-defined data.
-	bool IsValid(bool asTemplate = false) const;
+	// Returns the reason the NPC is not valid, or an empty string if valid.
+	std::string Validate(bool asTemplate = false) const;
 	
 	// Update or check spawning and despawning for this NPC.
 	void UpdateSpawning(const PlayerInfo &player);

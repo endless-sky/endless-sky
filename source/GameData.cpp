@@ -133,7 +133,7 @@ namespace {
 	// Log a warning for an "undefined" class object that was never loaded from disk.
 	void Warn(const string &noun, const string &name)
 	{
-		Files::LogError("Warning: " + noun + " \"" + name + "\" is referred to, but never defined.");
+		Files::LogError("Warning: " + noun + " \"" + name + "\" is referred to, but not fully defined.");
 	}
 	// Class objects with a deferred definition should still get named when content is loaded.
 	template <class Type>
