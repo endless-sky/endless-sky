@@ -3209,3 +3209,69 @@ mission "Earth Retirement"
 			label reject
 			`	Charles looks surprised for a moment, and then, for the first time you've seen, he smiles. "Thank you, Captain <last>. I wish there were more people like you in the Paradise Worlds."`
 			`	You wish the couple the best of luck on Earth, and they slowly make their way to the train station. Presumably, their new apartment is far from here.`
+
+mission "Human to Hai Space"
+    description "Bring a human passenger to <destination> in Hai space."
+    minor
+    source
+        government "Republic" "Syndicate" "Free Worlds"
+        attributes "tourism" "urban"
+    destination 
+        governmtn "Hai"
+        attributes "human tourism"
+    passengers 1
+    to offer
+        random < 10
+    on offer
+        conversation
+            `A young person approaches you carrying luggage. "You look like a knowledgeable captain," he says. "Do you know of a place I can go to visit some... intelligent rodents?"`
+            branch "hai contact"
+                has "First Contact: Hai: declined"
+            
+            choice
+                `   "What are you talking about?"`
+                `   "What, like in a zoo?"`
+                    goto "confused"
+                `   "Are you high?"`
+                    goto "bad pun"
+            label "confused"
+            `   "Oh, never mind then," he says, and he leaves. You can't help feeling like you were missing some context.`
+                decline
+            label "bad pun"
+            `   "No, I want to go to the Hai-" He stops once he realizes you have no idea what he's talking about. "Oh, never mind then," he says, and he leaves. You can't help feeling like you were missing some context.`
+                decline
+            
+            label "hai contact"
+            choice
+                `   "You mean the Hai? You'll have to go up north for that."`
+                    goto "squirrel transport"
+                `   "Ah, I think I know of some large squirrels to the north of here."`
+                    goto "squirrel transport"
+                `   (Feign ignorance.)`
+                    goto "ignorance"
+            label "ignorance"
+            `   "I have no idea what you're talking about," you say. "Oh, never mind then," he responds, and he leaves.`
+            label "squirrel transport"
+            `   "If that's the case, could you bring me to <destination>? I'll give you <payment>."`
+            choice
+                `   "Alright, I'll take you there."`
+                    accept
+                `   "Sorry, I'm too busy right now."`
+                    decline
+                `   "Why would you want to go all the way out to <destination>?"`
+            `   "I have family there," he says. "I came out here to see a bit of human space, but now I have to get back home."`
+            choice
+                `   "Alright, I'll take you there."`
+                    accept
+                `   "Sorry, I'm too busy right now."`
+                    decline
+    on complete
+        payment 8000 1000
+        conversation
+            `The young man gets off your ship, thanks you and gives you your payment of <payment>. He then walks over to greet a group of Hai, who embrace him and start talking in a mix of the human and Hai langauges.`
+            choice
+                `   (Leave.)`
+                    decline
+                `   "That's your family?"`
+            `   The man looks at you. "I'm adopted," he says. One of the Hai notices your confusion, and chitters. "Ah, you have not seen a human-Hai family, have you? Perhaps it is strange, but we are happy together nonetheless."`
+                decline
