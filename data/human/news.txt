@@ -1000,6 +1000,7 @@ news "human tourism"
 			"It's criminal how cheap the fares are to get here. For around a few thousand credits, you get to see stunning sights and shocking spectacles well worth double of what you paid."
 			"I was really hoping for more aliens in space. What's the point if there's no steamy interspecies romance!?"
 			"Can you tell me again which planet this is? No, I'm not lost, I just don't know where I am."
+			"We did a ride on an ancient spacecraft the other day. It was called something like Soyuz or Shuttle Dragon; I don't remember the name exactly, but it was horrible; my back still hurts from the bumpy ride."
 		word
 			`"`
 
@@ -1225,3 +1226,4 @@ news "graffiti on spaceport wall"
 			"Ask not what your planet can do for you; ask what you can do for your planet. - based on John F. Kennedy"
 			"Fair is foul, and foul is fair - Shakespeare, Macbeth"
 			"For want of a shoe the crewmember was lost. / For want of a crewmember the ship was lost. / For want of a ship, the fleet was lost. / For want of a fleet, the battle was lost. And all for the want of a shoe."
+			"Shoot for the stars, but make sure you miss or your hull might not last."
