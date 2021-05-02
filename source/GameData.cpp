@@ -223,14 +223,15 @@ bool GameData::BeginLoad(const char * const *argv)
 	// neighbor distances to be updated.
 	AddJumpRange(System::DEFAULT_NEIGHBOR_DISTANCE);
 	UpdateSystems();
+	
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &&it : ships)
 		it.second.FinishLoading(true);
 	for(auto &&it : persons)
 		it.second.FinishLoading();
+	
 	for(auto &&it : startConditions)
 		it.FinishLoading();
-	
 	// Remove any invalid starting conditions, so the game does not use incomplete data.
 	startConditions.erase(remove_if(startConditions.begin(), startConditions.end(),
 			[](const StartConditions &it) noexcept -> bool { return !it.IsValid(); }),
@@ -293,9 +294,14 @@ void GameData::CheckReferences()
 		if(it.second.Name().empty())
 			NameAndWarn("effect", it);
 	// Fleets are not serialized. Any changes via events are written as DataNodes and thus self-define.
-	for(const auto &it : fleets)
+	for(auto &&it : fleets)
+	{
+		// Plugins may alter stock fleets with new variants that exclusively use plugin ships.
+		// Rather than disable the whole fleet due to these non-instantiable variants, remove them.
+		it.second.RemoveInvalidVariants();
 		if(!it.second.IsValid() && !deferred["fleet"].count(it.first))
 			Warn("fleet", it.first);
+	}
 	// Government names are used in mission NPC blocks and LocationFilters.
 	for(auto &&it : governments)
 		if(it.second.GetTrueName().empty() && !NameIfDeferred(deferred["government"], it))
