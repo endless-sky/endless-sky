@@ -1407,7 +1407,7 @@ mission "Coalition Folklore: Kimek"
 		conversation
 			`A Kimek flags you down when you enter the spaceport. "Busy are you, Captain?" He asks. "Taking place today, a cultural festival is, and participate in it, anyone can. A reenactment of the old 'Spring Siege' folk tale, it is. Play the part of one of the characters, anyone can."`
 			choice
-				`	"That sounds like fun Where is it being held?"`
+				`	"That sounds like fun. Where is it being held?"`
 				`	"Sorry, I'm too busy right now for that."`
 					decline
 			`	He asks you to follow him, and you two board a train leading to another section of the city. You get off at the edge of a large park. There, you see that many sets of camps dot the savanna plains, and an equal number of wooden forts stare down from the top of a long hill. Each "set" of fort and camp is separated from the others by many patches of vegetation that go up the hill.`
