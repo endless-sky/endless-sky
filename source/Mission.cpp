@@ -292,6 +292,8 @@ void Mission::Load(const DataNode &node)
 	
 	if(displayName.empty())
 		displayName = name;
+	if((isMinor || hasPriority) && location == LANDING)
+		node.PrintTrace("Warning: \"minor\" or \"priority\" tags have no effect on \"landing\" missions.");
 }
 
 
