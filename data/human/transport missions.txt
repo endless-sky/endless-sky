@@ -3217,7 +3217,7 @@ mission "Human to Hai Space"
         government "Republic" "Syndicate" "Free Worlds"
         attributes "tourism" "urban"
     destination 
-        governmtn "Hai"
+        government "Hai"
         attributes "human tourism"
     passengers 1
     to offer
