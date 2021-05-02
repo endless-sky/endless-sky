@@ -200,7 +200,6 @@ mission "FW Epilogue: Danforth"
 
 
 mission "FW Epilogue: Edward"
-	minor
 	landing
 	name `Weapon Testing`
 	description `A test ship with new weaponry is in orbit around <planet>. Fight and disable it (but do not board or destroy it!) and then land to give Barmy Edward feedback on its performance.`

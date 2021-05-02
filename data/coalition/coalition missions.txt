@@ -229,7 +229,6 @@ mission "Coalition: Lost: Offer"
 mission "Coalition Yottrite 1"
 	name "More Yottrite"
 	description "You were offered great payment for bringing three more samples of the rare mineral yottrite to <destination>."
-	minor
 	landing
 	to offer
 		has "Coalition: Contributor: done"
