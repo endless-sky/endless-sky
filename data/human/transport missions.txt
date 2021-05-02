@@ -3233,12 +3233,10 @@ mission "Human to Hai Space"
 				`   "What, like in a zoo?"`
 					goto "confused"
 				`   "Are you high?"`
-					goto "bad pun"
-			label "confused"
-			`   "Oh, never mind then," he says, and he leaves. You can't help feeling like you were missing some context.`
+			`   "No, I want to go to the Hai-" He stops once he realizes you have no idea what he's talking about. "Oh, never mind then," he says, with a note of disappointment in his voice. As he leaves, you can't help feeling like you were missing some context.`
 				decline
-			label "bad pun"
-			`   "No, I want to go to the Hai-" He stops once he realizes you have no idea what he's talking about. "Oh, never mind then," he says, and he leaves. You can't help feeling like you were missing some context.`
+			label "confused"
+			`   "Oh, never mind then," "Oh, never mind then," he says, with a note of disappointment in his voice. As he leaves, you can't help feeling like you were missing some context.`
 				decline
 			
 			label "hai contact"
@@ -3248,9 +3246,7 @@ mission "Human to Hai Space"
 				`   "Ah, I think I know of some large squirrels to the north of here."`
 					goto "squirrel transport"
 				`   (Feign ignorance.)`
-					goto "ignorance"
-			label "ignorance"
-			`   "I have no idea what you're talking about," you say. "Oh, never mind then," he responds, and he leaves.`
+			`   "I have no idea what you're talking about," you say. "Oh, never mind then," he says, with a note of disappointment in his voice. As he leaves, you can't help feeling like you were missing some context.`
 			label "squirrel transport"
 			`   "If that's the case, could you bring me to <destination>? I'll give you <payment>."`
 			choice
