@@ -3236,7 +3236,7 @@ mission "Human to Hai Space"
 			`   "No, I want to go to the Hai-" He stops once he realizes you have no idea what he's talking about. "Oh, never mind then," he says, with a note of disappointment in his voice. As he leaves, you can't help feeling like you were missing some context.`
 				decline
 			label "confused"
-			`   "Oh, never mind then," "Oh, never mind then," he says, with a note of disappointment in his voice. As he leaves, you can't help feeling like you were missing some context.`
+			`   "Oh, never mind then," he says, with a note of disappointment in his voice. As he leaves, you can't help feeling like you were missing some context.`
 				decline
 			
 			label "hai contact"
