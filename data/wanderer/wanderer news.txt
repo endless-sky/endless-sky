@@ -20,6 +20,7 @@ news "wanderer civilians, no dialog"
 		word
 			"Many buildings near the spaceport have plants growing on their roofs. An indignant squawk draws your attention to a Wanderer as they rapidly flap away from an automated watering system dousing them where they stood."
 			"Outside the spaceport, you see a Wanderer performing maintainence on some sort of irrigation system. Once they get it working, it begins to water a field of plants."
+			"A Wanderer dockworker unloads scientific equipment from a ship. More suprising, however, is the fact that they unload several bags of fertilizer from it as well."
 	name
 		word
 			"Group of Wanderers"
@@ -29,7 +30,9 @@ news "wanderer civilians, no dialog"
 			"A crowd of Wanderers has formed around an object. Upon closer inspection, it appears to be some sort of technological device."
 			"As you walk by a group of Wanderers, they begin to coo and chitter at you. Evidently they have not seen something like you before."
 			"A group of Wanderer children appear to be playing a game similar to hopscotch, but instead of hopping they fly to their spots."
-			"On a booth near the spaceport, a group of Wanderers are playing on objects that look vaguely like wooden flutes. Their music is quiet and lacks a discernable melody, making it easy to miss."
+			"On a booth near the spaceport, a group of Wanderers are playing on objects that look vaguely like wooden flutes. Their music is quiet and lacks a discernable melody."
+			"Two Wanderers are at a table. They appear to be playing some sort of board game."
+			"A crowd of Wanderer children follow an adult through the spaceport. The adult talks to them as they follow, as the children take notes."
 			
 news "Wanderers and Korath"
 	to show
@@ -41,6 +44,8 @@ news "Wanderers and Korath"
 		word
 			"Wanderer merchant captain"
 			"Wanderer captain"
+			"Wanderer"
+			"Wanderer civilian"
 	message
 		word
 			"The Korath have [enormous, gigantic] ships that many of them live on their whole lives. I cannot [imagine, fathom] doing the same."
@@ -48,6 +53,8 @@ news "Wanderers and Korath"
 			"The engines the Korath use have no regard for [effciency, subtlety]. But I must admit, they are much more powerful than ours."
 			"The Korath cannot pay [well, adequately] for their transport jobs, but they insist on paying [despite it, nonetheless]."
 			"I am trying to [learn, understand] more words of the Korath language. It is a difficult [task, undertaking], but it is important to learn the language of those who we are [undertaking, rescuing]."
+			"Have you been on a Korath [world, planet]? It is a [sobering, depressing] reminder of the importance of our [task, work]."
+			"I am [excited, overjoyed] to be part of [healing, renewing] the Korath worlds. We are once again [transforming, altering] the old into the new."
 	name
 		word
 			"Wanderer linguist"
@@ -147,3 +154,19 @@ news "Wanderer soldier"
 			"I joined the [defense fleet, navy] because I wanted to protect lifeforms. Instead I am [battling, killing] them. It brings me great [sadness, sorrow] to see such [destruction, waste]."
 			"I should've [become, studied to be] an ecologist like my parents [wanted, desired] me to."
 			"I kill one so that [others, several] may be [saved, spared]."
+
+news "Wanderer engineer"
+	to show
+		has "Wanderers Solifuge Recon 2: offered"
+	location
+		government "Wanderer"
+		not attributes "evacuation"
+	name
+		word
+			"Wanderer engineer"
+			"Engineer"
+	message
+		word
+			"The warships we have begun to [manufacture, build] are from a more [brutish, dark] time in our history. I hope that we are not headed towards such times [again, once more]."
+			"Despite their [savage, regrettable] purpose, the warships we have begun to [make, fashion] are impressive from a purely technological [perspective, view]."
+			"I regret that I must [recreate, unearth] technologies of [war, batte], but it is necessary for our [survival, existence]."
