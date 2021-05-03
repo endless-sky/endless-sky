@@ -10,7 +10,7 @@ news "wanderer civilians, no dialog"
 		word
 			"Nearby the spaceport, you see a Wanderer carefully place some seeds in what appears to be some sort of farm. They then spread some sort of light grey powder over them."
 			"From the spaceport you can see some buildings with plants growing on their roofs. A Wanderer flies up onto them and begins to water the plants."
-			
+			"Many buildings near the spaceport have plants growing on their roofs. An indignant squawk draws your attention to a Wanderer as they rapidly flap away from an automated watering system dousing them where they stood."
 	name
 		word
 			"Group of Wanderers"
