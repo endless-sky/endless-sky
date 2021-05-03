@@ -1017,9 +1017,14 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			if(helper.get() == &ship)
 				continue;
 			
+			// Evasive ships will never ask for help from another government.
+			const Government* helperGov = helper->GetGovernment();
+			if(helperGov != gov)
+				continue;
+			
 			// If any able enemies of this ship are in its system, it cannot call for help.
 			const System *system = ship.GetSystem();
-			if(helper->GetGovernment()->IsEnemy(gov) && flagship && system == flagship->GetSystem())
+			if(helperGov->IsEnemy(gov) && flagship && system == flagship->GetSystem())
 			{
 				// Disabled, overheated, or otherwise untargetable ships pose no threat.
 				bool harmless = helper->IsDisabled() || (helper->IsOverheated() && helper->Heat() >= 1.1) || !helper->IsTargetable();
@@ -2602,7 +2607,7 @@ void AI::DoRoving(Ship &ship, Command &command)
 	const auto v = ship.MaxVelocity();
     if(!target || MoveTo(ship, command, target, Point(), v, v))
     {
-        Point newTarget = Angle::Random().Unit() * Random::Real() * 3000;
+        Point newTarget = Angle::Random().Unit() * Random::Real() * MAX_DISTANCE_FROM_CENTER;
         ship.SetTargetPosition(newTarget);
     }
 }
@@ -2611,37 +2616,74 @@ void AI::DoRoving(Ship &ship, Command &command)
 
 bool AI::DoEvasive(Ship &ship, Command &command)
 {
-	// Create a list of optimal target positions directly away from each enemy.
-	vector<Point> targets;
-	for(const auto otherShip : GetShipsList(ship, true))
+	// Did I have to move my targetPosition?
+	bool movedTarget = false;
+	
+	// First, figure out which ships are not of the same government. Ignore disabled/destroyed ships.
+	vector<shared_ptr<Ship>> enemies;
+	for(const auto otherShip : GetShipsList(ship, false))
+		if(otherShip->GetGovernment() != ship.GetGovernment())
+			enemies.push_back(otherShip);
+	
+	// Loop through enemies and figure out their range and how to evade them.
+	vector<Point> paths;
+	double maxRange = 0.;
+	const Point pos = ship.Position();
+	for(const auto enemy : enemies)
 	{
+		// Ignore disabled/destroyed ships.
+		if(enemy->IsDisabled() || enemy->IsDestroyed())
+			continue;
 		
-		double maxRange = 100;
-		for(const auto weapon : otherShip->Weapons())
+		// Find out their weapons range.
+		for(const auto weapon : enemy->Weapons())
+			maxRange = max(maxRange, weapon.GetOutfit()->Range());
+		maxRange *= 2;
+		
+		// Evade the enemy if you need to.
+		const Point enemyPos = enemy->Position();
+		const Point relative = pos - enemyPos;
+		if(pos.Distance(enemyPos) < maxRange)
+			paths.push_back(enemyPos + Angle(relative).Unit() * maxRange);
+		
+		// While we're looping: If the targetPosition is taking the ship into danger, cancel that action.
+		const Angle path = Angle(ship.GetTargetPosition() - pos);
+		if(enemyPos.Distance(path.Unit() * relative.Length()) < maxRange)
 		{
-			if(weapon.CanAim())
-				maxRange = max(weapon.GetOutfit()->Range(), maxRange);
+			ship.SetTargetPosition(pos);
+			movedTarget = true;
 		}
-		
-		if(ship.Position().Distance(otherShip->Position()) <= maxRange)
-			targets.push_back(Point(otherShip->Position().X() + maxRange - ship.Position().X(), otherShip->Position().Y() + maxRange - ship.Position().Y()) * -30);
 	}
 	
-	// If there are any enemies that are close enough to be moved away from, average all the optimal paths
-	// and take the result.
-	if(targets.size() > 0)
+	// Special case: if this ship is heroic or nemesis, attack.
+	const auto personality = ship.GetPersonality();
+	if(personality.IsHeroic() || personality.IsNemesis())
 	{
-		auto targetAvg = Point();
-		for(const auto target : targets)
-			targetAvg += target;
-		targetAvg /= targets.size();
-		
-		MoveTo(ship, command, targetAvg, Point(), 0, 0);
-		
+		Attack(ship, command, *ship.GetTargetShip());
 		return true;
 	}
 	
-	return false;
+	// Evade.
+	if(!paths.empty())
+	{
+		Point avg = Point();
+		for(const auto path : paths)
+			avg += path;
+		avg /= paths.size();
+		
+		// If the target is too close, just pick a random direction and roll with it.
+		if(avg.Distance(pos) < maxRange)
+		{
+			MoveTo(ship, command, Angle::Random().Unit() * maxRange, Point(), 0, ship.MaxVelocity());
+			return true;
+		}
+		
+		// Otherwise, move to the average path away from all enemies.
+		MoveTo(ship, command, avg, Point(), 0, ship.MaxVelocity());
+		return true;
+	}
+	
+	return movedTarget;
 }
 
 
