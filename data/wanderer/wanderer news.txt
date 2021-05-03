@@ -1,3 +1,13 @@
+# Copyright (c) 2021 by roadrunner56
+# Based on earlier text copyright (c) 2017 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 news "wanderer civilians, no dialog"
 	location
@@ -9,7 +19,7 @@ news "wanderer civilians, no dialog"
 	message
 		word
 			"Many buildings near the spaceport have plants growing on their roofs. An indignant squawk draws your attention to a Wanderer as they rapidly flap away from an automated watering system dousing them where they stood."
-			"Outside the spaceport, you see a Wanderer performing maintainence on some sort of irrigation system. Once they get it working, it begins to water a field of plants.
+			"Outside the spaceport, you see a Wanderer performing maintainence on some sort of irrigation system. Once they get it working, it begins to water a field of plants."
 	name
 		word
 			"Group of Wanderers"
@@ -18,6 +28,8 @@ news "wanderer civilians, no dialog"
 			"While walking through the spaceport, you see several Wanderers flying through the air, about to land. They do not notice you, and you duck to avoid them."
 			"A crowd of Wanderers has formed around an object. Upon closer inspection, it appears to be some sort of technological device."
 			"As you walk by a group of Wanderers, they begin to coo and chitter at you. Evidently they have not seen something like you before."
+			"A group of Wanderer children appear to be playing a game similar to hopscotch, but instead of hopping they fly to their spots."
+			"On a booth near the spaceport, a group of Wanderers are playing on objects that look vaguely like wooden flutes. Their music is quiet and lacks a discernable melody, making it easy to miss."
 			
 news "Wanderers and Korath"
 	to show
@@ -43,7 +55,6 @@ news "Wanderers and Korath"
 	message
 		word
 			"Many scientists are currently [working on, engineering] a translation device that will allow direct [communication, dialog] with the Korath in their own language. It is [exciting, satisfying] to be part of this effort."
-			
 news "Wanderers and Aliens"
 	to show
 		has "Wanderers Conversation: offered"
@@ -61,6 +72,13 @@ news "Wanderers and Aliens"
 			"Long ago, we [rebirthed, cleansed] a group of worlds in the south. I wonder if any [aliens, sentient beings] live there now?"
 			"It is a shame we must [fight, defend against] the Hai. I wish we had the opportunity to [engage, treat] with their peaceful brethren."
 			"Alien societies [fascinate, interest] me. I [hope, desire] for more opportunities to meet with them."
+			"I [wonder, ponder] how a human managed to get all the way here. Aliens in our [space, territory] are a [rare, precious] sight."
+			"It is not often our [species, culture] gets to meet with so many [different, varieties of] aliens at once."
+			"I have heard that Hai and human space are [linked, joined] with a wormhole. Could it have been made by [our caretakers, those that open the Eye]?"
+			"The Unfettered Hai enter Wanderer [space, territory] using jump drives. Where did they get such [devices, technology]?"
+			"Our species has [met, made contact with] with many aliens before, but never so many at once."
+			"Exploration is important for a society. If we did not move and discover new planets, we would have [stagnated, shriveled] long ago."
+			"I can [sympathize with, understand] the Hai. They have been [stuck, stagnant] in their own space for too long. It is only [right, natural] that they should want to [migrate to, leave for] new lands."
 	name
 		word
 			"Wanderer linguist"
@@ -89,6 +107,7 @@ news "Wanderer civilians, dialog"
 			"I cannot [imagine, fathom] being unable to fly. How do you manage to get anywhere?"
 			"I wonder what kinds of [creatures, beings] live on your home planet."
 			"With that jump drive, you must be able to [observe, witness] all kinds of wondrous life forms from across the galaxy. I wish I had such access."
+			"One of my [friends, buddies] wanted to meet you, but was too [shy, scared]."
 news "Wanderer scientists"
 	to show
 		has "Wanderers Conversation: offered"
@@ -105,6 +124,9 @@ news "Wanderer scientists"
 		word
 			"I recently [travelled, journeyed] to another world on a scientific [mission, study], where we discovered a new species of plant. How [exciting, thrilling]!"
 			"The best part of my [job, task] is the thrill of [discovery, revelation]."
+			"Communication with your colleagues is [important, indispesable]. I learnt this the [hard, difficult] way when I did not mention that a new plant species I had [found, discovered] was carivorous."
+			"One of my [proudest, greatest] accomplishments was when I helped [nurture, grow] an almost-extinct species of insect back to a [viable, independent] population size."
+			"With all the different species we have to [keep track of, document], it is easy to get [mixed up, confused]. A spiny-haired T'kai may be upon closer [inspection, study] a short-necked Kat'tchi."
 news "Wanderer soldier"
 	to show
 		has "Wanderers Conversation: offered"
