@@ -36,7 +36,7 @@ news "Wanderers and Korath"
 			"The Korath have [enormous, gigantic] ships that many of them live on their whole lives. I cannot [imagine, fathom] doing the same."
 			"Have you [seen, viewed] a Korath up close? They only have feathers on their neck. How [strange, odd]."
 			"The engines the Korath use have no regard for [effciency, subtlety]. But I must admit, they are much more powerful than ours."
-			"The Korath cannot pay [well, adequately] for their transport jobs, but they insist on paying [despite it, nonetheless].
+			"The Korath cannot pay [well, adequately] for their transport jobs, but they insist on paying [despite it, nonetheless]."
 			"I am trying to [learn, understand] more words of the Korath language. It is a difficult [task, undertaking], but it is important to learn the language of [those we work with, our peers]."
 	name
 		word
@@ -44,7 +44,7 @@ news "Wanderers and Korath"
 			"Linguist"
 	message
 		word
-			"Many scientists are currently [working on, engineering] a translation device that will allow direct [communication, dialog] with the Korath in their own language. It is [exciting, satisfying] to be part of this effort.
+			"Many scientists are currently [working on, engineering] a translation device that will allow direct [communication, dialog] with the Korath in their own language. It is [exciting, satisfying] to be part of this effort."
 			
 news "Wanderers and Aliens"
 	to show
@@ -108,7 +108,7 @@ news "Wanderer scientists"
 			"The best part of my [job, task] is the thrill of [discovery, finding new knoweldge]."
 news "Wanderer soldier"
 	to show
-	has "Wanderers Conversation: offered"
+		has "Wanderers Conversation: offered"
 	location
 		government "Wanderer"
 		attributes "evacuation"
