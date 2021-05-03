@@ -119,7 +119,7 @@ mission "ZZCU Wrestling Star"
 				`	(Ignore them and pass by.)`
 					goto skip
 				`	(Take a look.)`
-			`	The crowd appears to be mostly made up of younger Hai though a few more mature Hai are also there, visibly exhibiting more restraint on their enthusiasm. Reaching the edge of the crowd and peering over the shorter Hai folk you can see a table set up with two standing banners flanking it and a stack of, at a glance, glossy printed photos.`
+			`	The crowd appears to be mostly made up of younger Hai, though a few more mature Hai are also there, visibly exhibiting more restraint on their enthusiasm. Reaching the edge of the crowd and peering over the shorter Hai folk, you can see a table set up with two standing banners flanking it and a stack of, at a glance, glossy printed photos.`
 			`	The banners depict a rather buff looking Hai, rendered in great detail, with a holographically enhanced animation that makes it appear to be continuously going through the motion of lifting and dropping a generically blurred opponent. The effect is, though, achieved solely through a trick of artificially shifting perspective. To your surprise you realize that this is a signing event for a wrestling star, of all things.`
 			`	After only a moment the individual in question emerges from a booth behind the setup and greets their fans, who prove very enthusiastic, before sitting down with some kind of pen for the assembled Hai to line up. It would seem that certain human things have become popularized among the Hai.`
 			label skip
@@ -140,7 +140,7 @@ mission "ZZCU Fencing Star"
 				`	(Ignore them and pass by.)`
 					goto skip
 				`	(Take a look.)`
-			`	The crowd appears to be mostly made up of younger Hai though a few more mature Hai are also there, visibly exhibiting more restraint on their enthusiasm. Reaching the edge of the crowd and peering over the shorter Hai folk you can see a table set up with two standing banners flanking it and a stack of, at a glance, glossy printed photos.`
+			`	The crowd appears to be mostly made up of younger Hai, though a few more mature Hai are also there, visibly exhibiting more restraint on their enthusiasm. Reaching the edge of the crowd and peering over the shorter Hai folk, you can see a table set up with two standing banners flanking it and a stack of, at a glance, glossy printed photos.`
 			`	The banners depict a svelte Hai in the strikingly familiar costume of a fencer, with a holographically enhanced animation that makes it appear to be continuously performing an elegant parry and riposte against an out-of-frame opponent. The effect is, though, achieved solely through a trick of artificially shifting perspective. To your surprise you realize that this is a signing event for a fencing star, of all things.`
 			`	After only a moment the individual in question emerges from a booth behind the setup and greets their fans, who prove very enthusiastic, before sitting down with some kind of pen for the assembled Hai to line up. It would seem that certain human things have become popularized among the Hai.`
 			label skip
@@ -161,8 +161,8 @@ mission "ZZCU Mystery Sport Star"
 				`	(Ignore them and pass by.)`
 					goto skip
 				`	(Take a look.)`
-			`	The crowd appears to be mostly made up of younger Hai though a few more mature Hai are also there, visibly exhibiting more restraint on their enthusiasm. Reaching the edge of the crowd and peering over the shorter Hai folk you can see a table set up with two standing banners flanking it and a stack of, at a glance, glossy printed photos.`
-			`	The banners depict a pair of Hai, one with a net and one with what looks like a bladed frisbee. It's not at all clear what precisely it is that they do and when the individuals in question emerge from a booth behind the setup and greet their fans it becomes clear that, if you could even make yourself heard over the trilling, no one is particularly keen to explain it to you. The pair remove their helmets and flash dazzling Hai smiles at their fans before sitting down with some kind of pen for the assembled Hai to line up.`
+			`	The crowd appears to be mostly made up of younger Hai, though a few more mature Hai are also there, visibly exhibiting more restraint on their enthusiasm. Reaching the edge of the crowd and peering over the shorter Hai folk, you can see a table set up with two standing banners flanking it and a stack of, at a glance, glossy printed photos.`
+			`	The banners depict a pair of Hai, one with a net and one with what looks like a bladed frisbee. It's not at all clear what precisely it is that they do, and when the individuals in question emerge from a booth behind the setup and greet their fans it becomes clear that, if you could even make yourself heard over the trilling, no one is particularly keen to explain it to you. The pair remove their helmets and flash dazzling Hai smiles at their fans before sitting down with some kind of pen for the assembled Hai to line up.`
 			`	It would seem that celebrity signings are popular among the Hai.`
 			label skip
 			`	You can hear the Hai crowd trilling for some distance as you go about your business.`
@@ -183,20 +183,20 @@ mission "ZZCU Gambling Judgment"
 				`	(Place an order.)`
 					goto end
 				`	"Hey, I noticed there are some dark looks around here. Are human captains not welcome?"`
-			`	The barkeep looks confused for a second before looking over at the table and shaking his head in understanding, "Oh no, you're perfectly welcome. That group is just breaking the maturity tenets, some Hai get uncomfortable with adults blatantly acting like children in public."`
+			`	The barkeep looks confused for a second before looking over at the table and shaking his head in understanding. "Oh no, you're perfectly welcome. That group is just breaking the maturity tenets, some Hai get uncomfortable with adults blatantly acting like children in public."`
 			choice
 				`	(Place an order.)`
 					goto end
 				`	"The maturity tenets?"`
 			`	"Oh right, I suppose you wouldn't know. There are a number of tenets that Hai are taught growing up, lessons to be internalized to be a responsible and functioning member of society. The second is 'To be honest in dealings,' and the third is 'To gamble only on skill, not chance,' so their game breaks two of them."`
 			choice
-				`	"Some would say Poker is more about skill than chance."`
+				`	"Some would say poker is more about skill than chance."`
 				`	"Surely if it's just a game though, there's no harm in it?"`
 			`	"Oh no, I'm afraid the first tenet ensures that it's really not favorable either way. The first is 'To have clear separation of fantasy and reality,' so a game cannot have real consequences or it is reality, not fantasy. So to gamble money on the game is to bring real consequences to a fantasy exercise. This is taboo for an adult.`
-			`	"If you interpret the game as being played for the skill, without the wagering, then you clear the first tenet, but you have the issue that the principle skills are bluffing and manipulation, which violates the second tenet. Bluffing isn't a skill seen as having virtue, nor is manipulation."`
+			`	"If you interpret the game as being played for the skill, without the wagering, then you clear the first and third tenet, but you have the issue that the principle skills are bluffing and manipulation, which violates the second tenet. Bluffing isn't a skill seen as having virtue, nor is manipulation."`
 			choice
 				`	"Wait, do the Hai not lie or bluff?"`
-			`	The barkeep chortles with a strange trill and says, "Oh no the Hai do lie and bluff, we're actually very good at bluffing, evolutionarily advantageous in the wild and all that. It's just seen as very immature and base. An adult should be able to conduct their lives without resorting to such primitive instincts. We learned that the hard way long ago, back before we holed up in our current borders."`
+			`	The barkeep chortles with a strange trill and says, "Oh no, the Hai do lie and bluff. We're actually very good at bluffing, evolutionarily advantageous in the wild and all that. It's just seen as very immature and base. An adult should be able to conduct their lives without resorting to such primitive instincts. We learned that the hard way long ago, back before we holed up in our current borders."`
 			`	He looks at you intently before continuing, "You won't hear the tenets brought up very much, but if you look closely you'll see that the first three especially are ingrained in our society very deeply."`
 			`	With a shrug he flips open his order pad and pats his belly. "Of course, my gran always said that any of them after the tenth were more guidelines than actual rules, and I certainly have my share of disagreements with thirteen. Now, before I talk your ears off, what'll I get for you?"`
 			label end
