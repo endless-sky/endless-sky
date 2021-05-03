@@ -69,7 +69,7 @@ news "Wanderers and Aliens"
 			"Linguist"
 	message
 		word
-			"The Hai language is [complicated, convoluted], but learning it has yielded much [insight, knoweldge] about the Hai and [aliens, non-Wanderers] in general."
+			"The Hai language is [complicated, convoluted], but learning it has yielded much [insight, knowledge] about the Hai in general."
 			"It is difficult to [pronounce, speak] Hai words, because their [physiology, structure] is so much different than ours." 
 			
 news "Wanderer civilians, dialog"
