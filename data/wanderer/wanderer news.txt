@@ -89,7 +89,7 @@ news "Wanderer civilians, dialog"
 			"I have [heard of, known of] a human captain in Wanderer space, but seeing you is still quite [strange, odd]."
 			"I cannot [imagine, fathom] being unable to fly. How do you manage to get anywhere?"
 			"I wonder what kinds of [creatures, beings] live on your home planet."
-			"With that jump drive, you must be able to [see, witness] all kinds of wonderous [creatures, forms of life] from across the galaxy. I wish I had such access."
+			"With that jump drive, you must be able to [observe, witness] all kinds of wondrous life forms from across the galaxy. I wish I had such access."
 news "Wanderer scientists"
 	to show
 		has "Wanderers Conversation: offered"
