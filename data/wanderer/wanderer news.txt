@@ -36,7 +36,7 @@ news "Wanderers and Korath"
 			"Have you [seen, viewed] a Korath up close? They only have feathers on their neck. How [strange, odd]."
 			"The engines the Korath use have no regard for [effciency, subtlety]. But I must admit, they are much more powerful than ours."
 			"The Korath cannot pay [well, adequately] for their transport jobs, but they insist on paying [despite it, nonetheless]."
-			"I am trying to [learn, understand] more words of the Korath language. It is a difficult [task, undertaking], but it is important to learn the language of [those we work with, our peers]."
+			"I am trying to [learn, understand] more words of the Korath language. It is a difficult [task, undertaking], but it is important to learn the language of those who we are [undertaking, rescuing]."
 	name
 		word
 			"Wanderer linguist"
@@ -68,7 +68,7 @@ news "Wanderers and Aliens"
 			"Linguist"
 	message
 		word
-			"The Hai language is [complicated, convoluted], but learning it has yielded much [insight, knoweldge] about the Hai and [aliens, non-Wanderers] in general."
+			"The Hai language is [complicated, convoluted], but learning it has yielded much [insight, knowledge] about the Hai in general."
 			"It is difficult to [pronounce, speak] Hai words, because their [physiology, structure] is so much different than ours." 
 			
 news "Wanderer civilians, dialog"
@@ -88,7 +88,7 @@ news "Wanderer civilians, dialog"
 			"I have [heard of, known of] a human captain in Wanderer space, but seeing you is still quite [strange, odd]."
 			"I cannot [imagine, fathom] being unable to fly. How do you manage to get anywhere?"
 			"I wonder what kinds of [creatures, beings] live on your home planet."
-			"With that jump drive, you must be able to [see, witness] all kinds of wonderous [creatures, forms of life] from across the galaxy. I wish I had such access."
+			"With that jump drive, you must be able to [observe, witness] all kinds of wondrous life forms from across the galaxy. I wish I had such access."
 news "Wanderer scientists"
 	to show
 		has "Wanderers Conversation: offered"
@@ -104,7 +104,7 @@ news "Wanderer scientists"
 	message
 		word
 			"I recently [travelled, journeyed] to another world on a scientific [mission, study], where we discovered a new species of plant. How [exciting, thrilling]!"
-			"The best part of my [job, task] is the thrill of [discovery, finding new knoweldge]."
+			"The best part of my [job, task] is the thrill of [discovery, revelation]."
 news "Wanderer soldier"
 	to show
 		has "Wanderers Conversation: offered"
