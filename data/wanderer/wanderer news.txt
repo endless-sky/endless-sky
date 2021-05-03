@@ -60,7 +60,7 @@ news "Wanderers and Aliens"
 	message
 		word
 			"Long ago, we [rebirthed, cleansed] a group of worlds in the south. I wonder if any [aliens, sentient beings] live there now?"
-			"It is a shame we must [fight, defend against] the Hai. I wish we had the opportunity to [meet, socialize with] their peaceful brethren."
+			"It is a shame we must [fight, defend against] the Hai. I wish we had the opportunity to [engage, treat] with their peaceful brethren."
 			"Alien societies [fascinate, interest] me. I [hope, desire] for more opportunities to meet with them."
 	name
 		word
