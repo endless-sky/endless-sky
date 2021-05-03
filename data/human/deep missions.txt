@@ -1448,7 +1448,7 @@ mission "Deep: Remnant 2"
 
 conversation "deep: remnant"
 	branch "on second mission" "on first mission"
-		has "Deep: Remnant A: done"
+		has "Deep: Remnant 1: done"
 	
 	label "on first mission"
 	`You contact Ivan after you land and he sends you directions to his research lab, located on the outskirts of the city. "Quite the distance from my office, but we work with what we have," he comments. When you arrive, you hardly have time to greet Ivan, Rayna, and the others before Ivan begins discussing what they have learned from the quantum keystones.`
@@ -1536,6 +1536,7 @@ conversation "deep: remnant"
 
 
 mission "Deep: Remnant 3: Secret"
+	landing
 	name `Analyze Alien Creatures`
 	description `Scan the "outfits" of the alien creatures in Nenia, then return to the scientists on <destination> with the detailed scanner logs.`
 	source "Valhalla"
@@ -1571,6 +1572,7 @@ mission "Deep: Remnant 3: Secret"
 
 
 mission "Deep: Remnant 3: Revealed"
+	landing
 	name `Analyze Remnant Ships`
 	description `Scan the outfits of the Remnant ships in Arculus, then return to the scientists on <destination> with the detailed scanner logs.`
 	source "Valhalla"
