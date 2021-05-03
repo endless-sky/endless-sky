@@ -8,9 +8,8 @@ news "wanderer civilians, no dialog"
 			"Gardener"
 	message
 		word
-			"You see a Wanderer carefully place some seeds in the ground. They then spread some sort of light grey powder over them."
-			"From the spaceport you can see some buildings with plants growing on their sides. A Wanderer prunes and waters them in mid-air."
-			"While walking through the spaceport, you see a large greenhouse full of various plants. A Wanderer inside is tending to them."
+			"Nearby the spaceport, you see a Wanderer carefully place some seeds in what appears to be some sort of farm. They then spread some sort of light grey powder over them."
+			"From the spaceport you can see some buildings with plants growing on their roofs. A Wanderer flies up onto them and begins to water the plants."
 			
 	name
 		word
