@@ -1,0 +1,127 @@
+
+news "wanderer civilians, no dialog"
+	location
+		government "Wanderer"
+		not attributes "evacuation"
+	name
+		word
+			"Gardener"
+	message
+		word
+			"You see a Wanderer carefully place some seeds in the ground. They then spread some sort of light grey powder over them."
+			"From the spaceport you can see some buildings with plants growing on their sides. A Wanderer prunes and waters them in mid-air."
+			"While walking through the spaceport, you see a large greenhouse full of various plants. A Wanderer inside is tending to them."
+			
+	name
+		word
+			"Group of Wanderers"
+	message
+		word
+			"While walking through the spaceport, you see several Wanderers flying through the air. You duck to avoid them."
+			"A crowd of Wanderers has formed around an object. Upon closer inspection, it appears to be some sort of technological device."
+			"As you walk by a group of Wanderers, they begin to coo and chitter at you. Evidently they have not seen something like you before."
+			
+news "Wanderers and Korath"
+	to show
+		has "Wanderers: Sestor: Final: done"
+	location
+			government "Wanderer"
+			not attributes "evacuation"
+	name 
+		word
+			"Wanderer merchant captain"
+			"Wanderer captain"
+	message
+		word
+			"The Korath have [enormous, gigantic] ships that many of them live on their whole lives. I cannot [imagine, fathom] doing the same."
+			"Have you [seen, viewed] a Korath up close? They only have feathers on their neck. How [strange, odd]."
+			"The engines the Korath use have no regard for [effciency, subtlety]. But I must admit, they are much more powerful than ours."
+			"The Korath cannot pay [well, adequately] for their transport jobs, but they insist on paying [despite it, nonetheless].
+            "I am trying to [learn, understand] more words of the Korath language. It is a difficult [task, undertaking], but it is important to learn the language of [those we work with, our peers]."
+	name
+		word
+			"Wanderer linguist"
+			"Linguist"
+	message
+		word
+			"Many scientists are currently [working on, engineering] a translation device that will allow direct [communication, dialog] with the Korath in their own language. It is [exciting, satisfying] to be part of this effort.
+			
+news "Wanderers and Aliens"
+	to show
+		has "Wanderers Conversation: offered"
+	location
+		government "Wanderer"
+		not attributes "evacuation"
+	name
+		word
+			"Wanderer merchant captain"
+			"Wanderer captain"
+			"Wanderer civilian"
+			"Wanderer"
+	message
+		word
+			"Long ago, we [rebirthed, cleansed] a group of worlds in the south. I wonder if any [aliens, sentient beings] live there now?"
+			"It is a shame we must [fight, defend against] the Hai. I wish we had the opportunity to [meet, socialize with] their peaceful brethren."
+			"Alien societies [fascinate, interest] me. I [hope, desire] for more opportunities to meet with them."
+	name
+		word
+			"Wanderer linguist"
+			"Linguist"
+	message
+		word
+			"The Hai language is [complicated, convoluted], but learning it has yielded much [insight, knoweldge] about the Hai and [aliens, non-Wanderers] in general."
+			"It is difficult to [pronounce, speak] Hai words, because their [physiology, structure] is so much different than ours." 
+			
+news "Wanderer civilians, dialog"
+	to show
+		has "Wanderers Conversation: offered"
+	location
+		government "Wanderer"
+		not attributes "evacuation"
+	name
+		word
+			"Wanderer"
+			"Wanderer worker"
+			"Wanderer traveller"
+	message
+		word
+			"Whenever I go on a [journey, trip] through space I always bring some of my [favorite, most cherished] potted plants. It gets [lonely, barren] when you are far from nature." 
+			"I have [heard of, known of] a human captain in Wanderer space, but seeing you is still quite [strange, odd]."
+			"I cannot [imagine, fathom] being unable to fly. How do you manage to get anywhere?"
+			"I wonder what kinds of [creatures, beings] live on your home planet."
+			"With that jump drive, you must be able to [see, witness] all kinds of wonderous [creatures, forms of life] from across the galaxy. I wish I had such access."
+news "Wanderer scientists"
+    to show
+        has "Wanderers Conversation: offered"
+	location
+		government "Wanderer"
+		not attributes "evacuation"
+	name
+		word
+			"Wanderer scientist"
+			"Scientist"
+			"Wanderer ecologist"
+			"Ecologist"
+	message
+		word
+            "I recently [travelled, journeyed] to another world on a scientific [mission, study], where we discovered a new species of plant. How [exciting, thrilling]!"
+            "The best part of my [job, task] is the thrill of [discovery, finding new knoweldge]."
+news "Wanderer soldier"
+    to show
+     has "Wanderers Conversation: offered"
+	location
+		government "Wanderer"
+		attributes "evacuation"
+    name
+        word
+            "Wanderer soldier"
+            "Soldier"
+            "Wanderer conscript"
+            "Conscript"
+    message
+        word
+            "Society does not [like, appreciate] what I do, but it is [necessary, essential] in times like these."
+            "I wish I did not have to [fight, do battle] for a living. It is a [savage, unelegant] way to get by."
+            "I joined the [defense fleet, navy] because I wanted to protect lifeforms. Instead I am [battling, killing] them. It brings me great [sadness, sorrow] to see such [destruction, waste]."
+            "I should've [become, studied to be] an ecologist like my parents [wanted, desired] me to."
+            "I kill one so that [others, several] may be [saved, spared]."
