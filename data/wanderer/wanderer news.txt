@@ -37,7 +37,7 @@ news "Wanderers and Korath"
 			"Have you [seen, viewed] a Korath up close? They only have feathers on their neck. How [strange, odd]."
 			"The engines the Korath use have no regard for [effciency, subtlety]. But I must admit, they are much more powerful than ours."
 			"The Korath cannot pay [well, adequately] for their transport jobs, but they insist on paying [despite it, nonetheless].
-            "I am trying to [learn, understand] more words of the Korath language. It is a difficult [task, undertaking], but it is important to learn the language of [those we work with, our peers]."
+			"I am trying to [learn, understand] more words of the Korath language. It is a difficult [task, undertaking], but it is important to learn the language of [those we work with, our peers]."
 	name
 		word
 			"Wanderer linguist"
@@ -91,8 +91,8 @@ news "Wanderer civilians, dialog"
 			"I wonder what kinds of [creatures, beings] live on your home planet."
 			"With that jump drive, you must be able to [see, witness] all kinds of wonderous [creatures, forms of life] from across the galaxy. I wish I had such access."
 news "Wanderer scientists"
-    to show
-        has "Wanderers Conversation: offered"
+	to show
+		has "Wanderers Conversation: offered"
 	location
 		government "Wanderer"
 		not attributes "evacuation"
@@ -104,24 +104,24 @@ news "Wanderer scientists"
 			"Ecologist"
 	message
 		word
-            "I recently [travelled, journeyed] to another world on a scientific [mission, study], where we discovered a new species of plant. How [exciting, thrilling]!"
-            "The best part of my [job, task] is the thrill of [discovery, finding new knoweldge]."
+			"I recently [travelled, journeyed] to another world on a scientific [mission, study], where we discovered a new species of plant. How [exciting, thrilling]!"
+			"The best part of my [job, task] is the thrill of [discovery, finding new knoweldge]."
 news "Wanderer soldier"
-    to show
-     has "Wanderers Conversation: offered"
+	to show
+	has "Wanderers Conversation: offered"
 	location
 		government "Wanderer"
 		attributes "evacuation"
-    name
-        word
-            "Wanderer soldier"
-            "Soldier"
-            "Wanderer conscript"
-            "Conscript"
-    message
-        word
-            "Society does not [like, appreciate] what I do, but it is [necessary, essential] in times like these."
-            "I wish I did not have to [fight, do battle] for a living. It is a [savage, unelegant] way to get by."
-            "I joined the [defense fleet, navy] because I wanted to protect lifeforms. Instead I am [battling, killing] them. It brings me great [sadness, sorrow] to see such [destruction, waste]."
-            "I should've [become, studied to be] an ecologist like my parents [wanted, desired] me to."
-            "I kill one so that [others, several] may be [saved, spared]."
+	name
+		word
+			"Wanderer soldier"
+			"Soldier"
+			"Wanderer conscript"
+			"Conscript"
+	message
+		word
+			"Society does not [like, appreciate] what I do, but it is [necessary, essential] in times like these."
+			"I wish I did not have to [fight, do battle] for a living. It is a [savage, unelegant] way to get by."
+			"I joined the [defense fleet, navy] because I wanted to protect lifeforms. Instead I am [battling, killing] them. It brings me great [sadness, sorrow] to see such [destruction, waste]."
+			"I should've [become, studied to be] an ecologist like my parents [wanted, desired] me to."
+			"I kill one so that [others, several] may be [saved, spared]."
