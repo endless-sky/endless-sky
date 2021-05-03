@@ -105,7 +105,7 @@ news "Wanderer scientists"
 	message
 		word
 			"I recently [travelled, journeyed] to another world on a scientific [mission, study], where we discovered a new species of plant. How [exciting, thrilling]!"
-			"The best part of my [job, task] is the thrill of [discovery, finding new knoweldge]."
+			"The best part of my [job, task] is the thrill of [discovery, revelation]."
 news "Wanderer soldier"
 	to show
 		has "Wanderers Conversation: offered"
