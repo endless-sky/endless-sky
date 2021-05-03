@@ -327,12 +327,52 @@ void MissionAction::Save(DataWriter &out) const
 			else
 				out.Write("event", it.first->Name(), it.second.first, it.second.second);
 		}
-		for(const auto &name : fail)
-			out.Write("fail", name);
+		for(auto &&missionName : fail)
+			out.Write("fail", missionName);
 		
 		conditions.Save(out);
 	}
 	out.EndChild();
+}
+
+
+
+// Check this template or instantiated MissionAction to see if any used content
+// is not fully defined (e.g. plugin removal, typos in names, etc.).
+string MissionAction::Validate() const
+{
+	// Any filter used to control where this action triggers must be valid.
+	if(!systemFilter.IsValid())
+		return "system location filter";
+	
+	// Stock phrases that generate text must be defined.
+	if(stockDialogPhrase && stockDialogPhrase->IsEmpty())
+		return "stock phrase";
+	
+	// Stock conversations must be defined.
+	if(stockConversation && stockConversation->IsEmpty())
+		return "stock conversation";
+	
+	// Events which get activated by this action must be valid.
+	for(auto &&event : events)
+		if(!event.first->IsValid())
+			return "event \"" + event.first->Name() + "\"";
+
+	// Gifted or required content must be defined & valid.
+	for(auto &&it : giftShips)
+		if(!it.first->IsValid())
+			return "gift ship model \"" + it.first->VariantName() + "\"";
+	for(auto &&outfit : giftOutfits)
+		if(!outfit.first->IsDefined())
+			return "gift outfit \"" + outfit.first->Name() + "\"";
+	for(auto &&outfit : requiredOutfits)
+		if(!outfit.first->IsDefined())
+			return "required outfit \"" + outfit.first->Name() + "\"";
+	
+	// It is OK for this action to try to fail a mission that does not exist.
+	// (E.g. a plugin may be designed for interoperability with other plugins.)
+	
+	return "";
 }
 
 
@@ -497,7 +537,8 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 
 
 
-MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin, int jumps, int payload) const
+// Convert this validated template into a populated action.
+MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin, int jumps, int64_t payload) const
 {
 	MissionAction result;
 	result.trigger = trigger;
@@ -505,11 +546,10 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	// Convert any "distance" specifiers into "near <system>" specifiers.
 	result.systemFilter = systemFilter.SetOrigin(origin);
 	
+	// All contained events are valid, else we would not be calling Instantiate. For these
+	// valid events, pick a date within the specified range on which the event will occur.
 	for(const auto &it : events)
 	{
-		// Allow randomization of event times. The second value in the pair is
-		// always greater than or equal to the first, so Random::Int() will
-		// never be called with a value less than 1.
 		int day = it.second.first + Random::Int(it.second.second - it.second.first + 1);
 		result.events[it.first] = make_pair(day, day);
 	}

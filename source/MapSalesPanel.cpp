@@ -212,7 +212,7 @@ void MapSalesPanel::DrawKey() const
 		1.
 	};
 	
-	double selectedValue = (selectedSystem ? SystemValue(selectedSystem) : -1.);
+	double selectedValue = SystemValue(selectedSystem);
 	for(int i = 0; i < 3; ++i)
 	{
 		bool isSelected = (VALUE[i] == selectedValue);

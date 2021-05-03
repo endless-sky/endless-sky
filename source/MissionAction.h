@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "LocationFilter.h"
 #include "Phrase.h"
 
+#include <cstdint>
 #include <map>
 #include <memory>
 #include <set>
@@ -50,6 +51,8 @@ public:
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so it only has to save a subset of the data.
 	void Save(DataWriter &out) const;
+	// Determine if this MissionAction references content that is not fully defined.
+	std::string Validate() const;
 	
 	int Payment() const;
 	
@@ -65,7 +68,7 @@ public:
 	
 	// "Instantiate" this action by filling in the wildcard text for the actual
 	// destination, payment, cargo, etc.
-	MissionAction Instantiate(std::map<std::string, std::string> &subs, const System *origin, int jumps, int payload) const;
+	MissionAction Instantiate(std::map<std::string, std::string> &subs, const System *origin, int jumps, int64_t payload) const;
 	
 	
 private:

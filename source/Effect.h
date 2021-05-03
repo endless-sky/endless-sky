@@ -39,6 +39,7 @@ public:
 	*/
 	
 	const std::string &Name() const;
+	void SetName(const std::string &name);
 	
 	void Load(const DataNode &node);
 	

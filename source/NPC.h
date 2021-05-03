@@ -51,6 +51,10 @@ public:
 	// a template, so fleets will be replaced by individual ships already.
 	void Save(DataWriter &out) const;
 	
+	// Determine if this NPC or NPC template uses well-defined data.
+	// Returns the reason the NPC is not valid, or an empty string if valid.
+	std::string Validate(bool asTemplate = false) const;
+	
 	// Update or check spawning and despawning for this NPC.
 	void UpdateSpawning(const PlayerInfo &player);
 	bool ShouldSpawn() const;

@@ -54,6 +54,9 @@ void Planet::Load(const DataNode &node)
 	if(node.Size() < 2)
 		return;
 	name = node.Token(1);
+	// The planet's name is needed to save references to this object, so a
+	// flag is used to test whether Load() was called at least once for it.
+	isDefined = true;
 	
 	// If this planet has been loaded before, these sets of items should be
 	// reset instead of appending to them:
@@ -228,13 +231,31 @@ void Planet::Load(const DataNode &node)
 
 
 
+// Test if this planet has been loaded (vs. just referred to). It must also be located in
+// at least one system, and all systems that claim it must themselves be valid.
+bool Planet::IsValid() const
+{
+	return isDefined && !systems.empty() && all_of(systems.begin(), systems.end(),
+		[](const System *s) noexcept -> bool { return s->IsValid(); });
+}
+
+
+
 // Get the name of the planet.
 const string &Planet::Name() const
 {
 	static const string UNKNOWN = "???";
 	if(IsWormhole())
 		return UNKNOWN;
+	
 	return name;
+}
+
+
+
+void Planet::SetName(const string &name)
+{
+	this->name = name;
 }
 
 

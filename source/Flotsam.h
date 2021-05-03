@@ -76,6 +76,7 @@ public:
 private:
 	Angle spin;
 	int lifetime = 0;
+	double drag = 0.999;
 	
 	const Ship *source = nullptr;
 	std::string commodity;

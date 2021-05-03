@@ -45,6 +45,7 @@ public:
 	
 	// Check if this filter contains any specifications.
 	bool IsEmpty() const;
+	bool IsValid() const;
 	
 	// If the player is in the given system, does this filter match?
 	bool Matches(const Planet *planet, const System *origin = nullptr) const;

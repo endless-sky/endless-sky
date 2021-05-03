@@ -63,7 +63,6 @@ void Preferences::Load()
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
-	settings["Interrupt fast-forward"] = true;
 	
 	DataFile prefs(Files::Config() + "preferences.txt");
 	for(const DataNode &node : prefs)
@@ -181,7 +180,7 @@ bool Preferences::ZoomViewOut()
 
 
 
-void Preferences::ToggleVSync()
+bool Preferences::ToggleVSync()
 {
 	int targetIndex = vsyncIndex + 1;
 	if(targetIndex == static_cast<int>(VSYNC_SETTINGS.size()))
@@ -197,10 +196,11 @@ void Preferences::ToggleVSync()
 			// Restore original saved setting.
 			Files::LogError("Unable to change VSync state");
 			GameWindow::SetVSync(static_cast<VSync>(vsyncIndex));
-			return;
+			return false;
 		}
 	}
 	vsyncIndex = targetIndex;
+	return true;
 }
 
 

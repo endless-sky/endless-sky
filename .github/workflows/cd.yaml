@@ -101,7 +101,7 @@ jobs:
       - name: Update Homebrew
         run: brew update
       - name: Install dependencies
-        run: brew install libpng libjpeg-turbo libmad sdl2 p7zip
+        run: brew install libpng libjpeg-turbo libmad sdl2
       - name: Adjust library paths
         run: |
           install_name_tool -id "@rpath/libpng16.16.dylib" /usr/local/lib/libpng16.16.dylib

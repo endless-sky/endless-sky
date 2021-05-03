@@ -464,12 +464,12 @@ outfit `"Baellie" Atomic Engines`
 	"mass" 22
 	"outfit space" -22
 	"engine capacity" -22
-	"turn" 250
-	"turning energy" .64
-	"turning heat" 1.28
 	"thrust" 7.7
 	"thrusting energy" .92
 	"thrusting heat" 1.83
+	"turn" 250
+	"turning energy" .64
+	"turning heat" 1.28
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"flare sound" "atomic tiny"

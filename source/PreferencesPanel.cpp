@@ -173,7 +173,11 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 					while(Preferences::ZoomViewOut()) {}
 			}
 			else if(zone.Value() == VSYNC_SETTING)
-				Preferences::ToggleVSync();
+			{
+				if(!Preferences::ToggleVSync())
+					GetUI()->Push(new Dialog(
+						"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
+			}
 			else if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
 			else if(zone.Value() == TURRET_TRACKING)
@@ -292,7 +296,7 @@ void PreferencesPanel::DrawControls()
 	const Color &bright = *GameData::Colors().Get("bright");
 	
 	// Check for conflicts.
-	Color red(.3f, 0.f, 0.f, .3f);
+	const Color &warning = *GameData::Colors().Get("warning conflict");
 	
 	Table table;
 	table.AddColumn(-115, {230, Alignment::LEFT});
@@ -370,7 +374,7 @@ void PreferencesPanel::DrawControls()
 			if(isConflicted || isEditing)
 			{
 				table.SetHighlight(56, 120);
-				table.DrawHighlight(isEditing ? dim: red);
+				table.DrawHighlight(isEditing ? dim: warning);
 			}
 			
 			// Mark the selected row.

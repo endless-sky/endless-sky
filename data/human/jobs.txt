@@ -3166,6 +3166,50 @@ mission "Bounty Hunting (Marauder X)"
 
 
 
+mission "Raid Warning"
+	invisible
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	to offer
+		"pirate attraction" >= 15
+	on offer
+		conversation
+			`When you enter the <origin> spaceport, you're almost immediately stopped by a grizzled old man. "You some kinda rookie, or you asking for a death wish?" he asks.`
+			choice
+				`	"Excuse me?"`
+					goto advice
+				`	"Yeah, I'm pretty fresh. Is there something I'm doing wrong by walking in here?"`
+				`	"I've been piloting for a while. I think I know what I'm doing."`
+					goto think
+			`	The old man chuckles. "Ain't nothing wrong with walking in here. It's what you're flying in with that's the issue.`
+				goto advice
+			
+			label think
+			`	The old man chuckles. "Well I don't think so after what I've seen.`
+			
+			label advice
+			`	"I seen those ships of yours. That fleet is juicy pickings for pirates if I've ever seen it." You look confusedly at the man. "Oh, do I need to spell it out for you? Pirates love to take out soft targets with lots of potential cargo, and your fleet is looking pretty heavy on cargo space with hardly any defenses."`
+			choice
+				`	"Oh, so that's why I've been seeing pirates everywhere I go."`
+				`	"So what should I do about that?"`
+					goto solution
+				`	"Don't you think I know that already?"`
+					goto rebuff
+			`	"What, you think they just had it out for you because you look funny? No, pirates have their reasons.`
+			label solution
+			`	"Either get yourself more guns in that fleet or get rid of some cargo space. Park your ships, sell them, doesn't matter, so long as the pirates don't see them, or you make it not worth it to try and steal whatever you might have. Pirates see a bunch of freighters flying around unprotected and they're going to take their chances. Doesn't matter if you actually have anything or not."`
+			choice
+				`	"Thanks for the advice."`
+				`	"I'll make sure to go do that. Thanks."`
+			`	"No problem. Just looking out for a fellow captain. No use in getting got because you didn't know any better. But now you do." The man gives you a firm pat on the back before walking off.`
+				decline
+			
+			label rebuff
+			`	"Sure doesn't look like it." The man gives an exaggerated shrug and starts to walk off. "Alright then, get yourself killed. Not like I used to haul cargo from one end of the galaxy to the other for fifty years or anything." The man gets further and further away, continuing to grumble about "kids these days" and other such things until you can no longer hear him.`
+				decline
+
+
+
 mission "Hunted Warning"
 	invisible
 	source

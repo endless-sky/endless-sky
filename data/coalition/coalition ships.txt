@@ -660,6 +660,28 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Missile)"
 		"Large Steering Module"
 		"Hyperdrive"
 
+ship "Heliarch Interdictor" "Heliarch Interdictor (Scrappy)"
+	outfits
+		"Bombardment Cannon" 2
+		"Bombardment Turret" 2
+
+		"Large Reactor Module"
+		"Small Reactor Module"
+		"Large Battery Module" 2
+		"Overcharged Shield Module"
+		"Overclocked Repair Module" 2
+		"Cooling Module" 3
+		"Scanning Module" 5
+		"Outfits Expansion" 2
+		"Enforcer Riot Staff" 29
+		"Enforcer Confrontation Gear" 29
+
+		"Large Thrust Module" 2
+		"Small Thrust Module"
+		"Large Steering Module" 2
+		"Small Steering Module"
+		"Hyperdrive"
+
 
 ship "Heliarch Judicator"
 	sprite "ship/heliarch judicator"
@@ -716,12 +738,12 @@ ship "Heliarch Judicator"
 	gun -13 -124.5 "Finisher Pod"
 	gun 13 -124.5 "Finisher Pod"
 	turret 0 45 "Ion Hail Turret"
-	fighter -34.5 -82
-	fighter 34.5 -82
-	fighter -67.5 35
-	fighter -67.5 35
-	fighter 67.5 35
-	fighter 67.5 35
+	bay "Fighter" -34.5 -82
+	bay "Fighter" 34.5 -82
+	bay "Fighter" -67.5 35
+	bay "Fighter" -67.5 35
+	bay "Fighter" 67.5 35
+	bay "Fighter" 67.5 35
 	explode "small explosion" 20
 	explode "medium explosion" 50
 	explode "large explosion" 20

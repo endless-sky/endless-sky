@@ -98,6 +98,8 @@
 		<Unit filename="source/Conversation.h" />
 		<Unit filename="source/ConversationPanel.cpp" />
 		<Unit filename="source/ConversationPanel.h" />
+		<Unit filename="source/CoreStartData.cpp" />
+		<Unit filename="source/CoreStartData.h" />
 		<Unit filename="source/DataFile.cpp" />
 		<Unit filename="source/DataFile.h" />
 		<Unit filename="source/DataNode.cpp" />
@@ -288,6 +290,8 @@
 		<Unit filename="source/StarField.h" />
 		<Unit filename="source/StartConditions.cpp" />
 		<Unit filename="source/StartConditions.h" />
+		<Unit filename="source/StartConditionsPanel.cpp" />
+		<Unit filename="source/StartConditionsPanel.h" />
 		<Unit filename="source/StellarObject.cpp" />
 		<Unit filename="source/StellarObject.h" />
 		<Unit filename="source/System.cpp" />

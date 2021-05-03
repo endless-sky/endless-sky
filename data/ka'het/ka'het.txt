@@ -625,6 +625,18 @@ fleet "Ka'het"
 		"Telis'het (Guns, Disable-able)"
 	variant
 		"Telis'het (EMP, Disable-able)"
+	variant 3
+		"Vareti'het"
+	variant 2
+		"Vareti'het (EMP)"
+	variant 2
+		"Vareti'het (Strong)"
+	variant 2
+		"Vareti'het (Disable-able)"
+	variant
+		"Vareti'het (EMP, Disable-able)"
+	variant
+		"Vareti'het (Strong, Disable-able)"
 
 fleet "Ka'het Aggressive"
 	government "Ka'het (Infighting)"
@@ -652,6 +664,18 @@ fleet "Ka'het Aggressive"
 		"Telis'het (Guns, Disable-able)"
 	variant
 		"Telis'het (EMP, Disable-able)"
+	variant 3
+		"Vareti'het"
+	variant 2
+		"Vareti'het (EMP)"
+	variant 2
+		"Vareti'het (Strong)"
+	variant 2
+		"Vareti'het (Disable-able)"
+	variant
+		"Vareti'het (EMP, Disable-able)"
+	variant
+		"Vareti'het (Strong, Disable-able)"
 
 fleet "Ka'het Core"
 	government "Ka'het"
@@ -702,6 +726,25 @@ fleet "Ka'het Core"
 	variant 2
 		"Telis'het (EMP)"
 		"Maeri'het (EMP, Disable-able)"
+	variant 3
+		"Vareti'het"
+	variant 2
+		"Vareti'het (EMP)"
+	variant 2
+		"Vareti'het (Strong)"
+	variant 2
+		"Vareti'het (Disable-able)"
+	variant
+		"Vareti'het (EMP, Disable-able)"
+	variant
+		"Vareti'het (Strong, Disable-able)"
+	variant 2
+		"Vareti'het"
+		"Telis'het (Guns, Disable-able)"
+		"Telis'het (EMP)"
+		"Maeri'het (Disable-able)"
+		"Maeri'het (EMP, Disable-able)"
+		"Maeri'het"
 
 fleet "Builders Drone"
 	government "Builder"
