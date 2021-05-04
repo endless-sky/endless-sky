@@ -20,7 +20,7 @@ news "wanderer civilians, no dialog"
 		word
 			"Many buildings near the spaceport have plants growing on their roofs. An indignant squawk draws your attention to a Wanderer as they rapidly flap away from an automated watering system dousing them where they stood."
 			"Outside the spaceport, you see a Wanderer performing maintainence on some sort of irrigation system. Once they get it working, it begins to water a field of plants."
-			"A Wanderer dockworker unloads scientific equipment from a ship. More suprising, however, is the fact that they unload several bags of fertilizer from it as well."
+			"A Wanderer dockworker unloads complex scientific equipment from a ship. More suprising, however, is the fact that they unload several bags of fertilizer from it as well."
 	name
 		word
 			"Group of Wanderers"
@@ -96,6 +96,7 @@ news "Wanderers and Aliens"
 		word
 			"The Hai language is [complicated, convoluted], but learning it has yielded much [insight, knowledge] about the Hai in general."
 			"It is difficult to [pronounce, speak] Hai words, because their [physiology, structure] is so much different than ours." 
+			"I went to a [prison, jail] where some Unfettered Hai were being held, in order to [study, apprehend] their language on a more [in-depth, detailed] level. It was hard to get [information, data] out of them, to say the least."
 			
 news "Wanderer civilians, dialog"
 	to show
@@ -117,6 +118,8 @@ news "Wanderer civilians, dialog"
 			"I wonder what kinds of [creatures, beings] live on your home planet."
 			"With that jump drive, you must be able to [observe, witness] all kinds of wondrous life forms from across the galaxy. I wish I had such access."
 			"One of my [friends, buddies] wanted to meet you, but was too [shy, scared]."
+			"While you are [here, present], you should try some of our [delectable, delicious] seed soup. It is a [filling, satisfying] meal after a long trip."
+			
 news "Wanderer scientists"
 	to show
 		has "Wanderers Conversation: offered"
@@ -150,7 +153,7 @@ news "Wanderer soldier"
 			"Conscript"
 	message
 		word
-			"I was [conscripted, forced] into service in a warship. I [wish, desire] to go back to my old life."
+			"I was [conscripted, forced] into service in a warship. I only [wish, desire] to go back to my old life."
 			"Society does not [like, appreciate] what I do, but it is [necessary, essential] in times like these."
 			"I wish I did not have to [fight, do battle] for a living. It is a [savage, unelegant] way to get by."
 			"I joined the [defense fleet, navy] because I wanted to protect lifeforms. Instead I am [battling, killing] them. It brings me great [sadness, sorrow] to see such [destruction, waste]."
@@ -172,3 +175,27 @@ news "Wanderer engineer"
 			"The warships we have begun to [manufacture, build] are from a more [brutish, dark] time in our history. I hope that we are not headed towards such times [again, once more]."
 			"Despite their [savage, regrettable] purpose, the warships we have begun to [make, fashion] are impressive from a purely technological [perspective, view]."
 			"I regret that I must [recreate, unearth] technologies of [war, batte], but it is necessary for our [survival, existence]."
+			"I would like to be able to [study, understand] human technology and its [capabilites, abilities], but I do not have the time."
+
+news "Wanderers and the Eye"
+	to show
+		has "Wanderers Ap'arak 3: completed"
+	location
+		government "Wanderer"
+	name
+		word
+			"Wanderer"
+			"Wanderer civilian"
+			"Civilian"
+			"Pilot"
+			"Wanderer pilot"
+			"Wanderer scientist"
+			"Scientist"
+	message
+		word
+			"The Eye has opened in my [lifetime, existence]! I never dreamed of such a [miracle, wonder] happening for me to see!"
+			"The lands beyond the Eye shall bring a [rebirth? renewal?] to our species."
+			"It is time for our [society, species] to move to new lands; the Eye have given us this [honor, opportunity]."
+			"The opening of the Eye is a sign that we must continue our [purpose? existence?] in a new [part, region] of this galaxy."
+			"What [wonders, changes] await us at the end of the Eye!"
+			"I am honored to [bear witness? attest?] to this new phase of our cycle. The Eye shall [renew?, change?] us."
