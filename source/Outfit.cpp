@@ -215,12 +215,6 @@ void Outfit::Load(const DataNode &node)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 	
-	// Only outfits with the jump drive and jump range attributes can
-	// use the jump range, so only keep track of the jump range on
-	// viable outfits.
-	if(attributes.Get("jump drive") && attributes.Get("jump range"))
-		GameData::AddJumpRange(attributes.Get("jump range"));
-	
 	// Legacy support for turrets that don't specify a turn rate:
 	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn() && !AntiMissile())
 	{
@@ -255,31 +249,35 @@ void Outfit::Load(const DataNode &node)
 
 void Outfit::FinishLoading()
 {
-	if(!parent)
-		return;
-	if(!parent->IsDefined())
-		return;
-		
-	// At the moment variant variants are not allowed.
-	if(parent->IsVariant())
+	if(parent && parent->IsDefined())
 	{
-		Files::LogError("Warning: outfit \"" + name + "\" is a variant of a variant and will not be fully loaded.");
-		return;
-	}
+		// At the moment variant variants are not allowed.
+		if(parent->IsVariant())
+		{
+			Files::LogError("Warning: outfit \"" + name + "\" is a variant of a variant and will not be fully loaded.");
+			return;
+		}
 		
-	// Copy data over from the parent outfit.
-	displayName = parent->DisplayName();
-	if(category.empty())
-		category = parent->Category();
-	if(!thumbnail)
-		thumbnail = parent->Thumbnail();
-	if(!cost)
-		cost = parent->Cost();
-	if(!mass)
-		mass = parent->Mass();
-	for(const auto &it : parent->Attributes())
-		if(!attributes.Has(it.first))
-			attributes[it.first] = it.second;
+		// Copy data over from the parent outfit.
+		displayName = parent->DisplayName();
+		if(category.empty())
+			category = parent->Category();
+		if(!thumbnail)
+			thumbnail = parent->Thumbnail();
+		if(!cost)
+			cost = parent->Cost();
+		if(!mass)
+			mass = parent->Mass();
+		for(const auto &it : parent->Attributes())
+			if(!attributes.Has(it.first))
+				attributes[it.first] = it.second;
+	}
+	
+	// Only outfits with the jump drive and jump range attributes can
+	// use the jump range, so only keep track of the jump range on
+	// viable outfits.
+	if(attributes.Get("jump drive") && attributes.Get("jump range"))
+		GameData::AddJumpRange(attributes.Get("jump range"));
 }
 
 

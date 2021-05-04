@@ -219,14 +219,14 @@ bool GameData::BeginLoad(const char * const *argv)
 			LoadFile(path, debugMode);
 	}
 	
+	for(auto &&it : outfits)
+		it.second.FinishLoading();
 	// Now that all data is loaded, update the neighbor lists and other
 	// system information. Make sure that the default jump range is among the
 	// neighbor distances to be updated.
 	AddJumpRange(System::DEFAULT_NEIGHBOR_DISTANCE);
 	UpdateSystems();
 	// And, update outfit variants with the outfits now done loading, followed by ships.
-	for(auto &&it : outfits)
-		it.second.FinishLoading();
 	for(auto &&it : ships)
 		it.second.FinishLoading(true);
 	for(auto &&it : persons)
