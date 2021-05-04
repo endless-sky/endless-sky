@@ -1414,7 +1414,7 @@ mission "Coalition Folklore: Saryd"
 			`	"A celebration of Saryd folklore, it is," he explains. "Though for a long time among the stars we've lived, timeless classics from before our spacefaring age, we still celebrate. A set of theatrical plays about some of them, today we are hosting. Watch them for free, anyone can."`
 			choice
 				`	"I've always got time for a story, lead the way."`
-				`	"I'm not much of a fan of plays, I'll pass."`
+				`	"I'm not really up for a story now, I'll pass."`
 					decline
 			`	You follow him outside the spaceport city, and deep into a nearby forest. On the way there, several other Saryds in ancient garbs are guiding others who were also intrigued by the offer.`
 			`	You arrive at a clearing with three different paths to take, and you can make out a faint light deep within each of them. After a few minutes it seems as if all the Saryds involved in the celebration have arrived. They grab three caskets from behind a bush, and lay them before you and the others they brought here.`
