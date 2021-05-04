@@ -48,6 +48,8 @@ news "Wanderers and Korath"
 			"Wanderer civilian"
 	message
 		word
+			`"`
+		word
 			"The Korath have [enormous, gigantic] ships that many of them live on their whole lives. I cannot [imagine, fathom] doing the same."
 			"Have you [seen, viewed] a Korath up close? They only have feathers on their neck. How [strange, odd]."
 			"The engines the Korath use have no regard for [effciency, subtlety]. But I must admit, they are much more powerful than ours."
@@ -55,14 +57,20 @@ news "Wanderers and Korath"
 			"I am trying to [learn, understand] more words of the Korath language. It is a difficult [task, undertaking], but it is important to learn the language of those who we are [undertaking, rescuing]."
 			"Have you been on a Korath [world, planet]? It is a [sobering, depressing] reminder of the importance of our [task, work]."
 			"I am [excited, overjoyed] to be part of [healing, renewing] the Korath worlds. We are once again [transforming, altering] the old into the new."
+		word
+			`"`
 	name
 		word
 			"Wanderer linguist"
 			"Linguist"
 	message
 		word
+			`"`
+		word
 			"Many scientists are currently [studying, examining] the Korath language, and attempting to teach it to others. It is [exciting, satisfying] to be part of this [effort, undertaking]."
 			"We are still [figuring out, determining] whether or not a Wanderer who has not undergone the Molt could [learn, apprehend] the Korath language. The sounds in their [speech, tongue] are hard for us to [speak, pronounce]."
+		word
+			`"`
 			
 news "Wanderers and Aliens"
 	to show
@@ -78,6 +86,8 @@ news "Wanderers and Aliens"
 			"Wanderer"
 	message
 		word
+			`"`
+		word
 			"Long ago, we [rebirthed, cleansed] a group of worlds in the south. I wonder if any [aliens, sentient beings] live there now?"
 			"It is a shame we must [fight, defend against] the Hai. I wish we had the opportunity to [engage, treat] with their peaceful brethren."
 			"Alien societies [fascinate, interest] me. I [hope, desire] for more opportunities to meet with them."
@@ -88,15 +98,21 @@ news "Wanderers and Aliens"
 			"Our species has [met, made contact with] with many aliens before, but never so many at once."
 			"Exploration is important for a society. If we did not move and discover new planets, we would have [stagnated, shriveled] long ago."
 			"I can [sympathize with, understand] the Hai. They have been [stuck, stagnant] in their own space for too long. It is only [right, natural] that they should want to [migrate to, leave for] new lands."
+		word
+			`"`
 	name
 		word
 			"Wanderer linguist"
 			"Linguist"
 	message
 		word
+			`"`
+		word
 			"The Hai language is [complicated, convoluted], but learning it has yielded much [insight, knowledge] about the Hai in general."
 			"It is difficult to [pronounce, speak] Hai words, because their [physiology, structure] is so much different than ours." 
 			"I went to a [prison, jail] where some Unfettered Hai were being held, in order to [study, apprehend] their language on a more [in-depth, detailed] level. It was hard to get [information, data] out of them, to say the least."
+		word
+			`"`
 			
 news "Wanderer civilians, dialog"
 	to show
@@ -112,6 +128,7 @@ news "Wanderer civilians, dialog"
 			"Wanderer youth"
 	message
 		word
+			`"`
 			"Whenever I go on a [journey, trip] through space I always bring some of my [favorite, most cherished] potted plants. It gets [lonely, barren] when you are far from nature." 
 			"I have [heard of, known of] a human captain in Wanderer space, but seeing you is still quite [strange, odd]."
 			"I cannot [imagine, fathom] being unable to fly. How do you manage to get anywhere?"
@@ -119,6 +136,8 @@ news "Wanderer civilians, dialog"
 			"With that jump drive, you must be able to [observe, witness] all kinds of wondrous life forms from across the galaxy. I wish I had such access."
 			"One of my [friends, buddies] wanted to meet you, but was too [shy, scared]."
 			"While you are [here, present], you should try some of our [delectable, delicious] seed soup. It is a [filling, satisfying] meal after a long trip."
+		word
+			`"`
 			
 news "Wanderer scientists"
 	to show
@@ -134,11 +153,16 @@ news "Wanderer scientists"
 			"Ecologist"
 	message
 		word
+			`"`
+		word
 			"I recently [travelled, journeyed] to another world on a scientific [mission, study], where we discovered a new species of plant. How [exciting, thrilling]!"
 			"The best part of my [job, task] is the thrill of [discovery, revelation]."
 			"Communication with your colleagues is [important, indispesable]. I learnt this the [hard, difficult] way when I did not mention that a new plant species I had [found, discovered] was carivorous."
 			"One of my [proudest, greatest] accomplishments was when I helped [nurture, grow] an almost-extinct species of insect back to a [viable, independent] population size."
 			"With all the different species we have to [keep track of, document], it is easy to get [mixed up, confused]. A spiny-haired T'kai may be upon closer [inspection, study] a short-necked Kat'tchi."
+		word
+			`"`
+
 news "Wanderer soldier"
 	to show
 		has "Wanderers Conversation: offered"
@@ -153,12 +177,16 @@ news "Wanderer soldier"
 			"Conscript"
 	message
 		word
+			`"`
+		word
 			"I was [conscripted, forced] into service in a warship. I only [wish, desire] to go back to my old life."
 			"Society does not [like, appreciate] what I do, but it is [necessary, essential] in times like these."
 			"I wish I did not have to [fight, do battle] for a living. It is a [savage, unelegant] way to get by."
 			"I joined the [defense fleet, navy] because I wanted to protect lifeforms. Instead I am [battling, killing] them. It brings me great [sadness, sorrow] to see such [destruction, waste]."
 			"I should've [become, studied to be] an ecologist like my parents [wanted, desired] me to."
 			"I kill one so that [others, several] may be [saved, spared]."
+		word
+			`"`
 
 news "Wanderer engineer"
 	to show
@@ -172,10 +200,15 @@ news "Wanderer engineer"
 			"Engineer"
 	message
 		word
+			`"`
+		word
 			"The warships we have begun to [manufacture, build] are from a more [brutish, dark] time in our history. I hope that we are not headed towards such times [again, once more]."
 			"Despite their [savage, regrettable] purpose, the warships we have begun to [make, fashion] are impressive from a purely technological [perspective, view]."
 			"I regret that I must [recreate, unearth] technologies of [war, batte], but it is necessary for our [survival, existence]."
-			"I would like to be able to [study, understand] human technology and its [capabilites, abilities], but I do not have the time."
+			"I would like to be able to [study, understand] human technology and its [capabilites, abilities], but I am not able to. Now that we must build [warships, battleships], all my time has been taken up by their [production, creation]."
+			"I create weapons of [destruction, annihilation] so that we may survive and go on to [create, rebirth]."
+		word
+			`"`
 
 news "Wanderers and the Eye"
 	to show
@@ -193,9 +226,44 @@ news "Wanderers and the Eye"
 			"Scientist"
 	message
 		word
+			`"`
+		word
 			"The Eye has opened in my [lifetime, existence]! I never dreamed of such a [miracle, wonder] happening for me to see!"
 			"The lands beyond the Eye shall bring a [rebirth? renewal?] to our species."
 			"It is time for our [society, species] to move to new lands; the Eye have given us this [honor, opportunity]."
 			"The opening of the Eye is a sign that we must continue our [purpose? existence?] in a new [part, region] of this galaxy."
 			"What [wonders, changes] await us at the end of the Eye!"
 			"I am honored to [bear witness? attest?] to this new phase of our cycle. The Eye shall [renew?, change?] us."
+		word
+			`"`
+
+news "Wanderer safety monitor"
+	to show
+		has "Wanderers Conversation: offered"
+	location
+		has attributes oil
+	name
+		word
+			"Safety inspector"
+			"Wanderer safety inspector"
+	message
+		word
+			`"`
+		word
+			"My job is to prevent the [destruction, death] of that which we have sought to [renew, nurture.]"
+			"The oil drillers have no [respect, regard] for the [life, existence] of this planet. Just yesterday I caught one [covering up, hiding] a spill that [affected, impacted] an estimated 328 blades of grass!" 
+		word
+			`"`
+			
+	name
+		word
+			"Oil rigger"
+			"Wanderer oil rigger"
+		message
+			word
+				`"`
+			word
+				"Many do not [like, appreciate] it, but my work is the [backbone, support] of this [society, civilization]."
+				"What I do is [unfortunate, regrettable], but we have no other [option, choice]."
+			word
+				`"`
