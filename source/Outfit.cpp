@@ -122,13 +122,15 @@ void Outfit::Load(const DataNode &node)
 	if(node.Size() == 2)
 	{
 		name = node.Token(1);
-		pluralName = name + 's';
+		displayName = name;
+		pluralName = displayName + 's';
 	}
 	else if(node.Size() >= 3)
 	{
 		name = node.Token(2);
+		displayName = name;
 		parent = GameData::Outfits().Get(node.Token(1));
-		pluralName = name + 's';
+		pluralName = displayName + 's';
 	}
 	isDefined = true;
 	
@@ -266,6 +268,7 @@ void Outfit::FinishLoading()
 	}
 		
 	// Copy data over from the parent outfit.
+	displayName = parent->DisplayName();
 	if(category.empty())
 		category = parent->Category();
 	if(!thumbnail)
@@ -275,10 +278,8 @@ void Outfit::FinishLoading()
 	if(!mass)
 		mass = parent->Mass();
 	for(const auto &it : parent->Attributes())
-	{
 		if(!attributes.Has(it.first))
 			attributes[it.first] = it.second;
-	}
 }
 
 
@@ -303,6 +304,13 @@ bool Outfit::IsVariant() const
 const string &Outfit::Name() const
 {
 	return name;
+}
+
+
+
+const string &Outfit::DisplayName() const
+{
+	return displayName;
 }
 
 

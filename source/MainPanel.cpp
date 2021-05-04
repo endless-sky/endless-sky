@@ -341,7 +341,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					out << (tons == 1 ? " ton of " : " tons of ") << Format::LowerCase(it.first->PluralName()) << "\n";
 				}
 				else
-					out << " " << (it.second == 1 ? it.first->Name(): it.first->PluralName()) << "\n";
+					out << " " << (it.second == 1 ? it.first->DisplayName(): it.first->PluralName()) << "\n";
 			}
 		if(first)
 			out << "This " + target->Noun() + " is not carrying any cargo.\n";
@@ -354,7 +354,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 		for(const auto &it : target->Outfits())
 			if(it.first && it.second)
 				out << "\t" << it.second << " "
-					<< (it.second == 1 ? it.first->Name() : it.first->PluralName()) << "\n";
+					<< (it.second == 1 ? it.first->DisplayName() : it.first->PluralName()) << "\n";
 		
 		map<string, int> count;
 		for(const Ship::Bay &bay : target->Bays())

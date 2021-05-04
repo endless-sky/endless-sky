@@ -158,7 +158,7 @@ int MapOutfitterPanel::FindItem(const string &text) const
 	int bestItem = -1;
 	for(unsigned i = 0; i < list.size(); ++i)
 	{
-		int index = Search(list[i]->Name(), text);
+		int index = Search(list[i]->DisplayName(), text);
 		if(index >= 0 && index < bestIndex)
 		{
 			bestIndex = index;
@@ -222,7 +222,7 @@ void MapOutfitterPanel::DrawItems()
 				continue;
 			
 			Draw(corner, outfit->Thumbnail(), isForSale, outfit == selected,
-				outfit->Name(), price, info);
+				outfit->DisplayName(), price, info);
 			list.push_back(outfit);
 		}
 	}
@@ -252,5 +252,5 @@ void MapOutfitterPanel::Init()
 	
 	for(auto &it : catalog)
 		sort(it.second.begin(), it.second.end(),
-			[](const Outfit *a, const Outfit *b) { return a->Name() < b->Name(); });
+			[](const Outfit *a, const Outfit *b) { return a->DisplayName() < b->DisplayName(); });
 }
