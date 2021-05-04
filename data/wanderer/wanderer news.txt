@@ -61,7 +61,9 @@ news "Wanderers and Korath"
 			"Linguist"
 	message
 		word
-			"Many scientists are currently [working on, engineering] a translation device that will allow direct [communication, dialog] with the Korath in their own language. It is [exciting, satisfying] to be part of this effort."
+			"Many scientists are currently [studying, examining] the Korath language, and attempting to teach it to others. It is [exciting, satisfying] to be part of this [effort, undertaking]."
+			"We are still [figuring out, determining] whether or not a Wanderer who has not undergone the Molt could [learn, apprehend] the Korath language. The sounds in their [speech, tongue] are hard for us to [speak, pronounce]."
+			
 news "Wanderers and Aliens"
 	to show
 		has "Wanderers Conversation: offered"
