@@ -2794,11 +2794,11 @@ system Algol
 	fleet "Large Core Pirates" 5000
 	fleet "Small Syndicate" 2400
 	object
-		sprite star/k5-old
+		sprite star/a0
 		distance 42.7246
 		period 19.0178
 	object
-		sprite star/m0
+		sprite star/a5
 		distance 113.7754
 		period 19.0178
 		offset 180
@@ -11120,7 +11120,7 @@ system "Gamma Cassiopeiae"
 	fleet "Large Syndicate" 5000
 	fleet "Human Miners" 2000
 	object
-		sprite star/k0-old
+		sprite star/b0
 		period 10
 	object
 		sprite planet/ice7
