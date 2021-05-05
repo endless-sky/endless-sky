@@ -199,6 +199,7 @@ news "unfettered hai dialog"
 			"Unfettered fighter"
 			"Unfettered youth"
 			"Hai youth"
+	message
 		word
 			`"`
 		word
@@ -244,6 +245,8 @@ news "unfettered hai after wanderers invasion"
 			`"`
 		word
 			"I had to shoot down a Wanderer ship full of civilians when my captain decided to invade their space. I don't know if I can take this anymore."
+		word
+			`"`
 
 news "unfettered hai no dialog"
 	location
@@ -255,6 +258,7 @@ news "unfettered hai no dialog"
 			"Unfettered warlord"
 			"Hai youth"
 			"Hai warlord"
+	message
 		word
 			`"`
 		word
@@ -271,6 +275,7 @@ news "unfettered hai no dialog group"
 			"Group of Unfettered"
 			"Group of Hai"
 			"Group of youth"
+	message
 		word
 			`"`
 		word
