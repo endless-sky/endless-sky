@@ -192,6 +192,7 @@ news "unfettered hai dialog"
 			"Without change, a civilization will decay and fall. This will happen to the fettered Hai, as it has happened to countless empires throughout history."
 			"What are you looking at, monkey?"
 			"I can take on a human like you any day."
+			"You looking for a fight, monkey?"
 		word
 			`"`
 	name
@@ -228,9 +229,13 @@ news "unfettered hai after wanderers invasion"
 			"I have fought with the stupid birds to the north. They have no knowledge of proper battle. Our war with them will be swift."
 			"Those overgrown birds have fantastic weaponry, yet they are too cowardly to use it."
 			"I wonder why the birds do not simply fight back. Their weapons are clearly capable of doing so."
+			"I wish I could get my hands on some of that Wanderer tech."
+			"Wanderer worlds are pristine! I can't wait to claim them all for true Hai."
+			"The true Hai will no longer be confined in their Drak-imposed cage."
+			"I'll see great glory in fighting the weak-willed birds."
 		word
 			`"`
-news "unfettered hai after wanderers invasion"
+news "unfettered hai after wanderers invasion regret"
 	location
 		government "Hai (Unfettered)"
 	to show
@@ -245,6 +250,11 @@ news "unfettered hai after wanderers invasion"
 			`"`
 		word
 			"I had to shoot down a Wanderer ship full of civilians when my captain decided to invade their space. I don't know if I can take this anymore."
+			"The Wanderers hardly try to fight back. It makes me wonder if they want us to conquer their planets."
+			"I don't think it's right that we attack those that have surrendered. What honor is there in killing civilians?"
+			"I came here to do battle with warriors, not with merchants and cowardly birds."
+			"What challenge is there in killing the weak? I desire to battle with those who are worthy."
+			"What we're doing up north isn't right, but if I try to speak against it, others call me 'coward' and threaten to kill me."
 		word
 			`"`
 
@@ -260,12 +270,10 @@ news "unfettered hai no dialog"
 			"Hai warlord"
 	message
 		word
-			`"`
-		word
 			"A Hai looks at you and shouts something in their language. You get the impression that it isn't pleasant."
 			"You pass by a Hai with a false tail. You try not to stare as you walk past."
-		word
-			`"`
+			"At a booth, you see a Hai selling stolen ship weaponry for outrageous prices."
+			"At a booth, you see a Hai selling various types of unpleasant-smelling substances. Judging by the effects it has on those who consume them, you guess that they're drugs."
 
 news "unfettered hai no dialog group"
 	location
@@ -277,6 +285,6 @@ news "unfettered hai no dialog group"
 			"Group of youth"
 	message
 		word
-			`"`
-		word
 			"You see a group of Hai confront another. They shout at each other and bring out weapons, before backing off."
+			"You hear yelling in the Hai language. When you turn around, you see that two Hai are facing off against each other, as onlookers egg them on. You turn away before it gets ugly."
+			"A gang of Hai go around, visibly carrying weapons. Older Hai 'donate' money to them."
