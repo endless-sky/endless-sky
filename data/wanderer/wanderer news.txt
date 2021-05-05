@@ -241,7 +241,8 @@ news "Wanderer safety monitor"
 	to show
 		has "Wanderers Conversation: offered"
 	location
-		has attributes oil
+		government "Wanderer"
+		has attributes "oil"
 	name
 		word
 			"Safety inspector"
@@ -267,3 +268,24 @@ news "Wanderer safety monitor"
 				"What I do is [unfortunate, regrettable], but we have no other [option, choice]."
 			word
 				`"`
+
+news "wanderer farmer"
+	to show
+		has "Wanderers Coversation: offered"
+	location
+		government "Wanderer"
+		has attributes "farming"
+	name
+		word
+			"Wanderer farmer"
+			"Farmer"
+	message
+		word
+			`"`
+		word
+			"We must preserve a [balance, order] when we plant our crops."
+			"Compared to the [struggles, challenges] that our [ancestors, forebearers] faced when they were first brought here by the Eye, my problems are [inconsequential, nothing]."
+			"To be a good farmer, you must be able to [predict, foresee] possible challenges. Just a few [years, cycles] ago my crops were almost completely [destroyed, wiped out] by a drought whose signs I [ignored, overlooked].
+			"You must not [override, dismiss] the natural [rhythms? balance?] of the land you work on. Doing otherwise would cause [harm, destruction] to that which [feeds, nurtures] you."
+		word
+			`"`
