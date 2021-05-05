@@ -3696,13 +3696,7 @@ system "Alpha Centauri"
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 6000
 	object
-		sprite star/k5
-		distance 26.7033
-		period 16.011
-		offset 180
-	object
-		sprite star/m5
-		distance 63.2967
+		sprite star/k0
 		period 16.011
 	object Chiron
 		sprite planet/forest1
@@ -3724,6 +3718,10 @@ system "Alpha Centauri"
 		sprite planet/rock15-b
 		distance 1718.2
 		period 1335.56
+	object
+		sprite star/g3
+		distance 3700
+		period 4888.11
 	object
 		sprite planet/gas13
 		distance 4080.61
