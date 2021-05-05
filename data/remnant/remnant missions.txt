@@ -2644,7 +2644,6 @@ phrase "broken jump drive on visit"
 mission "Remnant: Broken Jump Drive 1"
 	name "Broken Jump Drive Delivery"
 	description "You have been asked to deliver a broken jump drive to the researchers on <planet>."
-	minor
 	landing
 	repeat
 	to offer
