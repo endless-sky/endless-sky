@@ -230,9 +230,10 @@ news "unfettered hai after wanderers invasion"
 			"Those overgrown birds have fantastic weaponry, yet they are too cowardly to use it."
 			"I wonder why the birds do not simply fight back. Their weapons are clearly capable of doing so."
 			"I wish I could get my hands on some of that Wanderer tech."
-			"Wanderer worlds are pristine! I can't wait to claim them all for true Hai."
+			"Wanderer worlds are pristine! We have won a great prize in our battle against the stupid birds."
 			"The true Hai will no longer be confined in their Drak-imposed cage."
 			"I'll see great glory in fighting the weak-willed birds."
+			"Wanderer worlds are nothing like the ones we were confined to. Here, the air is clean and the water is as clear as glass."
 		word
 			`"`
 news "unfettered hai after wanderers invasion regret"
@@ -286,5 +287,6 @@ news "unfettered hai no dialog group"
 	message
 		word
 			"You see a group of Hai confront another. They shout at each other and bring out weapons, before backing off."
+			"You see a group of Hai confront another. They shout and bring out weapons, before lunging at each other. You walk away before they notice you."
 			"You hear yelling in the Hai language. When you turn around, you see that two Hai are facing off against each other, as onlookers egg them on. You turn away before it gets ugly."
 			"A gang of Hai go around, visibly carrying weapons. Older Hai 'donate' money to them."
