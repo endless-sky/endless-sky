@@ -219,6 +219,7 @@ bool GameData::BeginLoad(const char * const *argv)
 			LoadFile(path, debugMode);
 	}
 	
+	// Load outfit variants now that their parents are defined.
 	for(auto &&it : outfits)
 		it.second.FinishLoading();
 	// Now that all data is loaded, update the neighbor lists and other
@@ -226,7 +227,7 @@ bool GameData::BeginLoad(const char * const *argv)
 	// neighbor distances to be updated.
 	AddJumpRange(System::DEFAULT_NEIGHBOR_DISTANCE);
 	UpdateSystems();
-	// And, update outfit variants with the outfits now done loading, followed by ships.
+	// And, update ship variants now that all the outfits are loaded.
 	for(auto &&it : ships)
 		it.second.FinishLoading(true);
 	for(auto &&it : persons)

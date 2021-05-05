@@ -1,0 +1,15 @@
+outfit "Jump Drive" "Long Jump Drive"
+	"jump range" 500
+
+outfit "Bootleg Jump Drive"
+	category "Systems"
+	"jump range" 400
+	"jump drive" 1
+
+outfitter "For Show"
+	"Long Jump Drive"
+	"Jump Drive"
+	"Bootleg Jump Drive"
+	
+planet "New Boston"
+	outfitter "For Show"
