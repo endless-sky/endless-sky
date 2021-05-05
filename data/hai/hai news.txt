@@ -165,3 +165,80 @@ news "reformed pirate in Hai space"
 			"The Hai will pay you to rush cargo to human space and back. Don't die trying."
 		word
 			`"`
+
+news "unfettered hai dialog"
+	location
+		government "Hai (Unfettered)"
+	name
+		word
+			"Unfettered fighter"
+			"Unfettered youth"
+			"Unfettered warlord"
+			"Hai youth"
+			"Hai warlord"
+	message
+		word
+			`"`
+		word
+			"How did you get here? You should've been blasted to bits by our ships."
+			"I came here because this is the only place in the galaxy where I feel wanted."
+			"Weak human. Why do you dare to come to the land of the true Hai?"
+			"Altered Hai are soft and weak-willed. They care not for true struggle or challenge."
+			"The last time a human called me 'cute', I ran him through with a machete."
+			"I seek challenge, and what greater challenge is there than to oppose the Drak, those with the power of gods?"
+			"Sometimes I miss my family and friends back home, but then I remember that here I am a respected warrior. Back there I was a slave to the Drak."
+			"Our ships can beat anything you stupid monkeys can make."
+			"This sure beats being a factory worker."
+			"Without change, a civilization will decay and fall. This will happen to the fettered Hai, as it has happened to countless empires throughout history."
+			"What are you looking at, monkey?"
+			"I can take on a human like you any day."
+		word
+			`"`
+	name
+		word
+			"Unfettered fighter"
+			"Unfettered youth"
+			"Hai youth"
+		word
+			`"`
+		word
+			"At first I thought that joining the Unfettered would be fun. Now I can't go back or I'll be killed."
+			"I feel like the only Hai on this planet who regrets joining the Unfettered."
+			"I want to go home."
+		word
+			`"`
+news "unfettered hai after wanderers invasion"
+	location
+		government "Hai (Unfettered)"
+	to show
+		has "Wanderers Invaded 0: done"
+	name
+		word
+			"Unfettered fighter"
+			"Unfettered youth"
+			"Unfettered warlord"
+			"Hai youth"
+			"Hai warlord"
+		word
+			`"`
+		word
+			"We shall conquer the worlds to the north as is our right. It is inevitable that the strong shall defeat the weak."
+			"I have fought with the stupid birds to the north. They have no knowledge of proper battle. Our war with them will be swift."
+
+news "unfettered hai no dialog"
+	location
+		government "Hai (Unfettered)"
+	name
+		word
+			"Unfettered fighter"
+			"Unfettered youth"
+			"Unfettered warlord"
+			"Hai youth"
+			"Hai warlord"
+		word
+			`"`
+		word
+			"A Hai looks at you and shouts something in their language. You get the impression that it isn't pleasant."
+			"You pass by a Hai with a false tail. You try not to stare as you walk past."
+		word
+			`"`
