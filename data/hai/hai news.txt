@@ -219,11 +219,31 @@ news "unfettered hai after wanderers invasion"
 			"Unfettered warlord"
 			"Hai youth"
 			"Hai warlord"
+	message
 		word
 			`"`
 		word
 			"We shall conquer the worlds to the north as is our right. It is inevitable that the strong shall defeat the weak."
 			"I have fought with the stupid birds to the north. They have no knowledge of proper battle. Our war with them will be swift."
+			"Those overgrown birds have fantastic weaponry, yet they are too cowardly to use it."
+			"I wonder why the birds do not simply fight back. Their weapons are clearly capable of doing so."
+		word
+			`"`
+news "unfettered hai after wanderers invasion"
+	location
+		government "Hai (Unfettered)"
+	to show
+		has "Wanderers Invaded 0: done"
+	name
+		word
+			"Unfettered fighter"
+			"Unfettered youth"
+			"Hai youth"
+	message
+		word
+			`"`
+		word
+			"I had to shoot down a Wanderer ship full of civilians when my captain decided to invade their space. I don't know if I can take this anymore."
 
 news "unfettered hai no dialog"
 	location
@@ -242,3 +262,16 @@ news "unfettered hai no dialog"
 			"You pass by a Hai with a false tail. You try not to stare as you walk past."
 		word
 			`"`
+
+news "unfettered hai no dialog group"
+	location
+		government "Hai (Unfettered)"
+	name
+		word
+			"Group of Unfettered"
+			"Group of Hai"
+			"Group of youth"
+		word
+			`"`
+		word
+			"You see a group of Hai confront another. They shout at each other and bring out weapons, before backing off."
