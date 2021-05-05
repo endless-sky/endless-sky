@@ -8215,7 +8215,7 @@ system Dokdobaru
 	fleet "Large Quarg" 800
 	fleet "Kor Efret Home" 1500
 	object
-		sprite star/g5
+		sprite star/g0-old
 		period 10
 	object "Korati Efreti"
 		sprite planet/station1k
@@ -8930,7 +8930,7 @@ system Ekuarik
 	fleet "Large Saryd" 1600
 	fleet Heliarch 200
 	object
-		sprite star/g5
+		sprite star/g0-old
 		period 10
 	object
 		sprite planet/lava6-b
@@ -9290,7 +9290,7 @@ system Enif
 	fleet "Large Southern Merchants" 4000
 	fleet Quarg 600
 	object
-		sprite star/g5
+		sprite star/g0-old
 		period 10
 	object
 		sprite planet/lava5-b
@@ -12328,7 +12328,7 @@ system "Hevru Hai"
 	fleet "Large Human Merchants (Hai)" 15000
 	fleet Quarg 600
 	object
-		sprite star/g5
+		sprite star/g0-old
 		period 10
 	object "Alta Hai"
 		sprite planet/ringworld
@@ -13849,7 +13849,7 @@ system "Ki War Ek"
 	fleet "Large Saryd" 1500
 	fleet Heliarch 150
 	object
-		sprite star/g5
+		sprite star/g0-old
 		period 10
 	object
 		sprite planet/lava4-b
@@ -19774,7 +19774,7 @@ system Quaru
 	fleet "Large Saryd" 1400
 	fleet Heliarch 100
 	object
-		sprite star/g5
+		sprite star/g0-old
 		period 10
 	object "Ring of Friendship"
 		sprite planet/ringworld
@@ -25422,7 +25422,7 @@ system "World's End"
 	habitable 700
 	haze _menu/haze-blackbody
 	object
-		sprite star/g5
+		sprite star/m8
 		period 10
 	object
 		sprite "planet/ringworld right"
