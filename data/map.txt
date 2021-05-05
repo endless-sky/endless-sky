@@ -24175,12 +24175,12 @@ system Torbab
 	fleet "Large Saryd" 2000
 	fleet Heliarch 250
 	object
-		sprite star/g0
-		distance 36.8689
+		sprite star/k5-old
+		distance 50
 		period 9.54431
 	object
-		sprite star/k5-old
-		distance 78.1311
+		sprite star/g0
+		distance 90
 		period 9.54431
 		offset 180
 	object
