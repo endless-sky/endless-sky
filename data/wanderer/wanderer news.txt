@@ -180,11 +180,9 @@ news "Wanderer soldier"
 			`"`
 		word
 			"I was [conscripted, forced] into service in a warship. I only [wish, desire] to go back to my old life."
-			"Society does not [like, appreciate] what I do, but it is [necessary, essential] in times like these."
-			"I wish I did not have to [fight, do battle] for a living. It is a [savage, inelegant] way to get by."
-			"I joined the [defence fleet, navy] because I wanted to protect lifeforms. Instead I am [battling, killing] them. It brings me great [sadness, sorrow] to see such [destruction, waste]."
-			"I should've [become, studied to be] an ecologist like my parents [wanted, desired] me to."
-			"I kill one so that [others, several] may be [saved, spared]."
+			"I wish we did not have to [fight, do battle] to survive. It is a [savage, inelegant] way of solving conflict."
+			"I joined our new [defence fleet, navy] because I wanted to protect lifeforms. Instead I am [battling, killing] them. It brings me great [sadness, sorrow] to see such [destruction, waste]."
+			"I volunteered for service in a warship. I kill one so that [others, several] may be [saved, spared]."
 		word
 			`"`
 
