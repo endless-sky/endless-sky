@@ -230,7 +230,7 @@ news "concerned merchant in Hai space"
 			"The Hai don't like my ship's armory of laser rifles, but I was once boarded by a pirate crew and I'm never letting that happen again! If some overgrown squirrel is going to take away my rifle, it'll have to be from my cold dead hands!"
 			"I hope nobody is smuggling Hai technology out of here. I don't want to think about what would happen if the pirates got their hands on this stuff."
 			"The Hai will pay you to rush cargo to human space and back. Don't die trying."
-			"I really want to go somewhere else but here, but I feel like I'm sandwiched between the Hai to the north and the pirates past the wormhole."
+			"I really want to go somewhere else other than here, but I feel like I'm sandwiched between the Hai to the north and the pirates past the wormhole."
 			"If one were to, I don't know, secretly snag a lock of fur from a Hai in order to have a private genetic analysis done on it to prove that they're really just intelligent deformed bears, that wouldn't be too crazy, right?"
 		word
 			`"`
