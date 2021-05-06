@@ -103,6 +103,7 @@ news "cute story in Hai space"
 			"I always felt so rejected working as a servant on Shangri-la. Ever since I hitched a ride with a hippy who wanted to visit a 'land with giant squirrels' and ended up in Hai space, everyone around me has made me feel like I'm worth something."
 			"I bet if I bought a giant squirrel costume I could make my Hai friends think I was a complete stranger. They'd probably get a kick out of that."
 			"A traveling theater group passed through here a few days ago. They performed an adorable scene about a merchant captain who gives up his life and settles down with his family on Icelake."
+			"I've been thinking about writing a book about the experiences that I've had visiting here. People will probably think its a fictional story, though."
 		word
 			`"`
 
@@ -123,6 +124,48 @@ news "cute hai story in Hai space"
 			"I played chess for the first time last week. I didn't follow what my friends were saying about 'kings' and 'bishops' and 'pawns', but it seemed like they enjoyed the time."
 			"I had a very nice dream about a human captain who took me on a journey outside Hai space. When I woke up on this morning, I met a kind man who was planning a trip to his homeland and when I asked, he said I could come with him. I think it is such a funny coincidence."
 			"My children are so excited when they see humans arrive in ships. To their knowledge, these humans must come from distant and wondrous lands beyond their imagination."
+			"Is it common practice for humans to shave all of the fur off their bodies? All I have ever seen are humans with very smooth and bald skin."
+			"I love participating in the festivities and traditions that humans bring with them into Hai space. They are so diverse and interesting!"
+		word
+			`"`
+
+news "business owner in Hai space"
+	location
+		government "Hai"
+	name
+		word
+			"Store owner"
+			"Small business owner"
+			"Hair stylist"
+			"Barber"
+			"Restaurant owner"
+			"Fruit salesperson"
+	message
+		word
+			`"`
+		word
+			"For whatever reason,"
+			"Surprisingly,"
+			"Believe it or not,"
+			"Incredibly,"
+			"Beyond all of my expectations,"
+		word
+			" "
+		word
+			"migrating to Hai space"
+			"moving to Hai space"
+			"moving my business here from Mars"
+		word
+			" "
+		word
+			"has caused my revenue to increase double-fold!"
+			"has drastically boosted profits!"
+			"has revived my dying profits!"
+			"has skyrocketed my earnings in just months!"
+		word
+			""
+			" The Hai-human market potential here is insane."
+			" I'm ecstatic about it."
 		word
 			`"`
 
@@ -187,6 +230,8 @@ news "concerned merchant in Hai space"
 			"The Hai don't like my ship's armory of laser rifles, but I was once boarded by a pirate crew and I'm never letting that happen again! If some overgrown squirrel is going to take away my rifle, it'll have to be from my cold dead hands!"
 			"I hope nobody is smuggling Hai technology out of here. I don't want to think about what would happen if the pirates got their hands on this stuff."
 			"The Hai will pay you to rush cargo to human space and back. Don't die trying."
+			"I really want to go somewhere else but here, but I feel like I'm sandwiched between the Hai to the north and the pirates past the wormhole."
+			"If one were to, I don't know, secretly snag a lock of fur from a Hai in order to have a private genetic analysis done on it to prove that they're really just intelligent deformed bears, that wouldn't be too crazy, right?"
 		word
 			`"`
 
@@ -196,6 +241,7 @@ news "concerned hai in Hai space"
 	name
 		word
 			"Hai merchant"
+			"Hai civilian"
 	message
 		word
 			`"`
@@ -204,6 +250,7 @@ news "concerned hai in Hai space"
 			"It would be smart to follow trade routes that only visit Hai and human space. One would not wish to experience the business of our northern brethren."
 			"Seeing so many human ships come by with such extensive weaponry feels very reminiscent of past times, unfortunately."
 			"Rations are very often sent to those starving to the north of here, but such actions are almost never met with similar kindness. Take such a task very carefully."
+			"I feel so terrible for the many humans that attempt to reach our worlds and are destroyed by the Unfettered humans that block their passage."
 		word
 			`"`
 
@@ -222,6 +269,7 @@ news "human citizen in Hai space"
 			"Where I lived in human space, pirates kidnapped dozens of people a month. Here there are no pirates, and people rarely disappear."
 			"One of my scientist friends told me the Hai can make wearable holographic projectors. I wonder if they're using those to hide in human space?"
 			"Hai scientists that live near me chartered a flight to Allhome, but it got lost and ended up all the way on Canyon. Some people have the worst sense of direction."
+			"Living here rather than back on Prime has its pros and cons. I don't have to worry about pirates showing up anymore, but now I can't find a single store that sells the latest hologame consoles that I'm used to!"
 		word
 			`"`
 
@@ -243,6 +291,7 @@ news "human reaction to Greenwater outfitter"
 			"I've been stranded here for ages waiting for the right parts to fix my ship. Finally I don't have to stay at that dank and musty hotel."
 			"I was weighing the need for Hai technology on my ship due to their high prices. Thankfully I've been able to outfit it with human tech so I don't have to pay such great amounts!"
 			"I had a good thing going before this outfitter showed up. I could transport human ship parts before there was any competition at all. Now my services are practically useless!"
+			"You mean to tell me the war back home is over? I can finally leave? Hopefully I'll be able to restock on ammo so my journey through the north isn't so rough this time."
 		word
 			`"`
 
@@ -261,6 +310,7 @@ news "businessperson in hai space"
 			"None of the economic models that I've run can explain why the walnut market never stops growing. Sure they're pretty popular, but this has to be a bubble, right? Right?!"
 			"I've noticed a rise in the number of human cuisine-focused establishment in this area. Hopefully a sizable investment in food imports could help my portfolio recover."
 			"I think I can coast for a while off my Darkmetal mine investments; they never seem to fail me. Maybe I can even get that crazy Hai motorcycle I've been eyeing up soon."
+			"It seems that no amount of persuasion can make merchants fly through the north just to get to Hai space. Probably doesn't help that the promise of 'large squirrel customers' isn't very believable."
 		word
 			`"`
 
@@ -312,6 +362,7 @@ news "human advertisement in Hai space"
 			"Tired of the usual Hai lifestyle? Take a trip to Gravitas Wonderland on the unique moon of Skyfarm: where you and the whole family can see strange and wacky Hai plants, interact with incredible robotic spider drones, and have a blast in our low-gravity designed Fun Zone!"
 			"Plan a visit to the tropical Aqualiana Resort on Greenbloom where you can experience relaxing ocean-side views, exciting rainforest expeditions, and gourmet human cooking from professional chefs of the Paradise Worlds."
 			"Too busy traveling to carry around all of your belongings? Moebert's Storage Solutions has locations on each Hai planet, with rapid transportation between each location at your request! Never be without your material possessions with our solutions."
+			"Matthias' Sky Shuttles is the perfect service for anyone making trips to, from, and within Hai space. Fly 'Hai' into the sky with Matthias' Sky Shuttles!"
 		word
 			`"`
 
@@ -329,5 +380,7 @@ news "hai advertisement in Hai space"
 			"Are regular tree nuts too normal and bland? Ibrahim's Exotic Nut Shack fulfills all your many desires for exciting, flavorful nut varieties."
 			"Come to relax inside the many tranquil hot springs of Mirrorlake by visiting the great paradise of Freezewarm Resort & Spa."
 			"Professional full-body fur stylists are available for hire at the nearby Eliana's Styling Center! Acquire a new and fashionable look, or even dye your fur coloring!"
+			"The Hai Tourism Department recommends visiting Frostmark very soon, while the warm and rainy summer experience is still taking place!"
+			"If you crave bizarre cuisine from beyond the wormhole, you must try the food at Duality Diner, featuring human chef Dibani Wilczek and her excellent dishes like 'broccoli', 'oranges', and 'cereal'!"
 		word
 			`"`
