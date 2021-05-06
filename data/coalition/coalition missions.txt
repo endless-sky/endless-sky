@@ -1519,7 +1519,7 @@ mission "Coalition: Council of Ahr: Bebliss"
 			`You land to find a group of Arachi in uniform waiting nearby, ready to carry Plubat's baggage from your ship. "A delightful flight it was, Captain. Hope that picked again to transport me in the future, you are." She says, bidding you farewell and leaving for a nearby transport shuttle.`
 				accept
 			label drama
-			`Lady Plubat rushes out of your ship to meet a group of Arachi in uniform, some of which carry her baggage from your ship, while others her as if expecting house Chamgar's Plubat to try and stir up a discussion. Once all her bags are out, they escort her to a nearby transport shuttle.`
+			`Lady Plubat rushes out of your ship to meet a group of Arachi in uniform, some of which carry her baggage from your ship, while others surround her as if expecting house Chamgar's Plubat to try and stir up a discussion. Once all her bags are out, they escort her to a nearby transport shuttle.`
 
 mission "Coalition: Council of Ahr: Chamgar"
 	invisible
