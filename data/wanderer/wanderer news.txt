@@ -165,7 +165,7 @@ news "Wanderer scientists"
 
 news "Wanderer soldier"
 	to show
-		has "Wanderers Conversation: offered"
+		has "Wanderers Invaded 0: accepted"
 	location
 		government "Wanderer"
 		attributes "evacuation"
