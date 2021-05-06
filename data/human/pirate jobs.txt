@@ -381,6 +381,9 @@ mission "Stealth Cargo Smuggling (North) [0]"
 			names "republic small"
 			variant
 				"Gunboat"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
 	on fail
 		"reputation: Republic" -= 5
 		"reputation: Navy (Oathkeeper)" -= 5
@@ -458,6 +461,9 @@ mission "Stealth Cargo Smuggling (North) [1]"
 		personality heroic staying
 		government Republic
 		fleet "Navy Surveillance"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
 	on fail
 		"reputation: Republic" -= 5
 		"reputation: Navy (Oathkeeper)" -= 5
@@ -512,6 +518,9 @@ mission "Stealth Cargo Smuggling (Core) [0]"
 			names "syndicate small"
 			variant
 				"Quicksilver (Scanner)"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
 	on fail
 		"reputation: Syndicate" -= 5
 	on visit
@@ -591,6 +600,9 @@ mission "Stealth Cargo Smuggling (Core) [1]"
 			names "syndicate small"
 			variant
 				"Quicksilver (Scanner)" 2
+	on abort
+		"reputation: Pirate" -= 1
+		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
 	on fail
 		"reputation: Syndicate" -= 5
 	on visit
@@ -644,6 +656,9 @@ mission "Stealth Cargo Smuggling (South) [0]"
 			names "militia"
 			variant
 				"Bastion (Scanner)"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
 	on fail
 		"reputation: Free Worlds" -= 5
 		"reputation: Militia" -= 5
@@ -724,6 +739,9 @@ mission "Stealth Cargo Smuggling (South) [1]"
 			names "militia"
 			variant
 				"Bastion (Scanner)" 2
+	on abort
+		"reputation: Pirate" -= 1
+		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
 	on fail
 		"reputation: Free Worlds" -= 5
 		"reputation: Militia" -= 5
@@ -780,6 +798,9 @@ mission "Stealth Drug Running (North) [0]"
 			names "republic small"
 			variant
 				"Gunboat"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
 	on fail
 		"reputation: Republic" -= 5
 		"reputation: Navy (Oathkeeper)" -= 5
@@ -857,6 +878,9 @@ mission "Stealth Drug Running (North) [1]"
 		personality heroic staying
 		system destination
 		fleet "Navy Surveillance"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
 	on fail
 		"reputation: Republic" -= 5
 		"reputation: Navy (Oathkeeper)" -= 5
@@ -911,6 +935,9 @@ mission "Stealth Drug Running (Core) [0]"
 			names "syndicate small"
 			variant
 				"Quicksilver (Scanner)"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
 	on fail
 		"reputation: Syndicate" -= 5
 	on visit
@@ -990,6 +1017,9 @@ mission "Stealth Drug Running (Core) [1]"
 			names "syndicate small"
 			variant
 				"Quicksilver (Scanner)" 2
+	on abort
+		"reputation: Pirate" -= 1
+		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
 	on fail
 		"reputation: Syndicate" -= 5
 	on visit
@@ -1043,6 +1073,9 @@ mission "Stealth Drug Running (South) [0]"
 			names "militia"
 			variant
 				"Bastion (Scanner)"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
 	on fail
 		"reputation: Free Worlds" -= 5
 		"reputation: Militia" -= 5
@@ -1123,6 +1156,9 @@ mission "Stealth Drug Running (South) [1]"
 			names "militia"
 			variant
 				"Bastion (Scanner)" 2
+	on abort
+		"reputation: Pirate" -= 1
+		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
 	on fail
 		"reputation: Free Worlds" -= 5
 		"reputation: Militia" -= 5
@@ -1308,6 +1344,9 @@ mission "Highly Wanted Passenger (North)"
 		personality heroic staying
 		system destination
 		fleet "Navy Surveillance"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog "Your passenger never arrived at <destination>. This doesn't help to establish a name as reliable, no-questions-asked, transporter."
 	on fail
 		"reputation: Republic" -= 5
 		"reputation: Navy (Oathkeeper)" -= 5
@@ -1396,6 +1435,9 @@ mission "Highly Wanted Passenger (Core)"
 			names "syndicate small"
 			variant
 				"Quicksilver (Scanner)" 2
+	on abort
+		"reputation: Pirate" -= 1
+		dialog "Your passenger never arrived at <destination>. This doesn't help to establish a name as reliable, no-questions-asked, transporter."
 	on fail
 		"reputation: Syndicate" -= 5
 	on visit
@@ -1483,6 +1525,9 @@ mission "Highly Wanted Passenger (South)"
 			names "militia"
 			variant
 				"Bastion (Scanner)" 2
+	on abort
+		"reputation: Pirate" -= 1
+		dialog "Your passenger never arrived at <destination>. This doesn't help to establish a name as reliable, no-questions-asked, transporter."
 	on fail
 		"reputation: Free Worlds" -= 5
 		"reputation: Militia" -= 5
@@ -2728,7 +2773,7 @@ mission "Cargo Theft (South)"
 
 mission "FW Assassination [1]"
 	name "Assassinate a political target"
-	description "A key Free Worlds politician who is worrying local slave traders was spotted in their ship, the <npc>, in a nearby system. Find and destroy them in order to send a message to the Free Worlds. Payment is <payment>. Be advised that they may have escorts."
+	description "A Free Worlds politician who is worrying local slave traders was spotted in their ship, the <npc>, in a nearby system. Assassinate them in order to send a message to the Free Worlds. Payment is <payment>. Be advised that they may have escorts."
 	repeat
 	job
 	to offer
@@ -2764,7 +2809,7 @@ mission "FW Assassination [1]"
 		
 mission "FW Assassination [2]"
 	name "Assassinate a political target"
-	description "A key Free Worlds politician who has angered a powerful pirate warlord was spotted in their ship, the <npc>, in a nearby system. Find and destroy them in order to send a message to the Free Worlds. Payment is <payment>. Be advised that they are heavily defended."
+	description "A Free Worlds politician who has angered a powerful pirate warlord was spotted in their ship, the <npc>, in a nearby system. Assassinate them in order to send a message to the Free Worlds. Payment is <payment>. Be advised that they are heavily defended."
 	repeat
 	job
 	to offer
@@ -2799,7 +2844,7 @@ mission "FW Assassination [2]"
 		
 mission "FW Assassination [3]"
 	name "Assassinate a military target"
-	description "A Free Worlds militia commander who has led a number of small raids against pirate gangs in the region has been spotted patrolling a nearby system with their fleet. Find and destroy them in order to send a message to the Free Worlds. Payment is <payment>."
+	description "A Free Worlds militia commander who has led a number of small raids against pirate gangs in the region has been spotted patrolling a nearby system with their fleet. Assassinate them in order to send a message to the Free Worlds. Payment is <payment>."
 	repeat
 	job
 	to offer
@@ -2835,7 +2880,7 @@ mission "FW Assassination [3]"
 		
 mission "FW Assassination [4]"
 	name "Assassinate a military target"
-	description "Rumor has it that the Free Worlds are planning a raid on regional pirate gangs in order to reduce piracy. An important militia commander said to be leading this raid has been spotted in a nearby system with a large fleet. Find and destroy them in order to send a message to the Free Worlds. Payment is <payment>."
+	description "Rumor is the Free Worlds are planning a raid on regional pirate gangs. A militia commander said to be leading this raid has been spotted in a nearby system with a large fleet. Assassinate them in order to send a message to the Free Worlds. Payment is <payment>."
 	repeat
 	job
 	to offer
@@ -2872,7 +2917,7 @@ mission "FW Assassination [4]"
 		
 mission "Syndicate Assassination [1]"
 	name "Assassinate a political target"
-	description "A key Syndicate politician was spotted passing through a nearby system in their ship, the <npc>. Find and destroy them in order to send a message to the Syndicate. Payment is <payment>. Be advised that they may have escorts."
+	description "A Syndicate politician was spotted passing through a nearby system in their ship, the <npc>. Assassinate them in order to send a message to the Syndicate. Payment is <payment>. Be advised that they may have escorts."
 	repeat
 	job
 	to offer
@@ -2901,7 +2946,7 @@ mission "Syndicate Assassination [1]"
 		
 mission "Syndicate Assassination [2]"
 	name "Assassinate a political target"
-	description "A key Syndicate politician who has plans that worry many local pirate gangs was spotted in their ship, the <npc>, in a nearby system. Find and destroy them in order to send a message to the Syndicate. Payment is <payment>. Be advised that they are heavily defended."
+	description "A Syndicate politician who has plans that worry many local pirate gangs was spotted in their ship, the <npc>, in a nearby system. Assassinate them in order to send a message to the Syndicate. Payment is <payment>. Be advised that they are heavily defended."
 	repeat
 	job
 	to offer
@@ -2933,7 +2978,7 @@ mission "Syndicate Assassination [2]"
 		
 mission "Syndicate Assassination [3]"
 	name "Assassinate a military target"
-	description "A Syndicated Security commander who has led a number of small raids against pirate gangs in the region has been spotted patrolling a nearby system with their fleet. Find and destroy them in order to send a message to the Syndicate. Payment is <payment>."
+	description "A Syndicated Security commander who has led a number of small raids against pirate gangs in the region has been spotted patrolling a nearby system with their fleet. Assassinate them in order to send a message to the Syndicate. Payment is <payment>."
 	repeat
 	job
 	to offer
@@ -2968,7 +3013,7 @@ mission "Syndicate Assassination [3]"
 		
 mission "Syndicate Assassination [4]"
 	name "Assassinate a military target"
-	description "Rumor has it that the Syndicate is planning a raid on regional pirate gangs in order to reduce piracy. An important security commander said to be leading this raid has been spotted in a nearby system with a large fleet. Find and destroy them in order to send a message to the Syndicate. Payment is <payment>."
+	description "Rumor is the Syndicate is planning a raid on regional pirate gangs. An important security commander said to be leading this raid has been spotted in a nearby system with a large fleet. Assassinate them in order to send a message to the Syndicate. Payment is <payment>."
 	repeat
 	job
 	to offer
@@ -3005,7 +3050,7 @@ mission "Syndicate Assassination [4]"
 		
 mission "Republic Assassination [1]"
 	name "Assassinate a political target"
-	description "A key Republic politician who is worrying local pirate gangs was spotted in their ship, the <npc>, in a nearby system. Find and destroy them in order to send a message to the Republic. Payment is <payment>. Be advised that they may have escorts."
+	description "A Republic politician who is worrying local pirate gangs was spotted in their ship, the <npc>, in a nearby system. Assassinate them in order to send a message to the Republic. Payment is <payment>. Be advised that they may have escorts."
 	repeat
 	job
 	to offer
@@ -3036,7 +3081,7 @@ mission "Republic Assassination [1]"
 		
 mission "Republic Assassination [2]"
 	name "Assassinate a political target"
-	description "A key Republic politician who is worrying local drug traders was spotted in their ship, the <npc>, in a nearby system. Find and destroy them in order to send a message to the Republic. Payment is <payment>. Be advised that they are heavily defended."
+	description "A Republic politician who is worrying local drug traders was spotted in their ship, the <npc>, in a nearby system. Assassinate them in order to send a message to the Republic. Payment is <payment>. Be advised that they are heavily defended."
 	repeat
 	job
 	to offer
@@ -3071,7 +3116,7 @@ mission "Republic Assassination [2]"
 		
 mission "Republic Assassination [3]"
 	name "Assassinate a military target"
-	description "A Republic Navy commander who has led a number of small raids against pirate gangs in the region has been spotted patrolling a nearby system with their fleet. Find and destroy them in order to send a message to the Republic. Payment is <payment>."
+	description "A Republic Navy commander who has led a number of small raids against pirate gangs in the region has been spotted patrolling a nearby system with their fleet. Assassinate them in order to send a message to the Republic. Payment is <payment>."
 	repeat
 	job
 	to offer
@@ -3108,7 +3153,7 @@ mission "Republic Assassination [3]"
 		
 mission "Republic Assassination [4]"
 	name "Assassinate a military target"
-	description "Rumor has it that the Republic is planning a raid on regional pirate gangs in order to reduce piracy. An important Navy commander said to be leading this raid has been spotted in a nearby system with a large fleet. Find and destroy them in order to send a message to the Republic. Payment is <payment>."
+	description "Rumor is the Republic is planning a raid on regional pirate gangs. An important Navy commander said to be leading this raid has been spotted in a nearby system with a large fleet. Assassinate them in order to send a message to the Republic. Payment is <payment>."
 	repeat
 	job
 	to offer

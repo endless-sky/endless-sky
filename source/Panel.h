@@ -35,7 +35,7 @@ class UI;
 class Panel {
 public:
 	// Make the destructor virtual just in case any derived class needs it.
-	virtual ~Panel();
+	virtual ~Panel() = default;
 	
 	// Move the state of this panel forward one game step.
 	virtual void Step();

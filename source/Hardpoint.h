@@ -30,7 +30,7 @@ class Visual;
 class Hardpoint {
 public:
 	// Constructor. Hardpoints may or may not specify what weapon is in them.
-	Hardpoint(const Point &point, bool isTurret, const Outfit *outfit = nullptr);
+	Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, const Outfit *outfit = nullptr);
 	
 	// Get the weapon installed in this hardpoint (or null if there is none).
 	const Outfit *GetOutfit() const;
@@ -40,9 +40,12 @@ public:
 	const Point &GetPoint() const;
 	// Get the angle that this weapon is aimed at, relative to the ship.
 	const Angle &GetAngle() const;
+	// Get the base angle that this weapon is aimed at (without harmonization/convergence), relative to the ship.
+	const Angle &GetBaseAngle() const;
 	// Get the angle this weapon ought to point at for ideal gun harmonization.
 	Angle HarmonizedAngle() const;
 	// Shortcuts for querying weapon characteristics.
+	bool IsParallel() const;
 	bool IsTurret() const;
 	bool IsHoming() const;
 	bool IsAntiMissile() const;
@@ -86,13 +89,19 @@ private:
 	const Outfit *outfit = nullptr;
 	// Hardpoint location, in world coordinates relative to the ship's center.
 	Point point;
+	// Angle of firing direction (guns only).
+	Angle baseAngle;
+	// This hardpoint is for a turret or a gun.
+	bool isTurret = false;
+	// Indicates if this hardpoint disallows converging (guns only).
+	bool isParallel = false;
+	
 	// Angle adjustment for convergence.
 	Angle angle;
 	// Reload timers and other attributes.
 	double reload = 0.;
 	double burstReload = 0.;
 	int burstCount = 0;
-	bool isTurret = false;
 	bool isFiring = false;
 	bool wasFiring = false;
 };

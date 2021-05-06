@@ -17,14 +17,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "Dialog.h"
+#include "text/DisplayText.h"
 #include "Files.h"
 #include "FillShader.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "text/layout.hpp"
 #include "MainPanel.h"
 #include "Messages.h"
 #include "PlayerInfo.h"
@@ -32,11 +34,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Rectangle.h"
 #include "ShipyardPanel.h"
 #include "StarField.h"
+#include "StartConditionsPanel.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include "gl_header.h"
 
 #include <algorithm>
+#include <stdexcept>
 
 using namespace std;
 
@@ -54,6 +59,30 @@ namespace {
 		static const char *FORMAT = "%-I:%M %p on %-d %b %Y";
 #endif
 		return string(buf, strftime(buf, BUF_SIZE, FORMAT, date));
+	}
+	
+	// Extract the date from this pilot's most recent save.
+	string FileDate(const string &filename)
+	{
+		string date = "0000-00-00";
+		DataFile file(filename);
+		for(const DataNode &node : file)
+			if(node.Token(0) == "date")
+			{
+				int year = node.Value(3);
+				int month = node.Value(2);
+				int day = node.Value(1);
+				date[0] += (year / 1000) % 10;
+				date[1] += (year / 100) % 10;
+				date[2] += (year / 10) % 10;
+				date[3] += year % 10;
+				date[5] += (month / 10) % 10;
+				date[6] += month % 10;
+				date[8] += (day / 10) % 10;
+				date[9] += day % 10;
+				break;
+			}
+		return date;
 	}
 	
 	// Only show tooltips if the mouse has hovered in one place for this amount
@@ -88,11 +117,11 @@ void LoadPanel::Draw()
 	Information info;
 	if(loadedInfo.IsLoaded())
 	{
-		info.SetString("pilot", font.TruncateMiddle(loadedInfo.Name(), 165));
+		info.SetString("pilot", loadedInfo.Name());
 		if(loadedInfo.ShipSprite())
 		{
 			info.SetSprite("ship sprite", loadedInfo.ShipSprite());
-			info.SetString("ship", font.TruncateMiddle(loadedInfo.ShipName(), 165));
+			info.SetString("ship", loadedInfo.ShipName());
 		}
 		if(!loadedInfo.GetSystem().empty())
 			info.SetString("system", loadedInfo.GetSystem());
@@ -100,6 +129,7 @@ void LoadPanel::Draw()
 			info.SetString("planet", loadedInfo.GetPlanet());
 		info.SetString("credits", loadedInfo.Credits());
 		info.SetString("date", loadedInfo.GetDate());
+		info.SetString("playtime", loadedInfo.GetPlayTime());
 	}
 	else
 		info.SetString("pilot", "No Pilot Loaded");
@@ -120,16 +150,16 @@ void LoadPanel::Draw()
 	// The list has space for 14 entries. Alpha should be 100% for Y = -157 to
 	// 103, and fade to 0 at 10 pixels beyond that.
 	Point point(-470., -157. - sideScroll);
+	const double centerY = font.Height() / 2;
 	for(const auto &it : files)
 	{
-		Rectangle zone(point + Point(110., 7.), Point(230., 20.));
+		Rectangle zone(point + Point(110., centerY), Point(230., 20.));
 		bool isHighlighted = (it.first == selectedPilot || (hasHover && zone.Contains(hoverPoint)));
 		
 		double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
 		if(it.first == selectedPilot)
 			FillShader::Fill(zone.Center(), zone.Dimensions(), Color(.1 * alpha, 0.));
-		string name = font.Truncate(it.first, 220);
-		font.Draw(name, point, Color((isHighlighted ? .7 : .5) * alpha, 0.));
+		font.Draw({it.first, {220, Truncate::BACK}}, point, Color((isHighlighted ? .7 : .5) * alpha, 0.));
 		point += Point(0., 20.);
 	}
 	
@@ -144,7 +174,7 @@ void LoadPanel::Draw()
 		for(const auto &it : files.find(selectedPilot)->second)
 		{
 			const string &file = it.first;
-			Rectangle zone(point + Point(110., 7.), Point(230., 20.));
+			Rectangle zone(point + Point(110., centerY), Point(230., 20.));
 			double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
 			bool isHovering = (alpha && hasHover && zone.Contains(hoverPoint));
 			bool isHighlighted = (file == selectedFile || isHovering);
@@ -158,8 +188,8 @@ void LoadPanel::Draw()
 			if(file == selectedFile)
 				FillShader::Fill(zone.Center(), zone.Dimensions(), Color(.1 * alpha, 0.));
 			size_t pos = file.find('~') + 1;
-			string name = font.Truncate(file.substr(pos, file.size() - 4 - pos), 220);
-			font.Draw(name, point, Color((isHighlighted ? .7 : .5) * alpha, 0.));
+			const string name = file.substr(pos, file.size() - 4 - pos);
+			font.Draw({name, {220, Truncate::BACK}}, point, Color((isHighlighted ? .7 : .5) * alpha, 0.));
 			point += Point(0., 20.);
 		}
 	}
@@ -178,28 +208,28 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 {
 	if(key == 'n')
 	{
-		player.New();
-		
-		ConversationPanel *panel = new ConversationPanel(
-			player, *GameData::Conversations().Get("intro"));
-		GetUI()->Push(panel);
-		panel->SetCallback(this, &LoadPanel::OnCallback);
+		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
+		// Request that the player chooses a start scenario.
+		// StartConditionsPanel also handles the case where there's no scenarios.
+		GetUI()->Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), this));
 	}
 	else if(key == 'D' && !selectedPilot.empty())
 	{
 		GetUI()->Push(new Dialog(this, &LoadPanel::DeletePilot,
-			"Are you sure you want to delete the selected pilot, \""
-				+ selectedPilot + "\", and all their saved games?"));
+			"Are you sure you want to delete the selected pilot, \"" + selectedPilot
+				+ "\", and all their saved games?\n\n(This will permanently delete the pilot data.)"));
 	}
 	else if(key == 'a' && !player.IsDead() && player.IsLoaded())
 	{
-		string wasSelected = selectedPilot;
 		auto it = files.find(selectedPilot);
 		if(it == files.end() || it->second.empty() || it->second.front().first.size() < 4)
 			return false;
 		
+		nameToConfirm.clear();
+		string lastSave = Files::Saves() + it->second.front().first;
 		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback,
-			"Enter a name for this snapshot, or leave the name empty to use the current date:"));
+			"Enter a name for this snapshot, or use the most recent save's date:",
+			FileDate(lastSave)));
 	}
 	else if(key == 'R' && !selectedFile.empty())
 	{
@@ -285,6 +315,9 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 bool LoadPanel::Click(int x, int y, int clicks)
 {
+	// When the user clicks, clear the hovered state.
+	hasHover = false;
+	
 	// The first row of each panel is y = -160 to -140.
 	if(y < -160 || y >= (-160 + 14 * 20))
 		return false;
@@ -298,6 +331,7 @@ bool LoadPanel::Click(int x, int y, int clicks)
 			{
 				selectedPilot = it.first;
 				selectedFile = it.second.front().first;
+				centerScroll = 0;
 			}
 	}
 	else if(x >= -110 && x < 110)
@@ -374,7 +408,7 @@ void LoadPanel::UpdateLists()
 	for(const string &path : fileList)
 	{
 		string fileName = Files::Name(path);
-		// The file name is either "Pilot Name.txt" or "Pilot Name~Date.txt".
+		// The file name is either "Pilot Name.txt" or "Pilot Name~SnapshotTitle.txt".
 		size_t pos = fileName.find('~');
 		if(pos == string::npos)
 			pos = fileName.size() - 4;
@@ -409,69 +443,45 @@ void LoadPanel::UpdateLists()
 
 
 
-// New player "conversation" callback.
-void LoadPanel::OnCallback(int)
-{
-	GetUI()->Pop(this);
-	GetUI()->Pop(GetUI()->Root().get());
-	gamePanels.Reset();
-	gamePanels.CanSave(true);
-	gamePanels.Push(new MainPanel(player));
-	// Tell the main panel to re-draw itself (and pop up the planet panel).
-	gamePanels.StepAll();
-	// If the starting conditions don't specify any ships, let the player buy one.
-	if(player.Ships().empty())
-	{
-		gamePanels.Push(new ShipyardPanel(player));
-		gamePanels.StepAll();
-	}
-}
-
-
-
 // Snapshot name callback.
 void LoadPanel::SnapshotCallback(const string &name)
 {
-	string wasSelected = selectedPilot;
 	auto it = files.find(selectedPilot);
 	if(it == files.end() || it->second.empty() || it->second.front().first.size() < 4)
 		return;
 	
 	string from = Files::Saves() + it->second.front().first;
-	string extension = "~" + name + ".txt";
-	if(name.empty())
-	{
-		// Extract the date from this pilot's most recent save.
-		extension = "~0000-00-00.txt";
-		DataFile file(from);
-		for(const DataNode &node : file)
-			if(node.Token(0) == "date")
-			{
-				int year = node.Value(3);
-				int month = node.Value(2);
-				int day = node.Value(1);
-				extension[1] += (year / 1000) % 10;
-				extension[2] += (year / 100) % 10;
-				extension[3] += (year / 10) % 10;
-				extension[4] += year % 10;
-				extension[6] += (month / 10) % 10;
-				extension[7] += month % 10;
-				extension[9] += (day / 10) % 10;
-				extension[10] += day % 10;
-			}
-	}
+	string suffix = name.empty() ? FileDate(from) : name;
+	string extension = "~" + suffix + ".txt";
 	
-	// Copy the autosave to a new, named file.
+	// If a file with this name already exists, make sure the player
+	// actually wants to overwrite it.
 	string to = from.substr(0, from.size() - 4) + extension;
-	Files::Copy(from, to);
-	if(Files::Exists(to))
+	if(Files::Exists(to) && suffix != nameToConfirm)
+	{
+		nameToConfirm = suffix;
+		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback, "Warning: \"" + suffix
+			+ "\" is being used for an existing snapshot.\nOverwrite it?", suffix));
+	}
+	else
+		WriteSnapshot(from, to);
+}
+
+
+
+// This name is the one to be used, even if it already exists.
+void LoadPanel::WriteSnapshot(const string &sourceFile, const string &snapshotName)
+{
+	// Copy the autosave to a new, named file.
+	Files::Copy(sourceFile, snapshotName);
+	if(Files::Exists(snapshotName))
 	{
 		UpdateLists();
-		selectedFile = Files::Name(to);
+		selectedFile = Files::Name(snapshotName);
 		loadedInfo.Load(Files::Saves() + selectedFile);
 	}
 	else
-		GetUI()->Push(new Dialog("Error: unable to create the file \"" + to + "\"."));
+		GetUI()->Push(new Dialog("Error: unable to create the file \"" + snapshotName + "\"."));
 }
 
 

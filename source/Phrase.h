@@ -28,6 +28,8 @@ public:
 	// Parse the given node into a new branch associated with this phrase.
 	void Load(const DataNode &node);
 	
+	bool IsEmpty() const;
+	
 	const std::string &Name() const;
 	std::string Get() const;
 	

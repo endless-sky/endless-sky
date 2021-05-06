@@ -340,6 +340,7 @@ outfit "Pug Gridfire Turret"
 		"fire effect" "gridfire fire"
 		"hit effect" "gridfire hit" 2
 		"hit effect" "gridfire cloud"
+		sound "gridfire"
 		"phasing"
 		"velocity" 1440
 		"lifetime" 1

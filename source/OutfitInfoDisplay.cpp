@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "OutfitInfoDisplay.h"
 
 #include "Depreciation.h"
-#include "Format.h"
+#include "text/Format.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
 
@@ -46,6 +46,9 @@ namespace {
 		{"cloaking heat", 0},
 		{"cooling", 0},
 		{"cooling energy", 0},
+		{"disruption resistance energy", 0},
+		{"disruption resistance fuel", 0},
+		{"disruption resistance heat", 0},
 		{"energy consumption", 0},
 		{"energy generation", 0},
 		{"fuel consumption", 0},
@@ -58,6 +61,9 @@ namespace {
 		{"hull energy", 0},
 		{"hull fuel", 0},
 		{"hull heat", 0},
+		{"ion resistance energy", 0},
+		{"ion resistance fuel", 0},
+		{"ion resistance heat", 0},
 		{"jump speed", 0},
 		{"reverse thrusting energy", 0},
 		{"reverse thrusting heat", 0},
@@ -66,6 +72,9 @@ namespace {
 		{"shield energy", 0},
 		{"shield fuel", 0},
 		{"shield heat", 0},
+		{"slowing resistance energy", 0},
+		{"slowing resistance fuel", 0},
+		{"slowing resistance heat", 0},
 		{"solar collection", 0},
 		{"solar heat", 0},
 		{"thrusting energy", 0},
@@ -91,8 +100,10 @@ namespace {
 		{"shield energy multiplier", 3},
 		{"shield fuel multiplier", 3},
 		{"shield heat multiplier", 3},
-    
+		{"threshold percentage", 3},
+		
 		{"disruption protection", 4},
+		{"energy protection", 4},
 		{"force protection", 4},
 		{"fuel protection", 4},
 		{"heat protection", 4},
@@ -100,7 +111,12 @@ namespace {
 		{"ion protection", 4},
 		{"piercing protection", 4},
 		{"shield protection", 4},
-		{"slowing protection", 4}
+		{"slowing protection", 4},
+		
+		{"repair delay", 5},
+		{"disabled repair delay", 5},
+		{"shield delay", 5},
+		{"depleted shield delay", 5}
 	};
 	
 	const map<string, string> BOOLEAN_ATTRIBUTES = {
@@ -283,17 +299,33 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributeValues.emplace_back(Format::Number(outfit.Range()));
 	attributesHeight += 20;
 	
-	static const vector<string> VALUE_NAMES = {
-		"shield damage",
-		"hull damage",
-		"fuel damage",
-		"heat damage",
-		"ion damage",
-		"slowing damage",
-		"disruption damage",
-		"firing energy",
-		"firing heat",
-		"firing fuel"
+	static const vector<pair<string, string>> VALUE_NAMES = {
+		{"shield damage", ""},
+		{"hull damage", ""},
+		{"fuel damage", ""},
+		{"heat damage", ""},
+		{"energy damage", ""},
+		{"ion damage", ""},
+		{"slowing damage", ""},
+		{"disruption damage", ""},
+		{"% shield damage", "%"},
+		{"% hull damage", "%"},
+		{"% fuel damage", "%"},
+		{"% heat damage", "%"},
+		{"% energy damage", "%"},
+		{"firing energy", ""},
+		{"firing heat", ""},
+		{"firing fuel", ""},
+		{"firing hull", ""},
+		{"firing shields", ""},
+		{"firing ion", ""},
+		{"firing slowing", ""},
+		{"firing disruption", ""},
+		{"% firing energy", "%"},
+		{"% firing heat", "%"},
+		{"% firing fuel", "%"},
+		{"% firing hull", "%"},
+		{"% firing shields", "%"}
 	};
 	
 	vector<double> values = {
@@ -301,12 +333,28 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		outfit.HullDamage(),
 		outfit.FuelDamage(),
 		outfit.HeatDamage(),
+		outfit.EnergyDamage(),
 		outfit.IonDamage() * 100.,
 		outfit.SlowingDamage() * 100.,
 		outfit.DisruptionDamage() * 100.,
+		outfit.RelativeShieldDamage() * 100.,
+		outfit.RelativeHullDamage() * 100.,
+		outfit.RelativeFuelDamage() * 100.,
+		outfit.RelativeHeatDamage() * 100.,
+		outfit.RelativeEnergyDamage() * 100.,
 		outfit.FiringEnergy(),
 		outfit.FiringHeat(),
-		outfit.FiringFuel()
+		outfit.FiringFuel(),
+		outfit.FiringHull(),
+		outfit.FiringShields(),
+		outfit.FiringIon() * 100.,
+		outfit.FiringSlowing() * 100.,
+		outfit.FiringDisruption() * 100.,
+		outfit.RelativeFiringEnergy() * 100.,
+		outfit.RelativeFiringHeat() * 100.,
+		outfit.RelativeFiringFuel() * 100.,
+		outfit.RelativeFiringHull() * 100.,
+		outfit.RelativeFiringShields() * 100.
 	};
 	
 	// Add any per-second values to the table.
@@ -317,8 +365,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		for(unsigned i = 0; i < values.size(); ++i)
 			if(values[i])
 			{
-				attributeLabels.emplace_back(VALUE_NAMES[i] + PER_SECOND);
-				attributeValues.emplace_back(Format::Number(60. * values[i] / reload));
+				attributeLabels.emplace_back(VALUE_NAMES[i].first + PER_SECOND);
+				attributeValues.emplace_back(Format::Number(60. * values[i] / reload) + VALUE_NAMES[i].second);
 				attributesHeight += 20;
 			}
 	}
@@ -388,8 +436,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		for(unsigned i = 0; i < VALUE_NAMES.size(); ++i)
 			if(values[i])
 			{
-				attributeLabels.emplace_back(VALUE_NAMES[i] + PER_SHOT);
-				attributeValues.emplace_back(Format::Number(values[i]));
+				attributeLabels.emplace_back(VALUE_NAMES[i].first + PER_SHOT);
+				attributeValues.emplace_back(Format::Number(values[i]) + VALUE_NAMES[i].second);
 				attributesHeight += 20;
 			}
 	}
