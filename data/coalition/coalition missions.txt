@@ -1532,7 +1532,7 @@ mission "Coalition: Council of Ahr: Chamgar"
 	destination "Ahr"
 	on offer
 		conversation
-			`You can barely step off your ship before House Chamgar's representative greets you. "Honored that transporting me, such an esteemed pilot is, Captain <last>. Certain, I am, that honored you also are, an important task it is, to transport one from the great House Chamgar. Plubat, my name is, and as time we still have, show you our installations I must."`
+			`You can barely step off your ship before House Chamgar's representative greets you. "Honored that transporting me, such an esteemed pilot is, Captain <last>. Certain, I am, that honored you also are. An important task it is, to transport one from the great House Chamgar. Plubat, my name is, and as time we still have, show you our installations I must."`
 			`	He drags you around the eccentric spaceport, bringing you to odd exhibits where some pieces of technology are being constructed or repaired, going on about House Chamgar's advances. The tour goes on for some hours, as you pretend to be impressed by what he calls "the newest prototypes" (most of which look like standard Coalition technology). Only after he drags you around again, stopping at a nearby hotel where he picks up his luggage, do you finally get him to follow you to your ship.`
 			`	It doesn't take long for him to get started again. "Now, Captain <last>, time for a full tour of our spaceport facilities, today we don't have, to the Council, we must go, but happy to answer your many questions about our great house, I am. Wondering how we invented our repair modules, are you? Or maybe by our special alloys, intrigued you are?"`
 			choice
