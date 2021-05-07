@@ -4049,13 +4049,11 @@ mission "Remnant: Cognizance 16"
 	description "The creature seems to be creating constellations and trying to get you to follow it."
 	landing
 	source "Viminal"
-	waypoint
-		system "Peragenor"
-		system "Convector"
-		system "Nenia"
-	destination "Nasqueron"
+	waypoint "Peragenor"
 	to offer
 		has "Remnant: Cognizance 14: done"
+	to complete
+		never
 	on offer
 		conversation
 			`Quite a number of Remnant have gathered around the spaceport watching the movements of the strange creature. It gestures wildly in various ways, then freezes in several different positions with the tips of certain tentacles glowing with energy. You note that several anti-air batteries around the area have their formidable-looking weapons trained on the creature in case it turns violent.`
@@ -4072,13 +4070,6 @@ mission "Remnant: Cognizance 16"
 		dialog `It seems the analysis of the location was right. The creature quickly approaches you and repeats its previous dance, ending up with a slightly different frozen position. From this vantage, you suspect that it is probably Nenia. This time, as you watch it more closely, it looks like it is following in your wake somehow.`
 	on enter Nenia
 		dialog `You have never seen such activity from the void sprites. Many quickly congregate around the strange creature that has been guiding you, and escort it to Nasqueron. It seems like that is where it wanted to be. In the distance, you can see the Archon methodically pulverizing a Korath Raider.`
-	on complete
-		event "remnant: nenia ember waste node"
-		conversation
-			`You follow the creature down through the clouds of Nasqueron and emerge into what can only be described as an amphitheater in the clouds. Thousands of void sprites fill the area, and the creature you have been following floats near the center of it. Your external sensors pick up myriad pulses of energy and eerie whistling noises that seem to resonate in the clouds. As the <ship> moves forward, there is a sudden silence, and the flickers of energy synchronize.`
-			`	You feel a sudden pressure in your mind and a sense of presence as the world around you fades out somewhat.`
-			`	"Know you not, do I. Live creature inside not-quite creature, like ones who flew but not everywhere." You are momentarily disoriented as you look around and see hundreds of views of yourself peering out the cockpit window. "Your intention reverberates - Know and not know - Return with more echoes - Perhaps I shall hear."`
-			`	With that, the pressure vanishes, and you are left staring out the window at the rapidly dispersing flock of void sprites. You aren't entirely sure what the voice meant, but you are certain that the Remnant are going to want to hear about this.`
 
 
 
@@ -4095,7 +4086,16 @@ mission "Remnant: Cognizance 17"
 	source "Nasqueron"
 	destination "Viminal"
 	to offer
-		has "Remnant: Cognizance 16: done"
+		has "Remnant: Cognizance 16: active"
+	on offer
+		fail "Remnant: Cognizance 16"
+		event "remnant: nenia ember waste node"
+		conversation
+			`You follow the creature down through the clouds of Nasqueron and emerge into what can only be described as an amphitheater in the clouds. Thousands of void sprites fill the area, and the creature you have been following floats near the center of it. Your external sensors pick up myriad pulses of energy and eerie whistling noises that seem to resonate in the clouds. As the <ship> moves forward, there is a sudden silence, and the flickers of energy synchronize.`
+			`	You feel a sudden pressure in your mind and a sense of presence as the world around you fades out somewhat.`
+			`	"Know you not, do I. Live creature inside not-quite creature, like ones who flew but not everywhere." You are momentarily disoriented as you look around and see hundreds of views of yourself peering out the cockpit window. "Your intention reverberates - Know and not know - Return with more echoes - Perhaps I shall hear."`
+			`	With that, the pressure vanishes, and you are left staring out the window at the rapidly dispersing flock of void sprites. You aren't entirely sure what the voice meant, but you are certain that the Remnant are going to want to hear about this.`
+				accept
 	
 
 mission "Remnant: Cognizance 18"
