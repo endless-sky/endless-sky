@@ -225,7 +225,7 @@ mission "Deep Archaeology 5"
 			choice
 				`	"For what purpose?"`
 					goto purpose
-				`	"Wait, are you talking about the Pug?"
+				`	"Wait, are you talking about the Pug?"`
 					goto surprise
 			label purpose
 			`	"I'm not sure," he says. "But I first became interested in the Deep while researching the Alpha Wars. I'm sure you know the history, how humanity was nearly enslaved by psychopathic 'super' humans that we ourselves had created by dabbling in genetic engineering. At that time, the Deep made a sudden, improbable technological leap that allowed them to construct weapons and ships far more powerful than what the Alphas had, and the war against them was won."`
