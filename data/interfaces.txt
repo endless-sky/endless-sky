@@ -16,6 +16,7 @@ color "inactive" .25 .25 .25 0.
 # Colors generally used for drawing text or lines.
 color "bright" .75 .75 .75 0.
 color "medium" .5 .5 .5 0.
+color "semidim" .375 .375 .375 0.
 color "dim" .25 .25 .25 0.
 color "faint" .1 .1 .1 0.
 

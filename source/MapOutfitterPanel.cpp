@@ -208,21 +208,38 @@ void MapOutfitterPanel::DrawItems()
 			}
 			
 			bool isForSale = true;
+			unsigned inStorageInSystem = 0;
 			if(player.HasVisited(*selectedSystem))
 			{
 				isForSale = false;
+				const auto &storage = player.PlanetaryStorage();
+
 				for(const StellarObject &object : selectedSystem->Objects())
-					if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->Outfitter().Has(outfit))
+				{
+					if(!object.HasSprite() || !object.HasValidPlanet())
+						continue;
+
+					const Planet *planet = object.GetPlanet();
+					if(storage.count(planet))
+						inStorageInSystem += storage.at(planet).Get(outfit);
+					if(planet->Outfitter().Has(outfit))
 					{
 						isForSale = true;
 						break;
 					}
+				}
 			}
-			if(!isForSale && onlyShowSoldHere)
+			if(!isForSale && !inStorageInSystem && onlyShowSoldHere)
 				continue;
 			
+			const std::string storage_details =
+				inStorageInSystem == 0
+				? ""
+				: inStorageInSystem == 1
+				? "One unit in storage"
+				: Format::Number(inStorageInSystem) + " units in storage";
 			Draw(corner, outfit->Thumbnail(), isForSale, outfit == selected,
-				outfit->Name(), price, info);
+				outfit->Name(), price, info, storage_details);
 			list.push_back(outfit);
 		}
 	}
@@ -245,6 +262,22 @@ void MapOutfitterPanel::Init()
 					catalog[outfit->Category()].push_back(outfit);
 					seen.insert(outfit);
 				}
+
+	// Add outfits in storage at the selected planet or system.
+	for(const auto &it : player.PlanetaryStorage())
+	{
+		if(this->selectedPlanet
+			? it.first == this->selectedPlanet
+			: it.first->IsInSystem(selectedSystem))
+		{
+			for(const auto& oit : it.second.Outfits())
+				if(!seen.count(oit.first))
+				{
+					catalog[oit.first->Category()].push_back(oit.first);
+					seen.insert(oit.first);
+				}
+		}
+	}
 
 	// Add all known minables.
 	for(const auto &it : player.Harvested())

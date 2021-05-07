@@ -1074,6 +1074,7 @@ CargoHold *PlayerInfo::Storage(bool forceCreate)
 
 
 // Get planetary storage information for all planets (for map and overviews).
+// TODO: should CargoHold be a pointer/reference?
 const std::map<const Planet *, CargoHold> &PlayerInfo::PlanetaryStorage() const
 {
 	return planetaryStorage;
