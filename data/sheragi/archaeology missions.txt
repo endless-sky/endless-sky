@@ -236,7 +236,7 @@ mission "Deep Archaeology 5"
 				goto end
 			label surprise
 			`	Albert and John look at each other confusedly before Albert says, "Who are the Pug, exactly?"`
-			`	You go on to explain to them what you know about the Pug, their invasion into human space, and what you have heard of them interfering with human affairs in the Deep. You also give a brief description of what they look like, which puts a surprised look on both of their faces.
+			`	You go on to explain to them what you know about the Pug, their invasion into human space, and what you have heard of them interfering with human affairs in the Deep. You also give a brief description of what they look like, which puts a surprised look on both of their faces.`
 			`	"Thin, pale, and with blue blood? That's precisely the description that we've had of these aliens based on folk tales," replies Albert.`
 			`	"Well then we have good reason to believe they fit into our current knowledge of the timeline here. However, based on your description Captain <last>, they sound far too dangerous to attempt to seek out, especially after what we just fled from."`
 				goto final
