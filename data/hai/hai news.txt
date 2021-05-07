@@ -255,7 +255,7 @@ news "unfettered hai after wanderers invasion regret"
 		word
 			`"`
 		word
-			"I had to shoot down a bird ship full of civilians when my captain decided to invade their space. I don't know if I can take this anymore."
+			"I had to shoot down a surrendering Wanderer ship when my captain decided to invade their space. It was small, and didn't pose a threat, but my captain made me do it anyways. I don't know if I can take this anymore."
 			"The birds hardly try to fight back. It makes me wonder if they want us to conquer their planets."
 			"I don't think it's right that we attack those that have surrendered. What honor is there in killing civilians?"
 			"I came here to do battle with warriors, not with merchants and cowardly birds."
