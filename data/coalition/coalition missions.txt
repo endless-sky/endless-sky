@@ -1492,7 +1492,7 @@ mission "Coalition: Council of Ahr: Bebliss"
 	on offer
 		conversation
 			`Once your ship has landed, you receive a message from House Bebliss, directing you to a large hotel in the spaceport city. The security guards don't let you in, so you wait for the representative to come out. About half an hour of waiting later, an elevator opens for many Arachi to come out, most of them in formal uniforms and carrying various bags of luggage. There's also an older, and even more formally dressed Arach.`
-			`	"My transport to the Council you are, correct?" She asks, and you confirm. "Splendid. Lady Plubat, I am, Captain. Pleased that transport the will of House Bebliss, such an exquisite captain will. Finally gotten it right, those arranging the transport to the Council have."`
+			`	"My transport to the Council you are, correct?" She asks, and you confirm. "Splendid. Lady Plubat, I am, Captain. Pleased that transport the will of House Bebliss, such an exquisite captain shall. Finally gotten it right, those arranging the transport to the Council have."`
 			`	She asks you to lead the way to your ship, as the Arachi in uniform follow the two of you, carrying her luggage. "Told, I was, about which representatives tasked with transporting, you were. Bebliss excepted, not the most... intriguing company, they are, so grateful that you're transporting at least one proper guest, you should be."`
 			choice
 				`	"Looks like you hold your house in very high regards."`
@@ -1533,7 +1533,7 @@ mission "Coalition: Council of Ahr: Chamgar"
 	on offer
 		conversation
 			`You can barely step off your ship before House Chamgar's representative greets you. "Honored that transporting me, such an esteemed pilot is, Captain <last>. Certain, I am, that honored you also are, an important task it is, to transport one from the great House Chamgar. Plubat, my name is, and as time we still have, show you our installations I must."`
-			`	He drags you around the eccentric spaceport, bringing you to odd exhibits where some pieces of technology are being constructed or repaired, going on about House Chamgar's advances. It takes some hours, and pretending to be impressed by what he calls "the newest prototypes" (most of which look like standard Coalition technology), but you finally get him to follow you to your ship, but only after he drags you around again, stopping at a nearby hotel where he picks up his luggage.`
+			`	He drags you around the eccentric spaceport, bringing you to odd exhibits where some pieces of technology are being constructed or repaired, going on about House Chamgar's advances. The tour goes on for some hours, as you pretend to be impressed by what he calls "the newest prototypes" (most of which look like standard Coalition technology). Only after he drags you around again, stopping at a nearby hotel where he picks up his luggage, do you finally get him to follow you to your ship.`
 			`	It doesn't take long for him to get started again. "Now, Captain <last>, time for a full tour of our spaceport facilities, today we don't have, to the Council, we must go, but happy to answer your many questions about our great house, I am. Wondering how we invented our repair modules, are you? Or maybe by our special alloys, intrigued you are?"`
 			choice
 				`	"Well, why don't you tell me a bit about your house?"`
@@ -1544,7 +1544,7 @@ mission "Coalition: Council of Ahr: Chamgar"
 			`	He stops dead in his tracks. "The royals? Well, not much to say, there is. Chosen as such on a primitive Ahr, only symbolic, their role is. Never held any ambition, they have, remaining the weakest house since formed. Assured stability on the capital, they have, and in good relations with us, they are, for recognize our value, they do, so bad, they are not, only uninteresting."`
 				goto end
 			label house
-			`	You can barely finish your question, as he begins what is undoubtadly a rehearsed speech. "The greatest Arachi warriors of old, we were, and always at the forefront of scientific progress and creative inventions. For the brilliant breakthrough that were our repair modules, persecuted by the Quarg, we were, but here, in this system, on this planet, held a chokepoint, we did, and guarded Arach space from them, for centuries we had to, until banished with the help of our Saryd and Kimek friends, they were."`
+			`	You can barely finish your question, as he begins what is undoubtedly a rehearsed speech. "The greatest Arachi warriors of old, we were, and always at the forefront of scientific progress and creative inventions. For the brilliant breakthrough that were our repair modules, persecuted by the Quarg, we were, but here, in this system, on this planet, held a chokepoint, we did, and guarded Arach space from them, for centuries we had to, until banished with the help of our Saryd and Kimek friends, they were."`
 				goto end
 			label council
 			`	"Alright, most of them are. Amicable relations with nearly all houses, we maintain. Except with the scum from Bebliss, lying, treacherous snakes they are. Conspiring against the government, helping rebels they are! 'Their' world, Stronghold of Flugbu is not, stolen from us, it was. Heed my warning, Captain, trust them, you should not, preferrable to trust a Quarg, it is."`
@@ -1594,5 +1594,5 @@ mission "Coalition: Council of Ahr: On Complete"
 		conversation
 			`A few minutes after the final representative leaves your ship, you receive your payment of 4,500,000 credits. It comes with a message from the royal family, with the symbols of all Arach houses on it. You recognize most from advertisements or offices on some planets, but it's your first time seeing the center one. You imagine it's the emblem of the royal family.`
 			scene "scene/councilofahr2"
-			`	"It is with great honor that we salute you, Captain <last>, as a friend and assistant to the Council of Ahr. Although certain that, to you, such kinds of jobs can appear mundane, it can be difficult, at times, to arrange for appropriate transportation for our compatriots from all great houses, so know that house Oberegt is deeply grateful for your cooperation."`
+			`	"It is with great honor that we salute you, Captain <last>, as a friend and assistant to the Council of Ahr. Although certain that, to you, such kinds of jobs can appear mundane, it can be difficult, at times, to arrange for appropriate transportation for our compatriots from all great houses, so know that House Oberegt is deeply grateful for your cooperation."`
 				decline
