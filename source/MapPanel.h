@@ -125,7 +125,7 @@ protected:
 	// for use in determining which governments are in the legend.
 	std::map<const Government *, double> closeGovernments;
 	// Systems in which your (active and parked) escorts and stored outfits are located.
-	std::map<const System *, std::pair<std::pair<int, int>, int>> escortSystems;
+	std::map<const System *, std::pair<std::pair<int, int>, std::map<const Planet *, unsigned>>> escortSystems;
 	// Center the view on the given system (may actually be slightly offset
 	// to account for panels on the screen).
 	void CenterOnSystem(const System *system, bool immediate = false);
