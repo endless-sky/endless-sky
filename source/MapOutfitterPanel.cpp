@@ -235,6 +235,8 @@ void MapOutfitterPanel::Init()
 {
 	catalog.clear();
 	set<const Outfit *> seen;
+
+	// Add all outfits sold by outfitters of visited planets.
 	for(auto &&it : GameData::Planets())
 		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
 			for(const Outfit *outfit : it.second.Outfitter())
@@ -243,6 +245,8 @@ void MapOutfitterPanel::Init()
 					catalog[outfit->Category()].push_back(outfit);
 					seen.insert(outfit);
 				}
+
+	// Add all known minables.
 	for(const auto &it : player.Harvested())
 		if(!seen.count(it.second))
 		{
@@ -250,6 +254,7 @@ void MapOutfitterPanel::Init()
 			seen.insert(it.second);
 		}
 	
+	// Sort the vectors.
 	for(auto &it : catalog)
 		sort(it.second.begin(), it.second.end(),
 			[](const Outfit *a, const Outfit *b) { return a->Name() < b->Name(); });
