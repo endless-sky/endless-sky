@@ -3317,8 +3317,9 @@ mission "Remnant: Keystone Research 4"
 	to offer
 		has "Remnant: Keystone Research 3: done"
 	on offer
-		dialog
+		conversation
 			`As you were reading the previous message, a freight hauler arrives with the last few crates and starts unloading them. Looking over the assembled stack, you note that each crate bears the logos and advertisements for a different organization, shipper, or enterprise. The second message turns out to be a confirmation that you have picked up 19 keystones. While there are no new instructions, the subtext is clear: Time to head back.`
+				accept
 	on complete
 		payment 2000000
 		conversation
