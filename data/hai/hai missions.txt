@@ -1775,7 +1775,7 @@ mission "Nanachi 4"
 		government "Hai (Wormhole Access)"
 		ship "Heavy Shuttle" "Acorn Chaser"
 	on visit
-		dialog `You have reached <planet>, but you left Nanachi's ship behind! Better depart and wait for them to arrive in this star system.`
+		dialog `You have reached <planet>, but you can't finished the mission yet! Either you left Nanachi's ship behind or you haven't visited <stopovers>.`
 	on stopover
 		conversation
 			`The convoy's captain messaged you as you entered the system and told you to land on a remote, hidden area of Prime, where they have already prepared for all the cargo to be transferred. They refuel your ships and urge you two to go back. "Captain Nanachi can stay hidden with us here if you need supplies or anything from the outfitter, but please don't take too long."`
@@ -2052,7 +2052,7 @@ mission "Strider: Remnant 3"
 			`	"Do not fear, for we have something else. For many decades, we have been fighting and plundering Korath raiders from the Core. Their ships contain outfits capable of hull repair through the use of small robots. We have been unable to reproduce these robots with ease, but we may be able to provide for you our research and a number of samples that you may use."`
 			`	"We too have encountered these Korath," Yashili says in response. "Although, we had not taken their technology. This may be of great use to us."`
 			`	"We would like to ask something in trade, however: a copy of your astronomical records. The history of the galaxy itself is a mystery to us, and we would like to learn more about it."`
-			`	Ambassador Yashili looks thoughtful, then nods. "Historical astronomical data is scientifically valuable, as is learning how to repair our ships in flight. This seems a fair trade. We should be able to have the data for you shortly. We only need use of Captain <first>'s ship to access the hyperspace communiation relays." Yashili nods to another member of the delegation, who then scurries off to your ship.`
+			`	Ambassador Yashili looks thoughtful, then nods. "Historical astronomical data is scientifically valuable, as is learning how to repair our ships in flight. This seems a fair trade. We should be able to have the data for you shortly. We only need use of Captain <first>'s ship to access the hyperspace communication relays." Yashili nods to another member of the delegation, who then scurries off to your ship.`
 			`	"I imagine there will be a large amount of data to transfer," Rayn says. "Let us pass the time."`
 			`	Ambassador Yashili and Rayn settle into diplomatic small talk. The conversational dance between a group of professional diplomats and a secretive group that are currently playing the role of nomadic desert traders is an odd one.`
 			`	"While we wait, I am curious how you met these Remnant, Captain," Yashili says.`
@@ -2207,7 +2207,7 @@ mission "Strider 3"
 			
 			label coalition
 			`	"I hope the Coalition treated you well," one of the elders says.`
-			`	"They were an interesting group. Very enthusiatic about meeting new people, although very touchy on the subject of the Quarg."`
+			`	"They were an interesting group. Very enthusiastic about meeting new people, although very touchy on the subject of the Quarg."`
 			
 			label next
 			`	Yashili then hands the copy of the data to Osen. "You'll be needing this," she says.`
