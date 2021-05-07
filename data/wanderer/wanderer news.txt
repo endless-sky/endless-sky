@@ -168,7 +168,6 @@ news "Wanderer soldier"
 		has "Wanderers Invaded 0: accepted"
 	location
 		government "Wanderer"
-		attributes "evacuation"
 	name
 		word
 			"Wanderer soldier"
@@ -182,7 +181,11 @@ news "Wanderer soldier"
 			"I was [conscripted, forced] into service in a warship. I only [wish, desire] to go back to my old life."
 			"I wish we did not have to [fight, do battle] to survive. It is a [savage, inelegant] way of solving conflict."
 			"I joined our new [defence fleet, navy] because I wanted to protect lifeforms. Instead I am [battling, killing] them. It brings me great [sadness, sorrow] to see such [destruction, waste]."
-			"I volunteered for service in a warship. I kill one so that [others, several] may be [saved, spared]."
+			"I volunteered for service in a warship, and many [ask, ponder] why. For every Hai I [shoot down, kill] I save [many, multiple] civilians."
+			"Just a few days ago I was asked to form a new [military, army] unit, even though I was given almost no [training, experience] in war. These are [desperate, hopeless] times indeed."
+			"Our [commander, unit leader] used to be a zoologist. His only [combat, fighting] experience was defending himself against a rabid Chi'kta on an [expedition, study]. They couldn't find anyone [better, more suitable], so he got 'promoted'."
+			"One of my crewmates is [scared, frightened] of the sound of guns firing. How he got conscripted is [anyone's guess, a mystery]."
+			"Many of our [commanders, leaders] have no idea how a military [works, operates]. They often have to consult history [books, records] so that they can [learn, study] the [workings, activities] of a proper army."
 		word
 			`"`
 
@@ -232,6 +235,8 @@ news "Wanderers and the Eye"
 			"The opening of the Eye is a sign that we must continue our [purpose? existence?] in a new [part, region] of this galaxy."
 			"What [wonders, changes] await us at the end of the Eye!"
 			"I am honored to [bear witness? attest?] to this new phase of our cycle. The Eye shall [renew?, change?] us."
+			"Now that the Eye is [here, upon us], I wonder if I'll [undergo, experience] the Molt. It would be a [honor, privilege] to be changed in this way."
+			"Some of my feathers have [begun, started] to fall out, and I've been [noticing, observing] lumps on my skin. I [hope, wish] that it's the Molt."
 		word
 			`"`
 
@@ -239,7 +244,8 @@ news "Wanderer safety monitor"
 	to show
 		has "Wanderers Conversation: offered"
 	location
-		has attributes "wanderer" "oil"
+		has attributes "wanderer" 
+		has attributes "oil"
 	name
 		word
 			"Safety inspector"
@@ -270,7 +276,8 @@ news "wanderer farmer"
 	to show
 		has "Wanderers Conversation: offered"
 	location
-		has attributes "wanderer" "farming"
+		has attributes "wanderer" 
+		has attributes "farming"
 	name
 		word
 			"Wanderer farmer"
