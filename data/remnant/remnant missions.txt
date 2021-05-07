@@ -3626,8 +3626,6 @@ mission "Remnant: Cognizance 4"
 	description "Prefect Chilia has asked you to track down a Korath fleet before returning to <destination>."
 	source "Caelian"
 	landing
-	waypoint
-		system "Aescolanus"
 	to offer
 		has "Remnant: Cognizance 2: done"
 	on offer
@@ -3651,7 +3649,9 @@ mission "Remnant: Cognizance 4"
 			label next
 			`	 "It is imperative that all the Korath involved in this exploration be located immediately. According to our surveillance, that ship was part of a fleet that recently passed through Parca. Locate the fleet and report back."`
 				accept
-	npc save
+	npc kill
+		to despawn
+			has "remnant: cognizance: found korath fleet"
 		government "Korath"
 		personality staying surveillance
 		system "Aescolanus"
@@ -3663,19 +3663,24 @@ mission "Remnant: Cognizance 4"
 				"Korath Dredger"
 				"Korath Raider (Ember)" 4
 				"Korath Chaser" 12
+		conversation
+			apply
+				set "remnant: cognizance: killed korath fleet"
+			`You've destroyed the Korath fleet that was harassing the void sprites.`
 	on enter "Aescolanus"
+		set "remnant: cognizance: found korath fleet"
 		dialog `You have located the Korath fleet. They do not seem to be going anywhere at the moment.`
-	on abort
-		# No action, the player choose to just walk away from this mission(string)
+	to complete
+		has "remnant: cognizance: found korath fleet"
 	on complete
 		payment 500000
 		conversation
 			`This time, as you complete your post-flight checks you spot Prefect Chilia exiting the Starling next to you and watch as he strides across the pad to your airlock. You hit the open button as he clambers up the ladder. Without a word you pull up the sensor logs from Aescolanus, highlighting the position of the various ships. His eyes flit over the display for a moment, then he nods.`
+			branch destroyed
+				has "remnant: cognizance: killed korath fleet"
 			`	"I will notify a task force. Meet me in the spaceport, and make sure your ship is ready to fight." As he departs from your ship, your commlink beeps with a message that an organization by the name of 'Remnant Logistics' has allocated you an additional <payment>.`
-	on fail
-		payment 500000
-		conversation
-			`This time, as you complete your post-flight checks you spot Prefect Chilia exiting the Starling next to you and watch as he strides across the pad to your airlock. You hit the open button as he clambers up the ladder. Without a word you pull up the sensor logs from Aescolanus, highlighting the destruction of the various ships. His eyes flit over the display for a moment, then he nods.`
+				decline
+			label destroyed
 			`	"You have demonstrated good initiative, however I suspect that it was not the only hunter fleet out there. I will notify a task force. Meet me in the spaceport, and make sure your ship is ready to fight." As he departs from your ship, your commlink beeps with a message that an organization by the name of 'Remnant Logistics' has allocated you an additional <payment>.`
 
 
@@ -3687,15 +3692,11 @@ mission "Remnant: Cognizance 5"
 	source "Caelian"
 	waypoint "Aescolanus"
 	to offer
-		or
-			has "Remnant: Cognizance 4: done"
-			and
-				has "Remnant: Cognizance 4: failed"
-				not "Remnant: Cognizance 4: aborted"
+		has "Remnant: Cognizance 4: done"
 	on offer
 		conversation
 			branch fleetkilled
-				has "Remnant: Cognizance 4: failed"
+				has "remnant: cognizance: killed korath fleet"
 			`When you arrive in the spaceport you find Prefect Chilia in the middle of briefing a group of Remnant and waves you forward as soon as you approach. "Everyone, this is Captain <last>, who has located the Korath hunters twice now and will take the lead on tracking the rest for this mission." As you cross the room to join him, you take a good look at the group. One detail that stands out to you is that every one of Remnant in this group is wearing a thick leather neck wrap that extends right up to their hairline. It has a scaly texture and appears to be pulsing faintly. Unfortunately, you do not have time to ask questions as Chilia has not stopped issuing instructions.`
 				goto next
 			label fleetkilled
