@@ -239,11 +239,11 @@ news "Wanderers and the Eye"
 		word
 			`"`
 
-news "Wanderer safety monitor"
+news "Wanderer oil drilling"
 	to show
 		has "Wanderers Conversation: offered"
 	location
-		attributes "wanderer" 
+		government "Wanderer"
 		attributes "oil"
 	name
 		word
@@ -275,7 +275,7 @@ news "wanderer farmer"
 	to show
 		has "Wanderers Conversation: offered"
 	location
-		attributes "wanderer" 
+		government "Wanderer" 
 		attributes "farming"
 	name
 		word
