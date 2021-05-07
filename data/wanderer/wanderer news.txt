@@ -243,8 +243,8 @@ news "Wanderer safety monitor"
 	to show
 		has "Wanderers Conversation: offered"
 	location
-		has attributes "wanderer" 
-		has attributes "oil"
+		attributes "wanderer" 
+		attributes "oil"
 	name
 		word
 			"Safety inspector"
@@ -275,8 +275,8 @@ news "wanderer farmer"
 	to show
 		has "Wanderers Conversation: offered"
 	location
-		has attributes "wanderer" 
-		has attributes "farming"
+		attributes "wanderer" 
+		attributes "farming"
 	name
 		word
 			"Wanderer farmer"
