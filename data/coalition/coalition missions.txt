@@ -1492,7 +1492,7 @@ mission "Coalition: Council of Ahr: Bebliss"
 	on offer
 		conversation
 			`Once your ship has landed, you receive a message from House Bebliss, directing you to a large hotel in the spaceport city. The security guards don't let you in, so you wait for the representative to come out. About half an hour of waiting later, an elevator opens for many Arachi to come out, most of them in formal uniforms and carrying various bags of luggage. There's also an older, and even more formally dressed Arach.`
-			`	"My transport to the Council you are, correct?" She asks, and you confirm. "Splendid. Lady Plubat, I am, Captain. Pleased that transport the will of House Bebliss, such an exquisite captain shall. Finally gotten it right, those arranging the transport to the Council have."`
+			`	"My transport to the Council you are, correct?" She asks, and you confirm. "Splendid. Lady Plubat, I am, Captain. Pleased that transport the will of House Bebliss, such an exquisite captain shall. Finally right, those arranging the transport to the Council have gotten it."`
 			`	She asks you to lead the way to your ship, as the Arachi in uniform follow the two of you, carrying her luggage. "Told, I was, about which representatives tasked with transporting, you were. Bebliss excepted, not the most... intriguing company, they are, so grateful that you're transporting at least one proper guest, you should be."`
 			choice
 				`	"Looks like you hold your house in very high regards."`
@@ -1594,5 +1594,5 @@ mission "Coalition: Council of Ahr: On Complete"
 		conversation
 			`A few minutes after the final representative leaves your ship, you receive your payment of 4,500,000 credits. It comes with a message from the royal family, with the symbols of all Arach houses on it. You recognize most from advertisements or offices on some planets, but it's your first time seeing the center one. You imagine it's the emblem of the royal family.`
 			scene "scene/councilofahr2"
-			`	"It is with great honor that we salute you, Captain <last>, as a friend and assistant to the Council of Ahr. Although certain that, to you, such kinds of jobs can appear mundane, it can be difficult, at times, to arrange for appropriate transportation for our compatriots from all great houses, so know that House Oberegt is deeply grateful for your cooperation."`
+			`	"Greetings, Captain <last>. As the hosts of the Council of Ahr, we thank you for your assistance. Although certain that, to you, such kinds of jobs can appear mundane, it can be difficult, at times, to arrange for appropriate transportation for our compatriots from all great houses, so know that House Oberegt is deeply grateful for your cooperation."`
 				decline
