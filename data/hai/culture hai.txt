@@ -218,7 +218,7 @@ mission "ZZCU Mum Groups"
 		has "language: Wanderer"
 	on offer
 		conversation
-			`A mall stall at the spaceport is trying to sell learning merchandise that's been condemned by the local conglomerate of mum groups. There's an argument and some flipped tables. (TBD)`
+			`A mall stall at the spaceport is trying to sell learning merchandise that's been condemned by the local conglomerate of mom groups. There's an argument and some flipped tables. (TBD)`
 				decline
 
 mission "ZZCU boop"

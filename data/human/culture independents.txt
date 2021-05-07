@@ -29,7 +29,7 @@ mission "ZZCU Tarazed Ship Christening"
 			`	You hurry past the rowdy group, annoyed by the disturbance.`
 				decline
 			label passby
-			`	You hurry past the group as they quiet down. Taking advantage of the momentary lull, you shout "Good luck! You've got this!" towards them. They let out another cheer in response, with the exception of the young woman who buries her face in her hands.`
+			`	You hurry past the group as they quiet down. Taking advantage of the momentary lull, you shout "Good luck! You've got this!" toward them. They let out another cheer in response, with the exception of the young woman who buries her face in her hands.`
 				decline
 			label investigate
 			`	You approach the group as they quiet down, noticing a hint of anxiety in the air.`
@@ -51,7 +51,7 @@ mission "ZZCU Tarazed Ship Christening"
 			`	"Oh," the woman says quietly, "that's... nice, I guess."`
 			label getout
 			`	You realize that you have made this random young lady quite uncomfortable by barging in with your input.`
-			`	"Well, good luck!" you say with a wave as you hurry away. You barely hear the quiet 'thank you' over the burning in your ears.`
+			`	"Well, good luck!" you say with a wave as you hurry away. You barely hear the quiet "thank you" over the burning in your ears.`
 				decline
 			label plans
 			`	"Right now," she says with a sigh, "the only plan I have is to get rid of the massive debt that I'm in because of it."`
