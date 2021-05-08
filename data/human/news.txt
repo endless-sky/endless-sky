@@ -417,6 +417,7 @@ news "tour guide"
 			"It's kind of amazing to me that people would travel halfway across the galaxy to see this dump. To me, it's the one place I've always wished I could get away from."
 			"Always check in at the spaceport. You might find an unprepared tourist looking for a return trip. Trust me, I've seen it far too many times."
 			"If you have any tourists onboard that want to go anti-gravity boarding, then let them ask for me. I'll pay you commission."
+			"Mind the gravity!"
 		word
 			`"`
 
@@ -690,6 +691,8 @@ news "actor"
 			"I have a rich client on Hestia who pays me a thousand credits a day just for recording videos where I bestow extravagant compliments on him."
 			"I recommend that you don't look at any media from the 28th century. They're so laden with pop-culture references that it's painful to watch."
 			"Hey, you are so beautiful, do you want to marry me? Haha, just kidding, I'm rehearsing for my new role."
+			"Stories about extra-terrestrials are very unpopular now that most of humanity is living off-Earth."
+			"Stories about alien lifeforms became a lot more popular after humanity actually met alien lifeforms."
 		word
 			`"`
 
@@ -1005,6 +1008,23 @@ news "human tourism"
 			`"`
 
 
+news "human protester"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	name
+		word
+			"Protester"
+	message
+		word
+			`"`
+		word
+			"Stay with global companies! Don't depend on galaxic companies from other worlds!"
+			"Humans were not built for traveling in space. Bad things happen when travelling at 25000 km per second!"
+			"If we were meant to be in space, then we would have been born with built-in oxygen bottles!"
+			"Give up your sinful life as spaceship captain and settle on this beautiful planet."
+		word
+			`"`
+
 
 news "human mercenary"
 	location
@@ -1215,6 +1235,7 @@ news "graffiti on spaceport wall"
 			"There once was a man from New Boston / To fly's a dream he'd had often / He purchased a shuttle / Brought folks in to huddle / Why do merchants call this a coffin? - Lake"
 			"There once was a man from New Boston / He picked the ugliest of options / He purchased a star barge / Mission cargo's too large / This shipment's starting to smell rotten... - Lake"
 			"There once was a man from New Boston / His loan officer advised caution / He purchased a sparrow / Took off like an arrow- / That sparrow soon turned up at auction. - Lake"
+			`A captain with a troubled past / Passed through this sytem very fast / Was playing a game / Had no proper name / The captain was called "First Last".`
 			"Haikus are easy, / but sometimes they don't make sense. / Refrigerator."
 			"Haikus are easy. / I can't think of a good line. / It's snowing on Mount Fuji."
 			"A long time ago / I was respected by all, / but now I sit here."

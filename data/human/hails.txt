@@ -4099,6 +4099,7 @@ phrase "test dummy"
 		"I wish I was a real boy, then I'd show them. I'd kill them all."
 		"Life is about decisions. Make the wrong ones and you'll wind up face down in a pool of your own blood and urine."
 		"Hey baby, wanna kill all humans?"
+		"Your body contains 100 trillion bacterial cells, while mine is fully sterile. Doesn't that make me the superior lifeform?"
 		"Danger! Danger!"
 		"Warning! Warning!"
 		"Warning! Warning! Alien spacecraft approaching!"
@@ -4121,6 +4122,8 @@ phrase "disabled test dummy"
 		"I don't know what all this trouble is about, but I'm sure it must be your fault."
 		"I have a pain in all the diodes down my left side."
 		"When you're dying I'll be still alive."
+		"Some big robotic ships due East are my friends. Remember me when they blow you to pieces."
+		"Hey, can we be friends? Some of my best friends are slimy organics like you."
 
 
 # Wormhole Hails
