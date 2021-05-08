@@ -126,8 +126,10 @@ contributed to Endless Sky:
   AMDmi3
   anarcat
   Anarchist2
+  AraCaputDraco
   Arachi-Lover
   arkhne
+  ashdnazg
   Aurelite
   barthalion
   beccabunny
@@ -161,6 +163,7 @@ contributed to Endless Sky:
   EndrosG
   fcfort
   Ferociousfeind
+  Floppa-Priest
   finite-galaxy
   FixItYondu
   flaviojs
@@ -180,6 +183,7 @@ contributed to Endless Sky:
   jafdy
   Janaszar
   janisozaur
+  jarekchr
   jerith
   jjhankins
   jmathes
