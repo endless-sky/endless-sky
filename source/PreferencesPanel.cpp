@@ -325,6 +325,7 @@ void PreferencesPanel::DrawControls()
 		Command::JUMP,
 		Command::NONE,
 		Command::PRIMARY,
+		Command::TURRET
 		Command::SELECT,
 		Command::SECONDARY,
 		Command::CLOAK,
