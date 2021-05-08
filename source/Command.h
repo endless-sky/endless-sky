@@ -36,6 +36,7 @@ public:
 	static const Command RIGHT;
 	static const Command BACK;
 	static const Command PRIMARY;
+	static const Command TURRET;
 	static const Command SECONDARY;
 	static const Command SELECT;
 	static const Command LAND;
