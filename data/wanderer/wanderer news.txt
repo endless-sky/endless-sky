@@ -262,14 +262,14 @@ news "Wanderer oil drilling"
 		word
 			"Oil rigger"
 			"Wanderer oil rigger"
-		message
-			word
-				`"`
-			word
-				"Many do not [like, appreciate] it, but my work is the [backbone, support] of this [society, civilization]."
-				"What I do is [unfortunate, regrettable], but we have no other [option, choice]."
-			word
-				`"`
+	message
+		word
+			`"`
+		word
+			"Many do not [like, appreciate] it, but my work is the [backbone, support] of this [society, civilization]."
+			"What I do is [unfortunate, regrettable], but we have no other [option, choice]."
+		word
+			`"`
 
 news "wanderer farmer"
 	to show
