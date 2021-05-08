@@ -3484,7 +3484,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		if(activeCommands.Has(Command::PRIMARY))
 		{
 			int index = 0;
-			for(const Hardpoint &hardpoint : ship.Weapons() && !hardpoint.CanAim())
+			for(const Hardpoint &hardpoint : ship.Weapons() && !hardpoint.IsTurret())
 			{
 				if(hardpoint.IsReady() && !hardpoint.GetOutfit()->Icon())
 					command.SetFire(index);
@@ -3496,7 +3496,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			int index = 0;
 			for(const Hardpoint &hardpoint : ship.Weapons())
 			{
-				if(hardpoint.IsReady() && !hardpoint.GetOutfit()->Icon() && hardpoint.CanAim())
+				if(hardpoint.IsReady() && !hardpoint.GetOutfit()->Icon() && hardpoint.IsTurret())
 					command.SetFire(index);
 				++index;
 			}
