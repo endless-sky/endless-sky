@@ -1736,7 +1736,7 @@ void Engine::HandleKeyboardInputs()
 		Command::FORWARD | Command::LEFT | Command::RIGHT;
 	
 	// Transfer all commands that need to be active as long as the corresponding key is pressed.
-	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
+	activeCommands |= keyHeld.And(Command::PRIMARY | Command::TURRET | Command::SECONDARY | Command::SCAN |
 		manueveringCommands | Command::SHIFT);
 	
 	// Issuing LAND again within the cooldown period signals a change of landing target.
