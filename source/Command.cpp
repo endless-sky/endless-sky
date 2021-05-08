@@ -69,6 +69,7 @@ const Command Command::AMMO(1uL << 25, "Fleet: Toggle ammo usage");
 const Command Command::WAIT(1uL << 26, "");
 const Command Command::STOP(1ul << 27, "");
 const Command Command::SHIFT(1uL << 28, "");
+const Command Command::TURRET(1uL << 29, "Fire turrets");
 
 
 
@@ -233,6 +234,7 @@ void Command::Load(const DataNode &node)
 			{"right", Command::RIGHT},
 			{"back", Command::BACK},
 			{"primary", Command::PRIMARY},
+			{"turret", Command::TURRET},
 			{"secondary", Command::SECONDARY},
 			{"select", Command::SELECT},
 			{"land", Command::LAND},
