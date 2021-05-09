@@ -2624,7 +2624,7 @@ bool AI::DoEvasive(Ship &ship, Command &command)
 	
 	// First, figure out which ships are not of the same government. Ignore disabled/destroyed ships.
 	vector<shared_ptr<Ship>> enemies;
-	for(const auto otherShip : GetShipsList(ship, false))
+	for(const auto &otherShip : GetShipsList(ship, false))
 		if(otherShip->GetGovernment() != ship.GetGovernment())
 			enemies.push_back(otherShip);
 	
@@ -2632,14 +2632,14 @@ bool AI::DoEvasive(Ship &ship, Command &command)
 	vector<Point> paths;
 	double maxRange = 0.;
 	const Point pos = ship.Position();
-	for(const auto enemy : enemies)
+	for(const auto &enemy : enemies)
 	{
 		// Ignore disabled/destroyed ships.
 		if(enemy->IsDisabled() || enemy->IsDestroyed())
 			continue;
 		
 		// Find out their weapons range.
-		for(const auto weapon : enemy->Weapons())
+		for(const auto &weapon : enemy->Weapons())
 			maxRange = max(maxRange, weapon.GetOutfit()->Range());
 		maxRange *= 2;
 		
@@ -2670,12 +2670,12 @@ bool AI::DoEvasive(Ship &ship, Command &command)
 	if(!paths.empty())
 	{
 		Point avg = Point();
-		for(const auto path : paths)
+		for(const auto &path : paths)
 			avg += path;
 		avg /= paths.size();
 		
 		// If the target is too close, just pick a random direction and roll with it.
-		if(avg.Distance(pos) < maxRange)
+		if(avg.Distance(pos) < maxRange/4)
 		{
 			MoveTo(ship, command, Angle::Random().Unit() * maxRange, Point(), 0, ship.MaxVelocity());
 			return true;
