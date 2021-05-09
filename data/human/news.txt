@@ -1018,7 +1018,7 @@ news "human protester"
 		word
 			`"`
 		word
-			"Stay with global companies! Don't depend on galaxic companies from other worlds!"
+			"Stay with global companies! Don't depend on galactic companies from other worlds!"
 			"Humans were not built for traveling in space. Bad things happen when travelling at 25000 km per second!"
 			"If we were meant to be in space, then we would have been born with built-in oxygen bottles!"
 			"Give up your sinful life as spaceship captain and settle on this beautiful planet."
