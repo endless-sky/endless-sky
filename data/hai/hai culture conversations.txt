@@ -10,9 +10,7 @@
 
 # "Missions" which add culture events to the spaceport.
 
-############################################
-#          No Translator Required          #
-############################################
+#               Fettered Hai                #
 
 mission "ZZCU Theater Chat"
 	minor
@@ -203,33 +201,3 @@ mission "ZZCU Gambling Judgment"
 			`	He takes your order diligently and with a smile.`
 				decline
 
-############################################
-#            Translator Required           #
-############################################
-
-#This uses the flag from receiving the Hai translator.
-mission "ZZCU Mum Groups"
-	minor
-	source
-		government "Hai"
-		not attributes "station"
-	to offer
-		random < 1
-		has "language: Wanderer"
-	on offer
-		conversation
-			`A mall stall at the spaceport is trying to sell learning merchandise that's been condemned by the local conglomerate of mom groups. There's an argument and some flipped tables. (TBD)`
-				decline
-
-mission "ZZCU boop"
-	minor
-	source
-		government "Hai"
-		not attributes "station"
-	to offer
-		random < 1
-		has "language: Wanderer"
-	on offer
-		conversation
-			`placeholder`
-				decline
