@@ -3410,6 +3410,13 @@ bool Ship::CanFire(const Weapon *weapon) const
 	// have enough heat to spare.
 	if(heat < -(weapon->FiringHeat() + weapon->RelativeFiringHeat() * MaximumHeat()))
 		return false;
+	// Repeat this for various effects which shouldn't drop below 0.
+	if(ionization < -(weapon->FiringIon()))
+		return false;
+	if(disruption < -(weapon->FiringDisruption()))
+		return false;
+	if(slowness < -(weapon->FiringSlowing()))
+		return false;
 	
 	return true;
 }
