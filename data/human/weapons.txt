@@ -436,7 +436,7 @@ outfit "Proton Gun"
 		"reload" 8
 		"firing energy" 14.4
 		"firing force" 2
-		"firing heat" 72
+		"firing heat" 96
 	description "The Proton Gun started out as the Syndicate's attempt to reverse engineer and mass produce a cheap competitor for the Particle Cannon. Unfortunately, they were unable to find a reliable way to keep the beam coherent, but the resulting weapon is still popular with many captains, particularly as a long range anti-fighter gun."
 
 outfit "Proton Fragment"
@@ -475,7 +475,7 @@ outfit "Proton Turret"
 		"hardpoint offset" 14.
 		sound "proton"
 		"hit effect" "proton impact" 3
-		"inaccuracy" 2
+		"inaccuracy" 3
 		"turret turn" 2.0
 		"submunition" "Proton Fragment" 3
 		"velocity" 25
@@ -483,7 +483,7 @@ outfit "Proton Turret"
 		"reload" 8
 		"firing energy" 14.4
 		"firing force" 2
-		"firing heat" 72
+		"firing heat" 96
 	description "The Syndicate Proton Turret is a relatively new product designed to compete with Deep Sky's perennially popular laser turrets in the anti-fighter defense market. Though cruder than its competition, the Proton Turret maintains a loyal following among captains dissatisfied with laser weapons' short range."
 
 
@@ -652,11 +652,11 @@ outfit "Meteor Missile"
 outfit "Meteor Missile Box"
 	plural "Meteor Missile Boxes"
 	category "Ammunition"
-	cost 9000
+	cost 1500
 	thumbnail "outfit/meteor storage"
-	"mass" 2
-	"outfit space" -8
-	"meteor capacity" 8
+	"mass" 1
+	"outfit space" -4
+	"meteor capacity" 4
 	ammo "Meteor Missile"
 	description "The Meteor Missile Box is used to store extra ammunition for Meteor Missile Launchers."
 
@@ -688,7 +688,7 @@ outfit "Meteor Missile Launcher"
 		"acceleration" 0.63
 		"drag" .07
 		"turn" 1.5
-		"homing" 1
+		"homing" 2
 		"infrared tracking" .7
 		"damage dropoff" 0
 		"damage dropoff" 400
@@ -737,7 +737,7 @@ outfit "Meteor Triple Launcher"
 		"acceleration" 0.63
 		"drag" .07
 		"turn" 1.5
-		"homing" 1
+		"homing" 2
 		"infrared tracking" .72
 		"damage dropoff" 0
 		"damage dropoff" 400
@@ -761,8 +761,8 @@ outfit "Sidewinder Missile Rack"
 	category "Ammunition"
 	cost 12000
 	thumbnail "outfit/sidewinder storage"
-	"mass" 2
-	"outfit space" -8
+	"mass" 1
+	"outfit space" -7
 	"sidewinder capacity" 10
 	ammo "Sidewinder Missile"
 	description "The Sidewinder Missile Rack is used to store extra ammunition for Sidewinder Missile Launchers."
@@ -831,7 +831,7 @@ effect "sidewinder fire"
 
 outfit "Multiple Sidewinder Launcher"
 	category "Secondary Weapons"
-	cost 114000
+	cost 120000
 	thumbnail "outfit/sidewinder"
 	"mass" 30
 	"outfit space" -42
@@ -939,9 +939,9 @@ outfit "Torpedo Storage Rack"
 	category "Ammunition"
 	cost 22400
 	thumbnail "outfit/torpedo storage"
-	"mass" 3
-	"outfit space" -18
-	"torpedo capacity" 10
+	"mass" 1
+	"outfit space" -13
+	"torpedo capacity" 8
 	ammo "Torpedo"
 	description "The Torpedo Storage Rack is used to store extra ammunition for Torpedo Launchers."
 
@@ -974,8 +974,8 @@ outfit "Torpedo Launcher"
 		"drag" .04
 		"turn" 0.5
 		"homing" 3
-		"optical tracking" .3
-		"radar tracking" .5
+		"optical tracking" .4
+		"radar tracking" .6
 		"shield damage" 1625
 		"hull damage" 3875
 		"hit force" 1125
@@ -1019,8 +1019,8 @@ outfit "Torpedo Triple Launcher"
 		"drag" .04
 		"turn" 0.5
 		"homing" 3
-		"optical tracking" .3
-		"radar tracking" .5
+		"optical tracking" .4
+		"radar tracking" .6
 		"shield damage" 1625
 		"hull damage" 3875
 		"hit force" 1125
@@ -1039,11 +1039,11 @@ outfit "Typhoon Torpedo"
 
 outfit "Typhoon Storage Tube"
 	category "Ammunition"
-	cost 22500
+	cost 12500
 	thumbnail "outfit/typhoon storage"
-	"mass" 4
-	"outfit space" -16
-	"typhoon capacity" 6
+	"mass" 1
+	"outfit space" -9
+	"typhoon capacity" 4
 	ammo "Typhoon Torpedo"
 	description "The Typhoon Storage Tube is used to store extra ammunition for Typhoon Launchers."
 
