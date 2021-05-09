@@ -11,7 +11,8 @@ Version 0.9.14:
       * The reverse thrust heat of the Smelter-Class Thruster is no longer the same as the smaller Crucible-Class Thruster. (@Zitchas)
       * "Remnant: Cognizance 4" and "Remnant: Cognizance 16" no longer spoil the objective location for the player when you're suppose to go looking for them. (@Amazinite)
     * Engine bugs:
-      * Invalid planets are now filtered when iterating over a system's objects. (@tehhowch)
+      * Invalid planets are now filtered when iterating over a system's objects, preventing pathfinding from trying to use wormholes that no longer exist. (@tehhowch)
+      * Firing ionization/disruption/slowing on weapons no longer allows status effects to drop below zero, which could potentially cause a crash. (@Ferociousfeind)
   * Game content:
     * New content:
       * The Heliarch Interdictor now has a Scrappy variant like other Heliarch ships. (@Arachi-Lover)
