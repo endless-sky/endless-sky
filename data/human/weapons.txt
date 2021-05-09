@@ -685,8 +685,8 @@ outfit "Meteor Missile Launcher"
 		"reload" 300
 		"firing energy" 2
 		"firing heat" 90
-		"acceleration" 0.36
-		"drag" .04
+		"acceleration" 0.63
+		"drag" .07
 		"turn" 1.5
 		"homing" 1
 		"infrared tracking" .7
@@ -734,8 +734,8 @@ outfit "Meteor Triple Launcher"
 		"burst reload" 54
 		"firing energy" 2
 		"firing heat" 90
-		"acceleration" 0.36
-		"drag" .04
+		"acceleration" 0.63
+		"drag" .07
 		"turn" 1.5
 		"homing" 1
 		"infrared tracking" .72
@@ -795,8 +795,8 @@ outfit "Sidewinder Missile Launcher"
 		"burst reload" 60
 		"firing energy" 2
 		"firing heat" 55
-		"acceleration" 0.9
-		"drag" .06
+		"acceleration" 1.2
+		"drag" .08
 		"turn" 3
 		"homing" 4
 		"radar tracking" .95
@@ -857,8 +857,8 @@ outfit "Multiple Sidewinder Launcher"
 		"burst reload" 45
 		"firing energy" 2
 		"firing heat" 55
-		"acceleration" 0.9
-		"drag" .06
+		"acceleration" 1.2
+		"drag" .08
 		"turn" 3
 		"homing" 4
 		"radar tracking" .95
@@ -970,8 +970,8 @@ outfit "Torpedo Launcher"
 		"reload" 600
 		"firing energy" 10
 		"firing heat" 45
-		"acceleration" .15
-		"drag" .02
+		"acceleration" .3
+		"drag" .04
 		"turn" 0.5
 		"homing" 3
 		"optical tracking" .3
@@ -1015,8 +1015,8 @@ outfit "Torpedo Triple Launcher"
 		"burst reload" 90
 		"firing energy" 10
 		"firing heat" 45
-		"acceleration" .15
-		"drag" .02
+		"acceleration" .3
+		"drag" .04
 		"turn" 0.5
 		"homing" 3
 		"optical tracking" .3
@@ -1072,8 +1072,8 @@ outfit "Typhoon Launcher"
 		"reload" 600
 		"firing energy" 15
 		"firing heat" 55
-		"acceleration" .15
-		"drag" .0225
+		"acceleration" .3
+		"drag" .045
 		"turn" 0.75
 		"homing" 4
 		"optical tracking" .5
@@ -1117,8 +1117,8 @@ outfit "Typhoon Twin Launcher"
 		"burst reload" 105
 		"firing energy" 15
 		"firing heat" 55
-		"acceleration" .15
-		"drag" .0225
+		"acceleration" .3
+		"drag" .045
 		"turn" 0.75
 		"homing" 4
 		"optical tracking" .5
@@ -1173,8 +1173,8 @@ outfit "Heavy Rocket Launcher"
 		"burst reload" 60
 		"firing energy" 1
 		"firing heat" 250
-		"acceleration" 0.24
-		"drag" .03
+		"acceleration" 0.4
+		"drag" .05
 		"trigger radius" 20
 		"blast radius" 50
 		"shield damage" 890
