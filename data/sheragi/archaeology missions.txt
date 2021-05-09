@@ -236,16 +236,16 @@ mission "Deep Archaeology 5"
 				goto end
 			label surprise
 			`	Albert and John look at each other confusedly for a second before Albert says, "The aliens that invaded human space?"`
-			`	John appears to think hard on the subject before saying, "Of course! I don't know how we didn't think of it. From the descriptions that I've heard about them, they almost exactly match the folk tales in the Deep about 'elves'."`
+			`	John appears to think hard on the subject before saying, "Of course! I don't know how we didn't think of it. From the descriptions that I've heard about them, they almost exactly match the folk tales in the Deep about 'elves.'"`
 			`	"Thin, pale, and blue blooded, yes? Well, I think you may have found our aliens, Captain <last>," replies Albert.`
 			choice
 				`	"That's great, but I think they're far too dangerous to be useful to us now."`
 					goto dangerous
-				`	"From what I understand they've been around for a while, and have mentioned past interference in the Deep."`
-			`	"Well then, we have good reason to believe they fit into our current knowledge of the timeline here. However, I do not think it is the greatest idea for us to get involved in a volatile alien species like that, especially after the danger we've just fled from."`
+				`	"From what I understand, they've been around for a while, and have mentioned past interference in the Deep."`
+			`	"Well then, we have good reason to believe they fit into our current knowledge of the timeline here. However, I don't think it's a good idea for us to get involved in a volatile alien species like that, especially after the danger we've just fled from."`
 				goto final
 			label dangerous
-			`	"I've heard similar," says John, "but nevertheless it is at least useful to know the timeline of events here."`
+			`	"I've heard similar," says John, "but nevertheless, it is at least useful to know the timeline of events here."`
 			`	"Indeed," replies Albert, "simply knowing of their presence here aids in our research."`
 				goto final
 			label end
