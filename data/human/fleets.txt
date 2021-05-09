@@ -262,7 +262,7 @@ fleet "Large Core Merchants"
 	variant 8
 		"Container Transport (Blaster)"
 	variant 4
-		"Container Transport (Heavy)
+		"Container Transport (Heavy)"
 	variant 4
 		"Container Transport (Proton)"
 	variant 20
