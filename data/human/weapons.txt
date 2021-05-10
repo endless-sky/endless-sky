@@ -103,12 +103,12 @@ outfit "Modified Blaster"
 		sprite "projectile/mod blaster"
 		sound "mod blaster"
 		"hit effect" "blaster impact"
-		"inaccuracy" 15
-		"velocity" 10.8
+		"inaccuracy" 18
+		"velocity" 10.2
 		"lifetime" 50
 		"reload" 10
 		"firing energy" 10.5
-		"firing heat" 57
+		"firing heat" 64
 		"shield damage" 16
 		"hull damage" 10
 	description "Modified Blaster has been tampered with to use over three times more energy, increasing power of the blasts as well as its rate of fire. While its power is rather impressive, it's extreme inaccuracy makes it weapon of limited popularity. Modified Blasters also produce an extreme amount of heat when firing, running the risk that your ship will overheat. "
@@ -128,13 +128,13 @@ outfit "Modified Blaster Turret"
 		"hardpoint offset" 9.
 		sound "mod blaster"
 		"hit effect" "blaster impact"
-		"inaccuracy" 15
+		"inaccuracy" 18
 		"turret turn" 3.5
-		"velocity" 10.8
+		"velocity" 10.2
 		"lifetime" 50
 		"reload" 5
 		"firing energy" 10.5
-		"firing heat" 57
+		"firing heat" 64
 		"shield damage" 16
 		"hull damage" 10
 	description "This is a turreted version of the Modified Blaster, which is an Energy Blaster modified for greater power at the cost of high energy consumption, terrible accuracy, and large amount of waste heat. These turrets are popular with pirates and others who are trying to cram as much firepower into their ships as possible, and often attack large cargo ships, which are hard to miss targets."
@@ -158,7 +158,7 @@ outfit "Beam Laser"
 		"lifetime" 1
 		"reload" 1
 		"firing energy" .35
-		"firing heat" 1.4
+		"firing heat" 1.75
 		"shield damage" 1.05
 		"hull damage" 1.4
 	description "In the early part of the space era, the settlements in the region of space known as the Deep developed in relative isolation from the rest of human space. One result of that isolation is that their weapons technology mostly uses beam weapons, instead of the energy projectile weapons that are more common elsewhere."
@@ -185,7 +185,7 @@ outfit "Laser Turret"
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 0.7
-		"firing heat" 2.8
+		"firing heat" 3.5
 		"shield damage" 2.1
 		"hull damage" 2.8
 	description "Laser Turrets are hated by fighter pilots because it is nearly impossible to dodge them once you are within their reach. This turret carries a pair of lasers and can swivel almost instantly to fire on new targets as they approach. Laser Turrets are especially useful when mounted on slow-moving freighters to fend off packs of small pirate vessels."
@@ -217,8 +217,8 @@ outfit "Heavy Laser"
 		"velocity" 400
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 1.5
-		"firing heat" 2.55
+		"firing energy" 1.4
+		"firing heat" 3
 		"shield damage" 2
 		"hull damage" 2.8
 	description "The Heavy Laser is an upgraded Beam Laser with a significantly longer range and higher power. It is mostly intended for larger ships, where energy and space are plentiful, but some pilots consider a single Heavy Laser to be a worthwhile alternative to a pair of Beam Lasers, because the longer range makes up for the fact that it does not quite deal twice as much damage."
@@ -244,8 +244,8 @@ outfit "Heavy Laser Turret"
 		"velocity" 400
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 3
-		"firing heat" 5.1
+		"firing energy" 2.8
+		"firing heat" 6
 		"shield damage" 4
 		"hull damage" 5.6
 	description "For ships with enough space to install one, the Heavy Laser Turret is a powerful weapon, exceptional for bombarding larger targets with continuous fire without having to worry about pointing your ship in the right direction while more than sufficient for driving off fighters."
@@ -279,9 +279,9 @@ outfit "Electron Beam"
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 2.15
-		"firing heat" 4.55
+		"firing heat" 4.8
 		"shield damage" 2.4
-		"hull damage" 3.8
+		"hull damage" 3.9
 		"energy damage" 0.6
 	description "The Electron Beam is a recent development by the Deep Sky labs, a more powerful weapon with a design similar to their perennially popular laser guns. Unlike laser based weapon, however, electron beam has depolarizing effect on target ship's accumulators, draining its energy."
 
@@ -307,9 +307,9 @@ outfit "Electron Turret"
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 4.3
-		"firing heat" 9.1
+		"firing heat" 9.6
 		"shield damage" 4.8
-		"hull damage" 7.6
+		"hull damage" 7.8
 		"energy damage" 1.2
 	description "This turret places two of Deep Sky's recently developed electron beam weapons onto a rotating turret, providing unsurpassed power for contest between larger, well armoured ships."
 
@@ -394,7 +394,7 @@ outfit "Particle Cannon"
 		sound "particle"
 		"hit effect" "particle impact"
 		"inaccuracy" .4
-		"velocity" 30
+		"velocity" 30.4
 		"lifetime" 25
 		"reload" 20
 		"firing energy" 35
@@ -403,8 +403,7 @@ outfit "Particle Cannon"
 		"hit force" 80
 		"shield damage" 54
 		"hull damage" 52
-		"heat damage" 42
-	description "The Particle Cannon works by accelerating a short burst of particles to near-relativistic speeds. When mounted on a ship that can turn fast enough to keep it trained on approaching ships, it becomes a nearly unbeatable weapon, capable of destroying smaller ships before they can even approach close enough for their comparatively short-ranged weapons to be effective. The high velocity impact also deposits small amount amount of heat into the hit ship."
+	description "The Particle Cannon works by accelerating a short burst of particles to near-relativistic speeds. When mounted on a ship that can turn fast enough to keep it trained on approaching ships, it becomes a nearly unbeatable weapon, capable of destroying smaller ships before they can even approach close enough for their comparatively short-ranged weapons to be effective."
 
 effect "particle impact"
 	sprite "effect/particle impact"
@@ -449,7 +448,7 @@ outfit "Proton Fragment"
 		"lifetime" 24
 		"hit force" 6
 		"shield damage" 9.2
-		"hull damage" 7.6
+		"hull damage" 7.2
 
 effect "proton impact"
 	sprite "effect/proton impact"
@@ -504,12 +503,12 @@ outfit "Plasma Cannon"
 		"velocity" 10
 		"lifetime" 50
 		"reload" 18
-		"firing energy" 36
+		"firing energy" 31.5
 		"firing heat" 180
 		"hit force" 30
 		"shield damage" 63
-		"hull damage" 27
-		"heat damage" 342
+		"hull damage" 24.9
+		"heat damage" 340.5
 	description "The Plasma Cannon fires bursts of superheated plasma. In addition to damaging your target, these plasma bursts impart a significant amount of heat, especially to a target whose shields are down."
 
 outfit "Plasma Turret"
@@ -533,12 +532,12 @@ outfit "Plasma Turret"
 		"velocity" 10
 		"lifetime" 50
 		"reload" 9
-		"firing energy" 36
+		"firing energy" 31.5
 		"firing heat" 180
 		"hit force" 30
 		"shield damage" 63
-		"hull damage" 27
-		"heat damage" 342
+		"hull damage" 24.9
+		"heat damage" 340.5
 	description "The Plasma Turret is a pair of plasma cannons mounted on a turret so that they can fire in any direction. It is a fearsome weapon, but only the largest of ships have the space and the energy that it requires."
 
 outfit "Plasma Repeater"
@@ -643,7 +642,7 @@ effect "flamethrower hit"
 
 outfit "Meteor Missile"
 	category "Ammunition"
-	cost 6000
+	cost 5000
 	thumbnail "outfit/meteor"
 	"mass" .75
 	"meteor capacity" -1
@@ -679,7 +678,7 @@ outfit "Meteor Missile Launcher"
 		"fire effect" "meteor fire"
 		"die effect" "missile death"
 		"hit effect" "missile hit"
-		"inaccuracy" 7.5
+		"inaccuracy" 5
 		"velocity" 3
 		"lifetime" 360
 		"reload" 300
@@ -691,12 +690,12 @@ outfit "Meteor Missile Launcher"
 		"homing" 2
 		"infrared tracking" .7
 		"damage dropoff" 0
-		"damage dropoff" 400
-		"dropoff modifier" 10
-		"shield damage" 87.5
-		"hull damage" 49.5
-		"hit force" 575
-		"missile strength" 12
+		"damage dropoff" 300
+		"dropoff modifier" 5
+		"shield damage" 162
+		"hull damage" 96
+		"hit force" 115
+		"missile strength" 11
 	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are quickly destroyed by anti-missile systems, and their infrared tracking systems have trouble homing in on targets with low heat levels. Nevertheless, their large warheads can spell doom for poorly-defended targets when the missiles are fired in great numbers."
 
 effect "meteor fire"
@@ -726,7 +725,7 @@ outfit "Meteor Triple Launcher"
 		"fire effect" "meteor fire"
 		"die effect" "missile death"
 		"hit effect" "missile hit"
-		"inaccuracy" 7.5
+		"inaccuracy" 5
 		"velocity" 3
 		"lifetime" 360
 		"reload" 120
@@ -740,12 +739,12 @@ outfit "Meteor Triple Launcher"
 		"homing" 2
 		"infrared tracking" .72
 		"damage dropoff" 0
-		"damage dropoff" 400
+		"damage dropoff" 300
 		"dropoff modifier" 5
-		"shield damage" 165
-		"hull damage" 108
-		"hit force" 575
-		"missile strength" 12
+		"shield damage" 162
+		"hull damage" 96
+		"hit force" 115
+		"missile strength" 11
 	description "Meteor Triple Launcher is an advanced Meteor Missile launching platform. While it can't fire Meteors as fast as three regular meteor launcher, it takes up less space and occupies only single weapon port, while still allowing three consequent Meteor launches, before needing to reload."
 
 
@@ -771,9 +770,9 @@ outfit "Sidewinder Missile Launcher"
 	category "Secondary Weapons"
 	cost 36000
 	thumbnail "outfit/sidewinder"
-	"mass" 9
-	"outfit space" -15
-	"weapon capacity" -15
+	"mass" 8
+	"outfit space" -14
+	"weapon capacity" -14
 	"gun ports" -1
 	"sidewinder capacity" 10
 	weapon
@@ -789,7 +788,7 @@ outfit "Sidewinder Missile Launcher"
 		"submunition" "Sidewinder LowFuel"
 		"inaccuracy" 3
 		"velocity" 7
-		"lifetime" 120
+		"lifetime" 150
 		"reload" 200
 		"burst count" 2
 		"burst reload" 60
@@ -811,14 +810,14 @@ outfit "Sidewinder LowFuel"
 			"frame rate" .25
 		"die effect" "missile death"
 		"hit effect" "missile hit"
-		"lifetime" 180
+		"lifetime" 105
 		"acceleration" .09
 		"drag" .03
 		"turn" 1
 		"homing" 4
 		"radar tracking" .95
-		"shield damage" 435
-		"hull damage" 385
+		"shield damage" 425
+		"hull damage" 375
 		"hit force" 270
 		"missile strength" 15
 
@@ -833,9 +832,9 @@ outfit "Multiple Sidewinder Launcher"
 	category "Secondary Weapons"
 	cost 120000
 	thumbnail "outfit/sidewinder"
-	"mass" 30
-	"outfit space" -42
-	"weapon capacity" -42
+	"mass" 24
+	"outfit space" -36
+	"weapon capacity" -36
 	"gun ports" -1
 	"sidewinder capacity" 20
 	weapon
@@ -853,7 +852,7 @@ outfit "Multiple Sidewinder Launcher"
 		"velocity" 7
 		"lifetime" 120
 		"reload" 80
-		"burst count" 6
+		"burst count" 5
 		"burst reload" 45
 		"firing energy" 2
 		"firing heat" 55
@@ -910,6 +909,7 @@ outfit "Javelin Pod"
 		"burst reload" 15
 		"firing energy" .2
 		"firing heat" 12
+		"missile strength" 4
 	description "The Javelin Pod fires a rapid stream of unguided missiles. A Javelin Pod does far more damage than any gun of a comparable size, and has a longer range as well, but once a ship has expended all of its ammunition it must leave combat and find a planet where it can buy more, which makes Javelins less useful in protracted battles."
 	description "	The weapon's high rate of fire also makes it useful for saturating well-protected ships' anti-missile defenses so that more dangerous projectiles fired by allied ships can sneak through."
 
@@ -918,12 +918,12 @@ outfit "Javelin Fading"
 		sprite "projectile/javelin"
 		"die effect" "missile death"
 		"hit effect" "tiny explosion"
-		"lifetime" 45
+		"lifetime" 40
 		"drag" 0.06
 		"shield damage" 54
-		"hull damage" 39
+		"hull damage" 36
 		"hit force" 50
-		"missile strength" 4
+		"missile strength" 2
 
 
 outfit "Torpedo"
@@ -940,8 +940,8 @@ outfit "Torpedo Storage Rack"
 	cost 22400
 	thumbnail "outfit/torpedo storage"
 	"mass" 1
-	"outfit space" -13
-	"torpedo capacity" 8
+	"outfit space" -10
+	"torpedo capacity" 6
 	ammo "Torpedo"
 	description "The Torpedo Storage Rack is used to store extra ammunition for Torpedo Launchers."
 
@@ -1031,7 +1031,7 @@ outfit "Torpedo Triple Launcher"
 outfit "Typhoon Torpedo"
 	plural "Typhoon Torpedoes"
 	category "Ammunition"
-	cost 34500
+	cost 37200
 	thumbnail "outfit/typhoon"
 	"mass" 2
 	"typhoon capacity" -1
@@ -1042,8 +1042,8 @@ outfit "Typhoon Storage Tube"
 	cost 12500
 	thumbnail "outfit/typhoon storage"
 	"mass" 1
-	"outfit space" -9
-	"typhoon capacity" 4
+	"outfit space" -5
+	"typhoon capacity" 2
 	ammo "Typhoon Torpedo"
 	description "The Typhoon Storage Tube is used to store extra ammunition for Typhoon Launchers."
 
