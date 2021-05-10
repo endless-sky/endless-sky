@@ -925,7 +925,7 @@ person "Prototype B3-CC4"
 		word
 			"response"
 			"EM beam"
-			"transmission brust"
+			"transmission burst"
 		word
 			">"
 	phrase

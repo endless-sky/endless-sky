@@ -437,11 +437,12 @@ ship "Barb" "Barb (Proton)"
 			"shield damage" 120
 			"hull damage" 60
 			"hit force" 180
+
 	outfits
 		"Proton Gun"
 		
 		"nGVF-AA Fuel Cell"
-		Supercapacitor
+		"Supercapacitor"
 		"D14-RN Shield Generator"
 		"Laser Rifle" 1
 
@@ -453,8 +454,6 @@ ship "Barb" "Barb (Proton)"
 	gun -7.5 -24.5 "Proton Gun"
 	gun -7.5 -24.5
 	leak "leak" 60 50
-	explode "tiny explosion" 15
-	explode "small explosion" 5
 	description `The Barb's commercial success spurred demand for a variant equipped with a Proton Gun. Syndicated Systems had to remove the turret mounting hardware to fit the powerful cannon, but the result is a level of short-range firepower that is unheard-of for a craft its size.`
 
 
