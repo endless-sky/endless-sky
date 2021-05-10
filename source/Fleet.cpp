@@ -260,6 +260,36 @@ bool Fleet::IsValid(bool requireGovernment) const
 
 
 
+void Fleet::RemoveInvalidVariants()
+{
+	auto IsInvalidVariant = [](const Variant &v) noexcept -> bool
+	{
+		return v.ships.empty() || none_of(v.ships.begin(), v.ships.end(),
+			[](const Ship *const s) noexcept -> bool { return s->IsValid(); });
+	};
+	auto firstInvalid = find_if(variants.begin(), variants.end(), IsInvalidVariant);
+	if(firstInvalid == variants.end())
+		return;
+	
+	// Ensure the class invariant can be maintained.
+	// (This must be done first as we cannot do anything but `erase` elements filtered by `remove_if`.)
+	int removedWeight = 0;
+	for(auto it = firstInvalid; it != variants.end(); ++it)
+		if(IsInvalidVariant(*it))
+			removedWeight += it->weight;
+	
+	auto removeIt = remove_if(firstInvalid, variants.end(), IsInvalidVariant);
+	int count = distance(removeIt, variants.end());
+	Files::LogError("Warning: " + (fleetName.empty() ? "unnamed fleet" : "fleet \"" + fleetName + "\"")
+		+ ": Removing " + to_string(count) + " invalid " + (count > 1 ? "variants" : "variant")
+		+ " (" + to_string(removedWeight) + " of " + to_string(total) + " weight)");
+	
+	total -= removedWeight;
+	variants.erase(removeIt, variants.end());
+}
+
+
+
 // Get the government of this fleet.
 const Government *Fleet::GetGovernment() const
 {
