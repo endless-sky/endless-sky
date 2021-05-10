@@ -51,8 +51,8 @@ public:
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so it only has to save a subset of the data.
 	void Save(DataWriter &out) const;
-	// An invalid MissionAction references content that is not fully defined.
-	bool IsValid() const;
+	// Determine if this MissionAction references content that is not fully defined.
+	std::string Validate() const;
 	
 	int Payment() const;
 	
