@@ -1823,7 +1823,7 @@ mission "FW Pug 4"
 				"Pug Zibruka" 2
 	
 	on visit
-		dialog `You've landed on <planet>, but there are still Pug ships circling overhead. You should take off and help finish them off.`
+		dialog `You've landed on <planet>, but there are either still Pug ships circling overhead, or you've left Alondo behind. You should take off and help finish off the Pug or wait for your escort carrying Alondo to arrive.`
 	on complete
 		event "battle for delta capricorni"
 
