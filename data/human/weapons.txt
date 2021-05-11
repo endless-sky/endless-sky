@@ -494,10 +494,10 @@ outfit "Proton Turret"
 		"hardpoint sprite" "hardpoint/proton turret"
 		"hardpoint offset" 14.
 		sound "proton"
-		"hit effect" "proton impact" 3
+		"hit effect" "proton impact" 4
 		"inaccuracy" 3
 		"turret turn" 2.0
-		"submunition" "Proton Fragment" 3
+		"submunition" "Proton Fragment" 4
 		"velocity" 25
 		"lifetime" 1
 		"reload" 8
