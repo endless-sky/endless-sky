@@ -896,8 +896,8 @@ mission "Kimek Gift"
 
 mission "Saryd Students 1"
 	minor
-	name "Acquire Arachi Rum"
-	description "Some Saryd students on <origin> have offered to pay you for bringing them a shipment of traditional Arachi rum, currently only sold on <destination>. To make it in time, the rum must be bought by <date>."
+	name "Acquire Arach Rum"
+	description "Some Saryd students on <origin> have offered to pay you for bringing them a shipment of traditional Arach rum, currently only sold on <destination>. To make it in time, the rum must be bought by <date>."
 	deadline
 	to offer
 		has "Coalition: First Contact: done"
@@ -924,7 +924,7 @@ mission "Saryd Students 1"
 			`	They all start laughing, some clearly finding your joke much funnier than you anticipated. Given the way they are stumbling on flat ground and the scent of alcohol that's permeated the air ever since one of them bumped into you, you realize why.`
 			`	"Fair enough. Not a common sight here, humans are, Captain," the one with a translation box says. "Asking for such a response, I was."`
 			label work
-			`	They tell you that they are students at Starlit University and will be graduating soon. They intend on throwing a party to celebrate and had the idea of buying some traditional Arachi rum for that.`
+			`	They tell you that they are students at Starlit University and will be graduating soon. They intend on throwing a party to celebrate and had the idea of buying some traditional Arach rum for that.`
 			`	"Stopped shipping it here, the Arachi have," another Saryd says, pulling on the translation box on his friend's neck and nearly yanking it off. "Happened with many other drinks, this also has."`
 			`	They explain that the rum is produced on <destination>, and that you'll probably have an easier time finding it there. Despite you not knowing for sure how many people they intend on inviting to this party, and the fact that you don't know how much a Saryd can drink, you still worry a bit when they say that "two tons should do." They also tell you that to make it in time for the party, the rum should be bought by <date>.`
 			choice
@@ -947,18 +947,18 @@ mission "Saryd Students 1"
 
 
 mission "Saryd Students 2"
-	name "Deliver Arachi Rum"
-	description "Now that you've bought the two tons of Arachi rum, deliver it to the Saryd students on <destination> by <date>."
+	name "Deliver Arach Rum"
+	description "Now that you've bought the two tons of Arach rum, deliver it to the Saryd students on <destination> by <date>."
 	landing
 	deadline
-	cargo "Arachi Rum" 2
+	cargo "Arach Rum" 2
 	to offer
 		has "Saryd Students 1: done"
 	source "Weir of Glubatub"
 	destination "Shadow of Leaves"
 	on offer
 		conversation
-			`You ask around and are directed to a large refinery on one of the more populated cities here. Apparently it's the original building where the Arachi rum was first produced.`
+			`You ask around and are directed to a large refinery on one of the more populated cities here. Apparently it's the original building where the Arach rum was first produced.`
 			`	You ask for two tons, avoiding giving the exact details of what it's for, as you do not wish to be held accountable for whatever some drunken Saryds may do, and pay the price for all the rum: 11,284 credits.`
 			`	The Arachi that take care to load the rum into your ship give you some odd looks, and when it's all done the manager tells you to try and slow down on the drinking.`
 				accept
@@ -1299,8 +1299,8 @@ mission "Longcow Antibiotics 2"
 
 mission "Arachi Orphans"
 	minor
-	name "Arachi Orphans"
-	description "Bring these 4 Arachi orphans, their caretaker, and their <cargo> to <destination>, where they will join a foster home."
+	name "Arach Orphans"
+	description "Bring these 4 Arach orphans, their caretaker, and their <cargo> to <destination>, where they will join a foster home."
 	passengers 5
 	cargo "Orphanage Belongings" 2
 	to offer
