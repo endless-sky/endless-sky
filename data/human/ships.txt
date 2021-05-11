@@ -795,15 +795,15 @@ ship "Bulk Freighter"
 		"X3200 Ion Steering"
 		"Scram Drive"
 		
-	engine -20 195.5
-	engine 20 195.5
-	gun -23.5 -182 "Sidewinder Missile Launcher"
-	gun 23.5 -182 "Sidewinder Missile Launcher"
-	turret 0 -90.5 "Laser Turret"
-	turret 0 -40.5 "Heavy Anti-Missile Turret"
-	turret 0 9.5 "Laser Turret"
-	turret 0 59.5 "Heavy Anti-Missile Turret"
-	turret 0 109 "Laser Turret"
+	engine -20 198
+	engine 20 198
+	gun -20 -175 "Sidewinder Missile Launcher"
+	gun 20 -175 "Sidewinder Missile Launcher"
+	turret -12 -155 "Laser Turret"
+	turret 12 -155 "Heavy Anti-Missile Turret"
+	turret 0 5 "Laser Turret"
+	turret -30 175 "Heavy Anti-Missile Turret"
+	turret 30 175 "Laser Turret"
 	leak "leak" 40 50
 	leak "flame" 30 80
 	leak "big leak" 50 30
@@ -814,64 +814,6 @@ ship "Bulk Freighter"
 	"final explode" "final explosion large"
 	description "The Bulk Freighter is the ultimate cargo ship, able to carry as much cargo as four ordinary Syndicate Freighters. Its on-board gearing allows it to service even the most primitive colonies, though dock workers in busier spaceports often joke that it would be simpler to carry smaller freighters within its gigantic holds."
 	description "It is also an incredibly slow and difficult to maneuver ship, especially when loaded down with cargo. Some freight caravans use ordinary freighters instead of bulk freighters just to avoid the hassle of constantly having to wait for the Bulk Freighter to properly align itself for hyperspace travel."
-
-ship "Container Transport"
-	sprite "ship/Container Transport"
-	thumbnail "thumbnail/Container Transport"
-	attributes
-		category "Heavy Freighter"
-		"cost" 9300000
-		"shields" 3900
-		"hull" 7700
-		"required crew" 6
-		"bunks" 18
-		"mass" 880
-		"drag" 16
-		"heat dissipation" .55
-		"fuel capacity" 600
-		"cargo space" 600
-		"outfit space" 410
-		"weapon capacity" 180
-		"engine capacity" 85
-		weapon
-			"blast radius" 120
-			"shield damage" 1200
-			"hull damage" 600
-			"hit force" 1800
-	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
-		"Laser Turret" 3
-		"Heavy Anti-Missile Turret" 2
-		
-		"RT-I Radiothermal"
-		"LP144a Battery Pack"
-		"D23-QP Shield Generator"
-		"Laser Rifle"
-		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Scram Drive"
-		
-	engine -20 195.5
-	engine 20 195.5
-	gun -23.5 -182 "Sidewinder Missile Launcher"
-	gun 23.5 -182 "Sidewinder Missile Launcher"
-	turret 0 -90.5 "Laser Turret"
-	turret 0 -40.5 "Heavy Anti-Missile Turret"
-	turret 0 9.5 "Laser Turret"
-	turret 0 59.5 "Heavy Anti-Missile Turret"
-	turret 0 109 "Laser Turret"
-	leak "leak" 40 50
-	leak "flame" 30 80
-	leak "big leak" 50 30
-	explode "small explosion" 15
-	explode "medium explosion" 25
-	explode "large explosion" 35
-	explode "huge explosion" 20
-	"final explode" "final explosion large"
-	description "The Container Transport is a newer, more popular configuration of the Bulk Freighter that replaces the outboard loose cargo holds with intermodal containers for more efficient turnaround in larger, better-equipped ports."
-	description "As with its geared cousin, however, it remains a slow and difficult to maneuver ship, especially when loaded down with cargo. Some freight caravans use ordinary freighters instead of bulk freighters just to avoid the hassle of constantly having to wait for the Bulk Freighter to properly align itself for hyperspace travel."
 
 
 
@@ -996,12 +938,15 @@ ship "Class C Freighter"
 		"X3200 Ion Steering"
 		"Scram Drive"
 		
-	engine -20 195.5
-	engine 20 195.5
-	turret 0 -90.5 "Heavy Laser Turret"
-	turret 0 -40.5 "Heavy Anti-Missile Turret"
-	turret 0 59.5 "Heavy Anti-Missile Turret"
-	turret 0 109 "Heavy Laser Turret"
+	engine -20 198
+	engine 20 198
+#	gun -20 -175 "Sidewinder Missile Launcher"
+#	gun 20 -175 "Sidewinder Missile Launcher"
+	turret -12 -155 "Heavy Laser Turret"
+	turret 12 -155 "Heavy Anti-Missile Turret"
+#	turret 0 5
+	turret -30 175 "Heavy Anti-Missile Turret"
+	turret 30 175 "Heavy Laser Turret"
 	bay "Drone" -60 -115 left
 	bay "Drone" -60 -65 left
 	bay "Drone" -60 -15 left
@@ -1113,6 +1058,66 @@ ship "Combat Drone"
 	gun 0 -29 "Beam Laser"
 	explode "tiny explosion" 15
 	description "Combat drones are pilotless attack ships used primarily by the Republic Navy. Although very weak and easy to destroy, they can be very effective in large numbers. Because drones do not need a cockpit, they can be filled entirely with equipment and solid metal, which makes their hulls stronger than other small ships."
+
+
+
+ship "Container Transport"
+	sprite "ship/Container Transport"
+	thumbnail "thumbnail/Container Transport"
+	attributes
+		category "Heavy Freighter"
+		"cost" 9300000
+		"shields" 3900
+		"hull" 7700
+		"required crew" 6
+		"bunks" 18
+		"mass" 880
+		"drag" 16
+		"heat dissipation" .55
+		"fuel capacity" 600
+		"cargo space" 600
+		"outfit space" 410
+		"weapon capacity" 180
+		"engine capacity" 85
+		weapon
+			"blast radius" 120
+			"shield damage" 1200
+			"hull damage" 600
+			"hit force" 1800
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Laser Turret" 3
+		"Heavy Anti-Missile Turret" 2
+		
+		"RT-I Radiothermal"
+		"LP144a Battery Pack"
+		"D23-QP Shield Generator"
+		"Laser Rifle"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Scram Drive"
+		
+	engine -20 195.5
+	engine 20 195.5
+	gun -23.5 -182 "Sidewinder Missile Launcher"
+	gun 23.5 -182 "Sidewinder Missile Launcher"
+	turret 0 -90.5 "Laser Turret"
+	turret 0 -40.5 "Heavy Anti-Missile Turret"
+	turret 0 9.5 "Laser Turret"
+	turret 0 59.5 "Heavy Anti-Missile Turret"
+	turret 0 109 "Laser Turret"
+	leak "leak" 40 50
+	leak "flame" 30 80
+	leak "big leak" 50 30
+	explode "small explosion" 15
+	explode "medium explosion" 25
+	explode "large explosion" 35
+	explode "huge explosion" 20
+	"final explode" "final explosion large"
+	description "The Container Transport is a newer, more popular configuration of the Bulk Freighter that replaces the outboard loose cargo holds with intermodal containers for more efficient turnaround in larger, better-equipped ports."
+	description "As with its geared cousin, however, it remains a slow and difficult to maneuver ship, especially when loaded down with cargo. Some freight caravans use ordinary freighters instead of bulk freighters just to avoid the hassle of constantly having to wait for the Bulk Freighter to properly align itself for hyperspace travel."
 
 
 
