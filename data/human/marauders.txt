@@ -615,7 +615,7 @@ ship "Marauder Manta"
 		"Plasma Cannon" 2
 		"Particle Cannon" 2
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile" 8
 		"Quad Blaster Turret"
 		
 		"Dwarf Core"
@@ -688,7 +688,7 @@ ship "Marauder Manta" "Marauder Manta (Weapons)"
 		"Particle Cannon" 2
 		"Proton Gun" 2
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile" 8
 		"Heavy Anti-Missile Turret"
 		
 		"Fission Reactor"

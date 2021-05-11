@@ -1237,6 +1237,7 @@ fleet "Large Republic"
 		"Lance" 4
 		"Combat Drone" 6
 		"Cruiser"
+		"Protector (Navy)"
 		"Combat Drone" 4
 		"Frigate" 2
 		"Rainmaker" 2
@@ -1261,6 +1262,7 @@ fleet "Republic Logistics"
 		"Auxiliary"
 		"Dropship" 2
 		"Lance" 2
+		"Protector (Navy)"
 		"Cruiser"
 		"Combat Drone" 4
 		"Frigate"
@@ -1269,6 +1271,7 @@ fleet "Republic Logistics"
 		"Auxiliary (Cargo)"
 		"Dropship" 2
 		"Lance" 2
+		"Protector (Navy)"
 		"Cruiser"
 		"Combat Drone" 4
 		"Frigate"
@@ -1277,6 +1280,7 @@ fleet "Republic Logistics"
 		"Auxiliary (Transport)"
 		"Dropship" 2
 		"Lance" 2
+		"Protector (Navy)"
 		"Cruiser"
 		"Combat Drone" 4
 		"Frigate"
@@ -1287,6 +1291,7 @@ fleet "Republic Logistics"
 		"Lance" 9
 		"Cruiser" 2
 		"Combat Drone" 8
+		"Protector (Navy)"
 	variant 1
 		"Auxiliary (Transport)"
 		"Auxiliary (Cargo)"
@@ -1295,12 +1300,14 @@ fleet "Republic Logistics"
 		"Lance" 6
 		"Cruiser" 2
 		"Combat Drone" 8
+		"Protector (Navy)"
 	variant 1
 		"Auxiliary (Transport)" 3
 		"Dropship" 9
 		"Lance" 3
 		"Cruiser" 2
 		"Combat Drone" 8
+		"Protector (Navy)"
 
 fleet "Navy Surveillance"
 	government "Republic"
@@ -1553,6 +1560,7 @@ fleet "Large Oathkeeper"
 		"Frigate" 2
 		"Rainmaker" 2
 		"Gunboat" 2
+		"Protector (Navy)"
 	variant 1
 		"Cruiser"
 		"Combat Drone" 4

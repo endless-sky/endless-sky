@@ -1138,6 +1138,7 @@ event "navy using mark ii ships"
 			"Lance" 4
 			"Combat Drone" 6
 			"Cruiser (Mark II)"
+			"Protector (Navy)"
 			"Combat Drone" 4
 			"Frigate (Mark II)" 2
 			"Rainmaker (Mark II)" 2
@@ -1188,6 +1189,7 @@ event "navy using mark ii ships"
 			"Lance" 4
 			"Combat Drone" 6
 			"Cruiser (Mark II)"
+			"Protector (Navy)"
 			"Combat Drone" 4
 			"Frigate (Mark II)" 2
 			"Rainmaker (Mark II)" 2

@@ -576,7 +576,7 @@ ship "Berserker"
 	outfits
 		"Energy Blaster" 2
 		"Javelin Pod" 2
-		"Javelin" 400
+		"Javelin" 200
 		
 		"nGVF-CC Fuel Cell"
 		"LP072a Battery Pack"
@@ -975,7 +975,7 @@ ship "Clipper"
 	outfits
 		"Beam Laser" 2
 		"Javelin Pod" 2
-		"Javelin" 400
+		"Javelin" 200
 		
 		"nGVF-DD Fuel Cell"
 		"LP072a Battery Pack"
@@ -1200,7 +1200,7 @@ ship "Dagger"
 	outfits
 		"Beam Laser"
 		"Javelin Pod"
-		"Javelin" 200
+		"Javelin" 100
 		
 		"nGVF-AA Fuel Cell"
 		"Supercapacitor"
@@ -1426,7 +1426,7 @@ ship "Finch"
 	outfits
 		"Beam Laser"
 		"Javelin Pod"
-		"Javelin" 200
+		"Javelin" 100
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"

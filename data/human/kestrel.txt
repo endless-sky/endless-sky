@@ -237,7 +237,7 @@ ship "Unknown Ship Type"
 	outfits
 		"Particle Cannon" 4
 		"Torpedo Launcher" 2
-		"Torpedo" 60
+		"Torpedo" 4
 		"Heavy Laser Turret" 4
 		
 		"Fusion Reactor"
@@ -294,7 +294,7 @@ ship "Kestrel"
 	outfits
 		"Particle Cannon" 4
 		"Torpedo Launcher" 2
-		"Torpedo" 60
+		"Torpedo" 4
 		"Heavy Laser Turret" 4
 		
 		"Fusion Reactor"
