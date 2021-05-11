@@ -956,18 +956,18 @@ ship "Class C Freighter"
 	turret 0 5 "Proton Turret"
 	turret -30 175 "Heavy Anti-Missile Turret"
 	turret 30 175 "Laser Turret"
-	bay "Drone" -60 -115 left
-	bay "Drone" -60 -65 left
-	bay "Drone" -60 -15 left
-	bay "Drone" -60 35 left
-	bay "Drone" -60 85 left
-	bay "Drone" -60 135 left
-	bay "Drone" 60 -115 right
-	bay "Drone" 60 -65 right
-	bay "Drone" 60 -15 right
-	bay "Drone" 60 35 right
-	bay "Drone" 60 85 right
-	bay "Drone" 60 135 right
+	bay "Drone" -60 -118 left
+	bay "Drone" -60 -68 left
+	bay "Drone" -60 -18 left
+	bay "Drone" -60 32 left
+	bay "Drone" -60 82 left
+	bay "Drone" -60 132 left
+	bay "Drone" 60 -118 right
+	bay "Drone" 60 -68 right
+	bay "Drone" 60 -18 right
+	bay "Drone" 60 32 right
+	bay "Drone" 60 82 right
+	bay "Drone" 60 132 right
 	leak "leak" 30 50
 	leak "flame" 50 80
 	leak "big leak" 40 30
@@ -976,7 +976,7 @@ ship "Class C Freighter"
 	explode "large explosion" 35
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description `The Class C "Freighter" is a stealth warship designed by the Syndicate for baiting pirates with the offer of a seemingly helpless, ordinary bulk freighter. Inside, its cargo space has all been converted into drone bays, allowing it to carry a dozen combat drones.`
+	description `The Class C "Freighter" is a stealth warship designed by the Syndicate for baiting pirates with the offer of a seemingly helpless, ordinary bulk freighter. Inside, its cargo space has been converted into drone bays, allowing it to carry a dozen combat drones, while its gearing has been gutted to house extra shield emitters.`
 
 
 
