@@ -467,7 +467,7 @@ outfit "Proton Fragment"
 		"hit effect" "proton impact"
 		"inaccuracy" 2
 		"lifetime" 24
-		"hit force" 6
+		"hit force" 5
 		"shield damage" 6.9
 		"hull damage" 5.4
 
@@ -663,7 +663,7 @@ effect "flamethrower hit"
 
 outfit "Meteor Missile"
 	category "Ammunition"
-	cost 3750
+	cost 3250
 	thumbnail "outfit/meteor"
 	"mass" .75
 	"meteor capacity" -1
@@ -700,14 +700,14 @@ outfit "Meteor Missile Launcher"
 		"die effect" "missile death"
 		"hit effect" "missile hit"
 		"inaccuracy" 5
-		"velocity" 3
+		"velocity" 2.5
 		"lifetime" 0
-		"submunition" "Meteor Fired" 1
-		"reload" 240
+		"submunition" "Meteor Fired" 
+		"reload" 300
 		"firing energy" 2
 		"firing heat" 120
 		"homing" 2
-		"infrared tracking" .7
+		"infrared tracking" .74
 		"shield damage" 539.2
 		"hull damage" 384
 		"missile strength" 11
@@ -741,17 +741,18 @@ outfit "Meteor Triple Launcher"
 		"die effect" "missile death"
 		"hit effect" "missile hit"
 		"inaccuracy" 5
-		"velocity" 3
+		"velocity" 2.5
 		"lifetime" 0
-		"submunition" "Meteor Fired" 1
-		"submunition" "Meteor Dummy" 4
+		"submunition" "Meteor Fired"
 		"reload" 120
 		"burst count" 3
-		"burst reload" 54
+		"burst reload" 45
 		"firing energy" 2
 		"firing heat" 120
 		"homing" 2
-		"infrared tracking" .72
+		"infrared tracking" .74
+		"shield damage" 539.2
+		"hull damage" 384
 		"missile strength" 11
 	description "Meteor Triple Launcher is an advanced Meteor Missile launching platform. While it can't fire Meteors as fast as three regular meteor launcher, it takes up less space and occupies only single weapon port, while still allowing three consequent Meteor launches, before needing to reload."
 
@@ -763,30 +764,22 @@ outfit "Meteor Fired"
 		"die effect" "missile death"
 		"hit effect" "missile hit"
 		"lifetime" 360
-		"acceleration" 0.56
-		"drag" .07
-		"turn" 1.2
+		"acceleration" 0.51
+		"drag" .09
+		"turn" 1.6
 		"homing" 2
-		"infrared tracking" .72
+		"infrared tracking" .74
 		"damage dropoff" 0
-		"damage dropoff" 300
+		"damage dropoff" 240
 		"dropoff modifier" 5
 		"shield damage" 134.8
 		"hull damage" 96
 		"hit force" 108
 		"missile strength" 11
 
-outfit "Meteor Dummy"
-	weapon
-		sprite 
-		"lifetime" 0
-		"safe"
-		"shield damage" 152.8
-		"hull damage" 96
-
 outfit "Sidewinder Missile"
 	category "Ammunition"
-	cost 9600
+	cost 6400
 	thumbnail "outfit/sidewinder"
 	"mass" 0.6
 	"sidewinder capacity" -1
@@ -805,7 +798,7 @@ outfit "Sidewinder Missile Rack"
 outfit "Sidewinder Missile Launcher"
 	category "Secondary Weapons"
 	cost 36000
-	thumbnail "outfit/sidewinder"
+	thumbnail "outfit/sidewinder launcher"
 	"mass" 8
 	"outfit space" -14
 	"weapon capacity" -14
@@ -832,7 +825,7 @@ outfit "Sidewinder Missile Launcher"
 		"firing heat" 55
 		"acceleration" 1.2
 		"drag" .08
-		"turn" 3
+		"turn" 2.5
 		"homing" 4
 		"radar tracking" .95
 		"missile strength" 15
@@ -849,7 +842,7 @@ outfit "Sidewinder LowFuel"
 		"lifetime" 120
 		"acceleration" .1
 		"drag" .03
-		"turn" 1.2
+		"turn" 1.25
 		"homing" 4
 		"radar tracking" .95
 		"shield damage" 425
@@ -889,12 +882,12 @@ outfit "Multiple Sidewinder Launcher"
 		"lifetime" 120
 		"reload" 80
 		"burst count" 5
-		"burst reload" 45
+		"burst reload" 40
 		"firing energy" 2
 		"firing heat" 55
 		"acceleration" 1.2
 		"drag" .08
-		"turn" 3
+		"turn" 2.5
 		"homing" 4
 		"radar tracking" .95
 		"missile strength" 15
@@ -954,8 +947,9 @@ outfit "Javelin Fading"
 		sprite "projectile/javelin"
 		"die effect" "missile death"
 		"hit effect" "tiny explosion"
-		"lifetime" 40
-		"drag" 0.06
+		"lifetime" 45
+		"acceleration" 0.04
+		"drag" 0.05
 		"shield damage" 54
 		"hull damage" 36
 		"hit force" 50
@@ -971,6 +965,43 @@ outfit "Torpedo"
 	"torpedo capacity" -1
 	description "Torpedoes are ammunition for the Torpedo Launcher. Each Torpedo Launcher can hold 6 of them. You cannot install torpedoes unless you have also installed a launcher to fire them from."
 
+outfit "Disposable Torpedo Tube"
+	plural "Torpedoes"
+	category "Secondary Weapon"
+	cost 39600
+	thumbnail "outfit/torpedo"
+	"mass" 9
+	"outfit space" -9
+	"weapon capacity" -9
+	"gun ports" -1
+	weapon
+		sprite "projectile/torpedo"
+			"frame rate" 2
+			"random start frame"
+		sound "torpedo"
+		ammo "Disposeable Torpedo Tube"
+		icon "icon/torpedo"
+		"fire effect" "torpedo fire"
+		"hit effect" "torpedo hit"
+		"die effect" "tiny explosion"
+		"inaccuracy" 10
+		"velocity" 1.5
+		"lifetime" 900
+		"reload" 60000000
+		"firing energy" 10
+		"firing heat" 400
+		"acceleration" .3
+		"drag" .04
+		"turn" 0.6
+		"homing" 3
+		"optical tracking" .4
+		"radar tracking" .6
+		"shield damage" 1575
+		"hull damage" 3825
+		"hit force" 1125
+		"missile strength" 54
+	description "Disposable torpedo tube was developed to allow fighters and interceptors to carry a torpedo or a pair of them into a battle. It comes with a single torpedo, specially modified for a slower launch, installed inside. As the name hints, after launching the torpedo, launching tube will be disposed of."
+
 outfit "Torpedo Storage Rack"
 	category "Ammunition"
 	cost 22400
@@ -984,7 +1015,7 @@ outfit "Torpedo Storage Rack"
 outfit "Torpedo Launcher"
 	category "Secondary Weapons"
 	cost 56000
-	thumbnail "outfit/torpedo"
+	thumbnail "outfit/torpedo launcher"
 	"mass" 17
 	"outfit space" -20
 	"weapon capacity" -20
@@ -1005,15 +1036,15 @@ outfit "Torpedo Launcher"
 		"lifetime" 900
 		"reload" 600
 		"firing energy" 10
-		"firing heat" 45
+		"firing heat" 400
 		"acceleration" .3
 		"drag" .04
-		"turn" 0.5
+		"turn" 0.6
 		"homing" 3
 		"optical tracking" .4
 		"radar tracking" .6
-		"shield damage" 1625
-		"hull damage" 3875
+		"shield damage" 1575
+		"hull damage" 3825
 		"hit force" 1125
 		"missile strength" 54
 	description "Torpedoes are the most powerful homing weapon, but they move slowly enough that moderately fast ships can simply outrun them, making them most useful against large targets or against small ships at times when they are too distracted to dodge. Torpedo launchers are also much larger than other missile systems, so they are most often found in capital ships. They're an optimal finisher weapon - while the damage they deal to shields is barely acceptable for their price, they're the weapon from the era of heavily armoured hulls, and hulls are something they excell against."
@@ -1050,16 +1081,16 @@ outfit "Torpedo Triple Launcher"
 		"burst count" 3
 		"burst reload" 90
 		"firing energy" 10
-		"firing heat" 45
+		"firing heat" 400
 		"acceleration" .3
 		"drag" .04
-		"turn" 0.5
+		"turn" 0.6
 		"homing" 3
 		"optical tracking" .4
 		"radar tracking" .6
-		"shield damage" 1625
-		"hull damage" 3875
-		"hit force" 1125
+		"shield damage" 1575
+		"hull damage" 3825
+		"hit force" 1250
 		"missile strength" 54
 	description "Torpedoes are the most powerful homing weapon, but they move slowly enough that moderately fast ships can simply outrun them, making them most useful against large targets or against small ships at times when they are too distracted to dodge. Torpedo launchers are also much larger than other missile systems, so they are most often found in capital ships. They're an optimal finisher weapon - while the damage they deal to shields is barely acceptable for their price, they're the weapon from the era of heavily armoured hulls, and hulls are something they excell against."
 
@@ -1072,6 +1103,42 @@ outfit "Typhoon Torpedo"
 	"mass" 2
 	"typhoon capacity" -1
 	description "Typhoon Torpedoes are ammunition for the Typhoon Launcher. Each launcher can hold 6 of them. You cannot install Typhoon Torpedoes unless you have also installed a launcher to fire them from."
+
+outfit "Disposable Typhoon Tube"
+	category "Secondary Weapon"
+	cost 61200
+	thumbnail "outfit/typhoon"
+	"mass" 10
+	"outfit space" -10
+	"weapon capacity" -10
+	"gun ports" -1
+	weapon
+		sprite "projectile/typhoon"
+			"frame rate" 4
+			"random start frame"
+		sound "typhoon"
+		ammo "Disposeable Typhoon Tube"
+		icon "icon/typhoon"
+		"fire effect" "typhoon fire"
+		"hit effect" "torpedo hit"
+		"die effect" "tiny explosion"
+		"inaccuracy" 5
+		"velocity" 2.1
+		"lifetime" 1080
+		"reload" 60000000
+		"firing energy" 15
+		"firing heat" 300
+		"acceleration" .3
+		"drag" .045
+		"turn" 0.8
+		"homing" 4
+		"optical tracking" .5
+		"radar tracking" .75
+		"shield damage" 2525
+		"hull damage" 3175
+		"hit force" 1175
+		"missile strength" 56
+	description "Disposable Typhoon Tube was developed to allow fighters and interceptors to carry a typhoon torpedo or a pair of them into a battle. It comes with a single typhoon torpedo, specially modified for a slower launch, installed inside. As the name hints, after launching the torpedo, launching tube will be disposed of."
 
 outfit "Typhoon Storage Tube"
 	category "Ammunition"
@@ -1086,7 +1153,7 @@ outfit "Typhoon Storage Tube"
 outfit "Typhoon Launcher"
 	category "Secondary Weapons"
 	cost 96000
-	thumbnail "outfit/typhoon"
+	thumbnail "outfit/typhoon launcher"
 	"mass" 20
 	"outfit space" -24
 	"weapon capacity" -24
@@ -1107,16 +1174,16 @@ outfit "Typhoon Launcher"
 		"lifetime" 1080
 		"reload" 600
 		"firing energy" 15
-		"firing heat" 55
+		"firing heat" 450
 		"acceleration" .3
 		"drag" .045
-		"turn" 0.75
+		"turn" 0.8
 		"homing" 4
 		"optical tracking" .5
 		"radar tracking" .75
 		"shield damage" 2525
-		"hull damage" 3125
-		"hit force" 1075
+		"hull damage" 3175
+		"hit force" 1175
 		"missile strength" 56
 	description "Typhoon Torpedoes are torpedo technology adapted to the new era; they do considerably more damage to shields than ordinary torpedoes, while doing only marginally less hull damage, and are better at seeking their target. However, they are even slower than regular torpedoes, because they are intended mostly for use against large and slow-moving capital ships. As a result, sufficiently skilled pilots can easily dodge around them."
 
@@ -1152,16 +1219,16 @@ outfit "Typhoon Twin Launcher"
 		"burst count" 2
 		"burst reload" 105
 		"firing energy" 15
-		"firing heat" 55
+		"firing heat" 450
 		"acceleration" .3
 		"drag" .045
-		"turn" 0.75
+		"turn" 0.8
 		"homing" 4
 		"optical tracking" .5
 		"radar tracking" .75
 		"shield damage" 2525
-		"hull damage" 3125
-		"hit force" 1075
+		"hull damage" 3175
+		"hit force" 1175
 		"missile strength" 56
 	description "Typhoon Torpedoes are torpedo technology adapted to the new era; they do considerably more damage to shields than ordinary torpedoes, while doing only marginally less hull damage, and are better at seeking their target. However, they are even slower than regular torpedoes, because they are intended mostly for use against large and slow-moving capital ships. As a result, sufficiently skilled pilots can easily dodge around them."
 
@@ -1204,7 +1271,7 @@ outfit "Heavy Rocket Launcher"
 		"velocity" 4
 		"lifetime" 150
 		"range override" 750
-		"reload" 240
+		"reload" 300
 		"burst count" 2
 		"burst reload" 60
 		"firing energy" 1
