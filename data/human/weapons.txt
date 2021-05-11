@@ -283,7 +283,7 @@ outfit "Electron Beam"
 		"shield damage" 2.4
 		"hull damage" 3.9
 		"energy damage" 0.6
-	description "The Electron Beam is a recent development by the Deep Sky labs, a more powerful weapon with a design similar to their perennially popular laser guns. Unlike laser based weapon, however, electron beam has depolarizing effect on target ship's accumulators, draining its energy."
+	description "The Electron Beam is a recent development by the Deep Sky labs, a more powerful weapon with a design similar to their perennially popular laser guns. Unlike laser based weapon, however, electron beam has depolarizing effect on target ship's accumulators, draining their energy."
 
 outfit "Electron Turret"
 	category "Turrets"
