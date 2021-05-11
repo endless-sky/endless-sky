@@ -762,16 +762,16 @@ ship "Bulk Freighter"
 	thumbnail "thumbnail/bulk freighter"
 	attributes
 		category "Heavy Freighter"
-		"cost" 9500000
+		"cost" 11100000
 		"shields" 4000
 		"hull" 7600
-		"required crew" 6
-		"bunks" 18
+		"required crew" 13
+		"bunks" 21
 		"mass" 870
-		"drag" 15.8
-		"heat dissipation" .5
-		"fuel capacity" 600
-		"cargo space" 600
+		"drag" 14
+		"heat dissipation" .4
+		"fuel capacity" 800
+		"cargo space" 650
 		"outfit space" 410
 		"weapon capacity" 180
 		"engine capacity" 85
@@ -907,18 +907,18 @@ ship "Class C Freighter"
 	thumbnail "thumbnail/bulk freighter"
 	attributes
 		category "Heavy Warship"
-		"cost" 11400000
+		"cost" 13400000
 		"shields" 13500
 		"hull" 7600
 		"required crew" 18
 		"bunks" 43
-		"mass" 810
-		"drag" 16.4
-		"heat dissipation" .5
-		"fuel capacity" 600
+		"mass" 880
+		"drag" 14
+		"heat dissipation" .4
+		"fuel capacity" 800
 		"cargo space" 20
-		"outfit space" 400
-		"weapon capacity" 140
+		"outfit space" 410
+		"weapon capacity" 160
 		"engine capacity" 85
 		weapon
 			"blast radius" 200
@@ -926,27 +926,36 @@ ship "Class C Freighter"
 			"hull damage" 1000
 			"hit force" 3000
 	outfits
-		"Heavy Laser Turret" 2
+		"Laser Turret" 2
 		"Heavy Anti-Missile Turret" 2
+		"Proton Turret"
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
 		
 		"Fission Reactor"
+		"KP-6 Photovoltaic Array"
 		"LP072a Battery Pack"
-		"D94-YV Shield Generator"
-		"Laser Rifle" 5
+		"S-970 Regenerator"
+		"Cooling Ducts"
 		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
+		"Interference Plating"
+		"Outfit Scanner"
+		"Cargo Scanner"
+		"Laser Rifle" 21
+		
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
 		"Scram Drive"
 		
 	engine -20 198
 	engine 20 198
-#	gun -20 -175 "Sidewinder Missile Launcher"
-#	gun 20 -175 "Sidewinder Missile Launcher"
-	turret -12 -155 "Heavy Laser Turret"
+	gun -20 -175 "Meteor Missile Launcher"
+	gun 20 -175 "Meteor Missile Launcher"
+	turret -12 -155 "Laser Turret"
 	turret 12 -155 "Heavy Anti-Missile Turret"
-#	turret 0 5
+	turret 0 5 "Proton Turret"
 	turret -30 175 "Heavy Anti-Missile Turret"
-	turret 30 175 "Heavy Laser Turret"
+	turret 30 175 "Laser Turret"
 	bay "Drone" -60 -115 left
 	bay "Drone" -60 -65 left
 	bay "Drone" -60 -15 left
@@ -1062,20 +1071,20 @@ ship "Combat Drone"
 
 
 ship "Container Transport"
-	sprite "ship/Container Transport"
-	thumbnail "thumbnail/Container Transport"
+	sprite "ship/container transport"
+	thumbnail "thumbnail/container transport"
 	attributes
 		category "Heavy Freighter"
-		"cost" 9300000
+		"cost" 9200000
 		"shields" 3900
 		"hull" 7700
 		"required crew" 6
 		"bunks" 18
 		"mass" 880
-		"drag" 16
-		"heat dissipation" .55
+		"drag" 17.6
+		"heat dissipation" .6
 		"fuel capacity" 600
-		"cargo space" 600
+		"cargo space" 520
 		"outfit space" 410
 		"weapon capacity" 180
 		"engine capacity" 85
