@@ -393,13 +393,13 @@ outfit "Fleet Anti-Missile Turret"
 		"hardpoint sprite" "hardpoint/heavy anti-missile"
 		"hardpoint offset" 5.
 		"hit effect" "large anti-missile"
-		"anti-missile" 28
-		"velocity" 545
+		"anti-missile" 30
+		"velocity" 575
 		"turret turn" 1.8
 		"lifetime" 1
 		"reload" 60
-		"firing energy" 75
-		"firing heat" 240
+		"firing energy" 84
+		"firing heat" 246
 	description "The Fleet Anti-Missile turret boasts the longest range of any human anti missile system, and is powerful enough to defeat most missiles in a single shot. Unlike conventional anti missile systems created solely to protect the ship they're mounted on, the Fleet Anti Missile aims to provide dedicated anti missile ships with the ability to provide wide-area missile denial for a larger fleet. While it is a potent tool for any patrol group, its abysmally low rate of fire and considerable bulk make it unsuitable for single-ship use."
 
 
