@@ -22,7 +22,7 @@ outfit "Energy Blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 2
 		"velocity" 6
-		"lifetime" 95
+		"lifetime" 100
 		"reload" 12
 		"firing energy" 3.6
 		"firing heat" 21
@@ -48,7 +48,7 @@ outfit "Blaster Turret"
 		"inaccuracy" 2
 		"turret turn" 3.2
 		"velocity" 6
-		"lifetime" 95
+		"lifetime" 100
 		"reload" 6
 		"firing energy" 3.6
 		"firing heat" 21
@@ -74,7 +74,7 @@ outfit "Quad Blaster Turret"
 		"inaccuracy" 2
 		"turret turn" 2.7
 		"velocity" 6
-		"lifetime" 95
+		"lifetime" 100
 		"reload" 3
 		"firing energy" 3.6
 		"firing heat" 21
@@ -110,7 +110,7 @@ outfit "Modified Blaster"
 		"firing energy" 10.5
 		"firing heat" 64
 		"shield damage" 16
-		"hull damage" 10
+		"hull damage" 10.5
 	description "Modified Blaster has been tampered with to use over three times more energy, increasing power of the blasts as well as its rate of fire. While its power is rather impressive, it's extreme inaccuracy makes it weapon of limited popularity. Modified Blasters also produce an extreme amount of heat when firing, running the risk that your ship will overheat. "
 
 outfit "Modified Blaster Turret"
@@ -136,7 +136,7 @@ outfit "Modified Blaster Turret"
 		"firing energy" 10.5
 		"firing heat" 64
 		"shield damage" 16
-		"hull damage" 10
+		"hull damage" 10.5
 	description "This is a turreted version of the Modified Blaster, which is an Energy Blaster modified for greater power at the cost of high energy consumption, terrible accuracy, and large amount of waste heat. These turrets are popular with pirates and others who are trying to cram as much firepower into their ships as possible, and often attack large cargo ships, which are hard to miss targets."
 
 
@@ -213,7 +213,7 @@ outfit "Heavy Laser"
 			"frame rate" 1
 		sound "heavy laser"
 		"hit effect" "heavy laser impact"
-		"inaccuracy" .6
+		"inaccuracy" .75
 		"velocity" 400
 		"lifetime" 1
 		"reload" 1
@@ -239,7 +239,7 @@ outfit "Heavy Laser Turret"
 		"hardpoint offset" 8.
 		sound "heavy laser"
 		"hit effect" "heavy laser impact"
-		"inaccuracy" .6
+		"inaccuracy" .75
 		"turret turn" 2.2
 		"velocity" 400
 		"lifetime" 1
@@ -274,7 +274,7 @@ outfit "Electron Beam"
 			"frame rate" 60
 		sound "electron beam"
 		"hit effect" "electron impact"
-		"inaccuracy" .9
+		"inaccuracy" 1.2
 		"velocity" 450
 		"lifetime" 1
 		"reload" 1
@@ -301,7 +301,7 @@ outfit "Electron Turret"
 		"hardpoint offset" 8.
 		sound "electron beam"
 		"hit effect" "electron impact"
-		"inaccuracy" .9
+		"inaccuracy" 1.2
 		"turret turn" 1.2
 		"velocity" 450
 		"lifetime" 1
@@ -394,8 +394,8 @@ outfit "Fleet Anti-Missile Turret"
 		"hardpoint offset" 5.
 		"hit effect" "large anti-missile"
 		"anti-missile" 28
-		"velocity" 535
-		"turret turn" 2.7
+		"velocity" 545
+		"turret turn" 1.8
 		"lifetime" 1
 		"reload" 60
 		"firing energy" 75
@@ -419,7 +419,7 @@ outfit "Particle Cannon"
 		"velocity" 22
 		"lifetime" 35
 		"reload" 20
-		"firing energy" 32
+		"firing energy" 28
 		"firing force" 10
 		"firing heat" 148
 		"hit force" 80
@@ -575,9 +575,9 @@ outfit "Plasma Repeater"
 			"frame rate" 3
 		sound "plasma"
 		"hit effect" "plasma explosion"
-		"lifetime" 35
-		"velocity" 12
-		"inaccuracy" 4
+		"lifetime" 40
+		"velocity" 11.25
+		"inaccuracy" 3.6
 		"reload" 6
 		"firing energy" 12.8
 		"firing heat" 94.5
