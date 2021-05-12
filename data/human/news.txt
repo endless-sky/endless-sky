@@ -289,7 +289,7 @@ news "unemployed youth"
 			"Do you know how lucky you are, that you can visit a different world every week if you want to? I've been stuck on this one filthy little planet my whole life."
 			"If I had enough money, I'd go up to a captain in the spaceport and ask for transport to anywhere else. Nowhere's as bad as this place."
 			"Are you hiring new crewmembers? And are you by chance planning to fly to the Paradise Worlds?"
-			"Beat it, old-timer, I've got more important things to do than chat with you."
+			"Beat it, old-timer. I've got more important things to do than chat with you."
 		word
 			`"`
 
@@ -1019,7 +1019,7 @@ news "human protester"
 			`"`
 		word
 			"Stay with global companies! Don't depend on galactic companies from other worlds!"
-			"Humans were not built for traveling in space. Bad things happen when travelling at 25000 km per second!"
+			"Humans were not built for traveling in space. Bad things happen when travelling at 25,000 kilometers per second!"
 			"If we were meant to be in space, then we would have been born with built-in oxygen bottles!"
 			"Give up your sinful life as spaceship captain and settle on this beautiful planet."
 		word
@@ -1246,7 +1246,7 @@ news "graffiti on spaceport wall"
 			"83 percent of all statistics are just made up."
 			"Ask not what your planet can do for you; ask what you can do for your planet. - based on John F. Kennedy"
 			"Fair is foul, and foul is fair - Shakespeare, Macbeth"
-			"For want of a shoe the crewmember was lost. / For want of a crewmember the ship was lost. / For want of a ship, the fleet was lost. / For want of a fleet, the battle was lost. And all for the want of a shoe."
+			"For want of a shoe, the crewmember was lost. / For want of a crewmember, the ship was lost. / For want of a ship, the fleet was lost. / For want of a fleet, the battle was lost. And all for the want of a shoe."
 			"Shoot for the stars, but make sure you miss or your hull might not last."
 			"Clippy the paperclip was here."
 			"Kilroy was here."
@@ -1270,4 +1270,3 @@ news "graffiti on spaceport wall"
 			"Waldo was here, but where is he now?"
 			"The butler did it!"
 			"Hello Hero, have you heroicly been hammering hostiles?"
-

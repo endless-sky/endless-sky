@@ -1786,7 +1786,7 @@ phrase "friendly civilian"
 		", a company many times smaller than the Syndicate."
 		", a minor company but with much better service than the Syndicate."
 		", a pretty insignificant company located just on one planet."
-		" but next time I'll buy from the Syndicate again."
+		", but next time, I'll buy from the Syndicate again."
 
 phrase "friendly navy"
 	word
