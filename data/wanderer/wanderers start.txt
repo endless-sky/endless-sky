@@ -89,7 +89,7 @@ mission "Wanderers: Hai Diplomat"
 	description "Travel to Hai-home to pick up a diplomat who can help you communicate with the Wanderers."
 	landing
 	source
-		near "Ya Hai" 1 100
+		not planet "Hai-home"
 		attributes "hai"
 	destination "Hai-home"
 	clearance
