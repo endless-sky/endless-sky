@@ -19,6 +19,7 @@ outfit "Ka'het Nullifier"
 	"weapon capacity" -97
 	"gun ports" -1
 	weapon
+		icon "icon/nullifier"
 		sprite "projectile/ionball"
 			"frame rate" 15
 			"rewind"
@@ -36,6 +37,7 @@ outfit "Ka'het Nullifier"
 		"reload" 350
 		"firing energy" 710
 		"firing force" 90
+		"firing fuel" 1
 		"firing heat" 160
 		"turn" 73
 		"shield damage" 120
