@@ -11,7 +11,7 @@
 # Weapons:
 
 outfit "Ka'het Nullifier"
-	category "Guns"
+	category "Secondary Weapons"
 	cost 3062000
 	thumbnail "outfit/ka'het nullifier"
 	"mass" 68
