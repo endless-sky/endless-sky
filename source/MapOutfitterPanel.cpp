@@ -263,21 +263,14 @@ void MapOutfitterPanel::Init()
 					seen.insert(outfit);
 				}
 
-	// Add outfits in storage at the selected planet or system.
+	// Add outfits in storage
 	for(const auto &it : player.PlanetaryStorage())
-	{
-		if(this->selectedPlanet
-			? it.first == this->selectedPlanet
-			: it.first->IsInSystem(selectedSystem))
-		{
-			for(const auto& oit : it.second.Outfits())
-				if(!seen.count(oit.first))
-				{
-					catalog[oit.first->Category()].push_back(oit.first);
-					seen.insert(oit.first);
-				}
-		}
-	}
+		for(const auto& oit : it.second.Outfits())
+			if(!seen.count(oit.first))
+			{
+				catalog[oit.first->Category()].push_back(oit.first);
+				seen.insert(oit.first);
+			}
 
 	// Add all known minables.
 	for(const auto &it : player.Harvested())
