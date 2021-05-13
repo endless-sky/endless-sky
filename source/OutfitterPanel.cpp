@@ -46,6 +46,22 @@ namespace {
 	{
 		return to_string(tons) + (tons == 1 ? " ton" : " tons");
 	}
+	
+	// Retrieve the relevant planetary storage for the given outfit
+	CargoHold *GetContainingStorage(const Planet *planet, map<const Planet *, CargoHold *> systemStorage, const Outfit *outfit)
+	{
+		// Prefer the current planet if it contains the outfit.
+		if(systemStorage.count(planet) && systemStorage[planet]->Get(outfit))
+			return systemStorage[planet];
+		
+		// Search the other planets otherwise.
+		for(auto it: systemStorage)
+			if(it.second->Get(outfit))
+				return it.second;
+		
+		// No storage found that contains the given outfit.
+		return nullptr;
+	}
 }
 
 
@@ -113,8 +129,9 @@ bool OutfitterPanel::HasItem(const string &name) const
 	if(player.Cargo().Get(outfit) && (!playerShip || showForSale))
 		return true;
 	
-	if(player.Storage() && player.Storage()->Get(outfit))
-		return true;
+	for(auto it : player.Storage())
+		if(it.second->Get(outfit))
+			return true;
 	
 	for(const Ship *ship : playerShips)
 		if(ship->OutfitCount(outfit))
@@ -179,7 +196,9 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 	if(!outfitter.Has(outfit) && outfit->Get("installable") >= 0.)
 		stock = max(0, player.Stock(outfit));
 	int cargo = player.Cargo().Get(outfit);
-	int storage = player.Storage() ? player.Storage()->Get(outfit) : 0;
+	int storage = 0;
+	for(auto it: player.Storage())
+		storage += it.second->Get(outfit);
 	
 	string message;
 	if(cargo && storage && stock)
@@ -393,10 +412,11 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 		{
 			if(alreadyOwned)
 			{
-				if(!player.Storage() || !player.Storage()->Get(selectedOutfit))
+				auto containingStorage = GetContainingStorage(planet, player.Storage(), selectedOutfit);
+				if(!containingStorage)
 					continue;
 				player.Cargo().Add(selectedOutfit);
-				player.Storage()->Remove(selectedOutfit);
+				containingStorage->Remove(selectedOutfit);
 			}
 			else
 			{
@@ -421,15 +441,19 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 		
 			if(player.Cargo().Get(selectedOutfit))
 				player.Cargo().Remove(selectedOutfit);
-			else if(player.Storage() && player.Storage()->Get(selectedOutfit))
-				player.Storage()->Remove(selectedOutfit);
-			else if(alreadyOwned || !(player.Stock(selectedOutfit) > 0 || outfitter.Has(selectedOutfit)))
-				break;
 			else
 			{
-				int64_t price = player.StockDepreciation().Value(selectedOutfit, day);
-				player.Accounts().AddCredits(-price);
-				player.AddStock(selectedOutfit, -1);
+				auto containingStorage = GetContainingStorage(planet, player.Storage(), selectedOutfit);
+				if(containingStorage)
+					containingStorage->Remove(selectedOutfit);
+				else if(alreadyOwned || !(player.Stock(selectedOutfit) > 0 || outfitter.Has(selectedOutfit)))
+					break;
+				else
+				{
+					int64_t price = player.StockDepreciation().Value(selectedOutfit, day);
+					player.Accounts().AddCredits(-price);
+					player.AddStock(selectedOutfit, -1);
+				}
 			}
 			ship->AddOutfit(selectedOutfit, 1);
 			int required = selectedOutfit->Get("required crew");
@@ -450,7 +474,7 @@ void OutfitterPanel::FailBuy() const
 	int64_t cost = player.StockDepreciation().Value(selectedOutfit, day);
 	int64_t credits = player.Accounts().Credits();
 	bool isInCargo = player.Cargo().Get(selectedOutfit);
-	bool isInStorage = player.Storage() && player.Storage()->Get(selectedOutfit);
+	bool isInStorage = GetContainingStorage(planet, player.Storage(), selectedOutfit);
 	if(!isInCargo && !isInStorage && cost > credits)
 	{
 		GetUI()->Push(new Dialog("You cannot buy this outfit, because it costs "
@@ -586,7 +610,7 @@ bool OutfitterPanel::CanSell(bool toStorage) const
 	if(player.Cargo().Get(selectedOutfit))
 		return true;
 		
-	if(!toStorage && player.Storage() && player.Storage()->Get(selectedOutfit))
+	if(!toStorage && GetContainingStorage(planet, player.Storage(), selectedOutfit))
 		return true;
 	
 	for(const Ship *ship : playerShips)
@@ -603,7 +627,9 @@ void OutfitterPanel::Sell(bool toStorage)
 	// Retrieve the players storage. If we want to store to storage, then
 	// we also request storage to be created if possible.
 	// Will be nullptr if no storage is available.
-	CargoHold *storage = player.Storage(toStorage);
+	CargoHold *storage = nullptr;
+	if(toStorage)
+		storage = player.Storage(true)[planet];
 	
 	if(player.Cargo().Get(selectedOutfit))
 	{
@@ -682,7 +708,9 @@ void OutfitterPanel::Sell(bool toStorage)
 		return;
 	}
 	
-	if(!toStorage && storage && storage->Get(selectedOutfit))
+	if(!toStorage)
+		storage = GetContainingStorage(planet, player.Storage(), selectedOutfit);
+	if(storage)
 	{
 		storage->Remove(selectedOutfit);
 		int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
@@ -705,7 +733,7 @@ void OutfitterPanel::FailSell(bool toStorage) const
 	else
 	{
 		bool hasOutfit = player.Cargo().Get(selectedOutfit);
-		hasOutfit = hasOutfit || (!toStorage && player.Storage() && player.Storage()->Get(selectedOutfit));
+		hasOutfit = hasOutfit || (!toStorage && GetContainingStorage(planet, player.Storage(), selectedOutfit));
 		for(const Ship *ship : playerShips)
 			if(ship->OutfitCount(selectedOutfit))
 			{

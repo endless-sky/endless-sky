@@ -54,6 +54,15 @@ namespace {
 	{
 		return ship.GetSystem() == here && !ship.IsDisabled();
 	}
+	
+	bool InPlayerStorage(PlayerInfo &player, const Outfit *outfit)
+	{
+		for(auto it : player.Storage(false))
+			if(it.second->Get(outfit))
+				return true;
+		
+		return false;
+	}
 }
 
 
@@ -543,7 +552,7 @@ bool ShopPanel::CanSellMultiple() const
 bool ShopPanel::IsAlreadyOwned() const
 {
 	return (playerShip && selectedOutfit && player.Cargo().Get(selectedOutfit))
-		|| (player.Storage() && player.Storage()->Get(selectedOutfit));
+		|| InPlayerStorage(player, selectedOutfit);
 }
 
 
@@ -587,7 +596,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		GetUI()->Pop(this);
 	}
 	else if(key == 'b' || ((key == 'i' || key == 'c') && selectedOutfit && (player.Cargo().Get(selectedOutfit)
-			|| (player.Storage() && player.Storage()->Get(selectedOutfit)))))
+			|| InPlayerStorage(player, selectedOutfit))))
 	{
 		if(!CanBuy(key == 'i' || key == 'c'))
 			FailBuy();
@@ -871,7 +880,7 @@ int64_t ShopPanel::LicenseCost(const Outfit *outfit) const
 	// sold to the shop, then ignore its license requirement, if any. (Otherwise there
 	// would be no way to use or transfer license-restricted outfits between ships.)
 	if((player.Cargo().Get(outfit) && playerShip) || player.Stock(outfit) > 0 ||
-			(player.Storage() && player.Storage()->Get(outfit)))
+			InPlayerStorage(player, outfit))
 		return 0;
 	
 	const Sale<Outfit> &available = player.GetPlanet()->Outfitter();

@@ -142,8 +142,10 @@ public:
 	// Get cargo information.
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
-	// Get items stored on the player's current planet.
-	CargoHold *Storage(bool forceCreate = false);
+	// Get items stored on the players current planet and in the players
+	// current system. If parameter forceCreate is set to true, then the
+	// storage for the current planet will be created if it doesn't exist.
+	std::map<const Planet *, CargoHold *> &Storage(bool forceCreate = false);
 	// Get items stored on all planets (for map display).
 	const std::map<const Planet *, CargoHold> &PlanetaryStorage() const;
 	// Get cost basis for commodities.
@@ -314,7 +316,10 @@ private:
 	std::vector<std::weak_ptr<Ship>> selectedShips;
 	std::map<const Ship *, int> groups;
 	CargoHold cargo;
+	// All planetary storage and cached data of all storage in the current system.
 	std::map<const Planet *, CargoHold> planetaryStorage;
+	bool systemStorageCached = false;
+	std::map<const Planet *, CargoHold *> systemStorage;
 	std::map<std::string, int64_t> costBasis;
 	
 	std::multimap<Date, std::string> logbook;

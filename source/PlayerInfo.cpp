@@ -622,6 +622,10 @@ const System *PlayerInfo::GetSystem() const
 void PlayerInfo::SetPlanet(const Planet *planet)
 {
 	this->planet = planet;
+
+	// Invalidate cached data based on the (previously set) planet.
+	systemStorage.clear();
+	systemStorageCached = false;
 }
 
 
@@ -1059,16 +1063,34 @@ const CargoHold &PlayerInfo::Cargo() const
 
 
 
-// Get planetary storage information for current planet. Returns a pointer,
-// since we might not be on a planet, or since the storage might be empty.
-CargoHold *PlayerInfo::Storage(bool forceCreate)
+// Get system storage information for current planet and for the other
+// planets in the players system.
+map<const Planet *, CargoHold *> &PlayerInfo::Storage(bool forceCreate)
 {
-	if(planet && (forceCreate || planetaryStorage.count(planet)))
-		return &(planetaryStorage[planet]);
-
-	// Nullptr can be returned when forceCreate is true if there is no
-	// planet; nullptr is the best we can offer in such cases.
-	return nullptr;
+	// If we are not on a planet, then return the empty systemstorage.
+	// Or when we already have a cached systemStorage and no need to update,
+	// then return the cached systemStorage.
+	if(!planet || (!forceCreate && systemStorageCached))
+		return systemStorage;
+	
+	// Perform forceCreate if we need to; create the planetary storage for
+	// the planet and place it in the system cache.
+	if(forceCreate)
+		systemStorage[planet] = &planetaryStorage[planet];
+	
+	// Add other planets from the current system.
+	if(system && !systemStorageCached)
+	{
+		for(auto it : system->Objects())
+		{
+			auto sysPlanet = it.GetPlanet();
+			if(sysPlanet && planetaryStorage.count(sysPlanet))
+				systemStorage[sysPlanet] = &planetaryStorage[sysPlanet];
+		}
+		systemStorageCached = true;
+	}
+	
+	return systemStorage;
 }
 
 
