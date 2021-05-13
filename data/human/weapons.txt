@@ -968,8 +968,7 @@ outfit "Torpedo"
 	description "Torpedoes are ammunition for the Torpedo Launcher. Each Torpedo Launcher can hold 6 of them. You cannot install torpedoes unless you have also installed a launcher to fire them from."
 
 outfit "Disposable Torpedo Tube"
-	plural "Torpedoes"
-	category "Secondary Weapon"
+	category "Secondary Weapons"
 	cost 39600
 	thumbnail "outfit/torpedo"
 	"mass" 9
@@ -1107,7 +1106,7 @@ outfit "Typhoon Torpedo"
 	description "Typhoon Torpedoes are ammunition for the Typhoon Launcher. Each launcher can hold 6 of them. You cannot install Typhoon Torpedoes unless you have also installed a launcher to fire them from."
 
 outfit "Disposable Typhoon Tube"
-	category "Secondary Weapon"
+	category "Secondary Weapons"
 	cost 61200
 	thumbnail "outfit/typhoon"
 	"mass" 10
