@@ -1909,13 +1909,27 @@ phrase "friendly navy"
 	word
 		". "
 	word
-		"Destroying"
-		"Killing"
-		"Imprisoning"
-		"Eliminating"
-		"Expelling"
-		"Fending off"
-		"Driving back"
+		"When it helps your brothers and sisters in arms to"
+		"If such action helps to"
+		"When on duty to"
+		"When it helps to"
+		"But if you ask me; our real job is to"
+		"Our goal however is to"
+		"But our focus should be to"
+		"But only if it helps the Navy to"
+		"But my commander really prefers me to"
+		"But it seems more efficient if we instead"
+		"But the world actually expects us to"
+	word
+		" "
+	word
+		"destroy"
+		"kill"
+		"imprison"
+		"eliminate"
+		"expell"
+		"fend off"
+		"drive back"
 	word
 		" "
 	word
@@ -1924,14 +1938,6 @@ phrase "friendly navy"
 		"our adversaries"
 		"our enemies"
 		"terrorists"
-	word
-		" is "
-	word
-		"preferable"
-		"better"
-		"more efficient"
-		"more desired"
-		"more practical"
 	word
 		"."
 
