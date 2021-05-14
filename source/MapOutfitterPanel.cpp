@@ -208,7 +208,7 @@ void MapOutfitterPanel::DrawItems()
 			}
 			
 			bool isForSale = true;
-			unsigned inStorageInSystem = 0;
+			unsigned storedInSystem = 0;
 			if(player.HasVisited(*selectedSystem))
 			{
 				isForSale = false;
@@ -221,7 +221,7 @@ void MapOutfitterPanel::DrawItems()
 
 					const Planet *planet = object.GetPlanet();
 					if(storage.count(planet))
-						inStorageInSystem += storage.at(planet).Get(outfit);
+						storedInSystem += storage.at(planet).Get(outfit);
 					if(planet->Outfitter().Has(outfit))
 					{
 						isForSale = true;
@@ -229,15 +229,15 @@ void MapOutfitterPanel::DrawItems()
 					}
 				}
 			}
-			if(!isForSale && !inStorageInSystem && onlyShowSoldHere)
+			if(!isForSale && !storedInSystem && onlyShowSoldHere)
 				continue;
 			
 			const std::string storage_details =
-				inStorageInSystem == 0
+				storedInSystem == 0
 				? ""
-				: inStorageInSystem == 1
+				: storedInSystem == 1
 				? "One unit in storage"
-				: Format::Number(inStorageInSystem) + " units in storage";
+				: Format::Number(storedInSystem) + " units in storage";
 			Draw(corner, outfit->Thumbnail(), isForSale, outfit == selected,
 				outfit->Name(), price, info, storage_details);
 			list.push_back(outfit);
