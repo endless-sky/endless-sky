@@ -97,7 +97,8 @@ ship "Argosy"
 	outfits
 		"Energy Blaster" 2
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 8
+		"Meteor Missile Box" 
+		"Meteor Missile" 12
 		"Blaster Turret"
 		"Anti-Missile Turret"
 		
@@ -1801,7 +1802,8 @@ ship "Hauler"
 			"hit force" 900
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 8
+		"Meteor Missile Box"
+		"Meteor Missile" 12
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -1859,7 +1861,8 @@ ship "Hauler II"
 			"hit force" 1200
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 8
+		"Meteor Missile Box"
+		"Meteor Missile" 12
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -1918,7 +1921,8 @@ ship "Hauler III"
 			"hit force" 1500
 	outfits
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 8
+		"Meteor Missile Box"
+		"Meteor Missile" 12
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
