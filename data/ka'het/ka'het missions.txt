@@ -186,7 +186,7 @@ mission "Ringworld Debris: Remnant"
 				`	(Yes.)`
 				`	(Not now.)`
 					defer
-			`	A group of Remnant researchers quickly come to your ship when you mention you've found an odd piece of technology, but look disapointed and some even frown when they see the debris, as you explain the system you found it and how it reacted to being fed some energy.`
+			`	A group of Remnant researchers quickly come to your ship when you mention you've found an odd piece of technology, but look disappointed and some even frown when they see the debris, as you explain the system you found it and how it reacted to being fed some energy.`
 			`	"We've found many fragments like this one drifting in that system over the decades. It could maybe improve our cooling systems, but we could never begin to comprehend how it works," one of them says.`
 			`	They say they don't know any more than you do about the object, but ask that you share with them any information on how it works, should you find out.`
 				decline
