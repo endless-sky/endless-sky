@@ -219,10 +219,11 @@ void MapOutfitterPanel::DrawItems()
 					if(!object.HasSprite() || !object.HasValidPlanet())
 						continue;
 
-					const Planet *planet = object.GetPlanet();
-					if(storage.count(planet))
-						storedInSystem += storage.at(planet).Get(outfit);
-					if(planet->Outfitter().Has(outfit))
+					const Planet &planet = *object.GetPlanet();
+					const auto pit = storage.find(&planet);
+					if(pit != storage.end())
+						storedInSystem += pit->second.Get(outfit);
+					if(planet.Outfitter().Has(outfit))
 					{
 						isForSale = true;
 						break;
