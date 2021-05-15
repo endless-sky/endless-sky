@@ -29167,7 +29167,7 @@ planet Starcross
 planet "Starting Rubin"
 	attributes kimek "coalition station" shipping wealthy
 	landscape land/space3
-	description `Starting Rubin was far from being the first station constructed around the Kimek homeworld, but it is the oldest one to still be on orbit. It was built as an orbital equivalent to the hunger towers found on the planet it orbits, as a safety measure against the disasters that may affect Ki Patek Ka.`
+	description `Starting Rubin was far from being the first station constructed around the Kimek homeworld, but it is the oldest one to still be in orbit. It was built as an orbital equivalent to the hunger towers found on the planet it orbits, as a safety measure against the disasters that may affect Ki Patek Ka.`
 	description `	Since the residents need little of the food produced, it quickly became the station's primary export, transforming it into one of the largest trading hubs of the region. It has also the largest population of any Coalition station, capable of supporting tens of thousands of Kimek.`
 	spaceport `Despite only having the population of a small city, the arrivals deck of Starting Rubin is as crowded as the largest spaceports. Civilian ships belonging to all three Coalition species can be seen arriving or departing every couple minutes. While there doesn't seem to be any military facility, there are some civilian shops on the station, although they sell nothing but few Kimek items.`
 	shipyard Kimek
