@@ -64,7 +64,7 @@ event "label korath space"
 		
 mission "Setar Fort Heating"
 	name "Supplies to <planet>"
-	description "Take <cargo> from the Wanderers to the Kor Efreti on <destination>. Payment is <payment> credits."
+	description "Take <cargo> from the Wanderers to the Kor Efreti on <destination>. Payment is <payment>."
 	minor
 	cargo "heating supplies" 30
 	source
@@ -80,11 +80,11 @@ mission "Setar Fort Heating"
 			choice
 				`	"Yes, that's me."`
 				`	"The one and only."`
-			`	"I am [relieved, happy] to see you, Captain. We have heard of your assistance in our migration here, and I [believe, assume] you have spent some time on Korath worlds. Would you be interested in taking <tons> of [supplies, aid] to <planet>? I can offer you <payment> credits."`
+			`	"I am [relieved, happy] to see you, Captain. We have heard of your assistance in our migration here, and I [believe, assume] you have spent some time on Korath worlds. Would you be interested in taking <tons> of [supplies, aid] to <planet>? I can offer you <payment>."`
 			choice
 				`	"I can do that. Load it up, and I'll be ready to leave."`
 					goto agree
-				`	"Only <payment> credits? That's an unusually low payment for the amount of cargo I'll be carrying."`
+				`	"Only <payment>? That's an unusually low payment for the amount of cargo I'll be carrying."`
 					goto payment
 				`	"What exactly would I be transporting?"`
 				`	"Sorry, but I'm too busy at the moment to take on another job."`
