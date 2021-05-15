@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Updates the version strings, build number, and credits.txt
 
