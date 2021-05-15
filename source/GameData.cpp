@@ -917,7 +917,7 @@ double GameData::SolarWind(const Sprite *sprite)
 
 
 
-// Strings for categories of ships, outfits, etc.
+// Strings for combat rating levels, etc.
 const string &GameData::Rating(const string &type, int level)
 {
 	static const string EMPTY;
@@ -931,7 +931,7 @@ const string &GameData::Rating(const string &type, int level)
 
 
 
-// Get player-defined categories.
+// Strings for ship, bay type, and outfit categories.
 const vector<string> &GameData::Category(const string &type)
 {
 	return categories[type];
@@ -939,7 +939,7 @@ const vector<string> &GameData::Category(const string &type)
 
 
 
-// Get player-defined categories for bay types as a set.
+// Lists for categories as a set.
 const set<string> &GameData::CategorySet(const string &type)
 {
 	static const set<string> categorySet(categories[type].begin(), categories[type].end());
@@ -1158,10 +1158,10 @@ void GameData::LoadFile(const string &path, bool debugMode)
 		else if(key == "category" && node.Size() >= 2)
 		{
 			vector<string> &categoryList = categories[node.Token(1)];
-			// Get the list of categories from data files. If a given category
-			// already exists, it will be moved to the back of the list.
 			for(const DataNode &child : node)
 			{
+				// If a given category already exists, it will be
+				// moved to the back of the list.
 				const auto &it = find(categoryList.begin(), categoryList.end(), child.Token(0));
 				if(it != categoryList.end())
 					categoryList.erase(it);
