@@ -1007,6 +1007,8 @@ news "human tourism"
 			"Can you tell me again which planet this is? No, I'm not lost, I just don't know where I am."
 			"We did a ride on an ancient spacecraft the other day. It was called something like Soyuz or Shuttle Dragon; I don't remember the name exactly, but it was horrible; my back still hurts from the bumpy ride."
 			"I almost missed my transport last week; Someone was wrong on the hypernet and I was in a long heated discussion to correct it."
+			"Hey! Where is platform 5? I need to board there in a few minutes!"
+			"Have you seen my luggage? I'm sure I put it here some minutes ago."
 		word
 			`"`
 
@@ -1214,6 +1216,39 @@ news "human farming in pirate space"
 			"Beneath the exterior of many pirates, there's a person who desperately wishes that they'd never taken that path and could return to living normally. I'm talking from personal experience."
 		word
 			`"`
+
+
+
+news "syndicate pa system"
+	location
+		government "Syndicate"
+		not attributes station
+	name
+		word "Public Announcement System"
+	message
+		word
+			"Attention, baggage should not be left unattended. Any unattended baggage will be auctioned within days."
+			"Attention, factory workers please proceed to the fast-lane immigation desk. Time spent in regular immigration lanes will not be re-imbursed."
+			"Dear spaceship captains, please be aware that our Outfit shops are open all hours of the day. There is never a reason to delay the purchase of your next syndicate equipment."
+			"Dear traveller, we recommend you to have dinner in restaurant The Wing, you will not be disapponted."
+
+
+
+news "touristic pa system"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "deep" "rich" "paradise" "tourism"
+	name
+		word "Public Announcement System"
+	message
+		word
+			"Attention, baggage should not be left unattended. Keep an eye on your belongings at all times."
+			"Attention, note to travellers; the planetary security level has been changed to black."
+			"Be aware that parking restrictions are in effect around the spaceport. Don't leave your personal transport vehicles unattended."
+			"Dear travellers, the spaceport is a strictly no-smoking zone. Thank you for your consideration."
+			"Dear travellers, welcome to our planet. Please remember to synchronize your personal clocks to the local time and to the local night/day cycle duration."
+			"Please stand clear of the doors when the shuttle-train is departing."
+			"This is the final boarding call for passengers Eline, John and Robert. Please proceed to platform 3 for immediate boarding."
 
 
 
