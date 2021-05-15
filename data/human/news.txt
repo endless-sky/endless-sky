@@ -1224,7 +1224,8 @@ news "syndicate pa system"
 		government "Syndicate"
 		not attributes station
 	name
-		word "Public Announcement System"
+		word
+			"Public Announcement System"
 	message
 		word
 			"Attention, baggage should not be left unattended. Any unattended baggage will be auctioned within days."
@@ -1239,7 +1240,8 @@ news "touristic pa system"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "rich" "paradise" "tourism"
 	name
-		word "Public Announcement System"
+		word
+			"Public Announcement System"
 	message
 		word
 			"Attention, baggage should not be left unattended. Keep an eye on your belongings at all times."
