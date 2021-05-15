@@ -478,6 +478,8 @@ news "hyperspace relay engineer"
 			"Hyperspace links don't just allow faster-than-light travel. They also allow near-instantaneous communication, if you have the right sort of relay on both ends."
 			"The hyperspace communications network is a marvel of public infrastructure, but most people just take it for granted."
 			"Hyperspace relays are so integral to society that even pirates don't dare to touch them. They'd easily become the number one enemy of the Republic if they did."
+			"I'm surprised at how many people on earth are still using the old IPv4 protocol, none of the off-earth websites are reachable for them."
+			"Have you ever setup an TCP/IP connection from Bourne to a server on Farpoint? I did and it is a little slow, but it works!"
 		word
 			`"`
 
@@ -1004,6 +1006,7 @@ news "human tourism"
 			"I was really hoping for more aliens in space. What's the point if there's no steamy interspecies romance!?"
 			"Can you tell me again which planet this is? No, I'm not lost, I just don't know where I am."
 			"We did a ride on an ancient spacecraft the other day. It was called something like Soyuz or Shuttle Dragon; I don't remember the name exactly, but it was horrible; my back still hurts from the bumpy ride."
+			"I almost missed my transport last week; Someone was wrong on the hypernet and I was in a long heated discussion to correct it."
 		word
 			`"`
 
