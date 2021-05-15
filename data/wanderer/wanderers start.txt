@@ -89,7 +89,7 @@ mission "Wanderers: Hai Diplomat"
 	description "Travel to Hai-home to pick up a diplomat who can help you communicate with the Wanderers."
 	landing
 	source
-		near "Ya Hai" 1 100
+		not planet "Hai-home"
 		attributes "hai"
 	destination "Hai-home"
 	clearance
@@ -283,7 +283,7 @@ mission "Visit Wanderers Again"
 	source "Greenwater"
 	destination "Vara K'chrai"
 	to offer
-		has "Cultural Data to Greenwater: done"
+		has "Wanderers: Translation Machine: done"
 		has "human cultural data"
 	on offer
 		set "language: Wanderer"
