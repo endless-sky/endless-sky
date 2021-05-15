@@ -55,14 +55,6 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 			REQUIRE( set.IsEmpty() );
 		}
 	}
-	GIVEN( "an empty DataNode" ) {
-		const auto emptyNode = DataNode{};
-		const auto set = ConditionSet{emptyNode};
-		
-		THEN( "no conditions are created" ) {
-			REQUIRE( set.IsEmpty() );
-		}
-	}
 	GIVEN( "a node with no children" ) {
 		auto childlessNode = AsDataNode("never");
 		const auto set = ConditionSet{childlessNode};

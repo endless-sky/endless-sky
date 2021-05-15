@@ -23,6 +23,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Rectangle.h"
 #include "text/WrappedText.h"
 
+#include <vector>
+
 class PlayerInfo;
 class StartConditions;
 class UI;

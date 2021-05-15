@@ -50,7 +50,7 @@ public:
 	
 protected:
 	// Returns true if the child node was handled by this class.
-	bool LoadChild(const DataNode &child);
+	bool LoadChild(const DataNode &child, bool isAddNode, bool isRemoveNode);
 	
 	
 protected:
