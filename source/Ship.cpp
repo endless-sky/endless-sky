@@ -147,10 +147,7 @@ const vector<string> Ship::CATEGORIES = {
 
 
 // Set of ship types that can be carried in bays.
-const set<string> Ship::BAY_TYPES = {
-	"Drone",
-	"Fighter"
-};
+set<string> Ship::BAY_TYPES = {};
 
 
 
@@ -319,12 +316,13 @@ void Ship::Load(const DataNode &node)
 				category = child.Token(1);
 				childOffset += 1;
 			}
-			if(!BAY_TYPES.count(category))
+			if(find(CATEGORIES.begin(), CATEGORIES.end(), category) == CATEGORIES.end())
 			{
 				child.PrintTrace("Warning: Invalid category defined for bay:");
 				continue;
 			}
-			
+			// BAY_TYPES is a set, so no need to check if the type was already present.
+			BAY_TYPES.insert(category);
 			if(!hasBays)
 			{
 				bays.clear();

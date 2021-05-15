@@ -56,8 +56,9 @@ class Ship : public Body, public std::enable_shared_from_this<Ship> {
 public:
 	// These are all the possible category strings for ships.
 	static const std::vector<std::string> CATEGORIES;
-	// Allow retrieving the available bay types for the current game;
-	static const std::set<std::string> BAY_TYPES;
+	// Allow retrieving the available bay types for the current game.
+	// Non-const, generated from the bays we encounter.
+	static std::set<std::string> BAY_TYPES;
 	
 	class Bay {
 	public:
