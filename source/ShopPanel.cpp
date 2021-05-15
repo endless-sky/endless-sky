@@ -57,7 +57,7 @@ namespace {
 	
 	bool InPlayerStorage(PlayerInfo &player, const Outfit *outfit)
 	{
-		for(auto it : player.Storage(false))
+		for(auto &&it : player.Storage(false))
 			if(it.second->Get(outfit))
 				return true;
 		

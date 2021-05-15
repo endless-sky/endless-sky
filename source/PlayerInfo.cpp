@@ -1081,11 +1081,13 @@ map<const Planet *, CargoHold *> &PlayerInfo::Storage(bool forceCreate)
 	// Add other planets from the current system.
 	if(system && !systemStorageCached)
 	{
-		for(auto it : system->Objects())
+		for(auto &&it : system->Objects())
 		{
-			auto sysPlanet = it.GetPlanet();
-			if(sysPlanet && planetaryStorage.count(sysPlanet))
-				systemStorage[sysPlanet] = &planetaryStorage[sysPlanet];
+			if(!it.HasValidPlanet())
+				continue;
+			auto planetIt = planetaryStorage.find(it.GetPlanet());
+			if(planetIt != planetaryStorage.end())
+				systemStorage[planetIt->first] = &(planetIt->second);
 		}
 		systemStorageCached = true;
 	}
