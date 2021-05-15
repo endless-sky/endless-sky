@@ -25,7 +25,10 @@ Most development is done on Linux and Windows, using the [SCons](https://scons.o
 For full installation instructions, consult the [Build Instructions](https://github.com/endless-sky/endless-sky/wiki/BuildInstructions) wiki page. Some additional information may be found in the "readme-developer" text file.
 
 # Contributing
-As a free and open source game, Endless Sky is the product of many peoples' work. Contributions of artwork, storylines, and other writing are most in-demand, while there is a loosely defined [development roadmap](https://github.com/endless-sky/endless-sky/wiki/DevelopmentRoadmap). Those who wish to contribute are encouraged to review the [wiki](https://github.com/endless-sky/endless-sky/wiki), and to post in the [community discord](https://discord.gg/ZeuASSx).
+As a free and open source game, Endless Sky is the product of many peoples' work. Contributions of artwork, storylines, and other writing are most in-demand, while there is a loosely defined [development roadmap](https://github.com/endless-sky/endless-sky/wiki/DevelopmentRoadmap). Those who wish to contribute are encouraged to review the [wiki](https://github.com/endless-sky/endless-sky/wiki), and to post in the [community discord](https://discord.gg/ZeuASSx). Those who prefer to use Steam can use the [steam discussion room](https://steamcommunity.com/app/404410/discussions/).
+
+# Archival
+Endless Sky's main discussion and development area used to be [here on google groups](https://groups.google.com/g/endless-sky) (and an [alternative link](http://groups.google.com/group/endless-sky), but it is no longer used regularly and is included here solely for historical purposes. Note that it may require a google account to view.
 
 # Licensing
 Endless Sky is a free, open source game. The [source code](https://github.com/endless-sky/endless-sky/) is available under the GPL v3 license, and all the artwork is either public domain or released under a variety of Creative Commons licenses. (To determine the copyright status of any of the artwork, consult the [copyright file](https://github.com/endless-sky/endless-sky/blob/master/copyright).)
