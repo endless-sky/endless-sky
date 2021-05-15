@@ -130,7 +130,7 @@ outfit "Small Repair Module"
 	"hull repair rate" .12
 	"hull energy" .12
 	"hull heat" .1
-	description "Arachi ships, which rely more on strong hull than on energy shields, often carry one of these repair modules to allow damaged hull plating to be patched back together on the fly."
+	description "Arach ships, which rely more on strong hull than on energy shields, often carry one of these repair modules to allow damaged hull plating to be patched back together on the fly."
 
 outfit "Large Repair Module"
 	category "Systems"
