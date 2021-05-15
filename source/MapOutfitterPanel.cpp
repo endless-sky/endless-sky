@@ -266,7 +266,7 @@ void MapOutfitterPanel::Init()
 
 	// Add outfits in storage
 	for(const auto &it : player.PlanetaryStorage())
-		for(const auto& oit : it.second.Outfits())
+		for(const auto &oit : it.second.Outfits())
 			if(!seen.count(oit.first))
 			{
 				catalog[oit.first->Category()].push_back(oit.first);
