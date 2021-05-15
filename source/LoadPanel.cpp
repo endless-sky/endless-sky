@@ -34,6 +34,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Rectangle.h"
 #include "ShipyardPanel.h"
 #include "StarField.h"
+#include "StartConditionsPanel.h"
 #include "text/truncate.hpp"
 #include "UI.h"
 
@@ -149,9 +150,10 @@ void LoadPanel::Draw()
 	// The list has space for 14 entries. Alpha should be 100% for Y = -157 to
 	// 103, and fade to 0 at 10 pixels beyond that.
 	Point point(-470., -157. - sideScroll);
+	const double centerY = font.Height() / 2;
 	for(const auto &it : files)
 	{
-		Rectangle zone(point + Point(110., 7.), Point(230., 20.));
+		Rectangle zone(point + Point(110., centerY), Point(230., 20.));
 		bool isHighlighted = (it.first == selectedPilot || (hasHover && zone.Contains(hoverPoint)));
 		
 		double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
@@ -172,7 +174,7 @@ void LoadPanel::Draw()
 		for(const auto &it : files.find(selectedPilot)->second)
 		{
 			const string &file = it.first;
-			Rectangle zone(point + Point(110., 7.), Point(230., 20.));
+			Rectangle zone(point + Point(110., centerY), Point(230., 20.));
 			double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
 			bool isHovering = (alpha && hasHover && zone.Contains(hoverPoint));
 			bool isHighlighted = (file == selectedFile || isHovering);
@@ -206,14 +208,10 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 {
 	if(key == 'n')
 	{
-		player.New();
-		
-		const auto &intro = *GameData::Conversations().Get("intro");
-		if(!intro.IsValidIntro())
-			throw runtime_error("The \"intro\" conversation must contain a \"name\" node");
-		ConversationPanel *panel = new ConversationPanel(player, intro);
-		GetUI()->Push(panel);
-		panel->SetCallback(this, &LoadPanel::OnCallback);
+		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
+		// Request that the player chooses a start scenario.
+		// StartConditionsPanel also handles the case where there's no scenarios.
+		GetUI()->Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), this));
 	}
 	else if(key == 'D' && !selectedPilot.empty())
 	{
@@ -317,6 +315,9 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 bool LoadPanel::Click(int x, int y, int clicks)
 {
+	// When the user clicks, clear the hovered state.
+	hasHover = false;
+	
 	// The first row of each panel is y = -160 to -140.
 	if(y < -160 || y >= (-160 + 14 * 20))
 		return false;
@@ -437,26 +438,6 @@ void LoadPanel::UpdateLists()
 				loadedInfo.Load(Files::Saves() + selectedFile);
 			}
 		}
-	}
-}
-
-
-
-// New player "conversation" callback.
-void LoadPanel::OnCallback(int)
-{
-	GetUI()->Pop(this);
-	GetUI()->Pop(GetUI()->Root().get());
-	gamePanels.Reset();
-	gamePanels.CanSave(true);
-	gamePanels.Push(new MainPanel(player));
-	// Tell the main panel to re-draw itself (and pop up the planet panel).
-	gamePanels.StepAll();
-	// If the starting conditions don't specify any ships, let the player buy one.
-	if(player.Ships().empty())
-	{
-		gamePanels.Push(new ShipyardPanel(player));
-		gamePanels.StepAll();
 	}
 }
 
