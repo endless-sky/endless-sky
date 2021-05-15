@@ -55,7 +55,7 @@ namespace {
 		return ship.GetSystem() == here && !ship.IsDisabled();
 	}
 	
-	bool InPlayerStorage(PlayerInfo &player, const Outfit *outfit)
+	bool InPlayerStorage(PlayerInfo &player, const Outfit &outfit)
 	{
 		for(auto &&it : player.Storage(false))
 			if(it.second->Get(outfit))
