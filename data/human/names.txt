@@ -1799,7 +1799,7 @@ phrase "civilian subphrase 14"
 	word
 		" "
 	word
-		"${somtimes a successor}" 6
+		"${sometimes a successor}" 6
 		"Hu"
 		"Shan"
 		"Tang"
@@ -3207,7 +3207,7 @@ phrase "pirate subphrase 1"
 		"Danegeld"
 		"Terror"
 
-phrase "pirate subphrase 2" 
+phrase "pirate subphrase 2"
 	phrase
 		"pirate adjectives that don't work as titles" 66
 		"pirate adjectives that work as titles" 50
