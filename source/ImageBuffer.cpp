@@ -292,7 +292,7 @@ namespace {
 		int height = cinfo.image_height;
 		// If the buffer is not yet allocated, allocate it.
 		try {
-			buffer.Allocate(width, height);
+			buffer.Allocate(width, height); // ImageBuffer always allocates 32 bits per pixel
 		} catch (const bad_alloc &) {
 			jpeg_destroy_decompress(&cinfo);
 			const string message = "Failed to allocate contiguous memory for \"" + path + "\"";
@@ -312,6 +312,8 @@ namespace {
 			rows[y] = reinterpret_cast<JSAMPLE *>(buffer.Begin(y, frame));
 		
 		while(height)
+			// starts each line at corresponding rows[y] location, each line using
+			// only 3/4 of the space allocated for the line by ImageBuffer
 			height -= jpeg_read_scanlines(&cinfo, &rows.front() + cinfo.output_scanline, height);
 		
 		jpeg_finish_decompress(&cinfo);
@@ -321,6 +323,8 @@ namespace {
 		for (unsigned int y = 0; y < cinfo.image_height; y++)
 		{
 			auto pptr = reinterpret_cast<uint8_t*>(buffer.Begin(y, frame));
+			// expands the 3 byte RBG values in a line into 4-byte RGBA values
+			// using up what was empty space at the end of each line
 			for(int idx = width - 1; idx >= 0; --idx)
 			{
 				pptr[idx * 4 + 0] = pptr[idx * 3 + 0];
