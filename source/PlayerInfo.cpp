@@ -1839,10 +1839,10 @@ bool PlayerInfo::HasSeen(const System &system) const
 	// if a visited system that is non-shrouded is linked to it.
 	if(system.Shrouded())
 		return (system.VisibleNeighbors().count(this->system) || &system == this->system
-			|| any_of(visitedSystems.begin(), visitedSystems.end(), 
-				[&system](const System *s) noexcept -> bool
+			|| any_of(system.Links().begin(), system.Links().end(), 
+				[&](const System *s) noexcept -> bool
 				{
-					return (!s->Shrouded() && s->Links().count(&system));
+					return (!s->Shrouded() && visitedSystems.count(&*s));
 				}));
 	
 	if(seen.count(&system))
