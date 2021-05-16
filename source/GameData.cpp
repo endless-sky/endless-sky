@@ -113,7 +113,7 @@ namespace {
 	Set<News> news;
 	map<string, vector<string>> ratings;
 	
-	map<string, vector<string>> categories;
+	map<GameData::CategoryType, vector<string>> categories;
 	
 	StarField background;
 	
@@ -932,7 +932,7 @@ const string &GameData::Rating(const string &type, int level)
 
 
 // Strings for ship, bay type, and outfit categories.
-const vector<string> &GameData::Category(const string &type)
+const vector<string> &GameData::Category(const CategoryType type)
 {
 	return categories[type];
 }
@@ -1148,7 +1148,19 @@ void GameData::LoadFile(const string &path, bool debugMode)
 		}
 		else if(key == "category" && node.Size() >= 2)
 		{
-			vector<string> &categoryList = categories[node.Token(1)];
+			static const map<string, CategoryType> category = {
+				{"ship", SHIP},
+				{"bay type", BAY_TYPE},
+				{"outfit", OUTFIT}
+			};
+			auto it = category.find(node.Token(1));
+			if(it == category.end())
+			{
+				node.PrintTrace("Skipping unrecognized category:");
+				continue;
+			}
+			
+			vector<string> &categoryList = categories[it->second];
 			for(const DataNode &child : node)
 			{
 				// If a given category already exists, it will be

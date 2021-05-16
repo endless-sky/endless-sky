@@ -293,7 +293,7 @@ bool LocationFilter::IsValid() const
 	if(!shipCategory.empty())
 	{
 		// At least one desired category must be valid.
-		const auto shipCategories = GameData::Category("ship");
+		const auto shipCategories = GameData::Category(GameData::SHIP);
 		auto categoriesSet = set<string>(shipCategories.begin(), shipCategories.end());
 		if(!SetsIntersect(shipCategory, categoriesSet))
 			return false;
