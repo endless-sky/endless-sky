@@ -1838,12 +1838,19 @@ bool PlayerInfo::HasSeen(const System &system) const
 	// Shrouded systems are only seen if they're currently in view range, or
 	// if a visited system that is non-shrouded is linked to it.
 	if(system.Shrouded())
-		return (system.VisibleNeighbors().count(this->system) || &system == this->system
+	{
+		// We always see the system we're in.
+		return &system == this->system
+			// Systems which are shrouded and hidden must be linked to be seen.
+			|| (system.VisibleNeighbors().count(this->system) && !system.Hidden())
 			|| any_of(system.Links().begin(), system.Links().end(), 
 				[&](const System *s) noexcept -> bool
 				{
-					return (!s->Shrouded() && visitedSystems.count(&*s));
-				}));
+					// If we're in a neighboring system then it doesn't matter if
+					// that system is shrouded, we can still see all neighbors.
+					return ((!s->Shrouded() && visitedSystems.count(&*s)) || s == this->system);
+				});
+	}
 	
 	if(seen.count(&system))
 		return true;
