@@ -231,10 +231,12 @@ void Planet::Load(const DataNode &node)
 
 
 
-// Test if this planet has been loaded and it belongs to a valid system (vs. just referred to).
+// Test if this planet has been loaded (vs. just referred to). It must also be located in
+// at least one system, and all systems that claim it must themselves be valid.
 bool Planet::IsValid() const
 {
-	return isDefined && GetSystem() && GetSystem()->IsValid();
+	return isDefined && !systems.empty() && all_of(systems.begin(), systems.end(),
+		[](const System *s) noexcept -> bool { return s->IsValid(); });
 }
 
 

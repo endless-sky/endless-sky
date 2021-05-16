@@ -249,9 +249,9 @@ mission "Small Pirate gambling"
 		conversation
 			`You're having a drink in a dimly lit spaceport bar when you notice a group of young men in crimson leather outfits gambling in a dark corner. The barman eyes them warily. One of them raises his drink and waves you over, beckoning to join their game.`
 			choice
-				`(Join their game.)`
+				`	(Join their game.)`
 					goto gamble
-				`(Ignore them and leave quickly.)`
+				`	(Ignore them and leave quickly.)`
 					defer
 
 			label gamble
@@ -266,9 +266,9 @@ mission "Small Pirate gambling"
 			label "bad luck"
 			`	You're starting to bleed money, with more than 10,000 credits in losses already.`
 			choice
-				`(Call them out on their cheating.)`
+				`	(Call them out on their cheating.)`
 					goto call
-				`(Say nothing and continue playing.)`
+				`	(Say nothing and continue playing.)`
 					goto lose
 
 			label lose
@@ -279,11 +279,11 @@ mission "Small Pirate gambling"
 			`	You confront them on their blatant cheating when the meanest-looking one growls at you, "We're just playin' a game here, see? You'd better shut your big mouth if you know what's good for you! We can make this ugly real fast."`
 			`	The thugs stare at you menacingly and start to reach for their guns.`
 			choice
-				`(Shoot first!)`
+				`	(Shoot first!)`
 					goto shoot
-				`(Grab the pot and run!)`
+				`	(Grab the pot and run!)`
 					goto run
-				`(Let them fleece you.)`
+				`	(Let them fleece me.)`
 					goto lose
 
 			label shoot

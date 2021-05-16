@@ -699,20 +699,27 @@ void Ship::FinishLoading(bool isNewInstance)
 	
 	canBeCarried = BAY_TYPES.count(attributes.Category()) > 0;
 	
-	// Issue warnings if this ship has negative outfit, cargo, weapon, or engine capacity.
+	// Issue warnings if this ship has is misconfigured, e.g. is missing required values
+	// or has negative outfit, cargo, weapon, or engine capacity.
 	string warning;
-	for(const string &attr : set<string>{"outfit space", "cargo space", "weapon capacity", "engine capacity"})
+	for(auto &&attr : set<string>{"outfit space", "cargo space", "weapon capacity", "engine capacity"})
 	{
 		double val = attributes.Get(attr);
 		if(val < 0)
 			warning += attr + ": " + Format::Number(val) + "\n";
 	}
+	if(attributes.Get("drag") <= 0.)
+	{
+		warning += "Defaulting " + string(attributes.Get("drag") ? "invalid" : "missing") + " \"drag\" attribute to 100.0\n";
+		attributes.Set("drag", 100.);
+	}
 	if(!warning.empty())
 	{
 		// This check is mostly useful for variants and stock ships, which have
 		// no names. Print the outfits to facilitate identifying this ship definition.
-		string message = (!name.empty() ? "Ship \"" + name + "\" " : "") + "(" + modelName + "):\n";
-		ostringstream outfitNames("outfits:\n");
+		string message = (!name.empty() ? "Ship \"" + name + "\" " : "") + "(" + VariantName() + "):\n";
+		ostringstream outfitNames;
+		outfitNames << "has outfits:\n";
 		for(const auto &it : outfits)
 			outfitNames << '\t' << it.second << " " + it.first->Name() << endl;
 		Files::LogError(message + warning + outfitNames.str());
@@ -723,8 +730,27 @@ void Ship::FinishLoading(bool isNewInstance)
 	isDisabled = true;
 	isDisabled = IsDisabled();
 	
-	// Cache this ship's jump range so that it doesn't need calculated when needed.
+	// Cache this ship's jump range.
 	jumpRange = JumpRange(false);
+	
+	// A saved ship may have an invalid target system. Since all game data is loaded and all player events are
+	// applied at this point, any target system that is not accessible should be cleared. Note: this does not
+	// account for systems accessible via wormholes, but also does not need to as AI will route the ship properly.
+	if(!isNewInstance && targetSystem)
+	{
+		string message = "Warning: " + string(isYours ? "player-owned " : "NPC ") + modelName + " \"" + name + "\": "
+			"Cannot reach target system \"" + targetSystem->Name();
+		if(!currentSystem)
+		{
+			Files::LogError(message + "\" (no current system).");
+			targetSystem = nullptr;
+		}
+		else if(!currentSystem->Links().count(targetSystem) && (!jumpRange || !currentSystem->JumpNeighbors(jumpRange).count(targetSystem)))
+		{
+			Files::LogError(message + "\" by hyperlink or jump from system \"" + currentSystem->Name() + ".\"");
+			targetSystem = nullptr;
+		}
+	}
 }
 
 
@@ -1380,13 +1406,17 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				double scale = .03 * size + .5;
 				double radius = .2 * size;
 				int debrisCount = attributes.Mass() * .07;
+				
+				// Estimate how many new visuals will be added during destruction.
+				visuals.reserve(visuals.size() + debrisCount + explosionTotal + finalExplosions.size());
+				
 				for(int i = 0; i < debrisCount; ++i)
 				{
 					Angle angle = Angle::Random();
 					Point effectVelocity = velocity + angle.Unit() * (scale * Random::Real());
 					Point effectPosition = position + radius * angle.Unit();
 					
-					visuals.emplace_back(*effect, effectPosition, effectVelocity, angle);
+					visuals.emplace_back(*effect, std::move(effectPosition), std::move(effectVelocity), std::move(angle));
 				}
 				
 				for(unsigned i = 0; i < explosionTotal / 2; ++i)
@@ -1520,7 +1550,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				else
 				{
 					for(const StellarObject &object : currentSystem->Objects())
-						if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+						if(object.HasSprite() && object.HasValidPlanet()
+								&& object.GetPlanet()->HasSpaceport())
 						{
 							target = object.Position();
 							break;
@@ -1854,13 +1885,13 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	
 	// Finally, move the ship and create any movement visuals.
 	position += velocity;
-	if(isUsingAfterburner)
+	if(isUsingAfterburner && !Attributes().AfterburnerEffects().empty())
 		for(const EnginePoint &point : enginePoints)
 		{
 			Point pos = angle.Rotate(point) * Zoom() + position;
 			// Stream the afterburner effects outward in the direction the engines are facing.
 			Point effectVelocity = velocity - 6. * angle.Unit();
-			for(const auto &it : attributes.AfterburnerEffects())
+			for(auto &&it : Attributes().AfterburnerEffects())
 				for(int i = 0; i < it.second; ++i)
 					visuals.emplace_back(*it.first, pos, effectVelocity, angle);
 		}
@@ -2152,7 +2183,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 		SetShipToAssist(shared_ptr<Ship>());
 		SetTargetShip(shared_ptr<Ship>());
 		bool helped = victim->isDisabled;
-		victim->hull = max(victim->hull, victim->MinimumHull());
+		victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->attributes.Get("hull"));
 		victim->isDisabled = false;
 		// Transfer some fuel if needed.
 		if(!victim->JumpsRemaining() && CanRefuel(*victim))
@@ -2666,7 +2697,7 @@ double Ship::TransferFuel(double amount, Ship *to)
 void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 {
 	// Repair up to the point where this ship is just barely not disabled.
-	hull = max(hull, MinimumHull());
+	hull = min(max(hull, MinimumHull() * 1.5), attributes.Get("hull"));
 	isDisabled = false;
 	
 	// Set the new government.
@@ -2827,7 +2858,7 @@ double Ship::JumpFuel(const System *destination) const
 		return HyperdriveFuel();
 	
 	if(attributes.Get("jump drive") && currentSystem->JumpNeighbors(JumpRange()).count(destination))
-		return JumpDriveFuel(linked ? 0. : currentSystem->Position().Distance(destination->Position()));
+		return JumpDriveFuel((linked || currentSystem->JumpRange()) ? 0. : currentSystem->Position().Distance(destination->Position()));
 	
 	// If the given system is not a possible destination, return 0.
 	return 0.;
@@ -3379,12 +3410,19 @@ bool Ship::CanFire(const Weapon *weapon) const
 		return false;
 	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
 	// Ships should not disable themselves, so we check if we stay above minimumHull.
-	if(hull - MinimumHull() <= weapon->FiringHull() + weapon->RelativeFiringHull() * attributes.Get("hull"))
+	if(hull - MinimumHull() < weapon->FiringHull() + weapon->RelativeFiringHull() * attributes.Get("hull"))
 		return false;
 
 	// If a weapon requires heat to fire, (rather than generating heat), we must
 	// have enough heat to spare.
 	if(heat < -(weapon->FiringHeat() + weapon->RelativeFiringHeat() * MaximumHeat()))
+		return false;
+	// Repeat this for various effects which shouldn't drop below 0.
+	if(ionization < -weapon->FiringIon())
+		return false;
+	if(disruption < -weapon->FiringDisruption())
+		return false;
+	if(slowness < -weapon->FiringSlowing())
 		return false;
 	
 	return true;
@@ -3657,7 +3695,7 @@ void Ship::CreateExplosion(vector<Visual> &visuals, bool spread)
 				double scale = .04 * (Width() + Height());
 				effectVelocity += Angle::Random().Unit() * (scale * Random::Real());
 			}
-			visuals.emplace_back(*it->first, angle.Rotate(point) + position, effectVelocity, angle);
+			visuals.emplace_back(*it->first, angle.Rotate(point) + position, std::move(effectVelocity), angle);
 			++explosionCount;
 			return;
 		}
@@ -3681,6 +3719,8 @@ void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double am
 	
 	// Limit the number of sparks, depending on the size of the sprite.
 	amount = min(amount, Width() * Height() * .0006);
+	// Preallocate capacity, in case we're adding a non-trivial number of sparks.
+	visuals.reserve(visuals.size() + static_cast<int>(amount));
 	
 	while(true)
 	{
