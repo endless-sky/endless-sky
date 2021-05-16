@@ -1960,7 +1960,7 @@ void Ship::DoGeneration()
 	}
 	
 	// Handle ionization effects, etc.
-	shield -= discharge;
+	shields -= discharge;
 	hull -= corrosion;
 	energy -= ionization;
 	fuel -= leakage;
