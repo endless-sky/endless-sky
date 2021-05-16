@@ -939,15 +939,6 @@ const vector<string> &GameData::Category(const string &type)
 
 
 
-// Lists for categories as a set.
-const set<string> &GameData::CategorySet(const string &type)
-{
-	static const set<string> categorySet(categories[type].begin(), categories[type].end());
-	return categorySet;
-}
-
-
-
 const StarField &GameData::Background()
 {
 	return background;
@@ -1162,7 +1153,7 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			{
 				// If a given category already exists, it will be
 				// moved to the back of the list.
-				const auto &it = find(categoryList.begin(), categoryList.end(), child.Token(0));
+				const auto it = find(categoryList.begin(), categoryList.end(), child.Token(0));
 				if(it != categoryList.end())
 					categoryList.erase(it);
 				categoryList.push_back(child.Token(0));

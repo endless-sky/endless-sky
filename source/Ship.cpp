@@ -669,21 +669,23 @@ void Ship::FinishLoading(bool isNewInstance)
 	// invalid bays. Add a default "launch effect" to any remaining internal bays if
 	// this ship is crewed (i.e. pressurized).
 	string warning;
-	for(auto it = bays.begin(); it != bays.end(); ++it)
+	const auto bayCategories = GameData::Category("bay type");
+	for(auto it = bays.begin(); it != bays.end(); )
 	{
 		Bay &bay = *it;
-		if(!GameData::CategorySet("bay type").count(bay.category))
+		if(find(bayCategories.begin(), bayCategories.end(), bay.category) == bayCategories.end())
 		{
-			bays.erase(it);
-			--it;
+			it = bays.erase(it);
 			warning += "Invalid bay category: " + bay.category + "\n";
 			continue;
 		}
+		else
+			++it;
 		if(bay.side == Bay::INSIDE && bay.launchEffects.empty() && Crew())
 			bay.launchEffects.emplace_back(GameData::Effects().Get("basic launch"));
 	}
 	
-	canBeCarried = GameData::CategorySet("bay type").count(attributes.Category()) > 0;
+	canBeCarried = find(bayCategories.begin(), bayCategories.end(), attributes.Category()) != bayCategories.end();
 	
 	// Issue warnings if this ship has is misconfigured, e.g. is missing required values
 	// or has negative outfit, cargo, weapon, or engine capacity.
@@ -3159,7 +3161,8 @@ bool Ship::CanCarry(const Ship &ship) const
 
 void Ship::AllowCarried(bool allowCarried)
 {
-	canBeCarried = allowCarried && GameData::CategorySet("bay type").count(attributes.Category()) > 0;
+	const auto bayCategories = GameData::Category("bay type");
+	canBeCarried = allowCarried && find(bayCategories.begin(), bayCategories.end(), attributes.Category()) != bayCategories.end();
 }
 
 

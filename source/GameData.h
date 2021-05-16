@@ -139,8 +139,6 @@ public:
 	static const std::string &Rating(const std::string &type, int level);
 	// Strings for ship, bay type, and outfit categories.
 	static const std::vector<std::string> &Category(const std::string &type);
-	// Lists for categories as a set.
-	static const std::set<std::string> &CategorySet(const std::string &type);
 	
 	static const StarField &Background();
 	static void SetHaze(const Sprite *sprite);
