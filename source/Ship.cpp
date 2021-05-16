@@ -3066,7 +3066,7 @@ void Ship::TakeHazardDamage(vector<Visual> &visuals, const Hazard *hazard, doubl
 // impact, or from firing a weapon, for example.
 void Ship::ApplyForce(const Point &force, bool gravitational)
 {
-	double baseMass = GameData::Gamerule("hit force: base mass")
+	double baseMass = GameData::Gamerule("hit force: base mass");
 	if(gravitational)
 	{
 		// Treat all ships as if they have a mass of 400. This prevents
