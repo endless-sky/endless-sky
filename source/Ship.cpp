@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 
 #include "Audio.h"
+#include "CategoryTypes.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Effect.h"
@@ -669,7 +670,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	// invalid bays. Add a default "launch effect" to any remaining internal bays if
 	// this ship is crewed (i.e. pressurized).
 	string warning;
-	const auto &bayCategories = GameData::Category(GameData::BAY_TYPE);
+	const auto &bayCategories = GameData::Category(CategoryType::BAY_TYPE);
 	for(auto it = bays.begin(); it != bays.end(); )
 	{
 		Bay &bay = *it;
@@ -3161,7 +3162,7 @@ bool Ship::CanCarry(const Ship &ship) const
 
 void Ship::AllowCarried(bool allowCarried)
 {
-	const auto &bayCategories = GameData::Category(GameData::BAY_TYPE);
+	const auto &bayCategories = GameData::Category(CategoryType::BAY_TYPE);
 	canBeCarried = allowCarried && find(bayCategories.begin(), bayCategories.end(), attributes.Category()) != bayCategories.end();
 }
 

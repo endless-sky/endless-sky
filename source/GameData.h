@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef GAME_DATA_H_
 #define GAME_DATA_H_
 
+#include "CategoryTypes.h"
 #include "Sale.h"
 #include "Set.h"
 #include "Trade.h"
@@ -138,7 +139,6 @@ public:
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);
 	// Strings for ship, bay type, and outfit categories.
-	enum CategoryType {SHIP, BAY_TYPE, OUTFIT};
 	static const std::vector<std::string> &Category(const CategoryType type);
 	
 	static const StarField &Background();

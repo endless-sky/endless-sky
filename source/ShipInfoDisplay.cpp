@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipInfoDisplay.h"
 
 #include "text/alignment.hpp"
+#include "CategoryTypes.h"
 #include "Color.h"
 #include "Depreciation.h"
 #include "FillShader.h"
@@ -249,7 +250,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	}
 	
 	// Print the number of bays for each bay-type we have
-	for(auto bayType : GameData::Category(GameData::BAY_TYPE))
+	for(auto bayType : GameData::Category(CategoryType::BAY_TYPE))
 	{
 		int totalBays = ship.BaysTotal(bayType);
 		if(totalBays)

@@ -113,7 +113,7 @@ namespace {
 	Set<News> news;
 	map<string, vector<string>> ratings;
 	
-	map<GameData::CategoryType, vector<string>> categories;
+	map<CategoryType, vector<string>> categories;
 	
 	StarField background;
 	
@@ -1149,9 +1149,9 @@ void GameData::LoadFile(const string &path, bool debugMode)
 		else if(key == "category" && node.Size() >= 2)
 		{
 			static const map<string, CategoryType> category = {
-				{"ship", SHIP},
-				{"bay type", BAY_TYPE},
-				{"outfit", OUTFIT}
+				{"ship", CategoryType::SHIP},
+				{"bay type", CategoryType::BAY_TYPE},
+				{"outfit", CategoryType::OUTFIT}
 			};
 			auto it = category.find(node.Token(1));
 			if(it == category.end())
