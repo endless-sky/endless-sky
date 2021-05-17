@@ -3130,7 +3130,7 @@ mission "Remnant: Keystone Research 1"
 				`	(Decline.)`
 					decline
 			label crystaldecision
-			`	"Great. They would like you to pick up another 19 keystones. Two differences this time: first, we would like you to pick them up from several different planets. And second, by the time you reach Hai space, we will have made arrangements so the shipments will be already paid for and waiting for you. Pick up the first stones on Allhome, then the next set on Greenwater. I will have a list sent to you by the time you reach Greenwater."`
+			`	"Great. They would like you to pick up another 19 keystones. Two differences this time: first, we would like you to pick them up from several different planets. And second, by the time you reach Hai space, we will have made arrangements so the shipments will be already paid for and waiting for you. Pick up the first stones on Greenwater, then the next set on Allhome. I will have a list sent to you by the time you reach Allhome."`
 			`	"That being said, if you happen to pick up any additional keystones, you can turn them into the logistics office. They will handle the distribution and compensate you accordingly."`
 			choice
 				`	"Wait, how will you get this all set up?"`
@@ -3206,9 +3206,6 @@ mission "Remnant: Keystone Research 3"
 			`True to Aeolus' word, there are crates of Hai quantum keystones waiting for you. As you ensure they are securely loaded, your comm system informs you that a message has arrived. It has no indication of provenance, but appears to be a notification that a payment of 250,000 credits marked 'on-assignment allowance' has been made to your account.`
 			`	The attached message is brief and to the point. "Greetings, Captain <first>. Hopefully the shipments were waiting for you. We have made arrangements for samples to be acquired from Makerplace, Stonebreak, Giverstone, Cloudfire, Snowfeather, Icelake, and Heartvalley. Once you have collected all those, head to Newhome. There are a few other places that we are still working to set up, and we should have those ready by the time you reach Newhome."`
 				accept
-	on stopover
-		dialog
-			`You quickly locate and load the shipment of quantum keystones. The packaging comes with brochures and images depicting comfortable-looking Hai relaxing on a spaceship observation deck. "Guaranteed to provide the smoothest flight for your passengers!" reads one of the labels.`
 	on complete
 		payment 250000
 		dialog
@@ -3227,7 +3224,7 @@ mission "Remnant: Keystone Research 3A"
 		has "Remnant: Keystone Research 3: active"
 	on offer
 		conversation
-			`Sure enough, there is a pair of crates waiting for you. This one depicts of a pair of distinguished elderly Hai relaxing in front of a matte painting.`
+			`You quickly locate and load the shipment of quantum keystones. The packaging comes with brochures and images depicting comfortable-looking Hai relaxing on a spaceship observation deck. "Guaranteed to provide the smoothest flight for your passengers!" reads one of the labels.`
 				accept
 
 
@@ -3241,6 +3238,10 @@ mission "Remnant: Keystone Research 3B"
 	cargo "Keystones" 2
 	to offer
 		has "Remnant: Keystone Research 3A: active"
+	on offer
+		conversation
+			`Sure enough, there is a pair of crates waiting for you. This time the brochure depicts a pair of distinguished elderly Hai relaxing in front of a matte painting.`
+				accept
 
 
 
@@ -3314,9 +3315,10 @@ mission "Remnant: Keystone Research 4"
 	cargo "Keystones" 19
 	to offer
 		has "Remnant: Keystone Research 3: done"
-	on accept
-		dialog
+	on offer
+		conversation
 			`As you were reading the previous message, a freight hauler arrives with the last few crates and starts unloading them. Looking over the assembled stack, you note that each crate bears the logos and advertisements for a different organization, shipper, or enterprise. The second message turns out to be a confirmation that you have picked up 19 keystones. While there are no new instructions, the subtext is clear: Time to head back.`
+				accept
 	on complete
 		payment 2000000
 		conversation
@@ -3483,7 +3485,7 @@ mission "Remnant: Keystone Research 7"
 
 mission "Remnant: Cognizance 1"
 	name "Follow-up Observations"
-	description "Plume would like you to do a follow-up visit to the planets in <system>."
+	description "Plume would like you to do a follow-up visit to the planets in Nenia."
 	minor
 	source "Aventine"
 	stopover "Nasqueron"
@@ -3624,8 +3626,6 @@ mission "Remnant: Cognizance 4"
 	description "Prefect Chilia has asked you to track down a Korath fleet before returning to <destination>."
 	source "Caelian"
 	landing
-	waypoint
-		system "Aescolanus"
 	to offer
 		has "Remnant: Cognizance 2: done"
 	on offer
@@ -3649,7 +3649,9 @@ mission "Remnant: Cognizance 4"
 			label next
 			`	 "It is imperative that all the Korath involved in this exploration be located immediately. According to our surveillance, that ship was part of a fleet that recently passed through Parca. Locate the fleet and report back."`
 				accept
-	npc save
+	npc kill
+		to despawn
+			has "remnant: cognizance: found korath fleet"
 		government "Korath"
 		personality staying surveillance
 		system "Aescolanus"
@@ -3661,19 +3663,24 @@ mission "Remnant: Cognizance 4"
 				"Korath Dredger"
 				"Korath Raider (Ember)" 4
 				"Korath Chaser" 12
+		conversation
+			apply
+				set "remnant: cognizance: killed korath fleet"
+			`You've destroyed the Korath fleet that was harassing the void sprites.`
 	on enter "Aescolanus"
+		set "remnant: cognizance: found korath fleet"
 		dialog `You have located the Korath fleet. They do not seem to be going anywhere at the moment.`
-	on abort
-		# No action, the player choose to just walk away from this mission(string)
+	to complete
+		has "remnant: cognizance: found korath fleet"
 	on complete
 		payment 500000
 		conversation
 			`This time, as you complete your post-flight checks you spot Prefect Chilia exiting the Starling next to you and watch as he strides across the pad to your airlock. You hit the open button as he clambers up the ladder. Without a word you pull up the sensor logs from Aescolanus, highlighting the position of the various ships. His eyes flit over the display for a moment, then he nods.`
+			branch destroyed
+				has "remnant: cognizance: killed korath fleet"
 			`	"I will notify a task force. Meet me in the spaceport, and make sure your ship is ready to fight." As he departs from your ship, your commlink beeps with a message that an organization by the name of 'Remnant Logistics' has allocated you an additional <payment>.`
-	on fail
-		payment 500000
-		conversation
-			`This time, as you complete your post-flight checks you spot Prefect Chilia exiting the Starling next to you and watch as he strides across the pad to your airlock. You hit the open button as he clambers up the ladder. Without a word you pull up the sensor logs from Aescolanus, highlighting the destruction of the various ships. His eyes flit over the display for a moment, then he nods.`
+				decline
+			label destroyed
 			`	"You have demonstrated good initiative, however I suspect that it was not the only hunter fleet out there. I will notify a task force. Meet me in the spaceport, and make sure your ship is ready to fight." As he departs from your ship, your commlink beeps with a message that an organization by the name of 'Remnant Logistics' has allocated you an additional <payment>.`
 
 
@@ -3685,15 +3692,11 @@ mission "Remnant: Cognizance 5"
 	source "Caelian"
 	waypoint "Aescolanus"
 	to offer
-		or
-			has "Remnant: Cognizance 4: done"
-			and
-				has "Remnant: Cognizance 4: failed"
-				not "Remnant: Cognizance 4: aborted"
+		has "Remnant: Cognizance 4: done"
 	on offer
 		conversation
 			branch fleetkilled
-				has "Remnant: Cognizance 4: failed"
+				has "remnant: cognizance: killed korath fleet"
 			`When you arrive in the spaceport you find Prefect Chilia in the middle of briefing a group of Remnant and waves you forward as soon as you approach. "Everyone, this is Captain <last>, who has located the Korath hunters twice now and will take the lead on tracking the rest for this mission." As you cross the room to join him, you take a good look at the group. One detail that stands out to you is that every one of Remnant in this group is wearing a thick leather neck wrap that extends right up to their hairline. It has a scaly texture and appears to be pulsing faintly. Unfortunately, you do not have time to ask questions as Chilia has not stopped issuing instructions.`
 				goto next
 			label fleetkilled
@@ -4046,13 +4049,11 @@ mission "Remnant: Cognizance 16"
 	description "The creature seems to be creating constellations and trying to get you to follow it."
 	landing
 	source "Viminal"
-	waypoint
-		system "Peragenor"
-		system "Convector"
-		system "Nenia"
-	destination "Nasqueron"
+	waypoint "Peragenor"
 	to offer
 		has "Remnant: Cognizance 14: done"
+	to complete
+		never
 	on offer
 		conversation
 			`Quite a number of Remnant have gathered around the spaceport watching the movements of the strange creature. It gestures wildly in various ways, then freezes in several different positions with the tips of certain tentacles glowing with energy. You note that several anti-air batteries around the area have their formidable-looking weapons trained on the creature in case it turns violent.`
@@ -4069,13 +4070,6 @@ mission "Remnant: Cognizance 16"
 		dialog `It seems the analysis of the location was right. The creature quickly approaches you and repeats its previous dance, ending up with a slightly different frozen position. From this vantage, you suspect that it is probably Nenia. This time, as you watch it more closely, it looks like it is following in your wake somehow.`
 	on enter Nenia
 		dialog `You have never seen such activity from the void sprites. Many quickly congregate around the strange creature that has been guiding you, and escort it to Nasqueron. It seems like that is where it wanted to be. In the distance, you can see the Archon methodically pulverizing a Korath Raider.`
-	on complete
-		event "remnant: nenia ember waste node"
-		conversation
-			`You follow the creature down through the clouds of Nasqueron and emerge into what can only be described as an amphitheater in the clouds. Thousands of void sprites fill the area, and the creature you have been following floats near the center of it. Your external sensors pick up myriad pulses of energy and eerie whistling noises that seem to resonate in the clouds. As the <ship> moves forward, there is a sudden silence, and the flickers of energy synchronize.`
-			`	You feel a sudden pressure in your mind and a sense of presence as the world around you fades out somewhat.`
-			`	"Know you not, do I. Live creature inside not-quite creature, like ones who flew but not everywhere." You are momentarily disoriented as you look around and see hundreds of views of yourself peering out the cockpit window. "Your intention reverberates - Know and not know - Return with more echoes - Perhaps I shall hear."`
-			`	With that, the pressure vanishes, and you are left staring out the window at the rapidly dispersing flock of void sprites. You aren't entirely sure what the voice meant, but you are certain that the Remnant are going to want to hear about this.`
 
 
 
@@ -4092,7 +4086,16 @@ mission "Remnant: Cognizance 17"
 	source "Nasqueron"
 	destination "Viminal"
 	to offer
-		has "Remnant: Cognizance 16: done"
+		has "Remnant: Cognizance 16: active"
+	on offer
+		fail "Remnant: Cognizance 16"
+		event "remnant: nenia ember waste node"
+		conversation
+			`You follow the creature down through the clouds of Nasqueron and emerge into what can only be described as an amphitheater in the clouds. Thousands of void sprites fill the area, and the creature you have been following floats near the center of it. Your external sensors pick up myriad pulses of energy and eerie whistling noises that seem to resonate in the clouds. As the <ship> moves forward, there is a sudden silence, and the flickers of energy synchronize.`
+			`	You feel a sudden pressure in your mind and a sense of presence as the world around you fades out somewhat.`
+			`	"Know you not, do I. Live creature inside not-quite creature, like ones who flew but not everywhere." You are momentarily disoriented as you look around and see hundreds of views of yourself peering out the cockpit window. "Your intention reverberates - Know and not know - Return with more echoes - Perhaps I shall hear."`
+			`	With that, the pressure vanishes, and you are left staring out the window at the rapidly dispersing flock of void sprites. You aren't entirely sure what the voice meant, but you are certain that the Remnant are going to want to hear about this.`
+				accept
 	
 
 mission "Remnant: Cognizance 18"
