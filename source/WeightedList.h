@@ -1,4 +1,4 @@
-/* Set.h
+/* WeightedList.h
 Copyright (c) 2021 by Jonathan Steck
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Random.h"
 
+#include <stdexcept>
 #include <vector>
 
 
@@ -29,34 +30,39 @@ public:
 	const Type &Get() const;
 	int TotalWeight() const { return total; };
 	
-	typename std::vector<Type>::iterator begin() { return choices.begin(); }
-	typename std::vector<Type>::const_iterator begin() const { return choices.begin(); }
-	typename std::vector<Type>::iterator end() { return choices.end(); }
-	typename std::vector<Type>::const_iterator end() const { return choices.end(); }
+	typename std::vector<Type>::iterator begin() noexcept { return choices.begin(); }
+	typename std::vector<Type>::const_iterator begin() const noexcept { return choices.begin(); }
+	typename std::vector<Type>::iterator end() noexcept { return choices.end(); }
+	typename std::vector<Type>::const_iterator end() const noexcept { return choices.end(); }
 	
-	void clear() { choices.clear(); };
-	int size() const { return choices.size(); };
-	bool empty() const { return choices.empty(); };
-	Type &back() const { return choices.back(); };
+	void clear() noexcept { choices.clear(); total = 0; };
+	int size() const noexcept { return choices.size(); };
+	bool empty() const noexcept { return choices.empty(); };
+	Type &back() noexcept { return choices.back(); };
+	const Type &back() const noexcept { return choices.back(); };
 	
 	template <class ...Args>
-	void emplace_back(Args&&... args);
+	Type &emplace_back(Args&&... args);
 	
 	
 private:
-	mutable std::vector<Type> choices;
-	int total = 0;
+	std::vector<Type> choices;
+	std::size_t total = 0;
 };
 
 
 
 template <class Type>
 template <class ...Args>
-void WeightedList<Type>::emplace_back(Args&&... args)
+Type &WeightedList<Type>::emplace_back(Args&&... args)
 {
 	// Type is responsible for all weights being >= 1.
 	choices.emplace_back(args...);
-	total += choices.back().weight;
+	Type &choice = choices.back();
+	if(choice.weight < 1)
+		throw std::invalid_argument("Invalid weight inserted into weighted list. Weights must be >= 1.");
+	total += choice.weight;
+	return choice;
 }
 
 
