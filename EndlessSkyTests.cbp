@@ -68,12 +68,14 @@
 			<Add directory="C:/dev64/lib" />
 			<Add directory="C:/Program Files/mingw64/x86_64-w64-mingw32/lib" />
 		</Linker>
+		<Unit filename="tests/src/test_Cache.cpp" />
 		<Unit filename="tests/src/test_conditionSet.cpp" />
 		<Unit filename="tests/src/test_datanode.cpp" />
 		<Unit filename="tests/src/test_main.cpp" />
 		<Unit filename="tests/src/test_point.cpp" />
 		<Unit filename="tests/src/test_random.cpp" />
 		<Unit filename="tests/src/test_set.cpp" />
+		<Unit filename="tests/src/text/test_FontUtilities.cpp" />
 		<Unit filename="tests/src/text/test_alignment.cpp" />
 		<Unit filename="tests/src/text/test_displaytext.cpp" />
 		<Unit filename="tests/src/text/test_layout.cpp" />
