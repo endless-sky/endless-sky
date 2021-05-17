@@ -109,7 +109,7 @@ Phrase::Choice::Choice(const DataNode &node, bool isPhraseName)
 	if(node.HasChildren())
 		node.begin()->PrintTrace("Skipping unrecognized child node:");
 	
-	weight = (node.Size() >= 2 ? node.Value(1) : 1);
+	weight = (node.Size() >= 2 ? min(1, static_cast<int>(node.Value(1))) : 1);
 	
 	if(isPhraseName)
 	{
