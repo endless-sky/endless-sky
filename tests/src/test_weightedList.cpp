@@ -76,7 +76,8 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 				CHECK( list.TotalWeight() == 5 );
 			}
 			THEN( "The object at the back of the list is the most recently inserted." ) {
-				CHECK( list.back().value == 2 && list.back().weight == 3 );
+				CHECK( list.back().value == 2 );
+				CHECK( list.back().weight == 3 );
 			}
 		}
 		
