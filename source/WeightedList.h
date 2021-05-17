@@ -54,6 +54,7 @@ template <class Type>
 template <class ...Args>
 void WeightedList<Type>::emplace_back(Args&&... args)
 {
+	// Type is responsible for all weights being >= 1.
 	choices.emplace_back(args...);
 	total += choices.back().weight;
 }
