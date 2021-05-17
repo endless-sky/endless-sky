@@ -2658,14 +2658,6 @@ bool AI::DoEvasive(Ship &ship, Command &command)
 		}
 	}
 	
-	// Special case: if this ship is heroic or nemesis, attack.
-	const auto personality = ship.GetPersonality();
-	if(personality.IsHeroic() || personality.IsNemesis())
-	{
-		Attack(ship, command, *ship.GetTargetShip());
-		return true;
-	}
-	
 	// Evade.
 	if(!paths.empty())
 	{
