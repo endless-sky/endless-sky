@@ -506,7 +506,7 @@ outfit "Plasma Cannon"
 		"hit force" 30
 		"shield damage" 63
 		"hull damage" 25
-		"heat damage" 340
+		"heat damage" 170
 	description "The Plasma Cannon fires bursts of superheated plasma. In addition to damaging your target, these plasma bursts impart a significant amount of heat, especially to a target whose shields are down."
 
 outfit "Plasma Turret"
@@ -535,7 +535,7 @@ outfit "Plasma Turret"
 		"hit force" 30
 		"shield damage" 63
 		"hull damage" 25
-		"heat damage" 340
+		"heat damage" 170
 	description "The Plasma Turret is a pair of plasma cannons mounted on a turret so that they can fire in any direction. It is a fearsome weapon, but only the largest of ships have the space and the energy that it requires."
 
 outfit "Plasma Repeater"
@@ -559,7 +559,7 @@ outfit "Plasma Repeater"
 		"firing heat" 100
 		"shield damage" 33
 		"hull damage" 13
-		"heat damage" 144
+		"heat damage" 72
 		"hit force" 19
 	description `Decades after buying the rights for the Plasma Cannon, Kraz Cybernetics put this weapon on the shelves of every high-end outfitter of the Southern Rim. The repeater has so far proved immensely popular amongst any who braved testing it, and is shaping up to become an essential deterrent for anyone who flaunts their haul for pirate plunder.`
 	description `	Derived from the original Plasma Cannon, this heavier version trades off its larger bursts for a much faster rate of fire. Although the smaller bursts of superheated plasma deal far less damage than its predecessor, the volume of fire results in more damage to the target overall.`
@@ -611,7 +611,7 @@ outfit "Flamethrower Projectile"
 		"lifetime" 22
 		"shield damage" .8
 		"hull damage" .7
-		"heat damage" 200
+		"heat damage" 50
 
 effect "flamethrower die"
 	sprite "effect/explosion/small"
