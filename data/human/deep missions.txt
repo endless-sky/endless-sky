@@ -2274,23 +2274,60 @@ mission "Deep: Scientist Rescue 2"
 
 ship "Bactrian" "Bactrian (Cosmic Devil)"
 	outfits
-		"Inhibitor Cannon" 2
-		"Thrasher Turret" 4
-		"Point Defense Turret"
-		"Heavy Anti-Missile Turret"
-		"Boulder Reactor" 2
-		"Hai Ravine Batteries"
-		"Hai Chasm Batteries"
-		"Hai Diamond Regenerator"
-		"Liquid Helium Cooler"
-		"Outfits Expansion" 4
-		"Quantum Keystone"
-		"Ramscoop"
-		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
-		Hyperdrive
+		`"Bufaer" Atomic Thruster`
+		"Crystal Capacitor"
+		"Fuel Processor"
+		"Interference Plating" 2
+		"Jump Drive"
+		"Korath Banisher"
+		"Korath Grab-Strike" 3
+		"Korath Repeater Rifle" 198
+		"Large Heat Shunt"
+		"Large Radar Jammer"
+		"Nerve Gas" 245
+		"Outfits Expansion" 4
+		"Pulse Rifle" 39
+		"Quantum Keystone"
+		"Scram Drive"
+		"Surveillance Pod" 2
+		"Systems Core (Medium)"
+		"Thrasher Cannon" 3
+		"Thrasher Turret"
+		"Tuning Rifle" 8
+		"Wanderer Anti-Missile"
+		"Wanderer Ramscoop"
+		"White Sun Reactor"
+	gun "Thrasher Cannon"
+	gun -40 -133 "Thrasher Cannon"
+	gun -45 -128 "Thrasher Cannon"
+	turret -22 -148 "Thrasher Turret"
+	turret 26 -80 "Korath Grab-Strike"
+	turret -41 -20 "Korath Grab-Strike"
+	turret 32 -7 "Korath Grab-Strike"
+	turret 53 82 "Wanderer Anti-Missile"
+	turret -37 186 "Korath Banisher"
 
+ship "Korath Chaser" "Korath Chaser (Laughing Point)"
+	outfits
+		`"Basrem" Atomic Steering`
+		`"Basrem" Atomic Thruster`
+		"Korath Fire-Lance"
+		"Pebble Core"
+		"Quantum Keystone"
+		"Small Heat Shunt"
 
+ship "Violin Spider" "Violin Spider (Arogor)"
+	outfits
+		`"Basrem" Atomic Steering`
+		`"Basrem" Atomic Thruster`
+		"Bullfrog Anti-Missile"
+		"Hai Chasm Batteries"
+		"Pebble Core"
+		"Quantum Keystone"
+		Railgun
+		"Railgun Slug" 1000
+		"Small Heat Shunt"
 
 mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 	landing
@@ -2304,6 +2341,18 @@ mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 		government "Pirate"
 		personality staying nemesis
 		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
+	npc
+		government "Pirate"
+		personality staying nemesis
+		ship "Korath Chaser (Laughing Point)" "Tromes"
+	npc
+		government "Pirate"
+		personality staying nemesis
+		ship "Korath Chaser (Laughing Point)" "Tachan"
+	npc
+		government "Pirate"
+		personality staying nemesis
+		ship "Violin Spider (Arogor)" "Arogor"
 		dialog
 			`After the Bactrian is eliminated, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
 			`	"Well done, Captain. Well done at being a thorn in my side. You will pay for this. One day."`
@@ -2365,6 +2414,18 @@ mission "Deep: Scientist Rescue 3A"
 		personality staying nemesis
 		system "Arneb"
 		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
+	npc
+		government "Pirate"
+		personality staying nemesis
+		ship "Korath Chaser (Laughing Point)" "Tromes"
+	npc
+		government "Pirate"
+		personality staying nemesis
+		ship "Korath Chaser (Laughing Point)" "Tachan"
+	npc
+		government "Pirate"
+		personality staying nemesis
+		ship "Violin Spider (Arogor)" "Arogor"
 		dialog
 			`After the Bactrian is eliminated, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
 			`	"Well done, Captain. Well done at being a thorn in my side. You will pay for this. One day."`
