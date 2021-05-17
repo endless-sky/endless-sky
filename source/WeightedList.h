@@ -70,6 +70,9 @@ Type &WeightedList<Type>::emplace_back(Args&&... args)
 template<class Type>
 const Type &WeightedList<Type>::Get() const
 {
+	if(empty())
+		throw std::runtime_error("Attempted to call Get on an empty weighted list.");
+	
 	unsigned index = 0;
 	for(int choice = Random::Int(total); choice >= choices[index].weight; ++index)
 		choice -= choices[index].weight;
