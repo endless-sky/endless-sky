@@ -37,7 +37,7 @@ public:
 // #region unit tests
 SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 	GIVEN( "I didn't mess this up." ) {
-		const auto list = WeightedList<WeightedObject>{};
+		auto list = WeightedList<WeightedObject>{};
 		WHEN( "A new list is created." ) {
 			THEN( "The list is empty." ) {
 				CHECK( list.empty() );
@@ -95,7 +95,7 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 
 SCENARIO( "Test WeightedList error conditions.", "[WeightedList]" ) {
 	GIVEN( "I still didn't mess this up." ) {
-		const auto list = WeightedList<WeightedObject>{};
+		auto list = WeightedList<WeightedObject>{};
 		REQUIRE( list.empty() );
 		WHEN( "Attempting to get from an empty list." ) {
 			THEN( "A runtime error exception is thrown." ) {
