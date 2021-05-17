@@ -2345,13 +2345,7 @@ mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 		government "Pirate"
 		personality staying nemesis
 		ship "Korath Chaser (Laughing Point)" "Tromes"
-	npc
-		government "Pirate"
-		personality staying nemesis
 		ship "Korath Chaser (Laughing Point)" "Tachan"
-	npc
-		government "Pirate"
-		personality staying nemesis
 		ship "Violin Spider (Arogor)" "Arogor"
 		dialog
 			`After the Bactrian is eliminated, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
@@ -2418,13 +2412,7 @@ mission "Deep: Scientist Rescue 3A"
 		government "Pirate"
 		personality staying nemesis
 		ship "Korath Chaser (Laughing Point)" "Tromes"
-	npc
-		government "Pirate"
-		personality staying nemesis
 		ship "Korath Chaser (Laughing Point)" "Tachan"
-	npc
-		government "Pirate"
-		personality staying nemesis
 		ship "Violin Spider (Arogor)" "Arogor"
 		dialog
 			`After the Bactrian is eliminated, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
