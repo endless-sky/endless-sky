@@ -68,7 +68,8 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 			}
 		}
 		
-		WHEN( "Emplaced a second object." ) {
+		WHEN( "Emplaced two objects." ) {
+			list.emplace_back(1, 2);
 			list.emplace_back(2, 3);
 			THEN( "The list has increased in size and weight." ) {
 				CHECK_FALSE( list.empty() );
