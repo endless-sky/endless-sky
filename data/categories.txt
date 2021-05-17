@@ -8,6 +8,7 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+# Ships of these types can be purchased and also used as mission sources.
 category "ship"
 	"Transport"
 	"Light Freighter"
@@ -19,10 +20,12 @@ category "ship"
 	"Fighter"
 	"Drone"
 
+# Ships of these types are able to be carried by other ships.
 category "bay type"
 	"Fighter"
 	"Drone"
-	
+
+# Outfits of these types can be bought and sold via the outfitter.	
 category "outfit"
 	"Guns"
 	"Turrets"
