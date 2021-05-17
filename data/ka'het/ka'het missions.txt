@@ -165,7 +165,7 @@ mission "Ringworld Debris"
 			`When you enter this suspiciously empty system, your attention is drawn to your ship's scanners. The proximity detection system is going off, suggesting that something sizable is close to your ship, although whatever it is you can't see it as you look out your cockpit.`
 			`	You turn your ship around and open the hatch of your cargo hold, catching the object. When you go to inspect it, you see a small, extremely dark piece of debris that almost looks to be covered in vantablack, but it doesn't resemble any alloy you've seen on a spaceship or station, bearing semblance to both a crystal and a metallic structure.`
 			scene "scene/ringworld debris"
-			`	In one particular corner you see that there is a small, barely recognizable tube, badly damaged but with a few intact wires creeping out. After tinkering a bit with the wires you manage to connect the debris to your ship's secondary power systems. It barely uses any energy at all, but you can feel the air around it starting to get slightly colder.`
+			`	In one particular corner you see that there is a small, barely recognizable tube, badly damaged but with a few intact wires creeping out. After tinkering a bit with the wires, you manage to connect the debris to your ship's secondary power systems. It barely uses any energy at all, but you can feel the air around it starting to get slightly colder.`
 			`	You unplug it and store the debris in a separate part of your ship. Maybe some alien species could tell you about it, if you were to bring it to them.`
 		fail
 	to complete
@@ -186,7 +186,7 @@ mission "Ringworld Debris: Remnant"
 				`	(Yes.)`
 				`	(Not now.)`
 					defer
-			`	A group of Remnant researchers quickly come to your ship when you mention you've found an odd piece of technology, but look disapointed and some even frown when they see the debris, as you explain the system you found it and how it reacted to being fed some energy.`
+			`	A group of Remnant researchers quickly come to your ship when you mention you've found an odd piece of technology, but look disappointed and some even frown when they see the debris, as you explain the system you found it and how it reacted to being fed some energy.`
 			`	"We've found many fragments like this one drifting in that system over the decades. It could maybe improve our cooling systems, but we could never begin to comprehend how it works," one of them says.`
 			`	They say they don't know any more than you do about the object, but ask that you share with them any information on how it works, should you find out.`
 				decline

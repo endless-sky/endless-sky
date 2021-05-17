@@ -430,7 +430,7 @@ mission "Coalition Yottrite 7"
 	on offer
 		conversation
 			`You're immediately hailed by House Mallob when your ship is entering the atmosphere of <origin>. They guide you through the planet, bringing you to what looks like a massive, castle-like structure, which appears to be made out of a similar material to that of Arach ships, sitting at the base of a mountain.`
-			`	You land on a large docking area, where some other ships are also conducting business. Stepping off of your ship you're greeted by what is unmistakingly an outfitter, and as you look around you spot some other large buildings dotting the surrounding area, with members of the Coalition going to and from them. The atmosphere feels like that of a small village turned into an outdoor shopping mall.`
+			`	You land on a large docking area, where some other ships are also conducting business. Stepping off of your ship you're greeted by what is unmistakably an outfitter, and as you look around you spot some other large buildings dotting the surrounding area, with members of the Coalition going to and from them. The atmosphere feels like that of a small village turned into an outdoor shopping mall.`
 			`	Shortly after landing you're greeted by an Arach wearing what you judge to be some sort of uniform. He takes a translation device out of his pocket and formally greets you. "Honored to have you as a guest, the great House Mallob is, Captain <first> <last>."`
 			choice
 				`	"Are you the shipwright I'll be taking to Lugglop?"`
@@ -820,7 +820,7 @@ mission "Coalition Outbreak 2"
 
 mission "Coalition Outbreak 3"
 	name "Distribute Vaccines"
-	description "Accompanied by the three volunteer ships, head to the designated Kimek worlds, delivering vaccines to deal with the current viral oubreak, then return to <destination> by <date>."
+	description "Accompanied by the three volunteer ships, head to the designated Kimek worlds, delivering vaccines to deal with the current viral outbreak, then return to <destination> by <date>."
 	deadline
 	cargo "Vaccines" 80
 	to offer
@@ -856,7 +856,7 @@ mission "Coalition Outbreak 3"
 		"coalition jobs" += 3
 		conversation
 			`You and the other captains are told to wait in one of several lines formed here. Your group chats with some others while you wait, and a few mention how their batch of vaccines was delivered to Arach and Saryd space. Apparently many tourists had contracted the disease before flying to those areas.`
-			`	The line moves quickly, and once it's your turn, you're paid <payment>, and then switfly shoved along by the workers who are already paying the person who was behind you.`
+			`	The line moves quickly, and once it's your turn, you're paid <payment>, and then swiftly shoved along by the workers who are already paying the person who was behind you.`
 			`	Looking back at the line, and seeing the sheer number of captains waiting for their share, it's no wonder the Kimek that paid you were extremely brief. As you come back to your ship, you see that a message was sent to you by the Coalition government. More specifically, it appears to have been sent by their Department of Health.`
 			`	"To all captains who helped in dealing with the recent viral outbreak, you have our gratitude and may rest tonight knowing you've contributed to the continued prosperity of our Coalition."`
 
@@ -940,7 +940,7 @@ mission "Saryd Students 1"
 				`	"Sorry, but I'm against smuggling alcohol to students."`
 					decline
 	on visit
-		dialog `You ask around and are directed to a large refinery on one of the more populated cities here. The beer's price is impressive indeed, 5,642 credits per ton, but what is more impressive is how you worried about the students' irresposibility when they asked you to buy this when you yourself aren't responsible enough to have a bit over ten thousand credits to spend. Go earn some money, then return here.`
+		dialog `You ask around and are directed to a large refinery on one of the more populated cities here. The beer's price is impressive indeed, 5,642 credits per ton, but what is more impressive is how you worried about the students' irresponsibility when they asked you to buy this when you yourself aren't responsible enough to have a bit over ten thousand credits to spend. Go earn some money, then return here.`
 	on complete
 		payment -11284
 
