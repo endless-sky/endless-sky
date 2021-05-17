@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef PHRASE_H_
 #define PHRASE_H_
 
+#include "WeightedList.h"
+
 #include <functional>
 #include <string>
 #include <utility>
@@ -59,12 +61,8 @@ private:
 	// A Part represents a the content contained by a "word", "phrase", or "replace" child node.
 	class Part {
 	public:
-		const Choice &Get() const;
-		
-		// The sum of all choice weights.
-		int total = 0;
 		// Sources of text, either literal or via phrase invocation.
-		std::vector<Choice> choices;
+		WeightedList<Choice> choices;
 		// Character sequences that should be replaced, e.g. "llo"->"y"
 		// would transfrom "Hello hello" into "Hey hey"
 		std::vector<std::pair<std::string, std::string>> replacements;
