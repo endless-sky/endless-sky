@@ -60,7 +60,10 @@ Type &WeightedList<Type>::emplace_back(Args&&... args)
 	choices.emplace_back(args...);
 	Type &choice = choices.back();
 	if(choice.weight < 1)
+	{
+		choices.pop_back();
 		throw std::invalid_argument("Invalid weight inserted into weighted list. Weights must be >= 1.");
+	}
 	total += choice.weight;
 	return choice;
 }
