@@ -36,26 +36,26 @@ public:
 
 // #region unit tests
 SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
-	GIVEN( "I didn't mess this up." ) {
-		auto list = WeightedList<WeightedObject>{};
+	auto list = WeightedList<WeightedObject>{};
+	GIVEN( "A new weighted list." ) {
 		WHEN( "A new list is created." ) {
 			THEN( "The list is empty." ) {
-				CHECK( list.empty() );
-				CHECK( list.size() == 0 );
+				REQUIRE( list.empty() );
+				REQUIRE( list.size() == 0 );
 			}
 			THEN( "The list has no weight." ) {
-				CHECK( list.TotalWeight() == 0 );
+				REQUIRE( list.TotalWeight() == 0 );
 			}
 		}
 		
-		WHEN( "Emplaced one object." ) {
+		WHEN( "One object is added to the list." ) {
 			list.emplace_back(1, 2);
 			THEN( "The list is no longer empty." ) {
-				CHECK_FALSE( list.empty() );
-				CHECK( list.size() == 1 );
+				REQUIRE_FALSE( list.empty() );
+				REQUIRE( list.size() == 1 );
 			}
 			THEN( "The list has a total weight of 2." ) {
-				CHECK( list.TotalWeight() == 2 );
+				REQUIRE( list.TotalWeight() == 2 );
 			}
 			THEN( "The list only returns the one object inserted into it." ) {
 				CHECK( list.Get().value == 1 );
@@ -66,38 +66,37 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 				CHECK( list.size() == 1 );
 				CHECK( list.TotalWeight() == 2 );
 			}
-		}
-		
-		WHEN( "Emplaced two objects." ) {
-			list.emplace_back(1, 2);
-			list.emplace_back(2, 3);
-			THEN( "The list has increased in size and weight." ) {
-				CHECK_FALSE( list.empty() );
-				CHECK( list.size() == 2 );
-				CHECK( list.TotalWeight() == 5 );
+			
+			AND_WHEN( "A second object is added to the list." ) {
+				list.emplace_back(2, 3);
+				THEN( "The list has increased in size and weight." ) {
+					REQUIRE_FALSE( list.empty() );
+					REQUIRE( list.size() == 2 );
+					REQUIRE( list.TotalWeight() == 5 );
+				}
+				THEN( "The object at the back of the list is the most recently inserted." ) {
+					CHECK( list.back().value == 2 );
+					CHECK( list.back().weight == 3 );
+				}
 			}
-			THEN( "The object at the back of the list is the most recently inserted." ) {
-				CHECK( list.back().value == 2 );
-				CHECK( list.back().weight == 3 );
-			}
-		}
-		
-		list.clear();
-		WHEN( "The list is cleared" ) {
-			THEN( "The list is now empty." ) {
-				CHECK( list.empty() );
-				CHECK( list.size() == 0 );
-			}
-			THEN( "The list no longer has any weight." ) {
-				CHECK( list.TotalWeight() == 0 );
+			
+			AND_WHEN( "The list is cleared" ) {
+				list.clear();
+				THEN( "The list is now empty." ) {
+					REQUIRE( list.empty() );
+					REQUIRE( list.size() == 0 );
+				}
+				THEN( "The list no longer has any weight." ) {
+					REQUIRE( list.TotalWeight() == 0 );
+				}
 			}
 		}
 	}
 }
 
 SCENARIO( "Test WeightedList error conditions.", "[WeightedList]" ) {
-	GIVEN( "I still didn't mess this up." ) {
-		auto list = WeightedList<WeightedObject>{};
+	auto list = WeightedList<WeightedObject>{};
+	GIVEN( "A new weighed list." ) {
 		REQUIRE( list.empty() );
 		WHEN( "Attempting to get from an empty list." ) {
 			THEN( "A runtime error exception is thrown." ) {
@@ -117,6 +116,11 @@ SCENARIO( "Test WeightedList error conditions.", "[WeightedList]" ) {
 					REQUIRE( false );
 				} catch(const std::invalid_argument &e) {
 					REQUIRE( true );
+					AND_THEN( "The invalid object was not inserted into the list." ) {
+						REQUIRE( list.empty() );
+						REQUIRE( list.size() == 0 );
+						REQUIRE( list.TotalWeight() == 0 );
+					}
 				}
 			}
 		}
