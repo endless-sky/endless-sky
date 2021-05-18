@@ -1944,6 +1944,7 @@ void PlayerInfo::Unvisit(const Planet &planet)
 }
 
 
+
 bool PlayerInfo::HasMapped(int mapSize) const
 {
 	DistanceMap distance(GetSystem(), mapSize);
@@ -1954,6 +1955,8 @@ bool PlayerInfo::HasMapped(int mapSize) const
 	return true;
 }
 
+
+
 void PlayerInfo::Map(int mapSize)
 {
 	DistanceMap distance(GetSystem(), mapSize);
@@ -1962,6 +1965,8 @@ void PlayerInfo::Map(int mapSize)
 			Visit(*system);
 	return;
 }
+
+
 
 // Check if the player has a hyperspace route set.
 bool PlayerInfo::HasTravelPlan() const

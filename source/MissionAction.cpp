@@ -435,14 +435,14 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		int mapSize = it.first->Get("map");
 		if(mapSize > 0)
 		{
-			// Condition is to _not_ have mapped the whole local map
 			if(it.second == 0)
+			// Condition is to _not_ have mapped the whole local map
 			{
 				if(player.HasMapped(mapSize))
 					return false;
-			// Condition is to have mapped at least the given amount of systems
 			}
 			else
+			// Condition is to have mapped at least the given amount of systems
 			{
 				if(!player.HasMapped(it.second))
 					return false;
