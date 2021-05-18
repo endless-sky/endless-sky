@@ -38,14 +38,12 @@ public:
 SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 	auto list = WeightedList<WeightedObject>{};
 	GIVEN( "A new weighted list." ) {
-		WHEN( "A new list is created." ) {
-			THEN( "The list is empty." ) {
-				REQUIRE( list.empty() );
-				REQUIRE( list.size() == 0 );
-			}
-			THEN( "The list has no weight." ) {
-				REQUIRE( list.TotalWeight() == 0 );
-			}
+		THEN( "The list is empty." ) {
+			REQUIRE( list.empty() );
+			REQUIRE( list.size() == 0 );
+		}
+		THEN( "The list has no weight." ) {
+			REQUIRE( list.TotalWeight() == 0 );
 		}
 		
 		WHEN( "One object is added to the list." ) {
