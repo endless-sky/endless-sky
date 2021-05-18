@@ -2276,58 +2276,40 @@ ship "Bactrian" "Bactrian (Cosmic Devil)"
 	outfits
 		`"Bufaer" Atomic Steering`
 		`"Bufaer" Atomic Thruster`
+		"Boulder Reactor"
+		"Chameleon Anti-Missile"
 		"Crystal Capacitor"
-		"Fuel Processor"
+		"Emergency Ramscoop"
+		"Epoch Cell"
+		"Hai Diamond Regenerator"
+		"Hai Fissure Batteries"
+		"Hai Tracker" 56
+		"Hai Tracker Pod"
+		"Inhibitor Cannon" 3
 		"Interference Plating" 2
-		"Jump Drive"
-		"Korath Banisher"
-		"Korath Grab-Strike" 3
-		"Korath Repeater Rifle" 198
-		"Large Heat Shunt"
 		"Large Radar Jammer"
+		"Liquid Helium Cooler"
 		"Nerve Gas" 245
-		"Outfits Expansion" 4
-		"Pulse Rifle" 39
+		"Outfit Scanner"
+		"Outfits Expansion" 5
+		"Point Defense Turret"
+		"Pulse Rifle" 237
+		"Pulse Turret" 4
 		"Quantum Keystone"
 		"Scram Drive"
 		"Surveillance Pod" 2
-		"Systems Core (Medium)"
-		"Thrasher Cannon" 3
-		"Thrasher Turret"
+		"Thermoelectric Cooler"
 		"Tuning Rifle" 8
-		"Wanderer Anti-Missile"
-		"Wanderer Ramscoop"
-		"White Sun Reactor"
-	gun "Thrasher Cannon"
-	gun -40 -133 "Thrasher Cannon"
-	gun -45 -128 "Thrasher Cannon"
-	turret -22 -148 "Thrasher Turret"
-	turret 26 -80 "Korath Grab-Strike"
-	turret -41 -20 "Korath Grab-Strike"
-	turret 32 -7 "Korath Grab-Strike"
-	turret 53 82 "Wanderer Anti-Missile"
-	turret -37 186 "Korath Banisher"
-
-ship "Korath Chaser" "Korath Chaser (Laughing Point)"
-	outfits
-		`"Basrem" Atomic Steering`
-		`"Basrem" Atomic Thruster`
-		"Korath Fire-Lance"
-		"Pebble Core"
-		"Quantum Keystone"
-		"Small Heat Shunt"
-
-ship "Violin Spider" "Violin Spider (Arogor)"
-	outfits
-		`"Basrem" Atomic Steering`
-		`"Basrem" Atomic Thruster`
-		"Bullfrog Anti-Missile"
-		"Hai Chasm Batteries"
-		"Pebble Core"
-		"Quantum Keystone"
-		Railgun
-		"Railgun Slug" 1000
-		"Small Heat Shunt"
+	gun "Inhibitor Cannon"
+	gun "Hai Tracker Pod"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	turret "Point Defense Turret"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Chameleon Anti-Missile"
 
 mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 	landing
@@ -2341,12 +2323,6 @@ mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 		government "Pirate"
 		personality staying nemesis
 		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
-	npc
-		government "Pirate"
-		personality staying nemesis
-		ship "Korath Chaser (Laughing Point)" "Tromes"
-		ship "Korath Chaser (Laughing Point)" "Tachan"
-		ship "Violin Spider (Arogor)" "Arogor"
 		dialog
 			`After the Bactrian is eliminated, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
 			`	"Well done, Captain. Well done at being a thorn in my side. You will pay for this. One day."`
@@ -2408,12 +2384,6 @@ mission "Deep: Scientist Rescue 3A"
 		personality staying nemesis
 		system "Arneb"
 		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
-	npc
-		government "Pirate"
-		personality staying nemesis
-		ship "Korath Chaser (Laughing Point)" "Tromes"
-		ship "Korath Chaser (Laughing Point)" "Tachan"
-		ship "Violin Spider (Arogor)" "Arogor"
 		dialog
 			`After the Bactrian is eliminated, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
 			`	"Well done, Captain. Well done at being a thorn in my side. You will pay for this. One day."`
