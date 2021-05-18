@@ -15,7 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 enum class CategoryType : int {
 	SHIP,
-	BAY_TYPE,
+	BAY,
 	OUTFIT
 };
 

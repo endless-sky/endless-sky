@@ -1150,7 +1150,7 @@ void GameData::LoadFile(const string &path, bool debugMode)
 		{
 			static const map<string, CategoryType> category = {
 				{"ship", CategoryType::SHIP},
-				{"bay type", CategoryType::BAY_TYPE},
+				{"bay type", CategoryType::BAY},
 				{"outfit", CategoryType::OUTFIT}
 			};
 			auto it = category.find(node.Token(1));
