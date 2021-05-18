@@ -28,7 +28,7 @@ template<class Type>
 class WeightedList {
 public:
 	const Type &Get() const;
-	int TotalWeight() const { return total; };
+	std::size_t TotalWeight() const { return total; };
 	
 	typename std::vector<Type>::iterator begin() noexcept { return choices.begin(); }
 	typename std::vector<Type>::const_iterator begin() const noexcept { return choices.begin(); }
@@ -36,7 +36,7 @@ public:
 	typename std::vector<Type>::const_iterator end() const noexcept { return choices.end(); }
 	
 	void clear() noexcept { choices.clear(); total = 0; };
-	int size() const noexcept { return choices.size(); };
+	std::size_t size() const noexcept { return choices.size(); };
 	bool empty() const noexcept { return choices.empty(); };
 	Type &back() noexcept { return choices.back(); };
 	const Type &back() const noexcept { return choices.back(); };
