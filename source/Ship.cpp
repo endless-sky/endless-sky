@@ -1721,6 +1721,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			double cost = attributes.Get("turning energy");
 			if(energy < cost * fabs(commands.Turn()))
 				commands.SetTurn(commands.Turn() * energy / (cost * fabs(commands.Turn())));
+			cost = attributes.Get("turning fuel");
+			if(fuel < cost * fabs(commands.Turn()))
+				commands.SetTurn(commands.Turn() * fuel / (cost * fabs(commands.Turn())));
 			
 			if(commands.Turn())
 			{
@@ -1730,7 +1733,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				// energy or because of tracking a target), only consume a fraction
 				// of the turning energy and produce a fraction of the heat.
 				double scale = fabs(commands.Turn());
-				energy -= scale * cost;
+				energy -= scale * attributes.Get("turning energy");
+				fuel -= scale * attributes.Get("turning fuel");
 				heat += scale * attributes.Get("turning heat");
 				angle += commands.Turn() * TurnRate() * slowMultiplier;
 			}
@@ -1744,6 +1748,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				"thrusting energy" : "reverse thrusting energy");
 			if(energy < cost)
 				thrustCommand *= energy / cost;
+			cost = attributes.Get((thrustCommand > 0.) ?
+				"thrusting fuel" : "reverse thrusting fuel");
+			if(fuel < cost)
+				thrustCommand *= fuel / cost;
 			
 			if(thrustCommand)
 			{
@@ -1755,8 +1763,12 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				if(thrust)
 				{
 					double scale = fabs(thrustCommand);
-					energy -= scale * cost;
-					heat += scale * attributes.Get(isThrusting ? "thrusting heat" : "reverse thrusting heat");
+					energy -= scale * attributes.Get(isThrusting ?
+						"thrusting energy" : "reverse thrusting energy");
+					fuel -= scale * attributes.Get(isThrusting ?
+						"thrusting fuel" : "reverse thrusting fuel");
+					heat += scale * attributes.Get(isThrusting ?
+						"thrusting heat" : "reverse thrusting heat");
 					acceleration += angle.Unit() * (thrustCommand * thrust / mass);
 				}
 			}
