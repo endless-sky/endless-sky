@@ -16,7 +16,7 @@ ship "Aerie"
 		"cost" 3500000
 		"shields" 5700
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.8
+		"shield generation multiplier" 0.4
 		"hull" 1900
 		"required crew" 10
 		"bunks" 28
@@ -81,7 +81,7 @@ ship "Argosy"
 		"cost" 1960000
 		"shields" 4200
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.6
+		"shield generation multiplier" 0.4
 		"hull" 2600
 		"required crew" 4
 		"bunks" 14
@@ -144,7 +144,7 @@ ship "Arrow"
 		"cost" 1200000
 		"shields" 2000
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.9
+		"shield generation multiplier" 0.55
 		"hull" 400
 		"required crew" 1
 		"bunks" 5
@@ -379,7 +379,7 @@ ship "Barb"
 		"cost" 50000
 		"shields" 800
 		"shield generation" 0.016666667
-		"shield generation multiplier" 3.7
+		"shield generation multiplier" 2.1
 		"hull" 200
 		"required crew" 1
 		"bunks" 2
@@ -444,11 +444,11 @@ ship "Bastion"
 		"cost" 3860000
 		"shields" 6500
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.3
+		"shield generation multiplier" 0.2
 		"hull" 5700
 		"required crew" 17
 		"bunks" 40
-		"mass" 580
+		"mass" 480
 		"drag" 10.3
 		"heat dissipation" .5
 		"fuel capacity" 500
@@ -510,7 +510,7 @@ ship "Behemoth"
 		"cost" 10800000
 		"shields" 7200
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.15
+		"shield generation multiplier" 0.075
 		"hull" 6700
 		"required crew" 12
 		"bunks" 30
@@ -573,7 +573,7 @@ ship "Berserker"
 		"cost" 520000
 		"shields" 2100
 		"shield generation" 0.016666667
-		"shield generation multiplier" 2.35
+		"shield generation multiplier" 1.3
 		"hull" 800
 		"required crew" 1
 		"bunks" 2
@@ -626,7 +626,7 @@ ship "Blackbird"
 		"cost" 2230000
 		"shields" 4400
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.6
+		"shield generation multiplier" 0.4
 		"hull" 900
 		"required crew" 3
 		"bunks" 28
@@ -681,7 +681,7 @@ ship "Bounder"
 		"cost" 1140000
 		"shields" 2200
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.9
+		"shield generation multiplier" 0.55
 		"hull" 700
 		"required crew" 1
 		"bunks" 17
@@ -731,7 +731,7 @@ ship "Boxwing"
 		cost 369000
 		"shields" 400
 		"shield generation" 0.016666667
-		"shield generation multiplier" 2.6
+		"shield generation multiplier" 1.55
 		"hull" 800
 		"required crew" 1
 		"bunks" 1
@@ -770,7 +770,7 @@ ship "Bulk Freighter"
 		"cost" 9400000
 		"shields" 4500
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.2
+		"shield generation multiplier" 0.1
 		"hull" 7600
 		"required crew" 6
 		"bunks" 18
@@ -985,7 +985,7 @@ ship "Clipper"
 		"cost" 900000
 		"shields" 2700
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.8
+		"shield generation multiplier" 0.5
 		"hull" 800
 		"required crew" 3
 		"bunks" 9
@@ -1041,7 +1041,7 @@ ship "Combat Drone"
 		"cost" 90000
 		"shields" 200
 		"shield generation" 0.016666667
-		"shield generation multiplier" 2
+		"shield generation multiplier" 1.5
 		"hull" 700
 		"automaton" 1
 		"mass" 18
@@ -1140,7 +1140,7 @@ ship "Corvette"
 		"cost" 4400000
 		"shields" 6800
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.6
+		"shield generation multiplier" 0.3
 		"hull" 800
 		"required crew" 8
 		"bunks" 32
@@ -1280,7 +1280,7 @@ ship "Dagger"
 		"cost" 129000
 		"shields" 1000
 		"shield generation" 0.016666667
-		"shield generation multiplier" 3.7
+		"shield generation multiplier" 2.1
 		"hull" 300
 		"required crew" 1
 		"bunks" 1
@@ -1398,7 +1398,7 @@ ship "Dropship"
 		"cost" 91000
 		"shields" 600
 		"shield generation" 0.016666667
-		"shield generation multiplier" 3.7
+		"shield generation multiplier" 3.2
 		"hull" 200
 		"required crew" 1
 		"bunks" 9
@@ -1444,7 +1444,7 @@ ship "Falcon"
 		"cost" 10900000
 		"shields" 12800
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.1
+		"shield generation multiplier" 0.05
 		"hull" 3700
 		"required crew" 52
 		"bunks" 75
@@ -1513,7 +1513,7 @@ ship "Finch"
 		"cost" 126000
 		"shields" 1100
 		"shield generation" 0.016666667
-		"shield generation multiplier" 3.5
+		"shield generation multiplier" 2.0
 		"hull" 200
 		"required crew" 1
 		"bunks" 1
@@ -1559,7 +1559,7 @@ ship "Firebird"
 		"cost" 3700000
 		"shields" 4800
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.8
+		"shield generation multiplier" 0.4
 		"hull" 4400
 		"required crew" 7
 		"bunks" 22
@@ -1620,7 +1620,7 @@ ship "Flivver"
 		"cost" 180000
 		"shields" 1400
 		"shield generation" 0.016666667
-		"shield generation multiplier" 1.1
+		"shield generation multiplier" 0.65
 		"hull" 200
 		"required crew" 1
 		"bunks" 3
@@ -1668,7 +1668,7 @@ ship "Freighter"
 		"cost" 730000
 		"shields" 2000
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.9
+		"shield generation multiplier" 0.55
 		"hull" 2000
 		"required crew" 2
 		"bunks" 7
@@ -1723,7 +1723,7 @@ ship "Frigate"
 		"cost" 5200000
 		"shields" 5700
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.8
+		"shield generation multiplier" 0.4
 		"hull" 4800
 		"required crew" 21
 		"bunks" 44
@@ -1790,7 +1790,7 @@ ship "Fury"
 		"cost" 490000
 		"shields" 2000
 		"shield generation" 0.016666667
-		"shield generation multiplier" 2.35
+		"shield generation multiplier" 1.3
 		"hull" 400
 		"required crew" 1
 		"bunks" 3
@@ -1844,7 +1844,7 @@ ship "Gunboat"
 		"cost" 3200000
 		"shields" 5800
 		"shield generation" 0.016666667
-		"shield generation multiplier" 1.25
+		"shield generation multiplier" 0.75
 		"hull" 1400
 		"required crew" 7
 		"bunks" 12
@@ -1901,7 +1901,7 @@ ship "Hauler"
 		"cost" 1430000
 		"shields" 2500
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.8
+		"shield generation multiplier" 0.5
 		"hull" 3700
 		"required crew" 3
 		"bunks" 12
@@ -1962,7 +1962,7 @@ ship "Hauler II"
 		"cost" 2340000
 		"shields" 2900
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.5
+		"shield generation multiplier" 0.25
 		"hull" 5200
 		"required crew" 3
 		"bunks" 12
@@ -2024,7 +2024,7 @@ ship "Hauler III"
 		"cost" 3260000
 		"shields" 3300
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.4
+		"shield generation multiplier" 0.2
 		"hull" 6700
 		"required crew" 3
 		"bunks" 12
@@ -2086,7 +2086,7 @@ ship "Hawk"
 		"cost" 670000
 		"shields" 2500
 		"shield generation" 0.016666667
-		"shield generation multiplier" 2.35
+		"shield generation multiplier" 1.3
 		"hull" 500
 		"required crew" 2
 		"bunks" 4
@@ -2136,7 +2136,7 @@ ship "Headhunter"
 		"cost" 1850000
 		"shields" 3800
 		"shield generation" 0.016666667
-		"shield generation multiplier" 1.45
+		"shield generation multiplier" 0.85
 		"hull" 700
 		"required crew" 2
 		"bunks" 4
@@ -2191,7 +2191,7 @@ ship "Heavy Shuttle"
 		"cost" 320000
 		"shields" 700
 		"shield generation" 0.016666667
-		"shield generation multiplier" 1.2
+		"shield generation multiplier" 0.7
 		"hull" 700
 		"required crew" 1
 		"bunks" 8
@@ -2236,7 +2236,7 @@ ship "Lance"
 		"cost" 95000
 		"shields" 900
 		"shield generation" 0.016666667
-		"shield generation multiplier" 3.7
+		"shield generation multiplier" 2.1
 		"hull" 450
 		"required crew" 1
 		"bunks" 1
@@ -2283,7 +2283,7 @@ ship "Leviathan"
 		"cost" 9800000
 		"shields" 11200
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.2
+		"shield generation multiplier" 0.1
 		"hull" 8200
 		"required crew" 43
 		"bunks" 64
@@ -2345,7 +2345,7 @@ ship "Manta"
 		"cost" 3400000
 		"shields" 5900
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.8
+		"shield generation multiplier" 0.4
 		"hull" 1500
 		"required crew" 6
 		"bunks" 10
@@ -2404,7 +2404,7 @@ ship "Modified Argosy"
 		"cost" 1960000
 		"shields" 4800
 		"shield generation" 0.016666667
-		"shield generation multiplier" 1.05
+		"shield generation multiplier" 0.65
 		"hull" 1900
 		"required crew" 5
 		"bunks" 12
@@ -2468,7 +2468,7 @@ ship "Mule"
 		"cost" 4080000
 		"shields" 5300
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.6
+		"shield generation multiplier" 0.3
 		"hull" 4500
 		"required crew" 14
 		"bunks" 43
@@ -2532,7 +2532,7 @@ ship "Nest"
 		"cost" 2500000
 		"shields" 2500
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.9
+		"shield generation multiplier" 0.45
 		"hull" 3700
 		"required crew" 5
 		"bunks" 14
@@ -2595,7 +2595,7 @@ ship "Osprey"
 		"cost" 4200000
 		"shields" 7200
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.6
+		"shield generation multiplier" 0.3
 		"hull" 1600
 		"required crew" 9
 		"bunks" 24
@@ -2658,7 +2658,7 @@ ship "Protector"
 		"cost" 5500000
 		"shields" 8500
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.3
+		"shield generation multiplier" 0.15
 		"hull" 7500
 		"required crew" 30
 		"bunks" 69
@@ -2721,7 +2721,7 @@ ship "Quicksilver"
 		"cost" 1090000
 		"shields" 3000
 		"shield generation" 0.016666667
-		"shield generation multiplier" 1.45
+		"shield generation multiplier" 0.85
 		"hull" 800
 		"required crew" 3
 		"bunks" 6
@@ -2772,7 +2772,7 @@ ship "Rainmaker"
 		"cost" 1580000
 		"shields" 3500
 		"shield generation" 0.016666667
-		"shield generation multiplier" 1.45
+		"shield generation multiplier" 0.85
 		"hull" 1200
 		"required crew" 7
 		"bunks" 14
@@ -2830,7 +2830,7 @@ ship "Raven"
 		"cost" 2200000
 		"shields" 4700
 		"shield generation" 0.016666667
-		"shield generation multiplier" 1.25
+		"shield generation multiplier" 0.75
 		"hull" 1400
 		"required crew" 6
 		"bunks" 13
@@ -2888,7 +2888,7 @@ ship "Roost"
 		"cost" 3000000
 		"shields" 2900
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.6
+		"shield generation multiplier" 0.3
 		"hull" 5200
 		"required crew" 7
 		"bunks" 16
@@ -2954,7 +2954,7 @@ ship "Scout"
 		"cost" 850000
 		"shields" 1200
 		"shield generation" 0.016666667
-		"shield generation multiplier" 1.0
+		"shield generation multiplier" 0.6
 		"hull" 400
 		"required crew" 2
 		"bunks" 12
@@ -3011,7 +3011,7 @@ ship "Shuttle"
 		"cost" 180000
 		"shields" 500
 		"shield generation" 0.016666667
-		"shield generation multiplier" 1.2
+		"shield generation multiplier" 0.7
 		"hull" 600
 		"required crew" 1
 		"bunks" 6
@@ -3057,7 +3057,7 @@ ship "Skein"
 			"Militia"
 		"cost" 3500000
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.6
+		"shield generation multiplier" 0.3
 		"shields" 3300
 		"hull" 6700
 		"required crew" 7
@@ -3126,7 +3126,7 @@ ship "Sparrow"
 		"cost" 225000
 		"shields" 1200
 		"shield generation" 0.016666667
-		"shield generation multiplier" 2.55
+		"shield generation multiplier" 1.4
 		"hull" 300
 		"required crew" 1
 		"bunks" 2
@@ -3178,7 +3178,7 @@ ship "Splinter"
 		"cost" 3100000
 		"shields" 5200
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.8
+		"shield generation multiplier" 0.4
 		"hull" 1700
 		"required crew" 7
 		"bunks" 21
@@ -3238,7 +3238,7 @@ ship "Star Barge"
 		"cost" 190000
 		"shields" 600
 		"shield generation" 0.016666667
-		"shield generation multiplier" 1.2
+		"shield generation multiplier" 0.7
 		"hull" 1000
 		"required crew" 1
 		"bunks" 3
@@ -3285,7 +3285,7 @@ ship "Star Queen"
 		"cost" 5500000
 		"shields" 3900
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.5
+		"shield generation multiplier" 0.25
 		"hull" 2400
 		"required crew" 41
 		"bunks" 112
@@ -3346,7 +3346,7 @@ ship "Surveillance Drone"
 		"cost" 50000
 		"shields" 50
 		"shield generation" 0.016666667
-		"shield generation multiplier" 1.5
+		"shield generation multiplier" 0.75
 		"hull" 250
 		"automaton" 1
 		"mass" 10
@@ -3382,7 +3382,7 @@ ship "Vanguard"
 		"cost" 7200000
 		"shields" 8500
 		"shield generation" 0.016666667
-		"shield generation multiplier" 0.3
+		"shield generation multiplier" 0.15
 		"hull" 7300
 		"required crew" 23
 		"bunks" 45
@@ -3449,7 +3449,7 @@ ship "Wasp"
 		"cost" 400000
 		"shields" 1500
 		"shield generation" 0.016666667
-		"shield generation multiplier" 2.55
+		"shield generation multiplier" 1.4
 		"hull" 500
 		"required crew" 1
 		"bunks" 2

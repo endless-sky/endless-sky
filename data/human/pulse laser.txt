@@ -16,7 +16,7 @@ outfit "Pulse Laser"
 		"velocity" 55
 		"lifetime" 2
 		"reload" 30
-		"burst count" 8
+		"burst count" 6
 		"burst reload" 1
 		"firing energy" 24
 		"firing heat" 52.5
