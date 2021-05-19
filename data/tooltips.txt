@@ -275,6 +275,9 @@ tip "reverse thrust:"
 tip "reverse thrusting energy:"
 	`Energy consumed per second when firing reverse thrusters.`
 
+tip "reverse thrusting fuel:"
+	`Fuel consumed per second when firing reverse thrusters.`
+
 tip "reverse thrusting heat:"
 	`Heat produced per second when firing reverse thrusters.`
 
@@ -371,6 +374,9 @@ tip "thrust:"
 tip "thrusting energy:"
 	`Energy consumed per second when firing thrusters.`
 
+tip "thrusting fuel:"
+	`Fuel consumed per second when firing thrusters.`
+
 tip "thrusting heat:"
 	`Heat generated per second when firing thrusters.`
 
@@ -382,6 +388,9 @@ tip "turn:"
 
 tip "turning energy:"
 	`Energy consumed per second when turning.`
+
+tip "turning fuel:"
+	`Fuel consumed per second when turning.`
 
 tip "turning heat:"
 	`Heat generated per second when turning.`
