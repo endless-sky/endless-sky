@@ -1,0 +1,38 @@
+##WIP
+
+outfit "ECG-254mm Twin Turret"
+	category "Turrets"
+	cost 1280000
+	thumbnail "outfit/ecg twin"
+	"mass" 120
+	"outfit space" -144
+	"weapon capacity" -144
+	"turret mount" -1
+	"ECG shell capacity" 60
+	weapon
+		sprite "projectile/torpedo"
+			"frame rate" 2
+			"random start frame"
+		"hardpoint offset" 12.
+		sound "torpedo"
+		ammo "ECG Shell"
+		"fire effect" "torpedo fire"
+		"hit effect" "torpedo hit"
+		"die effect" "tiny explosion"
+		"inaccuracy" 0.5
+		"turret turn" 0.1
+		"velocity" 12
+		"acceleration" 0.0002
+		"drag" .0001
+		"lifetime" 150
+		"range override" 1500
+		"reload" 150
+		"burst count" 2
+		"burst reload" 0
+		"firing energy" 75
+		"firing heat" 2250
+		"firing force" 1440
+		"shield damage" 2268
+		"hull damage" 2592
+		"hit force" 1440
+	description "While throughout the republic, projectile weapons are considered mostly obsolete, the last generation of electro-chemical guns of battleship callibre is still ocassionaly used in the Navy's heaviest warships."

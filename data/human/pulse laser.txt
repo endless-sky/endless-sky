@@ -1,0 +1,32 @@
+outfit "Pulse Laser"
+	category "Guns"
+	cost 47000
+	thumbnail "outfit/pulse laser"
+	"mass" 10
+	"outfit space" -10
+	"weapon capacity" -10
+	"gun ports" -1
+	weapon
+		sprite "projectile/pulse laser"
+			"frame rate" 1
+		sound "laser" 3
+		"hit effect" "beam laser impact"
+		cluster
+		"inaccuracy" 2
+		"velocity" 55
+		"lifetime" 2
+		"reload" 30
+		"burst count" 8
+		"burst reload" 1
+		"firing energy" 24
+		"firing heat" 52.5
+		"shield damage" 42.5
+		"hull damage" 51
+
+	description "Developed as a fighter weapon, the pulse laser is a short burst, energy consuming weapon derived from the Deep's beam laser. Its high energy consumption necessitates for a battery module to be installed along with it. While very popular among carrier commanders, its short range makes it much less so popular with the fighter pilots themselves."
+
+outfitter "Deep Sky Basics"
+	"Pulse Laser"
+
+outfitter "Deep Sky Advanced"
+	"Pulse Laser"

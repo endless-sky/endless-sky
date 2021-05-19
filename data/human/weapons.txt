@@ -21,7 +21,7 @@ outfit "Energy Blaster"
 		sound "blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 2
-		"velocity" 6
+		"velocity" 6.1
 		"lifetime" 100
 		"reload" 12
 		"firing energy" 3.2
@@ -47,10 +47,13 @@ outfit "Blaster Turret"
 		"hit effect" "blaster impact"
 		"inaccuracy" 2
 		"turret turn" 3.2
-		"velocity" 6
+		"velocity" 6.1
 		"lifetime" 100
 		"reload" 6
 		"firing energy" 3.2
+		"burst count" 2
+		"burst reload" 3
+		"firing energy" 3.6
 		"firing heat" 21
 		"shield damage" 10
 		"hull damage" 6
@@ -73,7 +76,7 @@ outfit "Quad Blaster Turret"
 		"hit effect" "blaster impact"
 		"inaccuracy" 2
 		"turret turn" 2.7
-		"velocity" 6
+		"velocity" 6.1
 		"lifetime" 100
 		"reload" 3
 		"firing energy" 3.2
@@ -383,7 +386,7 @@ effect "large anti-missile"
 
 outfit "Fleet Anti-Missile Turret"
 	category "Turrets"
-	cost 210000
+	cost 275000
 	thumbnail "outfit/heavy anti-missile"
 	"mass" 35
 	"outfit space" -35
@@ -394,12 +397,12 @@ outfit "Fleet Anti-Missile Turret"
 		"hardpoint offset" 5.
 		"hit effect" "large anti-missile"
 		"anti-missile" 30
-		"velocity" 575
+		"velocity" 600
 		"turret turn" 1.8
 		"lifetime" 1
-		"reload" 60
-		"firing energy" 84
-		"firing heat" 246
+		"reload" 50
+		"firing energy" 85
+		"firing heat" 245
 	description "The Fleet Anti-Missile turret boasts the longest range of any human anti missile system, and is powerful enough to defeat most missiles in a single shot. Unlike conventional anti missile systems created solely to protect the ship they're mounted on, the Fleet Anti Missile aims to provide dedicated anti missile ships with the ability to provide wide-area missile denial for a larger fleet. While it is a potent tool for any patrol group, its abysmally low rate of fire and considerable bulk make it unsuitable for single-ship use."
 
 
@@ -419,12 +422,12 @@ outfit "Particle Cannon"
 		"velocity" 22
 		"lifetime" 35
 		"reload" 20
-		"firing energy" 28
+		"firing energy" 29
 		"firing force" 10
 		"firing heat" 148
 		"hit force" 80
-		"shield damage" 54
-		"hull damage" 56
+		"shield damage" 56
+		"hull damage" 54
 	description "The Particle Cannon works by accelerating a short burst of particles to near-relativistic speeds. When mounted on a ship that can turn fast enough to keep it trained on approaching ships, it becomes a nearly unbeatable weapon, capable of destroying smaller ships before they can even approach close enough for their comparatively short-ranged weapons to be effective."
 
 effect "particle impact"
@@ -452,7 +455,7 @@ outfit "Proton Gun"
 		"hit effect" "proton impact" 4
 		"inaccuracy" 2
 		"submunition" "Proton Fragment" 4
-		"velocity" 13.4
+		"velocity" 13.7
 		"lifetime" 1
 		"reload" 8
 		"firing energy" 12.8
@@ -554,6 +557,8 @@ outfit "Plasma Turret"
 		"velocity" 8.5
 		"lifetime" 60
 		"reload" 9
+		"burst count" 2
+		"burst reload" 3
 		"firing energy" 31.5
 		"firing heat" 180
 		"hit force" 30
