@@ -21,9 +21,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 // Template representing a list of objects of a given type where each item in the
-// list is weighted with an integer. This list can be queried to randomly return
-// one object from the list with the weight an object over the sum of the weights
-// of all the objects in the list being the probability of it being returned.
+// list is weighted with an integer that is accessed via a Weight() function. This
+// list can be queried to randomly return one object from the list with the weight
+// an object over the sum of the weights of all the objects in the list being the
+// probability of it being returned.
 template<class Type>
 class WeightedList {
 public:
@@ -59,12 +60,12 @@ Type &WeightedList<Type>::emplace_back(Args&&... args)
 	// Type is responsible for all weights being >= 1.
 	choices.emplace_back(args...);
 	Type &choice = choices.back();
-	if(choice.weight < 1)
+	if(choice.Weight() < 1)
 	{
 		choices.pop_back();
 		throw std::invalid_argument("Invalid weight inserted into weighted list. Weights must be >= 1.");
 	}
-	total += choice.weight;
+	total += choice.Weight();
 	return choice;
 }
 
@@ -77,8 +78,8 @@ const Type &WeightedList<Type>::Get() const
 		throw std::runtime_error("Attempted to call Get on an empty weighted list.");
 	
 	unsigned index = 0;
-	for(int choice = Random::Int(total); choice >= choices[index].weight; ++index)
-		choice -= choices[index].weight;
+	for(int choice = Random::Int(total); choice >= choices[index].Weight(); ++index)
+		choice -= choices[index].Weight();
 	
 	return choices[index];
 }

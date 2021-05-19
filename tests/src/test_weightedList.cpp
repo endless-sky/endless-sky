@@ -21,13 +21,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 namespace { // test namespace
 
 // #region mock data
-// WeightedList contains objects with a publicly accessible weight integer.
+// WeightedList contains objects with a Weight() function that returns an integer.
 class WeightedObject {
 public:
 	WeightedObject(int value, int weight) : value(value), weight(weight) {}
 	// Some data that the object holds.
 	int value;
 	// This object's weight.
+	int Weight() const { return weight; };
 	int weight;
 };
 // #endregion mock data
@@ -57,7 +58,7 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 			}
 			THEN( "The list only returns the one object inserted into it." ) {
 				CHECK( list.Get().value == 1 );
-				CHECK( list.Get().weight == 2 );
+				CHECK( list.Get().Weight() == 2 );
 			}
 			THEN( "The list is unchanged after calling Get." ) {
 				CHECK_FALSE( list.empty() );
@@ -74,7 +75,7 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 				}
 				THEN( "The object at the back of the list is the most recently inserted." ) {
 					CHECK( list.back().value == 2 );
-					CHECK( list.back().weight == 3 );
+					CHECK( list.back().Weight() == 3 );
 				}
 			}
 			
