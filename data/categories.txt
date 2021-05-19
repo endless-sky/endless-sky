@@ -23,8 +23,8 @@ category "ship"
 
 # Ships of these types are able to be carried by other ships.
 category "bay type"
-	"Fighter"
 	"Drone"
+	"Fighter"
 
 
 # Outfits of these types can be bought and sold via the outfitter.	
