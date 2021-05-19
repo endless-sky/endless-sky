@@ -22,9 +22,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 // Template representing a list of objects of a given type where each item in the
 // list is weighted with an integer that is accessed via a Weight() function. This
-// list can be queried to randomly return one object from the list with the weight
-// an object over the sum of the weights of all the objects in the list being the
-// probability of it being returned.
+// list can be queried to randomly return one object from the list where the
+// probability of an object being returned is the weight of the object over the
+// sum of the weights of all objects in the list.
 template<class Type>
 class WeightedList {
 public:
