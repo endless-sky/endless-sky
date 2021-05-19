@@ -571,7 +571,7 @@ ship "Container Transport" "Container Transport (Blaster)"
 	outfits
 		"Quad Blaster Turret" 5
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile" 8
 		"Fusion Reactor"
 		"LP072a Battery Pack"
 		"D94-YV Shield Generator"
@@ -610,7 +610,7 @@ ship "Container Transport" "Container Transport (Heavy)"
 		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret"
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile" 8
 		"Fission Reactor"
 		"LP072a Battery Pack"
 		"D94-YV Shield Generator"
@@ -631,7 +631,7 @@ ship "Container Transport" "Container Transport (Proton)"
 		"Proton Turret" 3
 		"Heavy Anti-Missile Turret"
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile" 8
 		"Fission Reactor"
 		"LP072a Battery Pack"
 		"D94-YV Shield Generator"
@@ -828,7 +828,7 @@ ship "Dreadnought" "Dreadnought (Jump)"
 ship "Falcon" "Falcon (Heavy)"
 	outfits
 		"Torpedo Launcher" 2
-		"Torpedo" 60
+		"Torpedo" 4
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 8
 		"Heavy Laser Turret" 3
@@ -932,7 +932,7 @@ ship "Firebird" "Firebird (Missile)"
 		"Meteor Missile" 16
 		"Meteor Missile Box" 2
 		"Torpedo Launcher" 2
-		"Torpedo" 75
+		"Torpedo" 8
 		"Torpedo Storage Rack"
 		"Heavy Laser Turret" 2
 		"Fission Reactor"
@@ -1439,7 +1439,7 @@ ship "Leviathan" "Leviathan (Hai Weapons)"
 ship "Leviathan" "Leviathan (Heavy)"
 	outfits
 		"Torpedo Launcher" 2
-		"Torpedo" 60
+		"Torpedo" 4
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 8
 		"Heavy Laser Turret" 3

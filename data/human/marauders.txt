@@ -653,7 +653,7 @@ ship "Marauder Manta" "Marauder Manta (Engines)"
 	outfits
 		"Plasma Cannon" 4
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile" 8
 		"Quad Blaster Turret"
 		
 		"Dwarf Core"

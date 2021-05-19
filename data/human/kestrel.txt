@@ -218,6 +218,7 @@ ship "Unknown Ship Type"
 		category "Heavy Warship"
 		"cost" 14700000
 		"shields" 19400
+		"shield generation" 0.016666667
 		"hull" 7200
 		"required crew" 64
 		"bunks" 128
@@ -275,6 +276,7 @@ ship "Kestrel"
 		category "Heavy Warship"
 		"cost" 14700000
 		"shields" 19400
+		"shield generation" 0.016666667
 		"hull" 7200
 		"required crew" 64
 		"bunks" 128
