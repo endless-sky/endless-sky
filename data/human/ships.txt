@@ -379,7 +379,7 @@ ship "Barb"
 		"cost" 50000
 		"shields" 800
 		"shield generation" 0.016666667
-		"shield generation multiplier" 2.1
+		"shield generation multiplier" 1.9
 		"hull" 200
 		"required crew" 1
 		"bunks" 2
@@ -731,7 +731,7 @@ ship "Boxwing"
 		cost 369000
 		"shields" 400
 		"shield generation" 0.016666667
-		"shield generation multiplier" 1.55
+		"shield generation multiplier" 1.35
 		"hull" 800
 		"required crew" 1
 		"bunks" 1
@@ -1079,6 +1079,8 @@ ship "Container Transport"
 		category "Heavy Freighter"
 		"cost" 9400000
 		"shields" 4000
+		"shield generation" 0.016666667
+		"shield generation multiplier" 0.15
 		"hull" 7600
 		"required crew" 6
 		"bunks" 18
@@ -1280,7 +1282,7 @@ ship "Dagger"
 		"cost" 129000
 		"shields" 1000
 		"shield generation" 0.016666667
-		"shield generation multiplier" 2.1
+		"shield generation multiplier" 1.9
 		"hull" 300
 		"required crew" 1
 		"bunks" 1
@@ -1398,7 +1400,7 @@ ship "Dropship"
 		"cost" 91000
 		"shields" 600
 		"shield generation" 0.016666667
-		"shield generation multiplier" 3.2
+		"shield generation multiplier" 1.9
 		"hull" 200
 		"required crew" 1
 		"bunks" 9
@@ -1513,7 +1515,7 @@ ship "Finch"
 		"cost" 126000
 		"shields" 1100
 		"shield generation" 0.016666667
-		"shield generation multiplier" 2.0
+		"shield generation multiplier" 1.8
 		"hull" 200
 		"required crew" 1
 		"bunks" 1
@@ -2236,7 +2238,7 @@ ship "Lance"
 		"cost" 95000
 		"shields" 900
 		"shield generation" 0.016666667
-		"shield generation multiplier" 2.1
+		"shield generation multiplier" 1.9
 		"hull" 450
 		"required crew" 1
 		"bunks" 1
