@@ -1,3 +1,50 @@
+Version 0.9.14:
+  * Bug fixes:
+    * Content bugs:
+      * Typo fixes. (@alextd, @Amazinite, @Anarchist2, @AraCaputDraco, @Arachi-Lover, @EjoThims, @InfiniteDonuts, @infinitewarp, @jarekchr, @MCOfficer, @Ornok, @petervdmeer, @tehhowch, @Terin)
+      * "Remnant: Deep Surveillance" will now offer, as typos in the offer conditions were preventing it from offering. (@alextd, @Amazinite)
+      * "Deep: Remnant 3" now properly offers on landing instead of requiring you to visit the spaceport with no direction. (@Amazinite)
+      * The Dropship is now sold in Navy Basics shipyards, whereas before it was sold nowhere. (@Amazinite)
+      * "Wanderers: Mentors 2" now has an on visit dialog. (@Amazinite)
+      * "Strider 1" now sends you to Allhome for the next mission instead of the spaceport, as the next mission in the string wasn't offering before. (@Amazinite)
+      * "FW Pug 4" and "Nanachi 4" now mention both possible missing objectives when you visit the mission destination. (@Amazinite)
+      * The reverse thrust heat of the Smelter-Class Thruster is no longer the same as the smaller Crucible-Class Thruster. (@Zitchas)
+      * "Remnant: Cognizance 4" and "Remnant: Cognizance 16" no longer spoil the objective location for the player when you're suppose to go looking for them. (@Amazinite)
+    * Engine bugs:
+      * Invalid planets are now filtered when iterating over a system's objects, preventing pathfinding from trying to use wormholes that no longer exist. (@tehhowch)
+      * Firing ionization/disruption/slowing on weapons no longer allows status effects to drop below zero, which could potentially cause a crash. (@Ferociousfeind)
+      * Ships can no longer have a drag of 0, which could have caused divide-by-zero errors. (@tehhowch)
+  * Game content:
+    * New content:
+      * The Heliarch Interdictor now has a Scrappy variant like other Heliarch ships. (@Arachi-Lover)
+      * The Pug Gridfire, Gatling Gun, and minable asteroid explosions now have unique sounds, whereas previously they had reused sounds or none at all. (@Floppa-Priest)
+      * Quarg planets now all have regional attributes describing where in the galaxy they're located for use by missions and jobs. (@Amazinite)
+      * Added a new human ship, the Container Transport. (@ravenshining)
+    * Content changes:
+      * Changed the Saryd couple's budget to something more sensible. (@jerith)
+      * Made it clear in "Remnant: Electron Beam" that you are to return with two electron beams. (@AraCaputDraco)
+      * The Unfettered now have their own outfitter and shipyard, preventing new Hai technology from being sold by the Unfettered. (@Amazinite)
+      * The Independent government will now always be friendly after it is introduced in the Free Worlds campaign. (@Amazinite)
+      * Improved some of the wording in "Remnant: Expanded Horizons Storms 1". (@Zitchas)
+      * "Remnant: Face to Maw" no longer offers while you are in the middle of the "Cognizance" string of missions. (@Amazinite)
+      * "Remnant: Cognizance 4" no longer uses mission failure to determine player choice, which led to confusion when the mission failed message appeared after making an acceptable choice. (@Amazinite)
+      * The mission "Wanderers: Hai Diplomat" can now be offered on Mirrorlake. (@Ornok)
+      * Improved some of the wording in "Lagrange Ring: Cargo". (@Arachi-Lover)
+      * Removed part of a logbook entry that said that the Quarg claimed that the Pug could defeat the Drak, which they never did. (@Arachi-Lover)
+      * Updated the Bulk Freighter sprite to have a hardpoint layout matching pre-v0.9.13 Bulk Freighters for save compatibility. (@ravenshining)
+  * Game mechanics:
+    * Disabled ships that are captured or assisted will now repair to slightly higher than the bare minimum hull necessary. (@Amazinite)
+    * Invalid fleet variants are now removed from fleets, preventing plugins with improper data from blocking the offering of missions that spawn fleets. (@tehhowch)
+  * User interface:
+    * The "interrupt fast-forward" setting now defaults to off instead of on. (@Terin)
+  * Under the hood:
+    * Combined checking if a stellar object has a planet and if that planet is valid into a single method. (@tehhowch)
+    * Having multiple missing frames for a sprite are now logged to the error file on a single line instead of generating a new line for each missing frame. (@ashdnazg, @tehhowch)
+    * The Barb (Proton) variant definition now uses "add attribute" instead of completely redefining the base ship. (@Amazinite)
+    * The heat and energy table values for ship info have been broken out into their own variables for easier handling. (@jostephd)
+    * Missions that fail to instantiate will now report to the error file why they failed. (@tehhowch)
+    * Missions that mix the "minor" or "priority" tags with the "landing" tag will now produce a warning to the error file, as "landing" takes precedence over the former two tags. (@Amazinite)
+
 Version 0.9.13:
   * Breaking changes:
     * Starting conditions defined by plugins no longer automatically override the game's default start. (@FranchuFranchu, @tehhowch)
