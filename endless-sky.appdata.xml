@@ -23,22 +23,50 @@
   <screenshots>
     <screenshot type="default">
       <image>https://endless-sky.github.io/images/screenshots/battle.jpg</image>
+      <caption>A chaotic battle between the Republic and the Free Worlds</caption>
     </screenshot>
     <screenshot>
       <image>https://endless-sky.github.io/screenshots/beams.jpg</image>
+      <caption>Diverse weaponry abounds in the Endless Sky universe</caption>
     </screenshot>
     <screenshot>
       <image>https://camo.githubusercontent.com/647979e73d2121a1a982a96b0561e0e435598fd4/68747470733a2f2f656e646c6573732d736b792e6769746875622e696f2f73637265656e73686f74732f736d616c6c382e6a7067</image>
+      <caption>Exotic space creatures</caption>
     </screenshot>
     <screenshot>
       <image>https://endless-sky.github.io/images/screenshots/outfitter.jpg</image>
+      <caption>Customize items installed on your ship(s) at a planet's Outfitter</caption>
     </screenshot>
     <screenshot>
       <image>https://endless-sky.github.io/images/screenshots/shipyard.jpg</image>
+      <caption>Buy and sell different kinds of ships at a planet's Shipyard</caption>
     </screenshot>
   </screenshots>
   <releases>
-    <release version="0.9.13" date="2021-03-28" type="development" urgency="low">
+    <release version="0.9.14" date="2021-05-17">
+      <description>
+        <p>This is a "stable" release, focusing on bug fixes and polishing the recent v0.9.13 release.</p>
+        <p>Changes include:</p>
+        <ul>
+          <li>Numerous typo fixes</li>
+          <li>Fixes to how several missions are offered to the player</li>
+          <li>Better suggestions of possibly incomplete conditions in some missions' "visit" dialogues</li>
+          <li>Differentiation between two Remnant engines' reversing capabilities</li>
+          <li>Certain Navy shipyards now stock the Dropship</li>
+          <li>Ships that have no specified "drag" attribute default to 100, rather than causing crashes</li>
+          <li>Weaponry that alters the ship's status conditions (e.g. ionization) now respects the required minimum value of 0</li>
+          <li>The "interrupt fast-forward" preference defaults to off</li>
+        </ul>
+        <p>Minor improvements were added to help support plugin authors and content creators:</p>
+        <ul>
+          <li>Quarg planets now have regional attributes to enable better targeting via missions</li>
+          <li>Missions that fail to be instantiated print more informative messages in the error file</li>
+          <li>Large numbers of missing image frames no longer pollute the error file</li>
+        </ul>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.9.14/changelog</url>
+    </release>
+    <release version="0.9.13" date="2021-04-17" type="development" urgency="low">
       <description>
         <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
         <p>Breaking changes:</p>
