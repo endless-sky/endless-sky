@@ -57,6 +57,7 @@ Editors & Proofreaders
   RecursiveParadox
   Tadrix
   temtemy
+  W1zrad
   Zearth Goh aka TheMarksman
 
 Artwork
@@ -126,8 +127,10 @@ contributed to Endless Sky:
   AMDmi3
   anarcat
   Anarchist2
+  AraCaputDraco
   Arachi-Lover
   arkhne
+  ashdnazg
   Aurelite
   barthalion
   beccabunny
@@ -154,6 +157,7 @@ contributed to Endless Sky:
   dufferzafar
   dzhu
   eflyon
+  EjoThims
   elgeonmb
   Eloraam
   Elyssaen
@@ -161,6 +165,7 @@ contributed to Endless Sky:
   EndrosG
   fcfort
   Ferociousfeind
+  Floppa-Priest
   finite-galaxy
   FixItYondu
   flaviojs
@@ -175,11 +180,13 @@ contributed to Endless Sky:
   Hadron1776
   har9862
   Hyugat
+  InfiniteDonuts
   infinitewarp
   ItsNickBarry
   jafdy
   Janaszar
   janisozaur
+  jarekchr
   jerith
   jjhankins
   jmathes
@@ -282,6 +289,7 @@ contributed to Endless Sky:
   Turtleroku
   tux2603
   Vilhelm16
+  W1zrad
   Waffleship
   Waladil
   warp-core
