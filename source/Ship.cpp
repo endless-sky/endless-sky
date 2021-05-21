@@ -1724,6 +1724,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			cost = attributes.Get("turning fuel");
 			if(fuel < cost * fabs(commands.Turn()))
 				commands.SetTurn(commands.Turn() * fuel / (cost * fabs(commands.Turn())));
+			cost = -attributes.Get("turning heat");
+			if(heat < cost * fabs(commands.Turn()))
+				commands.SetTurn(commands.Turn() * heat / (cost * fabs(commands.Turn())));
 			
 			if(commands.Turn())
 			{
@@ -1747,11 +1750,15 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			double cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting energy" : "reverse thrusting energy");
 			if(energy < cost)
-				thrustCommand *= energy / cost;
+				thrustCommand = min(thrustCommand, energy / cost);
 			cost = attributes.Get((thrustCommand > 0.) ?
-				"thrusting fuel" : "reverse thrusting fuel") * fabs(thrustCommand);
+				"thrusting fuel" : "reverse thrusting fuel");
 			if(fuel < cost)
-				thrustCommand *= fuel / cost;
+				thrustCommand = min(thrustCommand, fuel / cost);
+			heatCost = -attributes.Get((thrustCommand > 0.) ?
+				"thrusting heat" : "reverse thrusting heat");
+			if(heat < cost)
+				thrustCommand = min(thrustCommand, heat / cost);
 			
 			if(thrustCommand)
 			{
