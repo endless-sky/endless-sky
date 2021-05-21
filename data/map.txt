@@ -23617,7 +23617,149 @@ system Sumprast
 			sprite planet/rock14
 			distance 464
 			period 29.291
+			
+system "Sylansia Lost"
+	pos -253 635
+	government Uninhabited
+	attributes "nova"
+	habitable 3859.38
+	belt 1466
+	asteroids "small rock" 1 4.59
+	asteroids "medium rock" 9 4.7175
+	asteroids "large rock" 1 3.06
+	asteroids "small metal" 1 5.1425
+	asteroids "medium metal" 2 5.525
+	asteroids "large metal" 1 2.125
+	minables aluminum 1 7.35341
+	minables lead 1 6.63722
+	trade Clothing 333
+	trade Electronics 656
+	trade Equipment 227
+	trade Food 170
+	trade "Heavy Metals" 768
+	trade Industrial 818
+	trade "Luxury Goods" 1206
+	trade Medical 863
+	trade Metal 524
+	trade Plastic 410
+	object
+		sprite star/giant
+		period 1
+	object
+		sprite star/nova
+		period 10
+	object
+		sprite star/k0
+		distance 400
+		period 48.2396
+	object
+		sprite star/b5
+		distance 450
+		period 48.2396
+		offset 60
+	object
+		sprite star/k0
+		distance 400
+		period 48.2396
+		offset 120
+	object
+		sprite star/b5
+		distance 450
+		period 48.2396
+		offset 180
+	object
+		sprite star/k0
+		distance 400
+		period 48.2396
+		offset 240
+	object
+		sprite star/b5
+		distance 450
+		period 48.2396
+		offset 300
+	object
+		sprite planet/gas3-b
+		distance 2250
+		period 48.2396
+		offset 30
+		object Astalex
+			sprite planet/forest3-b
+			distance 450
+			period 12.8165
+			offset 30
+	object
+		sprite planet/gas0-b
+		distance 2250
+		period 48.2396
+		offset 90
+		object Castalex
+			sprite planet/cloud4-b
+			distance 450
+			period 12.8165
+			offset 60
+	object
+		sprite planet/gas12
+		distance 2250
+		period 48.2396
+		offset 150
+		object Olaalex
+			sprite planet/ocean0-b
+			distance 450
+			period 12.8165
+			offset 90
+	object
+		sprite planet/gas6-hot
+		distance 2250
+		period 48.2396
+		offset 210
+		object Kalilex
+			sprite planet/desert5-b
+			distance 450
+			period 12.8165
+			offset 120
+	object
+		sprite planet/gas14
+		distance 2250
+		period 48.2396
+		offset 270
+		object
+			sprite planet/lava5
+			distance 450
+			period 12.8165
+			offset 150
+	object
+		sprite planet/gas7
+		distance 2250
+		period 48.2396
+		offset 330
+		object Mastalex
+			sprite planet/ice4
+			distance 450
+			period 12.8165
+			offset 180
+	object
+		sprite planet/gas6
+		distance 4500
+		period 700
+		object
+			sprite planet/io-b
+			distance 300
+			period 12.8165
+		object
+			sprite planet/dust0
+			distance 500
+			period 12.8165
+			offset 180
 
+	object
+		sprite planet/gas11-b
+		distance 4500
+		period 3174.24
+		object
+			sprite planet/dust1-b
+			distance 263
+			period 14.0673
+			
 system Tais
 	pos -346 381
 	government Republic
@@ -26320,6 +26462,12 @@ planet "Ashy Reach"
 	spaceport `Only a handful of towers, most of them windowless, protrude above the planet's surface at the center of the spaceport settlement. The hangars and warehouses are all underground. The surface is visible through a few thick acrylic polymer windows on the lower levels of the towers. Lit by the glow of the gas giant that this moon orbits, the towers form a surreal landscape, like a city abandoned and only halfway formed.`
 	outfitter "Coalition Basics"
 	"required reputation" 15
+	
+planet Astalex
+	landscape land/valley8
+	description `This is a pristine and perfectly habitable world, covered completely in dense, old-growth natural forests and is periodically dotted by large and scenic mountains`
+	description `	Oddly, and somewhat unnervingly, you can see no signs of intelligent life among the trees despite this being an almost ideal enviroment for life to form`
+	security 0
 
 planet Avalon
 	landscape land/sea17-harro
@@ -26575,6 +26723,12 @@ planet "Carbuncle Station"
 	tribute 2700
 		threshold 5500
 		fleet "Large Republic" 10
+
+planet Castalex
+	landscape land/clouds_00
+	description `With the sky covered in a dense layer of clouds, Castalex is in an almost perpetual state of twilight`
+	description `	There doesn't seem to be any signs of life, intelligent or otherwise; or even previous inhabitation despite the inexplicably breathable air.`
+	security 0
 
 planet "Ceaseless Toil"
 	attributes saryd factory uninhabited
@@ -27702,6 +27856,13 @@ planet "Kaeyin"
 	spaceport `The only word you can think of to describe the spaceport is "impressive." It is on the top of the largest tower, placed in the exact center of a gargantuan city. With a base almost as big as a sizable village, very quickly getting thinner as it raises into the city's skyline.`
 	spaceport `	Tiny, four-legged robots walk on the walls of every room, cleaning them in a matter of seconds. You can see more on the road below, and you presume they are everywhere in this city; this makes it impossible to estimate how long the planet has been abandoned, since everything here is perfect and clean.`
 
+planet Kalilex
+	landscape land/badlands5
+	description `Water is a rare sight to see on Kalilex, though it seems to take to heart an old earth saying: When it rains, it pours. Though in this case, the rain comes not from the sky, but from the ground`
+	description `	Every few decades floods of titanic proportion sweep the lands, caused by a mountanious gysyer near the equator expelling trillions of tons of water in a single, almost volcanic, eruption.`
+	description `	Besides the gyser, Kaliex is almost remarkibly dull, with no signs of life besides the occaionsal scraggily tree`
+	security 0
+	
 planet "Karek Fornati"
 	attributes korath efret
 	landscape land/desert1
@@ -27984,7 +28145,13 @@ planet Martini
 	tribute 5600
 		threshold 8500
 		fleet "Large Republic" 22
-
+		
+planet Mastalex
+	landscape land/snow0
+	description `Although temperatures often dip well below freezing, Mastalex seems to be practiclly teeming with plant life`
+	description `	Moss covers every milimeter of exposed soil, while great trees stand proudly even as their boughs are covered in snow`
+	security 0
+	
 planet "Mebla's Portion"
 	attributes arach urban
 	landscape land/fog5
@@ -28434,6 +28601,12 @@ planet Oblivion
 		threshold 3000
 		fleet "Large Militia" 8
 
+planet Olaalex
+	landscape land/sea5
+	description `Almost entirely covered in oceans many miles deep, landing involved percariously balancing on a large floating island made partially of a seaweed-like vegatation`
+	description `	Besides the aformentioned seaweed, there doesn't seem to be any living creatures to call this planet home`
+	security 0
+	
 planet Osaeli
 	attributes ka'het uninhabited
 	landscape land/forest4
