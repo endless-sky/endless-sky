@@ -1755,7 +1755,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				"thrusting fuel" : "reverse thrusting fuel");
 			if(fuel < cost)
 				thrustCommand = min(thrustCommand, fuel / cost);
-			heatCost = -attributes.Get((thrustCommand > 0.) ?
+			cost = -attributes.Get((thrustCommand > 0.) ?
 				"thrusting heat" : "reverse thrusting heat");
 			if(heat < cost)
 				thrustCommand = min(thrustCommand, heat / cost);
