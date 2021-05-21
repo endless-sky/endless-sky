@@ -344,7 +344,7 @@ mission "FW Recon 1"
 
 mission "FW Recon 2"
 	name "Free Worlds Reconnaissance"
-	description "Scan any ships in the <waypoints> system that are equipped like the combat-ready Cruiser you scanned previously, then return to <destination>."
+	description "Scan the ships in the <waypoints> system that are equipped like the combat-ready Cruiser you scanned previously, then return to <destination>."
 	source
 		planet "Glaze"
 	to offer
