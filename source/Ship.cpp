@@ -1719,14 +1719,14 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		{
 			// Check if we are able to turn.
 			double energyCost = attributes.Get("turning energy");
-			if(energy < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * energy / (cost * fabs(commands.Turn())));
+			if(energy < energyCost * fabs(commands.Turn()))
+				commands.SetTurn(commands.Turn() * energy / (energyCost * fabs(commands.Turn())));
 			double fuelCost = attributes.Get("turning fuel");
-			if(fuel < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * fuel / (cost * fabs(commands.Turn())));
+			if(fuel < fuelCost * fabs(commands.Turn()))
+				commands.SetTurn(commands.Turn() * fuel / (fuelCost * fabs(commands.Turn())));
 			double heatCost = -attributes.Get("turning heat");
-			if(heat < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * heat / (cost * fabs(commands.Turn())));
+			if(heat < heatCost * fabs(commands.Turn()))
+				commands.SetTurn(commands.Turn() * heat / (heatCost * fabs(commands.Turn())));
 			
 			if(commands.Turn())
 			{
@@ -1749,16 +1749,16 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			// Check if we are able to apply this thrust.
 			double energyCost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting energy" : "reverse thrusting energy");
-			if(energy < cost)
-				thrustCommand = min(thrustCommand, energy / cost);
+			if(energy < energyCost)
+				thrustCommand = min(thrustCommand, energy / energyCost);
 			double fuelCost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting fuel" : "reverse thrusting fuel");
-			if(fuel < cost)
-				thrustCommand = min(thrustCommand, fuel / cost);
+			if(fuel < fuelCost)
+				thrustCommand = min(thrustCommand, fuel / fuelCost);
 			double heatCost = -attributes.Get((thrustCommand > 0.) ?
 				"thrusting heat" : "reverse thrusting heat");
-			if(heat < cost)
-				thrustCommand = min(thrustCommand, heat / cost);
+			if(heat < heatCost)
+				thrustCommand = min(thrustCommand, heat / heatCost);
 			
 			if(thrustCommand)
 			{
