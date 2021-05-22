@@ -1356,7 +1356,7 @@ event "scar's hideout"
 planet "Scar's Hideout"
 	attributes uninhabited
 	landscape land/loc1
-	description "Scar's Hideout is a hollowed out asteroids used by Scar's Legion as their main base of operations. From here they harass anyone making the journey through the uninhabited systems of the Far North. Recently the gang has discovered the wormhole to Hai space, leading them to start causing trouble for more than just unlucky merchants."
+	description "Scar's Hideout is a hollowed-out asteroid used by Scar's Legion as their main base of operations. From here they harass anyone making the journey through the uninhabited systems of the Far North. Recently the gang has discovered the wormhole to Hai space, leading them to start causing trouble for more than just unlucky merchants."
 	spaceport "The spaceport of Scar's Hideout is a massive hangar dug into the core of the asteroid, accessible only by a single blast door on the ceiling. Judging by the size of the hangar, you'd guess that about a third of the entire asteroid was hollowed out for the spaceport alone."
 	security 0
 	government "Scar's Legion"
