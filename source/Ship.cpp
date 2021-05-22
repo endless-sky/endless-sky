@@ -2649,7 +2649,12 @@ void Ship::Recharge(bool atSpaceport)
 	if(atSpaceport)
 	{
 		crew = min<int>(max(crew, RequiredCrew()), attributes.Get("bunks"));
-		fuel = attributes.Get("fuel capacity");
+	}
+	if(GetPlanet())
+	{
+		const auto planetAttrs = GetPlanet()->Attributes();
+		if(planetAttrs.find("fuel cache") != planetAttrs.end() || atSpaceport)
+			fuel = attributes.Get("fuel capacity");
 	}
 	pilotError = 0;
 	pilotOkay = 0;
