@@ -1733,6 +1733,12 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				energy -= scale * cost;
 				heat += scale * attributes.Get("turning heat");
 				angle += commands.Turn() * TurnRate() * slowMultiplier;
+				if(attributes.Get("sail turn"))
+				{
+					Point direction(angle.Y(), -angle.X());
+					double strength = velocity.Dot(direction);
+					angle += commands.Turn() * attributes.Get("sail turn") * fabs(strength) * slowMultiplier;
+				}
 			}
 		}
 		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
@@ -1758,6 +1764,11 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					energy -= scale * cost;
 					heat += scale * attributes.Get(isThrusting ? "thrusting heat" : "reverse thrusting heat");
 					acceleration += angle.Unit() * (thrustCommand * thrust / mass);
+					if(attributes.Get("sail thrust"))
+					{
+						double strength = 2. * ship.Position().Unit().Dot(ship.Facing().Unit()) - 1.;
+						acceleration += angle.Unit() * thrustCommand * strength * attributes.Get("sail thrust") / mass;
+					}
 				}
 			}
 		}
