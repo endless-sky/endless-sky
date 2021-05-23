@@ -80,10 +80,12 @@ namespace {
 		{"thrusting energy", 0},
 		{"thrusting heat", 0},
 		{"turn", 0},
+		{"sail turn", 0},
 		{"turning energy", 0},
 		{"turning heat", 0},
 		
 		{"thrust", 1},
+		{"sail thrust", 1},
 		{"reverse thrust", 1},
 		{"afterburner thrust", 1},
 		
