@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef CACHE_H_
 #define CACHE_H_
 
+#include <cstddef>
 #include <functional>
 #include <list>
 #include <unordered_map>
@@ -29,7 +30,7 @@ public:
 	// Set an interval to change the generations.
 	// An auto expired cache may recycle a value after changing 2 generations.
 	// The newInterval's unit is a number of steps.
-	void SetUpdateInterval(size_t newInterval);
+	void SetUpdateInterval(std::size_t newInterval);
 	
 	// Notify to progress a frame time.
 	// This function will call StepThis() for all instances of Cache.
@@ -49,8 +50,8 @@ private:
 	// Notify to progress a generation.
 	virtual void NextGeneration() = 0;
 	
-	size_t stepCount = 0;
-	size_t updateInterval = 3600;
+	std::size_t stepCount = 0;
+	std::size_t updateInterval = 3600;
 };
 
 
@@ -107,12 +108,12 @@ private:
 	// Cached data and information for control.
 	struct Element {
 		T data;
-		size_t useCount = 0;
+		std::size_t useCount = 0;
 		Key key;
 		
 		Element() = default;
 		Element(const Element &a) = default;
-		Element(const T &d, size_t c, const Key &k);
+		Element(const T &d, std::size_t c, const Key &k);
 		Element &operator=(const Element &a) = default;
 	};
 	
@@ -296,7 +297,7 @@ void Cache<Key, T, autoExpired, Hash, AtRecycle>::Clear()
 
 
 template<class Key, class T, bool autoExpired, class Hash, class AtRecycle>
-Cache<Key, T, autoExpired, Hash, AtRecycle>::Element::Element(const T &d, size_t c, const Key &k)
+Cache<Key, T, autoExpired, Hash, AtRecycle>::Element::Element(const T &d, std::size_t c, const Key &k)
 	: data(d), useCount(c), key(k)
 {
 }
