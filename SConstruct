@@ -114,9 +114,14 @@ elif is_windows_host:
 		"glew32.dll",
 		"opengl32",
 	])
-else:
+elif 'steamrt_scout' in chroot_name:
 	env.Append(LIBS = [
 		"GL",
+		"GLEW",
+	])
+else:
+	env.Append(LIBS = [
+		"OpenGL",
 		"GLEW",
 	])
 
