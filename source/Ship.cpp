@@ -1735,9 +1735,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				angle += commands.Turn() * TurnRate() * slowMultiplier;
 				if(attributes.Get("sail turn"))
 				{
-					Point direction(angle.Y(), -angle.X());
-					double strength = velocity.Dot(direction);
-					angle += commands.Turn() * attributes.Get("sail turn") * fabs(strength) * slowMultiplier;
+					double strength = velocity.Dot(angle.Unit());
+					angle += commands.Turn() * (attributes.Get("sail turn") / Mass())
+						* fabs(strength / MaxVelocity()) * slowMultiplier;
 				}
 			}
 		}
@@ -1766,8 +1766,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					acceleration += angle.Unit() * (thrustCommand * thrust / mass);
 					if(attributes.Get("sail thrust"))
 					{
-						double strength = 2. * ship.Position().Unit().Dot(ship.Facing().Unit()) - 1.;
-						acceleration += angle.Unit() * thrustCommand * strength * attributes.Get("sail thrust") / mass;
+						double strength = fabs(Position().Unit().Dot(Facing().Unit()));
+						acceleration += angle.Unit() * (thrustCommand * strength * (attributes.Get("sail thrust") / mass));
 					}
 				}
 			}
@@ -3058,7 +3058,9 @@ double Ship::MaxVelocity() const
 	// v * drag == thrust
 	// v = thrust / drag
 	double thrust = attributes.Get("thrust");
-	return (thrust ? thrust : attributes.Get("afterburner thrust")) / attributes.Get("drag");
+	thrust = max(thrust, attributes.Get("afterburner thrust"));
+	thrust = max(thrust, attributes.Get("sail thrust"));
+	return thrust / attributes.Get("drag");
 }
 
 
