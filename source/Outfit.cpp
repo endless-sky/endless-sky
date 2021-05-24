@@ -120,17 +120,11 @@ const vector<string> Outfit::CATEGORIES = {
 void Outfit::Load(const DataNode &node)
 {
 	if(node.Size() == 2)
-	{
 		name = node.Token(1);
-		displayName = name;
-		pluralName = displayName + 's';
-	}
 	else if(node.Size() >= 3)
 	{
 		name = node.Token(2);
-		displayName = name;
 		parent = GameData::Outfits().Get(node.Token(1));
-		pluralName = displayName + 's';
 	}
 	isDefined = true;
 	
@@ -138,6 +132,8 @@ void Outfit::Load(const DataNode &node)
 	{
 		if(child.Token(0) == "category" && child.Size() >= 2)
 			category = child.Token(1);
+		else if(child.Token(0) == "display name" && child.Size() >= 2)
+			displayName = child.Token(1);
 		else if(child.Token(0) == "plural" && child.Size() >= 2)
 			pluralName = child.Token(1);
 		else if(child.Token(0) == "flare sprite" && child.Size() >= 2)
@@ -255,11 +251,13 @@ void Outfit::FinishLoading()
 		if(parent->IsVariant())
 		{
 			Files::LogError("Warning: outfit \"" + name + "\" is a variant of a variant and will not be fully loaded.");
+			displayName = name;
 			return;
 		}
 		
 		// Copy data over from the parent outfit.
-		displayName = parent->DisplayName();
+		if(displayName.empty())
+			displayName = parent->DisplayName();
 		if(category.empty())
 			category = parent->Category();
 		if(!thumbnail)
@@ -272,6 +270,11 @@ void Outfit::FinishLoading()
 			if(!attributes.Has(it.first))
 				attributes[it.first] = it.second;
 	}
+	
+	if(displayName.empty())
+		displayName = name;
+	if(pluralName.empty())
+		pluralName = displayName + 's';
 	
 	// Only outfits with the jump drive and jump range attributes can
 	// use the jump range, so only keep track of the jump range on
