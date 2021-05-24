@@ -611,6 +611,8 @@ void Ship::FinishLoading(bool isNewInstance)
 		baseAttributes.Add(attributes);
 		addAttributes = false;
 	}
+	// Add the ship's jump range (if it has one) to the list of jump ranges.
+	baseAttributes.FinishLoading();
 	// Add the attributes of all your outfits to the ship's base attributes.
 	attributes = baseAttributes;
 	vector<string> undefinedOutfits;
