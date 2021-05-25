@@ -56,9 +56,6 @@ private:
 private:
 	// Maps category names to list of outfits in that category, sorted
 	// alphabetically by name.
-	// 
-	// TODO: Replace std::vector with std::set.  The vector is anyway
-	// sorted and deduplicated.
 	std::map<std::string, std::vector<const Outfit *>> catalog;
 	// Flat list of all outfits shown.
 	std::vector<const Outfit *> list;
