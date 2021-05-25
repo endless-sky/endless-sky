@@ -1221,7 +1221,7 @@ void MapPanel::DrawTooltips()
 
 			tooltip += to_string(sum) + (sum == 1 ? " stored outfit" : " stored outfits");
 
-			if(HasMultipleLandablePlanets(hoverSystem))
+			if(HasMultipleLandablePlanets(hoverSystem) || t.outfits.size() > 1)
 				for(const auto& it : t.outfits)
 					tooltip += "\n - " + to_string(it.second) + " on " + it.first->Name();
 		}
