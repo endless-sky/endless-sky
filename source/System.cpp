@@ -349,7 +349,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		while(root->parent >= 0)
 			root = &objects[root->parent];
 		
-		static const string STAR = "You cannot land on a star!";
+		static const string STAR = "You cannot land on a star.";
 		static const string HOTPLANET = "This planet is too hot to land on.";
 		static const string COLDPLANET = "This planet is too cold to land on.";
 		static const string UNINHABITEDPLANET = "This planet is uninhabited.";
