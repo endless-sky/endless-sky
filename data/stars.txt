@@ -77,3 +77,25 @@ star "star/nova"
 star "star/wr"
 	power 0.4
 	wind 4
+
+# Brown Dwarves
+# Because these look like planets, they reverse the trend of increasing solar wind
+
+star "planet/browndwarf-l"
+	power 0.4
+	wind 0.5
+star "planet/browndwarf-l-rouge"
+	power 0.4
+	wind 0.5
+star "planet/browndwarf-t"
+	power 0.3
+	wind 0.4
+star "planet/browndwarf-t-rouge"
+	power 0.3
+	wind 0.4
+star "planet/browndwarf-y"
+	power 0.1
+	wind 0.3
+star "planet/browndwarf-y-rouge"
+	power 0.1
+	wind 0.3

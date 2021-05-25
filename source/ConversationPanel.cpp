@@ -12,14 +12,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConversationPanel.h"
 
+#include "text/alignment.hpp"
 #include "BoardingPanel.h"
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
+#include "text/DisplayText.h"
 #include "FillShader.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "MapDetailPanel.h"
@@ -136,6 +138,7 @@ void ConversationPanel::Draw()
 	{
 		// This conversation node is prompting the player to enter their name.
 		Point fieldSize(150, 20);
+		const auto layout = Layout(fieldSize.X() - 10, Truncate::FRONT);
 		for(int side = 0; side < 2; ++side)
 		{
 			Point center = point + Point(side ? 420 : 190, 7);
@@ -149,16 +152,15 @@ void ConversationPanel::Draw()
 			// Fill in whichever entry box is active right now.
 			FillShader::Fill(center, fieldSize, selectionColor);
 			// Draw the text cursor.
-			string displayedText = font.TruncateFront(choice ? lastName : firstName, fieldSize.X() - 5);
-			center.X() += font.Width(displayedText) - 67;
+			center.X() += font.FormattedWidth({choice ? lastName : firstName, layout}) - 67;
 			FillShader::Fill(center, Point(1., 16.), dim);
 		}
 		
 		font.Draw("First name:", point + Point(40, 0), dim);
-		font.Draw(font.TruncateFront(firstName, fieldSize.X() - 5), point + Point(120, 0), choice ? grey : bright);
+		font.Draw({firstName, layout}, point + Point(120, 0), choice ? grey : bright);
 		
 		font.Draw("Last name:", point + Point(270, 0), dim);
-		font.Draw(font.TruncateFront(lastName, fieldSize.X() - 5), point + Point(350, 0), choice ? bright : grey);
+		font.Draw({lastName, layout}, point + Point(350, 0), choice ? bright : grey);
 		
 		// Draw the OK button, and remember its location.
 		static const string ok = "[ok]";
@@ -206,7 +208,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	if(node < 0)
 	{
 		// If the conversation has ended, the only possible action is to exit.
-		if(key == SDLK_RETURN || key == SDLK_KP_ENTER)
+		if(isNewPress && (key == SDLK_RETURN || key == SDLK_KP_ENTER || key == 'd'))
 		{
 			Exit();
 			return true;
@@ -266,7 +268,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		--choice;
 	else if(key == SDLK_DOWN && choice < conversation.Choices(node) - 1)
 		++choice;
-	else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && choice < conversation.Choices(node))
+	else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && isNewPress && choice < conversation.Choices(node))
 		Goto(conversation.NextNode(node, choice), choice);
 	else if(key >= '1' && key < static_cast<SDL_Keycode>('1' + choices.size()))
 		Goto(conversation.NextNode(node, key - '1'), key - '1');
@@ -299,13 +301,13 @@ bool ConversationPanel::Scroll(double dx, double dy)
 
 
 // The player just selected the given choice.
-void ConversationPanel::Goto(int index, int choice)
+void ConversationPanel::Goto(int index, int selectedChoice)
 {
 	if(index)
 	{
 		// Add the chosen option to the text.
-		if(choice >= 0 && choice < static_cast<int>(choices.size()))
-			text.splice(text.end(), choices, next(choices.begin(), choice));
+		if(selectedChoice >= 0 && selectedChoice < static_cast<int>(choices.size()))
+			text.splice(text.end(), choices, next(choices.begin(), selectedChoice));
 		
 		// Scroll to the start of the new text, unless the conversation ended.
 		if(index >= 0)
@@ -409,7 +411,7 @@ void ConversationPanel::ClickChoice(int index)
 ConversationPanel::Paragraph::Paragraph(const string &text, const Sprite *scene, bool isFirst)
 	: scene(scene), isFirst(isFirst)
 {
-	wrap.SetAlignment(WrappedText::JUSTIFIED);
+	wrap.SetAlignment(Alignment::JUSTIFIED);
 	wrap.SetWrapWidth(WIDTH);
 	wrap.SetFont(FontSet::Get(14));
 	

@@ -14,7 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Format.h"
+#include "text/Format.h"
 
 #include <algorithm>
 #include <sstream>
@@ -29,23 +29,18 @@ namespace {
 
 
 
-// Default constructor.
-Account::Account()
-	: credits(0), salariesOwed(0), maintenanceDue(0), creditScore(400)
-{
-}
-
-
-
 // Load account information from a data file (saved game or starting conditions).
-void Account::Load(const DataNode &node)
+void Account::Load(const DataNode &node, bool clearFirst)
 {
-	credits = 0;
-	salariesOwed = 0;
-	maintenanceDue = 0;
-	creditScore = 400;
-	history.clear();
-	mortgages.clear();
+	if(clearFirst)
+	{
+		credits = 0;
+		salariesOwed = 0;
+		maintenanceDue = 0;
+		creditScore = 400;
+		mortgages.clear();
+		history.clear();
+	}
 	
 	for(const DataNode &child : node)
 	{

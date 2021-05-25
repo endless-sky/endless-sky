@@ -1,0 +1,305 @@
+# Copyright (c) 2020 by Zitchas
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+
+
+phrase "00-07"
+	word
+		"00"
+		"01"
+		"02"
+		"03"
+		"04"
+		"05"
+		"06"
+		"07"
+
+
+
+phrase "0-F"
+	word
+		"0"
+		"1"
+		"2"
+		"3"
+		"4"
+		"5"
+		"6"
+		"7"
+		"8"
+		"9"
+		"A"
+		"B"
+		"C"
+		"D"
+		"E"
+		"F"
+
+
+
+phrase "00-1F"
+	word
+		"0"
+		"1"
+	phrase
+		"0-F"
+
+
+
+phrase "A group of"
+	word
+		"A "
+	word
+		"pair"
+		"couple"
+		"pack"
+		"squad"
+		"team"
+		"family"
+		"group"
+		"gathering"
+		"small group"
+		"medium group"
+		"large group"
+	word
+		" of "
+
+
+
+phrase "Indeterminate"
+	word
+		"A few"
+		"Several"
+		"Some"
+		"Lots of"
+		"Many"
+	word
+		" "
+
+
+
+phrase "Amount of Remnant"
+	phrase
+		"A group of"
+		"Indeterminate"
+	word
+		"Remnant"
+
+
+news "remnant security advisory"
+	location
+		government "Remnant"
+	name
+		word
+			"System Security"
+			"Local"
+			"System"
+			"Defense"
+		word
+			" "	
+		word
+			"Advisory"
+			"Status"
+			"Threats"
+	message
+		word
+			`"`
+		word
+			"Incoming Korath Fleet in "
+		word
+			"${00-07} days"
+		word
+			" "
+		phrase
+			"00-1F"
+		word
+			" hours. Threat Sierra-"
+		word
+			"2"
+			"3"
+		phrase
+			"0-F"
+		word
+			"."
+		word
+			`"`
+	message
+		word
+			`"`
+		word
+			"Incoming Korath Ship in "
+		word
+			"${00-07} days"
+		word
+			" "
+		phrase
+			"00-1F"
+		word
+			" hours. Threat Sierra-"
+		word
+			"4"
+			"5"
+		phrase
+			"0-F"
+		word
+			"."
+		word
+			`"`
+	message
+		word
+			`"`
+		word
+			"Patrol"
+			"Salvage"
+			"Sentry"
+			"Attack"
+			"Reconnaissance"
+			"Escort"
+			"Decoy"
+		word
+			" "
+		word
+			"Flight"
+			"Talon"
+			"Wing"
+		word
+			" "
+		phrase
+			"0-F"
+		phrase
+			"0-F"
+		phrase
+			"0-F"
+		word
+			" "
+		word
+			"prepare for"
+			"ready for"
+			"standby for"
+			"hold for"
+		word
+			" "
+		word
+			"departure"
+			"launch"
+			"combat"
+		word
+			"."
+		word
+			`"`
+	message
+		word
+			`"`
+		word
+			"Salvage ships report to orbit for incoming Korath ships."
+			"No change in current threat level."
+			"Maintain normal security status."
+			"All departing ships advised to have weapon systems hot."
+			"All departing ships advised to expect hostiles in the vicinity."
+			"Reminder to update your IFF settings and verify keys."
+			"Reminder to verify functionality of selective IFF broadcast every startup."
+		word
+			`"`
+
+
+
+news "remnant incomprehensible"
+	location
+		government "Remnant"
+	name
+		word
+			"Spaceport"
+			"Loading dock"
+			"Cafeteria"
+			"Landing pad"
+			"Landing dock"
+			"Spaceport alley"
+			"Spaceport hallway"
+	message
+		phrase 
+			"Amount of Remnant"
+		word
+			" sign "
+			" gesture "
+		word
+			"quickly"
+			"calmly"
+			"leisurely"
+			"slowly"
+			"deliberately"
+			"carefully"
+			"precisely"
+			"sharply"
+			"briskly"
+			"sweepingly"
+			"intensively"
+			"meticulously"
+			"at length"
+			"vaguely"
+			"briskly"
+			"hurriedly"
+			"hastily"
+			"abruptly"
+			"spontaneously"
+		word
+			" to "
+		word
+			"each other"
+			"another Remnant"
+			"other Remnant"
+			"a Remnant at the information desk"
+			"a dockworker"
+			"something or someone you can't see"
+		word
+			". "
+		word
+			"You can not "
+		word 
+			"make out"
+			"figure out"
+			"understand"
+			"comprehend"
+		word
+			" what they are "
+		word
+			"saying"
+			"communicating"
+			"conveying"
+			"discussing"
+		word
+			"."
+
+
+
+news "remnant cafeteria"
+	name
+		word
+			"Spaceport"
+			"Cafeteria"
+			"Dining room"
+			"Buffet"
+			"Mess"
+			"Canteen"
+			"Kitchen"
+		
+	message
+		phrase 
+			"Amount of Remnant"
+		word
+			" "
+		word
+			"collect trays heaped with food from the kitchen window"
+			"appear to be enjoying a large meal together"
+			"are relaxing around the remains of a large meal"
+			"are signing to each other over a large meal"
+			"are reading reports over a large meal"
+			"are examining holo projections over a large meal"
+		word
+			"."

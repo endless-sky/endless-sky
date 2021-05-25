@@ -34,7 +34,7 @@ public:
 	// Slower functions for getting random numbers from a given distribution.
 	// Do not use these functions in time-critical code.
 	
-	// Return the expected number of failures before k successes, when the 
+	// Return the expected number of failures before k successes, when the
 	// probability of success is p. The mean value will be k / (1 - p).
 	static uint32_t Polya(uint32_t k, double p = .5);
 	// Get a number from a binomial distribution (i.e. integer bell curve).

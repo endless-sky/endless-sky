@@ -78,7 +78,7 @@ double Random::Real()
 
 
 
-// Return the expected number of failures before k successes, when the 
+// Return the expected number of failures before k successes, when the
 // probability of success is p. The mean value will be k / (1 - p).
 uint32_t Random::Polya(uint32_t k, double p)
 {

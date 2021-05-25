@@ -24,6 +24,9 @@ using namespace std;
 Visual::Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point hitVelocity)
 	: Body(effect, pos, vel, facing), lifetime(effect.lifetime)
 {
+	if(effect.randomLifetime > 0)
+		lifetime += Random::Int(effect.randomLifetime + 1);
+	
 	angle += Angle::Random(effect.randomAngle) - Angle::Random(effect.randomAngle);
 	spin = Angle::Random(effect.randomSpin) - Angle::Random(effect.randomSpin);
 	

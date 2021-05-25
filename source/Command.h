@@ -16,6 +16,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cstdint>
 #include <string>
 
+class DataNode;
+
 
 
 // Class mapping key presses to specific commands / actions. The player can
@@ -50,17 +52,26 @@ public:
 	static const Command MAP;
 	static const Command INFO;
 	static const Command FULLSCREEN;
+	static const Command FASTFORWARD;
 	// Escort commands:
 	static const Command FIGHT;
 	static const Command GATHER;
 	static const Command HOLD;
 	static const Command AMMO;
-	// This command from the AI tells a ship not to jump or land yet even if it
-	// is in position to do so. (There is no key mapped to this command.)
+	// This command is given in combination with JUMP or LAND and tells a ship
+	// not to jump or land yet even if it is in position to do so. It can be
+	// given from the AI when a ship is waiting for its parent. It can also be
+	// given from the player/input engine when the player is preparing his/her
+	// fleet for jumping or to indicate that the player is switching landing
+	// targets. (There is no explicit key mapped to this command.)
 	static const Command WAIT;
 	// This command from the AI tells a ship that if possible, it should apply
 	// less than its full thrust in order to come to a complete stop.
 	static const Command STOP;
+	// Modifier command, usually triggered by shift-key. Changes behaviour of
+	// other commands like NEAREST, TARGET, HAIL and BOARD.
+	static const Command SHIFT;
+
 	
 public:
 	// In the given text, replace any instances of command names (in angle
@@ -87,12 +98,17 @@ public:
 	const std::string &KeyName() const;
 	bool HasConflict() const;
 	
+	// Load this command from an input file (for testing or scripted missions).
+	void Load(const DataNode &node);
+	
 	// Reset this to an empty command.
 	void Clear();
 	// Clear, set, or check the given bits. This ignores the turn field.
 	void Clear(Command command);
 	void Set(Command command);
 	bool Has(Command command) const;
+	// Get the commands that are set in this and in the given command.
+	Command And(Command command) const;
 	// Get the commands that are set in this and not in the given command.
 	Command AndNot(Command command) const;
 	

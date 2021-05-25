@@ -1,0 +1,1160 @@
+# Copyright (c) 2017 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+
+
+ship "Albatross"
+	plural "Albatrosses"
+	sprite "ship/albatross"
+	thumbnail "thumbnail/albatross"
+	attributes
+		category "Heavy Warship"
+		licenses
+			"Remnant Capital"
+		cost 20250000
+		"shields" 34200
+		"hull" 12600
+		"required crew" 44
+		"bunks" 75
+		"cargo space" 124
+		"mass" 610
+		"drag" 8.6
+		"heat dissipation" 0.6
+		"fuel capacity" 600
+		"ramscoop" 2
+		"outfit space" 672
+		"weapon capacity" 236
+		"engine capacity" 142
+		"shield generation" 5.2
+		"shield energy" 4.6
+		"hull repair rate" 1.5
+		"hull energy" 1.2
+		"outfit scan power" 18
+		"outfit scan speed" 1
+		"tactical scan power" 39
+		weapon
+			"blast radius" 360
+			"shield damage" 3600
+			"hull damage" 1800
+			"hit force" 5400
+	outfits
+		"Inhibitor Cannon" 6
+		"Thrasher Turret" 2
+		"Point Defense Turret"
+
+		"Aeon Cell"
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Thermoelectric Cooler" 3
+		"Quantum Key Stone"
+
+		"Smelter-Class Thruster"
+		"Smelter-Class Steering"
+		"Scram Drive"
+
+	engine -28 155 .8
+	engine 28 155 .8
+	engine 0 184 .9
+	gun 0 -190
+	gun -9 -177 "Inhibitor Cannon"
+	gun 9 -177 "Inhibitor Cannon"
+	gun -14 -162 "Inhibitor Cannon"
+	gun 14 -162 "Inhibitor Cannon"
+	gun -18 -144 "Inhibitor Cannon"
+	gun 18 -144 "Inhibitor Cannon"
+	turret -23 -34 "Thrasher Turret"
+	turret 23 -34 "Thrasher Turret"
+	turret -74 62
+	turret 74 62
+	turret 0 77 "Point Defense Turret"
+	leak "remnant leak" 30 10
+	leak "remnant leak sparkle" 30 10
+	explode "small explosion" 30
+	explode "medium explosion" 60
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large" 1
+	description "Once they left human space, it became apparent to the Remnant that they would need to build their own shipyards in order to defend themselves if they were discovered by the Alphas or any other unfriendly faction. Using new composite materials that they discovered, they built ships very different from anything seen in human space."
+
+ship "Albatross" "Albatross (Sniper)"
+	outfits
+		"Inhibitor Cannon" 5
+		"EMP Torpedo Bay" 2
+		"Point Defense Turret" 3
+		"EMP Torpedo" 39
+		"EMP Torpedo Storage Bay" 3
+
+		"Aeon Cell"
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Thermoelectric Cooler" 3
+		"Quantum Key Stone"
+		"Salvage Scanner"
+		"Outfits Expansion"
+		"Tuning Rifle" 57
+
+		"Forge-Class Thruster"
+		"Crucible-Class Thruster"
+		"Smelter-Class Steering"
+		"Scram Drive"
+
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "EMP Torpedo Bay"
+	gun "EMP Torpedo Bay"
+
+	turret "Point Defense Turret"
+	turret "Point Defense Turret"
+	turret
+	turret
+	turret "Point Defense Turret"
+
+ship "Albatross" "Albatross (Turret)"
+	outfits
+		"Thrasher Turret" 4
+		"Point Defense Turret"
+
+		"Aeon Cell"
+		"Epoch Cell"
+		"Millennium Cell"
+		"Crystal Capacitor"
+		"Quantum Key Stone"
+		"Thermoelectric Cooler"
+		"Quantum Key Stone"
+		"Outfits Expansion" 2
+		"Tuning Rifle" 49
+
+		"Smelter-Class Thruster"
+		"Smelter-Class Steering"
+		"Scram Drive"
+
+	turret "Thrasher Turret"
+	turret "Thrasher Turret"
+	turret "Thrasher Turret"
+	turret "Thrasher Turret"
+	turret "Point Defense Turret"
+
+ship "Albatross" "Albatross (Heavy)"
+	outfits
+		"Inhibitor Cannon" 3
+		"Thrasher Cannon" 4
+		"Thrasher Turret" 3
+
+		"Aeon Cell"
+		"Epoch Cell"
+		"Millennium Cell"
+		"Crystal Capacitor" 2
+		"Quantum Key Stone"
+		"Thermoelectric Cooler" 3
+		"Quantum Key Stone"
+		"Outfits Expansion" 4
+		"Tuning Rifle" 65
+
+		"Forge-Class Thruster"
+		"Crucible-Class Thruster"
+		"Smelter-Class Steering"
+		"Forge-Class Steering"
+		"Scram Drive"
+
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Thrasher Cannon"
+	gun "Thrasher Cannon"
+	gun "Thrasher Cannon"
+	gun "Thrasher Cannon"
+	turret "Thrasher Turret"
+	turret "Thrasher Turret"
+	turret
+	turret
+	turret "Thrasher Turret"
+
+ship "Albatross" "Albatross (Shield)"
+	outfits
+		"Point Defense Turret" 4
+		"Thrasher Turret"
+
+		"Aeon Cell"
+		"Millennium Cell"
+		"Quantum Key Stone"
+		"Thermoelectric Cooler" 2
+		"Quantum Key Stone"
+		"Outfits Expansion" 6
+		"Systems Core (Large)" 3
+		"Small Heat Shunt" 1
+		"Large Heat Shunt" 1
+		
+		"Tuning Rifle" 75
+
+		"Crucible-Class Thruster"
+		"Forge-Class Steering"
+		"Hyperdrive"
+
+	turret "Thrasher Turret"
+	turret "Point Defense Turret"
+	turret "Point Defense Turret"
+	turret "Point Defense Turret"
+	turret "Point Defense Turret"
+
+ship "Albatross" "Albatross (Ember Shield)"
+	outfits
+		"Thrasher Turret" 2
+
+		"Aeon Cell"
+		"Millennium Cell"
+		"Crystal Capacitor" 2
+		"Quantum Key Stone"
+		"Emergency Ramscoop"
+		"Outfits Expansion" 6
+		"Systems Core (Large)" 4
+		"Large Heat Shunt"
+		"Thermoelectric Cooler"
+		
+		"Tuning Rifle" 47
+
+		"Crucible-Class Thruster"
+		"Crucible-Class Steering"
+		"Hyperdrive"
+
+	turret "Thrasher Turret"
+	turret "Thrasher Turret"
+	turret
+	turret
+	turret
+
+
+ship "Gull"
+	sprite "ship/gull"
+	thumbnail "thumbnail/gull"
+	attributes
+		category "Light Freighter"
+		licenses
+			Remnant
+		cost 9500000
+		"shields" 6500
+		"hull" 2500
+		"required crew" 3
+		"bunks" 20
+		"mass" 270
+		"drag" 6
+		"heat dissipation" 0.7
+		"fuel capacity" 600
+		"ramscoop" 1
+		"cargo space" 175
+		"outfit space" 311
+		"weapon capacity" 83
+		"engine capacity" 101
+		"shield generation" 1.6
+		"shield energy" 1.1
+		"hull repair rate" 0.7
+		"hull energy" 0.5
+		"cloak" .02
+		"cloaking energy" 5
+		"cloaking fuel" .1
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 26
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Inhibitor Cannon" 1
+		"Point Defense Turret"
+
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Emergency Ramscoop" 2
+		"Quantum Key Stone"
+		"Salvage Scanner"
+		"Thermoelectric Cooler"
+		"Tuning Rifle" 3
+
+		"Forge-Class Thruster"
+		"Forge-Class Steering"
+		"Hyperdrive"
+
+	engine -12 70 0.7
+	engine 12 70 0.7
+	engine 0 78 1
+	gun 0 -96 "Inhibitor Cannon"
+	gun -7 -94
+	gun 7 -94
+	turret 0 26 "Point Defense Turret"
+	leak "remnant leak" 30 7
+	leak "remnant leak sparkle" 30 7
+	explode "tiny explosion" 40
+	explode "small explosion" 20
+	explode "medium explosion" 10
+	"final explode" "final explosion small" 1
+	description "While the Starling was the first successful ship to use technology derived from alien ruins, the Gull is the most recent. The current increase in Korath activities has caused foraging for resources to become a risky endeavor, forcing the Remnant to develop a specialized freighter for hauling cargo from remote sites without revealing their presence to hostile aliens."
+	description "	The Gull has quickly proven its worth, allowing the Starling fleets to return to riskier activities while the Gull takes over the hazardous convoy routes. It is now the primary element of the Remnant's extra-territorial resource operations."
+	description "	The cloaking technology is built into the Gull's hull; it cannot be removed or transferred to another ship."
+
+ship "Gull" "Gull (Sniper)"
+	outfits
+		"Inhibitor Cannon" 3
+		"Point Defense Turret"
+
+		"Epoch Cell"
+		"Millennium Cell"
+		"Crystal Capacitor"
+		"Quantum Key Stone"
+		"Salvage Scanner" 2
+		"Outfits Expansion"
+		"Thermoelectric Cooler"
+		"Tuning Rifle" 4
+
+		"Forge-Class Thruster"
+		"Forge-Class Steering"
+		"Hyperdrive"
+
+ship "Gull" "Gull (Support)"
+	outfits
+		"EMP Torpedo Bay"
+		"Inhibitor Cannon" 2
+		"Point Defense Turret"
+		"EMP Torpedo" 16
+		"EMP Torpedo Storage Bay"
+
+		"Epoch Cell"
+		"Millennium Cell"
+		"Crystal Capacitor"
+		"Quantum Key Stone"
+		"Thermoelectric Cooler"
+		"Salvage Scanner" 2
+		"Outfits Expansion" 2
+		"Tuning Rifle" 3
+
+		"Forge-Class Thruster"
+		"Forge-Class Steering"
+		"Hyperdrive"
+
+ship "Gull" "Gull (Cargo)"
+	outfits
+		"Cargo Expansion" 4
+
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Quantum Key Stone"
+		"Salvage Scanner"
+		"Thermoelectric Cooler"
+		"Tuning Rifle" 3
+
+		"Forge-Class Thruster"
+		"Forge-Class Steering"
+		"Hyperdrive"
+
+ship "Gull" "Gull (Bunks)"
+	outfits
+		"Bunk Room" 4
+
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Quantum Key Stone"
+		"Salvage Scanner"
+		"Thermoelectric Cooler"
+		"Tuning Rifle" 3
+
+		"Forge-Class Thruster"
+		"Forge-Class Steering"
+		"Hyperdrive"
+
+
+
+ship "Heron"
+	sprite "ship/heron"
+	attributes
+		category "Transport"
+		licenses
+			"Remnant Capital"
+		"cost" 256375000
+		"shields" 250500
+		"hull" 250500
+		"required crew" 1000
+		"bunks" 3000
+		"mass" 5000
+		"drag" 25
+		"heat dissipation" .80
+		"fuel capacity" 2500
+		"ramscoop" 10
+		"cargo space" 1110
+		"outfit space" 2150
+		"weapon capacity" 470
+		"engine capacity" 800
+		"shield generation" 15
+		"shield energy" 1.8
+		"hull repair rate" 15
+		"hull energy" 0.75
+		"cloak" .05
+		"cloaking energy" 3
+		"cloaking fuel" .05
+		"gaslining" 1
+		"atmosphere scan" 100
+		"outfit scan power" 175
+		"outfit scan speed" 1
+		"tactical scan power" 350
+		"force protection" 1
+		"heat protection" 1.5
+		"ion resistance" 0.3
+		"slowing resistance" 3
+		"remnant node" 11
+		weapon
+			"blast radius" 140
+			"shield damage" 1400
+			"hull damage" 700
+			"hit force" 2100
+	outfits
+		"Inhibitor Turret" 6
+		"Point Defense Turret" 3
+
+		"Aeon Cell" 4
+		"Crystal Capacitor" 10
+		"Emergency Ramscoop" 10
+		"Large Heat Shunt" 5
+		"Quantum Key Stone"
+		"Salvage Scanner" 5
+		"Thermoelectric Cooler" 5
+		
+		"Bellows-Class Afterburner" 3
+		"Smelter-Class Thruster" 4
+		"Smelter-Class Steering" 5
+		"Hyperdrive"
+		"Jump Drive"
+		"Scram Drive"
+		
+	engine -111 307.5
+	engine 112 307.5
+	engine -86 289 1.5
+	engine 86 289 1.5
+	engine -52 274 1.5
+	engine 52 274 1.5
+	engine 0 328 1.5
+	gun 0 -325
+	gun -23.5 -302.5
+	gun 23.5 -302.5
+	turret -34.5 -134.5 "Inhibitor Turret"
+	turret 34.5 -134.5 "Inhibitor Turret"
+	turret -53 -17.5 "Inhibitor Turret"
+	turret 53 -17.5 "Inhibitor Turret"
+	turret -123.5 125.5 "Inhibitor Turret"
+	turret 123.5 125.5 "Inhibitor Turret"
+	turret 0 -240.5 "Point Defense Turret"
+	turret 0 0 "Point Defense Turret"
+	turret 0 250 "Point Defense Turret"
+	bay "Drone" -124 -122.5
+	bay "Drone" 124 -122.5
+	bay "Drone" -176 -50.5
+	bay "Drone" 176 -50.5
+	bay "Drone" -148.5 4
+	bay "Drone" 148.5 4
+	bay "Drone" -56 -150
+	bay "Drone" 56 -150
+	bay "Drone" -37 -121.5
+	bay "Drone" 37 -121.5
+	bay "Drone" -33.5 -99
+	bay "Drone" 33.5 -99
+	bay "Drone" -27 -81
+	bay "Drone" 27 -81
+	bay "Drone" -24 -49.5
+	bay "Drone" 24 -49.5
+	bay "Drone" -40 -3
+	bay "Drone" 40 -3
+	bay "Drone" -28 22.5
+	bay "Drone" 28 22.5
+	bay "Drone" -77.5 71.5
+	bay "Drone" 77.5 71.5
+	bay "Drone" -89.5 114
+	bay "Drone" 89.5 114
+	bay "Drone" -138.5 152.5
+	bay "Drone" 138.5 152.5
+	bay "Drone" -171 165.5
+	bay "Drone" 171 165.5
+	bay "Drone" -190.5 197.5
+	bay "Drone" 190.5 197.5
+	bay "Drone" -105 229.5
+	bay "Drone" 105 229.5
+	bay "Fighter" -31 70.5
+	bay "Fighter" 31 70.5
+	bay "Fighter" -40 190
+	bay "Fighter" 40 190
+	explode "small explosion" 40
+	explode "medium explosion" 30
+	explode "large explosion" 20
+	explode "huge explosion" 5
+	"final explode" "final explosion large"
+	description "The Heron is the Remnant's ultimate last resort: Flight. These mobile starports are built to serve as the core elements of evacuation fleets when the Remnant are ultimately pushed to the brink of destruction in their home systems. These massive ships are capable of lifting enormous amounts of resources and operate both in space and on land, and are continuously updated to make full use of the latest technological innovations."
+	description "	The few Herons in existence are carefully guarded secrets that embody the Remnant's core tactics of speed, stealth, and survival. Given the tiny number that exist, they are never available for discretionary use by Remnant captains and are always operated under the authority and direction of a prefect."
+
+
+
+ship "Ibis"
+	plural "Ibises"
+	sprite "ship/ibis"
+	thumbnail "thumbnail/ibis"
+	attributes
+		category "Medium Warship"
+		licenses
+			"Remnant Capital"
+		"cost" 11627000
+		"shields" 14400
+		"hull" 6200
+		"required crew" 16
+		"bunks" 36
+		"mass" 350
+		"drag" 5.1
+		"heat dissipation" 0.7
+		"fuel capacity" 700
+		"ramscoop" 2
+		"cargo space" 103
+		"outfit space" 427
+		"weapon capacity" 147
+		"engine capacity" 109
+		"shield generation" 3.5
+		"shield energy" 3.1
+		"hull repair rate" 1.2
+		"hull energy" 0.95
+		"outfit scan power" 18
+		"outfit scan speed" 1
+		"tactical scan power" 39
+		weapon
+			"blast radius" 240
+			"shield damage" 2400
+			"hull damage" 1200
+			"hit force" 3000
+	outfits
+		"Inhibitor Cannon" 3
+		"Point Defense Turret"
+		"Thrasher Turret"
+		
+		"Epoch Cell"
+		"Millennium Cell"
+		"Crystal Capacitor" 2
+		"Emergency Ramscoop"
+		"Thermoelectric Cooler" 2
+		"Quantum Key Stone"
+		"Salvage Scanner"
+		"Tuning Rifle" 20
+		
+		"Forge-Class Thruster"
+		"Forge-Class Steering" 2
+		"Scram Drive"
+		
+	bay "Drone" 0 30 over 
+	bay "Drone" -34 68 over
+	bay "Drone" 0 81 over
+	bay "Drone" 34 68 over
+	bay "Fighter" -25 10 under
+	bay "Fighter" 25 10 under
+	engine -16.5 120 0.7
+	engine 0 116.5 1
+	engine 16.5 120 0.7
+	gun 0 -135.5 "Inhibitor Cannon"
+	gun 15.5 -102 "Inhibitor Cannon"
+	gun -15.5 -102 "Inhibitor Cannon"
+	turret 0 -62
+	turret 0 -20.5 "Point Defense Turret"
+	turret 0 58.5 "Thrasher Turret"
+	leak "remnant leak" 20 7
+	leak "remnant leak sparkle" 30 10
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "The Ibis is a multipurpose carrier that serves as a mobile mining platform, an escort ship for Pelican fleets, and a combat platform using Terns for screening. It is capable of fielding a single wing of support craft, consisting of two Petrels and four Terns."
+	description "	The Ibis was designed shortly after the Albatross as a means of extending the range of resource collection efforts after the Remnant realized that an Alpha invasion might not be as imminent as originally believed."
+
+
+
+ship "Pelican"
+	sprite "ship/pelican"
+	thumbnail "thumbnail/pelican"
+	attributes
+		category "Heavy Freighter"
+		licenses
+			"Remnant Capital"
+		cost 9900000
+		"shields" 11300
+		"hull" 5700
+		"required crew" 14
+		"bunks" 35
+		"cargo space" 302
+		"mass" 320
+		"drag" 7.2
+		"heat dissipation" 0.7
+		"fuel capacity" 600
+		"ramscoop" 2
+		"outfit space" 480
+		"weapon capacity" 157
+		"engine capacity" 144
+		"shield generation" 2.7
+		"shield energy" 1.8
+		"hull repair rate" 1
+		"hull energy" 0.75
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 26
+		weapon
+			"blast radius" 160
+			"shield damage" 1600
+			"hull damage" 800
+			"hit force" 2400
+	outfits
+		"Thrasher Turret"
+		"Point Defense Turret" 2
+
+		"Aeon Cell"
+		"Crystal Capacitor" 2
+		"Thermoelectric Cooler" 3
+		"Emergency Ramscoop"
+		"Quantum Key Stone"
+		"Tuning Rifle" 15
+
+		"Smelter-Class Thruster"
+		"Smelter-Class Steering"
+		"Scram Drive"
+
+	engine 22 92 0.7
+	engine -22 92 0.7
+	engine 0 114 1.1
+	gun 8 -135
+	gun -8 -135
+	turret 0 -67 "Thrasher Turret"
+	turret 56 35 "Point Defense Turret"
+	turret -56 35 "Point Defense Turret"
+	leak "remnant leak" 20 8
+	leak "remnant leak sparkle" 30 12
+	explode "small explosion" 15
+	explode "medium explosion" 30
+	explode "large explosion" 20
+	explode "huge explosion" 5
+	"final explode" "final explosion large" 1
+	description "The Pelican is closely based on the original semi-organic materials the Remnant found in the Ember Waste. While they are not technically alive, their internal mechanisms and method of construction bear such a close resemblance to living organisms that they are often considered as such. One key feature of this living resemblance is the innate sensory capabilities they possess, akin to sensor suites less advanced ships require for detailed scanning. These ships serve as the backbone of Remnant bulk salvage efforts, as well as their fast-logistics distribution network."
+
+ship "Pelican" "Pelican (Heavy Lift)"
+	outfits
+		"Small Heat Shunt" 2
+		"Cargo Expansion" 5
+		"Scram Drive"
+		"Smelter-Class Thruster"
+		"Crystal Capacitor" 2
+		"Quantum Key Stone"
+		"Smelter-Class Steering"
+		"Tuning Rifle" 15
+		"Emergency Ramscoop" 5
+		"Aeon Cell"
+
+
+
+ship "Penguin"
+	sprite "ship/penguin/penguin"
+		"frame rate" 3
+	thumbnail "thumbnail/penguin"
+	attributes
+		category "Transport"
+		licenses
+			Remnant
+		cost 2530000
+		"shields" 3000
+		"hull" 1500
+		"required crew" 1
+		"bunks" 3
+		"mass" 71
+		"drag" 1.25
+		"heat dissipation" 0.9
+		"fuel capacity" 800
+		"energy capacity" 300
+		"ramscoop" 0.5
+		"cargo space" 19
+		"outfit space" 109
+		"weapon capacity" 33
+		"engine capacity" 54
+		"shield generation" 1
+		"shield energy" 0.5
+		"hull repair rate" 2
+		"hull energy" 1.0
+		"gaslining" 1
+		"cloak" .03
+		"cloaking energy" 3
+		"cloaking fuel" .05
+		"outfit scan power" 50
+		"outfit scan speed" 1
+		"tactical scan power" 50
+		"atmosphere scan" 100
+		"thrust" 4.2
+		"turn" 80.0
+		"reverse thrust" 4.2
+		"flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"flare sound" "plasma tiny"
+		"steering flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"steering flare sound" "plasma tiny"
+		"reverse flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"reverse flare sound" "plasma tiny"
+		weapon
+			"blast radius" 20
+			"shield damage" 260
+			"hull damage" 160
+			"hit force" 800
+	outfits
+		"Millennium Cell"
+		"Emergency Ramscoop"
+		"Quantum Key Stone"
+		"Thermoelectric Cooler"
+		"Tuning Rifle" 1
+		
+		"Crucible-Class Thruster"
+		"Crucible-Class Steering"
+		"Hyperdrive"
+	
+	engine 0 30
+	"reverse engine" -11 -17
+		zoom 0.25
+		angle 350
+	"reverse engine" 11 -17
+		zoom 0.25
+		angle 10
+	"steering engine" -11 -17
+		"zoom" 0.15
+		"angle" 90
+		under
+		right
+	"steering engine" 11 -17
+		"zoom" 0.15
+		"angle" 270
+		under
+		left
+	"steering engine" -11 17
+		"zoom" 0.15
+		"angle" 90
+		under
+		left
+	"steering engine" 11 17
+		"zoom" 0.15
+		"angle" 270
+		under
+		right
+	gun 0 -33
+	turret 0 5.5
+	leak "remnant leak sparkle" 30 2
+	explode "tiny explosion" 8
+	explode "small explosion" 7
+	description "Inspired by close contact with void sprites and the reinvigoration of xenobiology, the Penguin is a prototype designed to serve the dual roles of testing new starship technology while exploring hostile planets throughout the Ember Waste. One of this ship's distinguishing features is that it is truly alive and has a mind that approaches self-awareness."
+	description "	The cloaking technology is built into the Penguin's hull; it cannot be removed or transferred to another ship."
+	
+	
+	
+ship "Peregrine"
+	sprite "ship/peregrine/peregrine"
+		"frame rate" 3 
+		"rewind"
+	thumbnail "thumbnail/peregrine"
+	attributes
+		category "Medium Warship"
+		licenses
+			"Remnant Capital"
+		"cost" 41627000
+		"shields" 15400
+		"hull" 8600
+		"required crew" 9
+		"bunks" 25
+		"mass" 350
+		"drag" 4.3
+		"heat dissipation" 0.85
+		"fuel capacity" 900
+		"ramscoop" 2.5
+		"cargo space" 49
+		"outfit space" 552
+		"weapon capacity" 220
+		"engine capacity" 171
+		"shield generation" 3.9
+		"shield energy" 3.0
+		"hull repair rate" 1.5
+		"hull energy" 0.90
+		"cloak" .03
+		"cloaking energy" 3
+		"cloaking fuel" .05
+		"outfit scan power" 18
+		"outfit scan speed" 1
+		"tactical scan power" 39
+		"remnant node" 3
+		weapon
+			"blast radius" 240
+			"shield damage" 2400
+			"hull damage" 1200
+			"hit force" 3000
+	outfits
+		"Thrasher Cannon" 4
+		"EMP Torpedo Bay" 1
+		"Point Defense Turret"
+		"Thrasher Turret"
+		"EMP Torpedo" 9
+		
+		"Aeon Cell"
+		"Crystal Capacitor" 2
+		"Thermoelectric Cooler" 2
+		"Small Heat Shunt"
+		"Quantum Key Stone"
+		"Salvage Scanner"
+		"Tuning Rifle" 11
+		
+		"Bellows-Class Afterburner"
+		"Smelter-Class Thruster"
+		"Crucible-Class Thruster"
+		"Smelter-Class Steering"
+		"Scram Drive"
+		
+	gun 0 -133.5 "EMP Torpedo Bay"
+	gun -12.5 -105 "Thrasher Cannon"
+	gun 12.5 -105 "Thrasher Cannon"
+	gun -17.5 -83 "Thrasher Cannon"
+	gun 17.5 -83 "Thrasher Cannon"
+	turret 0 -44 "Point Defense Turret"
+	turret 0 21 "Thrasher Turret"
+	engine 0 120.5 1.5
+	engine -26 126 1.1
+	engine 25 123.5 1.1
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "The Peregrine is the first warship designed by Taely using fresh insights garnered from recent experimentation as well as renewed studies of the void sprites. Encompassing over a century of development since the last generation of warships was built, it is the forerunner of a new breed of Remnant ships."
+	description "	The Peregrine was designed along the lines of old-earth's fast-attack cruisers. Drawing on inspiration from its namesake, famed for being the fastest self-propelled lifeform on Earth, it is designed to strike hard and fast. It closes quickly with enemies to unleash devastating barrages in the opening seconds of combat."
+	description "	The cloaking technology is built into the Peregrine's hull; it cannot be removed or transferred to another ship."
+
+
+
+ship "Petrel"
+	sprite "ship/petrel"
+	thumbnail "thumbnail/petrel"
+	attributes
+		category "Fighter"
+		licenses
+			Remnant
+		"cost" 1141000
+		"shields" 1000
+		"hull" 2500
+		"cargo space" 15
+		"fuel capacity" 100
+		"ramscoop" 0.5
+		"required crew" 2
+		"bunks" 3
+		"mass" 50
+		"drag" 1.55
+		"heat dissipation" .8
+		"outfit space" 133
+		"weapon capacity" 33
+		"engine capacity" 34
+		"shield generation" 0.36
+		"shield energy" 0.24
+		"hull repair rate" 0.82
+		"hull energy" 0.54
+		"gaslining" 1
+		"outfit scan power" 10
+		"outfit scan speed" 1
+		"tactical scan power" 20
+		"asteroid scan power" 30
+		weapon
+			"blast radius" 15
+			"shield damage" 150
+			"hull damage" 200
+			"hit force" 350
+	outfits
+		"Inhibitor Cannon" 2
+		
+		"Millennium Cell" 2
+		"Crystal Capacitor"
+		"Quantum Key Stone"
+		"Thermoelectric Cooler"
+		
+		"Anvil-Class Engine"
+		
+	gun 0 -38.5
+	gun -10.5 -24 "Inhibitor Cannon"
+	gun 10.5 -24 "Inhibitor Cannon"
+	turret 0 2.5
+	engine 0 41.5
+	leak "remnant leak sparkle" 20 3
+	explode "tiny explosion" 30
+	explode "small explosion" 20
+	description "The Petrel is a multi-role mining/wing leader fightercraft designed to provide support for flights of lighter Terns in high-risk environments. The ship's design originated as an urban mobile gun platform that flitted around structures and natural terrain, but proved easy to adapt into a spacecraft."
+	description "	The Remnant are loath to sacrifice pilots and crew from the comparatively small pool they are drawn from. As such, their fighters are equipped with medium-range weaponry designed to strike enemies from afar."
+
+
+
+ship "Puffin"
+	sprite "ship/puffin"
+	thumbnail "thumbnail/puffin"
+	attributes
+		category Transport
+		cost 530000
+		"shields" 800
+		"hull" 1500
+		"required crew" 1
+		"bunks" 2
+		"mass" 40
+		"drag" 1.27
+		"heat dissipation" 0.9
+		"fuel capacity" 700
+		"energy capacity" 150
+		"ramscoop" 0.5
+		"cargo space" 8
+		"outfit space" 80
+		"engine capacity" 26
+		"shield generation" 0.6
+		"shield energy" 0.4
+		"hull repair rate" 1.2
+		"hull energy" 0.9
+		"gaslining" 1
+		"cooling" 1
+		"active cooling" 8
+		"cooling energy" .4
+		"outfit scan power" 24
+		"outfit scan speed" 1
+		"tactical scan power" 52
+		"atmosphere scan" 100
+	outfits
+		"Millennium Cell"
+		"Emergency Ramscoop"
+		"Quantum Key Stone"
+		
+		"Anvil-Class Engine"
+		"Hyperdrive"
+		
+	engine 0 30
+	leak "remnant leak sparkle" 20 2
+	explode "tiny explosion" 8
+	explode "small explosion" 7
+	description "Centuries ago, the Remnant built these ships in order to explore the upper atmosphere of nearby gas giants. The Archons took issue with the Remnant's research methods, and the studies were unable to be completed. The remaining Puffins have been gathering dust in storage for centuries while the Remnant wait to see if the anger of the Archons will subside."
+
+
+
+ship "Starling"
+	sprite "ship/starling"
+	thumbnail "thumbnail/starling"
+	attributes
+		category "Light Warship"
+		licenses
+			Remnant
+		cost 8800000
+		"shields" 8800
+		"hull" 4900
+		"required crew" 6
+		"bunks" 15
+		"mass" 270
+		"drag" 3.8
+		"heat dissipation" 0.7
+		"fuel capacity" 900
+		"ramscoop" 1
+		"cargo space" 36
+		"outfit space" 316
+		"weapon capacity" 83
+		"engine capacity" 94
+		"shield generation" 1.8
+		"shield energy" 1.2
+		"hull repair rate" 0.8
+		"hull energy" 0.6
+		"cloak" .02
+		"cloaking energy" 5
+		"cloaking fuel" .1
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 26
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Inhibitor Cannon" 3
+		"Point Defense Turret"
+		
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Emergency Ramscoop" 2
+		"Quantum Key Stone"
+		"Salvage Scanner"
+		"Thermoelectric Cooler"
+		
+		"Forge-Class Thruster"
+		"Forge-Class Steering"
+		"Crucible-Class Steering"
+		"Hyperdrive"
+
+	engine -16 82 0.7
+	engine 16 82 0.7
+	engine 0 90 1
+	gun 0 -99 "Inhibitor Cannon"
+	gun -12 -72 "Inhibitor Cannon"
+	gun 12 -72 "Inhibitor Cannon"
+	gun -18 -49
+	gun 18 -49
+	turret 0 2 "Point Defense Turret"
+	leak "remnant leak" 30 4
+	leak "remnant leak sparkle" 30 10
+	explode "tiny explosion" 40
+	explode "small explosion" 20
+	explode "medium explosion" 10
+	"final explode" "final explosion small" 1
+	description "One of the strangest and most useful things that the Remnant have discovered in the abandoned worlds of the Ember Waste is alien cloaking technology. They have designed their scout ships to cloak when needed in order to explore alien territory without being seen... or to escape in a hurry after stealing something particularly valuable from those aliens."
+	description "	The cloaking technology is built into the Starling's hull; it cannot be removed or transferred to another ship."
+
+ship "Starling" "Starling (Heavy)"
+	outfits
+		"Thrasher Cannon" 5
+		"Point Defense Turret"
+
+		"Epoch Cell"
+		"Millennium Cell"
+		"Crystal Capacitor"
+		"Quantum Key Stone"
+		"Thermoelectric Cooler"
+		"Tuning Rifle" 10
+
+		"Forge-Class Thruster"
+		"Forge-Class Steering"
+		"Hyperdrive"
+
+ship "Starling" "Starling (Sniper)"
+	outfits
+		"EMP Torpedo Bay"
+		"Inhibitor Cannon" 4
+		"EMP Torpedo" 16
+		"EMP Torpedo Storage Bay"
+
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Emergency Ramscoop" 2
+		"Quantum Key Stone"
+		"Outfits Expansion"
+		"Thermoelectric Cooler"
+		"Tuning Rifle" 9
+
+		"Forge-Class Thruster"
+		"Smelter-Class Steering"
+		"Hyperdrive"
+
+	gun "EMP Torpedo Bay"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+
+ship "Starling" "Starling (Hunter)"
+	outfits
+		"Inhibitor Cannon" 2
+		"Thrasher Turret"
+
+		"Epoch Cell"
+		"Millennium Cell"
+		"Crystal Capacitor"
+		"Quantum Key Stone"
+		"Emergency Ramscoop"
+		"Thermoelectric Cooler"
+		"Tuning Rifle" 11
+
+		"Forge-Class Thruster"
+		"Forge-Class Steering"
+		"Hyperdrive"
+
+	gun
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun
+	gun
+
+ship "Starling" "Starling (Thrasher)"
+	outfits
+		"Thrasher Cannon" 3
+		"Thrasher Turret"
+
+		"Epoch Cell"
+		"Millennium Cell"
+		"Crystal Capacitor"
+		"Quantum Key Stone"
+		"Thermoelectric Cooler"
+		"Tuning Rifle" 8
+
+		"Forge-Class Thruster"
+		"Forge-Class Steering"
+		"Hyperdrive"
+
+	gun "Thrasher Cannon"
+	gun "Thrasher Cannon"
+	gun "Thrasher Cannon"
+	gun
+	gun
+
+
+
+ship "Tern"
+	sprite "ship/tern"
+	thumbnail "thumbnail/tern"
+	attributes
+		category "Drone"
+		licenses
+			Remnant
+		"cost" 860000
+		"shields" 500
+		"hull" 2500
+		"automaton" 1
+		"cargo space" 5
+		"mass" 32
+		"drag" 1.0
+		"heat dissipation" .9
+		"fuel capacity" 50
+		"energy capacity" 500
+		"ramscoop" 0.5
+		"outfit space" 76
+		"weapon capacity" 16
+		"engine capacity" 26
+		"shield generation" 0.25
+		"shield energy" 0.16
+		"hull repair rate" 0.55
+		"hull energy" 0.37
+		"gaslining" 1
+		"outfit scan power" 10
+		"outfit scan speed" 1
+		"tactical scan power" 20
+		"atmosphere scan" 100
+		"asteroid scan power" 30
+		weapon
+			"blast radius" 10
+			"shield damage" 100
+			"hull damage" 150
+			"hit force" 250
+	outfits
+		"Inhibitor Cannon"
+		
+		"Millennium Cell"
+		"Quantum Key Stone"
+		"Thermoelectric Cooler"
+		
+		"Anvil-Class Engine"
+		
+	gun 0 -22 "Inhibitor Cannon"
+	engine -5 20.5
+	engine 5 20.5
+	leak "remnant leak sparkle" 30 2
+	explode "tiny explosion" 30
+	explode "small explosion" 20
+	description "The Tern is a small, hardy drone developed to plunge into the atmosphere of nearby gas giants for collecting valuable resources. These thick-shelled craft are also surprisingly effective when pressed into service as screening ships when enemies intrude into Remnant space."
+	description "	Unlike most spacefaring nations, the Remnant do not have enough people to pilot fighter wings in waves likely to sustain significant casualties. As such, they frequently use these hardy drones to fulfill similar screening roles in their home systems, allowing manned craft to focus on more specialized tasks."

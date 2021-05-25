@@ -42,6 +42,7 @@ namespace {
 void RingShader::Init()
 {
 	static const char *vertexCode =
+		"// vertex ring shader\n"
 		"uniform vec2 scale;\n"
 		"uniform vec2 position;\n"
 		"uniform float radius;\n"
@@ -56,6 +57,7 @@ void RingShader::Init()
 		"}\n";
 
 	static const char *fragmentCode =
+		"// fragment ring shader\n"
 		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
 		"uniform float radius;\n"
 		"uniform float width;\n"

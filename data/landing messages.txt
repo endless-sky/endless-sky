@@ -88,3 +88,16 @@
 "landing message" "You cannot land on a black hole."
 	"star/black-hole"
 	"star/black-hole-core"
+
+"landing message" "You cannot land on this part of the Dyson sphere."
+	"planet/dyson1"
+	"planet/dyson2"
+	"planet/dyson3"
+
+"landing message" "You cannot land on a brown dwarf."
+	"planet/browndwarf-l"
+	"planet/browndwarf-l-rouge"
+	"planet/browndwarf-t"
+	"planet/browndwarf-t-rouge"
+	"planet/browndwarf-y"
+	"planet/browndwarf-y-rouge"

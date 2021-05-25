@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Phrase.h"
 
 #include "DataNode.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Random.h"
 
@@ -24,40 +25,33 @@ void Phrase::Load(const DataNode &node)
 {
 	// Set the name of this phrase, so we know it has been loaded.
 	name = node.Size() >= 2 ? node.Token(1) : "Unnamed Phrase";
-	
-	parts.emplace_back();
-	for(const DataNode &child : node)
+	// To avoid a possible parsing ambiguity, the interpolation delimiters
+	// may not be used in a Phrase's name.
+	if(name.find("${") != string::npos || name.find('}') != string::npos)
 	{
-		parts.back().emplace_back();
-		Part &part = parts.back().back();
-		
-		if(child.Token(0) == "word")
-		{
-			for(const DataNode &grand : child)
-				part.words.push_back(grand.Token(0));
-		}
-		else if(child.Token(0) == "phrase")
-		{
-			for(const DataNode &grand : child)
-			{
-				const Phrase *subphrase = GameData::Phrases().Get(grand.Token(0));
-				if(subphrase->ReferencesPhrase(this))
-					child.PrintTrace("Found recursive phrase reference:");
-				else
-					part.phrases.push_back(subphrase);
-			}
-		}
-		else
-			child.PrintTrace("Skipping unrecognized attribute:");
-		
-		// If no words or phrases were given, discard this part of the phrase.
-		if(part.words.empty() && part.phrases.empty())
-			parts.back().pop_back();
+		node.PrintTrace("Phrase names may not contain '${' or '}':");
+		return;
+	}
+	
+	sentences.emplace_back(node, this);
+	if(sentences.back().empty())
+	{
+		sentences.pop_back();
+		node.PrintTrace("Skipping unparseable node:");
 	}
 }
 
 
 
+bool Phrase::IsEmpty() const
+{
+	return sentences.empty();
+}
+
+
+
+// Get the name associated with the node this phrase was instantiated
+// from, or "Unnamed Phrase" if it was anonymously defined.
 const string &Phrase::Name() const
 {
 	return name;
@@ -65,18 +59,24 @@ const string &Phrase::Name() const
 
 
 
+// Get a random sentence's text.
 string Phrase::Get() const
 {
 	string result;
-	if(parts.empty())
+	if(sentences.empty())
 		return result;
 	
-	for(const Part &part : parts[Random::Int(parts.size())])
+	for(const auto &part : sentences[Random::Int(sentences.size())])
 	{
-		if(!part.phrases.empty())
-			result += part.phrases[Random::Int(part.phrases.size())]->Get();
-		else if(!part.words.empty())
-			result += part.words[Random::Int(part.words.size())];
+		if(!part.choices.empty())
+		{
+			const auto &choice = part.choices[Random::Int(part.choices.size())];
+			for(const auto &element : choice)
+				result += element.second ? element.second->Get() : element.first;
+		}
+		else if(!part.replacements.empty())
+			for(const auto &pair : part.replacements)
+				Format::ReplaceAll(result, pair.first, pair.second);
 	}
 	
 	return result;
@@ -84,16 +84,119 @@ string Phrase::Get() const
 
 
 
-bool Phrase::ReferencesPhrase(const Phrase *phrase) const
+// Inspect this phrase and all its subphrases to determine if a cyclic
+// reference exists between this phrase and the other.
+bool Phrase::ReferencesPhrase(const Phrase *other) const
 {
-	if(phrase == this)
+	if(other == this)
 		return true;
 	
-	for(const vector<Part> &alternative : parts)
-		for(const Part &part : alternative)
-			for(const Phrase *subphrase : part.phrases)
-				if(subphrase->ReferencesPhrase(phrase))
-					return true;
+	for(const auto &sentence : sentences)
+		for(const auto &part : sentence)
+			for(const auto &choice : part.choices)
+				for(const auto &element : choice)
+					if(element.second && element.second->ReferencesPhrase(other))
+						return true;
 	
 	return false;
+}
+
+
+
+Phrase::Choice::Choice(const DataNode &node, bool isPhraseName)
+{
+	// The given datanode should not have any children.
+	if(node.HasChildren())
+		node.begin()->PrintTrace("Skipping unrecognized child node:");
+
+	if(isPhraseName)
+	{
+		emplace_back(string{}, GameData::Phrases().Get(node.Token(0)));
+		return;
+	}
+	
+	// This node is a text string that may contain an interpolation request.
+	const string &entry = node.Token(0);
+	if(entry.empty())
+	{
+		// A blank choice was desired.
+		emplace_back();
+		return;
+	}
+	
+	size_t start = 0;
+	while(start < entry.length())
+	{
+		// Determine if there is an interpolation request in this string.
+		size_t left = entry.find("${", start);
+		if(left == string::npos)
+			break;
+		size_t right = entry.find('}', left);
+		if(right == string::npos)
+			break;
+		
+		// Add the text up to the ${, and then add the contained phrase name.
+		++right;
+		size_t length = right - left;
+		auto text = string{entry, start, left - start};
+		auto phraseName = string{entry, left + 2, length - 3};
+		emplace_back(text, nullptr);
+		emplace_back(string{}, GameData::Phrases().Get(phraseName));
+		start = right;
+	}
+	// Add the remaining text to the sequence.
+	if(entry.length() - start > 0)
+		emplace_back(string{entry, start, entry.length() - start}, nullptr);
+}
+
+
+
+// Forwarding constructor, for use with emplace/emplace_back.
+Phrase::Sentence::Sentence(const DataNode &node, const Phrase *parent)
+{
+	Load(node, parent);
+}
+
+
+
+// Parse the children of the given node to populate the sentence's structure.
+void Phrase::Sentence::Load(const DataNode &node, const Phrase *parent)
+{
+	for(const DataNode &child : node)
+	{
+		if(!child.HasChildren())
+		{
+			child.PrintTrace("Skipping node with no children:");
+			continue;
+		}
+		
+		emplace_back();
+		auto &part = back();
+		
+		if(child.Token(0) == "word")
+			for(const DataNode &grand : child)
+				part.choices.emplace_back(grand);
+		else if(child.Token(0) == "phrase")
+			for(const DataNode &grand : child)
+				part.choices.emplace_back(grand, true);
+		else if(child.Token(0) == "replace")
+			for(const DataNode &grand : child)
+				part.replacements.emplace_back(grand.Token(0), grand.Size() >= 2 ? grand.Token(1) : string{});
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
+		
+		// Require any newly added phrases have no recursive references. Any recursions
+		// will instead yield an empty string, rather than possibly infinite text.
+		for(auto &choice : part.choices)
+			for(auto &element : choice)
+				if(element.second && element.second->ReferencesPhrase(parent))
+				{
+					child.PrintTrace("Replaced recursive '" + element.second->Name() + "' phrase reference with \"\":");
+					element.second = nullptr;
+				}
+		
+		// If no words, phrases, or replaces were given, discard this part of the phrase.
+		if(part.choices.empty() && part.replacements.empty())
+			pop_back();
+	}
 }

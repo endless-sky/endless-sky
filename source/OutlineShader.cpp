@@ -39,6 +39,7 @@ namespace {
 void OutlineShader::Init()
 {
 	static const char *vertexCode =
+		"// vertex outline shader\n"
 		"uniform vec2 scale;\n"
 		"uniform vec2 position;\n"
 		"uniform mat2 transform;\n"
@@ -64,6 +65,7 @@ void OutlineShader::Init()
 	// of the Sobel neighborhood (i.e. the golden ratio) to minimize any
 	// aliasing effects between the two.
 	static const char *fragmentCode =
+		"// fragment outline shader\n"
 		"uniform sampler2DArray tex;\n"
 		"uniform float frame = 0;\n"
 		"uniform float frameCount = 0;\n"
@@ -132,14 +134,15 @@ void OutlineShader::Init()
 		-.5f,  .5f, 0.f, 1.f,
 		 .5f,  .5f, 1.f, 1.f
 	};
+	constexpr auto stride = 4 * sizeof(GLfloat);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 	
 	glEnableVertexAttribArray(shader.Attrib("vert"));
-	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), nullptr);
+	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, stride, nullptr);
 	
 	glEnableVertexAttribArray(shader.Attrib("vertTexCoord"));
 	glVertexAttribPointer(shader.Attrib("vertTexCoord"), 2, GL_FLOAT, GL_TRUE,
-		4 * sizeof(GLfloat), (const GLvoid*)(2 * sizeof(GLfloat)));
+		stride, reinterpret_cast<const GLvoid*>(2 * sizeof(GLfloat)));
 	
 	// unbind the VBO and VAO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);

@@ -13,10 +13,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MainPanel.h"
 
 #include "BoardingPanel.h"
+#include "CoreStartData.h"
 #include "Dialog.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "Government.h"
@@ -35,7 +36,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipEvent.h"
-#include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
@@ -107,8 +107,10 @@ void MainPanel::Step()
 		shared_ptr<Ship> target = flagship->GetTargetShip();
 		if(isActive && target && target->IsDisabled() && !target->GetGovernment()->IsEnemy())
 			isActive = !DoHelp("friendly disabled");
+		if(isActive && player.Ships().size() > 1)
+			isActive = !DoHelp("multiple ship controls");
 		if(isActive && !flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
-				&& player.GetDate() <= GameData::Start().GetDate() + 4)
+				&& player.GetDate() <= player.StartData().GetDate() + 4)
 		{
 			++lostness;
 			int count = 1 + lostness / 3600;
@@ -195,6 +197,13 @@ void MainPanel::OnCallback()
 
 
 
+bool MainPanel::AllowFastForward() const
+{
+	return true;
+}
+
+
+
 // Only override the ones you need; the default action is to return false.
 bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
@@ -205,9 +214,9 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		Preferences::ToggleAmmoUsage();
 		Messages::Add("Your escorts will now expend ammo: " + Preferences::AmmoUsage() + ".");
 	}
-	else if(key == '-' && !command)
+	else if((key == SDLK_MINUS || key == SDLK_KP_MINUS) && !command)
 		Preferences::ZoomViewOut();
-	else if(key == '=' && !command)
+	else if((key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS) && !command)
 		Preferences::ZoomViewIn();
 	else if(key >= '0' && key <= '9' && !command)
 		engine.SelectGroup(key - '0', mod & KMOD_SHIFT, mod & (KMOD_CTRL | KMOD_GUI));
@@ -215,6 +224,14 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		return false;
 	
 	return true;
+}
+
+
+
+// Send a command through the main-panel to the engine
+void MainPanel::GiveCommand(const Command &command)
+{
+	engine.GiveCommand(command);
 }
 
 
@@ -323,7 +340,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					int tons = ceil(it.second * it.first->Mass());
 					out << (tons == 1 ? " ton of " : " tons of ") << Format::LowerCase(it.first->PluralName()) << "\n";
 				}
-				else	
+				else
 					out << " " << (it.second == 1 ? it.first->Name(): it.first->PluralName()) << "\n";
 			}
 		if(first)
@@ -378,6 +395,10 @@ bool MainPanel::ShowHailPanel()
 	// An exploding ship cannot communicate.
 	const Ship *flagship = player.Flagship();
 	if(!flagship || flagship->IsDestroyed())
+		return false;
+	
+	// Player cannot hail while landing / departing.
+	if(flagship->Zoom() < 1.)
 		return false;
 	
 	shared_ptr<Ship> target = flagship->GetTargetShip();
@@ -504,7 +525,7 @@ void MainPanel::StepEvents(bool &isActive)
 				ShowScanDialog(event);
 				isActive = false;
 			}
-			else if(event.TargetGovernment()->IsPlayer())
+			else if(event.TargetGovernment() && event.TargetGovernment()->IsPlayer())
 			{
 				string message = actor->Fine(player, event.Type(), &*event.Target());
 				if(!message.empty())

@@ -32,8 +32,12 @@ void Person::Load(const DataNode &node)
 			frequency = child.Value(1);
 		else if(child.Token(0) == "ship" && child.Size() >= 2)
 		{
-			ships.emplace_back(new Ship);
-			ships.back()->Load(child);
+			// Name ships that are not the flagship with the name provided, if any.
+			// The flagship, and any unnamed fleet members, will be given the name of the Person.
+			bool setName = !ships.empty() && child.Size() >= 3;
+			ships.emplace_back(new Ship(child));
+			if(setName)
+				ships.back()->SetName(child.Token(2));
 		}
 		else if(child.Token(0) == "government" && child.Size() >= 2)
 			government = GameData::Governments().Get(child.Token(1));

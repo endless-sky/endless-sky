@@ -12,11 +12,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "LogbookPanel.h"
 
+#include "text/alignment.hpp"
 #include "Color.h"
+#include "text/DisplayText.h"
 #include "FillShader.h"
-#include "Font.h"
-#include "FontSet.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "GameData.h"
+#include "text/layout.hpp"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Screen.h"
@@ -24,7 +27,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "UI.h"
-#include "WrappedText.h"
+#include "text/WrappedText.h"
 
 #include <algorithm>
 #include <set>
@@ -37,6 +40,10 @@ namespace {
 	const double PAD = 10.;
 	const double WIDTH = SIDEBAR_WIDTH + TEXT_WIDTH;
 	const double LINE_HEIGHT = 25.;
+
+	// The minimum distance in pixels between the selected month and the edge of the screen before the month gets centered
+	const double MINIMUM_SELECTION_DISTANCE = LINE_HEIGHT * 3;
+
 	const double GAP = 30.;
 	const string MONTH[] = {
 		"  January", "  February", "  March", "  April", "  May", "  June",
@@ -107,7 +114,7 @@ void LogbookPanel::Draw()
 	Point highlightOffset = Point(4. - PAD, 0.) + .5 * highlightSize;
 	Point textOffset(0., .5 * (LINE_HEIGHT - font.Height()));
 	// Start at this point on the screen:
-	Point pos = Screen::TopLeft() + Point(PAD, PAD);
+	Point pos = Screen::TopLeft() + Point(PAD, PAD - categoryScroll);
 	for(size_t i = 0; i < contents.size(); ++i)
 	{
 		if(selectedDate ? dates[i].Month() == selectedDate.Month() : selectedName == contents[i])
@@ -118,10 +125,12 @@ void LogbookPanel::Draw()
 		font.Draw(contents[i], pos + textOffset, dates[i].Month() ? medium : bright);
 		pos.Y() += LINE_HEIGHT;
 	}
+
+	maxCategoryScroll = max(0., maxCategoryScroll + pos.Y() - Screen::Bottom());
 	
 	// Parameters for drawing the main text:
 	WrappedText wrap(font);
-	wrap.SetAlignment(WrappedText::JUSTIFIED);
+	wrap.SetAlignment(Alignment::JUSTIFIED);
 	wrap.SetWrapWidth(TEXT_WIDTH - 2. * PAD);
 	
 	// Draw the main text.
@@ -131,11 +140,11 @@ void LogbookPanel::Draw()
 	auto pit = player.SpecialLogs().find(selectedName);
 	if(selectedDate && begin != end)
 	{
+		const auto layout = Layout(static_cast<int>(TEXT_WIDTH - 2. * PAD), Alignment::RIGHT);
 		for(auto it = begin; it != end; ++it)
 		{
 			string date = it->first.ToString();
-			double dateWidth = font.Width(date);
-			font.Draw(date, pos + Point(TEXT_WIDTH - dateWidth - 2. * PAD, textOffset.Y()), dim);
+			font.Draw({date, layout}, pos + Point(0., textOffset.Y()), dim);
 			pos.Y() += LINE_HEIGHT;
 		
 			wrap.Wrap(it->second);
@@ -208,6 +217,23 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			selectedName = contents[i];
 			scroll = 0.;
 			Update(key == SDLK_UP);
+
+			// Find our currently selected item again
+			for(i = 0 ; i < contents.size(); ++i)
+				if(contents[i] == selectedName)
+					break;
+
+			if(i == contents.size())
+				return true;
+
+			// Check if it's too far down or up
+			int position = i * LINE_HEIGHT - categoryScroll;
+						
+			// If it's out of bounds, recenter it
+			if(position < MINIMUM_SELECTION_DISTANCE || position > (Screen::Height() - MINIMUM_SELECTION_DISTANCE))
+				categoryScroll = position - (Screen::Height() / 2);
+
+			categoryScroll = max(categoryScroll, 0.);
 		}
 	}
 	
@@ -222,7 +248,7 @@ bool LogbookPanel::Click(int x, int y, int clicks)
 	y -= Screen::Top();
 	if(x < SIDEBAR_WIDTH)
 	{
-		size_t index = (y - PAD) / LINE_HEIGHT;
+		size_t index = (y - PAD + categoryScroll) / LINE_HEIGHT;
 		if(index < contents.size())
 		{
 			selectedDate = dates[index];
@@ -243,7 +269,10 @@ bool LogbookPanel::Click(int x, int y, int clicks)
 
 bool LogbookPanel::Drag(double dx, double dy)
 {
-	scroll = max(0., min(maxScroll, scroll - dy));
+	if((hoverPoint.X() - Screen::Left()) > SIDEBAR_WIDTH)
+		scroll = max(0., min(maxScroll, scroll - dy));
+	else
+		categoryScroll = max(0., min(maxCategoryScroll, categoryScroll - dy));
 	
 	return true;
 }
@@ -253,6 +282,14 @@ bool LogbookPanel::Drag(double dx, double dy)
 bool LogbookPanel::Scroll(double dx, double dy)
 {
 	return Drag(0., dy * Preferences::ScrollSpeed());
+}
+
+
+
+bool LogbookPanel::Hover(int x, int y)
+{
+	hoverPoint = Point(x, y);
+	return true;
 }
 
 

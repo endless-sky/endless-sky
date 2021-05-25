@@ -14,11 +14,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Information.h"
 
+#include "text/alignment.hpp"
 #include "BankPanel.h"
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "Dialog.h"
-#include "FontSet.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "HiringPanel.h"
 #include "Interface.h"
@@ -52,7 +53,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	hiring.reset(new HiringPanel(player));
 	
 	text.SetFont(FontSet::Get(14));
-	text.SetAlignment(WrappedText::JUSTIFIED);
+	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(480);
 	text.Wrap(planet.Description());
 	
@@ -145,11 +146,12 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	
 	bool hasAccess = planet.CanUseServices();
 	if(key == 'd' && flagship && flagship->CanBeFlagship())
-		requestedLaunch = true;
-	else if(key == 'l')
 	{
-		selectedPanel = nullptr;
+		requestedLaunch = true;
+		return true;
 	}
+	else if(key == 'l')
+		selectedPanel = nullptr;
 	else if(key == 't' && hasAccess && flagship && planet.IsInhabited() && system.HasTrade())
 	{
 		selectedPanel = trading.get();
@@ -233,7 +235,7 @@ void PlanetPanel::TakeOffIfReady()
 		return;
 	}
 	
-	// Check whether the player should be warned before taking off.
+	// Check whether the player can be warned before takeoff.
 	if(player.ShouldLaunch())
 	{
 		TakeOff();
@@ -242,57 +244,63 @@ void PlanetPanel::TakeOffIfReady()
 	
 	// Check if any of the player's ships are configured in such a way that they
 	// will be impossible to fly.
-	for(const shared_ptr<Ship> &ship : player.Ships())
-	{
-		if(ship->GetSystem() != &system || ship->IsDisabled() || ship->IsParked())
-			continue;
-		
-		string check = ship->FlightCheck();
-		if(!check.empty() && check.back() == '!')
+	const auto flightChecks = player.FlightCheck();
+	if(!flightChecks.empty())
+		for(const auto &result : flightChecks)
 		{
-			GetUI()->Push(new ConversationPanel(player,
-				*GameData::Conversations().Get("flight check: " + check), nullptr, ship));
-			return;
+			// If there is a flightcheck error, it will be the first (and only) entry.
+			auto &check = result.second.front();
+			if(check.back() == '!')
+			{
+				GetUI()->Push(new ConversationPanel(player,
+					*GameData::Conversations().Get("flight check: " + check), nullptr, result.first));
+				return;
+			}
 		}
-	}
 	
-	// The checks that follow are typically caused by parking or selling
-	// ships or changing outfits.
+	// Check for items that would be sold, or mission passengers that would be abandoned on-planet.
 	const Ship *flagship = player.Flagship();
-	
-	// Are you overbooked? Don't count fireable flagship crew. If your
-	// ship can't hold the required crew, count it as having no fireable
-	// crew rather than a negative number.
 	const CargoHold &cargo = player.Cargo();
+	// Are you overbooked? Don't count fireable flagship crew.
+	// (If your ship can't support its required crew, it is counted as having no fireable crew.)
 	int overbooked = -cargo.BunksFree() - max(0, flagship->Crew() - flagship->RequiredCrew());
 	int missionCargoToSell = cargo.MissionCargoSize() - cargo.Size();
 	// Will you have to sell something other than regular cargo?
 	int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
-	int droneCount = 0;
-	int fighterCount = 0;
-	for(const auto &it : player.Ships())
-		if(!it->IsParked() && !it->IsDisabled() && it->GetSystem() == &system)
-		{
-			const string &category = it->Attributes().Category();
-			droneCount += (category == "Drone") - it->BaysFree(false);
-			fighterCount += (category == "Fighter") - it->BaysFree(true);
-		}
+	// Count how many active ships we have that cannot make the jump (e.g. due to lack of fuel,
+	// drive, or carrier). All such ships will have been logged in the player's flightcheck.
+	size_t nonJumpCount = 0;
+	if(!flightChecks.empty())
+	{
+		// There may be multiple warnings reported, but only 3 result in a ship which cannot jump.
+		const auto jumpWarnings = set<string>{
+			"no bays?", "no fuel?", "no hyperdrive?"
+		};
+		for(const auto &result : flightChecks)
+			for(const auto &warning : result.second)
+				if(jumpWarnings.count(warning))
+				{
+					++nonJumpCount;
+					break;
+				}
+	}
 	
-	if(fighterCount > 0 || droneCount > 0 || cargoToSell > 0 || overbooked > 0)
+	if(nonJumpCount > 0 || cargoToSell > 0 || overbooked > 0)
 	{
 		ostringstream out;
+		// Warn about missions that will fail on takeoff.
 		if(missionCargoToSell > 0 || overbooked > 0)
 		{
 			bool both = ((cargoToSell > 0 && cargo.MissionCargoSize()) && overbooked > 0);
 			out << "If you take off now you will fail a mission due to not having enough ";
-
+			
 			if(overbooked > 0)
 			{
 				out << "bunks available for " << overbooked;
 				out << (overbooked > 1 ? " of the passengers" : " passenger");
 				out << (both ? " and not having enough " : ".");
 			}
-
+			
 			if(missionCargoToSell > 0)
 			{
 				out << "cargo space to hold " << missionCargoToSell;
@@ -300,25 +308,21 @@ void PlanetPanel::TakeOffIfReady()
 				out << " of your mission cargo.";
 			}
 		}
+		// Warn about ships that won't travel with you.
+		else if(nonJumpCount > 0)
+		{
+			out << "If you take off now you will launch with ";
+			if(nonJumpCount == 1)
+				out << "a ship";
+			else
+				out << nonJumpCount << " ships";
+			out << " that will not be able to leave the system.";
+		}
+		// Warn about non-commodity cargo you will have to sell.
 		else
 		{
 			out << "If you take off now you will have to sell ";
-			bool triple = (fighterCount > 0 && droneCount > 0 && cargoToSell > 0);
-
-			if(fighterCount == 1)
-				out << "a fighter";
-			else if(fighterCount > 0)
-				out << fighterCount << " fighters";
-			if(fighterCount > 0 && (droneCount > 0 || cargoToSell > 0))
-				out << (triple ? ", " : " and ");
-		
-			if(droneCount == 1)
-				out << "a drone";
-			else if(droneCount > 0)
-				out << droneCount << " drones";
-			if(droneCount > 0 && cargoToSell > 0)
-				out << (triple ? ", and " : " and ");
-
+			
 			if(cargoToSell == 1)
 				out << "a ton of cargo";
 			else if(cargoToSell > 0)

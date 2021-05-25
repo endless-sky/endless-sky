@@ -36,13 +36,14 @@ namespace {
 	string resources;
 	string config;
 	
-	string data;
-	string images;
-	string sounds;
-	string saves;
+	string dataPath;
+	string imagePath;
+	string soundPath;
+	string savePath;
+	string testPath;
 	
 	mutex errorMutex;
-	FILE *errorLog = nullptr;
+	File errorLog;
 	
 	// Convert windows-style directory separators ('\\') to standard '/'.
 #if defined _WIN32
@@ -138,9 +139,9 @@ void Files::Init(const char * const *argv)
 			throw runtime_error("Unable to find the resource directories!");
 		resources.erase(pos + 1);
 	}
-	data = resources + "data/";
-	images = resources + "images/";
-	sounds = resources + "sounds/";
+	dataPath = resources + "data/";
+	imagePath = resources + "images/";
+	soundPath = resources + "sounds/";
 	
 	if(config.empty())
 	{
@@ -150,14 +151,14 @@ void Files::Init(const char * const *argv)
 		if(!str)
 			throw runtime_error("Unable to get path to saves directory!");
 		
-		saves = str;
+		savePath = str;
 #if defined _WIN32
-		FixWindowsSlashes(saves);
+		FixWindowsSlashes(savePath);
 #endif
 		SDL_free(str);
-		if(saves.back() != '/')
-			saves += '/';
-		config = saves.substr(0, saves.rfind('/', saves.length() - 2) + 1);
+		if(savePath.back() != '/')
+			savePath += '/';
+		config = savePath.substr(0, savePath.rfind('/', savePath.length() - 2) + 1);
 	}
 	else
 	{
@@ -166,7 +167,7 @@ void Files::Init(const char * const *argv)
 #endif
 		if(config.back() != '/')
 			config += '/';
-		saves = config + "saves/";
+		savePath = config + "saves/";
 	}
 	
 	// Create the "plugins" directory if it does not yet exist, so that it is
@@ -178,9 +179,9 @@ void Files::Init(const char * const *argv)
 	}
 	
 	// Check that all the directories exist.
-	if(!Exists(data) || !Exists(images) || !Exists(sounds))
+	if(!Exists(dataPath) || !Exists(imagePath) || !Exists(soundPath))
 		throw runtime_error("Unable to find the resource directories!");
-	if(!Exists(saves))
+	if(!Exists(savePath))
 		throw runtime_error("Unable to create config directory!");
 }
 
@@ -202,28 +203,35 @@ const string &Files::Config()
 
 const string &Files::Data()
 {
-	return data;
+	return dataPath;
 }
 
 
 
 const string &Files::Images()
 {
-	return images;
+	return imagePath;
 }
 
 
 
 const string &Files::Sounds()
 {
-	return sounds;
+	return soundPath;
 }
 
 
 
 const string &Files::Saves()
 {
-	return saves;
+	return savePath;
+}
+
+
+
+const string &Files::Tests()
+{
+	return testPath;
 }
 
 
@@ -335,7 +343,7 @@ vector<string> Files::ListDirectories(string directory)
 	}
 	
 	closedir(dir);
-#endif	
+#endif
 	return list;
 }
 
@@ -544,7 +552,7 @@ void Files::LogError(const string &message)
 	lock_guard<mutex> lock(errorMutex);
 	cerr << message << endl;
 	if(!errorLog)
-		errorLog = Open(config + "errors.txt", true);
+		errorLog = File(config + "errors.txt", true);
 	
 	Write(errorLog, message);
 	fwrite("\n", 1, 1, errorLog);

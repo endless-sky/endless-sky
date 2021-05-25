@@ -1,0 +1,217 @@
+# Copyright (c) 2020 by @Karirawri
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+ship "Emerald Sword"
+	sprite ship/emeraldsword
+	thumbnail "thumbnail/emeraldsword"
+	attributes
+		category "Heavy Warship"
+		"cost" 100000000
+		"shields" 9500
+		"hull" 45000
+		"required crew" 86
+		"bunks" 302
+		"mass" 1520
+		"drag" 20
+		"heat dissipation" 0.45
+		"fuel capacity" 900
+		"cargo space" 169
+		"outfit space" 1190
+		"weapon capacity" 512
+		"engine capacity" 230
+		"spinal mount" 1
+		weapon
+			"blast radius" 993
+			"shield damage" 19930
+			"hull damage" 11965
+			"hit force" 11495
+	outfits
+		"Dragonflame Cannon"
+		"Particle Waveform Turret" 6
+		"Sheragi Anti-Missile" 2
+		
+		"Large EM Battery"
+		"Large Hybrid Cooling"
+		"Electronic Warfare System" 2
+		
+		"Fusion Drive"
+	engine 83 275
+		zoom 1.3
+		over
+	engine 132 282
+		zoom 0.8
+		over
+	engine -83 275
+		zoom 1.3
+		over
+	engine -132 282
+		zoom 0.8
+		over
+	"reverse engine" -131 136
+		zoom 0.6
+		angle 335
+		over
+	"reverse engine" 131 136
+		zoom 0.6
+		angle 25
+		over
+	"steering engine" -131 136
+		zoom 0.5
+		angle 155
+		over
+		left
+	"steering engine" 131 136
+		zoom 0.5
+		angle 205
+		over
+		right
+	"steering engine" -34.5 -221.5
+		zoom 0.2
+		angle 60
+		over
+		right
+	"steering engine" -39 -193.5
+		zoom 0.2
+		angle 60
+		over
+		right
+	"steering engine" -43.5 -165.5
+		zoom 0.2
+		angle 60
+		over
+		right
+	"steering engine" 34.5 -221.5
+		zoom 0.2
+		angle 300
+		over
+		left
+	"steering engine" 39 -193.5
+		zoom 0.2
+		angle 300
+		over
+		left
+	"steering engine" 43.5 -165.5
+		zoom 0.2
+		angle 300
+		over
+		left
+	turret -18 -41.5 "Particle Waveform Turret"
+	turret 18 -41.5 "Particle Waveform Turret"
+	turret -70 70.5 "Particle Waveform Turret"
+	turret 70 70.5 "Particle Waveform Turret"
+	turret -128.5 174 "Particle Waveform Turret"
+	turret 128.5 174 "Particle Waveform Turret"
+	turret 0 114 "Sheragi Anti-Missile"
+	turret 0 183 "Sheragi Anti-Missile"
+	gun 0 -276 "Dragonflame Cannon"
+	bay "Fighter" 0 220.5 back
+	bay "Fighter" 0 220.5 back
+	bay "Fighter" 0 220.5 back
+	bay "Fighter" 0 220.5 back
+	bay "Fighter" 0 220.5 back
+	bay "Fighter" 0 220.5 back
+	explode "tiny explosion" 60
+	explode "small explosion" 26
+	explode "medium explosion" 47
+	explode "large explosion" 39
+	explode "huge explosion" 42
+	explode "nuke explosion" 2
+	"final explode" "nuke explosion" 2
+	"final explode" "nuke residue fast" 50
+	description "An ancient Sheragi warship that was crewed by mutineers that fled from their civil war and escaped into interstellar space. Found orbiting a disconnected star, this is an impressively large ship, fit for the equally large Sheragi. The ship's main weapon is a fusion-pumped gamma-ray laser called the 'Dragonflame Cannon.' Despite the relatively primitive outfits, it's still a very capable war machine due to its size."
+	description "For its original Sheragi masters, this warship was home to around 100 individuals. For others, however, that number more than doubles, bringing it on par with the largest city ships."
+
+ship "Emerald Sword" "Emerald Sword (Fixed)"
+	sprite ship/emeraldsword
+	thumbnail "thumbnail/emeraldsword"
+	outfits
+		"Dragonflame Cannon"
+		"Particle Waveform Turret" 6
+		"Sheragi Anti-Missile" 2
+		
+		"Large EM Battery"
+		"Large Hybrid Cooling"
+		"Electronic Warfare System" 2
+		"Outfits Expansion" 2
+		
+		"Fusion Drive"
+		"Jump Drive"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Sheragi Anti-Missile"
+	turret "Sheragi Anti-Missile"
+	gun "Dragonflame Cannon"
+
+ship "Black Diamond"
+	sprite "ship/blackdiamond"
+	thumbnail "thumbnail/blackdiamond"
+	attributes
+		category "Fighter"
+		"cost" 1000000
+		"shields" 1600
+		"hull" 3400
+		"automaton" 1
+		"mass" 50
+		"drag" .9
+		"heat dissipation" .86
+		"outfit space" 152
+		"weapon capacity" 35
+		"engine capacity" 38
+		"hull repair rate" 1
+		"hull delay" 60
+		weapon
+			"blast radius" 24
+			"shield damage" 240
+			"hull damage" 120
+			"hit force" 360
+	outfits
+		"Heavy Ion Cyclotron"
+		"Shard Fabricator" 2
+		
+		"Electronic Warfare System"
+		"Small EM Battery"
+		"Small Hybrid Cooling"
+		
+		"Fission Drive"
+	gun 0 -39.5 "Heavy Ion Cyclotron"
+	gun 22 -7.5 "Shard Fabricator"
+	gun -22 -7.5 "Shard Fabricator"
+	engine 0 38
+		zoom 1.3
+		over
+	"steering engine" 27 22
+		zoom 0.3
+		angle 225
+		over
+		right
+	"steering engine" 27 2
+		zoom 0.3
+		angle 315
+		over
+		left
+	"steering engine" -27 22
+		zoom 0.3
+		angle 135
+		over
+		left
+	"steering engine" -27 2
+		zoom 0.3
+		angle 45
+		over
+		right
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	"final explode" "final explosion small"
+	description "The Sheragi, being too large to effectively pilot ships this small, invested heavily in the development of autonomous fighters. The hardware that controls this isn't much more complex than the combat drones in human space, but it is bigger, and the lack of life support systems and amenities for a pilot allows it to carry extra outfitting space."
+	description "	The fighter also comes equipped with a powerful hull repair system to aid in its survival. This system doesn't work while the fighter is under fire, though, requiring the fighter to have not taken damage for a short while before activating."

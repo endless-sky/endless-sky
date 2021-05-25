@@ -1,0 +1,373 @@
+# Copyright (c) 2020 by @Karirawri
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+# Outfits
+
+outfit "Small EM Battery"
+	category "Power"
+	cost 200000
+	thumbnail "outfit/small embattery"
+	"mass" 14
+	"outfit space" -14
+	"shield generation" 0.14
+	"shield energy" 0.14
+	"shield heat" 0.14
+	"energy capacity" 900
+	description "This small superconductive inductor stores just enough power to keep a fighter running, and the electromagnetic field it generates helps to maintain the shield matrix."
+
+outfit "Large EM Battery"
+	category "Power"
+	cost 1000000
+	thumbnail "outfit/embattery"
+	"mass" 150
+	"outfit space" -150
+	"shield generation" 0.8
+	"shield energy" 0.8
+	"shield heat" 0.8
+	"energy capacity" 20000
+	description "This is a massive superconductive coil, capable of storing large amounts of energy in an electromagnetic field and discharging all of it in a fraction of a second. The magnetic field also provides a small boost to the shield regeneration of the ship, which is otherwise very underdeveloped."
+
+outfit "Small Hybrid Cooling"
+	category "Systems"
+	cost 200000
+	thumbnail "outfit/small sheragi cooling"
+	"mass" 8
+	"outfit space" -8
+	"cooling" 9
+	"active cooling" 17
+	"cooling energy" 3.1
+	description "This small cooling solution was designed with fighters in mind, and as such, it does not store fuel. However, it provides more passive cooling than its big brother."
+
+outfit "Large Hybrid Cooling"
+	category "Systems"
+	cost 1000000
+	thumbnail "outfit/sheragicooling"
+	"mass" 40
+	"outfit space" -40
+	"cooling" 24
+	"active cooling" 128
+	"cooling energy" 16.2
+	"fuel capacity" 200
+	description "This Sheragi cooling system is primitive at best, but it works both actively and passively, allowing it to dissipate much more heat than a simple radiator would. It does, however, drain a lot of power when subjected to the heat of battle. It also includes cryogenic tanks to hold some additional fuel, which is used as a temporary heat reservoir."
+
+outfit "Fission Drive"
+	category "Engines"
+	cost 2650000
+	thumbnail "outfit/fissiondrive"
+	"mass" 71
+	"outfit space" -71
+	"engine capacity" -38
+	"energy generation" 5.2
+	"heat generation" 19.4
+	"thrust" 15.47
+	"thrusting energy" 1.508
+	"thrusting heat" 2.86
+	"turn" 319.8
+	"turning energy" 0.585
+	"turning heat" 1.365
+	"flare sprite" "effect/fissionflare"
+		"frame rate" 30
+		"rewind"
+	"flare sound" "atomic small"
+	"steering flare sprite" "effect/fissionflare"
+		"frame rate" 30
+		"rewind"
+	"steering flare sound" "atomic tiny"
+	description "A much smaller cousin of the fusion drive, it relies on fission instead of fusion to function, providing the necessary power generation and thrust to drive the Heavy Ion Cyclotron."
+
+outfit "Fusion Drive"
+	category "Engines"
+	cost 80000000
+	thumbnail "outfit/fusiondrive"
+	"mass" 480
+	"outfit space" -480
+	"engine capacity" -230
+	"jump speed" 0.2
+	"hyperdrive" 1
+	"energy generation" 54
+	"heat generation" 156
+	"turn" 2496.0
+	"turning energy" 4.55
+	"turning heat" 12.35
+	"thrust" 190
+	"thrusting energy" 11
+	"thrusting heat" 33
+	"reverse thrust" 44.8
+	"reverse thrusting energy" 4.9
+	"reverse thrusting heat" 13.3
+	"flare sprite" "effect/fusionflare"
+		"frame rate" 30
+		"rewind"
+	"flare sound" "atomic huge"
+	"steering flare sprite" "effect/fusionflare"
+		"frame rate" 30
+		"rewind"
+	"steering flare sound" "atomic medium"
+	"reverse flare sprite" "effect/fusionflare"
+		"frame rate" 30
+		"rewind"
+	"reverse flare sound" "atomic large"
+	"unplunderable" 1
+	description "The Sheragi engines are much more than simple tubes spewing fire; they are a collection of interdependent devices, providing increased efficiency at the cost of modularity. These include a hyperdrive, an enormous fusion reactor, and the most powerful plasma engines you've ever seen. It's all examples of relatively simple technology, but they have been refined and taken to their extreme. The engines are fundamentally connected to the fusion reactor, increasing their thrust even further and thereby allowing the Emerald Sword to fly at impressive speeds, travelling through interstellar space with relative ease."
+
+outfit "Electronic Warfare System"
+	category "Systems"
+	cost 3400000
+	thumbnail "outfit/sheragi ews"
+	"mass" 6
+	"outfit space" -6
+	"radar jamming" 10
+	"tactical scan power" 25
+	"scan interference" 2
+	"energy consumption" .2
+	description "This device provides radar jamming and a whole suite of electronic warfare, gathering data about the battlefield in real time and enhancing a ship's combat capabilities. It was an essential item for every Sheragi warship, and the technique it uses is still difficult to counter to this very day."
+
+# Weapons
+
+outfit "Dragonflame Cannon"
+	category "Secondary Weapons"
+	cost 150000000
+	thumbnail "outfit/dragonflame"
+	"mass" 156
+	"outfit space" -156
+	"weapon capacity" -156
+	"required crew" 10
+	"gun ports" -1
+	"spinal mount" -1
+	weapon
+		sound "dragonflame" 
+		icon "icon/dragonflame"
+		"fire effect" "dragonflame"
+		"hit effect" "bright hit"
+		"hit effect" "dragonflame plasma" 30
+		"hit effect" "dragonflame debris" 50
+		"velocity" 2000
+		"lifetime" 1
+		"reload" 180
+		"firing energy" 16000
+		"firing fuel" 200
+		"firing heat" 40000
+		"firing force" 1000
+		"hit force" 2000
+		"shield damage" 25000
+		"hull damage" 15000
+		"heat damage" 50000
+		"piercing" 0.4
+		"blast radius" 50
+	description "The ancient Sheragi superweapon is simple in concept, but the cost involved in developing something like it is exorbitant. It's hard to envision what could have motivated the creation of such a thing. It uses an obscene amount of energy to trigger an extremely powerful thermonuclear reaction, directing most of the energy from the resulting explosion forwards in a devastatingly powerful beam of gamma radiation."
+
+effect "dragonflame"
+	sprite "effect/dragonflame"
+		"no repeat"
+		"frame rate" 12
+	"lifetime" 21
+	"velocity scale" 1
+
+effect "bright hit"
+	sprite "effect/explosion/nuke"
+		"no repeat"
+		"frame rate" 60
+	sound "explosion nuke"
+	"lifetime" 7
+	"random angle" 360
+	"random spin" 30
+	"velocity scale" 0.005
+
+effect "dragonflame plasma"
+	sprite "effect/explosion/large"
+		"no repeat"
+		"frame rate" 20
+	"lifetime" 25
+	"random frame rate" 20
+	"random spin" 5
+	"random angle" 15
+	"random velocity" 40
+	"velocity scale" 0.002
+
+effect "dragonflame debris"
+	sprite "effect/bolide"
+		"no repeat"
+		"frame rate" 6
+	"lifetime" 60
+	"random frame rate" 6
+	"random angle" 25
+	"random spin" 60
+	"random velocity" 30
+	"velocity scale" 0.001
+
+outfit "Sheragi Anti-Missile"
+	category "Turrets"
+	cost 845000
+	thumbnail "outfit/sheragiam"
+	"mass" 35
+	"outfit space" -35
+	"weapon capacity" -35
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/sheragiam"
+		"hardpoint offset" 1.5
+		"hit effect" "sheragiam"
+		"anti-missile" 200
+		"velocity" 450
+		"lifetime" 1
+		"reload" 60
+		"firing energy" 220
+		"firing heat" 440
+	description "This Sheragi anti-missile system fires an extremely powerful laser pulse capable of obliterating any missile in a single shot, but it comes at the expense of a long recharge time."
+
+effect "sheragiam"
+	sprite "effect/sheragiam"
+		"no repeat"
+		"frame rate" 30
+	sound "proton"
+	"lifetime" 5
+	"velocity scale" 1
+
+outfit "Particle Waveform Turret"
+	category "Turrets"
+	cost 1650000
+	thumbnail "outfit/pwave turret"
+	"mass" 47
+	"outfit space" -47
+	"weapon capacity" -47
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/pwavecannon"
+			"frame rate" 20
+		sound "pwave"
+		"hardpoint sprite" "hardpoint/pwavehp"
+		"hardpoint offset" 11
+		"fire effect" "lightning flare"
+		"hit effect" "pwave impact"
+		"inaccuracy" 1.5
+		"turret turn" 1.8
+		"velocity" 50
+		"lifetime" 18
+		"reload" 60
+		"firing energy" 180
+		"firing heat" 651
+		"shield damage" 95
+		"hull damage" 270
+		"heat damage" 224
+		"ion damage" 4.2
+	description "This ancient Sheragi turret accelerates a dense packet of electrons that, while very ineffective against any kind of shielding, has a very long range and disrupts electrical systems. By the nature of these weapons, one can deduce that their tactics likely involved using the Dragonflame Cannon at long range to break the enemy shields and finishing them off at relatively close range with the Particle Waveform Turrets."
+
+effect "lightning flare"
+	sprite "effect/pwaveflare"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 7
+	"velocity scale" 1
+
+effect "pwave impact"
+	sprite "effect/pwave impact"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 19
+	"random angle" 10
+	"random spin" 1
+	"velocity scale" -.001
+
+outfit "Shard Fabricator"
+	category "Secondary Weapons"
+	cost 330000
+	thumbnail "outfit/shard"
+	"mass" 10
+	"outfit space" -10
+	"weapon capacity" -7
+	"fuel capacity" 36
+	"gun ports" -1
+	"operating costs" 150
+	weapon
+		sprite "projectile/shardactive"
+			"frame rate" 30
+			"random start frame"
+		sound "grab-strike"
+		icon "icon/shard"
+		"fire effect" "basic launch"
+		"hit effect" "shard impact"
+		"submunition" "Shard inactive"
+		"inaccuracy" 80
+		"velocity" 15
+		"lifetime" 40
+		"random lifetime" 20
+		"reload" 60
+		"burst reload" 2
+		"burst count" 6
+		"firing energy" 40
+		"firing fuel" 2
+		"firing heat" 60
+		"acceleration" 1.5
+		"drag" .1
+		"turn" 8
+		"homing" 4
+		"radar tracking" .8
+		"missile strength" 1
+	description "To reduce reliance on supply chains during prolonged war time, this outfit contains specialized fabricators that produce simple kinetic missiles from stock materials and a small amount of stored fuel; their guidance system merely receives data from the shipboard radar. The missiles are fired in volleys of six at a time from each launcher, making them very effective at overwhelming point defenses despite their fragility. However, the low amount of fuel they carry means they can only home in on the target for about a second before they turn into unguided ammunition. Because they are manufactured on the spot, it takes a long time to reload."
+
+outfit "Shard inactive"
+	weapon
+		sprite "projectile/shardinactive"
+			"frame rate" 5
+			"random start frame"
+		"hit effect" "shard impact"
+		"die effect" "missile death"
+		"lifetime" 60
+		"random lifetime" 40
+		"hit force" 20
+		"shield damage" 110
+		"hull damage" 160
+
+effect "shard impact"
+	sprite "effect/particle impact"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion tiny"
+	"lifetime" 30
+	"velocity scale" 0
+
+outfit "Heavy Ion Cyclotron"
+	category "Guns"
+	cost 1650000
+	thumbnail "outfit/hion"
+	"mass" 33
+	"outfit space" -33
+	"weapon capacity" -21
+	"gun ports" -1
+	weapon
+		sprite "projectile/hion"
+			"frame rate" 30
+		sound "hion"
+		"hit effect" "proton impact" 3
+		"submunition" "Heavy Ion Fragment" 3
+		"velocity" 28
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 2.9
+		"firing heat" 12.2
+		"firing force" 9
+	description "The main weapon of the Sheragi fighters is a particle accelerator not unlike the ones used by the Republic Navy and the Syndicate. However, this one produces a dense stream of heavy metal ions instead of bursts of lighter ones, resulting in high damage with intense recoil. Because the particle accelerator itself can be mounted elsewhere, it saves on weapon space."
+
+outfit "Heavy Ion Fragment"
+	weapon
+		sprite "projectile/hionfrag"
+			"no repeat"
+			"frame time" 8
+		"hit effect" "proton impact"
+		"inaccuracy" 1
+		"random velocity" 8
+		"lifetime" 25
+		"random lifetime" 8
+		"acceleration" 0.001
+		"drag" .02
+		"hit force" 3
+		"shield damage" 1.79
+		"hull damage" 1.47

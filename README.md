@@ -18,11 +18,11 @@ Endless Sky has very minimal system requirements, meaning most systems should be
 |---|----:|----:|
 |RAM | 350 MB | 750 MB |
 |Graphics | OpenGL 3.0 | OpenGL 3.3 |
-|Storage Free | 65 MB | 170 MB |
+|Storage Free | 120 MB | 300 MB |
 
 ### Building from source
-While most development is done on Linux using the [SCons](https://scons.org/) build tool to compile the project, IDE-specific files are provided for [XCode](https://developer.apple.com/xcode/) and [Code::Blocks](http://www.codeblocks.org/) to simplify the installation on Mac OS and Windows. It is possible to use other IDEs or build systems to compile the game, but support is not provided.
-For full installation instructions, consult the [Build Instructions](https://github.com/endless-sky/endless-sky/wiki/BuildInstructions) wiki page.
+Most development is done on Linux and Windows, using the [SCons](https://scons.org/) build tool to compile the project. For those wishing to use an IDE, project files are provided for [XCode](https://developer.apple.com/xcode/) and [Code::Blocks](http://www.codeblocks.org/) to simplify the project setup. It is possible to use other IDEs or build systems to compile the game, but support is not provided.  
+For full installation instructions, consult the [Build Instructions](https://github.com/endless-sky/endless-sky/wiki/BuildInstructions) wiki page. Some additional information may be found in the "readme-developer" text file.
 
 # Contributing
 As a free and open source game, Endless Sky is the product of many peoples' work. Contributions of artwork, storylines, and other writing are most in-demand, while there is a loosely defined [development roadmap](https://github.com/endless-sky/endless-sky/wiki/DevelopmentRoadmap). Those who wish to contribute are encouraged to review the [wiki](https://github.com/endless-sky/endless-sky/wiki), and to post in the [discussion forum](http://groups.google.com/group/endless-sky).

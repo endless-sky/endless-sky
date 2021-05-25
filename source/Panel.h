@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <functional>
 #include <list>
+#include <string>
 
 #include <SDL2/SDL.h>
 
@@ -34,7 +35,7 @@ class UI;
 class Panel {
 public:
 	// Make the destructor virtual just in case any derived class needs it.
-	virtual ~Panel();
+	virtual ~Panel() = default;
 	
 	// Move the state of this panel forward one game step.
 	virtual void Step();
@@ -59,6 +60,9 @@ public:
 	// Check if a click at the given coordinates triggers a clickable zone. If
 	// so, apply that zone's action and return true.
 	bool ZoneClick(const Point &point);
+	
+	// Is fast-forward allowed to be on when this panel is on top of the GUI stack?
+	virtual bool AllowFastForward() const;
 	
 	
 protected:

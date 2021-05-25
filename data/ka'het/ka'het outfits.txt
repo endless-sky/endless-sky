@@ -1,0 +1,440 @@
+# Copyright (c) 2019 by Tommaso Becca
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+# Weapons:
+
+outfit "Ka'het Nullifier"
+	category "Guns"
+	cost 3062000
+	thumbnail "outfit/ka'het nullifier"
+	"mass" 68
+	"outfit space" -97
+	"weapon capacity" -97
+	"gun ports" -1
+	weapon
+		sprite "projectile/ionball"
+			"frame rate" 15
+			"rewind"
+		sound "ionball"
+		"fire effect" "finisher sparks" 20
+		"hit effect" "ionball ring" 15
+		"hit effect" "ionball impact"
+		"hit effect" "ionball fragment" 24
+		"live effect" "ionball spark" 140
+		"live effect" "ionball trail" 140
+		"live effect" "ionball twinkle" 560
+		"inaccuracy" 0.2
+		"velocity" 9
+		"lifetime" 200
+		"reload" 350
+		"firing energy" 710
+		"firing force" 90
+		"firing heat" 160
+		"turn" 73
+		"shield damage" 120
+		"hull damage" 40
+		"ion damage" 150
+		"hit force" 50
+		"blast radius" 20
+	description "The Nullifier was one of the largest weapons the Builders ever developed, created specifically to be carried in battle by the Vareti. Although it does almost no damage to shields and hull, one shot is capable of disabling most kinds of reactors in a matter of seconds."
+
+effect "ionball spark"
+	sprite "effect/ion impact"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 11
+	"random angle" 360
+	"random spin" 10
+	"random velocity" 3
+	"velocity scale" 1.1
+
+effect "ionball trail"
+	sprite "effect/spark"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 9
+	"random angle" 360
+	"random frame rate" 6
+	"random velocity" 5
+	"random spin" 10
+	"velocity scale" 0.3
+
+effect "ionball twinkle"
+	sprite "effect/finisher sparks"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 8
+	"random angle" 360
+	"random velocity" 3
+	"random spin" 10
+	"velocity scale" 0.1
+
+effect "ionball impact"
+	sprite "effect/ion explosion"
+		"no repeat"
+		"frame rate" 20
+	"lifetime" 13
+	sound "explosion huge"
+	"random spin" 20
+	"velocity scale" 0
+
+effect "ionball fragment"
+	sprite "effect/emp torpedo fire"
+		"no repeat"
+		"frame rate" 15
+	"lifetime" 21
+	"random angle" 360
+	"random velocity" 6
+	"velocity scale" 0
+
+effect "ionball ring"
+	sprite "effect/ionball ring"
+		"no repeat"
+		"frame rate" 24
+	"lifetime" 30
+	"random angle" 360
+	"random frame rate" 12
+	"random velocity" 4
+	"velocity scale" 0
+
+outfit "Ka'het Ravager Beam"
+	category "Guns"
+	cost 322000
+	thumbnail "outfit/ka'het ravager beam"
+	"mass" 13
+	"outfit space" -18
+	"weapon capacity" -18
+	"gun ports" -1
+	weapon
+		sprite "projectile/ravager beam"
+			"frame rate" 15
+		sound "disruptor"
+		"hit effect" "ravager impact"
+		"inaccuracy" .2
+		"velocity" 480
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 3.7
+		"firing heat" 1.5
+		"shield damage" 1.8
+		"hull damage" 4.3
+	description "This laser beam was created by the Builders for use in asteroid mining. Unfortunately, they understood its effectiveness in combat only after it turned against them."
+
+outfit "Ka'het Ravager Turret"
+	category "Turrets"
+	cost 417000
+	thumbnail "outfit/ka'het ravager turret"
+	"mass" 16
+	"outfit space" -22
+	"weapon capacity" -22
+	"turret mounts" -1
+	weapon
+		sprite "projectile/ravager beam"
+			"frame rate" 15
+		"hardpoint sprite" "hardpoint/ravager turret"
+		"hardpoint offset" 3.
+		sound "disruptor"
+		"hit effect" "ravager impact"
+		"inaccuracy" .2
+		"turret turn" 1.8
+		"velocity" 480
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 3.7
+		"firing heat" 1.5
+		"shield damage" 1.8
+		"hull damage" 4.3
+	description "This turret-mounted version of the Ravager Beam is one of the strongest weapons the Ka'het possess."
+
+effect "ravager impact"
+	sprite "effect/ravager impact"
+		"no repeat"
+		"frame rate" 1
+	"lifetime" 1
+	"velocity scale" 0
+
+outfit "Ka'het Annihilator"
+	category "Guns"
+	cost 351000
+	thumbnail "outfit/ka'het annihilator"
+	"mass" 10
+	"outfit space" -14
+	"weapon capacity" -14
+	"gun ports" -1
+	weapon
+		sprite "projectile/annihilator"
+			"frame rate" 7
+		sound "inhibitor"
+		"hit effect" "bullet impact"
+		"inaccuracy" 2.5
+		"velocity" 18
+		"lifetime" 35
+		"reload" 10
+		"firing energy" 31
+		"firing heat" 8
+		"shield damage" 43
+		"hull damage" 12
+	description "The Builders initially created the Annihilator long ago, as a countermeasure to their newly discovered shield matrix. They kept developing it for centuries, with this being its final version."
+
+outfit "Ka'het Annihilator Turret"
+	category "Turrets"
+	cost 529000
+	thumbnail "outfit/ka'het annihilator turret"
+	"mass" 25
+	"outfit space" -32
+	"weapon capacity" -32
+	"turret mounts" -1
+	weapon
+		sprite "projectile/annihilator"
+			"frame rate" 7
+		"hardpoint sprite" "hardpoint/annihilator turret"
+		"hardpoint offset" 15.
+		"hit effect" "bullet impact"
+		"inaccuracy" 1
+		"turret turn" 2.3
+		"range override" 630
+		"velocity override" 18
+		"reload" 10
+		"firing energy" 62
+		"firing heat" 16
+		"submunition" "Annihilator Projectile" 2
+	description "The Builders mounted two Annihilators on this turret, making it highly efficient against enemy shields."
+
+outfit "Annihilator Projectile"
+	weapon
+		sprite "projectile/annihilator"
+			"frame rate" 7
+		sound "inhibitor"
+		"hit effect" "bullet impact"
+		"inaccuracy" 2
+		"velocity" 18
+		"lifetime" 35
+		"shield damage" 43
+		"hull damage" 12
+
+outfit "Ka'het EMP Deployer"
+	category "Secondary Weapons"
+	cost 715000
+	thumbnail "outfit/ka'het emp deployer"
+	"mass" 18
+	"outfit space" -26
+	"weapon capacity" -26
+	"gun ports" -1
+	"emp torpedo capacity" 16
+	weapon
+		sprite "projectile/emp torpedo"
+			"frame rate" 2
+			"no repeat"
+		sound "torpedo"
+		ammo "EMP Torpedo"
+		stream
+		icon "icon/emp"
+		"fire effect" "emp torpedo fire" 5
+		"hit effect" "nuke explosion"
+		"hit effect" "emp ring" 30
+		"hit effect" "emp spark" 20
+		"die effect" "tiny explosion"
+		"inaccuracy" 4
+		"velocity" 7
+		"lifetime" 300
+		"reload" 180
+		"firing energy" 540
+		"firing heat" 11
+		"acceleration" .7
+		"drag" .1
+		"turn" 2
+		"homing" 3
+		"infrared tracking" .7
+		"radar tracking" .8
+		"trigger radius" 50
+		"blast radius" 200
+		"shield damage" 700
+		"hull damage" 100
+		"ion damage" 48
+		"hit force" 90
+		"missile strength" 80
+	description "Eons ago, the Builders were attacked by alien ships which used weapons that ignored their hull and damaged their reactors. Although they never did recover any of these weapons, after years of research they managed to replicate their effects."
+
+# Cooling:
+
+outfit "Ka'het Support Cooling"
+	category "Systems"
+	cost 218000
+	thumbnail "outfit/ka'het support cooling"
+	"mass" 6
+	"outfit space" -8
+	"active cooling" 32
+	"cooling energy" 3.1
+	description "While the cooling on a typical ship only needs to worry about keeping the crew comfortable in certain areas, the entirety of a Ka'het ship needs to maintain a suitable temperature for the Het inside to survive."
+
+
+outfit "Ka'het Primary Cooling"
+	category "Systems"
+	cost 563000
+	thumbnail "outfit/ka'het primary cooling"
+	"mass" 11
+	"outfit space" -14
+	"active cooling" 65
+	"cooling energy" 5.9
+	description "This is the main cooler used by the Ka'het. Although energy intensive, it is very effective, capable of single-handedly cooling some Het."
+
+# Shield:
+
+outfit "Ka'het Shield Restorer"
+	category "Systems"
+	cost 138000
+	thumbnail "outfit/ka'het shield restorer"
+	"mass" 14
+	"outfit space" -17
+	"shield generation" 1.02
+	"energy consumption" 1.53
+	description "The Builders never relied much on shield matrices, preferring instead to strengthen their hull. The reality of war, however, required that the Builders to develop strong shield technology, leading to some Het vessels making extensive use of this module."
+
+outfit "Ka'het Grand Restorer"
+	category "Systems"
+	cost 1022000
+	thumbnail "outfit/ka'het grand restorer"
+	"mass" 72
+	"outfit space" -86
+	"shield generation" 7.08
+	"energy consumption" 10.62
+	"depleted shield delay" 350
+	description "This shield generator is the apex of Ka'het shielding technology, a field that developed rapidly and out of necessity rather than gradually and perfected over long periods. Nevertheless, the Grand Restorer grants good protection for the largest Het ships, replacing the basic restorers used elsewhere."
+	description "	Unlike most generators, this restorer needs a few seconds to start working again once the ship's shields have been depleted."
+
+# Power:
+
+outfit "Ka'het MHD Generator"
+	category "Power"
+	cost 1263000
+	thumbnail "outfit/ka'het mhd generator"
+	"mass" 20
+	"outfit space" -22
+	"energy generation" 3.8
+	"heat generation" 5.8
+	description "The Builders originally created this magnetohydrodynamic generator as the Ka'mar main power source. Similarly to what happened with many Mar devices, it was later reused in the Het ships as a secondary energy generator, supplementing their integrated power systems when they proved to be unsatisfactory."
+
+outfit "Ka'het Reserve Accumulator"
+	category "Power"
+	cost 27000
+	thumbnail "outfit/ka'het reserve accumulator"
+	"mass" 2
+	"outfit space" -3
+	"energy capacity" 600
+	description "This tiny battery was developed for use by the Ka'mar drones as an emergency energy storage, in case their generators can't quite suffice for the high power demand of most Builder systems."
+
+# Engines:
+
+outfit "Maeri Engine Nacelles"
+	category "Engines"
+	"cost" 928000
+	thumbnail "outfit/ka'het maeri engine"
+	"mass" 59
+	"outfit space" -76
+	"engine capacity" -59
+	"energy consumption" 5.01
+	"heat generation" 1.1
+	"thrust" 37.1
+	"thrusting heat" 2.8
+	"turn" 931.4
+	"turning heat" 1.3
+	"flare sprite" "effect/ka'het flare/large"
+		"frame rate" 30
+	"flare sound" "plasma medium"
+	"steering flare sprite" "effect/ka'het flare/large"
+		"frame rate" 30
+	"steering flare sound" "plasma medium"
+	description "The Ka'het engines are peculiar in that they continuously draw large amounts of energy, but require no additional energy to activate: while this means that less power remains available for other subsystems, it is also somewhat more efficient than most types of propulsions, and generates only a tiny amount of heat."
+
+outfit "Ka'het Sustainer Nacelles"
+	category "Engines"
+	"cost" 357000
+	thumbnail "outfit/ka'het sustainer engine"
+	"mass" 27
+	"outfit space" -34
+	"engine capacity" -27
+	"heat generation" 0.6
+	"energy consumption" 2.49
+	"thrust" 15.1
+	"thrusting heat" 1.0
+	"turn" 432.1
+	"turning heat" 0.5
+	"flare sprite" "effect/ka'het flare/medium"
+		"frame rate" 30
+	"flare sound" "plasma small"
+	"steering flare sprite" "effect/ka'het flare/medium"
+		"frame rate" 30
+	"steering flare sound" "plasma small"
+	description "While Ka'het vessels are already equipped with proper engines, most of them use a sustainer engine in addition to give the ship enough maneuverability to be useful in combat. Following the same design as its bigger cousins, the sustainer requires no power to function at the cost of constant energy consumption."
+
+outfit "Telis Engine Nacelles"
+	category "Engines"
+	"cost" 1372000
+	thumbnail "outfit/ka'het telis engine"
+	"mass" 81
+	"outfit space" -109
+	"engine capacity" -81
+	"energy consumption" 6.81
+	"heat generation" 1.4
+	"thrust" 55.4
+	"thrusting heat" 3.5
+	"turn" 1379.2
+	"turning heat" 1.9
+	"flare sprite" "effect/ka'het flare/large"
+		"frame rate" 30
+	"flare sound" "plasma medium"
+	"steering flare sprite" "effect/ka'het flare/large"
+		"frame rate" 30
+	"steering flare sound" "plasma medium"
+	description "These nacelles used to comprise the entire engine block of a Telis'het. While their size is not impressive compared to other engines, if used in conjunction with a sustainer or two, they can be a powerful form of propulsion, combining both turning and thrusting engines in one."
+
+outfit "Vareti Engine Block"
+	category "Engines"
+	"cost" 1815000
+	thumbnail "outfit/ka'het vareti engine"
+	"mass" 143
+	"outfit space" -171
+	"engine capacity" -143
+	"energy consumption" 13.04
+	"heat generation" 2.7
+	"thrust" 93.9
+	"thrusting heat" 6.7
+	"turn" 2288.2
+	"turning heat" 3.9
+	"flare sprite" "effect/ka'het flare/large"
+		"frame rate" 30
+	"flare sound" "plasma large"
+	"steering flare sprite" "effect/ka'het flare/large"
+		"frame rate" 30
+	"steering flare sound" "plasma large"
+	description "This is the largest single engine the Builders ever built, made for the most massive ships they were in control of. Due to its sheer size, it isn't as modular as its smaller equivalents, but it is more efficient and powerful as a result."
+
+outfit "Ka'het Compact Engine"
+	category "Engines"
+	"cost" 172000
+	thumbnail "outfit/ka'het compact engine"
+	"mass" 21
+	"outfit space" -26
+	"engine capacity" -21
+	"heat generation" 0.3
+	"energy consumption" 0.48
+	"thrust" 11.2
+	"thrusting energy" 1.7
+	"thrusting heat" 1.2
+	"turn" 234.4
+	"turning energy" 0.42
+	"turning heat" 0.3
+	"flare sprite" "effect/ka'het flare/medium"
+		"frame rate" 30
+	"flare sound" "plasma small"
+	"steering flare sprite" "effect/ka'het flare/medium"
+		"frame rate" 30
+	"steering flare sound" "plasma small"
+	description "This tiny engine was developed as the main propulsion of the Ka'mar drones, long before the Ka'het were created and their nacelle design standardized. Improvements over time allowed it to maintain a comparable efficiency to the larger models, although unlike those, it requires some energy to activate the engines in addition to the constant energy drain that all Builder-designed engines have."

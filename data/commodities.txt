@@ -198,7 +198,7 @@ trade
 		"high-tensile fibers"
 		"jet fuel"
 		"lacquer"
-		"laquer thinner"
+		"lacquer thinner"
 		"methanal formaldehyde"
 		"mylar"
 		"nylon fiber"
@@ -709,3 +709,8 @@ trade
 		"stolen yachts"
 		"undeclared nuclear fuel"
 		"weaponized chickens"
+	commodity "void sprite parts"
+		"void sprite parts"
+		"void sprite limbs"
+		"dismembered void sprites"
+
