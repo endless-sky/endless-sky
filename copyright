@@ -953,7 +953,7 @@ Comment: Derived from work by Michael Zahniser (under the same licence) and Becc
 Files:
  images/_menu/haze-blackbody+*
  images/_menu/haze-full+*
- images/_menu/haze-yellow+* 
+ images/_menu/haze-yellow+*
  images/planet/browndwarf-l-rouge*
  images/planet/browndwarf-l*
  images/planet/browndwarf-y-rouge*
@@ -964,6 +964,7 @@ License: CC-BY-SA-4.0
 Files:
  images/planet/browndwarf-t-rouge*
  images/planet/browndwarf-t*
+ images/planet/saturn*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 Comment: Derived from works by NASA (public domain)
