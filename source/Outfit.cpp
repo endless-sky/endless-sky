@@ -205,6 +205,8 @@ void Outfit::Load(const DataNode &node)
 			// Jump range must be positive.
 			attributes[child.Token(0)] = max(0., child.Value(1));
 		}
+		else if(child.Token(0) == "hide parent name" && child.Size() >= 2)
+			hideParentName = child.Value(1);
 		else if(child.Size() >= 2)
 			attributes[child.Token(0)] = child.Value(1);
 		else
@@ -248,7 +250,7 @@ void Outfit::FinishLoading()
 	if(parent && parent->IsDefined())
 	{
 		// At the moment variant variants are not allowed.
-		if(parent->IsVariant())
+		if(parent->Parent())
 		{
 			Files::LogError("Warning: outfit \"" + name + "\" is a variant of a variant and will not be fully loaded.");
 			displayName = name;
@@ -289,13 +291,6 @@ void Outfit::FinishLoading()
 bool Outfit::IsDefined() const
 {
 	return isDefined;
-}
-
-
-
-bool Outfit::IsVariant() const
-{
-	return parent;
 }
 
 
@@ -356,6 +351,20 @@ const vector<string> &Outfit::Licenses() const
 const Sprite *Outfit::Thumbnail() const
 {
 	return thumbnail;
+}
+
+
+
+const Outfit *Outfit::Parent() const
+{
+	return parent;
+}
+
+
+
+const bool Outfit::HideParentName() const
+{
+	return hideParentName;
 }
 
 
