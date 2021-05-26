@@ -38,6 +38,7 @@ Version 0.9.14:
     * Invalid fleet variants are now removed from fleets, preventing plugins with improper data from blocking the offering of missions that spawn fleets. (@tehhowch)
   * User interface:
     * The "interrupt fast-forward" setting now defaults to off instead of on. (@Terin)
+    * Fixed a misaligned UI element in the map panel. (@Terin)
   * Under the hood:
     * Combined checking if a stellar object has a planet and if that planet is valid into a single method. (@tehhowch)
     * Having multiple missing frames for a sprite are now logged to the error file on a single line instead of generating a new line for each missing frame. (@ashdnazg, @tehhowch)
