@@ -746,7 +746,7 @@ ship "Bulk Freighter"
 		"cost" 11100000
 		"shields" 4000
 		"hull" 7600
-		"required crew" 13
+		"required crew" 12
 		"bunks" 21
 		"mass" 870
 		"drag" 14
