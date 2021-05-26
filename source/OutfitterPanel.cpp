@@ -238,7 +238,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 	{
 		outfitInfo.Update(*selectedOutfit, player, CanSell());
 		selectedItem = selectedOutfit->DisplayName();
-		if(selectedOutfit->Parent() && !selectedOutfit->HideParentName() && selectedOutfit->DisplayName() != selectedOutfit->Parent()->DisplayName())
+		if(selectedOutfit->Parent() && !selectedOutfit->Attributes().Get("hide parent name") && selectedOutfit->DisplayName() != selectedOutfit->Parent()->DisplayName())
 			subtitle = "(" + selectedOutfit->Parent()->DisplayName() + ")";
 		
 		const Sprite *thumbnail = selectedOutfit->Thumbnail();
@@ -862,13 +862,13 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 	const string &name = outfit.DisplayName();
 	const Font &font = FontSet::Get(14);
 	Point offset(-.5 * OUTFIT_SIZE, -.5 * OUTFIT_SIZE + 10.);
-	if(outfit.Parent() && !outfit.HideParentName() && outfit.DisplayName() != outfit.Parent()->DisplayName())
+	if(outfit.Parent() && !outfit.Attributes().Get("hide parent name") && outfit.DisplayName() != outfit.Parent()->DisplayName())
 		offset -= Point(0., 12);
 	font.Draw({name, {OUTFIT_SIZE, Alignment::CENTER, Truncate::MIDDLE}},
 		center + offset, Color((isSelected | isOwned) ? .8 : .5, 0.));
 		
 	// If this outfit is a variant and has a unique display name draw its parent's name.
-	if(outfit.Parent() && !outfit.HideParentName() && outfit.DisplayName() != outfit.Parent()->DisplayName())
+	if(outfit.Parent() && !outfit.Attributes().Get("hide parent name") && outfit.DisplayName() != outfit.Parent()->DisplayName())
 	{
 		const string parentName = "(" + outfit.Parent()->DisplayName() + ")";
 		font.Draw({parentName, {OUTFIT_SIZE, Alignment::CENTER, Truncate::MIDDLE}},

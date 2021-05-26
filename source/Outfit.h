@@ -62,7 +62,6 @@ public:
 	const Sprite *Thumbnail() const;
 	// The outfit which this outfit is a variant of.
 	const Outfit *Parent() const;
-	const bool HideParentName() const;
 	
 	double Get(const char *attribute) const;
 	double Get(const std::string &attribute) const;
@@ -111,8 +110,6 @@ private:
 	const Outfit *parent = nullptr;
 	int64_t cost = 0;
 	double mass = 0.;
-	// Wether or not the outfitter should show the parent's name.
-	bool hideParentName = false;
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
 	

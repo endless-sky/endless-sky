@@ -205,8 +205,6 @@ void Outfit::Load(const DataNode &node)
 			// Jump range must be positive.
 			attributes[child.Token(0)] = max(0., child.Value(1));
 		}
-		else if(child.Token(0) == "hide parent name" && child.Size() >= 2)
-			hideParentName = child.Value(1);
 		else if(child.Size() >= 2)
 			attributes[child.Token(0)] = child.Value(1);
 		else
@@ -358,13 +356,6 @@ const Sprite *Outfit::Thumbnail() const
 const Outfit *Outfit::Parent() const
 {
 	return parent;
-}
-
-
-
-const bool Outfit::HideParentName() const
-{
-	return hideParentName;
 }
 
 
