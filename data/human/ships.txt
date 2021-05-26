@@ -196,7 +196,7 @@ ship "Auxiliary"
 		"hull" 5900
 		"required crew" 87
 		"bunks" 250
-		"mass" 2090
+		"mass" 2590
 		"drag" 14.3
 		"heat dissipation" .45
 		"fuel capacity" 900
@@ -301,7 +301,7 @@ ship "Bactrian"
 		"hull" 8600
 		"required crew" 70
 		"bunks" 245
-		"mass" 2510
+		"mass" 3410
 		"drag" 15.3
 		"heat dissipation" .4
 		"fuel capacity" 700
@@ -828,7 +828,7 @@ ship "Carrier"
 		"hull" 8300
 		"required crew" 111
 		"bunks" 184
-		"mass" 2120
+		"mass" 2720
 		"drag" 17.7
 		"heat dissipation" .45
 		"fuel capacity" 700
@@ -1131,7 +1131,7 @@ ship "Cruiser"
 		"hull" 6400
 		"required crew" 81
 		"bunks" 136
-		"mass" 1340
+		"mass" 1840
 		"drag" 11.1
 		"heat dissipation" .45
 		"fuel capacity" 600
@@ -1251,7 +1251,7 @@ ship "Dreadnought"
 		"hull" 7300
 		"required crew" 84
 		"bunks" 147
-		"mass" 1810
+		"mass" 2510
 		"drag" 11.1
 		"heat dissipation" .65
 		"fuel capacity" 600
@@ -1362,7 +1362,7 @@ ship "Falcon"
 		"hull" 3700
 		"required crew" 52
 		"bunks" 75
-		"mass" 980
+		"mass" 1130
 		"drag" 7.4
 		"heat dissipation" .7
 		"fuel capacity" 600
@@ -2165,7 +2165,7 @@ ship "Leviathan"
 		"hull" 5000
 		"required crew" 43
 		"bunks" 64
-		"mass" 1010
+		"mass" 1270
 		"drag" 7.6
 		"heat dissipation" .5
 		"fuel capacity" 500
@@ -2528,7 +2528,7 @@ ship "Protector"
 		"hull" 6500
 		"required crew" 30
 		"bunks" 69
-		"mass" 780
+		"mass" 830
 		"drag" 7.1
 		"heat dissipation" .6
 		"fuel capacity" 400
@@ -3220,7 +3220,7 @@ ship "Vanguard"
 		"hull" 6000
 		"required crew" 23
 		"bunks" 45
-		"mass" 800
+		"mass" 900
 		"drag" 7.2
 		"heat dissipation" .6
 		"fuel capacity" 400
