@@ -699,20 +699,27 @@ void Ship::FinishLoading(bool isNewInstance)
 	
 	canBeCarried = BAY_TYPES.count(attributes.Category()) > 0;
 	
-	// Issue warnings if this ship has negative outfit, cargo, weapon, or engine capacity.
+	// Issue warnings if this ship has is misconfigured, e.g. is missing required values
+	// or has negative outfit, cargo, weapon, or engine capacity.
 	string warning;
-	for(const string &attr : set<string>{"outfit space", "cargo space", "weapon capacity", "engine capacity"})
+	for(auto &&attr : set<string>{"outfit space", "cargo space", "weapon capacity", "engine capacity"})
 	{
 		double val = attributes.Get(attr);
 		if(val < 0)
 			warning += attr + ": " + Format::Number(val) + "\n";
 	}
+	if(attributes.Get("drag") <= 0.)
+	{
+		warning += "Defaulting " + string(attributes.Get("drag") ? "invalid" : "missing") + " \"drag\" attribute to 100.0\n";
+		attributes.Set("drag", 100.);
+	}
 	if(!warning.empty())
 	{
 		// This check is mostly useful for variants and stock ships, which have
 		// no names. Print the outfits to facilitate identifying this ship definition.
-		string message = (!name.empty() ? "Ship \"" + name + "\" " : "") + "(" + modelName + "):\n";
-		ostringstream outfitNames("outfits:\n");
+		string message = (!name.empty() ? "Ship \"" + name + "\" " : "") + "(" + VariantName() + "):\n";
+		ostringstream outfitNames;
+		outfitNames << "has outfits:\n";
 		for(const auto &it : outfits)
 			outfitNames << '\t' << it.second << " " + it.first->Name() << endl;
 		Files::LogError(message + warning + outfitNames.str());
@@ -1543,7 +1550,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				else
 				{
 					for(const StellarObject &object : currentSystem->Objects())
-						if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+						if(object.HasSprite() && object.HasValidPlanet()
+								&& object.GetPlanet()->HasSpaceport())
 						{
 							target = object.Position();
 							break;
@@ -2064,7 +2072,7 @@ void Ship::DoGeneration()
 		// Apply active cooling. The fraction of full cooling to apply equals
 		// your ship's current fraction of its maximum temperature.
 		double activeCooling = coolingEfficiency * attributes.Get("active cooling");
-		if(activeCooling > 0. && heat > 0.)
+		if(activeCooling > 0. && heat > 0. && energy >= 0.)
 		{
 			// Although it's a misuse of this feature, handle the case where
 			// "active cooling" does not require any energy.
@@ -2175,7 +2183,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 		SetShipToAssist(shared_ptr<Ship>());
 		SetTargetShip(shared_ptr<Ship>());
 		bool helped = victim->isDisabled;
-		victim->hull = max(victim->hull, victim->MinimumHull());
+		victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->attributes.Get("hull"));
 		victim->isDisabled = false;
 		// Transfer some fuel if needed.
 		if(!victim->JumpsRemaining() && CanRefuel(*victim))
@@ -2689,7 +2697,7 @@ double Ship::TransferFuel(double amount, Ship *to)
 void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 {
 	// Repair up to the point where this ship is just barely not disabled.
-	hull = max(hull, MinimumHull());
+	hull = min(max(hull, MinimumHull() * 1.5), attributes.Get("hull"));
 	isDisabled = false;
 	
 	// Set the new government.
@@ -3402,12 +3410,19 @@ bool Ship::CanFire(const Weapon *weapon) const
 		return false;
 	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
 	// Ships should not disable themselves, so we check if we stay above minimumHull.
-	if(hull - MinimumHull() <= weapon->FiringHull() + weapon->RelativeFiringHull() * attributes.Get("hull"))
+	if(hull - MinimumHull() < weapon->FiringHull() + weapon->RelativeFiringHull() * attributes.Get("hull"))
 		return false;
 
 	// If a weapon requires heat to fire, (rather than generating heat), we must
 	// have enough heat to spare.
 	if(heat < -(weapon->FiringHeat() + weapon->RelativeFiringHeat() * MaximumHeat()))
+		return false;
+	// Repeat this for various effects which shouldn't drop below 0.
+	if(ionization < -weapon->FiringIon())
+		return false;
+	if(disruption < -weapon->FiringDisruption())
+		return false;
+	if(slowness < -weapon->FiringSlowing())
 		return false;
 	
 	return true;

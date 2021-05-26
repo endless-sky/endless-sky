@@ -62,8 +62,8 @@ public:
 	class Bay {
 	public:
 		Bay(double x, double y, std::string category) : point(x * .5, y * .5), category(category) {}
-		Bay(Bay &&b) noexcept = default;
-		Bay &operator=(Bay &&b) noexcept = default;
+		Bay(Bay &&) = default;
+		Bay &operator=(Bay &&) = default;
 		~Bay() = default;
 		
 		// Copying a bay does not copy the ship inside it.

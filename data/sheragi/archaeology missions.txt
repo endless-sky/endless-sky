@@ -675,7 +675,7 @@ mission "Sheragi Archaeology: The Box 2"
 	on complete
 		payment 500000
 		event "cube stolen" 20 30
-		log `Took a mysterious Sheragi data cube that Albert Foster dug up on Zug to a trusted friend on Vinci. John will take some time to see how exactly it works, and tell you when it's done.`
+		log `Took a mysterious Sheragi data cube that Albert Foster dug up on Zug to a trusted friend on Vinci. John will take some time to see how exactly it works, and send a message when it's done.`
 		conversation
 			`You arrive on Vinci and carry the cube to the address Foster gave you. You find that John has been waiting for you. "So, Foster is up to no good again, huh?" He laughs as he lets you into his lab.`
 			choice
@@ -873,7 +873,7 @@ mission "Sheragi Archaeology: The Box 4"
 			`	You slide the credit chips to Mammon, but they decline it, grinning with their sharp teeth.`
 			`	"Don't worry about paying right now. I only needed you to agree to the deal. I will withdraw the credits in the future, when I desire.`
 			`	"Now that we're done with that, the artifact you're looking for has been taken by some mercenaries. It seems to me that your friend messed with the wrong people, but I digress. That is not the information you paid for."`
-			`	Mammon lifts their hands to the holographic map of the galaxy in the ceiling. It zooms in, filling up the entire room with stars. In front of you, you recognize the border betwen the Deep and the Dirt Belt.`
+			`	Mammon lifts their hands to the holographic map of the galaxy in the ceiling. It zooms in, filling up the entire room with stars. In front of you, you recognize the border between the Deep and the Dirt Belt.`
 			`	"They have kept the artifact for themselves to sell on the black market, and their base of operations is right... here. Algieba."`
 			`	The hologram zooms further in on Watcher, one of the system's moons, and continues until it finally stops over a large forest.`
 			`	"You will find them on this uninhabited moon. They are hiding out in this forest, and the artifact is with them. The exact coordinates will be forwarded to your ship. Expect hostilities."`
@@ -1078,7 +1078,7 @@ mission "Sheragi Archaeology: The Box 7b"
 			choice
 				`	(Continue into the Sheragi room.)`
 			`	What you see here is much richer than what Albert Foster's little museum could ever hope to display. There are pictures of Sheragi military officials of the time, as well as their names and roles. Details on their culture, their biology, and their apparent conflicts with the Hai are provided as well. There is a huge statue of a bipedal dragon at the center of the room, around 8 meters tall, so large that the ceiling had to be raised. The inscription on the plaque at its feet indicates it is a reproduction of a life-sized Sheragi. A smaller interactive holographic display of one shows details on their biology and behavior. Samples of culture are scarce, but it indicates that they lived under a military meritocracy that valued strength and leadership above all else.`
-			`	You see pictures and rough blueprints of their ships, some depiciting fearsome fleets of massive warships. They had angular, multi-layered armor that rivaled the strength of modern Hai vessels by sheer mass. If your measurement conversions are correct, their ships were bigger than anything else in human space, dwarfing even the Navy Carrier. A few of them display equally impressive spinal cannons of unknown capability, with grim descriptions suggesting that they were responsible for the extinction of the Sheragi - weapons of mass destruction in the hands of a warlike and immature species that used them carelessly.`
+			`	You see pictures and rough blueprints of their ships, some depicting fearsome fleets of massive warships. They had angular, multi-layered armor that rivaled the strength of modern Hai vessels by sheer mass. If your measurement conversions are correct, their ships were bigger than anything else in human space, dwarfing even the Navy Carrier. A few of them display equally impressive spinal cannons of unknown capability, with grim descriptions suggesting that they were responsible for the extinction of the Sheragi - weapons of mass destruction in the hands of a warlike and immature species that used them carelessly.`
 			`	While you are looking around the room, one of the curators approaches you, speaking your own language, albeit with a heavy accent.`
 			`	"Sad, isn't it? I don't think they ever had a peaceful time in their spacefaring history."`
 			choice
@@ -1160,7 +1160,7 @@ mission "Sheragi Archaeology: The Box 8"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		event "cube decoded" 40 50
-		log "People" "Desyo" `A brilliant Hai xenoprogramming expert, Desyo specializes in Sheragi code and software. She is more interested in technology and electronics than people and often coordinates the work in the Hai archeologist team, despite her introversion and lack of hierarchy. Her dedication is the grease that keeps that machine running.`
+		log "People" "Desyo" `A brilliant Hai xenoprogramming expert, Desyo specializes in Sheragi code and software. She is more interested in technology and electronics than people and often coordinates the work in the Hai archaeologist team, despite her introversion and lack of hierarchy. Her dedication is the grease that keeps that machine running.`
 		log "People" "Rakei" `Rakei is an engineering expert specializing in archaeological artifacts, but also very interested in new and unusual technology, often nerding out with Desyo over the latest scientific papers. She is part of the Hai archaeologist team tasked to uncover the mystery of the Sheragi black box.`
 		log "People" "Eyama" `Uncaring about formalities and seriousness, you wouldn't guess Eyama is an accomplished linguist specializing in Sheragi language. She also has an interest in culture and sociology in general, and has a lot more knowledge about human culture than you would expect from a Hai, or even most humans. Her work with the Hai archaeologist team is invaluable to deciphering Sheragi mysteries and maintaining their relationship with human partners.`
 		conversation
@@ -1553,7 +1553,7 @@ mission "Sheragi Archaeology: Epilogue"
 			`	While in one of the rooms, Eyama spots a young Sheragi skeleton laying on the ground that looks like they were reaching out for something when they died. Eyama kneels down next to the skeleton and reaches out to touch its hand. "Don't," Foster says from across the room, stopping Eyama from moving. "We need to leave this place undisturbed. We've done enough already by taking the ship." Eyama gets up without speaking, but gives a look of understanding to Foster.`
 			`	After spending enough time among the ruins, you return to the ships with Foster and Eyama.`
 			label end
-			`	The final repairs on the Emerald Sword take up nearly an entire day with the crew working in shifts to get the job done. Once the ship is patched up and all the systems are functional, the jump drive is installed. While the Emerald Sword was being worked on, a Rakei was able to get a group to retrieve the final fighter and return it to the ship. All that is left to do now is get the ship in orbit and return to <planet>.`
+			`	The final repairs on the Emerald Sword take up nearly an entire day with the crew working in shifts to get the job done. Once the ship is patched up and all the systems are functional, the jump drive is installed. While the Emerald Sword was being worked on, Rakei was able to get a group to retrieve the final fighter and return it to the ship. All that is left to do now is get the ship in orbit and return to <planet>.`
 				accept
 	on visit
 		dialog `You have reached <planet>, but not all of the archaeology equipment made it back! Better depart and wait for your escorts to arrive in this star system.`
