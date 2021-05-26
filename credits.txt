@@ -207,6 +207,7 @@ contributed to Endless Sky:
   LordInsane
   Luckz
   luiges90
+  lukearndt
   macfreek
   MageKing17
   Mailaender
@@ -307,6 +308,6 @@ contributed to Endless Sky:
 
 Special thanks to MCOfficer for
 creating, managing, and hosting
-the ESLauncher, nightly, & 
+the ESLauncher, nightly, &
 continuous builds that make so
 much of this work possible.
