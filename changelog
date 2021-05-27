@@ -7,7 +7,7 @@ Version 0.9.14:
       * The Dropship is now sold in Navy Basics shipyards, whereas before it was sold nowhere. (@Amazinite)
       * "Wanderers: Mentors 2" now has an on visit dialog. (@Amazinite)
       * "Strider 1" now sends you to Allhome for the next mission instead of the spaceport, as the next mission in the string wasn't offering before. (@Amazinite)
-      * "FW Pug 4" and "Nanachi 4" now mention both possible missing objectives when you visit the mission destination. (@Amazinite)
+      * "FW Pug 4", "Nanachi 3", and "Nanachi 4" now mention both possible missing objectives when you visit the mission destination. (@Amazinite)
       * The reverse thrust heat of the Smelter-Class Thruster is no longer the same as the smaller Crucible-Class Thruster. (@Zitchas)
       * "Remnant: Cognizance 4" and "Remnant: Cognizance 16" no longer spoil the objective location for the player when you're suppose to go looking for them. (@Amazinite)
     * Engine bugs:
