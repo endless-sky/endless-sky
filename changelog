@@ -1,7 +1,7 @@
 Version 0.9.14:
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@alextd, @Amazinite, @Anarchist2, @AraCaputDraco, @Arachi-Lover, @EjoThims, @InfiniteDonuts, @infinitewarp, @jarekchr, @MCOfficer, @Ornok, @petervdmeer, @tehhowch, @Terin)
+      * Typo fixes. (@alextd, @Amazinite, @Anarchist2, @AraCaputDraco, @Arachi-Lover, @EjoThims, @InfiniteDonuts, @infinitewarp, @jarekchr, @MCOfficer, @Ornok, @petervdmeer, @tehhowch, @Terin, @Zitchas)
       * "Remnant: Deep Surveillance" will now offer, as typos in the offer conditions were preventing it from offering. (@alextd, @Amazinite)
       * "Deep: Remnant 3" now properly offers on landing instead of requiring you to visit the spaceport with no direction. (@Amazinite)
       * The Dropship is now sold in Navy Basics shipyards, whereas before it was sold nowhere. (@Amazinite)
@@ -20,7 +20,7 @@ Version 0.9.14:
       * The Heliarch Interdictor now has a Scrappy variant like other Heliarch ships. (@Arachi-Lover)
       * The Pug Gridfire, Gatling Gun, and minable asteroid explosions now have unique sounds, whereas previously they had reused sounds or none at all. (@Floppa-Priest)
       * Quarg planets now all have regional attributes describing where in the galaxy they're located for use by missions and jobs. (@Amazinite)
-      * Added a new human ship, the Container Transport. (@ravenshining)
+      * Added a new human ship, the Container Transport. For now, this ship has identical stats to the Bulk Freighter, but the two ships will be differentiated from one another next update. (@ravenshining)
     * Content changes:
       * Changed the Saryd couple's budget to something more sensible. (@jerith)
       * Made it clear in "Remnant: Electron Beam" that you are to return with two electron beams. (@AraCaputDraco)
