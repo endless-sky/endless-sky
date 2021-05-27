@@ -52,7 +52,7 @@ outfit "D14-RN Shield Generator"
 	thumbnail "outfit/tiny shield"
 	"mass" 15
 	"outfit space" -15
-	"shield generation" .2
+	"shield generation" .4
 	"shield energy" .2
 	description "This is the standard shield generator for fighters and interceptors, as well as for many non-combat starships. Although it is possible for a ship to have no shield generator at all, recharging its shield matrix only when landed in a hospitable spaceport, life in deep space is unpredictable enough that most pilots find shield generators to be well worth the space they take up."
 
@@ -62,7 +62,7 @@ outfit "D23-QP Shield Generator"
 	thumbnail "outfit/small shield"
 	"mass" 22
 	"outfit space" -22
-	"shield generation" .32
+	"shield generation" .64
 	"shield energy" .32
 	description "This is a slightly more powerful shield generator than the standard model installed in most small ships. If combat lasts long enough, the increased recharge rate is enough to give you an edge, but recharging your shields completely will still take a long time."
 
@@ -72,7 +72,7 @@ outfit "D41-HY Shield Generator"
 	thumbnail "outfit/medium shield"
 	"mass" 30
 	"outfit space" -30
-	"shield generation" .51
+	"shield generation" 1.02
 	"shield energy" .51
 	description "This is a more powerful shield generator designed for ships that are likely to see frequent combat, or that have such a large shield capacity that recharging them would take a long time with a smaller generator."
 
@@ -82,7 +82,7 @@ outfit "D67-TM Shield Generator"
 	thumbnail "outfit/large shield"
 	"mass" 45
 	"outfit space" -45
-	"shield generation" .82
+	"shield generation" 1.64
 	"shield energy" .82
 	description "This shield generator is powerful enough that in combat against some particularly weak ships, they may not even be capable of depleting your shields as fast as they recharge."
 
@@ -92,7 +92,7 @@ outfit "D94-YV Shield Generator"
 	thumbnail "outfit/huge shield"
 	"mass" 60
 	"outfit space" -60
-	"shield generation" 1.31
+	"shield generation" 2.62
 	"shield energy" 1.31
 	description "This is the most powerful shield generator available in human space. Because of their large size, D94-YV shield generators are mostly used in large warships, but you can fit one in a smaller ship if you are willing to sacrifice engine power or weaponry to make space for it."
 
@@ -102,7 +102,7 @@ outfit "S-270 Regenerator"
 	thumbnail "outfit/small regenerator"
 	"mass" 12
 	"outfit space" -12
-	"shield generation" .6
+	"shield generation" 1.2
 	"shield energy" .6
 	"energy consumption" .3
 	"heat generation" 2
@@ -114,7 +114,7 @@ outfit "S-970 Regenerator"
 	thumbnail "outfit/large regenerator"
 	"mass" 37
 	"outfit space" -37
-	"shield generation" 2.3
+	"shield generation" 4.6
 	"shield energy" 2.3
 	"energy consumption" .9
 	"heat generation" 6
