@@ -421,7 +421,7 @@ ship "Pond Strider"
 		"hull" 3000
 		"required crew" 9
 		"bunks" 18
-		"mass" 278
+		"mass" 314
 		"drag" 3.55
 		"hull repair rate" 2
 		"heat dissipation" .5
