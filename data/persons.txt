@@ -80,28 +80,28 @@ person "Michael Zahniser"
 	ship "Finch (MZ)" "Cipher"
 
 ship "Finch" "Finch (MZ)"
-		"never disabled"
-		add attributes
-			"shields" 900
-			"hull" 1800
-			"outfit space" 140
-			"weapon capacity" 22
-			"engine capacity" 22
-		outfits
-			"Electron Beam" 2
-			
-			"Fuel Pod"
-			"Liquid Nitrogen Cooler"
-			"Large Radar Jammer"
-			"Ramscoop"
-			"S-270 Regenerator"
-			
-			"LP036a Battery Pack"
-			"Fission Reactor"
-			
-			"A125 Atomic Steering"
-			"A120 Atomic Thruster"
-			"Ionic Afterburner"
+	"never disabled"
+	add attributes
+		"shields" 900
+		"hull" 1800
+		"outfit space" 140
+		"weapon capacity" 22
+		"engine capacity" 22
+	outfits
+		"Electron Beam" 2
+		
+		"Fuel Pod"
+		"Liquid Nitrogen Cooler"
+		"Large Radar Jammer"
+		"Ramscoop"
+		"S-270 Regenerator"
+		
+		"LP036a Battery Pack"
+		"Fission Reactor"
+		
+		"A125 Atomic Steering"
+		"A120 Atomic Thruster"
+		"Ionic Afterburner"
 
 
 
