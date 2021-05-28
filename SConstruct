@@ -202,6 +202,7 @@ def RecursiveInstall(env, target, source):
 		else:
 			env.Install(target, node)
 RecursiveInstall(env, "$DESTDIR$PREFIX/share/games/endless-sky/data", "data")
+RecursiveInstall(env, "$DESTDIR$PREFIX/share/games/endless-sky/fonts", "fonts")
 RecursiveInstall(env, "$DESTDIR$PREFIX/share/games/endless-sky/images", "images")
 RecursiveInstall(env, "$DESTDIR$PREFIX/share/games/endless-sky/sounds", "sounds")
 env.Install("$DESTDIR$PREFIX/share/games/endless-sky", "credits.txt")

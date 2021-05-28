@@ -30,7 +30,7 @@ jobs:
       - name: Run Unit Tests
         run: scons -Qj $(nproc) test
       - name: Package Application
-        run: tar -czf ${{ env.OUTPUT }} sounds images/ data/ license.txt keys.txt icon.png endless-sky credits.txt copyright changelog
+        run: tar -czf ${{ env.OUTPUT }} sounds images/ fonts/ data/ license.txt keys.txt icon.png endless-sky credits.txt copyright changelog
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
@@ -85,7 +85,7 @@ jobs:
           COPY $Env:DIR_MINGW64\lib\libgcc_s_seh-1.dll .
           COPY $Env:DIR_MINGW64\lib\libstdc++-6.dll .
           COPY $Env:DIR_MINGW64\lib\libwinpthread-1.dll .
-          7z a ${{ env.OUTPUT }} .\sounds\ .\images\ .\data\ *.dll license.txt keys.txt icon.png EndlessSky.exe credits.txt copyright changelog
+          7z a ${{ env.OUTPUT }} .\sounds\ .\images\ .\fonts\ .\data\ *.dll license.txt keys.txt icon.png EndlessSky.exe credits.txt copyright changelog
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:

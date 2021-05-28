@@ -85,7 +85,7 @@ after_test:
       $REPLACER = "[{0}]" -f [RegEx]::Escape($INVALID_CHARS);
       $ARCHIVE_NAME = ($ARCHIVE_NAME -replace $REPLACER)
 
-      $ZIP_ARGS = "a $ARCHIVE_NAME .\*.exe -i!.\*.dll -i!.\data\ -i!.\icons\ -i!.\images\ -i!.\sounds\ -i!.\source\ -i!license.txt -i!copyright -i!README.md -i!changelog -i!credits.txt -i!keys.txt";
+      $ZIP_ARGS = "a $ARCHIVE_NAME .\*.exe -i!.\*.dll -i!.\data\ -i!.\fonts\ -i!.\icons\ -i!.\images\ -i!.\sounds\ -i!.\source\ -i!license.txt -i!copyright -i!README.md -i!changelog -i!credits.txt -i!keys.txt";
       Start-Process '7z.exe' -ArgumentList $ZIP_ARGS -Wait;
       Push-AppveyorArtifact $ARCHIVE_NAME;
 

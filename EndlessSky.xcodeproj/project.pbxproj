@@ -140,6 +140,7 @@
 		A99F7B09195DF44C002C30B8 /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = A99F7A95195DF44B002C30B8 /* license.txt */; };
 		A99F7B34195DF45E002C30B8 /* data in Resources */ = {isa = PBXBuildFile; fileRef = A99F7B32195DF45E002C30B8 /* data */; };
 		A99F7B35195DF45E002C30B8 /* images in Resources */ = {isa = PBXBuildFile; fileRef = A99F7B33195DF45E002C30B8 /* images */; };
+		A99F7B37195DF45E002C30B8 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = A99F7B36195DF45E002C30B8 /* fonts */; };
 		A9A5297419996C9F002D7C35 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = A9A5297319996C9F002D7C35 /* sounds */; };
 		A9A5297619996CC3002D7C35 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A5297519996CC3002D7C35 /* OpenAL.framework */; };
 		A9B99D021C616AD000BE7C2E /* ItemInfoDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9B99D001C616AD000BE7C2E /* ItemInfoDisplay.cpp */; };
@@ -460,6 +461,7 @@
 		A99F7A95195DF44B002C30B8 /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
 		A99F7B32195DF45E002C30B8 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
 		A99F7B33195DF45E002C30B8 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		A99F7B36195DF45E002C30B8 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		A9A5297319996C9F002D7C35 /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = "<group>"; };
 		A9A5297519996CC3002D7C35 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		A9B99D001C616AD000BE7C2E /* ItemInfoDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ItemInfoDisplay.cpp; path = source/ItemInfoDisplay.cpp; sourceTree = "<group>"; };
@@ -825,6 +827,7 @@
 				A9A5297319996C9F002D7C35 /* sounds */,
 				A99F7B32195DF45E002C30B8 /* data */,
 				A99F7B33195DF45E002C30B8 /* images */,
+				A99F7B36195DF45E002C30B8 /* fonts */,
 				A9CC52721950C9F6004E4E22 /* XCode */,
 				A9CC526B1950C9F6004E4E22 /* Frameworks */,
 				A9CC526A1950C9F6004E4E22 /* Products */,
@@ -960,6 +963,7 @@
 				A99F7B34195DF45E002C30B8 /* data in Resources */,
 				A94408A51982F3E600610427 /* endless-sky.iconset in Resources */,
 				A99F7B35195DF45E002C30B8 /* images in Resources */,
+				A99F7B37195DF45E002C30B8 /* fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
