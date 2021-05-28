@@ -391,7 +391,7 @@ ship "Heliarch Hunter"
 		"hull" 45300
 		"required crew" 26
 		"bunks" 41
-		"mass" 420
+		"mass" 660
 		"drag" 5.3
 		"heat dissipation" .71
 		"ion protection" .2
@@ -549,7 +549,7 @@ ship "Heliarch Interdictor"
 		"hull" 54600
 		"required crew" 42
 		"bunks" 70
-		"mass" 520
+		"mass" 790
 		"drag" 7.4
 		"heat dissipation" .70
 		"ion protection" .2
@@ -695,7 +695,7 @@ ship "Heliarch Judicator"
 		"hull" 41900
 		"required crew" 31
 		"bunks" 110
-		"mass" 480
+		"mass" 730
 		"drag" 7.9
 		"heat dissipation" .67
 		"ion protection" .2
@@ -873,7 +873,7 @@ ship "Heliarch Neutralizer"
 		"required crew" 17
 		"bunks" 24
 		"mass" 270
-		"drag" 4.1
+		"drag" 4.5
 		"heat dissipation" .75
 		"ion protection" .1
 		"fuel capacity" 1000
@@ -992,8 +992,8 @@ ship "Heliarch Punisher"
 		"hull" 85000
 		"required crew" 96
 		"bunks" 145
-		"mass" 780
-		"drag" 12.2
+		"mass" 1780
+		"drag" 15.2
 		"heat dissipation" .60
 		"ion protection" .3
 		"fuel capacity" 600
@@ -1186,7 +1186,7 @@ ship "Heliarch Pursuer"
 		"required crew" 1
 		"bunks" 1
 		"mass" 31
-		"drag" 0.8
+		"drag" 0.75
 		"heat dissipation" 0.99
 		"outfit space" 105
 		"weapon capacity" 19
@@ -1244,7 +1244,7 @@ ship "Heliarch Rover"
 		"required crew" 1
 		"bunks" 1
 		"mass" 37
-		"drag" 1.19
+		"drag" 1.12
 		"heat dissipation" .96
 		"outfit space" 125
 		"weapon capacity" 24
@@ -1300,7 +1300,7 @@ ship "Heliarch Stalker"
 		"required crew" 1
 		"bunks" 2
 		"mass" 80
-		"drag" 2.1
+		"drag" 1.4
 		"heat dissipation" 0.64
 		"outfit space" 133
 		"weapon capacity" 43
