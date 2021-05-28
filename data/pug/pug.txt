@@ -405,7 +405,7 @@ outfit "Pug Akfar Steering"
 	"mass" 33
 	"outfit space" -33
 	"engine capacity" -33
-	"turn" 750
+	"turn" 937
 	"turning energy" 1.3
 	"turning heat" 2.1
 	"steering flare sprite" "effect/ion flare/medium"
@@ -435,7 +435,7 @@ outfit "Pug Cormet Steering"
 	"mass" 46
 	"outfit space" -46
 	"engine capacity" -46
-	"turn" 1130
+	"turn" 1412
 	"turning energy" 1.9
 	"turning heat" 3.1
 	"steering flare sprite" "effect/ion flare/large"
@@ -465,7 +465,7 @@ outfit "Pug Lohmar Steering"
 	"mass" 64
 	"outfit space" -64
 	"engine capacity" -64
-	"turn" 1700
+	"turn" 2125
 	"turning energy" 2.8
 	"turning heat" 4.7
 	"steering flare sprite" "effect/ion flare/huge"
@@ -506,8 +506,8 @@ ship "Pug Zibruka"
 		"hull" 1000
 		"required crew" 4
 		"bunks" 6
-		"mass" 240
-		"drag" 3.1
+		"mass" 350
+		"drag" 3.4
 		"heat dissipation" .8
 		"fuel capacity" 600
 		"cargo space" 20
@@ -556,8 +556,8 @@ ship "Pug Enfolta"
 		"hull" 1700
 		"required crew" 19
 		"bunks" 27
-		"mass" 410
-		"drag" 5.9
+		"mass" 610
+		"drag" 6.5
 		"heat dissipation" .7
 		"fuel capacity" 600
 		"cargo space" 40
@@ -611,8 +611,8 @@ ship "Pug Maboro"
 		"hull" 2700
 		"required crew" 54
 		"bunks" 87
-		"mass" 940
-		"drag" 9.8
+		"mass" 1310
+		"drag" 11.3
 		"heat dissipation" .6
 		"fuel capacity" 600
 		"cargo space" 70
