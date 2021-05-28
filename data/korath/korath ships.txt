@@ -121,8 +121,8 @@ ship "Korath Raider"
 		"hull" 9000
 		"required crew" 145
 		"bunks" 250
-		"mass" 720
-		"drag" 12
+		"mass" 1950
+		"drag" 10
 		"heat dissipation" .5
 		"fuel capacity" 600
 		"cargo space" 175
@@ -262,7 +262,7 @@ ship "Korath Chaser"
 		"required crew" 1
 		"bunks" 1
 		"mass" 40
-		"drag" .9
+		"drag" .7
 		"heat dissipation" .9
 		"outfit space" 92
 		"weapon capacity" 25
