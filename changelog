@@ -33,6 +33,7 @@ Version 0.9.14:
       * Improved some of the wording in "Lagrange Ring: Cargo". (@Arachi-Lover)
       * Removed part of a logbook entry that said that the Quarg claimed that the Pug could defeat the Drak, which they never did. (@Arachi-Lover)
       * Updated the Bulk Freighter sprite to have a hardpoint layout matching pre-v0.9.13 Bulk Freighters for save compatibility. (@ravenshining)
+      * Lowered the chances of an alien baby crawling into your cargo hold. Safety measured have been put into place to ensure that this happens far less often. (@Amazinite)
   * Game mechanics:
     * Disabled ships that are captured or assisted will now repair to slightly higher than the bare minimum hull necessary. (@Amazinite)
     * Invalid fleet variants are now removed from fleets, preventing plugins with improper data from blocking the offering of missions that spawn fleets. (@tehhowch)

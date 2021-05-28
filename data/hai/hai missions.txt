@@ -606,7 +606,7 @@ mission "Unwanted Cargo Trigger"
 	source
 		government "Hai"
 	to offer
-		random < 10
+		random < 1
 		"cargo space" > 0
 	on offer
 		event "hai in cargo" 14
