@@ -326,7 +326,7 @@ outfit "Hai Corundum Regenerator"
 	thumbnail "outfit/small regenerator hai"
 	"mass" 16
 	"outfit space" -16
-	"shield generation" .7
+	"shield generation" 1.4
 	"shield energy" .7
 	"energy consumption" .3
 	"shield heat" 3
@@ -338,7 +338,7 @@ outfit "Hai Diamond Regenerator"
 	thumbnail "outfit/large regenerator hai"
 	"mass" 49
 	"outfit space" -49
-	"shield generation" 2.5
+	"shield generation" 5.0
 	"shield energy" 2.5
 	"shield heat" 9
 	"energy consumption" .9
