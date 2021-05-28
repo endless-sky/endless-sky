@@ -20,8 +20,8 @@ ship "Arach Courier"
 		"hull" 2000
 		"required crew" 1
 		"bunks" 1
-		"mass" 100
-		"drag" 2.9
+		"mass" 80
+		"drag" 1.3
 		"heat dissipation" .65
 		"fuel capacity" 300
 		"cargo space" 78
@@ -65,8 +65,8 @@ ship "Arach Freighter"
 		"hull" 8500
 		"required crew" 3
 		"bunks" 10
-		"mass" 380
-		"drag" 10.6
+		"mass" 620
+		"drag" 5.3
 		"heat dissipation" .55
 		"fuel capacity" 500
 		"cargo space" 310
@@ -115,8 +115,8 @@ ship "Arach Hulk"
 		"hull" 13800
 		"required crew" 8
 		"bunks" 14
-		"mass" 670
-		"drag" 18.9
+		"mass" 1670
+		"drag" 12.8
 		"heat dissipation" .50
 		"fuel capacity" 500
 		"cargo space" 541
@@ -169,8 +169,8 @@ ship "Arach Spindle"
 		"hull" 9700
 		"required crew" 4
 		"bunks" 14
-		"mass" 340
-		"drag" 10.8
+		"mass" 1340
+		"drag" 10.6
 		"heat dissipation" .55
 		"fuel capacity" 500
 		"cargo space" 280
@@ -221,8 +221,8 @@ ship "Arach Transport"
 		"hull" 4800
 		"required crew" 2
 		"bunks" 5
-		"mass" 280
-		"drag" 7.2
+		"mass" 210
+		"drag" 2.7
 		"heat dissipation" .60
 		"fuel capacity" 400
 		"cargo space" 190
@@ -1355,7 +1355,7 @@ ship "Kimek Briar"
 		"required crew" 3
 		"bunks" 25
 		"mass" 180
-		"drag" 3.8
+		"drag" 2
 		"heat dissipation" .75
 		"fuel capacity" 700
 		"cargo space" 21
@@ -1454,8 +1454,8 @@ ship "Kimek Thistle"
 		"hull" 2800
 		"required crew" 7
 		"bunks" 52
-		"mass" 270
-		"drag" 5.8
+		"mass" 370
+		"drag" 4
 		"heat dissipation" .70
 		"fuel capacity" 700
 		"cargo space" 29
@@ -1504,7 +1504,7 @@ ship "Kimek Thorn"
 		"required crew" 1
 		"bunks" 7
 		"mass" 80
-		"drag" 1.8
+		"drag" 1
 		"heat dissipation" .80
 		"fuel capacity" 600
 		"cargo space" 12
@@ -1548,8 +1548,8 @@ ship "Saryd Runabout"
 		"hull" 1400
 		"required crew" 2
 		"bunks" 13
-		"mass" 140
-		"drag" 2.8
+		"mass" 100
+		"drag" 2.1
 		"heat dissipation" .70
 		"fuel capacity" 400
 		"cargo space" 42
@@ -1591,8 +1591,8 @@ ship "Saryd Sojourner"
 		"hull" 7700
 		"required crew" 17
 		"bunks" 84
-		"mass" 640
-		"drag" 12.9
+		"mass" 840
+		"drag" 10.2
 		"heat dissipation" .50
 		"fuel capacity" 800
 		"cargo space" 260
@@ -1646,14 +1646,14 @@ ship "Saryd Traveler"
 		"hull" 4000
 		"required crew" 10
 		"bunks" 45
-		"mass" 350
-		"drag" 5.5
+		"mass" 450
+		"drag" 6.4
 		"heat dissipation" .60
 		"fuel capacity" 600
 		"cargo space" 137
 		"outfit space" 466
 		"weapon capacity" 177
-		"engine capacity" 79
+		"engine capacity" 107
 		weapon
 			"blast radius" 72
 			"shield damage" 720
@@ -1699,8 +1699,8 @@ ship "Saryd Visitor"
 		"hull" 2400
 		"required crew" 5
 		"bunks" 29
-		"mass" 270
-		"drag" 4.4
+		"mass" 260
+		"drag" 3
 		"heat dissipation" .65
 		"fuel capacity" 400
 		"cargo space" 98
