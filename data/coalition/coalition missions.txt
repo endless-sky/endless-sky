@@ -1570,6 +1570,8 @@ mission "Coalition: Council of Ahr: Drama"
 			has "Coalition: Council of Ahr: Bebliss: active"
 			has "Coalition: Council of Ahr: Chamgar: active"
 		has "Coalition: Council of Ahr: active"
+		not "Coalition: Council of Ahr: Bebliss: done"
+		not "Coalition: Council of Ahr: Chamgar: done"
 	source
 		planet "Hammer of Debrugt" "Stronghold of Flugbu"
 	destination "Ahr"
