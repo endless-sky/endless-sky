@@ -19,7 +19,7 @@ ship "Aphid"
 		"required crew" 1
 		"bunks" 5
 		"mass" 100
-		"drag" 1.9
+		"drag" 1.5
 		"heat dissipation" .90
 		"fuel capacity" 400
 		"cargo space" 51
@@ -73,7 +73,7 @@ ship "Centipede"
 		"hull" 2400
 		"required crew" 35
 		"bunks" 131
-		"mass" 187
+		"mass" 287
 		"drag" 3.9
 		"heat dissipation" .75
 		"fuel capacity" 600
@@ -146,7 +146,7 @@ ship "Flea"
 		"shields" 200
 		"hull" 700
 		"mass" 21
-		"drag" .55
+		"drag" .4
 		"heat dissipation" .83
 		"outfit space" 63
 		"weapon capacity" 13
@@ -191,7 +191,7 @@ ship "Geocoris"
 		"required crew" 15
 		"bunks" 56
 		"mass" 810
-		"drag" 17.1
+		"drag" 12
 		"heat dissipation" 0.45
 		"fuel capacity" 800
 		"cargo space" 761
@@ -266,8 +266,8 @@ ship "Grasshopper"
 		"hull" 600
 		"required crew" 1
 		"bunks" 5
-		"mass" 95
-		"drag" 1.5
+		"mass" 68
+		"drag" 1.2
 		"heat dissipation" .85
 		"fuel capacity" 300
 		"cargo space"  29
@@ -342,7 +342,7 @@ ship "Lightning Bug"
 		"required crew" 4
 		"bunks" 10
 		"mass" 220
-		"drag" 3.8
+		"drag" 3
 		"heat dissipation" .85
 		"fuel capacity" 600
 		"cargo space" 73
@@ -421,9 +421,9 @@ ship "Pond Strider"
 		"hull" 3000
 		"required crew" 9
 		"bunks" 18
-		"mass" 168
+		"mass" 278
 		"drag" 3.55
-		"hull repair rate" 1
+		"hull repair rate" 2
 		"heat dissipation" .5
 		"fuel capacity" 300
 		"cargo space" 71
@@ -559,7 +559,7 @@ ship "Shield Beetle"
 		"hull" 9800
 		"required crew" 47
 		"bunks" 95
-		"mass" 650
+		"mass" 1405
 		"drag" 8.8
 		"heat dissipation" .60
 		"fuel capacity" 500
@@ -747,7 +747,7 @@ ship "Solifuge"
 		"hull" 11000
 		"required crew" 62
 		"bunks" 118
-		"mass" 925
+		"mass" 2480
 		"drag" 15.4
 		"heat dissipation" .42
 		"fuel capacity" 600
@@ -919,7 +919,7 @@ ship "Violin Spider"
 		"required crew" 1
 		"bunks" 1
 		"mass" 31
-		"drag" 0.9
+		"drag" 0.7
 		"heat dissipation" .7
 		"outfit space" 92
 		"weapon capacity" 19
@@ -972,7 +972,7 @@ ship "Water Bug"
 		"required crew" 5
 		"bunks" 29
 		"mass" 270
-		"drag" 5.9
+		"drag" 4.4
 		"heat dissipation" .75
 		"fuel capacity" 600
 		"cargo space" 197
