@@ -4755,7 +4755,7 @@ mission "Remnant: Expanded Horizons Novas 1"
 				goto end
 
 			label wormholes
-			`	"That is one possibility. Whichever civilization formed the destabilized wormholes -and we are nearly certain that they are artificial- would easily have the power to alter or even destroy entire stars. While this is one of the more unlikely scenarios, if it does happen to be the correct one, we would naturally be very concerned."`
+			`	"That is one possibility. Whichever civilization formed the destabilized wormholes -and we are nearly certain that they are artificial- would easily have the power to alter or even destroy entire stars. While this is one of the more unlikely scenarios, if it does happen to be the correct one, we would naturally be very concerned.`
 
 			label end
 			`	"In any case, the data we gathered will be invaluable towards our further understanding of not only the Ember Wastes, but the wider galaxy and its history. Depending on what we find in it, I might contact you in the future for further expeditions to exotic stars." You say farewell and leave, collecting your logistics allotment of <payment>.`
