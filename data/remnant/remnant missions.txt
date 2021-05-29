@@ -4941,7 +4941,7 @@ mission "Cinis Dust: Remnant B"
 		not "remnant met taely"
 		not "Cinis Dust: Taely: offered"
 	on offer
-		conversation "cinis dust:remnant"
+		conversation "cinis dust: remnant"
 
 
 
