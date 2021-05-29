@@ -4714,7 +4714,7 @@ mission "Remnant: Expanded Horizons Novas 1"
 
 	on enter Caeculus
 		conversation
-			`	As soon as you arrive, Dawn quickly sets up the laboratory, setting up her instruments before joining you in the cockpit. "It may take some time for a coronal mass ejection event to occur, so we may be here for a while."`
+			`	As soon as you arrive, Dawn quickly sets up the laboratory, setting up her instruments before joining you in the cockpit. "It may take some time for a coronal mass ejection event to occur, so we may be here for a while.`
 			
 			`	"You may also wish to keep your distance from the star", Dawn says. In a more somber tone, she adds, "we have lost ships, and sometimes good scientists, to these stars before."  `
 
