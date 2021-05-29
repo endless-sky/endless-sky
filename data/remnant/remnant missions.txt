@@ -4819,7 +4819,7 @@ mission "Remnant: Expanded Horizons Novas 2"
 				goto journey
 			
 			label simpler
-			`	"Essentially, a type of matter found in neutron stars would be introduced to the star, destabilizing it and causing it to go supernova. Does that make sense? I apologize if I get carried away with my explanations, as I am used to discussing these topics with people who have studied them for decades. As such, perhaps I am overcomplicating where certain details are not necessary."`
+			`	"Essentially, a type of matter found in neutron stars would be introduced to the star, destabilizing it and causing it to go supernova. Does that make sense? I apologize if I get carried away with my explanations, as I am used to discussing these topics with people who have studied them for decades. As such, perhaps I am overcomplicating where certain details are not necessary.`
 				goto speculation
 			
 			label starlifting
