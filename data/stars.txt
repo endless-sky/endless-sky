@@ -81,7 +81,6 @@ star "star/wr"
 	power 0.4
 	wind 4
 
-
 # Brown Dwarves
 # Because these look like planets, they reverse the trend of increasing solar wind
 
