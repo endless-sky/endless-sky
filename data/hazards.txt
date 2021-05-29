@@ -286,7 +286,7 @@ hazard "Helium Flash"
 		"relative energy damage" 1
 		"hit force" 7.5
 		"gravitational"
-		"hit effect" "ion explosion" 3
+		"hit effect" "ionball impact" 3
 
 effect "helium flash"
 	sprite "effect/static"
