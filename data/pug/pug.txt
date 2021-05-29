@@ -668,7 +668,7 @@ ship "Pug Arfecta"
 		"hull" 80000
 		"required crew" 36
 		"bunks" 46
-		"mass" 670
+		"mass" 1325
 		"drag" 7.5
 		"heat dissipation" .8
 		"fuel capacity" 1200
