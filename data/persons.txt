@@ -77,7 +77,9 @@ person "Michael Zahniser"
 		explode "large explosion" 120
 		explode "huge explosion" 60
 	ship "Finch (MZ)" "Vapor"
+		"never disabled"
 	ship "Finch (MZ)" "Cipher"
+		"never disabled"
 
 ship "Finch" "Finch (MZ)"
 	"never disabled"
