@@ -8,7 +8,43 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-fleet "Heliarch"
+fleet "Small Heliarch"
+	government "Heliarch"
+	names "heliarch"
+	fighters "heliarch fighter"
+	cargo 1
+	personality
+		heroic opportunistic
+	variant 40
+		"Heliarch Neutralizer"
+	variant 40
+		"Heliarch Breacher"
+	variant 30
+		"Heliarch Breacher"
+		"Heliarch Neutralizer"
+	variant 10
+		"Heliarch Neutralizer (Missile)"
+	variant 10
+		"Heliarch Neutralizer (Nimble)"
+	variant 10
+		"Heliarch Neutralizer (Scrappy)"
+	variant 10
+		"Heliarch Breacher (Ions)"
+	variant 10
+		"Heliarch Breacher (Missile)"
+	variant 10
+		"Heliarch Breacher (Scrappy)"	
+	variant 5 
+		"Heliarch Breacher (Missile)"
+		"Heliarch Neutralizer (Missile)"
+	variant 5 
+		"Heliarch Breacher (Scrappy)"	
+		"Heliarch Neutralizer (Scrappy)"
+	variant 5 
+		"Heliarch Neutralizer (Nimble)"
+		"Heliarch Breacher (Ions)"
+
+fleet "Large Heliarch"
 	government "Heliarch"
 	names "heliarch"
 	fighters "heliarch fighter"
