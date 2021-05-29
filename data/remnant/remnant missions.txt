@@ -4999,7 +4999,7 @@ mission "Cinis Dust: Taely"
 			label destruction
 			`	"Such a cataclysm would likely not produce a fine dust such as this. Even if it did, the energy needed to destroy a planet would have certainly been violent enough to produce shocked quartz, which is absent in the dust cloud."`
 			`	"Shocked quartz?" you ask	`
-			`	"A formation of silica crystals, or quartz, that has been subjected to immense pressures, altering the alignment of the individual crystals and leaving behind a permanent marker. It's actually quite common here in the Ember Wastes, due to the frequency of asteroid impacts on many planets."`
+			`	"A formation of silica crystals, or quartz, that has been subjected to immense pressures, altering the alignment of the individual crystals and leaving behind a permanent marker. It's actually quite common here in the Ember Wastes, due to the frequency of asteroid impacts on many planets.`
 			`	"And," she adds, almost as an afterthought, "it can often be found in the wake of nuclear explosions, especially after underground tests."`
 			choice
 				`	"Nuclear explosions? How do you know that?"`
