@@ -4973,7 +4973,7 @@ mission "Cinis Dust: Taely"
 				`	"I found a strange system filled with elemental dust"`
 				
 			label show
-			`	You show her the canister of dust and explain that you found it in a system devoid of any planets or other celestial bodies. "Ah, the Cinis system? she asks." You nod. "Our scouts discovered that oddity in one of our earliest waves of exploration. It was never a threat or a direct danger, but like you, we thought it strange."`
+			`	You show her the canister of dust and explain that you found it in a system devoid of any planets or other celestial bodies. "Ah, the Cinis system? she asks." You nod. "Our scouts discovered that oddity in one of our earliest waves of exploration. It was never a threat or a direct danger, but like you, we thought it strange.`
 			`	"The dust is composed of silica crystals, much like common sand. But, unlike the sand you would find in a beach or desert, none of the silica crystals comprising the dust exceed a few micrometers in diameter, something that would be nearly impossible for a natural formation. If it were a natural planetary nebula, we would expect at least some of the dust to coalesce into planetoids or even small meteorites, but it has been scattered uniformly throughout the system, spread thin enough that it will take millions of years to form larger bodies."`
 			choice
 				`	"So the dust cloud isn't a natural phenomenon?"`
