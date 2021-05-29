@@ -4704,7 +4704,7 @@ mission "Remnant: Expanded Horizons Novas 1"
 
 			label massejection
 			`	Her eyes light up as she animately begins explaining "As you've probably noticed by now, the Ember Waste is filled with dead and dying stars, relics of an age long past. However, Remnant scientists have been puzzled for centuries by the fact that the age of these stars does not match the astrophysical models we brought over from Ancestral space. Based on those models, these stars are all far too young to produce novae, or too small to go supernova. So, we want to compare two stars at similar states in their stellar evolution: one inside the Ember Waste, and one in the wider galaxy. Because they usually only live for a few million years, and are physically distinct, we have chosen two Wolf-Rayet stars to serve as our baseline."`
-			`	"In order to most accurately record their internal structures, we want to observe a coronal mass ejection event for each one. With luck, this should be enough to establish the accuracy of our models, or perhaps point towards some hidden phenomenon present in the Ember Waste to explain the disparity. "`
+			`	"In order to most accurately record their internal structures, we want to observe a coronal mass ejection event for each one. With luck, this should be enough to establish the accuracy of our models, or perhaps point towards some hidden phenomenon present in the Ember Waste to explain the disparity. `
 			`	"I can explain more during the flight, if you wish. You do still have a research laboratory installed, right?"`
 			choice
 				`	"Yes, of course!"`
