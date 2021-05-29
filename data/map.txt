@@ -715,6 +715,7 @@ system "16 Autumn Rising"
 	fleet "Small Saryd" 1100
 	fleet "Large Saryd" 4000
 	fleet Heliarch 500
+	hazard "Asteroid Belt Far" 1
 	object
 		sprite star/f5
 		period 10
@@ -1322,6 +1323,7 @@ system "5 Spring Below"
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 2500
 	fleet Heliarch 500
+	hazard "Asteroid Belt Mid" 1
 	object
 		sprite star/g0-old
 		distance 19.7171
@@ -1728,6 +1730,7 @@ system Ablodab
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 2400
 	fleet Heliarch 700
+	hazard "Asteroid Belt Far" 1
 	object
 		sprite star/k5
 		period 10
@@ -1857,6 +1860,7 @@ system Acamar
 	fleet "Small Core Merchants" 2000
 	fleet "Small Republic" 3600
 	fleet "Small Syndicate" 3200
+	hazard "Asteroid Belt Mid" 1
 	object
 		sprite star/g0
 		period 10
@@ -4378,6 +4382,7 @@ system Antevorta
 	trade Plastic 469
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
+	hazard "Coronal Mass Ejection" 8000
 	object
 		sprite star/wr
 		period 10
@@ -5401,6 +5406,8 @@ system "Beta Lupi"
 	fleet "Small Militia" 2000
 	fleet "Large Militia" 5000
 	fleet "Human Miners" 3000
+	hazard "Asteroid Belt Far" 1
+	hazard "Asteroid Belt Mid" 1
 	object
 		sprite star/g5
 		period 10
@@ -6076,6 +6083,7 @@ system Caeculus
 	fleet "Large Remnant" 30000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
+	hazard "Coronal Mass Ejection" 6400
 	object
 		sprite star/wr
 		period 10
@@ -6601,6 +6609,7 @@ system Celeborim
 	trade Plastic 298
 	fleet "Small Kor Sestor" 1200
 	fleet "Large Kor Sestor" 6400
+	hazard "Asteroid Belt Near" 5
 	object
 		sprite star/m0
 		period 10
@@ -6632,6 +6641,31 @@ system Celeborim
 			sprite planet/callisto
 			distance 373
 			period 23.9558
+
+system Charybdis
+	pos 169 458
+	government Uninhabited
+	attributes "ember waste"
+	habitable 10000
+	belt 1550
+	asteroids "small rock" 4 3.8019
+	asteroids "medium rock" 3 4.4689
+	asteroids "small metal" 3 6.7367
+	asteroids "medium metal" 47 4.1354
+	minables yottrite 1 4.3241
+	minables aluminum 4 1.59162
+	minables silicon 4 4.29042
+	haze _menu/haze-red
+	hazard "Ember Waste Base Heat" 50
+	hazard "Ember Waste Base Storm" 9000
+	hazard "Black Hole Gravity" 1
+	hazard "Black Hole Event Horizon" 1
+	object
+		sprite star/nova
+		period 1
+	object
+		sprite "star/black-hole-small"
+		period 1
 
 system Chikatip
 	pos -77.5695 -307.812
@@ -6936,6 +6970,19 @@ system Chy'chra
 			distance 614
 			period 80.0847
 
+system Cinis
+	pos 10 490
+	government Uninhabited
+	attributes "ember waste"
+	habitable 553.28
+	haze _menu/haze-red
+	hazard "Ember Waste Base Heat" 50
+	hazard "Ember Waste Base Storm" 9000
+	hazard "Dust Cloud" 1
+	object
+		sprite star/g0
+		period 18.0592
+
 system Cinxia
 	pos 265.87 415.242
 	government Remnant
@@ -7138,6 +7185,8 @@ system Convector
 	trade Plastic 485
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
+	hazard "Coronal Mass Ejection" 8000
+	hazard "Helium Flash" 16000
 	object
 		sprite star/giant
 		distance 13.0749
@@ -7442,6 +7491,7 @@ system Danoa
 	fleet "Large Northern Pirates" 16000
 	fleet "Large Republic" 30000
 	fleet "Human Miners" 1600
+	hazard "Asteroid Belt Far" 1
 	object
 		sprite star/m4
 		period 10
@@ -8576,6 +8626,7 @@ system Eber
 	fleet "Small Militia" 4000
 	fleet "Large Militia" 5000
 	fleet "Small Southern Pirates" 2000
+	hazard "Asteroid Belt Far" 1
 	object
 		sprite star/k5-old
 		period 10
@@ -8703,6 +8754,8 @@ system Edusa
 	fleet "Korath Ember Waste Raid" 40000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
+	hazard "Coronal Mass Ejection" 8000
+	hazard "Helium Flash" 16000
 	object
 		sprite star/giant
 		period 10
@@ -9842,6 +9895,7 @@ system Fala
 	fleet "Small Northern Pirates" 2000
 	fleet "Large Northern Pirates" 4000
 	fleet "Human Miners" 2000
+	hazard "Asteroid Belt Mid" 1
 	object
 		sprite star/g5-old
 		period 10
@@ -10336,6 +10390,7 @@ system "Fell Omen"
 	fleet "Small Saryd" 800
 	fleet "Large Saryd" 1800
 	fleet Heliarch 400
+	hazard "Asteroid Belt Mid" 1
 	object
 		sprite star/k5
 		period 10
@@ -10472,6 +10527,7 @@ system Fereti
 	fleet "Builders Drone" 2050
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
+	hazard "Asteroid Belt Mid" 1
 	object
 		sprite star/a0
 		period 10
@@ -10975,6 +11031,7 @@ system Furmeliki
 	trade Metal 346
 	trade Plastic 313
 	fleet "Large Quarg" 1000
+	hazard "Asteroid Belt Far" 1
 	object
 		sprite star/k0
 		period 10
@@ -11045,6 +11102,7 @@ system Gacrux
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 3000
 	fleet "Small Republic" 15000
+	hazard "Asteroid Belt Mid" 1
 	object
 		sprite star/k5
 		distance 32.6953
@@ -11239,6 +11297,8 @@ system Gerenus
 	fleet "Ka'het Aggressive" 11000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
+	hazard "Coronal Mass Ejection" 8000
+	hazard "Helium Flash" 16000
 	object
 		sprite star/giant
 		period 8.42267
@@ -11709,6 +11769,7 @@ system Gorvi
 	fleet "Large Northern Pirates" 1000
 	fleet "Large Republic" 4000
 	fleet "Small Northern Merchants" 8000
+	hazard "Coronal Mass Ejection" 8000
 	object
 		sprite star/wr
 		period 100
@@ -12847,6 +12908,7 @@ system Ildaria
 	fleet "Large Militia" 6000
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2000
+	hazard "Coronal Mass Ejection" 8000
 	object
 		sprite star/wr
 		period 10
@@ -14225,6 +14287,7 @@ system "Kor Ak'Mari"
 	trade Metal 217
 	trade Plastic 524
 	fleet "Korath Raid" 2800
+	hazard "Coronal Mass Ejection" 8000
 	object
 		sprite star/wr
 		period 100
@@ -15106,6 +15169,8 @@ system Levana
 	fleet "Korath Ember Waste Raid" 10000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
+	hazard "Coronal Mass Ejection" 8000
+	hazard "Helium Flash" 16000
 	object
 		sprite star/giant
 		distance 17.197
@@ -15173,6 +15238,8 @@ system Limen
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2000
 	fleet "Human Miners" 1000
+	hazard "Asteroid Belt Far" 1
+	hazard "Asteroid Belt Near" 5
 	object
 		sprite star/f5
 		period 10
@@ -15294,6 +15361,7 @@ system Lolami
 	fleet "Small Northern Pirates" 2000
 	fleet "Large Northern Pirates" 4000
 	fleet "Human Miners" 3000
+	hazard "Asteroid Belt Mid" 1
 	object
 		sprite star/g0
 		distance 11
@@ -16603,6 +16671,7 @@ system Mesuket
 	trade Plastic 366
 	fleet "Large Kor Mereti" 600
 	fleet "Large Kor Sestor" 600
+	hazard "Asteroid Belt Mid" 1
 	object
 		sprite star/k5-old
 		period 10
@@ -17563,6 +17632,7 @@ system Naper
 	fleet "Small Militia" 5000
 	fleet "Small Southern Pirates" 1000
 	fleet "Human Miners" 3000
+	hazard "Asteroid Belt Mid" 1
 	object
 		sprite star/f5
 		period 10
@@ -17778,6 +17848,7 @@ system Nocte
 	fleet "Large Republic" 7000
 	fleet "Small Northern Pirates" 2500
 	fleet "Human Miners" 1600
+	hazard "Asteroid Belt Mid" 1
 	object
 		sprite star/m4
 		period 10
@@ -17969,6 +18040,9 @@ system Oblate
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 1000
 	fleet "Large Syndicate" 3000
+	hazard "Asteroid Belt Far" 1
+	hazard "Coronal Mass Ejection" 8000
+	hazard "Helium Flash" 16000
 	object
 		sprite star/giant
 		period 10
@@ -18027,6 +18101,8 @@ system Orbona
 	fleet "Small Southern Pirates" 1200
 	fleet "Large Southern Pirates" 3200
 	fleet "Human Miners" 1500
+	hazard "Coronal Mass Ejection" 8000
+	hazard "Helium Flash" 16000
 	object
 		sprite star/giant
 		distance 20.2539
@@ -18164,6 +18240,7 @@ system Ossipago
 	trade Plastic 505
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
+	hazard "Ember Heliopause" 1
 	object
 		sprite star/f5-old
 		distance 11.9736
@@ -18784,6 +18861,8 @@ system Persian
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 2000
 	fleet "Human Miners" 3000
+	hazard "Asteroid Belt Far" 1
+	hazard "Asteroid Belt Mid" 1
 	object
 		sprite star/f5-old
 		distance 27.8124
@@ -19522,6 +19601,8 @@ system Prakacha'a
 	fleet "Wanderer Drones" 400
 	fleet "Wanderer Defense" 400
 	fleet "Unfettered Raid" 5000
+	hazard "Asteroid Belt Far" 1
+	hazard "Asteroid Belt Mid" 1
 	object
 		sprite star/g0
 		distance 32.5255
@@ -19641,6 +19722,8 @@ system Prosa
 	minables copper 5 2
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
+	hazard "Coronal Mass Ejection" 8000
+	hazard "Helium Flash" 16000
 	object
 		sprite star/giant
 		offset 180
@@ -20451,6 +20534,7 @@ system Relifer
 	fleet "Ka'het Aggressive" 8900
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
+	hazard "Ember Heliopause" 1
 	object
 		sprite star/g0-old
 		period 10
@@ -23088,6 +23172,7 @@ system Sospi
 	fleet "Small Republic" 5000
 	fleet "Large Republic" 9000
 	fleet "Human Miners" 5000
+	hazard "Coronal Mass Ejection" 8000
 	object
 		sprite star/wr
 		period 100
@@ -23393,6 +23478,7 @@ system Stercutus
 	fleet "Remnant Transport" 40000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
+	hazard "Ember Heliopause" 1
 	object
 		sprite star/g5-old
 		distance 31.1534
@@ -23516,6 +23602,7 @@ system Sumar
 	fleet "Small Northern Pirates" 2000
 	fleet "Large Northern Pirates" 6000
 	fleet "Large Republic" 30000
+	hazard "Asteroid Belt Mid" 1
 	object
 		sprite star/f0
 		period 10
@@ -24017,6 +24104,31 @@ system Tejat
 			sprite planet/rhea
 			distance 438
 			period 22.9367
+
+system Tenebra
+	pos 287 492
+	government Uninhabited
+	attributes "ember waste"
+	habitable 10000
+	belt 1550
+	asteroids "small rock" 4 3.8019
+	asteroids "medium rock" 3 4.4689
+	asteroids "small metal" 3 6.7367
+	asteroids "medium metal" 47 4.1354
+	minables yottrite 1 4.3241
+	minables aluminum 4 1.59162
+	minables silicon 4 4.29042
+	haze _menu/haze-red
+	hazard "Ember Waste Base Heat" 50
+	hazard "Ember Waste Base Storm" 9000
+	hazard "Black Hole Gravity" 1
+	hazard "Black Hole Event Horizon" 1
+	object
+		sprite star/nova
+		period 1
+	object
+		sprite "star/black-hole-small"
+		period 1
 
 system Terminus
 	pos -727.99 -23.2491
@@ -24549,6 +24661,8 @@ system Unagi
 	trade Plastic 364
 	fleet "Small Northern Pirates" 1500
 	fleet "Large Northern Pirates" 3000
+	hazard "Asteroid Belt Mid" 1
+	hazard "Asteroid Belt Near" 5
 	object
 		sprite star/k5
 		period 10
@@ -25158,6 +25272,7 @@ system Waypoint
 	fleet "Large Human Merchants (Hai)" 18000
 	fleet "Hai Surveillance" 2000
 	fleet "Small Hai" 5000
+	hazard "Asteroid Belt Mid" 1
 	object
 		sprite star/m8
 		period 10
@@ -25935,6 +26050,7 @@ system Zubenelgenubi
 	fleet "Large Militia" 3000
 	fleet "Small Southern Pirates" 3000
 	fleet "Large Southern Pirates" 5000
+	hazard "Asteroid Belt Near" 10
 	object
 		sprite star/g5
 		distance 32.8466
@@ -26170,7 +26286,7 @@ planet Ahr
 planet Aksaray
 	attributes "requires: inaccessible" "moon" uninhabited
 	landscape land/mountain26
-	description `At first glance, Aksaray appears to be a fairly generic moon formed from eons of dust and debris compressed into a tight ball by constant gravitational pressure. What is not commonplace is the presence of almost perfectly pyramidal piles of regolith scattered across the world. Querying an orbiting Remnant satellite suggests that these are believed to have been remote mining sites for mineral processing.`
+	description `At first glance, Aksaray appears to be a fairly generic moon formed from eons of dust and debris compressed into a tight ball by constant gravitational pressure. What is not commonplace is the presence of almost perfectly pyramidical piles of regolith scattered across the world. Querying an orbiting Remnant satellite suggests that these are believed to have been remote mining sites for mineral processing.`
 	description `	A brief consultation of your navigational computer's economic database, however, indicates that all the minerals present in this variant of regolith are very common across the galaxy and have an extremely low value.`
 	security 0
 	government Uninhabited
@@ -26492,7 +26608,7 @@ planet "Buccaneer Bay"
 	landscape land/beach0
 	description `Pirates who have struck it rich dream of retiring on Buccaneer Bay. It is a warm ocean planet, with many places reminiscent of the islands in the ancient Caribbean where humanity's first pirate fleets sailed.`
 	description `	Many of the inhabitants are in fact not pirates, but their descendants, and these children and grand-children of anarchist outlaws have built a system of regional government that oversees hospitals, schools, and other public services, all created without funding from the Republic or taxes paid to it. The planet even sports its own shipyard, although many of the ships built here are, not surprisingly, based on designs pirated from the Syndicate and Republic shipyards.`
-	spaceport `This is the sort of spaceport you picture in your head when you think of pirates. Half the storefronts are bars, and rum seems to be on the menu everywhere. It is almost like the stories of ancient Earth, except that the eye patches are cybernetic implants and the peg legs are motorized prostheses. Swarthy, dangerous-looking women glance at you as you pass by, and scantily clad men crowd around the bars, which is what you seem to remember the stories said it was like on Earth, too, although there it may have been the other way around.`
+	spaceport `This is the sort of spaceport you picture in your head when you think of pirates. Half the storefronts are bars, and rum seems to be on the menu everywhere. It is almost like the stories of ancient Earth, except that the eye patches are cybernetic implants and the peg legs are motorized prosthetics. Swarthy, dangerous-looking women glance at you as you pass by, and scantily clad men crowd around the bars, which is what you seem to remember the stories said it was like on Earth, too, although there it may have been the other way around.`
 	shipyard "Core Pirates"
 	shipyard "Advanced Core Pirates"
 	shipyard "Southern Pirates"
@@ -26627,7 +26743,7 @@ planet Chiron
 	attributes "near earth" urban
 	landscape land/city18-iridium
 	description `Chiron is the only planet outside the solar system that was colonized by humanity prior to the discovery of the hyperdrive. It is now the second most populous planet in the Republic, with many sprawling cities and a burgeoning pollution problem.`
-	description `	Although Earth still has the most prestigious universities in the galaxy, Chiron has become the de facto leader of the higher education industry, catering to those who value excellent teaching more highly than an illustrious name. As a result, off-world students form a noticeable fraction of the population.`
+	description `	Although Earth still has the most prestigious universities in the galaxy, Chiron has become the de-facto leader of the higher education industry, catering to those who value excellent teaching more highly than an illustrious name. As a result, off-world students form a noticeable fraction of the population.`
 	spaceport `There are two spaceports on Chiron. The Old Port was built back when it was first settled, and was placed in a desert region, far from where people would want to live, so that they would not be as affected by the fallout from the nuclear propulsion that was used in the first, pre-hyperspace starships.`
 	spaceport `	The New Port, on the other hand, is in the center of New Sydney, one of Chiron's largest cities. Its soaring architecture and gleaming mirrored glass is intended to make a clear statement, that Chiron is everything Earth is not: clean, modern, prosperous.`
 	shipyard "Basic Ships"
@@ -26857,7 +26973,7 @@ planet Delve
 planet "Delve of Bloptab"
 	attributes arach mining
 	landscape land/hills0
-	description `This is a mining world, hotter than even the Arachi would prefer but still much more habitable than its sister world of Blobtab's Furnace. It is home to House Ablomab, the guild of mining and metalworking, and the dry climate makes it possible to store stockpiles of iron, steel, and other metals here without worrying about rust. Supposedly the warehouses here contain enough raw materials to double the size of the Heliarch war fleet if needed; the Arachi like to be able to trust that they are prepared for any eventuality.`
+	description `This is a mining world, hotter than even the Arach would prefer but still much more habitable than its sister world of Blobtab's Furnace. It is home to House Ablomab, the guild of mining and metalworking, and the dry climate makes it possible to store stockpiles of iron, steel, and other metals here without worrying about rust. Supposedly the warehouses here contain enough raw materials to double the size of the Heliarch war fleet if needed; the Arach like to be able to trust that they are prepared for any eventuality.`
 	spaceport `This is one of the few Coalition worlds where the Heliarch agents openly carry weapons, due to the fear that the Resistance might see the storehouses here of base and precious metals as a tempting target. Although there are plenty of civilians of all three species milling about, the spaceport has something of the atmosphere of a military base.`
 	"required reputation" 25
 
@@ -27337,7 +27453,7 @@ planet Glaze
 	attributes south tourism
 	landscape land/canyon8
 	description `Glaze is a varied world with everything from sunny beaches to frozen tundra, but it is perhaps best known for its sandstone canyons and deserts. This world's wildlife has never been studied in great detail. Local rumors tell about an alien species of "canyon people" who live in caves in some of the deepest canyons, leading to a constant stream of visiting xenobiologists. The scientific consensus, however, is that these sightings have only been of a reclusive ape-like species that lives in the canyons, and is not known to dig caves or show any other sign of civilization.`
-	spaceport `The spaceport is a tower of glass and steel perched on top of a mesa, overlooking the canyonlands: spires of red and pale yellow stone, with a sprinkling of trees at the lower elevations. A wide highway winds down the side of the mesa, through several tunnels, and then off to the horizon. The port itself is not terribly busy.`
+	spaceport `The spaceport is a tower of glass and steel perched on top of a mesa, overlooking the canyonlands: spires of red and pale yellow stone, with a sprinkling of trees at the lower elevations. A wide highway winds down the side of the mesa, through several tunnels, and the off to the horizon. The port itself is not terribly busy.`
 	spaceport `	You notice quite a few families with children sitting by the windows on the upper stories of the tower, watching starships landing and taking off. Many of them have brought folding chairs or blankets to sit on. That must be what passes for entertainment on this world.`
 	shipyard "Basic Ships"
 	shipyard "Southbound Basics"
@@ -28473,7 +28589,7 @@ planet Pearl
 planet "Pelubta Station"
 	attributes arach "coalition station" research
 	landscape land/station5
-	description `Pelubta Station was built shortly after the Arachi discovered the hyperdrive, initially to take advantage of the massive amounts of solar power generated by the nearby stars. However, now it is mainly used as a hyperspace fuel refinery. Although it has endured some solar flares, constant maintenance means that the station still doesn't show its age.`
+	description `Pelubta Station was built shortly after the Arach discovered the hyperdrive, initially to take advantage of the massive amounts of solar power generated by the nearby stars. However, now it is mainly used as a hyperspace fuel refinery. Although it has endured some solar flares, constant maintenance means that the station still doesn't show its age.`
 	description `	Pelubta Station is also used to study one of the binary stars in this system, since it has a similar makeup and age to one orbited by a Heliarch ringworld. Most of this research is focused on predicting stellar phenomena, especially the most abnormal ones.`
 	spaceport `The intake section has a consistently high traffic, mostly made up of Coalition merchants supplying the station and leaving with shipments of fuel to take to other Arach worlds. The science section seems to be completely closed off to non-Heliarchs. Considering that the work done here should be relatively benign, the station may also serve other purposes.`
 	"required reputation" 20
@@ -29167,7 +29283,7 @@ planet Starcross
 planet "Starting Rubin"
 	attributes kimek "coalition station" shipping wealthy
 	landscape land/space3
-	description `Starting Rubin was far from being the first station constructed around the Kimek homeworld, but it is the oldest one to still be in orbit. It was built as an orbital equivalent to the hunger towers found on the planet it orbits, as a safety measure against the disasters that may affect Ki Patek Ka.`
+	description `Starting Rubin was far from being the first station constructed around the Kimek homeworld, but it is the oldest one to still be on orbit. It was built as an orbital equivalent to the hunger towers found on the planet it orbits, as a safety measure against the disasters that may affect Ki Patek Ka.`
 	description `	Since the residents need little of the food produced, it quickly became the station's primary export, transforming it into one of the largest trading hubs of the region. It has also the largest population of any Coalition station, capable of supporting tens of thousands of Kimek.`
 	spaceport `Despite only having the population of a small city, the arrivals deck of Starting Rubin is as crowded as the largest spaceports. Civilian ships belonging to all three Coalition species can be seen arriving or departing every couple minutes. While there doesn't seem to be any military facility, there are some civilian shops on the station, although they sell nothing but few Kimek items.`
 	shipyard Kimek

@@ -109,7 +109,7 @@ mission "First Contact: Remnant"
 					goto comply
 				`	(Refuse and run for my ship.)`
 				
-			`	As you turn to start running back to your ship, the soldiers nearby begin raising their weapons and firing at you. As you feel your body begin to liquefy under the assault of the strange energy bolts, the last thing you see is the look of pity, resignation, and confusion on the face of the man with the scanner. Probably wondering why you would decide to return if you were just going to run again. You suppose they'll never know...`
+			`	As you turn to start running back to your ship, the soldiers nearby begin raising their weapons and firing at you. As you feel your body begin to liquify under the assault of the strange energy bolts, the last thing you see is the look of pity, resignation, and confusion on the face of the man with the scanner. Probably wondering why you would decide to return if you were just going to run again. You suppose they'll never know...`
 				die
 			
 			label comply
@@ -725,7 +725,7 @@ mission "Remnant: Void Sprites 2"
 		has "Remnant: Void Sprites 1: done"
 	on offer
 		conversation
-			`Sure enough, soon after you land, the Remnant researcher with the optical prosthesis arrives at your ship. When he looks at the data that you collected using his special scanners, he is disappointed. He chants, "I had hoped the scanners would show us how the creatures are able to generate enough force to fly out of the gravity wells of their planets, but this tells me nothing. Perhaps it would help if you scan them more closely. Could you equip your ship with one of the scanners that are used to inspect the outfits that ships are carrying, and see if that scanner yields additional information?"`
+			`Sure enough, soon after you land the Remnant researcher with the optical prosthesis arrives at your ship. When he looks at the data that you collected using his special scanners, he is disappointed. He chants, "I had hoped the scanners would show us how the creatures are able to generate enough force to fly out of the gravity wells of their planets, but this tells me nothing. Perhaps it would help if you scan them more closely. Could you equip your ship with one of the scanners that are used to inspect the outfits that ships are carrying, and see if that scanner yields additional information?"`
 			choice
 				`	"Okay, I'll install an outfit scanner and see what it can tell me."`
 					accept
@@ -1381,7 +1381,7 @@ mission "Remnant: Deep Surveillance"
 			branch gone
 				has "Deep: Remnant Research: done"
 			
-			`	You ask a receptionist what Ivan's room number is, and he points you to a room on the twentieth floor. After taking an elevator up, you knock on the door to Ivan's office.`
+			`	You ask a receptionist what Ivan's room number is, and he points you to a room on the tweentieth floor. After taking an elevator up, you knock on the door to Ivan's office.`
 			`	"Who is it?" Ivan says before peaking out the blinds. "Oh! Captain <last>! Please, come in."`
 			`	Ivan opens the door and lets you inside. The office is cramped, the walls almost entirely obscured by filing cabinets. Ivan walks over to a desk that he barely has space to get behind, picking up a collection of papers and shoving them into the nearest cabinet. "Sorry about the mess," he says nervously. "I didn't know you were coming. Is there something I can help you with?"`
 			choice
@@ -1566,7 +1566,7 @@ mission "Remnant: Deep Surveillance"
 			label two
 			apply
 				set "remnant: got deep research"
-			`	He hesitates for a moment before pressing a button on the desk. "Abigail, could you please make a copy of the encrypted folders 'TAB-RP' and 'RTS-RP' on the Institute network under my name and bring them to my office in a data chip? Thank you.`
+			`	He hesistates for a moment before pressing a button on the desk. "Abigail, could you please make a copy of the encrypted folders 'TAB-RP' and 'RTS-RP' on the Institute network under my name and bring them to my office in a data chip? Thank you.`
 			`	"So, not handing this off to anyone, are we?" he asks you.`
 			choice
 				`	"Of course not."`
@@ -1581,7 +1581,7 @@ mission "Remnant: Deep Surveillance"
 			label three
 			apply
 				set "remnant: got old deep research"
-			`	He hesitates for a moment, looks up at you, then presses a button on the desk while still looking into your eyes. "Abigail, could you please make a copy of the encrypted folders... 'TAI-RP' on the Institute network under my name and bring them to my office in a data chip? Thank you."`
+			`	He hesistates for a moment, looks up at you, then presses a button on the desk while still looking into your eyes. "Abigail, could you please make a copy of the encrypted folders... 'TAI-RP' on the Institute network under my name and bring them to my office in a data chip? Thank you."`
 			`	"So, you said you knew of the Remnant before working with me, right?" he asks you.`
 			choice
 				`	"Yeah. Why do you ask?"`
@@ -1622,7 +1622,7 @@ mission "Remnant: Deep Surveillance"
 			choice
 				`	"Okay, okay. I'll leave."`
 					goto out
-				`	"I think you do need to call security. I'm not leaving without that research."`
+				`	"I think you do need to call security. I'm not leaving without that reserach."`
 			`	Ivan presses down on the button. "Security. I have a guest in my office who is no longer welcome."`
 			`	Not even thirty seconds later, a group of security guards enter the office. "<first> <last>, you're going to need to come with us," one of them says.`
 			choice
@@ -1652,7 +1652,7 @@ mission "Remnant: Deep Surveillance"
 				decline
 			
 			label leave
-			`	Ivan smiles, but it looks forced. "Come back any time you want. You're free to roam the Institute whenever you desire. Most of the building is closed to the public, but I can always mark you as my guest whenever you're interested in looking around."`
+			`	Ivan smiles, but it looks forced. "Come back any time you want. You're free to roam the Institute whenver you desire. Most of the building is closed to the public, but I can always mark you as my guest whenever you're interested in looking around."`
 				decline
 			
 			label cubes
@@ -1716,7 +1716,7 @@ mission "Remnant: Deep Surveillance"
 				decline
 			
 			label sprites
-			`	You hand Torza the data chip that Ivan gave you. Torza takes it and plugs it into a terminal behind the desk. He appears to read through the research rather quickly, nodding and scratching his chin at various points. "They seem to have taken a liking to the void sprites," he says. "It is human nature to be curious, and they will be kept curious by the void sprites for a while. This buys us time." Torza removes the data chip from the terminal and pockets it. "We will keep hold of this information, and keep an eye on the Threshold in case they decide to venture further into the Ember Waste. Should that occur, we will call on you. May the Embers burn bright for you."`
+			`	You hand Torza the data chip that Ivan gave you. Torza takes it and plugs it into a terminal behind the desk. He appears to read through the research rather quickly, nodding and scratching his chin at various points. "They seem to have taking a liking to the void sprites," he says. "This is good that they are distracted. It is human nature to be curious, and they will be kept curious by the void sprites for a while. This buys us time." Torza removes the data chip from the terminal and pockets it. "We will keep hold of this information, and keep an eye on the Threshold in case they decide to venture further into the Ember Waste. Should that occur, we will call on you. May the Embers burn bright for you."`
 				decline
 			
 			label everything
@@ -2950,9 +2950,6 @@ mission "Remnant: Face to Maw 1B"
 	landing
 	to offer
 		has "event: remnant: return the samples timer"
-		or
-			not "Remnant: Cognizance 1: offered"
-			has "Remnant: Cognizance 19: done"
 	to fail
 		or
 			has "Remnant: Face to Maw 1: done"
@@ -3133,7 +3130,7 @@ mission "Remnant: Keystone Research 1"
 				`	(Decline.)`
 					decline
 			label crystaldecision
-			`	"Great. They would like you to pick up another 19 keystones. Two differences this time: first, we would like you to pick them up from several different planets. And second, by the time you reach Hai space, we will have made arrangements so the shipments will be already paid for and waiting for you. Pick up the first stones on Greenwater, then the next set on Allhome. I will have a list sent to you by the time you reach Allhome."`
+			`	"Great. They would like you to pick up another 19 keystones. Two differences this time: first, we would like you to pick them up from several different planets. And second, by the time you reach Hai space, we will have made arrangements so the shipments will be already paid for and waiting for you. Pick up the first stones on Allhome, then the next set on Greenwater. I will have a list sent to you by the time you reach Greenwater."`
 			`	"That being said, if you happen to pick up any additional keystones, you can turn them into the logistics office. They will handle the distribution and compensate you accordingly."`
 			choice
 				`	"Wait, how will you get this all set up?"`
@@ -3155,7 +3152,7 @@ mission "Remnant: Keystone Research 1"
 					goto greedpartial
 				`	"You are wrong about that. Some people are all about money, but not everyone."`
 				`	"This isn't about everyone, this is about me. I'm not here for the money."`
-			`	"I am glad that some are willing to act for what is right, necessary or even just curiosity; and not just what they are paid for. It gives me hope for ancestral humanity." His look brightens a bit. "So, are you interested in another job to help us?"`
+			`	"I am glad that some are willling to act for what is right, necessary or even just curiosity; and not just what they are paid for. It gives me hope for ancestral humanity." His look brightens a bit. "So, are you interested in another job to help us?"`
 			label greedchoice
 			choice
 				`	"Yes."`
@@ -3209,6 +3206,9 @@ mission "Remnant: Keystone Research 3"
 			`True to Aeolus' word, there are crates of Hai quantum keystones waiting for you. As you ensure they are securely loaded, your comm system informs you that a message has arrived. It has no indication of provenance, but appears to be a notification that a payment of 250,000 credits marked 'on-assignment allowance' has been made to your account.`
 			`	The attached message is brief and to the point. "Greetings, Captain <first>. Hopefully the shipments were waiting for you. We have made arrangements for samples to be acquired from Makerplace, Stonebreak, Giverstone, Cloudfire, Snowfeather, Icelake, and Heartvalley. Once you have collected all those, head to Newhome. There are a few other places that we are still working to set up, and we should have those ready by the time you reach Newhome."`
 				accept
+	on stopover
+		dialog
+			`You quickly locate and load the shipment of quantum keystones. The packaging comes with brochures and images depicting comfortable-looking Hai relaxing on a spaceship observation deck. "Guaranteed to provide the smoothest flight for your passengers!" reads one of the labels.`
 	on complete
 		payment 250000
 		dialog
@@ -3227,7 +3227,7 @@ mission "Remnant: Keystone Research 3A"
 		has "Remnant: Keystone Research 3: active"
 	on offer
 		conversation
-			`You quickly locate and load the shipment of quantum keystones. The packaging comes with brochures and images depicting comfortable-looking Hai relaxing on a spaceship observation deck. "Guaranteed to provide the smoothest flight for your passengers!" reads one of the labels.`
+			`Sure enough, there is a pair of crates waiting for you. This one depicts of a pair of distinguished elderly Hai relaxing in front of a matte painting.`
 				accept
 
 
@@ -3241,10 +3241,6 @@ mission "Remnant: Keystone Research 3B"
 	cargo "Keystones" 2
 	to offer
 		has "Remnant: Keystone Research 3A: active"
-	on offer
-		conversation
-			`Sure enough, there is a pair of crates waiting for you. This time the brochure depicts a pair of distinguished elderly Hai relaxing in front of a matte painting.`
-				accept
 
 
 
@@ -3318,10 +3314,9 @@ mission "Remnant: Keystone Research 4"
 	cargo "Keystones" 19
 	to offer
 		has "Remnant: Keystone Research 3: done"
-	on offer
-		conversation
+	on accept
+		dialog
 			`As you were reading the previous message, a freight hauler arrives with the last few crates and starts unloading them. Looking over the assembled stack, you note that each crate bears the logos and advertisements for a different organization, shipper, or enterprise. The second message turns out to be a confirmation that you have picked up 19 keystones. While there are no new instructions, the subtext is clear: Time to head back.`
-				accept
 	on complete
 		payment 2000000
 		conversation
@@ -3488,7 +3483,7 @@ mission "Remnant: Keystone Research 7"
 
 mission "Remnant: Cognizance 1"
 	name "Follow-up Observations"
-	description "Plume would like you to do a follow-up visit to the planets in Nenia."
+	description "Plume would like you to do a follow-up visit to the planets in <system>."
 	minor
 	source "Aventine"
 	stopover "Nasqueron"
@@ -3629,6 +3624,8 @@ mission "Remnant: Cognizance 4"
 	description "Prefect Chilia has asked you to track down a Korath fleet before returning to <destination>."
 	source "Caelian"
 	landing
+	waypoint
+		system "Aescolanus"
 	to offer
 		has "Remnant: Cognizance 2: done"
 	on offer
@@ -3652,9 +3649,7 @@ mission "Remnant: Cognizance 4"
 			label next
 			`	 "It is imperative that all the Korath involved in this exploration be located immediately. According to our surveillance, that ship was part of a fleet that recently passed through Parca. Locate the fleet and report back."`
 				accept
-	npc kill
-		to despawn
-			has "remnant: cognizance: found korath fleet"
+	npc save
 		government "Korath"
 		personality staying surveillance
 		system "Aescolanus"
@@ -3666,24 +3661,19 @@ mission "Remnant: Cognizance 4"
 				"Korath Dredger"
 				"Korath Raider (Ember)" 4
 				"Korath Chaser" 12
-		conversation
-			apply
-				set "remnant: cognizance: killed korath fleet"
-			`You've destroyed the Korath fleet that was harassing the void sprites.`
 	on enter "Aescolanus"
-		set "remnant: cognizance: found korath fleet"
 		dialog `You have located the Korath fleet. They do not seem to be going anywhere at the moment.`
-	to complete
-		has "remnant: cognizance: found korath fleet"
+	on abort
+		# No action, the player choose to just walk away from this mission(string)
 	on complete
 		payment 500000
 		conversation
 			`This time, as you complete your post-flight checks you spot Prefect Chilia exiting the Starling next to you and watch as he strides across the pad to your airlock. You hit the open button as he clambers up the ladder. Without a word you pull up the sensor logs from Aescolanus, highlighting the position of the various ships. His eyes flit over the display for a moment, then he nods.`
-			branch destroyed
-				has "remnant: cognizance: killed korath fleet"
 			`	"I will notify a task force. Meet me in the spaceport, and make sure your ship is ready to fight." As he departs from your ship, your commlink beeps with a message that an organization by the name of 'Remnant Logistics' has allocated you an additional <payment>.`
-				decline
-			label destroyed
+	on fail
+		payment 500000
+		conversation
+			`This time, as you complete your post-flight checks you spot Prefect Chilia exiting the Starling next to you and watch as he strides across the pad to your airlock. You hit the open button as he clambers up the ladder. Without a word you pull up the sensor logs from Aescolanus, highlighting the destruction of the various ships. His eyes flit over the display for a moment, then he nods.`
 			`	"You have demonstrated good initiative, however I suspect that it was not the only hunter fleet out there. I will notify a task force. Meet me in the spaceport, and make sure your ship is ready to fight." As he departs from your ship, your commlink beeps with a message that an organization by the name of 'Remnant Logistics' has allocated you an additional <payment>.`
 
 
@@ -3695,11 +3685,15 @@ mission "Remnant: Cognizance 5"
 	source "Caelian"
 	waypoint "Aescolanus"
 	to offer
-		has "Remnant: Cognizance 4: done"
+		or
+			has "Remnant: Cognizance 4: done"
+			and
+				has "Remnant: Cognizance 4: failed"
+				not "Remnant: Cognizance 4: aborted"
 	on offer
 		conversation
 			branch fleetkilled
-				has "remnant: cognizance: killed korath fleet"
+				has "Remnant: Cognizance 4: failed"
 			`When you arrive in the spaceport you find Prefect Chilia in the middle of briefing a group of Remnant and waves you forward as soon as you approach. "Everyone, this is Captain <last>, who has located the Korath hunters twice now and will take the lead on tracking the rest for this mission." As you cross the room to join him, you take a good look at the group. One detail that stands out to you is that every one of Remnant in this group is wearing a thick leather neck wrap that extends right up to their hairline. It has a scaly texture and appears to be pulsing faintly. Unfortunately, you do not have time to ask questions as Chilia has not stopped issuing instructions.`
 				goto next
 			label fleetkilled
@@ -4052,11 +4046,13 @@ mission "Remnant: Cognizance 16"
 	description "The creature seems to be creating constellations and trying to get you to follow it."
 	landing
 	source "Viminal"
-	waypoint "Peragenor"
+	waypoint
+		system "Peragenor"
+		system "Convector"
+		system "Nenia"
+	destination "Nasqueron"
 	to offer
 		has "Remnant: Cognizance 14: done"
-	to complete
-		never
 	on offer
 		conversation
 			`Quite a number of Remnant have gathered around the spaceport watching the movements of the strange creature. It gestures wildly in various ways, then freezes in several different positions with the tips of certain tentacles glowing with energy. You note that several anti-air batteries around the area have their formidable-looking weapons trained on the creature in case it turns violent.`
@@ -4073,6 +4069,13 @@ mission "Remnant: Cognizance 16"
 		dialog `It seems the analysis of the location was right. The creature quickly approaches you and repeats its previous dance, ending up with a slightly different frozen position. From this vantage, you suspect that it is probably Nenia. This time, as you watch it more closely, it looks like it is following in your wake somehow.`
 	on enter Nenia
 		dialog `You have never seen such activity from the void sprites. Many quickly congregate around the strange creature that has been guiding you, and escort it to Nasqueron. It seems like that is where it wanted to be. In the distance, you can see the Archon methodically pulverizing a Korath Raider.`
+	on complete
+		event "remnant: nenia ember waste node"
+		conversation
+			`You follow the creature down through the clouds of Nasqueron and emerge into what can only be described as an amphitheater in the clouds. Thousands of void sprites fill the area, and the creature you have been following floats near the center of it. Your external sensors pick up myriad pulses of energy and eerie whistling noises that seem to resonate in the clouds. As the <ship> moves forward, there is a sudden silence, and the flickers of energy synchronize.`
+			`	You feel a sudden pressure in your mind and a sense of presence as the world around you fades out somewhat.`
+			`	"Know you not, do I. Live creature inside not-quite creature, like ones who flew but not everywhere." You are momentarily disoriented as you look around and see hundreds of views of yourself peering out the cockpit window. "Your intention reverberates - Know and not know - Return with more echoes - Perhaps I shall hear."`
+			`	With that, the pressure vanishes, and you are left staring out the window at the rapidly dispersing flock of void sprites. You aren't entirely sure what the voice meant, but you are certain that the Remnant are going to want to hear about this.`
 
 
 
@@ -4089,16 +4092,7 @@ mission "Remnant: Cognizance 17"
 	source "Nasqueron"
 	destination "Viminal"
 	to offer
-		has "Remnant: Cognizance 16: active"
-	on offer
-		fail "Remnant: Cognizance 16"
-		event "remnant: nenia ember waste node"
-		conversation
-			`You follow the creature down through the clouds of Nasqueron and emerge into what can only be described as an amphitheater in the clouds. Thousands of void sprites fill the area, and the creature you have been following floats near the center of it. Your external sensors pick up myriad pulses of energy and eerie whistling noises that seem to resonate in the clouds. As the <ship> moves forward, there is a sudden silence, and the flickers of energy synchronize.`
-			`	You feel a sudden pressure in your mind and a sense of presence as the world around you fades out somewhat.`
-			`	"Know you not, do I. Live creature inside not-quite creature, like ones who flew but not everywhere." You are momentarily disoriented as you look around and see hundreds of views of yourself peering out the cockpit window. "Your intention reverberates - Know and not know - Return with more echoes - Perhaps I shall hear."`
-			`	With that, the pressure vanishes, and you are left staring out the window at the rapidly dispersing flock of void sprites. You aren't entirely sure what the voice meant, but you are certain that the Remnant are going to want to hear about this.`
-				accept
+		has "Remnant: Cognizance 16: done"
 	
 
 mission "Remnant: Cognizance 18"
@@ -4159,7 +4153,7 @@ mission "Remnant: Cognizance 18"
 	on enter "Pantica"
 		dialog `You watch vigilantly as the Pelicans with the void sprites dip low into Esquiline's atmosphere and open their bay doors. The void sprites emerge tentatively, then confidently launch themselves into the clouds. A few minutes later, you receive a message from Esquiline station informing you that the first void sprite just swooped through the bay, grabbed one of the asteroid supplements, and vanished into the clouds again.`
 	on complete
-		log "Successfully introduced a flock of void sprites to Esquiline. Time will tell how they fare."
+		log "Succesfully introduced a flock of void sprites to Esquiline. Time will tell how they fare."
 		"salary: Remnant" = 2500
 		payment 1000000
 		event "remnant: pantica void sprites"
@@ -4178,7 +4172,7 @@ event "remnant: pantica void sprites"
 		add attributes remnant
 		remove attributes uninhabited
 		description `While Esquiline used to be simply another planet the Remnant harvested valuable resources from, the introduction of void sprites and the activation of their station has turned this world into a hidden research lab: The first human astrobiology station studying void sprites.`
-		add spaceport `Although the facilities here are basic, the Remnant cafeteria boasts a food dispenser that is available at any time, along with a mesmerizing view of the clouds outside. Occasionally a void sprite will pass in front of the window, much to the delight of everyone.`
+		add spaceport `	Although the facilities here are basic, the Remnant cafeteria boasts a food dispenser that is available at any time, along with a mesmerizing view of the clouds outside. Occasionally a void sprite will pass in front of the window, much to the delight of everyone.`
 
 
 
@@ -4377,7 +4371,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"So, what is our next step?"`
 					goto labnext
 				`	"Seeker?"`
-			`	Dawn looks a little embarrassed. "Seeker is a title of respect for deep space explorers. It is unofficial - just a token of respect - but it is a title that I both aspire to earn and do not feel I deserve yet."`
+			`	Dawn looks a little embarassed. "Seeker is a title of respect for deep space explorers. It is unofficial - just a token of respect - but it is a title that I both aspire to earn and do not feel I deserve yet."`
 			choice
 				`	"I thought all Remnant were spacefarers?"`
 				`	"Okay. So what next?"`
@@ -4619,7 +4613,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 				`	"How does that work?"`
 			`	"Quite simply: We have added some extra characters. When counting, instead of a single digit position restarting at 0 every 10, they cycle every 16. So when we count, we start at 1, but when we reach 9, the next number will be A. Then B, C, D, E and F. Then, it is at that point that we add an extra digit and restart at 0 with 10. So in hexadecimal F would be equal to 15 in base 10. One of the advantages of using a numeric system with a higher base is that we can handle larger numbers with fewer digits. For example, with two digits we can communicate any integer up to what would be 255 in base 10. Or with three digits we can reach 4095. Saving an extra digit here or there is fairly meaningless in written formats, nor is it much of a difference in oral communication. However, when one communicates by gestures, it is helpful to shorten the numbers where we can."`
 			label stormcontinue
-			`	"Now that you understand our numbers a bit better, you will be able to recognize that there is a lot of unexplained energy being transferred out there."`
+			`	"Now that you understand our numbers a bit better, you will be able to recognize that there is a lot of unexplained energy being transfered out there."`
 			choice
 				`	"Right. Is that what causes the red glow?"`
 					goto stormresume
@@ -4634,12 +4628,412 @@ mission "Remnant: Expanded Horizons Storms 1"
 					goto centigrade
 				`	"Just clarifying. I prefer to use degrees Fahrenheit."`
 					goto fahrenheit
-			`	"Corrected degrees Kelvin are basically the standard Kelvin scale developed millennia ago, but with a slight correction factor to account for the adjustments determined by the conjunction of 2730. It is a rather minuscule change to the scale that is mostly only applicable to experiments or industrial applications that require micro-degree temperature precision, but can be significant at the larger scales." The display and its field of stars vanishes as she slings her backpack over her shoulder.`
+			`	"Corrected degrees Kelvin are basically the standard Kelvin scale developed millennia ago, but with a slight correction factor to account for the adjustments determined by the conjunction of 2730. It is a rather miniscule change to the scale that is mostly only applicable to experiments or industrial applications that require micro-degree temperature precision, but can be significant at the larger scales." The display and its field of stars vanishes as she slings her backpack over her shoulder.`
 				goto stormend
 			label centigrade
 			`	"People still use that? We learned about it in our studies, mostly in case we came across references to it our library. I have seen it a few times, but it is rarely used among us." The display and its field of stars vanishes as she slings her backpack over her shoulder.`
 				goto stormend
 			label fahrenheit
-			`	She looks at you quizzically for a moment, and then her display shifts to a mass of symbols. She skims briefly. "I have never even heard of such a unit. Apparently it is a very old one, though. Our records say that it had largely stopped being used by early in the 21st century. Well, I learned something new today." The display and its field of symbols vanishes as she slings her backpack over her shoulder.`
+			`	She looks at you quizically for a moment, and then her display shifts to a mass of symbols. She skims briefly. "I have never even heard of such a unit. Apparently it is a very old one, though. Our records say that it had largely stopped being used by early in the 21st century. Well, I learned something new today." The display and its field of symbols vanishes as she slings her backpack over her shoulder.`
 			label stormend
 			`	"Thanks for the ride, Captain. I have to get working on this data, but if you are interested in helping some more, I hope to have more research expeditions planned soon."`
+			
+outfit "_CME Timer: Generator"
+	# This generator will fail when a coronal mass ejection happens and the ship runs out of fuel
+	"hull repair rate" 10000
+	"fuel consumption" 5
+	"fuel energy" 1
+	"hull energy" 5
+
+ship "_CME Timer Ship"
+	# The Timer Weapon causes this ship to continually lose hull points
+	# The _CME Timer: Generator outfit counteracts this until there is a coronal mass ejection
+	# sprite "ship/shuttle" # uncomment this for debugging
+	attributes
+		"heat dissipation" 0.01
+		"hull" 0.5
+		"mass" 10
+		"drag" 100
+		"automaton" 1
+		"fuel capacity" 10
+		"ion resistance" 10000000
+		"ramscoop" 6
+		"thrust" 0
+		"turn" 600
+	outfits
+		"Timer Weapon"
+		"_CME Timer: Generator"
+	gun 0 0
+
+
+
+mission "Remnant: Expanded Horizons Novas 1"
+	name "Wolf-Rayet Star Comparison"
+	description "Observe coronal mass ejection events at both Caeculus and Ildaria and return with the data to <destination>."
+	passengers 1
+	source
+		government "Remnant"
+	waypoint
+		system "Caeculus"
+	waypoint
+		system "Ildaria"
+	destination
+		government "Remnant"
+	to offer
+		has "Remnant: Expanded Horizons Storms 1: done"
+		random < 30
+	on offer
+		require "Research Laboratory"
+		conversation
+			`	You have barely started your meal at a cafe table when you notice Dawn waving at you from another table. You walk over and sit down to see what she needs. "Hello, Captain <last>! Would you be interested in going on another research expedition?"`
+			choice
+				`	"Of course! Where do you need to go?"`
+				`	"Sorry, I'm busy right now."`
+					defer
+
+			`	"This study will actually require an expedition to two different stars, but the first is quite close by: Caeculus. We may have to remain there for some time, but what we observe should be quite exciting.`
+			choice
+				`	"What exactly will we be observing?"`
+					goto massejection
+				`	"Exciting? I'm not sure I like the sound of that."`
+
+			`	"Oh, it will not be dangerous if we keep our distance. This should be far safer than the expedition to Sagittarius A*, and for this first star we'll be right next door to the capital in case of any emergencies. Afterward, we will need to journey to Ildaria, in Ancestral space, so help should likewise be available."`
+			choice
+				`	"Okay, you've convinced me. What will we be watching, anyway?"`
+					goto massejection
+
+			label massejection
+			`	Her eyes light up as she animately begins explaining "As you've probably noticed by now, the Ember Waste is filled with dead and dying stars, relics of an age long past. However, Remnant scientists have been puzzled for centuries by the fact that the age of these stars does not match the astrophysical models we brought over from Ancestral space. Based on those models, these stars are all far too young to produce novae, or too small to go supernova. So, we want to compare two stars at similar states in their stellar evolution: one inside the Ember Waste, and one in the wider galaxy. Because they usually only live for a few million years, and are physically distinct, we have chosen two Wolf-Rayet stars to serve as our baseline."`
+			`	"In order to most accurately record their internal structures, we want to observe a coronal mass ejection event for each one. With luck, this should be enough to establish the accuracy of our models, or perhaps point towards some hidden phenomenon present in the Ember Waste to explain the disparity. "`
+			`	"I can explain more during the flight, if you wish. You do still have a research laboratory installed, right?"`
+			choice
+				`	"Yes, of course!"`
+
+			`	You follow Dawn out of the cafeteria and to the spaceport, where you prepare for departure.`
+				accept
+
+	on enter Caeculus
+		conversation
+			`	As soon as you arrive, Dawn quickly sets up the laboratory, setting up her instruments before joining you in the cockpit. "It may take some time for a coronal mass ejection event to occur, so we may be here for a while."`
+			
+			`	"You may also wish to keep your distance from the star", Dawn says. In a more somber tone, she adds, "we have lost ships, and sometimes good scientists, to these stars before."  `
+
+	npc kill
+		government "Test Dummy"
+		system "Caeculus"
+		ship "_CME Timer Ship" "Timer"
+		personality unconstrained heroic nemesis
+
+		dialog `The star flares bright against your cockpit windows, which automatically darken to protect your fragile eyes from its deadly rays. At first, the light seems to dim, but within moments you watch a wave of incandescent plasma paint the space before you. Intellectually, you know that you are safe behind your ship's shields and armor, but the grand scale and majesty of the ejection puts all else to shame. Several minutes pass in silence as you both watch the swirling currents of plasma outside. You and Dawn nearly jump out of your seats as the laboratory equipment loudly chimes, signalling that it has collected the required data. You can now go on to Ildaria to observe a coronal mass ejection there.`
+
+	on enter Ildaria
+		conversation
+			`	Again, Dawn sets up the laboratory equipment before taking her seat. "We can learn a significant amount by simply measuring the frequency of the ejection events in each system. Remote observations show that they are less frequent here, but actually being here should give us much more accurate measurements."`
+
+			`	"Remember," she says, "straying too close to the star when the ejection event starts could be dangerous."`
+
+	npc kill
+		government "Test Dummy"
+		system "Ildaria"
+		ship "_CME Timer Ship" "Timer"
+		personality unconstrained heroic nemesis
+
+		dialog `The star flares in what is now a familiar pattern, whipping long trails of crackling plasma out into the cosmos. Is it just your imagination, or is this a less violent and energetic ejection than the one in the Ember Waste? You ponder on in silence before the laboratory equipment chimes, signalling that it you can now return to <destination> with the data.`
+
+	on complete
+		payment 1000000
+		conversation
+			`	The journey back is uneventful, though you have gained some newfound appreciation for the relative serenity of most star systems. "So, how long will it take before you'll have answers?" you ask. "We can't be sure," says Dawn. "After all, we've been observing these stars for centuries. It is hoped that data outside the Ember Waste will give us a more useful control point, but even if we do identify something wrong with the local stars, it could be years or even decades before we know what exactly changed them."`
+			choice
+				`	"Do you think it could have something to do with the ion storms?"`
+					goto storms
+				`	"Could a similar 'change' have created the unstable wormholes?"`
+					goto wormholes
+
+			label storms
+			`	"It is certainly possible. There is a large flux of energy being poured into the surrounding nebulae, and the source, whatever it may be, has been active for eons. Who knows what kind of effect it may have originally had on these stars, millions of years ago?"`
+				goto end
+
+			label wormholes
+			`	"That is one possibility. Whichever civilization formed the destabilized wormholes -and we are nearly certain that they are artificial- would easily have the power to alter or even destroy entire stars. While this is one of the more unlikely scenarios, if it does happen to be the correct one, we would naturally be very concerned."`
+
+			label end
+			`	"In any case, the data we gathered will be invaluable towards our further understanding of not only the Ember Wastes, but the wider galaxy and its history. Depending on what we find in it, I might contact you in the future for further expeditions to exotic stars." You say farewell and leave, collecting your logistics allotment of <payment>.`
+
+
+
+mission "Remnant: Expanded Horizons Novas 2"
+	name "Supernova Remnant Comparison"
+	description "Investigate an anomalous supernovae remnant near Remnant space, then collect baseline astronomical data from the Saquergen system. Lastly, travel to the anomalous novae remnants near Korath space and return with the data to <destination>."
+	passengers 1
+	source
+		government "Remnant"
+	waypoint
+		system "Tenebra"
+	waypoint
+		system "Saquergen"
+	waypoint
+		system "Kasikfar"
+	waypoint
+		system "Peresedersi"
+	waypoint
+		system "Fasitopfar"
+	destination
+		government "Remnant"
+	to offer
+		has "Remnant: Expanded Horizons Novas 1: done"
+		random < 15
+	on offer
+		require "Research Laboratory"
+		conversation
+			`	The moment you finish your landing checks, making sure your ship is ready to launch at any notice, you receive a communication from Dawn. "Hello, Captain. We have finished sorting through the data collected in our previous expedition, and are ready to survey some additional systems that may shed light on the history of the Ember Wastes. Are you interested in transporting me?"`
+			choice
+				`	"Where are we headed to this time?"`
+				`	"Sorry, I'm busy right now."`
+					defer
+
+			`	"Well, our recent examination of the Wolf-Rayet stars has added further evidence supporting a theory we have had for nearly two centuries now. Rather than being some product of nature, there is clear evidence of tampering. While we knew these stars were the wrong mass and age to be in that sequence of stellar evolution, analysis of the flare events we observed has concluded that there is some kind of excess energy source powering the stars, keeping them in the Wolf-Rayet stage for far longer than should be possible."`
+			`	"And, as Wolf-Rayet stars can be explained in somewhat oversimplified terms as the remnant helium core of a supergiant that has lost its outer envelope, we have direct evidence that some force or phenomenon stripped many of the stars in the Ember Waste of much of their outer volumes. Whether this was some weapon, or perhaps an attempt at stellar engineering, we do not know."`
+			choice
+				`	"Stellar engineering?"`
+					goto starlifting
+				`	"What kind of weapon could destroy an entire star?"`
+				`	"So, where are we actually going?"`
+					goto journey
+			label starkiller
+
+			`	"Well, a so-called 'starkiller' weapon was not what affected the Wolf-Rayet stars, as they are still mostly intact. But we do have evidence that these starkillers do exist, and have been used in the past to initiate artificial supernovae. We will in fact be visiting one on this expedition, actually. But they would be something far beyond our abilities, or even the abilities of most known civilizations. Of the alien civilizations we know of, only the Drak, Quarg, and likely the Korath have the technical ability to build such a weapon, but we can theorize on how one might operate."`
+			`	"It would not be as simple as a mere large explosion, for one. A frankly ridiculous quantity of antimatter could release enough energy to tear a star apart, but that would be an inefficient and costly method- and if you could deliver a quantity of matter that large to a star system, you would be far better off using it as a weapon against inhabited planets or enemy fleets." Her clinical discussion of planetary genocide is slightly disturbing, but you suppose it must simply be an academic matter to Dawn.`
+			`	She shakes her head. "No, antimatter would not be a potent enough weapon. But we do have a theory involving the natural lifecycle of supergiant stars. As you may know, supernovae are triggered when the pressure from a massive star's fusion processes and the degeneracy pressure from its core can no longer match the gravitational force holding the star together. As the core collapses, runaway fusion processes are initiated and the outer envelope of the star is shed, while the core either explodes or collapses into a compact stellar object, such as a neutron star or black hole."`
+			`	"Now, main sequence stars lack a large degenerate core to detonate, so at worst they produce novae, in which the outer envelope of the star is shed, but the core remains intact as a white dwarf. Likewise, massive but young stars also lack degenerate matter in their core, so they cannot undergo a supernova until they have aged for millions of years, producing and compressing heavier elements."`
+			`	"But if a sufficient quantity of degenerate matter, somehow mined from a compact object such as a neutron star or white dwarf, were to be introduced into the star, it could upset the delicate balance between its outward fusion pressure and inward gravitational pressure, perhaps leading to a gravitational collapse event that would result in a supernova, or at least a powerful nova. Do you follow me?"`
+			choice
+				`	"Yes... I think."`
+				`	"Not really."`
+					goto simpler
+
+			label speculation
+			`	"More speculatively, if a civilization was capable of locally altering physical constants, they could simply make fusion within the star impossible, or increase the gravitational constant to initiate collapse. Or even alter the strong nuclear force to cause every atomic nucleus to decay instantly. But these would be godlike abilities, and while the Archons may be on par with that level, the Korath are certainly not. So, the lower bound for star-destroying weapons is somewhere near the technological level of the Korath at their peak."`
+			`	"The only issue with this theory is that the amount of degenerate matter one would need to introduce would be immense, on the level of multiple planetary masses. As it turns out, stars are very large," Dawn smiles for a moment, "and it takes proportionally large forces to affect them in any meaningful away within a reasonable timespan."`
+			`	"We think that perhaps some other form of exotic matter could have a similar effect, or perhaps there is an unknown way to 'process' degenerate matter to enhance its ability to initiate core collapse in a star. Or maybe our models are entirely wrong, and through stellar processes we don't yet understand, it might be possible to prematurely detonate small degenerate cores in a way that does not lead to a fully-fledged supernova, but still sufficiently tears a star apart. But enough of this. We should probably depart soon, if we are to return in a timely manner."`
+				goto journey
+			
+			label simpler
+			`	"Essentially, a type of matter found in neutron stars would be introduced to the star, destabilizing it and causing it to go supernova. Does that make sense? I apologize if I get carried away with my explanations, as I am used to discussing these topics with people who have studied them for decades. As such, perhaps I am overcomplicating where certain details are not necessary."`
+				goto speculation
+			
+			label starlifting
+			`	"Stellar engineering, or stellar husbandry, involves the direct manipulation or management of a star in order to maximize its productive value towards the civilization utilizing it" Dawn explains, as though giving a lecture to a group of students.`
+			`	"Matter is removed, or sometimes added, in order to prolong the star's lifespan and reduce the waste of solar energy that cannot be captured by the host civilization. In this case, the civilization that inhabited the Ember Wastes would have removed the outer layer of hydrogen from several of the local stars, to be stored as fuel for later in the universe's lifespan."`
+			`	Dawn adopts a conspiratorial tone for a moment, dropping her lecturing voice. "Personally, I think this theory has great potential, as the many brown dwarves connected to the hyperlanes here could be storage receptacles for the harvested hydrogen. In no other part of the galaxy are there this many brown dwarves linked up to hyperlanes, so this precursor civilization must have thought them important."`
+			`	"The less valuable helium core, as well as its heavier elements, would then be left behind to burn out. Further efforts over time would prevent the star from undergoing a nova or supernova event, instead eventually burning out and leaving behind a core of heavy elements to be exploited."`
+			choice
+				`	"You mentioned that the stars could have been destroyed by a weapon. What kind of weapon could destroy an entire star?"`
+					goto starkiller
+
+			label journey
+			`	"Anyway, we will first be traveling to a black hole nearby. Perhaps you have visited it before, but we will be spending several minutes collecting data not just on the black hole, but on the surrounding nebula- which, combined with the black hole's mass, should tell us exactly what kind of star it was before going supernova. Ordinarily we would expect it to be a hypergiant, but 'ordinary' does not exactly apply to the Ember Wastes, as I am sure you have noticed."`
+			`	You board your ship and prepare to take off, as Dawn directs you to the Tenebra system south of Remnant space.`
+				accept
+
+	on enter "Tenebra"
+		conversation
+			`	Dawn quickly sets up the laboratory, activating its instruments. You marvel at the black hole outside. Although much smaller than Sagittarius A*, its presence is imposing, an unnatural void in the universe. After a few minutes, she says she has finished collecting the needed data.`
+			`	"We need to collect a baseline for natural supernovae, so we should travel to the Saquergen system now."`
+
+	on enter "Saquergen"
+		conversation
+			`	Dawn quickly sets up the laboratory, working as you look out the cockpit window. The nova remnant here seems quieter and more subdued, likely a function of its advanced age compared to the others you've seen before. After a few minutes, Dawn says she has finished collecting the needed data.`
+			`	"We should travel to the systems near Korath space now," she says`
+
+	on enter "Kasikfar"
+		conversation
+			`	Dawn quickly sets up the laboratory, activating its instruments. She appears awed by the grand majesty of the dusty expanse. Within a few minutes, she says that she has the necessary data, and you can move on.`
+
+	on enter "Peresedersi"
+		conversation
+			`	Dawn quickly sets up the laboratory, making sure the instruments are active. You idly fiddle with a small telescope while you wait. Within a few minutes, she says she is done collecting data, and that you can move on.`
+
+	on enter "Fasitopfar"
+		conversation
+			`	Dawn quickly sets up the laboratory, activating its instruments. After a slightly longer wait, likely due to all of the asteroids in the system, she says that she has finished recording data, and that you can move on.`
+				
+	on complete
+			payment 2000000
+			conversation
+				`	During the trip back, Dawn is busy making a preliminary analysis of the data you have collected. She spends hours alone in her quarters, leaving only to eat. Whatever she sees in the data has clearly enraptured her. Or perhaps disturbed her, based on her near-obsessive review of it. Finally, while you are cruising through <destination>'s upper atmosphere, you ask her what exactly she found.`
+				`	"We have known for a long time that supernova weapons exist, but seeing the novae near Korath space in person was completely different. Honestly, I found the knowledge that they were triggered by an intelligent species to be rather disturbing. But what truly intrigues me is not the faraway supernovae remnants halfway across the galaxy, but those right next door to us."`
+				`	"While the method employed by the Korath to destroy those stars could feasibly be similar to what our best astrophysicists have theorized, whatever was done in the Tenebra system, and likely with the other Ember Waste black holes as well, completely defies my understanding. If those stars had perhaps been prematurely detonated hypergiants, I might be able to believe that degenerate matter was involved in their detonation. But there is not nearly enough mass in the black hole or the nebula to account for a hypergiant once existing there. The mass present around that system would have only been sufficient to create a mid-sized star, likely no bigger than three to four times that of Sol. Whatever was done to those stars is completely outside our current theories, and I have no idea how to proceed."	`
+				`	She takes a breath, "Of course, I have only been looking at this data for a short while, and years of study will be needed to confirm what I fear, but I believe that we are no closer to understanding this mystery than before." She seems frustrated`
+				choice
+					`	"I'm sure you'll find the answers eventually. After all, you've made it this far!"`
+					`	"Maybe you should take a break from the data? Looking at it with fresh eyes in a few days might lead to some insights."`
+
+				`	"Thank you, <first>. You are probably right. Anyway, I will be sure to contact you in the future if I need to travel to an exotic part of the galaxy again." As you land, she thanks you again and hands you your logistics allotment of <payment>.`
+
+
+
+mission "Cinis Dust"
+	invisible
+	landing
+	on enter "Cinis"
+		conversation
+			`	As soon as you enter this system, you immediately notice that something is off. This system appears to have nothing within it: no planets, no asteroids, not even a lonely comet. All that you can see, peering out of your cockpit, is a faint haze surrounding the local star, extending outward in a flattened disc. You aren't quite sure if you are just imagining it, and are just beginning to fiddle with your sensors when you notice that millions of tiny impacts are being registered on your forward shields. They are not doing nearly enough damage to cause any serious harm, but it is enough to tell you that there is indeed something out there.`
+			`	After some time drifting in the void, you fire up your engines. The number of impacts increases dramatically, as though you are flying through a cloud of dust. Curious, you open one of your ship's airlocks, cycling its contents through the filtration system. After a few minutes, you check the airlock's filters. The output canister is filled with a fine whitish powder, looking almost like some kind of dust or silt. You remove it and consider what to do with this strange sample.`
+		fail
+	to complete
+		never
+
+mission "Cinis Dust: Lab"
+	invisible
+	landing
+	on enter "Cinis"
+		has "Cinis Dust: failed"
+		require "Research Laboratory"
+		conversation
+			scene "scene/geoscan"
+			`	Remembering your ship's laboratory, you quickly take the canister to the cargo bay, expanding the mobile laboratory and firing up a mass spectrometer. The readings are odd; the dust appears to be made entirely of silica crystals, composed entirely of silicon and oxygen. Only a trace amount of hydrogen is present, likely a contaminant from the solar wind. No other elements are present, not even the trace materials you would expect from an average dust cloud or nebula. You aren't familiar enough with the lab's instruments to learn much more, but the perfectly uniform composition is oddly disturbing.`
+			`	Maybe the Remnant know more about this system? After all, they have thoroughly explored the Ember Wastes, and have likely explored this system before.`
+				decline
+		set "analyzed dust"
+	to fail
+		has "Cinis Dust: Taely: done"
+
+
+conversation "cinis dust: remnant"
+	`Do you want to ask the Remnant about the mysterious cloud of dust in the Cinis system?`
+	choice
+		`	(Yes.)`
+		`	(Not now.)`
+			defer
+
+	branch taely
+		has "remnant met taely"
+	`	You ask around more than a dozen people, but none of them seems to be aware of what you're talking about. Either the information is too confidential to be given to a stranger like you, or you didn't ask the right people.`
+
+		decline
+	label taely
+	`	You ask around more than a dozen people, but none of them seems to be aware of what you're talking about. Perhaps you might have more luck asking Taely on Viminal.`
+		decline
+
+
+
+mission "Cinis Dust: Remnant A"
+	landing
+	invisible
+	source
+		government "Remnant"
+		not planet "Viminal"
+	to offer
+		has "remnant blood test pure"
+		has "Cinis Dust: failed"
+		not "Cinis Dust: Taely: offered"
+	on offer
+		conversation "cinis dust: remnant"
+
+mission "Cinis Dust: Remnant B"
+	landing
+	invisible
+	source "Viminal"
+	to offer
+		has "remnant blood test pure"
+		has "Cinis Dust: done"
+		not "remnant met taely"
+		not "Cinis Dust: Taely: offered"
+	on offer
+		conversation "cinis dust:remnant"
+
+
+
+
+mission "Cinis Dust: Taely"
+	invisible
+	landing
+	source "Viminal"
+	to offer
+		"remnant met taely" >= 1
+		has "Cinis Dust: failed"
+	on offer
+		conversation
+			`	Do you want to ask Taely about the odd dust in the Cinis system?`
+			choice
+				`	(Yes.)`
+				`	(Not now.)`
+					defer
+					
+			`	You find Taely at the starport, busy directing maintenance on a new-looking Gull. "Captain <last>!" she says as she greets you. Do you need anything, or are you just stopping by to chat?"`
+			branch labscan
+				has "analyzed dust"
+			choice
+				`	"I found a strange system filled with nothing but dust"`
+					goto show
+				
+			label labscan
+			choice
+				`	"I found a strange system filled with elemental dust"`
+				
+			label show
+			`	You show her the canister of dust and explain that you found it in a system devoid of any planets or other celestial bodies. "Ah, the Cinis system? she asks." You nod. "Our scouts discovered that oddity in one of our earliest waves of exploration. It was never a threat or a direct danger, but like you, we thought it strange."`
+			`	"The dust is composed of silica crystals, much like common sand. But, unlike the sand you would find in a beach or desert, none of the silica crystals comprising the dust exceed a few micrometers in diameter, something that would be nearly impossible for a natural formation. If it were a natural planetary nebula, we would expect at least some of the dust to coalesce into planetoids or even small meteorites, but it has been scattered uniformly throughout the system, spread thin enough that it will take millions of years to form larger bodies."`
+			choice
+				`	"So the dust cloud isn't a natural phenomenon?"`
+					goto natural
+				`	"Could it have come from a destroyed planet?"`
+					goto destruction	
+					
+			label natural
+			`	"I doubt it. As you've noticed, the composition of the dust is homogeneous, with no traces of other elements. That alone is anomalous, and the uniform size of each crystal is also something that could only have been produced by intelligence. No, I'm sure that the dust cloud is the product of some long forgotten civilization, but as to why or how it was created? We have no idea."`
+			
+			branch builders
+				has "First Contact: Ka'het: Remnant 1B: done"
+				
+			label builders
+			choice
+				`	"Could it have been created by the Builders?"`
+				`	"Where do you think the dust came from, then?"`
+					goto creation
+			`	"Unlikely. From what we can tell, Builder technology was not nearly advanced enough to engineer the deconstruction of an entire star system. More likely, the cloud is the product of a far older civilization, perhaps the one responsible for the state of the Ember Wastes itself."`
+			`	"How did that civilization 'deconstruct' an entire system, anyway?"`
+				goto creation
+			
+			label destruction
+			`	"Such a cataclysm would likely not produce a fine dust such as this. Even if it did, the energy needed to destroy a planet would have certainly been violent enough to produce shocked quartz, which is absent in the dust cloud."`
+			`	"Shocked quartz?" you ask	`
+			`	"A formation of silica crystals, or quartz, that has been subjected to immense pressures, altering the alignment of the individual crystals and leaving behind a permanent marker. It's actually quite common here in the Ember Wastes, due to the frequency of asteroid impacts on many planets."`
+			`	"And," she adds, almost as an afterthought, "it can often be found in the wake of nuclear explosions, especially after underground tests."`
+			choice
+				`	"Nuclear explosions? How do you know that?"`
+					goto nukes
+				`	"Where do you think the dust came from, then?"`
+					goto creation
+					
+			label nukes
+			`	Taely looks at you appraisingly for a long moment, as though she is reading your reaction. She eventually shrugs, looking away. "We brought along a great deal of data from Ancestral space, including records from the numerous nuclear tests done on Earth in the early days of the atomic age."`
+			`	The explanation makes sense, but for some reason you aren't entirely sure you believe her.`
+			`	"Where do you think the dust came from, then?" you ask.`
+				goto creation
+				
+			label creation
+			`	"We can make some guesses, I suppose, even though we'll likely never be sure of its true origin. Personally, I think it was a mining device of some kind, or maybe even a weapon. Something that could take a world and dismantle it down to its last atom, accumulating its metals and valuable elements before discarding the useless ones, the silicates a civilization would have no need for. Nothing like it has ever been seen, or even rumored to exist, but it is the only thing I can think of that could both empty a system of its planets and fill it with nothing but chemically uniform dust."`
+			branch sayaiban
+				has "Drak guarding Sayaiban: done"
+				
+			label sayaiban
+			choice
+				`	"Actually, I've discovered a system near Korath space filled with nanobots programmed to attack and dismantle any ship"`
+					goto nanobots
+				`	"That sounds terrifying. I hope nothing like that is ever created again, if such a weapon could really tear apart entire planets"`
+					goto end
+					
+			label nanobots
+			`	Her eyes widen. "Truly? Weaponized nanotechnology exists? That is disturbing news."`
+			`	"In which system are these nanobots present? We have thoroughly explored that region of space, with particular attention to the violent weapons employed there."`			
+			`	You tell her about how you found a swarm intelligence composed of nanomachines in the Sayaiban system, including how it attacked and tried to 'digest' your ship for its raw materials. You also mention that an Archon was guarding over the swarm, preserving it in case it became the last evidence of Korath civilization: and more importantly, how it telepathically instructed you to leave.`
+			`	"Our scouts have explored that system before," she frowns, "but encountered no swarm intelligence. They did, however, mention the presence of an Archon, which ordered them to leave. They immediately complied, fleeing lest it prove hostile, as was the case when we disturbed the one in Nenia"`
+			`	"Were the scouts cloaked?" you ask`
+			`	"Yes. This is no obstacle to the senses of an Archon, though, which was still able to read our pilots' minds. Although, it seems possible that the nanomachines would be unable to perceive the scout ship, and as such we never learned of their existence." She ponders for a moment. "I suppose I will have to request an update to our scouting protocols, to avoid missing anything this important in the future."`
+			`	"I would ask you go bring back a sample for study, but," she smiles slightly "bringing a weapon capable of self-replication here would be folly in the extreme, and I doubt the Archon would allow it in any case."`
+			`	At Taely's insistence, you mark the Sayaiban system on a map to confirm that it is indeed the right star. Taely mentions that scouts will likely be redirected to study the system in detail. You hope they don't anger the Archon.`
+			
+			label end
+			`	You thank Taely for her time and depart, more aware than ever of the strangeness of the remote corners of the galaxy.`

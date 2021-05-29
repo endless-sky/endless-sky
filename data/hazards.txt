@@ -63,3 +63,238 @@ hazard "Black Hole Gravity"
 		"hit force" -25
 		"damage dropoff" 150 2500
 		"dropoff modifier" 0
+
+
+
+hazard "Asteroid Belt Near"
+	"strength" 1
+	"constant strength"
+	"range" 350 475
+	"duration" 1
+	"environmental effect" "hot asteroid"
+	weapon
+		"shield damage" 7
+		"hull damage" 2.5
+		"heat damage" 160
+		"slowing damage" 0.1
+		"fuel damage" -1
+		"hit force" 2
+		"gravitational"
+		"hit effect" "smoke"
+		"hit effect" "asteroid hit"
+		"hit effect" "bolide"
+
+hazard "Asteroid Belt Mid"
+	"strength" 1
+	"constant strength"
+	"range" 1500 2000
+	"duration" 1
+	"environmental effect" "stone asteroid"
+	weapon
+		"shield damage" 3.5
+		"hull damage" 1.5
+		"heat damage" 40
+		"slowing damage" 0.15
+		"fuel damage" -0.5
+		"hit force" -1.5
+		"gravitational"
+		"hit effect" "smoke"
+		"hit effect" "asteroid hit"
+		"hit effect" "bolide"
+
+hazard "Asteroid Belt Far"
+	"strength" 1
+	"constant strength"
+	"range" 3000 4500
+	"duration" 1
+	"environmental effect" "stone asteroid"
+	"environmental effect" "ice asteroid"
+	weapon
+		"shield damage" 2
+		"hull damage" 0.75
+		"heat damage" 20
+		"slowing damage" 0.1
+		"fuel damage" -0.35
+		"hit force" -1
+		"gravitational"
+		"hit effect" "smoke"
+		"hit effect" "asteroid hit"
+		"hit effect" "bolide"
+
+effect "asteroid hit"
+		sprite "effect/bolide"
+			"random start frame"
+	sound "explosion small"
+	
+effect "hot asteroid"
+	sprite "effect/flotsam iron"
+		"frame rate" 5
+		"random start frame"
+	"lifetime" 360
+	"random lifetime" 90
+	"random spin" 10
+	"random velocity" 0.3
+	
+effect "stone asteroid"
+	sprite "effect/flotsam titanium"
+		"frame rate" 5
+		"random start frame"
+	"lifetime" 540
+	"random lifetime" 90
+	"random spin" 10
+	"random velocity" 0.6
+
+effect "ice asteroid"
+	sprite "effect/flotsam yottrite"
+		"frame rate" 5
+		"random start frame"
+	"lifetime" 540
+	"random lifetime" 90
+	"random spin" 10
+	"random velocity" 0.6
+
+
+
+hazard "Ember Heliopause"
+	"strength" 1
+	"constant strength"
+	"range" 5000 5250
+	"duration" 1
+	"environmental effect" "heliopause plasma" 6
+	"environmental effect" "ember waste plasma" 8
+	"environmental effect" "heliopause shock" 12
+	weapon
+		"hit effect" "ion impact"
+		"hit effect" "heliopause shock"
+		"disruption damage" 10
+		"relative shield damage" 60
+		"hull damage" 0.15
+		"heat damage" 1.5
+		"fuel damage" -80
+		"ion damage" 320
+		"relative energy damage" 0.85
+		"hit force" -1.5
+		
+effect "heliopause plasma"
+	sprite "effect/seeker impact"
+		"frame rate" 5
+		"random start frame"
+	"lifetime" 120
+	"random lifetime" 90
+	"random spin" 30
+	"random velocity" 0.5
+	
+effect "ember waste plasma"
+	sprite "effect/jump drive red"
+		"frame rate" 5
+		"random start frame"
+	"lifetime" 90
+	"random lifetime" 60
+	"random spin" 10
+	"random velocity" 2.5
+
+effect "heliopause shock"
+	sprite "effect/railspark"
+		"frame rate" 30
+		"random start frame"
+	"lifetime" 60
+	sound "zapper"
+	"random lifetime" 10
+	"random spin" 10
+	"random velocity" 6
+
+
+
+hazard "Dust Cloud"
+	"range" 10000
+	"constant strength"
+	"duration" 1
+	"environmental effect" "microdust" 100
+	weapon
+		"shield damage" 0.5
+		"hull damage" 0.1
+		"relative heat damage" 0.00025
+		"hit effect" "microdust"
+
+effect "microdust"
+	sprite "effect/leak"
+		"frame rate" 5
+		"random start frame"
+	"lifetime" 180
+	"random lifetime" 270
+	"random spin" 0.5
+	"random velocity" -1.5
+	
+
+
+hazard "Coronal Mass Ejection"
+	"strength" 0.75 2
+	"range" 1000
+	"duration" 120 360
+	"environmental effect" "coronal plasma" 9
+	"environmental effect" "plasma cloud" 6
+	weapon
+		"disruption damage" 0.5
+		"relative shield damage" 0.01
+		"shield damage" 1
+		"relative hull damage" 0.0005
+		"hull damage" 1
+		"relative heat damage" 0.005
+		"heat damage" 100
+		"fuel damage" 25
+		"hit force" 20
+		"gravitational"
+		"hit effect" "bombardment impact" 4
+		"hit effect" "piercer fire" 3
+		"hit effect" "flame" 4
+		
+effect "coronal plasma"
+	sprite "effect/flame"
+		"frame rate" 1
+		"random start frame"
+	"lifetime" 30
+	"random lifetime" 10
+	"random spin" 6
+	"random velocity" 2.5
+	"sound" "flamethrower"	
+
+effect "plasma cloud"
+	sprite "effect/minelayer split"
+		"frame rate" 1
+		"random start frame"
+	"lifetime" 30
+	"random lifetime" 10
+	"random spin" 0.5
+	"random velocity" 0.5
+
+
+
+hazard "Helium Flash"
+	"strength" 1 1.5
+	"constant strength"
+	"range" 10000
+	"duration" 45 60
+	"environmental effect" "helium flash" 240
+	"environmental effect" "plasma cloud" 3
+	weapon
+		"disruption damage" 12
+		"relative shield damage" 1
+		"relative hull damage" 0.002
+		"relative heat damage" 0.01
+		"heat damage" 200
+		"ion damage" 256
+		"relative energy damage" 1
+		"hit force" 7.5
+		"gravitational"
+		"hit effect" "ion explosion" 3
+
+effect "helium flash"
+	sprite "effect/static"
+		"frame rate" 1
+		"start frame" 3
+		"rewind"
+	"lifetime" 30
+	"random lifetime" 30
+	"random spin" 6
+	"random velocity" 4
+	"sound" "nuke"
