@@ -4751,7 +4751,7 @@ mission "Remnant: Expanded Horizons Novas 1"
 					goto wormholes
 
 			label storms
-			`	"It is certainly possible. There is a large flux of energy being poured into the surrounding nebulae, and the source, whatever it may be, has been active for eons. Who knows what kind of effect it may have originally had on these stars, millions of years ago?"`
+			`	"It is certainly possible. There is a large flux of energy being poured into the surrounding nebulae, and the source, whatever it may be, has been active for eons. Who knows what kind of effect it may have originally had on these stars, millions of years ago?`
 				goto end
 
 			label wormholes
