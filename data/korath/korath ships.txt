@@ -19,15 +19,14 @@ ship "Korath Dredger"
 		"hull" 16000
 		"required crew" 201
 		"bunks" 395
-		"mass" 1503
-		"drag" 18.3
+		"mass" 2303
+		"drag" 15.2
 		"heat dissipation" .65
 		"fuel capacity" 900
 		"cargo space" 605
 		"outfit space" 827
 		"weapon capacity" 297
 		"engine capacity" 181
-		
 		weapon
 			"blast radius" 300
 			"shield damage" 4600
@@ -50,7 +49,6 @@ ship "Korath Dredger"
 		"Thruster (Asteroid Class)"
 		"Hyperdrive"
 		"Jump Drive"
-		
 	turret -37.5 -152.5 "Korath Warder"
 	turret 37.5 -152.5 "Korath Warder"
 	turret 0 -153 "Korath Grab-Strike"
@@ -300,8 +298,8 @@ ship "Korath World-Ship"
 		hull 34000
 		"required crew" 794
 		"bunks" 1492
-		"mass" 1735
-		"drag" 21
+		"mass" 3735
+		"drag" 19.5
 		"heat dissipation" .4
 		"fuel capacity" 1000
 		"cargo space" 264
@@ -512,7 +510,7 @@ ship "Kar Ik Vot 349"
 		"shields" 57200
 		"hull" 65400
 		"automaton" 1
-		"mass" 1350
+		"mass" 2913
 		"drag" 16.8
 		"heat dissipation" .5
 		"fuel capacity" 400
@@ -669,7 +667,7 @@ ship "Tek Far 71 - Lek"
 		"shields" 25400
 		"hull" 29500
 		"automaton" 1
-		"mass" 610
+		"mass" 896
 		"drag" 9.6
 		"heat dissipation" .6
 		"fuel capacity" 400
@@ -762,7 +760,7 @@ ship "Tek Far 78 - Osk"
 		"shields" 27600
 		"hull" 34100
 		"automaton" 1
-		"mass" 690
+		"mass" 1080
 		"drag" 10.2
 		"heat dissipation" .55
 		"fuel capacity" 400
@@ -854,7 +852,7 @@ ship "Tek Far 109"
 		"shields" 17900
 		"hull" 15800
 		"automaton" 1
-		"mass" 540
+		"mass" 643
 		"drag" 9.1
 		"heat dissipation" .65
 		"fuel capacity" 400
@@ -925,8 +923,8 @@ ship "Met Par Tek 53"
 		"shields" 15100
 		"hull" 22200
 		"automaton" 1
-		"mass" 420
-		"drag" 5.7
+		"mass" 781
+		"drag" 7
 		"heat dissipation" .8
 		"fuel capacity" 400
 		"cargo space" 26
@@ -965,7 +963,6 @@ ship "Met Par Tek 53"
 	turret 38 -28 "Korath Repeater Turret"
 	turret -40 -8 "Korath Repeater Turret"
 	turret 40 -8 "Korath Repeater Turret"
-	
 	explode "tiny explosion" 60
 	explode "small explosion" 30
 	explode "medium explosion" 35
@@ -1092,8 +1089,8 @@ ship "Model 8"
 		"shields" 5450
 		"hull" 3320
 		"automaton" 1
-		"mass" 110
-		"drag" 3.2
+		"mass" 210
+		"drag" 1.9
 		"heat dissipation" 1.5
 		"fuel capacity" 200
 		"cargo space" 29
@@ -1138,8 +1135,8 @@ ship "Model 16"
 		"shields" 15700
 		"hull" 9800
 		"automaton" 1
-		"mass" 250
-		"drag" 6.9
+		"mass" 419
+		"drag" 5.7
 		"heat dissipation" 1.3
 		"fuel capacity" 400
 		"cargo space" 7
@@ -1191,8 +1188,8 @@ ship "Model 32"
 		"shields" 27900
 		"hull" 13400
 		"automaton" 1
-		"mass" 370
-		"drag" 9.0
+		"mass" 668
+		"drag" 6.9
 		"heat dissipation" 1.3
 		"fuel capacity" 400
 		"cargo space" 16
@@ -1245,8 +1242,8 @@ ship "Model 64"
 		"shields" 41700
 		"hull" 18000
 		"automaton" 1
-		"mass" 580
-		"drag" 11.1
+		"mass" 981
+		"drag" 8.7
 		"heat dissipation" 1.1
 		"fuel capacity" 400
 		"cargo space" 34
@@ -1301,8 +1298,8 @@ ship "Model 128"
 		"shields" 57000
 		"hull" 23100
 		"automaton" 1
-		"mass" 780
-		"drag" 13.2
+		"mass" 1601
+		"drag" 10.3
 		"heat dissipation" 1.0
 		"fuel capacity" 400
 		"cargo space" 53
@@ -1358,8 +1355,8 @@ ship "Model 256"
 		"shields" 71700
 		"hull" 28700
 		"automaton" 1
-		"mass" 970
-		"drag" 15.3
+		"mass" 2158
+		"drag" 12.4
 		"heat dissipation" .9
 		"fuel capacity" 400
 		"cargo space" 78
@@ -1417,8 +1414,8 @@ ship "Model 512"
 		"shields" 86400
 		"hull" 34200
 		"automaton" 1
-		"mass" 1150
-		"drag" 17.4
+		"mass" 2544
+		"drag" 15.3
 		"heat dissipation" .8
 		"fuel capacity" 400
 		"cargo space" 107
