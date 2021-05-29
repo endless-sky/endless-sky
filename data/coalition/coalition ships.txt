@@ -1186,7 +1186,7 @@ ship "Heliarch Pursuer"
 		"required crew" 1
 		"bunks" 1
 		"mass" 31
-		"drag" 0.75
+		"drag" 0.65
 		"heat dissipation" 0.99
 		"outfit space" 105
 		"weapon capacity" 19

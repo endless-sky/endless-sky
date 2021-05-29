@@ -1012,7 +1012,7 @@ ship "Far Lek 14"
 		"hull" 1600
 		"automaton" 1
 		"mass" 26
-		"drag" .8
+		"drag" .65
 		"heat dissipation" 1.1
 		"outfit space" 65
 		"weapon capacity" 11
@@ -1050,7 +1050,7 @@ ship "Far Osk 27"
 		"hull" 2400
 		"automaton" 1
 		"mass" 34
-		"drag" 1.1
+		"drag" 0.8
 		"heat dissipation" 1.0
 		"outfit space" 99
 		"weapon capacity" 22
