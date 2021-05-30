@@ -271,12 +271,12 @@ void SpriteShader::Add(const Item &item, bool withBlur)
 
 void SpriteShader::Unbind()
 {
-	glBindVertexArray(0);
-	glUseProgram(0);
-	
 	// Reset the swizzle.
 	if(SpriteShader::useShaderSwizzle)
 		glUniform1i(swizzlerI, 0);
 	else
 		glTexParameteriv(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_SWIZZLE_RGBA, SWIZZLE[0].data());
+
+	glBindVertexArray(0);
+	glUseProgram(0);
 }
