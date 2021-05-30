@@ -319,6 +319,7 @@ mission "Intro [1 Interceptor]"
 		has "Intro [0]: done"
 		or
 			has "ships: Interceptor"
+			has "ships: Drone"
 			has "ships: Fighter"
 			has "ships: Light Warship"
 			has "ships: Medium Warship"
