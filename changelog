@@ -10,6 +10,7 @@ Version 0.9.14:
       * "FW Pug 4", "Nanachi 3", and "Nanachi 4" now mention both possible missing objectives when you visit the mission destination. (@Amazinite)
       * The reverse thrust heat of the Smelter-Class Thruster is no longer the same as the smaller Crucible-Class Thruster. (@Zitchas)
       * "Remnant: Cognizance 4" and "Remnant: Cognizance 16" no longer spoil the objective location for the player when you're suppose to go looking for them. (@Amazinite)
+      * The fighters that spawn alongside the Michael Zahniser person ship can no longer be disabled. (@Anarchist2)
     * Engine bugs:
       * Invalid planets are now filtered when iterating over a system's objects, preventing pathfinding from trying to use wormholes that no longer exist. (@tehhowch)
       * Firing ionization/disruption/slowing on weapons no longer allows status effects to drop below zero, which could potentially cause a crash. (@Ferociousfeind)
@@ -34,6 +35,7 @@ Version 0.9.14:
       * Removed part of a logbook entry that said that the Quarg claimed that the Pug could defeat the Drak, which they never did. (@Arachi-Lover)
       * Updated the Bulk Freighter sprite to have a hardpoint layout matching pre-v0.9.13 Bulk Freighters for save compatibility. (@ravenshining)
       * Lowered the chances of an alien baby crawling into your cargo hold. Safety measured have been put into place to ensure that this happens far less often. (@Amazinite)
+      * The James tutorial missions can now be continued if the player returns to the first mission after obtaining a ship that isn't in one of the starter categories. (@Zitchas)
   * Game mechanics:
     * Disabled ships that are captured or assisted will now repair to slightly higher than the bare minimum hull necessary. (@Amazinite)
     * Invalid fleet variants are now removed from fleets, preventing plugins with improper data from blocking the offering of missions that spawn fleets. (@tehhowch)
