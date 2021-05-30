@@ -495,7 +495,8 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		bright, Truncate::MIDDLE, true);
 	
 	// Determine the player's combat rating.
-	int combatLevel = log(max<int64_t>(1, player.GetCondition("combat rating")));
+	int combatExperience = player.GetCondition("combat rating");
+	int combatLevel = log(max<int64_t>(1, combatExperience));
 	const string &combatRating = GameData::Rating("combat", combatLevel);
 	if(!combatRating.empty())
 	{
@@ -505,8 +506,18 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		table.Advance();
 		table.DrawGap(5);
 		
-		table.DrawTruncatedPair(combatRating, dim,
-			"(" + to_string(combatLevel) + ")", dim, Truncate::MIDDLE, false);
+		table.DrawTruncatedPair("rank:", dim,
+			to_string(combatLevel), dim, Truncate::MIDDLE, false);
+		table.DrawTruncatedPair("title:", dim,
+			combatRating, dim, Truncate::MIDDLE, false);
+		table.DrawTruncatedPair("experience:", dim,
+			Format::Number(combatExperience), dim, Truncate::MIDDLE, false);
+		if(combatRating == GameData::Rating("combat", combatLevel + 1))
+			table.DrawTruncatedPair("    for next rank:", dim,
+				"MAX", dim, Truncate::MIDDLE, false);
+		else
+			table.DrawTruncatedPair("    for next rank:", dim,
+				Format::Number(ceil(exp(combatLevel + 1))), dim, Truncate::MIDDLE, false);
 	}
 	
 	// Display the factors affecting piracy targeting the player.
