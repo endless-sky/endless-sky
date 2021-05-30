@@ -27337,7 +27337,7 @@ planet Glaze
 	attributes south tourism
 	landscape land/canyon8
 	description `Glaze is a varied world with everything from sunny beaches to frozen tundra, but it is perhaps best known for its sandstone canyons and deserts. This world's wildlife has never been studied in great detail. Local rumors tell about an alien species of "canyon people" who live in caves in some of the deepest canyons, leading to a constant stream of visiting xenobiologists. The scientific consensus, however, is that these sightings have only been of a reclusive ape-like species that lives in the canyons, and is not known to dig caves or show any other sign of civilization.`
-	spaceport `The spaceport is a tower of glass and steel perched on top of a mesa, overlooking the canyonlands: spires of red and pale yellow stone, with a sprinkling of trees at the lower elevations. A wide highway winds down the side of the mesa, through several tunnels, and the off to the horizon. The port itself is not terribly busy.`
+	spaceport `The spaceport is a tower of glass and steel perched on top of a mesa, overlooking the canyonlands: spires of red and pale yellow stone, with a sprinkling of trees at the lower elevations. A wide highway winds down the side of the mesa, through several tunnels, and then off to the horizon. The port itself is not terribly busy.`
 	spaceport `	You notice quite a few families with children sitting by the windows on the upper stories of the tower, watching starships landing and taking off. Many of them have brought folding chairs or blankets to sit on. That must be what passes for entertainment on this world.`
 	shipyard "Basic Ships"
 	shipyard "Southbound Basics"
