@@ -75,16 +75,16 @@ The zip can be extracted anywhere on your filesystem; to minimize additional con
 
 If you want to build the game from the command line via Scons, you will need [Python 3.8 or later](https://www.python.org/downloads/). When installing, be sure to select the "Add to PATH" checkbox.
 
-Afterwards, you will need to add your MinGW installation to your path manually. To do so on Windows 10, to to **Settings** > **System** > **About** > **System info** > **Advanced system settings** > **Environment Variables**. From each, select **Path** under System variables, and click Edit.
+Afterwards, you will need to add your MinGW installation to your path manually. To do so on Windows 10, to to **Settings** > **System** > **About** > **System info** or **Related Settings** > **Advanced system settings** > **Environment Variables**. From each, select **Path** under System variables, and click Edit.
 
 If you used the defaults for MinGW up to this point, add "New" and enter the following in separate entries:
 
 - `C:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin`
-- `C:\Program Files (x86)\Git\usr\bin\`
+- `C:\Program Files (x86)\Git\usr\bin\` or `C:\Program Files\Git\usr\bin\`, depending on which you have installed
 
 From there, restart your command line if you had one open, and simply `cd` to your Endless Sky directory, then type `mingw32-make.exe -f .winmake`. (`make`'s standard `-j N` flag is supported, to increase the number of active parallel build tasks to N.)
 
-**IMPORTANT: ** Before the game will run the first time, you will need to skip down to the instructions at **Running the game** below.
+**IMPORTANT:** Before the game will run the first time, you will need to skip down to the instructions at **Running the game** below.
 
 
 ### Building with Code::Blocks
@@ -104,7 +104,7 @@ For example, when making lots of changes to the game, you will generally have th
 
 You can continue making tweaks to files that belong to the "endless-sky-lib" project without reactivating it, so that "Build & Run" will still launch the game with your latest tweaks. Should you experience some show-stopper bug in your modified game, you would then change to the "Debug" build target to help determine the source(s) of the issue.
 
-**IMPORTANT: ** Before the game will run the first time, you will need to skip down to the instructions at **Running the game** below.
+**IMPORTANT:** Before the game will run the first time, you will need to skip down to the instructions at **Running the game** below.
 
 
 ### Building with other IDEs
@@ -129,11 +129,11 @@ For Endless Sky to run on Windows, it needs various .dll files included in the b
   - soft_oal.dll
   - zlib1.dll
 
-For the **bolded** libraries, those will need to be included from your MinGW installation, instead. By default, you can go to `C:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin`, and copy those libraries to your Endless Sky directory to overwrite the current ones.
+**After** you have copied all those libraries, take note of the **bolded** libraries. Those will need to be included from your MinGW installation, instead of from the precompiled ones. By default, you can go to `C:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin`, and copy those libraries to your Endless Sky directory to overwrite the current ones.
 
 Once all the libraries in place, the game is ready to run! You have three options depending on how you built it:
 
-- If you built the game via Scons, open a terminal in the base directory, then run `bin\pkgd\release\endless-sky.exe`.
+- If you built the game via Scons, open a terminal to the base Endless Sky directory, then run `bin\pkgd\release\endless-sky.exe`.
 - If you built the game via Code::Blocks, double click *EndlessSky* in the file panel on the left, then either click the green arrow on top, or hit Control+F10.
 - If you want to run the game manually, use one of the methods above to build the game, then copy an executable from under the `bin\` folder to your base directory, then open the game.
 
