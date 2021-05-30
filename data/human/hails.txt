@@ -2538,7 +2538,7 @@ phrase "friendly pirate"
 		" You'll find some on the nearest pirate planet."
 		" You'll find some on the nearest anarchist planet."
 		" You'll find some on the nearest planet not oppressed by the man."
-		" You'll find somewhere ever the man does not go."
+		" You'll find some wherever the man does not go."
 
 phrase "friendly pirate"
 	word
