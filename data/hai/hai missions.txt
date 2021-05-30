@@ -606,7 +606,7 @@ mission "Unwanted Cargo Trigger"
 	source
 		government "Hai"
 	to offer
-		random < 10
+		random < 1
 		"cargo space" > 0
 	on offer
 		event "hai in cargo" 14
@@ -1724,7 +1724,7 @@ mission "Nanachi 3"
 		government "Hai"
 		ship "Heavy Shuttle" "Acorn Chaser"
 	on visit
-		dialog `You have reached <planet>, but you left Nanachi's ship behind! Better depart and wait for them to arrive in this star system.`
+		dialog `You have reached <planet>, but you haven't finished the mission yet! Either you left Nanachi's ship behind or you haven't visited <stopovers>.`
 	on complete
 		conversation
 			`Allhome's docking area shows much more traffic than usual. Many captains here are helping workers open cargo containers full of food, clothes, books, movies and even some mounted animals from human space. You finally meet up with the festival's organizers, who seem very excited to have acquired the exotic condiments, and have invited you two to a bar in the spaceport for a drink.`
@@ -1775,7 +1775,7 @@ mission "Nanachi 4"
 		government "Hai (Wormhole Access)"
 		ship "Heavy Shuttle" "Acorn Chaser"
 	on visit
-		dialog `You have reached <planet>, but you can't finished the mission yet! Either you left Nanachi's ship behind or you haven't visited <stopovers>.`
+		dialog `You have reached <planet>, but you haven't finished the mission yet! Either you left Nanachi's ship behind or you haven't visited <stopovers>.`
 	on stopover
 		conversation
 			`The convoy's captain messaged you as you entered the system and told you to land on a remote, hidden area of Prime, where they have already prepared for all the cargo to be transferred. They refuel your ships and urge you two to go back. "Captain Nanachi can stay hidden with us here if you need supplies or anything from the outfitter, but please don't take too long."`
