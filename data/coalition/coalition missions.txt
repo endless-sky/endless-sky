@@ -1413,8 +1413,7 @@ mission "Coalition Games"
 		conversation
 			`You're approached by a group consisting of a Saryd, Kimek, and Arach. The Saryd speaks, and the small box around his neck translates after he stops.`
 			`	"The astonishing sojourner, with great joy we salute."`
-			`	You greet the group, and the Kimek continues the conversation. "The season of joy and camaraderie, we find ourselves in. Upon us, the Coalition games are."`
-			`	The Arach speaks last, asking, "To <destination> by <day>, we must go, for competing in the games, we are. Transport us, would you, if upon <payment>, you agreed on?"`
+			`	You greet the group, and the Kimek continues the conversation. "The season of joy and camaraderie, we find ourselves in. Upon us, the Coalition games are. To <destination> by <day>, we must go, for competing in the games, we are. Transport us, would you? Pay you <payment>, we would."`
 			choice
 				`	"That sounds good. I'll bring you there."`
 					goto end
@@ -1422,8 +1421,7 @@ mission "Coalition Games"
 				`	"Sorry, I'm not looking for any transport jobs right now."`
 					decline
 			`	"To determine the athlete with the most merit, a competition it is," the Saryd says.`
-			`	"A candidate for the rank of Heliarch, one becomes, if one of the victors, one is," the Kimek adds.`
-			`	"Trained hard, we have. To prove our worth in the games, we wish," the Arach ends, and they once again look at you, expecting an answer to their original question.`
+			`	"A candidate for the rank of Heliarch, one becomes, if among the victors, othey are. Trained hard, we have, and to prove our worth in the games, we wish," the Arach adds, and they once again look at you, expecting an answer to their original question.`
 			choice
 				`	"Sounds like you're all really excited about this. Alright, I'll bring you there."`
 				`	"Well, I wish you luck then, but sadly I'm not looking for any transport jobs right now."`
