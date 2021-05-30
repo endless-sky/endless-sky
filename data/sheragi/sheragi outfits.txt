@@ -11,6 +11,7 @@
 # Outfits
 
 outfit "Small EM Battery"
+	plural "Small EM Batteries"
 	category "Power"
 	cost 200000
 	thumbnail "outfit/small embattery"
@@ -23,6 +24,7 @@ outfit "Small EM Battery"
 	description "This small superconductive inductor stores just enough power to keep a fighter running, and the electromagnetic field it generates helps to maintain the shield matrix."
 
 outfit "Large EM Battery"
+	plural "Large EM Batteries"
 	category "Power"
 	cost 1000000
 	thumbnail "outfit/embattery"
