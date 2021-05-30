@@ -107,7 +107,8 @@ system "1 Axis"
 	fleet "Large Kimek" 400
 	fleet "Small Saryd" 900
 	fleet "Large Saryd" 1800
-	fleet Heliarch 450
+	fleet "Large Heliarch" 600
+	fleet "Small Heliarch" 500
 	object
 		sprite star/k5
 		distance 49.335
@@ -181,7 +182,7 @@ system "10 Pole"
 	fleet "Large Kimek" 1600
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 5000
-	fleet Heliarch 700
+	fleet "Small Heliarch" 700
 	object
 		sprite star/k0
 		period 10
@@ -257,7 +258,7 @@ system "11 Autumn Above"
 	fleet "Large Kimek" 500
 	fleet "Small Saryd" 900
 	fleet "Large Saryd" 2000
-	fleet Heliarch 400
+	fleet "Small Heliarch" 400
 	object
 		sprite star/g0
 		distance 40.3837
@@ -337,7 +338,7 @@ system "11 Spring Below"
 	fleet "Large Kimek" 900
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 3000
-	fleet Heliarch 500
+	fleet "Small Heliarch" 500
 	object
 		sprite star/k0
 		distance 47.6045
@@ -417,7 +418,7 @@ system "12 Autumn Above"
 	fleet "Large Kimek" 2400
 	fleet "Small Saryd" 1300
 	fleet "Large Saryd" 7000
-	fleet Heliarch 800
+	fleet "Small Heliarch" 800
 	object
 		sprite star/g5
 		distance 49.4445
@@ -510,7 +511,7 @@ system "14 Pole"
 	fleet "Large Kimek" 3000
 	fleet "Small Saryd" 1600
 	fleet "Large Saryd" 9000
-	fleet Heliarch 1200
+	fleet "Small Heliarch" 1200
 	object
 		sprite star/g5
 		period 10
@@ -570,7 +571,7 @@ system "14 Summer Above"
 	fleet "Large Kimek" 1100
 	fleet "Small Saryd" 1300
 	fleet "Large Saryd" 4000
-	fleet Heliarch 1200
+	fleet "Small Heliarch" 1200
 	object
 		sprite star/g0
 		distance 20.8
@@ -638,7 +639,7 @@ system "14 Winter Below"
 	fleet "Large Kimek" 500
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 1800
-	fleet Heliarch 200
+	fleet "Small Heliarch" 200
 	object
 		sprite star/g5
 		distance 45.0921
@@ -714,7 +715,7 @@ system "16 Autumn Rising"
 	fleet "Large Kimek" 1200
 	fleet "Small Saryd" 1100
 	fleet "Large Saryd" 4000
-	fleet Heliarch 500
+	fleet "Small Heliarch" 500
 	object
 		sprite star/f5
 		period 10
@@ -786,7 +787,8 @@ system "3 Axis"
 	fleet "Large Kimek" 300
 	fleet "Small Saryd" 800
 	fleet "Large Saryd" 1600
-	fleet Heliarch 350
+	fleet "Small Heliarch" 400
+	fleet "Large Heliarch" 1200
 	object
 		sprite star/f0
 		period 10
@@ -854,7 +856,7 @@ system "3 Pole"
 	fleet "Large Kimek" 400
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 2000
-	fleet Heliarch 600
+	fleet "Small Heliarch" 600
 	object
 		sprite star/g5
 		period 10
@@ -911,7 +913,7 @@ system "3 Spring Rising"
 	fleet "Large Kimek" 1400
 	fleet "Small Saryd" 1500
 	fleet "Large Saryd" 6000
-	fleet Heliarch 800
+	fleet "Small Heliarch" 800
 	object
 		sprite star/g0
 		period 10
@@ -986,7 +988,8 @@ system "4 Axis"
 	fleet "Large Kimek" 400
 	fleet "Small Saryd" 900
 	fleet "Large Saryd" 1600
-	fleet Heliarch 300
+	fleet "Small Heliarch" 400
+	fleet "Large Heliarch" 700
 	object
 		sprite star/k5
 		period 10
@@ -1047,7 +1050,8 @@ system "4 Spring Rising"
 	fleet "Large Kimek" 1000
 	fleet "Small Saryd" 1300
 	fleet "Large Saryd" 4000
-	fleet Heliarch 500
+	fleet "Small Heliarch" 600
+	fleet "Large Heliarch" 1000
 	object
 		sprite star/m0
 		period 10
@@ -1111,7 +1115,7 @@ system "4 Summer Rising"
 	fleet "Large Kimek" 900
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 3000
-	fleet Heliarch 900
+	fleet "Small Heliarch" 900
 	object
 		sprite star/m0
 		period 10
@@ -1174,7 +1178,8 @@ system "4 Winter Rising"
 	fleet "Large Kimek" 400
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 2000
-	fleet Heliarch 400
+	fleet "Small Heliarch" 500
+	fleet "Large Heliarch" 1000
 	object
 		sprite star/m8
 		period 10
@@ -1247,7 +1252,8 @@ system "5 Axis"
 	fleet "Large Kimek" 600
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 1800
-	fleet Heliarch 300
+	fleet "Small Heliarch" 300
+	fleet "Large Heliarch" 600
 	object
 		sprite star/m4
 		period 10
@@ -1321,7 +1327,8 @@ system "5 Spring Below"
 	fleet "Large Kimek" 1000
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 2500
-	fleet Heliarch 500
+	fleet "Small Heliarch" 600
+	fleet "Large Heliarch" 1000
 	object
 		sprite star/g0-old
 		distance 19.7171
@@ -1394,7 +1401,7 @@ system "5 Summer Above"
 	fleet "Large Kimek" 900
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 3000
-	fleet Heliarch 800
+	fleet "Small Heliarch" 800
 	object
 		sprite star/k5
 		period 10
@@ -1458,7 +1465,8 @@ system "5 Winter Above"
 	fleet "Large Kimek" 800
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 4000
-	fleet Heliarch 300
+	fleet "Small Heliarch" 400
+	fleet "Large Heliarch" 600
 	object
 		sprite star/m0
 		period 10
@@ -1520,7 +1528,8 @@ system "7 Autumn Rising"
 	fleet "Large Kimek" 1000
 	fleet "Small Saryd" 400
 	fleet "Large Saryd" 800
-	fleet Heliarch 350
+	fleet "Small Heliarch" 400
+	fleet "Large Heliarch" 600
 	object
 		sprite star/k5
 		period 10
@@ -1589,7 +1598,8 @@ system "8 Winter Below"
 	fleet "Large Kimek" 400
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 2000
-	fleet Heliarch 250
+	fleet "Small Heliarch" 300
+	fleet "Large Heliarch" 500
 	object
 		sprite star/k0
 		period 10
@@ -1654,7 +1664,7 @@ system "9 Spring Above"
 	fleet "Large Kimek" 800
 	fleet "Small Saryd" 900
 	fleet "Large Saryd" 2400
-	fleet Heliarch 700
+	fleet "Small Heliarch" 700
 	object
 		sprite star/g5
 		distance 42.1494
@@ -1727,7 +1737,7 @@ system Ablodab
 	fleet "Large Kimek" 2400
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 2400
-	fleet Heliarch 700
+	fleet "Small Heliarch" 700
 	object
 		sprite star/k5
 		period 10
@@ -1805,7 +1815,8 @@ system Ablub
 	fleet "Large Kimek" 8000
 	fleet "Small Saryd" 1600
 	fleet "Large Saryd" 8000
-	fleet Heliarch 200
+	fleet "Small Heliarch" 300
+	fleet "Large Heliarch" 500
 	object
 		sprite star/m4
 		period 10
@@ -4127,7 +4138,7 @@ system "Ancient Hope"
 	fleet "Large Kimek" 2400
 	fleet "Small Saryd" 500
 	fleet "Large Saryd" 1400
-	fleet Heliarch 1500
+	fleet "Small Heliarch" 1500
 	object
 		sprite star/m0
 		distance 25.5165
@@ -4253,7 +4264,7 @@ system Answer
 	fleet "Large Kimek" 800
 	fleet "Small Saryd" 600
 	fleet "Large Saryd" 1200
-	fleet Heliarch 1400
+	fleet "Small Heliarch" 1400
 	object
 		sprite star/k5
 		period 10
@@ -5072,7 +5083,7 @@ system Beginning
 	fleet "Large Kimek" 6000
 	fleet "Small Saryd" 500
 	fleet "Large Saryd" 1200
-	fleet Heliarch 1500
+	fleet "Small Heliarch"  1500
 	object
 		sprite star/k5
 		period 10
@@ -5188,7 +5199,7 @@ system Belonging
 	fleet "Large Kimek" 1600
 	fleet "Small Saryd" 400
 	fleet "Large Saryd" 800
-	fleet Heliarch 700
+	fleet "Small Heliarch"  700
 	object
 		sprite star/g5
 		period 10
@@ -5254,7 +5265,8 @@ system Belug
 	fleet "Large Kimek" 1500
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 2400
-	fleet Heliarch 200
+	fleet "Small Heliarch"  300
+	fleet "Large Heliarch" 50
 	object
 		sprite star/k0
 		period 10
@@ -5321,7 +5333,7 @@ system Belugt
 	fleet "Large Kimek" 3000
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 3000
-	fleet Heliarch 1400
+	fleet "Small Heliarch"  1400
 	object
 		sprite star/k0
 		period 10
@@ -5532,7 +5544,7 @@ system Bloptab
 	fleet "Large Kimek" 5000
 	fleet "Small Saryd" 1600
 	fleet "Large Saryd" 7000
-	fleet Heliarch 1500
+	fleet "Small Heliarch"  1500
 	object
 		sprite star/g0
 		period 10
@@ -5593,7 +5605,8 @@ system Blubipad
 	fleet "Large Kimek" 4000
 	fleet "Small Saryd" 1300
 	fleet "Large Saryd" 3000
-	fleet Heliarch 300
+	fleet "Small Heliarch"  400
+	fleet "Large Heliarch" 700
 	object
 		sprite star/g0
 		period 10
@@ -5654,7 +5667,7 @@ system Blugtad
 	fleet "Large Kimek" 2500
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 3500
-	fleet Heliarch 900
+	fleet "Small Heliarch"  900
 	object
 		sprite star/g5
 		period 10
@@ -5939,7 +5952,7 @@ system "Bright Void"
 	fleet "Large Kimek" 1400
 	fleet "Small Saryd" 500
 	fleet "Large Saryd" 800
-	fleet Heliarch 500
+	fleet "Small Heliarch"  500
 	object
 		sprite star/f5
 		distance 54.8694
@@ -6017,7 +6030,7 @@ system "Broken Bowl"
 	fleet "Large Kimek" 3000
 	fleet "Small Saryd" 500
 	fleet "Large Saryd" 1200
-	fleet Heliarch 700
+	fleet "Small Heliarch"  700
 	object
 		sprite star/g0
 		period 10
@@ -7087,7 +7100,7 @@ system Companion
 	fleet "Large Kimek" 1800
 	fleet "Small Saryd" 400
 	fleet "Large Saryd" 1200
-	fleet Heliarch 1200
+	fleet "Small Heliarch" 1200
 	object
 		sprite star/k5
 		period 10
@@ -7512,7 +7525,7 @@ system "Dark Hills"
 	fleet "Large Kimek" 4000
 	fleet "Small Saryd" 600
 	fleet "Large Saryd" 1400
-	fleet Heliarch 1000
+	fleet "Small Heliarch"  1000
 	object
 		sprite star/g0
 		period 10
@@ -7572,7 +7585,8 @@ system Debrugt
 	fleet "Large Kimek" 1600
 	fleet "Small Saryd" 900
 	fleet "Large Saryd" 2200
-	fleet Heliarch 300
+	fleet "Small Heliarch" 400
+	fleet "Large Heliarch" 700
 	object
 		sprite star/m0
 		distance 48.5
@@ -8641,7 +8655,7 @@ system Eblumab
 	fleet "Large Kimek" 4000
 	fleet "Small Saryd" 1500
 	fleet "Large Saryd" 5000
-	fleet Heliarch 1000
+	fleet "Small Heliarch" 1000
 	object
 		sprite star/k5
 		period 10
@@ -8926,7 +8940,8 @@ system Ekuarik
 	fleet "Large Kimek" 1000
 	fleet "Small Saryd" 800
 	fleet "Large Saryd" 1600
-	fleet Heliarch 200
+	fleet "Small Heliarch" 300
+	fleet "Large Heliarch" 600
 	object
 		sprite star/g5
 		period 10
@@ -9894,7 +9909,7 @@ system "Fallen Leaf"
 	fleet "Large Kimek" 7000
 	fleet "Small Saryd" 600
 	fleet "Large Saryd" 1600
-	fleet Heliarch 1800
+	fleet "Small Heliarch" 1800
 	object
 		sprite star/m0
 		period 10
@@ -9950,7 +9965,7 @@ system "Far Horizon"
 	fleet "Large Kimek" 3000
 	fleet "Small Saryd" 600
 	fleet "Large Saryd" 1600
-	fleet Heliarch 1800
+	fleet "Small Heliarch" 1800
 	object
 		sprite star/m0
 		period 10
@@ -10335,7 +10350,7 @@ system "Fell Omen"
 	fleet "Large Kimek" 2500
 	fleet "Small Saryd" 800
 	fleet "Large Saryd" 1800
-	fleet Heliarch 400
+	fleet "Small Heliarch" 500
 	object
 		sprite star/k5
 		period 10
@@ -10728,7 +10743,7 @@ system Flugbu
 	fleet "Large Kimek" 2400
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 3000
-	fleet Heliarch 500
+	fleet "Small Heliarch" 500
 	object
 		sprite star/k5
 		period 10
@@ -10924,7 +10939,7 @@ system "Four Pillars"
 	fleet "Large Kimek" 7000
 	fleet "Small Saryd" 700
 	fleet "Large Saryd" 2000
-	fleet Heliarch 2400
+	fleet "Small Heliarch" 2400
 	object
 		sprite star/k0
 		period 10
@@ -11502,7 +11517,7 @@ system Glubatub
 	fleet "Large Kimek" 4500
 	fleet "Small Saryd" 1400
 	fleet "Large Saryd" 4000
-	fleet Heliarch 500
+	fleet "Small Heliarch" 500
 	object
 		sprite star/m4
 		period 10
@@ -11646,7 +11661,7 @@ system "Good Omen"
 	fleet "Large Kimek" 8000
 	fleet "Small Saryd" 700
 	fleet "Large Saryd" 2400
-	fleet Heliarch 2000
+	fleet "Small Heliarch" 2000
 	object
 		sprite star/f5
 		period 10
@@ -11835,7 +11850,7 @@ system Gupta
 	fleet "Large Kimek" 2200
 	fleet "Small Saryd" 1100
 	fleet "Large Saryd" 2500
-	fleet Heliarch 800
+	fleet "Small Heliarch" 800
 	object
 		sprite star/k0
 		distance 46.2043
@@ -12613,7 +12628,8 @@ system Homeward
 	fleet "Large Kimek" 1000
 	fleet "Small Saryd" 600
 	fleet "Large Saryd" 1200
-	fleet Heliarch 200
+	fleet "Small Heliarch" 300
+	fleet "Large Heliarch" 500
 	object
 		sprite star/k5
 		period 10
@@ -12727,7 +12743,7 @@ system Hunter
 	fleet "Large Kimek" 2400
 	fleet "Small Saryd" 600
 	fleet "Large Saryd" 1200
-	fleet Heliarch 900
+	fleet "Small Heliarch" 900
 	object
 		sprite star/k5
 		period 10
@@ -13839,7 +13855,8 @@ system "Ki War Ek"
 	fleet "Large Kimek" 700
 	fleet "Small Saryd" 800
 	fleet "Large Saryd" 1500
-	fleet Heliarch 150
+	fleet "Small Heliarch" 200
+	fleet "Large Heliarch" 500
 	object
 		sprite star/g5
 		period 10
@@ -14980,7 +14997,8 @@ system "Last Word"
 	fleet "Large Kimek" 2000
 	fleet "Small Saryd" 700
 	fleet "Large Saryd" 1200
-	fleet Heliarch 200
+	fleet "Small Heliarch" 300
+	fleet "Large Heliarch" 700
 	object
 		sprite star/g5
 		period 10
@@ -15433,7 +15451,7 @@ system "Lone Cloud"
 	fleet "Large Kimek" 9000
 	fleet "Small Saryd" 800
 	fleet "Large Saryd" 2500
-	fleet Heliarch 3000
+	fleet "Small Heliarch" 3000
 	object
 		sprite star/m4
 		period 10
@@ -15886,7 +15904,8 @@ system Mebla
 	fleet "Large Kimek" 1800
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 2400
-	fleet Heliarch 350
+	fleet "Small Heliarch" 400
+	fleet "Large Heliarch" 1000
 	object
 		sprite star/k0
 		period 10
@@ -16208,7 +16227,7 @@ system Meblumem
 	fleet "Large Kimek" 2400
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 2800
-	fleet Heliarch 400
+	fleet "Small Heliarch" 400
 	object
 		sprite star/f5
 		distance 28.2943
@@ -16759,7 +16778,8 @@ system Miblulub
 	fleet "Large Kimek" 5000
 	fleet "Small Saryd" 1500
 	fleet "Large Saryd" 5000
-	fleet Heliarch 300
+	fleet "Small Heliarch" 400
+	fleet "Large Heliarch" 1000
 	object
 		sprite star/g0
 		period 10
@@ -18544,7 +18564,7 @@ system Pelubta
 	fleet "Large Kimek" 2000
 	fleet "Small Saryd" 1100
 	fleet "Large Saryd" 2500
-	fleet Heliarch 400
+	fleet "Small Heliarch" 400
 	object
 		sprite star/b5
 		distance 10.9957
@@ -19181,7 +19201,7 @@ system Plort
 	fleet "Large Kimek" 3000
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 4000
-	fleet Heliarch 800
+	fleet "Small Heliarch" 800
 	object
 		sprite star/m0
 		period 10
@@ -19755,7 +19775,8 @@ system Quaru
 	fleet "Large Kimek" 900
 	fleet "Small Saryd" 700
 	fleet "Large Saryd" 1400
-	fleet Heliarch 100
+	fleet "Small Heliarch" 200
+	fleet "Large Heliarch" 400
 	object
 		sprite star/g5
 		period 10
@@ -20538,7 +20559,7 @@ system Remembrance
 	fleet "Large Kimek" 5000
 	fleet "Small Saryd" 700
 	fleet "Large Saryd" 3000
-	fleet Heliarch 1200
+	fleet "Small Heliarch" 1200
 	object
 		sprite star/k0
 		period 10
@@ -22293,7 +22314,8 @@ system "Silver Bell"
 	fleet "Large Kimek" 1200
 	fleet "Small Saryd" 500
 	fleet "Large Saryd" 1000
-	fleet Heliarch 300
+	fleet "Small Heliarch" 400
+	fleet "Large Heliarch" 1000
 	object
 		sprite star/g0
 		period 10
@@ -22358,7 +22380,7 @@ system "Silver String"
 	fleet "Large Kimek" 2400
 	fleet "Small Saryd" 700
 	fleet "Large Saryd" 1500
-	fleet Heliarch 500
+	fleet "Small Heliarch" 500
 	object
 		sprite star/g0
 		period 10
@@ -22807,7 +22829,7 @@ system "Sol Arach"
 	fleet "Large Kimek" 1800
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 2000
-	fleet Heliarch 500
+	fleet "Small Heliarch" 500
 	object
 		sprite star/k0
 		period 10
@@ -22876,7 +22898,7 @@ system "Sol Kimek"
 	fleet "Large Kimek" 300
 	fleet "Small Saryd" 800
 	fleet "Large Saryd" 1600
-	fleet Heliarch 500
+	fleet "Small Heliarch" 500
 	object
 		sprite star/k5
 		period 10
@@ -22947,7 +22969,7 @@ system "Sol Saryd"
 	fleet "Large Kimek" 1200
 	fleet "Small Saryd" 300
 	fleet "Large Saryd" 800
-	fleet Heliarch 900
+	fleet "Small Heliarch" 900
 	object
 		sprite star/g0
 		distance 19.7171
@@ -23150,7 +23172,8 @@ system Speloog
 	fleet "Large Kimek" 1200
 	fleet "Small Saryd" 800
 	fleet "Large Saryd" 1800
-	fleet Heliarch 200
+	fleet "Small Heliarch" 300
+	fleet "Large Heliarch" 700
 	object
 		sprite star/g5
 		period 10
@@ -23325,7 +23348,7 @@ system "Steep Roof"
 	fleet "Large Kimek" 800
 	fleet "Small Saryd" 700
 	fleet "Large Saryd" 1400
-	fleet Heliarch 1200
+	fleet "Small Heliarch" 1200
 	object
 		sprite star/g0
 		period 10
@@ -23909,7 +23932,8 @@ system Tebuteb
 	fleet "Large Kimek" 7000
 	fleet "Small Saryd" 1600
 	fleet "Large Saryd" 6000
-	fleet Heliarch 250
+	fleet "Small Heliarch" 300
+	fleet "Large Heliarch" 700
 	object
 		sprite star/m0
 		distance 40.0549
@@ -24150,7 +24174,8 @@ system Torbab
 	fleet "Large Kimek" 1400
 	fleet "Small Saryd" 800
 	fleet "Large Saryd" 2000
-	fleet Heliarch 250
+	fleet "Small Heliarch" 300
+	fleet "Large Heliarch" 700
 	object
 		sprite star/g0
 		distance 26.8689
