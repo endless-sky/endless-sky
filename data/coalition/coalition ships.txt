@@ -119,7 +119,7 @@ ship "Arach Hulk"
 		"drag" 18.9
 		"heat dissipation" .50
 		"fuel capacity" 500
-		"cargo space" 757
+		"cargo space" 688
 		"outfit space" 520
 		"weapon capacity" 208
 		"engine capacity" 148
