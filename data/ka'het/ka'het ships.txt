@@ -122,7 +122,7 @@ ship "Telis'het"
 		"required crew" 1
 		"bunks" 1
 		"mass" 820
-		"drag" 6.9
+		"drag" 7.4
 		"heat dissipation" .35
 		"fuel capacity" 800
 		"ramscoop" 0.82
@@ -258,8 +258,8 @@ ship "Vareti'het"
 		"hull" 25800
 		"required crew" 1
 		"bunks" 1
-		"mass" 1520
-		"drag" 11.9
+		"mass" 2860
+		"drag" 14.1
 		"heat dissipation" 0.3
 		"fuel capacity" 700
 		"ramscoop" 0.97
