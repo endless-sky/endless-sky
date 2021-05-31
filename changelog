@@ -36,6 +36,7 @@ Version 0.9.14:
       * Updated the Bulk Freighter sprite to have a hardpoint layout matching pre-v0.9.13 Bulk Freighters for save compatibility. (@ravenshining)
       * Lowered the chances of an alien baby crawling into your cargo hold. Safety measured have been put into place to ensure that this happens far less often. (@Amazinite)
       * The James tutorial missions can now be continued if the player returns to the first mission after obtaining a ship that isn't in one of the starter categories. (@Zitchas)
+      * Tweaked the Telis and Vareti engines to maintain a better upgrade progression. (@DeBlister)
   * Game mechanics:
     * Disabled ships that are captured or assisted will now repair to slightly higher than the bare minimum hull necessary. (@Amazinite)
     * Invalid fleet variants are now removed from fleets, preventing plugins with improper data from blocking the offering of missions that spawn fleets. (@tehhowch)

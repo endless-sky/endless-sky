@@ -382,7 +382,7 @@ outfit "Telis Engine Nacelles"
 	"cost" 1372000
 	thumbnail "outfit/ka'het telis engine"
 	"mass" 81
-	"outfit space" -109
+	"outfit space" -101
 	"engine capacity" -81
 	"energy consumption" 6.81
 	"heat generation" 1.4
@@ -402,15 +402,15 @@ outfit "Vareti Engine Block"
 	category "Engines"
 	"cost" 1815000
 	thumbnail "outfit/ka'het vareti engine"
-	"mass" 143
-	"outfit space" -171
-	"engine capacity" -143
-	"energy consumption" 13.04
-	"heat generation" 2.7
+	"mass" 137
+	"outfit space" -168
+	"engine capacity" -137
+	"energy consumption" 10.90
+	"heat generation" 2.58
 	"thrust" 93.9
 	"thrusting heat" 6.7
-	"turn" 2288.2
-	"turning heat" 3.9
+	"turn" 2333.9
+	"turning heat" 3.32
 	"flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"flare sound" "plasma large"
