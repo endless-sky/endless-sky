@@ -101,7 +101,7 @@ phrase "friendly pug"
 	word
 		"."
 		" in the galaxy."
-		" through-out the universe."
+		" throughout the universe."
 		" among all sentient beings."
 
 phrase "friendly disabled pug"
