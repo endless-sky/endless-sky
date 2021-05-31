@@ -384,8 +384,8 @@ ship "Heron"
 		"hull" 250500
 		"required crew" 1000
 		"bunks" 3000
-		"mass" 5000
-		"drag" 25
+		"mass" 26450
+		"drag" 50
 		"heat dissipation" .80
 		"fuel capacity" 2500
 		"ramscoop" 10
