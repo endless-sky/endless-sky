@@ -333,6 +333,7 @@ outfit "Ka'het Reserve Accumulator"
 # Engines:
 
 outfit "Maeri Engine Nacelles"
+	plural "Maeri Engine Nacelles"
 	category "Engines"
 	"cost" 928000
 	thumbnail "outfit/ka'het maeri engine"
@@ -354,6 +355,7 @@ outfit "Maeri Engine Nacelles"
 	description "The Ka'het engines are peculiar in that they continuously draw large amounts of energy, but require no additional energy to activate: while this means that less power remains available for other subsystems, it is also somewhat more efficient than most types of propulsions, and generates only a tiny amount of heat."
 
 outfit "Ka'het Sustainer Nacelles"
+	plural "Ka'het Sustainer Nacelles"
 	category "Engines"
 	"cost" 357000
 	thumbnail "outfit/ka'het sustainer engine"
@@ -375,6 +377,7 @@ outfit "Ka'het Sustainer Nacelles"
 	description "While Ka'het vessels are already equipped with proper engines, most of them use a sustainer engine in addition to give the ship enough maneuverability to be useful in combat. Following the same design as its bigger cousins, the sustainer requires no power to function at the cost of constant energy consumption."
 
 outfit "Telis Engine Nacelles"
+	plural "Telis Engine Nacelles"
 	category "Engines"
 	"cost" 1372000
 	thumbnail "outfit/ka'het telis engine"

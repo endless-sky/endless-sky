@@ -13,8 +13,8 @@ help "bank"
 	`Paying off a mortgage early means you pay less interest to the bank, but it is sometimes wiser to instead use your money to buy a bigger ship which can earn you more income.`
 
 help "bank advanced"
-	`When entering a credit value at the bank, you can put in an exact number, or uses suffixes K, M, B, and T as shorthand for thousands, millions, billions, and trillions. For example, entering a value such as "100k" would count as 100,000 credits.`
-	`Entering a number that is higher than what you or the bank have available depending if you are paying or applying for a loan will default to the maximum available value. For example, enterting "1m" to pay off a 100,000 credit loan will completely pay off the loan without giving extra, should you have available credits.`
+	`When entering a credit value at the bank, you can put in an exact number, or use the suffixes K, M, B, and T as shorthand for thousands, millions, billions, and trillions. For example, entering a value such as "100k" would count as 100,000 credits.`
+	`Entering a number that is higher than what you or the bank have available depending if you are paying or applying for a loan will default to the maximum available value. For example, entering "1m" to pay off a 100,000 credit loan will completely pay off the loan without giving extra, should you have available credits.`
 
 help "basics 1"
 	`Press <View star map> to bring up your map. Select a destination, then close the map and press <Initiate hyperspace jump> to jump. Press <Land on planet / station> to land.`
@@ -120,7 +120,7 @@ help "stranded"
 
 help "trading"
 	`This is the trading panel. Earn money by buying commodities at a low price in one system, and selling at a higher price elsewhere. To view your map of commodity prices in other systems, press <View star map>. To buy or sell, click on [buy] or [sell], or select a line with the up and down arrows and press "+" or "-" (or Enter and Delete).`
-	`You can buy 5 tons at once by holding down Shift, 20 by holding down Control, 500 by hold down Alt, or larger amounts at a time by holding down two keys at once, or even all three.`
+	`You can buy 5 tons at once by holding down Shift, 20 by holding down Control, 500 by holding down Alt, or larger amounts at a time by holding down two keys at once, or even all three.`
 
 help "friendly disabled"
 	`This ship is disabled and needs your help to patch them up! Pressing <Board selected ship> will fly you to their ship and get them up and running again. Just be sure to do it when no one is trying to kill you, or they could get caught in the crossfire!`

@@ -1415,7 +1415,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 				continue;
 			
 			// Figure out how much income you get for selling this cargo.
-			int64_t value = commodity.second * system->Trade(commodity.first);
+			int64_t value = commodity.second * static_cast<int64_t>(system->Trade(commodity.first));
 			income += value;
 			
 			int original = originalTotals[commodity.first];
