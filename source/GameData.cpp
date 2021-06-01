@@ -153,6 +153,13 @@ namespace {
 		it.second.SetName(it.first);
 		Warn(noun, it.first);
 	}
+	
+	// Is "path" a potential source directory?
+	bool IsSourceDirectory(const string &path)
+	{
+		return Files::Exists(path + "data") || Files::Exists(path + "fonts") || Files::Exists(path + "images")
+			|| Files::Exists(path + "sounds");
+	}
 }
 
 
@@ -983,17 +990,13 @@ void GameData::LoadSources()
 	
 	vector<string> globalPlugins = Files::ListDirectories(Files::Resources() + "plugins/");
 	for(const string &path : globalPlugins)
-	{
-		if(Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
+		if(IsSourceDirectory(path))
 			sources.push_back(path);
-	}
 	
 	vector<string> localPlugins = Files::ListDirectories(Files::Config() + "plugins/");
 	for(const string &path : localPlugins)
-	{
-		if(Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
+		if(IsSourceDirectory(path))
 			sources.push_back(path);
-	}
 	
 	// Load the plugin data, if any.
 	for(auto it = sources.begin() + 1; it != sources.end(); ++it)
