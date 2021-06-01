@@ -15,7 +15,8 @@ DEB-based distros:
    libgl1-mesa-dev \
    libglew-dev \
    libopenal-dev \
-   libmad0-dev
+   libmad0-dev \
+   libpango-1.0-dev
 
 RPM-based distros:
    gcc-c++ \
@@ -26,14 +27,15 @@ RPM-based distros:
    mesa-libGL-devel \
    glew-devel \
    openal-soft-devel \
-   libmad-devel
+   libmad-devel \
+   pango-devel
 
 Then, from the project root folder, simply type:
 
   $ scons
   $ ./endless-sky
 
-The program will run, using the "data" and "images" folders that are found in the project root. For more Linux help, and to view other command-line flags, consult the `man` page (endless-sky.6), by running `man endless-sky` in the project directory.
+The program will run, using the "data", "fonts", "images", and "sounds" folders that are found in the project root. For more Linux help, and to view other command-line flags, consult the `man` page (endless-sky.6), by running `man endless-sky` in the project directory.
 The program also accepts a `--help` command line flag.
 
 To compile and also run unit tests, the "test" target can be used:
@@ -91,6 +93,7 @@ Once Homebrew is installed, use it to install the libraries you will need:
   $ brew install libjpeg-turbo
   $ brew install libmad
   $ brew install sdl2
+  $ brew install pango
 
 If the versions of those libraries are different from the ones that the Xcode project is set up for, you will need to modify the file paths in the “Frameworks” section in Xcode.
 It is possible that you will also need to modify the “Header Search Paths” and “Library Search Paths” in “Build Settings” to point to wherever Homebrew installed those libraries.
@@ -103,6 +106,12 @@ To create a Mac OS X binary that will work on systems other than your own, you m
   $ sudo install_name_tool -id "@rpath/libmad.0.dylib" /usr/local/lib/libmad.0.dylib
   $ sudo install_name_tool -id "@rpath/libturbojpeg.0.dylib" /usr/local/opt/libjpeg-turbo/lib/libturbojpeg.0.dylib
   $ sudo install_name_tool -id "@rpath/libSDL2-2.0.0.dylib" /usr/local/lib/libSDL2-2.0.0.dylib
+  $ sudo install_name_tool -id "@rpath/libpangocairo-1.0.0.dylib" /usr/local/lib/libpangocairo-1.0.0.dylib
+  $ sudo install_name_tool -id "@rpath/libpango-1.0.0.dylib" /usr/local/lib/libpango-1.0.0.dylib
+  $ sudo install_name_tool -id "@rpath/libglib-2.0.0.dylib" /usr/local/lib/libglib-2.0.0.dylib
+  $ sudo install_name_tool -id "@rpath/libcairo.2.dylib" /usr/local/lib/libcairo.2.dylib
+  $ sudo install_name_tool -id "@rpath/libfontconfig.1.dylib" /usr/local/lib/libfontconfig.1.dylib
+  $ sudo install_name_tool -id "@rpath/libgobject-2.0.0.dylib" /usr/local/lib/libgobject-2.0.0.dylib
 
 *** Note: there is extremely limited development support for macOS, and no intent to support macOS's new ARM architecture. ***
 
