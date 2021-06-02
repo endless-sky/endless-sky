@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef NEWS_H_
 #define NEWS_H_
 
+#include "ConditionSet.h"
 #include "LocationFilter.h"
 #include "Phrase.h"
 
@@ -33,8 +34,8 @@ public:
 	
 	// Check whether this news item has anything to say.
 	bool IsEmpty() const;
-	// Check if this news item is available on the given planet.
-	bool Matches(const Planet *planet) const;
+	// Check if this news item is available given the player's planet and conditions.
+	bool Matches(const Planet *planet, const std::map<std::string, std::int64_t> &conditions) const;
 	
 	// Get the speaker's name.
 	std::string Name() const;
@@ -46,6 +47,7 @@ public:
 	
 private:
 	LocationFilter location;
+	ConditionSet toShow;
 	
 	Phrase names;
 	std::vector<const Sprite *> portraits;

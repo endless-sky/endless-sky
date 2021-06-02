@@ -105,7 +105,7 @@ void DataWriter::WriteToken(const char *a)
 	bool hasQuote = false;
 	for(const char *it = a; *it; ++it)
 	{
-		hasSpace |= (*it <= ' ');
+		hasSpace |= (*it <= ' ' && *it >= 0);
 		hasQuote |= (*it == '"');
 	}
 	

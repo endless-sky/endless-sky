@@ -71,6 +71,7 @@ const vector<string> &DataNode::Tokens() const
 
 
 // Get the token with the given index. No bounds checking is done.
+// DataFile loading guarantees index 0 always exists.
 const string &DataNode::Token(int index) const
 {
 	return tokens[index];
