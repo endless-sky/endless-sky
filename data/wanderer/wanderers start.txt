@@ -1032,7 +1032,7 @@ mission "Wanderers: Alpha Surveillance C (Pug)"
 					decline
 			`	You try to get several of the Pug to talk to you, but most of them pointedly ignore you. Eventually, probably because you've made it clear that you are not going away, one of them approaches you carrying a small black box. It speaks to the box in its language, and the box says, "Hello you are a human you are from planet Earth are you not." It seems that the box is a rudimentary translation device, speaking in a monotone voice and without pausing between sentences. It is somewhat jarring to listen to, but you understand what is being said.`
 			`	You say, "Yes, that's correct."`
-			`	The box appears to translate your words, and the Pug responds to it. The box says, "Humans are not our responsibility. Why have you come to our planet?"`
+			`	The box appears to translate your words, and the Pug responds to it. The box says, "Humans are not our responsibility why have you come to our planet."`
 			choice
 				`	"The Alphas are causing trouble again, and I've heard that you helped us fight them in the past."`
 				`	"The Alphas have sided with the ones who are invading the Wanderers. Can you help us track them down?"`
