@@ -1,7 +1,7 @@
 Version 0.9.14:
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@alextd, @Amazinite, @Anarchist2, @AraCaputDraco, @Arachi-Lover, @Corraban2, @dazuma, @EjoThims, @InfiniteDonuts, @infinitewarp, @jarekchr, @MCOfficer, @Ornok, @petervdmeer, @tehhowch, @Terin, @Zitchas)
+      * Typo fixes. (@alextd, @Amazinite, @Anarchist2, @AraCaputDraco, @Arachi-Lover, @Corraban2, @dazuma, @EjoThims, @InfiniteDonuts, @infinitewarp, @jarekchr, @McloughlinGuy, @MCOfficer, @Ornok, @petervdmeer, @tehhowch, @Terin, @Zitchas)
       * "Remnant: Deep Surveillance" will now offer, as typos in the offer conditions were preventing it from offering. (@alextd, @Amazinite)
       * "Deep: Remnant 3" now properly offers on landing instead of requiring you to visit the spaceport with no direction. (@Amazinite)
       * The Dropship is now sold in Navy Basics shipyards, whereas before it was sold nowhere. (@Amazinite)
