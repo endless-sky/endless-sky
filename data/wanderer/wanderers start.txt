@@ -1036,7 +1036,7 @@ mission "Wanderers: Alpha Surveillance C (Pug)"
 			choice
 				`	"The Alphas are causing trouble again, and I've heard that you helped us fight them in the past."`
 				`	"The Alphas have sided with the ones who are invading the Wanderers. Can you help us track them down?"`
-			`	The Pug speaks again. "Who are the Alphas? That name is not known to us."`
+			`	The Pug speaks again. "Who are the Alphas that name is not known to us."`
 			`	You do your best to explain. Perhaps the humans of the Deep were wrong that the Pug knew about the Alphas. The Pug responds, "We can defend the Wanderers but the Hai and humans are beyond our jurisdiction we will not enter their space."`
 			choice
 				`	(Give up and leave.)`
