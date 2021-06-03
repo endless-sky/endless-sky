@@ -3890,7 +3890,7 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	
 	// Prevent various stats from reaching unallowable values.
 	hull = min(hull, attributes.Get("hull"));
-	shields = min(shields, attributes.Get("shields");
+	shields = min(shields, attributes.Get("shields"));
 	// Weapons are allowed to overcharge a ship's energy or fuel, but code in Ship::DoGeneration()
 	// will clamp it to a maximum value at the beginning of the next frame.
 	energy = max(0., energy);
