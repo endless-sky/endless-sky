@@ -19,7 +19,7 @@ news "heliarch news"
 		word
 			"A sizable crowd is watching one of the monitors in the spaceport, where an interviewer is speaking to a Heliarch agent. You learn from someone in the crowd that the agent was a professional athlete until recently."
 			"A news broadcast shows footage of many Heliarch agents arresting a group of terrorists. The Heliarch who was supervising the operation is later interviewed, explaining that the now prisoners were found to have stolen government equipment."
-			"The news show a Heliarch elder giving a short speech in a ship launching ceremony. After they finish, the brand new Heliarch warships are shown heading to their first patrol."
+			"The news show a Heliarch consul giving a short speech in a ship launching ceremony. After they finish, the brand new Heliarch warships are shown heading to their first patrol."
 
 news "heliarch propaganda"
 	location
@@ -77,7 +77,7 @@ news "heliarch agent"
 			`"Saryd, Kimek, Arach, human, no matter what species, to protect all of our citizens, committed we are."`
 			`"Enjoy my post well enough, I do, but still to get a break during the Coalition games to watch them, I am."`
 			`"Part of a Punisher crew, I am. Land, refuel, rest, and back to working on that magnificent ship, I am!"`
-			`"Offered the position of elder, I actually have been. Only, not interested in that governing activity, I am."`
+			`"Offered the position of magister, I actually have been. Only, not interested in that governing activity, I am."`
 			`"Apologies, but make haste I must. Gone missing some garrison guns have, and back to cleaning Stalker engines I will be, if find them I don't!"`
 			`"Difficult sometimes it is, to be a mediator. If careful with my words I am not, a Saryd might think an Arach talking about longcows has insulted their mother."`
 			"An agent is trying to calm down a small crowd outside a local bar. After some minutes, the more agitated drunkards are convinced to accompany the agent to a nearby Heliarch office."
@@ -93,7 +93,7 @@ news "heliarch candidate"
 	message
 		word
 			`"Laws, history, theory, too much of it I have read, and still behind I am..."`
-			`"As part of my trials, read the works of elder Elirom, I had to. Exceeded my expectations, his books have."`
+			`"As part of my trials, read the works of consul Elirom, I had to. Exceeded my expectations, his books have."`
 			`"Meant to prove our dedication and show our potential, the trials we candidates go through are. Though difficult, we're sure to be apt to serve once passed, we have."`
 
 news "coalition ad"
