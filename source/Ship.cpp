@@ -3778,6 +3778,7 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	if(weapon.HasDamageDropoff())
 		damageScaling *= weapon.DamageDropoff(distanceTraveled);
 	
+	// Basic damage types:
 	double shieldDamage = (weapon.ShieldDamage() + weapon.RelativeShieldDamage() * attributes.Get("shields"))
 		* damageScaling / (1. + attributes.Get("shield protection"));
 	double hullDamage = (weapon.HullDamage() + weapon.RelativeHullDamage() * attributes.Get("hull"))
@@ -3788,6 +3789,8 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 		* damageScaling / (1. + attributes.Get("fuel protection"));
 	double heatDamage = (weapon.HeatDamage() + weapon.RelativeHeatDamage() * MaximumHeat())
 		* damageScaling / (1. + attributes.Get("heat protection"));
+	
+	// Special damage types:
 	double ionDamage = weapon.IonDamage() * damageScaling / (1. + attributes.Get("ion protection"));
 	double disruptionDamage = weapon.DisruptionDamage() * damageScaling / (1. + attributes.Get("disruption protection"));
 	double slowingDamage = weapon.SlowingDamage() * damageScaling / (1. + attributes.Get("slowing protection"));
@@ -3795,7 +3798,9 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	double corrosionDamage = weapon.CorrosionDamage() * damageScaling / (1. + attributes.Get("corrosion protection"));
 	double leakDamage = weapon.LeakDamage() * damageScaling / (1. + attributes.Get("leak protection"));
 	double burnDamage = weapon.BurnDamage() * damageScaling / (1. + attributes.Get("burn protection"));
+	
 	double hitForce = weapon.HitForce() * damageScaling / (1. + attributes.Get("force protection"));
+	
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	
@@ -3805,34 +3810,36 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 		shieldFraction = 0.;
 	else if(shieldDamage > shields)
 		shieldFraction = min(shieldFraction, shields / shieldDamage);
+	
 	shields -= shieldDamage * shieldFraction;
 	if(shieldDamage && !isDisabled)
 	{
 		int disabledDelay = static_cast<int>(attributes.Get("depleted shield delay"));
 		shieldDelay = max(shieldDelay, (shields <= 0. && disabledDelay) ? disabledDelay : static_cast<int>(attributes.Get("shield delay")));
 	}
+	
 	hull -= hullDamage * (1. - shieldFraction);
 	if(hullDamage && !isDisabled)
 		hullDelay = max(hullDelay, static_cast<int>(attributes.Get("repair delay")));
-	// For the following damage types, the total effect depends on how much is
-	// "leaking" through the shields.
-	double shieldLeakage = (1. - .5 * shieldFraction);
+	
+	// Most special damage types only have 50% effectiveness against ships with
+	// active shields. Disruption or piercing weapons can increase this effectiveness.
+	double shieldIntegrity = (1. - .5 * shieldFraction);
 	// Code in Ship::Move() will handle making sure the fuel and energy amounts
 	// stays in the allowable ranges.
-	energy -= energyDamage * shieldLeakage;
-	fuel -= fuelDamage * shieldLeakage;
-	heat += heatDamage * shieldLeakage;
-	ionization += ionDamage * shieldLeakage;
-	disruption += disruptionDamage * shieldLeakage;
-	slowness += slowingDamage * shieldLeakage;
-	discharge += dischargeDamage * shieldLeakage;
-	burning += burnDamage * shieldLeakage;
-	// Corrosion and leakage damage only apply when a ship has no shields remaining.
-	if(shields <= 0.)
-	{
-		corrosion += corrosionDamage * shieldLeakage;
-		leakage += leakDamage * shieldLeakage;
-	}
+	energy -= energyDamage * shieldIntegrity;
+	fuel -= fuelDamage * shieldIntegrity;
+	heat += heatDamage * shieldIntegrity;
+	ionization += ionDamage * shieldIntegrity;
+	disruption += disruptionDamage * shieldIntegrity;
+	slowness += slowingDamage * shieldIntegrity;
+	discharge += dischargeDamage * shieldIntegrity;
+	burning += burnDamage * shieldIntegrity;
+	
+	// The following special damage types have 0% effectiveness against ships with
+	// active shields. Disruption or piercing weapons still increase this effectivness.
+	corrosion += corrosionDamage * (1. - shieldFraction);
+	leakage += leakDamage * (1. - shieldFraction);
 	
 	if(hitForce)
 	{
