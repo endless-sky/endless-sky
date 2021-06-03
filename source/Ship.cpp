@@ -3814,13 +3814,13 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	shields -= shieldDamage * shieldFraction;
 	if(shieldDamage && !isDisabled)
 	{
-		int disabledDelay = static_cast<int>(attributes.Get("depleted shield delay"));
-		shieldDelay = max(shieldDelay, (shields <= 0. && disabledDelay) ? disabledDelay : static_cast<int>(attributes.Get("shield delay")));
+		int disabledDelay = attributes.Get("depleted shield delay");
+		shieldDelay = max<int>(shieldDelay, (shields <= 0. && disabledDelay) ? disabledDelay : attributes.Get("shield delay"));
 	}
 	
 	hull -= hullDamage * (1. - shieldFraction);
 	if(hullDamage && !isDisabled)
-		hullDelay = max(hullDelay, static_cast<int>(attributes.Get("repair delay")));
+		hullDelay = max<int>(hullDelay, attributes.Get("repair delay"));
 	
 	// Most special damage types (i.e. not hull or shield damage) only have 50% effectiveness
 	// against ships with active shields. Disruption or piercing weapons can increase this
