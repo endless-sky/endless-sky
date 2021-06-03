@@ -3778,7 +3778,7 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	if(weapon.HasDamageDropoff())
 		damageScaling *= weapon.DamageDropoff(distanceTraveled);
 	
-	// Basic damage types:
+	// Instantaneous damage types:
 	double shieldDamage = (weapon.ShieldDamage() + weapon.RelativeShieldDamage() * attributes.Get("shields"))
 		* damageScaling / (1. + attributes.Get("shield protection"));
 	double hullDamage = (weapon.HullDamage() + weapon.RelativeHullDamage() * attributes.Get("hull"))
@@ -3790,7 +3790,7 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	double heatDamage = (weapon.HeatDamage() + weapon.RelativeHeatDamage() * MaximumHeat())
 		* damageScaling / (1. + attributes.Get("heat protection"));
 	
-	// Special damage types:
+	// DoT damage types:
 	double ionDamage = weapon.IonDamage() * damageScaling / (1. + attributes.Get("ion protection"));
 	double disruptionDamage = weapon.DisruptionDamage() * damageScaling / (1. + attributes.Get("disruption protection"));
 	double slowingDamage = weapon.SlowingDamage() * damageScaling / (1. + attributes.Get("slowing protection"));
@@ -3822,8 +3822,9 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	if(hullDamage && !isDisabled)
 		hullDelay = max(hullDelay, static_cast<int>(attributes.Get("repair delay")));
 	
-	// Most special damage types only have 50% effectiveness against ships with
-	// active shields. Disruption or piercing weapons can increase this effectiveness.
+	// Most special damage types (i.e. not hull or shield damage) only have 50% effectiveness
+	// against ships with active shields. Disruption or piercing weapons can increase this
+	// effectiveness.
 	double shieldIntegrity = (1. - .5 * shieldFraction);
 	// Code in Ship::Move() will handle making sure the fuel and energy amounts
 	// stays in the allowable ranges.
