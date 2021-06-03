@@ -23,6 +23,7 @@ hazard "Ember Waste Base Storm"
 	weapon
 		"ion damage" 0.5
 		"shield damage" 5
+		"hull damage" 0.01
 
 effect "ion hazard"
 	sprite "effect/spark"
@@ -42,7 +43,7 @@ hazard "Black Hole Accretion Disk"
 		"hit effect" "nano spark"
 		"damage dropoff" 150 600
 		"dropoff modifier" 0
-		"relative shield damage" .00028
+		"relative shield damage" .0018
 
 hazard "Black Hole Event Horizon"
 	"constant strength"
@@ -51,7 +52,7 @@ hazard "Black Hole Event Horizon"
 		"hit effect" "nano spark"
 		"damage dropoff" 0 150
 		"dropoff modifier" 0
-		"relative hull damage" .00028
+		"relative hull damage" .0009
 		"piercing" 10
 
 hazard "Black Hole Gravity"
