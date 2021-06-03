@@ -3826,9 +3826,13 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	disruption += disruptionDamage * shieldLeakage;
 	slowness += slowingDamage * shieldLeakage;
 	discharge += dischargeDamage * shieldLeakage;
-	corrosion += corrosionDamage * shieldLeakage;
-	leakage += leakDamage * shieldLeakage;
 	burning += burnDamage * shieldLeakage;
+	// Corrosion and leakage damage only apply when a ship has no shields remaining.
+	if(shields <= 0.)
+	{
+		corrosion += corrosionDamage * shieldLeakage;
+		leakage += leakDamage * shieldLeakage;
+	}
 	
 	if(hitForce)
 	{
