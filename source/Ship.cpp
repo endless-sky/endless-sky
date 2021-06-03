@@ -101,7 +101,7 @@ namespace {
 	{
 		if(isDeactivated || resistance <= 0.)
 		{
-			stat = .99 * stat;
+			stat = max(0., .99 * stat);
 			return;
 		}
 		
@@ -126,7 +126,7 @@ namespace {
 			heat += resistance * heatCost;
 		}
 		else
-			stat = .99 * stat;
+			stat = max(0., .99 * stat);
 	}
 }
 
@@ -2141,8 +2141,8 @@ void Ship::DoGeneration()
 	}
 	
 	// Don't allow any levels to drop below zero.
-	fuel = max(0., fuel);
 	energy = max(0., energy);
+	fuel = max(0., fuel);
 	heat = max(0., heat);
 }
 
@@ -3866,8 +3866,6 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	// against ships with active shields. Disruption or piercing weapons can increase this
 	// effectiveness.
 	double shieldIntegrity = (1. - .5 * shieldFraction);
-	// Code in Ship::Move() will handle making sure the fuel and energy amounts
-	// stays in the allowable ranges.
 	energy -= energyDamage * shieldIntegrity;
 	fuel -= fuelDamage * shieldIntegrity;
 	heat += heatDamage * shieldIntegrity;
@@ -3890,9 +3888,27 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 			ApplyForce((hitForce / distance) * d, weapon.IsGravitational());
 	}
 	
+	// Prevent various stats from reaching unallowable values.
+	hull = min(hull, attributes.Get("hull"));
+	shields = min(shields, attributes.Get("shields");
+	// Weapons are allowed to overcharge a ship's energy or fuel, but code in Ship::DoGeneration()
+	// will clamp it to a maximum value at the beginning of the next frame.
+	energy = max(0., energy);
+	fuel = max(0., fuel);
+	heat = max(0., heat);
+	
 	// Recalculate the disabled ship check.
 	isDisabled = true;
 	isDisabled = IsDisabled();
+	
+	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
+	if(heat > MaximumHeat())
+	{
+		isOverheated = true;
+		isDisabled = true;
+	}
+	else if(heat < .9 * MaximumHeat())
+		isOverheated = false;
 	
 	// Report what happened to this ship from this weapon.
 	int type = 0;
@@ -3903,15 +3919,6 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	}
 	if(!wasDestroyed && IsDestroyed())
 		type |= ShipEvent::DESTROY;
-	
-	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
-	if(heat > MaximumHeat())
-	{
-		isOverheated = true;
-		isDisabled = true;
-	}
-	else if(heat < .9 * MaximumHeat())
-		isOverheated = false;
 	
 	return type;
 }
