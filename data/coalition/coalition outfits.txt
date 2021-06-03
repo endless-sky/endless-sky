@@ -255,7 +255,7 @@ outfit "Large Steering Module"
 	"steering flare sound" "atomic small"
 	description "By focusing on small, modular engines rather than the massive capital ship drives that most other species develop, the Coalition loses some of the potential efficiency for very large ships, but gains a considerable amount of flexibility."
 
-outfit "Enforcer Confrontation Gear"
+outfit "Enforcer Combat Gear"
 	category "Hand to Hand"
 	licenses
 		Heliarch
