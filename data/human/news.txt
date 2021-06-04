@@ -38,6 +38,9 @@ news "human merchant anywhere"
 			"I'm barely able to turn a profit with the terrible prices at this port."
 			"It kind of boggles my mind to imagine that tomorrow I'll be a dozen light-years away. We lead exciting lives, but sometimes I wonder if we don't take enough time to appreciate what's right in front of us."
 			"Watch out for pirates! Those lowlifes will snatch every spool of thread out of your hold if you give them the chance. My advice: when you run into them, don't leave anything left to bury."
+			"Don't call the Luna shipyard workers Lunatics, they seem to be very sensitive about it."
+			"The people from Earth are called Earthlings, but the people from Mars don't want to be called Martians due to those stupid old science fiction stories."
+			"Somebody installed my anti-gravity plates upsidedown. Luckily I saw it in time! Can you imagine what would have happened if I wouldn't have seen it?"
 		word
 			`"`
 
@@ -429,6 +432,8 @@ news "tour guide"
 			"Always check in at the spaceport. You might find an unprepared tourist looking for a return trip. Trust me, I've seen it far too many times."
 			"If you have any tourists onboard that want to go anti-gravity boarding, then let them ask for me. I'll pay you commission."
 			"Mind the gravity!"
+			"I'm handing out astronaut badges by the dozen for first time space travellers. It lost a bit of glamour now that every fool can book a flight on a spaceship."
+			"As I get older, I remember all the people I lost along the way. Maybe I'm in the wrong profession."
 		word
 			`"`
 
@@ -615,6 +620,7 @@ news "nuclear technician"
 			"In all of human space, there hasn't been a single nuclear meltdown in fourteen years. And that was just a tiny one, hardly even worth mentioning."
 			"My company's motto is, 'We bring the power of the stars down to earth, and send earthlings to the stars.' I think we should change it to something catchier."
 			"Ever used a fusion reactor in your ship? Feel free to thank one of us."
+			"The most terrifying word in my profession is 'oops'."
 		word
 			`"`
 
@@ -725,6 +731,7 @@ news "technical writer"
 			"People who over-use the passive voice should be lined up and shot. It doesn't make your writing more formal, it just makes it harder to read."
 			"Documents are written once, and read many times. So every minute I spend polishing someone's writing will pay off many times over in the long run."
 			"Communication skills are essential no matter what your job is. If you can't write well, people will think you're an idiot. Or at least, people like me will think that."
+			"Be carefull with the word 'awesome' on other planets, here it means something great, but somehow the meaning changed to something awfull on some planets further away from here."
 		word
 			`"`
 
@@ -766,6 +773,7 @@ news "chef"
 			"A rich client of mine shot a spiny-tailed gorgebeast on a safari expedition and asked me to cook it for him. The flavor profile was quite... unique."
 			"I was a dish-washer when I started, and now I'm a sous-chef. And people say there's no upward mobility in the galaxy these days!"
 			"Last week my dish was completely ruined; somebody had calibrated my kitchen scale with the gravity settings of another planet."
+			"There is only one thing worse than finding a worm in an apple you're eating; finding half a worm in such apple."
 		word
 			`"`
 
@@ -906,6 +914,7 @@ news "human syndicate manager"
 			"Nobody ever got fired for buying Syndicate."
 			"I would love to tell you about my job, but just telling you I work for the Syndicate probably already violates the non-disclosure agreement I signed."
 			"Those union boys are completely unreasonable; if we give them a finger then they try to eat up the whole arm up to the elbow."
+			"I've some disagreements with a manager above me. Can you pickup a mediator called Harry the Butcher from Deadman's Cove to help us resolve the problem peacefully?"
 		word
 			`"`
 
@@ -1019,6 +1028,7 @@ news "human tourism"
 			"I almost missed my transport last week; Someone was wrong on the hypernet and I was in a long heated discussion to correct it."
 			"Hey! Where is platform 5? I need to board there in a few minutes!"
 			"Have you seen my luggage? I'm sure I put it here some minutes ago."
+			"We visited an exhibition about ancient military weapons; stuff like stealth fighters, artillery and tanks. It all became obsoleted so fast when we got cheap spaceflight."
 		word
 			`"`
 
@@ -1039,6 +1049,30 @@ news "human protester"
 			"Give up your sinful life as spaceship captain and settle on this beautiful planet."
 		word
 			`"`
+
+
+
+news "human diplomat"
+	location
+		government "Republic" "Free Worlds" "Syndicate"
+		attributes "rich"
+	name
+		word
+			"Diplomat"
+			"Elite Negotiator"
+	message
+		word
+			`"`
+		word
+			"Tact is the art of making a point without making an enemy."
+			"Good counsel does no harm."
+			"Never argue with an idiot. People watching may have trouble telling who's who."
+			"Taxes are what we use to buy civilization."
+			"Never trouble trouble till trouble troubles you."
+			"No raindrop likes to see itself as responsible for the flood."
+		word
+			`"`
+
 
 
 news "human mercenary"
@@ -1159,6 +1193,12 @@ news "human pirate"
 			"Don't count on the Navy to save you if me or any of my friends attack you. Those Navy goons only hang around near the rich planets."
 			"Did I attack you? Well, I attacked many people, could you be a bit more specific?"
 			"The size of my crimes no longer matter; one may as well hang for a sheep as for a lamb."
+			"Hey! We have this new Piracy As A Service offering. Want someone ambushed without incriminating yourself? Just tell me who, where and how much it's worth to you."
+			"I don't get it; If I donate a kidney, then I'm some sort of hero. But if I donate 7 kidneys, then suddenly I'm some sort of monster."
+			"I wasn't close to my parents when they died. Which was quite fortunate, since they died in an exploding ship."
+			"I hate double standards; burn a body in a crematorium and you are a professional, burn a body in a spaceship and you are a criminal."
+			"I missed my lover during the raids today. But only by a few inches; next time I will aim better."
+			"I once prayed to god for a new ship, but quickly found out he doesn't roll that way. So then I hijacked one and prayed for his forgiveness."
 		word
 			`"`
 
@@ -1190,6 +1230,7 @@ news "human merchant in pirate space"
 			"Why am I here? I really needed the fuel and decided that bribing off pirates until another ship entered the system wasn't smart long-term."
 			"There's some real creeps around here. All I wanted to do was sell some cargo at this port, but it definitely wasn't worth the risk."
 			"Whatever you do, don't try the ${contraband}. That stuff's nasty."
+			"I flew around half the galaxy to pick up wedding banquet, but it wasn't here and they stole my cargo instead! The cake was a lie!"
 		word
 			`"`
 
@@ -1261,6 +1302,7 @@ news "touristic pa system"
 			"Dear travellers, welcome to our planet. Please remember to synchronize your personal clocks to the local time and to the local night/day cycle duration."
 			"Please stand clear of the doors when the shuttle-train is departing."
 			"This is the final boarding call for passengers Eline, John and Robert. Please proceed to platform 3 for immediate boarding."
+			"Dear travellers, please take the time to adjust to normal gravity."
 
 
 
@@ -1320,3 +1362,5 @@ news "graffiti on spaceport wall"
 			"Waldo was here, but where is he now?"
 			"The butler did it!"
 			"Hello Hero, have you heroicly been hammering hostiles?"
+			"What do you get when you cross a rhetorical question with a joke?"
+			"Spacing out in space is never funny."
