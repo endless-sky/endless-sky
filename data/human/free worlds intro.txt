@@ -65,8 +65,7 @@ mission "Pact Recon 0"
 		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 25000
-		dialog
-			`A different female militia officer approaches you when you land on <planet>, and gives you <payment> in exchange for your scanner logs of the southern systems. "My name is Freya Winters," she says. "I'll be in touch when we've got a new assignment for you."`
+		dialog `A different female militia officer approaches you when you land on <planet>, and gives you <payment> in exchange for your scanner logs of the southern systems. "My name is Freya Winters," she says. "I'll be in touch when we've got a new assignment for you."`
 
 
 
@@ -88,15 +87,13 @@ mission "Pact Recon 1"
 		has "Pact Recon 0: done"
 	
 	on offer
-		dialog
-			`You receive a message from Freya, the militia officer in charge of tracking pirate activity. "We need some more eyes on the empty systems in the middle of the Dirt Belt," she says. "Pay would be a bit better than last time. Interested?"`
+		dialog `You receive a message from Freya, the militia officer in charge of tracking pirate activity. "We need some more eyes on the empty systems in the middle of the Dirt Belt," she says. "Pay would be a bit better than last time. Interested?"`
 	
 	on visit
 		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 35000
-		dialog
-			`You transfer your sensor logs to Officer Winters. She thanks you for your work, and pays you <payment>. She says, "I'll let you know when we need your services again."`
+		dialog `You transfer your sensor logs to Officer Winters. She thanks you for your work, and pays you <payment>. She says, "I'll let you know when we need your services again."`
 
 
 
@@ -118,15 +115,13 @@ mission "Pact Recon 2"
 		has "Pact Recon 1: done"
 	
 	on offer
-		dialog
-			`You receive another message from Freya: "Hello Captain! I've got a more challenging and lucrative mission for you. We need someone to do a flyby of all four pirate systems here in the south, to gauge their strength. Again, no fighting is required. What do you say?"`
+		dialog `You receive another message from Freya: "Hello Captain! I've got a more challenging and lucrative mission for you. We need someone to do a flyby of all four pirate systems here in the south, to gauge their strength. Again, no fighting is required. What do you say?"`
 	
 	on visit
 		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 60000
-		dialog
-			`Freya Winters meets up with you in person soon after you land. "I hope you didn't have much trouble," she says, as she hands you a credit chip for <payment>. "You've been a great help to us. I'll be sure to contact you next time we need a scout."`
+		dialog `Freya Winters meets up with you in person soon after you land. "I hope you didn't have much trouble," she says, as she hands you a credit chip for <payment>. "You've been a great help to us. I'll be sure to contact you next time we need a scout."`
 
 
 
@@ -148,8 +143,7 @@ mission "Pact Recon 3"
 		has "Pact Recon 2: done"
 	
 	on offer
-		dialog
-			`Once again, you receive a message from Freya Winters. "We have another mission for you," she says, "this one a bit more dangerous. We've heard rumors of a pirate fleet massing in one of the seldom-visited systems in the Dirt Belt, and we need to know where they are. Interested in helping to track them down? As before, you don't need to fight them, just observe them."`
+		dialog `Once again, you receive a message from Freya Winters. "We have another mission for you," she says, "this one a bit more dangerous. We've heard rumors of a pirate fleet massing in one of the seldom-visited systems in the Dirt Belt, and we need to know where they are. Interested in helping to track them down? As before, you don't need to fight them, just observe them."`
 	
 	npc
 		government "Pirate"
@@ -162,8 +156,7 @@ mission "Pact Recon 3"
 		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 80000
-		dialog
-			`You report to Freya that you found a sizable pirate fleet in the Naper system, as well as spotting some pirates elsewhere. She thanks you, and pays you <payment>. "Thank you for your assistance," she says. "Again, I'll be in touch if we need you."`
+		dialog `You report to Freya that you found a sizable pirate fleet in the Naper system, as well as spotting some pirates elsewhere. She thanks you, and pays you <payment>. "Thank you for your assistance," she says. "Again, I'll be in touch if we need you."`
 
 
 
@@ -241,17 +234,17 @@ mission "Pact Questioning"
 
 
 mission "FW Recon 0"
+	minor
 	name "Transport Militia Officer"
 	description "This militia officer asked if you could transport him to <destination>."
-	minor
 	source
 		government "Free Worlds"
 		near "Aldhibain" 1 10
 	destination "Glaze"
+	passengers 1
 	to offer
 		has "event: initial deployment 4"
 		random < 35 + 5 * "assisted free worlds" * "assisted free worlds"
-	passengers 1
 	to fail
 		has "chosen sides"
 	
@@ -277,16 +270,14 @@ mission "FW Recon 0"
 		dialog `You land on <planet>, but you realize that the militia officer is on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		payment
-		dialog
-			`The militia officer thanks you for the ride and pays you <payment>. As he is leaving, he says, "If you're interested in doing more work for us, head to the spaceport bar and find my commander. I'll tell him to keep an eye out for you."`
+		dialog `The militia officer thanks you for the ride and pays you <payment>. As he is leaving, he says, "If you're interested in doing more work for us, head to the spaceport bar and find my commander. I'll tell him to keep an eye out for you."`
 
 
 
 mission "FW Recon 1"
 	name "Free Worlds Reconnaissance"
 	description "Perform an outfit scan on the Cruiser <npc>, then report to a Free Worlds officer on <destination>."
-	source
-		planet "Glaze"
+	source "Glaze"
 	to offer
 		has "FW Recon 0: done"
 	to fail
@@ -337,21 +328,20 @@ mission "FW Recon 1"
 	on visit
 		dialog `You land on <planet>, but you haven't yet scanned the Navy Cruiser patrolling the system. Depart and scan the Cruiser's outfits before returning.`
 	on complete
-		dialog `Soon after you land, the militia officer comes to your ship and pays you <payment> in exchange for your sensor logs regarding the <npc>. He says, "If you would be interested in continuing to work for us, meet me in the spaceport bar in an hour."`
 		payment 10000
+		dialog `Soon after you land, the militia officer comes to your ship and pays you <payment> in exchange for your sensor logs regarding the <npc>. He says, "If you would be interested in continuing to work for us, meet me in the spaceport bar in an hour."`
 
 
 
 mission "FW Recon 2"
 	name "Free Worlds Reconnaissance"
 	description "Scan any ships in the <waypoints> system that are equipped like the combat-ready Cruiser you scanned previously, then return to <destination>."
-	source
-		planet "Glaze"
+	waypoint "Menkent"
+	source "Glaze"
 	to offer
 		has "FW Recon 1: done"
 	to fail
 		has "chosen sides"
-	waypoint "Menkent"
 	
 	on offer
 		conversation
@@ -373,23 +363,21 @@ mission "FW Recon 2"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Heavy)" 4
-		dialog "You've scanned all the ships you can find here that seem to be upgraded for combat. Time to return to <planet> to collect your payment."
+		dialog `You've scanned all the ships you can find here that seem to be upgraded for combat. Time to return to <planet> to collect your payment.`
 	
 	on visit
 		dialog `You land on <planet>, but you haven't yet scanned the Navy Cruisers patrolling Menkent. Depart and scan the Cruisers' outfits before returning.`
 	on complete
-		dialog `JJ meets you as soon as you land, and you hand over the scanner data. "Thank you again," he says. "If you're willing to take on one more recon mission, meet me in the bar." He hands you <payment>.`
 		payment 50000
+		dialog `JJ meets you as soon as you land, and you hand over the scanner data. "Thank you again," he says. "If you're willing to take on one more recon mission, meet me in the bar." He hands you <payment>.`
 
 
 
 mission "FW Recon 3"
 	name "Free Worlds Reconnaissance"
 	description "Land on <destination> and secretly collect information on the developing Navy base there."
-	source
-		planet "Glaze"
-	destination
-		planet "New Wales"
+	source "Glaze"
+	destination "New Wales"
 	to offer
 		has "FW Recon 2: done"
 	to fail
@@ -418,10 +406,8 @@ mission "FW Recon 3B"
 	name "Free Worlds Reconnaissance"
 	description "Return to <destination> with information on the Navy base on <origin>."
 	landing
-	source
-		planet "New Wales"
-	destination
-		planet "Glaze"
+	source "New Wales"
+	destination "Glaze"
 	to offer
 		has "FW Recon 3: done"
 	to fail
@@ -457,26 +443,26 @@ mission "FW Recon 3B"
 	
 	on visit
 		dialog `A minute after you land, a Republic Gunboat, the <npc>, lands directly next to you. JJ does not approach you. You notice from your ship's logs that this Gunboat has been following you ever since you left <origin>; before you can hand over the information, you will need to escape its pursuit.`
-	
 	on complete
-		"assisted free worlds" ++
-		dialog `JJ meets you as soon as you land, and you pass off your information and photos to him. He pays you <payment> and says, "I'll be sure to let the Free Worlds Council know how helpful you have been."`
 		payment 80000
+		"assisted free worlds" ++
 		log "Gave the Free Worlds some photos and information on the Navy base on New Wales. Jean-Jacques, the militia contact, was very grateful for the help."
+		dialog `JJ meets you as soon as you land, and you pass off your information and photos to him. He pays you <payment> and says, "I'll be sure to let the Free Worlds Council know how helpful you have been."`
 
 
 
 mission "FW Katya 1"
+	minor
 	name "Assist the Free Worlds"
 	description "Stop by <destination>, pick up two passengers and some cargo, and distract the Republic from a more important cargo exchange going on simultaneously."
-	minor
+	source
+		government "Free Worlds"
+	destination "Glory"
 	to offer
 		random < 10 + 7 * "assisted free worlds" * "assisted free worlds"
 	to fail
 		has "chosen sides"
-	source
-		government "Free Worlds"
-	destination "Glory"
+	
 	on offer
 		conversation
 			`Wandering through the spaceport, you have stopped for a moment to read the menu posted in front of a restaurant, when your thoughts are interrupted by the click of a gun being cocked right behind your head, and a woman's voice saying, "Think fast, Captain."`
@@ -544,6 +530,7 @@ mission "FW Katya 1"
 	
 			`	"Fearsome creatures." She walks away, leaving you even more confused.`
 				decline
+	
 	on decline
 		event "FW Katya Alt 2: ready" 21
 		log "Was held up at gunpoint by a militia woman in some sort of ill-conceived Free Worlds recruitment test."
@@ -554,18 +541,19 @@ mission "FW Katya 1"
 
 
 mission "FW Katya 1B"
+	landing
 	name "Assist the Free Worlds"
 	description "Bring some cargo (harmless but intended to look suspicious) and two tourists to <destination>."
-	landing
-	to offer
-		has "FW Katya 1: done"
-	to fail
-		has "chosen sides"
 	source "Glory"
 	destination "Skymoot"
 	passengers 2
 	cargo "surgical gear" 10
-	blocked "You have reached <origin>, but you need <capacity> in order to take on Katya's mission for the Free Worlds. Return here when you have the required space free."
+	blocked `You have reached <origin>, but you need <capacity> in order to take on Katya's mission for the Free Worlds. Return here when you have the required space free.`
+	to offer
+		has "FW Katya 1: done"
+	to fail
+		has "chosen sides"
+	
 	on offer
 		conversation
 			`Soon after you land, a middle-aged tourist couple approach you and ask if you'd be willing to take them to Skymoot, "to see the dragons. Katerina recommended you." You tell them you would be glad to.`
@@ -600,11 +588,6 @@ mission "FW Katya 1C"
 		has "FW Katya 1B: active"
 	to fail
 		has "chosen sides"
-	
-	npc kill
-		personality nemesis
-		government "Republic"
-		fleet "Small Republic" 2
 	
 	on offer
 		conversation
@@ -667,25 +650,31 @@ mission "FW Katya 1C"
 				decline
 	
 	on accept
-		"reputation: Republic" = -10
+		"reputation: Republic" <?= -10
+	
+	npc kill
+		government "Republic"
+		personality nemesis
+		fleet "Small Republic" 2
 
 
 
 event "FW Katya Alt 2: ready"
 
 mission "FW Katya Alt 2"
+	minor
 	name "Transport Mr. Eyes"
 	description "Katya Reynolds asked you to travel to <destination>, where her friend Mr. Eyes is waiting for you."
-	minor
 	source
 		government "Free Worlds"
-	destination Foundry
+	destination "Foundry"
 	passengers 1
 	to offer
 		has "event: FW Katya Alt 2: ready"
 		random < 25 * "assisted free worlds"
 	to fail
 		has "chosen sides"
+	
 	on offer
 		conversation
 			`As you are walking through the spaceport, someone calls out, "Captain <last>!" A Free Worlds officer is approaching you; you recognize her as the same woman who pulled a gun on you earlier as a way to "test" you. "I apologize for pulling that trick on you before," she says. "My name is Katya Reynolds. I've heard really good things about you from some other members of the Free Worlds Council, and I'm hoping you'd reconsider working with me."`
@@ -717,6 +706,7 @@ mission "FW Katya 2"
 		has "FW Katya 1B: done"
 	to fail
 		has "chosen sides"
+	
 	on offer
 		conversation
 			`When you enter the bar, Katya waves you over to her table. "I've got another friend who needs to be transported," she says. "This one is on a boondock planet near the Core right now."`
@@ -727,6 +717,7 @@ mission "FW Katya 2"
 			
 			`	"Great!" she says. "His name is Mr. Eyes, and he'll meet you on <destination>. For his safety, I'd rather not tell you anything about his work, but I assure you he's an upstanding citizen. A little unpopular with big corporations and certain corrupt local governments, though."`
 				accept
+	
 	on visit
 		dialog `You land on <planet>, but your escort with room for Mr. Eyes hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -740,14 +731,11 @@ mission "FW Katya 2B"
 	destination "Geminus"
 	clearance
 	passengers 1
-	npc
-		government "Pirate"
-		personality nemesis plunders waiting
-		fleet "Small Core Pirates" 2
 	to offer
 		has "FW Katya 2: done"
 	to fail
 		has "chosen sides"
+	
 	on offer
 		log "People" "Katya Reynolds" `A former member of Parliament representing the impoverished Dirt Belt worlds, Katya is now a leader in the Free Worlds movement. She is well-known for standing up for the "common people" when they are being overlooked or mistreated by the government or by corporations.`
 		log "People" "Ijs Springborn" `Also known as "Mr. Eyes," Ijs worked for years as a self-appointed "vigilante nuclear power plant inspector," trying to catch and report environmental abuses that the government officials were turning a blind eye to. He has now agreed to join the Free Worlds movement.`
@@ -798,10 +786,16 @@ mission "FW Katya 2B"
 			`	"First," he says, "we need to go to Geminus, where the attack happened. I can explain more when we get there. In the meantime, I should also warn you that I seem to have terrible luck with pirates showing up wherever I go. It's almost like someone has put a price on my head." He grins.`
 				accept
 	
-	on visit
-		dialog `You land on <planet>, but you realize that Mr. Eyes is on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on accept
 		log `Met up with a friend of Katya's named Mr. Eyes, who calls himself a "vigilante nuclear power plant inspector." He thinks he can help hunt down the people who bombed Geminus and Martini, to prove that the Free Worlds were not behind it.`
+	
+	npc
+		government "Pirate"
+		personality nemesis plunders waiting
+		fleet "Small Core Pirates" 2
+	
+	on visit
+		dialog `You land on <planet>, but you realize that Mr. Eyes is on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -816,11 +810,13 @@ mission "FW Katya 2C"
 		has "FW Katya 2B: done"
 	to fail
 		has "chosen sides"
+	
 	on offer
 		conversation
 			`It turns out that the suitcase Mr. Eyes is carrying is full of portable sensors. He fires them up while explaining to you what he is doing. "Each world, and even each mine, has a slightly different mix of isotopes in their fissionable elements," he explains. "So what I'm doing right now is almost like taking a fingerprint. Once we've got it, we can try to find a match on another planet. I'd be willing to bet the material just came from a civilian reactor core, so tracking it back to the mine wouldn't necessarily incriminate anyone. But developing nukes is tricky, so they probably did tests. And if we can find the test site, that may lead us to the perpetrators."`
 			`	A few minutes later, his measurements are done. "Got it," he says. "Time to start hunting. Katya said to meet up with her on <planet>. It's not our best bet, but it's on the list of suspects."`
 				accept
+	
 	on visit
 		dialog `You land on <planet>, but you realize that Mr. Eyes is on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
@@ -835,11 +831,12 @@ mission "FW Katya 2C"
 mission "FW Katya 3"
 	name "Drone Hunting"
 	description `Disable a surveillance drone (ideally when no Cruisers are watching), board it, "salvage" its surveillance equipment, and return to <destination>. (Until you leave the system where you disabled the drone, other Republic ships may attack you.)`
-	source Rand
+	source "Rand"
 	to offer
 		has "FW Katya 2C: done"
 	to fail
 		has "chosen sides"
+	
 	on offer
 		conversation
 			`You find Eyes and Katya sitting in the shade of one of the few trees in the port, drinking some sort of frozen milkshakes while they stare out at the desert and talk in hushed voices. When you join them, Katya says, "I was just filling Eyes in on the Navy's recent fleet mobilization. Half the Dirt Belt is swarming with Cruisers and surveillance drones right now. It's hard to believe that we can find the attackers before they do, unless they're somewhere the Navy hasn't thought to look."`
@@ -899,12 +896,13 @@ mission "FW Katya 4"
 	description "Stop on <destination> and check the planet for signs of nuclear testing."
 	source "Rand"
 	destination "Oblivion"
-	blocked "You need bunks for both Katya and Eyes in order to continue this mission."
 	passengers 2
+	blocked `You need bunks for both Katya and Eyes in order to continue this mission.`
 	to offer
 		has "FW Katya 3: done"
 	to fail
 		has "chosen sides"
+	
 	on offer
 		log "People" "Katya Reynolds" `Katya grew up on Hope, a Dirt Belt world that is no longer inhabited because of a supervolcano eruption that triggered a new ice age. Despite her distrust of the Republic she has high regard for the Navy because they were the ones, acting without clearance from Parliament, who helped the settlers on Hope to evacuate safely.`
 		conversation
@@ -943,6 +941,7 @@ mission "FW Katya 5"
 		has "FW Katya 4: done"
 	to fail
 		has "chosen sides"
+	
 	on offer
 		conversation
 			`You land on <origin>, and Mr. Eyes fires up the new Navy surveillance equipment to make atmospheric measurements. "Nothing here," he says after a few minutes. "Guess we should move on."`
@@ -985,6 +984,7 @@ mission "FW Katya 5"
 					accept
 				`	"Sorry, but I think I'm done with helping the Free Worlds. I'd rather strike out on my own."`
 					decline
+	
 	on visit
 		dialog `You land on <planet>, but you realize that Katya and Mr. Eyes are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -1002,6 +1002,7 @@ mission "FW Katya 5B"
 		has "FW Katya 5: done"
 	to fail
 		has "chosen sides"
+	
 	on offer
 		log "Factions" "Pirates" `Pirate ships are often crewed by children, the equivalent of street gangs or child soldiers. Many lawless worlds are so poor that joining a pirate gang is one of the only attractive options for earning a living.`
 		conversation
@@ -1045,6 +1046,7 @@ mission "FW Katya 5B"
 			label morning
 			`	At breakfast in the monastery, Mr. Eyes tells you, "I'm going to be staying here until you get back. Greenrock is no place for a man with a price on his head. But Katya will be going with you." You bring Katya and Greg back to your ship and get ready to take off.`
 				accept
+	
 	on visit
 		dialog `You land on <planet>, but you realize that Katya and Brother Greg are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -1061,6 +1063,7 @@ mission "FW Katya 5C"
 		has "FW Katya 5B: done"
 	to fail
 		has "chosen sides"
+	
 	on offer
 		conversation
 			`Brother Greg disappears for several hours to talk with his various contacts, then returns and reports to you and Katya. "No one has heard anything specific," he says, "and they say keeping a nuclear program secret would take an incredible amount of resources, or a very remote location with very good security."`
@@ -1094,6 +1097,7 @@ mission "FW Katya 6"
 		has "FW Katya 5C: done"
 	to fail
 		has "chosen sides"
+	
 	on offer
 		conversation
 			`You find Katya and Mr. Eyes sitting at a table in the corner of a small cafe, talking in hushed voices and examining a galactic map that is spread out in front of them. Several of the nearby systems are circled. Katya says, "Hello again, Captain. We've picked three planets that we think are our best options. It should only take a few weeks to visit all of them. What do you say?"`
@@ -1104,6 +1108,7 @@ mission "FW Katya 6"
 			
 			`	"Great!" says Katya. "We'll stop on <planet> first, then swing by Hopper and on to New Iceland. If we still haven't found anything by that point, we'll start working our way up the Rim."`
 				accept
+	
 	on visit
 		dialog `You land on <planet>, but you realize that Katya and Mr. Eyes are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -1120,11 +1125,13 @@ mission "FW Katya 6B"
 		has "FW Katya 6: done"
 	to fail
 		has "chosen sides"
+	
 	on offer
 		conversation
 			`Mr. Eyes fires up his instruments and looks at the results for a few minutes. "Nothing," he says. "Even underground testing would've thrown up a debris plume large enough to measure traces of it. But I'm picking up nothing."`
 			`	"No problem," says Katya. "Let's continue to <planet>."`
 				accept
+	
 	on visit
 		dialog `You land on <planet>, but you realize that Katya and Mr. Eyes are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -1141,10 +1148,12 @@ mission "FW Katya 6C"
 		has "FW Katya 6B: done"
 	to fail
 		has "chosen sides"
+	
 	on offer
 		conversation
 			`Again, Eyes runs his tests, and again, nothing shows up. "One more planet to go," he says. "Time to try <planet>." You can tell that they are both starting to feel a bit discouraged, and you are overwhelmed by the thought of how many planets in this sector you may need to search unless you get a lucky break soon.`
 				accept
+	
 	on visit
 		dialog `You land on <planet>, but you realize that Katya and Mr. Eyes are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -1161,6 +1170,7 @@ mission "FW Katya 7"
 		has "FW Katya 6C: done"
 	to fail
 		has "chosen sides"
+	
 	on offer
 		conversation
 			`<origin> turns out no differently than the previous two. "We need a change in strategy," says Katya. "We've been talking about something while we were in transit."`
@@ -1171,6 +1181,7 @@ mission "FW Katya 7"
 					accept
 				`	"Sorry, I've got some other missions I need to run instead of continuing this wild goose chase."`
 					decline
+	
 	on visit
 		dialog `You land on <planet>, but you realize that Katya and Mr. Eyes are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -1187,6 +1198,7 @@ mission "FW Katya 7B"
 		has "FW Katya 7: done"
 	to fail
 		has "chosen sides"
+	
 	on offer
 		conversation
 			`After landing, you go for a walk along the beach with Katya and Eyes. They both go barefoot, walking in the surf. Eyes is collecting pebbles and shells from under the water, and at one point instead of grabbing a pebble he surreptitiously reaches down and fills a small vial with seawater.`
@@ -1215,6 +1227,7 @@ mission "FW Katya 7B"
 					accept
 				`	"Sorry, 'one more world' is what you said two planets ago. I'm done with this."`
 					decline
+	
 	on visit
 		dialog `You land on <planet>, but you realize that Katya and Mr. Eyes are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -1231,6 +1244,7 @@ mission "FW Katya 7C"
 		has "FW Katya 7B: done"
 	to fail
 		has "chosen sides"
+	
 	on offer
 		log "Found evidence of nuclear testing on Clink, a mining moon on the edge of Free Worlds territory. It's strange that the perpetrators left such clear evidence behind; the Navy's drones will certainly have discovered it before we did. Katya stayed behind to try to infiltrate the mining compound and collect more information."
 		conversation
@@ -1252,8 +1266,8 @@ mission "FW Katya 7C"
 	on visit
 		dialog `You land on <planet>, but you realize that Mr. Eyes is on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
-		"assisted free worlds" ++
 		payment 250000
+		"assisted free worlds" ++
 		conversation
 			`Eyes has been really quiet for the whole journey; you're sure that he's worried about Katya. When you land, he hands you <payment> and says, "Thank you for all your help, Captain. I hope that this leads to justice being done."`
 			`	He starts to walk off, then comes back. "By the way, Katya wanted to keep this a secret, but I think you should know." He points to the credit chips he just handed you. "Katya's been funding this out of her own pocket. That's the last of her savings that she just paid you."`
@@ -1265,10 +1279,10 @@ mission "FW Katya 7C"
 
 
 mission "FW Escort 1"
+	autosave
+	minor
 	name "Free Worlds Escort"
 	description "Escort a Free Worlds supply convoy safely to <destination>."
-	minor
-	autosave
 	source
 		government "Free Worlds"
 	destination "Wayfarer"
@@ -1276,44 +1290,6 @@ mission "FW Escort 1"
 		random < 20 * "assisted free worlds"
 	to fail
 		has "chosen sides"
-	
-	npc accompany save
-		personality escort timid
-		government "Merchant"
-		ship Freighter "F.S. Raleigh"
-		ship Freighter "F.S. Scott"
-		ship Freighter "F.S. Hudson"
-		ship Freighter "F.S. Drake"
-		ship Freighter "F.S. Magellan"
-		ship Freighter "F.S. Franklin"
-	npc
-		personality heroic escort
-		government "Free Worlds"
-		fleet
-			cargo 0
-			names "free worlds small"
-			variant
-				"Hawk" 2
-				"Sparrow" 5
-	npc
-		personality plunders entering
-		government "Pirate"
-		fleet "Large Southern Pirates"
-	npc
-		personality plunders staying
-		government "Pirate"
-		fleet "Large Southern Pirates"
-		system "Alpha Arae"
-	npc
-		personality plunders staying
-		government "Pirate"
-		fleet "Large Southern Pirates"
-		system "Lesath"
-	npc
-		personality plunders waiting
-		government "Pirate"
-		fleet "Large Southern Pirates" 2
-		system "Tarazed"
 	
 	on offer
 		conversation
@@ -1329,22 +1305,58 @@ mission "FW Escort 1"
 	on accept
 		log "Serving as an escort for a Free Worlds supply convoy to Tarazed. It sounds like pirates have been specifically targeting their convoys, recently."
 	
+	npc accompany save
+		government "Merchant"
+		personality escort timid
+		ship Freighter "F.S. Raleigh"
+		ship Freighter "F.S. Scott"
+		ship Freighter "F.S. Hudson"
+		ship Freighter "F.S. Drake"
+		ship Freighter "F.S. Magellan"
+		ship Freighter "F.S. Franklin"
+	npc
+		government "Free Worlds"
+		personality heroic escort
+		fleet
+			cargo 0
+			names "free worlds small"
+			variant
+				"Hawk" 2
+				"Sparrow" 5
+	npc
+		government "Pirate"
+		personality plunders entering
+		fleet "Large Southern Pirates"
+	npc
+		government "Pirate"
+		personality plunders staying
+		system "Alpha Arae"
+		fleet "Large Southern Pirates"
+	npc
+		personality plunders staying
+		government "Pirate"
+		system "Lesath"
+		fleet "Large Southern Pirates"
+	npc
+		government "Pirate"
+		personality plunders waiting
+		system "Tarazed"
+		fleet "Large Southern Pirates" 2
+	
 	on abort
 		# No action, the player just silently walks away from this mission(chain)
-	
 	on fail
 		set "fw intro escort failed"
-	
 	on visit
-		dialog "You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system."
+		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
 
 
 
 mission "FW Escort 1B"
+	autosave
 	landing
 	name "Free Worlds Escort"
 	description "Escort a Free Worlds supply convoy safely to <destination>."
-	autosave
 	source "Wayfarer"
 	destination "Longjump"
 	to offer
@@ -1352,9 +1364,14 @@ mission "FW Escort 1B"
 	to fail
 		has "chosen sides"
 	
+	on offer
+		conversation
+			`Your convoy of freighters reaches <origin> intact, despite numerous encounters with pirates. The merchant captains sell their trade goods and stock up with weapons and ship outfits that will be used to build new ships for the Free Worlds. Of course, now that you are carrying such valuable cargo, the pirate attacks are likely to get even worse...`
+				accept
+	
 	npc accompany save
-		personality escort timid
 		government "Merchant"
+		personality escort timid
 		ship Freighter "F.S. Raleigh"
 		ship Freighter "F.S. Scott"
 		ship Freighter "F.S. Hudson"
@@ -1362,8 +1379,8 @@ mission "FW Escort 1B"
 		ship Freighter "F.S. Magellan"
 		ship Freighter "F.S. Franklin"
 	npc
-		personality heroic escort
 		government "Free Worlds"
+		personality heroic escort
 		fleet
 			cargo 0
 			names "free worlds small"
@@ -1371,89 +1388,48 @@ mission "FW Escort 1B"
 				"Hawk" 1
 				"Sparrow" 3
 	npc
+		government "Pirate"
 		personality plunders entering
-		government "Pirate"
 		fleet "Large Southern Pirates"
 	npc
-		personality plunders staying
 		government "Pirate"
-		fleet "Large Southern Pirates"
+		personality plunders staying
 		system "Alpha Arae"
-	npc
-		personality plunders staying
-		government "Pirate"
 		fleet "Large Southern Pirates"
-		system "Lesath"
 	npc
-		personality plunders waiting
 		government "Pirate"
-		fleet "Large Southern Pirates" 2
+		personality plunders staying
+		system "Lesath"
+		fleet "Large Southern Pirates"
+	npc
+		government "Pirate"
+		personality plunders waiting
 		system "Sabik"
+		fleet "Large Southern Pirates" 2
 	
-	on offer
-		conversation
-			`Your convoy of freighters reaches <origin> intact, despite numerous encounters with pirates. The merchant captains sell their trade goods and stock up with weapons and ship outfits that will be used to build new ships for the Free Worlds. Of course, now that you are carrying such valuable cargo, the pirate attacks are likely to get even worse...`
-				accept
-	
+	on abort
+		# No action, the player just silently walks away from this mission(chain)
+	on fail
+		set "fw intro escort failed"
+	on visit
+		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
 	on complete
 		payment 400000
 		conversation
 			`You are met at the spaceport by Tomek Voigt, one of the members of the Free Worlds Council. He thanks you and the other escort captains for your service, and pays you each <payment>. "The convoy is heading out again immediately," he says, "so meet me in the spaceport if you are willing to volunteer for escort duty again."`
-	
-	on abort
-		# No action, the player just silently walks away from this mission(chain)
-	
-	on fail
-		set "fw intro escort failed"
-	
-	on visit
-		dialog "You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system."
 
 
 
 mission "FW Escort 2"
+	autosave
 	name "Free Worlds Escort"
 	description "Escort a Free Worlds supply convoy safely to <destination>."
-	autosave
 	source "Longjump"
 	destination "Wayfarer"
 	to offer
 		has "FW Escort 1B: done"
 	to fail
 		has "chosen sides"
-	
-	npc accompany save
-		personality escort timid
-		government "Merchant"
-		ship Freighter "F.S. Raleigh"
-		ship Freighter "F.S. Scott"
-		ship Freighter "F.S. Hudson"
-		ship Freighter "F.S. Drake"
-		ship Freighter "F.S. Magellan"
-		ship Freighter "F.S. Franklin"
-	npc
-		personality heroic escort
-		government "Free Worlds"
-		fleet
-			cargo 0
-			names "free worlds small"
-			variant
-				"Sparrow" 3
-	npc
-		personality plunders staying
-		government "Pirate"
-		fleet "Large Southern Pirates"
-		system "Alpha Arae"
-	npc
-		personality plunders staying
-		government "Pirate"
-		fleet "Large Southern Pirates"
-		system "Lesath"
-	npc
-		personality plunders waiting
-		government "Pirate"
-		fleet "Large Southern Pirates" 3
-		system "Tarazed"
 	
 	on offer
 		conversation
@@ -1466,21 +1442,52 @@ mission "FW Escort 2"
 			`	"Great!" says Tomek. "Good luck to all of you, and I hope to see you all safely back here in a couple of weeks."`
 				accept
 	
+	npc accompany save
+		government "Merchant"
+		personality escort timid
+		ship Freighter "F.S. Raleigh"
+		ship Freighter "F.S. Scott"
+		ship Freighter "F.S. Hudson"
+		ship Freighter "F.S. Drake"
+		ship Freighter "F.S. Magellan"
+		ship Freighter "F.S. Franklin"
+	npc
+		government "Free Worlds"
+		personality heroic escort
+		fleet
+			cargo 0
+			names "free worlds small"
+			variant
+				"Sparrow" 3
+	npc
+		government "Pirate"
+		personality plunders staying
+		system "Alpha Arae"
+		fleet "Large Southern Pirates"
+	npc
+		government "Pirate"
+		personality plunders staying
+		system "Lesath"
+		fleet "Large Southern Pirates"
+	npc
+		government "Pirate"
+		personality plunders waiting
+		system "Tarazed"
+		fleet "Large Southern Pirates" 3
+	
 	on abort
 		# No action, the player just silently walks away from this mission(chain)
-	
 	on fail
 		set "fw intro escort failed"
-	
 	on visit
-		dialog "You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system."
+		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
 
 
 
 mission "FW Escort 2B"
+	autosave
 	landing
 	name "Free Worlds Escort"
-	autosave
 	description "Escort a Free Worlds supply convoy safely to <destination>."
 	source "Wayfarer"
 	destination "Longjump"
@@ -1489,9 +1496,14 @@ mission "FW Escort 2B"
 	to fail
 		has "chosen sides"
 	
+	on offer
+		conversation
+			`Once again, the convoy stocks up on weapons and outfits and begins preparing for the return journey. You can't help worrying that the longer these convoys keep running, the more pirates will discover their route and begin setting ambushes for them.`
+				accept
+	
 	npc accompany save
-		personality escort timid
 		government "Merchant"
+		personality escort timid
 		ship Freighter "F.S. Raleigh"
 		ship Freighter "F.S. Scott"
 		ship Freighter "F.S. Hudson"
@@ -1499,69 +1511,55 @@ mission "FW Escort 2B"
 		ship Freighter "F.S. Magellan"
 		ship Freighter "F.S. Franklin"
 	npc
-		personality heroic escort
 		government "Free Worlds"
+		personality heroic escort
 		fleet
 			cargo 0
 			names "free worlds small"
 			variant
 				"Sparrow" 2
 	npc
-		personality plunders staying
 		government "Pirate"
-		fleet "Large Southern Pirates" 2
-		fleet "Small Southern Pirates" 2
+		personality plunders staying
 		system "Alpha Arae"
-	npc
-		personality plunders staying
-		government "Pirate"
 		fleet "Large Southern Pirates" 2
 		fleet "Small Southern Pirates" 2
-		system "Lesath"
 	npc
-		personality plunders waiting
 		government "Pirate"
+		personality plunders staying
+		system "Lesath"
+		fleet "Large Southern Pirates" 2
+		fleet "Small Southern Pirates" 2
+	npc
+		government "Pirate"
+		personality plunders waiting
+		system "Sabik"
 		fleet "Large Southern Pirates"
 		fleet "Small Southern Pirates" 2
-		system "Sabik"
 	
-	on offer
-		conversation
-			`Once again, the convoy stocks up on weapons and outfits and begins preparing for the return journey. You can't help worrying that the longer these convoys keep running, the more pirates will discover their route and begin setting ambushes for them.`
-				accept
-	
+	on abort
+		# No action, the player just silently walks away from this mission(chain)
+	on fail
+		set "fw intro escort failed"
+	on visit
+		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
 	on complete
 		payment 400000
 		conversation
 			`Again, Tomek Voigt meets you at the spaceport, thanks you all for your courage and dedication, and pays you <payment>. Then, he pulls you aside and says, "Captain <last>, if you're interested in helping us further, please meet me in the spaceport bar."`
-	
-	on abort
-		# No action, the player just silently walks away from this mission(chain)
-	
-	on fail
-		set "fw intro escort failed"
-	
-	on visit
-		dialog "You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system."
 
 
 
 mission "FW Escort 3"
+	autosave
 	name "Stranded Freighter"
 	description "Repair the <npc>, which is stranded in the <waypoints> system, and escort it safely back to <destination>."
-	autosave
 	source "Longjump"
 	waypoint "Lesath"
 	to offer
 		has "FW Escort 2B: done"
 	to fail
 		has "chosen sides"
-	
-	npc accompany save
-		system "Lesath"
-		personality escort derelict timid
-		government "Merchant"
-		ship "Freighter" "F.S. Shackleton"
 	
 	on offer
 		conversation
@@ -1574,28 +1572,30 @@ mission "FW Escort 3"
 			`	"Glad to hear it," he says. "The crew of that freighter is depending on you. I know I don't have to tell you what will happen to them if the pirates board them before you get there."`
 				accept
 	
-	on complete
-		payment 200000
-		dialog
-			`Voigt is immensely relieved to see the <npc> returned safely home. "You have done us a great service today, Captain," he says, as he hands you credit chips for <payment>. "I'll be sure to let the Council know how helpful you have been."`
-		"assisted free worlds" ++
-		log "Helped rescue a Free Worlds freighter that had been disabled by pirates. Earned the gratitude of Tomek Voigt, the Council member in charge of the supply convoys."
+	npc accompany save
+		government "Merchant"
+		personality escort derelict timid
+		system "Lesath"
+		ship "Freighter" "F.S. Shackleton"
 	
 	on abort
 		# No action, the player just silently walks away from this mission(chain)
-	
 	on fail
 		set "fw intro escort failed"
-	
 	on visit
 		dialog `Tomek Voigt messages you and says, "Please escort the <npc> back here as soon as possible! Their crew is counting on you."`
+	on complete
+		payment 200000
+		"assisted free worlds" ++
+		log "Helped rescue a Free Worlds freighter that had been disabled by pirates. Earned the gratitude of Tomek Voigt, the Council member in charge of the supply convoys."
+		dialog `Voigt is immensely relieved to see the <npc> returned safely home. "You have done us a great service today, Captain," he says, as he hands you credit chips for <payment>. "I'll be sure to let the Council know how helpful you have been."`
 
 
 
 mission "FW Escort Second Chance"
+	minor
 	name "Second Chance"
 	description "Return to <destination> to meet up with Tomek Voigt and see if he will forgive you for failing the escort mission he gave you."
-	minor
 	source
 		near "Sabik" 1 100
 		government "Free Worlds"
@@ -1605,6 +1605,8 @@ mission "FW Escort Second Chance"
 		not "chosen sides"
 		"assisted free worlds" == 2
 		has "FW Katya 7C: done"
+	to fail
+		has "chosen sides"
 	
 	on offer
 		conversation
@@ -1645,9 +1647,9 @@ mission "FW Escort Second Chance"
 
 
 mission "FW Bounty 1"
-	name "Free Worlds Bounty Hunting"
 	description `Hunt down and destroy the "Rat Pack," a gang of pirate ships led by a flagship named "Cluny." They were last seen attacking freighters in the Seginus system.`
 	minor
+	name "Free Worlds Bounty Hunting"
 	source
 		government "Free Worlds"
 	to offer
@@ -1664,12 +1666,13 @@ mission "FW Bounty 1"
 					decline
 			`	"Excellent," she says. "They call themselves the 'Rat Pack,' and you'll recognize them because most of their ships are named after various vermin, although for some unknown reason their flagship is just named 'Cluny.' They were last seen in the Seginus system, just east of Free space. Thank you in advance for your help."`
 				accept
+	
 	on accept
 		log "Hunting down a fleet of pirates called the Rat Pack, who have been giving the Free Worlds trouble lately."
 	
 	npc kill
-		personality heroic staying nemesis target
 		government "Bounty"
+		personality heroic staying nemesis target
 		system
 			near "Seginus" 1 2
 		ship "Hawk (Rocket)" "Cluny"
@@ -1707,9 +1710,10 @@ mission "FW Bounty 2"
 					defer
 			`	He grins. "Your target this time is a retrofitted heavy freighter by the name of Moonless Night that has been stealing large amounts of cargo from our supply convoys. It was last seen in the Delta Sagittarii system. Good luck, Captain."`
 				accept
+	
 	npc kill
-		personality heroic staying nemesis target
 		government "Bounty"
+		personality heroic staying nemesis target
 		system
 			near "Delta Sagittarii" 1 2
 		ship "Behemoth (Speedy)" "Moonless Night"
@@ -1742,9 +1746,10 @@ mission "FW Bounty 3"
 					decline
 			`	"Great," he says. "Your target is named the Silverhawk. After we nearly destroyed it, we think it went to the Shaula system to hide out. Which means that you'll probably have to deal with other pirates at the same time. The Silverhawk has weapons that seem to interfere with a ship's electrical systems, draining power from them. Good luck, Captain."`
 				accept
+	
 	npc kill
-		personality heroic staying nemesis target
 		government "Bounty"
+		personality heroic staying nemesis target
 		system "Shaula"
 		ship "Osprey (Alien Weapons)" "Silverhawk"
 		dialog phrase "generic hunted bounty eliminated dialog"
@@ -1754,8 +1759,8 @@ mission "FW Bounty 3"
 	on complete
 		"assisted free worlds" ++
 		payment 300000
-		dialog `The militia officer who asked you to hunt down the <npc> contacts you soon after you land. "You've done us a great service," he says. "I'll be telling the Council how helpful you were." He hands you a payment of <payment>.`
 		log "Earned a good reputation with the Free Worlds militia by taking on missions to hunt down some dangerous pirates."
+		dialog `The militia officer who asked you to hunt down the <npc> contacts you soon after you land. "You've done us a great service," he says. "I'll be telling the Council how helpful you were." He hands you a payment of <payment>.`
 
 
 
@@ -1794,11 +1799,11 @@ mission "FW Commitment"
 
 
 mission "Rescue Katya 1"
+	landing
 	name "Rescue Katya"
 	description "Rescue Katya from <planet>, before the Navy discovers her, and bring her safely to Longjump."
-	landing
-	source Bourne
-	destination Clink
+	source "Bourne"
+	destination "Clink"
 	to offer
 		has "FW Commitment: offered"
 		not "chosen sides"
@@ -1847,12 +1852,12 @@ mission "Rescue Katya 1"
 
 
 mission "Rescue Katya 2"
-	landing
 	autosave
+	landing
 	name "Rescue Katya"
 	description "Return to <planet> and report to the Free Worlds Council that you were unable to locate Katya."
-	source Clink
-	destination Longjump
+	source "Clink"
+	destination "Longjump"
 	to offer
 		has "Rescue Katya 1: done"
 	on fail
@@ -1907,7 +1912,7 @@ mission "Defend Sabik"
 	landing
 	name "Defend Sabik"
 	description "Help to repulse a Navy attack on Sabik, then land on Longjump to debrief."
-	source Longjump
+	source "Longjump"
 	to offer
 		has "Rescue Katya 2: done"
 	on fail
@@ -1936,12 +1941,13 @@ mission "Defend Sabik"
 			`	An hour later you are in the bar celebrating your new employment when emergency sirens start blaring. Someone runs into the bar and says, "The Navy has entered the system. What do we do?"`
 			`	Tomek says, "We can't let them take this system, or they'll have us completely bottled up. This is where it begins. We need to fight. Get to your ships, quickly! But if you can, disable their ships instead of destroying them. These are Navy ships after all, and most of them don't want war any more than we do." You hurry to join all the other ships taking off to defend the system.`
 				launch
+	
 	on accept
 		log "Officially joined the Free Worlds. Helping to defend Sabik, which is now under attack by the Navy. This Free Worlds work may mean getting involved in a lot more battles like this one."
 	
 	npc evade
+		government "Republic"
 		personality waiting heroic
-		government Republic
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
@@ -1954,9 +1960,9 @@ mission "Defend Sabik"
 				"Rainmaker" 3
 			
 	npc evade
+		government "Republic"
 		personality heroic
-		government Republic
-		system Kornephoros
+		system "Kornephoros"
 		fleet 2
 			names "republic capital"
 			fighters "republic fighter"
@@ -1969,8 +1975,8 @@ mission "Defend Sabik"
 				"Rainmaker" 3
 	
 	npc
-		personality heroic disables
 		government "Free Worlds"
+		personality heroic disables
 		fleet
 			names "free worlds capital"
 			variant
@@ -1987,8 +1993,8 @@ mission "Defend Sabik"
 				"Hawk"
 				"Fury" 2
 	npc
-		personality heroic disables
 		government "Free Worlds"
+		personality heroic disables
 		system "Zubenelgenubi"
 		fleet
 			names "free worlds capital"
@@ -1998,8 +2004,8 @@ mission "Defend Sabik"
 				"Hawk" 3
 				"Sparrow" 5
 	npc
-		personality heroic disables
 		government "Free Worlds"
+		personality heroic disables
 		system "Zubeneschamali"
 		fleet
 			names "free worlds capital"
@@ -2013,16 +2019,16 @@ mission "Defend Sabik"
 				"Bastion" 2
 				"Argosy" 4
 	npc
-		personality heroic disables
 		government "Free Worlds"
+		personality heroic disables
 		system "Unukalhai"
 		fleet
 			names "free worlds capital"
 			variant
 				"Falcon" 2
 	npc
-		personality heroic waiting disables
 		government "Free Worlds"
+		personality heroic waiting disables
 		fleet
 			names "free worlds small"
 			variant
@@ -2033,6 +2039,8 @@ mission "Defend Sabik"
 		dialog `You've landed on <planet>, but there are still Navy ships circling overhead. You should take off and help finish them off.`
 	on complete
 		dialog `The Navy has been driven off, but at a great cost. You should probably visit the spaceport and see if Tomek is there, or someone else who can tell you what to do next.`
+
+
 
 mission "FW License Fix"
 	invisible
