@@ -22,21 +22,25 @@ Version 0.9.14:
       * The Pug Gridfire, Gatling Gun, and minable asteroid explosions now have unique sounds, whereas previously they had reused sounds or none at all. (@Floppa-Priest)
       * Quarg planets now all have regional attributes describing where in the galaxy they're located for use by missions and jobs. (@Amazinite)
       * Added a new human ship, the Container Transport. For now, this ship has identical stats to the Bulk Freighter, but the two ships will be differentiated from one another next update. (@ravenshining)
-    * Content changes:
+    * Mission changes:
       * Changed the Saryd couple's budget to something more sensible. (@jerith)
       * Made it clear in "Remnant: Electron Beam" that you are to return with two electron beams. (@AraCaputDraco)
-      * The Unfettered now have their own outfitter and shipyard, preventing new Hai technology from being sold by the Unfettered. (@Amazinite)
-      * The Independent government will now always be friendly after it is introduced in the Free Worlds campaign. (@Amazinite)
       * Improved some of the wording in "Remnant: Expanded Horizons Storms 1". (@Zitchas)
       * "Remnant: Face to Maw" no longer offers while you are in the middle of the "Cognizance" string of missions. (@Amazinite, @Ornok)
       * "Remnant: Cognizance 4" no longer uses mission failure to determine player choice, which led to confusion when the mission failed message appeared after making an acceptable choice. (@Amazinite)
       * The mission "Wanderers: Hai Diplomat" can now be offered on Mirrorlake. (@Ornok)
       * Improved some of the wording in "Lagrange Ring: Cargo". (@Arachi-Lover)
-      * Removed part of a logbook entry that said that the Quarg claimed that the Pug could defeat the Drak, which they never did. (@Arachi-Lover)
-      * Updated the Bulk Freighter sprite to have a hardpoint layout matching pre-v0.9.13 Bulk Freighters for save compatibility. (@ravenshining)
       * Lowered the chances of an alien baby crawling into your cargo hold. Safety measured have been put into place to ensure that this happens far less often. (@Amazinite)
       * The James tutorial missions can now be continued if the player returns to the first mission after obtaining a ship that isn't in one of the starter categories. (@Zitchas)
+    * Balance:
       * Tweaked the Telis and Vareti engines to maintain a better upgrade progression. (@DeBlister)
+    * Graphics:
+      * Updated the Bulk Freighter sprite to have a hardpoint layout matching pre-v0.9.13 Bulk Freighters for save compatibility. (@ravenshining)
+    * Other:
+      * The Unfettered now have their own outfitter and shipyard, preventing new Hai technology from being sold by the Unfettered. (@Amazinite)
+      * The Independent government will now always be friendly after it is introduced in the Free Worlds campaign. (@Amazinite)
+      * Removed part of a logbook entry that said that the Quarg claimed that the Pug could defeat the Drak, which they never did. (@Arachi-Lover)
+      * The highest rank of Heliarch has been changed from "elder" to "consul" to avoid having multiple alien factions use the "elder" title. (@Arachi-Lover)
   * Game mechanics:
     * Disabled ships that are captured or assisted will now repair to slightly higher than the bare minimum hull necessary. (@Amazinite)
     * Invalid fleet variants are now removed from fleets, preventing plugins with improper data from blocking the offering of missions that spawn fleets. (@tehhowch)

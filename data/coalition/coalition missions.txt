@@ -176,7 +176,7 @@ mission "Coalition: Lost: Marker"
 			`You're approached by a Heliarch delegation shortly after you leave your ship.`
 			`	"Cautiously observed during the past few weeks, scans of your ship have been, Captain <last>," the Saryd begins.`
 			`	"Unlike previous scans, a jump drive in your ship, our scanners found not," the Kimek continues.`
-			`	"Though appreciate the work you here perform, we do, for you to be cut-off from the galaxy, we wish not," the Arach says. "Discussed much, our elders have, and to help you, they decided. To <destination> you must go, there discussed, the terms will be."`
+			`	"Though appreciate the work you here perform, we do, for you to be cut-off from the galaxy, we wish not," the Arach says. "Discussed much, our consuls have, and to help you, they decided. To <destination> you must go, there discussed, the terms will be."`
 			choice
 				`	"By that you mean you'll get me another jump drive? That's pretty generous of you."`
 				`	"What? I lost my jump drive? You've gotta be kidding!"`
