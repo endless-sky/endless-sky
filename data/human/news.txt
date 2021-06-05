@@ -432,7 +432,7 @@ news "tour guide"
 			"Always check in at the spaceport. You might find an unprepared tourist looking for a return trip. Trust me, I've seen it far too many times."
 			"If you have any tourists onboard that want to go anti-gravity boarding, then let them ask for me. I'll pay you commission."
 			"Mind the gravity!"
-			"I'm handing out astronaut badges by the dozen for first-time space travellers. It lost a bit of glamour now that every fool can book a flight on a spaceship."
+			"I'm handing out astronaut badges by the dozen for first-time space travelers. It lost a bit of glamour now that every fool can book a flight on a spaceship."
 			"As I get older, I remember all the people I lost along the way. Maybe I'm in the wrong profession."
 		word
 			`"`
@@ -1044,7 +1044,7 @@ news "human protester"
 			`"`
 		word
 			"Stay with global companies! Don't depend on galactic companies from other worlds!"
-			"Humans were not built for traveling in space. Bad things happen when travelling at 25,000 kilometers per second!"
+			"Humans were not built for traveling in space. Bad things happen when traveling at 25,000 kilometers per second!"
 			"If we were meant to be in space, then we would have been born with built-in oxygen bottles!"
 			"Give up your sinful life as spaceship captain and settle on this beautiful planet."
 		word
@@ -1282,7 +1282,7 @@ news "syndicate pa system"
 			"Attention: baggage should not be left unattended. Any unattended baggage will be auctioned within days."
 			"Attention: factory workers please proceed to the fast-lane immigration desk. Time spent in regular immigration lanes will not be reimbursed."
 			"Dear spaceship captains: please be aware that our outfitters are open all hours of the day. There is never a reason to delay the purchase of your next piece of Syndicate equipment."
-			"Dear traveller: we recommend you to have dinner in restaurant The Wing. You will not be disappointed."
+			"Dear traveler: we recommend you to have dinner in restaurant The Wing. You will not be disappointed."
 
 
 
@@ -1296,13 +1296,13 @@ news "tourist pa system"
 	message
 		word
 			"Attention: baggage should not be left unattended. Keep an eye on your belongings at all times."
-			"Note to travellers: the planetary security level has been changed to black."
+			"Note to travelers: the planetary security level has been changed to black."
 			"Be aware that parking restrictions are in effect around the spaceport. Do not leave your personal transport vehicles unattended."
-			"Dear travellers: the spaceport is a strictly no-smoking zone. Thank you for your consideration."
-			"Dear travellers: welcome to our planet. Please remember to synchronize your personal clocks to the local time and night/day cycle duration."
+			"Dear travelers: the spaceport is a strictly no-smoking zone. Thank you for your consideration."
+			"Dear travelers: welcome to our planet. Please remember to synchronize your personal clocks to the local time and night/day cycle duration."
 			"Please stand clear of the doors when the shuttle train is departing."
 			"This is the final boarding call for passengers Eline, John, and Robert. Please proceed to platform 3 for immediate boarding."
-			"Dear travellers: please take the time to adjust to normal gravity."
+			"Dear travelers: please take the time to adjust to normal gravity."
 
 
 
