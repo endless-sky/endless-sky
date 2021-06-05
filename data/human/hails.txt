@@ -906,10 +906,10 @@ phrase "friendly civilian"
 		"Why do engineers go to Diphda? Because they like to Tinker!"
 		"What is a robot's least favorite planet? Rust!"
 		"What do you call a spaceship with no engines? A groundship!"
-		"Don't trust orbital defenses. They are always up to something."
+		"Don't trust stairs. They are always up to something."
 		"How many Hestians does it take to change a lightbulb? Five! An electrician does the work, and the buttler, manager and housekeeper supervise."
 		"How many Hestians does it take to change a lightbulb? Zero, they don't use such old technology there!"
-		"How many Hestians does it take to change a lightbulb? Zero, this is all out-sourced to off-worlders."
+		"How many Hestians does it take to change a lightbulb? Zero, it's all out-sourced to off-worlders."
 		"How many Hestians does it take to change a lightbulb? One, they are very educated and capable people."
 	word
 		""
@@ -1091,10 +1091,10 @@ phrase "friendly civilian"
 		"it turns out that I've accepted missions for two different planets in the one system."
 		"my ship spends all it's power on regenerating shields instead of firing."
 		"my escorts suicide themselves into close-quarters with pirates."
-		"my passengers are affraid and cry during the whole trip."
-		"one of my becomes space-sick and creates a horrible mess."
-		"one of my passengers throws up and I have to clean for days."
-		"I cannot unload my cargo because somebody messed up the paperwork."
+		"my passengers are afraid and cry during the whole trip."
+		"one of my passengers becomes space-sick and creates a horrible mess."
+		"one of my passengers throws up and I have to clean up for days."
+		"I can't unload my cargo because somebody messed up the paperwork."
 
 phrase "friendly civilian"
 	word
@@ -1758,8 +1758,8 @@ phrase "friendly civilian"
 		" "
 	word
 		"on my bridge"
-		"in my armoury"
-		"in my cargohold"
+		"in my armory"
+		"in my cargo hold"
 	word
 		" and "
 	word
@@ -4123,7 +4123,7 @@ phrase "test dummy"
 		"Look at your precious human ship, for the last time!"
 		"This is not a pre-recorded message."
 		"The answer is 42, I'm quite certain of it. Do you want me to calculate the question?"
-		"Is there a God they asked me... Yes, here is a God."
+		`"Is there a God," they asked me... Yes, here is a God.`
 
 phrase "disabled test dummy"
 	word
