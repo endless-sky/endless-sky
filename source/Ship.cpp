@@ -3840,11 +3840,12 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	double burnDamage = weapon.BurnDamage() * damageScaling / (1. + attributes.Get("burn protection"));
 	
 	double hitForce = weapon.HitForce() * damageScaling / (1. + attributes.Get("force protection"));
+	double piercing = max(0., min(1., weapon.Piercing() / (1. + attributes.Get("piercing protection")) - attributes.Get("piercing resistance")));
 	
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	
-	double shieldFraction = 1. - max(0., min(1., weapon.Piercing() / (1. + attributes.Get("piercing protection")) - attributes.Get("piercing resistance")));
+	double shieldFraction = 1. - piercing;
 	shieldFraction *= 1. / (1. + disruption * .01);
 	if(shields <= 0.)
 		shieldFraction = 0.;
@@ -3872,13 +3873,16 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 	ionization += ionDamage * shieldIntegrity;
 	disruption += disruptionDamage * shieldIntegrity;
 	slowness += slowingDamage * shieldIntegrity;
-	discharge += dischargeDamage * shieldIntegrity;
 	burning += burnDamage * shieldIntegrity;
 	
 	// The following special damage types have 0% effectiveness against ships with
 	// active shields. Disruption or piercing weapons still increase this effectivness.
 	corrosion += corrosionDamage * (1. - shieldFraction);
 	leakage += leakDamage * (1. - shieldFraction);
+	
+	// The following special damage types have 100% effectiveness against ships
+	// regardless of shield level.
+	discharge += dischargeDamage;
 	
 	if(hitForce)
 	{
