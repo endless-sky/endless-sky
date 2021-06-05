@@ -1035,7 +1035,7 @@ news "human tourism"
 
 news "human protester"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate"
 	name
 		word
 			"Protester"
