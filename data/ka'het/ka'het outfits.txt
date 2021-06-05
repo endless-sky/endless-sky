@@ -295,7 +295,7 @@ outfit "Ka'het Shield Restorer"
 	"outfit space" -17
 	"shield generation" 1.02
 	"energy consumption" 1.53
-	description "The Builders never relied much on shield matrices, preferring instead to strengthen their hull. The reality of war, however, required that the Builders to develop strong shield technology, leading to some Het vessels making extensive use of this module."
+	description "The Builders never relied much on shield matrices, preferring instead to strengthen their hull. The reality of war, however, required that the Builders develop strong shield technology, leading to some Het vessels making extensive use of this module."
 
 outfit "Ka'het Grand Restorer"
 	category "Systems"
