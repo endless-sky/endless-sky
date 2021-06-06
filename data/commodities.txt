@@ -9,7 +9,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 trade
-	commodity "Food" 200 1200
+	commodity "Food" 700 1200
 		"animal feed"
 		"apples"
 		"applesauce"
@@ -94,7 +94,7 @@ trade
 		"vinegar"
 		"wheat"
 		"yams"
-	commodity "Clothing" 280 880
+	commodity "Clothing" 580 880
 		"beach towels"
 		"blankets"
 		"body armor"
@@ -134,7 +134,7 @@ trade
 		"waterproof fiber"
 		"wool"
 		"work boots"
-	commodity "Metal" 380 1180
+	commodity "Metal" 780 1180
 		"aluminized steel"
 		"aluminum"
 		"beryllium"
@@ -184,7 +184,7 @@ trade
 		"tool steel blanks"
 		"vanadium"
 		"zinc"
-	commodity "Plastic" 480 1080
+	commodity "Plastic" 780 1080
 		"acetone"
 		"asphalt"
 		"bakelite"
@@ -222,7 +222,7 @@ trade
 		"unplasticized PVC"
 		"vinylesters"
 		"xylene"
-	commodity "Equipment" 660 1460
+	commodity "Equipment" 1060 1460
 		"3D printers"
 		"CNC machines"
 		"air conditioners"
@@ -287,7 +287,7 @@ trade
 		"welding torches"
 		"wheelbarrows"
 		"whiskey barrels"
-	commodity "Medical" 860 1860
+	commodity "Medical" 1360 1860
 		"antibacterials"
 		"antibiotics"
 		"anti-inflammatories"
@@ -328,7 +328,7 @@ trade
 		"tourniquets"
 		"tranquilizers"
 		"tweezers"
-	commodity "Industrial" 1040 1840
+	commodity "Industrial" 1440 1840
 		"aniline dyes"
 		"assorted shimstock"
 		"battery acid"
@@ -392,7 +392,7 @@ trade
 		"turret lathes"
 		"vacuum cleaners"
 		"varnish"
-	commodity "Electronics" 1180 1980
+	commodity "Electronics" 1580 1980
 		"accelerometers"
 		"amplifiers"
 		"batteries"
@@ -450,7 +450,7 @@ trade
 		"vacuum tubes"
 		"voltage converters"
 		"wireless receivers"
-	commodity "Heavy Metals" 1220 2620
+	commodity "Heavy Metals" 1920 2620
 		"actinide metals"
 		"barium"
 		"bismuth"
@@ -471,7 +471,7 @@ trade
 		"reactor-grade uranium"
 		"thorium"
 		"tungsten"
-	commodity "Luxury Goods" 1840 3040
+	commodity "Luxury Goods" 2440 3040
 		"antique swords"
 		"bawdy magazines"
 		"brandy"
