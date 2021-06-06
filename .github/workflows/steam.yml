@@ -1,0 +1,65 @@
+name: Steam
+
+on: push
+  # push:
+  #   branches:
+  #     - master
+  #     - v[0-9]+.[0-9]+.[0-9]+
+
+jobs:
+  changed:
+    runs-on: ubuntu-latest
+    outputs:
+      data: ${{ steps.filter.outputs.data }}
+      game_code: ${{ steps.filter.outputs.game_code }}
+      macos: ${{ steps.filter.outputs.macos }}
+      windows: ${{ steps.filter.outputs.windows }}
+      linux: ${{ steps.filter.outputs.linux }}
+      unit_tests: ${{ steps.filter.outputs.unit_tests }}
+      integration_tests: ${{ steps.filter.outputs.integration_tests }}
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 2
+    - uses: dorny/paths-filter@v2
+      id: filter
+      with:
+        filters: .github/path-filters.yml
+        token: ${{ github.token }}
+
+  deploy_data_depot:
+    needs: changed
+    if: needs.changed.outputs.data == 'true'
+    runs-on: ubuntu-latest
+    env:
+      dir: steam-data-depot
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+    - name: 'Prepare data upload'
+      run: |
+        mkdir ${{ env.dir }}
+        mv -t ${{ env.dir }} \
+          changelog \
+          copyright \
+          credits.txt \
+          icon.png \
+          keys.txt \
+          license.txt \
+          data/ \
+          images/ \
+          sounds/
+    - name: Verify move
+      run: head -n 13 ${{ env.dir }}/credits.txt
+    # TODO: eventually enable below step
+    # - uses: game-ci/steam-deploy@v0.1
+    #   with:
+    #     appId: 404410
+    #     buildDescription: canary-${{ github.ref }}
+    #     username: ${{ secrets.STEAM_DEPLOY_UN }}
+    #     password: ${{ secrets.STEAM_DEPLOY_PW }}
+    #     mfaCode: ${{ secrets.STEAM_DEPLOY_MFA }}
+    #     rootPath: ''
+    #     depot1Path: ${{ env.dir }}
+    #     releaseBranch: canary
