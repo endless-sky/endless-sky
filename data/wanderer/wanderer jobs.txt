@@ -839,3 +839,22 @@ mission "Wanderers to Kor Efreti"
 	on complete
 		payment 35000 300
 		dialog `When you return, the Wanderers thank you for taking them to the Kor Efreti and hand you <payment> before disembarking.`
+
+mission "Captured spies"
+	name "Transport captured unfettered spies"
+	job 
+	repeat
+	description "Transport <bunks> captured unfettered spies to <planet>, payment is <payment>"
+	passengers 3
+	on offer
+		require "Brig"
+	source
+		has "language: Wanderer"
+		random < 20
+		government "Wanderer"
+	destination
+		distance 2 8
+		government "Wanderer"
+	on complete
+		payment 50000
+		dialog "You wish the Wanderers the best of luck on <planet> and collect your payment of <payment>."
