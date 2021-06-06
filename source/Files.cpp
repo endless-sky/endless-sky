@@ -40,6 +40,7 @@ namespace {
 	string imagePath;
 	string soundPath;
 	string savePath;
+	string testPath;
 	
 	mutex errorMutex;
 	File errorLog;
@@ -224,6 +225,13 @@ const string &Files::Sounds()
 const string &Files::Saves()
 {
 	return savePath;
+}
+
+
+
+const string &Files::Tests()
+{
+	return testPath;
 }
 
 

@@ -17,14 +17,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "Dialog.h"
+#include "text/DisplayText.h"
 #include "Files.h"
 #include "FillShader.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "text/layout.hpp"
 #include "MainPanel.h"
 #include "Messages.h"
 #include "PlayerInfo.h"
@@ -32,11 +34,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Rectangle.h"
 #include "ShipyardPanel.h"
 #include "StarField.h"
+#include "StartConditionsPanel.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include "gl_header.h"
 
 #include <algorithm>
+#include <stdexcept>
 
 using namespace std;
 
@@ -77,7 +82,7 @@ namespace {
 				date[9] += day % 10;
 				break;
 			}
-		return std::move(date);
+		return date;
 	}
 	
 	// Only show tooltips if the mouse has hovered in one place for this amount
@@ -112,11 +117,11 @@ void LoadPanel::Draw()
 	Information info;
 	if(loadedInfo.IsLoaded())
 	{
-		info.SetString("pilot", font.TruncateMiddle(loadedInfo.Name(), 165));
+		info.SetString("pilot", loadedInfo.Name());
 		if(loadedInfo.ShipSprite())
 		{
 			info.SetSprite("ship sprite", loadedInfo.ShipSprite());
-			info.SetString("ship", font.TruncateMiddle(loadedInfo.ShipName(), 165));
+			info.SetString("ship", loadedInfo.ShipName());
 		}
 		if(!loadedInfo.GetSystem().empty())
 			info.SetString("system", loadedInfo.GetSystem());
@@ -124,6 +129,7 @@ void LoadPanel::Draw()
 			info.SetString("planet", loadedInfo.GetPlanet());
 		info.SetString("credits", loadedInfo.Credits());
 		info.SetString("date", loadedInfo.GetDate());
+		info.SetString("playtime", loadedInfo.GetPlayTime());
 	}
 	else
 		info.SetString("pilot", "No Pilot Loaded");
@@ -144,16 +150,16 @@ void LoadPanel::Draw()
 	// The list has space for 14 entries. Alpha should be 100% for Y = -157 to
 	// 103, and fade to 0 at 10 pixels beyond that.
 	Point point(-470., -157. - sideScroll);
+	const double centerY = font.Height() / 2;
 	for(const auto &it : files)
 	{
-		Rectangle zone(point + Point(110., 7.), Point(230., 20.));
+		Rectangle zone(point + Point(110., centerY), Point(230., 20.));
 		bool isHighlighted = (it.first == selectedPilot || (hasHover && zone.Contains(hoverPoint)));
 		
 		double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
 		if(it.first == selectedPilot)
 			FillShader::Fill(zone.Center(), zone.Dimensions(), Color(.1 * alpha, 0.));
-		string name = font.Truncate(it.first, 220);
-		font.Draw(name, point, Color((isHighlighted ? .7 : .5) * alpha, 0.));
+		font.Draw({it.first, {220, Truncate::BACK}}, point, Color((isHighlighted ? .7 : .5) * alpha, 0.));
 		point += Point(0., 20.);
 	}
 	
@@ -168,7 +174,7 @@ void LoadPanel::Draw()
 		for(const auto &it : files.find(selectedPilot)->second)
 		{
 			const string &file = it.first;
-			Rectangle zone(point + Point(110., 7.), Point(230., 20.));
+			Rectangle zone(point + Point(110., centerY), Point(230., 20.));
 			double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
 			bool isHovering = (alpha && hasHover && zone.Contains(hoverPoint));
 			bool isHighlighted = (file == selectedFile || isHovering);
@@ -182,8 +188,8 @@ void LoadPanel::Draw()
 			if(file == selectedFile)
 				FillShader::Fill(zone.Center(), zone.Dimensions(), Color(.1 * alpha, 0.));
 			size_t pos = file.find('~') + 1;
-			string name = font.Truncate(file.substr(pos, file.size() - 4 - pos), 220);
-			font.Draw(name, point, Color((isHighlighted ? .7 : .5) * alpha, 0.));
+			const string name = file.substr(pos, file.size() - 4 - pos);
+			font.Draw({name, {220, Truncate::BACK}}, point, Color((isHighlighted ? .7 : .5) * alpha, 0.));
 			point += Point(0., 20.);
 		}
 	}
@@ -202,12 +208,10 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 {
 	if(key == 'n')
 	{
-		player.New();
-		
-		ConversationPanel *panel = new ConversationPanel(
-			player, *GameData::Conversations().Get("intro"));
-		GetUI()->Push(panel);
-		panel->SetCallback(this, &LoadPanel::OnCallback);
+		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
+		// Request that the player chooses a start scenario.
+		// StartConditionsPanel also handles the case where there's no scenarios.
+		GetUI()->Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), this));
 	}
 	else if(key == 'D' && !selectedPilot.empty())
 	{
@@ -311,6 +315,9 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 bool LoadPanel::Click(int x, int y, int clicks)
 {
+	// When the user clicks, clear the hovered state.
+	hasHover = false;
+	
 	// The first row of each panel is y = -160 to -140.
 	if(y < -160 || y >= (-160 + 14 * 20))
 		return false;
@@ -324,6 +331,7 @@ bool LoadPanel::Click(int x, int y, int clicks)
 			{
 				selectedPilot = it.first;
 				selectedFile = it.second.front().first;
+				centerScroll = 0;
 			}
 	}
 	else if(x >= -110 && x < 110)
@@ -430,26 +438,6 @@ void LoadPanel::UpdateLists()
 				loadedInfo.Load(Files::Saves() + selectedFile);
 			}
 		}
-	}
-}
-
-
-
-// New player "conversation" callback.
-void LoadPanel::OnCallback(int)
-{
-	GetUI()->Pop(this);
-	GetUI()->Pop(GetUI()->Root().get());
-	gamePanels.Reset();
-	gamePanels.CanSave(true);
-	gamePanels.Push(new MainPanel(player));
-	// Tell the main panel to re-draw itself (and pop up the planet panel).
-	gamePanels.StepAll();
-	// If the starting conditions don't specify any ships, let the player buy one.
-	if(player.Ships().empty())
-	{
-		gamePanels.Push(new ShipyardPanel(player));
-		gamePanels.StepAll();
 	}
 }
 

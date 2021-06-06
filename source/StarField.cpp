@@ -245,7 +245,7 @@ void StarField::MakeStars(int stars, int width)
 	
 	tileCols = (width / TILE_SIZE);
 	tileIndex.clear();
-	tileIndex.resize(tileCols * tileCols, 0);
+	tileIndex.resize(static_cast<size_t>(tileCols) * tileCols, 0);
 	
 	vector<int> off;
 	static const int MAX_OFF = 50;
@@ -274,7 +274,7 @@ void StarField::MakeStars(int stars, int width)
 	{
 		for(int j = 0; j < 10; ++j)
 		{
-			int index = Random::Int(off.size()) & ~1;
+			int index = Random::Int(static_cast<uint32_t>(off.size())) & ~1;
 			x += off[index];
 			y += off[index + 1];
 			x &= widthMod;
@@ -330,18 +330,19 @@ void StarField::MakeStars(int stars, int width)
 
 	glBufferData(GL_ARRAY_BUFFER, sizeof(data.front()) * data.size(), data.data(), GL_STATIC_DRAW);
 	
-	// connect the xy to the "vert" attribute of the vertex shader
+	// Connect the xy to the "vert" attribute of the vertex shader.
+	constexpr auto stride = 4 * sizeof(GLfloat);
 	glEnableVertexAttribArray(offsetI);
 	glVertexAttribPointer(offsetI, 2, GL_FLOAT, GL_FALSE,
-		4 * sizeof(GLfloat), nullptr);
+		stride, nullptr);
 	
 	glEnableVertexAttribArray(sizeI);
 	glVertexAttribPointer(sizeI, 1, GL_FLOAT, GL_FALSE,
-		4 * sizeof(GLfloat), (const GLvoid*)(2 * sizeof(GLfloat)));
+		stride, reinterpret_cast<const GLvoid *>(2 * sizeof(GLfloat)));
 	
 	glEnableVertexAttribArray(cornerI);
 	glVertexAttribPointer(cornerI, 1, GL_FLOAT, GL_FALSE,
-		4 * sizeof(GLfloat), (const GLvoid*)(3 * sizeof(GLfloat)));
+		stride, reinterpret_cast<const GLvoid *>(3 * sizeof(GLfloat)));
 	
 	// unbind the VBO and VAO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);

@@ -16,8 +16,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 
 #include "Information.h"
-#include "WrappedText.h"
+#include "text/WrappedText.h"
 
+class News;
 class PlayerInfo;
 
 
@@ -32,6 +33,10 @@ public:
 	
 	virtual void Step() override;
 	virtual void Draw() override;
+	
+	
+private:
+	const News *PickNews() const;
 	
 	
 private:

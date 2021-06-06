@@ -12,14 +12,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "SpaceportPanel.h"
 
+#include "text/alignment.hpp"
 #include "Color.h"
-#include "FontSet.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "Interface.h"
 #include "News.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Random.h"
 #include "UI.h"
 
 using namespace std;
@@ -32,15 +34,15 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 	SetTrapAllEvents(false);
 	
 	text.SetFont(FontSet::Get(14));
-	text.SetAlignment(WrappedText::JUSTIFIED);
+	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(480);
 	text.Wrap(player.GetPlanet()->SpaceportDescription());
 	
 	// Query the news interface to find out the wrap width.
 	// TODO: Allow Interface to handle wrapped text directly.
-	const Interface *interface = GameData::Interfaces().Get("news");
-	portraitWidth = interface->GetBox("message portrait").Width();
-	normalWidth = interface->GetBox("message").Width();
+	const Interface *newsUi = GameData::Interfaces().Get("news");
+	portraitWidth = newsUi->GetBox("message portrait").Width();
+	normalWidth = newsUi->GetBox("message").Width();
 	newsMessage.SetFont(FontSet::Get(14));
 }
 
@@ -48,7 +50,7 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 
 void SpaceportPanel::UpdateNews()
 {
-	const News *news = GameData::PickNews(player.GetPlanet());
+	const News *news = PickNews();
 	if(!news)
 		return;
 	hasNews = true;
@@ -93,11 +95,27 @@ void SpaceportPanel::Draw()
 	
 	if(hasNews)
 	{
-		const Interface *interface = GameData::Interfaces().Get("news");
-		interface->Draw(newsInfo);
+		const Interface *newsUi = GameData::Interfaces().Get("news");
+		newsUi->Draw(newsInfo);
 		// Depending on if the news has a portrait, the interface box that
 		// gets filled in changes.
-		newsMessage.Draw(interface->GetBox(hasPortrait ? "message portrait" : "message").TopLeft(),
+		newsMessage.Draw(newsUi->GetBox(hasPortrait ? "message portrait" : "message").TopLeft(),
 			*GameData::Colors().Get("medium"));
 	}
+}
+
+
+
+// Pick a random news object that applies to the player's planets and conditions.
+// If there is no applicable news, this returns null.
+const News *SpaceportPanel::PickNews() const
+{
+	vector<const News *> matches;
+	const Planet *planet = player.GetPlanet();
+	const map<string, int64_t> &conditions = player.Conditions();
+	for(const auto &it : GameData::SpaceportNews())
+		if(!it.second.IsEmpty() && it.second.Matches(planet, conditions))
+			matches.push_back(&it.second);
+	
+	return matches.empty() ? nullptr : matches[Random::Int(matches.size())];
 }

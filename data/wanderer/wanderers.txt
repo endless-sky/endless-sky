@@ -124,6 +124,25 @@ fleet "Wanderer Flycatchers"
 	variant
 		"Flycatcher" 2
 
+fleet "Wanderer Kor Efret Traders"
+	government "Wanderer"
+	names "wanderer"
+	cargo 3
+	personality
+		timid
+	variant
+		"Deep River"
+	variant 6
+		"Summer Leaf" 2
+		"Strong Wind"
+	variant 2
+		"Summer Leaf"
+	variant 4
+		"Strong Wind"
+	variant 2
+		"Tempest"
+	variant 3
+		"Autumn Leaf"
 
 shipyard "Wanderer Basics"
 	"Earth Shaper"

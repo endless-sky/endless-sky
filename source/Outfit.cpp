@@ -32,15 +32,27 @@ namespace {
 	// disallowed or undesirable behaviors (such as dividing by zero).
 	const auto MINIMUM_OVERRIDES = map<string, double>{
 		// Attributes which are present and map to zero may have any value.
+		{"cooling energy", 0.},
 		{"hull energy", 0.},
 		{"hull fuel", 0.},
 		{"hull heat", 0.},
+		{"hull threshold", 0.},
 		{"shield energy", 0.},
 		{"shield fuel", 0.},
 		{"shield heat", 0.},
+		{"disruption resistance energy", 0.},
+		{"disruption resistance fuel", 0.},
+		{"disruption resistance heat", 0.},
+		{"ion resistance energy", 0.},
+		{"ion resistance fuel", 0.},
+		{"ion resistance heat", 0.},
+		{"slowing resistance energy", 0.},
+		{"slowing resistance fuel", 0.},
+		{"slowing resistance heat", 0.},
 		
 		// "Protection" attributes appear in denominators and are incremented by 1.
 		{"disruption protection", -0.99},
+		{"energy protection", -0.99},
 		{"force protection", -0.99},
 		{"fuel protection", -0.99},
 		{"heat protection", -0.99},
@@ -63,11 +75,12 @@ namespace {
 	
 	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body, int> &it, int count)
 	{
-		auto oit = find_if(thisFlares.begin(), thisFlares.end(), 
-			[&it](pair<Body, int> flare)
+		auto oit = find_if(thisFlares.begin(), thisFlares.end(),
+			[&it](const pair<Body, int> &flare)
 			{
 				return it.first.GetSprite() == flare.first.GetSprite();
-			});
+			}
+		);
 		
 		if(oit == thisFlares.end())
 			thisFlares.emplace_back(it.first, count * it.second);
@@ -110,6 +123,7 @@ void Outfit::Load(const DataNode &node)
 		name = node.Token(1);
 		pluralName = name + 's';
 	}
+	isDefined = true;
 	
 	for(const DataNode &child : node)
 	{
@@ -181,11 +195,22 @@ void Outfit::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 				licenses.push_back(grand.Token(0));
 		}
+		else if(child.Token(0) == "jump range" && child.Size() >= 2)
+		{
+			// Jump range must be positive.
+			attributes[child.Token(0)] = max(0., child.Value(1));
+		}
 		else if(child.Size() >= 2)
 			attributes[child.Token(0)] = child.Value(1);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	
+	// Only outfits with the jump drive and jump range attributes can
+	// use the jump range, so only keep track of the jump range on
+	// viable outfits.
+	if(attributes.Get("jump drive") && attributes.Get("jump range"))
+		GameData::AddJumpRange(attributes.Get("jump range"));
 	
 	// Legacy support for turrets that don't specify a turn rate:
 	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn() && !AntiMissile())
@@ -219,9 +244,26 @@ void Outfit::Load(const DataNode &node)
 
 
 
+// Check if this outfit has been defined via Outfit::Load (vs. only being referred to).
+bool Outfit::IsDefined() const
+{
+	return isDefined;
+}
+
+
+
+// When writing to the player's save, the reference name is used even if this
+// outfit was not fully defined (i.e. belongs to an inactive plugin).
 const string &Outfit::Name() const
 {
 	return name;
+}
+
+
+
+void Outfit::SetName(const string &name)
+{
+	this->name = name;
 }
 
 
