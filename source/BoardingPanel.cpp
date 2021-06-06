@@ -395,6 +395,9 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					}
 				isCapturing = false;
 				
+				// Select the newly captured ship.
+				player.SelectShip(victim.get(), false);
+				
 				// Report this ship as captured in case any missions care.
 				ShipEvent event(you, victim, ShipEvent::CAPTURE);
 				player.HandleEvent(event, GetUI());
