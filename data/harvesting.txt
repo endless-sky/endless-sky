@@ -228,7 +228,7 @@ minable "uranium"
 outfit "Uranium"
 	plural "Uranium"
 	category "Special"
-	cost 300
+	cost 3000
 	thumbnail "outfit/harvested uranium"
 	"flotsam sprite" "effect/flotsam uranium"
 	"mass" 1
