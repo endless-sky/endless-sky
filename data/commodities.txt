@@ -9,7 +9,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 trade
-	commodity "Food" 700 1200
+	commodity "Food" 800 1300
 		"animal feed"
 		"apples"
 		"applesauce"
@@ -94,7 +94,7 @@ trade
 		"vinegar"
 		"wheat"
 		"yams"
-	commodity "Clothing" 580 880
+	commodity "Clothing" 680 980
 		"beach towels"
 		"blankets"
 		"body armor"
@@ -134,7 +134,7 @@ trade
 		"waterproof fiber"
 		"wool"
 		"work boots"
-	commodity "Metal" 780 1180
+	commodity "Metal" 1090 1490
 		"aluminized steel"
 		"aluminum"
 		"beryllium"
@@ -222,7 +222,7 @@ trade
 		"unplasticized PVC"
 		"vinylesters"
 		"xylene"
-	commodity "Equipment" 1060 1460
+	commodity "Equipment" 1310 1710
 		"3D printers"
 		"CNC machines"
 		"air conditioners"
@@ -287,7 +287,7 @@ trade
 		"welding torches"
 		"wheelbarrows"
 		"whiskey barrels"
-	commodity "Medical" 1360 1860
+	commodity "Medical" 1510 2010
 		"antibacterials"
 		"antibiotics"
 		"anti-inflammatories"
@@ -328,7 +328,7 @@ trade
 		"tourniquets"
 		"tranquilizers"
 		"tweezers"
-	commodity "Industrial" 1440 1840
+	commodity "Industrial" 1840 2240
 		"aniline dyes"
 		"assorted shimstock"
 		"battery acid"
@@ -392,7 +392,7 @@ trade
 		"turret lathes"
 		"vacuum cleaners"
 		"varnish"
-	commodity "Electronics" 1580 1980
+	commodity "Electronics" 2280 2680
 		"accelerometers"
 		"amplifiers"
 		"batteries"
@@ -450,7 +450,7 @@ trade
 		"vacuum tubes"
 		"voltage converters"
 		"wireless receivers"
-	commodity "Heavy Metals" 1920 2620
+	commodity "Heavy Metals" 2970 3670
 		"actinide metals"
 		"barium"
 		"bismuth"
@@ -471,7 +471,7 @@ trade
 		"reactor-grade uranium"
 		"thorium"
 		"tungsten"
-	commodity "Luxury Goods" 2440 3040
+	commodity "Luxury Goods" 3740 4340
 		"antique swords"
 		"bawdy magazines"
 		"brandy"
