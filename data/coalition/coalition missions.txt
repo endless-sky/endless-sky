@@ -1396,6 +1396,7 @@ mission "Arachi Cartoonist 2"
 
 
 mission "Coalition: Council of Ahr"
+	minor
 	name "Council of Ahr"
 	description "Bring the representatives of houses Ablomab, Bebliss, and Chamgar to <destination> by <date>, so that they may participate in the Council of Ahr."
 	deadline 30
