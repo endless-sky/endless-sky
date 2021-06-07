@@ -38,7 +38,7 @@ news "human merchant anywhere"
 			"I'm barely able to turn a profit with the terrible prices at this port."
 			"It kind of boggles my mind to imagine that tomorrow I'll be a dozen light-years away. We lead exciting lives, but sometimes I wonder if we don't take enough time to appreciate what's right in front of us."
 			"Watch out for pirates! Those lowlifes will snatch every spool of thread out of your hold if you give them the chance. My advice: when you run into them, don't leave anything left to bury."
-			"Don't call the Luna shipyard workers Lunatics, they seem to be very sensitive about it."
+			"Don't call the Luna shipyard workers Lunatics. They seem to be very sensitive about it."
 			"The people from Earth are called Earthlings, but the people from Mars don't want to be called Martians due to those stupid old science fiction stories."
 			"Somebody installed my anti-gravity plates upside-down. Luckily I saw it in time! Can you imagine what would have happened if I wouldn't have seen it?"
 		word
@@ -494,7 +494,7 @@ news "hyperspace relay engineer"
 			"Hyperspace links don't just allow faster-than-light travel. They also allow near-instantaneous communication, if you have the right sort of relay on both ends."
 			"The hyperspace communications network is a marvel of public infrastructure, but most people just take it for granted."
 			"Hyperspace relays are so integral to society that even pirates don't dare to touch them. They'd easily become the number one enemy of the Republic if they did."
-			"I'm surprised at how many people on earth are still using the old IPv4 protocol, none of the off-earth websites are reachable for them."
+			"I'm surprised at how many people on Earth are still using the old IPv4 protocol. None of the off-Earth websites are reachable for them."
 			"Have you ever setup an TCP/IP connection from Bourne to a server on Farpoint? I did and it is a little slow, but it works!"
 		word
 			`"`
@@ -773,7 +773,7 @@ news "chef"
 			"A rich client of mine shot a spiny-tailed gorgebeast on a safari expedition and asked me to cook it for him. The flavor profile was quite... unique."
 			"I was a dish-washer when I started, and now I'm a sous-chef. And people say there's no upward mobility in the galaxy these days!"
 			"Last week my dish was completely ruined; somebody had calibrated my kitchen scale with the gravity settings of another planet."
-			"There is only one thing worse than finding a worm in an apple you're eating; finding half a worm in such apple."
+			"There is only one thing worse than finding a worm in an apple you're eating; finding half a worm in that apple."
 		word
 			`"`
 
@@ -1059,7 +1059,7 @@ news "human diplomat"
 	name
 		word
 			"Diplomat"
-			"Elite Negotiator"
+			"Elite negotiator"
 	message
 		word
 			`"`
@@ -1198,7 +1198,7 @@ news "human pirate"
 			"I wasn't close to my parents when they died. Which was quite fortunate, since they died in an exploding ship."
 			"I hate double standards; burn a body in a crematorium and you're a professional, burn a body in a spaceship and you're a criminal."
 			"I missed my lover during the raids today. But only by a few inches; next time I'll aim better."
-			"I once prayed to god for a new ship, but quickly found out he doesn't roll that way. So then I hijacked one and prayed for his forgiveness."
+			"I once prayed to God for a new ship, but quickly found out He doesn't roll that way. So then I hijacked one and prayed for his forgiveness."
 		word
 			`"`
 
@@ -1280,7 +1280,7 @@ news "syndicate pa system"
 	message
 		word
 			"Attention: baggage should not be left unattended. Any unattended baggage will be auctioned within days."
-			"Attention: factory workers please proceed to the fast-lane immigration desk. Time spent in regular immigration lanes will not be reimbursed."
+			"Attention factory workers: please proceed to the fast-lane immigration desk. Time spent in regular immigration lanes will not be reimbursed."
 			"Dear spaceship captains: please be aware that our outfitters are open all hours of the day. There is never a reason to delay the purchase of your next piece of Syndicate equipment."
 			"Dear traveler: we recommend you to have dinner in restaurant The Wing. You will not be disappointed."
 
