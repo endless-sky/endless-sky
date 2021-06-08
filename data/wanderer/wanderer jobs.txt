@@ -857,4 +857,4 @@ mission "Captured spies"
 		government "Wanderer"
 	on complete
 		payment 50000
-		dialog "You wish the Wanderers the best of luck on <planet> and collect your payment of <payment>."
+		dialog "Once you land on <planet>, you watch as some Wanderers in uniform carry the Unfettered prisoners off of your ship. You collect your payment of <payment>."
