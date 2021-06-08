@@ -4664,7 +4664,8 @@ ship "_CME Timer Ship"
 		"drag" 100
 		"automaton" 1
 		"fuel capacity" 10
-		"ion resistance" 10000000
+		"ion resistance" 1000000
+		"ion protection" 1000
 		"ramscoop" 6
 		"thrust" 0
 		"turn" 600
