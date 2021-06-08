@@ -3616,7 +3616,7 @@ void Ship::RemoveEscort(const Ship &ship)
 		else
 		{
 			if(escort)
-				RegisterEscort(ship);
+				RegisterEscort(*escort);
 			++it;
 		}
 	}
