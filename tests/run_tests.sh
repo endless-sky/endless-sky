@@ -51,7 +51,7 @@ function run_single_testrun () {
 	local ES_CONFIG_PATH=$(mktemp --directory)
 	if [ ! $? ]
 	then
-		echo "not ok Couldn't create temporary directory"
+		echo "not ok ${RUNNING_TEST} Couldn't create temporary directory"
 		return 2
 	fi
 	
@@ -61,21 +61,21 @@ function run_single_testrun () {
 	cp ${ES_CONFIG_TEMPLATE_PATH}/* ${ES_CONFIG_PATH}
 	if [ ! $? ]
 	then
-		echo "not ok Couldn't copy default config data"
+		echo "not ok ${RUNNING_TEST} Couldn't copy default config data"
 		return 2
 	fi
 	
 	local TEST_NAME=$(echo ${TEST} | sed "s/\"//g")
 	local RETURN=0
+	echo "# Running test \"${TEST_NAME}\":"
 	# Use pipefail and use sed to remove ALSA messages that appear due to missing soundcards in the CI environment
 	set -o pipefail
 	"$ES_EXEC_PATH" --resources "${RESOURCES}" --test "${TEST_NAME}" --config "${ES_CONFIG_PATH}" 2>&1 |\
-		sed -e "/^ALSA lib.*$/d" -e "/^AL lib.*$/d" | sed "s/^/# /"
+		sed -e "/^ALSA lib.*$/d" -e "/^AL lib.*$/d" | sed "s/^/#     /"
 	if [ $? -ne 0 ]
 	then
-		echo ""
-		echo "# Test ${TEST} not ok"
-		echo "# temporary directory: ${ES_CONFIG_PATH}"
+		echo "# Test \"${TEST_NAME}\" failed!"
+		echo "#   temporary directory: ${ES_CONFIG_PATH}"
 		RETURN=1
 		if [ -f "${ES_CONFIG_PATH}/errors.txt" ]
 		then
@@ -83,11 +83,11 @@ function run_single_testrun () {
 			if [ $(echo "${KNOWN_ISSUES}" | wc -w) -gt 0 ]
 			then
 				echo "# Failed on known issue:"
-				echo "${KNOWN_ISSUES}" | sed "s/^/# /"
+				echo "${KNOWN_ISSUES}" | sed "s/^/#     /"
 				RETURN=3
 			else
-				echo "# errors.txt:"
-				cat "${ES_CONFIG_PATH}/errors.txt" | sed "s/^/# /"
+				echo "#   errors.txt content:"
+				cat "${ES_CONFIG_PATH}/errors.txt" | sed "s/^/#     /"
 			fi
 		fi
 		print_graphics_data
@@ -189,7 +189,7 @@ do
 	TEST_RESULT=$?
 	if [ ${TEST_RESULT} -eq 2 ]
 	then
-		echo "Bail out! Encountered serious issue that prevents further testing."
+		echo "# Bail out! Encountered serious issue that prevents further testing."
 		exit 1
 	fi
 	if [ ${TEST_RESULT} != 0 ]

@@ -50,8 +50,8 @@ person "Michael Zahniser"
 		
 		engine -14 177
 		engine 14 177
-		fighter -46 106 under
-		fighter 46 106 under
+		bay "Fighter" -46 106 under
+		bay "Fighter" 46 106 under
 		gun -75 57 "Ion Cannon"
 		gun 75 57 "Ion Cannon"
 		gun -75 57 "Ion Cannon"
@@ -77,31 +77,33 @@ person "Michael Zahniser"
 		explode "large explosion" 120
 		explode "huge explosion" 60
 	ship "Finch (MZ)" "Vapor"
+		"never disabled"
 	ship "Finch (MZ)" "Cipher"
+		"never disabled"
 
 ship "Finch" "Finch (MZ)"
-		"never disabled"
-		add attributes
-			"shields" 900
-			"hull" 1800
-			"outfit space" 140
-			"weapon capacity" 22
-			"engine capacity" 22
-		outfits
-			"Electron Beam" 2
-			
-			"Fuel Pod"
-			"Liquid Nitrogen Cooler"
-			"Large Radar Jammer"
-			"Ramscoop"
-			"S-270 Regenerator"
-			
-			"LP036a Battery Pack"
-			"Fission Reactor"
-			
-			"A125 Atomic Steering"
-			"A120 Atomic Thruster"
-			"Ionic Afterburner"
+	"never disabled"
+	add attributes
+		"shields" 900
+		"hull" 1800
+		"outfit space" 140
+		"weapon capacity" 22
+		"engine capacity" 22
+	outfits
+		"Electron Beam" 2
+		
+		"Fuel Pod"
+		"Liquid Nitrogen Cooler"
+		"Large Radar Jammer"
+		"Ramscoop"
+		"S-270 Regenerator"
+		
+		"LP036a Battery Pack"
+		"Fission Reactor"
+		
+		"A125 Atomic Steering"
+		"A120 Atomic Thruster"
+		"Ionic Afterburner"
 
 
 
@@ -840,10 +842,10 @@ outfit "LG Gridfire Turret"
 
 person "Subsidurial"
 	government "Indigenous Lifeform"
-	frequency 100
+	frequency 1000
 	personality
 		timid unconstrained coward appeasing uninterested mining harvests mute
-	ship "Subsidurial"
+	ship "Subsidurial" "Subsidurial"
 		"never disabled"
 	system
 		government "Uninhabited"
@@ -851,8 +853,8 @@ person "Subsidurial"
 
 
 person "Prototype B3-CC4"
-	frequency 20000
 	government "Author"
+	frequency 1000
 	personality
 		forbearing mining unconstrained swarming
 	system
@@ -925,7 +927,7 @@ person "Prototype B3-CC4"
 		word
 			"response"
 			"EM beam"
-			"transmission brust"
+			"transmission burst"
 		word
 			">"
 	phrase
@@ -944,6 +946,7 @@ person "Prototype B3-CC4"
 	ship "Shooting Star" "Prototype B3-CC4"
 
 ship "Shooting Star"
+	swizzle 0
 	noun "genocidal maniac"
 	sprite "ship/shooting star/shooting star"
 		"frame time" 3
@@ -1083,8 +1086,8 @@ outfit "Tree Skeleton Key Stone"
 
 
 person "Rais Iris XVIII"
-	frequency 200
 	government "Author"
+	frequency 200
 	personality
 		disables heroic plunders opportunistic
 	phrase
@@ -1152,8 +1155,8 @@ ship "Marauder Bactrian"
 
 
 person "Zitchas"
-	frequency 200
 	government "Author"
+	frequency 1000
 	personality
 		mining harvests unconstrained opportunistic
 	system

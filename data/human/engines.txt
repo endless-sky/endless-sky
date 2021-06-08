@@ -61,6 +61,7 @@ effect "ionic afterburner"
 
 
 outfit "X1050 Ion Engines"
+	plural "X1050 Ion Engines"
 	category "Engines"
 	"cost" 20000
 	thumbnail "outfit/tiny ion engines"

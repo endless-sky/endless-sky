@@ -8007,41 +8007,42 @@ system Denebola
 		period 2740.45
 
 system Diespiter
-	asteroids "large metal" 76 3
-	asteroids "large rock" 3 1
-	asteroids "medium metal" 26 4
-	asteroids "medium rock" 14 1
-	asteroids "small metal" 74 2
-	asteroids "small rock" 65 3
+	pos 332 210
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	habitable 534.375
 	haze _menu/haze-red
 	link Statina
+	asteroids "small rock" 65 3
+	asteroids "medium rock" 14 1
+	asteroids "large rock" 3 1
+	asteroids "small metal" 74 2
+	asteroids "medium metal" 26 4
+	asteroids "large metal" 76 3
 	minables iron 22 3
 	minables silicon 46 3
 	minables tungsten 17 3
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		distance 1600
-		period 398
-		sprite planet/gas11
-		object
-			distance 270
-			period 14
-			sprite planet/rock3
+		sprite star/k5-old
+		period 10
 	object
+		sprite planet/ice6
 		distance 745
 		period 394
-		sprite planet/ice6
 	object
+		sprite planet/lava0
 		distance 922
 		period 543
-		sprite planet/lava0
 	object
-		period 10
-		sprite star/k5-old
-	pos 332 210
+		sprite planet/gas11
+		distance 1600
+		period 398
+		object
+			sprite planet/rock3
+			distance 270
+			period 14
 
 system Diphda
 	pos -262 61
@@ -8727,42 +8728,43 @@ system Edusa
 		period 1675.01
 
 system Egeria
-	asteroids "large metal" 5 4
-	asteroids "large rock" 9 7
-	asteroids "medium metal" 86 3
-	asteroids "medium rock" 20 5
-	asteroids "small rock" 1 8
+	pos 288 146
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	habitable 1505.92
 	haze _menu/haze-red
 	link Vaticanus
 	link Statina
+	asteroids "small rock" 1 8
+	asteroids "medium rock" 20 5
+	asteroids "large rock" 9 7
+	asteroids "medium metal" 86 3
+	asteroids "large metal" 5 4
 	minables iron 20 4
 	minables lead 28 5
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		distance 1326
-		period 2174
-		sprite planet/gas9
-		object
-			distance 270
-			period 16
-			sprite planet/rhea
-	object
+		sprite star/k5-old
 		distance 40
 		offset 180
 		period 19
-		sprite star/k5-old
 	object
-		distance 248
-		period 61
-		sprite planet/ice4
-	object
+		sprite star/g0
 		distance 74
 		period 19
-		sprite star/g0
-	pos 288 146
+	object
+		sprite planet/ice4
+		distance 248
+		period 61
+	object
+		sprite planet/gas9
+		distance 1326
+		period 2174
+		object
+			sprite planet/rhea
+			distance 270
+			period 16
 
 system "Ehma Ti"
 	pos 39.1085 -749.244
@@ -19452,40 +19454,42 @@ system Porrima
 			period 11.4255
 
 system Postverta
-	pos 15000 15000
+	hidden
+	pos 297 269
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	habitable 135
 	haze _menu/haze-red
-	asteroids "large metal" 9 3
+	asteroids "medium rock" 4 2
 	asteroids "large rock" 4 3
 	asteroids "medium metal" 52 1
-	asteroids "medium rock" 4 2
+	asteroids "large metal" 9 3
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
-	object "Ssil Vida"
-		distance 1408
-		period 554
-		sprite planet/sheragi_postverta
 	object
-		distance 1208
-		period 654
-		sprite planet/rock10
+		sprite star/m4
+		period 19
 	object
+		sprite planet/desert7
 		distance 439
 		period 143
-		sprite planet/desert7
 	object
+		sprite planet/fog0
 		distance 814
 		period 362
-		sprite planet/fog0
 		object
+			sprite planet/dust4
 			distance 202
 			period 21
-			sprite planet/dust4
 	object
-		period 19
-		sprite star/m4
-	
+		sprite planet/rock10
+		distance 1208
+		period 654
+	object "Ssil Vida"
+		sprite planet/sheragi_postverta
+		distance 1408
+		period 554
+
 system Prakacha'a
 	pos -35.1114 -802.607
 	government Wanderer
@@ -19623,47 +19627,48 @@ system Procyon
 		period 3311.38
 
 system Prosa
-	asteroids "large metal" 2 2
-	asteroids "large rock" 16 1
-	asteroids "medium metal" 11 2
-	asteroids "medium rock" 16 1
-	asteroids "small rock" 4 1
+	pos 303 194
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	habitable 2372.76
 	haze _menu/haze-red
 	link Vaticanus
+	asteroids "medium metal" 11 2
+	asteroids "large metal" 2 2
+	asteroids "small rock" 4 1
+	asteroids "medium rock" 16 1
+	asteroids "large rock" 16 1
 	minables copper 5 2
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		distance 311
-		period 34
-		sprite planet/cloud1
-	object
-		distance 749
-		period 127
-		sprite planet/desert9
-	object
-		distance 941
-		period 179
-		sprite planet/rock6
-	object
+		sprite star/giant
 		offset 180
 		period 7
-		sprite star/giant
 	object
+		sprite planet/cloud1
+		distance 311
+		period 34
+	object
+		sprite planet/desert9
+		distance 749
+		period 127
+	object
+		sprite planet/rock6
+		distance 941
+		period 179
+	object
+		sprite planet/gas17
 		distance 1311
 		period 695
-		sprite planet/gas17
 		object
+			sprite planet/callisto
 			distance 227
 			period 14
-			sprite planet/callisto
 		object
+			sprite planet/dust5
 			distance 351
 			period 28
-			sprite planet/dust5
-	pos 303 194
 
 system "Pug Iyik"
 	pos -361.149 -883.233
@@ -21145,7 +21150,7 @@ system "Sagittarius A*"
 	government Uninhabited
 	habitable 10000
 	haze _menu/haze-full
-	arrival 500
+	arrival 2000
 	hazard "Black Hole Gravity" 1
 	hazard "Black Hole Event Horizon" 1
 	hazard "Black Hole Accretion Disk" 1
@@ -23244,48 +23249,49 @@ system Spica
 			period 26.1539
 
 system Statina
-	asteroids "large metal" 3 5
-	asteroids "large rock" 1 4
-	asteroids "medium metal" 72 3
-	asteroids "small metal" 39 3
+	pos 385 198
 	government Uninhabited
 	attributes "ember waste" "wormhole" "inaccessible"
+	habitable 135
 	haze _menu/haze-red
 	link Diespiter
 	link Egeria
+	asteroids "large rock" 1 4
+	asteroids "small metal" 39 3
+	asteroids "medium metal" 72 3
+	asteroids "large metal" 3 5
 	minables iron 5 6
 	minables silicon 11 5
 	minables titanium 10 4
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
+		sprite star/m4
+		period 10
+	object
+		sprite planet/desert4
 		distance 111
 		period 30
-		sprite planet/desert4
 	object
+		sprite planet/dust3
 		distance 308
 		period 142
-		sprite planet/dust3
 	object
+		sprite planet/gas8
 		distance 636
 		period 420
-		sprite planet/gas8
 	object
-		period 10
-		sprite star/m4
-	object
+		sprite planet/ice5
 		distance 1364
 		period 84
-		sprite planet/ice5
 		object
+			sprite planet/dust4
 			distance 158
 			period 17
-			sprite planet/dust4
-	object wormhole_link
+	object "Wormhole Link"
+		sprite planet/wormhole-red
 		distance 2754
 		period 389
-		sprite planet/wormhole-red
-	pos 385 198
 
 system "Steep Roof"
 	pos -1113.59 570.051
@@ -24691,53 +24697,54 @@ system "Uwa Fahn"
 		period 5060.21
 
 system Vaticanus
-	asteroids "large metal" 11 7
-	asteroids "large rock" 5 8
-	asteroids "medium metal" 47 11
-	asteroids "medium rock" 11 9
-	asteroids "small metal" 14 8
-	asteroids "small rock" 3 6
+	pos 324 112
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	habitable 320
 	haze _menu/haze-red
 	link Egeria
 	link Prosa
+	asteroids "small rock" 3 6
+	asteroids "medium rock" 11 9
+	asteroids "large rock" 5 8
+	asteroids "small metal" 14 8
+	asteroids "medium metal" 47 11
+	asteroids "large metal" 11 7
 	minables lead 16 13
 	minables tungsten 10 13
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
+		sprite star/m0
+		period 19
+	object
+		sprite planet/ice6
+		distance 261
+		period 73
+	object
+		sprite planet/tethys
+		distance 768
+		period 368
+	object
 		distance 1670
 		period 1181
 		sprite planet/gas16
 		object
+			sprite planet/lava1
 			distance 204
 			period 14
-			sprite planet/lava1
 	object
+		sprite planet/uranus
 		distance 2105
 		period 3438
-		sprite planet/uranus
 		object
+			sprite planet/luna
 			distance 235
 			period 14
-			sprite planet/luna
-	object
-		distance 261
-		period 73
-		sprite planet/ice6
-	object
-		distance 768
-		period 368
-		sprite planet/tethys
-	object
-		period 19
-		sprite star/m0
-	object wormhole_link
+	object "Wormhole Link"
+		sprite planet/wormhole-red
 		distance 2754
 		period 389
-		sprite planet/wormhole-red
-	pos 324 112
 
 system Vega
 	pos -402 182
@@ -25963,7 +25970,8 @@ system Zubenelgenubi
 		period 1158.05
 
 system Zubenelhakrabi
-	pos -9743.265 9377.932
+	hidden
+	pos -755 365
 	government Uninhabited
 	habitable 486.68
 	belt 1669
@@ -26162,7 +26170,7 @@ planet Ahr
 planet Aksaray
 	attributes "requires: inaccessible" "moon" uninhabited
 	landscape land/mountain26
-	description `At first glance, Aksaray appears to be a fairly generic moon formed from eons of dust and debris compressed into a tight ball by constant gravitational pressure. What is not commonplace is the presence of almost perfectly pyramidical piles of regolith scattered across the world. Querying an orbiting Remnant satellite suggests that these are believed to have been remote mining sites for mineral processing.`
+	description `At first glance, Aksaray appears to be a fairly generic moon formed from eons of dust and debris compressed into a tight ball by constant gravitational pressure. What is not commonplace is the presence of almost perfectly pyramidal piles of regolith scattered across the world. Querying an orbiting Remnant satellite suggests that these are believed to have been remote mining sites for mineral processing.`
 	description `	A brief consultation of your navigational computer's economic database, however, indicates that all the minerals present in this variant of regolith are very common across the galaxy and have an extremely low value.`
 	security 0
 	government Uninhabited
@@ -26226,7 +26234,7 @@ planet Allhome
 	security 0.6
 
 planet "Alta Hai"
-	attributes quarg station
+	attributes quarg "hai quarg" station
 	landscape land/station2
 	description `This is a complete Quarg ringworld, the product of millennia of construction effort which has consumed every other stellar object in this system in order to provide the raw materials. The inner edge of the ring is filled with solar panels, hydroponic gardens, living quarters, and sunlit common spaces. The outer edge contains hangars and docks for ships, and storage facilities for cargo.`
 	description `	Massive station-keeping thrusters on the ring's exterior keep its orbit from becoming unstable.`
@@ -26484,7 +26492,7 @@ planet "Buccaneer Bay"
 	landscape land/beach0
 	description `Pirates who have struck it rich dream of retiring on Buccaneer Bay. It is a warm ocean planet, with many places reminiscent of the islands in the ancient Caribbean where humanity's first pirate fleets sailed.`
 	description `	Many of the inhabitants are in fact not pirates, but their descendants, and these children and grand-children of anarchist outlaws have built a system of regional government that oversees hospitals, schools, and other public services, all created without funding from the Republic or taxes paid to it. The planet even sports its own shipyard, although many of the ships built here are, not surprisingly, based on designs pirated from the Syndicate and Republic shipyards.`
-	spaceport `This is the sort of spaceport you picture in your head when you think of pirates. Half the storefronts are bars, and rum seems to be on the menu everywhere. It is almost like the stories of ancient Earth, except that the eye patches are cybernetic implants and the peg legs are motorized prosthetics. Swarthy, dangerous-looking women glance at you as you pass by, and scantily clad men crowd around the bars, which is what you seem to remember the stories said it was like on Earth, too, although there it may have been the other way around.`
+	spaceport `This is the sort of spaceport you picture in your head when you think of pirates. Half the storefronts are bars, and rum seems to be on the menu everywhere. It is almost like the stories of ancient Earth, except that the eye patches are cybernetic implants and the peg legs are motorized prostheses. Swarthy, dangerous-looking women glance at you as you pass by, and scantily clad men crowd around the bars, which is what you seem to remember the stories said it was like on Earth, too, although there it may have been the other way around.`
 	shipyard "Core Pirates"
 	shipyard "Advanced Core Pirates"
 	shipyard "Southern Pirates"
@@ -26619,7 +26627,7 @@ planet Chiron
 	attributes "near earth" urban
 	landscape land/city18-iridium
 	description `Chiron is the only planet outside the solar system that was colonized by humanity prior to the discovery of the hyperdrive. It is now the second most populous planet in the Republic, with many sprawling cities and a burgeoning pollution problem.`
-	description `	Although Earth still has the most prestigious universities in the galaxy, Chiron has become the de-facto leader of the higher education industry, catering to those who value excellent teaching more highly than an illustrious name. As a result, off-world students form a noticeable fraction of the population.`
+	description `	Although Earth still has the most prestigious universities in the galaxy, Chiron has become the de facto leader of the higher education industry, catering to those who value excellent teaching more highly than an illustrious name. As a result, off-world students form a noticeable fraction of the population.`
 	spaceport `There are two spaceports on Chiron. The Old Port was built back when it was first settled, and was placed in a desert region, far from where people would want to live, so that they would not be as affected by the fallout from the nuclear propulsion that was used in the first, pre-hyperspace starships.`
 	spaceport `	The New Port, on the other hand, is in the center of New Sydney, one of Chiron's largest cities. Its soaring architecture and gleaming mirrored glass is intended to make a clear statement, that Chiron is everything Earth is not: clean, modern, prosperous.`
 	shipyard "Basic Ships"
@@ -26651,7 +26659,7 @@ planet "Chosen Nexus"
 planet Clark
 	attributes "dirt belt" forest factory
 	landscape land/valley3
-	description `Clark is a recently settled world, and most of its surface remains covered in dense forests and uninhabited mountains. Because clearing new land is so difficult, agriculture here has not grown far beyond the level of subsistence farming. But the temperate climate has drawn several million settlers, most of whom work in factories that have been planted here by off-world corporations to take advantage of the cheap labor.`
+	description `Clark is a recently settled world, and most of its surface remains covered in dense forests and uninhabited mountains. Because clearing new land is so difficult, agriculture here has not grown far beyond the level of subsistence farming. But the temperate climate has drawn tens of millions of settlers, most of whom work in factories that have been planted here by off-world corporations to take advantage of the cheap labor.`
 	description `	The low cost of living and virtually zero unemployment rate make poverty and crime relatively rare occurrences. Instead there is a pioneering spirit, a startup-world attitude that anything is attainable with a bit of hard work and frugality.`
 	spaceport `The spaceport is at the heart of one of Clark's largest cities, surrounded by smokestacks and factories. There are a few hangars owned by different corporations where their cargo ships can load and unload, but you are relegated to a set of concrete landing pads farther from the main buildings. Large trucks rumble by carrying carts loaded down with cargo crates.`
 	spaceport `	In the central building, dozens of workers fill a large cafeteria with several stations serving different types of food. The mood here feels boisterous and energetic, very different from most of the Dirt Belt worlds you have visited.`
@@ -26763,8 +26771,8 @@ planet Darkcloak
 	description `	Although the Hai tend to be an easygoing and nonviolent species, there are always a few in each generation that yearn for excitement, warfare, and conquest. These "Unfettered" Hai have built a major military base here, and they launch raids from here on convoys traveling through the nearby systems.`
 	spaceport `The occupants of this spaceport are not visibly different from the Hai you have encountered elsewhere, but they seem much more tense, angry, and hostile. As the only human here, you are being watched very closely, but no one threatens you directly.`
 	spaceport `	It is likely that most of the goods available for trade here were stolen from one of the nearby Hai systems.`
-	shipyard "Hai Basics"
-	outfitter "Hai Basics"
+	shipyard "Unfettered Basics"
+	outfitter "Unfettered Basics"
 
 planet Darkmetal
 	attributes hai mining "hai tourism"
@@ -26849,7 +26857,7 @@ planet Delve
 planet "Delve of Bloptab"
 	attributes arach mining
 	landscape land/hills0
-	description `This is a mining world, hotter than even the Arach would prefer but still much more habitable than its sister world of Blobtab's Furnace. It is home to House Ablomab, the guild of mining and metalworking, and the dry climate makes it possible to store stockpiles of iron, steel, and other metals here without worrying about rust. Supposedly the warehouses here contain enough raw materials to double the size of the Heliarch war fleet if needed; the Arach like to be able to trust that they are prepared for any eventuality.`
+	description `This is a mining world, hotter than even the Arachi would prefer but still much more habitable than its sister world of Blobtab's Furnace. It is home to House Ablomab, the guild of mining and metalworking, and the dry climate makes it possible to store stockpiles of iron, steel, and other metals here without worrying about rust. Supposedly the warehouses here contain enough raw materials to double the size of the Heliarch war fleet if needed; the Arachi like to be able to trust that they are prepared for any eventuality.`
 	spaceport `This is one of the few Coalition worlds where the Heliarch agents openly carry weapons, due to the fear that the Resistance might see the storehouses here of base and precious metals as a tempting target. Although there are plenty of civilians of all three species milling about, the spaceport has something of the atmosphere of a military base.`
 	"required reputation" 25
 
@@ -26922,7 +26930,7 @@ planet Dustmaker
 planet "Dwelling of Speloog"
 	attributes arach shipping urban
 	landscape land/fog4
-	description `With a wide band of tropical rainforests around its equator, this planet's climate is ideal for the Arach. Several billion of them live here, and many of the workers assisting with the expansion of the Heliarch ringworlds come from this planet.`
+	description `With a wide band of tropical rainforests around its equator, this planet's climate is ideal for the Arachi. Several billion of them live here, and many of the workers assisting with the expansion of the Heliarch ringworlds come from this planet.`
 	spaceport `The air in the spaceport facility is uncomfortably damp, and you imagine that you can see a thin sheen of moss or algae on nearly every surface here that receives any sunlight. Except for the largest cargo bays, all the rooms smell faintly of mildew.`
 	spaceport `	One entire wing of the spaceport is dedicated to the Heliarch recruitment office for construction workers, and the waiting room is packed; many Coalition citizens are excited at the chance to help build something that will last thousands of years.`
 	outfitter "Coalition Basics"
@@ -26951,7 +26959,7 @@ planet Eavine
 	description `Although its climate is very cold and most of the surface is covered in snow, Eavine has a crust rich with rare metals and minerals hard to find elsewhere. Entire valleys on the surface have been completely stripped of their resources, likely used in the massive complex of half buried buildings which appears to be the only settlement on this moon that remains today.`
 
 planet Echo
-	attributes quarg moon
+	attributes quarg "human quarg" moon
 	landscape land/desert2
 	description `This is a small Quarg outpost, which you suspect was built mostly to keep an eye on Tarazed Corporation and their alien-influenced research on the planet below. Like most Quarg worlds, the gravity is much too low here for it to be a feasible human colony, and although there is an atmosphere, it is too thin for a human being to breathe. Supposedly the Quarg have lungs designed for a continuous one way airflow, like a bird's lungs, rather than the ordinary in and out flow of human lungs; this is what enables them to survive on low-gravity, low-atmosphere worlds.`
 	spaceport `This outpost was really not designed with human beings in mind. The indoor air is not pressurized, so even there you need an oxygen mask to be able to breathe comfortably. And all the rooms and hallways are taller and narrower than you are used to. The station feels like a maze, full of winding passageways with no clear order or pattern to them, although perhaps the order would be readily apparent if you had an alien mind.`
@@ -27173,7 +27181,7 @@ planet Follower
 	landscape land/city10
 	description `Follower is on the edge of the Paradise Planets region of space: not really one of them yet, but aspiring to be. It is prosperous, but from manufacturing rather than law or finance or venture capitalism. A significant fraction of the local taxes collected here are being spent on terraforming, raising global temperatures and reducing seasonal fluctuations. The goods produced here always have a ready market to purchase them, so Follower's job economy is considered very stable.`
 	description `	As one of the few planets still actively engaged in terraforming, Follower has been the location of several experiments with new technology, trying to leapfrog the centuries-slow process that other worlds have gone through. Unfortunately most of these experiments have failed, sometimes spectacularly.`
-	spaceport `The spaceport is a single skyscraper, fifty floors tall and as wide as it is high, with the floors twisting around each other in a helical patterns so that on each level, the landing bays are approached from a slightly different angle. The whole structure is built of steel and gleaming glass. Inside, the soaring ceilings give you more of a sense of opulence than of comfort.`
+	spaceport `The spaceport is a single skyscraper, fifty floors tall and as wide as it is high, with the floors twisting around each other in a helical pattern so that on each level, the landing bays are approached from a slightly different angle. The whole structure is built of steel and gleaming glass. Inside, the soaring ceilings give you more of a sense of opulence than of comfort.`
 	shipyard "Betelgeuse Basics"
 	shipyard "Betelgeuse Advanced"
 	shipyard "Lionheart Basics"
@@ -27187,7 +27195,7 @@ planet Follower
 		fleet "Small Republic" 86
 
 planet Forpelog
-	attributes quarg moon
+	attributes quarg "human quarg" moon
 	landscape land/canyon03
 	description `Forpelog is a Quarg mining world, barely habitable by their standards and, because of its low gravity, unsuitable for long-term human habitation. The Quarg city is a marvel of advanced technology, entirely enclosed within glass and steel, with gardens and terraces where alien trees and plants grow. Outside the city, the landscape is rugged and beautiful, but the atmosphere is too thin to breathe and contains almost no oxygen.`
 	spaceport `Your ship is docked on a metal pad immediately outside the dome of the city, which towers over you. Immediately after you landed, a smaller canopy unfolded around your ship, sealing it in and providing enough air for you to breathe as you make your way inside. The stark, lifeless badlands outside give way to bustling streets and lush blue foliage within. No other human beings are in sight.`
@@ -27329,7 +27337,7 @@ planet Glaze
 	attributes south tourism
 	landscape land/canyon8
 	description `Glaze is a varied world with everything from sunny beaches to frozen tundra, but it is perhaps best known for its sandstone canyons and deserts. This world's wildlife has never been studied in great detail. Local rumors tell about an alien species of "canyon people" who live in caves in some of the deepest canyons, leading to a constant stream of visiting xenobiologists. The scientific consensus, however, is that these sightings have only been of a reclusive ape-like species that lives in the canyons, and is not known to dig caves or show any other sign of civilization.`
-	spaceport `The spaceport is a tower of glass and steel perched on top of a mesa, overlooking the canyonlands: spires of red and pale yellow stone, with a sprinkling of trees at the lower elevations. A wide highway winds down the side of the mesa, through several tunnels, and the off to the horizon. The port itself is not terribly busy.`
+	spaceport `The spaceport is a tower of glass and steel perched on top of a mesa, overlooking the canyonlands: spires of red and pale yellow stone, with a sprinkling of trees at the lower elevations. A wide highway winds down the side of the mesa, through several tunnels, and then off to the horizon. The port itself is not terribly busy.`
 	spaceport `	You notice quite a few families with children sitting by the windows on the upper stories of the tower, watching starships landing and taking off. Many of them have brought folding chairs or blankets to sit on. That must be what passes for entertainment on this world.`
 	shipyard "Basic Ships"
 	shipyard "Southbound Basics"
@@ -27364,7 +27372,7 @@ planet Glory
 		fleet "Large Republic" 16
 
 planet Grakhord
-	attributes quarg moon
+	attributes quarg "human quarg" moon
 	landscape land/badlands6
 	description `Although human beings who do not mind living in low gravity are welcome to settle here, Grakhord is part of Quarg territory, and has been terraformed to meet their environmental needs rather than those of human beings. The full extent of the Quarg mining operations here are not known, but rumors say that they have tunnels reaching down almost halfway to the moon's core, and Quarg ships can also sometimes be seen harvesting hydrogen gas from the upper atmosphere of the gas giant that Grakhord orbits.`
 	spaceport `Here, you feel like a young child lost among a crowd of tall, indifferent adults. The average adult Quarg is over three meters tall, and although they move slowly and gracefully, on their long legs they easily speed by you. Worse, the counters for the merchant exchange, bank, and job board are high enough that you can barely see over them. But, the Quarg have helpfully provided stepping stools stashed under the counters so that shorter humans can carry out business without having to constantly crane their necks upwards.`
@@ -27783,7 +27791,7 @@ planet Kumkapi
 	government Uninhabited
 
 planet "Kuwaru Efreti"
-	attributes quarg station
+	attributes quarg "korath quarg" station
 	landscape land/station2
 	description `This Quarg ringworld is almost half completed, but there are no signs of active construction, and your ship's sensors picked up no energy signals from any section of the ring except for this one. You also observed superficial weapon scars on some parts of the ring, damage that the Quarg have not bothered to repair - although clearly the attackers did not possess weapons powerful enough to do any serious harm to the ring.`
 	spaceport `Despite their size, the Quarg are generally almost silent when they move, and there seem to be very few of them left inhabiting this ringworld. As you walk through some parts of the spaceport it is utterly silent and seemingly deserted, and you are jolted by surprise each time the illusion of solitude is broken by a Quarg emerging suddenly from a doorway and striding silently past you. Every once in a while, louder footsteps announce the presence of a group of Korath visiting the station.`
@@ -27792,7 +27800,7 @@ planet "Kuwaru Efreti"
 	security 1
 
 planet Lagrange
-	attributes quarg tourism station
+	attributes quarg "human quarg" tourism station
 	landscape land/station5
 	description `The Quarg built this station centuries ago, before they began construction on the ringworld. From the dark side of the station, the ring is visible as a thin bright filament stretching out to either side of the system's sun. The ring itself is closed to human visitors, but tour shuttles depart from here on a regular basis, giving human tourists a closer view of this engineering feat that is so far beyond anything human beings have ever attempted to build.`
 	spaceport `In the docking section are flexible, oddly organic-looking tubes that snaked out to connect to your ship as it approached. Walking through the tube and into the station was a somewhat disconcerting experience. Inside, crowds of human tourists gawk at the tall, thin Quarg, who for the most part seem unfazed by the attention. The station is perfectly clean; every surface shines.`
@@ -28465,7 +28473,7 @@ planet Pearl
 planet "Pelubta Station"
 	attributes arach "coalition station" research
 	landscape land/station5
-	description `Pelubta Station was built shortly after the Arach discovered the hyperdrive, initially to take advantage of the massive amounts of solar power generated by the nearby stars. However, now it is mainly used as a hyperspace fuel refinery. Although it has endured some solar flares, constant maintenance means that the station still doesn't show it's age.`
+	description `Pelubta Station was built shortly after the Arachi discovered the hyperdrive, initially to take advantage of the massive amounts of solar power generated by the nearby stars. However, now it is mainly used as a hyperspace fuel refinery. Although it has endured some solar flares, constant maintenance means that the station still doesn't show its age.`
 	description `	Pelubta Station is also used to study one of the binary stars in this system, since it has a similar makeup and age to one orbited by a Heliarch ringworld. Most of this research is focused on predicting stellar phenomena, especially the most abnormal ones.`
 	spaceport `The intake section has a consistently high traffic, mostly made up of Coalition merchants supplying the station and leaving with shipments of fuel to take to other Arach worlds. The science section seems to be completely closed off to non-Heliarchs. Considering that the work done here should be relatively benign, the station may also serve other purposes.`
 	"required reputation" 20
@@ -28687,8 +28695,8 @@ planet Revelation
 planet "Ring of Friendship"
 	attributes heliarch station
 	landscape land/station2
-	description `This is the crown jewel of the Heliarchs, a ringworld that was completed by the Quarg before the Coalition formed and drove them away. It now serves both as a center of finance and trade, and as the seat of the Heliarch government, which is made up of "elders" who have been selected by the other Heliarchs from among their number in such a way that all three species always have equal representation. The Heliarchs, in turn, are selected from among the best and brightest members of each species. Despite the occasional resistance to it, this meritocracy has survived ten times longer than any human democracy.`
-	spaceport `At any given time, thousands of young people are in training here to become "interpreters," the Heliarch agents who serve as translators and mediators on all the Coalition worlds. As they rise through the ranks, some of those agents will be honored by being elevated to the rank of Heliarch, gaining a voice in the selection of new elders and perhaps one day even being selected themselves.`
+	description `This is the crown jewel of the Heliarchs, a ringworld that was completed by the Quarg before the Coalition formed and drove them away. It now serves both as a center of finance and trade, and as the seat of the Heliarch government, which is made up of "consuls" who have been selected by the other Heliarchs from among their number in such a way that all three species always have equal representation. The Heliarchs, in turn, are selected from among the best and brightest members of each species. Despite the occasional resistance to it, this meritocracy has survived ten times longer than any human democracy.`
+	spaceport `At any given time, thousands of young people are in training here to become "interpreters," the Heliarch agents who serve as translators and mediators on all the Coalition worlds. As they rise through the ranks, some of those agents will be honored by being elevated to the rank of Heliarch, gaining a voice in the selection of new consuls and perhaps one day even being selected themselves.`
 	spaceport `	Heliarch rank is not hereditary, and the children of Heliarchs are given no special preferment for promotions or educational opportunities.`
 	"required reputation" 5
 	bribe 0
@@ -29027,7 +29035,7 @@ planet Sinter
 planet Siteria
 	attributes ka'het uninhabited
 	landscape land/water0
-	description `An Earth-like planet, Siteria is notable for the large number of settlements on it: every few kilometers there are the remains of a sizeable village, some of which which still haven't been completely covered by vegetation even today. A couple cities even have tall buildings still partially held together, signifying how durable the constructions of the planet's original inhabitants were.`
+	description `An Earth-like planet, Siteria is notable for the large number of settlements on it: every few kilometers there are the remains of a sizeable village, some of which still haven't been completely covered by vegetation even today. A couple cities even have tall buildings still partially held together, signifying how durable the constructions of the planet's original inhabitants were.`
 
 planet Skillet
 	attributes north mining farming frontier
@@ -29159,7 +29167,7 @@ planet Starcross
 planet "Starting Rubin"
 	attributes kimek "coalition station" shipping wealthy
 	landscape land/space3
-	description `Starting Rubin was far from being the first station constructed around the Kimek homeworld, but it is the oldest one to still be on orbit. It was built as an orbital equivalent to the hunger towers found on the planet it orbits, as a safety measure against the disasters that may affect Ki Patek Ka.`
+	description `Starting Rubin was far from being the first station constructed around the Kimek homeworld, but it is the oldest one to still be in orbit. It was built as an orbital equivalent to the hunger towers found on the planet it orbits, as a safety measure against the disasters that may affect Ki Patek Ka.`
 	description `	Since the residents need little of the food produced, it quickly became the station's primary export, transforming it into one of the largest trading hubs of the region. It has also the largest population of any Coalition station, capable of supporting tens of thousands of Kimek.`
 	spaceport `Despite only having the population of a small city, the arrivals deck of Starting Rubin is as crowded as the largest spaceports. Civilian ships belonging to all three Coalition species can be seen arriving or departing every couple minutes. While there doesn't seem to be any military facility, there are some civilian shops on the station, although they sell nothing but few Kimek items.`
 	shipyard Kimek
@@ -29233,7 +29241,7 @@ planet Sundrinker
 planet Sunracer
 	attributes core urban factory farming fishing frontier
 	landscape land/myrabella8
-	description `Sunracer is home of Megaparsec, Inc., a shipyard that specializes in designing fast, lightweight ships. It is a well-settled planet with a population of nearly half a billion, and a diverse economy that includes farming and fishing in addition to the shipyards.`
+	description `Sunracer is home of Megaparsec, Inc., a shipyard that specializes in designing fast, lightweight ships. It is a well-settled planet with a population of over a billion, and a diverse economy that includes farming and fishing in addition to the shipyards.`
 	description `	Outside the cities, large regions of undeveloped land still remain. Hovercraft racing is a major local sport, and some massive and elaborate courses have been constructed in the wilderness.`
 	spaceport `On Sunracer, the spaceport and shipyard are one and the same. As you walk among the landing pads and hangars, it is not immediately clear which ships are visiting starships undergoing minor repairs, and which are new ones under construction. A series of enormous cranes tower over one section of landing pads. From them hang hull fragments, engines, and even a few small ships, each being swung from one location within the shipyard to another. Meanwhile, forklifts and flatbed trucks are weaving between the buildings in every direction.`
 	shipyard "Basic Ships"
@@ -29449,7 +29457,7 @@ planet Vail
 planet Valhalla
 	attributes deep farming fishing urban factory
 	landscape land/mfield3
-	description `Valhalla was the first world to be settled in this region of space, which is known as the Deep. It is rich in natural resources, but all its vast farms and fisheries are insufficient to feed its population of nearly five billion.`
+	description `Valhalla was the first world to be settled in this region of space, which is known as the Deep. It is rich in natural resources, but all its vast farms and fisheries are insufficient to feed its population of over five billion.`
 	description `	The shipyards of Lionheart Industries are located here. Centuries ago, warships built here turned the tide of the Alpha War, and today the ships designed and built in the Deep continue to be some of the most technologically advanced ships in human space - and the most expensive.`
 	spaceport `Surrounding the spaceport is a metropolis of skyscrapers and factories that spreads all the way to the horizon in every direction. The spaceport itself is an imposing building, composed of three towers rising over a hundred stories into the air and connected at various levels by bridges. The docking bays are on the higher levels, with warehouse space lower down and loading platforms for trucks at ground level. Massive cargo elevators run up and down in the center of each building, and the hallways are all wide enough to allow small robotic carts and forklifts in addition to foot traffic.`
 	shipyard "Basic Ships"
@@ -29802,11 +29810,12 @@ planet Zug
 		threshold 3000
 		fleet "Large Militia" 18
 
-planet wormhole_barren
+planet "Wormhole Barren Alpha"
 	attributes "requires: quantum keystone"
 	description ``
-planet wormhole_barren2
+planet "Wormhole Barren Beta"
 	attributes "requires: quantum keystone"
 	description ``
-planet wormhole_link
+planet "Wormhole Link"
+	attributes "requires: quantum keystone"
 	description ``
