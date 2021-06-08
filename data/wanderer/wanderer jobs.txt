@@ -841,7 +841,7 @@ mission "Wanderers to Kor Efreti"
 		dialog `When you return, the Wanderers thank you for taking them to the Kor Efreti and hand you <payment> before disembarking.`
 
 mission "Captured spies"
-	name "Transport captured unfettered spies"
+	name "Transport captured Unfettered soldiers"
 	job 
 	repeat
 	description "Transport <bunks> captured unfettered spies to <planet>, payment is <payment>"
