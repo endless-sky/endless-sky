@@ -841,10 +841,10 @@ mission "Wanderers to Kor Efreti"
 		dialog `When you return, the Wanderers thank you for taking them to the Kor Efreti and hand you <payment> before disembarking.`
 
 mission "Captured spies"
-	name "Transport captured unfettered spies"
+	name "Transport captured Unfettered soldiers"
 	job 
 	repeat
-	description "Transport <bunks> captured unfettered spies to <planet>, payment is <payment>"
+	description "Transport <bunks> captured Unfettered soldiers to <planet>, payment is <payment>"
 	passengers 3
 	on offer
 		require "Brig"
@@ -857,4 +857,4 @@ mission "Captured spies"
 		government "Wanderer"
 	on complete
 		payment 50000
-		dialog "You wish the Wanderers the best of luck on <planet> and collect your payment of <payment>."
+		dialog "Once you land on <planet>, you watch as some Wanderers in uniform carry the Unfettered prisoners off of your ship. You collect your payment of <payment>."
