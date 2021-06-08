@@ -2608,6 +2608,10 @@ void Ship::Disable()
 void Ship::Destroy()
 {
 	hull = -1.;
+	
+	shared_ptr<Ship> oldParent = parent.lock();
+	if(oldParent)
+		oldParent->RegisterEscorts();
 }
 
 
@@ -3624,6 +3628,23 @@ void Ship::RemoveEscort(const Ship &ship)
 
 
 
+// (Re)Register escorts, for example because some escort got destroyed.
+void Ship::RegisterEscorts()
+{
+	// Reset this value, we will re-scan the list of escorts to set the
+	// escorts velocity based on remaining active escorts.
+	escortsVelocity = -1.;
+	
+	for(const auto &it: escorts)
+	{
+		auto escort = it.lock().get();
+		if(escort)
+			RegisterEscort(*escort);
+	}
+}
+
+
+
 // Store relevant cached data for the given escort.
 void Ship::RegisterEscort(const Ship &ship)
 {
@@ -3634,7 +3655,7 @@ void Ship::RegisterEscort(const Ship &ship)
 	// regular thrust.
 	// We also don't cache the speeds of carried ships, since they are often
 	// docked and the carrier waits for them during docking already.
-	if(!ship.CanBeCarried())
+	if(!ship.CanBeCarried() && !ship.IsDestroyed() && ship.IsYours())
 	{
 		double eV = ship.MaxVelocity() * 0.9;
 		if(eV > 0.)
@@ -3868,7 +3889,10 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 		hullDelay = max(hullDelay, static_cast<int>(attributes.Get("disabled repair delay")));
 	}
 	if(!wasDestroyed && IsDestroyed())
+	{
 		type |= ShipEvent::DESTROY;
+		Destroy();
+	}
 	
 	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
 	if(heat > MaximumHeat())
