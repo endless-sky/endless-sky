@@ -844,7 +844,7 @@ mission "Captured spies"
 	name "Transport captured Unfettered soldiers"
 	job 
 	repeat
-	description "Transport <bunks> captured unfettered spies to <planet>, payment is <payment>"
+	description "Transport <bunks> captured Unfettered soldiers to <planet>, payment is <payment>"
 	passengers 3
 	on offer
 		require "Brig"
