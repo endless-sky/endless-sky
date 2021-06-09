@@ -60,9 +60,10 @@ protected:
 	virtual bool ShouldHighlight(const Ship *ship) override;
 	virtual void DrawKey() override;
 	virtual void ToggleForSale() override;
+	virtual void ToggleStorage() override;
 	virtual void ToggleCargo() override;
-	
-	
+
+
 private:
 	static bool ShipCanBuy(const Ship *ship, const Outfit *outfit);
 	static bool ShipCanSell(const Ship *ship, const Outfit *outfit);
@@ -80,15 +81,15 @@ private:
 private:
 	// Record whether we've checked if the player needs ammo refilled.
 	bool checkedRefill = false;
-	// Allow toggling whether outfits that are for sale are shown. If turned
-	// off, only outfits in the currently selected ships are shown.
+	// Allow toggling whether outfits that are for sale are shown.
 	bool showForSale = true;
-	// Remember what ships are selected if the player switches to cargo.
-	Ship *previousShip = nullptr;
-	std::set<Ship *> previousShips;
-	
+	// Allow toggling whether stored outfits are shown.
+	bool showStorage = true;
+	// Allow toggling whether outfits in cargo are shown.
+	bool showCargo = true;
+
 	Sale<Outfit> outfitter;
-	
+
 	// Keep track of how many of the outfitter help screens have been shown
 	bool checkedHelp = false;
 };
