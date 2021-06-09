@@ -9,7 +9,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 galaxy "Milky Way"
-	pos 0 0
+	pos 487 26
 	sprite ui/galaxy
 
 galaxy "pug empty galaxy"
