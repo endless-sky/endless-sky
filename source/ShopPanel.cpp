@@ -479,11 +479,11 @@ void ShopPanel::DrawMain()
 	}
 	// This is how much Y space was actually used.
 	nextY -= 40 + TILE_SIZE;
-	
+
 	// What amount would mainScroll have to equal to make nextY equal the
 	// bottom of the screen? (Also leave space for the "key" at the bottom.)
-	maxMainScroll = max(0., nextY + mainScroll - Screen::Height() / 2 - TILE_SIZE / 2 + 40.);
-	
+	maxMainScroll = max(0., nextY + mainScroll - Screen::Height() / 2 - TILE_SIZE / 2 + KeySize());
+
 	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Top() + 10),
 		Point(0., -1.), 10.f, 10.f, 5.f, Color(mainScroll > 0 ? .8f : .2f, 0.f));
 	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Bottom() - 10),
@@ -557,6 +557,13 @@ bool ShopPanel::ShouldHighlight(const Ship *ship)
 
 void ShopPanel::DrawKey()
 {
+}
+
+
+
+int ShopPanel::KeySize() const
+{
+	return 0;
 }
 
 

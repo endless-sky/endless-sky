@@ -94,6 +94,13 @@ int OutfitterPanel::TileSize() const
 
 
 
+int OutfitterPanel::KeySize() const
+{
+	return KEY_SIZE;
+}
+
+
+
 int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
 {
 	shipInfo.Update(*playerShip, player.FleetDepreciation(), day);
@@ -766,6 +773,8 @@ void OutfitterPanel::DrawKey()
 	const Font &font = FontSet::Get(14);
 	Color color[2] = {*GameData::Colors().Get("medium"), *GameData::Colors().Get("bright")};
 	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
+
+	// KEY_SIZE should match the combined height of the zones.
 
 	Point pos = Screen::BottomLeft() + Point(10., -50.);
 	Point off = Point(10., -.5 * font.Height());
