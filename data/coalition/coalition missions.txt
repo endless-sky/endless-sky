@@ -1473,7 +1473,7 @@ mission "Coalition: Submarines 2"
 		conversation
 			`As the workers unload the submarines from your cargo, Apri'ie approaches you, handing you <payment>. "Oversee the stress test I must, so meet you in the spaceport again, I will. If interested in seeing the test you are, however, come with me, you may."`
 			choice
-				`	"Sure, why not. Probably beats waiting around and checking shops over and over."
+				`	"Sure, why not. Probably beats waiting around and checking shops over and over."`
 				`	"Thanks for the invitation, but I'm not really interested."`
 					goto refuse
 			`	After the last submarine is out of your cargo, they're placed atop large truck-like vehicles, but with the wheels in a system of continuous tracks. You and Apri'ie board one of the trucks, and begin a trip down to the shore below, and then following the water out of the fjord, until reaching a small commercial port, with a large set of docks. Apri'ie introduces you to some of his colleagues, who are waiting to begin the tests, as the subs are activated before they are off the trucks, as some of the Kimek test basic functions, each working on a different computer to control their respective submarine.`
