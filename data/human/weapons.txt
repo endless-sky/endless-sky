@@ -717,7 +717,7 @@ outfit "Meteor Missile Pod"
 		"lifetime" 350
 		"reload" 200
 		"burst count" 7
-		"burst reload" 60
+		"burst reload" 80
 		"firing energy" 1
 		"firing heat" 20
 		"acceleration" 1
