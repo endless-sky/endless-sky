@@ -986,7 +986,7 @@ outfit "Torpedo Pod"
 	"outfit space" -8
 	"weapon capacity" -8
 	"gun ports" -1
-	"torpedo capacity" 5
+	"torpedo capacity" 3
 	weapon
 		sprite "projectile/torpedo"
 			"frame rate" 2
@@ -1087,7 +1087,7 @@ outfit "Typhoon Pod"
 	"outfit space" -12
 	"weapon capacity" -12
 	"gun ports" -1
-	"typhoon capacity" 5
+	"typhoon capacity" 2
 	weapon
 		sprite "projectile/typhoon"
 			"frame rate" 4
@@ -1184,7 +1184,7 @@ outfit "Heavy Rocket Pod"
 	"outfit space" -6
 	"weapon capacity" -6
 	"gun ports" -1
-	"rocket capacity" 3
+	"rocket capacity" 2
 	weapon
 		sprite "projectile/rocket"
 			"frame rate" 4
