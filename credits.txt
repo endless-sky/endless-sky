@@ -143,12 +143,15 @@ contributed to Endless Sky:
   colbygallup
   comnom
   corecontingency
+  Corraban2
   CyberShadow
   czartrak
   Darcman99
   davidarcher
   davidwhitman
+  dazuma
   db47h
+  DeBlister
   DingusShingleton
   Disiuze
   dplepage
@@ -214,6 +217,7 @@ contributed to Endless Sky:
   MasterOfGrey
   mattsoulanille
   maxrd2
+  McloughlinGuy
   MCOfficer
   MessyMix
   michel-slm
