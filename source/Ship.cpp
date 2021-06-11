@@ -3655,7 +3655,7 @@ void Ship::RegisterEscort(const Ship &ship)
 	// regular thrust.
 	// We also don't cache the speeds of carried ships, since they are often
 	// docked and the carrier waits for them during docking already.
-	if(!ship.CanBeCarried() && !ship.IsDestroyed() && ship.IsYours())
+	if(!ship.CanBeCarried() && !ship.IsDestroyed() && government == ship.GetGovernment())
 	{
 		double eV = ship.MaxVelocity() * 0.9;
 		if(eV > 0.)
