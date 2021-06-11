@@ -1463,7 +1463,7 @@ mission "Coalition: Submarines 2"
 				`	"Why not just do those tests on Second Cerulean right away?"`
 			`	"Upsetting or startling the local fauna, we wish to avoid, so wait until after the tests, we will, before deploying them in that planet's waters."`
 			label end
-			`	The Saryd issues a command on the data pad and turns off the communication device, saying that the cargo is being brought to your ship, and accompanies you and Apri'ie there. There are five submarines in total, strapped to large, sturdy sleds, which are slowly pushed up the ramp to your cargo hold. The subs themselves are somewhat oval in shape, and flat on the top and bottom. Other than the propulsion mechanisms on the back, you notice some multiple dark dots protruding on the front, likely a system of cameras, and two thin "arms" a bit to the sides, retracted for easier storage of the crafts. After the last sub is safely in your cargo hold, Apri'ie heads into your ship, and you set a route for <destination>.`
+			`	The Saryd issues a command on the data pad and turns off the communication device. They then say that the cargo is being brought to your ship, and accompanies you and Apri'ie there. There are five submarines in total, strapped to large, sturdy sleds, which are slowly pushed up the ramp to your cargo hold. The subs themselves are somewhat oval in shape, and flat on the top and bottom. Other than the propulsion mechanisms on the back, you notice some multiple dark dots protruding on the front, likely a system of cameras, and two thin "arms" a bit to the sides, retracted for easier storage of the crafts. After the last sub is safely in your cargo hold, Apri'ie heads into your ship, and you set a route for <destination>.`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Apri'ie and the unmanned submarines hasn't entered the system yet. Better depart and wait for it.`
@@ -1524,7 +1524,7 @@ mission "Coalition: Submarines 4"
 	on offer
 		conversation
 			`Apri'ie instructs you to head to hangars in a large port, where a team is waiting for the repair test. He hands you 130,000 credits when you land, and goes to check with the workers unloading the submarines.`
-			`	They are all taken from your cargo and swiftly put in the water, as the team of Kimek boards a large ship, that you guess is an old tanker. This ship prepares to follow the subs to the testing area, along with another smaller, newer ship, with a thick crane on the front. Apri'ie approaches you before he boards the tanker, asking, "Come with us for the test, would you like, Captain? Take a while, it might. Not expected until after nightfall, the next tremors are."`
+			`	They are all taken from your cargo and swiftly put in the water, as the team of Kimek boards a large ship that you guess is an old tanker. This ship prepares to follow the subs to the testing area, along with another smaller, newer ship, with a thick crane on the front. Apri'ie approaches you before he boards the tanker, asking, "Come with us for the test, would you like, Captain? Take a while, it might. Not expected until after nightfall, the next tremors are."`
 			choice
 				`	"If it's alright, yeah. Could be interesting."`
 				`	"I'll pass, not a fan of that type of ship."`
@@ -1547,5 +1547,5 @@ mission "Coalition: Submarines 4"
 		payment 510000
 		conversation
 			`The local workers carefully unload the submarines off your ship one at a time, bringing them to the icy waters nearby, where they will dive to perform the deep sea explorations on the local fauna.`
-			`	Once they're done, Apri'ie invites you to enter the research facility, where you're met by a committee of sorts, as a handful of the local scientists greet you two, and thank you for helping with transporting the subs. "Having trouble reaching deeper sections of the ocean, our older probes were, so able to analyze a multitude of new species, with these new subs we hope to be," one of the tells you.`
+			`	Once they're done, Apri'ie invites you to enter the research facility, where you're met by a committee of sorts; a handful of the local scientists greet you two, and thank you for helping with transporting the subs. "Having trouble reaching deeper sections of the ocean, our older probes were, so able to analyze a multitude of new species, with these new subs we hope to be," one of them tells you.`
 			`	When they're done, they hand you <payment>, and Apri'ie follows you to your ship. "Thankful for putting up with all the last-minute detours I am, Captain. Safe travels, may you have." He does a short gesture as a form of goodbye, having you put your forearm on the ground, and placing one of his legs over it, before heading back to the research center.`
