@@ -1301,7 +1301,7 @@ news "tourist pa system"
 			"Dear travelers: the spaceport is a strictly no-smoking zone. Thank you for your consideration."
 			"Dear travelers: welcome to our planet. Please remember to synchronize your personal clocks to the local time and night/day cycle duration."
 			"Please stand clear of the doors when the shuttle train is departing."
-			"This is the final boarding call for passengers Eline, John, and Robert. Please proceed to platform 3 for immediate boarding."
+			"This is the final boarding call for passengers Eline, John, and Robert Phillips. Please proceed to platform 3 for immediate boarding."
 			"Dear travelers: please take the time to adjust to normal gravity."
 
 
