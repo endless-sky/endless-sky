@@ -68,7 +68,7 @@ outfit "Fission Drive"
 	"engine capacity" -38
 	"energy generation" 5.2
 	"heat generation" 19.4
-	"thrust" 46.41
+	"thrust" 15.47
 	"thrusting energy" 1.508
 	"thrusting heat" 2.86
 	"turn" 319.8
@@ -98,10 +98,10 @@ outfit "Fusion Drive"
 	"turn" 2496.0
 	"turning energy" 4.55
 	"turning heat" 12.35
-	"thrust" 570
+	"thrust" 190
 	"thrusting energy" 11
 	"thrusting heat" 33
-	"reverse thrust" 134.4
+	"reverse thrust" 44.8
 	"reverse thrusting energy" 4.9
 	"reverse thrusting heat" 13.3
 	"flare sprite" "effect/fusionflare"

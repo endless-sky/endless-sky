@@ -390,7 +390,7 @@ outfit "Pug Akfar Thruster"
 	"mass" 43
 	"outfit space" -43
 	"engine capacity" -43
-	"thrust" 84.0
+	"thrust" 28.0
 	"thrusting energy" 2.2
 	"thrusting heat" 3.1
 	"flare sprite" "effect/ion flare/medium"
@@ -420,7 +420,7 @@ outfit "Pug Cormet Thruster"
 	"mass" 60
 	"outfit space" -60
 	"engine capacity" -60
-	"thrust" 132.0
+	"thrust" 44.0
 	"thrusting energy" 3.3
 	"thrusting heat" 4.6
 	"flare sprite" "effect/ion flare/large"
@@ -450,7 +450,7 @@ outfit "Pug Lohmar Thruster"
 	"mass" 84
 	"outfit space" -84
 	"engine capacity" -84
-	"thrust" 198.0
+	"thrust" 66.0
 	"thrusting energy" 4.9
 	"thrusting heat" 6.9
 	"flare sprite" "effect/ion flare/huge"
@@ -507,7 +507,7 @@ ship "Pug Zibruka"
 		"required crew" 4
 		"bunks" 6
 		"mass" 350
-		"drag" 10.2
+		"drag" 3.4
 		"heat dissipation" .8
 		"fuel capacity" 600
 		"cargo space" 20
@@ -557,7 +557,7 @@ ship "Pug Enfolta"
 		"required crew" 19
 		"bunks" 27
 		"mass" 610
-		"drag" 19.5
+		"drag" 6.5
 		"heat dissipation" .7
 		"fuel capacity" 600
 		"cargo space" 40
@@ -612,7 +612,7 @@ ship "Pug Maboro"
 		"required crew" 54
 		"bunks" 87
 		"mass" 1310
-		"drag" 33.9
+		"drag" 11.3
 		"heat dissipation" .6
 		"fuel capacity" 600
 		"cargo space" 70
@@ -669,7 +669,7 @@ ship "Pug Arfecta"
 		"required crew" 36
 		"bunks" 46
 		"mass" 1325
-		"drag" 22.5
+		"drag" 7.5
 		"heat dissipation" .8
 		"fuel capacity" 1200
 		"cargo space" 64
@@ -684,7 +684,7 @@ ship "Pug Arfecta"
 		"hull repair rate" 5
 		"hull energy" 5
 		"cloaking fuel" -.2
-		"reverse thrust" 198
+		"reverse thrust" 66
 		"reverse thrusting energy" 4.9
 		"reverse thrusting heat" 6.9
 		weapon

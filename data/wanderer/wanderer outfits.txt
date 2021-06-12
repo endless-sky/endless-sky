@@ -429,7 +429,7 @@ outfit "Type 1 Radiant Thruster"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"thrust" 16.8
+	"thrust" 5.6
 	"thrusting energy" 0.5
 	"thrusting heat" 0.9
 	"cooling" 1.5
@@ -447,7 +447,7 @@ outfit "Type 2 Radiant Thruster"
 	"mass" 27
 	"outfit space" -27
 	"engine capacity" -27
-	"thrust" 45
+	"thrust" 15
 	"thrusting energy" 1.4
 	"thrusting heat" 2.5
 	"cooling" 3.6
@@ -465,7 +465,7 @@ outfit "Type 3 Radiant Thruster"
 	"mass" 42
 	"outfit space" -42
 	"engine capacity" -42
-	"thrust" 80.4
+	"thrust" 26.8
 	"thrusting energy" 2.3
 	"thrusting heat" 4.4
 	"cooling" 6.5
@@ -483,7 +483,7 @@ outfit "Type 4 Radiant Thruster"
 	"mass" 65
 	"outfit space" -65
 	"engine capacity" -65
-	"thrust" 140.7
+	"thrust" 46.9
 	"thrusting energy" 3.7
 	"thrusting heat" 7.6
 	"cooling" 11.7

@@ -19,7 +19,7 @@ ship "Marauder Arrow"
 		"required crew" 2
 		"bunks" 5
 		"mass" 145
-		"drag" 5.1
+		"drag" 1.7
 		"heat dissipation" .85
 		"fuel capacity" 600
 		"cargo space" 5
@@ -118,7 +118,7 @@ ship "Marauder Bounder"
 		"required crew" 2
 		"bunks" 18
 		"mass" 145
-		"drag" 11.1
+		"drag" 3.7
 		"heat dissipation" .8
 		"fuel capacity" 900
 		"cargo space" 20
@@ -228,7 +228,7 @@ ship "Marauder Falcon"
 		"required crew" 43
 		"bunks" 80
 		"mass" 1230
-		"drag" 22.2
+		"drag" 7.4
 		"heat dissipation" .8
 		"fuel capacity" 600
 		"cargo space" 60
@@ -359,7 +359,7 @@ ship "Marauder Firebird"
 		"required crew" 10
 		"bunks" 25
 		"mass" 530
-		"drag" 13.5
+		"drag" 4.5
 		"heat dissipation" .6
 		"fuel capacity" 400
 		"cargo space" 20
@@ -475,7 +475,7 @@ ship "Marauder Leviathan"
 		"required crew" 48
 		"bunks" 69
 		"mass" 1590
-		"drag" 22.8
+		"drag" 7.6
 		"heat dissipation" .5
 		"fuel capacity" 500
 		"cargo space" 40
@@ -598,7 +598,7 @@ ship "Marauder Manta"
 		"required crew" 7
 		"bunks" 11
 		"mass" 410
-		"drag" 14.1
+		"drag" 4.7
 		"heat dissipation" .8
 		"fuel capacity" 400
 		"cargo space" 10
@@ -727,7 +727,7 @@ ship "Marauder Quicksilver"
 		"required crew" 4
 		"bunks" 7
 		"mass" 140
-		"drag" 6
+		"drag" 2
 		"heat dissipation" .8
 		"fuel capacity" 400
 		"cargo space" 5
@@ -829,7 +829,7 @@ ship "Marauder Raven"
 		"required crew" 7
 		"bunks" 14
 		"mass" 245
-		"drag" 9.9
+		"drag" 3.3
 		"heat dissipation" .8
 		"fuel capacity" 500
 		"cargo space" 20
@@ -937,7 +937,7 @@ ship "Marauder Splinter"
 		"required crew" 8
 		"bunks" 22
 		"mass" 275
-		"drag" 10.95
+		"drag" 3.65
 		"heat dissipation" .7
 		"fuel capacity" 600
 		"cargo space" 40

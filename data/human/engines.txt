@@ -15,7 +15,7 @@ outfit "Afterburner"
 	"mass" 15
 	"outfit space" -15
 	"engine capacity" -15
-	"afterburner thrust" 75.0
+	"afterburner thrust" 25.0
 	"afterburner fuel" .5
 	"afterburner heat" 10.0
 	"afterburner effect" "afterburner"
@@ -40,7 +40,7 @@ outfit "Ionic Afterburner"
 	"mass" 24
 	"outfit space" -24
 	"engine capacity" -24
-	"afterburner thrust" 87.0
+	"afterburner thrust" 29.0
 	"afterburner fuel" .1
 	"afterburner energy" 5.1
 	"afterburner heat" 4.0
@@ -68,7 +68,7 @@ outfit "X1050 Ion Engines"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"thrust" 12.0
+	"thrust" 4.0
 	"thrusting energy" .4
 	"thrusting heat" .6
 	"turn" 138
@@ -91,7 +91,7 @@ outfit "X1700 Ion Thruster"
 	"mass" 16
 	"outfit space" -16
 	"engine capacity" -16
-	"thrust" 18.0
+	"thrust" 6.0
 	"thrusting energy" .6
 	"thrusting heat" .9
 	"flare sprite" "effect/ion flare/tiny"
@@ -107,7 +107,7 @@ outfit "X2700 Ion Thruster"
 	"mass" 27
 	"outfit space" -27
 	"engine capacity" -27
-	"thrust" 34.5
+	"thrust" 11.5
 	"thrusting energy" 1.1
 	"thrusting heat" 1.7
 	"flare sprite" "effect/ion flare/small"
@@ -123,7 +123,7 @@ outfit "X3700 Ion Thruster"
 	"mass" 46
 	"outfit space" -46
 	"engine capacity" -46
-	"thrust" 66.3
+	"thrust" 22.1
 	"thrusting energy" 1.9
 	"thrusting heat" 3.2
 	"flare sprite" "effect/ion flare/medium"
@@ -139,7 +139,7 @@ outfit "X4700 Ion Thruster"
 	"mass" 79
 	"outfit space" -79
 	"engine capacity" -79
-	"thrust" 127.5
+	"thrust" 42.5
 	"thrusting energy" 3.5
 	"thrusting heat" 6.2
 	"flare sprite" "effect/ion flare/large"
@@ -155,7 +155,7 @@ outfit "X5700 Ion Thruster"
 	"mass" 134
 	"outfit space" -134
 	"engine capacity" -134
-	"thrust" 244.5
+	"thrust" 81.5
 	"thrusting energy" 6.3
 	"thrusting heat" 11.7
 	"flare sprite" "effect/ion flare/huge"
@@ -254,7 +254,7 @@ outfit "Chipmunk Plasma Thruster"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"thrust" 28.8
+	"thrust" 9.6
 	"thrusting energy" 1.0
 	"thrusting heat" 1.8
 	"flare sprite" "effect/plasma flare/tiny"
@@ -270,7 +270,7 @@ outfit "Greyhound Plasma Thruster"
 	"mass" 34
 	"outfit space" -34
 	"engine capacity" -34
-	"thrust" 55.2
+	"thrust" 18.4
 	"thrusting energy" 1.8
 	"thrusting heat" 3.4
 	"flare sprite" "effect/plasma flare/small"
@@ -286,7 +286,7 @@ outfit "Impala Plasma Thruster"
 	"mass" 58
 	"outfit space" -58
 	"engine capacity" -58
-	"thrust" 106.2
+	"thrust" 35.4
 	"thrusting energy" 3.2
 	"thrusting heat" 6.5
 	"flare sprite" "effect/plasma flare/medium"
@@ -302,7 +302,7 @@ outfit "Orca Plasma Thruster"
 	"mass" 98
 	"outfit space" -98
 	"engine capacity" -98
-	"thrust" 203.7
+	"thrust" 67.9
 	"thrusting energy" 5.8
 	"thrusting heat" 12.3
 	"flare sprite" "effect/plasma flare/large"
@@ -318,7 +318,7 @@ outfit "Tyrant Plasma Thruster"
 	"mass" 167
 	"outfit space" -167
 	"engine capacity" -167
-	"thrust" 391.5
+	"thrust" 130.5
 	"thrusting energy" 10.5
 	"thrusting heat" 23.5
 	"flare sprite" "effect/plasma flare/huge"
@@ -417,7 +417,7 @@ outfit "A120 Atomic Thruster"
 	"mass" 22
 	"outfit space" -22
 	"engine capacity" -22
-	"thrust" 38.1
+	"thrust" 12.7
 	"thrusting energy" 1.8
 	"thrusting heat" 3.5
 	"flare sprite" "effect/atomic flare/tiny"
@@ -432,7 +432,7 @@ outfit "A250 Atomic Thruster"
 	"mass" 34
 	"outfit space" -34
 	"engine capacity" -34
-	"thrust" 66.3
+	"thrust" 22.1
 	"thrusting energy" 3.1
 	"thrusting heat" 6.1
 	"flare sprite" "effect/atomic flare/small"
@@ -447,7 +447,7 @@ outfit "A370 Atomic Thruster"
 	"mass" 53
 	"outfit space" -53
 	"engine capacity" -53
-	"thrust" 113.1
+	"thrust" 37.7
 	"thrusting energy" 5.1
 	"thrusting heat" 10.3
 	"flare sprite" "effect/atomic flare/medium"
@@ -462,7 +462,7 @@ outfit "A520 Atomic Thruster"
 	"mass" 82
 	"outfit space" -82
 	"engine capacity" -82
-	"thrust" 190.8
+	"thrust" 63.6
 	"thrusting energy" 8.3
 	"thrusting heat" 17.4
 	"flare sprite" "effect/atomic flare/large"
@@ -477,7 +477,7 @@ outfit "A860 Atomic Thruster"
 	"mass" 127
 	"outfit space" -127
 	"engine capacity" -127
-	"thrust" 318.6
+	"thrust" 106.2
 	"thrusting energy" 13.3
 	"thrusting heat" 29.1
 	"flare sprite" "effect/atomic flare/huge"
@@ -569,7 +569,7 @@ outfit "AR120 Reverse Thruster"
 	"mass" 22
 	"outfit space" -22
 	"weapon capacity" -22
-	"reverse thrust" 38.1
+	"reverse thrust" 12.7
 	"reverse thrusting energy" 1.8
 	"reverse thrusting heat" 3.5
 	"reverse flare sprite" "effect/atomic flare/tiny"
