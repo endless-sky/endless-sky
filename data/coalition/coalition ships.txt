@@ -21,7 +21,7 @@ ship "Arach Courier"
 		"required crew" 1
 		"bunks" 1
 		"mass" 80
-		"drag" 1.3
+		"drag" 3.9
 		"heat dissipation" .65
 		"fuel capacity" 300
 		"cargo space" 78
@@ -66,7 +66,7 @@ ship "Arach Freighter"
 		"required crew" 3
 		"bunks" 10
 		"mass" 620
-		"drag" 5.3
+		"drag" 15.9
 		"heat dissipation" .55
 		"fuel capacity" 500
 		"cargo space" 310
@@ -116,7 +116,7 @@ ship "Arach Hulk"
 		"required crew" 8
 		"bunks" 14
 		"mass" 1670
-		"drag" 12.8
+		"drag" 38.4
 		"heat dissipation" .50
 		"fuel capacity" 500
 		"cargo space" 541
@@ -170,7 +170,7 @@ ship "Arach Spindle"
 		"required crew" 4
 		"bunks" 14
 		"mass" 1340
-		"drag" 10.6
+		"drag" 31.8
 		"heat dissipation" .55
 		"fuel capacity" 500
 		"cargo space" 280
@@ -222,7 +222,7 @@ ship "Arach Transport"
 		"required crew" 2
 		"bunks" 5
 		"mass" 210
-		"drag" 2.7
+		"drag" 8.1
 		"heat dissipation" .60
 		"fuel capacity" 400
 		"cargo space" 190
@@ -272,7 +272,7 @@ ship "Heliarch Breacher"
 		"required crew" 11
 		"bunks" 15
 		"mass" 200
-		"drag" 3.2
+		"drag" 9.6
 		"heat dissipation" .77
 		"ion protection" .1
 		"fuel capacity" 800
@@ -392,7 +392,7 @@ ship "Heliarch Hunter"
 		"required crew" 26
 		"bunks" 41
 		"mass" 660
-		"drag" 5.3
+		"drag" 15.9
 		"heat dissipation" .71
 		"ion protection" .2
 		"fuel capacity" 1500
@@ -550,7 +550,7 @@ ship "Heliarch Interdictor"
 		"required crew" 42
 		"bunks" 70
 		"mass" 790
-		"drag" 7.4
+		"drag" 22.2
 		"heat dissipation" .70
 		"ion protection" .2
 		"fuel capacity" 800
@@ -696,7 +696,7 @@ ship "Heliarch Judicator"
 		"required crew" 31
 		"bunks" 110
 		"mass" 730
-		"drag" 7.9
+		"drag" 23.7
 		"heat dissipation" .67
 		"ion protection" .2
 		"fuel capacity" 900
@@ -873,7 +873,7 @@ ship "Heliarch Neutralizer"
 		"required crew" 17
 		"bunks" 24
 		"mass" 270
-		"drag" 4.5
+		"drag" 13.5
 		"heat dissipation" .75
 		"ion protection" .1
 		"fuel capacity" 1000
@@ -993,7 +993,7 @@ ship "Heliarch Punisher"
 		"required crew" 96
 		"bunks" 145
 		"mass" 1780
-		"drag" 15.2
+		"drag" 45.6
 		"heat dissipation" .60
 		"ion protection" .3
 		"fuel capacity" 600
@@ -1186,7 +1186,7 @@ ship "Heliarch Pursuer"
 		"required crew" 1
 		"bunks" 1
 		"mass" 31
-		"drag" 0.65
+		"drag" 1.95
 		"heat dissipation" 0.99
 		"outfit space" 105
 		"weapon capacity" 19
@@ -1244,7 +1244,7 @@ ship "Heliarch Rover"
 		"required crew" 1
 		"bunks" 1
 		"mass" 37
-		"drag" 1.12
+		"drag" 3.36
 		"heat dissipation" .96
 		"outfit space" 125
 		"weapon capacity" 24
@@ -1300,7 +1300,7 @@ ship "Heliarch Stalker"
 		"required crew" 1
 		"bunks" 2
 		"mass" 80
-		"drag" 1.4
+		"drag" 4.2
 		"heat dissipation" 0.64
 		"outfit space" 133
 		"weapon capacity" 43
@@ -1355,7 +1355,7 @@ ship "Kimek Briar"
 		"required crew" 3
 		"bunks" 25
 		"mass" 180
-		"drag" 2
+		"drag" 6
 		"heat dissipation" .75
 		"fuel capacity" 700
 		"cargo space" 21
@@ -1401,7 +1401,7 @@ ship "Kimek Spire"
 		"required crew" 19
 		"bunks" 197
 		"mass" 570
-		"drag" 8.4
+		"drag" 25.2
 		"heat dissipation" .60
 		"fuel capacity" 800
 		"cargo space" 64
@@ -1455,7 +1455,7 @@ ship "Kimek Thistle"
 		"required crew" 7
 		"bunks" 52
 		"mass" 370
-		"drag" 4
+		"drag" 12
 		"heat dissipation" .70
 		"fuel capacity" 700
 		"cargo space" 29
@@ -1504,7 +1504,7 @@ ship "Kimek Thorn"
 		"required crew" 1
 		"bunks" 7
 		"mass" 80
-		"drag" 1
+		"drag" 3
 		"heat dissipation" .80
 		"fuel capacity" 600
 		"cargo space" 12
@@ -1549,7 +1549,7 @@ ship "Saryd Runabout"
 		"required crew" 2
 		"bunks" 13
 		"mass" 100
-		"drag" 2.1
+		"drag" 6.3
 		"heat dissipation" .70
 		"fuel capacity" 400
 		"cargo space" 42
@@ -1592,7 +1592,7 @@ ship "Saryd Sojourner"
 		"required crew" 17
 		"bunks" 84
 		"mass" 840
-		"drag" 10.2
+		"drag" 30.6
 		"heat dissipation" .50
 		"fuel capacity" 800
 		"cargo space" 260
@@ -1647,7 +1647,7 @@ ship "Saryd Traveler"
 		"required crew" 10
 		"bunks" 45
 		"mass" 450
-		"drag" 6.4
+		"drag" 19.2
 		"heat dissipation" .60
 		"fuel capacity" 600
 		"cargo space" 137
@@ -1700,7 +1700,7 @@ ship "Saryd Visitor"
 		"required crew" 5
 		"bunks" 29
 		"mass" 260
-		"drag" 3
+		"drag" 9
 		"heat dissipation" .65
 		"fuel capacity" 400
 		"cargo space" 98

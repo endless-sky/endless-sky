@@ -21,7 +21,7 @@ ship "Maeri'het"
 		"required crew" 1
 		"bunks" 1
 		"mass" 390
-		"drag" 3.8
+		"drag" 11.4
 		"heat dissipation" .4
 		"fuel capacity" 800
 		"ramscoop" 0.58
@@ -122,7 +122,7 @@ ship "Telis'het"
 		"required crew" 1
 		"bunks" 1
 		"mass" 820
-		"drag" 7.4
+		"drag" 22.2
 		"heat dissipation" .35
 		"fuel capacity" 800
 		"ramscoop" 0.82
@@ -259,7 +259,7 @@ ship "Vareti'het"
 		"required crew" 1
 		"bunks" 1
 		"mass" 2860
-		"drag" 14.1
+		"drag" 42.3
 		"heat dissipation" 0.3
 		"fuel capacity" 700
 		"ramscoop" 0.97
@@ -454,7 +454,7 @@ ship "Selii'mar"
 		"cost" 965000
 		"hull" 2800
 		"mass" 65
-		"drag" .8
+		"drag" 2.4
 		"heat dissipation" 1.1
 		"cargo space" 14
 		"outfit space" 77
@@ -485,7 +485,7 @@ ship "Faes'mar"
 		"shields" 200
 		"hull" 1900
 		"mass" 46
-		"drag" .7
+		"drag" 2.1
 		"heat dissipation" 1.05
 		"cargo space" 102
 		"outfit space" 92

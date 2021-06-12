@@ -187,7 +187,7 @@ outfit "Thruster (Asteroid Class)"
 	"mass" 14
 	"outfit space" -14
 	"engine capacity" -14
-	"thrust" 9.7
+	"thrust" 29.1
 	"thrusting energy" 1.5
 	"thrusting heat" 3.4
 	"flare sprite" "effect/korath flare/tiny"
@@ -203,7 +203,7 @@ outfit "Thruster (Comet Class)"
 	"mass" 24
 	"outfit space" -24
 	"engine capacity" -24
-	"thrust" 18.3
+	"thrust" 54.9
 	"thrusting energy" 2.8
 	"thrusting heat" 6.5
 	"flare sprite" "effect/korath flare/small"
@@ -219,7 +219,7 @@ outfit "Thruster (Lunar Class)"
 	"mass" 40
 	"outfit space" -40
 	"engine capacity" -40
-	"thrust" 34.1
+	"thrust" 102.3
 	"thrusting energy" 4.9
 	"thrusting heat" 11.9
 	"flare sprite" "effect/korath flare/medium"
@@ -235,7 +235,7 @@ outfit "Thruster (Planetary Class)"
 	"mass" 69
 	"outfit space" -69
 	"engine capacity" -69
-	"thrust" 65.1
+	"thrust" 195.3
 	"thrusting energy" 8.9
 	"thrusting heat" 22.7
 	"flare sprite" "effect/korath flare/large"
@@ -251,7 +251,7 @@ outfit "Thruster (Stellar Class)"
 	"mass" 118
 	"outfit space" -118
 	"engine capacity" -118
-	"thrust" 122.5
+	"thrust" 367.5
 	"thrusting energy" 15.8
 	"thrusting heat" 42.6
 	"flare sprite" "effect/korath flare/huge"

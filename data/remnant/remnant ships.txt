@@ -25,7 +25,7 @@ ship "Albatross"
 		"bunks" 75
 		"cargo space" 124
 		"mass" 1251
-		"drag" 8.6
+		"drag" 25.8
 		"heat dissipation" 0.6
 		"fuel capacity" 600
 		"ramscoop" 2
@@ -246,7 +246,7 @@ ship "Gull"
 		"required crew" 3
 		"bunks" 20
 		"mass" 415
-		"drag" 4.8
+		"drag" 14.4
 		"heat dissipation" 0.7
 		"fuel capacity" 600
 		"ramscoop" 1
@@ -385,7 +385,7 @@ ship "Heron"
 		"required crew" 1000
 		"bunks" 3000
 		"mass" 26450
-		"drag" 50
+		"drag" 150
 		"heat dissipation" .80
 		"fuel capacity" 2500
 		"ramscoop" 10
@@ -513,7 +513,7 @@ ship "Ibis"
 		"required crew" 16
 		"bunks" 36
 		"mass" 574
-		"drag" 5.1
+		"drag" 15.3
 		"heat dissipation" 0.7
 		"fuel capacity" 700
 		"ramscoop" 2
@@ -592,7 +592,7 @@ ship "Pelican"
 		"bunks" 35
 		"cargo space" 302
 		"mass" 672
-		"drag" 8.2
+		"drag" 24.6
 		"heat dissipation" 0.7
 		"fuel capacity" 600
 		"ramscoop" 2
@@ -672,7 +672,7 @@ ship "Penguin"
 		"required crew" 1
 		"bunks" 3
 		"mass" 92
-		"drag" 1.75
+		"drag" 5.25
 		"heat dissipation" 0.9
 		"fuel capacity" 800
 		"energy capacity" 300
@@ -693,9 +693,9 @@ ship "Penguin"
 		"outfit scan speed" 1
 		"tactical scan power" 50
 		"atmosphere scan" 100
-		"thrust" 2.1
+		"thrust" 6.3
 		"turn" 40.0
-		"reverse thrust" 2.1
+		"reverse thrust" 6.3
 		"flare sprite" "effect/remnant flare/small"
 			"frame rate" 5
 		"flare sound" "plasma tiny"
@@ -773,7 +773,7 @@ ship "Peregrine"
 		"required crew" 9
 		"bunks" 25
 		"mass" 576
-		"drag" 6.2
+		"drag" 18.6
 		"heat dissipation" 0.85
 		"fuel capacity" 900
 		"ramscoop" 2.5
@@ -858,7 +858,7 @@ ship "Petrel"
 		"required crew" 2
 		"bunks" 3
 		"mass" 50
-		"drag" 1.1
+		"drag" 3.3
 		"heat dissipation" .8
 		"outfit space" 133
 		"weapon capacity" 33
@@ -911,7 +911,7 @@ ship "Puffin"
 		"required crew" 1
 		"bunks" 2
 		"mass" 40
-		"drag" 0.95
+		"drag" 2.85
 		"heat dissipation" 0.9
 		"fuel capacity" 700
 		"energy capacity" 150
@@ -960,7 +960,7 @@ ship "Starling"
 		"required crew" 6
 		"bunks" 15
 		"mass" 310
-		"drag" 3.1
+		"drag" 9.3
 		"heat dissipation" 0.7
 		"fuel capacity" 900
 		"ramscoop" 1
@@ -1118,7 +1118,7 @@ ship "Tern"
 		"automaton" 1
 		"cargo space" 5
 		"mass" 32
-		"drag" 0.86
+		"drag" 2.58
 		"heat dissipation" .9
 		"fuel capacity" 50
 		"energy capacity" 500

@@ -25,7 +25,7 @@ person "Michael Zahniser"
 			"required crew" 400
 			"bunks" 500
 			"mass" 740
-			"drag" 12.5
+			"drag" 37.5
 			"heat dissipation" 0.45
 			"fuel capacity" 500
 			"cargo space" 200
@@ -221,7 +221,7 @@ ship "Marauder Fury"
 		"required crew" 1
 		"bunks" 3
 		"mass" 80
-		"drag" 1.57
+		"drag" 4.71
 		"heat dissipation" .85
 		"fuel capacity" 500
 		"cargo space" 15
@@ -322,7 +322,7 @@ person "Captain Nate"
 			"Don't you have a cargo of antique grandfather clocks or something to deliver somewhere?"
 			"Need as well as greed have followed us to the stars, and the rewards of wealth still await those wise enough to recognize this deep thrumming of our common pulse."
 	
-	ship Vanguard "Pointedstick"
+	ship "Vanguard" "Pointedstick"
 		sprite "ship/pointedstick vanguard"
 		"never disabled"
 		attributes
@@ -333,7 +333,7 @@ person "Captain Nate"
 			"required crew" 23
 			"bunks" 45
 			"mass" 500
-			"drag" 8
+			"drag" 24
 			"heat dissipation" .6
 			"fuel capacity" 400
 			"cargo space" 50
@@ -445,7 +445,7 @@ ship "Lampyrid-Class Transport"
 		"required crew" 5
 		"bunks" 14
 		"mass" 240
-		"drag" 8.5
+		"drag" 25.5
 		"heat dissipation" .7
 		"fuel capacity" 700
 		"cargo space" 160
@@ -583,7 +583,7 @@ ship "Modified Osprey"
 		"required crew" 189
 		"bunks" 240
 		"mass" 220
-		"drag" 15.1
+		"drag" 45.3
 		"heat dissipation" .6
 		"fuel capacity" 625
 		"cargo space" 80
@@ -755,11 +755,11 @@ ship "Ursa Polaris"
 		"required crew" 559
 		"bunks" 972
 		"mass" 1839
-		"drag" 12
+		"drag" 36
 		"heat dissipation" .9
 		"fuel capacity" 600
 		"solar collection" 15
-		"afterburner thrust" 200
+		"afterburner thrust" 600
 		"turn" 4005.0
 		"ramscoop" 20
 		"hull repair rate" 7
@@ -958,15 +958,15 @@ ship "Shooting Star"
 		"cost" -49500000
 		"energy capacity" 100
 		"mass" 450
-		"drag" 3.9
+		"drag" 11.7
 		"heat dissipation" 10
 		"fuel capacity" 200
 		"outfit space" 329
 		"weapon capacity" 156
 		"cargo space" 10
 		"hull repair" 3
-		"thrust" 15.6
-		"reverse thrust" 15.6
+		"thrust" 46.8
+		"reverse thrust" 46.8
 		"flare sound" "ion medium"
 		"turn" 1089.2
 		"jump speed" .2
@@ -1109,7 +1109,7 @@ ship "Marauder Bactrian"
 		"required crew" 70
 		"bunks" 93
 		"mass" 650
-		"drag" 15
+		"drag" 45
 		"heat dissipation" 0.4
 		"fuel capacity" 800
 		"cargo space" 80
