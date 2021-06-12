@@ -845,6 +845,9 @@ mission "Captured soldiers"
 	job 
 	repeat
 	description "Transport <bunks> captured Unfettered soldiers to <planet>, payment is <payment>"
+	to offer
+		has "language: Wanderer"
+		random < 20
 	passengers 3
 	on offer
 		require "Brig"
