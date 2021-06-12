@@ -208,6 +208,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[HIT_FORCE] = value;
 			else if(key == "piercing")
 				piercing = max(0., value);
+			else if(key == "prospecting")
+				prospecting = max(0., value);
 			else if(key == "range override")
 				rangeOverride = max(0., value);
 			else if(key == "velocity override")

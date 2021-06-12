@@ -88,13 +88,12 @@ private:
 	
 	// Remaining "hull" strength of the object, before it is destroyed.
 	double hull = 1000.;
-	// How resistance this object is to having its payload drop rate increased by
-	// special weaponry.
+	// How resistant this object is to having its payload drop rate increased by
+	// prospecting.
 	double toughness = 1.;
-	// Temporary name until I think of a better one.
-	// How much special damage this object has taken. Used to increase the payload
-	// drop rate.
-	double dropRateIncrease = 0.;
+	// How much prospecting has been done on this object. Used to increase the
+	// payload drop rate.
+	double prospecting = 0.;
 	// Material released when this object is destroyed. Each payload item only
 	// has a default 25% chance of surviving, meaning that usually the yield is
 	// much lower than the defined limit but occasionally you get quite lucky.

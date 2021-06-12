@@ -151,9 +151,10 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			// Each payload object has a default 25% chance of surviving. This
 			// creates a distribution with occasional very good payoffs.
 			double dropRate = 0.25;
-			// Special weapons are capable of increasing this drop rate.
+			// Special weapons are capable of increasing this drop rate through
+			// prospecting.
 			if(dropRateIncrease > 0.)
-				dropRate += 0.75 / (1 + toughness / dropRateIncrease);
+				dropRate += 0.75 / (1 + toughness / prospecting);
 			for(int amount = Random::Binomial(it.second, dropRate); amount > 0; amount -= Flotsam::TONS_PER_BOX)
 			{
 				flotsam.emplace_back(new Flotsam(it.first, min(amount, Flotsam::TONS_PER_BOX)));
@@ -186,7 +187,7 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 void Minable::TakeDamage(const Projectile &projectile)
 {
 	hull -= projectile.GetWeapon().HullDamage();
-	//dropRateIncrease += projectile.GetWeapon().SpecialDamage();
+	prospecting += projectile.GetWeapon().Prospecting();
 }
 
 
