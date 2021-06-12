@@ -147,6 +147,7 @@ ship "Flea"
 		"hull" 700
 		"mass" 21
 		"drag" .4
+		"acceleration multiplier" 2.
 		"heat dissipation" .83
 		"outfit space" 63
 		"weapon capacity" 13
@@ -920,6 +921,7 @@ ship "Violin Spider"
 		"bunks" 1
 		"mass" 31
 		"drag" 0.7
+		"acceleration multiplier" 2.
 		"heat dissipation" .7
 		"outfit space" 92
 		"weapon capacity" 19

@@ -58,6 +58,7 @@ ship "Flycatcher"
 		"automaton" 1
 		"mass" 40
 		"drag" .6
+		"acceleration multiplier" 2.
 		"heat dissipation" .9
 		"outfit space" 86
 		"weapon capacity" 28

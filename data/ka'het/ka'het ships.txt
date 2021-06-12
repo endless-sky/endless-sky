@@ -455,6 +455,7 @@ ship "Selii'mar"
 		"hull" 2800
 		"mass" 65
 		"drag" .8
+		"acceleration multiplier" 2.
 		"heat dissipation" 1.1
 		"cargo space" 14
 		"outfit space" 77
@@ -486,6 +487,7 @@ ship "Faes'mar"
 		"hull" 1900
 		"mass" 46
 		"drag" .7
+		"acceleration multiplier" 2.
 		"heat dissipation" 1.05
 		"cargo space" 102
 		"outfit space" 92

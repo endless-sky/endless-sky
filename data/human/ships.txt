@@ -373,6 +373,7 @@ ship "Barb"
 		"bunks" 2
 		"mass" 15
 		"drag" .4
+		"acceleration multiplier" 2.
 		"heat dissipation" .78
 		"outfit space" 85
 		"weapon capacity" 24
@@ -713,6 +714,7 @@ ship "Boxwing"
 		"bunks" 1
 		"mass" 40
 		"drag" .59
+		"acceleration multiplier" 2.
 		"heat dissipation" .27
 		"outfit space" 45
 		"engine capacity" 28
@@ -1013,6 +1015,7 @@ ship "Combat Drone"
 		"automaton" 1
 		"mass" 15
 		"drag" .36
+		"acceleration multiplier" 2.
 		"heat dissipation" .9
 		"outfit space" 58
 		"weapon capacity" 8
@@ -1248,6 +1251,7 @@ ship "Dagger"
 		"bunks" 1
 		"mass" 20
 		"drag" .4
+		"acceleration multiplier" 2.
 		"heat dissipation" .9
 		"outfit space" 90
 		"weapon capacity" 20
@@ -1362,6 +1366,7 @@ ship "Dropship"
 		"bunks" 9
 		"mass" 25
 		"drag" 0.8
+		"acceleration multiplier" 2.
 		"heat dissipation" .9
 		"cargo space" 5
 		"outfit space" 100
@@ -1472,6 +1477,7 @@ ship "Finch"
 		"bunks" 1
 		"mass" 35
 		"drag" .72
+		"acceleration multiplier" 2.
 		"heat dissipation" .85
 		"outfit space" 110
 		"weapon capacity" 20
@@ -2165,6 +2171,7 @@ ship "Lance"
 		"bunks" 1
 		"mass" 25
 		"drag" .42
+		"acceleration multiplier" 2.
 		"heat dissipation" .8
 		"outfit space" 100
 		"weapon capacity" 20
@@ -3229,6 +3236,7 @@ ship "Surveillance Drone"
 		"automaton" 1
 		"mass" 10
 		"drag" .32
+		"acceleration multiplier" 2.
 		"heat dissipation" .9
 		"outfit space" 53
 		"weapon capacity" 0

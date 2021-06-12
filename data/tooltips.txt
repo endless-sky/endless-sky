@@ -1,4 +1,7 @@
 # Outfit and ship attributes:
+tip "acceleration multiplier:"
+	`Modifies the acceleration of a ship by the given factor.`
+
 tip "active cooling:"
 	`Provides up to this amount of cooling per second. Active cooling requires energy, but if your heat level is low it runs at a lower cooling rate and lower energy draw. The amount of cooling is proportional to the temperature of your ship, reaching the full level only if you are about to overheat.`
 

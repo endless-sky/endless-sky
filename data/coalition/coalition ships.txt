@@ -1187,6 +1187,7 @@ ship "Heliarch Pursuer"
 		"bunks" 1
 		"mass" 31
 		"drag" 0.65
+		"acceleration multiplier" 2.
 		"heat dissipation" 0.99
 		"outfit space" 105
 		"weapon capacity" 19
@@ -1245,6 +1246,7 @@ ship "Heliarch Rover"
 		"bunks" 1
 		"mass" 37
 		"drag" 1.12
+		"acceleration multiplier" 2.
 		"heat dissipation" .96
 		"outfit space" 125
 		"weapon capacity" 24
@@ -1301,6 +1303,7 @@ ship "Heliarch Stalker"
 		"bunks" 2
 		"mass" 80
 		"drag" 1.4
+		"acceleration multiplier" 2.
 		"heat dissipation" 0.64
 		"outfit space" 133
 		"weapon capacity" 43

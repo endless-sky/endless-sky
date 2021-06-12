@@ -164,6 +164,7 @@ ship "Black Diamond"
 		"automaton" 1
 		"mass" 50
 		"drag" .9
+		"acceleration multiplier" 2.
 		"heat dissipation" .86
 		"outfit space" 152
 		"weapon capacity" 35

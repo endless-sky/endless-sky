@@ -859,6 +859,7 @@ ship "Petrel"
 		"bunks" 3
 		"mass" 50
 		"drag" 1.1
+		"acceleration multiplier" 2.
 		"heat dissipation" .8
 		"outfit space" 133
 		"weapon capacity" 33
@@ -1119,6 +1120,7 @@ ship "Tern"
 		"cargo space" 5
 		"mass" 32
 		"drag" 0.86
+		"acceleration multiplier" 2.
 		"heat dissipation" .9
 		"fuel capacity" 50
 		"energy capacity" 500
