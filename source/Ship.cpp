@@ -1757,7 +1757,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					double scale = fabs(thrustCommand);
 					energy -= scale * cost;
 					heat += scale * attributes.Get(isThrusting ? "thrusting heat" : "reverse thrusting heat");
-					acceleration += angle.Unit() * (thrustCommand * thrust / mass);
+					acceleration += angle.Unit() * (thrustCommand * thrust / mass) * (1. + attributes.Get("acceleration multiplier"));
 				}
 			}
 		}
@@ -1773,7 +1773,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				heat += attributes.Get("afterburner heat");
 				fuel -= fuelCost;
 				energy -= energyCost;
-				acceleration += angle.Unit() * thrust / mass;
+				acceleration += angle.Unit() * thrust / mass * (1. + attributes.Get("acceleration multiplier"));
 				
 				// Only create the afterburner effects if the ship is in the player's system.
 				isUsingAfterburner = !forget;
@@ -1783,7 +1783,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	if(acceleration)
 	{
 		acceleration *= slowMultiplier;
-		Point dragAcceleration = acceleration - velocity * (attributes.Get("drag") / mass);
+		Point dragAcceleration = acceleration - velocity * (attributes.Get("drag") / mass)  * (1. + attributes.Get("acceleration multiplier"));
 		// Make sure dragAcceleration has nonzero length, to avoid divide by zero.
 		if(dragAcceleration)
 		{
@@ -3036,7 +3036,7 @@ double Ship::TurnRate() const
 double Ship::Acceleration() const
 {
 	double thrust = attributes.Get("thrust");
-	return (thrust ? thrust : attributes.Get("afterburner thrust")) / Mass();
+	return (thrust ? thrust : attributes.Get("afterburner thrust")) / Mass() * (1. + attributes.Get("acceleration multiplier"));
 }
 
 

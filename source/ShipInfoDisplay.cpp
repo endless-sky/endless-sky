@@ -207,11 +207,12 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	attributesHeight += 20;
 	
 	attributeLabels.push_back("acceleration:");
+	double accelerationMultiplier = 1. + attributes.Get("acceleration multiplier");
 	if(!isGeneric)
-		attributeValues.push_back(Format::Number(3600. * forwardThrust / fullMass));
+		attributeValues.push_back(Format::Number(3600. * forwardThrust / fullMass * accelerationMultiplier));
 	else
-		attributeValues.push_back(Format::Number(3600. * forwardThrust / fullMass)
-			+ " / " + Format::Number(3600. *forwardThrust / emptyMass));
+		attributeValues.push_back(Format::Number(3600. * forwardThrust / fullMass * accelerationMultiplier)
+			+ " / " + Format::Number(3600. * forwardThrust / emptyMass * accelerationMultiplier));
 	attributesHeight += 20;
 	
 	attributeLabels.push_back("turning:");

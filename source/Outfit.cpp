@@ -63,6 +63,7 @@ namespace {
 		{"slowing protection", -0.99},
 		
 		// "Multiplier" attributes appear in numerators and are incremented by 1.
+		{"acceleration multiplier", -1.},
 		{"hull repair multiplier", -1.},
 		{"hull energy multiplier", -1.},
 		{"hull fuel multiplier", -1.},
