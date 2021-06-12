@@ -88,9 +88,16 @@ private:
 	
 	// Remaining "hull" strength of the object, before it is destroyed.
 	double hull = 1000.;
+	// How resistance this object is to having its payload drop rate increased by
+	// special weaponry.
+	double toughness = 1.;
+	// Temporary name until I think of a better one.
+	// How much special damage this object has taken. Used to increase the payload
+	// drop rate.
+	double dropRateIncrease = 0.;
 	// Material released when this object is destroyed. Each payload item only
-	// has a 25% chance of surviving, meaning that usually the yield is much
-	// lower than the defined limit but occasionally you get quite lucky.
+	// has a default 25% chance of surviving, meaning that usually the yield is
+	// much lower than the defined limit but occasionally you get quite lucky.
 	std::map<const Outfit *, int> payload;
 	// Explosion effects created when this object is destroyed.
 	std::map<const Effect *, int> explosions;
