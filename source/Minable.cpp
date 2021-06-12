@@ -153,7 +153,7 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			double dropRate = 0.25;
 			// Special weapons are capable of increasing this drop rate through
 			// prospecting.
-			if(dropRateIncrease > 0.)
+			if(prospecting > 0.)
 				dropRate += 0.75 / (1 + toughness / prospecting);
 			for(int amount = Random::Binomial(it.second, dropRate); amount > 0; amount -= Flotsam::TONS_PER_BOX)
 			{
