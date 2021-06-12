@@ -839,3 +839,25 @@ mission "Wanderers to Kor Efreti"
 	on complete
 		payment 35000 300
 		dialog `When you return, the Wanderers thank you for taking them to the Kor Efreti and hand you <payment> before disembarking.`
+
+mission "Governor transport"
+	name "transport the Governor to <planet>"
+	job
+	repeat
+	description "transport the local governor to the capital city of Vara K'chrai"
+	passengers 1
+	deadline
+	to offer
+		has "language: Wanderer"
+		random < 80
+		has "Wanderers Solifuge Recon 2: done"
+	source
+		government "Wanderer"
+		not planet "Vara K'chrai"
+	destination
+		planet "Vara K'chrai"
+	on offer
+		require "Luxury Accommodations"
+	on complete
+		payment 75000
+		dialog `Before the governor left, he thanked you for transporting him`
