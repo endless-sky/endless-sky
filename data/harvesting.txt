@@ -11,6 +11,7 @@
 minable "aluminum"
 	sprite "asteroid/silicon/spin"
 	hull 850
+	toughness 123
 	payload "Aluminum" 50
 	explode "smoke" 40
 	explode "bolide" 40
@@ -30,6 +31,7 @@ outfit "Aluminum"
 minable "copper"
 	sprite "asteroid/gold/spin"
 	hull 1000
+	toughness 145
 	payload "Copper" 35
 	explode "smoke" 20
 	explode "bolide" 20
@@ -49,6 +51,7 @@ outfit "Copper"
 minable "gold"
 	sprite "asteroid/gold/spin"
 	hull 2400
+	toughness 821
 	payload "Gold" 30
 	explode "smoke" 20
 	explode "bolide" 20
@@ -68,6 +71,7 @@ outfit "Gold"
 minable "iron"
 	sprite "asteroid/iron/spin"
 	hull 1300
+	toughness 188
 	payload "Iron" 55
 	explode "smoke" 40
 	explode "bolide" 40
@@ -87,6 +91,7 @@ outfit "Iron"
 minable "lead"
 	sprite "asteroid/lead/spin"
 	hull 700
+	toughness 86
 	payload "Lead" 60
 	explode "smoke" 30
 	explode "bolide" 30
@@ -106,6 +111,7 @@ outfit "Lead"
 minable "neodymium"
 	sprite "asteroid/iron/spin"
 	hull 3000
+	toughness 1534
 	payload "Neodymium" 65
 	explode "smoke" 40
 	explode "bolide" 40
@@ -125,6 +131,7 @@ outfit "Neodymium"
 minable "platinum"
 	sprite "asteroid/silver/spin"
 	hull 3400
+	toughness 2505
 	payload "Platinum" 32
 	explode "smoke" 20
 	explode "bolide" 20
@@ -144,6 +151,7 @@ outfit "Platinum"
 minable "silicon"
 	sprite "asteroid/silicon/spin"
 	hull 350
+	toughness 37
 	payload "Silicon" 80
 	explode "smoke" 40
 	explode "bolide" 40
@@ -163,6 +171,7 @@ outfit "Silicon"
 minable "silver"
 	sprite "asteroid/silver/spin"
 	hull 1700
+	toughness 582
 	payload "Silver" 35
 	explode "smoke" 20
 	explode "bolide" 20
@@ -191,6 +200,7 @@ outfit "Titanium"
 	plural "Titanium"
 	category "Special"
 	cost 1900
+	toughness 421
 	thumbnail "outfit/harvested titanium"
 	"flotsam sprite" "effect/flotsam titanium"
 	"mass" 1
@@ -201,6 +211,7 @@ outfit "Titanium"
 minable "tungsten"
 	sprite "asteroid/titanium/spin"
 	hull 4100
+	toughness 1079
 	payload "Tungsten" 40
 	explode "smoke" 30
 	explode "bolide" 30
@@ -220,6 +231,7 @@ outfit "Tungsten"
 minable "uranium"
 	sprite "asteroid/lead/spin"
 	hull 2700
+	toughness 924
 	payload "Uranium" 40
 	explode "smoke" 30
 	explode "bolide" 30
@@ -239,6 +251,7 @@ outfit "Uranium"
 minable "yottrite"
 	sprite "asteroid/yottrite/spin"
 	hull 17500
+	toughness 26700
 	payload "Yottrite" 13
 	explode "smoke" 30
 	explode "bolide" 30
