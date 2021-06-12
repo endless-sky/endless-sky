@@ -143,6 +143,7 @@ public:
 	bool DoesDamage() const;
 	
 	double Piercing() const;
+	double Prospecting() const;
 	
 	double TotalLifetime() const;
 	double Range() const;
