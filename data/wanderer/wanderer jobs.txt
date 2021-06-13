@@ -852,8 +852,6 @@ mission "Captured soldiers"
 	on offer
 		require "Brig"
 	source
-		has "language: Wanderer"
-		random < 20
 		government "Wanderer"
 	destination
 		distance 2 8
