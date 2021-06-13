@@ -176,7 +176,7 @@ mission "Coalition: Lost: Marker"
 			`You're approached by a Heliarch delegation shortly after you leave your ship.`
 			`	"Cautiously observed during the past few weeks, scans of your ship have been, Captain <last>," the Saryd begins.`
 			`	"Unlike previous scans, a jump drive in your ship, our scanners found not," the Kimek continues.`
-			`	"Though appreciate the work you here perform, we do, for you to be cut-off from the galaxy, we wish not," the Arach says. "Discussed much, our elders have, and to help you, they decided. To <destination> you must go, there discussed, the terms will be."`
+			`	"Though appreciate the work you here perform, we do, for you to be cut-off from the galaxy, we wish not," the Arach says. "Discussed much, our consuls have, and to help you, they decided. To <destination> you must go, there discussed, the terms will be."`
 			choice
 				`	"By that you mean you'll get me another jump drive? That's pretty generous of you."`
 				`	"What? I lost my jump drive? You've gotta be kidding!"`
@@ -305,7 +305,7 @@ mission "Coalition Yottrite 3"
 	name "Neighbor's Mailbox"
 	description "Deliver the <cargo> to the sister world of <origin>, <destination>."
 	landing
-	cargo "Experimental Yottrite Samples" 5
+	cargo "experimental yottrite samples" 5
 	to offer
 		has "Coalition Yottrite 2: offered"
 	source "Bloptab's Furnace"
@@ -505,7 +505,7 @@ mission "Coalition Yottrite 9"
 	name "Yottrite Presentation"
 	description "Transport Lugglop and his team, alongside <cargo>, to <destination>, where they will share with the Coalition's scientific community their findings on Yottrite."
 	passengers 6
-	cargo "Yottrite Presentation Materials" 6.14
+	cargo "yottrite presentation materials" 6.14
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
 		has "Coalition Yottrite 8: done"
@@ -750,7 +750,7 @@ mission "Coalition Outbreak 1"
 	description "Bring these <bunks> doctors, along with <cargo> to <destination> by <date>, where they will work to address a major viral outbreak"
 	deadline
 	passengers 75
-	cargo "Medical Supplies" 90
+	cargo "medical supplies" 90
 	to offer
 		has "Coalition: Contributor: done"
 		random < 5
@@ -782,7 +782,7 @@ mission "Coalition Outbreak 2"
 	name "Collect Vaccines"
 	description "Head to <stopovers>, where Saryd researchers have been working on a vaccine for the new virus, and deliver it to <destination> by <date>."
 	deadline
-	cargo "Vaccines" 80
+	cargo "vaccines" 80
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
 		has "Coalition Outbreak 1: done"
@@ -822,7 +822,7 @@ mission "Coalition Outbreak 3"
 	name "Distribute Vaccines"
 	description "Accompanied by the three volunteer ships, head to the designated Kimek worlds, delivering vaccines to deal with the current viral outbreak, then return to <destination> by <date>."
 	deadline
-	cargo "Vaccines" 80
+	cargo "vaccines" 80
 	to offer
 		has "Coalition Outbreak 2: done"
 	source "Ki Patek Ka"
@@ -951,7 +951,7 @@ mission "Saryd Students 2"
 	description "Now that you've bought the two tons of Arach rum, deliver it to the Saryd students on <destination> by <date>."
 	landing
 	deadline
-	cargo "Arach Rum" 2
+	cargo "arach rum" 2
 	to offer
 		has "Saryd Students 1: done"
 	source "Weir of Glubatub"
@@ -1240,7 +1240,7 @@ mission "Longcow Antibiotics 1"
 	minor
 	name "Longcow Antibiotics"
 	description "Arach ranchers have asked you to pick up <cargo> on <stopovers>, then deliver them to <destination>."
-	cargo "Longcow Antibiotics" 7
+	cargo "longcow antibiotics" 7
 	to offer
 		has "Coalition: First Contact: done"
 		random < 35
@@ -1275,7 +1275,7 @@ mission "Longcow Antibiotics 2"
 	name "Longcow Antibiotics"
 	description "Deliver the remaining <cargo> to <destination>, where some Arachi also work as longcow ranchers."
 	landing
-	cargo "Longcow Antibiotics" 1
+	cargo "longcow antibiotics" 1
 	to offer
 		has "Longcow Antibiotics 1: done"
 	source "Corral of Meblumem"
@@ -1302,7 +1302,7 @@ mission "Arachi Orphans"
 	name "Arach Orphans"
 	description "Bring these 4 Arach orphans, their caretaker, and their <cargo> to <destination>, where they will join a foster home."
 	passengers 5
-	cargo "Orphanage Belongings" 2
+	cargo "orphanage belongings" 2
 	to offer
 		has "Coalition: Contributor: done"
 		random < 45

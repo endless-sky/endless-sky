@@ -263,7 +263,7 @@ void Table::DrawGap(int y) const
 }
 
 
-	
+
 // Get the point that should be passed to DrawAt() to start the next row at
 // the given location.
 Point Table::GetPoint() const
