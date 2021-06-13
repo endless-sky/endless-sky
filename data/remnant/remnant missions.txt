@@ -4238,9 +4238,9 @@ mission "Remnant: Expanded Horizons Astral 1"
 	destination
 		government "Remnant"
 		not distance 0
+		not attributes "requires: gaslining"
 	to offer
 		has "Remnant: Expanded Horizons Quarg 3: done"
-		not attributes "requires: gaslining"
 		random < 25
 	on offer
 		conversation
