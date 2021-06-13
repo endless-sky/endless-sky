@@ -2572,17 +2572,22 @@ void PlayerInfo::CreateMissions()
 		if(skipJobs && it.second.IsAtLocation(Mission::JOB))
 			continue;
 		
-		if(it.second.CanOffer(*this))
-		{
-			list<Mission> &missions =
-				it.second.IsAtLocation(Mission::JOB) ? availableJobs : availableMissions;
-			
-			missions.push_back(it.second.Instantiate(*this));
-			if(missions.back().HasFailed(*this))
-				missions.pop_back();
-			else if(!it.second.IsAtLocation(Mission::JOB))
-				hasPriorityMissions |= missions.back().HasPriority();
-		}
+		// Most missions only generate once, but jobs can potentially 
+		// generate multiple times. The offer conditions are evaluated
+		// each time so that random offer conditions are reevaluated
+		// for each potential job.
+		for(int i = 0; i < it.second.Generate(); ++i)
+			if(it.second.CanOffer(*this))
+			{
+				list<Mission> &missions =
+					it.second.IsAtLocation(Mission::JOB) ? availableJobs : availableMissions;
+				
+				missions.push_back(it.second.Instantiate(*this));
+				if(missions.back().HasFailed(*this))
+					missions.pop_back();
+				else if(!it.second.IsAtLocation(Mission::JOB))
+					hasPriorityMissions |= missions.back().HasPriority();
+			}
 	}
 	
 	// If any of the available missions are "priority" missions, no other

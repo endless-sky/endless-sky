@@ -100,6 +100,11 @@ public:
 	// services, or whether we are landing in secret ("infiltrating").
 	bool HasFullClearance() const;
 	
+	// The number of times this mission should attempt to be instantiated. This only
+	// applies to jobs and allows a single mission definition to create multiple jobs
+	// at once. For non-job missions, this value is always 1.
+	int Generate() const;
+	
 	// Check if it's possible to offer or complete this mission right now. The
 	// check for whether you can offer a mission does not take available space
 	// into account, so before actually offering a mission you should also check
@@ -185,6 +190,7 @@ private:
 	bool hasFullClearance = true;
 	
 	int repeat = 1;
+	int generate = 1;
 	std::string cargo;
 	int cargoSize = 0;
 	// Parameters for generating random cargo amounts:

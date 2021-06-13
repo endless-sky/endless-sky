@@ -200,6 +200,8 @@ void Mission::Load(const DataNode &node)
 			location = BOARDING;
 		else if(child.Token(0) == "repeat")
 			repeat = (child.Size() == 1 ? 0 : static_cast<int>(child.Value(1)));
+		else if(child.Token(0) == "generate")
+			generate = max<int>(1, child.Value(1));
 		else if(child.Token(0) == "clearance")
 		{
 			clearance = (child.Size() == 1 ? "auto" : child.Token(1));
@@ -294,6 +296,11 @@ void Mission::Load(const DataNode &node)
 		displayName = name;
 	if((isMinor || hasPriority) && location == LANDING)
 		node.PrintTrace("Warning: \"minor\" or \"priority\" tags have no effect on \"landing\" missions:");
+	if(location != JOB && generate > 1)
+	{
+		generate = 1;
+		node.PrintTrace("Warning: non-\"job\" missions can't generate multiple times:");
+	}
 }
 
 
@@ -633,6 +640,16 @@ const string &Mission::ClearanceMessage() const
 bool Mission::HasFullClearance() const
 {
 	return hasFullClearance;
+}
+
+
+
+// The number of times this mission should attempt to be instantiated. This only
+// applies to jobs and allows a single mission definition to create multiple jobs
+// at once. For non-job missions, this value is always 1.
+int Mission::Generate() const
+{
+	return generate;
 }
 
 
