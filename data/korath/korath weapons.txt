@@ -321,7 +321,6 @@ outfit "Korath Piercer Pod"
 		"piercing" .2
 		"hit force" 600.0
 		"missile strength" 73
-		"stream"
 	description "Korath Piercer missiles carry a pair of warheads. The first, a smaller one in the very tip of the missile, explodes on impact to blast a hole in the ship's shields to allow some of the subsequent, larger explosion to pierce through."
 	description "	Piercer Missile Pods are compact missile launchers designed to be fitted onto drone, fighter, and interceptor class ships. They are much more compact that the standard launcher, with a correspondingly limited capacity. While they can launch their complement of piercers slightly faster than normal, their reloading mechanism is significantly slower."
 
