@@ -2344,7 +2344,9 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 		{
 			if(weapon->AntiMissile())
 				antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
-			else if(weapon->TractorBeam())
+			// If this ship has no spare cargo space then don't even bother
+			// looking for flotsams.
+			else if(weapon->TractorBeam() && cargo.Free())
 				tractorBeamRange = max(tractorBeamRange, weapon->Velocity() + weaponRadius);
 			else if(commands.HasFire(i))
 				armament.Fire(i, *this, projectiles, visuals);
@@ -2398,6 +2400,9 @@ void Ship::FireTractorBeam(Flotsam &flotsam, vector<Visual> &visuals)
 	if(flotsam.Position().Distance(position) > tractorBeamRange)
 		return;
 	if(CannotAct())
+		return;
+	// Don't waste energy on flotsams that can't be picked up.
+	if(flotsam.OutfitType() && flotsam.OutfitType()->Mass() > cargo.Free())
 		return;
 	
 	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
