@@ -329,6 +329,7 @@ outfit "Mining Laser"
 	"outfit space" -20
 	"weapon capacity" -20
 	"gun ports" -1
+	weapon
 		sprite "projectile/laser"
 			"frame rate" 1
 		sound "laser"
@@ -347,13 +348,14 @@ outfit "Mining Laser"
 	description "	These lasers have been heavily modified to be specialized toward the mining of asteroids. Sensors on the weapon analyze the asteroid being fired upon and tune the output as to destroy the least amount of material possible while still blasting the asteroid apart for harvesting, therefore increasing ore yields."
 
 outfit "Mining Turret"
-	category "Guns"
+	category "Turrets"
 	cost 198000
 	thumbnail "outfit/unknown"
 	"mass" 27
 	"outfit space" -27
 	"weapon capacity" -27
-	"gun ports" -1
+	"turret mounts" -1
+	weapon
 		"hardpoint sprite" "hardpoint/laser turret"
 		"hardpoint offset" -0.5 8.
 		sound "laser"
