@@ -668,6 +668,9 @@ tip "missile strength:"
 tip "anti-missile:"
 	`How powerful this anti-missile system's shots are. Some missiles are harder to destroy than others.`
 
+tip "tractor beam:"
+	`The velocity that this weapon accelerates flotsams toward it by per second.`
+
 
 
 # Flight checks:
