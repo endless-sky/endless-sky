@@ -2061,7 +2061,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 		}
 	}
 	// If the flotsam was not collected, give tractor beam systems a chance to
-	// catch it.
+	// pull it.
 	if(!collector)
 	{
 		for(Ship *ship : hasTractorBeam)

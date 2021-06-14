@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <vector>
 
+class Body;
 class Flotsam;
 class Outfit;
 class Projectile;
@@ -71,7 +72,7 @@ public:
 	void Fire(Ship &ship, std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
 	// Fire an anti-missile. Returns true if the missile should be killed.
 	bool FireAntiMissile(Ship &ship, const Projectile &projectile, std::vector<Visual> &visuals);
-	// Fire a tractor beam. Return true if a flotsam was hit.
+	// Fire a tractor beam. Returns true if a flotsam was hit.
 	bool FireTractorBeam(Ship &ship, const Flotsam &flotsam, std::vector<Visual> &visuals);
 	
 	// Install a weapon here (assuming it is empty). This is only for
@@ -84,6 +85,9 @@ public:
 	
 	
 private:
+	// Check whether a projectile or flotsam is within the range of the anti-missile
+	// or tractor beam system and create visuals if it is.
+	bool FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visual> &visuals);
 	// Reset the reload counters and expend ammunition, if any.
 	void Fire(Ship &ship, const Point &start, const Angle &aim);
 	
