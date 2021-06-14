@@ -2394,8 +2394,9 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 
 
 
-// Fire tractor beams.
-void Ship::FireTractorBeam(Flotsam &flotsam, vector<Visual> &visuals)
+// Fire tractor beams at the given flotsam and update the map of hardpoints that
+// have fired upon it.
+void Ship::FireTractorBeam(const Flotsam &flotsam, map<const Weapon *, Point> &tractorBeams, vector<Visual> &visuals)
 {
 	if(flotsam.Position().Distance(position) > tractorBeamRange)
 		return;
@@ -2414,9 +2415,7 @@ void Ship::FireTractorBeam(Flotsam &flotsam, vector<Visual> &visuals)
 			if(armament.FireTractorBeam(i, *this, flotsam, visuals))
 			{
 				Point hardpointPos = Position() + Zoom() * Facing().Rotate(hardpoints[i].GetPoint());
-				Point pullDirection = (hardpointPos - flotsam.Position()).Unit();
-				double pullVelocity = weapon->TractorBeam() / 60.;
-				flotsam.Pull(pullDirection * pullVelocity);
+				tractorBeams[weapon] = hardpointPos;
 				// If this ship is opportunistic, then only fire one tractor beam at each flostam.
 				if(personality.IsOpportunistic() || (isYours && opportunisticEscorts))
 					return;
