@@ -191,6 +191,7 @@ outfit "Silver"
 minable "titanium"
 	sprite "asteroid/titanium/spin"
 	hull 2000
+	toughness 421
 	payload "Titanium" 50
 	explode "smoke" 30
 	explode "bolide" 30
@@ -200,7 +201,6 @@ outfit "Titanium"
 	plural "Titanium"
 	category "Special"
 	cost 1900
-	toughness 421
 	thumbnail "outfit/harvested titanium"
 	"flotsam sprite" "effect/flotsam titanium"
 	"mass" 1
