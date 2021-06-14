@@ -773,7 +773,7 @@ news "chef"
 			"A rich client of mine shot a spiny-tailed gorgebeast on a safari expedition and asked me to cook it for him. The flavor profile was quite... unique."
 			"I was a dish-washer when I started, and now I'm a sous-chef. And people say there's no upward mobility in the galaxy these days!"
 			"Last week my dish was completely ruined; somebody had calibrated my kitchen scale with the gravity settings of another planet."
-			"There is only one thing worse than finding a worm in an apple you're eating; finding half a worm in that apple."
+			"There is only one thing worse than finding a worm in an apple you're eating: finding half a worm in that apple."
 		word
 			`"`
 
@@ -1025,8 +1025,8 @@ news "human tourism"
 			"I was really hoping for more aliens in space. What's the point if there's no steamy interspecies romance!?"
 			"Can you tell me again which planet this is? No, I'm not lost, I just don't know where I am."
 			"We did a ride on an ancient spacecraft the other day. It was called something like Soyuz or Shuttle Dragon. I don't remember the name exactly, but it was horrible; my back still hurts from the bumpy ride."
-			"I almost missed my transport last week; Someone was wrong on the hypernet and I was in a long heated discussion to correct it."
-			"Hey! Where is platform 5? I need to board there in a few minutes!"
+			"I almost missed my transport last week; someone was wrong on the hypernet and I was in a long, heated discussion to correct it."
+			"Hey! Where's platform 5? I need to board there in a few minutes!"
 			"Have you seen my luggage? I'm sure I put it here some minutes ago."
 			"We visited an exhibition about ancient military weapons; stuff like stealth fighters, artillery and tanks. It all became obsolete so fast when we got cheap spaceflight."
 		word
@@ -1282,7 +1282,7 @@ news "syndicate pa system"
 			"Attention: baggage should not be left unattended. Any unattended baggage will be auctioned within days."
 			"Attention factory workers: please proceed to the fast-lane immigration desk. Time spent in regular immigration lanes will not be reimbursed."
 			"Dear spaceship captains: please be aware that our outfitters are open all hours of the day. There is never a reason to delay the purchase of your next piece of Syndicate equipment."
-			"Dear traveler: we recommend you to have dinner in restaurant The Wing. You will not be disappointed."
+			"Dear traveler: we recommend you to have dinner in our local restaurant 'The Wing'. You will not be disappointed."
 
 
 
