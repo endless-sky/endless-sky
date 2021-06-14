@@ -2316,10 +2316,11 @@ double Ship::OutfitScanFraction() const
 
 
 
-// Fire any weapons that are ready to fire. If an anti-missile is ready,
-// instead of firing here this function returns true and it can be fired if
-// collision detection finds a missile in range.
-bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
+// Fire any weapons that are ready to fire. If an anti-missile or tractor beam
+// is ready, instead of firing here this function updates the anti-missile and
+// tractor beam ranges and they can be fired if collision detection finds a
+// missile or flotsam in range.
+void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 {
 	isInSystem = true;
 	forget = 0;
@@ -2330,9 +2331,10 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 		projectiles.emplace_back(position, explosionWeapon);
 	
 	if(CannotAct())
-		return false;
+		return;
 	
 	antiMissileRange = 0.;
+	tractorBeamRange = 0.;
 	
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
@@ -2342,14 +2344,28 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 		{
 			if(weapon->AntiMissile())
 				antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
+			else if(weapon->TractorBeam())
+				tractorBeamRange = max(tractorBeamRange, weapon->Velocity() + weaponRadius);
 			else if(commands.HasFire(i))
 				armament.Fire(i, *this, projectiles, visuals);
 		}
 	}
 	
 	armament.Step(*this);
-	
+}
+
+
+
+bool Ship::HasAntiMissile() const
+{
 	return antiMissileRange;
+}
+
+
+
+bool Ship::HasTractorBeam() const
+{
+	return tractorBeamRange;
 }
 
 
@@ -2372,6 +2388,31 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	}
 	
 	return false;
+}
+
+
+
+void Ship::FireTractorBeam(Flotsam &flotsam, vector<Visual> &visuals)
+{
+	if(flotsam.Position().Distance(position) > tractorBeamRange)
+		return;
+	if(CannotAct())
+		return;
+	
+	const vector<Hardpoint> &hardpoints = armament.Get();
+	for(unsigned i = 0; i < hardpoints.size(); ++i)
+	{
+		const Weapon *weapon = hardpoints[i].GetOutfit();
+		if(weapon && CanFire(weapon))
+			if(armament.FireTractorBeam(i, *this, flotsam, visuals))
+			{
+				Point hardpointPos = Position() + Zoom() * Facing().Rotate(hardpoints[i].GetPoint());
+				Point pullDirection = (hardpointPos - flotsam.Position()).Unit();
+				double pullVelocity = weapon->TractorBeam() / 60.;
+				flotsam.Pull(pullDirection * pullVelocity);
+				return;
+			}
+	}
 }
 
 

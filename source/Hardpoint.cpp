@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Audio.h"
 #include "Effect.h"
+#include "Flotsam.h"
 #include "Outfit.h"
 #include "pi.h"
 #include "Projectile.h"
@@ -128,6 +129,14 @@ bool Hardpoint::IsHoming() const
 bool Hardpoint::IsAntiMissile() const
 {
 	return outfit && outfit->AntiMissile() > 0;
+}
+
+
+
+// Find out if this hardpoint has a tractor beam installed.
+bool Hardpoint::IsTractorBeam() const
+{
+	return outfit && outfit->TractorBeam() > 0.;
 }
 
 
@@ -268,6 +277,49 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 	
 	// Check whether the missile was destroyed.
 	return (Random::Int(strength) > Random::Int(projectile.MissileStrength()));
+}
+
+
+
+
+bool Hardpoint::FireTractorBeam(Ship &ship, const Flotsam &flotsam, std::vector<Visual> &visuals)
+{
+	// Make sure this hardpoint really is a tractor beam.
+	double strength = outfit->TractorBeam();
+	if(!strength)
+		return false;
+	
+	// Get the tractor beam range. Tractor beam shots always last a single frame,
+	// so their range is equal to their velocity.
+	double range = outfit->Velocity();
+	
+	// Check if the flotsam is within range of this hardpoint.
+	Point start = ship.Position() + ship.Facing().Rotate(point);
+	Point offset = flotsam.Position() - start;
+	if(offset.Length() > range)
+		return false;
+	
+	// Precompute the number of visuals that will be added.
+	visuals.reserve(visuals.size() + outfit->FireEffects().size()
+		+ outfit->HitEffects().size() + outfit->DieEffects().size());
+	
+	// Firing effects are displayed at the tractor beam hardpoint that just fired.
+	Angle aim(offset);
+	angle = aim - ship.Facing();
+	start += aim.Rotate(outfit->HardpointOffset());
+	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
+	
+	// Figure out where the effect should be placed. Tractor beams do not create
+	// projectiles; they just create a blast animation.
+	CreateEffects(outfit->HitEffects(), start + (.5 * range) * aim.Unit(), ship.Velocity(), aim, visuals);
+	
+	// Die effects are displayed at the flotsam, whether or not it actually "dies."
+	CreateEffects(outfit->DieEffects(), flotsam.Position(), flotsam.Velocity(), aim, visuals);
+	
+	// Update the reload and burst counters, and expend ammunition if applicable.
+	Fire(ship, start, aim);
+	
+	return true;
 }
 
 

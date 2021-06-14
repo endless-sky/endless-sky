@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class Command;
+class Flotsam;
 class Outfit;
 class Point;
 class Projectile;
@@ -67,6 +68,8 @@ public:
 	void Fire(int index, Ship &ship, std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
 	// Fire the given anti-missile system.
 	bool FireAntiMissile(int index, Ship &ship, const Projectile &projectile, std::vector<Visual> &visuals);
+	// Fire the given tractor beam.
+	bool FireTractorBeam(int index, Ship &ship, const Flotsam &flotsam, std::vector<Visual> &visuals);
 	
 	// Update the reload counters.
 	void Step(const Ship &ship);

@@ -109,6 +109,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				missileStrength = max(0., value);
 			else if(key == "anti-missile")
 				antiMissile = max(0., value);
+			else if(key == "tractor beam")
+				tractorBeam = max(0., value);
 			else if(key == "velocity")
 				velocity = value;
 			else if(key == "random velocity")
@@ -235,7 +237,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 	// Weapons of the same type will alternate firing (streaming) rather than
 	// firing all at once (clustering) if the weapon is not an anti-missile and
 	// is not vulnerable to anti-missile, or has the "stream" attribute.
-	isStreamed |= !(MissileStrength() || AntiMissile());
+	isStreamed |= !(MissileStrength() || AntiMissile() || TractorBeam());
 	isStreamed &= !isClustered;
 	
 	// Support legacy missiles with no tracking type defined:

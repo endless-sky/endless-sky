@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <vector>
 
+class Flotsam;
 class Outfit;
 class Projectile;
 class Ship;
@@ -49,6 +50,7 @@ public:
 	bool IsTurret() const;
 	bool IsHoming() const;
 	bool IsAntiMissile() const;
+	bool IsTractorBeam() const;
 	bool CanAim() const;
 	
 	// Check if this weapon is ready to fire.
@@ -69,6 +71,8 @@ public:
 	void Fire(Ship &ship, std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
 	// Fire an anti-missile. Returns true if the missile should be killed.
 	bool FireAntiMissile(Ship &ship, const Projectile &projectile, std::vector<Visual> &visuals);
+	// Fire a tractor beam. Return true if a flotsam was hit.
+	bool FireTractorBeam(Ship &ship, const Flotsam &flotsam, std::vector<Visual> &visuals);
 	
 	// Install a weapon here (assuming it is empty). This is only for
 	// Armament to call internally.

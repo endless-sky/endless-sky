@@ -228,6 +228,15 @@ bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projecti
 
 
 
+bool Armament::FireTractorBeam(int index, Ship &ship, const Flotsam &flotsam, std::vector<Visual> &visuals)
+{
+	if(static_cast<unsigned>(index) >= hardpoints.size() || !hardpoints[index].IsReady())
+		return false;
+	
+	return hardpoints[index].FireTractorBeam(ship, flotsam, visuals);
+}
+
+
 // Update the reload counters.
 void Armament::Step(const Ship &ship)
 {

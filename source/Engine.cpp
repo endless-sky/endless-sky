@@ -1394,6 +1394,9 @@ void Engine::CalculateStep()
 	// Check for flotsam collection (collisions with ships).
 	for(const shared_ptr<Flotsam> &it : flotsam)
 		DoCollection(*it);
+	// Now that flotsam collection is done, clear the cache of ships with
+	// tractor beam systems ready to fire.
+	hasTractorBeam.clear();
 	
 	// Check for ship scanning.
 	for(const shared_ptr<Ship> &it : ships)
@@ -1567,10 +1570,15 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	// Launch fighters.
 	ship->Launch(newShips, newVisuals);
 	
-	// Fire weapons. If this returns true the ship has at least one anti-missile
-	// system ready to fire.
-	if(ship->Fire(newProjectiles, newVisuals))
+	// Fire weapons.
+	ship->Fire(newProjectiles, newVisuals);
+	
+	// Anti-missile and tractor beam systems are fired separately from normal weaponry.
+	// Track which ships have at least one such system ready to fire.
+	if(ship->HasAntiMissile())
 		hasAntiMissile.push_back(ship.get());
+	if(ship->HasTractorBeam())
+		hasTractorBeam.push_back(ship.get());
 }
 
 
@@ -2052,8 +2060,14 @@ void Engine::DoCollection(Flotsam &flotsam)
 			break;
 		}
 	}
+	// If the flotsam was not collected, give tractor beam systems a chance to
+	// catch it.
 	if(!collector)
+	{
+		for(Ship *ship : hasTractorBeam)
+			ship->FireTractorBeam(flotsam, visuals);
 		return;
+	}
 	
 	// Transfer cargo from the flotsam to the collector ship.
 	int amount = flotsam.TransferTo(collector);

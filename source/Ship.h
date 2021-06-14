@@ -207,12 +207,18 @@ public:
 	double CargoScanFraction() const;
 	double OutfitScanFraction() const;
 	
-	// Fire any weapons that are ready to fire. If an anti-missile is ready,
-	// instead of firing here this function returns true and it can be fired if
-	// collision detection finds a missile in range.
-	bool Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
+	// Fire any weapons that are ready to fire. If an anti-missile or tractor beam
+	// is ready, instead of firing here this function updates the anti-missile and
+	// tractor beam ranges and they can be fired if collision detection finds a
+	// missile or flotsam in range.
+	void Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
+	// Return true if any anti-missile or tractor beam systems are ready to fire.
+	bool HasAntiMissile() const;
+	bool HasTractorBeam() const;
 	// Fire an anti-missile. Returns true if the missile was killed.
 	bool FireAntiMissile(const Projectile &projectile, std::vector<Visual> &visuals);
+	// Fire a tractor beam.
+	void FireTractorBeam(Flotsam &flotsam, std::vector<Visual> &visuals);
 	
 	// Get the system this ship is in.
 	const System *GetSystem() const;
@@ -480,8 +486,9 @@ private:
 	int customSwizzle = -1;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
-	// Cached values for figuring out when anti-missile is in range.
+	// Cached values for figuring out when anti-missiles or tractor beams are in range.
 	double antiMissileRange = 0.;
+	double tractorBeamRange = 0.;
 	double weaponRadius = 0.;
 	// Cargo and outfit scanning takes time.
 	double cargoScan = 0.;

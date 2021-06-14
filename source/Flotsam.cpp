@@ -115,6 +115,14 @@ void Flotsam::Move(vector<Visual> &visuals)
 
 
 
+// Pull the object
+void Flotsam::Pull(Point pull)
+{
+	velocity += pull;
+}
+
+
+
 // This is the one ship that cannot pick up this flotsam.
 const Ship *Flotsam::Source() const
 {
