@@ -1011,9 +1011,7 @@ outfit "Nuclear Missile"
 		sprite "projectile/missile"
 			"no repeat"
 			"frame rate" .25
-		"hardpoint sprite" "projectile/missile"
-			"frame rate" 0
-			"start frame" 1
+		"hardpoint sprite" "hardpoint/nuclear missile"
 		"hardpoint offset" 5
 		sound "nuke"
 		ammo "Nuclear Missile"
