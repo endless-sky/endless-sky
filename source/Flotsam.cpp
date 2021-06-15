@@ -121,7 +121,7 @@ void Flotsam::Pull(Point pull)
 	// Dampen perpendicular motion, decaying the orbits of any flotsams
 	// so that they fall into the direction of pull.
 	Point deceleration = -velocity;
-	deceleration *= 0.01 * fabs(pull.Unit().Dot(velocity.Unit()) + 1.);
+	deceleration *= 0.01 * fabs(pull.Unit().Cross(velocity.Unit()));
 	velocity += deceleration;
 	
 	// Pull the object toward the tractor beam.
