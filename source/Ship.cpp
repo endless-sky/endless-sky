@@ -2402,7 +2402,10 @@ void Ship::FireTractorBeam(const Flotsam &flotsam, map<const Weapon *, Point> &t
 		return;
 	if(CannotAct())
 		return;
-	// Don't waste energy on flotsams that can't be picked up.
+	// Don't fire on flotsams that you can't pick up (i.e. your own dumped cargo).
+	if(flotsam.Source() == this)
+		return;
+	// Don't waste energy on flotsams that you don't have cargo space for.
 	if(flotsam.OutfitType() && flotsam.OutfitType()->Mass() > cargo.Free())
 		return;
 	
