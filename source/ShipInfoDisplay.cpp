@@ -211,7 +211,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		attributeValues.push_back(Format::Number(3600. * forwardThrust / baseMass));
 	else
 		attributeValues.push_back(Format::Number(3600. * forwardThrust / fullMass)
-			+ " / " + Format::Number(3600. *forwardThrust / baseMass));
+			+ " / " + Format::Number(3600. * forwardThrust / baseMass));
 	attributesHeight += 20;
 	
 	attributeLabels.push_back("turning:");
