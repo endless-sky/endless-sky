@@ -330,13 +330,12 @@ outfit "Mining Laser"
 	"weapon capacity" -20
 	"gun ports" -1
 	weapon
-		sprite "projectile/laser"
+		sprite "projectile/mining laser"
 			"frame rate" 1
 		sound "laser"
 		"hit effect" "beam laser impact"
 		"inaccuracy" .6
-		#"velocity" 200
-		"velocity" 300
+		"velocity" 200
 		"lifetime" 1
 		"reload" 1
 		"firing energy" .8
@@ -356,14 +355,15 @@ outfit "Mining Turret"
 	"weapon capacity" -27
 	"turret mounts" -1
 	weapon
+		sprite "projectile/mining laser"
+			"frame rate" 1
 		"hardpoint sprite" "hardpoint/laser turret"
 		"hardpoint offset" -0.5 8.
 		sound "laser"
 		"hit effect" "beam laser impact"
 		"inaccuracy" .6
 		"turret turn" 4.5
-		#"velocity" 200
-		"velocity" 300
+		"velocity" 200
 		"lifetime" 1
 		"reload" 1
 		"firing energy" .8
@@ -433,7 +433,7 @@ effect "large anti-missile"
 	"velocity scale" 1
 
 
-outfit "Tractor Turret"
+outfit "Tractor Beam"
 	category "Turrets"
 	cost 75000
 	thumbnail "outfit/unknown"
@@ -452,7 +452,7 @@ outfit "Tractor Turret"
 		"firing energy" 2.1
 		"firing heat" 1.3
 	description "The anti-gravity properties of repulsor engines that allow ships to escape the gravity well of planets without the difficulty that humanity once faced before the era of the hyperdrive started a revolution in human spaceflight during the 24th century, and it was not long before this technology was put to use elsewhere."
-	description "	The tractor turret utilizes repulsor technology to allow ships to attract space debris to them, be that the ores from a recently mined asteroid or the dumped cargo from a merchant ship fleeing for its life. This has led to tractor turrets being a popular outfit among asteroid miners and pirates alike."
+	description "	Tractor beams utilize repulsor technology to allow ships to attract space debris to them, be that the ores from a recently mined asteroid or the dumped cargo from a merchant ship fleeing for its life. This has led to tractor beams being a popular outfit among asteroid miners and pirates alike."
 
 
 outfit "Particle Cannon"
