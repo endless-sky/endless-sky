@@ -169,9 +169,9 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		attributeValues.push_back(Format::Number(attributes.Get("hull")));
 	}
 	attributesHeight += 20;
-	double emptyMass = ship.Mass();
+	double baseMass = ship.Mass();
 	attributeLabels.push_back(isGeneric ? "mass with no cargo:" : "mass:");
-	attributeValues.push_back(Format::Number(emptyMass));
+	attributeValues.push_back(Format::Number(baseMass));
 	attributesHeight += 20;
 	attributeLabels.push_back(isGeneric ? "cargo space:" : "cargo:");
 	if(isGeneric)
@@ -193,8 +193,8 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 			+ " / " + Format::Number(fuelCapacity));
 	attributesHeight += 20;
 	
-	double fullMass = emptyMass + (isGeneric ? attributes.Get("cargo space") : ship.Cargo().Used());
-	isGeneric &= (fullMass != emptyMass);
+	double fullMass = baseMass + attributes.Get("cargo space");
+	isGeneric &= (fullMass != baseMass);
 	double forwardThrust = attributes.Get("thrust") ? attributes.Get("thrust") : attributes.Get("afterburner thrust");
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
@@ -208,18 +208,18 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	
 	attributeLabels.push_back("acceleration:");
 	if(!isGeneric)
-		attributeValues.push_back(Format::Number(3600. * forwardThrust / fullMass));
+		attributeValues.push_back(Format::Number(3600. * forwardThrust / baseMass));
 	else
 		attributeValues.push_back(Format::Number(3600. * forwardThrust / fullMass)
-			+ " / " + Format::Number(3600. *forwardThrust / emptyMass));
+			+ " / " + Format::Number(3600. *forwardThrust / baseMass));
 	attributesHeight += 20;
 	
 	attributeLabels.push_back("turning:");
 	if(!isGeneric)
-		attributeValues.push_back(Format::Number(60. * attributes.Get("turn") / fullMass));
+		attributeValues.push_back(Format::Number(60. * attributes.Get("turn") / baseMass));
 	else
 		attributeValues.push_back(Format::Number(60. * attributes.Get("turn") / fullMass)
-			+ " / " + Format::Number(60. * attributes.Get("turn") / emptyMass));
+			+ " / " + Format::Number(60. * attributes.Get("turn") / baseMass));
 	attributesHeight += 20;
 	
 	// Find out how much outfit, engine, and weapon space the chassis has.
