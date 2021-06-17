@@ -330,6 +330,16 @@ outfit "Luxury Accommodations"
 	"unplunderable" 1
 	description "Most deep space voyages involve a certain amount of passenger discomfort. With the addition of a few extra fresh water tanks, private bathrooms, wooden fixtures, and some hospitality staff, any ship can be made attractive to a significantly higher - and better paying - class of passenger."
 
+outfit "Medical Facility"
+	category "Systems"
+	cost 100000
+	thumbnail "outfit/Medical facility"
+	"mass" 7
+	"outfit space" -7
+	"required crew" 2
+	"unplunderable" 1
+	description ""
+
 outfit "Fuel Pod"
 	category "Systems"
 	cost 20000
