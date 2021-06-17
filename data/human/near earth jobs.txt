@@ -157,3 +157,22 @@ mission "From Earth Day celebration [1]"
 		payment
 		payment 1000
 		dialog `Your passengers thank you for returning them to <planet>, and you collect your payment of <payment>.`
+mission "Transport patient [1]"
+	name `Transport patient"
+	job
+	repeat
+	description `Transfer a patient with his personal nurse to <destination> for better medical care. Payment is <payment>`
+	passenger 2
+	deadline
+	to offer
+		random > 30
+	source
+		government "Republic"
+		not system "Sol"
+	destination
+		"Earth"
+	on offer 
+		require "Medical Facility"
+	on complete
+		payment 50000
+		dialog `Your passenger's personal nurse thanks you for transporting him`
