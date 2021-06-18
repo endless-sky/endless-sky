@@ -79,7 +79,6 @@ jobs:
         CCACHE_DIR: ./ccache/
         CXX: ccache g++
         AR: gcc-ar
-        RANLIB: gcc-ranlib
         ARTIFACT: endless-sky
     steps:
     - uses: actions/checkout@v2
@@ -101,7 +100,6 @@ jobs:
       run: |
         g++ -v
         gcc-ar --version
-        gcc-ranlib --version
         ld -v
     - name: Cache ccache results
       if: steps.cache-artifact.outputs.cache-hit != 'true'
@@ -133,7 +131,6 @@ jobs:
         CCACHE_DIR: ./ccache/
         CXX: ccache g++
         AR: gcc-ar
-        RANLIB: gcc-ranlib
         TEST_BINARY: tests/endless-sky-tests
     steps:
     - uses: actions/checkout@v2
@@ -181,6 +178,7 @@ jobs:
         DIR_ESLIB: dev64
         CXX: sccache g++
         ARTIFACT: EndlessSky.exe
+        AR: gcc-ar
     steps:
     - uses: actions/checkout@v2
     - name: Restore cached game binary
@@ -233,6 +231,7 @@ jobs:
         DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
         DIR_ESLIB: .\dev64
         CXX: sccache g++
+        AR: gcc-ar
         TEST_BINARY: .\tests\endless-sky-tests.exe
     steps:
     - uses: actions/checkout@v2
