@@ -29,11 +29,6 @@ if 'DIR_ESLIB' in os.environ:
 	env.Prepend(CPPPATH = [pathjoin(path, 'include')])
 	env.Append(LIBPATH = [pathjoin(path, 'lib')])
 
-# The Steam runtime has an out-of-date libstdc++, so link it in statically:
-chroot_name = os.environ.get('SCHROOT_CHROOT_NAME', '')
-if 'steamrt' in chroot_name:
-	env.Append(LINKFLAGS = ["-static-libstdc++"])
-
 # Don't spawn a console window by default on Windows builds.
 if is_windows_host:
 	env.Append(LINKFLAGS = ["-mwindows"])
@@ -91,6 +86,7 @@ game_libs = [
 env.Append(LIBS = game_libs)
 
 # libmad is not in the Steam runtime, so link it statically:
+chroot_name = os.environ.get('SCHROOT_CHROOT_NAME', '')
 if 'steamrt_scout_i386' in chroot_name:
 	env.Append(LIBS = File("/usr/lib/i386-linux-gnu/libmad.a"))
 elif 'steamrt_scout_amd64' in chroot_name:
