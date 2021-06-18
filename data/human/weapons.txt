@@ -340,9 +340,9 @@ outfit "Mining Laser"
 		"reload" 1
 		"firing energy" .8
 		"firing heat" 1.7
-		"shield damage" 0.5
-		"hull damage" 1.9
-		"prospecting" .1
+		"shield damage" 0.4
+		"hull damage" 2.9
+		"prospecting" .153
 	description "With the popularity and effectiveness of laser weaponry, one would think that it would only be a matter of time before that technology would be replicated and produced elsewhere, yet the technology appears to be sufficiently advanced, and the Deep sufficiently secretive, that this has yet to occur. Instead, one will only find these modified versions of lasers brought from the Deep."
 	description "	These lasers have been heavily modified to be specialized toward the mining of asteroids. Sensors on the weapon analyze the asteroid being fired upon and tune the output as to destroy the least amount of material possible while still blasting the asteroid apart for harvesting, therefore increasing ore yields."
 
@@ -368,9 +368,9 @@ outfit "Mining Turret"
 		"reload" 1
 		"firing energy" .8
 		"firing heat" 1.7
-		"shield damage" 0.5
-		"hull damage" 1.9
-		"prospecting" .1
+		"shield damage" 0.4
+		"hull damage" 2.9
+		"prospecting" .153
 	description "For those asteroid miners with more turret mounts than guns ports, or none at all, the mining laser turret is the tool for the job, capable of swiftly targetting onto asteroids and revealing the ores within."
 	description "	While mining lasers are capable of increasing the yield of an asteroid, not all asteroids are affected in the same way. Silicon asteroids are particularly easy to mine with their yields being doubled by the use of a mining laser, but a tougher and more expensive asteroid like platinum will see a much less substantial increase in yield of only 20%."
 
