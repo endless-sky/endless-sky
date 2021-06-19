@@ -207,6 +207,8 @@ fleet "Korath Ember Waste Raid"
 	names "korath"
 	fighters "korath"
 	cargo 1
+	commodities Food Metal Plastic "Heavy Metals"
+	outfitters "Korath Basics" "Korath Exiles"
 	personality
 		disables plunders opportunistic harvests
 	variant
