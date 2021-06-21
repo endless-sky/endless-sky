@@ -2065,7 +2065,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
 		const Weapon *weapon = hardpoint.GetOutfit();
-		if(weapon && !hardpoint.IsAntiMissile())
+		if(weapon && !hardpoint.IsAntiMissile() && !hardpoint.IsTractorBeam())
 		{
 			isArmed = true;
 			bool hasThisAmmo = (!weapon->Ammo() || ship.OutfitCount(weapon->Ammo()));
