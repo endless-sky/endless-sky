@@ -31,6 +31,8 @@ jobs:
     needs: changed
     # if: needs.changed.outputs.linux == 'true'
     runs-on: ubuntu-latest
+    outputs:
+      RT_VERSION: ${{ steps.steamrt-version.outputs.RT_VERSION }}
     env:
       snapshot: latest-container-runtime-depot
       sdk: com.valvesoftware.SteamRuntime.Sdk-amd64,i386-scout-sysroot
@@ -44,6 +46,7 @@ jobs:
       run: |
         STEAM_VERSION=$(curl -sSf https://repo.steampowered.com/steamrt-images-scout/snapshots/${{ env.snapshot }}/VERSION.txt --output -)
         echo "RT_VERSION=$STEAM_VERSION" >> $GITHUB_ENV
+        echo "::set-output name=RT_VERSION::$STEAM_VERSION"
     - name: Restore cached steamrt archive
       id: cache-tarball
       uses: actions/cache@v2
@@ -102,19 +105,44 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-18.04, ubuntu-latest]
+    env:
+      snapshot: latest-container-runtime-depot
+      tarball: steam-runtime.tar.xz
     steps:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 1
-    - name: Download GH artifact
+    - name: Restore cached Steam Runtime environment
+      id: cache-tarball
+      uses: actions/cache@v2
+      with:
+        path: ${{ env.tarball }}
+        key: ${{ matrix.os }}-${{ needs.build_linux.outputs.RT_VERSION }}-steamrt-env
+    - name: Download Steam Runtime environment
+      if: steps.cache-tarball.outputs.cache-hit != 'true'
+      run: curl -sSf https://repo.steampowered.com/steamrt-images-scout/snapshots/${{ env.snapshot }}/${{ env.tarball }} > ${{ env.tarball }}
+    - name: Extract Steam Runtime
+      run: tar -xf ${{ env.tarball }}
+    - name: Download Endless Sky binary
       uses: actions/download-artifact@v2
       with:
         name: binary-${{ runner.os }}-x86-64
         path: .
+    - name: Install xvfb runtime dependencies
+      run: sudo apt-get install -y --no-install-recommends libosmesa6 mesa-utils
+    - name: Pin Steam libraries
+      run: steam-runtime/setup.sh
     - run: chmod +x endless-sky
-    - name: Prepare Steam runtime
-      run: echo "Download / restore cached scout runtime platform container"
-    - run: echo "run.sh ./endless-sky -v"
+    - run: steam-runtime/run.sh ./endless-sky -v
+    - name: Execute data parsing test
+      run: steam-runtime/run.sh ./tests/test_parse.sh ./endless-sky
+    # NOTE: As with the non-Steam integration tests, on Ubuntu 18.04 the call to SDL_GL_CreateContext fails
+    # with SDL error "Could not create GL Context: BadValue (integer parameter out of range for operation)"
+    - name: Execute integration tests
+      if: matrix.os != 'ubuntu-18.04'
+      env:
+          PRINT_GLXINFO: true
+      run: steam-runtime/run.sh tests/run_tests_headless.sh
 
   deploy_linux:
     needs: test_linux
