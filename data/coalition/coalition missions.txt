@@ -1507,9 +1507,9 @@ mission "Coalition: Council of Ahr: Bebliss"
 			`	"Keep the Coalition together, House Bebliss does. What makes communication from one system to another possible, our efforts are. Other than the obvious importance of our work, one of the few houses that kept their noble bloodline pure, and who kept their original emblems, we are. Prejudice against those the other houses mixed with, I have not, but greatly value tradition, we do, and broken tradition, they have, in marrying commoners or... those of other species."`
 				goto end
 			label council
-			`	"Drifted away from our old ways, most of them have. Take Mallob and Garbarag: barely houses anymore, they are. Fully transitioned into corporations, they have. Claim noble heritage, Debdo does, but in fact a splinter group of our own house, they are, the traitourous offshoots. The worst of them all, however, House Chamgar is. Lunatics clinging on to an ancient rivalry, they are, liars and revisionists who to tarnish our image, wish. Declare war on us, they would, if subjected to the Heliarch government, our houses were not."`
+			`	"Drifted away from our old ways, most of them have. Take Mallob and Garbarag: barely houses anymore, they are. Fully transitioned into corporations, they have. Claim noble heritage, Debdo does, but in fact a splinter group of our own house, they are, the traitorous offshoots. The worst of them all, however, House Chamgar is. Lunatics clinging on to an ancient rivalry, they are, liars and revisionists who to tarnish our image, wish. Declare war on us, they would, if subjected to the Heliarch government, our houses were not."`
 			label end
-			`	Once you make it to your ship, she has the Arachi butlers tidy up her room, then dismisses them. She tells you she will call for you should she need anything then closes the door to her room.`
+			`	Once you make it to your ship, she has the Arach butlers tidy up her room, then dismisses them. She tells you she will call for you should she need anything then closes the door to her room.`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Lady Plubat hasn't entered the system yet. Better depart and wait for it.`
@@ -1545,7 +1545,7 @@ mission "Coalition: Council of Ahr: Chamgar"
 			`	He stops dead in his tracks. "The royals? Well, not much to say, there is. Chosen as such on a primitive Ahr, only symbolic, their role is. Never held any ambition, they have, remaining the weakest house since formed. Assured stability on the capital, they have, and in good relations with us, they are, for recognize our value, they do, so bad, they are not, only uninteresting."`
 				goto end
 			label house
-			`	You can barely finish your question, as he begins what is undoubtedly a rehearsed speech. "The greatest Arachi warriors of old, we were, and always at the forefront of scientific progress and creative inventions. For the brilliant breakthrough that were our repair modules, persecuted by the Quarg, we were, but here, in this system, on this planet, held a chokepoint, we did. Guarded Arach space from them, for centuries we had to, until banished with the help of our Saryd and Kimek friends, they were."`
+			`	You can barely finish your question, as he begins what is undoubtedly a rehearsed speech. "The greatest Arach warriors of old, we were, and always at the forefront of scientific progress and creative inventions. For the brilliant breakthrough that were our repair modules, persecuted by the Quarg, we were, but here, in this system, on this planet, held a chokepoint, we did. Guarded Arach space from them, for centuries we had to, until banished with the help of our Saryd and Kimek friends, they were."`
 				goto end
 			label council
 			`	"Alright, most of them are. Amicable relations with nearly all houses, we maintain. Except with the scum from Bebliss, lying, treacherous snakes they are. Conspiring against the government, helping rebels they are! 'Their' world, Stronghold of Flugbu is not, stolen from us, it was. Heed my warning, Captain: trust them, you should not, preferable to trust a Quarg, it is."`
@@ -1561,7 +1561,7 @@ mission "Coalition: Council of Ahr: Chamgar"
 			`"Captain <last>! A pleasurable experience for the both of us, this has been, but sadly short, the trip from my home to <planet> is, so part ways, we must," Plubat says as he prepares to leave your ship. "To finish the tour of our facilities, I'm sure you want, so once over, the Council is, ask for me there, and guide you again, I shall."`
 				accept
 			label drama
-			`House Chamgar's representative, Plubat, stays close to you while firmly clinging to his luggage, as his colleage from house Bebliss, Lady Plubat, has her bags brought out of your ship by some nearby Arachi in uniform. "Telling you I am, Captain, trusted, she should not be. Checked your ship, have you? All in place, your belongings are? Careful with her types, you must be," he says. After the Bebliss butlers are done, Plubat scoffs something at Lady Plubat one last time, then leaves your ship.`
+			`House Chamgar's representative, Plubat, stays close to you while firmly clinging to his luggage, as his colleague from house Bebliss, Lady Plubat, has her bags brought out of your ship by some nearby Arachi in uniform. "Telling you I am, Captain, trusted, she should not be. Checked your ship, have you? All in place, your belongings are? Careful with her types, you must be," he says. After the Bebliss butlers are done, Plubat scoffs something at Lady Plubat one last time, then leaves your ship.`
 
 mission "Coalition: Council of Ahr: Drama"
 	invisible
@@ -1585,7 +1585,7 @@ mission "Coalition: Council of Ahr: Drama"
 			`	Lady Plubat closes the door to her room again, and you convince house Chamgar's representative to also go back to his room. You return to your cockpit, hoping that's the last of that.`
 	on enter "Sol Arach"
 		dialog
-			`In spite of your best attempts to keep them away from each other, Plubat and Plubat have been brief on their breaks from insulting one another. However, once you enter this sytem, they head back to their rooms on their own without you needing to leave the cockpit to interfere. Being so close to their destination, you hope they won't give you any more headaches.`
+			`In spite of your best attempts to keep them away from each other, Plubat and Plubat have been brief on their breaks from insulting one another. However, once you enter this system, they head back to their rooms on their own without you needing to leave the cockpit to interfere. Being so close to their destination, you hope they won't give you any more headaches.`
 
 mission "Coalition: Council of Ahr: On Complete"
 	invisible
