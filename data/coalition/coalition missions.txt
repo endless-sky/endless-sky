@@ -1450,7 +1450,7 @@ mission "Coalition: Submarines 2"
 	destination "Inmost Blue"
 	on offer
 		conversation
-			`After asking around for a while, you're directed to a small office of House Mallob, where a manager briefly looks into their systems, informing you that Apri'ie hasn't left his meeting yet, and so you take a seat in the spaceport, occasionally getting up to check back at the entrance of the office he entered. After some hours, you finally see him coming out, accompanied by a Saryd speaking on a communication device as they glance at a data pad.`
+			`After spending some time in the spaceport, you begin to ask around for Apri'ie and are directed to a small office of House Mallob. There, a manager briefly looks into their systems and informs you that Apri'ie hasn't left his meeting yet, and so you take a seat in the spaceport, occasionally getting up to check back at the entrance of the office he entered. After some hours, you finally see him coming out, accompanied by a Saryd speaking on a communication device as they glance at a data pad.`
 			`	"Captain <last>! Glad that you are interested in assisting us further, I am. Ready to have the submarines loaded into your cargo hold, are you?" Apri'ie asks. "Ready to conduct some final stress tests, colleagues of mine on <planet> are."`
 			choice
 				`	"Sure thing, I've set aside the space for them."`
@@ -1463,7 +1463,7 @@ mission "Coalition: Submarines 2"
 				`	"Why not just do those tests on Second Cerulean right away?"`
 			`	"Upsetting or startling the local fauna, we wish to avoid, so wait until after the tests, we will, before deploying them in that planet's waters."`
 			label end
-			`	The Saryd issues a command on the data pad and turns off the communication device. They then say that the cargo is being brought to your ship, and accompanies you and Apri'ie there. There are five submarines in total, strapped to large, sturdy sleds, which are slowly pushed up the ramp to your cargo hold. The subs themselves are somewhat oval in shape, and flat on the top and bottom. Other than the propulsion mechanisms on the back, you notice multiple dark dots protruding on the front, likely a system of cameras, and two thin "arms" a bit to the sides, retracted for easier storage of the crafts. After the last sub is safely in your cargo hold, Apri'ie heads into your ship, and you set a route for <destination>.`
+			`	The Saryd issues a command on the data pad and turns off the communication device. They then say that the cargo is being brought to your ship, and accompany you and Apri'ie there. There are five submarines in total, strapped to large, sturdy sleds, which are slowly pushed up the ramp to your cargo hold. The subs themselves are somewhat oval in shape, and flat on the top and bottom. Other than the propulsion mechanisms on the back, you notice multiple dark dots protruding on the front, likely a system of cameras, and two thin "arms" a bit to the sides, retracted for easier storage of the crafts. After the last sub is safely in your cargo hold, Apri'ie heads into your ship, and you set a route for <destination>.`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Apri'ie and the unmanned submarines hasn't entered the system yet. Better depart and wait for it.`
@@ -1535,7 +1535,7 @@ mission "Coalition: Submarines 4"
 			`	"Let's see..." Apri'ie heads to the prop to check on the welded parts. "Yes, very good. Performed well, the welder arms have. Good for deployment, they should be." The submarines go ahead once again, lighting the way back to the port as the ships follow them until docking.`
 				goto end
 			label refuse
-			`	He heads to the tanker, and the ships set off, following the submarines. You walk for a while by the spaceport, stopping at an unusual restaurant for <origin> to have a Saryd pastry dish. As you return to the port at sunset, you see no sign of the ships or the subs. You wait for a few hours, until you finally spot the lights of the submarines on the horizon, coming back to shore.`
+			`	He heads to the tanker, and the ships set off, following the submarines. You walk for a while by the spaceport, stopping at an unusual restaurant to have a Saryd pastry dish. As you return to the port at sunset, you see no sign of the ships or the subs. You wait for a few hours, until you finally spot the lights of the submarines on the horizon, coming back to shore.`
 			`	"Worked perfectly, the welders have. Ready for deployment, the subs should be," Apri'ie tells you as he steps off of the tanker.`
 			label end
 			`	The subs are once again placed atop the sleds and brought into your ship. Apri'ie thanks the Kimek team for handling the subs and heads back into your ship, saying, "Time for their final trip, it is. Bring me and the vessels to <destination>, you may."`
