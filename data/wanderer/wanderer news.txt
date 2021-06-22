@@ -124,7 +124,7 @@ news "Wanderer civilians, dialog"
 		word
 			"Wanderer"
 			"Wanderer worker"
-			"Wanderer traveller"
+			"Wanderer traveler"
 			"Wanderer youth"
 	message
 		word
@@ -155,7 +155,7 @@ news "Wanderer scientists"
 		word
 			`"`
 		word
-			"I recently [travelled, journeyed] to another world on a scientific [mission, study], where we discovered a new species of plant. How [exciting, thrilling]!"
+			"I recently [traveled, journeyed] to another world on a scientific [mission, study], where we discovered a new species of plant. How [exciting, thrilling]!"
 			"The best part of my [job, task] is the thrill of [discovery, revelation]."
 			"Communication with your colleagues is [important, indispensable]. I learnt this the [hard, difficult] way when I did not mention that a new plant species I had [found, discovered] was carnivorous."
 			"One of my [proudest, greatest] accomplishments was when I helped [nurture, grow] an almost-extinct species of insect back to a [viable, independent] population size."
@@ -179,7 +179,7 @@ news "Wanderer soldier"
 			`"`
 		word
 			"I wish we did not have to [fight, do battle] to survive. It is a [savage, inelegant] way of solving conflict."
-			"I joined our new [defence fleet, navy] because I wanted to protect lifeforms. Instead I am [battling, killing] them. It brings me great [sadness, sorrow] to see such [destruction, waste]."
+			"I joined our new [defense fleet, navy] because I wanted to protect lifeforms. Instead I am [battling, killing] them. It brings me great [sadness, sorrow] to see such [destruction, waste]."
 			"I volunteered for service in a warship, and many [ask, ponder] why. For every Hai I [shoot down, kill] I save [many, multiple] civilians."
 			"Just a few days ago I was asked to form a new [military, army] unit, even though I was given almost no [training, experience] in war. These are [desperate, hopeless] times indeed."
 			"Our [commander, unit leader] used to be a zoologist. His only [combat, fighting] experience was defending himself against a rabid Chi'kta on an [expedition, study]. They couldn't find anyone [better, more suitable], so he got 'promoted'."
