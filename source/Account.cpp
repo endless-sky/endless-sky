@@ -219,10 +219,18 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 		history.erase(history.begin());
 	history.push_back(credits + assets - salariesOwed - maintenanceDue);
 	
-	// If you failed to pay any debt, your credit score drops. Otherwise, even
-	// if you have no debts, it increases. (Because, having no debts at all
-	// makes you at least as credit-worthy as someone who pays debts on time.)
-	creditScore = max(200, min(800, creditScore + (missedPayment ? -5 : 1)));
+	// If you failed to pay any debt, your credit score drops. Otherwise, your
+	// credit score only increases if you made a mortgage payment, or you paid
+	// your crew salaries and your credit score is less than 600. This means that
+	// obtaining a perfect credit score requires interacting with the bank, and not
+	// having a crew to pay doesn't passively raise your credit score.
+	int change = 0;
+	if(missedPayment)
+		change = -5;
+	else if(mortgagesPaid || (salariesPaid && creditScore < 600))
+		change = 1;
+	
+	creditScore = max(200, min(800, creditScore + change));
 	
 	// If you didn't make any payments, no need to continue further.
 	if(!(salariesPaid + maintenancePaid + mortgagesPaid + finesPaid))
