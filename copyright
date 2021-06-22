@@ -983,6 +983,8 @@ Files:
  images/thumbnail/heliarch?stalker*
  images/outfit/finisher?storage*
  images/outfit/fuel?module*
+ images/outfit/large?cogeneration?module*
+ images/outfit/small?cogeneration?module*
 Copyright: Arachi-Lover
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
