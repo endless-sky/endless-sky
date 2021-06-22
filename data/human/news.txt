@@ -989,7 +989,7 @@ news "human tourism"
 		word
 			"Tourist"
 			"Sightseer"
-			"Traveller"
+			"Traveler"
 	message
 		word
 			`"`

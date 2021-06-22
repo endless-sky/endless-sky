@@ -1,3 +1,6 @@
+# steamrt scons is v2.1.0
+# https://repo.steampowered.com/steamrt-images-scout/snapshots/latest-container-runtime-depot/com.valvesoftware.SteamRuntime.Sdk-amd64,i386-scout-sources.sources.txt
+# Documentation available at https://scons.org/doc/2.1.0/HTML/scons-user/a10706.html
 import os
 import platform
 from SCons.Node.FS import Dir
