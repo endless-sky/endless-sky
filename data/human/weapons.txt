@@ -338,8 +338,8 @@ outfit "Mining Laser"
 		"velocity" 200
 		"lifetime" 1
 		"reload" 1
-		"firing energy" .8
-		"firing heat" 1.7
+		"firing energy" 1.5
+		"firing heat" 2.3
 		"shield damage" 0.4
 		"hull damage" 2.9
 		"prospecting" .153
@@ -366,8 +366,8 @@ outfit "Mining Turret"
 		"velocity" 200
 		"lifetime" 1
 		"reload" 1
-		"firing energy" .8
-		"firing heat" 1.7
+		"firing energy" 1.5
+		"firing heat" 2.3
 		"shield damage" 0.4
 		"hull damage" 2.9
 		"prospecting" .153
@@ -449,8 +449,8 @@ outfit "Tractor Beam"
 		"velocity" 300
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 2.1
-		"firing heat" 1.3
+		"firing energy" 3.8
+		"firing heat" .9
 	description "The anti-gravity properties of repulsor engines that allow ships to escape the gravity well of planets without the difficulty that humanity once faced before the era of the hyperdrive started a revolution in human spaceflight during the 24th century, and it was not long before this technology was put to use elsewhere."
 	description "	Tractor beams utilize repulsor technology to allow ships to attract space debris to them, be that the ores from a recently mined asteroid or the dumped cargo from a merchant ship fleeing for its life. This has led to tractor beams being a popular outfit among asteroid miners and pirates alike."
 
