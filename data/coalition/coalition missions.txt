@@ -1450,7 +1450,7 @@ mission "Coalition: Submarines 2"
 	destination "Inmost Blue"
 	on offer
 		conversation
-			`After asking around for a member of House Mallob, you're informed that Apri'ie hasn't left his meeting yet, and so you take a seat in the spaceport, occasionally getting up to check back at the entrance of the office he entered. After some hours, you finally see him coming out, accompanied by a Saryd speaking on a communication device as they glance at a data pad.`
+			`After asking around for a while, you're directed to a small office of House Mallob, where a manager briefly looks into their systems, informing you that Apri'ie hasn't left his meeting yet, and so you take a seat in the spaceport, occasionally getting up to check back at the entrance of the office he entered. After some hours, you finally see him coming out, accompanied by a Saryd speaking on a communication device as they glance at a data pad.`
 			`	"Captain <last>! Glad that you are interested in assisting us further, I am. Ready to have the submarines loaded into your cargo hold, are you?" Apri'ie asks. "Ready to conduct some final stress tests, colleagues of mine on <planet> are."`
 			choice
 				`	"Sure thing, I've set aside the space for them."`
