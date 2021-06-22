@@ -2344,9 +2344,7 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 		{
 			if(weapon->AntiMissile())
 				antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
-			// If this ship has no spare cargo space then don't even bother
-			// looking for flotsams.
-			else if(weapon->TractorBeam() && cargo.Free())
+			else if(weapon->TractorBeam())
 				tractorBeamRange = max(tractorBeamRange, weapon->Velocity() + weaponRadius);
 			else if(commands.HasFire(i))
 				armament.Fire(i, *this, projectiles, visuals);
@@ -2367,7 +2365,9 @@ bool Ship::HasAntiMissile() const
 
 bool Ship::HasTractorBeam() const
 {
-	return tractorBeamRange;
+	// If this ship has no spare cargo space then don't even bother
+	// looking for flotsams.
+	return tractorBeamRange && cargo.Free();
 }
 
 
