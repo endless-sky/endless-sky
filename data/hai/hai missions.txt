@@ -1968,7 +1968,7 @@ mission "Strider: Remnant 1"
 		has "strider: remnant"
 	on offer
 		conversation
-			`You find the Hai delegation meant to travel to the Remnant to negotiate for the hull repair technology waiting for you in the spaceport. The leader of the delegation introduces herself as Ambassador Yashili. "I heard that we will be travelling a great distance across the galaxy. May we have a safe journey."`
+			`You find the Hai delegation meant to travel to the Remnant to negotiate for the hull repair technology waiting for you in the spaceport. The leader of the delegation introduces herself as Ambassador Yashili. "I heard that we will be traveling a great distance across the galaxy. May we have a safe journey."`
 			`	The delegation begins making their way to your ship, but you stop them.`
 			choice
 				`	"Wait a minute! This group doesn't react well to strangers. How about I set up a meeting first?"`
