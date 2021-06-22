@@ -159,7 +159,7 @@ outfit "Command Center"
 	"required crew" 1
 	"automaton" -1
 	unplunderable 1
-	description "In response to occasional raids by the robotic war machines left behind after their recent conflict, the Kor Efret have developed this minimal, spartan command center that can be installed in a captured robotic ship to allow a pilot to override the AI and interface with the ship's controls. The command center only provides a single bunk for the captain, so more may be necessary if the ship has turrets or other systems that require crew."
+	description "In response to occasional raids by the robotic war machines left behind after their recent conflict, the Kor Efret have developed this minimal, spartan command center that can be installed in a captured robotic ship to allow a pilot to override the AI and interface with the ship's controls. The command center only provides a single bunk for the captain, so more bunks may be necessary if the ship has turrets or other systems that require crew."
 
 outfit "Reasoning Node"
 	category "Systems"

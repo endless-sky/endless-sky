@@ -85,7 +85,7 @@ mission "First Contact: Kuwaru Efreti"
 				`	"What crimes did they commit?"`
 					goto crimes
 				`	"What do you mean, 'thinking war machines'?"`
-			`	"Robotic starships, and autonomous factories to create them. Though now directed by no living being, they yet reproduce and wage against each other senseless war. Ware their ships should you wander north and east of here, for they wield diverse weapons and strange, and bring you can we no succor within the bourne of their space."`
+			`	"Robotic starships, and autonomous factories to create them. Though now directed by no living being, they yet reproduce and wage against each other senseless war. Ware their ships should you wander north and east of here, for they wield weapons diverse and strange, and bring you can we no succor within the bourne of their space."`
 			choice
 				`	"You mentioned 'crimes.' What crimes did they commit?"`
 			`	"Of that we shall not speak, lest awaken in you we the desire to in their footsteps follow. But you may observe the wreckage of their abominations and take warning."`
@@ -95,7 +95,7 @@ mission "First Contact: Kuwaru Efreti"
 			`	"Of that we shall not speak, lest awaken in you we the desire to in their footsteps follow. But you may observe the wreckage of their abominations and take warning."`
 			choice
 				`	"You mentioned 'thinking war machines.' What are those?"`
-			`	"Robotic starships, and autonomous factories to create them. Though now directed by no living being, they yet reproduce and wage against each other senseless war. Ware their ships should you wander north and east of here, for they wield diverse weapons and strange, and bring you can we no succor within the bourne of their space."`
+			`	"Robotic starships, and autonomous factories to create them. Though now directed by no living being, they yet reproduce and wage against each other senseless war. Ware their ships should you wander north and east of here, for they wield weapons diverse and strange, and bring you can we no succor within the bourne of their space."`
 			
 			label korath
 			`	You are interrupted as one of the Korath who inhabit this ringworld walks by, and the Quarg says, "Friend Korath, meet the human."`
