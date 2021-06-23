@@ -870,7 +870,7 @@ mission "Governor transport"
 	deadline
 	to offer
 		has "language: Wanderer"
-		random < 80
+		random < 70
 		has "Wanderers Solifuge Recon 2: done"
 	source
 		government "Wanderer"
