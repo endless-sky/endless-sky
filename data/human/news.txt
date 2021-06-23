@@ -1279,10 +1279,14 @@ news "syndicate pa system"
 			"Public Announcement System"
 	message
 		word
+			`"`
+		word
 			"Attention: baggage should not be left unattended. Any unattended baggage will be auctioned within days."
 			"Attention factory workers: please proceed to the fast-lane immigration desk. Time spent in regular immigration lanes will not be reimbursed."
 			"Dear spaceship captains: please be aware that our outfitters are open all hours of the day. There is never a reason to delay the purchase of your next piece of Syndicate equipment."
 			"Dear traveler: we recommend you to have dinner in our local restaurant 'The Wing'. You will not be disappointed."
+		word
+			`"`
 
 
 
@@ -1295,6 +1299,8 @@ news "tourist pa system"
 			"Public Announcement System"
 	message
 		word
+			`"`
+		word
 			"Attention: baggage should not be left unattended. Keep an eye on your belongings at all times."
 			"Note to travelers: the planetary security level has been changed to black."
 			"Be aware that parking restrictions are in effect around the spaceport. Do not leave your personal transport vehicles unattended."
@@ -1303,6 +1309,8 @@ news "tourist pa system"
 			"Please stand clear of the doors when the shuttle train is departing."
 			"This is the final boarding call for passengers Eline, John, and Robert Phillips. Please proceed to platform 3 for immediate boarding."
 			"Dear travelers: please take the time to adjust to normal gravity."
+		word
+			`"`
 
 
 
