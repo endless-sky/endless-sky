@@ -620,7 +620,7 @@ news "nuclear technician"
 			"In all of human space, there hasn't been a single nuclear meltdown in fourteen years. And that was just a tiny one, hardly even worth mentioning."
 			"My company's motto is, 'We bring the power of the stars down to earth, and send earthlings to the stars.' I think we should change it to something catchier."
 			"Ever used a fusion reactor in your ship? Feel free to thank one of us."
-			"The most terrifying word in my profession is 'Oops'."
+			"The most terrifying word in my profession is 'Oops.'"
 		word
 			`"`
 
@@ -1193,8 +1193,8 @@ news "human pirate"
 			"Don't count on the Navy to save you if me or any of my friends attack you. Those Navy goons only hang around near the rich planets."
 			"Did I attack you? Well, I attacked many people, could you be a bit more specific?"
 			"The size of my crimes no longer matter; one may as well hang for a sheep as for a lamb."
-			"Hey! We have this new Piracy As A Service offering. Want someone ambushed without incriminating yourself? Just tell me who, where and how much it's worth to you."
-			"I don't get it; If I donate a kidney, then I'm some sort of hero. But if I donate 7 kidneys, then suddenly I'm some sort of monster."
+			"Hey! We have this new Piracy As A Service offering. Want someone ambushed without incriminating yourself? Just tell me who, where, and how much it's worth to you."
+			"I don't get it; if I donate a kidney, then I'm some sort of hero. But if I donate 7 kidneys, then suddenly I'm some sort of monster."
 			"I wasn't close to my parents when they died. Which was quite fortunate, since they died in an exploding ship."
 			"I hate double standards; burn a body in a crematorium and you're a professional, burn a body in a spaceship and you're a criminal."
 			"I missed my lover during the raids today. But only by a few inches; next time I'll aim better."
@@ -1273,7 +1273,7 @@ news "human farming in pirate space"
 news "syndicate pa system"
 	location
 		government "Syndicate"
-		not attributes station
+		not attributes "station"
 	name
 		word
 			"Public Announcement System"
@@ -1327,7 +1327,7 @@ news "graffiti on spaceport wall"
 			"There once was a man from New Boston / To fly's a dream he'd had often / He purchased a shuttle / Brought folks in to huddle / Why do merchants call this a coffin? - Lake"
 			"There once was a man from New Boston / He picked the ugliest of options / He purchased a star barge / Mission cargo's too large / This shipment's starting to smell rotten... - Lake"
 			"There once was a man from New Boston / His loan officer advised caution / He purchased a sparrow / Took off like an arrow- / That sparrow soon turned up at auction. - Lake"
-			`A captain with a troubled past / Passed through this system very fast / Was playing a game / Had no proper name / The captain was called "First Last".`
+			`A captain with a troubled past / Passed through this system very fast / Was playing a game / Had no proper name / The captain was called "First Last."`
 			"Haikus are easy, / but sometimes they don't make sense. / Refrigerator."
 			"Haikus are easy. / I can't think of a good line. / It's snowing on Mount Fuji."
 			"A long time ago / I was respected by all, / but now I sit here."
