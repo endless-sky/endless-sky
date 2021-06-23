@@ -1451,7 +1451,7 @@ mission "Coalition: Submarines 2"
 	on offer
 		conversation
 			`After spending some time in the spaceport, you begin to ask around for Apri'ie and are directed to a small office of House Mallob. There, a manager briefly looks into their systems and informs you that Apri'ie hasn't left his meeting yet, and so you take a seat in the spaceport, occasionally getting up to check back at the entrance of the office he entered. After some hours, you finally see him coming out, accompanied by a Saryd speaking on a communication device as they glance at a data pad.`
-			`	"Captain <last>! Glad that you are interested in assisting us further, I am. Ready to have the submarines loaded into your cargo hold, are you?" Apri'ie asks. "Ready to conduct some final stress tests, colleagues of mine on <planet> are."`
+			`	"Captain <last>! Glad that you are interested in assisting us further, I am. Prepared to have the submarines loaded into your cargo hold, are you?" Apri'ie asks. "Ready to conduct some final stress tests, colleagues of mine on <planet> are."`
 			choice
 				`	"Sure thing, I've set aside the space for them."`
 					goto end
@@ -1476,8 +1476,8 @@ mission "Coalition: Submarines 2"
 				`	"Sure, why not. Probably beats waiting around and checking shops over and over."`
 				`	"Thanks for the invitation, but I'm not really interested."`
 					goto refuse
-			`	After the last submarine is out of your cargo, they're placed atop large truck-like vehicles, but with the wheels in a system of continuous tracks. You and Apri'ie board one of the trucks, and begin a trip down to the shore below. The truck follows the water out of the fjord until it reaches a small commercial port with a large set of docks. Apri'ie introduces you to some of his colleagues who are already waiting to begin the tests. The subs are activated before they are off the trucks, and some of the Kimek begin to test basic functions, each working on a different computer to control their respective submarine.`
-			`	Once they're all in the water, everyone boards a large barge, which follows the submarines several kilometers off the coast until you can no longer see the shore. At this point they stop, and one of the submarines submerges. For about ten minutes, nothing happens; The other four submarines just wait around, with the Kimek conversing among themselves as they analyze readings of the submerged craft. Eventually, it touches the bottom and begins the trip back up. It emerges in roughly twenty minutes, looking just like it did previously, save for a long strip of kelp stuck to one of its sides. The Kimek make sure the sub suffered no damage, and proceed to test the other ones. After each one has made the trip to the bottom and back several times, the submarines and the barge head back to the docks.`
+			`	After the last submarine is out of your cargo, they're placed atop large truck-like vehicles, but with the wheels in a system of continuous tracks. You and Apri'ie board one of the trucks, and begin a trip down to the shore below. The truck follows the water out of the fjord until it reaches a small commercial port with a large set of docks. Once there, Apri'ie introduces you to some of his colleagues who are already waiting to begin the tests. The subs are activated before they are off the trucks, and some of the Kimek begin to test basic functions, each working on a different computer to control their respective submarine.`
+			`	Once they're all in the water, everyone boards a large barge, which follows the submarines several kilometers off the coast until you can no longer see the shore. At this point they stop, and one of the submarines submerges. For about ten minutes, nothing happens; the other four submarines just wait around, with the Kimek conversing among themselves as they analyze readings of the submerged craft. Eventually, it touches the bottom and begins the trip back up. It emerges in roughly twenty minutes, looking just like it did previously, save for a long strip of kelp stuck to one of its sides. The Kimek make sure the sub suffered no damage, and proceed to test the other ones. After each one has made the trip to the bottom and back several times, the submarines and the barge head back to the docks.`
 			`	The subs are once again put on the trucks, and you begin the trip back to the spaceport city. Once you've arrived, Apri'ie's colleagues ask him to come with them to discuss something in private, and he tells you he will meet you back on the spaceport.`
 				accept
 			label refuse
@@ -1523,7 +1523,7 @@ mission "Coalition: Submarines 4"
 	destination "Second Cerulean"
 	on offer
 		conversation
-			`Apri'ie instructs you to head to hangars in a large port, where a team is waiting for the repair test. He hands you 130,000 credits when you land, and goes to check with the workers unloading the submarines.`
+			`Apri'ie instructs you to head to some hangars at a large port, where a team is waiting for the repair test. He hands you 130,000 credits when you land, and goes to check with the workers unloading the submarines.`
 			`	They are all taken from your cargo and swiftly put in the water, as the team of Kimek boards a large ship that you guess is an old tanker. This ship prepares to follow the subs to the testing area, along with another smaller, newer ship with a thick crane on the front. Apri'ie approaches you before he boards the tanker, asking, "Come with us for the test, would you like, Captain? Take a while, it might. Not expected until after nightfall, the next tremors are."`
 			choice
 				`	"If it's alright, yeah. Could be interesting."`
