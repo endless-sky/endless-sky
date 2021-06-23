@@ -4208,7 +4208,7 @@ mission "Remnant: Cognizance 19"
 	on complete
 		payment 100000
 		event "remnant: cognizance 1 systems available"
-		dialog `As the starport computer downloads the data, your computer displays a message tacked onto the log file: "Thank you for providing your navigational logs. They will be useful to contrast against those of our scouts. A logistics adjustment of <payment> has been authorized for the <ship>."`
+		dialog `As the starport computer downloads the data, your computer displays a message tacked onto the log file: "Thank you for providing the additional data from your navigational logs. It will be useful to contrast against those of our scouts. A logistics adjustment of <payment> has been authorized for the <ship>."`
 
 
 
@@ -4238,6 +4238,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 	destination
 		government "Remnant"
 		not distance 0
+		not attributes "requires: gaslining"
 	to offer
 		has "Remnant: Expanded Horizons Quarg 3: done"
 		random < 25
@@ -4407,6 +4408,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 		government "Remnant"
 	destination
 		government "Remnant"
+		not attributes "requires: gaslining"
 	waypoint "Sagittarius A*"
 	to offer
 		has "Remnant: Expanded Horizons Astral 1: done"
