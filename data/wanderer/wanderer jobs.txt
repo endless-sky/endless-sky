@@ -859,3 +859,25 @@ mission "Captured soldiers"
 	on complete
 		payment 50000
 		dialog "Once you land on <planet>, you watch as some Wanderers in uniform carry the Unfettered prisoners off of your ship. You collect your payment of <payment>."
+
+mission "Governor transport"
+	name "transport the Governor to <planet>"
+	job
+	repeat
+	description "transport the local governor to the capital city of Vara K'chrai"
+	passengers 1
+	deadline
+	to offer
+		has "language: Wanderer"
+		random < 80
+		has "Wanderers Solifuge Recon 2: done"
+	source
+		government "Wanderer"
+		not planet "Vara K'chrai"
+	destination
+		planet "Vara K'chrai"
+	on offer
+		require "Luxury Accommodations"
+	on complete
+		payment 75000
+		dialog `Before the governor left, he thanked you for transporting him`
