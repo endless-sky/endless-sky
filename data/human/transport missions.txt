@@ -3213,18 +3213,18 @@ mission "Earth Retirement"
 
 
 mission "Spacediving professionals"
-	name "Spacediving at <planet>"
-	description "Head to destination with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing thermal spacesuits, durable parachutes and oxygen bottles to ensure their survival. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is <payment>."
-	passengers 5 10
-	repeat
 	job
+	repeat
+	name "Spacediving at <planet>"
+	description "Head to destination with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing thermal spacesuits, durable parachutes, and oxygen bottles to ensure their survival. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is <payment>."
+	passengers 5 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 1 7
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		not attributes station
-		not attributes research
+		not attributes "station"
+		not attributes "research"
 	to offer
 		random < 14
 	on visit
@@ -3236,18 +3236,18 @@ mission "Spacediving professionals"
 
 
 mission "Spacediving professionals accident"
-	name "Spacediving at <planet>"
-	description "Head to destination with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing thermal spacesuits, durable parachutes and oxygen bottles to ensure their survival. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is 8000."
-	passengers 5 10
-	repeat
 	job
+	repeat
+	name "Spacediving at <planet>"
+	description "Head to destination with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing thermal spacesuits, durable parachutes, and oxygen bottles to ensure their survival. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is 8000."
+	passengers 5 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 1 7
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		not attributes station
-		not attributes research
+		not attributes "station"
+		not attributes "research"
 	to offer
 		"Spacediving professionals: done" > 7
 		random < 2
@@ -3259,18 +3259,18 @@ mission "Spacediving professionals accident"
 
 
 mission "Spacediving professionals disaster"
-	name "Spacediving at <planet>"
-	description "Head to destination with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing thermal spacesuits, durable parachutes and oxygen bottles to ensure their survival. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is 8000."
-	passengers 5 10
-	repeat
 	job
+	repeat
+	name "Spacediving at <planet>"
+	description "Head to destination with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing thermal spacesuits, durable parachutes, and oxygen bottles to ensure their survival. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is 8000."
+	passengers 5 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 1 7
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		not attributes station
-		not attributes research
+		not attributes "station"
+		not attributes "research"
 	to offer
 		has "Spacediving professionals accident: done"
 		random < 1
@@ -3283,11 +3283,11 @@ mission "Spacediving professionals disaster"
 
 
 mission "Spacediving amateurs"
-	name "Spacediving at <planet>"
-	description "Head to destination with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing tricked-out wingsuits, brightly-patterned parachutes and carrying beer bottles for an after-landing celebration. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is 8000 credits."
-	passengers 5 10
-	repeat
 	job
+	repeat
+	name "Spacediving at <planet>"
+	description "Head to destination with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing tricked-out wingsuits, brightly-patterned parachutes, and carrying beer bottles for an after-landing celebration. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is 8000 credits."
+	passengers 5 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
