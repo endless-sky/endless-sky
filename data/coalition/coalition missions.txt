@@ -1626,7 +1626,7 @@ mission "Coalition: Pilgrimage 5"
 				`	"What was that about? What got you so agitated?"`
 				`	(Stay quiet.)`
 					goto return
-			`	She doesn't answer your question, instead simply continuing down the trail. Once you pass the the rocky pillar and are back on the proper road again, she finally speaks up. "That... to gift us sunlight, stole the eyes of Ensu Uri, Aul Kell did. Broken apart, it was, and of the light only specks remained, but finished, it was not. To implore Adfices is kept safe from it, this was."`
+			`	She doesn't answer your question, instead simply continuing down the trail. Once you pass the the rocky pillar and are back on the proper road again, she finally speaks up. "That... to gift us sunlight, stole the eyes of Ensu Uri, Aul Kell did. Broken apart, It was, and of the light from It's eyes, only specks remained. But finished, It was not, so to implore Adfices is kept safe from It, this was."`
 			label return
 			`	The two of you head back to the village and take the old train back to the railway hub. "Wait for you in the spaceport I will, Captain," Vellorae says. "Clear my head before heading back home, I must."`
 
