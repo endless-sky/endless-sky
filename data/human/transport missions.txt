@@ -3227,7 +3227,7 @@ mission "Human to Hai Space"
 				has "First Contact: Hai: offered"
 			
 			choice
-				'	"What are you talking about?"`
+				`	"What are you talking about?"`
 					goto "confused"
 				`	"What, like in a zoo?"`
 					goto "confused"
@@ -3256,14 +3256,14 @@ mission "Human to Hai Space"
 				`	"Why would you want to go all the way out to <planet>?"`
 			`	"I have family there," he says. "I came out here to do some traveling and see a bit of human space, but now I have to get back home. You see, I was born on <planet>, and this is my first time out of the wormhole."`
 			choice
-				`	"Really? How did you like human space?"
+				`	"Really? How did you like human space?"`
 					goto "travel"
-				`	"You've never been to human space before?"
+				`	"You've never been to human space before?"`
 					goto "space"
 			label "travel"
-				`	"It was quite the trip! It's a bit odd to see only humans around, and I had to be careful to not mention where I was from. But it was definitely worth it! I got to see Earth, Skymoot, Chiron, and so many other beautiful planets. Seeing human culture with my own eyes was an eye-opening experience, although some of the places there were less... clean than I expected. I was almost robbed on Earth; I'm not used to pickpockets back home. Perhaps human space isn't as safe as Hai space, but I still don't regret coming here. It's about time for me to go back, though."
+				`	"It was quite the trip! It's a bit odd to see only humans around, and I had to be careful to not mention where I was from. But it was definitely worth it! I got to see Earth, Skymoot, Chiron, and so many other beautiful planets. Seeing human culture with my own eyes was an eye-opening experience, although some of the places there were less... clean than I expected. I was almost robbed on Earth; I'm not used to pickpockets back home. Perhaps human space isn't as safe as Hai space, but I still don't regret coming here. It's about time for me to go back, though."`
 			label "space"
-				`	"Nope, first time! I've never been so far from home before. Now that I think about it, I probably should've arranged transport back to Hai space beforehand. You wouldn't believe how hard it is to find a captain here that knows about the Hai. I had to ask about six others until I found you. They all thought I was crazy, talking about meeting giant squirrels." He laughs and shakes his head. "So anyways, would you be willing to take me to <destination>?"
+				`	"Nope, first time! I've never been so far from home before. Now that I think about it, I probably should've arranged transport back to Hai space beforehand. You wouldn't believe how hard it is to find a captain here that knows about the Hai. I had to ask about six others until I found you. They all thought I was crazy, talking about meeting giant squirrels." He laughs and shakes his head. "So anyways, would you be willing to take me to <destination>?"`
 			choice
 				`	"Alright, I'll take you there."`
 					accept
