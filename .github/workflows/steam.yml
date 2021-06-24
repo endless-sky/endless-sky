@@ -31,11 +31,18 @@ jobs:
     needs: changed
     # if: needs.changed.outputs.linux == 'true'
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - platform: amd64,i386
+            arch: x86_64
+          - platform: i386
+            arch: i686
     outputs:
       RT_VERSION: ${{ steps.steamrt-version.outputs.RT_VERSION }}
     env:
       snapshot: latest-container-runtime-depot
-      sdk: com.valvesoftware.SteamRuntime.Sdk-amd64,i386-scout-sysroot
+      sdk: com.valvesoftware.SteamRuntime.Sdk-${{ matrix.platform }}-scout-sysroot
       ARTIFACT: endless-sky
     steps:
     - uses: actions/checkout@v2
@@ -52,7 +59,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: build/docker/${{ env.sdk }}.tar.gz
-        key: ${{ env.RT_VERSION }}-steamrt-sdk
+        key: ${{ env.RT_VERSION }}-${{ matrix.arch }}-steamrt-sdk
     - name: Download steamrt archive
       if: steps.cache-tarball.outputs.cache-hit != 'true'
       env:
@@ -73,7 +80,8 @@ jobs:
           --mount type=bind,src=$(pwd)/tests,dst=/endless-sky/tests \
           --mount type=bind,src=$(pwd)/build,dst=/endless-sky/build \
           --mount type=bind,ro,src=$(pwd)/SConstruct,dst=/endless-sky/SConstruct \
-          -e SCHROOT_CHROOT_NAME=steamrt_scout_amd64 \
+          -e SCHROOT_CHROOT_NAME=steamrt_scout_${{ matrix.platform }} \
+          -e LTO_PLUGIN_PATH=/usr/lib/gcc/${{ matrix.arch }}-linux-gnu/5/liblto_plugin.so \
           -w /endless-sky s_rt /bin/bash -c \
           'sudo dpkg --clear-avail \
             && echo "deb http://old-releases.ubuntu.com/ubuntu/ precise main restricted universe multiverse" > /etc/apt/sources.list \
@@ -96,7 +104,7 @@ jobs:
     - name: Upload GH artifact
       uses: actions/upload-artifact@v2
       with:
-        name: binary-${{ runner.os }}-x86-64
+        name: binary-${{ runner.os }}-${{ matrix.arch }}
         path: ${{ env.ARTIFACT }}
 
   test_linux:
@@ -126,7 +134,7 @@ jobs:
     - name: Download Endless Sky binary
       uses: actions/download-artifact@v2
       with:
-        name: binary-${{ runner.os }}-x86-64
+        name: binary-${{ runner.os }}-x86_64
         path: .
     - name: Install xvfb runtime dependencies
       run: sudo apt-get install -y --no-install-recommends libosmesa6 mesa-utils
@@ -148,26 +156,28 @@ jobs:
     needs: test_linux
     runs-on: ubuntu-latest
     env:
-      dir: steam-linux64-depot
+      dir32: binary-Linux-i686
+      dir64: binary-Linux-x86_64
       ARTIFACT: endless-sky
     steps:
-    - name: Download artifact
+    - name: Download Artifacts
       uses: actions/download-artifact@v2
       with:
-        name: binary-${{ runner.os }}-x86-64
-        path: .
-    - run: chmod +x ${{ env.ARTIFACT }}
+        path: ${{ github.workspace }}
     - name: Prepare binary upload
-      run: echo "TODO"
+      run: |
+        chmod +x ${{ env.dir32 }}/${{ env.ARTIFACT }}
+        chmod +x ${{ env.dir64 }}/${{ env.ARTIFACT }}
     # - uses: game-ci/steam-deploy@v0.1
     #   with:
     #     appId: 404410
-    #     buildDescription: canary-${{ github.ref }}
+    #     buildDescription: canary-${{ github.sha }}
     #     username: ${{ secrets.STEAM_DEPLOY_UN }}
     #     password: ${{ secrets.STEAM_DEPLOY_PW }}
     #     mfaCode: ${{ secrets.STEAM_DEPLOY_MFA }}
     #     rootPath: ''
-    #     depot7Path: ${{ env.dir }}
+    #     depot6Path: ${{ env.dir32 }}
+    #     depot7Path: ${{ env.dir64 }}
     #     releaseBranch: canary
 
   deploy_data_depot:
@@ -175,7 +185,7 @@ jobs:
     if: needs.changed.outputs.data == 'true'
     runs-on: ubuntu-latest
     env:
-      dir: steam-data-depot
+      dir: data-depot
     steps:
     - uses: actions/checkout@v2
       with:
@@ -195,11 +205,10 @@ jobs:
           sounds/
     - name: Verify move
       run: head -n 13 ${{ env.dir }}/credits.txt
-    # TODO: eventually enable below step
     # - uses: game-ci/steam-deploy@v0.1
     #   with:
     #     appId: 404410
-    #     buildDescription: canary-${{ github.ref }}
+    #     buildDescription: canary-${{ github.sha }}
     #     username: ${{ secrets.STEAM_DEPLOY_UN }}
     #     password: ${{ secrets.STEAM_DEPLOY_PW }}
     #     mfaCode: ${{ secrets.STEAM_DEPLOY_MFA }}
