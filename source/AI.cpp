@@ -3496,7 +3496,9 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			int index = 0;
 			for(const Hardpoint &hardpoint : ship.Weapons())
 			{
-				if(hardpoint.IsReady() && hardpoint.GetOutfit() == player.SelectedWeapon())
+				const Outfit *playerSelectedWeapon = player.SelectedWeapon();
+				if(hardpoint.IsReady() && hardpoint.GetOutfit()->Icon() &&
+						(!playerSelectedWeapon || hardpoint.GetOutfit() == playerSelectedWeapon))
 					command.SetFire(index);
 				++index;
 			}
