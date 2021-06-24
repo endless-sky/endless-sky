@@ -882,4 +882,4 @@ mission "Governor transport"
 	on complete
 		payment
 		payment 75000
-		dialog `Before the governor left, he thanked you for transporting him`
+		dialog phrase "generic passenger dropoff payment"
