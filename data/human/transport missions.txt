@@ -3277,4 +3277,8 @@ mission "Human to Hai Space"
 					decline
 				`	"That's your family?"`
 			`	The man looks at you. "I'm adopted," he says. One of the Hai notices your confusion, and chitters. "Ah, you have not seen a human-Hai family, have you? Perhaps it is strange, but we are happy together nonetheless. Thank you for transporting our son safely."`
+			choice
+				`	"I didn't mean to be rude, I just didn't know that Hai adopted humans here."`
+				`	"No problem, I hope you enjoyed the trip."`
+			`After thanking you once again, they walk off. As they leave, you overhear Benjamin talk to his family about his trip. "They had so many kinds of food there, it was delicious! Although I did get homesick for pickled acorns..."`
 				decline
