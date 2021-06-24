@@ -3211,14 +3211,12 @@ mission "Earth Retirement"
 			`	You wish the couple the best of luck on Earth, and they slowly make their way to the train station. Presumably, their new apartment is far from here.`
 
 mission "Human to Hai Space"
-	description "Bring a human passenger to <destination> in Hai space."
 	minor
+	description "Bring a human passenger to <destination> in Hai space."
 	source
 		government "Republic" "Syndicate" "Free Worlds"
 		attributes "tourism" "urban"
-	destination 
-		government "Hai"
-		attributes "human tourism"
+	destination "Greenwater"
 	passengers 1
 	to offer
 		random < 10
@@ -3226,48 +3224,58 @@ mission "Human to Hai Space"
 		conversation
 			`A young person approaches you carrying luggage. "You look like a knowledgeable captain," he says. "Do you know of a place I can go to visit some... intelligent rodents?"`
 			branch "hai contact"
-				has "First Contact: Hai: declined"
+				has "First Contact: Hai: offered"
 			
 			choice
-				`   "What are you talking about?"`
-				`   "What, like in a zoo?"`
+				'	"What are you talking about?"`
 					goto "confused"
-				`   "Are you high?"`
-			`   "No, I want to go to the Hai-" He stops once he realizes you have no idea what he's talking about. "Oh, never mind then," he says, with a note of disappointment in his voice. As he leaves, you can't help feeling like you were missing some context.`
+				`	"What, like in a zoo?"`
+					goto "confused"
+				`	"Are you high?"`
+			`	"No, I want to go to the Hai-" He stops once he realizes you have no idea what he's talking about. "Oh, never mind then," he says, with a note of disappointment in his voice. As he leaves, you can't help feeling like you were missing some context.`
 				decline
 			label "confused"
-			`   "Oh, never mind then," he says, with a note of disappointment in his voice. As he leaves, you can't help feeling like you were missing some context.`
+			`	"Oh, never mind then," he says, with a note of disappointment in his voice. As he leaves, you can't help feeling like you were missing some context.`
 				decline
 			
 			label "hai contact"
 			choice
-				`   "You mean the Hai? You'll have to go up north for that."`
+				`	"You mean the Hai? You'll have to go up north for that."`
 					goto "squirrel transport"
-				`   "Ah, I think I know of some large squirrels to the north of here."`
+				`	"Ah, I think I know of some large squirrels to the north of here."`
 					goto "squirrel transport"
-				`   "What are you talking about?"`
-			`	"Oh, never mind then," he says, with a note of disappointment in his voice. As he leaves, you can't help feeling like you were missing some context.`
+				`	"What are you talking about?"`
+					goto "confused"
 			label "squirrel transport"
-			`   "If that's the case, could you bring me to <destination>? I'll give you <payment>."`
+			`	"If that's the case, could you bring me to <destination>? I'll give you <payment>."`
 			choice
-				`   "Alright, I'll take you there."`
+				`	"Alright, I'll take you there."`
 					accept
-				`   "Sorry, I'm too busy right now."`
+				`	"Sorry, I'm too busy right now."`
 					decline
-				`   "Why would you want to go all the way out to <planet>?"`
-			`   "I have family there," he says. "I came out here to see a bit of human space, but now I have to get back home."`
+				`	"Why would you want to go all the way out to <planet>?"`
+			`	"I have family there," he says. "I came out here to do some traveling and see a bit of human space, but now I have to get back home. You see, I was born on <planet>, and this is my first time out of the wormhole."`
 			choice
-				`   "Alright, I'll take you there."`
+				`	"Really? How did you like human space?"
+					goto "travel"
+				`	"You've never been to human space before?"
+					goto "space"
+			label "travel"
+				`	"It was quite the trip! It's a bit odd to see only humans around, and I had to be careful to not mention where I was from. But it was definitely worth it! I got to see Earth, Skymoot, Chiron, and so many other beautiful planets. Seeing human culture with my own eyes was an eye-opening experience, although some of the places there were less... clean than I expected. I was almost robbed on Earth; I'm not used to pickpockets back home. Perhaps human space isn't as safe as Hai space, but I still don't regret coming here. It's about time for me to go back, though."
+			label "space"
+				`	"Nope, first time! I've never been so far from home before. Now that I think about it, I probably should've arranged transport back to Hai space beforehand. You wouldn't believe how hard it is to find a captain here that knows about the Hai. I had to ask about six others until I found you. They all thought I was crazy, talking about meeting giant squirrels." He laughs and shakes his head. "So anyways, would you be willing to take me to <destination>?"
+			choice
+				`	"Alright, I'll take you there."`
 					accept
-				`   "Sorry, I'm too busy right now."`
+				`	"Sorry, I'm too busy right now."`
 					decline
 	on complete
-		payment 8000 1000
+		payment 9000
 		conversation
-			`The young man gets off your ship, thanks you and gives you your payment of <payment>. He then walks over to greet a group of Hai, who embrace him and start talking in a mix of the human and Hai languages.`
+			`During the trip, you learn that your passenger is named Benjamin. He gets off your ship, thanks you and gives you your payment of <payment>. Benjamin then walks over to greet a group of Hai, who embrace him and start talking in a mix of the human and Hai languages.`
 			choice
-				`   (Leave.)`
+				`	(Leave.)`
 					decline
-				`   "That's your family?"`
-			`   The man looks at you. "I'm adopted," he says. One of the Hai notices your confusion, and chitters. "Ah, you have not seen a human-Hai family, have you? Perhaps it is strange, but we are happy together nonetheless."`
+				`	"That's your family?"`
+			`	The man looks at you. "I'm adopted," he says. One of the Hai notices your confusion, and chitters. "Ah, you have not seen a human-Hai family, have you? Perhaps it is strange, but we are happy together nonetheless. Thank you for transporting our som safely."`
 				decline
