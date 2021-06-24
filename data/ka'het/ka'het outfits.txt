@@ -287,8 +287,8 @@ outfit "Ka'het Emergency Deployer"
 		"firing heat" 180
 		"trigger radius" 40
 		"blast radius" 230
-		"shield damage" 8750
-		"hull damage" 1130
+		"shield damage" 13750
+		"hull damage" 2060
 		"heat damage" 4920
 		"firing hull" 60
 		"hit force" 1600
