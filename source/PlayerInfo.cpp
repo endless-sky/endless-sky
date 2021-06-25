@@ -557,10 +557,11 @@ void PlayerInfo::IncrementDate()
 	// Check what salaries and tribute the player receives.
 	int64_t total[2] = {0, 0};
 	static const string prefix[2] = {"salary: ", "tribute: "};
+	const auto primaryConditions = GetPrimaryConditions();
 	for(int i = 0; i < 2; ++i)
 	{
-		auto it = GetPrimaryConditions().lower_bound(prefix[i]);
-		for( ; it != GetPrimaryConditions().end() && !it->first.compare(0, prefix[i].length(), prefix[i]); ++it)
+		auto it = primaryConditions.lower_bound(prefix[i]);
+		for( ; it != primaryConditions.end() && !it->first.compare(0, prefix[i].length(), prefix[i]); ++it)
 			total[i] += it->second;
 	}
 	if(total[0] || total[1])
@@ -1840,8 +1841,9 @@ void PlayerInfo::EraseManualByPrefix(const string &prefix)
 	set<string> toErase;
 	
 	// Generate the list of items to erase
-	auto it = GetPrimaryConditions().lower_bound(prefix);
-	for( ; it != GetPrimaryConditions().end() && !it->first.compare(0, prefix.length(), prefix); ++it)
+	const auto primaryConditions = GetPrimaryConditions();
+	auto it = primaryConditions.lower_bound(prefix);
+	for( ; it != primaryConditions.end() && !it->first.compare(0, prefix.length(), prefix); ++it)
 		toErase.insert(it->first);
 	
 	// Erase the selected items.
@@ -2411,7 +2413,8 @@ void PlayerInfo::ApplyChanges()
 	
 	// Check which planets you have dominated.
 	static const string prefix = "tribute: ";
-	for(auto it = GetPrimaryConditions().lower_bound(prefix); it != GetPrimaryConditions().end(); ++it)
+	const auto primaryConditions = GetPrimaryConditions();
+	for(auto it = primaryConditions.lower_bound(prefix); it != primaryConditions.end(); ++it)
 	{
 		if(it->first.compare(0, prefix.length(), prefix))
 			break;
@@ -2903,12 +2906,13 @@ void PlayerInfo::Save(const string &path) const
 		mission.Save(out, "available mission");
 	
 	// Save any "primary condition" flags that are set.
-	if(!GetPrimaryConditions().empty())
+	const auto primaryConditions = GetPrimaryConditions();
+	if(!primaryConditions.empty())
 	{
 		out.Write("conditions");
 		out.BeginChild();
 		{
-			for(const auto &it : GetPrimaryConditions())
+			for(const auto &it : primaryConditions)
 			{
 				// If the condition's value is 1, don't bother writing the 1.
 				if(it.second == 1)
