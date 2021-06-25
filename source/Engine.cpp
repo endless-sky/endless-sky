@@ -1016,8 +1016,8 @@ void Engine::Draw() const
 		if(pos.Y() < ammoBox.Top() + ammoPad)
 			break;
 		
-		const Outfit *playerSelectedWeapon = player.SelectedWeapon();
-		bool isSelected = (it.first == playerSelectedWeapon) || (nullptr == playerSelectedWeapon);
+		const auto playerSelectedWeapons = player.SelectedWeapons();
+		bool isSelected = (playerSelectedWeapons.find(it.first) != playerSelectedWeapons.end());
 		
 		SpriteShader::Draw(it.first->Icon(), pos + iconOff);
 		SpriteShader::Draw(isSelected ? selectedSprite : unselectedSprite, pos + boxOff);
