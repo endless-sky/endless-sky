@@ -17,7 +17,7 @@ news "heliarch news"
 			"Heliarch broadcast"
 	message
 		word
-			"A sizable crowd is watching one of the monitors in the spaceport, where an interviewer is speaking to a Heliarch agent. You learn from someone in the crowd that the agent was a professional athlete until recently."
+			"A sizable crowd is watching one of the monitors in the spaceport where an interviewer is speaking to a Heliarch agent. You learn from someone in the crowd that the agent was a professional athlete until recently."
 			"A news broadcast shows footage of many Heliarch agents arresting a group of terrorists. The Heliarch who was supervising the operation is later interviewed, explaining that the now prisoners were found to have stolen government equipment."
 			"The news show a Heliarch consul giving a short speech in a ship launching ceremony. After they finish, the brand new Heliarch warships are shown heading to their first patrol."
 
@@ -61,7 +61,7 @@ news "kimek farmer"
 			`"A Heliarch agent, I once was. Too stressful, it was for me, so this job I took. Messages from colleagues, I still get, but if see the fruits I plant here, they could, definitely join me, they would."`
 			`"Some fresh produce would you like, Captain? If purchase these, you do, teach you a family recipe I could. I'm sure that love it, a human would. Probably."`
 			"After noticing you looking at the produce, the farmer asks if you would like some free samples, before grabbing an entire box with various fruits and vegetables and handing it to you."
-			"Dozens of farmers in different stands call out to you as you walk by the spaceport, asking you to take a look at the special prices of today's "food expo." You later look into it, and turns out yesterday there also was an expo, as well as the day before that. Tomorrow's starts the moment today's ends."
+			`Dozens of farmers in different stands call out to you as you walk by the spaceport, asking you to take a look at the special prices of today's "food expo." You later look into it, and turns out yesterday there also was an expo, as well as the day before that. Tomorrow's starts the moment today's ends.`
 
 news "heliarch agent"
 	location
@@ -75,8 +75,8 @@ news "heliarch agent"
 			`"If any assistance you need, at your disposal I am."`
 			`"If any trouble you find, report it to us you must."`
 			`"Saryd, Kimek, Arach, human, no matter what species, to protect all of our citizens, committed we are."`
-			`"Enjoy my post well enough, I do, but still to get a break during the Coalition games to watch them, I am."`
-			`"Part of a Punisher crew, I am. Land, refuel, rest, and back to working on that magnificent ship, I am!"`
+			`"Enjoy my post well enough, I do, but still to get a break during the Coalition Games to watch them, I am."`
+			`"Part of a Punisher crew, I am. Land, refuel, rest, and back to working on that magnificent ship, I do!"`
 			`"Offered the position of magister, I actually have been. Only, not interested in that governing activity, I am."`
 			`"Apologies, but make haste I must. Gone missing some garrison guns have, and back to cleaning Stalker engines I will be, if find them I don't!"`
 			`"Difficult sometimes it is, to be a mediator. If careful with my words I am not, a Saryd might think an Arach talking about longcows has insulted their mother."`
@@ -235,7 +235,7 @@ news "coalition merchant"
 			`"On a Hulk, my first job in a spaceship was. Thought falling apart it was, I had, when to a Spindle it switched."`
 			`"Liked my ship so much, a Kimek passenger did, that decided to live in it, they have. For 'transport' they still pay, so mind it I do not."`
 			`"Jealous of you, I am. If a jump drive I had, bypass the gap between Saryd and Arach space, I could, and quickly earn a fortune, I would."`
-			`"Agreed to transport some Saryd graduates for a 'field trip', I once did. Almost arrested, I was."`
+			`"Agreed to transport some Saryd graduates for a 'field trip,' I once did. Almost arrested, I was."`
 			"The spacefarer is assisting the rest of their crew in unloading cargo from a ship."
 			`"Used to fly with me, my brother did, but now become a Heliarch, he has."`
 
