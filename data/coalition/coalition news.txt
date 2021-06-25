@@ -26,7 +26,7 @@ news "heliarch propaganda"
 		government "Coalition" "Heliarch"
 	name
 		word
-			"Heliarch propaganda"
+			"Heliarch broadcast"
 	message
 		word
 			"A short film plays on a monitor during a commercial break. A young Saryd walks in a forest, looking to his sides every few seconds to take in the view. Eventually he turns to see another Saryd, both surprised. As he approaches her and the two start talking, the camera pans out to a rising sun over the forest."
