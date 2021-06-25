@@ -1868,7 +1868,7 @@ const ConditionsStore &PlayerInfo::Conditions() const
 
 
 // Iteratable read-only access to all primary (non-derived) player conditions.
-const std::map<std::string, int64_t> &PlayerInfo::GetPrimaryConditions() const
+const std::map<std::string, int64_t> PlayerInfo::GetPrimaryConditions() const
 {
 	return conditions.GetPrimaryConditions();
 }

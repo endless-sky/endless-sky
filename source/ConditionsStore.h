@@ -33,6 +33,25 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // formulae).
 class ConditionsStore {
 public:
+	// Storage types for conditions;
+	// - VALUE means that the condition-value is stored directly in this store.
+	// - PREFIX_PROVIDER means that conditions starting with the given prefix
+	//         are all handled by the given provider.
+	// - EXACT_PROVIDER means that the condition with the exact name is handled
+	//         by the given provider.
+	enum StorageType {VALUE, PREFIX_PROVIDER, EXACT_PROVIDER};
+	
+	class ConditionEntry
+	{
+	public:
+		StorageType type = VALUE;
+		int64_t value;
+		ConditionsProvider* provider;
+	};
+
+
+
+public:
 	// Constructors to initialize this class.
 	ConditionsStore();
 	ConditionsStore(std::initializer_list<std::pair<std::string, int64_t>> initialConditions);
@@ -48,7 +67,7 @@ public:
 	bool EraseCondition(const std::string &name);
 	
 	// Direct (read-only) access to the stored primary conditions.
-	const std::map<std::string, int64_t> &GetPrimaryConditions() const;
+	const std::map<std::string, int64_t> GetPrimaryConditions() const;
 	
 	// Set providers for derived conditions based on prefix and name.
 	void SetProviderPrefixed(const std::string &prefix, ConditionsProvider *child);
@@ -57,18 +76,16 @@ public:
 
 
 private:
-	// Retrieve a condition provider based on a condition name.
-	ConditionsProvider* GetProvider(const std::string &name) const;
+	// Retrieve a condition entry based on a condition name, doCreate indicate if the entry
+	// should be created if it wasn't there yet.
+	ConditionEntry *GetEntry(const std::string &name);
+	const ConditionEntry *GetEntryConst(const std::string &name) const;
 
 
 
 private:
-	// Storage for the primary conditions.
-	std::map<std::string, int64_t> conditions;
-	// Storage of derived condition providers by prefix and full string.
-	// Setting true in the pair means that the string must match exactly (full string).
-	// Setting false in the pair means that the string is to be used as prefix.
-	std::map<std::string, std::pair<bool, ConditionsProvider*>> providers;
+	// Storage for both the primary conditions as well as the providers.
+	std::map<std::string, ConditionEntry> storage;
 };
 
 

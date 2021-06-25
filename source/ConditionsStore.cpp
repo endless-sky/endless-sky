@@ -46,28 +46,28 @@ ConditionsStore::ConditionsStore(const map<string, int64_t> initialConditions)
 //derived from other data-structures (derived conditions).
 int64_t ConditionsStore::GetCondition(const std::string &name) const
 {
-	ConditionsProvider* cp = GetProvider(name);
-	if(cp != nullptr)
-		return cp->GetCondition(name);
+	const ConditionEntry *ce = GetEntryConst(name);
+	if(!ce)
+		return 0;
 	
-	auto it = conditions.find(name);
-	if(it != conditions.end())
-		return it->second;
+	if(ce->type == VALUE)
+		return ce->value;
 	
-	// Return the default value if nothing was found.
-	return 0;
+	return ce->provider->GetCondition(name);
 }
 
 
 
 bool ConditionsStore::HasCondition(const std::string &name) const
 {
-	ConditionsProvider* cp = GetProvider(name);
-	if(cp != nullptr)
-		return cp->HasCondition(name);
+	const ConditionEntry *ce = GetEntryConst(name);
+	if(!ce)
+		return false;
 	
-	auto it = conditions.find(name);
-	return it != conditions.end();
+	if(ce->type == VALUE)
+		return true;
+	
+	return ce->provider->HasCondition(name);
 }
 
 
@@ -84,46 +84,58 @@ bool ConditionsStore::AddCondition(const string &name, int64_t value)
 
 
 
-// Set a value for a condition, first by trying the children and if
-// that doesn't succeed then internally in the store.
+// Set a value for a condition, either for the local value, or by performing
+// an erase on the provider.
 bool ConditionsStore::SetCondition(const string &name, int64_t value)
 {
-	ConditionsProvider* cp = GetProvider(name);
-	if(cp != nullptr)
-		return cp->SetCondition(name, value);
+	ConditionEntry *ce = GetEntry(name);
+	if(!ce)
+	{
+		(storage[name]).value = value;
+		return true;
+	}
 	
-	conditions[name] = value;
-	return true;
+	if(ce->type == VALUE)
+	{
+		ce->value = value;
+		return true;
+	}
+	
+	return ce->provider->SetCondition(name, value);
 }
 
 
 
-// Erase a condition completely, first by trying the children and if
-// that doesn't succeed then internally in the store.
+// Erase a condition completely, either the local value or by performing
+// an erase on the provider.
 bool ConditionsStore::EraseCondition(const string &name)
 {
-	// We go through both derived conditions as well as the primary
-	// conditions (and only return true when all erases were succesfull).
-	bool success = true;
-	ConditionsProvider* cp = GetProvider(name);
-	if(cp != nullptr)
-		success = success && cp->EraseCondition(name);
+	ConditionEntry *ce = GetEntry(name);
+	if(!ce)
+		return true;
 	
-	auto it = conditions.find(name);
-	if(it != conditions.end())
-		conditions.erase(it);
+	if(ce->type == VALUE)
+	{
+		storage.erase(name);
+		return true;
+	}
 	
-	// The condition was either erased at this point, or it was not present
-	// when we started. In either case the condition got succesfully removed.
-	return success;
+	return ce->provider->EraseCondition(name);
 }
 
 
 
-// Direct (read-only) access to the stored primary conditions.
-const map<string, int64_t> &ConditionsStore::GetPrimaryConditions() const
+// Retrieve a copy of the conditions stored by value. Direct access is not
+// possible because this class uses a single central storage for value and
+// providers internally.
+const map<string, int64_t> ConditionsStore::GetPrimaryConditions() const
 {
-	return conditions;
+	map<string, int64_t> priConditions;
+	for(const auto it : storage)
+		if(it.second.type == StorageType::VALUE)
+			priConditions[it.first] = it.second.value;
+	
+	return priConditions;
 }
 
 
@@ -132,10 +144,13 @@ const map<string, int64_t> &ConditionsStore::GetPrimaryConditions() const
 // nullpointer will unset the provider for the prefix.
 void ConditionsStore::SetProviderPrefixed(const string &prefix, ConditionsProvider *child)
 {
-	if(child != nullptr)
-		providers[prefix] = make_pair(false, child);
+	if(child)
+	{
+		storage[prefix].provider = child;
+		storage[prefix].type = PREFIX_PROVIDER;
+	}
 	else
-		providers.erase(prefix);
+		storage.erase(prefix);
 }
 
 
@@ -144,27 +159,55 @@ void ConditionsStore::SetProviderPrefixed(const string &prefix, ConditionsProvid
 // nullpointer will unset the provider for the prefix.
 void ConditionsStore::SetProviderNamed(const string &name, ConditionsProvider *child)
 {
-	if(child != nullptr)
-		providers[name] = make_pair(true, child);
+	if(child)
+	{
+		storage[name].provider = child;
+		storage[name].type = EXACT_PROVIDER;
+	}
 	else
-		providers.erase(name);
+		storage.erase(name);
 }
 
 
 
-ConditionsProvider* ConditionsStore::GetProvider(const string &name) const
+ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &name)
 {
-	// Perform a single search for named and prefixed providers.
-	if(providers.empty())
+	if(storage.empty())
 		return nullptr;
-	auto it = providers.upper_bound(name);
-	if(it == providers.begin())
+	
+	// Perform a single search for values, named providers and prefixed providers.
+	auto it = storage.upper_bound(name);
+	if(it == storage.begin())
 		return nullptr;
+	
 	--it;
-	// it->second.first is true if the string needs to match exactly. The strings
-	// match exactly if they are the same over the length of the first string and
-	// have the same length.
-	if(!(name.compare(0, it->first.length(), it->first)) && (!it->second.first || it->first.length() == name.length()))
-		return it->second.second;
+	// The entry is valid if we have an exact stringmatch, but also when we have a
+	// prefix entry and the prefix part matches.
+	if(!(name.compare(0, it->first.length(), it->first)) &&
+			(it->second.type == PREFIX_PROVIDER || it->first.length() == name.length()))
+		return &(it->second);
+	
+	return nullptr;
+}
+
+
+
+const ConditionsStore::ConditionEntry *ConditionsStore::GetEntryConst(const string &name) const
+{
+	if(storage.empty())
+		return nullptr;
+	
+	// Perform a single search for values, named providers and prefixed providers.
+	auto it = storage.upper_bound(name);
+	if(it == storage.begin())
+		return nullptr;
+	
+	--it;
+	// The entry is valid if we have an exact stringmatch, but also when we have a
+	// prefix entry and the prefix part matches.
+	if(!(name.compare(0, it->first.length(), it->first)) &&
+			(it->second.type == PREFIX_PROVIDER || it->first.length() == name.length()))
+		return &(it->second);
+	
 	return nullptr;
 }
