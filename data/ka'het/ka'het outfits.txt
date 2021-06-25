@@ -286,12 +286,12 @@ outfit "Ka'het Emergency Deployer"
 		"firing energy" -3800
 		"firing force" 900
 		"firing heat" 5800
+		"firing hull" 60
 		"trigger radius" 40
 		"blast radius" 230
 		"shield damage" 28750
 		"hull damage" 9060
 		"heat damage" 4920
-		"firing hull" 60
 		"hit force" 1600
 		"missile strength" 280
 	description "Most drones the Builders possessed were completely unarmed, making them very vulnerable to enemy attacks. Since installing weapons would have greatly reduced its cargo capacity, they instead decided to dissuade possible hijackers by developing these Emergency Deployers: they work by activating a series of reactions inside the ship's MHD generator and then ejecting it towards the enemy, resulting in a large scale detonation as soon as it hits something."
