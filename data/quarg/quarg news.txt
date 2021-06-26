@@ -152,6 +152,7 @@ news "linguist on quarg planets in human and hai space"
 			"."
 		word
 			`"`
+
 news "tourist on quarg planets in human and hai space"
 	location
 		government "Quarg"
