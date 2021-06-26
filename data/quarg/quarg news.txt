@@ -276,6 +276,7 @@ news "merchant on quarg planets in human and hai space"
 			"."
 		word
 			`"`
+
 news "merchant on quarg planets in human space"
 	location
 		government "Quarg"
