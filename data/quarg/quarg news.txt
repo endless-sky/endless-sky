@@ -344,6 +344,7 @@ news "merchant on quarg planets in human space"
 			"."
 		word
 			`"`
+
 news "reporter on quarg planets in human space"
 	location
 		government "Quarg"
