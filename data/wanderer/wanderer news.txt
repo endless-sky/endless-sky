@@ -21,6 +21,7 @@ news "wanderer civilians, no dialog 1"
 			"Many buildings near the spaceport have plants growing on their roofs. An indignant squawk draws your attention to a Wanderer as they rapidly flap away from an automated watering system dousing them where they stood."
 			"Outside the spaceport, you see a Wanderer performing maintenance on some sort of irrigation system. Once they get it working, it begins to water a field of plants."
 			"A Wanderer dockworker unloads complex scientific equipment from a ship. More surprising, however, is the fact that they unload several bags of fertilizer from it as well."
+
 news "wanderer civilian's no dialog 2"
 	location
 		government "Wanderer"
@@ -37,7 +38,7 @@ news "wanderer civilian's no dialog 2"
 			"On a booth near the spaceport, a group of Wanderers are playing on objects that look vaguely like wooden flutes. Their music is quiet and lacks a discernible melody."
 			"Two Wanderers are at a table. They appear to be playing some sort of board game using shell pieces."
 			"A crowd of Wanderer children follow an adult through the spaceport. The adult talks to them as they follow, as the children take notes."
-			
+
 news "Wanderers and Korath"
 	to show
 		has "Wanderers: Sestor: Final: done"
@@ -63,6 +64,7 @@ news "Wanderers and Korath"
 			"I am [excited, overjoyed] to be part of [healing, renewing] the Korath worlds. We are once again [transforming, altering] the old into the new."
 		word
 			`"`
+
 news "Wanderer Linguistics"
 	to show
 		has "Wanderers: Sestor: Final: done"
@@ -81,7 +83,7 @@ news "Wanderer Linguistics"
 			"We are still [figuring out, determining] whether or not a Wanderer who has not undergone the Molt could [learn, apprehend] the Korath language. The sounds in their [speech, tongue] are hard for us to [speak, pronounce]."
 		word
 			`"`
-			
+
 news "Wanderers and Aliens"
 	to show
 		has "language: Wanderer"
@@ -110,10 +112,10 @@ news "Wanderers and Aliens"
 			"I can [sympathize with, understand] the Hai. They have been [stuck, stagnant] in their own space for too long. It is only [right, natural] that they should want to [migrate to, leave for] new lands."
 		word
 			`"`
-			
+
 news "Wanderer Linguistics 2"
 	to show
-		has "Wanderers Conversation: offered"
+		has "language: Wanderer"
 	location
 		government "Wanderer"
 		not attributes "evacuation"
@@ -130,10 +132,10 @@ news "Wanderer Linguistics 2"
 			"I went to a [prison, jail] where some Unfettered Hai were being held, in order to [study, apprehend] their language on a more [in-depth, detailed] level. It was hard to get [information, data] out of them, to say the least."
 		word
 			`"`
-			
+
 news "Wanderer civilians, dialog"
 	to show
-		has "Wanderers Conversation: offered"
+		has "language: Wanderer"
 	location
 		government "Wanderer"
 		not attributes "evacuation"
@@ -155,10 +157,10 @@ news "Wanderer civilians, dialog"
 			"While you are [here, present], you should try some of our [delectable, delicious] seed soup. It is a [filling, satisfying] meal after a long trip."
 		word
 			`"`
-			
+
 news "Wanderer scientists"
 	to show
-		has "Wanderers Conversation: offered"
+		has "language: Wanderer"
 	location
 		government "Wanderer"
 		not attributes "evacuation"
@@ -182,7 +184,7 @@ news "Wanderer scientists"
 
 news "Wanderer soldier"
 	to show
-		has "Wanderers Invaded 0: accepted"
+		has "event: wanderers: unfettered invasion starts"
 	location
 		government "Wanderer"
 	name
@@ -258,7 +260,7 @@ news "Wanderers and the Eye"
 
 news "Wanderer oil safety"
 	to show
-		has "Wanderers Conversation: offered"
+		has "language: Wanderer"
 	location
 		government "Wanderer"
 		attributes "oil"
@@ -274,9 +276,10 @@ news "Wanderer oil safety"
 			"The oil drillers have no [respect, regard] for the [life, existence] of this planet. Just yesterday I caught one [covering up, hiding] a spill that [affected, impacted] an estimated 328 blades of grass!" 
 		word
 			`"`
+
 news "Wanderer oil drilling"
 	to show
-		has "Wanderers Conversation: offered"
+		has "language: Wanderer"
 	location
 		government "Wanderer"
 		attributes "oil"
@@ -295,7 +298,7 @@ news "Wanderer oil drilling"
 
 news "wanderer farmer"
 	to show
-		has "Wanderers Conversation: offered"
+		has "language: Wanderer"
 	location
 		government "Wanderer" 
 		attributes "farming"
