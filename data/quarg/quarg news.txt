@@ -225,6 +225,7 @@ news "engineer on quarg planets in human space"
 			"I'm working on a new spaceship for the Tarazed Corporation. Every once in a while I come here to take some inspiration from these magnificent designs."
 		word
 			`"`
+
 news "merchant on quarg planets in human and hai space"
 	location
 		government "Quarg"
