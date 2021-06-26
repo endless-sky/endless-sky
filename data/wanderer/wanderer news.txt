@@ -9,7 +9,7 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-news "wanderer civilians, no dialog"
+news "wanderer civilians, no dialog 1"
 	location
 		government "Wanderer"
 		not attributes "evacuation"
@@ -21,6 +21,10 @@ news "wanderer civilians, no dialog"
 			"Many buildings near the spaceport have plants growing on their roofs. An indignant squawk draws your attention to a Wanderer as they rapidly flap away from an automated watering system dousing them where they stood."
 			"Outside the spaceport, you see a Wanderer performing maintenance on some sort of irrigation system. Once they get it working, it begins to water a field of plants."
 			"A Wanderer dockworker unloads complex scientific equipment from a ship. More surprising, however, is the fact that they unload several bags of fertilizer from it as well."
+news "wanderer civilian's no dialog 2"
+	location
+		government "Wanderer"
+		not attributes "evacuation"
 	name
 		word
 			"Group of Wanderers"
@@ -59,6 +63,12 @@ news "Wanderers and Korath"
 			"I am [excited, overjoyed] to be part of [healing, renewing] the Korath worlds. We are once again [transforming, altering] the old into the new."
 		word
 			`"`
+news "Wanderer Linguistics"
+	to show
+		has "Wanderers: Sestor: Final: done"
+	location
+			government "Wanderer"
+			not attributes "evacuation"
 	name
 		word
 			"Wanderer linguist"
@@ -100,6 +110,13 @@ news "Wanderers and Aliens"
 			"I can [sympathize with, understand] the Hai. They have been [stuck, stagnant] in their own space for too long. It is only [right, natural] that they should want to [migrate to, leave for] new lands."
 		word
 			`"`
+			
+news "Wanderer Linguistics 2"
+	to show
+		has "Wanderers Conversation: offered"
+	location
+		government "Wanderer"
+		not attributes "evacuation"
 	name
 		word
 			"Wanderer linguist"
@@ -239,7 +256,7 @@ news "Wanderers and the Eye"
 		word
 			`"`
 
-news "Wanderer oil drilling"
+news "Wanderer oil safety"
 	to show
 		has "Wanderers Conversation: offered"
 	location
@@ -257,7 +274,12 @@ news "Wanderer oil drilling"
 			"The oil drillers have no [respect, regard] for the [life, existence] of this planet. Just yesterday I caught one [covering up, hiding] a spill that [affected, impacted] an estimated 328 blades of grass!" 
 		word
 			`"`
-			
+news "Wanderer oil drilling"
+	to show
+		has "Wanderers Conversation: offered"
+	location
+		government "Wanderer"
+		attributes "oil"
 	name
 		word
 			"Oil rigger"
