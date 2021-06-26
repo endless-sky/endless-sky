@@ -12,7 +12,10 @@
 
 news "human merchant anywhere"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai" "Quarg"
+		not
+			government "Quarg"
+			not attributes "human"
 	name
 		word
 			"Merchant captain"
@@ -48,7 +51,10 @@ news "human merchant anywhere"
 
 news "human merchant in human space"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
+		not
+			government "Quarg"
+			not attributes "human"
 	name
 		word
 			"Merchant captain"
@@ -486,7 +492,10 @@ news "loan officer"
 
 news "hyperspace relay engineer"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
+		not
+			government "Quarg"
+			not attributes "human"
 	name
 		word
 			"Hyperspace relay engineer"
@@ -572,7 +581,10 @@ news "agricultural scientist"
 
 news "epidemiologist"
 	location
-		government "Republic"
+		government "Republic" "Quarg"
+		not
+			government "Quarg"
+			not attributes "human"
 	name
 		word
 			"Epidemiologist"
@@ -652,7 +664,10 @@ news "substance abuse counselor"
 
 news "reporter"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
+		not
+			government "Quarg"
+			not attributes "human"
 	name
 		word
 			"Reporter"
