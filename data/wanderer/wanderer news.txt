@@ -39,51 +39,6 @@ news "wanderer civilian's no dialog 2"
 			"Two Wanderers are at a table. They appear to be playing some sort of board game using shell pieces."
 			"A crowd of Wanderer children follow an adult through the spaceport. The adult talks to them as they follow, as the children take notes."
 
-news "Wanderers and Korath"
-	to show
-		has "Wanderers: Sestor: Final: done"
-	location
-			government "Wanderer"
-			not attributes "evacuation"
-	name 
-		word
-			"Wanderer merchant captain"
-			"Wanderer captain"
-			"Wanderer"
-			"Wanderer civilian"
-	message
-		word
-			`"`
-		word
-			"The Korath have [enormous, gigantic] ships that many of them live on their whole lives. I cannot [imagine, fathom] doing the same."
-			"Have you [seen, viewed] a Korath up close? They only have feathers on their neck. How [strange, odd]."
-			"The engines the Korath use have no regard for [effciency, subtlety]. But I must admit, they are much more powerful than ours."
-			"The Korath cannot pay [well, adequately] for their transport jobs, but they insist on paying [despite it, nonetheless]."
-			"I am trying to [learn, understand] more words of the Korath language. It is a difficult [task, undertaking], but it is important to learn the language of those who we are [undertaking, rescuing]."
-			"Have you been on a Korath [world, planet]? It is a [sobering, depressing] reminder of the importance of our [task, work]."
-			"I am [excited, overjoyed] to be part of [healing, renewing] the Korath worlds. We are once again [transforming, altering] the old into the new."
-		word
-			`"`
-
-news "Wanderer Linguistics"
-	to show
-		has "Wanderers: Sestor: Final: done"
-	location
-			government "Wanderer"
-			not attributes "evacuation"
-	name
-		word
-			"Wanderer linguist"
-			"Linguist"
-	message
-		word
-			`"`
-		word
-			"Many scientists are currently [studying, examining] the Korath language, and attempting to teach it to others. It is [exciting, satisfying] to be part of this [effort, undertaking]."
-			"We are still [figuring out, determining] whether or not a Wanderer who has not undergone the Molt could [learn, apprehend] the Korath language. The sounds in their [speech, tongue] are hard for us to [speak, pronounce]."
-		word
-			`"`
-
 news "Wanderers and Aliens"
 	to show
 		has "language: Wanderer"
@@ -182,6 +137,65 @@ news "Wanderer scientists"
 		word
 			`"`
 
+news "Wanderer oil safety"
+	to show
+		has "language: Wanderer"
+	location
+		government "Wanderer"
+		attributes "oil"
+	name
+		word
+			"Safety inspector"
+			"Wanderer safety inspector"
+	message
+		word
+			`"`
+		word
+			"My job is to prevent the [destruction, death] of that which we have sought to [renew, nurture]."
+			"The oil drillers have no [respect, regard] for the [life, existence] of this planet. Just yesterday I caught one [covering up, hiding] a spill that [affected, impacted] an estimated 328 blades of grass!" 
+		word
+			`"`
+
+news "Wanderer oil drilling"
+	to show
+		has "language: Wanderer"
+	location
+		government "Wanderer"
+		attributes "oil"
+	name
+		word
+			"Oil rigger"
+			"Wanderer oil rigger"
+	message
+		word
+			`"`
+		word
+			"Many do not [like, appreciate] it, but my work is the [backbone, support] of this [society, civilization]."
+			"What I do is [unfortunate, regrettable], but we have no other [option, choice]."
+		word
+			`"`
+
+news "wanderer farmer"
+	to show
+		has "language: Wanderer"
+	location
+		government "Wanderer" 
+		attributes "farming"
+	name
+		word
+			"Wanderer farmer"
+			"Farmer"
+	message
+		word
+			`"`
+		word
+			"We must preserve a [balance, order] when we plant our crops."
+			"Compared to the [struggles, challenges] that our [ancestors, forebearers] faced when they were first brought here by the Eye, my problems are [inconsequential, nothing]."
+			"To be a good farmer, you must be able to [predict, foresee] possible challenges. Just a few [years, cycles] ago my crops were almost completely [destroyed, wiped out] by a drought whose signs I [ignored, overlooked]."
+			"You must not [override, dismiss] the natural [rhythms? balance?] of the land you work on. Doing otherwise would cause [harm, destruction] to that which [feeds, nurtures] you."
+		word
+			`"`
+
 news "Wanderer soldier"
 	to show
 		has "event: wanderers: unfettered invasion starts"
@@ -258,61 +272,47 @@ news "Wanderers and the Eye"
 		word
 			`"`
 
-news "Wanderer oil safety"
+news "Wanderers and Korath"
 	to show
-		has "language: Wanderer"
+		has "Wanderers: Sestor: Final: done"
 	location
-		government "Wanderer"
-		attributes "oil"
-	name
+			government "Wanderer"
+			not attributes "evacuation"
+	name 
 		word
-			"Safety inspector"
-			"Wanderer safety inspector"
+			"Wanderer merchant captain"
+			"Wanderer captain"
+			"Wanderer"
+			"Wanderer civilian"
 	message
 		word
 			`"`
 		word
-			"My job is to prevent the [destruction, death] of that which we have sought to [renew, nurture]."
-			"The oil drillers have no [respect, regard] for the [life, existence] of this planet. Just yesterday I caught one [covering up, hiding] a spill that [affected, impacted] an estimated 328 blades of grass!" 
+			"The Korath have [enormous, gigantic] ships that many of them live on their whole lives. I cannot [imagine, fathom] doing the same."
+			"Have you [seen, viewed] a Korath up close? They only have feathers on their neck. How [strange, odd]."
+			"The engines the Korath use have no regard for [effciency, subtlety]. But I must admit, they are much more powerful than ours."
+			"The Korath cannot pay [well, adequately] for their transport jobs, but they insist on paying [despite it, nonetheless]."
+			"I am trying to [learn, understand] more words of the Korath language. It is a difficult [task, undertaking], but it is important to learn the language of those who we are [undertaking, rescuing]."
+			"Have you been on a Korath [world, planet]? It is a [sobering, depressing] reminder of the importance of our [task, work]."
+			"I am [excited, overjoyed] to be part of [healing, renewing] the Korath worlds. We are once again [transforming, altering] the old into the new."
 		word
 			`"`
 
-news "Wanderer oil drilling"
+news "Wanderer Linguistics"
 	to show
-		has "language: Wanderer"
+		has "Wanderers: Sestor: Final: done"
 	location
-		government "Wanderer"
-		attributes "oil"
+			government "Wanderer"
+			not attributes "evacuation"
 	name
 		word
-			"Oil rigger"
-			"Wanderer oil rigger"
+			"Wanderer linguist"
+			"Linguist"
 	message
 		word
 			`"`
 		word
-			"Many do not [like, appreciate] it, but my work is the [backbone, support] of this [society, civilization]."
-			"What I do is [unfortunate, regrettable], but we have no other [option, choice]."
-		word
-			`"`
-
-news "wanderer farmer"
-	to show
-		has "language: Wanderer"
-	location
-		government "Wanderer" 
-		attributes "farming"
-	name
-		word
-			"Wanderer farmer"
-			"Farmer"
-	message
-		word
-			`"`
-		word
-			"We must preserve a [balance, order] when we plant our crops."
-			"Compared to the [struggles, challenges] that our [ancestors, forebearers] faced when they were first brought here by the Eye, my problems are [inconsequential, nothing]."
-			"To be a good farmer, you must be able to [predict, foresee] possible challenges. Just a few [years, cycles] ago my crops were almost completely [destroyed, wiped out] by a drought whose signs I [ignored, overlooked]."
-			"You must not [override, dismiss] the natural [rhythms? balance?] of the land you work on. Doing otherwise would cause [harm, destruction] to that which [feeds, nurtures] you."
+			"Many scientists are currently [studying, examining] the Korath language, and attempting to teach it to others. It is [exciting, satisfying] to be part of this [effort, undertaking]."
+			"We are still [figuring out, determining] whether or not a Wanderer who has not undergone the Molt could [learn, apprehend] the Korath language. The sounds in their [speech, tongue] are hard for us to [speak, pronounce]."
 		word
 			`"`
