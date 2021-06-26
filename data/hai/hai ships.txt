@@ -18,12 +18,12 @@ ship "Aphid"
 		"hull" 1400
 		"required crew" 1
 		"bunks" 5
-		"mass" 242
+		"mass" 332
 		"drag" 1.9
 		"heat dissipation" .90
 		"fuel capacity" 400
-		"cargo space" 131
-		"outfit space" 475
+		"cargo space" 51
+		"outfit space" 185
 		"weapon capacity" 37
 		"engine capacity" 48
 		weapon
@@ -72,13 +72,13 @@ ship "Centipede"
 		"shields" 6600
 		"hull" 2400
 		"required crew" 35
-		"bunks" 131
-		"mass" 2184
+		"bunks" 686
+		"mass" 2808
 		"drag" 3.9
 		"heat dissipation" .75
 		"fuel capacity" 600
-		"cargo space" 522
-		"outfit space" 5148
+		"cargo space" 887
+		"outfit space" 480
 		"weapon capacity" 78
 		"engine capacity" 88
 		weapon
@@ -190,12 +190,12 @@ ship "Geocoris"
 		"hull" 6200
 		"required crew" 15
 		"bunks" 56
-		"mass" 10324
+		"mass" 19339
 		"drag" 17.1
 		"heat dissipation" 0.45
 		"fuel capacity" 800
-		"cargo space" 11566
-		"outfit space" 8845
+		"cargo space" 3959
+		"outfit space" 1095
 		"weapon capacity" 172
 		"engine capacity" 94
 		weapon
@@ -341,12 +341,12 @@ ship "Lightning Bug"
 		"hull" 1700
 		"required crew" 4
 		"bunks" 10
-		"mass" 702
+		"mass" 1072
 		"drag" 3.8
 		"heat dissipation" .85
 		"fuel capacity" 600
-		"cargo space" 388
-		"outfit space" 1478
+		"cargo space" 141
+		"outfit space" 538
 		"weapon capacity" 87
 		"engine capacity" 93
 		weapon
@@ -421,13 +421,13 @@ ship "Pond Strider"
 		"hull" 3000
 		"required crew" 9
 		"bunks" 18
-		"mass" 16860
+		"mass" 2651
 		"drag" 3.55
 		"hull repair rate" 1
 		"heat dissipation" .5
 		"fuel capacity" 300
-		"cargo space" 869
-		"outfit space" 4331
+		"cargo space" 161
+		"outfit space" 803
 		"weapon capacity" 144
 		"engine capacity" 76
 		weapon
@@ -559,12 +559,12 @@ ship "Shield Beetle"
 		"hull" 9800
 		"required crew" 47
 		"bunks" 95
-		"mass" 5097
+		"mass" 9587
 		"drag" 8.8
 		"heat dissipation" .60
 		"fuel capacity" 500
-		"cargo space" 1495
-		"outfit space" 8402
+		"cargo space" 674
+		"outfit space" 1680
 		"weapon capacity" 333
 		"engine capacity" 150
 		weapon
@@ -747,12 +747,12 @@ ship "Solifuge"
 		"hull" 11000
 		"required crew" 62
 		"bunks" 118
-		"mass" 5360
+		"mass" 10671
 		"drag" 15.4
 		"heat dissipation" .42
 		"fuel capacity" 600
-		"cargo space" 1516
-		"outfit space" 8837
+		"cargo space" 319
+		"outfit space" 1855
 		"weapon capacity" 342
 		"engine capacity" 166
 		weapon
@@ -806,7 +806,7 @@ ship "Solifuge"
 	explode "large explosion" 50
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description `Impressed by the Alpha's "Giftbringer", the Unfettered endeavored to build their own fighter carrier to take more advantage of their supply of jump drives.`
+	description `Impressed by the Alpha's "Giftbringer", the Unfettered endeavored to build their own fighter carrier to take more advantage of their supply of jump drives. Compared to the more versatile Shield Beetle, the Solifuge is a more dedicated warship.`
 
 ship "Solifuge" "Solifuge (Jump)"
 	outfits
@@ -971,12 +971,12 @@ ship "Water Bug"
 		"hull" 4500
 		"required crew" 5
 		"bunks" 29
-		"mass" 270
+		"mass" 7408
 		"drag" 5.9
 		"heat dissipation" .75
 		"fuel capacity" 600
-		"cargo space" 197
-		"outfit space" 368
+		"cargo space" 1300
+		"outfit space" 628
 		"weapon capacity" 145
 		"engine capacity" 64
 		weapon
