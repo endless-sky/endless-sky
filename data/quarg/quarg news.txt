@@ -208,6 +208,7 @@ news "tourist on quarg planets in human and hai space"
 			"I can't even comprehend their extent."
 		word
 			`"`
+
 news "engineer on quarg planets in human space"
 	location
 		government "Quarg"
