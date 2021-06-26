@@ -417,7 +417,7 @@ news "student on quarg planets"
 		word
 			" "
 		word
-			"the Ringworlds, but"
+			"the ringworlds, but"
 			"the Quarg, but"
 		word
 			" "
