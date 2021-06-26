@@ -4,7 +4,7 @@ news "anonymous quarg"
 		attributes "human quarg" "hai quarg"
 	name
 		word
-			"Anonymous Quarg"
+			"Quarg"
 	message
 		word
 			`"Are you what is called a 'tourist'?"`
