@@ -84,7 +84,7 @@ news "Wanderer Linguistics"
 			
 news "Wanderers and Aliens"
 	to show
-		has "Wanderers Conversation: offered"
+		has "language: Wanderer"
 	location
 		government "Wanderer"
 		not attributes "evacuation"
@@ -105,7 +105,7 @@ news "Wanderers and Aliens"
 			"It is not often our [species, culture] gets to meet with so many [different, varieties of] aliens at once."
 			"I have heard that Hai and human space are [linked, joined] with a wormhole. Could it have been made by [our caretakers, those that open the Eye]?"
 			"The Unfettered Hai enter Wanderer [space, territory] using jump drives. Where did they get such [devices, technology]?"
-			"Our species has [met, made contact with] with many aliens before, but never so many at once."
+			"Our species has [met, made contact] with many aliens before, but never so many at once."
 			"Exploration is important for a society. If we did not move and discover new planets, we would have [stagnated, shrivelled] long ago."
 			"I can [sympathize with, understand] the Hai. They have been [stuck, stagnant] in their own space for too long. It is only [right, natural] that they should want to [migrate to, leave for] new lands."
 		word
@@ -199,7 +199,7 @@ news "Wanderer soldier"
 			"I joined our new [defense fleet, navy] because I wanted to protect lifeforms. Instead I am [battling, killing] them. It brings me great [sadness, sorrow] to see such [destruction, waste]."
 			"I volunteered for service in a warship, and many [ask, ponder] why. For every Hai I [shoot down, kill] I save [many, multiple] civilians."
 			"Just a few days ago I was asked to form a new [military, army] unit, even though I was given almost no [training, experience] in war. These are [desperate, hopeless] times indeed."
-			"Our [commander, unit leader] used to be a zoologist. His only [combat, fighting] experience was defending himself against a rabid Chi'kta on an [expedition, study]. They couldn't find anyone [better, more suitable], so he got 'promoted'."
+			"Our [commander, unit leader] used to be a zoologist. His only [combat, fighting] experience was defending himself against a rabid Chi'kta on an [expedition, study]. They couldn't find anyone [better, more suitable], so he got 'promoted.'"
 			"One of my crewmates is [scared, frightened] of the sound of guns firing. How he got conscripted is [anyone's guess, a mystery]."
 			"Many of our [commanders, leaders] have no idea how a military [works, operates]. They often have to consult history [books, records] so that they can [learn, study] the [workings, activities] of a proper army."
 		word
@@ -229,7 +229,7 @@ news "Wanderer engineer"
 
 news "Wanderers and the Eye"
 	to show
-		has "Wanderers Ap'arak 3: completed"
+		has "event: wanderers: the eye opens"
 	location
 		government "Wanderer"
 	name
@@ -270,7 +270,7 @@ news "Wanderer oil safety"
 		word
 			`"`
 		word
-			"My job is to prevent the [destruction, death] of that which we have sought to [renew, nurture.]"
+			"My job is to prevent the [destruction, death] of that which we have sought to [renew, nurture]."
 			"The oil drillers have no [respect, regard] for the [life, existence] of this planet. Just yesterday I caught one [covering up, hiding] a spill that [affected, impacted] an estimated 328 blades of grass!" 
 		word
 			`"`
