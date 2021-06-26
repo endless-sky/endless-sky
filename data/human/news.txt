@@ -16,7 +16,6 @@ news "human merchant anywhere"
 		not
 			government "Quarg"
 			not attributes "human quarg" "hai quarg"
-			
 	name
 		word
 			"Merchant captain"
