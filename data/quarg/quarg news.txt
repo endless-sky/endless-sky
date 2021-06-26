@@ -373,6 +373,7 @@ news "reporter on quarg planets in human space"
 			"Secrets Humanity Learned from the Quarg!"
 		word
 			`"`
+
 news "student on quarg planets"
 	location
 		government "Quarg"
