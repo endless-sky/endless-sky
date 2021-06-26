@@ -167,6 +167,7 @@ news "tourist on quarg planets in human and hai space"
 	location
 		government "Quarg"
 		attributes "human quarg" "hai quarg"
+		not attributes "station"
 	name
 		word
 			"Tourist"
@@ -206,7 +207,7 @@ news "tourist on quarg planets in human and hai space"
 		word
 			" "
 		word
-			"Ringworlds "
+			"ringworlds "
 		word
 			" "
 		word
