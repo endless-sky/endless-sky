@@ -342,8 +342,6 @@ public:
 	int BaysFree(const std::string &category) const;
 	// Check how many bays this ship has of a given category.
 	int BaysTotal(const std::string &category) const;
-	// Check if a ship is in this ships bays
-	bool IsShipInBays(const std::shared_ptr<Ship> &ship) const;
 	// Check if this ship has a bay free for the given other ship, and the
 	// bay is not reserved for one of its existing escorts.
 	bool CanCarry(const Ship &ship) const;

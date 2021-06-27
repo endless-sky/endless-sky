@@ -3148,21 +3148,6 @@ int Ship::BaysTotal(const string &category) const
 
 
 
-// Check if a ship is in this ships bays
-bool Ship::IsShipInBays(const std::shared_ptr<Ship> &ship) const
-{
-	bool inBay = false;
-	// check escort is not in bays
-	for(const Bay &bay : bays)
-	{
-		if (bay.ship == ship)
-			inBay = true;
-	}
-	return inBay;
-}
-
-
-
 // Check if this ship has a bay free for the given ship, and the bay is
 // not reserved for one of its existing escorts.
 bool Ship::CanCarry(const Ship &ship) const
@@ -3172,14 +3157,14 @@ bool Ship::CanCarry(const Ship &ship) const
 	// Check only for the category that we are interested in.
 	const string &category = ship.attributes.Category();
 	
-	int free = BaysFree(category);
+	int free = BaysTotal(category);
 	if(!free)
 		return false;
 	
 	for(const auto &it : escorts)
 	{
 		auto escort = it.lock();
-		if(escort && escort->attributes.Category() == category && !IsShipInBays(escort))
+		if(escort && escort.get() != &ship && escort->attributes.Category() == category)
 			--free;
 	}
 	return (free > 0);
