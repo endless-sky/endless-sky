@@ -197,6 +197,7 @@ news "unfettered hai dialog"
 			"We just plundered a merchant convoy that was loaded with food. We'll feast well tonight."
 		word
 			`"`
+news "Unfettered Regret"
 	name
 		word
 			"Unfettered fighter"
