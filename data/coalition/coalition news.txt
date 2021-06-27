@@ -36,7 +36,9 @@ news "heliarch propaganda"
 
 news "longcow rancher"
 	location
-		attributes "arach" "longcows"
+		government "Coalition"
+		attributes "arach"
+		attributes "longcows"
 	name
 		word
 			"Longcow rancher"
@@ -51,7 +53,9 @@ news "longcow rancher"
 
 news "kimek farmer"
 	location
-		attributes "kimek" "farming"
+		government "Coalition"
+		attributes "kimek"
+		attributes "farming"
 	name
 		word
 			"Kimek farmer"
@@ -241,6 +245,7 @@ news "coalition merchant"
 
 news "arach civilian"
 	location
+		government "Coalition"
 		attributes "arach"
 	name
 		word
@@ -255,6 +260,7 @@ news "arach civilian"
 
 news "kimek civilian"
 	location
+		government "Coalition"
 		attributes "kimek"
 	name
 		word
@@ -269,6 +275,7 @@ news "kimek civilian"
 
 news "saryd civilian"
 	location
+		government "Coalition"
 		attributes "saryd"
 	name
 		word
