@@ -30,7 +30,7 @@ news "food in Hai space"
 			"Back home, my favorite snack was pickled walnuts. Here, the pickled acorns are amazing!"
 			"It's been really tough trying new foods here because almost everything conflicts with my nut allergies."
 			"Where I grew up, walnuts were considered a delicacy. Now that I'm here, I eat like a king!"
-			"My buddy tells me of some nearby smoothie bar that has a drink made from the extract of a 'rare green oval nut'. She said it tastes like nothing she's had back in human space, but I don't buy her story for a second."
+			"My buddy tells me of some nearby smoothie bar that has a drink made from the extract of a 'rare green oval nut.' She said it tastes like nothing she's had back in human space, but I don't buy her story for a second."
 			"If it weren't for the human settlements that decided to catch fish, I'd be stuck having to eat nuts and these really long carrot... turnip... things."
 		word
 			`"`
@@ -102,8 +102,8 @@ news "cute story in Hai space"
 			"Do you ever wonder what the Hai would think if they saw an actual squirrel? Do they even know that squirrels exist? Are squirrels just miniature versions of the Hai? I'm so lost."
 			"I always felt so rejected working as a servant on Shangri-la. Ever since I hitched a ride with a hippy who wanted to visit a 'land with giant squirrels' and ended up in Hai space, everyone around me has made me feel like I'm worth something."
 			"I bet if I bought a giant squirrel costume I could make my Hai friends think I was a complete stranger. They'd probably get a kick out of that."
-			"A traveling theater group passed through here a few days ago. They performed an adorable scene about a merchant captain who gives up his life and settles down with his family on Icelake."
-			"I've been thinking about writing a book about the experiences that I've had visiting here. People will probably think its a fictional story, though."
+			"A traveling theater group passed through here a few days ago. They performed an adorable scene about a merchant captain who gives up his job and settles down with his family on Icelake."
+			"I've been thinking about writing a book about the experiences that I've had visiting here. People will probably think it's a fictional story, though."
 		word
 			`"`
 
@@ -121,7 +121,7 @@ news "cute hai story in Hai space"
 			"Humans are always so curious when they discover our space past the wormhole. It is truly our pleasure to welcome them all and be amongst them."
 			"The little bit of hair that humans have on the top of their head is so cute. I love how many ways they style it."
 			"Did you see the recent movie about the young human and Hai that had fallen in love? It brought me much joy and sadness at the same time."
-			"I played chess for the first time last week. I didn't follow what my friends were saying about 'kings' and 'bishops' and 'pawns', but it seemed like they enjoyed the time."
+			"I played chess for the first time last week. I didn't follow what my friends were saying about 'kings' and 'bishops' and 'pawns,' but it seemed like they enjoyed the time."
 			"I had a very nice dream about a human captain who took me on a journey outside Hai space. When I woke up on this morning, I met a kind man who was planning a trip to his homeland and when I asked, he said I could come with him. I think it is such a funny coincidence."
 			"My children are so excited when they see humans arrive in ships. To their knowledge, these humans must come from distant and wondrous lands beyond their imagination."
 			"Is it common practice for humans to shave all of the fur off their bodies? All I have ever seen are humans with very smooth and bald skin."
@@ -158,7 +158,7 @@ news "business owner in Hai space"
 		word
 			" "
 		word
-			"has caused my revenue to increase double-fold!"
+			"has caused my revenue to increase two-fold!"
 			"has drastically boosted profits!"
 			"has revived my dying profits!"
 			"has skyrocketed my earnings in just months!"
@@ -381,6 +381,6 @@ news "hai advertisement in Hai space"
 			"Come to relax inside the many tranquil hot springs of Mirrorlake by visiting the great paradise of Freezewarm Resort & Spa."
 			"Professional full-body fur stylists are available for hire at the nearby Eliana's Styling Center! Acquire a new and fashionable look, or even dye your fur coloring!"
 			"The Hai Tourism Department recommends visiting Frostmark very soon, while the warm and rainy summer experience is still taking place!"
-			"If you crave bizarre cuisine from beyond the wormhole, you must try the food at Duality Diner, featuring human chef Dibani Wilczek and her excellent dishes like 'broccoli', 'oranges', and 'cereal'!"
+			"If you crave bizarre cuisine from beyond the wormhole, you must try the food at Duality Diner, featuring human chef Dibani Wilczek and her excellent dishes like 'broccoli,' 'oranges,' and 'cereal'!"
 		word
 			`"`
