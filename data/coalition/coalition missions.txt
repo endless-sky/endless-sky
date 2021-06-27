@@ -1402,7 +1402,8 @@ mission "Coalition Folklore: Arach"
 	to offer
 		random < 30
 	source
-		attributes "arach" "folklore"
+		attributes "arach"
+		attributes "folklore"
 	on offer
 		conversation
 			`Shortly after entering the spaceport, you observe an Arach in what you guess is a formal "dress," a delicate silk wrap covering most of her body with each leg covered by its own embroidered skirt. She exclaims something loudly into a personal communication device before putting it away with a shove. Like everyone else who has momentarily been witness to this, you go to look away, but the Arach has cast their gaze around, seen you, and immediately begun to approach. "Our honorable human visitor, I salute," she says loudly as she closes the gap. "Say, Captain, appreciate the fine arts, do you? To a cultural soiree, I'm headed, but busy with work, dearest Papa is, so vacant, his reserved seat is. Accompany me, would you?"`
