@@ -1402,7 +1402,8 @@ mission "Coalition Folklore: Saryd"
 	to offer
 		random < 30
 	source
-		attributes "saryd" "folklore"
+		attributes "saryd"
+		attributes "folklore"
 	on offer
 		conversation
 			`Walking through the spaceport, you're approached by a Saryd in unusually traditional clothing, even by Saryd standards. Silk robes not too different from human kimonos cover most of his body, and thin ropes tightly wrap around the fabric near his hoofs.`
@@ -1425,7 +1426,7 @@ mission "Coalition Folklore: Saryd"
 				`	(Grab a seashell.)`
 					goto pearl
 				`	(Grab a feather.)`
-			`	Once you have the feather in your hands, the organizers tell you to go through the path on the right, and you do so.`
+			`	Once you have the feather in your hands, the organizers tell you to go through the path on the right.`
 			`	The light you had seen turns out to be a bonfire near a wooden stage, about a third of the size of human opera stages, and you find a spot to sit on one of the logs positioned near the fire. Several lights shine onto the stage, and as you look up, you can only barely see some spotlights hidden high up in the trees. After the audience is all gathered, the curtains of the stage open to reveal many small figures made out of what looks like paper in a style that loosely resembles origami. They are supported either by thin wooden poles from below or strings from above. There are figures close to where the curtains were and others further away on the stage, the various layers granting depth to the scenery. After a brief moment, the show begins:`
 			`	Entering a clearing, a Saryd huntress with gray hair stalks a large bird resting on a rock. She moves on the borders of the clearing, hiding behind bushes and small trees. She looks for the best spot from which to snipe at the bird, her bow and arrow ready in her hands. It's only when she is nearing a large entrance to the clearing, on the opposite side of where she entered, that she finds the spot, and takes aim.`
 			`	She is disrupted when she hears a loud roar and jumps to the ground, narrowly avoiding the beast that had come from behind her. You're unsure how accurate the paper's depiction of the creature is, but you can only describe it as a "hedge-lion": slightly larger than lions from Earth, with various quills where its mane should be. The quills continue in a line on its back, reaching the tip of the tail.`
