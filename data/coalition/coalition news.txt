@@ -36,7 +36,8 @@ news "heliarch propaganda"
 
 news "longcow rancher"
 	location
-		attributes "arach" "longcows"
+		attributes "arach"
+		attributes "longcows"
 	name
 		word
 			"Longcow rancher"
@@ -51,7 +52,8 @@ news "longcow rancher"
 
 news "kimek farmer"
 	location
-		attributes "kimek" "farming"
+		attributes "kimek"
+		attributes "farming"
 	name
 		word
 			"Kimek farmer"
