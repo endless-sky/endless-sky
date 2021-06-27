@@ -1406,7 +1406,7 @@ mission "Coalition: Pilgrimage 1"
 	destination "Saros"
 	on offer
 		conversation
-			`Shortly after entering the spaceport, you catch the attention of a Saryd lady with gray, braided hair that reaches to her shoulders. She drags along a single suitcase. "Hello Captain. Taking new passengers, are you?" she asks. She shows you a piece of jewelry on her hand, a small bronze bangle with a diamond at the center. "Vellorae, my name is, and in need of a transport for a pilgrimage, I am."`
+			`Shortly after entering the spaceport, you catch the attention of a Saryd lady with gray, braided hair that reaches to her shoulders, dragging along a single suitcase. "Hello Captain. Taking new passengers, are you?" she asks. She shows you a piece of jewelry on her hand, a small bronze bangle with a diamond at the center. "Vellorae, my name is, and in need of a transport for a pilgrimage, I am."`
 			choice
 				`	"Pilgrimage? What do you mean?"`
 				`	"Are you offering to pay me with that? I only take credits."`
@@ -1462,7 +1462,7 @@ mission "Coalition: Pilgrimage 2"
 			`	"Attributed with the gift of sunlight, Aul Kell is. As such, seek his blessings in the shrines, for many occasions we do. Only some of them, mourning and espousals are."`
 			label ritual
 			`	The couples keep exchanging their vows, until just before midday, when the sun is nearly over the central altar. At this point, the Saryds all look around the clearing, making space for Vellorae as they see her approaching the shrine. She places the bangle atop the altar so it catches the sun's light, reflecting it throughout the clearing. Vellorae then begins walking around the altar, repeatedly circling it as the sun climbs higher, until it finally reaches its peak and the sun's reflection on the gem is strongest. At this point she approaches the altar again and covers the bangle with her hands. She remains there silently for a moment, then she retrieves the bangle and leaves the shrine. As she walks past, the other Saryds give her sympathetic looks, and one of the younger ones even approaches to offer her condolences before Vellorae approaches you again.`
-			`	"Finished I am, Captain. Back to the ship, we may go," she says once she's beside you. You two head back, this time passing by a few more Saryds on the trail, and then return to the your ship.`
+			`	"Finished I am, Captain. Back to the ship, we may go," she says once she's beside you. You two head back; this time you pass by a few more Saryds on the trail and return to your ship.`
 				goto end
 			label skip
 			`	You wait for a few hours by the spaceport city, until Vellorae returns about an hour after noon.`
@@ -1546,7 +1546,7 @@ mission "Coalition: Pilgrimage 4"
 			`	You follow the Saryd back to the gravelly path, and then to the spaceport grounds, where Vellorae thanks him for guiding the two of you to the shrine. He offers his condolences and wishes her a safe journey to the next shrine. He soon disappears into the fog again, and you and Vellorae head back to your ship.`
 				goto end
 			label notgo
-			`	She sighs briefly, and agrees to meet with you later, following the Saryd local deep into the fog stretching out of the city. You head inside your ship, waiting for a few hours until you hear her voice just outside your hatch. You open the hatch, and let her in.`
+			`	She sighs briefly, and agrees to meet with you later, following the Saryd local deep into the fog stretching out of the city. You head inside your ship, waiting for a few hours until you hear a voice just outside your hatch. You let Vellorae in once you realize that it's hers.`
 			label end
 			`	"To <destination>, we must go now. The Path of Lor Ie Vees, I must take," she says, heading to her bunk to rest.`
 				accept
