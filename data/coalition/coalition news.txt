@@ -37,8 +37,7 @@ news "heliarch propaganda"
 news "longcow rancher"
 	location
 		government "Coalition"
-		attributes "arach"
-		attributes "longcows"
+		attributes "arach" "longcows"
 	name
 		word
 			"Longcow rancher"
