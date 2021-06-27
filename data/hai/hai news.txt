@@ -184,12 +184,12 @@ news "unfettered hai dialog"
 			"I came here because this is the only place in the galaxy where I feel wanted."
 			"Weak human. Why do you dare to come to the land of the true Hai?"
 			"Fettered Hai are soft and weak-willed. They care not for true struggle or challenge."
-			"You call me 'cute', and I'll run you through with a machete."
+			"You call me 'cute' and I'll run you through with a machete."
 			"I seek challenge, and what greater challenge is there than to oppose the Drak, those with the power of gods?"
 			"Sometimes I miss my family and friends back home, but then I remember that here I am a respected warrior. Back there I was a slave to the Drak."
 			"Our ships can beat anything you stupid monkeys can make."
 			"This sure beats being a factory worker."
-			"Without change, a civilization will decay and fall. This will happen to the fettered Hai, as it has happened to countless empires throughout history."
+			"Without change, a civilization will decay and fall. This will happen to the Fettered Hai, as it has happened to countless empires throughout history."
 			"What are you looking at, monkey?"
 			"I can take on a human like you any day."
 			"You looking for a fight, monkey?"
@@ -197,7 +197,12 @@ news "unfettered hai dialog"
 			"We just plundered a merchant convoy that was loaded with food. We'll feast well tonight."
 		word
 			`"`
+
 news "Unfettered Regret"
+	location
+		government "Hai (Unfettered)"
+	to show
+		random < 10
 	name
 		word
 			"Unfettered fighter"
@@ -211,14 +216,15 @@ news "Unfettered Regret"
 			"I feel like the only Hai on this planet who regrets joining the Unfettered."
 			"I want to go home."
 			"I don't know why the Fettered Hai keep giving us tribute. To be honest with you, I don't think we're much of a threat."
-			"My captain calls the food shipments we get from the Fettered 'tribute', but anyone can see it's charity to keep us from starving."
+			"My captain calls the food shipments we get from the Fettered 'tribute,' but anyone can see it's charity to keep us from starving."
 		word
 			`"`
+
 news "unfettered hai after wanderers invasion"
 	location
 		government "Hai (Unfettered)"
 	to show
-		has "Wanderers Invaded 0: done"
+		has "event: wanderers: unfettered invasion starts"
 	name
 		word
 			"Unfettered fighter"
@@ -242,11 +248,13 @@ news "unfettered hai after wanderers invasion"
 			"The aliens to the north call themselves the Wanderers. Overgrown birds is more like it."
 		word
 			`"`
+
 news "unfettered hai after wanderers invasion regret"
 	location
 		government "Hai (Unfettered)"
 	to show
-		has "Wanderers Invaded 0: done"
+		has "event: wanderers: unfettered invasion starts"
+		random < 10
 	name
 		word
 			"Unfettered fighter"
@@ -265,7 +273,7 @@ news "unfettered hai after wanderers invasion regret"
 			"I was held prisoner on a Wanderer world. They fed me and took care of me. The only thing they asked me to do in return was to teach them the Hai language. If it were the other way around, I'd be dead."
 			"I was held prisoner on a Wanderer world. They said that we were welcome to take their planets, if it was their fate. It must be a trap."
 			"I was held prisoner on a Wanderer world. Even though I attacked them, they were so kind to me. I don't want to fight them anymore, I'd feel too guilty."
-			"I was held prisoner by the aliens up north. They call themselves the Wanderers, but everyone here just calls them 'birds'."
+			"I was held prisoner by the aliens up north. They call themselves the Wanderers, but everyone here just calls them 'birds.'"
 		word
 			`"`
 
