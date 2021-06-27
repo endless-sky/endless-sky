@@ -1402,7 +1402,8 @@ mission "Coalition Folklore: Kimek"
 	to offer
 		random < 30
 	source
-		attributes "kimek" "folklore"
+		attributes "kimek"
+		attributes "folklore"
 	on offer
 		conversation
 			`A Kimek flags you down when you enter the spaceport. "Busy are you, Captain?" He asks. "Taking place today, a cultural festival is, and participate in it, anyone can. A reenactment of the old 'Spring Siege' folk tale, it is. Play the part of one of the characters, anyone can."`
