@@ -4495,7 +4495,6 @@ mission "Remnant: Expanded Horizons Astral job"
 	source
 		government "Remnant"
 	waypoint
-		attributes "ember waste"
 		not attributes "pleiades"
 		not attributes "inaccessible"
 	to offer
