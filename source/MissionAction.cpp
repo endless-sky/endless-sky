@@ -235,9 +235,15 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			if(child.Size() < 2)
 				child.PrintTrace("Skipping invalid \"fine\" without amount entry:");
 			else
-				fine += child.Value(1);
+			{
+				int64_t loadedFine = child.Value(1);
+				if(loadedFine > 0)
+					fine += loadedFine;
+				else
+					child.PrintTrace("Skipping invalid \"fine\" with non-positive value:");					
+			}
 			if(child.Size() > 2)
-				child.PrintTrace("Skipping non-defined parameters after \"fine\" value entry:");				
+				child.PrintTrace("Ignoring non-defined parameters after \"fine\" value entry:");				
 		}
 		else if(key == "event" && hasValue)
 		{
@@ -581,7 +587,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	
 	string previousFine = subs["<fine>"];
 	if(result.fine)
-		subs["<fine>"] = Format::Credits(abs(result.fine))
+		subs["<fine>"] = Format::Credits(result.fine)
 			+ (result.fine == 1 ? " credit" : " credits");
 	
 	if(!logText.empty())
