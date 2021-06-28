@@ -165,3 +165,147 @@ news "reformed pirate in Hai space"
 			"The Hai will pay you to rush cargo to human space and back. Don't die trying."
 		word
 			`"`
+
+news "unfettered hai no dialog"
+	location
+		government "Hai (Unfettered)"
+	name
+		word
+			"Unfettered fighter"
+			"Unfettered youth"
+			"Unfettered warlord"
+			"Hai youth"
+			"Hai warlord"
+	message
+		word
+			"A Hai looks at you and shouts something in their language. You get the impression that it isn't pleasant."
+			"You pass by a Hai with a false tail. You try not to stare as you walk past."
+			"At a booth, you see a Hai selling stolen ship weaponry for outrageous prices."
+			"At a booth, you see a Hai selling various types of unpleasant-smelling substances. Judging by the effects it has on those who consume them, you guess that they're some type of drug."
+
+news "unfettered hai no dialog group"
+	location
+		government "Hai (Unfettered)"
+	name
+		word
+			"Group of Unfettered"
+			"Group of Hai"
+			"Group of youth"
+	message
+		word
+			"You see a group of Hai confront another. They shout at each other and bring out weapons, before backing off."
+			"You see a group of Hai confront another. They shout and bring out weapons, before lunging at each other. You walk away before they notice you."
+			"You hear yelling in the Hai language. When you turn around, you see that two Hai are facing off against each other, as onlookers egg them on. You turn away before it gets ugly."
+			"A group of small Hai children run around playing some sort of game. More concerning, however, is the fact that they are carrying weapons while doing so."
+			"A group of Hai are camped around a bonfire just outside the spaceport. They sing songs and dance around the fire in an energetic, almost maniacal way."
+
+news "unfettered hai dialog"
+	location
+		government "Hai (Unfettered)"
+	name
+		word
+			"Unfettered fighter"
+			"Unfettered youth"
+			"Unfettered warlord"
+			"Hai youth"
+			"Hai warlord"
+	message
+		word
+			`"`
+		word
+			"How did you get here? You should've been blasted to bits by our ships."
+			"I came here because this is the only place in the galaxy where I feel wanted."
+			"Weak human. Why do you dare to come to the land of the true Hai?"
+			"Fettered Hai are soft and weak-willed. They care not for true struggle or challenge."
+			"You call me 'cute' and I'll run you through with a machete."
+			"I seek challenge, and what greater challenge is there than to oppose the Drak, those with the power of gods?"
+			"Sometimes I miss my family and friends back home, but then I remember that here I am a respected warrior. Back there I was a slave to the Drak."
+			"Our ships can beat anything you stupid monkeys can make."
+			"This sure beats being a factory worker."
+			"Without change, a civilization will decay and fall. This will happen to the Fettered Hai, as it has happened to countless empires throughout history."
+			"What are you looking at, monkey?"
+			"I can take on a human like you any day."
+			"You looking for a fight, monkey?"
+			"Last week we plundered a human ship that was stupid enough to come up here. Who knows, maybe you'll be next."
+			"We just plundered a merchant convoy that was loaded with food. We'll feast well tonight."
+		word
+			`"`
+
+news "Unfettered Regret"
+	location
+		government "Hai (Unfettered)"
+	to show
+		random < 10
+	name
+		word
+			"Unfettered fighter"
+			"Unfettered youth"
+			"Hai youth"
+	message
+		word
+			`"`
+		word
+			"At first I thought that joining the Unfettered would be fun. Now I can't go back or my crewmembers will beat me."
+			"I feel like the only Hai on this planet who regrets joining the Unfettered."
+			"I want to go home."
+			"I don't know why the Fettered Hai keep giving us tribute. To be honest with you, I don't think we're much of a threat."
+			"My captain calls the food shipments we get from the Fettered 'tribute,' but anyone can see it's charity to keep us from starving."
+		word
+			`"`
+
+news "unfettered hai after wanderers invasion"
+	location
+		government "Hai (Unfettered)"
+	to show
+		has "event: wanderers: unfettered invasion starts"
+	name
+		word
+			"Unfettered fighter"
+			"Unfettered youth"
+			"Unfettered warlord"
+			"Hai youth"
+			"Hai warlord"
+	message
+		word
+			`"`
+		word
+			"We shall conquer the worlds to the north as is our right. It is inevitable that the strong shall defeat the weak."
+			"I have fought with the stupid birds to the north. They have no knowledge of proper battle. Our war with them will be swift."
+			"Those overgrown birds have fantastic weaponry, yet they are too cowardly to use it."
+			"I wonder why the birds do not simply fight back. Their weapons are clearly capable of doing so."
+			"I wish I could get my hands on some of that bird tech."
+			"The bird worlds are pristine! We have won a great prize in our battle against the stupid birds."
+			"The true Hai will no longer be confined in their Drak-imposed cage."
+			"I'll see great glory in fighting the weak-willed birds."
+			"The worlds up north are nothing like the ones we were confined to. On the bird worlds, the air is clean and the water is as clear as glass."
+			"The aliens to the north call themselves the Wanderers. Overgrown birds is more like it."
+		word
+			`"`
+
+news "unfettered hai after wanderers invasion regret"
+	location
+		government "Hai (Unfettered)"
+	to show
+		has "event: wanderers: unfettered invasion starts"
+		random < 10
+	name
+		word
+			"Unfettered fighter"
+			"Unfettered youth"
+			"Hai youth"
+	message
+		word
+			`"`
+		word
+			"I had to shoot down a surrendering Wanderer ship when my captain decided to invade their space. It was small, and didn't pose a threat, but my captain made me do it anyways. I don't know if I can take this anymore."
+			"The birds hardly try to fight back. It makes me wonder if they want us to conquer their planets."
+			"I don't think it's right that we attack those that have surrendered. What honor is there in killing civilians?"
+			"I came here to do battle with warriors, not with merchants and cowardly birds."
+			"What challenge is there in killing the weak? I desire to battle with those who are worthy."
+			"What we're doing up north isn't right, but if I try to speak against it, others call me 'coward' and tell me to ship myself home."
+			"I was held prisoner on a Wanderer world. They fed me and took care of me. The only thing they asked me to do in return was to teach them the Hai language. If it were the other way around, I'd be dead."
+			"I was held prisoner on a Wanderer world. They said that we were welcome to take their planets, if it was their fate. It must be a trap."
+			"I was held prisoner on a Wanderer world. Even though I attacked them, they were so kind to me. I don't want to fight them anymore, I'd feel too guilty."
+			"I was held prisoner by the aliens up north. They call themselves the Wanderers, but everyone here just calls them 'birds.'"
+		word
+			`"`
