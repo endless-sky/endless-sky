@@ -230,6 +230,15 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			if(child.Size() >= 3)
 				paymentMultiplier += child.Value(2);
 		}
+		else if(key == "fine")
+		{
+			if(child.Size() < 2)
+				child.PrintTrace("Skipping invalid \"fine\" without amount entry:");
+			else
+				fine += child.Value(1);
+			if(child.Size() > 2)
+				child.PrintTrace("Skipping non-defined parameters after \"fine\" value entry:");				
+		}
 		else if(key == "event" && hasValue)
 		{
 			int minDays = (child.Size() >= 3 ? child.Value(2) : 0);
@@ -320,6 +329,8 @@ void MissionAction::Save(DataWriter &out) const
 			out.Write("require", it.first->Name(), it.second);
 		if(payment)
 			out.Write("payment", payment);
+		if(fine)
+			out.Write("fine", fine);
 		for(const auto &it : events)
 		{
 			if(it.second.first == it.second.second)
@@ -516,6 +527,9 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 	if(payment)
 		player.Accounts().AddCredits(payment);
 	
+	if(fine)
+		player.Accounts().AddFine(fine);
+	
 	for(const auto &it : events)
 		player.AddEvent(*it.first, player.GetDate() + it.second.first);
 	
@@ -558,11 +572,17 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	result.giftOutfits = giftOutfits;
 	result.requiredOutfits = requiredOutfits;
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
+	result.fine = fine;
 	// Fill in the payment amount if this is the "complete" action.
 	string previousPayment = subs["<payment>"];
 	if(result.payment)
 		subs["<payment>"] = Format::Credits(abs(result.payment))
 			+ (result.payment == 1 ? " credit" : " credits");
+	
+	string previousFine = subs["<fine>"];
+	if(result.fine)
+		subs["<fine>"] = Format::Credits(abs(result.fine))
+			+ (result.fine == 1 ? " credit" : " credits");
 	
 	if(!logText.empty())
 		result.logText = Format::Replace(logText, subs);
@@ -586,10 +606,12 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	
 	result.conditions = conditions;
 	
-	// Restore the "<payment>" value from the "on complete" condition, for use
-	// in other parts of this mission.
+	// Restore the "<payment>" and "<fine>" values from the "on complete" condition, for
+	// use in other parts of this mission.
 	if(result.payment && trigger != "complete")
 		subs["<payment>"] = previousPayment;
+	if(result.fine && trigger != "complete")
+		subs["<fine>"] = previousFine;
 	
 	return result;
 }
