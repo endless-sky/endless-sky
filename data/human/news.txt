@@ -12,7 +12,10 @@
 
 news "human merchant anywhere"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai" "Quarg"
+		not
+			government "Quarg"
+			not attributes "human"
 	name
 		word
 			"Merchant captain"
@@ -38,6 +41,9 @@ news "human merchant anywhere"
 			"I'm barely able to turn a profit with the terrible prices at this port."
 			"It kind of boggles my mind to imagine that tomorrow I'll be a dozen light-years away. We lead exciting lives, but sometimes I wonder if we don't take enough time to appreciate what's right in front of us."
 			"Watch out for pirates! Those lowlifes will snatch every spool of thread out of your hold if you give them the chance. My advice: when you run into them, don't leave anything left to bury."
+			"Don't call the Luna shipyard workers Lunatics. They seem to be very sensitive about it."
+			"The people from Earth are called Earthlings, but the people from Mars don't want to be called Martians due to those stupid old science fiction stories."
+			"Somebody installed my anti-gravity plates upside-down. Luckily I saw it in time! Can you imagine what would have happened if I wouldn't have seen it?"
 		word
 			`"`
 
@@ -45,7 +51,10 @@ news "human merchant anywhere"
 
 news "human merchant in human space"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
+		not
+			government "Quarg"
+			not attributes "human"
 	name
 		word
 			"Merchant captain"
@@ -64,7 +73,7 @@ news "human merchant in human space"
 		word
 			"Pirate attacks keep getting more and more frequent, even in star systems that used to be perfectly safe. Why isn't the Navy doing something about it?"
 			"I keep hearing rumors about ships disappearing north of Syndicate space. It's probably a bunch of hot air, but either way, I'm staying away from there!"
-			"I try to stick to safe parts of space, if I can. Pirate attacks are too much risk for my tastes."
+			"I try to stick to safe parts of space if I can. Pirate attacks are too much risk for my tastes."
 			"It's such a shame how much the political situation has deteriorated. We're all humans; why can't we just get along?"
 			"I always buy my engines in the Deep. They sell the best of the best up there."
 			"With all these pirate attacks, so many people seem to be arming up and outfitting themselves for war, but I think that's a waste of money. Powerful engines, a scram drive, an afterburner, and some anti-missile defenses are all you need to stay safe."
@@ -85,8 +94,9 @@ news "human merchant in human space"
 			"Always check the spaceport for jobs. Some of them pay quite well."
 			"Falcons are the best! They're faster and sleeker than any other civilian warship!"
 			"Leviathans are the best! They're tankier and can hold more firepower than any other civilian warship!"
-			"Why would anyone use a Falcon? They have specifications worse than the Leviathan in every way, and they're more expensive to boot."
+			"Why would anyone use a Falcon? They have specifications worse than the Leviathan in every way, and Falcon hulls cost more to produce."
 			"How could anyone use a Leviathan? They're dreadfully slow and an eyesore to look at."
+			"Don't be fooled by the Falcon's low retail price! Once you strip out all the outfits, you'll find that the hull costs more than a Leviathan's."
 			"People may tell you otherwise, but I think that Vanguards are the best. They have such powerful frontal weaponry."
 			"Warships may have both speed and weaponry on their side, but if you're looking for something to last, use a Behemoth."
 			"I don't get how people could get worked up over what ship to use. As long as I'm in my trusty Protector, I'm happy."
@@ -97,6 +107,9 @@ news "human merchant in human space"
 			"I'm convinced merchant captains make the worst jokes."
 			"What's up with the Deep? One moment, they have a defense force on par with the Navy, the next, they're asking random schmucks to help escort their fleets. How the mighty have fallen, I guess."
 			"I swear: Sparrows are so laughably weak that Flivvers are a better option for an interceptor."
+			"I was doing some jobs in the Core, when an enormous alien warship jumped in and attacked! People say I'm crazy, but I'm lucky to have gotten out of there with my life!"
+			"The Syndicate tries to keep alien attacks under wraps, but if you've been around as long as I have, you'll see them eventually."
+			"I was working a Syndicate defense job once, expecting to only deal with some pirates. Instead, I had to drive off an alien warship that jumped in same way the Quarg do! They made us sign a non-disclosure agreement, so don't tell anyone I said that."
 		word
 			`"`
 
@@ -289,6 +302,7 @@ news "unemployed youth"
 			"Do you know how lucky you are, that you can visit a different world every week if you want to? I've been stuck on this one filthy little planet my whole life."
 			"If I had enough money, I'd go up to a captain in the spaceport and ask for transport to anywhere else. Nowhere's as bad as this place."
 			"Are you hiring new crewmembers? And are you by chance planning to fly to the Paradise Worlds?"
+			"Beat it, old-timer. I've got more important things to do than chat with you."
 		word
 			`"`
 
@@ -308,8 +322,9 @@ news "union organizer"
 			"There's more than enough wealth to go around. All that we're asking for is our fair share."
 			"Syndicate managers get paid three times as much as their employees, just for sitting in an office all day and watching us sweat."
 			"My job is to encourage workers to place a higher value on their own lives despite being surrounded by a culture that tells them they are worthless."
-			"Management warning workers not to join the union is one of our best sources of visiblity among the workers."
+			"Management warning workers not to join the union is one of our best sources of visibility among the workers."
 			"Young people usually don't join a union, so we are mostly working for the benefit of higher aged workers."
+			"Our visibility is increasing among the workforce; a rolling snowball will be harder to stop!"
 		word
 			`"`
 
@@ -426,6 +441,9 @@ news "tour guide"
 			"It's kind of amazing to me that people would travel halfway across the galaxy to see this dump. To me, it's the one place I've always wished I could get away from."
 			"Always check in at the spaceport. You might find an unprepared tourist looking for a return trip. Trust me, I've seen it far too many times."
 			"If you have any tourists onboard that want to go anti-gravity boarding, then let them ask for me. I'll pay you commission."
+			"Mind the gravity!"
+			"I'm handing out astronaut badges by the dozen for first-time space travelers. It lost a bit of glamour now that every fool can book a flight on a spaceship."
+			"As I get older, I remember all the people I lost along the way. Maybe I'm in the wrong profession."
 		word
 			`"`
 
@@ -474,7 +492,10 @@ news "loan officer"
 
 news "hyperspace relay engineer"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
+		not
+			government "Quarg"
+			not attributes "human"
 	name
 		word
 			"Hyperspace relay engineer"
@@ -486,6 +507,8 @@ news "hyperspace relay engineer"
 			"Hyperspace links don't just allow faster-than-light travel. They also allow near-instantaneous communication, if you have the right sort of relay on both ends."
 			"The hyperspace communications network is a marvel of public infrastructure, but most people just take it for granted."
 			"Hyperspace relays are so integral to society that even pirates don't dare to touch them. They'd easily become the number one enemy of the Republic if they did."
+			"I'm surprised at how many people on Earth are still using the old IPv4 protocol. None of the off-Earth websites are reachable for them."
+			"Have you ever setup an TCP/IP connection from Bourne to a server on Farpoint? I did and it is a little slow, but it works!"
 		word
 			`"`
 
@@ -558,7 +581,10 @@ news "agricultural scientist"
 
 news "epidemiologist"
 	location
-		government "Republic"
+		government "Republic" "Quarg"
+		not
+			government "Quarg"
+			not attributes "human"
 	name
 		word
 			"Epidemiologist"
@@ -567,7 +593,7 @@ news "epidemiologist"
 			`"`
 		word
 			"People always worry about extra-terrestrial viruses and bacteria, but the deadliest diseases are very often caused by microbes we brought with us to the stars from good old Mother Earth."
-			"Would you be willing to donate a saliva sample? Frequent interstellar travelers are the primary vector for pandemics, so we're supposed to monitor any starship captains that come though here."
+			"Would you be willing to donate a saliva sample? Frequent interstellar travelers are the primary vector for pandemics, so we're supposed to monitor any starship captains that come through here."
 			"It's been so many centuries since the Rigellian Plague that most spaceports don't even have quarantine facilities anymore. When the next big one comes, we'll be woefully unprepared."
 			"Don't listen to those conspiracy theories that say you can catch awful viruses from the Quarg. Their physiology is so alien that we're immune to all their diseases."
 		word
@@ -610,6 +636,7 @@ news "nuclear technician"
 			"In all of human space, there hasn't been a single nuclear meltdown in fourteen years. And that was just a tiny one, hardly even worth mentioning."
 			"My company's motto is, 'We bring the power of the stars down to earth, and send earthlings to the stars.' I think we should change it to something catchier."
 			"Ever used a fusion reactor in your ship? Feel free to thank one of us."
+			"The most terrifying word in my profession is 'Oops.'"
 		word
 			`"`
 
@@ -627,7 +654,7 @@ news "substance abuse counselor"
 			`"`
 		word
 			"I know some folks try to talk captains like you into carrying drugs on the side. I wish all of you could see the real human cost of that industry."
-			"Zooming around in your fancy space ship, I bet you don't realize the sort of desperation that some of the folks down here below you are carrying around."
+			"Zooming around in your fancy spaceship, I bet you don't realize the sort of desperation that some of the folks down here below you are carrying around."
 			"The government pays my salary. They say it's worth it, because every credit spent on me prevents ten credits of lost productivity."
 			"Honestly, drugs are a problem throughout human space, but the richer folks have the resources to keep their addictions well-managed and well-hidden."
 		word
@@ -637,7 +664,10 @@ news "substance abuse counselor"
 
 news "reporter"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
+		not
+			government "Quarg"
+			not attributes "human"
 	name
 		word
 			"Reporter"
@@ -698,6 +728,8 @@ news "actor"
 			"I have a rich client on Hestia who pays me a thousand credits a day just for recording videos where I bestow extravagant compliments on him."
 			"I recommend that you don't look at any media from the 28th century. They're so laden with pop-culture references that it's painful to watch."
 			"Hey, you are so beautiful, do you want to marry me? Haha, just kidding, I'm rehearsing for my new role."
+			"Stories about extra-terrestrials are very unpopular now that most of humanity is living off-Earth."
+			"Stories about alien lifeforms became a lot more popular after humanity actually met alien lifeforms."
 		word
 			`"`
 
@@ -718,6 +750,7 @@ news "technical writer"
 			"People who over-use the passive voice should be lined up and shot. It doesn't make your writing more formal, it just makes it harder to read."
 			"Documents are written once, and read many times. So every minute I spend polishing someone's writing will pay off many times over in the long run."
 			"Communication skills are essential no matter what your job is. If you can't write well, people will think you're an idiot. Or at least, people like me will think that."
+			"Be careful with the word 'awesome' on other planets. Here it means something great, but somehow the meaning changed to something awful on some other planets."
 		word
 			`"`
 
@@ -758,6 +791,8 @@ news "chef"
 			"I'm employed as the chef on a luxury cruise ship. A Star Queen. The captain tells me that Star Queens are considered the safest way to travel in outer space."
 			"A rich client of mine shot a spiny-tailed gorgebeast on a safari expedition and asked me to cook it for him. The flavor profile was quite... unique."
 			"I was a dish-washer when I started, and now I'm a sous-chef. And people say there's no upward mobility in the galaxy these days!"
+			"Last week my dish was completely ruined; somebody had calibrated my kitchen scale with the gravity settings of another planet."
+			"There is only one thing worse than finding a worm in an apple you're eating: finding half a worm in that apple."
 		word
 			`"`
 
@@ -897,6 +932,8 @@ news "human syndicate manager"
 			"Have you considered a Syndicate Freighter for your next ship? Captains like you swear by them!"
 			"Nobody ever got fired for buying Syndicate."
 			"I would love to tell you about my job, but just telling you I work for the Syndicate probably already violates the non-disclosure agreement I signed."
+			"Those union boys are completely unreasonable; if we give them a finger then they try to eat up the whole arm up to the elbow."
+			"I've some disagreements with a manager above me. Can you pickup a mediator called Harry the Butcher from Deadman's Cove to help us resolve the problem peacefully?"
 		word
 			`"`
 
@@ -940,7 +977,7 @@ news "human student"
 			"I'm going to be a financial manager some day!"
 			"I'm going to be an engineer some day!"
 			"I'm going to be a scientist some day!"
-			"Sorry no time to talk; I'm busy studying."
+			"Sorry, no time to talk; I'm busy studying."
 			"People keep telling me to go into STEM, but it's just so hard. Besides, I really like PR. I think I'll be fine."
 			"Tuition is so high these days that I've had to take three side jobs just to get through the semester. It's hard to focus on my studies, but I'll manage somehow."
 			"After graduation, I think I'd like to work in industry somewhere, but my advisor is encouraging me to go on and get my master's degree. What do you think?"
@@ -970,7 +1007,7 @@ news "human religious"
 			"When we spend our lives chasing desire, we find that it turns to ashes in our mouths, and that which we seek most becomes a prison. What do you seek?"
 			"I thought I needed to come to this place to seek spiritual fulfillment, but I have since learned that it was inside myself all along."
 			"In a few weeks, I'm leaving here to join the Navy. The pirate attacks are getting worse and worse, and what good are we if we cannot defend our own holy sites? The eternal may listen to words and prayers, but pirates respect only guns and warships."
-			"It's been many years I came to this world seeking out cosmic truth, and I sense that my journey may soon be at an end."
+			"It's been many years since I came to this world seeking out cosmic truth, and I sense that my journey may soon be at an end."
 			"Can you spare a few credits for the poor, captain? In this universe of abundance, so many still suffer."
 			"Praise Jesus! This day is a blessing."
 			"Praise Allah! This day is a blessing."
@@ -989,7 +1026,7 @@ news "human tourism"
 		word
 			"Tourist"
 			"Sightseer"
-			"Traveller"
+			"Traveler"
 	message
 		word
 			`"`
@@ -1002,10 +1039,56 @@ news "human tourism"
 			"Can you believe that our ship was attacked by pirates on the way here? It's lucky a Navy patrol showed up and chased them off before our shields dropped. It was all so exciting! I'm taking the same route again next year."
 			"I can't wait to go skiing here! Haha, just kidding."
 			"It's too bad I have to leave tomorrow. I only get two weeks of vacation a year, and it's hard to leave after spending half that time in transit here and back."
-			"I'm not riding on any ship that doesn't have the decency to have luxurious accomodations!"
+			"I'm not riding on any ship that doesn't have the decency to have luxurious accommodations!"
 			"It's criminal how cheap the fares are to get here. For around a few thousand credits, you get to see stunning sights and shocking spectacles well worth double of what you paid."
 			"I was really hoping for more aliens in space. What's the point if there's no steamy interspecies romance!?"
 			"Can you tell me again which planet this is? No, I'm not lost, I just don't know where I am."
+			"We did a ride on an ancient spacecraft the other day. It was called something like Soyuz or Shuttle Dragon. I don't remember the name exactly, but it was horrible; my back still hurts from the bumpy ride."
+			"I almost missed my transport last week; someone was wrong on the hypernet and I was in a long, heated discussion to correct it."
+			"Hey! Where's platform 5? I need to board there in a few minutes!"
+			"Have you seen my luggage? I'm sure I put it here some minutes ago."
+			"We visited an exhibition about ancient military weapons; stuff like stealth fighters, artillery and tanks. It all became obsolete so fast when we got cheap spaceflight."
+		word
+			`"`
+
+
+news "human protester"
+	location
+		government "Republic" "Free Worlds" "Syndicate"
+	name
+		word
+			"Protester"
+	message
+		word
+			`"`
+		word
+			"Stay with global companies! Don't depend on galactic companies from other worlds!"
+			"Humans were not built for traveling in space. Bad things happen when traveling at 25,000 kilometers per second!"
+			"If we were meant to be in space, then we would have been born with built-in oxygen bottles!"
+			"Give up your sinful life as spaceship captain and settle on this beautiful planet."
+		word
+			`"`
+
+
+
+news "human diplomat"
+	location
+		government "Republic" "Free Worlds" "Syndicate"
+		attributes "rich"
+	name
+		word
+			"Diplomat"
+			"Elite negotiator"
+	message
+		word
+			`"`
+		word
+			"Tact is the art of making a point without making an enemy."
+			"Good counsel does no harm."
+			"Never argue with an idiot. People watching may have trouble telling who's who."
+			"Taxes are what we use to buy civilization."
+			"Never trouble trouble till trouble troubles you."
+			"No raindrop likes to see itself as responsible for the flood."
 		word
 			`"`
 
@@ -1078,7 +1161,7 @@ news "human syndicate soldier"
 			"It's a scandal how many pirates are out here. We do our best, but upper management ties our hands with ridiculous rules of engagement."
 			"Everybody knows where the pirate planets are, so why don't we ever go on a mission to wipe 'em out? I don't understand it."
 			"My team was about to obliterate the flagship of a pirate fleet, but just before we could, we received orders to cease fire and fall back. One more second and those pirates would have been rigatoni."
-			"If you ask me, I think that the Syndicate are far too soft on the pirates - almost as if they don't want to harm them more than they need to. Don't tell my employers that I said that, though."
+			"If you ask me, I think that the Syndicate is far too soft on the pirates - almost as if they don't want to harm them more than they need to. Don't tell my employers that I said that, though."
 		word
 			`"`
 
@@ -1125,9 +1208,16 @@ news "human pirate"
 			"Crime pays, and the hours are good!"
 			"I'll retire as a security adviser in the Paradise Worlds. You know the saying: An old poacher makes the best gamekeeper."
 			"Hey, that's a very nice ship you have there. Would be a shame if something happened to it. Do you want to make a donation to the System Safety Fund?"
-			"Your credits or your life! Oh you don't have either? Never mind then."
+			"Your credits or your life! Oh, you don't have either? Never mind then."
 			"Don't count on the Navy to save you if me or any of my friends attack you. Those Navy goons only hang around near the rich planets."
 			"Did I attack you? Well, I attacked many people, could you be a bit more specific?"
+			"The size of my crimes no longer matter; one may as well hang for a sheep as for a lamb."
+			"Hey! We have this new Piracy As A Service offering. Want someone ambushed without incriminating yourself? Just tell me who, where, and how much it's worth to you."
+			"I don't get it; if I donate a kidney, then I'm some sort of hero. But if I donate 7 kidneys, then suddenly I'm some sort of monster."
+			"I wasn't close to my parents when they died. Which was quite fortunate, since they died in an exploding ship."
+			"I hate double standards; burn a body in a crematorium and you're a professional, burn a body in a spaceship and you're a criminal."
+			"I missed my lover during the raids today. But only by a few inches; next time I'll aim better."
+			"I once prayed to God for a new ship, but quickly found out He doesn't roll that way. So then I hijacked one and prayed for his forgiveness."
 		word
 			`"`
 
@@ -1159,6 +1249,7 @@ news "human merchant in pirate space"
 			"Why am I here? I really needed the fuel and decided that bribing off pirates until another ship entered the system wasn't smart long-term."
 			"There's some real creeps around here. All I wanted to do was sell some cargo at this port, but it definitely wasn't worth the risk."
 			"Whatever you do, don't try the ${contraband}. That stuff's nasty."
+			"I flew around half the galaxy to pick up a wedding banquet, but it wasn't here and they stole my cargo instead! The cake was a lie!"
 		word
 			`"`
 
@@ -1183,16 +1274,60 @@ news "human farming in pirate space"
 			"I came out here because I liked the company of animals more than people like you. Go away."
 			"Shocked to see some normal farmers wandering 'round here? Just because we live on a lawless world doesn't mean it's kill or be killed."
 			"My son was enslaved by a gang of pirates. Not much one can do around here to prevent that."
-			"My daugher was held hostage by a gang of pirates until I coughed up some money for them. It's inevitable in this social climate."
+			"My daughter was held hostage by a gang of pirates until I coughed up some money for them. It's become such a common occurrence that I have to keep a stockpile of credits just in case."
 			"My father was shot by a gang of pirates. Do you want to know why he was killed? It was because he had a large nose."
 			"My mother was once kidnapped by a gang of pirates. She escaped, but, well, now I'm here."
 			"It'd be nice if the pirates could plunder some pesticides for us. It's little more than a pipe dream, though."
-			"When one choses the lawless lifestyle, the opportunites to grab a good bite lower drastically. That's what we're here for."
+			"When one chooses the lawless lifestyle, the opportunities to grab a good bite lower drastically. That's what we're here for."
 			"The pirates could easily just loot us for our last credit. Of course, if they did that, they'd lose one of their sources of food. And some of us aren't completely defenseless..."
 			"The farmers in the Dirt Belt have it easy. They get the luxuries of fertilizer and pesticide."
 			"Pirates may look fierce, but the moment you start pushing against most of them, they fold like paper."
 			"I came here due to all of those oppressive rules and regulations that the Republic force down your throat. Now I'm dealing with all the oppressive demands and threats that pirates force down my throat. It's a start."
 			"Beneath the exterior of many pirates, there's a person who desperately wishes that they'd never taken that path and could return to living normally. I'm talking from personal experience."
+		word
+			`"`
+
+
+
+news "syndicate pa system"
+	location
+		government "Syndicate"
+		not attributes "station"
+	name
+		word
+			"Public Announcement System"
+	message
+		word
+			`"`
+		word
+			"Attention: baggage should not be left unattended. Any unattended baggage will be auctioned within days."
+			"Attention factory workers: please proceed to the fast-lane immigration desk. Time spent in regular immigration lanes will not be reimbursed."
+			"Dear spaceship captains: please be aware that our outfitters are open all hours of the day. There is never a reason to delay the purchase of your next piece of Syndicate equipment."
+			"Dear traveler: we recommend you to have dinner in our local restaurant 'The Wing'. You will not be disappointed."
+		word
+			`"`
+
+
+
+news "tourist pa system"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "deep" "rich" "paradise" "tourism"
+	name
+		word
+			"Public Announcement System"
+	message
+		word
+			`"`
+		word
+			"Attention: baggage should not be left unattended. Keep an eye on your belongings at all times."
+			"Note to travelers: the planetary security level has been changed to black."
+			"Be aware that parking restrictions are in effect around the spaceport. Do not leave your personal transport vehicles unattended."
+			"Dear travelers: the spaceport is a strictly no-smoking zone. Thank you for your consideration."
+			"Dear travelers: welcome to our planet. Please remember to synchronize your personal clocks to the local time and night/day cycle duration."
+			"Please stand clear of the doors when the shuttle train is departing."
+			"This is the final boarding call for passengers Eline, John, and Robert Phillips. Please proceed to platform 3 for immediate boarding."
+			"Dear travelers: please take the time to adjust to normal gravity."
 		word
 			`"`
 
@@ -1219,6 +1354,7 @@ news "graffiti on spaceport wall"
 			"There once was a man from New Boston / To fly's a dream he'd had often / He purchased a shuttle / Brought folks in to huddle / Why do merchants call this a coffin? - Lake"
 			"There once was a man from New Boston / He picked the ugliest of options / He purchased a star barge / Mission cargo's too large / This shipment's starting to smell rotten... - Lake"
 			"There once was a man from New Boston / His loan officer advised caution / He purchased a sparrow / Took off like an arrow- / That sparrow soon turned up at auction. - Lake"
+			`A captain with a troubled past / Passed through this system very fast / Was playing a game / Had no proper name / The captain was called "First Last."`
 			"Haikus are easy, / but sometimes they don't make sense. / Refrigerator."
 			"Haikus are easy. / I can't think of a good line. / It's snowing on Mount Fuji."
 			"A long time ago / I was respected by all, / but now I sit here."
@@ -1227,3 +1363,20 @@ news "graffiti on spaceport wall"
 			"You think piracy is bad and want to stop us? You and what army?"
 			"Messing with the Syndicate, Does That Sound Like Fun to You?"
 			"83 percent of all statistics are just made up."
+			"Ask not what your planet can do for you; ask what you can do for your planet."
+			"Fair is foul, and foul is fair - Shakespeare, Macbeth"
+			"For want of a shoe, the crewmember was lost. / For want of a crewmember, the ship was lost. / For want of a ship, the fleet was lost. / For want of a fleet, the battle was lost. And all for the want of a shoe."
+			"Shoot for the stars, but make sure you miss or your hull might not last."
+			"Clippy the paperclip was here."
+			"Kilroy was here."
+			"The Joker was here."
+			"Foo went to a Bar."
+			"The Pink Elephant is in a room around here."
+			"An elephant with painted nails was here but not seen by anyone."
+			"Elvis was here. He is alive!"
+			"Waldo was here, but where is he now?"
+			"The butler did it!"
+			"Hello Hero, have you heroicly been hammering hostiles?"
+			"What do you get when you cross a rhetorical question with a joke?"
+			"Spacing out in space is never funny."
+			"Don't put graffiti on the wall here."

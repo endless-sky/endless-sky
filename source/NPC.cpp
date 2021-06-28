@@ -293,7 +293,7 @@ void NPC::Save(DataWriter &out) const
 
 
 
-bool NPC::IsValid(bool asTemplate) const
+string NPC::Validate(bool asTemplate) const
 {
 	// An NPC with no government will take the player's government
 	
@@ -303,42 +303,42 @@ bool NPC::IsValid(bool asTemplate) const
 		// A location filter may be used to set the starting system.
 		// If given, it must be able to resolve to a valid system.
 		if(!location.IsValid())
-			return false;
+			return "location filter";
 		
 		// A null system reference is allowed, since it will be set during
 		// instantiation if not given explicitly.
 		if(system && !system->IsValid())
-			return false;
+			return "system \"" + system->Name() + "\"";
 		
 		// A planet is optional, but if given must be valid.
 		if(planet && !planet->IsValid())
-			return false;
+			return "planet \"" + planet->TrueName() + "\"";
 		
 		// If a stock phrase or conversation is given, it must not be empty.
 		if(stockDialogPhrase && stockDialogPhrase->IsEmpty())
-			return false;
+			return "stock phrase";
 		if(stockConversation && stockConversation->IsEmpty())
-			return false;
+			return "stock conversation";
 		
 		// NPC fleets, unlike stock fleets, do not need a valid government
 		// since they will unconditionally inherit this NPC's government.
 		for(auto &&fleet : fleets)
 			if(!fleet.IsValid(false))
-				return false;
+				return "custom fleet";
 		for(auto &&fleet : stockFleets)
 			if(!fleet->IsValid(false))
-				return false;
+				return "stock fleet";
 	}
 	
 	// Ships must always be valid.
 	for(auto &&ship : ships)
 		if(!ship->IsValid())
-			return false;
+			return "ship \"" + ship->Name() + "\"";
 	for(auto &&ship : stockShips)
 		if(!ship->IsValid())
-			return false;
+			return "stock model \"" + ship->VariantName() + "\"";
 	
-	return true;
+	return "";
 }
 
 
