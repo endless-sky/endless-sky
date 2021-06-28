@@ -3545,16 +3545,21 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 		double driveDistanceExp = 0;
 		double driveDistanceRef = 100;
 		
-		if(baseAttributes.Get("drive mass exponent")||baseAttributes.Get("drive distance exponent"))
+		if(baseAttributes.Get("drive mass exponent") || baseAttributes.Get("drive distance exponent"))
 		{
 			 driveMassExp = baseAttributes.Get("drive mass exponent");
 			 driveDistanceExp = baseAttributes.Get("drive distance exponent");
 		}
-		if(baseAttributes.Get("drive mass reference")||baseAttributes.Get("drive distance reference"))
+		if(baseAttributes.Get("drive mass reference") || baseAttributes.Get("drive distance reference"))
 		{
 			 driveMassRef = baseAttributes.Get("drive mass reference");
 			 driveDistanceRef = baseAttributes.Get("drive distance reference");
 		}
+		driveMassExp = max(driveMassExp, 0.);
+		driveDistanceExp = max(driveDistanceExp, 0.);
+		driveMassRef = max(driveMassRef, .01);
+		driveDistanceRef = max(driveDistanceRef, .01);
+		
 		fuel = fuel * (pow((mass/driveMassRef),driveMassExp)) * (pow((jumpDistance/driveDistanceRef),driveDistanceExp));
 		
 		// if a "startup" fuel is provided, add that to the above formula.
@@ -3590,12 +3595,12 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 				double driveMassRef = 400;
 				double driveDistanceExp = 0;
 				double driveDistanceRef = 100;
-				if(it.first->Get("drive mass exponent")||it.first->Get("drive distance exponent"))
+				if(it.first->Get("drive mass exponent") || it.first->Get("drive distance exponent"))
 				{
 					 driveMassExp = it.first->Get("drive mass exponent");
 					 driveDistanceExp = it.first->Get("drive distance exponent");
 				}
-				if(it.first->Get("drive mass reference")||it.first->Get("drive distance reference"))
+				if(it.first->Get("drive mass reference") || it.first->Get("drive distance reference"))
 				{
 					 driveMassRef = it.first->Get("drive mass reference");
 					 driveDistanceRef = it.first->Get("drive distance reference");
