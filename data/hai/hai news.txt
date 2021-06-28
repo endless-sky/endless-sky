@@ -26,7 +26,7 @@ news "food in Hai space"
 			"A Hai-human fusion restaurant near here sells peanut pizza. It sounds gross, but the taste is heavenly."
 			"They make beer from fermented nuts here. I didn't know you could do that!"
 			"I just can't get enough acorn stew. These Hai cooks are amazing."
-			"Peanut this, walnut that, hazelnut icecream. What I wouldn't give for some good steak right now..."
+			"Peanut this, walnut that, hazelnut ice cream. What I wouldn't give for some good steak right now..."
 			"Back home, my favorite snack was pickled walnuts. Here, the pickled acorns are amazing!"
 		word
 			`"`
