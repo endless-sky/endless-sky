@@ -486,6 +486,7 @@ news "unfettered hai after wanderers invasion"
 			"Hai warlord"
 		word
 			`"`
+	message
 		word
 			"We shall conquer the worlds to the north as is our right. It is inevitable that the strong shall defeat the weak."
 			"I have fought with the stupid birds to the north. They have no knowledge of proper battle. Our war with them will be swift."
