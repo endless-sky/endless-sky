@@ -26,7 +26,7 @@ ConditionsStore::ConditionsStore()
 // Constructor where a number of initial manually-set values are set.
 ConditionsStore::ConditionsStore(initializer_list<pair<string, int64_t>> initialConditions)
 {
-	for(auto it : initialConditions)
+	for(const auto &it : initialConditions)
 		SetCondition(it.first, it.second);
 }
 
@@ -35,7 +35,7 @@ ConditionsStore::ConditionsStore(initializer_list<pair<string, int64_t>> initial
 // Constructor where a number of initial manually-set values are set.
 ConditionsStore::ConditionsStore(const map<string, int64_t> initialConditions)
 {
-	for(auto it : initialConditions)
+	for(const auto &it : initialConditions)
 		SetCondition(it.first, it.second);
 }
 
@@ -131,7 +131,7 @@ bool ConditionsStore::EraseCondition(const string &name)
 const map<string, int64_t> ConditionsStore::GetPrimaryConditions() const
 {
 	map<string, int64_t> priConditions;
-	for(const auto it : storage)
+	for(const auto &it : storage)
 		if(it.second.type == StorageType::VALUE)
 			priConditions[it.first] = it.second.value;
 	

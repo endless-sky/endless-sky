@@ -60,7 +60,7 @@ void PlayerInfo::Clear()
 	Messages::Reset();
 	
 	// Clear the automaticly provided conditions that were set earlier
-	for(auto it : accounts.GetProvidedConditions())
+	for(const auto &it : accounts.GetProvidedConditions())
 		conditions.SetProviderNamed(it, nullptr);
 }
 
@@ -103,7 +103,7 @@ void PlayerInfo::New(const StartConditions &start)
 	SetSystem(start.GetSystem());
 	SetPlanet(&start.GetPlanet());
 	accounts = start.GetAccounts();
-	for(auto it : accounts.GetProvidedConditions())
+	for(const auto &it : accounts.GetProvidedConditions())
 		conditions.SetProviderNamed(it, &accounts);
 	start.GetConditions().Apply(conditions);
 	UpdateAutoConditions();

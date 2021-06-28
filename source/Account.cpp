@@ -423,7 +423,7 @@ int64_t Account::GetConditionImpl(const string &name) const
 	AccountCondition aC = AccountCondition::CREDITS;
 	bool found = false;
 	
-	for(auto it: CONDITION_TO_TEXT)
+	for(const auto &it: CONDITION_TO_TEXT)
 		if(it.second == name)
 		{
 			aC = it.first;
