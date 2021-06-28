@@ -166,6 +166,39 @@ news "reformed pirate in Hai space"
 		word
 			`"`
 
+news "unfettered hai no dialog"
+	location
+		government "Hai (Unfettered)"
+	name
+		word
+			"Unfettered fighter"
+			"Unfettered youth"
+			"Unfettered warlord"
+			"Hai youth"
+			"Hai warlord"
+	message
+		word
+			"A Hai looks at you and shouts something in their language. You get the impression that it isn't pleasant."
+			"You pass by a Hai with a false tail. You try not to stare as you walk past."
+			"At a booth, you see a Hai selling stolen ship weaponry for outrageous prices."
+			"At a booth, you see a Hai selling various types of unpleasant-smelling substances. Judging by the effects it has on those who consume them, you guess that they're some type of drug."
+
+news "unfettered hai no dialog group"
+	location
+		government "Hai (Unfettered)"
+	name
+		word
+			"Group of Unfettered"
+			"Group of Hai"
+			"Group of youth"
+	message
+		word
+			"You see a group of Hai confront another. They shout at each other and bring out weapons, before backing off."
+			"You see a group of Hai confront another. They shout and bring out weapons, before lunging at each other. You walk away before they notice you."
+			"You hear yelling in the Hai language. When you turn around, you see that two Hai are facing off against each other, as onlookers egg them on. You turn away before it gets ugly."
+			"A group of small Hai children run around playing some sort of game. More concerning, however, is the fact that they are carrying weapons while doing so."
+			"A group of Hai are camped around a bonfire just outside the spaceport. They sing songs and dance around the fire in an energetic, almost maniacal way."
+
 news "unfettered hai dialog"
 	location
 		government "Hai (Unfettered)"
@@ -276,36 +309,3 @@ news "unfettered hai after wanderers invasion regret"
 			"I was held prisoner by the aliens up north. They call themselves the Wanderers, but everyone here just calls them 'birds.'"
 		word
 			`"`
-
-news "unfettered hai no dialog"
-	location
-		government "Hai (Unfettered)"
-	name
-		word
-			"Unfettered fighter"
-			"Unfettered youth"
-			"Unfettered warlord"
-			"Hai youth"
-			"Hai warlord"
-	message
-		word
-			"A Hai looks at you and shouts something in their language. You get the impression that it isn't pleasant."
-			"You pass by a Hai with a false tail. You try not to stare as you walk past."
-			"At a booth, you see a Hai selling stolen ship weaponry for outrageous prices."
-			"At a booth, you see a Hai selling various types of unpleasant-smelling substances. Judging by the effects it has on those who consume them, you guess that they're some type of drug."
-
-news "unfettered hai no dialog group"
-	location
-		government "Hai (Unfettered)"
-	name
-		word
-			"Group of Unfettered"
-			"Group of Hai"
-			"Group of youth"
-	message
-		word
-			"You see a group of Hai confront another. They shout at each other and bring out weapons, before backing off."
-			"You see a group of Hai confront another. They shout and bring out weapons, before lunging at each other. You walk away before they notice you."
-			"You hear yelling in the Hai language. When you turn around, you see that two Hai are facing off against each other, as onlookers egg them on. You turn away before it gets ugly."
-			"A group of small Hai children run around playing some sort of game. More concerning, however, is the fact that they are carrying weapons while doing so."
-			"A group of Hai are camped around a bonfire just outside the spaceport. They sing songs and dance around the fire in an energetic, almost maniacal way."
