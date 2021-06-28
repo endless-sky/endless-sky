@@ -55,6 +55,9 @@ Version 0.9.14:
     * The heat and energy table values for ship info have been broken out into their own variables for easier handling. (@jostephd)
     * Missions that fail to instantiate will now report to the error file why they failed. (@tehhowch)
     * Missions that mix the "minor" or "priority" tags with the "landing" tag will now produce a warning to the error file, as "landing" takes precedence over the former two tags. (@Amazinite)
+    * Fixed a rare crash that could happen when printing errors, if the error file could not be opened. (@tehhowch)
+    * Updated the build process for Steam Linux to avoid statically linking in the C++ standard library. (@tehhowch)
+    * Updated the Scons build process to remove the need for both ar and ranlib programs to be LTO-aware. (@tehhowch)
 
 Version 0.9.13:
   * Breaking changes:
