@@ -1,10 +1,10 @@
 name: Steam
 
-on: push
-  # push:
-  #   branches:
-  #     - master
-  #     - v[0-9]+.[0-9]+.[0-9]+
+on:
+  push:
+    branches:
+      - master
+      - v[0-9]+.[0-9]+.[0-9]+
 
 jobs:
   changed:
@@ -29,7 +29,7 @@ jobs:
 
   build_linux:
     needs: changed
-    # if: needs.changed.outputs.linux == 'true'
+    if: needs.changed.outputs.linux == 'true'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -155,6 +155,7 @@ jobs:
   deploy_linux:
     needs: test_linux
     runs-on: ubuntu-latest
+    # environment: steam
     env:
       dir32: binary-Linux-i686
       dir64: binary-Linux-x86_64
@@ -184,6 +185,7 @@ jobs:
     needs: changed
     if: needs.changed.outputs.data == 'true'
     runs-on: ubuntu-latest
+    # environment: steam
     env:
       dir: data-depot
     steps:
