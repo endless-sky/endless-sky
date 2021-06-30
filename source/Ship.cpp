@@ -3047,7 +3047,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 
 
 
-// This ship just got hit by an hazard. Take damage according to what
+// This ship just got hit by a hazard. Take damage according to what
 // sort of weapon the hazard has, and create any hit effects as sparks.
 void Ship::TakeDamage(vector<Visual> &visuals, const Weapon *weapon, double damageScaling)
 {
