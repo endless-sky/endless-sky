@@ -3165,7 +3165,7 @@ bool Ship::CanCarry(const Ship &ship) const
 	{
 		auto escort = it.lock();
 		if(escort && escort.get() != &ship && escort->attributes.Category() == category 
-			&& !escort->IsDisabled())
+			&& !escort->IsDestroyed())
 			--free;
 	}
 	return (free > 0);
