@@ -525,7 +525,6 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 	
 	if(payment)
 		player.Accounts().AddCredits(payment);
-	
 	if(fine)
 		player.Accounts().AddFine(fine);
 	
