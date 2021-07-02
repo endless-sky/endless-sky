@@ -3060,10 +3060,10 @@ double Ship::MaxReverseVelocity() const
 
 // This ship just got hit by the given projectile. Take damage according to
 // what sort of weapon the projectile it.
-int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
+int Ship::TakeDamage(vector<Visual> &visuals, const Projectile &projectile, bool isBlast)
 {
 	const Weapon &weapon = projectile.GetWeapon();
-	return TakeDamage(weapon, 1., projectile.DistanceTraveled(), projectile.Position(), projectile.GetGovernment(), isBlast);
+	return TakeDamage(visuals, weapon, 1., projectile.DistanceTraveled(), projectile.Position(), projectile.GetGovernment(), isBlast);
 }
 
 
@@ -3075,9 +3075,7 @@ void Ship::TakeDamage(vector<Visual> &visuals, const Weapon *weapon, double dama
 	// Rather than exactly compute the distance between the hazard origin and
 	// the closest point on the ship, estimate it using the mask's Radius.
 	double distanceTraveled = position.Length() - GetMask().Radius();
-	TakeDamage(*weapon, damageScaling, distanceTraveled, Point(), nullptr, weapon->BlastRadius() > 0.);
-	for(const auto &effect : weapon->TargetEffects())
-		CreateSparks(visuals, effect.first, effect.second * damageScaling);
+	TakeDamage(visuals, *weapon, damageScaling, distanceTraveled, Point(), nullptr, weapon->BlastRadius() > 0.);
 }
 
 
@@ -3727,7 +3725,7 @@ void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double am
 
 
 // A helper method for taking damage from either a projectile or a hazard.
-int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distanceTraveled, const Point &damagePosition, const Government *sourceGovernment, bool isBlast)
+int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damageScaling, double distanceTraveled, const Point &damagePosition, const Government *sourceGovernment, bool isBlast)
 {
 	if(isBlast && weapon.IsDamageScaled())
 	{
@@ -3828,6 +3826,10 @@ int Ship::TakeDamage(const Weapon &weapon, double damageScaling, double distance
 			&& (Shields() < .9 || Hull() < .9 || !personality.IsForbearing())
 			&& !personality.IsPacifist() && weapon.DoesDamage())
 		type |= ShipEvent::PROVOKE;
+	
+	// Create target effect visuals, if there are any.
+	for(const auto &effect : weapon.TargetEffects())
+		CreateSparks(visuals, effect.first, effect.second * damageScaling);
 	
 	return type;
 }

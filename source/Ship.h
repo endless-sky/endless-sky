@@ -326,7 +326,7 @@ public:
 	// If isBlast, this ship was caught in the blast radius of a weapon but was
 	// not necessarily its primary target.
 	// Blast damage is dependent on the distance to the damage source.
-	int TakeDamage(const Projectile &projectile, bool isBlast = false);
+	int TakeDamage(std::vector<Visual> &visuals, const Projectile &projectile, bool isBlast = false);
 	// This ship just got hit by a hazard. Take damage according to what
 	// sort of weapon the hazard has, and create any hit effects as sparks.
 	void TakeDamage(std::vector<Visual> &visuals, const Weapon *weapon, double damageScaling);
@@ -431,7 +431,7 @@ private:
 	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
 	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
 	// A helper method for taking damage from either a projectile or a hazard.
-	int TakeDamage(const Weapon &weapon, double damageScaling, double distanceTraveled, const Point &damagePosition, const Government *sourceGovernment, bool isBlast);
+	int TakeDamage(std::vector<Visual> &visuals, const Weapon &weapon, double damageScaling, double distanceTraveled, const Point &damagePosition, const Government *sourceGovernment, bool isBlast);
 	
 	
 private:
