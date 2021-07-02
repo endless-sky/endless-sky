@@ -3278,7 +3278,7 @@ const CargoHold &Ship::Cargo() const
 
 
 // Display box effects from jettisoning this much cargo.
-void Ship::Jettison(const string &commodity, int tons, bool wasDumped)
+void Ship::Jettison(const string &commodity, int tons, bool wasAppeasing)
 {
 	cargo.Remove(commodity, tons);
 	
@@ -3286,7 +3286,7 @@ void Ship::Jettison(const string &commodity, int tons, bool wasDumped)
 	// jettisoning cargo would increase the ship's temperature.
 	heat -= tons * MAXIMUM_TEMPERATURE * Heat();
 	
-	const Government *notForGov = wasDumped ? GetGovernment() : nullptr;
+	const Government *notForGov = wasAppeasing ? GetGovernment() : nullptr;
 	
 	for( ; tons > 0; tons -= Flotsam::TONS_PER_BOX)
 		jettisoned.emplace_back(new Flotsam(commodity, (Flotsam::TONS_PER_BOX < tons) ? Flotsam::TONS_PER_BOX : tons, notForGov));
@@ -3294,7 +3294,7 @@ void Ship::Jettison(const string &commodity, int tons, bool wasDumped)
 
 
 
-void Ship::Jettison(const Outfit *outfit, int count, bool wasDumped)
+void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
 {
 	if(count < 0)
 		return;
@@ -3306,7 +3306,7 @@ void Ship::Jettison(const Outfit *outfit, int count, bool wasDumped)
 	double mass = outfit->Mass();
 	heat -= count * mass * MAXIMUM_TEMPERATURE * Heat();
 	
-	const Government *notForGov = wasDumped ? GetGovernment() : nullptr;
+	const Government *notForGov = wasAppeasing ? GetGovernment() : nullptr;
 	
 	const int perBox = (mass <= 0.) ? count : (mass > Flotsam::TONS_PER_BOX) ? 1 : static_cast<int>(Flotsam::TONS_PER_BOX / mass);
 	while(count > 0)

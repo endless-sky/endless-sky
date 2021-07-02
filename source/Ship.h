@@ -366,8 +366,8 @@ public:
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
 	// Display box effects from jettisoning this much cargo.
-	void Jettison(const std::string &commodity, int tons, bool wasDumped = false);
-	void Jettison(const Outfit *outfit, int count, bool wasDumped = false);
+	void Jettison(const std::string &commodity, int tons, bool wasAppeasing = false);
+	void Jettison(const Outfit *outfit, int count, bool wasAppeasing = false);
 	
 	// Get the current attributes of this ship.
 	const Outfit &Attributes() const;
