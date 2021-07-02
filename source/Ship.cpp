@@ -3058,28 +3058,6 @@ double Ship::MaxReverseVelocity() const
 
 
 
-// This ship just got hit by the given projectile. Take damage according to
-// what sort of weapon the projectile it.
-int Ship::TakeDamage(vector<Visual> &visuals, const Projectile &projectile, bool isBlast)
-{
-	const Weapon &weapon = projectile.GetWeapon();
-	return TakeDamage(visuals, weapon, 1., projectile.DistanceTraveled(), projectile.Position(), projectile.GetGovernment(), isBlast);
-}
-
-
-
-// This ship just got hit by a hazard. Take damage according to what
-// sort of weapon the hazard has, and create any hit effects as sparks.
-void Ship::TakeDamage(vector<Visual> &visuals, const Weapon *weapon, double damageScaling)
-{
-	// Rather than exactly compute the distance between the hazard origin and
-	// the closest point on the ship, estimate it using the mask's Radius.
-	double distanceTraveled = position.Length() - GetMask().Radius();
-	TakeDamage(visuals, *weapon, damageScaling, distanceTraveled, Point(), nullptr, weapon->BlastRadius() > 0.);
-}
-
-
-
 // Apply a force to this ship, accelerating it. This might be from a weapon
 // impact, or from firing a weapon, for example.
 void Ship::ApplyForce(const Point &force, bool gravitational)
