@@ -552,7 +552,14 @@ void Files::LogError(const string &message)
 	lock_guard<mutex> lock(errorMutex);
 	cerr << message << endl;
 	if(!errorLog)
+	{
 		errorLog = File(config + "errors.txt", true);
+		if(!errorLog)
+		{
+			cerr << "Unable to create \"errors.txt\" " << (config.empty() ? "in current directory" : "in \"" + config + "\"") << endl;
+			return;
+		}
+	}
 	
 	Write(errorLog, message);
 	fwrite("\n", 1, 1, errorLog);
