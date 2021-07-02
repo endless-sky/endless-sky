@@ -230,20 +230,13 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			if(child.Size() >= 3)
 				paymentMultiplier += child.Value(2);
 		}
-		else if(key == "fine")
+		else if(key == "fine" && hasValue)
 		{
-			if(child.Size() < 2)
-				child.PrintTrace("Skipping invalid \"fine\" without amount entry:");
+			int64_t loadedFine = child.Value(1);
+			if(loadedFine > 0)
+				fine += loadedFine;
 			else
-			{
-				int64_t loadedFine = child.Value(1);
-				if(loadedFine > 0)
-					fine += loadedFine;
-				else
-					child.PrintTrace("Skipping invalid \"fine\" with non-positive value:");					
-			}
-			if(child.Size() > 2)
-				child.PrintTrace("Ignoring non-defined parameters after \"fine\" value entry:");				
+				child.PrintTrace("Skipping invalid \"fine\" with non-positive value:");
 		}
 		else if(key == "event" && hasValue)
 		{
