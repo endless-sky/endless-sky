@@ -21,7 +21,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
-#include "Hazard.h"
 #include "Mask.h"
 #include "Messages.h"
 #include "Phrase.h"
@@ -699,20 +698,27 @@ void Ship::FinishLoading(bool isNewInstance)
 	
 	canBeCarried = BAY_TYPES.count(attributes.Category()) > 0;
 	
-	// Issue warnings if this ship has negative outfit, cargo, weapon, or engine capacity.
+	// Issue warnings if this ship has is misconfigured, e.g. is missing required values
+	// or has negative outfit, cargo, weapon, or engine capacity.
 	string warning;
-	for(const string &attr : set<string>{"outfit space", "cargo space", "weapon capacity", "engine capacity"})
+	for(auto &&attr : set<string>{"outfit space", "cargo space", "weapon capacity", "engine capacity"})
 	{
 		double val = attributes.Get(attr);
 		if(val < 0)
 			warning += attr + ": " + Format::Number(val) + "\n";
 	}
+	if(attributes.Get("drag") <= 0.)
+	{
+		warning += "Defaulting " + string(attributes.Get("drag") ? "invalid" : "missing") + " \"drag\" attribute to 100.0\n";
+		attributes.Set("drag", 100.);
+	}
 	if(!warning.empty())
 	{
 		// This check is mostly useful for variants and stock ships, which have
 		// no names. Print the outfits to facilitate identifying this ship definition.
-		string message = (!name.empty() ? "Ship \"" + name + "\" " : "") + "(" + modelName + "):\n";
-		ostringstream outfitNames("outfits:\n");
+		string message = (!name.empty() ? "Ship \"" + name + "\" " : "") + "(" + VariantName() + "):\n";
+		ostringstream outfitNames;
+		outfitNames << "has outfits:\n";
 		for(const auto &it : outfits)
 			outfitNames << '\t' << it.second << " " + it.first->Name() << endl;
 		Files::LogError(message + warning + outfitNames.str());
@@ -1543,7 +1549,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				else
 				{
 					for(const StellarObject &object : currentSystem->Objects())
-						if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+						if(object.HasSprite() && object.HasValidPlanet()
+								&& object.GetPlanet()->HasSpaceport())
 						{
 							target = object.Position();
 							break;
@@ -2064,7 +2071,7 @@ void Ship::DoGeneration()
 		// Apply active cooling. The fraction of full cooling to apply equals
 		// your ship's current fraction of its maximum temperature.
 		double activeCooling = coolingEfficiency * attributes.Get("active cooling");
-		if(activeCooling > 0. && heat > 0.)
+		if(activeCooling > 0. && heat > 0. && energy >= 0.)
 		{
 			// Although it's a misuse of this feature, handle the case where
 			// "active cooling" does not require any energy.
@@ -2175,7 +2182,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 		SetShipToAssist(shared_ptr<Ship>());
 		SetTargetShip(shared_ptr<Ship>());
 		bool helped = victim->isDisabled;
-		victim->hull = max(victim->hull, victim->MinimumHull());
+		victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->attributes.Get("hull"));
 		victim->isDisabled = false;
 		// Transfer some fuel if needed.
 		if(!victim->JumpsRemaining() && CanRefuel(*victim))
@@ -2689,7 +2696,7 @@ double Ship::TransferFuel(double amount, Ship *to)
 void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 {
 	// Repair up to the point where this ship is just barely not disabled.
-	hull = max(hull, MinimumHull());
+	hull = min(max(hull, MinimumHull() * 1.5), attributes.Get("hull"));
 	isDisabled = false;
 	
 	// Set the new government.
@@ -3071,16 +3078,16 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 
 
 
-// This ship just got hit by the given hazard. Take damage according to what
+// This ship just got hit by a hazard. Take damage according to what
 // sort of weapon the hazard has, and create any hit effects as sparks.
-void Ship::TakeHazardDamage(vector<Visual> &visuals, const Hazard *hazard, double strength)
+void Ship::TakeDamage(vector<Visual> &visuals, const Weapon *weapon, double damageScaling)
 {
 	// Rather than exactly compute the distance between the hazard origin and
 	// the closest point on the ship, estimate it using the mask's Radius.
 	double distanceTraveled = position.Length() - GetMask().Radius();
-	TakeDamage(*hazard, strength, distanceTraveled, Point(), hazard->BlastRadius() > 0.);
-	for(const auto &effect : hazard->HitEffects())
-		CreateSparks(visuals, effect.first, effect.second * strength);
+	TakeDamage(*weapon, damageScaling, distanceTraveled, Point(), weapon->BlastRadius() > 0.);
+	for(const auto &effect : weapon->TargetEffects())
+		CreateSparks(visuals, effect.first, effect.second * damageScaling);
 }
 
 
@@ -3270,7 +3277,7 @@ const CargoHold &Ship::Cargo() const
 
 
 // Display box effects from jettisoning this much cargo.
-void Ship::Jettison(const string &commodity, int tons)
+void Ship::Jettison(const string &commodity, int tons, bool wasAppeasing)
 {
 	cargo.Remove(commodity, tons);
 	
@@ -3278,13 +3285,15 @@ void Ship::Jettison(const string &commodity, int tons)
 	// jettisoning cargo would increase the ship's temperature.
 	heat -= tons * MAXIMUM_TEMPERATURE * Heat();
 	
+	const Government *notForGov = wasAppeasing ? GetGovernment() : nullptr;
+	
 	for( ; tons > 0; tons -= Flotsam::TONS_PER_BOX)
-		jettisoned.emplace_back(new Flotsam(commodity, (Flotsam::TONS_PER_BOX < tons) ? Flotsam::TONS_PER_BOX : tons));
+		jettisoned.emplace_back(new Flotsam(commodity, (Flotsam::TONS_PER_BOX < tons) ? Flotsam::TONS_PER_BOX : tons, notForGov));
 }
 
 
 
-void Ship::Jettison(const Outfit *outfit, int count)
+void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
 {
 	if(count < 0)
 		return;
@@ -3296,10 +3305,12 @@ void Ship::Jettison(const Outfit *outfit, int count)
 	double mass = outfit->Mass();
 	heat -= count * mass * MAXIMUM_TEMPERATURE * Heat();
 	
+	const Government *notForGov = wasAppeasing ? GetGovernment() : nullptr;
+	
 	const int perBox = (mass <= 0.) ? count : (mass > Flotsam::TONS_PER_BOX) ? 1 : static_cast<int>(Flotsam::TONS_PER_BOX / mass);
 	while(count > 0)
 	{
-		jettisoned.emplace_back(new Flotsam(outfit, (perBox < count) ? perBox : count));
+		jettisoned.emplace_back(new Flotsam(outfit, (perBox < count) ? perBox : count, notForGov));
 		count -= perBox;
 	}
 }
@@ -3408,6 +3419,13 @@ bool Ship::CanFire(const Weapon *weapon) const
 	// If a weapon requires heat to fire, (rather than generating heat), we must
 	// have enough heat to spare.
 	if(heat < -(weapon->FiringHeat() + weapon->RelativeFiringHeat() * MaximumHeat()))
+		return false;
+	// Repeat this for various effects which shouldn't drop below 0.
+	if(ionization < -weapon->FiringIon())
+		return false;
+	if(disruption < -weapon->FiringDisruption())
+		return false;
+	if(slowness < -weapon->FiringSlowing())
 		return false;
 	
 	return true;

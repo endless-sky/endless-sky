@@ -35,7 +35,6 @@ class DataWriter;
 class Effect;
 class Flotsam;
 class Government;
-class Hazard;
 class Minable;
 class Phrase;
 class Planet;
@@ -62,8 +61,8 @@ public:
 	class Bay {
 	public:
 		Bay(double x, double y, std::string category) : point(x * .5, y * .5), category(category) {}
-		Bay(Bay &&b) noexcept = default;
-		Bay &operator=(Bay &&b) noexcept = default;
+		Bay(Bay &&) = default;
+		Bay &operator=(Bay &&) = default;
 		~Bay() = default;
 		
 		// Copying a bay does not copy the ship inside it.
@@ -328,9 +327,9 @@ public:
 	// not necessarily its primary target.
 	// Blast damage is dependent on the distance to the damage source.
 	int TakeDamage(const Projectile &projectile, bool isBlast = false);
-	// This ship just got hit by the given hazard. Take damage according to what
+	// This ship just got hit by a hazard. Take damage according to what
 	// sort of weapon the hazard has, and create any hit effects as sparks.
-	void TakeHazardDamage(std::vector<Visual> &visuals, const Hazard *hazard, double strength);
+	void TakeDamage(std::vector<Visual> &visuals, const Weapon *weapon, double damageScaling);
 	// Apply a force to this ship, accelerating it. This might be from a weapon
 	// impact, or from firing a weapon, for example.
 	void ApplyForce(const Point &force, bool gravitational = false);
@@ -366,8 +365,8 @@ public:
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
 	// Display box effects from jettisoning this much cargo.
-	void Jettison(const std::string &commodity, int tons);
-	void Jettison(const Outfit *outfit, int count);
+	void Jettison(const std::string &commodity, int tons, bool wasAppeasing = false);
+	void Jettison(const Outfit *outfit, int count, bool wasAppeasing = false);
 	
 	// Get the current attributes of this ship.
 	const Outfit &Attributes() const;

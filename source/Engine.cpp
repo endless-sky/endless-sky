@@ -205,7 +205,7 @@ Engine::Engine(PlayerInfo &player)
 	
 	// Preload any landscapes for this system.
 	for(const StellarObject &object : player.GetSystem()->Objects())
-		if(object.GetPlanet())
+		if(object.HasSprite() && object.HasValidPlanet())
 			GameData::Preload(object.GetPlanet()->Landscape());
 	
 	// Figure out what planet the player is landed on, if any.
@@ -608,7 +608,7 @@ void Engine::Step(bool isActive)
 	{
 		for(const StellarObject &object : currentSystem->Objects())
 		{
-			if(!object.HasSprite() || !object.GetPlanet() || !object.GetPlanet()->IsAccessible(flagship.get()))
+			if(!object.HasSprite() || !object.HasValidPlanet() || !object.GetPlanet()->IsAccessible(flagship.get()))
 				continue;
 			
 			Point pos = object.Position() - center;
@@ -1133,9 +1133,10 @@ void Engine::EnterSystem()
 			"." : ". No inhabited planets detected."));
 	
 	// Preload landscapes and determine if the player used a wormhole.
+	// (It is allowed for a wormhole's exit point to have no sprite.)
 	const StellarObject *usedWormhole = nullptr;
 	for(const StellarObject &object : system->Objects())
-		if(object.GetPlanet())
+		if(object.HasValidPlanet())
 		{
 			GameData::Preload(object.GetPlanet()->Landscape());
 			if(object.GetPlanet()->IsWormhole() && !usedWormhole
@@ -1293,7 +1294,7 @@ void Engine::CalculateStep()
 	// The only action stellar objects perform is to launch defense fleets.
 	const System *playerSystem = player.GetSystem();
 	for(const StellarObject &object : playerSystem->Objects())
-		if(object.GetPlanet())
+		if(object.HasValidPlanet())
 			object.GetPlanet()->DeployDefense(newShips);
 	
 	// Keep track of the flagship to see if it jumps or enters a wormhole this turn.
@@ -1319,7 +1320,7 @@ void Engine::CalculateStep()
 		// Wormhole travel: mark the wormhole "planet" as visited.
 		if(!wasHyperspacing)
 			for(const auto &it : playerSystem->Objects())
-				if(it.GetPlanet() && it.GetPlanet()->IsWormhole() &&
+				if(it.HasValidPlanet() && it.GetPlanet()->IsWormhole() &&
 						it.GetPlanet()->WormholeDestination(playerSystem) == flagship->GetSystem())
 					player.Visit(*it.GetPlanet());
 		
@@ -1801,7 +1802,7 @@ void Engine::HandleMouseClicks()
 	const System *playerSystem = player.GetSystem();
 	if(!isRightClick && flagship->Zoom() == 1.)
 		for(const StellarObject &object : playerSystem->Objects())
-			if(object.HasSprite() && object.GetPlanet())
+			if(object.HasSprite() && object.HasValidPlanet())
 			{
 				// If the player clicked to land on a planet,
 				// do so unless already landing elsewhere.
@@ -2031,7 +2032,7 @@ void Engine::DoWeather(Weather &weather)
 		// and max ranges at the hazard's origin. Any ship touching this ring takes
 		// hazard damage.
 		for(Body *body : shipCollisions.Ring(Point(), hazard->MinRange(), hazard->MaxRange()))
-			reinterpret_cast<Ship *>(body)->TakeHazardDamage(visuals, hazard, multiplier);
+			reinterpret_cast<Ship *>(body)->TakeDamage(visuals, hazard, multiplier);
 	}
 }
 
@@ -2045,7 +2046,8 @@ void Engine::DoCollection(Flotsam &flotsam)
 	for(Body *body : shipCollisions.Circle(flotsam.Position(), 5.))
 	{
 		Ship *ship = reinterpret_cast<Ship *>(body);
-		if(!ship->CannotAct() && ship != flotsam.Source() && ship->Cargo().Free() >= flotsam.UnitSize())
+		if(!ship->CannotAct() && ship != flotsam.Source() && ship->GetGovernment() != flotsam.SourceGovernment()
+			&& ship->Cargo().Free() >= flotsam.UnitSize())
 		{
 			collector = ship;
 			break;
@@ -2217,7 +2219,7 @@ void Engine::AddSprites(const Ship &ship)
 		// Draw cloaked/cloaking sprites swizzled red, and overlay this solid
 		// sprite with an increasingly transparent "regular" sprite.
 		if(drawCloaked)
-			itemsToDraw.AddSwizzled(body, 7);
+			itemsToDraw.AddSwizzled(body, 27);
 		itemsToDraw.Add(body, cloak);
 	};
 	
