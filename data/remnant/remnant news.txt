@@ -213,8 +213,6 @@ news "remnant security advisory"
 news "remnant incomprehensible"
 	location
 		government "Remnant"
-	to show
-		not "remnant: sign studies complete"
 	name
 		word
 			"Spaceport"
@@ -376,6 +374,6 @@ news "remnant comprehensible"
 			"discussing a recent salvage operation"
 			"making lunch plans"
 			"arguing about engine efficiencies"
-			"gossipping about a visitor from outside the Ember Waste"
+			"gossiping about a visitor from outside the Ember Waste"
 		word
 			"."
