@@ -89,7 +89,6 @@ shipyard "Syndicate Basics"
 
 shipyard "Syndicate Advanced"
 	"Bulk Freighter"
-	"Container Transport"
 	"Protector"
 	"Vanguard"
 	"Arrow"
