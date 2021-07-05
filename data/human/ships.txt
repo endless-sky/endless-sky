@@ -743,16 +743,16 @@ ship "Bulk Freighter"
 	thumbnail "thumbnail/bulk freighter"
 	attributes
 		category "Heavy Freighter"
-		"cost" 9400000
+		"cost" 11100000
 		"shields" 4000
 		"hull" 7600
-		"required crew" 6
-		"bunks" 18
+		"required crew" 12
+		"bunks" 21
 		"mass" 870
-		"drag" 15.8
+		"drag" 14
 		"heat dissipation" .5
-		"fuel capacity" 600
-		"cargo space" 600
+		"fuel capacity" 900
+		"cargo space" 640
 		"outfit space" 410
 		"weapon capacity" 180
 		"engine capacity" 85
@@ -888,18 +888,18 @@ ship "Class C Freighter"
 	thumbnail "thumbnail/bulk freighter"
 	attributes
 		category "Heavy Warship"
-		"cost" 11400000
+		"cost" 13400000
 		"shields" 13500
 		"hull" 7600
 		"required crew" 18
 		"bunks" 43
-		"mass" 810
-		"drag" 16.4
+		"mass" 880
+		"drag" 14
 		"heat dissipation" .5
-		"fuel capacity" 600
+		"fuel capacity" 900
 		"cargo space" 20
-		"outfit space" 400
-		"weapon capacity" 140
+		"outfit space" 410
+		"weapon capacity" 150
 		"engine capacity" 85
 		weapon
 			"blast radius" 200
@@ -921,8 +921,11 @@ ship "Class C Freighter"
 		
 	engine -20 195.5
 	engine 20 195.5
+	gun -20 -175
+	gun 20 -175
 	turret -12 -155 "Heavy Laser Turret"
 	turret 12 -155 "Heavy Anti-Missile Turret"
+	turret 0 5
 	turret 30 175 "Heavy Laser Turret"
 	turret -30 175 "Heavy Anti-Missile Turret"
 	bay "Drone" -66 -115 left
@@ -1044,16 +1047,16 @@ ship "Container Transport"
 	thumbnail "thumbnail/container transport"
 	attributes
 		category "Heavy Freighter"
-		"cost" 9400000
-		"shields" 4000
-		"hull" 7600
+		"cost" 9200000
+		"shields" 3500
+		"hull" 8000
 		"required crew" 6
 		"bunks" 18
-		"mass" 870
-		"drag" 15.8
+		"mass" 880
+		"drag" 17.6
 		"heat dissipation" .5
 		"fuel capacity" 600
-		"cargo space" 600
+		"cargo space" 550
 		"outfit space" 410
 		"weapon capacity" 180
 		"engine capacity" 85
