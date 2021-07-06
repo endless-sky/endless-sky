@@ -26170,7 +26170,7 @@ planet Ahr
 planet Aksaray
 	attributes "requires: inaccessible" "moon" uninhabited
 	landscape land/mountain26
-	description `At first glance, Aksaray appears to be a fairly generic moon formed from eons of dust and debris compressed into a tight ball by constant gravitational pressure. What is not commonplace is the presence of almost perfectly pyramidical piles of regolith scattered across the world. Querying an orbiting Remnant satellite suggests that these are believed to have been remote mining sites for mineral processing.`
+	description `At first glance, Aksaray appears to be a fairly generic moon formed from eons of dust and debris compressed into a tight ball by constant gravitational pressure. What is not commonplace is the presence of almost perfectly pyramidal piles of regolith scattered across the world. Querying an orbiting Remnant satellite suggests that these are believed to have been remote mining sites for mineral processing.`
 	description `	A brief consultation of your navigational computer's economic database, however, indicates that all the minerals present in this variant of regolith are very common across the galaxy and have an extremely low value.`
 	security 0
 	government Uninhabited
@@ -26492,7 +26492,7 @@ planet "Buccaneer Bay"
 	landscape land/beach0
 	description `Pirates who have struck it rich dream of retiring on Buccaneer Bay. It is a warm ocean planet, with many places reminiscent of the islands in the ancient Caribbean where humanity's first pirate fleets sailed.`
 	description `	Many of the inhabitants are in fact not pirates, but their descendants, and these children and grand-children of anarchist outlaws have built a system of regional government that oversees hospitals, schools, and other public services, all created without funding from the Republic or taxes paid to it. The planet even sports its own shipyard, although many of the ships built here are, not surprisingly, based on designs pirated from the Syndicate and Republic shipyards.`
-	spaceport `This is the sort of spaceport you picture in your head when you think of pirates. Half the storefronts are bars, and rum seems to be on the menu everywhere. It is almost like the stories of ancient Earth, except that the eye patches are cybernetic implants and the peg legs are motorized prosthetics. Swarthy, dangerous-looking women glance at you as you pass by, and scantily clad men crowd around the bars, which is what you seem to remember the stories said it was like on Earth, too, although there it may have been the other way around.`
+	spaceport `This is the sort of spaceport you picture in your head when you think of pirates. Half the storefronts are bars, and rum seems to be on the menu everywhere. It is almost like the stories of ancient Earth, except that the eye patches are cybernetic implants and the peg legs are motorized prostheses. Swarthy, dangerous-looking women glance at you as you pass by, and scantily clad men crowd around the bars, which is what you seem to remember the stories said it was like on Earth, too, although there it may have been the other way around.`
 	shipyard "Core Pirates"
 	shipyard "Advanced Core Pirates"
 	shipyard "Southern Pirates"
@@ -26627,7 +26627,7 @@ planet Chiron
 	attributes "near earth" urban
 	landscape land/city18-iridium
 	description `Chiron is the only planet outside the solar system that was colonized by humanity prior to the discovery of the hyperdrive. It is now the second most populous planet in the Republic, with many sprawling cities and a burgeoning pollution problem.`
-	description `	Although Earth still has the most prestigious universities in the galaxy, Chiron has become the de-facto leader of the higher education industry, catering to those who value excellent teaching more highly than an illustrious name. As a result, off-world students form a noticeable fraction of the population.`
+	description `	Although Earth still has the most prestigious universities in the galaxy, Chiron has become the de facto leader of the higher education industry, catering to those who value excellent teaching more highly than an illustrious name. As a result, off-world students form a noticeable fraction of the population.`
 	spaceport `There are two spaceports on Chiron. The Old Port was built back when it was first settled, and was placed in a desert region, far from where people would want to live, so that they would not be as affected by the fallout from the nuclear propulsion that was used in the first, pre-hyperspace starships.`
 	spaceport `	The New Port, on the other hand, is in the center of New Sydney, one of Chiron's largest cities. Its soaring architecture and gleaming mirrored glass is intended to make a clear statement, that Chiron is everything Earth is not: clean, modern, prosperous.`
 	shipyard "Basic Ships"
@@ -26857,7 +26857,7 @@ planet Delve
 planet "Delve of Bloptab"
 	attributes arach mining
 	landscape land/hills0
-	description `This is a mining world, hotter than even the Arach would prefer but still much more habitable than its sister world of Blobtab's Furnace. It is home to House Ablomab, the guild of mining and metalworking, and the dry climate makes it possible to store stockpiles of iron, steel, and other metals here without worrying about rust. Supposedly the warehouses here contain enough raw materials to double the size of the Heliarch war fleet if needed; the Arach like to be able to trust that they are prepared for any eventuality.`
+	description `This is a mining world, hotter than even the Arachi would prefer but still much more habitable than its sister world of Blobtab's Furnace. It is home to House Ablomab, the guild of mining and metalworking, and the dry climate makes it possible to store stockpiles of iron, steel, and other metals here without worrying about rust. Supposedly the warehouses here contain enough raw materials to double the size of the Heliarch war fleet if needed; the Arachi like to be able to trust that they are prepared for any eventuality.`
 	spaceport `This is one of the few Coalition worlds where the Heliarch agents openly carry weapons, due to the fear that the Resistance might see the storehouses here of base and precious metals as a tempting target. Although there are plenty of civilians of all three species milling about, the spaceport has something of the atmosphere of a military base.`
 	"required reputation" 25
 
@@ -27181,7 +27181,7 @@ planet Follower
 	landscape land/city10
 	description `Follower is on the edge of the Paradise Planets region of space: not really one of them yet, but aspiring to be. It is prosperous, but from manufacturing rather than law or finance or venture capitalism. A significant fraction of the local taxes collected here are being spent on terraforming, raising global temperatures and reducing seasonal fluctuations. The goods produced here always have a ready market to purchase them, so Follower's job economy is considered very stable.`
 	description `	As one of the few planets still actively engaged in terraforming, Follower has been the location of several experiments with new technology, trying to leapfrog the centuries-slow process that other worlds have gone through. Unfortunately most of these experiments have failed, sometimes spectacularly.`
-	spaceport `The spaceport is a single skyscraper, fifty floors tall and as wide as it is high, with the floors twisting around each other in a helical patterns so that on each level, the landing bays are approached from a slightly different angle. The whole structure is built of steel and gleaming glass. Inside, the soaring ceilings give you more of a sense of opulence than of comfort.`
+	spaceport `The spaceport is a single skyscraper, fifty floors tall and as wide as it is high, with the floors twisting around each other in a helical pattern so that on each level, the landing bays are approached from a slightly different angle. The whole structure is built of steel and gleaming glass. Inside, the soaring ceilings give you more of a sense of opulence than of comfort.`
 	shipyard "Betelgeuse Basics"
 	shipyard "Betelgeuse Advanced"
 	shipyard "Lionheart Basics"
@@ -27337,7 +27337,7 @@ planet Glaze
 	attributes south tourism
 	landscape land/canyon8
 	description `Glaze is a varied world with everything from sunny beaches to frozen tundra, but it is perhaps best known for its sandstone canyons and deserts. This world's wildlife has never been studied in great detail. Local rumors tell about an alien species of "canyon people" who live in caves in some of the deepest canyons, leading to a constant stream of visiting xenobiologists. The scientific consensus, however, is that these sightings have only been of a reclusive ape-like species that lives in the canyons, and is not known to dig caves or show any other sign of civilization.`
-	spaceport `The spaceport is a tower of glass and steel perched on top of a mesa, overlooking the canyonlands: spires of red and pale yellow stone, with a sprinkling of trees at the lower elevations. A wide highway winds down the side of the mesa, through several tunnels, and the off to the horizon. The port itself is not terribly busy.`
+	spaceport `The spaceport is a tower of glass and steel perched on top of a mesa, overlooking the canyonlands: spires of red and pale yellow stone, with a sprinkling of trees at the lower elevations. A wide highway winds down the side of the mesa, through several tunnels, and then off to the horizon. The port itself is not terribly busy.`
 	spaceport `	You notice quite a few families with children sitting by the windows on the upper stories of the tower, watching starships landing and taking off. Many of them have brought folding chairs or blankets to sit on. That must be what passes for entertainment on this world.`
 	shipyard "Basic Ships"
 	shipyard "Southbound Basics"
@@ -28473,7 +28473,7 @@ planet Pearl
 planet "Pelubta Station"
 	attributes arach "coalition station" research
 	landscape land/station5
-	description `Pelubta Station was built shortly after the Arach discovered the hyperdrive, initially to take advantage of the massive amounts of solar power generated by the nearby stars. However, now it is mainly used as a hyperspace fuel refinery. Although it has endured some solar flares, constant maintenance means that the station still doesn't show it's age.`
+	description `Pelubta Station was built shortly after the Arachi discovered the hyperdrive, initially to take advantage of the massive amounts of solar power generated by the nearby stars. However, now it is mainly used as a hyperspace fuel refinery. Although it has endured some solar flares, constant maintenance means that the station still doesn't show its age.`
 	description `	Pelubta Station is also used to study one of the binary stars in this system, since it has a similar makeup and age to one orbited by a Heliarch ringworld. Most of this research is focused on predicting stellar phenomena, especially the most abnormal ones.`
 	spaceport `The intake section has a consistently high traffic, mostly made up of Coalition merchants supplying the station and leaving with shipments of fuel to take to other Arach worlds. The science section seems to be completely closed off to non-Heliarchs. Considering that the work done here should be relatively benign, the station may also serve other purposes.`
 	"required reputation" 20
@@ -28695,8 +28695,8 @@ planet Revelation
 planet "Ring of Friendship"
 	attributes heliarch station
 	landscape land/station2
-	description `This is the crown jewel of the Heliarchs, a ringworld that was completed by the Quarg before the Coalition formed and drove them away. It now serves both as a center of finance and trade, and as the seat of the Heliarch government, which is made up of "elders" who have been selected by the other Heliarchs from among their number in such a way that all three species always have equal representation. The Heliarchs, in turn, are selected from among the best and brightest members of each species. Despite the occasional resistance to it, this meritocracy has survived ten times longer than any human democracy.`
-	spaceport `At any given time, thousands of young people are in training here to become "interpreters," the Heliarch agents who serve as translators and mediators on all the Coalition worlds. As they rise through the ranks, some of those agents will be honored by being elevated to the rank of Heliarch, gaining a voice in the selection of new elders and perhaps one day even being selected themselves.`
+	description `This is the crown jewel of the Heliarchs, a ringworld that was completed by the Quarg before the Coalition formed and drove them away. It now serves both as a center of finance and trade, and as the seat of the Heliarch government, which is made up of "consuls" who have been selected by the other Heliarchs from among their number in such a way that all three species always have equal representation. The Heliarchs, in turn, are selected from among the best and brightest members of each species. Despite the occasional resistance to it, this meritocracy has survived ten times longer than any human democracy.`
+	spaceport `At any given time, thousands of young people are in training here to become "interpreters," the Heliarch agents who serve as translators and mediators on all the Coalition worlds. As they rise through the ranks, some of those agents will be honored by being elevated to the rank of Heliarch, gaining a voice in the selection of new consuls and perhaps one day even being selected themselves.`
 	spaceport `	Heliarch rank is not hereditary, and the children of Heliarchs are given no special preferment for promotions or educational opportunities.`
 	"required reputation" 5
 	bribe 0
@@ -29035,7 +29035,7 @@ planet Sinter
 planet Siteria
 	attributes ka'het uninhabited
 	landscape land/water0
-	description `An Earth-like planet, Siteria is notable for the large number of settlements on it: every few kilometers there are the remains of a sizeable village, some of which which still haven't been completely covered by vegetation even today. A couple cities even have tall buildings still partially held together, signifying how durable the constructions of the planet's original inhabitants were.`
+	description `An Earth-like planet, Siteria is notable for the large number of settlements on it: every few kilometers there are the remains of a sizeable village, some of which still haven't been completely covered by vegetation even today. A couple cities even have tall buildings still partially held together, signifying how durable the constructions of the planet's original inhabitants were.`
 
 planet Skillet
 	attributes north mining farming frontier
@@ -29167,7 +29167,7 @@ planet Starcross
 planet "Starting Rubin"
 	attributes kimek "coalition station" shipping wealthy
 	landscape land/space3
-	description `Starting Rubin was far from being the first station constructed around the Kimek homeworld, but it is the oldest one to still be on orbit. It was built as an orbital equivalent to the hunger towers found on the planet it orbits, as a safety measure against the disasters that may affect Ki Patek Ka.`
+	description `Starting Rubin was far from being the first station constructed around the Kimek homeworld, but it is the oldest one to still be in orbit. It was built as an orbital equivalent to the hunger towers found on the planet it orbits, as a safety measure against the disasters that may affect Ki Patek Ka.`
 	description `	Since the residents need little of the food produced, it quickly became the station's primary export, transforming it into one of the largest trading hubs of the region. It has also the largest population of any Coalition station, capable of supporting tens of thousands of Kimek.`
 	spaceport `Despite only having the population of a small city, the arrivals deck of Starting Rubin is as crowded as the largest spaceports. Civilian ships belonging to all three Coalition species can be seen arriving or departing every couple minutes. While there doesn't seem to be any military facility, there are some civilian shops on the station, although they sell nothing but few Kimek items.`
 	shipyard Kimek

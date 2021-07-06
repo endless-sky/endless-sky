@@ -11,6 +11,7 @@
 # Outfits
 
 outfit "Small EM Battery"
+	plural "Small EM Batteries"
 	category "Power"
 	cost 200000
 	thumbnail "outfit/small embattery"
@@ -23,6 +24,7 @@ outfit "Small EM Battery"
 	description "This small superconductive inductor stores just enough power to keep a fighter running, and the electromagnetic field it generates helps to maintain the shield matrix."
 
 outfit "Large EM Battery"
+	plural "Large EM Batteries"
 	category "Power"
 	cost 1000000
 	thumbnail "outfit/embattery"
@@ -115,7 +117,7 @@ outfit "Fusion Drive"
 		"rewind"
 	"reverse flare sound" "atomic large"
 	"unplunderable" 1
-	description "The Sheragi engines are much more than simple tubes spewing fire; they are a collection of interdependent devices, providing increased efficiency at the cost of modularity. These include a hyperdrive, an enormous fusion reactor, and the most powerful plasma engines you've ever seen. It's all examples of relatively simple technology, but they have been refined and taken to their extreme. The engines are fundamentally connected to the fusion reactor, increasing their thrust even further and thereby allowing the Emerald Sword to fly at impressive speeds, travelling through interstellar space with relative ease."
+	description "The Sheragi engines are much more than simple tubes spewing fire; they are a collection of interdependent devices, providing increased efficiency at the cost of modularity. These include a hyperdrive, an enormous fusion reactor, and the most powerful plasma engines you've ever seen. It's all examples of relatively simple technology, but they have been refined and taken to their extreme. The engines are fundamentally connected to the fusion reactor, increasing their thrust even further and thereby allowing the Emerald Sword to fly at impressive speeds, traveling through interstellar space with relative ease."
 
 outfit "Electronic Warfare System"
 	category "Systems"
