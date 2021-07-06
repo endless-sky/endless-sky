@@ -1100,7 +1100,7 @@ mission "Remnant Rescue"
 
 # The Rescue Dummy is meant to suicide as soon as possible on entering the randomized system.
 ship "Rescue Dummy"
-	sprite "ship/behemoth"
+	#sprite "ship/behemoth"
 	attributes
 		"heat dissipation" 1
 		"hull" 1
