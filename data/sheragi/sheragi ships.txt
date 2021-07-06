@@ -158,6 +158,7 @@ ship "Emerald Sword" "Emerald Sword (Fixed)"
 ship "Black Diamond"
 	sprite "ship/blackdiamond"
 	thumbnail "thumbnail/blackdiamond"
+	swizzle 9
 	attributes
 		category "Fighter"
 		"cost" 1000000
