@@ -198,7 +198,8 @@ contributed to Endless Sky:
   jozef-mitro
   Jugosloven1612
   Karirawri
-  kestrel1110 (Bereskatuket)
+  kestrel1110
+    Bereskatuket
   KevinKorzekwa
   kilobyte
   kkuchta
