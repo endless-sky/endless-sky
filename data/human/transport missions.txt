@@ -3283,4 +3283,3 @@ mission "Human to Hai Space"
 				`	"I didn't mean to be rude, I just didn't know that Hai adopted humans here."`
 				`	"No problem, I hope you enjoyed the trip."`
 			`	After thanking you once again, they walk off. As they leave, you overhear Benjamin talk to his family about his trip. "They had so many kinds of food there, it was delicious! Although I did get homesick for pickled acorns..."`
-				decline
