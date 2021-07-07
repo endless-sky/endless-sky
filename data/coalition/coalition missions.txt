@@ -1424,7 +1424,14 @@ mission "Coalition: Submarines 1"
 			`	"No facilities for such construction, Second Cerulean has," he explains. "Remain mostly untouched, the planet must. Build more than simple research stations on it, we cannot. But in need of sturdier subs, we are, so held a competition to determine what company was to build them, my group did. In my opinion, honestly, not needed such a process was. Obvious that House Mallob would win, it was. Unrivaled in hull integrity, they are."`
 			choice
 				`	"Fair enough. I'll show you to my ship."`
+					goto accept
+				`	"What's so special about this planet that you can't do it there? One shipyard shouldn't be too invasive."`
 				`	"Well, I wish you luck, but I'm not headed that way, sorry."`
+					decline
+			`	"Centuries ago, when built there, our outpost was, being worried that trouble the delicate, unique food chains there, further expansion would, prohibited all from settling, and us from constructing any more than the necessary structures, the government did. Enough data, we've gathered, that managed to convince them to allow us some extra exploration vessels, we have. More invasive, the studies with them will be, but enough about the fauna and flora, we now know, that avoid any major complications, we can."`
+			choice
+				`	"Seems like a lot of bureaucracy just for some research. Anyway, I'd be glad to help, let's head to my ship."`
+				`	"That sounds overly complicated. I wish you luck in getting it all set, but I'm not headed there, so I can't help you."`
 					decline
 			label accept
 			`	"Very good. Thank you, Captain. Called Apri'ie, and a member of the Pale Waters research center, I am. A wonderful trip, may we have." You bring him to your ship and help him settle what little luggage he has in his room.`
