@@ -48,6 +48,7 @@ Version 0.9.14:
   * User interface:
     * The "interrupt fast-forward" setting now defaults to off instead of on. (@Terin)
     * Fixed a misaligned UI element in the map panel. (@Terin)
+    * Messages about low crew ships are no longer considered "important," meaning they will no longer be pushed to the bottom of the message list every time they trigger and drown out other messages. (@ravenshining)
   * Under the hood:
     * Combined checking if a stellar object has a planet and if that planet is valid into a single method. (@tehhowch)
     * Having multiple missing frames for a sprite are now logged to the error file on a single line instead of generating a new line for each missing frame. (@ashdnazg, @tehhowch)

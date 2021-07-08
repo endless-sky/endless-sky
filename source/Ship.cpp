@@ -1699,9 +1699,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	{
 		pilotError = 30;
 		if(parent.lock() || !isYours)
-			Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it.");
+			Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it.", false);
 		else
-			Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it.");
+			Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it.", false);
 	}
 	else
 		pilotOkay = 30;
