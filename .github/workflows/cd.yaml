@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - 0.9.15
   pull_request:
     types:
       - synchronize
