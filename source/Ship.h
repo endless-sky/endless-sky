@@ -320,7 +320,7 @@ public:
 	double MaxVelocity() const;
 	double MaxReverseVelocity() const;
 	
-	// This ship just got hit by a projectile or a hazard. Take damage according to
+	// This ship just got hit by a projectile or hazard. Take damage according to
 	// what sort of weapon the projectile or hazard has. The return value is a ShipEvent
 	// type, which may be a combination of PROVOKED, DISABLED, and DESTROYED.
 	// If isBlast, this ship was caught in the blast radius of a weapon but was
