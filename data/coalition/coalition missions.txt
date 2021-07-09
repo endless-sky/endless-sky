@@ -1406,7 +1406,7 @@ mission "Coalition: Pilgrimage 1"
 	destination "Saros"
 	on offer
 		conversation
-			`Shortly after entering the spaceport, you catch the attention of a Saryd lady with gray, braided hair that reaches to her shoulders, dragging along a single suitcase. "Hello Captain. Taking new passengers, are you?" she asks. She shows you a piece of jewelry on her hand, a small bronze bangle with a diamond at the center. "Vellorae, my name is, and in need of a transport for a pilgrimage, I am."`
+			`Shortly after entering the spaceport, you catch the attention of a Saryd lady with gray, braided hair that reaches to her shoulders dragging along a single suitcase. "Hello, Captain. Taking new passengers, are you?" she asks. She shows you a piece of jewelry on her hand, a small bronze bangle with a diamond at the center. "Vellorae, my name is, and in need of a transport for a pilgrimage, I am."`
 			choice
 				`	"Pilgrimage? What do you mean?"`
 				`	"Are you offering to pay me with that? I only take credits."`
@@ -1415,17 +1415,17 @@ mission "Coalition: Pilgrimage 1"
 			`	She gazes at the bangle, clenching her hand as she raises it closer to her face. "The remains of my late husband, Adfices, this is. Passed away recently, he has, and visit certain sites of worship, I want to, so that wish him a safe journey, I may."`
 			choice
 				`	"You turned your husband into jewelry?"`
-				`	"I'm sorry for your loss. I'd be glad to help, could you tell me where you wish to go?"`
+				`	"I'm sorry for your loss. I'd be glad to help; could you tell me where you wish to go?"`
 					goto accept
 				`	"My condolences, but I'm not looking to take more jobs right now."`
 					decline
-			`	"A common practice, in Saryd families it is. Made out of cremation ashes, much better at preserving memories of loved ones, these gemstones are." She explains. "Since developed, the technique was, practiced by nearly all who could afford it, it has been. To have the rivers and fields share our sorrow, we wish not, so nearly unheard of nowadays, Saryd burials are."`
+			`	"A common practice, in Saryd families it is. Made out of cremation ashes, and much better at preserving memories of loved ones, these gemstones are." She explains. "Since developed, the technique was, practiced by nearly all who could afford it, it has been. To have the rivers and fields share our sorrow, we wish not. So nearly unheard of nowadays, Saryd burials are."`
 			choice
-				`	"Well, I'd be glad to help you, could you tell me where you wish to go?"`
+				`	"Well, I'd be glad to help you. Could you tell me where you wish to go?"`
 				`	"I see. Well, I hope everything goes well, but I can't help you. I'm not looking for any jobs right now."`
 					decline
 			label accept
-			`	"Thank you, Captain. Five different sites, I wish to visit, and traditionally the first of them, the Shrine of Aul Kell is. On <destination>, it is. Once there we are, easy to find it in the capital, it should be."`
+			`	"Thank you, Captain. Five different sites, I wish to visit, and traditionally the first of them, the Shrine of Aul Kell is. On <destination>, it is. Once there we are, easy to find in the capital, it should be."`
 			`	You show her to your ship, helping her settle in her bunk. Once you're done, you set a course for <planet>.`
 				accept
 	on visit
@@ -1461,13 +1461,13 @@ mission "Coalition: Pilgrimage 2"
 			label shrine
 			`	"Attributed with the gift of sunlight, Aul Kell is. As such, seek his blessings in the shrines, for many occasions we do. Only some of them, mourning and espousals are."`
 			label ritual
-			`	The couples keep exchanging their vows, until just before midday, when the sun is nearly over the central altar. At this point, the Saryds all look around the clearing, making space for Vellorae as they see her approaching the shrine. She places the bangle atop the altar so it catches the sun's light, reflecting it throughout the clearing. Vellorae then begins walking around the altar, repeatedly circling it as the sun climbs higher, until it finally reaches its peak and the sun's reflection on the gem is strongest. At this point she approaches the altar again and covers the bangle with her hands. She remains there silently for a moment, then she retrieves the bangle and leaves the shrine. As she walks past, the other Saryds give her sympathetic looks, and one of the younger ones even approaches to offer her condolences before Vellorae approaches you again.`
+			`	The couples keep exchanging their vows until just before midday, when the sun is nearly over the central altar. At this point, the Saryds all look around the clearing, making space for Vellorae as they see her approaching the shrine. She places the bangle atop the altar so it catches the sun's light, reflecting it throughout the clearing. Vellorae then begins walking around the altar, repeatedly circling it as the sun climbs higher, until it finally reaches its peak and the sun's reflection on the gem is strongest. At this point, she approaches the altar again and covers the bangle with her hands. She remains there silently for a moment, and then she retrieves the bangle and leaves the shrine. As she walks past, the other Saryds give her sympathetic looks, and one of the younger ones even approaches to offer her condolences before Vellorae approaches you again.`
 			`	"Finished I am, Captain. Back to the ship, we may go," she says once she's beside you. You two head back; this time you pass by a few more Saryds on the trail and return to your ship.`
 				goto end
 			label skip
-			`	You wait for a few hours by the spaceport city, until Vellorae returns about an hour after noon.`
+			`	You wait for a few hours by the spaceport city until Vellorae returns about an hour after noon.`
 			label end
-			`	"<destination>, the next stop is. Wish to give Adfices Velaulra's Blessing, I wish." She says, heading into her bunk, as you prepare for the next trip.`
+			`	"<destination>, the next stop is. Wish to give Adfices Velaulra's Blessing, I wish," she says, heading into her bunk as you prepare for the next trip.`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Vellorae hasn't entered the system yet. Better depart and wait for it.`
@@ -1497,7 +1497,7 @@ mission "Coalition: Pilgrimage 3"
 					goto prayer
 			`	"A deity of life and plenty, Velaulra is, and as the greatest bounty of all, life is, strong ties with newborn children, she has. Common places for mothers to bond with their young ones, her shrines are." Vellorae explains. "In my case, here to thank her for Adfices' life, and all plenty there was in it, I am. Take my hands for a prayer, would you?"`
 			choice
-				`	"I know this is important for you, but I'm not one for prayers, sorry."`
+				`	"I know this is important for you, but I'm not one for prayers. Sorry."`
 				`	"I don't fully understand this, but I'd be glad to. What do I have to do?"`
 					goto prayer
 			label noprayer
@@ -1535,15 +1535,15 @@ mission "Coalition: Pilgrimage 4"
 				`	"If it's alright for me to go, I'd love to."`
 				`	"I don't want to disturb anyone, so I'll stay by the ship and wait for you."`
 					goto notgo
-			`	"Wonderful!" She cheers, tapping her frontal hooves lightly on the ground. "Now, guide us to the shrine, would you, young dear?" she asks the local Saryd, who turns around and gestures for you to follow.`
-			`	You stick close to Vellorae as the two of you try to keep the local Saryd in sight. The task is difficult as he nearly vanishes into the fog whenever he gets too far ahead, only for his silhouette to become clearer again after he waits for you to catch up. After many minutes you feel the ground beneath your shoes shift from the solid spaceport platform, to gravel, and then to wet patches of the planet's mossy "grass." Finally you reach a minuscule lake, or perhaps a very large puddle, in the middle of a mossy field surrounded by toppled and hollowed out tree trunks.`
-			`	As the two of you approach the water, the local Saryd warns you not to touch it. Vellorae looks at it as if gazing into a mirror; or perhaps she is just trying to make out the reflection of the moon, scattered and vague though it is through the layers of mist. She then moves to one of the tree trunks, and placing the bangle inside it as she lays on the ground facing the water, lays both her hands reverently on the trunk. She spends nearly an hour in this position, during which the chill of the fog slowly seeps through your coat and into your bones. Vellorae and the Saryd who guided you don't seem particularly bothered by it, but she is quick to finish once she looks over and notices you shivering. She picks the bangle up from the trunk and stands, then asks the other Saryd to guide you two back to the spaceport.`
+			`	"Wonderful!" she cheers, tapping her frontal hooves lightly on the ground. "Now, guide us to the shrine, would you, young dear?" she asks the local Saryd, who turns around and gestures for you to follow.`
+			`	You stick close to Vellorae as the two of you try to keep the local Saryd in sight. The task is difficult as he nearly vanishes into the fog whenever he gets too far ahead, only for his silhouette to become clearer again after he waits for you to catch up. After many minutes, you feel the ground beneath your shoes shift from the solid spaceport platform to gravel to wet patches of the planet's mossy "grass." Finally you reach a minuscule lake, or perhaps a very large puddle, in the middle of a mossy field surrounded by toppled and hollowed out tree trunks.`
+			`	As the two of you approach the water, the local Saryd warns you not to touch it. Vellorae looks at it as if gazing into a mirror, or perhaps she is just trying to make out the reflection of the moon, scattered and vague through the layers of mist. She then moves to one of the tree trunks, and placing the bangle inside it as she lays on the ground facing the water, lays both her hands reverently on the trunk. She spends nearly an hour in this position, during which the chill of the fog slowly seeps through your coat and into your bones. Vellorae and the Saryd who guided you don't seem particularly bothered by it, but she is quick to finish once she looks over and notices you shivering. She picks the bangle up from the trunk and stands, and then asks the other Saryd to guide you two back to the spaceport.`
 			`	"For taking so long, terribly sorry I am, Captain <last>," she says on the way back. "Lost in prayer I was, not even consider how uncomfortable the cold must've been for you, I did."`
 			choice
 				`	"Don't worry, wasn't too bad. Seems you were really involved in praying."`
 				`	"Why did this one take so long? Is there something special about the shrine's deity?"`
 			`	"The hunter bird of nightfall and omens, Magl Ina is. When mourning someone dear, one is, ask it for forgiveness for their wrongdoings, they must."`
-			`	You follow the Saryd back to the gravelly path, and then to the spaceport grounds, where Vellorae thanks him for guiding the two of you to the shrine. He offers his condolences and wishes her a safe journey to the next shrine. He soon disappears into the fog again, and you and Vellorae head back to your ship.`
+			`	You follow the Saryd back to the gravel path and then to the spaceport grounds, where Vellorae thanks him for guiding the two of you to the shrine. He offers his condolences and wishes her a safe journey to the next shrine. He soon disappears into the fog again, and you and Vellorae head back to your ship.`
 				goto end
 			label notgo
 			`	She sighs briefly, and agrees to meet with you later, following the Saryd local deep into the fog stretching out of the city. You head inside your ship, waiting for a few hours until you hear a voice just outside your hatch. You let Vellorae in once you realize that it's hers.`
@@ -1573,14 +1573,14 @@ mission "Coalition: Pilgrimage 5"
 				`	(Go along with her.)`
 				`	(Stay in your ship.)`
 					goto notgo
-			`	She takes you around the spaceport city, touring some clothing shops and bringing you to some parks she tells you she had visited with her husband. Shortly after noon you two enter a restaurant, where she insists on paying for your meal. You tour the city with her for a while longer and, just before the sun sets, reach the forest at the base of the mountain on top of which Starlit University is located.`
-			`	Once night falls, many lights start to appear inside the forest, and Vellorae beckons you to follow her into the forest. "Stick close, you should. Difficult to navigate the path, for other species it often is." As you walk down a trail with her, you approach one of the lights to see that it's a bonfire on a platform in a miniature clearing, at what you hope is a safe distance from the trees around it. Continuing to the next light, Vellorae clutches the bangle in her hands the entire time, humming some guttural, almost tribal chant. As you pass by another fire, a short burst of flames gets closer to some nearby shrubs, but thankfully is put out before it can cause any harm. It is extinguished with an odd, large fabric net on a pole by a cloaked Saryd who seemed to materialize from the trees near the fire.`
+			`	She takes you around the spaceport city, touring some clothing shops and bringing you to parks she had visited with her husband. Shortly after noon you two enter a restaurant, where she insists on paying for your meal. You tour the city with her for a while longer and, just before the sun sets, reach the forest at the base of the mountain on top of which Starlit University is located.`
+			`	Once night falls, many lights start to appear inside the forest, and Vellorae beckons you to follow her in. "Stick close, you should. Difficult to navigate the path, for other species it often is." As you walk down a trail with her, you approach one of the lights to see that it's a bonfire on a platform in a miniature clearing, at what you hope is a safe distance from the trees around it. Continuing to the next light, Vellorae clutches the bangle in her hands the entire time, humming some guttural, almost tribal chant. As you pass by another fire, a short burst of flames gets closer to some nearby shrubs, but thankfully is put out before it can cause any harm. It is extinguished with an odd, large, fabric net on a pole by a cloaked Saryd who seemed to materialize from the trees near the fire.`
 			`	"Take care to not damage the forest with the path's fires, we must, so volunteer for keeping the flames, many of the local students do." Vellorae tells you. "When visiting here, Adfices and I were, wondered if any extra credits, the task granted, but apparently only out of a respect for Lor Ie Vees, the students do it."`
 			choice
 				`	"Why? Is that some god of knowledge?"`
 					goto knowledge
 				`	"Maybe they like being on good terms with the divine in hopes of doing well in tests?"`
-			`	She stops for a second to laugh. "The case, that might be." She looks around, as if seeing if someone else caught her breaking the serene, humming chant.`
+			`	She stops for a second to laugh. "The case, that might be." She looks around, seeing if someone else caught her breaking the serene, humming chant.`
 			label knowledge
 			`	"Taught the first Saryds how to hunt, he did. To pursue knowledge, and overcome challenges, his teachings are." She explains. "Seek communion with him, not only students, but all going through a difficult period, should."`
 			`	You continue to follow her closely through the forest, regularly passing more bonfires, until you see multiple lights in the distance and realize it is the edge of the forest leading back into the city. Only as you step out of the woods do you notice that you're back where the path started, even though you were certain you had kept to only one side of the mountain.`
@@ -1606,7 +1606,7 @@ mission "Coalition: Pilgrimage 5"
 			choice
 				`	"Sure. Where are we going?"`
 					goto shrine
-				`	"I'll pass, I'm not up for it right now."`
+				`	"I'll pass. I'm not up for it right now."`
 			`	Her eyes go to the bangle, travel around the room, and then fixate on your again. "Please, Captain? I know that agreed to follow me to the shrines for the job, you didn't, but alone there, I do not wish to be."`
 			choice
 				`	"Alright, if it'll help you relax I'll go with you."`
@@ -1617,8 +1617,8 @@ mission "Coalition: Pilgrimage 5"
 			`	Long after the sun has set, the Kimek returns, rushing to their ship while trying to shake off the cold. You ask them about Vellorae, and they tell you she headed for the spaceport to "clear her head."`
 				accept
 			label shrine
-			`	She takes a long, deep breath. "Thank you, Captain. Far outside the village, the site is. Come, show you the way there, I will." You leave your ship and follow her to the railway hub and board one of trains that appears to be one of the oldest and most simple. It lacks seats for non-Saryds, so you are forced to hold tight to what handrails you can reach.`
-			`	You remain on the train until the very last stop, when the sun is already starting to set. As you depart the train, you see a rural village with just a few dozen buildings and a simple dirt road, where a couple workers battle the snow and ice to keep it clear and easy to traverse. You follow Vellorae down the road, and once you reach a rocky pillar with a hole carved through it, Vellorae turns to the forest, heading out on a thin, straight trail. Looking behind you, you see the setting sun fitting inside the pillar's opening.`
+			`	She takes a long, deep breath. "Thank you, Captain. Far outside the village, the site is. Come, show you the way there, I will." You leave your ship, follow her to the railway hub, and board one of trains that appears to be one of the oldest and most simple. It lacks seats for non-Saryds, so you are forced to hold tight to what handrails you can reach.`
+			`	You remain on the train until the very last stop, when the sun is already starting to set. As you depart, you see a rural village with just a few dozen buildings and a simple dirt road, where a couple workers battle the snow and ice to keep it clear and easy to traverse. You follow Vellorae down the road, and once you reach a rocky pillar with a hole carved through it, she turns to the forest, heading out on a thin, straight trail. Looking behind you, you see the setting sun fitting inside the pillar's opening.`
 			`	As you follow Vellorae down the trail, you see the trees gradually show more and more signs of a forest fire, with darker, damaged barks, increasingly ashy soil, and many fallen, decomposing portions of the forest. The trail ends abruptly at a large scar scorched through the forest. The piles of ash still present below your feet almost resemble the rest of the planet's otherwise snowy ground, but somehow are kept from mixing with the snow. Whether deliberately cleared by more workers or some other force, you cannot tell. Near the center of the scar you see a small mound with an opening in the side, almost like a "shack" made out of the charred tree trunks and rocks. A faint light comes from within it.`
 			`	While you're looking at the mound, Vellorae grabs your hand and starts hesitantly pulling you towards it. Inside, the fading sunlight behind you contrasts with the source of the light within, a small pyre in the middle of the "shack" which has only a few lone flames dancing on the embers. Vellorae lays down in front of it, removes her bangle, and places it in the flames for a brief moment before snatching it up and standing again. Once on her feet, she grabs your hand again, tugging you along as she hurries back to the edge of the scorched clearing.`
 			`	She seems to settle again once you have reached the trail, letting go of your hand and slowing her pace.`
@@ -1642,15 +1642,15 @@ mission "Coalition: Pilgrimage 6"
 		conversation
 			`You find Vellorae in a snack shop, finishing up a hot drink. "Apologize for the wait I must, Captain. Ready to leave, I was not."`
 			choice
-				`	"Thought you'd be feeling better than this, you've finally finished your pilgrimage after all."`
+				`	"Thought you'd be feeling better than this. You've finally finished your pilgrimage, after all."`
 					goto better
-				`	"I get it, sometimes I also need a drink to help me think things over."`
-			`	She chuckles, "A herbal tea, this is. Help me calm down and rest on the way back home, it will."`
+				`	"I get it. Sometimes I also need a drink to help me think things over."`
+			`	She chuckles. "A herbal tea, this is. Help me calm down and rest on the way back home, it will."`
 				goto end
 			label better
-			`	"Yes, relieved I feel, that able to do this, I was. Just, still coming to terms with everything, I am."`
+			`	"Yes, relieved I feel, that able to do this, I was. Just... still coming to terms with everything, I am."`
 			label end
-			`	She finishes the drink, and gets up to pay for her order, following you to your ship afterwards. "Ready to head back home, I am," she tells you, heading into her bunk, as you prepare the course for <destination>.`
+			`	She finishes the drink and gets up to pay for her order, following you to your ship afterwards. "Ready to head back home, I am," she tells you, heading into her bunk as you prepare the course for <destination>.`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Vellorae hasn't entered the system yet. Better depart and wait for it.`
@@ -1659,4 +1659,4 @@ mission "Coalition: Pilgrimage 6"
 		payment 220000
 		conversation
 			`Once she leaves your ship, Vellorae gives you your payment of <payment>, and takes your hands in hers. "Deeply grateful I am, for having accompanied me in this journey, Captain <last>. Sure that grateful for your help, Adfices also is."`
-			`	She lets go of your hands, and wishes you the best in your travels, then turns and leaves for her home.`
+			`	She lets go of your hands, wishes you the best in your travels, and then turns and leaves for her home.`
