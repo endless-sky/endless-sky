@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Sets the application build number in EndlessSky-Info.plist to the first argument. It should be an integer.
 # Example:
