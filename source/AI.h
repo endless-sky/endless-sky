@@ -111,8 +111,10 @@ private:
 	void DoMining(Ship &ship, Command &command);
 	bool DoHarvesting(Ship &ship, Command &command);
 	bool DoCloak(Ship &ship, Command &command);
-	void DoRoving(Ship &ship, Command &command);
+	bool DoRoving(Ship &ship, Command &command, unsigned int rovingShipCount);
 	bool DoEvasive(Ship &ship, Command &command);
+	// Make one roving ship land or leave when there are too many other roving ships.
+	void DespawnRovingShip();
 	// Prevent ships from stacking on each other when many are moving in sync.
 	void DoScatter(Ship &ship, Command &command);
 	

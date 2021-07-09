@@ -519,6 +519,12 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			value = min(FENCE_MAX, value + FENCE_DECAY + 1);
 		}
 	
+	// How many roving ships there are in the system.
+	unsigned int rovingShipCount = 0;
+	for(const auto &ship: ships)
+		if(ship->GetPersonality().IsRoving())
+			rovingShipCount++;
+	
 	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
 	int targetTurn = 0;
@@ -786,7 +792,8 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		// Ships with the Roving personality should aimlessly scoot about the system.
 		if(isPresent && personality.IsRoving() && !target && !isStranded)
 		{
-			DoRoving(*it, command);
+			if(DoRoving(*it, command, rovingShipCount))
+				rovingShipCount--;
 			it->SetCommands(command);
 			continue;
 		}
@@ -2604,8 +2611,28 @@ bool AI::DoCloak(Ship &ship, Command &command)
 
 
 
-void AI::DoRoving(Ship &ship, Command &command)
+bool AI::DoRoving(Ship &ship, Command &command, unsigned int rovingShipCount)
 {
+	const System* system = ship.GetSystem();
+	if(rovingShipCount > 9 && system)
+	{
+		if(ship.Fuel() > ship.JumpFuel() || ship.Fuel() > ship.JumpDriveFuel())
+		{
+			MoveIndependent(ship, command);
+			return true;
+		}
+		else if (system->IsInhabited(&ship))
+		{
+			for(const StellarObject& planet: system->Objects())
+				if(CanRefuel(ship, &planet))
+				{
+					ship.SetTargetStellar(&planet);
+				}
+			Refuel(ship, command);
+			return true;
+		}
+	}
+	
 	const Point target = ship.GetTargetPosition();
 	const auto v = ship.MaxVelocity();
     if(!target || MoveTo(ship, command, target, Point(), v, v))
@@ -2613,6 +2640,8 @@ void AI::DoRoving(Ship &ship, Command &command)
         Point newTarget = Angle::Random().Unit() * Random::Real() * MAX_DISTANCE_FROM_CENTER;
         ship.SetTargetPosition(newTarget);
     }
+    
+    return false;
 }
 
 
