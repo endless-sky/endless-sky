@@ -71,7 +71,8 @@ outfit "Small Cogeneration Module"
 
 outfit "Large Cogeneration Module"
 	category "Power"
-	licenses Coalition
+	licenses
+		Coalition
 	cost 799000
 	thumbnail "outfit/large cogeneration module"
 	"mass" 46
