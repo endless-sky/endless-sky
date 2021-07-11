@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.9.13
+version 0.9.14
 
 This game is open source.
 To report bugs, give feedback,
@@ -198,6 +198,7 @@ contributed to Endless Sky:
   jozef-mitro
   Jugosloven1612
   Karirawri
+  kestrel1110
   KevinKorzekwa
   kilobyte
   kkuchta

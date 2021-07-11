@@ -493,6 +493,8 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		bright, Truncate::MIDDLE, true);
 	table.DrawTruncatedPair("net worth:", dim, Format::Credits(player.Accounts().NetWorth()) + " credits",
 		bright, Truncate::MIDDLE, true);
+	table.DrawTruncatedPair("time played:", dim, Format::PlayTime(player.GetPlayTime()),
+		bright, Truncate::MIDDLE, true);
 	
 	// Determine the player's combat rating.
 	int combatLevel = log(max<int64_t>(1, player.GetCondition("combat rating")));
