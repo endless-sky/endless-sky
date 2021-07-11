@@ -3237,14 +3237,15 @@ bool Ship::CanCarry(const Ship &ship) const
 	// Check only for the category that we are interested in.
 	const string &category = ship.attributes.Category();
 	
-	int free = BaysFree(category);
+	int free = BaysTotal(category);
 	if(!free)
 		return false;
 	
 	for(const auto &it : escorts)
 	{
 		auto escort = it.lock();
-		if(escort && escort->attributes.Category() == category)
+		if(escort && escort.get() != &ship && escort->attributes.Category() == category 
+			&& !escort->IsDestroyed())
 			--free;
 	}
 	return (free > 0);
