@@ -579,6 +579,9 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		for(const auto &gov : toProvoke)
 			gov->Offend(ShipEvent::PROVOKE);
 		// Terrorizing a planet is not taken lightly by it or its allies.
+		// TODO: Use a distinct event type for the domination system and
+		// expose syntax for controlling its impact on the targeted government
+		// and those that know it.
 		GetGovernment()->Offend(ShipEvent::ATROCITY);
 		return "Our defense fleet will make short work of you.";
 	}

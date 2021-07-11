@@ -49,6 +49,7 @@ public:
 	const std::map<const Effect *, int> &FireEffects() const;
 	const std::map<const Effect *, int> &LiveEffects() const;
 	const std::map<const Effect *, int> &HitEffects() const;
+	const std::map<const Effect *, int> &TargetEffects() const;
 	const std::map<const Effect *, int> &DieEffects() const;
 	const std::map<const Outfit *, int> &Submunitions() const;
 	
@@ -179,6 +180,7 @@ private:
 	std::map<const Effect *, int> fireEffects;
 	std::map<const Effect *, int> liveEffects;
 	std::map<const Effect *, int> hitEffects;
+	std::map<const Effect *, int> targetEffects;
 	std::map<const Effect *, int> dieEffects;
 	std::map<const Outfit *, int> submunitions;
 	
