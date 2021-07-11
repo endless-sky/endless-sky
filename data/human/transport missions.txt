@@ -1878,7 +1878,7 @@ mission "Terraforming 10"
 			label situation
 			`	One of the other scientists responds, "What we plan to do is encourage the eruption of this volcano by making the crust above the volcano thinner. When the pressure of the magma is able to overcome the pressure of the crust, an eruption will occur."`
 			`	"How exactly do you plan to do that?" the Tundra representative responds. "And what will happen to the people who live near that area?"`
-			`	Nolan answers, "The people who live near the volcano will need to evacuate the area with all their belongings. The Republic should provide any assistance needed for the evacuation. As for how we will cause the volcano to erupt, we need something energetic enough to crack the planet's crust in the location of the volcano, releasing the pressure that the magma is causing to spark an eruption. That's where we bring in another asteroi-"`
+			`	Nolan answers, "The people who live near the volcano will need to evacuate the area with all their belongings. The Republic should provide any assistance needed for the evacuation. As for how we will cause the volcano to erupt, we need something energetic enough to crack the planet's crust in the location of the volcano, releasing the pressure that the magma is causing to spark an eruption. That's where we bring in another asteroi--"`
 			`	"No, no, no!" the Republic representative exclaims, cutting Nolan off mid-sentence. "The Republic will not gain a reputation for crashing asteroids into its own planets. The consequences of such an action could be disastrous should it go wrong! And in what way will this warm the planet when the resulting volcanic winter could last decades and only result in an even colder climate? Are you not even old enough to remember how a supereruption on Hope caused the evacuation of the entire planet? If the people of Tundra are this desperate to terraform their planet then normal techniques should be employed, none of this 'equilibrium mapping' nonsense."`
 			`	"Sir," Amy speaks up with a stern tone of voice, "we have already been authorized by the Republic to undergo this terraforming experiment, so unless you have half a teraton of cheap explosives, we're going to need to use an asteroid. The volcanic winter can be easily avoided by having a fleet of freighters sweep the volcanic ash out of the atmosphere, meaning we'll get the benefits of the greenhouse gases without the detriments of volcanic ash reflecting Cebalrai's heat back into space. No one knew the volcano on Hope was going to erupt, but we can prepare for this eruption and take steps to mitigate the problems." Amy looks the representative straight in the eyes and smirks. "We're scientists, we have this handled."`
 			`	The representative falls silent. After a moment of thinking, he says "Captain, I need you to take me to Parliament. I may be able to authorize the use of explosives that should suffice, but it may not be as cheap as Ms. Amy is hoping. We're not about to turn asteroids into our single solution for everything."`
@@ -2203,7 +2203,7 @@ mission "Lost Boy 2"
 			
 			label ship
 			`	The boy runs past you and into your ship. Following closely behind Tod is a large bearded man holding a laser rifle in one hand and a fragmentation grenade in the other.`
-			`	"That's my crew member, you no-good piece of sh-"`
+			`	"That's my crew member, you no-good piece of sh--"`
 			`	Before the captain is able to finish his sentence, pipes in the wall next to him explode, blasting hot steam all over the right side of his body, causing him to begin rolling on the floor in horrible screeches of pain. Not wanting to stay connected to the ship any longer than you need to be, you run back into your ship and fly away.`
 				launch
 
@@ -3209,3 +3209,98 @@ mission "Earth Retirement"
 			label reject
 			`	Charles looks surprised for a moment, and then, for the first time you've seen, he smiles. "Thank you, Captain <last>. I wish there were more people like you in the Paradise Worlds."`
 			`	You wish the couple the best of luck on Earth, and they slowly make their way to the train station. Presumably, their new apartment is far from here.`
+
+
+
+mission "Spacediving professionals"
+	job
+	repeat
+	name "Spacediving at <planet>"
+	description "Head to <destination> with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing thermal spacesuits, durable parachutes, and oxygen bottles to ensure their survival. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is <payment>."
+	passengers 5 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 1 7
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes "station"
+		not attributes "research"
+	to offer
+		random < 14
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 120000
+		dialog "As you descend through the upper atmosphere, the skydivers jump from your ship, spectacularly diving until they open their parachutes and land safely near the spaceport. You collect your payment of <payment>."
+
+
+
+mission "Spacediving professionals accident"
+	job
+	repeat
+	name "Spacediving at <planet>"
+	description "Head to <destination> with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing thermal spacesuits, durable parachutes, and oxygen bottles to ensure their survival. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is 120000."
+	passengers 5 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 1 7
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes "station"
+		not attributes "research"
+	to offer
+		"Spacediving professionals: done" > 7
+		random < 2
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog "As you descend through the upper atmosphere, the skydivers jump from your ship, spectacularly diving until they try to open their parachutes. Some of the parachutes open only partially and part of the team suffers an uncontrolled hard landing. Medical teams respond quickly, but the skydivers are too preoccupied with their injured teammates to pay you the credits they owe you."
+
+
+
+mission "Spacediving professionals disaster"
+	job
+	repeat
+	name "Spacediving at <planet>"
+	description "Head to <destination> with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing thermal spacesuits, durable parachutes, and oxygen bottles to ensure their survival. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is 120000."
+	passengers 5 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 1 7
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes "station"
+		not attributes "research"
+	to offer
+		has "Spacediving professionals accident: done"
+		random < 1
+		credits >= 5000000
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment -200000
+		dialog "As you descend through the upper atmosphere, the skydivers jump from your ship. Some minutes into the jump disaster strikes; the skydivers start moving in an uncontrolled manner. It's unclear if the spacesuits or the oxygen supplies were at fault, but it looks unlikely that any of the skydivers makes it safely to the ground. Authorities investigate the incident and although they don't find serious wrongdoings on your part, they still fine you <payment> for enabling such a dangerous and deadly act."
+
+
+
+mission "Spacediving amateurs"
+	job
+	repeat
+	name "Spacediving at <planet>"
+	description "Head to <destination> with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing tricked-out wingsuits, brightly-patterned parachutes, and carrying beer bottles for an after-landing celebration. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is 120000 credits."
+	passengers 5 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 1 7
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes station
+		not attributes research
+	to offer
+		"Spacediving professionals: done" > 3
+		random < 5
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 30000
+		dialog "As you descend through the upper atmosphere, you inform your skydivers that it's time to jump. However, after being able to see the distances and atmospheric conditions involved, all of them are far less keen on the idea than when you first picked them up. You bring them down to the landing pad, and they pay you a meager <payment> before hopping off."
