@@ -1568,7 +1568,7 @@ mission "Sheragi Archaeology: Epilogue"
 				`	"I wonder how it works."`
 					goto works
 				`	"That's what she said."`
-			`	Desyo doesn't understand, but Eyama bursts into laughter. "Classic human joke. You see, it implies-"`
+			`	Desyo doesn't understand, but Eyama bursts into laughter. "Classic human joke. You see, it implies--"`
 			`	"God, don't explain it," Albert interrupts. "That was terrible. She's right though, that isn't something you see every day. Do you have any idea how it works?"`
 			label works
 			`	Rakei, who is more knowledgeable in this area, responds. "It's a fusion-pumped gamma-ray laser, or GRASER for short. The device is simple in concept, but the cost involved and the proportion of everything makes it impractical to develop, not to mention that to use it would probably be considered a war crime in many civilizations, thus making R&D not worth it. It's essentially using a nuclear flash to power a laser beam that penetrates and melts everything. Fascinating, but I'm hoping you'll only use it for peacekeeping purposes."`
