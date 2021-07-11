@@ -3494,9 +3494,9 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		if(activeCommands.Has(Command::SECONDARY))
 		{
 			int index = 0;
+			const auto &playerSelectedWeapons = player.SelectedWeapons();
 			for(const Hardpoint &hardpoint : ship.Weapons())
 			{
-				const auto playerSelectedWeapons = player.SelectedWeapons();
 				if(hardpoint.IsReady() && (playerSelectedWeapons.find(hardpoint.GetOutfit()) != playerSelectedWeapons.end()))
 					command.SetFire(index);
 				++index;
