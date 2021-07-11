@@ -2255,14 +2255,12 @@ void Engine::AddSprites(const Ship &ship)
 		}
 	};
 	
-	// Gun hardpoints are drawn under the ship, while turret hardpoints are drawn
-	// over it.
 	for(const Hardpoint &hardpoint : ship.Weapons())
-		if(!hardpoint.IsTurret())
+		if(hardpoint.IsUnder())
 			drawHardpoint(hardpoint);
 	drawObject(ship);
 	for(const Hardpoint &hardpoint : ship.Weapons())
-		if(hardpoint.IsTurret())
+		if(!hardpoint.IsUnder())
 			drawHardpoint(hardpoint);
 	
 	if(ship.IsThrusting() && !ship.EnginePoints().empty())
