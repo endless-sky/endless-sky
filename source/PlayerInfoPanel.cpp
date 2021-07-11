@@ -512,12 +512,10 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 			combatRating, dim, Truncate::MIDDLE, false);
 		table.DrawTruncatedPair("experience:", dim,
 			Format::Number(combatExperience), dim, Truncate::MIDDLE, false);
-		if(combatRating == GameData::Rating("combat", combatLevel + 1))
-			table.DrawTruncatedPair("    for next rank:", dim,
-				"MAX", dim, Truncate::MIDDLE, false);
-		else
-			table.DrawTruncatedPair("    for next rank:", dim,
-				Format::Number(ceil(exp(combatLevel + 1))), dim, Truncate::MIDDLE, false);
+		bool maxRank = (combatRating == GameData::Rating("combat", combatLevel + 1));
+		table.DrawTruncatedPair("    for next rank:", dim,
+				maxRank ? "MAX" : Format::Number(ceil(exp(combatLevel + 1))),
+				dim, Truncate::MIDDLE, false);
 	}
 	
 	// Display the factors affecting piracy targeting the player.
