@@ -660,7 +660,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 						if(commodity.second && toDump > 0)
 						{
 							int dumped = min(commodity.second, toDump);
-							it->Jettison(commodity.first, dumped);
+							it->Jettison(commodity.first, dumped, true);
 							toDump -= dumped;
 						}
 					Messages::Add(gov->GetName() + " " + it->Noun() + " \"" + it->Name()
