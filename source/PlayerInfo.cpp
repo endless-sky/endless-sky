@@ -2058,8 +2058,6 @@ void PlayerInfo::SelectNext()
 	// was selected when we entered this function.
 	if(selectedWeapons.size() == 1)
 		selectedWeapons.clear();
-
-	return;
 }
 
 
