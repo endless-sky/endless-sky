@@ -1445,13 +1445,13 @@ mission "Coalition: Alpha Encounter"
 				`	"What, did you have a change of heart once you got here?"`
 			`	He sits on the ground for a while, thinking. "I was one of those that fought humanity after the first Turf War. I was ambushed, cornered many times - fear wasn't a stranger to me. After we stole that jump drive and ventured east, however, someone or... something rather, some voice spoke to me. It was the first time I felt scared. After that, I wasn't inclined to go back east with the others, no matter how silly a reason they thought it was. When I got here, me and my crew helped the Heliarchs with translations for humans, and I told them about humanity and the Alphas. They took me in, but demanded my jump drive, so I handed it over. Damn thing got me in more trouble than it was worth anyway."`
 			choice
-				`	"So where are the other Alphas that came with you?"`
-					goto others
+				`	"Voices in your head? Are you sure you weren't just imagining them?"`
+					goto imaginary
 				`	"What did the voice say?"`
-			`	He forces a chuckle out. "You got here, so you have a jump drive, I assume? Go on, head east and maybe it'll speak to you too. Find out if it classifies you as 'disposable' as well."`
+			`	He looks away from you. "You're here now, aren't you? This means you must have a device to jump beyond links as I did. Travel to the east and find out for yourself what the voices say. Find out if it classifies you as 'disposable' as well.`
 				goto end
-			label others
-			`	"Others? Oh, you misunderstood me. I took a crew of brigands and pirates. They're all long dead now, most of old age. I'd say they made the right choice in coming with me, no matter how much they protested that the aliens here were too... alien."`
+			label imaginary
+			`	He looks away from you. "No imaginary thing could have such an impact on me. You're here now, aren't you? This means you must have a device to jump beyond links as I did. Travel to the east and find out for yourself that the voices are real."`
 			label end
 			`	The Heliarchs inform you that the medic has arrived, and bring you further down the hallway to a room where they treat your bruises. Although the Alpha was right in that you weren't injured much, the Heliarchs insist on cleaning up your injuries. Once they're done, an agent escorts you back to your ship.`
 				decline
