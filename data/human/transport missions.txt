@@ -3210,7 +3210,7 @@ mission "Earth Retirement"
 			`	Charles looks surprised for a moment, and then, for the first time you've seen, he smiles. "Thank you, Captain <last>. I wish there were more people like you in the Paradise Worlds."`
 			`	You wish the couple the best of luck on Earth, and they slowly make their way to the train station. Presumably, their new apartment is far from here.`
 
-mission "Human to Hai Space"
+mission "Human to Hai Space - No Contact"
 	minor
 	description "Bring a human passenger to <destination> in Hai space."
 	source
@@ -3220,12 +3220,10 @@ mission "Human to Hai Space"
 	passengers 1
 	to offer
 		random < 10
+		not "First Contact: Hai: offered"
 	on offer
 		conversation
 			`A young person approaches you carrying luggage. "You look like a knowledgeable captain," he says. "Do you know of a place I can go to visit some... intelligent rodents?"`
-			branch "hai contact"
-				has "First Contact: Hai: offered"
-			
 			choice
 				`	"What are you talking about?"`
 					goto "confused"
@@ -3237,8 +3235,19 @@ mission "Human to Hai Space"
 			label "confused"
 			`	"Oh, never mind then," he says, with a note of disappointment in his voice. As he leaves, you can't help feeling like you were missing some context.`
 				decline
-			
-			label "hai contact"
+mission "Human to Hai Space - Contact"
+	minor
+	description "Bring a human passenger to <destination> in Hai space."
+	source
+		government "Republic" "Syndicate" "Free Worlds"
+		attributes "tourism" "urban"
+	to offer
+		random < 10
+		has "First Contact: Hai: offered"
+		not "Human to Hai Space - No Contact: offered"
+	on offer
+		conversation
+			`A young person approaches you carrying luggage. "You look like a knowledgeable captain," he says. "Do you know of a place I can go to visit some... intelligent rodents?"`
 			choice
 				`	"You mean the Hai? You'll have to go up north for that."`
 					goto "squirrel transport"
