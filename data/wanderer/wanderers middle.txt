@@ -3107,7 +3107,7 @@ mission "Wanderers: Sestor: Factory 1"
 		has "Wanderers: Sestor: Exiles 3: done"
 	on offer
 		conversation
-			`Rek brings the Korath to meet with the Wanderer leaders. After the meeting ends, she and Tele'ek meet up with you. "That was a strange meeting," says Tele'ek. "It did not feel like a peace summit, but like a child's play at a peace summit, as if negotiating for peace is a skill they are only just beginning to learn. And the terms they asked for were minimal; I would have preferred to offer them far more. But they are taking steps toward becoming a peaceful society, and for that we can be grateful."`
+			`Rek brings the Korath to meet with the Wanderer leaders. After the meeting ends, she and Tele'ek meet up with you. "That was a strange meeting," says Rek. "It did not feel like a peace summit, but like a child's play at a peace summit, as if negotiating for peace is a skill they are only just beginning to learn. And the terms they asked for were minimal; I would have preferred to offer them far more. But they are taking steps toward becoming a peaceful society, and for that we can be grateful."`
 			choice
 				`	"So, what do we do now?"`
 					goto next
