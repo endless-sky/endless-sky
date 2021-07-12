@@ -2241,8 +2241,8 @@ void Engine::AddSprites(const Ship &ship)
 	if(ship.IsSteering() && !ship.SteeringEnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.SteeringEnginePoints(), ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::UNDER);
 	
-	drawObject(ship);
-	for(const Hardpoint &hardpoint : ship.Weapons())
+	auto drawHardpoint = [&drawObject, &ship](const Hardpoint &hardpoint) -> void
+	{
 		if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
 		{
 			Body body(
@@ -2253,6 +2253,15 @@ void Engine::AddSprites(const Ship &ship)
 				ship.Zoom());
 			drawObject(body);
 		}
+	};
+	
+	for(const Hardpoint &hardpoint : ship.Weapons())
+		if(hardpoint.IsUnder())
+			drawHardpoint(hardpoint);
+	drawObject(ship);
+	for(const Hardpoint &hardpoint : ship.Weapons())
+		if(!hardpoint.IsUnder())
+			drawHardpoint(hardpoint);
 	
 	if(ship.IsThrusting() && !ship.EnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.EnginePoints(), ship.Attributes().FlareSprites(), Ship::EnginePoint::OVER);

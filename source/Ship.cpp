@@ -280,6 +280,7 @@ void Ship::Load(const DataNode &node)
 			}
 			Angle gunPortAngle = Angle(0.);
 			bool gunPortParallel = false;
+			bool drawUnder = (key == "gun");
 			if(child.HasChildren())
 			{
 				for(const DataNode &grand : child)
@@ -287,15 +288,19 @@ void Ship::Load(const DataNode &node)
 						gunPortAngle = grand.Value(1);
 					else if(grand.Token(0) == "parallel")
 						gunPortParallel = true;
+					else if(grand.Token(0) == "under")
+						drawUnder = true;
+					else if(grand.Token(0) == "over")
+						drawUnder = false;
 					else
 						child.PrintTrace("Warning: Child nodes of \"" + key + "\" tokens can only be \"angle\" or \"parallel\":");
 			}
 			if(outfit)
 				++equipped[outfit];
 			if(key == "gun")
-				armament.AddGunPort(hardpoint, gunPortAngle, gunPortParallel, outfit);
+				armament.AddGunPort(hardpoint, gunPortAngle, gunPortParallel, drawUnder, outfit);
 			else
-				armament.AddTurret(hardpoint, outfit);
+				armament.AddTurret(hardpoint, drawUnder, outfit);
 			// Print a warning for the first hardpoint after 32, i.e. only 1 warning per ship.
 			if(armament.Get().size() == 33)
 				child.PrintTrace("Warning: ship has more than 32 weapon hardpoints. Some weapons may not fire:");
@@ -903,17 +908,18 @@ void Ship::Save(DataWriter &out) const
 			else
 				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y());
 			double hardpointAngle = hardpoint.GetBaseAngle().Degrees();
-			if(hardpoint.IsParallel() || hardpointAngle)
+			out.BeginChild();
 			{
-				out.BeginChild();
-				{
-					if(hardpointAngle)
-						out.Write("angle", hardpointAngle);
-					if(hardpoint.IsParallel())
-						out.Write("parallel");
-				}
-				out.EndChild();
+				if(hardpointAngle)
+					out.Write("angle", hardpointAngle);
+				if(hardpoint.IsParallel())
+					out.Write("parallel");
+				if(hardpoint.IsUnder())
+					out.Write("under");
+				else
+					out.Write("over");
 			}
+			out.EndChild();
 		}
 		for(const Bay &bay : bays)
 		{
