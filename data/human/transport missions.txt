@@ -3212,30 +3212,28 @@ mission "Earth Retirement"
 
 mission "Human to Hai Space - No Contact"
 	minor
-	description "Bring a human passenger to <destination> in Hai space."
 	source
 		government "Republic" "Syndicate" "Free Worlds"
 		attributes "tourism" "urban"
-	destination "Greenwater"
-	passengers 1
 	to offer
-		random < 10
+		random < 2
 		not "First Contact: Hai: offered"
 	on offer
 		conversation
 			`A young person approaches you carrying luggage. "You look like a knowledgeable captain," he says. "Do you know of a place I can go to visit some... intelligent rodents?"`
 			choice
 				`	"What are you talking about?"`
-					goto "confused"
+					goto confused
 				`	"What, like in a zoo?"`
-					goto "confused"
+					goto confused
 				`	"Are you high?"`
 			`	"No, I want to go to the Hai-" He stops once he realizes you have no idea what he's talking about. "Oh, never mind then," he says, with a note of disappointment in his voice. As he leaves, you can't help feeling like you were missing some context.`
 				decline
-			label "confused"
+			label confused
 			`	"Oh, never mind then," he says, with a note of disappointment in his voice. As he leaves, you can't help feeling like you were missing some context.`
 				decline
-mission "Human to Hai Space - Contact"
+
+mission "Human to Hai Space"
 	minor
 	description "Bring a human passenger to <destination> in Hai space."
 	source
@@ -3250,12 +3248,14 @@ mission "Human to Hai Space - Contact"
 			`A young person approaches you carrying luggage. "You look like a knowledgeable captain," he says. "Do you know of a place I can go to visit some... intelligent rodents?"`
 			choice
 				`	"You mean the Hai? You'll have to go up north for that."`
-					goto "squirrel transport"
+					goto hai
 				`	"Ah, I think I know of some large squirrels to the north of here."`
-					goto "squirrel transport"
+					goto hai
 				`	"What are you talking about?"`
-					goto "confused"
-			label "squirrel transport"
+			`	"Oh, never mind then," he says, with a note of disappointment in his voice. As he leaves, you can't help feeling like you were missing some context.`
+				decline
+			
+			label hai
 			`	"If that's the case, could you bring me to <destination>? I'll give you <payment>."`
 			choice
 				`	"Alright, I'll take you there."`
@@ -3266,14 +3266,15 @@ mission "Human to Hai Space - Contact"
 			`	"I have family there," he says. "I came out here to do some traveling and see a bit of human space, but now I have to get back home. You see, I was born on <planet>, and this is my first time out of the wormhole."`
 			choice
 				`	"Really? How did you like human space?"`
-					goto "travel"
+					goto travel
 				`	"You've never been to human space before?"`
 			`	"Nope, first time! I've never been so far from home before. Now that I think about it, I probably should've arranged transport back to Hai space beforehand. You wouldn't believe how hard it is to find a captain here that knows about the Hai. I had to ask about six others until I found you. They all thought I was crazy, talking about meeting giant squirrels." He laughs and shakes his head. "So anyways, would you be willing to take me to <destination>?"`
-				goto "decision"
-			label "travel"
+				goto decision
+			
+			label travel
 			`	"It was quite the trip! It's a bit odd to see only humans around, and I had to be careful to not mention where I was from. But it was definitely worth it! I got to see Earth, Skymoot, Chiron, and so many other beautiful planets. Seeing human culture with my own eyes was an eye-opening experience, although some of the places there were less... clean than I expected. I was almost robbed on Earth; I'm not used to pickpockets back home. Perhaps human space isn't as safe as Hai space, but I still don't regret coming here. It's about time for me to go back, though."`
 				
-			label "decision"
+			label decision
 			choice
 				`	"Alright, I'll take you there."`
 					accept
