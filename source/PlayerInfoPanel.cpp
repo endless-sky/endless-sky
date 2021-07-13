@@ -509,7 +509,7 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		table.DrawGap(5);
 		
 		table.DrawTruncatedPair("rank:", dim,
-			"(" + to_string(combatLevel) + ") - " + combatRating,
+			to_string(combatLevel) + " - " + combatRating,
 			dim, Truncate::MIDDLE, false);
 		table.DrawTruncatedPair("experience:", dim,
 			Format::Number(combatExperience), dim, Truncate::MIDDLE, false);
