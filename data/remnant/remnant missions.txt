@@ -1338,6 +1338,7 @@ mission "Remnant Rescue 4"
 			not system "Perfica"
 			not system "Farinus"
 			not system "Edusa"
+			not system "Aki'il"
 		personality escort derelict heroic plunders
 		government "Remnant"
 		fleet
