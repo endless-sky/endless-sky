@@ -507,9 +507,8 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		table.DrawGap(5);
 		
 		table.DrawTruncatedPair("rank:", dim,
-			to_string(combatLevel), dim, Truncate::MIDDLE, false);
-		table.DrawTruncatedPair("title:", dim,
-			combatRating, dim, Truncate::MIDDLE, false);
+			"(" + to_string(combatLevel) + ") - " + combatRating,
+			dim, Truncate::MIDDLE, false);
 		table.DrawTruncatedPair("experience:", dim,
 			Format::Number(combatExperience), dim, Truncate::MIDDLE, false);
 		bool maxRank = (combatRating == GameData::Rating("combat", combatLevel + 1));
