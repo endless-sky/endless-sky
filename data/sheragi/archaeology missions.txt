@@ -212,7 +212,7 @@ mission "Deep Archaeology 5"
 		conversation
 			`You breathe a sigh of relief as you land safely in the spaceport on <planet>. "Okay, what was that all about?" you ask.`
 			`	"I honestly don't know," says Albert. "I can tell you what I suspect, though. The history books don't actually say when the Deep was first settled. The first documented expedition to the Deep was in the 24th century, and they found several human colonies already established in the region, claiming to date back to the very dawn of space flight. But I think the first settlers were brought there long before that. Brought there on alien ships."`
-			branch "pug"
+			branch pug
 				or
 					has "FWC Pug 2: offered"
 					has "FW Pug 3: offered"
@@ -235,17 +235,17 @@ mission "Deep Archaeology 5"
 			`	John frowns. "Hemocyanic blood. Not the Quarg, then. Their lungs are odd, but their blood uses hemoglobin for oxygen transport, just like ours."`
 				goto end
 			label surprise
-			`	Albert and John look at each other confusedly for a second before Albert says, "The aliens that invaded human space?"`
-			`	John appears to think hard on the subject before saying, "Of course! I don't know how we didn't think of it. From the descriptions that I've heard about them, they almost exactly match the folk tales in the Deep about 'elves.'"`
-			`	"Thin, pale, and blue blooded, yes? Well, I think you may have found our aliens, Captain <last>," replies Albert.`
+			`	Albert and John give confused looks at each other for a second before Albert says, "The aliens that invaded human space?"`
+			`	John appears to think hard on the subject before saying, "That's certainly an interesting connection. I don't know how we didn't think of it. From the descriptions that I've heard about them, they almost exactly match the folk tales in the Deep about 'elves.'"`
+			`	"Thin, pale, and blue blooded, yes? Well, I think you may have figured something out, Captain <last>," replies Albert.`
 			choice
-				`	"That's great, but I think they're far too dangerous to be useful to us now."`
+				`	"That's great, but what does it mean for us?"`
 					goto dangerous
 				`	"From what I understand, they've been around for a while, and have mentioned past interference in the Deep."`
 			`	"Well then, we have good reason to believe they fit into our current knowledge of the timeline here. However, I don't think it's a good idea for us to get involved in a volatile alien species like that, especially after the danger we've just fled from."`
 				goto final
 			label dangerous
-			`	"I've heard similar," says John, "but nevertheless, it is at least useful to know the timeline of events here."`
+			`	"Nothing immediately," says John, "but nevertheless, it is at least useful to know the timeline of events here."`
 			`	"Indeed," replies Albert, "simply knowing of their presence here aids in our research."`
 				goto final
 			label end
