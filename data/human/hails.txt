@@ -255,8 +255,40 @@ phrase "media name"
 	word
 		`"`
 
+phrase "drugs"
+	word
+		"bad blues"
+		"boosters"
+		"bootleg alcohol"
+		"cores"
+		"deeps"
+		"flavor drops"
+		"good reds"
+		"hallucinogens"
+		"horse tranquilizers"
+		"knockout pills"
+		"memory chips"
+		"narcotics"
+		"opium"
+		"quasars"
+		"red giants"
+		"southern snacks"
+		"space weed"
+		"steam"
+		"steroids"
+		"stolen pharmaceuticals"
+		"death sticks"
+		"fire apples"
+		"hot wings"
+		"ringworld shavings"
+		"solaris joyrides"
+		"stardust"
+		"toad juice"
+		"whale blubber"
+
 phrase "contraband"
 	word
+		"${drugs}" 28
 		"biochemical weapons"
 		"conflict minerals"
 		"counterfeit artwork"
@@ -465,9 +497,7 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		""
-		""
-		""
+		"" 3
 		"Man, "
 		"Ugh, "
 		"You know, "
@@ -586,8 +616,7 @@ phrase "friendly civilian"
 	word
 		"!"
 	word
-		""
-		""
+		"" 2
 		" Have you heard it yet?"
 		" You gotta hear it!"
 		" I was into them before they were popular."
@@ -2495,28 +2524,8 @@ phrase "friendly pirate"
 		" incredible "
 		" facinating "
 		" "
-	word
-		"bad blue"
-		"booster"
-		"core"
-		"death stick"
-		"deep"
-		"fire apple"
-		"flavor drop"
-		"good red"
-		"happy stick"
-		"hot wing"
-		"memory chip"
-		"quasar"
-		"red giant"
-		"ringworld shaving"
-		"solaris joyride"
-		"southern snack"
-		"space weed"
-		"stardust"
-		"steam"
-		"toad juice"
-		"whale blubber"
+	phrase
+		"drugs"
 	word
 		" "
 	word
@@ -2609,8 +2618,7 @@ phrase "friendly pirate"
 	word
 		" "
 	word
-		"selling drugs"
-		"selling slaves"
+		"selling ${contraband}"
 		"plundering merchants"
 		"fetching bounties"
 	word
@@ -2723,9 +2731,8 @@ phrase "friendly pirate"
 	word
 		" "
 	word
-		"buy drugs from"
-		"sell drugs to"
-		"sell slaves to"
+		"buy ${contraband} from"
+		"sell ${contraband} to"
 	word
 		" "
 	word
@@ -2764,8 +2771,7 @@ phrase "friendly pirate"
 		"and the militia starts chasing me."
 		"and the Syndicate starts chasing me."
 	word
-		""
-		""
+		"" 2
 		" More interference plating would have helped."
 		" This interference plating is useless!"
 		" I could have gotten out faster if I had a scram drive."
@@ -2830,12 +2836,7 @@ phrase "friendly disabled"
 		"Good to see a friendly face! "
 		"Hey, please! "
 		"Over here! "
-		""
-		""
-		""
-		""
-		""
-		""
+		"" 6
 	word
 		"Our ship is disabled,"
 		"We're kinda stuck here,"
@@ -2857,10 +2858,7 @@ phrase "friendly disabled"
 		" so we can get out of here?"
 		" as soon as possible?"
 		"? I don't want to get stranded here!"
-		"?"
-		"?"
-		"?"
-		"?"
+		"?" 4
 
 phrase "friendly disabled"
 	word
@@ -2886,10 +2884,7 @@ phrase "friendly disabled"
 		" so we can get out of here?"
 		" as soon as possible?"
 		"? I don't want to get stranded here!"
-		"?"
-		"?"
-		"?"
-		"?"
+		"?" 4
 
 phrase "friendly disabled"
 	word
@@ -2908,9 +2903,7 @@ phrase "friendly disabled"
 		" pesky"
 		" sleazy"
 		" scummy"
-		""
-		""
-		""
+		"" 3
 	word
 		" "
 	word
@@ -3391,9 +3384,7 @@ phrase "friendly deep"
 	word
 		" "
 	word
-		""
-		""
-		""
+		"" 3
 		"are called to "
 		"are diligent to "
 		"must constantly "
@@ -3412,9 +3403,7 @@ phrase "friendly deep"
 	word
 		" "
 	word
-		""
-		""
-		""
+		"" 3
 		"the forces of "
 		"perpetrators of "
 		"those who bring "
