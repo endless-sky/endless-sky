@@ -328,6 +328,7 @@
 		<Unit filename="source/text/Table.h" />
 		<Unit filename="source/text/Utf8.cpp" />
 		<Unit filename="source/text/Utf8.h" />
+		<Unit filename="source/text/WeightedList.h" />
 		<Unit filename="source/text/WrappedText.cpp" />
 		<Unit filename="source/text/WrappedText.h" />
 		<Unit filename="source/text/alignment.hpp" />
