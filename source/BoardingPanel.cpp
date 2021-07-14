@@ -204,8 +204,8 @@ void BoardingPanel::Draw()
 			Round(defenseOdds.DefenderCasualties(vCrew, crew)));
 	}
 	
-	const Interface *interface = GameData::Interfaces().Get("boarding");
-	interface->Draw(info, this);
+	const Interface *boarding = GameData::Interfaces().Get("boarding");
+	boarding->Draw(info, this);
 	
 	// Draw the status messages from hand to hand combat.
 	Point messagePos(50., 55.);

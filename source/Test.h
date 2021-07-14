@@ -72,6 +72,9 @@ public:
 	public:
 		Type stepType = Type::ASSERT;
 		std::string nameOrLabel;
+		// Variables for travelpan/navigate steps.
+		std::vector<const System *> travelPlan;
+		const Planet *travelDestination = nullptr;
 		// For applying condition changes, branching based on conditions or
 		// checking asserts (similar to Conversations).
 		ConditionSet conditions;

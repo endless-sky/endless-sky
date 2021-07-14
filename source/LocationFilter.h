@@ -33,7 +33,7 @@ class System;
 // certain distance away from the current system.
 class LocationFilter {
 public:
-	LocationFilter() = default;
+	LocationFilter() noexcept = default;
 	// Construct and Load() at the same time.
 	LocationFilter(const DataNode &node);
 	

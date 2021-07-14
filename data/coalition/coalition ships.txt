@@ -660,6 +660,28 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Missile)"
 		"Large Steering Module"
 		"Hyperdrive"
 
+ship "Heliarch Interdictor" "Heliarch Interdictor (Scrappy)"
+	outfits
+		"Bombardment Cannon" 2
+		"Bombardment Turret" 2
+
+		"Large Reactor Module"
+		"Small Reactor Module"
+		"Large Battery Module" 2
+		"Overcharged Shield Module"
+		"Overclocked Repair Module" 2
+		"Cooling Module" 3
+		"Scanning Module" 5
+		"Outfits Expansion" 2
+		"Enforcer Riot Staff" 29
+		"Enforcer Confrontation Gear" 29
+
+		"Large Thrust Module" 2
+		"Small Thrust Module"
+		"Large Steering Module" 2
+		"Small Steering Module"
+		"Hyperdrive"
+
 
 ship "Heliarch Judicator"
 	sprite "ship/heliarch judicator"
@@ -727,7 +749,7 @@ ship "Heliarch Judicator"
 	explode "large explosion" 20
 	explode "huge explosion" 10
 	"final explode" "final explosion large" 1
-	description `During their time battling the Quarg, the Coalition focused on producing the strongest, toughest warships they could, so fightercraft were out of question. Now, however, the Heliarch's shield matrix and hull integrity technology is much more advanced, and they have recently experimented with such ships. The Judicator was made for transportation of these new fighters.`
+	description `During their time battling the Quarg, the Coalition focused on producing the strongest, toughest warships they could, so fightercraft were out of the question. Now, however, the Heliarch's shield matrix and hull integrity technology is much more advanced, and they have recently experimented with such ships. The Judicator was made for transportation of these new fighters.`
 	description `	Alongside their six fighter bays, Judicators come with a large bunk count and higher cargo space than other Heliarch warships, thus doubling as a logistics vessel for transporting troops and equipment.`
 
 ship "Heliarch Judicator" "Heliarch Judicator (Attractor)"
