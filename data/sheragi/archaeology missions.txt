@@ -242,7 +242,7 @@ mission "Deep Archaeology 5"
 				`	"That's great, but what does it mean for us?"`
 					goto dangerous
 				`	"From what I understand, they've been around for a while, and have mentioned past interference in the Deep."`
-			`	"Well then, we have good reason to believe they fit into our current knowledge of the timeline here. However, I don't think it's a good idea for us to get involved in a volatile alien species like that, especially after the danger we've just fled from."`
+			`	"Well then, if the Pug have admitted to 'interfering' with the Deep in the past then we have good reason to believe they fit into our current knowledge of the timeline here," Albert replies. "Unfortunately we can't just ask the Pug exactly what they've done or when they did it, but simply knowing of their presence here aids in our research."`
 				goto final
 			label dangerous
 			`	"Nothing immediately," says John, "but nevertheless, it is at least useful to know the timeline of events here."`
