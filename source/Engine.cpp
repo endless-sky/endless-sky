@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Engine.h"
 
 #include "Audio.h"
+#include "CategoryTypes.h"
 #include "CoreStartData.h"
 #include "Effect.h"
 #include "Files.h"
@@ -364,7 +365,7 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 			if(ship->HasBays())
 			{
 				ship->UnloadBays();
-				for(const string &bayType : Ship::BAY_TYPES)
+				for(const string &bayType : GameData::Category(CategoryType::BAY))
 				{
 					int baysTotal = ship->BaysTotal(bayType);
 					if(baysTotal)

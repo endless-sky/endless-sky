@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipInfoPanel.h"
 
 #include "text/alignment.hpp"
+#include "CategoryTypes.h"
 #include "Command.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
@@ -337,7 +338,7 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 	table.DrawAt(start);
 	
 	// Draw the outfits in the same order used in the outfitter.
-	for(const string &category : Outfit::CATEGORIES)
+	for(const string &category : GameData::Category(CategoryType::OUTFIT))
 	{
 		auto it = outfits.find(category);
 		if(it == outfits.end())
