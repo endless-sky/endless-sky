@@ -493,9 +493,12 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		bright, Truncate::MIDDLE, true);
 	table.DrawTruncatedPair("net worth:", dim, Format::Credits(player.Accounts().NetWorth()) + " credits",
 		bright, Truncate::MIDDLE, true);
+	table.DrawTruncatedPair("time played:", dim, Format::PlayTime(player.GetPlayTime()),
+		bright, Truncate::MIDDLE, true);
 	
 	// Determine the player's combat rating.
-	int combatLevel = log(max<int64_t>(1, player.GetCondition("combat rating")));
+	int combatExperience = player.GetCondition("combat rating");
+	int combatLevel = log(max<int64_t>(1, combatExperience));
 	const string &combatRating = GameData::Rating("combat", combatLevel);
 	if(!combatRating.empty())
 	{
@@ -505,8 +508,15 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		table.Advance();
 		table.DrawGap(5);
 		
-		table.DrawTruncatedPair(combatRating, dim,
-			"(" + to_string(combatLevel) + ")", dim, Truncate::MIDDLE, false);
+		table.DrawTruncatedPair("rank:", dim,
+			to_string(combatLevel) + " - " + combatRating,
+			dim, Truncate::MIDDLE, false);
+		table.DrawTruncatedPair("experience:", dim,
+			Format::Number(combatExperience), dim, Truncate::MIDDLE, false);
+		bool maxRank = (combatRating == GameData::Rating("combat", combatLevel + 1));
+		table.DrawTruncatedPair("    for next rank:", dim,
+				maxRank ? "MAX" : Format::Number(ceil(exp(combatLevel + 1))),
+				dim, Truncate::MIDDLE, false);
 	}
 	
 	// Display the factors affecting piracy targeting the player.

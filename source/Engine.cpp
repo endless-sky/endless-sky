@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Engine.h"
 
 #include "Audio.h"
+#include "CategoryTypes.h"
 #include "CoreStartData.h"
 #include "Effect.h"
 #include "Files.h"
@@ -364,7 +365,7 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 			if(ship->HasBays())
 			{
 				ship->UnloadBays();
-				for(const string &bayType : Ship::BAY_TYPES)
+				for(const string &bayType : GameData::Category(CategoryType::BAY))
 				{
 					int baysTotal = ship->BaysTotal(bayType);
 					if(baysTotal)
@@ -1016,7 +1017,8 @@ void Engine::Draw() const
 		if(pos.Y() < ammoBox.Top() + ammoPad)
 			break;
 		
-		bool isSelected = it.first == player.SelectedWeapon();
+		const auto &playerSelectedWeapons = player.SelectedWeapons();
+		bool isSelected = (playerSelectedWeapons.find(it.first) != playerSelectedWeapons.end());
 		
 		SpriteShader::Draw(it.first->Icon(), pos + iconOff);
 		SpriteShader::Draw(isSelected ? selectedSprite : unselectedSprite, pos + boxOff);
@@ -1986,14 +1988,16 @@ void Engine::DoCollisions(Projectile &projectile)
 				if(isSafe && projectile.Target() != ship && !gov->IsEnemy(ship->GetGovernment()))
 					continue;
 				
-				int eventType = ship->TakeDamage(projectile, ship != hit.get());
+				int eventType = ship->TakeDamage(visuals, projectile.GetWeapon(), 1.,
+					projectile.DistanceTraveled(), projectile.Position(), projectile.GetGovernment(), ship != hit.get());
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
 		}
 		else if(hit)
 		{
-			int eventType = hit->TakeDamage(projectile);
+			int eventType = hit->TakeDamage(visuals, projectile.GetWeapon(), 1.,
+				projectile.DistanceTraveled(), projectile.Position(), projectile.GetGovernment());
 			if(eventType)
 				eventQueue.emplace_back(gov, hit, eventType);
 		}
@@ -2032,7 +2036,11 @@ void Engine::DoWeather(Weather &weather)
 		// and max ranges at the hazard's origin. Any ship touching this ring takes
 		// hazard damage.
 		for(Body *body : shipCollisions.Ring(Point(), hazard->MinRange(), hazard->MaxRange()))
-			reinterpret_cast<Ship *>(body)->TakeHazardDamage(visuals, hazard, multiplier);
+		{
+			Ship *hit = reinterpret_cast<Ship *>(body);
+			double distanceTraveled = hit->Position().Length() - hit->GetMask().Radius();
+			hit->TakeDamage(visuals, *hazard, multiplier, distanceTraveled, Point(), nullptr, hazard->BlastRadius() > 0.);
+		}
 	}
 }
 
@@ -2046,7 +2054,8 @@ void Engine::DoCollection(Flotsam &flotsam)
 	for(Body *body : shipCollisions.Circle(flotsam.Position(), 5.))
 	{
 		Ship *ship = reinterpret_cast<Ship *>(body);
-		if(!ship->CannotAct() && ship != flotsam.Source() && ship->Cargo().Free() >= flotsam.UnitSize())
+		if(!ship->CannotAct() && ship != flotsam.Source() && ship->GetGovernment() != flotsam.SourceGovernment()
+			&& ship->Cargo().Free() >= flotsam.UnitSize())
 		{
 			collector = ship;
 			break;
@@ -2218,7 +2227,7 @@ void Engine::AddSprites(const Ship &ship)
 		// Draw cloaked/cloaking sprites swizzled red, and overlay this solid
 		// sprite with an increasingly transparent "regular" sprite.
 		if(drawCloaked)
-			itemsToDraw.AddSwizzled(body, 7);
+			itemsToDraw.AddSwizzled(body, 27);
 		itemsToDraw.Add(body, cloak);
 	};
 	
@@ -2234,8 +2243,8 @@ void Engine::AddSprites(const Ship &ship)
 	if(ship.IsSteering() && !ship.SteeringEnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.SteeringEnginePoints(), ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::UNDER);
 	
-	drawObject(ship);
-	for(const Hardpoint &hardpoint : ship.Weapons())
+	auto drawHardpoint = [&drawObject, &ship](const Hardpoint &hardpoint) -> void
+	{
 		if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
 		{
 			Body body(
@@ -2246,6 +2255,15 @@ void Engine::AddSprites(const Ship &ship)
 				ship.Zoom());
 			drawObject(body);
 		}
+	};
+	
+	for(const Hardpoint &hardpoint : ship.Weapons())
+		if(hardpoint.IsUnder())
+			drawHardpoint(hardpoint);
+	drawObject(ship);
+	for(const Hardpoint &hardpoint : ship.Weapons())
+		if(!hardpoint.IsUnder())
+			drawHardpoint(hardpoint);
 	
 	if(ship.IsThrusting() && !ship.EnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.EnginePoints(), ship.Attributes().FlareSprites(), Ship::EnginePoint::OVER);

@@ -237,48 +237,48 @@ fleet "Large Core Merchants"
 	variant 10
 		"Freighter (Proton)" 2
 		"Quicksilver" 2
-	variant 50
-		"Bulk Freighter"
+	variant 40
+		"Container Transport"
 		"Wasp (Proton)" 2
-	variant 50
-		"Bulk Freighter"
+	variant 40
+		"Container Transport"
 		"Wasp"
 		"Wasp (Meteor)"
-	variant 20
-		"Bulk Freighter (Blaster)"
+	variant 15
+		"Container Transport (Blaster)"
 		"Wasp" 2
-	variant 10
-		"Bulk Freighter (Heavy)"
+	variant 8
+		"Container Transport (Heavy)"
 		"Wasp (Proton)" 2
-	variant 10
-		"Bulk Freighter (Proton)"
+	variant 8
+		"Container Transport (Proton)"
 		"Wasp (Proton)" 2
-	variant 10
-		"Bulk Freighter (Proton)"
+	variant 8
+		"Container Transport (Proton)"
 		"Wasp"
 		"Wasp (Meteor)"
-	variant 20
-		"Bulk Freighter"
-	variant 10
-		"Bulk Freighter (Blaster)"
-	variant 5
-		"Bulk Freighter (Heavy)"
-	variant 5
-		"Bulk Freighter (Proton)"
+	variant 15
+		"Container Transport"
+	variant 8
+		"Container Transport (Blaster)"
+	variant 4
+		"Container Transport (Heavy)"
+	variant 4
+		"Container Transport (Proton)"
 	variant 20
 		"Star Barge (Armed)" 3
-	variant 10
-		"Bulk Freighter" 2
+	variant 8
+		"Container Transport" 2
 		"Quicksilver" 1
 		"Splinter" 1
-	variant 4
-		"Bulk Freighter (Blaster)"
-		"Bulk Freighter (Heavy)"
+	variant 3
+		"Container Transport (Blaster)"
+		"Container Transport (Heavy)"
 		"Quicksilver" 1
 		"Splinter (Laser)" 1
-	variant 4
-		"Bulk Freighter (Blaster)"
-		"Bulk Freighter (Proton)"
+	variant 3
+		"Container Transport (Blaster)"
+		"Container Transport (Proton)"
 		"Quicksilver" 1
 		"Splinter (Proton)" 1
 	variant 10
@@ -302,27 +302,27 @@ fleet "Large Core Merchants"
 	variant 2
 		"Freighter" 4
 		"Protector (Proton)" 1
-	variant 10
-		"Bulk Freighter" 2
+	variant 8
+		"Container Transport" 2
 		"Protector" 1
-	variant 10
-		"Bulk Freighter" 2
+	variant 8
+		"Container Transport" 2
 		"Wasp" 3
 		"Wasp (Meteor)" 2
-	variant 10
-		"Bulk Freighter" 2
+	variant 8
+		"Container Transport" 2
 		"Vanguard" 1
 	variant 1
-		"Bulk Freighter (Heavy)" 2
+		"Container Transport (Heavy)" 2
 		"Protector (Laser)" 1
 	variant 1
-		"Bulk Freighter (Proton)" 2
+		"Container Transport (Proton)" 2
 		"Protector (Proton)" 1
 	variant 1
-		"Bulk Freighter (Heavy)" 2
+		"Container Transport (Heavy)" 2
 		"Vanguard (Particle)" 1
 	variant 1
-		"Bulk Freighter (Heavy)" 2
+		"Container Transport (Heavy)" 2
 		"Vanguard (Missile)" 1
 	variant 20
 		"Bounder"
@@ -338,6 +338,58 @@ fleet "Large Core Merchants"
 		"Wasp (Proton)" 2
 	variant 2
 		"Arrow"
+	variant 10
+		"Bulk Freighter"
+		"Wasp (Proton)" 2
+	variant 10
+		"Bulk Freighter"
+		"Wasp"
+		"Wasp (Meteor)"
+	variant 5
+		"Bulk Freighter (Blaster)"
+		"Wasp" 2
+	variant 2
+		"Bulk Freighter (Heavy)"
+		"Wasp (Proton)" 2
+	variant 2
+		"Bulk Freighter (Proton)"
+		"Wasp (Proton)" 2
+	variant 2
+		"Bulk Freighter (Proton)"
+		"Wasp"
+		"Wasp (Meteor)"
+	variant 5
+		"Bulk Freighter"
+	variant 2
+		"Bulk Freighter (Blaster)"
+	variant 1
+		"Bulk Freighter (Heavy)"
+	variant 1
+		"Bulk Freighter (Proton)"
+	variant 2
+		"Bulk Freighter" 2
+		"Quicksilver" 1
+		"Splinter" 1
+	variant 1
+		"Bulk Freighter (Blaster)"
+		"Bulk Freighter (Heavy)"
+		"Quicksilver" 1
+		"Splinter (Laser)" 1
+	variant 1
+		"Bulk Freighter (Blaster)"
+		"Bulk Freighter (Proton)"
+		"Quicksilver" 1
+		"Splinter (Proton)" 1
+	variant 2
+		"Bulk Freighter" 2
+		"Protector" 1
+	variant 2
+		"Bulk Freighter" 2
+		"Wasp" 3
+		"Wasp (Meteor)" 2
+	variant 2
+		"Bulk Freighter" 2
+		"Vanguard" 1
 
 fleet "Paradise Merchants"
 	government "Merchant"
@@ -566,25 +618,25 @@ fleet "Large Northern Merchants"
 	variant 4
 		"Blackbird"
 		"Sparrow" 3
-	variant 4
+	variant 2
 		"Bulk Freighter"
 		"Headhunter" 2
-	variant 2
+	variant 1
 		"Bulk Freighter"
 		"Headhunter (Particle)" 2
-	variant 10
+	variant 5
 		"Bulk Freighter"
 		"Sparrow" 2
-	variant 4
+	variant 2
 		"Bulk Freighter (Heavy)"
 		"Sparrow" 2
-	variant 2
+	variant 1
 		"Bulk Freighter (Heavy)"
 		"Berserker" 2
-	variant 2
+	variant 1
 		"Bulk Freighter (Heavy)"
 		"Berserker (Afterburner)" 2
-	variant 4
+	variant 2
 		"Bulk Freighter (Blaster)"
 		"Sparrow" 2
 	variant 10
@@ -654,6 +706,27 @@ fleet "Large Northern Merchants"
 		"Scout" 3
 	variant 1
 		"Scout (Speedy)" 3
+	variant 2
+		"Container Transport"
+		"Headhunter" 2
+	variant 1
+		"Container Transport"
+		"Headhunter (Particle)" 2
+	variant 5
+		"Container Transport"
+		"Sparrow" 2
+	variant 2
+		"Container Transport (Heavy)"
+		"Sparrow" 2
+	variant 1
+		"Container Transport (Heavy)"
+		"Berserker" 2
+	variant 1
+		"Container Transport (Heavy)"
+		"Berserker (Afterburner)" 2
+	variant 2
+		"Container Transport (Blaster)"
+		"Sparrow" 2
 
 fleet "Small Human Merchants (Hai)"
 	government "Merchant"
@@ -783,25 +856,25 @@ fleet "Large Human Merchants (Hai)"
 	variant 2
 		"Behemoth"
 		"Headhunter (Hai)" 2
-	variant 4
+	variant 3
 		"Bulk Freighter (Hai)"
 		"Headhunter" 2
-	variant 2
+	variant 1
 		"Bulk Freighter (Hai)"
 		"Headhunter (Hai)" 2
-	variant 10
+	variant 8
 		"Bulk Freighter"
 		"Sparrow" 2
-	variant 4
+	variant 3
 		"Bulk Freighter (Heavy)"
 		"Sparrow" 2
-	variant 2
+	variant 1
 		"Bulk Freighter (Hai)"
 		"Berserker" 2
-	variant 2
+	variant 1
 		"Bulk Freighter (Hai)"
 		"Berserker (Afterburner)" 2
-	variant 4
+	variant 3
 		"Bulk Freighter (Blaster)"
 		"Sparrow" 2
 	variant 10
@@ -874,6 +947,27 @@ fleet "Large Human Merchants (Hai)"
 		"Shield Beetle"
 	variant 1
 		"Scout (Speedy)" 3
+	variant 1
+		"Container Transport (Hai)"
+		"Headhunter" 2
+	variant 1
+		"Container Transport (Hai)"
+		"Headhunter (Hai)" 2
+	variant 2
+		"Container Transport"
+		"Sparrow" 2
+	variant 1
+		"Container Transport (Heavy)"
+		"Sparrow" 2
+	variant 1
+		"Container Transport (Hai)"
+		"Berserker" 2
+	variant 1
+		"Container Transport (Hai)"
+		"Berserker (Afterburner)" 2
+	variant 1
+		"Container Transport (Blaster)"
+		"Sparrow" 2
 
 fleet "Human Miners"
 	government "Merchant"
