@@ -3614,8 +3614,8 @@ double Ship::MinimumHull() const
 		return absoluteThreshold;
 	
 	double thresholdPercent = attributes.Get("threshold percentage");
-	double transition = 1 / (1 + 0.0006 * maximumHull);
-	double minimumHull = maximumHull * (thresholdPercent > 0. ? min(thresholdPercent, 1.) : 0.05 * (1. - transition) + 0.75 * transition);
+	double transition = 1 / (1 + 0.0005 * maximumHull);
+	double minimumHull = maximumHull * (thresholdPercent > 0. ? min(thresholdPercent, 1.) : 0.1 * (1. - transition) + 0.5 * transition);
 
 	return max(0., floor(minimumHull + attributes.Get("hull threshold")));
 }
