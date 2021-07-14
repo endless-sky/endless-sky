@@ -102,18 +102,6 @@ namespace {
 	}
 }
 
-const vector<string> Outfit::CATEGORIES = {
-	"Guns",
-	"Turrets",
-	"Secondary Weapons",
-	"Ammunition",
-	"Systems",
-	"Power",
-	"Engines",
-	"Hand to Hand",
-	"Special"
-};
-
 
 
 void Outfit::Load(const DataNode &node)
@@ -123,6 +111,7 @@ void Outfit::Load(const DataNode &node)
 		name = node.Token(1);
 		pluralName = name + 's';
 	}
+	isDefined = true;
 	
 	for(const DataNode &child : node)
 	{
@@ -243,9 +232,26 @@ void Outfit::Load(const DataNode &node)
 
 
 
+// Check if this outfit has been defined via Outfit::Load (vs. only being referred to).
+bool Outfit::IsDefined() const
+{
+	return isDefined;
+}
+
+
+
+// When writing to the player's save, the reference name is used even if this
+// outfit was not fully defined (i.e. belongs to an inactive plugin).
 const string &Outfit::Name() const
 {
 	return name;
+}
+
+
+
+void Outfit::SetName(const string &name)
+{
+	this->name = name;
 }
 
 

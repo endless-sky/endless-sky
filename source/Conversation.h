@@ -57,7 +57,9 @@ public:
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
 	// Check if any data is loaded in this conversation object.
-	bool IsEmpty() const;
+	bool IsEmpty() const noexcept;
+	// Check if this conversation includes a name prompt.
+	bool IsValidIntro() const noexcept;
 	
 	// Do text replacement throughout this conversation. This returns a new
 	// Conversation object with things like the player's name filled in.
@@ -84,7 +86,7 @@ private:
 	public:
 		// Construct a new node. Each paragraph of conversation that involves no
 		// choice can be merged into what came before it, to simplify things.
-		explicit Node(bool isChoice = false) : isChoice(isChoice), canMergeOnto(!isChoice) {}
+		explicit Node(bool isChoice = false) noexcept : isChoice(isChoice), canMergeOnto(!isChoice) {}
 		
 		// For applying condition changes or branching based on conditions:
 		ConditionSet conditions;

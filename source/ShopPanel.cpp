@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShopPanel.h"
 
 #include "text/alignment.hpp"
+#include "CategoryTypes.h"
 #include "Color.h"
 #include "text/DisplayText.h"
 #include "FillShader.h"
@@ -61,7 +62,7 @@ namespace {
 ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	: player(player), day(player.GetDate().DaysSinceEpoch()),
 	planet(player.GetPlanet()), playerShip(player.Flagship()),
-	categories(isOutfitter ? Outfit::CATEGORIES : Ship::CATEGORIES),
+	categories(GameData::Category(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
 {
 	if(playerShip)
@@ -280,7 +281,7 @@ void ShopPanel::DrawShipsSidebar()
 		font.Draw("cargo space:", point, medium);
 		
 		string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
-		font.Draw({space, {SIDE_WIDTH - 20, Alignment::RIGHT}}, point, bright);
+		font.Draw({space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, point, bright);
 		point.Y() += 20.;
 	}
 	maxSidebarScroll = max(0., point.Y() + sidebarScroll - Screen::Bottom() + BUTTON_HEIGHT);
@@ -589,7 +590,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == 'b' || ((key == 'i' || key == 'c') && selectedOutfit && (player.Cargo().Get(selectedOutfit)
 			|| (player.Storage() && player.Storage()->Get(selectedOutfit)))))
 	{
-		if(!CanBuy())
+		if(!CanBuy(key == 'i' || key == 'c'))
 			FailBuy();
 		else
 		{

@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapOutfitterPanel.h"
 
+#include "CoreStartData.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Outfit.h"
@@ -20,7 +21,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Screen.h"
 #include "Sprite.h"
-#include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
@@ -125,7 +125,7 @@ void MapOutfitterPanel::Compare(int index)
 
 double MapOutfitterPanel::SystemValue(const System *system) const
 {
-	if(!system || !player.HasVisited(system))
+	if(!system || !player.HasVisited(*system))
 		return numeric_limits<double>::quiet_NaN();
 	
 	auto it = player.Harvested().lower_bound(pair<const System *, const Outfit *>(system, nullptr));
@@ -139,7 +139,7 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 	// Visiting a system is sufficient to know what ports are available on its planets.
 	double value = -.5;
 	for(const StellarObject &object : system->Objects())
-		if(object.GetPlanet())
+		if(object.HasSprite() && object.HasValidPlanet())
 		{
 			const auto &outfitter = object.GetPlanet()->Outfitter();
 			if(outfitter.Has(selected))
@@ -174,7 +174,7 @@ int MapOutfitterPanel::FindItem(const string &text) const
 
 void MapOutfitterPanel::DrawItems()
 {
-	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= GameData::Start().GetDate() + 12)
+	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
 		DoHelp("map advanced shops");
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);
@@ -208,11 +208,11 @@ void MapOutfitterPanel::DrawItems()
 			}
 			
 			bool isForSale = true;
-			if(selectedSystem && player.HasVisited(selectedSystem))
+			if(player.HasVisited(*selectedSystem))
 			{
 				isForSale = false;
 				for(const StellarObject &object : selectedSystem->Objects())
-					if(object.GetPlanet() && object.GetPlanet()->Outfitter().Has(outfit))
+					if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->Outfitter().Has(outfit))
 					{
 						isForSale = true;
 						break;
@@ -235,8 +235,8 @@ void MapOutfitterPanel::Init()
 {
 	catalog.clear();
 	set<const Outfit *> seen;
-	for(const auto &it : GameData::Planets())
-		if(player.HasVisited(it.second.GetSystem()))
+	for(auto &&it : GameData::Planets())
+		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
 			for(const Outfit *outfit : it.second.Outfitter())
 				if(!seen.count(outfit))
 				{

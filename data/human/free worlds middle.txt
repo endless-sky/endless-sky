@@ -865,7 +865,7 @@ mission "FW Northern 2B"
 	on offer
 		conversation
 			`As you approach the planet, Freya sits down at your ship's sensor console and begins fiddling with some settings that you didn't even know existed. She seems entirely focused, and clearly knows what she is doing. You recall being told that she is an engineer, not a politician or a military commander, which makes the fact that she has been able to step up as such a strong leader in the Council very impressive.`
-			`	"Yup, eight different stations," she says finally, "including this one that I nearly overlooked, buried twenty feet under the ice, that is acting as a relay for them." She points out each station on your map, and you fly by each one and destroy it. "Now," she says, "that was what had me most worried, but for the sake of completeness we should sweep the other new worlds, too. Let's go to <planet> next."`
+			`	"Yup, eight different stations," she says finally, "including this one that I nearly overlooked, buried ten meters under the ice, that is acting as a relay for them." She points out each station on your map, and you fly by each one and destroy it. "Now," she says, "that was what had me most worried, but for the sake of completeness we should sweep the other new worlds, too. Let's go to <planet> next."`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Freya hasn't entered the system yet. Better depart and wait for it to arrive.`
@@ -1856,7 +1856,7 @@ mission "FW Rand 1"
 		log "Another two planets, Rand and Oblivion, have expressed an interest in joining the Free Worlds. They are rather far from the rest of Free Worlds territory, however, so JJ is worried that it would create an indefensible tactical position."
 		event "battle for zeta aquilae"
 		conversation
-			`When you land on Dancer, Freya has just received some exciting news. "It turns out taking out Bartlett had some unexpected side effects," she says. "Bartlett has been hounding the systems on the northwestern fringe of the Dirt Belt for years, and had a lot of enemies. The governments of Rand and Oblivion are so grateful to you for eliminating him that they've reached out to us to begin the process of joining the Free Worlds! And several other worlds in that region are interested now, too."`
+			`When you land on Dancer, Freya has just received some exciting news. "It turns out taking out Bartlett had some unexpected side effects," she says. "Bartlett has been hounding the systems on the northeastern fringe of the Dirt Belt for years, and had a lot of enemies. The governments of Rand and Oblivion are so grateful to you for eliminating him that they've reached out to us to begin the process of joining the Free Worlds! And several other worlds in that region are interested now, too."`
 			`	JJ frowns. "That's really awful timing," he says, "and would put us in a really bad tactical position - spread out, and with the Navy right in the middle."`
 			choice
 				`	"Are you saying we shouldn't let them join, even though they want to?"`
