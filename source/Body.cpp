@@ -147,7 +147,7 @@ const Angle &Body::Facing() const
 // and transform that should be applied to the sprite before drawing it.
 Point Body::Unit() const
 {
-	return angle.Unit() * (.5 * Zoom()) * Scale();
+	return angle.Unit() * (.5 * Zoom());
 }
 
 
