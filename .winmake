@@ -45,7 +45,7 @@
 # 4. Set SCONS_VERSION to the version of the SCons program you would like to use
 #    if SCons is not found in PATH
 # 5. Set PYTHON_BINARY to the name or path of a Python3 binary. Python v2 is not supported.
-# 6. Set AR and RANLIB to the binary archive tooling that is capable of link-time optimization
+# 6. Set AR to the binary archive tooling that is capable of link-time optimization
 #
 DIR_ESLIB ?= C:\dev64
 BIN_DIR ?= bin
@@ -53,7 +53,6 @@ BUILDDIR ?= build
 SCONS_VERSION ?= 4.0.1
 PYTHON_BINARY ?= py
 AR ?= gcc-ar
-RANLIB ?= gcc-ranlib
 
 # Note: Several tools provided by MinGW & MSYS are required.
 # 1. `cURL` - command-line HTTP client, used to download the `scons-local` package from SourceForge
@@ -66,7 +65,7 @@ RANLIB ?= gcc-ranlib
 # Don't invoke the wrapper targets via multiple processes.
 .NOTPARALLEL:
 
-enable_lto ::= AR=$(AR) RANLIB=$(RANLIB)
+enable_lto ::= AR=$(AR)
 es_search_dirs ::= DIR_ESLIB="$(DIR_ESLIB)"
 # Common environment variables to pass to SCons, expanded immediately:
 scons_env ::= $(es_search_dirs) $(enable_lto)

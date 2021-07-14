@@ -347,8 +347,8 @@ mission "Remnant: Defense 2"
 mission "Remnant: Bounty"
 	job
 	repeat
-	name "Remnant bounty"
-	description "Hunt down a crippled Korath ship that is lurking in Remnant territory, then return to <planet> to receive your payment of <payment>."
+	name "Crippled Raider Bounty"
+	description "A crippled Korath ship is lurking in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
 	to offer
@@ -725,7 +725,7 @@ mission "Remnant: Void Sprites 2"
 		has "Remnant: Void Sprites 1: done"
 	on offer
 		conversation
-			`Sure enough, soon after you land the Remnant researcher with the optical prosthesis arrives at your ship. When he looks at the data that you collected using his special scanners, he is disappointed. He chants, "I had hoped the scanners would show us how the creatures are able to generate enough force to fly out of the gravity wells of their planets, but this tells me nothing. Perhaps it would help if you scan them more closely. Could you equip your ship with one of the scanners that are used to inspect the outfits that ships are carrying, and see if that scanner yields additional information?"`
+			`Sure enough, soon after you land, the Remnant researcher with the optical prosthesis arrives at your ship. When he looks at the data that you collected using his special scanners, he is disappointed. He chants, "I had hoped the scanners would show us how the creatures are able to generate enough force to fly out of the gravity wells of their planets, but this tells me nothing. Perhaps it would help if you scan them more closely. Could you equip your ship with one of the scanners that are used to inspect the outfits that ships are carrying, and see if that scanner yields additional information?"`
 			choice
 				`	"Okay, I'll install an outfit scanner and see what it can tell me."`
 					accept
@@ -1716,7 +1716,7 @@ mission "Remnant: Deep Surveillance"
 				decline
 			
 			label sprites
-			`	You hand Torza the data chip that Ivan gave you. Torza takes it and plugs it into a terminal behind the desk. He appears to read through the research rather quickly, nodding and scratching his chin at various points. "They seem to have taking a liking to the void sprites," he says. "This is good that they are distracted. It is human nature to be curious, and they will be kept curious by the void sprites for a while. This buys us time." Torza removes the data chip from the terminal and pockets it. "We will keep hold of this information, and keep an eye on the Threshold in case they decide to venture further into the Ember Waste. Should that occur, we will call on you. May the Embers burn bright for you."`
+			`	You hand Torza the data chip that Ivan gave you. Torza takes it and plugs it into a terminal behind the desk. He appears to read through the research rather quickly, nodding and scratching his chin at various points. "They seem to have taken a liking to the void sprites," he says. "It is human nature to be curious, and they will be kept curious by the void sprites for a while. This buys us time." Torza removes the data chip from the terminal and pockets it. "We will keep hold of this information, and keep an eye on the Threshold in case they decide to venture further into the Ember Waste. Should that occur, we will call on you. May the Embers burn bright for you."`
 				decline
 			
 			label everything
@@ -2509,13 +2509,13 @@ event "remnant salvage available"
 mission "Remnant: Bounty 2"
 	job
 	repeat
-	name "Remnant bounty"
-	description "Hunt down a Korath ship that is lurking in Remnant territory, then return to <planet> to receive your payment of <payment>."
+	name "Troublesome Raider Bounty"
+	description "A Korath ship is proving troublesome in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
 	to offer
 		has "Remnant: Salvage 4: offered"
-		random < 60
+		random < 50
 	npc kill
 		government "Korath"
 		personality heroic vindictive target uninterested waiting marked
@@ -2950,6 +2950,9 @@ mission "Remnant: Face to Maw 1B"
 	landing
 	to offer
 		has "event: remnant: return the samples timer"
+		or
+			not "Remnant: Cognizance 1: offered"
+			has "Remnant: Cognizance 19: done"
 	to fail
 		or
 			has "Remnant: Face to Maw 1: done"
@@ -3597,7 +3600,7 @@ mission "Remnant: Cognizance 2"
 	on complete
 		event "korath hunting"
 		conversation
-			`When you return to <planet>, you find Plume waiting for you. He eagerly reviews the recording of the combat. "Thank you for eliminating this hunter-" he is interrupted by a flashing light on his commlink. He briefly reads something then looks back up to you. "Apparently something about the Korath hunting the void sprites has concerned the defense prefect. Chilia has requested that you meet with him on Caelian immediately."`
+			`When you return to <planet>, you find Plume waiting for you. He eagerly reviews the recording of the combat. "Thank you for eliminating this hunter--" he is interrupted by a flashing light on his commlink. He briefly reads something then looks back up to you. "Apparently something about the Korath hunting the void sprites has concerned the defense prefect. Chilia has requested that you meet with him on Caelian immediately."`
 
 
 
@@ -3683,6 +3686,33 @@ mission "Remnant: Cognizance 4"
 			label destroyed
 			`	"You have demonstrated good initiative, however I suspect that it was not the only hunter fleet out there. I will notify a task force. Meet me in the spaceport, and make sure your ship is ready to fight." As he departs from your ship, your commlink beeps with a message that an organization by the name of 'Remnant Logistics' has allocated you an additional <payment>.`
 
+			
+mission "Remnant: Bounty 3"
+	job
+	repeat
+	name "Damaged Dredger Bounty"
+	description "A damaged Korath ship is lurking in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
+	source
+		government "Remnant"
+	to offer
+		has "Remnant: Cognizance 4: failed"
+		random < 40
+	npc kill
+		government "Korath"
+		personality heroic vindictive target uninterested waiting marked
+		system
+			distance 1 2
+		fleet
+			names "korath"
+			cargo 3
+			variant
+				"Korath Dredger (Crippled)"
+		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 400000
+		dialog "A Remnant military leader thanks you for hunting down the Korath ship <npc>, and gives you the agreed-upon payment of <payment>."
 
 
 mission "Remnant: Cognizance 5"
@@ -4029,6 +4059,33 @@ mission "Remnant: Cognizance 14"
 			`As you arrive back at Viminal, you broadcast a warning to the port authorities that something is following you. You inform them that it is not hostile, but it is an unknown entity that originated in the new system.`
 
 
+mission "Remnant: Bounty 4"
+	job
+	repeat
+	name "Marauding Dredger Bounty"
+	description "A Korath ship is marauding through Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
+	source
+		government "Remnant"
+	to offer
+		has "Remnant: Cognizance 14: done"
+		random < 30
+	npc kill
+		government "Korath"
+		personality heroic vindictive target uninterested waiting marked
+		system
+			distance 1 2
+		fleet
+			names "korath"
+			cargo 3
+			variant
+				"Korath Dredger (Hyperdrive)"
+		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 500000
+		dialog "A Remnant military leader thanks you for hunting down the Korath ship <npc>, and gives you the agreed-upon payment of <payment>."
+
 
 mission "Remnant: Cognizance 15"
 	landing
@@ -4175,7 +4232,7 @@ event "remnant: pantica void sprites"
 		add attributes remnant
 		remove attributes uninhabited
 		description `While Esquiline used to be simply another planet the Remnant harvested valuable resources from, the introduction of void sprites and the activation of their station has turned this world into a hidden research lab: The first human astrobiology station studying void sprites.`
-		add spaceport `	Although the facilities here are basic, the Remnant cafeteria boasts a food dispenser that is available at any time, along with a mesmerizing view of the clouds outside. Occasionally a void sprite will pass in front of the window, much to the delight of everyone.`
+		add spaceport `Although the facilities here are basic, the Remnant cafeteria boasts a food dispenser that is available at any time, along with a mesmerizing view of the clouds outside. Occasionally a void sprite will pass in front of the window, much to the delight of everyone.`
 
 
 
@@ -4205,7 +4262,7 @@ mission "Remnant: Cognizance 19"
 	on complete
 		payment 100000
 		event "remnant: cognizance 1 systems available"
-		dialog `As the starport computer downloads the data, your computer displays a message tacked onto the log file: "Thank you for providing your navigational logs. They will be useful to contrast against those of our scouts. A logistics adjustment of <payment> has been authorized for the <ship>."`
+		dialog `As the starport computer downloads the data, your computer displays a message tacked onto the log file: "Thank you for providing the additional data from your navigational logs. It will be useful to contrast against those of our scouts. A logistics adjustment of <payment> has been authorized for the <ship>."`
 
 
 
@@ -4235,6 +4292,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 	destination
 		government "Remnant"
 		not distance 0
+		not attributes "requires: gaslining"
 	to offer
 		has "Remnant: Expanded Horizons Quarg 3: done"
 		random < 25
@@ -4404,6 +4462,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 		government "Remnant"
 	destination
 		government "Remnant"
+		not attributes "requires: gaslining"
 	waypoint "Sagittarius A*"
 	to offer
 		has "Remnant: Expanded Horizons Astral 1: done"

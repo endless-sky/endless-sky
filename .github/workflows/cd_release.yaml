@@ -11,7 +11,7 @@ jobs:
     env:
       ARCH: x86_64
       OUTPUT: endless-sky-amd64-${{ github.event.release.tag_name }}.AppImage
-      RANLIB: gcc-ranlib
+      AR: gcc-ar
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2

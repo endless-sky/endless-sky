@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipInfoPanel.h"
 
 #include "text/alignment.hpp"
+#include "CategoryTypes.h"
 #include "Command.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
@@ -337,7 +338,7 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 	table.DrawAt(start);
 	
 	// Draw the outfits in the same order used in the outfitter.
-	for(const string &category : Outfit::CATEGORIES)
+	for(const string &category : GameData::Category(CategoryType::OUTFIT))
 	{
 		auto it = outfits.find(category);
 		if(it == outfits.end())
@@ -423,7 +424,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 		scale = min(scale, (LABEL_DX - LABEL_PAD) / (2. * maxX));
 	
 	// Draw the ship, using the black silhouette swizzle.
-	SpriteShader::Draw(sprite, bounds.Center(), scale, 8);
+	SpriteShader::Draw(sprite, bounds.Center(), scale, 28);
 	OutlineShader::Draw(sprite, bounds.Center(), scale * Point(sprite->Width(), sprite->Height()), Color(.5f));
 	
 	// Figure out how tall each part of the weapon listing will be.

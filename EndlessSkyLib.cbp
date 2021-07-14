@@ -85,6 +85,7 @@
 		<Unit filename="source/CaptureOdds.h" />
 		<Unit filename="source/CargoHold.cpp" />
 		<Unit filename="source/CargoHold.h" />
+		<Unit filename="source/CategoryTypes.h" />
 		<Unit filename="source/ClickZone.h" />
 		<Unit filename="source/CollisionSet.cpp" />
 		<Unit filename="source/CollisionSet.h" />

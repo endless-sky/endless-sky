@@ -27,15 +27,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // extensions are used to optimize all operations.
 class Point {
 public:
-	Point();
-	Point(double x, double y);
-	Point(const Point &point);
-	
-	Point &operator=(const Point &point);
+	Point() noexcept;
+	Point(double x, double y) noexcept;
 	
 	// Check if the point is anything but (0, 0).
-	explicit operator bool() const;
-	bool operator!() const;
+	explicit operator bool() const noexcept;
+	bool operator!() const noexcept;
 	
 	// No comparison operators are provided because I never expect to use them
 	// and because comparisons with doubles are inherently unsafe due to the
@@ -58,9 +55,9 @@ public:
 	Point &operator*=(const Point &other);
 	
 	double &X();
-	const double &X() const;
+	const double &X() const noexcept;
 	double &Y();
-	const double &Y() const;
+	const double &Y() const noexcept;
 	
 	void Set(double x, double y);
 	
@@ -113,7 +110,7 @@ inline double &Point::X()
 
 
 
-inline const double &Point::X() const
+inline const double &Point::X() const noexcept
 {
 	return x;
 }
@@ -127,7 +124,7 @@ inline double &Point::Y()
 
 
 
-inline const double &Point::Y() const
+inline const double &Point::Y() const noexcept
 {
 	return y;
 }

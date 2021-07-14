@@ -724,7 +724,7 @@ phrase "friendly civilian"
 	word
 		"pay off your mortgage as quickly as possible"
 		"make extra payments on your mortgage whenever you can"
-		"have a fast ship than can outrun the pirates"
+		"have a fast ship that can outrun the pirates"
 		"buy a ship with a lot of bunks for passengers"
 		"buy a ship with a big cargo bay"
 		"fly a ship that isn't totally defenseless against pirates"
@@ -870,7 +870,7 @@ phrase "friendly civilian"
 		"Where do astronauts hang out? At the space bar!"
 		"What is a Syndicate salesman's favorite drink? Whatever the Syndicate tell him it is!"
 		"Why does the Navy hate neighbours? Because the grass is greener on the other side!"
-		"What has two heads, six feet, two arms and one tail? A person on a horse!"
+		"What has two heads, six feet, two arms, and one tail? A person on a horse!"
 		"What is the monster under your bed scared of? You!"
 		"You!"
 		"What's black and white and red all over? A newspaper!"
@@ -905,6 +905,18 @@ phrase "friendly civilian"
 		"Why is it difficult to navigate through Dubhe? Because there's a thick Haze!"
 		"Why do engineers go to Diphda? Because they like to Tinker!"
 		"What is a robot's least favorite planet? Rust!"
+		"What do you call a spaceship with no engines? A groundship!"
+		"Don't trust stairs. They are always up to something."
+		"How many Hestians does it take to change a lightbulb? Four! An electrician does the work, and the butler, manager and housekeeper supervise."
+		"How many Wayfarers does it take to change a lightbulb? Zero, they don't use such old technology there!"
+		"How many Moonshakers does it take to change a lightbulb? Zero, it's all out-sourced to off-worlders."
+		"How many Alexandrians does it take to change a lightbulb? One, they are very educated and capable people."
+		"How many Earthlings does it take to change a lightbulb? Three, one to change the lightbulb and two to clear the way through the crowds of people."
+		"How many Venusians does it take to change a lightbulb? Zero, there are no people living on Venus!"
+		"How many Martians does it take to change a lightbulb? Zero, they let the visiting Earthy laborers change their lightbulbs."
+		"How many New Bostonians does it take to change a lightbulb? I have no idea, never been there."
+		"How many Delvians does it take to change a lightbulb? Zero, the room caves in before you can replace the bulb."
+		"How many Sinterians does it take to change a lightbulb? Zero, they just send in a robot to do the job."
 	word
 		""
 		""
@@ -1083,8 +1095,12 @@ phrase "friendly civilian"
 		"my anti-missile can't destroy even a single missile."
 		"my autopilot brings me to the wrong planet in the system."
 		"it turns out that I've accepted missions for two different planets in the one system."
-		"my ship spends all it's power on regenerating shields instead of firing."
+		"my ship spends all its power on regenerating shields instead of firing."
 		"my escorts suicide themselves into close-quarters with pirates."
+		"my passengers are afraid and cry during the whole trip."
+		"one of my passengers becomes space-sick and creates a horrible mess."
+		"one of my passengers throws up and I have to clean up for days."
+		"I can't unload my cargo because somebody messed up the paperwork."
 
 phrase "friendly civilian"
 	word
@@ -1252,8 +1268,8 @@ phrase "friendly civilian"
 		"I wish more people realized"
 		"I wish more people realized that"
 		"My nutty cousin claims that"
-		"One of my favourite jokes is to say"
-		"One of my favourite comedy routines is to say that"
+		"One of my favorite jokes is to say"
+		"One of my favorite comedy routines is to say that"
 	word
 		" "
 	word
@@ -1287,7 +1303,7 @@ phrase "friendly civilian"
 		"are manipulating events in the galaxy."
 		"know things that they are not telling us."
 		"are getting rich off the hard work of everyone else."
-		"are more powerful then they let on."
+		"are more powerful than they let on."
 		"are aware of more alien species than they publicly admit."
 		"are secretly behind the recent increase in pirate activity."
 		"are deliberately trying to hurt the Dirt Belt planets."
@@ -1700,7 +1716,7 @@ phrase "friendly civilian"
 		"teaching mathematics to high school kids"
 		"bartending"
 		"testing computer fabrication machines"
-		"writing firmware for embedded computerchips"
+		"writing firmware for embedded computer chips"
 	word
 		", and look what a nice ship I'm flying now."
 		", and now I'm retired and flying spaceships for fun."
@@ -1708,6 +1724,85 @@ phrase "friendly civilian"
 		", but I still had to take a big loan to buy my first ship."
 		", but it was my grandma's inheritance that allowed me to buy this ship."
 
+phrase "friendly civilian"
+	word
+		"Don't be too picky about the jobs you take. It's better to"
+	word
+		" "
+	word
+		"ship crooks, than have a crooked ship."
+		"ship slugs, than have a sluggish ship."
+		"ship bad bands, than have your ship badly banned."
+		"be working hard at shipping, than have your ship hardly working."
+
+
+phrase "friendly civilian"
+	word
+		"Ey Comrade,"
+	word
+		" "
+	word
+		"your ship has loaded on a planet? I have loaded a planet onto my ship."
+		"you have cargo in your ship? I have ships in my cargo."
+		"you have fighters in your bays? We have bays in our fighters."
+
+phrase "friendly civilian"
+	word
+		"Somebody"
+		"Some nut"
+	word
+		" "
+	word
+		"put"
+		"placed"
+	word
+		" "
+	word
+		"a blue phonebooth"
+		"a silver car"
+	word
+		" "
+	word
+		"on my bridge"
+		"in my armory"
+		"in my cargo hold"
+	word
+		" and "
+	word
+		"claimed to be"
+	word
+		" "
+	word
+		"a time traveler"
+		"from another time"
+	word
+		", and suddenly they disappeared."
+		", but the only travel he did was to a mental institution."
+		". I still don't know how she got into my spaceship."
+		". The thing looked bigger on the inside than on the outside."
+
+phrase "friendly civilian"
+	word
+		"I bought "
+	word
+		"a power generator"
+		"explosives"
+		"my new thrusters"
+		"some toothpaste"
+	word
+		" "
+	word
+		"from"
+	word
+		" "
+	word
+		"the ACME company"
+		"the Astronomical Conglomeration of Manufacturing Entities"
+	word
+		", a company many times smaller than the Syndicate."
+		", a minor company, but with much better service than the Syndicate."
+		", a pretty insignificant company located on just one planet."
+		", but next time, I'll buy from the Syndicate again."
 
 phrase "friendly navy"
 	word
@@ -1803,6 +1898,64 @@ phrase "friendly navy"
 		"in the Republic"
 	word
 		"!"
+		
+phrase "friendly navy"
+	word
+		"Dying"
+		"Getting wounded"
+		"Taking a hit"
+	word
+		" "
+	word
+		"during"
+		"in"
+	word
+		" "
+	word
+		"a firefight"
+		"battle"
+		"space battle"
+		"war"
+	word
+		" is "
+	word
+		"heroic"
+		"honourable"
+		"respectable"
+	word
+		", "
+	word
+		"when it helps your brothers and sisters in arms to"
+		"if such action helps to"
+		"when on duty to"
+		"when it helps to"
+		"but if you ask me; our real job is to"
+		"our goal however is to"
+		"but our focus should be to"
+		"but only if it helps the Navy to"
+		"but my commander really prefers me to"
+		"but it seems more efficient if we instead"
+		"but the world actually expects us to"
+	word
+		" "
+	word
+		"destroy"
+		"kill"
+		"imprison"
+		"eliminate"
+		"expell"
+		"fend off"
+		"drive back"
+	word
+		" "
+	word
+		"pirates"
+		"criminals"
+		"our adversaries"
+		"our enemies"
+		"terrorists"
+	word
+		"."
 
 phrase "friendly navy"
 	word
@@ -2538,7 +2691,7 @@ phrase "friendly pirate"
 		" You'll find some on the nearest pirate planet."
 		" You'll find some on the nearest anarchist planet."
 		" You'll find some on the nearest planet not oppressed by the man."
-		" You'll find some where ever the man does not go."
+		" You'll find some wherever the man does not go."
 
 phrase "friendly pirate"
 	word
@@ -2975,6 +3128,11 @@ phrase "shakespearean insults"
 		"vassal"
 		"whey-face"
 		"wagtail"
+		
+phrase "hostile disabled pirate"
+	word
+		"Don't hurt me! Please!"
+		"Waaaaaa! Mommy!"
 
 phrase "hostile civilian"
 	word
@@ -3760,7 +3918,7 @@ phrase "hostile syndicate"
 		"You have made a bad commercial move."
 		"Prepare for a hostile takeover!"
 		"Any units of Syndicate stock you own are hereby revoked!"
-		"Your hostile use of Syndicated Systems products is in violation of the end user license agreement!"
+		"Your hostile use of Syndicated Systems products is in violation of the end-user license agreement!"
 		"Our corporate charter includes provisions for self-defense!"
 		"Enemies of commerce are enemies of Syndicated Systems."
 		"Enemies of free trade are enemies of Syndicated Systems."
@@ -3965,6 +4123,7 @@ phrase "test dummy"
 		"I wish I was a real boy, then I'd show them. I'd kill them all."
 		"Life is about decisions. Make the wrong ones and you'll wind up face down in a pool of your own blood and urine."
 		"Hey baby, wanna kill all humans?"
+		"Your body contains 100 trillion bacterial cells, while mine is fully sterile. Doesn't that make me the superior lifeform?"
 		"Danger! Danger!"
 		"Warning! Warning!"
 		"Warning! Warning! Alien spacecraft approaching!"
@@ -3972,6 +4131,7 @@ phrase "test dummy"
 		"Look at your precious human ship, for the last time!"
 		"This is not a pre-recorded message."
 		"The answer is 42, I'm quite certain of it. Do you want me to calculate the question?"
+		`"Is there a God," they asked me... Yes, here is a God.`
 
 phrase "disabled test dummy"
 	word
@@ -3986,6 +4146,8 @@ phrase "disabled test dummy"
 		"I don't know what all this trouble is about, but I'm sure it must be your fault."
 		"I have a pain in all the diodes down my left side."
 		"When you're dying I'll be still alive."
+		"Some big robotic ships due East are my friends. Remember me when they blow you to pieces."
+		"Hey, can we be friends? Some of my best friends are slimy organics like you."
 
 
 # Wormhole Hails
