@@ -351,10 +351,9 @@ double Mask::Intersection(Point sA, Point vA, double scale) const
 	// Keep track of the closest intersection point found.
 	double closest = 1.;
 	
-	Point prev = outline.back();
+	Point scaledPrev = outline.back() * scale;
 	for(const Point &next : outline)
 	{
-		Point scaledPrev = prev * scale;
 		Point scaledNext = next * scale;
 		// Check if there is an intersection. (If not, the cross would be 0.) If
 		// there is, handle it only if it is a point where the segment is
@@ -373,7 +372,7 @@ double Mask::Intersection(Point sA, Point vA, double scale) const
 				closest = min(closest, uA / cross);
 		}
 		
-		prev = next;
+		scaledPrev = scaledNext;
 	}
 	return closest;
 }
@@ -390,10 +389,9 @@ bool Mask::Contains(Point point, double scale) const
 	// For simplicity, use a ray pointing straight downwards. A segment then
 	// intersects only if its x coordinates span the point's coordinates.
 	int intersections = 0;
-	Point prev = outline.back();
+	Point scaledPrev = outline.back() * scale;
 	for(const Point &next : outline)
 	{
-		Point scaledPrev = prev * scale;
 		Point scaledNext = next * scale;
 		if(scaledPrev.X() != scaledNext.X())
 			if((scaledPrev.X() <= point.X()) == (point.X() < scaledNext.X()))
@@ -402,7 +400,7 @@ bool Mask::Contains(Point point, double scale) const
 					(point.X() - scaledPrev.X()) / (scaledNext.X() - scaledPrev.X());
 				intersections += (y >= point.Y());
 			}
-		prev = next;
+		scaledPrev = scaledNext;
 	}
 	// If the number of intersections is odd, the point is within the mask.
 	return (intersections & 1);
