@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef GAME_DATA_H_
 #define GAME_DATA_H_
 
+#include "CategoryTypes.h"
 #include "Sale.h"
 #include "Set.h"
 #include "Trade.h"
@@ -123,7 +124,7 @@ public:
 	
 	static const Government *PlayerGovernment();
 	static Politics &GetPolitics();
-	static const StartConditions &Start();
+	static const std::vector<StartConditions> &StartOptions();
 	
 	static const std::vector<Trade::Commodity> &Commodities();
 	static const std::vector<Trade::Commodity> &SpecialCommodities();
@@ -137,6 +138,8 @@ public:
 	
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);
+	// Strings for ship, bay type, and outfit categories.
+	static const std::vector<std::string> &Category(const CategoryType type);
 	
 	static const StarField &Background();
 	static void SetHaze(const Sprite *sprite);
