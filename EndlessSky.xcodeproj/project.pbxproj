@@ -867,10 +867,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A9CC529A1950C9F6004E4E22 /* Build configuration list for PBXNativeTarget "EndlessSky" */;
 			buildPhases = (
+				A93931ED19880ECA00C2A87B /* CopyFiles */,
+				072599A726A0CDC9007EC229 /* ShellScript */,
 				A9CC52651950C9F6004E4E22 /* Sources */,
 				A9CC52661950C9F6004E4E22 /* Frameworks */,
 				A9CC52671950C9F6004E4E22 /* Resources */,
-				A93931ED19880ECA00C2A87B /* CopyFiles */,
 				179C4966BD83E1B6FC2B24A0 /* Headers */,
 			);
 			buildRules = (
@@ -924,6 +925,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		072599A726A0CDC9007EC229 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = $SRCROOT/utils/set_dylibs_rpath.sh;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A9CC52651950C9F6004E4E22 /* Sources */ = {
