@@ -43,6 +43,13 @@ class UI;
 class NPC {
 public:
 	NPC() = default;
+	// Copying an NPC instance isn't allowed.
+	NPC(const NPC &) = delete;
+	NPC &operator=(const NPC &) = delete;
+	NPC(NPC &&) noexcept = default;
+	NPC &operator=(NPC &&) noexcept = default;
+	~NPC() noexcept = default;
+	
 	// Construct and Load() at the same time.
 	NPC(const DataNode &node);
 	
@@ -52,7 +59,8 @@ public:
 	void Save(DataWriter &out) const;
 	
 	// Determine if this NPC or NPC template uses well-defined data.
-	bool IsValid(bool asTemplate = false) const;
+	// Returns the reason the NPC is not valid, or an empty string if valid.
+	std::string Validate(bool asTemplate = false) const;
 	
 	// Update or check spawning and despawning for this NPC.
 	void UpdateSpawning(const PlayerInfo &player);

@@ -188,8 +188,8 @@ void HailPanel::Draw()
 		}
 	}
 	
-	const Interface *interface = GameData::Interfaces().Get("hail panel");
-	interface->Draw(info, this);
+	const Interface *hailUi = GameData::Interfaces().Get("hail panel");
+	hailUi->Draw(info, this);
 	
 	// Draw the sprite, rotated, scaled, and swizzled as necessary.
 	float zoom = min(2.f, 400.f / max(sprite->Width(), sprite->Height()));

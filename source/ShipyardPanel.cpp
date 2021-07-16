@@ -223,7 +223,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 
 
 
-bool ShipyardPanel::CanBuy() const
+bool ShipyardPanel::CanBuy(bool checkAlreadyOwned) const
 {
 	if(!selectedShip)
 		return false;

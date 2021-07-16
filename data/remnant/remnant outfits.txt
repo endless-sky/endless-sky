@@ -557,7 +557,7 @@ outfit "Smelter-Class Thruster"
 	"thrusting heat" 10.2
 	"reverse thrust" 46.08
 	"reverse thrusting energy" 6.06
-	"reverse thrusting heat" 1.5
+	"reverse thrusting heat" 6.12
 	"slowing resistance" 0.048
 	"flare sprite" "effect/remnant flare/large"
 		"frame rate" 3

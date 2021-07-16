@@ -30,7 +30,7 @@ class DataWriter;
 class ConditionSet {
 public:
 	using Conditions = ConditionsStore;
-	ConditionSet() = default;
+	ConditionSet() noexcept = default;
 	// Construct and Load() at the same time.
 	ConditionSet(const DataNode &node);
 	

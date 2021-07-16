@@ -231,10 +231,12 @@ void Planet::Load(const DataNode &node)
 
 
 
-// Test if this planet has been loaded and it belongs to a valid system (vs. just referred to).
+// Test if this planet has been loaded (vs. just referred to). It must also be located in
+// at least one system, and all systems that claim it must themselves be valid.
 bool Planet::IsValid() const
 {
-	return isDefined && GetSystem() && GetSystem()->IsValid();
+	return isDefined && !systems.empty() && all_of(systems.begin(), systems.end(),
+		[](const System *s) noexcept -> bool { return s->IsValid(); });
 }
 
 
@@ -577,6 +579,9 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		for(const auto &gov : toProvoke)
 			gov->Offend(ShipEvent::PROVOKE);
 		// Terrorizing a planet is not taken lightly by it or its allies.
+		// TODO: Use a distinct event type for the domination system and
+		// expose syntax for controlling its impact on the targeted government
+		// and those that know it.
 		GetGovernment()->Offend(ShipEvent::ATROCITY);
 		return "Our defense fleet will make short work of you.";
 	}

@@ -54,6 +54,12 @@ class UI;
 class PlayerInfo {
 public:
 	PlayerInfo() = default;
+	// Don't allow copying this class.
+	PlayerInfo(const PlayerInfo &) = delete;
+	PlayerInfo &operator=(const PlayerInfo &) = delete;
+	PlayerInfo(PlayerInfo &&) = default;
+	PlayerInfo &operator=(PlayerInfo &&) = default;
+	~PlayerInfo() noexcept = default;
 	
 	// Reset the player to an "empty" state, i.e. no player is loaded.
 	void Clear();
@@ -233,7 +239,7 @@ public:
 	void SetTravelDestination(const Planet *planet);
 	
 	// Toggle which secondary weapon the player has selected.
-	const Outfit *SelectedWeapon() const;
+	const std::set<const Outfit *> &SelectedWeapons() const;
 	void SelectNext();
 	
 	// Escorts currently selected for giving orders.
@@ -275,11 +281,6 @@ public:
 	
 	
 private:
-	// Don't allow anyone else to copy this class, because pointers won't get
-	// transferred properly.
-	PlayerInfo(const PlayerInfo &) = default;
-	PlayerInfo &operator=(const PlayerInfo &) = default;
-	
 	// Apply any "changes" saved in this player info to the global game state.
 	void ApplyChanges();
 	// After loading & applying changes, make sure the player & ship locations are sensible.
@@ -314,7 +315,7 @@ private:
 	bool isDead = false;
 	
 	// The amount of in-game time played, in seconds.
-	double playTime = 0.0;
+	double playTime = 0.;
 	
 	Account accounts;
 	
@@ -354,7 +355,7 @@ private:
 	std::vector<const System *> travelPlan;
 	const Planet *travelDestination = nullptr;
 	
-	const Outfit *selectedWeapon = nullptr;
+	std::set<const Outfit *> selectedWeapons;
 	
 	std::map<const Outfit *, int> stock;
 	Depreciation depreciation;
