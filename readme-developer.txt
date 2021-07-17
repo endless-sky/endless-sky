@@ -36,6 +36,13 @@ Then, from the project root folder, simply type:
 The program will run, using the "data" and "images" folders that are found in the project root. For more Linux help, and to view other command-line flags, consult the `man` page (endless-sky.6), by running `man endless-sky` in the project directory.
 The program also accepts a `--help` command line flag.
 
+To compile with Wayland support, set `SDL_VIDEODRIVER=wayland` in your environment before compiling:
+
+  $ SDL_VIDEODRIVER=wayland scons
+  $./endless-sky
+
+Note that this will disable X11 support; to build again with X11 support, unset that environment variable and re-compile.
+
 To compile and also run unit tests, the "test" target can be used:
 
   $ scons test
