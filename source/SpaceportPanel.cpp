@@ -12,8 +12,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "SpaceportPanel.h"
 
+#include "text/alignment.hpp"
 #include "Color.h"
-#include "FontSet.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "Interface.h"
 #include "News.h"
@@ -33,15 +34,15 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 	SetTrapAllEvents(false);
 	
 	text.SetFont(FontSet::Get(14));
-	text.SetAlignment(WrappedText::JUSTIFIED);
+	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(480);
 	text.Wrap(player.GetPlanet()->SpaceportDescription());
 	
 	// Query the news interface to find out the wrap width.
 	// TODO: Allow Interface to handle wrapped text directly.
-	const Interface *interface = GameData::Interfaces().Get("news");
-	portraitWidth = interface->GetBox("message portrait").Width();
-	normalWidth = interface->GetBox("message").Width();
+	const Interface *newsUi = GameData::Interfaces().Get("news");
+	portraitWidth = newsUi->GetBox("message portrait").Width();
+	normalWidth = newsUi->GetBox("message").Width();
 	newsMessage.SetFont(FontSet::Get(14));
 }
 
@@ -94,11 +95,11 @@ void SpaceportPanel::Draw()
 	
 	if(hasNews)
 	{
-		const Interface *interface = GameData::Interfaces().Get("news");
-		interface->Draw(newsInfo);
+		const Interface *newsUi = GameData::Interfaces().Get("news");
+		newsUi->Draw(newsInfo);
 		// Depending on if the news has a portrait, the interface box that
 		// gets filled in changes.
-		newsMessage.Draw(interface->GetBox(hasPortrait ? "message portrait" : "message").TopLeft(),
+		newsMessage.Draw(newsUi->GetBox(hasPortrait ? "message portrait" : "message").TopLeft(),
 			*GameData::Colors().Get("medium"));
 	}
 }

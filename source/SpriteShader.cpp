@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 
 #include <vector>
+#include <sstream>
 
 using namespace std;
 
@@ -31,28 +32,51 @@ namespace {
 	GLint blurI;
 	GLint clipI;
 	GLint alphaI;
+	GLint swizzlerI;
 	
 	GLuint vao;
 	GLuint vbo;
 
 	const vector<vector<GLint>> SWIZZLE = {
-		{GL_RED, GL_GREEN, GL_BLUE, GL_ALPHA}, // red + yellow markings (republic)
-		{GL_RED, GL_BLUE, GL_GREEN, GL_ALPHA}, // red + magenta markings
-		{GL_GREEN, GL_RED, GL_BLUE, GL_ALPHA}, // green + yellow (freeholders)
-		{GL_BLUE, GL_RED, GL_GREEN, GL_ALPHA}, // green + cyan
-		{GL_GREEN, GL_BLUE, GL_RED, GL_ALPHA}, // blue + magenta (syndicate)
-		{GL_BLUE, GL_GREEN, GL_RED, GL_ALPHA}, // blue + cyan (merchant)
-		{GL_GREEN, GL_BLUE, GL_BLUE, GL_ALPHA}, // red and black (pirate)
-		{GL_BLUE, GL_ZERO, GL_ZERO, GL_ALPHA},  // red only (cloaked)
-		{GL_ZERO, GL_ZERO, GL_ZERO, GL_ALPHA}  // black only (outline)
+		{GL_RED, GL_GREEN, GL_BLUE, GL_ALPHA}, // 0 red + yellow markings (republic)
+		{GL_RED, GL_BLUE, GL_GREEN, GL_ALPHA}, // 1 red + magenta markings
+		{GL_GREEN, GL_RED, GL_BLUE, GL_ALPHA}, // 2 green + yellow (free worlds)
+		{GL_BLUE, GL_RED, GL_GREEN, GL_ALPHA}, // 3 green + cyan
+		{GL_GREEN, GL_BLUE, GL_RED, GL_ALPHA}, // 4 blue + magenta (syndicate)
+		{GL_BLUE, GL_GREEN, GL_RED, GL_ALPHA}, // 5 blue + cyan (merchant)
+		{GL_GREEN, GL_BLUE, GL_BLUE, GL_ALPHA}, // 6 red and black (pirate)
+		{GL_RED, GL_BLUE, GL_BLUE, GL_ALPHA}, // 7 pure red
+		{GL_RED, GL_GREEN, GL_GREEN, GL_ALPHA}, // 8 faded red
+		{GL_BLUE, GL_BLUE, GL_BLUE, GL_ALPHA}, // 9 pure black
+		{GL_GREEN, GL_GREEN, GL_GREEN, GL_ALPHA}, // 10 faded black
+		{GL_RED, GL_RED, GL_RED, GL_ALPHA}, // 11 pure white
+		{GL_BLUE, GL_BLUE, GL_GREEN, GL_ALPHA}, // 12 darkened blue
+		{GL_BLUE, GL_BLUE, GL_RED, GL_ALPHA}, // 13 pure blue
+		{GL_GREEN, GL_GREEN, GL_RED, GL_ALPHA}, // 14 faded blue
+		{GL_BLUE, GL_GREEN, GL_GREEN, GL_ALPHA}, // 15 darkened cyan
+		{GL_BLUE, GL_RED, GL_RED, GL_ALPHA}, // 16 pure cyan
+		{GL_GREEN, GL_RED, GL_RED, GL_ALPHA}, // 17 faded cyan
+		{GL_BLUE, GL_GREEN, GL_BLUE, GL_ALPHA}, // 18 darkened green
+		{GL_BLUE, GL_RED, GL_BLUE, GL_ALPHA}, // 19 pure green
+		{GL_GREEN, GL_RED, GL_GREEN, GL_ALPHA}, // 20 faded green
+		{GL_GREEN, GL_GREEN, GL_BLUE, GL_ALPHA}, // 21 darkened yellow
+		{GL_RED, GL_RED, GL_BLUE, GL_ALPHA}, // 22 pure yellow
+		{GL_RED, GL_RED, GL_GREEN, GL_ALPHA}, // 23 faded yellow
+		{GL_GREEN, GL_BLUE, GL_GREEN, GL_ALPHA}, // 24 darkened magenta
+		{GL_RED, GL_BLUE, GL_RED, GL_ALPHA}, // 25 pure magenta
+		{GL_RED, GL_GREEN, GL_RED, GL_ALPHA}, // 26 faded magenta
+		{GL_BLUE, GL_ZERO, GL_ZERO, GL_ALPHA}, // 27 red only (cloaked)
+		{GL_ZERO, GL_ZERO, GL_ZERO, GL_ALPHA} // 28 black only (outline)
 	};
 }
 
-
+bool SpriteShader::useShaderSwizzle = false;
 
 // Initialize the shaders.
-void SpriteShader::Init()
+void SpriteShader::Init(bool useShaderSwizzle)
 {
+	SpriteShader::useShaderSwizzle = useShaderSwizzle;
+	
 	static const char *vertexCode =
 		"// vertex sprite shader\n"
 		"uniform vec2 scale;\n"
@@ -71,12 +95,16 @@ void SpriteShader::Init()
 		"  fragTexCoord = vec2(texCoord.x, max(clip, texCoord.y)) + blurOff;\n"
 		"}\n";
 	
-	static const char *fragmentCode =
+	ostringstream fragmentCodeStream;
+	fragmentCodeStream <<
 		"// fragment sprite shader\n"
 		"uniform sampler2DArray tex;\n"
 		"uniform float frame;\n"
 		"uniform float frameCount;\n"
-		"uniform vec2 blur;\n"
+		"uniform vec2 blur;\n";
+	if(useShaderSwizzle) fragmentCodeStream <<
+		"uniform int swizzler;\n";
+	fragmentCodeStream <<
 		"uniform float alpha;\n"
 		"const int range = 5;\n"
 		
@@ -113,9 +141,108 @@ void SpriteShader::Init()
 		"      else\n"
 		"        color += scale * texture(tex, vec3(coord, first));\n"
 		"    }\n"
-		"  }\n"
+		"  }\n";
+	
+	// Only included when hardware swizzle not supported, GL <3.3 and GLES
+	if(useShaderSwizzle)
+	{
+		fragmentCodeStream <<
+		"  switch (swizzler) {\n"
+		"    case 0:\n"
+		"      color = color.rgba;\n"
+		"      break;\n"
+		"    case 1:\n"
+		"      color = color.rbga;\n"
+		"      break;\n"
+		"    case 2:\n"
+		"      color = color.grba;\n"
+		"      break;\n"
+		"    case 3:\n"
+		"      color = color.brga;\n"
+		"      break;\n"
+		"    case 4:\n"
+		"      color = color.gbra;\n"
+		"      break;\n"
+		"    case 5:\n"
+		"      color = color.bgra;\n"
+		"      break;\n"
+		"    case 6:\n"
+		"      color = color.gbba;\n"
+		"      break;\n"
+		"    case 7:\n"
+		"      color = color.rbba;\n"
+		"      break;\n"
+		"    case 8:\n"
+		"      color = color.rgga;\n"
+		"      break;\n"
+		"    case 9:\n"
+		"      color = color.bbba;\n"
+		"      break;\n"
+		"    case 10:\n"
+		"      color = color.ggga;\n"
+		"      break;\n"
+		"    case 11:\n"
+		"      color = color.rrra;\n"
+		"      break;\n"
+		"    case 12:\n"
+		"      color = color.bbga;\n"
+		"      break;\n"
+		"    case 13:\n"
+		"      color = color.bbra;\n"
+		"      break;\n"
+		"    case 14:\n"
+		"      color = color.ggra;\n"
+		"      break;\n"
+		"    case 15:\n"
+		"      color = color.bgga;\n"
+		"      break;\n"
+		"    case 16:\n"
+		"      color = color.brra;\n"
+		"      break;\n"
+		"    case 17:\n"
+		"      color = color.grra;\n"
+		"      break;\n"
+		"    case 18:\n"
+		"      color = color.bgba;\n"
+		"      break;\n"
+		"    case 19:\n"
+		"      color = color.brba;\n"
+		"      break;\n"
+		"    case 20:\n"
+		"      color = color.grga;\n"
+		"      break;\n"
+		"    case 21:\n"
+		"      color = color.ggba;\n"
+		"      break;\n"
+		"    case 22:\n"
+		"      color = color.rrba;\n"
+		"      break;\n"
+		"    case 23:\n"
+		"      color = color.rrga;\n"
+		"      break;\n"
+		"    case 24:\n"
+		"      color = color.gbga;\n"
+		"      break;\n"
+		"    case 25:\n"
+		"      color = color.rbra;\n"
+		"      break;\n"
+		"    case 26:\n"
+		"      color = color.rgra;\n"
+		"      break;\n"
+		"    case 27:\n"
+		"      color = vec4(color.b, 0.f, 0.f, color.a);\n"
+		"      break;\n"
+		"    case 28:\n"
+		"      color = vec4(0.f, 0.f, 0.f, color.a);\n"
+		"      break;\n"
+		"  }\n";
+	}
+	fragmentCodeStream <<
 		"  finalColor = color * alpha;\n"
 		"}\n";
+	
+	static const string fragmentCodeString = fragmentCodeStream.str();
+	static const char *fragmentCode = fragmentCodeString.c_str();
 	
 	shader = Shader(vertexCode, fragmentCode);
 	scaleI = shader.Uniform("scale");
@@ -126,6 +253,8 @@ void SpriteShader::Init()
 	blurI = shader.Uniform("blur");
 	clipI = shader.Uniform("clip");
 	alphaI = shader.Uniform("alpha");
+	if(useShaderSwizzle)
+		swizzlerI = shader.Uniform("swizzler");
 	
 	glUseProgram(shader.Object());
 	glUniform1i(shader.Uniform("tex"), 0);
@@ -210,7 +339,10 @@ void SpriteShader::Add(const Item &item, bool withBlur)
 	// Bounds check for the swizzle value:
 	int swizzle = (static_cast<size_t>(item.swizzle) >= SWIZZLE.size() ? 0 : item.swizzle);
 	// Set the color swizzle.
-	glTexParameteriv(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_SWIZZLE_RGBA, SWIZZLE[swizzle].data());
+	if(SpriteShader::useShaderSwizzle)
+		glUniform1i(swizzlerI, swizzle);
+	else
+		glTexParameteriv(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_SWIZZLE_RGBA, SWIZZLE[swizzle].data());
 	
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
@@ -223,5 +355,8 @@ void SpriteShader::Unbind()
 	glUseProgram(0);
 	
 	// Reset the swizzle.
-	glTexParameteriv(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_SWIZZLE_RGBA, SWIZZLE[0].data());
+	if(SpriteShader::useShaderSwizzle)
+		glUniform1i(swizzlerI, 0);
+	else
+		glTexParameteriv(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_SWIZZLE_RGBA, SWIZZLE[0].data());
 }

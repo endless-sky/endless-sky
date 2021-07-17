@@ -40,6 +40,7 @@ namespace {
 	string imagePath;
 	string soundPath;
 	string savePath;
+	string testPath;
 	
 	mutex errorMutex;
 	File errorLog;
@@ -224,6 +225,13 @@ const string &Files::Sounds()
 const string &Files::Saves()
 {
 	return savePath;
+}
+
+
+
+const string &Files::Tests()
+{
+	return testPath;
 }
 
 
@@ -544,7 +552,14 @@ void Files::LogError(const string &message)
 	lock_guard<mutex> lock(errorMutex);
 	cerr << message << endl;
 	if(!errorLog)
+	{
 		errorLog = File(config + "errors.txt", true);
+		if(!errorLog)
+		{
+			cerr << "Unable to create \"errors.txt\" " << (config.empty() ? "in current directory" : "in \"" + config + "\"") << endl;
+			return;
+		}
+	}
 	
 	Write(errorLog, message);
 	fwrite("\n", 1, 1, errorLog);

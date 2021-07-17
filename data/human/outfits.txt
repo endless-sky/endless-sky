@@ -271,7 +271,7 @@ outfit "Cloaking Device"
 outfit "Outfits Expansion"
 	category "Systems"
 	cost 50000
-	thumbnail "outfit/blue screwdriver"
+	thumbnail "outfit/outfit expansion"
 	"mass" 5
 	"outfit space" 15
 	"cargo space" -20
@@ -284,7 +284,7 @@ outfit "Outfits Expansion"
 outfit "Cargo Expansion"
 	category "Systems"
 	cost 30000
-	thumbnail "outfit/red screwdriver"
+	thumbnail "outfit/cargo expansion"
 	"mass" 5
 	"cargo space" 15
 	"outfit space" -20
@@ -346,7 +346,7 @@ outfit "Interference Plating"
 	"mass" 4
 	"outfit space" -4
 	"scan interference" .5
-	description "If you're in the habit of carrying illegal cargo or outfits, this plating increases the odds that a scan of your ship will fail to detect it. The more of these you install, the better your chances of evading detection. They won't keep anyone from noticing if you're flying an unlicensed ship, however."
+	description "If you're in the habit of carrying illegal cargo or outfits, this plating increases the odds that a scan of your ship will fail to detect it. The more of these you install, the better your chances of evading detection. It even helps against scans at spaceports, so you can more reliably land to refuel without getting caught."
 
 
 
