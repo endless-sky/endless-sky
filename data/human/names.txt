@@ -540,7 +540,7 @@ phrase "plural nouns"
 	replace
 		"ss%s" "sses"
 		"y%s" "ies"
-		"%"	""
+		"%" ""
 
 phrase "nouns of indeterminate quantity"
 	word
