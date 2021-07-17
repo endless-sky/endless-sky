@@ -178,10 +178,22 @@ void Outfit::Load(const DataNode &node)
 			cost = child.Value(1);
 		else if(child.Token(0) == "mass" && child.Size() >= 2)
 			mass = child.Value(1);
-		else if(child.Token(0) == "licenses")
+		else if(child.Token(0) == "licenses" && (child.HasChildren() || child.Size() >= 2))
 		{
+			auto isNewLicense = [](const vector<string> &c, const string &val) noexcept -> bool {
+				return find(c.begin(), c.end(), val) == c.end();
+			};
+			// Add any new licenses that were specified "inline".
+			if(child.Size() >= 2)
+			{
+				for(auto it = ++begin(child.Tokens()); it != end(child.Tokens()); ++it)
+					if(isNewLicense(licenses, *it))
+						licenses.push_back(*it);
+			}
+			// Add any new licenses that were specifed as an indented list.
 			for(const DataNode &grand : child)
-				licenses.push_back(grand.Token(0));
+				if(isNewLicense(licenses, grand.Token(0)))
+					licenses.push_back(grand.Token(0));
 		}
 		else if(child.Token(0) == "jump range" && child.Size() >= 2)
 		{
