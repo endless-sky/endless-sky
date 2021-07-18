@@ -253,12 +253,13 @@ namespace {
 	
 	// Set the ship's TargetStellar or TargetSystem in order to reach the
 	// next desired system. Will target a landable planet to refuel.
-	void SelectRoute(Ship &ship, const System *targetSystem)
+	// If the ship is an escort it will only use routes known to the player.
+	void SelectRoute(const PlayerInfo &player, Ship &ship, const System *targetSystem)
 	{
 		const System *from = ship.GetSystem();
 		if(from == targetSystem || !targetSystem)
 			return;
-		const DistanceMap route(ship, targetSystem);
+		const DistanceMap route(ship, targetSystem, ship.IsYours() ? &player : nullptr);
 		const bool needsRefuel = ShouldRefuel(ship, route);
 		const System *to = route.Route(from);
 		// The destination may be accessible by both jump and wormhole.
@@ -301,8 +302,9 @@ namespace {
 
 
 
-AI::AI(const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam)
-	: ships(ships), minables(minables), flotsam(flotsam)
+AI::AI(const PlayerInfo &player, const List<Ship> &ships,
+		const List<Minable> &minables, const List<Flotsam> &flotsam)
+	: player(player), ships(ships), minables(minables), flotsam(flotsam)
 {
 }
 
@@ -1330,7 +1332,7 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 		// The desired position is in a different system. Find the best
 		// way to reach that system (via wormhole or jumping). This may
 		// result in the ship landing to refuel.
-		SelectRoute(ship, it->second.targetSystem);
+		SelectRoute(player, ship, it->second.targetSystem);
 		
 		// Travel there even if your parent is not planning to travel.
 		if(ship.GetTargetSystem())
@@ -1515,7 +1517,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	// Choose the best method of reaching the target system, which may mean
 	// using a local wormhole rather than jumping. If this ship has chosen
 	// to land, this decision will not be altered.
-	SelectRoute(ship, ship.GetTargetSystem());
+	SelectRoute(player, ship, ship.GetTargetSystem());
 	
 	if(ship.GetTargetSystem())
 	{
@@ -1574,7 +1576,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		{
 			// Route to the parent ship's system and check whether
 			// the ship should land (refuel or wormhole) or jump.
-			SelectRoute(ship, parent.GetSystem());
+			SelectRoute(player, ship, parent.GetSystem());
 		}
 		
 		// Perform the action that this ship previously decided on.

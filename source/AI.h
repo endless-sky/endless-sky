@@ -47,8 +47,9 @@ public:
 	// Any object that can be a ship's target is in a list of this type:
 template <class Type>
 	using List = std::list<std::shared_ptr<Type>>;
-	// Constructor, giving the AI access to various object lists.
-	AI(const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam);
+	// Constructor, giving the AI access to the player and various object lists.
+	AI(const PlayerInfo &player, const List<Ship> &ships,
+			const List<Minable> &minables, const List<Flotsam> &flotsam);
 	
 	// Fleet commands from the player.
 	void IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &target);
@@ -178,6 +179,7 @@ private:
 	
 private:
 	// Data from the game engine.
+	const PlayerInfo &player;
 	const List<Ship> &ships;
 	const List<Minable> &minables;
 	const List<Flotsam> &flotsam;
