@@ -1693,9 +1693,11 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	{
 		pilotError = 30;
 		if(parent.lock() || !isYours)
-			Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it.", false);
+			Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it."
+				, Messages::Importance::Low);
 		else
-			Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it.", false);
+			Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it."
+				, Messages::Importance::Low);
 	}
 	else
 		pilotOkay = 30;
@@ -1851,7 +1853,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					// boarding sequence (including locking on to the ship) but
 					// not to actually board, if they are cloaked.
 					if(isYours)
-						Messages::Add("You cannot board a ship while cloaked.");
+						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::High);
 				}
 				else
 				{
@@ -1860,7 +1862,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					if(isEnemy && Random::Real() < target->Attributes().Get("self destruct"))
 					{
 						Messages::Add("The " + target->ModelName() + " \"" + target->Name()
-							+ "\" has activated its self-destruct mechanism.");
+							+ "\" has activated its self-destruct mechanism.", Messages::Importance::High);
 						GetTargetShip()->SelfDestruct();
 					}
 					else
@@ -2271,22 +2273,24 @@ int Ship::Scan()
 	if(startedScanning && isYours)
 	{
 		if(!target->Name().empty())
-			Messages::Add("Attempting to scan the " + target->Noun() + " \"" + target->Name() + "\".", false);
+			Messages::Add("Attempting to scan the " + target->Noun() + " \"" + target->Name() + "\"."
+				, Messages::Importance::Low);
 		else
-			Messages::Add("Attempting to scan the selected " + target->Noun() + ".", false);
+			Messages::Add("Attempting to scan the selected " + target->Noun() + "."
+				, Messages::Importance::Low);
 	}
 	else if(startedScanning && target->isYours)
 		Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-			+ Name() + "\" is attempting to scan you.", false);
+			+ Name() + "\" is attempting to scan you.", Messages::Importance::Low);
 	
 	if(target->isYours && !isYours)
 	{
 		if(result & ShipEvent::SCAN_CARGO)
 			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-					+ Name() + "\" completed its scan of your cargo.");
+					+ Name() + "\" completed its scan of your cargo.", Messages::Importance::High);
 		if(result & ShipEvent::SCAN_OUTFITS)
 			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-					+ Name() + "\" completed its scan of your outfits.");
+					+ Name() + "\" completed its scan of your outfits.", Messages::Importance::High);
 	}
 	
 	return result;

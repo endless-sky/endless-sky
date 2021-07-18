@@ -33,10 +33,15 @@ public:
 		int step;
 		std::string message;
 	};
+    
+    enum class Importance {
+        High,
+        Low
+    };
 	
 public:
-	// Add a message to the list.
-	static void Add(const std::string &message, bool isImportant = true);
+	// Add a message to the list along with its level of importance
+	static void Add(const std::string &message, Importance importance);
 	
 	// Get the messages for the given game step. Any messages that are too old
 	// will be culled out, and new ones that have just been added will have

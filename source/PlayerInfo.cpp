@@ -547,7 +547,8 @@ void PlayerInfo::IncrementDate()
 	// Check if any missions have failed because of deadlines.
 	for(Mission &mission : missions)
 		if(mission.CheckDeadline(date) && mission.IsVisible())
-			Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\".");
+			Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\"."
+				, Messages::Importance::High);
 	
 	// Check what salaries and tribute the player receives.
 	int64_t total[2] = {0, 0};
@@ -568,7 +569,7 @@ void PlayerInfo::IncrementDate()
 		if(total[1])
 			message += Format::Credits(total[1]) + " credits in tribute";
 		message += ".";
-		Messages::Add(message);
+		Messages::Add(message, Messages::Importance::High);
 		accounts.AddCredits(total[0] + total[1]);
 	}
 	
@@ -582,7 +583,7 @@ void PlayerInfo::IncrementDate()
 	// summarizes the payments that were made.
 	string message = accounts.Step(assets, Salaries(), Maintenance());
 	if(!message.empty())
-		Messages::Add(message);
+		Messages::Add(message, Messages::Importance::High);
 	
 	// Reset the reload counters for all your ships.
 	for(const shared_ptr<Ship> &ship : ships)
@@ -1219,7 +1220,7 @@ void PlayerInfo::Land(UI *ui)
 			flagship->AddCrew(added);
 			Messages::Add("You hire " + to_string(added) + (added == 1
 					? " extra crew member to fill your now-empty bunk."
-					: " extra crew members to fill your now-empty bunks."));
+					: " extra crew members to fill your now-empty bunks."), Messages::Importance::High);
 		}
 	}
 	
@@ -1322,7 +1323,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 		if(extra)
 		{
 			flagship->AddCrew(-extra);
-			Messages::Add("You fired " + to_string(extra) + " crew members to free up bunks for passengers.");
+			Messages::Add("You fired " + to_string(extra) + " crew members to free up bunks for passengers."
+				, Messages::Importance::High);
 			flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 			cargo.TransferAll(flagship->Cargo());
 		}
@@ -1332,7 +1334,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 	if(extra > 0)
 	{
 		flagship->AddCrew(-extra);
-		Messages::Add("You fired " + to_string(extra) + " crew members because you have no bunks for them.");
+		Messages::Add("You fired " + to_string(extra) + " crew members because you have no bunks for them."
+			, Messages::Importance::High);
 		flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 	}
 	
@@ -1374,7 +1377,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 		{
 			// The remaining uncarried ships are launched alongside the player.
 			string message = (uncarried > 1) ? "Some escorts were" : "One escort was";
-			Messages::Add(message + " unable to dock with a carrier.");
+			Messages::Add(message + " unable to dock with a carrier.", Messages::Importance::High);
 		}
 	}
 	
@@ -1387,7 +1390,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 		{
 			if(it.first->IsVisible())
 				Messages::Add("Mission \"" + it.first->Name()
-					+ "\" failed because you do not have space for the cargo.");
+					+ "\" failed because you do not have space for the cargo.", Messages::Importance::High);
 			missionsToRemove.push_back(it.first);
 		}
 	for(const auto &it : cargo.PassengerList())
@@ -1395,7 +1398,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 		{
 			if(it.first->IsVisible())
 				Messages::Add("Mission \"" + it.first->Name()
-					+ "\" failed because you do not have enough passenger bunks free.");
+					+ "\" failed because you do not have enough passenger bunks free.", Messages::Importance::High);
 			missionsToRemove.push_back(it.first);
 			
 		}
@@ -1453,7 +1456,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 			out << " (for a profit of " << (income - totalBasis) << " credits).";
 		else
 			out << ".";
-		Messages::Add(out.str());
+		Messages::Add(out.str(), Messages::Importance::High);
 	}
 	
 	return true;

@@ -25,11 +25,11 @@ namespace {
 
 
 
-// Add a message to the list.
-void Messages::Add(const string &message, bool isImportant)
+// Add a message to the list along with its level of importance
+void Messages::Add(const string &message, Importance importance)
 {
 	lock_guard<mutex> lock(incomingMutex);
-	incoming.emplace_back(message, isImportant);
+	incoming.emplace_back(message, importance == Importance::High);
 }
 
 
