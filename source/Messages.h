@@ -34,7 +34,7 @@ public:
 		std::string message;
 	};
     
-    enum class Importance {
+    enum class Importance : uint_least8_t {
         High,
         Low
     };
