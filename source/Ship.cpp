@@ -1155,7 +1155,17 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	targetShip.reset();
 	shipToAssist.reset();
 	if(government)
-		SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
+	{
+		auto swizzle = customSwizzle >= 0 ? customSwizzle : government->GetSwizzle();
+		SetSwizzle(swizzle);
+
+		// Set swizzle for any carried ships too.
+		for(const auto &bay : bays)
+		{
+			if(bay.ship)
+				bay.ship->SetSwizzle(swizzle);
+		}
+	}
 }
 
 
