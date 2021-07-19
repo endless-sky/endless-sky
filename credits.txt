@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.9.13
+version 0.9.14
 
 This game is open source.
 To report bugs, give feedback,
@@ -57,6 +57,7 @@ Editors & Proofreaders
   RecursiveParadox
   Tadrix
   temtemy
+  W1zrad
   Zearth Goh aka TheMarksman
 
 Artwork
@@ -126,8 +127,10 @@ contributed to Endless Sky:
   AMDmi3
   anarcat
   Anarchist2
+  AraCaputDraco
   Arachi-Lover
   arkhne
+  ashdnazg
   Aurelite
   barthalion
   beccabunny
@@ -140,12 +143,15 @@ contributed to Endless Sky:
   colbygallup
   comnom
   corecontingency
+  Corraban2
   CyberShadow
   czartrak
   Darcman99
   davidarcher
   davidwhitman
+  dazuma
   db47h
+  DeBlister
   DingusShingleton
   Disiuze
   dplepage
@@ -154,6 +160,7 @@ contributed to Endless Sky:
   dufferzafar
   dzhu
   eflyon
+  EjoThims
   elgeonmb
   Eloraam
   Elyssaen
@@ -161,6 +168,7 @@ contributed to Endless Sky:
   EndrosG
   fcfort
   Ferociousfeind
+  Floppa-Priest
   finite-galaxy
   FixItYondu
   flaviojs
@@ -175,11 +183,13 @@ contributed to Endless Sky:
   Hadron1776
   har9862
   Hyugat
+  InfiniteDonuts
   infinitewarp
   ItsNickBarry
   jafdy
   Janaszar
   janisozaur
+  jarekchr
   jerith
   jjhankins
   jmathes
@@ -188,6 +198,7 @@ contributed to Endless Sky:
   jozef-mitro
   Jugosloven1612
   Karirawri
+  kestrel1110
   KevinKorzekwa
   kilobyte
   kkuchta
@@ -207,6 +218,7 @@ contributed to Endless Sky:
   MasterOfGrey
   mattsoulanille
   maxrd2
+  McloughlinGuy
   MCOfficer
   MessyMix
   michel-slm
@@ -282,6 +294,7 @@ contributed to Endless Sky:
   Turtleroku
   tux2603
   Vilhelm16
+  W1zrad
   Waffleship
   Waladil
   warp-core
