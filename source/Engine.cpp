@@ -619,7 +619,7 @@ void Engine::Step(bool isActive)
 	}
 	
 	if(flagship && flagship->IsOverheated())
-		Messages::Add("Your ship has overheated.", Messages::Importance::High);
+		Messages::Add("Your ship has overheated.", Messages::Importance::Highest);
 	
 	// Clear the HUD information from the previous frame.
 	info = Information();
@@ -942,7 +942,13 @@ void Engine::Draw() const
 		if(messagePoint.Y() < messageBox.Top())
 			break;
 		float alpha = (it->step + 1000 - step) * .001f;
-		Color color(alpha, 0.f);
+		Color color;
+		if (it->importance == Messages::Importance::Highest) {
+			color = Color::Red.Additive(alpha);
+		}
+		else {
+			color = Color(alpha);
+		}
 		messageLine.Draw(messagePoint, color);
 	}
 	
