@@ -194,7 +194,7 @@ private:
 	bool escortsAreFrugal = true;
 	bool escortsUseAmmo = true;
 
-	// The minimum speed before landing will consider non-landable objects
+	// The minimum speed before landing will consider non-landable objects.
 	const float MIN_LANDING_VELOCITY = 80.;
 	
 	// Current orders for the player's ships. Because this map only applies to
