@@ -61,7 +61,7 @@ public:
 		~Bay() = default;
 		
 		// Copying a bay does not copy the ship inside it.
-		Bay(const Bay &b) : point(b.point), category(b.category), side(b.side), facing(b.facing), launchEffects(b.launchEffects) {}
+		Bay(const Bay &b) : point(b.point), category(b.category), side(b.side), facing(b.facing), launchEffects(b.launchEffects), retrieveEffects(b.retrieveEffects) {}
 		Bay &operator=(const Bay &b) { return *this = Bay(b); }
 		
 		Point point;
@@ -79,6 +79,8 @@ public:
 		
 		// The launch effect(s) to be simultaneously played when the bay's ship launches.
 		std::vector<const Effect *> launchEffects;
+		// The retrieve effect(s) to be simultaneously played when the bay's ship boards.
+		std::vector<const Effect *> retrieveEffects;
 	};
 	
 	class EnginePoint : public Point {
@@ -194,7 +196,7 @@ public:
 	// Check if this ship is boarding another ship. If it is, it either plunders
 	// it or, if this is a player ship, returns the ship it is plundering so a
 	// plunder dialog can be displayed.
-	std::shared_ptr<Ship> Board(bool autoPlunder = true);
+	std::shared_ptr<Ship> Board(bool autoPlunder, std::vector<Visual> &visuals);
 	// Scan the target, if able and commanded to. Return a ShipEvent bitmask
 	// giving the types of scan that succeeded.
 	int Scan();
@@ -345,7 +347,7 @@ public:
 	// Check if this is a ship of a type that can be carried.
 	bool CanBeCarried() const;
 	// Move the given ship into one of the bays, if possible.
-	bool Carry(const std::shared_ptr<Ship> &ship);
+	bool Carry(const std::shared_ptr<Ship> &ship, std::vector<Visual> *visuals = nullptr);
 	// Empty the bays. If the carried ships are not special ships that are
 	// saved in the player data, they will be deleted. Otherwise, they become
 	// visible as ships landed on the same planet as their parent.

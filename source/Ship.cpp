@@ -322,12 +322,18 @@ void Ship::Load(const DataNode &node)
 			if(child.HasChildren())
 				for(const DataNode &grand : child)
 				{
-					// Load in the effect(s) to be displayed when the ship launches.
+					// Load in the effect(s) to be displayed when the ship launches/boards.
 					if(grand.Token(0) == "launch effect" && grand.Size() >= 2)
 					{
 						int count = grand.Size() >= 3 ? static_cast<int>(grand.Value(2)) : 1;
 						const Effect *e = GameData::Effects().Get(grand.Token(1));
 						bay.launchEffects.insert(bay.launchEffects.end(), count, e);
+					}
+					else if(grand.Token(0) == "retrieve effect" && grand.Size() >= 2)
+					{
+						int count = grand.Size() >= 3 ? static_cast<int>(grand.Value(2)) : 1;
+						const Effect *e = GameData::Effects().Get(grand.Token(1));
+						bay.retrieveEffects.insert(bay.retrieveEffects.end(), count, e);
 					}
 					else if(grand.Token(0) == "angle" && grand.Size() >= 2)
 						bay.facing = Angle(grand.Value(1));
@@ -916,7 +922,7 @@ void Ship::Save(DataWriter &out) const
 
 			out.Write("bay", bay.category, x, y);
 			
-			if(!bay.launchEffects.empty() || bay.facing.Degrees() || bay.side)
+			if(!bay.launchEffects.empty() || !bay.retrieveEffects.empty() || bay.facing.Degrees() || bay.side)
 			{
 				out.BeginChild();
 				{
@@ -926,6 +932,8 @@ void Ship::Save(DataWriter &out) const
 						out.Write(BAY_SIDE[bay.side]);
 					for(const Effect *effect : bay.launchEffects)
 						out.Write("launch effect", effect->Name());
+					for(const Effect *effect : bay.retrieveEffects)
+						out.Write("retrieve effect", effect->Name());
 				}
 				out.EndChild();
 			}
@@ -2162,7 +2170,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 
 
 // Check if this ship is boarding another ship.
-shared_ptr<Ship> Ship::Board(bool autoPlunder)
+shared_ptr<Ship> Ship::Board(bool autoPlunder, vector<Visual> &visuals)
 {
 	if(!hasBoarded)
 		return shared_ptr<Ship>();
@@ -2177,7 +2185,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 	{
 		SetTargetShip(shared_ptr<Ship>());
 		if(!victim->IsDisabled() && victim->GetGovernment() == government)
-			victim->Carry(shared_from_this());
+			victim->Carry(shared_from_this(), &visuals);
 		return shared_ptr<Ship>();
 	}
 	
@@ -3261,7 +3269,7 @@ bool Ship::CanBeCarried() const
 
 
 
-bool Ship::Carry(const shared_ptr<Ship> &ship)
+bool Ship::Carry(const shared_ptr<Ship> &ship, vector<Visual> *visuals)
 {
 	if(!ship || !ship->CanBeCarried())
 		return false;
@@ -3292,6 +3300,12 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			
 			// Update the cached mass of the mothership.
 			carriedMass += ship->Mass();
+
+			// Apply any retrieve effects if applicable (for example, no effect should
+			// be generated when launching from a planet).
+			if(visuals)
+				for(const Effect *effect : bay.retrieveEffects)
+					visuals->emplace_back(*effect, ship->Position(), ship->Velocity(), ship->Facing());
 			return true;
 		}
 	return false;

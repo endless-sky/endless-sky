@@ -1556,7 +1556,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	
 	// Boarding:
 	bool autoPlunder = !ship->IsYours();
-	shared_ptr<Ship> victim = ship->Board(autoPlunder);
+	shared_ptr<Ship> victim = ship->Board(autoPlunder, newVisuals);
 	if(victim)
 		eventQueue.emplace_back(ship, victim,
 			ship->GetGovernment()->IsEnemy(victim->GetGovernment()) ?
