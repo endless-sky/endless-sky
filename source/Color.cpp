@@ -13,6 +13,23 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 
 
+// Predefined Colors taken from the "Fixed Colors" defined by Apple
+//  (https://developer.apple.com/documentation/uikit/uicolor/standard_colors)
+const Color Color::Black 		= Color(0.f, 0.f, 0.f);
+const Color Color::Blue			= Color(0.f, 0.f, 1.f);
+const Color Color::Brown		= Color(.6f, .4f, .2f);
+const Color Color::Cyan			= Color(0.f, 1.f, 1.f);
+const Color Color::DarkGray		= Color(1/3.f, 1/3.f, 1/3.f);
+const Color Color::Gray			= Color(.5f, .5f, .5f);
+const Color Color::Green		= Color(0.f, 1.f, 0.f);
+const Color Color::LightGray	= Color(2/3.f, 2/3.f, 2/3.f);
+const Color Color::Magenta 		= Color(1.f, 0.f, 1.f);
+const Color Color::Orange 		= Color(1.f, .5f, 0.f);
+const Color Color::Purple 		= Color(.5f, 0.f, .5f);
+const Color Color::Red 			= Color(1.f, 0.f, 0.f);
+const Color Color::White 		= Color(1.f, 1.f, 1.f);
+const Color Color::Yellow 		= Color(1.f, 1.f, 0.f);
+
 
 // Greyscale color constructor.
 Color::Color(float i, float a)
