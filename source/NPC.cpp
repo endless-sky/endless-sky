@@ -429,7 +429,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 	// Apply this event to the ship and any ships it is carrying.
 	actions[ship.get()] |= type;
 	for(const Ship::Bay &bay : ship->Bays())
-		if(bay.ship)
+		if(!bay.empty)
 			actions[bay.ship.get()] |= type;
 	
 	// Check if the success status has changed. If so, display a message.

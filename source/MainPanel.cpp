@@ -359,7 +359,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 		
 		map<string, int> count;
 		for(const Ship::Bay &bay : target->Bays())
-			if(bay.ship)
+			if(!bay.empty)
 			{
 				int &value = count[bay.ship->ModelName()];
 				if(value)

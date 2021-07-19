@@ -67,6 +67,7 @@ public:
 		Point point;
 		std::shared_ptr<Ship> ship;
 		std::string category;
+		bool empty = true;
 		
 		uint8_t side = 0;
 		static const uint8_t INSIDE = 0;
@@ -351,6 +352,8 @@ public:
 	void UnloadBays();
 	// Get a list of any ships this ship is carrying.
 	const std::vector<Bay> &Bays() const;
+	// Return the bay of the given carried ship.
+	const Bay *GetBayFrom(const Ship &ship) const;
 	// Adjust the positions and velocities of any visible carried fighters or
 	// drones. If any are visible, return true.
 	bool PositionFighters() const;
