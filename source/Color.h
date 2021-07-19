@@ -42,23 +42,6 @@ public:
 	// the given fraction of its full brightness.
 	Color Additive(float alpha) const;
 	
-	// Predefined Colors taken from the "Fixed Colors" defined by Apple
-	//  (https://developer.apple.com/documentation/uikit/uicolor/standard_colors)
-	static const Color Black;
-	static const Color Blue;
-	static const Color Brown;
-	static const Color Cyan;
-	static const Color DarkGray;
-	static const Color Gray;
-	static const Color Green;
-	static const Color LightGray;
-	static const Color Magenta;
-	static const Color Orange;
-	static const Color Purple;
-	static const Color Red;
-	static const Color White;
-	static const Color Yellow;
-	
 	
 private:
 	// Store the color as a float vector for easy interfacing with OpenGL.
