@@ -72,7 +72,7 @@ const vector<Messages::Entry> &Messages::Get(int step)
 			else
 				++it;
 		}
-		list.emplace_back(step, message);
+		list.emplace_back(step, message, importance);
 	}
 	incoming.clear();
 	return list;
