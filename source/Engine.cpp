@@ -1519,7 +1519,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 			eventQueue.emplace_back(nullptr, ship, ShipEvent::DESTROY);
 			// Any still-docked ships' destruction must be recorded as well.
 			for(const auto &bay : ship->Bays())
-				if(!bay.empty)
+				if(bay.ship)
 					eventQueue.emplace_back(nullptr, bay.ship, ShipEvent::DESTROY);
 		}
 		return;
@@ -2233,7 +2233,7 @@ void Engine::AddSprites(const Ship &ship)
 	
 	if(hasFighters)
 		for(const Ship::Bay &bay : ship.Bays())
-			if(bay.side == Ship::Bay::UNDER && !bay.empty)
+			if(bay.side == Ship::Bay::UNDER && bay.ship)
 				drawObject(*bay.ship);
 	
 	if(ship.IsThrusting() && !ship.EnginePoints().empty())
@@ -2274,7 +2274,7 @@ void Engine::AddSprites(const Ship &ship)
 	
 	if(hasFighters)
 		for(const Ship::Bay &bay : ship.Bays())
-			if(bay.side == Ship::Bay::OVER && !bay.empty)
+			if(bay.side == Ship::Bay::OVER && bay.ship)
 				drawObject(*bay.ship);
 }
 

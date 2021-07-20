@@ -804,7 +804,7 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 			{
 				++bayCount[bay.category];
 				// The bays should always be empty. But if not, count that ship too.
-				if(!bay.empty)
+				if(bay.ship)
 				{
 					Files::LogError("Expected bay to be empty for " + ship->ModelName() + ": " + ship->Name());
 					categoryCount[bay.ship->Attributes().Category()].emplace_back(bay.ship);

@@ -67,7 +67,8 @@ public:
 		Point point;
 		std::shared_ptr<Ship> ship;
 		std::string category;
-		bool empty = true;
+		// If this bay isn't reversed by a carry.
+		bool free = true;
 		
 		uint8_t side = 0;
 		static const uint8_t INSIDE = 0;
@@ -356,8 +357,8 @@ public:
 	void UnloadBays();
 	// Get a list of any ships this ship is carrying.
 	const std::vector<Bay> &Bays() const;
-	// Return the bay of the given carried ship.
-	const Bay *GetBayFrom(const Ship &ship) const;
+	// Returns the bay this ship docks too if any.
+	const Bay *GetBay() const;
 	// Adjust the positions and velocities of any visible carried fighters or
 	// drones. If any are visible, return true.
 	bool PositionFighters() const;
@@ -420,7 +421,7 @@ public:
 private:
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(Ship &ship);
-	void RemoveEscort(const Ship &ship);
+	void RemoveEscort(Ship &ship);
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
 	// Find out how much fuel is consumed by the hyperdrive of the given type.
@@ -455,6 +456,8 @@ private:
 	// Characteristics of this particular ship:
 	std::string name;
 	bool canBeCarried = false;
+	// The bay this ship docks too, if any.
+	Bay *reservedBay = nullptr;
 	
 	int forget = 0;
 	bool isInSystem = true;

@@ -388,7 +388,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					you->TransferFuel(victim->JumpFuelMissing(), &*victim);
 				player.AddShip(victim);
 				for(const Ship::Bay &bay : victim->Bays())
-					if(!bay.empty)
+					if(bay.ship)
 					{
 						player.AddShip(bay.ship);
 						player.HandleEvent(ShipEvent(you, bay.ship, ShipEvent::CAPTURE), GetUI());
