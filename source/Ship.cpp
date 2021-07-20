@@ -1890,6 +1890,11 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		}
 	}
 	
+	// Check if any carries aren't part of this ship anymore (captured/killed).
+	for(auto &bay : bays)
+		if(bay.ship && (bay.ship->IsDestroyed() || bay.ship->GetParent().get() != this))
+			bay.ship.reset();
+
 	// Clear your target if it is destroyed. This is only important for NPCs,
 	// because ordinary ships cease to exist once they are destroyed.
 	target = GetTargetShip();
@@ -2747,11 +2752,6 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	isYours = capturer->isYours;
 	personality = capturer->personality;
 	
-	// Fighters should flee a disabled ship, but if the player manages to capture
-	// the ship before they flee, the fighters are captured, too.
-	for(const Bay &bay : bays)
-		if(!bay.empty)
-			bay.ship->WasCaptured(capturer);
 	// If a flagship is captured, its escorts become independent.
 	for(const auto &it : escorts)
 	{
@@ -2761,6 +2761,14 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	}
 	// This ship should not care about its now-unallied escorts.
 	escorts.clear();
+
+	// Fighters should flee a disabled ship, but if the player manages to capture
+	// the ship before they flee, the fighters are captured, too.
+	for(Bay &bay : bays)
+		if(!bay.empty)
+			bay.ship->WasCaptured(capturer);
+		else
+			bay.ship.reset();
 }
 
 
@@ -3220,12 +3228,13 @@ bool Ship::HasBays() const
 
 
 
-// Check how many bays are not occupied at present.
+// Check how many bays are not occupied at present. This does not check whether
+// one of your escorts plans to use that bay.
 int Ship::BaysFree(const string &category) const
 {
 	int count = 0;
 	for(const Bay &bay : bays)
-		count += (bay.category == category) && !bay.ship;
+		count += (bay.category == category) && bay.empty;
 	return count;
 }
 
@@ -3249,7 +3258,12 @@ bool Ship::CanCarry(const Ship &ship) const
 	if(!ship.CanBeCarried())
 		return false;
 	// Check only for the category that we are interested in.
-	return BaysFree(ship.attributes.Category());
+	const string &category = ship.attributes.Category();
+
+	for(const auto &bay : bays)
+		if(bay.category == category && !bay.ship)
+			return true;
+	return false;
 }
 
 
@@ -3309,6 +3323,23 @@ bool Ship::Carry(const shared_ptr<Ship> &ship, vector<Visual> *visuals)
 			return true;
 		}
 	return false;
+}
+
+
+
+// Track the given escort as a carry in one bay while in flight.
+void Ship::CarryInFlight(const shared_ptr<Ship> &escort)
+{
+	if(!escort || !escort->CanBeCarried())
+		return;
+
+	const string &category = escort->attributes.Category();
+	for(auto &bay : bays)
+		if((bay.category == category) && !bay.ship)
+		{
+			bay.ship = escort;
+			break;
+		}
 }
 
 

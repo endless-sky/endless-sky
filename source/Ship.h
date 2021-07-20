@@ -348,6 +348,8 @@ public:
 	bool CanBeCarried() const;
 	// Move the given ship into one of the bays, if possible.
 	bool Carry(const std::shared_ptr<Ship> &ship, std::vector<Visual> *visuals = nullptr);
+	// Track the given escort as a carry in one bay while in flight.
+	void CarryInFlight(const std::shared_ptr<Ship> &escort);
 	// Empty the bays. If the carried ships are not special ships that are
 	// saved in the player data, they will be deleted. Otherwise, they become
 	// visible as ships landed on the same planet as their parent.

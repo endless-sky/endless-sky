@@ -775,7 +775,8 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			// A carried ship must belong to the same government as its parent to dock with it.
 			bool hasParent = parent && !parent->IsDestroyed() && parent->GetGovernment() == gov;
 			bool inParentSystem = hasParent && parent->GetSystem() == it->GetSystem();
-			if(!hasParent || (!inParentSystem && !it->JumpFuel()))
+			bool parentHasSpace = inParentSystem && parent->BaysFree(it->Attributes().Category());
+			if(!hasParent || (!inParentSystem && !it->JumpFuel()) || (!parentHasSpace && !Random::Int(1800)))
 			{
 				// Find the possible parents for orphaned fighters and drones.
 				auto parentChoices = vector<shared_ptr<Ship>>{};
@@ -839,18 +840,19 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				it->SetTargetShip(parent);
 
 				const auto *bay = parent->GetBayFrom(*it);
-				if(!bay)
-				{
-					// This means that this ship doesn't have a free bay inside its parent.
-					// We do nothing in this case and let this ship roam.
-				}
-				else
+				if(bay)
 				{
 					Point exitPoint = parent->Position() + parent->Facing().Rotate(bay->point);
 					if(MoveTo(*it, command, exitPoint, parent->Velocity(), 15., .3))
 						command |= Command::BOARD;
 					it->SetCommands(command);
 					continue;
+				}
+				else
+				{
+					// This ship wants to dock now. Maybe a dock got free in the mean time?
+					if(parent->CanCarry(*it))
+						parent->CarryInFlight(it);
 				}
 			}
 			// If we get here, it means that the ship has not decided to return
@@ -867,7 +869,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				shared_ptr<const Ship> escort = ptr.lock();
 				// Note: HasDeployOrder is always `false` for NPC ships, as it is solely used for player ships.
 				if(escort && escort->CanBeCarried() && !escort->HasDeployOrder() && escort->GetSystem() == it->GetSystem()
-						&& !escort->IsDisabled())
+						&& !escort->IsDisabled() && it->BaysFree(escort->Attributes().Category()))
 				{
 					mustRecall = true;
 					break;
