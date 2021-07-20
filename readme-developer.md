@@ -96,7 +96,7 @@ After you install it, Code::Blocks will likely detect a "GNU GCC Compiler" from 
 - Go to Settings > Compiler > Global Compiler Settings > Toolchain Executables. Set the **Compiler's installation directory** to `C:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin`, if you followed the default MinGW installation process above.
 - Modify **Linker for static libs** from `ar.exe` to `gcc-ar.exe`.
 
-After this, the game should be ready to compile. Use Code::Blocks to open the "EndlessSky.workspace" file in the directory where you've cloned the game's code. This workspace consists of three projects: one for the majority of source code, one for the game binary, and one for the unit tests. As with most IDE-based projects, you must explicitly add new files to the respective project for them to be compiled.
+After this, the game should be ready to compile. Use Code::Blocks to open the "EndlessSky.workspace" (**not EndlessSky.cbp**) file in the directory where you've cloned the game's code. This workspace consists of three projects: one for the majority of source code, one for the game binary, and one for the unit tests. As with most IDE-based projects, you must explicitly add new files to the respective project for them to be compiled.
 
 With the workspace open, you can double-click a project in the left-hand menu to activate that project, binding the toolbar & keyboard shortcuts for "Build," "Run,", "Build & Run," etc. to it, no matter which file is being edited.
 
