@@ -18,3 +18,35 @@ test "Test-Framework - Empty Test Sequence"
 	status "active"
 	description "Test with an empty sequence. Only starts and exits the game"
 	sequence
+
+
+
+test "Test-Framework - Conditions Arithmetic and Loops"
+	status "active"
+	description "Test condition-setting, condition-checking, additions, labels and branching."
+	sequence
+		watchdog 100
+		apply
+			"test: myFirstTestVariable" = 100
+			"test: mySecondTestVariable" = 200
+		assert
+			"test: myFirstTestVariable" == 100
+			"test: mySecondTestVariable" == 200
+		apply
+			"test: myFirstTestVariable" += 100
+			"test: mySecondTestVariable" += 200
+		assert
+			200 == "test: myFirstTestVariable"
+		assert
+			400 == "test: mySecondTestVariable"
+		label looping
+		apply
+			"test: loopControl" += 1
+			"test: myFirstTestVariable" -= 5
+			"test: mySecondTestVariable" *= 2
+		branch looping
+			"test: loopControl" < 10
+		assert
+			10 == "test: loopControl"
+			"test: myFirstTestVariable" == 200 - 50
+			400 * 1024 == "test: mySecondTestVariable"

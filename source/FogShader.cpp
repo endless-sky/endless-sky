@@ -160,7 +160,7 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 		previousRows = rows;
 		
 		// This buffer will hold the mask image.
-		vector<unsigned char> buffer(rows * columns, LIMIT);
+		auto buffer = vector<unsigned char>(static_cast<size_t>(rows) * columns, LIMIT);
 	
 		// For each system the player knows about, its "distance" pixel in the
 		// buffer should be set to 0.

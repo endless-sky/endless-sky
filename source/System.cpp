@@ -197,6 +197,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				
 				objects.clear();
 			}
+			else if(key == "hidden")
+				hidden = false;
 			
 			// If not in "overwrite" mode, move on to the next node.
 			if(overwriteAll)
@@ -206,7 +208,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		}
 		
 		// Handle the attributes which can be "removed."
-		if(!hasValue && key != "object")
+		if(key == "hidden")
+			hidden = true;
+		else if(!hasValue && key != "object")
 		{
 			child.PrintTrace("Expected key to have a value:");
 			continue;
@@ -522,6 +526,14 @@ const set<const System *> &System::JumpNeighbors(double neighborDistance) const
 
 
 
+// Whether this system can be seen when not linked.
+bool System::Hidden() const
+{
+	return hidden;
+}
+
+
+
 // Additional travel distance to target for ships entering through hyperspace.
 double System::ExtraHyperArrivalDistance() const
 {
@@ -640,7 +652,7 @@ double System::SolarWind() const
 bool System::IsInhabited(const Ship *ship) const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet())
+		if(object.HasSprite() && object.HasValidPlanet())
 		{
 			const Planet &planet = *object.GetPlanet();
 			if(!planet.IsWormhole() && planet.IsInhabited() && planet.IsAccessible(ship))
@@ -656,7 +668,7 @@ bool System::IsInhabited(const Ship *ship) const
 bool System::HasFuelFor(const Ship &ship) const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet() && object.GetPlanet()->HasFuelFor(ship))
+		if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasFuelFor(ship))
 			return true;
 	
 	return false;
@@ -668,7 +680,7 @@ bool System::HasFuelFor(const Ship &ship) const
 bool System::HasShipyard() const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet() && object.GetPlanet()->HasShipyard())
+		if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasShipyard())
 			return true;
 	
 	return false;
@@ -680,7 +692,7 @@ bool System::HasShipyard() const
 bool System::HasOutfitter() const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet() && object.GetPlanet()->HasOutfitter())
+		if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasOutfitter())
 			return true;
 	
 	return false;

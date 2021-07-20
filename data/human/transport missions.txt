@@ -23,7 +23,7 @@ mission "Immigrant Workers"
 		payment
 		payment 10000
 		dialog "The young couple from <origin> pays you and thanks you profusely as they gather up their goods and depart. You wish them the best of luck in their new life on <planet>."
-		log "Minor People" "George and Samantha" `George and Samantha used to work on New Iceland before they decided to leave due to Samantha’s conditions.`
+		log "Minor People" "George and Samantha" `George and Samantha used to work on New Iceland before they decided to leave due to Samantha's conditions.`
 	on offer
 		conversation
 			"As you leave your ship and walk toward the cafeteria at the center of the spaceport, you notice a young couple standing near the edge of the landing area next to a cart loaded high with a jumble of boxes and furniture. Like many of the locals, they are both wearing dust masks over their mouths, and the woman is also wearing goggles."
@@ -1878,7 +1878,7 @@ mission "Terraforming 10"
 			label situation
 			`	One of the other scientists responds, "What we plan to do is encourage the eruption of this volcano by making the crust above the volcano thinner. When the pressure of the magma is able to overcome the pressure of the crust, an eruption will occur."`
 			`	"How exactly do you plan to do that?" the Tundra representative responds. "And what will happen to the people who live near that area?"`
-			`	Nolan answers, "The people who live near the volcano will need to evacuate the area with all their belongings. The Republic should provide any assistance needed for the evacuation. As for how we will cause the volcano to erupt, we need something energetic enough to crack the planet's crust in the location of the volcano, releasing the pressure that the magma is causing to spark an eruption. That's where we bring in another asteroi-"`
+			`	Nolan answers, "The people who live near the volcano will need to evacuate the area with all their belongings. The Republic should provide any assistance needed for the evacuation. As for how we will cause the volcano to erupt, we need something energetic enough to crack the planet's crust in the location of the volcano, releasing the pressure that the magma is causing to spark an eruption. That's where we bring in another asteroi--"`
 			`	"No, no, no!" the Republic representative exclaims, cutting Nolan off mid-sentence. "The Republic will not gain a reputation for crashing asteroids into its own planets. The consequences of such an action could be disastrous should it go wrong! And in what way will this warm the planet when the resulting volcanic winter could last decades and only result in an even colder climate? Are you not even old enough to remember how a supereruption on Hope caused the evacuation of the entire planet? If the people of Tundra are this desperate to terraform their planet then normal techniques should be employed, none of this 'equilibrium mapping' nonsense."`
 			`	"Sir," Amy speaks up with a stern tone of voice, "we have already been authorized by the Republic to undergo this terraforming experiment, so unless you have half a teraton of cheap explosives, we're going to need to use an asteroid. The volcanic winter can be easily avoided by having a fleet of freighters sweep the volcanic ash out of the atmosphere, meaning we'll get the benefits of the greenhouse gases without the detriments of volcanic ash reflecting Cebalrai's heat back into space. No one knew the volcano on Hope was going to erupt, but we can prepare for this eruption and take steps to mitigate the problems." Amy looks the representative straight in the eyes and smirks. "We're scientists, we have this handled."`
 			`	The representative falls silent. After a moment of thinking, he says "Captain, I need you to take me to Parliament. I may be able to authorize the use of explosives that should suffice, but it may not be as cheap as Ms. Amy is hoping. We're not about to turn asteroids into our single solution for everything."`
@@ -2203,7 +2203,7 @@ mission "Lost Boy 2"
 			
 			label ship
 			`	The boy runs past you and into your ship. Following closely behind Tod is a large bearded man holding a laser rifle in one hand and a fragmentation grenade in the other.`
-			`	"That's my crew member, you no-good piece of sh-"`
+			`	"That's my crew member, you no-good piece of sh--"`
 			`	Before the captain is able to finish his sentence, pipes in the wall next to him explode, blasting hot steam all over the right side of his body, causing him to begin rolling on the floor in horrible screeches of pain. Not wanting to stay connected to the ship any longer than you need to be, you run back into your ship and fly away.`
 				launch
 
@@ -3079,7 +3079,7 @@ mission "Pirate Duel"
 				`	"How did you know my name?"`
 					goto offer
 				`	"I don't know who you're talking about."`
-			`	The man's expression changes to one of slight dissapointment. "Oh. I see." He walks away without another word.`
+			`	The man's expression changes to one of slight disappointment. "Oh. I see." He walks away without another word.`
 				decline
 			label offer
 			`	"I happen to take an interest in young pioneering privateers, and your performance, even in a small vessel like the <ship>, has impressed me greatly. I'll tell you more if you let me take you somewhere."`
@@ -3098,10 +3098,10 @@ mission "Pirate Duel"
 				`	"What sort of vessel is the Esca?"`
 					goto vessel
 				`	"Why did you need to bring me to here? Couldn't you have made this offer in the spaceport?"`
-			`	The man hesiates for a moment. "Well, being in the open when admitting that you're the leader of the ragtag that hunts down pirates in a potentially pirate infested spaceport isn't a good idea. You can't ever be too sure about who's listening.`
+			`	The man hesitates for a moment. "Well, being in the open when admitting that you're the leader of the ragtag that hunts down pirates in a potentially pirate infested spaceport isn't a good idea. You can't ever be too sure about who's listening.`
 				goto end
 			label vessel
-			`	The man hesiates for a moment. "Oh, just some low-end Southbound Shipyards light warship. Nothing to worry about for a captain like you.`
+			`	The man hesitates for a moment. "Oh, just some low-end Southbound Shipyards light warship. Nothing to worry about for a captain like you.`
 			label end
 			`	"Well, I better be going now. Meet me at Umbral as fast as you can if you want to take up my challenge." The man walks away, leaving you to your own devices.`
 			choice
@@ -3173,17 +3173,17 @@ mission "Earth Retirement"
 	
 	on offer
 		conversation
-			`As you wander through the spaceport, you are see an elderly man and woman sitting on a bench. They both seem to be talking about something that is causing them some amount of stress.`
+			`As you wander through the spaceport, you see an elderly man and woman sitting on a bench, talking about something that seems to be causing them some amount of stress.`
 			choice
-				`	"Who are you two?"`
+				`	(Ask them what the problem is.)`
 				`	(Ignore them.)`
 					decline
-			`	"My name is Donna, and his name is Charles," she says. "We were yard workers here on <origin> for nearly fifty years, but we're both starting to get too old for our jobs. So, we've made the hard decision to retire. We've already chosen a location on the best place we could afford, which... well, happened to be on Earth, so Charles and I are looking for someone to transport us."`
-			`	As Donna talks, Charles begins to frown. "I suppose you could put it like that."`
-			`	"Is that wrong?" Donna replies, who appears to be bracing for the response.`
+			`	You inquire as to what's troubling them, and the woman begins telling you her life's story. "We were yard workers here on <origin> for nearly fifty years, but we're both starting to get too old for our jobs. So, we've made the hard decision to retire. We've already chosen a location on the best place we could afford, which... well, happened to be on Earth, so Charles and I are looking for someone to transport us. Oh, where are my manners? I'm Donna. Pleased to meet you."`
+			`	Donna was clearly looking for someone besides her husband to talk to, but Charles begins to frown. "I suppose you could put it like that."`
+			`	"Is that wrong?" Donna replies anxiously, bracing for the response.`
 			`	The man's look of resignation starts to turn to one of anger. "Of course it's wrong. We've spent our whole lives working for these spoiled brats, and what do we get in return? We get dumped on Earth like we're dead weight!"`
-			`	"I know you're upset about this," interrupts Donna, "but just getting angry isn't going to do anything!" Charles remains silent for a long time, and then mutters a reluctant apology.`
-			`	Donna talks to you again. "I'm sorry about that. As you can tell, we're under a lot of stress right now. Can you help us? We'll pay you <payment> if you do."`
+			`	"I know you're upset about this," interrupts Donna, "but just getting angry isn't going to change anything!" Charles remains silent for a long time, and then mutters a reluctant apology.`
+			`	Donna talks to you again. "I'm sorry about that. As you can tell, we're under a lot of stress right now. I can tell that you're a star captain. Can you help take us to Earth? We don't have a lot of money, but we'll be glad to pay <payment>."`
 			choice
 				`	"I can handle two passengers."`
 				`	"I'm sorry, but I'm not headed to Earth right now."`
@@ -3194,10 +3194,9 @@ mission "Earth Retirement"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
-		payment 6000
+		payment 2000 80 # To be made conditional later.
 		conversation
-			`Once you land on Earth, Donna and Charles pick up their belongings and start to leave your ship. Before he leaves Charles stops by you, and takes out a large clump of credit chips with a total value of <payment>. "Here you go," he mutters. "I hope your life goes better than ours has."`
+			`Once you land on Earth, Donna and Charles pick up their belongings and start to leave your ship. Before he leaves, Charles stops and takes out a large clump of credit chips with a total value of <payment>. "Here you go," he mutters. "I hope your life goes better than ours has."`
 			choice
 				`	"Thank you. I hope you have the best of luck on Earth."`
 					goto payment
@@ -3206,6 +3205,102 @@ mission "Earth Retirement"
 			
 			label payment
 			`	They slowly make their way to the train station. Presumably, their new apartment is far from here.`
+				accept
 			label reject
 			`	Charles looks surprised for a moment, and then, for the first time you've seen, he smiles. "Thank you, Captain <last>. I wish there were more people like you in the Paradise Worlds."`
 			`	You wish the couple the best of luck on Earth, and they slowly make their way to the train station. Presumably, their new apartment is far from here.`
+
+
+
+mission "Spacediving professionals"
+	job
+	repeat
+	name "Spacediving at <planet>"
+	description "Head to <destination> with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing thermal spacesuits, durable parachutes, and oxygen bottles to ensure their survival. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is <payment>."
+	passengers 5 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 1 7
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes "station"
+		not attributes "research"
+	to offer
+		random < 14
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 120000
+		dialog "As you descend through the upper atmosphere, the skydivers jump from your ship, spectacularly diving until they open their parachutes and land safely near the spaceport. You collect your payment of <payment>."
+
+
+
+mission "Spacediving professionals accident"
+	job
+	repeat
+	name "Spacediving at <planet>"
+	description "Head to <destination> with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing thermal spacesuits, durable parachutes, and oxygen bottles to ensure their survival. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is 120000."
+	passengers 5 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 1 7
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes "station"
+		not attributes "research"
+	to offer
+		"Spacediving professionals: done" > 7
+		random < 2
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog "As you descend through the upper atmosphere, the skydivers jump from your ship, spectacularly diving until they try to open their parachutes. Some of the parachutes open only partially and part of the team suffers an uncontrolled hard landing. Medical teams respond quickly, but the skydivers are too preoccupied with their injured teammates to pay you the credits they owe you."
+
+
+
+mission "Spacediving professionals disaster"
+	job
+	repeat
+	name "Spacediving at <planet>"
+	description "Head to <destination> with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing thermal spacesuits, durable parachutes, and oxygen bottles to ensure their survival. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is 120000."
+	passengers 5 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 1 7
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes "station"
+		not attributes "research"
+	to offer
+		has "Spacediving professionals accident: done"
+		random < 1
+		credits >= 5000000
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment -200000
+		dialog "As you descend through the upper atmosphere, the skydivers jump from your ship. Some minutes into the jump disaster strikes; the skydivers start moving in an uncontrolled manner. It's unclear if the spacesuits or the oxygen supplies were at fault, but it looks unlikely that any of the skydivers makes it safely to the ground. Authorities investigate the incident and although they don't find serious wrongdoings on your part, they still fine you <payment> for enabling such a dangerous and deadly act."
+
+
+
+mission "Spacediving amateurs"
+	job
+	repeat
+	name "Spacediving at <planet>"
+	description "Head to <destination> with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing tricked-out wingsuits, brightly-patterned parachutes, and carrying beer bottles for an after-landing celebration. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is 120000 credits."
+	passengers 5 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 1 7
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes station
+		not attributes research
+	to offer
+		"Spacediving professionals: done" > 3
+		random < 5
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 30000
+		dialog "As you descend through the upper atmosphere, you inform your skydivers that it's time to jump. However, after being able to see the distances and atmospheric conditions involved, all of them are far less keen on the idea than when you first picked them up. You bring them down to the landing pad, and they pay you a meager <payment> before hopping off."
