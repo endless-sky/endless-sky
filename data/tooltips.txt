@@ -455,7 +455,7 @@ tip "shots / second:"
 tip "turret turn rate:"
 	`How fast this turret turns to track its targets, in degrees per second.`
 
-tip "swept angle:"
+tip "arc:"
 	`The angular range of protection provided by this weapon, in degrees.`
 
 tip "homing:"
