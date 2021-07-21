@@ -19,13 +19,21 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class Preferences {
 public:
+	enum class VSync : int {
+		off = 0,
+		on,
+		adaptive,
+	};
+	
+	
+public:
 	static void Load();
 	static void Save();
 	
 	static bool Has(const std::string &name);
 	static void Set(const std::string &name, bool on = true);
 	
-	// Toogle the ammo usage preferences, cycling between "never," "frugally,"
+	// Toggle the ammo usage preferences, cycling between "never," "frugally,"
 	// and "always."
 	static void ToggleAmmoUsage();
 	static std::string AmmoUsage();
@@ -38,6 +46,11 @@ public:
 	static double ViewZoom();
 	static bool ZoomViewIn();
 	static bool ZoomViewOut();
+	
+	// VSync setting, either "on", "off", or "adaptive".
+	static bool ToggleVSync();
+	static Preferences::VSync VSyncState();
+	static const std::string &VSyncSetting();
 };
 
 

@@ -46,11 +46,11 @@ ship "Marauder Arrow"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 		
-	engine -8 57
-	engine 8 57
-	gun -6 -36 "Heavy Laser"
-	gun 6 -36 "Heavy Laser"
-	turret 0 15 "Quad Blaster Turret"
+	engine -8 56
+	engine 8 56
+	gun -7.5 -36 "Heavy Laser"
+	gun 7.5 -36 "Heavy Laser"
+	turret 0 17.5 "Quad Blaster Turret"
 	explode "tiny explosion" 12
 	explode "small explosion" 18
 	explode "medium explosion" 6
@@ -76,8 +76,6 @@ ship "Marauder Arrow" "Marauder Arrow (Engines)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		
-	engine -10 57
-	engine 10 57
 	description "With expanded engine mounts, this Arrow seems more like an oversized missile than a ship. The beefed-up engines, a little extra outfit capacity, extra shield emitters, and thicker hull plating make this vessel a very competent interceptor."
 
 
@@ -100,11 +98,11 @@ ship "Marauder Arrow" "Marauder Arrow (Weapons)"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 		
-	gun -6 -36 "Energy Blaster"
-	gun 6 -36 "Energy Blaster"
-	gun -7 -34 "Energy Blaster"
-	gun 7 -34 "Energy Blaster"
-	turret 0 15 "Heavy Laser Turret"
+	gun -7.5 -36 "Energy Blaster"
+	gun -7.5 -36 "Energy Blaster"
+	gun 7.5 -36 "Energy Blaster"
+	gun 7.5 -36 "Energy Blaster"
+	turret 0 17.5 "Heavy Laser Turret"
 	description "The weapons systems on this Arrow have been enhanced to the point of competing with Lionheart's Headhunter, although it can still outrun all but the fastest ships, if things get a little too hairy."
 
 
@@ -334,18 +332,18 @@ ship "Marauder Falcon" "Marauder Falcon (Weapons)"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -16 142
-	engine 16 142
-	gun -18.5 -88 "Plasma Cannon"
-	gun 18.5 -88 "Plasma Cannon"
-	gun -18.5 -88 "Plasma Cannon"
-	gun 18.5 -88 "Plasma Cannon"
+	engine -16.5 143
+	engine 16.5 143
+	gun -16 -86.5 "Plasma Cannon"
+	gun 16 -86.5 "Plasma Cannon"
+	gun -19 -76.5 "Plasma Cannon"
+	gun 19 -76.5 "Plasma Cannon"
 	gun -24.5 -66.5 "Plasma Cannon"
 	gun 24.5 -66.5 "Plasma Cannon"
-	turret -16 -25 "Quad Blaster Turret"
-	turret 16 -25 "Quad Blaster Turret"
-	turret -57 32.5 "Quad Blaster Turret"
-	turret 57 32.5 "Quad Blaster Turret"
+	turret -16 -29 "Quad Blaster Turret"
+	turret 16 -29 "Quad Blaster Turret"
+	turret -50 39.5 "Quad Blaster Turret"
+	turret 50 39.5 "Quad Blaster Turret"
 	description "Whoever modified this Falcon clearly believed that firepower was everything. Two additional gun ports have been integrated into the hull, and the ship's interior space has been reconfigured to accommodate nearly any set of weapons you can imagine."
 
 

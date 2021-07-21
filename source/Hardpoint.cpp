@@ -39,9 +39,10 @@ namespace {
 
 
 // Constructor.
-Hardpoint::Hardpoint(const Point &point, const BaseAttributes &attributes, bool isTurret, const Outfit *outfit)
+Hardpoint::Hardpoint(const Point &point, const BaseAttributes &attributes,
+	bool isTurret, bool isUnder, const Outfit *outfit)
 	: outfit(outfit), point(point * .5), baseAngle(attributes.baseAngle), baseAttributes(attributes),
-	isTurret(isTurret), isParallel(baseAttributes.isParallel)
+	isTurret(isTurret), isParallel(baseAttributes.isParallel), isUnder(isUnder)
 {
 	UpdateArc();
 }
@@ -131,6 +132,13 @@ bool Hardpoint::IsParallel() const
 bool Hardpoint::IsOmnidirectional() const
 {
 	return isOmnidirectional;
+}
+
+
+
+bool Hardpoint::IsUnder() const
+{
+	return isUnder;
 }
 
 
@@ -288,6 +296,10 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 		if(!aim.IsInRange(range))
 			return false;
 	}
+	
+	// Precompute the number of visuals that will be added.
+	visuals.reserve(visuals.size() + outfit->FireEffects().size()
+		+ outfit->HitEffects().size() + outfit->DieEffects().size());
 	
 	// Firing effects are displayed at the anti-missile hardpoint that just fired.
 	angle = aim - facing;

@@ -33,7 +33,7 @@ class System;
 // certain distance away from the current system.
 class LocationFilter {
 public:
-	LocationFilter() = default;
+	LocationFilter() noexcept = default;
 	// Construct and Load() at the same time.
 	LocationFilter(const DataNode &node);
 	
@@ -45,6 +45,7 @@ public:
 	
 	// Check if this filter contains any specifications.
 	bool IsEmpty() const;
+	bool IsValid() const;
 	
 	// If the player is in the given system, does this filter match?
 	bool Matches(const Planet *planet, const System *origin = nullptr) const;

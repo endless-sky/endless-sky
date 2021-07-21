@@ -46,7 +46,8 @@ public:
 	
 public:
 	// Constructor. Hardpoints may or may not specify what weapon is in them.
-	Hardpoint(const Point &point, const BaseAttributes &attributes, bool isTurret, const Outfit *outfit = nullptr);
+	Hardpoint(const Point &point, const BaseAttributes &attributes,
+		bool isTurret, bool isUnder, const Outfit *outfit = nullptr);
 	
 	// Get the weapon installed in this hardpoint (or null if there is none).
 	const Outfit *GetOutfit() const;
@@ -68,6 +69,7 @@ public:
 	bool IsTurret() const;
 	bool IsParallel() const;
 	bool IsOmnidirectional() const;
+	bool IsUnder() const;
 	bool IsHoming() const;
 	bool IsAntiMissile() const;
 	bool CanAim() const;
@@ -129,6 +131,8 @@ private:
 	bool isParallel = false;
 	// Indicates if this hardpoint is omnidirectional (turret only).
 	bool isOmnidirectional = true;
+	// Indicates whether the hardpoint sprite is drawn under the ship.
+	bool isUnder = false;
 	
 	// Angle adjustment for convergence.
 	Angle angle;

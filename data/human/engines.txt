@@ -61,18 +61,19 @@ effect "ionic afterburner"
 
 
 outfit "X1050 Ion Engines"
+	plural "X1050 Ion Engines"
 	category "Engines"
 	"cost" 20000
 	thumbnail "outfit/tiny ion engines"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"turn" 110
-	"turning energy" .25
-	"turning heat" .5
 	"thrust" 4.0
 	"thrusting energy" .4
 	"thrusting heat" .6
+	"turn" 110
+	"turning energy" .25
+	"turning heat" .5
 	"flare sprite" "effect/ion flare/tiny"
 		"frame rate" 1.2
 	"flare sound" "ion tiny"

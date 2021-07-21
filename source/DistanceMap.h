@@ -86,13 +86,13 @@ private:
 	// Add the given links to the map. Return false if an end condition is hit.
 	bool Propagate(Edge edge, bool useJump);
 	// Check if we already have a better path to the given system.
-	bool HasBetter(const System *to, const Edge &edge);
+	bool HasBetter(const System &to, const Edge &edge);
 	// Add the given path to the record.
-	void Add(const System *to, Edge edge);
+	void Add(const System &to, Edge edge);
 	// Check whether the given link is travelable. If no player was given in the
 	// constructor then this is always true; otherwise, the player must know
 	// that the given link exists.
-	bool CheckLink(const System *from, const System *to, bool useJump) const;
+	bool CheckLink(const System &from, const System &to, bool useJump) const;
 	
 	
 private:
@@ -110,6 +110,7 @@ private:
 	int hyperspaceFuel = 100;
 	int jumpFuel = 0;
 	bool useWormholes = true;
+	double jumpRange = 0.;
 };
 
 

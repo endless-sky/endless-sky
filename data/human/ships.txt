@@ -56,8 +56,8 @@ ship "Aerie"
 	turret 0 0 "Heavy Anti-Missile Turret"
 	turret -17 14 "Heavy Laser Turret"
 	turret 17 14 "Heavy Laser Turret"
-	fighter -42 -2
-	fighter 42 2
+	bay "Fighter" -42 -2
+	bay "Fighter" 42 2
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -169,11 +169,11 @@ ship "Arrow"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 		
-	engine -10 60
-	engine 10 60
-	gun -8 -34 "Sidewinder Missile Launcher"
-	gun 8 -34
-	turret 0 16 "Anti-Missile Turret"
+	engine -8 56
+	engine 8 56
+	gun -7.5 -36 "Sidewinder Missile Launcher"
+	gun 7.5 -36
+	turret 0 17.5 "Anti-Missile Turret"
 	leak "leak" 80 50
 	explode "tiny explosion" 12
 	explode "small explosion" 18
@@ -235,10 +235,10 @@ ship "Auxiliary"
 	turret 0 -18
 	turret 0 22.5
 	turret 0 73.5 "Heavy Anti-Missile Turret"
-	fighter 0 -75
-	fighter 0 -18
-	fighter 0 22.5
-	fighter 0 73.5
+	bay "Fighter" 0 -75
+	bay "Fighter" 0 -18
+	bay "Fighter" 0 22.5
+	bay "Fighter" 0 73.5
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 30 30
@@ -252,6 +252,7 @@ ship "Auxiliary"
 	description " The Auxiliary was built with modularity in mind, allowing the ship to be fitted for more cargo or bunk space depending on the mission. This modularity makes the ship rather expensive to build, however, and therefore a rare sight to see."
 
 ship "Auxiliary" "Auxiliary (Cargo)"
+	plural "Auxiliaries"
 	sprite "ship/auxiliaryc"
 	thumbnail "thumbnail/auxiliaryc"
 	add attributes
@@ -263,12 +264,13 @@ ship "Auxiliary" "Auxiliary (Cargo)"
 	turret 0 -21
 	turret 0 31
 	turret 0 83 "Heavy Anti-Missile Turret"
-	fighter 0 -72
-	fighter 0 -21
-	fighter 0 31
-	fighter 0 83
+	bay "Fighter" 0 -72
+	bay "Fighter" 0 -21
+	bay "Fighter" 0 31
+	bay "Fighter" 0 83
 
 ship "Auxiliary" "Auxiliary (Transport)"
+	plural "Auxiliaries"
 	sprite "ship/auxiliaryt"
 	thumbnail "thumbnail/auxiliaryt"
 	add attributes
@@ -280,10 +282,10 @@ ship "Auxiliary" "Auxiliary (Transport)"
 	turret 0 -17
 	turret 0 20
 	turret 0 79 "Heavy Anti-Missile Turret"
-	fighter 0 -73.5
-	fighter 0 -17
-	fighter 0 20
-	fighter 0 79
+	bay "Fighter" 0 -73.5
+	bay "Fighter" 0 -17
+	bay "Fighter" 0 20
+	bay "Fighter" 0 79
 
 
 
@@ -343,9 +345,9 @@ ship "Bactrian"
 	turret 32 -7 "Heavy Laser Turret"
 	turret 53 82 "Heavy Laser Turret"
 	turret -37 186 "Heavy Anti-Missile Turret"
-	fighter -38 -26
-	fighter 35 36
-	fighter -47 97
+	bay "Fighter" -38 -26
+	bay "Fighter" 35 36
+	bay "Fighter" -47 97
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 50 30
@@ -390,10 +392,10 @@ ship "Barb"
 
 		"X1050 Ion Engines"
 		
-	engine -10 28
-	engine 9 28
-	gun -9 -29 "Energy Blaster"
-	turret 8 6 "Blaster Turret"
+	engine 9 25
+	engine -8 25
+	gun -7.5 -24.5 "Energy Blaster"
+	turret 9.5 8.5 "Blaster Turret"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -404,39 +406,20 @@ ship "Barb"
 ship "Barb" "Barb (Proton)"
 	sprite "ship/barbp"
 	thumbnail "thumbnail/barbp"
-	attributes
-		category "Fighter"
-		"cost" 50000
-		"shields" 800
-		"hull" 200
-		"required crew" 1
-		"bunks" 1
-		"mass" 20
-		"drag" .8
-		"heat dissipation" .78
-		"outfit space" 85
-		"weapon capacity" 28
-		"engine capacity" 22
-		weapon
-			"blast radius" 12
-			"shield damage" 120
-			"hull damage" 60
-			"hit force" 180
+	add attributes
+		"bunks" -1
+		"weapon capacity" 4
 	outfits
 		"Proton Gun"
 		
 		"nGVF-AA Fuel Cell"
-		Supercapacitor
+		"Supercapacitor"
 		"D14-RN Shield Generator"
 
 		"X1050 Ion Engines"
 		
-	engine -10 28
-	engine 9 28
-	gun -9 -29 "Proton Gun"
+	gun -7.5 -24.5 "Proton Gun"
 	leak "leak" 60 50
-	explode "tiny explosion" 15
-	explode "small explosion" 5
 	description `The Barb's commercial success spurred demand for a variant equipped with a Proton Gun. Syndicated Systems had to remove the turret mounting hardware to fit the powerful cannon, but the result is a level of short-range firepower that is unheard-of for a craft its size.`
 
 
@@ -810,7 +793,8 @@ ship "Bulk Freighter"
 	explode "large explosion" 35
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description "The Bulk Freighter is the ultimate cargo ship, able to carry as much cargo as four ordinary Syndicate Freighters. It is also, however, an incredibly slow ship and difficult to maneuver, especially when loaded down with cargo. Some freight caravans use ordinary freighters instead of bulk freighters just to avoid the hassle of constantly having to wait for the Bulk Freighter to properly align itself for hyperspace travel."
+	description "The Bulk Freighter is the ultimate cargo ship, able to carry as much cargo as four ordinary Syndicate Freighters. Its on-board gearing allows it to service even the most primitive colonies, though dock workers in busier spaceports often joke that it would be simpler to carry smaller freighters within its gigantic holds."
+	description "	It is also an incredibly slow and difficult to maneuver ship, especially when loaded down with cargo. Some freight caravans use ordinary freighters instead of bulk freighters just to avoid the hassle of constantly having to wait for the Bulk Freighter to properly align itself for hyperspace travel."
 
 
 
@@ -876,16 +860,16 @@ ship "Carrier"
 	turret 0 15 "Heavy Laser Turret"
 	turret 0 103 "Heavy Anti-Missile Turret"
 	turret 0 157 "Heavy Laser Turret"
-	fighter -37 -65
-	fighter 37 -65
-	fighter -46 40
-	fighter 46 40
-	drone -72 -46
-	drone 72 -46
-	drone -101 57
-	drone 101 57
-	drone -74 57
-	drone 74 57
+	bay "Fighter" -37 -65
+	bay "Fighter" 37 -65
+	bay "Fighter" -46 40
+	bay "Fighter" 46 40
+	bay "Drone" -72 -46
+	bay "Drone" 72 -46
+	bay "Drone" -101 57
+	bay "Drone" 101 57
+	bay "Drone" -74 57
+	bay "Drone" 74 57
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 30 30
@@ -935,24 +919,24 @@ ship "Class C Freighter"
 		"X3200 Ion Steering"
 		"Scram Drive"
 		
-	engine -22 198
-	engine 22 198
+	engine -20 195.5
+	engine 20 195.5
 	turret -12 -155 "Heavy Laser Turret"
 	turret 12 -155 "Heavy Anti-Missile Turret"
 	turret 30 175 "Heavy Laser Turret"
 	turret -30 175 "Heavy Anti-Missile Turret"
-	drone -66 -115 left
-	drone -66 -65 left
-	drone -66 -15 left
-	drone -66 35 left
-	drone -66 85 left
-	drone -66 135 left
-	drone 66 -115 right
-	drone 66 -65 right
-	drone 66 -15 right
-	drone 66 35 right
-	drone 66 85 right
-	drone 66 135 right
+	bay "Drone" -66 -115 left
+	bay "Drone" -66 -65 left
+	bay "Drone" -66 -15 left
+	bay "Drone" -66 35 left
+	bay "Drone" -66 85 left
+	bay "Drone" -66 135 left
+	bay "Drone" 66 -115 right
+	bay "Drone" 66 -65 right
+	bay "Drone" 66 -15 right
+	bay "Drone" 66 35 right
+	bay "Drone" 66 85 right
+	bay "Drone" 66 135 right
 	leak "leak" 30 50
 	leak "flame" 50 80
 	leak "big leak" 40 30
@@ -1052,6 +1036,66 @@ ship "Combat Drone"
 	gun 0 -29 "Beam Laser"
 	explode "tiny explosion" 15
 	description "Combat drones are pilotless attack ships used primarily by the Republic Navy. Although very weak and easy to destroy, they can be very effective in large numbers. Because drones do not need a cockpit, they can be filled entirely with equipment and solid metal, which makes their hulls stronger than other small ships."
+
+
+
+ship "Container Transport"
+	sprite "ship/container transport"
+	thumbnail "thumbnail/container transport"
+	attributes
+		category "Heavy Freighter"
+		"cost" 9400000
+		"shields" 4000
+		"hull" 7600
+		"required crew" 6
+		"bunks" 18
+		"mass" 870
+		"drag" 15.8
+		"heat dissipation" .5
+		"fuel capacity" 600
+		"cargo space" 600
+		"outfit space" 410
+		"weapon capacity" 180
+		"engine capacity" 85
+		weapon
+			"blast radius" 120
+			"shield damage" 1200
+			"hull damage" 600
+			"hit force" 1800
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Laser Turret" 3
+		"Heavy Anti-Missile Turret" 2
+		
+		"RT-I Radiothermal"
+		"LP144a Battery Pack"
+		"D23-QP Shield Generator"
+		"Laser Rifle"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Scram Drive"
+		
+	engine -20 195.5
+	engine 20 195.5
+	gun -23.5 -182 "Sidewinder Missile Launcher"
+	gun 23.5 -182 "Sidewinder Missile Launcher"
+	turret 0 -90.5 "Laser Turret"
+	turret 0 -40.5 "Heavy Anti-Missile Turret"
+	turret 0 9.5 "Laser Turret"
+	turret 0 59.5 "Heavy Anti-Missile Turret"
+	turret 0 109 "Laser Turret"
+	leak "leak" 40 50
+	leak "flame" 30 80
+	leak "big leak" 50 30
+	explode "small explosion" 15
+	explode "medium explosion" 25
+	explode "large explosion" 35
+	explode "huge explosion" 20
+	"final explode" "final explosion large"
+	description "The Container Transport is a newer, more popular configuration of the Bulk Freighter that replaces the outboard loose cargo holds with intermodal containers for more efficient turnaround in larger, better-equipped ports."
+	description "	As with its geared cousin, however, it remains a slow and difficult to maneuver ship, especially when loaded down with cargo. Some freight caravans use ordinary freighters instead of bulk freighters just to avoid the hassle of constantly having to wait for the Bulk Freighter to properly align itself for hyperspace travel."
 
 
 
@@ -1175,10 +1219,10 @@ ship "Cruiser"
 	turret -33 -19 "Heavy Laser Turret"
 	turret 33 -19 "Heavy Laser Turret"
 	turret 0 0 "Heavy Anti-Missile Turret"
-	drone -25 18
-	drone 25 18
-	drone -25 49
-	drone 25 49
+	bay "Drone" -25 18
+	bay "Drone" 25 18
+	bay "Drone" -25 49
+	bay "Drone" 25 49
 	leak "leak" 30 50
 	leak "flame" 50 80
 	leak "big leak" 40 30
@@ -1600,11 +1644,11 @@ ship "Freighter"
 		"X2200 Ion Steering"
 		"Scram Drive"
 		
-	engine -9 97
-	engine 9 97
-	turret 0 -52 "Blaster Turret"
-	turret 0 6 "Heavy Anti-Missile Turret"
-	turret 0 65 "Blaster Turret"
+	engine -7.5 92
+	engine 7.5 92
+	turret 0 -64 "Blaster Turret"
+	turret 0 -4.5 "Heavy Anti-Missile Turret"
+	turret 0 64.5 "Blaster Turret"
 	leak "leak" 60 50
 	leak "flame" 50 80
 	explode "tiny explosion" 10
@@ -2382,7 +2426,7 @@ ship "Mule"
 	turret -37 -21 "Heavy Laser Turret"
 	turret 39 35 "Heavy Laser Turret"
 	turret -9 59 "Heavy Anti-Missile Turret"
-	fighter -16 -9
+	bay "Fighter" -16 -9
 	leak "leak" 50 50
 	leak "flame" 80 80
 	leak "big leak" 80 30
@@ -2441,8 +2485,8 @@ ship "Nest"
 	turret 21.5 -48 "Heavy Anti-Missile Turret"
 	turret -18.5 78.5 "Heavy Anti-Missile Turret"
 	turret 18.5 78.5 "Quad Blaster Turret"
-	fighter -47 12 under
-	fighter 47 12 under
+	bay "Fighter" -47 12 under
+	bay "Fighter" 47 12 under
 	leak "leak" 60 50
 	leak "flame" 40 80
 	leak "big leak" 80 30
@@ -2556,16 +2600,16 @@ ship "Protector"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -11 125
-	engine 11 125
-	gun -15 -100 "Sidewinder Missile Launcher"
-	gun 15 -100 "Sidewinder Missile Launcher"
-	turret -54 -54 "Quad Blaster Turret"
-	turret 54 -54 "Quad Blaster Turret"
-	turret -73 0 "Heavy Anti-Missile Turret"
-	turret 73 0 "Heavy Anti-Missile Turret"
-	turret -54 54 "Quad Blaster Turret"
-	turret 54 54 "Quad Blaster Turret"
+	engine -12 122.5
+	engine 12 122.5
+	gun -17.5 -101 "Sidewinder Missile Launcher"
+	gun 17.5 -101 "Sidewinder Missile Launcher"
+	turret -48.5 -48 "Quad Blaster Turret"
+	turret 48.5 -48 "Quad Blaster Turret"
+	turret -68.5 0.5 "Quad Blaster Turret"
+	turret 68.5 0.5 "Quad Blaster Turret"
+	turret -48.5 48.5 "Heavy Anti-Missile Turret"
+	turret 48.5 48.5 "Heavy Anti-Missile Turret"
 	leak "leak" 60 50
 	leak "flame" 20 80
 	explode "tiny explosion" 18
@@ -2785,10 +2829,10 @@ ship "Roost"
 	turret 21.5 -84.5 "Heavy Anti-Missile Turret"
 	turret -18.5 115.5 "Heavy Anti-Missile Turret"
 	turret 18.5 115.5 "Quad Blaster Turret"
-	fighter -47 -24 under
-	fighter 47 -24 under
-	fighter -47 50 under
-	fighter 47 50 under
+	bay "Fighter" -47 -24 under
+	bay "Fighter" 47 -24 under
+	bay "Fighter" -47 50 under
+	bay "Fighter" 47 50 under
 	leak "leak" 50 50
 	leak "flame" 40 80
 	leak "big leak" 80 30
@@ -2949,12 +2993,12 @@ ship "Skein"
 	turret 21.5 -122 "Heavy Anti-Missile Turret"
 	turret -18.5 152.5 "Heavy Anti-Missile Turret"
 	turret 18.5 152.5 "Quad Blaster Turret"
-	fighter -47 -61 under
-	fighter 47 -61 under
-	fighter -47 14 under
-	fighter 47 14 under
-	fighter -47 88 under
-	fighter 47 88 under
+	bay "Fighter" -47 -61 under
+	bay "Fighter" 47 -61 under
+	bay "Fighter" -47 14 under
+	bay "Fighter" 47 14 under
+	bay "Fighter" -47 88 under
+	bay "Fighter" 47 88 under
 	leak "leak" 50 50
 	leak "flame" 40 80
 	leak "big leak" 70 30
@@ -3009,7 +3053,7 @@ ship "Sparrow"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "Classified as an interceptor rather than a fighter because it has its own hyperdrive instead of needing to be carried inside a larger ship, the Tarazed Sparrow is the smallest and cheapest combat ship available. Because of its limited cargo and passenger space, the primary way for a Sparrow pilot to pay the bills is to upgrade the weapons and hunt pirates... or become one. In either case, it is a perilous way to earn a living."
-	description "	Insurance reports indicate that as many as two out of every three first-time ship buyers who choose to pilot a Sparrow lose their ship (and often, their life as well) within the first month of owning it. Pilots who have survived longer than that tend to swear by replacing the stock weapons with missile launchers."
+	description "	Government reports indicate that as many as two out of every three first-time ship buyers who choose to pilot a Sparrow lose their ship (and often, their life as well) within the first month of owning it. Pilots who have survived longer than that tend to swear by replacing the stock weapons with missile launchers."
 
 
 
@@ -3105,9 +3149,9 @@ ship "Star Barge"
 		"X1200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -9 38
-	engine 9 38
-	turret 0 -8 "Anti-Missile Turret"
+	engine -9.5 38
+	engine 9.5 38
+	turret 0 -18 "Anti-Missile Turret"
 	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 10
@@ -3245,15 +3289,22 @@ ship "Vanguard"
 		"X4200 Ion Steering"
 		"Hyperdrive"
 	
-	engine -15 130
-	engine 15 130
-	gun 0 -132 "Proton Gun"
-	gun -22 -122 "Proton Gun"
-	gun 22 -122 "Proton Gun"
-	gun -21 -45 "Proton Gun"
-	gun 21 -45 "Proton Gun"
-	gun -31 -45 "Proton Gun"
-	gun 31 -45 "Proton Gun"
+	engine -16.5 131
+	engine 16.5 131
+	gun 0 -132.5 "Proton Gun"
+		parallel
+	gun -24 -122.5 "Proton Gun"
+		parallel
+	gun 24 -122.5 "Proton Gun"
+		parallel
+	gun -40 -47.5 "Proton Gun"
+		parallel
+	gun 40 -47.5 "Proton Gun"
+		parallel
+	gun -35 -44.5 "Proton Gun"
+		parallel
+	gun 35 -44.5 "Proton Gun"
+		parallel
 	turret 0 42 "Anti-Missile Turret"
 	leak "leak" 60 50
 	leak "flame" 30 80
@@ -3303,11 +3354,11 @@ ship "Wasp"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -6 33
-	engine 6 33
-	gun 0 -38 "Sidewinder Missile Launcher"
-	gun -13 -31 "Energy Blaster"
-	gun 13 -31 "Energy Blaster"
+	engine -5.5 32.5
+	engine 5.5 32.5
+	gun 0 -41 "Sidewinder Missile Launcher"
+	gun -13 -30.5 "Energy Blaster"
+	gun 13 -30.5 "Energy Blaster"
 	leak "leak" 60 50
 	explode "tiny explosion" 20
 	explode "small explosion" 10

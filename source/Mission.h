@@ -44,6 +44,13 @@ class UI;
 class Mission {
 public:
 	Mission() = default;
+	// Copying a mission instance isn't allowed.
+	Mission(const Mission &) = delete;
+	Mission &operator=(const Mission &) = delete;
+	Mission(Mission &&) noexcept = default;
+	Mission &operator=(Mission &&) noexcept = default;
+	~Mission() noexcept = default;
+	
 	// Construct and Load() at the same time.
 	Mission(const DataNode &node);
 	
@@ -59,6 +66,9 @@ public:
 	// Check if this mission should be shown in your mission list. If not, the
 	// player will not know this mission exists (which is sometimes useful).
 	bool IsVisible() const;
+	// Check if this mission should be quarantined due to requiring currently-
+	// undefined ships, planets, or systems (i.e. is from an inactive plugin).
+	bool IsValid() const;
 	// Check if this mission has high priority. If any high-priority missions
 	// are available, no others will be shown at landing or in the spaceport.
 	// This is to be used for missions that are part of a series.
@@ -156,7 +166,7 @@ public:
 	
 	
 private:
-	void Enter(const System *system, PlayerInfo &player, UI *ui);
+	bool Enter(const System *system, PlayerInfo &player, UI *ui);
 	// For legacy code, contraband definitions can be placed in two different
 	// locations, so move that parsing out to a helper function.
 	bool ParseContraband(const DataNode &node);
