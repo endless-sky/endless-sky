@@ -97,13 +97,9 @@ public:
 		std::set<std::string> inputKeys;
 		Uint16 modKeys;
 		
-		bool XAxis = false;
-		int XAbs = 0;
-		double XRel = 0.;
-		bool YAxis = false;
-		int YAbs = 0;
-		double YRel = 0.;
-		
+		// Mouse/Pointer input variables.
+		int XValue = 0;
+		int YValue = 0;
 		bool clickLeft = false;
 		bool clickMiddle = false;
 		bool clickRight = false;

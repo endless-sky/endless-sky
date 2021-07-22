@@ -132,28 +132,18 @@ void Test::TestStep::LoadInput(const DataNode &node)
 			for(const DataNode &grand: child){
 				if(grand.Token(0) == "X")
 				{
-					XAxis = true;
 					if(grand.Size() < 2)
 						grand.PrintTrace("Warning: Pointer X axis input without coordinate:");
-					else if(grand.Size() >=3 && grand.Token(2) == "relative")
-						XRel = grand.Value(1);
 					else{
-						if(grand.Size() > 2)
-							grand.PrintTrace("Warning: Ignored keywords after Pointer X axis coordinate:");
-						XAbs = grand.Value(1);
+						XValue = grand.Value(1);
 					}
 				}
 				else if(grand.Token(0) == "Y")
 				{
-					YAxis = true;
 					if(grand.Size() < 2)
 						grand.PrintTrace("Warning: Pointer Y axis input without coordinate:");
-					else if(grand.Size() >=3 && grand.Token(2) == "relative")
-						YRel = grand.Value(1);
 					else{
-						if(grand.Size() > 2)
-							grand.PrintTrace("Warning: Ignored keywords after Pointer X axis coordinate:");
-						YAbs = grand.Value(1);
+						YValue = grand.Value(1);
 					}
 				}
 				else if(grand.Token(0) == "click")
