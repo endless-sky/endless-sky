@@ -1824,7 +1824,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	// moment, its boarding target should be its parent ship.
 	if(CanBeCarried() && !(target && target == GetShipToAssist()))
 		target = GetParent();
-	if(target && !isDisabled && commands.Has(Command::BOARD))
+	if(target && !isDisabled)
 	{
 		Point dp = (target->position - position);
 
@@ -1836,7 +1836,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		double distance = dp.Length();
 		Point dv = (target->velocity - velocity);
 		double speed = dv.Length();
-		isBoarding = (distance < 50. && speed < 1.);
+		isBoarding = (distance < 50. && speed < 1. && commands.Has(Command::BOARD));
 		if(isBoarding && !CanBeCarried())
 		{
 			if(!target->IsDisabled() && government->IsEnemy(target->government))
@@ -2752,7 +2752,7 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	{
 		shared_ptr<Ship> escort = it.lock();
 		if(escort)
-			escort->parent.reset();
+			RemoveEscort(*escort);
 	}
 	// This ship should not care about its now-unallied escorts.
 	escorts.clear();
@@ -3364,7 +3364,7 @@ void Ship::UnloadBays()
 
 
 
-const vector<Ship::Bay> &Ship::Bays() const
+const list<Ship::Bay> &Ship::Bays() const
 {
 	return bays;
 }

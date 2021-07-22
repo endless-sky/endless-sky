@@ -67,7 +67,7 @@ public:
 		Point point;
 		std::shared_ptr<Ship> ship;
 		std::string category;
-		// If this bay isn't reversed by a carry.
+		// If this bay isn't reserved by a carry.
 		bool free = true;
 		
 		uint8_t side = 0;
@@ -356,7 +356,7 @@ public:
 	// visible as ships landed on the same planet as their parent.
 	void UnloadBays();
 	// Get a list of any ships this ship is carrying.
-	const std::vector<Bay> &Bays() const;
+	const std::list<Bay> &Bays() const;
 	// Returns the bay this ship docks too if any.
 	const Bay *GetBay() const;
 	// Adjust the positions and velocities of any visible carried fighters or
@@ -502,7 +502,7 @@ private:
 	CargoHold cargo;
 	std::list<std::shared_ptr<Flotsam>> jettisoned;
 	
-	std::vector<Bay> bays;
+	std::list<Bay> bays;
 	// Cache the mass of carried ships to avoid repeatedly recomputing it.
 	double carriedMass = 0.;
 	
