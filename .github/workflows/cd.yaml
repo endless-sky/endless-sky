@@ -102,7 +102,7 @@ jobs:
       - name: Update Homebrew
         run: brew update
       - name: Install dependencies
-        run: brew install libmad libpng sdl2 jpeg-turbo
+        run: brew install libmad libpng jpeg-turbo
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
         shell: bash

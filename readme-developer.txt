@@ -87,7 +87,7 @@ Next, install Homebrew (from http://brew.sh).
 
 Once Homebrew is installed, use it to install the libraries you will need:
 
-  $ brew install libmad libpng sdl2 jpeg-turbo
+  $ brew install libmad libpng jpeg-turbo
 
 If the versions of those libraries are different from the ones that the Xcode project is set up for, you will need to modify the file paths in the “Frameworks” section in Xcode.
 It is possible that you will also need to modify the “Header Search Paths” and “Library Search Paths” in “Build Settings” to point to wherever Homebrew installed those libraries.
