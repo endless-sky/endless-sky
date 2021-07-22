@@ -1011,6 +1011,7 @@ outfit "Nuclear Missile"
 		sprite "projectile/missile"
 			"no repeat"
 			"frame rate" .25
+		"hardpoint sprite" "hardpoint/nuke"
 		sound "nuke"
 		ammo "Nuclear Missile"
 		stream
@@ -1104,7 +1105,7 @@ outfit "Gatling Gun"
 	weapon
 		sprite "projectile/tinyflare"
 			"random start frame"
-		sound "explosion tiny"
+		sound "gatling"
 		ammo "Gatling Gun Ammo"
 		icon "icon/gat"
 		"inaccuracy" 2
