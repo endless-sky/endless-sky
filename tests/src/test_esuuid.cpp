@@ -24,6 +24,9 @@ namespace detail {
 
 // ... and any system includes needed for the test file.
 #include <algorithm>
+#include <map>
+#include <memory>
+#include <set>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -43,6 +46,7 @@ namespace { // test namespace
 // #region mock data
 struct Identifiable {
 	EsUuid id;
+	const EsUuid &UUID() const noexcept { return id; }
 };
 // #endregion mock data
 
@@ -196,6 +200,41 @@ SCENARIO( "Copying uniquely identifiable objects", "[uuid][copying]" ) {
 			THEN( "the copied ID occupies different memory than the source ID" ) {
 				CHECK( &other.id != &source.id );
 			}
+		}
+	}
+}
+
+SCENARIO( "Mapping identifiable collections", "[uuid][comparison][collections]" ) {
+	using T = Identifiable;
+	GIVEN( "two objects with the same UUID" ) {
+		auto source = std::make_shared<T>();
+		auto cloned = std::make_shared<T>();
+		cloned->id.clone(source->UUID());
+		WHEN( "the collection has a default comparator" ) {
+			auto collection = std::set<std::shared_ptr<T>>{};
+			REQUIRE( collection.emplace(source).second );
+			THEN( "both objects may be added" ) {
+				CHECK( collection.emplace(cloned).second );
+			}
+		}
+		WHEN( "the collection uses an ID comparator" ) {
+			auto collection = std::set<std::shared_ptr<T>, UUIDComparator<T>>{};
+			REQUIRE( collection.emplace(source).second );
+			THEN( "only one object may be added" ) {
+				CHECK_FALSE( collection.emplace(cloned).second );
+			}
+		}
+	}
+	GIVEN( "a collection of items with UUIDs" ) {
+		auto collection = std::map<std::shared_ptr<T>, int, UUIDComparator<T>>{};
+		auto first = std::make_shared<T>();
+		auto second = std::make_shared<T>();
+		collection.insert({ {first, -1}, {second, -2} });
+		for(int i = 0; i < 10; ++i)
+			collection.emplace(std::make_shared<T>(), i);
+		THEN( "item retrieval works correctly" ) {
+			CHECK( collection.at(first) == -1 );
+			CHECK( collection.at(second) == -2 );
 		}
 	}
 }
