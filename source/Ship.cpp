@@ -2608,7 +2608,7 @@ void Ship::Destroy()
 	
 	shared_ptr<Ship> oldParent = parent.lock();
 	if(oldParent)
-		oldParent->RegisterEscorts();
+		oldParent->TuneForEscorts();
 }
 
 
@@ -3683,7 +3683,7 @@ const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 // cues and try to stay with it when it lands or goes into hyperspace.
 void Ship::AddEscort(Ship &ship)
 {
-	RegisterEscort(ship);
+	TuneForEscort(ship);
 	escorts.push_back(ship.shared_from_this());
 }
 
@@ -3704,7 +3704,7 @@ void Ship::RemoveEscort(const Ship &ship)
 		else
 		{
 			if(escort)
-				RegisterEscort(*escort);
+				TuneForEscort(*escort);
 			++it;
 		}
 	}
@@ -3713,7 +3713,7 @@ void Ship::RemoveEscort(const Ship &ship)
 
 
 // (Re)Register escorts, for example because some escort got destroyed.
-void Ship::RegisterEscorts()
+void Ship::TuneForEscorts()
 {
 	// Reset this value, we will re-scan the list of escorts to set the
 	// escorts velocity based on remaining active escorts.
@@ -3723,14 +3723,14 @@ void Ship::RegisterEscorts()
 	{
 		auto escort = it.lock().get();
 		if(escort)
-			RegisterEscort(*escort);
+			TuneForEscort(*escort);
 	}
 }
 
 
 
 // Store relevant cached data for the given escort.
-void Ship::RegisterEscort(const Ship &ship)
+void Ship::TuneForEscort(const Ship &ship)
 {
 	// Cache the maximum speed that the parent should stay below to keep
 	// all escorts together.
