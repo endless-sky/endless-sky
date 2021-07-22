@@ -212,19 +212,45 @@ mission "Deep Archaeology 5"
 		conversation
 			`You breathe a sigh of relief as you land safely in the spaceport on <planet>. "Okay, what was that all about?" you ask.`
 			`	"I honestly don't know," says Albert. "I can tell you what I suspect, though. The history books don't actually say when the Deep was first settled. The first documented expedition to the Deep was in the 24th century, and they found several human colonies already established in the region, claiming to date back to the very dawn of space flight. But I think the first settlers were brought there long before that. Brought there on alien ships."`
+			branch pug
+				or
+					has "FWC Pug 2: offered"
+					has "FW Pug 3: offered"
 			choice
 				`	"For what purpose?"`
 					goto purpose
 				`	"What aliens? The Quarg?"`
 					goto aliens
+			label pug
+			choice
+				`	"For what purpose?"`
+					goto purpose
+				`	"Do you think it was the Pug?"`
+					goto surprise
 			label purpose
 			`	"I'm not sure," he says. "But I first became interested in the Deep while researching the Alpha Wars. I'm sure you know the history, how humanity was nearly enslaved by psychopathic 'super' humans that we ourselves had created by dabbling in genetic engineering. At that time, the Deep made a sudden, improbable technological leap that allowed them to construct weapons and ships far more powerful than what the Alphas had, and the war against them was won."`
 				goto end
 			label aliens
 			`	"There are popular folk tales in the Deep about 'elves,'" says Albert. "Thin, pale, graceful creatures, with blue blood."`
 			`	John frowns. "Hemocyanic blood. Not the Quarg, then. Their lungs are odd, but their blood uses hemoglobin for oxygen transport, just like ours."`
+				goto end
+			label surprise
+			`	Albert and John give confused looks at each other for a second before Albert says, "The aliens that invaded human space?"`
+			`	John appears to think hard on the subject before saying, "That's certainly an interesting connection. I don't know how we didn't think of it. From the descriptions that I've heard about them, they almost exactly match the folk tales in the Deep about 'elves.'"`
+			`	"Thin, pale, and blue blooded, yes? Well, I think you may have figured something out, Captain <last>," replies Albert.`
+			choice
+				`	"That's great, but what does it mean for us?"`
+					goto dangerous
+				`	"From what I understand, they've been around for a while, and have mentioned past interference in the Deep."`
+			`	"Well then, if the Pug have admitted to 'interfering' with the Deep in the past then we have good reason to believe they fit into our current knowledge of the timeline here," Albert replies. "Unfortunately we can't just ask the Pug exactly what they've done or when they did it, but simply knowing of their presence here aids in our research."`
+				goto final
+			label dangerous
+			`	"Nothing immediately," says John, "but nevertheless, it is at least useful to know the timeline of events here."`
+			`	"Indeed," replies Albert, "simply knowing of their presence here aids in our research."`
+				goto final
 			label end
 			`	Albert continues, "What I think is that an unknown alien species has been involved in events in the Deep since the beginning, and is perhaps still involved there today. I think this is known to at least some of the Deep's inhabitants."`
+			label final
 			choice
 				`	"So, what do we do now?"`
 				`	"How can we find out more information?"`
@@ -1568,7 +1594,7 @@ mission "Sheragi Archaeology: Epilogue"
 				`	"I wonder how it works."`
 					goto works
 				`	"That's what she said."`
-			`	Desyo doesn't understand, but Eyama bursts into laughter. "Classic human joke. You see, it implies-"`
+			`	Desyo doesn't understand, but Eyama bursts into laughter. "Classic human joke. You see, it implies--"`
 			`	"God, don't explain it," Albert interrupts. "That was terrible. She's right though, that isn't something you see every day. Do you have any idea how it works?"`
 			label works
 			`	Rakei, who is more knowledgeable in this area, responds. "It's a fusion-pumped gamma-ray laser, or GRASER for short. The device is simple in concept, but the cost involved and the proportion of everything makes it impractical to develop, not to mention that to use it would probably be considered a war crime in many civilizations, thus making R&D not worth it. It's essentially using a nuclear flash to power a laser beam that penetrates and melts everything. Fascinating, but I'm hoping you'll only use it for peacekeeping purposes."`

@@ -950,8 +950,14 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	// If this trigger has actions tied to it, perform them. Otherwise, check
 	// if this is a non-job mission that just got offered and if so,
 	// automatically accept it.
+	// Actions that are performed only receive the mission destination
+	// system if the mission is visible. This is because the purpose of
+	// a MissionAction being given the destination system is for drawing
+	// a special marker at the destination if the map is opened during any
+	// mission dialog or conversation. Invisible missions don't show this
+	// marker.
 	if(it != actions.end())
-		it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr, boardingShip, IsUnique());
+		it->second.Do(player, ui, (destination && isVisible) ? destination->GetSystem() : nullptr, boardingShip, IsUnique());
 	else if(trigger == OFFER && location != JOB)
 		player.MissionCallback(Conversation::ACCEPT);
 	
@@ -1023,7 +1029,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		{
 			hasFailed = true;
 			if(isVisible)
-				Messages::Add(message + "Mission failed: \"" + displayName + "\".");
+				Messages::Add(message + "Mission failed: \"" + displayName + "\".", Messages::Importance::High);
 		}
 	}
 	
