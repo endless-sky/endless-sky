@@ -282,6 +282,7 @@ jobs:
         os: [macos-latest]
     env:
       ARTIFACT: Endless Sky
+      SDL2_FRAMEWORK: build/SDL2.framework
     steps:
     - uses: actions/checkout@v2
     - name: Restore cached game binary
@@ -295,7 +296,13 @@ jobs:
       run: brew update
     - name: Install dependencies
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: brew install libpng libjpeg-turbo libmad sdl2
+      run: brew install libmad libpng jpeg-turbo
+    - name: Restore cached SDL2 framework
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      uses: actions/cache@v2
+      with:
+        path: ${{ env.SDL2_FRAMEWORK }}
+        key: ${{ matrix.os }}-sdl2-${{ hashFiles('utils/fetch_sdl2_framework.sh') }}-${{ hashFiles('.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**') }}
     - name: Compile
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) -quiet
@@ -415,20 +422,38 @@ jobs:
         os: [macos-latest]
     env:
       ES_BINARY: Endless Sky
+      SDL2_FRAMEWORK: build/SDL2.framework
     steps:
     - uses: actions/checkout@v2
+    - name: Update Homebrew
+      run: brew update
     - name: Install dependencies
+      run: brew install libmad libpng jpeg-turbo
+    - name: Restore cached SDL2 framework
+      uses: actions/cache@v2
+      with:
+        path: ${{ env.SDL2_FRAMEWORK }}
+        key: ${{ matrix.os }}-sdl2-${{ hashFiles('utils/fetch_sdl2_framework.sh') }}-${{ hashFiles('.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**') }}
+    - name: Add support files
       run: |
-        brew update
-        brew install libmad libpng jpeg-turbo sdl2
+        mkdir -p Contents/Frameworks Contents/MacOS Contents/Resources
+        ln -s /usr/local/opt/libmad/lib/libmad.0.dylib Contents/Frameworks/
+        ln -s /usr/local/opt/libpng/lib/libpng16.dylib Contents/Frameworks/
+        ln -s /usr/local/opt/jpeg-turbo/lib/libturbojpeg.0.dylib Contents/Frameworks/
+        mv ${{ env.SDL2_FRAMEWORK }} Contents/Frameworks/
+        cd Contents/Resources/
+        ln -s ../../data
+        ln -s ../../images
+        ln -s ../../sounds
     - name: Download game binary
       uses: actions/download-artifact@v2
       with:
         name: binary-${{ matrix.os }}
+        path: Contents/MacOS
     - name: Verify Executable
-      run: chmod +x ./"${ES_BINARY}" && ./"${ES_BINARY}" -v
+      run: chmod +x "Contents/MacOS/${ES_BINARY}" && ./"Contents/MacOS/${ES_BINARY}" -v
     - name: Parse Datafiles
-      run: ./tests/test_parse.sh ./"${ES_BINARY}"
+      run: ./tests/test_parse.sh ./"Contents/MacOS/${ES_BINARY}"
 
 
   test_memory-leaks-lite:
