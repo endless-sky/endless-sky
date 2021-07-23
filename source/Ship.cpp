@@ -3158,7 +3158,10 @@ int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damag
 		hullDelay = max(hullDelay, static_cast<int>(attributes.Get("disabled repair delay")));
 	}
 	if(!wasDestroyed && IsDestroyed())
+	{
 		type |= ShipEvent::DESTROY;
+		Destroy();
+	}
 	
 	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
 	if(heat > MaximumHeat())
