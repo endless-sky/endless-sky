@@ -1808,7 +1808,7 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition, const
 	if(hasCruiseSpeed)
 	{
 		// The ship prefers a velocity at cruise-speed towards the target, so we need
-		// to compare this preffered velocity to the current velocity and apply the
+		// to compare this preferred velocity to the current velocity and apply the
 		// delta to get to the preferred velocity.
 		tv = (dp.Unit() * cruiseSpeed) - velocity;
 		// If we are moving close to our preferred velocity, then face towards the target.
