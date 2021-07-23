@@ -46,16 +46,16 @@ public:
 	public:
 		StorageType type = VALUE;
 		int64_t value;
-		ConditionsProvider* provider;
+		ConditionsProvider *provider;
 	};
 
 
 
 public:
 	// Constructors to initialize this class.
-	ConditionsStore();
+	ConditionsStore() = default;
 	ConditionsStore(std::initializer_list<std::pair<std::string, int64_t>> initialConditions);
-	ConditionsStore(const std::map<std::string, int64_t> initialConditions);
+	ConditionsStore(const std::map<std::string, int64_t> &initialConditions);
 
 	// Retrieve a "condition" flag from this provider.
 	int64_t GetCondition(const std::string &name) const;

@@ -423,6 +423,7 @@ int64_t Account::GetConditionImpl(const string &name) const
 		{
 			aC = it.first;
 			found = true;
+			break;
 		}
 	
 	if(!found)
@@ -446,9 +447,8 @@ int64_t Account::GetConditionImpl(const string &name) const
 			return min(limit, TotalDebt("Mortgage"));
 		case AccountCondition::UNPAID_SALARIES:
 			return min(limit, SalariesOwed());
-		default:
-			return 0;
 	}
+	return 0;
 }
 
 
