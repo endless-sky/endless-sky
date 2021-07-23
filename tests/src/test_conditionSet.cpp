@@ -97,13 +97,13 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 		REQUIRE( emptySet.IsEmpty() );
 		
 		AND_GIVEN( "an empty list of Conditions" ) {
-			const auto emptyConditionList = ConditionSet::Conditions{};
+			const auto emptyConditionList = ConditionsStore{};
 			THEN( "the ConditionSet is satisfied" ) {
 				REQUIRE( emptySet.Test(emptyConditionList) );
 			}
 		}
 		AND_GIVEN( "a non-empty list of Conditions" ) {
-			const auto conditionList = ConditionSet::Conditions{
+			const auto conditionList = ConditionsStore{
 				{"event: war begins", 1},
 			};
 			THEN( "the ConditionSet is satisfied" ) {
@@ -116,7 +116,7 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 		REQUIRE_FALSE( neverSet.IsEmpty() );
 		
 		AND_GIVEN( "a condition list containing the literal 'never'" ) {
-			const auto listWithNever = ConditionSet::Conditions{{"never", 1}};
+			const auto listWithNever = ConditionsStore{{"never", 1}};
 			THEN( "the ConditionSet is not satisfied" ) {
 				REQUIRE_FALSE( neverSet.Test(listWithNever) );
 			}
@@ -125,7 +125,7 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 }
 
 SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
-	auto store = ConditionSet::Conditions{};
+	auto store = ConditionsStore{};
 	REQUIRE( store.GetPrimaryConditions().empty() );
 	
 	GIVEN( "an empty ConditionSet" ) {
