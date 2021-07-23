@@ -3686,28 +3686,41 @@ const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 // cues and try to stay with it when it lands or goes into hyperspace.
 void Ship::AddEscort(Ship &ship)
 {
-	TuneForEscort(ship);
-	escorts.push_back(ship.shared_from_this());
+	auto ship_shared = ship.shared_from_this();
+	escorts.push_back(ship_shared);
+	TuneForEscort(ship_shared);
 }
 
 
 
 void Ship::RemoveEscort(const Ship &ship)
 {
-	// Reset this value, we will re-scan the list of escorts to set the
-	// escorts velocity based on remaining active escorts.
-	escortsVelocity = -1.;
+	// Reset the cached value if we are removing the slowest escort, we will
+	// re-scan the list of escorts to set the escorts velocity based on
+	// remaining active escorts.
+	shared_ptr<Ship> slowest = slowestEscort.lock();
+	bool findSlowest = (!slowest || (&ship == slowest.get()));
+	if(findSlowest){
+		escortsVelocity = -1.;
+		slowestEscort.reset();
+	}
 
 	auto it = escorts.begin();
 	while(it != escorts.end())
 	{
-		auto escort = it->lock().get();
-		if(escort == &ship)
+		auto escort = it->lock();
+		if(escort.get() == &ship)
+		{
 			it = escorts.erase(it);
+			// If we are not removing the slowest escort, then we don't
+			// need to finish the loop to tune all other escorts.
+			if(!findSlowest)
+				return;
+		}
 		else
 		{
-			if(escort)
-				TuneForEscort(*escort);
+			if(escort && findSlowest)
+				TuneForEscort(escort);
 			++it;
 		}
 	}
@@ -3718,22 +3731,29 @@ void Ship::RemoveEscort(const Ship &ship)
 // (Re)Register escorts, for example because some escort got destroyed.
 void Ship::TuneForEscorts()
 {
+	// Check if we have a valid slowest escort. If we have one, then we don't
+	// need to rescan for the next slowest escort.
+	shared_ptr<Ship> slowest = slowestEscort.lock();
+	if(slowest && !slowest->IsDestroyed() && government == slowest->GetGovernment())
+		return;
+	
 	// Reset this value, we will re-scan the list of escorts to set the
 	// escorts velocity based on remaining active escorts.
 	escortsVelocity = -1.;
+	slowestEscort.reset();
 	
 	for(const auto &it: escorts)
 	{
-		auto escort = it.lock().get();
+		auto escort = it.lock();
 		if(escort)
-			TuneForEscort(*escort);
+			TuneForEscort(escort);
 	}
 }
 
 
 
 // Store relevant cached data for the given escort.
-void Ship::TuneForEscort(const Ship &ship)
+void Ship::TuneForEscort(std::shared_ptr<Ship> &ship)
 {
 	// Cache the maximum speed that the parent should stay below to keep
 	// all escorts together.
@@ -3742,15 +3762,13 @@ void Ship::TuneForEscort(const Ship &ship)
 	// regular thrust.
 	// We also don't cache the speeds of carried ships, since they are often
 	// docked and the carrier waits for them during docking already.
-	if(!ship.CanBeCarried() && !ship.IsDestroyed() && government == ship.GetGovernment())
+	if(ship && !ship->CanBeCarried() && !ship->IsDestroyed() && government == ship->GetGovernment())
 	{
-		double eV = ship.MaxVelocity() * 0.9;
-		if(eV > 0.)
+		double eV = ship->MaxVelocity() * 0.9;
+		if(eV > 0. && (escortsVelocity <= 0. || (eV < escortsVelocity)))
 		{
-			if(escortsVelocity <= 0.)
-				escortsVelocity = eV;
-			else
-				escortsVelocity = min(escortsVelocity, eV);
+			escortsVelocity = eV;
+			slowestEscort = ship;
 		}
 	}
 }
