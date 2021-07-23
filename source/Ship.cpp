@@ -3331,8 +3331,8 @@ bool Ship::Carry(const shared_ptr<Ship> &ship, vector<Visual> *visuals)
 
 
 
-// Track the given escort as a carry in one bay while in flight.
-void Ship::CarryInFlight(const shared_ptr<Ship> &escort)
+// Reserve a bay for the given escort.
+void Ship::ReserveBay(const shared_ptr<Ship> &escort)
 {
 	if(!escort || !escort->CanBeCarried())
 		return;

@@ -849,9 +849,9 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				}
 				else
 				{
-					// Try to see if the parent can dock this ship.
+					// Try to see if the parent has a bay that is free.
 					if(parent->CanCarry(*it))
-						parent->CarryInFlight(it);
+						parent->ReserveBay(it);
 				}
 			}
 			// If we get here, it means that the ship has not decided to return
