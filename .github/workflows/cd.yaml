@@ -97,12 +97,18 @@ jobs:
     runs-on: macos-latest
     env:
       OUTPUT: EndlessSky-macOS10.15-continuous.zip
+      SDL2_FRAMEWORK: build/SDL2.framework
     steps:
       - uses: actions/checkout@v2
       - name: Update Homebrew
         run: brew update
       - name: Install dependencies
         run: brew install libmad libpng jpeg-turbo
+      - name: Restore cached SDL2 framework
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.SDL2_FRAMEWORK }}
+          key: macos-latest-sdl2-${{ hashFiles('utils/fetch_sdl2_framework.sh') }}-${{ hashFiles('.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**') }}
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
         shell: bash
