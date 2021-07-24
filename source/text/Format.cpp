@@ -221,7 +221,7 @@ double Format::Parse(const string &str)
 
 
 
-string Format::Replace(const string &source, const map<string, string> keys)
+string Format::Replace(const string &source, const map<string, string> &keys)
 {
 	string result;
 	result.reserve(source.length());
