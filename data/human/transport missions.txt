@@ -3209,3 +3209,98 @@ mission "Earth Retirement"
 			label reject
 			`	Charles looks surprised for a moment, and then, for the first time you've seen, he smiles. "Thank you, Captain <last>. I wish there were more people like you in the Paradise Worlds."`
 			`	You wish the couple the best of luck on Earth, and they slowly make their way to the train station. Presumably, their new apartment is far from here.`
+
+
+
+mission "Spacediving professionals"
+	job
+	repeat
+	name "Spacediving at <planet>"
+	description "Head to <destination> with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing thermal spacesuits, durable parachutes, and oxygen bottles to ensure their survival. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is <payment>."
+	passengers 5 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 1 7
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes "station"
+		not attributes "research"
+	to offer
+		random < 14
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 120000
+		dialog "As you descend through the upper atmosphere, the skydivers jump from your ship, spectacularly diving until they open their parachutes and land safely near the spaceport. You collect your payment of <payment>."
+
+
+
+mission "Spacediving professionals accident"
+	job
+	repeat
+	name "Spacediving at <planet>"
+	description "Head to <destination> with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing thermal spacesuits, durable parachutes, and oxygen bottles to ensure their survival. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is 120000."
+	passengers 5 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 1 7
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes "station"
+		not attributes "research"
+	to offer
+		"Spacediving professionals: done" > 7
+		random < 2
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog "As you descend through the upper atmosphere, the skydivers jump from your ship, spectacularly diving until they try to open their parachutes. Some of the parachutes open only partially and part of the team suffers an uncontrolled hard landing. Medical teams respond quickly, but the skydivers are too preoccupied with their injured teammates to pay you the credits they owe you."
+
+
+
+mission "Spacediving professionals disaster"
+	job
+	repeat
+	name "Spacediving at <planet>"
+	description "Head to <destination> with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing thermal spacesuits, durable parachutes, and oxygen bottles to ensure their survival. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is 120000."
+	passengers 5 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 1 7
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes "station"
+		not attributes "research"
+	to offer
+		has "Spacediving professionals accident: done"
+		random < 1
+		credits >= 5000000
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment -200000
+		dialog "As you descend through the upper atmosphere, the skydivers jump from your ship. Some minutes into the jump disaster strikes; the skydivers start moving in an uncontrolled manner. It's unclear if the spacesuits or the oxygen supplies were at fault, but it looks unlikely that any of the skydivers makes it safely to the ground. Authorities investigate the incident and although they don't find serious wrongdoings on your part, they still fine you <payment> for enabling such a dangerous and deadly act."
+
+
+
+mission "Spacediving amateurs"
+	job
+	repeat
+	name "Spacediving at <planet>"
+	description "Head to <destination> with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing tricked-out wingsuits, brightly-patterned parachutes, and carrying beer bottles for an after-landing celebration. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is 120000 credits."
+	passengers 5 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 1 7
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes station
+		not attributes research
+	to offer
+		"Spacediving professionals: done" > 3
+		random < 5
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 30000
+		dialog "As you descend through the upper atmosphere, you inform your skydivers that it's time to jump. However, after being able to see the distances and atmospheric conditions involved, all of them are far less keen on the idea than when you first picked them up. You bring them down to the landing pad, and they pay you a meager <payment> before hopping off."

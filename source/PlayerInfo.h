@@ -232,7 +232,7 @@ public:
 	void SetTravelDestination(const Planet *planet);
 	
 	// Toggle which secondary weapon the player has selected.
-	const Outfit *SelectedWeapon() const;
+	const std::set<const Outfit *> &SelectedWeapons() const;
 	void SelectNext();
 	
 	// Escorts currently selected for giving orders.
@@ -348,7 +348,7 @@ private:
 	std::vector<const System *> travelPlan;
 	const Planet *travelDestination = nullptr;
 	
-	const Outfit *selectedWeapon = nullptr;
+	std::set<const Outfit *> selectedWeapons;
 	
 	std::map<const Outfit *, int> stock;
 	Depreciation depreciation;
