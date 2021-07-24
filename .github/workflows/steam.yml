@@ -41,7 +41,7 @@ jobs:
     outputs:
       RT_VERSION: ${{ steps.steamrt-version.outputs.RT_VERSION }}
     env:
-      snapshot: latest-container-runtime-depot
+      snapshot: latest-steam-client-general-availability
       sdk: com.valvesoftware.SteamRuntime.Sdk-${{ matrix.platform }}-scout-sysroot
       ARTIFACT: endless-sky
     steps:
