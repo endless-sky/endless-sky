@@ -19,7 +19,7 @@ namespace { // test namespace
 // #region unit tests
 SCENARIO( "Creating an Account" , "[Account][Creation]" ) {
 	GIVEN( "initial values" ) {
-		Account account = Account();
+		Account account;
 		THEN( "storing and retrieving data should work" ) {
 			REQUIRE( account.Credits() == 0. );
 			account.AddCredits(100);
