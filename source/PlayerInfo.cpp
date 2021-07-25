@@ -2582,8 +2582,48 @@ void PlayerInfo::ValidateLoad()
 // Helper to register derived conditions.
 void PlayerInfo::RegisterDerivedConditions()
 {
-	for(const auto &it : accounts.GetProvidedConditions())
-		conditions.SetProviderNamed(it, &accounts);
+	// Default conditionsProvider, the getFun is different, but has, set and erase are all
+	// the same.
+	struct ConditionsStore::DerivedProvider conditionsProvider;
+	conditionsProvider.hasFun = [] (const string &name){ return true; };
+	conditionsProvider.setFun = [] (const string &name, int64_t value){ return false; };
+	conditionsProvider.eraseFun = [] (const string &name){ return false; };
+
+	// Read-only account conditions.
+	// Bound financial conditions to +/- 4.6 x 10^18 credits, within the range of a 64-bit int.
+	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
+	
+	conditionsProvider.getFun = [this] (const string &name){ return min(limit, max(-limit, accounts.NetWorth())); };
+	conditions.SetProviderNamed("net worth", conditionsProvider);
+	
+	conditionsProvider.getFun = [this] (const string &name){ return min(limit, accounts.Credits()); };
+	conditions.SetProviderNamed("credits", conditionsProvider);
+	
+	conditionsProvider.getFun = [this] (const string &name){ return min(limit, accounts.TotalDebt("Mortgage")); };
+	conditions.SetProviderNamed("unpaid mortgages", conditionsProvider);
+	
+	conditionsProvider.getFun = [this] (const string &name){ return min(limit, accounts.TotalDebt("Fine")); };
+	conditions.SetProviderNamed("unpaid fines", conditionsProvider);
+	
+	conditionsProvider.getFun = [this] (const string &name){ return min(limit, accounts.SalariesOwed()); };
+	conditions.SetProviderNamed("unpaid salaries", conditionsProvider);
+	
+	conditionsProvider.getFun = [this] (const string &name){ return min(limit, accounts.MaintenanceDue()); };
+	conditions.SetProviderNamed("unpaid maintenance", conditionsProvider);
+	
+	conditionsProvider.getFun = [this] (const string &name){ return accounts.CreditScore(); };
+	conditions.SetProviderNamed("credit score", conditionsProvider);
+
+	// Read-only flagship conditions.
+	// The getter is different for the conditions, we re-use the struct during the calls (since it gets copied by value).
+	conditionsProvider.getFun = [this] (const string &name)->int64_t { if(flagship){return flagship->Crew();} return 0; };
+	conditions.SetProviderNamed("flagship crew", conditionsProvider);
+	
+	conditionsProvider.getFun = [this] (const string &name)->int64_t{ if(flagship){return flagship->RequiredCrew();} return 0; };
+	conditions.SetProviderNamed("flagship required crew", conditionsProvider);
+	
+	conditionsProvider.getFun = [this] (const string &name)->int64_t { if(flagship){return flagship->Attributes().Get("bunks");} return 0; };
+	conditions.SetProviderNamed("flagship bunks", conditionsProvider);
 }
 
 
@@ -2621,19 +2661,10 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 	// Store conditions for flagship current crew, required crew, and bunks.
 	if(flagship)
 	{
-		SetCondition("flagship crew", flagship->Crew());
-		SetCondition("flagship required crew", flagship->RequiredCrew());
-		SetCondition("flagship bunks", flagship->Attributes().Get("bunks"));
 		if(flagship->GetSystem())
 			SetCondition("flagship system: " + flagship->GetSystem()->Name(), 1);
 		if(flagship->GetPlanet())
 			SetCondition("flagship planet: " + flagship->GetPlanet()->TrueName(), 1);
-	}
-	else
-	{
-		SetCondition("flagship crew", 0);
-		SetCondition("flagship required crew", 0);
-		SetCondition("flagship bunks", 0);
 	}
 	
 	// Conditions for your fleet's attractiveness to pirates:

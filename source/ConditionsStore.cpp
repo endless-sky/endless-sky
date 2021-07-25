@@ -46,7 +46,7 @@ int64_t ConditionsStore::GetCondition(const std::string &name) const
 	if(ce->type == VALUE)
 		return ce->value;
 	
-	return ce->provider->GetCondition(name);
+	return (ce->provider).getFun(name);
 }
 
 
@@ -60,7 +60,7 @@ bool ConditionsStore::HasCondition(const std::string &name) const
 	if(ce->type == VALUE)
 		return true;
 	
-	return ce->provider->HasCondition(name);
+	return (ce->provider).hasFun(name);
 }
 
 
@@ -94,7 +94,7 @@ bool ConditionsStore::SetCondition(const string &name, int64_t value)
 		return true;
 	}
 	
-	return ce->provider->SetCondition(name, value);
+	return (ce->provider).setFun(name, value);
 }
 
 
@@ -113,7 +113,7 @@ bool ConditionsStore::EraseCondition(const string &name)
 		return true;
 	}
 	
-	return ce->provider->EraseCondition(name);
+	return (ce->provider).eraseFun(name);
 }
 
 
@@ -133,32 +133,20 @@ const map<string, int64_t> ConditionsStore::GetPrimaryConditions() const
 
 
 
-// Sets a provider for a certain prefix. Calling this function with a
-// nullpointer will unset the provider for the prefix.
-void ConditionsStore::SetProviderPrefixed(const string &prefix, ConditionsProvider *child)
+// Sets a provider for a given prefix.
+void ConditionsStore::SetProviderPrefixed(const string &prefix, DerivedProvider conditionsProvider)
 {
-	if(child)
-	{
-		storage[prefix].provider = child;
-		storage[prefix].type = PREFIX_PROVIDER;
-	}
-	else
-		storage.erase(prefix);
+	storage[prefix].provider = conditionsProvider;
+	storage[prefix].type = PREFIX_PROVIDER;
 }
 
 
 
-// Sets a provider for a certain prefix. Calling this function with a
-// nullpointer will unset the provider for the prefix.
-void ConditionsStore::SetProviderNamed(const string &name, ConditionsProvider *child)
+// Sets a provider for the condition identified by the given name.
+void ConditionsStore::SetProviderNamed(const string &name, DerivedProvider conditionProvider)
 {
-	if(child)
-	{
-		storage[name].provider = child;
-		storage[name].type = EXACT_PROVIDER;
-	}
-	else
-		storage.erase(name);
+	storage[name].provider = conditionProvider;
+	storage[name].type = EXACT_PROVIDER;
 }
 
 

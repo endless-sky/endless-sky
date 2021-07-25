@@ -13,8 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef CONDITIONS_STORE_H_
 #define CONDITIONS_STORE_H_
 
-#include "ConditionsProvider.h"
-
+#include <functional>
 #include <initializer_list>
 #include <map>
 #include <string>
@@ -40,15 +39,27 @@ public:
 	// - EXACT_PROVIDER means that the condition with the exact name is handled
 	//         by the given provider.
 	enum StorageType {VALUE, PREFIX_PROVIDER, EXACT_PROVIDER};
+
+	// Typedefs for DerivedProvider functions
+	typedef std::function<int64_t(const std::string&)> GetFun;
+	typedef std::function<bool(const std::string&)> HasFun;
+	typedef std::function<bool(const std::string&, int64_t)> SetFun;
+	typedef std::function<bool(const std::string&)> EraseFun;
 	
+	struct DerivedProvider {
+		GetFun getFun;
+		HasFun hasFun;
+		SetFun setFun;
+		EraseFun eraseFun;
+	};
+
 	class ConditionEntry
 	{
 	public:
 		StorageType type = VALUE;
 		int64_t value;
-		ConditionsProvider *provider;
+		DerivedProvider provider;
 	};
-
 
 
 public:
@@ -70,8 +81,8 @@ public:
 	const std::map<std::string, int64_t> GetPrimaryConditions() const;
 	
 	// Set providers for derived conditions based on prefix and name.
-	void SetProviderPrefixed(const std::string &prefix, ConditionsProvider *child);
-	void SetProviderNamed(const std::string &name, ConditionsProvider *child);
+	void SetProviderPrefixed(const std::string &prefix, DerivedProvider conditionsProvider);
+	void SetProviderNamed(const std::string &name, DerivedProvider conditionProvider);
 	
 	// Helper to completely remove all data and linked condition-providers from the store.
 	void Clear();
