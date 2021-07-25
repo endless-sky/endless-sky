@@ -25,19 +25,6 @@ namespace {
 	// For tracking the player's average income, store daily net worth over this
 	// number of days.
 	const unsigned HISTORY = 100;
-	
-	// Enumaration to minimize the risk of typos compared to using string identifiers.
-	enum class AccountCondition {NET_WORTH, CREDITS, UNPAID_MORTGAGES, UNPAID_FINES, UNPAID_SALARIES, UNPAID_MAINTENANCE, CREDIT_SCORE};
-	
-	const map<AccountCondition, const string> CONDITION_TO_TEXT = {
-		{AccountCondition::NET_WORTH, "net worth"},
-		{AccountCondition::CREDITS, "credits"},
-		{AccountCondition::UNPAID_MORTGAGES, "unpaid mortgages"},
-		{AccountCondition::UNPAID_FINES, "unpaid fines"},
-		{AccountCondition::UNPAID_SALARIES, "unpaid salaries"},
-		{AccountCondition::UNPAID_MAINTENANCE, "unpaid maintenance"},
-		{AccountCondition::CREDIT_SCORE, "credit score"}
-	};
 }
 
 
