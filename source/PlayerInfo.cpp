@@ -102,9 +102,8 @@ void PlayerInfo::New(const StartConditions &start)
 	SetSystem(start.GetSystem());
 	SetPlanet(&start.GetPlanet());
 	accounts = start.GetAccounts();
-	for(const auto &it : accounts.GetProvidedConditions())
-		conditions.SetProviderNamed(it, &accounts);
 	start.GetConditions().Apply(conditions);
+	RegisterDerivedConditions();
 	UpdateAutoConditions();
 	
 	// Generate missions that will be available on the first day.
@@ -300,6 +299,9 @@ void PlayerInfo::Load(const string &path)
 	// Restore access to services, if it was granted previously.
 	if(planet && hasFullClearance)
 		planet->Bribe();
+	
+	// Make the derived conditions available again.
+	RegisterDerivedConditions();
 	
 	// Based on the ships that were loaded, calculate the player's capacity for
 	// cargo and passengers.
@@ -2573,6 +2575,15 @@ void PlayerInfo::ValidateLoad()
 	// the player will be on the correct planet when a plugin is re-added).
 	availableJobs.remove_if(isInvalidMission);
 	availableMissions.remove_if(isInvalidMission);
+}
+
+
+
+// Helper to register derived conditions.
+void PlayerInfo::RegisterDerivedConditions()
+{
+	for(const auto &it : accounts.GetProvidedConditions())
+		conditions.SetProviderNamed(it, &accounts);
 }
 
 

@@ -286,6 +286,9 @@ private:
 	// After loading & applying changes, make sure the player & ship locations are sensible.
 	void ValidateLoad();
 	
+	// Helper to register derived conditions.
+	void RegisterDerivedConditions();
+	
 	// New missions are generated each time you land on a planet.
 	void UpdateAutoConditions(bool isBoarding = false);
 	void CreateMissions();
