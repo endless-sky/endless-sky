@@ -13,49 +13,78 @@ namespace { // test namespace
 
 // #region mock data
 
-class MockConditionsProvider : public ConditionsProvider
+void verifyName(const std::string &name1, const std::string &name2)
 {
-protected:
-	virtual int64_t GetConditionImpl(const std::string &name) const override;
-	virtual bool HasConditionImpl(const std::string &name) const override;
-	virtual bool SetConditionImpl(const std::string &name, int64_t value) override;
-	virtual bool EraseConditionImpl(const std::string &name) override;
+	if(name1 != name2)
+		throw std::runtime_error("Names \"" + name1 + "\" and \"" + name2 + "\" do not match");
+}
 
+std::string verifyAndStripPrefix(const std::string &prefix, const std::string &inputString)
+{
+	if(inputString.size() < prefix.size() || (0 != inputString.compare(0, prefix.size(), prefix)))
+		throw std::runtime_error("String \"" + inputString + "\" does not start with prefix \"" + prefix + "\"");
+	return inputString.substr(prefix.size());
+}
+
+bool isInMap(const std::map<std::string, int64_t> &values, const std::string &inputString)
+{
+	return values.find(inputString) != values.end();
+}
+
+int64_t getFromMapOrZero(const std::map<std::string, int64_t> &values, const std::string &inputString)
+{
+	auto it = values.find(inputString);
+	if(it == values.end())
+		return 0;
+	return it->second;
+}
+
+
+class MockConditionsProvider
+{
+public:
+	struct ConditionsStore::DerivedProvider GetROPrefixProvider(const std::string &prefix)
+	{
+		struct ConditionsStore::DerivedProvider conditionsProvider;
+		conditionsProvider.hasFun = [this, prefix] (const std::string &name){ verifyAndStripPrefix(prefix, name); return isInMap(values, name); };
+		conditionsProvider.setFun = [this, prefix] (const std::string &name, int64_t value){ verifyAndStripPrefix(prefix, name); return false; };
+		conditionsProvider.eraseFun = [this, prefix] (const std::string &name){ verifyAndStripPrefix(prefix, name); return false; };
+		conditionsProvider.getFun = [this, prefix] (const std::string &name){ verifyAndStripPrefix(prefix, name); return getFromMapOrZero(values, name); };
+		return conditionsProvider;
+	}
+	struct ConditionsStore::DerivedProvider GetRWPrefixProvider(const std::string &prefix)
+	{
+		struct ConditionsStore::DerivedProvider conditionsProvider;
+		conditionsProvider.hasFun = [this, prefix] (const std::string &name){ verifyAndStripPrefix(prefix, name); return isInMap(values, name); };
+		conditionsProvider.setFun = [this, prefix] (const std::string &name, int64_t value){ verifyAndStripPrefix(prefix, name); values[name] = value; return true; };
+		conditionsProvider.eraseFun = [this, prefix] (const std::string &name){ verifyAndStripPrefix(prefix, name); values.erase(name); return true; };
+		conditionsProvider.getFun = [this, prefix] (const std::string &name){ verifyAndStripPrefix(prefix, name); return getFromMapOrZero(values, name); };
+		return conditionsProvider;
+	}
+	struct ConditionsStore::DerivedProvider GetRONamedProvider(const std::string &named)
+	{
+		struct ConditionsStore::DerivedProvider conditionsProvider;
+		conditionsProvider.hasFun = [this, named] (const std::string &name){ verifyName(named, name); return isInMap(values, name); };
+		conditionsProvider.setFun = [this, named] (const std::string &name, int64_t value){ verifyName(named, name); return false; };
+		conditionsProvider.eraseFun = [this, named] (const std::string &name){ verifyName(named, name); return false; };
+		conditionsProvider.getFun = [this, named] (const std::string &name){ verifyName(named, name); return getFromMapOrZero(values, name); };
+		return conditionsProvider;
+	}
+	struct ConditionsStore::DerivedProvider GetRWNamedProvider(const std::string &named)
+	{
+		struct ConditionsStore::DerivedProvider conditionsProvider;
+		conditionsProvider.hasFun = [this, named] (const std::string &name){ verifyName(named, name); return isInMap(values, name); };
+		conditionsProvider.setFun = [this, named] (const std::string &name, int64_t value){ verifyName(named, name); values[name] = value; return true; };
+		conditionsProvider.eraseFun = [this, named] (const std::string &name){ verifyName(named, name); values.erase(name); return true; };
+		conditionsProvider.getFun = [this, named] (const std::string &name){ verifyName(named, name); return getFromMapOrZero(values, name); };
+		return conditionsProvider;
+	}
 
 public:
-	bool readOnly = false;
 	std::map<std::string, int64_t> values;
 };
 
-int64_t MockConditionsProvider::GetConditionImpl(const std::string &name) const
-{
-	auto it = values.find(name);
-	if(it != values.end())
-		return it->second;
-	return 0;
-}
 
-bool MockConditionsProvider::HasConditionImpl(const std::string &name) const
-{
-	auto it = values.find(name);
-	return it != values.end();
-}
-
-bool MockConditionsProvider::SetConditionImpl(const std::string &name, int64_t value)
-{
-	if(readOnly)
-		return false;
-	values[name] = value;
-	return true;
-}
-
-bool MockConditionsProvider::EraseConditionImpl(const std::string &name)
-{
-	if(readOnly)
-		return false;
-	values.erase(name);
-	return true;
-}
 // #endregion mock data
 
 
@@ -177,8 +206,8 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 		auto mockProvPrefixA = MockConditionsProvider();
 		auto mockProvNamed = MockConditionsProvider();
 		auto store = ConditionsStore{{"myFirstVar", 10}};
-		store.SetProviderNamed("named1", &mockProvNamed);
-		store.SetProviderPrefixed("prefixA: ", &mockProvPrefixA);
+		store.SetProviderNamed("named1", mockProvNamed.GetRWNamedProvider("named1"));
+		store.SetProviderPrefixed("prefixA: ", mockProvPrefixA.GetRWPrefixProvider("prefixA: "));
 
 		THEN( "adding to an existing primary condition gives the new value" ) {
 			REQUIRE( store.GetCondition("myFirstVar") == 10 );
@@ -210,7 +239,8 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 			REQUIRE( store.GetCondition("myFirstVar") == 10 );
 			REQUIRE( store.GetCondition("mySecondVar") == 0 );
 
-			mockProvNamed.readOnly = true;
+			store.SetProviderNamed("named1", mockProvNamed.GetRONamedProvider("named1"));
+
 			REQUIRE( store.AddCondition("named1", -20) == false );
 			REQUIRE( mockProvNamed.values["named1"] == -30 );
 			REQUIRE( mockProvNamed.values.size() == 1 );
@@ -240,7 +270,7 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 			REQUIRE( store.GetCondition("myFirstVar") == 10 );
 			REQUIRE( store.GetCondition("mySecondVar") == 0 );
 
-			mockProvPrefixA.readOnly = true;
+			store.SetProviderPrefixed("prefixA: ", mockProvPrefixA.GetROPrefixProvider("prefixA: "));
 			REQUIRE( store.AddCondition("prefixA: test", -20) == false );
 			REQUIRE( mockProvPrefixA.values["prefixA: test"] == -30 );
 			REQUIRE( mockProvPrefixA.values.size() == 1 );
@@ -270,9 +300,9 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 		AND_GIVEN( "more derived conditions are added" )
 		{
 			auto mockProvPrefix = MockConditionsProvider();
-			store.SetProviderPrefixed("prefix: ", &mockProvPrefix);
+			store.SetProviderPrefixed("prefix: ", mockProvPrefix.GetRWPrefixProvider("prefix: "));
 			auto mockProvPrefixB = MockConditionsProvider();
-			store.SetProviderPrefixed("prefixB: ", &mockProvPrefixB);
+			store.SetProviderPrefixed("prefixB: ", mockProvPrefixB.GetRWPrefixProvider("prefixB: "));
 			THEN( "derived prefixed conditions should be set properly" ) {
 				REQUIRE( store.GetPrimaryConditions().size() == 1 );
 				REQUIRE( store.AddCondition("prefixA: test", -30) == true );
@@ -281,7 +311,7 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 				REQUIRE( store.GetCondition("prefixA: test") == -30 );
 				REQUIRE( store.GetCondition("myFirstVar") == 10 );
 
-				mockProvPrefixA.readOnly = true;
+				store.SetProviderPrefixed("prefixA: ", mockProvPrefixA.GetROPrefixProvider("prefixA: "));
 				REQUIRE( store.AddCondition("prefixA: test", -20) == false );
 				REQUIRE( mockProvPrefixA.values["prefixA: test"] == -30 );
 				REQUIRE( mockProvPrefixA.values.size() == 1 );
@@ -309,7 +339,7 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 				REQUIRE( mockProvPrefixA.values.size() == 3 );
 				REQUIRE( mockProvPrefixB.values.size() == 0 );
 
-				mockProvPrefixA.readOnly = false;
+				store.SetProviderPrefixed("prefixA: ", mockProvPrefixA.GetRWPrefixProvider("prefixA: "));
 				REQUIRE( store.SetCondition("prefix: beginning", 42) == true );
 				REQUIRE( mockProvPrefix.values.size() == 1 );
 				REQUIRE( mockProvPrefixA.values.size() == 3 );
