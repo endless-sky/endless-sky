@@ -13,11 +13,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ImageBuffer.h"
 
 #include "File.h"
+#include "Files.h"
 
 #include <png.h>
 #include <jpeglib.h>
 
 #include <cstdio>
+#include <stdexcept>
 #include <vector>
 
 using namespace std;
@@ -63,9 +65,9 @@ void ImageBuffer::Allocate(int width, int height)
 	if(pixels || !width || !height || !frames)
 		return;
 	
+	pixels = new uint32_t[width * height * frames];
 	this->width = width;
 	this->height = height;
-	pixels = new uint32_t[width * height * frames];
 }
 
 
@@ -210,6 +212,8 @@ namespace {
 			return false;
 		}
 		
+		// MAYBE: Reading in lots of images in a 32-bit process gets really hairy using the standard approach due to
+		// contiguous memory layout requirements. Investigate using an iterative loading scheme for large images.
 		png_init_io(png, file);
 		png_set_sig_bytes(png, 0);
 		
@@ -217,7 +221,14 @@ namespace {
 		int width = png_get_image_width(png, info);
 		int height = png_get_image_height(png, info);
 		// If the buffer is not yet allocated, allocate it.
-		buffer.Allocate(width, height);
+		try {
+			buffer.Allocate(width, height);
+		} catch (const bad_alloc &) {
+			png_destroy_read_struct(&png, &info, nullptr);
+			const string message = "Failed to allocate contiguous memory for \"" + path + "\"";
+			Files::LogError(message);
+			throw runtime_error(message);
+		}
 		// Make sure this frame's dimensions are valid.
 		if(!width || !height || width != buffer.Width() || height != buffer.Height())
 		{
@@ -276,15 +287,23 @@ namespace {
 		jpeg_read_header(&cinfo, true);
 		cinfo.out_color_space = JCS_EXT_BGRA;
 		
+		// MAYBE: Reading in lots of images in a 32-bit process gets really hairy using the standard approach due to
+		// contiguous memory layout requirements. Investigate using an iterative loading scheme for large images.
 		jpeg_start_decompress(&cinfo);
 		int width = cinfo.image_width;
 		int height = cinfo.image_height;
 		// If the buffer is not yet allocated, allocate it.
-		buffer.Allocate(width, height);
+		try {
+			buffer.Allocate(width, height);
+		} catch (const bad_alloc &) {
+			jpeg_destroy_decompress(&cinfo);
+			const string message = "Failed to allocate contiguous memory for \"" + path + "\"";
+			Files::LogError(message);
+			throw runtime_error(message);
+		}
 		// Make sure this frame's dimensions are valid.
 		if(!width || !height || width != buffer.Width() || height != buffer.Height())
 		{
-			jpeg_finish_decompress(&cinfo);
 			jpeg_destroy_decompress(&cinfo);
 			return false;
 		}

@@ -160,14 +160,14 @@ namespace {
 		{
 			for(Ship *ship : toDeploy)
 				ship->SetDeployOrder(true);
-			Messages::Add("Deployed " + to_string(toDeploy.size()) + " carried ships.");
+			Messages::Add("Deployed " + to_string(toDeploy.size()) + " carried ships.", Messages::Importance::High);
 		}
 		// Otherwise, instruct the carried ships to return to their berth.
 		else if(!toRecall.empty())
 		{
 			for(Ship *ship : toRecall)
 				ship->SetDeployOrder(false);
-			Messages::Add("Recalled " + to_string(toRecall.size()) + " carried ships");
+			Messages::Add("Recalled " + to_string(toRecall.size()) + " carried ships", Messages::Importance::High);
 		}
 	}
 	
@@ -349,7 +349,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		canceled |= (autoPilot.Has(Command::LAND) && !activeCommands.Has(Command::LAND));
 		canceled |= (autoPilot.Has(Command::BOARD) && !activeCommands.Has(Command::BOARD));
 		if(canceled)
-			Messages::Add("Disengaging autopilot.");
+			Messages::Add("Disengaging autopilot.", Messages::Importance::High);
 		autoPilot.Clear();
 	}
 	
@@ -358,7 +358,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		return;
 	
 	if(activeCommands.Has(Command::STOP))
-		Messages::Add("Coming to a stop.");
+		Messages::Add("Coming to a stop.", Messages::Importance::High);
 	
 	// Only toggle the "cloak" command if one of your ships has a cloaking device.
 	if(activeCommands.Has(Command::CLOAK))
@@ -366,7 +366,8 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 			if(!it->IsParked() && it->Attributes().Get("cloak"))
 			{
 				isCloaking = !isCloaking;
-				Messages::Add(isCloaking ? "Engaging cloaking device." : "Disengaging cloaking device.");
+				Messages::Add(isCloaking ? "Engaging cloaking device." : "Disengaging cloaking device."
+					, Messages::Importance::High);
 				break;
 			}
 	
@@ -664,7 +665,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 							toDump -= dumped;
 						}
 					Messages::Add(gov->GetName() + " " + it->Noun() + " \"" + it->Name()
-						+ "\": Please, just take my cargo and leave me alone.");
+						+ "\": Please, just take my cargo and leave me alone.", Messages::Importance::High);
 					threshold = (1. - health) + .1;
 				}
 			}
@@ -3192,7 +3193,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 					message += (oxfordComma ? ", and " : " and ");
 			}
 			message += " in the system you are jumping to.";
-			Messages::Add(message);
+			Messages::Add(message, Messages::Importance::High);
 		}
 		// If any destination was found, find the corresponding stellar object
 		// and set it as your ship's target planet.
@@ -3311,8 +3312,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		// Track all possible landable objects in the current system.
 		auto landables = vector<const StellarObject *>{};
 		
-		// If the player is right over an uninhabited or inaccessible planet, display
-		// the default message explaining why they cannot land there.
+		// If the player is moving slowly over an uninhabited or inaccessible planet,
+		// display the default message explaining why they cannot land there.
 		string message;
 		for(const StellarObject &object : ship.GetSystem()->Objects())
 		{
@@ -3321,7 +3322,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			else if(object.HasSprite())
 			{
 				double distance = ship.Position().Distance(object.Position());
-				if(distance < object.Radius())
+				if(distance < object.Radius() && ship.Velocity().Length() < (MIN_LANDING_VELOCITY / 60.))
 					message = object.LandingMessage();
 			}
 		}
@@ -3418,7 +3419,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				message = "Landing on " + target->Name() + ".";
 		}
 		if(!message.empty())
-			Messages::Add(message);
+			Messages::Add(message, Messages::Importance::High);
 	}
 	else if(activeCommands.Has(Command::JUMP))
 	{
@@ -3447,7 +3448,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		{
 			// The player is guaranteed to have a travel plan for isWormhole to be true.
 			Messages::Add("Landing on a local wormhole to navigate to the "
-					+ player.TravelPlan().back()->Name() + " system.");
+					+ player.TravelPlan().back()->Name() + " system.", Messages::Importance::High);
 		}
 		if(ship.GetTargetSystem() && !isWormhole)
 		{
@@ -3455,7 +3456,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			if(player.KnowsName(*ship.GetTargetSystem()))
 				name = ship.GetTargetSystem()->Name();
 			
-			Messages::Add("Engaging autopilot to jump to the " + name + " system.");
+			Messages::Add("Engaging autopilot to jump to the " + name + " system.", Messages::Importance::High);
 		}
 	}
 	else if(activeCommands.Has(Command::SCAN))
@@ -3537,7 +3538,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		const Planet *planet = player.TravelDestination();
 		if(planet && planet->IsInSystem(ship.GetSystem()) && planet->IsAccessible(&ship))
 		{
-			Messages::Add("Autopilot: landing on " + planet->Name() + ".");
+			Messages::Add("Autopilot: landing on " + planet->Name() + ".", Messages::Importance::High);
 			autoPilot |= Command::LAND;
 			ship.SetTargetStellar(ship.GetSystem()->FindStellar(planet));
 		}
@@ -3571,19 +3572,19 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	{
 		if(!ship.Attributes().Get("hyperdrive") && !ship.Attributes().Get("jump drive"))
 		{
-			Messages::Add("You do not have a hyperdrive installed.");
+			Messages::Add("You do not have a hyperdrive installed.", Messages::Importance::High);
 			autoPilot.Clear();
 			Audio::Play(Audio::Get("fail"));
 		}
 		else if(!ship.JumpFuel(ship.GetTargetSystem()))
 		{
-			Messages::Add("You cannot jump to the selected system.");
+			Messages::Add("You cannot jump to the selected system.", Messages::Importance::High);
 			autoPilot.Clear();
 			Audio::Play(Audio::Get("fail"));
 		}
 		else if(!ship.JumpsRemaining() && !ship.IsEnteringHyperspace())
 		{
-			Messages::Add("You do not have enough fuel to make a hyperspace jump.");
+			Messages::Add("You do not have enough fuel to make a hyperspace jump.", Messages::Importance::High);
 			autoPilot.Clear();
 			Audio::Play(Audio::Get("fail"));
 		}
@@ -3852,14 +3853,14 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 			return;
 	}
 	if(hasMismatch)
-		Messages::Add(who + description);
+		Messages::Add(who + description, Messages::Importance::High);
 	else
 	{
 		// Clear all the orders for these ships.
 		if(!isValidTarget)
-			Messages::Add(who + "unable to and no longer " + description);
+			Messages::Add(who + "unable to and no longer " + description, Messages::Importance::High);
 		else
-			Messages::Add(who + "no longer " + description);
+			Messages::Add(who + "no longer " + description, Messages::Importance::High);
 		
 		for(const Ship *ship : ships)
 			orders.erase(ship);

@@ -165,7 +165,7 @@ namespace {
 		else
 			tag = ship->ModelName() + " (" + gov + "): ";
 		
-		Messages::Add(tag + message);
+		Messages::Add(tag + message, Messages::Importance::High);
 	}
 	
 	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints, const vector<pair<Body, int>> &flareSprites, uint8_t side)
@@ -619,7 +619,7 @@ void Engine::Step(bool isActive)
 	}
 	
 	if(flagship && flagship->IsOverheated())
-		Messages::Add("Your ship has overheated.");
+		Messages::Add("Your ship has overheated.", Messages::Importance::High);
 	
 	// Clear the HUD information from the previous frame.
 	info = Information();
@@ -1132,7 +1132,7 @@ void Engine::EnterSystem()
 	
 	Messages::Add("Entering the " + system->Name() + " system on "
 		+ today.ToString() + (system->IsInhabited(flagship) ?
-			"." : ". No inhabited planets detected."));
+			"." : ". No inhabited planets detected."), Messages::Importance::High);
 	
 	// Preload landscapes and determine if the player used a wormhole.
 	// (It is allowed for a wormhole's exit point to have no sprite.)
@@ -1219,7 +1219,7 @@ void Engine::EnterSystem()
 				{
 					raidFleet->Place(*system, newShips);
 					Messages::Add("Your fleet has attracted the interest of a "
-							+ raidGovernment->GetName() + " raiding party.");
+							+ raidGovernment->GetName() + " raiding party.", Messages::Importance::High);
 				}
 	}
 	
@@ -1237,8 +1237,8 @@ void Engine::EnterSystem()
 	// since the new player ships can make at most four jumps before landing.
 	if(today <= player.StartData().GetDate() + 4)
 	{
-		Messages::Add(GameData::HelpMessage("basics 1"));
-		Messages::Add(GameData::HelpMessage("basics 2"));
+		Messages::Add(GameData::HelpMessage("basics 1"), Messages::Importance::High);
+		Messages::Add(GameData::HelpMessage("basics 2"), Messages::Importance::High);
 	}
 }
 
@@ -1816,11 +1816,11 @@ void Engine::HandleMouseClicks()
 					{
 						if(!planet->CanLand(*flagship))
 							Messages::Add("The authorities on " + planet->Name()
-									+ " refuse to let you land.");
+									+ " refuse to let you land.", Messages::Importance::High);
 						else
 						{
 							activeCommands |= Command::LAND;
-							Messages::Add("Landing on " + planet->Name() + ".");
+							Messages::Add("Landing on " + planet->Name() + ".", Messages::Importance::High);
 						}
 					}
 					else
@@ -2106,7 +2106,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 		int free = collector->Cargo().Free();
 		message += " (" + to_string(free) + (free == 1 ? " ton" : " tons");
 		message += " of free space remaining.)";
-		Messages::Add(message);
+		Messages::Add(message, Messages::Importance::High);
 	}
 }
 
