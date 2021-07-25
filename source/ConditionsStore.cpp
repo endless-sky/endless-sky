@@ -78,7 +78,7 @@ bool ConditionsStore::AddCondition(const string &name, int64_t value)
 
 
 // Set a value for a condition, either for the local value, or by performing
-// an erase on the provider.
+// a set on the provider.
 bool ConditionsStore::SetCondition(const string &name, int64_t value)
 {
 	ConditionEntry *ce = GetEntry(name);

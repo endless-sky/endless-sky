@@ -77,7 +77,6 @@ public:
 	void Clear();
 
 
-
 private:
 	// Retrieve a condition entry based on a condition name, doCreate indicate if the entry
 	// should be created if it wasn't there yet.
