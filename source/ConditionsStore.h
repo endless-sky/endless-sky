@@ -72,6 +72,9 @@ public:
 	// Set providers for derived conditions based on prefix and name.
 	void SetProviderPrefixed(const std::string &prefix, ConditionsProvider *child);
 	void SetProviderNamed(const std::string &name, ConditionsProvider *child);
+	
+	// Helper to completely remove all data and linked condition-providers from the store.
+	void Clear();
 
 
 

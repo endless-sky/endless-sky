@@ -60,9 +60,7 @@ void PlayerInfo::Clear()
 	GameData::Revert();
 	Messages::Reset();
 	
-	// Clear the automatically provided conditions that were set earlier.
-	for(const auto &it : accounts.GetProvidedConditions())
-		conditions.SetProviderNamed(it, nullptr);
+	conditions.Clear();
 }
 
 

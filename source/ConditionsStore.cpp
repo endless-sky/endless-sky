@@ -163,6 +163,14 @@ void ConditionsStore::SetProviderNamed(const string &name, ConditionsProvider *c
 
 
 
+// Helper to completely remove all data and linked condition-providers from the store.
+void ConditionsStore::Clear()
+{
+	storage.clear();
+}
+
+
+
 ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &name)
 {
 	if(storage.empty())
