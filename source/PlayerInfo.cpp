@@ -2650,6 +2650,13 @@ void PlayerInfo::CreateMissions()
 				++it;
 		}
 	}
+
+	// Sort missions on the job board by payment.
+	availableJobs.sort([](const Mission &lhs, const Mission &rhs)
+	{
+		return lhs.GetAction(Mission::COMPLETE).Payment()
+			< rhs.GetAction(Mission::COMPLETE).Payment();
+	});
 }
 
 
