@@ -321,20 +321,8 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else
 		return MapPanel::KeyDown(key, mod, command, isNewPress);
 	
-	// To reach here, we changed the selected mission. Scroll the active
-	// mission list, update the selected system, and pan the map.
-	if(availableIt != available.end())
-	{
-		selectedSystem = availableIt->Destination()->GetSystem();
-		DoScroll(available, availableIt, availableScroll, false);
-	}
-	else if(acceptedIt != accepted.end())
-	{
-		selectedSystem = acceptedIt->Destination()->GetSystem();
-		DoScroll(accepted, acceptedIt, acceptedScroll, true);
-	}
-	CenterOnSystem(selectedSystem);
-	
+	// To reach here, we changed the selected mission so update the map.
+	UpdateMapForMission();
 	return true;
 }
 
@@ -768,6 +756,7 @@ void MissionPanel::Accept()
 	
 	// Check if any other jobs are available with the same destination. Prefer
 	// jobs that also have the same destination planet.
+	bool sameDestination = false;
 	if(toAccept.Destination())
 	{
 		const Planet *planet = toAccept.Destination();
@@ -775,11 +764,16 @@ void MissionPanel::Accept()
 		for(auto it = available.begin(); it != available.end(); ++it)
 			if(it->Destination() && it->Destination()->IsInSystem(system))
 			{
+				sameDestination = true;
 				availableIt = it;
 				if(it->Destination() == planet)
 					break;
 			}
 	}
+
+	// Since the current mission changed, we need to update the map.
+	if(!sameDestination)
+		UpdateMapForMission();
 }
 
 
@@ -824,6 +818,8 @@ void MissionPanel::AbortMission()
 			--acceptedIt;
 		if(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 			acceptedIt = accepted.end();
+
+		UpdateMapForMission();
 	}
 }
 
@@ -874,4 +870,22 @@ bool MissionPanel::SelectAnyMission()
 		return availableIt != available.end() || acceptedIt != accepted.end();
 	}
 	return false;
+}
+
+
+
+void MissionPanel::UpdateMapForMission()
+{
+	// Scroll the active mission list, update the selected system, and pan the map.
+	if(availableIt != available.end())
+	{
+		selectedSystem = availableIt->Destination()->GetSystem();
+		DoScroll(available, availableIt, availableScroll, false);
+	}
+	else if(acceptedIt != accepted.end())
+	{
+		selectedSystem = acceptedIt->Destination()->GetSystem();
+		DoScroll(accepted, acceptedIt, acceptedScroll, true);
+	}
+	CenterOnSystem(selectedSystem);
 }

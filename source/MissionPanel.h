@@ -75,6 +75,10 @@ private:
 	// selected. Returns true if the selection was changed.
 	bool SelectAnyMission();
 	
+	// A new mission was selected so we need to update the map to reflect that change.
+	void UpdateMapForMission();
+
+
 private:
 	const std::list<Mission> &available;
 	const std::list<Mission> &accepted;
