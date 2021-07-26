@@ -1,0 +1,463 @@
+# Copyright (c) 2014 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+# Republic Campaign Project Lead: MasterOfGrey
+# Head Writer & Editor: Warlord Mike
+# Supporting Scripters: Terin
+# Supporting Writers:
+# Opening Missions Writing Credit to: Disiuze, Kiko, Moonbeam, Kat
+# 
+
+
+event "contractor expansion begins"
+	date 18 7 3014
+
+mission "contractor expansion timer"
+	landing
+	to offer
+		has "event: contractor expansion begins"
+		has "event: war begins: done"
+	on offer
+		event "contractor timer" 20
+
+event "contractor timer"
+
+mission "contractor expansion"
+	landing
+	source
+		government "Republic"
+		government "Syndicate"
+	to offer
+		has "event: contractor timer"
+	on offer
+		log "The Republic Navy appears to have opened up expanded options for hiring contractors to perform security tasks."
+		conversation
+			`As you come in to land you glance at the local bulletins as per usual. To your surprise though, among the standard weather advisories for small ships and featured deals on trade goods or local services, there is a pilot-only bulletin from the Navy. Or more specifically, a bulletin from the local traffic control on behalf of the Navy. It seems that they've given their various contract management officers more scope to hire pilots for odd jobs, and while that's not been announced it seems to be a poorly kept secret, at least among pilots.`
+				decline
+
+
+mission "Republic Bounty 1"
+	name "Republic Bounty Hunting"
+	description `Hunt down the <npc>, a pirate ship that has been assaulting miners in the Boral system.`
+	minor
+	source
+		government "Republic"
+		attributes "dirt belt"
+	to offer
+		has "contractor expansion: declined"
+		"combat rating" > 40
+		not "chosen sides"
+		random < 65
+
+	on offer
+		conversation
+			`You barely have time to find your bearings in this spaceport when you're approached by a man in a crisp, navy blue Republic uniform.`
+			`	"You have a face that says you're looking for work," he says, in a surprisingly cheerful tone. "We're in need of someone to deal some pirates that have been causing trouble near Boral. Not normally something we'd contract out, but, luckily for you, we're a little short on free ships right now."`
+			choice
+				`	"Sure."`
+				`	"Sorry, I'm not really into bounty hunting."`
+					defer
+			`	"Much obliged," he says. "It's a ship called the <npc>. It's been a little devil, so don't let it take you off guard."`
+				accept
+	on accept
+		log `Hunted a pirate ship called the "<npc>," which has been plundering ships near Boral.`
+
+	npc kill
+		personality heroic staying nemesis target
+		government Bounty
+		system
+			near Boral 1 2
+		ship "Clipper (Heavy)" "Black Fang"
+		dialog `The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>.`
+
+	on complete
+		payment 175000
+		conversation
+			`The commander greets you upon landing, seeming pleasantly surprised by your return. "The Republic needs more captains like you. Hopefully this payment of <payment> will be enough to convince you to help us out the next time." You nod. "Captain <last>, correct?" he says, and barely gives you enough time to agree before he continues speaking. "Right. I'm Commander Kent, in case I didn't introduce myself. I'll be keeping an eye out for you in case we ever need more assistance."`
+
+
+mission "Republic Bounty 2"
+	name "Republic Bounty Hunting"
+	description `Kill a known criminal aboard the <npc>, which was last spotted in the Alnasl system.`
+	source
+		government "Republic"
+		attributes "dirt belt"
+	to offer
+		has "Republic Bounty 1: done"
+		not "chosen sides"
+		random < 70
+
+	on offer
+		conversation
+			`Before you can decide where you want to go in the spaceport, you are flagged down by a Republic officer. This time, they're a dour woman with black hair in a tight bun. "Captain <last>?" she asks.`
+			choice
+				`	"That's me."`
+			`"Good, good. I'm Commander Amelia Shah. I've been keeping an eye out for someone to deal with a little problem for us," she says in a quick, clipped tone. "We've been made aware that a notable criminal has been spotted near Alnasl and our system flagged you for being listed as a mercenary. He is wanted dead."`
+			choice
+				`	"Dead. Got it."`
+				` 	"You have an interesting way of asking."`
+					goto asking
+				`	"I'm a merchant, not a hitman."`
+					goto killer
+			`	Captain Shah grins. "He's aboard a ship named the <npc>. I expect to see you back soon."`
+				accept
+			label killer
+			`	"Your file led me to believe otherwise," says Shah. "Either way, we will be sure to update our record and will be working with other contractors in the future."`
+				decline
+			label asking
+			`	She raises one severe eyebrow at you skeptically. "It's a fairly straightforward offer. I won't try to convince you if you're not interested."`
+			choice
+				`	"Okay, I'll do it."`
+					accept
+				`	"Thank you, but I'm not interested in this kind of work."`
+					decline
+	npc kill
+		personality heroic staying nemesis target
+		government Bounty
+		system
+			near "Alnasl" 1 2
+		ship "Bastion (Heavy)" "Amphithere"
+		dialog `The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>.`
+	on complete
+		payment 200000
+		event "rep bounty cooldown" 30
+		dialog `Commander Shah contacts you after you've landed. "The Republic thanks you for your assistance. <payment> have been credited to your account. I'll be in touch should I have need of you again."`
+		log "People" "Amelia Shah" "Amelia Shah is a Republic official assigned to keep an eye on the systems bordering the Free Worlds. She seems to be unaffiliated with the Navy."
+
+event "rep bounty cooldown"
+
+#		log "People" "Anton Kent" "Anton Kent is a Republic official assigned to keep an eye on the systems bordering the Free Worlds. He seems to be unaffiliated with the Navy."
+#Who dis?
+
+
+mission "Republic Bounty 3"
+	name "Republic Bounty Hunting"
+	description `Disable the <npc> which seems to be holding merchants for ransom. Do not destroy or attempt to capture the ship. It was last spotted in the Tais system.`
+	source
+		government "Republic"
+		attributes "dirt belt"
+	to offer
+		has "Republic Bounty 2: done"
+		has "event: rep bounty cooldown"
+		not "chosen sides"
+		random < 75
+
+	on offer
+		conversation
+			`As you wander the spaceport you hear a powerful voice cut through the crowds, calling your name. You turn to find the voice in question belongs to none other than Commander Shah. "Captain <last>, the Republic has another job for you. It's different than the last one but I'm sure you'll be interested."`
+			choice
+				`	"Sure, what do I have to do?"`
+				`	"Sorry, I'm a bit busy right now."`
+					defer
+			`	"A ship named the <npc> has captured a number of wealthy merchants and is holding them for ransom. While this should not be a job for an ordinary contractor, there are concerns that they might kill the hostages if approached by a ship flying Republic colors. You will disable the ship and return to me immediately."`
+			choice
+				`	"Consider it done."`
+				`	"I'm sorry, but I can't deal with problems like that."`
+					decline
+			`	Captain Shah gives a small, relieved nod. "The ship was last spotted in Tais. We believe it is still there."`
+				accept
+	npc disable
+		personality heroic staying nemesis target
+		government Bounty
+		system "Tais"
+		ship "Falcon (Heavy)" "Gediminas"
+		dialog `The <npc> has been disabled. You can claim the bounty payment by returning to <destination>.`
+	on complete
+		log `Hunted and disabled a pirate ship called the "<npc>," which has captured multiple merchant captains. The ship was loitering in the Tais system attempting to extract ransom. Commander Shah seems to have developed a good opinion of my abilities.`
+		"assisted republic" ++
+		payment 250000
+		conversation
+			`Soon after you land, Captain Shah contacts you. "The hostages were recovered safely," she says, with a smile. "The Republic expresses its gratitude. Since you are no doubt interested in more tangible benefits, <payment> have been transferred to your account by way of this gratitude. Further, you should know I have recorded an endorsement in your file that you can be counted on."`
+
+
+
+mission "Republic Scouting 1"
+	name "Hyperspace Relay Testing"
+	description "Fly through the <waypoints> systems, then report to <destination> so the Navy can analyze the network connectivity of your logs."
+	minor
+	waypoint "Hassaleh"
+	waypoint "Sumar"
+	waypoint "Cardax"
+	waypoint "Volax"
+	source
+		government "Republic"
+		attributes "paradise"
+	destination "Farpoint"
+	to offer
+		has "contractor expansion: declined"
+		not "chosen sides"
+		random < 60
+
+	on offer
+		conversation
+			`As you wander the spaceport you overhear a woman in a Navy uniform telling a bored-looking merchant about sensor buoys in the empty systems to the north.`
+			`	"That sounds interesting," the merchant tells her, "but I've got a cargo bay full of medical supplies headed the other direction."`
+			`	"Also an important mission, I wish you safe travels," she replies.`
+			choice
+				`	(Ask her what's going on.)`
+				`	(Walk away.)`
+					decline
+			`	"Do you need help with something?" you ask the Navy officer, interested, as the other merchant captain walks away.`
+			`	"Oh yes," she replies brightly. "We need to replace some assets along the patrol route between Farpoint and Maelstrom, but they can't come from a Navy ship or it rather defeats the purpose. I'd need someone to fly through and jettison some things inconspicuously."`
+			choice
+				`	"Sounds simple enough."`
+				`	"Sorry, I won't be able to help you either."`
+					decline
+			`	"Excellent." She smiles. "I'm Commander Jane Melgrew, by the way. Thank you for your help."`
+				accept
+	on waypoint
+		dialog `As you watch the last load of "trash" get dumped into space you finally catch sight of the assets you've been delivering on your sensors, though only briefly and only because you'd pointed them right at them. It seems you've been dropping off stealthy sensor buoys.`
+	on complete
+		payment 30000
+		log `Volunteered to help deploy some "assets" for the Republic. They were stealth sensor buoys.`
+		conversation
+			`As you land on <destination>, Jane approaches you again. "Thank you on behalf of not only the Republic, but especially the Navy personnel who work in that area. I've transfered <payment> to your account."`
+
+
+mission "Republic Scouting 2"
+	landing
+	name "Cul-de-sac System Scouting"
+	description "Fly through the <waypoints> systems, then report to <destination> so the Navy can analyze your logs of pirate activity (if any)."
+	waypoint "Regulus"
+	waypoint "Fingol"
+	waypoint "Nocte"
+	waypoint "Ipsing"
+	source
+		government "Republic"
+	destination "Hestia"
+	to offer
+		has "Republic Scouting 1: done"
+		not "chosen sides"
+		random < 40
+
+	on offer
+		conversation
+			`Upon landing you find a message waiting for you in the buffer. It appears to be from Jane, the Navy commander who asked you to fly through some uninhabited systems to the north.`
+			`	"I need some data from a few dead end systems," it reads. "There might be some pirate fleets in the area but I just need logs this time. You seem to be capable of acting with discretion, so if you're interested, let me know and then bring the logs to me on Hestia."`
+			choice
+				`	(Reply in the affirmative.)`
+					accept
+				`	(Reply in the negative.)`
+					decline
+	on complete
+		payment 40000
+		log "People" "Jane Melgrew" "Jane Melgrew is a Navy commander who seems to mostly deal in contracting information gathering services that are inconvenient for the Navy to do themselves."
+		conversation
+			`You message Commander Melgrew upon landing and transfer your sensor logs to her. She thanks you for your work, and pays you <payment>.`
+			`	Before ending the call she informs you that she will undoubtedly let you know when she has more work.`
+
+
+mission "Republic Scouting 3"
+	name "Navy Reconnaissance"
+	description "Perform an outfit scan on the <npc> in Yed Prior, then report to Commander Melgrew on <destination>."
+	source
+		government "Republic"
+		near "Miaplacidus" 1 1
+	to offer
+		has "Republic Scouting 2: done"
+		not "chosen sides"
+		random < 40
+
+	on offer
+		conversation
+			`As you are about to leave the spaceport and return to your ship, you are accosted by an out-of-breath Jane Melgrew. "Captain <last>!" she exclaims. "Glad I caught you. I have another job, and I couldn't just send you a message for this one.`
+			choice
+				`	"What's going on?"`
+				`	"Sorry, I'm really busy."`
+					decline
+			`	She pulls you aside to a quieter corner with fewer prying eyes and ears.`
+			`	"We have a report that there is a ship loaded with alien tech somewhere in the south," she says. "As I'm sure you've heard, the worlds in this area have broken away and are potentially organizing a rebellion. So far they've been peaceful, but if they are arming themselves with alien technology, that could be a major problem for us.`
+			`	Of course, I put about as much stock in that claim as I do rumors of furry squirrel people, but the governors and mayors on worlds like these like to throw their weight around and keep insisting we look into it as if it's some matter of their own personal security. I insisted that I would find someone capable of acting with the appropriate discretion on this case, and someone not within the Navy. So since it's their money up for the job, would you please be able to track down the ship and scan it for me?"`
+			choice
+				`	"Sure, that sounds simple enough."`
+				`	"Sorry, that sounds too dangerous."`
+					decline
+			`	"Fantastic, that'll get them off my back for now at least. It's a Falcon named the <npc>, last seen near Yed Prior. Find out if it is in fact alien technology, and report back here. With any luck it'll just be normal stuff that's impressed some backwards old trader who hasn't been keeping up with the times. And if not well, maybe we'll be the first in the Republic to see it."`
+			`	She gives you a very brief wink, as if you're sharing some sort of in-joke, and lets you be on your way.`
+				accept
+
+	npc "scan outfits"
+		personality staying uninterested
+		government "Free Worlds"
+		system "Yed Prior"
+		fleet
+			names "free worlds capital"
+			variant
+				"Falcon (Heavy)"
+		conversation
+			`As soon as you scan the <npc>, its captain hails you. "Excuse me, captain," he says, "mind telling me why you felt the need to probe my ship?"`
+			choice
+				`	"Your ship looked so powerful, I just had to know what kind of gear you had. Some of it looked almost alien."`
+				`	"I hope to have a ship like that someday, and I just wanted a shopping list of what I would need."`
+					goto equipment
+			`	"Alien? Well, maybe to someone flying a tub like yours," he says, chuckling. "No, I promise you this is all standard human fare."`
+				goto close
+			label equipment
+			`	He looks awfully pleased with himself. "Yes, she is quite the beauty. I would have never been able to afford anything like this without the Defense Pact's scouting program," he says. "She makes keeping pirates out of our territory as easy as a dream. If you're interested in trading that tub you've got in for something like this, the program should be hiring around these parts again soon."`
+			label close
+			`	You cut the comlink and breathe a sigh of relief that the conversation is over.`
+
+	on complete
+		"assisted republic" ++
+		payment 50000
+		log "Volunteered to scan a ship in Free Worlds space that might have been armed with alien technology. It was not, but Commander Melgrew appears to have been satisfied either way."
+		conversation
+			`Soon after you land, Jane meets you in the spaceport and pays you <payment> in exchange for your sensor logs regarding <npc>.`
+			`	"No alien tech, I see," she says, sounding disappointed. "While that would have been a great find, I'm just as happy not to pander to the fears of these pompous...`
+			`	"Ahem," she coughs. "I will also admit I'm happy I don't have to figure out how to defend against mysterious alien tech either. I've I have recorded an endorsement in your file for how helpful you've been, hopefully we can work together again soon." `
+
+
+
+mission "Republic Shipping 1"
+	name "Secret cargo to <planet>"
+	description "Transport a squad of Navy marines and their undisclosed cargo to <destination>."
+	minor
+	passengers 5
+	cargo "undisclosed cargo" 5
+	to offer
+	source
+		government "Republic"
+		attributes "factory"
+	to offer
+		has "contractor expansion: declined"
+		not "chosen sides"
+		random < 50
+	destination "New Austria"
+
+	on offer
+		conversation
+			`Shortly after leaving your ship, you notice a squad of what appears to be Navy Marines gathered around a civilian transport. The ship looks damaged, and the smell of hot metal fills the air.`
+			choice
+				`	(Talk to them.)`
+				`	(Ignore them.)`
+					decline
+			`	You approach who you assume to be the captain of the ship and ask them what happened.`
+			`	"I was hired to take these fine individuals and their cargo to <destination>," the captain replies. "Unfortunately, I don't think I can make it the rest of the way. Would you be willing to take over? Oh, and don't bother asking what they are transporting, they won't tell me."`
+			choice
+				`	"I can do that."`
+				`	"I'd prefer knowing what it's in my hold, sorry."`
+					decline
+			`	"Great! The name's Jeff Haas, by the way. I run a shipping company mostly taking contracts for the Navy," Jeff says enthusiastically.`
+			`	"Complete this job and I will gladly hire you to do more in the future."`
+				accept
+
+	on accept
+		log "Accepted a job transporting some marines and their cargo to <destination>."
+
+	on complete
+		payment
+		payment 50000
+		log "People" "Jeff Haas" "Jeff Haas is the head of the Jeff Haas Shipping Company. He is often contracted by the Republic Navy."
+		dialog `After a very quiet journey, you land on <destination>. The marines unload their cargo without saying a single word to you. A different navy officer thanks you for your assistance, and pays you the respectable sum of 50,000 credits.`
+
+
+
+mission "Republic Shipping 2"
+	name "Navy Interior Design to <planet>"
+	description "Transport furniture to the Navy offices on <destination>."
+	cargo "furniture" 20
+	to offer
+	source
+		government "Republic"
+		attributes "factory"
+	to offer
+		has "contractor expansion: declined"
+		has "Republic Shipping 1: done"
+		not "chosen sides"
+		random < 50
+	destination "New Austria"
+
+	npc accompany save
+		personality escort timid
+		government "Merchant"
+		ship "Behemoth (Heavy)" "Alba Oro"
+
+	on offer
+		conversation
+			`As you wander around the spaceport, a merchant captain calls you over and asks you to help transport some furniture to the Navy base on <destination>. You can clearly see the Jeff Haas Shipping logo on the cargo ramp of her ship.`
+			choice
+				`	"Of course."`
+					accept
+				`	"I don't have space for this right now."`
+					defer
+				`	"I'm not interested, and please don't offer me any more jobs in the future."`
+					decline
+
+	on accept
+		log "Accepted a job to transport some furniture to <destination>."
+
+	on complete
+		payment
+		payment 30000
+		dialog `When you land, the merchant captain thanks you for the escort and use of your cargo space. She gives you a cut of the total payment, <payment>.`
+
+
+
+mission "Republic Shipping 3"
+	name "Convoy to <planet>"
+	description "Carry 52 tons of cargo and <bunks> Navy observer as part of a convoy to <destination>."
+	passengers 1
+	cargo "restricted cargo" 52
+	source
+		government "Republic"
+		attributes "factory"
+	to offer
+		has "contractor expansion: declined"
+		has "Republic Shipping 2: done"
+		not "chosen sides"
+		random < 50
+	destination "New Austria"
+
+	npc accompany save
+		personality escort timid
+		government "Merchant"
+		ship "Behemoth (Heavy)" "Alba Oro"
+	npc accompany save
+		personality escort timid
+		government "Merchant"
+		ship "Behemoth (Heavy)" "Jumeaux Soleils"
+	npc accompany save
+		personality escort timid
+		government "Merchant"
+		ship "Bactrian" "Fatalni Sumrak"
+	npc accompany save
+		personality escort timid
+		government "Navy Intelligence"
+		ship "Gunboat" "R.N.S. Theia"
+
+	on offer
+		conversation
+			`As you land, you notice three ships bearing the Jeff Haas logo and a Navy Gunboat land next to you.`
+			choice
+				`	(Approach them.)`
+				`	(Ignore them.)`
+					decline
+			`	As you approach, you can hear the merchants bickering over how much the fleet can move. A familiar face looks up and notices you.`
+			`	"Captain!" Jeff shouts, "An answer to our prayers. Would you be interested in joining our convoy? We're moving supplies to that new Navy base again. 52 tons of cargo and one bunk is all we need of you, and you'll join our fleet."`
+			`	The moment he mentions where the supplies are being moved, the Navy officers glare at him and shake their heads.`
+			`	"If you're trying to get us ambushed, you're doing a good job," one of them says. "Maybe don't tell everyone where we're going?"`
+			` 	The captain of the Alba Oro and Jeff explain together that you have worked with them before.`
+			choice
+				`	"Sure!"`
+				`	"Sorry, but I go my own way."`
+					decline
+			`	They thank you for your assistance, and you give them a hand pushing the heavy cart into your cargo bay.`
+				accept
+
+	on accept
+		log "Decided to help Jeff with transporting cargo and an observer to <destination>."
+
+	on complete
+		"assisted republic" ++
+		payment
+		payment 120000
+		log "The Navy officer from earlier said they'd put in a good word for me."
+		dialog `As you land, Jeff pays you <payment>, and the officer you shuttled lets you know they will put in a good word for you.`
+

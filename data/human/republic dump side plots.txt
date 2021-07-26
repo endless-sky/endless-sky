@@ -1,0 +1,384 @@
+mission "Electrons 1A"
+	name `Weapons Development`
+	description `Report to Epsilon Leonis to aid in weapons development.`to offer
+		has "Electrons 1A: done"
+	deadline
+	destination "Valhalla"
+	landing
+	on offer
+		dialog `You receive a message from Naval Command: "Captain <last>, please report to Epsilon Leonis. They need you to help with developing some new tech.`
+	on complete
+		log "People" "John Withers" `A Deep Scientist who works on developing new weapons for the Navy.`
+		conversation 
+			`As you begin your landing approach, you recieve a message from the control tower, directing you to a private landing pad about two miles from the main spaceport. You land at the pad and are greeted by three scientists in white lab coats. They introduce themselves as Amy, John, and Peter. As the mechanic refuels your ship, you follow the scientists to a shuttle waiting nearby. You take a seat, flanked by John, while the more reserved Peter sits with his wife, Amy. John instantly begins to chatter about their new weapon, the Electron Beam. He tells you that it is far more advanced than any other beam weapon the Deep has ever created. The shuttle starts moving, and John continues to tell you everything about the beam, but you eventually lose focus. The shuttle stops, and you all climb out. As you gaze at the decrepit warehouse before you, you wonder if the shuttle took you to the wrong place.`
+			choice
+				`	Uh, is this the right place?`
+					goto place
+				`	Wow, you certainly chose an odd place to work from. Does this facility even work?`
+			`Amy laughs. "No, this is not it. This is just our cover, we can't have the public knowing about a secret weapons facility! I mean, who would expect this to be what it is?"`
+					goto elevator
+			label place
+			`John replies, "Most assuredly, my friend. After all, we mustn't have the public knowing about a secret weapons facility!"`
+			label elevator
+			`You follow the scientists inside, where there is a well-lit elevator. John puts a code into a keypad, which opens the elevator doors. You walk in and it begins its descent. You all step into a sleek lab, filled with scientists. John leads you down a path to a sealed room. He motions to Peter, and they both pull out a card and they swipe them simultaneously. The door opens with a hiss and reveals a perfectly white room, and a table on which is seated a new weapon, which you guess is the electron beam. `
+			`John motions you over, saying, "Here it is! Twenty tons of pure destruction. But there is one problem. Because of increased pirate problems in Syndicate space, we are missing some crucial materials. We need you to get those materials before we can get this working. Your destination is Lodestone, in the Ankaa system. We have some fun for you when you get back," he says with a wink. You nod assent, even though you are still enamored by this elegant weapon, and John ushers you back to your ship.`
+				accept
+
+mission "Electrons 1B"
+	name "Weapons Development"
+	description `Head to <destination> to pick up materials for the new weapons.`
+	to offer
+		has "Electrons 1A: done"
+	source Valhalla
+	destination Lodestone
+	landing
+	on complete
+		conversation 
+			`You land on Lodestone and find the shipment ready to go. You finish filing the order with the dock master, but as you turn back to your ship in the distance, you realize something is wrong: it is surrounded by ships painted red, and there are dozens of men walking in and out of your ship, carrying what you realize with dread is your cargo. You scream at the dock master to get ships in the air, but the pirates see them coming. The last of the men run into their ships and they bolt into the atmosphere, where you see the ominous silhouette of a Bactrian waiting for you, guns pulsing with energy. You dash into your ship, expecting it to be stripped of everything, but surprisingly everything is untouched, except for the cargo hold, where you find the doors busted open and the tracks of a mobile truck running across the threshold. You quickly dash into the cockpit and radio control tower for permission to depart. Within seconds you have gained priority access and are shooting out of the atmosphere. Now it is up to you to face the pirate fleet, and take back the cargo that is now aboard the bactrian. (Remember, do not destroy the bactrian until you have taken all the cargo from it!)`
+			launch
+	
+mission "Electrons 1C"
+	name "Stolen Cargo"
+	description `Board the Pulsar and take the cargo it has stolen`
+	to offer
+		has "Electrons 1B: done"
+	source Lodestone
+	landing
+	destination Lodestone
+	npc board
+		government "Pirate"
+		personality staying nemesis target
+		ship "Bactrian (cargo target)" "Pulsar"
+	npc
+		government "Pirate"
+		personality heroic staying harvests plunders entering
+		system Ankaa
+		fleet "Large Northern Pirates"
+		fleet "Small Northern Pirates"
+	on visit
+		dialog "You land on <planet>, but you don't have the special cargo! Return to the <npc> and bring the cargo back to <planet>."
+	on complete
+		outfit "Secret Cargo" -21
+		payment 1500000
+			conversation
+				`<insert dialogue where you get thanked>`
+
+ship "Bactrian" "Bactrian (cargo target)"
+	outfits
+		"Heavy Laser" 4
+		"Heavy Laser Turret" 6
+		"Armageddon Core"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"D41-HY Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Water Coolant System"
+		"Outfits Expansion" 2
+		"Laser Rifle" 20
+		"Large Radar Jammer"
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Hyperdrive"
+		"Special Cargo" 21
+	
+outfit "Special Cargo"
+	category "Special"
+	cost 0
+	thumbnail "outfit/unknown"
+	"mass" 1
+	description "Cargo stolen from the docks of Lodestone by a pirate ship which has hidden secrets to special weapons development by the Navy."
+	
+mission "Electrons 1D"
+	source Lodestone
+	destination Valhalla
+	name "Weapons Development"
+	landing
+	description "Escort the Auxiliaries carrying the special cargo to Valhalla to assist in the development of the Electron Beam."
+	on fail
+		dialog "You have lost one of your escorts. You should reload your save if you wish to continue the campaign."
+	to offer
+		has "Electrons 1C: done"
+	npc accompany save
+		personality escort timid
+		fleet
+			names "republic capital"
+			variant
+				"Auxiliary (Cargo)" 3
+	on complete
+		event "e-beam delay 1" 17
+		payment 2300000
+		conversation 
+			`You managed to escort the auxiliaries home safe, it was a miracle you encountered so little resistance after the encounter with the bactrian. You notify the control tower of your approach, and slowly glide towards the secure facility. Finally, the Auxiliaries land and begin unloading their cargo. You land and exit your ship, and meet John on his way out. He face is unusually concerned, but as he sees you and the freighters, his expression becomes one of relief, and he hurries to meet you.`
+			`"Are you alright, <last>? I heard that there was trouble on Lodestone, and even heard talk of a pirate Bactrian!"`
+			choice
+				`"Yeah there *was* one. Not anymore though!"`
+					goto easy
+				`"There was, but I fought him hard and managed to win."`
+					goto duel
+				`"There was one, and he kindly lost both the space and boarding battles to me! And now I got a new ship!"`
+					goto capped
+			label easy
+				`"Well, at least he won't be a problem anymore. I wonder how he got that deep into Syndicate territory anyway," John says. "And now, come with me to the facility, I have something to speak about with you."`
+					goto end
+			label duel
+				`"Well, congratulations, and you got the cargo back, so that is very helpful! And now, come with me to the facility, I have something to speak about with you."`
+					goto end
+			label capped
+				`"John stares in astonishment, and congratulates you, although he has doubts that the government will let you keep it. "And now, come with me to the facility, I have something to speak about with you."`
+					goto end
+			label end
+				`You follow him into the warehouse and through the elevator. Once again you find yourself in a white, polished, lab with devices you could never guess about what they do. John bids you to follow him to his office, and you do so. Inside, John thanks you for your assistance, and tells you to come back in a couple weeks to continue aiding them. He gives you <payment> credits and sends you on your way.`
+					done
+
+event "e-beam delay 1"
+
+mission "Electrons 1E"
+	source
+		government Republic
+#broken		not Valhalla
+	destination Valhalla
+	landing
+	name "Report to the weapons lab."
+	description "You have been instructed to return to the wepons lab on Valhalla. Report there immediately."
+	deadline
+	to offer
+		has "Electrons 1D: done"
+		has "event: e-beam delay 1"
+	on offer
+		conversation
+			`You receive a communique from John, the scientist who is working on the electron beams: "<first> <last>, please report to Valhalla immediately, your assistance is required."`
+				accept
+	on complete
+		conversation
+			`You arrive on Valhalla and contact the control tower, which immediately responds with instructions to proceed to designated coordinates, ones that look quite familiar. You follow them to the site of John's lab, and as you land you receive another message telling you to proceed to the lab and meet John in his office. You do so, and soon find yourself being greeted by a familiar face. "Hello, <first>, it's good you came so quickly! I have some work for you to do, and as I recall, you like fighting. Lucky for you, your task will involve that! Please meet me in the spaceport lounge in four hours for your next assignment. I'll be waiting for you there, but for now I need to go sort out some business of my own. I'll see you then!"`
+				accept
+
+outfit "Electron Beam (Prototype)"
+	category "Guns"
+	cost 170000
+	thumbnail "outfit/electron beam"
+	"mass" 21
+	"outfit space" -21
+	"weapon capacity" -21
+	"gun ports" -1
+	weapon
+		sprite "projectile/electron"
+			"frame rate" 60
+		sound "electron beam"
+		"hit effect" "electron impact"
+		"inaccuracy" .4
+		"velocity" 450
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 1.5
+		"firing heat" 2.1
+		"shield damage" 2.8
+		"hull damage" 2.7
+	description "This is a prototype to the final Electron Beam."
+
+ship "Mule" "Mule Test Dummy (Electrons)"
+	outfits
+		"Anti-Missile Turret" 3
+		"D67-TM Shield Generator"
+		"Electron Beam (Prototype)" 2
+		"Heavy Laser Turret"
+		Hyperdrive
+		"KP-6 Photovoltaic Array"
+		"LP072a Battery Pack"
+		"Laser Rifle"
+		"NT-200 Nucleovoltaic"
+		Ramscoop
+		"Small Radar Jammer" 2
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+
+ship "Barb" "Barb Test Dummy (Electrons)"
+	outfits
+		"D14-RN Shield Generator"
+		"Electron Beam (Prototype)"
+		Supercapacitor
+		"X1050 Ion Engines"
+		"nGVF-AA Fuel Cell"
+
+mission "Electrons 1F"
+	source Valhalla
+	waypoint Aspidiske
+	destination Valhalla
+	to offer
+		has "Electrons 1E: done"
+	on offer
+		conversation
+			`You head back to the main planetary spaceport and to the spaceport lounge as you remember John saying, and sure enough, you see him there waiting. You go over to him, and he tells you what your talk is. "You are to travel to the <waypoint> system. There you will find a mule and a barb in orbit, and you are to disable them without destroying them. Then report back to me. Any questions?"`
+			choice
+				`"No questions."`
+			`"Alright, good. Go have fun!"`
+				accept
+	npc disable save
+		personality staying disables nemesis target
+		government "Test Dummy"
+		system Aspidiske
+		ship "Mule Test Dummy (Electrons)" "Test Dummy"
+		ship "Barb Test Dummy (Electrons)" "Test Dummy"
+	on complete
+		event "e-beam delay 2" 8		
+		payment 1750000
+		conversation
+			`You arrive on Valhalla and proceed to the secure facility where John works, and he meets you outside of your ship. "Well, how was the fight, <first>?"`
+			choice
+				`It was pretty hard, but I managed to pull through. Those were some pretty impressive weapons!"`
+					goto hard
+				`It was pretty easy, but they put up a good fight. Were those the Electron Beams?"`
+					goto easy
+			label hard
+				`"Well, glad to have you back, and I'm glad they worked so well!`
+					goto end
+			label easy
+				`"Yes they were, and I'm glad you weren't harmed."`
+			label end
+				`"Anyhow, give me a week or so to make the necessary alterations, and then I'll let you know to report back. Until then, you got some time to yourself and a reward of <payment> credits."`
+					done
+
+event "e-beam delay 2"
+
+mission "Electrons 1G"
+	source
+		government Republic
+#broken		not Valhalla
+	destination Valhalla
+	landing
+	name "Report to the weapons lab."
+	description "You have been instructed to return to the wepons lab on Valhalla. Report there immediately."
+	deadline
+	to offer
+		has "Electrons 1F: done"
+		has "event: e-beam delay 2"
+	on offer
+		conversation
+			`You receive a communique from John, the scientist who is working on the electron beams: "<first> <last>, please report to Valhalla immediately, your assistance is required."`
+
+mission "Electrons 2A"
+	source Valhalla
+	stopover Lodestone
+	destination Valhalla
+	landing
+	name "Transport Materials"
+	description "Fetch materials from <destination> for development on the new Electron Turret."
+	to offer
+		has "Electrons 1G: done"
+	on offer
+		conversation
+			`You land on Valhalla once more and head to the old warehouse. You take the elevator down to the lab, escorted by two uniformed guards. Once you reach the lab, you head to John's office, where he meets you. "Ah, <first>, you're just in time! I have a task that I need you to do. Please escort two Auxiliaries to Lodestone and back to retrieve some materials for a new prototype we have been working on."`
+			choice
+				`"What are these materials?"`
+					goto what
+				`"On my way."`
+					accept
+			label what
+				`"They are materials for heavy gears and such machinery. As you could probably guess, we're building a turret mount."`
+			choice
+				`"On my way."`
+					accept
+	on stopover
+		conversation
+			`Thankfully, you arrive on Lodestone without a problem. The Auxiliaries load up their materials and the captains relay to you the signal that they are ready.`
+	on complete
+		event "e-beam delay 2" 6
+		conversation
+			`You arrive again on Valhalla, and immediately head to the lab, where you meet up with John. He asks for you to come to his office, where he says, "Thank you again, captain, for safely escorting the Auxiliaries. You are free to take a few days of leave while we assemble these components, and then we'll request for you again. You might find your next job... more fun."`
+	npc accompany save
+		personality escort timid
+		fleet
+			names "republic capital"
+			variant
+				"Auxiliary (Cargo)" 2
+
+event "e-beam delay 3"
+
+mission "Electrons 2B"
+	source
+		government Republic
+#broken		not Valhalla
+	destination Valhalla
+	landing
+	name "Report to the weapons lab."
+	description "You have been instructed to return to the wepons lab on Valhalla. Report there immediately."
+	deadline
+	to offer
+		has "Electrons 2A: done"
+		has "event: e-beam delay 3"
+	on offer
+		conversation
+			`As you come in for a landing, you find you have received another communique from John: "<first> <last>, please report to Valhalla immediately, we have some fun for you."`
+
+outfit "Electron Turret (Prototype)"
+	category "Turrets"
+	cost 720000
+	thumbnail "outfit/electron turret"
+	"mass" 54
+	"outfit space" -54
+	"weapon capacity" -54
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/2x electron"
+			"frame rate" 60
+		"hardpoint sprite" "hardpoint/electron turret"
+		"hardpoint offset" 8.
+		sound "electron beam"
+		"hit effect" "electron impact"
+		"inaccuracy" .4
+		"turret turn" 1.4
+		"velocity" 450
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 3.0
+		"firing heat" 4.2
+		"shield damage" 5.6
+		"hull damage" 5.4
+	description "This is a prototype to the final Electron Turret."
+
+
+ship "Mule" "Mule Test Dummy (Electrons+Turret)"
+	outfits
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Anti-Missile Turret"
+		"D41-HY Shield Generator"
+		"Electron Beam (Prototype)" 2
+		"Electron Turret (Prototype)" 2
+		Hyperdrive
+		"KP-6 Photovoltaic Array"
+		"LP072a Battery Pack"
+		"Laser Rifle"
+		"NT-200 Nucleovoltaic"
+		Ramscoop
+		"Small Radar Jammer" 2
+
+mission "Electrons 2C"
+	source Valhalla
+	waypoint Aspidiske
+	destination Valhalla
+	to offer
+		has "Electrons 2B: done"
+	on offer
+		conversation
+			`Upon arriving on Valhalla, you hail the spaceport control tower as usual for your landing pad coordinates, but after sending them they also send a short message. It is from John: "Once again, we have a combat test for you. You are to travel to the <waypoint> system where you shall find another Mule in orbit. Please disable the mule and its fighter, as they have been equipped with out current prototypes and destroying them would lose years of progress."`
+				accept
+	npc disable save
+		personality staying disables nemesis target
+		government "Test Dummy"
+		system Aspidiske
+		ship "Mule Test Dummy (Electrons+Turret)" "Test Dummy"
+		ship "Barb Test Dummy (Electrons)" "Test Dummy"
+	on complete
+		event "30-day-leave" 30
+		conversation
+			`You arrive on Valhalla and proceed to the secure facility where John works, and he meets you outside of your ship. "Well, how was the fight, <first>?"`
+			choice
+				`"It was pretty fun, but in the end I disabled them and your precious weapons are safe."`
+					goto end
+			label end
+				`"Well, I'm glad you enjoyed in and everything turned out okay. I got to admit, though, these tests make me nervous, even though I know I can trust you. I guess it's just a thing with us scientists. Anyhow, give me a couple days to continue maximising the outputs and energy requirements, and then I'll let you know to report back. Until then, apparently you have a month of leave!"`
+					done
+
+event "30-day-leave"
