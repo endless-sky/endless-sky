@@ -18,16 +18,21 @@ namespace { // test namespace
 
 // #region unit tests
 SCENARIO( "Creating an Account" , "[Account][Creation]" ) {
-	GIVEN( "initial values" ) {
+	GIVEN( "an account" ) {
 		Account account;
-		THEN( "storing and retrieving data should work" ) {
-			REQUIRE( account.Credits() == 0. );
+		REQUIRE( account.Credits() == 0. );
+		REQUIRE( account.TotalDebt() == 0 );
+		WHEN( "money is added" ){
 			account.AddCredits(100);
-			REQUIRE( account.Credits() == 100 );
-
-			REQUIRE( account.TotalDebt() == 0 );
+			THEN( "the balance is increased" ){
+				REQUIRE( account.Credits() == 100 );
+			}
+		}
+		WHEN( "a fine is levied" ){
 			account.AddFine(10000);
-			REQUIRE( account.TotalDebt() == 10000 );
+			THEN ( "debt is incurred" ) {
+				REQUIRE( account.TotalDebt() == 10000 );
+			}
 		}
 	}
 }
