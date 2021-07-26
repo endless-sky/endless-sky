@@ -2650,6 +2650,12 @@ void PlayerInfo::CreateMissions()
 				++it;
 		}
 	}
+
+	// Sort missions on the job board alphabetically.
+	availableJobs.sort([](const Mission &lhs, const Mission &rhs)
+	{
+		return lhs.Name() < rhs.Name();
+	});
 }
 
 
