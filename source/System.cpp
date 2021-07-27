@@ -129,7 +129,7 @@ int System::HazardProbability::Period() const
 
 
 // Load a system's description.
-void System::Load(const DataNode &node, Set<Planet> &planets)
+void System::Load(const DataNode &node, Set<Planet> &planets, Set<System> &systems)
 {
 	if(node.Size() < 2)
 		return;
@@ -227,9 +227,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
  		else if(key == "link")
 		{
 			if(remove)
-				links.erase(GameData::Systems().Get(value));
+				links.erase(systems.Get(value));
 			else
-				links.insert(GameData::Systems().Get(value));
+				links.insert(systems.Get(value));
 		}
 		else if(key == "asteroids")
 		{

@@ -1,0 +1,142 @@
+R"(
+system System1
+	pos 0 0
+	link System2
+	link System3
+	link System4
+
+system System2
+	pos 50 0
+	link System1
+	link System5
+	link System11
+
+system System3
+	pos 0 25
+	link System1
+	link System19
+
+system System4
+	pos -50 0
+	link System1
+	link System7
+	link System8
+
+system System5
+	pos 60 10
+	link System2
+	link System6
+	link System12
+
+system System6
+	pos 45 25
+	link System5
+	link System14
+
+system System7
+	pos -125 0
+	link System4
+	link System20
+
+system System8
+	pos -50 -50
+	link System4
+	link System9
+
+system System9
+	pos -35 -40
+	link System8
+	link System10
+	link System22
+
+system System10
+	pos -35 -150
+	link System9
+	link System28
+
+system System11
+	pos 50 -60
+	link System2
+	link System22
+	link System23
+
+system System12
+	pos 100 10
+	link System5
+	link System13
+
+system System13
+	pos 100 -20
+	link System12
+
+system System14
+	pos 55 55
+	link System6
+	link System15
+
+system System15
+	pos 35 95
+	link System14
+	link System18
+
+system System16
+	pos -20 120
+	link System17
+	link System21
+
+system System17
+	pos -20 150
+	link System16
+
+system System18
+	pos 10 85
+	link System15
+
+system System19
+	pos -20 15
+	link System3
+
+system System20
+	pos -100 70
+	link System7
+	link System21
+
+system System21
+	pos 0 80
+	link System16
+	link System20
+
+system System22
+	pos 5 -50
+	link System9
+	link System11
+
+system System23
+	pos 20 -50
+	link System11
+	link System22
+	link System24
+	link System25
+
+system System24
+	pos 40 -20
+	link System23
+
+system System25
+	pos 20 -90
+	link System23
+	link System26
+
+system System26
+	pos 50 -70
+	link System25
+	link System27
+
+system System27
+	pos 90 -50
+	link System27
+
+system System28
+	pos -15 -200
+	link System10
+)"
