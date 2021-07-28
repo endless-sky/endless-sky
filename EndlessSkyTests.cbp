@@ -63,6 +63,7 @@
 			<Add directory="C:/Program Files/mingw64/x86_64-w64-mingw32/lib" />
 		</Linker>
 		<Unit filename="tests/src/helpers/datanode-factory.cpp" />
+		<Unit filename="tests/src/test_account.cpp" />
 		<Unit filename="tests/src/test_conditionSet.cpp" />
 		<Unit filename="tests/src/test_datanode.cpp" />
 		<Unit filename="tests/src/test_main.cpp" />
