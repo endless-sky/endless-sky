@@ -409,7 +409,7 @@ mission "Secure Transport Job (Secret) [0]"
 		not attributes "station" "moon"
 	destination
 		attributes "deep"
-		not "Valhalla"
+		not planet "Valhalla"
 		not attributes "station" "moon"
 	on accept
 		dialog phrase "secure package pickup"
@@ -440,7 +440,7 @@ mission "Secure Transport Job (Secret) [1]"
 		not attributes "station" "moon"
 	destination
 		attributes "deep"
-		not "Valhalla"
+		not planet "Valhalla"
 		not attributes "station" "moon"
 	on accept
 		dialog phrase "secure package pickup"
@@ -471,7 +471,7 @@ mission "Secure Transport Job (Secret) [2]"
 		not attributes "station" "moon"
 	destination
 		attributes "deep"
-		not "Valhalla"
+		not planet "Valhalla"
 		not attributes "station" "moon"
 	on accept
 		dialog phrase "secure package pickup"
@@ -502,7 +502,7 @@ mission "Secure Transport Job (Secret) [3]"
 		not attributes "station" "moon"
 	destination
 		attributes "deep"
-		not "Valhalla"
+		not planet "Valhalla"
 		not attributes "station" "moon"
 	on accept
 		dialog phrase "secure package pickup"
@@ -533,7 +533,7 @@ mission "Secure Transport Job (Secret) [4]"
 		not attributes "station" "moon"
 	destination
 		attributes "deep"
-		not "Valhalla"
+		not planet "Valhalla"
 		not attributes "station" "moon"
 	on accept
 		dialog phrase "secure package pickup"
@@ -627,7 +627,7 @@ mission "Secure Transport Job (Basic) [0]"
 		not attributes "station" "moon"
 	destination
 		attributes "deep"
-		not "Valhalla"
+		not planet "Valhalla"
 		not attributes "station" "moon"
 	on accept
 		dialog phrase "secure package pickup"
@@ -657,7 +657,7 @@ mission "Secure Transport Job (Basic) [1]"
 		not attributes "station" "moon"
 	destination
 		attributes "deep"
-		not "Valhalla"
+		not planet "Valhalla"
 		not attributes "station" "moon"
 	on accept
 		dialog phrase "secure package pickup"
@@ -687,7 +687,7 @@ mission "Secure Transport Job (Deep Security) [0]"
 		not attributes "station" "moon"
 	destination
 		attributes "deep"
-		not "Valhalla"
+		not planet "Valhalla"
 		not attributes "station" "moon"
 	on accept
 		dialog phrase "secure package pickup"
@@ -717,7 +717,7 @@ mission "Secure Transport Job (Deep Security) [1]"
 		not attributes "station" "moon"
 	destination
 		attributes "deep"
-		not "Valhalla"
+		not planet "Valhalla"
 		not attributes "station" "moon"
 	on accept
 		dialog phrase "secure package pickup"
@@ -897,7 +897,7 @@ mission "Urgent Deep Sec Package"
 		not attributes "station" "moon"
 	destination
 		attributes "deep"
-		not "Valhalla"
+		not planet "Valhalla"
 		not attributes "station" "moon"
 	on offer
 		dialog `As you are walking through the spaceport, a man approaches you and flashes a Deep Security ID. "Greetings Captain <last>. We need someone to deliver this to <destination> as soon as possible."`
