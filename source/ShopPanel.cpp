@@ -1045,7 +1045,7 @@ void ShopPanel::MainLeft()
 	if(it == zones.end())
 	{
 		--it;
-		mainScroll += it->Center().Y() - start->Center().Y();
+		mainScroll = maxMainScroll;
 		selectedShip = it->GetShip();
 		selectedOutfit = it->GetOutfit();
 		return;
@@ -1081,6 +1081,7 @@ void ShopPanel::MainRight()
 	// Special case: nothing is selected. Select the first item.
 	if(it == zones.end())
 	{
+		// Already at mainScroll = 0, no scrolling needed.
 		selectedShip = start->GetShip();
 		selectedOutfit = start->GetOutfit();
 		return;
@@ -1098,6 +1099,8 @@ void ShopPanel::MainRight()
 	{
 		if(it->Center().Y() != previousY)
 			mainScroll += it->Center().Y() - previousY - mainDetailHeight;
+		if(mainScroll > maxMainScroll)
+			mainScroll = maxMainScroll;
 		selectedShip = it->GetShip();
 		selectedOutfit = it->GetOutfit();
 	}
@@ -1116,7 +1119,7 @@ void ShopPanel::MainUp()
 	if(it == zones.end())
 	{
 		--it;
-		mainScroll = max(0., mainScroll + it->Center().Y() - start->Center().Y());
+		mainScroll = maxMainScroll;
 		selectedShip = it->GetShip();
 		selectedOutfit = it->GetOutfit();
 		return;
@@ -1157,6 +1160,7 @@ void ShopPanel::MainDown()
 	// Special case: nothing is selected. Select the first item.
 	if(it == zones.end())
 	{
+		// Already at mainScroll = 0, no scrolling needed.
 		selectedShip = start->GetShip();
 		selectedOutfit = start->GetOutfit();
 		return;

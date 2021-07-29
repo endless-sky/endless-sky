@@ -16,6 +16,7 @@ DEB-based distros:
    libglew-dev \
    libopenal-dev \
    libmad0-dev \
+   uuid-dev \
    libpango-1.0-dev
 
 RPM-based distros:
@@ -28,6 +29,7 @@ RPM-based distros:
    glew-devel \
    openal-soft-devel \
    libmad-devel \
+   libuuid-devel \
    pango-devel
 
 Then, from the project root folder, simply type:
