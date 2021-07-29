@@ -353,3 +353,345 @@ mission "Record academic conference"
 	on complete
 		dialog phrase "academic conference recording payment"
 		payment 5000 1000
+
+
+phrase "secure package pickup"
+	word
+		`As instructed, you`
+		`You`
+	word
+		` `
+	word
+		`collect from a secure baggage counter`
+		`take possession from a security desk`
+	word
+		` `
+	word
+		`in a quiet part of the spaceport`
+		`near your landing site`
+	word
+		` `
+	word
+		`and pick up the secure package. It is a large box on a built-in secure antigrav trolley.`
+		`and pick up the secure package. It is a small box with a complex, electronic combination lock.`
+		`and pick up the secure package. It is a soft but tightly wrapped package that makes a disquieting sound if you squeeze it.`
+
+phrase "secure package dropoff payment"
+	word
+		`As instructed, you deliver the package to`
+	word
+		` `
+	word
+		`the reception counter of a technology firm.`
+		`bored-looking spaceport security officer.`
+		`an elaborate curiosities store.`
+		`a plain clothes officer who receives it with minimal ID confirmation.`
+		`an old lady waiting on a bench.`
+		`another ship captain waiting on the docks.`
+	word
+		` `
+	word
+		`Your bank account immediately notifies you that the agreed-upon payment of <payment> has been deposited. You wonder how they knew.`
+
+
+mission "Secure Transport Job (Secret) [0]"
+	name "Secure delivery to <planet>"
+	job
+	repeat
+	description "Deliver a secure package of supplies to <destination>. Payment is <payment>."
+	cargo "secure package" 1
+	to offer
+		random < 25
+		not "deep security reveal"
+		"reputation: Deep Security" >= -50
+	source
+		attributes "deep"
+	destination "Valhalla"
+	on accept
+		dialog phrase "secure package pickup"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 50000 10000
+		"reputation: Deep Security" += 0.5
+		"secure deep package" ++
+		dialog phrase "secure package dropoff payment"
+	on fail
+		"reputation: Deep Security" -= 2
+	on abort
+		"reputation: Deep Security" -= 5
+
+mission "Secure Transport Job (Secret) [1]"
+	name "Secure delivery to <planet>"
+	job
+	repeat
+	description "Deliver a secure package of supplies to <destination>. Payment is <payment>."
+	cargo "secure package" 1
+	to offer
+		random < 20
+		not "deep security reveal"
+		"reputation: Deep Security" >= -50
+	source
+		attributes "deep"
+	destination "Valhalla"
+	on accept
+		dialog phrase "secure package pickup"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 50000 10000
+		"reputation: Deep Security" += 0.5
+		"secure deep package" ++
+		dialog phrase "secure package dropoff payment"
+	on fail
+		"reputation: Deep Security" -= 2
+	on abort
+		"reputation: Deep Security" -= 5
+
+mission "Secure Transport Job (Secret) [2]"
+	name "Secure delivery to <planet>"
+	job
+	repeat
+	description "Deliver a secure package of supplies to <destination>. Payment is <payment>."
+	cargo "secure package" 1
+	to offer
+		random < 20
+		not "deep security reveal"
+		"reputation: Deep Security" >= -50
+	source
+		attributes "deep"
+	destination "Valhalla"
+	on accept
+		dialog phrase "secure package pickup"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 50000 10000
+		"reputation: Deep Security" += 0.5
+		"secure deep package" ++
+		dialog phrase "secure package dropoff payment"
+	on fail
+		"reputation: Deep Security" -= 2
+	on abort
+		"reputation: Deep Security" -= 5
+
+mission "Secure Transport Job (Secret) [3]"
+	name "Secure delivery to <planet>"
+	job
+	repeat
+	description "Deliver a secure package of supplies to <destination>. Payment is <payment>."
+	cargo "secure package" 1
+	to offer
+		random < 20
+		not "deep security reveal"
+		"reputation: Deep Security" >= -50
+	source
+		attributes "deep"
+	destination "Valhalla"
+	on accept
+		dialog phrase "secure package pickup"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 50000 10000
+		"reputation: Deep Security" += 0.5
+		"secure deep package" ++
+		dialog phrase "secure package dropoff payment"
+	on fail
+		"reputation: Deep Security" -= 2
+	on abort
+		"reputation: Deep Security" -= 5
+
+mission "Secure Transport Job (Secret) [4]"
+	name "Secure delivery to <planet>"
+	job
+	repeat
+	description "Deliver a secure package of supplies to <destination>. Payment is <payment>."
+	cargo "secure package" 1
+	to offer
+		random < 20
+		not "deep security reveal"
+		"reputation: Deep Security" >= -50
+	source
+		attributes "deep"
+	destination "Valhalla"
+	on accept
+		dialog phrase "secure package pickup"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 50000 10000
+		"reputation: Deep Security" += 0.5
+		"secure deep package" ++
+		dialog phrase "secure package dropoff payment"
+	on fail
+		"reputation: Deep Security" -= 2
+	on abort
+		"reputation: Deep Security" -= 5
+
+
+mission "Deep Security Package Reveal"
+	minor
+	invisible
+	source
+		attributes "deep"
+		not attributes "station" "moon"
+	to offer
+		"reputation: Deep Security" >= 100
+		"secure deep package" >= 30
+		"mystery cube" >= 5
+		not "deep security reveal"
+		or
+			not "chosen sides"
+			has "main plot completed"
+	on offer
+		log "Minor People" "Agent Wayde" `A young agent in the logistics division of Deep Security, he vouched for your increased job opportunities after you helped him out.`
+		conversation
+			`As you walk away from a foodstand in the spaceport a rather young man in active wear steps away from the wall and smoothly sidles up next to you between one step and the next.`
+			`	"Hello Captain. Please don't be alarmed, do you have a moment?"`
+			`	His words come out very quickly as if they'd been heavily reheardsed and, looking around, no one appears to be paying any attention to either of you.`
+			choice
+				`	"Sure. Who are you?"`
+					goto who
+				`	"Sorry, but I'm busy right now."`
+			`	"Uh, I was coming to thank you if that helps?" he says.`
+			choice
+				`	"Oh. What is it?"`
+				`	"Sorry, maybe next time."`
+					decline
+			
+			label who
+			`	He continues walking and speaks without looking directly at you. "My name is Wayde, Agent Wayde if you will. Don't mind the title though, I'm uh, well I work in the logisitics division for Deep Security. You've transported a large number of secure packages recently and several of them were mine."`
+			choice
+				`	"Work is work."`
+					goto blindacceptance
+				`	"Ah yes."`
+					goto blindacceptance
+				`	"Do all the secure packages belong to Deep Security?"`
+			`	"Oh no, plenty of tech businesses and wealthy individuals use the same secure packge shipping channels. We do monitor all of them though just to make sure our own channels don't get compromised by something ill-advised... or illegal." He shrugs.`
+			label blindacceptance
+			`	"Well, I looked at your record and it seems you've done quite a lot for the Deep and you're well-regarded. We like to keep a list of pilots that we can call on if we need something delivered with either urgency or discretion and it seems like you qualified. You passed the background check at any rate.`
+			`	"So at any rate, I'm authorised to give you a one time offer to join that list. Don't worry, I'm not asking anything of your right now."`
+			`	Belatedly he seems to do a double-check that no one is actively listening to the conversation as you walk. "So, you interested?"`
+			choice
+				`	"Oh sure, I'm willing to help."`
+					goto agree
+				`	"Sorry, but I don't think I want to get that involved."`
+					decline
+				`	"You said 'at any rate' twice."`
+			`	He looks away sheepishly. "Er, yes, sorry about that. The question stands though."`
+			choice
+				`	"Oh sure, I'm willing to help."`
+					goto agree
+				`	"Sorry, but I don't think I want to get that involved."`
+					decline
+			label agree
+			`	"Fantastic," he says, suddenly grinning widely enough to see in your periphery. "I'll add you to the list as soon as I get back to the office again. Your ID will also let you see which packages are ours specifically after that too. Oh and again, thank you!"`
+			apply
+				set "deep security reveal"
+			`	Agent Wayde jogs off ahead of you, flicking a subtle salute your direction just before he turns a corner and disappears.`
+
+
+mission "Secure Transport Job (Basic) [0]"
+	name "Secure delivery to <planet>"
+	job
+	repeat
+	description "Deliver a secure package of supplies to <destination>. Payment is <payment>."
+	cargo "secure package" 1
+	to offer
+		random < 50
+		has "deep security reveal"
+		"reputation: Deep Security" >= -50
+	source
+		attributes "deep"
+	destination "Valhalla"
+	on accept
+		dialog phrase "secure package pickup"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 50000 10000
+		"reputation: Deep Security" += 0.5
+		dialog phrase "secure package dropoff payment"
+	on fail
+		"reputation: Deep Security" -= 2
+	on abort
+		"reputation: Deep Security" -= 5
+
+mission "Secure Transport Job (Basic) [1]"
+	name "Secure delivery to <planet>"
+	job
+	repeat
+	description "Deliver a secure package of supplies to <destination>. Payment is <payment>."
+	cargo "secure package" 1
+	to offer
+		random < 50
+		has "deep security reveal"
+		"reputation: Deep Security" >= -50
+	source
+		attributes "deep"
+	destination "Valhalla"
+	on accept
+		dialog phrase "secure package pickup"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 50000 10000
+		"reputation: Deep Security" += 0.5
+		dialog phrase "secure package dropoff payment"
+	on fail
+		"reputation: Deep Security" -= 2
+	on abort
+		"reputation: Deep Security" -= 5
+
+mission "Secure Transport Job (Deep Security) [0]"
+	name "Deep Security delivery to <planet>"
+	job
+	repeat
+	description "Deliver a Deep Security package to <destination>. Payment is <payment>."
+	cargo "deep security package" 1
+	to offer
+		random < 20
+		has "deep security reveal"
+		"reputation: Deep Security" >= 100
+	source
+		attributes "deep"
+	destination "Valhalla"
+	on accept
+		dialog phrase "secure package pickup"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 80000 15000
+		"reputation: Deep Security" += 0.5
+		dialog phrase "secure package dropoff payment"
+	on fail
+		"reputation: Deep Security" -= 2
+	on abort
+		"reputation: Deep Security" -= 5
+
+mission "Secure Transport Job (Deep Security) [1]"
+	name "Deep Security delivery to <planet>"
+	job
+	repeat
+	description "Deliver a Deep Security package to <destination>. Payment is <payment>."
+	cargo "deep security package" 1
+	to offer
+		random < 20
+		has "deep security reveal"
+		"reputation: Deep Security" >= 100
+	source
+		attributes "deep"
+	destination "Valhalla"
+	on accept
+		dialog phrase "secure package pickup"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 80000 15000
+		"reputation: Deep Security" += 0.5
+		dialog phrase "secure package dropoff payment"
+	on fail
+		"reputation: Deep Security" -= 2
+	on abort
+		"reputation: Deep Security" -= 5
