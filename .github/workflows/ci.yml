@@ -74,11 +74,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, ubuntu-18.04, ubuntu-16.04]
+        os: [ubuntu-20.04, ubuntu-18.04]
     env:
         CCACHE_DIR: ./ccache/
         CXX: ccache g++
-        AR: gcc-ar
         ARTIFACT: endless-sky
     steps:
     - uses: actions/checkout@v2
@@ -126,11 +125,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, ubuntu-18.04, ubuntu-16.04]
+        os: [ubuntu-20.04, ubuntu-18.04]
     env:
         CCACHE_DIR: ./ccache/
         CXX: ccache g++
-        AR: gcc-ar
         TEST_BINARY: tests/endless-sky-tests
     steps:
     - uses: actions/checkout@v2
@@ -331,8 +329,6 @@ jobs:
             glew: libglew2.1
           # - os: ubuntu-18.04
           #   glew: libglew2.0
-          - os: ubuntu-16.04
-            glew: libglew1.13
     steps:
     - uses: actions/checkout@v2
     - name: Install runtime dependencies
@@ -366,8 +362,6 @@ jobs:
             glew: libglew2.1
           - os: ubuntu-18.04
             glew: libglew2.0
-          - os: ubuntu-16.04
-            glew: libglew1.13
     steps:
     - uses: actions/checkout@v2
     - name: Install runtime dependencies
