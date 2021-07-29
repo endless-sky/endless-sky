@@ -96,6 +96,15 @@ SCENARIO( "Creating a ConditionsStore" , "[ConditionsStore][Creation]" ) {
 		THEN( "no conditions are stored" ) {
 			REQUIRE( store.GetPrimaryConditions().empty() );
 		}
+		THEN( "the begin and end iterator should be equal" ){
+			REQUIRE( store.PrimariesBegin() == store.PrimariesBegin() );
+			REQUIRE( store.PrimariesEnd() == store.PrimariesEnd() );
+			REQUIRE( store.PrimariesBegin() == store.PrimariesEnd() );
+			REQUIRE( store.PrimariesEnd() == store.PrimariesBegin() );
+			auto it = store.PrimariesBegin();
+			REQUIRE( it == store.PrimariesEnd() );
+			REQUIRE( store.PrimariesEnd() == it );
+		}
 	}
 	GIVEN( "an initializer list" ) {
 		const auto store = ConditionsStore{{"hello world", 100}, {"goodbye world", 404}};
@@ -115,6 +124,29 @@ SCENARIO( "Creating a ConditionsStore" , "[ConditionsStore][Creation]" ) {
 			REQUIRE( store.GetPrimaryConditions().size() == 2 );
 			REQUIRE( store.GetCondition("hi world") == 0 );
 			REQUIRE( store.GetPrimaryConditions().size() == 2 );
+		}
+		THEN( "two iterators to the same position should be equal"){
+			REQUIRE( store.PrimariesBegin() == store.PrimariesBegin() );
+			REQUIRE( store.PrimariesEnd() == store.PrimariesEnd() );
+		}
+		THEN( "iterating over the conditions should return both initial values") {
+			auto it = store.PrimariesBegin();
+			REQUIRE( it != store.PrimariesEnd());
+			REQUIRE( it.first() == "goodbye world");
+			REQUIRE( it.second() == 404 );
+			++it;
+			REQUIRE( it.first() == "hello world");
+			REQUIRE( it.second() == 100 );
+			it++;
+			REQUIRE( it == store.PrimariesEnd());
+		}
+		THEN( "doing lower_bound finds should return values above the bound") {
+			auto it = store.PrimariesLowerBound("ha");
+			REQUIRE( it != store.PrimariesEnd());
+			REQUIRE( it.first() == "hello world");
+			REQUIRE( it.second() == 100 );
+			++it;
+			REQUIRE( it == store.PrimariesEnd());
 		}
 	}
 	GIVEN( "an initializer map" ) {
@@ -136,6 +168,28 @@ SCENARIO( "Creating a ConditionsStore" , "[ConditionsStore][Creation]" ) {
 			REQUIRE( store.GetPrimaryConditions().size() == 2 );
 			REQUIRE( store.GetCondition("hi world") == 0 );
 			REQUIRE( store.GetPrimaryConditions().size() == 2 );
+		}
+	}
+	GIVEN( "a long initializer list" ) {
+		const auto store = ConditionsStore{{"a", 1}, {"b", 2}, {"d", 4}, {"c", 3}, {"g", 7}, {"f", 6}, {"e", 5}};
+		auto it = store.PrimariesBegin();
+		THEN( "iterating should pass all conditions and reach the end")
+		{
+			REQUIRE( (it.first() == "a" && it.second() == 1) );
+			++it;
+			REQUIRE( (it.first() == "b" && it.second() == 2) );
+			it++;
+			REQUIRE( (it.first() == "c" && it.second() == 3) );
+			REQUIRE( (++it).first() == "d" );
+			REQUIRE( (it.first() == "d" && it.second() == 4) );
+			REQUIRE( (it++).first() == "d" );
+			REQUIRE( (it.first() == "e" && it.second() == 5) );
+			++it;
+			REQUIRE( (it.first() == "f" && it.second() == 6) );
+			it++;
+			REQUIRE( (it.first() == "g" && it.second() == 7) );
+			it++;
+			REQUIRE( it == store.PrimariesEnd());
 		}
 	}
 }

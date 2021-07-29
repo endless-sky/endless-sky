@@ -60,6 +60,48 @@ public:
 		int64_t value;
 		DerivedProvider provider;
 	};
+	
+	
+	// Input_iterator helper class to iterate over primary conditions.
+	// This can be used when saving primary conditions to savegames and/or
+	// for displaying some data based on primary conditions.
+	class PrimariesIterator: public std::iterator<
+		std::input_iterator_tag,                      // iterator_category
+		std::pair<const std::string, int64_t>,        // iterator: value_type
+		std::ptrdiff_t,                               // iterator: difference_type
+		const std::pair<const std::string, int64_t>*, // iterator: pointer
+		std::pair<const std::string, int64_t>>        // iterator: reference
+	{
+		using CondMapItType = std::map<std::string, ConditionEntry>::const_iterator;
+	
+	public:
+		PrimariesIterator(CondMapItType it, CondMapItType endIt);
+		
+		// Default input_iterator operations.
+		std::pair<const std::string, int64_t> operator*() const;
+		PrimariesIterator& operator++();
+		PrimariesIterator operator++(int);
+		bool operator== (const PrimariesIterator& rhs) const;
+		bool operator!= (const PrimariesIterator& rhs) const;
+		// Unique input_iterator operations. The operator -> requires a return
+		// value that is a pointer, but in this case there is no pair-object to
+		// point to since it is generated on the fly.
+		const std::string &first() const;
+		int64_t second() const;
+
+	
+	
+	private:
+		// Helper function to ensure that the primary-conditions iterator points
+		// to a primary (value) condition or to the end-iterator value.
+		void MoveToValueCondition();
+	
+	
+	private:
+		CondMapItType condMapIt;
+		CondMapItType condMapEnd;
+	};
+
 
 
 public:

@@ -16,6 +16,79 @@ using namespace std;
 
 
 
+ConditionsStore::PrimariesIterator::PrimariesIterator(CondMapItType it, CondMapItType endIt) : condMapIt(it), condMapEnd(endIt)
+{
+	MoveToValueCondition();
+};
+
+
+
+std::pair<const std::string, int64_t> ConditionsStore::PrimariesIterator::operator*() const
+{
+	return make_pair(condMapIt->first, (condMapIt->second).value);
+}
+
+
+
+const string &ConditionsStore::PrimariesIterator::first() const
+{
+	return condMapIt->first;
+}
+
+
+
+int64_t ConditionsStore::PrimariesIterator::second() const
+{
+	return (condMapIt->second).value;
+}
+
+
+
+
+ConditionsStore::PrimariesIterator& ConditionsStore::PrimariesIterator::operator++()
+{
+	condMapIt++;
+	MoveToValueCondition();
+	return *this;
+};
+
+
+
+ConditionsStore::PrimariesIterator ConditionsStore::PrimariesIterator::operator++(int)
+{
+	PrimariesIterator tmp = *this;
+	condMapIt++;
+	MoveToValueCondition();
+	return tmp;
+};
+
+
+
+// Equation operators, we can just compare the upstream iterators.
+bool ConditionsStore::PrimariesIterator::operator== (const ConditionsStore::PrimariesIterator& rhs) const
+{
+	return condMapIt == rhs.condMapIt;
+}
+
+
+
+bool ConditionsStore::PrimariesIterator::operator!= (const ConditionsStore::PrimariesIterator& rhs) const
+{
+	return condMapIt != rhs.condMapIt;
+}
+
+
+
+// Helper function to ensure that the primary-conditions iterator points
+// to a primary (value) condition or to the end-iterator value.
+void ConditionsStore::PrimariesIterator::MoveToValueCondition()
+{
+	while(condMapIt != condMapEnd && (condMapIt->second).type != StorageType::VALUE)
+		condMapIt++;
+}
+
+
+
 // Constructor where a number of initial manually-set values are set.
 ConditionsStore::ConditionsStore(initializer_list<pair<string, int64_t>> initialConditions)
 {
@@ -129,6 +202,27 @@ const map<string, int64_t> ConditionsStore::GetPrimaryConditions() const
 			priConditions[it.first] = it.second.value;
 	
 	return priConditions;
+}
+
+
+
+ConditionsStore::PrimariesIterator ConditionsStore::PrimariesBegin() const
+{
+	return PrimariesIterator(storage.begin(), storage.end());
+}
+
+
+
+ConditionsStore::PrimariesIterator ConditionsStore::PrimariesEnd() const
+{
+	return PrimariesIterator(storage.end(), storage.end());
+}
+
+
+
+ConditionsStore::PrimariesIterator ConditionsStore::PrimariesLowerBound(const string &key) const
+{
+	return PrimariesIterator(storage.lower_bound(key), storage.end());
 }
 
 
