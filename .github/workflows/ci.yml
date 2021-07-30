@@ -74,11 +74,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, ubuntu-18.04, ubuntu-16.04]
+        os: [ubuntu-20.04, ubuntu-18.04]
     env:
         CCACHE_DIR: ./ccache/
         CXX: ccache g++
-        AR: gcc-ar
         ARTIFACT: endless-sky
     steps:
     - uses: actions/checkout@v2
@@ -94,7 +93,7 @@ jobs:
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev scons ccache
+        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev uuid-dev scons ccache
     - name: Print toolchain versions
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: |
@@ -126,11 +125,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, ubuntu-18.04, ubuntu-16.04]
+        os: [ubuntu-20.04, ubuntu-18.04]
     env:
         CCACHE_DIR: ./ccache/
         CXX: ccache g++
-        AR: gcc-ar
         TEST_BINARY: tests/endless-sky-tests
     steps:
     - uses: actions/checkout@v2
@@ -145,7 +143,7 @@ jobs:
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev scons ccache
+        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev uuid-dev scons ccache
     - name: Cache ccache results
       if: steps.cache-tests.outputs.cache-hit != 'true'
       uses: actions/cache@v2
@@ -282,6 +280,7 @@ jobs:
         os: [macos-latest]
     env:
       ARTIFACT: Endless Sky
+      SDL2_FRAMEWORK: build/SDL2.framework
     steps:
     - uses: actions/checkout@v2
     - name: Restore cached game binary
@@ -295,7 +294,13 @@ jobs:
       run: brew update
     - name: Install dependencies
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: brew install libpng libjpeg-turbo libmad sdl2
+      run: brew install libmad libpng jpeg-turbo
+    - name: Restore cached SDL2 framework
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      uses: actions/cache@v2
+      with:
+        path: ${{ env.SDL2_FRAMEWORK }}
+        key: ${{ matrix.os }}-sdl2-${{ hashFiles('utils/fetch_sdl2_framework.sh') }}-${{ hashFiles('.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**') }}
     - name: Compile
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) -quiet
@@ -324,15 +329,13 @@ jobs:
             glew: libglew2.1
           # - os: ubuntu-18.04
           #   glew: libglew2.0
-          - os: ubuntu-16.04
-            glew: libglew1.13
     steps:
     - uses: actions/checkout@v2
     - name: Install runtime dependencies
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1
+        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 uuid-runtime
     - name: Install xvfb runtime dependencies
       run: sudo apt-get install -y --no-install-recommends libosmesa6 mesa-utils # TODO: ALSA mocking?
     - name: Download artifact
@@ -359,15 +362,13 @@ jobs:
             glew: libglew2.1
           - os: ubuntu-18.04
             glew: libglew2.0
-          - os: ubuntu-16.04
-            glew: libglew1.13
     steps:
     - uses: actions/checkout@v2
     - name: Install runtime dependencies
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1
+        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 uuid-runtime
     - name: Download game binary
       uses: actions/download-artifact@v2
       with:
@@ -415,20 +416,38 @@ jobs:
         os: [macos-latest]
     env:
       ES_BINARY: Endless Sky
+      SDL2_FRAMEWORK: build/SDL2.framework
     steps:
     - uses: actions/checkout@v2
+    - name: Update Homebrew
+      run: brew update
     - name: Install dependencies
+      run: brew install libmad libpng jpeg-turbo
+    - name: Restore cached SDL2 framework
+      uses: actions/cache@v2
+      with:
+        path: ${{ env.SDL2_FRAMEWORK }}
+        key: ${{ matrix.os }}-sdl2-${{ hashFiles('utils/fetch_sdl2_framework.sh') }}-${{ hashFiles('.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**') }}
+    - name: Add support files
       run: |
-        brew update
-        brew install libmad libpng jpeg-turbo sdl2
+        mkdir -p Contents/Frameworks Contents/MacOS Contents/Resources
+        ln -s /usr/local/opt/libmad/lib/libmad.0.dylib Contents/Frameworks/
+        ln -s /usr/local/opt/libpng/lib/libpng16.dylib Contents/Frameworks/
+        ln -s /usr/local/opt/jpeg-turbo/lib/libturbojpeg.0.dylib Contents/Frameworks/
+        mv ${{ env.SDL2_FRAMEWORK }} Contents/Frameworks/
+        cd Contents/Resources/
+        ln -s ../../data
+        ln -s ../../images
+        ln -s ../../sounds
     - name: Download game binary
       uses: actions/download-artifact@v2
       with:
         name: binary-${{ matrix.os }}
+        path: Contents/MacOS
     - name: Verify Executable
-      run: chmod +x ./"${ES_BINARY}" && ./"${ES_BINARY}" -v
+      run: chmod +x "Contents/MacOS/${ES_BINARY}" && ./"Contents/MacOS/${ES_BINARY}" -v
     - name: Parse Datafiles
-      run: ./tests/test_parse.sh ./"${ES_BINARY}"
+      run: ./tests/test_parse.sh ./"Contents/MacOS/${ES_BINARY}"
 
 
   test_memory-leaks-lite:
@@ -446,7 +465,7 @@ jobs:
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 valgrind
+        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 valgrind uuid-runtime
     - name: Download game binary
       uses: actions/download-artifact@v2
       with:
