@@ -13,8 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef CARGO_HOLD_H_
 #define CARGO_HOLD_H_
 
-#include "Mission.h"
-
 #include <cstdint>
 #include <list>
 #include <map>
