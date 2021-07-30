@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Depreciation.h"
+#include "Files.h"
 #include "GameData.h"
 #include "Mission.h"
 #include "Outfit.h"
@@ -102,6 +103,7 @@ void CargoHold::Load(const DataNode &node)
 
 void CargoHold::FinishLoading(const list<Mission> &missions)
 {
+	// Assign cargo and passengers to their missions.
 	for(const auto &it : missions)
 	{
 		const auto mc = loadedMissionCargo.find(it.UUID().ToString());
@@ -117,6 +119,15 @@ void CargoHold::FinishLoading(const list<Mission> &missions)
 			loadedPassengers.erase(mp);
 		}
 	}
+	
+	if(!loadedMissionCargo.empty())
+		for(const auto &cargo : loadedMissionCargo)
+			Files::LogError("Warning: mission with UUID \"" + cargo.first +
+				"\" not found (expected because of mission cargo)");
+	if(!loadedPassengers.empty())
+		for(const auto &cargo : loadedMissionCargo)
+			Files::LogError("Warning: mission with UUID \"" + cargo.first +
+				"\" not found (expected because of mission passengers)");
 }
 
 

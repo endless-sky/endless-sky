@@ -290,7 +290,7 @@ void PlayerInfo::Load(const string &path)
 	
 	// Finish loading the player's cargo holds now that we have the mission list.
 	for(auto &it : ships)
-		it->FinishLoadingCargo(*this);
+		it->Cargo().FinishLoading(Missions());
 	cargo.FinishLoading(Missions());
 	
 	// Modify the game data with any changes that were loaded from this file.
