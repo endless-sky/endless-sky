@@ -559,11 +559,10 @@ void PlayerInfo::IncrementDate()
 	// Check what salaries and tribute the player receives.
 	int64_t total[2] = {0, 0};
 	static const string prefix[2] = {"salary: ", "tribute: "};
-	const auto primaryConditions = GetPrimaryConditions();
 	for(int i = 0; i < 2; ++i)
 	{
-		auto it = primaryConditions.lower_bound(prefix[i]);
-		for( ; it != primaryConditions.end() && !it->first.compare(0, prefix[i].length(), prefix[i]); ++it)
+		auto it = Conditions().PrimariesLowerBound(prefix[i]);
+		for( ; it != Conditions().PrimariesEnd() && !it->first.compare(0, prefix[i].length(), prefix[i]); ++it)
 			total[i] += it->second;
 	}
 	if(total[0] || total[1])
@@ -1845,9 +1844,8 @@ void PlayerInfo::EraseManualByPrefix(const string &prefix)
 	set<string> toErase;
 	
 	// Generate the list of items to erase
-	const auto primaryConditions = GetPrimaryConditions();
-	auto it = primaryConditions.lower_bound(prefix);
-	for( ; it != primaryConditions.end() && !it->first.compare(0, prefix.length(), prefix); ++it)
+	auto it = Conditions().PrimariesLowerBound(prefix);
+	for( ; it != Conditions().PrimariesEnd() && !it->first.compare(0, prefix.length(), prefix); ++it)
 		toErase.insert(it->first);
 	
 	// Erase the selected items.
@@ -1869,14 +1867,6 @@ ConditionsStore &PlayerInfo::Conditions()
 const ConditionsStore &PlayerInfo::Conditions() const
 {
 	return conditions;
-}
-
-
-
-// Iteratable read-only access to all primary (non-derived) player conditions.
-const std::map<std::string, int64_t> PlayerInfo::GetPrimaryConditions() const
-{
-	return conditions.GetPrimaryConditions();
 }
 
 
@@ -2448,8 +2438,7 @@ void PlayerInfo::ApplyChanges()
 	
 	// Check which planets you have dominated.
 	static const string prefix = "tribute: ";
-	const auto primaryConditions = GetPrimaryConditions();
-	for(auto it = primaryConditions.lower_bound(prefix); it != primaryConditions.end(); ++it)
+	for(auto it = Conditions().PrimariesLowerBound(prefix); it != Conditions().PrimariesEnd(); ++it)
 	{
 		if(it->first.compare(0, prefix.length(), prefix))
 			break;
@@ -2981,19 +2970,18 @@ void PlayerInfo::Save(const string &path) const
 		mission.Save(out, "available mission");
 	
 	// Save any "primary condition" flags that are set.
-	const auto primaryConditions = GetPrimaryConditions();
-	if(!primaryConditions.empty())
+	if(Conditions().PrimariesBegin() != Conditions().PrimariesEnd())
 	{
 		out.Write("conditions");
 		out.BeginChild();
 		{
-			for(const auto &it : primaryConditions)
+			for(auto it = Conditions().PrimariesBegin(); it != Conditions().PrimariesEnd(); ++it)
 			{
 				// If the condition's value is 1, don't bother writing the 1.
-				if(it.second == 1)
-					out.Write(it.first);
-				else if(it.second)
-					out.Write(it.first, it.second);
+				if(it->second == 1)
+					out.Write(it->first);
+				else if(it->second)
+					out.Write(it->first, it->second);
 			}
 		}
 		out.EndChild();

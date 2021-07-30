@@ -109,11 +109,10 @@ void BankPanel::Draw()
 	int64_t salariesOwed = player.Accounts().SalariesOwed();
 	int64_t income[2] = {0, 0};
 	static const string prefix[2] = {"salary: ", "tribute: "};
-	const auto primaryConditions = player.GetPrimaryConditions();
 	for(int i = 0; i < 2; ++i)
 	{
-		auto it = primaryConditions.lower_bound(prefix[i]);
-		for( ; it != primaryConditions.end() && !it->first.compare(0, prefix[i].length(), prefix[i]); ++it)
+		auto it = player.Conditions().PrimariesLowerBound(prefix[i]);
+		for( ; it != player.Conditions().PrimariesEnd() && !it->first.compare(0, prefix[i].length(), prefix[i]); ++it)
 			income[i] += it->second;
 	}
 	// Check if maintenance needs to be drawn.
