@@ -121,6 +121,9 @@ public:
 	
 	// Direct (read-only) access to the stored primary conditions.
 	const std::map<std::string, int64_t> GetPrimaryConditions() const;
+	PrimariesIterator PrimariesBegin() const;
+	PrimariesIterator PrimariesEnd() const;
+	PrimariesIterator PrimariesLowerBound(const std::string &key) const;
 	
 	// Set providers for derived conditions based on prefix and name.
 	void SetProviderPrefixed(const std::string &prefix, DerivedProvider conditionsProvider);
