@@ -125,8 +125,8 @@ void CargoHold::FinishLoading(const list<Mission> &missions)
 			Files::LogError("Warning: mission with UUID \"" + cargo.first +
 				"\" not found (expected because of mission cargo)");
 	if(!loadedPassengers.empty())
-		for(const auto &cargo : loadedMissionCargo)
-			Files::LogError("Warning: mission with UUID \"" + cargo.first +
+		for(const auto &passengers : loadedPassengers)
+			Files::LogError("Warning: mission with UUID \"" + passengers.first +
 				"\" not found (expected because of mission passengers)");
 }
 
