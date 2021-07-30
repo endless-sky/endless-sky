@@ -138,19 +138,19 @@ SCENARIO( "Creating a ConditionsStore" , "[ConditionsStore][Creation]" ) {
 			THEN( "iterating over the conditions should return all initial values") {
 				auto it = store.PrimariesBegin();
 				REQUIRE( it != store.PrimariesEnd());
-				REQUIRE( it.first() == "goodbye world");
-				REQUIRE( it.second() == 404 );
+				REQUIRE( it->first == "goodbye world");
+				REQUIRE( it->second == 404 );
 				++it;
-				REQUIRE( it.first() == "hello world");
-				REQUIRE( it.second() == 100 );
+				REQUIRE( it->first == "hello world");
+				REQUIRE( it->second == 100 );
 				it++;
 				REQUIRE( it == store.PrimariesEnd());
 			}
 			THEN( "doing lower_bound finds should return values above the bound") {
 				auto it = store.PrimariesLowerBound("ha");
 				REQUIRE( it != store.PrimariesEnd());
-				REQUIRE( it.first() == "hello world");
-				REQUIRE( it.second() == 100 );
+				REQUIRE( it->first == "hello world");
+				REQUIRE( it->second == 100 );
 				++it;
 				REQUIRE( it == store.PrimariesEnd());
 			}
@@ -179,19 +179,19 @@ SCENARIO( "Creating a ConditionsStore" , "[ConditionsStore][Creation]" ) {
 			THEN( "iterating from the beginning should pass all conditions and reach the end")
 			{
 				auto it = store.PrimariesBegin();
-				REQUIRE( (it.first() == "a" && it.second() == 1) );
+				REQUIRE( (it->first == "a" && it->second == 1) );
 				++it;
-				REQUIRE( (it.first() == "b" && it.second() == 2) );
+				REQUIRE( (it->first == "b" && it->second == 2) );
 				it++;
-				REQUIRE( (it.first() == "c" && it.second() == 3) );
-				REQUIRE( (++it).first() == "d" );
-				REQUIRE( (it.first() == "d" && it.second() == 4) );
-				REQUIRE( (it++).first() == "d" );
-				REQUIRE( (it.first() == "e" && it.second() == 5) );
+				REQUIRE( (it->first == "c" && it->second == 3) );
+				REQUIRE( (++it)->first == "d" );
+				REQUIRE( (it->first == "d" && it->second == 4) );
+				REQUIRE( (it++)->first == "d" );
+				REQUIRE( (it->first == "e" && it->second == 5) );
 				++it;
-				REQUIRE( (it.first() == "f" && it.second() == 6) );
+				REQUIRE( (it->first == "f" && it->second == 6) );
 				it++;
-				REQUIRE( (it.first() == "g" && it.second() == 7) );
+				REQUIRE( (it->first == "g" && it->second == 7) );
 				it++;
 				REQUIRE( it == store.PrimariesEnd());
 			}
@@ -308,8 +308,8 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 		WHEN( "iterating over primary conditions" ) {
 			auto it = store.PrimariesBegin();
 			THEN( "only the stored primary condition should be returned" ) {
-				REQUIRE( it.first() == "myFirstVar" );
-				REQUIRE( it.second() == 10 );
+				REQUIRE( it->first == "myFirstVar" );
+				REQUIRE( it->second == 10 );
 				++it;
 				REQUIRE( it == store.PrimariesEnd() );
 			}
@@ -318,8 +318,8 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 				REQUIRE( it == store.PrimariesEnd() );
 				it = store.PrimariesLowerBound("l");
 				REQUIRE( it != store.PrimariesEnd() );
-				REQUIRE( it.first() == "myFirstVar" );
-				REQUIRE( it.second() == 10 );
+				REQUIRE( it->first == "myFirstVar" );
+				REQUIRE( it->second == 10 );
 				++it;
 				REQUIRE( it == store.PrimariesEnd() );
 			}

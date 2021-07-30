@@ -23,25 +23,17 @@ ConditionsStore::PrimariesIterator::PrimariesIterator(CondMapItType it, CondMapI
 
 
 
-std::pair<const std::string, int64_t> ConditionsStore::PrimariesIterator::operator*() const
+std::pair<std::string, int64_t> ConditionsStore::PrimariesIterator::operator*() const
 {
-	return make_pair(condMapIt->first, (condMapIt->second).value);
+	return itVal;
 }
 
 
 
-const string &ConditionsStore::PrimariesIterator::first() const
+std::pair<std::string, int64_t>* ConditionsStore::PrimariesIterator::operator->()
 {
-	return condMapIt->first;
+	return &itVal;
 }
-
-
-
-int64_t ConditionsStore::PrimariesIterator::second() const
-{
-	return (condMapIt->second).value;
-}
-
 
 
 
@@ -83,8 +75,13 @@ bool ConditionsStore::PrimariesIterator::operator!= (const ConditionsStore::Prim
 // to a primary (value) condition or to the end-iterator value.
 void ConditionsStore::PrimariesIterator::MoveToValueCondition()
 {
-	while(condMapIt != condMapEnd && (condMapIt->second).type != StorageType::VALUE)
+	while((condMapIt->second).type != StorageType::VALUE)
+	{
+		if(condMapIt == condMapEnd)
+			return;
 		condMapIt++;
+	}
+	itVal = make_pair(condMapIt->first, (condMapIt->second).value);
 }
 
 

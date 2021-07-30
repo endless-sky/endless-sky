@@ -78,16 +78,12 @@ public:
 		PrimariesIterator(CondMapItType it, CondMapItType endIt);
 		
 		// Default input_iterator operations.
-		std::pair<const std::string, int64_t> operator*() const;
+		std::pair<std::string, int64_t> operator*() const;
+		std::pair<std::string, int64_t>* operator->();
 		PrimariesIterator& operator++();
 		PrimariesIterator operator++(int);
 		bool operator== (const PrimariesIterator& rhs) const;
 		bool operator!= (const PrimariesIterator& rhs) const;
-		// Unique input_iterator operations. The operator -> requires a return
-		// value that is a pointer, but in this case there is no pair-object to
-		// point to since it is generated on the fly.
-		const std::string &first() const;
-		int64_t second() const;
 
 	
 	
@@ -98,6 +94,10 @@ public:
 	
 	
 	private:
+		// The operator->() requires a return value that is a pointer, but in this
+		// case there is no original pair-object to point to, so we generate a
+		// virtual object on the fly while iterating.
+		std::pair<std::string, int64_t> itVal;
 		CondMapItType condMapIt;
 		CondMapItType condMapEnd;
 	};
@@ -110,12 +110,13 @@ public:
 	ConditionsStore(std::initializer_list<std::pair<std::string, int64_t>> initialConditions);
 	ConditionsStore(const std::map<std::string, int64_t> &initialConditions);
 
-	// Retrieve a "condition" flag from this provider.
+	// Retrieve a "condition" flag from this store (directly or from the
+	// connected provider).
 	int64_t GetCondition(const std::string &name) const;
 	bool HasCondition(const std::string &name) const;
-	bool AddCondition(const std::string &name, int64_t value);
 	// Add a value to a condition, set a value for a condition or erase a
 	// condition completely. Returns true on success, false on failure.
+	bool AddCondition(const std::string &name, int64_t value);
 	bool SetCondition(const std::string &name, int64_t value);
 	bool EraseCondition(const std::string &name);
 	
