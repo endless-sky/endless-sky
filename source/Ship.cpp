@@ -189,6 +189,8 @@ void Ship::Load(const DataNode &node)
 			noun = child.Token(1);
 		else if(key == "swizzle" && child.Size() >= 2)
 			customSwizzle = child.Value(1);
+		else if(key == "uuid" && child.Size() >= 2)
+			uuid = EsUuid::FromString(child.Token(1));
 		else if(key == "attributes" || add)
 		{
 			if(!add)
@@ -781,6 +783,8 @@ void Ship::Save(DataWriter &out) const
 		if(customSwizzle >= 0)
 			out.Write("swizzle", customSwizzle);
 		
+		out.Write("uuid", uuid.ToString());
+		
 		out.Write("attributes");
 		out.BeginChild();
 		{
@@ -964,6 +968,20 @@ void Ship::Save(DataWriter &out) const
 			out.Write("parked");
 	}
 	out.EndChild();
+}
+
+
+
+const EsUuid &Ship::UUID() const noexcept
+{
+	return uuid;
+}
+
+
+
+void Ship::SetUUID(const EsUuid &id)
+{
+	uuid.clone(id);
 }
 
 
