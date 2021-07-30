@@ -942,22 +942,20 @@ void Engine::Draw() const
 		if(messagePoint.Y() < messageBox.Top())
 			break;
 		float alpha = (it->step + 1000 - step) * .001f;
-		const Color* color;
-		// This switch will make the compiler force us to handle any new importance levels we add in future
+		const Color *color = nullptr;
 		switch (it->importance) {
 			case Messages::Importance::Highest:
-				color = GameData::Colors().Get("message importance highest");
+				color = GameData::Colors().Find("message importance highest");
 				break;
 			case Messages::Importance::High:
-				color = GameData::Colors().Get("message importance high");
+				color = GameData::Colors().Find("message importance high");
 				break;
 			case Messages::Importance::Low:
-				color = GameData::Colors().Get("message importance low");
+				color = GameData::Colors().Find("message importance low");
 				break;
 		}
-		if (color == nullptr) {
-			color = GameData::Colors().Get("messages importance default"); // Will not be null
-		}
+		if(!color)
+			color = GameData::Colors().Get("messages importance default");
 		messageLine.Draw(messagePoint, color->Additive(alpha));
 	}
 	
