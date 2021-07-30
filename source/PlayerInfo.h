@@ -71,8 +71,6 @@ public:
 	void Load(const std::string &path);
 	// Load the most recently saved player. If no save could be loaded, returns false.
 	bool LoadRecent();
-	// Ensure that all the stuff that can be saved to file has UUIDs.
-	void EnsureUUIDs();
 	// Save this player (using the Identifier() as the file name).
 	void Save() const;
 	

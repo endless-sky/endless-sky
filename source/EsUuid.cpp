@@ -165,6 +165,13 @@ bool EsUuid::operator<(const EsUuid &other) const noexcept(false)
 
 
 
+bool EsUuid::IsEmpty() const
+{
+	return IsNil(value.id);
+}
+
+
+
 std::string EsUuid::ToString() const noexcept(false)
 {
 	return Serialize(Value().id);

@@ -104,16 +104,13 @@ void CargoHold::FinishLoading(const list<Mission> &missions)
 {
 	for(const auto &it : missions)
 	{
-		if(it.UUID().empty())
-			continue;
-		
-		const auto mc = loadedMissionCargo.find(it.UUID());
+		const auto mc = loadedMissionCargo.find(it.UUID().ToString());
 		if(mc != loadedMissionCargo.end())
 		{
 			missionCargo[&it] = mc->second;
 			loadedMissionCargo.erase(mc);
 		}
-		const auto mp = loadedPassengers.find(it.UUID());
+		const auto mp = loadedPassengers.find(it.UUID().ToString());
 		if(mp != loadedPassengers.end())
 		{
 			passengers[&it] = mp->second;
@@ -171,7 +168,7 @@ void CargoHold::Save(DataWriter &out) const
 		{
 			activateScope(outerActive, "cargo");
 			activateScope(innerActive, "mission cargo");
-			out.Write(it.first->UUID(), it.second);
+			out.Write(it.first->UUID().ToString(), it.second);
 		}
 	deactivateScope(innerActive);
 	
@@ -180,7 +177,7 @@ void CargoHold::Save(DataWriter &out) const
 		{
 			activateScope(outerActive, "cargo");
 			activateScope(innerActive, "mission passengers");
-			out.Write(it.first->UUID(), it.second);
+			out.Write(it.first->UUID().ToString(), it.second);
 		}
 	deactivateScope(innerActive);
 	

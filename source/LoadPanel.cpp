@@ -102,10 +102,7 @@ LoadPanel::LoadPanel(PlayerInfo &player, UI &gamePanels)
 	// actually were using the loaded save.
 	if(player.GetPlanet() && !player.IsDead() && !gamePanels.IsTop(&*gamePanels.Root())
 			&& gamePanels.CanSave())
-	{
-		player.EnsureUUIDs();
 		player.Save();
-	}
 	UpdateLists();
 }
 

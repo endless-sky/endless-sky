@@ -223,7 +223,7 @@ void PlayerInfo::Load(const string &path)
 			missions.emplace_back(child);
 			// For compatibility with old saves we load the mission the old way if it
 			// does not have UUID.
-			if(missions.back().UUID().empty())
+			if(missions.back().UUID().IsEmpty())
 				cargo.AddMissionCargo(&missions.back());
 		}
 		else if(child.Token(0) == "available job")
@@ -1712,10 +1712,7 @@ void PlayerInfo::MissionCallback(int response)
 		missions.splice(spliceIt, missionList, missionList.begin());
 		mission.Do(Mission::ACCEPT, *this);
 		if(shouldAutosave)
-		{
-			EnsureUUIDs();
 			Autosave();
-		}
 		// If this is a mission offered in-flight, expose a pointer to it
 		// so Engine::SpawnFleets can add its ships without requiring the
 		// player to land.
@@ -3026,16 +3023,6 @@ void PlayerInfo::Save(const string &path) const
 	out.Write();
 	out.WriteComment("How you began:");
 	startData.Save(out);
-}
-
-
-
-void PlayerInfo::EnsureUUIDs()
-{
-	for(Mission &mission : missions)
-		mission.EnsureUUID();
-	for(Mission &mission : inactiveMissions)
-		mission.EnsureUUID();
 }
 
 

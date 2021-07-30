@@ -68,6 +68,8 @@ public:
 	// Explicitly clone this UUID.
 	void clone(const EsUuid &other);
 	
+	// Find out if the UUID is empty (nil).
+	bool IsEmpty() const;
 	// Get a string representation of this ID, e.g. for serialization.
 	std::string ToString() const noexcept(false);
 	
