@@ -955,7 +955,7 @@ void Engine::Draw() const
 				break;
 		}
 		if(!color)
-			color = GameData::Colors().Get("messages importance default");
+			color = GameData::Colors().Get("message importance default");
 		messageLine.Draw(messagePoint, color->Additive(alpha));
 	}
 	
