@@ -548,7 +548,7 @@ void PlayerInfo::IncrementDate()
 	for(Mission &mission : missions)
 		if(mission.CheckDeadline(date) && mission.IsVisible())
 			Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\"."
-				, Messages::Importance::High);
+				, Messages::Importance::Highest);
 	
 	// Check what salaries and tribute the player receives.
 	int64_t total[2] = {0, 0};
@@ -1391,7 +1391,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 		{
 			if(it.first->IsVisible())
 				Messages::Add("Mission \"" + it.first->Name()
-					+ "\" failed because you do not have space for the cargo.", Messages::Importance::High);
+					+ "\" failed because you do not have space for the cargo."
+						, Messages::Importance::Highest);
 			missionsToRemove.push_back(it.first);
 		}
 	for(const auto &it : cargo.PassengerList())
@@ -1399,7 +1400,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 		{
 			if(it.first->IsVisible())
 				Messages::Add("Mission \"" + it.first->Name()
-					+ "\" failed because you do not have enough passenger bunks free.", Messages::Importance::High);
+					+ "\" failed because you do not have enough passenger bunks free."
+						, Messages::Importance::Highest);
 			missionsToRemove.push_back(it.first);
 			
 		}
