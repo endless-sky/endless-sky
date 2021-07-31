@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapSalesPanel.h"
 
+#include "CategoryTypes.h"
 #include "Command.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
@@ -50,7 +51,7 @@ const int MapSalesPanel::WIDTH = 270;
 
 MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 	: MapPanel(player, SHOW_SPECIAL),
-	categories(isOutfitters ? Outfit::CATEGORIES : Ship::CATEGORIES),
+	categories(GameData::Category(isOutfitters ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	isOutfitters(isOutfitters),
 	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {
@@ -62,7 +63,7 @@ MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 
 MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 	: MapPanel(panel),
-	categories(isOutfitters ? Outfit::CATEGORIES : Ship::CATEGORIES),
+	categories(GameData::Category(isOutfitters ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	isOutfitters(isOutfitters),
 	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {
