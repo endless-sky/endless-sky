@@ -85,6 +85,7 @@
 		<Unit filename="source/CaptureOdds.h" />
 		<Unit filename="source/CargoHold.cpp" />
 		<Unit filename="source/CargoHold.h" />
+		<Unit filename="source/CategoryTypes.h" />
 		<Unit filename="source/ClickZone.h" />
 		<Unit filename="source/CollisionSet.cpp" />
 		<Unit filename="source/CollisionSet.h" />
@@ -124,6 +125,8 @@
 		<Unit filename="source/Engine.h" />
 		<Unit filename="source/EscortDisplay.cpp" />
 		<Unit filename="source/EscortDisplay.h" />
+		<Unit filename="source/EsUuid.cpp" />
+		<Unit filename="source/EsUuid.h" />
 		<Unit filename="source/File.cpp" />
 		<Unit filename="source/File.h" />
 		<Unit filename="source/Files.cpp" />
@@ -308,10 +311,11 @@
 		<Unit filename="source/UI.h" />
 		<Unit filename="source/Visual.cpp" />
 		<Unit filename="source/Visual.h" />
-		<Unit filename="source/Weather.cpp" />
-		<Unit filename="source/Weather.h" />
 		<Unit filename="source/Weapon.cpp" />
 		<Unit filename="source/Weapon.h" />
+		<Unit filename="source/Weather.cpp" />
+		<Unit filename="source/Weather.h" />
+		<Unit filename="source/WeightedList.h" />
 		<Unit filename="source/gl_header.h" />
 		<Unit filename="source/pi.h" />
 		<Unit filename="source/shift.h" />

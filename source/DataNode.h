@@ -29,16 +29,17 @@ class DataNode {
 public:
 	// Construct a DataNode. For the purpose of printing stack traces, each node
 	// must remember what its parent node is.
-	explicit DataNode(const DataNode *parent = nullptr);
-	// Copy constructor.
+	explicit DataNode(const DataNode *parent = nullptr) noexcept(false);
+	// Copying or moving a DataNode requires updating the parent pointers.
 	DataNode(const DataNode &other);
-	
 	DataNode &operator=(const DataNode &other);
+	DataNode(DataNode &&) noexcept;
+	DataNode &operator=(DataNode &&) noexcept;
 	
 	// Get the number of tokens in this node.
-	int Size() const;
+	int Size() const noexcept;
 	// Get all the tokens in this node as an iterable vector.
-	const std::vector<std::string> &Tokens() const;
+	const std::vector<std::string> &Tokens() const noexcept;
 	// Get the token at the given index. No bounds checking is done internally.
 	// DataFile loading guarantees index 0 always exists.
 	const std::string &Token(int index) const;
@@ -53,9 +54,9 @@ public:
 	
 	// Check if this node has any children. If so, the iterator functions below
 	// can be used to access them.
-	bool HasChildren() const;
-	std::list<DataNode>::const_iterator begin() const;
-	std::list<DataNode>::const_iterator end() const;
+	bool HasChildren() const noexcept;
+	std::list<DataNode>::const_iterator begin() const noexcept;
+	std::list<DataNode>::const_iterator end() const noexcept;
 	
 	// Print a message followed by a "trace" of this node and its parents.
 	int PrintTrace(const std::string &message = "") const;
@@ -63,7 +64,7 @@ public:
 	
 private:
 	// Adjust the parent pointers when a copy is made of a DataNode.
-	void Reparent();
+	void Reparent() noexcept;
 	
 	
 private:

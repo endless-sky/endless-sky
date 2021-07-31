@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define NPC_H_
 
 #include "Conversation.h"
+#include "EsUuid.h"
 #include "Fleet.h"
 #include "LocationFilter.h"
 #include "Personality.h"
@@ -43,6 +44,13 @@ class UI;
 class NPC {
 public:
 	NPC() = default;
+	// Copying an NPC instance isn't allowed.
+	NPC(const NPC &) = delete;
+	NPC &operator=(const NPC &) = delete;
+	NPC(NPC &&) noexcept = default;
+	NPC &operator=(NPC &&) noexcept = default;
+	~NPC() noexcept = default;
+	
 	// Construct and Load() at the same time.
 	NPC(const DataNode &node);
 	
@@ -54,6 +62,8 @@ public:
 	// Determine if this NPC or NPC template uses well-defined data.
 	// Returns the reason the NPC is not valid, or an empty string if valid.
 	std::string Validate(bool asTemplate = false) const;
+	
+	const EsUuid &UUID() const noexcept;
 	
 	// Update or check spawning and despawning for this NPC.
 	void UpdateSpawning(const PlayerInfo &player);
@@ -82,6 +92,8 @@ private:
 	// The government of the ships in this NPC:
 	const Government *government = nullptr;
 	Personality personality;
+	
+	EsUuid uuid;
 	
 	// Start out in a location matching this filter, or in a particular system:
 	LocationFilter location;
