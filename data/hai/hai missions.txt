@@ -606,7 +606,7 @@ mission "Unwanted Cargo Trigger"
 	source
 		government "Hai"
 	to offer
-		random < 10
+		random < 1
 		"cargo space" > 0
 	on offer
 		event "hai in cargo" 14
@@ -1356,7 +1356,7 @@ event "scar's hideout"
 planet "Scar's Hideout"
 	attributes uninhabited
 	landscape land/loc1
-	description "Scar's Hideout is a hollowed out asteroids used by Scar's Legion as their main base of operations. From here they harass anyone making the journey through the uninhabited systems of the Far North. Recently the gang has discovered the wormhole to Hai space, leading them to start causing trouble for more than just unlucky merchants."
+	description "Scar's Hideout is a hollowed-out asteroid used by Scar's Legion as their main base of operations. From here they harass anyone making the journey through the uninhabited systems of the Far North. Recently the gang has discovered the wormhole to Hai space, leading them to start causing trouble for more than just unlucky merchants."
 	spaceport "The spaceport of Scar's Hideout is a massive hangar dug into the core of the asteroid, accessible only by a single blast door on the ceiling. Judging by the size of the hangar, you'd guess that about a third of the entire asteroid was hollowed out for the spaceport alone."
 	security 0
 	government "Scar's Legion"
@@ -1724,7 +1724,7 @@ mission "Nanachi 3"
 		government "Hai"
 		ship "Heavy Shuttle" "Acorn Chaser"
 	on visit
-		dialog `You have reached <planet>, but you left Nanachi's ship behind! Better depart and wait for them to arrive in this star system.`
+		dialog `You have reached <planet>, but you haven't finished the mission yet! Either you left Nanachi's ship behind or you haven't visited <stopovers>.`
 	on complete
 		conversation
 			`Allhome's docking area shows much more traffic than usual. Many captains here are helping workers open cargo containers full of food, clothes, books, movies and even some mounted animals from human space. You finally meet up with the festival's organizers, who seem very excited to have acquired the exotic condiments, and have invited you two to a bar in the spaceport for a drink.`
@@ -1775,7 +1775,7 @@ mission "Nanachi 4"
 		government "Hai (Wormhole Access)"
 		ship "Heavy Shuttle" "Acorn Chaser"
 	on visit
-		dialog `You have reached <planet>, but you can't finished the mission yet! Either you left Nanachi's ship behind or you haven't visited <stopovers>.`
+		dialog `You have reached <planet>, but you haven't finished the mission yet! Either you left Nanachi's ship behind or you haven't visited <stopovers>.`
 	on stopover
 		conversation
 			`The convoy's captain messaged you as you entered the system and told you to land on a remote, hidden area of Prime, where they have already prepared for all the cargo to be transferred. They refuel your ships and urge you two to go back. "Captain Nanachi can stay hidden with us here if you need supplies or anything from the outfitter, but please don't take too long."`
@@ -1968,7 +1968,7 @@ mission "Strider: Remnant 1"
 		has "strider: remnant"
 	on offer
 		conversation
-			`You find the Hai delegation meant to travel to the Remnant to negotiate for the hull repair technology waiting for you in the spaceport. The leader of the delegation introduces herself as Ambassador Yashili. "I heard that we will be travelling a great distance across the galaxy. May we have a safe journey."`
+			`You find the Hai delegation meant to travel to the Remnant to negotiate for the hull repair technology waiting for you in the spaceport. The leader of the delegation introduces herself as Ambassador Yashili. "I heard that we will be traveling a great distance across the galaxy. May we have a safe journey."`
 			`	The delegation begins making their way to your ship, but you stop them.`
 			choice
 				`	"Wait a minute! This group doesn't react well to strangers. How about I set up a meeting first?"`
