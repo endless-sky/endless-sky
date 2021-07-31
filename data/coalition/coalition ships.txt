@@ -169,7 +169,7 @@ ship "Arach Spindle"
 		"hull" 9700
 		"required crew" 4
 		"bunks" 14
-		"mass" 500
+		"mass" 750
 		"drag" 10.8
 		"heat dissipation" .55
 		"fuel capacity" 500
