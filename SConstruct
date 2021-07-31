@@ -145,7 +145,7 @@ test = env.Program(
 	 # Add Catch header & additional test includes to the existing search paths
 	CPPPATH=(env.get('CPPPATH', []) + [pathjoin('tests', 'include')]),
 	# Do not link against the actual implementations of SDL, OpenGL, etc.
-	LIBS=sys_libs,
+	LIBS=sys_libs + game_libs,
 	# Pass the necessary link flags for a console program.
 	LINKFLAGS=[x for x in env.get('LINKFLAGS', []) if x not in ('-mwindows',)]
 )
