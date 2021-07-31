@@ -188,21 +188,6 @@ bool ConditionsStore::EraseCondition(const string &name)
 
 
 
-// Retrieve a copy of the conditions stored by value. Direct access is not
-// possible because this class uses a single central storage for value and
-// providers internally.
-const map<string, int64_t> ConditionsStore::GetPrimaryConditions() const
-{
-	map<string, int64_t> priConditions;
-	for(const auto &it : storage)
-		if(it.second.type == StorageType::VALUE)
-			priConditions[it.first] = it.second.value;
-	
-	return priConditions;
-}
-
-
-
 ConditionsStore::PrimariesIterator ConditionsStore::PrimariesBegin() const
 {
 	return PrimariesIterator(storage.begin(), storage.end());

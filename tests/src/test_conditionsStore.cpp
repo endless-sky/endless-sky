@@ -39,6 +39,18 @@ int64_t getFromMapOrZero(const std::map<std::string, int64_t> &values, const std
 	return it->second;
 }
 
+int primarySize(const ConditionsStore &store)
+{
+	int size = 0;
+	auto it = store.PrimariesBegin();
+	while (it != store.PrimariesEnd())
+	{
+		++it;
+		++size;
+	}
+	return size;
+}
+
 
 class MockConditionsProvider
 {
@@ -95,7 +107,7 @@ SCENARIO( "Creating a ConditionsStore" , "[ConditionsStore][Creation]" ) {
 		WHEN( "it is just default initalized" ) {
 			const auto store = ConditionsStore();
 			THEN( "the store is empty" ) {
-				REQUIRE( store.GetPrimaryConditions().empty() );
+				REQUIRE( primarySize(store) == 0 );
 			}
 			THEN( "two begin iterators should be equal" ) {
 				REQUIRE( store.PrimariesBegin() == store.PrimariesBegin() );
@@ -119,17 +131,17 @@ SCENARIO( "Creating a ConditionsStore" , "[ConditionsStore][Creation]" ) {
 			THEN( "given primary conditions are in the Store" ) {
 				REQUIRE( store.GetCondition("hello world") == 100 );
 				REQUIRE( store.GetCondition("goodbye world") == 404 );
-				REQUIRE( store.GetPrimaryConditions().size() == 2 );
+				REQUIRE( primarySize(store) == 2 );
 			}
 			THEN( "not given conditions return the default value" ) {
 				REQUIRE( 0 == store.GetCondition("ungreeted world") );
-				REQUIRE( store.GetPrimaryConditions().size() == 2 );
+				REQUIRE( primarySize(store) == 2 );
 				REQUIRE( store.GetCondition("ungreeted world") == 0 );
-				REQUIRE( store.GetPrimaryConditions().size() == 2 );
+				REQUIRE( primarySize(store) == 2 );
 				REQUIRE( 0 == store.GetCondition("hi world") );
-				REQUIRE( store.GetPrimaryConditions().size() == 2 );
+				REQUIRE( primarySize(store) == 2 );
 				REQUIRE( store.GetCondition("hi world") == 0 );
-				REQUIRE( store.GetPrimaryConditions().size() == 2 );
+				REQUIRE( primarySize(store) == 2 );
 			}
 			THEN( "two iterators to the same position should be equal") {
 				REQUIRE( store.PrimariesBegin() == store.PrimariesBegin() );
@@ -161,17 +173,17 @@ SCENARIO( "Creating a ConditionsStore" , "[ConditionsStore][Creation]" ) {
 			THEN( "given primary conditions are in the Store" ) {
 				REQUIRE( store.GetCondition("hello world") == 100 );
 				REQUIRE( store.GetCondition("goodbye world") == 404 );
-				REQUIRE( store.GetPrimaryConditions().size() == 2 );
+				REQUIRE( primarySize(store) == 2 );
 			}
 			THEN( "not given conditions return the default value" ) {
 				REQUIRE( store.GetCondition("ungreeted world") == 0 );
-				REQUIRE( store.GetPrimaryConditions().size() == 2 );
+				REQUIRE( primarySize(store) == 2 );
 				REQUIRE( store.GetCondition("ungreeted world") == 0 );
-				REQUIRE( store.GetPrimaryConditions().size() == 2 );
+				REQUIRE( primarySize(store) == 2 );
 				REQUIRE( 0 == store.GetCondition("hi world") );
-				REQUIRE( store.GetPrimaryConditions().size() == 2 );
+				REQUIRE( primarySize(store) == 2 );
 				REQUIRE( store.GetCondition("hi world") == 0 );
-				REQUIRE( store.GetPrimaryConditions().size() == 2 );
+				REQUIRE( primarySize(store) == 2 );
 			}
 		}
 		WHEN( "initialized with a long initializer list" ) {
@@ -202,35 +214,35 @@ SCENARIO( "Creating a ConditionsStore" , "[ConditionsStore][Creation]" ) {
 SCENARIO( "Setting and erasing conditions", "[ConditionStore][ConditionSetting]" ) {
 	GIVEN( "An empty conditionsStore" ) {
 		auto store = ConditionsStore();
-		REQUIRE( store.GetPrimaryConditions().size() == 0 );
+		REQUIRE( primarySize(store) == 0 );
 		WHEN( "a condition is set" ) {
 			REQUIRE( store.SetCondition("myFirstVar", 10) == true );
 			THEN( "stored condition is present and can be retrieved" ) {
 				REQUIRE( store.GetCondition("myFirstVar") == 10 );
 				REQUIRE( store.HasCondition("myFirstVar") == true );
-				REQUIRE( store.GetPrimaryConditions().size() == 1 );
+				REQUIRE( primarySize(store) == 1 );
 				REQUIRE( store.GetCondition("myFirstVar") == 10 );
 			}
 			THEN( "erasing the condition will make it disappear again" ) {
 				REQUIRE( store.HasCondition("myFirstVar") == true );
-				REQUIRE( store.GetPrimaryConditions().size() == 1 );
+				REQUIRE( primarySize(store) == 1 );
 				REQUIRE( store.GetCondition("myFirstVar") == 10 );
-				REQUIRE( store.GetPrimaryConditions().size() == 1 );
+				REQUIRE( primarySize(store) == 1 );
 				REQUIRE( store.EraseCondition("myFirstVar") == true );
 				REQUIRE( store.HasCondition("myFirstVar") == false );
-				REQUIRE( store.GetPrimaryConditions().size() == 0 );
+				REQUIRE( primarySize(store) == 0 );
 				REQUIRE( store.GetCondition("myFirstVar") == 0 );
 				REQUIRE( store.HasCondition("myFirstVar") == false );
-				REQUIRE( store.GetPrimaryConditions().size() == 0 );
+				REQUIRE( primarySize(store) == 0 );
 			}
 		}
 		WHEN( "non-existing conditions are queried" ) {
 			THEN( "defaults are returned and queried conditions are not stored" ) {
 				REQUIRE( store.GetCondition("mySecondVar") == 0 );
-				REQUIRE( store.GetPrimaryConditions().size() == 0 );
+				REQUIRE( primarySize(store) == 0 );
 				REQUIRE( store.HasCondition("mySecondVar") == false );
 				REQUIRE( store.GetCondition("mySecondVar") == 0 );
-				REQUIRE( store.GetPrimaryConditions().size() == 0 );
+				REQUIRE( primarySize(store) == 0 );
 			}
 		}
 	}
@@ -240,7 +252,7 @@ SCENARIO( "Adding and removing on condition values", "[ConditionStore][Condition
 	GIVEN( "A conditionsStore with 1 condition" ) {
 		auto store = ConditionsStore{{"myFirstVar", 10}};
 		REQUIRE( store.GetCondition("myFirstVar") == 10 );
-		REQUIRE( store.GetPrimaryConditions().size() == 1 );
+		REQUIRE( primarySize(store) == 1 );
 		WHEN( "adding to the existing primary condition" ) {
 			REQUIRE( store.AddCondition("myFirstVar", 10) == true );
 			THEN( "the condition gets the new value" ) {
@@ -255,11 +267,11 @@ SCENARIO( "Adding and removing on condition values", "[ConditionStore][Condition
 			REQUIRE( store.AddCondition("mySecondVar", -30) == true );
 			THEN( "the new condition exists with the new value" ) {
 				REQUIRE( store.GetCondition("mySecondVar") == -30 );
-				REQUIRE( store.GetPrimaryConditions().size() == 2 );
+				REQUIRE( primarySize(store) == 2 );
 				REQUIRE( store.HasCondition("mySecondVar") == true );
 				REQUIRE( store.AddCondition("mySecondVar", 60) == true );
 				REQUIRE( store.GetCondition("mySecondVar") == 30 );
-				REQUIRE( store.GetPrimaryConditions().size() == 2 );
+				REQUIRE( primarySize(store) == 2 );
 			}
 		}
 	}
@@ -275,14 +287,14 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 		REQUIRE( store.AddCondition("named1", -30) == true );
 		REQUIRE( mockProvNamed.values["named1"] == -30 );
 		REQUIRE( mockProvNamed.values.size() == 1 );
-		REQUIRE( store.GetPrimaryConditions().size() == 1 );
+		REQUIRE( primarySize(store) == 1 );
 		REQUIRE( mockProvPrefixA.values.size() == 0 );
 		REQUIRE( store.AddCondition("prefixA: test", -30) == true );
-		REQUIRE( store.GetPrimaryConditions().size() == 1 );
+		REQUIRE( primarySize(store) == 1 );
 		REQUIRE( mockProvPrefixA.values["prefixA: test"] == -30 );
 		REQUIRE( mockProvPrefixA.values.size() == 1 );
 		REQUIRE( mockProvNamed.values.size() == 1 );
-		REQUIRE( store.GetPrimaryConditions().size() == 1 );
+		REQUIRE( primarySize(store) == 1 );
 		WHEN( "adding to an existing primary condition" ) {
 			THEN( "the add should work as-is" ) {
 				REQUIRE( store.GetCondition("myFirstVar") == 10 );
@@ -298,11 +310,11 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 			THEN( "such condition should be set properly" ) {
 				REQUIRE( store.AddCondition("mySecondVar", -30) == true );
 				REQUIRE( store.GetCondition("mySecondVar") == -30 );
-				REQUIRE( store.GetPrimaryConditions().size() == 2 );
+				REQUIRE( primarySize(store) == 2 );
 				REQUIRE( store.HasCondition("mySecondVar") == true );
 				REQUIRE( store.AddCondition("mySecondVar", 60) == true );
 				REQUIRE( store.GetCondition("mySecondVar") == 30 );
-				REQUIRE( store.GetPrimaryConditions().size() == 2 );
+				REQUIRE( primarySize(store) == 2 );
 			}
 		}
 		WHEN( "iterating over primary conditions" ) {
@@ -327,7 +339,7 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 		WHEN( "adding on a named derived condition" ) {
 			REQUIRE( store.AddCondition("named1", -30) == true );
 			THEN( "effects of adding should be on the named condition" ) {
-				REQUIRE( store.GetPrimaryConditions().size() == 1 );
+				REQUIRE( primarySize(store) == 1 );
 				REQUIRE( mockProvNamed.values["named1"] == -60 );
 				REQUIRE( store.AddCondition("named1", -20) == true );
 				REQUIRE( mockProvNamed.values["named1"] == -80 );
@@ -365,7 +377,7 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 		WHEN( "adding on a prefixed derived condition" ) {
 			REQUIRE( store.AddCondition("prefixA: test", -30) == true );
 			THEN( "derived prefixed conditions should be set properly" ) {
-				REQUIRE( store.GetPrimaryConditions().size() == 1 );
+				REQUIRE( primarySize(store) == 1 );
 				REQUIRE( mockProvPrefixA.values["prefixA: test"] == -60 );
 				REQUIRE( mockProvPrefixA.values.size() == 1 );
 				REQUIRE( mockProvNamed.values.size() == 1 );
@@ -412,9 +424,9 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 				auto mockProvPrefixB = MockConditionsProvider();
 				store.SetProviderPrefixed("prefixB: ", mockProvPrefixB.GetRWPrefixProvider("prefixB: "));
 				THEN( "derived prefixed conditions should be set properly" ) {
-					REQUIRE( store.GetPrimaryConditions().size() == 1 );
+					REQUIRE( primarySize(store) == 1 );
 					REQUIRE( store.AddCondition("prefixA: test", 30) == true );
-					REQUIRE( store.GetPrimaryConditions().size() == 1 );
+					REQUIRE( primarySize(store) == 1 );
 					REQUIRE( mockProvPrefixA.values["prefixA: test"] == -30 );
 					REQUIRE( store.GetCondition("prefixA: test") == -30 );
 					REQUIRE( store.GetCondition("myFirstVar") == 10 );
@@ -470,7 +482,7 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 					REQUIRE( mockProvPrefix.values.size() == 1 );
 					REQUIRE( mockProvPrefixA.values.size() == 5 );
 					REQUIRE( mockProvPrefixB.values.size() == 1 );
-					REQUIRE( store.GetPrimaryConditions().size() == 1 );
+					REQUIRE( primarySize(store) == 1 );
 				}
 			}
 		}
