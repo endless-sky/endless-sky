@@ -1238,6 +1238,7 @@ outfit "Nuclear Missile"
 		sprite "projectile/missile"
 			"no repeat"
 			"frame rate" .25
+		"hardpoint sprite" "hardpoint/nuke"
 		sound "nuke"
 		ammo "Nuclear Missile"
 		stream
