@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Armament.h"
 #include "CargoHold.h"
 #include "Command.h"
+#include "EsUuid.h"
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
@@ -53,11 +54,6 @@ class Visual;
 // limits of what the AI knows how to command them to do.
 class Ship : public Body, public std::enable_shared_from_this<Ship> {
 public:
-	// These are all the possible category strings for ships.
-	static const std::vector<std::string> CATEGORIES;
-	// Allow retrieving the available bay types for the current game;
-	static const std::set<std::string> BAY_TYPES;
-	
 	class Bay {
 	public:
 		Bay(double x, double y, std::string category) : point(x * .5, y * .5), category(category) {}
@@ -133,6 +129,10 @@ public:
 	bool IsValid() const;
 	// Save a full description of this ship, as currently configured.
 	void Save(DataWriter &out) const;
+	
+	const EsUuid &UUID() const noexcept;
+	// Explicitly set this ship's ID.
+	void SetUUID(const EsUuid &id);
 	
 	// Get the name of this particular ship.
 	const std::string &Name() const;
@@ -451,6 +451,7 @@ private:
 	std::string description;
 	const Sprite *thumbnail = nullptr;
 	// Characteristics of this particular ship:
+	EsUuid uuid;
 	std::string name;
 	bool canBeCarried = false;
 	
