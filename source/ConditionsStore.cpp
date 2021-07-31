@@ -75,13 +75,11 @@ bool ConditionsStore::PrimariesIterator::operator!= (const ConditionsStore::Prim
 // to a primary (value) condition or to the end-iterator value.
 void ConditionsStore::PrimariesIterator::MoveToValueCondition()
 {
-	while((condMapIt->second).type != StorageType::VALUE)
-	{
-		if(condMapIt == condMapEnd)
-			return;
+	while((condMapIt != condMapEnd) && (condMapIt->second).type != StorageType::VALUE)
 		condMapIt++;
-	}
-	itVal = make_pair(condMapIt->first, (condMapIt->second).value);
+	
+	if(condMapIt != condMapEnd)
+		itVal = make_pair(condMapIt->first, (condMapIt->second).value);
 }
 
 
