@@ -1029,7 +1029,7 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			
 			// Evasive ships will never ask for help from another government.
 			const Government* helperGov = helper->GetGovernment();
-			if(helperGov != gov)
+			if(helperGov != gov && ship.GetPersonality().IsEvasive())
 				continue;
 			
 			// If any able enemies of this ship are in its system, it cannot call for help.
@@ -1091,8 +1091,12 @@ bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel)
 		return false;
 	
 	// An enemy cannot provide assistance, and only ships of the same government will repair disabled ships.
-	if(helper.GetGovernment()->IsEnemy(ship.GetGovernment())
-			|| (ship.IsDisabled() && helper.GetGovernment() != ship.GetGovernment()))
+	// Evasive ships will also not assist ships of a different government.
+	const auto government = ship.GetGovernment();
+	const auto helperGov = helper.GetGovernment();
+	if(helperGov->IsEnemy(government)
+			|| (ship.IsDisabled() && helperGov != government)
+			|| (helper.GetPersonality().IsEvasive() && helper.GetGovernment() != government))
 		return false;
 	
 	// If the helper has insufficient fuel, it cannot help this ship unless this ship is also disabled.
@@ -1123,11 +1127,7 @@ bool AI::HasHelper(const Ship &ship, const bool needsFuel)
 
 // Pick a new target for the given ship.
 shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
-{
-	// If this ship is evasive, it will not fight.
-	if(ship.GetPersonality().IsEvasive())
-		return nullptr;
-	
+{	
 	// If this ship has no government, it has no enemies.
 	shared_ptr<Ship> target;
 	const Government *gov = ship.GetGovernment();
