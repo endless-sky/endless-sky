@@ -3134,7 +3134,7 @@ mission "Remnant: Keystone Research 1"
 					decline
 			label crystaldecision
 			`	"Great. They would like you to pick up another 19 keystones. Two differences this time: first, we would like you to pick them up from several different planets. And second, by the time you reach Hai space, we will have made arrangements so the shipments will be already paid for and waiting for you. Pick up the first stones on Greenwater, then the next set on Allhome. I will have a list sent to you by the time you reach Allhome."`
-			`	"That being said, if you happen to pick up any additional keystones, you can turn them into the logistics office. They will handle the distribution and compensate you accordingly."`
+			`	"That being said, if you happen to pick up any additional keystones, you can turn them in to the logistics office. They will handle the distribution and compensate you accordingly."`
 			choice
 				`	"Wait, how will you get this all set up?"`
 				`	"Sounds good."`
@@ -3600,7 +3600,7 @@ mission "Remnant: Cognizance 2"
 	on complete
 		event "korath hunting"
 		conversation
-			`When you return to <planet>, you find Plume waiting for you. He eagerly reviews the recording of the combat. "Thank you for eliminating this hunter-" he is interrupted by a flashing light on his commlink. He briefly reads something then looks back up to you. "Apparently something about the Korath hunting the void sprites has concerned the defense prefect. Chilia has requested that you meet with him on Caelian immediately."`
+			`When you return to <planet>, you find Plume waiting for you. He eagerly reviews the recording of the combat. "Thank you for eliminating this hunter--" he is interrupted by a flashing light on his commlink. He briefly reads something then looks back up to you. "Apparently something about the Korath hunting the void sprites has concerned the defense prefect. Chilia has requested that you meet with him on Caelian immediately."`
 
 
 
@@ -3690,6 +3690,7 @@ mission "Remnant: Cognizance 4"
 mission "Remnant: Bounty 3"
 	job
 	repeat
+	name "Damaged Dredger Bounty"
 	description "A damaged Korath ship is lurking in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
