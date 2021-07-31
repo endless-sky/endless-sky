@@ -156,9 +156,9 @@ jobs:
           ${{ matrix.os }}-ccache-
     - name: Compile tests
       if: steps.cache-tests.outputs.cache-hit != 'true'
-      run: scons -Qj $(nproc) build-tests
+      run: scons -Qj $(nproc) mode=debug build-tests
     - name: Run tests
-      run: scons -Qj $(nproc) test
+      run: scons -Qj $(nproc) mode=debug test
     - name: Run benchmarks
       run: ./tests/endless-sky-tests [!benchmark]
 
