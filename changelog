@@ -59,6 +59,8 @@ Version 0.9.14:
     * Fixed a rare crash that could happen when printing errors, if the error file could not be opened. (@tehhowch)
     * Updated the build process for Steam Linux to avoid statically linking in the C++ standard library. (@tehhowch)
     * Updated the Scons build process to remove the need for both ar and ranlib programs to be LTO-aware. (@tehhowch)
+    * Slightly reduced memory usage associated with in-memory game data while loading. (@tehhowch)
+    * Enabled C++ "move" semantics for several core data structures. (@tehhowch)
 
 Version 0.9.13:
   * Breaking changes:

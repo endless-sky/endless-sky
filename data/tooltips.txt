@@ -150,10 +150,10 @@ tip "heat protection:"
 	`Protection against weapons that do heat damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in heat damage, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "hull repair / max:"
-	`Hull repair rate (per second) and total hull strength. Small ships are disabled when their hull strength drops below 45%; larger ships are disabled at 15%.`
+	`Hull repair rate (per second) and total hull strength. The smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
 
 tip "hull:"
-	`Total hull strength. Small ships are disabled when their hull strength drops below 45%; larger ships are disabled at 15%.`
+	`Total hull strength. Ships with a higher hull strength are able to take more damage as a proportion of their total strength before being disabled; the smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
 
 tip "hull energy:"
 	`Energy consumed per second when repairing the hull.`
