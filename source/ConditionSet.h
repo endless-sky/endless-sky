@@ -29,7 +29,7 @@ class DataWriter;
 class ConditionSet {
 public:
 	using Conditions = std::map<std::string, int64_t>;
-	ConditionSet() noexcept = default;
+	ConditionSet() = default;
 	// Construct and Load() at the same time.
 	ConditionSet(const DataNode &node);
 	

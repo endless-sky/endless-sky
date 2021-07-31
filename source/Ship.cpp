@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 
 #include "Audio.h"
+#include "CategoryTypes.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Effect.h"
@@ -131,28 +132,6 @@ namespace {
 
 
 
-const vector<string> Ship::CATEGORIES = {
-	"Transport",
-	"Light Freighter",
-	"Heavy Freighter",
-	"Interceptor",
-	"Light Warship",
-	"Medium Warship",
-	"Heavy Warship",
-	"Fighter",
-	"Drone"
-};
-
-
-
-// Set of ship types that can be carried in bays.
-const set<string> Ship::BAY_TYPES = {
-	"Drone",
-	"Fighter"
-};
-
-
-
 // Construct and Load() at the same time.
 Ship::Ship(const DataNode &node)
 {
@@ -210,6 +189,8 @@ void Ship::Load(const DataNode &node)
 			noun = child.Token(1);
 		else if(key == "swizzle" && child.Size() >= 2)
 			customSwizzle = child.Value(1);
+		else if(key == "uuid" && child.Size() >= 2)
+			uuid = EsUuid::FromString(child.Token(1));
 		else if(key == "attributes" || add)
 		{
 			if(!add)
@@ -280,6 +261,7 @@ void Ship::Load(const DataNode &node)
 			}
 			Angle gunPortAngle = Angle(0.);
 			bool gunPortParallel = false;
+			bool drawUnder = (key == "gun");
 			if(child.HasChildren())
 			{
 				for(const DataNode &grand : child)
@@ -287,15 +269,19 @@ void Ship::Load(const DataNode &node)
 						gunPortAngle = grand.Value(1);
 					else if(grand.Token(0) == "parallel")
 						gunPortParallel = true;
+					else if(grand.Token(0) == "under")
+						drawUnder = true;
+					else if(grand.Token(0) == "over")
+						drawUnder = false;
 					else
 						child.PrintTrace("Warning: Child nodes of \"" + key + "\" tokens can only be \"angle\" or \"parallel\":");
 			}
 			if(outfit)
 				++equipped[outfit];
 			if(key == "gun")
-				armament.AddGunPort(hardpoint, gunPortAngle, gunPortParallel, outfit);
+				armament.AddGunPort(hardpoint, gunPortAngle, gunPortParallel, drawUnder, outfit);
 			else
-				armament.AddTurret(hardpoint, outfit);
+				armament.AddTurret(hardpoint, drawUnder, outfit);
 			// Print a warning for the first hardpoint after 32, i.e. only 1 warning per ship.
 			if(armament.Get().size() == 33)
 				child.PrintTrace("Warning: ship has more than 32 weapon hardpoints. Some weapons may not fire:");
@@ -317,11 +303,6 @@ void Ship::Load(const DataNode &node)
 			{
 				category = child.Token(1);
 				childOffset += 1;
-			}
-			if(!BAY_TYPES.count(category))
-			{
-				child.PrintTrace("Warning: Invalid category defined for bay:");
-				continue;
 			}
 			
 			if(!hasBays)
@@ -538,7 +519,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextGun != end && nextGun->IsTurret())
 						++nextGun;
 					const Outfit *outfit = (nextGun == end) ? nullptr : nextGun->GetOutfit();
-					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAngle(), bit->IsParallel(), outfit);
+					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAngle(), bit->IsParallel(), bit->IsUnder(), outfit);
 					if(nextGun != end)
 					{
 						if(outfit)
@@ -551,7 +532,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextTurret != end && !nextTurret->IsTurret())
 						++nextTurret;
 					const Outfit *outfit = (nextTurret == end) ? nullptr : nextTurret->GetOutfit();
-					merged.AddTurret(bit->GetPoint() * 2., outfit);
+					merged.AddTurret(bit->GetPoint() * 2., bit->IsUnder(), outfit);
 					if(nextTurret != end)
 					{
 						if(outfit)
@@ -691,16 +672,30 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(isNewInstance)
 		Recharge(true);
 	
-	// Add a default "launch effect" to any internal bays if this ship is crewed (i.e. pressurized).
-	for(Bay &bay : bays)
+	// Ensure that all defined bays are of a valid category. Remove and warn about any
+	// invalid bays. Add a default "launch effect" to any remaining internal bays if
+	// this ship is crewed (i.e. pressurized).
+	string warning;
+	const auto &bayCategories = GameData::Category(CategoryType::BAY);
+	for(auto it = bays.begin(); it != bays.end(); )
+	{
+		Bay &bay = *it;
+		if(find(bayCategories.begin(), bayCategories.end(), bay.category) == bayCategories.end())
+		{
+			warning += "Invalid bay category: " + bay.category + "\n";
+			it = bays.erase(it);
+			continue;
+		}
+		else
+			++it;
 		if(bay.side == Bay::INSIDE && bay.launchEffects.empty() && Crew())
 			bay.launchEffects.emplace_back(GameData::Effects().Get("basic launch"));
+	}
 	
-	canBeCarried = BAY_TYPES.count(attributes.Category()) > 0;
+	canBeCarried = find(bayCategories.begin(), bayCategories.end(), attributes.Category()) != bayCategories.end();
 	
 	// Issue warnings if this ship has is misconfigured, e.g. is missing required values
 	// or has negative outfit, cargo, weapon, or engine capacity.
-	string warning;
 	for(auto &&attr : set<string>{"outfit space", "cargo space", "weapon capacity", "engine capacity"})
 	{
 		double val = attributes.Get(attr);
@@ -787,6 +782,8 @@ void Ship::Save(DataWriter &out) const
 			out.Write("uncapturable");
 		if(customSwizzle >= 0)
 			out.Write("swizzle", customSwizzle);
+		
+		out.Write("uuid", uuid.ToString());
 		
 		out.Write("attributes");
 		out.BeginChild();
@@ -903,17 +900,18 @@ void Ship::Save(DataWriter &out) const
 			else
 				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y());
 			double hardpointAngle = hardpoint.GetBaseAngle().Degrees();
-			if(hardpoint.IsParallel() || hardpointAngle)
+			out.BeginChild();
 			{
-				out.BeginChild();
-				{
-					if(hardpointAngle)
-						out.Write("angle", hardpointAngle);
-					if(hardpoint.IsParallel())
-						out.Write("parallel");
-				}
-				out.EndChild();
+				if(hardpointAngle)
+					out.Write("angle", hardpointAngle);
+				if(hardpoint.IsParallel())
+					out.Write("parallel");
+				if(hardpoint.IsUnder())
+					out.Write("under");
+				else
+					out.Write("over");
 			}
+			out.EndChild();
 		}
 		for(const Bay &bay : bays)
 		{
@@ -970,6 +968,20 @@ void Ship::Save(DataWriter &out) const
 			out.Write("parked");
 	}
 	out.EndChild();
+}
+
+
+
+const EsUuid &Ship::UUID() const noexcept
+{
+	return uuid;
+}
+
+
+
+void Ship::SetUUID(const EsUuid &id)
+{
+	uuid.clone(id);
 }
 
 
@@ -1699,9 +1711,11 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	{
 		pilotError = 30;
 		if(parent.lock() || !isYours)
-			Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it.", false);
+			Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it."
+				, Messages::Importance::Low);
 		else
-			Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it.", false);
+			Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it."
+				, Messages::Importance::Low);
 	}
 	else
 		pilotOkay = 30;
@@ -1857,7 +1871,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					// boarding sequence (including locking on to the ship) but
 					// not to actually board, if they are cloaked.
 					if(isYours)
-						Messages::Add("You cannot board a ship while cloaked.");
+						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::High);
 				}
 				else
 				{
@@ -1866,7 +1880,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					if(isEnemy && Random::Real() < target->Attributes().Get("self destruct"))
 					{
 						Messages::Add("The " + target->ModelName() + " \"" + target->Name()
-							+ "\" has activated its self-destruct mechanism.");
+							+ "\" has activated its self-destruct mechanism.", Messages::Importance::High);
 						GetTargetShip()->SelfDestruct();
 					}
 					else
@@ -2277,22 +2291,24 @@ int Ship::Scan()
 	if(startedScanning && isYours)
 	{
 		if(!target->Name().empty())
-			Messages::Add("Attempting to scan the " + target->Noun() + " \"" + target->Name() + "\".", false);
+			Messages::Add("Attempting to scan the " + target->Noun() + " \"" + target->Name() + "\"."
+				, Messages::Importance::Low);
 		else
-			Messages::Add("Attempting to scan the selected " + target->Noun() + ".", false);
+			Messages::Add("Attempting to scan the selected " + target->Noun() + "."
+				, Messages::Importance::Low);
 	}
 	else if(startedScanning && target->isYours)
 		Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-			+ Name() + "\" is attempting to scan you.", false);
+			+ Name() + "\" is attempting to scan you.", Messages::Importance::Low);
 	
 	if(target->isYours && !isYours)
 	{
 		if(result & ShipEvent::SCAN_CARGO)
 			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-					+ Name() + "\" completed its scan of your cargo.");
+					+ Name() + "\" completed its scan of your cargo.", Messages::Importance::High);
 		if(result & ShipEvent::SCAN_OUTFITS)
 			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-					+ Name() + "\" completed its scan of your outfits.");
+					+ Name() + "\" completed its scan of your outfits.", Messages::Importance::High);
 	}
 	
 	return result;
@@ -3255,7 +3271,8 @@ bool Ship::CanCarry(const Ship &ship) const
 
 void Ship::AllowCarried(bool allowCarried)
 {
-	canBeCarried = allowCarried && BAY_TYPES.count(attributes.Category()) > 0;
+	const auto &bayCategories = GameData::Category(CategoryType::BAY);
+	canBeCarried = allowCarried && find(bayCategories.begin(), bayCategories.end(), attributes.Category()) != bayCategories.end();
 }
 
 
@@ -3699,7 +3716,8 @@ double Ship::MinimumHull() const
 		return absoluteThreshold;
 	
 	double thresholdPercent = attributes.Get("threshold percentage");
-	double minimumHull = maximumHull * (thresholdPercent > 0. ? min(thresholdPercent, 1.) : max(.15, min(.45, 10. / sqrt(maximumHull))));
+	double transition = 1 / (1 + 0.0005 * maximumHull);
+	double minimumHull = maximumHull * (thresholdPercent > 0. ? min(thresholdPercent, 1.) : 0.1 * (1. - transition) + 0.5 * transition);
 
 	return max(0., floor(minimumHull + attributes.Get("hull threshold")));
 }

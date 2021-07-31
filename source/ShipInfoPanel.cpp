@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipInfoPanel.h"
 
 #include "text/alignment.hpp"
+#include "CategoryTypes.h"
 #include "Command.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
@@ -337,7 +338,7 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 	table.DrawAt(start);
 	
 	// Draw the outfits in the same order used in the outfitter.
-	for(const string &category : Outfit::CATEGORIES)
+	for(const string &category : GameData::Category(CategoryType::OUTFIT))
 	{
 		auto it = outfits.find(category);
 		if(it == outfits.end())
@@ -707,7 +708,8 @@ void ShipInfoPanel::Dump()
 	
 	info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
 	if(loss)
-		Messages::Add("You jettisoned " + Format::Credits(loss) + " credits worth of cargo.");
+		Messages::Add("You jettisoned " + Format::Credits(loss) + " credits worth of cargo."
+			, Messages::Importance::High);
 }
 
 
@@ -723,7 +725,8 @@ void ShipInfoPanel::DumpPlunder(int count)
 		info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
 		
 		if(loss)
-			Messages::Add("You jettisoned " + Format::Credits(loss) + " credits worth of cargo.");
+			Messages::Add("You jettisoned " + Format::Credits(loss) + " credits worth of cargo."
+				, Messages::Importance::High);
 	}
 }
 
@@ -742,7 +745,8 @@ void ShipInfoPanel::DumpCommodities(int count)
 		info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
 		
 		if(loss)
-			Messages::Add("You jettisoned " + Format::Credits(loss) + " credits worth of cargo.");
+			Messages::Add("You jettisoned " + Format::Credits(loss) + " credits worth of cargo."
+				, Messages::Importance::High);
 	}
 }
 
