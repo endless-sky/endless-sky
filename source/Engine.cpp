@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Engine.h"
 
 #include "Audio.h"
+#include "CategoryTypes.h"
 #include "CoreStartData.h"
 #include "Effect.h"
 #include "Files.h"
@@ -164,7 +165,7 @@ namespace {
 		else
 			tag = ship->ModelName() + " (" + gov + "): ";
 		
-		Messages::Add(tag + message);
+		Messages::Add(tag + message, Messages::Importance::High);
 	}
 	
 	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints, const vector<pair<Body, int>> &flareSprites, uint8_t side)
@@ -364,7 +365,7 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 			if(ship->HasBays())
 			{
 				ship->UnloadBays();
-				for(const string &bayType : Ship::BAY_TYPES)
+				for(const string &bayType : GameData::Category(CategoryType::BAY))
 				{
 					int baysTotal = ship->BaysTotal(bayType);
 					if(baysTotal)
@@ -618,7 +619,7 @@ void Engine::Step(bool isActive)
 	}
 	
 	if(flagship && flagship->IsOverheated())
-		Messages::Add("Your ship has overheated.");
+		Messages::Add("Your ship has overheated.", Messages::Importance::Highest);
 	
 	// Clear the HUD information from the previous frame.
 	info = Information();
@@ -941,8 +942,21 @@ void Engine::Draw() const
 		if(messagePoint.Y() < messageBox.Top())
 			break;
 		float alpha = (it->step + 1000 - step) * .001f;
-		Color color(alpha, 0.f);
-		messageLine.Draw(messagePoint, color);
+		const Color *color = nullptr;
+		switch (it->importance) {
+			case Messages::Importance::Highest:
+				color = GameData::Colors().Find("message importance highest");
+				break;
+			case Messages::Importance::High:
+				color = GameData::Colors().Find("message importance high");
+				break;
+			case Messages::Importance::Low:
+				color = GameData::Colors().Find("message importance low");
+				break;
+		}
+		if(!color)
+			color = GameData::Colors().Get("message importance default");
+		messageLine.Draw(messagePoint, color->Additive(alpha));
 	}
 	
 	// Draw crosshairs around anything that is targeted.
@@ -1016,7 +1030,8 @@ void Engine::Draw() const
 		if(pos.Y() < ammoBox.Top() + ammoPad)
 			break;
 		
-		bool isSelected = it.first == player.SelectedWeapon();
+		const auto &playerSelectedWeapons = player.SelectedWeapons();
+		bool isSelected = (playerSelectedWeapons.find(it.first) != playerSelectedWeapons.end());
 		
 		SpriteShader::Draw(it.first->Icon(), pos + iconOff);
 		SpriteShader::Draw(isSelected ? selectedSprite : unselectedSprite, pos + boxOff);
@@ -1130,7 +1145,7 @@ void Engine::EnterSystem()
 	
 	Messages::Add("Entering the " + system->Name() + " system on "
 		+ today.ToString() + (system->IsInhabited(flagship) ?
-			"." : ". No inhabited planets detected."));
+			"." : ". No inhabited planets detected."), Messages::Importance::High);
 	
 	// Preload landscapes and determine if the player used a wormhole.
 	// (It is allowed for a wormhole's exit point to have no sprite.)
@@ -1217,7 +1232,7 @@ void Engine::EnterSystem()
 				{
 					raidFleet->Place(*system, newShips);
 					Messages::Add("Your fleet has attracted the interest of a "
-							+ raidGovernment->GetName() + " raiding party.");
+							+ raidGovernment->GetName() + " raiding party.", Messages::Importance::High);
 				}
 	}
 	
@@ -1235,8 +1250,8 @@ void Engine::EnterSystem()
 	// since the new player ships can make at most four jumps before landing.
 	if(today <= player.StartData().GetDate() + 4)
 	{
-		Messages::Add(GameData::HelpMessage("basics 1"));
-		Messages::Add(GameData::HelpMessage("basics 2"));
+		Messages::Add(GameData::HelpMessage("basics 1"), Messages::Importance::High);
+		Messages::Add(GameData::HelpMessage("basics 2"), Messages::Importance::High);
 	}
 }
 
@@ -1814,11 +1829,11 @@ void Engine::HandleMouseClicks()
 					{
 						if(!planet->CanLand(*flagship))
 							Messages::Add("The authorities on " + planet->Name()
-									+ " refuse to let you land.");
+									+ " refuse to let you land.", Messages::Importance::High);
 						else
 						{
 							activeCommands |= Command::LAND;
-							Messages::Add("Landing on " + planet->Name() + ".");
+							Messages::Add("Landing on " + planet->Name() + ".", Messages::Importance::High);
 						}
 					}
 					else
@@ -2104,7 +2119,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 		int free = collector->Cargo().Free();
 		message += " (" + to_string(free) + (free == 1 ? " ton" : " tons");
 		message += " of free space remaining.)";
-		Messages::Add(message);
+		Messages::Add(message, Messages::Importance::High);
 	}
 }
 
@@ -2241,8 +2256,8 @@ void Engine::AddSprites(const Ship &ship)
 	if(ship.IsSteering() && !ship.SteeringEnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.SteeringEnginePoints(), ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::UNDER);
 	
-	drawObject(ship);
-	for(const Hardpoint &hardpoint : ship.Weapons())
+	auto drawHardpoint = [&drawObject, &ship](const Hardpoint &hardpoint) -> void
+	{
 		if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
 		{
 			Body body(
@@ -2253,6 +2268,15 @@ void Engine::AddSprites(const Ship &ship)
 				ship.Zoom());
 			drawObject(body);
 		}
+	};
+	
+	for(const Hardpoint &hardpoint : ship.Weapons())
+		if(hardpoint.IsUnder())
+			drawHardpoint(hardpoint);
+	drawObject(ship);
+	for(const Hardpoint &hardpoint : ship.Weapons())
+		if(!hardpoint.IsUnder())
+			drawHardpoint(hardpoint);
 	
 	if(ship.IsThrusting() && !ship.EnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.EnginePoints(), ship.Attributes().FlareSprites(), Ship::EnginePoint::OVER);
