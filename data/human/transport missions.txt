@@ -3225,6 +3225,7 @@ mission "Spacediving professionals"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "station"
 		not attributes "research"
+		not attributes "moon"
 	to offer
 		random < 14
 	on visit
@@ -3248,6 +3249,7 @@ mission "Spacediving professionals accident"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "station"
 		not attributes "research"
+		not attributes "moon"
 	to offer
 		"Spacediving professionals: done" > 7
 		random < 2
@@ -3271,6 +3273,7 @@ mission "Spacediving professionals disaster"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "station"
 		not attributes "research"
+		not attributes "moon"
 	to offer
 		has "Spacediving professionals accident: done"
 		random < 1
@@ -3294,8 +3297,9 @@ mission "Spacediving amateurs"
 	destination
 		distance 1 7
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		not attributes station
-		not attributes research
+		not attributes "station"
+		not attributes "research"
+		not attributes "moon"
 	to offer
 		"Spacediving professionals: done" > 3
 		random < 5
