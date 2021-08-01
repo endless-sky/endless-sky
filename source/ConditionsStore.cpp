@@ -30,7 +30,7 @@ std::pair<std::string, int64_t> ConditionsStore::PrimariesIterator::operator*() 
 
 
 
-std::pair<std::string, int64_t>* ConditionsStore::PrimariesIterator::operator->()
+const std::pair<std::string, int64_t>* ConditionsStore::PrimariesIterator::operator->()
 {
 	return &itVal;
 }

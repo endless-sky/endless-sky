@@ -40,19 +40,20 @@ public:
 	//         by the given provider.
 	enum StorageType {VALUE, PREFIX_PROVIDER, EXACT_PROVIDER};
 
-	// Typedefs for DerivedProvider functions
-	typedef std::function<int64_t(const std::string&)> GetFun;
-	typedef std::function<bool(const std::string&)> HasFun;
-	typedef std::function<bool(const std::string&, int64_t)> SetFun;
-	typedef std::function<bool(const std::string&)> EraseFun;
-	
+	// Structure that describes the interface for DerivedProviders. When
+	// registering a new provider, then the (lambda)functions for accessing
+	// the conditions in the derived provider are communicated using this
+	// structure.
 	struct DerivedProvider {
-		GetFun getFun;
-		HasFun hasFun;
-		SetFun setFun;
-		EraseFun eraseFun;
+		std::function<int64_t(const std::string&)> getFun;
+		std::function<bool(const std::string&)> hasFun;
+		std::function<bool(const std::string&, int64_t)> setFun;
+		std::function<bool(const std::string&)> eraseFun;
 	};
 
+	
+private:
+	// Private class that describes the internal storage format of this conditions store.
 	class ConditionEntry
 	{
 	public:
@@ -62,6 +63,7 @@ public:
 	};
 	
 	
+public:
 	// Input_iterator helper class to iterate over primary conditions.
 	// This can be used when saving primary conditions to savegames and/or
 	// for displaying some data based on primary conditions.
@@ -79,12 +81,11 @@ public:
 		
 		// Default input_iterator operations.
 		std::pair<std::string, int64_t> operator*() const;
-		std::pair<std::string, int64_t>* operator->();
+		const std::pair<std::string, int64_t>* operator->();
 		PrimariesIterator& operator++();
 		PrimariesIterator operator++(int);
 		bool operator== (const PrimariesIterator& rhs) const;
 		bool operator!= (const PrimariesIterator& rhs) const;
-
 	
 	
 	private:
