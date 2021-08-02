@@ -520,6 +520,7 @@ mission "Ka'het: Patir Mystery 3"
 			apply
 				"explorationinterest" += 1
 			`	You carefully position your ship above the structure and activate the sensors. As the scan goes by, you continue checking the position of the Ka'sei fleet: you notice that some of the Fetri'sei nearest to you stopped their standard activities and are just standing by, perhaps observing your actions the same way you are looking at theirs. Luckily, in a couple minutes the sensors complete their analysis of the structure and you are ready to return to Aventine.`
+				accept
 	on complete
 		dialog
 			`Near the landing area, you discuss with Dusk what you have found next to the iridium storage. "That's fantastic! It's much more than I hoped to find with this expedition. Give me a few hours to analyze the data and meet me in the spaceport."`
