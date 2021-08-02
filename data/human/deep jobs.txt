@@ -590,7 +590,7 @@ mission "Deep Security Package Reveal"
 				`	"Do all the secure packages belong to Deep Security?"`
 			`	"Oh no, plenty of tech businesses and wealthy individuals use the same secure package shipping channels. We do monitor all of them though just to make sure our own channels don't get compromised by something ill-advised... or illegal." He shrugs.`
 			label blindacceptance
-			`	"Well, I looked at your record and it seems you've done quite a lot for the Deep and you're well-regarded. We like to keep a list of pilots that we can call on if we need something delivered with either urgency or discretion and it seems like you qualified. You passed the background check at any rate.`
+			`	"Well, I looked at your record and it seems you've done quite a lot for the Deep, and you're well-regarded. We like to keep a list of pilots that we can call on if we need something delivered with either urgency or discretion and it seems like you qualified. You passed the background check at any rate.`
 			`	"So at any rate, I'm authorized to give you a one time offer to join that list. Don't worry, I'm not asking anything of you right now."`
 			`	Belatedly he seems to do a double-check that no one is actively listening to the conversation as you walk. "So, you interested?"`
 			choice
@@ -815,7 +815,7 @@ phrase "stranded consultant dropoff payment"
 	word
 		`You find out only after that they left behind a soiled pair of boots.`
 		`Afterwards you find a tie left hanging on a door handle.`
-		`You kick crumpled documents that you find into the incinerator without looking at them.`
+		`You kick crumpled documents that you find after their trip into the incinerator without looking at them.`
 	word
 		` `
 	word
