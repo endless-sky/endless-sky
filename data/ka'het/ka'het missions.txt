@@ -649,7 +649,7 @@ mission "Ka'het: Patir Mystery 5"
 			`	Dusk is interrupted by the sound of Ravagers hitting your ship's shield. Like Dusk suspected, it must have been tracking your movements since you left the cupola. As you stand up to go to the weapon control deck, he tries to stops you. "You can't kill them <first>." When he sees that you don't understand, he starts explaining: "Do you remember the high pitched sound it emitted before shooting? He was trying to speak with us, Captain. Few words, maybe even pre-programmed for this kind of interaction, but still a complete phrase or more in pure Builder language. In decades of xenoarcheological research, this is the first time that it occurs. It's an incredible discovery, we possibly found the only thing still capable of speaking that language in the entire Graveyard. You can't destroy it, and disabling one is more a matter of luck than skill."`
 			choice
 				`	"What should I do then?"`
-			`	"Well, I can only suggest to depart from here and set a route straight back to Aventine, without firing at any of the Ka'sei. Sorry <first, but it's the only satisfying outcome from this situation." After all the risk you had to take, you can't help but nod if this means getting as far from here as possible.`
+			`	"Well, I can only suggest to depart from here and set a route straight back to Aventine, without firing at any of the Ka'sei. Sorry <first>, but it's the only satisfying outcome from this situation." After all the risk you had to take, you can't help but nod if this means getting as far from here as possible.`
 				launch
 	on enter "Patir"
 		dialog
