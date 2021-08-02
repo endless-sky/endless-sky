@@ -18434,6 +18434,55 @@ system Parca
 			distance 545
 			period 35.9174
 
+system Patir
+	hidden
+	pos -38 553
+	arrival 100
+	government Uninhabited
+	attributes "ember waste" "graveyard"
+	haze _menu/haze-red
+	habitable 1486.68
+	asteroids "large metal" 5 2
+	asteroids "large rock" 4 3
+	asteroids "medium rock" 7 4
+	asteroids "small rock" 21 2
+	minables lead 151 15
+	minables iron 83 6
+	minables titanium 74 10
+	minables aluminum 68 13
+	minables copper 39 8
+	trade Clothing 294
+	trade Electronics 821
+	trade Equipment 651
+	trade Food 519
+	trade "Heavy Metals" 782
+	trade Industrial 612
+	trade "Luxury Goods" 1251
+	trade Medical 759
+	trade Metal 354
+	trade Plastic 426
+	fleet "Ka'sei" 300
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
+	object
+		sprite "star/nova"
+		period 1
+	object
+		sprite "star/neutron-core"
+		period 1
+	object "Builder Settlement"
+		sprite "planet/asteroid base"
+		distance 1496.85
+		period 1756.04
+	object
+		sprite planet/gas2-b
+		distance 2866.29
+		period 2087.09
+		object
+			sprite planet/rock17-b
+			distance 203
+			period 17.525
+
 system Peacock
 	pos -307 350
 	government Republic
@@ -29014,6 +29063,11 @@ planet Shiver
 	tribute 300
 		threshold 2000
 		fleet "Small Republic" 10
+
+planet "Builder Settlement"
+	attributes ka'het uninhabited "requires: ka'sei"
+	landscape land/asteroid0
+	description `This asteroid has seen hundreds of thousands of years of excavation made by swarms of Ka'sei. Although its size rivals that of a small moon, a large section has been hollowed out by the Builders to be filled with iridium, presumably as a form of long term storage. Due to its very low gravity the asteroid is permanently covered in clouds of dust, orbiting it only a few meters above the surface.`
 
 planet Shorebreak
 	attributes rim research medical
