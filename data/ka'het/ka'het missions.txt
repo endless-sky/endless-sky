@@ -414,7 +414,7 @@ mission "Ka'het: Patir Mystery 1"
 				`	"Why aren’t they in other systems?"`
 					goto jumpdrive
 			label kahet
-			`	"Taely walks towards the console again. On the screen a tactical view of the Fetri'sei appears. "Well, consider that the Ka'het are true battleships, heavily shielded and always with their weapons ready. These are more akin to reconnaissance and mining probes. Their structure is extremely weak, and they don't have any weapons except the guns necessary to mine asteroids. I imagine it would take decades even for just a Maeri'het to replicate itself.`
+			`	Taely walks towards the console again. On the screen a tactical view of the Fetri'sei appears. "Well, consider that the Ka'het are true battleships, heavily shielded and always with their weapons ready. These are more akin to reconnaissance and mining probes. Their structure is extremely weak, and they don't have any weapons except the guns necessary to mine asteroids. I imagine it would take decades even for just a Maeri'het to replicate itself.`
 			`	"There's also the tactical problem: forcing a Ka'het to spend such a long time building copies of itself makes them vulnerable to enemy attacks and unable to effectively fight back, making them ill suited for the job."`
 			choice
 				`	"If they can duplicate themselves why aren't there more Ka'sei here?"`
@@ -535,7 +535,7 @@ mission "Ka'het: Patir Mystery 4"
 		has "Ka'het: Patir Mystery 3: done"
 	on offer
 		conversation
-			`You meet Dusk again in the cafeteria. He has brought a touchpad with him this time as well. "Thank you again for your help, <first>. There is a lot we can learn about the Builders with this discovery." He shows you a black and white image image of a building inside a large semi-sphere. The complex appears to be made of interconnected cylinders, presumably habitation modules.`
+			`You meet Dusk again in the cafeteria. He has brought a touchpad with him this time as well. "Thank you again for your help, <first>. There is a lot we can learn about the Builders with this discovery." He shows you a black and white image of a building inside a large semi-sphere. The complex appears to be made of interconnected cylinders, presumably habitation modules.`
 			choice
 				`	"What is that?"`
 			`	"Oh, it is the scan you made of the Builder structure. Here, look: the external cupola is completely pressurized, which could give us insights about the biology of the Builders. The composition of the atmosphere on their planets is likely to have changed in after so much time, and every manned station the Ka'het could reach was long destroyed. This is the first time we have the possibility to study the gases they could breath without having the results compromised by millennia of biological activity. Inside the cupola there's also a large intact complex, which could give us more answers about all of this.`
