@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShopPanel.h"
 
 #include "text/alignment.hpp"
+#include "CategoryTypes.h"
 #include "Color.h"
 #include "text/DisplayText.h"
 #include "FillShader.h"
@@ -61,7 +62,7 @@ namespace {
 ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	: player(player), day(player.GetDate().DaysSinceEpoch()),
 	planet(player.GetPlanet()), playerShip(player.Flagship()),
-	categories(isOutfitter ? Outfit::CATEGORIES : Ship::CATEGORIES),
+	categories(GameData::Category(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
 {
 	if(playerShip)
@@ -1060,7 +1061,7 @@ void ShopPanel::MainLeft()
 	if(it == zones.end())
 	{
 		--it;
-		mainScroll += it->Center().Y() - start->Center().Y();
+		mainScroll = maxMainScroll;
 		selectedShip = it->GetShip();
 		selectedOutfit = it->GetOutfit();
 		return;
@@ -1096,6 +1097,7 @@ void ShopPanel::MainRight()
 	// Special case: nothing is selected. Select the first item.
 	if(it == zones.end())
 	{
+		// Already at mainScroll = 0, no scrolling needed.
 		selectedShip = start->GetShip();
 		selectedOutfit = start->GetOutfit();
 		return;
@@ -1113,6 +1115,8 @@ void ShopPanel::MainRight()
 	{
 		if(it->Center().Y() != previousY)
 			mainScroll += it->Center().Y() - previousY - mainDetailHeight;
+		if(mainScroll > maxMainScroll)
+			mainScroll = maxMainScroll;
 		selectedShip = it->GetShip();
 		selectedOutfit = it->GetOutfit();
 	}
@@ -1131,7 +1135,7 @@ void ShopPanel::MainUp()
 	if(it == zones.end())
 	{
 		--it;
-		mainScroll = max(0., mainScroll + it->Center().Y() - start->Center().Y());
+		mainScroll = maxMainScroll;
 		selectedShip = it->GetShip();
 		selectedOutfit = it->GetOutfit();
 		return;
@@ -1172,6 +1176,7 @@ void ShopPanel::MainDown()
 	// Special case: nothing is selected. Select the first item.
 	if(it == zones.end())
 	{
+		// Already at mainScroll = 0, no scrolling needed.
 		selectedShip = start->GetShip();
 		selectedOutfit = start->GetOutfit();
 		return;

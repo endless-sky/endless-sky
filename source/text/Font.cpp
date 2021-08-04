@@ -261,7 +261,7 @@ void Font::LoadTexture(ImageBuffer &image)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, image.Width(), image.Height(), 0,
-		GL_BGRA, GL_UNSIGNED_BYTE, image.Pixels());
+		GL_RGBA, GL_UNSIGNED_BYTE, image.Pixels());
 }
 
 

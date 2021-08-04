@@ -137,6 +137,8 @@ void Mission::Load(const DataNode &node)
 	{
 		if(child.Token(0) == "name" && child.Size() >= 2)
 			displayName = child.Token(1);
+		else if(child.Token(0) == "uuid" && child.Size() >= 2)
+			uuid = EsUuid::FromString(child.Token(1));
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 			description = child.Token(1);
 		else if(child.Token(0) == "blocked" && child.Size() >= 2)
@@ -306,6 +308,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 	out.BeginChild();
 	{
 		out.Write("name", displayName);
+		out.Write("uuid", uuid.ToString());
 		if(!description.empty())
 			out.Write("description", description);
 		if(!blocked.empty())
@@ -408,6 +411,13 @@ void Mission::Save(DataWriter &out, const string &tag) const
 
 
 // Basic mission information.
+const EsUuid &Mission::UUID() const noexcept
+{
+	return uuid;
+}
+
+
+
 const string &Mission::Name() const
 {
 	return displayName;
@@ -950,8 +960,14 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	// If this trigger has actions tied to it, perform them. Otherwise, check
 	// if this is a non-job mission that just got offered and if so,
 	// automatically accept it.
+	// Actions that are performed only receive the mission destination
+	// system if the mission is visible. This is because the purpose of
+	// a MissionAction being given the destination system is for drawing
+	// a special marker at the destination if the map is opened during any
+	// mission dialog or conversation. Invisible missions don't show this
+	// marker.
 	if(it != actions.end())
-		it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr, boardingShip, IsUnique());
+		it->second.Do(player, ui, (destination && isVisible) ? destination->GetSystem() : nullptr, boardingShip, IsUnique());
 	else if(trigger == OFFER && location != JOB)
 		player.MissionCallback(Conversation::ACCEPT);
 	
@@ -1023,7 +1039,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		{
 			hasFailed = true;
 			if(isVisible)
-				Messages::Add(message + "Mission failed: \"" + displayName + "\".");
+				Messages::Add(message + "Mission failed: \"" + displayName + "\".", Messages::Importance::Highest);
 		}
 	}
 	

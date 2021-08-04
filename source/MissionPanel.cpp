@@ -233,13 +233,13 @@ void MissionPanel::Draw()
 		Screen::TopLeft() + Point(0., -availableScroll),
 		"Missions available here:",
 		available.size());
-	DrawList(available, pos);
+	DrawList(available, pos, availableIt);
 	
 	pos = DrawPanel(
 		Screen::TopRight() + Point(-SIDE_WIDTH, -acceptedScroll),
 		"Your current missions:",
 		AcceptedVisible());
-	DrawList(accepted, pos);
+	DrawList(accepted, pos, acceptedIt);
 	
 	// Now that the mission lists and map elements are drawn, draw the top-most UI elements.
 	DrawKey();
@@ -663,7 +663,8 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries) const
 
 
 
-Point MissionPanel::DrawList(const list<Mission> &list, Point pos) const
+Point MissionPanel::DrawList(const list<Mission> &list, Point pos,
+	const std::list<Mission>::const_iterator &selectIt) const
 {
 	const Font &font = FontSet::Get(14);
 	const Color &highlight = *GameData::Colors().Get("faint");
@@ -678,7 +679,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos) const
 		
 		pos.Y() += 20.;
 		
-		bool isSelected = (it == availableIt || it == acceptedIt);
+		bool isSelected = it == selectIt;
 		if(isSelected)
 			FillShader::Fill(
 				pos + Point(.5 * SIDE_WIDTH - 5., 8.),

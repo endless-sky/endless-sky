@@ -16,6 +16,7 @@ Version 0.9.14:
       * Firing ionization/disruption/slowing on weapons no longer allows status effects to drop below zero, which could potentially cause a crash. (@Ferociousfeind)
       * Ships can no longer have a drag of 0, which could have caused divide-by-zero errors. (@tehhowch)
       * Active cooling now requires the ship to have positive energy. (@10010101001)
+      * The acceleration and turn values displayed in the ship info panel while in flight are now accurate to their actual values, no longer counting cargo as twice as heavy as it is. (@Amazinite)
   * Game content:
     * New content:
       * The Heliarch Interdictor now has a Scrappy variant like other Heliarch ships. (@Arachi-Lover)
@@ -47,6 +48,7 @@ Version 0.9.14:
   * User interface:
     * The "interrupt fast-forward" setting now defaults to off instead of on. (@Terin)
     * Fixed a misaligned UI element in the map panel. (@Terin)
+    * Messages about low crew ships are no longer considered "important," meaning they will no longer be pushed to the bottom of the message list every time they trigger and drown out other messages. (@ravenshining)
   * Under the hood:
     * Combined checking if a stellar object has a planet and if that planet is valid into a single method. (@tehhowch)
     * Having multiple missing frames for a sprite are now logged to the error file on a single line instead of generating a new line for each missing frame. (@ashdnazg, @tehhowch)
@@ -54,6 +56,11 @@ Version 0.9.14:
     * The heat and energy table values for ship info have been broken out into their own variables for easier handling. (@jostephd)
     * Missions that fail to instantiate will now report to the error file why they failed. (@tehhowch)
     * Missions that mix the "minor" or "priority" tags with the "landing" tag will now produce a warning to the error file, as "landing" takes precedence over the former two tags. (@Amazinite)
+    * Fixed a rare crash that could happen when printing errors, if the error file could not be opened. (@tehhowch)
+    * Updated the build process for Steam Linux to avoid statically linking in the C++ standard library. (@tehhowch)
+    * Updated the Scons build process to remove the need for both ar and ranlib programs to be LTO-aware. (@tehhowch)
+    * Slightly reduced memory usage associated with in-memory game data while loading. (@tehhowch)
+    * Enabled C++ "move" semantics for several core data structures. (@tehhowch)
 
 Version 0.9.13:
   * Breaking changes:
