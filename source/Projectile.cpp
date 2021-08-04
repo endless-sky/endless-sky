@@ -61,8 +61,8 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 
 
 
-Projectile::Projectile(const Projectile &parent, const Weapon *weapon)
-	: Body(weapon->WeaponSprite(), parent.position + parent.velocity, parent.velocity, parent.angle),
+Projectile::Projectile(const Projectile &parent, Point offset, Angle angle, const Weapon *weapon)
+	: Body(weapon->WeaponSprite(), parent.position + parent.velocity + offset, parent.velocity, parent.angle + angle),
 	weapon(weapon), targetShip(parent.targetShip), lifetime(weapon->Lifetime())
 {
 	government = parent.government;
@@ -112,8 +112,8 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 					visuals.emplace_back(*it.first, position, velocity, angle);
 			
 			for(const auto &it : weapon->Submunitions())
-				for(int i = 0; i < it.second; ++i)
-					projectiles.emplace_back(*this, it.first);
+				for(int i = 0; i < it.count; ++i)
+					projectiles.emplace_back(*this, it.offset, it.facing, it.outfit);
 		}
 		MarkForRemoval();
 		return;

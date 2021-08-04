@@ -37,7 +37,7 @@ class Weapon;
 class Projectile : public Body {
 public:
 	Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon);
-	Projectile(const Projectile &parent, const Weapon *weapon);
+	Projectile(const Projectile &parent, Point offset, Angle angle, const Weapon *weapon);
 	// Ship explosion.
 	Projectile(Point position, const Weapon *weapon);
 	
