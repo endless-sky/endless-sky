@@ -31,6 +31,9 @@ using namespace std;
 namespace {
 	bool showUnderlines = false;
 	const int TOTAL_TAB_STOPS = 8;
+	const uint32_t ENDIAN_DETECTOR = 1;
+	const bool isLittleEndian = *reinterpret_cast<const unsigned char*>(&ENDIAN_DETECTOR) == 1;
+	
 	
 	// Convert PANGO size to pixel's.
 	int PixelFromPangoCeil(int pangoSize)
@@ -156,6 +159,43 @@ namespace {
 	unique_ptr<T, D> MakeUniq(T* ptr, D deleter)
 	{
 		return unique_ptr<T, D>(ptr, deleter);
+	}
+	
+	
+	// Copy a 2D region in a cairo surface to ImageBuffer and then clear the cairo surface.
+	// 'dest' and 'src' point to the top-left corner.
+	// The pixel format in the cairo surface is ARGB as a value of uint32_t;
+	// the format on the memory depends on the endianness.
+	void MoveCairoSurfaceToImageBufferForLittleEndian(uint32_t *dest, uint32_t *src,
+		int height, int width, int stride)
+	{
+		for(int y = 0; y < height; ++y)
+		{
+			for(int x = 0; x < width; ++x)
+			{
+				*dest = ((*src >> 16) & 0xFF) | (*src & 0xFF00FF00U) | ((*src << 16) & 0xFF0000);
+				*src = 0;
+				++dest;
+				++src;
+			}
+			src += stride;
+		}
+	}
+	
+	void MoveCairoSurfaceToImageBufferForBigEndian(uint32_t *dest, uint32_t *src,
+		int height, int width, int stride)
+	{
+		for(int y = 0; y < height; ++y)
+		{
+			for(int x = 0; x < width; ++x)
+			{
+				*dest = ((*src << 8) & 0xFFFFFF00U) | ((*src >> 24) & 0xFF);
+				*src = 0;
+				++dest;
+				++src;
+			}
+			src += stride;
+		}
 	}
 }
 
@@ -602,17 +642,10 @@ const Font::RenderedText &Font::Render(const DisplayText &text) const
 	uint32_t *src = reinterpret_cast<uint32_t*>(cairo_image_surface_get_data(sf));
 	uint32_t *dest = image.Pixels();
 	const int stride = surfaceWidth - textWidth;
-	for(int y = 0; y < textHeight; ++y)
-	{
-		for(int x = 0; x < textWidth; ++x)
-		{
-			*dest = *src;
-			*src = 0;
-			++dest;
-			++src;
-		}
-		src += stride;
-	}
+	if(isLittleEndian)
+		MoveCairoSurfaceToImageBufferForLittleEndian(dest, src, textHeight, textWidth, stride);
+	else
+		MoveCairoSurfaceToImageBufferForBigEndian(dest, src, textHeight, textWidth, stride);
 	cairo_surface_mark_dirty(sf);
 	
 	// Try to reuse an old texture.
