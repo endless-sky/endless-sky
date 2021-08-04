@@ -643,7 +643,7 @@ const Font::RenderedText &Font::Render(const DisplayText &text) const
 	// Upload the image data.
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, // target, mipmap level, internal format,
 		textWidth, textHeight, 0, // width, height, border,
-		GL_BGRA, GL_UNSIGNED_BYTE, image.Pixels()); // input format, data type, data.
+		GL_RGBA, GL_UNSIGNED_BYTE, image.Pixels()); // input format, data type, data.
 	
 	// Unbind the texture.
 	glBindTexture(GL_TEXTURE_2D, 0);
