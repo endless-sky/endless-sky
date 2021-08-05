@@ -75,6 +75,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-20.04, ubuntu-18.04]
+        opengl: [desktop, gles]
     env:
         CCACHE_DIR: ./ccache/
         CXX: ccache g++
@@ -87,13 +88,13 @@ jobs:
       with:
         path: ${{ env.ARTIFACT }}
         # Rebuild the game binary if source code changed, or if instructions on building the game changed.
-        key: ${{ matrix.os }}-artifact-${{ hashFiles('source/**') }}-${{ hashFiles('SConstruct', '.github/workflows/ci.yml') }}
+        key: ${{ matrix.os }}-${{ matrix.opengl }}-artifact-${{ hashFiles('source/**') }}-${{ hashFiles('SConstruct', '.github/workflows/ci.yml') }}
     - name: Install development dependencies
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev uuid-dev scons ccache
+        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev uuid-dev scons ccache libgles2-mesa
     - name: Print toolchain versions
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: |
@@ -105,18 +106,18 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ${{ env.CCACHE_DIR }}
-        key: ${{ matrix.os }}-ccache-${{ github.repository }}-${{ github.ref }}-${{ github.sha }}
+        key: ${{ matrix.os }}-${{ matrix.opengl }}-ccache-${{ github.repository }}-${{ github.ref }}-${{ github.sha }}
         restore-keys: |
-          ${{ matrix.os }}-ccache-${{ github.repository }}-${{ github.ref }}-
-          ${{ matrix.os }}-ccache-${{ github.repository }}-
-          ${{ matrix.os }}-ccache-
+          ${{ matrix.os }}-${{ matrix.opengl }}-ccache-${{ github.repository }}-${{ github.ref }}-
+          ${{ matrix.os }}-${{ matrix.opengl }}-ccache-${{ github.repository }}-
+          ${{ matrix.os }}-${{ matrix.opengl }}-ccache-
     - name: Compile
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: scons -Qj $(nproc);
+      run: scons -Qj $(nproc) opengl=${{ matrix.opengl }};
     - name: Upload game binary
       uses: actions/upload-artifact@v2
       with:
-        name: binary-${{ matrix.os }}
+        name: binary-${{ matrix.os }}-${{ matrix.opengl }}
         path: ${{ env.ARTIFACT }}
 
   test_ubuntu-unit:
@@ -143,7 +144,7 @@ jobs:
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev uuid-dev scons ccache
+        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev uuid-dev scons ccache libgles2-mesa
     - name: Cache ccache results
       if: steps.cache-tests.outputs.cache-hit != 'true'
       uses: actions/cache@v2
@@ -326,9 +327,17 @@ jobs:
       matrix:
         include:
           - os: ubuntu-20.04
+            opengl: desktop
             glew: libglew2.1
           # - os: ubuntu-18.04
+          #   opengl: desktop
           #   glew: libglew2.0
+          - os: ubuntu-20.04
+            opengl: gles
+            glew: libgles2-mesa
+          # - os: ubuntu-18.04
+          #   opengl: gles
+          #   glew: libgles2-mesa
     steps:
     - uses: actions/checkout@v2
     - name: Install runtime dependencies
@@ -341,7 +350,7 @@ jobs:
     - name: Download artifact
       uses: actions/download-artifact@v1.0.0
       with:
-        name: binary-${{ matrix.os }}
+        name: binary-${{ matrix.os }}-${{ matrix.opengl }}
         path: .
     - name: Verify Executable
       run: chmod +x endless-sky && ./endless-sky -v
@@ -357,6 +366,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        opengl: [desktop]
         include:
           - os: ubuntu-20.04
             glew: libglew2.1
@@ -372,7 +382,7 @@ jobs:
     - name: Download game binary
       uses: actions/download-artifact@v2
       with:
-        name: binary-${{ matrix.os }}
+        name: binary-${{ matrix.os }}-${{ matrix.opengl }}
     - name: Verify Executable
       run: chmod +x endless-sky && ./endless-sky -v
     - name: Parse Datafiles
@@ -456,6 +466,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        opengl: [desktop]
         include:
           - os: ubuntu-20.04
             glew: libglew2.1
@@ -469,7 +480,7 @@ jobs:
     - name: Download game binary
       uses: actions/download-artifact@v2
       with:
-        name: binary-${{ matrix.os }}
+        name: binary-${{ matrix.os }}-${{ matrix.opengl }}
     - name: Verify Executable
       run: chmod +x endless-sky && ./endless-sky -v
     - name: Check for load-time memory leaks
