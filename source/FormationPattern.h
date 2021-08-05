@@ -55,7 +55,7 @@ protected:
 		Point position[4];
 		
 		// Add a point to one of the internal tracked points.
-		void Add(Axis axis, const Point& toAdd);
+		void Add(Axis axis, const Point &toAdd);
 		
 		// Parse position from node and add the values to this slot-pos.
 		void AddLoad(const DataNode &node);
