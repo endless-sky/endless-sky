@@ -42,10 +42,10 @@ public:
 	
 	virtual void Step() override;
 	
-
+	
 protected:
 	virtual int TileSize() const override;
-	virtual int KeySize() const override;
+	virtual int VisiblityCheckboxesSize() const override;
 	virtual int DrawPlayerShipInfo(const Point &point) override;
 	virtual bool HasItem(const std::string &name) const override;
 	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) override;
@@ -63,10 +63,10 @@ protected:
 	virtual void ToggleForSale() override;
 	virtual void ToggleStorage() override;
 	virtual void ToggleCargo() override;
-
+	
 protected:
-	static const int KEY_SIZE = 60;
-
+	static const int VISIBILITY_CHECKBOXES_SIZE = 60;
+	
 private:
 	static bool ShipCanBuy(const Ship *ship, const Outfit *outfit);
 	static bool ShipCanSell(const Ship *ship, const Outfit *outfit);
@@ -90,9 +90,9 @@ private:
 	bool showStorage = true;
 	// Allow toggling whether outfits in cargo are shown.
 	bool showCargo = true;
-
+	
 	Sale<Outfit> outfitter;
-
+	
 	// Keep track of how many of the outfitter help screens have been shown
 	bool checkedHelp = false;
 };

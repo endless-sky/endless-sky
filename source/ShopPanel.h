@@ -48,10 +48,10 @@ protected:
 	void DrawMain();
 	
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
-
+	
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
-	virtual int KeySize() const;
+	virtual int VisiblityCheckboxesSize() const;
 	virtual int DrawPlayerShipInfo(const Point &point) = 0;
 	virtual bool HasItem(const std::string &name) const = 0;
 	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) = 0;
@@ -71,7 +71,7 @@ protected:
 	virtual void ToggleForSale();
 	virtual void ToggleStorage();
 	virtual void ToggleCargo();
-
+	
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;

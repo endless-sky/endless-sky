@@ -94,9 +94,9 @@ int OutfitterPanel::TileSize() const
 
 
 
-int OutfitterPanel::KeySize() const
+int OutfitterPanel::VisiblityCheckboxesSize() const
 {
-	return KEY_SIZE;
+	return VISIBILITY_CHECKBOXES_SIZE;
 }
 
 
@@ -116,13 +116,13 @@ bool OutfitterPanel::HasItem(const string &name) const
 	const Outfit *outfit = GameData::Outfits().Get(name);
 	if((outfitter.Has(outfit) || player.Stock(outfit) > 0) && showForSale)
 		return true;
-
+	
 	if(player.Cargo().Get(outfit) && showCargo)
 		return true;
-
+	
 	if(player.Storage() && player.Storage()->Get(outfit) && showStorage)
 		return true;
-
+	
 	for(const Ship *ship : playerShips)
 		if(ship->OutfitCount(outfit))
 			return true;
@@ -774,9 +774,7 @@ void OutfitterPanel::DrawKey()
 	Color color[2] = {*GameData::Colors().Get("medium"), *GameData::Colors().Get("bright")};
 	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
 
-	// KEY_SIZE should match the combined height of the zones.
-
-	Point pos = Screen::BottomLeft() + Point(10., -50.);
+	Point pos = Screen::BottomLeft() + Point(10., -VISIBILITY_CHECKBOXES_SIZE + 10.);
 	Point off = Point(10., -.5 * font.Height());
 	SpriteShader::Draw(box[showForSale], pos);
 	font.Draw("Show outfits for sale", pos + off, color[showForSale]);
@@ -831,7 +829,7 @@ void OutfitterPanel::ToggleCargo()
 	{
 		selectedOutfit = nullptr;
 	}
-
+	
 	ShopPanel::ToggleCargo();
 }
 
