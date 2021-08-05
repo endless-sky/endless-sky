@@ -12,7 +12,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "FormationPattern.h"
 
-#include <iostream>
 #include <cmath>
 
 using namespace std;
