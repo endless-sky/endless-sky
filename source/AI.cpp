@@ -336,9 +336,9 @@ void AI::IssueFormationChange(const PlayerInfo &player)
 	if(ships.empty())
 	{
 		if(fullFleet)
-			Messages::Add("No ships in the fleet to change formation for.");
+			Messages::Add("No ships in the fleet to change formation for.", Messages::Importance::High);
 		else
-			Messages::Add("No ships selected that can change formation.");
+			Messages::Add("No ships selected that can change formation.", Messages::Importance::High);
 		
 		return;
 	}
@@ -397,9 +397,9 @@ void AI::IssueFormationChange(const PlayerInfo &player)
 		}
 	
 	if(toSet)
-		Messages::Add(to_string(changed) + " ships are now flying in " + toSet->Name() + " formation.");
+		Messages::Add(to_string(changed) + " ships are now flying in " + toSet->Name() + " formation.", Messages::Importance::High);
 	else
-		Messages::Add(to_string(changed) + " ships are no longer flying in formation.");
+		Messages::Add(to_string(changed) + " ships are no longer flying in formation.", Messages::Importance::High);
 }
 
 
@@ -429,9 +429,9 @@ void AI::IssueFormationRingDecrease(const PlayerInfo &player)
 	if(ships.empty())
 	{
 		if(fullFleet)
-			Messages::Add("No ships in the fleet to change formation for.");
+			Messages::Add("No ships in the fleet to change formation for.", Messages::Importance::High);
 		else
-			Messages::Add("No ships selected that can change formation.");
+			Messages::Add("No ships selected that can change formation.", Messages::Importance::High);
 		
 		return;
 	}
@@ -444,7 +444,7 @@ void AI::IssueFormationRingDecrease(const PlayerInfo &player)
 		changed++;
 	}
 	
-	Messages::Add(to_string(changed) + " ships are now flying in formation ring 0.");
+	Messages::Add(to_string(changed) + " ships are now flying in formation ring 0.", Messages::Importance::High);
 }
 
 
@@ -474,9 +474,9 @@ void AI::IssueFormationRingIncrease(const PlayerInfo &player)
 	if(ships.empty())
 	{
 		if(fullFleet)
-			Messages::Add("No ships in the fleet to change formation for.");
+			Messages::Add("No ships in the fleet to change formation for.", Messages::Importance::Highest);
 		else
-			Messages::Add("No ships selected that can change formation.");
+			Messages::Add("No ships selected that can change formation.", Messages::Importance::Highest);
 		
 		return;
 	}
@@ -499,7 +499,7 @@ void AI::IssueFormationRingIncrease(const PlayerInfo &player)
 		changed++;
 	}
 	
-	Messages::Add(to_string(changed) + " ships are now flying in ring " + to_string(maxRing) + " of their formation.");
+	Messages::Add(to_string(changed) + " ships are now flying in ring " + to_string(maxRing) + " of their formation.", Messages::Importance::Highest);
 }
 
 
