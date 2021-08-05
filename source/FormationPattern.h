@@ -51,17 +51,23 @@ protected:
 	public:
 		// Coordinate axises for formations; Pixels (default) and heights, widths and diameters of the biggest ship in a formation.
 		enum Axis { PIXELS, DIAMETERS, WIDTHS, HEIGHTS };
-		// Position based on the 4 possible axises.
-		Point position[4];
 		
-		// Add a point to one of the internal tracked points.
+		// Add position information to one of the internal tracked points.
 		void Add(Axis axis, const Point &toAdd);
 		
-		// Parse position from node and add the values to this slot-pos.
+		// Parse a position input from a data-node and add the values to this MultiAxisPoint.
+		// This function is typically called when getting the first or last position on a
+		// line or when getting an anchor for an arc.
 		void AddLoad(const DataNode &node);
 		
-		// Get a point in pixel coordinates based on the conversion factors given.
+		// Get a point in pixel coordinates based on the conversion factors given for
+		// the diameters, widths and heights.
 		Point GetPx(double diameterToPx, double widthToPx, double heightToPx) const;
+	
+	
+	private:
+		// Position based on the possible axises.
+		Point position[4];
 	};
 	
 	class LineRepeat {
