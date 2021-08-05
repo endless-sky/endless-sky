@@ -115,6 +115,8 @@ namespace {
 	Set<News> news;
 	map<string, vector<string>> ratings;
 	
+	map<CategoryType, vector<string>> categories;
+	
 	StarField background;
 	
 	map<string, string> tooltips;
@@ -135,7 +137,7 @@ namespace {
 	// Log a warning for an "undefined" class object that was never loaded from disk.
 	void Warn(const string &noun, const string &name)
 	{
-		Files::LogError("Warning: " + noun + " \"" + name + "\" is referred to, but never defined.");
+		Files::LogError("Warning: " + noun + " \"" + name + "\" is referred to, but not fully defined.");
 	}
 	// Class objects with a deferred definition should still get named when content is loaded.
 	template <class Type>
@@ -225,14 +227,15 @@ bool GameData::BeginLoad(const char * const *argv)
 	// neighbor distances to be updated.
 	AddJumpRange(System::DEFAULT_NEIGHBOR_DISTANCE);
 	UpdateSystems();
+	
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &&it : ships)
 		it.second.FinishLoading(true);
 	for(auto &&it : persons)
 		it.second.FinishLoading();
+	
 	for(auto &&it : startConditions)
 		it.FinishLoading();
-	
 	// Remove any invalid starting conditions, so the game does not use incomplete data.
 	startConditions.erase(remove_if(startConditions.begin(), startConditions.end(),
 			[](const StartConditions &it) noexcept -> bool { return !it.IsValid(); }),
@@ -295,9 +298,14 @@ void GameData::CheckReferences()
 		if(it.second.Name().empty())
 			NameAndWarn("effect", it);
 	// Fleets are not serialized. Any changes via events are written as DataNodes and thus self-define.
-	for(const auto &it : fleets)
+	for(auto &&it : fleets)
+	{
+		// Plugins may alter stock fleets with new variants that exclusively use plugin ships.
+		// Rather than disable the whole fleet due to these non-instantiable variants, remove them.
+		it.second.RemoveInvalidVariants();
 		if(!it.second.IsValid() && !deferred["fleet"].count(it.first))
 			Warn("fleet", it.first);
+	}
 	// Government names are used in mission NPC blocks and LocationFilters.
 	for(auto &&it : governments)
 		if(it.second.GetTrueName().empty() && !NameIfDeferred(deferred["government"], it))
@@ -932,6 +940,14 @@ const string &GameData::Rating(const string &type, int level)
 
 
 
+// Strings for ship, bay type, and outfit categories.
+const vector<string> &GameData::Category(const CategoryType type)
+{
+	return categories[type];
+}
+
+
+
 const StarField &GameData::Background()
 {
 	return background;
@@ -1140,6 +1156,31 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			list.clear();
 			for(const DataNode &child : node)
 				list.push_back(child.Token(0));
+		}
+		else if(key == "category" && node.Size() >= 2)
+		{
+			static const map<string, CategoryType> category = {
+				{"ship", CategoryType::SHIP},
+				{"bay type", CategoryType::BAY},
+				{"outfit", CategoryType::OUTFIT}
+			};
+			auto it = category.find(node.Token(1));
+			if(it == category.end())
+			{
+				node.PrintTrace("Skipping unrecognized category:");
+				continue;
+			}
+			
+			vector<string> &categoryList = categories[it->second];
+			for(const DataNode &child : node)
+			{
+				// If a given category already exists, it will be
+				// moved to the back of the list.
+				const auto it = find(categoryList.begin(), categoryList.end(), child.Token(0));
+				if(it != categoryList.end())
+					categoryList.erase(it);
+				categoryList.push_back(child.Token(0));
+			}
 		}
 		else if((key == "tip" || key == "help") && node.Size() >= 2)
 		{

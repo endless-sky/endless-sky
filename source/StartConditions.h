@@ -64,7 +64,7 @@ private:
 	
 	const Sprite *thumbnail = nullptr;
 	// The user-friendly display name for this starting scenario.
-	std::string name = "(Unnamed start)";
+	std::string name;
 	std::string description;
 };
 

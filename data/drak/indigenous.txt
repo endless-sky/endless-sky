@@ -31,6 +31,7 @@ ship "Subsidurial"
 		"inscrutable" 1
 		"gaslining" 1
 		"hyperdrive" 1
+		"jump speed" .2
 	outfits
 		Mouthparts? 3
 	gun 0 -97 Mouthparts?

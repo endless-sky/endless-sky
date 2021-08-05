@@ -94,13 +94,22 @@ void Weather::Step(vector<Visual> &visuals)
 	// the system center, then creating the effect there.
 	double minRange = hazard->MinRange();
 	double maxRange = hazard->MaxRange();
-	for(const auto &effect : hazard->EnvironmentalEffects())
+	
+	// Estimate the number of visuals to be generated this frame.
+	// MAYBE: create only a subset of possible effects per frame.
+	int totalAmount = 0;
+	for(auto &&effect : hazard->EnvironmentalEffects())
+		totalAmount += effect.second;
+	totalAmount *= currentStrength;
+	visuals.reserve(visuals.size() + totalAmount);
+	
+	for(auto &&effect : hazard->EnvironmentalEffects())
 		for(int i = 0; i < effect.second * currentStrength; ++i)
 		{
 			Point angle = Angle::Random().Unit();
 			double magnitude = (maxRange - minRange) * sqrt(Random::Real());
 			Point pos = (minRange + magnitude) * angle;
-			visuals.emplace_back(*effect.first, pos, Point(), Angle::Random());
+			visuals.emplace_back(*effect.first, std::move(pos), Point(), Angle::Random());
 		}
 	
 	if(--lifetimeRemaining <= 0)
