@@ -28,7 +28,7 @@ class Ship;
 class FormationPositioner{
 public:
 	// Initializer based on the formation pattern to follow.
-	FormationPositioner(const Body * formationLead, const FormationPattern * pattern): formationLead(formationLead), pattern(pattern), direction(formationLead->Facing()) {}
+	FormationPositioner(const Body *formationLead, const FormationPattern *pattern): formationLead(formationLead), pattern(pattern), direction(formationLead->Facing()) {}
 	
 	// Start/reset/initialize for a (new) round of formation position calculations
 	// for a formation around the ship given as parameter.
@@ -36,7 +36,7 @@ public:
 	
 	// Get the point for the next ship in the formation. Caller should ensure
 	// that the ships are offered in the right order to the calculator.
-	Point NextPosition(const Ship* ship);
+	Point NextPosition(const Ship *ship);
 
 
 private:
@@ -68,8 +68,8 @@ private:
 	double nextMaxHeight = 1.;
 
 	// The body around which the formation will be formed and the pattern to follow.
-	const Body * formationLead;
-	const FormationPattern * pattern;
+	const Body *formationLead;
+	const FormationPattern *pattern;
 	
 	// The formation facing direction.
 	Angle direction;

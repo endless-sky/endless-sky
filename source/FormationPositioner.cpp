@@ -111,7 +111,7 @@ void FormationPositioner::Start()
 
 
 
-Point FormationPositioner::NextPosition(const Ship * ship)
+Point FormationPositioner::NextPosition(const Ship *ship)
 {
 	// Retrieve the correct ring-positioner.
 	RingPositioner &rPos = ringPos[ship->GetFormationRing()];
@@ -145,7 +145,7 @@ Point FormationPositioner::NextPosition(const Ship * ship)
 		unsigned int patternRepeats = pattern->Repeats(rPos.activeLine);
 		// LineSlot number is beyond the amount of slots available.
 		// Need to move a ring, a line or a repeat-section forward.
-		if(rPos.ring > 0 && rPos.activeLine < lines && patternRepeats > 0 && rPos.activeRepeat < patternRepeats - 1 )
+		if(rPos.ring > 0 && rPos.activeLine < lines && patternRepeats > 0 && rPos.activeRepeat < patternRepeats - 1)
 		{
 			// First check if we are on a valid line and have another repeat section.
 			++(rPos.activeRepeat);
