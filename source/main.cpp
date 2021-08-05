@@ -273,7 +273,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		
 		// All manual events and processing done. Handle any test inputs and events if we have any.
 		if(!testContext.testToRun.empty())
-			testContext.testToRun[testContext.testToRun.size() - 1]->Step(testContext, menuPanels, gamePanels, player);
+			testContext.testToRun.back()->Step(testContext, menuPanels, gamePanels, player);
 		
 		// Caps lock slows the frame rate in debug mode.
 		// Slowing eases in and out over a couple of frames.

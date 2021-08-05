@@ -155,7 +155,7 @@ void Test::TestStep::LoadInput(const DataNode &node)
 						else if(grand.Token(i) == "middle")
 							clickMiddle = true;
 						else
-							grand.PrintTrace("Warning: Unknown click/button:");
+							grand.PrintTrace("Warning: Unknown click/button \"" + grand.Token(i) + "\":");
 					}
 				else
 					grand.PrintTrace("Warning: Unknown keyword in \"input\" \"pointer\" section:");
@@ -439,12 +439,15 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 					++(context.stepToRun.back());
 				break;
 			case TestStep::Type::CALL:
-				if(!(GameData::Tests()).Has(stepToRun.nameOrLabel))
-					Fail(context, player, "Calling non-existing test \"" + stepToRun.nameOrLabel + "\"");
-				// Put the called test on the stack and start it from 0.
-				context.testToRun.push_back((GameData::Tests()).Get(stepToRun.nameOrLabel));
-				context.stepToRun.push_back(0);
-				// Break the loop to switch to the test just pushed.
+				{
+					auto calledTest = GameData::Tests().Find(stepToRun.nameOrLabel);
+					if(nullptr == calledTest)
+						Fail(context, player, "Calling non-existing test \"" + stepToRun.nameOrLabel + "\"");
+					// Put the called test on the stack and start it from 0.
+					context.testToRun.push_back(calledTest);
+					context.stepToRun.push_back(0);
+					// Break the loop to switch to the test just pushed.
+				}
 				continueGameLoop = true;
 				break;
 			case TestStep::Type::INJECT:
