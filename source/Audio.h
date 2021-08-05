@@ -31,7 +31,7 @@ class Sound;
 class Audio {
 public:
 	// Begin loading sounds (in a separate thread).
-	static void Init(const std::vector<std::string> &sources);
+	static void Init(const std::vector<std::string> &sources, bool musicEnabled);
 	
 	// Report the progress of loading sounds.
 	static double GetProgress();
@@ -66,6 +66,10 @@ public:
 	
 	// Shut down the audio system (because we're about to quit).
 	static void Quit();
+	
+	
+private:
+	static bool musicEnabled;
 };
 
 

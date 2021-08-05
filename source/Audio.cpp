@@ -114,10 +114,13 @@ namespace {
 }
 
 
+// always set in Init anyway 
+bool Audio::musicEnabled = false;
 
 // Begin loading sounds (in a separate thread).
-void Audio::Init(const vector<string> &sources)
+void Audio::Init(const vector<string> &sources, bool enableMusic)
 {
+	musicEnabled = enableMusic;
 	device = alcOpenDevice(nullptr);
 	if(!device)
 		return;
@@ -165,6 +168,7 @@ void Audio::Init(const vector<string> &sources)
 		loadThread = thread(&Load);
 	
 	// Create the music-streaming threads.
+	if (!musicEnabled) return;
 	currentTrack.reset(new Music());
 	previousTrack.reset(new Music());
 	alGenSources(1, &musicSource);
@@ -272,7 +276,7 @@ void Audio::Play(const Sound *sound, const Point &position)
 // Play the given music. An empty string means to play nothing.
 void Audio::PlayMusic(const string &name)
 {
-	if(!isInitialized)
+	if(!isInitialized || !musicEnabled)
 		return;
 	
 	// Don't worry about thread safety here, since music will always be started
@@ -380,6 +384,8 @@ void Audio::Step()
 	}
 	queue.clear();
 	
+	if (!musicEnabled)
+		return;
 	// Queue up new buffers for the music, if necessary.
 	int buffersDone = 0;
 	alGetSourcei(musicSource, AL_BUFFERS_PROCESSED, &buffersDone);
@@ -466,7 +472,7 @@ void Audio::Quit()
 	sounds.clear();
 	
 	// Clean up the music source and buffers.
-	if(isInitialized)
+	if(isInitialized && musicEnabled)
 	{
 		alSourceStop(musicSource);
 		alDeleteSources(1, &musicSource);
