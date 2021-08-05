@@ -35,7 +35,7 @@ namespace {
 
 
 
-Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon)
+Projectile::Projectile(const Ship &parent, const Point &position, const Angle &angle, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
 	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
 {
@@ -61,7 +61,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 
 
 
-Projectile::Projectile(const Projectile &parent, Point offset, Angle angle, const Weapon *weapon)
+Projectile::Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), parent.position + parent.velocity + offset, parent.velocity, parent.angle + angle),
 	weapon(weapon), targetShip(parent.targetShip), lifetime(weapon->Lifetime())
 {
@@ -90,7 +90,7 @@ Projectile::Projectile(const Projectile &parent, Point offset, Angle angle, cons
 
 
 // Ship explosion.
-Projectile::Projectile(Point position, const Weapon *weapon)
+Projectile::Projectile(const Point &position, const Weapon *weapon)
 	: weapon(weapon)
 {
 	this->position = position;
@@ -113,7 +113,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 			
 			for(const auto &it : weapon->Submunitions())
 				for(int i = 0; i < it.count; ++i)
-					projectiles.emplace_back(*this, it.offset, it.facing, it.outfit);
+					projectiles.emplace_back(*this, it.offset, it.facing, it.weapon);
 		}
 		MarkForRemoval();
 		return;

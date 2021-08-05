@@ -37,7 +37,11 @@ class Sprite;
 class Weapon {
 public:
 	struct Submunition{
-		const Outfit *outfit;
+		Submunition() noexcept = default;
+		explicit Submunition(const Weapon *weapon, std::size_t count) noexcept
+			: weapon(weapon), count(count) {};
+		
+		const Weapon *weapon;
 		// The direction and offset at which the submunition will be fired from
 		// the original projectile. The direction and offset are relative to the
 		// point and direction at which the original projectile dies.

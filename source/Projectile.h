@@ -36,10 +36,10 @@ class Weapon;
 // projectiles that may look different or travel in a new direction.
 class Projectile : public Body {
 public:
-	Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon);
-	Projectile(const Projectile &parent, Point offset, Angle angle, const Weapon *weapon);
+	Projectile(const Ship &parent, const Point &position, const Angle &angle, const Weapon *weapon);
+	Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon);
 	// Ship explosion.
-	Projectile(Point position, const Weapon *weapon);
+	Projectile(const Point &position, const Weapon *weapon);
 	
 	/* Functions provided by the Body base class:
 	Frame GetFrame(int step = -1) const;
