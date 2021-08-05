@@ -85,7 +85,7 @@ mission "First Contact: Kuwaru Efreti"
 				`	"What crimes did they commit?"`
 					goto crimes
 				`	"What do you mean, 'thinking war machines'?"`
-			`	"Robotic starships, and autonomous factories to create them. Though now directed by no living being, they yet reproduce and wage against each other senseless war. Ware their ships should you wander north and east of here, for they wield diverse weapons and strange, and bring you can we no succor within the bourne of their space."`
+			`	"Robotic starships, and autonomous factories to create them. Though now directed by no living being, they yet reproduce and wage against each other senseless war. Ware their ships should you wander north and east of here, for they wield weapons diverse and strange, and bring you can we no succor within the bourne of their space."`
 			choice
 				`	"You mentioned 'crimes.' What crimes did they commit?"`
 			`	"Of that we shall not speak, lest awaken in you we the desire to in their footsteps follow. But you may observe the wreckage of their abominations and take warning."`
@@ -95,7 +95,7 @@ mission "First Contact: Kuwaru Efreti"
 			`	"Of that we shall not speak, lest awaken in you we the desire to in their footsteps follow. But you may observe the wreckage of their abominations and take warning."`
 			choice
 				`	"You mentioned 'thinking war machines.' What are those?"`
-			`	"Robotic starships, and autonomous factories to create them. Though now directed by no living being, they yet reproduce and wage against each other senseless war. Ware their ships should you wander north and east of here, for they wield diverse weapons and strange, and bring you can we no succor within the bourne of their space."`
+			`	"Robotic starships, and autonomous factories to create them. Though now directed by no living being, they yet reproduce and wage against each other senseless war. Ware their ships should you wander north and east of here, for they wield weapons diverse and strange, and bring you can we no succor within the bourne of their space."`
 			
 			label korath
 			`	You are interrupted as one of the Korath who inhabit this ringworld walks by, and the Quarg says, "Friend Korath, meet the human."`
@@ -176,7 +176,7 @@ mission "Quarg Satellites"
 
 mission "Lagrange Ring: Cargo"
 	minor
-	name "Humane Construction Materials"
+	name "Human Construction Materials"
 	description "Head to <stopovers> to pick up <cargo>, then bring it all to <destination>, where the Quarg are preparing to open the first section of their ringworld for human visit."
 	cargo "Construction Materials" 254
 	source
@@ -202,7 +202,7 @@ mission "Lagrange Ring: Cargo"
 				`	"I'm not looking for any more cargo jobs right now, sorry."`
 					decline
 			`	"Many have agreed to help us already, but we still need many more. Those that have agreed to help are headed all to different portions of human space, to safely bring us the materials we have ordered.`
-			`	"Our ringworld, under construction in the nearby system, <system>, is to have a special open section for humans to visit soon. We wish to make the internal style and decoration of that section closer to human standards, so we are asking every capable captain to help. You are one such captain, are you willing to help us?"`
+			`	"Our ringworld, under construction around the star of <system>, is to have a special open section for humans to visit soon. We wish to make the internal style and decoration of that section closer to human standards, so we are asking every capable captain to help. You are one such captain, are you willing to help us?"`
 			choice
 				`	"Alright, I'm interested. Where should I go to pick up the cargo?"`
 				`	"Sorry, I'm not looking for any cargo job right now, I was just curious."`
@@ -249,7 +249,7 @@ mission "Ask Quarg About Coalition Early"
 				`	"Is it true what they told me? That you oppressed them and hindered their development?"`
 					goto oppress
 			label defeat
-			`	It clicks it's teeth together for a moment, and frowns a bit. "Do not underestimate us, human. We are numerous, and we are strong." It pauses for a moment, with a blank expression on its face, as if trying to remember something. "We just know better than to slaughter billions for the sake of maintaining our position."`
+			`	It clicks its teeth together for a moment, and frowns a bit. "Do not underestimate us, human. We are numerous, and we are strong." It pauses for a moment, with a blank expression on its face, as if trying to remember something. "We just know better than to slaughter billions for the sake of maintaining our position."`
 				goto end
 			label oppress
 			`	"Of course not. Have you seen us do such things with humanity? Or with any other alien species you might have reached in your travels with a jump drive? The Heliarchs, like any other fanatical military, merely fabricated an excuse to justify attacking us."`
