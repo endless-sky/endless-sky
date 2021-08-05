@@ -113,14 +113,14 @@ void Test::TestStep::LoadInput(const DataNode &node)
 	{
 		if(child.Token(0) == "key")
 		{
-			for(int i=1; i < child.Size(); ++i)
+			for(int i = 1; i < child.Size(); ++i)
 				inputKeys.insert(child.Token(i));
 			
 			for(const DataNode &grand: child){
 				if(grand.Token(0) == "shift")
 					modKeys |= KMOD_SHIFT;
 				else if(grand.Token(0) == "alt")
-					modKeys |=  KMOD_ALT;
+					modKeys |= KMOD_ALT;
 				else if(grand.Token(0) == "control")
 					modKeys |= KMOD_CTRL;
 				else
@@ -129,25 +129,24 @@ void Test::TestStep::LoadInput(const DataNode &node)
 		}
 		else if(child.Token(0) == "pointer")
 		{
-			for(const DataNode &grand: child){
+			for(const DataNode &grand: child)
+			{
 				if(grand.Token(0) == "X")
 				{
 					if(grand.Size() < 2)
 						grand.PrintTrace("Warning: Pointer X axis input without coordinate:");
-					else{
+					else
 						XValue = grand.Value(1);
-					}
 				}
 				else if(grand.Token(0) == "Y")
 				{
 					if(grand.Size() < 2)
 						grand.PrintTrace("Warning: Pointer Y axis input without coordinate:");
-					else{
+					else
 						YValue = grand.Value(1);
-					}
 				}
 				else if(grand.Token(0) == "click")
-					for(int i=1; i < grand.Size(); ++i)
+					for(int i = 1; i < grand.Size(); ++i)
 					{
 						if(grand.Token(i) == "left")
 							clickLeft = true;
