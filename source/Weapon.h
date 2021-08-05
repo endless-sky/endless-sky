@@ -41,13 +41,12 @@ public:
 		explicit Submunition(const Weapon *weapon, std::size_t count) noexcept
 			: weapon(weapon), count(count) {};
 		
-		const Weapon *weapon;
-		// The direction and offset at which the submunition will be fired from
-		// the original projectile. The direction and offset are relative to the
-		// point and direction at which the original projectile dies.
+		const Weapon *weapon = nullptr;
+		std::size_t count = 0;
+		// The angular offset from the source projectile, relative to its current facing.
 		Angle facing;
+		// The base offset from the source projectile's position, relative to its current facing.
 		Point offset;
-		int count;
 	};
 	
 	
