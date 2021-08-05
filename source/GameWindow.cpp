@@ -144,7 +144,13 @@ bool GameWindow::Init()
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
 #endif
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);	
+#ifdef ES_GLES
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
+#else
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+#endif
 	SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
 		
 	context = SDL_GL_CreateContext(mainWindow);
@@ -159,7 +165,7 @@ bool GameWindow::Init()
 	}
 			
 	// Initialize GLEW.
-#ifndef __APPLE__
+#if !defined(__APPLE__) && !defined(ES_GLES)
 	glewExperimental = GL_TRUE;
 	if(glewInit() != GLEW_OK){
 		ExitWithError("Unable to initialize GLEW!");

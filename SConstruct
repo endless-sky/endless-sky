@@ -34,6 +34,7 @@ if is_windows_host:
 opts = Variables()
 opts.AddVariables(
 	EnumVariable("mode", "Compilation mode", "release", allowed_values=("release", "debug", "profile")),
+	EnumVariable("opengl", "Whether to use OpenGL or OpenGL ES", "desktop", allowed_values=("desktop", "gles")),
 	PathVariable("BUILDDIR", "Directory to store compiled object files in", "build", PathVariable.PathIsDirCreate),
 	PathVariable("BIN_DIR", "Directory to store binaries in", ".", PathVariable.PathIsDirCreate),
 	PathVariable("DESTDIR", "Destination root directory, e.g. if building a package", "", PathVariable.PathAccept),
@@ -89,8 +90,6 @@ game_libs = [
 	"turbojpeg.dll",
 	"jpeg.dll",
 	"openal.dll",
-	"glew32.dll",
-	"opengl32",
 	"pangocairo-1.0.dll",
 	"pango-1.0.dll",
 	"glib-2.0.dll",
@@ -101,14 +100,31 @@ game_libs = [
 	"SDL2",
 	"png",
 	"jpeg",
-	"GL",
-	"GLEW",
 	"openal",
 	"pthread",
 ]
 env.Append(LIBS = game_libs)
 if not is_windows_host:
 	env.ParseConfig("$PKG_CONFIG_PATH --cflags --libs pangocairo fontconfig")
+
+if env["opengl"] == "gles":
+	if is_windows_host:
+		print("OpenGL ES builds are not supported on Windows")
+		Exit(1)
+	env.Append(LIBS = [
+		"GLESv2",
+	])
+	env.Append(CCFLAGS = ["-DES_GLES"])
+elif is_windows_host:
+	env.Append(LIBS = [
+		"glew32.dll",
+		"opengl32",
+	])
+else:
+	env.Append(LIBS = [
+		"GL",
+		"GLEW",
+	])
 
 # libmad is not in the Steam runtime, so link it statically:
 if 'steamrt_scout_i386' in chroot_name:

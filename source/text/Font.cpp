@@ -704,16 +704,17 @@ void Font::SetUpShader()
 		"out vec2 texCoord;\n"
 		
 		"void main() {\n"
-		"  gl_Position = vec4((center + vert * size) * scale, 0, 1);\n"
+		"  gl_Position = vec4((center + vert * size) * scale, 0.f, 1.f);\n"
 		"  texCoord = vert + vec2(.5, .5);\n"
 		"}\n";
 	
 	static const char *fragmentCode =
 		"// fragment font shader\n"
+		"precision mediump float;\n"
 		// Parameter: Texture with the text.
 		"uniform sampler2D tex;\n"
 		// Parameter: Color to apply to the text.
-		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
+		"uniform vec4 color;\n"
 		
 		// Input: Texture coordinate from the vertex shader.
 		"in vec2 texCoord;\n"
