@@ -3316,14 +3316,14 @@ mission "Mafia Extortion"
 		credits >= 2000000
 	on offer
 		conversation
-			`A man in a tailored suit, wearing sunglasses, shiny shoes and green hair approaches you; "Hey, that's a very nice ship you have there. Would be a shame if anything happened to it."`
-			`You notice that he is missing a finger on each of his hands.`
+			`A man in a tailored suit, sunglasses and shiny shoes with green hair approaches you. "Hey, that's a very nice ship you have there. Would be a shame if anything happened to it."`
+			`You notice that he is missing a finger on each hand.`
 			choice
 				`"Thank you. My name is <first> <last>. Whom do I have the pleasure of talking to?"`
 					goto nameless
 				`"Yes, I'm very happy with my ship."`
 					goto specifics
-				`"What should I be afraid off that would happen to my ship?"`
+				`"What should I be afraid of happening to my ship?"`
 					goto specifics
 				`"You sound like one of those Mafia goons."`
 					goto mafia
@@ -3334,20 +3334,20 @@ mission "Mafia Extortion"
 				`"I don't have time to talk."`
 					goto funeral
 			label nameless
-			`Your greeting triggers a grumpy reply about the value of anonymity in a place like this.`
+			`Your greeting gets a grumpy reply about the value of anonymity in a place like this.`
 			choice
 				`"Sounds like you are afraid of talking to me. Why is that?"`
 					goto mafia
-				`"What should I be afraid off that would happen to my ship?"`
+				`"What should I be afraid of happenning to my ship?"`
 					goto specifics
 				`"You sound like one of those mafia goons."`
 					goto mafia
 				`"Are you trying to extort me?"`
 					goto mafia
 			label specifics
-			`The man responds; "Well, a fleet of unfriendly ships in this system might just try to blow your ship to pieces."`
+			`The man responds, "Well, a fleet of unfriendly ships in this system might just blow your ship to pieces."`
 			choice
-				`"Ha ha, that is business as usual in this system."`
+				`"Ha, business as usual in this system."`
 					goto unconcerned
 				`"Are you trying to extort me?"`
 					goto mafia
@@ -3355,39 +3355,39 @@ mission "Mafia Extortion"
 					goto mafia
 				`"And you are the local goon that takes bribes to keep such ships docked?"`
 					goto mafia
-				`"That would be unfortunate, I often run jobs for some of the most dangerous people on this planet and they wouldn't be happy if that happens."`
+				`"That would be unfortunate, I run jobs for some of the most dangerous people on this planet and they wouldn't be happy if that happened."`
 					goto unnerved
 				`"I really don't have time to talk to you."`
 					goto funeral
 			label unconcerned
-			`The man responds; "Maybe you want to improve that situation?`
+			`The man responds, "Maybe you want to improve that situation?`
 				goto donation
 			label mafia
-			`The man acts as if he is shocked by your remark, but his response doesn't feel sincere; "No way! I'm just a simple man walking around the spaceport and talking about life. "You would be wise to listen to locals with experience, especially in dangerous places like here.`
+			`The man acts as if he is shocked by your remark. "No way! I'm just a simple man walking around the spaceport and talking about life. You would be wise to listen to locals with experience, especially in dangerous places like this."`
 			label donation
-			`	"If you care about safety, then I could make a donation to the System Safety Foundation on your behalf. A payment of about 200,000 credits really goes a long way around here."`
+			`	"If you care about safety, then I could make a donation to the System Safety Foundation on your behalf. 200,000 credits really goes a long way around here."`
 			choice
 				`(pay 200,000 credits)`
 					#payment -200000
 					goto next_steps
-				`"How can I be sure that the money is spent well?"`
+				`"How can I be sure the money is spent well?"`
 					goto impatient
-				`"Sorry, I already made a donation to the 'Security Support Fund' earlier today and I don't donate twice a day."`
+				`"Sorry, I already made a donation to the 'Security Support Fund' earlier today and I don't donate twice in one day."`
 					goto impatient
 				`"I've already heard enough, I'm going to talk to the authorities."`
 					goto next_steps
-				`"And what dangers should I be afraid off?"`
+				`"And what dangers should I be afraid of?"`
 					goto impatient
 				`"Listen, I see that you are missing a finger on each hand. You look like a goon, and not a successful one."`
 					goto unnerved
 			label impatient
-			`The man sounds annoyed; "Listen, I don't have all day to talk! Do you pay up or not?!"`
+			`The man sounds annoyed. "Listen, I don't have all day to talk! Are you going to pay or not?!"`
 			choice
 				`(pay 200,000 credits)`
 					goto payup
-				`"I don't trust you, so you are not getting any money from me."`
+				`"I don't trust you, you aren't getting any money from me."`
 					goto funeral
-				`"I've already heard enough, I'm going to talk to the authorities."`
+				`"I've heard enough, I'm going to talk to the authorities."`
 					goto next_steps
 				`"Listen, I see that you are missing a finger on each hand. You look like a goon, and not a successful one."`
 					goto unnerved
@@ -3395,32 +3395,32 @@ mission "Mafia Extortion"
 			`The man responds "Your funeral, not mine." and turns away from you.`
 				goto walks_away
 			label next_steps
-			`"Listen, I wouldn't be talking to the authorities about this if I were you. Most of them are participating anyway."`
+			`"Look, that's not a smart move. Most of them are in on it anyway."`
 			label walks_away
 			`The man walks away. You consider what to do next.`
 			choice
 				`(Shrug off the whole thing and take no further action.)`
 					decline
-				`(Go to the closest thing that qualifies as police force on this planet.)`
+				`(Find the closest thing to police force that this planet has.)`
 					goto police
-				`(Go to a bar and ask for whomever is in charge.)`
+				`(Go to a bar and ask for whoever is in charge.)`
 					goto bar
 			label police
-			`You find the ruins of what appears to have been a police station. The building has been thoroughly destroyed, hopefully without anybody present inside the building.`
+			`It's not long before you find the ruins of what used to be a police station... you think. The building has been thoroughly destroyed, hopefully not while anybody was present.`
 			choice
-				`(Go to a bar and ask for whomever is in charge.)`
+				`(Go to a bar and ask for whoever is in charge.)`
 					goto bar
 				`(Shrug off the whole thing and take no further action.)`
 					accept
 			label bar
-			`You walk towards the closest bar, but you meet the green-haired man that you just had a conversation with.`
-			`He looks surprised and asks; "Were you going to rat me out to the local boss?"`
+			`You walk towards the closest bar, but stumble into the green-haired man that you just had a conversation with.`
+			`He looks surprised and asks, "Were you going to rat me out to the local boss?"`
 			choice
 				`"What an excellent idea! Yes, I'll just do that."`
 				`"What I'm going to do is none of your business."`
 				`"Don't worry, I'm just taking a walk."`
 			label unnerved
-			`The man is starting to act a bit nervous. "Sorry I bothered you. Can we just forget that that conversation happened?"`
+			`The man is starting to act a bit nervous. "Sorry I bothered you. Maybe let's forget it happened?"`
 			choice
 				`"Well, conversations like this are hard to forget."`
 					goto cornered
@@ -3429,13 +3429,13 @@ mission "Mafia Extortion"
 				`(Agree)`
 					goto zerodeal
 			label cornered
-			`"What do you suggest? Do you want credits from me?"`
+			`"Well what do you want, is there anything I can do for you?"`
 			choice
-				`"No, let's just forget the conversation happened."`
+				`"No, let's just forget it happened."`
 					goto zerodeal
 				`"Yes, what an excellent idea. How much do you want to pay me?"`
 			label payback
-			`The man is now really nervous and asks: "How much credits do you need to just forget this whole conversation happened?"`
+			`The man is now really nervous and asks: "How many credits do you need to just forget this whole conversation happened?"`
 			choice
 				`"100,000,000"`
 					goto far_too_much
@@ -3451,7 +3451,7 @@ mission "Mafia Extortion"
 					goto counterdeal
 				`"1,000"`
 					goto counterdeal
-				`"I don't need your credits. Just forget this conversation ever happened."`
+				`"I don't need your credits, just forget it."`
 					goto zerodeal
 			label zerodeal
 			`The man walks away without saying a word.`
@@ -3464,7 +3464,8 @@ mission "Mafia Extortion"
 				`"No way, I want a lot more."`
 					goto far_too_much
 			label counterdeal
-			`The man gives you the credits you asked for and walks away, but when you want to transfer the credits to your account then you find out that somebody stole the credit chips.`
+			`The man hands you a credit chip, nods and walks away. You pocket the chip quickly, more ready to be done with this neighborhood than you want to visibly show.`
+			`A few minutes later you reach into your pocket for the chip... to find it missing.`
 			`Looks like even a bad-ass captain like you is not immune to pickpocketing on a planet like this.`
 				decline
 			label far_too_much
@@ -3485,17 +3486,17 @@ mission "Mafia Extortion"
 			`The man tries to fire his weapon once more, but now it does function and the bullet hits you inbetween the eyes. You die almost instantly, but you do have a few microseconds to reflect on the wisdom of mocking a man that is trying to fire a gun at you.`
 				die
 			label shoot
-			`You shoot and hit the man in-between the eyes; he dies immediately and a crowd starts to form around you.`
-			`Most bystanders look very surprised, but you also notice an angry sentiment starting to brew in the crowd and many bystanders seem to be armed. It might be wise to leave quickly.`
+			`You shoot and hit the man between the eyes; he dies instantly and a crowd starts to form around you.`
+			`Most bystanders are surprised, but you also notice an angry sentiment brewing in the (not unarmed) crowd. It might be wise to leave quickly.`
 			choice
 				`(Run towards your ship and leave immediately.)`
 					goto leave
 				`(Put away your sidearm and pretend nothing happened.)`
-			`You walk away from the body and pretend nothing happened, but you don't get far and die from multiple laser-beams hitting you.`
+			`You walk away nonchalantly, but you don't get far before multiple laser blasts slice through you.`
 				die
 			label leave
-			`You make it to your ship alive and depart under a rain of bullets and laser-weapons fire. This planet is a pirate planet, so there are unlikely any lasting consequences, but you might want to stay away from this planet for a few days.`
+			`You make it to your ship alive and depart under a rain of bullets and laser-weapons fire. This is a pirate planet so there are unlikely to be any lasting consequences, but you might want to stay away from for a few days.`
 				flee
 			label payup
-			`The man takes your credits, responds with a brief "Thank you" and walks away.`
+			`The man takes your credits, responds with a brief "Thank you," and walks away.`
 				accept
