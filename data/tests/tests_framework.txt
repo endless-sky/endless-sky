@@ -140,7 +140,7 @@ test "Test-Framework - Recursive Call"
 
 test "Test-Framework - Calling other functions"
 	status active
-	description "Test-Framework - Test for calls to other functions"
+	description "Test-Framework - Test for calls to other functions."
 	sequence
 		call "Test-Framework - UI Keyboard controls"
 		call "Test-Framework - Empty Test Sequence"
@@ -150,7 +150,7 @@ test "Test-Framework - Calling other functions"
 
 test "Test-Framework - Navigate"
 	status active
-	description "Test-Framework - Navigation to other star system"
+	description "Test-Framework - Navigation to other star system."
 	sequence
 		# Create/inject the savegame and load it.
 		inject "Three Earthly Barges"

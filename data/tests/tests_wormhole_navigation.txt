@@ -238,7 +238,7 @@ test-data "Ember Wastes Navigation"
 
 test "Tests - Wormhole Navigation"
 	status active
-	description "Tests - Navigation to and from Hai space, to test wormhole functionality"
+	description "Tests - Navigation to and from Hai space, to test wormhole functionality."
 	sequence
 		# Create/inject the savegame and load it.
 		inject "Wormhole Navigation"
@@ -314,7 +314,7 @@ test "Tests - Wormhole Navigation"
 
 test "Tests - Ember Wastes Navigation"
 	status active
-	description "Tests - Navigation to and from the Ember Wastes, testing wormholes that require outfits to land"
+	description "Tests - Navigation to and from the Ember Wastes, testing wormholes that require outfits to land."
 	sequence
 		# Create/inject the savegame and load it.
 		inject "Ember Wastes Navigation"
