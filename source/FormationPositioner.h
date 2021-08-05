@@ -29,7 +29,8 @@ class FormationPositioner{
 public:
 	// Initializer based on the formation pattern to follow.
 	FormationPositioner(const Body *formationLead, const FormationPattern *pattern): formationLead(formationLead), pattern(pattern), direction(formationLead->Facing()) {}
-	
+
+	// TODO: Should we replace the Start() and NextPosition() by Add(Ship*), Remove(Ship*) and GetPosition(Ship*)? (and move some calculations now done every frame to the Add function?)
 	// Start/reset/initialize for a (new) round of formation position calculations
 	// for a formation around the ship given as parameter.
 	void Start();
@@ -43,6 +44,7 @@ private:
 	class RingPositioner{
 		public:
 			// Values used during ship position calculation iterations.
+			// TODO: Should we move those details to pattern and just store an iterator here?
 			bool morePositions = true;
 			unsigned int ring = 0;
 			unsigned int activeLine = 0;
@@ -57,6 +59,7 @@ private:
 
 private:
 	// The actual positioners based on the desired ring-numbers.
+	// TODO: Should we put a map here with as key "pointers to the ships in the formation" and as value their position?
 	std::map<unsigned int, RingPositioner> ringPos;
 
 	// The scaling factors being used for this formation.

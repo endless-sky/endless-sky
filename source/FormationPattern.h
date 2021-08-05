@@ -32,6 +32,7 @@ public:
 	void Load(const DataNode &node);
 	
 	// Retrieve properties like number of lines and arcs, number of repeat sections and number of positions.
+	// TODO: Should we hide those properties and just provide a position iterator instead?
 	unsigned int Lines() const;
 	unsigned int Repeats(unsigned int lineNr) const;
 	unsigned int Slots(unsigned int ring, unsigned int lineNr, unsigned int repeatNr) const;
@@ -47,6 +48,7 @@ public:
 	
 	
 protected:
+	// TODO: Should we make the classes here public or private?
 	class MultiAxisPoint {
 	public:
 		// Coordinate axises for formations; Pixels (default) and heights, widths and diameters of the biggest ship in a formation.
@@ -115,6 +117,13 @@ protected:
 	
 private:
 	std::string name;
+	// Indicates if the formation is rotatable, a value of -1 means not
+	// rotatable, while a positive value is taken as the rotation angle
+	// in relation to the full 360 degrees full angle:
+	// Square and Diamond shapes could get a value of 90, since you can
+	// rotate such a shape over 90 degrees and still have the same shape.
+	// Triangles could get a value of 120, since you can rotate them over
+	// 120 degrees and again get the same shape.
 	int rotatable = -1;
 	// Indicates if the formation is flippable along the longitudinal axis.
 	bool flippable_y = false;
