@@ -28,6 +28,69 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // pattern, the actual assignment of ships to positions is not handled in this class.
 class FormationPattern {
 public:
+	// Struct that describes the properties of an active formation, like the number
+	// of ships participating in the formation, the maximum sizes of those ships and
+	// some data on the Body around which the formation is formed.
+	// TODO: start using this.
+	struct ActiveFormation
+	{
+		// Center radius of the formation that is to be kept clear. This
+		// is typically used to avoid positions of ships overlapping with
+		// the  body around which the formation is formed. The actual radius
+		// that will be kept clear is this centerBodyRadius plus half of the
+		// maxDiameter.
+		double centerBodyRadius = 100;
+		// Information on ships participating in the formation. Initialized
+		// with some defaults for smaller ships.
+		unsigned int numberOfShips = 50;
+		double maxDiameter = 80;
+		double maxWidth = 80;
+		double maxHeight = 80;
+	};
+	
+	
+	// Iterator that provides sequential access to all formation positions.
+	// TODO: finish the implementation and start using this.
+	class PositionIterator: public std::iterator<
+		std::input_iterator_tag, // iterator_category
+		Point,                   // iterator: value_type
+		std::ptrdiff_t,          // iterator: difference_type
+		const Point*,            // iterator: pointer
+		Point& >                 // iterator: reference
+	{
+	public:
+		PositionIterator(const FormationPattern *pattern, const ActiveFormation &af, unsigned int startRing = 0)
+			: activeFormation(af), pattern(pattern), ring(startRing) {};
+		
+		// The default input_iterator operations.
+		Point operator*() const;
+		const Point* operator->();
+		PositionIterator& operator++();
+		PositionIterator operator++(int);
+		bool operator==(const PositionIterator &rhs) const;
+		bool operator!=(const PositionIterator &rhs) const;
+		
+		// Additional operators for status retrieval.
+		unsigned int Ring() const;
+	
+	private:
+		// Data from the active formation for which we are calculating
+		// positions. The iterator has its own copy, because this data
+		// gets updated as we go.
+		ActiveFormation activeFormation;
+		// The pattern for which we are calculating positions.
+		const FormationPattern *pattern;
+		// The location in the pattern.
+		unsigned int ring = 0;
+		unsigned int line = 0;
+		unsigned int repeat = 0;
+		unsigned int slot = 0;
+		// Internal status variable;
+		bool atEnd = false;
+	};
+
+
+
 	// Returns the name of this pattern.
 	const std::string Name() const;
 	
