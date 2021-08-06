@@ -34,6 +34,13 @@ const Point *FormationPattern::PositionIterator::operator->()
 
 
 
+const Point &FormationPattern::PositionIterator::operator*()
+{
+	return currentPoint;
+}
+
+
+
 FormationPattern::PositionIterator &FormationPattern::PositionIterator::operator++()
 {
 	if(!atEnd)
@@ -114,7 +121,8 @@ void FormationPattern::PositionIterator::MoveToValidPosition()
 	
 	// If we are at the last line and we have less ships still to place than that
 	// would fit on the line, then perform centering if required.
-	if(!atEnd && (slot == 0) && ((lineRepeatSlots - 1) > activeFormation.numberOfShips) && pattern->IsCentered(line))
+	if(!atEnd && slot == 0 && activeFormation.numberOfShips > 0 &&
+			(lineRepeatSlots - 1) > activeFormation.numberOfShips && pattern->IsCentered(line))
 		// Determine the amount to skip for centering and skip those.
 		slot += (lineRepeatSlots - activeFormation.numberOfShips) / 2;
 	
@@ -205,6 +213,14 @@ void FormationPattern::Load(const DataNode &node)
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
+}
+
+
+
+// Get an iterator to iterate over the formation positions in this pattern.
+FormationPattern::PositionIterator FormationPattern::begin(const FormationPattern::ActiveFormation &af, unsigned int startRing) const
+{
+	return FormationPattern::PositionIterator(this, af, startRing);
 }
 
 

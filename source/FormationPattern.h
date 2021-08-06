@@ -42,7 +42,7 @@ public:
 		double centerBodyRadius = 100;
 		// Information on ships participating in the formation. Initialized
 		// with some defaults for smaller ships.
-		unsigned int numberOfShips = 50;
+		unsigned int numberOfShips = 0;
 		double maxDiameter = 80;
 		double maxWidth = 80;
 		double maxHeight = 80;
@@ -59,11 +59,12 @@ public:
 		Point& >                 // iterator: reference
 	{
 	public:
-		PositionIterator(const FormationPattern *pattern, const ActiveFormation &af, unsigned int startRing = 0);
+		PositionIterator(const FormationPattern *pattern, const ActiveFormation &af, unsigned int startRing);
 		
 		// A subset of the default input_iterator operations. Limiting to
 		// only a subset, since not all operations are used in-game.
-		const Point* operator->();
+		const Point *operator->();
+		const Point &operator*();
 		PositionIterator& operator++();
 		
 		// Additional operators for status retrieval.
@@ -97,6 +98,9 @@ public:
 	
 	// Load formation from a datafile.
 	void Load(const DataNode &node);
+	
+	// Get an iterator to iterate over the formation positions in this pattern.
+	PositionIterator begin(const ActiveFormation &af, unsigned int startRing = 0) const;
 	
 	// Retrieve properties like number of lines and arcs, number of repeat sections and number of positions.
 	// TODO: Should we hide those properties and just provide a position iterator instead?
