@@ -118,8 +118,7 @@ public:
 	bool FlippableX() const;
 	
 	
-protected:
-	// TODO: Should we make the classes here public or private?
+private:
 	class MultiAxisPoint {
 	public:
 		// Coordinate axises for formations; Pixels (default) and heights, widths and diameters of the biggest ship in a formation.
@@ -181,11 +180,6 @@ protected:
 	};
 	
 	
-protected:
-	// The lines that define the formation.
-	std::vector<Line> lines;
-	
-	
 private:
 	// Name of the formation pattern.
 	std::string name;
@@ -201,6 +195,8 @@ private:
 	bool flippable_y = false;
 	// Indicates if the formation is flippable along the transverse axis.
 	bool flippable_x = false;
+	// The lines that define the formation.
+	std::vector<Line> lines;
 };
 
 
