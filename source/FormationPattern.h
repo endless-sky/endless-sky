@@ -59,19 +59,18 @@ public:
 		Point& >                 // iterator: reference
 	{
 	public:
-		PositionIterator(const FormationPattern *pattern, const ActiveFormation &af, unsigned int startRing = 0)
-			: activeFormation(af), pattern(pattern), ring(startRing) {};
+		PositionIterator(const FormationPattern *pattern, const ActiveFormation &af, unsigned int startRing = 0);
 		
-		// The default input_iterator operations.
-		Point operator*() const;
+		// A subset of the default input_iterator operations. Limiting to
+		// only a subset, since not all operations are used in-game.
 		const Point* operator->();
 		PositionIterator& operator++();
-		PositionIterator operator++(int);
-		bool operator==(const PositionIterator &rhs) const;
-		bool operator!=(const PositionIterator &rhs) const;
 		
 		// Additional operators for status retrieval.
 		unsigned int Ring() const;
+		
+	private:
+		void MoveToValidPosition();
 	
 	private:
 		// Data from the active formation for which we are calculating
@@ -85,6 +84,8 @@ public:
 		unsigned int line = 0;
 		unsigned int repeat = 0;
 		unsigned int slot = 0;
+		// Currently calculated Point.
+		Point currentPoint;
 		// Internal status variable;
 		bool atEnd = false;
 	};

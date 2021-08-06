@@ -18,6 +18,114 @@ using namespace std;
 
 
 
+FormationPattern::PositionIterator::PositionIterator(const FormationPattern *pattern,
+	const FormationPattern::ActiveFormation &af, unsigned int startRing)
+	: activeFormation(af), pattern(pattern), ring(startRing)
+{
+	MoveToValidPosition();
+}
+
+
+
+const Point *FormationPattern::PositionIterator::operator->()
+{
+	return &currentPoint;
+}
+
+
+
+FormationPattern::PositionIterator &FormationPattern::PositionIterator::operator++()
+{
+	if(!atEnd)
+		slot++;
+	// Number of ships is used as number of remaining ships still to be placed.
+	if(activeFormation.numberOfShips > 0)
+		--activeFormation.numberOfShips;
+	MoveToValidPosition();
+	return *this;
+}
+
+
+
+unsigned int FormationPattern::PositionIterator::Ring() const
+{
+	return ring;
+}
+
+
+
+void FormationPattern::PositionIterator::MoveToValidPosition()
+{
+	// If we cannot calculate any new positions, then just return center point.
+	if(atEnd)
+	{
+		currentPoint = Point();
+		return;
+	}
+	
+	// Check if there are any lines available.
+	unsigned int lines = pattern->Lines();
+	if(lines < 1)
+		atEnd = true;
+	
+	unsigned int ringsScanned = 0;
+	unsigned int startingRing = ring;
+	unsigned int lineRepeatSlots = pattern->Slots(ring, line, repeat);
+	
+	while(slot >= lineRepeatSlots && !atEnd)
+	{
+		unsigned int patternRepeats = pattern->Repeats(line);
+		// LineSlot number is beyond the amount of slots available.
+		// Need to move a ring, a line or a repeat-section forward.
+		if(ring > 0 && line < lines && patternRepeats > 0 && repeat < patternRepeats - 1)
+		{
+			// First check if we are on a valid line and have another repeat section.
+			++(repeat);
+			slot = 0;
+			lineRepeatSlots = pattern->Slots(ring, line, repeat);
+		}
+		else if(line < lines - 1)
+		{
+			// If we don't have another repeat section, then check for a next line.
+			++(line);
+			repeat = 0;
+			slot = 0;
+			lineRepeatSlots = pattern->Slots(ring, line, repeat);
+		}
+		else
+		{
+			// If we checked all lines and repeat sections, then go for the next ring.
+			++(ring);
+			line = 0;
+			repeat = 0;
+			slot = 0;
+			lineRepeatSlots = pattern->Slots(ring, line, repeat);
+			
+			// If we scanned more than 5 rings without finding a slot, then we have an empty pattern.
+			++ringsScanned;
+			if(ringsScanned > 5)
+			{
+				// Restore starting ring and indicate that there are no more positions.
+				ring = startingRing;
+				atEnd = true;
+			}
+		}
+	}
+	
+	// If we are at the last line and we have less ships still to place than that
+	// would fit on the line, then perform centering if required.
+	if(!atEnd && (slot == 0) && ((lineRepeatSlots - 1) > activeFormation.numberOfShips) && pattern->IsCentered(line))
+		// Determine the amount to skip for centering and skip those.
+		slot += (lineRepeatSlots - activeFormation.numberOfShips) / 2;
+	
+	if(atEnd)
+		currentPoint = Point();
+	else
+		currentPoint = pattern->Position(ring, line, repeat, slot, activeFormation.maxDiameter, activeFormation.maxWidth, activeFormation.maxHeight);
+}
+
+
+
 const string FormationPattern::Name() const
 {
 	return name;
