@@ -61,8 +61,8 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 
 
 
-Projectile::Projectile(const Projectile &parent, const Weapon *weapon)
-	: Body(weapon->WeaponSprite(), parent.position + parent.velocity, parent.velocity, parent.angle),
+Projectile::Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon)
+	: Body(weapon->WeaponSprite(), parent.position + parent.velocity + parent.angle.Rotate(offset), parent.velocity, parent.angle + angle),
 	weapon(weapon), targetShip(parent.targetShip), lifetime(weapon->Lifetime())
 {
 	government = parent.government;
@@ -93,7 +93,7 @@ Projectile::Projectile(const Projectile &parent, const Weapon *weapon)
 Projectile::Projectile(Point position, const Weapon *weapon)
 	: weapon(weapon)
 {
-	this->position = position;
+	this->position = std::move(position);
 }
 
 
@@ -112,8 +112,8 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 					visuals.emplace_back(*it.first, position, velocity, angle);
 			
 			for(const auto &it : weapon->Submunitions())
-				for(int i = 0; i < it.second; ++i)
-					projectiles.emplace_back(*this, it.first);
+				for(size_t i = 0; i < it.count; ++i)
+					projectiles.emplace_back(*this, it.offset, it.facing, it.weapon);
 		}
 		MarkForRemoval();
 		return;
@@ -334,13 +334,11 @@ void Projectile::CheckLock(const Ship &target)
 	if(weapon->Tracking())
 		hasLock |= Check(weapon->Tracking(), base);
 	
-	// Optical tracking is about 15% for interceptors, 39% for light warships,
-	// 70% for medium warships, and 94% for heavy warships, given the average
-	// mass of human ships of these categories.
+	// Optical tracking is about 15% for interceptors and 75% for medium warships.
 	if(weapon->OpticalTracking())
 	{
 		double weight = target.Mass() * target.Mass();
-		double probability = weapon->OpticalTracking() * weight / (300000. + weight);
+		double probability = weapon->OpticalTracking() * weight / (150000. + weight);
 		hasLock |= Check(probability, base);
 	}
 	

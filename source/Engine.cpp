@@ -774,10 +774,10 @@ void Engine::Step(bool isActive)
 				info.SetString("target energy", to_string(energy));
 				int heat = round(100. * target->Heat());
 				info.SetString("target heat", to_string(heat) + "%");
-                int turret = round(target->TurretRange());
-                info.SetString("target turret", to_string(turret) + " ");
-                int turn = round(60 * target->TrueTurnRate());
-                info.SetString("target turnrate", to_string(turn) + " ");
+		int turret = round(target->TurretRange());
+		info.SetString("target turret", to_string(turret) + " ");
+		int turn = round(60 * target->TrueTurnRate());
+		info.SetString("target turnrate", to_string(turn) + " ");
 			}
 		}
 	}
@@ -1855,7 +1855,7 @@ void Engine::HandleMouseClicks()
 		{
 			Point position = ship->Position() - flagship->Position();
 			const Mask &mask = ship->GetMask(step);
-			double range = mask.Range(clickPoint - position, ship->Facing(), ship->Scale());
+			double range = mask.Range(clickPoint - position, ship->Facing());
 			if(range <= clickRange)
 			{
 				clickRange = range;
@@ -1938,7 +1938,7 @@ void Engine::DoCollisions(Projectile &projectile)
 		if(target)
 		{
 			Point offset = projectile.Position() - target->Position();
-			double range = target->GetMask(step).Collide(offset, projectile.Velocity(), target->Facing(), target->Scale());
+			double range = target->GetMask(step).Collide(offset, projectile.Velocity(), target->Facing());
 			if(range < 1.)
 			{
 				closestHit = range;

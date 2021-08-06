@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Files.h"
 #include "Flotsam.h"
 #include "text/Format.h"
+#include "FormationPattern.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Mask.h"
@@ -438,6 +439,8 @@ void Ship::Load(const DataNode &node)
 			description += child.Token(1);
 			description += '\n';
 		}
+		else if(key == "formation" && child.Size() >= 2)
+			formationPattern = GameData::Formations().Get(child.Token(1));
 		else if(key != "actions")
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -951,6 +954,9 @@ void Ship::Save(DataWriter &out) const
 				out.Write("final explode", it.first->Name(), it.second);
 		});
 		
+		if(formationPattern)
+			out.Write("formation", formationPattern->Name());
+		
 		if(currentSystem)
 			out.Write("system", currentSystem->Name());
 		else
@@ -1174,6 +1180,24 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	shipToAssist.reset();
 	if(government)
 		SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
+
+	const vector<Hardpoint> &hardpoints = armament.Get();
+	for(unsigned i = 0; i < hardpoints.size(); ++i)
+	{
+		if(hardpoints[i].IsTurret())
+		{
+		const Weapon *weapon = hardpoints[i].GetOutfit();
+		if(weapon && !weapon->Ammo() && !weapon->AntiMissile())
+		turretRange = max(turretRange, weapon->Range());
+		}
+	}
+}
+
+
+
+double Ship::TurretRange() const
+{
+	return turretRange;
 }
 
 
@@ -1725,7 +1749,11 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	double mass = Mass();
 	bool isUsingAfterburner = false;
 	if(isDisabled)
+	{
+		//allow disabled ships to drift slowly, rather than stop added 04052021
+		if(velocity.Length() > .25)
 		velocity *= 1. - attributes.Get("drag") / mass;
+	}
 	else if(!pilotError)
 	{
 		if(commands.Turn())
@@ -1748,6 +1776,28 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				angle += commands.Turn() * TurnRate() * slowMultiplier;
 			}
 		}
+	double latThrustCommand = commands.Has(Command::STRAFERIGHT) - commands.Has(Command::STRAFELEFT);
+	double latThrust = 0.;
+	if(latThrustCommand)
+	{
+		// Check if we are able to apply this thrust.
+		double cost = attributes.Get("thrusting energy") * 0.5;
+		if(energy < cost)
+			latThrustCommand *= energy / cost;
+
+		if(latThrustCommand)
+		{
+			latThrust = attributes.Get("thrust") * 0.5;
+			if(latThrust)
+			{
+				double scale = fabs(latThrustCommand);
+				energy -= scale * cost;
+				heat += scale * attributes.Get("thrusting heat") * 0.5;
+				Point lateral(-angle.Unit().Y(),angle.Unit().X());
+				acceleration += lateral * (latThrustCommand * latThrust / mass);
+			}
+		}
+	}
 		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
 		double thrust = 0.;
 		if(thrustCommand)
@@ -3048,6 +3098,13 @@ double Ship::TurnRate() const
 
 
 
+double Ship::TrueTurnRate() const
+{
+	return attributes.Get("turn") / Mass() * 1. / (1. + slowness * .05);
+}
+
+
+
 double Ship::Acceleration() const
 {
 	double thrust = attributes.Get("thrust");
@@ -3063,6 +3120,21 @@ double Ship::MaxVelocity() const
 	// v = thrust / drag
 	double thrust = attributes.Get("thrust");
 	return (thrust ? thrust : attributes.Get("afterburner thrust")) / attributes.Get("drag");
+}
+
+
+
+double Ship::DisplayVelocity() const
+{
+	return velocity.Length();
+}
+
+
+
+
+double Ship::DisplaySlowing() const
+{
+	return 1. / (1. + slowness * .05);
 }
 
 
@@ -3604,6 +3676,28 @@ shared_ptr<Flotsam> Ship::GetTargetFlotsam() const
 
 
 
+const FormationPattern *Ship::GetFormationPattern() const
+{
+	return formationPattern;
+}
+
+
+
+int Ship::GetFormationRing() const
+{
+	return formationRing;
+}
+
+
+
+void Ship::SetFormationRing(int newRing)
+{
+	if(newRing >= 0)
+		formationRing = newRing;
+}
+
+
+
 // Set this ship's targets.
 void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 {
@@ -3665,6 +3759,13 @@ void Ship::SetParent(const shared_ptr<Ship> &ship)
 	parent = ship;
 	if(ship)
 		ship->AddEscort(*this);
+}
+
+
+
+void Ship::SetFormationPattern(const FormationPattern *formationToSet)
+{
+	formationPattern = formationToSet;
 }
 
 

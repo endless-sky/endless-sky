@@ -158,7 +158,7 @@ double Angle::Degrees() const
 }
 
 
-
+	
 // Return a point rotated by this angle around (0, 0).
 Point Angle::Rotate(const Point &point) const
 {

@@ -12,7 +12,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "FormationPattern.h"
 
-#include <iostream>
 #include <cmath>
 
 using namespace std;
@@ -32,7 +31,7 @@ void FormationPattern::Load(const DataNode &node)
 		name = node.Token(1);
 	
 	for(const DataNode &child : node)
-		if(child.Token(0) == "flippable" && child.Size()>=2)
+		if(child.Token(0) == "flippable" && child.Size() >= 2)
 			for(int i = 1; i<child.Size(); ++i)
 			{
 				if(child.Token(i) == "x")
