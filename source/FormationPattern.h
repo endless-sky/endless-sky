@@ -24,8 +24,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 // Class that handles the loading and position calculations for a pattern that
 // can be used for ships flying in formation.
-// This class only deals with calculation the positions that exist in a formation
-// pattern, the actual assignment of ships to positions is not handled in this class.
+// This class only deals with calculating the positions that exist in a formation
+// pattern, the actual assignment of ships to positions is handled outside this class.
 class FormationPattern {
 public:
 	// Struct that describes the properties of an active formation, like the number
