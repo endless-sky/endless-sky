@@ -37,6 +37,24 @@ bool Near(double a, double b)
 }
 
 
+std::string formation_empty =  std::string("") +
+"formation \"Empty\"\n";
+
+
+std::string formation_empty_by_skips =  std::string("") +
+"formation \"Empty By Skips\"\n" +
+"	line\n" +
+"		start -100 200\n" +
+"		end 100 200\n" +
+"		slots 2\n" +
+"		skip first\n" +
+"		skip last\n" +
+"		repeat\n" +
+"			start -100 200\n" +
+"			end 100 200\n" +
+"			alternating\n";
+
+
 std::string formation_delta_tail_px = std::string("") +
 "formation \"Delta Tail (px)\"\n" +
 "	flippable y\n" +
@@ -57,7 +75,49 @@ std::string formation_delta_tail_px = std::string("") +
 
 // #region unit tests
 SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positioning]" ) {
-	GIVEN( "a pattern loaded in px" ) {
+	GIVEN( "a completely empty formation pattern" ) {
+		auto emptyNode = AsDataNode(formation_empty);
+		FormationPattern emptyFormation;
+		emptyFormation.Load(emptyNode);
+		REQUIRE( emptyFormation.Name() == "Empty");
+		WHEN( "positions are requested") {
+			FormationPattern::ActiveFormation af;
+			auto it = emptyFormation.begin(af);
+			THEN ( "all returned positions are near Point(0,0) and on Ring 0" ) {
+				CHECK( Near(*it, Point(0, 0)) );
+				CHECK( it.Ring() == 0 );
+				++it;
+				CHECK( Near(*it, Point(0, 0)) );
+				++it;
+				CHECK( Near(*it, Point(0, 0)) );
+				++it;
+				CHECK( Near(*it, Point(0, 0)) );
+				CHECK( it.Ring() == 0 );
+			}
+		}
+	}
+	GIVEN( "a formation pattern empty because of skipping" ) {
+		auto emptyNode = AsDataNode(formation_empty_by_skips);
+		FormationPattern emptyFormation;
+		emptyFormation.Load(emptyNode);
+		REQUIRE( emptyFormation.Name() == "Empty By Skips");
+		WHEN( "positions are requested") {
+			FormationPattern::ActiveFormation af;
+			auto it = emptyFormation.begin(af);
+			THEN ( "all returned positions are near Point(0,0) and on Ring 0" ) {
+				CHECK( Near(*it, Point(0, 0)) );
+				CHECK( it.Ring() == 0 );
+				++it;
+				CHECK( Near(*it, Point(0, 0)) );
+				++it;
+				CHECK( Near(*it, Point(0, 0)) );
+				++it;
+				CHECK( Near(*it, Point(0, 0)) );
+				CHECK( it.Ring() == 0 );
+			}
+		}
+	}
+	GIVEN( "a formation pattern loaded in px" ) {
 		auto delta_pxNode = AsDataNode(formation_delta_tail_px);
 		FormationPattern delta_px;
 		delta_px.Load(delta_pxNode);
@@ -143,6 +203,16 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 				// We just allow all those possible implementations in the test.
 				CHECK(( Near(it->X(), 0.) || Near(abs(it->X()), 100.) ));
 				CHECK( Near(it->Y(), 1000) );
+			}
+		}
+		WHEN( "there are two ships on a centered line" ) {
+			FormationPattern::ActiveFormation af;
+			af.numberOfShips = 2;
+			THEN ( "they are on the left and right spots near the center on even lines" ) {
+				auto it = delta_px.begin(af, 2);
+				CHECK( Near(*it, Point(-100, 600)) );
+				++it;
+				CHECK( Near(*it, Point(100, 600)) );
 			}
 		}
 	}
