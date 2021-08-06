@@ -26,6 +26,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 namespace { // test namespace
 
 // #region mock data
+bool Near(const Point a, const Point b)
+{
+	return a.Distance(b) < 0.01;
+}
+
+bool Near(double a, double b)
+{
+	return abs(a - b) < 0.01;
+}
+
 
 std::string formation_delta_tail_px = std::string("") +
 "formation \"Delta Tail (px)\"\n" +
@@ -58,61 +68,61 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 				// No exact comparisons due to doubles, but we check if
 				// the given points are very close to what they should be.
 				auto it = delta_px.begin(af);
-				REQUIRE( (*it).Distance(Point(-100, 200)) < 0.01 );
+				REQUIRE( Near(*it, Point(-100, 200)) );
 				CHECK( it.Ring() == 0 );
 				++it;
-				REQUIRE( (*it).Distance(Point(100, 200)) < 0.01 );
+				REQUIRE( Near(*it, Point(100, 200)) );
 				CHECK( it.Ring() == 0 );
 				++it;
-				REQUIRE( (*it).Distance(Point(200, 400)) < 0.01 );
+				REQUIRE( Near(*it, Point(200, 400)) );
 				CHECK( it.Ring() == 1 );
 				++it;
-				REQUIRE( (*it).Distance(Point(0, 400)) < 0.01 );
+				REQUIRE( Near(*it, Point(0, 400)) );
 				CHECK( it.Ring() == 1 );
 				++it;
-				REQUIRE( (*it).Distance(Point(-200, 400)) < 0.01 );
+				REQUIRE( Near(*it, Point(-200, 400)) );
 				CHECK( it.Ring() == 1 );
 				++it;
-				REQUIRE( (*it).Distance(Point(-300, 600)) < 0.01 );
+				REQUIRE( Near(*it, Point(-300, 600)) );
 				CHECK( it.Ring() == 2 );
 				++it;
-				REQUIRE( (*it).Distance(Point(-100, 600)) < 0.01 );
+				REQUIRE( Near(*it, Point(-100, 600)) );
 				CHECK( it.Ring() == 2 );
 				++it;
-				REQUIRE( (*it).Distance(Point(100, 600)) < 0.01 );
+				REQUIRE( Near(*it, Point(100, 600)) );
 				CHECK( it.Ring() == 2 );
 				++it;
-				REQUIRE( (*it).Distance(Point(300, 600)) < 0.01 );
+				REQUIRE( Near(*it, Point(300, 600)) );
 				CHECK( it.Ring() == 2 );
 			}
 			THEN ( "the correct positions are calculated when nr of ships is known" ) {
 				af.numberOfShips = 9;
 				auto it = delta_px.begin(af);
-				REQUIRE( (*it).Distance(Point(-100, 200)) < 0.01 );
+				REQUIRE( Near(*it, Point(-100, 200)) );
 				CHECK( it.Ring() == 0 );
 				++it;
-				REQUIRE( (*it).Distance(Point(100, 200)) < 0.01 );
+				REQUIRE( Near(*it, Point(100, 200)) );
 				CHECK( it.Ring() == 0 );
 				++it;
-				REQUIRE( (*it).Distance(Point(200, 400)) < 0.01 );
+				REQUIRE( Near(*it, Point(200, 400)) );
 				CHECK( it.Ring() == 1 );
 				++it;
-				REQUIRE( (*it).Distance(Point(0, 400)) < 0.01 );
+				REQUIRE( Near(*it, Point(0, 400)) );
 				CHECK( it.Ring() == 1 );
 				++it;
-				REQUIRE( (*it).Distance(Point(-200, 400)) < 0.01 );
+				REQUIRE( Near(*it, Point(-200, 400)) );
 				CHECK( it.Ring() == 1 );
 				++it;
-				REQUIRE( (*it).Distance(Point(-300, 600)) < 0.01 );
+				REQUIRE( Near(*it, Point(-300, 600)) );
 				CHECK( it.Ring() == 2 );
 				++it;
-				REQUIRE( (*it).Distance(Point(-100, 600)) < 0.01 );
+				REQUIRE( Near(*it, Point(-100, 600)) );
 				CHECK( it.Ring() == 2 );
 				++it;
-				REQUIRE( (*it).Distance(Point(100, 600)) < 0.01 );
+				REQUIRE( Near(*it, Point(100, 600)) );
 				CHECK( it.Ring() == 2 );
 				++it;
-				REQUIRE( (*it).Distance(Point(300, 600)) < 0.01 );
+				REQUIRE( Near(*it, Point(300, 600)) );
 				CHECK( it.Ring() == 2 );
 			}
 		}
@@ -122,16 +132,17 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 			THEN ( "it is in the center spot on odd lines" ) {
 				auto it = delta_px.begin(af, 3);
 				REQUIRE ( it.Ring() == 3 );
-				CHECK( (*it).Distance(Point(0, 800)) < 0.01 );
+				CHECK( Near(*it, Point(0, 800)) );
 			}
 			THEN ( "it is near the center on even lines" ) {
 				auto it = delta_px.begin(af, 4);
 				REQUIRE ( it.Ring() == 4 );
-				// X can be left of center or right of center at 100 pixels,
-				// or can be in the exact center (depending on implementation).
-				// We just allow all possible implementations in the test here.
-				CHECK( (it->X() < 0.01 || (abs(it->X()) - 100) < 0.01 ) );
-				CHECK( (it->Y() - 1000) < 0.01 );
+				// X can be left of center or right of center at a distance of
+				// 100 pixels, or can be in the exact center (depending on
+				// implementation).
+				// We just allow all those possible implementations in the test.
+				CHECK(( Near(it->X(), 0.) || Near(abs(it->X()), 100.) ));
+				CHECK( Near(it->Y(), 1000) );
 			}
 		}
 	}
