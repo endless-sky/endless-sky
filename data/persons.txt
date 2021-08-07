@@ -1290,7 +1290,7 @@ person "Brick"
 		mining harvests plunders
 	phrase
 		word
-			"If sticks and stones break bones bricks should work wonders."
+			"If sticks and stones break bones, then bricks should work wonders."
 			"The red coloring in bricks is caused by rust or iron oxide in the clay prior to baking."
 			"Bricks and blenders make monsters."
 			"I have no idea what I'm doing."
