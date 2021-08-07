@@ -1295,13 +1295,15 @@ person "Brick"
 			"Bricks and blenders make monsters."
 			"I have no idea what I'm doing."
 	ship "Modified Boxwing" "Quarg Block"
+		"never disabled"
 	ship "Modified Boxwing" "Hai Block"
+		"never disabled"
 	ship "Modified Boxwing" "Remnant Block"
+		"never disabled"
 
 ship "Modified Boxwing"
 	sprite "ship/modified boxwing"
 	thumbnail "thumbnail/modified boxwing"
-	"never disabled"
 	attributes
 		category "Interceptor"
 		cost 3690000
