@@ -633,6 +633,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(vector<const Ship *> &ships) const
 			continue;
 		}
 		
+		// Copy the model instance into a new instance.
 		auto ship = make_shared<Ship>(*model);
 		
 		const Phrase *phrase = ((ship->CanBeCarried() && fighterNames) ? fighterNames : names);
