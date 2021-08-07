@@ -152,20 +152,6 @@ void Variant::Load(const DataNode &node)
 
 
 
-bool Variant::NestedInSelf(string check) const
-{
-	if(!name.empty() && name == check)
-		return true;
-	
-	for(const auto &it : variants)
-		if(it.Get().NestedInSelf(check))
-			return true;
-	
-	return false;
-}
-
-
-
 bool Variant::IsValid() const
 {
 	// A variant should have at least one valid ship
@@ -177,13 +163,6 @@ bool Variant::IsValid() const
 		return false;
 	
 	return true;
-}
-
-
-
-const string &Variant::Name() const
-{
-	return name;
 }
 
 
@@ -202,20 +181,6 @@ vector<const Ship *> Variant::ChooseShips() const
 
 
 
-// Choose a ship from this variant given that it is a nested variant.
-// Nested variants only choose a single ship from among their list
-// of ships and variants.
-const Ship *Variant::NestedChooseShip() const
-{
-	// Randomly choose between the ships and the variants.
-	if(static_cast<int>(Random::Int(total)) < static_cast<int>(variants.TotalWeight()))
-		return variants.Get().Get().NestedChooseShip();
-	else
-		return ships[Random::Int(total - variants.TotalWeight())];
-}
-
-
-
 // The strength of a variant is the sum of the cost of its ships and
 // the strength of any nested variants.
 int64_t Variant::Strength() const
@@ -230,25 +195,11 @@ int64_t Variant::Strength() const
 
 
 
-// The strength of a nested variant is its normal strength divided by
-// the total weight of its contents.
-int64_t Variant::NestedStrength() const
-{
-	return Strength() / total;
-}
-
-
-
 // An operator for checking the equality of two variants.
 bool Variant::operator==(const Variant &other) const
 {
-	// Are one of the variants named but not the other?
-	if((other.name.empty() && !name.empty())
-		|| (!other.name.empty() && name.empty()))
-		return false;
-	
-	// Are both variants named and share the same name?
-	if(!other.name.empty() && !name.empty())
+	// Is either variant named? Do they share the same name?
+	if(!other.name.empty() || !name.empty())
 		return other.name == name;
 	
 	// Are the ships of other a permutation of this variant's?
@@ -262,4 +213,42 @@ bool Variant::operator==(const Variant &other) const
 	
 	// If all checks have passed, these variants are equal.
 	return true;
+}
+
+
+
+// Choose a ship from this variant given that it is a nested variant.
+// Nested variants only choose a single ship from among their list
+// of ships and variants.
+const Ship *Variant::NestedChooseShip() const
+{
+	// Randomly choose between the ships and the variants.
+	if(static_cast<int>(Random::Int(total)) < static_cast<int>(variants.TotalWeight()))
+		return variants.Get().Get().NestedChooseShip();
+	else
+		return ships[Random::Int(total - variants.TotalWeight())];
+}
+
+
+
+// The strength of a nested variant is its normal strength divided by
+// the total weight of its contents.
+int64_t Variant::NestedStrength() const
+{
+	return Strength() / total;
+}
+
+
+
+// Check whether a variant is contained within itself.
+bool Variant::NestedInSelf(string check) const
+{
+	if(!name.empty() && name == check)
+		return true;
+	
+	for(const auto &it : variants)
+		if(it.Get().NestedInSelf(check))
+			return true;
+	
+	return false;
 }
