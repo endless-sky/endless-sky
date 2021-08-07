@@ -1692,8 +1692,8 @@ mission "Saryd University Lecture"
 	description "Starlit University on <planet> is hosting a seminar on xenology. Transport a guest speaker there by <date>. Payment is <payment>."
 	passengers 1
 	deadline
-	random < 40 
 	to offer
+		random < 40 
 		has "Coalition: First Contact: done"
 	source "Warm Slope"
 	destination "Shadow of Leaves"
