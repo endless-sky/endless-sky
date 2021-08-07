@@ -173,7 +173,7 @@ bool Variant::IsValid() const
 	if(none_of(ships.begin(), ships.end(),
 			[](const Ship *const s) noexcept -> bool { return s->IsValid(); })
 		&& none_of(variants.begin(), variants.end(),
-			[](const WeightedVariant &v) noexcept -> bool {return v.Get().IsValid()))
+			[](const WeightedVariant &v) noexcept -> bool { return v.Get().IsValid(); }))
 		return false;
 	
 	return true;
