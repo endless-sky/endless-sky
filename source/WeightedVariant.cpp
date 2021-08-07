@@ -43,3 +43,10 @@ const Variant &WeightedVariant::Get() const
 {
 	return stockVariant ? *stockVariant : variant;
 }
+
+
+
+bool WeightedVariant::operator==(const WeightedVariant &other) const
+{
+	return other.Get() == Get();
+}

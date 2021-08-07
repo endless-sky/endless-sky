@@ -28,6 +28,9 @@ public:
 	int Weight() const;
 	const Variant &Get() const;
 	
+	bool operator==(const WeightedVariant &other) const;
+	
+	
 private:
 	int weight;
 	Variant variant;

@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Random.h"
 #include "Ship.h"
+#include "WeightedVariant.h"
 
 #include <algorithm>
 #include <cmath>
@@ -43,7 +44,7 @@ void Variant::Load(const DataNode &node)
 	
 	// If Load() has already been called once on this variant, any subsequent
 	// calls will replace the contents instead of adding to them.
-	bool reset = !variants.empty() || !stockVariants.empty() || !ships.empty();
+	bool reset = !variants.empty() || !ships.empty();
 	
 	for(const DataNode &child : node)
 	{
@@ -63,33 +64,14 @@ void Variant::Load(const DataNode &node)
 			{
 				// If given a full definition of one of this fleet's variant members, remove the variant.
 				Variant toRemove(child);
-				// If toRemove is named, check if a stockVariant shares that name.
-				// Else, check if toRemove is equal to any of the variants.
-				if(!toRemove.Name().empty())
-				{
-					for(auto it = stockVariants.begin(); it != stockVariants.end(); ++it)
-						if(it->first->Name() == toRemove.Name())
-						{
-							total -= it->second;
-							variantTotal -= it->second;
-							stockTotal -= it->second;
-							stockVariants.erase(it);
-							didRemove = true;
-							break;
-						}
-				}
-				else
-				{
-					for(auto it = variants.begin(); it != variants.end(); ++it)
-						if(it->first == toRemove)
-						{
-							total -= it->second;
-							variantTotal -= it->second;
-							variants.erase(it);
-							didRemove = true;
-							break;
-						}
-				}
+				for(auto it = variants.begin(); it != variants.end(); ++it)
+					if(it->Get() == toRemove)
+					{
+						total -= it->Weight();
+						variants.erase(it);
+						didRemove = true;
+						break;
+					}
 				
 				if(!didRemove)
 					child.PrintTrace("Did not find matching variant for specified operation:");
@@ -102,9 +84,8 @@ void Variant::Load(const DataNode &node)
 					if((*it)->ModelName() == shipName)
 					{
 						--total;
-						ships.erase(it);
+						it = ships.erase(it);
 						didRemove = true;
-						--it;
 					}
 				
 				if(!didRemove)
@@ -119,22 +100,17 @@ void Variant::Load(const DataNode &node)
 			{
 				reset = false;
 				variants.clear();
-				stockVariants.clear();
 				ships.clear();
 				total = 0;
-				variantTotal = 0;
-				stockTotal = 0;
 			}
 			
 			int n = 1;
 			if(variant)
 			{
-				bool named = false;
 				string variantName;
 				if(child.Size() >= 2 + add && !child.IsNumber(1 + add))
 				{
 					variantName = child.Token(1 + add);
-					named = true;
 					if(variantName == name)
 					{
 						node.PrintTrace("A variant cannot reference itself:");
@@ -142,18 +118,14 @@ void Variant::Load(const DataNode &node)
 					}
 				}
 				
-				if(child.Size() >= 2 + add + named && child.Value(1 + add + named) >= 1.)
-					n = child.Value(1 + add + named);
+				if(child.Size() >= 2 + add + !variantName.empty() && child.Value(1 + add + !variantName.empty()) >= 1.)
+					n = child.Value(1 + add + !variantName.empty());
 				total += n;
-				variantTotal += n;
 				
 				// If this variant is named, then look for it in GameData.
 				// Otherwise this is a new variant definition only for this variant.
-				if(named)
-				{
-					stockVariants.emplace_back(GameData::Variants().Get(variantName), n);
-					stockTotal += n;
-				}
+				if(!variantName.empty())
+					variants.emplace_back(GameData::Variants().Get(variantName), n);
 				else
 					variants.emplace_back(child, n);
 			}
@@ -169,31 +141,27 @@ void Variant::Load(const DataNode &node)
 
 	// Prevent a variant from containing itself.
 	if(!name.empty())
-	{
-		for(auto it = stockVariants.begin(); it != stockVariants.end(); ++it)
-		{
-			if(it->first->NestedInSelf(name))
-			{
-				total -= it->second;
-				variantTotal -= it->second;
-				stockTotal -= it->second;
-				stockVariants.erase(it);
-				--it;
-				node.PrintTrace("Infinite loop detected and removed in variant \"" + name + "\":");
-			}
-		}
 		for(auto it = variants.begin(); it != variants.end(); ++it)
-		{
-			if(it->first.NestedInSelf(name))
+			if(it->Get().NestedInSelf(name))
 			{
-				total -= it->second;
-				variantTotal -= it->second;
-				variants.erase(it);
-				--it;
+				total -= it->Weight();
+				it = variants.erase(it);
 				node.PrintTrace("Infinite loop detected and removed in variant \"" + name + "\":");
 			}
-		}
-	}
+}
+
+
+
+bool Variant::NestedInSelf(string check) const
+{
+	if(!name.empty() && name == check)
+		return true;
+	
+	for(const auto &it : variants)
+		if(it.Get().NestedInSelf(check))
+			return true;
+	
+	return false;
 }
 
 
@@ -210,23 +178,6 @@ bool Variant::IsValid() const
 
 
 
-bool Variant::NestedInSelf(string check) const
-{
-	if(!name.empty() && name == check)
-		return true;
-	
-	for(auto &it : stockVariants)
-		if(it.first->NestedInSelf(check))
-			return true;
-	for(auto &it : variants)
-		if(it.first.NestedInSelf(check))
-			return true;
-	
-	return false;
-}
-
-
-
 const string &Variant::Name() const
 {
 	return name;
@@ -234,21 +185,14 @@ const string &Variant::Name() const
 
 
 
-vector<const Ship *> Variant::Ships() const
+const vector<const Ship *> &Variant::Ships() const
 {
 	return ships;
 }
 
 
 
-vector<pair<const Variant *, int>> Variant::StockVariants() const
-{
-	return stockVariants;
-}
-
-
-
-vector<pair<Variant, int>> Variant::Variants() const
+const WeightedList<WeightedVariant> &Variant::Variants() const
 {
 	return variants;
 }
@@ -257,16 +201,13 @@ vector<pair<Variant, int>> Variant::Variants() const
 
 // Choose a list of ships from this variant. All ships from the ships
 // vector are chosen, as well as a random selection of ships from any
-// nested variants in the stockVariants or variants vectors.
+// nested variants in the WeightedList.
 vector<const Ship *> Variant::ChooseShips() const
 {
 	vector<const Ship *> chosenShips = ships;
 	for(const auto &it : variants)
-		for(int i = 0; i < it.second; i++)
-			chosenShips.push_back(it.first.NestedChooseShip());
-	for(const auto &it : stockVariants)
-		for(int i = 0; i < it.second; i++)
-			chosenShips.push_back(it.first->NestedChooseShip());
+		for(int i = 0; i < it.Weight(); i++)
+			chosenShips.push_back(it.Get().NestedChooseShip());
 	return chosenShips;
 }
 
@@ -278,10 +219,10 @@ vector<const Ship *> Variant::ChooseShips() const
 const Ship *Variant::NestedChooseShip() const
 {
 	// Randomly choose between the ships and the variants.
-	if(static_cast<int>(Random::Int(total)) < variantTotal)
-		return ChooseVariant(variants, stockVariants, variantTotal, stockTotal).NestedChooseShip();
+	if(static_cast<int>(Random::Int(total)) < static_cast<int>(variants.TotalWeight()))
+		return variants.Get().Get().NestedChooseShip();
 	else
-		return ships[Random::Int(total - variantTotal)];
+		return ships[Random::Int(total - variants.TotalWeight())];
 }
 
 
@@ -294,9 +235,7 @@ int64_t Variant::Strength() const
 	for(const Ship *ship : ships)
 		sum += ship->Cost();
 	for(const auto &variant : variants)
-		sum += variant.first.NestedStrength() * variant.second;
-	for(const auto &variant : stockVariants)
-		sum += variant.first->NestedStrength() * variant.second;
+		sum += variant.Get().NestedStrength() * variant.Weight();
 	return sum;
 }
 
@@ -307,33 +246,6 @@ int64_t Variant::Strength() const
 int64_t Variant::NestedStrength() const
 {
 	return Strength() / total;
-}
-
-
-
-// A static function used by Variant and Fleet to randomly choose a single
-// variant between a list of normal variants and a list of stock variants,
-// given the total weight between the two and the total weight of the stock
-// variants.
-const Variant &Variant::ChooseVariant(const vector<pair<Variant, int>> &nVariants, const vector<pair<const Variant *, int>> &sVariants, int vTotal, int sTotal)
-{
-	unsigned index = 0;
-	// Randomly choose between the stock variants and the non-stock variants.
-	int chosen = Random::Int(vTotal);
-	if(chosen < sTotal)
-	{
-		// "chosen" is recycled here since it's already a random int between
-		// 0 and the weight of all stockVariants.
-		for( ; chosen >= sVariants[index].second; ++index)
-			chosen -= sVariants[index].second;
-		return *sVariants[index].first;
-	}
-	else
-	{
-		for(int choice = Random::Int(vTotal - sTotal); choice >= nVariants[index].second; ++index)
-			choice -= nVariants[index].second;
-		return nVariants[index].first;
-	}
 }
 
 
@@ -354,11 +266,7 @@ bool Variant::operator==(const Variant &other) const
 	if(other.Ships().size() != ships.size()
 		|| !is_permutation(ships.begin(), ships.end(), other.Ships().begin()))
 		return false;
-	// Are the stockVariants of other a permutation of this variant's?
-	if(other.StockVariants().size() != stockVariants.size()
-		|| !is_permutation(stockVariants.begin(), stockVariants.end(), other.StockVariants().begin()))
-		return false;
-	// Are the nested variants of other a permutation of this variant's?
+	// Are the subvariants of other a permutation of this variant's?
 	if(other.Variants().size() != variants.size()
 		|| !is_permutation(variants.begin(), variants.end(), other.Variants().begin()))
 		return false;

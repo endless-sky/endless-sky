@@ -13,12 +13,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef VARIANT_H_
 #define VARIANT_H_
 
+#include "WeightedList.h"
+
 #include <string>
 #include <utility>
 #include <vector>
 
 class DataNode;
 class Ship;
+class WeightedVariant;
 
 
 // A variant represents a collection of ships that may be spawned by a fleet.
@@ -37,9 +40,8 @@ public:
 	//void RemoveInvalidVariants();
 	
 	const std::string &Name() const;
-	std::vector<const Ship *> Ships() const;
-	std::vector<std::pair<const Variant *, int>> StockVariants() const;
-	std::vector<std::pair<Variant, int>> Variants() const;
+	const std::vector<const Ship *> &Ships() const;
+	const WeightedList<WeightedVariant> &Variants() const;
 	
 	// Choose a list of ships from this variant. All ships from the ships
 	// vector are chosen, as well as a random selection of ships from any
@@ -56,28 +58,17 @@ public:
 	// another variant.
 	int64_t NestedStrength() const;
 	
-	// A static function used by Variant and Fleet to randomly choose a single
-	// variant between a list of normal variants and a list of stock variants,
-	// given the total weight between the two and the total weight of the stock
-	// variants.
-	static const Variant &ChooseVariant(const std::vector<std::pair<Variant, int>> &nVariants, const std::vector<std::pair<const Variant *, int>> &sVariants, int vTotal, int sTotal);
-	
 	bool operator==(const Variant &other) const;
-
+	
 private:
 	bool NestedInSelf(std::string check) const;
+	
 	
 private:
 	std::string name;
 	int total = 0;
-	int variantTotal = 0;
-	int stockTotal = 0;
 	std::vector<const Ship *> ships;
-	// StockVariants contains references to the named root-node variants (as defined
-	// in GameData) that are referenced from this variant definition. The variants vector
-	// contains the local variants that were defined by this variant definition.
-	std::vector<std::pair<const Variant *, int>> stockVariants;
-	std::vector<std::pair<Variant, int>> variants;
+	WeightedList<WeightedVariant> variants;
 };
 
 
