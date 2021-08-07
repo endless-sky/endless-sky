@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "Variant.h"
 
 #include <algorithm>
 #include <cmath>
@@ -158,7 +159,7 @@ void Fleet::Load(const DataNode &node)
 	
 	// If Load() has already been called once on this fleet, any subsequent
 	// calls will replace the variants instead of adding to them.
-	bool resetVariants = !variants.empty() || !stockVariants.empty();
+	bool resetVariants = !variants.empty();
 	
 	for(const DataNode &child : node)
 	{
@@ -204,11 +205,8 @@ void Fleet::Load(const DataNode &node)
 			{
 				resetVariants = false;
 				variants.clear();
-				stockVariants.clear();
-				total = 0;
-				stockTotal = 0;
 			}
-
+			
 			int weight = 1;
 			string variantName;
 			bool named = false;
@@ -219,13 +217,9 @@ void Fleet::Load(const DataNode &node)
 			}
 			if(child.Size() >= 2 + add + named)
 				weight = child.Value(1 + add + named);
-
-			total += weight;
+			
 			if(named)
-			{
-				stockVariants.emplace_back(GameData::Variants().Get(variantName), weight);
-				stockTotal += weight;
-			}
+				variants.emplace_back(GameData::Variants().Get(variantName), weight);
 			else
 				variants.emplace_back(child, weight);
 		}
@@ -234,31 +228,13 @@ void Fleet::Load(const DataNode &node)
 			// If given a full definition of one of this fleet's variant members, remove the variant.
 			bool didRemove = false;
 			Variant toRemove(child);
-			// If toRemove is named, check if a stockVariant shares that name.
-			// Else, check if toRemove is equal to any of the variants.
-			if(!toRemove.Name().empty())
-			{
-				for(auto it = stockVariants.begin(); it != stockVariants.end(); ++it)
-					if(it->first->Name() == toRemove.Name())
-					{
-						total -= it->second;
-						stockTotal -= it->second;
-						stockVariants.erase(it);
-						didRemove = true;
-						break;
-					}
-			}
-			else
-			{
-				for(auto it = variants.begin(); it != variants.end(); ++it)
-					if(it->first == toRemove)
-					{
-						total -= it->second;
-						variants.erase(it);
-						didRemove = true;
-						break;
-					}
-			}
+			for(auto it = variants.begin(); it != variants.end(); ++it)
+				if(it->Get() == toRemove)
+				{
+					variants.erase(it);
+					didRemove = true;
+					break;
+				}
 			
 			if(!didRemove)
 				child.PrintTrace("Did not find matching variant for specified operation:");
@@ -287,7 +263,7 @@ bool Fleet::IsValid(bool requireGovernment) const
 	
 	// A fleet should have at least one valid variant.
 	if(none_of(variants.begin(), variants.end(),
-			[](const pair<Variant, int> &v) noexcept -> bool { return v.first.IsValid(); }))
+			[](const WeightedVariant &v) noexcept -> bool { return v.Get().IsValid(); }))
 		return false;
 	
 	return true;
@@ -297,9 +273,9 @@ bool Fleet::IsValid(bool requireGovernment) const
 
 void Fleet::RemoveInvalidVariants()
 {
-	auto IsInvalidVariant = [](const pair<Variant, int> &v) noexcept -> bool
+	auto IsInvalidVariant = [](const WeightedVariant &v) noexcept -> bool
 	{
-		return !v.first.IsValid();
+		return !v.Get().IsValid();
 	};
 	auto firstInvalid = find_if(variants.begin(), variants.end(), IsInvalidVariant);
 	if(firstInvalid == variants.end())
@@ -310,15 +286,14 @@ void Fleet::RemoveInvalidVariants()
 	int removedWeight = 0;
 	for(auto it = firstInvalid; it != variants.end(); ++it)
 		if(IsInvalidVariant(*it))
-			removedWeight += it->second;
+			removedWeight += it->Weight();
 	
 	auto removeIt = remove_if(firstInvalid, variants.end(), IsInvalidVariant);
 	int count = distance(removeIt, variants.end());
 	Files::LogError("Warning: " + (fleetName.empty() ? "unnamed fleet" : "fleet \"" + fleetName + "\"")
 		+ ": Removing " + to_string(count) + " invalid " + (count > 1 ? "variants" : "variant")
-		+ " (" + to_string(removedWeight) + " of " + to_string(total) + " weight)");
+		+ " (" + to_string(removedWeight) + " of " + to_string(variants.TotalWeight()) + " weight)");
 	
-	total -= removedWeight;
 	variants.erase(removeIt, variants.end());
 }
 
@@ -334,11 +309,11 @@ const Government *Fleet::GetGovernment() const
 // Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
 void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet) const
 {
-	if(!total || (variants.empty() && stockVariants.empty()))
+	if(variants.empty())
 		return;
 	
 	// Pick a fleet variant to instantiate.
-	const Variant &variant = Variant::ChooseVariant(variants, stockVariants, total, stockTotal);
+	const Variant &variant = variants.Get().Get();
 	vector<const Ship *> variantShips = variant.ChooseShips();
 	if(variantShips.empty())
 		return;
@@ -504,11 +479,11 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 // only uncarried ships will be added to the list (as any carriables will be stored in bays).
 void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried) const
 {
-	if(!total || (variants.empty() && stockVariants.empty()))
+	if(variants.empty())
 		return;
 	
 	// Pick a fleet variant to instantiate.
-	const Variant &variant = Variant::ChooseVariant(variants, stockVariants, total, stockTotal);
+	const Variant &variant = variants.Get().Get();
 	vector<const Ship *> variantShips = variant.ChooseShips();
 	if(variantShips.empty())
 		return;
@@ -590,15 +565,13 @@ void Fleet::Place(const System &system, Ship &ship)
 
 int64_t Fleet::Strength() const
 {
-	if(!total || variants.empty())
+	if(variants.empty())
 		return 0;
 	
 	int64_t sum = 0;
 	for(const auto &variant : variants)
-		sum += variant.first.Strength() * variant.second;
-	for(const auto &variant : stockVariants)
-		sum += variant.first->Strength() * variant.second;
-	return sum / total;
+		sum += variant.Get().Strength() * variant.Weight();
+	return sum / variants.TotalWeight();
 }
 
 

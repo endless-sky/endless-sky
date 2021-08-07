@@ -15,7 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Personality.h"
 #include "Sale.h"
-#include "Variant.h"
+#include "WeightedList.h"
+#include "WeightedVariant.h"
 
 #include <list>
 #include <memory>
@@ -81,14 +82,8 @@ private:
 	const Government *government = nullptr;
 	const Phrase *names = nullptr;
 	const Phrase *fighterNames = nullptr;
-	// StockVariants contains references to the named root-node variants (as defined
-	// in GameData) that are referenced from this fleet definition. The variants vector
-	// contains the local variants that were defined by this fleet definition.
-	std::vector<std::pair<const Variant *, int>> stockVariants;
-	std::vector<std::pair<Variant, int>> variants;
-	// The sum of all available variant weights.
-	int total = 0;
-	int stockTotal = 0;
+	WeightedList<WeightedVariant> variants;
+	
 	// The number of different items the ships in this fleet will carry in cargo.
 	int cargo = 3;
 	std::vector<std::string> commodities;

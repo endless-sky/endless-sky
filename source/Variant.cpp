@@ -338,9 +338,18 @@ const Variant &Variant::ChooseVariant(const vector<pair<Variant, int>> &nVariant
 
 
 
-// An operator for checking the equality of two unnamed variants.
+// An operator for checking the equality of two variants.
 bool Variant::operator==(const Variant &other) const
 {
+	// Are one of the variants named but not the other?
+	if((other.Name().empty() && !name.empty())
+		|| (!other.Name().empty() && name.empty()))
+		return false;
+	
+	// Are both variants named and share the same name?
+	if(!other.Name().empty() && !name.empty())
+		return other.Name() == name;
+	
 	// Are the ships of other a permutation of this variant's?
 	if(other.Ships().size() != ships.size()
 		|| !is_permutation(ships.begin(), ships.end(), other.Ships().begin()))

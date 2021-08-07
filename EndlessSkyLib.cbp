@@ -318,6 +318,8 @@
 		<Unit filename="source/Weather.cpp" />
 		<Unit filename="source/Weather.h" />
 		<Unit filename="source/WeightedList.h" />
+		<Unit filename="source/WeightedVariant.cpp" />
+		<Unit filename="source/WeightedVariant.h" />
 		<Unit filename="source/gl_header.h" />
 		<Unit filename="source/pi.h" />
 		<Unit filename="source/shift.h" />

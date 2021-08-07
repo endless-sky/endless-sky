@@ -31,10 +31,10 @@ public:
 	const Type &Get() const;
 	std::size_t TotalWeight() const { return total; };
 	
-	typename std::vector<Type>::iterator begin() noexcept { return choices.begin(); }
-	typename std::vector<Type>::const_iterator begin() const noexcept { return choices.begin(); }
-	typename std::vector<Type>::iterator end() noexcept { return choices.end(); }
-	typename std::vector<Type>::const_iterator end() const noexcept { return choices.end(); }
+	typename std::vector<Type>::iterator begin() noexcept { return choices.begin(); };
+	typename std::vector<Type>::const_iterator begin() const noexcept { return choices.begin(); };
+	typename std::vector<Type>::iterator end() noexcept { return choices.end(); };
+	typename std::vector<Type>::const_iterator end() const noexcept { return choices.end(); };
 	
 	void clear() noexcept { choices.clear(); total = 0; };
 	std::size_t size() const noexcept { return choices.size(); };
@@ -42,8 +42,14 @@ public:
 	Type &back() noexcept { return choices.back(); };
 	const Type &back() const noexcept { return choices.back(); };
 	
+	typename std::vector<Type>::iterator erase(typename std::vector<Type>::iterator position) { auto it = choices.erase(position); RecalculateWeight(); return it; };
+	typename std::vector<Type>::iterator erase(typename std::vector<Type>::iterator first, typename std::vector<Type>::iterator last) { auto it = choices.erase(first, last); RecalculateWeight(); return it;};
+	
 	template <class ...Args>
 	Type &emplace_back(Args&&... args);
+	
+private:
+	void RecalculateWeight();
 	
 	
 private:
@@ -84,6 +90,15 @@ const Type &WeightedList<Type>::Get() const
 	return choices[index];
 }
 
+
+
+template<class Type>
+void WeightedList<Type>::RecalculateWeight()
+{
+	total = 0;
+	for(const auto &choice : choices)
+		total += choice.Weight();
+}
 
 
 #endif
