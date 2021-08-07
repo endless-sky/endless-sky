@@ -36,6 +36,8 @@ public:
 	
 	typename std::map<std::string, Type>::iterator begin() { return data.begin(); }
 	typename std::map<std::string, Type>::const_iterator begin() const { return data.begin(); }
+	typename std::map<std::string, Type>::iterator find(std::string &key) { return data.find(key); }
+	typename std::map<std::string, Type>::const_iterator find(const std::string &key) const { return data.find(key); }
 	typename std::map<std::string, Type>::iterator end() { return data.end(); }
 	typename std::map<std::string, Type>::const_iterator end() const { return data.end(); }
 	

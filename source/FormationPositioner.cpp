@@ -58,11 +58,7 @@ void FormationPositioner::Start()
 	// Calculate new direction, if the formationLead is moving, then we use the movement vector.
 	// Otherwise we use the facing vector.
 	Point velocity = formationLead->Velocity();
-	Angle desiredDir;
-	if(velocity.Length() > 0.1)
-		desiredDir = Angle(velocity);
-	else
-		desiredDir = formationLead->Facing();
+	auto desiredDir = velocity.Length() > 0.1 ? Angle(velocity) : formationLead->Facing();
 	
 	Angle deltaDir = desiredDir - direction;
 	

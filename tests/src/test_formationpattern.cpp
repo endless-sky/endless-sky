@@ -28,46 +28,44 @@ namespace { // test namespace
 // #region mock data
 bool Near(const Point a, const Point b)
 {
-	return a.Distance(b) < 0.01;
-}
-
-bool Near(double a, double b)
-{
-	return abs(a - b) < 0.01;
+	return a.Distance(b) == Approx(0.);
 }
 
 
-std::string formation_empty =  std::string("") +
-"formation \"Empty\"\n";
+
+std::string formation_empty =
+R"(formation "Empty"
+)";
 
 
-std::string formation_empty_by_skips =  std::string("") +
-"formation \"Empty By Skips\"\n" +
-"	line\n" +
-"		start -100 200\n" +
-"		end 100 200\n" +
-"		slots 2\n" +
-"		skip first\n" +
-"		skip last\n" +
-"		repeat\n" +
-"			start -100 200\n" +
-"			end 100 200\n" +
-"			alternating\n";
+std::string formation_empty_by_skips =
+R"(formation "Empty By Skips"
+	line
+		start -100 200
+		end 100 200
+		slots 2
+		skip first
+		skip last
+		repeat
+			start -100 200
+			end 100 200
+			alternating
+)";
 
-
-std::string formation_delta_tail_px = std::string("") +
-"formation \"Delta Tail (px)\"\n" +
-"	flippable y\n" +
-"	line\n" +
-"		start -100 200\n" +
-"		end 100 200\n" +
-"		slots 2\n" +
-"		centered\n" +
-"		repeat\n" +
-"			start -100 200\n" +
-"			end 100 200\n" +
-"			alternating\n" +
-"			slots 1\n";
+std::string formation_delta_tail_px =
+R"'(formation "Delta Tail (px)"
+	flippable y
+	line
+		start -100 200
+		end 100 200
+		slots 2
+		centered
+		repeat
+			start -100 200
+			end 100 200
+			alternating
+			slots 1
+)'";
 
 // #endregion mock data
 
@@ -201,8 +199,8 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 				// 100 pixels, or can be in the exact center (depending on
 				// implementation).
 				// We just allow all those possible implementations in the test.
-				CHECK(( Near(it->X(), 0.) || Near(abs(it->X()), 100.) ));
-				CHECK( Near(it->Y(), 1000) );
+				CHECK(( it->X() == Approx(0.) || abs(it->X()) == Approx(100.) ));
+				CHECK( it->Y() == Approx(1000.) );
 			}
 		}
 		WHEN( "there are two ships on a centered line" ) {

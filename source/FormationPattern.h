@@ -32,8 +32,9 @@ public:
 	// of ships participating in the formation, the maximum sizes of those ships and
 	// some data on the Body around which the formation is formed.
 	// TODO: start using this.
-	struct ActiveFormation
+	class ActiveFormation
 	{
+	public:
 		// Center radius of the formation that is to be kept clear. This
 		// is typically used to avoid positions of ships overlapping with
 		// the  body around which the formation is formed. The actual radius
@@ -51,7 +52,7 @@ public:
 	
 	// Iterator that provides sequential access to all formation positions.
 	// TODO: finish the implementation and start using this.
-	class PositionIterator: public std::iterator<
+	class PositionIterator : public std::iterator<
 		std::input_iterator_tag, // iterator_category
 		Point,                   // iterator: value_type
 		std::ptrdiff_t,          // iterator: difference_type
@@ -94,7 +95,7 @@ public:
 
 
 	// Returns the name of this pattern.
-	const std::string Name() const;
+	const std::string &Name() const;
 	
 	// Load formation from a datafile.
 	void Load(const DataNode &node);

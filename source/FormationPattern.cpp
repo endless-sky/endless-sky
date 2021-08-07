@@ -134,7 +134,7 @@ void FormationPattern::PositionIterator::MoveToValidPosition()
 
 
 
-const string FormationPattern::Name() const
+const string &FormationPattern::Name() const
 {
 	return name;
 }

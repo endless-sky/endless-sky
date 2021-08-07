@@ -127,6 +127,44 @@ namespace {
 				bay.ship->SetCommands(Command::DEPLOY);
 	}
 	
+	// Helper function for selecting the ships for formation commands.
+	vector<Ship *> GetShipsForFormationCommand(const PlayerInfo &player)
+	{
+		// Figure out what ships we are giving orders to
+		vector<Ship *> targetShips;
+		auto selectedShips = player.SelectedShips();
+		bool fullFleet = selectedShips.empty();
+		if(fullFleet)
+		{
+			auto playerShips = player.Ships();
+			targetShips.reserve(playerShips.size() - 1);
+			for(const shared_ptr<Ship> &it : player.Ships())
+				if(it.get() != player.Flagship() && !it->IsParked()
+					&& !it->IsDestroyed())
+					targetShips.push_back(it.get());
+		}
+		else
+		{
+			targetShips.reserve(selectedShips.size());
+			for(const weak_ptr<Ship> &it : selectedShips)
+			{
+				shared_ptr<Ship> ship = it.lock();
+				if(ship)
+					targetShips.push_back(ship.get());
+			}
+		}
+		
+		// This should never happen, but just in case:
+		if(targetShips.empty())
+		{
+			if(fullFleet)
+				Messages::Add("No ships in the fleet to change formation for.", Messages::Importance::High);
+			else
+				Messages::Add("No ships selected that can change formation.", Messages::Importance::High);
+		}
+		return targetShips;
+	}
+	
 	// Issue deploy orders for the selected ships (or the full fleet if no ships are selected).
 	void IssueDeploy(const PlayerInfo &player)
 	{
@@ -311,95 +349,77 @@ AI::AI(const List<Ship> &ships, const List<Minable> &minables, const List<Flotsa
 
 
 
+
+
+
+
 // Fleet commands from the player.
 void AI::IssueFormationChange(const PlayerInfo &player)
 {
 	// Figure out what ships we are giving orders to
-	vector<Ship *> ships;
-	bool fullFleet = player.SelectedShips().empty();
-	if(fullFleet)
-	{
-		for(const shared_ptr<Ship> &it : player.Ships())
-			if(it.get() != player.Flagship() && !it->IsParked()
-				&& !it->IsDestroyed())
-				ships.push_back(it.get());
-	}
-	else
-		for(const weak_ptr<Ship> &it : player.SelectedShips())
-		{
-			shared_ptr<Ship> ship = it.lock();
-			if(ship)
-				ships.push_back(ship.get());
-		}
+	vector<Ship *> targetShips = GetShipsForFormationCommand(player);
 	
 	// This should never happen, but just in case:
-	if(ships.empty())
+	if(targetShips.empty())
+		return;
+	
+	const auto &formationPatterns = GameData::Formations();
+	if(formationPatterns.size() < 1)
 	{
-		if(fullFleet)
-			Messages::Add("No ships in the fleet to change formation for.", Messages::Importance::High);
-		else
-			Messages::Add("No ships selected that can change formation.", Messages::Importance::High);
-		
+		Messages::Add("No formations available.", Messages::Importance::High);
 		return;
 	}
 	
-	const Set<FormationPattern> &formationPatterns = GameData::Formations();
-	
-	// First check which and how many formations we have in the current set of selected ships.
+	// First check which and how many formation patterns we have in the current set of selected ships.
+	// If there is more than 1 pattern in the selection, then this command will change all selected
+	// ships to use the pattern that was found first. If there is only 1 pattern, then this command
+	// will change all selected ships to use the next pattern available.
 	const FormationPattern *toSet = nullptr;
-	bool moreFound = false;
-	for(Ship *ship : ships)
+	bool multiplePatternsSet = false;
+	for(Ship *ship : targetShips)
 	{
 		const FormationPattern *shipsPattern = ship->GetFormationPattern();
 		if(shipsPattern)
 		{
 			if(!toSet)
-				toSet = formationPatterns.Find(shipsPattern->Name());
-			else if(toSet->Name() != shipsPattern->Name())
-				moreFound = true;
+				toSet = shipsPattern;
+			else if(toSet != shipsPattern)
+			{
+				multiplePatternsSet = true;
+				break;
+			}
 		}
 	}
 	
-	// Now determine what formation to set.
-	// If more than one formation was found in the set, then we set it to the first one found.
+	// Now determine what formationPattern to set.
 	if(!toSet)
+		// If no pattern was set at all, then we set the first one from the set of formationPatterns.
+		toSet = &(formationPatterns.begin()->second);
+	else if(!multiplePatternsSet)
 	{
-		// If no formation was set at all, then we set the first one from the set of formations.
-		auto it = formationPatterns.begin();
+		// If only one pattern was found, then select the next pattern (or clear the pattern if there is no next).
+		auto it = formationPatterns.find(toSet->Name());
 		if(it != formationPatterns.end())
-			toSet = formationPatterns.Find(it->first);
-	}
-	else if(!moreFound)
-	{
-		// If only one formation was found, then select the next formation (or clear the formation if there is no next).
-		auto it = formationPatterns.begin();
-		while(it != formationPatterns.end() && it->first != toSet->Name())
 			++it;
 		if(it == formationPatterns.end())
 			toSet = nullptr;
-		else if(it->first == toSet->Name())
-		{
-			++it;
-			if(it == formationPatterns.end())
-				toSet = nullptr;
-			else
-				toSet = formationPatterns.Find(it->first);
-		}
+		else
+			toSet = &(it->second);
 	}
+	//else if (multiplePatternsSet) {
+	// If more than one formation was found on the ships, then we set the pattern it to the first one found.
+	// No code is needed here for this option, since all variables are already set to just apply the change below.
+	//}
 	
 	// Now set the pattern on the selected ships.
-	int changed = 0;
-	for(Ship *ship : ships)
+	for(Ship *ship : targetShips)
 		if(ship->GetFormationPattern() != toSet)
-		{
 			ship->SetFormationPattern(toSet);
-			changed++;
-		}
 	
 	if(toSet)
-		Messages::Add(to_string(changed) + " ships are now flying in " + toSet->Name() + " formation.", Messages::Importance::High);
+		Messages::Add(to_string(targetShips.size()) + " ships are now flying in " + toSet->Name() + " formation.", Messages::Importance::Low);
 	else
-		Messages::Add(to_string(changed) + " ships are no longer flying in formation.", Messages::Importance::High);
+		Messages::Add(to_string(targetShips.size()) + " ships are no longer flying in formation.", Messages::Importance::Low);
 }
 
 
@@ -408,43 +428,16 @@ void AI::IssueFormationChange(const PlayerInfo &player)
 void AI::IssueFormationRingDecrease(const PlayerInfo &player)
 {
 	// Figure out what ships we are giving orders to
-	vector<Ship *> ships;
-	bool fullFleet = player.SelectedShips().empty();
-	if(fullFleet)
-	{
-		for(const shared_ptr<Ship> &it : player.Ships())
-			if(it.get() != player.Flagship() && !it->IsParked()
-				&& !it->IsDestroyed())
-				ships.push_back(it.get());
-	}
-	else
-		for(const weak_ptr<Ship> &it : player.SelectedShips())
-		{
-			shared_ptr<Ship> ship = it.lock();
-			if(ship)
-				ships.push_back(ship.get());
-		}
+	vector<Ship *> targetShips = GetShipsForFormationCommand(player);
 	
 	// This should never happen, but just in case:
-	if(ships.empty())
-	{
-		if(fullFleet)
-			Messages::Add("No ships in the fleet to change formation for.", Messages::Importance::High);
-		else
-			Messages::Add("No ships selected that can change formation.", Messages::Importance::High);
-		
+	if(targetShips.empty())
 		return;
-	}
 	
-	int changed = 0;
-	
-	for(Ship *ship : ships)
-	{
+	for(Ship *ship : targetShips)
 		ship->SetFormationRing(0);
-		changed++;
-	}
 	
-	Messages::Add(to_string(changed) + " ships are now flying in formation ring 0.", Messages::Importance::High);
+	Messages::Add(to_string(targetShips.size()) + " ships are now flying in formation ring 0.", Messages::Importance::Low);
 }
 
 
@@ -453,37 +446,15 @@ void AI::IssueFormationRingDecrease(const PlayerInfo &player)
 void AI::IssueFormationRingIncrease(const PlayerInfo &player)
 {
 	// Figure out what ships we are giving orders to
-	vector<Ship *> ships;
-	bool fullFleet = player.SelectedShips().empty();
-	if(fullFleet)
-	{
-		for(const shared_ptr<Ship> &it : player.Ships())
-			if(it.get() != player.Flagship() && !it->IsParked()
-				&& !it->IsDestroyed())
-				ships.push_back(it.get());
-	}
-	else
-		for(const weak_ptr<Ship> &it : player.SelectedShips())
-		{
-			shared_ptr<Ship> ship = it.lock();
-			if(ship)
-				ships.push_back(ship.get());
-		}
+	vector<Ship *> targetShips = GetShipsForFormationCommand(player);
 	
 	// This should never happen, but just in case:
-	if(ships.empty())
-	{
-		if(fullFleet)
-			Messages::Add("No ships in the fleet to change formation for.", Messages::Importance::Highest);
-		else
-			Messages::Add("No ships selected that can change formation.", Messages::Importance::Highest);
-		
+	if(targetShips.empty())
 		return;
-	}
 	
 	// First check which and how many formations we have in the current set of selected ships.
 	int maxRing = 0;
-	for(Ship *ship : ships)
+	for(Ship *ship : targetShips)
 	{
 		int shipRing = ship->GetFormationRing();
 		if(shipRing > maxRing)
@@ -492,14 +463,10 @@ void AI::IssueFormationRingIncrease(const PlayerInfo &player)
 	maxRing++;
 	
 	// Now set the new ring on the selected ships.
-	int changed = 0;
-	for(Ship *ship : ships)
-	{
+	for(Ship *ship : targetShips)
 		ship->SetFormationRing(maxRing);
-		changed++;
-	}
 	
-	Messages::Add(to_string(changed) + " ships are now flying in ring " + to_string(maxRing) + " of their formation.", Messages::Importance::Highest);
+	Messages::Add(to_string(targetShips.size()) + " ships are now flying in ring " + to_string(maxRing) + " of their formation.", Messages::Importance::Low);
 }
 
 
@@ -579,28 +546,33 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	if(activeCommands.Has(Command::DEPLOY))
 		IssueDeploy(player);
 	
-	// Temporary borrow the gather, hold and fight commands to control formations.
-	if(activeCommands.Has(Command::GATHER) && activeCommands.Has(Command::SHIFT))
-		IssueFormationChange(player);
-	if(activeCommands.Has(Command::FIGHT) && activeCommands.Has(Command::SHIFT))
-		IssueFormationRingIncrease(player);
-	if(activeCommands.Has(Command::HOLD) && activeCommands.Has(Command::SHIFT))
-		IssueFormationRingDecrease(player);
+	bool shift = activeCommands.Has(Command::SHIFT);
+	
+	// The gather, hold and fight commands control formation flying when combined with shift.
+	if(shift)
+	{
+		if(activeCommands.Has(Command::GATHER))
+			IssueFormationChange(player);
+		else if(activeCommands.Has(Command::FIGHT))
+			IssueFormationRingIncrease(player);
+		else if(activeCommands.Has(Command::HOLD))
+			IssueFormationRingDecrease(player);
+	}
 	
 	shared_ptr<Ship> target = flagship->GetTargetShip();
 	Orders newOrders;
-	if(activeCommands.Has(Command::FIGHT) && target && !target->IsYours() && !activeCommands.Has(Command::SHIFT))
+	if(activeCommands.Has(Command::FIGHT) && target && !target->IsYours() && !shift)
 	{
 		newOrders.type = target->IsDisabled() ? Orders::FINISH_OFF : Orders::ATTACK;
 		newOrders.target = target;
 		IssueOrders(player, newOrders, "focusing fire on \"" + target->Name() + "\".");
 	}
-	if(activeCommands.Has(Command::HOLD) && !activeCommands.Has(Command::SHIFT))
+	if(activeCommands.Has(Command::HOLD) && !shift)
 	{
 		newOrders.type = Orders::HOLD_POSITION;
 		IssueOrders(player, newOrders, "holding position.");
 	}
-	if(activeCommands.Has(Command::GATHER) && !activeCommands.Has(Command::SHIFT))
+	if(activeCommands.Has(Command::GATHER) && !shift)
 	{
 		newOrders.type = Orders::GATHER;
 		newOrders.target = player.FlagshipPtr();
@@ -1586,21 +1558,15 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 	const FormationPattern *pattern = ship.GetFormationPattern();
 	
 	// First we retrieve the patterns available for the parent.
-	std::map<const FormationPattern *, FormationPositioner> * patterns = &formations[formationLead];
+	auto &patterns = formations[formationLead];
 	
-	// Add a formation-positioner for the pattern if none exists yet
-	auto it = patterns->find(pattern);
-	if(it == patterns->end())
-	{
-		patterns->emplace(piecewise_construct,
-			forward_as_tuple(pattern),
-			forward_as_tuple(formationLead, pattern));
+	// Find the existing FormationPositioner for the pattern, or add one if none exists yet.
+	auto insert = patterns.emplace(piecewise_construct,
+		forward_as_tuple(pattern),
+		forward_as_tuple(formationLead, pattern));
 
-		// Find the emplaced value. It should exist now.
-		it = patterns->find(pattern);
-		if(it == patterns->end())
-			return;
-	}
+	// Set an iterator to point to the just found or emplaced value.
+	auto it = insert.first;
 	
 	// Aggresively try to match the position and velocity for the formation position.
 	double POSITION_DEADBAND = ship.Radius() * 1.25;
