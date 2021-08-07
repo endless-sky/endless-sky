@@ -285,11 +285,10 @@ bool Fleet::IsValid(bool requireGovernment) const
 	if(fighterNames && fighterNames->IsEmpty())
 		return false;
 	
-	// A fleet's variants should reference at least one valid ship.
-	for(auto &&v : variants)
-		if(none_of(v.first.Ships().begin(), v.first.Ships().end(),
-				[](const Ship *const s) noexcept -> bool { return s->IsValid(); }))
-			return false;
+	// A fleet should have at least one valid variant.
+	if(none_of(variants.begin(), variants.end(),
+			[](const pair<Variant, int> &v) noexcept -> bool { return v.first.IsValid(); }))
+		return false;
 	
 	return true;
 }
@@ -300,8 +299,7 @@ void Fleet::RemoveInvalidVariants()
 {
 	auto IsInvalidVariant = [](const pair<Variant, int> &v) noexcept -> bool
 	{
-		return v.first.Ships().empty() || none_of(v.first.Ships().begin(), v.first.Ships().end(),
-			[](const Ship *const s) noexcept -> bool { return s->IsValid(); });
+		return !v.first.IsValid();
 	};
 	auto firstInvalid = find_if(variants.begin(), variants.end(), IsInvalidVariant);
 	if(firstInvalid == variants.end())
