@@ -168,11 +168,14 @@ bool Variant::NestedInSelf(string check) const
 
 bool Variant::IsValid() const
 {
-	// TODO: Properly determine whether a variant is valid.
-	// i.e. the variant either contains one ship or contains
-	// a valid subvariant. Will need to change how Fleet
-	// checks for valid variants further up by calling this
-	// function instead of reaching into the Ships list.
+	// A variant should have at least one valid ship
+	// or nested variant.
+	if(none_of(ships.begin(), ships.end(),
+			[](const Ship *const s) noexcept -> bool { return s->IsValid(); })
+		&& none_of(variants.begin(), variants.end(),
+			[](const WeightedVariant &v) noexcept -> bool {return v.Get().IsValid())
+		return false;
+	
 	return true;
 }
 
@@ -266,7 +269,7 @@ bool Variant::operator==(const Variant &other) const
 	if(other.Ships().size() != ships.size()
 		|| !is_permutation(ships.begin(), ships.end(), other.Ships().begin()))
 		return false;
-	// Are the subvariants of other a permutation of this variant's?
+	// Are the nested variants of other a permutation of this variant's?
 	if(other.Variants().size() != variants.size()
 		|| !is_permutation(variants.begin(), variants.end(), other.Variants().begin()))
 		return false;

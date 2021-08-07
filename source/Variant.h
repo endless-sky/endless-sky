@@ -36,8 +36,6 @@ public:
 	
 	// Determine if this variant template uses well-defined data.
 	bool IsValid() const;
-	// Ensure any subvariant selected during gameplay will have at least one ship to spawn.
-	//void RemoveInvalidVariants();
 	
 	const std::string &Name() const;
 	const std::vector<const Ship *> &Ships() const;
