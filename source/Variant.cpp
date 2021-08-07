@@ -188,20 +188,6 @@ const string &Variant::Name() const
 
 
 
-const vector<const Ship *> &Variant::Ships() const
-{
-	return ships;
-}
-
-
-
-const WeightedList<WeightedVariant> &Variant::Variants() const
-{
-	return variants;
-}
-
-
-
 // Choose a list of ships from this variant. All ships from the ships
 // vector are chosen, as well as a random selection of ships from any
 // nested variants in the WeightedList.
@@ -257,21 +243,21 @@ int64_t Variant::NestedStrength() const
 bool Variant::operator==(const Variant &other) const
 {
 	// Are one of the variants named but not the other?
-	if((other.Name().empty() && !name.empty())
-		|| (!other.Name().empty() && name.empty()))
+	if((other.name.empty() && !name.empty())
+		|| (!other.name.empty() && name.empty()))
 		return false;
 	
 	// Are both variants named and share the same name?
-	if(!other.Name().empty() && !name.empty())
-		return other.Name() == name;
+	if(!other.name.empty() && !name.empty())
+		return other.name == name;
 	
 	// Are the ships of other a permutation of this variant's?
-	if(other.Ships().size() != ships.size()
-		|| !is_permutation(ships.begin(), ships.end(), other.Ships().begin()))
+	if(other.ships.size() != ships.size()
+		|| !is_permutation(ships.begin(), ships.end(), other.ships.begin()))
 		return false;
 	// Are the nested variants of other a permutation of this variant's?
-	if(other.Variants().size() != variants.size()
-		|| !is_permutation(variants.begin(), variants.end(), other.Variants().begin()))
+	if(other.variants.size() != variants.size()
+		|| !is_permutation(variants.begin(), variants.end(), other.variants.begin()))
 		return false;
 	
 	// If all checks have passed, these variants are equal.

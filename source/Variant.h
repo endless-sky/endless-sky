@@ -38,8 +38,6 @@ public:
 	bool IsValid() const;
 	
 	const std::string &Name() const;
-	const std::vector<const Ship *> &Ships() const;
-	const WeightedList<WeightedVariant> &Variants() const;
 	
 	// Choose a list of ships from this variant. All ships from the ships
 	// vector are chosen, as well as a random selection of ships from any
