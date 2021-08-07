@@ -1172,7 +1172,11 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	forget = 1;
 	targetShip.reset();
 	shipToAssist.reset();
-	if(government)
+
+	// Do not update the swizzle for any carries when they are placed.
+	// The swizzle for carries are updated only when departing from a planet
+	// (i.e. when the carrier gets placed).
+	if(government && !CanBeCarried())
 	{
 		auto swizzle = customSwizzle >= 0 ? customSwizzle : government->GetSwizzle();
 		SetSwizzle(swizzle);
