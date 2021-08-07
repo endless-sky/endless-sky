@@ -355,9 +355,10 @@ void GameData::CheckReferences()
 	for(auto &&it : systems)
 		if(it.second.Name().empty() && !NameIfDeferred(deferred["system"], it))
 			NameAndWarn("system", it);
+	// Variants are never serialized. Any changes via events are written as DataNodes and thus self-define.
 	for(auto &&it : variants)
-		if(it.second.Name().empty() && !NameIfDeferred(deffered["variant"], it))
-			NameAndWarn("variant", it);
+		if(!it.second.IsValid() && !deferred["variant"].count(it.first))
+			Warn("variant", it.first);
 }
 
 

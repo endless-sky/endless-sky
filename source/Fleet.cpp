@@ -287,7 +287,7 @@ bool Fleet::IsValid(bool requireGovernment) const
 	
 	// A fleet's variants should reference at least one valid ship.
 	for(auto &&v : variants)
-		if(none_of(v.ships.begin(), v.ships.end(),
+		if(none_of(v.first.Ships().begin(), v.first.Ships().end(),
 				[](const Ship *const s) noexcept -> bool { return s->IsValid(); }))
 			return false;
 	
@@ -298,9 +298,9 @@ bool Fleet::IsValid(bool requireGovernment) const
 
 void Fleet::RemoveInvalidVariants()
 {
-	auto IsInvalidVariant = [](const Variant &v) noexcept -> bool
+	auto IsInvalidVariant = [](const pair<Variant, int> &v) noexcept -> bool
 	{
-		return v.ships.empty() || none_of(v.ships.begin(), v.ships.end(),
+		return v.first.Ships().empty() || none_of(v.first.Ships().begin(), v.first.Ships().end(),
 			[](const Ship *const s) noexcept -> bool { return s->IsValid(); });
 	};
 	auto firstInvalid = find_if(variants.begin(), variants.end(), IsInvalidVariant);
@@ -312,7 +312,7 @@ void Fleet::RemoveInvalidVariants()
 	int removedWeight = 0;
 	for(auto it = firstInvalid; it != variants.end(); ++it)
 		if(IsInvalidVariant(*it))
-			removedWeight += it->weight;
+			removedWeight += it->second;
 	
 	auto removeIt = remove_if(firstInvalid, variants.end(), IsInvalidVariant);
 	int count = distance(removeIt, variants.end());

@@ -198,6 +198,18 @@ void Variant::Load(const DataNode &node)
 
 
 
+bool Variant::IsValid() const
+{
+	// TODO: Properly determine whether a variant is valid.
+	// i.e. the variant either contains one ship or contains
+	// a valid subvariant. Will need to change how Fleet
+	// checks for valid variants further up by calling this
+	// function instead of reaching into the Ships list.
+	return true;
+}
+
+
+
 bool Variant::NestedInSelf(string check) const
 {
 	if(!name.empty() && name == check)
