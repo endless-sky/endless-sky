@@ -203,6 +203,7 @@ void StarField::SetUpGraphics()
 
 	static const char *fragmentCode =
 		"// fragment starfield shader\n"
+		"precision mediump float;\n"
 		"in float fragmentAlpha;\n"
 		"in vec2 coord;\n"
 		"out vec4 finalColor;\n"
