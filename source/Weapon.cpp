@@ -80,6 +80,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			hitEffects[GameData::Effects().Get(child.Token(1))] += count;
 		}
+		else if(key == "target effect")
+		{
+			int count = (child.Size() >= 3) ? child.Value(2) : 1;
+			targetEffects[GameData::Effects().Get(child.Token(1))] += count;
+		}
 		else if(key == "die effect")
 		{
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
@@ -152,6 +157,26 @@ void Weapon::LoadWeapon(const DataNode &node)
 				firingFuel = value;
 			else if(key == "firing heat")
 				firingHeat = value;
+			else if(key == "firing hull")
+				firingHull = value;
+			else if(key == "firing shields")
+				firingShields = value;
+			else if(key == "firing ion")
+				firingIon = value;
+			else if(key == "firing slowing")
+				firingSlowing = value;
+			else if(key == "firing disruption")
+				firingDisruption = value;
+			else if(key == "relative firing energy")
+				relativeFiringEnergy = value;
+			else if(key == "relative firing heat")
+				relativeFiringHeat = value;
+			else if(key == "relative firing fuel")
+				relativeFiringFuel = value;
+			else if(key == "relative firing hull")
+				relativeFiringHull = value;
+			else if(key == "relative firing shields")
+				relativeFiringShields = value;
 			else if(key == "split range")
 				splitRange = max(0., value);
 			else if(key == "trigger radius")
@@ -166,12 +191,24 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[FUEL_DAMAGE] = value;
 			else if(key == "heat damage")
 				damage[HEAT_DAMAGE] = value;
+			else if(key == "energy damage")
+				damage[ENERGY_DAMAGE] = value;
 			else if(key == "ion damage")
 				damage[ION_DAMAGE] = value;
 			else if(key == "disruption damage")
 				damage[DISRUPTION_DAMAGE] = value;
 			else if(key == "slowing damage")
 				damage[SLOWING_DAMAGE] = value;
+			else if(key == "relative shield damage")
+				damage[RELATIVE_SHIELD_DAMAGE] = value;
+			else if(key == "relative hull damage")
+				damage[RELATIVE_HULL_DAMAGE] = value;
+			else if(key == "relative fuel damage")
+				damage[RELATIVE_FUEL_DAMAGE] = value;
+			else if(key == "relative heat damage")
+				damage[RELATIVE_HEAT_DAMAGE] = value;
+			else if(key == "relative energy damage")
+				damage[RELATIVE_ENERGY_DAMAGE] = value;
 			else if(key == "hit force")
 				damage[HIT_FORCE] = value;
 			else if(key == "piercing")
@@ -304,6 +341,13 @@ const map<const Effect *, int> &Weapon::LiveEffects() const
 const map<const Effect *, int> &Weapon::HitEffects() const
 {
 	return hitEffects;
+}
+
+
+
+const map<const Effect *, int> &Weapon::TargetEffects() const
+{
+	return targetEffects;
 }
 
 

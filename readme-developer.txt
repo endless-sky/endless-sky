@@ -110,9 +110,9 @@ To create a Mac OS X binary that will work on systems other than your own, you m
 
 Link-Time Optimization (LTO):
 
-For both the Linux and Windows "release" targets, "link-time optimization" is used. This generally will work without issue with newer versions of g++ / MinGW, but may require an explicit usage of the `gcc-ar` and `gcc-ranlib` binaries in your development environment.
+For both the Linux and Windows "release" targets, "link-time optimization" is used. This generally will work without issue with newer versions of g++ / MinGW, but may require an explicit usage of the `gcc-ar` binary in your development environment.
 For the Code::Blocks project, the archive program can be configured in Code::Block's global compiler settings menu, accessed via "Settings -> Compiler..." in the application menu bar. On the "Toolchain executables" tab, change "linker for static libs" from "ar.exe" to "gcc-ar.exe"
 
 The Scons builds can be controlled by setting the appropriate environment variable(s), either directly in the environment or just for the lifetime of the command:
 
-  $ AR=gcc-ar RANLIB=gcc-ranlib scons 
+  $ AR=gcc-ar scons 

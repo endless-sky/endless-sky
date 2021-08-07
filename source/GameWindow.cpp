@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Files.h"
 #include "ImageBuffer.h"
-#include "Preferences.h"
 #include "Screen.h"
 
 #include "gl_header.h"
@@ -28,11 +27,12 @@ using namespace std;
 
 namespace {
 	SDL_Window *mainWindow = nullptr;
-	SDL_GLContext context;
+	SDL_GLContext context = nullptr;
 	int width = 0;
 	int height = 0;
 	bool hasSwizzle = false;
-		
+	bool supportsAdaptiveVSync = false;
+	
 	// Logs SDL errors and returns true if found
 	bool checkSDLerror()
 	{
@@ -46,6 +46,39 @@ namespace {
 		
 		return false;
 	}
+	
+	bool HasOpenGLExtension(const char *name) {
+#ifndef __APPLE__
+		auto extensions = reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS));
+		return strstr(extensions, name);
+#else
+		bool value = false;
+		GLint extensionCount = 0;
+		glGetIntegerv(GL_NUM_EXTENSIONS, &extensionCount);
+		for(GLint i = 0; i < extensionCount && !value; ++i)
+		{
+			auto extension = reinterpret_cast<const char *>(glGetStringi(GL_EXTENSIONS, i));
+			value = (extension && strstr(extension, name));
+		}
+		return value;
+#endif
+	}
+}
+
+
+
+string GameWindow::SDLVersions()
+{
+	SDL_version built;
+	SDL_version linked;
+	SDL_VERSION(&built);
+	SDL_GetVersion(&linked);
+	
+	auto toString = [](const SDL_version &v) -> string
+	{
+		return to_string(v.major) + "." + to_string(v.minor) + "." + to_string(v.patch);
+	};
+	return "Compiled against SDL v" + toString(built) + "\nUsing SDL v" + toString(linked);
 }
 
 
@@ -64,7 +97,9 @@ bool GameWindow::Init()
 		ExitWithError("Unable to query monitor resolution!");
 		return false;
 	}
-		
+	if(mode.refresh_rate && mode.refresh_rate < 60)
+		Files::LogError("Warning: low monitor frame rate detected (" + to_string(mode.refresh_rate) + "). The game will run more slowly.");
+	
 	// Make the window just slightly smaller than the monitor resolution.
 	int minWidth = 640;
 	int minHeight = 480;
@@ -164,37 +199,25 @@ bool GameWindow::Init()
 	glDisable(GL_DEPTH_TEST);
 	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 	
-	// Enable standard VSync. (Attempting to set VSync to an unsupported value, such
-	// as -1 for "Adaptive VSync", can crash older drivers.)
-	// TODO: Export control of VSync setting to Preferences for user-controlled VSync.
-	if(SDL_GL_SetSwapInterval(1) == -1)
-		checkSDLerror();
+	// Check for support of various graphical features.
+	hasSwizzle = HasOpenGLExtension("_texture_swizzle");
+	supportsAdaptiveVSync = HasOpenGLExtension("_swap_control_tear");
+	
+	// Enable the user's preferred VSync state, otherwise update to an available
+	// value (e.g. if an external program is forcing a particular VSync state).
+	if(!SetVSync(Preferences::VSyncState()))
+		Preferences::ToggleVSync();
 	
 	// Make sure the screen size and view-port are set correctly.
 	AdjustViewport();
-	
-	string swizzleName = "_texture_swizzle";
 	
 #ifndef __APPLE__
 	// On OS X, setting the window icon will cause that same icon to be used
 	// in the dock and the application switcher. That's not something we
 	// want, because the ".icns" icon that is used automatically is prettier.
 	SetIcon();
-	
-	const char *extensions = reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS));
-	hasSwizzle = strstr(extensions, swizzleName.c_str());
-#else
-	bool swizzled = false;
-	GLint extensionCount;
-	glGetIntegerv(GL_NUM_EXTENSIONS, &extensionCount);
-	for(GLint i = 0; i < extensionCount && !swizzled; ++i)
-	{
-		const char *extension = reinterpret_cast<const char *>(glGetStringi(GL_EXTENSIONS, i));
-		swizzled = (extension && strstr(extension, swizzleName.c_str()));
-	}
-	hasSwizzle = swizzled;
 #endif
-
+	
 	return true;
 }
 
@@ -289,6 +312,45 @@ void GameWindow::AdjustViewport()
 
 
 
+// Attempts to set the requested SDL Window VSync to the given state. Returns false
+// if the operation could not be completed successfully.
+bool GameWindow::SetVSync(Preferences::VSync state)
+{
+	if(!context)
+		return false;
+	
+	const int originalState = SDL_GL_GetSwapInterval();
+	int interval = 1;
+	switch(state)
+	{
+		case Preferences::VSync::adaptive:
+			interval = -1;
+			break;
+		case Preferences::VSync::off:
+			interval = 0;
+			break;
+		case Preferences::VSync::on:
+			interval = 1;
+			break;
+		default:
+			return false;
+	}
+	// Do not attempt to enable adaptive VSync when unsupported,
+	// as this can crash older video drivers.
+	if(interval == -1 && !supportsAdaptiveVSync)
+		return false;
+	
+	if(SDL_GL_SetSwapInterval(interval) == -1)
+	{
+		checkSDLerror();
+		SDL_GL_SetSwapInterval(originalState);
+		return false;
+	}
+	return SDL_GL_GetSwapInterval() == interval;
+}
+
+
+
 // Last window width, in windowed mode.
 int GameWindow::Width()
 {
@@ -341,29 +403,32 @@ bool GameWindow::HasSwizzle()
 
 
 
-void GameWindow::ExitWithError(const string& message)
+void GameWindow::ExitWithError(const string& message, bool doPopUp)
 {
 	// Print the error message in the terminal and the error file.
 	Files::LogError(message);		
 	checkSDLerror();
 	
 	// Show the error message in a message box.
-	SDL_MessageBoxData box;
-	box.flags = SDL_MESSAGEBOX_ERROR;
-	box.window = nullptr;
-	box.title = "Endless Sky: Error";
-	box.message = message.c_str();
-	box.colorScheme = nullptr;
-	
-	SDL_MessageBoxButtonData button;
-	button.flags = SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT;
-	button.buttonid = 0;
-	button.text = "OK";
-	box.numbuttons = 1;
-	box.buttons = &button;
-	
-	int result = 0;
-	SDL_ShowMessageBox(&box, &result);
+	if(doPopUp)
+	{
+		SDL_MessageBoxData box;
+		box.flags = SDL_MESSAGEBOX_ERROR;
+		box.window = nullptr;
+		box.title = "Endless Sky: Error";
+		box.message = message.c_str();
+		box.colorScheme = nullptr;
+		
+		SDL_MessageBoxButtonData button;
+		button.flags = SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT;
+		button.buttonid = 0;
+		button.text = "OK";
+		box.numbuttons = 1;
+		box.buttons = &button;
+		
+		int result = 0;
+		SDL_ShowMessageBox(&box, &result);
+	}
 	
 	GameWindow::Quit();	
 }

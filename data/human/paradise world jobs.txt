@@ -327,7 +327,7 @@ mission "Paradise Jobs: Contract Laborers"
 	name "Contract laborers to <planet>"
 	job
 	repeat
-	description "Return to <destination> after picking up <bunks> contract laborers located on <stopovers> who are eager to experience the luxury of the paradise worlds. Payment is <payment>."
+	description "Return to <destination> after picking up <bunks> contract laborers located on <stopovers> who are eager to experience the luxury of the Paradise Worlds. Payment is <payment>."
 	passengers 13 30
 	to offer
 		random < 10
@@ -426,7 +426,7 @@ mission "Paradise Job: Parolees"
 	name "Parolees to <planet>"
 	job
 	repeat
-	description `These <bunks> non-violent repeat offenders have accepted longer community service sentences that better use their skills in return for serving their time on the paradise world of <destination>. Transport them to their new home to carry out their service. The payment is <payment>.`
+	description `These <bunks> non-violent repeat offenders have accepted longer community service sentences that better use their skills in return for serving their time on the Paradise World of <destination>. Transport them to their new home to carry out their service. The payment is <payment>.`
 	passengers 20 4 .1
 	to offer
 		random < 15

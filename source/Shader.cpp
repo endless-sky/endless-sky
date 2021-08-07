@@ -58,7 +58,7 @@ Shader::Shader(const char *vertex, const char *fragment)
 
 
 
-GLuint Shader::Object() const
+GLuint Shader::Object() const noexcept
 {
 	return program;
 }

@@ -16,7 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
-#include "Format.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Messages.h"
@@ -293,6 +293,56 @@ void NPC::Save(DataWriter &out) const
 
 
 
+string NPC::Validate(bool asTemplate) const
+{
+	// An NPC with no government will take the player's government
+	
+	// NPC templates have certain fields to validate that instantiated NPCs do not:
+	if(asTemplate)
+	{
+		// A location filter may be used to set the starting system.
+		// If given, it must be able to resolve to a valid system.
+		if(!location.IsValid())
+			return "location filter";
+		
+		// A null system reference is allowed, since it will be set during
+		// instantiation if not given explicitly.
+		if(system && !system->IsValid())
+			return "system \"" + system->Name() + "\"";
+		
+		// A planet is optional, but if given must be valid.
+		if(planet && !planet->IsValid())
+			return "planet \"" + planet->TrueName() + "\"";
+		
+		// If a stock phrase or conversation is given, it must not be empty.
+		if(stockDialogPhrase && stockDialogPhrase->IsEmpty())
+			return "stock phrase";
+		if(stockConversation && stockConversation->IsEmpty())
+			return "stock conversation";
+		
+		// NPC fleets, unlike stock fleets, do not need a valid government
+		// since they will unconditionally inherit this NPC's government.
+		for(auto &&fleet : fleets)
+			if(!fleet.IsValid(false))
+				return "custom fleet";
+		for(auto &&fleet : stockFleets)
+			if(!fleet->IsValid(false))
+				return "stock fleet";
+	}
+	
+	// Ships must always be valid.
+	for(auto &&ship : ships)
+		if(!ship->IsValid())
+			return "ship \"" + ship->Name() + "\"";
+	for(auto &&ship : stockShips)
+		if(!ship->IsValid())
+			return "stock model \"" + ship->VariantName() + "\"";
+	
+	return "";
+}
+
+
+
 // Update spawning and despawning for this NPC.
 void NPC::UpdateSpawning(const PlayerInfo &player)
 {
@@ -384,7 +434,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 	
 	// Check if the success status has changed. If so, display a message.
 	if(isVisible && !alreadyFailed && HasFailed())
-		Messages::Add("Mission failed.");
+		Messages::Add("Mission failed.", Messages::Importance::High);
 	else if(ui && !alreadySucceeded && HasSucceeded(player.GetSystem(), false))
 	{
 		// If "completing" this NPC displays a conversation, reference

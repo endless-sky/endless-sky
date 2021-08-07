@@ -54,9 +54,13 @@ double StellarObject::Radius() const
 
 
 
-// If it is possible to land on this planet, this returns the Planet
-// objects that gives more information about it. Otherwise, this
-// function will just return nullptr.
+bool StellarObject::HasValidPlanet() const
+{
+	return planet && planet->IsValid();
+}
+
+
+
 const Planet *StellarObject::GetPlanet() const
 {
 	return planet;
