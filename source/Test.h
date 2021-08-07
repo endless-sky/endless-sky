@@ -16,6 +16,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "ConditionSet.h"
 
+#include <SDL2/SDL.h>
+
 #include <map>
 #include <set>
 #include <string>
@@ -33,7 +35,7 @@ class System;
 class Test {
 public:
 	// Status indicators for the test that we selected (if any).
-	enum class Status {ACTIVE, BROKEN, KNOWN_FAILURE, MISSING_FEATURE};
+	enum class Status {ACTIVE, PARTIAL, BROKEN, KNOWN_FAILURE, MISSING_FEATURE};
 	
 	
 public:
@@ -50,6 +52,8 @@ public:
 			// When a second label is given, then the second is to jump to on false.
 			// Does not cause the game to step, except when no step was done since last BRANCH or GOTO.
 			BRANCH,
+			// Step that calls another test to handle some generic common actions.
+			CALL,
 			// Step that adds game-data, either in the config-directories or in the game directly.
 			INJECT,
 			// Step that performs input (key, mouse, command). Does cause the game to step (to proces the inputs).
@@ -67,6 +71,7 @@ public:
 		
 	public:
 		TestStep(Type stepType);
+		void LoadInput(const DataNode &node);
 		
 		
 	public:
@@ -86,20 +91,32 @@ public:
 		std::string jumpOnFalseTarget;
 		
 		unsigned int watchdog = 0;
+		
+		// Input variables.
+		Command command;
+		std::set<std::string> inputKeys;
+		Uint16 modKeys;
+		
+		// Mouse/Pointer input variables.
+		int XValue = 0;
+		int YValue = 0;
+		bool clickLeft = false;
+		bool clickMiddle = false;
+		bool clickRight = false;
 	};
 	
 	class Context {
 	friend class Test;
 	public:
 		// Pointer to the test we are running.
-		const Test *testToRun = nullptr;
+		std::vector<const Test *> testToRun;
 		
 		
 	protected:
 		// Teststep to run.
-		unsigned int stepToRun = 0;
+		std::vector<unsigned int> stepToRun = { 0 };
 		unsigned int watchdog = 0;
-		std::set<unsigned int> branchesSinceGameStep;
+		std::set<std::vector<unsigned int>> branchesSinceGameStep;
 	};
 	
 	
