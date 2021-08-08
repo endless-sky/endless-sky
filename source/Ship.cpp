@@ -2264,35 +2264,41 @@ int Ship::Scan()
 		return 0;
 	
 	// Scanning speed also uses a square root, so you need four scanners to get
-	// twice the speed out of them.
-	double cargoSpeed = sqrt(attributes.Get("cargo scan speed"));
+	// twice the speed out of them. The longer the range, the slower the scanner, too.
+	double cargoSpeed = sqrt(attributes.Get("cargo scan speed")) / attributes.Get("cargo scan power");
 	if(!cargoSpeed)
-		cargoSpeed = 1.;
-	double outfitSpeed = sqrt(attributes.Get("outfit scan speed"));
+		cargoSpeed = 1.  / attributes.Get("cargo scan power");
+	
+	double outfitSpeed = sqrt(attributes.Get("outfit scan speed")) / attributes.Get("outfit scan power");
 	if(!outfitSpeed)
-		outfitSpeed = 1.;
+		outfitSpeed = 1. / attributes.Get("outfit scan power");
 	
 	// Check how close this ship is to the target it is trying to scan.
 	double distance = (target->position - position).Length();
+	
+	// Check the target's outfit and cargo space, a larger ship takes longer to scan.
+	double outfits = target->baseAttributes.Get("outfit space") / 200.;
+	double cargo = target->baseAttributes.Get("cargo space") / 200.;
 	
 	// Check if either scanner has finished scanning.
 	bool startedScanning = false;
 	bool activeScanning = false;
 	int result = 0;
-	auto doScan = [&](double &elapsed, const double speed, const double scannerRange, const int event) -> void
+	auto doScan = [&](double &elapsed, const double speed, const double scannerRange, double domain, const int event) -> void
 	{
 		if(elapsed < SCAN_TIME && distance < scannerRange)
 		{
 			startedScanning |= !elapsed;
 			activeScanning = true;
+			elapsed += speed / domain;
 			// To make up for the scan decay above:
-			elapsed += speed + 1.;
+			elapsed ++;
 			if(elapsed >= SCAN_TIME)
 				result |= event;
 		}
 	};
-	doScan(cargoScan, cargoSpeed, cargoDistance, ShipEvent::SCAN_CARGO);
-	doScan(outfitScan, outfitSpeed, outfitDistance, ShipEvent::SCAN_OUTFITS);
+	doScan(cargoScan, cargoSpeed, cargoDistance, cargo, ShipEvent::SCAN_CARGO);
+	doScan(outfitScan, outfitSpeed, outfitDistance, outfits, ShipEvent::SCAN_OUTFITS);
 	
 	// Play the scanning sound if the actor or the target is the player's ship.
 	if(isYours || (target->isYours && activeScanning))
