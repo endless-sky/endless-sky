@@ -79,6 +79,20 @@ SCENARIO("A unit of playing time is to be made human-readable", "[Format][PlayTi
 	}
 }
 
+SCENARIO("A player-entered quantity can be parsed to a number", "[Format][Parse]") {
+	GIVEN( "The string 123.45" ) {
+		THEN( "parses to 123.45" ) {
+			CHECK( Format::Parse("123.45") == 123.45);
+		}
+	}
+
+	GIVEN( "The string 1,234K" ) {
+		THEN( "parses to 1234000" ) {
+			CHECK( Format::Parse("1,234K") == 1234000);
+		}
+	}
+}
+
 // #endregion unit tests
 
 // #region benchmarks
