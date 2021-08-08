@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "Point.h"
 
+#include <functional>
 #include <string>
 #include <vector>
 
@@ -57,7 +58,6 @@ public:
 	
 	
 	// Iterator that provides sequential access to all formation positions.
-	// TODO: finish the implementation and start using this.
 	class PositionIterator : public std::iterator<
 		std::input_iterator_tag, // iterator_category
 		Point,                   // iterator: value_type
@@ -67,7 +67,7 @@ public:
 	{
 	public:
 		PositionIterator(const FormationPattern &pattern, const ActiveFormation &af,
-			unsigned int startRing, unsigned int shipsToPlace);
+			unsigned int startRing = 0, unsigned int shipsToPlace = 0);
 		
 		// A subset of the default input_iterator operations. Limiting to
 		// only a subset, since not all operations are used in-game.
@@ -84,9 +84,9 @@ public:
 	private:
 		// Data from the active formation for which we are calculating
 		// positions.
-		const ActiveFormation &activeFormation;
+		std::reference_wrapper<const ActiveFormation> activeFormation;
 		// The pattern for which we are calculating positions.
-		const FormationPattern &pattern;
+		std::reference_wrapper<const FormationPattern> pattern;
 		// The location in the pattern.
 		unsigned int ring = 0;
 		unsigned int line = 0;

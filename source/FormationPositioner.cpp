@@ -26,31 +26,29 @@ using namespace std;
 
 void FormationPositioner::Start()
 {
+	// Set scaling based on results from previous run.
+	activeData = nextActiveData;
+	nextActiveData.ClearParticipants();
+
+	// Initialize the iterators and meta-data used for the ring sections.
 	unsigned int startRing = 0;
 	for(auto &it : ringPos)
 	{
 		// Track in which ring the ring-positioner ended in last run.
-		unsigned int endRing = it.second.ring;
+		unsigned int endRing = it.second.Ring();
 		// Set starting ring for current ring-positioner.
-		it.second.ring = max(startRing, it.first);
-		// Store starting ring for next ring-positioner.
-		startRing = endRing + 1;
+		startRing = max(startRing, it.first);
 		
-		// Track the amount of positions in the ring
-		it.second.prevLastPos = it.second.lastPos;
-		it.second.lastPos = 0;
+		// Create the new iterator to use for this ring.
+		it.second = pattern->begin(activeData, startRing, ringNrOfShips[it.first]);
+		
+		// Store starting ring for next ring-positioner.
+		startRing = max(startRing, endRing) + 1;
 		
 		// Reset all other iterator values to start of ring.
-		it.second.activeLine = 0;
-		it.second.activeRepeat = 0;
-		it.second.lineSlot = 0;
-		it.second.morePositions = true;
+		ringNrOfShips[it.first] = 0;
 	}
 
-	// Set scaling based on results from previous run.
-	activeData = nextActiveData;
-	nextActiveData.ClearParticipants();
-	
 	// Calculate new direction, if the formationLead is moving, then we use the movement vector.
 	// Otherwise we use the facing vector.
 	Point velocity = formationLead->Velocity();
@@ -105,88 +103,23 @@ void FormationPositioner::Start()
 
 Point FormationPositioner::NextPosition(const Ship *ship)
 {
-	// Retrieve the correct ring-positioner.
-	RingPositioner &rPos = ringPos[ship->GetFormationRing()];
+	unsigned int formationRing = ship->GetFormationRing();
+
+	// Retrieve the correct ring-positioner (and create it if it doesn't
+	// exist yet).
+	auto rPosIt = (ringPos.emplace(piecewise_construct,
+		forward_as_tuple(formationRing),
+		forward_as_tuple(*pattern, activeData, formationRing))).first;
+	
+	auto &rPos = rPosIt->second;
 	
 	// Set scaling for next round based on the sizes of the participating ships.
 	nextActiveData.Tally(*ship);
 	
 	// Count the number of positions on the ring.
-	++(rPos.lastPos);
-	
-	// If there are no more positions to fill, then just return center point.
-	if(!rPos.morePositions)
-		return Point();
-	
-	// Check how many lines are available.
-	unsigned int lines = pattern->Lines();
-	if(lines < 1)
-	{
-		rPos.morePositions = false;
-		return Point();
-	}
-	
-	unsigned int ringsScanned = 0;
-	unsigned int startingRing = rPos.ring;
-	unsigned int lineRepeatSlots = pattern->Slots(rPos.ring, rPos.activeLine, rPos.activeRepeat);
-	
-	while(rPos.lineSlot >= lineRepeatSlots && rPos.morePositions)
-	{
-		unsigned int patternRepeats = pattern->Repeats(rPos.activeLine);
-		// LineSlot number is beyond the amount of slots available.
-		// Need to move a ring, a line or a repeat-section forward.
-		if(rPos.ring > 0 && rPos.activeLine < lines && patternRepeats > 0 && rPos.activeRepeat < patternRepeats - 1)
-		{
-			// First check if we are on a valid line and have another repeat section.
-			++(rPos.activeRepeat);
-			rPos.lineSlot = 0;
-			lineRepeatSlots = pattern->Slots(rPos.ring, rPos.activeLine, rPos.activeRepeat);
-		}
-		else if(rPos.activeLine < lines - 1)
-		{
-			// If we don't have another repeat section, then check for a next line.
-			++(rPos.activeLine);
-			rPos.activeRepeat = 0;
-			rPos.lineSlot = 0;
-			lineRepeatSlots = pattern->Slots(rPos.ring, rPos.activeLine, rPos.activeRepeat);
-		}
-		else
-		{
-			// If we checked all lines and repeat sections, then go for the next ring.
-			++(rPos.ring);
-			rPos.activeLine = 0;
-			rPos.activeRepeat = 0;
-			rPos.lineSlot = 0;
-			lineRepeatSlots = pattern->Slots(rPos.ring, rPos.activeLine, rPos.activeRepeat);
-			
-			// If we scanned more than 1 rings without finding a slot, then we have an empty pattern.
-			++ringsScanned;
-			if(ringsScanned > 1)
-			{
-				// Restore starting ring and indicate that there are no more positions.
-				rPos.ring = startingRing;
-				rPos.morePositions = false;
-			}
-		}
-	}
-	// No position(s) found
-	if(!rPos.morePositions)
-		return Point();
-	
-	// Estimate how many positions still to fill and do centering if required.
-	if(rPos.lineSlot == 0 && rPos.lastPos < rPos.prevLastPos)
-	{
-		unsigned int remainingToFill = rPos.prevLastPos - rPos.lastPos;
-		if(remainingToFill < lineRepeatSlots - 1 &&	pattern->IsCentered(rPos.activeLine))
-		{
-			// Determine the amount to skip for centering and skip those.
-			int toSkip = (lineRepeatSlots - remainingToFill) / 2;
-			rPos.lineSlot += toSkip;
-		}
-	}
-	
-	Point relPos = pattern->Position(rPos.ring, rPos.activeLine, rPos.activeRepeat, rPos.lineSlot,
-		activeData.maxDiameter, activeData.maxWidth, activeData.maxHeight);
+	++(ringNrOfShips[formationRing]);
+
+	Point relPos = *rPos;
 	
 	if(flippedY)
 		relPos.Set(-relPos.X(), relPos.Y());
@@ -194,7 +127,7 @@ Point FormationPositioner::NextPosition(const Ship *ship)
 		relPos.Set(relPos.X(), -relPos.Y());
 	
 	// Set values for next ship to place.
-	rPos.lineSlot++;
+	++rPos;
 
 	return formationLead->Position() + direction.Rotate(relPos);
 }

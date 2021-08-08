@@ -42,26 +42,10 @@ public:
 
 
 private:
-	class RingPositioner {
-		public:
-			// Values used during ship position calculation iterations.
-			// TODO: Should we move those details to pattern and just store an iterator here?
-			bool morePositions = true;
-			unsigned int ring = 0;
-			unsigned int activeLine = 0;
-			unsigned int activeRepeat = 0;
-			unsigned int lineSlot = 0;
-			
-			// Track the last position in the ring to allow tracking if the last line is incomplete (for centering)
-			int lastPos = 0;
-			int prevLastPos = 0;
-	};
-
-
-private:
 	// The actual positioners based on the desired ring-numbers.
 	// TODO: Should we put a map here with as key "pointers to the ships in the formation" and as value their position?
-	std::map<unsigned int, RingPositioner> ringPos;
+	std::map<unsigned int, FormationPattern::PositionIterator> ringPos;
+	std::map<unsigned int, unsigned int> ringNrOfShips;
 	
 	// The scaling factors as we currently have for this formation and
 	// the scaling factors that we are preparing in the currently running
