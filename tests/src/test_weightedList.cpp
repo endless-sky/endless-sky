@@ -88,8 +88,8 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 					}
 					THEN( "An iterator pointing to the next object in the list is returned." ) {
 						auto next = *it;
-						CHECK( erased.value == 2 );
-						CHECK( erased.Weight() == 3 );
+						CHECK( next.value == 2 );
+						CHECK( next.Weight() == 3 );
 					}
 				}
 				
