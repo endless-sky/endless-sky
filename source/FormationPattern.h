@@ -28,9 +28,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // pattern, the actual assignment of ships to positions is handled outside this class.
 class FormationPattern {
 public:
-	// Struct that describes the properties of an active formation, like the number
-	// of ships participating in the formation, the maximum sizes of those ships and
-	// some data on the Body around which the formation is formed.
+	// Struct that describes the properties of an active formation, like the maximum
+	// sizes of the ships participating in the formation and some data on the Body
+	// around which the formation is formed.
 	// TODO: start using this.
 	class ActiveFormation
 	{
@@ -43,7 +43,6 @@ public:
 		double centerBodyRadius = 100;
 		// Information on ships participating in the formation. Initialized
 		// with some defaults for smaller ships.
-		unsigned int numberOfShips = 0;
 		double maxDiameter = 80;
 		double maxWidth = 80;
 		double maxHeight = 80;
@@ -60,7 +59,8 @@ public:
 		Point& >                 // iterator: reference
 	{
 	public:
-		PositionIterator(const FormationPattern *pattern, const ActiveFormation &af, unsigned int startRing);
+		PositionIterator(const FormationPattern &pattern, const ActiveFormation &af,
+			unsigned int startRing, unsigned int shipsToPlace);
 		
 		// A subset of the default input_iterator operations. Limiting to
 		// only a subset, since not all operations are used in-game.
@@ -76,16 +76,23 @@ public:
 	
 	private:
 		// Data from the active formation for which we are calculating
-		// positions. The iterator has its own copy, because this data
-		// gets updated as we go.
-		ActiveFormation activeFormation;
+		// positions.
+		const ActiveFormation &activeFormation;
 		// The pattern for which we are calculating positions.
-		const FormationPattern *pattern;
+		const FormationPattern &pattern;
 		// The location in the pattern.
 		unsigned int ring = 0;
 		unsigned int line = 0;
 		unsigned int repeat = 0;
 		unsigned int slot = 0;
+		// Number of ships that we expect to place using this iterator.
+		// The number of ships mostly affects the last line that is placed
+		// in case the last line is centered.
+		// When zero is given then every line is treated as if many more
+		// ships need to be placed.
+		// The shipsToPlace can be a subset of the total ships in a formation
+		// if the formation is constructed in parts (as sections of rings).
+		unsigned int shipsToPlace= 0;
 		// Currently calculated Point.
 		Point currentPoint;
 		// Internal status variable;
@@ -101,7 +108,7 @@ public:
 	void Load(const DataNode &node);
 	
 	// Get an iterator to iterate over the formation positions in this pattern.
-	PositionIterator begin(const ActiveFormation &af, unsigned int startRing = 0) const;
+	PositionIterator begin(const ActiveFormation &af, unsigned int startRing = 0, unsigned int shipsToPlace = 0) const;
 	
 	// Retrieve properties like number of lines and arcs, number of repeat sections and number of positions.
 	// TODO: Should we hide those properties and just provide a position iterator instead?

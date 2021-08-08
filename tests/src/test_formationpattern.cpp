@@ -154,8 +154,9 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 				CHECK( it.Ring() == 2 );
 			}
 			THEN ( "the correct positions are calculated when nr of ships is known" ) {
-				af.numberOfShips = 9;
-				auto it = delta_px.begin(af);
+				unsigned int startingRing = 0;
+				unsigned int shipsToPlace = 9;
+				auto it = delta_px.begin(af, startingRing, shipsToPlace);
 				REQUIRE( Near(*it, Point(-100, 200)) );
 				CHECK( it.Ring() == 0 );
 				++it;
@@ -186,14 +187,16 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 		}
 		WHEN( "there is one ship on a centered line" ) {
 			FormationPattern::ActiveFormation af;
-			af.numberOfShips = 1;
+			unsigned int shipsToPlace = 1;
 			THEN ( "it is in the center spot on odd lines" ) {
-				auto it = delta_px.begin(af, 3);
+				unsigned int startingRing = 3;
+				auto it = delta_px.begin(af, startingRing, shipsToPlace);
 				REQUIRE ( it.Ring() == 3 );
 				CHECK( Near(*it, Point(0, 800)) );
 			}
 			THEN ( "it is near the center on even lines" ) {
-				auto it = delta_px.begin(af, 4);
+				unsigned int startingRing = 4;
+				auto it = delta_px.begin(af, startingRing, shipsToPlace);
 				REQUIRE ( it.Ring() == 4 );
 				// X can be left of center or right of center at a distance of
 				// 100 pixels, or can be in the exact center (depending on
@@ -205,9 +208,10 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 		}
 		WHEN( "there are two ships on a centered line" ) {
 			FormationPattern::ActiveFormation af;
-			af.numberOfShips = 2;
+			unsigned int startingRing = 2;
+			unsigned int numberOfShips = 2;
 			THEN ( "they are on the left and right spots near the center on even lines" ) {
-				auto it = delta_px.begin(af, 2);
+				auto it = delta_px.begin(af, startingRing, numberOfShips);
 				CHECK( Near(*it, Point(-100, 600)) );
 				++it;
 				CHECK( Near(*it, Point(100, 600)) );
