@@ -3316,10 +3316,10 @@ mission "Mafia Extortion"
 		credits >= 2000000
 	on offer
 		conversation
-			`A man in a tailored suit, sunglasses and shiny shoes with green hair approaches you. "Hey, that's a very nice ship you have there. Would be a shame if anything happened to it."`
+			`A man in a tailored suit, sunglasses, shiny shoes, and green hair approaches you. "Hey, that's a very nice ship you have there. Would be a shame if anything happened to it."`
 			`You notice that he is missing a finger on each hand.`
 			choice
-				`"Thank you. My name is <first> <last>. Whom do I have the pleasure of talking to?"`
+				`"Thank you. My name is <first> <last>. To whom do I have the pleasure of talking to?"`
 					goto nameless
 				`"Yes, I'm very happy with my ship."`
 					goto specifics
@@ -3363,7 +3363,7 @@ mission "Mafia Extortion"
 			`The man responds, "Maybe you want to improve that situation?`
 				goto donation
 			label mafia
-			`The man acts as if he is shocked by your remark. "No way! I'm just a simple man walking around the spaceport and talking about life. You would be wise to listen to locals with experience, especially in dangerous places like this."`
+			`The man acts as if he is shocked by your remark. "No way! I'm just a simple man walking around the spaceport and helping people out. You would be wise to listen to locals with experience, especially in dangerous places like this."`
 			label donation
 			`	"If you care about safety, then I could make a donation to the System Safety Foundation on your behalf. 200,000 credits really goes a long way around here."`
 			choice
@@ -3385,7 +3385,7 @@ mission "Mafia Extortion"
 			choice
 				`(pay 200,000 credits)`
 					goto payup
-				`"I don't trust you, you aren't getting any money from me."`
+				`"I don't trust you. You aren't getting any money from me."`
 					goto funeral
 				`"I've heard enough, I'm going to talk to the authorities."`
 					goto next_steps
@@ -3401,7 +3401,7 @@ mission "Mafia Extortion"
 			choice
 				`(Shrug off the whole thing and take no further action.)`
 					decline
-				`(Find the closest thing to police force that this planet has.)`
+				`(Find the closest thing to a police force that this planet has.)`
 					goto police
 				`(Go to a bar and ask for whoever is in charge.)`
 					goto bar
@@ -3424,12 +3424,12 @@ mission "Mafia Extortion"
 			choice
 				`"Well, conversations like this are hard to forget."`
 					goto cornered
-				`"Nice scam you have running here, would be a shame if somebody would tell the local godfather about it."`
+				`"Nice scam you have running here. Would be a shame if somebody told the local godfather about it."`
 					goto payback
 				`(Agree)`
 					goto zerodeal
 			label cornered
-			`"Well what do you want, is there anything I can do for you?"`
+			`"Well what do you want? Is there anything I can do for you?"`
 			choice
 				`"No, let's just forget it happened."`
 					goto zerodeal
@@ -3466,7 +3466,7 @@ mission "Mafia Extortion"
 			label counterdeal
 			`The man hands you a credit chip, nods and walks away. You pocket the chip quickly, more ready to be done with this neighborhood than you want to visibly show.`
 			`A few minutes later you reach into your pocket for the chip... to find it missing.`
-			`Looks like even a bad-ass captain like you is not immune to pickpocketing on a planet like this.`
+			`Looks like even a bad-ass captain like you isn't immune to pickpocketing on a planet like this.`
 				decline
 			label far_too_much
 			`The man starts panicking and is clumsily reaching in his jacket, maybe to get some money, but more likely reaching for a gun.`
