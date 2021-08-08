@@ -2055,9 +2055,9 @@ void Ship::DoGeneration()
 	// uninterrupted scanning is required to successfully scan its target.
 	// Only apply the decay if not already done scanning the target.
 	if(cargoScan < SCAN_TIME)
-		cargoScan = max(0., cargoScan - 1.);
+		cargoScan = max(0., cargoScan * 0.999 - 1.);
 	if(outfitScan < SCAN_TIME)
-		outfitScan = max(0., outfitScan - 1.);
+		outfitScan = max(0., outfitScan * 0.999 - 1.);
 	
 	// Update ship supply levels.
 	energy -= ionization;
@@ -2263,15 +2263,15 @@ int Ship::Scan()
 	if(!cargoDistance && !outfitDistance)
 		return 0;
 	
-	// Scanning speed also uses a square root, so you need four scanners to get
-	// twice the speed out of them. The longer the range, the slower the scanner, too.
-	double cargoSpeed = sqrt(attributes.Get("cargo scan speed")) / attributes.Get("cargo scan power");
+	// Scanning speed does not use a square root, so that increasing both power and speed 
+	// proportionally will rise both range and speed. The longer the range, the slower the scanner.
+	double cargoSpeed = 100. * attributes.Get("cargo scan speed") / cargoDistance;
 	if(!cargoSpeed)
-		cargoSpeed = 1.  / attributes.Get("cargo scan power");
+		cargoSpeed = 100. / cargoDistance;
 	
-	double outfitSpeed = sqrt(attributes.Get("outfit scan speed")) / attributes.Get("outfit scan power");
+	double outfitSpeed = 100. * attributes.Get("outfit scan speed") / outfitDistance;
 	if(!outfitSpeed)
-		outfitSpeed = 1. / attributes.Get("outfit scan power");
+		outfitSpeed = 100. / outfitDistance;
 	
 	// Check how close this ship is to the target it is trying to scan.
 	double distance = (target->position - position).Length();
@@ -2284,13 +2284,16 @@ int Ship::Scan()
 	bool startedScanning = false;
 	bool activeScanning = false;
 	int result = 0;
-	auto doScan = [&](double &elapsed, const double speed, const double scannerRange, double domain, const int event) -> void
+	auto doScan = [&](double &elapsed, const double speed, const double scannerRange, double depth, const int event) -> void
 	{
 		if(elapsed < SCAN_TIME && distance < scannerRange)
 		{
 			startedScanning |= !elapsed;
 			activeScanning = true;
-			elapsed += speed / domain;
+			elapsed +=
+				min(1., (scannerRange - distance) / scannerRange)
+				* (2. / (2. +(Velocity() - target->Velocity()).Length()))
+				* (speed / depth);
 			// To make up for the scan decay above:
 			elapsed ++;
 			if(elapsed >= SCAN_TIME)
