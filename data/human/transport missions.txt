@@ -3368,8 +3368,7 @@ mission "Mafia Extortion"
 			`	"If you care about safety, then I could make a donation to the System Safety Foundation on your behalf. 200,000 credits really goes a long way around here."`
 			choice
 				`(pay 200,000 credits)`
-					#payment -200000
-					goto next_steps
+					goto payup
 				`"How can I be sure the money is spent well?"`
 					goto impatient
 				`"Sorry, I already made a donation to the 'Security Support Fund' earlier today and I don't donate twice in one day."`
@@ -3440,9 +3439,9 @@ mission "Mafia Extortion"
 				`"100,000,000"`
 					goto far_too_much
 				`"1,000,000"`
-					goto far_too_much
+					goto too_much
 				`"200,000"`
-					goto far_too_much
+					goto too_much
 				`"50,000"`
 					goto too_much
 				`"5,000"`
