@@ -353,6 +353,9 @@ void GameData::CheckReferences()
 	for(auto &&it : systems)
 		if(it.second.Name().empty() && !NameIfDeferred(deferred["system"], it))
 			NameAndWarn("system", it);
+	for(auto &it : formations)
+		if(it.second.Name().empty())
+			NameAndWarn("formation", it);
 }
 
 

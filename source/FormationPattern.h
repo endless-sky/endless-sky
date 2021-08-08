@@ -103,6 +103,7 @@ public:
 
 	// Returns the name of this pattern.
 	const std::string &Name() const;
+	void SetName(const std::string &name);
 	
 	// Load formation from a datafile.
 	void Load(const DataNode &node);

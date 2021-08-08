@@ -141,10 +141,28 @@ const string &FormationPattern::Name() const
 
 
 
+void FormationPattern::SetName(const std::string &name)
+{
+	this->name = name;
+}
+
+
+
 void FormationPattern::Load(const DataNode &node)
 {
-	if(node.Size() >=2)
+	if(!name.empty())
+	{
+		node.PrintTrace("Duplicate entry for formation-pattern \"" + name + "\":");
+		return;
+	}
+	
+	if(node.Size() >= 2)
 		name = node.Token(1);
+	else
+	{
+		node.PrintTrace("Skipping load of unnamed formation-pattern:");
+		return;
+	}
 	
 	for(const DataNode &child : node)
 		if(child.Token(0) == "flippable" && child.Size() >= 2)
