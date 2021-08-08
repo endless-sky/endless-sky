@@ -1615,3 +1615,72 @@ mission "Coalition Folklore: Kimek"
 			`	The Kimek organizer of the other side starts a cheer, which quickly spreads to the others. After the leaders of both teams meet to greet each other, everyone is asked to return the colored cloth they were given and make their way down the hill. Your group is pointed to a nearby building to wash off any dirt, if needed. Once you're all cleaned up, the Kimek who brought you here is waiting by the camp to guide your opponents to many short tables with plates on them; apparently, the reward for winning is a feast. "A shame it is, that lost the battle your team has," he says. "But hopefully, still fun with the event you had."`
 			`	Before he leaves with the victors, he explains a bit more about the event, telling you that the meals that will be served at the banquet are meant to represent the produce of the fort's "farm," and that those who win earn the right to it. Finally, he thanks you for participating, and goes with the winners to the tables. You return to where the train dropped you off and get on the next one heading back to the spaceport.`
 				decline
+
+
+
+mission "Coalition: Alpha Encounter"
+	minor
+	invisible
+	to offer
+		has "Coalition: First Contact: done"
+		has "remembrance day: offered"
+		random < 1
+	source
+		government "Coalition"
+		not attributes "station"
+		not planet "Secret Sky" "Remote Blue" "Bloptab's Furnace" "Ahr"
+	on offer
+		event "alitis freed" 1095
+		log "Minor People" "Alitis" `Alitis, formerly known as Athis, is an Alpha who lives in the Coalition. Centuries ago, he stole a jump drive from an alien ship and used it to explore, but after some sort of encounter in the galactic east, he decided to give up on his former life.`
+		conversation
+			`You're window-browsing a shop in the spaceport when you catch the scuff of too quick footsteps coming towards you. Before you can glance in that direction, you're suddenly tackled into the ground by someone astonishingly human-shaped. You try to get up, but whoever attacked you pins you down, pressing your face into the ground and holding your arms behind your back to restrain you. As you struggle against your attacker you manage to catch sight of long hair and then, with a flash of concern, a glimpse of green skin - an Alpha.`
+			`	You are not pressed for long though. You feel the Alpha's attention shift to the side you cannot see, as an Arach swoops in with a tackle. The Alpha lets go of your arms in an attempt to block the attack, but it does not prevent the Arach from bowling them clear off of you where the two begin to wrestle in your line of sight. The Alpha is a man and, surprisingly to you, despite his strength, it doesn't take long for the Arach Heliarch to restrain your attacker. The Arach firmly pins his arms to his torso with four legs, holds his hips down with two, and uses her last pair to lever herself until she rests her entire body weight into pinning the Alpha.`
+			`	A Saryd Heliarch approaches and tells you to keep your distance before interposing himself partially between you and your assailant. He then looks at the Alpha and asks through his translator box, "What reason for attacking this person, did you have?"`
+			`	The Alpha is still struggling to try and get out of the Arach's grip, and you notice an intricate gold necklace which has splayed across his shoulder and onto the floor in the scuffle, jangling in the quiet every time he struggles. At this point, everyone else has cleared out of the area and is giving the scene a wide berth. As you get to your feet he ignores the Saryd's question and looks at you intensely. "You're with the Navy, aren't you? Finally figured out I was here, thought you'd finish the job?"`
+			branch navy
+				has "license: Navy"
+			choice
+				`	"No, I'm not with the Navy. You could've just asked without slamming me to the ground."`
+					goto notnavy
+				`	"Is that why you attacked me?"`
+					goto detained
+			label navy
+			choice
+				`	"I am with the Navy, but I didn't come here looking for you."`
+				`	"Is that why you attacked me?"`
+					goto detained
+			`	"And I'm supposed to believe that crap?" He lashes out, trying again to knock the Arach off of him, but the agent only tightens the grip. She opens her mandibles, getting them close to the Alpha's neck. "Alright, alright, I get it!" the Alpha shouts, stopping his attempts to break free.`
+				goto detained
+			label notnavy
+			`	He stares at you for a moment, as if unsure if you're telling the truth. "What the hell are you doing here then? Did you just stumble onto this place?" He stops struggling, but the Arach agent doesn't loosen her grip.`
+			label detained
+			`	The Saryd walks closer to the Alpha, stomping his hoofs on the ground with each step. "Whatever your motivation was, a transgression, you have committed. Punished accordingly, you shall be," he says. "Kindly follow us to the detention facility, would you, Captain?" he asks you, but doesn't wait for an answer, as more agents arrive to escort you and the Alpha to the "detention facility."`
+			`	On your way there, you start feeling stings on your arms and legs, and realize the Alpha's tackle left you with some bruises. "Treat those, we will, after faced trial, your agressor has," the Saryd says as you approach your destination: a building similar to a police station. The Alpha is brought before a Kimek that you guess is in charge of the facility. He asks you to give a testimony of what happened, with the Heliarch agents confirming what you say. "Your first offense in a long time this is, Alitis," the Kimek says, after checking a computer for the Alpha's data. "Three years in seclusion, your sentence is."`
+			`	After the short verdict, which seems to lack much of the due process you would expect in human space, the agents bring both you and the Alpha to a lower level of the building. This floor has several empty cells kept shut by thick, tough walls of some transparent material. While the cell block does appear to go further beyond this section and around a corner, the first few cells appear to be directly opposite a modest medical space, presumably used mostly for treating any injured prisoners without leaving the secure level. At present though, all of the cells appear to be empty, and the Heliarchs simply lock him in the second cell, where accessing his would not obstruct any other doorways. The agents then ask that you wait a few minutes for a medic to arrive so that they can take care of your bruises.`
+			`	You notice that cut into the transparent material of the walls are a series of small holes at head-height with a cover that can be slid across them, presumably to silence a prisoner if needed. By default, they appear to be left open, and the Heliarch agents have not closed the one on the Alpha's cell.`
+			`	Your eyes shift from the holes in the wall to the Alpha to find his eyes fixated on you, not looking away or even blinking. After you stare him down for a couple of seconds, he speaks up. "What is it, are you expecting some sort of apology? I'd consider my caution to be entirely justified, so you won't get one."`
+			choice
+				`	"Who are you? How did you even get here?"`
+				`	"What are you doing here in the Coalition?"`
+			`	He frowns at you. "I don't owe you any answers, cur. Shut up and wait for the law to bring the frail princess some band-aids and a lollipop."`
+			choice
+				`	"Are you so busy in that empty cell that you can't answer me?"`
+				`	"Tough talk for someone who wrestled a spider and lost."`
+			`	He leans forward, his legs twitching as if stopped mid-tackle, and he pauses, turning to look down the hallway to where the Heliarchs went. He backs up, slowing his breathing, and then sits down. "Alright. This may be the last time in three years I can have a proper conversation, so I will entertain you. My name... is Alitis. Over a century ago my kin stumbled upon an alien civilization beyond the Far North in conflict with bands of invaders. These invaders possessed drive capable of jumping between systems without the need for hyperspace links, technology that we greatly desired, for it could put us far outside of the reach of... you." He fixates his eyes on yours, ever so slightly closing his eyelids. "We explored the far reaches of the galaxy to the east, but found no place to call home. Our only choice was to return to the Dirt Belt where we knew of an enclave of more kin, only for the Navy," he spits on the ground, then looks at you again, "to find us. We evacuated, and my kin thought it wise to return to the east, but I knew better. I stole one of the drives my kin had along with a small ship and began traveling west. That is when I discovered the Coalition, and they have provided for me a home that I have been unable to find elsewhere in the galaxy."`
+			choice
+				`	"You 'knew better?' What do you mean?"`
+				`	"What, did you have a change of heart once you got here?"`
+			`	He gets up in a rush. "Full of questions, aren't you?" He approaches the wall again, in slow steps. "I was among the first of my kind. Athis, I was called then. I have traveled the galaxy for many centuries and witnessed many things. I have been ambushed, cornered many times; fear was not a stranger to me, for as soulless as your kind see me, we still feel. But when I traveled to the east, someone, or... something, rather, spoke to me. A voice with an immense weight. And for the first time, I felt something more than fear. I felt dread. So when my kin decided to return to the east, I was not so inclined to return with them."`
+			choice
+				`	"Voices in your head? Are you sure you weren't just imagining them?"`
+					goto imaginary
+				`	"What did the voice say?"`
+			`	He looks away from you. "You're here now, aren't you? This means you must have a device to jump beyond links as I did. Travel to the east and find out for yourself what the voices say. Find out if it classifies you as 'disposable' as well.`
+				goto end
+			label imaginary
+			`	He looks away from you. "No imaginary thing could have such an impact on me. You're here now, aren't you? This means you must have a device to jump beyond links as I did. Travel to the east and find out for yourself that the voices are real."`
+			label end
+			`	The Heliarchs inform you that the medic has arrived, and bring you further down the hallway to a room where they treat your bruises. They examine you briefly, then give you a tube with a thick liquid, almost like a gel, asking that you gently apply it on your wounds. Once you're done, they tell you that the pain should wear off within a few minutes, and an agent escorts you back out. Passing by his cell again, you see Alitis still standing with his back to the hallway, looking straight at the wall. The agent brings you to your ship, and thanks you for your cooperation.`
+				decline
+
+event "alitis freed"

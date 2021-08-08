@@ -71,7 +71,7 @@ void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 	// Upload the image data.
 	glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_RGBA8, // target, mipmap level, internal format,
 		buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
-		0, GL_BGRA, GL_UNSIGNED_BYTE, buffer.Pixels()); // border, input format, data type, data.
+		0, GL_RGBA, GL_UNSIGNED_BYTE, buffer.Pixels()); // border, input format, data type, data.
 	
 	// Unbind the texture.
 	glBindTexture(GL_TEXTURE_2D_ARRAY, 0);
