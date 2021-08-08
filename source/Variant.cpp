@@ -154,11 +154,12 @@ void Variant::Load(const DataNode &node)
 
 bool Variant::IsValid() const
 {
-	// A variant should have at least one valid ship
-	// or nested variant.
+	// A variant should have at least one valid ship or nested variant.
 	if(none_of(ships.begin(), ships.end(),
-			[](const Ship *const s) noexcept -> bool { return s->IsValid(); })
-		&& none_of(variants.begin(), variants.end(),
+			[](const Ship *const s) noexcept -> bool { return s->IsValid(); }))
+		return false;
+	
+	if(none_of(variants.begin(), variants.end(),
 			[](const WeightedVariant &v) noexcept -> bool { return v.Get().IsValid(); }))
 		return false;
 	

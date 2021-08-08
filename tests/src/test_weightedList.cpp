@@ -94,7 +94,7 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 				}
 				
 				AND_WHEN( "A range is erased from begin to end" ) {
-					list.erase(list.begin(), list.end())
+					list.erase(list.begin(), list.end());
 					THEN( "The list is empty" ) {
 						CHECK( list.empty() );
 						CHECK( list.TotalWeight() == 0 );

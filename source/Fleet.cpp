@@ -257,9 +257,9 @@ bool Fleet::IsValid(bool requireGovernment) const
 	if(fighterNames && fighterNames->IsEmpty())
 		return false;
 	
-	// A fleet should have at least one valid variant.
-	if(none_of(variants.begin(), variants.end(),
-			[](const WeightedVariant &v) noexcept -> bool { return v.Get().IsValid(); }))
+	// Any variant a fleet could choose should be valid.
+	if(any_of(variants.begin(), variants.end(),
+			[](const WeightedVariant &v) noexcept -> bool { return !v.Get().IsValid(); }))
 		return false;
 	
 	return true;
