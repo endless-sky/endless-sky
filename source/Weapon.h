@@ -13,11 +13,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef WEAPON_H_
 #define WEAPON_H_
 
+#include "Angle.h"
 #include "Body.h"
 #include "Point.h"
 
 #include <map>
 #include <utility>
+#include <vector>
 
 class DataNode;
 class Effect;
@@ -33,6 +35,21 @@ class Sprite;
 // copy of them, and storing them as class variables instead of in a map of
 // string to double significantly reduces access time.
 class Weapon {
+public:
+	struct Submunition{
+		Submunition() noexcept = default;
+		explicit Submunition(const Weapon *weapon, std::size_t count) noexcept
+			: weapon(weapon), count(count) {};
+		
+		const Weapon *weapon = nullptr;
+		std::size_t count = 0;
+		// The angular offset from the source projectile, relative to its current facing.
+		Angle facing;
+		// The base offset from the source projectile's position, relative to its current facing.
+		Point offset;
+	};
+	
+	
 public:
 	// Load from a "weapon" node, either in an outfit, a ship (explosion), or a hazard.
 	void LoadWeapon(const DataNode &node);
@@ -51,7 +68,7 @@ public:
 	const std::map<const Effect *, int> &HitEffects() const;
 	const std::map<const Effect *, int> &TargetEffects() const;
 	const std::map<const Effect *, int> &DieEffects() const;
-	const std::map<const Outfit *, int> &Submunitions() const;
+	const std::vector<Submunition> &Submunitions() const;
 	
 	// Accessor functions for various attributes.
 	int Lifetime() const;
@@ -182,7 +199,7 @@ private:
 	std::map<const Effect *, int> hitEffects;
 	std::map<const Effect *, int> targetEffects;
 	std::map<const Effect *, int> dieEffects;
-	std::map<const Outfit *, int> submunitions;
+	std::vector<Submunition> submunitions;
 	
 	// This stores whether or not the weapon has been loaded.
 	bool isWeapon = false;
