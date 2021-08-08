@@ -13,7 +13,7 @@ fleet "Small Remnant"
 	names "remnant"
 	cargo 2
 	personality
-		heroic disables plunders appeasing
+		heroic plunders appeasing
 	variant 8
 		"Starling"
 	variant 6
@@ -40,7 +40,7 @@ fleet "Large Remnant"
 	names "remnant"
 	cargo 2
 	personality
-		heroic disables plunders appeasing
+		heroic plunders appeasing
 	variant 6
 		"Albatross"
 		"Starling" 2
@@ -71,7 +71,7 @@ fleet "Remnant Transport"
 	names "remnant"
 	cargo 2
 	personality
-		disables plunders coward appeasing mining harvests
+		plunders coward appeasing mining harvests
 	variant 10
 		"Gull"
 	variant 5
@@ -110,7 +110,7 @@ fleet "Remnant Home Guard"
 	names "remnant"
 	cargo 2
 	personality
-		disables plunders appeasing mining harvests surveillance
+		plunders appeasing mining harvests surveillance
 	variant 20
 		"Tern" 1
 	variant 10

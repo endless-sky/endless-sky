@@ -39,6 +39,7 @@ class ShipInfoPanel : public Panel {
 public:
 	explicit ShipInfoPanel(PlayerInfo &player, int index = -1);
 	
+	virtual void Step() override;
 	virtual void Draw() override;
 	
 	

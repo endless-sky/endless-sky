@@ -51,14 +51,14 @@ Shader::Shader(const char *vertex, const char *fragment)
 		glGetProgramInfoLog(program, maxLength, &maxLength, &infoLog[0]);
 		string error(infoLog.data());
 		Files::LogError(error);
-
+		
 		throw runtime_error("Linking OpenGL shader program failed.");
 	}
 }
 
 
 
-GLuint Shader::Object() const
+GLuint Shader::Object() const noexcept
 {
 	return program;
 }
@@ -98,12 +98,22 @@ GLuint Shader::Compile(const char *str, GLenum type)
 	{
 		version = "#version ";
 		string glsl = reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION));
+		bool found = false;
 		for(char c : glsl)
 		{
+			if(!found && !isdigit(c)) {
+				continue;
+			}
 			if(isspace(c))
 				break;
-			if(isdigit(c))
+			if(isdigit(c)) {
+				found = true;
 				version += c;
+			}
+		}
+		if(glsl.find("GLSL ES") != std::string::npos)
+		{
+			version += " es";
 		}
 		version += '\n';
 	}

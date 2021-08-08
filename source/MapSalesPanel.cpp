@@ -12,14 +12,17 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapSalesPanel.h"
 
+#include "CategoryTypes.h"
 #include "Command.h"
 #include "Dialog.h"
+#include "text/DisplayText.h"
 #include "FillShader.h"
-#include "Font.h"
-#include "FontSet.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "Government.h"
 #include "ItemInfoDisplay.h"
+#include "text/layout.hpp"
 #include "Outfit.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -33,6 +36,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include <algorithm>
@@ -47,7 +51,7 @@ const int MapSalesPanel::WIDTH = 270;
 
 MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 	: MapPanel(player, SHOW_SPECIAL),
-	categories(isOutfitters ? Outfit::CATEGORIES : Ship::CATEGORIES),
+	categories(GameData::Category(isOutfitters ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	isOutfitters(isOutfitters),
 	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {
@@ -59,7 +63,7 @@ MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 
 MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 	: MapPanel(panel),
-	categories(isOutfitters ? Outfit::CATEGORIES : Ship::CATEGORIES),
+	categories(GameData::Category(isOutfitters ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	isOutfitters(isOutfitters),
 	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {
@@ -209,7 +213,7 @@ void MapSalesPanel::DrawKey() const
 		1.
 	};
 	
-	double selectedValue = (selectedSystem ? SystemValue(selectedSystem) : -1.);
+	double selectedValue = SystemValue(selectedSystem);
 	for(int i = 0; i < 3; ++i)
 	{
 		bool isSelected = (VALUE[i] == selectedValue);
@@ -356,9 +360,10 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, bool isForSale, bo
 		DrawSprite(corner, sprite);
 		
 		const Color &textColor = *GameData::Colors().Get(isForSale ? "medium" : "dim");
-		font.Draw(name, corner + nameOffset, textColor);
-		font.Draw(price, corner + priceOffset, textColor);
-		font.Draw(info, corner + infoOffset, textColor);
+		auto layout = Layout(static_cast<int>(WIDTH - ICON_HEIGHT - 1), Truncate::BACK);
+		font.Draw({name, layout}, corner + nameOffset, textColor);
+		font.Draw({price, layout}, corner + priceOffset, textColor);
+		font.Draw({info, layout}, corner + infoOffset, textColor);
 	}
 	zones.emplace_back(corner + .5 * blockSize, blockSize, zones.size());
 	corner.Y() += ICON_HEIGHT;

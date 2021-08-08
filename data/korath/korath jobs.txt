@@ -1,0 +1,242 @@
+# Copyright (c) 2020 by W1zrad
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Kor Efreti: Cargo"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination> for the Kor Efreti. Payment is <payment>."
+	cargo random 10 2 .18
+	to offer
+		has "Wanderers: Sestor: Final: done"
+		random < 50
+	source
+		government "Kor Efret"
+	destination
+		distance 1 8
+		government "Kor Efret" "Wanderer"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		dialog phrase "generic cargo delivery payment"
+		
+mission "Kor Efreti: Cargo [1]"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination> for the Kor Efreti. Payment is <payment>."
+	cargo random 10 2 .14
+	to offer
+		has "Wanderers: Sestor: Final: done"
+		random < 20
+	source
+		government "Kor Efret"
+	destination
+		distance 1 8
+		government "Kor Efret" "Wanderer"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 500
+		dialog phrase "generic cargo delivery payment"		
+
+mission "Kor Efreti: Food Cargo [0]"
+	name "Food to <planet>"
+	job
+	repeat
+	description "The Kor Efreti need some food supplies moved to another planet. Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo "Food" 5 3 .16
+	to offer
+		has "Wanderers: Sestor: Final: done"
+	source
+		government "Kor Efret"
+		not attributes "station"
+	destination
+		distance 1 8
+		government "Kor Efret"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		dialog phrase "generic cargo delivery payment"
+
+mission "Kor Efreti: Food Cargo [1]"
+	name "Food to <planet>"
+	job
+	repeat
+	description "The Kor Efreti need some food supplies moved to another planet. Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo "Food" 5 3 .14
+	to offer
+		has "Wanderers: Sestor: Final: done"
+		random < 70
+	source
+		government "Kor Efret"
+		not attributes "station"
+	destination
+		distance 1 8
+		government "Kor Efret"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 1000
+		dialog phrase "generic cargo delivery payment"
+
+
+mission "Kor Efreti: Industrial to Wanderers"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "The Kor Efreti don't have much manufacturing capability, but the Wanderers could make use of these materials. Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo "Industrial" 5 3 .13
+	to offer
+		has "Wanderers: Sestor: Final: done"
+		random < 75
+	source
+		government "Kor Efret"
+	destination
+		distance 2 8
+		government "Wanderer"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 500
+		dialog phrase "generic cargo delivery payment"
+		
+mission "Kor Efreti: Cargo to Wanderers"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "The Kor Efreti don't have much manufacturing capability, but the Wanderers could make use of these materials. Deliver <cargo> to the Wanderers on <destination>. Payment is <payment>."
+	cargo random 5 4 .12
+	to offer
+		has "Wanderers: Sestor: Final: done"
+		random < 60
+	source
+		government "Kor Efret"
+	destination
+		distance 2 8
+		government "Wanderer"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 700
+		dialog phrase "generic cargo delivery payment"		
+		
+mission "Kor Efreti: Rush Delivery Food"
+	name "Rush delivery to <planet>"
+	job
+	repeat
+	description "The Kor Efreti on <destination> are dangerously low on food supplies. Deliver <cargo> by <date> to alleviate the crisis. Payment is <payment>."
+	cargo "Food" 10 6 .1
+	deadline
+	to offer
+		has "Wanderers: Sestor: Final: done"
+		random < 60
+	source
+		government "Kor Efret"
+		not attributes "station"
+	destination
+		distance 1 8
+		government "Kor Efret"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 2000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Kor Efreti: Passengers [0]"
+	name "Korath passengers to <planet>"
+	job
+	repeat
+	description "Bring this group of <bunks> Kor Efreti to <destination>. Payment is <payment>."
+	passengers 3 2 .15
+	to offer
+		has "Wanderers: Sestor: Final: done"
+	source
+		government "Kor Efret"
+	destination
+		distance 1 8
+		government "Kor Efret"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Kor Efreti: Passengers [1]"
+	name "Korath passengers to <planet>"
+	job
+	repeat
+	description "Bring this group of <bunks> Kor Efreti to <destination>. Payment is <payment>."
+	passengers 3 2 .1
+	to offer
+		has "Wanderers: Sestor: Final: done"
+		random < 60
+	source
+		government "Kor Efret"
+		not attributes "station"
+	destination
+		distance 1 8
+		government "Kor Efret"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 500
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Kor Efreti: Settlers"
+	name "Korath settlers to <planet>"
+	job
+	repeat
+	description "Take these <bunks> migrating Kor Efreti and their <cargo> to the new Wanderer-Korath settlement on <destination>. Payment is <payment>."
+	passengers 10 5 .15
+	cargo "supplies" 5 3 .16
+	to offer
+		has "Wanderers: Sestor: Final: done"
+		random < 90
+	source
+		government "Kor Efret"
+		not attributes "station"
+	destination "Sabira Eseskrai"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment
+		payment 2000
+		dialog "The Korath settlers slowly depart your ship with their cargo, seemingly apprehensive to step onto this once-dead world. The Korath in charge gives you a gesture of thanks and hands you <payment>."
+
+mission "Kor Efreti to Wanderers: Farming"
+	name "Teaching Wanderer farming methods"
+	job
+	repeat
+	description "Take <bunks> Kor Efreti to learn Wanderer farming methods on <stopovers>, then return them to <planet>. Payment is <payment>."
+	passengers 5 1 .2
+	to offer
+		has "Wanderers: Sestor: Final: done"
+		random < 70
+	source
+		government "Kor Efret"
+	stopover
+		distance 2 8
+		government "Wanderer"
+	on visit
+		dialog phrase "generic missing stopover or passengers"
+	on stopover
+		dialog `The Wanderers try to explain their farming methods to the Korath farmers, but the language barrier makes it challenging. The Korath eventually pick up bits and pieces of what the Wanderers are doing. Time to return to <destination>.`
+	on complete
+		payment 10000 200
+		dialog `When you return, the Korath move their hands in a circular motion with their palms toward you as a sign of gratitude. They hand you <payment> and disembark your ship.`

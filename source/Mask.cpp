@@ -285,22 +285,26 @@ bool Mask::Contains(Point point, Angle facing) const
 
 
 
-// Find out how close this mask is to the given point. Again, the mask is
-// assumed to be rotated and scaled according to the given unit vector.
-bool Mask::WithinRange(Point point, Angle facing, double range) const
+// Find out whether this object is touching a ring defined by the given
+// inner and outer ranges.
+bool Mask::WithinRing(Point point, Angle facing, double inner, double outer) const
 {
-	// Bail out if the object is too far away to possible be touched.
-	if(outline.empty() || range < point.Length() - radius)
+	// Bail out if the object is too far away to possibly be touched.
+	if(outline.empty() || inner > point.Length() + radius || outer < point.Length() - radius)
 		return false;
 	
 	// Rotate into the mask's frame of reference.
 	point = (-facing).Rotate(point);
 	// For efficiency, compare to range^2 instead of range.
-	range *= range;
+	inner *= inner;
+	outer *= outer;
 	
 	for(const Point &p : outline)
-		if(p.DistanceSquared(point) < range)
+	{
+		double pSquared = p.DistanceSquared(point);
+		if(pSquared < outer && pSquared > inner)
 			return true;
+	}
 	
 	return false;
 }

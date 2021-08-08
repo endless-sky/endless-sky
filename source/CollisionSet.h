@@ -49,6 +49,9 @@ public:
 	
 	// Get all objects within the given range of the given point.
 	const std::vector<Body *> &Circle(const Point &center, double radius) const;
+	// Get all objects touching a ring with a given inner and outer range
+	// centered at the given point.
+	const std::vector<Body *> &Ring(const Point &center, double inner, double outer) const;
 	
 	
 private:
