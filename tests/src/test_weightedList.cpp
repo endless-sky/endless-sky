@@ -102,7 +102,7 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 				}
 			}
 			
-			AND_WHEN( "The list is cleared". ) {
+			AND_WHEN( "The list is cleared." ) {
 				list.clear();
 				THEN( "The list is now empty." ) {
 					REQUIRE( list.empty() );
