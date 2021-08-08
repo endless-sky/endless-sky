@@ -351,6 +351,7 @@ License: CC-BY-SA-4.0
 
 Files:
  images/effect/remnant?afterburner/remnant?afterburner*
+ images/effect/mhd?spark*
  images/land/nasa9*
  images/hardpoint/annihilator?turret*
  images/hardpoint/inhibitor?turret*
@@ -859,6 +860,7 @@ Files:
  images/outfit/ka'het?mhd?generator*
  images/outfit/ka'het?reserve?accumulator*
  images/outfit/ka'het?nullifier*
+ images/outfit/ka'het?mhd?deployer*
  images/outfit/mouthparts*
  images/outfit/fuel?pod*
  images/outfit/fusion*
@@ -907,6 +909,7 @@ Files:
  images/planet/station4bd*
  images/projectile/annihilator*
  images/projectile/ravager?beam*
+ images/projectile/mhd*
  images/scene/ringworld?debris*
  images/scene/remnant?station*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
@@ -953,7 +956,7 @@ Comment: Derived from work by Michael Zahniser (under the same licence) and Becc
 Files:
  images/_menu/haze-blackbody+*
  images/_menu/haze-full+*
- images/_menu/haze-yellow+* 
+ images/_menu/haze-yellow+*
  images/planet/browndwarf-l-rouge*
  images/planet/browndwarf-l*
  images/planet/browndwarf-y-rouge*
@@ -964,9 +967,16 @@ License: CC-BY-SA-4.0
 Files:
  images/planet/browndwarf-t-rouge*
  images/planet/browndwarf-t*
+ images/planet/saturn*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 Comment: Derived from works by NASA (public domain)
+
+Files:
+ sounds/atomic?*
+Copyright: Lia Gerty
+License: CC-BY-SA-4.0
+Comment: Derived from public domain sounds taken from freesound.org.
 
 Files:
  images/ship/heliarch?breacher*
@@ -982,6 +992,9 @@ Files:
  images/thumbnail/heliarch?rover*
  images/thumbnail/heliarch?stalker*
  images/outfit/finisher?storage*
+ images/outfit/fuel?module*
+ images/outfit/large?cogeneration?module*
+ images/outfit/small?cogeneration?module*
 Copyright: Arachi-Lover
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
