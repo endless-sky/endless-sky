@@ -2278,7 +2278,7 @@ int Ship::Scan()
 	
 	// Check the target's outfit and cargo space, a larger ship takes longer to scan.
 	double outfits = target->baseAttributes.Get("outfit space") / 200.;
-	double cargo = target->baseAttributes.Get("cargo space") / 200.;
+	double cargo = target->attributes.Get("cargo space") / 200.;
 	
 	// Check if either scanner has finished scanning.
 	bool startedScanning = false;
