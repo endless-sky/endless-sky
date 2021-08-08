@@ -92,8 +92,18 @@ void Weapon::LoadWeapon(const DataNode &node)
 		}
 		else if(key == "submunition")
 		{
-			int count = (child.Size() >= 3) ? child.Value(2) : 1;
-			submunitions[GameData::Outfits().Get(child.Token(1))] += count;
+			submunitions.emplace_back(
+				GameData::Outfits().Get(child.Token(1)),
+				(child.Size() >= 3) ? child.Value(2) : 1);
+			for(const DataNode &grand : child)
+			{
+				if((grand.Size() >= 2) && (grand.Token(0) == "facing"))
+					submunitions.back().facing = Angle(grand.Value(1));
+				else if((grand.Size() >= 3) && (grand.Token(0) == "offset"))
+					submunitions.back().offset = Point(grand.Value(1), grand.Value(2));
+				else
+					child.PrintTrace("Skipping unknown or incomplete sub-munition attribute:");
+			}
 		}
 		else
 		{
@@ -359,7 +369,7 @@ const map<const Effect *, int> &Weapon::DieEffects() const
 
 
 
-const map<const Outfit *, int> &Weapon::Submunitions() const
+const vector<Weapon::Submunition> &Weapon::Submunitions() const
 {
 	return submunitions;
 }
@@ -374,7 +384,7 @@ double Weapon::TotalLifetime() const
 	{
 		totalLifetime = 0.;
 		for(const auto &it : submunitions)
-			totalLifetime = max(totalLifetime, it.first->TotalLifetime());
+			totalLifetime = max(totalLifetime, it.weapon->TotalLifetime());
 		totalLifetime += lifetime;
 	}
 	return totalLifetime;
@@ -424,7 +434,7 @@ double Weapon::TotalDamage(int index) const
 		for(int i = 0; i < DAMAGE_TYPES; ++i)
 		{
 			for(const auto &it : submunitions)
-				damage[i] += it.first->TotalDamage(i) * it.second;
+				damage[i] += it.weapon->TotalDamage(i) * it.count;
 			doesDamage |= (damage[i] > 0.);
 		}
 	}
