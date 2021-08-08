@@ -11,10 +11,30 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
 #include "FormationPattern.h"
+#include "Ship.h"
+
 
 #include <cmath>
 
 using namespace std;
+
+
+
+void FormationPattern::ActiveFormation::Tally(const Ship &ship)
+{
+	maxDiameter = max(maxDiameter, ship.Radius() * 2.);
+	maxHeight = max(maxHeight, ship.Height());
+	maxWidth = max(maxWidth, ship.Width());
+}
+
+
+
+void FormationPattern::ActiveFormation::ClearParticipants()
+{
+	maxDiameter = 0.;
+	maxHeight = 0.;
+	maxWidth = 0.;
+}
 
 
 

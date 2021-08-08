@@ -20,6 +20,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+class Ship;
+
 
 
 // Class that handles the loading and position calculations for a pattern that
@@ -31,7 +33,6 @@ public:
 	// Struct that describes the properties of an active formation, like the maximum
 	// sizes of the ships participating in the formation and some data on the Body
 	// around which the formation is formed.
-	// TODO: start using this.
 	class ActiveFormation
 	{
 	public:
@@ -46,6 +47,12 @@ public:
 		double maxDiameter = 80;
 		double maxWidth = 80;
 		double maxHeight = 80;
+	
+	
+	public:
+		// Helper functions to add and clear meta-data from formation participants;
+		void Tally(const Ship &ship);
+		void ClearParticipants();
 	};
 	
 	

@@ -48,12 +48,8 @@ void FormationPositioner::Start()
 	}
 
 	// Set scaling based on results from previous run.
-	maxDiameter = nextMaxDiameter;
-	maxHeight = nextMaxHeight;
-	maxWidth = nextMaxWidth;
-	nextMaxDiameter = 1.;
-	nextMaxHeight = 1.;
-	nextMaxWidth = 1.;
+	activeData = nextActiveData;
+	nextActiveData.ClearParticipants();
 	
 	// Calculate new direction, if the formationLead is moving, then we use the movement vector.
 	// Otherwise we use the facing vector.
@@ -113,9 +109,7 @@ Point FormationPositioner::NextPosition(const Ship *ship)
 	RingPositioner &rPos = ringPos[ship->GetFormationRing()];
 	
 	// Set scaling for next round based on the sizes of the participating ships.
-	nextMaxDiameter = max(nextMaxDiameter, ship->Radius() * 2.);
-	nextMaxHeight = max(nextMaxHeight, ship->Height());
-	nextMaxWidth = max(nextMaxWidth, ship->Width());
+	nextActiveData.Tally(*ship);
 	
 	// Count the number of positions on the ring.
 	++(rPos.lastPos);
@@ -191,7 +185,8 @@ Point FormationPositioner::NextPosition(const Ship *ship)
 		}
 	}
 	
-	Point relPos = pattern->Position(rPos.ring, rPos.activeLine, rPos.activeRepeat, rPos.lineSlot, maxDiameter, maxWidth, maxHeight);
+	Point relPos = pattern->Position(rPos.ring, rPos.activeLine, rPos.activeRepeat, rPos.lineSlot,
+		activeData.maxDiameter, activeData.maxWidth, activeData.maxHeight);
 	
 	if(flippedY)
 		relPos.Set(-relPos.X(), relPos.Y());

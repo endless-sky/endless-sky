@@ -15,10 +15,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Angle.h"
 #include "Body.h"
+#include "FormationPattern.h"
 
 #include <map>
 
-class FormationPattern;
 class Ship;
 
 
@@ -62,15 +62,13 @@ private:
 	// The actual positioners based on the desired ring-numbers.
 	// TODO: Should we put a map here with as key "pointers to the ships in the formation" and as value their position?
 	std::map<unsigned int, RingPositioner> ringPos;
-
-	// The scaling factors being used for this formation.
-	double maxDiameter = 1.;
-	double maxWidth = 1.;
-	double maxHeight = 1.;
-	double nextMaxDiameter = 1.;
-	double nextMaxWidth = 1.;
-	double nextMaxHeight = 1.;
-
+	
+	// The scaling factors as we currently have for this formation and
+	// the scaling factors that we are preparing in the currently running
+	// iteration for the next iteration.
+	FormationPattern::ActiveFormation activeData;
+	FormationPattern::ActiveFormation nextActiveData;
+	
 	// The body around which the formation will be formed and the pattern to follow.
 	const Body *formationLead;
 	const FormationPattern *pattern;
