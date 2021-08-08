@@ -78,7 +78,7 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 					CHECK( list.back().Weight() == 3 );
 				}
 			
-				AND_WHEN( "A single element is erased" ) {
+				AND_WHEN( "A single element is erased." ) {
 					auto it = list.erase(list.begin());
 					
 					THEN( "The list has decreased in size and weight." ) {
@@ -86,23 +86,23 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 						CHECK( list.size() == 1 );
 						CHECK( list.TotalWeight() == 3 );
 					}
-					THEN( "The erased object is returned" ) {
-						auto erased = *it;
-						CHECK( erased.value == 1 );
-						CHECK( erased.Weight() == 2 );
+					THEN( "An iterator pointing to the next object in the list is returned." ) {
+						auto next = *it;
+						CHECK( erased.value == 2 );
+						CHECK( erased.Weight() == 3 );
 					}
 				}
 				
-				AND_WHEN( "A range is erased from begin to end" ) {
+				AND_WHEN( "A range is erased from begin to end." ) {
 					list.erase(list.begin(), list.end());
-					THEN( "The list is empty" ) {
+					THEN( "The list is empty." ) {
 						CHECK( list.empty() );
 						CHECK( list.TotalWeight() == 0 );
 					}
 				}
 			}
 			
-			AND_WHEN( "The list is cleared" ) {
+			AND_WHEN( "The list is cleared". ) {
 				list.clear();
 				THEN( "The list is now empty." ) {
 					REQUIRE( list.empty() );
