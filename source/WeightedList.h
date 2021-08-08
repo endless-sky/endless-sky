@@ -42,7 +42,7 @@ public:
 	Type &back() noexcept { return choices.back(); }
 	const Type &back() const noexcept { return choices.back(); }
 	
-	typename std::vector<Type>::iterator erase(typename std::vector<Type>::iterator position) { auto it = choices.erase(position); total -= it->Weight(); return it; }
+	typename std::vector<Type>::iterator erase(typename std::vector<Type>::iterator position) { auto it = choices.erase(position); RecalculateWeight(); return it; }
 	typename std::vector<Type>::iterator erase(typename std::vector<Type>::iterator first, typename std::vector<Type>::iterator last) { auto it = choices.erase(first, last); RecalculateWeight(); return it; }
 	
 	template <class ...Args>
