@@ -202,7 +202,7 @@ void ImageSet::Check() const
 
 // Load all the frames. This should be called in one of the image-loading
 // worker threads. This also generates collision masks if needed.
-void ImageSet::Load()
+void ImageSet::Load() noexcept(false)
 {
 	// Determine how many frames there will be, total. The image buffers will
 	// not actually be allocated until the first image is loaded (at which point
@@ -224,7 +224,12 @@ void ImageSet::Load()
 	// Now, load the 2x sprites, if they exist. Because the number of 1x frames
 	// is definitive, don't load any frames beyond the size of the 1x list.
 	for(size_t i = 0; i < frames && i < paths[1].size(); ++i)
-		buffer[1].Read(paths[1][i], i);
+		if(!buffer[1].Read(paths[1][i], i))
+		{
+			Files::LogError("Removing @2x frames for \"" + name + "\" due to read error");
+			buffer[1].Clear();
+			return;
+		}
 }
 
 

@@ -60,7 +60,7 @@ public:
 	void Check() const;
 	// Load all the frames. This should be called in one of the image-loading
 	// worker threads. This also generates collision masks if needed.
-	void Load();
+	void Load() noexcept(false);
 	// Create the sprite and upload the image data to the GPU. After this is
 	// called, the internal image buffers and mask vector will be cleared, but
 	// the paths are saved in case the sprite needs to be loaded again.
