@@ -3190,21 +3190,20 @@ int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damag
 	
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
-
+	
 	double shieldFraction = 1. - piercing;
 	shieldFraction *= 1. / (1. + disruption * .01);
 	if(shields <= 0.)
 		shieldFraction = 0.;
 	else if(shieldDamage > shields)
 		shieldFraction = min(shieldFraction, shields / shieldDamage);
-
+	
 	shields -= shieldDamage * shieldFraction;
 	if(shieldDamage && !isDisabled)
 	{
 		int disabledDelay = attributes.Get("depleted shield delay");
 		shieldDelay = max<int>(shieldDelay, (shields <= 0. && disabledDelay) ? disabledDelay : attributes.Get("shield delay"));
 	}
-
 	hull -= hullDamage * (1. - shieldFraction);
 	if(hullDamage && !isDisabled)
 		hullDelay = max(hullDelay, static_cast<int>(attributes.Get("repair delay")));
