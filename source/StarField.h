@@ -20,7 +20,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "gl_header.h"
 
 #include <vector>
-#include <string>
 
 class Body;
 class Point;

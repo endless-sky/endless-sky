@@ -26,8 +26,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <cmath>
 #include <numeric>
-#include <iostream>
-#include <string>
 
 using namespace std;
 
@@ -180,9 +178,9 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 	Point size = Point(1., 1.) * haze.front().Radius();
 	Point topLeft = pos + (Screen::TopLeft() - size) / zoom;
 	Point bottomRight = pos + (Screen::BottomRight() + size) / zoom;
-	DrawHaze(haze,topLeft,bottomRight,hazeCloak,drawList);
+	DrawHaze(haze, topLeft, bottomRight, hazeCloak, drawList);
 	if(hazeCloak > 0.)
-		DrawHaze(prevHaze,topLeft,bottomRight, 1 - hazeCloak,drawList);
+		DrawHaze(prevHaze, topLeft, bottomRight, 1 - hazeCloak, drawList);
 
 	drawList.Draw();
 }
