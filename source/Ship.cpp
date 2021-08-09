@@ -3628,7 +3628,7 @@ const FormationPattern *Ship::GetFormationPattern() const
 
 
 
-int Ship::GetFormationRing() const
+unsigned int Ship::GetFormationRing() const
 {
 	return formationRing;
 }

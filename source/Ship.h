@@ -400,7 +400,7 @@ public:
 	std::shared_ptr<Flotsam> GetTargetFlotsam() const;
 	// Pattern to use when flying in a formation.
 	const FormationPattern *GetFormationPattern() const;
-	int GetFormationRing() const;
+	unsigned int GetFormationRing() const;
 	void SetFormationRing(int newRing);
 	
 	
@@ -581,7 +581,7 @@ private:
 	std::weak_ptr<Minable> targetAsteroid;
 	std::weak_ptr<Flotsam> targetFlotsam;
 	const FormationPattern *formationPattern = nullptr;
-	int formationRing = 0;
+	unsigned int formationRing = 0;
 	
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;
