@@ -218,6 +218,25 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 			}
 		}
 	}
+	GIVEN( "an active-formation" )
+	{
+		FormationPattern::ActiveFormation af;
+		af.centerBodyRadius = 2200;
+		af.maxDiameter = 380;
+		af.maxWidth = 340;
+		af.maxHeight = 310;
+		WHEN( "assigned to another active-formation" )
+		{
+			auto af2 = af;
+			THEN( "all values are copied over" )
+			{
+				CHECK( af2.centerBodyRadius == 2200 );
+				CHECK( af2.maxDiameter == 380 );
+				CHECK( af2.maxWidth == 340 );
+				CHECK( af2.maxHeight == 310 );
+			}
+		}
+	}
 }
 // #endregion unit tests
 
