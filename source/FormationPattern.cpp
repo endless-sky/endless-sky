@@ -91,17 +91,17 @@ void FormationPattern::PositionIterator::MoveToValidPosition()
 	}
 	
 	// Check if there are any lines available.
-	unsigned int lines = pattern.get().Lines();
+	unsigned int lines = pattern.Lines();
 	if(lines < 1)
 		atEnd = true;
 	
 	unsigned int ringsScanned = 0;
 	unsigned int startingRing = ring;
-	unsigned int lineRepeatSlots = pattern.get().Slots(ring, line, repeat);
+	unsigned int lineRepeatSlots = pattern.Slots(ring, line, repeat);
 	
 	while(slot >= lineRepeatSlots && !atEnd)
 	{
-		unsigned int patternRepeats = pattern.get().Repeats(line);
+		unsigned int patternRepeats = pattern.Repeats(line);
 		// LineSlot number is beyond the amount of slots available.
 		// Need to move a ring, a line or a repeat-section forward.
 		if(ring > 0 && line < lines && patternRepeats > 0 && repeat < patternRepeats - 1)
@@ -109,7 +109,7 @@ void FormationPattern::PositionIterator::MoveToValidPosition()
 			// First check if we are on a valid line and have another repeat section.
 			++repeat;
 			slot = 0;
-			lineRepeatSlots = pattern.get().Slots(ring, line, repeat);
+			lineRepeatSlots = pattern.Slots(ring, line, repeat);
 		}
 		else if(line < lines - 1)
 		{
@@ -117,7 +117,7 @@ void FormationPattern::PositionIterator::MoveToValidPosition()
 			++line;
 			repeat = 0;
 			slot = 0;
-			lineRepeatSlots = pattern.get().Slots(ring, line, repeat);
+			lineRepeatSlots = pattern.Slots(ring, line, repeat);
 		}
 		else
 		{
@@ -126,7 +126,7 @@ void FormationPattern::PositionIterator::MoveToValidPosition()
 			line = 0;
 			repeat = 0;
 			slot = 0;
-			lineRepeatSlots = pattern.get().Slots(ring, line, repeat);
+			lineRepeatSlots = pattern.Slots(ring, line, repeat);
 			
 			// If we scanned more than 5 rings without finding a slot, then we have an empty pattern.
 			++ringsScanned;
@@ -142,15 +142,15 @@ void FormationPattern::PositionIterator::MoveToValidPosition()
 	// If we are at the last line and we have less ships still to place than that
 	// would fit on the line, then perform centering if required.
 	if(!atEnd && slot == 0 && shipsToPlace > 0 &&
-			(lineRepeatSlots - 1) > shipsToPlace && pattern.get().IsCentered(line))
+			(lineRepeatSlots - 1) > shipsToPlace && pattern.IsCentered(line))
 		// Determine the amount to skip for centering and skip those.
 		slot += (lineRepeatSlots - shipsToPlace) / 2;
 	
 	if(atEnd)
 		currentPoint = Point();
 	else
-		currentPoint = pattern.get().Position(ring, line, repeat, slot,
-			activeFormation.get().maxDiameter, activeFormation.get().maxWidth, activeFormation.get().maxHeight);
+		currentPoint = pattern.Position(ring, line, repeat, slot,
+			activeFormation.maxDiameter, activeFormation.maxWidth, activeFormation.maxHeight);
 }
 
 

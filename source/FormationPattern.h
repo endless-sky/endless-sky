@@ -17,7 +17,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "Point.h"
 
-#include <functional>
 #include <string>
 #include <vector>
 
@@ -84,9 +83,9 @@ public:
 	private:
 		// Data from the active formation for which we are calculating
 		// positions.
-		std::reference_wrapper<const ActiveFormation> activeFormation;
+		const ActiveFormation &activeFormation;
 		// The pattern for which we are calculating positions.
-		std::reference_wrapper<const FormationPattern> pattern;
+		const FormationPattern &pattern;
 		// The location in the pattern.
 		unsigned int ring = 0;
 		unsigned int line = 0;
