@@ -18,6 +18,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FormationPattern.h"
 
 #include <map>
+#include <memory>
+#include <vector>
 
 class Ship;
 
@@ -42,10 +44,12 @@ public:
 
 
 private:
-	// The actual positioners based on the desired ring-numbers.
-	// TODO: Should we put a map here with as key "pointers to the ships in the formation" and as value their position?
-	std::map<unsigned int, FormationPattern::PositionIterator> ringPos;
-	std::map<unsigned int, unsigned int> ringNrOfShips;
+	// Lists of ships on the rings. Used when (re)generating positions for the ring.
+	// The actual positions are stored in shipPositions.
+	std::map<unsigned int, std::vector<std::weak_ptr<const Ship>>> ringShips;
+	// Lookup/cache of the ship coordinates in the formation, its ring-section and
+	// an indicator if it was seen since last generate loop.
+	std::map<const Ship *, std::pair<Point, bool>> shipPositions;
 	
 	// The scaling factors as we currently have for this formation and
 	// the scaling factors that we are preparing in the currently running
@@ -63,6 +67,9 @@ private:
 	// Settings for flipping/mirroring of the pattern.
 	bool flippedX = false;
 	bool flippedY = false;
+	
+	// Status variable used to track if ships still participate in the formation.
+	bool tickTock = true;
 };
 
 

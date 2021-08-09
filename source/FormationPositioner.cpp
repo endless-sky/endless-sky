@@ -29,26 +29,89 @@ void FormationPositioner::Step()
 	// Set scaling based on results from previous run.
 	activeData = nextActiveData;
 	nextActiveData.ClearParticipants();
-
-	// Initialize the iterators and meta-data used for the ring sections.
+	
+	// Run the iterators for the ring sections.
 	unsigned int startRing = 0;
-	for(auto &it : ringPos)
+	for(auto &itShips : ringShips)
 	{
-		// Track in which ring the ring-positioner ended in last run.
-		unsigned int endRing = it.second.Ring();
-		// Set starting ring for current ring-positioner.
-		startRing = max(startRing, it.first);
+		unsigned int desiredRing = itShips.first;
+		auto &shipsInRing = itShips.second;
 		
-		// Create the new iterator to use for this ring.
-		it.second = pattern->begin(activeData, startRing, ringNrOfShips[it.first]);
+		// If a ring is completely empty, then we skip it.
+		if(shipsInRing.empty())
+			continue;
 		
+		// Set starting ring for current ring-section.
+		startRing = max(startRing, desiredRing);
+		
+		// Initialize the new iterator for use for the current ring-section.
+		auto itPos = pattern->begin(activeData, startRing, shipsInRing.size());
+		
+		// Run the iterator.
+		size_t shipIndex = 0;
+		while(shipIndex < shipsInRing.size())
+		{
+			// If the ship is no longer valid or not or no longer part of this
+			// formation, then we need to remove it.
+			auto ship = (shipsInRing[shipIndex]).lock();
+			bool removeShip = !ship ||
+				ship->GetFormationPattern() != pattern ||
+				ship->GetFormationRing() != desiredRing ||
+				ship->IsDisabled();
+			
+			// Check if this ship is set to follow the current formationleader
+			// either through targetShip (for gather/keep-station commands) or
+			// through the child/parent relationship.
+			if(ship)
+			{
+				auto targetShip = ship->GetTargetShip();
+				auto parentShip = ship->GetParent();
+				removeShip = removeShip ||
+					((!targetShip || &(*targetShip) != formationLead) &&
+					(!parentShip || &(*parentShip) != formationLead));
+			}
+			
+			// TODO: add removeShip check if ship and lead are in the same system.
+			// TODO: add removeShip check for isBoarding
+			// TODO: add removeShip check for isAssisting
+			// TODO: add removeShip check for isLanded/Landing/Refueling
+			
+			// Lookup the ship in the positions map.
+			auto itCoor = shipPositions.end();
+			if(ship)
+				itCoor = shipPositions.find(&(*ship));
+			
+			// If the ship is not in the overall table or not updated in the
+			// last iteration, then we also remove it.
+			removeShip = removeShip || itCoor == shipPositions.end() ||
+					itCoor->second.second != tickTock;
+			
+			// Perform removes if we need to.
+			if(removeShip)
+			{
+				// Move the last element to the current position and remove the last
+				// element; this will let last ship take the position of the ship that
+				// we will remove.
+				if(shipIndex < (shipsInRing.size() - 1))
+					shipsInRing[shipIndex].swap(shipsInRing.back());
+				shipsInRing.pop_back();
+				if(itCoor != shipPositions.end())
+					shipPositions.erase(itCoor);
+			}
+			else
+			{
+				// Calculate the new coordinate for the current ship.
+				itCoor->second.first = *itPos;
+				++itPos;
+				++shipIndex;
+			}
+		}
 		// Store starting ring for next ring-positioner.
-		startRing = max(startRing, endRing) + 1;
-		
-		// Reset all other iterator values to start of ring.
-		ringNrOfShips[it.first] = 0;
+		startRing = itPos.Ring() + 1;
 	}
-
+	// Switch marker to detect stale/missing ships in the next iteration.
+	tickTock = !tickTock;
+	
 	// Calculate new direction, if the formationLead is moving, then we use the movement vector.
 	// Otherwise we use the facing vector.
 	Point velocity = formationLead->Velocity();
@@ -104,30 +167,40 @@ void FormationPositioner::Step()
 Point FormationPositioner::Position(const Ship *ship)
 {
 	unsigned int formationRing = ship->GetFormationRing();
+	
+	Point relPos;
+	
+	auto it = shipPositions.find(ship);
+	if(it != shipPositions.end())
+	{
+		// Retrieve the ships currently known coordinate in the formation.
+		auto &status = it->second;
+		if(status.second != tickTock)
+		{
+			// Register that this ship was seen.
+			status.second = tickTock;
 
-	// Retrieve the correct ring-positioner (and create it if it doesn't
-	// exist yet).
-	auto rPosIt = (ringPos.emplace(piecewise_construct,
-		forward_as_tuple(formationRing),
-		forward_as_tuple(*pattern, activeData, formationRing))).first;
-	
-	auto &rPos = rPosIt->second;
-	
-	// Set scaling for next round based on the sizes of the participating ships.
-	nextActiveData.Tally(*ship);
-	
-	// Count the number of positions on the ring.
-	++(ringNrOfShips[formationRing]);
-
-	Point relPos = *rPos;
+			// Set scaling for next round based on the sizes of the participating ships.
+			nextActiveData.Tally(*ship);
+		}
+		// Return the cached position that we have for the ship.
+		relPos = status.first;
+	}
+	else
+	{
+		// Add the ship to the set of coordinates. We add it with a default
+		// coordinate of Point(0,0), it will gets its proper coordinate in
+		// the next generate round.
+		shipPositions[ship] = make_pair(relPos, tickTock);
+		
+		// Add the ship to the ring.
+		ringShips[formationRing].push_back(ship->shared_from_this());
+	}
 	
 	if(flippedY)
 		relPos.Set(-relPos.X(), relPos.Y());
 	if(flippedX)
 		relPos.Set(relPos.X(), -relPos.Y());
 	
-	// Set values for next ship to place.
-	++rPos;
-
 	return formationLead->Position() + direction.Rotate(relPos);
 }
