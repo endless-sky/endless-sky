@@ -1,5 +1,5 @@
 /* FormationPositioner.h
-Copyright (c) 2019 by Peter van der Meer
+Copyright (c) 2019-2021 by Peter van der Meer
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -36,7 +36,7 @@ public:
 	// for a formation around the ship given as parameter.
 	void Step();
 	
-	// Get the point for the next ship in the formation. Caller should ensure
+	// Get the formation position for the ship given as parameter. Caller should ensure
 	// that the ships are offered in the right order to the calculator.
 	Point Position(const Ship *ship);
 
