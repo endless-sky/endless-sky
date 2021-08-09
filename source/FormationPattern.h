@@ -62,8 +62,8 @@ public:
 		std::input_iterator_tag, // iterator_category
 		Point,                   // iterator: value_type
 		std::ptrdiff_t,          // iterator: difference_type
-		const Point*,            // iterator: pointer
-		Point& >                 // iterator: reference
+		const Point *,           // iterator: pointer
+		Point &>                 // iterator: reference
 	{
 	public:
 		PositionIterator(const FormationPattern &pattern, const ActiveFormation &af,
@@ -73,7 +73,7 @@ public:
 		// only a subset, since not all operations are used in-game.
 		const Point *operator->();
 		const Point &operator*();
-		PositionIterator& operator++();
+		PositionIterator &operator++();
 		
 		// Additional operators for status retrieval.
 		unsigned int Ring() const;

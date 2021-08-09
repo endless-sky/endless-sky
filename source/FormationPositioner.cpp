@@ -24,7 +24,7 @@ using namespace std;
 
 
 
-void FormationPositioner::Start()
+void FormationPositioner::Step()
 {
 	// Set scaling based on results from previous run.
 	activeData = nextActiveData;
@@ -101,7 +101,7 @@ void FormationPositioner::Start()
 
 
 
-Point FormationPositioner::NextPosition(const Ship *ship)
+Point FormationPositioner::Position(const Ship *ship)
 {
 	unsigned int formationRing = ship->GetFormationRing();
 

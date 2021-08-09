@@ -107,14 +107,14 @@ void FormationPattern::PositionIterator::MoveToValidPosition()
 		if(ring > 0 && line < lines && patternRepeats > 0 && repeat < patternRepeats - 1)
 		{
 			// First check if we are on a valid line and have another repeat section.
-			++(repeat);
+			++repeat;
 			slot = 0;
 			lineRepeatSlots = pattern.get().Slots(ring, line, repeat);
 		}
 		else if(line < lines - 1)
 		{
 			// If we don't have another repeat section, then check for a next line.
-			++(line);
+			++line;
 			repeat = 0;
 			slot = 0;
 			lineRepeatSlots = pattern.get().Slots(ring, line, repeat);
@@ -122,7 +122,7 @@ void FormationPattern::PositionIterator::MoveToValidPosition()
 		else
 		{
 			// If we checked all lines and repeat sections, then go for the next ring.
-			++(ring);
+			++ring;
 			line = 0;
 			repeat = 0;
 			slot = 0;
@@ -187,7 +187,7 @@ void FormationPattern::Load(const DataNode &node)
 	
 	for(const DataNode &child : node)
 		if(child.Token(0) == "flippable" && child.Size() >= 2)
-			for(int i = 1; i<child.Size(); ++i)
+			for(int i = 1; i < child.Size(); ++i)
 			{
 				if(child.Token(i) == "x")
 					flippable_x = true;
@@ -385,7 +385,7 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 		
 		// Apply slots to get the correct slot-angle.
 		if(slots > 1)
-			endAngle = endAngle / static_cast<double>(slots - 1);
+			endAngle /= slots - 1;
 		double slotAngle = startAngle + endAngle * lineSlot;
 		
 		// Get into the range of 0 to 360 for conversion to angle)
@@ -414,7 +414,7 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 	
 	// Divide by slots, but don't count the first (since it is at position 0, not at position 1).
 	if(slots > 1)
-		slotPx = slotPx / static_cast<double>(slots - 1);
+		slotPx /= slots - 1;
 	
 	// Calculate position of the current slot.
 	return startPx + slotPx * lineSlot;

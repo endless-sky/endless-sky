@@ -34,11 +34,11 @@ public:
 	// TODO: Should we replace the Start() and NextPosition() by Add(Ship*), Remove(Ship*) and GetPosition(Ship*)? (and move some calculations now done every frame to the Add function?)
 	// Start/reset/initialize for a (new) round of formation position calculations
 	// for a formation around the ship given as parameter.
-	void Start();
+	void Step();
 	
 	// Get the point for the next ship in the formation. Caller should ensure
 	// that the ships are offered in the right order to the calculator.
-	Point NextPosition(const Ship *ship);
+	Point Position(const Ship *ship);
 
 
 private:

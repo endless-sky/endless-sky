@@ -401,10 +401,7 @@ void AI::IssueFormationChange(const PlayerInfo &player)
 		auto it = formationPatterns.find(toSet->Name());
 		if(it != formationPatterns.end())
 			++it;
-		if(it == formationPatterns.end())
-			toSet = nullptr;
-		else
-			toSet = &(it->second);
+		toSet = (it == formationPatterns.end() ? nullptr : &(it->second));
 	}
 	//else if (multiplePatternsSet) {
 	// If more than one formation was found on the ships, then we set the pattern it to the first one found.
@@ -697,10 +694,11 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			value = min(FENCE_MAX, value + FENCE_DECAY + 1);
 		}
 	
-	// Restart all formations so that they can be refilled this cycle.
+	// Allow all formation-positioners to handle their internal administration to
+	// prepare for the next cycle.
 	for(auto &bIt : formations)
 		for(auto &pIt : bIt.second)
-			pIt.second.Start();
+			pIt.second.Step();
 	
 	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
@@ -1557,7 +1555,7 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 	const Body *formationLead = parent.get();
 	const FormationPattern *pattern = ship.GetFormationPattern();
 	
-	// First we retrieve the patterns available for the parent.
+	// First we retrieve the patterns that are formed around the parent.
 	auto &patterns = formations[formationLead];
 	
 	// Find the existing FormationPositioner for the pattern, or add one if none exists yet.
@@ -1571,7 +1569,7 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 	// Aggresively try to match the position and velocity for the formation position.
 	double POSITION_DEADBAND = ship.Radius() * 1.25;
 	static const double VELOCITY_DEADBAND = 0.1;
-	bool inPosition = MoveTo(ship, command, it->second.NextPosition(&ship), formationLead->Velocity(), POSITION_DEADBAND, VELOCITY_DEADBAND);
+	bool inPosition = MoveTo(ship, command, it->second.Position(&ship), formationLead->Velocity(), POSITION_DEADBAND, VELOCITY_DEADBAND);
 	
 	// If we match the position and velocity, then also match the facing angle.
 	if(inPosition)
