@@ -26,6 +26,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <cmath>
 #include <numeric>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -40,6 +42,8 @@ namespace {
 	const double HAZE_DISTANCE = 1200.;
 	// This is how many haze fields should be drawn.
 	const size_t HAZE_COUNT = 16;
+	// This is how fast the crossfading of previous haze and current haze is
+	const double FADE_PER_FRAME = 0.01;
 }
 
 
@@ -71,6 +75,7 @@ void StarField::Init(int stars, int width)
 			}
 		}
 		haze.emplace_back(sprite, next, Point(), Angle::Random(), 8.);
+		prevHaze.emplace_back(sprite, next, Point(), Angle::Random(), 8.);
 	}
 }
 
@@ -82,6 +87,17 @@ void StarField::SetHaze(const Sprite *sprite)
 	if(!sprite)
 		sprite = SpriteSet::Get("_menu/haze");
 	
+	if(!currSprite)
+		currSprite = sprite;
+	
+	if(sprite != currSprite)
+	{
+		hazeCloak = 1.;
+		for(Body &body: prevHaze)
+			body.SetSprite(currSprite);
+		currSprite = sprite;
+	}
+
 	for(Body &body : haze)
 		body.SetSprite(sprite);
 }
@@ -153,12 +169,27 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 	DrawList drawList;
 	drawList.Clear(0, zoom);
 	drawList.SetCenter(pos);
+
+	if(hazeCloak > 0.)
+		hazeCloak -= FADE_PER_FRAME;
+	else
+		hazeCloak = 0.;
 	
 	// Any object within this range must be drawn. Some haze sprites may repeat
 	// more than once if the view covers a very large area.
 	Point size = Point(1., 1.) * haze.front().Radius();
 	Point topLeft = pos + (Screen::TopLeft() - size) / zoom;
 	Point bottomRight = pos + (Screen::BottomRight() + size) / zoom;
+	DrawHaze(haze,topLeft,bottomRight,hazeCloak,drawList);
+	if(hazeCloak > 0.)
+		DrawHaze(prevHaze,topLeft,bottomRight, 1 - hazeCloak,drawList);
+
+	drawList.Draw();
+}
+
+
+void StarField::DrawHaze(std::vector<Body> haze, Point topLeft, Point bottomRight, double cloak, DrawList& drawList) const
+{
 	for(const Body &it : haze)
 	{
 		// Figure out the position of the first instance of this haze that is to
@@ -171,9 +202,8 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 		// Draw any instances of this haze that are on screen.
 		for(double y = startY; y < bottomRight.Y(); y += HAZE_WRAP)
 			for(double x = startX; x < bottomRight.X(); x += HAZE_WRAP)
-				drawList.Add(it, Point(x, y));
+				drawList.Add(it, Point(x, y), cloak);
 	}
-	drawList.Draw();
 }
 
 

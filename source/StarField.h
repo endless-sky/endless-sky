@@ -13,11 +13,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef STAR_FIELD_H_
 #define STAR_FIELD_H_
 
+#include "DrawList.h"
 #include "Shader.h"
+#include "Sprite.h"
 
 #include "gl_header.h"
 
 #include <vector>
+#include <string>
 
 class Body;
 class Point;
@@ -42,6 +45,7 @@ public:
 private:
 	void SetUpGraphics();
 	void MakeStars(int stars, int width);
+	void DrawHaze(std::vector<Body> haze, Point topLeft, Point bottomRight, double cloak, DrawList& drawList) const;
 	
 	
 private:
@@ -49,7 +53,13 @@ private:
 	int tileCols;
 	std::vector<int> tileIndex;
 	
+	//Current cloak of the haze
+	mutable double hazeCloak = 1.0f;
+	
+	const Sprite *currSprite;
+	
 	std::vector<Body> haze;
+	std::vector<Body> prevHaze;
 	
 	Shader shader;
 	GLuint vao;
