@@ -27028,21 +27028,35 @@ planet "Elek Kartanu"
 
 planet "Ember Graveyard"
 	attributes "requires: quantum keystone"
-	description ""
+	wormhole
+		linked
+		link Ossipago Polerius
+		link Polerius Ossipago
 
 planet "Ember Reaches"
 	attributes "requires: quantum keystone"
-	description ""
 	spaceport ""
+	wormhole
+		linked
+		link Coluber Convector
+		link Convector Coluber
 
 planet "Ember Threshold"
 	attributes "requires: quantum keystone"
-	description ""
+	wormhole
+		linked
+		link Terminus Cardea
+		link Cardea Terminus
 
 planet "Ember Wormhole"
 	attributes "requires: quantum keystone"
-	description ""
 	spaceport ""
+	wormhole
+		linked
+		link Cardea Insitor
+		link Insitor Segesta
+		link Segesta Aescolanus
+		link Aescolanus Cardea
 
 planet Eminonu
 	attributes uninhabited
@@ -27434,10 +27448,16 @@ planet Grakhord
 
 planet "Graveyard Wormhole (Unstable)"
 	attributes "requires: quantum keystone"
-	description ``
+	wormhole
+		linked
+		link Esix Relifer
+		link Relifer Esix
 
 planet "Graveyard Wormhole (Stable)"
-	description ``
+	wormhole
+		linked
+		link Ritilas Fearis
+		link Fearis Ritilas
 
 planet Greenbloom
 	attributes hai "hai tourism" "human tourism"
@@ -28644,6 +28664,9 @@ planet Pugglequat
 	security 1
 
 planet "Pug Wormhole"
+	wormhole
+		link Deneb "Over the Rainbow"
+		link "Over the Rainbow" Deneb
 
 planet Quicksilver
 	attributes core volcanic mining
@@ -28705,8 +28728,11 @@ planet Relic
 
 planet "Remnant Wormhole"
 	attributes "requires: quantum keystone"
-	description ""
 	spaceport ""
+	wormhole
+		linked
+		link Edusa Peragenor
+		link Peragenor Edusa
 
 planet "Remote Blue"
 	attributes kimek urban
@@ -29801,8 +29827,11 @@ planet Winter
 
 planet "Wormhole Alpha"
 	government "Wormhole Alpha"
-	description ""
 	spaceport ""
+	wormhole
+		linked
+		link "Ultima Thule" Waypoint
+		link Waypoint "Ultima Thule"
 
 planet "Wyvern Station"
 	attributes rim station
@@ -29865,10 +29894,19 @@ planet Zug
 
 planet "Wormhole Barren Alpha"
 	attributes "requires: quantum keystone"
-	description ``
+	wormhole
+		linked
+		link Egeria Levana
+		link Levana Egeria
 planet "Wormhole Barren Beta"
 	attributes "requires: quantum keystone"
-	description ``
+	wormhole
+		linked
+		link Caeculus Prosa
+		link Prosa Caeculus
 planet "Wormhole Link"
 	attributes "requires: quantum keystone"
-	description ``
+	wormhole
+		linked
+		link Statina Vaticanus
+		link Vaticanus Statina

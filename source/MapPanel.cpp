@@ -903,10 +903,11 @@ void MapPanel::DrawTravelPlan()
 		bool isWormhole = false;
 		for(const StellarObject &object : previous->Objects())
 			isWormhole |= (object.HasSprite() && object.HasValidPlanet()
+				&& object.GetPlanet()->IsWormhole()
 				&& player.HasVisited(*object.GetPlanet())
-				&& !object.GetPlanet()->Description().empty()
+				&& object.GetPlanet()->GetWormhole().IsLinked()
 				&& player.HasVisited(*previous) && player.HasVisited(*next)
-				&& object.GetPlanet()->WormholeDestination(previous) == next);
+				&& object.GetPlanet()->GetWormhole().WormholeDestination(previous) == next);
 		
 		if(!isHyper && !isJump && !isWormhole)
 			break;
@@ -991,14 +992,14 @@ void MapPanel::DrawWormholes()
 	
 	// Avoid iterating each StellarObject in every system by iterating over planets instead. A
 	// system can host more than one set of wormholes (e.g. Cardea), and some wormholes may even
-	// share a link vector. If a wormhole's planet has no description, no link will be drawn.
+	// share a link vector.
 	for(auto &&it : GameData::Planets())
 	{
 		const Planet &p = it.second;
-		if(!p.IsValid() || !p.IsWormhole() || !player.HasVisited(p) || p.Description().empty())
+		if(!p.IsValid() || !p.IsWormhole() || !player.HasVisited(p) || !p.GetWormhole().IsLinked())
 			continue;
 		
-		const vector<const System *> &waypoints = p.WormholeSystems();
+		const vector<const System *> &waypoints = p.GetWormhole().Systems();
 		const System *from = waypoints.back();
 		for(const System *to : waypoints)
 		{

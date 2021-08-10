@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define PLANET_H_
 
 #include "Sale.h"
+#include "Wormhole.h"
 
 #include <list>
 #include <memory>
@@ -38,6 +39,8 @@ class System;
 // might choose it as a source or destination.
 class Planet {
 public:
+	Planet() noexcept;
+
 	// Load a planet's description from a file.
 	void Load(const DataNode &node);
 	// Check if both this planet and its containing system(s) have been defined.
@@ -111,9 +114,7 @@ public:
 	
 	// Check if this is a wormhole (that is, it appears in multiple systems).
 	bool IsWormhole() const;
-	const System *WormholeSource(const System *to) const;
-	const System *WormholeDestination(const System *from) const;
-	const std::vector<const System *> &WormholeSystems() const;
+	const Wormhole &GetWormhole() const;
 	
 	// Check if the given ship has all the attributes necessary to allow it to
 	// land on this planet.
@@ -172,7 +173,8 @@ private:
 	mutable size_t defenseDeployed = 0;
 	// Ships that have been created by instantiating its defense fleets.
 	mutable std::list<std::shared_ptr<Ship>> defenders;
-	
+
+	Wormhole wormhole;
 	std::vector<const System *> systems;
 };
 

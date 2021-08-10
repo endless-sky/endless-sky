@@ -48,6 +48,12 @@ namespace {
 
 
 
+Planet::Planet() noexcept : wormhole(systems)
+{
+}
+
+
+
 // Load a planet's description from a file.
 void Planet::Load(const DataNode &node)
 {
@@ -122,8 +128,10 @@ void Planet::Load(const DataNode &node)
 				continue;
 		}
 		
+		if(key == "wormhole")
+			wormhole.Load(child);
 		// Handle the attributes which can be "removed."
-		if(!hasValue)
+		else if(!hasValue)
 		{
 			child.PrintTrace("Expected key to have a value:");
 			continue;
@@ -244,11 +252,7 @@ bool Planet::IsValid() const
 // Get the name of the planet.
 const string &Planet::Name() const
 {
-	static const string UNKNOWN = "???";
-	if(IsWormhole())
-		return UNKNOWN;
-	
-	return name;
+	return IsWormhole() ? wormhole.Name() : name;
 }
 
 
@@ -452,7 +456,10 @@ void Planet::RemoveSystem(const System *system)
 {
 	auto it = find(systems.begin(), systems.end(), system);
 	if(it != systems.end())
+	{
 		systems.erase(it);
+		wormhole.RemoveLinks(system);
+	}
 }
 
 
@@ -460,38 +467,14 @@ void Planet::RemoveSystem(const System *system)
 // Check if this is a wormhole (that is, it appears in multiple systems).
 bool Planet::IsWormhole() const
 {
-	return (systems.size() > 1);
+	return wormhole.IsValid();
 }
 
 
 
-const System *Planet::WormholeSource(const System *to) const
+const Wormhole &Planet::GetWormhole() const
 {
-	auto it = find(systems.begin(), systems.end(), to);
-	if(it == systems.end())
-		return to;
-	
-	return (it == systems.begin() ? systems.back() : *--it);
-}
-
-
-
-
-const System *Planet::WormholeDestination(const System *from) const
-{
-	auto it = find(systems.begin(), systems.end(), from);
-	if(it == systems.end())
-		return from;
-	
-	++it;
-	return (it == systems.end() ? systems.front() : *it);
-}
-
-
-
-const vector<const System *> &Planet::WormholeSystems() const
-{
-	return systems;
+	return wormhole;
 }
 
 
