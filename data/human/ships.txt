@@ -3184,8 +3184,8 @@ ship "Star Queen"
 			"hull damage" 300
 			"hit force" 900
 	outfits
-		"Sidewinder Missile Launcher" 3
-		"Sidewinder Missile" 135
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
 		"Heavy Anti-Missile Turret" 2
 		
 		"KP-6 Photovoltaic Array" 4
@@ -3195,12 +3195,17 @@ ship "Star Queen"
 		"Luxury Accommodations"
 		
 		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
+		"X2200 Ion Steering"
+		"AR120 Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -18.5 115
 	engine 18.5 115
-	gun 0 -113 "Sidewinder Missile Launcher"
+	"reverse engine" -19 51
+		over
+	"reverse engine" 19 51
+		over
+	gun 0 -113
 	gun -24 -76 "Sidewinder Missile Launcher"
 	gun 24 -76 "Sidewinder Missile Launcher"
 	turret -21.5 2.5 "Heavy Anti-Missile Turret"
