@@ -13,14 +13,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef FORMATION_PATTERN_H_
 #define FORMATION_PATTERN_H_
 
-#include "Angle.h"
 #include "DataNode.h"
 #include "Point.h"
 
 #include <string>
 #include <vector>
 
-class Ship;
+class Body;
 
 
 
@@ -51,7 +50,7 @@ public:
 	
 	public:
 		// Helper functions to add and clear meta-data from formation participants;
-		void Tally(const Ship &ship);
+		void Tally(const Body &body);
 		void ClearParticipants();
 	};
 	

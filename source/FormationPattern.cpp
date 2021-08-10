@@ -11,7 +11,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
 #include "FormationPattern.h"
-#include "Ship.h"
+#include "Body.h"
 
 
 #include <cmath>
@@ -20,11 +20,11 @@ using namespace std;
 
 
 
-void FormationPattern::ActiveFormation::Tally(const Ship &ship)
+void FormationPattern::ActiveFormation::Tally(const Body &body)
 {
-	maxDiameter = max(maxDiameter, ship.Radius() * 2.);
-	maxHeight = max(maxHeight, ship.Height());
-	maxWidth = max(maxWidth, ship.Width());
+	maxDiameter = max(maxDiameter, body.Radius() * 2.);
+	maxHeight = max(maxHeight, body.Height());
+	maxWidth = max(maxWidth, body.Width());
 }
 
 
