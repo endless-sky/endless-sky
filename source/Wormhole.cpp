@@ -81,13 +81,15 @@ void Wormhole::Load(const DataNode &node)
 		}
 		else if(key == "linked")
 			linked = !remove;
-		// Handle the attributes which cannot be "removed."
+		else if(key == "display name")
+		{
+			if(remove)
+				name.clear();
+			else if(hasValue)
+				name = node.Token(1);
+		}
 		else if(remove)
 			child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
-		else if(!hasValue)
-			child.PrintTrace("Expected key to have a value:");
-		else if(key == "display name")
-			name = node.Token(1);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
