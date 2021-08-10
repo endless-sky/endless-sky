@@ -16,7 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "WeightedList.h"
 
 #include <string>
-#include <utility>
 #include <vector>
 
 class DataNode;
@@ -49,6 +48,8 @@ public:
 	
 	
 private:
+	// Check whether a variant is contained within itself.
+	bool NestedInSelf(std::string check) const;
 	// Choose a ship from this variant given that it is a nested variant.
 	// Nested variants only choose a single ship from among their list
 	// of ships and variants.
@@ -56,13 +57,10 @@ private:
 	// The average credit worth of this variant if it is nested within
 	// another variant.
 	int64_t NestedStrength() const;
-	// Check whether a variant is contained within itself.
-	bool NestedInSelf(std::string check) const;
 	
 	
 private:
 	std::string name;
-	int total = 0;
 	std::vector<const Ship *> ships;
 	WeightedList<WeightedVariant> variants;
 };

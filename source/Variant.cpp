@@ -19,7 +19,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "WeightedVariant.h"
 
 #include <algorithm>
-#include <cmath>
 #include <iterator>
 
 using namespace std;
@@ -67,7 +66,6 @@ void Variant::Load(const DataNode &node)
 				for(auto it = variants.begin(); it != variants.end(); ++it)
 					if(it->Get() == toRemove)
 					{
-						total -= it->Weight();
 						variants.erase(it);
 						didRemove = true;
 						break;
@@ -83,7 +81,6 @@ void Variant::Load(const DataNode &node)
 				for(auto it = ships.begin(); it != ships.end(); ++it)
 					if((*it)->ModelName() == shipName)
 					{
-						--total;
 						it = ships.erase(it);
 						didRemove = true;
 					}
@@ -101,7 +98,6 @@ void Variant::Load(const DataNode &node)
 				reset = false;
 				variants.clear();
 				ships.clear();
-				total = 0;
 			}
 			
 			int n = 1;
@@ -120,7 +116,6 @@ void Variant::Load(const DataNode &node)
 				
 				if(child.Size() >= 2 + add + !variantName.empty() && child.Value(1 + add + !variantName.empty()) >= 1.)
 					n = child.Value(1 + add + !variantName.empty());
-				total += n;
 				
 				// If this variant is named, then look for it in GameData.
 				// Otherwise this is a new variant definition only for this variant.
@@ -133,7 +128,6 @@ void Variant::Load(const DataNode &node)
 			{
 				if(child.Size() >= 2 + add && child.Value(1 + add) >= 1.)
 					n = child.Value(1 + add);
-				total += n;
 				ships.insert(ships.end(), n, GameData::Ships().Get(child.Token(add)));
 			}
 		}
@@ -144,7 +138,6 @@ void Variant::Load(const DataNode &node)
 		for(auto it = variants.begin(); it != variants.end(); ++it)
 			if(it->Get().NestedInSelf(name))
 			{
-				total -= it->Weight();
 				it = variants.erase(it);
 				node.PrintTrace("Infinite loop detected and removed in variant \"" + name + "\":");
 			}
@@ -218,29 +211,6 @@ bool Variant::operator==(const Variant &other) const
 
 
 
-// Choose a ship from this variant given that it is a nested variant.
-// Nested variants only choose a single ship from among their list
-// of ships and variants.
-const Ship *Variant::NestedChooseShip() const
-{
-	// Randomly choose between the ships and the variants.
-	if(static_cast<int>(Random::Int(total)) < static_cast<int>(variants.TotalWeight()))
-		return variants.Get().Get().NestedChooseShip();
-	else
-		return ships[Random::Int(total - variants.TotalWeight())];
-}
-
-
-
-// The strength of a nested variant is its normal strength divided by
-// the total weight of its contents.
-int64_t Variant::NestedStrength() const
-{
-	return Strength() / total;
-}
-
-
-
 // Check whether a variant is contained within itself.
 bool Variant::NestedInSelf(string check) const
 {
@@ -252,4 +222,28 @@ bool Variant::NestedInSelf(string check) const
 			return true;
 	
 	return false;
+}
+
+
+
+// Choose a ship from this variant given that it is a nested variant.
+// Nested variants only choose a single ship from among their list
+// of ships and variants.
+const Ship *Variant::NestedChooseShip() const
+{
+	int total = ships.size() + variants.TotalWeight();
+	// Randomly choose between the ships and the variants.
+	if(static_cast<int>(Random::Int(total)) < static_cast<int>(variants.TotalWeight()))
+		return variants.Get().Get().NestedChooseShip();
+	else
+		return ships[Random::Int(ships.size())];
+}
+
+
+
+// The strength of a nested variant is its normal strength divided by
+// the total weight of its contents.
+int64_t Variant::NestedStrength() const
+{
+	return Strength() / (ships.size() + variants.TotalWeight());
 }
