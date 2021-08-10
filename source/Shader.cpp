@@ -99,7 +99,7 @@ GLuint Shader::Compile(const char *str, GLenum type)
 		version = "#version ";
 		string glsl = reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION));
 		bool found = false;
-		for(char c : glsl)
+		for(unsigned char c : glsl)
 		{
 			if(!found && !isdigit(c)) {
 				continue;

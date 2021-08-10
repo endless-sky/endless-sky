@@ -298,12 +298,12 @@ string Format::Capitalize(const string &str)
 	bool first = true;
 	for(char &c : result)
 	{
-		if(!isalpha(c))
+		if(!isalpha(static_cast<unsigned char>(c)))
 			first = true;
 		else
 		{
-			if(first && islower(c))
-				c = toupper(c);
+			if(first && islower(static_cast<unsigned char>(c)))
+				c = toupper(static_cast<unsigned char>(c));
 			first = false;
 		}
 	}
@@ -316,7 +316,7 @@ string Format::LowerCase(const string &str)
 {
 	string result = str;
 	for(char &c : result)
-		c = tolower(c);
+		c = tolower(static_cast<unsigned char>(c));
 	return result;
 }
 

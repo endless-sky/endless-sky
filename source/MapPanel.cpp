@@ -688,7 +688,7 @@ bool MapPanel::IsSatisfied(const PlayerInfo &player, const Mission &mission)
 int MapPanel::Search(const string &str, const string &sub)
 {
 	auto it = search(str.begin(), str.end(), sub.begin(), sub.end(),
-		[](char a, char b) { return toupper(a) == toupper(b); });
+		[](unsigned char a, unsigned char b) { return toupper(a) == toupper(b); });
 	return (it == str.end() ? -1 : it - str.begin());
 }
 

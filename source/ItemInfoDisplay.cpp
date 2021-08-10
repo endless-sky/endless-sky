@@ -131,9 +131,12 @@ void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string>
 		for(unsigned i = 0; i < licenses.size(); ++i)
 		{
 			bool isVoweled = false;
-			for(const char &c : "aeiou")
-				if(*licenses[i].begin() == c || *licenses[i].begin() == toupper(c))
+			for(const unsigned char &c : "aeiou")
+			{
+				const unsigned char beginning  = *licenses[i].begin();
+				if(beginning == c || beginning == toupper(c))
 					isVoweled = true;
+			}
 			if(i)
 			{
 				if(licenses.size() > 2)

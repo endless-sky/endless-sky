@@ -164,7 +164,7 @@ void Planet::Load(const DataNode &node)
 		else if(key == "description" || key == "spaceport")
 		{
 			string &text = (key == "description") ? description : spaceport;
-			if(!text.empty() && !value.empty() && value[0] > ' ')
+			if(!text.empty() && !value.empty() && static_cast<unsigned char>(value[0]) > ' ')
 				text += '\t';
 			text += value;
 			text += '\n';
