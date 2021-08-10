@@ -2252,8 +2252,8 @@ ship "Heavy Shuttle"
 		"hull" 700
 		"required crew" 1
 		"bunks" 10
-		"mass" 110
-		"drag" 1.85
+		"mass" 90
+		"drag" 1.9
 		"heat dissipation" .8
 		"fuel capacity" 500
 		"cargo space" 40
@@ -3362,7 +3362,7 @@ ship "Star Queen"
 		
 		"X3700 Ion Thruster"
 		"X2200 Ion Steering"
-		"X1100 Ion Reverse Engines"
+		"AR120 Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -18.5 115

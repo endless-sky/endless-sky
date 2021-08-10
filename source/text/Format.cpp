@@ -186,6 +186,7 @@ double Format::Parse(const string &str)
 	{
 		if(*it == '.')
 			place = .1;
+		else if(*it == ',') {}
 		else if(*it < '0' || *it > '9')
 			break;
 		else
