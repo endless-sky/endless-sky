@@ -23,6 +23,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 
+namespace {
+	void Tally(FormationPattern::ActiveFormation &af, const Body &body)
+	{
+		af.maxDiameter = max(af.maxDiameter, body.Radius() * 2.);
+		af.maxHeight = max(af.maxHeight, body.Height());
+		af.maxWidth = max(af.maxWidth, body.Width());
+	}
+}
+
+
 
 void FormationPositioner::Step()
 {
@@ -181,7 +191,7 @@ Point FormationPositioner::Position(const Ship *ship)
 			status.second = tickTock;
 
 			// Set scaling for next round based on the sizes of the participating ships.
-			nextActiveData.Tally(*ship);
+			Tally(nextActiveData, *ship);
 		}
 		// Return the cached position that we have for the ship.
 		relPos = status.first;

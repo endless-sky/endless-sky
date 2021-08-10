@@ -49,8 +49,7 @@ public:
 	
 	
 	public:
-		// Helper functions to add and clear meta-data from formation participants;
-		void Tally(const Body &body);
+		// Helper function to clear meta-data from formation participants;
 		void ClearParticipants();
 	};
 	
