@@ -3329,7 +3329,7 @@ mission "Mafia Extortion"
 					goto mafia
 				`"Are you trying to extort me?"`
 					goto mafia
-				`"Yes, it helps me transport stuff for some of the most dangerous people on this planet."`
+				`"Yes, it helps me transport goods for some of the most dangerous people on this planet."`
 					goto unnerved
 				`"I don't have time to talk."`
 					goto funeral
@@ -3338,14 +3338,14 @@ mission "Mafia Extortion"
 			choice
 				`"Sounds like you are afraid of talking to me. Why is that?"`
 					goto mafia
-				`"What should I be afraid of happenning to my ship?"`
+				`"What should I be afraid of happening to my ship?"`
 					goto specifics
 				`"You sound like one of those mafia goons."`
 					goto mafia
 				`"Are you trying to extort me?"`
 					goto mafia
 			label specifics
-			`The man responds, "Well, a fleet of unfriendly ships in this system might just blow your ship to pieces."`
+			`The man responds, "Well, a fleet of unfriendly ships in this system might blow you to pieces when you take off. It's been known to happen from time to time."`
 			choice
 				`"Ha, business as usual in this system."`
 					goto unconcerned
@@ -3353,9 +3353,9 @@ mission "Mafia Extortion"
 					goto mafia
 				`"And you have a way to prevent this from happening?"`
 					goto mafia
-				`"And you are the local goon that takes bribes to keep such ships docked?"`
+				`"And you're the local goon who takes bribes to keep such ships docked?"`
 					goto mafia
-				`"That would be unfortunate, I run jobs for some of the most dangerous people on this planet and they wouldn't be happy if that happened."`
+				`"That would be unfortunate. I run jobs for some of the most dangerous people on this planet and they wouldn't be happy if that happened."`
 					goto unnerved
 				`"I really don't have time to talk to you."`
 					goto funeral
@@ -3363,7 +3363,7 @@ mission "Mafia Extortion"
 			`The man responds, "Maybe you want to improve that situation?`
 				goto donation
 			label mafia
-			`The man acts as if he is shocked by your remark. "No way! I'm just a simple man walking around the spaceport and helping people out. You would be wise to listen to locals with experience, especially in dangerous places like this."`
+			`The man acts shocked by your remark. "No way! I'm just a simple man walking around the spaceport and helping people out. You would be wise to listen to locals with experience, especially in dangerous places like this."`
 			label donation
 			`	"If you care about safety, then I could make a donation to the System Safety Foundation on your behalf. 200,000 credits really goes a long way around here."`
 			choice
@@ -3377,7 +3377,7 @@ mission "Mafia Extortion"
 					goto next_steps
 				`"And what dangers should I be afraid of?"`
 					goto impatient
-				`"Listen, I see that you are missing a finger on each hand. You look like a goon, and not a successful one."`
+				`"Listen, I see that you're missing a finger on each hand. You look like a goon, and not a very successful one."`
 					goto unnerved
 			label impatient
 			`The man sounds annoyed. "Listen, I don't have all day to talk! Are you going to pay or not?!"`
@@ -3388,7 +3388,7 @@ mission "Mafia Extortion"
 					goto funeral
 				`"I've heard enough, I'm going to talk to the authorities."`
 					goto next_steps
-				`"Listen, I see that you are missing a finger on each hand. You look like a goon, and not a successful one."`
+				`"Listen, I see that you're missing a finger on each hand. You look like a goon, and not a very successful one."`
 					goto unnerved
 			label funeral
 			`The man responds "Your funeral, not mine." and turns away from you.`
@@ -3456,7 +3456,7 @@ mission "Mafia Extortion"
 			`The man walks away without saying a word.`
 				decline
 			label too_much
-			`"That is too much! 2389 credits is all I have. Is that sufficient for you?"`
+			`"That's too much! 2389 credits is all I have. Would that be enough?"`
 			choice
 				`"Sure"`
 					goto counterdeal
@@ -3465,7 +3465,7 @@ mission "Mafia Extortion"
 			label counterdeal
 			`The man hands you a credit chip, nods and walks away. You pocket the chip quickly, more ready to be done with this neighborhood than you want to visibly show.`
 			`A few minutes later you reach into your pocket for the chip... to find it missing.`
-			`Looks like even a bad-ass captain like you isn't immune to pickpocketing on a planet like this.`
+			`Looks like even a hardened captain like you isn't immune to being pickpocketed on a planet like this.`
 				decline
 			label far_too_much
 			`The man starts panicking and is clumsily reaching in his jacket, maybe to get some money, but more likely reaching for a gun.`
@@ -3482,10 +3482,10 @@ mission "Mafia Extortion"
 				`"Ha ha, you are really a failure as a goon."`
 				`(Draw your sidearm and shoot the man)`
 					goto shoot
-			`The man tries to fire his weapon once more, but now it does function and the bullet hits you inbetween the eyes. You die almost instantly, but you do have a few microseconds to reflect on the wisdom of mocking a man that is trying to fire a gun at you.`
+			`The man tries to fire his weapon once more, but now it does function and the bullet hits you between the eyes. You die almost instantly, but you do have a few microseconds to reflect on the wisdom of mocking a man that is trying to fire a gun at you.`
 				die
 			label shoot
-			`You shoot and hit the man between the eyes; he dies instantly and a crowd starts to form around you.`
+			`Your bullet hits the man right between the eyes; he dies instantly, and a crowd starts to form around you.`
 			`Most bystanders are surprised, but you also notice an angry sentiment brewing in the (not unarmed) crowd. It might be wise to leave quickly.`
 			choice
 				`(Run towards your ship and leave immediately.)`
