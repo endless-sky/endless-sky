@@ -70,6 +70,7 @@ public:
 	
 	int64_t Strength() const;
 	
+	
 private:
 	static std::pair<Point, double> ChooseCenter(const System &system);
 	std::vector<std::shared_ptr<Ship>> Instantiate(std::vector<const Ship *> &ships) const;

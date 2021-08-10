@@ -47,6 +47,7 @@ public:
 	
 	bool operator==(const Variant &other) const;
 	
+	
 private:
 	// Choose a ship from this variant given that it is a nested variant.
 	// Nested variants only choose a single ship from among their list
