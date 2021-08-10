@@ -52,8 +52,10 @@ private:
 	int tileCols;
 	std::vector<int> tileIndex;
 	
+	mutable bool isFading = false;
+
 	//Current cloak of the haze
-	mutable double hazeCloak = 1.0f;
+	mutable double hazeCloak = 0.0f;
 	
 	const Sprite *currSprite;
 	

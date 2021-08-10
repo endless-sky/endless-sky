@@ -87,6 +87,10 @@ void StarField::SetHaze(const Sprite *sprite)
 	
 	if(!currSprite)
 		currSprite = sprite;
+
+	if(isFading){
+		return;
+	}
 	
 	if(sprite != currSprite)
 	{
@@ -94,6 +98,7 @@ void StarField::SetHaze(const Sprite *sprite)
 		for(Body &body: prevHaze)
 			body.SetSprite(currSprite);
 		currSprite = sprite;
+		isFading = true;
 	}
 
 	for(Body &body : haze)
@@ -171,7 +176,10 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 	if(hazeCloak > 0.)
 		hazeCloak -= FADE_PER_FRAME;
 	else
+	{
 		hazeCloak = 0.;
+		isFading = false;
+	}
 	
 	// Any object within this range must be drawn. Some haze sprites may repeat
 	// more than once if the view covers a very large area.
