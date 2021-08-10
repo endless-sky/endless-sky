@@ -3336,7 +3336,7 @@ mission "Mafia Extortion"
 			label nameless
 			`Your greeting gets a grumpy reply about the value of anonymity in a place like this.`
 			choice
-				`"Sounds like you are afraid of talking to me. Why is that?"`
+				`"Sounds like you're afraid of talking to me. Why is that?"`
 					goto mafia
 				`"What should I be afraid of happening to my ship?"`
 					goto specifics
@@ -3419,7 +3419,7 @@ mission "Mafia Extortion"
 				`"What I'm going to do is none of your business."`
 				`"Don't worry, I'm just taking a walk."`
 			label unnerved
-			`The man is starting to act a bit nervous. "Sorry I bothered you. Maybe let's forget it happened?"`
+			`The man is starting to act a bit nervous. "Sorry I bothered you. Can we forget this happened?"`
 			choice
 				`"Well, conversations like this are hard to forget."`
 					goto cornered
