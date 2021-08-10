@@ -3300,3 +3300,41 @@ mission "Spacediving amateurs"
 	on complete
 		payment 30000
 		dialog "As you descend through the upper atmosphere, you inform your skydivers that it's time to jump. However, after being able to see the distances and atmospheric conditions involved, all of them are far less keen on the idea than when you first picked them up. You bring them down to the landing pad, and they pay you a meager <payment> before hopping off."
+
+
+
+mission "Courier 5"
+	name "Yottrite samples to <planet>"
+	deadline
+	description "Deliver a few Yottrite samples to <destination> by <date>. Payment is <payment>."
+	minor
+	cargo "Yottrite samples" 10
+	to offer
+		random < 5
+	source
+		government "Quarg"
+	destination
+		distance 2 13
+		government "Republic"
+		attributes "rich"
+	on offer
+		conversation
+			`A man waves at you from afar, trying to get your attention."`
+			choice
+				`	(Find out what he wants.)`
+				`	(Ignore him.)`
+					decline
+			`	"My name is Jason ," he says. "I have gotten my hands on a few Yottrite samples, bought from a Quarg, we need you to send this to a research center."`
+			choice
+				`	"I'd be glad to."`
+				`	"Sorry, I'm not interested in that sort of work."`
+					decline
+			`	"Excellent!" he says. "Come, let my men load it up onto your ship, a associate of mine will pick them up" He adds, "They are somewhat unstable, so be carefull with them or they could explode."`
+				accept
+	
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 120000
+		dialog `Somehow, you have managed to bring the samples without it exploding.  When the associate arrives to pick it up, he pays you <payment>.`
