@@ -1398,6 +1398,9 @@ void Engine::CalculateStep()
 	// Perform collision detection.
 	for(Projectile &projectile : projectiles)
 		DoCollisions(projectile);
+	
+	for(Ship *ship : hasAntiMissile)
+		DoAntiMissile(ship);
 	// Now that collision detection is done, clear the cache of ships with anti-
 	// missile systems ready to fire.
 	hasAntiMissile.clear();
@@ -2018,21 +2021,25 @@ void Engine::DoCollisions(Projectile &projectile)
 		if(hit)
 			DoGrudge(hit, gov);
 	}
-	else if(projectile.MissileStrength())
-	{
-		// If the projectile did not hit anything, give the anti-missile systems
-		// a chance to shoot it down.
-		for(Ship *ship : hasAntiMissile)
-			if(ship == projectile.Target() || gov->IsEnemy(ship->GetGovernment()))
-				if(ship->FireAntiMissile(projectile, visuals))
-				{
-					projectile.Kill();
-					break;
-				}
-	}
 }
 
-
+void Engine::DoAntiMissile(Ship *ship)
+{
+	std::sort(projectiles.begin(),projectiles.end(),
+			[ship](Projectile i, Projectile j) -> bool
+			{
+				return i.Position().Distance(ship->Position())<j.Position().Distance(ship->Position()); 
+			});
+	for(Projectile &projectile : projectiles)
+	{
+		if(projectile.MissileStrength() && (ship == projectile.Target() || projectile.GetGovernment()->IsEnemy(ship->GetGovernment())))
+			if(ship->FireAntiMissile(projectile, visuals))
+			{
+				projectile.Kill();
+				break;
+			}
+	}
+}
 
 // Determine whether any active weather events have impacted the ships within
 // the system. As with DoCollisions, this function adds visuals directly to
