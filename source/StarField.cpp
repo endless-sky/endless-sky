@@ -52,6 +52,7 @@ void StarField::Init(int stars, int width)
 	MakeStars(stars, width);
 	
 	const Sprite *sprite = SpriteSet::Get("_menu/haze");
+	currSprite = sprite;
 	for(size_t i = 0; i < HAZE_COUNT; ++i)
 	{
 		Point next;
@@ -72,8 +73,9 @@ void StarField::Init(int stars, int width)
 				}
 			}
 		}
-		haze.emplace_back(sprite, next, Point(), Angle::Random(), 8.);
-		prevHaze.emplace_back(sprite, next, Point(), Angle::Random(), 8.);
+		Angle randomAngle = Angle::Random();
+		haze.emplace_back(sprite, next, Point(), randomAngle, 8.);
+		prevHaze.emplace_back(sprite, next, Point(), randomAngle, 8.);
 	}
 }
 
@@ -85,9 +87,6 @@ void StarField::SetHaze(const Sprite *sprite)
 	if(!sprite)
 		sprite = SpriteSet::Get("_menu/haze");
 	
-	if(!currSprite)
-		currSprite = sprite;
-
 	if(isFading){
 		return;
 	}
