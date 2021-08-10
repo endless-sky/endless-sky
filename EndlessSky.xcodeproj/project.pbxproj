@@ -12,6 +12,7 @@
 		072599D426A8CD5D007EC229 /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 072599CC26A8C942007EC229 /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		16AD4CACA629E8026777EA00 /* truncate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CA44855BD0AFF45DCAEEA5D /* truncate.hpp */; settings = {ATTRIBUTES = (Project, ); }; };
 		5155CD731DBB9FF900EF090B /* Depreciation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5155CD711DBB9FF900EF090B /* Depreciation.cpp */; };
+		53DA422996419974ADADE346 /* Wormhole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D414B4194239522B24F3C95 /* Wormhole.cpp */; };
 		5AB644C9B37C15C989A9DBE9 /* DisplayText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E1E458DB603BF979429117C /* DisplayText.cpp */; };
 		6245F8251D301C7400A7A094 /* Body.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8231D301C7400A7A094 /* Body.cpp */; };
 		6245F8281D301C9000A7A094 /* Hardpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8261D301C9000A7A094 /* Hardpoint.cpp */; };
@@ -218,6 +219,7 @@
 		62C311191CE172D000409D91 /* Flotsam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flotsam.h; path = source/Flotsam.h; sourceTree = "<group>"; };
 		6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollisionSet.cpp; path = source/CollisionSet.cpp; sourceTree = "<group>"; };
 		6A5716321E25BE6F00585EB2 /* CollisionSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollisionSet.h; path = source/CollisionSet.h; sourceTree = "<group>"; };
+		6D414B4194239522B24F3C95 /* Wormhole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Wormhole.cpp; path = source/Wormhole.cpp; sourceTree = "<group>"; };
 		6DCF4CF2972F569E6DBB8578 /* CategoryTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryTypes.h; path = source/CategoryTypes.h; sourceTree = "<group>"; };
 		86AB4B6E9C4C0490AE7F029B /* EsUuid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EsUuid.h; path = source/EsUuid.h; sourceTree = "<group>"; };
 		8E8A4C648B242742B22A34FA /* Weather.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Weather.cpp; path = source/Weather.cpp; sourceTree = "<group>"; };
@@ -489,6 +491,7 @@
 		DFAAE2A51FD4A25C0072C0A8 /* BatchShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BatchShader.h; path = source/BatchShader.h; sourceTree = "<group>"; };
 		DFAAE2A81FD4A27B0072C0A8 /* ImageSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageSet.cpp; path = source/ImageSet.cpp; sourceTree = "<group>"; };
 		DFAAE2A91FD4A27B0072C0A8 /* ImageSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageSet.h; path = source/ImageSet.h; sourceTree = "<group>"; };
+		E8B4490F8091C6E3EF571515 /* Wormhole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Wormhole.h; path = source/Wormhole.h; sourceTree = "<group>"; };
 		F434470BA8F3DE8B46D475C5 /* StartConditionsPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartConditionsPanel.h; path = source/StartConditionsPanel.h; sourceTree = "<group>"; };
 		F8C14CFB89472482F77C051D /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Weather.h; path = source/Weather.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -792,6 +795,8 @@
 				0C90483BB01ECD0E3E8DDA44 /* WeightedList.h */,
 				950742538F8CECF5D4168FBC /* EsUuid.cpp */,
 				86AB4B6E9C4C0490AE7F029B /* EsUuid.h */,
+				6D414B4194239522B24F3C95 /* Wormhole.cpp */,
+				E8B4490F8091C6E3EF571515 /* Wormhole.h */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -1137,6 +1142,7 @@
 				6EC347E6A79BA5602BA4D1EA /* StartConditionsPanel.cpp in Sources */,
 				03624EC39EE09C7A786B4A3D /* CoreStartData.cpp in Sources */,
 				90CF46CE84794C6186FC6CE2 /* EsUuid.cpp in Sources */,
+				53DA422996419974ADADE346 /* Wormhole.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
