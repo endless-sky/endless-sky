@@ -578,7 +578,7 @@ outfit "AR120 Reverse Thruster"
 	"reverse flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"reverse flare sound" "atomic tiny"
-	description "For pilots who want to be able to pull fancy tricks that most ships are not capable of emulating, a reverse thruster allows a ship to accelerate backwards, without needing to turn around."
+	description "For pilots who want to pull fancy tricks that most are not capable of duplicating, a reverse thruster allows a ship to accelerate backwards, without needing to turn around."
 	description "	Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
 
 outfit "Capybara Reverse Thruster"
@@ -594,7 +594,7 @@ outfit "Capybara Reverse Thruster"
 	"reverse flare sprite" "effect/plasma flare/tiny"
 		"frame rate" 5
 	"reverse flare sound" "plasma tiny"
-	description "Particularly large ships often lack the manouverability to perform 180 degree spins to come to a stop on short notice. For such ships, a reverse thruster allows them to accelerate smoothly backwards, without needing to turn around."
+	description "Large ships often lack the maneuverability to perform the 180 degree turns needed to come to a stop on short notice. For such massive vessels, a reverse thruster allows them to accelerate smoothly backwards, without needing to turn around."
 	description "	Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
 
 outfit "X1100 Ion Reverse Thruster"
@@ -610,5 +610,5 @@ outfit "X1100 Ion Reverse Thruster"
 	"reverse flare sprite" "effect/ion flare/tiny"
 		"frame rate" 1.2
 	"reverse flare sound" "ion tiny"
-	description "Traditionally, ships turn around so that they can use their main thrusters for deceleration. Some ships, however, are too ungainly for such manouvers to be convenient, or carry cargo that dislikes being swung around. For such ships, a reverse thruster allows them to apply thrust smoothly backwards."
+	description "Traditionally, ships turn around so that they can use their main thrusters for deceleration. Some ships, however, are too ungainly for such maneuvers to be convenient, or carry sensitive cargo that must not be being swung around quickly. For such ships, a reverse thruster allows them to apply thrust smoothly backwards."
 	description "	Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
