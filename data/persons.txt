@@ -1384,4 +1384,4 @@ ship "Modified Boxwing"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description `No matter how maligned, every ship has someone out there that loves it.`
-	description `Surprisingly, someone invested a lot of time, money, and effort into transforming this humble boxwing from a flying coffin into a palatial sarcophogus. It is still terribly cramped, but at least it is luxurious and shiny!`
+	description `Surprisingly, someone invested a lot of time, money, and effort into transforming this humble boxwing from a flying coffin into a palatial sarcophagus. It is still terribly cramped, but at least it is luxurious and shiny!`
