@@ -2046,10 +2046,7 @@ void Engine::DoAntiMissile(Ship *ship)
 	{
 		if(projectile->MissileStrength() && (ship == projectile->Target() || projectile->GetGovernment()->IsEnemy(ship->GetGovernment())))
 			if(ship->FireAntiMissile(*projectile, visuals))
-			{
 				projectile->Kill();
-				break;
-			}
 	}
 }
 
