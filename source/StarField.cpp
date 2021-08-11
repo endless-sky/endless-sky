@@ -167,12 +167,10 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 	drawList.Clear(0, zoom);
 	drawList.SetCenter(pos);
 
-	if(transparency > 0.)
+	if(transparency > FADE_PER_FRAME)
 		transparency -= FADE_PER_FRAME;
 	else
-	{
 		transparency = 0.;
-	}
 	
 	// Any object within this range must be drawn. Some haze sprites may repeat
 	// more than once if the view covers a very large area.
