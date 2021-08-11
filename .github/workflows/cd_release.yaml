@@ -6,7 +6,6 @@ on:
       - published
 
 jobs:
-
   appimage_amd64:
     runs-on: ubuntu-18.04
     env:
