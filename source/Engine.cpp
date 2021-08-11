@@ -2035,7 +2035,7 @@ void Engine::DoAntiMissile(Ship *ship)
 	for(std::vector<Projectile>::iterator iter = projectiles.begin(); iter < projectiles.end(); iter++)
 	{
 		std::vector<Projectile>::iterator copy_iter(iter);
-		sorted_projectiles.push_back(iter);
+		sorted_projectiles.push_back(copy_iter);
 	}
 	std::sort(sorted_projectiles.begin(),sorted_projectiles.end(),
 			[ship](std::vector<Projectile>::iterator i, std::vector<Projectile>::iterator j) -> bool
