@@ -93,6 +93,29 @@ SCENARIO("A player-entered quantity can be parsed to a number", "[Format][Parse]
 	}
 }
 
+SCENARIO("A string is capitalized", "[Format][Capitalize]") {
+	GIVEN( "The string 'magnesium'" ) {
+		THEN( "capitalizes to 'Magnesium'" ) {
+			CHECK( Format::Capitalize("magnesium") == "Magnesium" );
+		}
+	}
+	GIVEN( "The string 'canned fruit'" ) {
+		THEN( "capitalizes to 'Canned Fruit'" ) {
+			CHECK( Format::Capitalize("canned fruit") == "Canned Fruit" );
+		}
+	}
+	GIVEN( "The string 'de-ionizers'" ) {
+		THEN( "capitalizes to 'De-ionizers'" ) {
+			CHECK( Format::Capitalize("de-ionizers") == "De-ionizers" );
+		}
+	}
+	GIVEN( "The string 'plumber's pipe'" ) {
+		THEN( "capitalizes to 'Plumber's Pipe'" ) {
+			CHECK( Format::Capitalize("plumber's pipe") == "Plumber's Pipe" );
+		}
+	}
+}
+
 // #endregion unit tests
 
 // #region benchmarks
