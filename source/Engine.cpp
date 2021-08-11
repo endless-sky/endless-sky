@@ -2023,23 +2023,37 @@ void Engine::DoCollisions(Projectile &projectile)
 	}
 }
 
+
+
+// Fire anti-missile shots as appropriate for this ship, prioritizing nearby
+// projectiles over distant ones. Like DoCollisions, this function adds visuals
+// directly to the main visuals list. If this is multi-threaded in the future,
+// that will need to change.
 void Engine::DoAntiMissile(Ship *ship)
 {
-	std::sort(projectiles.begin(),projectiles.end(),
-			[ship](Projectile i, Projectile j) -> bool
-			{
-				return i.Position().Distance(ship->Position())<j.Position().Distance(ship->Position()); 
-			});
-	for(Projectile &projectile : projectiles)
+	std::vector<std::vector<Projectile>::iterator> sorted_projectiles;
+	for(std::vector<Projectile>::iterator iter = projectiles.begin(); iter < projectiles.end(); iter++)
 	{
-		if(projectile.MissileStrength() && (ship == projectile.Target() || projectile.GetGovernment()->IsEnemy(ship->GetGovernment())))
-			if(ship->FireAntiMissile(projectile, visuals))
+		std::vector<Projectile>::iterator copy_iter(iter);
+		sorted_projectiles.push_back(iter);
+	}
+	std::sort(sorted_projectiles.begin(),sorted_projectiles.end(),
+			[ship](std::vector<Projectile>::iterator i, std::vector<Projectile>::iterator j) -> bool
 			{
-				projectile.Kill();
+				return i->Position().Distance(ship->Position())<j->Position().Distance(ship->Position());
+			});
+	for(std::vector<Projectile>::iterator projectile : sorted_projectiles)
+	{
+		if(projectile->MissileStrength() && (ship == projectile->Target() || projectile->GetGovernment()->IsEnemy(ship->GetGovernment())))
+			if(ship->FireAntiMissile(*projectile, visuals))
+			{
+				projectile->Kill();
 				break;
 			}
 	}
 }
+
+
 
 // Determine whether any active weather events have impacted the ships within
 // the system. As with DoCollisions, this function adds visuals directly to
