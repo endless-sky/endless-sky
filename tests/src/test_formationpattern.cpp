@@ -67,6 +67,21 @@ R"'(formation "Delta Tail (px)"
 			slots 1
 )'";
 
+std::string formation_tail_px_point =
+R"'(formation "Tail (px point)"
+	flippable y
+	point -100 0
+	point -200 0
+	point -300 0
+	point -400 0
+	point -500 0
+	point -600 0
+	point -700 0
+	point -800 0
+)'";
+
+
+
 // #endregion mock data
 
 
@@ -112,6 +127,33 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 				++it;
 				CHECK( Near(*it, Point(0, 0)) );
 				CHECK( it.Ring() == 0 );
+			}
+		}
+	}
+	GIVEN( "a formation pattern specified in points" ) {
+		auto tailNode = AsDataNode(formation_tail_px_point);
+		FormationPattern tailFormation;
+		tailFormation.Load(tailNode);
+		REQUIRE( tailFormation.Name() == "Tail (px point)");
+		WHEN( "positions are requested") {
+			FormationPattern::ActiveFormation af;
+			auto it = tailFormation.begin(af);
+			THEN ( "all returned positions are as expected" ) {
+				CHECK( Near(*it, Point(-100, 0)) );
+				++it;
+				CHECK( Near(*it, Point(-200, 0)) );
+				++it;
+				CHECK( Near(*it, Point(-300, 0)) );
+				++it;
+				CHECK( Near(*it, Point(-400, 0)) );
+				++it;
+				CHECK( Near(*it, Point(-500, 0)) );
+				++it;
+				CHECK( Near(*it, Point(-600, 0)) );
+				++it;
+				CHECK( Near(*it, Point(-700, 0)) );
+				++it;
+				CHECK( Near(*it, Point(-800, 0)) );
 			}
 		}
 	}

@@ -186,6 +186,16 @@ void FormationPattern::Load(const DataNode &node)
 			}
 		else if(child.Token(0) == "rotatable" && child.Size() >= 2)
 			rotatable = child.Value(1);
+		else if(child.Token(0) == "point" && child.Size() >= 3)
+		{
+			lines.emplace_back();
+			Line &line = lines[lines.size() - 1];
+			// A point is a line with just 1 slot.
+			line.slots = 1;
+			// The specification of the coordinates is on the same line as the keyword.
+			line.start.AddLoad(child);
+			line.endOrAnchor = line.start;
+		}
 		else if(child.Token(0) == "line" || child.Token(0) == "arc")
 		{
 			lines.emplace_back();
