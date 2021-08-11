@@ -73,8 +73,7 @@ void StarField::Init(int stars, int width)
 				}
 			}
 		}
-		Angle randomAngle = Angle::Random();
-		haze.emplace_back(sprite, next, Point(), randomAngle, 8.);
+		haze.emplace_back(sprite, next, Point(), Angle::Random(), 8.);
 	}
 	prevHaze.assign(haze.begin(),haze.end());
 }
