@@ -93,26 +93,31 @@ SCENARIO("A player-entered quantity can be parsed to a number", "[Format][Parse]
 	}
 }
 
-SCENARIO("A string is capitalized", "[Format][Capitalize]") {
-	GIVEN( "The string 'magnesium'" ) {
-		THEN( "capitalizes to 'Magnesium'" ) {
-			CHECK( Format::Capitalize("magnesium") == "Magnesium" );
-		}
+TEST_CASE( "Format::Capitalize", "[Format][Capitalize]") {
+	SECTION( "Single-word strings" ) {
+		CHECK( Format::Capitalize("magnesium") == "Magnesium" );
+		CHECK( Format::Capitalize("hydroxide") == "Hydroxide" );
 	}
-	GIVEN( "The string 'canned fruit'" ) {
-		THEN( "capitalizes to 'Canned Fruit'" ) {
-			CHECK( Format::Capitalize("canned fruit") == "Canned Fruit" );
-		}
+	SECTION( "Words separated by whitespace" ) {
+		CHECK( Format::Capitalize("canned fruit") == "Canned Fruit" );
+		CHECK( Format::Capitalize("canned	fruit") == "Canned	Fruit" );
+		CHECK( Format::Capitalize("canned\tfruit") == "Canned\tFruit" );
+		CHECK( Format::Capitalize("canned\nfruit") == "Canned\nFruit" );
 	}
-	GIVEN( "The string 'de-ionizers'" ) {
-		THEN( "capitalizes to 'De-ionizers'" ) {
-			CHECK( Format::Capitalize("de-ionizers") == "De-ionizers" );
-		}
+	SECTION( "Precapitalized strings" ) {
+		CHECK( Format::Capitalize("RPGs") == "RPGs" );
+		CHECK( Format::Capitalize("MAGNESIUM") == "MAGNESIUM" );
 	}
-	GIVEN( "The string 'plumber's pipe'" ) {
-		THEN( "capitalizes to 'Plumber's Pipe'" ) {
-			CHECK( Format::Capitalize("plumber's pipe") == "Plumber's Pipe" );
-		}
+	SECTION( "Words containing punctuation" ) {
+		CHECK( Format::Capitalize("de-ionizers") == "De-ionizers" );
+		CHECK( Format::Capitalize("anti-inflammatories") == "Anti-inflammatories" );
+		CHECK( Format::Capitalize("ka'het") == "Ka'het" );
+		CHECK( Format::Capitalize("A.I.") == "A.I.");
+		CHECK( Format::Capitalize("trains/planes") == "Trains/planes");
+	}
+	SECTION( "Words with possessive qualifiers" ) {
+		CHECK( Format::Capitalize("plumbers' pipes") == "Plumbers' Pipes");
+		CHECK( Format::Capitalize("plumber's pipe") == "Plumber's Pipe");
 	}
 }
 
