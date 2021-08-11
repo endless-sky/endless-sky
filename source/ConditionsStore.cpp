@@ -107,7 +107,7 @@ ConditionsStore::ConditionsStore(const map<string, int64_t> &initialConditions)
 //derived from other data-structures (derived conditions).
 int64_t ConditionsStore::GetCondition(const std::string &name) const
 {
-	const ConditionEntry *ce = GetEntryConst(name);
+	const ConditionEntry *ce = GetEntry(name);
 	if(!ce)
 		return 0;
 	
@@ -121,7 +121,7 @@ int64_t ConditionsStore::GetCondition(const std::string &name) const
 
 bool ConditionsStore::HasCondition(const std::string &name) const
 {
-	const ConditionEntry *ce = GetEntryConst(name);
+	const ConditionEntry *ce = GetEntry(name);
 	if(!ce)
 		return false;
 	
@@ -255,7 +255,7 @@ ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &name)
 
 
 
-const ConditionsStore::ConditionEntry *ConditionsStore::GetEntryConst(const string &name) const
+const ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &name) const
 {
 	if(storage.empty())
 		return nullptr;

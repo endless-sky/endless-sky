@@ -135,10 +135,11 @@ public:
 
 
 private:
-	// Retrieve a condition entry based on a condition name, doCreate indicate if the entry
-	// should be created if it wasn't there yet.
+	// Retrieve a condition entry based on a condition name, the entry doesn't
+	// get created if it doesn't exist yet (the SetCondition function will handle
+	// creation if required).
 	ConditionEntry *GetEntry(const std::string &name);
-	const ConditionEntry *GetEntryConst(const std::string &name) const;
+	const ConditionEntry *GetEntry(const std::string &name) const;
 
 
 
