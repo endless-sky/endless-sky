@@ -184,7 +184,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 }
 
 
-void StarField::DrawHaze(const std::vector<Body> targetHaze, const Point targetTopLeft, const Point targetBottomRight, const double targetTransparency, DrawList& targetDrawList) const
+void StarField::DrawHaze(const std::vector<Body> &targetHaze, const Point &topLeft, const Point &bottomRight, double transparency, DrawList &drawList) const
 {
 	for(const Body &it : targetHaze)
 	{
