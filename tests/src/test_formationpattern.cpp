@@ -69,7 +69,6 @@ R"'(formation "Delta Tail (px)"
 
 std::string formation_tail_px_point =
 R"'(formation "Tail (px point)"
-	flippable y
 	point -100 0
 	point -200 0
 	point -300 0
