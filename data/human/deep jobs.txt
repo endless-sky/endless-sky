@@ -362,8 +362,8 @@ phrase "secure package pickup"
 	word
 		` `
 	word
-		`collect from a secure baggage counter`
-		`take possession from a security desk`
+		`collect the package from a secure baggage counter`
+		`take possession of the package from a security desk`
 	word
 		` `
 	word
@@ -372,9 +372,9 @@ phrase "secure package pickup"
 	word
 		` `
 	word
-		`and pick up the secure package. It is a large box on a built-in secure antigrav trolley.`
-		`and pick up the secure package. It is a small box with a complex, electronic combination lock.`
-		`and pick up the secure package. It is a soft but tightly wrapped package that makes a disquieting sound if you squeeze it.`
+		`It is a large box on a built-in secure antigrav trolley.`
+		`It is a small box with a complex, electronic combination lock.`
+		`It is a soft but tightly wrapped package that makes a disquieting sound if you squeeze it.`
 
 phrase "secure package dropoff payment"
 	word
@@ -591,7 +591,7 @@ mission "Deep Security Package Reveal"
 			`	"Oh no, plenty of tech businesses and wealthy individuals use the same secure package shipping channels. We do monitor all of them though just to make sure our own channels don't get compromised by something ill-advised... or illegal." He shrugs.`
 			label blindacceptance
 			`	"Well, I looked at your record and it seems you've done quite a lot for the Deep, and you're well-regarded. We like to keep a list of pilots that we can call on if we need something delivered with either urgency or discretion and it seems like you qualified. You passed the background check at any rate.`
-			`	"So at any rate, I'm authorized to give you a one time offer to join that list. Don't worry, I'm not asking anything of you right now."`
+			`	"So at any rate, I'm authorized to give you a one-time offer to join that list. Don't worry, I'm not asking anything of you right now."`
 			`	Belatedly he seems to do a double-check that no one is actively listening to the conversation as you walk. "So, you interested?"`
 			choice
 				`	"Oh sure, I'm willing to help."`
@@ -753,15 +753,15 @@ mission "Deep Consultants"
 	deadline 2 1
 	on offer
 		conversation
-			`Strolling through the spaceport you are suddenly accosted by a young and very breathless woman. "Please, Captain," she wheezes, "I'm so glad I caught you."`
-			`	After drawing in a deep breath she stands up straighter and gestures to someone some distance away. "Captain, I'm sorry, but my colleague Julie and I are in dire need of urgent transport. Can you help?"`
+			`Strolling through the spaceport, you are suddenly accosted by a young and breathless woman. "Please, Captain," she wheezes, "I'm so glad I caught you."`
+			`	After drawing in a deep breath, she stands up straighter and gestures to someone some distance away. "Captain, I'm sorry, but my colleague Julie and I are in dire need of urgent transport. Can you help?"`
 			`	As she catches her breath some more, her older colleague hustles over, bags in tow.`
 			choice
 				`	"Sure, I'd be glad to help.`
 					goto sure
 				`	"Where do you need to go?"`
 				`	"Why is it so urgent?"`
-			`	Julie holds out her hand in greeting. "Apologies, let's do this properly. My name is Julie Gillar and my assistant and I were held back with our duties and missed our booked transport. We're in dire need of returning to Valhalla for several important business meetings but unfortunately everything is booked up for the next five days straight, and that's just not acceptable to my employer."`
+			`	Julie holds out her hand in greeting. "Apologies, let's do this properly. My name is Julie Gillar and my assistant and I were held back with our duties and missed our booked transport. We're in dire need of passage to Valhalla for several important business meetings, but unfortunately everything is booked up for the next five days straight, and that's just not acceptable to my employer."`
 			choice
 				`	"Sure, I'd be glad to help.`
 					goto sure
@@ -813,7 +813,7 @@ phrase "stranded consultant dropoff payment"
 	word
 		` `
 	word
-		`You find out only after that they left behind a soiled pair of boots.`
+		`You find out only afterwards that they left behind a soiled pair of boots.`
 		`Afterwards you find a tie left hanging on a door handle.`
 		`You kick crumpled documents that you find after their trip into the incinerator without looking at them.`
 	word
