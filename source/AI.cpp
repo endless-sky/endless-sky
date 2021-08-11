@@ -32,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StellarObject.h"
 #include "System.h"
 #include "Weapon.h"
+#include "Wormhole.h"
 
 #include <algorithm>
 #include <cmath>
@@ -272,7 +273,7 @@ namespace {
 				
 				const Planet &planet = *object.GetPlanet();
 				if(planet.IsWormhole() && planet.IsAccessible(&ship)
-						&& planet.GetWormhole().WormholeDestination(from) == to)
+						&& planet.GetWormhole()->WormholeDestination(from) == to)
 				{
 					ship.SetTargetStellar(&object);
 					ship.SetTargetSystem(nullptr);
@@ -3126,8 +3127,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				&& object.GetPlanet()->IsAccessible(&ship) && player.HasVisited(*object.GetPlanet())
 				&& player.HasVisited(*system))
 			{
-				const auto &wormhole = object.GetPlanet()->GetWormhole();
-				if(wormhole.WormholeDestination(ship.GetSystem()) != system)
+				const auto *wormhole = object.GetPlanet()->GetWormhole();
+				if(wormhole->WormholeDestination(ship.GetSystem()) != system)
 					continue;
 
 				isWormhole = true;

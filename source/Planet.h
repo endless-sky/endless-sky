@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define PLANET_H_
 
 #include "Sale.h"
-#include "Wormhole.h"
 
 #include <list>
 #include <memory>
@@ -30,6 +29,7 @@ class PlayerInfo;
 class Ship;
 class Sprite;
 class System;
+class Wormhole;
 
 
 
@@ -39,8 +39,6 @@ class System;
 // might choose it as a source or destination.
 class Planet {
 public:
-	Planet() noexcept;
-
 	// Load a planet's description from a file.
 	void Load(const DataNode &node);
 	// Check if both this planet and its containing system(s) have been defined.
@@ -111,10 +109,16 @@ public:
 	// Remove the given system from the list of systems this planet is in. This
 	// must be done when game events rearrange the planets in a system.
 	void RemoveSystem(const System *system);
+	// Every system this planet is in. If this list has more than one entry, it's a wormhole.
+	const std::vector<const System *> Systems() const;
 	
 	// Check if this is a wormhole (that is, it appears in multiple systems).
 	bool IsWormhole() const;
-	const Wormhole &GetWormhole() const;
+	const Wormhole *GetWormhole() const;
+	// Check if this planet appears in multiple systems and so is a wormhole.
+	bool AppearsInMultipleSystems() const;
+	// Assigns a wormhole to this planet. This happens when wormholes are auto generated.
+	void AssignWormhole();
 	
 	// Check if the given ship has all the attributes necessary to allow it to
 	// land on this planet.
@@ -174,7 +178,8 @@ private:
 	// Ships that have been created by instantiating its defense fleets.
 	mutable std::list<std::shared_ptr<Ship>> defenders;
 
-	Wormhole wormhole;
+	const Wormhole *wormhole = nullptr;
+
 	std::vector<const System *> systems;
 };
 

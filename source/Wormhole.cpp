@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "GameData.h"
+#include "Planet.h"
 #include "System.h"
 
 #include <algorithm>
@@ -22,8 +23,17 @@ using namespace std;
 
 
 
-Wormhole::Wormhole(const vector<const System *> &systems) noexcept : systems(&systems)
+void Wormhole::GenerateFromPlanet(Wormhole *wormhole, const Planet *planet)
 {
+	wormhole->planet = planet;
+	wormhole->linked = !planet->Description().empty();
+
+	// Wormhole links form a closed loop through every system this wormhole is in.
+	for(int i = 0; i < planet->Systems().size(); ++i)
+	{
+		int next = i == planet->Systems().size() - 1 ? 0 : i + 1;
+		wormhole->links[planet->Systems()[i]] = planet->Systems()[next];
+	}
 }
 
 
@@ -31,10 +41,11 @@ Wormhole::Wormhole(const vector<const System *> &systems) noexcept : systems(&sy
 // Load a planet's description from a file.
 void Wormhole::Load(const DataNode &node)
 {
-	if(node.Size() < 1)
+	if(node.Size() < 2)
 		return;
 	isDefined = true;
-	
+
+	planet = GameData::Planets().Get(node.Token(1));
 	for(const DataNode &child : node)
 	{
 		// Check for the "add" or "remove" keyword.
@@ -55,11 +66,7 @@ void Wormhole::Load(const DataNode &node)
 		// Check for conditions that require clearing this key's current value.
 		// "remove <key>" means to clear the key's previous contents.
 		// "remove <key> <value>" means to remove just that value from the key.
-		bool removeAll = (remove && !hasValue);
-		// "<key> clear" is the deprecated way of writing "remove <key>."
-		removeAll |= (!add && !remove && hasValue && value == "clear");
-		// Clear the links.
-		if(removeAll && key == "link")
+		if((remove && !hasValue) && key == "link")
 		{
 			links.clear();
 			continue;
@@ -73,7 +80,8 @@ void Wormhole::Load(const DataNode &node)
 			if(remove)
 			{
 				// Only erase if the link is an exact match.
-				if(links[from] == to)
+				auto it = links.find(from);
+				if(it != links.end() && it->second == to)
 					links.erase(from);
 			}
 			else
@@ -84,9 +92,9 @@ void Wormhole::Load(const DataNode &node)
 		else if(key == "display name")
 		{
 			if(remove)
-				name.clear();
+				name = "???";
 			else if(hasValue)
-				name = node.Token(1);
+				name = value;
 		}
 		else if(remove)
 			child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
@@ -99,12 +107,25 @@ void Wormhole::Load(const DataNode &node)
 
 bool Wormhole::IsValid() const
 {
-	return isDefined;
+	if(!isDefined)
+		return false;
+
+	for(auto &&pair : links)
+		if(!pair.first->IsValid() || !pair.second->IsValid())
+			return false;
+
+	return true;
 }
 
 
 
-// Get the name of the wormhole.
+const Planet *Wormhole::GetPlanet() const
+{
+	return planet;
+}
+
+
+
 const string &Wormhole::Name() const
 {
 	return name;
@@ -127,7 +148,13 @@ const System *Wormhole::WormholeSource(const System *to) const
 			{
 				return val.second == to;
 			});
-	return it == links.end() ? to : it->first;
+
+	auto source = it == links.end() ? to : it->first;
+
+	// If source refers to a system without this wormhole, go through the link backwards.
+	if(it != links.end() && !planet->IsInSystem(source))
+		source = WormholeSource(source);
+	return source;
 }
 
 
@@ -136,27 +163,24 @@ const System *Wormhole::WormholeSource(const System *to) const
 const System *Wormhole::WormholeDestination(const System *from) const
 {
 	auto it = links.find(from);
-	return it == links.end() ? from : it->second;
+	auto dest = it == links.end() ? from : it->second;
+
+	// If dest refers to a system without this wormhole, go through the link.
+	if(it != links.end() && !planet->IsInSystem(dest))
+		dest = WormholeDestination(dest);
+	return dest;
 }
 
 
 
-const vector<const System *> &Wormhole::Systems() const
+const unordered_map<const System *, const System *> &Wormhole::Links() const
 {
-	return *systems;
+	return links;
 }
 
 
 
-void Wormhole::RemoveLinks(const System *from)
+void Wormhole::UpdateFromPlanet()
 {
-	links.erase(from);
-
-	auto it = links.begin();
-	using value_type = decltype(links)::value_type;
-	while(find_if(it, links.end(), [&from](const value_type &pair)
-				{
-					return pair.second == from;
-				}) != links.end())
-			it = links.erase(it);
+	linked = !planet->Description().empty();
 }

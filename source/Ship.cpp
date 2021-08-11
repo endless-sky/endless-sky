@@ -37,6 +37,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StellarObject.h"
 #include "System.h"
 #include "Visual.h"
+#include "Wormhole.h"
 
 #include <algorithm>
 #include <cmath>
@@ -1662,7 +1663,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				// instantly transported.
 				if(landingPlanet->IsWormhole())
 				{
-					currentSystem = landingPlanet->GetWormhole().WormholeDestination(currentSystem);
+					currentSystem = landingPlanet->GetWormhole()->WormholeDestination(currentSystem);
 					for(const StellarObject &object : currentSystem->Objects())
 						if(object.GetPlanet() == landingPlanet)
 							position = object.Position();

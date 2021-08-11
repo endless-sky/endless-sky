@@ -45,6 +45,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 #include "Trade.h"
 #include "UI.h"
+#include "Wormhole.h"
 
 #include "gl_header.h"
 
@@ -905,9 +906,9 @@ void MapPanel::DrawTravelPlan()
 			isWormhole |= (object.HasSprite() && object.HasValidPlanet()
 				&& object.GetPlanet()->IsWormhole()
 				&& player.HasVisited(*object.GetPlanet())
-				&& object.GetPlanet()->GetWormhole().IsLinked()
+				&& object.GetPlanet()->GetWormhole()->IsLinked()
 				&& player.HasVisited(*previous) && player.HasVisited(*next)
-				&& object.GetPlanet()->GetWormhole().WormholeDestination(previous) == next);
+				&& object.GetPlanet()->GetWormhole()->WormholeDestination(previous) == next);
 		
 		if(!isHyper && !isJump && !isWormhole)
 			break;
@@ -993,21 +994,15 @@ void MapPanel::DrawWormholes()
 	// Avoid iterating each StellarObject in every system by iterating over planets instead. A
 	// system can host more than one set of wormholes (e.g. Cardea), and some wormholes may even
 	// share a link vector.
-	for(auto &&it : GameData::Planets())
+	for(auto &&it : GameData::Wormholes())
 	{
-		const Planet &p = it.second;
-		if(!p.IsValid() || !p.IsWormhole() || !player.HasVisited(p) || !p.GetWormhole().IsLinked())
+		const Planet *p = it.second.GetPlanet();
+		if(!p->IsValid() || !player.HasVisited(*p) || !it.second.IsLinked())
 			continue;
 		
-		const vector<const System *> &waypoints = p.GetWormhole().Systems();
-		const System *from = waypoints.back();
-		for(const System *to : waypoints)
-		{
-			if(player.HasVisited(*from) && player.HasVisited(*to))
-				arrowsToDraw.emplace(from, to);
-			
-			from = to;
-		}
+		for(auto &&link : it.second.Links())
+			if(player.HasVisited(*link.first) && player.HasVisited(*link.second))
+				arrowsToDraw.emplace(link.first, link.second);
 	}
 	
 	const Color &wormholeDim = *GameData::Colors().Get("map unused wormhole");

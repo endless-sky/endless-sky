@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipEvent.h"
 #include "SpriteSet.h"
 #include "System.h"
+#include "Wormhole.h"
 
 #include <algorithm>
 
@@ -44,12 +45,6 @@ namespace {
 			required.emplace_hint(required.cend(), attribute.substr(PREFIX.length()));
 		});
 	}
-}
-
-
-
-Planet::Planet() noexcept : wormhole(systems)
-{
 }
 
 
@@ -128,10 +123,8 @@ void Planet::Load(const DataNode &node)
 				continue;
 		}
 		
-		if(key == "wormhole")
-			wormhole.Load(child);
 		// Handle the attributes which can be "removed."
-		else if(!hasValue)
+		if(!hasValue)
 		{
 			child.PrintTrace("Expected key to have a value:");
 			continue;
@@ -252,7 +245,7 @@ bool Planet::IsValid() const
 // Get the name of the planet.
 const string &Planet::Name() const
 {
-	return IsWormhole() ? wormhole.Name() : name;
+	return IsWormhole() ? wormhole->Name() : name;
 }
 
 
@@ -456,10 +449,14 @@ void Planet::RemoveSystem(const System *system)
 {
 	auto it = find(systems.begin(), systems.end(), system);
 	if(it != systems.end())
-	{
 		systems.erase(it);
-		wormhole.RemoveLinks(system);
-	}
+}
+
+
+
+const vector<const System *> Planet::Systems() const
+{
+	return systems;
 }
 
 
@@ -467,14 +464,29 @@ void Planet::RemoveSystem(const System *system)
 // Check if this is a wormhole (that is, it appears in multiple systems).
 bool Planet::IsWormhole() const
 {
-	return wormhole.IsValid();
+	return wormhole;
 }
 
 
 
-const Wormhole &Planet::GetWormhole() const
+const Wormhole *Planet::GetWormhole() const
 {
 	return wormhole;
+}
+
+
+
+bool Planet::AppearsInMultipleSystems() const
+{
+	return systems.size() > 1;
+}
+
+
+
+void Planet::AssignWormhole()
+{
+	// Wormholes have the same name as the planet they belong to.
+	wormhole = GameData::Wormholes().Get(name);
 }
 
 

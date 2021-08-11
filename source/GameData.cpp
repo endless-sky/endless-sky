@@ -56,6 +56,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 #include "Test.h"
 #include "TestData.h"
+#include "Wormhole.h"
 
 #include <algorithm>
 #include <iostream>
@@ -88,6 +89,7 @@ namespace {
 	Set<System> systems;
 	Set<Test> tests;
 	Set<TestData> testDataSets;
+	Set<Wormhole> wormholes;
 	set<double> neighborDistances;
 	
 	Set<Sale<Ship>> shipSales;
@@ -332,10 +334,28 @@ void GameData::CheckReferences()
 	for(const auto &it : phrases)
 		if(it.second.Name().empty())
 			Warn("phrase", it.first);
+	// Update references to wormholes.
+	for(auto &&it : wormholes)
+		planets.Get(it.second.GetPlanet()->Name())->AssignWormhole();
 	// Planet names are used by a number of classes.
 	for(auto &&it : planets)
+	{
 		if(it.second.TrueName().empty() && !NameIfDeferred(deferred["planet"], it))
 			NameAndWarn("planet", it);
+
+		// Auto generate any wormhole that are missing a definition.
+		if(!it.second.IsWormhole() && it.second.AppearsInMultipleSystems())
+		{
+			auto *wormhole = wormholes.Get(it.first);
+			Wormhole::GenerateFromPlanet(wormhole, &it.second);
+			it.second.AssignWormhole();
+
+			if(!it.second.IsWormhole())
+				Files::LogError("Warning: auto generation of wormhole \"" + it.first + "\" failed.");
+			else
+				Files::LogError("Warning: auto generation of wormhole \"" + it.first + "\".");
+		}
+	}
 	// Ship model names are used by missions and depreciation.
 	for(auto &&it : ships)
 		if(it.second.ModelName().empty())
@@ -633,7 +653,16 @@ void GameData::Change(const DataNode &node)
 	else if(node.Token(0) == "outfitter" && node.Size() >= 2)
 		outfitSales.Get(node.Token(1))->Load(node, outfits);
 	else if(node.Token(0) == "planet" && node.Size() >= 2)
-		planets.Get(node.Token(1))->Load(node);
+	{
+		auto *planet = planets.Get(node.Token(1));
+		planet->Load(node);
+
+		// Updating a planet also updates its wormhole if it has one.
+		if(planet->IsWormhole())
+			wormholes.Get(node.Token(1))->UpdateFromPlanet();
+	}
+	else if(node.Token(0) == "wormhole" && node.Size() >= 2)
+		wormholes.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "shipyard" && node.Size() >= 2)
 		shipSales.Get(node.Token(1))->Load(node, ships);
 	else if(node.Token(0) == "system" && node.Size() >= 2)
@@ -843,6 +872,13 @@ const Set<Sale<Ship>> &GameData::Shipyards()
 const Set<System> &GameData::Systems()
 {
 	return systems;
+}
+
+
+
+const Set<Wormhole> &GameData::Wormholes()
+{
+	return wormholes;
 }
 
 
@@ -1086,6 +1122,8 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			phrases.Get(node.Token(1))->Load(node);
 		else if(key == "planet" && node.Size() >= 2)
 			planets.Get(node.Token(1))->Load(node);
+		else if(key == "wormhole" && node.Size() >= 2)
+			wormholes.Get(node.Token(1))->Load(node);
 		else if(key == "ship" && node.Size() >= 2)
 		{
 			// Allow multiple named variants of the same ship model.

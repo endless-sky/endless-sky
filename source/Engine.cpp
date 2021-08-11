@@ -56,6 +56,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 #include "Visual.h"
 #include "Weather.h"
+#include "Wormhole.h"
 #include "text/WrappedText.h"
 
 #include <algorithm>
@@ -1336,7 +1337,7 @@ void Engine::CalculateStep()
 		if(!wasHyperspacing)
 			for(const auto &it : playerSystem->Objects())
 				if(it.HasValidPlanet() && it.GetPlanet()->IsWormhole() &&
-						it.GetPlanet()->GetWormhole().WormholeDestination(playerSystem) == flagship->GetSystem())
+						it.GetPlanet()->GetWormhole()->WormholeDestination(playerSystem) == flagship->GetSystem())
 					player.Visit(*it.GetPlanet());
 		
 		doFlash = Preferences::Has("Show hyperspace flash");

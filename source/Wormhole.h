@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class DataNode;
+class Planet;
 class System;
 
 
@@ -25,13 +26,17 @@ class System;
 // Class representing a wormhole in a planet.
 class Wormhole {
 public:
-	Wormhole(const std::vector<const System *> &systems) noexcept;
+	static void GenerateFromPlanet(Wormhole *wormhole, const Planet *planet);
 
+
+public:
 	// Load a wormhole's description from a file.
 	void Load(const DataNode &node);
 	// Check if this wormhole has been defined.
 	bool IsValid() const;
 
+	// Returns the planet corresponding to this wormhole.
+	const Planet *GetPlanet() const;
 	// Returns this wormhole's name.
 	const std::string &Name() const;
 	// Whether this wormhole's link appears on the map.
@@ -39,20 +44,19 @@ public:
 	
 	const System *WormholeSource(const System *to) const;
 	const System *WormholeDestination(const System *from) const;
-	const std::vector<const System *> &Systems() const;
+	const std::unordered_map<const System *, const System *> &Links() const;
 
-	// Removes links from and to the given system.
-	void RemoveLinks(const System *from);
+	// Updates this wormhole if the properties of the parent planet changed.
+	void UpdateFromPlanet();
 	
 	
 private:
 	bool isDefined = false;
 	
+	const Planet *planet;
 	std::string name = "???";
 	bool linked = false;
 	std::unordered_map<const System *, const System *> links;
-
-	const std::vector<const System *> *systems;
 };
 
 
