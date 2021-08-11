@@ -13,9 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef STAR_FIELD_H_
 #define STAR_FIELD_H_
 
-#include "DrawList.h"
 #include "Shader.h"
-#include "Sprite.h"
 
 #include "gl_header.h"
 
@@ -24,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Body;
 class Point;
 class Sprite;
+class DrawList;
 
 
 
@@ -44,18 +43,16 @@ public:
 private:
 	void SetUpGraphics();
 	void MakeStars(int stars, int width);
-	void DrawHaze(std::vector<Body> haze, Point topLeft, Point bottomRight, double cloak, DrawList& drawList) const;
+	void DrawHaze(const std::vector<Body> targetHaze, const Point targetTopLeft, const Point targetBottomRight, const double targetTransparency, DrawList& targetDrawList) const;
 	
 	
 private:
 	int widthMod;
 	int tileCols;
 	std::vector<int> tileIndex;
-	
-	mutable bool isFading = false;
 
-	//Current cloak of the haze
-	mutable double hazeCloak = 0.0f;
+	// Current haze transparency, to support fade-in
+	mutable double transparency = 0.;
 	
 	const Sprite *currSprite;
 	

@@ -75,8 +75,8 @@ void StarField::Init(int stars, int width)
 		}
 		Angle randomAngle = Angle::Random();
 		haze.emplace_back(sprite, next, Point(), randomAngle, 8.);
-		prevHaze.emplace_back(sprite, next, Point(), randomAngle, 8.);
 	}
+	prevHaze.assign(haze.begin(),haze.end());
 }
 
 
@@ -87,17 +87,12 @@ void StarField::SetHaze(const Sprite *sprite)
 	if(!sprite)
 		sprite = SpriteSet::Get("_menu/haze");
 	
-	if(isFading){
-		return;
-	}
-	
 	if(sprite != currSprite)
 	{
-		hazeCloak = 1.;
+		transparency = 1.;
 		for(Body &body: prevHaze)
 			body.SetSprite(currSprite);
 		currSprite = sprite;
-		isFading = true;
 	}
 
 	for(Body &body : haze)
@@ -172,12 +167,11 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 	drawList.Clear(0, zoom);
 	drawList.SetCenter(pos);
 
-	if(hazeCloak > 0.)
-		hazeCloak -= FADE_PER_FRAME;
+	if(transparency > 0.)
+		transparency -= FADE_PER_FRAME;
 	else
 	{
-		hazeCloak = 0.;
-		isFading = false;
+		transparency = 0.;
 	}
 	
 	// Any object within this range must be drawn. Some haze sprites may repeat
@@ -185,29 +179,29 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 	Point size = Point(1., 1.) * haze.front().Radius();
 	Point topLeft = pos + (Screen::TopLeft() - size) / zoom;
 	Point bottomRight = pos + (Screen::BottomRight() + size) / zoom;
-	DrawHaze(haze, topLeft, bottomRight, hazeCloak, drawList);
-	if(hazeCloak > 0.)
-		DrawHaze(prevHaze, topLeft, bottomRight, 1 - hazeCloak, drawList);
+	DrawHaze(haze, topLeft, bottomRight, transparency, drawList);
+	if(transparency > 0.)
+		DrawHaze(prevHaze, topLeft, bottomRight, 1 - transparency, drawList);
 
 	drawList.Draw();
 }
 
 
-void StarField::DrawHaze(std::vector<Body> haze, Point topLeft, Point bottomRight, double cloak, DrawList& drawList) const
+void StarField::DrawHaze(const std::vector<Body> targetHaze, const Point targetTopLeft, const Point targetBottomRight, const double targetTransparency, DrawList& targetDrawList) const
 {
-	for(const Body &it : haze)
+	for(const Body &it : targetHaze)
 	{
 		// Figure out the position of the first instance of this haze that is to
 		// the right of and below the top left corner of the screen.
-		double startX = fmod(it.Position().X() - topLeft.X(), HAZE_WRAP);
-		startX += topLeft.X() + HAZE_WRAP * (startX < 0.);
-		double startY = fmod(it.Position().Y() - topLeft.Y(), HAZE_WRAP);
-		startY += topLeft.Y() + HAZE_WRAP * (startY < 0.);
+		double startX = fmod(it.Position().X() - targetTopLeft.X(), HAZE_WRAP);
+		startX += targetTopLeft.X() + HAZE_WRAP * (startX < 0.);
+		double startY = fmod(it.Position().Y() - targetTopLeft.Y(), HAZE_WRAP);
+		startY += targetTopLeft.Y() + HAZE_WRAP * (startY < 0.);
 	
 		// Draw any instances of this haze that are on screen.
-		for(double y = startY; y < bottomRight.Y(); y += HAZE_WRAP)
-			for(double x = startX; x < bottomRight.X(); x += HAZE_WRAP)
-				drawList.Add(it, Point(x, y), cloak);
+		for(double y = startY; y < targetBottomRight.Y(); y += HAZE_WRAP)
+			for(double x = startX; x < targetBottomRight.X(); x += HAZE_WRAP)
+				targetDrawList.Add(it, Point(x, y), targetTransparency);
 	}
 }
 
