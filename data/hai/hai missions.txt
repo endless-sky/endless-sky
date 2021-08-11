@@ -107,6 +107,7 @@ mission "Discovered Wormhole Alpha"
 		never
 	on enter "Ultima Thule"
 		set "wormhole alpha found"
+		fail
 
 
 
