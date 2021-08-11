@@ -3216,7 +3216,7 @@ mission "Spacediving professionals"
 	job
 	repeat
 	name "Spacediving at <planet>"
-	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space.  They've agreed to pay <payment> when they land."
+	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay <payment> when they land."
 	passengers 5 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -3238,7 +3238,7 @@ mission "Spacediving professionals accident"
 	job
 	repeat
 	name "Spacediving at <planet>"
-	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space.  They've agreed to pay 120000 credits when they land."
+	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay 120000 credits when they land."
 	passengers 5 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -3260,7 +3260,7 @@ mission "Spacediving professionals disaster"
 	job
 	repeat
 	name "Spacediving at <planet>"
-	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space.  They've agreed to pay 120000 credits when they land."
+	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay 120000 credits when they land."
 	passengers 5 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
