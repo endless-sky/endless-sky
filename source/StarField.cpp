@@ -190,15 +190,15 @@ void StarField::DrawHaze(const std::vector<Body> &targetHaze, const Point &topLe
 	{
 		// Figure out the position of the first instance of this haze that is to
 		// the right of and below the top left corner of the screen.
-		double startX = fmod(it.Position().X() - targetTopLeft.X(), HAZE_WRAP);
-		startX += targetTopLeft.X() + HAZE_WRAP * (startX < 0.);
-		double startY = fmod(it.Position().Y() - targetTopLeft.Y(), HAZE_WRAP);
-		startY += targetTopLeft.Y() + HAZE_WRAP * (startY < 0.);
-	
+		double startX = fmod(it.Position().X() - topLeft.X(), HAZE_WRAP);
+		startX += topLeft.X() + HAZE_WRAP * (startX < 0.);
+		double startY = fmod(it.Position().Y() - topLeft.Y(), HAZE_WRAP);
+		startY += topLeft.Y() + HAZE_WRAP * (startY < 0.);
+
 		// Draw any instances of this haze that are on screen.
-		for(double y = startY; y < targetBottomRight.Y(); y += HAZE_WRAP)
-			for(double x = startX; x < targetBottomRight.X(); x += HAZE_WRAP)
-				targetDrawList.Add(it, Point(x, y), targetTransparency);
+		for(double y = startY; y < bottomRight.Y(); y += HAZE_WRAP)
+			for(double x = startX; x < bottomRight.X(); x += HAZE_WRAP)
+				drawList.Add(it, Point(x, y), transparency);
 	}
 }
 

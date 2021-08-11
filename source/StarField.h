@@ -43,7 +43,7 @@ public:
 private:
 	void SetUpGraphics();
 	void MakeStars(int stars, int width);
-	void DrawHaze(const std::vector<Body> targetHaze, const Point targetTopLeft, const Point targetBottomRight, const double targetTransparency, DrawList& targetDrawList) const;
+	void DrawHaze(const std::vector<Body> &targetHaze, const Point &topLeft, const Point &bottomRight, double transparency, DrawList &drawList) const;
 	
 	
 private:
