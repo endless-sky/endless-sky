@@ -3238,7 +3238,7 @@ mission "Spacediving professionals accident"
 	job
 	repeat
 	name "Spacediving at <planet>"
-	description "Head to <destination> with <bunks> skydivers and drop them from the edge of space. They look professional, but extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is 120000."
+	description "Head to <destination> with <bunks> skydivers and drop them from the edge of space. They look professional, but extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is 120000 credits."
 	passengers 5 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -3260,7 +3260,7 @@ mission "Spacediving professionals disaster"
 	job
 	repeat
 	name "Spacediving at <planet>"
-	description "Head to <destination> with <bunks> skydivers and drop them from the edge of space. They look professional, but extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is 120000."
+	description "Head to <destination> with <bunks> skydivers and drop them from the edge of space. They look professional, but extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is 120000 credits."
 	passengers 5 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
