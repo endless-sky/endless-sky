@@ -107,7 +107,7 @@ private:
 	void FillCollisionSets();
 	
 	void DoCollisions(Projectile &projectile);
-	void DoAntiMissile(Ship* ship);
+	void DoAntiMissile(Ship *ship);
 	void DoWeather(Weather &weather);
 	void DoCollection(Flotsam &flotsam);
 	void DoScanning(const std::shared_ptr<Ship> &ship);
