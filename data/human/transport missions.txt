@@ -3494,7 +3494,7 @@ mission "Mafia Extortion"
 			`You walk away nonchalantly, but you don't get far before multiple laser blasts slice through you.`
 				die
 			label leave
-			`	You make it to your ship alive and depart under a rain of bullets and laser-weapons fire. This is a pirate planet so there are unlikely to be any lasting consequences, but you might want to stay away from for a few days.`
+			`	You make it to your ship alive and depart under a rain of bullets and laser-weapons fire. This is a pirate planet so there are unlikely to be any lasting consequences, but you might want to stay away for a few days.`
 				flee
 			label payup
 			`The man takes your credits, responds with a brief "Thank you," and walks away.`
