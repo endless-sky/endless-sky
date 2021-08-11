@@ -75,7 +75,7 @@ void StarField::Init(int stars, int width)
 		}
 		haze.emplace_back(sprite, next, Point(), Angle::Random(), 8.);
 	}
-	prevHaze.assign(haze.begin(),haze.end());
+	prevHaze.assign(haze.begin(), haze.end());
 }
 
 
