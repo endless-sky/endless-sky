@@ -27,9 +27,15 @@ void Wormhole::GenerateFromPlanet(Wormhole *wormhole, const Planet *planet)
 {
 	wormhole->planet = planet;
 	wormhole->linked = !planet->Description().empty();
+	GenerateLinks(wormhole, planet);
+}
 
+
+
+void Wormhole::GenerateLinks(Wormhole *wormhole, const Planet *planet)
+{
 	// Wormhole links form a closed loop through every system this wormhole is in.
-	for(int i = 0; i < planet->Systems().size(); ++i)
+	for(size_t i = 0; i < planet->Systems().size(); ++i)
 	{
 		int next = i == planet->Systems().size() - 1 ? 0 : i + 1;
 		wormhole->links[planet->Systems()[i]] = planet->Systems()[next];
@@ -101,6 +107,9 @@ void Wormhole::Load(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+
+	// If no links were specified, auto generate them.
+	GenerateLinks(this, planet);
 }
 
 

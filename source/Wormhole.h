@@ -27,6 +27,7 @@ class System;
 class Wormhole {
 public:
 	static void GenerateFromPlanet(Wormhole *wormhole, const Planet *planet);
+	static void GenerateLinks(Wormhole *wormhole, const Planet *planet);
 
 
 public:
