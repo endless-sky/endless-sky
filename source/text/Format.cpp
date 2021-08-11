@@ -186,6 +186,7 @@ double Format::Parse(const string &str)
 	{
 		if(*it == '.')
 			place = .1;
+		else if(*it == ',') {}
 		else if(*it < '0' || *it > '9')
 			break;
 		else
@@ -221,7 +222,7 @@ double Format::Parse(const string &str)
 
 
 
-string Format::Replace(const string &source, const map<string, string> keys)
+string Format::Replace(const string &source, const map<string, string> &keys)
 {
 	string result;
 	result.reserve(source.length());

@@ -41,7 +41,7 @@ jobs:
     outputs:
       RT_VERSION: ${{ steps.steamrt-version.outputs.RT_VERSION }}
     env:
-      snapshot: latest-container-runtime-depot
+      snapshot: latest-steam-client-general-availability
       sdk: com.valvesoftware.SteamRuntime.Sdk-${{ matrix.platform }}-scout-sysroot
       ARTIFACT: endless-sky
     steps:
@@ -114,7 +114,7 @@ jobs:
       matrix:
         os: [ubuntu-18.04, ubuntu-latest]
     env:
-      snapshot: latest-container-runtime-depot
+      snapshot: latest-steam-client-general-availability
       tarball: steam-runtime.tar.xz
     steps:
     - uses: actions/checkout@v2
