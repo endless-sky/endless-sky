@@ -161,6 +161,7 @@ private:
 	
 	// Track which ships currently have anti-missiles ready to fire.
 	std::vector<Ship *> hasAntiMissile;
+	std::map<Ship *, std::vector<Projectile *>> antiMissileTargets;
 	
 	AI ai;
 	

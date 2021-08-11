@@ -2021,8 +2021,18 @@ void Engine::DoCollisions(Projectile &projectile)
 		if(hit)
 			DoGrudge(hit, gov);
 	}
+	else if(projectile.MissileStrength())
+	{
+		// If the projectile did not hit anything, check for anti-missile
+		// systems in range.
+		for(Ship *ship : hasAntiMissile)
+			if(ship == projectile.Target() || gov->IsEnemy(ship->GetGovernment()))
+				if(ship->IsInAntiMissileRangeOf(projectile))
+				{
+					antiMissileTargets[ship].push_back(&projectile);
+				}
+	}
 }
-
 
 
 // Fire anti-missile shots as appropriate for this ship, prioritizing nearby
@@ -2031,23 +2041,15 @@ void Engine::DoCollisions(Projectile &projectile)
 // that will need to change.
 void Engine::DoAntiMissile(Ship *ship)
 {
-	std::vector<std::vector<Projectile>::iterator> sorted_projectiles;
-	for(std::vector<Projectile>::iterator iter = projectiles.begin(); iter < projectiles.end(); iter++)
-	{
-		std::vector<Projectile>::iterator copy_iter(iter);
-		sorted_projectiles.push_back(copy_iter);
-	}
-	std::sort(sorted_projectiles.begin(),sorted_projectiles.end(),
-			[ship](std::vector<Projectile>::iterator i, std::vector<Projectile>::iterator j) -> bool
+	sort(antiMissileTargets[ship].begin(), antiMissileTargets[ship].end(),
+			[ship](Projectile *i, Projectile *j) -> bool
 			{
-				return i->Position().Distance(ship->Position())<j->Position().Distance(ship->Position());
+				return i->Position().Distance(ship->Position()) < j->Position().Distance(ship->Position());
 			});
-	for(std::vector<Projectile>::iterator projectile : sorted_projectiles)
-	{
-		if(projectile->MissileStrength() && (ship == projectile->Target() || projectile->GetGovernment()->IsEnemy(ship->GetGovernment())))
-			if(ship->FireAntiMissile(*projectile, visuals))
-				projectile->Kill();
-	}
+	for(Projectile *projectile : antiMissileTargets[ship])
+		if(ship->FireAntiMissile(*projectile, visuals))
+			projectile->Kill();
+	antiMissileTargets.erase(ship);
 }
 
 

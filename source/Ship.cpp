@@ -2401,6 +2401,15 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 
 
 
+bool Ship::IsInAntiMissileRangeOf(const Projectile &projectile)
+{
+	if(projectile.Position().Distance(position) > antiMissileRange)
+		return false;
+	return true;
+}
+
+
+
 const System *Ship::GetSystem() const
 {
 	return currentSystem;

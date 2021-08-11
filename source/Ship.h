@@ -212,6 +212,8 @@ public:
 	bool Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
 	// Fire an anti-missile. Returns true if the missile was killed.
 	bool FireAntiMissile(const Projectile &projectile, std::vector<Visual> &visuals);
+	// Returns true if the missile is in range of this ship's anti-missiles.
+	bool IsInAntiMissileRangeOf(const Projectile &projectile);
 	
 	// Get the system this ship is in.
 	const System *GetSystem() const;
