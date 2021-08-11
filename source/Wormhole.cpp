@@ -109,7 +109,8 @@ void Wormhole::Load(const DataNode &node)
 	}
 
 	// If no links were specified, auto generate them.
-	GenerateLinks(this, planet);
+	if(links.empty())
+		GenerateLinks(this, planet);
 }
 
 
