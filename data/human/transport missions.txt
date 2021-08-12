@@ -3324,7 +3324,7 @@ mission "Courier 5"
 				`	(Find out what he wants.)`
 				`	(Ignore him.)`
 					decline
-			`	"My name is Jason ," he says. "I have gotten my hands on a few Yottrite samples, bought from a Quarg, we need you to send this to a research center."`
+			`	"My name is Jason ," he says. "I've gotten my hands on a few Yottrite samples that I bought from a Quarg. We need you to send them to a research center."`
 			choice
 				`	"I'd be glad to."`
 				`	"Sorry, I'm not interested in that sort of work."`
