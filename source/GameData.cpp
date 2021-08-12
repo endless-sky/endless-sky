@@ -347,7 +347,7 @@ void GameData::CheckReferences()
 		if(!it.second.IsWormhole() && it.second.AppearsInMultipleSystems())
 		{
 			auto *wormhole = wormholes.Get(it.first);
-			Wormhole::GenerateFromPlanet(wormhole, &it.second);
+			wormhole->LoadFromPlanet(&it.second);
 			it.second.AssignWormhole();
 
 			if(!it.second.IsWormhole())

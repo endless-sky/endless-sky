@@ -23,27 +23,6 @@ using namespace std;
 
 
 
-void Wormhole::GenerateFromPlanet(Wormhole *wormhole, const Planet *planet)
-{
-	wormhole->planet = planet;
-	wormhole->linked = !planet->Description().empty();
-	GenerateLinks(wormhole, planet);
-}
-
-
-
-void Wormhole::GenerateLinks(Wormhole *wormhole, const Planet *planet)
-{
-	// Wormhole links form a closed loop through every system this wormhole is in.
-	for(size_t i = 0; i < planet->Systems().size(); ++i)
-	{
-		int next = i == planet->Systems().size() - 1 ? 0 : i + 1;
-		wormhole->links[planet->Systems()[i]] = planet->Systems()[next];
-	}
-}
-
-
-
 // Load a planet's description from a file.
 void Wormhole::Load(const DataNode &node)
 {
@@ -110,7 +89,16 @@ void Wormhole::Load(const DataNode &node)
 
 	// If no links were specified, auto generate them.
 	if(links.empty())
-		GenerateLinks(this, planet);
+		GenerateLinks();
+}
+
+
+
+void Wormhole::LoadFromPlanet(const Planet *planet)
+{
+	this->planet = planet;
+	linked = !planet->Description().empty();
+	GenerateLinks();
 }
 
 
@@ -193,4 +181,16 @@ const unordered_map<const System *, const System *> &Wormhole::Links() const
 void Wormhole::UpdateFromPlanet()
 {
 	linked = !planet->Description().empty();
+}
+
+
+
+void Wormhole::GenerateLinks()
+{
+	// Wormhole links form a closed loop through every system this wormhole is in.
+	for(size_t i = 0; i < planet->Systems().size(); ++i)
+	{
+		int next = i == planet->Systems().size() - 1 ? 0 : i + 1;
+		links[planet->Systems()[i]] = planet->Systems()[next];
+	}
 }

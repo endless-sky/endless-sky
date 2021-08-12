@@ -26,13 +26,10 @@ class System;
 // Class representing a wormhole in a planet.
 class Wormhole {
 public:
-	static void GenerateFromPlanet(Wormhole *wormhole, const Planet *planet);
-	static void GenerateLinks(Wormhole *wormhole, const Planet *planet);
-
-
-public:
 	// Load a wormhole's description from a file.
 	void Load(const DataNode &node);
+	// Load a wormhole from a given planet.
+	void LoadFromPlanet(const Planet *planet);
 	// Check if this wormhole has been defined.
 	bool IsValid() const;
 
@@ -49,6 +46,8 @@ public:
 
 	// Updates this wormhole if the properties of the parent planet changed.
 	void UpdateFromPlanet();
+	// Generate any links from the planet.
+	void GenerateLinks();
 	
 	
 private:
