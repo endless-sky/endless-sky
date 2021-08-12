@@ -43,7 +43,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 #ifdef _WIN32
+#define STRICT
+#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+#include <mmsystem.h>
 #endif
 
 using namespace std;

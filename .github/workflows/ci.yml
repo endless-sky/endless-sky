@@ -289,7 +289,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ${{ env.ARTIFACT }}
-        key: ${{ matrix.os }}-artifacts-${{ hashFiles('source/**') }}-${{ hashFiles('.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**') }} # Any of these files will trigger a rebuild
+        key: ${{ matrix.os }}-artifacts-${{ hashFiles('source/**') }}-${{ hashFiles('.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
     - name: Update Homebrew
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: brew update
@@ -301,7 +301,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ${{ env.SDL2_FRAMEWORK }}
-        key: ${{ matrix.os }}-sdl2-${{ hashFiles('utils/fetch_sdl2_framework.sh') }}-${{ hashFiles('.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**') }}
+        key: ${{ matrix.os }}-sdl2-${{ hashFiles('.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
     - name: Compile
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) -quiet
@@ -437,7 +437,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ${{ env.SDL2_FRAMEWORK }}
-        key: ${{ matrix.os }}-sdl2-${{ hashFiles('utils/fetch_sdl2_framework.sh') }}-${{ hashFiles('.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**') }}
+        key: ${{ matrix.os }}-sdl2-${{ hashFiles('.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
     - name: Add support files
       run: |
         mkdir -p Contents/Frameworks Contents/MacOS Contents/Resources

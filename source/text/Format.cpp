@@ -298,7 +298,7 @@ string Format::Capitalize(const string &str)
 	bool first = true;
 	for(char &c : result)
 	{
-		if(!isalpha(static_cast<unsigned char>(c)))
+		if(isspace(static_cast<unsigned char>(c)))
 			first = true;
 		else
 		{
