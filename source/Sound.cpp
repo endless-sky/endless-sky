@@ -12,8 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Sound.h"
 
-#include "Files.h"
 #include "File.h"
+#include "Files.h"
 
 #ifndef __APPLE__
 #include <AL/al.h>
@@ -37,10 +37,11 @@ namespace {
 
 
 
-bool Sound::Load(const string &path)
+bool Sound::Load(const string &path, const string &name)
 {
 	if(path.length() < 5 || path.compare(path.length() - 4, 4, ".wav"))
 		return false;
+	this->name = name;
 	
 	isLooped = path[path.length() - 5] == '~';
 	
@@ -61,6 +62,13 @@ bool Sound::Load(const string &path)
 	alBufferData(buffer, AL_FORMAT_MONO16, &data.front(), bytes, frequency);
 	
 	return true;
+}
+
+
+
+const string &Sound::Name() const
+{
+	return name;
 }
 
 

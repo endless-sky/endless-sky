@@ -16,9 +16,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "Set.h"
 
-#include <algorithm>
 #include <set>
-#include <vector>
+#include <string>
 
 
 

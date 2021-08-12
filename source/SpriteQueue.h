@@ -36,11 +36,18 @@ public:
 	SpriteQueue();
 	~SpriteQueue();
 	
+	// No moving or copying this class.
+	SpriteQueue(const SpriteQueue &other) = delete;
+	SpriteQueue(SpriteQueue &&other) = delete;
+	SpriteQueue &operator=(const SpriteQueue &other) = delete;
+	SpriteQueue &operator=(SpriteQueue &&other) = delete;
+	
 	// Add a sprite to load.
 	void Add(const std::shared_ptr<ImageSet> &images);
 	// Unload the texture for the given sprite (to free up memory).
 	void Unload(const std::string &name);
-	// Upload more iamges and find out our percent completion.
+	// Upload more images and find out our percent completion.
+	// TODO: make this a const accessor.
 	double Progress();
 	// Finish loading.
 	void Finish();

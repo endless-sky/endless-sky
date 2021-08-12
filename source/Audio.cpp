@@ -78,8 +78,7 @@ namespace {
 	ALCdevice *device = nullptr;
 	ALCcontext *context = nullptr;
 	bool isInitialized = false;
-	double volume = .5;
-	static const double VOLUME_SCALE = .25;
+	double volume = .125;
 	
 	// This queue keeps track of sounds that have been requested to play. Each
 	// added sound is "deferred" until the next audio position update to make
@@ -134,9 +133,9 @@ void Audio::Init(const vector<string> &sources)
 	// The listener is looking "into" the screen. This orientation vector is
 	// used to determine what sounds should be in the right or left speaker.
 	ALfloat zero[3] = {0., 0., 0.};
-	ALfloat	orientation[6] = {0., 0., -1., 0., 1., 0.};
+	ALfloat orientation[6] = {0., 0., -1., 0., 1., 0.};
 	
-	alListenerf(AL_GAIN, volume * VOLUME_SCALE);
+	alListenerf(AL_GAIN, volume);
 	alListenerfv(AL_POSITION, zero);
 	alListenerfv(AL_VELOCITY, zero);
 	alListenerfv(AL_ORIENTATION, orientation);
@@ -182,8 +181,8 @@ void Audio::Init(const vector<string> &sources)
 
 
 
-// Check the progress of loading sounds.
-double Audio::Progress()
+// Report the progress of loading sounds.
+double Audio::GetProgress()
 {
 	unique_lock<mutex> lock(audioMutex);
 	
@@ -210,7 +209,7 @@ void Audio::SetVolume(double level)
 {
 	volume = min(1., max(0., level));
 	if(isInitialized)
-		alListenerf(AL_GAIN, volume * VOLUME_SCALE);
+		alListenerf(AL_GAIN, volume);
 }
 
 
@@ -564,6 +563,7 @@ namespace {
 	{
 		string name;
 		string path;
+		Sound *sound;
 		while(true)
 		{
 			{
@@ -577,10 +577,14 @@ namespace {
 					return;
 				name = loadQueue.begin()->first;
 				path = loadQueue.begin()->second;
+
+				// Since we need to unlock the mutex below, create the map entry to
+				// avoid a race condition when accessing sounds' size.
+				sound = &sounds[name];
 			}
 			
 			// Unlock the mutex for the time-intensive part of the loop.
-			if(!sounds[name].Load(path))
+			if(!sound->Load(path, name))
 				Files::LogError("Unable to load sound \"" + name + "\" from path: " + path);
 		}
 	}

@@ -1,4 +1,4 @@
-/* Body.h
+/* Body.cpp
 Copyright (c) 2016 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -65,7 +65,7 @@ const Sprite *Body::GetSprite() const
 // Get the width of this object, in world coordinates (i.e. taking zoom into account).
 double Body::Width() const
 {
-	return sprite ? (.5 * zoom) * sprite->Width() : 0.;
+	return static_cast<double>(sprite ? (.5f * zoom) * sprite->Width() : 0.f);
 }
 
 
@@ -73,7 +73,7 @@ double Body::Width() const
 // Get the height of this object, in world coordinates (i.e. taking zoom into account).
 double Body::Height() const
 {
-	return sprite ? (.5 * zoom) * sprite->Height() : 0.;
+	return static_cast<double>(sprite ? (.5f * zoom) * sprite->Height() : 0.f);
 }
 
 
@@ -198,7 +198,7 @@ void Body::LoadSprite(const DataNode &node)
 			delay = child.Value(1);
 		else if(child.Token(0) == "start frame" && child.Size() >= 2)
 		{
-			frameOffset += child.Value(1);
+			frameOffset += static_cast<float>(child.Value(1));
 			startAtZero = true;
 		}
 		else if(child.Token(0) == "random start frame")
@@ -218,12 +218,12 @@ void Body::LoadSprite(const DataNode &node)
 
 
 // Save the sprite specification, including all animation attributes.
-void Body::SaveSprite(DataWriter &out) const
+void Body::SaveSprite(DataWriter &out, const string &tag) const
 {
 	if(!sprite)
 		return;
 	
-	out.Write("sprite", sprite->Name());
+	out.Write(tag, sprite->Name());
 	out.BeginChild();
 	{
 		if(frameRate != static_cast<float>(2. / 60.))
@@ -261,17 +261,17 @@ void Body::SetSwizzle(int swizzle)
 
 // Set the frame rate of the sprite. This is used for objects that just specify
 // a sprite instead of a full animation data structure.
-void Body::SetFrameRate(double framesPerSecond)
+void Body::SetFrameRate(float framesPerSecond)
 {
-	frameRate = framesPerSecond / 60.;
+	frameRate = framesPerSecond / 60.f;
 }
 
 
 
 // Add the given amount to the frame rate.
-void Body::AddFrameRate(double framesPerSecond)
+void Body::AddFrameRate(float framesPerSecond)
 {
-	frameRate += framesPerSecond / 60.;
+	frameRate += framesPerSecond / 60.f;
 }
 
 
@@ -331,7 +331,7 @@ void Body::SetStep(int step) const
 	{
 		randomize = false;
 		// The random offset can be a fractional frame.
-		frameOffset += Random::Real() * cycle;
+		frameOffset += static_cast<float>(Random::Real()) * cycle;
 	}
 	else if(startAtZero)
 	{

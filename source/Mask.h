@@ -29,9 +29,6 @@ class ImageBuffer;
 // the image itself.
 class Mask {
 public:
-	// Default constructor.
-	Mask();
-	
 	// Construct a mask from the alpha channel of an image.
 	void Create(const ImageBuffer &image, int frame = 0);
 	
@@ -48,14 +45,17 @@ public:
 	// Check whether the mask contains the given point.
 	bool Contains(Point point, Angle facing) const;
 	
-	// Find out whether this object (rotated and scaled as represented by the
-	// given unit vector) is within the given range of the given point.
-	bool WithinRange(Point point, Angle facing, double range) const;
+	// Find out whether this object (rotated and scaled as represented by the given
+	// unit vector) is touching a ring defined by the given inner and outer ranges.
+	bool WithinRing(Point point, Angle facing, double inner, double outter) const;
 	
 	// Find out how close the given point is to the mask.
 	double Range(Point point, Angle facing) const;
 	// Get the maximum distance from the center of this mask.
 	double Radius() const;
+	
+	// Get the available outlines in the mask.
+	const std::vector<std::vector<Point>> &Outlines() const;
 	
 	
 private:
@@ -65,7 +65,7 @@ private:
 	
 private:
 	std::vector<std::vector<Point>> outlines;
-	double radius;
+	double radius = 0.;
 };
 
 

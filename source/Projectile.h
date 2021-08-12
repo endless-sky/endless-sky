@@ -13,18 +13,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef PROJECTILE_H_
 #define PROJECTILE_H_
 
-#include "Angle.h"
 #include "Body.h"
+
+#include "Angle.h"
 #include "Point.h"
 
 #include <memory>
 #include <vector>
 
-class Effect;
 class Government;
-class Weapon;
 class Ship;
 class Visual;
+class Weapon;
 
 
 
@@ -37,7 +37,7 @@ class Visual;
 class Projectile : public Body {
 public:
 	Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon);
-	Projectile(const Projectile &parent, const Weapon *weapon);
+	Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon);
 	// Ship explosion.
 	Projectile(Point position, const Weapon *weapon);
 	
@@ -73,6 +73,9 @@ public:
 	// non-const shared pointer to the target.
 	std::shared_ptr<Ship> TargetPtr() const;
 	
+	// Get the distance that this projectile has traveled.
+	double DistanceTraveled() const;
+	
 	
 private:
 	void CheckLock(const Ship &target);
@@ -87,6 +90,7 @@ private:
 	
 	double clip = 1.;
 	int lifetime = 0;
+	double distanceTraveled = 0;
 	bool hasLock = true;
 };
 

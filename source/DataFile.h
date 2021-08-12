@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <istream>
 #include <list>
+#include <string>
 
 
 
@@ -42,7 +43,7 @@ public:
 	
 	
 private:
-	void Load(const char *it, const char *end);
+	void LoadData(const std::string &data);
 	
 	
 private:

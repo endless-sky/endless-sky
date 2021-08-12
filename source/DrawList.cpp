@@ -84,19 +84,6 @@ bool DrawList::AddUnblurred(const Body &body)
 
 
 
-bool DrawList::AddProjectile(const Body &body, const Point &adjustedVelocity, double clip)
-{
-	Point position = body.Position() + .5 * body.Velocity() - center;
-	Point blur = adjustedVelocity - centerVelocity;
-	if(Cull(body, position, blur) || clip <= 0.)
-		return false;
-	
-	Push(body, position, blur, 0., clip, body.GetSwizzle());
-	return true;
-}
-
-
-
 bool DrawList::AddSwizzled(const Body &body, int swizzle)
 {
 	Point position = body.Position() - center;

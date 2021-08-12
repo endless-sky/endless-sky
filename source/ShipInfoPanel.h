@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 
 #include "ClickZone.h"
+#include "Point.h"
 #include "ShipInfoDisplay.h"
 
 #include <map>
@@ -24,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+class Color;
 class Outfit;
 class PlayerInfo;
 class Rectangle;
@@ -37,12 +39,13 @@ class ShipInfoPanel : public Panel {
 public:
 	explicit ShipInfoPanel(PlayerInfo &player, int index = -1);
 	
+	virtual void Step() override;
 	virtual void Draw() override;
 	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
@@ -52,6 +55,7 @@ protected:
 private:
 	// Handle a change to what ship is shown.
 	void UpdateInfo();
+	void ClearZones();
 	
 	// Draw the ship tab (and its subsections).
 	void DrawShipStats(const Rectangle &bounds);
@@ -83,11 +87,10 @@ private:
 	std::vector<ClickZone<int>> zones;
 	std::vector<ClickZone<std::string>> commodityZones;
 	std::vector<ClickZone<const Outfit *>> plunderZones;
-	// Keep track of which item the mouse is hovering over, which item was most
-	// recently selected, and which item is currently being dragged.
+	// Keep track of which item the mouse is hovering over and which item is
+	// currently being dragged.
 	int hoverIndex = -1;
 	int draggingIndex = -1;
-	int selectedIndex = -1;
 	// Track the current mouse location.
 	Point hoverPoint;
 	// You can only make changes to ships when landed on a planet.

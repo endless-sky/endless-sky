@@ -1,0 +1,301 @@
+# Copyright (c) 2017 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+ship "Subsidurial"
+	noun "creature"
+	sprite "ship/subsidurial"
+	thumbnail "thumbnail/subsidurial"
+	"never disabled"
+	attributes
+		category "Light Freighter"
+		"hull" 11600
+		"automaton" 1
+		"mass" 700
+		"cargo space" 70
+		"drag" 8.2
+		"heat dissipation" .8
+		"fuel capacity" 100
+		"thrust" 10
+		"turn" 800
+		"hull repair rate" 3
+		"ion protection" 3
+		"ion resistance" 1
+		"energy capacity" 1
+		"inscrutable" 1
+		"gaslining" 1
+		"hyperdrive" 1
+		"jump speed" .2
+	outfits
+		Mouthparts? 3
+	gun 0 -97 Mouthparts?
+	gun -23 -95 Mouthparts?
+	gun 23 -95 Mouthparts?
+	turret -28 0
+	turret 28 0
+	leak "blood" 30 50
+	explode "blood" 45
+	"final explode" "subsidurial death"
+	description "It is unclear what these creatures are, where they come from, or how they evolved. Scientists have dissected several, but so far the results have simply been that these creatures contain no materials or resources of value; are not even slightly edible, and are too big to be kept as pets."
+	description "	To date, none have demonstrated any sign of sapience, and the few captains who have seen them basically consider them to be the bison of space."
+
+effect "subsidurial death"
+	sprite "effect/subsidurial death/subsidurial death"
+		"no repeat"
+		"frame rate" 20
+	"lifetime" 16
+	"velocity scale" .01
+
+
+
+ship "Void Sprite"
+	noun "creature"
+	sprite "ship/void sprite/void sprite adult"
+		"frame rate" 14.3
+		"random start frame"
+		rewind
+	thumbnail "thumbnail/void sprite adult"
+	"never disabled"
+	attributes
+		category "Medium Warship"
+		"hull" 9600
+		"required crew" 4
+		"bunks" 4
+		"mass" 480
+		"drag" 8.2
+		"heat dissipation" .8
+		"cargo space" 40
+		"thrust" 20
+		"turn" 900
+		"hull repair rate" 3
+		"ion protection" 3
+		"ion resistance" 1
+		"energy capacity" 1
+		"fuel capacity" 1
+		"inscrutable" 1
+		"gaslining" 1
+	outfits
+		Mouthparts? 2
+	gun 0 -156
+	gun 0 -156
+	leak "blood" 40 40
+	explode "blood" 40
+	"final explode" "void sprite adult death"
+	description "The void sprites are an enigmatic species under the watchful gaze of the Archon originally discovered in the Nenia system. The species' connection is unknown, but the Archon seem particularly protective of them."
+
+effect "blood"
+	sprite "effect/blood"
+		"no repeat"
+		"frame rate" 10
+		"random start frame"
+	"lifetime" 61
+	"random angle" 20
+	"random velocity" 1
+	"random spin" 5
+
+effect "void sprite adult death"
+	sprite "effect/void sprite adult death"
+		"no repeat"
+		"frame rate" 20
+	"lifetime" 16
+	"velocity scale" .01
+
+
+
+ship "Void Sprite" "Void Sprite (Infant)"
+	sprite "ship/void sprite/void sprite infant"
+		"frame rate" 24.7
+		"random start frame"
+		rewind
+	thumbnail "thumbnail/void sprite infant"
+	"never disabled"
+	attributes
+		category "Light Warship"
+		"hull" 2800
+		"required crew" 2
+		"bunks" 2
+		"mass" 200
+		"drag" 5.4
+		"heat dissipation" .9
+		"cargo space" 20
+		"thrust" 18
+		"turn" 450
+		"hull repair rate" 1
+		"ion protection" 3
+		"ion resistance" 1
+		"energy capacity" 1
+		"fuel capacity" 1
+		"inscrutable" 1
+		"gaslining" 1
+	outfits
+		Mouthparts?
+	gun 4 -41
+	leak "blood" 60 50
+	explode "blood" 25
+	"final explode" "void sprite infant death"
+	description "This is the immature form of the void sprite. While they typically rely on their tendrils and natural buoyancy to fly within atmospheres, they have demonstrated the unusual ability to manipulate gravitational fields to propel themselves off-world."
+
+effect "void sprite infant death"
+	sprite "effect/void sprite infant death"
+		"no repeat"
+		"frame rate" 15
+	"lifetime" 21
+	"velocity scale" .01
+
+
+
+ship "Ember Waste Node"
+	noun "creature"
+	sprite "ship/ember waste node/ember waste node"
+		"frame rate" 5
+		rewind
+	thumbnail "thumbnail/ember waste node"
+	"never disabled"
+	attributes
+		category "Heavy Warship"
+		"hull" 19600
+		"shields" 5000
+		"required crew" 5
+		"bunks" 5
+		"mass" 1000
+		"drag" 8.2
+		"heat dissipation" 1
+		"fuel capacity" 250
+		"cargo space" 39
+		"outfit space" 0
+		"thrust" 80
+		"turn" 3500
+		"hull repair rate" 3
+		"ion protection" 3
+		"ion resistance" 1
+		"energy capacity" 100
+		"energy generation" 1
+		"fuel capacity" 200
+		"ramscoop" 5
+		"shield generation" 5.2
+		"hull repair rate" 5.0
+		"cloak" .05
+		"quantum keystone" 1
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 50
+		"asteroid scan power" 50
+		"inscrutable" 1
+		"gaslining" 1
+		"jump speed" .3
+		"jump fuel" 10
+		"jump drive" 1
+	outfits
+		Mouthparts? 5
+	gun 3 -83.5 Mouthparts?
+	gun -3 -83.5 Mouthparts?
+	gun 9 -104 Mouthparts?
+	gun -9 -104 Mouthparts?
+	gun 0 -84 Mouthparts?
+	leak "blood" 40 40
+	explode "blood" 40
+	"final explode" "void sprite adult death"
+	description "This unusual creature, first spotted in Postverta, seems to have an affinity for void sprites and is usually found close to them. This 'Ember Waste Node,' as it is being called, bears a superficial resemblance to void sprites but is clearly a different species. The Node demonstrates an ability to manipulate energy fields to create shield-like structures around itself. Most remarkably, it has been seen appearing and disappearing with an energy signature reminiscent of jump drives."
+	description "Although the Node's cloaking power is believed to be connected to its other energy manipulation abilities, the exact method is unknown."
+
+
+
+outfit Mouthparts?
+	category "Guns"
+	thumbnail "outfit/mouthparts"
+	"gun ports" -1
+	weapon
+		sound "crunch"
+		"hit effect" "void sprite chewing"
+		"inaccuracy" 180
+		"velocity" 10
+		"lifetime" 1
+		"reload" 70
+		"burst reload" 35
+		"burst count" 3
+		"cluster"
+		"shield damage" 300
+		"hull damage" 300
+
+effect "void sprite chewing"
+	sprite "effect/smoke"
+		"no repeat"
+		"frame rate" 15
+	"lifetime" 29
+	"random angle" 360
+	"random velocity" .4
+	"random spin" 2
+	"random frame rate" 5
+	"velocity scale" .0001
+
+
+
+fleet "Subsidurial"
+	government "Indigenous Lifeform"
+	cargo 0
+	personality
+		timid mining harvests mute unconstrained
+	variant 100
+		"Subsidurial"
+	variant 1
+		"Subsidurial" 2
+
+
+
+fleet "Void Sprites"
+	government "Indigenous Lifeform"
+	cargo 0
+	personality
+		timid mining harvests mute
+	variant
+		"Void Sprite"
+	variant
+		"Void Sprite"
+		"Void Sprite (Infant)"
+	variant
+		"Void Sprite"
+		"Void Sprite (Infant)" 2
+	variant
+		"Void Sprite"
+		"Void Sprite (Infant)" 3
+	variant
+		"Void Sprite" 2
+		"Void Sprite (Infant)" 4
+
+
+
+fleet "Ember Waste Node"
+	government "Ember Waste"
+	names "unknown entity"
+	cargo 0
+	personality
+		timid mining harvests mute
+	variant
+		"Ember Waste Node"
+
+
+
+phrase "unknown entity"
+	word
+		"Unknown"
+		"Strange"
+		"Novel"
+		"Unrecognized"
+		"Exotic"
+		"Unidentified"
+		"Unresolved"
+	word
+		" "
+	word
+		"Entity"
+		"Creature"
+		"Being"
+		"Lifeform"
+		"Organism"
+		"Thing"

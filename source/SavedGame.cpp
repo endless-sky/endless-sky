@@ -1,4 +1,4 @@
-/* SavedGame.h
+/* SavedGame.cpp
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -15,7 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Date.h"
-#include "Format.h"
+#include "text/Format.h"
 #include "SpriteSet.h"
 
 using namespace std;
@@ -46,12 +46,14 @@ void SavedGame::Load(const string &path)
 			system = node.Token(1);
 		else if(node.Token(0) == "planet" && node.Size() >= 2)
 			planet = node.Token(1);
+		else if(node.Token(0) == "playtime" && node.Size() >= 2)
+			playTime = Format::PlayTime(node.Value(1));
 		else if(node.Token(0) == "account")
 		{
 			for(const DataNode &child : node)
 				if(child.Token(0) == "credits" && child.Size() >= 2)
 				{
-					credits = Format::Number(child.Value(1));
+					credits = Format::Credits(child.Value(1));
 					break;
 				}
 		}
@@ -94,6 +96,7 @@ void SavedGame::Clear()
 	
 	system.clear();
 	planet.clear();
+	playTime = "0s";
 	
 	shipSprite = nullptr;
 	shipName.clear();
@@ -132,6 +135,13 @@ const string &SavedGame::GetSystem() const
 const string &SavedGame::GetPlanet() const
 {
 	return planet;
+}
+
+
+
+const string &SavedGame::GetPlayTime() const
+{
+	return playTime;
 }
 
 

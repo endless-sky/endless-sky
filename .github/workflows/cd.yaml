@@ -1,0 +1,206 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types:
+      - synchronize
+      - opened
+
+jobs:
+
+  cd_ubuntu_x86_64:
+    runs-on: ubuntu-latest
+    env:
+      OUTPUT: endless-sky-x86_64-continuous.tar.gz
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev uuid-dev scons
+      - name: Adjust version strings
+        run: ./utils/cd_update_versions.sh
+        shell: bash
+      - name: Build Application
+        run: scons -Qj $(nproc)
+      - name: Run Unit Tests
+        run: scons -Qj $(nproc) test
+      - name: Package Application
+        run: tar -czf ${{ env.OUTPUT }} sounds images/ data/ license.txt keys.txt icon.png endless-sky credits.txt copyright changelog
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.OUTPUT }}
+          path: ${{ env.OUTPUT }}
+
+  cd_appimage_x86_64:
+    runs-on: ubuntu-18.04
+    env:
+      ARCH: x86_64
+      OUTPUT: endless-sky-x86_64-continuous.AppImage
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev uuid-dev scons
+      - name: Adjust version strings
+        run: ./utils/cd_update_versions.sh
+      - name: Build AppImage
+        run: ./utils/build_appimage.sh
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.OUTPUT }}
+          path: ${{ env.OUTPUT }}
+
+  cd_windows_win64:
+    runs-on: windows-latest
+    env:
+      DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
+      DIR_ESLIB: .\dev64
+      OUTPUT: EndlessSky-win64-continuous.zip
+      AR: gcc-ar
+    steps:
+      - uses: actions/checkout@v2
+      - name: Fetch development libraries
+        run: |
+          Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
+          Expand-Archive win64-dev.zip -DestinationPath . -Force
+          Remove-Item win64-dev.zip
+      - name: Adjust version strings
+        run: ./utils/cd_update_versions.sh
+        shell: bash
+      - name: Build Application
+        run: make -re -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake
+      - name: Package Application
+        run: |
+          COPY .\bin\pkgd\release\endless-sky.exe EndlessSky.exe
+          COPY ".\dev64\bin\*.dll" .
+          COPY $Env:DIR_MINGW64\lib\libgcc_s_seh-1.dll .
+          COPY $Env:DIR_MINGW64\lib\libstdc++-6.dll .
+          COPY $Env:DIR_MINGW64\lib\libwinpthread-1.dll .
+          7z a ${{ env.OUTPUT }} .\sounds\ .\images\ .\data\ *.dll license.txt keys.txt icon.png EndlessSky.exe credits.txt copyright changelog
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.OUTPUT }}
+          path: ${{ env.OUTPUT }}
+
+  cd_macos_x86_64:
+    runs-on: macos-latest
+    env:
+      OUTPUT: EndlessSky-macOS-continuous.zip
+      SDL2_FRAMEWORK: build/SDL2.framework
+    steps:
+      - uses: actions/checkout@v2
+      - name: Update Homebrew
+        run: brew update
+      - name: Install dependencies
+        run: brew install libmad libpng jpeg-turbo
+      - name: Restore cached SDL2 framework
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.SDL2_FRAMEWORK }}
+          key: macos-latest-sdl2-${{ hashFiles('utils/fetch_sdl2_framework.sh') }}-${{ hashFiles('.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**') }}
+      - name: Adjust version strings
+        run: ./utils/cd_update_versions.sh
+        shell: bash
+      - name: Build Application
+        run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) -quiet
+      - name: Package Application
+        run: |
+          cd build/Release
+          7z a ${{ github.workspace }}/${{ env.OUTPUT }} Endless\ Sky.app
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.OUTPUT }}
+          path: ${{ env.OUTPUT }}
+
+  cd_upload_artifacts_to_release:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    needs:
+      - cd_ubuntu_x86_64
+      - cd_appimage_x86_64
+      - cd_windows_win64
+      - cd_macos_x86_64
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      OUTPUT_UBUNTU: endless-sky-x86_64-continuous.tar.gz
+      OUTPUT_APPIMAGE: endless-sky-x86_64-continuous.AppImage
+      OUTPUT_WINDOWS: EndlessSky-win64-continuous.zip
+      OUTPUT_MACOS: EndlessSky-macOS-continuous.zip
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install github-release
+        run: |
+          go get github.com/github-release/github-release
+          echo "GOPATH=$(go env GOPATH)" >> $GITHUB_ENV
+          echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
+      - name: Set environment variables
+        run: |
+          echo "GITHUB_USER=$( echo ${{ github.repository }} | cut -d/ -f1 )" >> $GITHUB_ENV
+          echo "GITHUB_REPO=$( echo ${{ github.repository }} | cut -d/ -f2 )" >> $GITHUB_ENV
+      - name: Move/Create continuous tag
+        run: |
+          git tag --force continuous ${{ github.sha }}
+          git push --tags --force
+      - name: Setup continuous release
+        run: |
+          DESCRIPTION="Triggered on $(date -u '+%Y/%m/%d, %H:%M') UTC by commit ${{ github.sha }} (@${{ github.actor }})
+
+          This is an automated build of the latest source. It may be unstable or even crash, corrupt your save or eat your kitten. Use with caution!
+
+          https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          if ! github-release info -t continuous > /dev/null 2>&1; then
+            github-release release \
+              --tag continuous \
+              --name "Continuous Build" \
+              --description "$DESCRIPTION" \
+              --pre-release
+          else
+            github-release edit \
+              --tag continuous \
+              --name "Continuous Build" \
+              --description "$DESCRIPTION" \
+              --pre-release
+          fi
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          path: ${{ github.workspace }} # This will download all files to e.g `./EndlessSky-win64.zip/EndlessSky-win64.zip`
+      - name: Add ${{ env.OUTPUT_UBUNTU }} to release tag
+        run: |
+          github-release upload \
+            --tag continuous \
+            --replace \
+            --name ${{ env.OUTPUT_UBUNTU }} \
+            --file ${{ env.OUTPUT_UBUNTU }}/${{ env.OUTPUT_UBUNTU }}
+      - name: Add ${{ env.OUTPUT_APPIMAGE }} to release tag
+        run: |
+          github-release upload \
+            --tag continuous \
+            --replace \
+            --name ${{ env.OUTPUT_APPIMAGE }} \
+            --file ${{ env.OUTPUT_APPIMAGE }}/${{ env.OUTPUT_APPIMAGE }}
+      - name: Add ${{ env.OUTPUT_WINDOWS }} to release tag
+        run: |
+          github-release upload \
+            --tag continuous \
+            --replace \
+            --name ${{ env.OUTPUT_WINDOWS }} \
+            --file ${{ env.OUTPUT_WINDOWS }}/${{ env.OUTPUT_WINDOWS }}
+      - name: Add ${{ env.OUTPUT_MACOS }} to release tag
+        run: |
+          github-release upload \
+            --tag continuous \
+            --replace \
+            --name ${{ env.OUTPUT_MACOS }} \
+            --file ${{ env.OUTPUT_MACOS }}/${{ env.OUTPUT_MACOS }}

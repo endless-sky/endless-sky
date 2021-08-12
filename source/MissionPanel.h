@@ -15,12 +15,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapPanel.h"
 
-#include "WrappedText.h"
+#include "text/WrappedText.h"
 
 #include <list>
 
 class Color;
 class Mission;
+class PlayerInfo;
 
 
 
@@ -39,7 +40,7 @@ public:
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Hover(int x, int y) override;
@@ -47,11 +48,17 @@ protected:
 	
 	
 private:
+	// Display and explain the various pointers that may appear on the map.
 	void DrawKey() const;
+	// Display the name of and distance to the selected system.
 	void DrawSelectedSystem() const;
+	// Draw rings around systems that need to be visited for the given mission.
 	void DrawMissionSystem(const Mission &mission, const Color &color) const;
+	// Draw the backgrounds for the "available jobs" and accepted missions/jobs lists.
 	Point DrawPanel(Point pos, const std::string &label, int entries) const;
-	Point DrawList(const std::list<Mission> &list, Point pos) const;
+	// Draw the display names of the given missions, using the reference point.
+	Point DrawList(const std::list<Mission> &list, Point pos,
+		const std::list<Mission>::const_iterator &selectIt) const;
 	void DrawMissionInfo();
 	
 	bool CanAccept() const;

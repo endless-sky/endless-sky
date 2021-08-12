@@ -12,10 +12,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "HailPanel.h"
 
+#include "text/alignment.hpp"
 #include "DrawList.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Information.h"
@@ -27,9 +28,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Politics.h"
 #include "Ship.h"
 #include "Sprite.h"
+#include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
-#include "WrappedText.h"
+#include "text/WrappedText.h"
 
 #include <algorithm>
 #include <cmath>
@@ -44,9 +46,8 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 	SetInterruptible(false);
 	
 	const Government *gov = ship->GetGovernment();
-	const Font &font = FontSet::Get(14);
 	if(!ship->Name().empty())
-		header = font.Truncate(gov->GetName() + " " + ship->Noun() + " \"" + ship->Name(), 328) + "\":";
+		header = gov->GetName() + " " + ship->Noun() + " \"" + ship->Name() + "\":";
 	else
 		header = ship->ModelName() + " (" + gov->GetName() + "): ";
 	// Drones are always unpiloted, so they never respond to hails.
@@ -65,7 +66,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 			SetBribe(gov->GetBribeFraction());
 			if(bribe)
 				message = "If you want us to leave you alone, it'll cost you "
-					+ Format::Number(bribe) + " credits.";
+					+ Format::Credits(bribe) + " credits.";
 		}
 	}
 	else if(ship->IsDisabled())
@@ -113,7 +114,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 	}
 	
 	if(message.empty())
-		message = ship->GetHail();
+		message = ship->GetHail(player);
 }
 
 
@@ -147,7 +148,7 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 			SetBribe(planet->GetBribeFraction());
 			if(bribe)
 				message = "If you want to land here, it'll cost you "
-					+ Format::Number(bribe) + " credits.";
+					+ Format::Credits(bribe) + " credits.";
 			else
 				message = "I'm afraid we can't permit you to land here.";
 		}
@@ -187,11 +188,11 @@ void HailPanel::Draw()
 		}
 	}
 	
-	const Interface *interface = GameData::Interfaces().Get("hail panel");
-	interface->Draw(info, this);
+	const Interface *hailUi = GameData::Interfaces().Get("hail panel");
+	hailUi->Draw(info, this);
 	
 	// Draw the sprite, rotated, scaled, and swizzled as necessary.
-	double zoom = min(2., 400. / max(sprite->Width(), sprite->Height()));
+	float zoom = min(2.f, 400.f / max(sprite->Width(), sprite->Height()));
 	Point center(-170., -10.);
 	
 	DrawList draw;
@@ -218,7 +219,7 @@ void HailPanel::Draw()
 	
 	// Draw the current message.
 	WrappedText wrap;
-	wrap.SetAlignment(WrappedText::JUSTIFIED);
+	wrap.SetAlignment(Alignment::JUSTIFIED);
 	wrap.SetWrapWidth(330);
 	wrap.SetFont(FontSet::Get(14));
 	wrap.Wrap(message);
@@ -227,7 +228,7 @@ void HailPanel::Draw()
 
 
 
-bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	bool shipIsEnemy = (ship && ship->GetGovernment()->IsEnemy());
 	
@@ -287,13 +288,15 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			{
 				ship->GetGovernment()->Bribe();
 				Messages::Add("You bribed a " + ship->GetGovernment()->GetName() + " ship "
-					+ Format::Number(bribe) + " credits to refrain from attacking you today.");
+					+ Format::Credits(bribe) + " credits to refrain from attacking you today."
+						, Messages::Importance::High);
 			}
 			else
 			{
 				planet->Bribe();
 				Messages::Add("You bribed the authorities on " + planet->Name() + " "
-					+ Format::Number(bribe) + " credits to permit you to land.");
+					+ Format::Credits(bribe) + " credits to permit you to land."
+						, Messages::Importance::High);
 			}
 			
 			player.Accounts().AddCredits(-bribe);

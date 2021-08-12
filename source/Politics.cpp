@@ -1,4 +1,4 @@
-/* Politics.h
+/* Politics.cpp
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Politics.h"
 
-#include "Format.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Planet.h"
@@ -20,7 +20,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "Ship.h"
 #include "ShipEvent.h"
-#include "System.h"
 
 #include <algorithm>
 #include <cmath>
@@ -107,7 +106,7 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 			// friendly without the player's behavior toward one of them
 			// influencing their reputation with the other.
 			double penalty = (count * weight) * other->PenaltyFor(eventType);
-			if(eventType & ShipEvent::ATROCITY)
+			if(eventType & ShipEvent::ATROCITY && weight > 0)
 				reputationWith[other] = min(0., reputationWith[other]);
 			
 			reputationWith[other] -= penalty;
@@ -223,6 +222,8 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		if(ship->GetSystem() != player.GetSystem())
 			continue;
 		
+		int failedMissions = 0;
+		
 		if(!scan || (scan & ShipEvent::SCAN_CARGO))
 		{
 			int64_t fine = ship->Cargo().IllegalCargoFine();
@@ -233,6 +234,9 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 
 				for(const Mission &mission : player.Missions())
 				{
+					if(mission.IsFailed())
+						continue;
+					
 					// Append the illegalCargoMessage from each applicable mission, if available
 					string illegalCargoMessage = mission.IllegalCargoMessage();
 					if(!illegalCargoMessage.empty())
@@ -242,7 +246,10 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 					}
 					// Fail any missions with illegal cargo and "Stealth" set
 					if(mission.IllegalCargoFine() > 0 && mission.FailIfDiscovered())
+					{
 						player.FailMission(mission);
+						++failedMissions;
+					}
 				}
 			}
 		}
@@ -261,6 +268,11 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 					}
 				}
 		}
+		if(failedMissions && maxFine > 0)
+		{
+			reason += "\n\tYou failed " + Format::Number(failedMissions) + ((failedMissions > 1) ? " missions" : " mission") 
+				+ " after your illegal cargo was discovered.";
+		}
 	}
 	
 	if(maxFine < 0)
@@ -278,7 +290,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		// Scale the fine based on how lenient this government is.
 		maxFine = lround(maxFine * gov->GetFineFraction());
 		reason = "The " + gov->GetName() + " authorities fine you "
-			+ Format::Number(maxFine) + " credits" + reason;
+			+ Format::Credits(maxFine) + " credits" + reason;
 		player.Accounts().AddFine(maxFine);
 		fined.insert(gov);
 	}
