@@ -3329,7 +3329,7 @@ mission "Courier 5"
 				`	"I'd be glad to."`
 				`	"Sorry, I'm not interested in that sort of work."`
 					decline
-			`	"Excellent!" he says. "Come, let my men load it up onto your ship, a associate of mine will pick them up" He adds, "They are somewhat unstable, so be carefull with them or they could explode."`
+			`	"Excellent!" he says. "Come, let my men load it up onto your ship. An associate of mine will pick them up at <destination>." He adds, "They are somewhat unstable, so be careful with them or they could explode."`
 				accept
 	
 	on visit
