@@ -1,0 +1,769 @@
+# Copyright (c) 2017 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+fleet "Small Remnant"
+	government "Remnant"
+	names "remnant"
+	cargo 2
+	personality
+		heroic plunders appeasing
+	variant 8
+		"Starling"
+	variant 6
+		"Starling (Heavy)"
+	variant 5
+		"Starling (Sniper)"
+	variant 4
+		"Starling (Hunter)"
+	variant 3
+		"Starling (Thrasher)"
+	variant 1
+		"Starling (Sniper)" 2
+	variant 1
+		"Albatross"
+	variant 1
+		"Albatross (Sniper)"
+	variant 1
+		"Albatross (Turret)"
+	variant 1
+		"Albatross (Heavy)"
+
+fleet "Large Remnant"
+	government "Remnant"
+	names "remnant"
+	cargo 2
+	personality
+		heroic plunders appeasing
+	variant 6
+		"Albatross"
+		"Starling" 2
+	variant 6
+		"Albatross (Sniper)"
+		"Starling (Sniper)" 2
+	variant 6
+		"Albatross (Turret)"
+		"Starling (Thrasher)" 2
+	variant 6
+		"Albatross (Heavy)"
+		"Starling (Heavy)" 2
+	variant 3
+		"Albatross"
+		"Starling (Hunter)" 2
+	variant 3
+		"Albatross (Sniper)"
+		"Starling (Hunter)" 2
+	variant 2
+		"Albatross"
+		"Albatross (Sniper)"
+	variant 2
+		"Albatross (Heavy)"
+		"Albatross (Turret)"
+
+fleet "Remnant Transport"
+	government "Remnant"
+	names "remnant"
+	cargo 2
+	personality
+		plunders coward appeasing mining harvests
+	variant 10
+		"Gull"
+	variant 5
+		"Gull (Sniper)"
+	variant 4
+		"Gull (Support)"
+	variant 5
+		"Gull (Cargo)"
+	variant 5
+		"Gull (Bunks)"
+	variant 10
+		"Pelican"
+	variant 10
+		"Pelican"
+		"Gull" 2
+	variant 8
+		"Pelican"
+		"Starling" 2
+	variant 6
+		"Pelican"
+		"Gull" 2
+		"Starling" 2
+	variant 2
+		"Pelican" 3
+		"Albatross (Heavy)"
+	variant 2
+		"Pelican" 2
+		"Starling (Thrasher)" 2
+		"Starling (Sniper)"
+	variant 2
+		"Pelican"
+		"Starling (Hunter)" 2
+
+fleet "Remnant Home Guard"
+	government "Remnant"
+	names "remnant"
+	cargo 2
+	personality
+		plunders appeasing mining harvests surveillance
+	variant 20
+		"Tern" 1
+	variant 10
+		"Tern" 2
+	variant 5
+		"Tern" 3
+
+fleet "Remnant Decoy Defense"
+	government "Remnant"
+	names "remnant"
+	personality
+		staying heroic unconstrained
+	variant 10
+		"Albatross (Shield)"
+
+fleet "Light Remnant Defense"
+	government "Remnant"
+	names "remnant"
+	personality
+		staying heroic unconstrained
+	variant 10
+		"Starling" 2
+		"Starling (Heavy)" 2
+		"Starling (Sniper)" 2
+		"Starling (Hunter)" 2
+		"Starling (Thrasher)" 2
+	variant 10
+		"Starling (Heavy)" 4
+		"Starling (Sniper)" 6
+	variant 10
+		"Starling" 10
+	variant 10
+		"Starling (Heavy)" 10
+	variant 10
+		"Starling (Sniper)" 10
+	variant 10
+		"Starling (Heavy)" 5
+		"Starling (Hunter)" 5
+
+fleet "Heavy Remnant Defense"
+	government "Remnant"
+	names "remnant"
+	personality
+		staying heroic unconstrained
+	variant 6
+		"Albatross (Shield)"
+		"Albatross" 3
+		"Starling" 6
+	variant 6
+		"Albatross (Shield)"
+		"Albatross (Sniper)" 3
+		"Starling (Sniper)" 6
+	variant 6
+		"Albatross (Turret)" 3
+		"Starling (Thrasher)" 6
+	variant 6
+		"Albatross (Heavy)" 3
+		"Starling (Heavy)" 6
+	variant 3
+		"Albatross" 3
+		"Starling (Hunter)" 6
+	variant 3
+		"Albatross (Sniper)" 3
+		"Starling (Hunter)" 6
+	variant 2
+		"Albatross" 3
+		"Albatross (Sniper)" 6
+	variant 2
+		"Albatross (Shield)"
+		"Albatross (Heavy)" 2
+		"Albatross (Turret)"
+
+phrase "remnant"
+	word
+		"Great"
+		"Tall"
+		"Dusky"
+		"Late"
+		"Frozen"
+		"Sunlit"
+		"Calm"
+		"Dread"
+		"Low"
+		"Sharp"
+		"Long"
+		"Weary"
+		"Elder"
+		"Young"
+		"Red"
+		"Green"
+		"New"
+		"Far"
+		"Ancient"
+		"Serene"
+		"Eternal"
+		"Gray"
+		"Starlit"
+		"Moonlit"
+		"Infinite"
+		"Steadfast"
+		"White"
+		"Black"
+	word
+		" "
+	word
+		"Hill"
+		"Song"
+		"Wonder"
+		"Journey"
+		"Fortress"
+		"Breeze"
+		"Road"
+		"Season"
+		"Sky"
+		"Ocean"
+		"Ember"
+		"Spire"
+		"City"
+		"Memory"
+		"Thread"
+		"Lattice"
+		"Anchor"
+		"Beam"
+		"Forest"
+		"Mountain"
+		"Glen"
+		"Stronghold"
+		"Dream"
+		"Wind"
+		"Storm"
+		"Holdfast"
+		"Sea"
+		"Tower"
+		"Redoubt"
+		"Pillar"
+		"Matrix"
+	word
+		" "
+	word
+		"Dancing"
+		"Leaping"
+		"Plunging"
+		"Falling"
+		"Afire"
+		"Aglow"
+		"Nearby"
+		"Yonder"
+		"Spoken"
+		"Awakened"
+		"Remade"
+		"Begun"
+		"Ended"
+		"Found"
+		"Resting"
+		"Lost"
+		"Changed"
+		"Alive"
+		"Restored"
+		"Preserved"
+		"Renewed"
+		"Reborn"
+		"Ascending"
+		"Soaring"
+		"Enduring"
+
+phrase "remnant uncontacted"
+	word
+		"(They sent you a hail consisting of a sign language you don't understand.)"
+
+phrase "remnant uncontacted"
+	word
+		"I am"
+		"We are"
+	word
+		" "
+	word
+		"watching"
+		"observing"
+		"analyzing"
+		"overseeing"
+	word
+		" "
+	word
+		"you"
+		"your actions"
+		"your behavior"
+	word
+		"."
+
+phrase "remnant uncontacted hostile"
+	word
+		"Eat space dust"
+		"Time to go"
+		"Sing your last prayers"
+		"Leave this space"
+	word
+		", "
+	word
+		"hostile ship"
+		"pirate"
+		"Alpha"
+	word
+		"!"
+
+phrase "remnant uncontacted hostile"
+	word
+		"I"
+		"My friend"
+		"My comrade"
+		"My gut"
+	word
+		" "
+	word
+		"was right"
+		"was correct"
+		"knew it"
+	word
+		"."
+		"!"
+	word
+		" You're "
+	word
+		"hostile"
+		"here with malicious intent"
+		"an Alpha"
+	word
+		"!"
+
+phrase "remnant uncontacted hostile"
+	word
+		"(They sent you hail consisting of a sign language you don't understand, and it doesn't seem friendly.)"
+		"(They sign so quickly that your hail receiver can't process it all.)"
+		"(It seems you are not welcome here.)"
+
+phrase "friendly remnant"
+	word
+		"Greetings"
+		"Hello there"
+		"Salutations"
+	word
+		", "
+		" "
+	word
+		"friend"
+		"comrade"
+		"brethen"
+	word
+		"."
+		"!"
+
+phrase "friendly remnant"
+	word
+		"I almost died"
+		"Several hostiles attacked my ship"
+		"My mission was difficult"
+		"We had an emergency"
+		"There was a swarm of Korath raiders here"
+		"We faced a life-threatening situation"
+	word
+		" "
+	word
+		"last week"
+		"last month"
+		"last year"
+	word
+		". "
+		"! "
+	word
+		"Luckily"
+		"Fortunately"
+		"Miraculously"
+	word
+		", "
+	word
+		"I"
+		"my captain"
+		"we"
+	word
+		" "
+	word
+		"had prepared for this"
+		"had planned for this"
+	word
+		" by having "
+	word
+		"a cloaking device along"
+		"a secret weapon"
+		"fast engines"
+		"a last resort every Remnant should have"
+	word
+		"."
+		"!"
+
+phrase "friendly remnant"
+	word
+		"If"
+	word
+		" "
+	word
+		"you have"
+		"the prefects gave you"
+		"our elders allowed you"
+		"our government granted you"
+	word
+		" "
+	word
+		"a license"
+		"a permit"
+		"permission to buy our outfits"
+	word
+		", "
+	word
+		"I"
+		"our experts"
+		"our veterans"
+		"my friends"
+	word
+		" "
+	word
+		"would suggest"
+		"would recommend"
+	word
+		" "
+	word
+		"buying"
+		"getting"
+	word
+		" "
+	phrase
+		"remnant inhibitor cannon"
+		"remnant thrasher cannon"
+		"remnant emp torpedo bay"
+		"remnant salvage scanner"
+	word
+		" "
+	word
+		"They're the best!"
+		"You should definitely try it!"
+		"Definitely better than those outfits in your space."
+
+phrase "remnant inhibitor cannon"
+	word
+		"some"
+		"those"
+		"our"
+	word
+		" Inhibitor Cannons. "
+	word
+		"They"
+		"Those weapons"
+	word
+		" "
+	word
+		"can"
+		"will"
+	word
+		" "
+	word
+		"disrupt"
+		"disable"
+		"slow"
+	word
+		" "
+	word
+		"the enemy's thrusters"
+		"your target's steering"
+		"any ship's engines"
+	word
+		" "
+	word
+		"and prevent them from escaping"
+		"and they won't stand a chance"
+	word
+		"."
+		"!"
+
+phrase "remnant thrasher cannon"
+	word
+		"a few"
+		"several"
+		"some"
+	word
+		" "
+	word
+		"Thrasher Cannons"
+		"Thrashers"
+		"Thrasher Turrets"
+	word
+		". "
+	word
+		"Compared to"
+		"When placed beside"
+	word
+		" your energy blasters, "
+	word
+		"they're more efficient in terms of heat"
+		"you can deal more damage with our cannons"
+		"they may be consuming more energy, but they have better heat and damage"
+		"our cannons may be more expensive, but they have better damage"
+		"they're larger, but they can deal more damage and release less heat"
+		"they're a force to be reckoned with"
+	word
+		"."
+		"!"
+
+phrase "remnant emp torpedo bay"
+	word
+		"an EMP Torpedo Bay.  "
+	word
+		"With a single shot, it"
+		"Firing one"
+		"One torpedo"
+	word
+		" "
+	word
+		"will"
+		"can"
+	word
+		" "
+	word
+		"disrupt"
+		"disable"
+		"deplete"
+	word
+		" "
+	word
+		"the enemy's systems"
+		"your target's batteries"
+		"your enemy's shields"
+		"the target's engines"
+	word
+		"."
+		"!"
+
+phrase "remnant salvage scanner"
+	word
+		"one or two"
+		"a dozen"
+		"some"
+	word
+		" salvage scanners. "
+	word
+		"They combine outfit and tactical scanners into one package"
+		"Compared to your separated versions, our special scanner is more powerful"
+		"They have a longer range than your outfit scanner"
+		"Those babies scan fast"
+		"They're a must-have for plundering"
+	word
+		"."
+		"!"
+
+phrase "friendly remnant"
+	word
+		"Have you heard"
+		"Do you know"
+		"You know anything"
+	word
+		" about "
+	word
+		"the"
+		"those"
+	word
+		" "
+	word
+		"Quarg"
+		"Pug"
+		"Hai"
+		"Coalition far west of our space"
+	word
+		"? "
+	phrase
+		"friendly remnant (aliens.!)"
+		"friendly remnant (aliens?)"
+	replace
+		"those Coalition" "that Coalition"
+
+phrase "friendly remnant (aliens.!)"
+	word
+		"They look strong"
+		"They look weak"
+		"Maybe we should contact them"
+		"I think they're dangerous"
+		"I think they're good"
+		"I think we can trust them"
+		"I want to plunder their tech"
+		"I want their ships"
+		"I haven't seen them yet"
+		"I wonder if the prefects already knew about them"
+	word
+		"."
+		"!"
+
+phrase "friendly remnant (aliens?)"
+	word
+		"Are they strong"
+		"Are they weak"
+		"Are they friendly"
+		"Are they hostile"
+		"How strong are they"
+		"What are the odds of capturing their ships"
+		"Has your government met them"
+		"Is it worth trying to get my hands on their tech?"
+	word
+		"?"
+
+phrase "friendly remnant"
+	word
+		"Be careful"
+		"Stay alert"
+		"Be vigilant"
+	word
+		" about the "
+	word
+		"Alphas in this galaxy"
+		"pirates in your space"
+		"Korath raiders"
+		"Korath"
+	word
+		"."
+		"!"
+	word
+		" "
+	word
+		"You don't want to get yourself killed"
+		"It's dangerous to encounter them"
+		"Always have some weapons in case you come across them"
+		"We have ships that can cloak in case you find yourself in a tricky situation with them"
+	word
+		"."
+		"!"
+
+phrase "hostile remnant"
+	word
+		"(It consists of signs so complex that any regular human wouldn't understand, but it seems that they don't like you.)"
+
+phrase "hostile remnant"
+	word
+		"Apparently,"
+		"It seems"
+		"I think"
+	word
+		" you're "
+	word
+		"not all that different from"
+		"very similar to"
+		"like"
+	word
+		" "
+	word
+		"an Alpha"
+		"a Korath"
+	word
+		". "
+	word
+		"Too bad"
+		"I hope you go up in flames"
+		"You backstabbed us"
+		"You lied to us"
+		"You betrayed our trust"
+	word
+		"."
+		
+phrase "hostile remnant"
+	word
+		"I"
+		"We"
+	word
+		" thought "
+	phrase
+		"hostile remnant (we're)"
+		"hostile remnant (you're)"
+	word
+		". "
+	word
+		"Why are you doing this"
+		"Are you insane"
+		"Did I hurt you"
+	word
+		"?"
+
+phrase "hostile remnant (we're)"
+	word
+		"we were "
+	word
+		"friends"
+		"comrades"
+		"brethren"
+		"good"
+
+phrase "hostile remnant (you're)"
+	word
+		"you were "
+	word
+		"not like the Alphas"
+		"not hostile"
+		"friendly"
+		"good"
+
+
+
+shipyard "Remnant"
+	"Starling"
+	"Gull"
+	"Albatross"
+	"Ibis"
+	"Pelican"
+	"Petrel"
+	"Tern"
+
+shipyard "Remnant Puffin"
+	"Puffin"
+
+outfitter "Remnant"
+	"Inhibitor Cannon"
+	"Thrasher Cannon"
+	"Thrasher Turret"
+	"Point Defense Turret"
+	"Crystal Capacitor"
+	"Millennium Cell"
+	"Epoch Cell"
+	"Aeon Cell"
+	"Thermoelectric Cooler"
+	"EMP Torpedo"
+	"EMP Torpedo Bay"
+	"EMP Torpedo Storage Bay"
+	"Emergency Ramscoop"
+	"Quantum Key Stone"
+	"Anvil-Class Engine"
+	"Crucible-Class Thruster"
+	"Forge-Class Thruster"
+	"Smelter-Class Thruster"
+	"Crucible-Class Steering"
+	"Forge-Class Steering"
+	"Smelter-Class Steering"
+	"Outfits Expansion"
+	"Cargo Expansion"
+	"Small Bunk Room"
+	"Bunk Room"
+	"Local Map"
+	"Hyperdrive"
+	"Scram Drive"
+	"Fuel Pod"
+	"Cargo Scanner"
+	"Outfit Scanner"
+	"Tuning Rifle"
+	"Salvage Scanner"
+
+outfitter "Remnant Salvage"
+	"Generator (Furnace Class)"
+	"Small Heat Shunt"
+	"Systems Core (Small)"
+	"Thruster (Asteroid Class)"
+	"Thruster (Planetary Class)"
+	"Steering (Asteroid Class)"
+	"Steering (Planetary Class)"
+	"Korath Fire-Lance"

@@ -40,9 +40,15 @@ class Planet {
 public:
 	// Load a planet's description from a file.
 	void Load(const DataNode &node);
+	// Check if both this planet and its containing system(s) have been defined.
+	bool IsValid() const;
 	
-	// Get the name of the planet.
+	// Get the name of the planet (all wormholes use the same name).
+	// When saving missions or writing the player's save, the reference name
+	// associated with this planet is used even if the planet was not fully
+	// defined (i.e. it belongs to an inactive plugin).
 	const std::string &Name() const;
+	void SetName(const std::string &name);
 	// Get the name used for this planet in the data files.
 	const std::string &TrueName() const;
 	// Get the planet's descriptive text.
@@ -67,6 +73,10 @@ public:
 	// Check if this planet is inhabited (i.e. it has a spaceport, and does not
 	// have the "uninhabited" attribute).
 	bool IsInhabited() const;
+	
+	// Check if the security of this planet has been changed from the default so
+	// that we can check if an uninhabited world should fine the player.
+	bool HasCustomSecurity() const;
 	
 	// Check if this planet has a shipyard.
 	bool HasShipyard() const;
@@ -126,6 +136,7 @@ public:
 	
 	
 private:
+	bool isDefined = false;
 	std::string name;
 	std::string description;
 	std::string spaceport;
@@ -146,6 +157,7 @@ private:
 	double bribe = 0.01;
 	double security = .25;
 	bool inhabited = false;
+	bool customSecurity = false;
 	// Any required attributes needed to land on this planet.
 	std::set<std::string> requiredAttributes;
 	

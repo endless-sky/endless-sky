@@ -44,6 +44,7 @@ class Ship;
 class ShipEvent;
 class Sprite;
 class Visual;
+class Weather;
 
 
 
@@ -79,6 +80,9 @@ public:
 	// Draw a frame.
 	void Draw() const;
 	
+	// Give an (automated/scripted) command on behalf of the player.
+	void GiveCommand(const Command &command);
+	
 	// Select the object the player clicked on.
 	void Click(const Point &from, const Point &to, bool hasShift);
 	void RClick(const Point &point);
@@ -95,12 +99,15 @@ private:
 	
 	void SpawnFleets();
 	void SpawnPersons();
+	void GenerateWeather();
 	void SendHails();
+	void HandleKeyboardInputs();
 	void HandleMouseClicks();
 	
 	void FillCollisionSets();
 	
 	void DoCollisions(Projectile &projectile);
+	void DoWeather(Weather &weather);
 	void DoCollection(Flotsam &flotsam);
 	void DoScanning(const std::shared_ptr<Ship> &ship);
 	
@@ -123,11 +130,12 @@ private:
 	
 	class Status {
 	public:
-		Status(const Point &position, double outer, double inner, double radius, int type, double angle = 0.);
+		Status(const Point &position, double outer, double inner, double disabled, double radius, int type, double angle = 0.);
 		
 		Point position;
 		double outer;
 		double inner;
+		double disabled;
 		double radius;
 		int type;
 		double angle;
@@ -139,6 +147,7 @@ private:
 	
 	std::list<std::shared_ptr<Ship>> ships;
 	std::vector<Projectile> projectiles;
+	std::vector<Weather> activeWeather;
 	std::list<std::shared_ptr<Flotsam>> flotsam;
 	std::vector<Visual> visuals;
 	AsteroidField asteroids;
@@ -200,6 +209,15 @@ private:
 	bool doEnter = false;
 	bool hadHostiles = false;
 	
+	// Commands that are currently active (and not yet handled). This is a combination
+	// of keyboard and mouse commands (and any other available input device).
+	Command activeCommands;
+	// Keyboard commands that were active in the previous step.
+	Command keyHeld;
+	// Pressing "land" rapidly toggles targets; pressing it once re-engages landing.
+	int landKeyInterval = 0;
+	
+	// Inputs received from a mouse or other pointer device.
 	bool doClickNextStep = false;
 	bool doClick = false;
 	bool hasShift = false;
@@ -209,7 +227,6 @@ private:
 	Point clickPoint;
 	Rectangle clickBox;
 	int groupSelect = -1;
-	Command clickCommands;
 	
 	double zoom = 1.;
 	

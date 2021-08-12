@@ -1,0 +1,1322 @@
+# Copyright (c) 2014 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Human Vacation [1]"
+	name "Human vacationer to <planet>"
+	job
+	repeat
+	description "This human wants to vacation on the Hai world of <destination>, and will pay you <payment>."
+	passengers 1
+	to offer
+		random < 50
+	source
+		government "Hai"
+	destination
+		distance 2 7
+		attributes "human tourism"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 8000 150
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Human Vacation [2]"
+	name "Human vacationers to <planet>"
+	job
+	repeat
+	description "These <bunks> humans want to vacation on the Hai world of <destination>, and will pay you <payment>."
+	passengers 2 12 .8
+	to offer
+		random < 20
+	source
+		government "Hai"
+	destination
+		distance 2 7
+		attributes "human tourism"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 5000 150
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Hai Vacation [1]"
+	name "Hai vacationer to <planet>"
+	job
+	repeat
+	description "This Hai wants to vacation on the strange Hai world of <destination>, and will pay you <payment>."
+	passengers 1
+	to offer
+		random < 70
+	source
+		government "Hai"
+	destination
+		distance 2 7
+		attributes "hai tourism"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 6000 150
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Hai Vacation [2]"
+	name "Hai vacationers to <planet>"
+	job
+	repeat
+	description "These <bunks> Hai want to vacation on the strange Hai world of <destination>, and will pay you <payment>."
+	passengers 2 12 .8
+	to offer
+		random < 50
+	source
+		government "Hai"
+	destination
+		distance 2 7
+		attributes "hai tourism"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 4000 150
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Hai Vacation [3]"
+	name "Hai vacationers to <planet>"
+	job
+	repeat
+	description "These <bunks> Hai want to vacation on the strange Hai world of <destination>, and will pay you <payment>."
+	passengers 2 12 .8
+	to offer
+		random < 30
+	source
+		government "Hai"
+	destination
+		distance 2 7
+		attributes "hai tourism"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 4000 150
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Hai Vacation [4]"
+	name "Hai vacationers to <planet>"
+	job
+	repeat
+	description "These <bunks> Hai want to vacation on the strange Hai world of <destination>, and will pay you <payment>."
+	passengers 2 12 .8
+	to offer
+		random < 20
+	source
+		government "Hai"
+	destination
+		distance 2 7
+		attributes "hai tourism"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 6000
+		dialog phrase "generic passenger dropoff payment"
+
+
+mission "Wealthy Hai [1]"
+	name "Wealthy Hai to <planet>"
+	job
+	repeat
+	description "This wealthy family of <bunks> Hai will pay <payment> for a smooth and fast journey to <planet> by <date>."
+	passengers 2 4 .8
+	deadline
+	to offer
+		random < 70
+	on offer
+		require "Luxury Accommodations"
+		require "Quantum Keystone"
+	source
+		government "Hai"
+	destination
+		government "Hai"
+		distance 4 8
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 15000 300
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Wealthy Hai [2]"
+	name "Wealthy Hai to <planet>"
+	job
+	repeat
+	description "This wealthy family of <bunks> Hai will pay <payment> for a smooth and fast journey to <planet> by <date>."
+	passengers 2 4 .8
+	deadline
+	to offer
+		random < 30
+	on offer
+		require "Luxury Accommodations"
+		require "Quantum Keystone"
+	source
+		government "Hai"
+	destination
+		government "Hai"
+		distance 4 8
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 15000 300
+		dialog phrase "generic passenger dropoff payment"
+
+
+phrase "hai festival payment dialog"
+	word
+		`Luckily your <passengers> didn't cause too much trouble on the trip. After collecting their things, they pay you <payment> and make their way to the festival.`
+
+mission "Hai Festival [1]"
+	name "Festival at <planet>"
+	job
+	repeat
+	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> Hai will pay you <payment> for you to transport them and their <tons> of supplies to <planet>."
+	passengers 10 20
+	cargo "party supplies" 1 2
+	to offer
+		month == 3
+		random < 60
+	source
+		government "Hai"
+	destination
+		distance 2 7
+		government "Hai"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 10000 200
+		dialog phrase "hai festival payment dialog"
+
+mission "Hai Festival [2]"
+	name "Festival at <planet>"
+	job
+	repeat
+	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> humans will pay you <payment> for you to transport them and their <tons> of supplies to <planet>."
+	passengers 10 20
+	cargo "party supplies" 1 2
+	to offer
+		month == 3
+		random < 60
+	source
+		government "Hai"
+	destination
+		distance 2 7
+		government "Hai"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 10000 200
+		dialog phrase "hai festival payment dialog"
+
+mission "Hai Festival [3]"
+	name "Festival at <planet>"
+	job
+	repeat
+	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> Hai and humans will pay you <payment> for you to transport them and their <tons> of supplies to <planet>."
+	passengers 10 20
+	cargo "party supplies" 1 2
+	to offer
+		month == 3
+		random < 60
+	source
+		government "Hai"
+	destination
+		distance 2 7
+		government "Hai"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 10000 200
+		dialog phrase "hai festival payment dialog"
+
+
+
+phrase "unfettered aid payment dialog"
+	word
+		`You drop off the aid (or as they like to refer to it, "tribute") for the Unfettered, and receive <payment> from your contact on <origin>.`
+
+phrase "unfettered aid pickup dialog"
+	word
+		`The Hai dockworkers load the food for the Unfettered onto your ship. One of them says to you,`
+		`As the Hai load the food onto your ship, one of them says,`
+	word
+		` `
+	word
+		`"Thank you. This is far better than watching our kinfolk starve."`
+		`"Tell our brothers and sisters that if they will only repent, they will be welcome to come home."`
+
+mission "Unfettered Aid [0]"
+	name "Aid shipment to Unfettered"
+	job
+	repeat
+	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the cargo."
+	description "Deliver <tons> of food to the Unfettered on <destination>. You will be paid <payment>."
+	cargo "food (aid)" 25 2 .05
+	to offer
+		random < 40
+		"cargo space" > 80
+		has "Ask the Hai about the Unfettered: offered"
+	source
+		government "Hai"
+	destination
+		distance 3 4
+		attributes "unfettered"
+	on accept
+		dialog phrase "unfettered aid pickup dialog"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 5000 1600
+		dialog phrase "unfettered aid payment dialog"
+
+mission "Unfettered Aid [1]"
+	name "Aid shipment to Unfettered"
+	job
+	repeat
+	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the cargo."
+	description "Deliver <tons> of food to the Unfettered on <destination>. You will be paid <payment>."
+	cargo "food (aid)" 30 2 .05
+	to offer
+		random < 30
+		"cargo space" > 100
+		has "Ask the Hai about the Unfettered: offered"
+	source
+		government "Hai"
+	destination
+		distance 4 5
+		attributes "unfettered"
+	on accept
+		dialog phrase "unfettered aid pickup dialog"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 6000 1800
+		dialog phrase "unfettered aid payment dialog"
+
+mission "Unfettered Aid [2]"
+	name "Aid shipment to Unfettered"
+	job
+	repeat
+	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the cargo."
+	description "Deliver <tons> of food to the Unfettered on <destination>. You will be paid <payment>."
+	cargo "food (aid)" 35 2 .05
+	to offer
+		random < 20
+		"cargo space" > 120
+		has "Ask the Hai about the Unfettered: offered"
+	source
+		government "Hai"
+	destination
+		distance 5 6
+		attributes "unfettered"
+	on accept
+		dialog phrase "unfettered aid pickup dialog"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 7000 2000
+		dialog phrase "unfettered aid payment dialog"
+
+phrase "unfettered tribute payment dialog"
+	word
+		`You drop off the tribute to the Unfettered, and they pay you <payment>.`
+
+phrase "unfettered tribute pickup dialog"
+	word
+		`When you inform the Hai that you are here to receive a tribute payment for the Unfettered, they load the cargo onto your ship with a rather surprising swiftness and cheerfulness.`
+		`The Hai dockworkers load the tribute for the Unfettered onto your ship. One of them says to you, "Thank you. This is far better than watching our kinfolk starve."`
+		`As the Hai load the tribute onto your ship, one of them says, "Tell our brothers and sisters that if they will only repent, they will be welcome to come home."`
+
+mission "Unfettered Tribute 1"
+	name "Hai Tribute to <planet>"
+	job
+	repeat
+	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
+	to offer
+		has "Unfettered Jump Drive 2: offered"
+		random < 80
+	cargo "food (tribute)" 25 2 .05
+	on complete
+		payment 5000 1600
+		dialog phrase "unfettered tribute payment dialog"
+	source
+		attributes "unfettered"
+	stopover
+		distance 3 4
+		attributes "hai"
+		attributes "spaceport"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on stopover
+		dialog phrase "unfettered tribute pickup dialog"
+
+mission "Unfettered Tribute 2"
+	name "Hai Tribute to <planet>"
+	job
+	repeat
+	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
+	to offer
+		has "Unfettered Jump Drive 2: offered"
+		random < 60
+	cargo "food (tribute)" 35 2 .05
+	on complete
+		payment 7000 2000
+		dialog phrase "unfettered tribute payment dialog"
+	source
+		attributes "unfettered"
+	stopover
+		distance 4 5
+		attributes "hai"
+		attributes "spaceport"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on stopover
+		dialog phrase "unfettered tribute pickup dialog"
+
+mission "Unfettered Tribute 3"
+	name "Hai Tribute to <planet>"
+	job
+	repeat
+	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
+	to offer
+		has "Unfettered Jump Drive 2: offered"
+		random < 40
+	cargo "food (tribute)" 45 2 .05
+	on complete
+		payment 9000 2400
+		dialog phrase "unfettered tribute payment dialog"
+	source
+		attributes "unfettered"
+	stopover
+		distance 5 6
+		attributes "hai"
+		attributes "spaceport"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on stopover
+		dialog phrase "unfettered tribute pickup dialog"
+
+
+
+mission "Delivery to Human Space [0]"
+	name "Special Delivery to <planet>"
+	job
+	repeat
+	description "This human wishes for <cargo> to be delivered to <destination> in human space. Payment is <payment>."
+	cargo random 5 10
+	to offer
+		random < 30
+	source
+		government "Hai"
+		near "Heia Due" 2
+	destination
+		attributes "north"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 60000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Delivery to Human Space [1]"
+	name "Special Delivery to <planet>"
+	job
+	repeat
+	description "This Hai wishes for <cargo> to be delivered to <destination> in human space. Payment is <payment>."
+	cargo random 5 10
+	to offer
+		random < 25
+	source
+		government "Hai"
+		near "Heia Due" 2
+	destination
+		attributes "north"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 60000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Delivery to Human Space [2]"
+	name "Special Delivery to <planet>"
+	job
+	repeat
+	description "This human wishes for <cargo> to be delivered to <destination> in human space. Payment is <payment>."
+	cargo random 5 10
+	to offer
+		random < 20
+	source
+		government "Hai"
+		near "Heia Due" 2
+	destination
+		attributes "north"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 60000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Hai Retrieve Human Luxury Goods"
+	name "Special order to <planet>"
+	job
+	repeat
+	description "A Hai socialite on <planet> wants to show off their knowledge of human culture to their peers. They want <cargo> from <stopovers> by <date>. Payment is <payment>."
+	cargo "Luxury Goods" 5 10
+	deadline 24
+	to offer
+		random < 15
+	source
+		government "Hai"
+		near "Heia Due" 2
+	stopover
+		attributes "north"
+	on stopover
+		dialog "You gather the requested <commodity> and load them on your ship for return to <planet>."
+	on visit
+		dialog phrase "generic missing stopover or cargo"
+	on complete
+		payment 120000
+		dialog "Your payment of <payment> is waiting when you touch down, along with delivery instructions. You send the <commodity> by dedicated courier."
+
+mission "Hai Retrieve Human Food"
+	name "Special order to <planet>"
+	job
+	repeat
+	description "A Hai gourmet on <planet> is bored with local fare and wants to try food they heard about from human tourists. They want <cargo> from <stopovers> by <date>. Payment is <payment>."
+	cargo "Food" 5 10
+	deadline 24
+	to offer
+		random < 15
+	source
+		government "Hai"
+		near "Heia Due" 2
+	stopover
+		attributes "north"
+	on stopover
+		dialog "You gather the requested <commodity> and load them on your ship for return to <planet>."
+	on visit
+		dialog phrase "generic missing stopover or cargo"
+	on complete
+		payment 120000
+		dialog "As soon as you touch down you receive a message from the Hai gourmet with thanks and your payment of <payment>."
+
+mission "Hai Retrieve Human Electronics"
+	name "Special order to <planet>"
+	job
+	repeat
+	description "A Hai tinkerer on <planet> wants to experiment with human technology. They want <cargo> from <stopovers> by <date>. Payment is <payment>."
+	cargo "Electronics" 5 10
+	deadline 24
+	to offer
+		random < 15
+	source
+		government "Hai"
+		near "Heia Due" 2
+	stopover
+		attributes "north"
+	on stopover
+		dialog "You gather the requested <commodity> and load them on your ship for return to <planet>."
+	on visit
+		dialog phrase "generic missing stopover or cargo"
+	on complete
+		payment 120000
+		dialog "The Hai tinkerer is waiting for you when you arrive. They pay you <payment> and then run after the cargo pallets as though they plan to open them right there in the spaceport."
+
+
+
+mission "Escort to Human Space (Small)"
+	name "Special Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> for an escort to reach <destination> in human space by <date>."
+	repeat
+	job
+	deadline 15
+	to offer
+		random < 70
+		"combat rating" > 5
+	source
+		government "Hai"
+		near "Heia Due" 2
+	destination
+		attributes "north"
+	npc
+		government "Pirate"
+		personality nemesis waiting harvests plunders
+		system "Rajak"
+		fleet "Small Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis waiting harvests plunders
+		system destination
+		fleet "Small Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis staying harvests plunders
+		system destination
+		fleet "Small Northern Pirates"
+	
+	npc accompany save
+		government "Merchant"
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Freighter (Hai)"
+	on complete
+		payment 120000
+		dialog phrase "generic safe escort completion dialog"
+	on visit
+		dialog phrase "generic arrived-without-npc dialog"
+
+mission "Escort to Human Space (Medium)"
+	name "Special Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> for an escort to reach <destination> in human space by <date>."
+	repeat
+	job
+	deadline 15
+	to offer
+		random < 40
+		"combat rating" > 20
+	source
+		government "Hai"
+		near "Heia Due" 2
+	destination
+		attributes "north"
+	npc
+		government "Pirate"
+		personality nemesis waiting harvests plunders
+		system "Cardax"
+		fleet "Small Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis waiting harvests plunders
+		system "Rigel"
+		fleet "Small Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis waiting harvests plunders
+		system "Rajak"
+		fleet "Small Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis staying harvests plunders
+		system destination
+		fleet "Small Northern Pirates" 2
+	
+	npc accompany save
+		government "Merchant"
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Freighter (Hai)"
+	on complete
+		payment 180000
+		dialog phrase "generic safe escort completion dialog"
+	on visit
+		dialog phrase "generic arrived-without-npc dialog"
+
+mission "Escort to Human Space (Large)"
+	name "Special Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> for an escort to reach <destination> in human space by <date>."
+	repeat
+	job
+	deadline 15
+	to offer
+		random < 30
+		"combat rating" > 60
+	source
+		government "Hai"
+		near "Heia Due" 2
+	destination
+		attributes "north"
+	npc
+		government "Pirate"
+		personality nemesis waiting harvests plunders
+		system "Rajak"
+		fleet "Large Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis waiting harvests plunders
+		system destination
+		fleet "Small Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis staying harvests plunders
+		system destination
+		fleet "Large Northern Pirates"
+	
+	npc accompany save
+		government "Merchant"
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Behemoth (Hai)"
+	on complete
+		payment 240000
+		dialog phrase "generic safe escort completion dialog"
+	on visit
+		dialog phrase "generic arrived-without-npc dialog"
+
+mission "Escort to Human Space (Extra Large)"
+	name "Special Escort to <planet>"
+	description "The captain of the <npc> will pay you <payment> for an escort to reach <destination> in human space by <date>."
+	repeat
+	job
+	deadline 15
+	to offer
+		random < 15
+		"combat rating" > 100
+	source
+		government "Hai"
+		near "Heia Due" 2
+	destination
+		attributes "north"
+	npc
+		government "Pirate"
+		personality nemesis waiting harvests plunders
+		system "Rigel"
+		fleet "Small Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis waiting harvests plunders
+		system "Cardax"
+		fleet "Large Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis waiting harvests plunders
+		system "Rajak"
+		fleet "Large Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis staying harvests plunders
+		system destination
+		fleet "Small Northern Pirates"
+		fleet "Large Northern Pirates"
+	
+	npc accompany save
+		government "Merchant"
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Behemoth (Hai)"
+	on complete
+		payment 300000
+		dialog phrase "generic safe escort completion dialog"
+	on visit
+		dialog phrase "generic arrived-without-npc dialog"
+
+
+
+mission "Hai Passengers [1]"
+	name "Passenger transport to <planet>"
+	job
+	repeat
+	description "Bring <fare> to <destination>. Payment is <payment>."
+	passengers 1 10 .7
+	to offer
+		random < 75
+	source
+		government "Hai"
+	destination
+		distance 2 7
+		government "Hai"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Hai Passengers [2]"
+	name "Passenger transport to <planet>"
+	job
+	repeat
+	description "Bring <fare> to <destination>. Payment is <payment>."
+	passengers 1 10 .7
+	to offer
+		random < 50
+	source
+		government "Hai"
+	destination
+		distance 2 7
+		government "Hai"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Hai Passengers [3]"
+	name "Passenger transport to <planet>"
+	job
+	repeat
+	description "Bring <fare> to <destination>. Payment is <payment>."
+	passengers 1 10 .7
+	to offer
+		random < 25
+	source
+		government "Hai"
+	destination
+		distance 2 7
+		government "Hai"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Hai Family [0]"
+	name "Transport family to <planet>"
+	job
+	repeat
+	description "This family of <bunks> is relocating to <destination>. They will pay you <payment> to take them there."
+	passengers 2 4 .5
+	to offer
+		random < 60
+		"passenger space" > 10
+	source
+		government "Hai"
+	destination
+		distance 4 16
+		government "Hai"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 4000
+		dialog "The family you have been transporting departs your ship after paying you <payment>."
+
+mission "Hai Family [1]"
+	name "Transport family to <planet>"
+	job
+	repeat
+	description "This family of <bunks> is relocating to <destination>. They will pay you <payment> to take them there."
+	passengers 2 4 .5
+	to offer
+		random < 40
+		"passenger space" > 10
+	source
+		government "Hai"
+	destination
+		distance 5 20
+		government "Hai"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 6000
+		dialog "The family you have been transporting departs your ship after paying you <payment>."
+
+mission "Transport Hai miners to <planet>"
+	job
+	repeat
+	description "This family of <bunks> miners is hoping to find work on <destination>, and they will pay you <payment> to take them there."
+	passengers 3 3 .6
+	to offer
+		random < 40
+	source
+		government "Hai"
+	destination
+		attributes "mining"
+		distance 3 12
+		government "Hai"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 2000
+		dialog "You wish the mining family the best of luck on <planet>, and collect your payment of <payment>."
+
+mission "Transport Hai farmers to <planet>"
+	job
+	repeat
+	description "This family of <bunks> farmers is hoping to find work on <destination>, and they will pay you <payment> to take them there."
+	passengers 3 3 .6
+	to offer
+		random < 40
+	source
+		government "Hai"
+	destination
+		attributes "farming"
+		distance 3 12
+		government "Hai"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 2000
+		dialog "You wish the farm family the best of luck on <planet>, and collect your payment of <payment>."
+
+mission "Transport Hai mill workers to <planet>"
+	job
+	repeat
+	description "This family of <bunks> mill workers is hoping to find work on <destination>, and they will pay you <payment> to take them there."
+	passengers 3 3 .6
+	to offer
+		random < 40
+	source
+		government "Hai"
+	destination
+		attributes "textiles"
+		distance 3 12
+		government "Hai"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 2000
+		dialog "You wish the workers the best of luck on <planet>, and collect your payment of <payment>."
+
+mission "Transport Hai workers to <planet>"
+	job
+	repeat
+	description "This family of <bunks> factory workers is hoping to find work on <destination>, and they will pay you <payment> to take them there."
+	passengers 3 3 .6
+	to offer
+		random < 70
+	source
+		government "Hai"
+	destination
+		attributes "factory"
+		distance 3 12
+		government "Hai"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 2000
+		dialog "You wish the workers the best of luck on <planet>, and collect your payment of <payment>."
+
+
+
+mission "Hai Cargo [0]"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 8 4 .1
+	to offer
+		random < 90
+	source
+		government "Hai"
+	destination
+		distance 2 8
+		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		dialog phrase "generic cargo delivery payment"
+
+mission "Hai Cargo [1]"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 8 4 .1
+	to offer
+		random < 70
+	source
+		government "Hai"
+	destination
+		distance 2 7
+		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		dialog phrase "generic cargo delivery payment"
+
+mission "Hai Cargo [2]"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 8 4 .1
+	to offer
+		random < 60
+	source
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
+		government "Hai"
+	destination
+		distance 2 7
+		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		dialog phrase "generic cargo delivery payment"
+
+mission "Hai Cargo [3]"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 8 4 .1
+	to offer
+		random < 50
+	source
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
+		government "Hai"
+	destination
+		distance 3 7
+		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 2000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Hai Cargo [4]"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 8 4 .1
+	to offer
+		random < 40
+	source
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
+		government "Hai"
+	destination
+		distance 4 7
+		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 4000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Hai Bulk Delivery [0]"
+	name "Bulk delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 35 3 .05
+	to offer
+		random < 70
+	source
+		government "Hai"
+	destination
+		distance 2 7
+		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		dialog phrase "generic cargo delivery payment"
+
+mission "Hai Bulk Delivery [1]"
+	name "Bulk delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 35 3 .05
+	to offer
+		random < 60
+	source
+		government "Hai"
+	destination
+		distance 3 7
+		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 2000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Hai Bulk Delivery [2]"
+	name "Bulk delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 35 3 .05
+	to offer
+		random < 50
+	source
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
+		government "Hai"
+	destination
+		distance 4 7
+		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 4000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Hai Large Bulk Delivery [0]"
+	name "Large bulk delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 50 3 .02
+	to offer
+		random < 60
+		"cargo space" > 160
+	source
+		government "Hai"
+	destination
+		distance 2 7
+		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 4000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Hai Large Bulk Delivery [1]"
+	name "Large bulk delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 50 3 .02
+	to offer
+		random < 50
+		"cargo space" > 160
+	source
+		government "Hai"
+	destination
+		distance 3 7
+		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 6000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Hai Large Bulk Delivery [2]"
+	name "Large bulk delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 50 3 .02
+	to offer
+		random < 40
+		"cargo space" > 160
+	source
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
+		government "Hai"
+	destination
+		distance 4 7
+		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 8000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Hai Rush Delivery [0]"
+	name "Rush delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo random 8 3 .1
+	to offer
+		random < 70
+	source
+		government "Hai"
+	destination
+		distance 3 7
+		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 16000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Hai Rush Delivery [1]"
+	name "Rush delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo random 8 3 .1
+	to offer
+		random < 60
+	source
+		government "Hai"
+	destination
+		distance 4 7
+		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 18000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Hai Rush Delivery [2]"
+	name "Rush delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo random 8 3 .1
+	to offer
+		random < 50
+	source
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
+		government "Hai"
+	destination
+		distance 5 7
+		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 20000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Hai Rush Delivery [3]"
+	name "Rush delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo random 8 3 .1
+	to offer
+		random < 40
+	source
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
+		government "Hai"
+	destination
+		distance 6 7
+		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 22000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Hai Large Rush Delivery [0]"
+	name "Large rush delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo random 30 8 .1
+	to offer
+		random < 80
+		"cargo space" > 80
+	source
+		government "Hai"
+	destination
+		distance 3 7
+		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 36000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Hai Large Rush Delivery [1]"
+	name "Large rush delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo random 30 8 .1
+	to offer
+		random < 60
+		"cargo space" > 80
+	source
+		government "Hai"
+	destination
+		distance 4 7
+		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 38000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Hai Large Rush Delivery [2]"
+	name "Large rush delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo random 30 8 .1
+	to offer
+		random < 40
+		"cargo space" > 80
+	source
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
+		government "Hai"
+	destination
+		distance 5 7
+		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 40000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Hai Large Rush Delivery [3]"
+	name "Large rush delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo random 30 8 .1
+	to offer
+		random < 30
+		"cargo space" > 80
+	source
+		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
+		government "Hai"
+	destination
+		distance 6 7
+		government "Hai"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 42000
+		dialog phrase "generic cargo delivery payment"
+
+
+
+mission "Hai Prisoner Roleplay"
+	name `Hai "prison" cruise to <planet>`
+	job
+	repeat
+	description "A group of Hai want to experience what it's like to be human criminals. Transport them to <planet> in your brig. Payment is <payment>."
+	passengers 3 20
+	to offer
+		random < 5
+	source
+		government "Hai"
+	destination
+		distance 3 7
+		government "Hai"
+	on offer
+		require "Brig"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 15000 150
+		dialog "The Hai depart your ship chittering in excitement. One of them hands you your payment of <payment> before running to catch up with their friends."

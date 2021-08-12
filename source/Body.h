@@ -13,11 +13,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef BODY_H_
 #define BODY_H_
 
-#include <cstdint>
-#include <string>
-
 #include "Angle.h"
 #include "Point.h"
+
+#include <cstdint>
+#include <string>
 
 class DataNode;
 class DataWriter;
