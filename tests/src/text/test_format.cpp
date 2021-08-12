@@ -121,6 +121,24 @@ TEST_CASE( "Format::Capitalize", "[Format][Capitalize]") {
 	}
 }
 
+TEST_CASE( "Format::Number", "[Format][Number]") {
+	SECTION( "0-valued inputs" ) {
+		CHECK( Format::Number(-0) == "0" );
+		CHECK( Format::Number(0) == "0" );
+		CHECK( Format::Number(-.0) == "0" );
+		CHECK( Format::Number(.0) == "0" );
+	}
+	SECTION( "Integral inputs" ) {
+		CHECK( Format::Number(1) == "1" );
+		CHECK( Format::Number(-1.) == "-1" );
+		CHECK( Format::Number(1000.) == "1,000" );
+	}
+	SECTION( "Decimals between 0 and 1" ) {
+		CHECK( Format::Number(0.51) == "0.5" );
+		CHECK( Format::Number(0.56) == "0.6" );
+	}
+}
+
 // #endregion unit tests
 
 // #region benchmarks
@@ -134,6 +152,17 @@ TEST_CASE( "Benchmark Format::PlayTime", "[!benchmark][format]" ) {
 	};
 	BENCHMARK( "Format::PlayTime() with an uncapped value" ) {
 		return Format::PlayTime(std::numeric_limits<int>::max());
+	};
+}
+TEST_CASE( "Benchmark Format::Number", "[!benchmark][format]" ) {
+	BENCHMARK( "Format::Number(0.)" ) {
+		return Format::Number(0.);
+	};
+	BENCHMARK( "Format::Number(100.)" ) {
+		return Format::Number(100.);
+	};
+	BENCHMARK( "Format::Number(-10.312345)" ) {
+		return Format::Number(-10.312345);
 	};
 }
 #endif
