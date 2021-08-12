@@ -32,7 +32,7 @@ namespace {
 		const int numPixels = width * height;
 		const uint32_t *begin = image.Pixels() + frame * numPixels;
 		auto LogError = [width, height](string reason) {
-			Files::LogError("Unable to create mask for " + to_string(width) + "x" + to_string(height) + "px image: " + std::move(reason));
+			Files::LogError("Unable to create mask for " + to_string(width) + "x" + to_string(height) + " px image: " + std::move(reason));
 		};
 		raw.clear();
 		
@@ -63,7 +63,7 @@ namespace {
 			if(start == numPixels)
 			{
 				if(raw.empty())
-					LogError("no empty pixels found! Collision masks require a transparent outline!");
+					LogError("no border pixels found! Collision masks require a transparent outline!");
 				return;
 			}
 			
@@ -156,11 +156,11 @@ namespace {
 	}
 	
 	
-	void SmoothAndCenter(vector<Point> *raw, Point size)
+	void SmoothAndCenter(vector<Point> &raw, Point size)
 	{
 		// Smooth out the outline by averaging neighboring points.
-		Point prev = raw->back();
-		for(Point &p : *raw)
+		Point prev = raw.back();
+		for(Point &p : raw)
 		{
 			prev += p;
 			prev -= size;
@@ -190,7 +190,7 @@ namespace {
 	}
 	
 	
-	void Simplify(const vector<Point> &p, int first, int last, vector<Point> *result)
+	void Simplify(const vector<Point> &p, int first, int last, vector<Point> &result)
 	{
 		// Find the most divergent point.
 		double dmax = 0.;
@@ -221,16 +221,16 @@ namespace {
 		// Recursively simplify the lines to both sides of that point.
 		Simplify(p, first, imax, result);
 	
-		result->push_back(p[imax]);
+		result.push_back(p[imax]);
 	
 		Simplify(p, imax, last, result);
 	}
 	
 	
 	// Simplify the given outline using the Ramer-Douglas-Peucker algorithm.
-	void Simplify(const vector<Point> &raw, vector<Point> *result)
+	void Simplify(const vector<Point> &raw, vector<Point> &result)
 	{
-		result->clear();
+		result.clear();
 		
 		// Out of all the top-most and bottom-most pixels, find the ones that
 		// are closest to the center of the image.
@@ -252,9 +252,9 @@ namespace {
 		if(top == bottom)
 			return;
 		
-		result->push_back(raw[top]);
+		result.push_back(raw[top]);
 		Simplify(raw, top, bottom, result);
-		result->push_back(raw[bottom]);
+		result.push_back(raw[bottom]);
 		Simplify(raw, bottom, top, result);
 	}
 	
@@ -271,7 +271,7 @@ namespace {
 
 
 
-// Construct a mask from the alpha channel of an image.
+// Construct a mask from the alpha channel of an RGBA-formatted image.
 void Mask::Create(const ImageBuffer &image, int frame)
 {
 	outlines.clear();
@@ -282,25 +282,27 @@ void Mask::Create(const ImageBuffer &image, int frame)
 	if(raw.empty())
 		return;
 	
+	outlines.reserve(raw.size());
 	for(size_t i = 0; i < raw.size(); ++i)
 	{
-		SmoothAndCenter(&raw[i], Point(image.Width(), image.Height()));
+		SmoothAndCenter(raw[i], Point(image.Width(), image.Height()));
 		
 		vector<Point> outline;
-		Simplify(raw[i], &outline);
+		Simplify(raw[i], outline);
 		
 		// Skip any simplified outlines that have no area.
 		if(outline.size() <= 2)
 			continue;
 		
 		radius = max(radius, ComputeRadius(outline));
-		outlines.emplace_back(move(outline));
+		outlines.push_back(move(outline));
 	}
+	outlines.shrink_to_fit();
 }
 
 
 
-// Check whether a mask was successfully loaded.
+// Check whether a mask was successfully generated from the image.
 bool Mask::IsLoaded() const
 {
 	return !outlines.empty();
@@ -406,7 +408,7 @@ double Mask::Radius() const
 
 
 
-// Get the list of points in the outline.
+// Get the individual outlines that comprise this mask.
 const vector<vector<Point>> &Mask::Outlines() const
 {
 	return outlines;
