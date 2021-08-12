@@ -386,7 +386,7 @@ public:
 	bool CanFire(const Weapon *weapon) const;
 	// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
 	// and add whatever heat it generates. Assume that CanFire() is true.
-	void ExpendAmmo(const Weapon *weapon);
+	void ExpendAmmo(const Weapon &weapon);
 	
 	// Each ship can have a target system (to travel to), a target planet (to
 	// land on) and a target ship (to move to, and attack if hostile).

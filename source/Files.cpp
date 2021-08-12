@@ -18,6 +18,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #if defined _WIN32
 #include "text/Utf8.h"
+#define STRICT
+#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #endif
 

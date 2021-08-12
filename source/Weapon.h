@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Body.h"
 #include "Point.h"
 
+#include <cstddef>
 #include <map>
 #include <utility>
 #include <vector>
