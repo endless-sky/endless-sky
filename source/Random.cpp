@@ -64,7 +64,7 @@ uint32_t Random::Int(uint32_t upper_bound)
 	lock_guard<mutex> lock(workaroundMutex);
 #endif
 	const uint32_t x = uniform(gen);
-	return ((uint64_t) x * (uint64_t) upper_bound) >> 32;
+	return (static_cast<uint64_t>(x) * static_cast<uint64_t>(upper_bound)) >> 32;
 }
 
 
