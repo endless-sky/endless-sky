@@ -128,10 +128,9 @@ string Format::Number(double value)
 	
 	bool isNegative = (value < 0.);
 	value = fabs(value);
-	
-	// Check if this is a whole number.
 	string result = to_string(value);
 
+	// Check if this is a whole number.
 	size_t dot = result.find('.');
 	if (dot != string::npos) {
 		// Numbers up to 1000 have two decimals places, up to 10000 one and
@@ -157,6 +156,9 @@ string Format::Number(double value)
 			result.insert(dot, 1, ',');
 			dot -= 3;
 		}
+
+		if(isNegative)
+			result.insert(0, 1, '-');
 	} else
 		// Convert the number to a string, adding commas if needed.
 		FormatInteger(value, isNegative, result);
