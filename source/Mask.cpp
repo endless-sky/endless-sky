@@ -228,10 +228,8 @@ namespace {
 	
 	
 	// Simplify the given outline using the Ramer-Douglas-Peucker algorithm.
-	void Simplify(const vector<Point> &raw, vector<Point> &result)
+	vector<Point> Simplify(const vector<Point> &raw)
 	{
-		result.clear();
-		
 		// Out of all the top-most and bottom-most pixels, find the ones that
 		// are closest to the center of the image.
 		int top = -1;
@@ -248,14 +246,15 @@ namespace {
 				top = i;
 		}
 		
-		// Bail out if we couldn't find top and bottom vertices.
-		if(top == bottom)
-			return;
-		
-		result.push_back(raw[top]);
-		Simplify(raw, top, bottom, result);
-		result.push_back(raw[bottom]);
-		Simplify(raw, bottom, top, result);
+		auto result = vector<Point>{};
+		if(top != bottom)
+		{
+			result.push_back(raw[top]);
+			Simplify(raw, top, bottom, result);
+			result.push_back(raw[bottom]);
+			Simplify(raw, bottom, top, result);
+		}
+		return result;
 	}
 	
 	
@@ -283,19 +282,18 @@ void Mask::Create(const ImageBuffer &image, int frame)
 		return;
 	
 	outlines.reserve(raw.size());
-	for(size_t i = 0; i < raw.size(); ++i)
+	for(auto &edge : raw)
 	{
-		SmoothAndCenter(raw[i], Point(image.Width(), image.Height()));
+		SmoothAndCenter(edge, Point(image.Width(), image.Height()));
 		
-		vector<Point> outline;
-		Simplify(raw[i], outline);
-		
-		// Skip any simplified outlines that have no area.
+		auto outline = Simplify(edge);
+		// Skip any outlines that have no area.
 		if(outline.size() <= 2)
 			continue;
 		
 		radius = max(radius, ComputeRadius(outline));
 		outlines.push_back(move(outline));
+		outlines.back().shrink_to_fit();
 	}
 	outlines.shrink_to_fit();
 }
