@@ -14,6 +14,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ImageBuffer.h"
 
+#include "Files.h"
+
 #include <algorithm>
 #include <cmath>
 #include <limits>
@@ -29,11 +31,13 @@ namespace {
 		const int height = image.Height();
 		const int numPixels = width * height;
 		const uint32_t *begin = image.Pixels() + frame * numPixels;
-		
+		auto LogError = [width, height](string reason) {
+			Files::LogError("Unable to create mask for " + to_string(width) + "x" + to_string(height) + "px image: " + std::move(reason));
+		};
 		raw.clear();
 		
 		// Trace multiple outlines.
-		vector<bool> hasOutline(numPixels, false);
+		auto hasOutline = vector<bool>(numPixels, false);
 		vector<int> directions;
 		vector<Point> points;
 		int start = 0;
@@ -57,7 +61,11 @@ namespace {
 				}
 			}
 			if(start == numPixels)
+			{
+				if(raw.empty())
+					LogError("no empty pixels found! Collision masks require a transparent outline!");
 				return;
+			}
 			
 			// We will step around the outline in these 8 basic directions:
 			static const int step[8][2] = {
@@ -95,6 +103,7 @@ namespace {
 					if(d == firstD)
 					{
 						isAlone = true;
+						LogError("lone point found at (" + to_string(x) + ", " + to_string(y) + ")");
 						return;
 					}
 				}
@@ -266,7 +275,7 @@ namespace {
 void Mask::Create(const ImageBuffer &image, int frame)
 {
 	outlines.clear();
-	radius = 0;
+	radius = 0.;
 	
 	vector<vector<Point>> raw;
 	Trace(image, frame, raw);
@@ -280,7 +289,7 @@ void Mask::Create(const ImageBuffer &image, int frame)
 		vector<Point> outline;
 		Simplify(raw[i], &outline);
 		
-		// Simplified outline has no area.
+		// Skip any simplified outlines that have no area.
 		if(outline.size() <= 2)
 			continue;
 		
@@ -443,7 +452,7 @@ double Mask::Intersection(Point sA, Point vA) const
 bool Mask::Contains(Point point) const
 {
 	// If this point is contained within the mask, a ray drawn out from it will
-	// intersect the mask an even number of times. If that ray coincides with an
+	// intersect the mask an odd number of times. If that ray coincides with an
 	// edge, ignore that edge, and count all segments as closed at the start and
 	// open at the end to avoid double-counting.
 	
@@ -452,6 +461,8 @@ bool Mask::Contains(Point point) const
 	if(outlines.empty())
 		return false;
 	
+	// Compute the number of intersections across all outlines, not just one, as the
+	// outlines may be nested (i.e. holes) or discontinuous (multiple separate shapes).
 	int intersections = 0;
 	for(const vector<Point> &outline : outlines)
 	{
