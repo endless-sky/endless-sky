@@ -126,43 +126,40 @@ string Format::Number(double value)
 	if(!value)
 		return "0";
 	
+	string result;
 	bool isNegative = (value < 0.);
 	value = fabs(value);
-	string result = to_string(value);
-
+	
 	// Check if this is a whole number.
-	size_t dot = result.find('.');
-	if (dot != string::npos) {
-		// Numbers up to 1000 have two decimals places, up to 10000 one and
-		// otherwise none.
-		if (value < 1000 && dot + 3 < result.size())
-			result.erase(dot + 3);
-		else if (value < 10000 && dot + 2 < result.size())
-			result.erase(dot + 2);
-		else
-			result.erase(dot);
-
-		// Remove trailing zeroes.
-		while (result.back() == '0')
-			result.pop_back();
-		// Lingering comma.
-		if (result.back() == '.')
-			result.pop_back();
-
-		// Add the thousands separators.
-		dot -= 3;
-		while (dot && dot < result.size())
+	double decimal = modf(value, &value);
+	if(decimal)
+	{
+		int firstDigit = static_cast<int>(decimal * 10.);
+		if(value < 1000)
 		{
-			result.insert(dot, 1, ',');
-			dot -= 3;
+			decimal *= 10.;
+			decimal -= static_cast<int>(decimal);
+			// Fix any floating point inacuracy.
+			decimal = round(decimal * 100.) / 100.;
+
+			int secondDigit = static_cast<int>(decimal * 10.);
+			if(secondDigit)
+				result += static_cast<char>('0' + secondDigit);
+			if(secondDigit || firstDigit)
+			{
+				result += static_cast<char>('0' + firstDigit);
+				result += '.';
+			}
 		}
-
-		if(isNegative)
-			result.insert(0, 1, '-');
-	} else
-		// Convert the number to a string, adding commas if needed.
-		FormatInteger(value, isNegative, result);
-
+		else if(value < 10000 && firstDigit)
+		{
+			result += static_cast<char>('0' + firstDigit);
+			result += '.';
+		}
+	}
+	
+	// Convert the number to a string, adding commas if needed.
+	FormatInteger(value, isNegative, result);
 	return result;
 }
 
