@@ -3338,4 +3338,4 @@ mission "Courier 5"
 		log "Minor People" "Jason" `A wealthy individual who appears to be involved in researching Yottrite.`
 		payment
 		payment 120000
-		dialog `Somehow, you have managed to bring the samples without it exploding.  When the associate arrives to pick it up, he pays you <payment>.`
+		dialog `Somehow, you have managed to bring the samples without it exploding. When the associate arrives to pick it up, he pays you <payment>.`
