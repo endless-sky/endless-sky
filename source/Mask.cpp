@@ -12,9 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Mask.h"
 
-#include "ImageBuffer.h"
-
 #include "Files.h"
+#include "ImageBuffer.h"
 
 #include <algorithm>
 #include <cmath>
@@ -104,6 +103,7 @@ namespace {
 					{
 						isAlone = true;
 						LogError("lone point found at (" + to_string(x) + ", " + to_string(y) + ")");
+						// TODO: Should this be a `break`?
 						return;
 					}
 				}
@@ -317,7 +317,7 @@ double Mask::Collide(Point sA, Point vA, Angle facing) const
 {
 	// Bail out if we're too far away to possibly be touching.
 	double distance = sA.Length();
-	if(outlines.empty() || distance > radius + vA.Length())
+	if(!IsLoaded() || distance > radius + vA.Length())
 		return 1.;
 	
 	// Rotate into the mask's frame of reference.
@@ -342,7 +342,7 @@ double Mask::Collide(Point sA, Point vA, Angle facing) const
 // Check whether the mask contains the given point.
 bool Mask::Contains(Point point, Angle facing) const
 {
-	if(outlines.empty() || point.Length() > radius)
+	if(!IsLoaded() || point.Length() > radius)
 		return false;
 	
 	// Rotate into the mask's frame of reference.
@@ -356,7 +356,7 @@ bool Mask::Contains(Point point, Angle facing) const
 bool Mask::WithinRing(Point point, Angle facing, double inner, double outer) const
 {
 	// Bail out if the object is too far away to possibly be touched.
-	if(outlines.empty() || inner > point.Length() + radius || outer < point.Length() - radius)
+	if(!IsLoaded() || inner > point.Length() + radius || outer < point.Length() - radius)
 		return false;
 	
 	// Rotate into the mask's frame of reference.
@@ -365,11 +365,11 @@ bool Mask::WithinRing(Point point, Angle facing, double inner, double outer) con
 	inner *= inner;
 	outer *= outer;
 	
-	for(const vector<Point> &outline : outlines)
-		for(const Point &p : outline)
+	for(auto &&outline : outlines)
+		for(auto &&p : outline)
 		{
 			double pSquared = p.DistanceSquared(point);
-			if(pSquared < outer && pSquared > inner) // todo: still right comparison?
+			if(pSquared < outer && pSquared > inner)
 				return true;
 		}
 	
@@ -382,7 +382,7 @@ bool Mask::WithinRing(Point point, Angle facing, double inner, double outer) con
 double Mask::Range(Point point, Angle facing) const
 {
 	double range = numeric_limits<double>::infinity();
-	if(outlines.empty())
+	if(!IsLoaded())
 		return range;
 	
 	// Rotate into the mask's frame of reference.
@@ -390,8 +390,8 @@ double Mask::Range(Point point, Angle facing) const
 	if(Contains(point))
 		return 0.;
 	
-	for(const vector<Point> &outline : outlines)
-		for(const Point &p : outline)
+	for(auto &&outline : outlines)
+		for(auto &&p : outline)
 			range = min(range, p.Distance(point));
 	
 	return range;
@@ -419,10 +419,10 @@ double Mask::Intersection(Point sA, Point vA) const
 	// Keep track of the closest intersection point found.
 	double closest = 1.;
 	
-	for(const vector<Point> &outline : outlines)
+	for(auto &&outline : outlines)
 	{
 		Point prev = outline.back();
-		for(const Point &next : outline)
+		for(auto &&next : outline)
 		{
 			// Check if there is an intersection. (If not, the cross would be 0.) If
 			// there is, handle it only if it is a point where the segment is
@@ -451,6 +451,9 @@ double Mask::Intersection(Point sA, Point vA) const
 
 bool Mask::Contains(Point point) const
 {
+	if(!IsLoaded())
+		return false;
+	
 	// If this point is contained within the mask, a ray drawn out from it will
 	// intersect the mask an odd number of times. If that ray coincides with an
 	// edge, ignore that edge, and count all segments as closed at the start and
@@ -458,16 +461,13 @@ bool Mask::Contains(Point point) const
 	
 	// For simplicity, use a ray pointing straight downwards. A segment then
 	// intersects only if its x coordinates span the point's coordinates.
-	if(outlines.empty())
-		return false;
-	
 	// Compute the number of intersections across all outlines, not just one, as the
 	// outlines may be nested (i.e. holes) or discontinuous (multiple separate shapes).
 	int intersections = 0;
-	for(const vector<Point> &outline : outlines)
+	for(auto &&outline : outlines)
 	{
 		Point prev = outline.back();
-		for(const Point &next : outline)
+		for(auto &&next : outline)
 		{
 			if(prev.X() != next.X())
 				if((prev.X() <= point.X()) == (point.X() < next.X()))
