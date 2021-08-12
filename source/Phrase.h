@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef PHRASE_H_
 #define PHRASE_H_
 
+#include "WeightedList.h"
+
 #include <functional>
 #include <string>
 #include <utility>
@@ -27,6 +29,8 @@ class Phrase {
 public:
 	// Parse the given node into a new branch associated with this phrase.
 	void Load(const DataNode &node);
+	
+	bool IsEmpty() const;
 	
 	const std::string &Name() const;
 	std::string Get() const;
@@ -45,6 +49,9 @@ private:
 		// Create a choice from a grandchild DataNode.
 		Choice(const DataNode &node, bool isPhraseName = false);
 		
+		// The likelihood that this choice will be picked by its part.
+		int Weight() const { return weight; };
+		int weight;
 		// Enable empty checks and iteration:
 		using std::vector<std::pair<std::string, const Phrase *>>::empty;
 		using std::vector<std::pair<std::string, const Phrase *>>::begin;
@@ -56,7 +63,7 @@ private:
 	class Part {
 	public:
 		// Sources of text, either literal or via phrase invocation.
-		std::vector<Choice> choices;
+		WeightedList<Choice> choices;
 		// Character sequences that should be replaced, e.g. "llo"->"y"
 		// would transfrom "Hello hello" into "Hey hey"
 		std::vector<std::pair<std::string, std::string>> replacements;

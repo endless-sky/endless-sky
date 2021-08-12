@@ -32,15 +32,27 @@ namespace {
 	// disallowed or undesirable behaviors (such as dividing by zero).
 	const auto MINIMUM_OVERRIDES = map<string, double>{
 		// Attributes which are present and map to zero may have any value.
+		{"cooling energy", 0.},
 		{"hull energy", 0.},
 		{"hull fuel", 0.},
 		{"hull heat", 0.},
+		{"hull threshold", 0.},
 		{"shield energy", 0.},
 		{"shield fuel", 0.},
 		{"shield heat", 0.},
+		{"disruption resistance energy", 0.},
+		{"disruption resistance fuel", 0.},
+		{"disruption resistance heat", 0.},
+		{"ion resistance energy", 0.},
+		{"ion resistance fuel", 0.},
+		{"ion resistance heat", 0.},
+		{"slowing resistance energy", 0.},
+		{"slowing resistance fuel", 0.},
+		{"slowing resistance heat", 0.},
 		
 		// "Protection" attributes appear in denominators and are incremented by 1.
 		{"disruption protection", -0.99},
+		{"energy protection", -0.99},
 		{"force protection", -0.99},
 		{"fuel protection", -0.99},
 		{"heat protection", -0.99},
@@ -63,30 +75,32 @@ namespace {
 	
 	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body, int> &it, int count)
 	{
-		auto oit = find_if(thisFlares.begin(), thisFlares.end(), 
-			[&it](pair<Body, int> flare)
+		auto oit = find_if(thisFlares.begin(), thisFlares.end(),
+			[&it](const pair<Body, int> &flare)
 			{
 				return it.first.GetSprite() == flare.first.GetSprite();
-			});
+			}
+		);
 		
 		if(oit == thisFlares.end())
 			thisFlares.emplace_back(it.first, count * it.second);
 		else
 			oit->second += count * it.second;
 	}
+	
+	// Used to add the contents of one outfit's map to another, while also
+	// erasing any key with a value of zero.
+	template <class T>
+	void MergeMaps(map<const T *, int> &thisMap, const map<const T *, int> &otherMap, int count)
+	{
+		for(const auto &it : otherMap)
+		{
+			thisMap[it.first] += count * it.second;
+			if(thisMap[it.first] == 0)
+				thisMap.erase(it.first);
+		}
+	}
 }
-
-const vector<string> Outfit::CATEGORIES = {
-	"Guns",
-	"Turrets",
-	"Secondary Weapons",
-	"Ammunition",
-	"Systems",
-	"Power",
-	"Engines",
-	"Hand to Hand",
-	"Special"
-};
 
 
 
@@ -97,6 +111,7 @@ void Outfit::Load(const DataNode &node)
 		name = node.Token(1);
 		pluralName = name + 's';
 	}
+	isDefined = true;
 	
 	for(const DataNode &child : node)
 	{
@@ -127,6 +142,20 @@ void Outfit::Load(const DataNode &node)
 			++steeringFlareSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "afterburner effect" && child.Size() >= 2)
 			++afterburnerEffects[GameData::Effects().Get(child.Token(1))];
+		else if(child.Token(0) == "jump effect" && child.Size() >= 2)
+			++jumpEffects[GameData::Effects().Get(child.Token(1))];
+		else if(child.Token(0) == "hyperdrive sound" && child.Size() >= 2)
+			++hyperSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "hyperdrive in sound" && child.Size() >= 2)
+			++hyperInSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "hyperdrive out sound" && child.Size() >= 2)
+			++hyperOutSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "jump sound" && child.Size() >= 2)
+			++jumpSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "jump in sound" && child.Size() >= 2)
+			++jumpInSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "jump out sound" && child.Size() >= 2)
+			++jumpOutSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "flotsam sprite" && child.Size() >= 2)
 			flotsamSprite = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
@@ -149,16 +178,39 @@ void Outfit::Load(const DataNode &node)
 			cost = child.Value(1);
 		else if(child.Token(0) == "mass" && child.Size() >= 2)
 			mass = child.Value(1);
-		else if(child.Token(0) == "licenses")
+		else if(child.Token(0) == "licenses" && (child.HasChildren() || child.Size() >= 2))
 		{
+			auto isNewLicense = [](const vector<string> &c, const string &val) noexcept -> bool {
+				return find(c.begin(), c.end(), val) == c.end();
+			};
+			// Add any new licenses that were specified "inline".
+			if(child.Size() >= 2)
+			{
+				for(auto it = ++begin(child.Tokens()); it != end(child.Tokens()); ++it)
+					if(isNewLicense(licenses, *it))
+						licenses.push_back(*it);
+			}
+			// Add any new licenses that were specifed as an indented list.
 			for(const DataNode &grand : child)
-				licenses.push_back(grand.Token(0));
+				if(isNewLicense(licenses, grand.Token(0)))
+					licenses.push_back(grand.Token(0));
+		}
+		else if(child.Token(0) == "jump range" && child.Size() >= 2)
+		{
+			// Jump range must be positive.
+			attributes[child.Token(0)] = max(0., child.Value(1));
 		}
 		else if(child.Size() >= 2)
 			attributes[child.Token(0)] = child.Value(1);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	
+	// Only outfits with the jump drive and jump range attributes can
+	// use the jump range, so only keep track of the jump range on
+	// viable outfits.
+	if(attributes.Get("jump drive") && attributes.Get("jump range"))
+		GameData::AddJumpRange(attributes.Get("jump range"));
 	
 	// Legacy support for turrets that don't specify a turn rate:
 	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn() && !AntiMissile())
@@ -192,9 +244,26 @@ void Outfit::Load(const DataNode &node)
 
 
 
+// Check if this outfit has been defined via Outfit::Load (vs. only being referred to).
+bool Outfit::IsDefined() const
+{
+	return isDefined;
+}
+
+
+
+// When writing to the player's save, the reference name is used even if this
+// outfit was not fully defined (i.e. belongs to an inactive plugin).
 const string &Outfit::Name() const
 {
 	return name;
+}
+
+
+
+void Outfit::SetName(const string &name)
+{
+	this->name = name;
 }
 
 
@@ -306,14 +375,17 @@ void Outfit::Add(const Outfit &other, int count)
 		AddFlareSprites(reverseFlareSprites, it, count);
 	for(const auto &it : other.steeringFlareSprites)
 		AddFlareSprites(steeringFlareSprites, it, count);
-	for(const auto &it : other.flareSounds)
-		flareSounds[it.first] += count * it.second;
-	for(const auto &it : other.reverseFlareSounds)
-		reverseFlareSounds[it.first] += count * it.second;
-	for(const auto &it : other.steeringFlareSounds)
-		steeringFlareSounds[it.first] += count * it.second;
-	for(const auto &it : other.afterburnerEffects)
-		afterburnerEffects[it.first] += count * it.second;
+	MergeMaps(flareSounds, other.flareSounds, count);
+	MergeMaps(reverseFlareSounds, other.reverseFlareSounds, count);
+	MergeMaps(steeringFlareSounds, other.steeringFlareSounds, count);
+	MergeMaps(afterburnerEffects, other.afterburnerEffects, count);
+	MergeMaps(jumpEffects, other.jumpEffects, count);
+	MergeMaps(hyperSounds, other.hyperSounds, count);
+	MergeMaps(hyperInSounds, other.hyperInSounds, count);
+	MergeMaps(hyperOutSounds, other.hyperOutSounds, count);
+	MergeMaps(jumpSounds, other.jumpSounds, count);
+	MergeMaps(jumpInSounds, other.jumpInSounds, count);
+	MergeMaps(jumpOutSounds, other.jumpOutSounds, count);
 }
 
 
@@ -373,6 +445,56 @@ const map<const Sound *, int> &Outfit::SteeringFlareSounds() const
 const map<const Effect *, int> &Outfit::AfterburnerEffects() const
 {
 	return afterburnerEffects;
+}
+
+
+
+// Get this oufit's jump effects and sounds, if any.
+const map<const Effect *, int> &Outfit::JumpEffects() const
+{
+	return jumpEffects;
+}
+
+
+
+const map<const Sound *, int> &Outfit::HyperSounds() const
+{
+	return hyperSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::HyperInSounds() const
+{
+	return hyperInSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::HyperOutSounds() const
+{
+	return hyperOutSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::JumpSounds() const
+{
+	return jumpSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::JumpInSounds() const
+{
+	return jumpInSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::JumpOutSounds() const
+{
+	return jumpOutSounds;
 }
 
 

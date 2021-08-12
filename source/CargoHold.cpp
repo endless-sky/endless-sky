@@ -35,7 +35,7 @@ namespace {
 			sortedOutfits.emplace_back(it.first);
 		
 		sort(sortedOutfits.begin(), sortedOutfits.end(),
-			[] (const Outfit *lhs, const Outfit *rhs)
+			[](const Outfit *lhs, const Outfit *rhs)
 			{
 				return lhs->Mass() > rhs->Mass();
 			}
@@ -113,9 +113,10 @@ void CargoHold::Save(DataWriter &out) const
 	if(!first)
 		out.EndChild();
 	
+	// Save all outfits, even ones which have only been referred to.
 	bool firstOutfit = true;
 	for(const auto &it : outfits)
-		if(it.second && !it.first->Name().empty())
+		if(it.second)
 		{
 			// It is possible this cargo hold contained no commodities, meaning
 			// we must print the opening tag now.
@@ -542,7 +543,7 @@ int64_t CargoHold::Value(const System *system) const
 {
 	int64_t value = 0;
 	for(const auto &it : commodities)
-		value += system->Trade(it.first) * it.second;
+		value += static_cast<int64_t>(system->Trade(it.first)) * it.second;
 	// For outfits, assume they're fully depreciated, since that will always be
 	// the case unless the player bought into cargo for some reason.
 	for(const auto &it : outfits)

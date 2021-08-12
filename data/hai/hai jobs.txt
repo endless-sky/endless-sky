@@ -353,6 +353,7 @@ mission "Unfettered Tribute 1"
 	stopover
 		distance 3 4
 		attributes "hai"
+		attributes "spaceport"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on stopover
@@ -375,6 +376,7 @@ mission "Unfettered Tribute 2"
 	stopover
 		distance 4 5
 		attributes "hai"
+		attributes "spaceport"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on stopover
@@ -397,6 +399,7 @@ mission "Unfettered Tribute 3"
 	stopover
 		distance 5 6
 		attributes "hai"
+		attributes "spaceport"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on stopover

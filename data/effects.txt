@@ -16,6 +16,14 @@ effect "jump drive"
 	"random angle" 180
 	"velocity scale" 0.
 
+effect "jump drive red"
+	sprite "effect/jump drive red"
+		"no repeat"
+		"frame rate" 8
+		"rewind"
+	"lifetime" 8
+	"velocity scale" 3
+
 effect "ion spark"
 	sprite "effect/spark"
 		"no repeat"
@@ -159,6 +167,15 @@ effect "final explosion medium"
 
 effect "final explosion large"
 	sound "final explosion large"
+
+effect "asteroid crunch small"
+	sound "asteroid crunch small"
+
+effect "asteroid crunch medium"
+	sound "asteroid crunch medium"
+
+effect "asteroid crunch large"
+	sound "asteroid crunch large"
 
 
 

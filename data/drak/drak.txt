@@ -46,13 +46,14 @@ outfit "Drak Draining Field"
 		"velocity" 1
 		"lifetime" 1
 		"range override" 1100
+		"velocity override" 1100
 		"blast radius" 1100
 		"trigger radius" 1100
 		"reload" 1
 		"firing energy" 20
 		"firing heat" 5
 		"firing force" 30
-		"hit force" 500
+		"hit force" 100
 		"shield damage" 50
 		"ion damage" .5
 		"disruption damage" 1
@@ -91,8 +92,8 @@ outfit "Drak Turret"
 		"hit effect" "drak bolt impact"
 		"inaccuracy" 1
 		"turret turn" 4.
-		"velocity" 36
-		"lifetime" 30
+		"velocity" 30
+		"lifetime" 36
 		"reload" 16
 		"firing energy" 160
 		"firing heat" 160
@@ -203,6 +204,8 @@ ship "Archon"
 		"shield energy" 100
 		"hull repair rate" 100
 		"hull energy" 100
+		"ion protection" 3
+		"ion resistance" 1
 		"ramscoop" 100
 		weapon
 			"blast radius" 200
@@ -234,6 +237,7 @@ ship "Archon"
 	turret 55 16 "Drak Distancer"
 	explode "nuke explosion" 3
 	"final explode" "final explosion large"
+	description `The Archon's presence is chilling. The "ship" has an almost organic appearance, but your ship's scanners give you no discernible information on its construction. What exactly it is you do not know, but you can feel that it is powerful.`
 
 ship "Archon" "Archon B"
 	"never disabled"

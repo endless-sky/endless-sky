@@ -151,7 +151,10 @@ private:
 	class Orders {
 	public:
 		static const int HOLD_POSITION = 0x000;
-		static const int MOVE_TO = 0x001;
+		// Hold active is the same command as hold position, but it is given when a ship
+		// actively needs to move back to the position it was holding.
+		static const int HOLD_ACTIVE = 0x001;
+		static const int MOVE_TO = 0x002;
 		static const int KEEP_STATION = 0x100;
 		static const int GATHER = 0x101;
 		static const int ATTACK = 0x102;
@@ -190,6 +193,9 @@ private:
 	
 	bool escortsAreFrugal = true;
 	bool escortsUseAmmo = true;
+
+	// The minimum speed before landing will consider non-landable objects.
+	const float MIN_LANDING_VELOCITY = 80.;
 	
 	// Current orders for the player's ships. Because this map only applies to
 	// player ships, which are never deleted except when landed, it can use

@@ -37,6 +37,7 @@ mission "To Remembrance Day celebration [0]"
 	repeat
 	description `Bring <fare> to <destination> by <date> for the Remembrance Day celebration on February 19th. Payment is <payment>.`
 	passengers 4 4 .5
+	deadline
 	to offer
 		or
 			and
@@ -71,6 +72,7 @@ mission "To Remembrance Day celebration [1]"
 	repeat
 	description `Deliver <cargo> to <destination> by <date> in preparation for the Remembrance Day celebration on February 19th. Payment is <payment>.`
 	cargo random 5 2 .1
+	deadline
 	to offer
 		or
 			and
@@ -104,6 +106,7 @@ mission "To Remembrance Day celebration [2]"
 	repeat
 	description `Deliver <cargo> to <destination> by <date> in preparation for the Remembrance Day celebration on February 19th. Payment is <payment>.`
 	cargo random 5 2 .1
+	deadline
 	to offer
 		or
 			and
