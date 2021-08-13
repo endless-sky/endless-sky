@@ -3307,17 +3307,19 @@ mission "Spacediving amateurs"
 
 
 mission "Mafia Extortion"
+	minor
 	source
 		government "Pirate"
 	on accept
 		payment -200000
+		fail
 	to offer
 		random < 2
 		credits >= 2000000
 	on offer
 		conversation
 			`A man in a tailored suit, sunglasses, shiny shoes, and green hair approaches you. "Hey, that's a very nice ship you have there. Would be a shame if anything happened to it."`
-			`You notice that he is missing a finger on each hand.`
+			`	You notice that he is missing a finger on each hand.`
 			choice
 				`	"Thank you. My name is <first> <last>. To whom do I have the pleasure of talking to?"`
 					goto nameless
@@ -3334,7 +3336,7 @@ mission "Mafia Extortion"
 				`	"I don't have time to talk."`
 					goto funeral
 			label nameless
-			`	Your greeting gets a grumpy reply about the value of anonymity in a place like this.`
+			`	The man snorts. "Wow, telling everybody you meet your full name. That totally won't end up painting a huge target on your head if said name has a bounty on it. But I digress."`
 			choice
 				`	"Sounds like you're afraid of talking to me. Why is that?"`
 					goto mafia
@@ -3405,21 +3407,21 @@ mission "Mafia Extortion"
 				`	(Go to a bar and ask for whoever is in charge.)`
 					goto bar
 			label police
-			`It's not long before you find the ruins of what used to be a police station... you think. The building has been thoroughly destroyed, hopefully not while anybody was present.`
+			`	It's not long before you find the ruins of what used to be a police station... you think. The building has been thoroughly destroyed, hopefully not while anybody was present.`
 			choice
 				`	(Go to a bar and ask for whoever is in charge.)`
 					goto bar
 				`	(Shrug off the whole thing and take no further action.)`
 					decline
 			label bar
-			`You walk towards the closest bar, but stumble into the green-haired man that you just had a conversation with.`
-			`He looks surprised and asks, "Were you going to rat me out to the local boss?"`
+			`	You walk towards the closest bar, but stumble into the green-haired man that you just had a conversation with.`
+			`	He looks surprised and asks, "Were you going to rat me out to the local boss?"`
 			choice
 				`	"What an excellent idea! Yes, I'll just do that."`
 				`	"What I'm going to do is none of your business."`
 				`	"Don't worry, I'm just taking a walk."`
 			label unnerved
-			`The man is starting to act a bit nervous. "Sorry I bothered you. Can we forget this happened?"`
+			`	The man is starting to act a bit nervous. "Sorry I bothered you. Can we forget this happened?"`
 			choice
 				`	"Well, conversations like this are hard to forget."`
 					goto cornered
@@ -3432,23 +3434,23 @@ mission "Mafia Extortion"
 			choice
 				`	"No, let's just forget it happened."`
 					goto zerodeal
-				`	"Yes, what an excellent idea. How much do you want to pay me?"`
+				`	"Compensation for the time that you've wasted would be excellent."`
 			label payback
-			`The man is now really nervous and asks: "How many credits do you need to just forget this whole conversation happened?"`
+			`	A bead of sweat travels down the man's face as he asks, "How many credits do you need to just forget this whole conversation happened?"`
 			choice
-				`	"100,000,000"`
+				`	"100,000,000."`
 					goto far_too_much
-				`	"1,000,000"`
+				`	"1,000,000."`
 					goto too_much
-				`	"200,000"`
+				`	"200,000."`
 					goto too_much
-				`	"50,000"`
+				`	"50,000."`
 					goto too_much
-				`	"5,000"`
+				`	"5,000."`
 					goto counterdeal
-				`	"2,000"`
+				`	"2,000."`
 					goto counterdeal
-				`	"1,000"`
+				`	"1,000."`
 					goto counterdeal
 				`	"I don't need your credits, just forget it."`
 					goto zerodeal
@@ -3458,17 +3460,16 @@ mission "Mafia Extortion"
 			label too_much
 			`	"That's too much! 2389 credits is all I have. Would that be enough?"`
 			choice
-				`	"Sure"`
+				`	"Sure."`
 					goto counterdeal
 				`	"No way, I want a lot more."`
 					goto far_too_much
 			label counterdeal
 			`	The man hands you a credit chip, nods and walks away. You pocket the chip quickly, more ready to be done with this neighborhood than you want to visibly show.`
-			`A few minutes later you reach into your pocket for the chip... to find it missing.`
-			`	Looks like even a hardened captain like you isn't immune to being pickpocketed on a planet like this.`
+			`	A few minutes later you reach into your pocket for the chip... to find it missing. Looks like even a hardened captain like you isn't immune to being pickpocketed on a planet like this.`
 				decline
 			label far_too_much
-			`The man starts panicking and is clumsily reaching in his jacket, maybe to get some money, but more likely reaching for a gun.`
+			`	The man starts panicking and clumsily reaches into his jacket, maybe to get some money, but more likely reaching for a gun.`
 			choice
 				`	(Try to calm down the man.)`
 					goto draws
@@ -3477,25 +3478,25 @@ mission "Mafia Extortion"
 				`	(Draw your sidearm and shoot the man.)`
 					goto shoot
 			label draws
-			`	The man somehow manages to draw a weapon and tries to shoot at you, but the weapon doesn't seem to function.`
+			`	The man manages to draw a weapon! You brace for impact, but after a few seconds of waiting, you realize his weapon is only making a clicking sound when he tries to shoot.`
 			choice
-				`	"Ha ha, you are really a failure as a goon."`
+				`	"Ha, ha, you really are a failure of a goon."`
 				`	(Draw your sidearm and shoot the man.)`
 					goto shoot
-			`The man tries to fire his weapon once more, but now it does function and the bullet hits you between the eyes. You die almost instantly, but you do have a few microseconds to reflect on the wisdom of mocking a man that is trying to fire a gun at you.`
+			`	As you finish talking, you see a flash of light come from the muzzle of the man's weapon as a bullet hits you between the eyes. You die almost instantly, but you do have a few microseconds to reflect on the wisdom of mocking a man that is trying to fire a gun at you.`
 				die
 			label shoot
 			`	Your bullet hits the man right between the eyes; he dies instantly, and a crowd starts to form around you.`
-			`Most bystanders are surprised, but you also notice an angry sentiment brewing in the (not unarmed) crowd. It might be wise to leave quickly.`
+			`	Most bystanders are surprised, but you also notice an angry sentiment brewing in the (not unarmed) crowd. It might be wise to leave quickly.`
 			choice
 				`	(Run towards your ship and leave immediately.)`
 					goto leave
 				`	(Put away your sidearm and pretend nothing happened.)`
-			`You walk away nonchalantly, but you don't get far before multiple laser blasts slice through you.`
+			`	You walk away nonchalantly, but you don't get far before multiple laser blasts slice through you.`
 				die
 			label leave
 			`	You make it to your ship alive and depart under a rain of bullets and laser-weapons fire. This is a pirate planet so there are unlikely to be any lasting consequences, but you might want to stay away for a few days.`
 				flee
 			label payup
-			`The man takes your credits, responds with a brief "Thank you," and walks away.`
+			`	The man takes your credits, responds with a brief "Thank you," and walks away.`
 				accept
