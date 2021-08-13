@@ -1535,7 +1535,7 @@ mission "Coalition: Submarines 4"
 			`	They are all taken from your cargo and swiftly put in the water as the team of Kimek boards a large ship that you guess is an old tanker. This ship prepares to follow the subs to the testing area, along with another smaller, newer ship with a thick crane on the front. Apri'ie approaches you before he boards the tanker, asking, "Come with us for the test, would you like, Captain? Take a while, it might. Not expected until after nightfall, the next tremors are."`
 			choice
 				`	"If it's alright, yeah. Could be interesting."`
-				`	"I'll pass. Not a fan of that type of ship."`
+				`	"I'll pass. I need some time to rest after the trip here."`
 					goto refuse
 			`	You head up the ramp to the ship, and after a few minutes it sets off, following the submarines controlled remotely by the Kimek team. Exploring the tanker, you find an odd pile of scrap metal secured as cargo on the back, the pieces welded together into a stubby cylinder about the size of the submarines. Apri'ie notices you looking at it, and comes to explain that it's the "prop" on which they'll test the repair functions.`
 			`	Once the tanker comes to a stop, some of the Kimek sailors ask everyone to clear the prop's surroundings and then attach small charges to it, detonating them once they're far enough away. The explosions are small, but make several dents on the cylinder, giving a peek of the metallic insides. The smaller ship's crane grabs the prop and slowly maneuvers it away from the tanker before lowering it into the water and letting it sink. The submarines follow the prop as it goes down, until it comes to a stop after a few minutes.`
