@@ -81,7 +81,7 @@ For example, when making lots of changes to the game, you will generally have th
 
 
 
-Mac OS X:
+macOS:
 
 To build Endless Sky with native tools, you will first need to download Xcode from the App Store.
 
@@ -91,8 +91,9 @@ Once Homebrew is installed, use it to install the libraries you will need:
 
   $ brew install libmad libpng jpeg-turbo
 
-If the versions of those libraries are different from the ones that the Xcode project is set up for, you will need to modify the file paths in the “Frameworks” section in Xcode.
-It is possible that you will also need to modify the “Header Search Paths” and “Library Search Paths” in “Build Settings” to point to wherever Homebrew installed those libraries.
+Homebrew will install the latest version of the libraries, so if the versions of those libraries are different from the ones that the Xcode project is set up for, you will need to modify the file paths in the “Frameworks” section in Xcode. (Occasionally, the Xcode project will be updated to reflect these new versions.)
+It is possible that you will also need to modify the “Header Search Paths” and “Library Search Paths” in “Build Settings”, in case your Homebrew for Intel Mac installation does not use the standard `/usr/local` prefix.
+The first time you build the project, a library for the SDL framework will be downloaded.
 
 *** Note: there is extremely limited development support for macOS, and no intent to support macOS's new ARM architecture. ***
 
