@@ -39,6 +39,12 @@ mission "First Contact: Hai"
 			
 			label next
 			`	You glance quickly at the human merchant to see his expression, wondering if these aliens can indeed be so benign, but his expression is calm and untroubled. "It's true," he says, "look around you. These buildings have stood for thousands of years. Hai society is so advanced, they need almost no resources to maintain it."`
+			branch wormhole
+				has "wormhole alpha found"
+			choice
+				`	"How did humanity reach this place? Did they use jump drives?"`
+			`	The human merchant raises an eyebrow. "Can't say I'm familiar with what a jump drive is. In case you aren't in the know, though, there's a wormhole in Hai space that connects back to a secluded part of human space. Don't bother trying to figure out why and how it's there, because not even the Hai know."`
+			label wormhole
 			choice
 				`	"Why do you allow humans to settle here?"`
 				`	"What do you ask for in return for letting humans settle here?"`
@@ -66,6 +72,7 @@ mission "First Contact: Hai"
 			
 			label travel
 			`	"Yes," it says, "but be careful. The north is the territory of some renegade Hai who are misled in their ways: bandits and pirates, living off what they steal from the rest of us. If you travel among them, you will not be safe."`
+			`	"Also," the human adds, "I've heard rumors that the 'Unfettered' Hai are trying to get human captains who land on their worlds to do some tasks for them. I'm not particularily interested in finding out what those tasks are, but if you see something suspicious happening, that might be it."`
 				goto end
 			
 			label question
@@ -92,6 +99,15 @@ mission "Discovered Hai Space"
 event "label hai space"
 	galaxy "label hai"
 		sprite "label/hai"
+
+mission "Discovered Wormhole Alpha"
+	landing
+	invisible
+	to complete
+		never
+	on enter "Ultima Thule"
+		set "wormhole alpha found"
+		fail
 
 
 

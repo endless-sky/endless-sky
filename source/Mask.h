@@ -29,9 +29,6 @@ class ImageBuffer;
 // the image itself.
 class Mask {
 public:
-	// Default constructor.
-	Mask();
-	
 	// Construct a mask from the alpha channel of an image.
 	void Create(const ImageBuffer &image, int frame = 0);
 	
@@ -68,7 +65,7 @@ private:
 	
 private:
 	std::vector<Point> outline;
-	double radius;
+	double radius = 0.;
 };
 
 

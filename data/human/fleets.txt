@@ -1429,7 +1429,7 @@ fleet "Navy Surveillance"
 
 fleet "Small Deep Merchants"
 	government "Merchant"
-	names "deep"
+	names "civilian"
 	fighters "deep fighter"
 	formation "Vee"
 	cargo 0
@@ -1465,7 +1465,7 @@ fleet "Small Deep Merchants"
 
 fleet "Large Deep Merchants"
 	government "Merchant"
-	names "deep"
+	names "civilian"
 	fighters "deep fighter"
 	formation "Vee"
 	cargo 0
