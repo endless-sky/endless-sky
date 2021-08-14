@@ -1369,7 +1369,7 @@ mission "Remnant: Deep Surveillance"
 			label liar2
 			apply
 				set "remnant: player is surveilled"
-			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Know that you will be watched closely by us from now on, Captain. I commend you for agreed to bring us this information, but we can not allow another situation like this to occur."`
+			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Know that you will be watched closely by us from now on, Captain. I commend you for agreeing to bring us this information, but we can not allow another situation like this to occur."`
 				accept
 	
 	on stopover
