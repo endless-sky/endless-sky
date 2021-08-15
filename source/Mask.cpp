@@ -210,20 +210,15 @@ namespace {
 
 
 
-// Default constructor.
-Mask::Mask()
-	: radius(0.)
-{
-}
-
-
-
 // Construct a mask from the alpha channel of an SDL surface. (The surface
 // must therefore be a 4-byte RGBA format.)
 void Mask::Create(const ImageBuffer &image, int frame)
 {
 	vector<Point> raw;
 	Trace(image, frame, &raw);
+	// We must have at least 3 points to have a mask.
+	if(raw.size() < 3)
+		return;
 	
 	SmoothAndCenter(&raw, Point(image.Width(), image.Height()));
 	

@@ -82,14 +82,60 @@ SCENARIO("A unit of playing time is to be made human-readable", "[Format][PlayTi
 SCENARIO("A player-entered quantity can be parsed to a number", "[Format][Parse]") {
 	GIVEN( "The string 123.45" ) {
 		THEN( "parses to 123.45" ) {
-			CHECK( Format::Parse("123.45") == 123.45);
+			CHECK( Format::Parse("123.45") == Approx(123.45) );
 		}
 	}
 
 	GIVEN( "The string 1,234K" ) {
 		THEN( "parses to 1234000" ) {
-			CHECK( Format::Parse("1,234K") == 1234000);
+			CHECK( Format::Parse("1,234K") == Approx(1234000.) );
 		}
+	}
+}
+
+TEST_CASE( "Format::Capitalize", "[Format][Capitalize]") {
+	SECTION( "Single-word strings" ) {
+		CHECK( Format::Capitalize("magnesium") == "Magnesium" );
+		CHECK( Format::Capitalize("hydroxide") == "Hydroxide" );
+	}
+	SECTION( "Words separated by whitespace" ) {
+		CHECK( Format::Capitalize("canned fruit") == "Canned Fruit" );
+		CHECK( Format::Capitalize("canned	fruit") == "Canned	Fruit" );
+		CHECK( Format::Capitalize("canned\tfruit") == "Canned\tFruit" );
+		CHECK( Format::Capitalize("canned\nfruit") == "Canned\nFruit" );
+	}
+	SECTION( "Precapitalized strings" ) {
+		CHECK( Format::Capitalize("RPGs") == "RPGs" );
+		CHECK( Format::Capitalize("MAGNESIUM") == "MAGNESIUM" );
+	}
+	SECTION( "Words containing punctuation" ) {
+		CHECK( Format::Capitalize("de-ionizers") == "De-ionizers" );
+		CHECK( Format::Capitalize("anti-inflammatories") == "Anti-inflammatories" );
+		CHECK( Format::Capitalize("ka'het") == "Ka'het" );
+		CHECK( Format::Capitalize("A.I.") == "A.I.");
+		CHECK( Format::Capitalize("trains/planes") == "Trains/planes");
+	}
+	SECTION( "Words with possessive qualifiers" ) {
+		CHECK( Format::Capitalize("plumbers' pipes") == "Plumbers' Pipes");
+		CHECK( Format::Capitalize("plumber's pipe") == "Plumber's Pipe");
+	}
+}
+
+TEST_CASE( "Format::Number", "[Format][Number]") {
+	SECTION( "0-valued inputs" ) {
+		CHECK( Format::Number(-0) == "0" );
+		CHECK( Format::Number(0) == "0" );
+		CHECK( Format::Number(-.0) == "0" );
+		CHECK( Format::Number(.0) == "0" );
+	}
+	SECTION( "Integral inputs" ) {
+		CHECK( Format::Number(1) == "1" );
+		CHECK( Format::Number(-1.) == "-1" );
+		CHECK( Format::Number(1000.) == "1,000" );
+	}
+	SECTION( "Decimals between 0 and 1" ) {
+		CHECK( Format::Number(0.51) == "0.5" );
+		CHECK( Format::Number(0.56) == "0.6" );
 	}
 }
 
@@ -106,6 +152,17 @@ TEST_CASE( "Benchmark Format::PlayTime", "[!benchmark][format]" ) {
 	};
 	BENCHMARK( "Format::PlayTime() with an uncapped value" ) {
 		return Format::PlayTime(std::numeric_limits<int>::max());
+	};
+}
+TEST_CASE( "Benchmark Format::Number", "[!benchmark][format]" ) {
+	BENCHMARK( "Format::Number(0.)" ) {
+		return Format::Number(0.);
+	};
+	BENCHMARK( "Format::Number(100.)" ) {
+		return Format::Number(100.);
+	};
+	BENCHMARK( "Format::Number(-10.312345)" ) {
+		return Format::Number(-10.312345);
 	};
 }
 #endif
