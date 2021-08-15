@@ -2045,7 +2045,7 @@ void Engine::DoCollisions(Projectile &projectile)
 // multi-threaded in the future, that will need to change.
 void Engine::DoAntiMissile(Ship *ship)
 {
-	for(pair<double, Projectile *> target : antiMissileTargets[ship])
+	for(auto target : antiMissileTargets[ship])
 	{
 		Projectile *projectile = target.second;
 		if(ship->FireAntiMissile(target.first, *projectile, visuals))
