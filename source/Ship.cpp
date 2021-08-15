@@ -2380,9 +2380,9 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 
 
 // Fire an anti-missile.
-bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals)
+bool Ship::FireAntiMissile(double distanceSquared, const Projectile &projectile, vector<Visual> &visuals)
 {
-	if(projectile.Position().Distance(position) > antiMissileRange)
+	if(distanceSquared > pow(antiMissileRange, 2))
 		return false;
 	if(CannotAct())
 		return false;

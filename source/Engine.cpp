@@ -2048,7 +2048,7 @@ void Engine::DoAntiMissile(Ship *ship)
 	for(pair<double, Projectile *> target : antiMissileTargets[ship])
 	{
 		Projectile *projectile = target.second;
-		if(ship->FireAntiMissile(*projectile, visuals))
+		if(ship->FireAntiMissile(target.first, *projectile, visuals))
 			projectile->Kill();
 	}
 }

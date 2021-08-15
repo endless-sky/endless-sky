@@ -211,7 +211,7 @@ public:
 	// collision detection finds a missile in range.
 	bool Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
 	// Fire an anti-missile. Returns true if the missile was killed.
-	bool FireAntiMissile(const Projectile &projectile, std::vector<Visual> &visuals);
+	bool FireAntiMissile(double distanceSquared, const Projectile &projectile, std::vector<Visual> &visuals);
 	// Returns distance squared if the missile is in range of this ship's
 	// anti-missiles. Returns -1 otherwise.
 	double IsInAntiMissileRangeOf(const Projectile &projectile) const;
