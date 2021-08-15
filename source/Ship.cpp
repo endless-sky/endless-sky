@@ -2401,7 +2401,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 
 
 
-double Ship::IsInAntiMissileRangeOf(const Projectile &projectile)
+double Ship::IsInAntiMissileRangeOf(const Projectile &projectile) const
 {
 	double distanceSquared = projectile.Position().DistanceSquared(position);
 	if (distanceSquared > pow(antiMissileRange, 2))

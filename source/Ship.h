@@ -214,7 +214,7 @@ public:
 	bool FireAntiMissile(const Projectile &projectile, std::vector<Visual> &visuals);
 	// Returns distance squared if the missile is in range of this ship's
 	// anti-missiles. Returns -1 otherwise.
-	double IsInAntiMissileRangeOf(const Projectile &projectile);
+	double IsInAntiMissileRangeOf(const Projectile &projectile) const;
 	
 	// Get the system this ship is in.
 	const System *GetSystem() const;
