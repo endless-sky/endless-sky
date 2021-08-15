@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "text/alignment.hpp"
 #include "Command.h"
+#include "CoreStartData.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
 #include "FillShader.h"
@@ -37,7 +38,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
-#include "StartConditions.h"
 #include "System.h"
 #include "text/truncate.hpp"
 #include "UI.h"
@@ -191,7 +191,7 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 void MissionPanel::Step()
 {
 	MapPanel::Step();
-	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= GameData::Start().GetDate() + 12)
+	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
 		DoHelp("map advanced");
 	DoHelp("jobs");
 }
@@ -233,13 +233,13 @@ void MissionPanel::Draw()
 		Screen::TopLeft() + Point(0., -availableScroll),
 		"Missions available here:",
 		available.size());
-	DrawList(available, pos);
+	DrawList(available, pos, availableIt);
 	
 	pos = DrawPanel(
 		Screen::TopRight() + Point(-SIDE_WIDTH, -acceptedScroll),
 		"Your current missions:",
 		AcceptedVisible());
-	DrawList(accepted, pos);
+	DrawList(accepted, pos, acceptedIt);
 	
 	// Now that the mission lists and map elements are drawn, draw the top-most UI elements.
 	DrawKey();
@@ -663,7 +663,8 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries) const
 
 
 
-Point MissionPanel::DrawList(const list<Mission> &list, Point pos) const
+Point MissionPanel::DrawList(const list<Mission> &list, Point pos,
+	const std::list<Mission>::const_iterator &selectIt) const
 {
 	const Font &font = FontSet::Get(14);
 	const Color &highlight = *GameData::Colors().Get("faint");
@@ -678,7 +679,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos) const
 		
 		pos.Y() += 20.;
 		
-		bool isSelected = (it == availableIt || it == acceptedIt);
+		bool isSelected = it == selectIt;
 		if(isSelected)
 			FillShader::Fill(
 				pos + Point(.5 * SIDE_WIDTH - 5., 8.),
@@ -711,8 +712,7 @@ void MissionPanel::DrawMissionInfo()
 	
 	info.SetString("today", player.GetDate().ToString());
 	
-	const Interface *interface = GameData::Interfaces().Get("mission");
-	interface->Draw(info, this);
+	GameData::Interfaces().Get("mission")->Draw(info, this);
 	
 	// If a mission is selected, draw its descriptive text.
 	if(availableIt != available.end())

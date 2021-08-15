@@ -1249,7 +1249,7 @@ system "5 Axis"
 	fleet "Large Saryd" 1800
 	fleet Heliarch 300
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object
 		sprite planet/rock11
@@ -1328,7 +1328,7 @@ system "5 Spring Below"
 		period 12.9082
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 91.2829
 		period 12.9082
 	object
@@ -1807,7 +1807,7 @@ system Ablub
 	fleet "Large Saryd" 8000
 	fleet Heliarch 200
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object "Ablub's Invention"
 		sprite planet/forest1-b
@@ -1996,7 +1996,7 @@ system Acrux
 		distance 17.9429
 		period 11.4474
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 60.5571
 		period 11.4474
 		offset 180
@@ -2122,7 +2122,7 @@ system Aescolanus
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object
 		sprite planet/desert4
@@ -2383,7 +2383,7 @@ system Albireo
 		distance 15.6316
 		period 11.9778
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 72.3684
 		period 11.9778
 		offset 180
@@ -2434,12 +2434,12 @@ system Alcyone
 	fleet "Large Core Pirates" 600
 	fleet "Large Syndicate" 1200
 	object
-		sprite star/m4
+		sprite star/m3
 		distance 45.5
 		period 21.132
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 45.5
 		period 21.132
 	object Stormhold
@@ -2646,8 +2646,8 @@ system Algenib
 	attributes "core"
 	pos -118 341
 	government Pirate
-	habitable 455.625
-	belt 1273
+	habitable 510
+	belt 1330
 	link Gienah
 	asteroids "large metal" 1 6.7392
 	trade Clothing 357
@@ -2668,24 +2668,24 @@ system Algenib
 		period 10
 	object "Buccaneer Bay"
 		sprite planet/ocean6
-		distance 267.91
-		period 82.175
+		distance 323.354
+		period 108.962
 		object
 			sprite planet/dust7-b
 			distance 147
 			period 13.5253
 	object
 		sprite planet/ice7
-		distance 579.92
-		period 261.703
+		distance 635.364
+		period 300.117
 	object
 		sprite planet/callisto-b
-		distance 887.96
-		period 495.845
+		distance 943.404
+		period 543.004
 	object
 		sprite planet/gas14
-		distance 2108.2
-		period 1813.94
+		distance 2163.64
+		period 1885.97
 		object
 			sprite planet/rock0
 			distance 237
@@ -2736,7 +2736,7 @@ system Algieba
 		distance 5.86085
 		period 9.75123
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 111.139
 		period 9.75123
 		offset 180
@@ -2794,12 +2794,12 @@ system Algol
 	fleet "Large Core Pirates" 5000
 	fleet "Small Syndicate" 2400
 	object
-		sprite star/k5-old
+		sprite star/a0
 		distance 42.7246
 		period 19.0178
 	object
-		sprite star/m0
-		distance 63.7754
+		sprite star/a5
+		distance 113.7754
 		period 19.0178
 		offset 180
 	object
@@ -3150,8 +3150,8 @@ system Almaaz
 	pos -349 -538
 	government Pirate
 	attributes "north"
-	habitable 1080
-	belt 1873
+	habitable 2080
+	belt 2873
 	haze _menu/haze-33
 	link Hatysa
 	link Mintaka
@@ -3178,19 +3178,19 @@ system Almaaz
 	fleet "Large Northern Pirates" 600
 	fleet "Large Republic" 4000
 	object
-		sprite star/g0
+		sprite star/f-supergiant
 		period 10
 	object
 		sprite planet/rock10-b
-		distance 186.96
+		distance 1186.96
 		period 31.1151
 	object
 		sprite planet/ganymede
-		distance 588.37
+		distance 1588.37
 		period 173.71
 	object Freedom
 		sprite planet/cloud2
-		distance 930.93
+		distance 1930.93
 		period 345.719
 
 system Almach
@@ -3290,7 +3290,7 @@ system Alnair
 	fleet "Large Syndicate" 6000
 	fleet "Human Miners" 2000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object Hippocrates
 		sprite planet/cloud4
@@ -3329,8 +3329,8 @@ system Alnasl
 	pos -553 380
 	government Republic
 	attributes "dirt belt"
-	habitable 640
-	belt 1412
+	habitable 1140
+	belt 1912
 	haze _menu/haze-133
 	link Seginus
 	link Wei
@@ -3365,12 +3365,12 @@ system Alnasl
 		offset 180
 	object
 		sprite star/k5-old
-		distance 41.5
+		distance 100
 		period 11.956
 	object
 		sprite planet/gas16-b
-		distance 764.39
-		period 334.151
+		distance 1321.23
+		period 759.344
 		object
 			sprite planet/lava1-b
 			distance 226
@@ -3385,8 +3385,8 @@ system Alnasl
 			period 56.4362
 	object
 		sprite planet/gas3-b
-		distance 1788.8
-		period 1196.22
+		distance 2345.64
+		period 1796.23
 
 system Alnilam
 	pos -487 -513
@@ -3470,7 +3470,7 @@ system Alnitak
 	pos -331 -412
 	government Republic
 	attributes "north"
-	habitable 349.375
+	habitable 1349.375
 	belt 1907
 	haze _menu/haze-67
 	link Rigel
@@ -3498,29 +3498,28 @@ system Alnitak
 	fleet "Large Republic" 4000
 	fleet "Republic Logistics" 6000
 	object
-		sprite star/m0
-		distance 31.1055
+		sprite star/o-supergiant
 		period 15.4564
 	object
-		sprite star/m4
-		distance 49.3945
+		sprite star/b0
+		distance 249.3945
 		period 15.4564
 		offset 180
 	object Farpoint
 		sprite planet/forest0-b
-		distance 292.484
+		distance 1292.484
 		period 107.045
 	object
 		sprite planet/gas13-b
-		distance 851.724
+		distance 1851.724
 		period 531.94
 	object
 		sprite planet/rock7
-		distance 1223.93
+		distance 2223.93
 		period 916.329
 	object
 		sprite planet/gas1
-		distance 2144.82
+		distance 3144.82
 		period 2125.7
 
 system Alniyat
@@ -3697,13 +3696,7 @@ system "Alpha Centauri"
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 6000
 	object
-		sprite star/k5
-		distance 26.7033
-		period 16.011
-		offset 180
-	object
-		sprite star/m4
-		distance 63.2967
+		sprite star/k0
 		period 16.011
 	object Chiron
 		sprite planet/forest1
@@ -3725,6 +3718,10 @@ system "Alpha Centauri"
 		sprite planet/rock15-b
 		distance 1718.2
 		period 1335.56
+	object
+		sprite star/g3
+		distance 3700
+		period 4888.11
 	object
 		sprite planet/gas13
 		distance 4080.61
@@ -4379,7 +4376,10 @@ system Antevorta
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/wr
+		sprite star/carbon
+		period 10
+	object
+		sprite star/carbon-core
 		period 10
 	object
 		sprite planet/desert8
@@ -4790,8 +4790,8 @@ system Aspidiske
 	pos -690 -282
 	government Republic
 	attributes "deep"
-	habitable 135
-	belt 1885
+	habitable 635
+	belt 2385
 	link Avior
 	link Regor
 	link "Epsilon Leonis"
@@ -4812,15 +4812,15 @@ system Aspidiske
 	fleet "Small Deep Merchants" 1400
 	fleet "Large Deep Merchants" 3000
 	object
-		sprite star/m4
+		sprite star/a-supergiant
 		period 10
 	object
 		sprite planet/cloud2
-		distance 201.36
+		distance 701.36
 		period 98.3678
 	object
 		sprite planet/gas8
-		distance 1004.4
+		distance 1504.4
 		period 1095.86
 		object
 			sprite planet/rock14
@@ -4836,11 +4836,11 @@ system Aspidiske
 			period 49.2651
 	object
 		sprite planet/dust3-b
-		distance 1854.96
+		distance 2354.96
 		period 2750.39
 	object
 		sprite planet/rhea-b
-		distance 2271.8
+		distance 2771.8
 		period 3727.76
 
 system Atria
@@ -4946,7 +4946,7 @@ system Avior
 		distance 11
 		period 11.3038
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 88
 		period 11.3038
 		offset 180
@@ -5429,8 +5429,8 @@ system Betelgeuse
 	pos -384 -322
 	government Republic
 	attributes "north"
-	habitable 1080
-	belt 1641
+	habitable 1580
+	belt 2141
 	haze _menu/haze-67
 	link Mirzam
 	link Alheka
@@ -5461,23 +5461,23 @@ system Betelgeuse
 	fleet "Large Northern Pirates" 4000
 	fleet "Human Miners" 3000
 	object
-		sprite star/g0
+		sprite star/m-supergiant
 		period 10
 	object
 		sprite planet/desert2-b
-		distance 179.44
+		distance 679.44
 		period 29.2568
 	object
 		sprite planet/rock0-b
-		distance 535.69
+		distance 1035.69
 		period 150.91
 	object Prime
 		sprite planet/forest2-b
-		distance 1081.98
+		distance 1581.98
 		period 433.189
 	object
 		sprite planet/ocean4
-		distance 1582.62
+		distance 2082.62
 		period 766.325
 		object
 			sprite planet/lava1-b
@@ -5485,7 +5485,7 @@ system Betelgeuse
 			period 21.6509
 	object
 		sprite planet/gas13-b
-		distance 4580.11
+		distance 5080.11
 		period 3772.78
 		object
 			sprite planet/rock17-b
@@ -5818,8 +5818,8 @@ system "Bore Fah"
 system "Bote Asu"
 	pos 8.87418 -572.768
 	government Hai
-	habitable 2859.44
-	belt 1613
+	habitable 3000
+	belt 1753
 	link "Wah Ki"
 	link "Ula Mon"
 	link "Ya Hai"
@@ -5848,34 +5848,34 @@ system "Bote Asu"
 	fleet "Large Human Merchants (Hai)" 12000
 	fleet "Hai Surveillance" 3000
 	object
-		sprite star/f0
+		sprite star/f3
 		distance 17.3605
 		period 7.70584
 	object
 		sprite star/k0-old
-		distance 84.6395
+		distance 134.6395
 		period 7.70584
 		offset 180
 	object
 		sprite planet/rock1
-		distance 242.889
-		period 28.316
+		distance 381.554
+		period 55.751
 	object
 		sprite planet/rock16
-		distance 634.139
-		period 119.453
+		distance 772.804
+		period 160.703
 		object
 			sprite planet/ice7
 			distance 173
 			period 31.0553
 	object
 		sprite planet/gas11
-		distance 1111.15
-		period 277.063
+		distance 1249.81
+		period 330.512
 	object
 		sprite planet/neptune
-		distance 2561.56
-		period 969.787
+		distance 2700.22
+		period 1049.59
 		object
 			sprite planet/rock7-b
 			distance 212
@@ -5890,8 +5890,8 @@ system "Bote Asu"
 			period 41.514
 	object
 		sprite planet/gas12-b
-		distance 4312.6
-		period 2118.5
+		distance 4451.26
+		period 2221.49
 		object
 			sprite planet/rhea-b
 			distance 293
@@ -6365,8 +6365,8 @@ system Cardea
 	pos -89.1297 417.242
 	government Uninhabited
 	attributes "ember waste" "wormhole"
-	habitable 851.84
-	belt 1725
+	habitable 900
+	belt 1775
 	haze _menu/haze-red
 	link Nenia
 	link Antevorta
@@ -6392,28 +6392,28 @@ system Cardea
 	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/k5-old
-		distance 47.5
+		distance 85
 		period 12.6901
 		offset 180
 	object
 		sprite star/k5
-		distance 47.5
+		distance 85
 		period 12.6901
 	object
 		sprite planet/desert7-b
-		distance 260.94
+		distance 310.94
 		period 57.7686
 	object
 		sprite planet/rock2-b
-		distance 629.55
+		distance 679.55
 		period 216.484
 	object
 		sprite planet/miranda-b
-		distance 969.79
+		distance 1019.79
 		period 413.902
 	object
 		sprite planet/neptune-b
-		distance 1490.63
+		distance 1540.63
 		period 788.743
 		object
 			sprite planet/callisto
@@ -6421,11 +6421,11 @@ system Cardea
 			period 17.0401
 	object "Ember Threshold"
 		sprite planet/wormhole-red
-		distance 2500
+		distance 2550
 		period 1713.14
 	object "Ember Wormhole"
 		sprite planet/wormhole-red
-		distance 3252.92
+		distance 3302.92
 		period 2542.68
 
 system Castor
@@ -6940,8 +6940,8 @@ system Cinxia
 	pos 265.87 415.242
 	government Remnant
 	attributes "ember waste"
-	habitable 425.92
-	belt 1713
+	habitable 500
+	belt 1788
 	haze _menu/haze-red
 	link Arculus
 	link Perfica
@@ -6969,24 +6969,24 @@ system Cinxia
 		period 10
 	object Caelian
 		sprite planet/cloud3
-		distance 279.25
-		period 90.4452
+		distance 347.012
+		period 125.289
 		object Tibernia
 			sprite planet/dust1
 			distance 135
 			period 17.2478
 	object Janiculum
 		sprite planet/ice6
-		distance 745.09
-		period 394.193
+		distance 812.852
+		period 449.173
 	object Vatican
 		sprite planet/lava0
-		distance 922.93
-		period 543.437
+		distance 990.692
+		period 604.372
 	object Palatine
 		sprite planet/gas9-b
-		distance 2326.18
-		period 2174.51
+		distance 2393.94
+		period 2270.21
 		object Pincian
 			sprite planet/rock20
 			distance 270
@@ -7027,7 +7027,7 @@ system Coluber
 		period 19.2131
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 74.3034
 		period 19.2131
 	object
@@ -7117,7 +7117,7 @@ system Convector
 	government Uninhabited
 	attributes "ember waste"
 	habitable 4131.68
-	belt 1961
+	belt 2111
 	haze _menu/haze-red
 	link Antevorta
 	asteroids "small rock" 7 1.805
@@ -7139,34 +7139,34 @@ system Convector
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/giant
+		sprite star/f-giant
 		distance 13.0749
 		period 7.27748
 	object
-		sprite star/k0-old
+		sprite star/m0
 		distance 97.9251
 		period 7.27748
 		offset 180
 	object
 		sprite planet/cloud1
-		distance 311.885
-		period 34.2759
+		distance 463.524
+		period 62.102
 	object
 		sprite planet/desert9-b
-		distance 749.895
-		period 127.79
+		distance 901.534
+		period 168.45
 	object
 		sprite planet/rock6
-		distance 941.385
-		period 179.741
+		distance 1093.02
+		period 224.875
 	object
 		sprite planet/rock5-b
-		distance 1178.23
-		period 251.674
+		distance 1329.87
+		period 301.794
 	object
 		sprite planet/gas11-b
-		distance 1600.52
-		period 398.461
+		distance 1752.16
+		period 456.412
 		object
 			sprite planet/rock3-b
 			distance 270
@@ -7264,7 +7264,7 @@ system "Da Ent"
 	fleet "Large Human Merchants (Hai)" 10000
 	fleet "Hai Surveillance" 3000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object Newhome
 		sprite planet/ice4
@@ -7443,7 +7443,7 @@ system Danoa
 	fleet "Large Republic" 30000
 	fleet "Human Miners" 1600
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object
 		sprite planet/desert7-b
@@ -8012,7 +8012,6 @@ system Diespiter
 	attributes "ember waste" "inaccessible"
 	habitable 534.375
 	haze _menu/haze-red
-	link Postverta
 	link Statina
 	asteroids "small rock" 65 3
 	asteroids "medium rock" 14 1
@@ -8082,7 +8081,7 @@ system Diphda
 		distance 20.9143
 		period 14.4057
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 70.5857
 		period 14.4057
 		offset 180
@@ -8137,32 +8136,32 @@ system Dixere
 	object
 		sprite star/k0-old
 		distance 43
-		period 10.9302
+		period 10
+		offset 240
 	object
 		sprite planet/lava1
 		distance 169.69
-		period 30.2946
-		offset 260.355
+		period 10
+		offset 120
 	object Veliante
 		sprite planet/lava4
 		distance 867.18
 		period 349.981
-		offset 344.167
+		offset 203
 	object
 		sprite planet/desert2-b
 		distance 1104.67
 		period 503.187
-		offset 180.723
+		offset 40
 	object
 		sprite planet/desert8
 		distance 1415.76
 		period 730.072
-		offset 333.491
+		offset 192
 	object
 		sprite planet/gas8
 		distance 2132.25
 		period 1349.39
-		offset 141.543
 		object
 			sprite planet/luna
 			distance 186
@@ -8214,7 +8213,7 @@ system Dokdobaru
 	fleet "Large Quarg" 800
 	fleet "Kor Efret Home" 1500
 	object
-		sprite star/g5
+		sprite star/g0-old
 		period 10
 	object "Korati Efreti"
 		sprite planet/station1k
@@ -8396,7 +8395,7 @@ system Dubhe
 		period 24.8575
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 67.8023
 		period 24.8575
 	object Haze
@@ -8449,7 +8448,7 @@ system "Due Yoot"
 	fleet "Hai Surveillance" 5000
 	fleet Quarg 2000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object Greenbloom
 		sprite planet/cloud3
@@ -8549,8 +8548,8 @@ system Eber
 	pos -532 406
 	government Republic
 	attributes "dirt belt"
-	habitable 320
-	belt 1199
+	habitable 470
+	belt 1350
 	link Alnasl
 	link "Alpha Arae"
 	asteroids "small rock" 18 1.4868
@@ -8582,7 +8581,7 @@ system Eber
 		period 10
 	object
 		sprite planet/gas4-b
-		distance 428.49
+		distance 578.49
 		period 198.333
 		object
 			sprite planet/dust3-b
@@ -8594,11 +8593,11 @@ system Eber
 			period 19.6268
 	object
 		sprite planet/io
-		distance 957.74
+		distance 1100
 		period 662.76
 	object
 		sprite planet/gas15
-		distance 1468.3
+		distance 1618.3
 		period 1258.08
 		object
 			sprite planet/mercury-b
@@ -8606,7 +8605,7 @@ system Eber
 			period 17.5306
 	object
 		sprite planet/gas0-b
-		distance 2248.11
+		distance 2398.11
 		period 2383.48
 
 system Eblumab
@@ -8705,28 +8704,28 @@ system Edusa
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/giant
+		sprite star/g-giant
 		period 10
 	object
 		sprite planet/ice4
-		distance 211.61
-		period 25.2777
+		distance 360.187
+		period 56.1339
 	object
 		sprite planet/desert10-b
-		distance 423.82
-		period 71.6482
+		distance 572.397
+		period 112.455
 	object
 		sprite planet/rock19-b
-		distance 680.82
-		period 145.875
+		distance 829.397
+		period 196.145
 	object
 		sprite planet/dust4
-		distance 981.71
-		period 252.585
+		distance 1130.29
+		period 312.044
 	object "Remnant Wormhole"
 		sprite planet/wormhole-red
-		distance 3465.15
-		period 1675.01
+		distance 3613.73
+		period 1783.88
 
 system Egeria
 	pos 288 146
@@ -8929,7 +8928,7 @@ system Ekuarik
 	fleet "Large Saryd" 1600
 	fleet Heliarch 200
 	object
-		sprite star/g5
+		sprite star/g0-old
 		period 10
 	object
 		sprite planet/lava6-b
@@ -9289,7 +9288,7 @@ system Enif
 	fleet "Large Southern Merchants" 4000
 	fleet Quarg 600
 	object
-		sprite star/g5
+		sprite star/g0-old
 		period 10
 	object
 		sprite planet/lava5-b
@@ -9651,7 +9650,7 @@ system Eteron
 	fleet "Small Northern Pirates" 1000
 	fleet "Human Miners" 2000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object
 		sprite planet/rock9
@@ -10059,8 +10058,8 @@ system Farinus
 	pos 202.87 440.242
 	government Uninhabited
 	attributes "ember waste"
-	habitable 745.92
-	belt 1149
+	habitable 825
+	belt 1225
 	haze _menu/haze-red
 	link Cinxia
 	link Perfica
@@ -10088,16 +10087,16 @@ system Farinus
 		period 11.6805
 	object
 		sprite star/m0
-		distance 49.106
+		distance 100
 		period 11.6805
 		offset 180
 	object
 		sprite planet/gas7-hot
-		distance 195.066
+		distance 275
 		period 39.9012
 	object
 		sprite planet/mars
-		distance 524.316
+		distance 600
 		period 175.834
 		object
 			sprite planet/dust4-b
@@ -10105,7 +10104,7 @@ system Farinus
 			period 20.499
 	object
 		sprite planet/gas17
-		distance 1311.33
+		distance 1385
 		period 695.472
 		object
 			sprite planet/callisto
@@ -10121,7 +10120,7 @@ system Farinus
 			period 46.9098
 	object
 		sprite planet/jupiter-b
-		distance 2113.37
+		distance 2185
 		period 1422.91
 		object
 			sprite planet/dust0
@@ -10224,6 +10223,9 @@ system Fasitopfar
 	trade Plastic 481
 	object
 		sprite star/nova
+		period 1000
+	object
+		sprite star/nova-core
 		period 1000
 	object
 		sprite planet/lava1
@@ -10474,7 +10476,7 @@ system Fereti
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/a0
+		sprite star/a3
 		period 10
 	object
 		sprite planet/lava7
@@ -10670,7 +10672,7 @@ system Fingol
 	fleet "Small Northern Pirates" 2000
 	fleet "Human Miners" 3000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object
 		sprite planet/cloud4
@@ -11116,7 +11118,7 @@ system "Gamma Cassiopeiae"
 	fleet "Large Syndicate" 5000
 	fleet "Human Miners" 2000
 	object
-		sprite star/k0-old
+		sprite star/b0
 		period 10
 	object
 		sprite planet/ice7
@@ -11241,28 +11243,28 @@ system Gerenus
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/giant
+		sprite star/k-giant
 		period 8.42267
 	object
 		sprite planet/gas4-hot
-		distance 329.94
-		period 25.1772
+		distance 390.558
+		period 32.4252
 	object "Palarei"
 		sprite planet/rock10-b
-		distance 757.43
-		period 87.5725
+		distance 818.048
+		period 98.2929
 	object
 		sprite planet/mars
-		distance 1413.32
-		period 223.211
+		distance 1473.94
+		period 237.724
 	object
 		sprite planet/ice5-b
-		distance 1666.32
-		period 285.754
+		distance 1726.94
+		period 301.487
 	object
 		sprite planet/gas9
-		distance 2533.32
-		period 535.66
+		distance 2593.94
+		period 555.001
 		object
 			sprite planet/io
 			distance 269
@@ -11272,8 +11274,8 @@ system Gienah
 	pos -176 354
 	government Pirate
 	attributes "core"
-	habitable 534.375
-	belt 1939
+	habitable 560
+	belt 1965
 	link Persian
 	link Algenib
 	asteroids "small rock" 1 2.574
@@ -11305,11 +11307,11 @@ system Gienah
 		offset 180
 	object
 		sprite star/m0
-		distance 47.607
+		distance 75
 		period 12.2656
 	object Covert
 		sprite planet/cloud4
-		distance 355.717
+		distance 380
 		period 116.09
 		object
 			sprite planet/rock0
@@ -11317,11 +11319,11 @@ system Gienah
 			period 15.7161
 	object Mutiny
 		sprite planet/ice4
-		distance 814.357
+		distance 840
 		period 402.123
 	object
 		sprite planet/desert5-b
-		distance 1189.57
+		distance 1215
 		period 709.938
 		object
 			sprite planet/dust7
@@ -11329,7 +11331,7 @@ system Gienah
 			period 17.6303
 	object
 		sprite planet/dust1-b
-		distance 2108.98
+		distance 2135
 		period 1675.89
 
 system Giribea
@@ -11505,7 +11507,7 @@ system Glubatub
 	fleet "Large Saryd" 4000
 	fleet Heliarch 500
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object "Weir of Glubatub"
 		sprite planet/cloud0
@@ -12324,7 +12326,7 @@ system "Hevru Hai"
 	fleet "Large Human Merchants (Hai)" 15000
 	fleet Quarg 600
 	object
-		sprite star/g5
+		sprite star/g0-old
 		period 10
 	object "Alta Hai"
 		sprite planet/ringworld
@@ -12970,7 +12972,7 @@ system Insitor
 		period 18.0359
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 60.1504
 		period 18.0359
 	object
@@ -13161,7 +13163,7 @@ system Ipsing
 		offset 180
 	object
 		sprite star/k5
-		distance 73.2857
+		distance 100
 		period 9.89877
 	object
 		sprite planet/rock11
@@ -13548,7 +13550,7 @@ system "Kappa Centauri"
 		distance 10.2222
 		period 10.1264
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 81.7778
 		period 10.1264
 		offset 180
@@ -13678,6 +13680,9 @@ system Kasikfar
 		sprite star/nova
 		period 1000
 	object
+		sprite star/nova-core
+		period 1000
+	object
 		sprite planet/rock13-b
 		distance 947.181
 		period 528.552
@@ -13776,7 +13781,7 @@ system "Kaus Borealis"
 		distance 20.4571
 		period 13.936
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 69.0429
 		period 13.936
 		offset 180
@@ -13842,7 +13847,7 @@ system "Ki War Ek"
 	fleet "Large Saryd" 1500
 	fleet Heliarch 150
 	object
-		sprite star/g5
+		sprite star/g0-old
 		period 10
 	object
 		sprite planet/lava4-b
@@ -14227,7 +14232,10 @@ system "Kor Ak'Mari"
 	trade Plastic 524
 	fleet "Korath Raid" 2800
 	object
-		sprite star/wr
+		sprite star/carbon
+		period 100
+	object
+		sprite star/carbon-core
 		period 100
 	object
 		sprite planet/lava6
@@ -14417,7 +14425,7 @@ system "Kor Men"
 		period 11.5563
 	object
 		sprite star/g5
-		distance 91.6132
+		distance 110
 		period 11.5563
 		offset 180
 	object
@@ -14477,8 +14485,8 @@ system "Kor Nor'peli"
 		distance 25.4857
 		period 19.3783
 	object
-		sprite star/m4
-		distance 86.0143
+		sprite star/m5
+		distance 100
 		period 19.3783
 		offset 180
 	object
@@ -14596,7 +14604,7 @@ system "Kor Zena'i"
 		period 10.8953
 	object
 		sprite star/m8
-		distance 71.5556
+		distance 100
 		period 10.8953
 		offset 180
 	object
@@ -14931,7 +14939,7 @@ system Kursa
 		period 16.8182
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 65.4066
 		period 16.8182
 	object Farseer
@@ -15108,7 +15116,7 @@ system Levana
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/giant
+		sprite star/a-giant
 		distance 17.197
 		period 9.08241
 		offset 180
@@ -15301,7 +15309,7 @@ system Lolami
 		period 11.3038
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 88
 		period 11.3038
 	object
@@ -15436,7 +15444,7 @@ system "Lone Cloud"
 	fleet "Large Saryd" 2500
 	fleet Heliarch 3000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object "Vibrant Water"
 		sprite planet/cloud1
@@ -15608,7 +15616,7 @@ system Makferuti
 		period 12.3508
 		offset 180
 	object
-		sprite star/m8
+		sprite star/m-dwarf
 		distance 65.7591
 		period 12.3508
 	object
@@ -15920,8 +15928,8 @@ system Mebsuta
 	pos -482 -394
 	government Republic
 	attributes "north"
-	habitable 670
-	belt 1740
+	habitable 1170
+	belt 2340
 	haze _menu/haze-33
 	link Mirzam
 	asteroids "small rock" 1 4.1412
@@ -15947,21 +15955,19 @@ system Mebsuta
 	fleet "Large Northern Pirates" 8000
 	fleet "Small Republic" 12000
 	object
-		sprite star/k0
-		distance 37.1157
+		sprite star/g-supergiant
 		period 19.3068
-		offset 180
 	object
-		sprite star/m0
-		distance 78.8843
+		sprite star/m-dwarf
+		distance 378.8843
 		period 19.3068
 	object
 		sprite planet/gas0-hot
-		distance 305.544
+		distance 605.544
 		period 82.5342
 	object Featherweight
 		sprite planet/forest3-b
-		distance 655.034
+		distance 1155.034
 		period 259.071
 		object
 			sprite planet/desert4
@@ -15969,11 +15975,11 @@ system Mebsuta
 			period 17.9915
 	object
 		sprite planet/ocean8
-		distance 1066.24
+		distance 1566.24
 		period 538.031
 	object
 		sprite planet/rock2-b
-		distance 1590.45
+		distance 2090.45
 		period 980.177
 		object
 			sprite planet/europa-b
@@ -15981,7 +15987,7 @@ system Mebsuta
 			period 16.1817
 	object
 		sprite planet/gas10
-		distance 4225.69
+		distance 4725.69
 		period 4244.92
 		object
 			sprite planet/dust3-b
@@ -16252,8 +16258,8 @@ system Men
 	pos -888 361
 	government Pirate
 	attributes "south"
-	habitable 320
-	belt 1531
+	habitable 370
+	belt 1580
 	haze _menu/haze-33
 	link "Beta Lupi"
 	asteroids "small rock" 9 3.504
@@ -16283,15 +16289,15 @@ system Men
 		period 10
 	object Thule
 		sprite planet/forest4
-		distance 203.64
+		distance 250
 		period 64.98
 	object
 		sprite planet/ocean0
-		distance 473.08
+		distance 525
 		period 230.084
 	object
 		sprite planet/gas9
-		distance 1265.37
+		distance 1315
 		period 1006.49
 		object
 			sprite planet/dust2
@@ -16307,7 +16313,7 @@ system Men
 			period 46.1144
 	object
 		sprite planet/gas13-b
-		distance 2504.61
+		distance 2550
 		period 2802.82
 		object "Smuggler's Den"
 			sprite planet/station15
@@ -16585,8 +16591,8 @@ system Mesuket
 	pos 220.431 -409.812
 	government Uninhabited
 	attributes "korath"
-	habitable 425.92
-	belt 1189
+	habitable 450
+	belt 1215
 	link Eshkoshtar
 	link Silikatakfar
 	link Eneremprukt
@@ -16609,11 +16615,11 @@ system Mesuket
 		period 10
 	object
 		sprite planet/mercury-b
-		distance 125.36
+		distance 130
 		period 27.2041
 	object
 		sprite planet/rock13
-		distance 569.491
+		distance 595
 		period 263.406
 		object
 			sprite planet/station1kd
@@ -16621,7 +16627,7 @@ system Mesuket
 			period 25.3047
 	object
 		sprite planet/gas17-b
-		distance 1378.34
+		distance 1400
 		period 991.812
 		object
 			sprite planet/station3kd
@@ -16629,7 +16635,7 @@ system Mesuket
 			period 26.9888
 	object
 		sprite planet/gas4
-		distance 3615.31
+		distance 3640
 		period 4213.22
 		object
 			sprite planet/ice7-b
@@ -16894,7 +16900,7 @@ system Minkar
 		period 16.6267
 	object
 		sprite star/m0
-		distance 71.4039
+		distance 95
 		period 16.6267
 		offset 180
 	object
@@ -16962,7 +16968,7 @@ system Mintaka
 		period 10.9588
 		offset 180
 	object
-		sprite star/k5
+		sprite star/k8
 		distance 49.0504
 		period 10.9588
 	object
@@ -17027,7 +17033,7 @@ system Mirach
 		period 16.4224
 		offset 180
 	object
-		sprite star/m8
+		sprite star/k-dwarf
 		distance 57.8996
 		period 16.4224
 	object Placer
@@ -17266,7 +17272,7 @@ system Moktar
 		period 18.1925
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 68.9231
 		period 18.1925
 	object
@@ -17436,7 +17442,7 @@ system Muphrid
 		period 10.9152
 	object
 		sprite star/m0
-		distance 63.6634
+		distance 90
 		period 10.9152
 		offset 180
 	object
@@ -17464,7 +17470,7 @@ system Naos
 	pos -653 -396
 	government Republic
 	attributes "deep"
-	habitable 625
+	habitable 1325
 	belt 1045
 	haze _menu/haze-67
 	link Regor
@@ -17495,7 +17501,7 @@ system Naos
 	fleet "Large Deep Merchants" 2800
 	fleet "Human Miners" 2000
 	object
-		sprite star/g5
+		sprite star/o5
 		period 10
 	object
 		sprite planet/cloud6-b
@@ -17505,12 +17511,12 @@ system Naos
 			sprite planet/rock7-b
 			distance 147
 			period 17.0438
-	object Asgard
-		sprite planet/forest1-b
-		distance 698.29
-		period 295.239
 	object
 		sprite planet/cloud5-b
+		distance 698.29
+		period 295.239
+	object Asgard
+		sprite planet/forest1-b
 		distance 1403.38
 		period 841.168
 	object
@@ -17600,8 +17606,8 @@ system Nenia
 	pos -39.1297 467.242
 	government Uninhabited
 	attributes "ember waste" "void sprites" "archon"
-	habitable 2340
-	belt 1343
+	habitable 2390
+	belt 1393
 	haze _menu/haze-red
 	link Ossipago
 	link Cardea
@@ -17631,20 +17637,20 @@ system Nenia
 	hazard "Ember Waste Base Storm" 25000
 	object
 		sprite star/f5-old
-		distance 31.5171
+		distance 40
 		period 10.5992
 	object
 		sprite star/g5-old
-		distance 86.4829
+		distance 95
 		period 10.5992
 		offset 180
 	object
 		sprite planet/desert6
-		distance 249.723
+		distance 300
 		period 32.6317
 	object Nasqueron
 		sprite planet/gas8
-		distance 880.683
+		distance 930
 		period 216.113
 		object
 			sprite planet/rock3
@@ -17656,7 +17662,7 @@ system Nenia
 			period 26.6433
 	object
 		sprite planet/desert1-b
-		distance 1626.29
+		distance 1675
 		period 542.313
 		object
 			sprite planet/rhea
@@ -17664,7 +17670,7 @@ system Nenia
 			period 18.3981
 	object Slylandro
 		sprite planet/gas11
-		distance 3003.29
+		distance 3055
 		period 1360.97
 		object
 			sprite planet/dust4-b
@@ -17780,7 +17786,7 @@ system Nocte
 	fleet "Small Northern Pirates" 2500
 	fleet "Human Miners" 1600
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object
 		sprite planet/desert8-b
@@ -17944,7 +17950,7 @@ system Oblate
 	government Pirate
 	attributes "core"
 	habitable 12000
-	belt 1704
+	belt 1954
 	haze _menu/haze-133
 	link Alcyone
 	link Moktar
@@ -17971,32 +17977,32 @@ system Oblate
 	fleet "Large Core Pirates" 1000
 	fleet "Large Syndicate" 3000
 	object
-		sprite star/giant
+		sprite star/m-giant
 		period 10
 	object
 		sprite planet/ice4
-		distance 397.973
-		period 70.3976
+		distance 556.207
+		period 47.8988
 		object
 			sprite planet/dust0-b
 			distance 110
 			period 13.1646
 	object
 		sprite planet/lava2
-		distance 673.733
-		period 155.063
+		distance 831.967
+		period 87.6251
 	object
 		sprite planet/rock17
-		distance 1201.97
-		period 369.505
+		distance 1360.2
+		period 183.179
 	object
 		sprite planet/cloud6
-		distance 1560.53
-		period 546.622
+		distance 1718.76
+		period 260.192
 	object
 		sprite planet/gas0-b
-		distance 4260.49
-		period 2465.86
+		distance 4418.72
+		period 1072.54
 
 system Orbona
 	pos -735.99 -97.2491
@@ -18029,12 +18035,12 @@ system Orbona
 	fleet "Large Southern Pirates" 3200
 	fleet "Human Miners" 1500
 	object
-		sprite star/giant
-		distance 20.2539
+		sprite star/b-giant
+		distance 25
 		period 9.71046
 	object
 		sprite star/k0
-		distance 98.7461
+		distance 100
 		period 9.71046
 		offset 180
 	object
@@ -18103,7 +18109,7 @@ system Orvala
 		period 17.8357
 		offset 180
 	object
-		sprite star/m8
+		sprite star/l-dwarf
 		distance 87.0703
 		period 17.8357
 	object
@@ -18170,7 +18176,7 @@ system Ossipago
 		distance 11.9736
 		period 9.06221
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 88.0264
 		period 9.06221
 		offset 180
@@ -18224,7 +18230,7 @@ system "Over the Rainbow"
 		period 875.481048
 		offset 180
 		object
-			sprite star/m4
+			sprite star/m3
 			distance 75
 			period 12.179969
 	object
@@ -18232,7 +18238,7 @@ system "Over the Rainbow"
 		distance 544.9
 		period 875.481048
 		object
-			sprite star/m4
+			sprite star/m5
 			distance 107
 			period 12.701281
 
@@ -18307,8 +18313,8 @@ system Pantica
 	pos 303.87 445.242
 	government Remnant
 	attributes "ember waste"
-	habitable 486.68
-	belt 1203
+	habitable 435
+	belt 1253
 	haze _menu/haze-red
 	link Arculus
 	link Cinxia
@@ -18341,15 +18347,15 @@ system Pantica
 		period 10
 	object Capitoline
 		sprite planet/lava1
-		distance 140.44
+		distance 190
 		period 30.1769
 	object Aventine
 		sprite planet/ocean0
-		distance 542.45
+		distance 595
 		period 229.075
 	object Esquiline
 		sprite planet/gas9-b
-		distance 1268.21
+		distance 1320
 		period 818.889
 		object Quirinal
 			sprite planet/lava0
@@ -18357,7 +18363,7 @@ system Pantica
 			period 14.6443
 	object Servian
 		sprite planet/gas8
-		distance 1879.46
+		distance 1930
 		period 1477.37
 
 system Parca
@@ -18547,12 +18553,12 @@ system Pelubta
 	fleet "Large Saryd" 2500
 	fleet Heliarch 400
 	object
-		sprite star/b5
+		sprite star/b3
 		distance 10.9957
 		period 8.64806
 		offset 180
 	object
-		sprite star/g5
+		sprite star/a-dwarf
 		distance 152.004
 		period 8.64806
 	object
@@ -18682,6 +18688,10 @@ system Peresedersi
 	trade Plastic 499
 	object
 		sprite star/nova
+		period 1000
+		offset 190
+	object
+		sprite star/nova-core
 		period 1000
 		offset 190
 	object
@@ -18845,6 +18855,10 @@ system Persitar
 	trade Plastic 500
 	object
 		sprite star/nova
+		period 1000
+		offset 260
+	object
+		sprite star/nova-core
 		period 1000
 		offset 260
 	object
@@ -19016,7 +19030,7 @@ system Pherkad
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 3000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object Solace
 		sprite planet/forest5-b
@@ -19128,7 +19142,7 @@ system Pik'ro'iyak
 	fleet "Wanderer Drones" 3000
 	fleet "Wanderer Defense" 4000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object "Var' Kayi"
 		sprite planet/forest1-b
@@ -19269,7 +19283,7 @@ system Polerius
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	haze _menu/haze-red
-	habitable 1505.92
+	habitable 1555
 	link Paeli
 	asteroids "small rock" 2 4
 	asteroids "medium rock" 8 5
@@ -19295,7 +19309,7 @@ system Polerius
 	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/g0
-		distance 33.9397
+		distance 40
 		period 13.5497
 		offset 180
 	object
@@ -19304,23 +19318,23 @@ system Polerius
 		period 13.5497
 	object
 		sprite planet/lava7
-		distance 219.9
+		distance 270
 		period 33.6123
 	object
 		sprite planet/rock19-b
-		distance 644.74
+		distance 694
 		period 168.747
 	object "Celeatis"
 		sprite planet/rock10-b
-		distance 1091.15
+		distance 1141.15
 		period 371.523
 	object "Ember Graveyard"
 		sprite planet/wormhole-red
-		distance 1774.15
+		distance 1824.15
 		period 770.273
 	object
 		sprite planet/gas14-b
-		distance 2398.24
+		distance 2448.24
 		period 1210.59
 		object Ceilia'sei
 			sprite planet/station3b
@@ -19426,7 +19440,7 @@ system Porrima
 		period 18.8353
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 97.8618
 		period 18.8353
 	object
@@ -19455,15 +19469,12 @@ system Porrima
 			period 11.4255
 
 system Postverta
-	invisible
+	hidden
 	pos 297 269
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	habitable 135
 	haze _menu/haze-red
-	link Diespiter
-	link Prosa
-	link Statina
 	asteroids "medium rock" 4 2
 	asteroids "large rock" 4 3
 	asteroids "medium metal" 52 1
@@ -19471,7 +19482,7 @@ system Postverta
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 19
 	object
 		sprite planet/desert7
@@ -19493,12 +19504,12 @@ system Postverta
 		sprite planet/sheragi_postverta
 		distance 1408
 		period 554
-	
+
 system Prakacha'a
 	pos -35.1114 -802.607
 	government Wanderer
-	habitable 1505.92
-	belt 1637
+	habitable 1530
+	belt 1660
 	haze _menu/haze-33
 	link Chy'chra
 	link Ik'kara'ka
@@ -19528,7 +19539,7 @@ system Prakacha'a
 	fleet "Unfettered Raid" 5000
 	object
 		sprite star/g0
-		distance 32.5255
+		distance 40
 		period 12.7118
 		offset 180
 	object
@@ -19537,19 +19548,19 @@ system Prakacha'a
 		period 12.7118
 	object
 		sprite planet/rock18
-		distance 247.965
+		distance 270
 		period 40.2479
 	object
 		sprite planet/desert5-b
-		distance 458.205
+		distance 485.205
 		period 101.099
 	object
 		sprite planet/rock19-b
-		distance 692.455
+		distance 717.455
 		period 187.822
 	object
 		sprite planet/tethys
-		distance 846.065
+		distance 871.065
 		period 253.667
 	object
 		sprite planet/gas6-b
@@ -19636,7 +19647,6 @@ system Prosa
 	attributes "ember waste" "inaccessible"
 	habitable 2372.76
 	haze _menu/haze-red
-	link Postverta
 	link Vaticanus
 	asteroids "medium metal" 11 2
 	asteroids "large metal" 2 2
@@ -19647,25 +19657,25 @@ system Prosa
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/giant
+		sprite star/o-giant
 		offset 180
 		period 7
 	object
 		sprite planet/cloud1
-		distance 311
-		period 34
+		distance 443.879
+		period 76.7945
 	object
 		sprite planet/desert9
-		distance 749
-		period 127
+		distance 881.879
+		period 215.054
 	object
 		sprite planet/rock6
-		distance 941
-		period 179
+		distance 1073.88
+		period 288.979
 	object
 		sprite planet/gas17
-		distance 1311
-		period 695
+		distance 1443.88
+		period 450.536
 		object
 			sprite planet/callisto
 			distance 227
@@ -19762,7 +19772,7 @@ system Quaru
 	fleet "Large Saryd" 1400
 	fleet Heliarch 100
 	object
-		sprite star/g5
+		sprite star/g0-old
 		period 10
 	object "Ring of Friendship"
 		sprite planet/ringworld
@@ -20388,7 +20398,7 @@ system Regulus
 	fleet "Small Republic" 10000
 	fleet "Human Miners" 3000
 	object
-		sprite star/b5
+		sprite star/b0
 		period 10
 	object
 		sprite planet/gas15-b
@@ -20572,8 +20582,8 @@ system Rigel
 	pos -324 -363
 	government Republic
 	attributes "north"
-	habitable 1080
-	belt 1782
+	habitable 1180
+	belt 1882
 	link Saiph
 	link Alnitak
 	link Betelgeuse
@@ -20606,19 +20616,19 @@ system Rigel
 	fleet "Large Northern Pirates" 5000
 	fleet "Human Miners" 2000
 	object
-		sprite star/g0
+		sprite star/b-supergiant
 		period 10
 	object
+		sprite planet/lava1
+		distance 330
+		period 18.6328
+	object
 		sprite planet/cloud7
-		distance 346
+		distance 546
 		period 78.3362
-		object
-			sprite planet/lava1
-			distance 130
-			period 18.6328
 	object
 		sprite planet/jupiter
-		distance 998.16
+		distance 1098.16
 		period 383.838
 		object
 			sprite planet/dust5
@@ -20626,7 +20636,7 @@ system Rigel
 			period 11.4109
 	object
 		sprite planet/cloud8-b
-		distance 1600.16
+		distance 1700.16
 		period 779.1
 		object
 			sprite planet/desert4-b
@@ -20634,7 +20644,7 @@ system Rigel
 			period 20.1302
 	object
 		sprite planet/gas5
-		distance 2867
+		distance 2967
 		period 1868.49
 		object
 			sprite planet/dust0-b
@@ -20650,7 +20660,7 @@ system Ritilas
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
 	haze _menu/haze-red
-	habitable 135
+	habitable 160
 	link Queri
 	asteroids "large metal" 4 4
 	asteroids "large rock" 18 2
@@ -20678,11 +20688,11 @@ system Ritilas
 		period 10
 	object
 		sprite planet/rock14
-		distance 127
+		distance 155
 		period 49.2718
 	object
 		sprite planet/gas0
-		distance 666
+		distance 690
 		period 591.704
 		object
 			sprite planet/callisto
@@ -20694,21 +20704,21 @@ system Ritilas
 			period 24.6864
 	object
 		sprite planet/rock7
-		distance 1205.21
+		distance 1230
 		period 1440.41
 	object "Graveyard Wormhole (Stable)"
 		sprite planet/wormhole
-		distance 1641.32
+		distance 1666
 		period 2289.21
 		offset 109.88
 	object
 		sprite planet/gas6
-		distance 2296.1
+		distance 2320
 		period 3787.73
 		offset 73.9578
 	object
 		sprite planet/gas9
-		distance 4038.51
+		distance 4065
 		period 8835.37
 		offset 15.7954
 		object
@@ -20945,7 +20955,7 @@ system Sabriset
 		distance 35.1028
 		period 12.1391
 	object
-		sprite star/k0
+		sprite star/k3
 		distance 77.8972
 		period 12.1391
 		offset 180
@@ -21155,7 +21165,7 @@ system "Sagittarius A*"
 	government Uninhabited
 	habitable 10000
 	haze _menu/haze-full
-	arrival 500
+	arrival 2000
 	hazard "Black Hole Gravity" 1
 	hazard "Black Hole Event Horizon" 1
 	hazard "Black Hole Accretion Disk" 1
@@ -21309,7 +21319,10 @@ system Saquergen
 	trade Metal 276
 	trade Plastic 328
 	object
-		sprite star/nova
+		sprite star/nova-old
+		period 1000
+	object
+		sprite star/nova-old-core
 		period 1000
 	object
 		sprite planet/lava2
@@ -21451,6 +21464,7 @@ system Sayaiban
 		sprite star/m0
 		distance 102.816
 		period 11.9486
+		offset 180
 	object
 		sprite planet/lava6-b
 		distance 371.702
@@ -21635,7 +21649,7 @@ system Segesta
 		period 10
 	object
 		sprite planet/venus-b
-		distance 333
+		distance 350
 		period 117.777
 		object
 			sprite planet/dust5
@@ -21698,7 +21712,7 @@ system Seginus
 	fleet "Small Militia" 3000
 	fleet "Small Southern Pirates" 5000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object Clark
 		sprite planet/forest6-b
@@ -22044,7 +22058,7 @@ system Sheratan
 	fleet "Large Core Pirates" 5000
 	fleet "Korath Raid" 30000
 	object
-		sprite star/f5
+		sprite star/f8
 		distance 21.0713
 		period 13.7542
 		offset 180
@@ -22112,7 +22126,7 @@ system Si'yak'ku
 		distance 19.5395
 		period 12.7342
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 90.4605
 		period 12.7342
 		offset 180
@@ -22652,12 +22666,12 @@ system Sobarati
 	fleet "Small Kor Sestor" 800
 	fleet "Large Kor Sestor" 4000
 	object
-		sprite star/a5
+		sprite star/a8
 		distance 4.57143
 		period 9.4217
 		offset 180
 	object
-		sprite star/m8
+		sprite star/f-dwarf
 		distance 123.429
 		period 9.4217
 	object
@@ -22735,11 +22749,11 @@ system Sol
 	object
 		sprite planet/mercury
 		distance 289.647
-		period 60
+		period 88
 	object
 		sprite planet/venus
 		distance 533.534
-		period 150
+		period 225
 	object Earth
 		sprite planet/earth
 		distance 965.669
@@ -22754,8 +22768,8 @@ system Sol
 		period 687
 	object
 		sprite planet/jupiter
-		distance 3000
-		period 2000
+		distance 3339
+		period 4333
 		object
 			sprite planet/io
 			distance 238.221
@@ -22772,6 +22786,38 @@ system Sol
 			sprite planet/callisto
 			distance 811.717
 			period 66.76
+	object
+		sprite planet/saturn
+		distance 5562
+		period 10759
+		object
+			sprite planet/tethys
+			distance 590
+			period 1.9
+		object
+			sprite planet/rhea
+			distance 791
+			period 4.5
+		object
+			sprite planet/titan
+			distance 1222
+			period 16
+	object
+		sprite planet/uranus
+		distance 10373
+		period 30689
+		object
+			sprite planet/miranda
+			distance 195
+			period 1.4
+		object
+			sprite planet/oberon
+			distance 584
+			period 13
+	object
+		sprite planet/neptune
+		distance 15730
+		period 60182
 
 system "Sol Arach"
 	pos -711.587 649.051
@@ -22959,7 +23005,7 @@ system "Sol Saryd"
 		period 12.9082
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 91.2829
 		period 12.9082
 	object
@@ -23261,7 +23307,6 @@ system Statina
 	haze _menu/haze-red
 	link Diespiter
 	link Egeria
-	link Postverta
 	asteroids "large rock" 1 4
 	asteroids "small metal" 39 3
 	asteroids "medium metal" 72 3
@@ -23272,7 +23317,7 @@ system Statina
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object
 		sprite planet/desert4
@@ -23401,16 +23446,16 @@ system Stercutus
 	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/g5-old
-		distance 31.1534
+		distance 40
 		period 11.4822
 	object
 		sprite star/m0
-		distance 60.8466
+		distance 70
 		period 11.4822
 		offset 180
 	object
 		sprite planet/cloud6-b
-		distance 244.937
+		distance 255
 		period 49.8798
 	object
 		sprite planet/titan
@@ -23441,8 +23486,8 @@ system Suhail
 	pos -774 -338
 	government Republic
 	attributes "deep"
-	habitable 1715
-	belt 1715
+	habitable 2715
+	belt 2715
 	haze _menu/haze-33
 	link Regor
 	asteroids "small rock" 2 2.8224
@@ -23471,19 +23516,19 @@ system Suhail
 	fleet "Large Deep Merchants" 7000
 	fleet "Large Northern Pirates" 9000
 	object
-		sprite star/f5
+		sprite star/k-supergiant
 		period 10
 	object
 		sprite planet/water1
-		distance 193.41
+		distance 1193.41
 		period 25.9804
 	object
 		sprite planet/io-b
-		distance 461.7
+		distance 1461.7
 		period 95.8226
 	object
 		sprite planet/gas14-b
-		distance 1034.31
+		distance 2034.31
 		period 321.295
 		object "Leviathan Station"
 			sprite planet/station6
@@ -23491,7 +23536,7 @@ system Suhail
 			period 15.4109
 	object Helheim
 		sprite planet/ocean9
-		distance 1842.75
+		distance 2842.75
 		period 764.06
 		object
 			sprite planet/europa
@@ -23855,7 +23900,7 @@ system Tarazed
 		distance 11
 		period 11.3038
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 88
 		period 11.3038
 		offset 180
@@ -23922,7 +23967,7 @@ system Tebuteb
 		period 15.7461
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 54.9451
 		period 15.7461
 	object "Tebuteb's Table"
@@ -24055,11 +24100,13 @@ system Terminus
 	fleet "Large Southern Pirates" 5000
 	object
 		sprite star/k5-old
-		period 10
+		distance 10
+		period 50
+		offset 180
 	object
 		sprite planet/gas11
-		distance 284.16
-		period 92.8411
+		distance 295
+		period 50
 	object
 		sprite planet/desert4-b
 		distance 666.8
@@ -24126,8 +24173,8 @@ system Torbab
 	pos -949.587 490.051
 	government Coalition
 	attributes "arachi"
-	habitable 1505.92
-	belt 1702
+	habitable 1530
+	belt 1727
 	link Speloog
 	link Debrugt
 	link Flugbu
@@ -24158,29 +24205,29 @@ system Torbab
 	fleet "Large Saryd" 2000
 	fleet Heliarch 250
 	object
-		sprite star/g0
-		distance 26.8689
+		sprite star/k5-old
+		distance 50
 		period 9.54431
 	object
-		sprite star/k5-old
-		distance 68.1311
+		sprite star/g0
+		distance 90
 		period 9.54431
 		offset 180
 	object
 		sprite planet/luna-b
-		distance 240.541
+		distance 265
 		period 38.4541
 	object
 		sprite planet/rock15
-		distance 385.181
+		distance 410
 		period 77.9213
 	object
 		sprite planet/mars-b
-		distance 659.221
+		distance 685
 		period 174.464
 	object
 		sprite planet/gas8-b
-		distance 1535.78
+		distance 1560
 		period 620.373
 		object
 			sprite planet/rock0-b
@@ -24192,7 +24239,7 @@ system Torbab
 			period 22.3171
 	object
 		sprite planet/neptune-b
-		distance 2533.14
+		distance 2558
 		period 1314.16
 		object
 			sprite planet/rock14-b
@@ -24455,8 +24502,8 @@ system Umbral
 	pos -164 406
 	government Republic
 	attributes "south"
-	habitable 670
-	belt 1345
+	habitable 700
+	belt 1375
 	link Tarazed
 	asteroids "small rock" 4 7.1925
 	asteroids "medium rock" 21 4.2525
@@ -24481,24 +24528,24 @@ system Umbral
 	fleet "Large Southern Pirates" 6000
 	object
 		sprite star/k0-old
-		distance 31.3563
+		distance 35
 		period 14.9921
 	object
 		sprite star/m0
-		distance 66.6437
+		distance 95
 		period 14.9921
 		offset 180
 	object
 		sprite planet/desert9-b
-		distance 273.504
+		distance 300
 		period 69.8984
 	object
 		sprite planet/rock17
-		distance 524.194
+		distance 554.194
 		period 185.464
 	object
 		sprite planet/gas2
-		distance 1241.83
+		distance 1271.83
 		period 676.266
 		object
 			sprite planet/europa
@@ -24510,7 +24557,7 @@ system Umbral
 			period 25.3223
 	object
 		sprite planet/uranus
-		distance 2517.84
+		distance 2547.84
 		period 1952.39
 		object
 			sprite planet/ice7-b
@@ -25027,7 +25074,7 @@ system "Wah Oh"
 	fleet "Large Human Merchants (Hai)" 9000
 	fleet "Hai Surveillance" 5000
 	object
-		sprite star/a0
+		sprite star/b8
 		period 10
 	object
 		sprite planet/gas8-hot
@@ -25353,7 +25400,7 @@ system Wezen
 		distance 11.8889
 		period 8.24972
 	object
-		sprite star/k5
+		sprite star/g-dwarf
 		distance 95.1111
 		period 8.24972
 		offset 180
@@ -25405,7 +25452,7 @@ system "World's End"
 	habitable 700
 	haze _menu/haze-blackbody
 	object
-		sprite star/g5
+		sprite star/m8
 		period 10
 	object
 		sprite "planet/ringworld right"
@@ -25976,7 +26023,7 @@ system Zubenelgenubi
 		period 1158.05
 
 system Zubenelhakrabi
-	invisible
+	hidden
 	pos -755 365
 	government Uninhabited
 	habitable 486.68
@@ -26164,7 +26211,7 @@ planet Ada
 		fleet "Large Republic" 16
 
 planet Ahr
-	attributes arach factory tourism shipping urban
+	attributes arach factory tourism shipping urban folklore
 	landscape land/forest4
 	description `The homeworld of the Arach people, Ahr is a metropolitan world with nearly nine billion inhabitants, enough that they cannot all be fed by what this world produces. The government maintains a storehouse with a month's supply of food in each major metropolitan center, as well as a collection of bioreactors, built according to Kimek designs, that can produce a tasteless but nutritious paste as emergency rations in the unlikely event that shipments of food from off-world are somehow disrupted for a prolonged period of time.`
 	spaceport `A constant line of cargo barges and trucks streams through this spaceport city, collecting goods to be distributed to the outlying suburbs and neighboring cities. Inside the main terminal, members of all three Coalition species mix freely, but the Heliarch agents and interpreters here are all Arach.`
@@ -26176,7 +26223,7 @@ planet Ahr
 planet Aksaray
 	attributes "requires: inaccessible" "moon" uninhabited
 	landscape land/mountain26
-	description `At first glance, Aksaray appears to be a fairly generic moon formed from eons of dust and debris compressed into a tight ball by constant gravitational pressure. What is not commonplace is the presence of almost perfectly pyramidical piles of regolith scattered across the world. Querying an orbiting Remnant satellite suggests that these are believed to have been remote mining sites for mineral processing.`
+	description `At first glance, Aksaray appears to be a fairly generic moon formed from eons of dust and debris compressed into a tight ball by constant gravitational pressure. What is not commonplace is the presence of almost perfectly pyramidal piles of regolith scattered across the world. Querying an orbiting Remnant satellite suggests that these are believed to have been remote mining sites for mineral processing.`
 	description `	A brief consultation of your navigational computer's economic database, however, indicates that all the minerals present in this variant of regolith are very common across the galaxy and have an extremely low value.`
 	security 0
 	government Uninhabited
@@ -26240,7 +26287,7 @@ planet Allhome
 	security 0.6
 
 planet "Alta Hai"
-	attributes quarg station
+	attributes quarg "hai quarg" station
 	landscape land/station2
 	description `This is a complete Quarg ringworld, the product of millennia of construction effort which has consumed every other stellar object in this system in order to provide the raw materials. The inner edge of the ring is filled with solar panels, hydroponic gardens, living quarters, and sunlit common spaces. The outer edge contains hangars and docks for ships, and storage facilities for cargo.`
 	description `	Massive station-keeping thrusters on the ring's exterior keep its orbit from becoming unstable.`
@@ -26478,14 +26525,14 @@ planet Bourne
 		fleet "Large Militia" 32
 
 planet "Brass Second"
-	attributes kimek farming shipping urban
+	attributes kimek farming shipping urban folklore
 	landscape land/sky9
 	description `This is a farming world. In the century prior to their discovery of space flight, billions of Kimek starved in a series of increasingly severe global famines. Fourteen thousand years later, their culture is still haunted by fear of not having enough food, and in response they have developed enough farms in their region of space to feed a population three times their size. Much of the food that they produce each year is either put into storage or simply recycled back into fertilizer for next year's crop.`
 	spaceport `The farms on Brass Second operate on a colossal scale. The spaceport is not the sort of rustic farmers' market typical of other farming worlds; it is a major commercial enterprise, complete with cargo-loading robots, climate-controlled warehouses, and a supply chain management system that ensures that fresh produce works its way to the head of the shipping queue in time for it to reach its destination unspoiled.`
 	outfitter "Coalition Basics"
 
 planet "Bright Echo"
-	attributes saryd tourism urban
+	attributes saryd tourism urban folklore
 	landscape land/dmottl1
 	description `This is the first world that the Saryds colonized outside of their own solar system. Although somewhat colder than their native planet, it developed into a thriving metropolitan world. The original settlers planned out in exacting detail how every part of the planet's land mass should be used, in order to satisfy their aesthetic ideal of blending residential areas with parks and farms. Large areas have also been set aside as undeveloped wilderness.`
 	spaceport `The spaceport is in what, by Saryd standards, is a major city, with scattered skyscrapers surrounded by forests and grassy park land along with smaller dwellings and occasional factories or power plants. The city is built on either side of one of this continent's largest rivers, a few kilometers downstream from a dam and hydroelectric plant. Here, the river cuts through a deep gorge, and the graceful bridges that cross the gorge are often shrouded in mist.`
@@ -26498,7 +26545,7 @@ planet "Buccaneer Bay"
 	landscape land/beach0
 	description `Pirates who have struck it rich dream of retiring on Buccaneer Bay. It is a warm ocean planet, with many places reminiscent of the islands in the ancient Caribbean where humanity's first pirate fleets sailed.`
 	description `	Many of the inhabitants are in fact not pirates, but their descendants, and these children and grand-children of anarchist outlaws have built a system of regional government that oversees hospitals, schools, and other public services, all created without funding from the Republic or taxes paid to it. The planet even sports its own shipyard, although many of the ships built here are, not surprisingly, based on designs pirated from the Syndicate and Republic shipyards.`
-	spaceport `This is the sort of spaceport you picture in your head when you think of pirates. Half the storefronts are bars, and rum seems to be on the menu everywhere. It is almost like the stories of ancient Earth, except that the eye patches are cybernetic implants and the peg legs are motorized prosthetics. Swarthy, dangerous-looking women glance at you as you pass by, and scantily clad men crowd around the bars, which is what you seem to remember the stories said it was like on Earth, too, although there it may have been the other way around.`
+	spaceport `This is the sort of spaceport you picture in your head when you think of pirates. Half the storefronts are bars, and rum seems to be on the menu everywhere. It is almost like the stories of ancient Earth, except that the eye patches are cybernetic implants and the peg legs are motorized prostheses. Swarthy, dangerous-looking women glance at you as you pass by, and scantily clad men crowd around the bars, which is what you seem to remember the stories said it was like on Earth, too, although there it may have been the other way around.`
 	shipyard "Core Pirates"
 	shipyard "Advanced Core Pirates"
 	shipyard "Southern Pirates"
@@ -26595,7 +26642,7 @@ planet Celeatis
 	description `Celeatis is a barren planet with mountains covering most of the surface. Even in the few flat highlands, the terrain is too sterile for any kind of vegetation to grow naturally. On some slopes, the outline of an outpost can still be recognized, but they are all uninhabited: some of the villages have been partially destroyed, and large amounts of dust cover the remains to the point that the original color can't be recognized anymore.`
 
 planet "Celestial Third"
-	attributes kimek farming factory urban
+	attributes kimek farming factory urban folklore
 	landscape land/fields4
 	description `Celestial Third is the breadbasket of Kimek space. Most of its land mass is used for farming, augmented by seaweed farms and fisheries in the oceans and factories near the equator producing yeast and bacterial cultures as nutritional supplements. The first settlers came here more than thirteen thousand years ago, at a time when their home world had run out of arable land for farming and food was desperately needed.`
 	spaceport `The constant stream of freighters passing through this spaceport is a testament to how much food is needed to feed the densely populated Kimek worlds, in particular their homeworld in the neighboring star system. The city that hosts the spaceport has also become something of a tourist destination for those with adventurous culinary tastes; restaurants here serve recipes native to each of the Coalition species, along with some dishes that blend their three cuisines in unique and sometimes surprising ways.`
@@ -26633,7 +26680,7 @@ planet Chiron
 	attributes "near earth" urban
 	landscape land/city18-iridium
 	description `Chiron is the only planet outside the solar system that was colonized by humanity prior to the discovery of the hyperdrive. It is now the second most populous planet in the Republic, with many sprawling cities and a burgeoning pollution problem.`
-	description `	Although Earth still has the most prestigious universities in the galaxy, Chiron has become the de-facto leader of the higher education industry, catering to those who value excellent teaching more highly than an illustrious name. As a result, off-world students form a noticeable fraction of the population.`
+	description `	Although Earth still has the most prestigious universities in the galaxy, Chiron has become the de facto leader of the higher education industry, catering to those who value excellent teaching more highly than an illustrious name. As a result, off-world students form a noticeable fraction of the population.`
 	spaceport `There are two spaceports on Chiron. The Old Port was built back when it was first settled, and was placed in a desert region, far from where people would want to live, so that they would not be as affected by the fallout from the nuclear propulsion that was used in the first, pre-hyperspace starships.`
 	spaceport `	The New Port, on the other hand, is in the center of New Sydney, one of Chiron's largest cities. Its soaring architecture and gleaming mirrored glass is intended to make a clear statement, that Chiron is everything Earth is not: clean, modern, prosperous.`
 	shipyard "Basic Ships"
@@ -26695,7 +26742,7 @@ planet Cloudfire
 	security 0.9
 
 planet "Cold Horizon"
-	attributes saryd tourism
+	attributes saryd tourism folklore
 	landscape land/snow11-sfiera
 	description `In the early mornings on Cold Horizon, the trees are often coated in a thin layer of glittering frost that burns away a few hours after sunrise. In the short summer season, flocks of migratory birds arrive in the forest, bringing a cacophony of music and a riot of color to the otherwise serene woodlands.`
 	description `	Half a billion Saryds live here, drawn not so much by the planet's resources, which are scarce, as by its natural beauty.`
@@ -26721,7 +26768,7 @@ planet Cornucopia
 		fleet "Large Militia" 12
 
 planet "Corral of Meblumem"
-	attributes arach mining farming
+	attributes arach mining farming longcows
 	landscape land/fields13-sfiera
 	description `The Corral of Meblumem is home to two major industries: uranium mining, and longcow ranching. The long lifetime of the longcows means that their bodies can easily accumulate dangerous loads of heavy metals if exposed to them, so the two industries are kept separated by conservation zones dozens of kilometers wide. The dark strips of primal forests separating the red-brown pit mines from the tan and light green of the pastures makes the land look like a stained-glass patchwork from above.`
 	spaceport `The spaceport is a small facility, a five-story tower and some warehouses surrounded by landing pads, with tall fences around them to make sure that a herd of longcows does not accidentally wander in. Outside the fences, longcows mill about like hundred-ton centipedes, and visiting spacecraft are strictly required to approach using repulsors only rather than their main thrusters to avoid spooking the cattle.`
@@ -26777,8 +26824,8 @@ planet Darkcloak
 	description `	Although the Hai tend to be an easygoing and nonviolent species, there are always a few in each generation that yearn for excitement, warfare, and conquest. These "Unfettered" Hai have built a major military base here, and they launch raids from here on convoys traveling through the nearby systems.`
 	spaceport `The occupants of this spaceport are not visibly different from the Hai you have encountered elsewhere, but they seem much more tense, angry, and hostile. As the only human here, you are being watched very closely, but no one threatens you directly.`
 	spaceport `	It is likely that most of the goods available for trade here were stolen from one of the nearby Hai systems.`
-	shipyard "Hai Basics"
-	outfitter "Hai Basics"
+	shipyard "Unfettered Basics"
+	outfitter "Unfettered Basics"
 
 planet Darkmetal
 	attributes hai mining "hai tourism"
@@ -26863,7 +26910,7 @@ planet Delve
 planet "Delve of Bloptab"
 	attributes arach mining
 	landscape land/hills0
-	description `This is a mining world, hotter than even the Arach would prefer but still much more habitable than its sister world of Blobtab's Furnace. It is home to House Ablomab, the guild of mining and metalworking, and the dry climate makes it possible to store stockpiles of iron, steel, and other metals here without worrying about rust. Supposedly the warehouses here contain enough raw materials to double the size of the Heliarch war fleet if needed; the Arach like to be able to trust that they are prepared for any eventuality.`
+	description `This is a mining world, hotter than even the Arachi would prefer but still much more habitable than its sister world of Blobtab's Furnace. It is home to House Ablomab, the guild of mining and metalworking, and the dry climate makes it possible to store stockpiles of iron, steel, and other metals here without worrying about rust. Supposedly the warehouses here contain enough raw materials to double the size of the Heliarch war fleet if needed; the Arachi like to be able to trust that they are prepared for any eventuality.`
 	spaceport `This is one of the few Coalition worlds where the Heliarch agents openly carry weapons, due to the fear that the Resistance might see the storehouses here of base and precious metals as a tempting target. Although there are plenty of civilians of all three species milling about, the spaceport has something of the atmosphere of a military base.`
 	"required reputation" 25
 
@@ -26934,9 +26981,9 @@ planet Dustmaker
 	security 0.2
 
 planet "Dwelling of Speloog"
-	attributes arach shipping urban
+	attributes arach shipping urban folklore
 	landscape land/fog4
-	description `With a wide band of tropical rainforests around its equator, this planet's climate is ideal for the Arach. Several billion of them live here, and many of the workers assisting with the expansion of the Heliarch ringworlds come from this planet.`
+	description `With a wide band of tropical rainforests around its equator, this planet's climate is ideal for the Arachi. Several billion of them live here, and many of the workers assisting with the expansion of the Heliarch ringworlds come from this planet.`
 	spaceport `The air in the spaceport facility is uncomfortably damp, and you imagine that you can see a thin sheen of moss or algae on nearly every surface here that receives any sunlight. Except for the largest cargo bays, all the rooms smell faintly of mildew.`
 	spaceport `	One entire wing of the spaceport is dedicated to the Heliarch recruitment office for construction workers, and the waiting room is packed; many Coalition citizens are excited at the chance to help build something that will last thousands of years.`
 	outfitter "Coalition Basics"
@@ -26965,7 +27012,7 @@ planet Eavine
 	description `Although its climate is very cold and most of the surface is covered in snow, Eavine has a crust rich with rare metals and minerals hard to find elsewhere. Entire valleys on the surface have been completely stripped of their resources, likely used in the massive complex of half buried buildings which appears to be the only settlement on this moon that remains today.`
 
 planet Echo
-	attributes quarg moon
+	attributes quarg "human quarg" moon
 	landscape land/desert2
 	description `This is a small Quarg outpost, which you suspect was built mostly to keep an eye on Tarazed Corporation and their alien-influenced research on the planet below. Like most Quarg worlds, the gravity is much too low here for it to be a feasible human colony, and although there is an atmosphere, it is too thin for a human being to breathe. Supposedly the Quarg have lungs designed for a continuous one way airflow, like a bird's lungs, rather than the ordinary in and out flow of human lungs; this is what enables them to survive on low-gravity, low-atmosphere worlds.`
 	spaceport `This outpost was really not designed with human beings in mind. The indoor air is not pressurized, so even there you need an oxygen mask to be able to breathe comfortably. And all the rooms and hallways are taller and narrower than you are used to. The station feels like a maze, full of winding passageways with no clear order or pattern to them, although perhaps the order would be readily apparent if you had an alien mind.`
@@ -27187,7 +27234,7 @@ planet Follower
 	landscape land/city10
 	description `Follower is on the edge of the Paradise Planets region of space: not really one of them yet, but aspiring to be. It is prosperous, but from manufacturing rather than law or finance or venture capitalism. A significant fraction of the local taxes collected here are being spent on terraforming, raising global temperatures and reducing seasonal fluctuations. The goods produced here always have a ready market to purchase them, so Follower's job economy is considered very stable.`
 	description `	As one of the few planets still actively engaged in terraforming, Follower has been the location of several experiments with new technology, trying to leapfrog the centuries-slow process that other worlds have gone through. Unfortunately most of these experiments have failed, sometimes spectacularly.`
-	spaceport `The spaceport is a single skyscraper, fifty floors tall and as wide as it is high, with the floors twisting around each other in a helical patterns so that on each level, the landing bays are approached from a slightly different angle. The whole structure is built of steel and gleaming glass. Inside, the soaring ceilings give you more of a sense of opulence than of comfort.`
+	spaceport `The spaceport is a single skyscraper, fifty floors tall and as wide as it is high, with the floors twisting around each other in a helical pattern so that on each level, the landing bays are approached from a slightly different angle. The whole structure is built of steel and gleaming glass. Inside, the soaring ceilings give you more of a sense of opulence than of comfort.`
 	shipyard "Betelgeuse Basics"
 	shipyard "Betelgeuse Advanced"
 	shipyard "Lionheart Basics"
@@ -27201,7 +27248,7 @@ planet Follower
 		fleet "Small Republic" 86
 
 planet Forpelog
-	attributes quarg moon
+	attributes quarg "human quarg" moon
 	landscape land/canyon03
 	description `Forpelog is a Quarg mining world, barely habitable by their standards and, because of its low gravity, unsuitable for long-term human habitation. The Quarg city is a marvel of advanced technology, entirely enclosed within glass and steel, with gardens and terraces where alien trees and plants grow. Outside the city, the landscape is rugged and beautiful, but the atmosphere is too thin to breathe and contains almost no oxygen.`
 	spaceport `Your ship is docked on a metal pad immediately outside the dome of the city, which towers over you. Immediately after you landed, a smaller canopy unfolded around your ship, sealing it in and providing enough air for you to breathe as you make your way inside. The stark, lifeless badlands outside give way to bustling streets and lush blue foliage within. No other human beings are in sight.`
@@ -27343,7 +27390,7 @@ planet Glaze
 	attributes south tourism
 	landscape land/canyon8
 	description `Glaze is a varied world with everything from sunny beaches to frozen tundra, but it is perhaps best known for its sandstone canyons and deserts. This world's wildlife has never been studied in great detail. Local rumors tell about an alien species of "canyon people" who live in caves in some of the deepest canyons, leading to a constant stream of visiting xenobiologists. The scientific consensus, however, is that these sightings have only been of a reclusive ape-like species that lives in the canyons, and is not known to dig caves or show any other sign of civilization.`
-	spaceport `The spaceport is a tower of glass and steel perched on top of a mesa, overlooking the canyonlands: spires of red and pale yellow stone, with a sprinkling of trees at the lower elevations. A wide highway winds down the side of the mesa, through several tunnels, and the off to the horizon. The port itself is not terribly busy.`
+	spaceport `The spaceport is a tower of glass and steel perched on top of a mesa, overlooking the canyonlands: spires of red and pale yellow stone, with a sprinkling of trees at the lower elevations. A wide highway winds down the side of the mesa, through several tunnels, and then off to the horizon. The port itself is not terribly busy.`
 	spaceport `	You notice quite a few families with children sitting by the windows on the upper stories of the tower, watching starships landing and taking off. Many of them have brought folding chairs or blankets to sit on. That must be what passes for entertainment on this world.`
 	shipyard "Basic Ships"
 	shipyard "Southbound Basics"
@@ -27378,7 +27425,7 @@ planet Glory
 		fleet "Large Republic" 16
 
 planet Grakhord
-	attributes quarg moon
+	attributes quarg "human quarg" moon
 	landscape land/badlands6
 	description `Although human beings who do not mind living in low gravity are welcome to settle here, Grakhord is part of Quarg territory, and has been terraformed to meet their environmental needs rather than those of human beings. The full extent of the Quarg mining operations here are not known, but rumors say that they have tunnels reaching down almost halfway to the moon's core, and Quarg ships can also sometimes be seen harvesting hydrogen gas from the upper atmosphere of the gas giant that Grakhord orbits.`
 	spaceport `Here, you feel like a young child lost among a crowd of tall, indifferent adults. The average adult Quarg is over three meters tall, and although they move slowly and gracefully, on their long legs they easily speed by you. Worse, the counters for the merchant exchange, bank, and job board are high enough that you can barely see over them. But, the Quarg have helpfully provided stepping stools stashed under the counters so that shorter humans can carry out business without having to constantly crane their necks upwards.`
@@ -27626,7 +27673,7 @@ planet "Huginn Station"
 		fleet "Large Deep Security" 18
 
 planet Humanika
-	attributes south farming
+	attributes human south farming
 	landscape land/beach2
 	description `The gravity is too strong on this planet for the Quarg to inhabit it, so they have welcomed human settlers instead. Many people who want freedom from the dangers of human space and the endless instability of human government have settled here. Although the regions near the equator are far too warm to be comfortable, the climate closer to the poles is almost ideal; the only reason Humanika is not as densely populated as some of the worlds farther to the galactic north is the distrust with which most humans view the Quarg.`
 	spaceport `The spaceport is a towering steel structure, built by the Quarg, with docks for their pilot-less cargo drones in addition to the platforms for human ships. The hallways inside have disconcerting proportions, somewhat narrow but with very tall ceilings. In addition to the human inhabitants, there are a few tall, almost fragile-looking robots with digitigrade limbs and narrow torsos patterned after the anatomy of a Quarg. Most of the robots stand still in the corners, like statues, but a few are moving around and interacting with people, apparently as remote control proxies for Quarg in orbit. It is a clear reminder of who owns this planet.`
@@ -27737,7 +27784,7 @@ planet "Kessel Sepret"
 	security 0
 
 planet "Ki Patek Ka"
-	attributes kimek farming tourism urban
+	attributes kimek farming tourism urban folklore
 	landscape land/fields10-sfiera
 	description `This is the Kimek home world. Before they developed spaceflight, billions of Kimek died either from famine or from civil wars brought on by overpopulation. Today, every major city still has "hunger towers": kilometer-high skyscrapers where yeast and bacterial cultures are grown in massive vats in order to provide a bland but stable source of emergency rations if the crops and the food shipments from off-world should ever fail.`
 	spaceport `Nearly all the land mass on Ki Patek Ka is covered in cities; the only undeveloped land is the high mountain peaks and the ice caps near the poles. The spaceport alone is larger than most human cities, stretching from horizon to horizon, with a ship taking off or landing every few seconds. The sheer number of people here - mostly Kimek, but a fair number of Saryds and Arachi as well - is overwhelming.`
@@ -27797,7 +27844,7 @@ planet Kumkapi
 	government Uninhabited
 
 planet "Kuwaru Efreti"
-	attributes quarg station
+	attributes quarg "korath quarg" station
 	landscape land/station2
 	description `This Quarg ringworld is almost half completed, but there are no signs of active construction, and your ship's sensors picked up no energy signals from any section of the ring except for this one. You also observed superficial weapon scars on some parts of the ring, damage that the Quarg have not bothered to repair - although clearly the attackers did not possess weapons powerful enough to do any serious harm to the ring.`
 	spaceport `Despite their size, the Quarg are generally almost silent when they move, and there seem to be very few of them left inhabiting this ringworld. As you walk through some parts of the spaceport it is utterly silent and seemingly deserted, and you are jolted by surprise each time the illusion of solitude is broken by a Quarg emerging suddenly from a doorway and striding silently past you. Every once in a while, louder footsteps announce the presence of a group of Korath visiting the station.`
@@ -27806,7 +27853,7 @@ planet "Kuwaru Efreti"
 	security 1
 
 planet Lagrange
-	attributes quarg tourism station
+	attributes quarg "human quarg" tourism station
 	landscape land/station5
 	description `The Quarg built this station centuries ago, before they began construction on the ringworld. From the dark side of the station, the ring is visible as a thin bright filament stretching out to either side of the system's sun. The ring itself is closed to human visitors, but tour shuttles depart from here on a regular basis, giving human tourists a closer view of this engineering feat that is so far beyond anything human beings have ever attempted to build.`
 	spaceport `In the docking section are flexible, oddly organic-looking tubes that snaked out to connect to your ship as it approached. Walking through the tube and into the station was a somewhat disconcerting experience. Inside, crowds of human tourists gawk at the tall, thin Quarg, who for the most part seem unfazed by the attention. The station is perfectly clean; every surface shines.`
@@ -27962,7 +28009,7 @@ planet Mani
 		fleet "Small Deep Security" 11
 
 planet "Market of Gupta"
-	attributes arach shipping
+	attributes arach shipping folklore
 	landscape land/mountain16-striker
 	description `This mountain world is the home base of House Mallob, the powerful Arach guild in charge of commerce and shipping. All the Arach starships that are currently in use were designed here, and many of them are manufactured here as well. The motto of House Mallob's shipyards is "strong as the mountains, spacious as the skies," referring to their focus on durable hulls and high cargo capacity.`
 	spaceport `This spaceport serves as the primary repair and service center for the Arach merchant marine. At any given time hundreds of ships may be in dry-dock here to have new equipment installed or their engines or internal systems tuned for better efficiency. Meanwhile, thousands of analysts and software experts work to plan out delivery routes, schedules, and supply chains for the merchant fleets to ensure that goods are always delivered where they will be most needed, and will earn the best profit. House Mallob's finances and organizational structure are legendary for their complexity.`
@@ -28040,7 +28087,7 @@ planet "Mereti Station"
 	security 0
 
 planet "Miblulub's Plenty"
-	attributes arach farming
+	attributes arach farming longcows folklore
 	landscape land/fields7
 	description `Miblulub's Plenty was the first colony created by the Arachi outside of their home system, founded at a time when their home world could not produce enough food to reliably feed its entire population. This planet has long seasons and plentiful rainfall that make its temperate zones ideal for farming, while the grasslands near the tropics are mostly used for longcow ranching. Longcows are a distinctive and ill-behaved species of multi-legged cattle; their meat is a key part of the Arach diet.`
 	spaceport `Although most of this planet is rural agricultural land, the spaceport is on the outskirts of a large and prosperous city. Ten thousand years ago, in the early days of Arach interstellar travel, this city was the home of the wealthy investors and business people who funded the farming settlements, and who moved here with their families to escape the pollution and conflict on their home world of Ahr.`
@@ -28149,7 +28196,7 @@ planet Nasqueron
 	description `Beneath Nasqueron's cloudy surface is a complex and thriving ecosystem of gas-dwelling organisms, from the massive void sprites all the way down to bacteria that inhabit tiny water droplets suspended in the air. Although the void sprites mostly feed on these organisms, it appears that in order to grow into their adult form or to give birth to young, they also need rare minerals that they can only find by feeding on asteroids, far beyond the planet's atmosphere.`
 
 planet "Nearby Jade"
-	attributes kimek farming urban
+	attributes kimek farming urban longcows
 	landscape land/fields12-sfiera
 	description `Aside from fish, the Kimek diet is mostly vegetarian, but a few centuries ago an Arach entrepreneur decided to start ranching longcows here. It is an ideal world for ranching, with plenty of grassy fields. The ranches have begun a major industry, although generally only the wealthiest of Kimek are willing to spend money on longcow meat.`
 	spaceport `The spaceport is at the very center of a city that is laid out with perfect radial symmetry: six sectors, each with their own markets, schools, and other public services, and clusters of skyscrapers that can each house a million individuals. The spaceport itself is also symmetrical, with a concourse in the center and smaller and smaller landing pads radiating out from it so that the largest freighters have easiest access.`
@@ -28479,7 +28526,7 @@ planet Pearl
 planet "Pelubta Station"
 	attributes arach "coalition station" research
 	landscape land/station5
-	description `Pelubta Station was built shortly after the Arach discovered the hyperdrive, initially to take advantage of the massive amounts of solar power generated by the nearby stars. However, now it is mainly used as a hyperspace fuel refinery. Although it has endured some solar flares, constant maintenance means that the station still doesn't show it's age.`
+	description `Pelubta Station was built shortly after the Arachi discovered the hyperdrive, initially to take advantage of the massive amounts of solar power generated by the nearby stars. However, now it is mainly used as a hyperspace fuel refinery. Although it has endured some solar flares, constant maintenance means that the station still doesn't show its age.`
 	description `	Pelubta Station is also used to study one of the binary stars in this system, since it has a similar makeup and age to one orbited by a Heliarch ringworld. Most of this research is focused on predicting stellar phenomena, especially the most abnormal ones.`
 	spaceport `The intake section has a consistently high traffic, mostly made up of Coalition merchants supplying the station and leaving with shipments of fuel to take to other Arach worlds. The science section seems to be completely closed off to non-Heliarchs. Considering that the work done here should be relatively benign, the station may also serve other purposes.`
 	"required reputation" 20
@@ -28629,7 +28676,7 @@ planet Rand
 		fleet "Large Militia" 8
 
 planet "Refuge of Belugt"
-	attributes arach tourism urban
+	attributes arach tourism urban folklore
 	landscape land/beach9-sfiera
 	description `Billions of Arachi live on this warm ocean world. It is home to House Debdo, one of the largest of the great Arach houses, which is composed of those who are employed in various service industries. This is a popular tourist destination not just for the Arachi, but for the Kimek as well and even a few particularly adventuresome Saryds.`
 	spaceport `Many of the Kimek and Arachi tourists here are rather scantily clad, wearing what must be their equivalent of swimwear. Of the few Saryds who are mingling with them, most are clad from head to hoof in thin white robes that block the glaring sun. Apparently Saryds have a more conservative sense of modesty than the other Coalition species.`
@@ -28701,8 +28748,8 @@ planet Revelation
 planet "Ring of Friendship"
 	attributes heliarch station
 	landscape land/station2
-	description `This is the crown jewel of the Heliarchs, a ringworld that was completed by the Quarg before the Coalition formed and drove them away. It now serves both as a center of finance and trade, and as the seat of the Heliarch government, which is made up of "elders" who have been selected by the other Heliarchs from among their number in such a way that all three species always have equal representation. The Heliarchs, in turn, are selected from among the best and brightest members of each species. Despite the occasional resistance to it, this meritocracy has survived ten times longer than any human democracy.`
-	spaceport `At any given time, thousands of young people are in training here to become "interpreters," the Heliarch agents who serve as translators and mediators on all the Coalition worlds. As they rise through the ranks, some of those agents will be honored by being elevated to the rank of Heliarch, gaining a voice in the selection of new elders and perhaps one day even being selected themselves.`
+	description `This is the crown jewel of the Heliarchs, a ringworld that was completed by the Quarg before the Coalition formed and drove them away. It now serves both as a center of finance and trade, and as the seat of the Heliarch government, which is made up of "consuls" who have been selected by the other Heliarchs from among their number in such a way that all three species always have equal representation. The Heliarchs, in turn, are selected from among the best and brightest members of each species. Despite the occasional resistance to it, this meritocracy has survived ten times longer than any human democracy.`
+	spaceport `At any given time, thousands of young people are in training here to become "interpreters," the Heliarch agents who serve as translators and mediators on all the Coalition worlds. As they rise through the ranks, some of those agents will be honored by being elevated to the rank of Heliarch, gaining a voice in the selection of new consuls and perhaps one day even being selected themselves.`
 	spaceport `	Heliarch rank is not hereditary, and the children of Heliarchs are given no special preferment for promotions or educational opportunities.`
 	"required reputation" 5
 	bribe 0
@@ -28776,7 +28823,7 @@ planet "Safaresk Enlai"
 	security 0
 
 planet "Sandy Two"
-	attributes kimek factory farming urban
+	attributes kimek factory farming urban folklore
 	landscape land/badlands1
 	description `This world is relatively hot and dry by human standards, but nearly ideal for the Kimek, and more than fifteen billion of them live here in cities where the skyscrapers are so densely packed that many of the streets never receive direct sunlight. The residential areas tend to be spread out along the banks of rivers, so the cities are linear, with factories and other industry on their fringes. Access to limitless skilled labor makes it cheap to manufacture almost anything here.`
 	spaceport `The spaceport facility is on an island in the center of a river, surrounded by a city so large that the rows of skyscrapers stretch all the way to the horizon. Civilian aircraft, boats, and cargo trucks swarm around the spaceport, bringing goods and people to and from the residences and the outlying factories.`
@@ -28798,7 +28845,7 @@ planet "Sarisa Fentra"
 	description `	In the oceans, bizarre and corrupted creatures frolic.`
 
 planet Saros
-	attributes saryd tourism urban
+	attributes saryd tourism urban folklore
 	landscape land/valley12-harro
 	description `The homeworld of the Saryds still bears some scars from the adolescence of their species, particularly in its lack of biodiversity. But over thousands of years, they have returned significant portions of the planet to their original wilderness state. The planet's population currently stands at just over two billion, in part due to the fact that Saryds live very long lives and many of them choose to dedicate their lives to serving society in other ways rather than raising children.`
 	spaceport `The main spaceport is on the outskirts of a large city near the planet's equator, supposedly not far from the place where the Saryds launched their first rockets to explore their own solar system. It has all the standard accoutrements of a tourist trap, including stall after stall of vendors selling food or articles of clothing, and mobs of wide-eyed visitors wandering about and generally getting in the way of the merchant captains trying to conduct actual business here.`
@@ -28837,7 +28884,7 @@ planet "Second Rose"
 	"required reputation" 15
 
 planet "Second Viridian"
-	attributes kimek farming urban
+	attributes kimek farming urban folklore
 	landscape land/hills5-sfiera
 	description `More than ten billion Kimek live here, most of them living in one of several arcologies near the equator: massive structures that reach nearly a kilometer tall and may house over half a billion individuals. As a result, despite the large population most of the land is either undeveloped or used for farming.`
 	description `	The Kimek arcologies are said to be able to recycle more than 99% of the waste produced in them each day, which is what makes it feasible for so many Kimek to live in such close proximity.`
@@ -28940,7 +28987,7 @@ planet "Setar Fort"
 	outfitter "Korath Basics"
 
 planet "Shadow of Leaves"
-	attributes saryd urban
+	attributes saryd urban folklore
 	landscape land/snow10-sfiera
 	description `Saryds are particularly drawn to forested environments, and as a result this world has become heavily populated. Rather than gathering in tightly packed cities with skyscrapers and busy roads, they have spread out evenly across the whole land area in a sort of endless suburban sprawl. But enough patches of forest have been maintained between the roads and housing compounds that from orbit, at a first glance, the planet looks pristine and uninhabited.`
 	spaceport `The spaceport is built at the base of a mountain. At the peak of the mountain is the Starlit University, one of the premier Saryd institutions of higher learning, elevated above the ordinary world of the forest below so that the students can remain detached and focused on their education.`
@@ -29041,7 +29088,7 @@ planet Sinter
 planet Siteria
 	attributes ka'het uninhabited
 	landscape land/water0
-	description `An Earth-like planet, Siteria is notable for the large number of settlements on it: every few kilometers there are the remains of a sizeable village, some of which which still haven't been completely covered by vegetation even today. A couple cities even have tall buildings still partially held together, signifying how durable the constructions of the planet's original inhabitants were.`
+	description `An Earth-like planet, Siteria is notable for the large number of settlements on it: every few kilometers there are the remains of a sizeable village, some of which still haven't been completely covered by vegetation even today. A couple cities even have tall buildings still partially held together, signifying how durable the constructions of the planet's original inhabitants were.`
 
 planet Skillet
 	attributes north mining farming frontier
@@ -29173,7 +29220,7 @@ planet Starcross
 planet "Starting Rubin"
 	attributes kimek "coalition station" shipping wealthy
 	landscape land/space3
-	description `Starting Rubin was far from being the first station constructed around the Kimek homeworld, but it is the oldest one to still be on orbit. It was built as an orbital equivalent to the hunger towers found on the planet it orbits, as a safety measure against the disasters that may affect Ki Patek Ka.`
+	description `Starting Rubin was far from being the first station constructed around the Kimek homeworld, but it is the oldest one to still be in orbit. It was built as an orbital equivalent to the hunger towers found on the planet it orbits, as a safety measure against the disasters that may affect Ki Patek Ka.`
 	description `	Since the residents need little of the food produced, it quickly became the station's primary export, transforming it into one of the largest trading hubs of the region. It has also the largest population of any Coalition station, capable of supporting tens of thousands of Kimek.`
 	spaceport `Despite only having the population of a small city, the arrivals deck of Starting Rubin is as crowded as the largest spaceports. Civilian ships belonging to all three Coalition species can be seen arriving or departing every couple minutes. While there doesn't seem to be any military facility, there are some civilian shops on the station, although they sell nothing but few Kimek items.`
 	shipyard Kimek
@@ -29265,7 +29312,7 @@ planet Sunracer
 		fleet "Large Syndicate" 10
 
 planet "Tebuteb's Table"
-	attributes arach farming
+	attributes arach farming longcows
 	landscape land/fields11-sfiera
 	description `This world is home to House Garbarag, the Arachi guild of farmers and ranchers. On private ranches far from the cities, they experiment with raising new breeds of longcows, a unique species of cattle that grow a new body segment each year and can reach more than thirty meters in length. The meat from a single longcow can feed a village for a month.`
 	description `	Longcows are typically docile and slow-moving, but when frightened one of them can do as much damage as an entire herd of stampeding terrestrial cattle.`
@@ -29687,7 +29734,7 @@ planet "Warm Slope"
 	outfitter "Coalition Basics"
 
 planet "Warm Wind"
-	attributes saryd tourism
+	attributes saryd tourism folklore
 	landscape land/fog1
 	description `The tropical rainforests of Warm Wind are unusual: instead of rivers on the surface, water flows through intricate underground networks of caves that span entire continents. The trees have evolved deep and strong roots that can pierce through the limestone into the subterranean rivers in order to draw a constant supply of water even in the dry seasons. The Saryds have explored only a tiny fraction of the caves.`
 	spaceport `The spaceport village is built on a volcanic highland where the inhabitants do not need to worry about their houses disappearing overnight into one of the limestone sinkholes that pockmark this planet's tropics. In place of trees, the village is full of trellised arches and spires; vines grow on the trellises, and moss grows on the vines, watered by the fog that sweeps up every evening from the rainforest below.`

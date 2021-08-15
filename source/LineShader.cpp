@@ -56,14 +56,15 @@ void LineShader::Init()
 
 	static const char *fragmentCode =
 		"// fragment line shader\n"
-		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
+		"precision mediump float;\n"
+		"uniform vec4 color;\n"
 		
 		"in vec2 tpos;\n"
 		"in float tscale;\n"
 		"out vec4 finalColor;\n"
 		
 		"void main() {\n"
-		"  float alpha = min(tscale - abs(tpos.x * (2 * tscale) - tscale), 1 - abs(tpos.y));\n"
+		"  float alpha = min(tscale - abs(tpos.x * (2.f * tscale) - tscale), 1.f - abs(tpos.y));\n"
 		"  finalColor = color * alpha;\n"
 		"}\n";
 	

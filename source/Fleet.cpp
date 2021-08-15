@@ -51,7 +51,7 @@ namespace {
 			for(const StellarObject &object : here->Objects())
 			{
 				const Planet *planet = object.GetPlanet();
-				if(planet && planet->HasOutfitter())
+				if(planet && planet->IsValid() && planet->HasOutfitter())
 					outfits.Add(planet->Outfitter());
 			}
 		}
@@ -230,6 +230,9 @@ void Fleet::Load(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	
+	if(variants.empty())
+		node.PrintTrace("Warning: " + (fleetName.empty() ? "unnamed fleet" : "Fleet \"" + fleetName + "\"") + " contains no variants:");
 }
 
 
@@ -253,6 +256,36 @@ bool Fleet::IsValid(bool requireGovernment) const
 			return false;
 	
 	return true;
+}
+
+
+
+void Fleet::RemoveInvalidVariants()
+{
+	auto IsInvalidVariant = [](const Variant &v) noexcept -> bool
+	{
+		return v.ships.empty() || none_of(v.ships.begin(), v.ships.end(),
+			[](const Ship *const s) noexcept -> bool { return s->IsValid(); });
+	};
+	auto firstInvalid = find_if(variants.begin(), variants.end(), IsInvalidVariant);
+	if(firstInvalid == variants.end())
+		return;
+	
+	// Ensure the class invariant can be maintained.
+	// (This must be done first as we cannot do anything but `erase` elements filtered by `remove_if`.)
+	int removedWeight = 0;
+	for(auto it = firstInvalid; it != variants.end(); ++it)
+		if(IsInvalidVariant(*it))
+			removedWeight += it->weight;
+	
+	auto removeIt = remove_if(firstInvalid, variants.end(), IsInvalidVariant);
+	int count = distance(removeIt, variants.end());
+	Files::LogError("Warning: " + (fleetName.empty() ? "unnamed fleet" : "fleet \"" + fleetName + "\"")
+		+ ": Removing " + to_string(count) + " invalid " + (count > 1 ? "variants" : "variant")
+		+ " (" + to_string(removedWeight) + " of " + to_string(total) + " weight)");
+	
+	total -= removedWeight;
+	variants.erase(removeIt, variants.end());
 }
 
 
@@ -327,7 +360,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		vector<const Planet *> planetVector;
 		if(!personality.IsSurveillance())
 			for(const StellarObject &object : system.Objects())
-				if(object.GetPlanet() && object.GetPlanet()->HasSpaceport()
+				if(object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
 						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					planetVector.push_back(object.GetPlanet());
 	
@@ -338,7 +371,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			// Prefer to launch from inhabited planets, but launch from
 			// uninhabited ones if there is no other option.
 			for(const StellarObject &object : system.Objects())
-				if(object.GetPlanet() && !object.GetPlanet()->GetGovernment()->IsEnemy(government))
+				if(object.HasValidPlanet() && !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					planetVector.push_back(object.GetPlanet());
 			options = planetVector.size();
 			if(!options)
@@ -521,6 +554,9 @@ void Fleet::Place(const System &system, Ship &ship)
 
 int64_t Fleet::Strength() const
 {
+	if(!total || variants.empty())
+		return 0;
+	
 	int64_t sum = 0;
 	for(const Variant &variant : variants)
 	{
@@ -571,7 +607,7 @@ pair<Point, double> Fleet::ChooseCenter(const System &system)
 {
 	auto centers = vector<pair<Point, double>>();
 	for(const StellarObject &object : system.Objects())
-		if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+		if(object.HasValidPlanet() && object.GetPlanet()->HasSpaceport())
 			centers.emplace_back(object.Position(), object.Radius());
 	
 	if(centers.empty())
@@ -593,6 +629,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const Variant &variant) const
 			continue;
 		}
 		
+		// Copy the model instance into a new instance.
 		auto ship = make_shared<Ship>(*model);
 		
 		const Phrase *phrase = ((ship->CanBeCarried() && fighterNames) ? fighterNames : names);
