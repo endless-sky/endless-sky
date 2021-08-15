@@ -1917,7 +1917,6 @@ mission "Deep: Scientist Rescue Timer"
 	landing
 	invisible
 	to offer
-		has "Deep: Remnant Research: done"
 		has "Deep: Project Hawking: done"
 	on offer
 		event "deep: scientist rescue timer" 60
