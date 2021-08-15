@@ -2386,7 +2386,9 @@ bool Ship::FireAntiMissile(double distanceSquared, const Projectile &projectile,
 		return false;
 	if(CannotAct())
 		return false;
-	
+	if(projectile.IsDead())
+		return false;
+
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{

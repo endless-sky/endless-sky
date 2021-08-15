@@ -383,3 +383,10 @@ double Projectile::DistanceTraveled() const
 {
 	return distanceTraveled;
 }
+
+
+
+bool Projectile::IsDead() const
+{
+	return lifetime <= 0;
+}
