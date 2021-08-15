@@ -1395,6 +1395,9 @@ void Engine::CalculateStep()
 	// Populate the collision detection lookup sets.
 	FillCollisionSets();
 	
+	// Clear out anti-missile targets before DoCollision re-populates them.
+	antiMissileTargets.clear();
+	
 	// Perform collision detection.
 	for(Projectile &projectile : projectiles)
 		DoCollisions(projectile);
@@ -2024,32 +2027,30 @@ void Engine::DoCollisions(Projectile &projectile)
 	else if(projectile.MissileStrength())
 	{
 		// If the projectile did not hit anything, check for anti-missile
-		// systems in range.
+		// systems in range and record their distances.
 		for(Ship *ship : hasAntiMissile)
 			if(ship == projectile.Target() || gov->IsEnemy(ship->GetGovernment()))
-				if(ship->IsInAntiMissileRangeOf(projectile))
-				{
-					antiMissileTargets[ship].push_back(&projectile);
-				}
+			{
+				const double distanceSquared = ship->IsInAntiMissileRangeOf(projectile);
+				if (distanceSquared >= 0)
+					antiMissileTargets[ship].emplace(distanceSquared, &projectile);
+			}
 	}
 }
 
 
-// Fire anti-missile shots as appropriate for this ship, prioritizing nearby
-// projectiles over distant ones. Like DoCollisions, this function adds visuals
-// directly to the main visuals list. If this is multi-threaded in the future,
-// that will need to change.
+
+// Fire anti-missile shots as appropriate for this ship. Like DoCollisions,
+// this function adds visuals directly to the main visuals list. If this is
+// multi-threaded in the future, that will need to change.
 void Engine::DoAntiMissile(Ship *ship)
 {
-	sort(antiMissileTargets[ship].begin(), antiMissileTargets[ship].end(),
-			[ship](Projectile *i, Projectile *j) -> bool
-			{
-				return i->Position().Distance(ship->Position()) < j->Position().Distance(ship->Position());
-			});
-	for(Projectile *projectile : antiMissileTargets[ship])
+	for(pair<double, Projectile *> target : antiMissileTargets[ship])
+	{
+		Projectile *projectile = target.second;
 		if(ship->FireAntiMissile(*projectile, visuals))
 			projectile->Kill();
-	antiMissileTargets.erase(ship);
+	}
 }
 
 

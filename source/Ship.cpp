@@ -2401,11 +2401,12 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 
 
 
-bool Ship::IsInAntiMissileRangeOf(const Projectile &projectile)
+double Ship::IsInAntiMissileRangeOf(const Projectile &projectile)
 {
-	if(projectile.Position().Distance(position) > antiMissileRange)
-		return false;
-	return true;
+	double distanceSquared = projectile.Position().DistanceSquared(position);
+	if (distanceSquared > pow(antiMissileRange, 2))
+		return -1;
+	return distanceSquared;
 }
 
 
