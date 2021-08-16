@@ -1162,7 +1162,7 @@ mission "Deep: Project Hawking: Carbuncle"
 				`	"What about Pierre and Laura?"`
 					goto partners
 			
-			`	"Like I said already, the project is classified. It's not something I would understand, though. It's in Laura's field of expertise. You see, she has a PHD in-"`
+			`	"Like I said already, the project is classified. It's not something I would understand, though. It's in Laura's field of expertise. You see, she has a PHD in--"`
 				goto end
 			
 			label partners
@@ -1175,7 +1175,7 @@ mission "Deep: Project Hawking: Carbuncle"
 			`	"Pierre is an older guy. He has been working on laser weaponry for the better part of three decades now. If you've ever seen an electron beam in action, you have him to thank for that. And a few others, of course, but one of his findings is really what brought the whole project together.`
 			
 			label laura
-			`	"Laura, on the other hand-"`
+			`	"Laura, on the other hand--"`
 			
 			label end
 			`	Before Garrison can finish speaking, the other three scientists return, helping each other carry a sealed metal box. "We're just going to set this in the back, if you don't mind," Pierre says. The scientists make themselves cozy in the bunk rooms and get ready to depart.`

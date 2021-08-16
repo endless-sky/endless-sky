@@ -113,6 +113,8 @@ namespace {
 	Set<News> news;
 	map<string, vector<string>> ratings;
 	
+	map<CategoryType, vector<string>> categories;
+	
 	StarField background;
 	
 	map<string, string> tooltips;
@@ -929,6 +931,14 @@ const string &GameData::Rating(const string &type, int level)
 
 
 
+// Strings for ship, bay type, and outfit categories.
+const vector<string> &GameData::Category(const CategoryType type)
+{
+	return categories[type];
+}
+
+
+
 const StarField &GameData::Background()
 {
 	return background;
@@ -1135,6 +1145,31 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			list.clear();
 			for(const DataNode &child : node)
 				list.push_back(child.Token(0));
+		}
+		else if(key == "category" && node.Size() >= 2)
+		{
+			static const map<string, CategoryType> category = {
+				{"ship", CategoryType::SHIP},
+				{"bay type", CategoryType::BAY},
+				{"outfit", CategoryType::OUTFIT}
+			};
+			auto it = category.find(node.Token(1));
+			if(it == category.end())
+			{
+				node.PrintTrace("Skipping unrecognized category:");
+				continue;
+			}
+			
+			vector<string> &categoryList = categories[it->second];
+			for(const DataNode &child : node)
+			{
+				// If a given category already exists, it will be
+				// moved to the back of the list.
+				const auto it = find(categoryList.begin(), categoryList.end(), child.Token(0));
+				if(it != categoryList.end())
+					categoryList.erase(it);
+				categoryList.push_back(child.Token(0));
+			}
 		}
 		else if((key == "tip" || key == "help") && node.Size() >= 2)
 		{

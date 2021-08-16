@@ -94,6 +94,10 @@ color "error back" .25 .1 .1 1.
 color "warning back" .21 .18 .08 1.
 color "warning conflict" .315 .27 .12 1.
 
+# Colors used for messages
+color "message importance highest"	1. .5 0. 1.
+color "message importance default"	1. 1. 1. 1.
+
 # Colors used when drawing the map (system names, links, and the player's desired route).
 # (The color of the ring that represents a given system is context-sensitive.)
 color "map link" .6 .6 .6 .6
@@ -108,7 +112,7 @@ color "map orbits fleet destination" 1. 1. 1. 1.
 
 
 interface "menu background"
-	sprite "_menu/g0"
+	sprite "_menu/g5"
 		center 0 -280
 	sprite "_menu/forest2"
 		center 0 280
