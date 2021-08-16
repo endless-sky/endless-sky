@@ -1651,6 +1651,7 @@ event "deep sky tech available"
 		"Typhoon Torpedo"
 		"Electron Beam"
 		"Typhoon Launcher"
+		"Typhoon Pod"
 		"Typhoon Storage Tube"
 		"Electron Turret"
 

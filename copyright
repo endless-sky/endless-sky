@@ -411,8 +411,9 @@ Files:
  images/outfit/scram?drive*
  images/outfit/large?radar?jammer*
  images/outfit/small?radar?jammer*
- images/outfit/meteor?launcher*
  images/outfit/meteor*
+ images/outfit/meteor?launcher*
+ images/outfit/meteor?pod*
  images/outfit/meteor?storage*
  images/outfit/mod?blaster?turret*
  images/outfit/mod?blaster*
@@ -423,9 +424,11 @@ Files:
  images/outfit/quad?blaster?turret*
  images/outfit/rocket*
  images/outfit/rocket?launcher*
+ images/outfit/rocket?pod*
  images/outfit/rocket?storage*
  images/outfit/sidewinder*
  images/outfit/sidewinder?launcher*
+ images/outfit/sidewinder?pod*
  images/outfit/sidewinder?storage*
  images/outfit/small?bunk?room*
  images/outfit/small?nucleovoltaic*
@@ -886,8 +889,9 @@ Files:
  images/outfit/large?atomic*
  images/outfit/huge?atomic*
  images/outfit/javelin*
- images/outfit/javelin?storage*
+ images/outfit/javelin?mini?pod*
  images/outfit/javelin?pod*
+ images/outfit/javelin?storage*
  images/outfit/torpedo*
  images/outfit/torpedo?launcher*
  images/outfit/torpedo?storage*
@@ -954,6 +958,13 @@ Files:
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 Comment: Derived from work by Michael Zahniser (under the same licence) and Red-57 (under the same licence).
+
+Files:
+ images/outfit/torpedopod*
+ images/outfit/typhoonpod*
+Copyright: Lia Gerty (https://github.com/ravenshining)
+License: CC-BY-SA-4.0
+Comment: Derived from work by Becca Tomaso (under the same licence).
 
 Files:
  images/ship/bulk?freighter*
