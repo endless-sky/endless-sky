@@ -1480,15 +1480,14 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		
 		// Handle hull "leaks."
 		for(const Leak &leak : leaks)
-			if(leak.openPeriod > 0 && !Random::Int(leak.openPeriod))
+			if(GetMask().IsLoaded() && leak.openPeriod > 0 && !Random::Int(leak.openPeriod))
 			{
 				activeLeaks.push_back(leak);
-				const vector<Point> &outline = GetMask().Points();
-				if(outline.size() < 2)
-					break;
+				const auto &outlines = GetMask().Outlines();
+				const vector<Point> &outline = outlines[Random::Int(outlines.size())];
 				int i = Random::Int(outline.size() - 1);
 				
-				// Position the leak along the outline of the ship, facing outward.
+				// Position the leak along the outline of the ship, facing "outward."
 				activeLeaks.back().location = (outline[i] + outline[i + 1]) * .5;
 				activeLeaks.back().angle = Angle(outline[i] - outline[i + 1]) + Angle(90.);
 			}
