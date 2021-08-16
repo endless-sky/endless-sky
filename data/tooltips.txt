@@ -36,7 +36,7 @@ tip "cargo scan power:"
 	`The range of this cargo scanner is proportional to the square root of this value. The speed of the scanner also decreases in proportion to the square root of this value.`
 
 tip "cargo scan speed:"
-	`The speed of a scanner is equal to the square root of this value. Many factors can impact the speed of a scan, like the size of the target ship, its distance to the scanner, or its velocity relative to the scanner.`
+	`The time it takes for this scanner to complete is inversely proportional to this value. Many factors can impact the speed of a scan, like the size of the target ship, its distance to the scanner, or its velocity relative to the scanner.`
 
 tip "cargo:"
 	`Cargo this ship is carrying right now, out of its maximum.`
@@ -246,7 +246,7 @@ tip "outfit scan power:"
 	`The range of this outfit scanner is proportional to the square root of this value. The speed of the scanner also decreases in proportion to the square root of this value.`
 
 tip "outfit scan speed:"
-	`The speed of a scanner is equal to the square root of this value. Many factors can impact the speed of a scan, like the size of the target ship, its distance to the scanner, or its velocity relative to the scanner.`
+	`The time it takes for this scanner to complete is inversely proportional to this value. Many factors can impact the speed of a scan, like the size of the target ship, its distance to the scanner, or its velocity relative to the scanner.`
 
 tip "outfit space needed:"
 	`How much general-purpose space this outfit uses up. Some outfits also use up weapon space or engine space.`
