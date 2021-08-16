@@ -56,7 +56,7 @@ namespace {
 	
 	const double MAXIMUM_TEMPERATURE = 100.;
 	
-	const double SCAN_TIME = 60.;
+	const double SCAN_TIME = 600.;
 	
 	// Helper function to transfer energy to a given stat if it is less than the
 	// given maximum value.
