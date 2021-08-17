@@ -3338,8 +3338,6 @@ mission "Mafia Extortion"
 			label nameless
 			`	The man snorts. "Wow, telling everybody you meet your full name. That totally won't end up painting a huge target on your head if said name has a bounty on it. But I digress."`
 			choice
-				`	"Sounds like you're afraid of talking to me. Why is that?"`
-					goto mafia
 				`	"What should I be afraid of happening to my ship?"`
 					goto specifics
 				`	"You sound like one of those mafia goons."`
@@ -3376,7 +3374,7 @@ mission "Mafia Extortion"
 				`	"Sorry, I already made a donation to the 'Security Support Fund' earlier today, and I don't donate twice in one day."`
 					goto impatient
 				`	"I've already heard enough, I'm going to talk to the authorities."`
-					goto next_steps
+					goto nextsteps
 				`	"And what dangers should I be afraid of?"`
 					goto impatient
 				`	"Listen, I see that you're missing a finger on each hand. You look like a goon, and not a very successful one."`
@@ -3389,15 +3387,15 @@ mission "Mafia Extortion"
 				`	"I don't trust you. You aren't getting any money from me."`
 					goto funeral
 				`	"I've heard enough, I'm going to talk to the authorities."`
-					goto next_steps
+					goto nextsteps
 				`	"Listen, I see that you're missing a finger on each hand. You look like a goon, and not a very successful one."`
 					goto unnerved
 			label funeral
 			`	The man responds "Your funeral, not mine," and turns away from you.`
-				goto walks_away
-			label next_steps
+				goto walksaway
+			label nextsteps
 			`	"Look, that's not a smart move. Most of them are in on it anyway."`
-			label walks_away
+			label walksaway
 			`	The man walks away. You consider what to do next.`
 			choice
 				`	(Shrug off the whole thing and take no further action.)`
@@ -3439,13 +3437,13 @@ mission "Mafia Extortion"
 			`	A bead of sweat travels down the man's face as he asks, "How many credits do you need to just forget this whole conversation happened?"`
 			choice
 				`	"100,000,000."`
-					goto far_too_much
+					goto panicking
 				`	"1,000,000."`
-					goto too_much
+					goto much
 				`	"200,000."`
-					goto too_much
+					goto much
 				`	"50,000."`
-					goto too_much
+					goto much
 				`	"5,000."`
 					goto counterdeal
 				`	"2,000."`
@@ -3457,18 +3455,18 @@ mission "Mafia Extortion"
 			label zerodeal
 			`The man walks away without saying a word.`
 				decline
-			label too_much
+			label much
 			`	"That's too much! 2,389 credits is all I have. Would that be enough?"`
 			choice
 				`	"Sure."`
 					goto counterdeal
 				`	"No way, I want a lot more."`
-					goto far_too_much
+					goto panicking
 			label counterdeal
 			`	The man hands you a credit chip, nods and walks away. You pocket the chip quickly, more ready to be done with this neighborhood than you want to visibly show.`
 			`	A few minutes later you reach into your pocket for the chip... to find it missing. Looks like even a hardened captain like you isn't immune to being pickpocketed on a planet like this.`
 				decline
-			label far_too_much
+			label panicking
 			`	The man starts panicking and clumsily reaches into his jacket, maybe to get some money, but more likely reaching for a gun.`
 			choice
 				`	(Try to calm down the man.)`
