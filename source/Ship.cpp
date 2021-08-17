@@ -2382,11 +2382,7 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 // Fire an anti-missile.
 bool Ship::FireAntiMissile(double distanceSquared, const Projectile &projectile, vector<Visual> &visuals)
 {
-	if(distanceSquared > pow(antiMissileRange, 2))
-		return false;
 	if(CannotAct())
-		return false;
-	if(projectile.IsDead())
 		return false;
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
@@ -2406,9 +2402,7 @@ bool Ship::FireAntiMissile(double distanceSquared, const Projectile &projectile,
 double Ship::IsInAntiMissileRangeOf(const Projectile &projectile) const
 {
 	double distanceSquared = projectile.Position().DistanceSquared(position);
-	if (distanceSquared > pow(antiMissileRange, 2))
-		return -1;
-	return distanceSquared;
+	return (distanceSquared > pow(antiMissileRange, 2)) ? -1 : distanceSquared;
 }
 
 

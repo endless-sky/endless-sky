@@ -76,7 +76,6 @@ public:
 	// Get the distance that this projectile has traveled.
 	double DistanceTraveled() const;
 	
-	// Returns true if this projectile is dead; otherwise returns false.
 	bool IsDead() const;
 	
 private:

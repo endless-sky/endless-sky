@@ -1395,18 +1395,15 @@ void Engine::CalculateStep()
 	// Populate the collision detection lookup sets.
 	FillCollisionSets();
 	
-	// Clear out anti-missile targets before DoCollision re-populates them.
-	antiMissileTargets.clear();
-	
 	// Perform collision detection.
 	for(Projectile &projectile : projectiles)
 		DoCollisions(projectile);
-	
 	for(Ship *ship : hasAntiMissile)
 		DoAntiMissile(ship);
 	// Now that collision detection is done, clear the cache of ships with anti-
-	// missile systems ready to fire.
+	// missile systems ready to fire and the cache of antimissile targets.
 	hasAntiMissile.clear();
+	antiMissileTargets.clear();
 	
 	// Damage ships from any active weather events.
 	for(Weather &weather : activeWeather)
@@ -2031,8 +2028,8 @@ void Engine::DoCollisions(Projectile &projectile)
 		for(Ship *ship : hasAntiMissile)
 			if(ship == projectile.Target() || gov->IsEnemy(ship->GetGovernment()))
 			{
-				const double distanceSquared = ship->IsInAntiMissileRangeOf(projectile);
-				if (distanceSquared >= 0)
+				double distanceSquared = ship->IsInAntiMissileRangeOf(projectile);
+				if(distanceSquared >= 0)
 					antiMissileTargets[ship].emplace(distanceSquared, &projectile);
 			}
 	}
@@ -2045,10 +2042,10 @@ void Engine::DoCollisions(Projectile &projectile)
 // multi-threaded in the future, that will need to change.
 void Engine::DoAntiMissile(Ship *ship)
 {
-	for(auto target : antiMissileTargets[ship])
+	for(auto &&target : antiMissileTargets[ship])
 	{
 		Projectile *projectile = target.second;
-		if(ship->FireAntiMissile(target.first, *projectile, visuals))
+		if(!projectile->IsDead() && ship->FireAntiMissile(target.first, *projectile, visuals))
 			projectile->Kill();
 	}
 }
