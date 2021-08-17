@@ -171,6 +171,7 @@ private:
 	bool drawTickTock = false;
 	bool terminate = false;
 	bool wasActive = false;
+	DrawList draw_first[2];
 	DrawList draw[2];
 	BatchDrawList batchDraw[2];
 	Radar radar[2];

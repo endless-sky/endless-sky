@@ -215,14 +215,16 @@ Engine::Engine(PlayerInfo &player)
 		center = object->Position();
 	
 	// Now we know the player's current position. Draw the planets.
+	draw_first[calcTickTock].Clear(step, zoom);
 	draw[calcTickTock].Clear(step, zoom);
+	draw_first[calcTickTock].SetCenter(center);
 	draw[calcTickTock].SetCenter(center);
 	radar[calcTickTock].SetCenter(center);
 	const Ship *flagship = player.Flagship();
 	for(const StellarObject &object : player.GetSystem()->Objects())
 		if(object.HasSprite())
 		{
-			draw[calcTickTock].Add(object);
+			draw_first[calcTickTock].Add(object);
 			
 			double r = max(2., object.Radius() * .03 + .5);
 			radar[calcTickTock].Add(object.RadarType(flagship), object.Position(), r, r - 1.);
@@ -884,12 +886,16 @@ void Engine::Draw() const
 	static const Set<Color> &colors = GameData::Colors();
 	const Interface *hud = GameData::Interfaces().Get("hud");
 	
-	draw[drawTickTock].Draw();
-	batchDraw[drawTickTock].Draw();
+	// Draw anything that might conflict with planet labels.
+	draw_first[drawTickTock].Draw();
 	
 	// Draw any active planet labels.
 	for(const PlanetLabel &label : labels)
 		label.Draw();
+	
+	// Now draw the rest.
+	draw[drawTickTock].Draw();
+	batchDraw[drawTickTock].Draw();
 	
 	for(const auto &it : statuses)
 	{
@@ -1289,6 +1295,7 @@ void Engine::CalculateStep()
 	FrameTimer loadTimer;
 	
 	// Clear the list of objects to draw.
+	draw_first[calcTickTock].Clear(step, zoom);
 	draw[calcTickTock].Clear(step, zoom);
 	batchDraw[calcTickTock].Clear(step, zoom);
 	radar[calcTickTock].Clear();
@@ -1422,6 +1429,7 @@ void Engine::CalculateStep()
 		newCenter = flagship->Position();
 		newCenterVelocity = flagship->Velocity();
 	}
+	draw_first[calcTickTock].SetCenter(newCenter, newCenterVelocity);
 	draw[calcTickTock].SetCenter(newCenter, newCenterVelocity);
 	batchDraw[calcTickTock].SetCenter(newCenter);
 	radar[calcTickTock].SetCenter(newCenter);
@@ -1429,15 +1437,15 @@ void Engine::CalculateStep()
 	// Populate the radar.
 	FillRadar();
 	
-	// Draw the planets.
+	// Draw the planets. We need these in a seperate queue to not conflict with PlanetLabels.
 	for(const StellarObject &object : playerSystem->Objects())
 		if(object.HasSprite())
 		{
 			// Don't apply motion blur to very large planets and stars.
 			if(object.Width() >= 280.)
-				draw[calcTickTock].AddUnblurred(object);
+				draw_first[calcTickTock].AddUnblurred(object);
 			else
-				draw[calcTickTock].Add(object);
+				draw_first[calcTickTock].Add(object);
 		}
 	// Draw the asteroids and minables.
 	asteroids.Draw(draw[calcTickTock], newCenter, zoom);
