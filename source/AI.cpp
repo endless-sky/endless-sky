@@ -2614,7 +2614,7 @@ bool AI::DoCloak(Ship &ship, Command &command)
 bool AI::DoRoving(Ship &ship, Command &command, unsigned int rovingShipCount)
 {
 	const System* system = ship.GetSystem();
-	if(rovingShipCount > 9 && system)
+	if((rovingShipCount > 9 && system) || !Random::Int(3000))
 	{
 		if(ship.Fuel() > ship.JumpFuel() || ship.Fuel() > ship.JumpDriveFuel())
 		{
