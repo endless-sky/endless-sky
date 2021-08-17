@@ -3216,15 +3216,14 @@ mission "Spacediving professionals"
 	job
 	repeat
 	name "Spacediving at <planet>"
-	description "Head to <destination> with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing thermal spacesuits, durable parachutes, and oxygen bottles to ensure their survival. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is <payment>."
+	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay <payment> when they land."
 	passengers 5 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 1 7
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		not attributes "station"
-		not attributes "research"
+		not attributes "station" "research" "moon"
 	to offer
 		random < 14
 	on visit
@@ -3239,15 +3238,14 @@ mission "Spacediving professionals accident"
 	job
 	repeat
 	name "Spacediving at <planet>"
-	description "Head to <destination> with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing thermal spacesuits, durable parachutes, and oxygen bottles to ensure their survival. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is 120000."
+	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay 120000 credits when they land."
 	passengers 5 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 1 7
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		not attributes "station"
-		not attributes "research"
+		not attributes "station" "research" "moon"
 	to offer
 		"Spacediving professionals: done" > 7
 		random < 2
@@ -3262,15 +3260,14 @@ mission "Spacediving professionals disaster"
 	job
 	repeat
 	name "Spacediving at <planet>"
-	description "Head to <destination> with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing thermal spacesuits, durable parachutes, and oxygen bottles to ensure their survival. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is 120000."
+	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay 120000 credits when they land."
 	passengers 5 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 1 7
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		not attributes "station"
-		not attributes "research"
+		not attributes "station" "research" "moon"
 	to offer
 		has "Spacediving professionals accident: done"
 		random < 1
@@ -3287,15 +3284,14 @@ mission "Spacediving amateurs"
 	job
 	repeat
 	name "Spacediving at <planet>"
-	description "Head to <destination> with <bunks> skydivers, then drop them from the edge of space as you land. They are wearing tricked-out wingsuits, brightly-patterned parachutes, and carrying beer bottles for an after-landing celebration. Extreme sports like skydiving typically carry more risks than regular passenger transports. Payment is 120000 credits."
+	description "Head to <destination> with <bunks> poorly equipped skydivers and drop them from the edge of space. They've agreed to pay 120000 credits when they land."
 	passengers 5 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 1 7
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		not attributes station
-		not attributes research
+		not attributes "station" "research" "moon"
 	to offer
 		"Spacediving professionals: done" > 3
 		random < 5
