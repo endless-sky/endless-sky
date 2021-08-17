@@ -385,7 +385,7 @@ phrase "secure package dropoff payment"
 		`the reception counter of a technology firm.`
 		`a bored-looking spaceport security officer.`
 		`an elaborate curiosities store.`
-		`a plain clothes officer who receives it with minimal ID confirmation.`
+		`a plainclothes officer who receives it with minimal ID confirmation.`
 		`an old lady waiting on a bench.`
 		`another ship captain waiting on the docks.`
 	word
@@ -569,7 +569,7 @@ mission "Deep Security Package Reveal"
 		conversation
 			`As you walk away from a food stand in the spaceport a rather young man in active wear steps away from the wall and smoothly sidles up next to you between one step and the next.`
 			`	"Hello Captain. Please don't be alarmed, do you have a moment?"`
-			`	His words come out very quickly as if they'd been heavily rehearsed and, looking around, no one appears to be paying any attention to either of you.`
+			`	His words come out very quickly as if they'd been heavily rehearsed. Glancing around, so far as you can tell, no one appears to be paying any attention to either of you.`
 			choice
 				`	"Sure. Who are you?"`
 					goto who
@@ -590,7 +590,7 @@ mission "Deep Security Package Reveal"
 				`	"Do all the secure packages belong to Deep Security?"`
 			`	"Oh no, plenty of tech businesses and wealthy individuals use the same secure package shipping channels. We do monitor all of them though just to make sure our own channels don't get compromised by something ill-advised... or illegal." He shrugs.`
 			label blindacceptance
-			`	"Well, I looked at your record and it seems you've done quite a lot for the Deep, and you're well-regarded. We like to keep a list of pilots that we can call on if we need something delivered with either urgency or discretion and it seems like you qualified. You passed the background check at any rate.`
+			`	"Well, I looked at your record and it seems you've done quite a lot for the Deep, and you're well-regarded. We like to keep a list of pilots that we can call on if we need something delivered with either urgency or discretion, and it seems like you qualified. You passed the background check at any rate.`
 			`	"So at any rate, I'm authorized to give you a one-time offer to join that list. Don't worry, I'm not asking anything of you right now."`
 			`	Belatedly he seems to do a double-check that no one is actively listening to the conversation as you walk. "So, you interested?"`
 			choice
@@ -606,10 +606,10 @@ mission "Deep Security Package Reveal"
 				`	"Sorry, but I don't think I want to get that involved."`
 					decline
 			label agree
-			`	"Fantastic," he says, suddenly grinning widely enough to see in your periphery. "I'll add you to the list as soon as I get back to the office again. Your ID will also let you see which packages are ours specifically after that too. Oh and again, thank you!"`
+			`	"Fantastic," he says, suddenly grinning widely enough to be seen in your periphery as you walk along. "I'll add you to the list as soon as I get back to the office again. Your ID will also let you see which packages are ours specifically after that too. Oh and again, thank you!"`
 			apply
 				set "deep security reveal"
-			`	Agent Wayde jogs off ahead of you, flicking a subtle salute your direction just before he turns a corner and disappears.`
+			`	Agent Wayde flashes you a smile and jogs off ahead. Pushing his hair back out his eyes he flicks a subtle salute your direction just before he turns a corner and disappears.`
 
 
 mission "Secure Transport Job (Basic) [0]"
@@ -782,8 +782,8 @@ mission "Deep Consultants"
 		payment 350000
 		set "deep security consultants"
 		conversation
-			`Julie and her assistant are model passengers the entire journey. As she prepares to disembark she thanks you for your assistance. In addition to transferring you <payment>, she points out how you can change your settings with the local spaceport agencies to make yourself available for business passengers consulting with Deep Security.`
-			`	"Thank you Captain <last>, you've been most helpful. Do keep an eye out in the spaceports around here though, Deep Security is notorious for keeping us longer than we booked for. There's often someone stuck."`
+			`Julie and her assistant are model passengers the entire journey. As she prepares to disembark she thanks you for your assistance. In addition to transferring <payment> into your account, she helps you change your job board preferences with the local spaceport agencies to make yourself available for business passengers consulting with Deep Security.`
+			`	"Thank you Captain <last>, you've been most helpful. Do keep an eye out in the spaceports around here though. Deep Security is notorious for keeping us longer than we booked for. There's often someone stuck and in need of rapid transport off-world."`
 
 
 phrase "stranded consultant pickup"
@@ -810,13 +810,13 @@ phrase "stranded consultant pickup"
 
 phrase "stranded consultant dropoff payment"
 	word
-		`Your consultant passengers thank you as you deliver them to their destination.`
+		`The consultants thank you as you deliver them to their destination.`
 	word
 		` `
 	word
 		`You find out only afterwards that they left behind a soiled pair of boots.`
 		`Afterwards you find a tie left hanging on a door handle.`
-		`You kick crumpled documents that you find after their trip into the incinerator without looking at them.`
+		`Later, you find some crumpled documents left behind and wisely tip them into the ship's incinerator without looking at them.`
 	word
 		` `
 	word
