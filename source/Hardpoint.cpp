@@ -39,8 +39,8 @@ namespace {
 
 
 // Constructor.
-Hardpoint::Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, const Outfit *outfit)
-	: outfit(outfit), point(point * .5), baseAngle(baseAngle), isTurret(isTurret), isParallel(isParallel)
+Hardpoint::Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit)
+	: outfit(outfit), point(point * .5), baseAngle(baseAngle), isTurret(isTurret), isParallel(isParallel), isUnder(isUnder)
 {
 }
 
@@ -112,6 +112,13 @@ bool Hardpoint::IsTurret() const
 bool Hardpoint::IsParallel() const
 {
 	return isParallel;
+}
+
+
+
+bool Hardpoint::IsUnder() const
+{
+	return isUnder;
 }
 
 
@@ -346,5 +353,5 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 	
 	// Expend any ammo that this weapon uses. Do this as the very last thing, in
 	// case the outfit is its own ammunition.
-	ship.ExpendAmmo(outfit);
+	ship.ExpendAmmo(*outfit);
 }

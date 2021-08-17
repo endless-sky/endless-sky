@@ -23,7 +23,7 @@ using namespace std;
 
 
 // Construct a DataNode and remember what its parent is.
-DataNode::DataNode(const DataNode *parent)
+DataNode::DataNode(const DataNode *parent) noexcept(false)
 	: parent(parent)
 {
 	// To avoid a lot of memory reallocation, have every node start out with
@@ -36,18 +36,38 @@ DataNode::DataNode(const DataNode *parent)
 
 // Copy constructor.
 DataNode::DataNode(const DataNode &other)
-	: children(other.children), tokens(other.tokens)
+	: children(other.children), tokens(other.tokens), lineNumber(other.lineNumber)
 {
 	Reparent();
 }
 
 
 
-// Assignment operator.
+// Copy assignment operator.
 DataNode &DataNode::operator=(const DataNode &other)
 {
 	children = other.children;
 	tokens = other.tokens;
+	lineNumber = other.lineNumber;
+	Reparent();
+	return *this;
+}
+
+
+
+DataNode::DataNode(DataNode &&other) noexcept
+	: children(std::move(other.children)), tokens(std::move(other.tokens)), lineNumber(std::move(other.lineNumber))
+{
+	Reparent();
+}
+
+
+
+DataNode &DataNode::operator=(DataNode &&other) noexcept
+{
+	children.swap(other.children);
+	tokens.swap(other.tokens);
+	lineNumber = std::move(other.lineNumber);
 	Reparent();
 	return *this;
 }
@@ -55,7 +75,7 @@ DataNode &DataNode::operator=(const DataNode &other)
 
 
 // Get the number of tokens in this line of the data file.
-int DataNode::Size() const
+int DataNode::Size() const noexcept
 {
 	return tokens.size();
 }
@@ -63,7 +83,7 @@ int DataNode::Size() const
 
 
 // Get all tokens.
-const vector<string> &DataNode::Tokens() const
+const vector<string> &DataNode::Tokens() const noexcept
 {
 	return tokens;
 }
@@ -199,7 +219,7 @@ bool DataNode::IsNumber(const string &token)
 
 
 // Check if this node has any children.
-bool DataNode::HasChildren() const
+bool DataNode::HasChildren() const noexcept
 {
 	return !children.empty();
 }
@@ -207,7 +227,7 @@ bool DataNode::HasChildren() const
 
 
 // Iterator to the beginning of the list of children.
-list<DataNode>::const_iterator DataNode::begin() const
+list<DataNode>::const_iterator DataNode::begin() const noexcept
 {
 	return children.begin();
 }
@@ -215,7 +235,7 @@ list<DataNode>::const_iterator DataNode::begin() const
 
 
 // Iterator to the end of the list of children.
-list<DataNode>::const_iterator DataNode::end() const
+list<DataNode>::const_iterator DataNode::end() const noexcept
 {
 	return children.end();
 }
@@ -264,7 +284,7 @@ int DataNode::PrintTrace(const string &message) const
 
 
 // Adjust the parent pointers when a copy is made of a DataNode.
-void DataNode::Reparent()
+void DataNode::Reparent() noexcept
 {
 	for(DataNode &child : children)
 	{

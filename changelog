@@ -1,3 +1,67 @@
+Version 0.9.14:
+  * Bug fixes:
+    * Content bugs:
+      * Typo fixes. (@alextd, @Amazinite, @Anarchist2, @AraCaputDraco, @Arachi-Lover, @Corraban2, @dazuma, @EjoThims, @InfiniteDonuts, @infinitewarp, @jarekchr, @Jugosloven1612, @McloughlinGuy, @MCOfficer, @Ornok, @petervdmeer, @tehhowch, @Terin, @Zitchas)
+      * "Remnant: Deep Surveillance" will now offer, as typos in the offer conditions were preventing it from offering. (@alextd, @Amazinite)
+      * "Deep: Remnant 3" now properly offers on landing instead of requiring you to visit the spaceport with no direction. (@Amazinite)
+      * The Dropship is now sold in Navy Basics shipyards, whereas before it was sold nowhere. (@Amazinite)
+      * "Wanderers: Mentors 2" now has an on visit dialog. (@Amazinite)
+      * "Strider 1" now sends you to Allhome for the next mission instead of the spaceport, as the next mission in the string wasn't offering before. (@Amazinite)
+      * "FW Pug 4", "Nanachi 3", and "Nanachi 4" now mention both possible missing objectives when you visit the mission destination. (@Amazinite)
+      * The reverse thrust heat of the Smelter-Class Thruster is no longer the same as the smaller Crucible-Class Thruster. (@Zitchas)
+      * "Remnant: Cognizance 4" and "Remnant: Cognizance 16" no longer spoil the objective location for the player when you're suppose to go looking for them. (@Amazinite)
+      * The fighters that spawn alongside the Michael Zahniser person ship can no longer be disabled. (@Anarchist2)
+    * Engine bugs:
+      * Invalid planets are now filtered when iterating over a system's objects, preventing pathfinding from trying to use wormholes that no longer exist. (@tehhowch)
+      * Firing ionization/disruption/slowing on weapons no longer allows status effects to drop below zero, which could potentially cause a crash. (@Ferociousfeind)
+      * Ships can no longer have a drag of 0, which could have caused divide-by-zero errors. (@tehhowch)
+      * Active cooling now requires the ship to have positive energy. (@10010101001)
+      * The acceleration and turn values displayed in the ship info panel while in flight are now accurate to their actual values, no longer counting cargo as twice as heavy as it is. (@Amazinite)
+  * Game content:
+    * New content:
+      * The Heliarch Interdictor now has a Scrappy variant like other Heliarch ships. (@Arachi-Lover)
+      * The Pug Gridfire, Gatling Gun, and minable asteroid explosions now have unique sounds, whereas previously they had reused sounds or none at all. (@Floppa-Priest)
+      * Quarg planets now all have regional attributes describing where in the galaxy they're located for use by missions and jobs. (@Amazinite)
+      * Added a new human ship, the Container Transport. For now, this ship has identical stats to the Bulk Freighter, but the two ships will be differentiated from one another next update. (@ravenshining)
+    * Mission changes:
+      * Changed the Saryd couple's budget to something more sensible. (@jerith)
+      * Made it clear in "Remnant: Electron Beam" that you are to return with two electron beams. (@AraCaputDraco)
+      * Improved some of the wording in "Remnant: Expanded Horizons Storms 1". (@Zitchas)
+      * "Remnant: Face to Maw" no longer offers while you are in the middle of the "Cognizance" string of missions. (@Amazinite, @Ornok)
+      * "Remnant: Cognizance 4" no longer uses mission failure to determine player choice, which led to confusion when the mission failed message appeared after making an acceptable choice. (@Amazinite)
+      * The mission "Wanderers: Hai Diplomat" can now be offered on Mirrorlake. (@Ornok)
+      * Improved some of the wording in "Lagrange Ring: Cargo". (@Arachi-Lover)
+      * Lowered the chances of an alien baby crawling into your cargo hold. Safety measured have been put into place to ensure that this happens far less often. (@Amazinite)
+      * The James tutorial missions can now be continued if the player returns to the first mission after obtaining a ship that isn't in one of the starter categories. (@Zitchas)
+    * Balance:
+      * Tweaked the Telis and Vareti engines to maintain a better upgrade progression. (@DeBlister)
+    * Graphics:
+      * Updated the Bulk Freighter sprite to have a hardpoint layout matching pre-v0.9.13 Bulk Freighters for save compatibility. (@ravenshining)
+    * Other:
+      * The Unfettered now have their own outfitter and shipyard, preventing new Hai technology from being sold by the Unfettered. (@Amazinite)
+      * The Independent government will now always be friendly after it is introduced in the Free Worlds campaign. (@Amazinite)
+      * Removed part of a logbook entry that said that the Quarg claimed that the Pug could defeat the Drak, which they never did. (@Arachi-Lover)
+      * The highest rank of Heliarch has been changed from "elder" to "consul" to avoid having multiple alien factions use the "elder" title. (@Arachi-Lover)
+  * Game mechanics:
+    * Disabled ships that are captured or assisted will now repair to slightly higher than the bare minimum hull necessary. (@Amazinite)
+    * Invalid fleet variants are now removed from fleets, preventing plugins with improper data from blocking the offering of missions that spawn fleets. (@tehhowch)
+  * User interface:
+    * The "interrupt fast-forward" setting now defaults to off instead of on. (@Terin)
+    * Fixed a misaligned UI element in the map panel. (@Terin)
+    * Messages about low crew ships are no longer considered "important," meaning they will no longer be pushed to the bottom of the message list every time they trigger and drown out other messages. (@ravenshining)
+  * Under the hood:
+    * Combined checking if a stellar object has a planet and if that planet is valid into a single method. (@tehhowch)
+    * Having multiple missing frames for a sprite are now logged to the error file on a single line instead of generating a new line for each missing frame. (@ashdnazg, @tehhowch)
+    * The Barb (Proton) variant definition now uses "add attribute" instead of completely redefining the base ship. (@Amazinite)
+    * The heat and energy table values for ship info have been broken out into their own variables for easier handling. (@jostephd)
+    * Missions that fail to instantiate will now report to the error file why they failed. (@tehhowch)
+    * Missions that mix the "minor" or "priority" tags with the "landing" tag will now produce a warning to the error file, as "landing" takes precedence over the former two tags. (@Amazinite)
+    * Fixed a rare crash that could happen when printing errors, if the error file could not be opened. (@tehhowch)
+    * Updated the build process for Steam Linux to avoid statically linking in the C++ standard library. (@tehhowch)
+    * Updated the Scons build process to remove the need for both ar and ranlib programs to be LTO-aware. (@tehhowch)
+    * Slightly reduced memory usage associated with in-memory game data while loading. (@tehhowch)
+    * Enabled C++ "move" semantics for several core data structures. (@tehhowch)
+
 Version 0.9.13:
   * Breaking changes:
     * Starting conditions defined by plugins no longer automatically override the game's default start. (@FranchuFranchu, @tehhowch)
@@ -6,13 +70,13 @@ Version 0.9.13:
     * Added over 25 new missions to Remnant space, as well as a new region of the Ember Waste. (@Zitchas)
     * Added 15 new archaeology missions with Albert Foster to investigate the Sheragi ruins, including the discovery of ancient Sheragi technology. (@Karirawri)
     * The Ember Waste has become a more hostile place with the introduction of system hazards. Be prepared the next time you visit. (@Zitchas)
-    * Outfits can now be stored on planets by pressing U or R on installed or in cargo outfits in the outfitter. (@petervdmeer)
+    * Outfits can now be stored on planets by pressing U or R on installed or in-cargo outfits in the outfitter. (@petervdmeer)
     * Completely redid and improved the graphics for most human outfit images. (@beccabunny)
     * Added a "New Pilot" scenario picker, allowing players to choose between game and plugin starts. (@FranchuFranchu, @tehhowch)
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@Amazinite, @Anarchist2, @Arachi-Lover, @arkhne, @beccabunny, @Darcman99, @FixItYondu, @Galaucus, @infinitewarp, @MCOfficer, @michel-slm, @pega3, @Rakete1111, @roadrunner56, @tatami4, @tehhowch, @Terin, @thebigh2014, @Thunderforge, @tux2603, @W1zrad, @waterhouse, @Zitchas)
-      * The Subsidurial person ship can now appear in uninhabited systems as intended. (@Zitchas)
+      * The Subsidurial person ship can now appear in uninhabited systems as intended. (@Zitchas, @Terin)
       * "Deep Mystery Cube [3]" no longer offers on stations. (@Anarchist2)
       * Corrected the hull mass of the Faes'mar. (@Amazinite)
       * Tinker's tribute is now properly restored after the main plot. (@Zitchas)
@@ -30,6 +94,8 @@ Version 0.9.13:
       * The Core Blockade mission now gives clearance to land on the pirate planet destination. (@Amazinite)
       * The Remembrance Day jobs now properly have a deadline. (@Amazinite)
       * Shortened the descriptions of some jobs as to not overflow the UI. (@Amazinite)
+      * Added missing "variant" keyword to NPC fleets in several Wanderer missions. (@tehhowch)
+      * Remnant "tech retrieval" missions have more appropriate destinations. (@jerith)
     * Engine bugs:
       * Missions with illegal cargo that fail when scanned can no longer be scanned again before landing. (@Amazinite)
       * The outfitter will no longer allow purchasing licensed outfits under certain circumstances where the player didn't have a license. (@Rakete1111)
@@ -60,7 +126,9 @@ Version 0.9.13:
       * An error is now produced when improperly granting a ship in a start condition. (@tehhowch)
       * The "battery only" warning in the outfitter now takes fuel energy into account. (@Amazinite)
       * All flagship commands and the hailing command are now ignored while in the process of landing or departing from a planet. (@tatami4)
-      * Ships no longer preserve inaccessible jump targets when loading the game. (@tehhowch) 
+      * Ships no longer preserve inaccessible jump targets when loading the game. (@tehhowch)
+      * Reduced likelihood of integer overflow when selling commodities. (@tehhowch)
+      * Fixed a divide-by-zero error when a fleet contains no variant definitions. (@tehhowch)
   * Game content:
     * New content: 
       * New missions:
@@ -74,6 +142,7 @@ Version 0.9.13:
         * Created an epilogue mission for Barmy Edward. (@beccabunny, @Darcman99)
         * Created a mission where you can inform the Remnant about the research that the Deep are doing on the Ember Waste. (@Amazinite, @Zitchas)
         * The player will now be warned the first time their pirate attraction is greater than 50%. (@Amazinite)
+        * Added a boarding mission about a secret slave ship (@Pointedstick, @oo13)
       * New outfits and ships:
         * Created an ammo storage outfit for Finisher torpedoes. (@Arachi-Lover)
         * Ka'het ships now have power generation and storage outfits. (@beccabunny)
@@ -89,7 +158,7 @@ Version 0.9.13:
         * Added new civilian hails. (@Anarchist2, @Naminson, @petervdmeer)
         * New logs for various characters, factions, and plot points. (@MasterOfGrey, @pega3)
         * Added a new Builder station to the Graveyard. (@beccabunny)
-        * Wrote more news messages for human space and beyond. (@Amazinite, @Anarchist2, @Arachi-Lover, @Galaucus, @petervdmeer, @Plip-Plop, @Pointedstick, Swiren#8879, @W1zrad, @WarlordMike, @Zitchas)
+        * Wrote more news messages for human space and beyond. (@Amazinite, @Anarchist2, @Arachi-Lover, @Galaucus, @NRK4, @petervdmeer, @Plip-Plop, @Pointedstick, Swiren#8879, @W1zrad, @WarlordMike, @Zitchas)
         * Wrote friendly and hostile hails for the Remnant. (@temtemy)
         * The Archon now has a ship description. (@Zitchas)
         * Added three new person ships. (@beccabunny, @Brick63, @MCOfficer, @Zitchas)
@@ -130,6 +199,7 @@ Version 0.9.13:
       * Gave Remnant thrusters built-in reverse thrust and slight slowing resistance on all their engines to make them stick out more. (@Zitchas)
       * Reduced the number of missile-equipped ships in one of the small pirate fleet variants. (@Terin)
       * The Puffin's Quantum Key Stone is now integrated into the hull to prevent access to stone before the player has a license for them. (@Zitchas)
+      * Human missiles were updated to reflect changes to missile tracking behavior. (@Pointedstick)
     * Graphics:
       * "Mouthparts?" now has a sprite. (@beccabunny)
       * Added a scene image to the on enter conversation in the Graveyard. (@beccabunny)
@@ -213,6 +283,7 @@ Version 0.9.13:
       * Ships with both the disables and plunders personalities will no longer destroy ships that have been plundered. (@tatami4)
       * Ships with the plunders personality will now always aim to destroy ships they plundered. (@tatami4)
       * Greatly increased the lifetime of flotsam by at least 10x and added drag so they slow down over time. (@Amazinite)
+      * Modify missile tracking calculations to improve usefulness of radar jammers and heat reduction. (@Pointedstick)
   * User interface:
     * The outfitter help now explains how to buy outfits into cargo. (@Zitchas)
     * Fast-forward will now be turned off if the player is not in flight, such as when landing or boarding a ship. (@petervdmeer)
