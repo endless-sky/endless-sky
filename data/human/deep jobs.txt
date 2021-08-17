@@ -567,7 +567,7 @@ mission "Deep Security Package Reveal"
 	on offer
 		log "Minor People" "Agent Wayde" `A young agent in the logistics division of Deep Security, he vouched for your increased job opportunities after you helped him out.`
 		conversation
-			`As you walk away from a food stand in the spaceport a rather young man in active wear steps away from the wall and smoothly sidles up next to you between one step and the next.`
+			`As you walk away from a food stand in the spaceport, a rather young man in activewear steps away from the wall and smoothly sidles up next to you, between one step and the next.`
 			`	"Hello Captain. Please don't be alarmed, do you have a moment?"`
 			`	His words come out very quickly as if they'd been heavily rehearsed. Glancing around, so far as you can tell, no one appears to be paying any attention to either of you.`
 			choice
