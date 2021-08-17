@@ -201,7 +201,7 @@ void Body::LoadSprite(const DataNode &node)
 			frameOffset += static_cast<float>(child.Value(1));
 			startAtZero = true;
 		}
-		else if(child.Token(0) == "pre rendered rotation" && child.Size() >= 2)
+		else if(child.Token(0) == "pre-rendered rotation" && child.Size() >= 2)
 		{
 			preRenderedRotation = static_cast<int>(child.Value(1));
 		}
@@ -241,7 +241,7 @@ void Body::SaveSprite(DataWriter &out, const string &tag) const
 		if(rewind)
 			out.Write("rewind");
 		if(preRenderedRotation);
-			out.Write("pre rendered rotation", preRenderedRotation);
+			out.Write("pre-rendered rotation", preRenderedRotation);
 	}
 	out.EndChild();
 }
@@ -314,14 +314,14 @@ void Body::SetStep(int step) const
 	// If the animation is paused, reduce the step by however many frames it has
 	// been paused for.
 	step -= pause;
-
+	
 	// If the step is negative or there is no sprite, do nothing. This updates
 	// and caches the mask and the frame so that if further queries are made at
 	// this same time step, we don't need to redo the calculations.
 	if(step == currentStep || step < 0 || !sprite || !sprite->Frames())
 		return;
 	currentStep = step;
-
+	
 	// If the sprite only has one frame, no need to animate anything.
 	float frames = sprite->Frames();
 	if(frames <= 1.f)
@@ -330,12 +330,12 @@ void Body::SetStep(int step) const
 		return;
 	}
 
+	// If pre-rendered rotation, determine the frame from current angle 
+	// and total pre-rendered frames count.
 	if(preRenderedRotation) {
 		int curAngle = (int)(angle.Degrees() + 360.0) % 360;
 		frame = (curAngle / 360.f) * preRenderedRotation;
 	} else {
-
-
 		float lastFrame = frames - 1.f;
 		// This is the number of frames per full cycle. If rewinding, a full cycle
 		// includes the first and last frames once and every other frame twice.
