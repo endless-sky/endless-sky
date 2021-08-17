@@ -308,7 +308,7 @@ fleet "Embershades"
 	government "Indigenous Lifeform"
 	cargo 0
 	personality
-		timid roving evasive hiding mute
+		timid roving evasive cloaking mute
 	variant 1
 		"Embershade" 6
 	variant 2
