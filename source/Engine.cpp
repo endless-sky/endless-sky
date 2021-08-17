@@ -2045,7 +2045,7 @@ void Engine::DoAntiMissile(Ship *ship)
 	for(auto &&target : antiMissileTargets[ship])
 	{
 		Projectile *projectile = target.second;
-		if(!projectile->IsDead() && ship->FireAntiMissile(target.first, *projectile, visuals))
+		if(ship->FireAntiMissile(target.first, *projectile, visuals))
 			projectile->Kill();
 	}
 }
