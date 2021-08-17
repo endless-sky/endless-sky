@@ -2264,7 +2264,8 @@ int Ship::Scan()
 		return 0;
 	
 	// Scanning speed does not use a square root, so that increasing both power and speed 
-	// proportionally will rise both range and speed. The longer the range, the slower the scanner.
+	// proportionally will rise both range and speed. (The longer the range, the slower the scanner.)
+	// Multiply by 100 so that we can simply divide speed by power.
 	double cargoSpeed = 100. * attributes.Get("cargo scan speed") / cargoDistance;
 	if(!cargoSpeed)
 		cargoSpeed = 100. / cargoDistance;
@@ -2277,6 +2278,7 @@ int Ship::Scan()
 	double distance = (target->position - position).Length();
 	
 	// Check the target's outfit and cargo space, a larger ship takes longer to scan.
+	// Normalized around 200 tons of cargo/outfit space.
 	double outfits = target->baseAttributes.Get("outfit space") / 200.;
 	double cargo = target->attributes.Get("cargo space") / 200.;
 	
@@ -2291,8 +2293,9 @@ int Ship::Scan()
 			startedScanning |= !elapsed;
 			activeScanning = true;
 			elapsed +=
-				min(1., (scannerRange - distance) / scannerRange)
-				* (2. / (2. +(Velocity() - target->Velocity()).Length()))
+				min(1., 2. * (scannerRange - distance) / scannerRange)
+				* (5. / (5. + (Velocity() - target->Velocity()).Length()))
+				* (depth / (depth + target->attributes.Get("scan interference")))
 				* (speed / depth);
 			// To make up for the scan decay above:
 			elapsed ++;
