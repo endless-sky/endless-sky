@@ -275,6 +275,10 @@ void Command::Clear()
 void Command::Clear(Command command)
 {
 	state &= ~command.state;
+	for(size_t i = 0; i < 8; i++)
+	{
+		firing_weps[i] &= ~(command.firing_weps[i]);
+	}
 }
 
 
@@ -283,6 +287,10 @@ void Command::Clear(Command command)
 void Command::Set(Command command)
 {
 	state |= command.state;
+	for(size_t i = 0; i < 8; i++)
+	{
+		firing_weps[i] |= command.firing_weps[i];
+	}
 }
 
 
@@ -290,7 +298,15 @@ void Command::Set(Command command)
 // Check if any of the given command's bits that are set, are also set here.
 bool Command::Has(Command command) const
 {
-	return (state & command.state);
+	return (state & command.state)
+		|| (firing_weps[0] & command.firing_weps[0])
+		|| (firing_weps[1] & command.firing_weps[1])
+		|| (firing_weps[2] & command.firing_weps[2])
+		|| (firing_weps[3] & command.firing_weps[3])
+		|| (firing_weps[4] & command.firing_weps[4])
+		|| (firing_weps[5] & command.firing_weps[5])
+		|| (firing_weps[6] & command.firing_weps[6])
+		|| (firing_weps[7] & command.firing_weps[7]);
 }
 
 
@@ -306,6 +322,7 @@ Command Command::And(Command command) const
 // Get the commands that are set in this and not in the given command.
 Command Command::AndNot(Command command) const
 {
+	// At the moment, this is only used for key commands, so no need to do expensive firing_weps checking.
 	return Command(state & ~command.state);
 }
 
@@ -330,10 +347,10 @@ double Command::Turn() const
 // Check if this command includes a command to fire the given weapon.
 bool Command::HasFire(int index) const
 {
-	if(index < 0 || index >= 32)
+	if(index < 0 || index >= 512)
 		return false;
 	
-	return state & ((1ull << 32) << index);
+	return firing_weps[index >> 6] & (1ull << (index % 64));
 }
 
 
@@ -341,10 +358,10 @@ bool Command::HasFire(int index) const
 // Add to this set of commands a command to fire the given weapon.
 void Command::SetFire(int index)
 {
-	if(index < 0 || index >= 32)
+	if(index < 0 || index >= 512)
 		return;
 	
-	state |= ((1ull << 32) << index);
+	firing_weps[index >> 6] |= (1ull << (index % 64));
 }
 
 
@@ -352,7 +369,8 @@ void Command::SetFire(int index)
 // Check if any weapons are firing.
 bool Command::IsFiring() const
 {
-	return (state & 0xFFFFFFFF00000000ull);
+	return firing_weps[0] || firing_weps[1] || firing_weps[2] || firing_weps[3] ||
+						firing_weps[4] || firing_weps[5] || firing_weps[6] || firing_weps[7];
 }
 
 
@@ -361,8 +379,8 @@ bool Command::IsFiring() const
 // -1 or 1 means to turn at the full speed the turret is capable of.
 double Command::Aim(int index) const
 {
-	if(index < 0 || index >= 32)
-		return 0;
+	if(index < 0 || index >= 512)
+		return 0.;
 	
 	return aim[index] / 127.;
 }
@@ -371,9 +389,8 @@ double Command::Aim(int index) const
 
 void Command::SetAim(int index, double amount)
 {
-	if(index < 0 || index >= 32)
+	if(index < 0 || index >= 512)
 		return;
-	
 	aim[index] = round(127. * max(-1., min(1., amount)));
 }
 
@@ -390,7 +407,7 @@ Command::operator bool() const
 // Check whether this command is entirely empty.
 bool Command::operator!() const
 {
-	return !state && !turn;
+	return !state && !turn && !IsFiring();
 }
 
 
@@ -398,6 +415,7 @@ bool Command::operator!() const
 // For sorting commands (e.g. so a command can be the key in a map):
 bool Command::operator<(const Command &command) const
 {
+	// Only used for sorting keys, it appears.
 	return (state < command.state);
 }
 
@@ -420,14 +438,16 @@ Command &Command::operator|=(const Command &command)
 	state |= command.state;
 	if(command.turn)
 		turn = command.turn;
+	for(size_t i = 0; i < 8; i++)
+		firing_weps[i] |= command.firing_weps[i];
 	return *this;
 }
 
 
 
 // Private constructor.
-Command::Command(uint64_t state)
-	: state(state)
+Command::Command(uint32_t state)
+		: state(state)
 {
 }
 
@@ -435,8 +455,8 @@ Command::Command(uint64_t state)
 
 // Private constructor that also stores the given description in the lookup
 // table. (This is used for the enumeration at the top of this file.)
-Command::Command(uint64_t state, const string &text)
-	: state(state)
+Command::Command(uint32_t state, const string &text)
+		: state(state)
 {
 	if(!text.empty())
 		description[*this] = text;
