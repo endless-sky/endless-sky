@@ -588,7 +588,7 @@ mission "Ka'het: Patir Mystery 5"
 					goto open
 				`	"Are you sure this won't put us in danger?"`
 					goto danger
-			`	"I can, yes. The first row of switches controls the lights inside the complex, the second row controls redundant pressurization systems, and there are similar such trivial operations controlled by the rest of the panel.`
+			`	"I can, yes. The first row of switches controls the lights inside the complex, the second row controls redundant pressurization systems, and there are similar such operations controlled by the rest of the panel.`
 				goto open
 			label danger
 			`	"There is no way to be certain, but this is the only possible way to get in without destroying half of the complex.`
