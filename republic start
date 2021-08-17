@@ -1,0 +1,245 @@
+mission "Howell 1"
+	name "Report to Howell"
+	source #anywhere in republic after completing the intro missions?
+	destination "Farpoint"
+	on fail
+		dialog `You have failed an essential Republic mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	on decline
+		dialog `You have declined an essential Republic mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	to offer
+		#has "FINAL INTRO MISSION: done"
+		# a timer?
+	on offer
+		conversation
+			`As you land on <origin>, you notice you've received a message from a secure Republic channel. It reads:`
+			``
+			`	Captain <last>,`
+			`	This is Colonel Howell of the Republic Navy. You were recommended to me by an friend of mine, Commander Jane Melgrew. I'm looking for unaffiliated captains interested in contractual work for the Republic Navy. If you're interested, please meet me on <destination> for more details. Looking forward to hearing from you.`
+			`	Best,`
+			`	Marcus Howell, Republic Navy Colonel`
+			``
+			choice
+				`(Agree to meet with Howell.)`
+				`(Decline Howell's offer.)`
+					goto no
+			`	You inform Colonel Howell you'll arrive on <planet> as soon as you're able.`
+				accept
+			label no
+			`	You inform Colonel Howell that you're not interested in his offer. He soons replies, acknowledging your response and wishing you the best. You can't help but feel you've turned down a significant opportunity.`
+				decline
+	on accept
+		log "People" "Marcus Howell" `Howell is a Colonel in the Republic Navy currently stationed on Geminus.`
+		
+mission "Howell 2"
+	name "Navy agents to Freedom"
+	source "Farpoint"
+	stopover "Freedom"
+	passengers 6
+	on fail
+		dialog `You have failed an essential Republic mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	on decline
+		dialog `You have declined an essential Republic mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	to offer
+		has "R Howell 1: done"
+	on offer
+		conversation
+			`When you land, you inform Colonel Howell that you've arrived and set up a meeting time later in the day.`
+			`	After a few hours, you arrive at Howell's office and are ushered in by a secretary. Inside, a Navy official, presumably Howell, stands to shake your hand. "Captain <last>?. Colonel Howell. Good to meet you in person. Please, sit," he says, gesturing to the chair next to you before taking a seat behind his desk. "We'll get right to it. As you might know, the nuclear detonation on Geminus means we're... well, stretched thin. We've been hiring contractors to fill gaps in our manpower, and you've proved you're reliable. To my understanding, you have some experience traveling through the Far North after your scouting work with Commander Melgrew. Is that correct?"`
+			choice
+				`"Yes, sir."`
+					goto offer
+				`"Yes, I'm comfortable flying in that area."`
+				`"Yeah. It's dangerous space out there."`
+					goto cautious
+			`	"Good, good. Knowing the area will be helpful for your mission.`
+				goto offer
+			label cautious
+			`	"Indeed. I'm happy to hear you understand the risks of traveling there. It certainly can't hurt to be cautious.`
+			label offer
+			`	"We've been having trouble with a specific pirate group operating out of <stopovers>. With a few tips, we've located the leader's name and current whereabouts on the planet. I've prepared a few agents disguised as colonists to infiltrate the planet and arrest the pirate, but I've hit a roadblock: transportation. Any port authority would never let a Navy ship land, so I need an alternative form of transportation. That's where you come in. Take the 'colonists' to Freedom, bribe the authorities with the credits I'll provide, wait for them to bring their 'friend' back, then return here to <origin>. Questions?"`
+			label questions
+			choice
+				`	"How many agents are there?"`
+				`	"How can you be sure the authorities will accept the amount of bribe money you give me?"`
+					goto bribe
+				`	"Do I get paid?"`
+					goto paid
+				`	"That's all. I accept."`
+					goto yes
+				`	"Sorry, but this doesn't sound like something I'd be interested in."`
+					goto no
+			`	"There's five agents. You'll need six bunks total when you include the pirate you're going there to get. Anything else?"`
+				goto questions
+			label bribe
+			`	"I can afford to spare <payment> on this mission. It's certainly possible you may need more or less than that, but that's what I have to spare. Anything extra will have to come out of your own pocket. What else?"`
+			label paid
+			`	"Well... not directly. There are two potential rewards. First, if you have any leftover bribe money, you can keep it. The funding's one of those 'spend it or lose it' situations, so I really don't mind. Second, if you perform well on this mission, I may have future work lined up with more concrete rewards. For the time being, I need to see how you do before I decide spending more money is worth it. Any more questions?"`
+			label yes
+			`	"Great! I'll inform the agents of their transportation and arrange for them to meet you at the spaceport. Good luck, Captain <last>." Colonel Howell shows you out of his office. Soon, the agents are loaded and prepared to leave.`
+				accept
+			label no
+			`	"That's a shame. I had high hopes for you, Captain <last>. Regardless, I wish you the best."`
+				decline
+	on stopover
+		conversation
+		#expand with description of freedom?
+			`When you land on Freedom, the agents exit your ship dressed in civilian attire. "We'll inform you when we're deaded back. Try to keep a low profile," one says, and then they're gone. You spend some time exploring the spaceport before returning to your ship.`
+			`	After a couple of hours, the group returns, leading a woman in cuffs to the ship. She can't be more than twenty years old, but the death stare she gives you would be no more intimidating if it had come from someone twice her size. "We got what we came for. Please return to <origin> as soon as possible," the lead agent says to you.`
+
+mission "Pirate Patrol 1"
+	landing
+	name "Pirate Patrol"
+	description "Fly through <waypoints>, and then deliver you sensor logs to <origin>."
+	waypoint "Mintaka"
+	waypoint "Gorvi"
+	waypoint "Tortor"
+	source "Farpoint"
+	on fail
+		dialog `You have failed an essential Republic mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	on decline
+		dialog `You have declined an essential Republic mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	to offer
+		has "Howell Introduction 2: done"
+	on offer
+		conversation
+			`The agents take the pirate prisoner off your ship, and you head to Colonel Marcus Howell's office to debrief.`
+			`	You're surprised to see that Colonel Howell is not the only one present. Commander Melgrew, sitting in a side chair, greets you as you walk in. "Good to see you again, Captain <last>."`
+			`	"Good to see you too," you reply.`
+			`	"I was just discussing your mission with Melgrew. How did it go?" Colonel Howell asks.
+			choice
+				`	"Well. Not much to report."
+					goto end
+				`	"Who was that pirate? She looked young."
+				`	"It wasn't easy getting to Freedom and back in one piece, but I managed."
+					goto end
+			`	"The one you arrested? One of many - she's not exactly unique. It's a shame that they're all so young. We have juvenile detention facilities for pirates, but few escape the cycle. But we've things to do besides reform the prison system. Let's move on."`
+			label end
+			`	"I'm happy to hear things went smoothly enough. I'm also happy to say we have more work for you, if you're interested. You've proved to me you can complete tasks and keep your cover. People who can do their job with discretion are valuable to me. These are tough times, and we need every captain we can get - especially the good ones. After discussing it with Commander Jane Melgrew, we'd like for you to work with the Republic in a more permanent role. I can offer you a salary of 500 credits per day, as well as payment for completing specific missions. What do you think?"`
+			choice
+				`	"What exactly will I be doing?"`
+				`	"I'll need more info before I make that decision."`
+			`	Commander Melgrew chimes in: "For the time being, we'll be working on the pirate problem in the Far North. After that, there's a lot of infrastructure that needs to be built or repaired before we're truly ready to combat the Free Worlds. After that... I guess that depends on how the war goes. You should expect to join combat missions against them, but how much you do will depend on our resources and your own skills."`
+			`	"On that note, you should know that this will tie you to the Republic in this conflict. We'll expect you to be available for whatever we may need."`
+			choice
+				`	"I'll join the Republic. What's our next step?"`
+					goto join
+				`	"Sorry, but I'm partial to the Free World's cause."`
+				`	"Sorry, but I'd prefer not to pick a side in this."`
+			`	Colonel Howell sighs. "I understand you've made your decision. It's not an easy thing to commit to either side, especially in a conflict like this." You say goodbye to Colonel Howell and Commander Melgrew, and then leave the office.`
+				decline
+			label join
+			`	"Good," Howell says. "We'll get started, then. For the time being, you'll report to Jane. She needs some reconaissance done in systems with substantial pirate activity. You two are dismissed." You leave his office with Melgrew and make your way to the spaceport.`
+			`	"First on out list, like Marcus said, is scouting. I need you pulling flybys on three systems: <waypoints>. Report back to me with your sensor logs when you're done. Oh, and your payment is <payment>, which should only go up from here. Got it?"`
+			choice
+				`	"Got it."`
+					accept
+				`	"What if I encounter pirates?"`
+			`	"You're welcome to stay and fight if you want, but I doubt it will do you any good. Remember, this is a scouting mission," Melgrew answers.`
+				accept
+	on accept
+		"salary: Republic = 500"
+	on complete
+		payment 100000
+
+mission "Pirate Patrol 2"
+	name "Pirate Patrol"
+	description "Fly through <waypoints>, then deliver you sensor logs to <origin>."
+	waypoint "Almaaz"
+	waypoint "Unagi"
+	source "Farpoint"
+	on fail
+		dialog `You have failed an essential Republic mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`	
+	to offer
+		has "R Pirate Patrol 1: done"
+	on offer
+		conversation
+			`Jane Melgrew is waiting at the spaceport for you when you land. "Good work. We're downloading the ship's logs right now, and your payment's being transferred. Walk with me." You accompany her to a room filled with data analysts. A man peering over one of the analysts perks up when the two of you enter and gives a curt nod.`
+			`	"Melgrew. Who's this?"`
+			`	"Hines, this is Captain <first> <last>, the one whose logs you're currently viewing. <first>, this is Officer Ranulph Hines," she tells you.`
+			choice
+				`	"Good to meet you."`
+				`	(Nod.)`
+			`	Hines stares at you for a moment, then snorts. "Right. Well, we need more readings if we're going to make much sense of this data." He waves you and Melgrew off.`
+			`	When you've left the room, Melgrew sighs. "Sorry about that. Hines is good at his job, but he's... well, you saw how he is. He's gotten in trouble about it more than once. But enough of that - he's right that we need more data. You're headed to <waypoints> next. Good luck, Captain."`
+				accept
+	on complete
+		payment 150000
+		
+mission "Pirate Patrol 3"
+	landing
+	name "Pirate Patrol"
+	description "Fly through <waypoints> before returning to <origin> to deliver your sensor logs."
+	waypoint "Arneb"
+	waypoint "Alnilam"
+	waypoint "Hatysa"
+	source "Farpoint"
+	on fail
+		dialog `You have failed an essential Republic mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	to offer
+		has "R Pirate Patrol 1: done"
+	on offer
+		conversation
+			`You land with Melgrew and Hines waiting for you. "Anything unusual?" Hines asks.`
+				choice
+				`	"No, sir."`
+				`	"Nothing more than the usual boatload of pirates."`
+			`	"We'll see if your logs match that story," he replies. Hines turns and leaves without adding anything else.`
+			`	Melgrew rolls her eyes. "Thank you, Ranulph," she mutters to herself, then addresses you. "Well, you've got a couple spots left: <waypoints>. We've transferred 150,000 credits for the last job, and this mission is worth <payment>. Stay safe," she adds, then leaves to attend to her own business.`
+	on complete
+		payment 250000
+
+mission "Navy vs Pirate"
+	landing
+	description "A pirate vessel named <npc> is currently at <waypoints>. Accompany Commander Howell to destroy it before it can move further into Republic space, then return to <planet>. Ensure Howell's ship is not destroyed."
+	to offer
+		has "Navy Pirate Patrol 3: done"
+	source "Farpoint"
+	waypoint "Saiph"
+	on fail
+		dialog `You have failed an essential Republic mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	npc accompany save
+		personality escort
+		government "Republic"
+		ship "Cruiser" "R.N.S. Terrainian"
+	npc kill
+		personality heroic staying target unconstrained opportunistic
+		government "Pirate"
+		system "Saiph"
+		fleet
+			names "pirate"
+			variant "Leviathan"
+	on offer
+		conversation
+			`As you land and transfer your logs, you notice 250,000 credits have been transferred to your account, along with a message from Howell to meet him and Melgrew at his office. On your way there, you overhear someone screaming further down a hall you just passed. The voice sounds suspiciously similar to Officer Hines'.`
+				choice
+				`	(Check out what's going on.)`
+				`	(It's not your business. Go straight to Howell's office).`
+					goto office
+			`	You follow the screaming and turn down the hall. At the far end, Hines, with his back to you, is yelling at two soldiers who are very obviously escorting him out of the building. A solider stepping out of a nearby office takes one look at the scene, turns to you, and says, "It'd be best if you were on your way." You agree and proceed to Howell's office.`
+			label office
+			`	You arrive at the office with the screaming still faint in the background. Howell and Melgrew are in the middle of a heated discussion. "I don't like it either, but there's not much we can do," Howell is saying.`
+				choice
+				`	"What's going on?"`
+				`	(Say nothing.)`
+				`	"What's happening to Officer Hines?"`
+			`	"Captain <first>." Howell notices you. "Excuse us. If you haven't heard-"`
+			`	"Oh, <first> can hear all right. Hell, his screaming probably reaches the other side of the building," Melgrew buts in.`
+			`	Howell sighs. "I'm sure it does. Officer Hines has a reputation in the Navy, as you know. To my understanding, he pushed the wrong official's buttons, and he was just assigned mandatory leave for a week. Needless to say, he isn't happy. The problem is, he was supposed to launch a mission today against a specific pirate vessel at <waypoints> that we've been having trouble with. As tiring as he can be, he is incredibly competent, and we'll be hard-pressed to do the job without him. That's why you're here.`
+			`	"I'm replacing Hines as the commanding officer aboard the Cruiser R.N.S. Terrainian for this mission, and you're accompanying me. With Hines out, I don't want to risk any excessive damage to my resources. Having you as support mitigates that risk. Payment is <payment>. Got all that?"`
+			label questions
+				choice
+				`	"So we're going into combat?"`
+					goto combat
+				`	"If the ship was in Saiph, what was I scouting all those other systems for?"`
+					goto scouting
+				`	"I'm ready."`
+			`	Good. I'll follow you out of the system when we depart. Good hunting, Captain <last>," Howell says.`
+				accept
+			label combat
+			`	"Yes," Howell replies. "If you've yet to do any substantial fighting, don't worry all that much. Ensure your ship has weapons, and take shots when you can. I entirely expect the Cruiser to be more than a match for our pirate friend. You're coming out of an abundance of caution, and this will get you used to how we operate. Anything else?"`
+			goto questions
+			label scouting
+			`	Melgrew answers, "Don't worry, that wasn't just busy work. We needed to ensure two things. First, that our pirate friend hadn't changed their base of operations. Second, that nobody had caught wind of our planning. Since activity was standard in those areas, we can be confident that there won't be any surprises out at <waypoints>."`
+	on complete
+		log "Accompanied Commander Howell in destroying a pirate ship in the Saiph system."
+		payment 350000
