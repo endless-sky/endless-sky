@@ -1424,7 +1424,7 @@ news "human republic reporter in pirate space"
 	name
 		word
 			"Reporter"
-  message
+	message
 		word
 			`"`
 		word
