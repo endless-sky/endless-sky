@@ -47,6 +47,11 @@ public:
 	
 	void Load(const DataNode &node);
 	
+	// Determine if this fleet template uses well-defined data.
+	bool IsValid(bool requireGovernment = true) const;
+	// Ensure any variant selected during gameplay will have at least one ship to spawn.
+	void RemoveInvalidVariants();
+	
 	// Get the government of this fleet.
 	const Government *GetGovernment() const;
 	

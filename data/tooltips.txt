@@ -162,10 +162,10 @@ tip "heat protection:"
 	`Protection against weapons that do heat damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in heat damage, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "hull repair / max:"
-	`Hull repair rate (per second) and total hull strength. Small ships are disabled when their hull strength drops below 45%; larger ships are disabled at 15%.`
+	`Hull repair rate (per second) and total hull strength. The smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
 
 tip "hull:"
-	`Total hull strength. Small ships are disabled when their hull strength drops below 45%; larger ships are disabled at 15%.`
+	`Total hull strength. Ships with a higher hull strength are able to take more damage as a proportion of their total strength before being disabled; the smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
 
 tip "hull energy:"
 	`Energy consumed per second when repairing the hull.`
@@ -273,7 +273,7 @@ tip "piercing protection:"
 	`Protection against weapons that pierce shields. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in damage leak, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "radar jamming:"
-	`Reduces the ability of missiles that use radar to track your ship.`
+	`Reduces the ability of radar-guided missiles to track your ship. The more radar jamming is installed, the greater the distance at which missiles can be jammed, and the greater the chance that a jammed missile will fly off in a random direction.`
 
 tip "ramscoop:"
 	`Replenishes fuel by harvesting the stellar wind. Ramscoops are more effective when closer to a star. If you add more than one ramscoop, each additional one is less effective: you need four ramscoops to achieve double the recharge rate that one ramscoop provides.`
@@ -536,6 +536,36 @@ tip "firing heat / second:"
 tip "firing fuel / second:"
 	`Fuel consumed by this weapon per second when firing.`
 
+tip "firing hull / second:"
+	`Amount of hull damaged by this weapon per second when firing.`
+
+tip "firing shields / second:"
+	`Amount of shield damaged by this weapon per second when firing.`
+
+tip "firing ion / second:"
+	`Reduces energy levels for some time after this weapon is fired.`
+
+tip "firing slowing / second:"
+	`Reduces the turn rate, acceleration, and top speed of the ship when this weapon is fired. Slowing wears off over time.`
+
+tip "firing disruption / second:"
+	`Disrupts the ships shields after firing this weapon, allowing damage from hostile weapons to "leak through" to the hull even if shields are up. Shield disruption wears off over time.`
+
+tip "% firing energy / second:"
+	`Relative firing energy costs, converted to energy per second to allow easy comparisons between different weapons.`
+
+tip "% firing heat / second:"
+	`When firing this weapon then the ships's heat increases as a percentage of its maximum heat capacity by this amount per second.`
+
+tip "% firing fuel / second:"
+	`The amount of fuel used or lost as a percentage of the ship's total fuel per second when this weapon is fired.`
+
+tip "% firing hull / second:"
+	`Relative hull loss when this weapon is fired, converted to loss per second to allow easy comparisons between different weapons.`
+
+tip "% firing shields / second:"
+	`Relative shields loss when this weapon is fired, converted to loss per second to allow easy comparisons between different weapons.`
+
 tip "shots / second:"
 	`How many projectiles per second this weapon fires. Weapons that fire continuously do not require batteries if the ship's energy generation is higher than the weapon's energy consumption.`
 
@@ -549,13 +579,13 @@ tip "tracking:"
 	`How well this weapon maintains its target lock.`
 
 tip "optical tracking:"
-	`How well this weapon maintains an optical target lock, which depend on the size of the target.`
+	`How well this weapon maintains an optical target lock, which depends on the size of the target.`
 
 tip "infrared tracking:"
-	`How well this weapon maintains an infrared target lock, which depends on the target ship's heat level.`
+	`How well this weapon maintains an infrared target lock, which depends on the target ship's heat level and distance from the missile; IR-guided missiles become more accurate the closer they are to their targets.`
 
 tip "radar tracking:"
-	`How well this weapon maintains a radar target lock, which can be interrupted by a ship with radar jamming installed.`
+	`How well this weapon maintains a radar target lock; negatively affected by the target ship's radar jamming equipment.`
 
 tip "piercing:"
 	`This percentage of this weapon's damage always leaks through to the hull.`
@@ -610,6 +640,36 @@ tip "firing heat / shot:"
 
 tip "firing fuel / shot:"
 	`Fuel consumed per shot.`
+
+tip "firing hull / shot:"
+	`Each shot fired by this weapon causes this amount of hull to be lost.`
+
+tip "firing shields / shot:"
+	`Each shot fired by this weapon causes this amount of shield to be lost.`
+
+tip "firing ion / shot:"
+	`Each shot increases the ship's ionization by this amount. Ionization reduces the ships's energy and slowly wears off over time.`
+
+tip "firing slowing / shot:"
+	`Reduces the ship's turn rate, acceleration, and top speed. Slowing wears off over time.`
+
+tip "firing disruption / shot:"
+	`Each shot disrupts the target's shields, allowing hostile weapon damage to "leak through" to the hull even if shields are up. Shield disruption wears off over time.`
+
+tip "% firing energy / shot:"
+	`Each shot reduces the ship's energy as a percentage of the ship's total energy capacity by this amount.`
+
+tip "% firing heat / shot:"
+	`Each shot fired increases the ship's heat as a percentage of the ship's maximum heat capacity by this amount.`
+
+tip "% firing fuel / shot:"
+	`The amount of fuel used or lost per shot fired as a percentage of the ship's total fuel.`
+
+tip "% firing hull / shot:"
+	`Each shot fired by this weapon causes this amount of hull damage as a percentage of the ship's total hull.`
+
+tip "% firing shields / shot:"
+	`Each shot fired by this weapon causes this amount of shield loss as a percentage of the ship's total shields.`
 
 tip "inaccuracy:"
 	`Maximum inaccuracy of this weapon, in degrees.`

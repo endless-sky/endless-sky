@@ -13,11 +13,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef WEAPON_H_
 #define WEAPON_H_
 
+#include "Angle.h"
 #include "Body.h"
 #include "Point.h"
 
+#include <cstddef>
 #include <map>
 #include <utility>
+#include <vector>
 
 class DataNode;
 class Effect;
@@ -34,6 +37,21 @@ class Sprite;
 // string to double significantly reduces access time.
 class Weapon {
 public:
+	struct Submunition{
+		Submunition() noexcept = default;
+		explicit Submunition(const Weapon *weapon, std::size_t count) noexcept
+			: weapon(weapon), count(count) {};
+		
+		const Weapon *weapon = nullptr;
+		std::size_t count = 0;
+		// The angular offset from the source projectile, relative to its current facing.
+		Angle facing;
+		// The base offset from the source projectile's position, relative to its current facing.
+		Point offset;
+	};
+	
+	
+public:
 	// Load from a "weapon" node, either in an outfit, a ship (explosion), or a hazard.
 	void LoadWeapon(const DataNode &node);
 	bool IsWeapon() const;
@@ -49,8 +67,9 @@ public:
 	const std::map<const Effect *, int> &FireEffects() const;
 	const std::map<const Effect *, int> &LiveEffects() const;
 	const std::map<const Effect *, int> &HitEffects() const;
+	const std::map<const Effect *, int> &TargetEffects() const;
 	const std::map<const Effect *, int> &DieEffects() const;
-	const std::map<const Outfit *, int> &Submunitions() const;
+	const std::vector<Submunition> &Submunitions() const;
 	
 	// Accessor functions for various attributes.
 	int Lifetime() const;
@@ -86,10 +105,23 @@ public:
 	double InfraredTracking() const;
 	double RadarTracking() const;
 	
+	// Normal damage sustained on firing ship when weapon fired.
 	double FiringEnergy() const;
 	double FiringForce() const;
 	double FiringFuel() const;
 	double FiringHeat() const;
+	double FiringHull() const;
+	double FiringShields() const;
+	double FiringIon() const;
+	double FiringSlowing() const;
+	double FiringDisruption() const;
+	
+	// Relative damage sustained on firing ship when weapon fired.
+	double RelativeFiringEnergy() const;
+	double RelativeFiringHeat() const;
+	double RelativeFiringFuel() const;
+	double RelativeFiringHull() const;
+	double RelativeFiringShields() const;
 	
 	double SplitRange() const;
 	double TriggerRadius() const;
@@ -166,8 +198,9 @@ private:
 	std::map<const Effect *, int> fireEffects;
 	std::map<const Effect *, int> liveEffects;
 	std::map<const Effect *, int> hitEffects;
+	std::map<const Effect *, int> targetEffects;
 	std::map<const Effect *, int> dieEffects;
-	std::map<const Outfit *, int> submunitions;
+	std::vector<Submunition> submunitions;
 	
 	// This stores whether or not the weapon has been loaded.
 	bool isWeapon = false;
@@ -213,6 +246,17 @@ private:
 	double firingForce = 0.;
 	double firingFuel = 0.;
 	double firingHeat = 0.;
+	double firingHull = 0.;
+	double firingShields = 0.;
+	double firingIon = 0.;
+	double firingSlowing = 0.;
+	double firingDisruption = 0.;
+	
+	double relativeFiringEnergy = 0.;
+	double relativeFiringHeat = 0.;
+	double relativeFiringFuel = 0.;
+	double relativeFiringHull = 0.;
+	double relativeFiringShields = 0.;
 	
 	double splitRange = 0.;
 	double triggerRadius = 0.;
@@ -287,6 +331,17 @@ inline double Weapon::FiringEnergy() const { return firingEnergy; }
 inline double Weapon::FiringForce() const { return firingForce; }
 inline double Weapon::FiringFuel() const { return firingFuel; }
 inline double Weapon::FiringHeat() const { return firingHeat; }
+inline double Weapon::FiringHull() const { return firingHull; }
+inline double Weapon::FiringShields() const { return firingShields; }
+inline double Weapon::FiringIon() const{ return firingIon; }
+inline double Weapon::FiringSlowing() const{ return firingSlowing; }
+inline double Weapon::FiringDisruption() const{ return firingDisruption; }
+
+inline double Weapon::RelativeFiringEnergy() const{ return relativeFiringEnergy; }
+inline double Weapon::RelativeFiringHeat() const{ return relativeFiringHeat; }
+inline double Weapon::RelativeFiringFuel() const{ return relativeFiringFuel; }
+inline double Weapon::RelativeFiringHull() const{ return relativeFiringHull; }
+inline double Weapon::RelativeFiringShields() const{ return relativeFiringShields; }
 
 inline double Weapon::Piercing() const { return piercing; }
 

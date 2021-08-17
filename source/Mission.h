@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionSet.h"
 #include "Date.h"
+#include "EsUuid.h"
 #include "LocationFilter.h"
 #include "MissionAction.h"
 #include "NPC.h"
@@ -44,6 +45,13 @@ class UI;
 class Mission {
 public:
 	Mission() = default;
+	// Copying a mission instance isn't allowed.
+	Mission(const Mission &) = delete;
+	Mission &operator=(const Mission &) = delete;
+	Mission(Mission &&) noexcept = default;
+	Mission &operator=(Mission &&) noexcept = default;
+	~Mission() noexcept = default;
+	
 	// Construct and Load() at the same time.
 	Mission(const DataNode &node);
 	
@@ -54,11 +62,15 @@ public:
 	void Save(DataWriter &out, const std::string &tag = "mission") const;
 	
 	// Basic mission information.
+	const EsUuid &UUID() const noexcept;
 	const std::string &Name() const;
 	const std::string &Description() const;
 	// Check if this mission should be shown in your mission list. If not, the
 	// player will not know this mission exists (which is sometimes useful).
 	bool IsVisible() const;
+	// Check if this mission should be quarantined due to requiring currently-
+	// undefined ships, planets, or systems (i.e. is from an inactive plugin).
+	bool IsValid() const;
 	// Check if this mission has high priority. If any high-priority missions
 	// are available, no others will be shown at landing or in the spaceport.
 	// This is to be used for missions that are part of a series.
@@ -168,6 +180,8 @@ private:
 	std::string description;
 	std::string blocked;
 	Location location = SPACEPORT;
+	
+	EsUuid uuid;
 	
 	bool hasFailed = false;
 	bool isVisible = true;

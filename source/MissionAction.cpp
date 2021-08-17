@@ -17,7 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
-#include "Format.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "GameEvent.h"
 #include "Messages.h"
@@ -38,7 +38,8 @@ namespace {
 			return;
 		
 		player.BuyShip(model, name, true);
-		Messages::Add("The " + model->ModelName() + " \"" + name + "\" was added to your fleet.");
+		Messages::Add("The " + model->ModelName() + " \"" + name + "\" was added to your fleet."
+			, Messages::Importance::High);
 	}
 	
 	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
@@ -113,7 +114,7 @@ namespace {
 			message += "cargo hold.";
 		else
 			message += "flagship.";
-		Messages::Add(message);
+		Messages::Add(message, Messages::Importance::High);
 	}
 	
 	int CountInCargo(const Outfit *outfit, const PlayerInfo &player)
@@ -230,6 +231,14 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			if(child.Size() >= 3)
 				paymentMultiplier += child.Value(2);
 		}
+		else if(key == "fine" && hasValue)
+		{
+			int64_t loadedFine = child.Value(1);
+			if(loadedFine > 0)
+				fine += loadedFine;
+			else
+				child.PrintTrace("Skipping invalid \"fine\" with non-positive value:");
+		}
 		else if(key == "event" && hasValue)
 		{
 			int minDays = (child.Size() >= 3 ? child.Value(2) : 0);
@@ -320,6 +329,8 @@ void MissionAction::Save(DataWriter &out) const
 			out.Write("require", it.first->Name(), it.second);
 		if(payment)
 			out.Write("payment", payment);
+		if(fine)
+			out.Write("fine", fine);
 		for(const auto &it : events)
 		{
 			if(it.second.first == it.second.second)
@@ -327,12 +338,52 @@ void MissionAction::Save(DataWriter &out) const
 			else
 				out.Write("event", it.first->Name(), it.second.first, it.second.second);
 		}
-		for(const auto &name : fail)
-			out.Write("fail", name);
+		for(auto &&missionName : fail)
+			out.Write("fail", missionName);
 		
 		conditions.Save(out);
 	}
 	out.EndChild();
+}
+
+
+
+// Check this template or instantiated MissionAction to see if any used content
+// is not fully defined (e.g. plugin removal, typos in names, etc.).
+string MissionAction::Validate() const
+{
+	// Any filter used to control where this action triggers must be valid.
+	if(!systemFilter.IsValid())
+		return "system location filter";
+	
+	// Stock phrases that generate text must be defined.
+	if(stockDialogPhrase && stockDialogPhrase->IsEmpty())
+		return "stock phrase";
+	
+	// Stock conversations must be defined.
+	if(stockConversation && stockConversation->IsEmpty())
+		return "stock conversation";
+	
+	// Events which get activated by this action must be valid.
+	for(auto &&event : events)
+		if(!event.first->IsValid())
+			return "event \"" + event.first->Name() + "\"";
+
+	// Gifted or required content must be defined & valid.
+	for(auto &&it : giftShips)
+		if(!it.first->IsValid())
+			return "gift ship model \"" + it.first->VariantName() + "\"";
+	for(auto &&outfit : giftOutfits)
+		if(!outfit.first->IsDefined())
+			return "gift outfit \"" + outfit.first->Name() + "\"";
+	for(auto &&outfit : requiredOutfits)
+		if(!outfit.first->IsDefined())
+			return "required outfit \"" + outfit.first->Name() + "\"";
+	
+	// It is OK for this action to try to fail a mission that does not exist.
+	// (E.g. a plugin may be designed for interoperability with other plugins.)
+	
+	return "";
 }
 
 
@@ -475,6 +526,8 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 	
 	if(payment)
 		player.Accounts().AddCredits(payment);
+	if(fine)
+		player.Accounts().AddFine(fine);
 	
 	for(const auto &it : events)
 		player.AddEvent(*it.first, player.GetDate() + it.second.first);
@@ -497,7 +550,8 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 
 
 
-MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin, int jumps, int payload) const
+// Convert this validated template into a populated action.
+MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin, int jumps, int64_t payload) const
 {
 	MissionAction result;
 	result.trigger = trigger;
@@ -505,11 +559,10 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	// Convert any "distance" specifiers into "near <system>" specifiers.
 	result.systemFilter = systemFilter.SetOrigin(origin);
 	
+	// All contained events are valid, else we would not be calling Instantiate. For these
+	// valid events, pick a date within the specified range on which the event will occur.
 	for(const auto &it : events)
 	{
-		// Allow randomization of event times. The second value in the pair is
-		// always greater than or equal to the first, so Random::Int() will
-		// never be called with a value less than 1.
 		int day = it.second.first + Random::Int(it.second.second - it.second.first + 1);
 		result.events[it.first] = make_pair(day, day);
 	}
@@ -518,11 +571,17 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	result.giftOutfits = giftOutfits;
 	result.requiredOutfits = requiredOutfits;
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
+	result.fine = fine;
 	// Fill in the payment amount if this is the "complete" action.
 	string previousPayment = subs["<payment>"];
 	if(result.payment)
 		subs["<payment>"] = Format::Credits(abs(result.payment))
 			+ (result.payment == 1 ? " credit" : " credits");
+	
+	string previousFine = subs["<fine>"];
+	if(result.fine)
+		subs["<fine>"] = Format::Credits(result.fine)
+			+ (result.fine == 1 ? " credit" : " credits");
 	
 	if(!logText.empty())
 		result.logText = Format::Replace(logText, subs);
@@ -546,10 +605,12 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	
 	result.conditions = conditions;
 	
-	// Restore the "<payment>" value from the "on complete" condition, for use
-	// in other parts of this mission.
+	// Restore the "<payment>" and "<fine>" values from the "on complete" condition, for
+	// use in other parts of this mission.
 	if(result.payment && trigger != "complete")
 		subs["<payment>"] = previousPayment;
+	if(result.fine && trigger != "complete")
+		subs["<fine>"] = previousFine;
 	
 	return result;
 }

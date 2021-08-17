@@ -18,7 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "DistanceMap.h"
 #include "Point.h"
-#include "WrappedText.h"
+#include "text/WrappedText.h"
 
 #include <map>
 #include <string>
@@ -103,8 +103,11 @@ protected:
 	
 	DistanceMap distance;
 	
-	const System *playerSystem;
+	// The system in which the player is located.
+	const System &playerSystem;
+	// The (non-null) system which is currently selected.
 	const System *selectedSystem;
+	// The selected planet, if any.
 	const Planet *selectedPlanet = nullptr;
 	// A system associated with a dialog or conversation.
 	const System *specialSystem;
