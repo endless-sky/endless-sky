@@ -1001,7 +1001,7 @@ outfit "Torpedo Pod"
 		"velocity" 7
 		"lifetime" 900
 		"reload" 320
-		"burst count" 5
+		"burst count" 3
 		"burst reload" 150
 		"firing energy" 2
 		"firing heat" 45
@@ -1102,7 +1102,7 @@ outfit "Typhoon Pod"
 		"velocity" 6
 		"lifetime" 1100
 		"reload" 50
-		"burst count" 5
+		"burst count" 2
 		"burst reload" 120
 		"firing energy" 4
 		"firing heat" 50
