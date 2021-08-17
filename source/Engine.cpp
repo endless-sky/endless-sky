@@ -2028,9 +2028,9 @@ void Engine::DoCollisions(Projectile &projectile)
 		for(Ship *ship : hasAntiMissile)
 			if(ship == projectile.Target() || gov->IsEnemy(ship->GetGovernment()))
 			{
-				double distanceSquared = ship->IsInAntiMissileRangeOf(projectile);
-				if(distanceSquared >= 0)
-					antiMissileTargets[ship].emplace(distanceSquared, &projectile);
+				double distance = ship->IsInAntiMissileRangeOf(projectile);
+				if(distance >= 0)
+					antiMissileTargets[ship].emplace(distance, &projectile);
 			}
 	}
 }
