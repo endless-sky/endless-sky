@@ -990,6 +990,7 @@ ship "Shooting Star"
 		"Floating Crystal"
 		"Tree Skeleton Key Stone"
 	gun 0 0
+		over
 	turret 0 0
 	turret 0 0
 	turret 0 0

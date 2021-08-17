@@ -133,7 +133,7 @@ namespace {
 		int assigns = count_if(tokens.begin(), tokens.end(), IsAssignment);
 		int compares = count_if(tokens.begin(), tokens.end(), IsComparison);
 		if(assigns + compares != 1)
-			node.PrintTrace("An expression must either perform a comparison, or an assign a value:");
+			node.PrintTrace("An expression must either perform a comparison or assign a value:");
 		else if(HasInvalidOperators(tokens))
 			node.PrintTrace("Brackets, braces, exponentiation, and boolean/bitwise math are not supported:");
 		else if(HasUnbalancedParentheses(tokens))
