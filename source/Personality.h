@@ -65,7 +65,7 @@ public:
 	bool Harvests() const;
 	bool IsSwarming() const;
 	bool IsRoving() const;
-	bool IsHiding() const;
+	bool IsCloaking() const;
 	bool IsBored() const;
 
 	// Special flags:

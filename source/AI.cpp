@@ -711,6 +711,11 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			targetDistance = target->Position().Distance(it->Position());
 		
 		// Behave in accordance with personality traits.
+		if(isPresent && personality.IsCloaking() && !isStranded)
+		{
+			command |= Command::CLOAK;
+		}
+		
 		if(isPresent && personality.IsBored() && !isStranded && !Random::Int(6000))
 		{
 			if(it->Fuel() >= it->JumpFuel() || it->Fuel() >= it->JumpDriveFuel())
@@ -727,11 +732,6 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			
 			it->SetCommands(command);
 			continue;
-		}
-		
-		if(isPresent && personality.IsHiding() && !isStranded)
-		{
-			command |= Command::CLOAK;
 		}
 		
 		// Evasive ships will run away from other ships

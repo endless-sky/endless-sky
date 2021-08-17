@@ -50,7 +50,7 @@ namespace {
 	const int MARKED = (1 << 26);
 	const int LAUNCHING = (1 << 27);
 	const int ROVING = (1 << 28);
-	const int HIDING = (1 << 29);
+	const int CLOAKING = (1 << 29);
 	const int EVASIVE = (1 << 30);
 	const int BORED = (1 << 31);
 
@@ -84,7 +84,7 @@ namespace {
 		{"marked", MARKED},
 		{"launching", LAUNCHING},
 		{"roving", ROVING},
-		{"hiding", HIDING},
+		{"cloaking", CLOAKING},
 		{"evasive", EVASIVE},
 		{"bored", BORED}
 	};
@@ -343,9 +343,9 @@ bool Personality::IsRoving() const
 
 
 
-bool Personality::IsHiding() const
+bool Personality::IsCloaking() const
 {
-	return flags & HIDING;
+	return flags & CLOAKING;
 }
 
 
