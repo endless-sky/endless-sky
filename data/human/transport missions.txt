@@ -3321,7 +3321,7 @@ mission "Mafia Extortion"
 			`A man in a tailored suit, sunglasses, shiny shoes, and green hair approaches you. "Hey, that's a very nice ship you have there. Would be a shame if anything happened to it."`
 			`	You notice that he is missing a finger on each hand.`
 			choice
-				`	"Thank you. My name is <first> <last>. To whom do I have the pleasure of talking to?"`
+				`	"Thank you. My name is <first> <last>. To whom do I have the pleasure of speaking?`
 					goto nameless
 				`	"Yes, I'm very happy with my ship."`
 					goto specifics
@@ -3349,7 +3349,7 @@ mission "Mafia Extortion"
 			label specifics
 			`	The man responds, "Well, a fleet of unfriendly ships in this system might blow you to pieces when you take off. It's been known to happen from time to time."`
 			choice
-				`	"Ha, business as usual in this system."`
+				`	"Ha, business as usual around here."`
 					goto unconcerned
 				`	"Are you trying to extort me?"`
 					goto mafia
@@ -3357,7 +3357,7 @@ mission "Mafia Extortion"
 					goto mafia
 				`	"And you're the local goon who takes bribes to keep such ships docked?"`
 					goto mafia
-				`	"That would be unfortunate. I run jobs for some of the most dangerous people on this planet and they wouldn't be happy if that happened."`
+				`	"That would be unfortunate. I run jobs for some of the most dangerous people on this planet, and they wouldn't be happy if that happened."`
 					goto unnerved
 				`	"I really don't have time to talk to you."`
 					goto funeral
@@ -3373,7 +3373,7 @@ mission "Mafia Extortion"
 					goto payup
 				`	"How can I be sure the money is spent well?"`
 					goto impatient
-				`	"Sorry, I already made a donation to the 'Security Support Fund' earlier today and I don't donate twice in one day."`
+				`	"Sorry, I already made a donation to the 'Security Support Fund' earlier today, and I don't donate twice in one day."`
 					goto impatient
 				`	"I've already heard enough, I'm going to talk to the authorities."`
 					goto next_steps
@@ -3393,7 +3393,7 @@ mission "Mafia Extortion"
 				`	"Listen, I see that you're missing a finger on each hand. You look like a goon, and not a very successful one."`
 					goto unnerved
 			label funeral
-			`	The man responds "Your funeral, not mine." and turns away from you.`
+			`	The man responds "Your funeral, not mine," and turns away from you.`
 				goto walks_away
 			label next_steps
 			`	"Look, that's not a smart move. Most of them are in on it anyway."`
@@ -3407,7 +3407,7 @@ mission "Mafia Extortion"
 				`	(Go to a bar and ask for whoever is in charge.)`
 					goto bar
 			label police
-			`	It's not long before you find the ruins of what used to be a police station... you think. The building has been thoroughly destroyed, hopefully not while anybody was present.`
+			`	It's not long before you find the ruins of what used to be a police station... you think. The building has been thoroughly destroyed, hopefully not while anybody was inside.`
 			choice
 				`	(Go to a bar and ask for whoever is in charge.)`
 					goto bar
@@ -3430,7 +3430,7 @@ mission "Mafia Extortion"
 				`	(Agree.)`
 					goto zerodeal
 			label cornered
-			`	"Well what do you want? Is there anything I can do for you?"`
+			`	"Well, what do you want? Do I have to do something for you?"`
 			choice
 				`	"No, let's just forget it happened."`
 					goto zerodeal
@@ -3458,7 +3458,7 @@ mission "Mafia Extortion"
 			`The man walks away without saying a word.`
 				decline
 			label too_much
-			`	"That's too much! 2389 credits is all I have. Would that be enough?"`
+			`	"That's too much! 2,389 credits is all I have. Would that be enough?"`
 			choice
 				`	"Sure."`
 					goto counterdeal
