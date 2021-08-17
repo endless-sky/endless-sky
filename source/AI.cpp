@@ -711,6 +711,24 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			targetDistance = target->Position().Distance(it->Position());
 		
 		// Behave in accordance with personality traits.
+		if(isPresent && personality.IsBored() && !isStranded && !Random::Int(6000))
+		{
+			if(it->Fuel() >= it->JumpFuel() || it->Fuel() >= it->JumpDriveFuel())
+				MoveIndependent(*it, command);
+			else if (playerSystem->IsInhabited(it.get()))
+			{
+				for(const StellarObject& planet: playerSystem->Objects())
+					if(CanRefuel(*it, &planet))
+					{
+						it->SetTargetStellar(&planet);
+					}
+				Refuel(*it, command);
+			}
+			
+			it->SetCommands(command);
+			continue;
+		}
+		
 		if(isPresent && personality.IsHiding() && !isStranded)
 		{
 			command |= Command::CLOAK;
@@ -2615,9 +2633,9 @@ bool AI::DoCloak(Ship &ship, Command &command)
 bool AI::DoRoving(Ship &ship, Command &command, unsigned int rovingShipCount)
 {
 	const System* system = ship.GetSystem();
-	if((rovingShipCount > 9 && system) || !Random::Int(3000))
+	if((rovingShipCount > 9 && system))
 	{
-		if(ship.Fuel() > ship.JumpFuel() || ship.Fuel() > ship.JumpDriveFuel())
+		if(ship.Fuel() >= ship.JumpFuel() || ship.Fuel() >= ship.JumpDriveFuel())
 		{
 			MoveIndependent(ship, command);
 			return true;

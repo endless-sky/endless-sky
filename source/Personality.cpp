@@ -52,6 +52,7 @@ namespace {
 	const int ROVING = (1 << 28);
 	const int HIDING = (1 << 29);
 	const int EVASIVE = (1 << 30);
+	const int BORED = (1 << 31);
 
 	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -84,7 +85,8 @@ namespace {
 		{"launching", LAUNCHING},
 		{"roving", ROVING},
 		{"hiding", HIDING},
-		{"evasive", EVASIVE}
+		{"evasive", EVASIVE},
+		{"bored", BORED}
 	};
 	
 	const double DEFAULT_CONFUSION = 10.;
@@ -239,6 +241,13 @@ bool Personality::IsOpportunistic() const
 bool Personality::IsEvasive() const
 {
 	return flags & EVASIVE;
+}
+
+
+
+bool Personality::IsBored() const
+{
+	return flags & BORED;
 }
 
 
