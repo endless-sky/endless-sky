@@ -36,6 +36,7 @@ private:
 	std::string name;
 	std::string government;
 	Color color;
+	Color shadow;
 	int hostility = 0;
 	int direction = 0;
 };

@@ -62,6 +62,8 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 	}
 	float alpha = static_cast<float>(min(.5, max(0., .6 - (position.Length() - radius) * .001 * zoom)));
 	color = Color(color.Get()[0] * alpha, color.Get()[1] * alpha, color.Get()[2] * alpha, 0.);
+	float alpha_shadow = static_cast<float>(min(.833, max(0., 1. - (position.Length() - radius) * .00166 * zoom)));
+	shadow = Color(0., 0., 0., alpha_shadow);
 	
 	if(!system)
 		return;
@@ -127,9 +129,11 @@ void PlanetLabel::Draw() const
 		LineShader::Draw(from, to, 1.3f, color);
 		
 		double nameX = to.X() + (direction < 2 ? 2. : -bigFont.Width(name) - 2.);
+		bigFont.DrawAliased(name, nameX, to.Y() - .5 * bigFont.Height(), shadow);
 		bigFont.DrawAliased(name, nameX, to.Y() - .5 * bigFont.Height(), color);
 		
 		double governmentX = to.X() + (direction < 2 ? 4. : -font.Width(government) - 4.);
+		font.DrawAliased(government, governmentX, to.Y() + .5 * bigFont.Height() + 1., shadow);
 		font.DrawAliased(government, governmentX, to.Y() + .5 * bigFont.Height() + 1., color);
 	}
 	Angle barbAngle(innerAngle + 36.);
