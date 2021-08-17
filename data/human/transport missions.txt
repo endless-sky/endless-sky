@@ -3317,7 +3317,7 @@ mission "Human to Hai Space - No Contact"
 		not "First Contact: Hai: offered"
 	on offer
 		conversation
-			`A young person approaches you carrying luggage. "You look like a knowledgeable captain," he says. "Do you know of a place I can go to visit some... intelligent rodents?"`
+			`A young man carrying luggage approaches you. "You look like a knowledgeable captain," he says. "In all your travels, have you ever heard tell of any... intelligent rodents?"``
 			choice
 				`	"What are you talking about?"`
 					goto confused
@@ -3349,7 +3349,7 @@ mission "Human to Hai Space"
 				`	"Ah, I think I know of some large squirrels to the north of here."`
 					goto hai
 				`	"What are you talking about?"`
-			`	"Oh, never mind then," he says, with a note of disappointment in his voice. As he leaves, you can't help feeling like you were missing some context.`
+			`	"Oh, never mind then," he says, with a note of disappointment in his voice. You feel good knowing that you are helping to keep the Hai's existence a secret in Human space. Better safe than sorry.`
 				decline
 			
 			label hai
@@ -3380,7 +3380,7 @@ mission "Human to Hai Space"
 	on complete
 		payment 9000
 		conversation
-			`During the trip, you learn that your passenger is named Benjamin. He gets off your ship, thanks you and gives you your payment of <payment>. Benjamin then walks over to greet a group of Hai, who embrace him and start talking in a mix of the human and Hai languages.`
+			`During the trip, you learn that your passenger is named Benjamin. He gets off your ship, thanks you, and gives you your payment of <payment>. Benjamin then walks over to greet a group of Hai, who embrace him and start talking in a mix of the human and Hai languages.`
 			choice
 				`	(Leave.)`
 					decline
