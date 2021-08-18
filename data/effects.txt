@@ -51,6 +51,7 @@ effect "slowing spark"
 	"random spin" 30
 	"random velocity" .1
 
+# Needs unique graphics.
 effect "discharge spark"
 	sprite "effect/static"
 		"no repeat"
@@ -60,6 +61,7 @@ effect "discharge spark"
 	"random spin" 10
 	"random velocity" 1
 
+# Needs unique graphics.
 effect "corrosion spark"
 	sprite "effect/nano spark"
 		"no repeat"
@@ -70,6 +72,7 @@ effect "corrosion spark"
 	"random velocity" 2
 	"velocity scale" -.005
 
+# Needs unique graphics.
 effect "leakage spark"
 	sprite "effect/nano spark"
 		"no repeat"
@@ -80,6 +83,7 @@ effect "leakage spark"
 	"random velocity" 2
 	"velocity scale" -.005
 
+# Needs unique graphics.
 effect "burning spark"
 	sprite "effect/nano spark"
 		"no repeat"
