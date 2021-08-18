@@ -1,3 +1,15 @@
+/* test_point.cpp
+Copyright (c) 2020 by Benjamin Hauch
+
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+*/
+
 #include "es-test.hpp"
 
 // Include only the tested class's header.
@@ -12,6 +24,38 @@ namespace { // test namespace
 
 
 // #region unit tests
+TEST_CASE( "Point Basics", "[Point]" ) {
+	using T = Point;
+	SECTION( "Class Traits" ) {
+		CHECK_FALSE( std::is_trivial<T>::value );
+		CHECK( std::is_standard_layout<T>::value );
+		CHECK( std::is_nothrow_destructible<T>::value );
+		CHECK( std::is_trivially_destructible<T>::value );
+	}
+	SECTION( "Construction Traits" ) {
+		CHECK( std::is_default_constructible<T>::value );
+		CHECK_FALSE( std::is_trivially_default_constructible<T>::value );
+		CHECK( std::is_nothrow_default_constructible<T>::value );
+		CHECK( std::is_copy_constructible<T>::value );
+		CHECK( std::is_trivially_copy_constructible<T>::value );
+		CHECK( std::is_nothrow_copy_constructible<T>::value );
+		CHECK( std::is_move_constructible<T>::value );
+		CHECK( std::is_trivially_move_constructible<T>::value );
+		CHECK( std::is_nothrow_move_constructible<T>::value );
+	}
+	SECTION( "Copy Traits" ) {
+		CHECK( std::is_copy_assignable<T>::value );
+		CHECK( std::is_trivially_copyable<T>::value );
+		CHECK( std::is_trivially_copy_assignable<T>::value );
+		CHECK( std::is_nothrow_copy_assignable<T>::value );
+	}
+	SECTION( "Move Traits" ) {
+		CHECK( std::is_move_assignable<T>::value );
+		CHECK( std::is_trivially_move_assignable<T>::value );
+		CHECK( std::is_nothrow_move_assignable<T>::value );
+	}
+}
+
 SCENARIO( "A position or other geometric vector must be expressed", "[Point]" ) {
 	GIVEN( "No initial values" ) {
 		Point a;
@@ -51,6 +95,26 @@ SCENARIO( "A position or other geometric vector must be expressed", "[Point]" ) 
 			REQUIRE( a.X() == 0. );
 			THEN( "it can be converted to boolean TRUE" ) {
 				CHECK( static_cast<bool>(a) == true );
+			}
+		}
+	}
+}
+
+SCENARIO( "Copying Points", "[Point]" ) {
+	GIVEN( "any Point" ) {
+		auto source = Point(5.4321, 10.987654321);
+		WHEN( "copied by constructor" ) {
+			Point copy(source);
+			THEN( "the copy has the correct values" ) {
+				CHECK( copy.X() == source.X() );
+				CHECK( copy.Y() == source.Y() );
+			}
+		}
+		WHEN( "copied by assignment" ) {
+			Point copy = source;
+			THEN( "the copy has the correct values" ) {
+				CHECK( copy.X() == source.X() );
+				CHECK( copy.Y() == source.Y() );
 			}
 		}
 	}

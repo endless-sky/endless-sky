@@ -2838,7 +2838,7 @@ mission "FW Assassination [2]"
 		dialog "The target has been destroyed. Return to <destination> for your payment."
 	on complete
 		payment 600000
-		dialog "The pirate warlord thanks you for eliminating the politician that threated them and pays you <payment>."
+		dialog "The pirate warlord thanks you for eliminating the politician that threatened them and pays you <payment>."
 		"reputation: Free Worlds" -= 15
 		"reputation: Pirate" += 5
 		

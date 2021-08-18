@@ -60,3 +60,4 @@ ipch/
 .idea/
 .idea_modules/
 CMakeLists.txt
+/.gitmodules

@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Armament.h"
 #include "CargoHold.h"
 #include "Command.h"
+#include "EsUuid.h"
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
@@ -35,7 +36,6 @@ class DataWriter;
 class Effect;
 class Flotsam;
 class Government;
-class Hazard;
 class Minable;
 class Phrase;
 class Planet;
@@ -54,16 +54,16 @@ class Visual;
 // limits of what the AI knows how to command them to do.
 class Ship : public Body, public std::enable_shared_from_this<Ship> {
 public:
-	// These are all the possible category strings for ships.
-	static const std::vector<std::string> CATEGORIES;
-	// Allow retrieving the available bay types for the current game;
-	static const std::set<std::string> BAY_TYPES;
-	
 	class Bay {
 	public:
 		Bay(double x, double y, std::string category) : point(x * .5, y * .5), category(category) {}
+		Bay(Bay &&) = default;
+		Bay &operator=(Bay &&) = default;
+		~Bay() = default;
+		
 		// Copying a bay does not copy the ship inside it.
 		Bay(const Bay &b) : point(b.point), category(b.category), side(b.side), facing(b.facing), launchEffects(b.launchEffects) {}
+		Bay &operator=(const Bay &b) { return *this = Bay(b); }
 		
 		Point point;
 		std::shared_ptr<Ship> ship;
@@ -129,6 +129,10 @@ public:
 	bool IsValid() const;
 	// Save a full description of this ship, as currently configured.
 	void Save(DataWriter &out) const;
+	
+	const EsUuid &UUID() const noexcept;
+	// Explicitly set this ship's ID.
+	void SetUUID(const EsUuid &id);
 	
 	// Get the name of this particular ship.
 	const std::string &Name() const;
@@ -316,16 +320,15 @@ public:
 	double MaxVelocity() const;
 	double MaxReverseVelocity() const;
 	
-	// This ship just got hit by the given projectile. Take damage according to
-	// what sort of weapon the projectile it. The return value is a ShipEvent
+	// This ship just got hit by a projectile or hazard. Take damage according to
+	// what sort of weapon the projectile or hazard has. The return value is a ShipEvent
 	// type, which may be a combination of PROVOKED, DISABLED, and DESTROYED.
 	// If isBlast, this ship was caught in the blast radius of a weapon but was
 	// not necessarily its primary target.
 	// Blast damage is dependent on the distance to the damage source.
-	int TakeDamage(const Projectile &projectile, bool isBlast = false);
-	// This ship just got hit by the given hazard. Take damage according to what
-	// sort of weapon the hazard has, and create any hit effects as sparks.
-	void TakeHazardDamage(std::vector<Visual> &visuals, const Hazard *hazard, double strength);
+	// Create any target effects as sparks.
+	int TakeDamage(std::vector<Visual> &visuals, const Weapon &weapon, double damageScaling,
+		double distanceTraveled, const Point &damagePosition, const Government *sourceGovernment, bool isBlast = false);
 	// Apply a force to this ship, accelerating it. This might be from a weapon
 	// impact, or from firing a weapon, for example.
 	void ApplyForce(const Point &force, bool gravitational = false);
@@ -361,8 +364,8 @@ public:
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
 	// Display box effects from jettisoning this much cargo.
-	void Jettison(const std::string &commodity, int tons);
-	void Jettison(const Outfit *outfit, int count);
+	void Jettison(const std::string &commodity, int tons, bool wasAppeasing = false);
+	void Jettison(const Outfit *outfit, int count, bool wasAppeasing = false);
 	
 	// Get the current attributes of this ship.
 	const Outfit &Attributes() const;
@@ -383,7 +386,7 @@ public:
 	bool CanFire(const Weapon *weapon) const;
 	// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
 	// and add whatever heat it generates. Assume that CanFire() is true.
-	void ExpendAmmo(const Weapon *weapon);
+	void ExpendAmmo(const Weapon &weapon);
 	
 	// Each ship can have a target system (to travel to), a target planet (to
 	// land on) and a target ship (to move to, and attack if hostile).
@@ -426,8 +429,6 @@ private:
 	// Place a "spark" effect, like ionization or disruption.
 	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
 	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
-	// A helper method for taking damage from either a projectile or a hazard.
-	int TakeDamage(const Weapon &weapon, double damageScaling, double distanceTraveled, const Point &damagePosition, bool isBlast);
 	
 	
 private:
@@ -450,6 +451,7 @@ private:
 	std::string description;
 	const Sprite *thumbnail = nullptr;
 	// Characteristics of this particular ship:
+	EsUuid uuid;
 	std::string name;
 	bool canBeCarried = false;
 	

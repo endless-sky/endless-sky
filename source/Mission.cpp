@@ -137,6 +137,8 @@ void Mission::Load(const DataNode &node)
 	{
 		if(child.Token(0) == "name" && child.Size() >= 2)
 			displayName = child.Token(1);
+		else if(child.Token(0) == "uuid" && child.Size() >= 2)
+			uuid = EsUuid::FromString(child.Token(1));
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 			description = child.Token(1);
 		else if(child.Token(0) == "blocked" && child.Size() >= 2)
@@ -292,6 +294,8 @@ void Mission::Load(const DataNode &node)
 	
 	if(displayName.empty())
 		displayName = name;
+	if((isMinor || hasPriority) && location == LANDING)
+		node.PrintTrace("Warning: \"minor\" or \"priority\" tags have no effect on \"landing\" missions:");
 }
 
 
@@ -304,6 +308,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 	out.BeginChild();
 	{
 		out.Write("name", displayName);
+		out.Write("uuid", uuid.ToString());
 		if(!description.empty())
 			out.Write("description", description);
 		if(!blocked.empty())
@@ -406,6 +411,13 @@ void Mission::Save(DataWriter &out, const string &tag) const
 
 
 // Basic mission information.
+const EsUuid &Mission::UUID() const noexcept
+{
+	return uuid;
+}
+
+
+
 const string &Mission::Name() const
 {
 	return displayName;
@@ -457,21 +469,21 @@ bool Mission::IsValid() const
 	
 	// Actions triggered when entering a system should reference valid systems.
 	for(auto &&it : onEnter)
-		if(!it.first->IsValid() || !it.second.IsValid())
+		if(!it.first->IsValid() || !it.second.Validate().empty())
 			return false;
 	for(auto &&it : actions)
-		if(!it.second.IsValid())
+		if(!it.second.Validate().empty())
 			return false;
 	// Generic "on enter" may use a LocationFilter that exclusively references invalid content.
 	for(auto &&action : genericOnEnter)
-		if(!action.IsValid())
+		if(!action.Validate().empty())
 			return false;
 	if(!clearanceFilter.IsValid())
 		return false;
 	
 	// The instantiated NPCs should also be valid.
 	for(auto &&npc : NPCs())
-		if(!npc.IsValid())
+		if(!npc.Validate().empty())
 			return false;
 	
 	return true;
@@ -948,8 +960,14 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	// If this trigger has actions tied to it, perform them. Otherwise, check
 	// if this is a non-job mission that just got offered and if so,
 	// automatically accept it.
+	// Actions that are performed only receive the mission destination
+	// system if the mission is visible. This is because the purpose of
+	// a MissionAction being given the destination system is for drawing
+	// a special marker at the destination if the map is opened during any
+	// mission dialog or conversation. Invisible missions don't show this
+	// marker.
 	if(it != actions.end())
-		it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr, boardingShip, IsUnique());
+		it->second.Do(player, ui, (destination && isVisible) ? destination->GetSystem() : nullptr, boardingShip, IsUnique());
 	else if(trigger == OFFER && location != JOB)
 		player.MissionCallback(Conversation::ACCEPT);
 	
@@ -1021,7 +1039,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		{
 			hasFailed = true;
 			if(isVisible)
-				Messages::Add(message + "Mission failed: \"" + displayName + "\".");
+				Messages::Add(message + "Mission failed: \"" + displayName + "\".", Messages::Importance::Highest);
 		}
 	}
 	
@@ -1216,7 +1234,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	DistanceMap distance(path);
 	jumps += distance.Days(result.destination->GetSystem());
-	int payload = result.cargoSize + 10 * result.passengers;
+	int64_t payload = static_cast<int64_t>(result.cargoSize) + 10 * static_cast<int64_t>(result.passengers);
 	
 	// Set the deadline, if requested.
 	if(deadlineBase || deadlineMultiplier)
@@ -1277,11 +1295,13 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	
 	// Instantiate the NPCs. This also fills in the "<npc>" substitution.
-	if(any_of(npcs.begin(), npcs.end(), [](const NPC &n) noexcept -> bool
-		{ return !n.IsValid(true); }))
+	string reason;
+	for(auto &&n : npcs)
+		reason = n.Validate(true);
+	if(!reason.empty())
 	{
-		// Should these be `runtime_error`s?
-		Files::LogError("Instantiation Error: NPC template in mission \"" + Identifier() + "\" uses invalid data");
+		Files::LogError("Instantiation Error: NPC template in mission \""
+			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const NPC &npc : npcs)
@@ -1289,31 +1309,49 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
-	auto ait = find_if(actions.begin(), actions.end(), [](const pair<const Trigger, MissionAction> &it) noexcept -> bool
-		{ return !it.second.IsValid(); });
+	auto ait = actions.begin();
+	for( ; ait != actions.end(); ++ait)
+	{
+		reason = ait->second.Validate();
+		if(!reason.empty())
+			break;
+	}
 	if(ait != actions.end())
 	{
-		Files::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) + "\" in mission \"" + Identifier() + "\" uses invalid data.");
+		Files::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) + "\" in mission \""
+			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const auto &it : actions)
 		result.actions[it.first] = it.second.Instantiate(subs, source, jumps, payload);
 	
-	auto oit = find_if(onEnter.begin(), onEnter.end(), [](const pair<const System *const, MissionAction> &it) noexcept -> bool
-		{ return !it.first->IsValid() || !it.second.IsValid(); });
+	auto oit = onEnter.begin();
+	for( ; oit != onEnter.end(); ++oit)
+	{
+		reason = oit->first->IsValid() ? oit->second.Validate() : "trigger system";
+		if(!reason.empty())
+			break;
+	}
 	if(oit != onEnter.end())
 	{
-		Files::LogError("Instantiation Error: Action \"on enter '" + oit->first->Name() + "'\" in mission \"" + Identifier() + "\" uses invalid data.");
+		Files::LogError("Instantiation Error: Action \"on enter '" + oit->first->Name() + "'\" in mission \""
+			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const auto &it : onEnter)
 		result.onEnter[it.first] = it.second.Instantiate(subs, source, jumps, payload);
 	
-	auto eit = find_if(genericOnEnter.begin(), genericOnEnter.end(), [](const MissionAction &a) noexcept -> bool
-		{ return !a.IsValid(); });
+	auto eit = genericOnEnter.begin();
+	for( ; eit != genericOnEnter.end(); ++eit)
+	{
+		reason = eit->Validate();
+		if(!reason.empty())
+			break;
+	}
 	if(eit != genericOnEnter.end())
 	{
-		Files::LogError("Instantiation Error: Generic \"on enter\" action in mission \"" + Identifier() + "\" uses invalid data.");
+		Files::LogError("Instantiation Error: Generic \"on enter\" action in mission \""
+			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const MissionAction &action : genericOnEnter)

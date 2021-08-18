@@ -887,7 +887,7 @@ mission "Escort (Large, Core, Dangerous Destination)"
 		fleet
 			names "civilian"
 			variant
-				"Bulk Freighter"
+				"Container Transport"
 	on complete
 		payment 120000
 		dialog phrase "generic safe escort completion dialog"
@@ -933,7 +933,7 @@ mission "Escort (Large, Core, Dangerous Origin)"
 		fleet
 			names "civilian"
 			variant
-				"Bulk Freighter"
+				"Container Transport"
 	on complete
 		payment 120000
 		dialog phrase "generic safe escort completion dialog"
@@ -980,7 +980,7 @@ mission "Escort (Extra Large, Core, Dangerous Destination)"
 		fleet
 			names "civilian"
 			variant
-				"Bulk Freighter"
+				"Container Transport"
 	on complete
 		payment 150000
 		dialog phrase "generic safe escort completion dialog"
@@ -1033,7 +1033,7 @@ mission "Escort (Extra Large, Core, Dangerous Origin)"
 		fleet
 			names "civilian"
 			variant
-				"Bulk Freighter"
+				"Container Transport"
 	on complete
 		payment 150000
 		dialog phrase "generic safe escort completion dialog"
@@ -3174,7 +3174,7 @@ mission "Raid Warning"
 		"pirate attraction" >= 15
 	on offer
 		conversation
-			`When you enter the <origin> spaceport, you're almost immediately stopped by a grizzled looking old man. "You some kinda rookie or you asking for a death wish?" he asks.`
+			`When you enter the <origin> spaceport, you're almost immediately stopped by a grizzled old man. "You some kinda rookie, or you asking for a death wish?" he asks.`
 			choice
 				`	"Excuse me?"`
 					goto advice
