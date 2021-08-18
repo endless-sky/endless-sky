@@ -3301,7 +3301,6 @@ mission "Spacediving amateurs"
 		payment 30000
 		dialog "As you descend through the upper atmosphere, you inform your skydivers that it's time to jump. However, after being able to see the distances and atmospheric conditions involved, all of them are far less keen on the idea than when you first picked them up. You bring them down to the landing pad, and they pay you a meager <payment> before hopping off."
 
-human-to-hai-space-mission
 
 mission "Human to Hai Space - No Contact"
 	minor
@@ -3583,4 +3582,3 @@ mission "Mafia Extortion"
 			label payup
 			`	The man takes your credits, responds with a brief "Thank you," and walks away.`
 				accept
-master
