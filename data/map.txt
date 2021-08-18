@@ -26581,7 +26581,7 @@ planet "Blue Interior"
 planet Bluerun
 	attributes station hai uninhabited
 	landscape land/space6
-	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere and a status panel indicates that the generators are functional, but shut down, with standby mechanisms running on solar power alone.`
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -29573,7 +29573,7 @@ planet Sunracer
 planet Swiftsong
 	attributes station hai "hai tourism"
 	landscape land/space6
-	description `Swiftsong station is maintained by the Imo Blep corporation, and is operated as a giant convention center. Most Hai stations have some degree of restricted access either beyond the docking bay or beyond the promenade possessed by all these stations of the same era. Swiftsong contrasts this by being almost completely open.`
+	description `Swiftsong Station is maintained by the Imo Blep corporation, and is operated as a giant convention center. Most Hai stations have some degree of restricted access either beyond the docking bay or beyond the promenade possessed by all these stations of the same era. Swiftsong contrasts this by being almost completely open.`
 	description `	Tens of thousands of Hai pass through the docks of Swiftsong on an almost daily basis as the continual churn of summits, forums, conventions, symposiums, productions, conferences, weddings, festivals, and the like roll on in an endless cavalcade of life. With Icelake below and Hai-home just one jump away, this station is a major cultural hub that even houses the head office of one of the biggest music labels in Hai space.`
 	spaceport `The spaceport promenade runs around the interior of the station and is divided into the usual two levels, but has four additional ring levels reaching up where the promenade intersects the base of each of the stations main branches. Almost any business or service you could want can be found somewhere in the spaceport, except for that of an outfitter or shipyard, both of which are precluded by the expansion of the docking bay to accommodate the massive volume of daily traffic.`
 	bribe 0.1
