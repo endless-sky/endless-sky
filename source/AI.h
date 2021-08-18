@@ -113,8 +113,7 @@ private:
 	bool DoCloak(Ship &ship, Command &command);
 	bool DoRoving(Ship &ship, Command &command, unsigned int rovingShipCount);
 	bool DoEvasive(Ship &ship, Command &command);
-	// Make one roving ship land or leave when there are too many other roving ships.
-	void DespawnRovingShip();
+	bool DoBored(Ship &ship, Command &command, const System* system);
 	// Prevent ships from stacking on each other when many are moving in sync.
 	void DoScatter(Ship &ship, Command &command);
 	

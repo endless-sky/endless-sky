@@ -502,6 +502,9 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 	UpdateStrengths(strength, playerSystem);
 	CacheShipLists();
 	
+	// How many roving ships there are in the system.
+	unsigned int rovingShipCount = 0;
+	
 	// Update the counts of how long ships have been outside the "invisible fence."
 	// If a ship ceases to exist, this also ensures that it will be removed from
 	// the fence count map after a few seconds.
@@ -514,17 +517,16 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			++it;
 	}
 	for(const auto &it : ships)
+	{
 		if(it->Position().Length() >= MAX_DISTANCE_FROM_CENTER)
 		{
 			int &value = fenceCount[&*it];
 			value = min(FENCE_MAX, value + FENCE_DECAY + 1);
 		}
-	
-	// How many roving ships there are in the system.
-	unsigned int rovingShipCount = 0;
-	for(const auto &ship: ships)
-		if(ship->GetPersonality().IsRoving())
+		// Count roving ships.
+		if(it->GetPersonality().IsRoving())
 			rovingShipCount++;
+	}
 	
 	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
@@ -712,37 +714,22 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		
 		// Behave in accordance with personality traits.
 		if(isPresent && personality.IsCloaking() && !isStranded)
-		{
 			command |= Command::CLOAK;
-		}
 		
 		if(isPresent && personality.IsBored() && !isStranded && !Random::Int(6000))
 		{
-			if(it->Fuel() >= it->JumpFuel() || it->Fuel() >= it->JumpDriveFuel())
-				MoveIndependent(*it, command);
-			else if (playerSystem->IsInhabited(it.get()))
-			{
-				for(const StellarObject& planet: playerSystem->Objects())
-					if(CanRefuel(*it, &planet))
-					{
-						it->SetTargetStellar(&planet);
-					}
-				Refuel(*it, command);
-			}
-			
+			DoBored(*it, command, playerSystem);
 			it->SetCommands(command);
 			continue;
 		}
 		
 		// Evasive ships will run away from other ships
 		if(isPresent && personality.IsEvasive() && !isStranded)
-		{
 			if(DoEvasive(*it, command))
 			{
 				it->SetCommands(command);
 				continue;
 			}
-		}
 
 		if(isPresent && personality.IsSwarming() && !isStranded)
 		{
@@ -2631,34 +2618,18 @@ bool AI::DoCloak(Ship &ship, Command &command)
 
 
 bool AI::DoRoving(Ship &ship, Command &command, unsigned int rovingShipCount)
-{
-	const System* system = ship.GetSystem();
-	if((rovingShipCount > 9 && system))
-	{
-		if(ship.Fuel() >= ship.JumpFuel() || ship.Fuel() >= ship.JumpDriveFuel())
-		{
-			MoveIndependent(ship, command);
-			return true;
-		}
-		else if (system->IsInhabited(&ship))
-		{
-			for(const StellarObject& planet: system->Objects())
-				if(CanRefuel(ship, &planet))
-				{
-					ship.SetTargetStellar(&planet);
-				}
-			Refuel(ship, command);
-			return true;
-		}
-	}
-	
+{	
 	const Point target = ship.GetTargetPosition();
 	const auto v = ship.MaxVelocity();
-    if(!target || MoveTo(ship, command, target, Point(), v, v))
+	if(!target || MoveTo(ship, command, target, Point(), v, v))
     {
         Point newTarget = Angle::Random().Unit() * Random::Real() * MAX_DISTANCE_FROM_CENTER;
         ship.SetTargetPosition(newTarget);
     }
+    
+    const System *system = ship.GetSystem();
+	if(rovingShipCount > 9 && system)
+		return DoBored(ship, command, system);
     
     return false;
 }
@@ -2727,6 +2698,28 @@ bool AI::DoEvasive(Ship &ship, Command &command)
 	}
 	
 	return movedTarget;
+}
+
+
+
+bool AI::DoBored(Ship& ship, Command& command, const System *system)
+{
+	if(ship.Fuel() >= ship.JumpFuel() || ship.Fuel() >= ship.JumpDriveFuel())
+	{
+		MoveIndependent(ship, command);
+		return true;
+	}
+	else if (system->IsInhabited(&ship))
+	{
+		for(const StellarObject& planet: system->Objects())
+			if(CanRefuel(ship, &planet))
+			{
+				ship.SetTargetStellar(&planet);
+			}
+		Refuel(ship, command);
+		return true;
+	}
+	return false;
 }
 
 
