@@ -2055,9 +2055,9 @@ void Ship::DoGeneration()
 	// uninterrupted scanning is required to successfully scan its target.
 	// Only apply the decay if not already done scanning the target.
 	if(cargoScan < SCAN_TIME)
-		cargoScan = max(0., cargoScan * 0.999 - 1.);
+		cargoScan = max(0., cargoScan - 1.);
 	if(outfitScan < SCAN_TIME)
-		outfitScan = max(0., outfitScan * 0.999 - 1.);
+		outfitScan = max(0., outfitScan - 1.);
 	
 	// Update ship supply levels.
 	energy -= ionization;
@@ -2256,26 +2256,28 @@ int Ship::Scan()
 		return 0;
 	
 	// The range of a scanner is proportional to the square root of its power.
-	double cargoDistance = 100. * sqrt(attributes.Get("cargo scan power"));
-	double outfitDistance = 100. * sqrt(attributes.Get("outfit scan power"));
+	// Because we fetch the square-distance, a square root here is unnecessary.
+	double cargoDistance = attributes.Get("cargo scan power");
+	double outfitDistance = attributes.Get("outfit scan power");
 	
 	// Bail out if this ship has no scanners.
 	if(!cargoDistance && !outfitDistance)
 		return 0;
 	
-	// Scanning speed does not use a square root, so that increasing both power and speed 
-	// proportionally will rise both range and speed. (The longer the range, the slower the scanner.)
-	// Multiply by 100 so that we can simply divide speed by power.
-	double cargoSpeed = 100. * attributes.Get("cargo scan speed") / cargoDistance;
+	// Scanning speed will be reduced by the square-distance to the target, which is
+	// close to above scanner range.
+	double cargoSpeed = attributes.Get("cargo scan speed");
 	if(!cargoSpeed)
-		cargoSpeed = 100. / cargoDistance;
+		cargoSpeed = 1.;
 	
-	double outfitSpeed = 100. * attributes.Get("outfit scan speed") / outfitDistance;
+	double outfitSpeed = attributes.Get("outfit scan speed");
 	if(!outfitSpeed)
-		outfitSpeed = 100. / outfitDistance;
+		outfitSpeed = 1.;
 	
 	// Check how close this ship is to the target it is trying to scan.
-	double distance = (target->position - position).Length();
+	// To normalize 1 "scan power" to reach 100 pixels, divide this square distance by 100^2, or 10000.
+	// Because we use distance squared, to reach 200 pixels you need 4 "scan power".
+	double distance = (target->position - position).LengthSquared() / 10000.;
 	
 	// Check the target's outfit and cargo space, a larger ship takes longer to scan.
 	// Normalized around 200 tons of cargo/outfit space.
@@ -2288,18 +2290,16 @@ int Ship::Scan()
 	int result = 0;
 	auto doScan = [&](double &elapsed, const double speed, const double scannerRange, double depth, const int event) -> void
 	{
-		if(elapsed < SCAN_TIME && distance < scannerRange)
+		if(elapsed < SCAN_TIME * depth && distance < scannerRange)
 		{
 			startedScanning |= !elapsed;
 			activeScanning = true;
-			elapsed +=
-				min(1., 2. * (scannerRange - distance) / scannerRange)
-				* (5. / (5. + (Velocity() - target->Velocity()).Length()))
-				* (depth / (depth + target->attributes.Get("scan interference")))
-				* (speed / depth);
+			// (a/b) * (c/d) * (e/f) is more expensive than the equivalent (a*c*e) / (b*d*f)
+			elapsed += ((scannerRange - distance) * speed * 5.)
+				/ (scannerRange * (speed + distance) * (5. + (Velocity() - target->Velocity()).LengthSquared()));
 			// To make up for the scan decay above:
 			elapsed ++;
-			if(elapsed >= SCAN_TIME)
+			if(elapsed >= SCAN_TIME * depth)
 				result |= event;
 		}
 	};
