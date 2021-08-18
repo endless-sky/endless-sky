@@ -732,22 +732,22 @@ tip "firing ion / shot:"
 	`Each shot increases the ship's ionization by this amount. Ionization reduces the ships's energy and slowly wears off over time.`
 
 tip "firing slowing / shot:"
-	`Reduces the ship's turn rate, acceleration, and top speed. Slowing wears off over time.`
+	`Each shot reduces the ship's turn rate, acceleration, and top speed. Slowing wears off over time.`
 
 tip "firing disruption / shot:"
-	`Each shot disrupts the target's shields, allowing hostile weapon damage to "leak through" to the hull even if shields are up. Shield disruption wears off over time.`
+	`Each shot disrupts the ship's shields, allowing hostile weapon damage to "leak through" to the hull even if shields are up. Shield disruption wears off over time.`
 
 tip "firing discharge / shot:"
-	`Amount of shield damage over time by this weapon per shot when firing.`
+	`Each shot applies discharge to the ship, reducing its shields over time. Shield disruption wears off over time.`
 
 tip "firing corrosion / shot:"
-	`Amount of hull damage over time by this weapon per shot when firing.`
+	`Each shot applies corrosion to the ship, reducing the ship's hull over time. Corrosion wears off over time.`
 
 tip "firing leak / shot:"
-	`Amount of fuel damage over time by this weapon per shot when firing.`
+	`Each shot causes the ship's fuel to leak. Fuel leakage wears off over time.`
 
 tip "firing burn / shot:"
-	`Amount of heat damage over time by this weapon per shot when firing.`
+	`Each shot causes the ship to burn, increases the ship's heat over time. Burn wears off over time.`
 
 tip "% firing energy / shot:"
 	`Each shot reduces the ship's energy as a percentage of the ship's total energy capacity by this amount.`

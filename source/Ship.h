@@ -516,6 +516,7 @@ private:
 	double fuel = 0.;
 	double energy = 0.;
 	double heat = 0.;
+	// Current damage over time levels:
 	double ionization = 0.;
 	double disruption = 0.;
 	double slowness = 0.;

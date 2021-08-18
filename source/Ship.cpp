@@ -3211,19 +3211,20 @@ int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damag
 	// Most special damage types (i.e. not hull or shield damage) only have 50% effectiveness
 	// against ships with active shields. Disruption or piercing weapons can increase this
 	// effectiveness.
-	double shieldIntegrity = (1. - .5 * shieldFraction);
-	energy -= energyDamage * shieldIntegrity;
-	fuel -= fuelDamage * shieldIntegrity;
-	heat += heatDamage * shieldIntegrity;
-	ionization += ionDamage * shieldIntegrity;
-	disruption += disruptionDamage * shieldIntegrity;
-	slowness += slowingDamage * shieldIntegrity;
-	burning += burnDamage * shieldIntegrity;
+	double shieldDegradation = (1. - .5 * shieldFraction);
+	energy -= energyDamage * shieldDegradation;
+	fuel -= fuelDamage * shieldDegradation;
+	heat += heatDamage * shieldDegradation;
+	ionization += ionDamage * shieldDegradation;
+	disruption += disruptionDamage * shieldDegradation;
+	slowness += slowingDamage * shieldDegradation;
+	burning += burnDamage * shieldDegradation;
 	
 	// The following special damage types have 0% effectiveness against ships with
 	// active shields. Disruption or piercing weapons still increase this effectivness.
-	corrosion += corrosionDamage * (1. - shieldFraction);
-	leakage += leakDamage * (1. - shieldFraction);
+	shieldDegradation = (1. - shieldFraction);
+	corrosion += corrosionDamage * shieldDegradation;
+	leakage += leakDamage * shieldDegradation;
 	
 	// The following special damage types have 100% effectiveness against ships
 	// regardless of shield level.
