@@ -3336,6 +3336,7 @@ mission "Human to Hai Space"
 	source
 		government "Republic" "Syndicate" "Free Worlds"
 		attributes "tourism" "urban"
+	destination "Greenwater"
 	to offer
 		random < 10
 		has "First Contact: Hai: offered"
