@@ -2043,10 +2043,11 @@ void Ship::DoGeneration()
 		if(currentSystem)
 		{
 			double ramscoop = max(attributes.Get("ramscoop"), .05);
-			double scale = 0.5 * pow(Mass(), 2. / 3.); //reusing "scale" instead of making a new temporary variable
+			double scale = 0.5 * pow(Mass(), 2. / 3.); // Reusing "scale" instead of making a new temporary variable.
 			
 			ramscoop = scale - (scale * scale) / (scale + ramscoop);
-			scale = 2. / (1. + pow(.005 * position.Length(), 4));
+			scale = .000025 * position.LengthSquared(); 
+			scale = 2. / (1. + scale * scale);
 			
 			fuel += currentSystem->SolarWind() * .075 * scale * ramscoop;
 			
