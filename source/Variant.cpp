@@ -168,7 +168,7 @@ vector<const Ship *> Variant::ChooseShips() const
 {
 	vector<const Ship *> chosenShips = ships;
 	for(const auto &it : variants)
-		for(int i = 0; i < it.Weight(); i++)
+		for(int i = 0; i < it.Weight(); ++i)
 			chosenShips.push_back(it.Get().NestedChooseShip());
 	return chosenShips;
 }

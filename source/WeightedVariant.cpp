@@ -48,5 +48,5 @@ const Variant &WeightedVariant::Get() const
 
 bool WeightedVariant::operator==(const WeightedVariant &other) const
 {
-	return other.Get() == Get();
+	return other.weight == weight && other.Get() == Get();
 }
