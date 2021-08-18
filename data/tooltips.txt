@@ -261,7 +261,7 @@ tip "radar jamming:"
 	`Reduces the ability of radar-guided missiles to track your ship. The more radar jamming is installed, the greater the distance at which missiles can be jammed, and the greater the chance that a jammed missile will fly off in a random direction.`
 
 tip "ramscoop:"
-	`Replenishes fuel by harvesting the stellar wind. Ramscoops are more effective when closer to a star. If you add more than one ramscoop, each additional one is less effective: you need four ramscoops to achieve double the recharge rate that one ramscoop provides.`
+	`Replenishes fuel by harvesting the stellar wind. Ramscoops are only effective when close to a star. Ramscoops are only additionally effective up to a point: the larger your ship, the higher your ship's maximum ramscoop capability, but until you approach this maximum, ramscoop strengh scales nearly-linearly.`
 
 tip "required crew / bunks:"
 	`How many crew members are required to operate this ship, and how many total bunks are available. Extra bunks can be used for passengers or extra crew.`
