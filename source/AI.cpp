@@ -2628,7 +2628,7 @@ bool AI::DoRoving(Ship &ship, Command &command, unsigned int rovingShipCount)
     }
     
     const System *system = ship.GetSystem();
-	if(rovingShipCount > 9 && system)
+    if(rovingShipCount > 9 && system)
 		return DoBored(ship, command, system);
     
     return false;
