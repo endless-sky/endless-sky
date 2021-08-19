@@ -2591,6 +2591,33 @@ void PlayerInfo::RegisterDerivedConditions()
 	conditionsProvider.getFun = [this] (const string &name)->int64_t { if(flagship){return flagship->Attributes().Get("bunks");} return 0; };
 	conditions.SetProviderNamed("flagship bunks", conditionsProvider);
 	
+	// Conditions for your fleet's attractiveness to pirates.
+	conditionsProvider.getFun = [this] (const string &name)->int64_t { return RaidFleetFactors().first; };
+	conditions.SetProviderNamed("cargo attractiveness", conditionsProvider);
+	
+	conditionsProvider.getFun = [this] (const string &name)->int64_t { return RaidFleetFactors().second; };
+	conditions.SetProviderNamed("armament deterrence", conditionsProvider);
+	
+	conditionsProvider.getFun = [this] (const string &name)->int64_t { auto rff = RaidFleetFactors(); return rff.first - rff.second; };
+	conditions.SetProviderNamed("pirate attraction", conditionsProvider);
+	
+	// Conditions to determine if flagship is in a system and on a planet.
+	conditionsProvider.hasFun = [this] (const string &name)->bool {
+		if(!flagship || !flagship->GetSystem())
+			return 0;
+		return name == "flagship system: " + flagship->GetSystem()->Name();
+	};
+	conditionsProvider.getFun = conditionsProvider.hasFun;
+	conditions.SetProviderPrefixed("flagship system: ", conditionsProvider);
+	
+	conditionsProvider.hasFun = [this] (const string &name)->bool {
+		if(!flagship || !flagship->GetPlanet())
+			return 0;
+		return name == "flagship planet: " + flagship->GetPlanet()->TrueName();
+	};
+	conditionsProvider.getFun = conditionsProvider.hasFun;
+	conditions.SetProviderPrefixed("flagship planet: ", conditionsProvider);
+	
 	// Read/write government reputation conditions.
 	// The erase function is still default (since we cannot erase government conditions).
 	conditionsProvider.hasFun = [] (const string &name)->bool {
@@ -2641,25 +2668,6 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 		SetCondition("cargo space", flagship->Cargo().Free());
 		SetCondition("passenger space", flagship->Cargo().BunksFree());
 	}
-	
-	// Clear any existing flagship system: and planet: conditions. (Note: '!' = ' ' + 1.)
-	EraseManualByPrefix("flagship system: ");
-	EraseManualByPrefix("flagship planet: ");
-	
-	// Store conditions for flagship current crew, required crew, and bunks.
-	if(flagship)
-	{
-		if(flagship->GetSystem())
-			SetCondition("flagship system: " + flagship->GetSystem()->Name(), 1);
-		if(flagship->GetPlanet())
-			SetCondition("flagship planet: " + flagship->GetPlanet()->TrueName(), 1);
-	}
-	
-	// Conditions for your fleet's attractiveness to pirates:
-	pair<double, double> factors = RaidFleetFactors();
-	SetCondition("cargo attractiveness", factors.first);
-	SetCondition("armament deterrence", factors.second);
-	SetCondition("pirate attraction", factors.first - factors.second);
 }
 
 
