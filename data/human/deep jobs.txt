@@ -367,8 +367,8 @@ phrase "secure package pickup"
 	word
 		` `
 	word
-		`in a quiet part of the spaceport`
-		`near your landing site`
+		`in a quiet part of the spaceport.`
+		`near your landing site.`
 	word
 		` `
 	word
@@ -569,7 +569,7 @@ mission "Deep Security Package Reveal"
 		conversation
 			`As you walk away from a food stand in the spaceport, a rather young man in activewear steps away from the wall and smoothly sidles up next to you, between one step and the next.`
 			`	"Hello Captain. Please don't be alarmed, do you have a moment?"`
-			`	His words come out very quickly as if they'd been heavily rehearsed. Glancing around, so far as you can tell, no one appears to be paying any attention to either of you.`
+			`	His words come out very quickly as if they've been heavily rehearsed. Glancing around, so far as you can tell, no one appears to be paying any attention to either of you.`
 			choice
 				`	"Sure. Who are you?"`
 					goto who
@@ -592,7 +592,7 @@ mission "Deep Security Package Reveal"
 			label blindacceptance
 			`	"Well, I looked at your record and it seems you've done quite a lot for the Deep, and you're well-regarded. We like to keep a list of pilots that we can call on if we need something delivered with either urgency or discretion, and it seems like you qualified. You passed the background check at any rate.`
 			`	"So at any rate, I'm authorized to give you a one-time offer to join that list. Don't worry, I'm not asking anything of you right now."`
-			`	Belatedly he seems to do a double-check that no one is actively listening to the conversation as you walk. "So, you interested?"`
+			`	Belatedly, he seems to do a double-check that no one is actively listening to the conversation as you walk. "So, you interested?"`
 			choice
 				`	"Oh sure, I'm willing to help."`
 					goto agree
@@ -606,10 +606,10 @@ mission "Deep Security Package Reveal"
 				`	"Sorry, but I don't think I want to get that involved."`
 					decline
 			label agree
-			`	"Fantastic," he says, suddenly grinning widely enough to be seen in your periphery as you walk along. "I'll add you to the list as soon as I get back to the office again. Your ID will also let you see which packages are ours specifically after that too. Oh and again, thank you!"`
+			`	"Fantastic," he says, quickly modulating his voice as someone briefly looks up at you from their phone. "I'll add you to the list as soon as I get back to the office again. Your ID will also let you see which packages are ours specifically after that too. Oh and again, thank you!"`
 			apply
 				set "deep security reveal"
-			`	Agent Wayde flashes you a smile and jogs off ahead. Pushing his hair back out his eyes he flicks a subtle salute your direction just before he turns a corner and disappears.`
+			`	Agent Wayde flashes you a smile and jogs off ahead. Pushing his hair back out his eyes, he flicks a subtle salute your direction just before he turns a corner and disappears.`
 
 
 mission "Secure Transport Job (Basic) [0]"
@@ -762,12 +762,12 @@ mission "Deep Consultants"
 				`	"Where do you need to go?"`
 				`	"Why is it so urgent?"`
 				`	"Who are you?"`
-			`	Julie holds out her hand in greeting. "Apologies, let's do this properly. My name is Julie Gillar and my assistant and I were held back with our duties and missed our booked transport. We're in dire need of passage to Valhalla for several important business meetings, but unfortunately everything is booked up for the next five days straight, and that's just not acceptable to my employer."`
+			`	Julie holds out her hand in greeting. "Apologies, let's do this properly. My name is Julie Gillar. My assistant and I were held back with our duties and missed our booked transport. We're in dire need of passage to Valhalla for several important business meetings, but unfortunately everything is booked up for the next five days straight, and that's just not acceptable to my employer."`
 			choice
 				`	"Sure, I'd be glad to help.`
 					goto sure
 				`	"Who's your employer?"`
-			`	Julie furtively glances at the people nearby. "Well, I have a few employers actually but at the moment, indirectly, Deep Security."`
+			`	Julie furtively glances at the people nearby. "Well, I have a few employers actually, but at the moment, indirectly, Deep Security."`
 			`	She leans in slightly closer and lowers her voice. "We have access to their list of trustworthy pilots for emergencies. You'll be paid quite well."`
 			choice
 				`	"Sure, I'd be glad to help.`
@@ -782,7 +782,7 @@ mission "Deep Consultants"
 		payment 350000
 		set "deep security consultants"
 		conversation
-			`Julie and her assistant are model passengers the entire journey. As she prepares to disembark she thanks you for your assistance. In addition to transferring <payment> into your account, she helps you change your job board preferences with the local spaceport agencies to make yourself available for business passengers consulting with Deep Security.`
+			`Julie and her assistant are model passengers the entire journey. As she prepares to disembark, she thanks you for your assistance. In addition to transferring <payment> into your account, she helps you change your job board preferences with the local spaceport agencies to make yourself available for business passengers consulting with Deep Security.`
 			`	"Thank you Captain <last>, you've been most helpful. Do keep an eye out in the spaceports around here though. Deep Security is notorious for keeping us longer than we booked for. There's often someone stuck and in need of rapid transport off-world."`
 
 
@@ -814,8 +814,8 @@ phrase "stranded consultant dropoff payment"
 	word
 		` `
 	word
-		`You find out only afterwards that they left behind a soiled pair of boots.`
-		`Afterwards you find a tie left hanging on a door handle.`
+		`You find out only afterward that they left behind a soiled pair of boots.`
+		`Afterward, you find a tie left hanging on a door handle.`
 		`Later, you find some crumpled documents left behind and wisely tip them into the ship's incinerator without looking at them.`
 	word
 		` `
