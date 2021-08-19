@@ -543,9 +543,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 	}
 	
 	// Check if applying the conditions changes the player's reputations.
-	player.SetReputationConditions();
 	conditions.Apply(player.Conditions());
-	player.CheckReputationConditions();
 }
 
 

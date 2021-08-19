@@ -203,18 +203,11 @@ void GameEvent::SetDate(const Date &date)
 
 void GameEvent::Apply(PlayerInfo &player)
 {
-	// Serialize the current reputation with other governments.
-	player.SetReputationConditions();
-	
 	// Apply this event's ConditionSet to the player's conditions.
 	conditionsToApply.Apply(player.Conditions());
 	// Apply (and store a record of applying) this event's other general
 	// changes (e.g. updating an outfitter's inventory).
 	player.AddChanges(changes);
-	
-	// Update the current reputation with other governments (e.g. this
-	// event's ConditionSet may have altered some reputations).
-	player.CheckReputationConditions();
 	
 	for(const System *system : systemsToUnvisit)
 		player.Unvisit(*system);

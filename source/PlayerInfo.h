@@ -210,10 +210,6 @@ public:
 	// Direct access to "condition" flags data.
 	ConditionsStore &Conditions();
 	const ConditionsStore &Conditions() const;
-	// Set and check the reputation conditions, which missions and events
-	// can use to modify the player's reputation with other governments.
-	void SetReputationConditions();
-	void CheckReputationConditions();
 	
 	// Check what the player knows about the given system or planet.
 	bool HasSeen(const System &system) const;

@@ -337,10 +337,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 		{
 			// Apply nodes alter the player's condition variables but do not
 			// display any conversation text of their own.
-			player.SetReputationConditions();
 			conversation.Conditions(node).Apply(player.Conditions());
-			// Update any altered government reputations.
-			player.CheckReputationConditions();
 		}
 		else
 		{

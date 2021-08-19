@@ -1874,32 +1874,6 @@ const ConditionsStore &PlayerInfo::Conditions() const
 
 
 
-// Set and check the reputation conditions, which missions and events can use to
-// modify the player's reputation with other governments.
-void PlayerInfo::SetReputationConditions()
-{
-	for(const auto &it : GameData::Governments())
-	{
-		int64_t rep = it.second.Reputation();
-		SetCondition("reputation: " + it.first, rep);
-	}
-}
-
-
-
-void PlayerInfo::CheckReputationConditions()
-{
-	for(const auto &it : GameData::Governments())
-	{
-		int64_t rep = it.second.Reputation();
-		int64_t newRep = conditions.GetCondition("reputation: " + it.first);
-		if(newRep != rep)
-			it.second.AddReputation(newRep - rep);
-	}
-}
-
-
-
 // Check if the player knows the location of the given system (whether or not
 // they have actually visited it).
 bool PlayerInfo::HasSeen(const System &system) const
@@ -2616,6 +2590,29 @@ void PlayerInfo::RegisterDerivedConditions()
 	
 	conditionsProvider.getFun = [this] (const string &name)->int64_t { if(flagship){return flagship->Attributes().Get("bunks");} return 0; };
 	conditions.SetProviderNamed("flagship bunks", conditionsProvider);
+	
+	// Read/write government reputation conditions.
+	// The erase function is still default (since we cannot erase government conditions).
+	conditionsProvider.hasFun = [] (const string &name)->bool {
+		string govName = name.substr(strlen("reputation: "));
+		return GameData::Governments().Has(govName);
+	};
+	conditionsProvider.getFun = [] (const string &name)->int64_t {
+		string govName = name.substr(strlen("reputation: "));
+		auto gov = GameData::Governments().Get(govName);
+		if(!gov)
+			return 0;
+		return gov->Reputation();
+	};
+	conditionsProvider.setFun = [] (const string &name, int64_t value)->bool {
+		string govName = name.substr(strlen("reputation: "));
+		auto gov = GameData::Governments().Get(govName);
+		if(!gov)
+			return false;
+		gov->SetReputation(value);
+		return true;
+	};
+	conditions.SetProviderPrefixed("reputation: ", conditionsProvider);
 }
 
 
@@ -2624,7 +2621,6 @@ void PlayerInfo::RegisterDerivedConditions()
 void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 {
 	// Serialize the current reputation with other governments.
-	SetReputationConditions();
 	// Clear any existing ships: conditions. (Note: '!' = ' ' + 1.)
 	EraseManualByPrefix("ships: ");
 	// Store special conditions for cargo and passenger space.
