@@ -1173,7 +1173,17 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	targetShip.reset();
 	shipToAssist.reset();
 	if(government)
-		SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
+	{
+		auto swizzle = customSwizzle >= 0 ? customSwizzle : government->GetSwizzle();
+		SetSwizzle(swizzle);
+
+		// Set swizzle for any carried ships too.
+		for(const auto &bay : bays)
+		{
+			if(bay.ship)
+				bay.ship->SetSwizzle(bay.ship->customSwizzle >= 0 ? bay.ship->customSwizzle : swizzle);
+		}
+	}
 }
 
 
@@ -1470,15 +1480,14 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		
 		// Handle hull "leaks."
 		for(const Leak &leak : leaks)
-			if(leak.openPeriod > 0 && !Random::Int(leak.openPeriod))
+			if(GetMask().IsLoaded() && leak.openPeriod > 0 && !Random::Int(leak.openPeriod))
 			{
 				activeLeaks.push_back(leak);
-				const vector<Point> &outline = GetMask().Points();
-				if(outline.size() < 2)
-					break;
+				const auto &outlines = GetMask().Outlines();
+				const vector<Point> &outline = outlines[Random::Int(outlines.size())];
 				int i = Random::Int(outline.size() - 1);
 				
-				// Position the leak along the outline of the ship, facing outward.
+				// Position the leak along the outline of the ship, facing "outward."
 				activeLeaks.back().location = (outline[i] + outline[i + 1]) * .5;
 				activeLeaks.back().angle = Angle(outline[i] - outline[i + 1]) + Angle(90.);
 			}
@@ -3517,7 +3526,8 @@ bool Ship::CanFire(const Weapon *weapon) const
 
 	// If a weapon requires heat to fire, (rather than generating heat), we must
 	// have enough heat to spare.
-	if(heat < -(weapon->FiringHeat() + weapon->RelativeFiringHeat() * MaximumHeat()))
+	if(heat < -(weapon->FiringHeat() + (!weapon->RelativeFiringHeat()
+			? 0. : weapon->RelativeFiringHeat() * MaximumHeat())))
 		return false;
 	// Repeat this for various effects which shouldn't drop below 0.
 	if(ionization < -weapon->FiringIon())
@@ -3535,26 +3545,34 @@ bool Ship::CanFire(const Weapon *weapon) const
 // Fire the given weapon (i.e. deduct whatever energy, ammo, hull, shields
 // or fuel it uses and add whatever heat it generates. Assume that CanFire()
 // is true.
-void Ship::ExpendAmmo(const Weapon *weapon)
+void Ship::ExpendAmmo(const Weapon &weapon)
 {
-	if(!weapon)
-		return;
-	if(weapon->Ammo())
-		AddOutfit(weapon->Ammo(), -weapon->AmmoUsage());
+	// Compute this ship's initial capacities, in case the consumption of the ammunition outfit(s)
+	// modifies them, so that relative costs are calculated based on the pre-firing state of the ship.
+	const double relativeEnergyChange = weapon.RelativeFiringEnergy() * attributes.Get("energy capacity");
+	const double relativeFuelChange = weapon.RelativeFiringFuel() * attributes.Get("fuel capacity");
+	const double relativeHeatChange = !weapon.RelativeFiringHeat() ? 0. : weapon.RelativeFiringHeat() * MaximumHeat();
+	const double relativeHullChange = weapon.RelativeFiringHull() * attributes.Get("hull");
+	const double relativeShieldChange = weapon.RelativeFiringShields() * attributes.Get("shields");
 	
-	energy -= weapon->FiringEnergy() + weapon->RelativeFiringEnergy() * attributes.Get("energy capacity");
-	fuel -= weapon->FiringFuel() + weapon->RelativeFiringFuel() * attributes.Get("fuel capacity");
-	heat += weapon->FiringHeat() + weapon->RelativeFiringHeat() * MaximumHeat();
-	// Weapons fire from within shields, so hull damage goes directly into the hull, while shield damage
-	// only affects shields.
-	hull -= weapon->FiringHull() + weapon->RelativeFiringHull() * attributes.Get("hull");
-	shields -= weapon->FiringShields() + weapon->RelativeFiringShields() * attributes.Get("shields");
+	if(const Outfit *ammo = weapon.Ammo())
+	{
+		// Some amount of the ammunition mass to be removed from the ship carries thermal energy.
+		// A realistic fraction applicable to all cases cannot be computed, so assume 50%.
+		heat -= weapon.AmmoUsage() * .5 * ammo->Mass() * MAXIMUM_TEMPERATURE * Heat();
+		AddOutfit(ammo, -weapon.AmmoUsage());
+	}
 	
-	// Those values are usually reduced by active shields, but weapons fire from within the shields, so
-	// it seems more appropriate to apply those damages with a factor 1 directly.
-	ionization += weapon->FiringIon();
-	disruption += weapon->FiringDisruption();
-	slowness += weapon->FiringSlowing();
+	energy -= weapon.FiringEnergy() + relativeEnergyChange;
+	fuel -= weapon.FiringFuel() + relativeFuelChange;
+	heat += weapon.FiringHeat() + relativeHeatChange;
+	shields -= weapon.FiringShields() + relativeShieldChange;
+	
+	// Since weapons fire from within the shields, hull and "status" damages are dealt in full.
+	hull -= weapon.FiringHull() + relativeHullChange;
+	ionization += weapon.FiringIon();
+	disruption += weapon.FiringDisruption();
+	slowness += weapon.FiringSlowing();
 }
 
 

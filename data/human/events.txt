@@ -1392,6 +1392,9 @@ event "liberation of Poisonwood"
 		fleet "Small Free Worlds" 700
 		fleet "Small Free Worlds" 1200
 		fleet "Human Miners" 2000
+	planet Poisonwood
+		spaceport `The starport is a hodgepodge of small metal structures, built from the remains of Navy and pirate ships that fought for control of this world. The locals here welcome you to their planet heartily.`
+		spaceport `	The tavern in the center of the port is named The Parting Glass. Its walls are covered with photographs from after the war: liberated slaves boarding Navy ships to leave this planet that had brought them so much pain; Navy officers leaving their ships to retire on this world that they liberated; friends gone away; friends left behind. There are also newer photos mixed in amongst the older ones: two Falcons and a Navy Cruiser landed side by side; troops clad in armor walking away from a factory, and a familiar captain talking to a man you know as Commander Nguyen. It is a strange feeling to be shown among heroes of a history that you have had only the smallest effect on.`
 
 event "Poisonwood reverts to Republic"
 	system Graffias
@@ -1402,6 +1405,9 @@ event "Poisonwood reverts to Republic"
 		fleet "Small Free Worlds" 1500
 		fleet "Small Free Worlds" 2600
 		fleet "Human Miners" 2000
+	planet Poisonwood
+		spaceport `The starport is a hodgepodge of small metal structures, built from the remains of Navy and pirate ships that fought for control of this world. The locals are unusually courteous and friendly to most of the captains landing here, but not to you.`
+		spaceport `	The tavern in the center of the port is named The Parting Glass. As you enter the building, you notice the tavern gradually become quieter and quieter, until all that you can hear is the rattling of the air conditioner and the clinking of glasses. At the same time, you feel the heat of several dozen eyes looking directly at you. You decide it best to leave before things escalate further.`
 
 event "death of nguyen"
 
@@ -1651,6 +1657,7 @@ event "deep sky tech available"
 		"Typhoon Torpedo"
 		"Electron Beam"
 		"Typhoon Launcher"
+		"Typhoon Pod"
 		"Typhoon Storage Tube"
 		"Electron Turret"
 

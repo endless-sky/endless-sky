@@ -1684,3 +1684,184 @@ mission "Coalition: Alpha Encounter"
 				decline
 
 event "alitis freed"
+
+
+
+mission "Saryd University Lecture"
+	name "Transport Saryd Scientists"
+	description "Starlit University on <planet> is hosting a seminar on xenology. Transport a guest speaker there by <date>. Payment is <payment>."
+	passengers 1
+	deadline
+	to offer
+		random < 40 
+		has "Coalition: First Contact: done"
+	source "Warm Slope"
+	destination "Shadow of Leaves"
+	on offer
+		conversation
+			`As you exit a restaurant in the spaceport, you notice a rumpled-looking Saryd staring at you. This is not particularly unusual, as consider what a strange sight you must be here in Coalition space. However, he then begins to gallop towards you, hailing you down.`
+			`	"Captain! Excited to finally meet you, I am. Heard of the human in our space, I have, but to see you myself, special it is."`
+			`	"A scientist, I am, and invitied to speak at a university seminar, I have been." This time, he speaks in a calmer tone of voice. "Be there by <date>, I must. The honor of transporting us to <planet>, will you give me?"`
+			choice
+				`	"What is the seminar about?"`
+					goto xeno
+				`	"Sure, I'd be glad to transport you."`
+					goto accept
+				`	"Sorry, I can't take transport jobs right now."`
+					decline
+			label xeno
+			`	"Funny you ask, it is. A xenologist, I am. Alien culture and physiology, I study, and the topic of the seminar, it is. Invited to give lectures on the subject, I have been. Take me there, will you?"`
+			choice
+				`	"Sure, I'd be glad to transport you."`
+				`	"Sorry, I can't take transport jobs right now."`
+					decline
+			label accept
+			`	"Wonderful!" he says. "Aelbris, I am." He soon gathers his things and boards your ship. As he enters, he seems fascinated by its structure and design. His gawking makes it difficult to get him to finally settle down into his bunk.`
+					accept
+	on complete
+		"coalition jobs" += 3
+		payment 25000
+		conversation
+			`During the trip, Aelbris was polite, if a little excited to have a human as his pilot. He asked many questions during the flight, which you answered as best you could. Once you and your passenger depart from your ship, Aelbris turns around.`
+			`	"Captain, that you must be very busy, I realize, but wondering if you could stay for the seminar, I was. You see, studying human space for years, I have been, but actually met a human, I had not. A great boon to our field to have a human guest speaker, it would be."`
+			choice
+				`	"What do I have to do there?"`
+					goto answer
+				`	"I don't think that I'd be a good representative of humanity."`
+					goto low
+				`	"How do you manage to study humanity without meeting any humans?"`
+					goto explanation
+				`	"Sure, I'd be glad to."`
+					goto yes
+				`	"Sorry, I don't have time."`
+					decline
+			label answer
+			`	"Answering some questions from the attendees, would you be comfortable with? Simple, they would be, about aspects of human society, physical structure, and the like, they would pertain to."`
+			choice
+				`	"Sure, I'd be glad to."`
+					goto yes
+				`	"Sorry, I don't have time."`
+					decline
+			label low
+			`	"Nonsense! Travel the galaxy, you do. A most knowledgable individual, surely you must be. Accept my offer, will you?"`
+			choice
+				`	"Sure, I'd be glad to."`
+					goto yes
+				`	"Sorry, I don't have time."`
+					decline
+			label explanation
+			`	"Close to Arachi space, humans are, so study radio and television signals from your part of the galaxy, we are able to. Faint, scattered broadcasts, sophisticated receivers collect, and the signals to us, Arachi colleagues relay. From these broadcasts, we learn. Help us learn more, would you?"`
+			choice
+				`	"Sure, I'd be glad to."`
+					goto yes
+				`	"Sorry, I don't have time."`
+					decline
+			label yes
+			`	"Thank you! A great honor, you have done our field of study." He motions you to follow him.`
+			`	The train you took to the university arrives remarkably quickly, and you are soon on your way towards a large building.`
+			`	You enter a room full of tables packed with citizens from across the Coalition. A stage is at the front, where a Kimek is setting up some sort of diorama. Your entrance immediately causes a stir, and several turn to look at you. Aelbris beams as he shows you to your table."`
+			`	"Now, unplanned, your visit is, so consult with the seminar organizers, I must. Be right back, I will."`
+			`	You wait for a while, until an Arach walks up to the stage. The box's volume is much louder than normal, and you can easily hear what is being spoken.`
+			`	"Pleased to announce that the 103rd Xenology Seminar, generously hosted by Starlit University, is now in session, I am. Noticed as you may have, in the presence of a very... unusual guest, we are. The honor of having <first> <last> of the Rutilicus system answer some questions at the end of today's seminar, we will have." The Arach gestures to you, as Aelbris sits down at your table.`
+			`	The first speaker, a Kimek, talks about human farming methods as they compare to other members of the Coalition. Strangely enough, you see him cite human news broadcasts and television shows as if they were academic papers. All of the broadcasts are hundreds of years out of date. Viewing your own society from the outside feels surreal.`
+			`	The seminar goes on for some time. A Saryd gives a suprisingly accurate lecture on the human body. An Arach goes into detail explaining the technological level of human ships. There are even occasional speeches given on supposed aliens to the east and north. Seeing as they have no direct evidence, however, the scientists can do little more than speculate. Once all the speakers have finished, Aelbris informs you that it is now your turn to answer their questions.`
+			choice
+				`	"Alright, let's go!"`
+					goto questions
+				`	"I don't want to do this anymore."`
+					goto scared
+			label scared
+			`	"To answer their questions, if you really don't want, I can't stop you, I suppose." Aelbris says with a sigh.`
+					decline
+			label questions
+			`	As soon as you walk up to the stage, several scientists in the crowd stand up out of their chairs. An Arach comes up to you on the stage, and explains that this is their way of asking questions. She selects a Saryd from the crowd.`
+			branch hai
+				has "First Contact: Hai: offered"
+			`	"Aliens besides the Quarg, are humans in contact with?"`
+			choice
+				`	"No, the only aliens humans know about are the Quarg."`
+					goto sad
+			label hai
+			`	"Aliens besides the Quarg, are humans in contact with?"`
+			choice
+				`	"Yes, humans are in contact with the Hai. They live to the north of human space, and we can visit them through a wormhole."`
+					goto "know"
+				`	"A few humans know about the Hai, but there's no official acknowledgement of their existence. They live to the north of human space, and we can visit them through a wormhole."`
+					goto "know"
+				`	"No, the only aliens humans know about are the Quarg."`
+					goto "sad"
+			label sad
+			`	At this several in the audience sound disappointed.`
+				goto nextquestion
+			label know
+			`	Several members of the audience are delighted. "Cooperation between different species, it is important to foster," says the Saryd who asked the question. An Arach asks you to point out where the Hai are on a galactic map, and you do so.`
+			label nextquestion
+			branch war
+				has "FWC End: completed"
+			`	The Arach selects another, this time a Kimek. "All of human space, united politically is it?"`
+			choice
+				`	"No, human space is split between the Republic in the north and the Free Worlds in the south."`
+				`	"No, human space is split between the Republic in the west, the Free Worlds in the south, and the Syndicate in the east. The Syndicate is technically part of the Republic, but they have a lot of autonomy."`
+			`	There are murmurs in the crowd, and several begin to write down notes on various devices."`
+				goto questionthree
+			label war
+			`	The Arach selects another, this time a Kimek. "All of human space, united politically is it?"`
+			choice
+				`	"Yes, all of human space is united under the Republic."`
+				`	"Yes, but there are internal subdivisions: the Free Worlds in the south, the Republic in the north, and the Syndicate in the east."`
+				`	"No. Technically all of human space is under the Republic, but the Free Worlds and Syndicate have significant autonomy."`
+			`	There are murmurs in the crowd, and several begin to write down notes on various devices."`
+			label questionthree
+			`	The Arach picks another Kimek. "Still a problem, is piracy in human space?"`
+			choice
+				`	"Yes, there are pirate planets on the fringes of human space."`
+				`	"Piracy was a big problem in the past, but now it's a relatively minor issue."`
+			`	"Stamped out, may human piracy soon be," says the Arach in a solemn tone of voice. She picks a Saryd for the next question.`
+			`	"A fairly comprehensive map of human space, we have." The Saryd brings out a star map of the galactic south. "But of the core, we know not. Inform us of the galaxy, can you?"`
+			branch korath
+				or
+					has "First Contact: Korathi Efreti: offered"
+					has "First Contact: Laki Nemparu: offered"
+					has "First Contact: Karek Fornati: offered"
+					has "First Contact: Setar Fort: offered"
+					has "Wanderers: Rek To Kor Efret: offered"
+			choice
+				`	"Sorry, I don't know what's there any more than you do."`
+			`	The Saryd walks away, disappointed.`
+				goto sorry
+			label korath
+			choice
+				`	(Tell them about the Korath.)`
+					goto tell
+				`	(Don't tell them about the Korath.)`
+					goto donttell
+			label donttell
+			`	"Sorry, I don't know what's there any more than you do."`
+			`	The Saryd walks away, disappointed.`
+			label tell
+			`	"An alien species known as the Korath live there. They're reptillian creatures whose space has been torn apart by fighting. There are four factions. The Kor Sestor and Kor Mereti have been fighting a civil war using autonomous robotic ships. The Kor Efreti have stayed out of the civil war, living under the Quarg's protection." At this there are hisses from several in the crowd. "The last faction, the Korath Exiles, have been banished to the Core by the Quarg, for refusing to give up their ability to manufacture jump drives. They are now raiding humanity for supplies."`
+			`	The crowd shows considerable interest at this last part. "Knowledge of the jump drive, a species besides the Quarg possesses? Great news, this is! Our struggle against the Quarg, we do not take up alone. Escape the cages of the Drak, do any other species?" The Arach does not seem to mind you answering another question.`
+			branch unfettered
+				has  "First Contact: Unfettered: offered"
+			choice
+				`	"Sorry, I don't know of any other species that does."`
+					goto sorry
+			label unfettered
+			choice
+				`	"There is a faction among the Hai, the Unfettered. They steal from the normal Hai, and try to get their hands on jump drives any way they can."`
+					goto unfortunate
+				`	"Sorry, I don't know of any other species that does."`
+					goto sorry
+			label unfortunate
+			`	"Driven to such desperation, it is unfortunate that our allies against the Quarg are. Powerful like the Coalition, hopefully one day they will be."`
+				goto exit
+			label sorry
+			`	The crowd's mood dampens a bit, but everyone is still quite exuberant as you leave the building. It is now night, and your eyes take a moment to adjust from the lecture hall's bright lights.  Aelbris meets up with you outside, bubbling with excitement.`
+			`	"Thank you, captain! Expanded our knowledge greatly, you have. Hope to see you again, I do. Safe travels!"`
+			`	After he shakes your hand, you say your goodbyes and board your ship.`
+				decline
+			label exit
+			`	The crowd's mood is exuberant as you leave the building. It is now night, and your eyes take a moment to adjust from the lecture hall's bright lights. Aelbris meets up with you outside, bubbling with excitement.`
+			`	"Thank you, captain! Expanded our knowledge greatly, you have. Hope to see you again, I do. Safe travels!"`
+			`	After he shakes your hand, you say your goodbyes and board your ship.`
+				decline

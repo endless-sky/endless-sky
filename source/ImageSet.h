@@ -33,16 +33,9 @@ public:
 	// Get the base name for the given path. The path should be relative to one
 	// of the source image directories, not a full filesystem path.
 	static std::string Name(const std::string &path);
-	// Get the frame index from the given path.
-	static int FrameIndex(const std::string &path);
-	// Determine whether the given path is to an @2x image.
-	static bool Is2x(const std::string &path);
 	// Determine whether the given path or name is for a sprite whose loading
 	// should be deferred until needed.
 	static bool IsDeferred(const std::string &path);
-	// Determine whether the given path or name is to a sprite for which a
-	// collision mask ought to be generated.
-	static bool IsMasked(const std::string &path);
 	
 	
 public:
