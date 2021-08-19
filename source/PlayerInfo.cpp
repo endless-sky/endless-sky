@@ -2601,6 +2601,18 @@ void PlayerInfo::RegisterDerivedConditions()
 	conditionsProvider.getFun = [this] (const string &name)->int64_t { auto rff = RaidFleetFactors(); return rff.first - rff.second; };
 	conditions.SetProviderNamed("pirate attraction", conditionsProvider);
 	
+	// The number of active ships the player has of the given category
+	// (e.g. Heavy Warships).
+	conditionsProvider.getFun = [this] (const string &name)->int64_t {
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system
+					&& name == "ship: " + ship->Attributes().Category())
+				++retVal;
+		return retVal;
+	};
+	conditions.SetProviderPrefixed("ships: ", conditionsProvider);
+	
 	// Conditions to determine if flagship is in a system and on a planet.
 	conditionsProvider.hasFun = [this] (const string &name)->bool {
 		if(!flagship || !flagship->GetSystem())
@@ -2647,9 +2659,6 @@ void PlayerInfo::RegisterDerivedConditions()
 // Update the conditions that reflect the current status of the player.
 void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 {
-	// Serialize the current reputation with other governments.
-	// Clear any existing ships: conditions. (Note: '!' = ' ' + 1.)
-	EraseManualByPrefix("ships: ");
 	// Store special conditions for cargo and passenger space.
 	SetCondition("cargo space", 0);
 	SetCondition("passenger space", 0);
@@ -2658,7 +2667,6 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 		{
 			AddCondition("cargo space", ship->Attributes().Get("cargo space"));
 			AddCondition("passenger space", ship->Attributes().Get("bunks") - ship->RequiredCrew());
-			AddCondition("ships: " + ship->Attributes().Category(), 1);
 		}
 	// If boarding a ship, missions should not consider the space available
 	// in the player's entire fleet. The only fleet parameter offered to a
