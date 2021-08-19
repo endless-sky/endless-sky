@@ -3302,6 +3302,94 @@ mission "Spacediving amateurs"
 		dialog "As you descend through the upper atmosphere, you inform your skydivers that it's time to jump. However, after being able to see the distances and atmospheric conditions involved, all of them are far less keen on the idea than when you first picked them up. You bring them down to the landing pad, and they pay you a meager <payment> before hopping off."
 
 
+mission "Human to Hai Space - No Contact"
+	minor
+	source
+		government "Republic" "Syndicate" "Free Worlds"
+		attributes "tourism" "urban"
+	to offer
+		random < 2
+		not "First Contact: Hai: offered"
+	on offer
+		conversation
+			`	A young man carrying luggage approaches you. "You look like a knowledgeable captain," he says. "In all your travels, have you ever heard tell of any... intelligent rodents?"`
+			choice
+				`	"What are you talking about?"`
+					goto confused
+				`	"What, like in a zoo?"`
+					goto confused
+				`	"Are you high?"`
+			`	"No, I want to go to the high-" He stops once he realizes you have no idea what he's talking about. "Oh, never mind then," he says, with a note of disappointment in his voice. As he leaves, you can't help feeling like you were missing some context.`
+				decline
+			label confused
+			`	"Oh, never mind then," he says, with a note of disappointment in his voice. As he leaves, you can't help feeling like you were missing some context.`
+				decline
+
+
+mission "Human to Hai Space"
+	minor
+	description "Bring a human passenger to <destination> in Hai space."
+	source
+		government "Republic" "Syndicate" "Free Worlds"
+		attributes "tourism" "urban"
+	destination "Greenwater"
+	to offer
+		random < 10
+		has "First Contact: Hai: offered"
+		not "Human to Hai Space - No Contact: offered"
+	on offer
+		conversation
+			`	A young man carrying luggage approaches you. "You look like a knowledgeable captain," he says. "In all your travels, have you ever heard tell of any... intelligent rodents?"`
+			choice
+				`	"You mean the Hai? You'll have to go up north for that."`
+					goto hai
+				`	"Ah, I think I know of some large squirrels to the north of here."`
+					goto hai
+				`	"What are you talking about?"`
+			`	"Oh, never mind then," he says, with a note of disappointment in his voice. You feel good knowing that you are helping to keep the Hai's existence a secret in human space. Better safe than sorry.`
+				decline
+			
+			label hai
+			`	"If that's the case, could you bring me to <destination>? I'll give you <payment>."`
+			choice
+				`	"Alright, I'll take you there."`
+					accept
+				`	"Sorry, I'm too busy right now."`
+					decline
+				`	"Why would you want to go all the way out to <planet>?"`
+			`	"I have family there," he says. "I came out here to do some traveling and see a bit of human space, but now I have to get back home. You see, I was born on <planet>, and this is my first time out of the wormhole."`
+			choice
+				`	"Really? How did you like human space?"`
+					goto travel
+				`	"You've never been to human space before?"`
+			`	"Nope, first time! I've never been so far from home before. Now that I think about it, I probably should've arranged transport back to Hai space beforehand. You wouldn't believe how hard it is to find a captain here that knows about the Hai. I had to ask about six others until I found you. They all thought I was crazy, talking about meeting giant squirrels." He laughs and shakes his head. "So anyways, would you be willing to take me to <destination>?"`
+				goto decision
+			
+			label travel
+			`	"It was quite the trip! It's a bit odd to see only humans around, and I had to be careful to not mention where I was from. But it was definitely worth it! I got to see Earth, Skymoot, Chiron, and so many other beautiful planets. Seeing human culture with my own eyes was an eye-opening experience, although some of the places there were less... clean than I expected. I was almost robbed on Earth; I'm not used to pickpockets back home. Perhaps human space isn't as safe as Hai space, but I still don't regret coming here. It's about time for me to go back, though."`
+				
+			label decision
+			choice
+				`	"Alright, I'll take you there."`
+					accept
+				`	"Sorry, I'm too busy right now."`
+					decline
+	on complete
+		payment 9000
+		conversation
+			`During the trip, you learn that your passenger is named Benjamin. He gets off your ship, thanks you, and gives you your payment of <payment>. Benjamin then walks over to greet a group of Hai, who embrace him and start talking in a mix of the human and Hai languages.`
+			choice
+				`	(Leave.)`
+					decline
+				`	"That's your family?"`
+			`	The man looks at you. "I'm adopted," he says. One of the Hai notices your confusion, and chitters. "Ah, you have not seen a human-Hai family, have you? Perhaps it is strange, but we are happy together nonetheless. Thank you for transporting our son safely."`
+			choice
+				`	"I didn't mean to be rude, I just didn't know that Hai adopted humans here."`
+				`	"No problem, I hope you enjoyed the trip."`
+			`	After thanking you once again, they walk off. As they leave, you overhear Benjamin talk to his family about his trip. "They had so many kinds of food there, it was delicious! Although I did get homesick for pickled acorns..."`
+
+
+
 mission "Mafia Extortion"
 	minor
 	source
