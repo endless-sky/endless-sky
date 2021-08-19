@@ -285,7 +285,6 @@ private:
 	void RegisterDerivedConditions();
 	
 	// New missions are generated each time you land on a planet.
-	void UpdateAutoConditions(bool isBoarding = false);
 	void CreateMissions();
 	void StepMissions(UI *ui);
 	void Autosave() const;

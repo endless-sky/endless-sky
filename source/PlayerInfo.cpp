@@ -104,7 +104,6 @@ void PlayerInfo::New(const StartConditions &start)
 	accounts = start.GetAccounts();
 	start.GetConditions().Apply(conditions);
 	RegisterDerivedConditions();
-	UpdateAutoConditions();
 	
 	// Generate missions that will be available on the first day.
 	CreateMissions();
@@ -594,9 +593,6 @@ void PlayerInfo::IncrementDate()
 	// Reset the reload counters for all your ships.
 	for(const shared_ptr<Ship> &ship : ships)
 		ship->GetArmament().ReloadAll();
-	
-	// Re-calculate all automatic conditions
-	UpdateAutoConditions();
 }
 
 
@@ -1179,9 +1175,6 @@ void PlayerInfo::Land(UI *ui)
 	for(const auto &it : lostCargo)
 		AdjustBasis(it.first, -(costBasis[it.first] * it.second) / (cargo.Get(it.first) + it.second));
 	
-	// Bring auto conditions up-to-date for missions to check your current status.
-	UpdateAutoConditions();
-	
 	// Evaluate changes to NPC spawning criteria.
 	if(!freshlyLoaded)
 		UpdateMissionNPCs();
@@ -1627,8 +1620,6 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 	// Ensure that boarding this NPC again does not create a mission.
 	ship->SetIsSpecial();
 	
-	// Update auto conditions to reflect the player's flagship's free capacity.
-	UpdateAutoConditions(true);
 	// "boardingMissions" is emptied by MissionCallback, but to be sure:
 	boardingMissions.clear();
 	
@@ -2601,6 +2592,32 @@ void PlayerInfo::RegisterDerivedConditions()
 	conditionsProvider.getFun = [this] (const string &name)->int64_t { auto rff = RaidFleetFactors(); return rff.first - rff.second; };
 	conditions.SetProviderNamed("pirate attraction", conditionsProvider);
 	
+	// Special conditions for cargo and passenger space.
+	// If boarding a ship, missions should not consider the space available
+	// in the player's entire fleet. The only fleet parameter offered to a
+	// boarding mission is the fleet composition (e.g. 4 Heavy Warships).
+	conditionsProvider.getFun = [this] (const string &name)->int64_t {
+		if(flagship && !boardingMissions.empty())
+			flagship->Cargo().Free();
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system)
+				retVal += ship->Attributes().Get("cargo space");
+		return retVal;
+	};
+	conditions.SetProviderNamed("cargo space", conditionsProvider);
+	
+	conditionsProvider.getFun = [this] (const string &name)->int64_t {
+		if(flagship && !boardingMissions.empty())
+			return flagship->Cargo().BunksFree();
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system)
+				retVal += ship->Attributes().Get("bunks") - ship->RequiredCrew();
+		return retVal;
+	};
+	conditions.SetProviderNamed("passenger space", conditionsProvider);
+	
 	// The number of active ships the player has of the given category
 	// (e.g. Heavy Warships).
 	conditionsProvider.getFun = [this] (const string &name)->int64_t {
@@ -2652,30 +2669,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		return true;
 	};
 	conditions.SetProviderPrefixed("reputation: ", conditionsProvider);
-}
-
-
-
-// Update the conditions that reflect the current status of the player.
-void PlayerInfo::UpdateAutoConditions(bool isBoarding)
-{
-	// Store special conditions for cargo and passenger space.
-	SetCondition("cargo space", 0);
-	SetCondition("passenger space", 0);
-	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system)
-		{
-			AddCondition("cargo space", ship->Attributes().Get("cargo space"));
-			AddCondition("passenger space", ship->Attributes().Get("bunks") - ship->RequiredCrew());
-		}
-	// If boarding a ship, missions should not consider the space available
-	// in the player's entire fleet. The only fleet parameter offered to a
-	// boarding mission is the fleet composition (e.g. 4 Heavy Warships).
-	if(isBoarding && flagship)
-	{
-		SetCondition("cargo space", flagship->Cargo().Free());
-		SetCondition("passenger space", flagship->Cargo().BunksFree());
-	}
 }
 
 
