@@ -783,7 +783,7 @@ mission "Deep Consultants"
 		set "deep security consultants"
 		conversation
 			`Julie and her assistant are model passengers the entire journey. As she prepares to disembark, she thanks you for your assistance. In addition to transferring <payment> into your account, she helps you change your job board preferences with the local spaceport agencies to make yourself available for business passengers consulting with Deep Security.`
-			`	"Thank you Captain <last>, you've been most helpful. Do keep an eye out in the spaceports around here though. Deep Security is notorious for keeping us longer than we booked for. There's often someone stuck and in need of rapid transport off-world."`
+			`	"Thank you Captain <last>, you've been most helpful. Do keep an eye out in the spaceports around here though. Deep Security is notorious for keeping us longer than we're booked for. There's often someone stuck and in need of rapid transport off-world."`
 
 
 phrase "stranded consultant pickup"
@@ -885,7 +885,7 @@ mission "Transport Consultants (Deep Security) [1]"
 
 
 mission "Urgent Deep Sec Package"
-	name "Rush delivery of a Deep Security package to <planet>"
+	name "Rush Deep Security Delivery to <planet>"
 	repeat
 	deadline 1 1
 	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
@@ -914,7 +914,7 @@ mission "Urgent Deep Sec Package"
 		"reputation: Deep Security" -= 5
 
 mission "Urgent Deep Sec Consultants [0]"
-	name "Rush transport of stranded Deep Security consultants to <planet>"
+	name "Rush Deep Security Consultants to <planet>"
 	repeat
 	deadline 1 1
 	description "Deliver <passengers> to <destination> by <date>. Payment is <payment>."
@@ -943,7 +943,7 @@ mission "Urgent Deep Sec Consultants [0]"
 		"reputation: Deep Security" -= 10
 
 mission "Urgent Deep Sec Consultants [1]"
-	name "Rush transport of stranded Deep Security consultants to <planet>"
+	name "Rush Deep Security Consultants to <planet>"
 	repeat
 	deadline 1 1
 	description "Deliver <passengers> to <destination> by <date>. Payment is <payment>."
