@@ -468,14 +468,6 @@ mission "Ka'het: Patir Mystery 2"
 			`As soon as you arrive in the cafeteria you start looking for Dusk, but you can't find him anywhere. He arrives a few minutes later and waves at you. "Sorry if I was late, Captain," he says, "I was finishing up gathering the necessary technology for our mission. Everything is ready now."`
 			choice
 				`	"What is the next step?"`
-					goto next
-				`	"Wait, you haven't given me a chance to answer you the last time you met. I decline the offer."`
-			`	Dusk seems surprised of your reaction. "<first>, I'm sorry if I offended you in some way, it wasn't my intention. Every minute is important for studying this system, as more time passes the chance to lose important data that we can't get elsewhere increases. Are you really sure you want to leave this project?"`
-			choice
-				`	"I am."`
-					decline
-				`	"Alright, tell me the next step."`
-			label next
 			`	"Well, first we need to install the scanners on your ship. Luckily, they are as simple to use as a normal outfit scanner, so you should not have much trouble once you reach the asteroid. After you have made extensive scans of the sites I indicate to you, reach me back here on Aventine so that I can analyze the data. If everything goes well, you should be back here in a couple weeks. I have already gotten a team ready to install the scanners; all that needs to be done now is for you to head back to <system>."`
 				accept
 	on enter "Patir"
