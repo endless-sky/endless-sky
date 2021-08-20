@@ -454,8 +454,10 @@ private:
 	// Characteristics of this particular ship:
 	EsUuid uuid;
 	std::string name;
+	// Can this ship physically be carried (is it of a type for which bays exist)?
 	bool canBeCarried = false;
-
+	// Does anything prevent this ship from being carried (for example it being used as a flagship)?
+	bool preventCarry = false;
 	int forget = 0;
 	bool isInSystem = true;
 	// "Special" ships cannot be forgotten, and if they land on a planet, they
