@@ -228,7 +228,11 @@ bool GameData::BeginLoad(const char * const *argv)
 	
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &&it : ships)
-		it.second.FinishLoading(true);
+		it.second.FinishLoading(true,
+			Category(CategoryType::BAY),
+			Effects(),
+			Ships()
+		);
 	for(auto &&it : persons)
 		it.second.FinishLoading();
 	
@@ -1090,7 +1094,14 @@ void GameData::LoadFile(const string &path, bool debugMode)
 		{
 			// Allow multiple named variants of the same ship model.
 			const string &name = node.Token((node.Size() > 2) ? 2 : 1);
-			ships.Get(name)->Load(node);
+			ships.Get(name)->Load(node,
+					effects,
+					outfits,
+					planets,
+					ships,
+					systems,
+					playerGovernment
+				);
 		}
 		else if(key == "shipyard" && node.Size() >= 2)
 			shipSales.Get(node.Token(1))->Load(node, ships);

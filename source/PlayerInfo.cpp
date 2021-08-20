@@ -178,7 +178,13 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "ship")
 		{
 			// Ships owned by the player have various special characteristics:
-			ships.push_back(make_shared<Ship>(child));
+			ships.push_back(make_shared<Ship>(child,
+				GameData::Effects(),
+				GameData::Outfits(),
+				GameData::Planets(),
+				GameData::Ships(),
+				GameData::Systems(),
+				GameData::PlayerGovernment() ));
 			ships.back()->SetIsSpecial();
 			ships.back()->SetIsYours();
 			// Defer finalizing this ship until we have processed all changes to game state.
@@ -2409,7 +2415,11 @@ void PlayerInfo::ApplyChanges()
 	{
 		// Government changes may have changed the player's ship swizzles.
 		ship->SetGovernment(GameData::PlayerGovernment());
-		ship->FinishLoading(false);
+		ship->FinishLoading(false,
+				GameData::Category(CategoryType::BAY),
+				GameData::Effects(),
+				GameData::Ships()
+			);
 	}
 }
 

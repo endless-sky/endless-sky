@@ -109,7 +109,13 @@ void StartConditions::Load(const DataNode &node)
 			// a 3rd token (i.e. this will be treated as though it were a ship variant definition,
 			// without making the variant available to the rest of GameData).
 			if(child.HasChildren() || child.Size() >= 3)
-				ships.emplace_back(child);
+				ships.emplace_back(child,
+					GameData::Effects(),
+					GameData::Outfits(),
+					GameData::Planets(),
+					GameData::Ships(),
+					GameData::Systems(),
+					GameData::PlayerGovernment() );
 			// If there's only 2 tokens & there's no child nodes, the created instance would be ill-formed.
 			else
 				child.PrintTrace("Skipping unsupported use of a \"stock\" ship (a full definition is required):");
@@ -146,7 +152,11 @@ void StartConditions::Load(const DataNode &node)
 void StartConditions::FinishLoading()
 {
 	for(Ship &ship : ships)
-		ship.FinishLoading(true);
+		ship.FinishLoading(true,
+				GameData::Category(CategoryType::BAY),
+				GameData::Effects(),
+				GameData::Ships()
+			);
 	
 	if(!GetConversation().IsValidIntro())
 		Files::LogError("Warning: The start scenario \"" + Identifier() + "\" (named \""
