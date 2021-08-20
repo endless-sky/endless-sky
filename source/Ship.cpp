@@ -3286,15 +3286,14 @@ bool Ship::CanCarry(const Ship &ship) const
 
 void Ship::AllowCarried(bool allowCarried)
 {
-	const auto &bayCategories = GameData::Category(CategoryType::BAY);
-	canBeCarried = allowCarried && find(bayCategories.begin(), bayCategories.end(), attributes.Category()) != bayCategories.end();
+	preventCarry = !allowCarried;
 }
 
 
 
 bool Ship::CanBeCarried() const
 {
-	return canBeCarried;
+	return canBeCarried && !preventCarry;
 }
 
 
