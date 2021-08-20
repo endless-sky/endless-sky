@@ -1646,36 +1646,18 @@ event "deep: scan log research"
 
 
 
-mission "Deep: Remnant Technology"
+mission "Deep: Remnant Research"
 	landing
-	name `Travel to <planet>`
-	description `Meet up with Ivan on <destination> to learn what he wants you to do next.`
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		not system "Epsilon Leonis"
-	destination "Valhalla"
 	to offer
 		has "event: deep: scan log research"
 	
 	on offer
 		payment 250000
 		conversation
-			branch technology
-				has "deep: did reveal remnant"
-			`You receive a message from Ivan after you land. "Thanks for all your help recently. We brought our findings to the Deep government, and they gave us more funding! We've transferred <payment> to your account and made sure you were listed as a primary contributor on all the reports of these immense discoveries. We do not have any further jobs for you, but hopefully we will in the future. Thanks again!"`
+			`You receive a message from Ivan after you land. "Thanks for all your help recently. We brought our findings to the Deep government, but given their sensitive nature the Deep is taking its time deciding whether to fund further research. In the mean time, I've transfered <payment> of my own funds to your account. I have no doubt the Deep will approve further funding for our project in the future, so I've simply written this off as a business expense. I'll contact you once we continue our research beyond the wormhole. Thanks again!"`
 				decline
-			
-			label technology
-			`You receive a message from Ivan after you land. "Thanks for all your help recently. We brought our findings to the Deep government and they gave us more funding! We've transferred <payment> to your account and made sure you were listed as a primary contributor on all the reports of these immense discoveries. Please meet us on <destination> if you wish to assist us further. Your help would be appreciated, but we will make progress even if you're a bit busy at the moment."`
-			choice
-				`	(Accept.)`
-					accept
-				`	(Decline.)`
-					decline
-	on decline
-		set "Deep: Remnant Research: done"
-	on fail
-		set "Deep: Remnant Research: done"
 
 
 
@@ -1684,12 +1666,52 @@ mission "deep: player revealed remnant"
 	landing
 	invisible
 	to offer
-		has "Deep: Remnant Research: done"
+		has "Deep: Remnant Research: offered"
 		not "deep: did reveal remnant"
 		not "deep: did not reveal remnant"
 	on offer
 		set "deep: did reveal remnant"
 		fail
+
+
+mission "deep: remnant: rest period"
+	landing
+	invisible
+	to offer
+		or
+			has "Deep: Scientist Rescue 0: declined"
+			has "Deep: Scientist Rescue 0: failed"
+			has "Deep: Scientist Rescue 1: failed"
+			has "Deep: Scientist Rescue 2: failed"
+			has "Deep: Scientist Rescue 3A: failed"
+			has "Deep: Scientist Rescue 3B: failed"
+			has "license: City-Ship"
+	on offer
+		event "deep: remnant: rest period" 180
+		fail
+
+event "deep: remnant: rest period"
+
+
+
+mission "Deep: Remnant: Continue Research"
+	name `Travel to <planet>`
+	description `Meet up with Ivan on <destination> to continue helping with research on the Ember Waste.`
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not system "Epsilon Leonis"
+	destination "Valhalla"
+	to offer
+		has "event: deep: remnant: rest period"
+		has "deep: did reveal remnant"
+	on offer
+		conversation
+			`You receive a message from Ivan, the Deep scientist who you helped to discover the Remnant in the Ember Waste. "Captain <last>, it's been so long. The Deep has finally finished reviewing our research in the Ember Waste, and we've been approved for further funding! Please meet us on <destination> if you wish to assist us again. Your help would be appreciated, but we will make progress even if you're unable to help."`
+			choice
+				`	(Accept.)`
+					accept
+				`	(Decline.)`
+					decline
 
 
 
@@ -1699,7 +1721,7 @@ mission "Deep: Remnant: Engines"
 	description `Acquire "Forge-Class" thruster and steering engines from the Remnant and bring them to <destination>.`
 	source "Valhalla"
 	to offer
-		has "Deep: Remnant Technology: done"
+		has "Deep: Remnant: Continue Research: done"
 		has "deep: did reveal remnant"
 	
 	on offer
@@ -1748,10 +1770,6 @@ mission "Deep: Remnant: Engines"
 			`	"Great!" Ivan exclaims. "Right now we'd be interested in studying their engines. Please bring us one Forge-Class Thruster and one Forge-Class Steering. They shouldn't be too hard to get."`
 				accept
 	
-	on decline
-		set "Deep: Remnant Research: done"
-	on fail
-		set "Deep: Remnant Research: done"
 	on visit
 		dialog `You have landed on <planet>, but you do not have both a Forge-Class Thruster and Forge-Class Steering. Return to <planet> once you have obtained both engines.`
 	on complete
@@ -1780,10 +1798,6 @@ mission "Deep: Remnant: Generators"
 				`	"Sorry, but I'm no longer interested in working for you."`
 					decline
 	
-	on decline
-		set "Deep: Remnant Research: done"
-	on fail
-		set "Deep: Remnant Research: done"
 	on visit
 		dialog `You have landed on <planet>, but you do not have a Millennium Cell. Return to <planet> once you have obtained the generator.`
 	on complete
@@ -1811,10 +1825,6 @@ mission "Deep: Remnant: Inhibitor Cannon"
 				`	"Sorry, but I'm no longer interested in working for you."`
 					decline
 	
-	on decline
-		set "Deep: Remnant Research: done"
-	on fail
-		set "Deep: Remnant Research: done"
 	on visit
 		dialog `You have landed on <planet>, but you do not have an Inhibitor Cannon. Return to <planet> once you have the weapon.`
 	on complete
@@ -1853,15 +1863,10 @@ mission "Deep: Remnant Surveillance"
 			`	"Thank you, Captain. Return here once you have finished, and I'll ensure you are well compensated for the journey."`
 				accept
 	
-	on decline
-		set "Deep: Remnant Research: done"
-	on fail
-		set "Deep: Remnant Research: done"
 	on visit
 		dialog `You have landed on <planet>, but you have not placed two cubes on all the Remnant worlds. Return to the Ember Waste and make sure you have placed surveillance devices on <stopovers>.`
 	on complete
 		payment 500000
-		set "Deep: Remnant Research: done"
 		log `Secretly placed sensor cubes near the spaceport of each Remnant planet. Ivan hopes to use the data gathered from these cubes to learn more about Remnant ships.`
 		dialog 
 			`When you return to <planet>, you are unable to find Ivan. Instead, Rayna waves you down and hands you a credits chip worth <payment>.`
@@ -1908,7 +1913,7 @@ mission "remnant: clear deep surveillance"
 	landing
 	invisible
 	to offer
-		has "Deep: Remnant Research: done"
+		has "Deep: Remnant Research: offered"
 	on offer
 		clear "Remnant: Deep Surveillance: offered"
 		fail
@@ -1917,7 +1922,7 @@ mission "Deep: Scientist Rescue Timer"
 	landing
 	invisible
 	to offer
-		has "Deep: Remnant Research: done"
+		has "Deep: Remnant Research: offered"
 		has "Deep: Project Hawking: done"
 	on offer
 		event "deep: scientist rescue timer" 60
