@@ -429,7 +429,6 @@ private:
 	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::vector<Visual> &visuals, bool spread = false);
 	// Place a "spark" effect, like ionization or disruption.
-	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
 	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
 
 
@@ -567,7 +566,17 @@ private:
 	};
 	std::vector<Leak> leaks;
 	std::vector<Leak> activeLeaks;
-
+	
+	const Effect *effectIonSpark = nullptr;
+	const Effect *effectDisruptionSpark = nullptr;
+	const Effect *effectSlowingSpark = nullptr;
+	const Effect *effectDischargeSpark = nullptr;
+	const Effect *effectCorrosionSpark = nullptr;
+	const Effect *effectLeakageSpark = nullptr;
+	const Effect *effectBurningSpark = nullptr;
+	const Effect *effectSmoke = nullptr;
+	const Effect *effectJumpDrive = nullptr;
+	
 	// Explosions that happen when the ship is dying:
 	std::map<const Effect *, int> explosionEffects;
 	unsigned explosionRate = 0;
