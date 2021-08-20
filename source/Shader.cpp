@@ -98,12 +98,22 @@ GLuint Shader::Compile(const char *str, GLenum type)
 	{
 		version = "#version ";
 		string glsl = reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION));
+		bool found = false;
 		for(char c : glsl)
 		{
+			if(!found && !isdigit(c)) {
+				continue;
+			}
 			if(isspace(c))
 				break;
-			if(isdigit(c))
+			if(isdigit(c)) {
+				found = true;
 				version += c;
+			}
+		}
+		if(glsl.find("GLSL ES") != std::string::npos)
+		{
+			version += " es";
 		}
 		version += '\n';
 	}

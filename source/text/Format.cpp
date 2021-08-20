@@ -186,6 +186,7 @@ double Format::Parse(const string &str)
 	{
 		if(*it == '.')
 			place = .1;
+		else if(*it == ',') {}
 		else if(*it < '0' || *it > '9')
 			break;
 		else
@@ -297,7 +298,7 @@ string Format::Capitalize(const string &str)
 	bool first = true;
 	for(char &c : result)
 	{
-		if(!isalpha(c))
+		if(isspace(c))
 			first = true;
 		else
 		{

@@ -42,7 +42,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 #ifdef _WIN32
+#define STRICT
+#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+#include <mmsystem.h>
 #endif
 
 using namespace std;
@@ -189,7 +192,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	// Data to track progress of testing if/when a test is running.
 	Test::Context testContext;
 	if(!testToRunName.empty())
-		testContext.testToRun = GameData::Tests().Get(testToRunName);
+		testContext.testToRun.push_back(GameData::Tests().Get(testToRunName));
 	
 	// IsDone becomes true when the game is quit.
 	while(!menuPanels.IsDone())
@@ -272,8 +275,8 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
 		
 		// All manual events and processing done. Handle any test inputs and events if we have any.
-		if(testContext.testToRun)
-			testContext.testToRun->Step(testContext, menuPanels, gamePanels, player);
+		if(!testContext.testToRun.empty())
+			testContext.testToRun.back()->Step(testContext, menuPanels, gamePanels, player);
 		
 		// Caps lock slows the frame rate in debug mode.
 		// Slowing eases in and out over a couple of frames.
