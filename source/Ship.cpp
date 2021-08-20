@@ -745,6 +745,13 @@ void Ship::FinishLoading(bool isNewInstance)
 			targetSystem = nullptr;
 		}
 	}
+	
+	// Load the default effects for this ship.
+	effectDisruptionSpark = GameData::Effects().Get("disruption spark");
+	effectIonSpark = GameData::Effects().Get("ion spark");
+	effectSlowingSpark = GameData::Effects().Get("slowing spark");
+	effectSmoke = GameData::Effects().Get("smoke");
+	effectJumpDrive = GameData::Effects().Get("jump drive");
 }
 
 
@@ -1363,11 +1370,11 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 	// Handle ionization effects, etc.
 	if(ionization)
-		CreateSparks(visuals, "ion spark", ionization * .1);
+		CreateSparks(visuals, effectIonSpark, ionization * .1);
 	if(disruption)
-		CreateSparks(visuals, "disruption spark", disruption * .1);
+		CreateSparks(visuals, effectDisruptionSpark, disruption * .1);
 	if(slowness)
-		CreateSparks(visuals, "slowing spark", slowness * .1);
+		CreateSparks(visuals, effectSlowingSpark, slowness * .1);
 	// Jettisoned cargo effects (only for ships in the current system).
 	if(!jettisoned.empty() && !forget)
 	{
@@ -1422,7 +1429,6 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		{
 			if(!forget)
 			{
-				const Effect *effect = GameData::Effects().Get("smoke");
 				double size = Width() + Height();
 				double scale = .03 * size + .5;
 				double radius = .2 * size;
@@ -1437,7 +1443,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					Point effectVelocity = velocity + angle.Unit() * (scale * Random::Real());
 					Point effectPosition = position + radius * angle.Unit();
 					
-					visuals.emplace_back(*effect, std::move(effectPosition), std::move(effectVelocity), std::move(angle));
+					visuals.emplace_back(*effectSmoke, std::move(effectPosition), std::move(effectVelocity), std::move(angle));
 				}
 				
 				for(unsigned i = 0; i < explosionTotal / 2; ++i)
@@ -1526,7 +1532,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			double sparkAmount = hyperspaceCount * Width() * Height() * .000006;
 			const map<const Effect *, int> &jumpEffects = attributes.JumpEffects();
 			if(jumpEffects.empty())
-				CreateSparks(visuals, "jump drive", sparkAmount);
+				CreateSparks(visuals, effectJumpDrive, sparkAmount);
 			else
 			{
 				// Spread the amount of particle effects created among all jump effects.
@@ -3821,14 +3827,6 @@ void Ship::CreateExplosion(vector<Visual> &visuals, bool spread)
 			return;
 		}
 	}
-}
-
-
-
-// Place a "spark" effect, like ionization or disruption.
-void Ship::CreateSparks(vector<Visual> &visuals, const string &name, double amount)
-{
-	CreateSparks(visuals, GameData::Effects().Get(name), amount);
 }
 
 
