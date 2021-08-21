@@ -132,33 +132,34 @@ namespace {
 
 
 // Construct and Load() at the same time.
-Ship::Ship(const DataNode &node,
-		const Set<Effect> &effectsSet,
-		const Set<Outfit> &outfitsSet,
-		const Set<Planet> &planetsSet,
-		const Set<Ship> &shipsSet,
-		const Set<System> &systemsSet,
-		const Government *playerGov
-	)
+Ship::Ship(const DataNode &node
+	, const Set<Effect> &effectsData
+	, const Set<Outfit> &outfitsData
+	, const Set<Planet> &planetsData
+	, const Set<Ship> &shipsData
+	, const Set<System> &systemsData
+	, const Government *playerGov
+)
 {
-	Load(node,
-		effectsSet,
-		outfitsSet,
-		planetsSet,
-		shipsSet,
-		systemsSet,
-		playerGov);
+	Load(node
+		, effectsData
+		, outfitsData
+		, planetsData
+		, shipsData
+		, systemsData
+		, playerGov
+	);
 }
 
 
 
-void Ship::Load(const DataNode &node,
-		const Set<Effect> &effectsSet,
-		const Set<Outfit> &outfitsSet,
-		const Set<Planet> &planetsSet,
-		const Set<Ship> &shipsSet,
-		const Set<System> &systemsSet,
-		const Government *playerGov
+void Ship::Load(const DataNode &node
+		, const Set<Effect> &effectsData
+		, const Set<Outfit> &outfitsData
+		, const Set<Planet> &planetsData
+		, const Set<Ship> &shipsData
+		, const Set<System> &systemsData
+		, const Government *playerGov
 	)
 {
 	if(node.Size() >= 2)
@@ -168,7 +169,7 @@ void Ship::Load(const DataNode &node,
 	}
 	if(node.Size() >= 3)
 	{
-		base = shipsSet.Get(modelName);
+		base = shipsData.Get(modelName);
 		variantName = node.Token(2);
 	}
 	isDefined = true;
@@ -271,12 +272,12 @@ void Ship::Load(const DataNode &node,
 			{
 				hardpoint = Point(child.Value(1), child.Value(2));
 				if(child.Size() >= 4)
-					outfit = outfitsSet.Get(child.Token(3));
+					outfit = outfitsData.Get(child.Token(3));
 			}
 			else
 			{
 				if(child.Size() >= 2)
-					outfit = outfitsSet.Get(child.Token(1));
+					outfit = outfitsData.Get(child.Token(1));
 			}
 			Angle gunPortAngle = Angle(0.);
 			bool gunPortParallel = false;
@@ -347,7 +348,7 @@ void Ship::Load(const DataNode &node,
 					if(grand.Token(0) == "launch effect" && grand.Size() >= 2)
 					{
 						int count = grand.Size() >= 3 ? static_cast<int>(grand.Value(2)) : 1;
-						const Effect *e = effectsSet.Get(grand.Token(1));
+						const Effect *e = effectsData.Get(grand.Token(1));
 						bay.launchEffects.insert(bay.launchEffects.end(), count, e);
 					}
 					else if(grand.Token(0) == "angle" && grand.Size() >= 2)
@@ -379,7 +380,7 @@ void Ship::Load(const DataNode &node,
 				leaks.clear();
 				hasLeak = true;
 			}
-			Leak leak(effectsSet.Get(child.Token(1)));
+			Leak leak(effectsData.Get(child.Token(1)));
 			if(child.Size() >= 3)
 				leak.openPeriod = child.Value(2);
 			if(child.Size() >= 4)
@@ -395,7 +396,7 @@ void Ship::Load(const DataNode &node,
 				hasExplode = true;
 			}
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
-			explosionEffects[effectsSet.Get(child.Token(1))] += count;
+			explosionEffects[effectsData.Get(child.Token(1))] += count;
 			explosionTotal += count;
 		}
 		else if(key == "final explode" && child.Size() >= 2)
@@ -406,7 +407,7 @@ void Ship::Load(const DataNode &node,
 				hasFinalExplode = true;
 			}
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
-			finalExplosions[effectsSet.Get(child.Token(1))] += count;
+			finalExplosions[effectsData.Get(child.Token(1))] += count;
 		}
 		else if(key == "outfits")
 		{
@@ -419,7 +420,7 @@ void Ship::Load(const DataNode &node,
 			{
 				int count = (grand.Size() >= 2) ? grand.Value(1) : 1;
 				if(count > 0)
-					outfits[outfitsSet.Get(grand.Token(0))] += count;
+					outfits[outfitsData.Get(grand.Token(0))] += count;
 				else
 					grand.PrintTrace("Skipping invalid outfit count:");
 			}
@@ -437,14 +438,14 @@ void Ship::Load(const DataNode &node,
 		else if(key == "position" && child.Size() >= 3)
 			position = Point(child.Value(1), child.Value(2));
 		else if(key == "system" && child.Size() >= 2)
-			currentSystem = systemsSet.Get(child.Token(1));
+			currentSystem = systemsData.Get(child.Token(1));
 		else if(key == "planet" && child.Size() >= 2)
 		{
 			zoom = 0.;
-			landingPlanet = planetsSet.Get(child.Token(1));
+			landingPlanet = planetsData.Get(child.Token(1));
 		}
 		else if(key == "destination system" && child.Size() >= 2)
-			targetSystem = systemsSet.Get(child.Token(1));
+			targetSystem = systemsData.Get(child.Token(1));
 		else if(key == "parked")
 			isParked = true;
 		else if(key == "description" && child.Size() >= 2)
@@ -467,18 +468,18 @@ void Ship::Load(const DataNode &node,
 // When loading a ship, some of the outfits it lists may not have been
 // loaded yet. So, wait until everything has been loaded, then call this.
 void Ship::FinishLoading(bool isNewInstance,
-		const vector<string> &bayCategories,
-		const Set<Effect> &effectsSet,
-		const Set<Ship> &shipsSet
-	)
+	const vector<string> &bayCategories,
+	const Set<Effect> &effectsData,
+	const Set<Ship> &shipsData
+)
 {
 	// All copies of this ship should save pointers to the "explosion" weapon
 	// definition stored safely in the ship model, which will not be destroyed
 	// until GameData is when the program quits. Also copy other attributes of
 	// the base model if no overrides were given.
-	if(shipsSet.Has(modelName))
+	if(shipsData.Has(modelName))
 	{
-		const Ship *model = shipsSet.Get(modelName);
+		const Ship *model = shipsData.Get(modelName);
 		explosionWeapon = &model->BaseAttributes();
 		if(pluralModelName.empty())
 			pluralModelName = model->pluralModelName;
@@ -711,7 +712,7 @@ void Ship::FinishLoading(bool isNewInstance,
 		else
 			++it;
 		if(bay.side == Bay::INSIDE && bay.launchEffects.empty() && Crew())
-			bay.launchEffects.emplace_back(effectsSet.Get("basic launch"));
+			bay.launchEffects.emplace_back(effectsData.Get("basic launch"));
 	}
 	
 	canBeCarried = find(bayCategories.begin(), bayCategories.end(), attributes.Category()) != bayCategories.end();
@@ -769,11 +770,11 @@ void Ship::FinishLoading(bool isNewInstance,
 	}
 	
 	// Load the default effects for this ship.
-	effectDisruptionSpark = effectsSet.Get("disruption spark");
-	effectIonSpark = effectsSet.Get("ion spark");
-	effectSlowingSpark = effectsSet.Get("slowing spark");
-	effectSmoke = effectsSet.Get("smoke");
-	effectJumpDrive = effectsSet.Get("jump drive");
+	effectDisruptionSpark = effectsData.Get("disruption spark");
+	effectIonSpark = effectsData.Get("ion spark");
+	effectSlowingSpark = effectsData.Get("slowing spark");
+	effectSmoke = effectsData.Get("smoke");
+	effectJumpDrive = effectsData.Get("jump drive");
 }
 
 

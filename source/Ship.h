@@ -119,29 +119,30 @@ public:
 
 	Ship() = default;
 	// Construct and Load() at the same time.
-	Ship(const DataNode &node,
-		const Set<Effect> &effectsSet,
-		const Set<Outfit> &outfitsSet,
-		const Set<Planet> &planetsSet,
-		const Set<Ship> &shipsSet,
-		const Set<System> &systemsSet,
-		const Government *playerGov);
+	Ship(const DataNode &node
+		, const Set<Effect> &effectsData
+		, const Set<Outfit> &outfitsData
+		, const Set<Planet> &planetsData
+		, const Set<Ship> &shipsData
+		, const Set<System> &systemsData
+		, const Government *playerGov
+	);
 	
 	// Load data for a type of ship:
-	void Load(const DataNode &node,
-		const Set<Effect> &effectsSet,
-		const Set<Outfit> &outfitsSet,
-		const Set<Planet> &planetsSet,
-		const Set<Ship> &shipsSet,
-		const Set<System> &systemsSet,
-		const Government *playerGov
+	void Load(const DataNode &node
+		, const Set<Effect> &effectsData
+		, const Set<Outfit> &outfitsData
+		, const Set<Planet> &planetsData
+		, const Set<Ship> &shipsData
+		, const Set<System> &systemsData
+		, const Government *playerGov
 	);
 	// When loading a ship, some of the outfits it lists may not have been
 	// loaded yet. So, wait until everything has been loaded, then call this.
-	void FinishLoading(bool isNewInstance,
-		const std::vector<std::string> &bayCategories,
-		const Set<Effect> &effectsSet,
-		const Set<Ship> &shipsSet
+	void FinishLoading(bool isNewInstance
+		, const std::vector<std::string> &bayCategories
+		, const Set<Effect> &effectsData
+		, const Set<Ship> &shipsData
 	);
 	// Check that this ship model and all its outfits have been loaded.
 	bool IsValid() const;

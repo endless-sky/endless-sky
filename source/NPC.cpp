@@ -153,13 +153,14 @@ void NPC::Load(const DataNode &node)
 			{
 				// Loading an NPC from a save file, or an entire ship specification.
 				// The latter may result in references to non-instantiated outfits.
-				ships.emplace_back(make_shared<Ship>(child,
-					GameData::Effects(),
-					GameData::Outfits(),
-					GameData::Planets(),
-					GameData::Ships(),
-					GameData::Systems(),
-					GameData::PlayerGovernment() ));
+				ships.emplace_back(make_shared<Ship>(child
+					, GameData::Effects()
+					, GameData::Outfits()
+					, GameData::Planets()
+					, GameData::Ships()
+					, GameData::Systems()
+					, GameData::PlayerGovernment()
+				));
 				for(const DataNode &grand : child)
 					if(grand.Token(0) == "actions" && grand.Size() >= 2)
 						actions[ships.back().get()] = grand.Value(1);
@@ -214,11 +215,11 @@ void NPC::Load(const DataNode &node)
 		ship->SetGovernment(government);
 		ship->SetPersonality(personality);
 		ship->SetIsSpecial();
-		ship->FinishLoading(false,
-				GameData::Category(CategoryType::BAY),
-				GameData::Effects(),
-				GameData::Ships()
-			);
+		ship->FinishLoading(false
+			, GameData::Category(CategoryType::BAY)
+			, GameData::Effects()
+			, GameData::Ships()
+		);
 	}
 }
 
@@ -600,11 +601,11 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	{
 		// This ship is being defined from scratch.
 		result.ships.push_back(make_shared<Ship>(*ship));
-		result.ships.back()->FinishLoading(true,
-				GameData::Category(CategoryType::BAY),
-				GameData::Effects(),
-				GameData::Ships()
-			);
+		result.ships.back()->FinishLoading(true
+			, GameData::Category(CategoryType::BAY)
+			, GameData::Effects()
+			, GameData::Ships()
+		);
 	}
 	auto shipIt = stockShips.begin();
 	auto nameIt = shipNames.begin();
