@@ -319,7 +319,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		
 		GameWindow::Step();
 		
-		if(!testContext.testToRun.empty())
+		if(testContext.testToRun.empty())
 			timer.Wait();
 		
 		// If the player ended this frame in-game, count the elapsed time as played time.
