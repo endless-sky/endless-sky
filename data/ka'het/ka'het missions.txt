@@ -299,9 +299,7 @@ mission "Ka'het: Patir Reveal"
 	landing
 	to offer
 		has "Remnant: Cognizance 19: done"
-		not "dusk busy"
 	on offer
-		"dusk busy"++
 		event "patir appears" 3
 
 event "patir appears"
@@ -333,6 +331,7 @@ mission "Ka'het: Patir Mystery 1"
 		not "dusk busy"
 		random < 50
 	on offer
+		"dusk busy"++
 		conversation
 			`You start looking for Taely as soon as you finish the post-landing procedures. You aren't surprised to find her in the local shipyard, overseeing the welding of some kind of unmanned satellite. Although you aren't familiar enough with Remnant technology to understand its function, you identify a large crystal placed near what you presume to be the front of the probe as a Quantum Key Stone, or at least a derivative of it.`
 			`	When Taely notices you walking towards her, she waves at you. "<first>! It has been a while. Were you looking for me?"`
