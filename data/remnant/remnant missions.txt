@@ -1329,7 +1329,7 @@ mission "Remnant Rescue 4"
 	to offer
 		has "Remnant: Learn Sign Follow Up: offered"
 		has "First Contact: Ka'het: Remnant 1B: offered"
-		random < 20
+		random < 10
 	npc accompany save
 		system
 			attributes "graveyard"
