@@ -47,7 +47,7 @@
     </screenshot>
   </screenshots>
   <releases>
-    <release version="0.9.14" date="2021-07-03">
+    <release version="0.9.14" date="2021-07-11">
       <description>
         <p>This is a "stable" release, focusing on bug fixes and polishing the recent v0.9.13 release.</p>
         <p>Changes include:</p>

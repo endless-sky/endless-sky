@@ -2030,7 +2030,6 @@ mission "Strider: Remnant 3"
 	landing
 	name "Technology Obtained"
 	description "The delegation has successfully obtained hull repair technology from the Remnant. Return to <destination> so that the Hai can begin developing this technology for their new ship."
-	landing
 	source "Covert"
 	destination "Hai-home"
 	clearance

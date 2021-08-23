@@ -133,7 +133,7 @@ testBuildDirectory = pathjoin("tests", env["BUILDDIR"])
 VariantDir(testBuildDirectory, pathjoin("tests", "src"), duplicate = 0)
 test = env.Program(
 	target=pathjoin("tests", "endless-sky-tests"),
-	source=RecursiveGlob("test_*.cpp", testBuildDirectory) + sourceLib,
+	source=RecursiveGlob("*.cpp", testBuildDirectory) + sourceLib,
 	 # Add Catch header & additional test includes to the existing search paths
 	CPPPATH=(env.get('CPPPATH', []) + [pathjoin('tests', 'include')]),
 	# Do not link against the actual implementations of SDL, OpenGL, etc.
