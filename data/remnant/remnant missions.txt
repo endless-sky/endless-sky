@@ -1290,7 +1290,7 @@ mission "Remnant Rescue 3B"
 		government "Remnant"
 	to offer
 		has "Remnant: Learn Sign Follow Up: offered"
-		random < 5
+		random < 3
 	npc kill
 		system
 			attributes "ember waste"
