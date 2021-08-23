@@ -2295,8 +2295,8 @@ int Ship::Scan()
 			startedScanning |= !elapsed;
 			activeScanning = true;
 			// (a/b) * (c/d) * (e/f) is more expensive than the equivalent (a*c*e) / (b*d*f)
-			elapsed += speed * speed * (scannerRange - distance) * blur
-				/ ((speed + distance) * scannerRange * depth);
+			elapsed += (scannerRange - distance) * speed * blur
+				/ ((sqrt(speed) + distance) * scannerRange * depth);
 			// To make up for the scan decay above:
 			elapsed ++;
 			if(elapsed >= SCAN_TIME)
