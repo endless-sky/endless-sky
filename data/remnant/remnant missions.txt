@@ -1136,7 +1136,7 @@ mission "Remnant Rescue 1B"
 		government "Remnant"
 	to offer
 		has "Remnant: Learn Sign Follow Up: offered"
-		random < 5
+		random < 1
 	npc kill
 		system
 			attributes "ember waste"
