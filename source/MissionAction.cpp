@@ -38,7 +38,8 @@ namespace {
 			return;
 		
 		player.BuyShip(model, name, true);
-		Messages::Add("The " + model->ModelName() + " \"" + name + "\" was added to your fleet.");
+		Messages::Add("The " + model->ModelName() + " \"" + name + "\" was added to your fleet."
+			, Messages::Importance::High);
 	}
 	
 	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
@@ -113,7 +114,7 @@ namespace {
 			message += "cargo hold.";
 		else
 			message += "flagship.";
-		Messages::Add(message);
+		Messages::Add(message, Messages::Importance::High);
 	}
 	
 	int CountInCargo(const Outfit *outfit, const PlayerInfo &player)

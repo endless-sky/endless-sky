@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 
 #include "Audio.h"
+#include "CategoryTypes.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Effect.h"
@@ -131,28 +132,6 @@ namespace {
 
 
 
-const vector<string> Ship::CATEGORIES = {
-	"Transport",
-	"Light Freighter",
-	"Heavy Freighter",
-	"Interceptor",
-	"Light Warship",
-	"Medium Warship",
-	"Heavy Warship",
-	"Fighter",
-	"Drone"
-};
-
-
-
-// Set of ship types that can be carried in bays.
-const set<string> Ship::BAY_TYPES = {
-	"Drone",
-	"Fighter"
-};
-
-
-
 // Construct and Load() at the same time.
 Ship::Ship(const DataNode &node)
 {
@@ -210,6 +189,8 @@ void Ship::Load(const DataNode &node)
 			noun = child.Token(1);
 		else if(key == "swizzle" && child.Size() >= 2)
 			customSwizzle = child.Value(1);
+		else if(key == "uuid" && child.Size() >= 2)
+			uuid = EsUuid::FromString(child.Token(1));
 		else if(key == "attributes" || add)
 		{
 			if(!add)
@@ -322,11 +303,6 @@ void Ship::Load(const DataNode &node)
 			{
 				category = child.Token(1);
 				childOffset += 1;
-			}
-			if(!BAY_TYPES.count(category))
-			{
-				child.PrintTrace("Warning: Invalid category defined for bay:");
-				continue;
 			}
 			
 			if(!hasBays)
@@ -696,16 +672,30 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(isNewInstance)
 		Recharge(true);
 	
-	// Add a default "launch effect" to any internal bays if this ship is crewed (i.e. pressurized).
-	for(Bay &bay : bays)
+	// Ensure that all defined bays are of a valid category. Remove and warn about any
+	// invalid bays. Add a default "launch effect" to any remaining internal bays if
+	// this ship is crewed (i.e. pressurized).
+	string warning;
+	const auto &bayCategories = GameData::Category(CategoryType::BAY);
+	for(auto it = bays.begin(); it != bays.end(); )
+	{
+		Bay &bay = *it;
+		if(find(bayCategories.begin(), bayCategories.end(), bay.category) == bayCategories.end())
+		{
+			warning += "Invalid bay category: " + bay.category + "\n";
+			it = bays.erase(it);
+			continue;
+		}
+		else
+			++it;
 		if(bay.side == Bay::INSIDE && bay.launchEffects.empty() && Crew())
 			bay.launchEffects.emplace_back(GameData::Effects().Get("basic launch"));
+	}
 	
-	canBeCarried = BAY_TYPES.count(attributes.Category()) > 0;
+	canBeCarried = find(bayCategories.begin(), bayCategories.end(), attributes.Category()) != bayCategories.end();
 	
 	// Issue warnings if this ship has is misconfigured, e.g. is missing required values
 	// or has negative outfit, cargo, weapon, or engine capacity.
-	string warning;
 	for(auto &&attr : set<string>{"outfit space", "cargo space", "weapon capacity", "engine capacity"})
 	{
 		double val = attributes.Get(attr);
@@ -792,6 +782,8 @@ void Ship::Save(DataWriter &out) const
 			out.Write("uncapturable");
 		if(customSwizzle >= 0)
 			out.Write("swizzle", customSwizzle);
+		
+		out.Write("uuid", uuid.ToString());
 		
 		out.Write("attributes");
 		out.BeginChild();
@@ -976,6 +968,20 @@ void Ship::Save(DataWriter &out) const
 			out.Write("parked");
 	}
 	out.EndChild();
+}
+
+
+
+const EsUuid &Ship::UUID() const noexcept
+{
+	return uuid;
+}
+
+
+
+void Ship::SetUUID(const EsUuid &id)
+{
+	uuid.clone(id);
 }
 
 
@@ -1167,7 +1173,17 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	targetShip.reset();
 	shipToAssist.reset();
 	if(government)
-		SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
+	{
+		auto swizzle = customSwizzle >= 0 ? customSwizzle : government->GetSwizzle();
+		SetSwizzle(swizzle);
+
+		// Set swizzle for any carried ships too.
+		for(const auto &bay : bays)
+		{
+			if(bay.ship)
+				bay.ship->SetSwizzle(bay.ship->customSwizzle >= 0 ? bay.ship->customSwizzle : swizzle);
+		}
+	}
 }
 
 
@@ -1464,15 +1480,14 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		
 		// Handle hull "leaks."
 		for(const Leak &leak : leaks)
-			if(leak.openPeriod > 0 && !Random::Int(leak.openPeriod))
+			if(GetMask().IsLoaded() && leak.openPeriod > 0 && !Random::Int(leak.openPeriod))
 			{
 				activeLeaks.push_back(leak);
-				const vector<Point> &outline = GetMask().Points();
-				if(outline.size() < 2)
-					break;
+				const auto &outlines = GetMask().Outlines();
+				const vector<Point> &outline = outlines[Random::Int(outlines.size())];
 				int i = Random::Int(outline.size() - 1);
 				
-				// Position the leak along the outline of the ship, facing outward.
+				// Position the leak along the outline of the ship, facing "outward."
 				activeLeaks.back().location = (outline[i] + outline[i + 1]) * .5;
 				activeLeaks.back().angle = Angle(outline[i] - outline[i + 1]) + Angle(90.);
 			}
@@ -1705,9 +1720,11 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	{
 		pilotError = 30;
 		if(parent.lock() || !isYours)
-			Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it.", false);
+			Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it."
+				, Messages::Importance::Low);
 		else
-			Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it.", false);
+			Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it."
+				, Messages::Importance::Low);
 	}
 	else
 		pilotOkay = 30;
@@ -1863,7 +1880,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					// boarding sequence (including locking on to the ship) but
 					// not to actually board, if they are cloaked.
 					if(isYours)
-						Messages::Add("You cannot board a ship while cloaked.");
+						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::High);
 				}
 				else
 				{
@@ -1872,7 +1889,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					if(isEnemy && Random::Real() < target->Attributes().Get("self destruct"))
 					{
 						Messages::Add("The " + target->ModelName() + " \"" + target->Name()
-							+ "\" has activated its self-destruct mechanism.");
+							+ "\" has activated its self-destruct mechanism.", Messages::Importance::High);
 						GetTargetShip()->SelfDestruct();
 					}
 					else
@@ -2283,22 +2300,24 @@ int Ship::Scan()
 	if(startedScanning && isYours)
 	{
 		if(!target->Name().empty())
-			Messages::Add("Attempting to scan the " + target->Noun() + " \"" + target->Name() + "\".", false);
+			Messages::Add("Attempting to scan the " + target->Noun() + " \"" + target->Name() + "\"."
+				, Messages::Importance::Low);
 		else
-			Messages::Add("Attempting to scan the selected " + target->Noun() + ".", false);
+			Messages::Add("Attempting to scan the selected " + target->Noun() + "."
+				, Messages::Importance::Low);
 	}
 	else if(startedScanning && target->isYours)
 		Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-			+ Name() + "\" is attempting to scan you.", false);
+			+ Name() + "\" is attempting to scan you.", Messages::Importance::Low);
 	
 	if(target->isYours && !isYours)
 	{
 		if(result & ShipEvent::SCAN_CARGO)
 			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-					+ Name() + "\" completed its scan of your cargo.");
+					+ Name() + "\" completed its scan of your cargo.", Messages::Importance::High);
 		if(result & ShipEvent::SCAN_OUTFITS)
 			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-					+ Name() + "\" completed its scan of your outfits.");
+					+ Name() + "\" completed its scan of your outfits.", Messages::Importance::High);
 	}
 	
 	return result;
@@ -3261,7 +3280,8 @@ bool Ship::CanCarry(const Ship &ship) const
 
 void Ship::AllowCarried(bool allowCarried)
 {
-	canBeCarried = allowCarried && BAY_TYPES.count(attributes.Category()) > 0;
+	const auto &bayCategories = GameData::Category(CategoryType::BAY);
+	canBeCarried = allowCarried && find(bayCategories.begin(), bayCategories.end(), attributes.Category()) != bayCategories.end();
 }
 
 
@@ -3506,7 +3526,8 @@ bool Ship::CanFire(const Weapon *weapon) const
 
 	// If a weapon requires heat to fire, (rather than generating heat), we must
 	// have enough heat to spare.
-	if(heat < -(weapon->FiringHeat() + weapon->RelativeFiringHeat() * MaximumHeat()))
+	if(heat < -(weapon->FiringHeat() + (!weapon->RelativeFiringHeat()
+			? 0. : weapon->RelativeFiringHeat() * MaximumHeat())))
 		return false;
 	// Repeat this for various effects which shouldn't drop below 0.
 	if(ionization < -weapon->FiringIon())
@@ -3524,26 +3545,34 @@ bool Ship::CanFire(const Weapon *weapon) const
 // Fire the given weapon (i.e. deduct whatever energy, ammo, hull, shields
 // or fuel it uses and add whatever heat it generates. Assume that CanFire()
 // is true.
-void Ship::ExpendAmmo(const Weapon *weapon)
+void Ship::ExpendAmmo(const Weapon &weapon)
 {
-	if(!weapon)
-		return;
-	if(weapon->Ammo())
-		AddOutfit(weapon->Ammo(), -weapon->AmmoUsage());
+	// Compute this ship's initial capacities, in case the consumption of the ammunition outfit(s)
+	// modifies them, so that relative costs are calculated based on the pre-firing state of the ship.
+	const double relativeEnergyChange = weapon.RelativeFiringEnergy() * attributes.Get("energy capacity");
+	const double relativeFuelChange = weapon.RelativeFiringFuel() * attributes.Get("fuel capacity");
+	const double relativeHeatChange = !weapon.RelativeFiringHeat() ? 0. : weapon.RelativeFiringHeat() * MaximumHeat();
+	const double relativeHullChange = weapon.RelativeFiringHull() * attributes.Get("hull");
+	const double relativeShieldChange = weapon.RelativeFiringShields() * attributes.Get("shields");
 	
-	energy -= weapon->FiringEnergy() + weapon->RelativeFiringEnergy() * attributes.Get("energy capacity");
-	fuel -= weapon->FiringFuel() + weapon->RelativeFiringFuel() * attributes.Get("fuel capacity");
-	heat += weapon->FiringHeat() + weapon->RelativeFiringHeat() * MaximumHeat();
-	// Weapons fire from within shields, so hull damage goes directly into the hull, while shield damage
-	// only affects shields.
-	hull -= weapon->FiringHull() + weapon->RelativeFiringHull() * attributes.Get("hull");
-	shields -= weapon->FiringShields() + weapon->RelativeFiringShields() * attributes.Get("shields");
+	if(const Outfit *ammo = weapon.Ammo())
+	{
+		// Some amount of the ammunition mass to be removed from the ship carries thermal energy.
+		// A realistic fraction applicable to all cases cannot be computed, so assume 50%.
+		heat -= weapon.AmmoUsage() * .5 * ammo->Mass() * MAXIMUM_TEMPERATURE * Heat();
+		AddOutfit(ammo, -weapon.AmmoUsage());
+	}
 	
-	// Those values are usually reduced by active shields, but weapons fire from within the shields, so
-	// it seems more appropriate to apply those damages with a factor 1 directly.
-	ionization += weapon->FiringIon();
-	disruption += weapon->FiringDisruption();
-	slowness += weapon->FiringSlowing();
+	energy -= weapon.FiringEnergy() + relativeEnergyChange;
+	fuel -= weapon.FiringFuel() + relativeFuelChange;
+	heat += weapon.FiringHeat() + relativeHeatChange;
+	shields -= weapon.FiringShields() + relativeShieldChange;
+	
+	// Since weapons fire from within the shields, hull and "status" damages are dealt in full.
+	hull -= weapon.FiringHull() + relativeHullChange;
+	ionization += weapon.FiringIon();
+	disruption += weapon.FiringDisruption();
+	slowness += weapon.FiringSlowing();
 }
 
 
@@ -3705,7 +3734,8 @@ double Ship::MinimumHull() const
 		return absoluteThreshold;
 	
 	double thresholdPercent = attributes.Get("threshold percentage");
-	double minimumHull = maximumHull * (thresholdPercent > 0. ? min(thresholdPercent, 1.) : max(.15, min(.45, 10. / sqrt(maximumHull))));
+	double transition = 1 / (1 + 0.0005 * maximumHull);
+	double minimumHull = maximumHull * (thresholdPercent > 0. ? min(thresholdPercent, 1.) : 0.1 * (1. - transition) + 0.5 * transition);
 
 	return max(0., floor(minimumHull + attributes.Get("hull threshold")));
 }

@@ -51,6 +51,8 @@ void BatchShader::Init()
 	
 	static const char *fragmentCode =
 		"// fragment batch shader\n"
+		"precision mediump float;\n"
+		"precision mediump sampler2DArray;\n"
 		"uniform sampler2DArray tex;\n"
 		"uniform float frameCount;\n"
 		
