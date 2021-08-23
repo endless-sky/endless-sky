@@ -1098,7 +1098,7 @@ mission "Remnant Rescue"
 		dialog
 			`You have returned, yet the <npc> is still missing.`
 
-# The Rescue Dummy is meant to suicide as soon as possible on entering the randomized system.
+# The Rescue Dummy is meant to commit suicide as soon as possible on entering the randomized system.
 ship "Rescue Dummy"
 	#sprite "ship/behemoth"
 	attributes
