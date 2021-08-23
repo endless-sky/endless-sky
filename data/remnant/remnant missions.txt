@@ -1070,7 +1070,7 @@ mission "Remnant Rescue"
 		government "Remnant"
 	to offer
 		has "Remnant: Learn Sign Follow Up: offered"
-		random < 30
+		random < 10
 	npc accompany save
 		system
 			attributes "ember waste"
@@ -1098,7 +1098,7 @@ mission "Remnant Rescue"
 		dialog
 			`You have returned, yet the <npc> is still missing.`
 
-# The Rescue Dummy is meant to suicide as soon as possible on entering the randomized system.
+# The Rescue Dummy is meant to commit suicide as soon as possible on entering the randomized system.
 ship "Rescue Dummy"
 	#sprite "ship/behemoth"
 	attributes
@@ -1136,7 +1136,7 @@ mission "Remnant Rescue 1B"
 		government "Remnant"
 	to offer
 		has "Remnant: Learn Sign Follow Up: offered"
-		random < 5
+		random < 1
 	npc kill
 		system
 			attributes "ember waste"
@@ -1214,7 +1214,7 @@ mission "Remnant Rescue 2B"
 		government "Remnant"
 	to offer
 		has "Remnant: Learn Sign Follow Up: offered"
-		random < 5
+		random < 3
 	npc kill
 		system
 			attributes "ember waste"
@@ -1252,7 +1252,7 @@ mission "Remnant Rescue 3"
 		government "Remnant"
 	to offer
 		has "Remnant: Learn Sign Follow Up: offered"
-		random < 30
+		random < 10
 	npc accompany save
 		system
 			attributes "ember waste"
@@ -1290,7 +1290,7 @@ mission "Remnant Rescue 3B"
 		government "Remnant"
 	to offer
 		has "Remnant: Learn Sign Follow Up: offered"
-		random < 5
+		random < 3
 	npc kill
 		system
 			attributes "ember waste"
@@ -1329,7 +1329,7 @@ mission "Remnant Rescue 4"
 	to offer
 		has "Remnant: Learn Sign Follow Up: offered"
 		has "First Contact: Ka'het: Remnant 1B: offered"
-		random < 20
+		random < 10
 	npc accompany save
 		system
 			attributes "graveyard"
@@ -1367,7 +1367,7 @@ mission "Remnant Rescue 5"
 		government "Remnant"
 	to offer
 		has "Remnant: Learn Sign Follow Up: offered"
-		random < 20
+		random < 10
 	npc accompany save
 		system
 			near "Terminus" 4
