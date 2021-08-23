@@ -2278,6 +2278,7 @@ int Ship::Scan()
 	// To normalize 1 "scan power" to reach 100 pixels, divide this square distance by 100^2, or 10000.
 	// Because we use distance squared, to reach 200 pixels you need 4 "scan power".
 	double distance = (target->position - position).LengthSquared() / 10000.;
+	double blur = 5. / (5. + (Velocity() - target->Velocity()).LengthSquared());
 	
 	// Check the target's outfit and cargo space, a larger ship takes longer to scan.
 	// Normalized around 200 tons of cargo/outfit space.
@@ -2295,8 +2296,8 @@ int Ship::Scan()
 			startedScanning |= !elapsed;
 			activeScanning = true;
 			// (a/b) * (c/d) * (e/f) is more expensive than the equivalent (a*c*e) / (b*d*f)
-			elapsed += ((scannerRange - distance) * speed * 5.)
-				/ (scannerRange * (speed + distance) * (5. + (Velocity() - target->Velocity()).LengthSquared()));
+			elapsed += ((scannerRange - distance) * speed * blur)
+				/ (scannerRange * (speed + distance));
 			// To make up for the scan decay above:
 			elapsed ++;
 			if(elapsed >= SCAN_TIME * depth)
