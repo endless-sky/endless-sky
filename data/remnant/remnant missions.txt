@@ -1174,7 +1174,7 @@ mission "Remnant Rescue 2"
 		government "Remnant"
 	to offer
 		has "Remnant: Learn Sign Follow Up: offered"
-		random < 30
+		random < 10
 	npc accompany save
 		system
 			attributes "ember waste"
