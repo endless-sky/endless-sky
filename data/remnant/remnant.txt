@@ -12,6 +12,8 @@ fleet "Small Remnant"
 	government "Remnant"
 	names "remnant"
 	cargo 2
+	commodities Food Clothing Metal Plastic Medical "Heavy Metals"
+	outfitters "Korath Basics" "Korath Exiles" "Ka'het"
 	personality
 		heroic plunders appeasing
 	variant 8
@@ -34,11 +36,17 @@ fleet "Small Remnant"
 		"Albatross (Turret)"
 	variant 1
 		"Albatross (Heavy)"
+	variant 4
+		"Ibis"
+		"Petrel" 2
+		"Tern" 4
 
 fleet "Large Remnant"
 	government "Remnant"
 	names "remnant"
 	cargo 2
+	commodities Food Clothing Metal Plastic Medical "Heavy Metals"
+	outfitters "Korath Basics" "Korath Exiles" "Ka'het"
 	personality
 		heroic plunders appeasing
 	variant 6
@@ -65,11 +73,34 @@ fleet "Large Remnant"
 	variant 2
 		"Albatross (Heavy)"
 		"Albatross (Turret)"
+	variant 2
+		"Albatross"
+		"Starling"
+		"Ibis"
+		"Petrel" 2
+		"Tern" 4
+	variant 2
+		"Albatross"
+		"Ibis" 2
+		"Tern" 8
+		"Petrel" 4
+	variant 4
+		"Ibis"
+		"Petrel" 2
+		"Tern" 4
+		"Starling" 4
+	variant 4
+		"Ibis" 3
+		"Petrel" 6
+		"Tern" 12
+		
 
 fleet "Remnant Transport"
 	government "Remnant"
 	names "remnant"
 	cargo 2
+	commodities Food Clothing Metal Plastic Medical "Heavy Metals"
+	outfitters "Korath Basics" "Korath Exiles" "Ka'het"
 	personality
 		plunders coward appeasing mining harvests
 	variant 10
@@ -104,11 +135,25 @@ fleet "Remnant Transport"
 	variant 2
 		"Pelican"
 		"Starling (Hunter)" 2
+	variant 2
+		"Pelican"
+		"Ibis"
+		"Petrel" 2
+		"Tern" 4
+	variant 1
+		"Pelican"
+		"Gull" 2
+		"Ibis" 2
+		"Petrel" 4
+		"Tern" 8
+	
 
 fleet "Remnant Home Guard"
 	government "Remnant"
 	names "remnant"
 	cargo 2
+	commodities Food Metal Plastic "Heavy Metals"
+	outfitters "Korath Basics" "Korath Exiles" "Ka'het"
 	personality
 		plunders appeasing mining harvests surveillance
 	variant 20
@@ -117,6 +162,12 @@ fleet "Remnant Home Guard"
 		"Tern" 2
 	variant 5
 		"Tern" 3
+	variant 5
+		"Petrel" 1
+		"Tern" 2
+	variant 5
+		"Petrel" 2
+		"Tern" 4
 
 fleet "Remnant Decoy Defense"
 	government "Remnant"
@@ -149,6 +200,10 @@ fleet "Light Remnant Defense"
 	variant 10
 		"Starling (Heavy)" 5
 		"Starling (Hunter)" 5
+	variant 4
+		"Ibis" 5
+		"Tern" 20
+		"Petrel" 10
 
 fleet "Heavy Remnant Defense"
 	government "Remnant"
@@ -182,6 +237,11 @@ fleet "Heavy Remnant Defense"
 		"Albatross (Shield)"
 		"Albatross (Heavy)" 2
 		"Albatross (Turret)"
+	variant 4
+		"Albatross"
+		"Ibis" 4
+		"Petrel" 8
+		"Tern" 16
 
 phrase "remnant"
 	word
@@ -213,6 +273,12 @@ phrase "remnant"
 		"Steadfast"
 		"White"
 		"Black"
+		"Bright"
+		"Wide"
+		"Hidden"
+		"Misty"
+		"Shadow"
+		"Dark"
 	word
 		" "
 	word
@@ -272,9 +338,14 @@ phrase "remnant"
 		"Preserved"
 		"Renewed"
 		"Reborn"
+		"Ascended"
 		"Ascending"
 		"Soaring"
 		"Enduring"
+		"Everlasting"
+		"Persevering"
+		"Discovering"
+		"Discovered"
 
 phrase "remnant uncontacted"
 	word

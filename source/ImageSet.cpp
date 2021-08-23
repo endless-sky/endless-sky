@@ -22,10 +22,32 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
+	// Determine whether the given path is to an @2x image.
+	bool Is2x(const string &path)
+	{
+		if(path.length() < 7)
+			return false;
+		
+		size_t pos = path.length() - 7;
+		return (path[pos] == '@' && path[pos + 1] == '2' && path[pos + 2] == 'x');
+	}
+	
 	// Check if the given character is a valid blending mode.
 	bool IsBlend(char c)
 	{
 		return (c == '-' || c == '~' || c == '+' || c == '=');
+	}
+	
+	// Determine whether the given path or name is to a sprite for which a
+	// collision mask ought to be generated.
+	bool IsMasked(const string &path)
+	{
+		if(path.length() >= 5 && path.compare(0, 5, "ship/") == 0)
+			return true;
+		if(path.length() >= 9 && path.compare(0, 9, "asteroid/") == 0)
+			return true;
+		
+		return false;
 	}
 	
 	// Get the character index where the sprite name in the given path ends.
@@ -33,7 +55,7 @@ namespace {
 	{
 		// The path always ends in a three-letter extension, ".png" or ".jpg".
 		// In addition, 3 more characters may be taken up by an @2x label.
-		size_t end = path.length() - (ImageSet::Is2x(path) ? 7 : 4);
+		size_t end = path.length() - (Is2x(path) ? 7 : 4);
 		// This should never happen, but just in case:
 		if(!end)
 			return 0;
@@ -47,6 +69,27 @@ namespace {
 		// If there is not a blending mode specifier before the numbers, they
 		// are part of the sprite name, not a frame index.
 		return (IsBlend(path[pos]) ? pos : end);
+	}
+	
+	// Get the frame index from the given path.
+	int FrameIndex(const string &path)
+	{
+		// Get the character index where the "name" portion of the path ends.
+		// A path's format is always: <name>(<blend><frame>)(@2x).(png|jpg)
+		size_t i = NameEnd(path);
+		
+		// If the name contains a frame index, it must be separated from the name
+		// by a character indicating the additive blending mode.
+		if(!IsBlend(path[i]))
+			return 0;
+		
+		int frame = 0;
+		// The path ends in an extension, so there's no need to check for going off
+		// the end of the string in this loop; we're guaranteed to hit a non-digit.
+		for(++i; path[i] >= '0' && path[i] <= '9'; ++i)
+			frame = (frame * 10) + (path[i] - '0');
+		
+		return frame;
 	}
 	
 	// Log an error if frames are missing in one of the paths vectors.
@@ -88,60 +131,11 @@ string ImageSet::Name(const string &path)
 
 
 
-// Get the frame index from the given path.
-int ImageSet::FrameIndex(const string &path)
-{
-	// Get the character index where the "name" portion of the path ends.
-	// A path's format is always: <name>(<blend><frame>)(@2x).(png|jpg)
-	size_t i = NameEnd(path);
-	
-	// If the name contains a frame index, it must be separated from the name
-	// by a character indicating the additive blending mode.
-	if(!IsBlend(path[i]))
-		return 0;
-	
-	int frame = 0;
-	// The path ends in an extension, so there's no need to check for going off
-	// the end of the string in this loop; we're guaranteed to hit a non-digit.
-	for(++i; path[i] >= '0' && path[i] <= '9'; ++i)
-		frame = (frame * 10) + (path[i] - '0');
-	
-	return frame;
-}
-
-
-
-// Determine whether the given path is to an @2x image.
-bool ImageSet::Is2x(const string &path)
-{
-	if(path.length() < 7)
-		return false;
-	
-	size_t pos = path.length() - 7;
-	return (path[pos] == '@' && path[pos + 1] == '2' && path[pos + 2] == 'x');
-}
-
-
-
 // Determine whether the given path or name is for a sprite whose loading
 // should be deferred until needed.
 bool ImageSet::IsDeferred(const string &path)
 {
 	if(path.length() >= 5 && !path.compare(0, 5, "land/"))
-		return true;
-	
-	return false;
-}
-
-
-
-// Determine whether the given path or name is to a sprite for which a
-// collision mask ought to be generated.
-bool ImageSet::IsMasked(const string &path)
-{
-	if(path.length() >= 5 && !path.compare(0, 5, "ship/"))
-		return true;
-	if(path.length() >= 9 && !path.compare(0, 9, "asteroid/"))
 		return true;
 	
 	return false;
@@ -219,8 +213,16 @@ void ImageSet::Load() noexcept(false)
 	// Load the 1x sprites first, then the 2x sprites, because they are likely
 	// to be in separate locations on the disk. Create masks if needed.
 	for(size_t i = 0; i < frames; ++i)
-		if(buffer[0].Read(paths[0][i], i) && makeMasks)
+	{
+		if(!buffer[0].Read(paths[0][i], i))
+			Files::LogError("Failed to read image data for \"" + name + "\" frame #" + to_string(i));
+		else if(makeMasks)
+		{
 			masks[i].Create(buffer[0], i);
+			if(!masks[i].IsLoaded())
+				Files::LogError("Failed to create collision mask for \"" + name + "\" frame #" + to_string(i));
+		}
+	}
 	// Now, load the 2x sprites, if they exist. Because the number of 1x frames
 	// is definitive, don't load any frames beyond the size of the 1x list.
 	for(size_t i = 0; i < frames && i < paths[1].size(); ++i)
