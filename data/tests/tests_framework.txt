@@ -57,8 +57,7 @@ test "Test-Framework - Conditions Arithmetic and Loops"
 
 
 test "Test-Framework - UI Keyboard controls"
-	# Partial; saving test-overhead by only running this test in combination with other test.
-	status partial
+	status active
 	description "Tests if the in-game panels can be controlled by keypresses."
 	sequence
 		# Create/inject the savegame and load it.
@@ -131,7 +130,6 @@ test "Test-Framework - Calls - Arithmetic - Loops - Keyboard Control"
 		call "Test-Framework - Recursive Call"
 		watchdog 0
 		# End of recursive calling test.
-		call "Test-Framework - UI Keyboard controls"
 
 
 test "Test-Framework - Navigate"
