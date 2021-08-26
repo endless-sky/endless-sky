@@ -3696,7 +3696,7 @@ mission "Remnant: Bounty 3"
 	source
 		government "Remnant"
 	to offer
-		has "Remnant: Cognizance 4: failed"
+		has "Remnant: Cognizance 4: done"
 		random < 40
 	npc kill
 		government "Korath"
