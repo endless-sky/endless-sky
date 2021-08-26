@@ -3723,7 +3723,10 @@ mission "Remnant: Cognizance 5"
 	source "Caelian"
 	waypoint "Aescolanus"
 	to offer
-		has "Remnant: Cognizance 4: done"
+		or
+			has "Remnant: Cognizance 4: done"
+			# 0.9.13 Compatibility patch
+			has "Remnant: Cognizance 4: failed"
 	on offer
 		conversation
 			branch fleetkilled
