@@ -111,7 +111,7 @@ void Variant::Load(const DataNode &node)
 					if(variantName == name)
 					{
 						node.PrintTrace("A variant cannot reference itself:");
-						return;
+						continue;
 					}
 				}
 				
@@ -221,7 +221,7 @@ bool Variant::operator!=(const Variant &other) const
 
 
 // Check whether a variant is contained within itself.
-bool Variant::NestedInSelf(string check) const
+bool Variant::NestedInSelf(const string &check) const
 {
 	if(!name.empty() && name == check)
 		return true;
@@ -244,8 +244,8 @@ const Ship *Variant::NestedChooseShip() const
 	// Randomly choose between the ships and the variants.
 	if(static_cast<int>(Random::Int(total)) < static_cast<int>(variants.TotalWeight()))
 		return variants.Get().Get().NestedChooseShip();
-	else
-		return ships[Random::Int(ships.size())];
+	
+	return ships[Random::Int(ships.size())];
 }
 
 

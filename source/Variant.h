@@ -50,7 +50,7 @@ public:
 	
 private:
 	// Check whether a variant is contained within itself.
-	bool NestedInSelf(std::string check) const;
+	bool NestedInSelf(const std::string &check) const;
 	// Choose a ship from this variant given that it is a nested variant.
 	// Nested variants only choose a single ship from among their list
 	// of ships and variants.
