@@ -101,12 +101,13 @@ void Variant::Load(const DataNode &node)
 			}
 			
 			int n = 1;
+			int index = 1 + add;
 			if(variant)
 			{
 				string variantName;
-				if(child.Size() >= 2 + add && !child.IsNumber(1 + add))
+				if(child.Size() >= index + 1 && !child.IsNumber(index))
 				{
-					variantName = child.Token(1 + add);
+					variantName = child.Token(index++);
 					if(variantName == name)
 					{
 						node.PrintTrace("A variant cannot reference itself:");
@@ -114,8 +115,8 @@ void Variant::Load(const DataNode &node)
 					}
 				}
 				
-				if(child.Size() >= 2 + add + !variantName.empty() && child.Value(1 + add + !variantName.empty()) >= 1.)
-					n = child.Value(1 + add + !variantName.empty());
+				if(child.Size() >= index + 1 && child.Value(index) >= 1.)
+					n = child.Value(index);
 				
 				// If this variant is named, then look for it in GameData.
 				// Otherwise this is a new variant definition only for this variant.
@@ -126,8 +127,8 @@ void Variant::Load(const DataNode &node)
 			}
 			else
 			{
-				if(child.Size() >= 2 + add && child.Value(1 + add) >= 1.)
-					n = child.Value(1 + add);
+				if(child.Size() >= index + 1 && child.Value(index) >= 1.)
+					n = child.Value(index);
 				ships.insert(ships.end(), n, GameData::Ships().Get(child.Token(add)));
 			}
 		}

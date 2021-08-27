@@ -208,11 +208,12 @@ void Fleet::Load(const DataNode &node)
 			}
 			
 			int weight = 1;
+			int index = 1 + add;
 			string variantName;
-			if(child.Size() >= 2 + add && !child.IsNumber(1 + add))
-				variantName = child.Token(1 + add);
-			if(child.Size() >= 2 + add + !variantName.empty())
-				weight = child.Value(1 + add + !variantName.empty());
+			if(child.Size() >= index + 1 && !child.IsNumber(index))
+				variantName = child.Token(index++);
+			if(child.Size() >= index + 1)
+				weight = child.Value(index);
 			
 			if(!variantName.empty())
 				variants.emplace_back(GameData::Variants().Get(variantName), weight);
