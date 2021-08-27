@@ -211,6 +211,14 @@ bool Variant::operator==(const Variant &other) const
 
 
 
+// An operator for checking the inequality of two variants.
+bool Variant::operator!=(const Variant &other) const
+{
+	return !(*this == other);
+}
+
+
+
 // Check whether a variant is contained within itself.
 bool Variant::NestedInSelf(string check) const
 {

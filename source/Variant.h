@@ -45,6 +45,7 @@ public:
 	int64_t Strength() const;
 	
 	bool operator==(const Variant &other) const;
+	bool operator!=(const Variant &other) const;
 	
 	
 private:

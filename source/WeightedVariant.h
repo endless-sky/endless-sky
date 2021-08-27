@@ -29,6 +29,7 @@ public:
 	const Variant &Get() const;
 	
 	bool operator==(const WeightedVariant &other) const;
+	bool operator!=(const WeightedVariant &other) const;
 	
 	
 private:
