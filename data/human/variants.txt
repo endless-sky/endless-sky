@@ -340,7 +340,7 @@ ship "Berserker" "Berserker (Afterburner)"
 ship "Berserker" "Berserker (Strike)"
 	outfits
 		"Heavy Rocket Pod"
-		"Heavy Rocket" 4
+		"Heavy Rocket" 2
 		"Sidewinder Missile Pod"
 		"Sidewinder Missile" 4
 		"nGVF-CC Fuel Cell"
@@ -1096,7 +1096,7 @@ ship "Frigate" "Frigate (Mark II)"
 ship "Fury" "Fury (Bomber)"
 	outfits
 		"Heavy Rocket Pod"
-		"Heavy Rocket" 4
+		"Heavy Rocket" 2
 		"Meteor Missile Pod" 2
 		"Meteor Missile" 14
 		"nGVF-BB Fuel Cell"
@@ -1163,7 +1163,6 @@ ship "Fury" "Fury (Missile)"
 		"Javelin" 200
 		"Meteor Missile Pod" 2
 		"Meteor Missile" 14
-		"Meteor Missile Box"
 		"nGVF-BB Fuel Cell"
 		"Supercapacitor" 3
 		"D14-RN Shield Generator"
@@ -1270,9 +1269,9 @@ ship "Hauler III" "Hauler III (Hai)"
 ship "Hawk" "Hawk (Bomber)"
 	outfits
 		"Heavy Rocket Pod"
-		"Heavy Rocket" 4
+		"Heavy Rocket" 2
 		"Torpedo Pod"
-		"Torpedo" 6
+		"Torpedo" 3
 		"nGVF-CC Fuel Cell"
 		"Supercapacitor"
 		"D41-HY Shield Generator"

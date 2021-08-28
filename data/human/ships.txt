@@ -96,8 +96,8 @@ ship "Argosy"
 			"hit force" 900
 	outfits
 		"Energy Blaster" 2
-		"Meteor Missile Pod" 2
-		"Meteor Missile" 14
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
 		"Blaster Turret"
 		"Anti-Missile Turret"
 		
