@@ -106,12 +106,12 @@ namespace {
 	// Length in frames of the recentering animation.
 	const int RECENTER_TIME = 20;
 
-	bool HasMultipleLandablePlanets(const System *system)
+	bool HasMultipleLandablePlanets(const System &system)
 	{
-		const auto &stellarObjects = system->Objects();
+		const auto &stellarObjects = system.Objects();
 
-		const auto &isRegularPlanet = [] (const StellarObject &stellarObject) {
-			return stellarObject.HasValidPlanet() && !stellarObject.GetPlanet()->IsWormhole();
+		const auto isRegularPlanet = [] (const StellarObject &stellarObject) {
+			return stellarObject.HasValidPlanet() && stellarObject.HasSprite() && !stellarObject.GetPlanet()->IsWormhole();
 		};
 		return 1 < std::count_if(stellarObjects.begin(), stellarObjects.end(), isRegularPlanet);
 	}
@@ -1222,7 +1222,7 @@ void MapPanel::DrawTooltips()
 
 			tooltip += to_string(sum) + (sum == 1 ? " stored outfit" : " stored outfits");
 
-			if(HasMultipleLandablePlanets(hoverSystem) || t.outfits.size() > 1)
+			if(HasMultipleLandablePlanets(*hoverSystem) || t.outfits.size() > 1)
 				for(const auto& it : t.outfits)
 					tooltip += "\n - " + to_string(it.second) + " on " + it.first->Name();
 		}
