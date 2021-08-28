@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 
 #include <algorithm>
+#include <cassert>
 #include <iterator>
 
 using namespace std;
@@ -72,7 +73,7 @@ namespace {
 	}
 	
 	// Get the frame index from the given path.
-	int FrameIndex(const string &path)
+	size_t FrameIndex(const string &path)
 	{
 		// Get the character index where the "name" portion of the path ends.
 		// A path's format is always: <name>(<blend><frame>)(@2x).(png|jpg)
@@ -83,7 +84,7 @@ namespace {
 		if(!IsBlend(path[i]))
 			return 0;
 		
-		int frame = 0;
+		size_t frame = 0;
 		// The path ends in an extension, so there's no need to check for going off
 		// the end of the string in this loop; we're guaranteed to hit a non-digit.
 		for(++i; path[i] >= '0' && path[i] <= '9'; ++i)
@@ -92,19 +93,37 @@ namespace {
 		return frame;
 	}
 	
-	// Log an error if frames are missing in one of the paths vectors.
-	void LogIfMissingFrames(const vector<string> &frameData, size_t expectedCount, const string &prefix, bool is2x)
+	// Add consecutive frames from the given map to the given vector. Issue warnings for missing or mislabeled frames.
+	void AddValid(const map<size_t, string> &frameData, vector<string> &sequence, const string &prefix, bool is2x) noexcept(false)
 	{
-		auto isMissing = [](const string &s) noexcept -> bool { return s.empty(); };
-		auto endIt = frameData.begin() + min(expectedCount, frameData.size());
-		const auto firstMissingIt = find_if(frameData.begin(), endIt, isMissing);
-		if(firstMissingIt == endIt)
+		if(frameData.empty())
 			return;
+		// Valid animations (or stills) begin with frame 0.
+		if(frameData.begin()->first != 0)
+		{
+			Files::LogError(prefix + "ignored " + (is2x ? "@2x " : "") + "frame " + to_string(frameData.begin()->first)
+					+ " (" + to_string(frameData.size()) + " ignored in total). Animations must start at frame 0.");
+			return;
+		}
 		
-		const auto totalMissing = count_if(firstMissingIt, endIt, isMissing);
-		const size_t firstMissingIndex = distance(frameData.begin(), firstMissingIt);
-		Files::LogError(prefix + "missing " + (is2x ? "@2x " : "") + "frame " + to_string(firstMissingIndex) +
-				" (" + to_string(totalMissing) + " missing in total).");
+		// Find the first frame that is not a single increment over the previous frame.
+		auto it = frameData.begin();
+		auto next = it;
+		auto end = frameData.end();
+		while(++next != end && next->first == it->first + 1)
+			it = next;
+		// Copy the sorted, valid paths from the map to the frame sequence vector.
+		size_t count = distance(frameData.begin(), next);
+		sequence.resize(count);
+		transform(frameData.begin(), next, sequence.begin(), [](const pair<size_t, string> &p) -> string { return p.second; });
+		
+		// If `next` is not the end, then there was at least one discontinuous frame.
+		if(next != frameData.end())
+		{
+			size_t ignored = distance(next, frameData.end());
+			Files::LogError(prefix + "missing " + (is2x ? "@2x " : "") + "frame " + to_string(it->first + 1) + " (" + to_string(ignored)
+					+ (ignored > 1 ? " frames" : " frame") + " ignored in total).");
+		}
 	}
 }
 
@@ -143,10 +162,8 @@ bool ImageSet::IsDeferred(const string &path)
 
 
 
-// Constructor, optionally specifying the name (for image sets like the
-// plugin icons, whose name can't be determined from the path names).
-ImageSet::ImageSet(const string &name)
-	: name(name)
+ImageSet::ImageSet(string name)
+	: name(std::move(name))
 {
 }
 
@@ -162,34 +179,33 @@ const string &ImageSet::Name() const
 
 // Add a single image to this set. Assume the name of the image has already
 // been checked to make sure it belongs in this set.
-void ImageSet::Add(const string &path)
+void ImageSet::Add(string path)
 {
 	// Determine which frame of the sprite this image will be.
 	bool is2x = Is2x(path);
 	size_t frame = FrameIndex(path);
-	
-	// Allocate the string to store the path in, if necessary.
-	if(paths[is2x].size() <= frame)
-		paths[is2x].resize(frame + 1);
-	
-	// Store the path to this frame of the sprite.
-	paths[is2x][frame] = path;
+	// Store the requested path.
+	framePaths[is2x][frame].swap(path);
 }
 
 
 
-// Check this image set to determine whether any frames are missing. Report
-// an error for each missing frame. (It will be left uninitialized.)
-void ImageSet::Check() const
+// Reduce all given paths to frame images into a sequence of consecutive frames.
+void ImageSet::ValidateFrames() noexcept(false)
 {
 	string prefix = "Sprite \"" + name + "\": ";
+	AddValid(framePaths[0], paths[0], prefix, false);
+	AddValid(framePaths[1], paths[1], prefix, true);
+	framePaths[0].clear();
+	framePaths[1].clear();
+	
+	// Drop any @2x paths that will not be used.
 	if(paths[1].size() > paths[0].size())
+	{
 		Files::LogError(prefix + to_string(paths[1].size() - paths[0].size())
 				+ " extra frames for the @2x sprite will be ignored.");
-
-	LogIfMissingFrames(paths[0], paths[0].size(), prefix, false);
-	if(!paths[1].empty())
-		LogIfMissingFrames(paths[1], paths[0].size(), prefix, true);
+		paths[1].resize(paths[0].size());
+	}
 }
 
 
@@ -198,6 +214,8 @@ void ImageSet::Check() const
 // worker threads. This also generates collision masks if needed.
 void ImageSet::Load() noexcept(false)
 {
+	assert(framePaths[0].empty() && "should call ValidateFrames before calling Load");
+	
 	// Determine how many frames there will be, total. The image buffers will
 	// not actually be allocated until the first image is loaded (at which point
 	// the sprite's dimensions will be known).
