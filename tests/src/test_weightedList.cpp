@@ -87,9 +87,8 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 						CHECK( list.TotalWeight() == 3 );
 					}
 					THEN( "An iterator pointing to the next object in the list is returned." ) {
-						auto next = *it;
-						CHECK( next.value == 2 );
-						CHECK( next.Weight() == 3 );
+						CHECK( it->value == 2 );
+						CHECK( it->Weight() == 3 );
 					}
 				}
 				
@@ -98,6 +97,26 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 					THEN( "The list is empty." ) {
 						CHECK( list.empty() );
 						CHECK( list.TotalWeight() == 0 );
+					}
+				}
+				
+				AND_WHEN( "A range is erased from the middle." ) {
+					// Add more objects to the list so that a range can be deleted.
+					list.emplace_back(3, 1);
+					list.emplace_back(4, 5);
+					list.emplace_back(5, 3);
+					CHECK( list.size() == 5 );
+					CHECK( list.TotalWeight() == 14 );
+					
+					// Delete objects with values 1, 2, and 3.
+					auto it = list.erase(list.begin(), list.begin() + 3);
+					THEN( "The list shrinks by the size and weight of the erased range." ) {
+						CHECK( list.size() == 2 );
+						CHECK( list.TotalWeight() == 8 );
+					}
+					THEN( "An iterator pointing to the next object in the list is returned." ) {
+						CHECK( it->value == 4 );
+						CHECK( it->Weight() == 5 );
 					}
 				}
 			}
