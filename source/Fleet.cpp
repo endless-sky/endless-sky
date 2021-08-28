@@ -223,17 +223,16 @@ void Fleet::Load(const DataNode &node)
 		else if(key == "variant")
 		{
 			// If given a full definition of one of this fleet's variant members, remove the variant.
-			bool didRemove = false;
 			Variant toRemove(child);
-			for(auto it = variants.begin(); it != variants.end(); ++it)
-				if(it->Get() == toRemove)
-				{
-					variants.erase(it);
-					didRemove = true;
-					break;
-				}
+			auto VariantToRemove = [&](const WeightedVariant &v) noexcept -> bool
+			{
+				return v.Get() == toRemove;
+			};
 			
-			if(!didRemove)
+			auto removeIt = find_if(variants.begin(), variants.end(), VariantToRemove);
+			if(removeIt != variants.end())
+				variants.erase(remove_if(removeIt, variants.end(), VariantToRemove), variants.end());
+			else
 				child.PrintTrace("Did not find matching variant for specified operation:");
 		}
 		else

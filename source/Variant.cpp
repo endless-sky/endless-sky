@@ -58,34 +58,34 @@ void Variant::Load(const DataNode &node)
 		
 		if(remove)
 		{
-			bool didRemove = false;
 			if(variant)
 			{
 				// If given a full definition of one of this fleet's variant members, remove the variant.
 				Variant toRemove(child);
-				for(auto it = variants.begin(); it != variants.end(); ++it)
-					if(it->Get() == toRemove)
-					{
-						variants.erase(it);
-						didRemove = true;
-						break;
-					}
+				auto VariantToRemove = [&](const WeightedVariant &v) noexcept -> bool
+				{
+					return v.Get() == toRemove;
+				};
 				
-				if(!didRemove)
+				auto removeIt = find_if(variants.begin(), variants.end(), VariantToRemove);
+				if(removeIt != variants.end())
+					variants.erase(remove_if(removeIt, variants.end(), VariantToRemove), variants.end());
+				else
 					child.PrintTrace("Did not find matching variant for specified operation:");
 			}
 			else
 			{
 				// If given the name of a ship, remove all ships by that name from this variant.
 				string shipName = child.Token(1);
-				for(auto it = ships.begin(); it != ships.end(); ++it)
-					if((*it)->ModelName() == shipName)
-					{
-						it = ships.erase(it);
-						didRemove = true;
-					}
+				auto ShipToRemove = [&](const Ship *s) noexcept -> bool
+				{
+					return s->VariantName() == shipName;
+				};
 				
-				if(!didRemove)
+				auto removeIt = find_if(ships.begin(), ships.end(), ShipToRemove);
+				if(removeIt != ships.end())
+					ships.erase(remove_if(removeIt, ships.end(), ShipToRemove), ships.end());
+				else
 					child.PrintTrace("Did not find matching ship for specified operation:");
 			}
 		}
@@ -129,7 +129,7 @@ void Variant::Load(const DataNode &node)
 			{
 				if(child.Size() >= index + 1 && child.Value(index) >= 1.)
 					n = child.Value(index);
-				ships.insert(ships.end(), n, GameData::Ships().Get(child.Token(add)));
+				ships.insert(ships.end(), n, GameData::Ships().Get(child.Token(index - 1)));
 			}
 		}
 	}
