@@ -422,9 +422,9 @@ double Mask::Intersection(Point sA, Point vA, double scale) const
 	for(auto &&outline : outlines)
 	{
 		Point prev = outline.back() * scale;
-		for(auto &&next : outline)
+		for(auto &&p : outline)
 		{
-			next *= scale;
+			Point next = p * scale;
 			// Check if there is an intersection. (If not, the cross would be 0.) If
 			// there is, handle it only if it is a point where the segment is
 			// entering the polygon rather than exiting it (i.e. cross > 0).
@@ -468,9 +468,9 @@ bool Mask::Contains(Point point, double scale) const
 	for(auto &&outline : outlines)
 	{
 		Point prev = outline.back() * scale;
-		for(auto &&next : outline)
+		for(auto &&p : outline)
 		{
-			next *= scale;
+			Point next = p * scale;
 			if(prev.X() != next.X())
 				if((prev.X() <= point.X()) == (point.X() < next.X()))
 				{
