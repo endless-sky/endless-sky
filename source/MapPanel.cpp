@@ -1198,7 +1198,7 @@ void MapPanel::DrawTooltips()
 		{
 			if(player.Flagship())
 				--t.activeShips;
-			if(t.activeShips || t.parkedShips || t.outfits.size())
+			if(t.activeShips || t.parkedShips || !t.outfits.empty())
 				tooltip = "You are here, with:\n";
 			else
 				tooltip = "You are here.";
