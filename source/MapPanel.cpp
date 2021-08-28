@@ -1211,7 +1211,7 @@ void MapPanel::DrawTooltips()
 			tooltip += to_string(t.activeShips) + (t.activeShips == 1 ? " escort" : " escorts");
 		if(t.parkedShips)
 			tooltip += to_string(t.parkedShips) + (t.parkedShips == 1 ? " parked escort" : " parked escorts");
-		if(t.outfits.size())
+		if(!t.outfits.empty())
 		{
 			if(t.activeShips || t.parkedShips)
 				tooltip += "\n";
