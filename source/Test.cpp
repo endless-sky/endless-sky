@@ -469,11 +469,11 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 					if(gamePanels.Root() != gamePanels.Top())
 						Fail(context, player, "engine not active due to panel on top, and can only send commands to the engine");
 					
-					// Both get as well as the cast can result in a nullpointer. In both cases we
-					// will fail the test, since we expect the MainPanel to be here.
-					auto mainPanel = dynamic_cast<MainPanel *>(gamePanels.Root().get());
+					// The get can result in a nullpointer which will will fail the test
+					// since we expect the MainPanel to be here.
+					auto mainPanel = static_cast<MainPanel *>(gamePanels.Root().get());
 					if(!mainPanel)
-						Fail(context, player, "root gamepanel of wrong type when sending command");
+						Fail(context, player, "no root gamepanel when sending command");
 
 					mainPanel->GiveCommand(stepToRun.command);
 				}
