@@ -20,6 +20,7 @@
 				</Compiler>
 				<Linker>
 					<Add library="lib/Debug/libendless-sky.a" />
+					<Add library="librpcrt4.a" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -39,6 +40,7 @@
 				<Linker>
 					<Add option="-flto" />
 					<Add library="lib/Release/libendless-sky.a" />
+					<Add library="librpcrt4.a" />
 				</Linker>
 			</Target>
 		</Build>
@@ -60,7 +62,7 @@
 			<Add library="libglew32.dll.a" />
 			<Add library="libopengl32.a" />
 			<Add directory="C:/dev64/lib" />
-			<Add directory="C:/Program Files/mingw64/x86_64-w64-mingw32/lib" />
+			<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/lib" />
 		</Linker>
 		<Unit filename="tests/src/helpers/datanode-factory.cpp" />
 		<Unit filename="tests/src/test_account.cpp" />

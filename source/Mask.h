@@ -29,13 +29,10 @@ class ImageBuffer;
 // the image itself.
 class Mask {
 public:
-	// Default constructor.
-	Mask();
-	
-	// Construct a mask from the alpha channel of an image.
+	// Construct a mask from the alpha channel of an RGBA-formatted image.
 	void Create(const ImageBuffer &image, int frame = 0);
 	
-	// Check whether a mask was successfully loaded.
+	// Check whether a mask was successfully generated from the image.
 	bool IsLoaded() const;
 	
 	// Check if this mask intersects the given line segment (from sA to vA). If
@@ -57,8 +54,8 @@ public:
 	// Get the maximum distance from the center of this mask.
 	double Radius() const;
 	
-	// Get the list of points in the outline.
-	const std::vector<Point> &Points() const;
+	// Get the individual outlines that comprise this mask.
+	const std::vector<std::vector<Point>> &Outlines() const;
 	
 	
 private:
@@ -67,8 +64,8 @@ private:
 	
 	
 private:
-	std::vector<Point> outline;
-	double radius;
+	std::vector<std::vector<Point>> outlines;
+	double radius = 0.;
 };
 
 
