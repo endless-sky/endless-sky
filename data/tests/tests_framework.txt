@@ -116,7 +116,7 @@ test "Test-Framework - Recursive Call"
 		label loopBreak
 
 
-test "Test-Framework - Calls - Arithmetic - Loops - Keyboard Control"
+test "Test-Framework - Calls - Arithmetic - Loops"
 	status active
 	description "Test-Framework - Test for calls to other functions."
 	sequence
