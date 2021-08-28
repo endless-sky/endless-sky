@@ -114,9 +114,9 @@ ship "Argosy"
 	engine 14 91 0.8
 	engine 25 91 0.6
 	gun -22 -37 "Energy Blaster"
-	gun -22 -37 "Meteor Missile Pod"
+	gun -22 -37 "Meteor Missile Launcher"
 	gun 22 -37 "Energy Blaster"
-	gun 22 -37 "Meteor Missile Pod"
+	gun 22 -37 "Meteor Missile Launcher"
 	turret 0 -12.5 "Blaster Turret"
 	turret 0 9.5 "Anti-Missile Turret"
 	leak "leak" 60 50
