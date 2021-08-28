@@ -120,7 +120,7 @@ mission "Coalition: Contributor"
 		log "Completed a lot of Coalition jobs and received permission to purchase civilian technology and ships."
 		log "Factions" "Saryds" `Saryds are an alien species who look suspiciously similar to the centaurs found in early human mythology. They prefer to live on worlds with as much green space as possible, and even their major cities are full of parks and gardens. Most Saryds live in small communes with up to a few dozen of them per house.`
 		log "Factions" "Kimek" `The Kimek are large insectoid aliens, and are members of the Coalition. They discovered spaceflight after the Saryds, but before the Arachi. They are intensely social creatures, preferring to live together in massive buildings with thousands of inhabitants, and many of their worlds have populations in the tens of billions, far more than any human world.`
-		log "Factions" "Arachi" `The spider-like Arachi were the last of the three Coalition species to discover interstellar travel. Most members of their society owe allegiance to one of the great Arachi "Houses," organizations that are somewhat similar to guilds and that each specialize in one particular form of industry or technology.`
+		log "Factions" "Arachi" `The spider-like Arachi were the last of the three Coalition species to discover interstellar travel. Most members of their society owe allegiance to one of the great Arach "Houses," organizations that are somewhat similar to guilds and that each specialize in one particular form of industry or technology.`
 		conversation
 			`Once again, when you exit your ship you are met by a member of each of the three Coalition species, wearing the golden circlets that mark them as Heliarchs. "Told we have been," says the Saryd, "that among us with great diligence and commitment, small tasks you have performed."`
 			`	The Kimek says, "Those who in our society's prosperity have invested, with our society's technology may be trusted."`
@@ -176,7 +176,7 @@ mission "Coalition: Lost: Marker"
 			`You're approached by a Heliarch delegation shortly after you leave your ship.`
 			`	"Cautiously observed during the past few weeks, scans of your ship have been, Captain <last>," the Saryd begins.`
 			`	"Unlike previous scans, a jump drive in your ship, our scanners found not," the Kimek continues.`
-			`	"Though appreciate the work you here perform, we do, for you to be cut-off from the galaxy, we wish not," the Arach says. "Discussed much, our elders have, and to help you, they decided. To <destination> you must go, there discussed, the terms will be."`
+			`	"Though appreciate the work you here perform, we do, for you to be cut-off from the galaxy, we wish not," the Arach says. "Discussed much, our consuls have, and to help you, they decided. To <destination> you must go, there discussed, the terms will be."`
 			choice
 				`	"By that you mean you'll get me another jump drive? That's pretty generous of you."`
 				`	"What? I lost my jump drive? You've gotta be kidding!"`
@@ -229,7 +229,6 @@ mission "Coalition: Lost: Offer"
 mission "Coalition Yottrite 1"
 	name "More Yottrite"
 	description "You were offered great payment for bringing three more samples of the rare mineral yottrite to <destination>."
-	minor
 	landing
 	to offer
 		has "Coalition: Contributor: done"
@@ -306,7 +305,7 @@ mission "Coalition Yottrite 3"
 	name "Neighbor's Mailbox"
 	description "Deliver the <cargo> to the sister world of <origin>, <destination>."
 	landing
-	cargo "Experimental Yottrite Samples" 5
+	cargo "experimental yottrite samples" 5
 	to offer
 		has "Coalition Yottrite 2: offered"
 	source "Bloptab's Furnace"
@@ -412,7 +411,7 @@ mission "Coalition Yottrite 6"
 			`Lugglop is waiting for you when you land and greets the two researchers as you help them get their things out of the ship.`
 			`	He points them to a hotel where he had a room prepared for them, and asks you to follow him to his office again.`
 			`	"Filled to the brim with cutting edge equipment, our facilities here and on the neighbor planet are. Alas, venture much into the theoretical field needed to study such rare elements, our personnel here does not."`
-			`	He shows you to his map again, this time pointing to a nearby Arachi world. "Once cracked some aspects of yottrite, the twins have, an expert in ship making, we will need," he says. "On <destination>, prepared one of their representatives, House Mallob has. Bring them here, you must."`
+			`	He shows you to his map again, this time pointing to a nearby Arach world. "Once cracked some aspects of yottrite, the twins have, an expert in ship making, we will need," he says. "On <destination>, prepared one of their representatives, House Mallob has. Bring them here, you must."`
 			`	You're about to head back to your ship when he hands you 200,000 credits. "Nearly forgot to pay you for this last service, I did."`
 				accept
 
@@ -431,7 +430,7 @@ mission "Coalition Yottrite 7"
 	on offer
 		conversation
 			`You're immediately hailed by House Mallob when your ship is entering the atmosphere of <origin>. They guide you through the planet, bringing you to what looks like a massive, castle-like structure, which appears to be made out of a similar material to that of Arach ships, sitting at the base of a mountain.`
-			`	You land on a large docking area, where some other ships are also conducting business. Stepping off of your ship you're greeted by what is unmistakingly an outfitter, and as you look around you spot some other large buildings dotting the surrounding area, with members of the Coalition going to and from them. The atmosphere feels like that of a small village turned into an outdoor shopping mall.`
+			`	You land on a large docking area, where some other ships are also conducting business. Stepping off of your ship you're greeted by what is unmistakably an outfitter, and as you look around you spot some other large buildings dotting the surrounding area, with members of the Coalition going to and from them. The atmosphere feels like that of a small village turned into an outdoor shopping mall.`
 			`	Shortly after landing you're greeted by an Arach wearing what you judge to be some sort of uniform. He takes a translation device out of his pocket and formally greets you. "Honored to have you as a guest, the great House Mallob is, Captain <first> <last>."`
 			choice
 				`	"Are you the shipwright I'll be taking to Lugglop?"`
@@ -487,7 +486,7 @@ mission "Coalition Yottrite 8"
 	destination "Pelubta Station"
 	on offer
 		conversation
-			`When you land, you receive a message from Lugglop, the Arach who you brought several Yottrite samples to.`
+			`When you land, you receive a message from Lugglop, the Arach to whom you brought several Yottrite samples.`
 			`	"Captain, some major findings, we have. Preparing a presentation about our research, to present in Ring of Wisdom, we are," he says. "Only, run out of pure samples, we have. Bring us one once more, would you?"`
 			choice
 				`	"Okay, I'll bring you a piece of yottrite once again."`
@@ -506,7 +505,7 @@ mission "Coalition Yottrite 9"
 	name "Yottrite Presentation"
 	description "Transport Lugglop and his team, alongside <cargo>, to <destination>, where they will share with the Coalition's scientific community their findings on Yottrite."
 	passengers 6
-	cargo "Yottrite Presentation Materials" 6.14
+	cargo "yottrite presentation materials" 6.14
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
 		has "Coalition Yottrite 8: done"
@@ -751,7 +750,7 @@ mission "Coalition Outbreak 1"
 	description "Bring these <bunks> doctors, along with <cargo> to <destination> by <date>, where they will work to address a major viral outbreak"
 	deadline
 	passengers 75
-	cargo "Medical Supplies" 90
+	cargo "medical supplies" 90
 	to offer
 		has "Coalition: Contributor: done"
 		random < 5
@@ -783,7 +782,7 @@ mission "Coalition Outbreak 2"
 	name "Collect Vaccines"
 	description "Head to <stopovers>, where Saryd researchers have been working on a vaccine for the new virus, and deliver it to <destination> by <date>."
 	deadline
-	cargo "Vaccines" 80
+	cargo "vaccines" 80
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
 		has "Coalition Outbreak 1: done"
@@ -821,9 +820,9 @@ mission "Coalition Outbreak 2"
 
 mission "Coalition Outbreak 3"
 	name "Distribute Vaccines"
-	description "Accompanied by the three volunteer ships, head to the designated Kimek worlds, delivering vaccines to deal with the current viral oubreak, then return to <destination> by <date>."
+	description "Accompanied by the three volunteer ships, head to the designated Kimek worlds, delivering vaccines to deal with the current viral outbreak, then return to <destination> by <date>."
 	deadline
-	cargo "Vaccines" 80
+	cargo "vaccines" 80
 	to offer
 		has "Coalition Outbreak 2: done"
 	source "Ki Patek Ka"
@@ -839,7 +838,7 @@ mission "Coalition Outbreak 3"
 		conversation
 			`This time you're expected and are brought to a large conference room where many Saryds, and the occasional Arach, are waiting. A Kimek that is part of the team organizing the containment procedures comes in and says you will once again be transporting vaccines.`
 			`	"In a few hours, fully replicated, the vaccine samples will be. Load them onto your ships, we will. Deliver them to <stopovers>, you must."`
-			`	Everyone is then separated into groups. You're put with two Saryd captains and an Arachi who is wearing some protective suit of sorts that covers his entire body, making it somewhat difficult for him to walk.`
+			`	Everyone is then separated into groups. You're put with two Saryd captains and an Arach who is wearing some protective suit of sorts that covers his entire body, making it somewhat difficult for him to walk.`
 			`	The captains agree to follow your lead and deliver the vaccines along with you, so you all head back to your ships.`
 				accept
 	npc accompany save
@@ -856,8 +855,8 @@ mission "Coalition Outbreak 3"
 		payment 2593230
 		"coalition jobs" += 3
 		conversation
-			`You and the other captains are told to wait in one of several lines formed here. Your group chats with some others while you wait, and a few mention how their batch of vaccines was delivered to Arachi and Saryd space. Apparently many tourists had contracted the disease before flying to those areas.`
-			`	The line moves quickly, and once it's your turn, you're paid <payment>, and then switfly shoved along by the workers who are already paying the person who was behind you.`
+			`You and the other captains are told to wait in one of several lines formed here. Your group chats with some others while you wait, and a few mention how their batch of vaccines was delivered to Arach and Saryd space. Apparently many tourists had contracted the disease before flying to those areas.`
+			`	The line moves quickly, and once it's your turn, you're paid <payment>, and then swiftly shoved along by the workers who are already paying the person who was behind you.`
 			`	Looking back at the line, and seeing the sheer number of captains waiting for their share, it's no wonder the Kimek that paid you were extremely brief. As you come back to your ship, you see that a message was sent to you by the Coalition government. More specifically, it appears to have been sent by their Department of Health.`
 			`	"To all captains who helped in dealing with the recent viral outbreak, you have our gratitude and may rest tonight knowing you've contributed to the continued prosperity of our Coalition."`
 
@@ -897,8 +896,8 @@ mission "Kimek Gift"
 
 mission "Saryd Students 1"
 	minor
-	name "Acquire Arachi Rum"
-	description "Some Saryd students on <origin> have offered to pay you for bringing them a shipment of traditional Arachi rum, currently only sold on <destination>. To make it in time, the rum must be bought by <date>."
+	name "Acquire Arach Rum"
+	description "Some Saryd students on <origin> have offered to pay you for bringing them a shipment of traditional Arach rum, currently only sold on <destination>. To make it in time, the rum must be bought by <date>."
 	deadline
 	to offer
 		has "Coalition: First Contact: done"
@@ -925,7 +924,7 @@ mission "Saryd Students 1"
 			`	They all start laughing, some clearly finding your joke much funnier than you anticipated. Given the way they are stumbling on flat ground and the scent of alcohol that's permeated the air ever since one of them bumped into you, you realize why.`
 			`	"Fair enough. Not a common sight here, humans are, Captain," the one with a translation box says. "Asking for such a response, I was."`
 			label work
-			`	They tell you that they are students at Starlit University and will be graduating soon. They intend on throwing a party to celebrate and had the idea of buying some traditional Arachi rum for that.`
+			`	They tell you that they are students at Starlit University and will be graduating soon. They intend on throwing a party to celebrate and had the idea of buying some traditional Arach rum for that.`
 			`	"Stopped shipping it here, the Arachi have," another Saryd says, pulling on the translation box on his friend's neck and nearly yanking it off. "Happened with many other drinks, this also has."`
 			`	They explain that the rum is produced on <destination>, and that you'll probably have an easier time finding it there. Despite you not knowing for sure how many people they intend on inviting to this party, and the fact that you don't know how much a Saryd can drink, you still worry a bit when they say that "two tons should do." They also tell you that to make it in time for the party, the rum should be bought by <date>.`
 			choice
@@ -941,25 +940,25 @@ mission "Saryd Students 1"
 				`	"Sorry, but I'm against smuggling alcohol to students."`
 					decline
 	on visit
-		dialog `You ask around and are directed to a large refinery on one of the more populated cities here. The beer's price is impressive indeed, 5,642 credits per ton, but what is more impressive is how you worried about the students' irresposibility when they asked you to buy this when you yourself aren't responsible enough to have a bit over ten thousand credits to spend. Go earn some money, then return here.`
+		dialog `You ask around and are directed to a large refinery on one of the more populated cities here. The beer's price is impressive indeed, 5,642 credits per ton, but what is more impressive is how you worried about the students' irresponsibility when they asked you to buy this when you yourself aren't responsible enough to have a bit over ten thousand credits to spend. Go earn some money, then return here.`
 	on complete
 		payment -11284
 
 
 
 mission "Saryd Students 2"
-	name "Deliver Arachi Rum"
-	description "Now that you've bought the two tons of Arachi rum, deliver it to the Saryd students on <destination> by <date>."
+	name "Deliver Arach Rum"
+	description "Now that you've bought the two tons of Arach rum, deliver it to the Saryd students on <destination> by <date>."
 	landing
 	deadline
-	cargo "Arachi Rum" 2
+	cargo "arach rum" 2
 	to offer
 		has "Saryd Students 1: done"
 	source "Weir of Glubatub"
 	destination "Shadow of Leaves"
 	on offer
 		conversation
-			`You ask around and are directed to a large refinery on one of the more populated cities here. Apparently it's the original building where the Arachi rum was first produced.`
+			`You ask around and are directed to a large refinery on one of the more populated cities here. Apparently it's the original building where the Arach rum was first produced.`
 			`	You ask for two tons, avoiding giving the exact details of what it's for, as you do not wish to be held accountable for whatever some drunken Saryds may do, and pay the price for all the rum: 11,284 credits.`
 			`	The Arachi that take care to load the rum into your ship give you some odd looks, and when it's all done the manager tells you to try and slow down on the drinking.`
 				accept
@@ -975,7 +974,7 @@ mission "Saryd Students 2"
 mission "Saryd Census 1"
 	minor
 	name "Saryd Census"
-	description "Transport these <bunks> Saryds census workers to <destination>, where they will collect data on the population growth there."
+	description "Transport these <bunks> Saryd census workers to <destination>, where they will collect data on the population growth there."
 	passengers 17
 	to offer
 		has "Coalition: Contributor: done"
@@ -1139,7 +1138,7 @@ mission "Saryd Couple 3"
 	destination "Saros"
 	on offer
 		conversation
-			`The couple leaves your ship and heads to a real estate agency. From what they told you during the trip, they have about 1,500,000 credits they can spend, which they claim is in line with the standard properties in the most valued (and most sought-after) locations here, and that they should still have enough money to pay you afterwards.`
+			`The couple leaves your ship and heads to a real estate agency. From what they told you during the trip, they have about two and a half million credits they can spend, which they claim is in line with the standard properties in the most valued (and most sought-after) locations here, and that they should still have enough money to pay you afterwards.`
 			`	They return from consulting, the both of them with disappointed looks on their faces. Inturi starts looking at the ships landing and departing while Aunaris comes talk to you.`
 			`	"Kept watch of one property, for months we had. On a mountain village, overlooking a lake, and with access to a nearby forest, it is. A few days ago, purchased it was," she sighs. "Available, another plot of land neighboring it is, but over half our funds, the land alone costs."`
 			`	Inturi then looks over, as if he had just received a shock, and says, "That's it! A ship! Live in a ship, we could!"`
@@ -1168,7 +1167,7 @@ mission "Saryd Couple 4"
 	destination "Far Garden"
 	on offer
 		conversation
-			`Inturi heads right to the shipyard, and you help him with the purchase itself. He says that alhough he has worked in many ships over the years, he never went to the shipyard for more than picking up some parts for repair, or to polish a newly produced model.`
+			`Inturi heads right to the shipyard, and you help him with the purchase itself. He says that although he has worked in many ships over the years, he never went to the shipyard for more than picking up some parts for repair, or to polish a newly produced model.`
 			`	Only when you're with him inside the Arach vessel do you think of asking if he even knows how to fly a ship, but he reassures you that it won't be a problem.`
 			`	"To work as a copilot for an old friend, my first job was. Worry about me crashing the ship, you need not," he jokes.`
 			`	He says he will wait for your lead and follow you to <destination> once you depart.`
@@ -1240,8 +1239,8 @@ mission "Saryd Couple Follow-Up B"
 mission "Longcow Antibiotics 1"
 	minor
 	name "Longcow Antibiotics"
-	description "Arachi ranchers have asked you to pick up <cargo> on <stopovers>, then deliver them to <destination>."
-	cargo "Longcow Antibiotics" 7
+	description "Arach ranchers have asked you to pick up <cargo> on <stopovers>, then deliver them to <destination>."
+	cargo "longcow antibiotics" 7
 	to offer
 		has "Coalition: First Contact: done"
 		random < 35
@@ -1254,7 +1253,7 @@ mission "Longcow Antibiotics 1"
 		conversation
 			`You see some Arachi talking among themselves in the spaceport, occasionally glancing at and pointing at you.`
 			`	One of them finally comes to you and says, "Greetings, Captain. Interested in performing a cargo mission for us, are you?"`
-			`	She tells you that they are a cooperative of Arachi ranchers, explains that the safety and health regulations for their business, longcow ranching, were recently updated, and that they need someone to pick up the newest antibiotics for the cattle on <stopovers>.`
+			`	She tells you that they are a cooperative of Arach ranchers, explains that the safety and health regulations for their business, longcow ranching, were recently updated, and that they need someone to pick up the newest antibiotics for the cattle on <stopovers>.`
 			`	"A jump drive you have, so get them faster - and allow us to resume business faster - you would."`
 			choice
 				`	"You've found the perfect person for the job. I'm in."`
@@ -1263,7 +1262,7 @@ mission "Longcow Antibiotics 1"
 			`	The other Arachi come over to thank you after she signals to them that you've accepted to help. They explain that after you've picked up the antibiotics on <stopovers>, you'll have to drop them off on <planet> before wishing you a good trip.`
 				accept
 	on stopover
-		dialog `The dockworkers load <cargo> into your cargo hold after verifying you've been hired by the Arachi cooperative. A bit after the last crate has been placed, you're contacted by the Arachi, and they say you should bring the antibiotics to <destination>, where they will pay you <payment>.`
+		dialog `The dockworkers load <cargo> into your cargo hold after verifying you've been hired by the Arach cooperative. A bit after the last crate has been placed, you're contacted by the Arachi, and they say you should bring the antibiotics to <destination>, where they will pay you <payment>.`
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the longcow antibiotics hasn't entered the system yet. Better depart and wait for it.`
 	on complete
@@ -1276,7 +1275,7 @@ mission "Longcow Antibiotics 2"
 	name "Longcow Antibiotics"
 	description "Deliver the remaining <cargo> to <destination>, where some Arachi also work as longcow ranchers."
 	landing
-	cargo "Longcow Antibiotics" 1
+	cargo "longcow antibiotics" 1
 	to offer
 		has "Longcow Antibiotics 1: done"
 	source "Corral of Meblumem"
@@ -1285,7 +1284,7 @@ mission "Longcow Antibiotics 2"
 		conversation
 			`You're paid 421,000 credits when you land, but as you help the ranchers unload the antibiotics, they say that something is off.`
 			`	"Only 6 tons of antibiotics, we requested," one of them says. "That extra ton surplus, ours is not."`
-			`	She goes away for about ten minutes to contact the lab workers back on New Finding. When she comes back, she seemingly jokes with the other ranchers in the Arachi language, before talking to you.`
+			`	She goes away for about ten minutes to contact the lab workers back on New Finding. When she comes back, she seemingly jokes with the other ranchers in the Arach language, before talking to you.`
 			`	"Mixed up the cargo, they have. His own longcow ranch on <destination>, a cousin of mine has," she says. "Sent along with my own, his batch of antibiotics was."`
 			`	They contact the cousin in question and he asks that you transport his own part of the antibiotics to <destination>, where he will pay you <payment>.`
 				accept
@@ -1300,10 +1299,10 @@ mission "Longcow Antibiotics 2"
 
 mission "Arachi Orphans"
 	minor
-	name "Arachi Orphans"
-	description "Bring these 4 Arachi orphans, their caretaker, and their <cargo> to <destination>, where they will join a foster home."
+	name "Arach Orphans"
+	description "Bring these 4 Arach orphans, their caretaker, and their <cargo> to <destination>, where they will join a foster home."
 	passengers 5
-	cargo "Orphanage Belongings" 2
+	cargo "orphanage belongings" 2
 	to offer
 		has "Coalition: Contributor: done"
 		random < 45
@@ -1312,7 +1311,7 @@ mission "Arachi Orphans"
 	destination "Chosen Nexus"
 	on offer
 		conversation
-			`An elderly Arach beckons to you as you enter the spaceport. He is accompanied by four Arachi children, who all stand close to a large pile of luggage.`
+			`An elderly Arach beckons to you as you enter the spaceport. He is accompanied by four Arach children, who all stand close to a large pile of luggage.`
 			`	He explains that he used to run an orphanage here, but has now gotten too old for the job. He has arranged for the four kids to be transferred to a foster home on <destination>.`
 			`	"Take care of them, the Saryds there will," he says, patting the head of the youngest and shortest of the kids. "Retiring, I am, but abandon them, I will not. An apartment close to the foster home, I will purchase."`
 			`	He offers to pay you <payment> to bring the five of them and their <cargo> to <destination>.`
@@ -1327,7 +1326,7 @@ mission "Arachi Orphans"
 		conversation
 			`You help the old Arach caretaker and some workers take the luggage out of your ship then head to the orphanage.`
 			`	A Saryd couple runs the place and greets you and the old Arach when you get there. Aside from a few Saryd kids, you notice the place already has an Arach child and some Kimek too.`
-			`	After you make sure all their belongings are inside the foster house, the Arachi children head on inside to get acquainted with their new family. Their caretaker thanks you and hands you <payment> before heading inside himself.`
+			`	After you make sure all their belongings are inside the foster house, the Arach children head on inside to get acquainted with their new family. Their caretaker thanks you and hands you <payment> before heading inside himself.`
 
 
 
@@ -1393,3 +1392,476 @@ mission "Arachi Cartoonist 2"
 				accept
 			label noship
 			`	"Ah, I see. Well, just a reference it would be, so the name matters not, I suppose. Anyway, thanks again Captain."`
+
+
+
+mission "Coalition Folklore: Saryd"
+	minor
+	invisible
+	to offer
+		random < 30
+	source
+		attributes "saryd"
+		attributes "folklore"
+	on offer
+		conversation
+			`Walking through the spaceport, you're approached by a Saryd in unusually traditional clothing, even by Saryd standards. Silk robes not too different from human kimonos cover most of his body, and thin ropes tightly wrap around the fabric near his hoofs.`
+			`	"Greetings, Captain. Interested in participating in a cultural celebration, would you be?" he asks.`
+			choice
+				`	"What sort of celebration?"`
+				`	"Sorry, I'm busy right now."`
+					decline
+			`	"A celebration of Saryd folklore, it is," he explains. "Though for a long time among the stars we've lived, timeless classics from before our spacefaring age, we still celebrate. A set of theatrical plays about some of them, today we are hosting. Watch them for free, anyone can."`
+			choice
+				`	"I've always got time for a story. Lead the way."`
+				`	"I'm not really up for a story now. I'll pass."`
+					decline
+			`	You follow him outside the spaceport city and deep into a nearby forest. On the way there, several other Saryds in similar ancient garbs are guiding others who were also intrigued by the offer.`
+			`	You arrive at a clearing with three different paths to take, and you can make out a faint light from deep within each of them. After a few minutes, it seems as if all the Saryds involved in the celebration have arrived. They grab three caskets from behind a bush and lay them before you and the others they brought here.`
+			`	"Now friends, choose your path, you must," one of the Saryds says, and many from the crowd grab small objects from the caskets, seemingly already familiar with this. You move forward to look into the caskets and see that each one has different things inside: the left one is full of seeds, the middle one full of seashells, and the right one full of feathers.`
+			choice
+				`	(Grab a seed.)`
+					goto seed
+				`	(Grab a seashell.)`
+					goto pearl
+				`	(Grab a feather.)`
+			`	Once you have the feather in your hands, the organizers tell you to go through the path on the right.`
+			`	The light you had seen turns out to be a bonfire near a wooden stage, about a third of the size of human opera stages, and you find a spot to sit on one of the logs positioned near the fire. Several lights shine onto the stage, and as you look up, you can only barely see some spotlights hidden high up in the trees. After the audience is all gathered, the curtains of the stage open to reveal many small figures made out of what looks like paper in a style that loosely resembles origami. They are supported either by thin wooden poles from below or strings from above. There are figures close to where the curtains were and others further away on the stage, the various layers granting depth to the scenery. After a brief moment, the show begins:`
+			`	Entering a clearing, a Saryd huntress with gray hair stalks a large bird resting on a rock. She moves on the borders of the clearing, hiding behind bushes and small trees. She looks for the best spot from which to snipe at the bird, her bow and arrow ready in her hands. It's only when she is nearing a large entrance to the clearing, on the opposite side of where she entered, that she finds the spot, and takes aim.`
+			`	She is disrupted when she hears a loud roar and jumps to the ground, narrowly avoiding the beast that had come from behind her. You're unsure how accurate the paper's depiction of the creature is, but you can only describe it as a "hedge-lion": slightly larger than lions from Earth, with various quills where its mane should be. The quills continue in a line on its back, reaching the tip of the tail.`
+			`	Having dodged the pounce, the huntress runs past the bird, looking for cover, but the forest isn't dense enough to block the beast's advance. It attacks again, and wounds the top of one of her frontal legs. She kicks it with another leg and readies an arrow, but only manages to scratch its face. The animal gets on its hind legs to swipe down at her but is stunned; the bird has attacked its eyes, blinding it! The huntress is swift to take aim in the opening granted, and an arrow pierces the creature's torso. Once the hedge-lion has fallen, the bird flies away, and the curtains close.`
+				goto end
+			label seed
+			`	Once you have the seed in your hands, the organizers tell you to go through the path on the left.`
+			`	The light you had seen turns out to be a bonfire near a wooden stage, about a third of the size of human opera stages, and you find a spot to sit on one of the logs positioned near the fire. Several lights shine onto the stage, and as you look up, you can only barely see some spotlights hidden high up in the trees. After the audience is all gathered, the curtains of the stage open to reveal many small figures made out of what looks like paper in a style that loosely resembles origami. They are supported either by thin wooden poles from below or strings from above. There are figures close to where the curtains were and others further away on the stage, the various layers granting depth to the scenery. After a brief moment, the show begins:`
+			`	The central figure is a young Saryd boy, galloping through a dense forest. Sound effects of thunder begin and grow increasingly frequent, echoing around you as if in a real thunderstorm. A white piece of paper, shaped like a lightning bolt, comes down swiftly and strikes one of the trees in the boy's way. Flame-shaped folds rain down from the top of the stage and stick to the tree as it falls, blocking the boy's path. He turns to run elsewhere. Another lightning bolt, and another tree falls. After a few more repetitions, the boy is too tired to run anymore. Hurt by some of the flames, he is now limping through the forest.`
+			`	Whimpering as the thunder grows closer once more, he spots a tree unlike the others, a great oak with branches thicker than the other trees around him. He goes to it and lays down at its base, and soon he falls asleep as the curtain closes.`
+			`	It opens once again after a few moments, with the boy waking up in darkness. When he gets up, rumbling sounds are accompanied by rays of light reaching the ground, and he realizes the great oak had lowered its branches around him. As it lifts them up, the several smaller trees that had fallen on the mighty oak's branches during the storm are scattered away. The sun as his guide, the boy manages to leave the forest, and the curtains close again.`
+				goto end
+			label pearl
+			`	Once you have the seashell in your hands, the organizers tell you to go through the path in the middle.`
+			`	The light you had seen turns out to be a bonfire near a wooden stage, about a third of the size of human opera stages, and you find a spot to sit on one of the logs positioned near the fire. Several lights shine onto the stage, and as you look up, you can only barely see some spotlights hidden high up in the trees. After the audience is all gathered, the curtains of the stage open to reveal many small figures made out of what looks like paper in a style that loosely resembles origami. They are supported either by thin wooden poles from below or strings from above. There are figures close to where the curtains were and others further away on the stage, the various layers granting depth to the scenery. After a brief moment, the show begins:`
+			`	A Saryd is on top of some sort of long, wooden platform, with a deep blue background under it. Only when you see the fishing rod do you realize that he is on a boat, fishing at sea. He feels a bite, but when he reels it in, there is nothing on the hook. He feels another bite and again finds nothing. Time and again, he looks at the hook to find the bait still there, intact, yet he continues to feel bites, some so powerful even the boat moves a little. The day moves by quickly, with a piece of paper representing the sun moving swiftly from one side of the "sky" to the other.`
+			`	Once it is night, the waves grow increasingly stronger, and the Saryd stops fishing altogether. He puts the rod on the boat and tries to steer it back to shore, but he can't find his way. A huge wave that goes beyond the stage's top approaches, and engulfs the boat.`
+			`	The fisherman kicks and struggles for air, having lost his boat and still at the mercy of the great waves. The view on the stage starts going down, following the kicks, and something starts rising up to meet the Saryd's legs. As it raises the view back with it, a creature reminiscent of a whale, only with much larger, longer flippers that almost link to its tail, comes to the surface. It rises gently and with care, as if trying to serve as ground for the sailor. Another wave is approaching, large enough to engulf them both, but the whale keeps on going up until it is out of the water.`
+			`	As it flies through the night sky, the whale is careful to not drop the Saryd, always waiting for him to find stable footing before turning. For the rest of the night, the whale slowly dances in the sky, and when morning comes and the waves subside, it goes back to the sea and swims close to shore. Once the Saryd is at the beach, he turns back to see the whale's tail hitting the water as it dives deep once again, and the curtains close.`
+			label end
+			`	People in the audience start getting up and performing a short bow toward the stage, with both hands clenched together close to their chests, as if silently applauding the performance. Once most of them are done, they prepare to leave, and you follow them. Once you're back at the clearing, you return the small object back to its casket after seeing others do the same, and the organizers guide everyone back to the spaceport.`
+			`	Once there, the Saryd who first approached you says, "That you enjoyed the spectacle, I hope," and bids you farewell.`
+				decline
+
+
+
+mission "Coalition Folklore: Arach"
+	minor
+	invisible
+	to offer
+		random < 30
+	source
+		attributes "arach"
+		attributes "folklore"
+	on offer
+		conversation
+			`Shortly after entering the spaceport, you observe an Arach in what you guess is a formal "dress," a delicate silk wrap covering most of her body with each leg covered by its own embroidered skirt. She exclaims something loudly into a personal communication device before putting it away with a shove. Like everyone else who has momentarily been witness to this, you go to look away, but the Arach has cast their gaze around, seen you, and immediately begun to approach. "Our honorable human visitor, I salute," she says loudly as she closes the gap. "Say, Captain, appreciate the fine arts, do you? To a cultural soiree, I'm headed, but busy with work, dearest Papa is, so vacant, his reserved seat is. Accompany me, would you?"`
+			choice
+				`	"Is that some sort of event?"`
+				`	"I'm busy right now, so I'll pass."`
+					decline
+			`	"No simple gathering, but a collection of plays by esteemed professionals, completed by a dedicated orchestra, the soiree is," she explains. "A celebration of Arach folklore, it is, which in our finest outfits, us local patrons attend. Streamed live for others, the show also is, but compare to the live performance, it cannot."`
+			choice
+				`	"Alright, I'm interested. Where is this 'soiree' taking place?"`
+				`	"I'm not a fan of plays, sorry."`
+					decline
+			`	You follow her around the central portion of the city to a building which from the outside looks like some form of auditorium; there, some Arachi in uniform are seeing to the entries of the "patrons" of the event. "A human? Quite an exotic guest you've brought, lady Matlub," one of them says to your guide as she shows him a touchpad displaying two tickets. He verifies them and allows the two of you to enter. The inside reminds you of an opera house, with a large stage in front of dozens of rows of seats, and six levels of balconies on both sides. Matlub leads you to two excellent seats in one of the first few rows, and she helps you "adjust" the chair so that you're more comfortably seated. Just before the stage is an area a few steps below the level of the seats, with a few Arach musicians fine-tuning a variety of instruments. Up on the ceiling, and on all of the balconies, you see small cameras pointed at the stage to broadcast the event for those who didn't have the chance to attend it live.`
+			`	As the rows and balconies fill up with more guests, you notice a few Kimek and Saryds amidst the masses of Arachi, most of them accompanying an Arach patron; a few are seemingly patrons themselves, coming in on their own. A great many of them seem to take notice of you as you look around, but your patron studiously ignores the attention.`
+			choice
+				`	"I can see why you were speaking so highly about this, looks like a really organised event."`
+				`	"Not every day that they see a human in one of these, I take it?"`
+			`	She nods. "A prestigious event, this is. Bring friends from all around the Coalition to watch, the patrons do. The most unique guest we've had, you are."`
+			`	Once all seats are filled, the doors are closed, and an Arach comes to the stage. "Welcome you, esteemed guests, to this celebration of saga and song, our theater does," he says. "Make you wait any longer, I shall not, so for our first play, a timeless classic dear to all, I present: Moonstruck."`
+			`	He quickly leaves the stage as the curtains open to reveal a rocky wall with two tunnels leading to the sides. The orchestra begins to play a slow, soft theme on accordion-like instruments, and a young Arach comes into the scene from the tunnel on the left. He hangs onto the rocky wall, a small lantern hanging from his abdomen and a large sack strapped to his back. The Arach then picks rocks from the corners of the wall, throwing most to the ground but placing a few inside the sack he carries. Once the sack is full, he enters the tunnel on the right, and the rocky wall is rotated to show the other side; there, the young miner is shown under the night sky smelting the ore he collected. As he looks to the top of the stage with his back facing the audience, the accordions grow quieter, a slow harp starts to play, and a full moon comes into view at the top of the background sky.`
+			`	The curtains close as the scene changes, opening again with the accordions picking up the pace. The Arach is now on a larger wall with only one tunnel from above. He claws away at the rocky corners, the accordions following his rhythm. Once he's dug out most of the ore, the wall starts shaking, as if the mine were collapsing. The accordions become erratic as he rushes for the escape tunnel. With a hectic clamor, the rock wall appears to disassemble on stage with great boulders descending gracefully from the fly tower, caving in the mine. The accordions stop, but after a long pause they, along with the harp, slowly pick up again. The young Arach then climbs into view and pushes first one boulder away, and then another, and another. This goes on until the Arach stands atop a mountain of metal carved out of the rock, reaching for the moon. As he nearly touches it, the curtains close and the music stops.`
+			`	The Arachi in the audience rub two of their legs together, as if clapping at the end of the performance. Shortly after, some get up, heading to the exit as the doors open up once again. At the same time, more patrons are coming in to fill the vacant seats. "Interested in only some of the plays, some patrons are, so only for those they wish to see, they stay," Matlub explains. "Leave after any of the performances, you may, if someplace else, you must be, but remain for the rest of the show, I will."`
+			choice
+				`	(Stay for the next play.)`
+				`	(Leave.)`
+					goto leave
+			`	Once everyone is seated, the same Arach from before goes to the stage again. "A surprise for you, tonight we have. A brand new play, an anonymous group of patrons commissioned. As a critique of one of the issues that persist in our society, described it is. For our second play: Babbling Bebliss."`
+			`	As he leaves, the curtains open to a set of an Arach street, where a child is purchasing some form of candy. From behind a building in the set, an Arach wearing tall, blue and white "socks" emerges as trumpets and tubas start playing an obnoxious track. He runs for the child and knocks the candy to the ground as he makes some gargling sound. Matlub sighs, saying, "Gibberish, it is. Nonsense, and words best left untranslated." The Arach actor goes on to cling to the walls of the building and grab things from inside the candy shop, throwing them wildly. By now, many well dressed patrons, most likely members of House Bebliss, are getting up and leaving the theater. Meanwhile, a group of Arachi on one of the balconies doesn't even try to muffle their laughter.`
+			`	The scene continues as a couple comes to the set, walking down the street. As they're about to lean in for what looks like a kiss, the Arach leaps from the building, landing on the bachelor with a thud. He steals the kiss, as the tubas and trumpets blast as loudly as they can. After a while, the authorities show up, only for the Arach to make a run for it down the street. The orchestra plays a tune that is as uncoordinated as his movements, and the curtains close. Not many in the audience manifest themselves, most sighing or getting ready to leave, save for the group that was laughing earlier who are now very vocal in announcing their appreciation for the play. "Know of subtlety, House Chamgar does not," Matlub says. "A shame it is, that tainted the soiree with this rivalry, they have."`
+			`	The doors open once again as new patrons cycle in to watch the third play.`
+			choice
+				`	(Stay for the next play.)`
+				`	(Leave.)`
+					goto leave
+			`	Everyone takes their seats, and the Arach announcer heads to the stage again. "A cathartic tragedy, our third play of this evening is. For our next performance: 'Til Death."`
+			`	The stage lights go dark as the curtains open to a single spotlight. It illuminates an old Arach getting dressed inside a small shack on the right side of the stage. He coughs, and something akin to an organ begins to play a melancholic melody. Once he leaves, the shack is left in the dark as the spotlight follows him to the middle of the stage, where he makes his way carefully down an empty street. He is allowed to pass beyond the spotlight, which goes dark as the perspective shifts and a second spotlight renews the focus. The left side of the stage is finally lit up, where the Arach starts tending to a garden by the entrance of a manor. The organ stops its weeping every once in a while, right when the Arach is coughing, only to resume once he's done. Leaving the manor, a richly dressed Arach points to one of the flowers in the garden, showing it to be shriveled and dead. He plucks it and throws it to the ground before leaving. The gardener picks up the flower, sticks it inside his clothes, and continues his work.`
+			`	Once his work is done, he heads back to his shack, the spotlights following him as he moves around the stage. Once inside, he looks inside a small box, taking a simple vase and placing the flower inside it. The stage goes dark as he goes to sleep and the piano stops, with only the occasional cough echoing throughout the theater. When the light comes to the shack again, the Arach slowly gets up and again leaves for his job, pausing for a moment on the street part of the stage during a heavy coughing fit. Once he's done with the work and begins going back home, he starts coughing again, not letting up for more than a second at a time. During this the spotlights transition to the next section of the stage, and the piano plays a brief note. Once inside his shack, he collapses, knocking down the flower vase in the process. The piano plays a few slow chords, and the last spotlight goes out during the final note.`
+			`	You hear the curtains closing, and the lights of the theater turn back on again as the audience is taken by a round of applause. Once they've settled, the announcer goes up to the stage again. "And with that, concluded, our soiree is. Thank you all for gracing us with your presence, I, in name of the theater, do." He lowers his head in a bow and leaves the stage again as nearly all of the patrons in the audience get up and head for the exit, this time with nobody else coming in to take their seats. At the same time, the orchestra starts packing up their instruments. There are, however, a few who remain in their seats, including Matlub.`
+			choice
+				`	(Stay.)`
+					goto end
+				`	(Leave.)`
+			label leave
+			`	You thank Matlub for inviting you here, and while she doesn't seem to pay you much mind, you can feel the gazes of other Arach patrons on you, whispering among themselves as you leave.`
+				decline
+			label end
+			`	The theater workers leave one after the other, leaving you and the other guests with an empty stage. After a while, the lights are turned off. A couple minutes later, however, you hear the curtains open, as some violins start to play in unison. Their music doesn't come from where the orchestra was seated, but as if they were all over the theater, behind you and even up on the balconies. A strong light comes from the stage, most of it blocked by a tall, dark figure. It isn't an actor, however, instead seeming to be made out of wooden parts kept up by thin wires you can barely spot when looking at the top of the stage. The violins' song is disrupted by dull, successive drum hits, at which point the figure moves, with its "arms" opening to the sides; it becomes even taller as it stands up. It is a humanoid creature, and it begins to slowly move around the stage, as if dancing in a pendulum. Cellos join in with the violin screams, and are followed by a choir, though you cannot understand their words. You do recognize, however, that it isn't being sung in any language of the Coalition.`
+			`	The creature appears to get closer to the audience, growing in size, and as the choir and instruments become more intense, it swings one of its arms upward and removes the wires. Despite this, it stays upright and continues to move. It brings both arms close and strikes its own head to form two small holes which the background light shines through. Then, it falls to its knees, with one arm reaching for the audience, as the light behind it turns off and the choir and music subside.`
+			`	The lights turn back on, revealing curtains still open, but nothing on the stage. A few workers come in to tidy up the place, and the remaining guests now get up to leave. "Enjoyed the soiree, have you, Captain?" Matlub asks, as she herself gets up to leave. "Come now, actually over, the show now is."`
+			choice
+				`	"What the hell was that thing?"`
+				`	"If it only ended now, why did that announcer come up after the third play to dismiss the guests?"`
+			`	She doesn't answer, heading straight for the exit. You follow her outside, and she guides you back to your ship. "Thankful for you accompanying me, I am, Captain. Safe travels, may you have."`
+				decline
+
+
+
+mission "Coalition Folklore: Kimek"
+	minor
+	invisible
+	to offer
+		random < 30
+	source
+		attributes "kimek"
+		attributes "folklore"
+	on offer
+		conversation
+			`A Kimek flags you down when you enter the spaceport. "Busy are you, Captain?" he asks. "Taking place today, a cultural festival is, and participate in it, anyone can. A reenactment of the old 'Spring Siege' folk tale, it is. Play the part of one of the characters, anyone can."`
+			choice
+				`	"That sounds like fun. Where is it being held?"`
+				`	"Sorry, I'm too busy right now for that."`
+					decline
+			`	He asks you to follow him, and the two of you board a train leading to another section of the city, where you exit the train at the edge of a large park. There, you see that many sets of camps dot the savanna plains, and an equal number of wooden forts stare down from the top of a long hill. Each "set" of fort and camp is separated from the others by many patches of vegetation that go up the hill.`
+			`	You follow the Kimek for a while longer until he finds you a pairing of camp and fort that have a vacant spot in either side. "Well Captain, choose a side to play as, you must. The hang of it, you will get, once started, the event has, but as a quick summary, take the 'crops' inside the fort before time runs out, the attacking team must. Prevent them from doing that, the defenders must. At the end, rewarded, the victors are."`
+			choice
+				`	"I'll join the attackers."`
+					goto att
+				`	"I'll join the defenders."`
+					goto def
+				`	"Hang on, if this is a folk tale, how come you're reenacting it as if any side could win?"`
+			`	He chitters, as if expecting the question. "Witnessed by a minstrel, the battle was. Traveling on fields like these, he was, before the fort and the raider camp, he spotted in the distance. Hid himself in foliage close to the scene, he had, and writing and painting it as it happened, he was. When reached its climax, the battle had, swept up by the wind, many flowers were, and block his vision they did. Once settled down the wind had, over, the battle was. Spring it was, so 'Spring Siege' became the story's title."`
+			`	Seeing you have more questions now, he continues. "Silly and nonsensical at times, the story is. Know that, we do, and that simply looking to entertain a crowd, the minstrel was, but with all forms of classic tales, is that not the case?" He chitters some more, and looks at the group up on the hill and the other in the camp, before continuing. "Foreign as it might seem, participate in it, will you not? Perhaps like it, you might."`
+			choice
+				`	"Alright, I'll join the attackers."`
+					goto att
+				`	"Alright, I'll join the defenders."`
+			label def
+			`	He brings you to the small fort up the hill. Its gates open as those inside (mostly Kimek as expected, but also a couple Arachi and a lone Saryd) are still getting ready. A small "farm" sits in the middle, with plastic replicas serving as the crops. The walls of the fort are made of various tall logs, densely covered by tufts of vicious, reddish thorns nearly as long as your arm. Inside, you can see that a higher level with battlements is accessible via staircases on either side of the courtyard; you also notice that the defenders are all wearing a green strip of cloth over their clothing. Another Kimek organizer, wearing a rugged leather vest that you assume is the Kimek equivalent of medieval armor, comes to meet you both at the gate. He greets his colleague, who introduces you and says that you have chosen to join the defenders, before heading back down the hill.`
+			`	"Glad to have you as part of the garrison, our fort is," the armored Kimek begins. "Told about the enemy's objective, I assume you have been. Protect our farm, we must, so allow the produce to be stolen, we cannot." He tells you to follow him to the "keep," a shack too small for any non-Kimek, and gives you a long piece of green cloth. He then informs you that it is meant to be worn, so that others can tell what team you are on. As you wrap it around you like a scarf, you notice that, behind the shack, there is a smaller gate that grants entry to the fort. Once you're done, he gives you a brief tour of the rest of the fort, taking you up the battlements and above the main gate, where you see buckets of what at first appears to be water. Your guide informs you that the liquid inside is actually quite slick, and during the re-enactment, it is poured downhill to slow the attackers.`
+			`	Once he's done, he tells you to wait in the courtyard, as the "battle" will begin soon. A few minutes pass before a loud whistle blows, and the Kimek in charge of the fort tells everyone that the other side has begun their attack. The front gate is closed, and some of the defenders begin placing heavy objects behind to barricade it; others are already up by the battlements, waiting for the right time to use the buckets of slippery liquid.`
+			choice
+				`	(Help reinforce the main gate.)`
+					goto defr
+				`	(Go help slow down the attackers.)`
+					goto defw
+			label defr
+			`	You join the others in gathering and moving heavy objects, and quickly find some crates behind the small shack, which a couple of Arachi help bring to the gate. Some Kimek take logs they find stashed under a staircase and bring them as well, burying one end in the ground with the other end against the door. The liquid poured on the attackers does slow them down for some minutes, but once you're done, they're already banging at the gate. Most of those inside the fort, particularly the Saryd that has joined in, head to the main gate to try and keep it closed, but a few Kimek head around the back to check on the smaller gate.`
+			choice
+				`	(Help keep the main gate closed.)`
+					goto defrw
+				`	(Go with the others and check the back gate.)`
+			`	Once you get to the back gate, you and the Kimek there stay quiet and try to listen for anyone approaching this side of the fort. Sure enough, you hear scuttling Kimek legs swishing through the grass as the attackers come circling around. Fortunately, not many came to this gate, so, with your help, your Kimek teammates don't have much trouble keeping the gate closed. Thanks to the main gate having been reinforced, the group there holds well enough that some more come to the back to help, and after some minutes of struggling with the attackers on the gate, another whistle is sounded. It marks that time has run out and that the defenders have won.`
+				goto won
+			label defrw
+			`	With the fortifications from earlier helping keep it shut, holding the main gate proves easy enough. After a few minutes pass, however, you hear a commotion from behind the shack. As you and others go there to check, you arrive to see the small gate open, the attackers, wearing blue sashes in place of your team's green, having already made their way inside. The whistle sounds again, marking the end of the battle and the victory of the attackers.`
+				goto lost
+			label defw
+			`	You go up the stairs and are given one of the buckets with the slippery substance. You notice that the others up here are all Kimek and Arachi, however, and they are only pouring the liquid down directly in front of the gate. When you see some of the blue sash wearing attackers advancing from the sides, where the liquid hasn't been poured, you chuck a bucket their way. This leaves a line of the liquid on that side, and those attacking from there lose their footing, tripping and falling again and again. Once your teammates realize what you've done, they begin to egg you on, encouraging you to throw more buckets to cover the sides while they continue to drench the middle. Despite your efforts, however, the attackers do eventually make it up the hill and start banging at the gate. Most of those inside the fort, including the Saryd, head to the main gate to try and keep it closed, but some Kimek instead head around the back to check on the smaller gate.`
+			choice
+				`	(Help keep the main gate closed.)`
+					goto defww
+				`	(Go with the others and check the back gate.)`
+			`	Once you get to the back gate, you and the Kimek there stay quiet and try to listen for anyone approaching this side of the fort. Sure enough, you hear scuttling Kimek legs swishing through the grass as the attackers come circling around. Fortunately, not many came to this gate, so, with your help, your Kimek teammates don't have much trouble keeping the gate closed. The group at the front gate isn't so lucky, however, and after a brief minute, the whistle sounds again. Your group comes back to the courtyard to find that the gate has been busted open and that the attackers with their blue sashes have won.`
+				goto lost
+			label defww
+			`	At first, holding the gate isn't too troublesome, but after a few minutes pass, it starts being pounded by some form of battering ram, and before long the group there can't hold it closed. At the same time, you hear a commotion from behind the shack, and as you and others go there to check, you arrive to see the small gate open. The attackers having made their way inside via both gates, the whistle sounds again, marking the end of the battle and the victory of the other side.`
+				goto lost
+			label att
+			`	He brings you to the nearby camp, where many Kimek, Arachi, and even a few Saryds are gathered for the event. Most of them are waiting in anticipation inside one of the tents, or looking up at the fort; all of them have long, blue strips of cloth over their own clothing. Once she notices you two, another Kimek organizer, donning what looks like a thin gambeson, comes to say hello. She greets her colleague, who then introduces you and tells her you have chosen to join the attackers, before leaving the camp to welcome a family who has come to watch the event.`
+			`	"Honored to have you fight alongside us, our company is," the armored Kimek begins. "Told about our objective, I assume you have been. Break into the fort, we must, before up the time is. Ten minutes, we have, once started, the battle has." She tells you to follow her to the "war tent," one that's slightly larger than the others around it. There she gives you a long piece of blue cloth and informs you that it is meant to be worn so that others can tell what team you are on. Wrapping it around your neck like a scarf while you look around the main tent, you see that there is a stumpy log reinforced with metal bits stored here, which the Kimek tells you will be used as a battering ram to force open the gates. She then has you follow her to the edge of the camp to show you the limits of this "set," which is marked by patches of vegetation meant to indicate the boundaries of the game. "Also, discourage anyone from trying it, the thorns should, but against the rules, it is, to crawl up the walls of the fort, so-" She pauses, looking at you as if just realizing that such a thing is impossible for you. "Sorry, out of habit, I said it. Participate in this event, not many groundlocked people do; few Saryds here I've met. Even fewer humans, as imagine, you can."`
+			`	Once she's done, she says you're free to roam the camp as you wait for the "battle" to begin. A few minutes pass before a loud whistle blows, and the Kimek in charge of the camp tells everyone that the time has come. She leads the charge up the hill, with most of those from the camp following her. Others split into smaller groups and instead move up along the trees that separate the sets, trying to approach the fort from the sides.`
+			choice
+				`	(Charge with the main group.)`
+					goto attw
+				`	(Take the longer side route.)`
+					goto attr
+			label attw
+			`	You follow the lead of the Kimek and start to run straight up the hill, directly at the fort. Once you get closer, however, you see the defenders, garbed in strips of green cloth as opposed to your blue, pouring out buckets of what looks like water. As it flows down the hill to meet your steps, though, you immediately lose your balance and your feet slip out from under you, and you slide a short distance back down the hill. You get up, but, try it as you may, you cannot find stable footing in the wet grass, instead having to step on the few tufts that have grown too high for the liquid to cover them. Even with all their legs, the Kimek and Saryds fare no better, and find themselves in similar trouble, losing their balance again and again. Only the Arachi can press onward, digging down into the dirt beneath the grass with half their legs at each step. They slowly but surely help you and the others move up, and eventually you reach the gate, only to find that the groups that came from the sides are already working on busting it open. You can also see what the Kimek meant when she spoke of "thorns;" tufts of vicious, reddish barbs nearly as long as your arm cover the logs that make up the walls.`
+			choice
+				`	(Try and find another way in.)`
+					goto attwr
+				`	(Help the others bust the gate open.)`
+			`	You start pushing along with the others, the Saryds joining you from below, and the Kimek and Arachi crawling up to push at the top of the gate. They take turns with each others when one gets tired so that someone is always pushing, even though their attempts aren't the most effective. After a while, you hear a cracking noise, and the gate finally begins budging slightly, as if something barricading it had broken off. As the latecomers of the main force come up, bringing with them the battering ram, everyone makes way for them to begin hammering it against the gate. The gate shudders with each hit and gradually begins to give even more, but even the battering ram team cannot break through fast enough as the whistle from the start of the event sounds again. Evidently this means that time has run out, and the defenders have won.`
+				goto lost
+			label attwr
+			`	You and a part of the group stick close to the walls and follow along them to the other side, careful not to scratch yourself on the thorns along the fort. You soon find another, smaller gate, and begin pushing. Unlike what you can see of the efforts you left at the main gate, you can feel this one budging immediately, and there is no slick ground to worry about. Once they realize the vulnerability of this gate, the Saryds in the group ask others to move out of the way. You are a bit startled as they suddenly charge it in unison, almost forcing it open with a single concerted effort. More defenders come to hold it, though, and the gate becomes increasingly difficult to move any further. One Arach heads back to the main group to call for more help, but when they arrive, so do more defenders. The struggle continues for many minutes, with the attackers alongside you unable to make a final breakthrough. The whistle sounds again, marking the end of the battle, announcing that the defenders have won.`
+				goto lost
+			label attr
+			`	You follow a group to the edges of this set, losing some time before beginning your run up the hill. Once you finally start making your way up, you turn to see the main group repeatedly tripping and falling back. It seems the defenders, who are wearing green identifiers instead of blue, are pouring some slippery liquid down from the battlements above the gate, slowing those that are coming along a direct path. You reach the top while the main force still struggles, and your group makes its way to the gate. On your way, you see what the Kimek meant when she spoke of "thorns," with closely-spaced tufts of vicious, reddish barbs nearly as long as your arm covering the logs that make up the walls. You reach the gate, but as you push and push, it refuses to budge even the slightest bit, clearly having been barricaded from the inside. The main group eventually catches up to you, but even with many more people pushing now, the gate still holds firm and unmoving.`
+			choice
+				`	(Try and find another way in.)`
+					goto attrr
+				`	(Continue trying to bust the gate open.)`
+			`	You start pushing along with the others, the Saryds joining you from below, and the Kimek and Arachi crawling up to push at the top of the gate. They take turns with each others when one gets tired so that someone is always pushing, even though their attempts aren't the most effective. After a while, you hear a cracking noise, and the gate finally begins budging slightly, as if something barricading it had broken off. As the latecomers of the main force come up, bringing with them the battering ram, everyone makes way for them to begin hammering it against the gate. The gate shudders with each hit and gradually begins to give even more, but even the battering ram team cannot break through fast enough as the whistle from the start of the event sounds again. Evidently this means that time has run out, and the defenders have won.`
+				goto lost
+			label attrr
+			`	You and a part of the group stick close to the walls and follow along them to the other side, careful not to scratch yourself on the thorns along the fort. You soon find another, smaller gate, and begin pushing. Unlike what you can see of the efforts you left at the main gate, you can feel this one budging immediately, and there is no slick ground to worry about. Once they realize the vulnerability of this gate, the Saryds in the group ask others to move out of the way. You are a bit startled as they suddenly charge it in unison, almost forcing it open with a single concerted effort. More defenders come to hold it, though, and the gate becomes increasingly difficult to move any further. One Arach heads back to the main group to call for more help, but when they arrive, so do more defenders. The struggle continues for a while, before you hear loud bangs from the other side of the fort. The Kimek organizer comes around the back to tell everyone to return to the main entrance. As you come to the main gate, you see the battering ram has forced the main gate open, something that must've been made easier with so many leaving it unguarded to instead defend the back gate. With that, the whistle sounds again, marking the end of the battle, announcing that the attackers have won.`
+			label won
+			`	The Kimek organizer in charge of your side starts a cheer, which quickly spreads to the others. After the leaders of both teams meet to greet each other, everyone is asked to return the colored cloth they were given and make their way down the hill. Your group is pointed to a nearby building to wash off any dirt, if needed. Once you're all cleaned up, you head back to the camp, where the Kimek who brought you here is waiting to guide your group to many short tables with plates on them; apparently, the reward for winning is a feast. As most of those who participate are Kimek, almost all of the food comes the way they prefer it: a soupy, half-digested mess. Thankfully there are a few meals prepared the way the other species like them, meaning you can pick one prepared for Saryds; their meals are the closest you can get to human cuisine here.`
+			`	The Saryd first course offered consists of many cooked vegetables, arranged in a little mound on the plate, with a thin trail of steam still coming from them. Talking with the organizers, you learn that the meals are meant to represent the produce of the fort's "farm," and that those who win earn the right to the banquet. Once you're done eating, you return to where the train dropped you off and get on the next one heading back to the spaceport.`
+				decline
+			label lost
+			`	The Kimek organizer of the other side starts a cheer, which quickly spreads to the others. After the leaders of both teams meet to greet each other, everyone is asked to return the colored cloth they were given and make their way down the hill. Your group is pointed to a nearby building to wash off any dirt, if needed. Once you're all cleaned up, the Kimek who brought you here is waiting by the camp to guide your opponents to many short tables with plates on them; apparently, the reward for winning is a feast. "A shame it is, that lost the battle your team has," he says. "But hopefully, still fun with the event you had."`
+			`	Before he leaves with the victors, he explains a bit more about the event, telling you that the meals that will be served at the banquet are meant to represent the produce of the fort's "farm," and that those who win earn the right to it. Finally, he thanks you for participating, and goes with the winners to the tables. You return to where the train dropped you off and get on the next one heading back to the spaceport.`
+				decline
+
+
+
+mission "Coalition: Alpha Encounter"
+	minor
+	invisible
+	to offer
+		has "Coalition: First Contact: done"
+		has "remembrance day: offered"
+		random < 1
+	source
+		government "Coalition"
+		not attributes "station"
+		not planet "Secret Sky" "Remote Blue" "Bloptab's Furnace" "Ahr"
+	on offer
+		event "alitis freed" 1095
+		log "Minor People" "Alitis" `Alitis, formerly known as Athis, is an Alpha who lives in the Coalition. Centuries ago, he stole a jump drive from an alien ship and used it to explore, but after some sort of encounter in the galactic east, he decided to give up on his former life.`
+		conversation
+			`You're window-browsing a shop in the spaceport when you catch the scuff of too quick footsteps coming towards you. Before you can glance in that direction, you're suddenly tackled into the ground by someone astonishingly human-shaped. You try to get up, but whoever attacked you pins you down, pressing your face into the ground and holding your arms behind your back to restrain you. As you struggle against your attacker you manage to catch sight of long hair and then, with a flash of concern, a glimpse of green skin - an Alpha.`
+			`	You are not pressed for long though. You feel the Alpha's attention shift to the side you cannot see, as an Arach swoops in with a tackle. The Alpha lets go of your arms in an attempt to block the attack, but it does not prevent the Arach from bowling them clear off of you where the two begin to wrestle in your line of sight. The Alpha is a man and, surprisingly to you, despite his strength, it doesn't take long for the Arach Heliarch to restrain your attacker. The Arach firmly pins his arms to his torso with four legs, holds his hips down with two, and uses her last pair to lever herself until she rests her entire body weight into pinning the Alpha.`
+			`	A Saryd Heliarch approaches and tells you to keep your distance before interposing himself partially between you and your assailant. He then looks at the Alpha and asks through his translator box, "What reason for attacking this person, did you have?"`
+			`	The Alpha is still struggling to try and get out of the Arach's grip, and you notice an intricate gold necklace which has splayed across his shoulder and onto the floor in the scuffle, jangling in the quiet every time he struggles. At this point, everyone else has cleared out of the area and is giving the scene a wide berth. As you get to your feet he ignores the Saryd's question and looks at you intensely. "You're with the Navy, aren't you? Finally figured out I was here, thought you'd finish the job?"`
+			branch navy
+				has "license: Navy"
+			choice
+				`	"No, I'm not with the Navy. You could've just asked without slamming me to the ground."`
+					goto notnavy
+				`	"Is that why you attacked me?"`
+					goto detained
+			label navy
+			choice
+				`	"I am with the Navy, but I didn't come here looking for you."`
+				`	"Is that why you attacked me?"`
+					goto detained
+			`	"And I'm supposed to believe that crap?" He lashes out, trying again to knock the Arach off of him, but the agent only tightens the grip. She opens her mandibles, getting them close to the Alpha's neck. "Alright, alright, I get it!" the Alpha shouts, stopping his attempts to break free.`
+				goto detained
+			label notnavy
+			`	He stares at you for a moment, as if unsure if you're telling the truth. "What the hell are you doing here then? Did you just stumble onto this place?" He stops struggling, but the Arach agent doesn't loosen her grip.`
+			label detained
+			`	The Saryd walks closer to the Alpha, stomping his hoofs on the ground with each step. "Whatever your motivation was, a transgression, you have committed. Punished accordingly, you shall be," he says. "Kindly follow us to the detention facility, would you, Captain?" he asks you, but doesn't wait for an answer, as more agents arrive to escort you and the Alpha to the "detention facility."`
+			`	On your way there, you start feeling stings on your arms and legs, and realize the Alpha's tackle left you with some bruises. "Treat those, we will, after faced trial, your agressor has," the Saryd says as you approach your destination: a building similar to a police station. The Alpha is brought before a Kimek that you guess is in charge of the facility. He asks you to give a testimony of what happened, with the Heliarch agents confirming what you say. "Your first offense in a long time this is, Alitis," the Kimek says, after checking a computer for the Alpha's data. "Three years in seclusion, your sentence is."`
+			`	After the short verdict, which seems to lack much of the due process you would expect in human space, the agents bring both you and the Alpha to a lower level of the building. This floor has several empty cells kept shut by thick, tough walls of some transparent material. While the cell block does appear to go further beyond this section and around a corner, the first few cells appear to be directly opposite a modest medical space, presumably used mostly for treating any injured prisoners without leaving the secure level. At present though, all of the cells appear to be empty, and the Heliarchs simply lock him in the second cell, where accessing his would not obstruct any other doorways. The agents then ask that you wait a few minutes for a medic to arrive so that they can take care of your bruises.`
+			`	You notice that cut into the transparent material of the walls are a series of small holes at head-height with a cover that can be slid across them, presumably to silence a prisoner if needed. By default, they appear to be left open, and the Heliarch agents have not closed the one on the Alpha's cell.`
+			`	Your eyes shift from the holes in the wall to the Alpha to find his eyes fixated on you, not looking away or even blinking. After you stare him down for a couple of seconds, he speaks up. "What is it, are you expecting some sort of apology? I'd consider my caution to be entirely justified, so you won't get one."`
+			choice
+				`	"Who are you? How did you even get here?"`
+				`	"What are you doing here in the Coalition?"`
+			`	He frowns at you. "I don't owe you any answers, cur. Shut up and wait for the law to bring the frail princess some band-aids and a lollipop."`
+			choice
+				`	"Are you so busy in that empty cell that you can't answer me?"`
+				`	"Tough talk for someone who wrestled a spider and lost."`
+			`	He leans forward, his legs twitching as if stopped mid-tackle, and he pauses, turning to look down the hallway to where the Heliarchs went. He backs up, slowing his breathing, and then sits down. "Alright. This may be the last time in three years I can have a proper conversation, so I will entertain you. My name... is Alitis. Over a century ago my kin stumbled upon an alien civilization beyond the Far North in conflict with bands of invaders. These invaders possessed drive capable of jumping between systems without the need for hyperspace links, technology that we greatly desired, for it could put us far outside of the reach of... you." He fixates his eyes on yours, ever so slightly closing his eyelids. "We explored the far reaches of the galaxy to the east, but found no place to call home. Our only choice was to return to the Dirt Belt where we knew of an enclave of more kin, only for the Navy," he spits on the ground, then looks at you again, "to find us. We evacuated, and my kin thought it wise to return to the east, but I knew better. I stole one of the drives my kin had along with a small ship and began traveling west. That is when I discovered the Coalition, and they have provided for me a home that I have been unable to find elsewhere in the galaxy."`
+			choice
+				`	"You 'knew better?' What do you mean?"`
+				`	"What, did you have a change of heart once you got here?"`
+			`	He gets up in a rush. "Full of questions, aren't you?" He approaches the wall again, in slow steps. "I was among the first of my kind. Athis, I was called then. I have traveled the galaxy for many centuries and witnessed many things. I have been ambushed, cornered many times; fear was not a stranger to me, for as soulless as your kind see me, we still feel. But when I traveled to the east, someone, or... something, rather, spoke to me. A voice with an immense weight. And for the first time, I felt something more than fear. I felt dread. So when my kin decided to return to the east, I was not so inclined to return with them."`
+			choice
+				`	"Voices in your head? Are you sure you weren't just imagining them?"`
+					goto imaginary
+				`	"What did the voice say?"`
+			`	He looks away from you. "You're here now, aren't you? This means you must have a device to jump beyond links as I did. Travel to the east and find out for yourself what the voices say. Find out if it classifies you as 'disposable' as well.`
+				goto end
+			label imaginary
+			`	He looks away from you. "No imaginary thing could have such an impact on me. You're here now, aren't you? This means you must have a device to jump beyond links as I did. Travel to the east and find out for yourself that the voices are real."`
+			label end
+			`	The Heliarchs inform you that the medic has arrived, and bring you further down the hallway to a room where they treat your bruises. They examine you briefly, then give you a tube with a thick liquid, almost like a gel, asking that you gently apply it on your wounds. Once you're done, they tell you that the pain should wear off within a few minutes, and an agent escorts you back out. Passing by his cell again, you see Alitis still standing with his back to the hallway, looking straight at the wall. The agent brings you to your ship, and thanks you for your cooperation.`
+				decline
+
+event "alitis freed"
+
+
+
+mission "Saryd University Lecture"
+	name "Transport Saryd Scientists"
+	description "Starlit University on <planet> is hosting a seminar on xenology. Transport a guest speaker there by <date>. Payment is <payment>."
+	passengers 1
+	deadline
+	to offer
+		random < 40 
+		has "Coalition: First Contact: done"
+	source "Warm Slope"
+	destination "Shadow of Leaves"
+	on offer
+		conversation
+			`As you exit a restaurant in the spaceport, you notice a rumpled-looking Saryd staring at you. This is not particularly unusual, as consider what a strange sight you must be here in Coalition space. However, he then begins to gallop towards you, hailing you down.`
+			`	"Captain! Excited to finally meet you, I am. Heard of the human in our space, I have, but to see you myself, special it is."`
+			`	"A scientist, I am, and invitied to speak at a university seminar, I have been." This time, he speaks in a calmer tone of voice. "Be there by <date>, I must. The honor of transporting us to <planet>, will you give me?"`
+			choice
+				`	"What is the seminar about?"`
+					goto xeno
+				`	"Sure, I'd be glad to transport you."`
+					goto accept
+				`	"Sorry, I can't take transport jobs right now."`
+					decline
+			label xeno
+			`	"Funny you ask, it is. A xenologist, I am. Alien culture and physiology, I study, and the topic of the seminar, it is. Invited to give lectures on the subject, I have been. Take me there, will you?"`
+			choice
+				`	"Sure, I'd be glad to transport you."`
+				`	"Sorry, I can't take transport jobs right now."`
+					decline
+			label accept
+			`	"Wonderful!" he says. "Aelbris, I am." He soon gathers his things and boards your ship. As he enters, he seems fascinated by its structure and design. His gawking makes it difficult to get him to finally settle down into his bunk.`
+					accept
+	on complete
+		"coalition jobs" += 3
+		payment 25000
+		conversation
+			`During the trip, Aelbris was polite, if a little excited to have a human as his pilot. He asked many questions during the flight, which you answered as best you could. Once you and your passenger depart from your ship, Aelbris turns around.`
+			`	"Captain, that you must be very busy, I realize, but wondering if you could stay for the seminar, I was. You see, studying human space for years, I have been, but actually met a human, I had not. A great boon to our field to have a human guest speaker, it would be."`
+			choice
+				`	"What do I have to do there?"`
+					goto answer
+				`	"I don't think that I'd be a good representative of humanity."`
+					goto low
+				`	"How do you manage to study humanity without meeting any humans?"`
+					goto explanation
+				`	"Sure, I'd be glad to."`
+					goto yes
+				`	"Sorry, I don't have time."`
+					decline
+			label answer
+			`	"Answering some questions from the attendees, would you be comfortable with? Simple, they would be, about aspects of human society, physical structure, and the like, they would pertain to."`
+			choice
+				`	"Sure, I'd be glad to."`
+					goto yes
+				`	"Sorry, I don't have time."`
+					decline
+			label low
+			`	"Nonsense! Travel the galaxy, you do. A most knowledgable individual, surely you must be. Accept my offer, will you?"`
+			choice
+				`	"Sure, I'd be glad to."`
+					goto yes
+				`	"Sorry, I don't have time."`
+					decline
+			label explanation
+			`	"Close to Arachi space, humans are, so study radio and television signals from your part of the galaxy, we are able to. Faint, scattered broadcasts, sophisticated receivers collect, and the signals to us, Arachi colleagues relay. From these broadcasts, we learn. Help us learn more, would you?"`
+			choice
+				`	"Sure, I'd be glad to."`
+					goto yes
+				`	"Sorry, I don't have time."`
+					decline
+			label yes
+			`	"Thank you! A great honor, you have done our field of study." He motions you to follow him.`
+			`	The train you took to the university arrives remarkably quickly, and you are soon on your way towards a large building.`
+			`	You enter a room full of tables packed with citizens from across the Coalition. A stage is at the front, where a Kimek is setting up some sort of diorama. Your entrance immediately causes a stir, and several turn to look at you. Aelbris beams as he shows you to your table."`
+			`	"Now, unplanned, your visit is, so consult with the seminar organizers, I must. Be right back, I will."`
+			`	You wait for a while, until an Arach walks up to the stage. The box's volume is much louder than normal, and you can easily hear what is being spoken.`
+			`	"Pleased to announce that the 103rd Xenology Seminar, generously hosted by Starlit University, is now in session, I am. Noticed as you may have, in the presence of a very... unusual guest, we are. The honor of having <first> <last> of the Rutilicus system answer some questions at the end of today's seminar, we will have." The Arach gestures to you, as Aelbris sits down at your table.`
+			`	The first speaker, a Kimek, talks about human farming methods as they compare to other members of the Coalition. Strangely enough, you see him cite human news broadcasts and television shows as if they were academic papers. All of the broadcasts are hundreds of years out of date. Viewing your own society from the outside feels surreal.`
+			`	The seminar goes on for some time. A Saryd gives a suprisingly accurate lecture on the human body. An Arach goes into detail explaining the technological level of human ships. There are even occasional speeches given on supposed aliens to the east and north. Seeing as they have no direct evidence, however, the scientists can do little more than speculate. Once all the speakers have finished, Aelbris informs you that it is now your turn to answer their questions.`
+			choice
+				`	"Alright, let's go!"`
+					goto questions
+				`	"I don't want to do this anymore."`
+					goto scared
+			label scared
+			`	"To answer their questions, if you really don't want, I can't stop you, I suppose." Aelbris says with a sigh.`
+					decline
+			label questions
+			`	As soon as you walk up to the stage, several scientists in the crowd stand up out of their chairs. An Arach comes up to you on the stage, and explains that this is their way of asking questions. She selects a Saryd from the crowd.`
+			branch hai
+				has "First Contact: Hai: offered"
+			`	"Aliens besides the Quarg, are humans in contact with?"`
+			choice
+				`	"No, the only aliens humans know about are the Quarg."`
+					goto sad
+			label hai
+			`	"Aliens besides the Quarg, are humans in contact with?"`
+			choice
+				`	"Yes, humans are in contact with the Hai. They live to the north of human space, and we can visit them through a wormhole."`
+					goto "know"
+				`	"A few humans know about the Hai, but there's no official acknowledgement of their existence. They live to the north of human space, and we can visit them through a wormhole."`
+					goto "know"
+				`	"No, the only aliens humans know about are the Quarg."`
+					goto "sad"
+			label sad
+			`	At this several in the audience sound disappointed.`
+				goto nextquestion
+			label know
+			`	Several members of the audience are delighted. "Cooperation between different species, it is important to foster," says the Saryd who asked the question. An Arach asks you to point out where the Hai are on a galactic map, and you do so.`
+			label nextquestion
+			branch war
+				has "FWC End: completed"
+			`	The Arach selects another, this time a Kimek. "All of human space, united politically is it?"`
+			choice
+				`	"No, human space is split between the Republic in the north and the Free Worlds in the south."`
+				`	"No, human space is split between the Republic in the west, the Free Worlds in the south, and the Syndicate in the east. The Syndicate is technically part of the Republic, but they have a lot of autonomy."`
+			`	There are murmurs in the crowd, and several begin to write down notes on various devices."`
+				goto questionthree
+			label war
+			`	The Arach selects another, this time a Kimek. "All of human space, united politically is it?"`
+			choice
+				`	"Yes, all of human space is united under the Republic."`
+				`	"Yes, but there are internal subdivisions: the Free Worlds in the south, the Republic in the north, and the Syndicate in the east."`
+				`	"No. Technically all of human space is under the Republic, but the Free Worlds and Syndicate have significant autonomy."`
+			`	There are murmurs in the crowd, and several begin to write down notes on various devices."`
+			label questionthree
+			`	The Arach picks another Kimek. "Still a problem, is piracy in human space?"`
+			choice
+				`	"Yes, there are pirate planets on the fringes of human space."`
+				`	"Piracy was a big problem in the past, but now it's a relatively minor issue."`
+			`	"Stamped out, may human piracy soon be," says the Arach in a solemn tone of voice. She picks a Saryd for the next question.`
+			`	"A fairly comprehensive map of human space, we have." The Saryd brings out a star map of the galactic south. "But of the core, we know not. Inform us of the galaxy, can you?"`
+			branch korath
+				or
+					has "First Contact: Korathi Efreti: offered"
+					has "First Contact: Laki Nemparu: offered"
+					has "First Contact: Karek Fornati: offered"
+					has "First Contact: Setar Fort: offered"
+					has "Wanderers: Rek To Kor Efret: offered"
+			choice
+				`	"Sorry, I don't know what's there any more than you do."`
+			`	The Saryd walks away, disappointed.`
+				goto sorry
+			label korath
+			choice
+				`	(Tell them about the Korath.)`
+					goto tell
+				`	(Don't tell them about the Korath.)`
+					goto donttell
+			label donttell
+			`	"Sorry, I don't know what's there any more than you do."`
+			`	The Saryd walks away, disappointed.`
+			label tell
+			`	"An alien species known as the Korath live there. They're reptillian creatures whose space has been torn apart by fighting. There are four factions. The Kor Sestor and Kor Mereti have been fighting a civil war using autonomous robotic ships. The Kor Efreti have stayed out of the civil war, living under the Quarg's protection." At this there are hisses from several in the crowd. "The last faction, the Korath Exiles, have been banished to the Core by the Quarg, for refusing to give up their ability to manufacture jump drives. They are now raiding humanity for supplies."`
+			`	The crowd shows considerable interest at this last part. "Knowledge of the jump drive, a species besides the Quarg possesses? Great news, this is! Our struggle against the Quarg, we do not take up alone. Escape the cages of the Drak, do any other species?" The Arach does not seem to mind you answering another question.`
+			branch unfettered
+				has  "First Contact: Unfettered: offered"
+			choice
+				`	"Sorry, I don't know of any other species that does."`
+					goto sorry
+			label unfettered
+			choice
+				`	"There is a faction among the Hai, the Unfettered. They steal from the normal Hai, and try to get their hands on jump drives any way they can."`
+					goto unfortunate
+				`	"Sorry, I don't know of any other species that does."`
+					goto sorry
+			label unfortunate
+			`	"Driven to such desperation, it is unfortunate that our allies against the Quarg are. Powerful like the Coalition, hopefully one day they will be."`
+				goto exit
+			label sorry
+			`	The crowd's mood dampens a bit, but everyone is still quite exuberant as you leave the building. It is now night, and your eyes take a moment to adjust from the lecture hall's bright lights.  Aelbris meets up with you outside, bubbling with excitement.`
+			`	"Thank you, captain! Expanded our knowledge greatly, you have. Hope to see you again, I do. Safe travels!"`
+			`	After he shakes your hand, you say your goodbyes and board your ship.`
+				decline
+			label exit
+			`	The crowd's mood is exuberant as you leave the building. It is now night, and your eyes take a moment to adjust from the lecture hall's bright lights. Aelbris meets up with you outside, bubbling with excitement.`
+			`	"Thank you, captain! Expanded our knowledge greatly, you have. Hope to see you again, I do. Safe travels!"`
+			`	After he shakes your hand, you say your goodbyes and board your ship.`
+				decline

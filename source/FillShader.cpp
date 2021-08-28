@@ -50,7 +50,8 @@ void FillShader::Init()
 
 	static const char *fragmentCode =
 		"// fragment fill shader\n"
-		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
+		"precision mediump float;\n"
+		"uniform vec4 color;\n"
 		
 		"out vec4 finalColor;\n"
 		

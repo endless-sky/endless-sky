@@ -14,14 +14,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MissionPanel.h"
 
+#include "text/alignment.hpp"
 #include "Command.h"
+#include "CoreStartData.h"
 #include "Dialog.h"
+#include "text/DisplayText.h"
 #include "FillShader.h"
-#include "Font.h"
-#include "FontSet.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "text/layout.hpp"
 #include "LineShader.h"
 #include "Mission.h"
 #include "Planet.h"
@@ -35,6 +39,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "System.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include <algorithm>
@@ -119,7 +124,7 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	
 	wrap.SetWrapWidth(380);
 	wrap.SetFont(FontSet::Get(14));
-	wrap.SetAlignment(WrappedText::JUSTIFIED);
+	wrap.SetAlignment(Alignment::JUSTIFIED);
 	
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
@@ -166,7 +171,7 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	
 	wrap.SetWrapWidth(380);
 	wrap.SetFont(FontSet::Get(14));
-	wrap.SetAlignment(WrappedText::JUSTIFIED);
+	wrap.SetAlignment(Alignment::JUSTIFIED);
 
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
@@ -186,6 +191,8 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 void MissionPanel::Step()
 {
 	MapPanel::Step();
+	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
+		DoHelp("map advanced");
 	DoHelp("jobs");
 }
 
@@ -226,13 +233,13 @@ void MissionPanel::Draw()
 		Screen::TopLeft() + Point(0., -availableScroll),
 		"Missions available here:",
 		available.size());
-	DrawList(available, pos);
+	DrawList(available, pos, availableIt);
 	
 	pos = DrawPanel(
 		Screen::TopRight() + Point(-SIDE_WIDTH, -acceptedScroll),
 		"Your current missions:",
 		AcceptedVisible());
-	DrawList(accepted, pos);
+	DrawList(accepted, pos, acceptedIt);
 	
 	// Now that the mission lists and map elements are drawn, draw the top-most UI elements.
 	DrawKey();
@@ -326,8 +333,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		selectedSystem = acceptedIt->Destination()->GetSystem();
 		DoScroll(accepted, acceptedIt, acceptedScroll, true);
 	}
-	if(selectedSystem)
-		CenterOnSystem(selectedSystem);
+	CenterOnSystem(selectedSystem);
 	
 	return true;
 }
@@ -381,8 +387,8 @@ bool MissionPanel::Click(int x, int y, int clicks)
 	Point click = Point(x, y) / Zoom() - center;
 	const System *system = nullptr;
 	for(const auto &it : GameData::Systems())
-		if(click.Distance(it.second.Position()) < 10.
-				&& (player.HasSeen(&it.second) || &it.second == specialSystem))
+		if(it.second.IsValid() && click.Distance(it.second.Position()) < 10.
+				&& (player.HasSeen(it.second) || &it.second == specialSystem))
 		{
 			system = &it.second;
 			break;
@@ -553,9 +559,7 @@ void MissionPanel::DrawSelectedSystem() const
 	SpriteShader::Draw(sprite, Point(0., Screen::Top() + .5f * sprite->Height()));
 	
 	string text;
-	if(!selectedSystem)
-		text = "Selected system: none";
-	else if(!player.KnowsName(selectedSystem))
+	if(!player.KnowsName(*selectedSystem))
 		text = "Selected system: unexplored system";
 	else
 		text = "Selected system: " + selectedSystem->Name();
@@ -574,8 +578,9 @@ void MissionPanel::DrawSelectedSystem() const
 		text += " (" + to_string(jumps) + " jumps away)";
 	
 	const Font &font = FontSet::Get(14);
-	Point pos(-.5 * font.Width(text), Screen::Top() + .5 * (30. - font.Height()));
-	font.Draw(text, pos, *GameData::Colors().Get("bright"));
+	Point pos(-175., Screen::Top() + .5 * (30. - font.Height()));
+	font.Draw({text, {350, Alignment::CENTER, Truncate::MIDDLE}},
+		pos, *GameData::Colors().Get("bright"));
 }
 
 
@@ -658,7 +663,8 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries) const
 
 
 
-Point MissionPanel::DrawList(const list<Mission> &list, Point pos) const
+Point MissionPanel::DrawList(const list<Mission> &list, Point pos,
+	const std::list<Mission>::const_iterator &selectIt) const
 {
 	const Font &font = FontSet::Get(14);
 	const Color &highlight = *GameData::Colors().Get("faint");
@@ -673,7 +679,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos) const
 		
 		pos.Y() += 20.;
 		
-		bool isSelected = (it == availableIt || it == acceptedIt);
+		bool isSelected = it == selectIt;
 		if(isSelected)
 			FillShader::Fill(
 				pos + Point(.5 * SIDE_WIDTH - 5., 8.),
@@ -681,8 +687,8 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos) const
 				highlight);
 		
 		bool canAccept = (&list == &available ? it->HasSpace(player) : IsSatisfied(*it));
-		font.Draw(it->Name(), pos,
-			(!canAccept ? dim : isSelected ? selected : unselected));
+		font.Draw({it->Name(), {SIDE_WIDTH - 11, Truncate::BACK}},
+			pos, (!canAccept ? dim : isSelected ? selected : unselected));
 	}
 	
 	return pos;
@@ -706,8 +712,7 @@ void MissionPanel::DrawMissionInfo()
 	
 	info.SetString("today", player.GetDate().ToString());
 	
-	const Interface *interface = GameData::Interfaces().Get("mission");
-	interface->Draw(info, this);
+	GameData::Interfaces().Get("mission")->Draw(info, this);
 	
 	// If a mission is selected, draw its descriptive text.
 	if(availableIt != available.end())

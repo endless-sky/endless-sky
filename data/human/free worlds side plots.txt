@@ -653,7 +653,6 @@ mission "FW Stack Core 1B"
 
 mission "FW Stack Core 1C"
 	landing
-	minor
 	source
 		near "Pherkad" 100
 	to offer

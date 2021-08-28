@@ -48,6 +48,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 			isDamageScaled = false;
 		else if(key == "parallel")
 			isParallel = true;
+		else if(key == "gravitational")
+			isGravitational = true;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")
@@ -78,6 +80,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			hitEffects[GameData::Effects().Get(child.Token(1))] += count;
 		}
+		else if(key == "target effect")
+		{
+			int count = (child.Size() >= 3) ? child.Value(2) : 1;
+			targetEffects[GameData::Effects().Get(child.Token(1))] += count;
+		}
 		else if(key == "die effect")
 		{
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
@@ -85,8 +92,18 @@ void Weapon::LoadWeapon(const DataNode &node)
 		}
 		else if(key == "submunition")
 		{
-			int count = (child.Size() >= 3) ? child.Value(2) : 1;
-			submunitions[GameData::Outfits().Get(child.Token(1))] += count;
+			submunitions.emplace_back(
+				GameData::Outfits().Get(child.Token(1)),
+				(child.Size() >= 3) ? child.Value(2) : 1);
+			for(const DataNode &grand : child)
+			{
+				if((grand.Size() >= 2) && (grand.Token(0) == "facing"))
+					submunitions.back().facing = Angle(grand.Value(1));
+				else if((grand.Size() >= 3) && (grand.Token(0) == "offset"))
+					submunitions.back().offset = Point(grand.Value(1), grand.Value(2));
+				else
+					child.PrintTrace("Skipping unknown or incomplete sub-munition attribute:");
+			}
 		}
 		else
 		{
@@ -150,6 +167,26 @@ void Weapon::LoadWeapon(const DataNode &node)
 				firingFuel = value;
 			else if(key == "firing heat")
 				firingHeat = value;
+			else if(key == "firing hull")
+				firingHull = value;
+			else if(key == "firing shields")
+				firingShields = value;
+			else if(key == "firing ion")
+				firingIon = value;
+			else if(key == "firing slowing")
+				firingSlowing = value;
+			else if(key == "firing disruption")
+				firingDisruption = value;
+			else if(key == "relative firing energy")
+				relativeFiringEnergy = value;
+			else if(key == "relative firing heat")
+				relativeFiringHeat = value;
+			else if(key == "relative firing fuel")
+				relativeFiringFuel = value;
+			else if(key == "relative firing hull")
+				relativeFiringHull = value;
+			else if(key == "relative firing shields")
+				relativeFiringShields = value;
 			else if(key == "split range")
 				splitRange = max(0., value);
 			else if(key == "trigger radius")
@@ -164,12 +201,24 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[FUEL_DAMAGE] = value;
 			else if(key == "heat damage")
 				damage[HEAT_DAMAGE] = value;
+			else if(key == "energy damage")
+				damage[ENERGY_DAMAGE] = value;
 			else if(key == "ion damage")
 				damage[ION_DAMAGE] = value;
 			else if(key == "disruption damage")
 				damage[DISRUPTION_DAMAGE] = value;
 			else if(key == "slowing damage")
 				damage[SLOWING_DAMAGE] = value;
+			else if(key == "relative shield damage")
+				damage[RELATIVE_SHIELD_DAMAGE] = value;
+			else if(key == "relative hull damage")
+				damage[RELATIVE_HULL_DAMAGE] = value;
+			else if(key == "relative fuel damage")
+				damage[RELATIVE_FUEL_DAMAGE] = value;
+			else if(key == "relative heat damage")
+				damage[RELATIVE_HEAT_DAMAGE] = value;
+			else if(key == "relative energy damage")
+				damage[RELATIVE_ENERGY_DAMAGE] = value;
 			else if(key == "hit force")
 				damage[HIT_FORCE] = value;
 			else if(key == "piercing")
@@ -306,6 +355,13 @@ const map<const Effect *, int> &Weapon::HitEffects() const
 
 
 
+const map<const Effect *, int> &Weapon::TargetEffects() const
+{
+	return targetEffects;
+}
+
+
+
 const map<const Effect *, int> &Weapon::DieEffects() const
 {
 	return dieEffects;
@@ -313,7 +369,7 @@ const map<const Effect *, int> &Weapon::DieEffects() const
 
 
 
-const map<const Outfit *, int> &Weapon::Submunitions() const
+const vector<Weapon::Submunition> &Weapon::Submunitions() const
 {
 	return submunitions;
 }
@@ -328,7 +384,7 @@ double Weapon::TotalLifetime() const
 	{
 		totalLifetime = 0.;
 		for(const auto &it : submunitions)
-			totalLifetime = max(totalLifetime, it.first->TotalLifetime());
+			totalLifetime = max(totalLifetime, it.weapon->TotalLifetime());
 		totalLifetime += lifetime;
 	}
 	return totalLifetime;
@@ -378,7 +434,7 @@ double Weapon::TotalDamage(int index) const
 		for(int i = 0; i < DAMAGE_TYPES; ++i)
 		{
 			for(const auto &it : submunitions)
-				damage[i] += it.first->TotalDamage(i) * it.second;
+				damage[i] += it.weapon->TotalDamage(i) * it.count;
 			doesDamage |= (damage[i] > 0.);
 		}
 	}
