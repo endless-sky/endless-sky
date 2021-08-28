@@ -43,7 +43,7 @@ public:
 	Color Additive(float alpha) const;
 	
 	// Compute a linear combination
-	static Color Combine(double a1, Color c1, double a2, Color c2);
+	static Color Combine(float a1, Color c1, float a2, Color c2);
 	
 	
 private:
