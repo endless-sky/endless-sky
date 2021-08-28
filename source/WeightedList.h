@@ -101,7 +101,7 @@ typename std::vector<Type>::iterator WeightedList<Type>::erase(typename std::vec
 template <class Type>
 typename std::vector<Type>::iterator WeightedList<Type>::erase(typename std::vector<Type>::iterator first, typename std::vector<Type>::iterator last)
 {
-	for(auto it = first; it != last + 1 && it != choices.end(); ++it)
+	for(auto it = first; it != last; ++it)
 		total -= it->Weight();
 	
 	return choices.erase(first, last);
