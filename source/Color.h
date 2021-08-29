@@ -42,6 +42,9 @@ public:
 	// the given fraction of its full brightness.
 	Color Additive(float alpha) const;
 	
+	// Compute a linear combination
+	static Color Combine(float a1, Color c1, float a2, Color c2);
+	
 	
 private:
 	// Store the color as a float vector for easy interfacing with OpenGL.

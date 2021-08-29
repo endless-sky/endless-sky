@@ -50,6 +50,7 @@ test "Test-Framework - Conditions Arithmetic and Loops"
 			10 == "test: loopControl"
 			"test: myFirstTestVariable" == 200 - 50
 			400 * 1024 == "test: mySecondTestVariable"
+		watchdog 0
 
 
 test "Test-Framework - UI Keyboard controls"
@@ -160,7 +161,12 @@ test "Test-Framework - Navigate"
 			travel "Alpha Centauri"
 			travel "Sol"
 			travel "Alpha Centauri"
+		assert
+			"ships: Light Freighter" = 3
 		call "Depart"
+		# Check startup conditions.
+		assert
+			"ships: Light Freighter" = 3
 		# Give jump command.
 		input
 			command	jump

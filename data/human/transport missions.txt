@@ -3300,3 +3300,285 @@ mission "Spacediving amateurs"
 	on complete
 		payment 30000
 		dialog "As you descend through the upper atmosphere, you inform your skydivers that it's time to jump. However, after being able to see the distances and atmospheric conditions involved, all of them are far less keen on the idea than when you first picked them up. You bring them down to the landing pad, and they pay you a meager <payment> before hopping off."
+
+
+mission "Human to Hai Space - No Contact"
+	minor
+	source
+		government "Republic" "Syndicate" "Free Worlds"
+		attributes "tourism" "urban"
+	to offer
+		random < 2
+		not "First Contact: Hai: offered"
+	on offer
+		conversation
+			`	A young man carrying luggage approaches you. "You look like a knowledgeable captain," he says. "In all your travels, have you ever heard tell of any... intelligent rodents?"`
+			choice
+				`	"What are you talking about?"`
+					goto confused
+				`	"What, like in a zoo?"`
+					goto confused
+				`	"Are you high?"`
+			`	"No, I want to go to the high-" He stops once he realizes you have no idea what he's talking about. "Oh, never mind then," he says, with a note of disappointment in his voice. As he leaves, you can't help feeling like you were missing some context.`
+				decline
+			label confused
+			`	"Oh, never mind then," he says, with a note of disappointment in his voice. As he leaves, you can't help feeling like you were missing some context.`
+				decline
+
+
+mission "Human to Hai Space"
+	minor
+	description "Bring a human passenger to <destination> in Hai space."
+	source
+		government "Republic" "Syndicate" "Free Worlds"
+		attributes "tourism" "urban"
+	destination "Greenwater"
+	to offer
+		random < 10
+		has "First Contact: Hai: offered"
+		not "Human to Hai Space - No Contact: offered"
+	on offer
+		conversation
+			`	A young man carrying luggage approaches you. "You look like a knowledgeable captain," he says. "In all your travels, have you ever heard tell of any... intelligent rodents?"`
+			choice
+				`	"You mean the Hai? You'll have to go up north for that."`
+					goto hai
+				`	"Ah, I think I know of some large squirrels to the north of here."`
+					goto hai
+				`	"What are you talking about?"`
+			`	"Oh, never mind then," he says, with a note of disappointment in his voice. You feel good knowing that you are helping to keep the Hai's existence a secret in human space. Better safe than sorry.`
+				decline
+			
+			label hai
+			`	"If that's the case, could you bring me to <destination>? I'll give you <payment>."`
+			choice
+				`	"Alright, I'll take you there."`
+					accept
+				`	"Sorry, I'm too busy right now."`
+					decline
+				`	"Why would you want to go all the way out to <planet>?"`
+			`	"I have family there," he says. "I came out here to do some traveling and see a bit of human space, but now I have to get back home. You see, I was born on <planet>, and this is my first time out of the wormhole."`
+			choice
+				`	"Really? How did you like human space?"`
+					goto travel
+				`	"You've never been to human space before?"`
+			`	"Nope, first time! I've never been so far from home before. Now that I think about it, I probably should've arranged transport back to Hai space beforehand. You wouldn't believe how hard it is to find a captain here that knows about the Hai. I had to ask about six others until I found you. They all thought I was crazy, talking about meeting giant squirrels." He laughs and shakes his head. "So anyways, would you be willing to take me to <destination>?"`
+				goto decision
+			
+			label travel
+			`	"It was quite the trip! It's a bit odd to see only humans around, and I had to be careful to not mention where I was from. But it was definitely worth it! I got to see Earth, Skymoot, Chiron, and so many other beautiful planets. Seeing human culture with my own eyes was an eye-opening experience, although some of the places there were less... clean than I expected. I was almost robbed on Earth; I'm not used to pickpockets back home. Perhaps human space isn't as safe as Hai space, but I still don't regret coming here. It's about time for me to go back, though."`
+				
+			label decision
+			choice
+				`	"Alright, I'll take you there."`
+					accept
+				`	"Sorry, I'm too busy right now."`
+					decline
+	on complete
+		payment 9000
+		conversation
+			`During the trip, you learn that your passenger is named Benjamin. He gets off your ship, thanks you, and gives you your payment of <payment>. Benjamin then walks over to greet a group of Hai, who embrace him and start talking in a mix of the human and Hai languages.`
+			choice
+				`	(Leave.)`
+					decline
+				`	"That's your family?"`
+			`	The man looks at you. "I'm adopted," he says. One of the Hai notices your confusion, and chitters. "Ah, you have not seen a human-Hai family, have you? Perhaps it is strange, but we are happy together nonetheless. Thank you for transporting our son safely."`
+			choice
+				`	"I didn't mean to be rude, I just didn't know that Hai adopted humans here."`
+				`	"No problem, I hope you enjoyed the trip."`
+			`	After thanking you once again, they walk off. As they leave, you overhear Benjamin talk to his family about his trip. "They had so many kinds of food there, it was delicious! Although I did get homesick for pickled acorns..."`
+
+
+
+mission "Mafia Extortion"
+	minor
+	source
+		government "Pirate"
+	on accept
+		payment -200000
+		fail
+	to offer
+		random < 2
+		credits >= 2000000
+	on offer
+		conversation
+			`A man in a tailored suit, sunglasses, shiny shoes, and green hair approaches you. "Hey, that's a very nice ship you have there. Would be a shame if anything happened to it."`
+			`	You notice that he is missing a finger on each hand.`
+			choice
+				`	"Thank you. My name is <first> <last>. To whom do I have the pleasure of speaking?`
+					goto nameless
+				`	"Yes, I'm very happy with my ship."`
+					goto specifics
+				`	"What should I be afraid of happening to my ship?"`
+					goto specifics
+				`	"You sound like one of those Mafia goons."`
+					goto mafia
+				`	"Are you trying to extort me?"`
+					goto mafia
+				`	"Yes, it helps me transport goods for some of the most dangerous people on this planet."`
+					goto unnerved
+				`	"I don't have time to talk."`
+					goto funeral
+			label nameless
+			`	The man snorts. "Wow, telling everybody you meet your full name. That totally won't end up painting a huge target on your head if said name has a bounty on it. But I digress."`
+			choice
+				`	"What should I be afraid of happening to my ship?"`
+					goto specifics
+				`	"You sound like one of those mafia goons."`
+					goto mafia
+				`	"Are you trying to extort me?"`
+					goto mafia
+			label specifics
+			`	The man responds, "Well, a fleet of unfriendly ships in this system might blow you to pieces when you take off. It's been known to happen from time to time."`
+			choice
+				`	"Ha, business as usual around here."`
+					goto unconcerned
+				`	"Are you trying to extort me?"`
+					goto mafia
+				`	"And you have a way to prevent this from happening?"`
+					goto mafia
+				`	"And you're the local goon who takes bribes to keep such ships docked?"`
+					goto mafia
+				`	"That would be unfortunate. I run jobs for some of the most dangerous people on this planet, and they wouldn't be happy if that happened."`
+					goto unnerved
+				`	"I really don't have time to talk to you."`
+					goto funeral
+			label unconcerned
+			`	The man responds, "Maybe you want to improve that situation?`
+				goto donation
+			label mafia
+			`	The man acts shocked by your remark. "No way! I'm just a simple man walking around the spaceport and helping people out. You would be wise to listen to locals with experience, especially in dangerous places like this."`
+			label donation
+			`	"If you care about safety, then I could make a donation to the System Safety Foundation on your behalf. 200,000 credits really goes a long way around here."`
+			choice
+				`	(Pay 200,000 credits.)`
+					goto payup
+				`	"How can I be sure the money is spent well?"`
+					goto impatient
+				`	"Sorry, I already made a donation to the 'Security Support Fund' earlier today, and I don't donate twice in one day."`
+					goto impatient
+				`	"I've already heard enough, I'm going to talk to the authorities."`
+					goto nextsteps
+				`	"And what dangers should I be afraid of?"`
+					goto impatient
+				`	"Listen, I see that you're missing a finger on each hand. You look like a goon, and not a very successful one."`
+					goto unnerved
+			label impatient
+			`	The man sounds annoyed. "Listen, I don't have all day to talk! Are you going to pay or not?!"`
+			choice
+				`	(Pay 200,000 credits.)`
+					goto payup
+				`	"I don't trust you. You aren't getting any money from me."`
+					goto funeral
+				`	"I've heard enough, I'm going to talk to the authorities."`
+					goto nextsteps
+				`	"Listen, I see that you're missing a finger on each hand. You look like a goon, and not a very successful one."`
+					goto unnerved
+			label funeral
+			`	The man responds "Your funeral, not mine," and turns away from you.`
+				goto walksaway
+			label nextsteps
+			`	"Look, that's not a smart move. Most of them are in on it anyway."`
+			label walksaway
+			`	The man walks away. You consider what to do next.`
+			choice
+				`	(Shrug off the whole thing and take no further action.)`
+					decline
+				`	(Find the closest thing to a police force that this planet has.)`
+					goto police
+				`	(Go to a bar and ask for whoever is in charge.)`
+					goto bar
+			label police
+			`	It's not long before you find the ruins of what used to be a police station... you think. The building has been thoroughly destroyed, hopefully not while anybody was inside.`
+			choice
+				`	(Go to a bar and ask for whoever is in charge.)`
+					goto bar
+				`	(Shrug off the whole thing and take no further action.)`
+					decline
+			label bar
+			`	You walk towards the closest bar, but stumble into the green-haired man that you just had a conversation with.`
+			`	He looks surprised and asks, "Were you going to rat me out to the local boss?"`
+			choice
+				`	"What an excellent idea! Yes, I'll just do that."`
+				`	"What I'm going to do is none of your business."`
+				`	"Don't worry, I'm just taking a walk."`
+			label unnerved
+			`	The man is starting to act a bit nervous. "Sorry I bothered you. Can we forget this happened?"`
+			choice
+				`	"Well, conversations like this are hard to forget."`
+					goto cornered
+				`	"Nice scam you have running here. Would be a shame if somebody told the local godfather about it."`
+					goto payback
+				`	(Agree.)`
+					goto zerodeal
+			label cornered
+			`	"Well, what do you want? Do I have to do something for you?"`
+			choice
+				`	"No, let's just forget it happened."`
+					goto zerodeal
+				`	"Compensation for the time that you've wasted would be excellent."`
+			label payback
+			`	A bead of sweat travels down the man's face as he asks, "How many credits do you need to just forget this whole conversation happened?"`
+			choice
+				`	"100,000,000."`
+					goto panicking
+				`	"1,000,000."`
+					goto much
+				`	"200,000."`
+					goto much
+				`	"50,000."`
+					goto much
+				`	"5,000."`
+					goto counterdeal
+				`	"2,000."`
+					goto counterdeal
+				`	"1,000."`
+					goto counterdeal
+				`	"I don't need your credits, just forget it."`
+					goto zerodeal
+			label zerodeal
+			`The man walks away without saying a word.`
+				decline
+			label much
+			`	"That's too much! 2,389 credits is all I have. Would that be enough?"`
+			choice
+				`	"Sure."`
+					goto counterdeal
+				`	"No way, I want a lot more."`
+					goto panicking
+			label counterdeal
+			`	The man hands you a credit chip, nods and walks away. You pocket the chip quickly, more ready to be done with this neighborhood than you want to visibly show.`
+			`	A few minutes later you reach into your pocket for the chip... to find it missing. Looks like even a hardened captain like you isn't immune to being pickpocketed on a planet like this.`
+				decline
+			label panicking
+			`	The man starts panicking and clumsily reaches into his jacket, maybe to get some money, but more likely reaching for a gun.`
+			choice
+				`	(Try to calm down the man.)`
+					goto draws
+				`	(Mock the man further.)`
+					goto draws
+				`	(Draw your sidearm and shoot the man.)`
+					goto shoot
+			label draws
+			`	The man manages to draw a weapon! You brace for impact, but after a few seconds of waiting, you realize his weapon is only making a clicking sound when he tries to shoot.`
+			choice
+				`	"Ha, ha, you really are a failure of a goon."`
+				`	(Draw your sidearm and shoot the man.)`
+					goto shoot
+			`	As you finish talking, you see a flash of light come from the muzzle of the man's weapon as a bullet hits you between the eyes. You die almost instantly, but you do have a few microseconds to reflect on the wisdom of mocking a man that is trying to fire a gun at you.`
+				die
+			label shoot
+			`	Your bullet hits the man right between the eyes; he dies instantly, and a crowd starts to form around you.`
+			`	Most bystanders are surprised, but you also notice an angry sentiment brewing in the (not unarmed) crowd. It might be wise to leave quickly.`
+			choice
+				`	(Run towards your ship and leave immediately.)`
+					goto leave
+				`	(Put away your sidearm and pretend nothing happened.)`
+			`	You walk away nonchalantly, but you don't get far before multiple laser blasts slice through you.`
+				die
+			label leave
+			`	You make it to your ship alive and depart under a rain of bullets and laser-weapons fire. This is a pirate planet so there are unlikely to be any lasting consequences, but you might want to stay away for a few days.`
+				flee
+			label payup
+			`	The man takes your credits, responds with a brief "Thank you," and walks away.`
+				accept
