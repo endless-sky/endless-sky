@@ -192,7 +192,7 @@ news "human mining"
 news "human factory"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes factory
+		attributes "factory"
 	name
 		word
 			"Factory worker"
@@ -302,6 +302,8 @@ news "unemployed youth"
 			"Do you know how lucky you are, that you can visit a different world every week if you want to? I've been stuck on this one filthy little planet my whole life."
 			"If I had enough money, I'd go up to a captain in the spaceport and ask for transport to anywhere else. Nowhere's as bad as this place."
 			"Are you hiring new crewmembers? And are you by chance planning to fly to the Paradise Worlds?"
+			"I'll get my act together someday. For now I'm just enjoying life one moment at a time."
+			"I'd love to get a job, but they all require so much experience, even for those so-called 'entry-level' positions."
 			"Beat it, old-timer. I've got more important things to do than chat with you."
 		word
 			`"`
@@ -325,6 +327,41 @@ news "union organizer"
 			"Management warning workers not to join the union is one of our best sources of visibility among the workers."
 			"Young people usually don't join a union, so we are mostly working for the benefit of higher aged workers."
 			"Our visibility is increasing among the workforce; a rolling snowball will be harder to stop!"
+		word
+			`"`
+
+
+
+phrase "small trash item"
+	word
+		"outfit scanner"
+		"cargo scanner"
+		"energy blaster"
+		"laser rifle"
+		"cooling duct"
+		"radar jammer"
+		"fuel pod"
+		
+		
+
+news "waste collector"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "dirt belt" "urban" "factory"
+		not attributes "paradise" "station"
+	name
+		word
+			"Waste collector"
+			"Garbage collector"
+			"Trash collector"
+	message
+		word
+			`"`
+		word
+			"My job is cleaner than people think it is. Mostly just consists of loading these bins into a ship to be deposited in a remote area of space."
+			"All's fine and dandy until someone dumps a ton of rotten Caldan lobsters and you have to deal with the smell."
+			"My worth comes from removing what's worthless!"
+			"You wouldn't believe some of the stuff people throw away around the spaceport. Yesterday I found a perfectly intact ${small trash item} that someone had dumped."
 		word
 			`"`
 
@@ -419,6 +456,8 @@ news "hair stylist"
 			"For too long, the creativity of trend-setting stylists like myself has been held in check by the limited height of the doorways in most houses."
 			"My work is made possible by vision, creativity, and hairspray. Lots and lots of hairspray."
 			"The newest fad is hairstyles made to look like starships. Those boxy Navy ships are particularly hard to model in such a fluid medium."
+			"It's a real shame that captains don't think to hire a good hair stylist or two for their ships. You wouldn't believe how little so many crew members take care of their hair."
+			"A real challenge for my profession in this day and age is finding styles that work in both high and low gravity environments."
 		word
 			`"`
 
@@ -485,6 +524,7 @@ news "loan officer"
 			"Sadly, for the last several centuries there have been laws against inflicting bodily harm on people to convince them to pay off their debts."
 			"I still think we should be able to charge double the interest on loans to buy a Sparrow, but the regulators won't let us."
 			"Do you know how hard it is to force somebody that joined the pirates to pay off their loans?"
+			"Some people say that we're loan sharks, but I don't understand why. I think that killer whales are way cooler than sharks."
 		word
 			`"`
 
@@ -574,6 +614,59 @@ news "agricultural scientist"
 			"Even though there are some alien ungulates that put on weight much quicker than Earth animals, or that have much leaner meat, most people still prefer to eat cows."
 			"I've heard that the corporate farms on some Paradise Worlds don't even need irrigation systems. They can just call up the terraforming office and order a rainstorm whenever they need one."
 			"People have been farming for thousands of years, but finding the best way to maximize yields without wearing out the land is still a hard problem to solve."
+			"Don't ever forget that you have us to thank for humanity's ability to support our growing population."
+		word
+			`"`
+
+
+phrase "athlete competition location"
+	word
+		"Earth"
+		"Pearl in the Phurad system"
+		"Valhalla in the Epsilon Leonis system"
+		"Bourne in the Gamma Corvi system"
+		"Trinket in the Sargas system"
+		"Shangri-La in the Polaris system"
+		
+
+
+news "athlete"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	name
+		word
+			"Athlete"
+	message
+		word
+			`"`
+		word
+			"I'm planning to compete in a game on ${athlete competition location}!"
+			"I tried to compete in the Burthen Triathalon once, but the gravity was too much for me. Now I'm training to try again next year!"
+			"Have you ever done the long jump on Longjump? Even an untrained individual can jump ten meters in that environment!"
+			"I sure am glad we'll never have to compete against any Alphas. We would all lose!"
+			"Does your ship have a weight room?"
+			"I'm hoping to get a sponsorhip, but nobody here wants to partner with me. Could you recommend a planet where I might find better results?"
+			"I don't expect everyone to be as fit as I am, but do remember to get up and excercise a little every once and a while!"		
+		word
+			`"`
+
+
+
+news "dentist"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	name
+		word
+			"Dentist"
+	message
+		word
+			`"`
+		word
+			"Remember to pack a toothcleanser for your journey!"
+			"My new anti-cavity campaign is called 'Plaque Doesn't Deserve a Plaque.' Do you like it?"
+			"If the galaxy has many alien species, I hope they all have teeth."
+			"The advent of almost perfect artificial teeth may tempt you to stop caring if your natural teeth start to rot. Trust me that taking care of your teeth saves a lot of pain from both your mouth and your wallet."
+			"I'm that one dentist that doesn't recommend anything."
 		word
 			`"`
 
@@ -657,6 +750,7 @@ news "substance abuse counselor"
 			"Zooming around in your fancy spaceship, I bet you don't realize the sort of desperation that some of the folks down here below you are carrying around."
 			"The government pays my salary. They say it's worth it, because every credit spent on me prevents ten credits of lost productivity."
 			"Honestly, drugs are a problem throughout human space, but the richer folks have the resources to keep their addictions well-managed and well-hidden."
+			"If someone ever offers you a drug running job, I beg you to deny it and direct them toward one of us. That person will thank you later."
 		word
 			`"`
 
@@ -684,6 +778,8 @@ news "reporter"
 			"Read this! 'The Real UGLIEST Starship that Lionheart Don't Want You to Know About!'"
 			"Look at my new article! 'The Protector - Actually a SCAM?'"
 			"Look at this! 'Five Reasons Why Captains Should Check Spaceports More Often - Number Two Will Make You Cry!'"
+			"Read my new article! 'Ten Things the Quarg Are Hiding from Us - Number Seven Will Surprise You!'"
+			"Check this out! 'Top 20 Things Starship Pilots Don't Want You to Know!' Wait, never mind."
 		word
 			`"`
 
@@ -728,6 +824,30 @@ news "actor"
 			"I have a rich client on Hestia who pays me a thousand credits a day just for recording videos where I bestow extravagant compliments on him."
 			"I recommend that you don't look at any media from the 28th century. They're so laden with pop-culture references that it's painful to watch."
 			"Hey, you are so beautiful, do you want to marry me? Haha, just kidding, I'm rehearsing for my new role."
+			"Don't be fooled by my jovial appearance onstage. I take my work very seriously."
+		word
+			`"`
+
+
+
+news "musician"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "south" "paradise" "near earth"
+	name
+		word
+			"Musician"
+	message
+		word
+			`"`
+		word
+			"Excuse me! I seem to have lost my violin. Have you seen it?"
+			"You think human critics are hard to impress? Try performing for the Quarg!"
+			"I'm writing a new song called 'Ode to a Burthen Goat.' Nobody seems to like it. What do you think?"
+			"I put on a concert here a while back, but some wacky band scheduled their own on the same day and everybody went there instead. I think the group was called 'Maybe an Uproar Will Happen' or something like that."
+			"The spaceport is a great place to go busking. People seem to give money more enthusiastically when they are excited about going to a new planet."
+			"The music played by all these young new performers is so shallow and artless. Music requires thoughtful consideration to every detail and nuance, yet so many 'musicians' think they can carelessly throw whatever together and call it 'music.'"
+			"Some musicians think they are so sophisticated just because they play antique tunes. I prefer to innovate beyond what already exists, even if the result is different. Doesn't the art of music demand such creativity?"
 			"Stories about extra-terrestrials are very unpopular now that most of humanity is living off-Earth."
 			"Stories about alien lifeforms became a lot more popular after humanity actually met alien lifeforms."
 		word
@@ -791,6 +911,7 @@ news "chef"
 			"I'm employed as the chef on a luxury cruise ship. A Star Queen. The captain tells me that Star Queens are considered the safest way to travel in outer space."
 			"A rich client of mine shot a spiny-tailed gorgebeast on a safari expedition and asked me to cook it for him. The flavor profile was quite... unique."
 			"I was a dish-washer when I started, and now I'm a sous-chef. And people say there's no upward mobility in the galaxy these days!"
+			"Eating fancy dishes is great, but sometimes there's nothing you want more than a good old sandwich."
 			"Last week my dish was completely ruined; somebody had calibrated my kitchen scale with the gravity settings of another planet."
 			"There is only one thing worse than finding a worm in an apple you're eating: finding half a worm in that apple."
 		word
@@ -813,6 +934,8 @@ news "insurance agent"
 			"Among the Paradise Worlds, there's currently a fad of taking out insurance policies on pets, to pay for therapy if the animal dies unexpectedly."
 			"Insurance is all about mitigating risks. But you're flying around the vacuum of space in a tin can, so you probably don't know much about that."
 			"I just got done handling an insurance fraud case where the owner claimed her entire home had been eaten by Sagittarian sand-fleas."
+			"It's a real shame that not everyone is able to afford insurance. More people insured means more money for us."
+			"I used to be a gambler. Still am in a way, but I'm acceptable to society now." 
 		word
 			`"`
 
@@ -837,6 +960,7 @@ news "excavation specialist"
 			"Once we had to stop work on a mine for a month because the archaeologists thought we found evidence of a million-year-old civilization. It turned out the site was just radioactive. Dodged that one!"
 			"Last month, we had some loony pilot offer to use their missile launchers to help us mine!"
 			"Last month, we had some loony pilot request a reactor upgrade after delivering some explosives to us!"
+			"I'm a former pirate. Now I've found more productive ways to blow stuff up."
 		word
 			`"`
 
@@ -883,6 +1007,7 @@ news "human retiree"
 			"I don't stand for it when I hear youngsters complain about the fact that I have a generous pension. I worked for 40 years to earn this retirement!"
 			"I feel sorry for the young workers who are supporting me right now. They have to pay more in taxes and pension contributions than I ever did, and they probably won't get to retire until they're 70, at least."
 			"We're very fortunate to have been able to retire here. Don't ever take your blessings for granted, captain."
+			"It's amazing how much technology has progressed in my lifetime!"
 		word
 			`"`
 
@@ -946,6 +1071,7 @@ news "human scientist"
 	name
 		word
 			"Scientist"
+			"Researcher"
 	message
 		word
 			`"`
@@ -1021,7 +1147,7 @@ news "human tourism"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "rich" "paradise" "tourism"
-		not attributes station
+		not attributes "station"
 	name
 		word
 			"Tourist"
@@ -1210,7 +1336,7 @@ news "human pirate"
 			"Hey, that's a very nice ship you have there. Would be a shame if something happened to it. Do you want to make a donation to the System Safety Fund?"
 			"Your credits or your life! Oh, you don't have either? Never mind then."
 			"Don't count on the Navy to save you if me or any of my friends attack you. Those Navy goons only hang around near the rich planets."
-			"Did I attack you? Well, I attacked many people, could you be a bit more specific?"
+			"Did I attack you? Well, I've attacked many people, could you be a bit more specific?"
 			"The size of my crimes no longer matter; one may as well hang for a sheep as for a lamb."
 			"Hey! We have this new Piracy As A Service offering. Want someone ambushed without incriminating yourself? Just tell me who, where, and how much it's worth to you."
 			"I don't get it; if I donate a kidney, then I'm some sort of hero. But if I donate 7 kidneys, then suddenly I'm some sort of monster."
@@ -1249,6 +1375,9 @@ news "human merchant in pirate space"
 			"Why am I here? I really needed the fuel and decided that bribing off pirates until another ship entered the system wasn't smart long-term."
 			"There's some real creeps around here. All I wanted to do was sell some cargo at this port, but it definitely wasn't worth the risk."
 			"Whatever you do, don't try the ${contraband}. That stuff's nasty."
+			"Why am I here? I could ask the same of you!"
+			"I have to admit, the thought of being a pirate is tempting."
+			"You're not going to kill me, are you?"
 			"I flew around half the galaxy to pick up a wedding banquet, but it wasn't here and they stole my cargo instead! The cake was a lie!"
 		word
 			`"`
@@ -1287,6 +1416,28 @@ news "human farming in pirate space"
 		word
 			`"`
 
+
+
+news "human republic reporter in pirate space"
+	location
+		government "Pirate"
+	name
+		word
+			"Reporter"
+	message
+		word
+			`"`
+		word
+			"I should never have taken this assignment. Yesterday I interviewed a young pirate and he tried to rob me!"
+			"It really isn't so bad here, but I have to make it sound worse than it is to keep my ratings high."
+			"The political hierarchy out here is way more chaotic than any other planet I've visited. In the past year, I've had to report on five coups d'etat!"
+			"Understanding pirates is the key to defeating them. Yesterday I learned that the local warlord goes sock-shoe-sock-shoe and not sock-sock-shoe-shoe."
+			"I titled my latest article 'New Bombshell Interview Reveals All!' In fact, there were many bombs dropped and many shells fired during my conversation. It was really quite frightening."
+			"Look at this! 'Top Ten Pirates Hector Barbarossa is Too Afraid to Cross!'"
+			"Read this! 'Twenty Pirates with the Highest IQs - You'll Never Guess Who's Number One!'"
+			"Check this out! 'Telltale Signs Your Spouse is Secretly a Pirate - Number Five Says it All!'"
+		word
+			`"`
 
 
 news "syndicate pa system"
