@@ -56,7 +56,7 @@ private:
 
 
 
-template<class Type>
+template <class Type>
 const Type &WeightedList<Type>::Get() const
 {
 	if(empty())

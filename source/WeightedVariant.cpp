@@ -12,8 +12,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "WeightedVariant.h"
 
-#include "Variant.h"
-
 using namespace std;
 
 

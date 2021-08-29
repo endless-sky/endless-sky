@@ -37,7 +37,7 @@ Variant::Variant(const DataNode &node)
 void Variant::Load(const DataNode &node)
 {
 	// If this variant is being loaded with a second token that is not a number,
-	// then it must be being loaded from GameData, and therefore must have its
+	// then it's being loaded from GameData, and therefore must have its
 	// name saved.
 	if(node.Size() >= 2 && !node.IsNumber(1))
 		name = node.Token(1);
