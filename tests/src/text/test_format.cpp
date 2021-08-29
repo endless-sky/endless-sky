@@ -153,7 +153,7 @@ TEST_CASE( "Format::Number", "[Format][Number]") {
 		CHECK( Format::Number(4444.03) == "4,444" );
 		CHECK( Format::Number(-5641.23) == "-5,641.2" );
 	}
-	SECTION( "Decimals between 10'000 and up" ) {
+	SECTION( "Decimals greater than 10'000" ) {
 		CHECK( Format::Number(12325.120) == "12,325" );
 		CHECK( Format::Number(45123.05) == "45,123" );
 		CHECK( Format::Number(-56413.2) == "-56,413" );
@@ -176,14 +176,17 @@ TEST_CASE( "Benchmark Format::PlayTime", "[!benchmark][format]" ) {
 	};
 }
 TEST_CASE( "Benchmark Format::Number", "[!benchmark][format]" ) {
-	BENCHMARK( "Format::Number(0.)" ) {
+	BENCHMARK( "Zero" ) {
 		return Format::Number(0.);
 	};
-	BENCHMARK( "Format::Number(100.)" ) {
+	BENCHMARK( "A nonzero whole number" ) {
 		return Format::Number(100.);
 	};
-	BENCHMARK( "Format::Number(-10.312345)" ) {
+	BENCHMARK( "A decimal between 0 and 1k" ) {
 		return Format::Number(-10.312345);
+	};
+	BENCHMARK( "A decimal between 1k and 10k" ) {
+		return Format::Number(5555.5555);
 	};
 }
 #endif
