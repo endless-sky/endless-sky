@@ -351,7 +351,8 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, bool isForSale, bo
 	// Set the padding so the text takes the same height overall,
 	// regardless of whether it's three lines of text or four.
 	const auto pad = storage.empty() ? PAD : (PAD * 2. / 3.);
-	Point nameOffset(ICON_HEIGHT, .5 * ICON_HEIGHT - PAD - 1.5 * font.Height());
+	const auto lines = storage.empty() ? 3 : 4;
+	Point nameOffset(ICON_HEIGHT, .5 * (ICON_HEIGHT - (lines - 1) * pad - lines * font.Height()));
 	Point priceOffset(ICON_HEIGHT, nameOffset.Y() + font.Height() + pad);
 	Point infoOffset(ICON_HEIGHT, priceOffset.Y() + font.Height() + pad);
 	Point storageOffset(ICON_HEIGHT, infoOffset.Y() + font.Height() + pad);
