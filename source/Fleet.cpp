@@ -229,9 +229,9 @@ void Fleet::Load(const DataNode &node)
 				return v.Get() == toRemove;
 			};
 			
-			auto removeIt = find_if(variants.begin(), variants.end(), VariantToRemove);
+			auto removeIt = remove_if(variants.begin(), variants.end(), VariantToRemove);
 			if(removeIt != variants.end())
-				variants.erase(remove_if(removeIt, variants.end(), VariantToRemove), variants.end());
+				variants.erase(removeIt, variants.end());
 			else
 				child.PrintTrace("Did not find matching variant for specified operation:");
 		}

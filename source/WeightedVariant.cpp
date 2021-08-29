@@ -55,5 +55,5 @@ bool WeightedVariant::operator==(const WeightedVariant &other) const
 
 bool WeightedVariant::operator!=(const WeightedVariant &other) const
 {
-	return other.weight != weight || other.Get() != Get();
+	return !(*this == other);
 }

@@ -67,9 +67,9 @@ void Variant::Load(const DataNode &node)
 					return v.Get() == toRemove;
 				};
 				
-				auto removeIt = find_if(variants.begin(), variants.end(), VariantToRemove);
+				auto removeIt = remove_if(variants.begin(), variants.end(), VariantToRemove);
 				if(removeIt != variants.end())
-					variants.erase(remove_if(removeIt, variants.end(), VariantToRemove), variants.end());
+					variants.erase(removeIt, variants.end());
 				else
 					child.PrintTrace("Did not find matching variant for specified operation:");
 			}
@@ -82,9 +82,9 @@ void Variant::Load(const DataNode &node)
 					return s->VariantName() == shipName;
 				};
 				
-				auto removeIt = find_if(ships.begin(), ships.end(), ShipToRemove);
+				auto removeIt = remove_if(ships.begin(), ships.end(), ShipToRemove);
 				if(removeIt != ships.end())
-					ships.erase(remove_if(removeIt, ships.end(), ShipToRemove), ships.end());
+					ships.erase(removeIt, ships.end());
 				else
 					child.PrintTrace("Did not find matching ship for specified operation:");
 			}
