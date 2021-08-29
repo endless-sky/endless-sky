@@ -278,7 +278,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		if(!testContext.testToRun.empty())
 		{
 			testContext.testToRun.back()->Step(testContext, menuPanels, gamePanels, player);
-			// Skip drawing 29 out of every 30 frames during testing (unless debug mode is set).
+			// Skip drawing 29 out of every 30 frames during testing to speedup testing (unless debug mode is set).
 			skipFrame = (skipFrame + 1) % 30;
 			if(skipFrame && !debugMode)
 				continue;
@@ -319,6 +319,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		
 		GameWindow::Step();
 		
+		// When we perform automated testing, then we run the game by default as quickly as possible.
 		if(testContext.testToRun.empty())
 			timer.Wait();
 		
