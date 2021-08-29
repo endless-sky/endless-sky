@@ -32,6 +32,7 @@ public:
 	Variant(const DataNode &node);
 	
 	void Load(const DataNode &node);
+	void FinishLoading();
 	
 	// Determine if this variant template uses well-defined data.
 	bool IsValid() const;

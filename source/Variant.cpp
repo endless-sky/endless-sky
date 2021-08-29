@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Variant.h"
 
 #include "DataNode.h"
+#include "Files.h"
 #include "GameData.h"
 #include "Random.h"
 #include "Ship.h"
@@ -133,15 +134,24 @@ void Variant::Load(const DataNode &node)
 			}
 		}
 	}
+}
 
+
+
+void Variant::FinishLoading()
+{
 	// Prevent a variant from containing itself.
 	if(!name.empty())
-		for(auto it = variants.begin(); it != variants.end(); ++it)
+		for(auto it = variants.begin(); it != variants.end(); )
+		{
 			if(it->Get().NestedInSelf(name))
 			{
 				it = variants.erase(it);
-				node.PrintTrace("Infinite loop detected and removed in variant \"" + name + "\":");
+				Files::LogError("Infinite loop detected and removed in variant \"" + name + "\".");
 			}
+			else
+				++it;
+		}
 }
 
 

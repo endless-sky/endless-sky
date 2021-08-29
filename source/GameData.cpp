@@ -229,10 +229,14 @@ bool GameData::BeginLoad(const char * const *argv)
 	AddJumpRange(System::DEFAULT_NEIGHBOR_DISTANCE);
 	UpdateSystems();
 	
-	// And, update the ships with the outfits we've now finished loading.
+	// Update the ships with the outfits we've now finished loading.
 	for(auto &&it : ships)
 		it.second.FinishLoading(true);
 	for(auto &&it : persons)
+		it.second.FinishLoading();
+	
+	// Allow each named variant to prevent it from containing itself.
+	for(auto &&it : variants)
 		it.second.FinishLoading();
 	
 	for(auto &&it : startConditions)
