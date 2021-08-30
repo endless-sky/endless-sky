@@ -22,7 +22,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Body;
 class Point;
 class Sprite;
-class DrawList;
 
 
 
@@ -43,7 +42,6 @@ public:
 private:
 	void SetUpGraphics();
 	void MakeStars(int stars, int width);
-	void DrawHaze(const std::vector<Body> &targetHaze, const Point &topLeft, const Point &bottomRight, double transparency, DrawList &drawList) const;
 	
 	
 private:
