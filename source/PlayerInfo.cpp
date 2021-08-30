@@ -1812,14 +1812,6 @@ bool PlayerInfo::SetCondition(const string &name, int64_t value)
 
 
 
-// Add a value to the given condition.
-bool PlayerInfo::AddCondition(const string &name, int64_t value)
-{
-	return conditions.Add(name, value);
-}
-
-
-
 // Temporary function to erase conditions by prefix. This function should
 // no longer be needed once automatically generated conditions are on-demand
 // automatically generated.

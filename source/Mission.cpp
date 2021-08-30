@@ -913,16 +913,16 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	// not prevent a mission from being failed or aborted.
 	if(trigger == FAIL)
 	{
-		player.AddCondition(name + ": active", -1);
-		player.AddCondition(name + ": failed", 1);
+		player.Conditions().Add(name + ": active", -1);
+		player.Conditions().Add(name + ": failed", 1);
 	}
 	else if(trigger == ABORT)
 	{
-		player.AddCondition(name + ": active", -1);
-		player.AddCondition(name + ": aborted", 1);
+		player.Conditions().Add(name + ": active", -1);
+		player.Conditions().Add(name + ": aborted", 1);
 		// Set the failed mission condition here as well for
 		// backwards compatibility.
-		player.AddCondition(name + ": failed", 1);
+		player.Conditions().Add(name + ": failed", 1);
 	}
 	
 	// Don't update any further conditions if this action exists and can't be completed.
@@ -931,21 +931,21 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	
 	if(trigger == ACCEPT)
 	{
-		player.AddCondition(name + ": offered", 1);
-		player.AddCondition(name + ": active", 1);
+		player.Conditions().Add(name + ": offered", 1);
+		player.Conditions().Add(name + ": active", 1);
 		// Any potential on offer conversation has been finished, so update
 		// the active NPCs for the first time.
 		UpdateNPCs(player);
 	}
 	else if(trigger == DECLINE)
 	{
-		player.AddCondition(name + ": offered", 1);
-		player.AddCondition(name + ": declined", 1);
+		player.Conditions().Add(name + ": offered", 1);
+		player.Conditions().Add(name + ": declined", 1);
 	}
 	else if(trigger == COMPLETE)
 	{
-		player.AddCondition(name + ": active", -1);
-		player.AddCondition(name + ": done", 1);
+		player.Conditions().Add(name + ": active", -1);
+		player.Conditions().Add(name + ": done", 1);
 	}
 	
 	// "Jobs" should never show dialogs when offered, nor should they call the
