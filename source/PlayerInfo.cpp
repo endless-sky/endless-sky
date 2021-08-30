@@ -532,9 +532,6 @@ const Date &PlayerInfo::GetDate() const
 void PlayerInfo::IncrementDate()
 {
 	++date;
-	conditions.Set("day", date.Day());
-	conditions.Set("month", date.Month());
-	conditions.Set("year", date.Year());
 	
 	// Check if any special events should happen today.
 	auto it = gameEvents.begin();
@@ -2492,7 +2489,17 @@ void PlayerInfo::RegisterDerivedConditions()
 	conditionsProvider.hasFun = [] (const string &name){ return true; };
 	conditionsProvider.setFun = [] (const string &name, int64_t value){ return false; };
 	conditionsProvider.eraseFun = [] (const string &name){ return false; };
-
+	
+	// Read-only date functions.
+	conditionsProvider.getFun = [this] (const string &name){ return date.Day(); };
+	conditions.SetProviderNamed("day", conditionsProvider);
+	
+	conditionsProvider.getFun = [this] (const string &name){ return date.Month(); };
+	conditions.SetProviderNamed("month", conditionsProvider);
+	
+	conditionsProvider.getFun = [this] (const string &name){ return date.Year(); };
+	conditions.SetProviderNamed("year", conditionsProvider);
+	
 	// Read-only account conditions.
 	// Bound financial conditions to +/- 4.6 x 10^18 credits, within the range of a 64-bit int.
 	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
