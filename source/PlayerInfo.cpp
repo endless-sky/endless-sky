@@ -1796,27 +1796,6 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 
 
 
-// Temporary function to erase conditions by prefix. This function should
-// no longer be needed once automatically generated conditions are on-demand
-// automatically generated.
-// This function is performance-wise also not very efficient, but that
-// might be okay for a temporary function.
-void PlayerInfo::EraseManualByPrefix(const string &prefix)
-{
-	set<string> toErase;
-	
-	// Generate the list of items to erase
-	auto it = Conditions().PrimariesLowerBound(prefix);
-	for( ; it != Conditions().PrimariesEnd() && !it->first.compare(0, prefix.length(), prefix); ++it)
-		toErase.insert(it->first);
-	
-	// Erase the selected items.
-	for(auto toE : toErase)
-		conditions.Erase(toE);
-}
-
-
-
 // Get mutable access to the player's list of conditions.
 ConditionsStore &PlayerInfo::Conditions()
 {

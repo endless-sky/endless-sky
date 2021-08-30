@@ -200,7 +200,6 @@ public:
 	void HandleEvent(const ShipEvent &event, UI *ui);
 	
 	// Access the "condition" flags for this player.
-	void EraseManualByPrefix(const std::string &prefix);
 	ConditionsStore &Conditions();
 	const ConditionsStore &Conditions() const;
 	
