@@ -276,11 +276,16 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		
 		// All manual events and processing done. Handle any test inputs and events if we have any.
 		if(!testContext.testToRun.empty())
+		{
 			testContext.testToRun.back()->Step(testContext, menuPanels, gamePanels, player);
-		
+			// Skip drawing 29 out of every 30 frames during testing to speedup testing (unless debug mode is set).
+			skipFrame = (skipFrame + 1) % 30;
+			if(skipFrame && !debugMode)
+				continue;
+		}
 		// Caps lock slows the frame rate in debug mode.
 		// Slowing eases in and out over a couple of frames.
-		if((mod & KMOD_CAPS) && inFlight && debugMode)
+		else if((mod & KMOD_CAPS) && inFlight && debugMode)
 		{
 			if(frameRate > 10)
 			{
@@ -314,7 +319,9 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		
 		GameWindow::Step();
 		
-		timer.Wait();
+		// When we perform automated testing, then we run the game by default as quickly as possible.
+		if(testContext.testToRun.empty())
+			timer.Wait();
 		
 		// If the player ended this frame in-game, count the elapsed time as played time.
 		if(menuPanels.IsEmpty())

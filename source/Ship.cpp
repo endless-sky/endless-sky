@@ -101,7 +101,7 @@ namespace {
 	{
 		if(isDeactivated || resistance <= 0.)
 		{
-			stat = .99 * stat;
+			stat = max(0., .99 * stat);
 			return;
 		}
 		
@@ -126,7 +126,7 @@ namespace {
 			heat += resistance * heatCost;
 		}
 		else
-			stat = .99 * stat;
+			stat = max(0., .99 * stat);
 	}
 }
 
@@ -1071,10 +1071,10 @@ vector<string> Ship::FlightCheck() const
 	auto checks = vector<string>{};
 	
 	double generation = attributes.Get("energy generation") - attributes.Get("energy consumption");
-	double burning = attributes.Get("fuel energy");
+	double consuming = attributes.Get("fuel energy");
 	double solar = attributes.Get("solar collection");
 	double battery = attributes.Get("energy capacity");
-	double energy = generation + burning + solar + battery;
+	double energy = generation + consuming + solar + battery;
 	double fuelChange = attributes.Get("fuel generation") - attributes.Get("fuel consumption");
 	double fuelCapacity = attributes.Get("fuel capacity");
 	double fuel = fuelCapacity + fuelChange;
@@ -1092,7 +1092,7 @@ vector<string> Ship::FlightCheck() const
 		checks.emplace_back("overheating!");
 	else if(energy <= 0.)
 		checks.emplace_back("no energy!");
-	else if((energy - burning <= 0.) && (fuel <= 0.))
+	else if((energy - consuming <= 0.) && (fuel <= 0.))
 		checks.emplace_back("no fuel!");
 	else if(!thrust && !reverseThrust && !afterburner)
 		checks.emplace_back("no thruster!");
@@ -1106,7 +1106,7 @@ vector<string> Ship::FlightCheck() const
 			checks.emplace_back("afterburner only?");
 		if(!thrust && !afterburner)
 			checks.emplace_back("reverse only?");
-		if(!generation && !solar && !burning)
+		if(!generation && !solar && !consuming)
 			checks.emplace_back("battery only?");
 		if(energy < thrustEnergy)
 			checks.emplace_back("limited thrust?");
@@ -1164,6 +1164,10 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	ionization = 0.;
 	disruption = 0.;
 	slowness = 0.;
+	discharge = 0.;
+	corrosion = 0.;
+	leakage = 0.;
+	burning = 0.;
 	shieldDelay = 0;
 	hullDelay = 0;
 	isInvisible = !HasSprite();
@@ -1368,6 +1372,14 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		CreateSparks(visuals, "disruption spark", disruption * .1);
 	if(slowness)
 		CreateSparks(visuals, "slowing spark", slowness * .1);
+	if(discharge)
+		CreateSparks(visuals, "discharge spark", discharge * .1);
+	if(corrosion)
+		CreateSparks(visuals, "corrosion spark", corrosion * .1);
+	if(leakage)
+		CreateSparks(visuals, "leakage spark", leakage * .1);
+	if(burning)
+		CreateSparks(visuals, "burning spark", burning * .1);
 	// Jettisoned cargo effects (only for ships in the current system).
 	if(!jettisoned.empty() && !forget)
 	{
@@ -2001,6 +2013,11 @@ void Ship::DoGeneration()
 	}
 	
 	// Handle ionization effects, etc.
+	shields -= discharge;
+	hull -= corrosion;
+	energy -= ionization;
+	fuel -= leakage;
+	heat += burning;
 	// TODO: Mothership gives status resistance to carried ships?
 	if(ionization)
 	{
@@ -2027,6 +2044,42 @@ void Ship::DoGeneration()
 		double slowingFuel = attributes.Get("slowing resistance fuel") / slowingResistance;
 		double slowingHeat = attributes.Get("slowing resistance heat") / slowingResistance;
 		DoStatusEffect(isDisabled, slowness, slowingResistance, energy, slowingEnergy, fuel, slowingFuel, heat, slowingHeat);
+	}
+	
+	if(discharge)
+	{
+		double dischargeResistance = attributes.Get("discharge resistance");
+		double dischargeEnergy = attributes.Get("discharge resistance energy") / dischargeResistance;
+		double dischargeFuel = attributes.Get("discharge resistance fuel") / dischargeResistance;
+		double dischargeHeat = attributes.Get("discharge resistance heat") / dischargeResistance;
+		DoStatusEffect(isDisabled, discharge, dischargeResistance, energy, dischargeEnergy, fuel, dischargeFuel, heat, dischargeHeat);
+	}
+	
+	if(corrosion)
+	{
+		double corrosionResistance = attributes.Get("corrosion resistance");
+		double corrosionEnergy = attributes.Get("corrosion resistance energy") / corrosionResistance;
+		double corrosionFuel = attributes.Get("corrosion resistance fuel") / corrosionResistance;
+		double corrosionHeat = attributes.Get("corrosion resistance heat") / corrosionResistance;
+		DoStatusEffect(isDisabled, corrosion, corrosionResistance, energy, corrosionEnergy, fuel, corrosionFuel, heat, corrosionHeat);
+	}
+	
+	if(leakage)
+	{
+		double leakResistance = attributes.Get("leak resistance");
+		double leakEnergy = attributes.Get("leak resistance energy") / leakResistance;
+		double leakFuel = attributes.Get("leak resistance fuel") / leakResistance;
+		double leakHeat = attributes.Get("leak resistance heat") / leakResistance;
+		DoStatusEffect(isDisabled, leakage, leakResistance, energy, leakEnergy, fuel, leakFuel, heat, leakHeat);
+	}
+	
+	if(burning)
+	{
+		double burnResistance = attributes.Get("burn resistance");
+		double burnEnergy = attributes.Get("burn resistance energy") / burnResistance;
+		double burnFuel = attributes.Get("burn resistance fuel") / burnResistance;
+		double burnHeat = attributes.Get("burn resistance heat") / burnResistance;
+		DoStatusEffect(isDisabled, burning, burnResistance, energy, burnEnergy, fuel, burnFuel, heat, burnHeat);
 	}
 	
 	// When ships recharge, what actually happens is that they can exceed their
@@ -2059,7 +2112,6 @@ void Ship::DoGeneration()
 		outfitScan = max(0., outfitScan - 1.);
 	
 	// Update ship supply levels.
-	energy -= ionization;
 	if(isDisabled)
 		PauseAnimation();
 	else
@@ -2111,8 +2163,8 @@ void Ship::DoGeneration()
 	}
 	
 	// Don't allow any levels to drop below zero.
-	fuel = max(0., fuel);
 	energy = max(0., energy);
+	fuel = max(0., fuel);
 	heat = max(0., heat);
 }
 
@@ -2689,6 +2741,10 @@ void Ship::Recharge(bool atSpaceport)
 	ionization = 0.;
 	disruption = 0.;
 	slowness = 0.;
+	discharge = 0.;
+	corrosion = 0.;
+	leakage = 0.;
+	burning = 0.;
 	shieldDelay = 0;
 	hullDelay = 0;
 }
@@ -3107,6 +3163,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damag
 	if(weapon.HasDamageDropoff())
 		damageScaling *= weapon.DamageDropoff(distanceTraveled);
 	
+	// Instantaneous damage types:
 	double shieldDamage = (weapon.ShieldDamage() + weapon.RelativeShieldDamage() * attributes.Get("shields"))
 		* damageScaling / (1. + attributes.Get("shield protection"));
 	double hullDamage = (weapon.HullDamage() + weapon.RelativeHullDamage() * attributes.Get("hull"))
@@ -3117,39 +3174,60 @@ int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damag
 		* damageScaling / (1. + attributes.Get("fuel protection"));
 	double heatDamage = (weapon.HeatDamage() + weapon.RelativeHeatDamage() * MaximumHeat())
 		* damageScaling / (1. + attributes.Get("heat protection"));
+	
+	// DoT damage types:
 	double ionDamage = weapon.IonDamage() * damageScaling / (1. + attributes.Get("ion protection"));
 	double disruptionDamage = weapon.DisruptionDamage() * damageScaling / (1. + attributes.Get("disruption protection"));
 	double slowingDamage = weapon.SlowingDamage() * damageScaling / (1. + attributes.Get("slowing protection"));
+	double dischargeDamage = weapon.DischargeDamage() * damageScaling / (1. + attributes.Get("discharge protection"));
+	double corrosionDamage = weapon.CorrosionDamage() * damageScaling / (1. + attributes.Get("corrosion protection"));
+	double leakDamage = weapon.LeakDamage() * damageScaling / (1. + attributes.Get("leak protection"));
+	double burnDamage = weapon.BurnDamage() * damageScaling / (1. + attributes.Get("burn protection"));
+	
 	double hitForce = weapon.HitForce() * damageScaling / (1. + attributes.Get("force protection"));
+	double piercing = max(0., min(1., weapon.Piercing() / (1. + attributes.Get("piercing protection")) - attributes.Get("piercing resistance")));
+	
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	
-	double shieldFraction = 1. - max(0., min(1., weapon.Piercing() / (1. + attributes.Get("piercing protection")) - attributes.Get("piercing resistance")));
+	double shieldFraction = 1. - piercing;
 	shieldFraction *= 1. / (1. + disruption * .01);
 	if(shields <= 0.)
 		shieldFraction = 0.;
 	else if(shieldDamage > shields)
 		shieldFraction = min(shieldFraction, shields / shieldDamage);
+	
 	shields -= shieldDamage * shieldFraction;
 	if(shieldDamage && !isDisabled)
 	{
-		int disabledDelay = static_cast<int>(attributes.Get("depleted shield delay"));
-		shieldDelay = max(shieldDelay, (shields <= 0. && disabledDelay) ? disabledDelay : static_cast<int>(attributes.Get("shield delay")));
+		int disabledDelay = attributes.Get("depleted shield delay");
+		shieldDelay = max<int>(shieldDelay, (shields <= 0. && disabledDelay) ? disabledDelay : attributes.Get("shield delay"));
 	}
 	hull -= hullDamage * (1. - shieldFraction);
 	if(hullDamage && !isDisabled)
 		hullDelay = max(hullDelay, static_cast<int>(attributes.Get("repair delay")));
-	// For the following damage types, the total effect depends on how much is
-	// "leaking" through the shields.
-	double leakage = (1. - .5 * shieldFraction);
-	// Code in Ship::Move() will handle making sure the fuel and energy amounts
-	// stays in the allowable ranges.
-	energy -= energyDamage * leakage;
-	fuel -= fuelDamage * leakage;
-	heat += heatDamage * leakage;
-	ionization += ionDamage * leakage;
-	disruption += disruptionDamage * leakage;
-	slowness += slowingDamage * leakage;
+	
+	// Most special damage types (i.e. not hull or shield damage) only have 50% effectiveness
+	// against ships with active shields. Disruption or piercing weapons can increase this
+	// effectiveness.
+	double shieldDegradation = (1. - .5 * shieldFraction);
+	energy -= energyDamage * shieldDegradation;
+	fuel -= fuelDamage * shieldDegradation;
+	heat += heatDamage * shieldDegradation;
+	ionization += ionDamage * shieldDegradation;
+	disruption += disruptionDamage * shieldDegradation;
+	slowness += slowingDamage * shieldDegradation;
+	burning += burnDamage * shieldDegradation;
+	
+	// The following special damage types have 0% effectiveness against ships with
+	// active shields. Disruption or piercing weapons still increase this effectivness.
+	shieldDegradation = (1. - shieldFraction);
+	corrosion += corrosionDamage * shieldDegradation;
+	leakage += leakDamage * shieldDegradation;
+	
+	// The following special damage types have 100% effectiveness against ships
+	// regardless of shield level.
+	discharge += dischargeDamage;
 	
 	if(hitForce)
 	{
@@ -3158,6 +3236,15 @@ int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damag
 		if(distance)
 			ApplyForce((hitForce / distance) * d, weapon.IsGravitational());
 	}
+	
+	// Prevent various stats from reaching unallowable values.
+	hull = min(hull, attributes.Get("hull"));
+	shields = min(shields, attributes.Get("shields"));
+	// Weapons are allowed to overcharge a ship's energy or fuel, but code in Ship::DoGeneration()
+	// will clamp it to a maximum value at the beginning of the next frame.
+	energy = max(0., energy);
+	fuel = max(0., fuel);
+	heat = max(0., heat);
 	
 	// Recalculate the disabled ship check.
 	isDisabled = true;
@@ -3573,6 +3660,10 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 	ionization += weapon.FiringIon();
 	disruption += weapon.FiringDisruption();
 	slowness += weapon.FiringSlowing();
+	discharge += weapon.FiringDischarge();
+	corrosion += weapon.FiringCorrosion();
+	leakage += weapon.FiringLeak();
+	burning += weapon.FiringBurn();
 }
 
 
