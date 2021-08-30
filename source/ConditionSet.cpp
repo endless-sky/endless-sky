@@ -163,12 +163,12 @@ namespace {
 				value = static_cast<int64_t>(DataNode::Value(str));
 			else
 			{
-				bool tempHas = created.HasCondition(str);
-				bool permHas = conditions.HasCondition(str);
+				bool tempHas = created.Has(str);
+				bool permHas = conditions.Has(str);
 				if(tempHas)
-					value = created.GetCondition(str);
+					value = created.Get(str);
 				else if(permHas)
-					value = conditions.GetCondition(str);
+					value = conditions.Get(str);
 			}
 			result.emplace_back(value);
 		}
@@ -549,9 +549,9 @@ bool ConditionSet::Expression::Test(const ConditionsStore &conditions, const Con
 // Assign the computed value to the desired condition.
 void ConditionSet::Expression::Apply(ConditionsStore &conditions, ConditionsStore &created) const
 {
-	int64_t c = conditions.GetCondition(Name());
+	int64_t c = conditions.Get(Name());
 	int64_t value = right.Evaluate(conditions, created);
-	conditions.SetCondition(Name(), fun(c, value));
+	conditions.Set(Name(), fun(c, value));
 }
 
 
@@ -559,9 +559,9 @@ void ConditionSet::Expression::Apply(ConditionsStore &conditions, ConditionsStor
 // Assign the computed value to the desired temporary condition.
 void ConditionSet::Expression::TestApply(const ConditionsStore &conditions, ConditionsStore &created) const
 {
-	int64_t c = created.GetCondition(Name());
+	int64_t c = created.Get(Name());
 	int64_t value = right.Evaluate(conditions, created);
-	created.SetCondition(Name(), fun(c, value));
+	created.Set(Name(), fun(c, value));
 }
 
 

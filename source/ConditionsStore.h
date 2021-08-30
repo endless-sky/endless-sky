@@ -113,13 +113,13 @@ public:
 
 	// Retrieve a "condition" flag from this store (directly or from the
 	// connected provider).
-	int64_t GetCondition(const std::string &name) const;
-	bool HasCondition(const std::string &name) const;
+	int64_t Get(const std::string &name) const;
+	bool Has(const std::string &name) const;
 	// Add a value to a condition, set a value for a condition or erase a
 	// condition completely. Returns true on success, false on failure.
-	bool AddCondition(const std::string &name, int64_t value);
-	bool SetCondition(const std::string &name, int64_t value);
-	bool EraseCondition(const std::string &name);
+	bool Add(const std::string &name, int64_t value);
+	bool Set(const std::string &name, int64_t value);
+	bool Erase(const std::string &name);
 	
 	// Direct (read-only) access to the stored primary conditions.
 	PrimariesIterator PrimariesBegin() const;
@@ -136,7 +136,7 @@ public:
 
 private:
 	// Retrieve a condition entry based on a condition name, the entry doesn't
-	// get created if it doesn't exist yet (the SetCondition function will handle
+	// get created if it doesn't exist yet (the Set function will handle
 	// creation if required).
 	ConditionEntry *GetEntry(const std::string &name);
 	const ConditionEntry *GetEntry(const std::string &name) const;

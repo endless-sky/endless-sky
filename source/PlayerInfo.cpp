@@ -1780,7 +1780,7 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 	if(event.ActorGovernment() && event.ActorGovernment()->IsPlayer())
 		if((event.Type() & ShipEvent::DISABLE) && event.Target() && !event.Target()->IsYours())
 		{
-			auto rating = conditions.GetCondition("combat rating");
+			auto rating = conditions.Get("combat rating");
 			static const int64_t maxRating = 2000000000;
 			rating = min(maxRating, rating + (event.Target()->Cost() + 250000) / 500000);
 			SetCondition("combat rating", rating);
@@ -1799,7 +1799,7 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 // Get the value of the given condition (default 0).
 int64_t PlayerInfo::GetCondition(const string &name) const
 {
-	return conditions.GetCondition(name);
+	return conditions.Get(name);
 }
 
 
@@ -1807,7 +1807,7 @@ int64_t PlayerInfo::GetCondition(const string &name) const
 // Set a condition to the given value.
 bool PlayerInfo::SetCondition(const string &name, int64_t value)
 {
-	return conditions.SetCondition(name, value);
+	return conditions.Set(name, value);
 }
 
 
@@ -1815,7 +1815,7 @@ bool PlayerInfo::SetCondition(const string &name, int64_t value)
 // Add a value to the given condition.
 bool PlayerInfo::AddCondition(const string &name, int64_t value)
 {
-	return conditions.AddCondition(name, value);
+	return conditions.Add(name, value);
 }
 
 
@@ -1823,7 +1823,7 @@ bool PlayerInfo::AddCondition(const string &name, int64_t value)
 // Remove the value for some condition.
 bool PlayerInfo::EraseCondition(const string &name)
 {
-	return conditions.EraseCondition(name);
+	return conditions.Erase(name);
 }
 
 
@@ -2513,7 +2513,7 @@ void PlayerInfo::ValidateLoad()
 			startData = GameData::StartOptions().front();
 			// When necessary, record in the pilot file that the starting data is just an assumption.
 			if(startCount >= 2)
-				conditions.SetCondition("unverified start scenario", true);
+				conditions.Set("unverified start scenario", true);
 		}
 		else
 			throw runtime_error("Unable to set a starting scenario for an existing pilot. (No valid \"start\" "

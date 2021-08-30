@@ -88,7 +88,7 @@ void ConditionsStore::PrimariesIterator::MoveToValueCondition()
 ConditionsStore::ConditionsStore(initializer_list<pair<string, int64_t>> initialConditions)
 {
 	for(const auto &it : initialConditions)
-		SetCondition(it.first, it.second);
+		Set(it.first, it.second);
 }
 
 
@@ -97,7 +97,7 @@ ConditionsStore::ConditionsStore(initializer_list<pair<string, int64_t>> initial
 ConditionsStore::ConditionsStore(const map<string, int64_t> &initialConditions)
 {
 	for(const auto &it : initialConditions)
-		SetCondition(it.first, it.second);
+		Set(it.first, it.second);
 }
 
 
@@ -105,7 +105,7 @@ ConditionsStore::ConditionsStore(const map<string, int64_t> &initialConditions)
 // Get a condition from the Conditions-Store. Retrieves both conditions
 // that were directly set (primary conditions) as well as conditions
 //derived from other data-structures (derived conditions).
-int64_t ConditionsStore::GetCondition(const std::string &name) const
+int64_t ConditionsStore::Get(const std::string &name) const
 {
 	const ConditionEntry *ce = GetEntry(name);
 	if(!ce)
@@ -119,7 +119,7 @@ int64_t ConditionsStore::GetCondition(const std::string &name) const
 
 
 
-bool ConditionsStore::HasCondition(const std::string &name) const
+bool ConditionsStore::Has(const std::string &name) const
 {
 	const ConditionEntry *ce = GetEntry(name);
 	if(!ce)
@@ -134,20 +134,19 @@ bool ConditionsStore::HasCondition(const std::string &name) const
 
 
 // Add a value to a condition. Returns true on success, false on failure.
-bool ConditionsStore::AddCondition(const string &name, int64_t value)
+bool ConditionsStore::Add(const string &name, int64_t value)
 {
-	// This code performes 2 lookups of the condition, once for get and
+	// This code performers 2 lookups of the condition, once for get and
 	// once for set. This might be optimized to a single lookup in a
-	// later version of the code when we add derived conditions.
-	
-	return SetCondition(name, GetCondition(name) + value);
+	// later version of the code.
+	return Set(name, Get(name) + value);
 }
 
 
 
 // Set a value for a condition, either for the local value, or by performing
 // a set on the provider.
-bool ConditionsStore::SetCondition(const string &name, int64_t value)
+bool ConditionsStore::Set(const string &name, int64_t value)
 {
 	ConditionEntry *ce = GetEntry(name);
 	if(!ce)
@@ -169,7 +168,7 @@ bool ConditionsStore::SetCondition(const string &name, int64_t value)
 
 // Erase a condition completely, either the local value or by performing
 // an erase on the provider.
-bool ConditionsStore::EraseCondition(const string &name)
+bool ConditionsStore::Erase(const string &name)
 {
 	ConditionEntry *ce = GetEntry(name);
 	if(!ce)
