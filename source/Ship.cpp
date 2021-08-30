@@ -1500,7 +1500,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				int i = Random::Int(outline.size() - 1);
 				
 				// Position the leak along the outline of the ship, facing "outward."
-				activeLeaks.back().location = (outline[i] + outline[i + 1]) * .5 * Scale();
+				activeLeaks.back().location = (outline[i] + outline[i + 1]) * .5;
 				activeLeaks.back().angle = Angle(outline[i] - outline[i + 1]) + Angle(90.);
 			}
 		for(Leak &leak : activeLeaks)
@@ -3156,7 +3156,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damag
 		double k = !radiusRatio ? 1. : (1. + .25 * radiusRatio * radiusRatio);
 		// Rather than exactly compute the distance between the explosion and
 		// the closest point on the ship, estimate it using the mask's Radius.
-		double d = max(0., (damagePosition - position).Length() - GetMask().Radius() * Scale());
+		double d = max(0., (damagePosition - position).Length() - GetMask().Radius());
 		double rSquared = d * d / (blastRadius * blastRadius);
 		damageScaling *= k / ((1. + rSquared * rSquared) * (1. + rSquared * rSquared));
 	}
@@ -3890,7 +3890,7 @@ void Ship::CreateExplosion(vector<Visual> &visuals, bool spread)
 	{
 		Point point((Random::Real() - .5) * Width(),
 			(Random::Real() - .5) * Height());
-		if(GetMask().Contains(point, Angle(), Scale()))
+		if(GetMask().Contains(point, Angle()))
 		{
 			// Pick an explosion.
 			int type = Random::Int(explosionTotal);
@@ -3942,7 +3942,7 @@ void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double am
 		
 		Point point((Random::Real() - .5) * Width(),
 			(Random::Real() - .5) * Height());
-		if(GetMask().Contains(point, Angle(), Scale()))
+		if(GetMask().Contains(point, Angle()))
 			visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
 	}
 }

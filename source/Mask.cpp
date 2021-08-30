@@ -313,11 +313,11 @@ bool Mask::IsLoaded() const
 // intersection occurs. The sA should be relative to this object's center.
 // If this object contains the given point, the return value is 0. If there
 // is no collision, the return value is 1.
-double Mask::Collide(Point sA, Point vA, Angle facing, double scale) const
+double Mask::Collide(Point sA, Point vA, Angle facing) const
 {
 	// Bail out if we're too far away to possibly be touching.
 	double distance = sA.Length();
-	if(!IsLoaded() || distance > radius * scale + vA.Length())
+	if(!IsLoaded() || distance > radius + vA.Length())
 		return 1.;
 	
 	// Rotate into the mask's frame of reference.
@@ -331,32 +331,32 @@ double Mask::Collide(Point sA, Point vA, Angle facing, double scale) const
 	
 	// For simplicity, use a ray pointing straight downwards. A segment then
 	// intersects only if its x coordinates span the point's coordinates.
-	if(distance <= radius * scale && Contains(sA, scale))
+	if(distance <= radius && Contains(sA))
 		return 0.;
 	
-	return Intersection(sA, vA, scale);
+	return Intersection(sA, vA);
 }
 
 
 
 // Check whether the mask contains the given point.
-bool Mask::Contains(Point point, Angle facing, double scale) const
+bool Mask::Contains(Point point, Angle facing) const
 {
-	if(!IsLoaded() || point.Length() > radius * scale)
+	if(!IsLoaded() || point.Length() > radius)
 		return false;
 	
 	// Rotate into the mask's frame of reference.
-	return Contains((-facing).Rotate(point), scale);
+	return Contains((-facing).Rotate(point));
 }
 
 
 
 // Find out whether this object is touching a ring defined by the given
 // inner and outer ranges.
-bool Mask::WithinRing(Point point, Angle facing, double scale, double inner, double outer) const
+bool Mask::WithinRing(Point point, Angle facing, double inner, double outer) const
 {
 	// Bail out if the object is too far away to possibly be touched.
-	if(!IsLoaded() || inner > point.Length() + radius * scale || outer < point.Length() - radius * scale)
+	if(!IsLoaded() || inner > point.Length() + radius || outer < point.Length() - radius)
 		return false;
 	
 	// Rotate into the mask's frame of reference.
@@ -368,7 +368,7 @@ bool Mask::WithinRing(Point point, Angle facing, double scale, double inner, dou
 	for(auto &&outline : outlines)
 		for(auto &&p : outline)
 		{
-			double pSquared = (p * scale).DistanceSquared(point);
+			double pSquared = p.DistanceSquared(point);
 			if(pSquared < outer && pSquared > inner)
 				return true;
 		}
@@ -379,7 +379,7 @@ bool Mask::WithinRing(Point point, Angle facing, double scale, double inner, dou
 
 
 // Find out how close the given point is to the mask.
-double Mask::Range(Point point, Angle facing, double scale) const
+double Mask::Range(Point point, Angle facing) const
 {
 	double range = numeric_limits<double>::infinity();
 	if(!IsLoaded())
@@ -387,12 +387,12 @@ double Mask::Range(Point point, Angle facing, double scale) const
 	
 	// Rotate into the mask's frame of reference.
 	point = (-facing).Rotate(point);
-	if(Contains(point, scale))
+	if(Contains(point))
 		return 0.;
 	
 	for(auto &&outline : outlines)
 		for(auto &&p : outline)
-			range = min(range, (p * scale).Distance(point));
+			range = min(range, p.Distance(point));
 	
 	return range;
 }
@@ -414,17 +414,16 @@ const vector<vector<Point>> &Mask::Outlines() const
 
 
 
-double Mask::Intersection(Point sA, Point vA, double scale) const
+double Mask::Intersection(Point sA, Point vA) const
 {
 	// Keep track of the closest intersection point found.
 	double closest = 1.;
 	
 	for(auto &&outline : outlines)
 	{
-		Point prev = outline.back() * scale;
-		for(auto &&p : outline)
+		Point prev = outline.back();
+		for(auto &&next : outline)
 		{
-			Point next = p * scale;
 			// Check if there is an intersection. (If not, the cross would be 0.) If
 			// there is, handle it only if it is a point where the segment is
 			// entering the polygon rather than exiting it (i.e. cross > 0).
@@ -450,7 +449,7 @@ double Mask::Intersection(Point sA, Point vA, double scale) const
 
 
 
-bool Mask::Contains(Point point, double scale) const
+bool Mask::Contains(Point point) const
 {
 	if(!IsLoaded())
 		return false;
@@ -467,10 +466,9 @@ bool Mask::Contains(Point point, double scale) const
 	int intersections = 0;
 	for(auto &&outline : outlines)
 	{
-		Point prev = outline.back() * scale;
-		for(auto &&p : outline)
+		Point prev = outline.back();
+		for(auto &&next : outline)
 		{
-			Point next = p * scale;
 			if(prev.X() != next.X())
 				if((prev.X() <= point.X()) == (point.X() < next.X()))
 				{

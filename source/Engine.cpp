@@ -1851,7 +1851,7 @@ void Engine::HandleMouseClicks()
 		{
 			Point position = ship->Position() - flagship->Position();
 			const Mask &mask = ship->GetMask(step);
-			double range = mask.Range(clickPoint - position, ship->Facing(), ship->Scale());
+			double range = mask.Range(clickPoint - position, ship->Facing());
 			if(range <= clickRange)
 			{
 				clickRange = range;
@@ -1934,7 +1934,7 @@ void Engine::DoCollisions(Projectile &projectile)
 		if(target)
 		{
 			Point offset = projectile.Position() - target->Position();
-			double range = target->GetMask(step).Collide(offset, projectile.Velocity(), target->Facing(), target->Scale());
+			double range = target->GetMask(step).Collide(offset, projectile.Velocity(), target->Facing());
 			if(range < 1.)
 			{
 				closestHit = range;
@@ -2051,7 +2051,7 @@ void Engine::DoWeather(Weather &weather)
 		for(Body *body : shipCollisions.Ring(Point(), hazard->MinRange(), hazard->MaxRange()))
 		{
 			Ship *hit = reinterpret_cast<Ship *>(body);
-			double distanceTraveled = hit->Position().Length() - hit->GetMask().Radius() * hit->Scale();
+			double distanceTraveled = hit->Position().Length() - hit->GetMask().Radius();
 			hit->TakeDamage(visuals, *hazard, multiplier, distanceTraveled, Point(), nullptr, hazard->BlastRadius() > 0.);
 		}
 	}
