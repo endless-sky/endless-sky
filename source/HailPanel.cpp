@@ -239,7 +239,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		if(GameData::GetPolitics().HasDominated(planet))
 		{
 			GameData::GetPolitics().DominatePlanet(planet, false);
-			player.EraseCondition("tribute: " + planet->Name());
+			player.Conditions().Erase("tribute: " + planet->Name());
 			message = "Thank you for granting us our freedom!";
 		}
 		else

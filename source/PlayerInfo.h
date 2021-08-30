@@ -205,7 +205,6 @@ public:
 	// false on failure.
 	bool SetCondition(const std::string &name, int64_t value);
 	bool AddCondition(const std::string &name, int64_t value);
-	bool EraseCondition(const std::string &name);
 	void EraseManualByPrefix(const std::string &prefix);
 	// Direct access to "condition" flags data.
 	ConditionsStore &Conditions();

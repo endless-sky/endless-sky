@@ -1820,14 +1820,6 @@ bool PlayerInfo::AddCondition(const string &name, int64_t value)
 
 
 
-// Remove the value for some condition.
-bool PlayerInfo::EraseCondition(const string &name)
-{
-	return conditions.Erase(name);
-}
-
-
-
 // Temporary function to erase conditions by prefix. This function should
 // no longer be needed once automatically generated conditions are on-demand
 // automatically generated.
@@ -1844,7 +1836,7 @@ void PlayerInfo::EraseManualByPrefix(const string &prefix)
 	
 	// Erase the selected items.
 	for(auto toE : toErase)
-		EraseCondition(toE);
+		conditions.Erase(toE);
 }
 
 
