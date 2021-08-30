@@ -97,22 +97,22 @@ void StarField::Init(int stars, int width)
 
 
 
-void StarField::SetHaze(const Sprite *sprite)
+void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 {
 	// If no sprite is given, set the default one.
 	if(!sprite)
 		sprite = SpriteSet::Get("_menu/haze");
 	
-	if(sprite != lastSprite)
+	for(Body &body : haze[0])
+		body.SetSprite(sprite);
+	
+	if(allowAnimation && sprite != lastSprite)
 	{
 		transparency = 1.;
 		for(Body &body: haze[1])
 			body.SetSprite(lastSprite);
-		lastSprite = sprite;
 	}
-	
-	for(Body &body : haze[0])
-		body.SetSprite(sprite);
+	lastSprite = sprite;
 }
 
 
