@@ -52,7 +52,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 		header = ship->ModelName() + " (" + gov->GetName() + "): ";
 	// Drones are always unpiloted, so they never respond to hails.
 	bool isMute = ship->GetPersonality().IsMute() || (ship->Attributes().Category() == "Drone");
-	hasLanguage = !isMute && (gov->Language().empty() || player.GetCondition("language: " + gov->Language()));
+	hasLanguage = !isMute && (gov->Language().empty() || player.Conditions().Get("language: " + gov->Language()));
 	
 	if(isMute)
 		message = "(There is no response to your hail.)";
@@ -127,7 +127,7 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 	const Government *gov = planet ? planet->GetGovernment() : player.GetSystem()->GetGovernment();
 	if(planet)
 		header = gov->GetName() + " " + planet->Noun() + " \"" + planet->Name() + "\":";
-	hasLanguage = (gov->Language().empty() || player.GetCondition("language: " + gov->Language()));
+	hasLanguage = (gov->Language().empty() || player.Conditions().Get("language: " + gov->Language()));
 	
 	if(!hasLanguage)
 		message = "(An alien voice says something in a language you do not recognize.)";

@@ -200,12 +200,7 @@ public:
 	void HandleEvent(const ShipEvent &event, UI *ui);
 	
 	// Access the "condition" flags for this player.
-	int64_t GetCondition(const std::string &name) const;
-	// Set a "condition" flag to the given value. Returns true on success,
-	// false on failure.
-	bool SetCondition(const std::string &name, int64_t value);
 	void EraseManualByPrefix(const std::string &prefix);
-	// Direct access to "condition" flags data.
 	ConditionsStore &Conditions();
 	const ConditionsStore &Conditions() const;
 	

@@ -150,7 +150,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		int minCount = numeric_limits<int>::max();
 		int maxCount = 0;
 		if(isLicense)
-			minCount = maxCount = player.GetCondition(LicenseName(name));
+			minCount = maxCount = player.Conditions().Get(LicenseName(name));
 		else if(mapSize)
 			minCount = maxCount = HasMapped(mapSize);
 		else
@@ -348,12 +348,13 @@ bool OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 void OutfitterPanel::Buy(bool alreadyOwned)
 {
 	int64_t licenseCost = LicenseCost(selectedOutfit);
+	auto &playerConditions = player.Conditions();
 	if(licenseCost)
 	{
 		player.Accounts().AddCredits(-licenseCost);
 		for(const string &licenseName : selectedOutfit->Licenses())
-			if(!player.GetCondition("license: " + licenseName))
-				player.SetCondition("license: " + licenseName, true);
+			if(!playerConditions.Get("license: " + licenseName))
+				playerConditions.Set("license: " + licenseName, true);
 	}
 	
 	int modifier = Modifier();
@@ -379,9 +380,9 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 		if(IsLicense(selectedOutfit->Name()))
 		{
 			string licenseName = LicenseName(selectedOutfit->Name());
-			if(player.GetCondition(licenseName) <= 0)
+			if(playerConditions.Get(licenseName) <= 0)
 			{
-				player.SetCondition(licenseName, true);
+				playerConditions.Set(licenseName, true);
 				int64_t price = player.StockDepreciation().Value(selectedOutfit, day);
 				player.Accounts().AddCredits(-price);
 			}
@@ -890,7 +891,7 @@ bool OutfitterPanel::IsLicense(const string &name) const
 
 bool OutfitterPanel::HasLicense(const string &name) const
 {
-	return (IsLicense(name) && player.GetCondition(LicenseName(name)) > 0);
+	return (IsLicense(name) && player.Conditions().Get(LicenseName(name)) > 0);
 }
 
 

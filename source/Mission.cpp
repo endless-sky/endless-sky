@@ -667,13 +667,14 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 			return false;
 	}
 	
-	if(!toOffer.Test(player.Conditions()))
+	auto &playerConditions = player.Conditions();
+	if(!toOffer.Test(playerConditions))
 		return false;
 	
-	if(!toFail.IsEmpty() && toFail.Test(player.Conditions()))
+	if(!toFail.IsEmpty() && toFail.Test(playerConditions))
 		return false;
 	
-	if(repeat && player.GetCondition(name + ": offered") >= repeat)
+	if(repeat && playerConditions.Get(name + ": offered") >= repeat)
 		return false;
 	
 	auto it = actions.find(OFFER);

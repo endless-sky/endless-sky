@@ -370,8 +370,8 @@ void ShipyardPanel::BuyShip(const string &name)
 	{
 		player.Accounts().AddCredits(-licenseCost);
 		for(const string &licenseName : selectedShip->Attributes().Licenses())
-			if(player.GetCondition("license: " + licenseName) <= 0)
-				player.SetCondition("license: " + licenseName, true);
+			if(player.Conditions().Get("license: " + licenseName) <= 0)
+				player.Conditions().Set("license: " + licenseName, true);
 	}
 	
 	for(int i = 1; i <= modifier; ++i)

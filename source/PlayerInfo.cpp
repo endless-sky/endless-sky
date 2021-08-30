@@ -232,7 +232,7 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "conditions")
 		{
 			for(const DataNode &grand : child)
-				SetCondition(grand.Token(0), (grand.Size() >= 2) ? grand.Value(1) : 1);
+				conditions.Set(grand.Token(0), (grand.Size() >= 2) ? grand.Value(1) : 1);
 		}
 		else if(child.Token(0) == "event")
 			gameEvents.emplace_back(child);
@@ -532,9 +532,9 @@ const Date &PlayerInfo::GetDate() const
 void PlayerInfo::IncrementDate()
 {
 	++date;
-	SetCondition("day", date.Day());
-	SetCondition("month", date.Month());
-	SetCondition("year", date.Year());
+	conditions.Set("day", date.Day());
+	conditions.Set("month", date.Month());
+	conditions.Set("year", date.Year());
 	
 	// Check if any special events should happen today.
 	auto it = gameEvents.begin();
@@ -1783,7 +1783,7 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 			auto rating = conditions.Get("combat rating");
 			static const int64_t maxRating = 2000000000;
 			rating = min(maxRating, rating + (event.Target()->Cost() + 250000) / 500000);
-			SetCondition("combat rating", rating);
+			conditions.Set("combat rating", rating);
 		}
 	
 	for(Mission &mission : missions)
@@ -1792,22 +1792,6 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 	// If the player's flagship was destroyed, the player is dead.
 	if((event.Type() & ShipEvent::DESTROY) && !ships.empty() && event.Target().get() == Flagship())
 		Die();
-}
-
-
-
-// Get the value of the given condition (default 0).
-int64_t PlayerInfo::GetCondition(const string &name) const
-{
-	return conditions.Get(name);
-}
-
-
-
-// Set a condition to the given value.
-bool PlayerInfo::SetCondition(const string &name, int64_t value)
-{
-	return conditions.Set(name, value);
 }
 
 
