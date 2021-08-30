@@ -69,8 +69,7 @@ void StarField::Init(int stars, int width)
 	SetUpGraphics();
 	MakeStars(stars, width);
 	
-	const Sprite *sprite = SpriteSet::Get("_menu/haze");
-	currSprite = sprite;
+	lastSprite = SpriteSet::Get("_menu/haze");
 	for(size_t i = 0; i < HAZE_COUNT; ++i)
 	{
 		Point next;
@@ -79,7 +78,7 @@ void StarField::Init(int stars, int width)
 		{
 			next = Point(Random::Real() * HAZE_WRAP, Random::Real() * HAZE_WRAP);
 			overlaps = false;
-			for(const Body &other : haze)
+			for(const Body &other : haze[0])
 			{
 				Point previous = other.Position();
 				double dx = remainder(previous.X() - next.X(), HAZE_WRAP);
@@ -91,9 +90,9 @@ void StarField::Init(int stars, int width)
 				}
 			}
 		}
-		haze.emplace_back(sprite, next, Point(), Angle::Random(), 8.);
+		haze[0].emplace_back(lastSprite, next, Point(), Angle::Random(), 8.);
 	}
-	prevHaze.assign(haze.begin(), haze.end());
+	haze[1].assign(haze[0].begin(), haze[0].end());
 }
 
 
@@ -104,15 +103,15 @@ void StarField::SetHaze(const Sprite *sprite)
 	if(!sprite)
 		sprite = SpriteSet::Get("_menu/haze");
 	
-	if(sprite != currSprite)
+	if(sprite != lastSprite)
 	{
 		transparency = 1.;
-		for(Body &body: prevHaze)
-			body.SetSprite(currSprite);
-		currSprite = sprite;
+		for(Body &body: haze[1])
+			body.SetSprite(lastSprite);
+		lastSprite = sprite;
 	}
 	
-	for(Body &body : haze)
+	for(Body &body : haze[0])
 		body.SetSprite(sprite);
 }
 
@@ -191,12 +190,12 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 	
 	// Any object within this range must be drawn. Some haze sprites may repeat
 	// more than once if the view covers a very large area.
-	Point size = Point(1., 1.) * haze.front().Radius();
+	Point size = Point(1., 1.) * haze[0].front().Radius();
 	Point topLeft = pos + (Screen::TopLeft() - size) / zoom;
 	Point bottomRight = pos + (Screen::BottomRight() + size) / zoom;
 	if(transparency > 0.)
-		AddHaze(drawList, prevHaze, topLeft, bottomRight, 1 - transparency);
-	AddHaze(drawList, haze, topLeft, bottomRight, transparency);
+		AddHaze(drawList, haze[1], topLeft, bottomRight, 1 - transparency);
+	AddHaze(drawList, haze[0], topLeft, bottomRight, transparency);
 	
 	drawList.Draw();
 }

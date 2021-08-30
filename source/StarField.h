@@ -48,14 +48,11 @@ private:
 	int widthMod;
 	int tileCols;
 	std::vector<int> tileIndex;
-
-	// Current haze transparency, to support fade-in
+	
+	// Track the haze sprite, so we can animate the transition between different hazes.
+	const Sprite *lastSprite;
 	mutable double transparency = 0.;
-	
-	const Sprite *currSprite;
-	
-	std::vector<Body> haze;
-	std::vector<Body> prevHaze;
+	std::vector<Body> haze[2];
 	
 	Shader shader;
 	GLuint vao;
