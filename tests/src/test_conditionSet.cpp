@@ -149,7 +149,7 @@ SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
 			emptySet.Apply(store);
 			REQUIRE( primarySize(store) == 0 );
 			
-			store.SetCondition("event: war begins", 1);
+			store.Set("event: war begins", 1);
 			REQUIRE( primarySize(store) == 1 );
 			emptySet.Apply(store);
 			REQUIRE( primarySize(store) == 1 );
@@ -167,7 +167,7 @@ SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
 			compareSet.Apply(store);
 			REQUIRE( primarySize(store) == 0 );
 			
-			store.SetCondition("event: war begins", 1);
+			store.Set("event: war begins", 1);
 			REQUIRE( primarySize(store) == 1 );
 			compareSet.Apply(store);
 			REQUIRE( primarySize(store) == 1 );

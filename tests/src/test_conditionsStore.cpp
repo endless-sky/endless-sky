@@ -129,18 +129,18 @@ SCENARIO( "Creating a ConditionsStore" , "[ConditionsStore][Creation]" ) {
 		WHEN( "initialized using an initalizer list" ) {
 			const auto store = ConditionsStore{{"hello world", 100}, {"goodbye world", 404}};
 			THEN( "given primary conditions are in the Store" ) {
-				REQUIRE( store.GetCondition("hello world") == 100 );
-				REQUIRE( store.GetCondition("goodbye world") == 404 );
+				REQUIRE( store.Get("hello world") == 100 );
+				REQUIRE( store.Get("goodbye world") == 404 );
 				REQUIRE( primarySize(store) == 2 );
 			}
 			THEN( "not given conditions return the default value" ) {
-				REQUIRE( 0 == store.GetCondition("ungreeted world") );
+				REQUIRE( 0 == store.Get("ungreeted world") );
 				REQUIRE( primarySize(store) == 2 );
-				REQUIRE( store.GetCondition("ungreeted world") == 0 );
+				REQUIRE( store.Get("ungreeted world") == 0 );
 				REQUIRE( primarySize(store) == 2 );
-				REQUIRE( 0 == store.GetCondition("hi world") );
+				REQUIRE( 0 == store.Get("hi world") );
 				REQUIRE( primarySize(store) == 2 );
-				REQUIRE( store.GetCondition("hi world") == 0 );
+				REQUIRE( store.Get("hi world") == 0 );
 				REQUIRE( primarySize(store) == 2 );
 			}
 			THEN( "two iterators to the same position should be equal") {
@@ -171,18 +171,18 @@ SCENARIO( "Creating a ConditionsStore" , "[ConditionsStore][Creation]" ) {
 			const std::map<std::string, int64_t> initmap {{"hello world", 100}, {"goodbye world", 404}};
 			const auto store = ConditionsStore(initmap);
 			THEN( "given primary conditions are in the Store" ) {
-				REQUIRE( store.GetCondition("hello world") == 100 );
-				REQUIRE( store.GetCondition("goodbye world") == 404 );
+				REQUIRE( store.Get("hello world") == 100 );
+				REQUIRE( store.Get("goodbye world") == 404 );
 				REQUIRE( primarySize(store) == 2 );
 			}
 			THEN( "not given conditions return the default value" ) {
-				REQUIRE( store.GetCondition("ungreeted world") == 0 );
+				REQUIRE( store.Get("ungreeted world") == 0 );
 				REQUIRE( primarySize(store) == 2 );
-				REQUIRE( store.GetCondition("ungreeted world") == 0 );
+				REQUIRE( store.Get("ungreeted world") == 0 );
 				REQUIRE( primarySize(store) == 2 );
-				REQUIRE( 0 == store.GetCondition("hi world") );
+				REQUIRE( 0 == store.Get("hi world") );
 				REQUIRE( primarySize(store) == 2 );
-				REQUIRE( store.GetCondition("hi world") == 0 );
+				REQUIRE( store.Get("hi world") == 0 );
 				REQUIRE( primarySize(store) == 2 );
 			}
 		}
@@ -216,32 +216,32 @@ SCENARIO( "Setting and erasing conditions", "[ConditionStore][ConditionSetting]"
 		auto store = ConditionsStore();
 		REQUIRE( primarySize(store) == 0 );
 		WHEN( "a condition is set" ) {
-			REQUIRE( store.SetCondition("myFirstVar", 10) == true );
+			REQUIRE( store.Set("myFirstVar", 10) == true );
 			THEN( "stored condition is present and can be retrieved" ) {
-				REQUIRE( store.GetCondition("myFirstVar") == 10 );
-				REQUIRE( store.HasCondition("myFirstVar") == true );
+				REQUIRE( store.Get("myFirstVar") == 10 );
+				REQUIRE( store.Has("myFirstVar") == true );
 				REQUIRE( primarySize(store) == 1 );
-				REQUIRE( store.GetCondition("myFirstVar") == 10 );
+				REQUIRE( store.Get("myFirstVar") == 10 );
 			}
 			THEN( "erasing the condition will make it disappear again" ) {
-				REQUIRE( store.HasCondition("myFirstVar") == true );
+				REQUIRE( store.Has("myFirstVar") == true );
 				REQUIRE( primarySize(store) == 1 );
-				REQUIRE( store.GetCondition("myFirstVar") == 10 );
+				REQUIRE( store.Get("myFirstVar") == 10 );
 				REQUIRE( primarySize(store) == 1 );
-				REQUIRE( store.EraseCondition("myFirstVar") == true );
-				REQUIRE( store.HasCondition("myFirstVar") == false );
+				REQUIRE( store.Erase("myFirstVar") == true );
+				REQUIRE( store.Has("myFirstVar") == false );
 				REQUIRE( primarySize(store) == 0 );
-				REQUIRE( store.GetCondition("myFirstVar") == 0 );
-				REQUIRE( store.HasCondition("myFirstVar") == false );
+				REQUIRE( store.Get("myFirstVar") == 0 );
+				REQUIRE( store.Has("myFirstVar") == false );
 				REQUIRE( primarySize(store) == 0 );
 			}
 		}
 		WHEN( "non-existing conditions are queried" ) {
 			THEN( "defaults are returned and queried conditions are not stored" ) {
-				REQUIRE( store.GetCondition("mySecondVar") == 0 );
+				REQUIRE( store.Get("mySecondVar") == 0 );
 				REQUIRE( primarySize(store) == 0 );
-				REQUIRE( store.HasCondition("mySecondVar") == false );
-				REQUIRE( store.GetCondition("mySecondVar") == 0 );
+				REQUIRE( store.Has("mySecondVar") == false );
+				REQUIRE( store.Get("mySecondVar") == 0 );
 				REQUIRE( primarySize(store) == 0 );
 			}
 		}
@@ -251,26 +251,26 @@ SCENARIO( "Setting and erasing conditions", "[ConditionStore][ConditionSetting]"
 SCENARIO( "Adding and removing on condition values", "[ConditionStore][ConditionArithmetic]" ) {
 	GIVEN( "A conditionsStore with 1 condition" ) {
 		auto store = ConditionsStore{{"myFirstVar", 10}};
-		REQUIRE( store.GetCondition("myFirstVar") == 10 );
+		REQUIRE( store.Get("myFirstVar") == 10 );
 		REQUIRE( primarySize(store) == 1 );
 		WHEN( "adding to the existing primary condition" ) {
-			REQUIRE( store.AddCondition("myFirstVar", 10) == true );
+			REQUIRE( store.Add("myFirstVar", 10) == true );
 			THEN( "the condition gets the new value" ) {
-				REQUIRE( store.GetCondition("myFirstVar") == 20 );
-				REQUIRE( store.AddCondition("myFirstVar", -15) == true );
-				REQUIRE( store.GetCondition("myFirstVar") == 5 );
-				REQUIRE( store.AddCondition("myFirstVar", -15) == true );
-				REQUIRE( store.GetCondition("myFirstVar") == -10 );
+				REQUIRE( store.Get("myFirstVar") == 20 );
+				REQUIRE( store.Add("myFirstVar", -15) == true );
+				REQUIRE( store.Get("myFirstVar") == 5 );
+				REQUIRE( store.Add("myFirstVar", -15) == true );
+				REQUIRE( store.Get("myFirstVar") == -10 );
 			}
 		}
 		WHEN( "adding to another non-existing (primary) condition sets the new value" ) {
-			REQUIRE( store.AddCondition("mySecondVar", -30) == true );
+			REQUIRE( store.Add("mySecondVar", -30) == true );
 			THEN( "the new condition exists with the new value" ) {
-				REQUIRE( store.GetCondition("mySecondVar") == -30 );
+				REQUIRE( store.Get("mySecondVar") == -30 );
 				REQUIRE( primarySize(store) == 2 );
-				REQUIRE( store.HasCondition("mySecondVar") == true );
-				REQUIRE( store.AddCondition("mySecondVar", 60) == true );
-				REQUIRE( store.GetCondition("mySecondVar") == 30 );
+				REQUIRE( store.Has("mySecondVar") == true );
+				REQUIRE( store.Add("mySecondVar", 60) == true );
+				REQUIRE( store.Get("mySecondVar") == 30 );
 				REQUIRE( primarySize(store) == 2 );
 			}
 		}
@@ -284,12 +284,12 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 		auto store = ConditionsStore{{"myFirstVar", 10}};
 		store.SetProviderNamed("named1", mockProvNamed.GetRWNamedProvider("named1"));
 		store.SetProviderPrefixed("prefixA: ", mockProvPrefixA.GetRWPrefixProvider("prefixA: "));
-		REQUIRE( store.AddCondition("named1", -30) == true );
+		REQUIRE( store.Add("named1", -30) == true );
 		REQUIRE( mockProvNamed.values["named1"] == -30 );
 		REQUIRE( mockProvNamed.values.size() == 1 );
 		REQUIRE( primarySize(store) == 1 );
 		REQUIRE( mockProvPrefixA.values.size() == 0 );
-		REQUIRE( store.AddCondition("prefixA: test", -30) == true );
+		REQUIRE( store.Add("prefixA: test", -30) == true );
 		REQUIRE( primarySize(store) == 1 );
 		REQUIRE( mockProvPrefixA.values["prefixA: test"] == -30 );
 		REQUIRE( mockProvPrefixA.values.size() == 1 );
@@ -297,23 +297,23 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 		REQUIRE( primarySize(store) == 1 );
 		WHEN( "adding to an existing primary condition" ) {
 			THEN( "the add should work as-is" ) {
-				REQUIRE( store.GetCondition("myFirstVar") == 10 );
-				REQUIRE( store.AddCondition("myFirstVar", 10) == true );
-				REQUIRE( store.GetCondition("myFirstVar") == 20 );
-				REQUIRE( store.AddCondition("myFirstVar", -15) == true );
-				REQUIRE( store.GetCondition("myFirstVar") == 5 );
-				REQUIRE( store.AddCondition("myFirstVar", -15) == true );
-				REQUIRE( store.GetCondition("myFirstVar") == -10 );
+				REQUIRE( store.Get("myFirstVar") == 10 );
+				REQUIRE( store.Add("myFirstVar", 10) == true );
+				REQUIRE( store.Get("myFirstVar") == 20 );
+				REQUIRE( store.Add("myFirstVar", -15) == true );
+				REQUIRE( store.Get("myFirstVar") == 5 );
+				REQUIRE( store.Add("myFirstVar", -15) == true );
+				REQUIRE( store.Get("myFirstVar") == -10 );
 			}
 		}
 		WHEN( "adding to an non-existing primary condition" ) {
 			THEN( "such condition should be set properly" ) {
-				REQUIRE( store.AddCondition("mySecondVar", -30) == true );
-				REQUIRE( store.GetCondition("mySecondVar") == -30 );
+				REQUIRE( store.Add("mySecondVar", -30) == true );
+				REQUIRE( store.Get("mySecondVar") == -30 );
 				REQUIRE( primarySize(store) == 2 );
-				REQUIRE( store.HasCondition("mySecondVar") == true );
-				REQUIRE( store.AddCondition("mySecondVar", 60) == true );
-				REQUIRE( store.GetCondition("mySecondVar") == 30 );
+				REQUIRE( store.Has("mySecondVar") == true );
+				REQUIRE( store.Add("mySecondVar", 60) == true );
+				REQUIRE( store.Get("mySecondVar") == 30 );
 				REQUIRE( primarySize(store) == 2 );
 			}
 		}
@@ -337,86 +337,86 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 			}
 		}
 		WHEN( "adding on a named derived condition" ) {
-			REQUIRE( store.AddCondition("named1", -30) == true );
+			REQUIRE( store.Add("named1", -30) == true );
 			THEN( "effects of adding should be on the named condition" ) {
 				REQUIRE( primarySize(store) == 1 );
 				REQUIRE( mockProvNamed.values["named1"] == -60 );
-				REQUIRE( store.AddCondition("named1", -20) == true );
+				REQUIRE( store.Add("named1", -20) == true );
 				REQUIRE( mockProvNamed.values["named1"] == -80 );
 				REQUIRE( mockProvNamed.values.size() == 1 );
 				REQUIRE( mockProvPrefixA.values.size() == 1 );
-				REQUIRE( store.GetCondition("named1") == -80 );
-				REQUIRE( store.GetCondition("myFirstVar") == 10 );
-				REQUIRE( store.GetCondition("mySecondVar") == 0 );
+				REQUIRE( store.Get("named1") == -80 );
+				REQUIRE( store.Get("myFirstVar") == 10 );
+				REQUIRE( store.Get("mySecondVar") == 0 );
 			}
 			THEN( "readonly providers should reject the add and don't change values" ) {
 				store.SetProviderNamed("named1", mockProvNamed.GetRONamedProvider("named1"));
-				REQUIRE( store.AddCondition("named1", -20) == false );
+				REQUIRE( store.Add("named1", -20) == false );
 				REQUIRE( mockProvNamed.values["named1"] == -60 );
 				REQUIRE( mockProvNamed.values.size() == 1 );
 				REQUIRE( mockProvPrefixA.values.size() == 1 );
-				REQUIRE( store.GetCondition("named1") == -60 );
-				REQUIRE( store.GetCondition("myFirstVar") == 10 );
-				REQUIRE( store.GetCondition("mySecondVar") == 0 );
+				REQUIRE( store.Get("named1") == -60 );
+				REQUIRE( store.Get("myFirstVar") == 10 );
+				REQUIRE( store.Get("mySecondVar") == 0 );
 			}
 			THEN( "readonly providers should not perform erase actions" ) {
 				store.SetProviderNamed("named1", mockProvNamed.GetRONamedProvider("named1"));
-				REQUIRE( store.EraseCondition("named1") == false );
+				REQUIRE( store.Erase("named1") == false );
 				REQUIRE( mockProvNamed.values["named1"] == -60 );
 				REQUIRE( mockProvNamed.values.size() == 1 );
 				REQUIRE( mockProvPrefixA.values.size() == 1 );
-				REQUIRE( store.GetCondition("named1") == -60 );
-				REQUIRE( store.GetCondition("myFirstVar") == 10 );
-				REQUIRE( store.HasCondition("named1") == true );
+				REQUIRE( store.Get("named1") == -60 );
+				REQUIRE( store.Get("myFirstVar") == 10 );
+				REQUIRE( store.Has("named1") == true );
 			}
 			THEN( "not given conditions (that almost match the named condition) should not exist" ) {
-				REQUIRE( store.HasCondition("named") == false );
-				REQUIRE( store.HasCondition("named11") == false );
+				REQUIRE( store.Has("named") == false );
+				REQUIRE( store.Has("named11") == false );
 			}
 		}
 		WHEN( "adding on a prefixed derived condition" ) {
-			REQUIRE( store.AddCondition("prefixA: test", -30) == true );
+			REQUIRE( store.Add("prefixA: test", -30) == true );
 			THEN( "derived prefixed conditions should be set properly" ) {
 				REQUIRE( primarySize(store) == 1 );
 				REQUIRE( mockProvPrefixA.values["prefixA: test"] == -60 );
 				REQUIRE( mockProvPrefixA.values.size() == 1 );
 				REQUIRE( mockProvNamed.values.size() == 1 );
-				REQUIRE( store.GetCondition("prefixA: test") == -60 );
-				REQUIRE( store.GetCondition("myFirstVar") == 10 );
-				REQUIRE( store.GetCondition("mySecondVar") == 0 );
+				REQUIRE( store.Get("prefixA: test") == -60 );
+				REQUIRE( store.Get("myFirstVar") == 10 );
+				REQUIRE( store.Get("mySecondVar") == 0 );
 			}
 			THEN( "read-only prefixed provider should reject further updates" ) {
 				store.SetProviderPrefixed("prefixA: ", mockProvPrefixA.GetROPrefixProvider("prefixA: "));
-				REQUIRE( store.AddCondition("prefixA: test", -20) == false );
+				REQUIRE( store.Add("prefixA: test", -20) == false );
 				REQUIRE( mockProvPrefixA.values["prefixA: test"] == -60 );
 				REQUIRE( mockProvPrefixA.values.size() == 1 );
 				REQUIRE( mockProvNamed.values.size() == 1 );
-				REQUIRE( store.GetCondition("prefixA: test") == -60 );
-				REQUIRE( store.GetCondition("myFirstVar") == 10 );
+				REQUIRE( store.Get("prefixA: test") == -60 );
+				REQUIRE( store.Get("myFirstVar") == 10 );
 			}
 			THEN( "read-only prefixed provider should reject erase" ) {
 				store.SetProviderPrefixed("prefixA: ", mockProvPrefixA.GetROPrefixProvider("prefixA: "));
-				REQUIRE( store.EraseCondition("prefixA: test") == false );
+				REQUIRE( store.Erase("prefixA: test") == false );
 				REQUIRE( mockProvPrefixA.values["prefixA: test"] == -60 );
 				REQUIRE( mockProvPrefixA.values.size() == 1 );
 				REQUIRE( mockProvNamed.values.size() == 1 );
-				REQUIRE( store.GetCondition("prefixA: test") == -60 );
-				REQUIRE( store.GetCondition("myFirstVar") == 10 );
-				REQUIRE( store.HasCondition("prefixA: test") == true );
-				REQUIRE( store.HasCondition("prefixA: t") == false );
-				REQUIRE( store.HasCondition("prefixA: ") == false );
-				REQUIRE( store.HasCondition("prefixA:") == false );
+				REQUIRE( store.Get("prefixA: test") == -60 );
+				REQUIRE( store.Get("myFirstVar") == 10 );
+				REQUIRE( store.Has("prefixA: test") == true );
+				REQUIRE( store.Has("prefixA: t") == false );
+				REQUIRE( store.Has("prefixA: ") == false );
+				REQUIRE( store.Has("prefixA:") == false );
 			}
 			THEN( "prefixed values from within provider should be available" ) {
 				mockProvPrefixA.values["prefixA: "] = 22;
 				mockProvPrefixA.values["prefixA:"] = 21;
-				REQUIRE( store.HasCondition("prefixA: test") == true );
-				REQUIRE( store.HasCondition("prefixA: t") == false );
-				REQUIRE( store.HasCondition("prefixA: ") == true );
-				REQUIRE( store.HasCondition("prefixA:") == false );
-				REQUIRE( store.GetCondition("prefixA: ") == 22 );
-				REQUIRE( store.GetCondition("prefixA:") == 0 );
-				REQUIRE( store.GetCondition("prefixA: test") == -60 );
+				REQUIRE( store.Has("prefixA: test") == true );
+				REQUIRE( store.Has("prefixA: t") == false );
+				REQUIRE( store.Has("prefixA: ") == true );
+				REQUIRE( store.Has("prefixA:") == false );
+				REQUIRE( store.Get("prefixA: ") == 22 );
+				REQUIRE( store.Get("prefixA:") == 0 );
+				REQUIRE( store.Get("prefixA: test") == -60 );
 			}
 			AND_GIVEN( "more derived condition providers are added" ) {
 				auto mockProvPrefix = MockConditionsProvider();
@@ -425,60 +425,60 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 				store.SetProviderPrefixed("prefixB: ", mockProvPrefixB.GetRWPrefixProvider("prefixB: "));
 				THEN( "derived prefixed conditions should be set properly" ) {
 					REQUIRE( primarySize(store) == 1 );
-					REQUIRE( store.AddCondition("prefixA: test", 30) == true );
+					REQUIRE( store.Add("prefixA: test", 30) == true );
 					REQUIRE( primarySize(store) == 1 );
 					REQUIRE( mockProvPrefixA.values["prefixA: test"] == -30 );
-					REQUIRE( store.GetCondition("prefixA: test") == -30 );
-					REQUIRE( store.GetCondition("myFirstVar") == 10 );
+					REQUIRE( store.Get("prefixA: test") == -30 );
+					REQUIRE( store.Get("myFirstVar") == 10 );
 					store.SetProviderPrefixed("prefixA: ", mockProvPrefixA.GetROPrefixProvider("prefixA: "));
-					REQUIRE( store.AddCondition("prefixA: test", -20) == false );
+					REQUIRE( store.Add("prefixA: test", -20) == false );
 					REQUIRE( mockProvPrefixA.values["prefixA: test"] == -30 );
 					REQUIRE( mockProvPrefixA.values.size() == 1 );
-					REQUIRE( store.GetCondition("prefixA: test") == -30 );
-					REQUIRE( store.GetCondition("myFirstVar") == 10 );
-					REQUIRE( store.EraseCondition("prefixA: test") == false );
+					REQUIRE( store.Get("prefixA: test") == -30 );
+					REQUIRE( store.Get("myFirstVar") == 10 );
+					REQUIRE( store.Erase("prefixA: test") == false );
 					REQUIRE( mockProvPrefixA.values["prefixA: test"] == -30 );
 					REQUIRE( mockProvPrefixA.values.size() == 1 );
-					REQUIRE( store.GetCondition("prefixA: test") == -30 );
-					REQUIRE( store.GetCondition("myFirstVar") == 10 );
-					REQUIRE( store.HasCondition("prefixA: test") == true );
-					REQUIRE( store.HasCondition("prefixA: t") == false );
-					REQUIRE( store.HasCondition("prefixA: ") == false );
-					REQUIRE( store.HasCondition("prefixA:") == false );
+					REQUIRE( store.Get("prefixA: test") == -30 );
+					REQUIRE( store.Get("myFirstVar") == 10 );
+					REQUIRE( store.Has("prefixA: test") == true );
+					REQUIRE( store.Has("prefixA: t") == false );
+					REQUIRE( store.Has("prefixA: ") == false );
+					REQUIRE( store.Has("prefixA:") == false );
 					mockProvPrefixA.values["prefixA: "] = 22;
 					mockProvPrefixA.values["prefixA:"] = 21;
-					REQUIRE( store.HasCondition("prefixA: test") == true );
-					REQUIRE( store.HasCondition("prefixA: t") == false );
-					REQUIRE( store.HasCondition("prefixA: ") == true );
-					REQUIRE( store.HasCondition("prefixA:") == false );
+					REQUIRE( store.Has("prefixA: test") == true );
+					REQUIRE( store.Has("prefixA: t") == false );
+					REQUIRE( store.Has("prefixA: ") == true );
+					REQUIRE( store.Has("prefixA:") == false );
 					REQUIRE( mockProvPrefix.values.size() == 0 );
 					REQUIRE( mockProvPrefixA.values.size() == 3 );
 					REQUIRE( mockProvPrefixB.values.size() == 0 );
 					store.SetProviderPrefixed("prefixA: ", mockProvPrefixA.GetRWPrefixProvider("prefixA: "));
-					REQUIRE( store.SetCondition("prefix: beginning", 42) == true );
+					REQUIRE( store.Set("prefix: beginning", 42) == true );
 					REQUIRE( mockProvPrefix.values.size() == 1 );
 					REQUIRE( mockProvPrefixA.values.size() == 3 );
 					REQUIRE( mockProvPrefixB.values.size() == 0 );
-					REQUIRE( store.SetCondition("prefixB: ending", 142) == true );
+					REQUIRE( store.Set("prefixB: ending", 142) == true );
 					REQUIRE( mockProvPrefix.values.size() == 1 );
 					REQUIRE( mockProvPrefixA.values.size() == 3 );
 					REQUIRE( mockProvPrefixB.values.size() == 1 );
-					REQUIRE( store.SetCondition("prefixA: middle", 40) == true );
+					REQUIRE( store.Set("prefixA: middle", 40) == true );
 					REQUIRE( mockProvPrefix.values.size() == 1 );
 					REQUIRE( mockProvPrefixA.values.size() == 4 );
 					REQUIRE( mockProvPrefixB.values.size() == 1 );
-					REQUIRE( store.SetCondition("prefixA: middle2", 90) == true );
+					REQUIRE( store.Set("prefixA: middle2", 90) == true );
 					REQUIRE( mockProvPrefix.values.size() == 1 );
 					REQUIRE( mockProvPrefixA.values.size() == 5 );
 					REQUIRE( mockProvPrefixB.values.size() == 1 );
-					REQUIRE( store.GetCondition("prefix: beginning") == 42 );
-					REQUIRE( store.GetCondition("prefixB: ending") == 142 );
-					REQUIRE( store.GetCondition("prefixA: ") == 22 );
-					REQUIRE( store.GetCondition("prefixA:") == 0 );
-					REQUIRE( store.GetCondition("prefixA: middle") == 40 );
-					REQUIRE( store.GetCondition("prefixA: middle2") == 90 );
-					REQUIRE( store.GetCondition("prefixA: test") == -30 );
-					REQUIRE( store.GetCondition("myFirstVar") == 10 );
+					REQUIRE( store.Get("prefix: beginning") == 42 );
+					REQUIRE( store.Get("prefixB: ending") == 142 );
+					REQUIRE( store.Get("prefixA: ") == 22 );
+					REQUIRE( store.Get("prefixA:") == 0 );
+					REQUIRE( store.Get("prefixA: middle") == 40 );
+					REQUIRE( store.Get("prefixA: middle2") == 90 );
+					REQUIRE( store.Get("prefixA: test") == -30 );
+					REQUIRE( store.Get("myFirstVar") == 10 );
 					REQUIRE( mockProvPrefix.values.size() == 1 );
 					REQUIRE( mockProvPrefixA.values.size() == 5 );
 					REQUIRE( mockProvPrefixB.values.size() == 1 );
