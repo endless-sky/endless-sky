@@ -88,7 +88,8 @@ void Sprite::Unload()
 	glDeleteTextures(2, texture);
 	texture[0] = texture[1] = 0;
 	
-	maskManager->Clear(this);
+	if(maskManager)
+		maskManager->Clear(this);
 	width = 0.f;
 	height = 0.f;
 	frames = 0;
@@ -149,7 +150,7 @@ uint32_t Sprite::Texture(bool isHighDPI) const
 const Mask &Sprite::GetMask(int frame, double scale) const
 {
 	static const Mask EMPTY;
-	if(frame < 0)
+	if(frame < 0 || !maskManager)
 		return EMPTY;
 	
 	const vector<Mask> &masks = maskManager->GetMasks(this, scale);

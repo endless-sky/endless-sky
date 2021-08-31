@@ -71,11 +71,11 @@ const std::vector<Mask> &MaskManager::GetMasks(const Sprite *sprite, double scal
 	
 	const auto &scales = scalesIt->second;
 	const auto &maskIt = scales.find(scale);
-	const auto &mask = maskIt->second;
-	if(maskIt == scales.end() || mask.empty())
+	const auto &masks = maskIt->second;
+	if(maskIt == scales.end() || masks.empty())
 		return EMPTY;
 	
-	return mask;
+	return masks;
 }
 
 
