@@ -393,7 +393,8 @@ void Ship::Load(const DataNode &node)
 		{
 			if(!hasOutfits)
 			{
-				armament.UninstallAll();
+				if(!hasArmament)
+					armament.UninstallAll();
 				outfits.clear();
 				hasOutfits = true;
 			}
