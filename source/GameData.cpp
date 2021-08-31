@@ -946,9 +946,9 @@ const StarField &GameData::Background()
 
 
 
-void GameData::SetHaze(const Sprite *sprite)
+void GameData::SetHaze(const Sprite *sprite, bool allowAnimation)
 {
-	background.SetHaze(sprite);
+	background.SetHaze(sprite, allowAnimation);
 }
 
 
