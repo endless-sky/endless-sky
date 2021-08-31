@@ -155,7 +155,6 @@ void Ship::Load(const DataNode &node)
 	isDefined = true;
 	
 	government = GameData::PlayerGovernment();
-	equipped.clear();
 	
 	// Note: I do not clear the attributes list here so that it is permissible
 	// to override one ship definition with another.
@@ -243,6 +242,7 @@ void Ship::Load(const DataNode &node)
 		{
 			if(!hasArmament)
 			{
+				equipped.clear();
 				armament = Armament();
 				hasArmament = true;
 			}
@@ -394,7 +394,12 @@ void Ship::Load(const DataNode &node)
 			if(!hasOutfits)
 			{
 				if(!hasArmament)
+				{
+					// If no armament was specified, then we override any outfit
+					// installed to avoid having ghost outfits on weapon hardpoints.
+					equipped.clear();
 					armament.UninstallAll();
+				}
 				outfits.clear();
 				hasOutfits = true;
 			}
