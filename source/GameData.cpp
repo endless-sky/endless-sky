@@ -33,6 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ImageSet.h"
 #include "Interface.h"
 #include "LineShader.h"
+#include "MaskManager.h"
 #include "Minable.h"
 #include "Mission.h"
 #include "Music.h"
@@ -128,6 +129,8 @@ namespace {
 	vector<string> sources;
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
 	map<const Sprite *, int> preloaded;
+	
+	MaskManager maskManager;
 	
 	const Government *playerGovernment = nullptr;
 	
@@ -456,6 +459,7 @@ void GameData::Preload(const Sprite *sprite)
 void GameData::FinishLoading()
 {
 	spriteQueue.Finish();
+	maskManager.ScaleMasks();
 }
 
 
@@ -987,6 +991,13 @@ const map<string, string> &GameData::HelpTemplates()
 const map<string, string> &GameData::PluginAboutText()
 {
 	return plugins;
+}
+
+
+
+MaskManager &GameData::GetMaskManager()
+{
+	return maskManager;
 }
 
 

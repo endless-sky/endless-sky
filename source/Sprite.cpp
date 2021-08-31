@@ -25,8 +25,8 @@ using namespace std;
 
 
 
-Sprite::Sprite(const string &name)
-	: name(name)
+Sprite::Sprite(const string &name, MaskManager *maskManager)
+	: name(name), maskManager(maskManager)
 {
 }
 
@@ -82,23 +82,13 @@ void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 
 
 
-// Move the given masks into this sprite's internal storage. The given
-// vector will be cleared.
-void Sprite::AddMasks(vector<Mask> &masks)
-{
-	this->masks.swap(masks);
-	masks.clear();
-}
-
-
-
 // Free up all textures loaded for this sprite.
 void Sprite::Unload()
 {
 	glDeleteTextures(2, texture);
 	texture[0] = texture[1] = 0;
 	
-	masks.clear();
+	maskManager->Clear(this);
 	width = 0.f;
 	height = 0.f;
 	frames = 0;
@@ -156,12 +146,14 @@ uint32_t Sprite::Texture(bool isHighDPI) const
 
 
 // Get the collision mask for the given frame of the animation.
-const Mask &Sprite::GetMask(int frame) const
+const Mask &Sprite::GetMask(int frame, double scale) const
 {
 	static const Mask EMPTY;
-	if(frame < 0 || masks.empty())
+	if(frame < 0)
 		return EMPTY;
 	
+	const vector<Mask> &masks = maskManager->GetMasks(this, scale);
+	
 	// Assume that if a masks array exists, it has the right number of frames.
-	return masks[frame % masks.size()];
+	return masks.empty() ? EMPTY : masks[frame % masks.size()];
 }

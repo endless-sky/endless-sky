@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "SpriteSet.h"
 
+#include "GameData.h"
 #include "Sprite.h"
 
 #include <map>
@@ -49,6 +50,6 @@ Sprite *SpriteSet::Modify(const string &name)
 {
 	auto it = sprites.find(name);
 	if(it == sprites.end())
-		it = sprites.emplace(name, Sprite(name)).first;
+		it = sprites.emplace(name, Sprite(name, &GameData::GetMaskManager())).first;
 	return &it->second;
 }

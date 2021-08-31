@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ImageSet.h"
 
 #include "Files.h"
+#include "GameData.h"
 #include "Mask.h"
 #include "Sprite.h"
 
@@ -262,5 +263,5 @@ void ImageSet::Upload(Sprite *sprite)
 	// Load the frames. This will clear the buffers and the mask vector.
 	sprite->AddFrames(buffer[0], false);
 	sprite->AddFrames(buffer[1], true);
-	sprite->AddMasks(masks);
+	GameData::GetMaskManager().AddMasks(sprite, masks);
 }

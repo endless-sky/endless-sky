@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define SPRITE_H_
 
 #include "Mask.h"
+#include "MaskManager.h"
 #include "Point.h"
 
 #include <cstdint>
@@ -32,15 +33,12 @@ class ImageBuffer;
 // working with the graphics a lot simpler.
 class Sprite {
 public:
-	explicit Sprite(const std::string &name = "");
+	explicit Sprite(const std::string &name = "", MaskManager *maskManager = nullptr);
 	
 	const std::string &Name() const;
 	
 	// Upload the given frames. The given buffer will be cleared afterwards.
 	void AddFrames(ImageBuffer &buffer, bool is2x);
-	// Move the given masks into this sprite's internal storage. The given
-	// vector will be cleared.
-	void AddMasks(std::vector<Mask> &masks);
 	// Free up all textures loaded for this sprite.
 	void Unload();
 	
@@ -60,14 +58,14 @@ public:
 	uint32_t Texture() const;
 	uint32_t Texture(bool isHighDPI) const;
 	// Get the collision mask for the given frame of the animation.
-	const Mask &GetMask(int frame = 0) const;
+	const Mask &GetMask(int frame = 0, double scale = 1.) const;
 	
 	
 private:
 	std::string name;
 	
 	uint32_t texture[2] = {0, 0};
-	std::vector<Mask> masks;
+	MaskManager *maskManager = nullptr;
 	
 	float width = 0.f;
 	float height = 0.f;

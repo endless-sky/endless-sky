@@ -14,6 +14,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "GameData.h"
+#include "MaskManager.h"
 #include "Random.h"
 #include "Screen.h"
 #include "Sprite.h"
@@ -114,7 +116,7 @@ const Mask &Body::GetMask(int step) const
 		SetStep(step);
 	
 	static const Mask EMPTY;
-	return sprite ? sprite->GetMask(round(frame)) : EMPTY;
+	return sprite ? sprite->GetMask(round(frame), Scale()) : EMPTY;
 }
 
 
@@ -222,6 +224,9 @@ void Body::LoadSprite(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	
+	if(scale != 1.f)
+		GameData::GetMaskManager().AddScale(sprite, Scale());
 }
 
 
