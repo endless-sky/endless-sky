@@ -350,10 +350,14 @@ test "Tests - Ember Wastes Navigation"
 			travel Terminus
 			travel Limen
 			travel Mora
-		assert
-			year == 3012
-			month == 12
-			day == 16
+		# Our test-savegames don't have the date conditions serialized. Need to
+		# have passed at least one date-transition to get the date conditions set
+		# (until PR https://github.com/endless-sky/endless-sky/pull/5244 removes
+		# this need to serialize the date conditions completely).
+		#assert
+		#	year == 3012
+		#	month == 12
+		#	day == 16
 		call "Depart"
 		# Give jump command.
 		assert
