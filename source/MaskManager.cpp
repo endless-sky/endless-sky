@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MaskManager.h"
 
+#include "Files.h"
 #include "Mask.h"
 #include "Sprite.h"
 
@@ -23,7 +24,7 @@ using namespace std;
 // The given vector will be cleared.
 void MaskManager::AddMasks(const Sprite *sprite, std::vector<Mask> &masks)
 {
-	spriteMasks[sprite].emplace(1., masks);
+	spriteMasks[sprite].emplace(1., move(masks));
 	masks.clear();
 }
 
@@ -32,7 +33,7 @@ void MaskManager::AddMasks(const Sprite *sprite, std::vector<Mask> &masks)
 // Add a scale that the given sprite needs to have a mask for.
 void MaskManager::AddScale(const Sprite *sprite, double scale)
 {
-	spriteMasks[sprite][scale] = vector<Mask>();
+	spriteMasks[sprite][scale].clear();
 }
 
 
@@ -67,15 +68,20 @@ const std::vector<Mask> &MaskManager::GetMasks(const Sprite *sprite, double scal
 	static const vector<Mask> EMPTY;
 	const auto &scalesIt = spriteMasks.find(sprite);
 	if(scalesIt == spriteMasks.end())
+	{
+		Files::LogError("Failed to find collision mask for \"" + sprite->Name() + "\"");
 		return EMPTY;
+	}
 	
 	const auto &scales = scalesIt->second;
 	const auto &maskIt = scales.find(scale);
-	const auto &masks = maskIt->second;
-	if(maskIt == scales.end() || masks.empty())
+	if(maskIt == scales.end() || maskIt->second.empty())
+	{
+		Files::LogError("Failed to find collision mask for \"" + sprite->Name() + "\" at scale " + to_string(scale));
 		return EMPTY;
+	}
 	
-	return masks;
+	return maskIt->second;
 }
 
 
