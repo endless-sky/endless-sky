@@ -25,8 +25,8 @@ using namespace std;
 
 
 
-Sprite::Sprite(const string &name, MaskManager *maskManager)
-	: name(name), maskManager(maskManager)
+Sprite::Sprite(const string &name)
+	: name(name)
 {
 }
 
@@ -88,8 +88,6 @@ void Sprite::Unload()
 	glDeleteTextures(2, texture);
 	texture[0] = texture[1] = 0;
 	
-	if(maskManager)
-		maskManager->Clear(this);
 	width = 0.f;
 	height = 0.f;
 	frames = 0;
@@ -142,19 +140,4 @@ uint32_t Sprite::Texture() const
 uint32_t Sprite::Texture(bool isHighDPI) const
 {
 	return (isHighDPI && texture[1]) ? texture[1] : texture[0];
-}
-
-
-
-// Get the collision mask for the given frame of the animation.
-const Mask &Sprite::GetMask(int frame, double scale) const
-{
-	static const Mask EMPTY;
-	if(frame < 0 || !maskManager)
-		return EMPTY;
-	
-	const vector<Mask> &masks = maskManager->GetMasks(this, scale);
-	
-	// Assume that if a masks array exists, it has the right number of frames.
-	return masks.empty() ? EMPTY : masks[frame % masks.size()];
 }

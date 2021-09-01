@@ -12,9 +12,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "SpriteQueue.h"
 
+#include "GameData.h"
 #include "ImageBuffer.h"
 #include "ImageSet.h"
 #include "Mask.h"
+#include "MaskManager.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 
@@ -156,6 +158,7 @@ double SpriteQueue::DoLoad(unique_lock<mutex> &lock)
 		
 		lock.unlock();
 		sprite->Unload();
+		GameData::GetMaskManager().Clear(sprite);
 		lock.lock();
 	}
 	

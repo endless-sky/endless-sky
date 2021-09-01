@@ -33,7 +33,7 @@ class ImageBuffer;
 // working with the graphics a lot simpler.
 class Sprite {
 public:
-	explicit Sprite(const std::string &name = "", MaskManager *maskManager = nullptr);
+	explicit Sprite(const std::string &name = "");
 	
 	const std::string &Name() const;
 	
@@ -57,15 +57,12 @@ public:
 	// setting or specifying it manually.
 	uint32_t Texture() const;
 	uint32_t Texture(bool isHighDPI) const;
-	// Get the collision mask for the given frame of the animation.
-	const Mask &GetMask(int frame = 0, double scale = 1.) const;
 	
 	
 private:
 	std::string name;
 	
 	uint32_t texture[2] = {0, 0};
-	MaskManager *maskManager = nullptr;
 	
 	float width = 0.f;
 	float height = 0.f;

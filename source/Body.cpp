@@ -116,7 +116,14 @@ const Mask &Body::GetMask(int step) const
 		SetStep(step);
 	
 	static const Mask EMPTY;
-	return sprite ? sprite->GetMask(round(frame), Scale()) : EMPTY;
+	int current = round(frame);
+	if(!sprite || current < 0)
+		return EMPTY;
+	
+	const vector<Mask> &masks = GameData::GetMaskManager().GetMasks(sprite, Scale());
+	
+	// Assume that if a masks array exists, it has the right number of frames.
+	return masks.empty() ? EMPTY : masks[current % masks.size()];
 }
 
 
