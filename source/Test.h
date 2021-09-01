@@ -18,7 +18,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <SDL2/SDL.h>
 
-#include <queue>
 #include <map>
 #include <set>
 #include <string>
@@ -111,7 +110,6 @@ public:
 	public:
 		// Pointer to the test we are running.
 		std::vector<const Test *> testToRun;
-		std::queue<SDL_Event> inputEvents;
 		
 		
 	protected:

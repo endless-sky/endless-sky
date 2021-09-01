@@ -78,7 +78,7 @@ namespace{
 	}
 	
 	// Prepare an keyboard input to one of the UIs.
-	SDL_Event KeyInputToEvent(const char* keyName, Uint16 modKeys)
+	bool KeyInputToEvent(const char* keyName, Uint16 modKeys)
 	{
 		// Construct the event to send (from keyboard code and modifiers)
 		SDL_Event event;
@@ -87,7 +87,7 @@ namespace{
 		event.key.repeat = 0;
 		event.key.keysym.sym = SDL_GetKeyFromName(keyName);
 		event.key.keysym.mod = modKeys;
-		return event;
+		return SDL_PushEvent(&event);
 	}
 }
 
@@ -474,7 +474,8 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 					// TODO: handle keys also in-flight (as single inputset)
 					// TODO: combine keys with mouse-inputs
 					for(const string &key : stepToRun.inputKeys)
-						context.inputEvents.emplace(KeyInputToEvent(key.c_str(), stepToRun.modKeys));
+						if(!KeyInputToEvent(key.c_str(), stepToRun.modKeys))
+							Fail(context, player, "key input towards SDL eventqueue failed");
 				}
 				// TODO: handle mouse inputs
 				// Make sure that we run a gameloop to process the input.

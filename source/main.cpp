@@ -203,15 +203,8 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		
 		// Handle any events that occurred in this frame.
 		SDL_Event event;
-		while(!testContext.inputEvents.empty() || SDL_PollEvent(&event))
+		while(SDL_PollEvent(&event))
 		{
-			// Retrieve the event from the test-context if we didn't get
-			// it from SDL_PollEvent.
-			if(!testContext.inputEvents.empty())
-			{
-				event = testContext.inputEvents.front();
-				testContext.inputEvents.pop();
-			}
 			UI &activeUI = (menuPanels.IsEmpty() ? gamePanels : menuPanels);
 			
 			// If the mouse moves, reset the cursor movement timeout.
