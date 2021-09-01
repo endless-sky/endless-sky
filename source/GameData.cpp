@@ -394,6 +394,9 @@ double GameData::Progress()
 			for(const auto &path : unloaded)
 				if(path.compare(0, 5, "land/") != 0)
 					Files::LogError("Warning: image \"" + path + "\" is referred to, but has no pixels.");
+			// All sprites with collision masks should also have their 1x scaled versions, so create
+			// any additional scaled masks from the default one.
+			maskManager.ScaleMasks();
 			initiallyLoaded = true;
 		}
 	}
@@ -459,7 +462,6 @@ void GameData::Preload(const Sprite *sprite)
 void GameData::FinishLoading()
 {
 	spriteQueue.Finish();
-	maskManager.ScaleMasks();
 }
 
 
