@@ -44,17 +44,24 @@ void MaskManager::ScaleMasks()
 	for(auto &spriteScales : spriteMasks)
 	{
 		map<double, vector<Mask>> &scales = spriteScales.second;
-		vector<Mask> &baseScale = scales[1.];
-		if(baseScale.empty())
+		auto baseIt = scales.find(1.);
+		if(baseIt == scales.end() || baseIt->second.empty())
 			continue;
-		for(auto &masks : scales)
+		
+		auto baseMasks = baseIt->second;
+		for(auto &&it = scales.begin(); it != baseIt; ++it)
 		{
-			double scale = masks.first;
-			if(scale == 1.)
-				continue;
-			
-			for(auto &mask : baseScale)
-				masks.second.push_back(mask * scale);
+			auto &masks = it->second;
+			masks.reserve(baseMasks.size());
+			for(auto &mask : baseMasks)
+				masks.push_back(mask * it->first);
+		}
+		for(auto &&it = ++baseIt; it != scales.end(); ++it)
+		{
+			auto &masks = it->second;
+			masks.reserve(baseMasks.size());
+			for(auto &mask : baseMasks)
+				masks.push_back(mask * it->first);
 		}
 	}
 }
