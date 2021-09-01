@@ -90,10 +90,3 @@ const std::vector<Mask> &MaskManager::GetMasks(const Sprite *sprite, double scal
 	
 	return maskIt->second;
 }
-
-
-
-void MaskManager::Clear(const Sprite *sprite)
-{
-	spriteMasks.erase(sprite);
-}
