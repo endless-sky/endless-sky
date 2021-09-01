@@ -1101,7 +1101,7 @@ outfit "Typhoon Pod"
 		"inaccuracy" 5
 		"velocity" 6
 		"lifetime" 1100
-		"reload" 50
+		"reload" 252
 		"burst count" 2
 		"burst reload" 120
 		"firing energy" 4
