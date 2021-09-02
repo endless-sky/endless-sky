@@ -1249,7 +1249,7 @@ system "5 Axis"
 	fleet "Large Saryd" 1800
 	fleet Heliarch 300
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object
 		sprite planet/rock11
@@ -1328,7 +1328,7 @@ system "5 Spring Below"
 		period 12.9082
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 91.2829
 		period 12.9082
 	object
@@ -1807,7 +1807,7 @@ system Ablub
 	fleet "Large Saryd" 8000
 	fleet Heliarch 200
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object "Ablub's Invention"
 		sprite planet/forest1-b
@@ -1996,7 +1996,7 @@ system Acrux
 		distance 17.9429
 		period 11.4474
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 60.5571
 		period 11.4474
 		offset 180
@@ -2122,7 +2122,7 @@ system Aescolanus
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object
 		sprite planet/desert4
@@ -2383,7 +2383,7 @@ system Albireo
 		distance 15.6316
 		period 11.9778
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 72.3684
 		period 11.9778
 		offset 180
@@ -2434,12 +2434,12 @@ system Alcyone
 	fleet "Large Core Pirates" 600
 	fleet "Large Syndicate" 1200
 	object
-		sprite star/m4
+		sprite star/m3
 		distance 45.5
 		period 21.132
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 45.5
 		period 21.132
 	object Stormhold
@@ -2646,8 +2646,8 @@ system Algenib
 	attributes "core"
 	pos -118 341
 	government Pirate
-	habitable 455.625
-	belt 1273
+	habitable 510
+	belt 1330
 	link Gienah
 	asteroids "large metal" 1 6.7392
 	trade Clothing 357
@@ -2668,24 +2668,24 @@ system Algenib
 		period 10
 	object "Buccaneer Bay"
 		sprite planet/ocean6
-		distance 267.91
-		period 82.175
+		distance 323.354
+		period 108.962
 		object
 			sprite planet/dust7-b
 			distance 147
 			period 13.5253
 	object
 		sprite planet/ice7
-		distance 579.92
-		period 261.703
+		distance 635.364
+		period 300.117
 	object
 		sprite planet/callisto-b
-		distance 887.96
-		period 495.845
+		distance 943.404
+		period 543.004
 	object
 		sprite planet/gas14
-		distance 2108.2
-		period 1813.94
+		distance 2163.64
+		period 1885.97
 		object
 			sprite planet/rock0
 			distance 237
@@ -2736,7 +2736,7 @@ system Algieba
 		distance 5.86085
 		period 9.75123
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 111.139
 		period 9.75123
 		offset 180
@@ -2794,12 +2794,12 @@ system Algol
 	fleet "Large Core Pirates" 5000
 	fleet "Small Syndicate" 2400
 	object
-		sprite star/k5-old
+		sprite star/a0
 		distance 42.7246
 		period 19.0178
 	object
-		sprite star/m0
-		distance 63.7754
+		sprite star/a5
+		distance 113.7754
 		period 19.0178
 		offset 180
 	object
@@ -3150,8 +3150,8 @@ system Almaaz
 	pos -349 -538
 	government Pirate
 	attributes "north"
-	habitable 1080
-	belt 1873
+	habitable 2080
+	belt 2873
 	haze _menu/haze-33
 	link Hatysa
 	link Mintaka
@@ -3178,19 +3178,19 @@ system Almaaz
 	fleet "Large Northern Pirates" 600
 	fleet "Large Republic" 4000
 	object
-		sprite star/g0
+		sprite star/f-supergiant
 		period 10
 	object
 		sprite planet/rock10-b
-		distance 186.96
+		distance 1186.96
 		period 31.1151
 	object
 		sprite planet/ganymede
-		distance 588.37
+		distance 1588.37
 		period 173.71
 	object Freedom
 		sprite planet/cloud2
-		distance 930.93
+		distance 1930.93
 		period 345.719
 
 system Almach
@@ -3290,7 +3290,7 @@ system Alnair
 	fleet "Large Syndicate" 6000
 	fleet "Human Miners" 2000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object Hippocrates
 		sprite planet/cloud4
@@ -3329,8 +3329,8 @@ system Alnasl
 	pos -553 380
 	government Republic
 	attributes "dirt belt"
-	habitable 640
-	belt 1412
+	habitable 1140
+	belt 1912
 	haze _menu/haze-133
 	link Seginus
 	link Wei
@@ -3365,12 +3365,12 @@ system Alnasl
 		offset 180
 	object
 		sprite star/k5-old
-		distance 41.5
+		distance 100
 		period 11.956
 	object
 		sprite planet/gas16-b
-		distance 764.39
-		period 334.151
+		distance 1321.23
+		period 759.344
 		object
 			sprite planet/lava1-b
 			distance 226
@@ -3385,8 +3385,8 @@ system Alnasl
 			period 56.4362
 	object
 		sprite planet/gas3-b
-		distance 1788.8
-		period 1196.22
+		distance 2345.64
+		period 1796.23
 
 system Alnilam
 	pos -487 -513
@@ -3470,7 +3470,7 @@ system Alnitak
 	pos -331 -412
 	government Republic
 	attributes "north"
-	habitable 349.375
+	habitable 1349.375
 	belt 1907
 	haze _menu/haze-67
 	link Rigel
@@ -3498,29 +3498,28 @@ system Alnitak
 	fleet "Large Republic" 4000
 	fleet "Republic Logistics" 6000
 	object
-		sprite star/m0
-		distance 31.1055
+		sprite star/o-supergiant
 		period 15.4564
 	object
-		sprite star/m4
-		distance 49.3945
+		sprite star/b0
+		distance 249.3945
 		period 15.4564
 		offset 180
 	object Farpoint
 		sprite planet/forest0-b
-		distance 292.484
+		distance 1292.484
 		period 107.045
 	object
 		sprite planet/gas13-b
-		distance 851.724
+		distance 1851.724
 		period 531.94
 	object
 		sprite planet/rock7
-		distance 1223.93
+		distance 2223.93
 		period 916.329
 	object
 		sprite planet/gas1
-		distance 2144.82
+		distance 3144.82
 		period 2125.7
 
 system Alniyat
@@ -3697,13 +3696,7 @@ system "Alpha Centauri"
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 6000
 	object
-		sprite star/k5
-		distance 26.7033
-		period 16.011
-		offset 180
-	object
-		sprite star/m4
-		distance 63.2967
+		sprite star/k0
 		period 16.011
 	object Chiron
 		sprite planet/forest1
@@ -3725,6 +3718,10 @@ system "Alpha Centauri"
 		sprite planet/rock15-b
 		distance 1718.2
 		period 1335.56
+	object
+		sprite star/g3
+		distance 3700
+		period 4888.11
 	object
 		sprite planet/gas13
 		distance 4080.61
@@ -4379,7 +4376,10 @@ system Antevorta
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/wr
+		sprite star/carbon
+		period 10
+	object
+		sprite star/carbon-core
 		period 10
 	object
 		sprite planet/desert8
@@ -4790,8 +4790,8 @@ system Aspidiske
 	pos -690 -282
 	government Republic
 	attributes "deep"
-	habitable 135
-	belt 1885
+	habitable 635
+	belt 2385
 	link Avior
 	link Regor
 	link "Epsilon Leonis"
@@ -4812,15 +4812,15 @@ system Aspidiske
 	fleet "Small Deep Merchants" 1400
 	fleet "Large Deep Merchants" 3000
 	object
-		sprite star/m4
+		sprite star/a-supergiant
 		period 10
 	object
 		sprite planet/cloud2
-		distance 201.36
+		distance 701.36
 		period 98.3678
 	object
 		sprite planet/gas8
-		distance 1004.4
+		distance 1504.4
 		period 1095.86
 		object
 			sprite planet/rock14
@@ -4836,11 +4836,11 @@ system Aspidiske
 			period 49.2651
 	object
 		sprite planet/dust3-b
-		distance 1854.96
+		distance 2354.96
 		period 2750.39
 	object
 		sprite planet/rhea-b
-		distance 2271.8
+		distance 2771.8
 		period 3727.76
 
 system Atria
@@ -4946,7 +4946,7 @@ system Avior
 		distance 11
 		period 11.3038
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 88
 		period 11.3038
 		offset 180
@@ -5429,8 +5429,8 @@ system Betelgeuse
 	pos -384 -322
 	government Republic
 	attributes "north"
-	habitable 1080
-	belt 1641
+	habitable 1580
+	belt 2141
 	haze _menu/haze-67
 	link Mirzam
 	link Alheka
@@ -5461,23 +5461,23 @@ system Betelgeuse
 	fleet "Large Northern Pirates" 4000
 	fleet "Human Miners" 3000
 	object
-		sprite star/g0
+		sprite star/m-supergiant
 		period 10
 	object
 		sprite planet/desert2-b
-		distance 179.44
+		distance 679.44
 		period 29.2568
 	object
 		sprite planet/rock0-b
-		distance 535.69
+		distance 1035.69
 		period 150.91
 	object Prime
 		sprite planet/forest2-b
-		distance 1081.98
+		distance 1581.98
 		period 433.189
 	object
 		sprite planet/ocean4
-		distance 1582.62
+		distance 2082.62
 		period 766.325
 		object
 			sprite planet/lava1-b
@@ -5485,7 +5485,7 @@ system Betelgeuse
 			period 21.6509
 	object
 		sprite planet/gas13-b
-		distance 4580.11
+		distance 5080.11
 		period 3772.78
 		object
 			sprite planet/rock17-b
@@ -5818,8 +5818,8 @@ system "Bore Fah"
 system "Bote Asu"
 	pos 8.87418 -572.768
 	government Hai
-	habitable 2859.44
-	belt 1613
+	habitable 3000
+	belt 1753
 	link "Wah Ki"
 	link "Ula Mon"
 	link "Ya Hai"
@@ -5848,34 +5848,34 @@ system "Bote Asu"
 	fleet "Large Human Merchants (Hai)" 12000
 	fleet "Hai Surveillance" 3000
 	object
-		sprite star/f0
+		sprite star/f3
 		distance 17.3605
 		period 7.70584
 	object
 		sprite star/k0-old
-		distance 84.6395
+		distance 134.6395
 		period 7.70584
 		offset 180
 	object
 		sprite planet/rock1
-		distance 242.889
-		period 28.316
+		distance 381.554
+		period 55.751
 	object
 		sprite planet/rock16
-		distance 634.139
-		period 119.453
+		distance 772.804
+		period 160.703
 		object
 			sprite planet/ice7
 			distance 173
 			period 31.0553
 	object
 		sprite planet/gas11
-		distance 1111.15
-		period 277.063
+		distance 1249.81
+		period 330.512
 	object
 		sprite planet/neptune
-		distance 2561.56
-		period 969.787
+		distance 2700.22
+		period 1049.59
 		object
 			sprite planet/rock7-b
 			distance 212
@@ -5890,8 +5890,8 @@ system "Bote Asu"
 			period 41.514
 	object
 		sprite planet/gas12-b
-		distance 4312.6
-		period 2118.5
+		distance 4451.26
+		period 2221.49
 		object
 			sprite planet/rhea-b
 			distance 293
@@ -6365,8 +6365,8 @@ system Cardea
 	pos -89.1297 417.242
 	government Uninhabited
 	attributes "ember waste" "wormhole"
-	habitable 851.84
-	belt 1725
+	habitable 900
+	belt 1775
 	haze _menu/haze-red
 	link Nenia
 	link Antevorta
@@ -6392,28 +6392,28 @@ system Cardea
 	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/k5-old
-		distance 47.5
+		distance 85
 		period 12.6901
 		offset 180
 	object
 		sprite star/k5
-		distance 47.5
+		distance 85
 		period 12.6901
 	object
 		sprite planet/desert7-b
-		distance 260.94
+		distance 310.94
 		period 57.7686
 	object
 		sprite planet/rock2-b
-		distance 629.55
+		distance 679.55
 		period 216.484
 	object
 		sprite planet/miranda-b
-		distance 969.79
+		distance 1019.79
 		period 413.902
 	object
 		sprite planet/neptune-b
-		distance 1490.63
+		distance 1540.63
 		period 788.743
 		object
 			sprite planet/callisto
@@ -6421,11 +6421,11 @@ system Cardea
 			period 17.0401
 	object "Ember Threshold"
 		sprite planet/wormhole-red
-		distance 2500
+		distance 2550
 		period 1713.14
 	object "Ember Wormhole"
 		sprite planet/wormhole-red
-		distance 3252.92
+		distance 3302.92
 		period 2542.68
 
 system Castor
@@ -6940,8 +6940,8 @@ system Cinxia
 	pos 265.87 415.242
 	government Remnant
 	attributes "ember waste"
-	habitable 425.92
-	belt 1713
+	habitable 500
+	belt 1788
 	haze _menu/haze-red
 	link Arculus
 	link Perfica
@@ -6969,24 +6969,24 @@ system Cinxia
 		period 10
 	object Caelian
 		sprite planet/cloud3
-		distance 279.25
-		period 90.4452
+		distance 347.012
+		period 125.289
 		object Tibernia
 			sprite planet/dust1
 			distance 135
 			period 17.2478
 	object Janiculum
 		sprite planet/ice6
-		distance 745.09
-		period 394.193
+		distance 812.852
+		period 449.173
 	object Vatican
 		sprite planet/lava0
-		distance 922.93
-		period 543.437
+		distance 990.692
+		period 604.372
 	object Palatine
 		sprite planet/gas9-b
-		distance 2326.18
-		period 2174.51
+		distance 2393.94
+		period 2270.21
 		object Pincian
 			sprite planet/rock20
 			distance 270
@@ -7027,7 +7027,7 @@ system Coluber
 		period 19.2131
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 74.3034
 		period 19.2131
 	object
@@ -7117,7 +7117,7 @@ system Convector
 	government Uninhabited
 	attributes "ember waste"
 	habitable 4131.68
-	belt 1961
+	belt 2111
 	haze _menu/haze-red
 	link Antevorta
 	asteroids "small rock" 7 1.805
@@ -7139,34 +7139,34 @@ system Convector
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/giant
+		sprite star/f-giant
 		distance 13.0749
 		period 7.27748
 	object
-		sprite star/k0-old
+		sprite star/m0
 		distance 97.9251
 		period 7.27748
 		offset 180
 	object
 		sprite planet/cloud1
-		distance 311.885
-		period 34.2759
+		distance 463.524
+		period 62.102
 	object
 		sprite planet/desert9-b
-		distance 749.895
-		period 127.79
+		distance 901.534
+		period 168.45
 	object
 		sprite planet/rock6
-		distance 941.385
-		period 179.741
+		distance 1093.02
+		period 224.875
 	object
 		sprite planet/rock5-b
-		distance 1178.23
-		period 251.674
+		distance 1329.87
+		period 301.794
 	object
 		sprite planet/gas11-b
-		distance 1600.52
-		period 398.461
+		distance 1752.16
+		period 456.412
 		object
 			sprite planet/rock3-b
 			distance 270
@@ -7264,7 +7264,7 @@ system "Da Ent"
 	fleet "Large Human Merchants (Hai)" 10000
 	fleet "Hai Surveillance" 3000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object Newhome
 		sprite planet/ice4
@@ -7443,7 +7443,7 @@ system Danoa
 	fleet "Large Republic" 30000
 	fleet "Human Miners" 1600
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object
 		sprite planet/desert7-b
@@ -8081,7 +8081,7 @@ system Diphda
 		distance 20.9143
 		period 14.4057
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 70.5857
 		period 14.4057
 		offset 180
@@ -8136,32 +8136,32 @@ system Dixere
 	object
 		sprite star/k0-old
 		distance 43
-		period 10.9302
+		period 10
+		offset 240
 	object
 		sprite planet/lava1
 		distance 169.69
-		period 30.2946
-		offset 260.355
+		period 10
+		offset 120
 	object Veliante
 		sprite planet/lava4
 		distance 867.18
 		period 349.981
-		offset 344.167
+		offset 203
 	object
 		sprite planet/desert2-b
 		distance 1104.67
 		period 503.187
-		offset 180.723
+		offset 40
 	object
 		sprite planet/desert8
 		distance 1415.76
 		period 730.072
-		offset 333.491
+		offset 192
 	object
 		sprite planet/gas8
 		distance 2132.25
 		period 1349.39
-		offset 141.543
 		object
 			sprite planet/luna
 			distance 186
@@ -8213,7 +8213,7 @@ system Dokdobaru
 	fleet "Large Quarg" 800
 	fleet "Kor Efret Home" 1500
 	object
-		sprite star/g5
+		sprite star/g0-old
 		period 10
 	object "Korati Efreti"
 		sprite planet/station1k
@@ -8395,7 +8395,7 @@ system Dubhe
 		period 24.8575
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 67.8023
 		period 24.8575
 	object Haze
@@ -8448,7 +8448,7 @@ system "Due Yoot"
 	fleet "Hai Surveillance" 5000
 	fleet Quarg 2000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object Greenbloom
 		sprite planet/cloud3
@@ -8548,8 +8548,8 @@ system Eber
 	pos -532 406
 	government Republic
 	attributes "dirt belt"
-	habitable 320
-	belt 1199
+	habitable 470
+	belt 1350
 	link Alnasl
 	link "Alpha Arae"
 	asteroids "small rock" 18 1.4868
@@ -8581,7 +8581,7 @@ system Eber
 		period 10
 	object
 		sprite planet/gas4-b
-		distance 428.49
+		distance 578.49
 		period 198.333
 		object
 			sprite planet/dust3-b
@@ -8593,11 +8593,11 @@ system Eber
 			period 19.6268
 	object
 		sprite planet/io
-		distance 957.74
+		distance 1100
 		period 662.76
 	object
 		sprite planet/gas15
-		distance 1468.3
+		distance 1618.3
 		period 1258.08
 		object
 			sprite planet/mercury-b
@@ -8605,7 +8605,7 @@ system Eber
 			period 17.5306
 	object
 		sprite planet/gas0-b
-		distance 2248.11
+		distance 2398.11
 		period 2383.48
 
 system Eblumab
@@ -8704,28 +8704,28 @@ system Edusa
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/giant
+		sprite star/g-giant
 		period 10
 	object
 		sprite planet/ice4
-		distance 211.61
-		period 25.2777
+		distance 360.187
+		period 56.1339
 	object
 		sprite planet/desert10-b
-		distance 423.82
-		period 71.6482
+		distance 572.397
+		period 112.455
 	object
 		sprite planet/rock19-b
-		distance 680.82
-		period 145.875
+		distance 829.397
+		period 196.145
 	object
 		sprite planet/dust4
-		distance 981.71
-		period 252.585
+		distance 1130.29
+		period 312.044
 	object "Remnant Wormhole"
 		sprite planet/wormhole-red
-		distance 3465.15
-		period 1675.01
+		distance 3613.73
+		period 1783.88
 
 system Egeria
 	pos 288 146
@@ -8928,7 +8928,7 @@ system Ekuarik
 	fleet "Large Saryd" 1600
 	fleet Heliarch 200
 	object
-		sprite star/g5
+		sprite star/g0-old
 		period 10
 	object
 		sprite planet/lava6-b
@@ -9288,7 +9288,7 @@ system Enif
 	fleet "Large Southern Merchants" 4000
 	fleet Quarg 600
 	object
-		sprite star/g5
+		sprite star/g0-old
 		period 10
 	object
 		sprite planet/lava5-b
@@ -9650,7 +9650,7 @@ system Eteron
 	fleet "Small Northern Pirates" 1000
 	fleet "Human Miners" 2000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object
 		sprite planet/rock9
@@ -10058,8 +10058,8 @@ system Farinus
 	pos 202.87 440.242
 	government Uninhabited
 	attributes "ember waste"
-	habitable 745.92
-	belt 1149
+	habitable 825
+	belt 1225
 	haze _menu/haze-red
 	link Cinxia
 	link Perfica
@@ -10087,16 +10087,16 @@ system Farinus
 		period 11.6805
 	object
 		sprite star/m0
-		distance 49.106
+		distance 100
 		period 11.6805
 		offset 180
 	object
 		sprite planet/gas7-hot
-		distance 195.066
+		distance 275
 		period 39.9012
 	object
 		sprite planet/mars
-		distance 524.316
+		distance 600
 		period 175.834
 		object
 			sprite planet/dust4-b
@@ -10104,7 +10104,7 @@ system Farinus
 			period 20.499
 	object
 		sprite planet/gas17
-		distance 1311.33
+		distance 1385
 		period 695.472
 		object
 			sprite planet/callisto
@@ -10120,7 +10120,7 @@ system Farinus
 			period 46.9098
 	object
 		sprite planet/jupiter-b
-		distance 2113.37
+		distance 2185
 		period 1422.91
 		object
 			sprite planet/dust0
@@ -10223,6 +10223,9 @@ system Fasitopfar
 	trade Plastic 481
 	object
 		sprite star/nova
+		period 1000
+	object
+		sprite star/nova-core
 		period 1000
 	object
 		sprite planet/lava1
@@ -10473,7 +10476,7 @@ system Fereti
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/a0
+		sprite star/a3
 		period 10
 	object
 		sprite planet/lava7
@@ -10669,7 +10672,7 @@ system Fingol
 	fleet "Small Northern Pirates" 2000
 	fleet "Human Miners" 3000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object
 		sprite planet/cloud4
@@ -11115,7 +11118,7 @@ system "Gamma Cassiopeiae"
 	fleet "Large Syndicate" 5000
 	fleet "Human Miners" 2000
 	object
-		sprite star/k0-old
+		sprite star/b0
 		period 10
 	object
 		sprite planet/ice7
@@ -11240,28 +11243,28 @@ system Gerenus
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/giant
+		sprite star/k-giant
 		period 8.42267
 	object
 		sprite planet/gas4-hot
-		distance 329.94
-		period 25.1772
+		distance 390.558
+		period 32.4252
 	object "Palarei"
 		sprite planet/rock10-b
-		distance 757.43
-		period 87.5725
+		distance 818.048
+		period 98.2929
 	object
 		sprite planet/mars
-		distance 1413.32
-		period 223.211
+		distance 1473.94
+		period 237.724
 	object
 		sprite planet/ice5-b
-		distance 1666.32
-		period 285.754
+		distance 1726.94
+		period 301.487
 	object
 		sprite planet/gas9
-		distance 2533.32
-		period 535.66
+		distance 2593.94
+		period 555.001
 		object
 			sprite planet/io
 			distance 269
@@ -11271,8 +11274,8 @@ system Gienah
 	pos -176 354
 	government Pirate
 	attributes "core"
-	habitable 534.375
-	belt 1939
+	habitable 560
+	belt 1965
 	link Persian
 	link Algenib
 	asteroids "small rock" 1 2.574
@@ -11304,11 +11307,11 @@ system Gienah
 		offset 180
 	object
 		sprite star/m0
-		distance 47.607
+		distance 75
 		period 12.2656
 	object Covert
 		sprite planet/cloud4
-		distance 355.717
+		distance 380
 		period 116.09
 		object
 			sprite planet/rock0
@@ -11316,11 +11319,11 @@ system Gienah
 			period 15.7161
 	object Mutiny
 		sprite planet/ice4
-		distance 814.357
+		distance 840
 		period 402.123
 	object
 		sprite planet/desert5-b
-		distance 1189.57
+		distance 1215
 		period 709.938
 		object
 			sprite planet/dust7
@@ -11328,7 +11331,7 @@ system Gienah
 			period 17.6303
 	object
 		sprite planet/dust1-b
-		distance 2108.98
+		distance 2135
 		period 1675.89
 
 system Giribea
@@ -11504,7 +11507,7 @@ system Glubatub
 	fleet "Large Saryd" 4000
 	fleet Heliarch 500
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object "Weir of Glubatub"
 		sprite planet/cloud0
@@ -12323,7 +12326,7 @@ system "Hevru Hai"
 	fleet "Large Human Merchants (Hai)" 15000
 	fleet Quarg 600
 	object
-		sprite star/g5
+		sprite star/g0-old
 		period 10
 	object "Alta Hai"
 		sprite planet/ringworld
@@ -12969,7 +12972,7 @@ system Insitor
 		period 18.0359
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 60.1504
 		period 18.0359
 	object
@@ -13160,7 +13163,7 @@ system Ipsing
 		offset 180
 	object
 		sprite star/k5
-		distance 73.2857
+		distance 100
 		period 9.89877
 	object
 		sprite planet/rock11
@@ -13547,7 +13550,7 @@ system "Kappa Centauri"
 		distance 10.2222
 		period 10.1264
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 81.7778
 		period 10.1264
 		offset 180
@@ -13677,6 +13680,9 @@ system Kasikfar
 		sprite star/nova
 		period 1000
 	object
+		sprite star/nova-core
+		period 1000
+	object
 		sprite planet/rock13-b
 		distance 947.181
 		period 528.552
@@ -13775,7 +13781,7 @@ system "Kaus Borealis"
 		distance 20.4571
 		period 13.936
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 69.0429
 		period 13.936
 		offset 180
@@ -13841,7 +13847,7 @@ system "Ki War Ek"
 	fleet "Large Saryd" 1500
 	fleet Heliarch 150
 	object
-		sprite star/g5
+		sprite star/g0-old
 		period 10
 	object
 		sprite planet/lava4-b
@@ -14226,7 +14232,10 @@ system "Kor Ak'Mari"
 	trade Plastic 524
 	fleet "Korath Raid" 2800
 	object
-		sprite star/wr
+		sprite star/carbon
+		period 100
+	object
+		sprite star/carbon-core
 		period 100
 	object
 		sprite planet/lava6
@@ -14416,7 +14425,7 @@ system "Kor Men"
 		period 11.5563
 	object
 		sprite star/g5
-		distance 91.6132
+		distance 110
 		period 11.5563
 		offset 180
 	object
@@ -14476,8 +14485,8 @@ system "Kor Nor'peli"
 		distance 25.4857
 		period 19.3783
 	object
-		sprite star/m4
-		distance 86.0143
+		sprite star/m5
+		distance 100
 		period 19.3783
 		offset 180
 	object
@@ -14595,7 +14604,7 @@ system "Kor Zena'i"
 		period 10.8953
 	object
 		sprite star/m8
-		distance 71.5556
+		distance 100
 		period 10.8953
 		offset 180
 	object
@@ -14930,7 +14939,7 @@ system Kursa
 		period 16.8182
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 65.4066
 		period 16.8182
 	object Farseer
@@ -15107,7 +15116,7 @@ system Levana
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/giant
+		sprite star/a-giant
 		distance 17.197
 		period 9.08241
 		offset 180
@@ -15300,7 +15309,7 @@ system Lolami
 		period 11.3038
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 88
 		period 11.3038
 	object
@@ -15435,7 +15444,7 @@ system "Lone Cloud"
 	fleet "Large Saryd" 2500
 	fleet Heliarch 3000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object "Vibrant Water"
 		sprite planet/cloud1
@@ -15607,7 +15616,7 @@ system Makferuti
 		period 12.3508
 		offset 180
 	object
-		sprite star/m8
+		sprite star/m-dwarf
 		distance 65.7591
 		period 12.3508
 	object
@@ -15919,8 +15928,8 @@ system Mebsuta
 	pos -482 -394
 	government Republic
 	attributes "north"
-	habitable 670
-	belt 1740
+	habitable 1170
+	belt 2340
 	haze _menu/haze-33
 	link Mirzam
 	asteroids "small rock" 1 4.1412
@@ -15946,21 +15955,19 @@ system Mebsuta
 	fleet "Large Northern Pirates" 8000
 	fleet "Small Republic" 12000
 	object
-		sprite star/k0
-		distance 37.1157
+		sprite star/g-supergiant
 		period 19.3068
-		offset 180
 	object
-		sprite star/m0
-		distance 78.8843
+		sprite star/m-dwarf
+		distance 378.8843
 		period 19.3068
 	object
 		sprite planet/gas0-hot
-		distance 305.544
+		distance 605.544
 		period 82.5342
 	object Featherweight
 		sprite planet/forest3-b
-		distance 655.034
+		distance 1155.034
 		period 259.071
 		object
 			sprite planet/desert4
@@ -15968,11 +15975,11 @@ system Mebsuta
 			period 17.9915
 	object
 		sprite planet/ocean8
-		distance 1066.24
+		distance 1566.24
 		period 538.031
 	object
 		sprite planet/rock2-b
-		distance 1590.45
+		distance 2090.45
 		period 980.177
 		object
 			sprite planet/europa-b
@@ -15980,7 +15987,7 @@ system Mebsuta
 			period 16.1817
 	object
 		sprite planet/gas10
-		distance 4225.69
+		distance 4725.69
 		period 4244.92
 		object
 			sprite planet/dust3-b
@@ -16251,8 +16258,8 @@ system Men
 	pos -888 361
 	government Pirate
 	attributes "south"
-	habitable 320
-	belt 1531
+	habitable 370
+	belt 1580
 	haze _menu/haze-33
 	link "Beta Lupi"
 	asteroids "small rock" 9 3.504
@@ -16282,15 +16289,15 @@ system Men
 		period 10
 	object Thule
 		sprite planet/forest4
-		distance 203.64
+		distance 250
 		period 64.98
 	object
 		sprite planet/ocean0
-		distance 473.08
+		distance 525
 		period 230.084
 	object
 		sprite planet/gas9
-		distance 1265.37
+		distance 1315
 		period 1006.49
 		object
 			sprite planet/dust2
@@ -16306,7 +16313,7 @@ system Men
 			period 46.1144
 	object
 		sprite planet/gas13-b
-		distance 2504.61
+		distance 2550
 		period 2802.82
 		object "Smuggler's Den"
 			sprite planet/station15
@@ -16584,8 +16591,8 @@ system Mesuket
 	pos 220.431 -409.812
 	government Uninhabited
 	attributes "korath"
-	habitable 425.92
-	belt 1189
+	habitable 450
+	belt 1215
 	link Eshkoshtar
 	link Silikatakfar
 	link Eneremprukt
@@ -16608,11 +16615,11 @@ system Mesuket
 		period 10
 	object
 		sprite planet/mercury-b
-		distance 125.36
+		distance 130
 		period 27.2041
 	object
 		sprite planet/rock13
-		distance 569.491
+		distance 595
 		period 263.406
 		object
 			sprite planet/station1kd
@@ -16620,7 +16627,7 @@ system Mesuket
 			period 25.3047
 	object
 		sprite planet/gas17-b
-		distance 1378.34
+		distance 1400
 		period 991.812
 		object
 			sprite planet/station3kd
@@ -16628,7 +16635,7 @@ system Mesuket
 			period 26.9888
 	object
 		sprite planet/gas4
-		distance 3615.31
+		distance 3640
 		period 4213.22
 		object
 			sprite planet/ice7-b
@@ -16893,7 +16900,7 @@ system Minkar
 		period 16.6267
 	object
 		sprite star/m0
-		distance 71.4039
+		distance 95
 		period 16.6267
 		offset 180
 	object
@@ -16961,7 +16968,7 @@ system Mintaka
 		period 10.9588
 		offset 180
 	object
-		sprite star/k5
+		sprite star/k8
 		distance 49.0504
 		period 10.9588
 	object
@@ -17026,7 +17033,7 @@ system Mirach
 		period 16.4224
 		offset 180
 	object
-		sprite star/m8
+		sprite star/k-dwarf
 		distance 57.8996
 		period 16.4224
 	object Placer
@@ -17265,7 +17272,7 @@ system Moktar
 		period 18.1925
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 68.9231
 		period 18.1925
 	object
@@ -17435,7 +17442,7 @@ system Muphrid
 		period 10.9152
 	object
 		sprite star/m0
-		distance 63.6634
+		distance 90
 		period 10.9152
 		offset 180
 	object
@@ -17463,7 +17470,7 @@ system Naos
 	pos -653 -396
 	government Republic
 	attributes "deep"
-	habitable 625
+	habitable 1325
 	belt 1045
 	haze _menu/haze-67
 	link Regor
@@ -17494,7 +17501,7 @@ system Naos
 	fleet "Large Deep Merchants" 2800
 	fleet "Human Miners" 2000
 	object
-		sprite star/g5
+		sprite star/o5
 		period 10
 	object
 		sprite planet/cloud6-b
@@ -17504,12 +17511,12 @@ system Naos
 			sprite planet/rock7-b
 			distance 147
 			period 17.0438
-	object Asgard
-		sprite planet/forest1-b
-		distance 698.29
-		period 295.239
 	object
 		sprite planet/cloud5-b
+		distance 698.29
+		period 295.239
+	object Asgard
+		sprite planet/forest1-b
 		distance 1403.38
 		period 841.168
 	object
@@ -17599,8 +17606,8 @@ system Nenia
 	pos -39.1297 467.242
 	government Uninhabited
 	attributes "ember waste" "void sprites" "archon"
-	habitable 2340
-	belt 1343
+	habitable 2390
+	belt 1393
 	haze _menu/haze-red
 	link Ossipago
 	link Cardea
@@ -17630,20 +17637,20 @@ system Nenia
 	hazard "Ember Waste Base Storm" 25000
 	object
 		sprite star/f5-old
-		distance 31.5171
+		distance 40
 		period 10.5992
 	object
 		sprite star/g5-old
-		distance 86.4829
+		distance 95
 		period 10.5992
 		offset 180
 	object
 		sprite planet/desert6
-		distance 249.723
+		distance 300
 		period 32.6317
 	object Nasqueron
 		sprite planet/gas8
-		distance 880.683
+		distance 930
 		period 216.113
 		object
 			sprite planet/rock3
@@ -17655,7 +17662,7 @@ system Nenia
 			period 26.6433
 	object
 		sprite planet/desert1-b
-		distance 1626.29
+		distance 1675
 		period 542.313
 		object
 			sprite planet/rhea
@@ -17663,7 +17670,7 @@ system Nenia
 			period 18.3981
 	object Slylandro
 		sprite planet/gas11
-		distance 3003.29
+		distance 3055
 		period 1360.97
 		object
 			sprite planet/dust4-b
@@ -17779,7 +17786,7 @@ system Nocte
 	fleet "Small Northern Pirates" 2500
 	fleet "Human Miners" 1600
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object
 		sprite planet/desert8-b
@@ -17943,7 +17950,7 @@ system Oblate
 	government Pirate
 	attributes "core"
 	habitable 12000
-	belt 1704
+	belt 1954
 	haze _menu/haze-133
 	link Alcyone
 	link Moktar
@@ -17970,32 +17977,32 @@ system Oblate
 	fleet "Large Core Pirates" 1000
 	fleet "Large Syndicate" 3000
 	object
-		sprite star/giant
+		sprite star/m-giant
 		period 10
 	object
 		sprite planet/ice4
-		distance 397.973
-		period 70.3976
+		distance 556.207
+		period 47.8988
 		object
 			sprite planet/dust0-b
 			distance 110
 			period 13.1646
 	object
 		sprite planet/lava2
-		distance 673.733
-		period 155.063
+		distance 831.967
+		period 87.6251
 	object
 		sprite planet/rock17
-		distance 1201.97
-		period 369.505
+		distance 1360.2
+		period 183.179
 	object
 		sprite planet/cloud6
-		distance 1560.53
-		period 546.622
+		distance 1718.76
+		period 260.192
 	object
 		sprite planet/gas0-b
-		distance 4260.49
-		period 2465.86
+		distance 4418.72
+		period 1072.54
 
 system Orbona
 	pos -735.99 -97.2491
@@ -18028,12 +18035,12 @@ system Orbona
 	fleet "Large Southern Pirates" 3200
 	fleet "Human Miners" 1500
 	object
-		sprite star/giant
-		distance 20.2539
+		sprite star/b-giant
+		distance 25
 		period 9.71046
 	object
 		sprite star/k0
-		distance 98.7461
+		distance 100
 		period 9.71046
 		offset 180
 	object
@@ -18102,7 +18109,7 @@ system Orvala
 		period 17.8357
 		offset 180
 	object
-		sprite star/m8
+		sprite star/l-dwarf
 		distance 87.0703
 		period 17.8357
 	object
@@ -18169,7 +18176,7 @@ system Ossipago
 		distance 11.9736
 		period 9.06221
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 88.0264
 		period 9.06221
 		offset 180
@@ -18223,7 +18230,7 @@ system "Over the Rainbow"
 		period 875.481048
 		offset 180
 		object
-			sprite star/m4
+			sprite star/m3
 			distance 75
 			period 12.179969
 	object
@@ -18231,7 +18238,7 @@ system "Over the Rainbow"
 		distance 544.9
 		period 875.481048
 		object
-			sprite star/m4
+			sprite star/m5
 			distance 107
 			period 12.701281
 
@@ -18306,8 +18313,8 @@ system Pantica
 	pos 303.87 445.242
 	government Remnant
 	attributes "ember waste"
-	habitable 486.68
-	belt 1203
+	habitable 435
+	belt 1253
 	haze _menu/haze-red
 	link Arculus
 	link Cinxia
@@ -18340,15 +18347,15 @@ system Pantica
 		period 10
 	object Capitoline
 		sprite planet/lava1
-		distance 140.44
+		distance 190
 		period 30.1769
 	object Aventine
 		sprite planet/ocean0
-		distance 542.45
+		distance 595
 		period 229.075
 	object Esquiline
 		sprite planet/gas9-b
-		distance 1268.21
+		distance 1320
 		period 818.889
 		object Quirinal
 			sprite planet/lava0
@@ -18356,7 +18363,7 @@ system Pantica
 			period 14.6443
 	object Servian
 		sprite planet/gas8
-		distance 1879.46
+		distance 1930
 		period 1477.37
 
 system Parca
@@ -18546,12 +18553,12 @@ system Pelubta
 	fleet "Large Saryd" 2500
 	fleet Heliarch 400
 	object
-		sprite star/b5
+		sprite star/b3
 		distance 10.9957
 		period 8.64806
 		offset 180
 	object
-		sprite star/g5
+		sprite star/a-dwarf
 		distance 152.004
 		period 8.64806
 	object
@@ -18681,6 +18688,10 @@ system Peresedersi
 	trade Plastic 499
 	object
 		sprite star/nova
+		period 1000
+		offset 190
+	object
+		sprite star/nova-core
 		period 1000
 		offset 190
 	object
@@ -18844,6 +18855,10 @@ system Persitar
 	trade Plastic 500
 	object
 		sprite star/nova
+		period 1000
+		offset 260
+	object
+		sprite star/nova-core
 		period 1000
 		offset 260
 	object
@@ -19015,7 +19030,7 @@ system Pherkad
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 3000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object Solace
 		sprite planet/forest5-b
@@ -19127,7 +19142,7 @@ system Pik'ro'iyak
 	fleet "Wanderer Drones" 3000
 	fleet "Wanderer Defense" 4000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object "Var' Kayi"
 		sprite planet/forest1-b
@@ -19268,7 +19283,7 @@ system Polerius
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	haze _menu/haze-red
-	habitable 1505.92
+	habitable 1555
 	link Paeli
 	asteroids "small rock" 2 4
 	asteroids "medium rock" 8 5
@@ -19294,7 +19309,7 @@ system Polerius
 	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/g0
-		distance 33.9397
+		distance 40
 		period 13.5497
 		offset 180
 	object
@@ -19303,23 +19318,23 @@ system Polerius
 		period 13.5497
 	object
 		sprite planet/lava7
-		distance 219.9
+		distance 270
 		period 33.6123
 	object
 		sprite planet/rock19-b
-		distance 644.74
+		distance 694
 		period 168.747
 	object "Celeatis"
 		sprite planet/rock10-b
-		distance 1091.15
+		distance 1141.15
 		period 371.523
 	object "Ember Graveyard"
 		sprite planet/wormhole-red
-		distance 1774.15
+		distance 1824.15
 		period 770.273
 	object
 		sprite planet/gas14-b
-		distance 2398.24
+		distance 2448.24
 		period 1210.59
 		object Ceilia'sei
 			sprite planet/station3b
@@ -19425,7 +19440,7 @@ system Porrima
 		period 18.8353
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 97.8618
 		period 18.8353
 	object
@@ -19467,7 +19482,7 @@ system Postverta
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 19
 	object
 		sprite planet/desert7
@@ -19493,8 +19508,8 @@ system Postverta
 system Prakacha'a
 	pos -35.1114 -802.607
 	government Wanderer
-	habitable 1505.92
-	belt 1637
+	habitable 1530
+	belt 1660
 	haze _menu/haze-33
 	link Chy'chra
 	link Ik'kara'ka
@@ -19524,7 +19539,7 @@ system Prakacha'a
 	fleet "Unfettered Raid" 5000
 	object
 		sprite star/g0
-		distance 32.5255
+		distance 40
 		period 12.7118
 		offset 180
 	object
@@ -19533,19 +19548,19 @@ system Prakacha'a
 		period 12.7118
 	object
 		sprite planet/rock18
-		distance 247.965
+		distance 270
 		period 40.2479
 	object
 		sprite planet/desert5-b
-		distance 458.205
+		distance 485.205
 		period 101.099
 	object
 		sprite planet/rock19-b
-		distance 692.455
+		distance 717.455
 		period 187.822
 	object
 		sprite planet/tethys
-		distance 846.065
+		distance 871.065
 		period 253.667
 	object
 		sprite planet/gas6-b
@@ -19642,25 +19657,25 @@ system Prosa
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/giant
+		sprite star/o-giant
 		offset 180
 		period 7
 	object
 		sprite planet/cloud1
-		distance 311
-		period 34
+		distance 443.879
+		period 76.7945
 	object
 		sprite planet/desert9
-		distance 749
-		period 127
+		distance 881.879
+		period 215.054
 	object
 		sprite planet/rock6
-		distance 941
-		period 179
+		distance 1073.88
+		period 288.979
 	object
 		sprite planet/gas17
-		distance 1311
-		period 695
+		distance 1443.88
+		period 450.536
 		object
 			sprite planet/callisto
 			distance 227
@@ -19757,7 +19772,7 @@ system Quaru
 	fleet "Large Saryd" 1400
 	fleet Heliarch 100
 	object
-		sprite star/g5
+		sprite star/g0-old
 		period 10
 	object "Ring of Friendship"
 		sprite planet/ringworld
@@ -20383,7 +20398,7 @@ system Regulus
 	fleet "Small Republic" 10000
 	fleet "Human Miners" 3000
 	object
-		sprite star/b5
+		sprite star/b0
 		period 10
 	object
 		sprite planet/gas15-b
@@ -20567,8 +20582,8 @@ system Rigel
 	pos -324 -363
 	government Republic
 	attributes "north"
-	habitable 1080
-	belt 1782
+	habitable 1180
+	belt 1882
 	link Saiph
 	link Alnitak
 	link Betelgeuse
@@ -20601,19 +20616,19 @@ system Rigel
 	fleet "Large Northern Pirates" 5000
 	fleet "Human Miners" 2000
 	object
-		sprite star/g0
+		sprite star/b-supergiant
 		period 10
 	object
+		sprite planet/lava1
+		distance 330
+		period 18.6328
+	object
 		sprite planet/cloud7
-		distance 346
+		distance 546
 		period 78.3362
-		object
-			sprite planet/lava1
-			distance 130
-			period 18.6328
 	object
 		sprite planet/jupiter
-		distance 998.16
+		distance 1098.16
 		period 383.838
 		object
 			sprite planet/dust5
@@ -20621,7 +20636,7 @@ system Rigel
 			period 11.4109
 	object
 		sprite planet/cloud8-b
-		distance 1600.16
+		distance 1700.16
 		period 779.1
 		object
 			sprite planet/desert4-b
@@ -20629,7 +20644,7 @@ system Rigel
 			period 20.1302
 	object
 		sprite planet/gas5
-		distance 2867
+		distance 2967
 		period 1868.49
 		object
 			sprite planet/dust0-b
@@ -20645,7 +20660,7 @@ system Ritilas
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
 	haze _menu/haze-red
-	habitable 135
+	habitable 160
 	link Queri
 	asteroids "large metal" 4 4
 	asteroids "large rock" 18 2
@@ -20673,11 +20688,11 @@ system Ritilas
 		period 10
 	object
 		sprite planet/rock14
-		distance 127
+		distance 155
 		period 49.2718
 	object
 		sprite planet/gas0
-		distance 666
+		distance 690
 		period 591.704
 		object
 			sprite planet/callisto
@@ -20689,21 +20704,21 @@ system Ritilas
 			period 24.6864
 	object
 		sprite planet/rock7
-		distance 1205.21
+		distance 1230
 		period 1440.41
 	object "Graveyard Wormhole (Stable)"
 		sprite planet/wormhole
-		distance 1641.32
+		distance 1666
 		period 2289.21
 		offset 109.88
 	object
 		sprite planet/gas6
-		distance 2296.1
+		distance 2320
 		period 3787.73
 		offset 73.9578
 	object
 		sprite planet/gas9
-		distance 4038.51
+		distance 4065
 		period 8835.37
 		offset 15.7954
 		object
@@ -20940,7 +20955,7 @@ system Sabriset
 		distance 35.1028
 		period 12.1391
 	object
-		sprite star/k0
+		sprite star/k3
 		distance 77.8972
 		period 12.1391
 		offset 180
@@ -21304,7 +21319,10 @@ system Saquergen
 	trade Metal 276
 	trade Plastic 328
 	object
-		sprite star/nova
+		sprite star/nova-old
+		period 1000
+	object
+		sprite star/nova-old-core
 		period 1000
 	object
 		sprite planet/lava2
@@ -21446,6 +21464,7 @@ system Sayaiban
 		sprite star/m0
 		distance 102.816
 		period 11.9486
+		offset 180
 	object
 		sprite planet/lava6-b
 		distance 371.702
@@ -21630,7 +21649,7 @@ system Segesta
 		period 10
 	object
 		sprite planet/venus-b
-		distance 333
+		distance 350
 		period 117.777
 		object
 			sprite planet/dust5
@@ -21693,7 +21712,7 @@ system Seginus
 	fleet "Small Militia" 3000
 	fleet "Small Southern Pirates" 5000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object Clark
 		sprite planet/forest6-b
@@ -22039,7 +22058,7 @@ system Sheratan
 	fleet "Large Core Pirates" 5000
 	fleet "Korath Raid" 30000
 	object
-		sprite star/f5
+		sprite star/f8
 		distance 21.0713
 		period 13.7542
 		offset 180
@@ -22107,7 +22126,7 @@ system Si'yak'ku
 		distance 19.5395
 		period 12.7342
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 90.4605
 		period 12.7342
 		offset 180
@@ -22647,12 +22666,12 @@ system Sobarati
 	fleet "Small Kor Sestor" 800
 	fleet "Large Kor Sestor" 4000
 	object
-		sprite star/a5
+		sprite star/a8
 		distance 4.57143
 		period 9.4217
 		offset 180
 	object
-		sprite star/m8
+		sprite star/f-dwarf
 		distance 123.429
 		period 9.4217
 	object
@@ -22986,7 +23005,7 @@ system "Sol Saryd"
 		period 12.9082
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 91.2829
 		period 12.9082
 	object
@@ -23298,7 +23317,7 @@ system Statina
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object
 		sprite planet/desert4
@@ -23427,16 +23446,16 @@ system Stercutus
 	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/g5-old
-		distance 31.1534
+		distance 40
 		period 11.4822
 	object
 		sprite star/m0
-		distance 60.8466
+		distance 70
 		period 11.4822
 		offset 180
 	object
 		sprite planet/cloud6-b
-		distance 244.937
+		distance 255
 		period 49.8798
 	object
 		sprite planet/titan
@@ -23467,8 +23486,8 @@ system Suhail
 	pos -774 -338
 	government Republic
 	attributes "deep"
-	habitable 1715
-	belt 1715
+	habitable 2715
+	belt 2715
 	haze _menu/haze-33
 	link Regor
 	asteroids "small rock" 2 2.8224
@@ -23497,19 +23516,19 @@ system Suhail
 	fleet "Large Deep Merchants" 7000
 	fleet "Large Northern Pirates" 9000
 	object
-		sprite star/f5
+		sprite star/k-supergiant
 		period 10
 	object
 		sprite planet/water1
-		distance 193.41
+		distance 1193.41
 		period 25.9804
 	object
 		sprite planet/io-b
-		distance 461.7
+		distance 1461.7
 		period 95.8226
 	object
 		sprite planet/gas14-b
-		distance 1034.31
+		distance 2034.31
 		period 321.295
 		object "Leviathan Station"
 			sprite planet/station6
@@ -23517,7 +23536,7 @@ system Suhail
 			period 15.4109
 	object Helheim
 		sprite planet/ocean9
-		distance 1842.75
+		distance 2842.75
 		period 764.06
 		object
 			sprite planet/europa
@@ -23881,7 +23900,7 @@ system Tarazed
 		distance 11
 		period 11.3038
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 88
 		period 11.3038
 		offset 180
@@ -23948,7 +23967,7 @@ system Tebuteb
 		period 15.7461
 		offset 180
 	object
-		sprite star/m4
+		sprite star/m5
 		distance 54.9451
 		period 15.7461
 	object "Tebuteb's Table"
@@ -24081,11 +24100,13 @@ system Terminus
 	fleet "Large Southern Pirates" 5000
 	object
 		sprite star/k5-old
-		period 10
+		distance 10
+		period 50
+		offset 180
 	object
 		sprite planet/gas11
-		distance 284.16
-		period 92.8411
+		distance 295
+		period 50
 	object
 		sprite planet/desert4-b
 		distance 666.8
@@ -24152,8 +24173,8 @@ system Torbab
 	pos -949.587 490.051
 	government Coalition
 	attributes "arachi"
-	habitable 1505.92
-	belt 1702
+	habitable 1530
+	belt 1727
 	link Speloog
 	link Debrugt
 	link Flugbu
@@ -24184,29 +24205,29 @@ system Torbab
 	fleet "Large Saryd" 2000
 	fleet Heliarch 250
 	object
-		sprite star/g0
-		distance 26.8689
+		sprite star/k5-old
+		distance 50
 		period 9.54431
 	object
-		sprite star/k5-old
-		distance 68.1311
+		sprite star/g0
+		distance 90
 		period 9.54431
 		offset 180
 	object
 		sprite planet/luna-b
-		distance 240.541
+		distance 265
 		period 38.4541
 	object
 		sprite planet/rock15
-		distance 385.181
+		distance 410
 		period 77.9213
 	object
 		sprite planet/mars-b
-		distance 659.221
+		distance 685
 		period 174.464
 	object
 		sprite planet/gas8-b
-		distance 1535.78
+		distance 1560
 		period 620.373
 		object
 			sprite planet/rock0-b
@@ -24218,7 +24239,7 @@ system Torbab
 			period 22.3171
 	object
 		sprite planet/neptune-b
-		distance 2533.14
+		distance 2558
 		period 1314.16
 		object
 			sprite planet/rock14-b
@@ -24481,8 +24502,8 @@ system Umbral
 	pos -164 406
 	government Republic
 	attributes "south"
-	habitable 670
-	belt 1345
+	habitable 700
+	belt 1375
 	link Tarazed
 	asteroids "small rock" 4 7.1925
 	asteroids "medium rock" 21 4.2525
@@ -24507,24 +24528,24 @@ system Umbral
 	fleet "Large Southern Pirates" 6000
 	object
 		sprite star/k0-old
-		distance 31.3563
+		distance 35
 		period 14.9921
 	object
 		sprite star/m0
-		distance 66.6437
+		distance 95
 		period 14.9921
 		offset 180
 	object
 		sprite planet/desert9-b
-		distance 273.504
+		distance 300
 		period 69.8984
 	object
 		sprite planet/rock17
-		distance 524.194
+		distance 554.194
 		period 185.464
 	object
 		sprite planet/gas2
-		distance 1241.83
+		distance 1271.83
 		period 676.266
 		object
 			sprite planet/europa
@@ -24536,7 +24557,7 @@ system Umbral
 			period 25.3223
 	object
 		sprite planet/uranus
-		distance 2517.84
+		distance 2547.84
 		period 1952.39
 		object
 			sprite planet/ice7-b
@@ -25053,7 +25074,7 @@ system "Wah Oh"
 	fleet "Large Human Merchants (Hai)" 9000
 	fleet "Hai Surveillance" 5000
 	object
-		sprite star/a0
+		sprite star/b8
 		period 10
 	object
 		sprite planet/gas8-hot
@@ -25379,7 +25400,7 @@ system Wezen
 		distance 11.8889
 		period 8.24972
 	object
-		sprite star/k5
+		sprite star/g-dwarf
 		distance 95.1111
 		period 8.24972
 		offset 180
@@ -25431,7 +25452,7 @@ system "World's End"
 	habitable 700
 	haze _menu/haze-blackbody
 	object
-		sprite star/g5
+		sprite star/m8
 		period 10
 	object
 		sprite "planet/ringworld right"

@@ -238,7 +238,7 @@ Engine::Engine(PlayerInfo &player)
 				(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
 				system->Position() - player.GetSystem()->Position());
 	
-	GameData::SetHaze(player.GetSystem()->Haze());
+	GameData::SetHaze(player.GetSystem()->Haze(), true);
 }
 
 
@@ -619,7 +619,7 @@ void Engine::Step(bool isActive)
 	}
 	
 	if(flagship && flagship->IsOverheated())
-		Messages::Add("Your ship has overheated.", Messages::Importance::High);
+		Messages::Add("Your ship has overheated.", Messages::Importance::Highest);
 	
 	// Clear the HUD information from the previous frame.
 	info = Information();
@@ -942,8 +942,21 @@ void Engine::Draw() const
 		if(messagePoint.Y() < messageBox.Top())
 			break;
 		float alpha = (it->step + 1000 - step) * .001f;
-		Color color(alpha, 0.f);
-		messageLine.Draw(messagePoint, color);
+		const Color *color = nullptr;
+		switch (it->importance) {
+			case Messages::Importance::Highest:
+				color = GameData::Colors().Find("message importance highest");
+				break;
+			case Messages::Importance::High:
+				color = GameData::Colors().Find("message importance high");
+				break;
+			case Messages::Importance::Low:
+				color = GameData::Colors().Find("message importance low");
+				break;
+		}
+		if(!color)
+			color = GameData::Colors().Get("message importance default");
+		messageLine.Draw(messagePoint, color->Additive(alpha));
 	}
 	
 	// Draw crosshairs around anything that is targeted.
@@ -1128,7 +1141,7 @@ void Engine::EnterSystem()
 	
 	const System *system = flagship->GetSystem();
 	Audio::PlayMusic(system->MusicName());
-	GameData::SetHaze(system->Haze());	
+	GameData::SetHaze(system->Haze(), false);
 	
 	Messages::Add("Entering the " + system->Name() + " system on "
 		+ today.ToString() + (system->IsInhabited(flagship) ?
@@ -1219,7 +1232,7 @@ void Engine::EnterSystem()
 				{
 					raidFleet->Place(*system, newShips);
 					Messages::Add("Your fleet has attracted the interest of a "
-							+ raidGovernment->GetName() + " raiding party.", Messages::Importance::High);
+							+ raidGovernment->GetName() + " raiding party.", Messages::Importance::Highest);
 				}
 	}
 	
