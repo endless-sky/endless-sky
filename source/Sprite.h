@@ -18,18 +18,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <cstdint>
 #include <string>
-#include <vector>
 
 class ImageBuffer;
 
 
 
 // Class representing a drawable sprite. A sprite can have multiple frames, for
-// animation. Certain sprites will also include a "mask" that can be used to
-// check whether something has collided with them. Each frame is stored in a
-// separate OpenGL texture object. This may not be as efficient as sprite
-// sheets, but with modern graphics cards it will not matter much and it makes
-// working with the graphics a lot simpler.
+// animation. Each frame is stored in a separate OpenGL texture object. This may
+// not be as efficient as sprite sheets, but with modern graphics cards it will
+// not matter much and it makes working with the graphics a lot simpler.
 class Sprite {
 public:
 	explicit Sprite(const std::string &name = "");

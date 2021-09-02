@@ -60,7 +60,7 @@ void MaskManager::ScaleMasks()
 		{
 			auto &masks = it->second;
 			masks.reserve(baseMasks.size());
-			for(auto &mask : baseMasks)
+			for(auto &&mask : baseMasks)
 				masks.push_back(mask * it->first);
 		}
 	}
