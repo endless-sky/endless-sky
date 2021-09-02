@@ -133,7 +133,7 @@ string Format::Number(double value)
 	// Only show decimal places for numbers between +/-10'000.
 	double decimal = modf(value, &value);
 	// Fix any floating point inaccuracy.
-	decimal = round(decimal * 100.) / 100.;
+	decimal = round(decimal * 1000.) / 1000.;
 	if(decimal && value < 10000)
 	{
 		int tenths = static_cast<int>(decimal * 10.);
