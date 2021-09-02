@@ -31,9 +31,14 @@ void MaskManager::AddMasks(const Sprite *sprite, std::vector<Mask> &masks)
 
 
 // Add a scale that the given sprite needs to have a mask for.
-void MaskManager::AddScale(const Sprite *sprite, double scale)
+void MaskManager::RegisterScale(const Sprite *sprite, double scale)
 {
-	spriteMasks[sprite][scale].clear();
+	auto &scales = spriteMasks[sprite];
+	auto lb = scales.lower_bound(scale);
+	if(lb == scales.end() || lb->first != scale)
+		scales.emplace_hint(lb, scale, vector<Mask>{});
+	else if(!lb->second.empty())
+		Files::LogError("Collision mask for sprite \"" + sprite->Name() + "\" at scale " + to_string(scale) + " was already generated");
 }
 
 
@@ -43,7 +48,7 @@ void MaskManager::ScaleMasks()
 {
 	for(auto &spriteScales : spriteMasks)
 	{
-		map<double, vector<Mask>> &scales = spriteScales.second;
+		auto &scales = spriteScales.second;
 		auto baseIt = scales.find(1.);
 		if(baseIt == scales.end() || baseIt->second.empty())
 			continue;
@@ -76,7 +81,7 @@ const std::vector<Mask> &MaskManager::GetMasks(const Sprite *sprite, double scal
 	const auto scalesIt = spriteMasks.find(sprite);
 	if(scalesIt == spriteMasks.end())
 	{
-		Files::LogError("Failed to find collision mask for \"" + sprite->Name() + "\"");
+		Files::LogError("Failed to find collision mask for sprite \"" + sprite->Name() + "\"");
 		return EMPTY;
 	}
 	
@@ -84,7 +89,7 @@ const std::vector<Mask> &MaskManager::GetMasks(const Sprite *sprite, double scal
 	const auto &maskIt = scales.find(scale);
 	if(maskIt == scales.end() || maskIt->second.empty())
 	{
-		Files::LogError("Failed to find collision mask for \"" + sprite->Name() + "\" at scale " + to_string(scale));
+		Files::LogError("Failed to find collision mask for sprite \"" + sprite->Name() + "\" at scale " + to_string(scale));
 		return EMPTY;
 	}
 	

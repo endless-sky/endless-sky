@@ -233,7 +233,7 @@ void Body::LoadSprite(const DataNode &node)
 	}
 	
 	if(scale != 1.f)
-		GameData::GetMaskManager().AddScale(sprite, Scale());
+		GameData::GetMaskManager().RegisterScale(sprite, Scale());
 }
 
 

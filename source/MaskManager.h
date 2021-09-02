@@ -30,7 +30,7 @@ public:
 	void AddMasks(const Sprite *sprite, std::vector<Mask> &masks);
 	
 	// Add a scale that the given sprite needs to have a mask for.
-	void AddScale(const Sprite *sprite, double scale);
+	void RegisterScale(const Sprite *sprite, double scale);
 	
 	// Create the scaled versions of all masks from the 1x versions. 
 	void ScaleMasks();
