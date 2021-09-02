@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define BODY_H_
 
 #include "Angle.h"
+#include "Mask.h"
 #include "Point.h"
 
 #include <cstdint>
@@ -22,7 +23,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class DataWriter;
 class Government;
-class Mask;
 class Sprite;
 
 

@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef SPRITE_H_
 #define SPRITE_H_
 
-#include "Mask.h"
 #include "Point.h"
 
 #include <cstdint>
