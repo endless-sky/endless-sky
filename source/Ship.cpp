@@ -393,13 +393,6 @@ void Ship::Load(const DataNode &node)
 		{
 			if(!hasOutfits)
 			{
-				if(!hasArmament)
-				{
-					// If no armament was specified, then we override any outfit
-					// installed to avoid having ghost outfits on weapon hardpoints.
-					equipped.clear();
-					armament.UninstallAll();
-				}
 				outfits.clear();
 				hasOutfits = true;
 			}
@@ -411,6 +404,18 @@ void Ship::Load(const DataNode &node)
 				else
 					grand.PrintTrace("Skipping invalid outfit count:");
 			}
+
+			// Check if the new outfits correspond to the equipped weapons.
+			// If not, we need to uninstall und unequip the weapons so that they
+			// get auto equipped later.
+			if(!hasArmament)
+				for(const auto &it : equipped)
+					if(outfits.count(it.first) < it.second)
+					{
+						armament.UninstallAll();
+						equipped.clear();
+						break;
+					}
 		}
 		else if(key == "cargo")
 			cargo.Load(child);
