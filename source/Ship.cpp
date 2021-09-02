@@ -410,7 +410,7 @@ void Ship::Load(const DataNode &node)
 			// get auto equipped later.
 			if(!hasArmament)
 				for(const auto &it : equipped)
-					if(outfits.count(it.first) < it.second)
+					if(static_cast<int>(outfits.count(it.first)) < it.second)
 					{
 						armament.UninstallAll();
 						equipped.clear();
