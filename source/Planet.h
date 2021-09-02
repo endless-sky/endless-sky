@@ -117,8 +117,8 @@ public:
 	const Wormhole *GetWormhole() const;
 	// Check if this planet appears in multiple systems and so is a wormhole.
 	bool AppearsInMultipleSystems() const;
-	// Assigns a wormhole to this planet. This happens when wormholes are auto generated.
-	void AssignWormhole();
+	// Assigns a wormhole to this planet.
+	void AssignWormhole(Wormhole *wormhole);
 	
 	// Check if the given ship has all the attributes necessary to allow it to
 	// land on this planet.
@@ -178,7 +178,7 @@ private:
 	// Ships that have been created by instantiating its defense fleets.
 	mutable std::list<std::shared_ptr<Ship>> defenders;
 
-	const Wormhole *wormhole = nullptr;
+	Wormhole *wormhole = nullptr;
 
 	std::vector<const System *> systems;
 };

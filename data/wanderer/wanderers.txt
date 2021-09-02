@@ -879,6 +879,8 @@ planet "The Eye"
 	spaceport ""
 wormhole "The Eye"
 	linked
+	link Sabriset Sko'karak
+	link Sko'karak Sabriset
 
 event "wanderers: the eye begins to open"
 	system Sko'karak

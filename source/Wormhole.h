@@ -48,8 +48,8 @@ public:
 	const System *WormholeDestination(const System *from) const;
 	const std::unordered_map<const System *, const System *> &Links() const;
 
-	// Updates this wormhole if the properties of the parent planet changed.
-	void UpdateFromPlanet();
+	// Sets whether links are by default linked.
+	void SetLinked(bool linked);
 	// Generate any links from the planet.
 	void GenerateLinks();
 	

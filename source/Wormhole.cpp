@@ -86,10 +86,6 @@ void Wormhole::Load(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-
-	// If no links were specified, auto generate them.
-	if(links.empty())
-		GenerateLinks();
 }
 
 
@@ -186,19 +182,24 @@ const unordered_map<const System *, const System *> &Wormhole::Links() const
 
 
 
-void Wormhole::UpdateFromPlanet()
+void Wormhole::SetLinked(bool linked)
 {
-	linked = !planet->Description().empty();
+	this->linked = linked;
 }
 
 
 
 void Wormhole::GenerateLinks()
 {
+	links.clear();
+
 	// Wormhole links form a closed loop through every system this wormhole is in.
 	for(size_t i = 0; i < planet->Systems().size(); ++i)
 	{
 		int next = i == planet->Systems().size() - 1 ? 0 : i + 1;
-		links[planet->Systems()[i]] = planet->Systems()[next];
+		// But check whether the wormhole in the given system has a sprite.
+		// If not, this is a one way wormhole that shouldn't be linked.
+		if(planet->Systems()[i]->FindStellar(planet)->HasSprite())
+			links[planet->Systems()[i]] = planet->Systems()[next];
 	}
 }

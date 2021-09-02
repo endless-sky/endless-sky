@@ -145,6 +145,8 @@ public:
 	
 	static const StarField &Background();
 	static void SetHaze(const Sprite *sprite);
+
+	static void AutogenerateWormhole(const std::string &name);
 	
 	static const std::string &Tooltip(const std::string &label);
 	static std::string HelpMessage(const std::string &name);
