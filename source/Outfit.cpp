@@ -449,7 +449,7 @@ const map<const Effect *, int> &Outfit::AfterburnerEffects() const
 
 
 
-// Get this oufit's jump effects and sounds, if any.
+// Get this outfit's jump effects and sounds, if any.
 const map<const Effect *, int> &Outfit::JumpEffects() const
 {
 	return jumpEffects;

@@ -15,7 +15,8 @@ DEB-based distros:
    libgl1-mesa-dev \
    libglew-dev \
    libopenal-dev \
-   libmad0-dev
+   libmad0-dev \
+   uuid-dev
 
 RPM-based distros:
    gcc-c++ \
@@ -26,7 +27,8 @@ RPM-based distros:
    mesa-libGL-devel \
    glew-devel \
    openal-soft-devel \
-   libmad-devel
+   libmad-devel \
+   libuuid-devel
 
 Then, from the project root folder, simply type:
 
@@ -79,7 +81,7 @@ For example, when making lots of changes to the game, you will generally have th
 
 
 
-Mac OS X:
+macOS:
 
 To build Endless Sky with native tools, you will first need to download Xcode from the App Store.
 
@@ -87,22 +89,11 @@ Next, install Homebrew (from http://brew.sh).
 
 Once Homebrew is installed, use it to install the libraries you will need:
 
-  $ brew install libpng
-  $ brew install libjpeg-turbo
-  $ brew install libmad
-  $ brew install sdl2
+  $ brew install libmad libpng jpeg-turbo
 
-If the versions of those libraries are different from the ones that the Xcode project is set up for, you will need to modify the file paths in the “Frameworks” section in Xcode.
-It is possible that you will also need to modify the “Header Search Paths” and “Library Search Paths” in “Build Settings” to point to wherever Homebrew installed those libraries.
-
-Library paths
-
-To create a Mac OS X binary that will work on systems other than your own, you may also need to use install_name_tool to modify the libraries so that their location is relative to the @rpath.
-
-  $ sudo install_name_tool -id "@rpath/libpng16.16.dylib" /usr/local/lib/libpng16.16.dylib
-  $ sudo install_name_tool -id "@rpath/libmad.0.dylib" /usr/local/lib/libmad.0.dylib
-  $ sudo install_name_tool -id "@rpath/libturbojpeg.0.dylib" /usr/local/opt/libjpeg-turbo/lib/libturbojpeg.0.dylib
-  $ sudo install_name_tool -id "@rpath/libSDL2-2.0.0.dylib" /usr/local/lib/libSDL2-2.0.0.dylib
+Homebrew will install the latest version of the libraries, so if the versions of those libraries are different from the ones that the Xcode project is set up for, you will need to modify the file paths in the “Frameworks” section in Xcode. (Occasionally, the Xcode project will be updated to reflect these new versions.)
+It is possible that you will also need to modify the “Header Search Paths” and “Library Search Paths” in “Build Settings”, in case your Homebrew for Intel Mac installation does not use the standard `/usr/local` prefix.
+The first time you build the project, a library for the SDL framework will be downloaded.
 
 *** Note: there is extremely limited development support for macOS, and no intent to support macOS's new ARM architecture. ***
 
@@ -115,4 +106,4 @@ For the Code::Blocks project, the archive program can be configured in Code::Blo
 
 The Scons builds can be controlled by setting the appropriate environment variable(s), either directly in the environment or just for the lifetime of the command:
 
-  $ AR=gcc-ar scons 
+  $ AR=gcc-ar scons
