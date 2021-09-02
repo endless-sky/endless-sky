@@ -132,6 +132,8 @@ string Format::Number(double value)
 	
 	// Only show decimal places for numbers between +/-10'000.
 	double decimal = modf(value, &value);
+	// Fix any floating point inaccuracy.
+	decimal = round(decimal * 100.) / 100.;
 	if(decimal && value < 10000)
 	{
 		int tenths = static_cast<int>(decimal * 10.);
@@ -143,11 +145,13 @@ string Format::Number(double value)
 			
 		int hundredths = static_cast<int>(decimal * 10.);
 		// Values up to 1000 may have two decimal places.
-		if(value < 1000)
+		if(value < 1000 && hundredths)
 		{
-			if(hundredths)
-				result += static_cast<char>('0' + hundredths);
+			result += static_cast<char>('0' + hundredths);
 		}
+		//Values of 1000 or more should not display any decimal places if there are no tenths regardless of the hundredth values.
+		else
+			hundredths = 0;
 		if(tenths || hundredths)
 		{
 			result += static_cast<char>('0' + tenths);
