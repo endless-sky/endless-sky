@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define SPRITE_H_
 
 #include "Mask.h"
-#include "MaskManager.h"
 #include "Point.h"
 
 #include <cstdint>

@@ -48,15 +48,15 @@ void MaskManager::ScaleMasks()
 		if(baseIt == scales.end() || baseIt->second.empty())
 			continue;
 		
-		auto baseMasks = baseIt->second;
-		for(auto &&it = scales.begin(); it != baseIt; ++it)
+		const auto &baseMasks = baseIt->second;
+		for(auto it = scales.begin(); it != baseIt; ++it)
 		{
 			auto &masks = it->second;
 			masks.reserve(baseMasks.size());
-			for(auto &mask : baseMasks)
+			for(auto &&mask : baseMasks)
 				masks.push_back(mask * it->first);
 		}
-		for(auto &&it = ++baseIt; it != scales.end(); ++it)
+		for(auto it = next(baseIt); it != scales.end(); ++it)
 		{
 			auto &masks = it->second;
 			masks.reserve(baseMasks.size());
@@ -73,7 +73,7 @@ void MaskManager::ScaleMasks()
 const std::vector<Mask> &MaskManager::GetMasks(const Sprite *sprite, double scale) const
 {
 	static const vector<Mask> EMPTY;
-	const auto &scalesIt = spriteMasks.find(sprite);
+	const auto scalesIt = spriteMasks.find(sprite);
 	if(scalesIt == spriteMasks.end())
 	{
 		Files::LogError("Failed to find collision mask for \"" + sprite->Name() + "\"");

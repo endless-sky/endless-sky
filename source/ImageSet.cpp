@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Files.h"
 #include "GameData.h"
 #include "Mask.h"
+#include "MaskManager.h"
 #include "Sprite.h"
 
 #include <algorithm>
