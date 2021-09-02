@@ -135,19 +135,20 @@ string Format::Number(double value)
 	if(decimal && value < 10000)
 	{
 		int tenths = static_cast<int>(decimal * 10.);
+		
+		decimal *= 10.;
+		decimal -= static_cast<int>(decimal);
+		// Fix any floating point inaccuracy.
+		decimal = round(decimal * 100.) / 100.;
+			
+		int hundredths = static_cast<int>(decimal * 10.);
 		// Values up to 1000 may have two decimal places.
 		if(value < 1000)
 		{
-			decimal *= 10.;
-			decimal -= static_cast<int>(decimal);
-			// Fix any floating point inaccuracy.
-			decimal = round(decimal * 100.) / 100.;
-			
-			int hundredths = static_cast<int>(decimal * 10.);
 			if(hundredths)
 				result += static_cast<char>('0' + hundredths);
 		}
-		if(tenths)
+		if(tenths || hundredths)
 		{
 			result += static_cast<char>('0' + tenths);
 			result += '.';
