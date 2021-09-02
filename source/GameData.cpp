@@ -200,8 +200,8 @@ bool GameData::BeginLoad(const char * const *argv)
 		if(!it.second)
 			continue;
 		
-		// Check that the image set is complete.
-		it.second->Check();
+		// Reduce the set of images to those that are valid.
+		it.second->ValidateFrames();
 		// For landscapes, remember all the source files but don't load them yet.
 		if(ImageSet::IsDeferred(it.first))
 			deferred[SpriteSet::Get(it.first)] = it.second;
@@ -966,9 +966,9 @@ const StarField &GameData::Background()
 
 
 
-void GameData::SetHaze(const Sprite *sprite)
+void GameData::SetHaze(const Sprite *sprite, bool allowAnimation)
 {
-	background.SetHaze(sprite);
+	background.SetHaze(sprite, allowAnimation);
 }
 
 
@@ -1056,7 +1056,7 @@ void GameData::LoadSources()
 		plugins[name] = Files::Read(*it + "about.txt");
 		
 		// Create an image set for the plugin icon.
-		shared_ptr<ImageSet> icon(new ImageSet(name));
+		auto icon = make_shared<ImageSet>(name);
 		
 		// Try adding all the possible icon variants.
 		if(Files::Exists(*it + "icon.png"))
@@ -1069,6 +1069,7 @@ void GameData::LoadSources()
 		else if(Files::Exists(*it + "icon@2x.jpg"))
 			icon->Add(*it + "icon@2x.jpg");
 		
+		icon->ValidateFrames();
 		spriteQueue.Add(icon);
 	}
 }
@@ -1241,7 +1242,7 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 		size_t start = directoryPath.size();
 		
 		vector<string> imageFiles = Files::RecursiveList(directoryPath);
-		for(const string &path : imageFiles)
+		for(string &path : imageFiles)
 			if(ImageSet::IsImage(path))
 			{
 				string name = ImageSet::Name(path.substr(start));
@@ -1249,7 +1250,7 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 				shared_ptr<ImageSet> &imageSet = images[name];
 				if(!imageSet)
 					imageSet.reset(new ImageSet(name));
-				imageSet->Add(path);
+				imageSet->Add(std::move(path));
 			}
 	}
 	return images;

@@ -239,7 +239,7 @@ Engine::Engine(PlayerInfo &player)
 				(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
 				system->Position() - player.GetSystem()->Position());
 	
-	GameData::SetHaze(player.GetSystem()->Haze());
+	GameData::SetHaze(player.GetSystem()->Haze(), true);
 }
 
 
@@ -1142,7 +1142,7 @@ void Engine::EnterSystem()
 	
 	const System *system = flagship->GetSystem();
 	Audio::PlayMusic(system->MusicName());
-	GameData::SetHaze(system->Haze());	
+	GameData::SetHaze(system->Haze(), false);
 	
 	Messages::Add("Entering the " + system->Name() + " system on "
 		+ today.ToString() + (system->IsInhabited(flagship) ?
@@ -1233,7 +1233,7 @@ void Engine::EnterSystem()
 				{
 					raidFleet->Place(*system, newShips);
 					Messages::Add("Your fleet has attracted the interest of a "
-							+ raidGovernment->GetName() + " raiding party.", Messages::Importance::High);
+							+ raidGovernment->GetName() + " raiding party.", Messages::Importance::Highest);
 				}
 	}
 	

@@ -21,6 +21,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <stdexcept>
 
 #if defined(_WIN32)
+#define STRICT
+#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #else
 #include <uuid/uuid.h>

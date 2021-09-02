@@ -144,7 +144,7 @@ public:
 	static const std::vector<std::string> &Category(const CategoryType type);
 	
 	static const StarField &Background();
-	static void SetHaze(const Sprite *sprite);
+	static void SetHaze(const Sprite *sprite, bool allowAnimation);
 
 	static void AutogenerateWormhole(const std::string &name);
 	
