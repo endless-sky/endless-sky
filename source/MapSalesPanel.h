@@ -64,7 +64,8 @@ protected:
 	bool DrawHeader(Point &corner, const std::string &category);
 	void DrawSprite(const Point &corner, const Sprite *sprite) const;
 	void Draw(Point &corner, const Sprite *sprite, bool isForSale, bool isSelected,
-		const std::string &name, const std::string &price, const std::string &info);
+		const std::string &name, const std::string &price, const std::string &info,
+		const std::string &storage = "");
 	
 	void DoFind(const std::string &text);
 	void ScrollTo(int index);
