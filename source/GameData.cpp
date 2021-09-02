@@ -977,8 +977,8 @@ void GameData::AutogenerateWormhole(const string &name)
 {
 	auto *planet = planets.Get(name);
 	auto *wormhole = wormholes.Get(name);
-	wormhole->LoadFromPlanet(planet);
 	planet->AssignWormhole(wormhole);
+	wormhole->LoadFromPlanet(planet);
 
 	if(!planet->IsWormhole() || !planet->GetWormhole()->IsValid())
 		Files::LogError("Warning: auto generation of wormhole \"" + planet->TrueName() + "\" failed.");
