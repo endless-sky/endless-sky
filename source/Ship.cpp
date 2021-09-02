@@ -407,7 +407,7 @@ void Ship::Load(const DataNode &node)
 
 			// Check if the new outfits correspond to the equipped weapons.
 			// If not, we need to uninstall und unequip the weapons so that they
-			// get auto equipped later.
+			// can get auto equipped later.
 			if(!hasArmament)
 				for(const auto &it : equipped)
 					if(static_cast<int>(outfits.count(it.first)) < it.second)
