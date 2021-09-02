@@ -426,6 +426,13 @@ Mask Mask::operator*(double scale) const
 
 
 
+Mask operator*(double scale, const Mask &mask)
+{
+	return mask * scale;
+}
+
+
+
 double Mask::Intersection(Point sA, Point vA) const
 {
 	// Keep track of the closest intersection point found.

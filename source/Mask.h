@@ -59,6 +59,7 @@ public:
 	
 	// Scale all the points in the mask.
 	Mask operator*(double scale) const;
+	friend Mask operator*(double scale, const Mask &mask);
 	
 	
 private:
