@@ -24,7 +24,12 @@ using namespace std;
 // The given vector will be cleared.
 void MaskManager::AddMasks(const Sprite *sprite, std::vector<Mask> &masks)
 {
-	spriteMasks[sprite].emplace(1., move(masks));
+	auto &scales = spriteMasks[sprite];
+	auto it = scales.find(1.);
+	if(it != scales.end())
+		it->second.swap(masks);
+	else
+		scales.emplace(1., move(masks));
 	masks.clear();
 }
 
