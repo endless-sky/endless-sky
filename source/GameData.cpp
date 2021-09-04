@@ -336,16 +336,17 @@ void GameData::CheckReferences()
 			Warn("phrase", it.first);
 	// Update references to wormholes.
 	for(auto &&it : wormholes)
-		planets.Get(it.second.GetPlanet()->Name())->AssignWormhole(&it.second);
+		planets.Get(it.second.GetPlanet()->TrueName())->AssignWormhole(&it.second);
 	// Planet names are used by a number of classes.
 	for(auto &&it : planets)
 	{
 		if(it.second.TrueName().empty() && !NameIfDeferred(deferred["planet"], it))
 			NameAndWarn("planet", it);
 
-		// Autogenerate planets that are actually wormholes.
+		// If this planet is a wormhole and doesn't have a valid wormhole
+		// definition, then we create it here.
 		if(!it.second.IsWormhole() && it.second.AppearsInMultipleSystems())
-			AutogenerateWormhole(it.first);
+			AutogenerateWormhole(&it.second);
 	}
 	// Ship model names are used by missions and depreciation.
 	for(auto &&it : ships)
@@ -973,17 +974,20 @@ void GameData::SetHaze(const Sprite *sprite, bool allowAnimation)
 
 
 
-void GameData::AutogenerateWormhole(const string &name)
+void GameData::AutogenerateWormhole(Planet *planet)
 {
-	auto *planet = planets.Get(name);
-	auto *wormhole = wormholes.Get(name);
+	if(wormholes.Has(planet->TrueName()))
+		// There already exists a wormhole with that name, don't need to autogenerate one.
+		return;
+
+	auto *wormhole = wormholes.Get(planet->TrueName());
 	planet->AssignWormhole(wormhole);
 	wormhole->LoadFromPlanet(planet);
 
-	if(!planet->IsWormhole() || !planet->GetWormhole()->IsValid())
-		Files::LogError("Warning: auto generation of wormhole \"" + planet->TrueName() + "\" failed.");
-	else
+	if(planet->GetWormhole()->IsValid())
 		Files::LogError("Warning: auto generation of wormhole \"" + planet->TrueName() + "\".");
+	else
+		Files::LogError("Warning: auto generation of wormhole \"" + planet->TrueName() + "\" failed.");
 }
 
 
