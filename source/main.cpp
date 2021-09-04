@@ -320,7 +320,8 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		GameWindow::Step();
 		
 		// When we perform automated testing, then we run the game by default as quickly as possible.
-		if(testContext.testToRun.empty())
+		// Except when debug-mode is set.
+		if(testContext.testToRun.empty() || debugMode)
 			timer.Wait();
 		
 		// If the player ended this frame in-game, count the elapsed time as played time.
