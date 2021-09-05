@@ -97,6 +97,28 @@ namespace{
 		// SDL_PushEvent in the future to use the regular SDL event-handling loops.
 		return EventToUI(menuOrGamePanels, event);
 	}
+	
+	string ShipToString(const Ship &ship)
+	{
+		string shipDescription = "";
+		const System *shipSystem = ship.GetSystem();
+		const Planet *shipPlanet = ship.GetPlanet();
+		if(shipSystem)
+			shipDescription += "system: " + shipSystem->Name();
+		else
+			shipDescription += " system: <not set>";
+		if(shipPlanet)
+			shipDescription += ", planet:" + shipPlanet->TrueName();
+		else
+			shipDescription += ", planet: <not set>";
+		
+		shipDescription += ", hull: " + to_string(ship.Hull());
+		shipDescription += ", shields: " + to_string(ship.Shields());
+		shipDescription += ", energy: " + to_string(ship.Energy());
+		shipDescription += ", fuel: " + to_string(ship.Fuel());
+		shipDescription += ", heat: " + to_string(ship.Heat());
+		return shipDescription;
+	}
 }
 
 
@@ -537,6 +559,25 @@ void Test::Fail(const Context &context, const PlayerInfo &player, const string &
 	
 	if(!testFailReason.empty())
 		message += ": " + testFailReason;
+
+	// Print some debug information about the flagship and the first 5 escorts.
+	const Ship *flagship = player.Flagship();
+	if(!flagship)
+		Files::LogError("Player did not have flagship at the moment of failure.");
+	else
+	{
+		Files::LogError("flagship: " + ShipToString(*flagship));
+		int escortsPrinted = 0;
+		for(auto escortWeakPtr: flagship->GetEscorts())
+		{
+			auto escort = escortWeakPtr.lock();
+			if(!escort)
+				continue;
+			Files::LogError("escort: " + ShipToString(*(escort.get())));
+			if(escortsPrinted >= 5)
+				break;
+		}
+	}
 	
 	// Only log the conditions that start with test; we don't want to overload the terminal or errorlog.
 	// Future versions of the test-framework could also print all conditions that are used in the test.
