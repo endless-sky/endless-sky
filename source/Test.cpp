@@ -100,24 +100,17 @@ namespace{
 	
 	string ShipToString(const Ship &ship)
 	{
-		string shipDescription = "";
-		const System *shipSystem = ship.GetSystem();
-		const Planet *shipPlanet = ship.GetPlanet();
-		if(shipSystem)
-			shipDescription += "system: " + shipSystem->Name();
-		else
-			shipDescription += " system: <not set>";
-		if(shipPlanet)
-			shipDescription += ", planet:" + shipPlanet->TrueName();
-		else
-			shipDescription += ", planet: <not set>";
-		
-		shipDescription += ", hull: " + to_string(ship.Hull());
-		shipDescription += ", shields: " + to_string(ship.Shields());
-		shipDescription += ", energy: " + to_string(ship.Energy());
-		shipDescription += ", fuel: " + to_string(ship.Fuel());
-		shipDescription += ", heat: " + to_string(ship.Heat());
-		return shipDescription;
+		string description;
+		const System *system = ship.GetSystem();
+		const Planet *planet = ship.GetPlanet();
+		description += ", system: " + (system ? system->Name() : "<not set>");
+		description += ", planet: " + (planet ? planet->TrueName() : "<not set>");
+		description += ", hull: " + to_string(ship.Hull());
+		description += ", shields: " + to_string(ship.Shields());
+		description += ", energy: " + to_string(ship.Energy());
+		description += ", fuel: " + to_string(ship.Fuel());
+		description += ", heat: " + to_string(ship.Heat());
+		return description;
 	}
 }
 
@@ -568,15 +561,20 @@ void Test::Fail(const Context &context, const PlayerInfo &player, const string &
 	{
 		Files::LogError("flagship: " + ShipToString(*flagship));
 		int escortsPrinted = 0;
-		for(auto escortWeakPtr: flagship->GetEscorts())
+		int escortsNotPrinted = 0;
+		for(auto ptr: flagship->GetEscorts())
 		{
-			auto escort = escortWeakPtr.lock();
+			auto escort = ptr.lock();
 			if(!escort)
 				continue;
-			Files::LogError("escort: " + ShipToString(*(escort.get())));
-			if(escortsPrinted >= 5)
-				break;
+			if(escortsPrinted < 5)
+				Files::LogError("escort: " + ShipToString(*escort));
+			else
+				escortsNotPrinted++;
+			escortsPrinted++;
 		}
+		if(escortsNotPrinted > 0)
+			Files::LogError("(plus " + to_string(escortsNotPrinted) + " escorts not displayed)");
 	}
 	
 	// Only log the conditions that start with test; we don't want to overload the terminal or errorlog.
