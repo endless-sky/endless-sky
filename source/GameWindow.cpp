@@ -418,6 +418,25 @@ void GameWindow::ToggleFullscreen()
 
 
 
+int GameWindow::CurrentDisplayID()
+{
+	int posX = 0, posY = 0, ID = 0;
+	SDL_GetWindowPosition(mainWindow, &posX, &posY);
+	for(int i = 0; i < SDL_GetNumVideoDisplays(); i++)
+	{
+		SDL_Rect currentDisplay;
+		SDL_GetDisplayBounds(i, &currentDisplay);
+		if(posX >= currentDisplay.x && posX < currentDisplay.w && posY >= currentDisplay.y && posY < currentDisplay.h)
+		{
+			ID = i;
+			break;
+		}
+	}
+	return ID;
+}
+
+
+
 bool GameWindow::HasSwizzle()
 {
 	return hasSwizzle;

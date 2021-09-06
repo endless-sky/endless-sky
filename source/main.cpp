@@ -151,6 +151,7 @@ int main(int argc, char *argv[])
 	Preferences::Set("maximized", GameWindow::IsMaximized());
 	Preferences::Set("fullscreen", GameWindow::IsFullscreen());
 	Screen::SetRaw(GameWindow::Width(), GameWindow::Height());
+	Screen::SetDisplayID(GameWindow::CurrentDisplayID());
 	Preferences::Save();
 	
 	Audio::Quit();
