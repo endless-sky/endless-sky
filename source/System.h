@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef SYSTEM_H_
 #define SYSTEM_H_
 
+#include "Hazard.h"
 #include "Point.h"
 #include "Set.h"
 #include "StellarObject.h"
@@ -25,7 +26,6 @@ class DataNode;
 class Date;
 class Fleet;
 class Government;
-class Hazard;
 class Minable;
 class Planet;
 class Ship;
@@ -68,18 +68,6 @@ public:
 		
 	private:
 		const Fleet *fleet;
-		int period;
-	};
-	
-	class HazardProbability {
-	public:
-		HazardProbability(const Hazard *hazard, int period);
-		
-		const Hazard *Get() const;
-		int Period() const;
-		
-	private:
-		const Hazard *hazard;
 		int period;
 	};
 	
@@ -166,7 +154,7 @@ public:
 	// Get the probabilities of various fleets entering this system.
 	const std::vector<FleetProbability> &Fleets() const;
 	// Get the probabilities of various hazards in this system.
-	const std::vector<HazardProbability> &Hazards() const;
+	const std::vector<Hazard::Probability> &Hazards() const;
 	// Check how dangerous this system is (credits worth of enemy ships jumping
 	// in per frame).
 	double Danger() const;
@@ -217,7 +205,7 @@ private:
 	std::vector<Asteroid> asteroids;
 	const Sprite *haze = nullptr;
 	std::vector<FleetProbability> fleets;
-	std::vector<HazardProbability> hazards;
+	std::vector<Hazard::Probability> hazards;
 	double habitable = 1000.;
 	double asteroidBelt = 1500.;
 	double jumpRange = 0.;

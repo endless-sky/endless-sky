@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define STELLAR_OBJECT_H_
 
 #include "Body.h"
+#include "Hazard.h"
 
 class Planet;
 class Ship;
@@ -64,6 +65,8 @@ public:
 	bool IsMoon() const;
 	// Get this object's parent index (in the System's vector of objects).
 	int Parent() const;
+	// This object's system hazards.
+	const std::vector<Hazard::Probability> &Hazards() const;
 	// Find out how far this object is from its parent.
 	double Distance() const;
 	
@@ -74,6 +77,7 @@ private:
 	double distance;
 	double speed;
 	double offset;
+	std::vector<Hazard::Probability> hazards;
 	int parent;
 	
 	const std::string *message;

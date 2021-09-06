@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef HAZARD_H_
 #define HAZARD_H_
 
+#include "Point.h"
 #include "Weapon.h"
 
 
@@ -20,6 +21,20 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // visual effects and damage or apply status effects to any ships within the system
 // while active.
 class Hazard : public Weapon {
+public:
+	class Probability {
+	public:
+		Probability(const Hazard *hazard, int period);
+
+		const Hazard *Get() const;
+		int Period() const;
+
+	private:
+		const Hazard *hazard;
+		int period;
+	};
+
+
 public:
 	void Load(const DataNode &node);
 	
