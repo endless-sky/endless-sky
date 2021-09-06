@@ -57,6 +57,7 @@ namespace {
 	const string SCROLL_SPEED = "Scroll speed";
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
+	const string DISPLAY_ID = "Display ID (Nees restart.)";
 }
 
 
@@ -146,6 +147,12 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 		{
 			// For some settings, clicking the option does more than just toggle a
 			// boolean state keyed by the option's name.
+			if(zone.Value() == DISPLAY_ID)
+			{
+				int newID = Screen::GetDisplayID() + 1;
+				newID %= SDL_GetNumVideoDisplays();
+				Screen::SetDisplayID(newID);
+			}
 			if(zone.Value() == ZOOM_FACTOR)
 			{
 				int newZoom = Screen::UserZoom() + ZOOM_FACTOR_INCREMENT;
@@ -243,7 +250,13 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 	if(!dy || hoverPreference.empty())
 		return false;
 	
-	if(hoverPreference == ZOOM_FACTOR)
+	if(hoverPreference == DISPLAY_ID)
+	{
+		int newID = Screen::GetDisplayID() + 1;
+		newID %= SDL_GetNumVideoDisplays();
+		Screen::SetDisplayID(newID);
+	}
+	else if(hoverPreference == ZOOM_FACTOR)
 	{
 		int zoom = Screen::UserZoom();
 		if(dy < 0. && zoom > ZOOM_FACTOR_MIN)
@@ -430,6 +443,7 @@ void PreferencesPanel::DrawSettings()
 	
 	static const string SETTINGS[] = {
 		"Display",
+		DISPLAY_ID,
 		ZOOM_FACTOR,
 		VIEW_ZOOM_FACTOR,
 		VSYNC_SETTING,
@@ -496,7 +510,15 @@ void PreferencesPanel::DrawSettings()
 		// draws the setting "bright" (i.e. the setting is active).
 		bool isOn = Preferences::Has(setting);
 		string text;
-		if(setting == ZOOM_FACTOR)
+		if(setting == DISPLAY_ID)
+		{
+			if (SDL_GetNumVideoDisplays() > 1)
+				isOn = true;
+			else
+				isOn = false;
+			text = to_string(Screen::GetDisplayID());
+		}
+		else if(setting == ZOOM_FACTOR)
 		{
 			isOn = Screen::UserZoom() == Screen::Zoom();
 			text = to_string(Screen::UserZoom());

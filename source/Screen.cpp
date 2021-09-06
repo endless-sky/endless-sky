@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
+	int DISPLAY_ID = 0;
 	int RAW_WIDTH = 0;
 	int RAW_HEIGHT = 0;
 	int WIDTH = 0;
@@ -70,6 +71,21 @@ void Screen::SetZoom(int percent)
 	WIDTH = RAW_WIDTH * 100 / EFFECTIVE_ZOOM;
 	HEIGHT = RAW_HEIGHT * 100 / EFFECTIVE_ZOOM;
 }
+
+
+
+int Screen::GetDisplayID()
+{
+	return DISPLAY_ID;
+}
+
+
+
+void Screen::SetDisplayID(int newID)
+{
+	DISPLAY_ID = newID;
+}
+
 
 
 

@@ -91,9 +91,17 @@ bool GameWindow::Init()
 		return false;
 	}
 	
+	/* This is a failsafe in case a display got removed.
+	Can't check for SDL_GetNumVideoDisplays() inside Screen::SetDisplayID()
+	because SDL_Init(SDL_INIT_VIDEO) is called here in GameWindow::Init()
+	after Preferences::Load() in main and SDL_GetNumVideoDisplays()
+	always returns 0. */
+	if (Screen::GetDisplayID() >= SDL_GetNumVideoDisplays())
+		Screen::SetDisplayID(0);
+	
 	// Get details about the current display.
 	SDL_DisplayMode mode;
-	if(SDL_GetCurrentDisplayMode(0, &mode))	{	
+	if(SDL_GetCurrentDisplayMode(Screen::GetDisplayID(), &mode))	{	
 		ExitWithError("Unable to query monitor resolution!");
 		return false;
 	}
@@ -121,6 +129,14 @@ bool GameWindow::Init()
 		windowHeight = min(windowHeight, Screen::RawHeight());
 	}
 	
+	// Get window bounds by ID...
+	SDL_Rect gameWindow;
+	SDL_GetDisplayBounds (Screen::GetDisplayID (), &gameWindow);
+	gameWindow.x += (gameWindow.w - windowWidth) / 2; // Center horizontally
+	gameWindow.y += (gameWindow.h - windowHeight) / 2; // Center vertically
+	gameWindow.w = windowWidth;
+	gameWindow.h = windowHeight;
+	
 	// Settings that must be declared before the window creation.
 	Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
 
@@ -130,8 +146,8 @@ bool GameWindow::Init()
 		flags |= SDL_WINDOW_MAXIMIZED;
 	
 	// The main window spawns visibly at this point.
-	mainWindow = SDL_CreateWindow("Endless Sky", SDL_WINDOWPOS_UNDEFINED, 
-		SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, flags);
+	mainWindow = SDL_CreateWindow("Endless Sky", gameWindow.x, 
+		gameWindow.y, gameWindow.w, gameWindow.h, flags);
 		
 	if(!mainWindow){
 		ExitWithError("Unable to create window!");

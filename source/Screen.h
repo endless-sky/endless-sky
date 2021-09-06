@@ -30,6 +30,9 @@ public:
 	static int Zoom();
 	static void SetZoom(int percent);
 	
+	static int GetDisplayID();
+	static void SetDisplayID(int newID);
+	
 	// Specify that this is a high-DPI window.
 	static void SetHighDPI(bool isHighDPI = true);
 	// This is true if the screen is high DPI, or if the zoom is above 100%.
