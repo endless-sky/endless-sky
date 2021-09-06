@@ -91,17 +91,17 @@ bool GameWindow::Init()
 		return false;
 	}
 	
-	/* This is a failsafe in case a display got removed.
-	Can't check for SDL_GetNumVideoDisplays() inside Screen::SetDisplayID()
-	because SDL_Init(SDL_INIT_VIDEO) is called here in GameWindow::Init()
-	after Preferences::Load() in main and SDL_GetNumVideoDisplays()
-	always returns 0. */
-	if (Screen::GetDisplayID() >= SDL_GetNumVideoDisplays())
+	// This is a failsafe in case a display got removed.
+	// Can't check for SDL_GetNumVideoDisplays() inside Screen::SetDisplayID()
+	// because SDL_Init(SDL_INIT_VIDEO) is called here in GameWindow::Init()
+	// after Preferences::Load() in main and SDL_GetNumVideoDisplays()
+	// always returns 0.
+	if(Screen::GetDisplayID() >= SDL_GetNumVideoDisplays())
 		Screen::SetDisplayID(0);
 	
 	// Get details about the current display.
 	SDL_DisplayMode mode;
-	if(SDL_GetCurrentDisplayMode(Screen::GetDisplayID(), &mode))	{	
+	if(SDL_GetCurrentDisplayMode(Screen::GetDisplayID(), &mode)) {
 		ExitWithError("Unable to query monitor resolution!");
 		return false;
 	}
@@ -131,9 +131,9 @@ bool GameWindow::Init()
 	
 	// Get window bounds by ID...
 	SDL_Rect gameWindow;
-	SDL_GetDisplayBounds (Screen::GetDisplayID (), &gameWindow);
-	gameWindow.x += (gameWindow.w - windowWidth) / 2; // Center horizontally
-	gameWindow.y += (gameWindow.h - windowHeight) / 2; // Center vertically
+	SDL_GetDisplayBounds(Screen::GetDisplayID(), &gameWindow);
+	gameWindow.x += (gameWindow.w - windowWidth) / 2;
+	gameWindow.y += (gameWindow.h - windowHeight) / 2;
 	gameWindow.w = windowWidth;
 	gameWindow.h = windowHeight;
 	
