@@ -2492,7 +2492,7 @@ mission "Stone of our Fathers 2"
 			choice
 				`	(You nod. Skaldgar and his hard earned money are more than welcome aboard your ship.)`
 					goto accept
-				`	(You decline. You have better things to do then bus old men around.)`
+				`	"No, thanks. I have better things to do then bus old men around."`
 					goto decline
 			label decline
 			`	Skaldgar glares at you briefly then shrugs. "S'pose you do. S'pose you do." He turns and wanders away.`
@@ -2531,7 +2531,7 @@ mission "Stone of our Fathers 3"
 			choice
 				`	(You reach out and accept the stone)`
 					goto accept
-				`	(You decline. You run a ship not a charity.)`
+				`	"Nope. Not going to do it. I run a ship not a charity."`
 			`	The young roustabout nods knowingly. "Guess Skaldgar was wrong about you, but I understand. We all gotta eat." He turns and slides back into the endless crowd.`
 				decline
 			label accept
@@ -2571,9 +2571,9 @@ mission "Stone of our Fathers 4"
 			`Helm meets you in the nearly deserted Spaceport bar. "Ma' always had a soft spot for Uncle Skaldgar, even after he ran off 35 years ago, she still spoke fondly of him. He always sent the family money, he was good like that. Not as good, though, in sending his love."`
 			`	Helm sighs, "This is going to be tough, but as bearer of the Stone, you are going to need to present it to his son. His family lives on a floating island to the south of here. Are you willing to accompany me?"`
 			choice
-				`	(You've come this far, you might as well finish it.)`
+				`	"I've come this far, I might as well finish it."`
 					goto accept
-				`	(No. This is as far as you go. Helm is family and it's his problem now.)`
+				`	"No. This is as far as I go. I got the stone to you and it's your problem now."`
 					goto decline
 			label decline
 			`	Helm nods, knowingly, "Fair enough star-traveler, I will handle it from here."`
@@ -2650,9 +2650,9 @@ mission "Stone of our Fathers 4"
 			`	 You spend the evening warming yourself by a roaring fire telling Helm and Thorleif tales of your exploits in space, and many of the wonders you've seen.`
 			`	In turn they tell you about the sea beasts, leviathans, and krakens that they have met on the ocean currents of Norn. Of lost isles filled with forgotten treasure or strange people, or stories even, about the ancient elves who once aided their ancestors and are said to be around still.`
 			choice
-				`	(You ask about the elves.)`
+				`	(Ask about the elves.)`
 					goto elves
-				`	(You ask about lost treasure.)`
+				`	(Ask about lost treasure.)`
 					goto treasure
 			label elves
 			`	The idea of Elves, or Alfar as they call them, intrigues you and you ask what they know of them.`
@@ -2718,13 +2718,13 @@ mission "Stone of our Fathers 5"
 			`	For the next three hours it sounds as if they are in deep conversation, while you drift in and out of sleep watching as oil fields give way to rainforests and then rainforests shrink before great and arid mountains.`
 			`	At some point you feel Thorleif shaking your shoulder. "We're here."`
 			choice
-				`	(You yawn and rise from your seat.)`
+				`	(Yawning you rise from your warm seat)`
 			label here
 			`	The town of Grimssalr is nestled along the foothills of the towering Ettin mountains in western Alfheim. Town, is perhaps too generous a word, it is instead more like a couple dozen houses mostly filled with old people long abandoned by their children seeking wealth and adventure elsewhere.`
 			`	The woman, who you've learnt is named Ragnhild, introduces Thorleif to some of the folks here and before long they have found ways to connect their ancient genealogies together and everyone is suddenly treated as family. You eat their meager fare, swap stories, and listen to legends about the old times.`
 			`	As the sun begins to set Thorleif approaches you, "It is time," he says. "The journey to the cairn is only a short hike from here. I would that you accompany me. I think Skaldgar would have wanted that."`	
 			choice
-				`	(You leave Grimssalr with Thorleif.)`
+				`	(Leave Grimssalr with Thorleif.)`
 					goto grimfollow
 			label grimfollow
 			`	You follow Thorleif up a mostly overgrown trail for about 30 minutes before finally stepping out into a wide open plain. The wind is cool and refreshing and the grass blows with a steadiness that is somehow reassuring. There is something special, timeless, about this sudden meadow.`
@@ -2746,7 +2746,7 @@ mission "Stone of our Fathers 5"
 			`	"He had not so many good memories, I think," Thorleif said quietly. "I realize now, that mine too are quite few. Perhaps that, if nothing else, is a lesson he can teach me. For that, I thank you, dad."`
 			`	With that Thorleif turns from the cairn with blurry eyes. "It is done. Let us head back."`
 			choice
-				`	(You follow Thorleif back to the village.)`	
+				`	(Follow Thorleif back to the village.)`	
 			`	The two of you trudge back to the small hamlet of Grimssalr, with its people happy at having guests and long lost relatives, and to Ragnhild, happy to spend more time with Thorlief, where you feast and talk and laugh and remember.`
 			choice
 				`	(You enjoy yourself well into the night before finally succumbing to sleep.)`
