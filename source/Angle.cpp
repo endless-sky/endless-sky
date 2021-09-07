@@ -55,7 +55,7 @@ Angle Angle::Random(double range)
 
 
 // Default constructor: generates an angle pointing straight up.
-Angle::Angle()
+Angle::Angle() noexcept
 	: angle(0)
 {
 }
@@ -63,7 +63,7 @@ Angle::Angle()
 
 
 // Construct an Angle from the given angle in degrees.
-Angle::Angle(double degrees)
+Angle::Angle(double degrees) noexcept
 	: angle(llround(degrees * DEG_TO_STEP) & MASK)
 {
 	// Make sure llround does not overflow with the values of System::SetDate.
@@ -75,7 +75,7 @@ Angle::Angle(double degrees)
 
 
 // Construct an angle pointing in the direction of the given vector.
-Angle::Angle(const Point &point)
+Angle::Angle(const Point &point) noexcept
 	: Angle(TO_DEG * atan2(point.X(), -point.Y()))
 {
 }
