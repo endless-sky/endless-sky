@@ -353,6 +353,12 @@ Files:
  images/outfit/hai?pebble?core*
  images/outfit/hai?boulder*
  images/outfit/hai?geode*
+ images/outfit/broadsider*
+ images/outfit/barrage*
+ images/icon/broadsider*
+ images/icon/barrage*
+ images/projectile/broadsider*
+ images/projectile/barrage*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 
