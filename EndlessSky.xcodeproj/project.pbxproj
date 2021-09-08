@@ -25,6 +25,7 @@
 		94DF4B5B8619F6A3715D6168 /* Weather.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E8A4C648B242742B22A34FA /* Weather.cpp */; };
 		955D45119A157E8C5C6A336C /* GameObjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 902D4E01A8E88F893FCF0F3B /* GameObjects.cpp */; };
 		9E1F4BF78F9E1FC4C96F76B5 /* Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E8047A8987DD8EC99FF8E2E /* Test.cpp */; };
+		A01E484AA2B0765AB962CB19 /* FilesPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82A84796B5BD7057D1B91D2C /* FilesPath.cpp */; };
 		A90633FF1EE602FD000DA6C0 /* LogbookPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90633FD1EE602FD000DA6C0 /* LogbookPanel.cpp */; };
 		A90C15D91D5BD55700708F3A /* Minable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90C15D71D5BD55700708F3A /* Minable.cpp */; };
 		A90C15DC1D5BD56800708F3A /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90C15DA1D5BD56800708F3A /* Rectangle.cpp */; };
@@ -223,6 +224,7 @@
 		6A5716321E25BE6F00585EB2 /* CollisionSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollisionSet.h; path = source/CollisionSet.h; sourceTree = "<group>"; };
 		6DCF4CF2972F569E6DBB8578 /* CategoryTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryTypes.h; path = source/CategoryTypes.h; sourceTree = "<group>"; };
 		793A43749627F4DF16540576 /* Render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Render.h; path = source/Render.h; sourceTree = "<group>"; };
+		82A84796B5BD7057D1B91D2C /* FilesPath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FilesPath.cpp; path = source/FilesPath.cpp; sourceTree = "<group>"; };
 		86AB4B6E9C4C0490AE7F029B /* EsUuid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EsUuid.h; path = source/EsUuid.h; sourceTree = "<group>"; };
 		8E8A4C648B242742B22A34FA /* Weather.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Weather.cpp; path = source/Weather.cpp; sourceTree = "<group>"; };
 		902D4E01A8E88F893FCF0F3B /* GameObjects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameObjects.cpp; path = source/GameObjects.cpp; sourceTree = "<group>"; };
@@ -802,6 +804,7 @@
 				D1554456BDE27DF19448BC94 /* GameObjects.h */,
 				4A6048F0BDBB97DBFA8EF3F2 /* Render.cpp */,
 				793A43749627F4DF16540576 /* Render.h */,
+				82A84796B5BD7057D1B91D2C /* FilesPath.cpp */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -1149,6 +1152,7 @@
 				90CF46CE84794C6186FC6CE2 /* EsUuid.cpp in Sources */,
 				955D45119A157E8C5C6A336C /* GameObjects.cpp in Sources */,
 				6E844C27A3983F30E5683972 /* Render.cpp in Sources */,
+				A01E484AA2B0765AB962CB19 /* FilesPath.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
