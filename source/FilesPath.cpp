@@ -66,7 +66,7 @@ string Files::GetSavePath()
 
 	string value = str;
 #if defined _WIN32
-	FixWindowsSlashes(savePath);
+	FixWindowsSlashes(value);
 #endif
 	SDL_free(str);
 	return value;
