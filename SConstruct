@@ -76,7 +76,8 @@ if 'steamrt_scout' in chroot_name:
 sys_libs = [
 	"rpcrt4",
 ] if is_windows_host else [
-	"uuid"
+	"uuid",
+	"pthread"
 ]
 env.Append(LIBS = sys_libs)
 
@@ -94,7 +95,6 @@ game_libs = [
 	"png",
 	"jpeg",
 	"openal",
-	"pthread",
 ]
 env.Append(LIBS = game_libs)
 
@@ -135,6 +135,8 @@ VariantDir(buildDirectory, "source", duplicate = 0)
 excludes = ["main.cpp",
 			"Render.cpp",
 			"text/Font.cpp",
+			"ImageBuffer.cpp",
+			"FilesPath.cpp",
 			"LineShader.cpp",
 			"OutlineShader.cpp",
 			"RingShader.cpp",

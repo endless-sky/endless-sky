@@ -38,6 +38,10 @@ public:
 	static const std::string &Sounds();
 	static const std::string &Saves();
 	static const std::string &Tests();
+
+	static std::string GetBasePath();
+	static std::string GetSavePath();
+	static void CreatePluginDirectory();
 	
 	// Get a list of all regular files in the given directory.
 	static std::vector<std::string> List(std::string directory);

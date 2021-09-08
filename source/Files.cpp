@@ -76,16 +76,7 @@ void Files::Init(const char * const *argv)
 	}
 	
 	if(resources.empty())
-	{
-		// Find the path to the resource directory. This will depend on the
-		// operating system, and can be overridden by a command line argument.
-		char *str = SDL_GetBasePath();
-		if(!str)
-			throw runtime_error("Unable to get path to resource directory!");
-		
-		resources = str;
-		SDL_free(str);
-	}
+		resources = GetBasePath();
 #if defined _WIN32
 	FixWindowsSlashes(resources);
 #endif
@@ -122,17 +113,7 @@ void Files::Init(const char * const *argv)
 	
 	if(config.empty())
 	{
-		// Find the path to the directory for saved games (and create it if it does
-		// not already exist). This can also be overridden in the command line.
-		char *str = SDL_GetPrefPath("endless-sky", "saves");
-		if(!str)
-			throw runtime_error("Unable to get path to saves directory!");
-		
-		savePath = str;
-#if defined _WIN32
-		FixWindowsSlashes(savePath);
-#endif
-		SDL_free(str);
+		savePath = GetSavePath();
 		if(savePath.back() != '/')
 			savePath += '/';
 		config = savePath.substr(0, savePath.rfind('/', savePath.length() - 2) + 1);
@@ -147,13 +128,7 @@ void Files::Init(const char * const *argv)
 		savePath = config + "saves/";
 	}
 	
-	// Create the "plugins" directory if it does not yet exist, so that it is
-	// clear to the user where plugins should go.
-	{
-		char *str = SDL_GetPrefPath("endless-sky", "plugins");
-		if(str != nullptr)
-			SDL_free(str);
-	}
+	CreatePluginDirectory();
 	
 	// Check that all the directories exist.
 	if(!Exists(dataPath) || !Exists(imagePath) || !Exists(soundPath))
