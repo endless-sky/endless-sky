@@ -2613,10 +2613,10 @@ mission "Stone of our Fathers 4"
 			`	Thorleif tenses up, "Never speak that name!" His eyes narrow, "Helm, I want nothing to do with that stone, this person," Thorleif gestures towards you," or whatever else that old man wanted or cared about."`
 			`	Thorleif glances towards the horizon as he clenches and unclenches his fists, taking a few slow breaths, regaining his composure, "I realize you have traveled far and would not be able to get back to the mainland before night. So you may stay in the guest quarters, and leave first thing in the morning. I will have no one say that Thorleif was inhospitable."`
 			choice
-				`	(Try to say something on Skaldgar's behalf.)`
-					goto behalf
 				`	(Keep quiet and follow Helm towards the guest rooms.)`
 					goto rooms
+				`	(Try to say something on Skaldgar's behalf.)`
+					goto behalf
 			label behalf
 			`	"Wait," you say before Thorleif can stomp off, "I do not, could not, know all that has happened here, that has gone on between you and your father. But I know that every time I met him he clearly regretted whatever happened, and constantly spoke of his mistakes. He is gone now, mistakes and all, and this stone.. I don't think it represents forgiveness, just, acceptance of who he was and that now he is gone."`
 			`	Thorleif turns to you, his face flashing red, and speaks through clenched teeth, "I have no father. I have no memories of such a man, and I will make no effort to remember someone who didn't stick around long enough to know me. Now, go to your rooms and leave me be!"`
@@ -2630,7 +2630,7 @@ mission "Stone of our Fathers 4"
 			choice
 				`	(You offer to help Thorleif.)`
 					goto help
-				`	(You shake your head and stubbornly refuse to help. You've done more than enough for this family and see no reason to lend a hand to Skaldgar's estranged son. Especially for free!)`
+				`	("No, I am done too much for this family already. Especially for free!"`
 			label refuse
 			`	Thorleif growls, "Knew better than to trust a friend of that useless old man. I gave you a place to sleep, and now you won't lift a hand to save it? I should have expected no less!" Thorleif and Helm hurry off to tend to the island during the storm, leaving you warm and cozy and idle inside.`
 			`	Thorleif and Helm heoricially manage to steer the island away from the storm, and to calmer safer seas. However, with only the two of them many of the out-buildings are destroyed along with a few of the small watercraft Thorleif used to fish and work on.`
@@ -2644,7 +2644,7 @@ mission "Stone of our Fathers 4"
 			`	After hours of hard work, the storm begins to subside and the sea and sky begin to calm. An exhausted Thorleif and Helm stagger over to you, and Thorleif surveys his small island. "Without your help I would have lost many of the outbuildings. It was a lucky thing you came when you did."`
 			`	With that he turns and heads back to the main dwelling, with you and Helm in tired tow.`
 			choice
-				`	(You wash up and warm up in the main room around the fire.)`
+				`	(Wash up and warm up in the main room around the fire.)`
 					goto fire
 			label fire
 			`	 You spend the evening warming yourself by a roaring fire telling Helm and Thorleif tales of your exploits in space, and many of the wonders you've seen.`
