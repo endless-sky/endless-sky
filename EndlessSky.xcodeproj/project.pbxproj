@@ -978,7 +978,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/utils/fetch_sdl2_framework.sh\"";
+			shellScript = "\"${SRCROOT}/utils/set_dylibs_rpath.sh\"";
 		};
 		072599CB26A8C7AB007EC229 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
