@@ -8,6 +8,23 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+outfit "Broadsider Slug"
+	category "Ammunition"
+	cost 60
+	thumbnail "outfit/broadsider slug"
+	"mass" 0.1
+	"broadsider slug capacity" -1
+	description "A Heavy slug made primarily of Tungsten."
+
+outfit "Broadsider Storage"
+	category "Ammunition"
+	cost 72000
+	thumbnail "outfit/broadsider storage"
+	"mass" 10
+	"outfit space" -10
+	"broadsider slug capacity" 60
+	description "The Broadsider makes use of large magazines for loading new shells. These magazines are loaded by a crew member in an industrial exosuit."
+
 outfit "Cooling Ducts"
 	plural "Cooling Ducts"
 	category "Systems"

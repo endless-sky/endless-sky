@@ -200,6 +200,54 @@ effect "beam laser impact"
 	"velocity scale" -.005
 
 
+outfit "Broadsider"
+	category "Turrets"
+	cost 1120000
+	thumbnail "outfit/broadsider"
+	"mass" 63
+	"outfit space" -63
+	"weapon capacity" -63
+	"turret mounts" -1
+	"required crew" 2
+	"broadsider slug capacity" 300
+	weapon
+		sprite "projectile/broadsider slug"
+		"hardpoint sprite" "hardpoint/broadsider"
+		"hardpoint offset" 9.
+		ammo "Broadsider Slug"
+		icon "icon/broadsider"
+		sound "ion impact"
+		"fire effect" "rail sparks" 2
+		"live effect" "rail sparks" 5
+		"hit effect" "bullet impact"
+		"inaccuracy" 2
+		"turret turn" 1.0
+		"velocity" 28
+		"lifetime" 1
+		"reload" 50
+		"firing energy" 198
+		"firing heat" 93
+		"firing force" 11
+		"hit force" 44
+		"submunition" bslug 1
+		description "As part of the Navy's 'New Age Initiative,' the team at Geminus has developed larger and more powerful weaponry to function on their new ships. The Broadsider is one such weapon created for the Battleship and meant to hit harder than anything humanity has to offer."
+
+outfit "bslug"
+	weapon
+		"acceleration" .022
+		"drag" .001
+		"lifetime" 99
+		sprite "projectile/broadsider slug"
+			"frame rate" 30
+		"live effect" "rail sparks" 5
+		"hit effect" "bullet impact"
+		"shield damage" 825
+		"hull damage" 1135
+		"hit force" 44
+		"missile strength" 26
+		"piercing" .1
+
+
 outfit "Heavy Laser"
 	category "Guns"
 	cost 60000
