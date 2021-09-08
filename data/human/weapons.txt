@@ -199,6 +199,7 @@ effect "beam laser impact"
 	"random spin" 1
 	"velocity scale" -.005
 
+
 outfit "Broadsider Slug"
 	category "Ammunition"
 	cost 60
@@ -1362,6 +1363,65 @@ effect "nuke residue slow"
 	"random spin" 5
 	"random velocity" 5
 	"velocity scale" 0.1
+
+
+outfit "Barrage Missile"
+	category "Ammunition"
+	cost 200
+	thumbnail "outfit/barrage sprite"
+	"mass" .1
+	"barrage capacity" -1
+	description "A small missile designed by the Republic Navy to Give fighters and drones more firepower, it was purpose built to be fired in large waves, hence its name."
+
+outfit "Barrage Storage"
+	category "Ammunition"
+	cost 10000
+	thumbnail "outfit/barrage storage"
+	"mass" 3
+	"outfit space" -5
+	"barrage capacity" 200
+	ammo "Barrage Missile"
+	description "A safe Storage for the Barrage Missiles."
+
+outfit "Barrage Launcher"
+	category "Secondary Weapons"
+	cost 5000
+	thumbnail "outfit/barrage launcher"
+	"mass" 3
+	"outfit space" -3
+	"weapon capacity" -3
+	"gun ports" -1
+	"barrage capacity" 50
+	weapon
+		sprite "projectile/barrage"
+			"no repeat"
+			"frame rate" 6
+		sound "meteor"
+		ammo "Barrage Missile"
+		icon "icon/barrage icon"
+		"fire effect" "meteor fire"
+		"die effect" "missile death"
+		"hit effect" "missile hit"
+		"inaccuracy" 5
+		"velocity" 11
+		"lifetime" 350
+		"reload" 100
+		"burst count" 9
+		"burst reload" 40
+		"firing energy" 1
+		"firing heat" 20
+		"acceleration" 1
+		"drag" .1
+		"turn" 1.8
+		"homing" 1
+		"infrared tracking" 1
+		"radar tracking" 1
+		"optical tracking" 1
+		"shield damage" 50
+		"hull damage" 40
+		"hit force" 80
+		"missile strength" 3
+	description "A fast firing launcher made for compact ships, it was designed to lay down a large amount of missile fire to overwhelm enemy countermeasures to allow stronger missiles in."
 
 
 outfit "Gatling Gun Ammo"
