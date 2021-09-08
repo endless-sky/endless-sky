@@ -135,7 +135,9 @@ VariantDir(buildDirectory, "source", duplicate = 0)
 excludes = ["main.cpp",
 			"Render.cpp",
 			"text/Font.cpp",
+			"LineShader.cpp",
 			"OutlineShader.cpp",
+			"RingShader.cpp",
 			"SpriteShader.cpp"]
 def RecursiveGlob(pattern, dir_name=buildDirectory):
 	# Start with source files in subdirectories.
