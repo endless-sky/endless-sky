@@ -14,6 +14,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <SDL2/SDL.h>
 
+#include <stdexcept>
+
 #if defined _WIN32
 #include "text/Utf8.h"
 #define STRICT
