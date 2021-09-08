@@ -45,6 +45,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Projectile.h"
 #include "Random.h"
 #include "RingShader.h"
+#include "Render.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipEvent.h"
@@ -207,7 +208,7 @@ Engine::Engine(PlayerInfo &player)
 	// Preload any landscapes for this system.
 	for(const StellarObject &object : player.GetSystem()->Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
-			GameData::Preload(object.GetPlanet()->Landscape());
+			Render::Preload(object.GetPlanet()->Landscape());
 	
 	// Figure out what planet the player is landed on, if any.
 	const StellarObject *object = player.GetStellarObject();
@@ -238,7 +239,7 @@ Engine::Engine(PlayerInfo &player)
 				(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
 				system->Position() - player.GetSystem()->Position());
 	
-	GameData::SetHaze(player.GetSystem()->Haze(), true);
+	Render::SetHaze(player.GetSystem()->Haze(), true);
 }
 
 
@@ -880,7 +881,7 @@ list<ShipEvent> &Engine::Events()
 // Draw a frame.
 void Engine::Draw() const
 {
-	GameData::Background().Draw(center, centerVelocity, zoom);
+	Render::Background().Draw(center, centerVelocity, zoom);
 	static const Set<Color> &colors = GameData::Colors();
 	const Interface *hud = GameData::Interfaces().Get("hud");
 	
@@ -1051,7 +1052,7 @@ void Engine::Draw() const
 	
 	// Upload any preloaded sprites that are now available. This is to avoid
 	// filling the entire backlog of sprites before landing on a planet.
-	GameData::Progress();
+	Render::Progress();
 	
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
@@ -1141,7 +1142,7 @@ void Engine::EnterSystem()
 	
 	const System *system = flagship->GetSystem();
 	Audio::PlayMusic(system->MusicName());
-	GameData::SetHaze(system->Haze(), false);
+	Render::SetHaze(system->Haze(), false);
 	
 	Messages::Add("Entering the " + system->Name() + " system on "
 		+ today.ToString() + (system->IsInhabited(flagship) ?
@@ -1153,7 +1154,7 @@ void Engine::EnterSystem()
 	for(const StellarObject &object : system->Objects())
 		if(object.HasValidPlanet())
 		{
-			GameData::Preload(object.GetPlanet()->Landscape());
+			Render::Preload(object.GetPlanet()->Landscape());
 			if(object.GetPlanet()->IsWormhole() && !usedWormhole
 					&& flagship->Position().Distance(object.Position()) < 1.)
 				usedWormhole = &object;

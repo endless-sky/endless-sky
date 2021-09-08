@@ -23,11 +23,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Font.h"
 #include "FrameTimer.h"
 #include "GameData.h"
+#include "GameObjects.h"
 #include "GameWindow.h"
 #include "MenuPanel.h"
 #include "Panel.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
+#include "Render.h"
 #include "Screen.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
@@ -49,6 +51,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #endif
 
 using namespace std;
+
+namespace
+{
+	GameObjects objects;
+}
+
+
 
 void PrintHelp();
 void PrintVersion();
@@ -97,6 +106,8 @@ int main(int argc, char *argv[])
 	}
 	
 	try {
+		GameData::SetObjects(objects);
+
 		// Begin loading the game data. Exit early if we are not using the UI.
 		if(!GameData::BeginLoad(argv))
 			return 0;
@@ -113,7 +124,7 @@ int main(int argc, char *argv[])
 		if(loadOnly)
 		{
 			if(!checkedReferences)
-				GameData::CheckReferences();
+				objects.CheckReferences();
 			cout << "Parse completed." << endl;
 			return 0;
 		}
@@ -129,7 +140,7 @@ int main(int argc, char *argv[])
 		if(!GameWindow::Init())
 			return 1;
 		
-		GameData::LoadShaders(!GameWindow::HasSwizzle());
+		Render::LoadShaders(!GameWindow::HasSwizzle());
 		
 		// Show something other than a blank window.
 		GameWindow::Step();

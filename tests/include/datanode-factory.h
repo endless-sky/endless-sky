@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef ES_TEST_HELPER_DATANODE_FACTORY_H_
 #define ES_TEST_HELPER_DATANODE_FACTORY_H_
 
+#include "../../source/DataFile.h"
 #include "../../source/DataNode.h"
 
 #include <string>
@@ -24,6 +25,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 std::vector<DataNode> AsDataNodes(std::string text);
 // Convert the text to a list of nodes, and return the first node.
 const DataNode AsDataNode(std::string text);
+// Convert the text to a data file.
+DataFile AsDataFile(const std::string &text);
 
 
 

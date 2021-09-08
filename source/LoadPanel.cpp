@@ -32,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"
+#include "Render.h"
 #include "ShipyardPanel.h"
 #include "StarField.h"
 #include "StartConditionsPanel.h"
@@ -111,7 +112,7 @@ LoadPanel::LoadPanel(PlayerInfo &player, UI &gamePanels)
 void LoadPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	GameData::Background().Draw(Point(), Point());
+	Render::Background().Draw(Point(), Point());
 	const Font &font = FontSet::Get(14);
 	
 	Information info;

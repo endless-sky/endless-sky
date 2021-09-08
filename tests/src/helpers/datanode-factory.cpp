@@ -24,10 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // Method to convert text input into consumable DataNodes.
 std::vector<DataNode> AsDataNodes(std::string text)
 {
-	std::stringstream in;
-	in.str(text);
-	const auto file = DataFile{in};
-	
+	const auto file = AsDataFile(text);
 	return std::vector<DataNode>{std::begin(file), std::end(file)};
 }
 // Convert the text to a list of nodes, and return the first node.
@@ -35,4 +32,11 @@ const DataNode AsDataNode(std::string text)
 {
 	auto nodes = AsDataNodes(std::move(text));
 	return nodes.empty() ? DataNode{} : *nodes.begin();
+}
+// Convert the text to a data file.
+DataFile AsDataFile(const std::string &text)
+{
+	std::istringstream in;
+	in.str(text);
+	return DataFile(in);
 }

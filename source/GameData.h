@@ -32,6 +32,7 @@ class Effect;
 class Fleet;
 class Galaxy;
 class GameEvent;
+class GameObjects;
 class Government;
 class Hazard;
 class ImageSet;
@@ -63,20 +64,13 @@ class TestData;
 class GameData {
 public:
 	static bool BeginLoad(const char * const *argv);
-	// Check for objects that are referred to but never defined.
-	static void CheckReferences();
-	static void LoadShaders(bool useShaderSwizzle);
-	// TODO: make Progress() a simple accessor.
-	static double Progress();
-	// Whether initial game loading is complete (sprites and audio are loaded).
-	static bool IsLoaded();
-	// Begin loading a sprite that was previously deferred. Currently this is
-	// done with all landscapes to speed up the program's startup.
-	static void Preload(const Sprite *sprite);
-	static void FinishLoading();
 	
 	// Get the list of resource sources (i.e. plugin folders).
 	static const std::vector<std::string> &Sources();
+	// Get the list of game objects.
+	static GameObjects &Objects();
+	// Set the list of game objects.
+	static void SetObjects(GameObjects &objects);
 	
 	// Revert any changes that have been made to the universe.
 	static void Revert();
@@ -86,8 +80,6 @@ public:
 	static void WriteEconomy(DataWriter &out);
 	static void StepEconomy();
 	static void AddPurchase(const System &system, const std::string &commodity, int tons);
-	// Apply the given change to the universe.
-	static void Change(const DataNode &node);
 	// Update the neighbor lists and other information for all the systems.
 	// This must be done any time that a change creates or moves a system.
 	static void UpdateSystems();
@@ -141,9 +133,6 @@ public:
 	// Strings for ship, bay type, and outfit categories.
 	static const std::vector<std::string> &Category(const CategoryType type);
 	
-	static const StarField &Background();
-	static void SetHaze(const Sprite *sprite, bool allowAnimation);
-	
 	static const std::string &Tooltip(const std::string &label);
 	static std::string HelpMessage(const std::string &name);
 	static const std::map<std::string, std::string> &HelpTemplates();
@@ -153,8 +142,6 @@ public:
 	
 private:
 	static void LoadSources();
-	static void LoadFile(const std::string &path, bool debugMode);
-	static std::map<std::string, std::shared_ptr<ImageSet>> FindImages();
 	
 	static void PrintShipTable();
 	static void PrintTestsTable();

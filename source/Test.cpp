@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlanetPanel.h"
 #include "PlayerInfo.h"
+#include "Render.h"
 #include "Ship.h"
 #include "System.h"
 #include "TestData.h"
@@ -367,7 +368,7 @@ const string &Test::Name() const
 void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const
 {
 	// Tests always wait until the game is fully loaded.
-	if(!GameData::IsLoaded())
+	if(!Render::IsLoaded())
 		return;
 		
 	if(status == Status::BROKEN)

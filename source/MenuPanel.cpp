@@ -28,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "PointerShader.h"
 #include "PreferencesPanel.h"
+#include "Render.h"
 #include "Ship.h"
 #include "ShipyardPanel.h"
 #include "Sprite.h"
@@ -69,8 +70,8 @@ void MenuPanel::Step()
 		if(scroll >= (20 * credits.size() + 300) * scrollSpeed)
 			scroll = 0;
 	}
-	progress = static_cast<int>(GameData::Progress() * 60.);
-	if(GameData::IsLoaded() && gamePanels.IsEmpty())
+	progress = static_cast<int>(Render::Progress() * 60.);
+	if(Render::IsLoaded() && gamePanels.IsEmpty())
 	{
 		gamePanels.Push(new MainPanel(player));
 		// It takes one step to figure out the planet panel should be created, and
@@ -85,7 +86,7 @@ void MenuPanel::Step()
 void MenuPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	GameData::Background().Draw(Point(), Point());
+	Render::Background().Draw(Point(), Point());
 	const Font &font = FontSet::Get(14);
 	
 	Information info;
@@ -158,7 +159,7 @@ void MenuPanel::Draw()
 
 bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(!GameData::IsLoaded())
+	if(!Render::IsLoaded())
 		return false;
 	
 	if(player.IsLoaded() && (key == 'e' || command.Has(Command::MENU)))

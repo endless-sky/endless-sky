@@ -21,17 +21,10 @@ using namespace std;
 
 
 
-const string &TestData::Name() const
-{
-	return dataSetName;
-}
-
-
-
 // Loader to load the generic test-data entry
-void TestData::Load(const DataNode &node, const string &sourceDataFilePath)
+void TestData::Load(const DataNode &node)
 {
-	sourceDataFile = sourceDataFilePath;
+	this->node = node;
 	if(node.Size() < 2)
 	{
 		node.PrintTrace("Skipping unnamed test data:");
@@ -42,7 +35,6 @@ void TestData::Load(const DataNode &node, const string &sourceDataFilePath)
 		node.PrintTrace("Skipping unsupported root node:");
 		return;
 	}
-	dataSetName = node.Token(1);
 	
 	for(const DataNode &child : node)
 		// Only need to parse the category for now. The contents will be
@@ -76,36 +68,22 @@ bool TestData::Inject() const
 // Write out testdata as savegame into the saves directory.
 bool TestData::InjectSavegame() const
 {
-	// Check if we have the required data to write out the savegame.
-	if(dataSetName.empty() || sourceDataFile.empty())
-		return false;
-	
-	// Open the source-file and scan until we find the test-data
-	// Then scan for the contents keyword
+	// Scan for the contents keyword
 	// Then write out the complete contents to the target file
-	DataFile sourceData{sourceDataFile};
-	for(const DataNode &rootNode : sourceData)
-		// Check if we have found our dataset
-		if(rootNode.Size() > 1 && rootNode.Token(0) == "test-data" && rootNode.Token(1) == dataSetName)
+	// Scan for the contents tag
+	for(const DataNode &dataNode : node)
+		if(dataNode.Token(0) == "contents")
 		{
-			// Scan for the contents tag
-			for(const DataNode &dataNode : rootNode)
-				if(dataNode.Token(0) == "contents")
-				{
-					// Savegame data is written to the saves directory. Other test data
-					// types might be injected differently, e.g. direct object loading.
-					DataWriter dataWriter(Files::Saves() + dataSetName + ".txt");
-					for(const DataNode &child : dataNode)
-						dataWriter.Write(child);
-					
-					// Data was found and written. We are done succesfully.
-					return true;
-				}
-			
-			// Content section was not found. (Should we just create an empty file here?)
-			return false;
+			// Savegame data is written to the saves directory. Other test data
+			// types might be injected differently, e.g. direct object loading.
+			DataWriter dataWriter(Files::Saves() + node.Token(1) + ".txt");
+			for(const DataNode &child : dataNode)
+				dataWriter.Write(child);
+
+			// Data was found and written. We are done succesfully.
+			return true;
 		}
-	
-	// Data-section was no longer found.
+
+	// Content section was not found. (Should we just create an empty file here?)
 	return false;
 }

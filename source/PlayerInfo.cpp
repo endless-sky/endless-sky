@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "GameObjects.h"
 #include "Government.h"
 #include "Hardpoint.h"
 #include "Messages.h"
@@ -383,7 +384,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 		changedSystems |= (change.Token(0) == "system");
 		changedSystems |= (change.Token(0) == "link");
 		changedSystems |= (change.Token(0) == "unlink");
-		GameData::Change(change);
+		GameData::Objects().Change(change);
 	}
 	if(changedSystems)
 	{
@@ -2402,7 +2403,7 @@ void PlayerInfo::ApplyChanges()
 	
 	// Issue warnings for any data which has been mentioned but not actually defined, and
 	// ensure that all "undefined" data is appropriately named.
-	GameData::CheckReferences();
+	GameData::Objects().CheckReferences();
 	
 	// Now that all outfits have names, we can finish loading the player's ships.
 	for(auto &&ship : ships)

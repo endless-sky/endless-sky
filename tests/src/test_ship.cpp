@@ -15,6 +15,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // Include only the tested class's header.
 #include "../../source/Ship.h"
 
+#include "datanode-factory.h"
+#include "../../source/GameData.h"
+#include "../../source/GameObjects.h"
+#include "../../source/Government.h"
+
 // ... and any system includes needed for the test file.
 #include <memory>
 #include <string>
@@ -95,7 +100,91 @@ SCENARIO( "A Ship::Bay instance is being copied", "[ship][bay]") {
 		}
 	}
 }
-// Constructing useful Ship instances requires Ship::Load, which requires all of GameData & runtime deps.
+
+SCENARIO( "Creating a Ship" , "[ship][Creation]" ) {
+	Ship ship;
+	GameObjects objects;
+	GameData::SetObjects(objects);
+	GIVEN( "When created" ) {
+		THEN( "it has the correct default properties" ){
+			CHECK_FALSE( ship.IsValid() );
+			CHECK( ship.Name().empty() );
+			CHECK( ship.ModelName().empty() );
+			CHECK( ship.PluralModelName().empty() );
+			CHECK( ship.VariantName().empty() );
+			CHECK( ship.Noun() == "ship" );
+			CHECK( ship.Description().empty() );
+			CHECK( ship.Attributes().Attributes().empty() );
+			CHECK( ship.BaseAttributes().Attributes().empty() );
+			CHECK_FALSE( ship.Position() );
+			CHECK_FALSE( ship.Thumbnail() );
+			CHECK_FALSE( ship.GetGovernment() );
+			CHECK_FALSE( ship.Cost() );
+			CHECK_FALSE( ship.Mass() );
+			CHECK( ship.Outfits().empty() );
+			CHECK( ship.Weapons().empty() );
+			CHECK( ship.EnginePoints().empty() );
+		}
+	}
+	GIVEN( "When loading a ship from a DataNode" ) {
+		objects.Load(AsDataFile(R"(
+outfit "Jump Drive"
+outfit "Cool Engines"
+)"));
+		ship.Load(AsDataNode(R"(
+ship TestShip
+	plural "TestShip Plural"
+	noun test
+	thumbnail some/sprite
+	attributes
+		cost 80000
+		mass 12345
+		shields 100000
+		hull 45000
+		drag 0.3
+		"outfit capacity" 45
+	outfits
+		"Jump Drive"
+		"Cool Engines"
+	turret 0 45
+	engine -10 10
+	description "A test ship"
+	description "cool"
+)"));
+		ship.FinishLoading(true);
+
+		THEN( "it has the correct properties" ) {
+			CHECK( ship.IsValid() );
+			CHECK( ship.Name().empty() );
+			CHECK( ship.ModelName() == "TestShip" );
+			CHECK( ship.PluralModelName() == "TestShip Plural" );
+			CHECK( ship.VariantName() == "TestShip" );
+			CHECK( ship.Noun() == "test" );
+			CHECK( ship.Description() == "A test ship\ncool\n" );
+			CHECK_FALSE( ship.Position() );
+			CHECK( ship.Thumbnail()->Name() == "some/sprite" );
+			CHECK_FALSE( ship.GetGovernment() );
+			CHECK( ship.Cost() == 80000 );
+			CHECK( ship.Mass() == 12345 );
+			CHECK( ship.Attributes().Get("drag") == Approx(0.3) );
+			CHECK( ship.Attributes().Get("shields") == Approx(100000.) );
+			CHECK( ship.Attributes().Get("hull") == Approx(45000.) );
+			CHECK( ship.Attributes().Get("outfit capacity") == Approx(45.) );
+			CHECK( ship.BaseAttributes().Get("shields") == Approx(100000.) );
+			CHECK( ship.BaseAttributes().Get("hull") == Approx(45000.) );
+			CHECK( ship.BaseAttributes().Get("outfit capacity") == Approx(45.) );
+			REQUIRE( ship.Outfits().size() == 2 );
+			CHECK( ship.Outfits().count(objects.outfits.Get("Jump Drive")) );
+			CHECK( ship.Outfits().count(objects.outfits.Get("Cool Engines")) );
+			CHECK( ship.Weapons().size() == 1 );
+			CHECK( ship.Weapons()[0].GetPoint().X() == Approx(0.) );
+			CHECK( ship.Weapons()[0].GetPoint().Y() == Approx(45. / 2.) );
+			REQUIRE( ship.EnginePoints().size() == 1 );
+			CHECK( ship.EnginePoints()[0].X() == Approx(-10. / 2.) );
+			CHECK( ship.EnginePoints()[0].Y() == Approx(10. / 2.) );
+		}
+	}
+}
 
 
 

@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 #include "text/layout.hpp"
 #include "Preferences.h"
+#include "Render.h"
 #include "Screen.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
@@ -76,7 +77,7 @@ PreferencesPanel::PreferencesPanel()
 void PreferencesPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	GameData::Background().Draw(Point(), Point());
+	Render::Background().Draw(Point(), Point());
 	
 	Information info;
 	info.SetBar("volume", Audio::Volume());

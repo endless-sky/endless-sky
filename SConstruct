@@ -132,18 +132,27 @@ libDirectory = pathjoin("lib", env["mode"])
 VariantDir(buildDirectory, "source", duplicate = 0)
 
 # Find all regular source files.
+excludes = ["main.cpp",
+			"Render.cpp",
+			"text/Font.cpp",
+			"OutlineShader.cpp",
+			"SpriteShader.cpp"]
 def RecursiveGlob(pattern, dir_name=buildDirectory):
 	# Start with source files in subdirectories.
 	matches = [RecursiveGlob(pattern, sub_dir) for sub_dir in Glob(pathjoin(str(dir_name), "*"))
 		if isinstance(sub_dir, Dir)]
-	# Add source files in this directory, except for main.cpp
 	matches += Glob(pathjoin(str(dir_name), pattern))
-	matches = [i for i in matches if not "/main.cpp" in str(i)]
+	return matches
+def ArchiveFileList():
+	matches = RecursiveGlob("*.cpp", buildDirectory)
+	# Add source files in this directory, except for main.cpp
+	for exclude in excludes:
+		matches = [i for i in matches if not "/" + exclude in str(i)]
 	return matches
 
 # By default, invoking scons will build the backing archive file and then the game binary.
-sourceLib = env.StaticLibrary(pathjoin(libDirectory, "endless-sky"), RecursiveGlob("*.cpp", buildDirectory))
-exeObjs = [Glob(pathjoin(buildDirectory, f)) for f in ("main.cpp",)]
+sourceLib = env.StaticLibrary(pathjoin(libDirectory, "endless-sky"), ArchiveFileList())
+exeObjs = [Glob(pathjoin(buildDirectory, f)) for f in excludes]
 if is_windows_host:
 	windows_icon = env.RES(pathjoin(buildDirectory, "WinApp.rc"))
 	exeObjs.append(windows_icon)
@@ -158,7 +167,7 @@ VariantDir(testBuildDirectory, pathjoin("tests", "src"), duplicate = 0)
 test = env.Program(
 	target=pathjoin("tests", "endless-sky-tests"),
 	source=RecursiveGlob("*.cpp", testBuildDirectory) + sourceLib,
-	 # Add Catch header & additional test includes to the existing search paths
+	# Add Catch header & additional test includes to the existing search paths
 	CPPPATH=(env.get('CPPPATH', []) + [pathjoin('tests', 'include')]),
 	# Do not link against the actual implementations of SDL, OpenGL, etc.
 	LIBS=sys_libs,

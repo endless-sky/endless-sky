@@ -13,17 +13,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef ENDLESS_SKY_AC_TESTDATA_H_
 #define ENDLESS_SKY_AC_TESTDATA_H_
 
-#include <string>
+#include "DataNode.h"
 
-class DataNode;
+#include <string>
 
 
 
 // Class representing a dataset for automated testing
 class TestData {
 public:
-	const std::string &Name() const;
-	void Load(const DataNode &node, const std::string &sourceDataFilePath);
+	void Load(const DataNode &node);
 	// Function to inject the test-data into the game or into the games
 	// environment.
 	bool Inject() const;
@@ -40,12 +39,10 @@ private:
 
 
 private:
-	// Name of the dataset
-	std::string dataSetName;
 	// Type of the dataset
 	Type dataSetType = Type::UNSPECIFIED;
-	// File containing the test-data
-	std::string sourceDataFile;
+	// Node containing the test-data
+	DataNode node;
 };
 
 #endif
