@@ -130,32 +130,43 @@ string Format::Number(double value)
 	bool isNegative = (value < 0.);
 	value = fabs(value);
 	
-	// Only show decimal places for numbers between +/-10'000.
-	double decimal = modf(value, &value);
-	if(decimal && value < 10000)
+	// Numbers <1000 get rounded to two decimal places.
+	// Numbers 1000-10,000 get rounded to one decimal place.
+	// Numbers over 10,000 get rounded to an integer.
+	// Note that rounding a number <1000 may yield 1000; that's fine here.
+	int integer;
+	int tenths = 0;
+	int hundredths = 0;
+	if(value < 1000.)
 	{
-		int tenths = static_cast<int>(decimal * 10.);
-		// Values up to 1000 may have two decimal places.
-		if(value < 1000)
-		{
-			decimal *= 10.;
-			decimal -= static_cast<int>(decimal);
-			// Fix any floating point inaccuracy.
-			decimal = round(decimal * 100.) / 100.;
-			
-			int hundredths = static_cast<int>(decimal * 10.);
-			if(hundredths)
-				result += static_cast<char>('0' + hundredths);
-		}
-		if(tenths)
-		{
-			result += static_cast<char>('0' + tenths);
-			result += '.';
-		}
+		int scaled_value = static_cast<int>(round(value * 100.));
+		integer = scaled_value / 100;
+		tenths = (scaled_value % 100) / 10;
+		hundredths = scaled_value % 10;
+	}
+	else if(value < 10000.)
+	{
+		int scaled_value = static_cast<int>(round(value * 10.));
+		integer = scaled_value / 10;
+		tenths = scaled_value % 10;
+	}
+	else // >=10000
+	{
+		integer = static_cast<int>(round(value));
 	}
 	
+	if(hundredths)
+	{
+		result += static_cast<char>('0' + hundredths);
+	}
+	if(tenths || hundredths)
+	{
+		result += static_cast<char>('0' + tenths);
+		result += '.';
+	}
+
 	// Convert the number to a string, adding commas if needed.
-	FormatInteger(value, isNegative, result);
+	FormatInteger(integer, isNegative, result);
 	return result;
 }
 
