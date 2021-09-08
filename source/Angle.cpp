@@ -54,14 +54,6 @@ Angle Angle::Random(double range)
 
 
 
-// Default constructor: generates an angle pointing straight up.
-Angle::Angle() noexcept
-	: angle(0)
-{
-}
-
-
-
 // Construct an Angle from the given angle in degrees.
 Angle::Angle(double degrees) noexcept
 	: angle(llround(degrees * DEG_TO_STEP) & MASK)
