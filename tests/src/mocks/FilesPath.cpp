@@ -12,28 +12,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "../../../source/Files.h"
 
-#if defined _WIN32
-#include "text/Utf8.h"
-#define STRICT
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-#endif
-
 #include <string>
 
 using namespace std;
-
-namespace {
-	// Convert windows-style directory separators ('\\') to standard '/'.
-#if defined _WIN32
-	void FixWindowsSlashes(string &path)
-	{
-		for(char &c : path)
-			if(c == '\\')
-				c = '/';
-	}
-#endif
-}
 
 
 
