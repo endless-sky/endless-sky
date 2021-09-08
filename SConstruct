@@ -77,7 +77,6 @@ sys_libs = [
 	"rpcrt4",
 ] if is_windows_host else [
 	"uuid",
-	"pthread"
 ]
 env.Append(LIBS = sys_libs)
 
@@ -95,6 +94,7 @@ game_libs = [
 	"png",
 	"jpeg",
 	"openal",
+	"pthread",
 ]
 env.Append(LIBS = game_libs)
 
@@ -174,9 +174,9 @@ test = env.Program(
 	# Add Catch header & additional test includes to the existing search paths
 	CPPPATH=(env.get('CPPPATH', []) + [pathjoin('tests', 'include')]),
 	# Do not link against the actual implementations of SDL, OpenGL, etc.
-	LIBS=sys_libs,
+	LIBS=sys_libs + ["pthread"],
 	# Pass the necessary link flags for a console program.
-	LINKFLAGS=[x for x in env.get('LINKFLAGS', []) if x not in ('-mwindows',)]
+	LINKFLAGS=[x for x in env.get('LINKFLAGS', []) if x not in ('-mwindows',)] + ["-Wl,--no-as-needed"]
 )
 # Invoking scons with the `build-tests` target will build the unit test framework
 env.Alias("build-tests", test)
