@@ -181,8 +181,17 @@ void Audio::Init(const vector<string> &sources)
 
 
 
-// Check the progress of loading sounds.
-double Audio::Progress()
+void Audio::CheckReferences()
+{
+	for(auto &&it : sounds)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: sound \"" + it.first + "\" is referred to, but does not exist.");
+}
+
+
+
+// Report the progress of loading sounds.
+double Audio::GetProgress()
 {
 	unique_lock<mutex> lock(audioMutex);
 	
@@ -563,6 +572,7 @@ namespace {
 	{
 		string name;
 		string path;
+		Sound *sound;
 		while(true)
 		{
 			{
@@ -576,10 +586,14 @@ namespace {
 					return;
 				name = loadQueue.begin()->first;
 				path = loadQueue.begin()->second;
+
+				// Since we need to unlock the mutex below, create the map entry to
+				// avoid a race condition when accessing sounds' size.
+				sound = &sounds[name];
 			}
 			
 			// Unlock the mutex for the time-intensive part of the loop.
-			if(!sounds[name].Load(path, name))
+			if(!sound->Load(path, name))
 				Files::LogError("Unable to load sound \"" + name + "\" from path: " + path);
 		}
 	}

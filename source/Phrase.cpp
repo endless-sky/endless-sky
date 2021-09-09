@@ -13,9 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Phrase.h"
 
 #include "DataNode.h"
-#include "Format.h"
+#include "text/Format.h"
 #include "GameData.h"
-#include "Random.h"
 
 using namespace std;
 
@@ -43,6 +42,13 @@ void Phrase::Load(const DataNode &node)
 
 
 
+bool Phrase::IsEmpty() const
+{
+	return sentences.empty();
+}
+
+
+
 // Get the name associated with the node this phrase was instantiated
 // from, or "Unnamed Phrase" if it was anonymously defined.
 const string &Phrase::Name() const
@@ -63,7 +69,7 @@ string Phrase::Get() const
 	{
 		if(!part.choices.empty())
 		{
-			const auto &choice = part.choices[Random::Int(part.choices.size())];
+			const auto &choice = part.choices.Get();
 			for(const auto &element : choice)
 				result += element.second ? element.second->Get() : element.first;
 		}
@@ -101,7 +107,9 @@ Phrase::Choice::Choice(const DataNode &node, bool isPhraseName)
 	// The given datanode should not have any children.
 	if(node.HasChildren())
 		node.begin()->PrintTrace("Skipping unrecognized child node:");
-
+	
+	weight = max<int>(1, node.Size() >= 2 ? node.Value(1) : 1);
+	
 	if(isPhraseName)
 	{
 		emplace_back(string{}, GameData::Phrases().Get(node.Token(0)));

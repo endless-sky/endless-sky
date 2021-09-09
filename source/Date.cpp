@@ -24,8 +24,8 @@ namespace {
 			--year;
 			month += 12;
 		}
-		day = (day + (13 * (month + 1)) / 5 + year + year / 4 + 6 * (year / 100) + year / 400) % 7; 
-
+		day = (day + (13 * (month + 1)) / 5 + year + year / 4 + 6 * (year / 100) + year / 400) % 7;
+		
 		static const string DAY[] = {"Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"};
 		return DAY[day];
 	}
@@ -128,18 +128,21 @@ bool Date::operator!() const
 
 
 
-// Increment this date.
-void Date::operator++()
+// Increment this date (prefix).
+Date &Date::operator++()
 {
 	*this = *this + 1;
+	return *this;
 }
 
 
 
-// Increment this date.
-void Date::operator++(int)
+// Increment this date (postfix).
+Date Date::operator++(int)
 {
+	auto before = *this;
 	++*this;
+	return before;
 }
 
 

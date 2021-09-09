@@ -36,13 +36,14 @@ class Ship;
 // outfitter panel (e.g. the sidebar with the ships you own).
 class ShopPanel : public Panel {
 public:
-	ShopPanel(PlayerInfo &player, bool isOutfitter);
+	explicit ShopPanel(PlayerInfo &player, bool isOutfitter);
 	
 	virtual void Step() override;
 	virtual void Draw() override;
 	
 protected:
-	void DrawSidebar();
+	void DrawShipsSidebar();
+	void DrawDetailsSidebar();
 	void DrawButtons();
 	void DrawMain();
 	
@@ -56,13 +57,14 @@ protected:
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
 	virtual int DrawDetails(const Point &center) = 0;
-	virtual bool CanBuy() const = 0;
-	virtual void Buy(bool fromCargo = false) = 0;
+	virtual bool CanBuy(bool checkAlreadyOwned = true) const = 0;
+	virtual void Buy(bool alreadyOwned = false) = 0;
 	virtual void FailBuy() const = 0;
-	virtual bool CanSell(bool toCargo = false) const = 0;
-	virtual void Sell(bool toCargo = false) = 0;
-	virtual void FailSell(bool toCargo = false) const;
+	virtual bool CanSell(bool toStorage = false) const = 0;
+	virtual void Sell(bool toStorage = false) = 0;
+	virtual void FailSell(bool toStorage = false) const;
 	virtual bool CanSellMultiple() const;
+	virtual bool IsAlreadyOwned() const;
 	virtual bool ShouldHighlight(const Ship *ship);
 	virtual void DrawKey();
 	virtual void ToggleForSale();
@@ -82,8 +84,8 @@ protected:
 protected:
 	class Zone : public ClickZone<const Ship *> {
 	public:
-		Zone(Point center, Point size, const Ship *ship, double scrollY = 0.);
-		Zone(Point center, Point size, const Outfit *outfit, double scrollY = 0.);
+		explicit Zone(Point center, Point size, const Ship *ship, double scrollY = 0.);
+		explicit Zone(Point center, Point size, const Outfit *outfit, double scrollY = 0.);
 		
 		const Ship *GetShip() const;
 		const Outfit *GetOutfit() const;
@@ -95,9 +97,17 @@ protected:
 		const Outfit *outfit = nullptr;
 	};
 	
+	enum class ShopPane : int {
+		Main,
+		Sidebar,
+		Info
+	};
+	
 	
 protected:
-	static const int SIDE_WIDTH = 250;
+	static const int SIDEBAR_WIDTH = 250;
+	static const int INFOBAR_WIDTH = 300;
+	static const int SIDE_WIDTH = SIDEBAR_WIDTH + INFOBAR_WIDTH;
 	static const int BUTTON_HEIGHT = 70;
 	static const int SHIP_SIZE = 250;
 	static const int OUTFIT_SIZE = 180;
@@ -109,18 +119,28 @@ protected:
 	int day;
 	const Planet *planet = nullptr;
 	
+	// The player-owned ship that was first selected in the sidebar (or most recently purchased).
 	Ship *playerShip = nullptr;
+	// The player-owned ship being reordered.
 	Ship *dragShip = nullptr;
+	bool isDraggingShip = false;
 	Point dragPoint;
+	// The group of all selected, player-owned ships.
 	std::set<Ship *> playerShips;
+	
+	// The currently selected Ship, for the ShipyardPanel.
 	const Ship *selectedShip = nullptr;
+	// The currently selected Outfit, for the OutfitterPanel.
 	const Outfit *selectedOutfit = nullptr;
+	// (It may be worth moving the above pointers into the derived classes in the future.)
 	
 	double mainScroll = 0.;
-	double sideScroll = 0.;
+	double sidebarScroll = 0.;
+	double infobarScroll = 0.;
 	double maxMainScroll = 0.;
-	double maxSideScroll = 0.;
-	bool dragMain = true;
+	double maxSidebarScroll = 0.;
+	double maxInfobarScroll = 0.;
+	ShopPane activePane = ShopPane::Main;
 	int mainDetailHeight = 0;
 	int sideDetailHeight = 0;
 	bool scrollDetailsIntoView = false;

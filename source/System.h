@@ -25,6 +25,7 @@ class DataNode;
 class Date;
 class Fleet;
 class Government;
+class Hazard;
 class Minable;
 class Planet;
 class Ship;
@@ -38,7 +39,7 @@ class Sprite;
 // objects in each system, and the hyperspace links between systems.
 class System {
 public:
-	static const double NEIGHBOR_DISTANCE;
+	static const double DEFAULT_NEIGHBOR_DISTANCE;
 	
 public:
 	class Asteroid {
@@ -70,20 +71,34 @@ public:
 		int period;
 	};
 	
+	class HazardProbability {
+	public:
+		HazardProbability(const Hazard *hazard, int period);
+		
+		const Hazard *Get() const;
+		int Period() const;
+		
+	private:
+		const Hazard *hazard;
+		int period;
+	};
+	
 	
 public:
 	// Load a system's description.
 	void Load(const DataNode &node, Set<Planet> &planets);
-	// Once the star map is fully loaded, figure out which stars are "neighbors"
-	// of this one, i.e. close enough to see or to reach via jump drive.
-	void UpdateNeighbors(const Set<System> &systems);
+	// Update any information about the system that may have changed due to events,
+	// e.g. neighbors, solar wind and power, or if the system is inhabited.
+	void UpdateSystem(const Set<System> &systems, const std::set<double> &neighborDistances);
 	
 	// Modify a system's links.
 	void Link(System *other);
 	void Unlink(System *other);
 	
+	bool IsValid() const;
 	// Get this system's name and position (in the star map).
 	const std::string &Name() const;
+	void SetName(const std::string &name);
 	const Point &Position() const;
 	// Get this system's government.
 	const Government *GetGovernment() const;
@@ -95,10 +110,20 @@ public:
 	
 	// Get a list of systems you can travel to through hyperspace from here.
 	const std::set<const System *> &Links() const;
+	// Get a list of systems that can be jumped to from here with the given
+	// jump distance, whether or not there is a direct hyperspace link to them.
+	// If this system has its own jump range, then it will always return the
+	// systems within that jump range instead of the jump range given.
+	const std::set<const System *> &JumpNeighbors(double neighborDistance) const;
+	// Whether this system can be seen when not linked.
+	bool Hidden() const;
+	// Additional travel distance to target for ships entering through hyperspace.
+	double ExtraHyperArrivalDistance() const;
+	// Additional travel distance to target for ships entering using a jumpdrive.
+	double ExtraJumpArrivalDistance() const;
 	// Get a list of systems you can "see" from here, whether or not there is a
-	// direct hyperspace link to them. This is also the set of systems that you
-	// can travel to from here via the jump drive.
-	const std::set<const System *> &Neighbors() const;
+	// direct hyperspace link to them.
+	const std::set<const System *> &VisibleNeighbors() const;
 	
 	// Move the stellar objects to their positions on the given date.
 	void SetDate(const Date &date);
@@ -110,6 +135,8 @@ public:
 	double HabitableZone() const;
 	// Get the radius of the asteroid belt.
 	double AsteroidBelt() const;
+	// Get how far ships can jump from this system.
+	double JumpRange() const; 
 	// Get the rate of solar collection and ramscoop refueling.
 	double SolarPower() const;
 	double SolarWind() const;
@@ -138,6 +165,8 @@ public:
 	
 	// Get the probabilities of various fleets entering this system.
 	const std::vector<FleetProbability> &Fleets() const;
+	// Get the probabilities of various hazards in this system.
+	const std::vector<HazardProbability> &Hazards() const;
 	// Check how dangerous this system is (credits worth of enemy ships jumping
 	// in per frame).
 	double Danger() const;
@@ -145,6 +174,10 @@ public:
 	
 private:
 	void LoadObject(const DataNode &node, Set<Planet> &planets, int parent = -1);
+	// Once the star map is fully loaded or an event has changed systems
+	// or links, figure out which stars are "neighbors" of this one, i.e.
+	// close enough to see or to reach via jump drive.
+	void UpdateNeighbors(const Set<System> &systems, double distance);
 	
 	
 private:
@@ -161,6 +194,8 @@ private:
 	
 	
 private:
+	bool isDefined = false;
+	bool hasPosition = false;
 	// Name and position (within the star map) of this system.
 	std::string name;
 	Point position;
@@ -169,7 +204,10 @@ private:
 	
 	// Hyperspace links to other systems.
 	std::set<const System *> links;
-	std::set<const System *> neighbors;
+	std::map<double, std::set<const System *>> neighbors;
+	
+	// Defines whether this system can be seen when not linked.
+	bool hidden = false;
 	
 	// Stellar objects, listed in such an order that an object's parents are
 	// guaranteed to appear before it (so that if we traverse the vector in
@@ -179,10 +217,23 @@ private:
 	std::vector<Asteroid> asteroids;
 	const Sprite *haze = nullptr;
 	std::vector<FleetProbability> fleets;
+	std::vector<HazardProbability> hazards;
 	double habitable = 1000.;
 	double asteroidBelt = 1500.;
+	double jumpRange = 0.;
 	double solarPower = 0.;
 	double solarWind = 0.;
+	
+	// The amount of additional distance that ships will arrive away from the
+	// system center when entering this system through a hyperspace link.
+	// Negative values are allowed, causing ships to jump beyond their target.
+	double extraHyperArrivalDistance = 0.;
+	// The amount of additional distance that ships will arrive away from the
+	// system center when entering this system through a jumpdrive jump.
+	// Jump drives use a circle around the target for targeting, so a value below
+	// 0 doesn't have the same meaning as for hyperdrives. Negative values will
+	// be interpreted as positive values.
+	double extraJumpArrivalDistance = 0.;
 	
 	// Commodity prices.
 	std::map<std::string, Price> trade;
