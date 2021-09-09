@@ -142,7 +142,7 @@ public:
 	static const std::vector<std::string> &Category(const CategoryType type);
 	
 	static const StarField &Background();
-	static void SetHaze(const Sprite *sprite);
+	static void SetHaze(const Sprite *sprite, bool allowAnimation);
 	
 	static const std::string &Tooltip(const std::string &label);
 	static std::string HelpMessage(const std::string &name);
