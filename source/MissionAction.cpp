@@ -296,11 +296,6 @@ string MissionAction::Validate() const
 	// Stock conversations must be defined.
 	if(stockConversation && stockConversation->IsEmpty())
 		return "stock conversation";
-	
-	// Events which get activated by this action must be valid.
-	for(auto &&event : events)
-		if(!event.first->IsValid())
-			return "event \"" + event.first->Name() + "\"";
 
 	// Gifted or required content must be defined & valid.
 	for(auto &&it : giftShips)
