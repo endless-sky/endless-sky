@@ -158,6 +158,19 @@ TEST_CASE( "Format::Number", "[Format][Number]") {
 		CHECK( Format::Number(45123.05) == "45,123" );
 		CHECK( Format::Number(-56413.2) == "-56,413" );
 	}
+	SECTION( "#6235: Decimals with 0 in tenths place" ) {
+		CHECK( Format::Number(100.06) == "100.06" );
+		CHECK( Format::Number(1000.03) == "1,000" );
+		CHECK( Format::Number(107.09) == "107.09" );
+		CHECK( Format::Number(0.0123) == "0.01" );
+	}
+	SECTION( "#6235: Rounding up" ) {
+		CHECK( Format::Number(100.0678) == "100.07" );
+		CHECK( Format::Number(1000.06) == "1,000.1" );
+		CHECK( Format::Number(1.046) == "1.05" );
+		CHECK( Format::Number(1.0046) == "1" );
+		CHECK( Format::Number(0.9999) == "1" );
+	}
 }
 
 // #endregion unit tests
