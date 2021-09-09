@@ -119,8 +119,8 @@ std::string Format::PlayTime(double timeVal)
 
 
 
-// Convert the given number to a string, with at most one decimal place.
-// This is primarily for displaying ship and outfit attributes.
+// Convert the given number to a string, with a reasonable number of decimal
+// places. (This is primarily for displaying ship and outfit attributes.)
 string Format::Number(double value)
 {
 	if(!value)
@@ -130,19 +130,28 @@ string Format::Number(double value)
 	bool isNegative = (value < 0.);
 	value = fabs(value);
 	
-	// Check if this is a whole number.
+	// Only show decimal places for numbers between +/-10'000.
 	double decimal = modf(value, &value);
-	if(decimal)
+	if(decimal && value < 10000)
 	{
-		if(decimal >= .95)
+		int tenths = static_cast<int>(decimal * 10.);
+		// Values up to 1000 may have two decimal places.
+		if(value < 1000)
 		{
-			result += '0';
-			++value;
+			decimal *= 10.;
+			decimal -= static_cast<int>(decimal);
+			// Fix any floating point inaccuracy.
+			decimal = round(decimal * 100.) / 100.;
+			
+			int hundredths = static_cast<int>(decimal * 10.);
+			if(hundredths)
+				result += static_cast<char>('0' + hundredths);
 		}
-		else
-			result += static_cast<char>('0' + static_cast<int>(round(decimal * 10.)));
-		
-		result += '.';
+		if(tenths)
+		{
+			result += static_cast<char>('0' + tenths);
+			result += '.';
+		}
 	}
 	
 	// Convert the number to a string, adding commas if needed.
