@@ -68,6 +68,14 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 		if(child.Size() >= 3)
 			paymentMultiplier += child.Value(2);
 	}
+	else if(key == "fine" && hasValue)
+	{
+		int64_t value = child.Value(1);
+		if(value > 0)
+			fine += value;
+		else
+			child.PrintTrace("Skipping invalid \"fine\" with non-positive value:");
+	}
 	else if(key == "event" && hasValue)
 	{
 		int minDays = (child.Size() >= 3 ? child.Value(2) : 0);
@@ -145,6 +153,13 @@ int GameAction::Payment() const
 
 
 
+int GameAction::Fine() const
+{
+	return fine;
+}
+
+
+
 // Do the actions of the GameAction.
 void GameAction::Do(PlayerInfo &player) const
 {
@@ -167,6 +182,8 @@ void GameAction::Do(PlayerInfo &player) const
 		else if(account > 0)
 			player.Accounts().AddCredits(-account);
 	}
+	if(fine)
+		player.Accounts().AddFine(fine);
 	
 	for(const auto &it : events)
 		player.AddEvent(*it.first, player.GetDate() + it.second.first);
@@ -208,6 +225,11 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	if(result.payment)
 		subs["<payment>"] = Format::Credits(abs(result.payment))
 			+ (result.payment == 1 ? " credit" : " credits");
+	
+	result.fine = fine;
+	if(result.fine)
+		subs["<fine>"] = Format::Credits(result.fine)
+			+ (result.fine == 1 ? " credit" : " credits");
 	
 	if(!logText.empty())
 		result.logText = Format::Replace(logText, subs);

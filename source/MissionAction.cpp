@@ -213,14 +213,6 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			else
 				child.PrintTrace("Skipping invalid \"require\" amount:");
 		}
-		else if(key == "fine" && hasValue)
-		{
-			int64_t loadedFine = child.Value(1);
-			if(loadedFine > 0)
-				fine += loadedFine;
-			else
-				child.PrintTrace("Skipping invalid \"fine\" with non-positive value:");
-		}
 		else if(key == "system")
 		{
 			if(system.empty() && child.HasChildren())
@@ -446,8 +438,6 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 		if(it.second > 0)
 			DoGift(player, it.first, it.second, ui);
 	
-	if(fine)
-		player.Accounts().AddFine(fine);
 	actions.Do(player);
 }
 
@@ -467,13 +457,9 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	result.giftOutfits = giftOutfits;
 	result.requiredOutfits = requiredOutfits;
 	
-	result.fine = fine;
 	
 	string previousPayment = subs["<payment>"];
 	string previousFine = subs["<fine>"];
-	if(result.fine)
-		subs["<fine>"] = Format::Credits(result.fine)
-			+ (result.fine == 1 ? " credit" : " credits");
 	result.actions = actions.Instantiate(subs, jumps, payload);
 	
 	// Create any associated dialog text from phrases, or use the directly specified text.
@@ -492,7 +478,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	// use in other parts of this mission.
 	if(result.Payment() && trigger != "complete")
 		subs["<payment>"] = previousPayment;
-	if(result.fine && trigger != "complete")
+	if(result.Fine() && trigger != "complete")
 		subs["<fine>"] = previousFine;
 	
 	return result;

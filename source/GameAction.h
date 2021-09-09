@@ -50,6 +50,7 @@ public:
 	bool IsEmpty() const;
 	
 	int Payment() const;
+	int Fine() const;
 	
 	// Perform this action.
 	void Do(PlayerInfo &player) const;
@@ -68,6 +69,7 @@ private:
 	std::map<const GameEvent *, std::pair<int, int>> events;
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
+	int64_t fine = 0;
 	
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;

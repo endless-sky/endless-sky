@@ -88,7 +88,6 @@ private:
 	std::vector<std::pair<const Ship *, std::string>> giftShips;
 	std::map<const Outfit *, int> giftOutfits;
 	std::map<const Outfit *, int> requiredOutfits;
-	int64_t fine = 0;
 	
 	// The GameAction handles logs, events, payments, mission failures, and conditions.
 	// This is a separate class so that these same things can be done in Conversations.
