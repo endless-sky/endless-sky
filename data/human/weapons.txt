@@ -247,7 +247,7 @@ outfit "Broadsider"
 		"firing force" 11
 		"hit force" 44
 		"submunition" bslug 1
-		description "As part of the Navy's 'New Age Initiative,' the team at Geminus has developed larger and more powerful weaponry to function on their new ships. The Broadsider is one such weapon created for the Battleship and meant to hit harder than anything humanity has to offer."
+	description "As part of the Navy's 'New Age Initiative,' the team at Geminus has developed larger and more powerful weaponry to function on their new ships. The Broadsider is one such weapon created for the Battleship and meant to hit harder than anything humanity has to offer."
 
 outfit "bslug"
 	weapon
