@@ -59,21 +59,21 @@ phrase "letter"
 # of the number of male and female names).
 phrase "civilian"
 	phrase
-		"civilian subphrase 1" 101774
-		"civilian subphrase 2" 147103
-		"civilian subphrase 3" 111652
-		"civilian subphrase 4" 44521
-		"civilian subphrase 5" 3080
-		"civilian subphrase 6" 6994
-		"civilian subphrase 7" 6552
-		"civilian subphrase 8" 38052
-		"civilian subphrase 9" 88000
-		"civilian subphrase 10" 129376
-		"civilian subphrase 11" 339360
-		"civilian subphrase 12" 6080
-		"civilian subphrase 13" 4900
-		"civilian subphrase 14" 39200
-		"civilian subphrase 15" 15620
+		"civilian subphrase 1" 101774   # [adjective] [name or noun] [sometimes a successor]
+		"civilian subphrase 2" 147103   # [adjective or noun] [noun]
+		"civilian subphrase 3" 111652   # [name or title]'s [noun]
+		"civilian subphrase 4" 44521    # [nouns] and [Nouns]
+		"civilian subphrase 5" 3080     # [quantity] of [nouns]
+		"civilian subphrase 6" 6994     # [male or gender-neutral title] [thing you can be of or male name]
+		"civilian subphrase 7" 6552     # [female or gender-neutral title] [thing you can be of or male name]
+		"civilian subphrase 8" 38052    # [name] the [adjective]
+		"civilian subphrase 9" 88000    # [noun or adjective] [title] [sometimes a successor]
+		"civilian subphrase 10" 129376  # [noun] [thing you can be of]
+		"civilian subphrase 11" 339360  # [noun] [noun or title] [sometimes a successor]
+		"civilian subphrase 12" 6080    # [adjective, noun, title, or female name] [sometimes a successor]
+		"civilian subphrase 13" 4900    # [made-up ship names] [sometimes a successor]
+		"civilian subphrase 14" 39200   # [Chinese name] [Chinese name] [Chinese name or sometimes a successor]
+		"civilian subphrase 15" 15620   # [noun] [noun] [sometimes a successor]
 
 phrase "adjectives"
 	word
@@ -1685,7 +1685,6 @@ phrase "civilian subphrase 12"
 	phrase
 		"sometimes a successor"
 
-# Tripled to get more of these
 phrase "civilian subphrase 13"
 	phrase
 		"standalone civilian ship names"
@@ -2641,29 +2640,29 @@ phrase "syndicate fighter"
 
 phrase "pirate"
 	phrase
-		"pirate subphrase 1" 131
-		"pirate subphrase 2" 19504
-		"pirate subphrase 3" 15720
-		"pirate subphrase 4" 12880
-		"pirate subphrase 5" 3500
-		"pirate subphrase 6" 6700
-		"pirate subphrase 7" 4482
-		"pirate subphrase 8" 184
-		"pirate subphrase 9" 3060
-		"pirate subphrase 10" 648
-		"pirate subphrase 11" 20
-		"pirate subphrase 12" 17
-		"pirate subphrase 13" 26
-		"pirate subphrase 14" 21
-		"pirate subphrase 15" 17
-		"pirate subphrase 16" 11
-		"pirate subphrase 17" 7
-		"pirate subphrase 18" 5
+		"pirate subphrase 1" 131    # made-up pirate ship names
+		"pirate subphrase 2" 19504  # [adjective] [noun or bad outcome]
+		"pirate subphrase 3" 15720  # [adjective] [sinister name or bad outcome]
+		"pirate subphrase 4" 12880  # [sinister name]'s [noun or bad outcome]
+		"pirate subphrase 5" 3500   # [sinister name] the [adjective]
+		"pirate subphrase 6" 6700   # [noun] of [bad outcome]
+		"pirate subphrase 7" 4482   # [bad outcome or adjective] [noun]
+		"pirate subphrase 8" 184    # [noun or bad outcome]
+		"pirate subphrase 9" 3060   # [noun or bad condition][noun]
+		"pirate subphrase 10" 648   # [bad condition] [positive noun or good condition]
+		"pirate subphrase 11" 20    # historical male pirates
+		"pirate subphrase 12" 17    # historical female pirates
+		"pirate subphrase 13" 26    # historical pirate ships
+		"pirate subphrase 14" 21    # historical ghost ships
+		"pirate subphrase 15" 17    # fictional male pirates
+		"pirate subphrase 16" 11    # fictional female pirates
+		"pirate subphrase 17" 7     # fictional pirate ships
+		"pirate subphrase 18" 5     # fictional ghost ships
 
 phrase "bounty hunter"
 	phrase
-		"bounty hunter subphrase 1" 897
-		"bounty hunter subphrase 2" 729
+		"bounty hunter subphrase 1" 897   # [adjective] [noun]
+		"bounty hunter subphrase 2" 729   # [noun] of [noun or condition]
 
 # All of these should sound good when preceded by the word "of" or when "'s" is added onto the end
 phrase "sinister names"
