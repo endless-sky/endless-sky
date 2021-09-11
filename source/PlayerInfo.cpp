@@ -1615,9 +1615,12 @@ Mission *PlayerInfo::MissionToOffer(Mission::Location location)
 // relationship with the player. If none offer, return nullptr.
 Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 {
-	// Do not create missions from existing mission NPC's, or the player's ships.
-	if(ship->IsSpecial())
+	// Do not create missions from existing mission NPC's, the player's ships,
+	// or ships with the "Offers" personality that have already been boarded.
+	if(ship->IsSpecial() && (!ship->GetPersonality().Offers() || ship->IsBoardedOfferer()))
 		return nullptr;
+	if(ship->GetPersonality().Offers())
+		ship->SetBoardedOfferer();
 	// Ensure that boarding this NPC again does not create a mission.
 	ship->SetIsSpecial();
 	

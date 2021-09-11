@@ -62,7 +62,10 @@ public:
 		// you had with the given government, first.
 		ATROCITY = (1 << 8),
 		// This ship just jumped into a different system.
-		JUMP = (1 << 9)
+		JUMP = (1 << 9),
+		// This ship has the Offers personality and was boarded,
+		// potentially giving a mission.
+		BOARDED = (1 << 10)
 	};
 	
 	

@@ -166,6 +166,8 @@ public:
 	void SetGovernment(const Government *government);
 	void SetIsSpecial(bool special = true);
 	bool IsSpecial() const;
+	void SetBoardedOfferer();
+	bool IsBoardedOfferer() const;
 	
 	// If a ship belongs to the player, the player can give it commands.
 	void SetIsYours(bool yours = true);
@@ -460,6 +462,7 @@ private:
 	// "Special" ships cannot be forgotten, and if they land on a planet, they
 	// continue to exist and refuel instead of being deleted.
 	bool isSpecial = false;
+	bool boardedOfferer = false;
 	bool isYours = false;
 	bool isParked = false;
 	bool shouldDeploy = false;

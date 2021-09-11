@@ -191,6 +191,8 @@ void Ship::Load(const DataNode &node)
 			customSwizzle = child.Value(1);
 		else if(key == "uuid" && child.Size() >= 2)
 			uuid = EsUuid::FromString(child.Token(1));
+		else if(key == "boarded")
+			boardedOfferer = true;
 		else if(key == "attributes" || add)
 		{
 			if(!add)
@@ -966,6 +968,8 @@ void Ship::Save(DataWriter &out) const
 			out.Write("destination system", targetSystem->Name());
 		if(isParked)
 			out.Write("parked");
+		if(boardedOfferer)
+			out.Write("boarded");
 	}
 	out.EndChild();
 }
@@ -1235,6 +1239,20 @@ void Ship::SetIsSpecial(bool special)
 bool Ship::IsSpecial() const
 {
 	return isSpecial;
+}
+
+
+
+void Ship::SetBoardedOfferer()
+{
+	boardedOfferer = true;
+}
+
+
+
+bool Ship::IsBoardedOfferer() const
+{
+	return boardedOfferer;
 }
 
 
