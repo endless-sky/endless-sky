@@ -115,7 +115,7 @@ phrase "generic completed pirate cargo mission"
 
 phrase "generic completed highly illegal pirate cargo mission"
 	word
-		`You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>.`
+		`You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship, and you collect your payment of <payment>.`
 
 phrase "generic aborted pirate passenger mission"
 	word
