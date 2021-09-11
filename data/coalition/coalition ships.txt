@@ -1188,9 +1188,21 @@ ship "Heliarch Pursuer"
 		"mass" 31
 		"drag" 0.8
 		"heat dissipation" 0.99
-		"outfit space" 105
+		"outfit space" 73
 		"weapon capacity" 19
 		"engine capacity" 36
+		"thrust" 52.8
+		"thrusting energy" 0.92
+		"thrusting heat" 6
+		"flare sprite" "effect/coalition flare/small"
+			"frame rate" 4.8
+		"flare sound" "atomic tiny"
+		"turn" 536.4
+		"turning energy" 0.52
+		"turning heat" 3.6
+		"steering flare sprite" "effect/coalition flare/small"
+			"frame rate" 4.8
+		"steering flare sound" "atomic tiny"
 		weapon
 			"blast radius" 15
 			"shield damage" 150
@@ -1204,9 +1216,6 @@ ship "Heliarch Pursuer"
 		"Small Battery Module" 3
 		"Small Shield Module"
 		"Small Repair Module"
-		
-		"Small Steering Module" 2
-		"Small Thrust Module" 2
 	
 	engine 0 34.5
 	engine 7 33.5
@@ -1226,9 +1235,7 @@ ship "Heliarch Pursuer" "Heliarch Pursuer (Scrappy)"
 		"Small Battery Module"
 		"Small Shield Module"
 		"Small Repair Module"
-		
-		"Small Thrust Module" 2
-		"Small Steering Module" 2
+
 
 
 ship "Heliarch Rover"
@@ -1246,9 +1253,21 @@ ship "Heliarch Rover"
 		"mass" 37
 		"drag" 1.19
 		"heat dissipation" .96
-		"outfit space" 125
+		"outfit space" 93
 		"weapon capacity" 24
 		"engine capacity" 32
+		"thrust" 52.8
+		"thrusting energy" 0.92
+		"thrusting heat" 6
+		"flare sprite" "effect/coalition flare/small"
+			"frame rate" 4.8
+		"flare sound" "atomic tiny"
+		"turn" 536.4
+		"turning energy" 0.52
+		"turning heat" 3.6
+		"steering flare sprite" "effect/coalition flare/small"
+			"frame rate" 4.8
+		"steering flare sound" "atomic tiny"
 		weapon
 			"blast radius" 15
 			"shield damage" 150
@@ -1261,9 +1280,6 @@ ship "Heliarch Rover"
 		"Large Battery Module"
 		"Small Shield Module"
 		"Small Repair Module" 3
-		
-		"Small Thrust Module" 2
-		"Small Steering Module" 2
 	
 	engine 7 28
 	engine -7 28
@@ -1282,9 +1298,7 @@ ship "Heliarch Rover" "Heliarch Rover (Ions)"
 		"Small Battery Module"
 		"Small Shield Module"
 		"Large Repair Module"
-		
-		"Small Thrust Module" 2
-		"Small Steering Module" 2
+
 
 
 ship "Heliarch Stalker"
@@ -1302,9 +1316,21 @@ ship "Heliarch Stalker"
 		"mass" 80
 		"drag" 2.1
 		"heat dissipation" 0.64
-		"outfit space" 133
+		"outfit space" 117
 		"weapon capacity" 43
 		"engine capacity" 16
+		"thrust" 26.4
+		"thrusting energy" 0.46
+		"thrusting heat" 3
+		"flare sprite" "effect/coalition flare/small"
+			"frame rate" 4.8
+		"flare sound" "atomic tiny"
+		"turn" 268.2
+		"turning energy" 0.26
+		"turning heat" 1.8
+		"steering flare sprite" "effect/coalition flare/small"
+			"frame rate" 4.8
+		"steering flare sound" "atomic tiny"
 		weapon
 			"blast radius" 15
 			"shield damage" 150
@@ -1318,9 +1344,6 @@ ship "Heliarch Stalker"
 		"Small Battery Module"
 		"Large Shield Module"
 		"Large Repair Module"
-		
-		"Small Steering Module"
-		"Small Thrust Module"
 	
 	engine 0 40 .8
 	turret 0 -1.5
@@ -1337,9 +1360,7 @@ ship "Heliarch Stalker" "Heliarch Stalker (Scrappy)"
 		"Small Shield Module"
 		"Small Repair Module" 2
 		"Cooling Module"
-		
-		"Small Thrust Module"
-		"Small Steering Module"
+
 
 
 ship "Kimek Briar"
