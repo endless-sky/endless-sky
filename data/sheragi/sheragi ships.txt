@@ -168,11 +168,27 @@ ship "Black Diamond"
 		"mass" 50
 		"drag" .9
 		"heat dissipation" .86
-		"outfit space" 152
+		"outfit space" 81
 		"weapon capacity" 35
 		"engine capacity" 38
 		"hull repair rate" 1
 		"hull delay" 60
+		"energy generation" 5.2
+		"heat generation" 19.4
+		"thrust" 61.88
+		"thrusting energy" 1.508
+		"thrusting heat" 2.86
+		"turn" 479.7
+		"turning energy" 0.585
+		"turning heat" 1.365
+		"flare sprite" "effect/fissionflare"
+			"frame rate" 30
+			"rewind"
+		"flare sound" "atomic small"
+		"steering flare sprite" "effect/fissionflare"
+			"frame rate" 30
+			"rewind"
+		"steering flare sound" "atomic tiny"
 		weapon
 			"blast radius" 24
 			"shield damage" 240
@@ -186,7 +202,6 @@ ship "Black Diamond"
 		"Small EM Battery"
 		"Small Hybrid Cooling"
 		
-		"Fission Drive"
 	gun 0 -39.5 "Heavy Ion Cyclotron"
 	gun 22 -7.5 "Shard Fabricator"
 	gun -22 -7.5 "Shard Fabricator"
