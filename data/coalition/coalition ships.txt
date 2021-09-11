@@ -1319,13 +1319,13 @@ ship "Heliarch Stalker"
 		"outfit space" 117
 		"weapon capacity" 43
 		"engine capacity" 16
-		"thrust" 26.4
+		"thrust" 6.6
 		"thrusting energy" 0.46
 		"thrusting heat" 3
 		"flare sprite" "effect/coalition flare/small"
 			"frame rate" 4.8
 		"flare sound" "atomic tiny"
-		"turn" 268.2
+		"turn" 178.8
 		"turning energy" 0.26
 		"turning heat" 1.8
 		"steering flare sprite" "effect/coalition flare/small"
