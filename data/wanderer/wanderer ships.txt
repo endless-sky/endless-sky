@@ -59,9 +59,23 @@ ship "Flycatcher"
 		"mass" 40
 		"drag" .6
 		"heat dissipation" .9
-		"outfit space" 86
+		"outfit space" 65
 		"weapon capacity" 28
 		"engine capacity" 26
+		"thrust" 26.4
+		"thrusting energy" 0.5
+		"thrusting heat" 0.9
+		"cooling" 1.5
+		"flare sprite" "effect/plasma flare/tiny"
+			"frame rate" 12
+		"flare sound" "plasma tiny"
+		"turn" 259.2
+		"turning energy" .3
+		"turning heat" 0.6
+		"cooling" 1.0
+		"steering flare sprite" "effect/plasma flare/tiny"
+			"frame rate" 12
+		"steering flare sound" "plasma tiny"
 		weapon
 			"blast radius" 10
 			"shield damage" 100
@@ -71,9 +85,6 @@ ship "Flycatcher"
 		"Wanderer Anti-Missile"
 		
 		"Small Biochemical Cell" 2
-		
-		"Type 1 Radiant Thruster"
-		"Type 1 Radiant Steering"
 		
 	engine -9 28
 	engine 9 28

@@ -457,9 +457,23 @@ ship "Selii'mar"
 		"drag" .8
 		"heat dissipation" 1.1
 		"cargo space" 14
-		"outfit space" 77
+		"outfit space" 51
 		"weapon capacity" 18
 		"engine capacity" 21
+		"heat generation" 0.3
+		"energy consumption" 0.48
+		"thrust" 44.8
+		"thrusting energy" 1.7
+		"thrusting heat" 1.2
+		"turn" 351.6
+		"turning energy" 0.42
+		"turning heat" 0.3
+		"flare sprite" "effect/ka'het flare/medium"
+			"frame rate" 30
+		"flare sound" "plasma small"
+		"steering flare sprite" "effect/ka'het flare/medium"
+			"frame rate" 30
+		"steering flare sound" "plasma small"
 		weapon
 			"blast radius" 48
 			"shield damage" 320
@@ -469,7 +483,6 @@ ship "Selii'mar"
 		"Ka'het Ravager Beam"
 		"Ka'het MHD Generator"
 		"Ka'het Reserve Accumulator" 3
-		"Ka'het Compact Engine"
 	
 	gun 0 -32.5
 	engine 0 28 1.5
@@ -487,9 +500,23 @@ ship "Faes'mar"
 		"mass" 46
 		"drag" .7
 		"heat dissipation" 1.05
-		"cargo space" 102
+		"cargo space" 76
 		"outfit space" 113
 		"engine capacity" 21
+		"heat generation" 0.3
+		"energy consumption" 0.48
+		"thrust" 44.8
+		"thrusting energy" 1.7
+		"thrusting heat" 1.2
+		"turn" 351.6
+		"turning energy" 0.42
+		"turning heat" 0.3
+		"flare sprite" "effect/ka'het flare/medium"
+			"frame rate" 30
+		"flare sound" "plasma small"
+		"steering flare sprite" "effect/ka'het flare/medium"
+			"frame rate" 30
+		"steering flare sound" "plasma small"
 		weapon
 			"blast radius" 52
 			"shield damage" 410
@@ -515,4 +542,3 @@ ship "Faes'mar" "Faes'mar (Strong)"
 		"Ka'het Shield Restorer" 2
 		"Ka'het MHD Generator"
 		"Ka'het Reserve Accumulator" 4
-		"Ka'het Compact Engine"

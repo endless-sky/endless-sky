@@ -148,10 +148,22 @@ ship "Flea"
 		"mass" 21
 		"drag" .55
 		"heat dissipation" .83
-		"outfit space" 63
+		"outfit space" 41
 		"weapon capacity" 13
 		"engine capacity" 22
 		"automaton" 1
+		"thrust" 30.8
+		"thrusting energy" .92
+		"thrusting heat" 1.83
+		"turn" 375
+		"turning energy" .64
+		"turning heat" 1.28
+		"flare sprite" "effect/atomic flare/tiny"
+			"frame rate" 14
+		"flare sound" "atomic tiny"
+		"steering flare sprite" "effect/atomic flare/tiny"
+			"frame rate" 14
+		"steering flare sound" "atomic tiny"
 		weapon
 			"blast radius" 6
 			"shield damage" 55
@@ -162,7 +174,6 @@ ship "Flea"
 		"Railgun Slug" 3000
 		"Sand Cell"
 		"Supercapacitor" 2
-		`"Baellie" Atomic Engines`
 
 	engine 0 27 1.4
 	gun 0 -27 "Railgun"
@@ -177,7 +188,8 @@ ship "Flea" "Flea (Pulse)"
 		"Pulse Cannon"
 		"Sand Cell"
 		"Supercapacitor" 2
-		`"Baellie" Atomic Engines`
+
+
 
 ship "Geocoris"
 	plural "Geocorises"
@@ -921,9 +933,21 @@ ship "Violin Spider"
 		"mass" 31
 		"drag" 0.9
 		"heat dissipation" .7
-		"outfit space" 92
+		"outfit space" 62
 		"weapon capacity" 19
 		"engine capacity" 30
+		"thrust" 52.8
+		"thrusting energy" 1.5
+		"thrusting heat" 2.9
+		"flare sprite" "effect/atomic flare/tiny"
+			"frame rate" 14
+		"flare sound" "atomic tiny"
+		"turn" 463.5
+		"turning energy" .7
+		"turning heat" 1.6
+		"steering flare sprite" "effect/atomic flare/tiny"
+			"frame rate" 14
+		"steering flare sound" "atomic tiny"
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -936,8 +960,6 @@ ship "Violin Spider"
 		Supercapacitor
 		"Hai Williwaw Cooling"
 		"Pulse Rifle"
-		`"Basrem" Atomic Steering`
-		`"Basrem" Atomic Thruster`
 
 	engine -15 30
 	engine 15 30
@@ -956,8 +978,6 @@ ship "Violin Spider" "Violin Spider (Pulse)"
 		"Hai Williwaw Cooling"
 		"Quantum Keystone"
 		"Pulse Rifle"
-		`"Basrem" Atomic Steering`
-		`"Basrem" Atomic Thruster`
 
 
 

@@ -860,7 +860,7 @@ ship "Petrel"
 		"mass" 50
 		"drag" 1.55
 		"heat dissipation" .8
-		"outfit space" 133
+		"outfit space" 107
 		"weapon capacity" 33
 		"engine capacity" 34
 		"shield generation" 0.36
@@ -872,6 +872,25 @@ ship "Petrel"
 		"outfit scan speed" 1
 		"tactical scan power" 20
 		"asteroid scan power" 30
+		"thrust" 54.0
+		"thrusting energy" 2.05
+		"thrusting heat" 1.95
+		"turn" 554.4
+		"turning energy" 1.05
+		"turning heat" 1.1
+		"reverse thrust" 8.1
+		"reverse thrusting energy" 1.23
+		"reverse thrusting heat" 1.17
+		"slowing resistance" 0.02
+		"flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"flare sound" "plasma tiny"
+		"steering flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"steering flare sound" "plasma tiny"
+		"reverse flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"reverse flare sound" "plasma tiny"
 		weapon
 			"blast radius" 15
 			"shield damage" 150
@@ -884,8 +903,6 @@ ship "Petrel"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
 		"Thermoelectric Cooler"
-		
-		"Anvil-Class Engine"
 		
 	gun 0 -38.5
 	gun -10.5 -24 "Inhibitor Cannon"
@@ -1125,7 +1142,7 @@ ship "Tern"
 		"fuel capacity" 50
 		"energy capacity" 500
 		"ramscoop" 0.5
-		"outfit space" 76
+		"outfit space" 50
 		"weapon capacity" 16
 		"engine capacity" 26
 		"shield generation" 0.25
@@ -1138,6 +1155,25 @@ ship "Tern"
 		"tactical scan power" 20
 		"atmosphere scan" 100
 		"asteroid scan power" 30
+		"thrust" 54.0
+		"thrusting energy" 2.05
+		"thrusting heat" 1.95
+		"turn" 554.4
+		"turning energy" 1.05
+		"turning heat" 1.1
+		"reverse thrust" 8.1
+		"reverse thrusting energy" 1.23
+		"reverse thrusting heat" 1.17
+		"slowing resistance" 0.02
+		"flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"flare sound" "plasma tiny"
+		"steering flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"steering flare sound" "plasma tiny"
+		"reverse flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"reverse flare sound" "plasma tiny"
 		weapon
 			"blast radius" 10
 			"shield damage" 100
@@ -1149,8 +1185,6 @@ ship "Tern"
 		"Millennium Cell"
 		"Quantum Key Stone"
 		"Thermoelectric Cooler"
-		
-		"Anvil-Class Engine"
 		
 	gun 0 -22 "Inhibitor Cannon"
 	engine -5 20.5
