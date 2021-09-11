@@ -174,7 +174,6 @@ ship "Barb" "Barb (Gatling)"
 		"nGVF-AA Fuel Cell"
 		Supercapacitor 3
 		"D14-RN Shield Generator"
-		"X1050 Ion Engines"
 
 
 
@@ -1398,8 +1397,6 @@ ship "Lance" "Lance (Gatling)"
 		Supercapacitor
 		"nGVF-BB Fuel Cell"
 		"D14-RN Shield Generator"
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
 
 
 

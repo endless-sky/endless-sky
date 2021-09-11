@@ -89,6 +89,18 @@ ship "Finch" "Finch (MZ)"
 		"outfit space" 140
 		"weapon capacity" 22
 		"engine capacity" 22
+		"thrust" 23.2
+		"thrusting energy" 0.8
+		"thrusting heat" 1.7
+		"flare sprite" "effect/atomic flare/tiny"
+			"frame rate" 14
+		"flare sound" "atomic tiny"
+		"turn" 204
+		"turning energy" 0.4
+		"turning heat" 1.1
+		"steering flare sprite" "effect/atomic flare/tiny"
+			"frame rate" 14
+		"steering flare sound" "atomic tiny"
 	outfits
 		"Electron Beam" 2
 		
@@ -101,8 +113,6 @@ ship "Finch" "Finch (MZ)"
 		"LP036a Battery Pack"
 		"Fission Reactor"
 		
-		"A125 Atomic Steering"
-		"A120 Atomic Thruster"
 		"Ionic Afterburner"
 
 
