@@ -111,7 +111,7 @@ phrase "generic pirate fleet battle on visit"
 
 phrase "generic completed pirate cargo mission"
 	word
-		`You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>.`
+		`You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship, and you collect your payment of <payment>.`
 
 phrase "generic completed highly illegal pirate cargo mission"
 	word
