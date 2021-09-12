@@ -220,8 +220,7 @@ namespace {
 		}
 		
 		// If the most divergent point is close enough to the outline, stop.
-		double lengthSquared = max(1., (p[last] - p[first]).LengthSquared());
-		if(dmax * lengthSquared < 100.)
+		if(dmax < 1.)
 			return;
 		
 		// Recursively simplify the lines to both sides of that point.
