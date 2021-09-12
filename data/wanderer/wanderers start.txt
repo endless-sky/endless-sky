@@ -1051,14 +1051,14 @@ mission "Wanderers: Alpha Surveillance C (Pug)"
 				`	(Yes.)`
 				`	(No.)`
 					decline
-			`	You try to get several of the Pug to talk to you, but most of them pointedly ignore you. Eventually, probably because you've made it clear that you are not going away, one of them approaches you carrying a small black box. It speaks to the box in its language, and the box says, "Hello you are a human you are from planet earth are you not." It seems that the box is a rudimentary translation device.`
+			`	You try to get several of the Pug to talk to you, but most of them pointedly ignore you. Eventually, probably because you've made it clear that you are not going away, one of them approaches you carrying a small black box. It speaks to the box in its language, and the box says, "Hello you are a human you are from planet Earth are you not." It seems that the box is a rudimentary translation device, speaking in a monotone voice and without pausing between sentences. It is somewhat jarring to listen to, but you understand what is being said.`
 			`	You say, "Yes, that's correct."`
 			`	The box appears to translate your words, and the Pug responds to it. The box says, "Humans are not our responsibility why have you come to our planet."`
 			choice
 				`	"The Alphas are causing trouble again, and I've heard that you helped us fight them in the past."`
 				`	"The Alphas have sided with the ones who are invading the Wanderers. Can you help us track them down?"`
-			`	The Pug speaks again. "Who are the alphas that name is not known to us."`
-			`	You do your best to explain. Perhaps the humans of the Deep were wrong that the Pug knew about the Alphas? The Pug responds, "We can defend the Wanderers but the Hai and humans are beyond our jurisdiction we will not enter their space."`
+			`	The Pug speaks again. "Who are the Alphas that name is not known to us."`
+			`	You do your best to explain. Perhaps the humans of the Deep were wrong that the Pug knew about the Alphas. The Pug responds, "We can defend the Wanderers but the Hai and humans are beyond our jurisdiction we will not enter their space."`
 			choice
 				`	(Give up and leave.)`
 					decline
@@ -2721,20 +2721,49 @@ mission "Wanderers Ap'arak 2"
 
 
 
-mission "Wanderers Ap'arak 3: Pug"
+# TODO: When "complete anywhere" functionality is available, 
+# condense the following three missions into a single mission
+mission "Wanderers Ap'arak 3: Pug 1"
 	landing
 	invisible
 	source "Varu Tev'kei"
 	to offer
 		has "Wanderers Ap'arak 2: done"
-	npc kill
+		not "Wanderers Ap'arak 3: Pug: offered"
+	npc save
 		personality staying unconstrained uninterested
 		government "Pug (Wanderer)"
 		ship "Pug Arfecta" "Hork Ekekek Ptui"
+	to complete
+		never
+
+mission "Wanderers Ap'arak 3: Pug 2"
+	landing
+	invisible
+	source "Varu Tev'kei"
+	to offer
+		has "Wanderers Ap'arak 2: done"
+		not "Wanderers Ap'arak 3: Pug: offered"
+	npc save
+		personality staying unconstrained uninterested
+		government "Pug (Wanderer)"
 		ship "Pug Arfecta" "Graak Sput Kchoo"
-	on complete
-		dialog `Shortly after defeating the Pug ships, you receive a message from Sobari Tele'ek: "We are [aware? incredulous?] of reports that you have [exterminated, eradicated] our Keepers in the Ap'arak system. This is unacceptable! From now on, you are no longer welcome in our [territory, space]."`
+	to complete
+		never
+
+mission "Wanderers Pug Hostile"
+	landing
+	source
+		government "Wanderer"
+	to offer
+		has "Wanderers Ap'arak 3: Pug 1: failed"
+		has "Wanderers Ap'arak 3: Pug 2: failed"
+	on offer
+		set "Wanderers Ap'arak 3: Pug: done"
 		"reputation: Wanderer" <?= -1
+		conversation
+			`You receive a message from Sobari Tele'ek: "We are [aware? incredulous?] of reports that you have [exterminated, eradicated] our Keepers in the Ap'arak system. This is unacceptable! From now on, you are no longer welcome in our [territory, space]."`
+				flee
 
 mission "Wanderers Ap'arak 3"
 	landing

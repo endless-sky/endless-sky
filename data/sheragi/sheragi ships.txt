@@ -11,6 +11,7 @@
 ship "Emerald Sword"
 	sprite ship/emeraldsword
 	thumbnail "thumbnail/emeraldsword"
+	swizzle 3
 	attributes
 		category "Heavy Warship"
 		"cost" 100000000
@@ -131,6 +132,7 @@ ship "Emerald Sword"
 ship "Emerald Sword" "Emerald Sword (Fixed)"
 	sprite ship/emeraldsword
 	thumbnail "thumbnail/emeraldsword"
+	swizzle 3
 	outfits
 		"Dragonflame Cannon"
 		"Particle Waveform Turret" 6
@@ -156,6 +158,7 @@ ship "Emerald Sword" "Emerald Sword (Fixed)"
 ship "Black Diamond"
 	sprite "ship/blackdiamond"
 	thumbnail "thumbnail/blackdiamond"
+	swizzle 9
 	attributes
 		category "Fighter"
 		"cost" 1000000

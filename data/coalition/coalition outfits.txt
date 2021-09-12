@@ -56,6 +56,31 @@ outfit "Large Reactor Module"
 	"heat generation" 45
 	description "This reactor was designed for the most powerful Heliarch warships. Its design has not changed significantly in the millennia since the first battle with the Quarg, but each generation of reactors is made slightly more efficient than the previous ones."
 
+outfit "Small Cogeneration Module"
+	category "Power"
+	licenses
+		Coalition
+	cost 176000
+	thumbnail "outfit/small cogeneration module"
+	"mass" 11
+	"outfit space" -11
+	"energy generation" 1.15
+	"heat generation" .85
+	description "The Kimek originally created much larger versions of this module, intended to provide energy for their hunger towers."
+	description "	This compact design recovers much of what would otherwise be waste heat, making it a very efficient fuel cell."
+
+outfit "Large Cogeneration Module"
+	category "Power"
+	licenses
+		Coalition
+	cost 799000
+	thumbnail "outfit/large cogeneration module"
+	"mass" 46
+	"outfit space" -46
+	"energy generation" 5.3
+	"heat generation" 3.45
+	description "Without much exciting work available in peacetime, many Coalition engineers take to tinkering with existing equipment to improve its efficiency."
+
 outfit "Small Battery Module"
 	category "Power"
 	licenses
@@ -170,6 +195,19 @@ outfit "Cooling Module"
 	"active cooling" 21
 	"cooling energy" 1.4
 	description "This cooling module consumes energy. To conserve power, it does not ramp up to full strength unless a ship is very close to overheating."
+
+outfit "Fuel Module"
+	category "Systems"
+	licenses
+		Coalition
+	cost 270000
+	thumbnail "outfit/fuel module"
+	"mass" 19
+	"outfit space" -19
+	"fuel capacity" 400
+	"fuel protection" .25
+	description "In their early days of space exploration, the Saryds developed the fuel module to travel far from Saros without worrying about becoming stranded without fuel, or sudden fuel leaks."
+	description "	Nowadays, nearly every system on the Coalition has refuelling facilities, but some captains still find use in the extra jumps these modules offer."
 
 outfit "Scanning Module"
 	category "Systems"

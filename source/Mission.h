@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionSet.h"
 #include "Date.h"
+#include "EsUuid.h"
 #include "LocationFilter.h"
 #include "MissionAction.h"
 #include "NPC.h"
@@ -44,6 +45,13 @@ class UI;
 class Mission {
 public:
 	Mission() = default;
+	// Copying a mission instance isn't allowed.
+	Mission(const Mission &) = delete;
+	Mission &operator=(const Mission &) = delete;
+	Mission(Mission &&) noexcept = default;
+	Mission &operator=(Mission &&) noexcept = default;
+	~Mission() noexcept = default;
+	
 	// Construct and Load() at the same time.
 	Mission(const DataNode &node);
 	
@@ -54,6 +62,7 @@ public:
 	void Save(DataWriter &out, const std::string &tag = "mission") const;
 	
 	// Basic mission information.
+	const EsUuid &UUID() const noexcept;
 	const std::string &Name() const;
 	const std::string &Description() const;
 	// Check if this mission should be shown in your mission list. If not, the
@@ -171,6 +180,8 @@ private:
 	std::string description;
 	std::string blocked;
 	Location location = SPACEPORT;
+	
+	EsUuid uuid;
 	
 	bool hasFailed = false;
 	bool isVisible = true;
