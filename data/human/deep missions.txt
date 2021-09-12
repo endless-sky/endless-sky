@@ -2730,9 +2730,7 @@ mission "Stone of our Fathers 5"
 			choice
 				`	(Follow Thorleif back to the village.)`	
 			`	The two of you trudge back to the small hamlet of Grimssalr, with its people happy at having guests and long lost relatives, and to Ragnhild, happy to spend more time with Thorlief, where you feast and talk and laugh and remember.`
-			choice
-				`	(You enjoy yourself well into the night before finally succumbing to sleep.)`
-			`	In the morning the three of you catch the hovercraft back to the spaceport.`
+			`	You enjoy yourself well into the evening before Thorleif approaches you. It's time to head back.`
 			`	"This place," Thorleif begins, "this world, it feels like it has forgotten its soul. Industry and greed have taken hold, and the old happy places like Grimssalr are dying. It is good my family left here all those years ago. Norn is, and has been, a good place to be."`
 			`	Thorleif then nods to Ragnhild. "Which is also why my very new and very dear friend Ragnhild has decided to join us on the return trip to Norn." You look to Ragnhild but somehow you can't feel that you're surprised at the news.`
 			`	She smiles brightly. "Best offer I've had in a long time." The three of you board your ship and prepare for the journey home.`
