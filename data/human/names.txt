@@ -64,8 +64,8 @@ phrase "civilian"
 		"civilian subphrase 3" 50000    # [name or title]'s [noun]
 		"civilian subphrase 4" 44521    # [nouns] and [Nouns]
 		"civilian subphrase 5" 3080     # [quantity] of [nouns]
-		"civilian subphrase 6" 6994     # [male or gender-neutral title] [male name or thing you can be of]
-		"civilian subphrase 7" 6552     # [female or gender-neutral title] [female name or thing you can be of]
+		"civilian subphrase 6" 6000     # [male or gender-neutral title] [male name or thing you can be of]
+		"civilian subphrase 7" 6000     # [female or gender-neutral title] [female name or thing you can be of]
 		"civilian subphrase 8" 38052    # [name] the [adjective]
 		"civilian subphrase 9" 50000    # [noun or adjective] [title] [sometimes a successor]
 		"civilian subphrase 10" 50000   # [noun] [thing you can be of]
@@ -819,6 +819,7 @@ phrase "male names"
 		"Ravi"
 		"Sirhan"
 		"Zev"
+		"Joseph"
 
 phrase "female names"
 	word
@@ -952,6 +953,8 @@ phrase "female names"
 		"Sura"
 		"Zarifa"
 		"Grace"
+		"Andromeda"
+		"Cassiopeia"
 
 phrase "one to twelve"
 	word
@@ -1519,8 +1522,8 @@ phrase "civilian subphrase 1"
 	word
 		" "
 	phrase
-		"male names" 122
-		"female names" 130
+		"male names" 123
+		"female names" 132
 		"singular nouns" 201
 		"plural nouns" 110
 		"nouns of indeterminate quantity" 101
@@ -1601,7 +1604,7 @@ phrase "civilian subphrase 6"
 	word
 		" "
 	phrase
-		"male names" 122
+		"male names" 123
 		"things you can be of" 416
 
 # e.g.:
@@ -1614,7 +1617,7 @@ phrase "civilian subphrase 7"
 	word
 		" "
 	phrase
-		"female names" 130
+		"female names" 132
 		"things you can be of" 416
 
 # e.g.:
@@ -1681,7 +1684,7 @@ phrase "civilian subphrase 12"
 		"nouns of indeterminate quantity" 101
 		"singular nouns" 201
 		"all titles" 25
-		"female names" 130
+		"female names" 132
 	phrase
 		"sometimes a successor"
 
@@ -2640,7 +2643,7 @@ phrase "syndicate fighter"
 
 phrase "pirate"
 	phrase
-		"pirate subphrase 1" 254    # standalone pirate ship names
+		"pirate subphrase 1" 261    # standalone pirate ship names
 		"pirate subphrase 2" 2000   # [adjective] [noun or bad outcome]
 		"pirate subphrase 3" 2000   # [adjective] [sinister name or bad outcome]
 		"pirate subphrase 4" 1500   # [sinister name]'s [noun or bad outcome]
@@ -2648,8 +2651,8 @@ phrase "pirate"
 		"pirate subphrase 6" 2000   # [noun] of [bad outcome]
 		"pirate subphrase 7" 3000   # [bad outcome or adjective] [noun]
 		"pirate subphrase 8" 184    # [noun or bad outcome]
-		"pirate subphrase 9" 3060   # [noun or bad condition][noun]
-		"pirate subphrase 10" 648   # [bad condition] [positive noun or good condition]
+		"pirate subphrase 9" 3168   # [noun or bad condition][noun]
+		"pirate subphrase 10" 725   # [bad condition] [positive noun or good condition]
 
 phrase "bounty hunter"
 	phrase
@@ -2729,6 +2732,14 @@ phrase "sinister names"
 		"Urgok"
 		"Bruja"
 		"Dante"
+		"Cetus"
+		"Seren"
+		"Zenda"
+		"Bartram"
+		"Zell"
+		"Nictis"
+		"Ragnor"
+		"Maggard"
 
 # e.g. Simon the Brutal, Vexan the Cannibal, Vlad the Impaler
 phrase "pirate adjectives that work as titles"
@@ -2763,6 +2774,7 @@ phrase "pirate adjectives that work as titles"
 		"Rusty"
 		"Painful"
 		"Murderous"
+		"Sadist"
 		"Sadistic"
 		"Flayed"
 		"Greedy"
@@ -2777,12 +2789,19 @@ phrase "pirate adjectives that work as titles"
 		"Salty"
 		"Greasy"
 		"Nasty"
+		"Cruel"
 		"Impaler"
 		"Grotesque"
 		"Hateful"
 		"Grim"
 		"Fat"
 		"Portly"
+		"Mad"
+		"Crazy"
+		"Penetrating"
+		"Miserable"
+		"Infectious"
+		"Hulking"
 
 phrase "pirate adjectives that don't work as titles"
 	word
@@ -2831,6 +2850,7 @@ phrase "pirate adjectives that don't work as titles"
 		"Naked"
 		"Hobbled"
 		"Chained"
+		"Bound"
 		"Haunted"
 		"Piercing"
 		"Thunderous"
@@ -2980,6 +3000,7 @@ phrase "pirate nouns"
 		"Heart"
 		"Slayer"
 		"Vulture"
+		"Anthrax"
 
 phrase "pirate nouns that work after bad outcomes"
 	word
@@ -3321,27 +3342,34 @@ phrase "pirate subphrase 1"
 		"Demeter"
 		"Antonia Graza"
 		"Mortzestus"
+		"Interfector"
+		"Red Gauntlet"
+		"Whirlwind"
+		"Wolf's Claw"
+		"Virulence"
+		"Septimus Severus"
+		"Benighted"
 
 phrase "pirate subphrase 2"
 	phrase
-		"pirate adjectives that don't work as titles" 66
-		"pirate adjectives that work as titles" 50
+		"pirate adjectives that don't work as titles" 67
+		"pirate adjectives that work as titles" 58
 	word
 		" "
 	phrase
-		"pirate nouns" 107
+		"pirate nouns" 108
 		"pirate nouns that work after bad outcomes" 27
 		"bad outcomes" 50
 
 phrase "pirate subphrase 3"
 	phrase
 		"pirate adjectives that don't work before singular nouns" 15
-		"pirate adjectives that don't work as titles" 66
-		"pirate adjectives that work as titles" 50
+		"pirate adjectives that don't work as titles" 67
+		"pirate adjectives that work as titles" 58
 	word
 		" "
 	phrase
-		"sinister names" 70
+		"sinister names" 78
 		"bad outcomes" 50
 
 phrase "pirate subphrase 4"
@@ -3350,7 +3378,7 @@ phrase "pirate subphrase 4"
 	word
 		"%'s "
 	phrase
-		"pirate nouns" 107
+		"pirate nouns" 108
 		"pirate nouns that work after bad outcomes" 27
 		"bad outcomes" 50
 	# When making a word ending in "s" possessive, only add an apostrophe.
@@ -3368,7 +3396,7 @@ phrase "pirate subphrase 5"
 
 phrase "pirate subphrase 6"
 	phrase
-		"pirate nouns" 107
+		"pirate nouns" 108
 		"pirate nouns that work after bad outcomes" 27
 	word
 		" of "
@@ -3378,8 +3406,8 @@ phrase "pirate subphrase 6"
 phrase "pirate subphrase 7"
 	phrase
 		"bad outcomes" 50
-		"pirate adjectives that work as titles" 50
-		"pirate adjectives that don't work as titles" 66
+		"pirate adjectives that work as titles" 58
+		"pirate adjectives that don't work as titles" 67
 	word
 		" "
 	phrase
@@ -3387,7 +3415,7 @@ phrase "pirate subphrase 7"
 
 phrase "pirate subphrase 8"
 	phrase
-		"pirate nouns" 107
+		"pirate nouns" 108
 		"pirate nouns that work after bad outcomes" 27
 		"bad outcomes" 50
 
@@ -3429,6 +3457,7 @@ phrase "pirate subphrase 9"
 		"Hard"
 		"Hell"
 		"Filth"
+		"Star"
 	word
 		"oath"
 		"fire"
@@ -3515,6 +3544,9 @@ phrase "pirate subphrase 9"
 		"star"
 		"fink"
 		"spot"
+		"butcher"
+		"prison"
+		"stone"
 
 phrase "pirate subphrase 10"
 	word
@@ -3542,6 +3574,8 @@ phrase "pirate subphrase 10"
 		"Broken"
 		"Vanquished"
 		"Drowned"
+		"Spoiled"
+		"Ruined"
 	word
 		" "
 	word
@@ -3572,6 +3606,9 @@ phrase "pirate subphrase 10"
 		"Time"
 		"Fate"
 		"Boys"
+		"Embrace"
+		"Caress"
+		"Fortune"
 
 phrase "bounty hunter subphrase 1"
 	word
