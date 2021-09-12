@@ -67,14 +67,14 @@ ConditionsStore::PrimariesIterator::PrimariesIterator(CondMapItType it, CondMapI
 
 
 
-std::pair<std::string, int64_t> ConditionsStore::PrimariesIterator::operator*() const
+pair<string, int64_t> ConditionsStore::PrimariesIterator::operator*() const
 {
 	return itVal;
 }
 
 
 
-const std::pair<std::string, int64_t>* ConditionsStore::PrimariesIterator::operator->()
+const pair<string, int64_t>* ConditionsStore::PrimariesIterator::operator->()
 {
 	return &itVal;
 }
@@ -149,7 +149,7 @@ ConditionsStore::ConditionsStore(const map<string, int64_t> &initialConditions)
 // Get a condition from the Conditions-Store. Retrieves both conditions
 // that were directly set (primary conditions) as well as conditions
 //derived from other data-structures (derived conditions).
-int64_t ConditionsStore::Get(const std::string &name) const
+int64_t ConditionsStore::Get(const string &name) const
 {
 	const ConditionEntry *ce = GetEntry(name);
 	if(!ce)
@@ -160,7 +160,7 @@ int64_t ConditionsStore::Get(const std::string &name) const
 
 
 
-bool ConditionsStore::Has(const std::string &name) const
+bool ConditionsStore::Has(const string &name) const
 {
 	const ConditionEntry *ce = GetEntry(name);
 	if(!ce)
