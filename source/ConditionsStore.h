@@ -57,6 +57,13 @@ private:
 	class ConditionEntry
 	{
 	public:
+		int64_t Get(const std::string& name) const;
+		bool Has(const std::string& name) const;
+		bool Set(const std::string& name, int64_t newValue);
+		bool Erase(const std::string& name);
+	
+	
+	public:
 		StorageType type = VALUE;
 		int64_t value;
 		DerivedProvider provider;
