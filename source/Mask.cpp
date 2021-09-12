@@ -35,7 +35,6 @@ namespace {
 		};
 		raw.clear();
 		
-		// Trace multiple outlines.
 		auto hasOutline = vector<bool>(numPixels, false);
 		vector<int> directions;
 		vector<Point> points;
@@ -45,73 +44,79 @@ namespace {
 			directions.clear();
 			points.clear();
 			
-			// Find a non-empty pixel that has no outline.
+			// Find a pixel with some renderable color data (i.e. a non-zero alpha component).
 			for( ; start < numPixels; ++start)
 			{
 				if(begin[start] & on)
 				{
-					// The pixel is occupied and not an outline, start tracing.
+					// If this pixel is not part of an existing outline, trace it.
 					if(!hasOutline[start])
 						break;
-					// Skip to the next unoccupied pixel.
-					for(++start ; start < numPixels; ++start)
+					// Otherwise, advance to the next transparent pixel.
+					// (any non-transparent pixels will belong to the existing outline).
+					for(++start; start < numPixels; ++start)
 						if(!(begin[start] & on))
 							break;
 				}
 			}
-			if(start == numPixels)
+			if(start >= numPixels)
 			{
 				if(raw.empty())
-					LogError("no border pixels found! Collision masks require a transparent outline!");
+					LogError("all pixels were transparent!");
 				return;
 			}
 			
-			// We will step around the outline in these 8 basic directions:
-			static const int step[8][2] = {
-				{0, -1}, {1, -1}, {1, 0}, {1, 1},
-				{0, 1}, {-1, 1}, {-1, 0}, {-1, -1}};
-			const int off[8] = {
-				-width, -width + 1, 1, width + 1,
-				width, width - 1, -1, -width - 1};
-			static const double scale[2] = { 1., 1. / sqrt(2.) };
+			// Direction kernel for obtaining the 8 nearest neighbors, beginning with "N" and
+			// moving clockwise (since the frame data starts in the top-left and moves L->R).
+			static const int step[][2] = {
+				{0, -1}, { 1, -1}, { 1, 0}, { 1,  1},
+				{0,  1}, {-1,  1}, {-1, 0}, {-1, -1},
+			};
+			// Convert from a direction index to the desired pixel.
+			const int off[] = {
+				-width, -width + 1,  1,  width + 1,
+				 width,  width - 1, -1, -width - 1,
+			};
 			
-			// Loop until we come back to the start and record directions.
-			int x = start % width;
-			int y = start / width;
-			int pos = start;
+			// Loop until we come back to the start, recording the directions
+			// that outline each pixel (rather than the actual pixel itself).
 			int d = 7;
+			// The current image pixel, in index coordinates.
+			int pos = start;
+			// The current image pixel, in (X, Y) coordinates.
+			int p[] = {pos % width, pos / width};
 			do {
 				hasOutline[pos] = true;
 				int firstD = d;
-				int nextX;
-				int nextY;
+				// The image pixel being inspected, in XY coords.
+				int next[] = {p[0], p[1]};
 				bool isAlone = false;
 				while(true)
 				{
-					nextX = x + step[d][0];
-					nextY = y + step[d][1];
-					// Use padded comparisons in case errors somehow accumulate and
-					// the doubles are no longer canceling out to 0.
-					if((nextX >= 0) & (nextY >= 0) & (nextX < width) & (nextY < height))
+					next[0] = p[0] + step[d][0];
+					next[1] = p[1] + step[d][1];
+					// First, ensure an offset in this direction would access a valid pixel index.
+					if(next[0] >= 0 && next[0] < width && next[1] >= 0 && next[1] < height)
+						// If that pixel has color data, then add it to the outline.
 						if(begin[pos + off[d]] & on)
 							break;
 					
-					// Advance to the next direction.
+					// Otherwise, advance to the next direction.
 					d = (d + 1) & 7;
 					// If this point is alone, bail out.
 					if(d == firstD)
 					{
 						isAlone = true;
-						LogError("lone point found at (" + to_string(x) + ", " + to_string(y) + ")");
-						// TODO: Should this be a `break`?
-						return;
+						LogError("lone point found at (" + to_string(p[0]) + ", " + to_string(p[1]) + ")");
+						break;
 					}
 				}
 				if(isAlone)
 					break;
 				
-				x = nextX;
-				y = nextY;
+				// Advance the pixels and store the direction traveled.
+				p[0] = next[0];
+				p[1] = next[1];
 				pos += off[d];
 				directions.push_back(d);
 				
@@ -121,15 +126,16 @@ namespace {
 				// Loop until we are back where we started.
 			} while(pos != start);
 			
-			// At least 4 points are needed to circle a transparent pixel.
+			// At least 4 points are needed to outline a non-transparent pixel.
 			if(directions.size() < 4)
 				continue;
 			
-			// Interpolate points from directions and alpha values.
+			
+			// Interpolate outline points from directions and alpha values, rather than just the pixel's XY.
 			points.reserve(directions.size());
-			x = start % width;
-			y = start / width;
 			pos = start;
+			p[0] = pos % width;
+			p[1] = pos / width;
 			int prev = directions.back();
 			for(int next : directions)
 			{
@@ -137,17 +143,17 @@ namespace {
 				int out0 = (prev + 6) & 7;
 				int out1 = (next + 6) & 7;
 				
-				// Adjust position.
-				Point point = Point(
+				// Determine the subpixel shift, where higher alphas will shift the estimate outward.
+				// (MAYBE: use an actual alpha gradient for dir & magnitude, or remove altogether.)
+				static const double scale[] = { 1., 1. / sqrt(2.) };
+				Point shift = Point(
 					step[out0][0] * scale[out0 & 1] + step[out1][0] * scale[out1 & 1],
 					step[out0][1] * scale[out0 & 1] + step[out1][1] * scale[out1 & 1]).Unit();
-				point *= ((begin[pos] & on) >> 24) * (1. / 255.) - .5;
-				point.X() += x;
-				point.Y() += y;
-				points.push_back(point);
+				shift *= ((begin[pos] & on) >> 24) * (1. / 255.) - .5;
+				points.push_back(shift + Point(p[0], p[1]));
 				
-				x += step[next][0];
-				y += step[next][1];
+				p[0] += step[next][0];
+				p[1] += step[next][1];
 				pos += off[next];
 				prev = next;
 			}
@@ -214,8 +220,7 @@ namespace {
 		}
 		
 		// If the most divergent point is close enough to the outline, stop.
-		double lengthSquared = max(1., (p[last] - p[first]).LengthSquared());
-		if(dmax * lengthSquared < 100.)
+		if(dmax < 1.)
 			return;
 		
 		// Recursively simplify the lines to both sides of that point.
