@@ -134,20 +134,20 @@ string Format::Number(double value)
 	double decimal = modf(value, &value);
 	if(decimal && value < 10000)
 	{
-		int tenths = static_cast<int>(decimal * 10.);
-		// Values up to 1000 may have two decimal places.
-		if(value < 1000)
+		double tenths = 0.;
+		// Account for floating-point representation error by adding EPS after multiplying.
+		int hundredths = static_cast<int>(0.0000000001 + 10. * modf(decimal * 10., &tenths));
+		if(hundredths > 9)
 		{
-			decimal *= 10.;
-			decimal -= static_cast<int>(decimal);
-			// Fix any floating point inaccuracy.
-			decimal = round(decimal * 100.) / 100.;
-			
-			int hundredths = static_cast<int>(decimal * 10.);
-			if(hundredths)
-				result += static_cast<char>('0' + hundredths);
+			hundredths = 0;
+			++tenths;
 		}
-		if(tenths)
+		
+		// Values up to 1000 may have two decimal places.
+		bool two = value < 1000 && hundredths;
+		if(two)
+			result += static_cast<char>('0' + hundredths);
+		if(two || tenths)
 		{
 			result += static_cast<char>('0' + tenths);
 			result += '.';

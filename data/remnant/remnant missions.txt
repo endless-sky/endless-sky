@@ -3695,7 +3695,11 @@ mission "Remnant: Bounty 3"
 	source
 		government "Remnant"
 	to offer
-		has "Remnant: Cognizance 4: failed"
+		# 0.9.13 Compatibility patch
+		or
+			has "Remnant: Cognizance 4: done"
+			has "Remnant: Cognizance 4: failed"
+		not "Remnant: Cognizance 4: aborted"
 		random < 40
 	npc kill
 		government "Korath"
@@ -3722,7 +3726,11 @@ mission "Remnant: Cognizance 5"
 	source "Caelian"
 	waypoint "Aescolanus"
 	to offer
-		has "Remnant: Cognizance 4: done"
+		# 0.9.13 Compatibility patch
+		or
+			has "Remnant: Cognizance 4: done"
+			has "Remnant: Cognizance 4: failed"
+		not "Remnant: Cognizance 4: aborted"
 	on offer
 		conversation
 			branch fleetkilled
