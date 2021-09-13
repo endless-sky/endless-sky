@@ -2558,7 +2558,7 @@ mission "Stone of our Fathers 4"
 	on offer
 		conversation
 			`Helm meets you in the nearly deserted spaceport bar. "Ma' always had a soft spot for Uncle Skaldgar, even after he ran off 35 years ago, she still spoke fondly of him. He always sent the family money, he was good like that. Not as good, though, in sending his love."`
-			`	Helm sighs, "This is going to be tough, but as bearer of the Stone, you are going to need to present it to his son. His family lives on a floating island to the south of here. Are you willing to accompany me?"`
+			`	Helm sighs, "This is going to be tough, but as bearer of the Stone, you are going to need to present it to his son. His family lives on a floating habitat to the south of here. Are you willing to accompany me?"`
 			choice
 				`	"I've come this far. I might as well finish it."`
 					goto accept
