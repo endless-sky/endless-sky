@@ -2637,10 +2637,8 @@ mission "Stone of our Fathers 4"
 			`	In turn, they tell you about the sea beasts, leviathans, and krakens that they have met on the ocean currents of Norn. Of lost isles filled with forgotten treasure or strange people, or stories even, about the ancient elves who once aided their ancestors and are said to be around still.`
 			choice
 				`	(Ask about the elves.)`
-					goto elves
 				`	(Ask about lost treasure.)`
 					goto treasure
-			label elves
 			`	The idea of Elves, or Alfar as they call them, intrigues you, and you ask what they know of them.`
 			`	"The Alfar," Thorleif begins, "are said to have been a great help to us in the early days. Some say they spared us from plagues and protected us from monsters. Many still offer sacrifices and prayers to them, so that they remember us and know that we are friends and allies still."`
 			`	Thorleif shrugs. "This may be true, and good at that, but others think the Alfar, for all their apparent good works, cannot be trusted. Their minds are unknowable and filled with mischief, and their aims are not ours. This is the belief that our family holds to. They should be respected, but also feared. We must look to each other for support and strength, and trust not in the deeds of strangers."`
