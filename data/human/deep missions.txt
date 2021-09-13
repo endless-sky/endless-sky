@@ -2562,6 +2562,8 @@ mission "Stone of our Fathers 4"
 			choice
 				`	"I've come this far. I might as well finish it."`
 					goto accept
+				`	"Absolutely, I want to see this through."
+					goto accept
 				`	"No, This is as far as I go. I got the stone to you, and it's your problem now."`
 					goto decline
 			label decline
