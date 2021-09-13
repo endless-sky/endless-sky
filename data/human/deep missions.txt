@@ -2450,6 +2450,7 @@ mission "Stone of our Fathers 1"
 			`	He stops and frowns. "Look at me, rambling like an ol' man. Ser, Captain, I'd like to pay you <payment> to take me home, to <destination>."`
 			choice
 				`	"If you have coin, I have room."`
+				`	"I guess I can take a small detour."`
 				`	(You shake your head. You have better things to do than bus old men around.)`
 					goto decline
 			`	He nods, grunts, and heads to your ship with a small knapsack cradled under his arm, clearly ready to travel to <planet> at a moment's notice.`
