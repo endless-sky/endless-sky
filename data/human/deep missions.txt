@@ -2704,6 +2704,22 @@ mission "Stone of our Fathers 5"
 			`	As the sun begins to set, Thorleif approaches you, "It is time," he says. "The journey to the cairn is only a short hike from here. I would that you accompany me. I think Skaldgar would have wanted that."`	
 			choice
 				`	(Leave Grimssalr with Thorleif.)`
+					goto followcairn
+				`	"It is best you do this alone."`
+					goto stayingrim
+			label stayingrim
+			`	Thorleif frowns. "I cannot. It does not feel right. It is only because of you, that I am here at all. I need you by my side to finish this. For me, and for him.`
+			choice
+				`	(Leave with Grimssalr with Thorleif.)`
+					goto followcairn
+				`	"I am sorry. But I will not go."
+					goto beingstupid
+			label beingstupid
+			`	Thorleif's face reddens and abruptly he turns from you. He has no words left to argue with and leaves you to wait in the village.`
+			`	A short time later he returns, his eyes wet and red.`
+			`	"I have made my peace, I have read the runes of his life and returned his stone to the Family-Cairn of Hlewagast. He had few happy moments, and the only recent ones involved us both. He is gone now, and we remain." Thorleif wipes tears from his eyes. "Let us rest, and eat, and drink for a time. Skaldgar would have liked that, too."`
+				goto drinkandbemerry
+			label followcairn
 			`	You follow Thorleif up a mostly overgrown trail for about 30 minutes before finally stepping out into a wide open plain. The wind is cool and refreshing, and the grass blows with a steadiness that is somehow reassuring. There is something special, timeless, about this sudden meadow.`
 			`	You notice over two dozen columns of lain stone arranged in a circle around a much more massive and impressive structure. The lain stone columns must be cairns of various nearby families, but the massive structure in the center is something completely different. The structure is a wall, cut from some sort of metal you don't recognize and filled with letters and images that are unfamiliar to you.`
 			`	"That is an Elf-Stone. It is why we built our Family-Cairns here. Such stones can be found on most worlds in The Deep. Indestructible, and left by the Alfar for some unknowable reason. Some, like this one, have been mostly forgotten. Others though, are important places of celebration and even worship."`
@@ -2722,6 +2738,8 @@ mission "Stone of our Fathers 5"
 			choice
 				`	(Follow Thorleif back to the village.)`	
 			`	The two of you trudge back to the small hamlet of Grimssalr, with its people happy at having guests and long lost relatives, and to Ragnhild, happy to spend more time with Thorlief, where you feast and talk and laugh and remember.`
+					goto drinkandbemerry
+			label drinkandbemerry
 			`	You enjoy yourself well into the evening before Thorleif approaches you. It's time to head back.`
 			`	"This place," Thorleif begins, "this world, it feels like it has forgotten its soul. Industry and greed have taken hold, and the old happy places like Grimssalr are dying. It is good my family left here all those years ago. Norn is, and has been, a good place to be."`
 			`	Thorleif then nods to Ragnhild. "Which is also why my very new and very dear friend Ragnhild has decided to join us on the return trip to Norn." You look to Ragnhild but somehow you can't feel that you're surprised at the news.`
