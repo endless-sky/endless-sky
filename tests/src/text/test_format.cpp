@@ -137,15 +137,78 @@ TEST_CASE( "Format::Number", "[Format][Number]") {
 		CHECK( Format::Number(0.51) == "0.51" );
 		CHECK( Format::Number(0.56) == "0.56" );
 		CHECK( Format::Number(0.871) == "0.87" );
+		CHECK( Format::Number(0.072) == "0.07" );
 	}
 	SECTION( "Decimals between 10 and 100" ) {
 		CHECK( Format::Number(44.1234) == "44.12" );
 		CHECK( Format::Number(94.5) == "94.5" );
+		CHECK( Format::Number(10.1) == "10.1" );
+		CHECK( Format::Number(10.01) == "10.01" );
+		CHECK( Format::Number(10.02) == "10.02" );
+		CHECK( Format::Number(10.03) == "10.03" );
+		CHECK( Format::Number(10.04) == "10.04" );
+		CHECK( Format::Number(10.05) == "10.05" );
+		CHECK( Format::Number(10.06) == "10.06" );
+		CHECK( Format::Number(10.07) == "10.07" );
+		CHECK( Format::Number(10.08) == "10.08" );
+		CHECK( Format::Number(10.09) == "10.09" );
+		CHECK( Format::Number(10.10) == "10.1" );
+		CHECK( Format::Number(10.11) == "10.11" );
+		CHECK( Format::Number(10.12) == "10.12" );
+		CHECK( Format::Number(10.13) == "10.13" );
+		CHECK( Format::Number(10.14) == "10.14" );
+		CHECK( Format::Number(10.15) == "10.15" );
+		CHECK( Format::Number(10.16) == "10.16" );
+		CHECK( Format::Number(10.17) == "10.17" );
+		CHECK( Format::Number(10.18) == "10.18" );
+		CHECK( Format::Number(10.19) == "10.19" );
+		CHECK( Format::Number(10.20) == "10.2" );
+		CHECK( Format::Number(10.21) == "10.21" );
+		CHECK( Format::Number(10.22) == "10.22" );
+		CHECK( Format::Number(10.23) == "10.23" );
+		CHECK( Format::Number(10.24) == "10.24" );
+		CHECK( Format::Number(10.25) == "10.25" );
+		CHECK( Format::Number(10.26) == "10.26" );
+		CHECK( Format::Number(10.27) == "10.27" );
+		CHECK( Format::Number(10.28) == "10.28" );
+		CHECK( Format::Number(10.29) == "10.29" );
+		CHECK( Format::Number(10.30) == "10.3" );
+		CHECK( Format::Number(10.31) == "10.31" );
+		CHECK( Format::Number(10.32) == "10.32" );
+		CHECK( Format::Number(10.33) == "10.33" );
+		CHECK( Format::Number(10.34) == "10.34" );
+		CHECK( Format::Number(10.35) == "10.35" );
+		CHECK( Format::Number(10.36) == "10.36" );
+		CHECK( Format::Number(10.37) == "10.37" );
+		CHECK( Format::Number(10.38) == "10.38" );
+		CHECK( Format::Number(10.39) == "10.39" );
+		CHECK( Format::Number(10.40) == "10.4" );
+		CHECK( Format::Number(10.41) == "10.41" );
+		CHECK( Format::Number(10.42) == "10.42" );
+		CHECK( Format::Number(10.43) == "10.43" );
+		CHECK( Format::Number(10.44) == "10.44" );
+		CHECK( Format::Number(10.45) == "10.45" );
+		CHECK( Format::Number(10.46) == "10.46" );
+		CHECK( Format::Number(10.47) == "10.47" );
+		CHECK( Format::Number(10.48) == "10.48" );
+		CHECK( Format::Number(10.49) == "10.49" );
+		CHECK( Format::Number(10.50) == "10.5" );
+		CHECK( Format::Number(10.599) == "10.59" );
+		CHECK( Format::Number(10.60) == "10.6" );
+		CHECK( Format::Number(10.699) == "10.69" );
+		CHECK( Format::Number(10.70) == "10.7" );
+		CHECK( Format::Number(10.799) == "10.79" );
+		CHECK( Format::Number(10.80) == "10.8" );
+		CHECK( Format::Number(10.899) == "10.89" );
+		CHECK( Format::Number(10.90) == "10.9" );
+		CHECK( Format::Number(10.999) == "10.99" );
 		CHECK( Format::Number(-12.41) == "-12.41" );
 	}
 	SECTION( "Decimals between 100 and 1000" ) {
 		CHECK( Format::Number(256.) == "256" );
 		CHECK( Format::Number(466.1948) == "466.19" );
+		CHECK( Format::Number(107.093) == "107.09" );
+		CHECK( Format::Number(100.1) == "100.1" );
 		CHECK( Format::Number(-761.1) == "-761.1" );
 	}
 	SECTION( "Decimals between 1000 and 10'000" ) {
@@ -157,6 +220,12 @@ TEST_CASE( "Format::Number", "[Format][Number]") {
 		CHECK( Format::Number(12325.120) == "12,325" );
 		CHECK( Format::Number(45123.05) == "45,123" );
 		CHECK( Format::Number(-56413.2) == "-56,413" );
+	}
+	SECTION( "#6235: Decimals with 0 in tenths place" ) {
+		CHECK( Format::Number(100.06) == "100.06" );
+		CHECK( Format::Number(1000.03) == "1,000" );
+		CHECK( Format::Number(107.09) == "107.09" );
+		CHECK( Format::Number(0.0123) == "0.01" );
 	}
 }
 
