@@ -15,6 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Weapon.h"
 
+#include "Point.h"
+
 
 // Hazards are environmental effects created within systems. They are able to create
 // visual effects and damage or apply status effects to any ships within the system
@@ -23,6 +25,9 @@ class Hazard : public Weapon {
 public:
 	void Load(const DataNode &node);
 	
+	// Whether this hazard has a valid definition.
+	bool IsValid() const;
+	// The name of the hazard in the data files.
 	const std::string &Name() const;
 	// Does the strength of this hazard deviate over time?
 	bool Deviates() const;
