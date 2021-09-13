@@ -2704,8 +2704,6 @@ mission "Stone of our Fathers 5"
 			`	As the sun begins to set, Thorleif approaches you, "It is time," he says. "The journey to the cairn is only a short hike from here. I would that you accompany me. I think Skaldgar would have wanted that."`	
 			choice
 				`	(Leave Grimssalr with Thorleif.)`
-					goto grimfollow
-			label grimfollow
 			`	You follow Thorleif up a mostly overgrown trail for about 30 minutes before finally stepping out into a wide open plain. The wind is cool and refreshing, and the grass blows with a steadiness that is somehow reassuring. There is something special, timeless, about this sudden meadow.`
 			`	You notice over two dozen columns of lain stone arranged in a circle around a much more massive and impressive structure. The lain stone columns must be cairns of various nearby families, but the massive structure in the center is something completely different. The structure is a wall, cut from some sort of metal you don't recognize and filled with letters and images that are unfamiliar to you.`
 			`	"That is an Elf-Stone. It is why we built our Family-Cairns here. Such stones can be found on most worlds in The Deep. Indestructible, and left by the Alfar for some unknowable reason. Some, like this one, have been mostly forgotten. Others though, are important places of celebration and even worship."`
