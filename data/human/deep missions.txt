@@ -2697,7 +2697,7 @@ mission "Stone of our Fathers 5"
 			`	For the next three hours, it sounds as if they are in deep conversation, while you drift in and out of sleep watching as oil fields give way to rainforests and then rainforests shrink before great wooded mountains.`
 			`	At some point you feel Thorleif shaking your shoulder. "We're here."`
 			choice
-				`	(Yawning, you rise from your warm seat.)`
+				`	(You rise from your seat.)`
 			`	The town of Grimssalr is nestled along the foothills of the towering Ettin mountains in western Alfheim. Town is perhaps too generous a word; it is instead more like a couple dozen houses mostly filled with old people long abandoned by their children seeking wealth and adventure elsewhere.`
 			`	The woman, who you've learned is named Ragnhild, introduces Thorleif to some of the folks here, and before long they have found ways to connect their ancient genealogies together and everyone is suddenly treated as family. Before you know it, you are eating their meager yet hearty fare, swapping stories of adventures, and listening to legends about the old times.`
 			`	As the sun begins to set, Thorleif approaches you, "It is time," he says. "The journey to the cairn is only a short hike from here. I would like you to accompany me. I think Skaldgar would have wanted that."`	
