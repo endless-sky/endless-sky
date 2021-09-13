@@ -27139,8 +27139,8 @@ planet Echo
 planet Eldergrasp
 	attributes station uninhabited hai retirement
 	landscape land/space6
-	description `A visitor to this station will immediately notice that the gravity is lower than most planets by about a third. There is a generously appointed reception area with an orderly on duty who informs you that, unless you have family at this respite facility, you will not be permitted to wander the station.`
-	spaceport `The spaceport is virtually non-existent, with just a single cafeteria, a fuel pump for the desperate, and a dedicated loading area for loading and unloading this retirement home's regular deliveries. Despite its small size, everything is in excellent condition.`
+	description `A visitor to this station will immediately notice that the gravity is lower than most planets by about a third. There is a generously appointed reception area with an orderly on duty who informs you that this is a respite home for the elderly, and unless you have family here, you will not be permitted to wander the station.`
+	spaceport `The spaceport is virtually non-existent, with just a single cafeteria, a fuel pump for the desperate, and a dedicated loading area for loading and unloading the facility's regular deliveries. Despite its small size, everything is in excellent condition.`
 	government Hai
 	bribe 0.1
 	security 0.8
@@ -27215,8 +27215,8 @@ planet "Esquiline"
 planet Everhope
 	attributes station hai
 	landscape land/space6
-	description `This station consistently has a large number of Hai warships docked at it, and further investigation reveals that it serves as the principle supply of fuel for the Hai military, as well as the staging point for resupplying ships heading to defend Wah Ki from the Unfettered. A monument beyond the docking area entrance attests to its history performing a similar role during the Korath raids before that.`
-	spaceport `The spaceport is dominated by its function as a military station, though it still has a dual-level promenade like its civilian counterparts of Ochrescoop and Greymoon. Several areas are restricted, but there are also freely accessible pubs and eateries, as well as an impressive cinema and a warehousing section for trading goods. The flooring is textured to prevent any slips and appears to be fairly new, while the rest of the station has a polished but well-worn feel to it.`
+	description `This station consistently has a large number of Hai warships docked at it, and further investigation reveals that it serves as the principal supply of fuel for the Hai military, as well as the staging point for resupplying ships heading to defend Wah Ki from the Unfettered. A monument beyond the docking area entrance attests to its history performing a similar role during the Korath raids before that.`
+	spaceport `The spaceport is dominated by its function as a military station, though it still has a dual-level promenade like its civilian counterparts of Ochrescoop and Greymoon. Several areas are restricted, but there are also freely accessible pubs and eateries, as well as an impressive cinema and a warehousing section for trading goods. The flooring is textured to prevent slipping and appears to be fairly new, while the rest of the station has a polished but well-worn feel to it.`
 	bribe 0.5
 	security 1
 
@@ -27568,8 +27568,8 @@ planet Glory
 planet Goldcrawl
 	attributes station uninhabited hai retirement
 	landscape land/space6
-	description `A visitor to this station will immediately notice that the gravity is lower than most planets by about a third. There is reception area just beyond the docking bay with an extremely long desk and a receptionist who informs you that, unless you have family at this respite facility, you will not be permitted to wander the station. At various stations along the desk, there are different service functions and a small sales counter with handicrafts made by the residents.`
-	spaceport `The spaceport is nonexistent. A trio of vending machines occupy the entranceway from the dedicated loading area for this retirement home's regular deliveries. The entire place has a somewhat tacky vibe to it, and its ventilation system doesn't quite cover up the antiseptic hospital smell of terrestrial aged care facilities.`
+	description `A visitor to this station will immediately notice that the gravity is lower than most planets by about a third. There is reception area just beyond the docking bay with an extremely long desk and a receptionist who informs you that this is a respite home for the elderly, and unless you have family here, you will not be permitted to wander the station. There are different service functions at various kiosks along the desk, as well as a small sales counter with handicrafts made by the residents.`
+	spaceport `The spaceport is nonexistent. A trio of vending machines occupy the entranceway from the dedicated loading area for the facility's regular deliveries. The entire place has a somewhat tacky vibe to it, and its ventilation system doesn't quite cover up the antiseptic hospital smell familiar to anyone who has visited terrestrial aged care facilities.`
 	government Hai
 	bribe 0.1
 	security 0.8
@@ -27592,7 +27592,7 @@ planet "Graveyard Wormhole (Stable)"
 planet Greymoon
 	attributes station hai
 	landscape land/space6
-	description `This station is owned and operated by the Far Loo Bah fuel collection corporation. Their logo is emblazoned on nearly every possible surface and sign, indicating their sponsorship of every service and feature on the station. Interestingly, this includes a "History of Spaceflight" museum which takes up an entire branch of the station. Naturally, the museum focuses very heavily on the Far Loo Bah corporation's role in that history.`
+	description `This station is owned and operated by the Far Loo Bah fuel collection corporation. Their logo is emblazoned on nearly every possible surface and sign, indicating their sponsorship of all manner of services and features on the station. Interestingly, this includes a "History of Spaceflight" museum which takes up an entire wing of the facility. Naturally, the museum focuses very heavily on the Far Loo Bah corporation's role in that history.`
 	spaceport `The spaceport consists of a wide, two-level promenade encircling the interior of the station, with the docking access opening directly onto the mezzanine. The upper level is mostly devoted to amenities, light commercial businesses, a medical center, and a bank. The lower level has all of the real businesses: multiple manufacturers, which are supplied by the heavier elements filtered out from the supply of fuel stock from the planet below, have store frontage here. A virtual outfitter provides sale options for locally-manufactured outfits that can be installed on your ship without you ever leaving the comfort of the promenade.`
 	outfitter "Hai Basics"
 	bribe 0.1
@@ -27631,9 +27631,9 @@ planet Greenrock
 planet Greenview
 	attributes station hai
 	landscape land/space6
-	description `Entering this station with your suit still on is an excellent way to fog up your faceplate. Although not strictly humid by the standards of a planet, the air nevertheless has a rich, moist, and faintly verdant quality atypical for a space station. The station is run by the Hei Low Io species preservation foundation, and the four branches of the station are each dedicated to a particular climate and host an array of habitats showcasing life from worlds beyond Hai space. An infographic proclaims it to be the largest collection of rare organisms sourced from private collections, rebuilt from genetic samples, or rescued before being exterminated locally when they were deemed invasive on Hai worlds. It also mentions that certain exhibits have been improved in some cases with species recently acquired from human space through secret trade deals.`
+	description `Entering this station with your suit still on is an excellent way to fog up your faceplate. Although not strictly humid by the standards of a planet, the air nevertheless has a rich, moist, and faintly verdant quality atypical of a space station. The station is run by the Hei Low Io species preservation foundation, and each of its four branches features a different internal climate showcasing life from worlds beyond Hai space. An infographic proclaims it to be the largest collection in the galaxy of of rare organisms sourced from private collections, rebuilt from genetic samples, or rescued before being exterminated locally when they were deemed invasive on Hai worlds. It also mentions that certain exhibits have been improved in some cases with species recently acquired from human space through secret trade deals.`
 	description `	The central spire is still largely residential, with some nursery and laboratory facilities.`
-	spaceport `The wide, two-level promenade comprising the spaceport is dedicated to a variety of themed eateries and gift stores, as well as some local artist galleries, a handicrafts store selling traditionally made curios from a long-abandoned world, and what appears to be an expansive and very well-equipped hospital which also services the planet below. The docking access opens directly onto the mezzanine, where a pair of information desks corner every possible route to ensure that the sizable number of tourists that visit here daily need not look far for assistance.`
+	spaceport `The spaceport's wide, two-level promenade is dedicated to a variety of themed eateries and gift stores, as well as some local artist galleries, a handicrafts store selling traditionally made curios from a long-abandoned world, and what appears to be an expansive and very well-equipped hospital which also services the planet below. The docking access opens directly onto the mezzanine, where a pair of information desks detail every possible route to ensure that the sizable number of tourists that visit here daily need not look far for assistance.`
 	bribe 0.1
 	security 0.5
 
@@ -28103,7 +28103,7 @@ planet Lightstead
 	attributes station uninhabited hai retirement
 	landscape land/space6
 	description `A visitor to this station will immediately notice that the gravity is lower than most planets by about a third. The reception area is lavish with several artworks and exotic plants. A well-groomed Hai receptionist informs you that, unless you have family at this respite facility, you will not be permitted to wander the station.`
-	spaceport `The spaceport is small but serviceable, and has what looks like a luxuriously appointed Centipede parked in a berth, presumably for entertainment voyages. There is a small but fancy cafe, and a gift shop with gold watches, jewelry, wines and other pricey trinkets. This place provides aged care respite for only the very wealthy.`
+	spaceport `The spaceport is small but serviceable, featuring a luxuriously appointed Centipede parked in a berth, presumably for entertainment voyages. There is a small but fancy cafe, and a gift shop with gold watches, jewelry, wines and other pricey trinkets. This place must provide aged care services for only the very wealthy.`
 	government Hai
 	bribe 0.3
 	security 1
@@ -28716,9 +28716,9 @@ planet Oblivion
 planet Ochrescoop
 	attributes station hai
 	landscape land/space6
-	description `A massive plaque attached to a bulkhead in the promenade entry proudly denotes this station to be run by "Yoot Ki Magnetic Fuel Harvesting". It seems that the powerful magnetic field of the gas giant below makes this station an ideal location for harvesting, and re-harvesting, the massive fuel volumes demanded by the Hai space industry. Despite a plaque also proudly denoting nearly 75,000 years of operation, the station seems to be in an excellent state of repair.`
+	description `A massive plaque attached to a bulkhead in the promenade entry proudly indicates that station has been run by Yoot Ki Magnetic Fuel Harvesting for over 75,000 years. It seems that the powerful magnetic field of the gas giant below makes this station an ideal location for harvesting and re-harvesting the massive volume of fuel demanded by the Hai space industry. Despite its long history of operation, the station seems to be in an excellent state of repair.`
 	spaceport `The spaceport, which consists of a wide promenade running around the interior of the station, seems to be divided into two distinct areas: the lower level, which contains all manner of amenities, services, and food places, and the upper level, which hosts the official Yoot Ki sales center in addition to a suite of different facilities for various research institutes. As it turns out, the powerful magnetic field of the world below also has certain advantages for scientific experiments.`
-	spaceport `	Floating next to the stairs a holographic sign proudly states that it's been over 7000 years since the last fatal safety accident.`
+	spaceport `	A holographic sign floating next to the stairs proudly states that over 7,000 years have elapsed since the past fatal safety accident.`
 	bribe 0.1
 	security 0.5
 
@@ -29573,8 +29573,8 @@ planet Sunracer
 planet Swiftsong
 	attributes station hai "hai tourism"
 	landscape land/space6
-	description `Swiftsong Station is maintained by the Imo Blep corporation, and is operated as a giant convention center. Most Hai stations have some degree of restricted access either beyond the docking bay or beyond the promenade possessed by all these stations of the same era. Swiftsong contrasts this by being almost completely open.`
-	description `	Tens of thousands of Hai pass through the docks of Swiftsong on an almost daily basis as the continual churn of summits, forums, conventions, symposiums, productions, conferences, weddings, festivals, and the like roll on in an endless cavalcade of life. With Icelake below and Hai-home just one jump away, this station is a major cultural hub that even houses the head office of one of the biggest music labels in Hai space.`
+	description `Swiftsong Station is operated and maintained by the Imo Blep corporation as a giant convention center. Most Hai stations restrict access beyond the docking bay or the promenade to at least some degree, but Swiftsong is almost completely open.`
+	description `	Tens of thousands of Hai pass through on an almost daily basis as the continual churn of summits, forums, conventions, symposiums, productions, conferences, weddings, festivals, and the like roll on in an endless cavalcade of life. With Icelake below and Hai-home just one jump away, this station is a major cultural hub that even houses the head office of one of the biggest music labels in Hai space.`
 	spaceport `The spaceport promenade runs around the interior of the station and is divided into the usual two levels, but has four additional ring levels reaching up where the promenade intersects the base of each of the stations main branches. Almost any business or service you could want can be found somewhere in the spaceport, except for that of an outfitter or shipyard, both of which are precluded by the expansion of the docking bay to accommodate the massive volume of daily traffic.`
 	bribe 0.1
 	security 0.5
