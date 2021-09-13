@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef WEATHER_H_
 #define WEATHER_H_
 
+#include "Point.h"
+
 #include <vector>
 
 class Hazard;
@@ -24,7 +26,7 @@ class Visual;
 class Weather {
 public:
 	Weather() = default;
-	explicit Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining, double strength);
+	explicit Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining, double strength, Point origin);
 	
 	// The hazard that is associated with this weather event.
 	const Hazard *GetHazard() const;
@@ -34,6 +36,8 @@ public:
 	int Period() const;
 	// What the hazard's damage is multiplied by given the current weather strength.
 	double DamageMultiplier() const;
+	// The origin of the hazard.
+	const Point &Origin() const;
 	// Create any environmental effects and decrease the lifetime of this weather.
 	void Step(std::vector<Visual> &newVisuals);
 	// Calculate this weather's strength for the current frame, to be used to find
@@ -49,6 +53,7 @@ private:
 	int totalLifetime = 0;
 	int lifetimeRemaining = 0;
 	double strength = 0.;
+	Point origin;
 	// The current strength and its square root are calculated at the beginning of
 	// each frame for weather that deviates to avoid needing to calculate it
 	// multiple times.

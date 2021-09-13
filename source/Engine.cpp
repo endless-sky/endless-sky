@@ -1206,18 +1206,26 @@ void Engine::EnterSystem()
 	// government set.
 	for(int i = 0; i < 5; ++i)
 	{
-		for(const System::FleetProbability &fleet : system->Fleets())
+		for(const auto &fleet : system->Fleets())
 			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60)
 				fleet.Get()->Place(*system, newShips);
-		for(const System::HazardProbability &hazard : system->Hazards())
-			if(Random::Int(hazard.Period()) < 60)
+
+		auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
+		{
+			if(hazard.Get()->IsValid() && Random::Int(hazard.Period()) < 60)
 			{
 				const Hazard *weather = hazard.Get();
 				int hazardLifetime = weather->RandomDuration();
 				// Elapse this weather event by a random amount of time.
 				int elapsedLifetime = hazardLifetime - Random::Int(hazardLifetime + 1);
-				activeWeather.emplace_back(weather, hazardLifetime, elapsedLifetime, weather->RandomStrength());
+				activeWeather.emplace_back(weather, hazardLifetime, elapsedLifetime, weather->RandomStrength(), origin);
 			}
+		};
+		for(const auto &hazard : system->Hazards())
+			CreateWeather(hazard, Point());
+		for(const auto &stellar : system->Objects())
+			for(const auto &hazard : stellar.Hazards())
+				CreateWeather(hazard, stellar.Position());
 	}
 	
 	const Fleet *raidFleet = system->GetGovernment()->RaidFleet();
@@ -1617,7 +1625,7 @@ void Engine::SpawnFleets()
 	
 	// Non-mission NPCs spawn at random intervals in neighboring systems,
 	// or coming from planets in the current one.
-	for(const System::FleetProbability &fleet : player.GetSystem()->Fleets())
+	for(const auto &fleet : player.GetSystem()->Fleets())
 		if(!Random::Int(fleet.Period()))
 		{
 			const Government *gov = fleet.Get()->GetGovernment();
@@ -1693,16 +1701,23 @@ void Engine::SpawnPersons()
 // Generate weather from the current system's hazards.
 void Engine::GenerateWeather()
 {
-	// If this system has any hazards, see if any have activated this frame.
-	for(const System::HazardProbability &hazard : player.GetSystem()->Hazards())
-		if(!Random::Int(hazard.Period()))
+	auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
+	{
+		if(hazard.Get()->IsValid() && !Random::Int(hazard.Period()))
 		{
 			const Hazard *weather = hazard.Get();
 			// If a hazard has activated, generate a duration and strength of the
 			// resulting weather and place it in the list of active weather.
 			int duration = weather->RandomDuration();
-			activeWeather.emplace_back(weather, duration, duration, weather->RandomStrength());
+			activeWeather.emplace_back(weather, duration, duration, weather->RandomStrength(), origin);
 		}
+	};
+	// If this system has any hazards, see if any have activated this frame.
+	for(const auto &hazard : player.GetSystem()->Hazards())
+		CreateWeather(hazard, Point());
+	for(const auto &stellar : player.GetSystem()->Objects())
+		for(const auto &hazard : stellar.Hazards())
+			CreateWeather(hazard, stellar.Position());
 }
 
 
@@ -2048,11 +2063,11 @@ void Engine::DoWeather(Weather &weather)
 		// Get all ship bodies that are touching a ring defined by the hazard's min
 		// and max ranges at the hazard's origin. Any ship touching this ring takes
 		// hazard damage.
-		for(Body *body : shipCollisions.Ring(Point(), hazard->MinRange(), hazard->MaxRange()))
+		for(Body *body : shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange()))
 		{
 			Ship *hit = reinterpret_cast<Ship *>(body);
-			double distanceTraveled = hit->Position().Length() - hit->GetMask().Radius();
-			hit->TakeDamage(visuals, *hazard, multiplier, distanceTraveled, Point(), nullptr, hazard->BlastRadius() > 0.);
+			double distanceTraveled = weather.Origin().Distance(hit->Position()) - hit->GetMask().Radius();
+			hit->TakeDamage(visuals, *hazard, multiplier, distanceTraveled, weather.Origin(), nullptr, hazard->BlastRadius() > 0.);
 		}
 	}
 }
