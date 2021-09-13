@@ -350,7 +350,7 @@ mission "Ka'het: Patir Mystery 1"
 			choice
 				`	"What is that?"`
 			`	"It is an old tracking and surveillance device, developed specifically for the Graveyard," she says. "It was supposed to track all Ka'het it could find and make detailed imagery of their actions, in order to find the patterns that they follow or ways to exploit their controls. The mission was a long-term one, so when an urgent project came up, resources were diverted away from it, leaving some sensors unused.`
-			`	"My plan is to install it in <ship> and go to <waypoints> to find out more about these ships. It needs to be calibrated precisely before use, but luckily for you, I was the person who developed the deployment procedures," she says with a smirk on her face. "Are you ready?"`
+			`	"My plan is to install it in the <ship> and go to <waypoints> to find out more about these ships. It needs to be calibrated precisely before use, but luckily for you, I was the person who developed the deployment procedures," she says with a smirk on her face. "Are you ready?"`
 			choice
 				`	"Let's go!"`
 					goto mount
