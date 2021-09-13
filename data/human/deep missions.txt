@@ -2700,7 +2700,7 @@ mission "Stone of our Fathers 5"
 			`	For the next three hours, it sounds as if they are in deep conversation, while you drift in and out of sleep watching as oil fields give way to rainforests and then rainforests shrink before great and arid mountains.`
 			`	At some point you feel Thorleif shaking your shoulder. "We're here."`
 			choice
-				`	(Yawning you rise from your warm seat)`
+				`	(Yawning, you rise from your warm seat.)`
 			`	The town of Grimssalr is nestled along the foothills of the towering Ettin mountains in western Alfheim. Town is perhaps too generous a word; it is instead more like a couple dozen houses mostly filled with old people long abandoned by their children seeking wealth and adventure elsewhere.`
 			`	The woman, who you've learnt is named Ragnhild, introduces Thorleif to some of the folks here, and before long they have found ways to connect their ancient genealogies together and everyone is suddenly treated as family. You eat their meager fare, swap stories, and listen to legends about the old times.`
 			`	As the sun begins to set, Thorleif approaches you, "It is time," he says. "The journey to the cairn is only a short hike from here. I would that you accompany me. I think Skaldgar would have wanted that."`	
@@ -2712,8 +2712,7 @@ mission "Stone of our Fathers 5"
 			`	You notice over two dozen columns of lain stone arranged in a circle around a much more massive and impressive structure. The lain stone columns must be cairns of various nearby families, but the massive structure in the center is something completely different. The structure is a wall, cut from some sort of metal you don't recognize and filled with letters and images that are unfamiliar to you.`
 			`	"That is an Elf-Stone. It is why we built our Family-Cairns here. Such stones can be found on most worlds in The Deep. Indestructible, and left by the Alfar for some unknowable reason. Some, like this one, have been mostly forgotten. Others though, are important places of celebration and even worship."`
 			`	He points at a smallish cairn next to the Elf-Stone. "This, though, is what we're here for."`
-			choice
-				`	(You eye the worn and weather beaten cairn with a faded name plate reading, 'Hlewagast' carved at its base.)`
+			`	You eye the worn and weather beaten cairn with a faded name plate reading, 'Hlewagast' carved at its base.`
 			`	Thorleif approaches the cairn.`
 			`	Thorleif holds up the stone of his father in his palm and begins to read the runes carved upon it.`
 			`	"The day my mother gave me this stone and said she was proud of me."`
