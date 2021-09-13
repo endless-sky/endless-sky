@@ -333,42 +333,42 @@ mission "Ka'het: Patir Mystery 1"
 	on offer
 		"dusk busy"++
 		conversation
-			`You start looking for Taely as soon as you finish the post-landing procedures. You aren't surprised to find her in the local shipyard, overseeing the welding of some kind of unmanned satellite. Although you aren't familiar enough with Remnant technology to understand its function, you identify a large crystal placed near what you presume to be the front of the probe as a Quantum Key Stone, or at least a derivative of it.`
+			`You start looking for Taely right after finishing the post-landing procedures. You aren't surprised to find her in the local shipyard, overseeing the welding of some kind of unmanned satellite. Though not familiar enough with Remnant technology to understand its function, you identify a large crystal placed near what you presume to be the front of the probe as a Quantum Key Stone, or at least a derivative of it.`
 			`	When Taely notices you walking towards her, she waves at you. "<first>! It has been a while. Were you looking for me?"`
 			choice
-				`	"I have some news. A new black hole suddenly appeared near the Graveyard, the same way as Ssil Vida did."`
+				`	"I have some news. A new black hole suddenly appeared near the Graveyard, the same way Ssil Vida did."`
 					goto talk
 				`	"What is the purpose of the satellite over there?"`
-			`	"She is a beauty, is she not? The discovery of the star systems beyond Postverta spurred a large request of exploration probes, more than we had in decades. This one was my own proposal: she is going to make precise LIDAR scans of the four planets most similar to the worlds we found alien settlements on, searching for relics and ancient artifacts! It is unbelievably exciting to see an idea that you came up with become reality in front of you."`
+			`	"She is a beauty, is she not? The discovery of the star systems beyond Postverta spurred a large request for exploration probes, more than we had in decades. This one was my own proposal: she is going to make precise LIDAR scans of the four planets most similar to the worlds we found alien settlements on, searching for relics and ancient artifacts! It is unbelievably exciting to see an idea that you came up with become reality right in front of you."`
 			`	She pauses to stare at the probe with pride.`
 			choice
-				`	"I have some news. A new black hole suddenly appeared near the Graveyard, the same way as Ssil Vida did."`
+				`	"I have some news. A new black hole suddenly appeared near the Graveyard, the same way Ssil Vida did."`
 			label talk
-			`	You try to explain the system and its inhabitants as best you can. Taely looks intrigued. "Can you show me what your ship recorded of that system?" she asks. After spending a few minutes checking your ship's registers, she appears even more astonished than before. "This is incredible! It opens so many questions. What if it was the Builders who built Ssil Vida? We thought they never left the Graveyard, but this could change everything. And look at the gravitational slipstreams: this system has no hyperlane connections, at least in this moment. We need to know more." She pauses for a second to think. "Come with me, <first>."`
-			`	You follow Taely into a large elevator at the other end of the building. After a short trip, you find yourself in a large underground hangar, full of oddly shaped dishes and complex pieces of machinery. "We use these old shelters to store the parts we do not need anymore. Sometimes they are still handy for replacing broken machinery, so instead of disassembling them we keep them here for a few years. And this," she says, pointing with a finger an array of cylinder shaped objects, "is the reason we are here."`
+			`	You try to explain the system and its inhabitants as best you can. Taely looks intrigued. "Can you show me what your ship recorded of that system?" she asks. After spending a few minutes checking your ship's registers, she appears even more astonished than before. "This is incredible! It opens so many questions. What if it was the Builders who built Ssil Vida? We thought they never left the Graveyard, but this could change everything. And look at the gravitational slipstreams: this system has no hyperlane connections, at least for the moment. We need to know more." She pauses for a second to think. "Come with me, <first>."`
+			`	You follow Taely into a large elevator at the other end of the building. After a short trip, you find yourself in a large underground hangar, full of oddly shaped dishes and complex pieces of machinery. "We use these old shelters to store the parts we do not need anymore. Sometimes they are still handy for replacing broken machinery, so instead of disassembling them we keep them here for a few years. And this," she says, pointing at an array of cylindrical objects, "is the reason we are here."`
 			`	Coming closer to the object, you notice that most of the cylinders have been hollowed out with a piece of glass placed inside.  A number of cables are coming out of its back.`
 			choice
 				`	"What is that?"`
 			`	"It is an old tracking and surveillance device, developed specifically for the Graveyard," she says. "It was supposed to track all Ka'het it could find and make detailed imagery of their actions, in order to find the patterns that they follow or ways to exploit their controls. The mission was a long-term one, so when an urgent project came up, resources were diverted away from it, leaving some sensors unused.`
-			`	"My plan is to install these in your ship and go to <waypoints> with them to find out more about these ships. They need to be set up correctly before use, but luckily for you, I was the person who developed the deployment procedures," she says with a smirk on her face. "Are you ready?"`
+			`	"My plan is to install it in <ship> and go to <waypoints> to find out more about these ships. It needs to be calibrated precisely before use, but luckily for you, I was the person who developed the deployment procedures," she says with a smirk on her face. "Are you ready?"`
 			choice
 				`	"Let's go!"`
 					goto mount
 				`	"How did the attempt at tracking the Ka'het go?"`
 				`	"Sorry, but I can't help you this time. You're going to have to find somebody else."`
 					decline
-			`	"Oh, the scanners are working perfectly. But the Ka'het seem to follow no pattern whatsoever, not even the most basic ones. I guess you could compare them to simple animals, searching for food and fighting each other for their territory. They seem to have some sort of "imprinting" towards the stations that breeds them, but other than that, they have not shown any other particular behavior yet."`
+			`	"Oh, the scanner is working perfectly. But the Ka'het seem to follow no pattern whatsoever, not even the most basic ones. I guess you could compare them to simple animals, searching for food and fighting each other for their territory. They seem to have some sort of "imprinting" towards the stations that breeds them, but other than that, they have not shown any other particular behavior yet."`
 			choice
-				`	"Alright, let's mount the scanners!"`
+				`	"Alright, let's mount the scanner!"`
 				`	"Sorry, but I can't help you this time. You're going to have to find somebody else."`
 					decline
 			label mount
-			`	Taely replies, "I will gather a team to install the scanners. We should be done in around an hour." She leaves the warehouse carrying a scanner, leaving you to prepare your ship for the upcoming mission.`
+			`	Taely replies, "I will gather a team to install the scanning system. We should be done in around an hour." She leaves the warehouse carrying a scanner, leaving you to prepare your ship for the upcoming mission.`
 				accept
 				
 	on enter "Patir"
 		conversation
-			`When you enter the system, Taely is already sitting in the scanners' control room. She starts counting loudly. "External deployment in 3, 2, 1. Trackers out. Initiating startup sequence." She begins typing commands on a keyboard. "This is going to take a while, <first>," she says, without taking her eyes off the screen. "It is not normally a one-person job."`
+			`When you enter the system, Taely is already sitting at the scanner's control console. She starts counting loudly. "External deployment in 3, 2, 1. Trackers out. Initiating startup sequence." She begins typing commands on a keyboard. "This is going to take a while, <first>," she says, without taking her eyes off the screen. "It is not normally a one-person job."`
 			choice
 				`	"Is there anything I can do to help you?"`
 				`	"I'll wait for you to finish in the cockpit."`
@@ -386,7 +386,7 @@ mission "Ka'het: Patir Mystery 1"
 			`	"Do you have anything on why this system appeared?" you ask.`
 			label how
 			`	"I only have theories for now, none of which can be confirmed. People more knowledgeable than me in the subject are examining the phenomena right now. But look at this," she says, opening a star map on a holographic projector. "This white dot is Postverta, and we are here. When Ssil Veda first appeared, it released a strong burst of ionizing radiation, and when we were able to calculate its velocity, we found it was going much faster than the speed of light. It is gradually slowing down, so it will not go much further, but exactly the same day that the energy burst was supposed to arrive here, Patir appeared! It would be an incredible coincidence if the two event were not connected.`
-			`	"We have even less information about how this system disappeared. If I may venture a guess, I would say that the black hole is involved. The Builders never seemed to possess the ability of making a system disappear, and we have seen in the past that some black holes can render any hyperlane they are connected to inaccessible given enough time. Perhaps this one, a young, non-rotating black hole, can do even more. There is a part of me that thinks this system could disappear again any moment, but if anything that motivates me to find as much as we can about it in the time we have," she says with a wink.`
+			`	"We have even less information about how this system disappeared. If I may venture a guess, I would say that the black hole is involved. The Builders never seemed to possess the ability to make a system disappear, and we have seen in the past that some black holes can render any hyperlane they are connected to inaccessible given enough time. Perhaps a young, non-rotating black hole like this one can do even more. There is a part of me that thinks this system could disappear again any moment, but if anything that motivates me to find as much as we can about it in the time we have," she says with a wink.`
 			choice
 				`	"Wait, are we in danger?"`
 				`	"How much will it take to finish processing the data?"`
@@ -396,13 +396,13 @@ mission "Ka'het: Patir Mystery 1"
 			label dontcare
 			`	"Let me check." Soon after Taely starts walking toward the console, the computer she was working on earlier starts beeping. "Perfect, let us see what it found," she says.`
 			label beep
-			`	Taely starts browsing through several of images on her console. In a few minutes, she appears to have selected half a dozen of them. "Look at these, <first>. What do you see?" The first image shows a ship like the others you've seen in this system working on some kind of small structure. In the following pictures, presumably depicting different iterations of the same ship, the structure becomes gradually bigger and more complex until the last one, where a Ka'het-like slug is shown growing inside this shell. "The ships, the Fetri'sei, are Von Neumann probes," she says. "Self replicating spacecraft. Unlike the Ka'het, which we found to be unable to reproduce and can only be created in a factory, the Ka'sei can duplicate their own structure with the material harvested from the local asteroids. The process probably takes years, or more, but it is still an incredible achievement."`
+			`	Taely starts browsing through several of images on her console. "Look at these, <first>. What do you see?" The first image shows a ship like the others you've seen in this system working on some kind of small structure. In the following pictures, presumably depicting different iterations of the same ship, the structure becomes gradually bigger and more complex until the last one, where a Ka'het-like slug is shown growing inside this shell. "The ships, the Fetri'sei, are Von Neumann probes," she says. "Self replicating spacecraft. Unlike the Ka'het, which we found to be unable to reproduce and can only be created in a factory, the Ka'sei can duplicate their own structure with the material harvested from the local asteroids. The process probably takes years, or more, but it is still an incredible achievement."`
 			choice
 				`	"If they can duplicate themselves, why aren't there more Ka'sei here?"`
 					goto kasei
 				`	"If the Builders were able to make self replicating spacecrafts, why aren't the Ka'het like that as well?"`
 					goto kahet
-				`	"Do they have Jump Drives on them if they were able to get here?"`
+				`	"If they were able to get here, does this suggest they have Jump Drives?"`
 					goto jumpdrive
 				`	"Why aren’t they in other systems?"`
 					goto jumpdrive
@@ -411,20 +411,20 @@ mission "Ka'het: Patir Mystery 1"
 			choice
 				`	"If the Builders were able to make self replicating spacecrafts, why aren't the Ka'het like that as well?"`
 					goto kahet
-				`	"Do they have Jump Drives on them if they were able to get here?"`
+				`	"If they were able to get here, does this suggest they have Jump Drives?"`
 					goto jumpdrive
 				`	"Why aren’t they in other systems?"`
 					goto jumpdrive
 			label kahet
-			`	Taely walks towards the console again. On the screen a tactical view of the Fetri'sei appears. "Well, consider that the Ka'het are true battleships, heavily shielded and always with their weapons ready. These are more akin to reconnaissance and mining probes. Their structure is extremely weak, and they do not have any weapons except the guns necessary to mine asteroids. I imagine it would take decades for even just a Maeri'het to replicate itself.`
+			`	Taely walks towards the console again. On the screen a tactical view of the Fetri'sei appears. "Well, consider that the Ka'het are true battleships, heavily shielded and always with their weapons ready. These are more akin to reconnaissance and mining probes. Their structure is extremely weak, and they do not have any weapons except the equipment necessary to mine asteroids. I imagine it would take decades for even just a Maeri'het to replicate itself.`
 			`	"There is also the tactical problem: forcing a Ka'het to spend such a long time building copies of itself makes them vulnerable to enemy attacks and unable to effectively fight back, making them ill suited for the job."`
 			choice
 				`	"If they can duplicate themselves, why aren't there more Ka'sei here?"`
 					goto kasei
-				`	"Do they have Jump Drives of them if they were able to get here?"`
+				`	"If they were able to get here, does this suggest they have Jump Drives?"`
 				`	"Why aren’t they in other systems?"`
 			label jumpdrive
-			`	"They do not have any drive on board, not even a hyperdrive. Limited to sub-light velocity, they would need hundreds of years to pass from one system to another, which testifies how patient the Builders could be. Most species we have encountered abandon any form of sub-light transportation method between star systems as soon as hyperdrives start being developed. For all we know, the Ember Waste could have been visited by these Fetri'sei or some other Ka'sei, but they had to leave for some reason we are not aware of. The last Builder died almost 100,000 years ago, so long that having a clear idea of what happened is impossible.`
+			`	"They do not have any drive on board, not even a hyperdrive. Limited to sub-light velocity, they would need hundreds of years to pass from one system to another, which is a testament to the Builders' patience. Most species we have encountered abandon any form of sub-light transportation between star systems immediately after developing hyperdrive technology. For all we know, the Ember Waste could have been visited by these Fetri'sei or some other Ka'sei, but they had to leave for some reason we are not aware of. The last Builder died almost 100,000 years ago - so long that having a clear idea of what happened is impossible.`
 			choice
 				`	"What's the difference between Ka'sei and Fetri'sei?"`
 			`	"Well, there is not," Taely responds, "not in this case at least. The naming scheme the Builders used is a bit odd: we know that 'Ka', in their language, has a meaning close to the one of 'group', 'team' and sometimes even 'ring', although it can never be used without a name next to it. So we have 'group mar', 'group het', and so on. These are not limited to spaceships: the Ka'het, for example, includes both the biological spacecrafts around the Graveyard and the stations that constructs them, while until now we thought that the Ka'sei included only a handful of large scale construction projects. We know 'Fetri' to be a sort of spaceship sub-classification, but we are not aware of its exact meaning. So the Fetri'sei, or 'ship sei' are a part of the Ka'sei, or 'group sei.' To put it simply, it is similar to how all squares are rectangles, but not all rectangles are squares. It just so happens that everything in this system is classified as a Fetri'sei, so we can use either interchangeably.`
@@ -435,17 +435,17 @@ mission "Ka'het: Patir Mystery 1"
 		conversation
 			`You complete the post-flight checks and disembark down the ship with Taely. "So, what do we do now?" you ask.`
 			`	"I fear I have to go back to my job now, Captain," she replies. "I would love to continue the exploration with you, but there are more pressing issues I have to resolve at the moment. I will keep an eye on the activity in Patir, I promise."`
-			`	While you are talking with Taely, you see a young Remnant walking towards you with a touchpad and waving. After he greets you, Taely says, "Captain <first>, let me introduce you to Dusk. He is a young researcher specialized in xenoarchaeology and the study of astrobiology. Dusk, this is <first>, the captain who I told you about earlier."`
-			`	"Nice to meet you, Captain!" continues Dusk.`
+			`	As you speak to Taely, a young Remnant with a touchpad walks towards you and waves. Taely says, "Captain <first>, let me introduce you to Dusk. He is a young researcher who specializes in xenoarchaeology and astrobiology. Dusk, this is <first>, the captain who I told you about earlier."`
+			`	"Nice to meet you, Captain!" says Dusk.`
 			choice
 				`	"Dusk? Are names like that common?"`
 				`	"Pleased to meet you too, Dusk."`
 					goto greet
 			`	"You mean names of the various phases of daylight? Mmm, I would not say they are common, but nor are they rare, either. Our ancestors devoted their lives, one way or another, to studying the stars and the everchanging light of the universe. It should not be surprising that their vocabulary should be so entwined in our culture."`
 			label greet
-			`	"I will let you two discuss the next steps in exploring Patir. May the embers burn bright for you both," Taely says before waking away towards the local shipyard.`
-			`	"I have found something interesting in the data Taely sent me, Captain." Dusk shows you a map of the system Patir with various lines drawn all over it. "This image shows the route followed by every Ka'sei the scanner was able to track. At first sight they do not seem to have much in common, right? However, upon closer examination, there is something that almost every path has in common: once in a while, every ship spends a few minutes on a single asteroid, one of the biggest in the entire asteroid belt.`
-			`	"However, this could have easily been just a coincidence; it takes a lot of effort to extract resources from asteroids that size, so maybe they were just combining their forces to harvest it. Unusual, but far from impossible. So, at this point I had an idea." The screen on the touchpad changes, now showing raw numbers separated on a spreadsheet. "The sensors you carried to Patir had various functions, one of which was a high power asteroid scanner. The asteroid in particular was shown to be extremely rich in a particular metal, iridium. There is more iridium in it than the whole of half a dozen Ember Waste systems, planets included. However, here is the odd part: the concentration of iridium on the asteroid when you jumped away was not lower than when the scanning begun, it was higher! For whatever reason, the Fetri'sei are depositing iridium on the asteroid."`
+			`	"I will let you two discuss the next steps in exploring Patir. May the embers burn bright for you both," Taely says before leaving for the local shipyard.`
+			`	"I have found something interesting in the data Taely sent me, Captain." Dusk shows you a map of the system Patir with various lines drawn all over it. "This image shows the route followed by every Ka'sei the scanner was able to track. At first sight they do not seem to have much in common, right? However, upon closer examination, there is something consistent about almost every path: once in a while, every ship spends a few minutes on a single asteroid - one of the biggest in the entire asteroid belt.`
+			`	"However, this could have easily been just a coincidence; it takes a lot of effort to extract resources from asteroids that size, so maybe they were just combining their forces to harvest it. So, at this point I had an idea." The screen on the touchpad changes, now showing raw numbers separated on a spreadsheet. "The sensors you carried to Patir had various functions, one of which was a high power asteroid scanner. The asteroid in particular was shown to be extremely rich in a particular metal, iridium. There is more iridium in it than the whole of half a dozen Ember Waste systems, planets included. However, here is the odd part: the concentration of iridium on the asteroid when you jumped away was not lower than when the scanning begun, it was higher! For whatever reason, the Fetri'sei are depositing iridium on the asteroid."`
 			choice
 				`	"Are you sure that it isn't just an error in the measurement?"`
 				`	"Why are they doing that?"`
@@ -476,7 +476,7 @@ mission "Ka'het: Patir Mystery 2"
 				accept
 	on enter "Patir"
 		dialog
-			`After a brief scan of the system, your ship's computers identify the asteroid that Dusk indicated you. Compared to the asteroids you are used to, this one seems orders of magnitude bigger.`
+			`After a brief scan of the system, your ship's computers identify the asteroid that Dusk talked about. Compared to the asteroids you are used to, this one is orders of magnitude bigger, almost the size of a small moon.`
 
 event "asteroid on patir"
 	planet "Builder Settlement"
@@ -493,14 +493,14 @@ mission "Ka'het: Patir Mystery 3"
 		has "Ka'het: Patir Mystery 2: done"
 	on offer
 		conversation
-			`Your initial scans suggest that the asteroid is slowly rotating on itself. You set your ship on a polar orbit around it and activate the sensors that Dusk gave you, hopefully to find some answers to all the questions that Patir raised.`
-			`	You start your exploration from the dark side of the asteroid, and from the little you can see, the surface appears to be completely covered in regolith of little importance. But, soon after passing the terminator, you see an extremely reflective patch near the horizon, likely to be some sort of metal. As you get closer, it becomes clear that this is the storage of iridium that Dusk was talking about: in front of you, there is a huge reserve of the reflective metal you cannot see the end of, extending for kilometers in every direction inside a gigantic hole the Ka'sei dug in the terrain. The metal appears to be magnetic, as when you start passing over it some of the instruments aboard your spaceship go haywire. Luckily, Dusk's scanners remain unaffected, allowing you to continue the exploration.`
+			`Your initial scans suggest that the asteroid is slowly rotating like a moon or planet. You set your ship on a polar orbit around it and activate the sensors that Dusk gave you, hopefully to find some answers to all the questions raised by Patir's mysterious appearance.`
+			`	You start your exploration from the dark side of the asteroid, and from the little you can see, its surface appears to be completely covered in regolith of little importance. But soon after passing the terminator, you see an extremely reflective patch near the horizon. As you get closer, it becomes clear that this is the storage of iridium that Dusk was talking about: an enormous solidified lake of the reflective metal extending for kilometers in every direction inside a gigantic hole the Ka'sei have dug in the terrain.`
 			`	In a few hours, you are able to check every site you were told to scan, but most of the surface still remains an unknown.`
 			choice
 				`	(Continue your exploration of the asteroid.)`
 					goto explore
 				`	(Leave and return to Aventine.)`
-			`	As you are preparing to jump away, your eye is caught by an artificial structure near the edge of the iridium storage. The first thing you notice is an array of extremely high pylons put into two parallel lines; then, when you are able to get a better angle of view, you discover a large cupola towering all over the area. Although understanding its scale without a reference point is hard, you estimate it must be at least a kilometer in diameter.`
+			`	As you are preparing to jump away, an artificial structure near the edge of the iridium storage catches your eye. The first thing you notice is an array of tall pylons arranged into two parallel lines. When you are approach, you discover a large cupola towering all over the area. Although understanding its scale without a reference point is hard, you estimate it must be at least a kilometer in diameter.`
 				goto image
 			label explore
 			`	While you are setting up a new route to pass above as much terrain as possible, your eye is caught by an artificial structure near the edge of the iridium storage. The first thing you notice is an array of extremely high pylons put into two parallel lines; then, when you are able to get a better angle of view, you discover a large cupola towering all over the area. Although understanding its scale without a reference point is hard, you estimate it must be at least half a kilometer in diameter.`
@@ -515,7 +515,7 @@ mission "Ka'het: Patir Mystery 3"
 			label near
 			apply
 				"exploration interest" += 1
-			`	You carefully position your ship above the structure and activate the sensors. As the scan goes by, you monitor the position of the Ka'sei fleet. You notice that some of the Fetri'sei nearest to you stopped their standard activities and are just standing by, perhaps observing your actions the same way you are looking at theirs. Luckily, after a few minutes the sensors complete their analysis of the structure and you are ready to return to Aventine.`
+			`	You carefully position your ship above the structure and activate the sensors. As the scan proceeds, you monitor the position of the Ka'sei fleet. Some of the Fetri'sei nearest to you have stopped their standard activities and are just standing by, perhaps observing your actions the same way you are observing theirs. Luckily, after a few minutes the sensors complete their analysis of the structure and you are ready to return to Aventine unmolested.`
 				accept
 	on complete
 		dialog
@@ -531,7 +531,7 @@ mission "Ka'het: Patir Mystery 4"
 		has "Ka'het: Patir Mystery 3: done"
 	on offer
 		conversation
-			`You meet Dusk again in the cafeteria. He has brought a touchpad with him this time as well. "Thank you again for your help, <first>. There is a lot we can learn about the Builders with this discovery." He shows you a black and white image of a building inside a large semi-sphere. The complex appears to be made of interconnected cylinders, presumably habitation modules.`
+			`You meet Dusk again in the cafeteria with his touchpad, as usual. "Thank you again for your help, <first>. There is a lot we can learn about the Builders with this discovery." He shows you a black and white image of a building inside a hemispherical dome. The complex appears to be made of interconnected cylinders, presumably habitation modules.`
 			choice
 				`	"What is that?"`
 			`	"Oh, it is the scan you made of the Builder structure. Here, look: the external cupola is completely pressurized, which could give us insights about the biology of the Builders. The composition of the atmosphere on their planets is likely to have changed after so much time, and every manned station the Ka'het could reach was long destroyed. This is the first time we have the possibility to study the gases they could breathe without having the results compromised by millennia of biological activity. Inside the cupola there is also a large intact complex, which could give us more answers about all of this.`
@@ -573,11 +573,11 @@ mission "Ka'het: Patir Mystery 5"
 			`	"Oh I have, many times. I have never been on a Builder station, but on a few occasions I have participated to expeditions to newly discovered cities or semi-submersed bunkers. I presume Taely already told you about the troubled beginnings we had in exploring the area; as a consequence of that, we had to reevaluate the procedures for exploring the nearby systems and species, especially beyond the Ossipago wormhole. Every scout ship entering the area has to always remain cloaked for safety; this means that exploring planets is only possible for a limited time and that you cannot leave your ship if you do not have a means of hiding yourself from them.`
 			`	"Because of this, most of the planetary exploration is done with robotic probes. The Ka'het are able to detect and destroy devices that use faster than light communication, so only remote control with a Starling in the same system is possible. There are a lot of compromises that must be taken, but we can still make considerable progress even with these restrictions.`
 			label dontcare
-			`	"I need to prepare a few more instruments before we land," Dusk says as he stops staring at the dome and returns to his equipment. As you reach the complex, you do a few flights around it in search for a good landing site. Dusk indicates to you a spot right next to a set of small circular indents on the structure. After touching down, you and Dusk don extravehicular suits and start walking towards the cupola. He stops in front of one ring and starts looking through his equipment.`
+			`	"I need to prepare a few more instruments before we land," Dusk says as he stops staring at the dome and returns to his equipment. As you reach the complex, you do a few flights around it in search for a good landing site. Dusk points out a spot right next to a set of small circular indentations on the structure. After touching down, you and Dusk don extravehicular suits and start walking towards the cupola. He stops in front of a ring on its surface and starts looking through his equipment.`
 			choice
 				`	"What is that?"`
 			`	"Well, I obviously cannot be sure, but given its location and that on the other side there is a pressurized area, it should be an airlock. I have seen scans of the Builder stations, and they look quite similar." He takes a heavy-looking scanner, puts it on the wall of the structure and starts moving it around. "If I am right, this way should have a control station hidden inside the wall - and here it is!" he sings with satisfaction.`
-			`	Using a small instrument similar in appearance to a crowbar, Dusk slowly pulls out a section from the wall, kicking off a good amount of dust in the process. The control station is a two sided panel, full of switches and buttons with small alien markings above each of them.`
+			`	Using a small instrument similar in appearance to a crowbar, Dusk slowly pulls out a section from the wall, kicking off a good amount of dust in the process. The control station is a two-sided panel, full of switches and buttons with small alien markings above each of them.`
 			choice
 				`	"Can you read them?"`
 				`	"Can you open the airlock?"`
@@ -589,7 +589,7 @@ mission "Ka'het: Patir Mystery 5"
 			label danger
 			`	"There is no way to be certain, but this is the only possible way to get in without destroying half of the complex.`
 			label open
-			`	"This," Dusk says as he presses a switch in the middle of the panel, "is what we were looking for." Soon after, the door in front of you opens, revealing a small room with another door at the opposite end. You follow Dusk inside, where he takes out the scanner again to look for another control panel. Once that is open, another switch allows him to close the door. Only the lights on your helmet keep you from being immersed in complete darkness. Looking around, you notice that the architecture is distinctly alien, with rounded angles on every side of the room and slides going down off of both doors. The ring itself is too small for you to pass through it standing upright, but the low gravity of the asteroid lets you almost fly though it without much trouble. "We now have to wait for the room to pressurize," he tells you.`
+			`	"This," Dusk says as he presses a switch in the middle of the panel, "is what we were looking for." Soon after, the door in front of you opens, revealing a small room with another door at the opposite end. You follow Dusk inside, where he takes out the scanner again to look for another control panel. Once that is open, another switch allows him to close the door. Only the lights on your helmet keep you from being submerged in complete darkness. Looking around, you notice that the architecture is distinctly alien, with rounded angles on every side of the room and buttresses on either side of the doors . The ring itself is too small for you to pass through it standing upright, but the low gravity of the asteroid lets you almost fly though it without much trouble. "We now have to wait for the room to pressurize," he tells you.`
 			choice
 				`	"How long do you think it will it take?"`
 				`	"Would it be safe to remove our helmets after that?"`
@@ -599,7 +599,7 @@ mission "Ka'het: Patir Mystery 5"
 			label dumb
 			`	Dusk gives you an odd look. "Of course not <first>; it would almost certainly kill you. Such an alien atmosphere is unlikely to be breathable for a human, and even if it was we could not be sure until we analyze it extensively." He begins to activate another scanner, "Speaking of which, I can start analyzing the atmosphere that is starting to fill this room. It should save us some time to do it here, as well as also safer, should it be dangerous to our suits."`
 			label scan
-			`	Dusk continues working on the atmospheric analyzer for about five minutes without anything happening. You try to connect to the scanner on your ship to check the position of the nearby Fetri'sei, but the dome seems to jam all the communications with the outside. Suddenly, you hear a loud "pop," and the door that leads inside the dome recesses a few centimeters. "Just in time," Dusk says. "My analysis of the atmosphere has finished. Let us go take a look inside." After a brief look at the writing on the door, he grabs a handle on it and slides it to the left. The hatch starts to slowly open inwards. When you come closer to the entrance you are instantly blinded by a strong light coming from the other side of the door. After lowering the sun shield on your helmet, your eyes start adapting to the new light level, and it takes you a few seconds to realize what is now in front of you. Landed inside the cupola, right in front of the airlock, is a Fetri'sei, pointing in the direction of you and Dusk.`
+			`	Dusk continues working on the atmospheric analyzer for about five minutes without anything happening. You try to connect to the scanner on your ship to check the position of the nearby Fetri'sei, but the dome seems to jam all the communications with the outside. Suddenly, you hear a loud "pop," and the door that leads inside the dome recesses a few centimeters. "Just in time," Dusk says. "My analysis of the atmosphere has finished. Let us go take a look inside." After a brief look at the writing on the door, he grabs a handle on it and slides it to the left. The hatch starts to slowly open inwards. When you come closer to the entrance you are instantly blinded by a strong light coming from the other side of the door. After lowering the sun shield on your helmet, your eyes start adapting to the new light level, and it takes you a few seconds to realize what is now in front of you. Landed inside the cupola, right in front of the airlock, is a Fetri'sei - a Ka'sei probe - pointed at you and Dusk.`
 			`	Both you and Dusk stand still in front of it without saying a word. Out of the corner of your eye, you can see his hands shivering. All of a sudden, the Ka'sei starts emitting a very high pitched sound, very hard to hear, frequently changing in intensity. This lasts only for a few seconds, then abruptly stops.`
 			choice
 				`	(Run back in the airlock.)`
@@ -611,25 +611,25 @@ mission "Ka'het: Patir Mystery 5"
 				`	(Keep staying still.)`
 				`	(Try shooting at the hover engines of the Ka'sei with your sidearm.)`
 					goto shoot
-			`	After another short silence, the Ka'sei starts emitting a loud siren. You hear the screech of Ravager fire as a beam bursts to the left of you. Both you and Dusk jump back to the airlock, slamming the door closed. You can still feel the crackle of the Ravagers from the other side the the door, and after a second, the door begins to glow.`
+			`	After another short silence, the Ka'sei starts emitting a loud siren. You hear the screech of Ravager fire as an angry energy beam sears through the air to your left, just barely missing you. Both you and Dusk jump back to the airlock, slamming the door closed. You can still feel the crackle of the Ravager cannons from the other side the the door, and after a second, the door begins to glow.`
 			choice
-				`	(Blast the exit door with the control station, even with the airlock full of air.)`
+				`	(Open the exit door, even with the airlock full of air.)`
 					goto blast
 				`	(Wait for the airlock to empty.)`
 			`	After waiting a few seconds, Dusk hurries towards the control station. "Hold on to something, I ha-" Suddenly, he is interrupted by a burst of light coming from where the door of the airlock used to be. Your suit provides little protection from the full force of the Ravager beams.`
 				die
 			label blast
-			`	You reach the control station as fast as you can and press the switch that Dusk had used when you first came in. The blast is not as strong as you imagined, but in a few seconds you are thrown out of the airlock by the sheer force of the air leaving from the breach. Both of you touchdown after a few meters, crashing hard in the terrain that surrounds the cupola. Out of the corner of your eye, you see that there's still air coming out of the airlock, signifying that the interior door is breached.`
+			`	You reach the control station as fast as you can and press the switch that Dusk had used when you first came in. The blast is not as strong as you imagined, but in a few seconds you are thrown out of the airlock by the sheer force of the air leaving from the breach. Both of you touch down after a few meters, crashing hard in the terrain that surrounds the cupola. Out of the corner of your eye, you see that there's still air coming out of the airlock, signifying that the interior door has been breached. It is very lucky that your suit has not been punctured.`
 			`	Looking around, you see Dusk laying face down next to you. Thankfully, he begins to stand up as you approach him. When he sees you, he silently pauses for a moment, before jerking his head to the airlock and signing. "We need to run. It could get out of the cupola, or others could arrive, and here in the open we are even easier targets." You nod and start going with him back to your ship.`
-			`	After a few minutes of running, you enter the <ship>'s cockpit and sit down to catch your breath. After a moment, Dusk begins searching nervously for something on his suit. He takes out the atmospheric scanner he used earlier, but the screen is cracked and the external sensors are bent. "It must have been destroyed when we fell on the ground. I hope that at least its memory is still intact."`
+			`	Running at full speed, it takes the two of you only a few minutes to reach the <ship>. Once safely in the cockpit, you sit down to catch your breath. After a moment, Dusk begins searching nervously for something on his suit. He takes out the atmospheric scanner he used earlier, but the screen is cracked and the external sensors are bent. "It must have been destroyed when we fell on the ground. I hope that at least its memory is still intact."`
 				goto attack
 			label shoot
-			`	You take out your gun and start aiming for the side pods that the Fetri'sei mount. Your first shot misses it completely, but after that you are able to make three full hits on the hover engines. Almost instantly, the Ka'sei starts emitting a loud siren. The ship fires a beam just to the left of you, letting out an ear-piercing wail. Both you and Dusk jump back to the airlock as fast as possible, but you are too far to reach it before the Ravager beam swipes across your back. The last thing you see is Dusk closing the airlock.`
+			`	You take out your gun and start aiming for the Fetri'sei's side pods. Your first shot misses it completely, but after that you are able to make three full hits on the hover engines. Almost instantly, the Ka'sei starts emitting a loud siren. The ship fires a beam just to the left of you, letting out an ear-piercing wail. Both you and Dusk jump back to the airlock as fast as possible, but you are too far away to reach it in time before a Ravager beam tears through your suit. The last thing you see is Dusk closing the airlock.`
 				die
 			label run
-			`	You start running towards the airlock as fast as you can. Initially, Dusk tries to resist, but you drag him by force and lock the door behind you. Everything falls into silence again for half a minute while you are waiting for the room to depressurize, but suddenly the sound of a Ravager shooting blasts through the airlock.`
+			`	You start running towards the airlock as fast as you can. Initially, Dusk tries to resist, but you drag him by force and lock the door behind you. Everything falls into silence again for half a minute while you are waiting for the room to depressurize, but suddenly the sound of a Ravager cannon cuts through the silence, and the inner airlock door begins to glow as it takes fire.`
 			choice
-				`	(Blast the exit door with the control station, even with the airlock full of air.)`
+				`	(Open the exit door, even with the airlock full of air.)`
 					goto blast2
 				`	(Wait for the airlock to empty.)`
 			`	After a few seconds of waiting, Dusk hurries towards the control station. "I have an idea," he says as he presses a few switches on the panel. "I can open a vent to expel the air out of here into the void, and get us out of here in a few seconds.`
@@ -638,18 +638,18 @@ mission "Ka'het: Patir Mystery 5"
 			`	You reach the control station as fast as you can and tell Dusk to hold on to something, but he stops you. "I have a better idea," he says as he presses a few switches on the panel. "I can open a vent to expel the air out of here into the void, and get us out of here in a few seconds.`
 			label expel
 			`	Soon after, the frontal door recedes. You two run out of the airlock as fast as possible. Behind you, you hear the roar of metal melting as a rush of air passes you by. You start running back to your ship with Dusk, hoping that the Ka'sei will not get out of the building before you are safe.`
-			`	After a few minutes of walking, you enter the <ship>'s cockpit and sit down to catch your breath. After a moment, Dusk begins searching nervously for something on his suit. He takes out the atmospheric scanner he used earlier and turns it on. "Phew. I was afraid it had broken down when we had to run away, but maybe we can still get the data we need."`
+			`	Running at full speed, it takes the two of you only a few minutes to reach the <ship>. Once safely in the cockpit, you sit down to catch your breath. After a moment, Dusk begins searching nervously for something on his suit. He takes out the atmospheric scanner he used earlier and turns it on. "Phew. I was afraid it had broken down when we had to run away, but maybe we can still get the data we need."`
 			apply
 				"atmospheric scan intact" += 1
 			label attack
-			`	Dusk is interrupted by the proximity alerts of your ship as a hostile object appears on your radar. Like Dusk suspected, the Fetri'sei must have tracked your movements after leaving the cupola. As you start to ready your ship for combat, Dusk interrupts you. "You cannot kill them <first>. Do you remember the high pitched sound it emitted before shooting? He was trying to speak with us, Captain. Only a few words, maybe even pre-programmed for this kind of interaction, but still a complete phrase or more in pure Builder language. In decades of xenoarchaeological research, this is the first time that it occurs. These ships are an incredible discovery. They may be the only thing still capable of speaking that language in the entire Graveyard. You cannot destroy it, and disabling one is more a matter of luck than skill."`
+			`	Dusk is interrupted by the shrieking wail of your ship's proximity alert as a hostile object appears on the radar screen. As Dusk suspected, the Fetri'sei must have tracked your movements after leaving the cupola. You start to ready your ship for combat, but Dusk interrupts you. "You cannot kill them, <first>. Do you remember the high pitched sound it emitted before shooting? He was trying to speak with us, Captain. Only a few words, maybe even pre-programmed for this kind of interaction, but still a complete phrase or more in pure Builder language. In decades of xenoarchaeological research, this is the first time that it occurs. These ships are an incredible discovery. They may be the only thing still capable of speaking that language in the entire Graveyard. You cannot destroy it, and disabling one is more a matter of luck than skill."`
 			choice
 				`	"What should I do then?"`
 			`	"Well, I can only suggest to depart from here and set a route straight back to Aventine, while avoiding the Ka'sei. Sorry <first>, but it is preferable that we leave them alone." After all the risk you had to take, you cannot help but nod if this means getting as far from here as possible.`
 				launch
 	on enter "Patir"
 		dialog
-			`Soon after departing, your ship warns you that a large number of ships are starting to target you. It appears the other Ka'sei are also going to attack you while you're here.`
+			`Soon after departing, your ship warns you that a large number of ships are targeting you. It appears the other Ka'sei are also going to attack.`
 	on fail
 		dialog
 			`One or more Ka'sei were destroyed. You failed your mission.`

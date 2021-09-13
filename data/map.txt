@@ -29088,7 +29088,7 @@ planet Shiver
 planet "Builder Settlement"
 	attributes ka'het uninhabited "requires: ka'sei"
 	landscape land/asteroid0
-	description `This asteroid has seen hundreds of thousands of years of excavation made by swarms of Ka'sei. Although its size rivals that of a small moon, a large section has been hollowed out by the Builders to be filled with iridium, presumably as a form of long term storage. Due to its very low gravity, the asteroid is permanently covered in clouds of dust, orbiting it only a few meters above the surface.`
+	description `This asteroid has seen hundred of thousands of years of excavation made by swarms of Ka'sei drones. Although its size rivals that of a small moon, a large section has been hollowed out by the Builders to be filled with iridium, presumably as a long term storage facility. Due to its very low gravity, the asteroid is permanently covered in clouds of dust that hover only a few meters above the surface.`
 
 planet Shorebreak
 	attributes rim research medical
