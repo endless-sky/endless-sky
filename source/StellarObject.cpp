@@ -152,7 +152,7 @@ double StellarObject::Distance() const
 
 
 
-const vector<Hazard::Probability> &StellarObject::Hazards() const
+const vector<RandomEvent<Hazard>> &StellarObject::Hazards() const
 {
 	return hazards;
 }

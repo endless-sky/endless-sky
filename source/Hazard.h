@@ -13,8 +13,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef HAZARD_H_
 #define HAZARD_H_
 
-#include "Point.h"
 #include "Weapon.h"
+
+#include "Point.h"
 
 
 // Hazards are environmental effects created within systems. They are able to create
@@ -22,22 +23,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // while active.
 class Hazard : public Weapon {
 public:
-	class Probability {
-	public:
-		Probability(const Hazard *hazard, int period);
-
-		const Hazard *Get() const;
-		int Period() const;
-
-	private:
-		const Hazard *hazard;
-		int period;
-	};
-
-
-public:
 	void Load(const DataNode &node);
 	
+	// Whether this hazard has a valid definition.
+	bool IsValid() const;
+	// The name of the hazard in the data files.
 	const std::string &Name() const;
 	// Does the strength of this hazard deviate over time?
 	bool Deviates() const;

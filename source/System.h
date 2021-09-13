@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Hazard.h"
 #include "Point.h"
+#include "RandomEvent.h"
 #include "Set.h"
 #include "StellarObject.h"
 
@@ -57,18 +58,6 @@ public:
 		const Minable *type = nullptr;
 		int count;
 		double energy;
-	};
-	
-	class FleetProbability {
-	public:
-		FleetProbability(const Fleet *fleet, int period);
-		
-		const Fleet *Get() const;
-		int Period() const;
-		
-	private:
-		const Fleet *fleet;
-		int period;
 	};
 	
 	
@@ -152,9 +141,9 @@ public:
 	double Exports(const std::string &commodity) const;
 	
 	// Get the probabilities of various fleets entering this system.
-	const std::vector<FleetProbability> &Fleets() const;
+	const std::vector<RandomEvent<Fleet>> &Fleets() const;
 	// Get the probabilities of various hazards in this system.
-	const std::vector<Hazard::Probability> &Hazards() const;
+	const std::vector<RandomEvent<Hazard>> &Hazards() const;
 	// Check how dangerous this system is (credits worth of enemy ships jumping
 	// in per frame).
 	double Danger() const;
@@ -204,8 +193,8 @@ private:
 	std::vector<StellarObject> objects;
 	std::vector<Asteroid> asteroids;
 	const Sprite *haze = nullptr;
-	std::vector<FleetProbability> fleets;
-	std::vector<Hazard::Probability> hazards;
+	std::vector<RandomEvent<Fleet>> fleets;
+	std::vector<RandomEvent<Hazard>> hazards;
 	double habitable = 1000.;
 	double asteroidBelt = 1500.;
 	double jumpRange = 0.;

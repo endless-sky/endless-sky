@@ -87,7 +87,7 @@ double Weather::DamageMultiplier() const
 
 
 
-Point Weather::Origin() const
+const Point &Weather::Origin() const
 {
 	return origin;
 }
@@ -98,7 +98,7 @@ Point Weather::Origin() const
 void Weather::Step(vector<Visual> &visuals)
 {
 	// Environmental effects are created by choosing a random angle and distance from
-	// the origin, then creating the effect there.
+	// their origin, then creating the effect there.
 	double minRange = hazard->MinRange();
 	double maxRange = hazard->MaxRange();
 	

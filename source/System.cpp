@@ -86,27 +86,6 @@ double System::Asteroid::Energy() const
 
 
 
-System::FleetProbability::FleetProbability(const Fleet *fleet, int period)
-	: fleet(fleet), period(period > 0 ? period : 200)
-{
-}
-
-
-
-const Fleet *System::FleetProbability::Get() const
-{
-	return fleet;
-}
-
-
-
-int System::FleetProbability::Period() const
-{
-	return period;
-}
-
-
-
 // Load a system's description.
 void System::Load(const DataNode &node, Set<Planet> &planets)
 {
@@ -754,7 +733,7 @@ double System::Exports(const string &commodity) const
 
 
 // Get the probabilities of various fleets entering this system.
-const vector<System::FleetProbability> &System::Fleets() const
+const vector<RandomEvent<Fleet>> &System::Fleets() const
 {
 	return fleets;
 }
@@ -762,7 +741,7 @@ const vector<System::FleetProbability> &System::Fleets() const
 
 
 // Get the probabilities of various hazards in this system.
-const vector<Hazard::Probability> &System::Hazards() const
+const vector<RandomEvent<Hazard>> &System::Hazards() const
 {
 	return hazards;
 }

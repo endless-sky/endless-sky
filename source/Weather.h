@@ -37,7 +37,7 @@ public:
 	// What the hazard's damage is multiplied by given the current weather strength.
 	double DamageMultiplier() const;
 	// The origin of the hazard.
-	Point Origin() const;
+	const Point &Origin() const;
 	// Create any environmental effects and decrease the lifetime of this weather.
 	void Step(std::vector<Visual> &newVisuals);
 	// Calculate this weather's strength for the current frame, to be used to find
