@@ -2606,7 +2606,7 @@ mission "Stone of our Fathers 4"
 				`	(Keep quiet and follow Helm towards the guest rooms.)`
 					goto rooms
 				`	(Try to say something on Skaldgar's behalf.)`
-			`	"Wait," you say before Thorleif can stomp off. "I do not, could not, know all that has happened here, that has gone on between you and your father. But I know that every time I met him he clearly regretted whatever happened, and constantly spoke of his mistakes. He is gone now, mistakes and all, and this stone.. I don't think it represents forgiveness, just, acceptance of who he was and that now he is gone."`
+			`	"Wait," you say before Thorleif can stomp off. "I do not, could not, know all that has happened here, that has gone on between you and your father. But I know that every time I met him he clearly regretted whatever happened, and constantly spoke of his mistakes. He's gone now, mistakes and all, and this stone... I don't think it represents forgiveness, but maybe acceptance of who he was, and that now he is gone."`
 			`	Thorleif turns to you, his face flashing red, and speaks through clenched teeth, "I have no father. I have no memories of such a man, and I will make no effort to remember someone who didn't stick around long enough to know me. Now, go to your rooms and leave me be!"`
 			label rooms
 			`	You quietly follow Helm to two small, sparsely decorated rooms, clearly intended for guest use. Helm clears his throat, "This may surprise you, but that actually went better than I thought it would."`
