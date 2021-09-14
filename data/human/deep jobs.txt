@@ -571,7 +571,7 @@ mission "Deep Security Package Reveal"
 			choice
 				`	(Go over to him.)`
 					goto bench
-				`	(Keep walking.)
+				`	(Keep walking.)`
 			`	When you go to ignore him he gives a quick, sharp, whistle and briefly flashes a deep security badge at you. He immediately covers this with a friendly wave for any nearby eyes, but it is clear that he won't be ignored.`
 			label bench
 			`	When you approach the bench he says, "Hello Captain. Please, have a seat and allow me to take a moment of your time."`
