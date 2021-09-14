@@ -353,7 +353,7 @@ void GameData::CheckReferences()
 			NameAndWarn("system", it);
 	// Hazards are never serialized.
 	for(const auto &it : hazards)
-		if(!it.second.IsValid() && !deferred["hazard"].count(it.first))
+		if(!it.second.IsValid())
 			Warn("hazard", it.first);
 }
 
