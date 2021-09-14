@@ -2436,7 +2436,7 @@ event "battle in arneb end"
 
 mission "Stone of our Fathers 1"
 	name "Stone of our Fathers"
-	description "Travel to <destination> and drop Skaldgar off at the home he abandoned long ago."
+	description "Travel to <destination>, and drop Skaldgar off at the home he abandoned long ago."
 	minor
 	passengers 1
 	to offer
@@ -2613,7 +2613,7 @@ mission "Stone of our Fathers 4"
 					goto help
 				`	"No, I've done enough for this family already. Especially for free!"`
 			`	Thorleif growls, "Knew better than to trust a friend of that useless old man. I gave you a place to sleep, and now you won't lift a hand to save it? I should have expected no less!" Thorleif and Helm hurry off to tend to the island during the storm, leaving you idle inside.`
-			`	Thorleif and Helm heroically use the islands metal rudder and rudimentry engine to steer it away from the storm and to calmer, safer seas. However, with only the two of them many of the out-buildings are destroyed, along with a few of the small watercraft Thorleif used to fish and work on.`
+			`	Thorleif and Helm heroically use the island's metal rudder and rudimentary engine to steer it away from the storm and to calmer, safer seas. However, with only the two of them many of the out-buildings are destroyed, along with a few of the small watercraft Thorleif used to fish and work on.`
 			`	You get the impression that this is an expensive and major loss for Thorleif. The moment the winds are calm, he demands Helm take you back to the mainland and your ship. "This Captain," Thorleif says, his voice oozing with disgust, "is just as lucky as my so-called father. I want him gone."`
 			`	For most of the trip back to your ship, Helm says nothing. He has been cool to you ever since you refused to help save the island. Finally, as you are preparing to disembark from his ship, he stops you. "You've done Skaldgar no favors here. I'd appreciate it if we don't see from you again."`
 			`	Helm holds up his hand showing off the stone in his palm. "I took it while you were napping. Skaldgar made a mistake with you, and I will at least see the stone properly tended. Goodbye." Helm indicates toward the exit and waits for you to depart before casting off again in his ship.`
