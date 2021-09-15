@@ -2004,7 +2004,7 @@ void Ship::DoGeneration()
 				Ship &ship = *it.second;
 				if(energyRemaining > 0.)	
 					DoRepair(ship.energy, energyRemaining, ship.attributes.Get("energy capacity"));	
-				if(fuelRemaining >0.)	
+				if(fuelRemaining > 0.)	
 					DoRepair(ship.fuel, fuelRemaining, ship.attributes.Get("fuel capacity"));
 			}
 		}
