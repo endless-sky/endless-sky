@@ -1997,12 +1997,14 @@ void Ship::DoGeneration()
 			
 			// Now that there is no more need to use energy for hull and shield
 			// repair, if there is still excess energy, transfer it.
-			double energyRemaining = min(0., energy - attributes.Get("energy capacity"));
-			double fuelRemaining = min(0., fuel - attributes.Get("fuel capacity"));
+			double energyRemaining = energy - attributes.Get("energy capacity");
+			double fuelRemaining = fuel - attributes.Get("fuel capacity");
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
+                if(energyRemaining > 0.)
 				DoRepair(ship.energy, energyRemaining, ship.attributes.Get("energy capacity"));
+                if(fuelRemaining >0.)
 				DoRepair(ship.fuel, fuelRemaining, ship.attributes.Get("fuel capacity"));
 			}
 		}
