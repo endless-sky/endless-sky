@@ -2002,10 +2002,10 @@ void Ship::DoGeneration()
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
-                if(energyRemaining > 0.)
-                    DoRepair(ship.energy, energyRemaining, ship.attributes.Get("energy capacity"));
-                if(fuelRemaining >0.)
-                    DoRepair(ship.fuel, fuelRemaining, ship.attributes.Get("fuel capacity"));
+				if(energyRemaining > 0.)	
+					DoRepair(ship.energy, energyRemaining, ship.attributes.Get("energy capacity"));	
+				if(fuelRemaining >0.)	
+					DoRepair(ship.fuel, fuelRemaining, ship.attributes.Get("fuel capacity"));
 			}
 		}
 		// Decrease the shield and hull delays by 1 now that shield generation
