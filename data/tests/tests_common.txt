@@ -143,6 +143,14 @@ test-data "Three Earthly Barges"
 		visited "Menkent"
 
 
+test "Open Menu"
+	status partial
+	description "Helper function to open the in-game menu."
+	sequence
+		input
+			key "escape"
+
+
 test "Load First Savegame"
 	status partial
 	description "Helper function to load the first savegame. Typically used directly after save-game inject."
@@ -151,8 +159,33 @@ test "Load First Savegame"
 			key l
 		input
 			key l
-			
-			
+
+
+test "Save To Default Snapshot"
+	# Broken status due to this bug (the loading happens very fast after saving during automated testing):
+	# https://github.com/endless-sky/endless-sky/issues/4810
+	status broken
+	description "Helper function to save the game to the first snapshot. Typically used directly after opening the menu."
+	sequence
+		# Open the menu.
+		# Future versions should detect if the menu is active and only open the menu when required.
+		# But the derived test-conditions that are required for such detection are not yet available.
+		input
+			key "escape"
+		# Go to Load/Save.
+		input
+			key l
+		# Add snapshot.
+		input
+			key a
+		# Confirm usage of the default snapshot name.
+		input
+			key "enter"
+		# Exit the menu that we are in (and return to the game)
+		input b
+		input e
+
+
 test "Depart"
 	status partial
 	description "Helper function to depart from a planet."
