@@ -13,7 +13,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ImageSet.h"
 
 #include "Files.h"
+#include "GameData.h"
 #include "Mask.h"
+#include "MaskManager.h"
 #include "Sprite.h"
 
 #include <algorithm>
@@ -269,8 +271,9 @@ void ImageSet::Load() noexcept(false)
 // the paths are saved in case the sprite needs to be loaded again.
 void ImageSet::Upload(Sprite *sprite)
 {
-	// Load the frames. This will clear the buffers and the mask vector.
+	// Load the frames (this will clear the buffers).
 	sprite->AddFrames(buffer[0], false);
 	sprite->AddFrames(buffer[1], true);
-	sprite->AddMasks(masks);
+	GameData::GetMaskManager().SetMasks(sprite, std::move(masks));
+	masks.clear();
 }
