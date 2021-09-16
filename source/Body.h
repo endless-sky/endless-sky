@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define BODY_H_
 
 #include "Angle.h"
-#include "Mask.h"
 #include "Point.h"
 
 #include <cstdint>
@@ -23,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class DataWriter;
 class Government;
+class Mask;
 class Sprite;
 
 
@@ -47,7 +47,7 @@ public:
 	double Radius() const;
 	// Which color swizzle should be applied to the sprite?
 	int GetSwizzle() const;
-	// Get the sprite and mask for the given time step.
+	// Get the sprite frame and mask for the given time step.
 	float GetFrame(int step = -1) const;
 	const Mask &GetMask(int step = -1) const;
 	

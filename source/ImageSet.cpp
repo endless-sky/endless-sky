@@ -271,8 +271,9 @@ void ImageSet::Load() noexcept(false)
 // the paths are saved in case the sprite needs to be loaded again.
 void ImageSet::Upload(Sprite *sprite)
 {
-	// Load the frames. This will clear the buffers and the mask vector.
+	// Load the frames (this will clear the buffers).
 	sprite->AddFrames(buffer[0], false);
 	sprite->AddFrames(buffer[1], true);
-	GameData::GetMaskManager().AddMasks(sprite, masks);
+	GameData::GetMaskManager().SetMasks(sprite, std::move(masks));
+	masks.clear();
 }

@@ -13,8 +13,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef MASK_MANAGER_H_
 #define MASK_MANAGER_H_
 
-#include <vector>
+#include "Mask.h"
+
 #include <map>
+#include <vector>
 
 class Mask;
 class Sprite;
@@ -26,13 +28,12 @@ class Sprite;
 class MaskManager {
 public:
 	// Move the given masks at 1x scale into the manager's storage.
-	// The given vector will be cleared.
-	void AddMasks(const Sprite *sprite, std::vector<Mask> &masks);
+	void SetMasks(const Sprite *sprite, std::vector<Mask> &&masks);
 	
 	// Add a scale that the given sprite needs to have a mask for.
 	void RegisterScale(const Sprite *sprite, double scale);
 	
-	// Create the scaled versions of all masks from the 1x versions. 
+	// Create the scaled versions of all masks from the 1x versions.
 	void ScaleMasks();
 	
 	// Get the masks for the given sprite at the given scale. If a

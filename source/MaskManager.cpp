@@ -13,24 +13,30 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MaskManager.h"
 
 #include "Files.h"
-#include "Mask.h"
 #include "Sprite.h"
 
 using namespace std;
 
+namespace {
+	constexpr double DEFAULT = 1.;
+	map<const Sprite *, bool> warned;
+	
+	string PrintScale(double s) {
+		return to_string(100. * s) + "%";
+	}
+}
+
 
 
 // Move the given masks at 1x scale into the manager's storage.
-// The given vector will be cleared.
-void MaskManager::AddMasks(const Sprite *sprite, std::vector<Mask> &masks)
+void MaskManager::SetMasks(const Sprite *sprite, std::vector<Mask> &&masks)
 {
 	auto &scales = spriteMasks[sprite];
-	auto it = scales.find(1.);
+	auto it = scales.find(DEFAULT);
 	if(it != scales.end())
 		it->second.swap(masks);
 	else
-		scales.emplace(1., move(masks));
-	masks.clear();
+		scales.emplace(DEFAULT, move(masks));
 }
 
 
@@ -43,18 +49,18 @@ void MaskManager::RegisterScale(const Sprite *sprite, double scale)
 	if(lb == scales.end() || lb->first != scale)
 		scales.emplace_hint(lb, scale, vector<Mask>{});
 	else if(!lb->second.empty())
-		Files::LogError("Collision mask for sprite \"" + sprite->Name() + "\" at scale " + to_string(scale) + " was already generated");
+		Files::LogError("Collision mask for sprite \"" + sprite->Name() + "\" at scale " + PrintScale(scale) + " was already generated.");
 }
 
 
 
-// Create the scaled versions of all masks from the 1x versions. 
+// Create the scaled versions of all masks from the 1x versions.
 void MaskManager::ScaleMasks()
 {
 	for(auto &spriteScales : spriteMasks)
 	{
 		auto &scales = spriteScales.second;
-		auto baseIt = scales.find(1.);
+		auto baseIt = scales.find(DEFAULT);
 		if(baseIt == scales.end() || baseIt->second.empty())
 			continue;
 		
@@ -86,17 +92,29 @@ const std::vector<Mask> &MaskManager::GetMasks(const Sprite *sprite, double scal
 	const auto scalesIt = spriteMasks.find(sprite);
 	if(scalesIt == spriteMasks.end())
 	{
-		Files::LogError("Failed to find collision mask for sprite \"" + sprite->Name() + "\"");
+		if(warned.insert(make_pair(sprite, true)).second)
+			Files::LogError("Warning: sprite \"" + sprite->Name() + "\": no collision masks found.");
 		return EMPTY;
 	}
 	
 	const auto &scales = scalesIt->second;
-	const auto &maskIt = scales.find(scale);
-	if(maskIt == scales.end() || maskIt->second.empty())
-	{
-		Files::LogError("Failed to find collision mask for sprite \"" + sprite->Name() + "\" at scale " + to_string(scale));
-		return EMPTY;
-	}
+	const auto maskIt = scales.find(scale);
+	if(maskIt != scales.end() && !maskIt->second.empty())
+		return maskIt->second;
 	
-	return maskIt->second;
+	// Shouldn't happen, but just in case, print some details about the scales for this sprite (once).
+	if(warned.insert(make_pair(sprite, true)).second)
+	{
+		string warning = "Warning: sprite \"" + sprite->Name() + "\": collision mask not found.";
+		if(scales.empty()) warning += " (No scaled masks.)";
+		else if(maskIt != scales.end()) warning += " (No masks for scale " + PrintScale(scale) + ".)";
+		else
+		{
+			warning += "\n\t" + PrintScale(scale) + " not found in known scales:";
+			for(auto &&s : scales)
+				warning += "\n\t\t" + PrintScale(s.first);
+		}
+		Files::LogError(warning);
+	}
+	return EMPTY;
 }
