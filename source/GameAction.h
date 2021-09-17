@@ -43,26 +43,21 @@ public:
 	
 	void Load(const DataNode &node, const std::string &missionName);
 	// Load a single child at a time, used for streamlining MissionAction::Load.
-	void LoadSingle(const DataNode &child, const std::string &missionName);
-	void Save(DataWriter &out) const;
+	void LoadAction(const DataNode &child, const std::string &missionName);
+	void SaveAction(DataWriter &out) const;
 	
 	// If this action has not been loaded, then it is empty.
 	bool IsEmpty() const;
 	
-	int Payment() const;
-	int Fine() const;
-	
 	// Perform this action.
-	void Do(PlayerInfo &player) const;
+	void DoAction(PlayerInfo &player) const;
 	
-	// "Instantiate" this action by filling in the wildcard text for the actual
+	// "Instantiate" this action by filling in the wildcard data for the actual
 	// payment, event delay, etc.
-	GameAction Instantiate(std::map<std::string, std::string> &subs, int jumps, int payload) const;
+	GameAction InstantiateAction(std::map<std::string, std::string> &subs, int jumps, int payload) const;
 	
 	
-private:
-	bool empty = true;
-	
+protected:
 	std::string logText;
 	std::map<std::string, std::map<std::string, std::string>> specialLogText;
 	
@@ -75,6 +70,10 @@ private:
 	std::set<std::string> fail;
 	
 	ConditionSet conditions;
+	
+	
+private:
+	bool empty = true;
 };
 
 

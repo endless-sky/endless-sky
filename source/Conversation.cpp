@@ -268,7 +268,7 @@ void Conversation::Save(DataWriter &out) const
 				out.Write("action", TokenName(node.data[0].second));
 				out.BeginChild();
 				{
-					node.actions.Save(out);
+					node.actions.SaveAction(out);
 				}
 				out.EndChild();
 				continue;
@@ -328,7 +328,7 @@ Conversation Conversation::Instantiate(map<string, string> &subs, int jumps, int
 		for(pair<string, int> &choice : node.data)
 			choice.first = Format::Replace(choice.first, subs);
 		if(!node.actions.IsEmpty())
-			node.actions = node.actions.Instantiate(subs, jumps, payload);
+			node.actions = node.actions.InstantiateAction(subs, jumps, payload);
 	}
 
 	return result;

@@ -221,7 +221,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 				child.PrintTrace("Unsupported use of \"system\" LocationFilter:");
 		}
 		else
-			actions.LoadSingle(child, missionName);
+			LoadAction(child, missionName);
 	}
 }
 
@@ -264,7 +264,7 @@ void MissionAction::Save(DataWriter &out) const
 		for(const auto &it : requiredOutfits)
 			out.Write("require", it.first->Name(), it.second);
 		
-		actions.Save(out);
+		SaveAction(out);
 	}
 	out.EndChild();
 }
@@ -286,6 +286,11 @@ string MissionAction::Validate() const
 	// Stock conversations must be defined.
 	if(stockConversation && stockConversation->IsEmpty())
 		return "stock conversation";
+	
+	// Events which get activated by this action must be valid.
+	for(auto &&event : events)
+		if(!event.first->IsValid())
+			return "event \"" + event.first->Name() + "\"";
 
 	// Gifted or required content must be defined & valid.
 	for(auto &&it : giftShips)
@@ -306,20 +311,6 @@ string MissionAction::Validate() const
 
 
 
-int MissionAction::Payment() const
-{
-	return actions.Payment();
-}
-
-
-
-int MissionAction::Fine() const
-{
-	return actions.Fine();
-}
-
-
-
 const string &MissionAction::DialogText() const
 {
 	return dialogText;
@@ -331,7 +322,7 @@ const string &MissionAction::DialogText() const
 // if it takes away money or outfits that the player does not have.
 bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
 {
-	if(player.Accounts().Credits() < -actions.Payment())
+	if(player.Accounts().Credits() < -payment)
 		return false;
 	
 	const Ship *flagship = player.Flagship();
@@ -443,7 +434,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 		if(it.second > 0)
 			DoGift(player, it.first, it.second, ui);
 	
-	actions.Do(player);
+	DoAction(player);
 }
 
 
@@ -462,10 +453,39 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	result.giftOutfits = giftOutfits;
 	result.requiredOutfits = requiredOutfits;
 	
-	
 	string previousPayment = subs["<payment>"];
 	string previousFine = subs["<fine>"];
-	result.actions = actions.Instantiate(subs, jumps, payload);
+	// Below is duplicated code from GameAction that needs addressed.
+	/************/
+	for(const auto &it : events)
+	{
+		// Allow randomization of event times. The second value in the pair is
+		// always greater than or equal to the first, so Random::Int() will
+		// never be called with a value less than 1.
+		int day = it.second.first + Random::Int(it.second.second - it.second.first + 1);
+		result.events[it.first] = make_pair(day, day);
+	}
+	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
+	// Fill in the payment amount if this is the "complete" action.
+	if(result.payment)
+		subs["<payment>"] = Format::Credits(abs(result.payment))
+			+ (result.payment == 1 ? " credit" : " credits");
+	
+	result.fine = fine;
+	if(result.fine)
+		subs["<fine>"] = Format::Credits(result.fine)
+			+ (result.fine == 1 ? " credit" : " credits");
+	
+	if(!logText.empty())
+		result.logText = Format::Replace(logText, subs);
+	for(const auto &it : specialLogText)
+		for(const auto &eit : it.second)
+			result.specialLogText[it.first][eit.first] = Format::Replace(eit.second, subs);
+	
+	result.fail = fail;
+	
+	result.conditions = conditions;
+	/***********/
 	
 	// Create any associated dialog text from phrases, or use the directly specified text.
 	string dialogText = stockDialogPhrase ? stockDialogPhrase->Get()
@@ -481,9 +501,9 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	
 	// Restore the "<payment>" and "<fine>" values from the "on complete" condition, for
 	// use in other parts of this mission.
-	if(result.Payment() && trigger != "complete")
+	if(payment && trigger != "complete")
 		subs["<payment>"] = previousPayment;
-	if(result.Fine() && trigger != "complete")
+	if(fine && trigger != "complete")
 		subs["<fine>"] = previousFine;
 	
 	return result;

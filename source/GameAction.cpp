@@ -39,13 +39,13 @@ GameAction::GameAction(const DataNode &node, const string &missionName)
 void GameAction::Load(const DataNode &node, const string &missionName)
 {
 	for(const DataNode &child : node)
-		LoadSingle(child, missionName);
+		LoadAction(child, missionName);
 }
 
 
 
 // Load a single child at a time, used for streamlining MissionAction::Load.
-void GameAction::LoadSingle(const DataNode &child, const string &missionName)
+void GameAction::LoadAction(const DataNode &child, const string &missionName)
 {
 	empty = false;
 	
@@ -97,7 +97,7 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 
 
 
-void GameAction::Save(DataWriter &out) const
+void GameAction::SaveAction(DataWriter &out) const
 {
 	if(!logText.empty())
 	{
@@ -148,22 +148,8 @@ bool GameAction::IsEmpty() const
 
 
 
-int GameAction::Payment() const
-{
-	return payment;
-}
-
-
-
-int GameAction::Fine() const
-{
-	return fine;
-}
-
-
-
 // Do the actions of the GameAction.
-void GameAction::Do(PlayerInfo &player) const
+void GameAction::DoAction(PlayerInfo &player) const
 {
 	if(!logText.empty())
 		player.AddLogEntry(logText);
@@ -208,7 +194,7 @@ void GameAction::Do(PlayerInfo &player) const
 
 
 
-GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int payload) const
+GameAction GameAction::InstantiateAction(map<string, string> &subs, int jumps, int payload) const
 {
 	GameAction result;
 	

@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef MISSION_ACTION_H_
 #define MISSION_ACTION_H_
 
+#include "GameAction.h"
+
 #include "ConditionSet.h"
 #include "Conversation.h"
 #include "GameAction.h"
@@ -29,7 +31,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class DataNode;
 class DataWriter;
-class GameAction;
 class GameEvent;
 class Outfit;
 class PlayerInfo;
@@ -43,7 +44,7 @@ class UI;
 // milestone: offered, accepted, declined, completed or failed. Actions might
 // include showing a dialog or conversation, giving the player payment or a
 // special item, modifying condition flags, or queueing an event to occur.
-class MissionAction {
+class MissionAction : public GameAction {
 public:
 	MissionAction() = default;
 	// Construct and Load() at the same time.
@@ -55,9 +56,6 @@ public:
 	void Save(DataWriter &out) const;
 	// Determine if this MissionAction references content that is not fully defined.
 	std::string Validate() const;
-	
-	int Payment() const;
-	int Fine() const;
 	
 	const std::string &DialogText() const;
 	
@@ -89,10 +87,6 @@ private:
 	std::vector<std::pair<const Ship *, std::string>> giftShips;
 	std::map<const Outfit *, int> giftOutfits;
 	std::map<const Outfit *, int> requiredOutfits;
-	
-	// The GameAction handles logs, events, payments, mission failures, and conditions.
-	// This is a separate class so that these same things can be done in Conversations.
-	GameAction actions;
 };
 
 
