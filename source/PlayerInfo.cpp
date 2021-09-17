@@ -2581,7 +2581,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
 			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system
-					&& name == "ship: " + ship->Attributes().Category())
+					&& name == "ships: " + ship->Attributes().Category())
 				++retVal;
 		return retVal;
 	};
