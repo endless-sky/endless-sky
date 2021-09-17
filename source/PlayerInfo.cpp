@@ -2588,7 +2588,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	conditions.SetProviderPrefixed("ships: ", conditionsProvider);
 	
 	// Conditions to determine if flagship is in a system and on a planet.
-	conditionsProvider.hasFun = [this](const string &name)->bool
+	conditionsProvider.hasFun = [this](const string &name) -> bool
 	{
 		if(!flagship || !flagship->GetSystem())
 			return 0;
@@ -2597,7 +2597,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	conditionsProvider.getFun = conditionsProvider.hasFun;
 	conditions.SetProviderPrefixed("flagship system: ", conditionsProvider);
 	
-	conditionsProvider.hasFun = [this](const string &name)->bool
+	conditionsProvider.hasFun = [this](const string &name) -> bool
 	{
 		if(!flagship || !flagship->GetPlanet())
 			return 0;
