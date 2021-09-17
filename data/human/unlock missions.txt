@@ -20,7 +20,8 @@ mission "Barrage Unlock 0"
 	on offer
 		event "barrage development begins" 100
 		fail
-		
+
+event "barrage development begins"		
 
 mission "Barrage Unlock 1"
 	name "Weapons Testing on <planet>"
