@@ -351,7 +351,17 @@ ship "Berserker" "Berserker (Strike)"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
 
-
+ship "Berserker" "Berserker (Barrage)"
+	outfits
+		"Barrage Launcher" 4
+		"Barrage Storage" 4
+		"Barrage Missile" 1000
+		"LP072a Battery Pack"
+		"nGVF-CC Fuel Cell"
+		"S-270 Regenerator"
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
 
 ship "Bounder" "Bounder (Hai)"
 	outfits

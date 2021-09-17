@@ -1,0 +1,143 @@
+# Copyright (c) 2021 by W1zrad
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+
+# Would have edited these two Wanderer missions to add this event, but then existing saves wouldn'tbe able to get the event (I think).
+mission "Barrage Unlock 0"
+	landing
+	invisible
+	to offer
+		or
+			has "Wanderers: Sestor Alt: Return to Wanderers: done"
+			has "Wanderers: Sestor: Return to Wanderers: done"
+	on offer
+		event "barrage development begins" 100
+		fail
+		
+
+mission "Barrage Unlock 1"
+	name "Weapons Testing on <planet>"
+	description "Horace Lovelace has asked for your assistance in testing a new human weapon. Meet him at <destination> to see what he needs from you."
+	landing
+	to offer
+		has "Barrage Unlock 0: offered"
+		random < 10
+	source
+		government "Republic" "Free Worlds" "Syndicate"
+	destination "Carbuncle Station"
+	on offer
+		dialog `As you land on <origin>, you notice you have a message from a "Horace Lovelace." It reads: "Captain <first>- I'm sure my last name serves as a suitable introduction. If you're interested in helping with some weapons testing, feel free to drop by <planet>. -H" With Lovelace being such a rare name, it's obvious this man is connected to Lovelace Labs, the weapons manufacturer.`
+
+mission "Barrage Unlock 2"
+	name "Barrage Missile Testing"
+	description "Escort Horace Lovelace's testing ship equipped with prototype Barrage missiles to <waypoints> and defeat the Marauder fleet stationed there."
+	landing
+	waypoint "Sospi"
+	to offer
+		has "Barrage Unlock 1: done"
+	source "Carbuncle Station"
+	npc kill
+		government "Pirate"
+		personality heroic plunders staying target
+		system "Sospi"
+		dialog `The Marauder fleet has been defeated. Time to escort Horace and the Thunderstorm back to <origin>.`
+		fleet "Marauder fleet VII"
+	npc accompany save
+		government "Neutral"
+		personality heroic escort
+		ship "Berserker (Barrage)" "Thunderstorm"
+	on visit
+		dialog "You have reached <planet>, but your mission is not complete - either the entire Marauder fleet has not been destroyed, or you have left the Thunderstorm behind."
+	on offer
+		log "People" "Horace Lovelace" "Horace, a descendant of the original founder of Lovelace Labs, is currently in charge of the missile engineering and development team at Lovelace."
+		conversation
+			`You land on <origin> and inform Horace Lovelace that you've arrived. Soon, an engineer meets you and leads you deep into the bowels of the station, well beyond what is available to the public. You arrive at a large office marked with a nameplate: "H. Lovelace."`
+			`	When you enter, you are greeted by a wiry man sitting at the desk. "<first> <last>?" he asks, and you nod. "Good. Follow me," he says, getting up to leave the room.`
+			choice
+				`	"Are you Horace Lovelace?"`
+					goto snark
+				`	"Where are we going?"`
+				`	(Follow him.)`
+					goto lab
+			`	"You'll see," he answers. He's out the door before you can ask anything else, so you follow.`
+				goto lab
+			label snark
+			`	"Wow. How'd you get this far without learning how to read?" He points at the nameplate you noticed and starts off down the hallway. You hurry to catch up.`
+			label lab
+			`	You arrive at a large hanger with a variety of different missile launchers. Some look like upgraded versions of Lovelace technology, but there are several launchers that don't look like anything you've seen before. "I'm the head of missile development here at Lovelace," Horace explains. "Most of the family works in the company to some capacity, but there aren't many of us on the engineering side. Those who are work on the fun stuff."`
+			scene "outfit/barrage launcher"
+			`	He leads you to one launcher in particular. Everything about it is small in comparison to the others in the hanger, but it carries more missiles than you've seen on any launcher. "Say hello to the Barrage Launcher. It doesn't pack the largest punch, but that's not the point. The point is that it throws out enough to overwhelm anti-missile systems, then the big stuff - your torpedoes, your typhoons - slip past the defenses in all the chaos.`
+			`	"After the whole robot debacle up north, the Navy wanted some upgraded toys to play with. Lovelace got the bid, and here we are," he says, gesturing to the Barrage Launcher. "We've worked with Navy engineers on the design, but all the prototyping's been done in-house. That brings me to why you're here: testing. I've got several of these installed on my own ship, and a target in mind: a Marauder fleet hanging around the <waypoints> system. The problem is, I don't know how large this fleet is, and for all the testing we do here, it's not like we have some kind of standing fleet that I can just take with me. So you're my backup. I'm sure a captain of your caliber could handle anything we find up there. Questions?"`
+			choice
+				`	"Makes sense to me. I'm in."`
+					goto yes
+				`	"How come you chose me?"`
+				`	"If the Navy hired you, wouldn't they be willing to lend you a fleet?"`
+					goto broken
+				`	"This seems too dangerous. I'm out."`
+					goto no
+			`	"You came recommended. You did some testing for Kraz as well, right?" he answers.`
+			`	"How would you know? Aren't you two competitors?" you ask him.`
+			`	"Oh, we are. But we share things that are mutually beneficial, like people willing to help with testing. Eddy's a strange guy, but he knows what he's talking about." Horace pauses. "Don't tell him I called him that." You figure that there's some history between Barmy Edward and him.`
+				goto next
+			label broken
+			`	"Well..." Horace hesitates. "They did. They, uh... Let's just say that if the Navy gives me something to play with, I usually don't return it in one piece."`
+			label next
+			choice
+				`	"I'm in. Let's go."`
+					goto yes
+				`	"I've heard rumors that you're rivals with the anti-missile branch in Lovelace. Are they true?"`
+					goto rumors
+				`	"If you're concerned about safety, why not go after something other than Marauders?"`
+				`	"This seems too dangerous. I'm out."`
+					goto no
+			`	"I already have. We're interested in how these fare against bigger targets now. Hence, the fleet."`
+				goto decide
+			label rumors
+			`	Horace laughs loudly, drawing the attention of nearby workers, and says, "Absolutely we're not! We're all on the same side here!" He then leans in close and quietly says, "Absolutely we are. My cousin runs it."`
+			label decide
+			choice
+				`	"Alright, I'm in."`
+				`	"This seems too dangerous. I'm out."`
+					goto no
+			label yes
+			`	"Good. I'll follow you out of the station," Horace says.`
+				accept
+			label no
+			`	"Hmph. Well then, bye." Horace walks away. On the way out, you're forced to sign countless nondisclosure agreements and other legal documents. It takes an entire hour just to get through it all.`
+				decline
+	on complete
+		payment 750000
+		log "People" "Horace Lovelace" "Assisted him in testing the Barrage Launcher, a new missile launcher designed to overwhelm anti-missile systems to allow larger ordnance to pass through."
+		conversation
+			`	When you return, you're directed to land in a private hanger next to Horace's ship. He hops out and nearly sprints to meet a group of engineers waiting nearby, immediately launching into a conversation about the results. As you approach the group, he glances at you. "Fine flying, Captain <first>. You still in one piece?"`
+			choice
+				`	"I'm just fine, thanks. Barely a scratch on my <ship>."`
+				`	"I managed."`
+				`	"Barely. That was a tough fight for a weapons test."`
+			`	"Yeah, uh huh. Good," he replies, definitely more interested in the datapad one of his engineers is holding up. You not sure he even processed your answer. "You're free to go, by the way. We're sending you some kind of payment, I'm sure." An engineer leans over and whispers something to him. "Oh, right. <payment>. Thanks for your help." He dismisses you with a hand wave before continuing the complicated, jargon-filled discussion with his engineers.`
+		event "barrage launcher available" 100
+
+mission "Barrage Available"
+	landing
+	invisible
+	source
+		government "Republic" "Free Worlds" "Syndicate"
+	to offer
+		has "event: barrage launcher available"
+	on offer
+		dialog `You receive a message from Horace Lovelace. "Captain <first>- The Barrage Launcher is now available for purchase. Lovelace Labs thanks you for your assistance. -H"`
+		fail
+
+event "barrage launcher available"
+	outfitter "Lovelace Advanced"
+		"Barrage Launcher"
+		"Barrage Storage"
+		"Barrage Missile"
