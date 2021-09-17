@@ -57,6 +57,7 @@ public:
 	std::string Validate() const;
 	
 	int Payment() const;
+	int Fine() const;
 	
 	const std::string &DialogText() const;
 	

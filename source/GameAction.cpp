@@ -124,6 +124,8 @@ void GameAction::Save(DataWriter &out) const
 		}
 	if(payment)
 		out.Write("payment", payment);
+	if(fine)
+		out.Write("fine", fine);
 	for(const auto &it : events)
 	{
 		if(it.second.first == it.second.second)

@@ -263,8 +263,6 @@ void MissionAction::Save(DataWriter &out) const
 			out.Write("outfit", it.first->Name(), it.second);
 		for(const auto &it : requiredOutfits)
 			out.Write("require", it.first->Name(), it.second);
-		if(fine)
-			out.Write("fine", fine);
 		
 		actions.Save(out);
 	}
@@ -311,6 +309,13 @@ string MissionAction::Validate() const
 int MissionAction::Payment() const
 {
 	return actions.Payment();
+}
+
+
+
+int MissionAction::Fine() const
+{
+	return actions.Fine();
 }
 
 
