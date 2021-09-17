@@ -2553,7 +2553,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	conditionsProvider.getFun = [this](const string &name) -> int64_t
 	{
 		if(flagship && !boardingMissions.empty())
-			flagship->Cargo().Free();
+			return flagship->Cargo().Free();
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
 			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system)
@@ -2591,7 +2591,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	conditionsProvider.hasFun = [this](const string &name) -> bool
 	{
 		if(!flagship || !flagship->GetSystem())
-			return 0;
+			return false;
 		return name == "flagship system: " + flagship->GetSystem()->Name();
 	};
 	conditionsProvider.getFun = conditionsProvider.hasFun;
@@ -2600,7 +2600,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	conditionsProvider.hasFun = [this](const string &name) -> bool
 	{
 		if(!flagship || !flagship->GetPlanet())
-			return 0;
+			return false;
 		return name == "flagship planet: " + flagship->GetPlanet()->TrueName();
 	};
 	conditionsProvider.getFun = conditionsProvider.hasFun;
