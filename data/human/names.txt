@@ -59,21 +59,21 @@ phrase "letter"
 # of the number of male and female names).
 phrase "civilian"
 	phrase
-		"civilian subphrase 1" 101774
-		"civilian subphrase 2" 147103
-		"civilian subphrase 3" 111652
-		"civilian subphrase 4" 44521
-		"civilian subphrase 5" 3080
-		"civilian subphrase 6" 6994
-		"civilian subphrase 7" 6552
-		"civilian subphrase 8" 38052
-		"civilian subphrase 9" 88000
-		"civilian subphrase 10" 129376
-		"civilian subphrase 11" 339360
-		"civilian subphrase 12" 6080
-		"civilian subphrase 13" 4900
-		"civilian subphrase 14" 39200
-		"civilian subphrase 15" 15620
+		"civilian subphrase 1" 50000    # [adjective] [name or noun] [sometimes a successor]
+		"civilian subphrase 2" 50000    # [adjective or noun] [noun]
+		"civilian subphrase 3" 50000    # [name or title]'s [noun]
+		"civilian subphrase 4" 44521    # [nouns] and [Nouns]
+		"civilian subphrase 5" 3080     # [quantity] of [nouns]
+		"civilian subphrase 6" 6000     # [male or gender-neutral title] [male name or thing you can be of]
+		"civilian subphrase 7" 6000     # [female or gender-neutral title] [female name or thing you can be of]
+		"civilian subphrase 8" 38052    # [name] the [adjective]
+		"civilian subphrase 9" 50000    # [noun or adjective] [title] [sometimes a successor]
+		"civilian subphrase 10" 50000   # [noun] [thing you can be of]
+		"civilian subphrase 11" 50000   # [noun] [noun or title] [sometimes a successor]
+		"civilian subphrase 12" 6080    # [adjective, noun, title, or female name] [sometimes a successor]
+		"civilian subphrase 13" 4900    # [made-up ship names] [sometimes a successor]
+		"civilian subphrase 14" 39200   # [Chinese name] [Chinese name] [Chinese name or sometimes a successor]
+		"civilian subphrase 15" 15620   # [noun] [noun] [sometimes a successor]
 
 phrase "adjectives"
 	word
@@ -819,6 +819,7 @@ phrase "male names"
 		"Ravi"
 		"Sirhan"
 		"Zev"
+		"Joseph"
 
 phrase "female names"
 	word
@@ -952,6 +953,8 @@ phrase "female names"
 		"Sura"
 		"Zarifa"
 		"Grace"
+		"Andromeda"
+		"Cassiopeia"
 
 phrase "one to twelve"
 	word
@@ -1519,8 +1522,8 @@ phrase "civilian subphrase 1"
 	word
 		" "
 	phrase
-		"male names" 122
-		"female names" 130
+		"male names" 123
+		"female names" 132
 		"singular nouns" 201
 		"plural nouns" 110
 		"nouns of indeterminate quantity" 101
@@ -1601,7 +1604,7 @@ phrase "civilian subphrase 6"
 	word
 		" "
 	phrase
-		"male names" 122
+		"male names" 123
 		"things you can be of" 416
 
 # e.g.:
@@ -1614,7 +1617,7 @@ phrase "civilian subphrase 7"
 	word
 		" "
 	phrase
-		"female names" 130
+		"female names" 132
 		"things you can be of" 416
 
 # e.g.:
@@ -1681,11 +1684,10 @@ phrase "civilian subphrase 12"
 		"nouns of indeterminate quantity" 101
 		"singular nouns" 201
 		"all titles" 25
-		"female names" 130
+		"female names" 132
 	phrase
 		"sometimes a successor"
 
-# Tripled to get more of these
 phrase "civilian subphrase 13"
 	phrase
 		"standalone civilian ship names"
@@ -2641,29 +2643,21 @@ phrase "syndicate fighter"
 
 phrase "pirate"
 	phrase
-		"pirate subphrase 1" 131
-		"pirate subphrase 2" 19504
-		"pirate subphrase 3" 15720
-		"pirate subphrase 4" 12880
-		"pirate subphrase 5" 3500
-		"pirate subphrase 6" 6700
-		"pirate subphrase 7" 4482
-		"pirate subphrase 8" 184
-		"pirate subphrase 9" 3060
-		"pirate subphrase 10" 648
-		"pirate subphrase 11" 20
-		"pirate subphrase 12" 17
-		"pirate subphrase 13" 26
-		"pirate subphrase 14" 21
-		"pirate subphrase 15" 17
-		"pirate subphrase 16" 11
-		"pirate subphrase 17" 7
-		"pirate subphrase 18" 5
+		"pirate subphrase 1" 261    # standalone pirate ship names
+		"pirate subphrase 2" 2000   # [adjective] [noun or bad outcome]
+		"pirate subphrase 3" 2000   # [adjective] [sinister name or bad outcome]
+		"pirate subphrase 4" 1500   # [sinister name]'s [noun or bad outcome]
+		"pirate subphrase 5" 2500   # [sinister name] the [adjective]
+		"pirate subphrase 6" 2000   # [noun] of [bad outcome]
+		"pirate subphrase 7" 3000   # [bad outcome or adjective] [noun]
+		"pirate subphrase 8" 184    # [noun or bad outcome]
+		"pirate subphrase 9" 3168   # [noun or bad condition][noun]
+		"pirate subphrase 10" 725   # [bad condition] [positive noun or good condition]
 
 phrase "bounty hunter"
 	phrase
-		"bounty hunter subphrase 1" 897
-		"bounty hunter subphrase 2" 729
+		"bounty hunter subphrase 1" 897   # [adjective] [noun]
+		"bounty hunter subphrase 2" 729   # [noun] of [noun or condition]
 
 # All of these should sound good when preceded by the word "of" or when "'s" is added onto the end
 phrase "sinister names"
@@ -2738,6 +2732,14 @@ phrase "sinister names"
 		"Urgok"
 		"Bruja"
 		"Dante"
+		"Cetus"
+		"Seren"
+		"Zenda"
+		"Bartram"
+		"Zell"
+		"Nictis"
+		"Ragnor"
+		"Maggard"
 
 # e.g. Simon the Brutal, Vexan the Cannibal, Vlad the Impaler
 phrase "pirate adjectives that work as titles"
@@ -2772,6 +2774,7 @@ phrase "pirate adjectives that work as titles"
 		"Rusty"
 		"Painful"
 		"Murderous"
+		"Sadist"
 		"Sadistic"
 		"Flayed"
 		"Greedy"
@@ -2786,12 +2789,19 @@ phrase "pirate adjectives that work as titles"
 		"Salty"
 		"Greasy"
 		"Nasty"
+		"Cruel"
 		"Impaler"
 		"Grotesque"
 		"Hateful"
 		"Grim"
 		"Fat"
 		"Portly"
+		"Mad"
+		"Crazy"
+		"Penetrating"
+		"Miserable"
+		"Infectious"
+		"Hulking"
 
 phrase "pirate adjectives that don't work as titles"
 	word
@@ -2840,6 +2850,7 @@ phrase "pirate adjectives that don't work as titles"
 		"Naked"
 		"Hobbled"
 		"Chained"
+		"Bound"
 		"Haunted"
 		"Piercing"
 		"Thunderous"
@@ -2989,6 +3000,7 @@ phrase "pirate nouns"
 		"Heart"
 		"Slayer"
 		"Vulture"
+		"Anthrax"
 
 phrase "pirate nouns that work after bad outcomes"
 	word
@@ -3206,27 +3218,158 @@ phrase "pirate subphrase 1"
 		"Keelhauled"
 		"Danegeld"
 		"Terror"
+		"Blackbeard"
+		"Edward Teach"
+		"William Kidd"
+		"Long Ben"
+		"Henry Morgan"
+		"Francois l'Olonnais"
+		"Francis Drake"
+		"Cheung Po Tsai"
+		"Bartholomew Roberts"
+		"Benjamin Hornigold"
+		"Calico Jack"
+		"Emanuel Wynn"
+		"Christopher Moody"
+		"Stede Bonnet"
+		"Paulsgrave Williams"
+		"Dragut"
+		"Thomas Tew"
+		"Henry Every"
+		"Philip Lyne"
+		"Kanhoji Angre"
+		"Lady Killigrew"
+		"Ching Shih"
+		"Anne Bonny"
+		"Mary Read"
+		"Charlotte Badger"
+		"Catherine Hagerty"
+		"Sadie the Goat"
+		"Rachel Wall"
+		"Maria Lindsey"
+		"Sayyida al Hurra"
+		"Lo Hon-cho"
+		"Jeanne de Clisson"
+		"Grace O'Malley"
+		"Teuta of Illyria"
+		"Jeanne de Clisson"
+		"Christina Anna Skytte"
+		"Anne Dieu-le-Veut"
+		"Queen Anne's Revenge"
+		"Whydah"
+		"Wyndham Galley"
+		"Revenge"
+		"Adventure Galley"
+		"Quedagh Merchant"
+		"Adventure Prize"
+		"Golden Fleece"
+		"Black Prince"
+		"Rising Sun"
+		"The William"
+		"La Nouvelle Trompeuse"
+		"Sea Nymph"
+		"Bachelor's Delight"
+		"Rose Pink"
+		"Scowerer"
+		"Sultana"
+		"Ranger"
+		"Lark"
+		"Postillion"
+		"Good Fortune"
+		"Royal Fortune"
+		"Marianne"
+		"Amity"
+		"Pembroke"
+		"Margaret"
+		"Flying Dutchman"
+		"Caleuche"
+		"Lady Lovibond"
+		"Princess Augusta"
+		"Eliza Battle"
+		"Iron Mountain"
+		"Eurydice"
+		"Valencia"
+		"Octavius"
+		"Ourang Medan"
+		"Sea Bird"
+		"Resolute"
+		"Mary Celeste"
+		"Resolven"
+		"Twenty One Friends"
+		"Zebrina"
+		"Deering"
+		"Baychimo"
+		"Governor Parr"
+		"Joyita"
+		"Teignmouth Electron"
+		"Black Corsair"
+		"Captain Flint"
+		"Long John Silver"
+		"Billy Bones"
+		"The Master of Ballantrae"
+		"One-Eyed Willy"
+		"Captain Hook"
+		"Jesamiah Acorne"
+		"Captain Anton"
+		"Dread Pirate Roberts"
+		"Guybrush Threepwood"
+		"LeChuck"
+		"Jack Sparrow"
+		"Hector Barbarossa"
+		"Edward Teague"
+		"The Pirate King"
+		"Jack Shandy"
+		"Helen Tavrel"
+		"Valeria of the Red Brotherhood"
+		"Red Sonja"
+		"Missee Lee"
+		"Pirate Jenny"
+		"Charlotte de Berry"
+		"Elizabeth Hurwood"
+		"Fanny Campbell"
+		"Jacquotte Delahaye"
+		"Elizabeth Swann"
+		"Elaine Marley"
+		"Jolly Roger"
+		"Black Freighter"
+		"Sea Witch"
+		"Thunder"
+		"The Walrus"
+		"Tigress"
+		"Wild Cat"
+		"Three Skeleton Key"
+		"Ampoliros"
+		"Demeter"
+		"Antonia Graza"
+		"Mortzestus"
+		"Interfector"
+		"Red Gauntlet"
+		"Whirlwind"
+		"Wolf's Claw"
+		"Virulence"
+		"Septimus Severus"
+		"Benighted"
 
 phrase "pirate subphrase 2"
 	phrase
-		"pirate adjectives that don't work as titles" 66
-		"pirate adjectives that work as titles" 50
+		"pirate adjectives that don't work as titles" 67
+		"pirate adjectives that work as titles" 58
 	word
 		" "
 	phrase
-		"pirate nouns" 107
+		"pirate nouns" 108
 		"pirate nouns that work after bad outcomes" 27
 		"bad outcomes" 50
 
 phrase "pirate subphrase 3"
 	phrase
 		"pirate adjectives that don't work before singular nouns" 15
-		"pirate adjectives that don't work as titles" 66
-		"pirate adjectives that work as titles" 50
+		"pirate adjectives that don't work as titles" 67
+		"pirate adjectives that work as titles" 58
 	word
 		" "
 	phrase
-		"sinister names" 70
+		"sinister names" 78
 		"bad outcomes" 50
 
 phrase "pirate subphrase 4"
@@ -3235,7 +3378,7 @@ phrase "pirate subphrase 4"
 	word
 		"%'s "
 	phrase
-		"pirate nouns" 107
+		"pirate nouns" 108
 		"pirate nouns that work after bad outcomes" 27
 		"bad outcomes" 50
 	# When making a word ending in "s" possessive, only add an apostrophe.
@@ -3253,7 +3396,7 @@ phrase "pirate subphrase 5"
 
 phrase "pirate subphrase 6"
 	phrase
-		"pirate nouns" 107
+		"pirate nouns" 108
 		"pirate nouns that work after bad outcomes" 27
 	word
 		" of "
@@ -3263,8 +3406,8 @@ phrase "pirate subphrase 6"
 phrase "pirate subphrase 7"
 	phrase
 		"bad outcomes" 50
-		"pirate adjectives that work as titles" 50
-		"pirate adjectives that don't work as titles" 66
+		"pirate adjectives that work as titles" 58
+		"pirate adjectives that don't work as titles" 67
 	word
 		" "
 	phrase
@@ -3272,7 +3415,7 @@ phrase "pirate subphrase 7"
 
 phrase "pirate subphrase 8"
 	phrase
-		"pirate nouns" 107
+		"pirate nouns" 108
 		"pirate nouns that work after bad outcomes" 27
 		"bad outcomes" 50
 
@@ -3314,6 +3457,7 @@ phrase "pirate subphrase 9"
 		"Hard"
 		"Hell"
 		"Filth"
+		"Star"
 	word
 		"oath"
 		"fire"
@@ -3400,6 +3544,9 @@ phrase "pirate subphrase 9"
 		"star"
 		"fink"
 		"spot"
+		"butcher"
+		"prison"
+		"stone"
 
 phrase "pirate subphrase 10"
 	word
@@ -3427,6 +3574,8 @@ phrase "pirate subphrase 10"
 		"Broken"
 		"Vanquished"
 		"Drowned"
+		"Spoiled"
+		"Ruined"
 	word
 		" "
 	word
@@ -3457,162 +3606,9 @@ phrase "pirate subphrase 10"
 		"Time"
 		"Fate"
 		"Boys"
-
-# Historical male pirates
-phrase "pirate subphrase 11"
-	word
-		"Blackbeard"
-		"Edward Teach"
-		"William Kidd"
-		"Long Ben"
-		"Henry Morgan"
-		"Francois l'Olonnais"
-		"Francis Drake"
-		"Cheung Po Tsai"
-		"Bartholomew Roberts"
-		"Benjamin Hornigold"
-		"Calico Jack"
-		"Emanuel Wynn"
-		"Christopher Moody"
-		"Stede Bonnet"
-		"Paulsgrave Williams"
-		"Dragut"
-		"Thomas Tew"
-		"Henry Every"
-		"Philip Lyne"
-		"Kanhoji Angre"
-
-# Historical female pirates
-phrase "pirate subphrase 12"
-	word
-		"Lady Killigrew"
-		"Ching Shih"
-		"Anne Bonny"
-		"Mary Read"
-		"Charlotte Badger"
-		"Catherine Hagerty"
-		"Sadie the Goat"
-		"Rachel Wall"
-		"Maria Lindsey"
-		"Sayyida al Hurra"
-		"Lo Hon-cho"
-		"Jeanne de Clisson"
-		"Grace O'Malley"
-		"Teuta of Illyria"
-		"Jeanne de Clisson"
-		"Christina Anna Skytte"
-		"Anne Dieu-le-Veut"
-
-# Historical pirate ships
-phrase "pirate subphrase 13"
-	word
-		"Queen Anne's Revenge"
-		"Whydah"
-		"Wyndham Galley"
-		"Revenge"
-		"Adventure Galley"
-		"Quedagh Merchant"
-		"Adventure Prize"
-		"Golden Fleece"
-		"Black Prince"
-		"Rising Sun"
-		"The William"
-		"La Nouvelle Trompeuse"
-		"Sea Nymph"
-		"Bachelor's Delight"
-		"Rose Pink"
-		"Scowerer"
-		"Sultana"
-		"Ranger"
-		"Lark"
-		"Postillion"
-		"Good Fortune"
-		"Royal Fortune"
-		"Marianne"
-		"Amity"
-		"Pembroke"
-		"Margaret"
-
-# Historical ghost ships
-phrase "pirate subphrase 14"
-	word
-		"Flying Dutchman"
-		"Caleuche"
-		"Lady Lovibond"
-		"Princess Augusta"
-		"Eliza Battle"
-		"Iron Mountain"
-		"Eurydice"
-		"Valencia"
-		"Octavius"
-		"Ourang Medan"
-		"Sea Bird"
-		"Resolute"
-		"Mary Celeste"
-		"Resolven"
-		"Twenty One Friends"
-		"Zebrina"
-		"Deering"
-		"Baychimo"
-		"Governor Parr"
-		"Joyita"
-		"Teignmouth Electron"
-
-# Fictional male pirates
-phrase "pirate subphrase 15"
-	word
-		"Black Corsair"
-		"Captain Flint"
-		"Long John Silver"
-		"Billy Bones"
-		"The Master of Ballantrae"
-		"One-Eyed Willy"
-		"Captain Hook"
-		"Jesamiah Acorne"
-		"Captain Anton"
-		"Dread Pirate Roberts"
-		"Guybrush Threepwood"
-		"LeChuck"
-		"Jack Sparrow"
-		"Hector Barbarossa"
-		"Edward Teague"
-		"The Pirate King"
-		"Jack Shandy"
-
-# Fictional female pirates
-phrase "pirate subphrase 16"
-	word
-		"Helen Tavrel"
-		"Valeria of the Red Brotherhood"
-		"Red Sonja"
-		"Missee Lee"
-		"Pirate Jenny"
-		"Charlotte de Berry"
-		"Elizabeth Hurwood"
-		"Fanny Campbell"
-		"Jacquotte Delahaye"
-		"Elizabeth Swann"
-		"Elaine Marley"
-
-# Fictional pirate ships
-phrase "pirate subphrase 17"
-	word
-		"Jolly Roger"
-		"Black Freighter"
-		"Sea Witch"
-		"Thunder"
-		"The Walrus"
-		"Tigress"
-		"Wild Cat"
-
-# Fictional ghost ships
-phrase "pirate subphrase 18"
-	word
-		"Three Skeleton Key"
-		"Ampoliros"
-		"Demeter"
-		"Antonia Graza"
-		"Mortzestus"
+		"Embrace"
+		"Caress"
+		"Fortune"
 
 phrase "bounty hunter subphrase 1"
 	word

@@ -155,8 +155,8 @@ ship "Arrow"
 			"hull damage" 120
 			"hit force" 360
 	outfits
-		"Sidewinder Missile Launcher"
-		"Sidewinder Missile" 45
+		"Sidewinder Missile Pod" 2
+		"Sidewinder Missile" 8
 		"Anti-Missile Turret"
 		
 		"Dwarf Core"
@@ -171,8 +171,8 @@ ship "Arrow"
 		
 	engine -8 56
 	engine 8 56
-	gun -7.5 -36 "Sidewinder Missile Launcher"
-	gun 7.5 -36
+	gun -7.5 -36 "Sidewinder Missile Pod"
+	gun 7.5 -36 "Sidewinder Missile Pod"
 	turret 0 17.5 "Anti-Missile Turret"
 	leak "leak" 80 50
 	explode "tiny explosion" 12
@@ -574,8 +574,8 @@ ship "Berserker"
 			"hit force" 450
 	outfits
 		"Energy Blaster" 2
-		"Javelin Pod" 2
-		"Javelin" 400
+		"Javelin Mini Pod" 2
+		"Javelin" 80
 		
 		"nGVF-CC Fuel Cell"
 		"LP072a Battery Pack"
@@ -589,8 +589,8 @@ ship "Berserker"
 	engine 10 45
 	gun -20 12 "Energy Blaster"
 	gun 20 12 "Energy Blaster"
-	gun -44 10 "Javelin Pod"
-	gun 44 10 "Javelin Pod"
+	gun -44 10 "Javelin Mini Pod"
+	gun 44 10 "Javelin Mini Pod"
 	leak "leak" 60 50
 	leak "flame" 80 80
 	explode "tiny explosion" 10
@@ -974,8 +974,8 @@ ship "Clipper"
 			"hit force" 540
 	outfits
 		"Beam Laser" 2
-		"Javelin Pod" 2
-		"Javelin" 400
+		"Javelin Mini Pod" 2
+		"Javelin" 80
 		
 		"nGVF-DD Fuel Cell"
 		"LP072a Battery Pack"
@@ -987,8 +987,8 @@ ship "Clipper"
 		
 	engine -22 47
 	engine 22 47
-	gun -21.5 -18 "Javelin Pod"
-	gun 21.5 -18 "Javelin Pod"
+	gun -21.5 -18 "Javelin Mini Pod"
+	gun 21.5 -18 "Javelin Mini Pod"
 	gun -11 -8.5 "Beam Laser"
 	gun 11 -8.5 "Beam Laser"
 	leak "leak" 60 50
@@ -1259,8 +1259,8 @@ ship "Dagger"
 			"hit force" 180
 	outfits
 		"Beam Laser"
-		"Javelin Pod"
-		"Javelin" 200
+		"Javelin Mini Pod"
+		"Javelin" 40
 		
 		"nGVF-AA Fuel Cell"
 		"Supercapacitor"
@@ -1273,7 +1273,7 @@ ship "Dagger"
 	engine -15 30
 	engine 15 30
 	gun -14 -10 "Beam Laser"
-	gun 14 -10 "Javelin Pod"
+	gun 14 -10 "Javelin Mini Pod"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -1483,8 +1483,8 @@ ship "Finch"
 			"hit force" 180
 	outfits
 		"Beam Laser"
-		"Javelin Pod"
-		"Javelin" 200
+		"Javelin Mini Pod"
+		"Javelin" 40
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
@@ -1496,7 +1496,7 @@ ship "Finch"
 	engine -5 32
 	engine 5 32
 	gun -7 -14 "Beam Laser"
-	gun 7 -14 "Javelin Pod"
+	gun 7 -14 "Javelin Mini Pod"
 	leak "flame" 60 80
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -1587,8 +1587,8 @@ ship "Flivver"
 			"hull damage" 80
 			"hit force" 240
 	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 14
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
@@ -1857,8 +1857,8 @@ ship "Hauler"
 			"hull damage" 300
 			"hit force" 900
 	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 14
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -2176,8 +2176,8 @@ ship "Lance"
 			"hit force" 180
 	outfits
 		"Energy Blaster"
-		"Sidewinder Missile Launcher"
-		"Sidewinder Missile" 45
+		"Sidewinder Missile Pod"
+		"Sidewinder Missile" 4
 		
 		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
@@ -2190,7 +2190,7 @@ ship "Lance"
 	engine -15 30
 	engine 15 30
 	gun -14 -10 "Energy Blaster"
-	gun 14 -10 "Sidewinder Missile Launcher"
+	gun 14 -10 "Sidewinder Missile Pod"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "The Lance is the primary fighter used by the Republic Navy. As with all fighters, it is weak by itself but very effective as part of a larger squadron."
@@ -3347,8 +3347,8 @@ ship "Wasp"
 			"hit force" 300
 	outfits
 		"Energy Blaster" 2
-		"Sidewinder Missile Launcher"
-		"Sidewinder Missile" 45
+		"Sidewinder Missile Pod"
+		"Sidewinder Missile" 4
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
@@ -3361,7 +3361,7 @@ ship "Wasp"
 		
 	engine -5.5 32.5
 	engine 5.5 32.5
-	gun 0 -41 "Sidewinder Missile Launcher"
+	gun 0 -41 "Sidewinder Missile Pod"
 	gun -13 -30.5 "Energy Blaster"
 	gun 13 -30.5 "Energy Blaster"
 	leak "leak" 60 50
