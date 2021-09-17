@@ -2486,71 +2486,72 @@ void PlayerInfo::RegisterDerivedConditions()
 	// Default conditionsProvider, the getFun is different, but has, set and erase are all
 	// the same.
 	struct ConditionsStore::DerivedProvider conditionsProvider;
-	conditionsProvider.hasFun = [] (const string &name){ return true; };
-	conditionsProvider.setFun = [] (const string &name, int64_t value){ return false; };
-	conditionsProvider.eraseFun = [] (const string &name){ return false; };
+	conditionsProvider.hasFun = [](const string &name) { return true; };
+	conditionsProvider.setFun = [](const string &name, int64_t value) { return false; };
+	conditionsProvider.eraseFun = [](const string &name) { return false; };
 	
 	// Read-only date functions.
-	conditionsProvider.getFun = [this] (const string &name){ return date.Day(); };
+	conditionsProvider.getFun = [this](const string &name) { return date.Day(); };
 	conditions.SetProviderNamed("day", conditionsProvider);
 	
-	conditionsProvider.getFun = [this] (const string &name){ return date.Month(); };
+	conditionsProvider.getFun = [this](const string &name) { return date.Month(); };
 	conditions.SetProviderNamed("month", conditionsProvider);
 	
-	conditionsProvider.getFun = [this] (const string &name){ return date.Year(); };
+	conditionsProvider.getFun = [this](const string &name) { return date.Year(); };
 	conditions.SetProviderNamed("year", conditionsProvider);
 	
 	// Read-only account conditions.
 	// Bound financial conditions to +/- 4.6 x 10^18 credits, within the range of a 64-bit int.
 	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
 	
-	conditionsProvider.getFun = [this] (const string &name){ return min(limit, max(-limit, accounts.NetWorth())); };
+	conditionsProvider.getFun = [this](const string &name) { return min(limit, max(-limit, accounts.NetWorth())); };
 	conditions.SetProviderNamed("net worth", conditionsProvider);
 	
-	conditionsProvider.getFun = [this] (const string &name){ return min(limit, accounts.Credits()); };
+	conditionsProvider.getFun = [this](const string &name) { return min(limit, accounts.Credits()); };
 	conditions.SetProviderNamed("credits", conditionsProvider);
 	
-	conditionsProvider.getFun = [this] (const string &name){ return min(limit, accounts.TotalDebt("Mortgage")); };
+	conditionsProvider.getFun = [this](const string &name) { return min(limit, accounts.TotalDebt("Mortgage")); };
 	conditions.SetProviderNamed("unpaid mortgages", conditionsProvider);
 	
-	conditionsProvider.getFun = [this] (const string &name){ return min(limit, accounts.TotalDebt("Fine")); };
+	conditionsProvider.getFun = [this](const string &name) { return min(limit, accounts.TotalDebt("Fine")); };
 	conditions.SetProviderNamed("unpaid fines", conditionsProvider);
 	
-	conditionsProvider.getFun = [this] (const string &name){ return min(limit, accounts.SalariesOwed()); };
+	conditionsProvider.getFun = [this](const string &name) { return min(limit, accounts.SalariesOwed()); };
 	conditions.SetProviderNamed("unpaid salaries", conditionsProvider);
 	
-	conditionsProvider.getFun = [this] (const string &name){ return min(limit, accounts.MaintenanceDue()); };
+	conditionsProvider.getFun = [this](const string &name) { return min(limit, accounts.MaintenanceDue()); };
 	conditions.SetProviderNamed("unpaid maintenance", conditionsProvider);
 	
-	conditionsProvider.getFun = [this] (const string &name){ return accounts.CreditScore(); };
+	conditionsProvider.getFun = [this](const string &name) { return accounts.CreditScore(); };
 	conditions.SetProviderNamed("credit score", conditionsProvider);
 
 	// Read-only flagship conditions.
 	// The getter is different for the conditions, we re-use the struct during the calls (since it gets copied by value).
-	conditionsProvider.getFun = [this] (const string &name)->int64_t { if(flagship){return flagship->Crew();} return 0; };
+	conditionsProvider.getFun = [this](const string &name) -> int64_t { if(flagship) { return flagship->Crew(); } return 0; };
 	conditions.SetProviderNamed("flagship crew", conditionsProvider);
 	
-	conditionsProvider.getFun = [this] (const string &name)->int64_t{ if(flagship){return flagship->RequiredCrew();} return 0; };
+	conditionsProvider.getFun = [this](const string &name) -> int64_t { if(flagship) { return flagship->RequiredCrew(); } return 0; };
 	conditions.SetProviderNamed("flagship required crew", conditionsProvider);
 	
-	conditionsProvider.getFun = [this] (const string &name)->int64_t { if(flagship){return flagship->Attributes().Get("bunks");} return 0; };
+	conditionsProvider.getFun = [this](const string &name) -> int64_t { if(flagship) { return flagship->Attributes().Get("bunks"); } return 0; };
 	conditions.SetProviderNamed("flagship bunks", conditionsProvider);
 	
 	// Conditions for your fleet's attractiveness to pirates.
-	conditionsProvider.getFun = [this] (const string &name)->int64_t { return RaidFleetFactors().first; };
+	conditionsProvider.getFun = [this](const string &name) -> int64_t { return RaidFleetFactors().first; };
 	conditions.SetProviderNamed("cargo attractiveness", conditionsProvider);
 	
-	conditionsProvider.getFun = [this] (const string &name)->int64_t { return RaidFleetFactors().second; };
+	conditionsProvider.getFun = [this](const string &name) -> int64_t { return RaidFleetFactors().second; };
 	conditions.SetProviderNamed("armament deterrence", conditionsProvider);
 	
-	conditionsProvider.getFun = [this] (const string &name)->int64_t { auto rff = RaidFleetFactors(); return rff.first - rff.second; };
+	conditionsProvider.getFun = [this](const string &name) -> int64_t { auto rff = RaidFleetFactors(); return rff.first - rff.second; };
 	conditions.SetProviderNamed("pirate attraction", conditionsProvider);
 	
 	// Special conditions for cargo and passenger space.
 	// If boarding a ship, missions should not consider the space available
 	// in the player's entire fleet. The only fleet parameter offered to a
 	// boarding mission is the fleet composition (e.g. 4 Heavy Warships).
-	conditionsProvider.getFun = [this] (const string &name)->int64_t {
+	conditionsProvider.getFun = [this](const string &name) -> int64_t
+	{
 		if(flagship && !boardingMissions.empty())
 			flagship->Cargo().Free();
 		int64_t retVal = 0;
@@ -2561,7 +2562,8 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	conditions.SetProviderNamed("cargo space", conditionsProvider);
 	
-	conditionsProvider.getFun = [this] (const string &name)->int64_t {
+	conditionsProvider.getFun = [this](const string &name) -> int64_t
+	{
 		if(flagship && !boardingMissions.empty())
 			return flagship->Cargo().BunksFree();
 		int64_t retVal = 0;
@@ -2574,7 +2576,8 @@ void PlayerInfo::RegisterDerivedConditions()
 	
 	// The number of active ships the player has of the given category
 	// (e.g. Heavy Warships).
-	conditionsProvider.getFun = [this] (const string &name)->int64_t {
+	conditionsProvider.getFun = [this](const string &name) -> int64_t
+	{
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
 			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system
@@ -2585,7 +2588,8 @@ void PlayerInfo::RegisterDerivedConditions()
 	conditions.SetProviderPrefixed("ships: ", conditionsProvider);
 	
 	// Conditions to determine if flagship is in a system and on a planet.
-	conditionsProvider.hasFun = [this] (const string &name)->bool {
+	conditionsProvider.hasFun = [this](const string &name)->bool
+	{
 		if(!flagship || !flagship->GetSystem())
 			return 0;
 		return name == "flagship system: " + flagship->GetSystem()->Name();
@@ -2593,7 +2597,8 @@ void PlayerInfo::RegisterDerivedConditions()
 	conditionsProvider.getFun = conditionsProvider.hasFun;
 	conditions.SetProviderPrefixed("flagship system: ", conditionsProvider);
 	
-	conditionsProvider.hasFun = [this] (const string &name)->bool {
+	conditionsProvider.hasFun = [this](const string &name)->bool
+	{
 		if(!flagship || !flagship->GetPlanet())
 			return 0;
 		return name == "flagship planet: " + flagship->GetPlanet()->TrueName();
@@ -2603,18 +2608,21 @@ void PlayerInfo::RegisterDerivedConditions()
 	
 	// Read/write government reputation conditions.
 	// The erase function is still default (since we cannot erase government conditions).
-	conditionsProvider.hasFun = [] (const string &name)->bool {
+	conditionsProvider.hasFun = [](const string &name) -> bool
+	{
 		string govName = name.substr(strlen("reputation: "));
 		return GameData::Governments().Has(govName);
 	};
-	conditionsProvider.getFun = [] (const string &name)->int64_t {
+	conditionsProvider.getFun = [](const string &name) -> int64_t
+	{
 		string govName = name.substr(strlen("reputation: "));
 		auto gov = GameData::Governments().Get(govName);
 		if(!gov)
 			return 0;
 		return gov->Reputation();
 	};
-	conditionsProvider.setFun = [] (const string &name, int64_t value)->bool {
+	conditionsProvider.setFun = [](const string &name, int64_t value) -> bool
+	{
 		string govName = name.substr(strlen("reputation: "));
 		auto gov = GameData::Governments().Get(govName);
 		if(!gov)
