@@ -27,7 +27,7 @@ mission "Barrage Unlock 1"
 	description "Horace Lovelace has asked for your assistance in testing a new human weapon. Meet him at <destination> to see what he needs from you."
 	landing
 	to offer
-		has "Barrage Unlock 0: offered"
+		has "event: barrage development begins"
 		random < 10
 	source
 		government "Republic" "Free Worlds" "Syndicate"
