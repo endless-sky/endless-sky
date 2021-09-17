@@ -772,9 +772,8 @@ event "remnant: nenia restored"
 mission "Remnant: Void Sprites 3"
 	landing
 	name "Visit void sprite planets"
-	description `Purchase a "Puffin" from the Remnant world of Viminal, and use it to explore the two gas giants where the void sprites live. Then, return to <planet>.`
+	description `Use the Puffin to explore the two gas giants where the void sprites live. Then, return to <planet>.`
 	source "Aventine"
-	stopover "Viminal"
 	stopover "Nasqueron"
 	stopover "Slylandro"
 	cargo "scanning equipment" 8
@@ -1369,7 +1368,7 @@ mission "Remnant: Deep Surveillance"
 			label liar2
 			apply
 				set "remnant: player is surveilled"
-			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Know that you will be watched closely by us from now on, Captain. I commend you for agreed to bring us this information, but we can not allow another situation like this to occur."`
+			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Know that you will be watched closely by us from now on, Captain. I commend you for agreeing to bring us this information, but we can not allow another situation like this to occur."`
 				accept
 	
 	on stopover
@@ -3696,7 +3695,11 @@ mission "Remnant: Bounty 3"
 	source
 		government "Remnant"
 	to offer
-		has "Remnant: Cognizance 4: failed"
+		# 0.9.13 Compatibility patch
+		or
+			has "Remnant: Cognizance 4: done"
+			has "Remnant: Cognizance 4: failed"
+		not "Remnant: Cognizance 4: aborted"
 		random < 40
 	npc kill
 		government "Korath"
@@ -3723,7 +3726,11 @@ mission "Remnant: Cognizance 5"
 	source "Caelian"
 	waypoint "Aescolanus"
 	to offer
-		has "Remnant: Cognizance 4: done"
+		# 0.9.13 Compatibility patch
+		or
+			has "Remnant: Cognizance 4: done"
+			has "Remnant: Cognizance 4: failed"
+		not "Remnant: Cognizance 4: aborted"
 	on offer
 		conversation
 			branch fleetkilled

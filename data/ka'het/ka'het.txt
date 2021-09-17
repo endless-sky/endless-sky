@@ -772,3 +772,25 @@ fleet "Builders Drone"
 		"Selii'mar" 3
 		"Faes'mar" 2
 		"Faes'mar (Strong)"
+
+
+
+outfitter "Ka'het"
+	"Ka'het Nullifier"
+	"Ka'het Ravager Beam"
+	"Ka'het Ravager Turret"
+	"Ka'het Annihilator"
+	"Ka'het Annihilator Turret"
+	"Ka'het EMP Deployer"
+	"EMP Torpedo"
+	"Ka'het Support Cooling"
+	"Ka'het Primary Cooling"
+	"Ka'het Shield Restorer"
+	"Ka'het Grand Restorer"
+	"Ka'het MHD Generator"
+	"Ka'het Reserve Accumulator"
+	"Maeri Engine Nacelles"
+	"Ka'het Sustainer Nacelles"
+	"Telis Engine Nacelles"
+	"Vareti Engine Block"
+	"Ka'het Compact Engine"

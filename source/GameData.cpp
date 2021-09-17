@@ -33,6 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ImageSet.h"
 #include "Interface.h"
 #include "LineShader.h"
+#include "MaskManager.h"
 #include "Minable.h"
 #include "Mission.h"
 #include "Music.h"
@@ -132,6 +133,8 @@ namespace {
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
 	map<const Sprite *, int> preloaded;
 	
+	MaskManager maskManager;
+	
 	const Government *playerGovernment = nullptr;
 	
 	// TODO (C++14): make these 3 methods generic lambdas visible only to the CheckReferences method.
@@ -201,8 +204,8 @@ bool GameData::BeginLoad(const char * const *argv)
 		if(!it.second)
 			continue;
 		
-		// Check that the image set is complete.
-		it.second->Check();
+		// Reduce the set of images to those that are valid.
+		it.second->ValidateFrames();
 		// For landscapes, remember all the source files but don't load them yet.
 		if(ImageSet::IsDeferred(it.first))
 			deferred[SpriteSet::Get(it.first)] = it.second;
@@ -363,6 +366,10 @@ void GameData::CheckReferences()
 	for(auto &&it : variants)
 		if(!it.second.IsValid() && !deferred["variant"].count(it.first))
 			Warn("variant", it.first);
+	// Hazards are never serialized.
+	for(const auto &it : hazards)
+		if(!it.second.IsValid())
+			Warn("hazard", it.first);
 }
 
 
@@ -397,12 +404,13 @@ double GameData::Progress()
 	{
 		if(!initiallyLoaded)
 		{
-			// Now that we have finished loading all the basic sprites, we can look for invalid file paths,
-			// e.g. due to capitalization errors or other typos. Landscapes are allowed to still be empty.
-			auto unloaded = SpriteSet::CheckReferences();
-			for(const auto &path : unloaded)
-				if(path.compare(0, 5, "land/") != 0)
-					Files::LogError("Warning: image \"" + path + "\" is referred to, but has no pixels.");
+			// Now that we have finished loading all the basic sprites and sounds, we can look for invalid file paths,
+			// e.g. due to capitalization errors or other typos.
+			SpriteSet::CheckReferences();
+			Audio::CheckReferences();
+			// All sprites with collision masks should also have their 1x scaled versions, so create
+			// any additional scaled masks from the default one.
+			maskManager.ScaleMasks();
 			initiallyLoaded = true;
 		}
 	}
@@ -968,9 +976,9 @@ const StarField &GameData::Background()
 
 
 
-void GameData::SetHaze(const Sprite *sprite)
+void GameData::SetHaze(const Sprite *sprite, bool allowAnimation)
 {
-	background.SetHaze(sprite);
+	background.SetHaze(sprite, allowAnimation);
 }
 
 
@@ -1013,6 +1021,13 @@ const map<string, string> &GameData::PluginAboutText()
 
 
 
+MaskManager &GameData::GetMaskManager()
+{
+	return maskManager;
+}
+
+
+
 void GameData::LoadSources()
 {
 	sources.clear();
@@ -1043,7 +1058,7 @@ void GameData::LoadSources()
 		plugins[name] = Files::Read(*it + "about.txt");
 		
 		// Create an image set for the plugin icon.
-		shared_ptr<ImageSet> icon(new ImageSet(name));
+		auto icon = make_shared<ImageSet>(name);
 		
 		// Try adding all the possible icon variants.
 		if(Files::Exists(*it + "icon.png"))
@@ -1056,6 +1071,7 @@ void GameData::LoadSources()
 		else if(Files::Exists(*it + "icon@2x.jpg"))
 			icon->Add(*it + "icon@2x.jpg");
 		
+		icon->ValidateFrames();
 		spriteQueue.Add(icon);
 	}
 }
@@ -1228,7 +1244,7 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 		size_t start = directoryPath.size();
 		
 		vector<string> imageFiles = Files::RecursiveList(directoryPath);
-		for(const string &path : imageFiles)
+		for(string &path : imageFiles)
 			if(ImageSet::IsImage(path))
 			{
 				string name = ImageSet::Name(path.substr(start));
@@ -1236,7 +1252,7 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 				shared_ptr<ImageSet> &imageSet = images[name];
 				if(!imageSet)
 					imageSet.reset(new ImageSet(name));
-				imageSet->Add(path);
+				imageSet->Add(std::move(path));
 			}
 	}
 	return images;
