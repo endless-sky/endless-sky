@@ -74,14 +74,14 @@ pair<string, int64_t> ConditionsStore::PrimariesIterator::operator*() const
 
 
 
-const pair<string, int64_t>* ConditionsStore::PrimariesIterator::operator->()
+const pair<string, int64_t> *ConditionsStore::PrimariesIterator::operator->()
 {
 	return &itVal;
 }
 
 
 
-ConditionsStore::PrimariesIterator& ConditionsStore::PrimariesIterator::operator++()
+ConditionsStore::PrimariesIterator &ConditionsStore::PrimariesIterator::operator++()
 {
 	condMapIt++;
 	MoveToValueCondition();
@@ -101,14 +101,14 @@ ConditionsStore::PrimariesIterator ConditionsStore::PrimariesIterator::operator+
 
 
 // Equation operators, we can just compare the upstream iterators.
-bool ConditionsStore::PrimariesIterator::operator== (const ConditionsStore::PrimariesIterator& rhs) const
+bool ConditionsStore::PrimariesIterator::operator==(const ConditionsStore::PrimariesIterator& rhs) const
 {
 	return condMapIt == rhs.condMapIt;
 }
 
 
 
-bool ConditionsStore::PrimariesIterator::operator!= (const ConditionsStore::PrimariesIterator& rhs) const
+bool ConditionsStore::PrimariesIterator::operator!=(const ConditionsStore::PrimariesIterator& rhs) const
 {
 	return condMapIt != rhs.condMapIt;
 }
