@@ -148,7 +148,7 @@ ConditionsStore::ConditionsStore(const map<string, int64_t> &initialConditions)
 
 // Get a condition from the Conditions-Store. Retrieves both conditions
 // that were directly set (primary conditions) as well as conditions
-//derived from other data-structures (derived conditions).
+// derived from other data-structures (derived conditions).
 int64_t ConditionsStore::Get(const string &name) const
 {
 	const ConditionEntry *ce = GetEntry(name);
@@ -269,13 +269,13 @@ ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &name)
 	if(storage.empty())
 		return nullptr;
 	
-	// Perform a single search for values, named providers and prefixed providers.
+	// Perform a single search for values, named providers, and prefixed providers.
 	auto it = storage.upper_bound(name);
 	if(it == storage.begin())
 		return nullptr;
 	
 	--it;
-	// The entry is valid if we have an exact stringmatch, but also when we have a
+	// The entry is valid if we have an exact string match, but also when we have a
 	// prefix entry and the prefix part matches.
 	if(!(name.compare(0, it->first.length(), it->first)) &&
 			(it->second.type == PREFIX_PROVIDER || it->first.length() == name.length()))
