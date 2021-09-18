@@ -49,6 +49,8 @@ public:
 	// Load a single child at a time, used for streamlining MissionAction::Load.
 	void LoadAction(const DataNode &child, const std::string &missionName, bool conversation = true);
 	void SaveAction(DataWriter &out) const;
+	// Determine if this GameAction references content that is not fully defined.
+	std::string ValidateAction() const;
 	
 	// If this action has not been loaded, then it is empty.
 	bool IsEmpty() const;

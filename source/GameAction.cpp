@@ -254,6 +254,30 @@ void GameAction::SaveAction(DataWriter &out) const
 
 
 
+// Check this template or instantiated GameAction to see if any used content
+// is not fully defined (e.g. plugin removal, typos in names, etc.).
+string GameAction::ValidateAction() const
+{
+	// Events which get activated by this action must be valid.
+	for(auto &&event : events)
+		if(!event.first->IsValid())
+			return "event \"" + event.first->Name() + "\"";
+
+	// Gifted content must be defined & valid.
+	for(auto &&it : giftShips)
+		if(!it.first->IsValid())
+			return "gift ship model \"" + it.first->VariantName() + "\"";
+	for(auto &&outfit : giftOutfits)
+		if(!outfit.first->IsDefined())
+			return "gift outfit \"" + outfit.first->Name() + "\"";
+	
+	// It is OK for this action to try to fail a mission that does not exist.
+	// (E.g. a plugin may be designed for interoperability with other plugins.)
+	
+	return "";
+}
+
+
 bool GameAction::IsEmpty() const
 {
 	return empty;

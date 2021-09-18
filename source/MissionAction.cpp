@@ -173,27 +173,13 @@ string MissionAction::Validate() const
 	// Stock conversations must be defined.
 	if(stockConversation && stockConversation->IsEmpty())
 		return "stock conversation";
-	
-	// Events which get activated by this action must be valid.
-	for(auto &&event : events)
-		if(!event.first->IsValid())
-			return "event \"" + event.first->Name() + "\"";
 
-	// Gifted or required content must be defined & valid.
-	for(auto &&it : giftShips)
-		if(!it.first->IsValid())
-			return "gift ship model \"" + it.first->VariantName() + "\"";
-	for(auto &&outfit : giftOutfits)
-		if(!outfit.first->IsDefined())
-			return "gift outfit \"" + outfit.first->Name() + "\"";
+	// Required content must be defined & valid.
 	for(auto &&outfit : requiredOutfits)
 		if(!outfit.first->IsDefined())
 			return "required outfit \"" + outfit.first->Name() + "\"";
 	
-	// It is OK for this action to try to fail a mission that does not exist.
-	// (E.g. a plugin may be designed for interoperability with other plugins.)
-	
-	return "";
+	return ValidateAction();
 }
 
 
