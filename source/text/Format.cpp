@@ -136,11 +136,17 @@ string Format::Number(double value)
 	{
 		double tenths = 0.;
 		// Account for floating-point representation error by adding EPS after multiplying.
-		int hundredths = static_cast<int>(0.0000000001 + 10. * modf(decimal * 10., &tenths));
+		constexpr double EPS = 0.0000000001;
+		int hundredths = static_cast<int>(EPS + 10. * modf(decimal * 10., &tenths));
 		if(hundredths > 9)
 		{
 			hundredths = 0;
 			++tenths;
+		}
+		if(tenths >= 10. - EPS)
+		{
+			++value;
+			tenths = hundredths = 0;
 		}
 		
 		// Values up to 1000 may have two decimal places.

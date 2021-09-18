@@ -419,6 +419,25 @@ const vector<vector<Point>> &Mask::Outlines() const
 
 
 
+Mask Mask::operator*(double scale) const
+{
+	Mask newMask = *this;
+	for(auto &outline : newMask.outlines)
+		for(Point &p : outline)
+			p *= scale;
+	newMask.radius *= scale;
+	return newMask;
+}
+
+
+
+Mask operator*(double scale, const Mask &mask)
+{
+	return mask * scale;
+}
+
+
+
 double Mask::Intersection(Point sA, Point vA) const
 {
 	// Keep track of the closest intersection point found.
