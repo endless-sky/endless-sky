@@ -1,0 +1,44 @@
+# Copyright (c) 2021 by Zitchas
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Humanity: Broadsider Timer"
+	# This mission simply fires the timer for when Broadsider related content starts appearing
+	invisible
+	landing
+	to offer
+		or
+			has "Wanderers: Sestor: Return to Wanderers: done"
+			has "Wanderers: Sestor Alt: Return to Wanderers: done"
+	on offer
+		event "humanity: broadsider timer" 30 120
+		fail
+
+event "humanity: broadsider timer"
+	fleet "Large Oathkeeper"
+		add variant 2
+			"Carrier (Mark III)"
+			"Lance" 4
+			"Combat Drone" 6
+		add variant 1
+			"Carrier (Mark IIIa)"
+			"Lance" 4
+			"Combat Drone" 6
+	fleet "Large Republic"
+		add variant 2
+			"Carrier (Mark III)"
+			"Lance" 4
+			"Combat Drone" 6
+		add variant 1
+			"Carrier (Mark IIIa)"
+			"Lance" 4
+			"Combat Drone" 6
+
+
+

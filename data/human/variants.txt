@@ -526,6 +526,81 @@ ship "Carrier" "Carrier (Mark II)"
 	turret "Electron Turret"
 
 
+ship "Carrier" "Carrier (Mark III)"
+	outfits
+		"Typhoon Launcher" 2
+		"Typhoon Torpedo" 60
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile Rack" 2
+		"Sidewinder Missile" 274
+		"Broadsider" 2
+		"Broadsider Slug" 600
+		"Heavy Anti-Missile Turret" 2
+		"Armageddon Core"
+		"Dwarf Core"
+		"LP036a Battery Pack"
+		"Supercapacitor" 3
+		"D94-YV Shield Generator"
+		"Large Radar Jammer" 2
+		"Liquid Helium Cooler"
+		"Outfits Expansion" 2
+		"Laser Rifle" 115
+		"Fragmentation Grenades" 115
+		"Security Station" 17
+		"A520 Atomic Thruster"
+		"A375 Atomic Steering"
+		"AR120 Reverse Thruster"
+		"Hyperdrive"
+	gun 
+	gun 
+	gun 
+	gun 
+	gun "Typhoon Launcher"
+	gun "Typhoon Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	turret "Heavy Anti-Missile Turret"
+	turret "Broadsider"
+	turret "Heavy Anti-Missile Turret"
+	turret "Broadsider"
+
+
+ship "Carrier" "Carrier (Mark IIIa)"
+	outfits
+		"Electron Turret"
+		"Particle Cannon" 4
+		"Meteor Missile Launcher" 4
+		"Meteor Missile" 128
+		"Meteor Missile Box"
+		"Broadsider" 2
+		"Broadsider Storage"
+		"Broadsider Slug" 660
+		"Heavy Anti-Missile Turret" 1
+		"Fusion Reactor"
+		"LP288a Battery Pack"
+		"Supercapacitor" 1
+		"D94-YV Shield Generator"
+		"Liquid Helium Cooler"
+		"Outfits Expansion" 4
+		"Laser Rifle" 115
+		"Fragmentation Grenades" 115
+		"X5700 Ion Thruster"
+		"X4200 Ion Steering"
+		"Hyperdrive"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Launcher"
+	turret "Heavy Anti-Missile Turret"
+	turret "Broadsider"
+	turret "Electron Turret"
+	turret "Broadsider"
+
+
 
 ship "Clipper" "Clipper (Heavy)"
 	outfits
