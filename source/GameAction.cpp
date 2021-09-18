@@ -194,12 +194,19 @@ void GameAction::DoAction(PlayerInfo &player) const
 
 
 
-GameAction GameAction::InstantiateAction(map<string, string> &subs, int jumps, int payload) const
+GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int payload) const
 {
 	GameAction result;
-	
 	result.empty = empty;
+	InstantiateAction(result, subs, jumps, payload);
 	
+	return result;
+}
+
+
+
+void GameAction::InstantiateAction(GameAction &result, map<string, string> &subs, int jumps, int payload) const
+{
 	for(const auto &it : events)
 	{
 		// Allow randomization of event times. The second value in the pair is
@@ -228,6 +235,4 @@ GameAction GameAction::InstantiateAction(map<string, string> &subs, int jumps, i
 	result.fail = fail;
 	
 	result.conditions = conditions;
-	
-	return result;
 }

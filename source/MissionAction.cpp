@@ -455,37 +455,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	
 	string previousPayment = subs["<payment>"];
 	string previousFine = subs["<fine>"];
-	// Below is duplicated code from GameAction that needs addressed.
-	/************/
-	for(const auto &it : events)
-	{
-		// Allow randomization of event times. The second value in the pair is
-		// always greater than or equal to the first, so Random::Int() will
-		// never be called with a value less than 1.
-		int day = it.second.first + Random::Int(it.second.second - it.second.first + 1);
-		result.events[it.first] = make_pair(day, day);
-	}
-	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
-	// Fill in the payment amount if this is the "complete" action.
-	if(result.payment)
-		subs["<payment>"] = Format::Credits(abs(result.payment))
-			+ (result.payment == 1 ? " credit" : " credits");
-	
-	result.fine = fine;
-	if(result.fine)
-		subs["<fine>"] = Format::Credits(result.fine)
-			+ (result.fine == 1 ? " credit" : " credits");
-	
-	if(!logText.empty())
-		result.logText = Format::Replace(logText, subs);
-	for(const auto &it : specialLogText)
-		for(const auto &eit : it.second)
-			result.specialLogText[it.first][eit.first] = Format::Replace(eit.second, subs);
-	
-	result.fail = fail;
-	
-	result.conditions = conditions;
-	/***********/
+	InstantiateAction(result, subs, jumps, payload);
 	
 	// Create any associated dialog text from phrases, or use the directly specified text.
 	string dialogText = stockDialogPhrase ? stockDialogPhrase->Get()

@@ -41,9 +41,9 @@ class UI;
 
 
 // A MissionAction represents what happens when a mission reaches a certain
-// milestone: offered, accepted, declined, completed or failed. Actions might
-// include showing a dialog or conversation, giving the player payment or a
-// special item, modifying condition flags, or queueing an event to occur.
+// milestone. This can include when the mission is offered, accepted, declined,
+// completed, or failed. A MissionAction can include anything a GameAction can
+// do while also being capable of displaying dialogs or conversations.
 class MissionAction : public GameAction {
 public:
 	MissionAction() = default;
