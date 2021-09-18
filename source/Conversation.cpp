@@ -327,6 +327,7 @@ Conversation Conversation::Instantiate(map<string, string> &subs, int jumps, int
 	{
 		for(pair<string, int> &choice : node.data)
 			choice.first = Format::Replace(choice.first, subs);
+		// TODO: check action validity and remove invalid actions.
 		if(!node.actions.IsEmpty())
 			node.actions = node.actions.Instantiate(subs, jumps, payload);
 	}

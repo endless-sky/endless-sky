@@ -32,7 +32,7 @@ class UI;
 
 
 
-// A GameAction represents what happen when a Mission or Conversation reaches
+// A GameAction represents what happens when a Mission or Conversation reaches
 // a certain milestone. This can include when the Mission is offered, accepted,
 // declined, completed, or failed, or when a Conversation reaches an "action" node.
 // GameActions might include giving the player payment or a special item,
@@ -90,7 +90,6 @@ protected:
 	
 	
 private:
-	bool conversation = false;
 	bool empty = true;
 };
 
