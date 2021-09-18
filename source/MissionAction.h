@@ -15,35 +15,27 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "GameAction.h"
 
-#include "ConditionSet.h"
 #include "Conversation.h"
-#include "GameAction.h"
 #include "LocationFilter.h"
 #include "Phrase.h"
 
-#include <cstdint>
 #include <map>
 #include <memory>
-#include <set>
 #include <string>
-#include <utility>
-#include <vector>
 
 class DataNode;
 class DataWriter;
-class GameEvent;
-class Outfit;
 class PlayerInfo;
-class Ship;
 class System;
 class UI;
 
 
 
-// A MissionAction represents what happens when a mission reaches a certain
-// milestone. This can include when the mission is offered, accepted, declined,
+// A MissionAction represents what happens when a Mission reaches a certain
+// milestone. This can include when the Mission is offered, accepted, declined,
 // completed, or failed. A MissionAction can include anything a GameAction can
-// do while also being capable of displaying dialogs or conversations.
+// do while also being capable of displaying dialogs or Conversations and requiring
+// that the player have certain outfits for the action to be done.
 class MissionAction : public GameAction {
 public:
 	MissionAction() = default;
@@ -83,10 +75,6 @@ private:
 	
 	const Conversation *stockConversation = nullptr;
 	Conversation conversation;
-	
-	std::vector<std::pair<const Ship *, std::string>> giftShips;
-	std::map<const Outfit *, int> giftOutfits;
-	std::map<const Outfit *, int> requiredOutfits;
 };
 
 

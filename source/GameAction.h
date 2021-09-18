@@ -15,26 +15,30 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionSet.h"
 
+#include <cstdint>
 #include <map>
-#include <memory>
 #include <set>
 #include <string>
 #include <utility>
+#include <vector>
 
 class DataNode;
 class DataWriter;
 class GameEvent;
+class Outfit;
 class PlayerInfo;
+class Ship;
+class UI;
 
 
 
-// A GameAction represents what happen when a mission or conversation reaches
-// a certain milestone. This can include when the mission is offered, accepted,
-// declined, completed, or failed, or when a conversation reaches an "action" node.
+// A GameAction represents what happen when a Mission or Conversation reaches
+// a certain milestone. This can include when the Mission is offered, accepted,
+// declined, completed, or failed, or when a Conversation reaches an "action" node.
 // GameActions might include giving the player payment or a special item,
-// modifying condition flags, or queueing an event to occur. Any new mechanics
+// modifying condition flags, or queueing a GameEvent to occur. Any new mechanics
 // added to GameAction should be able to be safely executed while in a
-// conversation.
+// Conversation.
 class GameAction {
 public:
 	GameAction() = default;
@@ -43,14 +47,14 @@ public:
 	
 	void Load(const DataNode &node, const std::string &missionName);
 	// Load a single child at a time, used for streamlining MissionAction::Load.
-	void LoadAction(const DataNode &child, const std::string &missionName);
+	void LoadAction(const DataNode &child, const std::string &missionName, bool conversation = true);
 	void SaveAction(DataWriter &out) const;
 	
 	// If this action has not been loaded, then it is empty.
 	bool IsEmpty() const;
 	
 	// Perform this action.
-	void DoAction(PlayerInfo &player) const;
+	void DoAction(PlayerInfo &player, UI *ui = nullptr) const;
 	
 	// "Instantiate" this action by filling in the wildcard data for the actual
 	// payment, event delay, etc.
@@ -67,6 +71,12 @@ protected:
 	std::map<std::string, std::map<std::string, std::string>> specialLogText;
 	
 	std::map<const GameEvent *, std::pair<int, int>> events;
+	std::vector<std::pair<const Ship *, std::string>> giftShips;
+	std::map<const Outfit *, int> giftOutfits;
+	// A GameAction contains a map of required outfits, but only a MissionAction
+	// will populate it. This is for the purpose of catching old mission syntax
+	// "outfit <outfit> 0" now being "require <outfit>".
+	std::map<const Outfit *, int> requiredOutfits;
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	int64_t fine = 0;
@@ -78,6 +88,7 @@ protected:
 	
 	
 private:
+	bool conversation = false;
 	bool empty = true;
 };
 

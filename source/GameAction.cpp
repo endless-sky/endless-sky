@@ -18,13 +18,103 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Format.h"
 #include "GameData.h"
 #include "GameEvent.h"
+#include "Messages.h"
+#include "Outfit.h"
 #include "PlayerInfo.h"
+#include "Ship.h"
 #include "Random.h"
+#include "UI.h"
 
 #include <cstdlib>
-#include <vector>
 
 using namespace std;
+
+namespace {
+	void DoGift(PlayerInfo &player, const Ship *model, const string &name)
+	{
+		if(model->ModelName().empty())
+			return;
+
+		player.BuyShip(model, name, true);
+		Messages::Add("The " + model->ModelName() + " \"" + name + "\" was added to your fleet."
+			, Messages::Importance::High);
+	}
+	
+	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
+	{
+		Ship *flagship = player.Flagship();
+		bool isSingle = (abs(count) == 1);
+		string nameWas = (isSingle ? outfit->Name() : outfit->PluralName());
+		if(!flagship || !count || nameWas.empty())
+			return;
+		
+		nameWas += (isSingle ? " was" : " were");
+		string message;
+		if(isSingle)
+		{
+			char c = tolower(nameWas.front());
+			bool isVowel = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
+			message = (isVowel ? "An " : "A ");
+		}
+		else
+			message = to_string(abs(count)) + " ";
+		
+		message += nameWas;
+		if(count > 0)
+			message += " added to your ";
+		else
+			message += " removed from your ";
+		
+		bool didCargo = false;
+		bool didShip = false;
+		// If not landed, transfers must be done into the flagship's CargoHold.
+		CargoHold &cargo = (player.GetPlanet() ? player.Cargo() : flagship->Cargo());
+		int cargoCount = cargo.Get(outfit);
+		if(count < 0 && cargoCount)
+		{
+			int moved = min(cargoCount, -count);
+			count += moved;
+			cargo.Remove(outfit, moved);
+			didCargo = true;
+		}
+		while(count)
+		{
+			int moved = (count > 0) ? 1 : -1;
+			if(flagship->Attributes().CanAdd(*outfit, moved))
+			{
+				flagship->AddOutfit(outfit, moved);
+				didShip = true;
+			}
+			else
+				break;
+			count -= moved;
+		}
+		if(count > 0)
+		{
+			// Ignore cargo size limits.
+			int size = cargo.Size();
+			cargo.SetSize(-1);
+			cargo.Add(outfit, count);
+			cargo.SetSize(size);
+			didCargo = true;
+			if(ui)
+			{
+				string special = "The " + nameWas;
+				special += " put in your cargo hold because there is not enough space to install ";
+				special += (isSingle ? "it" : "them");
+				special += " in your ship.";
+				ui->Push(new Dialog(special));
+			}
+		}
+		if(didCargo && didShip)
+			message += "cargo hold and your flagship.";
+		else if(didCargo)
+			message += "cargo hold.";
+		else
+			message += "flagship.";
+		Messages::Add(message, Messages::Importance::High);
+	}
+}
 
 
 
@@ -45,7 +135,7 @@ void GameAction::Load(const DataNode &node, const string &missionName)
 
 
 // Load a single child at a time, used for streamlining MissionAction::Load.
-void GameAction::LoadAction(const DataNode &child, const string &missionName)
+void GameAction::LoadAction(const DataNode &child, const string &missionName, bool conversation)
 {
 	empty = false;
 	
@@ -58,6 +148,25 @@ void GameAction::LoadAction(const DataNode &child, const string &missionName)
 		string &text = (isSpecial ?
 			specialLogText[child.Token(1)][child.Token(2)] : logText);
 		Dialog::ParseTextNode(child, isSpecial ? 3 : 1, text);
+	}
+	else if(key == "give" && hasValue)
+	{
+		if(child.Token(1) == "ship" && child.Size() >= 3)
+			giftShips.emplace_back(GameData::Ships().Get(child.Token(2)), child.Size() >= 4 ? child.Token(3) : "");
+		else
+			child.PrintTrace("Skipping unsupported \"give\" syntax:");
+	}
+	else if(key == "outfit" && hasValue)
+	{
+		int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
+		if(count)
+			giftOutfits[GameData::Outfits().Get(child.Token(1))] = count;
+		else if(!conversation)
+		{
+			// "outfit <outfit> 0" means the player must have this outfit.
+			child.PrintTrace("Warning: deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
+			requiredOutfits[GameData::Outfits().Get(child.Token(1))] = 1;
+		}
 	}
 	else if(key == "payment")
 	{
@@ -122,6 +231,10 @@ void GameAction::SaveAction(DataWriter &out) const
 			}
 			out.EndChild();
 		}
+	for(const auto &it : giftShips)
+		out.Write("give", "ship", it.first->VariantName(), it.second);
+	for(const auto &it : giftOutfits)
+		out.Write("outfit", it.first->Name(), it.second);
 	if(payment)
 		out.Write("payment", payment);
 	if(fine)
@@ -135,7 +248,7 @@ void GameAction::SaveAction(DataWriter &out) const
 	}
 	for(const auto &name : fail)
 		out.Write("fail", name);
-	
+
 	conditions.Save(out);
 }
 
@@ -149,13 +262,24 @@ bool GameAction::IsEmpty() const
 
 
 // Do the actions of the GameAction.
-void GameAction::DoAction(PlayerInfo &player) const
+void GameAction::DoAction(PlayerInfo &player, UI *ui) const
 {
 	if(!logText.empty())
 		player.AddLogEntry(logText);
 	for(const auto &it : specialLogText)
 		for(const auto &eit : it.second)
 			player.AddSpecialLog(it.first, eit.first, eit.second);
+	
+	for(const auto &it : giftShips)
+		DoGift(player, it.first, it.second);
+	// If multiple outfits are being transferred, first remove them before
+	// adding any new ones.
+	for(const auto &it : giftOutfits)
+		if(it.second < 0)
+			DoGift(player, it.first, it.second, ui);
+	for(const auto &it : giftOutfits)
+		if(it.second > 0)
+			DoGift(player, it.first, it.second, ui);
 	
 	if(payment)
 	{
@@ -169,6 +293,9 @@ void GameAction::DoAction(PlayerInfo &player) const
 			player.Accounts().AddCredits(payment);
 		else if(account > 0)
 			player.Accounts().AddCredits(-account);
+		// If a MissionAction has a negative payment that can't be met
+		// then this action won't offer, so MissionAction payment behavior
+		// is unchanged.
 	}
 	if(fine)
 		player.Accounts().AddFine(fine);
@@ -215,6 +342,11 @@ void GameAction::InstantiateAction(GameAction &result, map<string, string> &subs
 		int day = it.second.first + Random::Int(it.second.second - it.second.first + 1);
 		result.events[it.first] = make_pair(day, day);
 	}
+	
+	for(const auto &it : giftShips)
+		result.giftShips.emplace_back(it.first, !it.second.empty() ? it.second : GameData::Phrases().Get("civilian")->Get());
+	result.giftOutfits = giftOutfits;
+	
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
 	// Fill in the payment amount if this is the "complete" action.
 	if(result.payment)

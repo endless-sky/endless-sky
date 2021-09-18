@@ -20,103 +20,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Format.h"
 #include "GameData.h"
 #include "GameEvent.h"
-#include "Messages.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
-#include "Random.h"
 #include "Ship.h"
 #include "UI.h"
-
-#include <cstdlib>
 
 using namespace std;
 
 namespace {
-	void DoGift(PlayerInfo &player, const Ship *model, const string &name)
-	{
-		if(model->ModelName().empty())
-			return;
-		
-		player.BuyShip(model, name, true);
-		Messages::Add("The " + model->ModelName() + " \"" + name + "\" was added to your fleet."
-			, Messages::Importance::High);
-	}
-	
-	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
-	{
-		Ship *flagship = player.Flagship();
-		bool isSingle = (abs(count) == 1);
-		string nameWas = (isSingle ? outfit->Name() : outfit->PluralName());
-		if(!flagship || !count || nameWas.empty())
-			return;
-		
-		nameWas += (isSingle ? " was" : " were");
-		string message;
-		if(isSingle)
-		{
-			char c = tolower(nameWas.front());
-			bool isVowel = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
-			message = (isVowel ? "An " : "A ");
-		}
-		else
-			message = to_string(abs(count)) + " ";
-		
-		message += nameWas;
-		if(count > 0)
-			message += " added to your ";
-		else
-			message += " removed from your ";
-		
-		bool didCargo = false;
-		bool didShip = false;
-		// If not landed, transfers must be done into the flagship's CargoHold.
-		CargoHold &cargo = (player.GetPlanet() ? player.Cargo() : flagship->Cargo());
-		int cargoCount = cargo.Get(outfit);
-		if(count < 0 && cargoCount)
-		{
-			int moved = min(cargoCount, -count);
-			count += moved;
-			cargo.Remove(outfit, moved);
-			didCargo = true;
-		}
-		while(count)
-		{
-			int moved = (count > 0) ? 1 : -1;
-			if(flagship->Attributes().CanAdd(*outfit, moved))
-			{
-				flagship->AddOutfit(outfit, moved);
-				didShip = true;
-			}
-			else
-				break;
-			count -= moved;
-		}
-		if(count > 0)
-		{
-			// Ignore cargo size limits.
-			int size = cargo.Size();
-			cargo.SetSize(-1);
-			cargo.Add(outfit, count);
-			cargo.SetSize(size);
-			didCargo = true;
-			if(ui)
-			{
-				string special = "The " + nameWas;
-				special += " put in your cargo hold because there is not enough space to install ";
-				special += (isSingle ? "it" : "them");
-				special += " in your ship.";
-				ui->Push(new Dialog(special));
-			}
-		}
-		if(didCargo && didShip)
-			message += "cargo hold and your flagship.";
-		else if(didCargo)
-			message += "cargo hold.";
-		else
-			message += "flagship.";
-		Messages::Add(message, Messages::Importance::High);
-	}
-	
 	int CountInCargo(const Outfit *outfit, const PlayerInfo &player)
 	{
 		int available = 0;
@@ -186,25 +97,6 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			conversation.Load(child, missionName);
 		else if(key == "conversation" && hasValue)
 			stockConversation = GameData::Conversations().Get(child.Token(1));
-		else if(key == "give" && hasValue)
-		{
-			if(child.Token(1) == "ship" && child.Size() >= 3)
-				giftShips.emplace_back(GameData::Ships().Get(child.Token(2)), child.Size() >= 4 ? child.Token(3) : "");
-			else
-				child.PrintTrace("Skipping unsupported \"give\" syntax:");
-		}
-		else if(key == "outfit" && hasValue)
-		{
-			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
-			if(count)
-				giftOutfits[GameData::Outfits().Get(child.Token(1))] = count;
-			else
-			{
-				// outfit <outfit> 0 means the player must have this outfit.
-				child.PrintTrace("Warning: deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
-				requiredOutfits[GameData::Outfits().Get(child.Token(1))] = 1;
-			}
-		}
 		else if(key == "require" && hasValue)
 		{
 			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
@@ -221,7 +113,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 				child.PrintTrace("Unsupported use of \"system\" LocationFilter:");
 		}
 		else
-			LoadAction(child, missionName);
+			LoadAction(child, missionName, false);
 	}
 }
 
@@ -256,11 +148,6 @@ void MissionAction::Save(DataWriter &out) const
 		}
 		if(!conversation.IsEmpty())
 			conversation.Save(out);
-		
-		for(const auto &it : giftShips)
-			out.Write("give", "ship", it.first->VariantName(), it.second);
-		for(const auto &it : giftOutfits)
-			out.Write("outfit", it.first->Name(), it.second);
 		for(const auto &it : requiredOutfits)
 			out.Write("require", it.first->Name(), it.second);
 		
@@ -423,18 +310,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 	else if(isOffer && ui)
 		player.MissionCallback(Conversation::ACCEPT);
 	
-	for(const auto &it : giftShips)
-		DoGift(player, it.first, it.second);
-	// If multiple outfits are being transferred, first remove them before
-	// adding any new ones.
-	for(const auto &it : giftOutfits)
-		if(it.second < 0)
-			DoGift(player, it.first, it.second, ui);
-	for(const auto &it : giftOutfits)
-		if(it.second > 0)
-			DoGift(player, it.first, it.second, ui);
-	
-	DoAction(player);
+	DoAction(player, ui);
 }
 
 
@@ -448,9 +324,6 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	// Convert any "distance" specifiers into "near <system>" specifiers.
 	result.systemFilter = systemFilter.SetOrigin(origin);
 	
-	for(const auto &it : giftShips)
-		result.giftShips.emplace_back(it.first, !it.second.empty() ? it.second : GameData::Phrases().Get("civilian")->Get());
-	result.giftOutfits = giftOutfits;
 	result.requiredOutfits = requiredOutfits;
 	
 	string previousPayment = subs["<payment>"];
