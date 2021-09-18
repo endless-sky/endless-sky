@@ -47,7 +47,7 @@ public:
 	
 	// Find out whether this object (rotated and scaled as represented by the given
 	// unit vector) is touching a ring defined by the given inner and outer ranges.
-	bool WithinRing(Point point, Angle facing, double inner, double outter) const;
+	bool WithinRing(Point point, Angle facing, double inner, double outer) const;
 	
 	// Find out how close the given point is to the mask.
 	double Range(Point point, Angle facing) const;
@@ -56,6 +56,10 @@ public:
 	
 	// Get the individual outlines that comprise this mask.
 	const std::vector<std::vector<Point>> &Outlines() const;
+	
+	// Scale all the points in the mask.
+	Mask operator*(double scale) const;
+	friend Mask operator*(double scale, const Mask &mask);
 	
 	
 private:

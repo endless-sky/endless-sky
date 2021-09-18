@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		03624EC39EE09C7A786B4A3D /* CoreStartData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DF34095B64BC64F666ECF5F /* CoreStartData.cpp */; };
+		03DC4253AA8390FE0A8FB4EA /* MaskManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 499B4DA7A9C7351120660643 /* MaskManager.cpp */; };
 		072599D126A8CB2F007EC229 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072599CC26A8C942007EC229 /* SDL2.framework */; };
 		072599D426A8CD5D007EC229 /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 072599CC26A8C942007EC229 /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		16AD4CACA629E8026777EA00 /* truncate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CA44855BD0AFF45DCAEEA5D /* truncate.hpp */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -199,10 +200,12 @@
 		0DF34095B64BC64F666ECF5F /* CoreStartData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CoreStartData.cpp; path = source/CoreStartData.cpp; sourceTree = "<group>"; };
 		11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StartConditionsPanel.cpp; path = source/StartConditionsPanel.cpp; sourceTree = "<group>"; };
 		13B643F6BEC24349F9BC9F42 /* alignment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = alignment.hpp; path = source/text/alignment.hpp; sourceTree = "<group>"; };
+		191E4107A4F1CBBC2526A0E9 /* MaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaskManager.h; path = source/MaskManager.h; sourceTree = "<group>"; };
 		2CA44855BD0AFF45DCAEEA5D /* truncate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = truncate.hpp; path = source/text/truncate.hpp; sourceTree = "<group>"; };
 		2E1E458DB603BF979429117C /* DisplayText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DisplayText.cpp; path = source/text/DisplayText.cpp; sourceTree = "<group>"; };
 		2E644A108BCD762A2A1A899C /* Hazard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hazard.h; path = source/Hazard.h; sourceTree = "<group>"; };
 		2E8047A8987DD8EC99FF8E2E /* Test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Test.cpp; path = source/Test.cpp; sourceTree = "<group>"; };
+		499B4DA7A9C7351120660643 /* MaskManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MaskManager.cpp; path = source/MaskManager.cpp; sourceTree = "<group>"; };
 		5155CD711DBB9FF900EF090B /* Depreciation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Depreciation.cpp; path = source/Depreciation.cpp; sourceTree = "<group>"; };
 		5155CD721DBB9FF900EF090B /* Depreciation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Depreciation.h; path = source/Depreciation.h; sourceTree = "<group>"; };
 		5CE3475B85CE8C48D98664B7 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Test.h; path = source/Test.h; sourceTree = "<group>"; };
@@ -793,6 +796,8 @@
 				0C90483BB01ECD0E3E8DDA44 /* WeightedList.h */,
 				950742538F8CECF5D4168FBC /* EsUuid.cpp */,
 				86AB4B6E9C4C0490AE7F029B /* EsUuid.h */,
+				499B4DA7A9C7351120660643 /* MaskManager.cpp */,
+				191E4107A4F1CBBC2526A0E9 /* MaskManager.h */,
 				A00D4207B8915B5E7E9B4619 /* RandomEvent.h */,
 			);
 			name = source;
@@ -1139,6 +1144,7 @@
 				6EC347E6A79BA5602BA4D1EA /* StartConditionsPanel.cpp in Sources */,
 				03624EC39EE09C7A786B4A3D /* CoreStartData.cpp in Sources */,
 				90CF46CE84794C6186FC6CE2 /* EsUuid.cpp in Sources */,
+				03DC4253AA8390FE0A8FB4EA /* MaskManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
