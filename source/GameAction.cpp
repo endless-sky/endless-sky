@@ -372,7 +372,6 @@ void GameAction::InstantiateAction(GameAction &result, map<string, string> &subs
 	result.giftOutfits = giftOutfits;
 	
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
-	// Fill in the payment amount if this is the "complete" action.
 	if(result.payment)
 		subs["<payment>"] = Format::Credits(abs(result.payment))
 			+ (result.payment == 1 ? " credit" : " credits");
