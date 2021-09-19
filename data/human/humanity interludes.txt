@@ -42,3 +42,17 @@ event "humanity: broadsider timer"
 
 
 
+mission "Humanity: Broadsider 1"
+	# This mission simply fires the timer for when Broadsider related content starts appearing
+	invisible
+	landing
+	to offer
+		has event "humanity: broadsider timer"
+	source
+		government "Republic"
+	on offer
+		conversation
+			``
+
+
+
