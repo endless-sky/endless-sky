@@ -2556,7 +2556,7 @@ mission "Stone of our Fathers 4"
 			choice
 				`	"I've come this far. I might as well finish it."`
 					goto accept
-				`	"Absolutely, I want to see this through."
+				`	"Absolutely, I want to see this through."`
 					goto accept
 				`	"No, This is as far as I go. I got the stone to you, and it's your problem now."`
 					goto decline
@@ -2709,7 +2709,7 @@ mission "Stone of our Fathers 5"
 			choice
 				`	(Accompany Thorleif.)`
 					goto followcairn
-				`	"I am sorry. But I will not go."
+				`	"I am sorry. But I will not go."`
 			`	Thorleif's face reddens and he abruptly turns from you. He has no words left to argue with and leaves you to wait in the village.`
 			`	A short time later he returns, his eyes wet and red.`
 			`	"I have made my peace, I have read the runes of his life and returned his stone to the Family-Cairn of Hlewagast. He had few happy moments, and the only recent ones involved us both. He is gone now, and we remain." Thorleif wipes tears from his eyes. "Let us rest, and eat, and drink for a time. Skaldgar would have liked that, too."`
