@@ -686,6 +686,8 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
 		}
 	}
+	else if(key == SDLK_TAB)
+		activePane = (activePane == ShopPane::Main ? ShopPane::Sidebar : ShopPane::Main);
 	else
 		return false;
 	

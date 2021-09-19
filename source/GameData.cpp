@@ -33,6 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ImageSet.h"
 #include "Interface.h"
 #include "LineShader.h"
+#include "MaskManager.h"
 #include "Minable.h"
 #include "Mission.h"
 #include "Music.h"
@@ -128,6 +129,8 @@ namespace {
 	vector<string> sources;
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
 	map<const Sprite *, int> preloaded;
+	
+	MaskManager maskManager;
 	
 	const Government *playerGovernment = nullptr;
 	
@@ -351,6 +354,10 @@ void GameData::CheckReferences()
 	for(auto &&it : systems)
 		if(it.second.Name().empty() && !NameIfDeferred(deferred["system"], it))
 			NameAndWarn("system", it);
+	// Hazards are never serialized.
+	for(const auto &it : hazards)
+		if(!it.second.IsValid())
+			Warn("hazard", it.first);
 }
 
 
@@ -385,12 +392,13 @@ double GameData::Progress()
 	{
 		if(!initiallyLoaded)
 		{
-			// Now that we have finished loading all the basic sprites, we can look for invalid file paths,
-			// e.g. due to capitalization errors or other typos. Landscapes are allowed to still be empty.
-			auto unloaded = SpriteSet::CheckReferences();
-			for(const auto &path : unloaded)
-				if(path.compare(0, 5, "land/") != 0)
-					Files::LogError("Warning: image \"" + path + "\" is referred to, but has no pixels.");
+			// Now that we have finished loading all the basic sprites and sounds, we can look for invalid file paths,
+			// e.g. due to capitalization errors or other typos.
+			SpriteSet::CheckReferences();
+			Audio::CheckReferences();
+			// All sprites with collision masks should also have their 1x scaled versions, so create
+			// any additional scaled masks from the default one.
+			maskManager.ScaleMasks();
 			initiallyLoaded = true;
 		}
 	}
@@ -946,9 +954,9 @@ const StarField &GameData::Background()
 
 
 
-void GameData::SetHaze(const Sprite *sprite)
+void GameData::SetHaze(const Sprite *sprite, bool allowAnimation)
 {
-	background.SetHaze(sprite);
+	background.SetHaze(sprite, allowAnimation);
 }
 
 
@@ -987,6 +995,13 @@ const map<string, string> &GameData::HelpTemplates()
 const map<string, string> &GameData::PluginAboutText()
 {
 	return plugins;
+}
+
+
+
+MaskManager &GameData::GetMaskManager()
+{
+	return maskManager;
 }
 
 
