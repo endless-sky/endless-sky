@@ -526,7 +526,7 @@ ship "Carrier" "Carrier (Mark II)"
 	turret "Electron Turret"
 
 
-ship "Carrier" "Carrier (Mark III)"
+ship "Carrier" "Carrier (Mark IIIa)"
 	outfits
 		"Typhoon Launcher" 2
 		"Typhoon Torpedo" 60
@@ -565,7 +565,7 @@ ship "Carrier" "Carrier (Mark III)"
 	turret "Broadsider"
 
 
-ship "Carrier" "Carrier (Mark IIIa)"
+ship "Carrier" "Carrier (Mark IIIb)"
 	outfits
 		"Electron Turret"
 		"Particle Cannon" 4
@@ -598,6 +598,43 @@ ship "Carrier" "Carrier (Mark IIIa)"
 	turret "Heavy Anti-Missile Turret"
 	turret "Broadsider"
 	turret "Electron Turret"
+	turret "Broadsider"
+
+
+ship "Carrier" "Carrier (Mark IIIc)"
+	outfits
+		"Broadsider" 4
+		"Broadsider Slug" 1200
+		"Sidewinder Missile Rack" 4
+		"Sidewinder Missile" 92
+		"Typhoon Launcher" 2
+		"Typhoon Storage Tube" 1
+		"Typhoon Torpedo" 75
+		"Fusion Reactor"
+		"LP288a Battery Pack"
+		"Supercapacitor" 1
+		"D94-YV Shield Generator"
+		"Liquid Helium Cooler"
+		"Outfits Expansion" 5
+		"Tactical Scanner" 2
+		"Laser Rifle" 115
+		"Fragmentation Grenades" 115
+		"Security Station" 8
+		"X1100 Ion Reverse Thruster"
+		"X5700 Ion Thruster"
+		"X4200 Ion Steering"
+		"Hyperdrive"
+	gun 
+	gun 
+	gun 
+	gun 
+	gun 
+	gun 
+	gun "Typhoon Launcher"
+	gun "Typhoon Launcher"
+	turret "Broadsider"
+	turret "Broadsider"
+	turret "Broadsider"
 	turret "Broadsider"
 
 

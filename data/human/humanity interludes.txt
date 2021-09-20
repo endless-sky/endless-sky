@@ -23,36 +23,88 @@ mission "Humanity: Broadsider Timer"
 event "humanity: broadsider timer"
 	fleet "Large Oathkeeper"
 		add variant 2
-			"Carrier (Mark III)"
+			"Carrier (Mark IIIa)"
 			"Lance" 4
 			"Combat Drone" 6
 		add variant 1
-			"Carrier (Mark IIIa)"
+			"Carrier (Mark IIIb)"
+			"Lance" 4
+			"Combat Drone" 6
+			"Carrier (Mark IIIc)"
 			"Lance" 4
 			"Combat Drone" 6
 	fleet "Large Republic"
 		add variant 2
-			"Carrier (Mark III)"
+			"Carrier (Mark IIIa)"
 			"Lance" 4
 			"Combat Drone" 6
 		add variant 1
-			"Carrier (Mark IIIa)"
+			"Carrier (Mark IIIb)"
+			"Lance" 4
+			"Combat Drone" 6
+			"Carrier (Mark IIIc)"
 			"Lance" 4
 			"Combat Drone" 6
 
 
 
 mission "Humanity: Broadsider 1"
-	# This mission simply fires the timer for when Broadsider related content starts appearing
-	invisible
+	name "Naval Research Consultation."
+	description "Navy researchers have requested you meet with them on Geminus."
 	landing
 	to offer
-		has event "humanity: broadsider timer"
+		has "event: humanity: broadsider timer"
+		random < 60
 	source
 		government "Republic"
+		government "Deep"
+		government "Syndicate"
+		government "Free Worlds"
+	destination
+		planet "Geminus"
 	on offer
 		conversation
-			``
+			`As the engines wind down on <ship>, you hear the notification of your commlink announce the arrival of a message. The message info indicates that it is from someone in the Navy.`
+			choice
+				`	Accept the message.`
+				`	Leave it for later.`
+					defer
+			`	A pre-recorded message begins to play. "Good day to you, Captain <last>. My name is Andre, and I am a project manager here on Geminus. One of our projects recently passed a milestone in its development, and we were hoping that you might be willing to do some consulting for us. I can't divulge details on an open channel, but it would be in relation to your assistance during the recent alien incursion. We hope you have the time to work with us on this."`
+			`	Below the message is a pair of buttons offering the option to accept or decline the invitation.`
+			choice
+				`	Accept.`
+					accept
+				`	Decline.`
+					decline
+
+
+
+mission "Humanity: Broadsider 2"
+	name "Naval Research Consultation."
+	description "Navy researchers have requested you meet with them on Geminus."
+	landing
+	to offer
+		has "Humanity: Broadsider 1: done"
+	source Geminus
+	destination
+		planet "Geminus"
+	on offer
+		conversation
+			`On Geminus you are met at the spaceport by Andre, who turns out to be almost a caricature of the classic scientist: Thin, slighly balding, a slightly frazzled look as if he was recently charged with static electricity, and a white lab coat. Unlike the carricature scientist, however, he radiates an air of calm confidence at odds with his appearance, and the military fatigues and combat boots suggest that he is Navy first, researcher second.`
+			`	"Welcome to Geminus, Captain <last>!" It is a pleasure to meet you." He nods politely, and gestures for you to follow him. A few hallways and checkpoints later, and you find yourself in a conference room. "Thank you for accepting our request to consult on this project. Now, I'm sure you have some questions, so I'll get straight to it." He taps a button, and a projector lights up, displaying an image of a Sestor fleet. "Several months ago you were instrumental in defeating a flood of robotic alien warships that swept across Northern Republic space." He flicks through several slides showing long range phtography, scans, and video footage of various Sestor ships. "While we have known about the Hai for quite some time, it was quite a shock to be invaded by a hithertoo unknown race. After so many years of peaceful coexistence with the Hai and the Quarg, a warlike group caught us by surprise."`
+			`	He flips through a few more slides, these ones show the broken husks of Sestor ships, wrecks, and some salvaged outfits spread out on a tarmac. "As a result, Parliament has seen fit to significantly increase the Navy's R&D budget. This, combined with the salvage and debris we have collected from theses 'Sestor' ships has allowed several of our long-standing projects to accelerate." He turns towards you. "This is where you come in: You have more combat experience against the Sestor than any other captain we know of. We would like you to inspect a new weapon we have developped, observe a weapons demonstration test, and then give us your thoughts on how effective it will be against the Sestor. So, do you accept?"`
+			choice
+				`	"I accept."`
+					goto briefing
+				`	"Sorry, I'm not interested."`
+			`	Andre looks dissapointed, but accepting. "In which case, the Navy thanks you for your time, and we'll just end this here." He escorts you back through the checkpoints to the main spaceport, and bids you farewell.`
+				decline
+			label briefing
+			`	Andre looks please. "Excellent. For this next part, it is probably easiest to just show you." He gets up, and leads you down the stairs to a large hangar. Flipping a switch, the banks of light start to flicker on, revealing the largest turret you have ever seen in human space.`
+			scene "broadsiderscene"
+			`	"This is the NAT-420mm Artillery, colloquially known as 'The Broadsider.' It fires 420mm slugs
+			
+		
 
 
 
