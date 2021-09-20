@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Files.h"
 #include "text/Format.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
@@ -323,13 +324,26 @@ bool Conversation::IsValidIntro() const noexcept
 Conversation Conversation::Instantiate(map<string, string> &subs, int jumps, int payload) const
 {
 	Conversation result = *this;
-	for(Node &node : result.nodes)
+	for(auto node = result.nodes.begin() ; node != result.nodes.end() ; )
 	{
-		for(pair<string, int> &choice : node.data)
+		for(pair<string, int> &choice : node->data)
 			choice.first = Format::Replace(choice.first, subs);
-		// TODO: check action validity and remove invalid actions.
-		if(!node.actions.IsEmpty())
-			node.actions = node.actions.Instantiate(subs, jumps, payload);
+		if(!node->actions.IsEmpty())
+		{
+			string reason = node->actions.ValidateAction();
+			if(reason.empty())
+			{
+				node->actions = node->actions.Instantiate(subs, jumps, payload);
+				++node;
+			}
+			else
+			{
+				Files::LogError("Warning: action node in conversation that uses invalid " + std::move(reason) + " has been removed");
+				node = result.nodes.erase(node);
+			}
+		}
+		else
+			++node;
 	}
 
 	return result;
