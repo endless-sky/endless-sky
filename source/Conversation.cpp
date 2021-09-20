@@ -172,13 +172,6 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 			// Don't merge "apply" nodes with any other nodes.
 			AddNode();
 			nodes.back().canMergeOnto = false;
-			nodes.back().conditions.Load(child);
-		}
-		else if(child.Token(0) == "action")
-		{
-			// Don't merge "action" nodes with any other nodes.
-			AddNode();
-			nodes.back().canMergeOnto = false;
 			nodes.back().actions.Load(child, missionName);
 		}
 		// Check for common errors such as indenting a goto incorrectly:
@@ -249,13 +242,7 @@ void Conversation::Save(DataWriter &out) const
 				out.Write("scene", node.scene->Name());	
 			if(!node.conditions.IsEmpty())
 			{
-				// The only thing differentiating a "branch" from an "apply" node
-				// is that a branch has two data entries instead of one.
-				if(node.data.size() > 1)
-					out.Write("branch", TokenName(node.data[0].second), TokenName(node.data[1].second));
-				else
-					out.Write("apply", TokenName(node.data[0].second));
-				
+				out.Write("branch", TokenName(node.data[0].second), TokenName(node.data[1].second));
 				// Write the condition set as a child of this node.
 				out.BeginChild();
 				{
@@ -266,7 +253,8 @@ void Conversation::Save(DataWriter &out) const
 			}
 			if(!node.actions.IsEmpty())
 			{
-				out.Write("action", TokenName(node.data[0].second));
+				out.Write("apply", TokenName(node.data[0].second));
+				// Write the GameAction as a child of this node.
 				out.BeginChild();
 				{
 					node.actions.SaveAction(out);
@@ -373,7 +361,7 @@ int Conversation::Choices(int node) const
 
 
 
-// Check if the given converation node is a conditional branch.
+// Check if the given conversation node is a conditional branch.
 bool Conversation::IsBranch(int node) const
 {
 	if(static_cast<unsigned>(node) >= nodes.size())
@@ -384,21 +372,8 @@ bool Conversation::IsBranch(int node) const
 
 
 
-
-// Check if the given converation node applies changes to condition variables.
+// Check if the given conversation node applies an action.
 bool Conversation::IsApply(int node) const
-{
-	if(static_cast<unsigned>(node) >= nodes.size())
-		return false;
-	
-	return !nodes[node].conditions.IsEmpty() && nodes[node].data.size() == 1;
-}
-
-
-
-
-// Check if the given converation node does an action.
-bool Conversation::IsAction(int node) const
 {
 	if(static_cast<unsigned>(node) >= nodes.size())
 		return false;
@@ -408,7 +383,7 @@ bool Conversation::IsAction(int node) const
 
 
 
-// Get the list of conditions that the given node tests or applies.
+// Get the list of conditions that the given node tests.
 const ConditionSet &Conversation::Conditions(int node) const
 {
 	static ConditionSet empty;
@@ -419,8 +394,8 @@ const ConditionSet &Conversation::Conditions(int node) const
 }
 
 
-// Get the action that the given node does.
-const GameAction &Conversation::Action(int node) const
+// Get the action that the given node applies.
+const GameAction &Conversation::Apply(int node) const
 {
 	static GameAction empty;
 	if(static_cast<unsigned>(node) >= nodes.size())

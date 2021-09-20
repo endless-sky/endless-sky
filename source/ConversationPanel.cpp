@@ -334,16 +334,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 			choice = !conversation.Conditions(node).Test(player.Conditions());
 		}
 		else if(conversation.IsApply(node))
-		{
-			// Apply nodes alter the player's condition variables but do not
-			// display any conversation text of their own.
-			player.SetReputationConditions();
-			conversation.Conditions(node).Apply(player.Conditions());
-			// Update any altered government reputations.
-			player.CheckReputationConditions();
-		}
-		else if(conversation.IsAction(node))
-			conversation.Action(node).DoAction(player);
+			conversation.Apply(node).DoAction(player);
 		else
 		{
 			// This is an ordinary conversation node. Perform any necessary text

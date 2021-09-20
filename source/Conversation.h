@@ -23,7 +23,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class DataNode;
 class DataWriter;
-class GameAction;
 class Sprite;
 
 
@@ -75,9 +74,8 @@ public:
 	int Choices(int node) const;
 	bool IsBranch(int node) const;
 	bool IsApply(int node) const;
-	bool IsAction(int node) const;
 	const ConditionSet &Conditions(int node) const;
-	const GameAction &Action(int node) const;
+	const GameAction &Apply(int node) const;
 	const std::string &Text(int node, int choice = 0) const;
 	const Sprite *Scene(int node) const;
 	int NextNode(int node, int choice = 0) const;
