@@ -196,9 +196,14 @@ void GameAction::LoadAction(const DataNode &child, const string &missionName, bo
 	else if(key == "fail")
 	{
 		string toFail = child.Size() >= 2 ? child.Token(1) : missionName;
-		fail.insert(toFail);
-		// Create a GameData reference to this mission name.
-		GameData::Missions().Get(toFail);
+		if(toFail.empty())
+			child.PrintTrace("Skipping invalid \"fail\" with no mission:");
+		else
+		{
+			fail.insert(toFail);
+			// Create a GameData reference to this mission name.
+			GameData::Missions().Get(toFail);
+		}
 	}
 	else
 		conditions.Add(child);
