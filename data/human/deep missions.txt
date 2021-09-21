@@ -2761,7 +2761,7 @@ mission "Home for Skadenga 1"
 	minor
 	cargo "Setstokkr" 1
 	to offer
-		has "Deep: Questions:done"
+		has "Deep: Questions: done"
 		random < 50
 	source "Nifel"
 	stopover "Asgard"
@@ -3323,7 +3323,7 @@ mission "Home for Skadenga 1"
 		dialog
 			`	You land on the final world you were asked to visit. Once you're done here you should return to Nifel.`
 	on complete
-		event "Nifelwaiting" 15
+		event "nifel waiting" 15
 		payment -2000
 		conversation
 			`	Upon landing you get voice recorded message from Hjlod.`
@@ -3331,14 +3331,13 @@ mission "Home for Skadenga 1"
 			`	The message abruptly ends.`
 				decline
 				
-event "Nifelwaiting"
+event "nifel waiting"
 
 
 
 mission "Home for Skadenga 2"
 	name "Home for Skadenga"
 	invisible
-	minor
 	landing
 	to offer
 		has "Home for Skadenga 1: active"
@@ -3388,7 +3387,7 @@ mission "Home for Skadenga 2"
 				accept
 				
 	to complete
-		has "event: Nifelwaiting"
+		has "event: nifel waiting"
 		has "Home for Skadenga 3: offered"
 	on complete
 		conversation
@@ -3451,7 +3450,6 @@ mission "Home for Skadenga 2"
 mission "Home for Skadenga 3"
 	name "Home for Skadenga"
 	invisible
-	minor
 	landing
 	to offer
 		has "Home for Skadenga 1: active"
@@ -3529,7 +3527,7 @@ mission "Home for Skadenga 4"
 	description "Travel to <destination> to secure transportation for the Skadenga."
 	to offer
 		has "Home for Skadenga 2: done"
-		has "event: Nifelwaiting"
+		has "event: nifel waiting"
 	source "Nifel"
 	destination "Valhalla"
 	on offer
@@ -3648,7 +3646,7 @@ mission "Home for Skadenga 5"
 	source "Valhalla"
 	destination "Mani"
 	on complete
-		event "manirefit" 21
+		event "mani refit" 21
 		conversation
 			apply
 				set "Asgard2"
@@ -3661,13 +3659,13 @@ mission "Home for Skadenga 5"
 			
 			
 			
-event "manirefit"
+event "mani refit"
 			
 			
 mission "Mani Refit"
 	name "Mani Refit"
 	to offer
-		has "event: manirefit"
+		has "event: mani refit"
 		has "Home for Skadenga 5: done"
 	description "Head back to <destination>, and meet up with the Transport Union's Fleet."
 	source
@@ -3739,7 +3737,7 @@ mission "Home for Skadenga 7"
 			
 	on complete
 		payment 850000
-		event "Skadengadeath" 367
+		event "skadenga death" 367
 		conversation
 			`For the occasion of the primitives' arrival Helsingor has remade itself into a mad circus. There are impromptu bands playing, random unplanned parades, teeming crowds of excited neighbors holding up signs welcoming the Skadenga into the 31st century. There is also every kind of emergency and civil personnel available here. Firemen, police, doctors, social workers; all claiming, testing, prodding and questioning the dazed immigrants.`
 			`	The Ondurdis finds you in the chaos and lets you know she wishes to see the God-Stone. Together you travel to the mall, and you explain to her how the structure was built around it, using it as an accent wall to the various posh establishments within.`
@@ -3758,7 +3756,7 @@ mission "Home for Skadenga 7"
 			
 			
 			
-event "Skadengadeath"
+event "skadenga death"
 
 
 
@@ -3771,7 +3769,7 @@ mission "Skadenga Call 1"
 	destination "Asgard"
 	to offer
 		has "Home for Skadenga 7: done"
-		has "event: Skadengadeath" 
+		has "event: skadenga death" 
 	on offer
 		dialog
 			`	There is a new message in your inbox.`
@@ -3866,17 +3864,17 @@ mission "Skadenga Call 2"
 				accept
 	on complete
 		payment 12481
-		event "thebook" 200
-		event "nifelhjlod" 2700
+		event "the book" 200
+		event "nifel hjlod" 2700
 		conversation
 			` 	Your ship touches down just outside the abandoned village of Udainskar. Silently your passengers disembark and drift into the world they once knew and thought never to see again. The village appears to have weathered the abandonment well, and it appears if the people here will not have too much trouble picking up where they left off.`
 			`	Hjlod lingers besides your ship for just a moment. "The credits are in hard-drive on your ship's console. I hope it makes you happy."`
 			`	"I do not know vhy you sent us to that place. But I am happy to be home. So go, and maybe one day I vill not hate to see you again."`
 			scene "scene/snowvillage"
 			
-event "nifelhjlod"
+event "nifel hjlod"
 
-event "thebook"
+event "the book"
 
 
 
@@ -3892,13 +3890,13 @@ mission "Skadenga Call 3"
 		has "Skadenga Call 2: declined"
 	on offer
 		payment 300000
-		event "asgardhjlod" 2000
+		event "asgard hjlod" 2000
 		conversation
 			`	You receive a message from your bank that 300,000 credits have been deposited into your account from the Census and Culture Bureau of The Deep. The following message is attached:`
 			`	'For heroic and selfless service to the ideals and prosperity of The Deep.'`
 				decline
 
-event "asgardhjlod"
+event "asgard hjlod"
 
 
 
@@ -3910,7 +3908,7 @@ mission "Skadenga Call 4"
 		has "Skadenga Call 2: done"
 		has "event: nifelhjlod"
 	on complete
-		event "Hjlodwaitsagain" 360
+		event "hjlod waits again" 360
 		conversation
 			`	A familiar woman is waiting for you outside your ship. Although it's been more than seven years since you've last seen her, you recognize her instantly. Her eyes are brighter than when last you parted, and she has the same lopsided grin that you remember.`
 			`	"<first>, I saw your ship landing, and thought I vould say hello."`
@@ -3919,7 +3917,7 @@ mission "Skadenga Call 4"
 			`	As she walks away you wonder if you can ever forgive yourself.`
 			scene "scene/journey"
 
-event "Hjlodwaitsagain"
+event "hjlod waits again"
 
 
 
@@ -3932,14 +3930,14 @@ mission "Skadenga Call 5"
 		government "Republic"
 	to offer
 		has "Skadenga Call 3: declined"
-		has "event: asgardhjlod"
+		has "event: asgard hjlod"
 	on offer
-		event "asgardhjlodletter" 1000
+		event "asgard hjlod letter" 1000
 		payment 27
 		dialog
 			`	You receive a message from the Census and Culture Bureau of The Deep. The Deep Citizen known as Hjlod has died. Cause of death appears to be related to heavy substance abuse. The Bureau has determined that you are her closest relation and has forwarded you her entire inheritance of: 27 credits.`
 
-event "asgardhjlodletter"
+event "asgard hjlod letter"
 
 
 
@@ -3978,7 +3976,7 @@ mission "Home for Skadenga 9"
 	destination
 		government "Republic" "Neutral" "Syndicate" "Free Worlds" "Deep"
 	on offer
-		event "waitforit" 13
+		event "hroar message" 13
 		conversation
 			`	The floor of the spaceport is covered in the dirty red dust of hundreds of shuffling feet. Prospectors, miners, drillers, and all their attendant associates are intermixed here, gossiping about the latest finds, accidents, and hauls. Every person either saturated in red earth, or immaculately clean, creating a visual aid to boundaries of class, paycheck and leadership.`
 			`	The Red Rock Saloon is located deep in the trade-craft section of the spaceport, far enough from the tourist areas to discourage anyone, but the locals, and those with business to enter.`
@@ -4050,7 +4048,7 @@ mission "Home for Skadenga 9"
 			`	"Good. Good. People making deals. That's what society is all about, ya know? Alright, listen up, it'll take me about two weeks to get my fleet ready to transport your friends. So, come back here then and we'll get this show on the road."`
 				decline
 
-event "waitforit"
+event "hroar message"
 
 
 
@@ -4058,7 +4056,7 @@ mission "Home for Skadenga 10"
 	name "Head Back to Muspel"
 	landing
 	to offer
-		has "event: waitforit"
+		has "event: hroar message"
 		has "dealwithhroar"
 	description "Head back to <destination>, and meet up with Hroar's fleet."
 	source
@@ -4145,7 +4143,7 @@ mission "Home for Skadenga 12"
 		dialog
 			`You have reached <planet>, but the Hardy Hroar's Hauler ships have not all arrived yet. You should take off and wait for them to catch up with you.`	
 	on complete
-		event "Skadenga life" 367
+		event "skadenga life" 367
 		conversation
 			`The reserved and limited government of Windplain pays you, nor your fleet any heed as you make your way down to the outskirts of Hrithfjall. An empty windswept landscape beneath gray clouds, and a small group of weathered fishermen are waiting for you outside your ship.`
 			`	"I thought I'd be seeing you again." Aldfrith says, at the front of his small delegation. "I dreamt that ice rained down upon the seas, and that Ran was glad of it."`
@@ -4197,7 +4195,7 @@ mission "Home for Skadenga Captain"
 			`	The Ondurdis turns to you. "Meet me near the ships, at makeshift spaceport in few hours. I have much to do at moment." She, and many others, then follow Aldfrith and his group to the halls of Hrithfjall.`
 			scene "scene/seasidecliffs"
 
-event "Skadenga life"
+event "skadenga life"
 
 
 
@@ -4285,7 +4283,7 @@ mission "Homecoming to Skadenga"
 	passengers 5
 	to offer
 		has "Home for Skadenga 13: declined"
-		has "event: Skadenga life"
+		has "event: skadenga life"
 	on offer
 		conversation
 			`	The sight of familiar Windblain brings up old memories. It's been more than a year since you helped the Skadenga settle Windblain, and you wonder if you should check in on them.`
@@ -4331,12 +4329,12 @@ mission "Homecoming to Skadenga"
 				accept
 	on complete
 		payment 50000
-		event "hjlodwaits" 360
+		event "hjlod waits" 360
 		dialog
 			`	The abandoned village of Udainsakr is cold, dark and half-buried in un-retreated snow. Everything feels colder than you remember and you wonder how long before this planet is a perpetual snowball.`
 			`	The Five Skadenga you brought are polite and circumspect. Upon landing they leave your ship and head for the Goddess-Stone of Skade, with its attendant piles of stones. You wait for them in the spaceport.`
 
-event "hjlodwaits"
+event "hjlod waits"
 
 
 
@@ -4363,11 +4361,11 @@ mission "Stones of Skadenga 1"
 			
 				
 	on complete
-		event "skadengamourners" 90
+		event "skadenga mourners" 90
 		dialog
 			`	The Skadenga are gladened to be home. Something about being on Windlbain lifts their spirits and they thank you for your help.`
 
-event "skadengamourners"
+event "skadenga mourners"
 
 
 
@@ -4379,7 +4377,7 @@ mission "Stones of Skadenga 2"
 	passengers 8
 	landing
 	to offer
-		has "event: skadengamourners"
+		has "event: skadenga mourners"
 		has "Stones of Skadenga 1: done"
 	on offer
 		dialog
@@ -4488,7 +4486,7 @@ mission "Hjlod RemembersWindblain"
 	destination "Windblain"
 	to offer 
 		has "Homecoming to Skadenga: done"
-		has "event: hjlodwaits"
+		has "event: hjlod waits"
 		has "Hjlodsaved"
 	on offer
 		dialog
@@ -4517,8 +4515,8 @@ mission "Hjlod RemembersNifel"
 		government "Republic"
 	destination "Nifel"
 	to offer 
-		has "Skadenga Call 4:done"
-		has "event: Hjlodwaitsagain"
+		has "Skadenga Call 4: done"
+		has "event: hjlod waits again"
 		has "Hjlodsaved"
 	on offer
 		dialog
@@ -4552,7 +4550,7 @@ mission "The Book of Skadenga"
 	to offer
 		random < 10
 		has "Skadenga Call 2: done"
-		has "event: thebook"
+		has "event: the book"
 	on offer
 		conversation
 			`	As you wander through the spaceport. Something catches your eye at a kiosk selling gifts, trinkets and other odds and ends.`
@@ -4614,7 +4612,7 @@ mission "The Angry Letter"
 			has "Skadenga Call 5: offered"
 			has "Sakdenga call 5: declined"
 		random < 10
-		has "event: asgardhjlodletter"
+		has "event: asgard hjlod letter"
 	on offer
 		conversation
 			`	Your terminal beeps that you have recieved a new message in your inbox.`
