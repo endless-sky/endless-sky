@@ -369,7 +369,7 @@ bool Conversation::IsBranch(int node) const
 	if(static_cast<unsigned>(node) >= nodes.size())
 		return false;
 	
-	return !nodes[node].conditions.IsEmpty() && nodes[node].data.size() > 1;
+	return !nodes[node].conditions.IsEmpty();
 }
 
 
@@ -385,8 +385,8 @@ bool Conversation::IsApply(int node) const
 
 
 
-// Get the list of conditions that the given node tests.
-const ConditionSet &Conversation::Conditions(int node) const
+// Get the list of conditions that the given node tests for branching.
+const ConditionSet &Conversation::Branch(int node) const
 {
 	static ConditionSet empty;
 	if(static_cast<unsigned>(node) >= nodes.size())

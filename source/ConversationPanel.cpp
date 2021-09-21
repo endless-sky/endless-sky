@@ -331,10 +331,15 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 		{
 			// Branch nodes change the flow of the conversation based on the
 			// player's condition variables rather than player input.
-			choice = !conversation.Conditions(node).Test(player.Conditions());
+			choice = !conversation.Branch(node).Test(player.Conditions());
 		}
 		else if(conversation.IsApply(node))
+		{
+			// Apply nodes are able to take various actions, be that changing
+			// the player's conditions, granting payments, triggering events,
+			// and more.
 			conversation.Apply(node).DoAction(player);
+		}
 		else
 		{
 			// This is an ordinary conversation node. Perform any necessary text
