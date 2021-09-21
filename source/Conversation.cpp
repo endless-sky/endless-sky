@@ -307,31 +307,34 @@ bool Conversation::IsValidIntro() const noexcept
 
 
 
+// Check if the actions in this conversation are valid.
+string Conversation::Validate() const
+{
+	for(const Node &node : nodes)
+	{
+		if(!node.actions.IsEmpty())
+		{
+			string reason = node.actions.ValidateAction();
+			if(!reason.empty())
+				return "conversation applied " + reason;
+		}
+	}
+	return "";
+}
+
+
+
 // Do text replacement throughout this conversation, and instantiate any
 // potential actions.
 Conversation Conversation::Instantiate(map<string, string> &subs, int jumps, int payload) const
 {
 	Conversation result = *this;
-	for(auto node = result.nodes.begin() ; node != result.nodes.end() ; )
+	for(Node &node : result.nodes)
 	{
-		for(pair<string, int> &choice : node->data)
+		for(pair<string, int> &choice : node.data)
 			choice.first = Format::Replace(choice.first, subs);
-		if(!node->actions.IsEmpty())
-		{
-			string reason = node->actions.ValidateAction();
-			if(reason.empty())
-			{
-				node->actions = node->actions.Instantiate(subs, jumps, payload);
-				++node;
-			}
-			else
-			{
-				Files::LogError("Warning: action node in conversation that uses invalid " + std::move(reason) + " has been removed");
-				node = result.nodes.erase(node);
-			}
-		}
-		else
-			++node;
+		if(!node.actions.IsEmpty())
+			node.actions = node.actions.Instantiate(subs, jumps, payload);
 	}
 
 	return result;

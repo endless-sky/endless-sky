@@ -61,6 +61,8 @@ public:
 	bool IsEmpty() const noexcept;
 	// Check if this conversation includes a name prompt.
 	bool IsValidIntro() const noexcept;
+	// Check if the actions in this conversation are valid.
+	std::string Validate() const;
 	
 	// Do text replacement throughout this conversation and instantiate
 	// any GameActions. This returns a new Conversation object with

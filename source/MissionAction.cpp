@@ -173,6 +173,11 @@ string MissionAction::Validate() const
 	// Stock conversations must be defined.
 	if(stockConversation && stockConversation->IsEmpty())
 		return "stock conversation";
+	
+	// Conversations must have valid actions.
+	string reason = stockConversation ? stockConversation->Validate() : conversation.Validate();
+	if(!reason.empty())
+		return reason;
 
 	// Required content must be defined & valid.
 	for(auto &&outfit : requiredOutfits)
