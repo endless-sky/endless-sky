@@ -4182,7 +4182,7 @@ mission "Home for Skadenga Captain"
 			`You have reached <planet>, but your ships have not all arrived yet. You should take off and wait for them to catch up with you.`	
 		
 	on complete
-		event "Skadenga life" 367
+		event "skadenga life" 367
 		conversation
 			`The reserved and limited government of Windplain pays you, nor your fleet any heed as you make your way down to the outskirts of Hrithfjall. An empty windswept landscape beneath gray clouds, and a small group of weathered fishermen are waiting for you outside your ship.`
 			`	"I thought I'd be seeing you again." Aldfrith says, at the front of his small delegation. "I dreamt that ice rained down upon the seas, and that Ran was glad of it."`
