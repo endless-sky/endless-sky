@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Files.h"
 #include "text/Format.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
