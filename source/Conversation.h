@@ -76,7 +76,7 @@ public:
 	int Choices(int node) const;
 	bool IsBranch(int node) const;
 	bool IsApply(int node) const;
-	const ConditionSet &Conditions(int node) const;
+	const ConditionSet &Branch(int node) const;
 	const GameAction &Apply(int node) const;
 	const std::string &Text(int node, int choice = 0) const;
 	const Sprite *Scene(int node) const;
