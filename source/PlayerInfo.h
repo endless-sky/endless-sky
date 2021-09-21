@@ -126,6 +126,11 @@ public:
 	const Ship *Flagship() const;
 	Ship *Flagship();
 	const std::shared_ptr<Ship> &FlagshipPtr();
+	// Move the flagship to the start of your list of ships. Not to be used
+	// during flight.
+	void MoveFlagshipBegin();
+	// Set the flagship (on departure or during flight).
+	void SetFlagship(std::shared_ptr<Ship> newFlagship);
 	// Get the full list of ships the player owns.
 	const std::vector<std::shared_ptr<Ship>> &Ships() const;
 	// Inspect the flightworthiness of the player's active fleet as a whole to

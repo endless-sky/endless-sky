@@ -769,6 +769,61 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 }
 
 
+// Move the flagship to the start of your list of ships. It does not make
+// sense that the flagship would change if you are reunited with a different
+// ship that was higher up the list. This function should not be used during
+// flight, since all shared-pointers to ships in the ships-list would be
+// invalidated (causing all kind of actions like ship and/or missile targeting
+// to be reset).
+void PlayerInfo::MoveFlagshipBegin()
+{
+	if(flagship)
+	{
+		auto it = find(ships.begin(), ships.end(), flagship);
+		if(it != ships.begin() && it != ships.end())
+		{
+			ships.erase(it);
+			ships.insert(ships.begin(), flagship);
+		}
+	}
+}
+
+
+
+// Set the flagship (on departure or during flight).
+void PlayerInfo::SetFlagship(shared_ptr<Ship> newFlagship)
+{
+	// Set the flagship pointer.
+	flagship = newFlagship;
+	
+	// Make sure your jump-capable ships all know who the flagship is.
+	for(const shared_ptr<Ship> &ship : ships)
+	{
+		bool shouldHaveParent = (flagship && ship != flagship && !ship->IsParked() && (!ship->CanBeCarried() || ship->JumpFuel()));
+		ship->SetParent(shouldHaveParent ? flagship : shared_ptr<Ship>());
+	}
+	
+	// Make sure your flagship is not included in the escort selection.
+	// Or if we have no flagship, then make sure no escorts are selected.
+	if(!flagship)
+		selectedShips.clear();
+	else
+	{
+		for(auto it = selectedShips.begin(); it != selectedShips.end(); )
+		{
+			shared_ptr<Ship> ship = it->lock();
+			if(!ship || ship == flagship)
+				it = selectedShips.erase(it);
+			else
+				++it;
+		}
+	}
+	
+	// Flagship properties likely have changed. Update auto conditions.
+	UpdateAutoConditions();
+}
+
+
 
 // Access the full list of ships that the player owns.
 const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
@@ -1148,6 +1203,10 @@ void PlayerInfo::Land(UI *ui)
 			++it; 
 	}
 	
+	// If we switched flagships during flight, then we want to move the new
+	// flagship to the start of the list of ships.
+	MoveFlagshipBegin();
+	
 	// "Unload" all fighters, so they will get recharged, etc.
 	for(const shared_ptr<Ship> &ship : ships)
 		ship->UnloadBays();
@@ -1240,13 +1299,9 @@ bool PlayerInfo::TakeOff(UI *ui)
 	if(!system || !planet)
 		return false;
 	
-	if(flagship)
-		flagship->AllowCarried(true);
-	flagship.reset();
 	flagship = FlagshipPtr();
 	if(!flagship)
 		return false;
-	flagship->AllowCarried(false);
 	
 	shouldLaunch = false;
 	Audio::Play(Audio::Get("takeoff"));
@@ -1263,30 +1318,10 @@ bool PlayerInfo::TakeOff(UI *ui)
 	// Store the total cargo counts in case we need to adjust cost bases below.
 	map<string, int> originalTotals = cargo.Commodities();
 	
-	// Move the flagship to the start of your list of ships. It does not make
-	// sense that the flagship would change if you are reunited with a different
-	// ship that was higher up the list.
-	auto it = find(ships.begin(), ships.end(), flagship);
-	if(it != ships.begin() && it != ships.end())
-	{
-		ships.erase(it);
-		ships.insert(ships.begin(), flagship);
-	}
-	// Make sure your jump-capable ships all know who the flagship is.
-	for(const shared_ptr<Ship> &ship : ships)
-	{
-		bool shouldHaveParent = (ship != flagship && !ship->IsParked() && (!ship->CanBeCarried() || ship->JumpFuel()));
-		ship->SetParent(shouldHaveParent ? flagship : shared_ptr<Ship>());
-	}
-	// Make sure your flagship is not included in the escort selection.
-	for(auto it = selectedShips.begin(); it != selectedShips.end(); )
-	{
-		shared_ptr<Ship> ship = it->lock();
-		if(!ship || ship == flagship)
-			it = selectedShips.erase(it);
-		else
-			++it;
-	}
+	// Move the flagship to the start of the list of ships and ensure that all
+	// escorts know which ship is acting as flagship.
+	MoveFlagshipBegin();
+	SetFlagship(flagship);
 	
 	// Recharge any ships that can be recharged, and load available cargo.
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
@@ -1347,7 +1382,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	for(auto &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled())
 		{
-			if(ship->CanBeCarried())
+			if(ship->CanBeCarried() && ship != flagship)
 				toLoad.emplace_back(ship);
 			else if(ship->HasBays())
 				carriers.emplace_back(ship.get());

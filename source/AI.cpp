@@ -62,8 +62,13 @@ namespace {
 			return false;
 		if(target.IsDestroyed() || !target.IsTargetable() || target.GetSystem() != ship.GetSystem())
 			return false;
+		// Boarding for supporting friendlies that are out of fuel.
 		if(IsStranded(target) && !ship.GetGovernment()->IsEnemy(target.GetGovernment()))
 			return true;
+		// Special case for docking for fighters and drones.
+		if(!target.IsDisabled() && ship.GetGovernment() == target.GetGovernment() && target.CanCarry(ship))
+			return true;
+		// Boarding for supporting (friendlies) and plundering (enemies).
 		return target.IsDisabled();
 	}
 	
@@ -579,7 +584,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			continue;
 		
 		// Special case: if the player's flagship tries to board a ship to
-		// refuel it, that escort should hold position for boarding.
+		// refuel it (or dock with it), that escort should hold position for boarding.
 		isStranded |= (flagship && it == flagship->GetTargetShip() && CanBoard(*flagship, *it)
 			&& autoPilot.Has(Command::BOARD));
 		

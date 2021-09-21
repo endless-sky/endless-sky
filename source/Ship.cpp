@@ -1850,7 +1850,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	shared_ptr<const Ship> target = GetTargetShip();
 	// If this is a fighter or drone and it is not assisting someone at the
 	// moment, its boarding target should be its parent ship.
-	if(CanBeCarried() && !(target && target == GetShipToAssist()))
+	if(CanBeCarried() && !(target && target == GetShipToAssist()) && GetParent())
 		target = GetParent();
 	if(target && !isDisabled)
 	{
@@ -3363,14 +3363,6 @@ bool Ship::CanCarry(const Ship &ship) const
 			--free;
 	}
 	return (free > 0);
-}
-
-
-
-void Ship::AllowCarried(bool allowCarried)
-{
-	const auto &bayCategories = GameData::Category(CategoryType::BAY);
-	canBeCarried = allowCarried && find(bayCategories.begin(), bayCategories.end(), attributes.Category()) != bayCategories.end();
 }
 
 
