@@ -2755,7 +2755,6 @@ mission "Stone of our Fathers 5"
 
 
 
-
 mission "Home for Skadenga 1"
 	name "Home for Skadenga"
 	description "Search for the Setstokkr on Windblain and Asgard and then return back to <source>."
@@ -3333,7 +3332,9 @@ mission "Home for Skadenga 1"
 				decline
 				
 event "Nifelwaiting"
-			
+
+
+
 mission "Home for Skadenga 2"
 	name "Home for Skadenga"
 	invisible
@@ -3444,10 +3445,9 @@ mission "Home for Skadenga 2"
 			`	"Lars!" Jakob calls, and the administrator and his two guards promptly enter the room. "Show Captain <last> back to their ship. Our meeting is concluded."`
 			`	"Of course, sir."`
 			`	The guards grab you and 'escort' you off the premises.`
-			
-		
-		
-		
+
+
+
 mission "Home for Skadenga 3"
 	name "Home for Skadenga"
 	invisible
@@ -3520,11 +3520,9 @@ mission "Home for Skadenga 3"
 				
 	to complete
 		has "Home for Skadenga 2: offered"
-		
-		
-			
 
-	
+
+
 mission "Home for Skadenga 4"
 	name "Transport for Skadenga"
 	minor
@@ -3638,12 +3636,11 @@ mission "Home for Skadenga 4"
 			`	After their celebration is over Kaiden turns back to you. "Our transport fleet is at your disposal. They are being refitted at Mani in the Avior system."`
 			`	The three stand up in unison. Grayden and Braiden leave and Kaiden turns from the door. "We are so happy you stopped by today and gave us this opportunity to really give back to the needy communities out in our neighborhood."`
 			`	With that they are all gone, and your escort returns to lead you out.`
-			
-		
-			
+
+
+
 mission "Home for Skadenga 5"
 	name "Transport for Skadenga"
-	minor
 	landing
 	description "Travel to <destination>, and learn about the Transport Union Fleet"
 	to offer
@@ -3762,8 +3759,9 @@ mission "Home for Skadenga 7"
 			
 			
 event "Skadengadeath"
-	
-	
+
+
+
 mission "Skadenga Call 1"
 	landing
 	name "Check on Hjlod"
@@ -3782,7 +3780,9 @@ mission "Skadenga Call 1"
 	on complete
 		dialog
 			`Upon landing you receive another message in your inbox that simply says 'spaceport'.`
-			
+
+
+
 mission "Skadenga Call 2"
 	name "Return the Skadenga."
 	description "Take the Skadenga refugees back to <destination>."
@@ -3877,7 +3877,9 @@ mission "Skadenga Call 2"
 event "nifelhjlod"
 
 event "thebook"
-			
+
+
+
 mission "Skadenga Call 3"
 	name "Blood Money"
 	landing
@@ -3895,10 +3897,11 @@ mission "Skadenga Call 3"
 			`	You receive a message from your bank that 300,000 credits have been deposited into your account from the Census and Culture Bureau of The Deep. The following message is attached:`
 			`	'For heroic and selfless service to the ideals and prosperity of The Deep.'`
 				decline
-		
-			
+
 event "asgardhjlod"
-			
+
+
+
 mission "Skadenga Call 4"
 	name "Hjlod's goodbye"
 	invisible
@@ -3915,9 +3918,11 @@ mission "Skadenga Call 4"
 			`	She tells you that she forgives you the past, and hopes you find whatever it is you are looking for among the stars. She even hugs you before she leaves.`
 			`	As she walks away you wonder if you can ever forgive yourself.`
 			scene "scene/journey"
-			
+
 event "Hjlodwaitsagain"
-			
+
+
+
 mission "Skadenga Call 5"
 	name "Hjlod's worse goodbye"
 	invisible
@@ -3935,7 +3940,9 @@ mission "Skadenga Call 5"
 			`	You receive a message from the Census and Culture Bureau of The Deep. The Deep Citizen known as Hjlod has died. Cause of death appears to be related to heavy substance abuse. The Bureau has determined that you are her closest relation and has forwarded you her entire inheritance of: 27 credits.`
 
 event "asgardhjlodletter"
-		
+
+
+
 mission "Home for Skadenga 8"
 	name "Muspel Mystery Man"
 	minor
@@ -3958,6 +3965,7 @@ mission "Home for Skadenga 8"
 	on complete
 		dialog
 			`	You've arrived at the rusty hued world that is Muspel. You should head into the spaceport to see if you can find Hroar.`
+
 
 
 mission "Home for Skadenga 9"
@@ -4043,8 +4051,9 @@ mission "Home for Skadenga 9"
 				decline
 
 event "waitforit"
-		
-		
+
+
+
 mission "Home for Skadenga 10"
 	name "Head Back to Muspel"
 	landing
@@ -4101,8 +4110,9 @@ mission "Home for Skadenga 11"
 	on visit
 		dialog
 			`You have reached <planet>, but the Hardy Hroar's Hauler ships have not all arrived yet. You should take off and wait for them to catch up with you.`
-			
-			
+
+
+
 mission "Home for Skadenga 12"
 	landing
 	name "Evacuate <origin>"
@@ -4146,8 +4156,9 @@ mission "Home for Skadenga 12"
 			`	Aldfrith glances at the growing number of Skadenga. "If you follow me, I will escort you to our village, and show you what buildings you may use. Though I fear we can not house so many."`
 			`	The Ondurdis smiles. "We thank you for your hospitality. It is good to find others who remember the old ways. Fear not, though, we are resourceful lot."`
 			`	The Ondurdis turns to you. "Meet me near the ships, at makeshift spaceport in few hours. I have much to do at moment." She, and many others, then follow Aldfrith and his group to the halls of Hrithfjall.`
-			
-			
+
+
+
 mission "Home for Skadenga Captain"
 	landing
 	name "Evacuate <origin>"
@@ -4168,11 +4179,10 @@ mission "Home for Skadenga Captain"
 			`	She leaves you with a warm smile in the wintry village.`
 				accept
 	
-	
 	on visit
 		dialog
 			`You have reached <planet>, but your ships have not all arrived yet. You should take off and wait for them to catch up with you.`	
-			
+		
 	on complete
 		event "Skadenga life" 367
 		conversation
@@ -4186,10 +4196,11 @@ mission "Home for Skadenga Captain"
 			`	The Ondurdis smiles. "We thank you for your hospitality. It is good to find others who remember the old ways. Fear not, though, we are resourceful lot."`
 			`	The Ondurdis turns to you. "Meet me near the ships, at makeshift spaceport in few hours. I have much to do at moment." She, and many others, then follow Aldfrith and his group to the halls of Hrithfjall.`
 			scene "scene/seasidecliffs"
-			
 
 event "Skadenga life"
-	
+
+
+
 mission "Home for Skadenga 13"
 	invisible
 	source "Windblain"
@@ -4266,6 +4277,7 @@ mission "Home for Skadenga 13"
 				decline
 
 
+
 mission "Homecoming to Skadenga"
 	description "Take the mourning Skadenga to <destination>, so that they can enact the rites of their dead."
 	source "Windblain"
@@ -4323,9 +4335,11 @@ mission "Homecoming to Skadenga"
 		dialog
 			`	The abandoned village of Udainsakr is cold, dark and half-buried in un-retreated snow. Everything feels colder than you remember and you wonder how long before this planet is a perpetual snowball.`
 			`	The Five Skadenga you brought are polite and circumspect. Upon landing they leave your ship and head for the Goddess-Stone of Skade, with its attendant piles of stones. You wait for them in the spaceport.`
-			
+
 event "hjlodwaits"
-			
+
+
+
 mission "Stones of Skadenga 1"
 	name "Sones of Skadenga"
 	source "Nifel"
@@ -4354,7 +4368,9 @@ mission "Stones of Skadenga 1"
 			`	The Skadenga are gladened to be home. Something about being on Windlbain lifts their spirits and they thank you for your help.`
 
 event "skadengamourners"
-	
+
+
+
 mission "Stones of Skadenga 2"
 	name "Stones of Skadenga"
 	description "Take the mourning Skadenga to <destination>, so that they can enact the rites of their dead."
@@ -4374,7 +4390,9 @@ mission "Stones of Skadenga 2"
 		dialog
 			`	The Skadenga wander past the ruins of Udainsakr and make their way to the Family-Cairns before the ice-covered Goddess-Stone of Skade. They say their words, shed their tears, and leave their stones.`
 			`	They head back toward the spaceport. They will need a ride home.`
-			
+
+
+
 mission "Stones of Skadenga 3"
 	name "Stones of Skadenga"
 	description "Return the Skadenga mourners to <destination>."
@@ -4399,9 +4417,9 @@ mission "Stones of Skadenga 3"
 	on complete
 		dialog
 			`	The Skadenga are happy to be home. The churning seas of Windblain lift their spirits, and they head out into the sea-sweet air.`
-			
-			
-			
+
+
+
 mission "Stones of Skadenga 4"
 	invisible
 	source "Windblain"
@@ -4415,7 +4433,9 @@ mission "Stones of Skadenga 4"
 			`	"I have added this task to the job board, so you can more easily assist in the future. I've also let them know they need enough money to pay for a return trip."`
 			`	She touches your shoulder, and then walks away.`
 				decline
-		
+
+
+
 mission "Stone-Bearer: To Nifel"
 	job
 	repeat
@@ -4437,6 +4457,8 @@ mission "Stone-Bearer: To Nifel"
 		dialog
 			` The mourners take their small stones and head off to visit the cairns of their ancestors.`
 
+
+
 mission "Stone-Bearers: To Windblain"
 	job
 	repeat
@@ -4456,7 +4478,8 @@ mission "Stone-Bearers: To Windblain"
 		payment
 		dialog
 			`The Skadenga disembark and return to their lives on Windblain.`
-			
+
+
 
 mission "Hjlod RemembersWindblain"
 	name "Hjlod Remembers"
@@ -4485,7 +4508,9 @@ mission "Hjlod RemembersWindblain"
 			`	"How many of these are there you ask?"`
 			`	"Only few", she says, "They were found around the Goddess-Stone in the early days. Passed from Skadenga mother to Skadenga daughter. I have no daughter, but I have you, so this is now yours."`
 			`	You thank her, and spend the rest of the day with her, talking, laughing and walking upon the friendly earth of Windblain.`
-	
+
+
+
 mission "Hjlod RemembersNifel"
 	name "Hjlod Remembers"
 	source
@@ -4515,7 +4540,9 @@ mission "Hjlod RemembersNifel"
 			`	She hands it to you. "Keep this vith you, and know Skadenga vith you too."`	
 			`	Her eyes water and she wipes them. "Your story is forever chiseled on our stones."`
 			`	She turns and leaves you there, holding a Tear of Skade, and shivering in Nifel's unforgiving cold.`
-			
+
+
+
 mission "The Book of Skadenga"
 	invisible
 	source
@@ -4544,6 +4571,8 @@ mission "The Book of Skadenga"
 			`	You keep walking. You already know that story.`
 				decline
 
+
+
 mission "The Other Book of Skadenga"
 	invisible
 	source
@@ -4570,8 +4599,9 @@ mission "The Other Book of Skadenga"
 			label ignore
 			`	You keep walking. You already know that story.`
 				decline
-		
-	
+
+
+
 mission "The Angry Letter"
 	invisible
 	source
@@ -4596,6 +4626,3 @@ mission "The Angry Letter"
 			`	And know, that I am coming for you. Because I am a monster-slayer, and you are a monster.`
 			`				Signed, Rekkskald Skadegothi`
 				decline
-
-			
-			
