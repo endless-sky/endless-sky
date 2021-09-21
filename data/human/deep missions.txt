@@ -2757,7 +2757,7 @@ mission "Stone of our Fathers 5"
 
 mission "Home for Skadenga 1"
 	name "Home for Skadenga"
-	description "Search for the Setstokkr on Windblain and Asgard and then return back to <source>."
+	description "Search for the Setstokkr on Windblain and Asgard and then return back to <planet>."
 	minor
 	cargo "Setstokkr" 1
 	to offer
