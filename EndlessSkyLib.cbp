@@ -143,6 +143,8 @@
 		<Unit filename="source/FrameTimer.h" />
 		<Unit filename="source/Galaxy.cpp" />
 		<Unit filename="source/Galaxy.h" />
+		<Unit filename="source/GameAction.cpp" />
+		<Unit filename="source/GameAction.h" />
 		<Unit filename="source/GameData.cpp" />
 		<Unit filename="source/GameData.h" />
 		<Unit filename="source/GameEvent.cpp" />
@@ -191,6 +193,8 @@
 		<Unit filename="source/MapShipyardPanel.h" />
 		<Unit filename="source/Mask.cpp" />
 		<Unit filename="source/Mask.h" />
+		<Unit filename="source/MaskManager.cpp" />
+		<Unit filename="source/MaskManager.h" />
 		<Unit filename="source/MenuPanel.cpp" />
 		<Unit filename="source/MenuPanel.h" />
 		<Unit filename="source/Messages.cpp" />

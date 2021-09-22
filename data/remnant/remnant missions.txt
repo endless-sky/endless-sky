@@ -772,9 +772,8 @@ event "remnant: nenia restored"
 mission "Remnant: Void Sprites 3"
 	landing
 	name "Visit void sprite planets"
-	description `Purchase a "Puffin" from the Remnant world of Viminal, and use it to explore the two gas giants where the void sprites live. Then, return to <planet>.`
+	description `Use the Puffin to explore the two gas giants where the void sprites live. Then, return to <planet>.`
 	source "Aventine"
-	stopover "Viminal"
 	stopover "Nasqueron"
 	stopover "Slylandro"
 	cargo "scanning equipment" 8
@@ -3696,7 +3695,11 @@ mission "Remnant: Bounty 3"
 	source
 		government "Remnant"
 	to offer
-		has "Remnant: Cognizance 4: failed"
+		# 0.9.13 Compatibility patch
+		or
+			has "Remnant: Cognizance 4: done"
+			has "Remnant: Cognizance 4: failed"
+		not "Remnant: Cognizance 4: aborted"
 		random < 40
 	npc kill
 		government "Korath"
@@ -3723,7 +3726,11 @@ mission "Remnant: Cognizance 5"
 	source "Caelian"
 	waypoint "Aescolanus"
 	to offer
-		has "Remnant: Cognizance 4: done"
+		# 0.9.13 Compatibility patch
+		or
+			has "Remnant: Cognizance 4: done"
+			has "Remnant: Cognizance 4: failed"
+		not "Remnant: Cognizance 4: aborted"
 	on offer
 		conversation
 			branch fleetkilled

@@ -83,7 +83,7 @@ public:
 	const std::map<const Sound *, int> &SteeringFlareSounds() const;
 	// Get the afterburner effect, if any.
 	const std::map<const Effect *, int> &AfterburnerEffects() const;
-	// Get this oufit's jump effects and sounds, if any.
+	// Get this outfit's jump effects and sounds, if any.
 	const std::map<const Effect *, int> &JumpEffects() const;
 	const std::map<const Sound *, int> &HyperSounds() const;
 	const std::map<const Sound *, int> &HyperInSounds() const;

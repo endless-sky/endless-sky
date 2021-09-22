@@ -19,7 +19,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-
 void Hazard::Load(const DataNode &node)
 {
 	if(node.Size() < 2)
@@ -64,6 +63,15 @@ void Hazard::Load(const DataNode &node)
 
 
 
+// Whether this hazard has a valid definition.
+bool Hazard::IsValid() const
+{
+	return !name.empty();
+}
+
+
+
+// The name of the hazard in the data files.
 const string &Hazard::Name() const
 {
 	return name;
