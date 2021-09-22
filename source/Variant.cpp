@@ -122,7 +122,11 @@ void Variant::Load(const DataNode &node)
 				// If this variant is named, then look for it in GameData.
 				// Otherwise this is a new variant definition only for this variant.
 				if(!variantName.empty())
+				{
 					variants.emplace_back(GameData::Variants().Get(variantName), n);
+					if(child.HasChildren())
+						child.PrintTrace("Skipping children of named variant in fleet definition:")
+				}
 				else
 					variants.emplace_back(child, n);
 			}
