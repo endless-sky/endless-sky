@@ -38,6 +38,8 @@ public:
 	
 	// The planet panel calls this when it closes.
 	void OnCallback();
+	// The hail panel calls this when it closes.
+	void OnBribeCallback(const Government *bribed = nullptr);
 	
 	// Send a command to the engine (on behalf of the player).
 	void GiveCommand(const Command &command);

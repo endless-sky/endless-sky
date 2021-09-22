@@ -204,6 +204,15 @@ bool MainPanel::AllowFastForward() const
 
 
 
+// The hail panel calls this when it closes.
+void MainPanel::OnBribeCallback(const Government *bribed)
+{
+	if(bribed)
+		engine.BreakTargeting(bribed);
+}
+
+
+
 // Only override the ones you need; the default action is to return false.
 bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
@@ -423,7 +432,8 @@ bool MainPanel::ShowHailPanel()
 				, Messages::Importance::High);
 		else
 		{
-			GetUI()->Push(new HailPanel(player, target));
+			GetUI()->Push(new HailPanel(player, target,
+				[&](const Government *bribed) { MainPanel::OnBribeCallback(bribed); } ));
 			return true;
 		}
 	}

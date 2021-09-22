@@ -314,10 +314,28 @@ const Ship *Projectile::Target() const
 
 
 
+const Government *Projectile::TargetGovernment() const
+{
+	return targetGovernment;
+}
+
+
+
 shared_ptr<Ship> Projectile::TargetPtr() const
 {
 	return targetShip.lock();
 }
+
+
+
+// Clear the targeting information on this projectile.
+void Projectile::BreakTarget()
+{
+	targetShip.reset();
+	cachedTarget = nullptr;
+	targetGovernment = nullptr;
+}
+
 
 
 // TODO: add more conditions in the future. For example maybe proximity to stars
