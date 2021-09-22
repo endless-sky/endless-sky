@@ -125,7 +125,7 @@ void Variant::Load(const DataNode &node)
 				{
 					variants.emplace_back(GameData::Variants().Get(variantName), n);
 					if(child.HasChildren())
-						child.PrintTrace("Skipping children of named variant in fleet definition:")
+						child.PrintTrace("Skipping children of named variant in fleet definition:");
 				}
 				else
 					variants.emplace_back(child, n);
