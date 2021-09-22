@@ -27,19 +27,27 @@ using namespace std;
 
 
 // Construct and Load() at the same time.
-Variant::Variant(const DataNode &node)
+Variant::Variant(const DataNode &node, bool removing)
 {
-	Load(node);
+	Load(node, removing);
 }
 
 
 
-void Variant::Load(const DataNode &node)
+void Variant::Load(const DataNode &node, bool removing)
 {
 	// If this variant is being loaded with a second token that is not a number,
-	// then it's a name that must be saved.
-	if(node.Size() >= 2 && !node.IsNumber(1))
-		name = node.Token(1);
+	// then it's a name that must be saved. This can either be because we're
+	// loading from GameData or from a fleet or variant that is removing a variant,
+	// in which case there is a `remove` token that must be accounted for.
+	if(node.Size() >= 2 + removing && !node.IsNumber(1 + removing))
+	{
+		name = node.Token(1 + removing);
+		// If this named variant is being loaded for removal purposes then
+		// all that is necessary is that the variant has its name.
+		if(removing)
+			return;
+	}
 	
 	// If Load() has already been called once on this variant, any subsequent
 	// calls will replace the contents instead of adding to them.
@@ -61,7 +69,7 @@ void Variant::Load(const DataNode &node)
 			if(variant)
 			{
 				// If given a full definition of one of this fleet's variant members, remove the variant.
-				Variant toRemove(child);
+				Variant toRemove(child, true);
 				auto VariantToRemove = [&](const WeightedVariant &v) noexcept -> bool
 				{
 					return v.Get() == toRemove;

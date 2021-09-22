@@ -223,7 +223,7 @@ void Fleet::Load(const DataNode &node)
 		else if(key == "variant")
 		{
 			// If given a full definition of one of this fleet's variant members, remove the variant.
-			Variant toRemove(child);
+			Variant toRemove(child, true);
 			auto VariantToRemove = [&](const WeightedVariant &v) noexcept -> bool
 			{
 				return v.Get() == toRemove;
