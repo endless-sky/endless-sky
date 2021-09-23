@@ -89,7 +89,7 @@ public:
 	void SelectGroup(int group, bool hasShift, bool hasControl);
 	
 	// Break targeting on all projectiles between the player and the given
-	// government; gov projectil0es stop targeting the player and player's
+	// government; gov projectiles stop targeting the player and player's
 	// projectiles stop targeting gov.
 	void BreakTargeting(const Government *gov);
 	
