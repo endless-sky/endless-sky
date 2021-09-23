@@ -3414,9 +3414,9 @@ mission "Home for Skadenga 2"
 					goto fancypants
 			label fancypants
 			`	You are brought to large research complex just outside the spaceport, and dispoisted in a high-end white minimalistic conference room, with two well-dressed and important looking men.`
-			`	"Thank you, Lars. Take the guards and wait for us outside." the man seated across from you says.`
+			`	"Thank you, Lars. Take the guards and wait for us outside," the man seated across from you says.`
 			`	"Of course, sir." Lars turns and is followed outside by his two goons.`
-			`	The man who spoke looks at you with a friendly open smile, and says unironically. "I am so glad you agreed to meet with us. I realize an accomplished Captain like yourself is in great demand, so we will endeavor to keep this brief."`
+			`	The man who spoke looks at you with a friendly open smile, and says unironically says, "I am so glad you agreed to meet with us. I realize an accomplished Captain like yourself is in great demand, so we will endeavor to keep this brief."`
 			`	"I am Jakob Forsyth, Vice Planetary-Governor of Nifel and CEO of Nifel-Research Solutions Inc., and the man sitting beside me is Henrik Fogel, Deputy Lieutenant-Sub-Director of the Census and Culture Bureau for The Deep."`
 			`	"We've been monitoring you ever since you first arrived, and became entangled with those sad, backwards, hill-witches." Jakob takes a sip from an elegant glass on the table.`
 			choice
@@ -3429,7 +3429,7 @@ mission "Home for Skadenga 2"
 				`	"You're abandoning an entire planet to make a profit?"`
 			`	He leans forward with a sly look on his face. "Think about it. Instead of employing a worldwide workforce of 500,000 in the hope that we discover new pharmaceutical products. We instead employ 100 patent lawyers, and the rest of the profits go directly to the shareholders. We then raise the prices on our vast back catalogue of patented medicine, and everyone wins."`
 			`	"There is, however, one hiccup." Jakob leans back. "A thorn that has been in our side since our research firm first colonized this world over 400 years ago. Those crazy hill-witches. Sure, early on they had their uses as guides and what not. But, they are a cultural dead end, an atavistic blight on our corporate world."`
-			`	"You know", Jakob says, "They actually believe that they were brought here during Earth's stone-age by magical space-fairies." He chuckles.`
+			`	"You know", he continues with a humorous glint in his eye, "They actually believe that they were brought here during Earth's stone-age by magical space-fairies."`
 			`	"Now, now." Henrik finally cuts in. "We here, in The Deep, do value all our resident people and cultures, and we are not here to denigrate our citizens, no matter how unusual."`
 			choice
 				`	"But they are leaving. So what is the problem?"`
@@ -3457,7 +3457,7 @@ mission "Home for Skadenga 3"
 	destination "Nifel"
 	on offer
 		conversation
-			`	In the crowded high-atmosphere of Asgard it is difficult to find any reading that matches that of the exotic Setstokkr material. You do get one anomalous ping from a related matieral located in the populated urban center of Helsingor.`
+			`	In the crowded high-atmosphere of Asgard it is difficult to find any reading that matches that of the exotic Setstokkr material. You do get one anomalous ping from a related material located in the populated urban center of Helsingor.`
 			`	Your ship lands in a regional spaceport that serves Helsingor, and your handheld tracker leads you to the heart of the city, where you discover a massive winding mall. The tracker leads you inside the mall.`
 			scene "scene/busystreet"	
 			`	Once inside your eyes catch the glint of a vast metallic structure around which the entire mall is built. You can make out unusual pictures and alien letters carved into it.`
@@ -3739,7 +3739,7 @@ mission "Home for Skadenga 7"
 		payment 850000
 		event "skadenga death" 367
 		conversation
-			`For the occasion of the primitives' arrival Helsingor has remade itself into a mad circus. There are impromptu bands playing, random unplanned parades, teeming crowds of excited neighbors holding up signs welcoming the Skadenga into the 31st century. There is also every kind of emergency and civil personnel available here. Firemen, police, doctors, social workers; all claiming, testing, prodding and questioning the dazed immigrants.`
+			`For the occasion of the primitives' arrival, Helsingor has remade itself into a mad circus. There are impromptu bands playing, random unplanned parades, teeming crowds of excited neighbors holding up signs welcoming the Skadenga into the 31st century. There is also every kind of emergency and civil personnel available here. Firemen, police, doctors, social workers; all claiming, testing, prodding and questioning the dazed immigrants.`
 			`	The Ondurdis finds you in the chaos and lets you know she wishes to see the God-Stone. Together you travel to the mall, and you explain to her how the structure was built around it, using it as an accent wall to the various posh establishments within.`
 			`	Upon seeing this the old and overwhelmed matron falls to her knees in tears.`
 			scene "scene/buildings"
