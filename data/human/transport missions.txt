@@ -2236,7 +2236,7 @@ mission "Lost Boy 3"
 				goto end
 			
 			label reject
-			`	You hand the credits back to the mother as she begin to tear up again. "Thank you so much, Captain."`
+			`	You hand the credits back to the mother as she begins to tear up again. "Thank you so much, Captain."`
 			
 			label end
 			`	"Hold on," Tod chimes in. "I still need to get to <planet>."`
