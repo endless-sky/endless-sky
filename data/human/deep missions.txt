@@ -3006,7 +3006,7 @@ mission "Home for Skadenga 1"
 			`	The uneventful journey to the boiling ice river of Slidr is suddenly interrupted when the Ice-Crawler begins to shake wildly for a few moments, followed by a thunderous boom from somewhere outside.`
 			`	After Hjlod regains control of the crawler, she immediately veers away from the noise. "That vas Nifel-quake, and loud noise was avalanche. This is not good."`
 			`	Despite her calm demeanor she wields the Ice-Crawler with reckless abandon as she tries to outrun the rumbling snow. The machine protests with creaks and whirrs and pops as it goes faster than it has gone for hundreds of years.`
-			`	"I think..." Hjlod starts to say when a mountain of snow crashes into the Ice-Crawler dragging it over a kilometre.`
+			`	"I think..." Hjlod starts to say when a mountain of snow crashes into the Ice-Crawler dragging it half a kilometer.`
 			`	You and Hjlod hold tight to your seat-belts as you're tossed around. Eventually, the crawler comes to a rest on its' side.`
 			choice
 				`	(Unbuckle your seatbelt and get yourself up.)`
