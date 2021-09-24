@@ -13,35 +13,30 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef MISSION_ACTION_H_
 #define MISSION_ACTION_H_
 
-#include "ConditionSet.h"
+#include "GameAction.h"
+
 #include "Conversation.h"
 #include "LocationFilter.h"
 #include "Phrase.h"
 
-#include <cstdint>
 #include <map>
 #include <memory>
-#include <set>
 #include <string>
-#include <utility>
-#include <vector>
 
 class DataNode;
 class DataWriter;
-class GameEvent;
-class Outfit;
 class PlayerInfo;
-class Ship;
 class System;
 class UI;
 
 
 
-// A MissionAction represents what happens when a mission reaches a certain
-// milestone: offered, accepted, declined, completed or failed. Actions might
-// include showing a dialog or conversation, giving the player payment or a
-// special item, modifying condition flags, or queueing an event to occur.
-class MissionAction {
+// A MissionAction represents what happens when a Mission reaches a certain
+// milestone. This can include when the Mission is offered, accepted, declined,
+// completed, or failed. A MissionAction can include anything a GameAction can
+// do while also being capable of displaying dialogs or Conversations and requiring
+// that the player have certain outfits for the action to be done.
+class MissionAction : public GameAction {
 public:
 	MissionAction() = default;
 	// Construct and Load() at the same time.
@@ -53,8 +48,6 @@ public:
 	void Save(DataWriter &out) const;
 	// Determine if this MissionAction references content that is not fully defined.
 	std::string Validate() const;
-	
-	int Payment() const;
 	
 	const std::string &DialogText() const;
 	
@@ -76,28 +69,12 @@ private:
 	std::string system;
 	LocationFilter systemFilter;
 	
-	std::string logText;
-	std::map<std::string, std::map<std::string, std::string>> specialLogText;
-	
 	std::string dialogText;
 	const Phrase *stockDialogPhrase = nullptr;
 	Phrase dialogPhrase;
 	
 	const Conversation *stockConversation = nullptr;
 	Conversation conversation;
-	
-	std::map<const GameEvent *, std::pair<int, int>> events;
-	std::vector<std::pair<const Ship *, std::string>> giftShips;
-	std::map<const Outfit *, int> giftOutfits;
-	std::map<const Outfit *, int> requiredOutfits;
-	int64_t payment = 0;
-	int64_t paymentMultiplier = 0;
-	int64_t fine = 0;
-	
-	// When this action is performed, the missions with these names fail.
-	std::set<std::string> fail;
-	
-	ConditionSet conditions;
 };
 
 

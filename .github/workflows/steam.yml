@@ -137,7 +137,9 @@ jobs:
         name: binary-${{ runner.os }}-x86_64
         path: .
     - name: Install xvfb runtime dependencies
-      run: sudo apt-get install -y --no-install-recommends libosmesa6 mesa-utils
+      run: |
+        sudo apt-get update -q
+        sudo apt-get install -y --no-install-recommends libosmesa6 mesa-utils
     - name: Pin Steam libraries
       run: steam-runtime/setup.sh
     - run: chmod +x endless-sky
