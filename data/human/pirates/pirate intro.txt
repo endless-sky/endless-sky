@@ -1,0 +1,119 @@
+
+mission "You are a pirate"
+	name "Embrace the pirate's life"
+	description "You've plundered your way across the galaxy, offending merchants and the law alike. You're a pirate in the eyes of the law, but perhaps not in the eyes of your fellow buccaneers. Find your way to a pirate port and buy some black and red paint."
+	source
+		government "Pirate"
+	to offer
+		and
+			or
+				"reputation: Republic" < -10
+				"reputation: Syndicate" < -10
+				"reputation: Free Worlds" < -10
+			"reputation: Merchant" < -10
+	on offer
+		conversation "You are a pirate"
+
+
+
+mission "I want to be a pirate"
+	name "Become a pirate"
+	description "Being a pirate in the eyes of the law isn't the same as being one in the eyes of fellow buccaneers. You'll have them know your name - but first you must make one for yourself."
+	to offer
+		or
+			"combat rating" > 150
+			has "ships: Interceptor"
+			has "ships: Drone"
+			has "ships: Fighter"
+			has "ships: Light Warship"
+			has "ships: Medium Warship"
+			has "ships: Heavy Warship"
+	on offer
+		conversation "I want to be a pirate"
+	to complete
+		or
+			has "Pirate Intro - Boarding: Done"
+			has "Pirate Intro - Wealth: Done"
+			has "Pirate Intro - Domination: Done"
+
+
+
+conversation "You are a pirate"
+	`You're a pirate.`
+		accept
+
+
+
+conversation "I want to be a pirate"
+	`The drinking holes flanking this outlaw spaceport are a motley mix indeed, each apparently shabbier, dingier, or more raucous than the last. Perhaps that's just the way you like your establishments; perhaps not. Whatever the case, a sense of purpose has brought you here, far from the factories and fields of New Boston. Out here to the fringes of society.`
+	`Instinct - or just too many swashbuckling serials consumed during your childhood - brings you to the back of a smoky bar, where a trio of grizzled people sit; an eyepatched corsair, a jewelry-encrusted outlaw with a mechanical jaw, and a somewhat incongrously dressed woman in business formals, studiously avoiding touching any of the table's various stains with her immaculately tailored elbows. The three turn to stare at you. You came here for a reason, didn't you?`
+	choice
+		`	"My name is <first> <last>, and I want to be a pirate."`
+		`	(This was a terrible idea. Back to the ship.)`
+			goto retreat
+	`The three regard you with a mixture of surprise and bemusement.`
+	`	"Is that so?", inquires the sharp-dressed woman. "And you're telling us why? Because you suspect that we might know the right people to, say, make it known that there's a new terror plying the hyperlanes?" She leans back, pauses, carefully inspects the seat behind her, and satisfied that it's not covered in too much grease, completes the maneuver. "... Well. You'd be right. But nothing in this world is free."`
+	`	"Aye, it be not enough to simply cover yer' ship with the old black-and-red. A pirate must earn the respect - or fear - of their fellows, lest they be seen as fair plunder", the Corsair contributes. This is followed up with an entirely gratuitous, but quite hearty "Arrrrgh."`
+	`	The outlaw speaks last, jaw motionless; his voice is provided by a cybernetic vocoder, melliflous if gently synthetic. "Indeed. There's three things you'll need to do before you'll be taken seriously. Speaking personally, I'm always on the eye for upcoming talent. Prove that you've got what it takes and I'm sure at least one of us would make it known within our circles that you aren't to be trifled with - and perhaps worth offering work to. But first, those tasks."`
+	choice
+		`	(You nod towards the corsair.) "Does he always speak like that?"`
+		`	"Oh, I know! I need to master theft, swordplay, and treasure hunting!"`
+			goto hahareferencegoeshere
+		`	"Fine. What should I do if I want other pirates to take me seriously?"`
+			goto tasks
+		`	(This was a terrible idea. Back to the ship.)`
+			goto retreat
+	`	"Oh, leave him be." The pirate in the suit chides you. "He always wanted to retire to Buccaneer Bay and, well, you know how they've got that romanticized view of the old Earth tales, back when ships didn't need to be pressurized cans." The Corsair smiles, somewhat sheepishly. He doesn't seem to have the heart to "Aaargh" this time.`
+		goto tasks
+	label hahareferencegoeshere
+	`	The trio of pirates stare at you, bewilderment evident on their faces. "What the hell? You've been watching too many serials, kid." The cybernetic outlaw shakes his head woefully. "Well, you're not going to last long out here." Only the Corsair seems to be - if only a smidgen - delighted with your approach to piracy.`
+	`	The Corsair clears his throat, evidently eager to move back to the topic at hand. "Now, about them tasks-"`
+	label tasks
+	`	The Corsair leans over the table, a wide grin splitting his face perpendicular to the scar that runs from brow to chin. "It's simple, matey. You need to prove you're not to be trifled with. Pick a juicy prize, disable them, board them, and when other scalliwags come sniffing? Defend your plunder! No scavenger of the black'll displace you from your next meal, by thunder!"`
+	`	The business-suited woman rolls her eyes, though she's careful to ensure she's safely behind the Corsair's back before doing so. "Violence will get you only so far. True power comes from wealth. The fastest engines and biggest guns won't save you when you're too poor to bribe a judge, or even a lowly spaceport controller. Besides - you also need to keep your quartermaster happy. Liquid solvency, my novice, is the only real safety that a pirate can hope to have. You'll find that other assets are liable to be seized by the state. You're best off keeping your pockets full and your real estate holdings light. You bring me one million credits and I'll consider that proof enough of your talent - and my fee for putting words into the right ears that you're not someone to mess with."`
+	`	There's an electronic laugh from the edge of the table, followed by a cloud of clove-scented smoke emerging from vents in the outlaw cyborg's throat. "Wealth. Respect. None of these matter - the only thing that'll keep you safe in the end is power. If you can't control the fates of others, you'll never be able to dictate your own destiny. There are too many people fighting for the top. Prove you belong there. Find a settlement, sack it, slay the defenders or force them to acknowledge your superiority. People like us - we shouldn't work for our rightful rewards. It falls to lesser men to furnish us with what we want. Force others to acknowledge your will and render tribute, and you'll have earned my approval."`
+	choice
+		`	"Can't I just murder anybody who might oppose me?"`
+		`	"Tell me what I need to do.`
+			goto domination
+	`	The three take a moment to look at one-another, apparently gauging which of them is to field that particular question. Eventually, the Outlaw speaks up, setting down his mug in order to lace ring-laden fingers together in an attempt to look thoughtful and measured.`
+	`	"The path of violence only creates more violence, friend. To truly walk the path of the pirate you need to learn to live in harmony with your fellow buccaneers." The outlaw smiles beatifically; the effect is somewhat ruined by the wicked teeth machined into his mechanical jaw. Meanwhile, the Corsair is struggling to keep a straight face while the business-suit clad woman leaks muffled laughs into a napkin.`
+	`	"More seriously, no. Simply slaughtering your way across the stars will only get you mired in endless strife, and it's hard to accomplish goals when you've got enemies breathing down your neck at all hours. It's an easy path to sleeping alone, every night, for the rest of your life, lest you wake with a knife in your guts. And that's not a life well lived by my reckoning." The cyborg unlaces his fingers, instead reaching to his side to twine them around the wrist of the suit-clad woman, taking her hand and guiding it to his wicked metallic jaw. In lieu of a kiss, he simply scrapes his teeth across her fingers, one by one, with evidently loving care.`
+	`	"Mark my words, there are better things in life than simply seeing your enemies laid to waste. You want them to respect your power, but not feel so threatened that they would devote themselves to your destruction. When you kill, do so thoughtfully." The suit-wearing pirate, meanwhile, is sporting thoroughly flushed cheeks by this point - though she yanks her hand back and gives the Outlaw a gentle smack on the side before averting her gaze. There's a hint of a smile upon painted lips, and regret within tired eyes.`
+	choice
+		`	"I don't understand. Could you explain that more plainly?"`
+		`	"Tell me what I need to do."`
+			goto explanation
+	`	The Outlaw groans, shakes his head mournfully, and leans back to excuse himself from the conversation for a minute. Instead, the suit-clad pirate leans forward. "Look, it's simple. You shoot people, they shoot back. You knuckle under at every opportunity, they keep shooting because they think you're weak. If you want to be left alone you need to prove that you're not worth the effort it would take to plunder you, yeah? That's... Well, it's what these little tasks we've mentioned are about. You need to establish a reputation. This is how you do it - and once you've done that, other pirates should leave you alone owing to either fear or respect."`
+	`	She leans back in her chair, matching gaze with the Outlaw. "And you, don't push it. Not here, you know what my boss thinks." There's a hint of restrained regret in her voice.`
+	label explanation
+	`	"Now-", the Corsair begins. "Ye can't really be expecting us to hold your hand the whole way, eh? Get out there, hang around in bars and lounges, keep your ears open. Collect rumors and sift plans from what you overhear. You'll find it's easy enough to know when a juicy prize is about to cruise through a secluded system. That's your time to shine, kid."`
+	`	"As for me?" The formally festooned member of the trio takes her turn to speak. "I don't care where you get the money. In fact, I don't want to know. Just drop by with two million, give me, ah... Let's say 10%, and I'll get you what you want. Prestige. Respect. Fame. Infamy, whatever." A winning smile is flashed your way.`
+	`	Finally, the Outlaw takes his turn. "Have you heard of the planet Darkstone, in the system Han? Pathetic bunch of dirt-farmers, only worthy of enslavement. Impose yourself as their master, take the meager tribute they offer, and return. Know that you'll make enemies this way, but really - if you want to be a pirate, I'm sure that's not your concern."`
+		accept
+	label domination
+	`Dominate a place.`
+		accept
+	label retreat
+	`You bail out.`
+		decline
+
+
+
+mission "Pirate Intro - Boarding"
+	landing
+	to offer
+		has "I want to be a pirate: offered"
+		not "I want to be a pirate: declined"
+
+mission "Pirate Intro - Wealth"
+	landing
+	to offer
+		has "I want to be a pirate: offered"
+		not "I want to be a pirate: declined"
+
+mission "Pirate Intro - Domination"
+	landing
+	to offer
+		has "I want to be a pirate: offered"
+		not "I want to be a pirate: declined"
