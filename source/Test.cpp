@@ -463,9 +463,9 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 					
 					// Both get as well as the cast can result in a nullpointer. In both cases we
 					// will fail the test, since we expect the MainPanel to be here.
-					auto mainPanel = dynamic_cast<MainPanel *>(gamePanels.Root().get());
+					auto mainPanel = gamePanels.Root().get();
 					if(!mainPanel)
-						Fail(context, player, "root gamepanel of wrong type when sending command");
+						Fail(context, player, "root gamepanel not found when sending command");
 
 					mainPanel->GiveCommand(stepToRun.command);
 				}
