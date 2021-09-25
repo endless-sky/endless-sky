@@ -110,6 +110,13 @@ bool Panel::ZoneClick(const Point &point)
 
 
 
+// Queue a command for the Panel to process. Typically only used for MainPanel.
+void Panel::GiveCommand(const Command &command)
+{
+}
+
+
+
 // Panels will by default not allow fast-forward. The ones that do allow
 // it will override this (virtual) function and return true.
 bool Panel::AllowFastForward() const

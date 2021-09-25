@@ -1100,12 +1100,13 @@ mission "Expanding Business: shipyard complete"
 
 
 mission "Hiding in Plain Sight"
-	description "Bring Arthur and his Hai friend, Kiru, to <destination> for a gaming convention."
+	description "Bring Arthur and his Hai friend Kiru to <destination> for a gaming convention by <date>"
 	minor
 	source
 		government "Hai"
 	destination "Vinci"
 	passengers 2
+	deadline
 	to offer
 		random < 30
 		has "First Contact: Hai: offered"
@@ -1116,7 +1117,7 @@ mission "Hiding in Plain Sight"
 				`	"I do. Why do you want to go there?"`
 				`	"I don't. You'll have to ask someone else."`
 					decline
-			`	The human responds, "There's a massive convention on <planet> for a game called 'Boundless Frontiers.' The convention has a huge cosplaying scene, and I think Kiru would fit right in."`
+			`	The human responds, "There's a massive convention on <planet> on <date> for a game called 'Boundless Frontiers.' The convention has a huge cosplaying scene, and I think Kiru would fit right in."`
 			`	"Arthur and I have <payment> to give you if you bring us to the <planet>," Kiru says. "We can find our own way back to the Hai space, as well."`
 			choice
 				`	"Alright, I can take you there."`
