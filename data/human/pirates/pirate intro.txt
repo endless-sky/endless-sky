@@ -32,9 +32,13 @@ mission "I want to be a pirate"
 		conversation "I want to be a pirate"
 	to complete
 		or
-			has "Pirate Intro - Boarding: Done"
-			has "Pirate Intro - Wealth: Done"
-			has "Pirate Intro - Domination: Done"
+			has "Pirate Intro - Boarding: done"
+			has "Pirate Intro - Wealth: done"
+			has "Pirate Intro - Domination: done"
+	on complete
+		event "became a pirate"
+		conversation
+			`You did it! You're a pirate now.`
 
 
 
@@ -99,6 +103,15 @@ conversation "I want to be a pirate"
 		decline
 
 
+mission "Pirate Overview"
+	landing
+	to offer
+		has "I want to be a pirate: offered"
+		not "I want to be a pirate: declined"
+	on offer
+		conversation
+			`You think of the three missions you were offered to become a pirate. Doing any one of them will make you one.`
+				decline
 
 mission "Pirate Intro - Boarding"
 	landing
@@ -117,3 +130,7 @@ mission "Pirate Intro - Domination"
 	to offer
 		has "I want to be a pirate: offered"
 		not "I want to be a pirate: declined"
+
+event "became a pirate"
+	government "Escort"
+		swizzle 6
