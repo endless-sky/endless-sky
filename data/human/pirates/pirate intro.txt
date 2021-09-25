@@ -17,8 +17,12 @@ mission "You are a pirate"
 
 
 mission "I want to be a pirate"
+	clearance
 	name "Become a pirate"
 	description "Being a pirate in the eyes of the law isn't the same as being one in the eyes of fellow buccaneers. You'll have them know your name - but first you must make one for yourself."
+	source
+		government "Pirate"
+	destination "Greenrock"
 	to offer
 		or
 			"combat rating" > 150
@@ -115,21 +119,63 @@ mission "Pirate Overview"
 
 mission "Pirate Intro - Boarding"
 	landing
+	name "Board a merchant"
+	description `Board a merchant.`
+	destination "Greenrock"
 	to offer
 		has "I want to be a pirate: offered"
 		not "I want to be a pirate: declined"
+	to fail
+		has "I want to be a pirate: done"
+	to complete
+		never
 
 mission "Pirate Intro - Wealth"
 	landing
+	name "Pay up"
+	description `Bring 1 million credits to <destination>.`
+	destination "Greenrock"
 	to offer
 		has "I want to be a pirate: offered"
 		not "I want to be a pirate: declined"
+	to fail
+		has "I want to be a pirate: done"
+	to complete
+		has "Pirate Intro - Payment: declined"
+
+mission "Pirate Intro - Payment"
+	invisible
+	landing
+	to offer
+		has "Pirate Intro - Wealth: active"
+		credits > 1000000
+	source "Greenrock"
+	on offer
+		conversation
+			`Do you want to pay up now?`
+			choice
+				`Yes.`
+				`No.`
+					defer
+			apply
+				payment -1000000
+			`You're all paid up.`
+				decline
+
 
 mission "Pirate Intro - Domination"
 	landing
+	name "Dominate a planet"
+	description `Dominate Darkstone.`
+	destination "Greenrock"
 	to offer
 		has "I want to be a pirate: offered"
 		not "I want to be a pirate: declined"
+	to fail
+		has "I want to be a pirate: done"
+	to complete
+		has "tribute: Darkstone"
+
 
 event "became a pirate"
 	government "Escort"
