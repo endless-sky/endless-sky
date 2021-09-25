@@ -89,3 +89,19 @@ double Dictionary::Get(const string &key) const
 {
 	return Get(key.c_str());
 }
+
+
+
+// Compare two dictionaries to see if they contain exactly the same data.
+bool Dictionary::Equals(Dictionary &other)
+{
+	auto it = begin();
+	auto ito = other.begin();
+	while(it != end() && ito != other.end()
+		&& it->first == ito->first && it->second == ito->second)
+	{
+		++it;
+		++ito;
+	}
+	return it == end() && ito == other.end();
+}
