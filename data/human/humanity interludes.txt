@@ -56,10 +56,7 @@ mission "Humanity: Broadsider 1"
 		has "event: humanity: broadsider timer"
 		random < 60
 	source
-		government "Republic"
-		government "Deep"
-		government "Syndicate"
-		government "Free Worlds"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		planet "Geminus"
 	on offer
@@ -81,30 +78,86 @@ mission "Humanity: Broadsider 1"
 
 mission "Humanity: Broadsider 2"
 	name "Naval Research Consultation."
-	description "Navy researchers have requested you meet with them on Geminus."
+	description "Observe the weapons test, land on Pilot, and then return to Geminus."
 	landing
 	to offer
 		has "Humanity: Broadsider 1: done"
-	source Geminus
+	source "Geminus"
+	stopover "Pilot" 
 	destination
 		planet "Geminus"
 	on offer
 		conversation
-			`On Geminus you are met at the spaceport by Andre, who turns out to be almost a caricature of the classic scientist: Thin, slighly balding, a slightly frazzled look as if he was recently charged with static electricity, and a white lab coat. Unlike the carricature scientist, however, he radiates an air of calm confidence at odds with his appearance, and the military fatigues and combat boots suggest that he is Navy first, researcher second.`
-			`	"Welcome to Geminus, Captain <last>!" It is a pleasure to meet you." He nods politely, and gestures for you to follow him. A few hallways and checkpoints later, and you find yourself in a conference room. "Thank you for accepting our request to consult on this project. Now, I'm sure you have some questions, so I'll get straight to it." He taps a button, and a projector lights up, displaying an image of a Sestor fleet. "Several months ago you were instrumental in defeating a flood of robotic alien warships that swept across Northern Republic space." He flicks through several slides showing long range phtography, scans, and video footage of various Sestor ships. "While we have known about the Hai for quite some time, it was quite a shock to be invaded by a hithertoo unknown race. After so many years of peaceful coexistence with the Hai and the Quarg, a warlike group caught us by surprise."`
-			`	He flips through a few more slides, these ones show the broken husks of Sestor ships, wrecks, and some salvaged outfits spread out on a tarmac. "As a result, Parliament has seen fit to significantly increase the Navy's R&D budget. This, combined with the salvage and debris we have collected from theses 'Sestor' ships has allowed several of our long-standing projects to accelerate." He turns towards you. "This is where you come in: You have more combat experience against the Sestor than any other captain we know of. We would like you to inspect a new weapon we have developped, observe a weapons demonstration test, and then give us your thoughts on how effective it will be against the Sestor. So, do you accept?"`
+			`On Geminus you are met at the spaceport by Andre, who turns out to be almost a caricature of the classic scientist: Thin, balding, a slightly frazzled look as if he was recently charged with static electricity, and a white lab coat. Unlike the caricature scientist, however, he radiates an air of calm confidence at odds with his appearance, and the military fatigues and combat boots suggest that he is Navy first, researcher second.`
+			`	"Welcome to Geminus, Captain <last>!" It is a pleasure to meet you." He nods politely, and gestures for you to follow him. A few hallways and checkpoints later, and you find yourself in a conference room. "Thank you for accepting our request to consult on this project. Now, I'm sure you have some questions, so I'll get straight to it." He taps a button, and a projector lights up, displaying an image of a Sestor fleet. "Several months ago you were instrumental in defeating a flood of robotic alien warships that swept across Northern Republic space." He flicks through several slides showing long range photography, scans, and video footage of various Sestor ships. "While we have known about the Hai for quite some time, it was quite a shock to be invaded by a hitherto unknown race. After so many years of peaceful coexistence with the Hai and the Quarg, a warlike group caught us by surprise."`
+			`	He flips through a few more slides, these ones show the broken husks of Sestor ships, wrecks, and some salvaged outfits spread out on a tarmac. "As a result, Parliament has seen fit to significantly increase the Navy's R&D budget. This, combined with the salvage and debris we have collected from theses 'Sestor' ships has allowed several of our long-standing projects to accelerate." He turns towards you. "This is where you come in: You have more combat experience against the Sestor than any other captain we know of. We would like you to inspect a new weapon we have developed, observe a weapons demonstration test, and then give us your thoughts on how effective it will be against the Sestor. So, do you accept?"`
 			choice
 				`	"I accept."`
 					goto briefing
 				`	"Sorry, I'm not interested."`
-			`	Andre looks dissapointed, but accepting. "In which case, the Navy thanks you for your time, and we'll just end this here." He escorts you back through the checkpoints to the main spaceport, and bids you farewell.`
+			`	Andre looks disappointed, but accepting. "In which case, the Navy thanks you for your time, and we'll just end this here." He escorts you back through the checkpoints to the main spaceport, and bids you farewell.`
 				decline
 			label briefing
 			`	Andre looks please. "Excellent. For this next part, it is probably easiest to just show you." He gets up, and leads you down the stairs to a large hangar. Flipping a switch, the banks of light start to flicker on, revealing the largest turret you have ever seen in human space.`
 			scene "broadsiderscene"
-			`	"This is the NAT-420mm Artillery, colloquially known as 'The Broadsider.' It fires 420mm slugs
-			
-		
+			`	"This is the NAT-420mm Artillery, colloquially known as 'The Broadsider.' It fires 420mm slugs at 1.5 times ten to the 4th meters per second, or roughly 0.005% the speed of light. It has a rate of fire of a slug per second, and has sufficient density to remain sufficiently cohesive through several AU's worth of dust and micro-asteroids." He beams with pride as he waves you forward to take a closer look at it. "The slugs themselves rely purely on kinetic mass to damage their target, but my team did manage to develop a interesting little feature: We figured out a way to have it generate a micro-field that destabilizes standard shields, enabling subsequent shots to penetrate through to the hull itself. It is a neat trick, although some of my team still think we should have just added in some explosives or guidance systems instead."`
+			`	He stares at the turret for a moment, then looks back to you. "Now, the consulting job we have for you is fairly simple: We have a carrier equipped with these ready to launch for a demonstration test. We would like you to escort it to the test site, and observe as it destroys the target, then provide your opinion on how useful this is likely to be against future Sestor invasions." He pauses, glances at something on his commlink, and then looks back to you. "Oh, and we have a group of VIPs who are also tagging along to observe the test. If you could keep them safe, it would be much appreciated."`
+			choice
+			`	Accept.`
+				accept
+			`	Decline.`
+			`	"Andre looks disappointed. "Well, thank you for your time." He then proceeds to escort you out without another word, and leaves you once again in the main spaceport.`
+				decline
+	npc kill
+		government "Test Dummy"
+		personality nemesis staying target marked
+			confusion 40
+		system "Elnath"
+		fleet
+			names "pirate"
+			variant
+				"Firebird"
+	npc accompany save
+		government "Republic"
+		personality escort
+			confusion 40
+		system destination
+		fleet
+			names "republic capital"
+			variant
+				"Carrier (Mark IIIc)"	
+	npc accompany save
+		government "Republic"
+		personality escort timid frugal forbearing
+		fleet
+			names "civilian"
+			variant
+				"Star Queen"
+	on enter "Elnath"
+		dialog `A message from the carrier pops up on your commlink. "I am beginning my attack sequence. Once complete, I will proceed to targets on Pilot. Please land and observe the impacts at a safe distance."`
+	on stopover
+		dialog `You observe the strikes impact a series of targets. The first pair were normal targets, and the second set were shielded. You note that subsequent rounds seem to create both a shield impact and a target strike.`
+	on visit
+		dialog `It seems that you have either rushed ahead without waiting for the target to be destroyed, or left your escorts behind.`
+	on complete
+		payment 250000
+		conversation
+		`	Back on Geminus you are promptly escorted into a large conference room. Video footage of the test is being broadcast on several walls while others are covered in posters and diagrams. A collection of researchers, officers, and dignitaries mill around talking and gesturing. Threading your way through the crowd, you eventually find Andre cornered by someone you think is a republic senator. Seeing you approach, he manages to disengage and quickly joins you at a table.`
+		`	"Ah, Captain <last>, I'm glad you made it back safely." He pauses to take a sip from his drink. "So, what do you think about the Broadsider? Do you think it will be an effective tool for the Navy?"`
+		choice
+			`	"Not fast enough to target the drones, but should be good against the larger Sestor ships."`
+				goto fastenough
+			`	"A good start, but not enough to make a difference against the Sestor."`
+				goto goodstart
+			`	"Impressive, should help quite a bit."`
+		`	Andre looks relieved. "I take great comfort in hearing that, <first>. There are many of us in the Navy who have had a lot of sleepless nights trying to figure out how we could have done better, and having better tools is a significant part to improving our future response."`
+			goto wrapup
+		label fastenough
+		`	Andre looks thoughtful. "That's good to know. We probably won't be able to make any changes to the current design, but we can recommend that our fleets primarily use them for long-range engagement against capital ships."`
+		label goodstart
+		`	Andre grimaces a bit at that. "That's what I was afraid we were going to hear." He sighs heavily, then continues. "Well, I'm glad it is progress, but we will have to keep working."`
+		label wrapup
+		`	Almost before Andre can finish speaking he is whisked away by a pack of officious aides that definitely separate you from him and deposit him at a table with several of the VIPs. He catches your eye, nods respectfully, and then turns his attention to the dignitaries. Another researcher approaches you to offer their thanks, and hands you an invoice stating that you have been deposited <payment> in exchange for consulting services to the Republic Navy. They inform you that you are welcome to stay as long as you like, but they suspect that Andre will be tied up in meetings for the foreseeable future.`
 
 
 
