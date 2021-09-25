@@ -154,8 +154,7 @@ mission "Pirate Intro - Boarding"
 	destination "Greenrock"
 	waypoint "Umbral"
 	to offer
-		has "I Want To Be A Pirate: offered"
-		not "I Want To Be A Pirate: declined"
+		has "I Want To Be A Pirate: active"
 	to fail
 		has "I Want To Be A Pirate: done"
 	on offer
@@ -228,8 +227,7 @@ mission "Pirate Intro - Wealth"
 	destination "Greenrock"
 	waypoint "Men"
 	to offer
-		has "I Want To Be A Pirate: offered"
-		not "I Want To Be A Pirate: declined"
+		has "I Want To Be A Pirate: active"
 	to fail
 		has "I Want To Be A Pirate: done"
 	to complete
@@ -246,12 +244,12 @@ mission "Pirate Intro - Payment"
 		conversation
 			`Do you want to pay up now?`
 			choice
-				`Yes.`
-				`No.`
+				`	Yes.`
+				`	No.`
 					defer
 			apply
 				payment -1000000
-			`You're all paid up.`
+			`	You're all paid up.`
 				decline
 
 
@@ -262,8 +260,7 @@ mission "Pirate Intro - Domination"
 	destination "Greenrock"
 	waypoint "Han"
 	to offer
-		has "I Want To Be A Pirate: offered"
-		not "I Want To Be A Pirate: declined"
+		has "I Want To Be A Pirate: active"
 	to fail
 		has "I Want To Be A Pirate: done"
 	to complete
