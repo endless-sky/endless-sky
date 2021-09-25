@@ -161,12 +161,8 @@ void GameAction::LoadAction(const DataNode &child, const string &missionName, bo
 		int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
 		if(count)
 			giftOutfits[GameData::Outfits().Get(child.Token(1))] = count;
-		else if(!conversation)
-		{
-			// "outfit <outfit> 0" means the player must have this outfit.
-			child.PrintTrace("Warning: deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
-			requiredOutfits[GameData::Outfits().Get(child.Token(1))] = 1;
-		}
+		else
+			child.PrintTrace("Skipping invalid outfit quantity:");
 	}
 	else if(key == "payment")
 	{
@@ -283,14 +279,35 @@ string GameAction::ValidateAction() const
 }
 
 
-bool GameAction::IsEmpty() const
+bool GameAction::IsEmpty() const noexcept
 {
 	return empty;
 }
 
 
 
-// Do the actions of the GameAction.
+int64_t GameAction::Payment() const noexcept
+{
+	return payment;
+}
+
+
+
+int64_t GameAction::Fine() const noexcept
+{
+	return fine;
+}
+
+
+
+const map<const Outfit *, int> &GameAction::Outfits() const noexcept
+{
+	return giftOutfits;
+}
+
+
+
+// Perform the specified tasks.
 void GameAction::DoAction(PlayerInfo &player, UI *ui) const
 {
 	if(!logText.empty())
