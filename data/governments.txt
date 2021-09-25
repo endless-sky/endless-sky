@@ -404,6 +404,25 @@ government "Navy (Oathkeeper)"
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
 
+government "Navy (RD)"
+	swizzle 0
+	color .91 .42 .09
+	"crew attack" 1.2
+	"crew defense" 2.2
+	
+	"player reputation" 100
+	"attitude toward"
+		"Alpha" -.3
+		"Merchant" .25
+		"Militia" .1
+		"Pirate" -.3
+		"Kor Sestor" -.1
+		"Kor Mereti" -.1
+		"Navy Intelligence" 1
+		"Test Dummy" -1
+	"friendly hail" "friendly navy"
+	"hostile hail" "hostile navy"
+
 government "Neutral"
 	swizzle 0
 	color .84 .61 .37

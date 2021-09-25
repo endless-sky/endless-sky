@@ -125,7 +125,7 @@ mission "Humanity: Broadsider 2"
 				decline
 	npc kill
 		government "Test Dummy"
-		personality nemesis staying target marked
+		personality nemesis staying target
 			confusion 40
 		system "Elnath"
 		fleet
@@ -133,7 +133,7 @@ mission "Humanity: Broadsider 2"
 			variant
 				"Firebird"
 	npc accompany save
-		government "Republic"
+		government "Navy (RD)"
 		personality escort
 			confusion 40
 		system destination
