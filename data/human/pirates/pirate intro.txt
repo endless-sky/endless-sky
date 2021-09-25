@@ -5,16 +5,33 @@ mission "You are a pirate"
 	source
 		government "Pirate"
 	to offer
-		and
-			or
-				"reputation: Republic" < -10
-				"reputation: Syndicate" < -10
-				"reputation: Free Worlds" < -10
-			"reputation: Merchant" < -10
+		or	
+			and
+				or
+					"reputation: Republic" < -10
+					"reputation: Syndicate" < -10
+					"reputation: Free Worlds" < -10
+				"reputation: Merchant" < -10
+			"reputation: Pirate" > 20
 	on offer
 		conversation "You are a pirate"
 
-
+conversation "You are a pirate"
+	`Preparing to land is second nature by now. Patch any damage to the inner hull, have bribe money - or a trusty sidearm - ready to go in case you're greeted by spaceport ruffians... Perhaps a life of violence on the high skies and association with the rougher elements of the galaxy weren't what you had in mind when you left your homeworld, but it's what you found.`
+	choice
+		`	(This is my life now. Piracy, smuggling, the existence of the outlaw. I'm ready to embrace it.)
+		`	(This isn't what I wanted. This isn't the life I imagined when I decided to take to the high skies.)
+			decline
+	`Resolve will carry you far in this world. In this case, it's carried you to a spaceport paint supplier, and you return to your vessel with a pallet loaded with blacks and reds. Apply it to your vessel, make your intentions known to the galaxy. There can be no pretense of peace when you fly girded in blood and midnight, but maybe that's exactly the way you want it to be.`
+	choice
+		`	(Don the smock and mask, turn on the compressor, conceal your old life beneath bellicose pigments.)`
+		`	(No. Not now, perhaps not ever. The galaxy at large may consider you a pirate, but you're not ready to adopt their colors.)
+			decline
+	`Some paint covers all manner of sin. Some paint speaks of the intention to commit yet more. You've applied the latter sort to your ship.`
+		fail
+			#apply pirate swizzle
+			#set rep with pirates to 20
+			#set rep with enforcers (republic, syndicate) to "pissed"
 
 mission "I want to be a pirate"
 	name "Become a pirate"
@@ -75,7 +92,7 @@ conversation "I want to be a pirate"
 	choice
 		`	"Can't I just murder anybody who might oppose me?"`
 		`	"Tell me what I need to do.`
-			goto domination
+			goto explanation
 	`	The three take a moment to look at one-another, apparently gauging which of them is to field that particular question. Eventually, the Outlaw speaks up, setting down his mug in order to lace ring-laden fingers together in an attempt to look thoughtful and measured.`
 	`	"The path of violence only creates more violence, friend. To truly walk the path of the pirate you need to learn to live in harmony with your fellow buccaneers." The outlaw smiles beatifically; the effect is somewhat ruined by the wicked teeth machined into his mechanical jaw. Meanwhile, the Corsair is struggling to keep a straight face while the business-suit clad woman leaks muffled laughs into a napkin.`
 	`	"More seriously, no. Simply slaughtering your way across the stars will only get you mired in endless strife, and it's hard to accomplish goals when you've got enemies breathing down your neck at all hours. It's an easy path to sleeping alone, every night, for the rest of your life, lest you wake with a knife in your guts. And that's not a life well lived by my reckoning." The cyborg unlaces his fingers, instead reaching to his side to twine them around the wrist of the suit-clad woman, taking her hand and guiding it to his wicked metallic jaw. In lieu of a kiss, he simply scrapes his teeth across her fingers, one by one, with evidently loving care.`
@@ -90,14 +107,12 @@ conversation "I want to be a pirate"
 	`	"Now-", the Corsair begins. "Ye can't really be expecting us to hold your hand the whole way, eh? Get out there, hang around in bars and lounges, keep your ears open. Collect rumors and sift plans from what you overhear. You'll find it's easy enough to know when a juicy prize is about to cruise through a secluded system. That's your time to shine, kid."`
 	`	"As for me?" The formally festooned member of the trio takes her turn to speak. "I don't care where you get the money. In fact, I don't want to know. Just drop by with two million, give me, ah... Let's say 10%, and I'll get you what you want. Prestige. Respect. Fame. Infamy, whatever." A winning smile is flashed your way.`
 	`	Finally, the Outlaw takes his turn. "Have you heard of the planet Darkstone, in the system Han? Pathetic bunch of dirt-farmers, only worthy of enslavement. Impose yourself as their master, take the meager tribute they offer, and return. Know that you'll make enemies this way, but really - if you want to be a pirate, I'm sure that's not your concern."`
-		accept
-	label domination
-	`Dominate a place.`
+	`"Whichever path you take, we expect to be on Greenrock for the forseeable future. Drop by once you've got something one of us will find impressive; or all, if that's your style."
 		accept
 	label retreat
-	`You bail out.`
+	`As your nostrils fill with the scent of stale piss, cheap alcohol, and a modest breeze carrying the metallic tang of blood upon it, you come to your senses and realize that perhaps the pirate's life isn't as romantic as you'd made it out to be.`
+	`Leering eyes bore into your back as you beat a hasty retreat back to your ship; improbably, the alleys you dart through look even grungier on the route back than they did on the way here.`
 		decline
-
 
 
 mission "Pirate Intro - Boarding"
