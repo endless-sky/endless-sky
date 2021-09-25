@@ -129,15 +129,15 @@ GameAction::GameAction(const DataNode &node, const string &missionName)
 void GameAction::Load(const DataNode &node, const string &missionName)
 {
 	for(const DataNode &child : node)
-		LoadAction(child, missionName);
+		LoadSingle(child, missionName);
 }
 
 
 
 // Load a single child at a time, used for streamlining MissionAction::Load.
-void GameAction::LoadAction(const DataNode &child, const string &missionName, bool conversation)
+void GameAction::LoadSingle(const DataNode &child, const string &missionName, bool conversation)
 {
-	empty = false;
+	isEmpty = false;
 	
 	const string &key = child.Token(0);
 	bool hasValue = (child.Size() >= 2);
@@ -207,7 +207,7 @@ void GameAction::LoadAction(const DataNode &child, const string &missionName, bo
 
 
 
-void GameAction::SaveAction(DataWriter &out) const
+void GameAction::Save(DataWriter &out) const
 {
 	if(!logText.empty())
 	{
@@ -257,14 +257,14 @@ void GameAction::SaveAction(DataWriter &out) const
 
 // Check this template or instantiated GameAction to see if any used content
 // is not fully defined (e.g. plugin removal, typos in names, etc.).
-string GameAction::ValidateAction() const
+string GameAction::Validate() const
 {
 	// Events which get activated by this action must be valid.
 	for(auto &&event : events)
 		if(!event.first->IsValid())
 			return "event \"" + event.first->Name() + "\"";
-
-	// Gifted content must be defined & valid.
+	
+	// Transferred content must be defined & valid.
 	for(auto &&it : giftShips)
 		if(!it.first->IsValid())
 			return "gift ship model \"" + it.first->VariantName() + "\"";
@@ -281,7 +281,7 @@ string GameAction::ValidateAction() const
 
 bool GameAction::IsEmpty() const noexcept
 {
-	return empty;
+	return isEmpty;
 }
 
 
@@ -308,22 +308,22 @@ const map<const Outfit *, int> &GameAction::Outfits() const noexcept
 
 
 // Perform the specified tasks.
-void GameAction::DoAction(PlayerInfo &player, UI *ui) const
+void GameAction::Do(PlayerInfo &player, UI *ui) const
 {
 	if(!logText.empty())
 		player.AddLogEntry(logText);
-	for(const auto &it : specialLogText)
-		for(const auto &eit : it.second)
+	for(auto &&it : specialLogText)
+		for(auto &&eit : it.second)
 			player.AddSpecialLog(it.first, eit.first, eit.second);
 	
-	for(const auto &it : giftShips)
+	for(auto &&it : giftShips)
 		DoGift(player, it.first, it.second);
 	// If multiple outfits are being transferred, first remove them before
 	// adding any new ones.
-	for(const auto &it : giftOutfits)
+	for(auto &&it : giftOutfits)
 		if(it.second < 0)
 			DoGift(player, it.first, it.second, ui);
-	for(const auto &it : giftOutfits)
+	for(auto &&it : giftOutfits)
 		if(it.second > 0)
 			DoGift(player, it.first, it.second, ui);
 	
@@ -370,7 +370,7 @@ void GameAction::DoAction(PlayerInfo &player, UI *ui) const
 GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int payload) const
 {
 	GameAction result;
-	result.empty = empty;
+	result.isEmpty = isEmpty;
 	InstantiateAction(result, subs, jumps, payload);
 	
 	return result;

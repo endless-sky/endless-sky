@@ -256,7 +256,7 @@ void Conversation::Save(DataWriter &out) const
 				// Write the GameAction as a child of this node.
 				out.BeginChild();
 				{
-					node.actions.SaveAction(out);
+					node.actions.Save(out);
 				}
 				out.EndChild();
 				continue;
@@ -313,7 +313,7 @@ string Conversation::Validate() const
 	{
 		if(!node.actions.IsEmpty())
 		{
-			string reason = node.actions.ValidateAction();
+			string reason = node.actions.Validate();
 			if(!reason.empty())
 				return "conversation applied " + reason;
 		}

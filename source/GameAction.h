@@ -46,13 +46,14 @@ public:
 	GameAction(const DataNode &node, const std::string &missionName);
 	
 	void Load(const DataNode &node, const std::string &missionName);
-	// Load a single child at a time, used for streamlining MissionAction::Load.
-	void LoadAction(const DataNode &child, const std::string &missionName, bool conversation = true);
-	void SaveAction(DataWriter &out) const;
-	// Determine if this GameAction references content that is not fully defined.
-	std::string ValidateAction() const;
+	// Process a single sibling node.
+	void LoadSingle(const DataNode &child, const std::string &missionName, bool conversation = true);
+	void Save(DataWriter &out) const;
 	
-	// If this action has not been loaded, then it is empty.
+	// Determine if this GameAction references content that is not fully defined.
+	std::string Validate() const;
+	
+	// Whether this action instance contains any tasks to perform.
 	bool IsEmpty() const noexcept;
 	
 	int64_t Payment() const noexcept;
@@ -60,7 +61,7 @@ public:
 	const std::map<const Outfit *, int> &Outfits() const noexcept;
 	
 	// Perform this action.
-	void DoAction(PlayerInfo &player, UI *ui = nullptr) const;
+	void Do(PlayerInfo &player, UI *ui) const;
 	
 	// "Instantiate" this action by filling in the wildcard data for the actual
 	// payment, event delay, etc.
@@ -73,7 +74,7 @@ private:
 	
 	
 private:
-	bool empty = true;
+	bool isEmpty = true;
 	std::string logText;
 	std::map<std::string, std::map<std::string, std::string>> specialLogText;
 	

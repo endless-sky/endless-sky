@@ -337,8 +337,8 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 		{
 			// Apply nodes are able to take various actions, be that changing
 			// the player's conditions, granting payments, triggering events,
-			// and more.
-			conversation.Apply(node).DoAction(player);
+			// and more. They are not allowed to spawn additional UI elements.
+			conversation.Apply(node).Do(player, nullptr);
 		}
 		else
 		{

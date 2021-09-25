@@ -119,7 +119,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 				child.PrintTrace("Unsupported use of \"system\" LocationFilter:");
 		}
 		else
-			action.LoadAction(child, missionName, false);
+			action.LoadSingle(child, missionName, false);
 	}
 }
 
@@ -157,7 +157,7 @@ void MissionAction::Save(DataWriter &out) const
 		for(const auto &it : requiredOutfits)
 			out.Write("require", it.first->Name(), it.second);
 		
-		action.SaveAction(out);
+		action.Save(out);
 	}
 	out.EndChild();
 }
@@ -190,7 +190,7 @@ string MissionAction::Validate() const
 		if(!outfit.first->IsDefined())
 			return "required outfit \"" + outfit.first->Name() + "\"";
 	
-	return action.ValidateAction();
+	return action.Validate();
 }
 
 
@@ -307,7 +307,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 	else if(isOffer && ui)
 		player.MissionCallback(Conversation::ACCEPT);
 	
-	action.DoAction(player, ui);
+	action.Do(player, ui);
 }
 
 
