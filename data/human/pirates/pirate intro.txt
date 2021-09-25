@@ -5,6 +5,7 @@ mission "I Am A Pirate"
 	source
 		government "Pirate"
 	to offer
+		not "chosen sides"
 		or	
 			and
 				or
@@ -43,6 +44,7 @@ mission "I Want To Be A Pirate"
 	destination "Greenrock"
 	to offer
 		not "I Am A Pirate: offered"
+		not "chosen sides"
 		or
 			"combat rating" > 150
 			has "ships: Interceptor"
@@ -52,7 +54,7 @@ mission "I Want To Be A Pirate"
 			has "ships: Medium Warship"
 			has "ships: Heavy Warship"
 	on offer
-		conversation "I want to be a pirate"
+		conversation "I Want To Be A Pirate"
 	to complete
 		or
 			has "Pirate Intro - Boarding: done"
@@ -61,11 +63,27 @@ mission "I Want To Be A Pirate"
 	on complete
 		event "became a pirate"
 		conversation
-			`You did it! You're a pirate now.`
+			branch domination
+				has "Pirate Intro - Domination: done"
+			branch boarding
+				has "Pirate Intro - Boarding: done"
+			`You showed your material wealth as a pirate.`
+				goto end
+			label boarding
+			`You defended your plunder as a pirate.`
+				goto end
+			label domination
+			`You dominated a planet as a pirate.`
+			label end
+			`	Now, you are one!`
+				decline
+				
 
 
 
-conversation "I want to be a pirate"
+
+
+conversation "I Want To Be A Pirate"
 	`The drinking holes flanking this outlaw spaceport are a motley mix indeed, each apparently shabbier, dingier, or more raucous than the last. Perhaps that's just the way you like your establishments; perhaps not. Whatever the case, a sense of purpose has brought you here, far from the factories and fields of New Boston. Out here to the fringes of society.`
 	`Instinct - or just too many swashbuckling serials consumed during your childhood - brings you to the back of a smoky bar, where a trio of grizzled people sit; an eyepatched corsair, a jewelry-encrusted outlaw with a mechanical jaw, and a somewhat incongrously dressed woman in business formals, studiously avoiding touching any of the table's various stains with her immaculately tailored elbows. The three turn to stare at you. You came here for a reason, didn't you?`
 	choice
@@ -114,15 +132,15 @@ conversation "I want to be a pirate"
 	`"Whichever path you take, we expect to be on Greenrock for the forseeable future. Drop by once you've got something one of us will find impressive; or all, if that's your style."`
 		accept
 	label retreat
-	`As your nostrils fill with the scent of stale piss, cheap alcohol, and a modest breeze carrying the metallic tang of blood upon it, you come to your senses and realize that perhaps the pirate's life isn't as romantic as you'd made it out to be.`
-	`Leering eyes bore into your back as you beat a hasty retreat back to your ship; improbably, the alleys you dart through look even grungier on the route back than they did on the way here.`
+	`	As your nostrils fill with the scent of stale piss, cheap alcohol, and a modest breeze carrying the metallic tang of blood upon it, you come to your senses and realize that perhaps the pirate's life isn't as romantic as you'd made it out to be.`
+	`	Leering eyes bore into your back as you beat a hasty retreat back to your ship; improbably, the alleys you dart through look even grungier on the route back than they did on the way here.`
 		decline
 
 mission "Pirate Overview"
 	landing
 	to offer
-		has "I want to be a pirate: offered"
-		not "I want to be a pirate: declined"
+		has "I Want To Be A Pirate: offered"
+		not "I Want To Be A Pirate: declined"
 	on offer
 		conversation
 			`You think of the three missions you were offered to become a pirate. Doing any one of them will make you one.`
@@ -134,24 +152,86 @@ mission "Pirate Intro - Boarding"
 	name "Board a merchant"
 	description `Board a merchant.`
 	destination "Greenrock"
+	waypoint "Umbral"
 	to offer
-		has "I want to be a pirate: offered"
-		not "I want to be a pirate: declined"
+		has "I Want To Be A Pirate: offered"
+		not "I Want To Be A Pirate: declined"
 	to fail
-		has "I want to be a pirate: done"
+		has "I Want To Be A Pirate: done"
+	on offer
+		event "add merchant targets"
 	to complete
-		never
+		has "Plunder Defense: done"
+
+fleet "Merchant Targets"
+	government "Merchant (Target)"
+	names "civilian"
+	cargo 1
+	personality
+		heroic
+	variant 1
+		"Freighter"
+
+government "Merchant (Target)"
+	swizzle 5
+	
+	"player reputation" 10
+	"attitude toward"
+		"Pirate" -.2
+		"Korath" -.2
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
+
+mission "Plunder Defense"
+	name "Return with spoils"
+	description `Defeat your rival pirates in Umbral, then return to <destination> with the spoils from the <origin> to confirm your loyalty.`
+	boarding
+	repeat
+	source
+		government "Merchant (Target)"
+	on offer
+		conversation
+			`You have successfully boarded the merchant, and right on cue, several competitors arrive. Defend yourself!`
+				accept
+	destination "Greenrock"
+	npc kill
+		government "Pirate"
+		personality heroic entering
+		fleet "Small Southern Pirates" 3
+	on complete
+		event "remove merchant targets"
+
+event "add merchant targets"
+	system "Umbral"
+		add fleet "Merchant Targets" 3000
+
+event "remove merchant targets"
+	system "Umbral"
+		remove fleet "Merchant Targets"
+
+fleet "Merchant Targets"
+	government "Merchant (Target)"
+	names "civilian"
+	cargo 1
+	personality
+		heroic
+	variant 1
+		"Freighter"
+
 
 mission "Pirate Intro - Wealth"
 	landing
 	name "Pay up"
-	description `Bring 1 million credits to <destination>.`
+	description `Bring 1 million credits to Smuggler's Den, then head to <destination>.`
 	destination "Greenrock"
+	waypoint "Men"
 	to offer
-		has "I want to be a pirate: offered"
-		not "I want to be a pirate: declined"
+		has "I Want To Be A Pirate: offered"
+		not "I Want To Be A Pirate: declined"
 	to fail
-		has "I want to be a pirate: done"
+		has "I Want To Be A Pirate: done"
 	to complete
 		has "Pirate Intro - Payment: declined"
 
@@ -161,7 +241,7 @@ mission "Pirate Intro - Payment"
 	to offer
 		has "Pirate Intro - Wealth: active"
 		credits > 1000000
-	source "Greenrock"
+	source "Smuggler's Den"
 	on offer
 		conversation
 			`Do you want to pay up now?`
@@ -180,11 +260,12 @@ mission "Pirate Intro - Domination"
 	name "Dominate a planet"
 	description `Dominate Darkstone.`
 	destination "Greenrock"
+	waypoint "Han"
 	to offer
-		has "I want to be a pirate: offered"
-		not "I want to be a pirate: declined"
+		has "I Want To Be A Pirate: offered"
+		not "I Want To Be A Pirate: declined"
 	to fail
-		has "I want to be a pirate: done"
+		has "I Want To Be A Pirate: done"
 	to complete
 		has "tribute: Darkstone"
 
@@ -194,6 +275,8 @@ event "became a pirate"
 	"reputation: Syndicate" <?= -1000
 	"reputation: Militia" <?= -1000
 	"reputation: Free Worlds" <?= -1000
+	"reputation: Merchant" <?= -1000
 	"reputation: Pirate" >?= 20
+	set "chosen sides"
 	government "Escort"
 		swizzle 6
