@@ -371,16 +371,8 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 {
 	GameAction result;
 	result.isEmpty = isEmpty;
-	InstantiateAction(result, subs, jumps, payload);
 	
-	return result;
-}
-
-
-
-void GameAction::InstantiateAction(GameAction &result, map<string, string> &subs, int jumps, int payload) const
-{
-	for(const auto &it : events)
+	for(auto &&it : events)
 	{
 		// Allow randomization of event times. The second value in the pair is
 		// always greater than or equal to the first, so Random::Int() will
@@ -389,7 +381,7 @@ void GameAction::InstantiateAction(GameAction &result, map<string, string> &subs
 		result.events[it.first] = make_pair(day, day);
 	}
 	
-	for(const auto &it : giftShips)
+	for(auto &&it : giftShips)
 		result.giftShips.emplace_back(it.first, !it.second.empty() ? it.second : GameData::Phrases().Get("civilian")->Get());
 	result.giftOutfits = giftOutfits;
 	
@@ -405,11 +397,13 @@ void GameAction::InstantiateAction(GameAction &result, map<string, string> &subs
 	
 	if(!logText.empty())
 		result.logText = Format::Replace(logText, subs);
-	for(const auto &it : specialLogText)
-		for(const auto &eit : it.second)
+	for(auto &&it : specialLogText)
+		for(auto &&eit : it.second)
 			result.specialLogText[it.first][eit.first] = Format::Replace(eit.second, subs);
 	
 	result.fail = fail;
 	
 	result.conditions = conditions;
+	
+	return result;
 }

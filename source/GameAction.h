@@ -69,11 +69,6 @@ public:
 	
 	
 private:
-	// Instantiate the data that is specific to a GameAction but not a MissionAction.
-	void InstantiateAction(GameAction &result, std::map<std::string, std::string> &subs, int jumps, int payload) const;
-	
-	
-private:
 	bool isEmpty = true;
 	std::string logText;
 	std::map<std::string, std::map<std::string, std::string>> specialLogText;
