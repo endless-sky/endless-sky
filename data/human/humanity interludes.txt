@@ -103,9 +103,9 @@ mission "Humanity: Broadsider 2"
 			`	"This is the NAT-420mm Artillery, colloquially known as 'The Broadsider.' It fires 420mm slugs at 1.5 times ten to the 4th meters per second, or roughly 0.005% the speed of light. It has a rate of fire of a slug per second, and has sufficient density to remain sufficiently cohesive through several AU's worth of dust and micro-asteroids." He beams with pride as he waves you forward to take a closer look at it. "The slugs themselves rely purely on kinetic mass to damage their target, but my team did manage to develop a interesting little feature: We figured out a way to have it generate a micro-field that destabilizes standard shields, enabling subsequent shots to penetrate through to the hull itself. It is a neat trick, although some of my team still think we should have just added in some explosives or guidance systems instead."`
 			`	He stares at the turret for a moment, then looks back to you. "Now, the consulting job we have for you is fairly simple: We have a carrier equipped with these ready to launch for a demonstration test. We would like you to escort it to the test site, and observe as it destroys the target, then provide your opinion on how useful this is likely to be against future Sestor invasions." He pauses, glances at something on his commlink, and then looks back to you. "Oh, and we have a group of VIPs who are also tagging along to observe the test. If you could keep them safe, it would be much appreciated."`
 			choice
-			`	Accept.`
-				accept
-			`	Decline.`
+				`	Accept.`
+					accept
+				`	Decline.`
 			`	"Andre looks disappointed. "Well, thank you for your time." He then proceeds to escort you out without another word, and leaves you once again in the main spaceport.`
 				decline
 	npc kill
@@ -142,22 +142,23 @@ mission "Humanity: Broadsider 2"
 	on complete
 		payment 250000
 		conversation
-		`	Back on Geminus you are promptly escorted into a large conference room. Video footage of the test is being broadcast on several walls while others are covered in posters and diagrams. A collection of researchers, officers, and dignitaries mill around talking and gesturing. Threading your way through the crowd, you eventually find Andre cornered by someone you think is a republic senator. Seeing you approach, he manages to disengage and quickly joins you at a table.`
-		`	"Ah, Captain <last>, I'm glad you made it back safely." He pauses to take a sip from his drink. "So, what do you think about the Broadsider? Do you think it will be an effective tool for the Navy?"`
-		choice
-			`	"Not fast enough to target the drones, but should be good against the larger Sestor ships."`
-				goto fastenough
-			`	"A good start, but not enough to make a difference against the Sestor."`
-				goto goodstart
-			`	"Impressive, should help quite a bit."`
-		`	Andre looks relieved. "I take great comfort in hearing that, <first>. There are many of us in the Navy who have had a lot of sleepless nights trying to figure out how we could have done better, and having better tools is a significant part to improving our future response."`
-			goto wrapup
-		label fastenough
-		`	Andre looks thoughtful. "That's good to know. We probably won't be able to make any changes to the current design, but we can recommend that our fleets primarily use them for long-range engagement against capital ships."`
-		label goodstart
-		`	Andre grimaces a bit at that. "That's what I was afraid we were going to hear." He sighs heavily, then continues. "Well, I'm glad it is progress, but we will have to keep working."`
-		label wrapup
-		`	Almost before Andre can finish speaking he is whisked away by a pack of officious aides that definitely separate you from him and deposit him at a table with several of the VIPs. He catches your eye, nods respectfully, and then turns his attention to the dignitaries. Another researcher approaches you to offer their thanks, and hands you an invoice stating that you have been deposited <payment> in exchange for consulting services to the Republic Navy. They inform you that you are welcome to stay as long as you like, but they suspect that Andre will be tied up in meetings for the foreseeable future.`
+			`	Back on Geminus you are promptly escorted into a large conference room. Video footage of the test is being broadcast on several walls while others are covered in posters and diagrams. A collection of researchers, officers, and dignitaries mill around talking and gesturing. Threading your way through the crowd, you eventually find Andre cornered by someone you think is a republic senator. Seeing you approach, he manages to disengage and quickly joins you at a table.`
+			`	"Ah, Captain <last>, I'm glad you made it back safely." He pauses to take a sip from his drink. "So, what do you think about the Broadsider? Do you think it will be an effective tool for the Navy?"`
+			choice
+				`	"Not fast enough to target the drones, but should be good against the larger Sestor ships."`
+					goto fastenough
+				`	"A good start, but not enough to make a difference against the Sestor."`
+					goto goodstart
+				`	"Impressive, should help quite a bit."`
+			`	Andre looks relieved. "I take great comfort in hearing that, <first>. There are many of us in the Navy who have had a lot of sleepless nights trying to figure out how we could have done better, and having better tools is a significant part to improving our future response."`
+				goto wrapup
+			label fastenough
+			`	Andre looks thoughtful. "That's good to know. We probably won't be able to make any changes to the current design, but we can recommend that our fleets primarily use them for long-range engagement against capital ships."`
+				goto wrapup
+			label goodstart
+			`	Andre grimaces a bit at that. "That's what I was afraid we were going to hear." He sighs heavily, then continues. "Well, I'm glad it is progress, but we will have to keep working."`
+			label wrapup
+			`	Almost before Andre can finish speaking he is whisked away by a pack of officious aides that definitely separate you from him and deposit him at a table with several of the VIPs. He catches your eye, nods respectfully, and then turns his attention to the dignitaries. Another researcher approaches you to offer their thanks, and hands you an invoice stating that you have been deposited <payment> in exchange for consulting services to the Republic Navy. They inform you that you are welcome to stay as long as you like, but they suspect that Andre will be tied up in meetings for the foreseeable future.`
 
 
 
