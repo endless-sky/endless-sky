@@ -73,6 +73,21 @@ mission "Humanity: Broadsider 1"
 					accept
 				`	Decline.`
 					decline
+	on decline
+		event "humanity: Broadsider Outfit" 10 30
+	on abort
+		event "humanity: Broadsider Outfit" 10 30
+
+
+
+event "humanity: Broadsider Outfit"
+	outfitter "Lovelace Advanced"
+		add "Broadsider"
+		add "Broadsider Storage"
+		add "Broadsider Slug"
+	outfitter "Ammo North"
+		add "Broadsider Storage"
+		add "Broadsider Slug"
 
 
 
@@ -133,6 +148,12 @@ mission "Humanity: Broadsider 2"
 			names "civilian"
 			variant
 				"Star Queen"
+	on decline
+		event "humanity: Broadsider Outfit" 10 30
+	on abort
+		event "humanity: Broadsider Outfit" 10 30
+	on fail
+		event "humanity: Broadsider Outfit" 10 30
 	on enter "Elnath"
 		dialog `A message from the carrier pops up on your commlink. "I am beginning my attack sequence. Once complete, I will proceed to targets on Pilot. Please land and observe the impacts at a safe distance."`
 	on stopover
@@ -141,6 +162,7 @@ mission "Humanity: Broadsider 2"
 		dialog `It seems that you have either rushed ahead without waiting for the target to be destroyed, or left your escorts behind.`
 	on complete
 		payment 250000
+		event "humanity: Broadsider Outfit" 1 10
 		conversation
 			`	Back on Geminus you are promptly escorted into a large conference room. Video footage of the test is being broadcast on several walls while others are covered in posters and diagrams. A collection of researchers, officers, and dignitaries mill around talking and gesturing. Threading your way through the crowd, you eventually find Andre cornered by someone you think is a republic senator. Seeing you approach, he manages to disengage and quickly joins you at a table.`
 			`	"Ah, Captain <last>, I'm glad you made it back safely." He pauses to take a sip from his drink. "So, what do you think about the Broadsider? Do you think it will be an effective tool for the Navy?"`
