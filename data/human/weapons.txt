@@ -202,6 +202,8 @@ effect "beam laser impact"
 
 outfit "Broadsider Slug"
 	category "Ammunition"
+	licenses
+		Navy
 	cost 60
 	thumbnail "outfit/broadsider slug"
 	"mass" 0.1
@@ -210,6 +212,8 @@ outfit "Broadsider Slug"
 
 outfit "Broadsider Storage"
 	category "Ammunition"
+	licenses
+		Navy
 	cost 72000
 	thumbnail "outfit/broadsider storage"
 	"mass" 10
@@ -219,6 +223,8 @@ outfit "Broadsider Storage"
 
 outfit "Broadsider"
 	category "Turrets"
+	licenses
+		Navy
 	cost 1120000
 	thumbnail "outfit/broadsider"
 	"mass" 63
