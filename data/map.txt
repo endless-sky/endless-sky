@@ -26842,9 +26842,9 @@ planet Darkstone
 	spaceport `Once every few months, one pirate band or another will land here demanding tribute in the form of food. The locals respond by just keeping a big enough supply on hand to satisfy them; any sort of planetary defenses would cost far more than the price of the amount of food that an average fleet of warships can carry. But once they recognize that you are here to trade and not to steal, they greet you quite enthusiastically.`
 	outfitter "Ammo South"
 	security 0.1
-	tribute 200
-		threshold 1500
-		fleet "Small Militia" 18
+	tribute 150
+		threshold 800
+		fleet "Small Militia" 11
 
 planet Darkwaste
 	landscape land/canyon10-harro
