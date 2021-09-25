@@ -220,8 +220,8 @@ void GameAction::Save(DataWriter &out) const
 		}
 		out.EndChild();
 	}
-	for(const auto &it : specialLogText)
-		for(const auto &eit : it.second)
+	for(auto &&it : specialLogText)
+		for(auto &&eit : it.second)
 		{
 			out.Write("log", it.first, eit.first);
 			out.BeginChild();
@@ -232,22 +232,17 @@ void GameAction::Save(DataWriter &out) const
 			}
 			out.EndChild();
 		}
-	for(const auto &it : giftShips)
+	for(auto &&it : giftShips)
 		out.Write("give", "ship", it.first->VariantName(), it.second);
-	for(const auto &it : giftOutfits)
+	for(auto &&it : giftOutfits)
 		out.Write("outfit", it.first->Name(), it.second);
 	if(payment)
 		out.Write("payment", payment);
 	if(fine)
 		out.Write("fine", fine);
-	for(const auto &it : events)
-	{
-		if(it.second.first == it.second.second)
-			out.Write("event", it.first->Name(), it.second.first);
-		else
-			out.Write("event", it.first->Name(), it.second.first, it.second.second);
-	}
-	for(const auto &name : fail)
+	for(auto &&it : events)
+		out.Write("event", it.first->Name(), it.second.first, it.second.second);
+	for(const string &name : fail)
 		out.Write("fail", name);
 
 	conditions.Save(out);
