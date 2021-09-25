@@ -40,7 +40,7 @@ public:
 	void OnCallback();
 	
 	// Send a command to the engine (on behalf of the player).
-	void GiveCommand(const Command &command);
+	virtual void GiveCommand(const Command &command) override;
 
 	// The main panel allows fast-forward.
 	virtual bool AllowFastForward() const override;

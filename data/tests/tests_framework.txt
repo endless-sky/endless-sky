@@ -109,11 +109,11 @@ test "Test-Framework - Load and depart"
 		call "Load First Savegame"
 		# Check startup conditions.
 		assert
-			"ships: Light Freighter" = 3
+			"ships: Light Freighter" == 3
 		call "Depart"
 		# Re-check startup conditions.
 		assert
-			"ships: Light Freighter" = 3
+			"ships: Light Freighter" == 3
 
 
 test "Test-Framework - Recursive Calling"
@@ -162,11 +162,11 @@ test "Test-Framework - Navigate"
 			travel "Sol"
 			travel "Alpha Centauri"
 		assert
-			"ships: Light Freighter" = 3
+			"ships: Light Freighter" == 3
 		call "Depart"
 		# Check startup conditions.
 		assert
-			"ships: Light Freighter" = 3
+			"ships: Light Freighter" == 3
 		# Give jump command.
 		input
 			command	jump
