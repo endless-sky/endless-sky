@@ -47,7 +47,7 @@ public:
 	
 	void Load(const DataNode &node, const std::string &missionName);
 	// Process a single sibling node.
-	void LoadSingle(const DataNode &child, const std::string &missionName, bool conversation = true);
+	void LoadSingle(const DataNode &child, const std::string &missionName);
 	void Save(DataWriter &out) const;
 	
 	// Determine if this GameAction references content that is not fully defined.

@@ -135,7 +135,7 @@ void GameAction::Load(const DataNode &node, const string &missionName)
 
 
 // Load a single child at a time, used for streamlining MissionAction::Load.
-void GameAction::LoadSingle(const DataNode &child, const string &missionName, bool conversation)
+void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 {
 	isEmpty = false;
 	
