@@ -208,21 +208,39 @@ void MapOutfitterPanel::DrawItems()
 			}
 			
 			bool isForSale = true;
+			unsigned storedInSystem = 0;
 			if(player.HasVisited(*selectedSystem))
 			{
 				isForSale = false;
+				const auto &storage = player.PlanetaryStorage();
+
 				for(const StellarObject &object : selectedSystem->Objects())
-					if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->Outfitter().Has(outfit))
+				{
+					if(!object.HasSprite() || !object.HasValidPlanet())
+						continue;
+
+					const Planet &planet = *object.GetPlanet();
+					const auto pit = storage.find(&planet);
+					if(pit != storage.end())
+						storedInSystem += pit->second.Get(outfit);
+					if(planet.Outfitter().Has(outfit))
 					{
 						isForSale = true;
 						break;
 					}
+				}
 			}
-			if(!isForSale && onlyShowSoldHere)
+			if(!isForSale && !storedInSystem && onlyShowSoldHere)
 				continue;
 			
+			const std::string storage_details =
+				storedInSystem == 0
+				? ""
+				: storedInSystem == 1
+				? "One unit in storage"
+				: Format::Number(storedInSystem) + " units in storage";
 			Draw(corner, outfit->Thumbnail(), isForSale, outfit == selected,
-				outfit->Name(), price, info);
+				outfit->Name(), price, info, storage_details);
 			list.push_back(outfit);
 		}
 	}
@@ -235,6 +253,8 @@ void MapOutfitterPanel::Init()
 {
 	catalog.clear();
 	set<const Outfit *> seen;
+
+	// Add all outfits sold by outfitters of visited planets.
 	for(auto &&it : GameData::Planets())
 		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
 			for(const Outfit *outfit : it.second.Outfitter())
@@ -243,6 +263,17 @@ void MapOutfitterPanel::Init()
 					catalog[outfit->Category()].push_back(outfit);
 					seen.insert(outfit);
 				}
+
+	// Add outfits in storage
+	for(const auto &it : player.PlanetaryStorage())
+		for(const auto &oit : it.second.Outfits())
+			if(!seen.count(oit.first))
+			{
+				catalog[oit.first->Category()].push_back(oit.first);
+				seen.insert(oit.first);
+			}
+
+	// Add all known minables.
 	for(const auto &it : player.Harvested())
 		if(!seen.count(it.second))
 		{
@@ -250,6 +281,7 @@ void MapOutfitterPanel::Init()
 			seen.insert(it.second);
 		}
 	
+	// Sort the vectors.
 	for(auto &it : catalog)
 		sort(it.second.begin(), it.second.end(),
 			[](const Outfit *a, const Outfit *b) { return a->Name() < b->Name(); });

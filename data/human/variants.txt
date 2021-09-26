@@ -334,8 +334,8 @@ ship "Behemoth" "Behemoth (Speedy)"
 ship "Berserker" "Berserker (Afterburner)"
 	outfits
 		"Energy Blaster" 2
-		"Javelin Pod" 2
-		"Javelin" 200
+		"Javelin Mini Pod" 2
+		"Javelin" 80
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"D23-QP Shield Generator"
@@ -996,8 +996,8 @@ ship "Flivver" "Flivver (Hai)"
 
 ship "Flivver" "Flivver (Luxury)"
 	outfits
-		"Meteor Missile Launcher"
-		"Meteor Missile" 15
+		"Meteor Missile Pod"
+		"Meteor Missile" 7
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
@@ -1118,10 +1118,10 @@ ship "Frigate" "Frigate (Mark II)"
 
 ship "Fury" "Fury (Bomber)"
 	outfits
-		"Heavy Rocket Launcher"
-		"Heavy Rocket" 10
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 30
+		"Heavy Rocket Pod"
+		"Heavy Rocket" 2
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 14
 		"nGVF-BB Fuel Cell"
 		"Supercapacitor"
 		"D14-RN Shield Generator"
@@ -1189,9 +1189,8 @@ ship "Fury" "Fury (Missile)"
 	outfits
 		"Javelin Pod"
 		"Javelin" 100
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 38
-		"Meteor Missile Box"
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 14
 		"nGVF-BB Fuel Cell"
 		"Supercapacitor" 3
 		"D14-RN Shield Generator"
@@ -2284,8 +2283,8 @@ ship "Wasp" "Wasp (Javelin)"
 ship "Wasp" "Wasp (Meteor)"
 	outfits
 		"Energy Blaster"
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 30
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 14
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
@@ -2294,8 +2293,8 @@ ship "Wasp" "Wasp (Meteor)"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 	gun "Energy Blaster"
-	gun "Meteor Missile Launcher"
-	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Pod"
+	gun "Meteor Missile Pod"
 
 
 ship "Wasp" "Wasp (Plasma)"

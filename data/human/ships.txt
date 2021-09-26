@@ -1029,8 +1029,8 @@ ship "Clipper"
 			"hit force" 540
 	outfits
 		"Beam Laser" 2
-		"Javelin Pod" 2
-		"Javelin" 200
+		"Javelin Mini Pod" 2
+		"Javelin" 80
 		
 		"nGVF-DD Fuel Cell"
 		"LP072a Battery Pack"
@@ -1043,8 +1043,8 @@ ship "Clipper"
 		
 	engine -22 47
 	engine 22 47
-	gun -21.5 -18 "Javelin Pod"
-	gun 21.5 -18 "Javelin Pod"
+	gun -21.5 -18 "Javelin Mini Pod"
+	gun 21.5 -18 "Javelin Mini Pod"
 	gun -11 -8.5 "Beam Laser"
 	gun 11 -8.5 "Beam Laser"
 	leak "leak" 60 50
@@ -1327,7 +1327,7 @@ ship "Dagger"
 			"hit force" 180
 	outfits
 		"Beam Laser"
-		"Javelin Mini Pod" 2
+		"Javelin Mini Pod"
 		"Javelin" 40
 		
 		"nGVF-AA Fuel Cell"
@@ -1343,7 +1343,7 @@ ship "Dagger"
 	engine 15 30
 	gun -16 -20 "Beam Laser"
 	gun 16 -20
-	gun -12 -21 "Javelin Mini Pod"
+	gun -12 -21
 	gun 12 -21 "Javelin Mini Pod"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
@@ -1679,8 +1679,8 @@ ship "Flivver"
 			"hull damage" 80
 			"hit force" 240
 	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 30
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 14
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
@@ -1977,8 +1977,8 @@ ship "Hauler"
 			"hull damage" 300
 			"hit force" 900
 	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 30
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 14
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -2311,9 +2311,9 @@ ship "Lance"
 			"hull damage" 60
 			"hit force" 180
 	outfits
-		"Energy Blaster" 2
-		"Sidewinder Missile Pod" 2
-		"Sidewinder Missile" 8
+		"Energy Blaster"
+		"Sidewinder Missile Pod"
+		"Sidewinder Missile" 4
 		
 		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
@@ -2331,9 +2331,9 @@ ship "Lance"
 	"reverse engine" 13 9.5
 		under
 	gun -14 -10 "Energy Blaster"
-	gun 14 -10 "Energy Blaster"
-	gun -8 3 "Sidewinder Missile Pod"
-	gun 8 3 "Sidewinder Missile Pod"
+	gun -8 
+	gun 8 3
+	gun 14 -10 "Sidewinder Missile Pod"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "The Lance is the primary fighter used by the Republic Navy. As with all fighters, it is weak by itself but very effective as part of a larger squadron."
