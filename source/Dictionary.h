@@ -33,7 +33,7 @@ public:
 	double Get(const std::string &key) const;
 	
 	// Compare two dictionaries to see if they contain exactly the same data.
-	bool Equals(Dictionary &other);
+	bool Equals(const Dictionary &other) const noexcept;
 	
 	// Expose certain functions from the underlying vector:
 	using std::vector<std::pair<const char *, double>>::empty;

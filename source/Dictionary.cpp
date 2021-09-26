@@ -93,7 +93,7 @@ double Dictionary::Get(const string &key) const
 
 
 // Compare two dictionaries to see if they contain exactly the same data.
-bool Dictionary::Equals(Dictionary &other)
+bool Dictionary::Equals(const Dictionary &other) const noexcept
 {
 	auto it = begin();
 	auto ito = other.begin();
