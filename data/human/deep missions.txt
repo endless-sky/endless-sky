@@ -3752,7 +3752,7 @@ mission "Home for Skadenga 7"
 			`	"Well done, Captain <last>. I've been authorized to tell you that my superiors have deposited 850,000 credits into your account, as was agreed upon earlier."`
 			choice
 				`	"Your superiors??"`
-			`	Carla grins. "The Census and Culture Bureau. I am one of their field agents. They are most pleased with how you handled this. Helping the Skadenga reintegrate into our culture is a big win for the Bureau, and the Skadenga."`
+			`	Carla grins. "The Census and Culture Bureau. I am one of their field agents. They are most pleased with how you handled this. Helping the Skadenga reintegrate into our culture is a big win for the Bureau and the Skadenga."`
 			`	She pats you on the back. "Anyways, I just wanted to pass that on. I have lots of work to do, thanks to you." She winks and wanders into the crowd.`
 			`	You return to your ship to count your money.`
 			
