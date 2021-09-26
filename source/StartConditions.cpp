@@ -148,9 +148,11 @@ void StartConditions::FinishLoading()
 	for(Ship &ship : ships)
 		ship.FinishLoading(true);
 	
-	if(!GetConversation().IsValidIntro() || !GetConversation().Validate().empty())
+	string reason = GetConversation().Validate();
+	if(!GetConversation().IsValidIntro() || !reason.empty())
 		Files::LogError("Warning: The start scenario \"" + Identifier() + "\" (named \""
-			+ GetDisplayName() + "\") has an invalid starting conversation.");
+			+ GetDisplayName() + "\") has an invalid starting conversation."
+			+ (reason.empty() ? "" : "\n\t" + std::move(reason)));
 }
 
 
