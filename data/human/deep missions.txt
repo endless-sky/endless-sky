@@ -3005,7 +3005,7 @@ mission "Home for Skadenga 1"
 			label river
 			`	The uneventful journey to the boiling ice river of Slidr is suddenly interrupted when the Ice-Crawler begins to shake wildly for a few moments, followed by a thunderous boom from somewhere outside.`
 			`	After Hjlod regains control of the crawler, she immediately veers away from the noise. "That vas Nifel-quake, and loud noise was avalanche. This is not good."`
-			`	Despite her calm demeanor she wields the Ice-Crawler with reckless abandon as she tries to outrun the rumbling snow. The machine protests with creaks and whirrs and pops as it goes faster than it has gone for hundreds of years.`
+			`	Despite her calm demeanor she wields the Ice-Crawler with reckless abandon as she tries to avoid the rumbling snow. The machine protests with creaks and whirrs and pops as it goes faster than it has gone for hundreds of years.`
 			`	"I think..." Hjlod starts to say when a mountain of snow crashes into the Ice-Crawler dragging it half a kilometer.`
 			`	You and Hjlod hold tight to your seat-belts as you're tossed around. Eventually, the crawler comes to a rest on its' side.`
 			choice
@@ -3248,7 +3248,7 @@ mission "Home for Skadenga 1"
 			`	"This is good." Hjlod admits hoarsely as you both stumble toward the light. "Ve Vould have not survived night."`
 			` 	The night air grows too cold. You slow as your body begins to shutdown and frostbite gnaws at your hands, feet and exposed arm. The light is still too distant, and you can barely move. You think you see the shadows of humanoid figures against the light. But then you stumble and fall. You crawl, for as long as you can, you crawl. And then nothing.`
 			choice
-				`	(In the darkness you feel hands, and then warmth, and then more nothing.)`
+				`	(Wake up.)`
 					goto village
 			label village
 			`	The pale morning light of the first sun filters in through a synthetic window and onto your face.`
@@ -3439,8 +3439,10 @@ mission "Home for Skadenga 2"
 			`	"This is why I asked the Vice Planetary-Governor to hold this meeting. The Deep needs you to convince these poor backwards people, that they should live on Asgard."`
 			`	Henrik shrugs. "For all we know, you've already decided to tell them Asgard is the best choice. In which case we're really not asking you to do anything you weren't already planning on doing. We will also help facilitate the move by providing transportation. Furthermore, for your support in this delicate matter, we will transfer 850,000 credits to your account upon their arrival in Asgard. Really, everyone wins this way."`
 			choice
-				`	(You start to answer..)`
-			`	Jakob interrupts you before you have a chance to say anything. "Now, listen, you just think it over. We don't need your answer now. All we need is for you to guide those people to Asgard. If you do that, the Transport Union on Valhalla will have the ships you need. If you don't, well, things might be more difficult for everyone. And remember, we'll pay you in real credits. Not charm bracelets."`
+				`	(But the Skadenga...)`
+				`	(I don't think...)`
+				`	(That's great news...)`
+			`	Jakob interrupts you before you have a chance to finish your sentence. "Now, listen, you just think it over. We don't need your answer now. All we need is for you to guide those people to Asgard. If you do that, the Transport Union on Valhalla will have the ships you need. If you don't, well, things might be more difficult for everyone. And remember, we'll pay you in real credits. Not charm bracelets."`
 			`	"Lars!" Jakob calls, and the administrator and his two guards promptly enter the room. "Show Captain <last> back to their ship. Our meeting is concluded."`
 			`	"Of course, sir."`
 			`	The guards grab you and 'escort' you off the premises.`
@@ -3507,13 +3509,13 @@ mission "Home for Skadenga 3"
 					goto ship
 			label plaque 
 			`	The plaque labels the God-Stone as 'Colonial Graffiti' and reads:`
-			`	During the Colonization of The Deep in the 26th Century, the earliest colonists  erected large metal slabs and wrote nonsensical pseudo-letters on them. It is believed that this was done in order to raise the prestige of their early worlds. They would claim that they were powerful alien artifacts, or that they were made by an earlier population of humans who had arrived on the world thanks to the intercession of fairies.`
-			`	Wanting to profit from superstitious nonsense, many local communities promoted these outrageous ideas about the origins of these structures. Scientists have determined that these structures were once large segments of the metal hulls of the original colony ships. Although, to date, there has been some trouble identifying exactly what kind of metal they were made from.`
+			`	During the Colonization of The Deep in the 26th Century, the earliest colonists erected large metal slabs and wrote nonsensical pseudo-letters on them. It is believed that this was done in order to raise the prestige of their early worlds. They would claim that they were powerful alien artifacts, or that they were made by an earlier population of humans who had arrived on the world thanks to the intercession of fairies.`
+			`	Either for profit, or out of a longing for home, many local communities promoted these superstitious ideas about the origins of these structures. Scientists have determined that these structures were once large segments of the metal hulls of the original colony ships. Although, to date, there has been some trouble identifying exactly what kind of metal they were made from.`
 			`	Most worlds in The Deep have 'Colonial Graffiti', and they are proud reminders of our enterprising colonial origins. They are sometimes known in older texts, and by some outdated communities as God-Stones and Elf-Stones.`
 			`	Here at the Helsingor Family-Fun-Shopping-Center we are committed to celebrating our past! Which is why we renovated this old useless colonial structure and made it a vital part of our vibrant community!'` 
 			`	You finish reading the plaque, and look at the dull grey metal wall, and the inhuman things carved upon it. It looks nothing like a ship's hull.`
 			label ship
-			`	There is nothing more you can do here. You head back to your ship.`
+			`	These people seem disconnected from their past. You wonder if the Skadenga could help them reconnect with it, but worry that the place would change the Skadenga more than they could change it. There is nothing more you can do here. You head back to your ship.`
 				accept
 				
 	to complete
@@ -3750,7 +3752,7 @@ mission "Home for Skadenga 7"
 			`	"Well done, Captain <last>. I've been authorized to tell you that my superiors have deposited 850,000 credits into your account, as was agreed upon earlier."`
 			choice
 				`	"Your superiors??"`
-			`	Carla grins. "The Census and Culture Bureau. I am one of their field agents. They are most pleased with how you handled this. The Skadenga have been a problem for centuries, and you solved it."`
+			`	Carla grins. "The Census and Culture Bureau. I am one of their field agents. They are most pleased with how you handled this. Helping the Skadenga reintegrate into our culture is a big win for the Bureau, and the Skadenga."`
 			`	She pats you on the back. "Anyways, I just wanted to pass that on. I have lots of work to do, thanks to you." She winks and wanders into the crowd.`
 			`	You return to your ship to count your money.`
 			
@@ -3808,7 +3810,7 @@ mission "Skadenga Call 2"
 					goto here
 			label who
 			`	Hjlod laughs and tears run down her cheeks. "Do you not recognize us? Our great savior? Ve are the Skadenga, and this is your handivwork."`
-			`	She look away from you and continues. "The rest are not dead, no. But they have left us. Some forced to move, others leaving on their own. Taken, enticed, ripped from us."`
+			`	She look away from you and continues. "The rest are not dead, no. But they have left us. Most are happy; happy to be fed, happy to be entertained, happy to forget vho they are, happy to no longer be Skadenga. But, those here cannot accept that. Ve refuse to become them."`
 			`	"Ve hide now. From the social workers, from the service providers, from the government. They can still find us, they know ve are here, but vhat they don't know is that ve can leave. That you can take us avay from here."`
 			label here
 			`	Hjlod takes a deep calming breath. "I call because you are only hope. They vill not let us leave. They vill not let us be. They will steal our souls."`
@@ -3817,17 +3819,17 @@ mission "Skadenga Call 2"
 				`	"I will help you."`
 					goto help
 				`	"I need to think about it."`
-			`	Hjlod's grimaces. "Once they know you are here. They vill collect us to make sure ve go novhere. Come back here in an hour, any longer than that, and ve vill be gone."`
+			`	Hjlod's grimaces. "Once they know you are here, they vill collect us. Come back here in an hour, any longer than that, and ve vill be gone."`
 			`	Hjlod slumps down on the ground as you exit the dark dity tunnel where the remaining Skadenga cling to their fleeting identity.`	
 			`	Alone, you have a decision to make. You can return to help them escape this world. Or you can find Clara Von Hausen, and report to her what is going on. She would probably pay you well for the information.`
 			choice
 				`	(Return to Hjlod.)`
 					goto Hjlod
 				`	(Find Carla.)`
-			`	You leave Hjlod and her gang of stubborn, smelly, savages behind, and return to the active parts of the thrumming spaceport. Carla's contact information, as a alleged Real-Estate agent, is easy to find and in a few minutes you have her on call.`
+			`	You leave Hjlod and her gang of stubborn savages behind, and return to the active parts of the thrumming spaceport. Carla's contact information, as a alleged Real-Estate agent, is easy to find and in a few minutes you have her on call.`
 			`	"Captain <last>, it is a pleasure to hear from you again. What-so-ever can I help you with?" She says with believable cheerfulness.`	
 			`	You tell her about the Skadenga hiding in the spaceport and their plans to escape to Nifel.`
-			`	"Oh dear!" Carla says. "How terrible. Those poor foolish savages would surely suffer on that terrible frozen world. How misguided of them. We are aware that some have struggled to assimilate. It's quite tragic, but we will handle things from here. Hopefully, we can convince them to integrate eventually, wouldn't want them dying like that old senile leader of theirs."`
+			`	"Oh dear!" Carla says. "How terrible. Those poor foolish savages would surely suffer on that terrible frozen world. How misguided of them. We are aware that some have struggled to assimilate. It's quite tragic, but we will handle things from here. Hopefully, we can convince them to integrate eventually, it is really for the best. I wish their old leader could have seen that before she died. It would have been easier for everyone."`
 			`	"As always, we appreciate your valuable contributions. I'll authorize a generous sum of credits to be transferred to your account. I need to get some approvals so it may take a couple of days to come through. Thank you, and buh-bye."`
 				decline
 			label Hjlod
@@ -3856,7 +3858,7 @@ mission "Skadenga Call 2"
 			`	The police officers enter your ship and start restraining and removing the the Skadenga aboard it.`
 			`	"As always, we appreciate your help and value our continued working relationship. Expect a payment in the next couple days, after I've gotten it approved, for your aid." Carla steps back to assess the Skadenga, most of which are sullen and reserved. One though, is screaming, kicking and biting.`
 			`	The unruly Skadenga is dragged past you, and spit splashes against your cheek. "I'll kill you, <first>. If ever ve meet again I'll kill you. You've killed me. You've killed me." Hjlod's red and tear-stained face recedes as officers drag her away.`
-			`	"Savages." Carla says with disgust. "We'll take it from here. Have a wonderful day, Captain <last>.`
+			`	"Misguided girl." Carla says sadly. "We'll take it from here. Have a wonderful day, Captain <last>.`
 				decline
 			label takeoff
 			`	You punch it, and your ship burns for the stars. Hjlod visibly relaxes when the thrust kicks in. She closes her tired eyes and slumps to the floor.`
