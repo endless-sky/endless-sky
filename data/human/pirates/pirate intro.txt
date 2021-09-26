@@ -1,7 +1,7 @@
 
 mission "I Am A Pirate"
 	name "Embrace the pirate's life"
-	description "You've plundered your way across the galaxy, offending merchants and the law alike. You're a pirate in the eyes of the law, but perhaps not in the eyes of your fellow buccaneers. Find your way to a pirate port and buy some black and red paint."
+	description "You've plundered your way across the galaxy, offending merchants and the law alike. You're a pirate in the eyes of the state, but perhaps not yet in the eyes of your fellow buccaneers. A pirate, after all, flies a black flag. Find your way to a pirate port and procure some black and red paint."
 	source
 		government "Pirate"
 	to offer
@@ -26,9 +26,9 @@ conversation "I Am A Pirate"
 		`	(This is my life now. Piracy, smuggling, the existence of the outlaw. I'm ready to embrace it.)`
 		`	(This isn't what I wanted. This isn't the life I imagined when I decided to take to the high skies.)`
 			decline
-	`Resolve will carry you far in this world. In this case, it's carried you to a spaceport paint supplier, and you return to your vessel with a pallet loaded with blacks and reds. Apply it to your vessel, make your intentions known to the galaxy. There can be no pretense of peace when you fly girded in blood and midnight, but maybe that's exactly the way you want it to be.`
+	`Resolve will carry you far in this world. Tonight it's carried you to a spaceport paint supplie; you return to your vessel with a pallet loaded with blacks and reds. Apply it to your vessel, make your intentions known to the galaxy. There can be no pretense of peace when you fly girded in blood and midnight, but maybe that's exactly the way you want it to be.`
 	choice
-		`	(Don the smock and mask, turn on the compressor, conceal your old life beneath bellicose pigments.)`
+		`	(Don the smock and mask, turn on the compressor, conceal your old life beneath pirate's paint.)`
 		`	(No. Not now, perhaps not ever. The galaxy at large may consider you a pirate, but you're not ready to adopt their colors.)`
 			decline
 
@@ -143,8 +143,13 @@ mission "Pirate Overview"
 		not "I Want To Be A Pirate: declined"
 	on offer
 		conversation
-			`You think of the three missions you were offered to become a pirate. Doing any one of them will make you one.`
+			`You think back to your conversation in that cramped, stinking drinking hole, of the colorful characters met and the tasks assigned.`
+			`Lurk and listen. Slink through the galaxy's spaceport taverns and bars until you know enough to ambush a particularly juicy prize, then defend it against other scavengers acting on the same information.`
+			`Prove your worth through sheer spending power. Accrue one million credits and hand them off to someone you just happened to meet in a bar, for the promise of words whispered into the right ears.`
+			`Murder a bunch of strangers and make the survivors render tribute on pain of more ass-kickings. Specifically, strangers living on the planet of Darkstone. They probably deserve it anyways, or at least so says the cyborg who issued the task.`
+			`Completing any of these truly important quests and reporting back to the ne'er-do-wells on Greenrock will make you a pirate.`
 				decline
+
 
 
 mission "Pirate Intro - Boarding"
@@ -161,6 +166,8 @@ mission "Pirate Intro - Boarding"
 		event "add merchant targets"
 	to complete
 		has "Plunder Defense: done"
+	#Need to edit this one so that it's offered at a 20% chance upon visiting a spaceport.
+	#dialog pop-up: "Hours spent in a spaceport bar proved fruitful. Whether you spent it in revelry, swapping tales and loosening tongues, or simply lurking and listening with a glass gripped solely for the sake of appearance, you eventually piece together a tale - brought to your ears by the brother of a cousin of a hairdresser of the dog walker of a shipping officer - of a ship loaded with unspeakably valuable treasures, and it's due in the Umbral system soon! This could be your big break as a pirate."
 
 fleet "Merchant Targets"
 	government "Merchant (Target)"
@@ -232,6 +239,97 @@ mission "Pirate Intro - Wealth"
 		has "I Want To Be A Pirate: done"
 	to complete
 		has "Pirate Intro - Payment: declined"
+	conversation "Den Handoff"
+	
+conversation "Den Handoff"
+	`"That's a key", a janitor cheerfully explains as he spots you staring at the datachip the suit-clad pirate had given you back in that dingy tavern. "... Goodness, you've had a few too many, haven't you? Give it here." Without waiting for your permission, the fellow snaps the chip up out of your hands and runs it through a device attached to his belt. "Hangar 18, just pop it into the wall console and it'll open up for you. Best get moving before your captain notices you're missing, harhar." With a smile and a wave, the janitor deposits the chip back into your palm, brushes past you, and returns to going about his business.`
+	choice
+		`	(Proceed to Hangar 18.)
+	`Just as promised, the datachip fits right into a slot in the wall, unsealing the airlock and allowing you into the hangar. Voices and light spill from within.`
+	choice
+		`	(Take a moment to listen.)`
+		`	(Enter and announce yourself.)`
+			goto CCOR
+	#note: text in {curly brackets} is to be translated to Portugese before implementation.
+	`"{Yeah, I don't really see it happening? My grandfather waited for it, and so did his, and yet here we are- trading with capitalists.}"`
+	`"{I really wish you wouldn't be so negative, comrade. You know as well as I it's just a matter of waiting for things to collapse. Hell, civil war threatens to break out all across the Republic, just have faith a little longer. In fact, I heard just the other day-}"`
+	`Without warning a figure steps in front of the doorway, silhouetted by strong lights pointed at the doorframe from within. "In or out, you're letting through a draft. We can conduct business inside."`
+	choice
+		`	(In.)`
+		`	(Out.)`
+			goto retreat
+	`With a smile and a nod, the figure gestures you inside. "Good, good. In you go."`
+	label CCOR
+	`The hangar is dominated by an orange-painted Hauler of older make looming behind everything else. Once you step beyond the glare of the floodlight pointed at the door you can make out details. Those aren't crates stacked in a rough perimiter around the door, but sandbags. Behind one row a tripod with an old-style machinegun rests, "Mãe Dois" painted in white upon the barrel shroud. The gunner, a tanned young woman with a cigarette hanging jauntily from her lips, notices your look and offers a friendly enough wave. Like the other five people in the room, she's wearing a burgundy military uniform, with gleaming strips of brass where one might usually find decorating ribbons.`
+	`"Since you had the key we I'll assume you're here to do business." The oldest of the six people, a dark-haired man in his apparent fifties whose uniform practically gleams with medals, ushers you into a seat. He's wearing a hat, which you can only assume means he's in charge of the others. "Coffee?" The brew appears dark, the scent rich and glorious as it cuts through the nicotine haze of the hangar.`
+	choice
+		`	"I would love some, thank you.`
+		`	"Actually, I'm just here to do business."
+	`"Of course. Now, let's get to it."`
+	`The officer consults his datapad, glancing briefly towards the now-sealed entrance to the room. "Says here you had the chip for the million-credit deal. You've got the money, I assume." Meanwhile, one of his compatriots approaches, steadily waving over you with a scanner of some sort. Everyone seems decidedly relaxed until it pings. Almost immediately hands go to guns, cigarettes are dropped from lips, and tension fills the air. "{Bug, left hip.}", states the soldier with the scanner.`
+	choice
+		`	(Stay cool.)`
+			goto cool
+		`	(Go for your gun.)`
+	`It doesn't take long after reaching for your gun for the soldiers to react. Quite immediately you're soundly clobbered by the soldier standing behind you with the scanner. Rather than shoot, they'd simply opted for using what they had at hand - a heavy metallic sensor-bar. "{Good swing, comrade!}" is the last thing you hear before blacking out.`
+	#apply "you got clobbered"
+	choice
+		`	(My head is killing me.)`
+	choice
+		`	(All I taste is blood.)`
+	choice
+		`	(I should open my eyes.)`
+	`You awaken tied to a chair, a headache pounding in your ears, and where there used to be a serving table with coffee your belongings are instead laid out.`
+	`There's your gun, there's your shirt, now ironstained from the solid whack you'd sustained to the back of the head, there's your comms, your keys, and a credit chip valued at one million. Laid right in the middle of them is a miniscule device that you don't recognize - possibly due to the fact that it's been smashed into a dozen pieces.`
+	`At least your captors were kind enough to shove you back into skivvies after stripping you down and emptying your pockets.`
+	choice
+		`	(Stay silent.)`
+			goto interrogation
+		`	(Offer undying curses to the bastards what did this to you.)`
+		`	(Inquire as to what in the blazes is going on.)`
+	`You open your mouth, emitting several unintelligble croaks and an undignified cough. As one, the assembled soldiers turn to face you.`
+	`"Gabriel, give our friend some water. We've things to discuss", the officer instructs. One of the soldiers hurries over, unhooking a bottle from their belt, opening the stopper, and gently holding it to your lips.`
+	choice
+		`	(Drink.)`
+			goto better
+		`	(Drink, and spit in Gabriel's face.)`
+	`Precious. Delicious. Refreshing. The iron taste of blood is washed down your throat, and your headache slightly lessens. The pain is still there, but as far as you can tell you're not quite as dead as you felt upon waking. You leverage the fact that you're feeling a bit better now to collect what spit you can and - assisted by a bit of the water you hadn't swalloed - hock it right into the soldier's face.`
+	`Gabriel recoils, cursing. The officer simply draws his pistol and pulls back on the slide, chambering a round. "... Always did love that sound. You can't get that from lasers, sadly. Now, do something stupid again and this bullet's for you."`
+	label better
+	`Precious. Delicious. Refreshing. The iron taste of blood is washed down your throat, and your headache slightly lessens. The pain is still there, but as far as you can tell you're not quite as dead as you felt upon waking.`
+	`The officer settles into the chair across from you. "You brought the money, so I'm inclined to believe you weren't simply here to fuck us. Given your... decisions today, I'm also inclined to believe you may also just be an idiot. More importantly, you brought this bug we found in your pocket. Care to explain yourself? If I like what you say you may remain on this side of the airlock."`
+	goto explanation
+	label cool
+	`You keep your hands where they are and wait for the officer to speak. "There's a listening device on your left hip. Pocket, perhaps. I want you to slowly withdraw it and place it on the table in front of us. Gabriel, get the coffee out of here." A soldier hastily scoops up the beverage and disappears into the gloom of the hangar.`
+	choice
+		`	(Check your pocket for anything unexpected.)`
+	`As expected, you find something unexpected. A small device about the size of a fingernail. You gingerly remove it from your belongings and place it on the table. The officer across from you wastes no time in drawing his pistol and sharply smashing the butt against the bug, crushing it to pieces.`
+	`"Care to explain what that was doing on you?"`
+	label explanation
+	choice
+		`	"I didn't bring that here on purpose, but I did brush against a very friendly janitor on the way here."`
+	`"Ahh"s of understanding and enlightenment echo from the soldiers standing about the hangar. Most of them visibly relax, appeased by this explanation.`
+	`"Yeah. That's Steve. Republic Intelligence. We'd shoot him, but they would just send another, and he's incompetent enough that it's better this way. Really, though? You need to be more careful."`
+	`You hear a barely-audible "jackass" muttered by one of the soldiers. The officer doesn't appear to have any desire to reprimand them.`
+	#next bit only happens if you got clobbered
+	`Given a nod from their commander, one of the soldiers hunkers down behind your chair to cut your bonds loose.`
+	#back to normal flow here
+	`A soldier emerges from the ramp to the ancient hauler, a neon yellow object cradled close to her burgundy coat. It's held out for you to take.`
+	"This is what you came for", the officer explains. "If it's to your satisfaction you can leave with it, and we'll keep that credit chip."
+	choice
+		`	(Inspect the object.)`
+	"It's a steel canister about the size of a thermos. The brilliant yellow appearance from a distance proves to be thanks to a plethora of warning labels stuck all over the canister. There's an unsettling amount of stylized skulls and explanation points visible here, leading to an almost polka-dotted appearance if you squint. Present in the middle of the warning labels is a simple placard welded to the canister. It reads, plainly, "Draught-Resistant Seeds". No other documentation as to what's actually in the can seems to be forthcoming."
+	choice
+		`	"Looks good to me, thank you."`
+			goto complete
+		`	"What in the void is this?"`
+	`The dark-haired officer simply smiles gently. "It is what it is. Now take it and run along to your employer. We're done here."
+	#next line only happens if you got clobbered
+	`The soldiers give you a moment to dress yourself and gather your things back up, though the surly looks you're fixed with make it clear they're keen to see you go.`
+	#back to normal flow
+	`The transaction is complete. You've spent a million credits, out of your own pocket, for something that needs to be delivered to a mysterious pirate in formal wear that you met in a stinking bar. This is definitely the path of wisdom that you walk. Thankfully, no further obstacles present themelf as you return to your ship.`
+	
+	
 
 mission "Pirate Intro - Payment"
 	invisible
