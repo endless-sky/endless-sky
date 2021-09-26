@@ -2331,7 +2331,7 @@ ship "Lance"
 	"reverse engine" 13 9.5
 		under
 	gun -14 -10 "Energy Blaster"
-	gun -8 
+	gun -8 3
 	gun 8 3
 	gun 14 -10 "Sidewinder Missile Pod"
 	explode "tiny explosion" 15
