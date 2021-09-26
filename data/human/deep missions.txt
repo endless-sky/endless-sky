@@ -3203,7 +3203,7 @@ mission "Home for Skadenga 1"
 			choice
 				`	(Walk in Hjlod's footsteps.)`
 					goto travel
-				`	(Meander around because you're too proud to do what she says.)`
+				`	(Meander around.)`
 					goto fool
 			label fool
 			`	Hjlod abruptly stops and glares at you. "You are fool. You vill certainly die, and you endanger me in process. This is no game, valk only vhere I valk or die.`
