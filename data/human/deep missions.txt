@@ -3811,7 +3811,7 @@ mission "Skadenga Call 2"
 					goto here
 			label who
 			`	Hjlod laughs and tears run down her cheeks. "Do you not recognize us? Our great savior? Ve are the Skadenga, and this is your handivwork."`
-			`	She look away from you and continues. "The rest are not dead, no. But they have left us. Most are happy; happy to be fed, happy to be entertained, happy to forget vho they are, happy be Skadenga only in name but not in practice. But, those here cannot accept that. Ve refuse to become them."`
+			`	She look away from you and continues. "The rest are not dead, no. But they have left us. Most are happy; happy to be fed, happy to be entertained, happy to forget vho they are, happy to be Skadenga in name, but not in practice. But, those here cannot accept that. Ve refuse to become them."`
 			`	"Ve hide now. From the social workers, from the service providers, from the government. They can still find us, they know ve are here, but vhat they don't know is that ve can leave. That you can take us avay from here."`
 			label here
 			`	Hjlod takes a deep calming breath. "I call because you are only hope. They vill not let us leave. They vill not let us be. They will steal our souls."`
