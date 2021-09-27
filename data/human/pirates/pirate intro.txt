@@ -1,7 +1,6 @@
 
-mission "I Am A Pirate"
-	name "Embrace the pirate's life"
-	description "You've plundered your way across the galaxy, offending merchants and the law alike. You're a pirate in the eyes of the state, but perhaps not yet in the eyes of your fellow buccaneers. A pirate, after all, flies a black flag. Find your way to a pirate port and procure some black and red paint."
+mission "You Are A Pirate"
+	landing
 	source
 		government "Pirate"
 	to offer
@@ -15,24 +14,24 @@ mission "I Am A Pirate"
 				"reputation: Merchant" < -10
 			"reputation: Pirate" > 20
 	on offer
-		conversation "I Am A Pirate"
+		conversation "You Are A Pirate"
 	on accept
 		event "became a pirate"
 		fail
 
-conversation "I Am A Pirate"
+conversation "You Are A Pirate"
 	`Preparing to land is second nature by now: patch any perforations in the inner hull, make sure your chosen parking pad isn't controlled by extortionists, and then get in touch with ground control. When you disembark it's with a pistol at your hip, bribe money in your pocket, and a swagger in your step; to leave behind any one of these is to invite trouble. Perhaps a life of violence on the high skies and association with the rougher elements of the galaxy weren't what you had in mind when you left your homeworld, but it's what you found.`
 	choice
 		`	(This is my life now. Piracy, smuggling, the existence of the outlaw. I'm ready to embrace it.)`
 		`	(This isn't what I wanted. This isn't the life I imagined when I decided to take to the high skies.)`
 			decline
-	`Resolve will carry you far in this world. Tonight it's carried you to a spaceport paint supplie; you return to your vessel with a pallet loaded with blacks and reds. Apply it to your vessel, make your intentions known to the galaxy. There can be no pretense of peace when you fly girded in blood and midnight, but maybe that's exactly the way you want it to be.`
+	`	Resolve will carry you far in this world. Tonight it's carried you to a spaceport paint supplie; you return to your vessel with a pallet loaded with blacks and reds. Apply it to your vessel, make your intentions known to the galaxy. There can be no pretense of peace when you fly girded in blood and midnight, but maybe that's exactly the way you want it to be.`
 	choice
 		`	(Don the smock and mask, turn on the compressor, conceal your old life beneath pirate's paint.)`
 		`	(No. Not now, perhaps not ever. The galaxy at large may consider you a pirate, but you're not ready to adopt their colors.)`
 			decline
 
-	`Some paint covers all manner of sin. Some speaks of the intention to commit yet more. You've applied the latter sort to your ship.`
+	`	Some paint covers all manner of sin. Some speaks of the intention to commit yet more. You've applied the latter sort to your ship.`
 		accept
 
 mission "I Want To Be A Pirate"
@@ -43,7 +42,7 @@ mission "I Want To Be A Pirate"
 		government "Pirate"
 	destination "Greenrock"
 	to offer
-		not "I Am A Pirate: offered"
+		not "You Are A Pirate: offered"
 		not "chosen sides"
 		or
 			"combat rating" > 150
@@ -157,7 +156,6 @@ mission "Pirate Intro - Boarding"
 	name "Board a merchant"
 	description `Board a merchant.`
 	destination "Greenrock"
-	waypoint "Umbral"
 	to offer
 		has "I Want To Be A Pirate: active"
 	to fail
@@ -166,8 +164,15 @@ mission "Pirate Intro - Boarding"
 		event "add merchant targets"
 	to complete
 		has "Plunder Defense: done"
-	#Need to edit this one so that it's offered at a 20% chance upon visiting a spaceport.
-	#dialog pop-up: "Hours spent in a spaceport bar proved fruitful. Whether you spent it in revelry, swapping tales and loosening tongues, or simply lurking and listening with a glass gripped solely for the sake of appearance, you eventually piece together a tale - brought to your ears by the brother of a cousin of a hairdresser of the dog walker of a shipping officer - of a ship loaded with unspeakably valuable treasures, and it's due in the Umbral system soon! This could be your big break as a pirate."
+
+mission "Pirate Intro - Boarding Hint"
+	invisible
+	to offer
+		has "Pirate Intro - Boarding: active"
+		random < 20
+	on offer
+		conversation
+			`Hours spent in a spaceport bar proved fruitful. Whether you spent it in revelry, swapping tales and loosening tongues, or simply lurking and listening with a glass gripped solely for the sake of appearance, you eventually piece together a tale - brought to your ears by the brother of a cousin of a hairdresser of the dog walker of a shipping officer - of a ship loaded with unspeakably valuable treasures, and it's due in the Umbral system soon! This could be your big break as a pirate.`
 
 fleet "Merchant Targets"
 	government "Merchant (Target)"
@@ -238,7 +243,7 @@ mission "Pirate Intro - Wealth"
 	to fail
 		has "I Want To Be A Pirate: done"
 	to complete
-		has "Pirate Intro - Payment: declined"
+		has "Pirate Intro - Payment: failed"
 	
 
 
@@ -251,6 +256,8 @@ mission "Pirate Intro - Payment"
 	source "Smuggler's Den"
 	on offer
 		conversation "Den Handoff"
+	on accept
+		fail
 		
 conversation "Den Handoff"
 	`	"That's a key", a janitor cheerfully explains as he spots you staring at the datachip the suit-clad pirate had given you back in that dingy tavern. "... Goodness, you've had a few too many, haven't you? Give it here." Without waiting for your permission, the fellow snaps the chip up out of your hands and runs it through a device attached to his belt. "Hangar 18, just pop it into the wall console and it'll open up for you. Best get moving before your captain notices you're missing, harhar." With a smile and a wave, the janitor deposits the chip back into your palm, brushes past you, and returns to going about his business.`
@@ -294,10 +301,11 @@ conversation "Den Handoff"
 	`	At least your captors were kind enough to shove you back into skivvies after stripping you down and emptying your pockets.`
 	choice
 		`	(Stay silent.)`
-			#goto interrogation
+			goto interrogation
 		`	(Offer undying curses to the bastards what did this to you.)`
 		`	(Inquire as to what in the blazes is going on.)`
 	`	You open your mouth, emitting several unintelligble croaks and an undignified cough. As one, the assembled soldiers turn to face you.`
+	label interrogation
 	`	"Gabriel, give our friend some water. We've things to discuss", the officer instructs. One of the soldiers hurries over, unhooking a bottle from their belt, opening the stopper, and gently holding it to your lips.`
 	choice
 		`	(Drink.)`
