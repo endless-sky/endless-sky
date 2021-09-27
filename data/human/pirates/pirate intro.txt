@@ -284,17 +284,19 @@ conversation "Den Handoff"
 		`	"I would love some, thank you.`
 		`	"Actually, I'm just here to do business."`
 	`	"Of course. Now, let's get to it."`
-	`	The officer consults his datapad, glancing briefly towards the now-sealed entrance to the room. "Says here you had the chip for the million-credit deal. You've got the money, I assume." Meanwhile, one of his compatriots approaches, steadily waving over you with a scanner of some sort. Everyone seems decidedly relaxed until it pings. Almost immediately hands go to guns, cigarettes are dropped from lips, and tension fills the air. "{Bug, left hip.}", states the soldier with the scanner.`
+	`	The officer consults his datapad, glancing briefly towards the now-sealed entrance to the room. "Says here you had the chip for the million-credit deal. You've got the money, I assume." Meanwhile, one of his compatriots approaches, steadily waving over you with a scanner of some sort. Everyone seems decidedly relaxed until it pings. Hands immediately drop to guns, cigarettes fall from lips, and tension spills into the air. "{Bug, left hip.}", states the soldier with the scanner.`
 	choice
 		`	(Stay cool.)`
 			goto cool
 		`	(Go for your gun.)`
-	`	It doesn't take long after reaching for your gun for the soldiers to react. Quite immediately you're soundly clobbered by the soldier standing behind you with the scanner. Rather than shoot, they'd simply opted for using what they had at hand - a heavy metallic sensor-bar. "{Good swing, comrade!}" is the last thing you hear before blacking out.`
+	`	You're promptly clobbered by the soldier standing behind you with the scanner. Rather than shoot, they'd simply opted for using what they had at hand - a heavy metallic sensor-bar. "{Good swing, comrade!}" is the last thing you hear before blacking out.`
 	apply
 		set "clobbered"
 	choice
 		`	(My head is killing me.)`
+	choice
 		`	(All I taste is blood.)`
+	choice
 		`	(I should open my eyes.)`
 	`	You awaken tied to a chair, a headache pounding in your ears, and where there used to be a serving table with coffee your belongings are instead laid out.`
 	`	There's your gun, there's your shirt, now ironstained from the solid whack you'd sustained to the back of the head, there's your comms, your keys, and a credit chip valued at one million. Laid right in the middle of them is a miniscule device that you don't recognize - possibly due to the fact that it's been smashed into a dozen pieces.`
@@ -311,17 +313,19 @@ conversation "Den Handoff"
 		`	(Drink.)`
 			goto better
 		`	(Drink, and spit in Gabriel's face.)`
-	`	Precious. Delicious. Refreshing. The iron taste of blood is washed down your throat, and your headache slightly lessens. The pain is still there, but as far as you can tell you're not quite as dead as you felt upon waking. You leverage the fact that you're feeling a bit better now to collect what spit you can and - assisted by a bit of the water you hadn't swalloed - hock it right into the soldier's face.`
+	`	Precious. Delicious. Refreshing. The iron taste of blood is washed down your throat, and your headache slightly lessens. The pain is still there, but as far as you can tell you're not quite as dead as you felt upon waking. You leverage the fact that you're feeling a bit better now to collect what spit you can and - assisted by a bit of the water you hadn't swallowed - hock it right into the soldier's face.`
 	`	Gabriel recoils, cursing. The officer simply draws his pistol and pulls back on the slide, chambering a round. "... Always did love that sound. You can't get that from lasers, sadly. Now, do something stupid again and this bullet's for you."`
+		goto talking
 	label better
 	`	Precious. Delicious. Refreshing. The iron taste of blood is washed down your throat, and your headache slightly lessens. The pain is still there, but as far as you can tell you're not quite as dead as you felt upon waking.`
-	`	The officer settles into the chair across from you. "You brought the money, so I'm inclined to believe you weren't simply here to fuck us. Given your... decisions today, I'm also inclined to believe you may also just be an idiot. More importantly, you brought this bug we found in your pocket. Care to explain yourself? If I like what you say you may remain on this side of the airlock."`
+	label talking
+	`	The officer settles into the chair across from you. "You brought the money, so I'm inclined to believe you weren't simply here to fuck us. Given your... decisions today, I'm also inclined to believe you may also just be an idiot. More importantly, you brought this bug we found on you. Care to explain yourself? If I like what you say you may remain on this side of the airlock."`
 		goto explanation
 	label cool
 	`	You keep your hands where they are and wait for the officer to speak. "There's a listening device on your left hip. Pocket, perhaps. I want you to slowly withdraw it and place it on the table in front of us. Gabriel, get the coffee out of here." A soldier hastily scoops up the beverage and disappears into the gloom of the hangar.`
 	choice
 		`	(Check your pocket for anything unexpected.)`
-	`	As expected, you find something unexpected. A small device about the size of a fingernail. You gingerly remove it from your belongings and place it on the table. The officer across from you wastes no time in drawing his pistol and sharply smashing the butt against the bug, crushing it to pieces.`
+	`	As expected, you find something unexpected. A small device about the size of a fingernail. You gingerly remove it from your belongings and place it on the table. The officer across from you wastes no time in drawing his pistol and sharply smashing the butt against the device, crushing it to pieces.`
 	`	"Care to explain what that was doing on you?"`
 	label explanation
 	choice
@@ -337,7 +341,7 @@ conversation "Den Handoff"
 	`	"This is what you came for", the officer explains. "If it's to your satisfaction you can leave with it, and we'll keep that credit chip."`
 	choice
 		`	(Inspect the object.)`
-	`	"It's a steel canister about the size of a thermos. The brilliant yellow appearance from a distance proves to be thanks to a plethora of warning labels stuck all over the canister. There's an unsettling amount of stylized skulls and explanation points visible here, leading to an almost polka-dotted appearance if you squint. Present in the middle of the warning labels is a simple placard welded to the canister. It reads, plainly, "Draught-Resistant Seeds". No other documentation as to what's actually in the can seems to be forthcoming."`
+	`	It's a steel canister about the size of a thermos. The brilliant yellow appearance from a distance proves to be thanks to a plethora of warning labels stuck all over the canister. There's an unsettling amount of stylized skulls and explanation points visible here, leading to an almost polka-dotted appearance if you squint. Present in the middle of the warning labels is a simple placard welded to the canister; it reads, plainly: "Draught-Resistant Seeds". No other documentation as to what's actually in the can seems to be forthcoming.`
 	choice
 		`	"Looks good to me, thank you."`
 			goto complete
@@ -349,7 +353,7 @@ conversation "Den Handoff"
 	label complete
 	apply
 		payment -1000000
-	`	The transaction is complete. You've spent a million credits, out of your own pocket, for something that needs to be delivered to a mysterious pirate in formal wear that you met in a stinking bar. This is definitely the path of wisdom that you walk. Thankfully, no further obstacles present themelf as you return to your ship.`
+	`	The transaction is complete. You've spent a million credits out of your own pocket for something that needs to be delivered to a mysterious pirate in formal wear that you met in a stinking bar. This is definitely the path of wisdom that you walk. Thankfully, no further obstacles ambush you as you return to your ship.`
 		accept
 	label retreat
 	`	You leave.`
