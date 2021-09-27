@@ -27,7 +27,7 @@ conversation "You Are A Pirate"
 			decline
 	`	Resolve will carry you far in this world. Tonight it's carried you to a spaceport paint supplier; you return to your vessel with a pallet loaded with blacks and reds. Apply it to your vessel, make your intentions known to the galaxy. There can be no pretense of peace when you fly girded in blood and midnight, but maybe that's exactly the way you want it to be.`
 	choice
-		`	(Don the smock and mask, turn on the compressor, conceal your old life beneath pirate's paint.)`
+		`	(Don the smock and mask, turn on the compressor, conceal your old life beneath bellicose black.)`
 		`	(No. Not now, perhaps not ever. The galaxy at large may consider you a pirate, but you're not ready to adopt their colors.)`
 			decline
 
