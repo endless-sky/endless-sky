@@ -243,7 +243,7 @@ mission "Pirate Intro - Wealth"
 	to fail
 		has "I Want To Be A Pirate: done"
 	to complete
-		has "Pirate Intro - Payment: failed"
+		has "Pirate Intro - Payment: active"
 	
 
 
@@ -256,8 +256,10 @@ mission "Pirate Intro - Payment"
 	source "Smuggler's Den"
 	on offer
 		conversation "Den Handoff"
-	on accept
-		fail
+	to fail
+		has "Pirate Intro - Wealth: done"
+	to complete
+		never
 		
 conversation "Den Handoff"
 	`	"That's a key", a janitor cheerfully explains as he spots you staring at the datachip the suit-clad pirate had given you back in that dingy tavern. "... Goodness, you've had a few too many, haven't you? Give it here." Without waiting for your permission, the fellow snaps the chip up out of your hands and runs it through a device attached to his belt. "Hangar 18, just pop it into the wall console and it'll open up for you. Best get moving before your captain notices you're missing, harhar." With a smile and a wave, the janitor deposits the chip back into your palm, brushes past you, and returns to going about his business.`
@@ -268,9 +270,11 @@ conversation "Den Handoff"
 		`	(Take a moment to listen.)`
 		`	(Enter and announce yourself.)`
 			goto CCOR
-	#note: text in {curly brackets} is to be translated to Portugese before implementation.
-	`	"Eu sei, mas é que eu realmente não acho que isso vai só acontecer. O vô do meu vô também passou a vida esperando a mesma coisa, e hoje eu e tu tamos aqui, negociando com capitalistas"`
-	`	"Eu preferiria se tu não fosse tão negativo, camarada. Tu sabe tão bem quanto eu que é só uma questão de esperar as coisas entrarem em colapso. Porra, tem uma guerra civil arriscando começar a qualquer momento, se segura por só mais um pouquinho! Inclusive, eu escutei a pouco que – "`
+	# Commented lines to be uncommented when Unicode support is added
+	#`	"Eu sei, mas é que eu realmente não acho que isso vai só acontecer. O vô do meu vô também passou a vida esperando a mesma coisa, e hoje eu e tu tamos aqui, negociando com capitalistas."`
+	`	"Eu sei, mas e que eu realmente nao acho que isso vai so acontecer. O vo do meu vo tambem passou a vida esperando a mesma coisa, e hoje eu e tu tamos aqui, negociando com capitalistas."`
+	#`	"Eu preferiria se tu não fosse tão negativo, camarada. Tu sabe tão bem quanto eu que é só uma questão de esperar as coisas entrarem em colapso. Porra, tem uma guerra civil arriscando começar a qualquer momento, se segura por só mais um pouquinho! Inclusive, eu escutei a pouco que – "`
+	`	"Eu preferiria se tu nao fosse tao negativo, camarada. Tu sabe tao bem quanto eu que e so uma questao de esperar as coisas entrarem em colapso. Porra, tem uma guerra civil arriscando começar a qualquer momento, se segura por so mais um pouquinho! Inclusive, eu escutei a pouco que – "`
 	`	Without warning a figure steps in front of the doorway, silhouetted by strong lights pointed at the doorframe from within. "In or out, you're letting through a draft. We can conduct business inside."`
 	choice
 		`	(In.)`
@@ -278,13 +282,14 @@ conversation "Den Handoff"
 			goto retreat
 	`	With a smile and a nod, the figure gestures you inside. "Good, good. In you go."`
 	label CCOR
-	`	The hangar is dominated by an orange-painted Hauler of older make looming behind everything else. Once you step beyond the glare of the floodlight pointed at the door you can make out details. Those aren't crates stacked in a rough perimiter around the door, but sandbags. Behind one row a tripod with an old-style machinegun rests, "Mãe Dois" painted in white upon the barrel shroud. The gunner, a tanned young woman with a cigarette hanging jauntily from her lips, notices your look and offers a friendly enough wave. Like the other five people in the room, she's wearing a burgundy military uniform, with gleaming strips of brass where one might usually find decorating ribbons.`
+	#`	The hangar is dominated by an orange-painted Hauler of older make looming behind everything else. Once you step beyond the glare of the floodlight pointed at the door you can make out details. Those aren't crates stacked in a rough perimiter around the door, but sandbags. Behind one row a tripod with an old-style machinegun rests, "Mãe Dois" painted in white upon the barrel shroud. The gunner, a tanned young woman with a cigarette hanging jauntily from her lips, notices your look and offers a friendly enough wave. Like the other five people in the room, she's wearing a burgundy military uniform, with gleaming strips of brass where one might usually find decorating ribbons.`
+	`	The hangar is dominated by an orange-painted Hauler of older make looming behind everything else. Once you step beyond the glare of the floodlight pointed at the door you can make out details. Those aren't crates stacked in a rough perimiter around the door, but sandbags. Behind one row a tripod with an old-style machinegun rests, "Mae Dois" painted in white upon the barrel shroud. The gunner, a tanned young woman with a cigarette hanging jauntily from her lips, notices your look and offers a friendly enough wave. Like the other five people in the room, she's wearing a burgundy military uniform, with gleaming strips of brass where one might usually find decorating ribbons.`
 	`	"Since you had the key we I'll assume you're here to do business." The oldest of the six people, a dark-haired man in his apparent fifties whose uniform practically gleams with medals, ushers you into a seat. He's wearing a hat, which you can only assume means he's in charge of the others. "Coffee?" The brew appears dark, the scent rich and glorious as it cuts through the nicotine haze of the hangar.`
 	choice
 		`	"I would love some, thank you.`
 		`	"Actually, I'm just here to do business."`
 	`	"Of course. Now, let's get to it."`
-	`	The officer consults his datapad, glancing briefly towards the now-sealed entrance to the room. "Says here you had the chip for the million-credit deal. You've got the money, I assume." Meanwhile, one of his compatriots approaches, steadily waving over you with a scanner of some sort. Everyone seems decidedly relaxed until it pings. Hands immediately drop to guns, cigarettes fall from lips, and tension spills into the air. "Escuta, quadril esquerdo", states the soldier with the scanner.`
+	`	The officer consults his datapad, glancing briefly towards the now-sealed entrance to the room. "Says here you had the chip for the million-credit deal. You've got the money, I assume." Meanwhile, one of his compatriots approaches, steadily waving over you with a scanner of some sort. Everyone seems decidedly relaxed until it pings. Hands immediately drop to guns, cigarettes fall from lips, and tension spills into the air. "Escuta, quadril esquerdo.", states the soldier with the scanner.`
 	choice
 		`	(Stay cool.)`
 			goto cool
