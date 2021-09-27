@@ -2808,8 +2808,6 @@ mission "Home for Skadenga 1"
 				`	"You only live once," you say and key your signature.`
 					goto yolo
 				`	"I've changed my mind. I am going to pass on this excursion."`
-					goto pass
-			label pass
 			`	The woman's face, red with the cold, looks crest-fallen, but unsurprised. Like she was half expecting this outcome. "Brunhilda can be an.. intimidating vehicle, it's true. But she is safe ser, I assure you. Either way, I'll take you back to the spaceport."`
 			`	With that you follow the woman back to the warm and nearly empty spaceport, where she leaves you to return to her forlorn booth.`
 				decline
@@ -2818,8 +2816,6 @@ mission "Home for Skadenga 1"
 			`	She indicates that you should walk up the feeble looking ramp. "Hjlod will be your driver and tour-guide for the duration of your excursion. She is waiting for you within. On behalf of Intrepid Ice Adventures Limited, I would like to wish you a happy and safe expedition!"`
 			choice
 				`	(Board the Ice-Crawler.)`
-					goto board
-			label board
 			`	The Ice-Crawler, 'Brunhilda', smells of oil, atmosphere, and perspiration. The confines are tight, with a padded bench area and threadbare seat-belts. There are wires and hard angles everywhere. You're careful not to get tangled in the green, white and blue wires running overhead and into the cockpit. You take a seat, and strap in.` 
 			`	It is only a little warmer here than it was in the maintenance dock. To your left and right are wide, scratched, and frost-rimmed windows.`
 			`	"Velcome. I am called Hjlod." The thickly accented woman looks back from the driver's seat, she has short blonde hair, and her face and arms are covered in long weaving blue tattoos.`
@@ -3001,8 +2997,6 @@ mission "Home for Skadenga 1"
 			choice
 				`	(The large oddly shaped rock falls out of your field of view as the Ice-Crawler turns away from it.)`
 			scene "scene/snowfield"
-					goto river
-			label river
 			`	The uneventful journey to the boiling ice river of Slidr is suddenly interrupted when a deep tremor followed by a thunderous boom shakes the Ice-Crawler to its core and causes it to slip on the disturbed ice and snow.   Somewhere outside subsequent rumble starts to build rapidly.`
 			`	After Hjlod regains control of the crawler, she immediately veers away from the noise. "That vas Nifel-quake, and loud noise was avalanche, or landslide, maybe both. This is not good."`
 			`	Despite her calm demeanor she wields the Ice-Crawler with reckless abandon as she tries to avoid the rumbling snow. The machine protests with creaks and whirrs and pops as it strains to claw itself out of the way faster than it has probably gone for hundreds of years. The closer the rumbling gets, the more difficulty Hjlod seems to have retaining traction.`
@@ -3018,8 +3012,6 @@ mission "Home for Skadenga 1"
 				`	(Put on the jacket and follow Hjlod out onto the Ice.)`
 					goto jacket
 				`	"No way. I am done with this. I am calling my ship, or fixing this Ice-Crawler, either way I am not going anywhere."`
-					goto mudstick
-			label mudstick
 			`	Hjlod shrugs. "You may die, or maybe not. Signals vork strange here at times. Good luck and remember. No refund."`
 			`	With that Hjlod opens the hatch and disappears in the cold white flurry outside.`
 			choice
@@ -3037,8 +3029,6 @@ mission "Home for Skadenga 1"
 			`	In the meantime, you put on the jacket Hjlod left you and stuff it with rags and trash in a bid to keep warm.`
 			choice
 				`	(Shivering, you try to ignore the cold and get some sleep.)`
-					goto muddystick
-			label muddystick
 			`	It has been 19 hours since the avalanche, and you've lost feeling in your hands, and feet. There are no rations and what stale warmth was once here is now gone.`
 			`	Hopefully you didn't make a mistake waiting here. You know you made a mistake by going on this miserable tour. You just want to be warm again, and you certainly don't want to die here.`
 			`	You begin to fade in and out of consciousness, when suddenly you feel a deep vibration, and hear a low rumble from outside.`
@@ -3083,8 +3073,6 @@ mission "Home for Skadenga 1"
 				`	(Follow Hjlod's tracks.)`
 					goto followher
 				`	(Return to the spaceport.)`
-					goto spaceport
-			label spaceport
 			`	You've had enough of this expedition. Hjlod said she was fine and you'll leave it at that. You turn the Ice-Crawler around and make your way back to the spaceport.`
 			`	It only takes a couple hours, and the controls on the Ice-Crawler are relatively easy. When you pull into the maintenance dock, the sales woman comes to meet you and is dismayed that Hjlod is not with you.`
 			`	She hasn't heard from Hjlod and fears the worst. You hope it all works out as you head back to your ship and as far away from this place as possible.`
@@ -3098,8 +3086,6 @@ mission "Home for Skadenga 1"
 				`	(Drive toward the flickering light.)`
 					goto flicker
 				`	(Drive back to the spaceport.)`
-					goto backport
-			label backport
 			`	There is no guarantee that the flicker of light is anything more than a waste of time. You turn the Ice-Crawler around and head back toward the spaceport at the fastest speed you dare.`
 			`	Long hours pass and you press on while Hjlod lays unconscious..`
 			`	Finally, in the dead of night you arrive back at the spaceport. Medics swarm your vehicle, and while you learn she'll live, you are also told that she will lose her hands and feet to frostbite.`
@@ -3113,8 +3099,7 @@ mission "Home for Skadenga 1"
 			scene "scene/snowvillage"
 			choice
 				`	(Sleep now, think later.)`
-					goto wakeup
-			label wakeup
+
 			`	The pale morning light of the first sun filters in through a synthetic window and onto your face.`
 			`	You try to escape back into sleep, but something feels off and groggily you peer out at your surroundings.`
 			`	You're in a half-wooden, half-synthetic barracks. A strange mix of primitive earth-tech and old colonial architecture.`
@@ -3128,8 +3113,7 @@ mission "Home for Skadenga 1"
 				`	"Woah, Woah, WOAH. What do you mean save us all?"`
 					goto woah
 				`	"Your daughter? Hjlod? Is she alright?"`
-					goto daughter
-			label daughter
+
 			`	The elderly woman smiles warmly. "It is good of you to ask. Thanks to you Hjlod will be fine. Had you been any later and she would have lost her hands, or worse. But she is recovering now and will join us later."`
 			choice
 				`	"Woah, Woah, WOAH. What do you mean save us all?"`
@@ -3141,8 +3125,6 @@ mission "Home for Skadenga 1"
 				`	"What do you expect me to do?"`
 					goto expect
 				`	"What do you mean a century? How long have you been here? Why were you waiting for me?"`
-					goto centuries
-			label centuries
 			`	The Ondurdis raises an eyebrow. "So you want to know our secrets? We ask much, so I will tell you more than most know. 2,500 years ago the so-called-elves brought the Skadenga to Deep."`
 			`	The Ondurdis frowns. "We had to make penance for some mistakes. Our volva, or seeress, saw that to make amends we must come to Nifel. We did not know why, but when we found the Goddess-Stone, we knew we had made right decision."`
 			`	"Since then we have lived here and acted as guides and pathfinders to others. It was one of our sisters, Eymani, an herbalist, who discovered the cure to Rigellian plague. We thought this was why we had been sent here. Our duty to act as handmaidens of healing."`
@@ -3155,8 +3137,6 @@ mission "Home for Skadenga 1"
 				`	"I'll do it. I won't let you guys down."`
 					goto doit
 				`	"No. This isn't my problem. I just need to get back to my ship."`
-					goto dontdoit
-			label dontdoit
 			`	The Ondurdis bows and steps back. "If that is your wish. Then you must not be the one we wait for." And with that she and everyone else leave the barracks.`
 			`	You climb out of your bunk, and head to the Ice-Crawler. From there you head straight back to the spaceport.`
 			`	The trip takes a few hours and you spend some of it pondering the strange course of events. How you went from a life or death struggle against the elements to being some rustic community's savior.`
@@ -3178,8 +3158,7 @@ mission "Home for Skadenga 1"
 				`	(Head to the Shuttle)`
 					goto shuttle
 				`	(Take a moment to investigate Goddess-Stone.)`
-					goto dally
-			label dally
+
 			`	You walk toward the park filled with stone cairns, wooden pillars and Goddess-Stone.`
 			`	At this distance you can see that the cairns have name-plates at their bases. Some are so faded and worn you cannot make out the names. Others are easier to read. They appear to be family names. Names like Myrlinga, Baning, and Amalung are the few you can read.`
 			`	Beyond the cairns are the well-carved wooden pillars, or Setstokkr as the Ondurdis called them. They are each over 10 meters tall, and all covered entirely in runic script, images, and patterns. A few have unshorn branches that include their own carvings as well, while most are limbless. On one Setstokkr you notice that a frequent carving within its entwined animals is similar in shape to the burn on your arm.`
@@ -3212,8 +3191,6 @@ mission "Home for Skadenga 1"
 				`	(Walk in Hjlod's footsteps.)`
 					goto travel
 				`	(Continue to meander because you are sick of Hjlod telling you what to do.)`
-					goto die
-			label die
 			`	You walk in your looping meandering pattern, stepping where you want, and not paying any attention to the path Hjlod is taking.`
 			`	You feel righteous vindication as the hours pass and nothing bad happens; proof that Hjlod was just being bossy. She should have no say over what you are doing, it's her fault you're stuck out here stranded on some trash-planet in the blinding cold in the first place.`
 			`	At that thought you do some anger-stomping, really letting her know that you could care less about her worthless warnings. Which is, of course, when you hear a weird gurgling sizzle.`
@@ -3250,8 +3227,6 @@ mission "Home for Skadenga 1"
 			` 	The night air grows too cold. You slow as your body begins to shutdown and frostbite gnaws at your hands, feet and exposed arm. The light is still too distant, and you can barely move. You think you see the shadows of humanoid figures against the light. But then you stumble and fall. You crawl, for as long as you can, you crawl. And then nothing.`
 			choice
 				`	(Wake up.)`
-					goto village
-			label village
 			`	The pale morning light of the first sun filters in through a synthetic window and onto your face.`
 			`	Your body aches and you try to sink back into sleep, but something feels off and you focus on your surroundings.`
 			`	You're in a half-wooden, half-synthetic barracks. A strange mix of primitive earth-tech and old colonial architecture.`
@@ -3263,16 +3238,13 @@ mission "Home for Skadenga 1"
 			`	The elderly woman, and everyone behind her bows.`
 			choice
 				`	"Woah, Woah, WOAH. What do you mean save us all?"`
-					goto woah2
-			label woah2
+
 			`	The elderly woman opens her palms and spreads them wide. "This is village of Udainsakr, I am Ondurdis, or leader, and we are Skadenga, daughters of Skade, the Troll-Goddess of ice, mountains and cold."`
 			`	"For nearly century we have been waiting for person who bore mark of Skade." She points a tattooed hand at a frostbitten mark on your arm where your jacket tore. "It seems we have been waiting for you."`
 			choice
 				`	"What do you expect me to do?"`
 					goto expect2
 				`	"What do you mean century? How long have you been here? Why were you waiting for me?"`
-					goto centuries2
-			label centuries2
 			`	The Ondurdis raises an eyebrow. "So you want to know our secrets? We ask much, so I will tell you more than most know. 2,500 years ago the so-called-elves brought the Skadenga to Deep."`
 			`	The Ondurdis frowns. "We had to make penance for some mistakes. Our volva, or seeress, saw that to make amends we must come to Nifel. We did not know why, but when we found the Goddess-Stone, we knew we had made right decision."`
 			`	"Since then we have lived here and acted as guides and pathfinders to others. It was one of our sisters, Eymani, an herbalist, who discovered the cure to Rigellian plague. We thought this was why we had been sent here. Our duty to act as handmaidens of healing."`
@@ -3285,8 +3257,6 @@ mission "Home for Skadenga 1"
 				`	"I'll do it. I won't let you guys down."`
 					goto doitt
 				`	"No. This isn't my problem. I just need to get back to my ship."`
-					goto dontdoitt
-			label dontdoitt
 			`	The Ondurdis bows and steps back. "If that is your wish. Then you must not be the one we wait for." And with that she and everyone else leave the barracks.`
 			`	You hear the familiar rumble of a shuttle overhead, you climb out of your bunk to go to meet it. From there you head straight back to the spaceport.`
 			`	The trip is brief and you have little time to consider all that has transpired since you decided to take the excursion. You worry you made need therapy.`
@@ -3306,8 +3276,7 @@ mission "Home for Skadenga 1"
 				`	(Head to the Shuttle)`
 					goto shuttles
 				`	(Take a moment to investigate Goddess-Stone.)`
-					goto dallys
-			label dallys
+
 			`	You walk toward the park filled with stone cairns, wooden pillars and Goddess-Stone.`
 			`	At this distance you can now see the cairns have name-plates at their bases. Some are so faded and worn you cannot make out the names. Others are easier to read. They appear to be family names. Names like Myrlinga, Baning, and Amalung are the few you can read.`
 			`	Beyond the cairns are the well-carved wooden pillars, or Setstokkr as the Ondurdis called them. They are each over 10 meters tall, and all covered entirely in runic script, images, and patterns. A few have unshorn branches that include their own carvings as well, while most are limbless. You walk up to one and notice a frequent carving within its entwined animals and shapes is similar to burn on your arm.`
@@ -3401,8 +3370,6 @@ mission "Home for Skadenga 2"
 				`	"No, thanks. I am actually supposed to meeting someone."`
 					goto someone
 				`	"Sure thing. Lead the way."`
-					goto surething
-			label surething
 			`	The guards take you by the arms. "I am pleased you are being so agreeable, consider this a precaution." The administrator promptly turns and you all follow.`
 					goto fancypants
 					
@@ -3541,8 +3508,6 @@ mission "Home for Skadenga 4"
 				`	"That's okay. I didn't mind waiting."`
 					goto waiting
 				`	"I was abducted by the Vice Planetary-Governor."`
-					goto abducted
-			label abducted
 			`	"That is no surprise." Hjlod says nonchalantly. "They alvays do thing like this. It matters not to us."`
 			`	You ask her if she's worried you've been compromised. That you might be working against the Skadenga's best interests.`
 			`	Hjlod shakes her head. "No. Future is set. Vhat vill, vill be. You are given task to tell us vhere to go, ve go vhere you say. The rest is just noise."`
@@ -3696,7 +3661,7 @@ mission "Home for Skadenga 6"
 	on offer
 		conversation
 			`	 The Union Executive is overseeing the final preperations of his fleet, after a moment the last crewmembers leave his side and board their ships. He walks over to you.`
-			` "The Fleet is ready to launch. Please, try to bring them back to me in one piece."`
+			`	"The Fleet is ready to launch. Please, try to bring them back to me in one piece."`
 			choice
 				`	"Let's get this over with."`
 			`	The ground you are standing on shakes as the ships begin to launch.`
