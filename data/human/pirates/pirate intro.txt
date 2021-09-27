@@ -269,8 +269,8 @@ conversation "Den Handoff"
 		`	(Enter and announce yourself.)`
 			goto CCOR
 	#note: text in {curly brackets} is to be translated to Portugese before implementation.
-	`	"{Yeah, I don't really see it happening? My grandfather waited for it, and so did his, and yet here we are- trading with capitalists.}"`
-	`	"{I really wish you wouldn't be so negative, comrade. You know as well as I it's just a matter of waiting for things to collapse. Hell, civil war threatens to break out all across the Republic, just have faith a little longer. In fact, I heard just the other day-}"`
+	`	"Eu sei, mas é que eu realmente não acho que isso vai só acontecer. O vô do meu vô também passou a vida esperando a mesma coisa, e hoje eu e tu tamos aqui, negociando com capitalistas"`
+	`	"Eu preferiria se tu não fosse tão negativo, camarada. Tu sabe tão bem quanto eu que é só uma questão de esperar as coisas entrarem em colapso. Porra, tem uma guerra civil arriscando começar a qualquer momento, se segura por só mais um pouquinho! Inclusive, eu escutei a pouco que – "`
 	`	Without warning a figure steps in front of the doorway, silhouetted by strong lights pointed at the doorframe from within. "In or out, you're letting through a draft. We can conduct business inside."`
 	choice
 		`	(In.)`
@@ -284,12 +284,12 @@ conversation "Den Handoff"
 		`	"I would love some, thank you.`
 		`	"Actually, I'm just here to do business."`
 	`	"Of course. Now, let's get to it."`
-	`	The officer consults his datapad, glancing briefly towards the now-sealed entrance to the room. "Says here you had the chip for the million-credit deal. You've got the money, I assume." Meanwhile, one of his compatriots approaches, steadily waving over you with a scanner of some sort. Everyone seems decidedly relaxed until it pings. Hands immediately drop to guns, cigarettes fall from lips, and tension spills into the air. "{Bug, left hip.}", states the soldier with the scanner.`
+	`	The officer consults his datapad, glancing briefly towards the now-sealed entrance to the room. "Says here you had the chip for the million-credit deal. You've got the money, I assume." Meanwhile, one of his compatriots approaches, steadily waving over you with a scanner of some sort. Everyone seems decidedly relaxed until it pings. Hands immediately drop to guns, cigarettes fall from lips, and tension spills into the air. "Escuta, quadril esquerdo", states the soldier with the scanner.`
 	choice
 		`	(Stay cool.)`
 			goto cool
 		`	(Go for your gun.)`
-	`	You're promptly clobbered by the soldier standing behind you with the scanner. Rather than shoot, they'd simply opted for using what they had at hand - a heavy metallic sensor-bar. "{Good swing, comrade!}" is the last thing you hear before blacking out.`
+	`	You're promptly clobbered by the soldier standing behind you with the scanner. Rather than shoot, they'd simply opted for using what they had at hand - a heavy metallic sensor-bar. "Baita soco, camarada!" is the last thing you hear before blacking out.`
 	apply
 		set "clobbered"
 	choice
