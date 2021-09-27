@@ -3003,11 +3003,12 @@ mission "Home for Skadenga 1"
 			scene "scene/snowfield"
 					goto river
 			label river
-			`	The uneventful journey to the boiling ice river of Slidr is suddenly interrupted when the Ice-Crawler begins to shake wildly for a few moments, followed by a thunderous boom from somewhere outside.`
-			`	After Hjlod regains control of the crawler, she immediately veers away from the noise. "That vas Nifel-quake, and loud noise was avalanche. This is not good."`
-			`	Despite her calm demeanor she wields the Ice-Crawler with reckless abandon as she tries to avoid the rumbling snow. The machine protests with creaks and whirrs and pops as it goes faster than it has gone for hundreds of years.`
-			`	"I think..." Hjlod starts to say when a mountain of snow crashes into the Ice-Crawler dragging it half a kilometer.`
-			`	You and Hjlod hold tight to your seat-belts as you're tossed around. Eventually, the crawler comes to a rest on its' side.`
+			`	The uneventful journey to the boiling ice river of Slidr is suddenly interrupted when a deep tremor followed by a thunderous boom shakes the Ice-Crawler to its core and causes it to slip on the disturbed ice and snow.   Somewhere outside subsequent rumble starts to build rapidly.`
+			`	After Hjlod regains control of the crawler, she immediately veers away from the noise. "That vas Nifel-quake, and loud noise was avalanche, or landslide, maybe both. This is not good."`
+			`	Despite her calm demeanor she wields the Ice-Crawler with reckless abandon as she tries to avoid the rumbling snow. The machine protests with creaks and whirrs and pops as it strains to claw itself out of the way faster than it has probably gone for hundreds of years. The closer the rumbling gets, the more difficulty Hjlod seems to have retaining traction.`
+			`	"I think..." Hjlod starts to say when a mountain of snow crashes into the Ice-Crawler with deafening force. All sense of travelling distance is lost as the snow blots out the windows and the crawler is dragged bumping and twisting over uneven terrain.`
+			`	You and Hjlod hold tight to your seat-belts as you're tossed around until, eventually, the crawler grinds up against something reasonably solid and comes suddenly to a rest, partially on its' side.`
+			`	A few moments later the rumbling finishes passing you by.`
 			choice
 				`	(Unbuckle your seatbelt and get yourself up.)`
 			`	By the time you are on your feet Hjlod has already gathered up numerous supplies and is preparing to open the hatch and dig her way to the surface.`
@@ -3512,7 +3513,7 @@ mission "Home for Skadenga 3"
 			`	During the Colonization of The Deep in the 26th Century, the earliest colonists erected large metal slabs and wrote nonsensical pseudo-letters on them. It is believed that this was done in order to raise the prestige of their early worlds. They would claim that they were powerful alien artifacts, or that they were made by an earlier population of humans who had arrived on the world thanks to the intercession of fairies.`
 			`	Either for profit, or out of a longing for home, many local communities promoted these superstitious ideas about the origins of these structures. Scientists have determined that these structures were once large segments of the metal hulls of the original colony ships. Although, to date, there has been some trouble identifying exactly what kind of metal they were made from.`
 			`	Most worlds in The Deep have 'Colonial Graffiti', and they are proud reminders of our enterprising colonial origins. They are sometimes known in older texts, and by some outdated communities as God-Stones and Elf-Stones.`
-			`	Here at the Helsingor Family-Fun-Shopping-Center we are committed to celebrating our past! Which is why we renovated this old useless colonial structure and made it a vital part of our vibrant community!'` 
+			`	Here at the Helsingor Family-Fun-Shopping-Center we are committed to celebrating our past! Which is why we, in the spirit of graffiti being the cultural touchstone of the day, have renovated this colonial structure into a central communication piece and made it a vital part of our vibrant community!'` 
 			`	You finish reading the plaque, and look at the dull grey metal wall, and the inhuman things carved upon it. It looks nothing like a ship's hull.`
 			label ship
 			`	These people seem disconnected from their past. You wonder if the Skadenga could help them reconnect with it, but worry that the place would change the Skadenga more than they could change it. There is nothing more you can do here. You head back to your ship.`
@@ -3810,7 +3811,7 @@ mission "Skadenga Call 2"
 					goto here
 			label who
 			`	Hjlod laughs and tears run down her cheeks. "Do you not recognize us? Our great savior? Ve are the Skadenga, and this is your handivwork."`
-			`	She look away from you and continues. "The rest are not dead, no. But they have left us. Most are happy; happy to be fed, happy to be entertained, happy to forget vho they are, happy to no longer be Skadenga. But, those here cannot accept that. Ve refuse to become them."`
+			`	She look away from you and continues. "The rest are not dead, no. But they have left us. Most are happy; happy to be fed, happy to be entertained, happy to forget vho they are, happy be Skadenga only in name but not in practice. But, those here cannot accept that. Ve refuse to become them."`
 			`	"Ve hide now. From the social workers, from the service providers, from the government. They can still find us, they know ve are here, but vhat they don't know is that ve can leave. That you can take us avay from here."`
 			label here
 			`	Hjlod takes a deep calming breath. "I call because you are only hope. They vill not let us leave. They vill not let us be. They will steal our souls."`
@@ -3853,7 +3854,7 @@ mission "Skadenga Call 2"
 				`	(Take off.)`
 					goto takeoff
 				`	(Power down your ship and open the hatch.)`
-			`	You turn off your ship's ignition, pop open the hatch before Hjlod can react, and jump out. You find Carla Von Hausen, and a squad of police officers waiting for you.`
+			`	You turn off your ship's ignition, pop open the hatch before Hjlod can react, and jump out. Carla Von Hausen, at least two civil service works, and a squad of police officers arrive within seconds.`
 			`	Carla gives you a tight smile. "Decided to do the right thing in the end? We appreciate it."`
 			`	The police officers enter your ship and start restraining and removing the the Skadenga aboard it.`
 			`	"As always, we appreciate your help and value our continued working relationship. Expect a payment in the next couple days, after I've gotten it approved, for your aid." Carla steps back to assess the Skadenga, most of which are sullen and reserved. One though, is screaming, kicking and biting.`
@@ -3916,7 +3917,7 @@ mission "Skadenga Call 4"
 			`	"<first>, I saw your ship landing, and thought I vould say hello."`
 			`	You ask her how she has been, and she tells you how the small community of Skadenga have rebuilt and thrived here. That there has even been a small amount of immigration to their tiny town. That word had gotten out about their desperate escape from, Asgard.`
 			`	She tells you that she forgives you the past, and hopes you find whatever it is you are looking for among the stars. She even hugs you before she leaves.`
-			`	As she walks away you wonder if you can ever forgive yourself.`
+			`	As she walks away you wonder, though she might forgive you, if you can ever forgive yourself...`
 			scene "scene/journey"
 
 event "hjlod waits again"
