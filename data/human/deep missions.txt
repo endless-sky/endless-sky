@@ -4001,8 +4001,6 @@ mission "Home for Skadenga 9"
 				`	"You got the wrong person. I don't even know who the Allen boys are.`
 					goto next
 				`	"I was not sent by the Allen whoevers, and if you even touch me, I will burn this entire planet to ash."`
-					goto buffcheck
-			label buffcheck
 			branch buffboi
 				"combat rating" >  8104
 			`	Hroar breaks into uproarious laughter. People sitting the booth over, who were obviously listening, also start laughing "Don't make threats you can't back up, kid. Or you're gonna be a messenger in a bodybag."`
