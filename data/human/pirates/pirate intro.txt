@@ -239,8 +239,18 @@ mission "Pirate Intro - Wealth"
 		has "I Want To Be A Pirate: done"
 	to complete
 		has "Pirate Intro - Payment: declined"
-	conversation "Den Handoff"
 	
+
+mission "Pirate Intro - Payment"
+	invisible
+	landing
+	to offer
+		has "Pirate Intro - Wealth: active"
+		credits > 1000000
+	source "Smuggler's Den"
+	on offer
+		conversation "Den Handoff"
+		
 conversation "Den Handoff"
 	`"That's a key", a janitor cheerfully explains as he spots you staring at the datachip the suit-clad pirate had given you back in that dingy tavern. "... Goodness, you've had a few too many, haven't you? Give it here." Without waiting for your permission, the fellow snaps the chip up out of your hands and runs it through a device attached to his belt. "Hangar 18, just pop it into the wall console and it'll open up for you. Best get moving before your captain notices you're missing, harhar." With a smile and a wave, the janitor deposits the chip back into your palm, brushes past you, and returns to going about his business.`
 	choice
@@ -328,27 +338,8 @@ conversation "Den Handoff"
 	`The soldiers give you a moment to dress yourself and gather your things back up, though the surly looks you're fixed with make it clear they're keen to see you go.`
 	#back to normal flow
 	`The transaction is complete. You've spent a million credits, out of your own pocket, for something that needs to be delivered to a mysterious pirate in formal wear that you met in a stinking bar. This is definitely the path of wisdom that you walk. Thankfully, no further obstacles present themelf as you return to your ship.`
+	#deduct 1M credits and apply relevant conditions, mission is complete
 	
-	
-
-mission "Pirate Intro - Payment"
-	invisible
-	landing
-	to offer
-		has "Pirate Intro - Wealth: active"
-		credits > 1000000
-	source "Smuggler's Den"
-	on offer
-		conversation
-			`Do you want to pay up now?`
-			choice
-				`	Yes.`
-				`	No.`
-					defer
-			apply
-				payment -1000000
-			`	You're all paid up.`
-				decline
 
 
 mission "Pirate Intro - Domination"
