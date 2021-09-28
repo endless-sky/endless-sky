@@ -3766,7 +3766,6 @@ mission "Skadenga Call 4"
 			`	You ask her how she has been, and she tells you how the small community of Skadenga have rebuilt and thrived here. That there has even been a small amount of immigration to their tiny town. That word had gotten out about their desperate escape from, Asgard.`
 			`	She tells you that she forgives you the past, and hopes you find whatever it is you are looking for among the stars. She even hugs you before she leaves.`
 			`	As she walks away you wonder, though she might forgive you, if you can ever forgive yourself...`
-			scene "scene/journey"
 
 event "hjlod waits again"
 
