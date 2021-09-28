@@ -2827,6 +2827,7 @@ mission "Home for Skadenga 1"
 			`	"This is famous Glaesisvellir ice-plain. Story say once whole convoy of researcher disappear here. Can drill hole in ice for fishing, there is very good tasting voolly octopus beneath it."`
 			scene "scene/iceplains"
 			`	Hjlod slows down and looks back at you. "You have question?"`
+			label questions
 			choice
 				`	"Nope. No questions."`
 					goto noquestion
@@ -2840,140 +2841,22 @@ mission "Home for Skadenga 1"
 			`	"Long time ago. Researcher convoy look for bacterial pharmaceutical. Many researcher convoy in area. Most smart use native pathfinder, like me. This convoy, they not so smart, they say pathfinder waste of money. They go out in ice alone and they never come back."`
 			`	Hjlod shrugs. "Maybe they fall in ice. Maybe they get eaten by Ice-Slug. Maybe avalanche fall on them. Maybe fall on own veapon and die. Nobody ever find them. Tour-guide book say that some night you can see their ghost haunting ice. Tour-guide book dumb."`
 			`	"Any more question?"`
-			choice
-				`	"Nope. No questions."`
-					goto noquestion
-				`	"Is it safe to drive over the ice?"`
-					goto ice1
-				`	"Are there sea-monsters beneath the ice?"`
-					goto monster1
-			label ice1
-			`	"Very safe. Except when not. Ice always frozen, but sometime very thin. I can tell. You cannot. Trust Hjlod and you not drown and get eaten by Ice-Slug."`
-			` 	"You have more question?"`
-			choice
-				`	"Nope. No questions."`
-					goto noquestion
-				`	"Are there sea-monsters beneath the ice?"`
-					goto monster12
-			label monster12
-			`	"Every world have animal. Some animal big, some small. Voolly Octopus, mostly small. Size of this Ice-Crawler, only. Vorst in Glaesisvellir ice-plains is Ice-Slug. They can squeeze through tiniest hole in ice. This take long time, for they are as big as house. They have no teeth, too hard to squeeze through little hole, but they have acid spit. Put hole in Ice-Crawler, easy. They eat many foolish researcher and tourist."`
-			`	She smiles at you. "You're not foolish tourist. You are with Hjlod. You are safe."`
-			`	"Now, no more question." With that Hjlod swivels back into her cockpit and begins plotting a new course for the Ice-Crawler.`
-			scene "scene/iceplains2"
-			choice
-				`	(You look out at the bright Ice-Plains as they slowly disappear into the dull horizon.)`
-					goto rock
-			label monster1
-			`	"Every world have animal. Some animal big, some small. Voolly Octopus, mostly small. Size of this Ice-Crawler, only. Vorst in Glaesisvellir ice-plains is Ice-Slug. They can squeeze through tiniest hole in ice. This take long time, for they are as big as house. They have no teeth, too hard to squeeze through little hole, but they have acid spit. Put hole in Ice-Crawler, easy. They eat many foolish researcher and tourist."`
-			`	She smiles at you. "You're not foolish tourist. You are with Hjlod. You are safe."`
-			` 	"You have more question?"`
-			choice
-				`	"Nope. No questions."`
-					goto noquestion
-				`	"Is it safe to drive over the ice?"`
-					goto ice12
-			label ice12
-			`	"Very safe. Except when not. Ice always frozen, but sometime very thin. I can tell. You cannot. Trust Hjlod and you not drown and get eaten by Ice-Slug."`
-			`	"Now, no more question." With that Hjlod swivels back into her cockpit and begins plotting a new course for the Ice-Crawler.`
-			scene "scene/iceplains2"
-			choice
-				`	(You look out at the bright Ice-Plains as they slowly disappear into the dull horizon.)`
-					goto rock
+				goto questions
 			label ice
 			`	"Very safe. Except when not. Ice always frozen, but sometime very thin. I can tell. You cannot. Trust Hjlod and you not drown and get eaten by Ice-Slug."`
-			`	"Any more question?"`
-			choice
-				`	"Nope. No questions."`
-					goto noquestion
-				`	"What happened to the researchers?"`
-					goto researcher2
-				`	"Are there sea-monsters beneath the ice?"`
-					goto monster2
-			label researcher2
-			`	"Long time ago. Researcher convoy look for bacterial pharmaceutical. Many researcher convoy in area. Most smart use native pathfinder, like me. This convoy, they not so smart, they say pathfinder waste of money. They go out in ice alone and they never come back."`
-			`	Hjlod shrugs. "Maybe they fall in ice. Maybe they get eaten by Ice-Slug. Maybe avalanche fall on them. Maybe fall on own veapon and die. Nobody ever find them. Tour-guide book say that some night you can see their ghost haunting ice. Tour-guide book is dumb."`
-			`	"You have more question?"`
-			choice
-				`	"Nope. No questions."`
-					goto noquestion
-				`	"Are there sea-monsters beneath the ice?"`
-					goto monster21
-			label monster21
-			`	"Every world have animal. Some animal big, some small. Voolly Octopus, mostly small. Size of this Ice-Crawler, only. Vorst in Glaesisvellir ice-plains is Ice-Slug. They can squeeze through tiniest hole in ice. This take long time, for they are as big as house. They have no teeth, too hard to squeeze through little hole, but they have acid spit. Put hole in Ice-Crawler, easy. They eat many foolish researcher and tourist."`
-			`	She smiles at you, "You're not foolish tourist. You are with Hjlod. You are safe."`
-			`	"Now, no more question." With that Hjlod swivels back into her cockpit and begins plotting a new course for the Ice-Crawler.`
-			scene "scene/iceplains2"
-			choice
-				`	(You look out at the bright Ice-Plains as they slowly disappear into the dull horizon.)`
-					goto rock
-			label monster2
-			`	"Every world have animal. Some animal big, some small. Voolly Octopus, mostly small. Size of this Ice-Crawler, only. Vorst in Glaesisvellir ice-plains is Ice-Slug. They can squeeze through tiniest hole in ice. This take long time, for they are as big as house. They have no teeth, too hard to squeeze through little hole, but they have acid spit. Put hole in Ice-Crawler, easy. They eat many foolish researcher and tourist."`
-			`	She smiles at you. "You're not foolish tourist. You are with Hjlod. You are safe."`
-			`	"You have anymore question?"`
-			choice
-				`	"Nope. No questions."`
-					goto noquestion
-				`	"What happened to the researchers?"`
-					goto researcher21
-			label researcher21
-			`	"Long time ago. Researcher convoy look for bacterial pharmaceutical. Many researcher convoy in area. Most smart use native pathfinder, like me. This convoy, they not so smart, they say pathfinder waste of money. They go out in ice alone and they never come back."`
-			`	Hjlod shrugs, "Maybe they fall in ice. Maybe they get eaten by Ice-Slug. Maybe avalanche fall on them. Maybe fall on own veapon and die. Nobody ever find them. Tour-guide book say that some night you can see their ghost haunting ice. Tour-guide book is dumb."`
-			`	"Now, no more question." With that Hjlod swivels back into her cockpit and begins plotting a new course for the Ice-Crawler.`
-			scene "scene/iceplains2"
-			choice
-				`	(You look out at the bright Ice-Plains as they slowly disappear into the dull horizon.)`
-					goto rock
+			` 	"You have more question?"`
+				goto questions
 			label monster
 			`	"Every world have animal. Some animal big, some small. Voolly Octopus, mostly small. Size of this Ice-Crawler, only. Vorst in Glaesisvellir ice-plains is Ice-Slug. They can squeeze through tiniest hole in ice. This take long time, for they are as big as house. They have no teeth, too hard to squeeze through little hole, but they have acid spit. Put hole in Ice-Crawler, easy. They eat many foolish researcher and tourist."`
 			`	She smiles at you. "You're not foolish tourist. You are with Hjlod. You are safe."`
-			`	"Anymore question?"`
-			choice
-				`	"Nope. No questions."`
-					goto noquestion
-				`	"What happened to the researchers?"`
-					goto researcher3
-				`	"Is it safe to drive over the ice?"`
-					goto ice3
-			label researcher3
-			`	"Long time ago. Researcher convoy look for bacterial pharmaceutical. Many researcher convoy in area. Most smart use native pathfinder, like me. This convoy, they not so smart, they say pathfinder waste of money. They go out in ice alone and they never come back."`
-			`	Hjlod shrugs. "Maybe they fall in ice. Maybe they get eaten by Ice-Slug. Maybe avalanche fall on them. Maybe fall on own veapon and die. Nobody ever find them. Tour-guide book say that some night you can see their ghost haunting ice. Tour-guide book is dumb."`
-			`	"You have more question?"`
-			choice
-				`	"Nope. No questions."`
-					goto noquestion
-				`	"Is it safe to drive over the ice?"`
-					goto ice31
-			label ice31
-			`	"Very safe. Except when not. Ice always frozen, but sometime very thin. I can tell. You cannot. Trust Hjlod and you not drown and get eaten by Ice-Slug."`
-			`	"Now, no more question." With that Hjlod swivels back into her cockpit and begins plotting a new course for the Ice-Crawler.`
-			scene "scene/iceplains2"
-			choice
-				`	(You look out at the bright Ice-Plains as they slowly disappear into the dull horizon.)`
-					goto rock
-			label ice3
-			`	"Very safe. Except when not. Ice always frozen, but sometime very thin. I can tell. You cannot. Trust Hjlod and you not drown and get eaten by Ice-Slug."`
-			`	"You have more question?"`
-			choice
-				`	"Nope. No questions."`
-					goto noquestion
-				`	"What happened to the researchers?"`
-					goto researcher31
-			label researcher31
-			`	"Long time ago. Researcher convoy look for bacterial pharmaceutical. Many researcher convoy in area. Most smart use native pathfinder, like me. This convoy, they not so smart, they say pathfinder waste of money. They go out in ice alone and they never come back."`
-			`	Hjlod shrugs. "Maybe they fall in ice. Maybe they get eaten by Ice-Slug. Maybe avalanche fall on them. Maybe fall on own veapon and die. Nobody ever find them. Tour-guide book say that some night you can see their ghost haunting ice. Tour-guide book is dumb."`
-			`	"Now, no more question." With that Hjlod swivels back into her cockpit and begins plotting a new course for the Ice-Crawler.`
-			scene "scene/iceplains2"
-			choice
-				`	(You look out at the bright Ice-Plains as they slowly disappear into the dull horizon.)`
-					goto rock
+			`	"Any more question?"`
+				goto questions
 			label noquestion
 			`	"Is smart, not to ask question. Hjlod tell you best parts only." Hjlod gives you a quick grin and swivels back into her makeshift cockpit.`
 			`	"Enough ice-plain, now ve go to next stop."`
 			scene "scene/iceplains2"
 			choice
 				`	(You look out at the bright Ice-Plains as they slowly disappear into the dull horizon.)`
-					goto rock
-			label rock
 			`	The Ice-Crawler plows through snow, hill, mountain, and tundra for another hour or two before a massive and oddly shaped rock passes into view. Hjlod stops the Ice-Crawler so you can look at it.`
 			`	"This is rock." She says matter-of-factly.`
 			`	You look at it for a while and realize there is a face half chiseled into it.`
@@ -3054,14 +2937,14 @@ mission "Home for Skadenga 1"
 			label fist
 			` 	In a moment of levity you pump your fist into the air.`
 			`	Unfortunately, your fist does not make it very far. As the Ice-Crawler, with its criss-crossed wires, has a critical energy build up that results in an instantaneous completely deadly explosion.`
-			`	The Ice-Crawler, your entire body, your fist, and more than a couple hundred tons of snow, are all incinerated in a fraction of a second.`
 			scene "scene/smeer"
+			`	The Ice-Crawler, your entire body, your fist, and more than a couple hundred tons of snow, are all incinerated in a fraction of a second.`
 				die
 			label cheer
 			`	The sense of accomplishment inside you is so overwhelming that you find yourself unable to contain it.`
 			`	A cry of pure joy leaps out of your mouth. Or begins too. Unfortunately, it doesn't get too far. As the Ice-Crawler, with its criss-crossed wires, has a critical energy build up that results in an instantaneous completely deadly explosion.`
-			`	The Ice-Crawler, your entire body, and more than a couple hundred tons of snow, are all incinerated in a fraction of a second.`
 			scene "scene/smeer"
+			`	The Ice-Crawler, your entire body, and more than a couple hundred tons of snow, are all incinerated in a fraction of a second.`
 				die
 			label greatsuccess
 			`	With the final cord in place, you hold your breath as you start the Ice-Crawler. The engine hums to life and you wait a few more cautious seconds for the inevitable explosion... which never comes.`
