@@ -3106,7 +3106,7 @@ mission "Home for Skadenga 1"
 			`	The cold monotonous trudging weighs on you as the hours pass. You're dimly aware of Nifel's two suns as they make their journey across the wide open sky.`
 			`	Evening and exhaustion approach hand in hand and as the last sun sets you're not sure how much farther you can go. `
 			`	"There!" Hjlod breaks the silence of hours as she points at the weak flicker of light in the twilight landscape.`
-			`	"This is good." Hjlod admits hoarsely as you both stumble toward the light. "Ve Vould have not survived night."`
+			`	"This is good." Hjlod admits hoarsely as you both stumble toward the light. "Ve vould have not survived night."`
 			` 	The night air grows too cold. You slow as your body begins to shutdown and frostbite gnaws at your hands, feet and exposed arm. The light is still too distant, and you can barely move. You think you see the shadows of humanoid figures against the light. But then you stumble and fall. You crawl, for as long as you can, you crawl. And then nothing.`
 			choice
 				`	(Wake up.)`
