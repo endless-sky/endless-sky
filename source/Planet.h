@@ -41,7 +41,7 @@ class Planet {
 public:
 	// Load a planet's description from a file.
 	void Load(const DataNode &node);
-	void FinishLoading();
+	void FinishLoading(Set<Wormhole> &wormholes);
 	// Check if both this planet and its containing system(s) have been defined.
 	bool IsValid() const;
 	

@@ -224,6 +224,12 @@ bool GameData::BeginLoad(const char * const *argv)
 		for(const string &path : dataFiles)
 			LoadFile(path, debugMode);
 	}
+
+	// Update references to wormholes.
+	for(auto &&it : wormholes)
+		planets.Get(it.first)->AssignWormhole(&it.second);
+	for(auto &&it : planets)
+		it.second.FinishLoading(wormholes);
 	
 	// Now that all data is loaded, update the neighbor lists and other
 	// system information. Make sure that the default jump range is among the
@@ -244,9 +250,6 @@ bool GameData::BeginLoad(const char * const *argv)
 			[](const StartConditions &it) noexcept -> bool { return !it.IsValid(); }),
 		startConditions.end()
 	);
-
-	for(auto &&it : planets)
-		it.second.FinishLoading();
 	
 	// Store the current state, to revert back to later.
 	defaultFleets = fleets;
@@ -340,9 +343,6 @@ void GameData::CheckReferences()
 	for(const auto &it : phrases)
 		if(it.second.Name().empty())
 			Warn("phrase", it.first);
-	// Update references to wormholes.
-	for(auto &&it : wormholes)
-		planets.Get(it.second.GetPlanet()->TrueName())->AssignWormhole(&it.second);
 	// Planet names are used by a number of classes.
 	for(auto &&it : planets)
 		if(it.second.TrueName().empty() && !NameIfDeferred(deferred["planet"], it))
@@ -366,6 +366,10 @@ void GameData::CheckReferences()
 	for(const auto &it : hazards)
 		if(!it.second.IsValid())
 			Warn("hazard", it.first);
+	// Wormholes are never serialized.
+	for(const auto &it : wormholes)
+		if(!it.second.IsValid())
+			Warn("wormhole", it.first);
 }
 
 
@@ -681,7 +685,7 @@ void GameData::UpdateSystems()
 
 		for(const auto &object : it.second.Objects())
 			if(object.GetPlanet())
-				planets.Get(object.GetPlanet()->TrueName())->FinishLoading();
+				planets.Get(object.GetPlanet()->TrueName())->FinishLoading(wormholes);
 	}
 }
 
@@ -978,24 +982,6 @@ const StarField &GameData::Background()
 void GameData::SetHaze(const Sprite *sprite, bool allowAnimation)
 {
 	background.SetHaze(sprite, allowAnimation);
-}
-
-
-
-void GameData::AutogenerateWormhole(Planet *planet)
-{
-	if(wormholes.Has(planet->TrueName()))
-		// There already exists a wormhole with that name, don't need to autogenerate one.
-		return;
-
-	auto *wormhole = wormholes.Get(planet->TrueName());
-	planet->AssignWormhole(wormhole);
-	wormhole->LoadFromPlanet(planet);
-
-	if(planet->GetWormhole()->IsValid())
-		Files::LogError("Warning: auto generation of wormhole \"" + planet->TrueName() + "\".");
-	else
-		Files::LogError("Warning: auto generation of wormhole \"" + planet->TrueName() + "\" failed.");
 }
 
 

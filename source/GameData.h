@@ -146,9 +146,6 @@ public:
 	
 	static const StarField &Background();
 	static void SetHaze(const Sprite *sprite, bool allowAnimation);
-
-	// Autogenerates a wormhole for the given plnaet.
-	static void AutogenerateWormhole(Planet *planet);
 	
 	static const std::string &Tooltip(const std::string &label);
 	static std::string HelpMessage(const std::string &name);
