@@ -116,8 +116,6 @@ public:
 	// Check if this is a wormhole (that is, it appears in multiple systems).
 	bool IsWormhole() const;
 	const Wormhole *GetWormhole() const;
-	// Check if this planet appears in multiple systems and so is a wormhole.
-	bool AppearsInMultipleSystems() const;
 	// Assigns a wormhole to this planet.
 	void AssignWormhole(Wormhole *wormhole);
 	

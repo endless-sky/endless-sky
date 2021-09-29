@@ -492,13 +492,6 @@ const Wormhole *Planet::GetWormhole() const
 
 
 
-bool Planet::AppearsInMultipleSystems() const
-{
-	return systems.size() > 1;
-}
-
-
-
 void Planet::AssignWormhole(Wormhole *wormhole)
 {
 	this->wormhole = wormhole;
