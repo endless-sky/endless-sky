@@ -10,13 +10,13 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#include "Audio.h"
+#include "../Audio.h"
 
-#include "Files.h"
-#include "Music.h"
-#include "Point.h"
-#include "Random.h"
-#include "Sound.h"
+#include "../Files.h"
+#include "../Music.h"
+#include "../Point.h"
+#include "../Random.h"
+#include "../Sound.h"
 
 #ifndef __APPLE__
 #include <AL/al.h>

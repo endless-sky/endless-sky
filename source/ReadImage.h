@@ -1,5 +1,5 @@
-/* gl_header.h
-Copyright (c) 2014 by Michael Zahniser
+/* ReadImage.h
+Copyright (c) 2015 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -10,19 +10,16 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-// Include whichever header is used for OpenGL on this operating system.
-#ifdef __APPLE__
-#include <OpenGL/GL3.h>
-#else
-#ifdef ES_GLES
-#include <GLES3/gl3.h>
-#else
-#include <GL/glew.h>
-#endif
-#endif
+#ifndef READ_IMAGE_H_
+#define READ_IMAGE_H_
 
+#include <string>
 
+class ImageBuffer;
 
-namespace gl {
-	void Clear();
+namespace Read {
+	bool PNG(const std::string &path, ImageBuffer &buffer, int frame);
+	bool JPG(const std::string &path, ImageBuffer &buffer, int frame);
 }
+
+#endif

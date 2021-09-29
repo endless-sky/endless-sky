@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Dialog.h"
 #include "FillShader.h"
 #include "GameData.h"
+#include "Input.h"
 #include "Point.h"
 #include "Preferences.h"
 #include "Screen.h"
@@ -225,7 +226,7 @@ bool Panel::DoKey(SDL_Keycode key, Uint16 mod)
 // something you are buying, so the shared function is defined here:
 int Panel::Modifier()
 {
-	SDL_Keymod mod = SDL_GetModState();
+	SDL_Keymod mod = Input::GetModState();
 	
 	int modifier = 1;
 	if(mod & KMOD_ALT)

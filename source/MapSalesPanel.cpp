@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Input.h"
 #include "ItemInfoDisplay.h"
 #include "text/layout.hpp"
 #include "Outfit.h"
@@ -130,7 +131,7 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 	{
 		Point point(x, y);
 		
-		bool isCompare = (SDL_GetModState() & KMOD_SHIFT);
+		bool isCompare = (Input::GetModState() & KMOD_SHIFT);
 		
 		for(const ClickZone<int> &zone : zones)
 			if(zone.Contains(point))
@@ -411,7 +412,7 @@ void MapSalesPanel::ScrollTo(int index)
 void MapSalesPanel::ClickCategory(const string &name)
 {
 	bool isHidden = collapsed.count(name);
-	if(SDL_GetModState() & KMOD_SHIFT)
+	if(Input::GetModState() & KMOD_SHIFT)
 	{
 		// If the shift key is held down, hide or show all categories.
 		if(isHidden)

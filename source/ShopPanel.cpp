@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Input.h"
 #include "OutlineShader.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -103,7 +104,7 @@ void ShopPanel::Draw()
 {
 	const double oldSelectedTopY = selectedTopY;
 	
-	glClear(GL_COLOR_BUFFER_BIT);
+	gl::Clear();
 	
 	// Clear the list of clickable zones.
 	zones.clear();
@@ -726,7 +727,7 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 	for(const ClickZone<string> &zone : categoryZones)
 		if(zone.Contains(clickPoint))
 		{
-			bool toggleAll = (SDL_GetModState() & KMOD_SHIFT);
+			bool toggleAll = (Input::GetModState() & KMOD_SHIFT);
 			auto it = collapsed.find(zone.Value());
 			if(it == collapsed.end())
 			{
@@ -1002,8 +1003,8 @@ void ShopPanel::SideSelect(int count)
 
 void ShopPanel::SideSelect(Ship *ship)
 {
-	bool shift = (SDL_GetModState() & KMOD_SHIFT);
-	bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI));
+	bool shift = (Input::GetModState() & KMOD_SHIFT);
+	bool control = (Input::GetModState() & (KMOD_CTRL | KMOD_GUI));
 	
 	if(shift)
 	{

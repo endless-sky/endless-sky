@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
+#include "Input.h"
 #include "Interface.h"
 #include "text/layout.hpp"
 #include "LogbookPanel.h"
@@ -282,7 +283,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 				hoverIndex = -1;
 		}
 		// Update the selection.
-		bool hasMod = (SDL_GetModState() & (KMOD_SHIFT | KMOD_CTRL | KMOD_GUI));
+		bool hasMod = (Input::GetModState() & (KMOD_SHIFT | KMOD_CTRL | KMOD_GUI));
 		if(!hasMod)
 			allSelected.clear();
 		if(selectedIndex >= 0)
@@ -379,8 +380,8 @@ bool PlayerInfoPanel::Click(int /* x */, int /* y */, int clicks)
 	if(hoverIndex < 0)
 		return true;
 	
-	bool shift = (SDL_GetModState() & KMOD_SHIFT);
-	bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI));
+	bool shift = (Input::GetModState() & KMOD_SHIFT);
+	bool control = (Input::GetModState() & (KMOD_CTRL | KMOD_GUI));
 	if(canEdit && (shift || control || clicks < 2))
 	{
 		// Only allow changing your flagship when landed.

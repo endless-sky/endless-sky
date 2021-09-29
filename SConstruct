@@ -77,6 +77,7 @@ sys_libs = [
 	"rpcrt4",
 ] if is_windows_host else [
 	"uuid",
+	"pthread",
 ]
 env.Append(LIBS = sys_libs)
 
@@ -94,7 +95,6 @@ game_libs = [
 	"png",
 	"jpeg",
 	"openal",
-	"pthread",
 ]
 env.Append(LIBS = game_libs)
 
@@ -132,31 +132,24 @@ libDirectory = pathjoin("lib", env["mode"])
 VariantDir(buildDirectory, "source", duplicate = 0)
 
 # Find all regular source files.
-excludes = ["main.cpp",
-			"Render.cpp",
-			"text/Font.cpp",
-			"ImageBuffer.cpp",
-			"FilesPath.cpp",
-			"LineShader.cpp",
-			"OutlineShader.cpp",
-			"RingShader.cpp",
-			"SpriteShader.cpp"]
 def RecursiveGlob(pattern, dir_name=buildDirectory):
 	# Start with source files in subdirectories.
 	matches = [RecursiveGlob(pattern, sub_dir) for sub_dir in Glob(pathjoin(str(dir_name), "*"))
 		if isinstance(sub_dir, Dir)]
+	# Add source files in this directory, except for main.cpp and support library code.
 	matches += Glob(pathjoin(str(dir_name), pattern))
-	return matches
-def ArchiveFileList():
-	matches = RecursiveGlob("*.cpp", buildDirectory)
-	# Add source files in this directory, except for main.cpp
-	for exclude in excludes:
-		matches = [i for i in matches if not "/" + exclude in str(i)]
+
+	transform = lambda s : ('{}' + s).format(os.path.sep)
+	matches = [i for i in matches if
+			not transform("main.cpp") in str(i) and
+			not transform("render") in str(i) and
+			not "Shader.cpp" in str(i) and
+			not transform("GameWindow.cpp") in str(i)]
 	return matches
 
 # By default, invoking scons will build the backing archive file and then the game binary.
-sourceLib = env.StaticLibrary(pathjoin(libDirectory, "endless-sky"), ArchiveFileList())
-exeObjs = [Glob(pathjoin(buildDirectory, f)) for f in excludes]
+sourceLib = env.StaticLibrary(pathjoin(libDirectory, "endless-sky"), RecursiveGlob("*.cpp", buildDirectory))
+exeObjs = [Glob(pathjoin(buildDirectory, f)) for f in ("main.cpp", "render/*.cpp", "GameWindow.cpp", "*Shader.cpp")]
 if is_windows_host:
 	windows_icon = env.RES(pathjoin(buildDirectory, "WinApp.rc"))
 	exeObjs.append(windows_icon)
@@ -171,10 +164,10 @@ VariantDir(testBuildDirectory, pathjoin("tests", "src"), duplicate = 0)
 test = env.Program(
 	target=pathjoin("tests", "endless-sky-tests"),
 	source=RecursiveGlob("*.cpp", testBuildDirectory) + sourceLib,
-	# Add Catch header & additional test includes to the existing search paths
+ # Add Catch header & additional test includes to the existing search paths
 	CPPPATH=(env.get('CPPPATH', []) + [pathjoin('tests', 'include')]),
 	# Do not link against the actual implementations of SDL, OpenGL, etc.
-	LIBS=sys_libs + ["pthread"],
+	LIBS=sys_libs,
 	# Pass the necessary link flags for a console program.
 	LINKFLAGS=[x for x in env.get('LINKFLAGS', []) if x not in ('-mwindows',)] + ["-Wl,--no-as-needed"]
 )

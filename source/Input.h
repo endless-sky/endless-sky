@@ -1,5 +1,5 @@
-/* gl_header.h
-Copyright (c) 2014 by Michael Zahniser
+/* Input.h
+Copyright (c) 2015 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -10,19 +10,26 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-// Include whichever header is used for OpenGL on this operating system.
-#ifdef __APPLE__
-#include <OpenGL/GL3.h>
-#else
-#ifdef ES_GLES
-#include <GLES3/gl3.h>
-#else
-#include <GL/glew.h>
-#endif
-#endif
+#ifndef KEYBOARD_H_
+#define KEYBOARD_H_
+
+#include <cstdint>
+
+#include <SDL2/SDL.h>
 
 
 
-namespace gl {
-	void Clear();
+namespace Input
+{
+	// Returns an array of the current keyboard state.
+	const Uint8 *GetState();
+	SDL_Scancode GetScancodeFromKey(SDL_Keycode key);
+	const char *GetKeyName(SDL_Keycode keycode);
+	SDL_Keycode GetKeyFromName(const char *name);
+	SDL_Keymod GetModState();
+	void GetMouseState(int *x, int *y);
 }
+
+
+
+#endif

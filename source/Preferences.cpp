@@ -180,6 +180,7 @@ bool Preferences::ZoomViewOut()
 
 
 
+__attribute__((weak))
 bool Preferences::ToggleVSync()
 {
 	int targetIndex = vsyncIndex + 1;

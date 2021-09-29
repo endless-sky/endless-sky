@@ -52,11 +52,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-namespace
-{
-	GameObjects objects;
-}
-
 
 
 void PrintHelp();
@@ -106,6 +101,7 @@ int main(int argc, char *argv[])
 	}
 	
 	try {
+		GameObjects objects;
 		GameData::SetObjects(objects);
 
 		// Begin loading the game data. Exit early if we are not using the UI.

@@ -34,6 +34,7 @@ public:
 	static void AdjustViewport();
 	
 	// Attempt to set the game's VSync setting.
+	__attribute__((weak))
 	static bool SetVSync(Preferences::VSync state);
 	
 	// Last known windowed-mode width & height.

@@ -1,4 +1,4 @@
-/* gl_header.h
+/* Sound.cpp
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -10,19 +10,37 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-// Include whichever header is used for OpenGL on this operating system.
-#ifdef __APPLE__
-#include <OpenGL/GL3.h>
-#else
-#ifdef ES_GLES
-#include <GLES3/gl3.h>
-#else
-#include <GL/glew.h>
-#endif
-#endif
+#include "../../../source/Sound.h"
+
+#include <cstdio>
+#include <vector>
+
+using namespace std;
 
 
 
-namespace gl {
-	void Clear();
+bool Sound::Load(const string &path, const string &name)
+{
+	return true;
+}
+
+
+
+const string &Sound::Name() const
+{
+	return name;
+}
+
+
+
+unsigned Sound::Buffer() const
+{
+	return buffer;
+}
+
+
+
+bool Sound::IsLooping() const
+{
+	return isLooped;
 }

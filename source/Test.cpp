@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "Files.h"
 #include "GameData.h"
+#include "Input.h"
 #include "MainPanel.h"
 #include "Panel.h"
 #include "Planet.h"
@@ -92,7 +93,7 @@ namespace{
 		event.type = SDL_KEYDOWN;
 		event.key.state = SDL_PRESSED;
 		event.key.repeat = 0;
-		event.key.keysym.sym = SDL_GetKeyFromName(keyName);
+		event.key.keysym.sym = Input::GetKeyFromName(keyName);
 		event.key.keysym.mod = modKeys;
 		// Sending directly as event to the UI. We might want to switch to
 		// SDL_PushEvent in the future to use the regular SDL event-handling loops.

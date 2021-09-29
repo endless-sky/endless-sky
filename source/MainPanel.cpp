@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "HailPanel.h"
+#include "Input.h"
 #include "LineShader.h"
 #include "MapDetailPanel.h"
 #include "Messages.h"
@@ -146,7 +147,7 @@ void MainPanel::Step()
 void MainPanel::Draw()
 {
 	FrameTimer loadTimer;
-	glClear(GL_COLOR_BUFFER_BIT);
+	gl::Clear();
 	
 	engine.Draw();
 	
@@ -248,7 +249,7 @@ bool MainPanel::Click(int x, int y, int clicks)
 	dragSource = Point(x, y);
 	dragPoint = dragSource;
 	
-	SDL_Keymod mod = SDL_GetModState();
+	SDL_Keymod mod = Input::GetModState();
 	hasShift = (mod & KMOD_SHIFT);
 	
 	engine.Click(dragSource, dragSource, hasShift);
@@ -403,7 +404,7 @@ bool MainPanel::ShowHailPanel()
 		return false;
 	
 	shared_ptr<Ship> target = flagship->GetTargetShip();
-	if((SDL_GetModState() & KMOD_SHIFT) && flagship->GetTargetStellar())
+	if((Input::GetModState() & KMOD_SHIFT) && flagship->GetTargetStellar())
 		target.reset();
 	
 	if(flagship->IsEnteringHyperspace())

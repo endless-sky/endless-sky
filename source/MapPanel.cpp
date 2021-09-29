@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Information.h"
+#include "Input.h"
 #include "Interface.h"
 #include "LineShader.h"
 #include "MapDetailPanel.h"
@@ -165,7 +166,7 @@ void MapPanel::Step()
 
 void MapPanel::Draw()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	gl::Clear();
 	
 	for(const auto &it : GameData::Galaxies())
 		SpriteShader::Draw(it.second.GetSprite(), Zoom() * (center + it.second.Position()), Zoom());
@@ -581,7 +582,7 @@ void MapPanel::Select(const System *system)
 	bool isJumping = flagship->IsEnteringHyperspace();
 	const System *source = isJumping ? flagship->GetTargetSystem() : &playerSystem;
 	
-	auto mod = SDL_GetModState();
+	auto mod = Input::GetModState();
 	// TODO: Whoever called Select should tell us what to do with this system vis-a-vis the travel plan, rather than
 	// possibly manipulating it both here and there. Or, we entirely separate Select from travel plan modifications.
 	bool shift = (mod & KMOD_SHIFT) && !plan.empty();

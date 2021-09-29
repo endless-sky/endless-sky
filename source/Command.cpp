@@ -16,8 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "text/Format.h"
-
-#include <SDL2/SDL.h>
+#include "Input.h"
 
 #include <algorithm>
 #include <cmath>
@@ -99,17 +98,17 @@ Command::Command(int keycode)
 void Command::ReadKeyboard()
 {
 	Clear();
-	const Uint8 *keyDown = SDL_GetKeyboardState(nullptr);
+	const uint8_t *keyDown = Input::GetState();
 	
 	// Each command can only have one keycode, but misconfigured settings can
 	// temporarily cause one keycode to be used for two commands. Also, more
 	// than one key can be held down at once.
 	for(const auto &it : keycodeForCommand)
-		if(keyDown[SDL_GetScancodeFromKey(it.second)])
+		if(keyDown[Input::GetScancodeFromKey(it.second)])
 			*this |= it.first;
 	
 	// Check whether the `Shift` modifier key was pressed for this step.
-	if(SDL_GetModState() & KMOD_SHIFT)
+	if(Input::GetModState() & KMOD_SHIFT)
 		*this |= SHIFT;
 }
 
@@ -135,7 +134,7 @@ void Command::LoadSettings(const string &path)
 			Command command = it->second;
 			int keycode = node.Value(1);
 			keycodeForCommand[command] = keycode;
-			keyName[command] = SDL_GetKeyName(keycode);
+			keyName[command] = Input::GetKeyName(keycode);
 		}
 	}
 	
@@ -172,7 +171,7 @@ void Command::SetKey(Command command, int keycode)
 	// Always reset *all* the mappings when one is set. That way, if two commands
 	// are mapped to the same key and you change one of them, the other stays mapped.
 	keycodeForCommand[command] = keycode;
-	keyName[command] = SDL_GetKeyName(keycode);
+	keyName[command] = Input::GetKeyName(keycode);
 	
 	commandForKeycode.clear();
 	keycodeCount.clear();

@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include "Command.h"
+#include "Input.h"
 #include "Panel.h"
 #include "Screen.h"
 
@@ -248,7 +249,7 @@ Point UI::GetMouse()
 {
 	int x = 0;
 	int y = 0;
-	SDL_GetMouseState(&x, &y);
+	Input::GetMouseState(&x, &y);
 	return Screen::TopLeft() + Point(x, y) * (100. / Screen::Zoom());
 }
 

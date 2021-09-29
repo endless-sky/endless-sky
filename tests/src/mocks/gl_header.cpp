@@ -1,4 +1,4 @@
-/* gl_header.h
+/* gl_header.cpp
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -10,19 +10,10 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-// Include whichever header is used for OpenGL on this operating system.
-#ifdef __APPLE__
-#include <OpenGL/GL3.h>
-#else
-#ifdef ES_GLES
-#include <GLES3/gl3.h>
-#else
-#include <GL/glew.h>
-#endif
-#endif
+#include "../../../source/gl_header.h"
 
 
 
-namespace gl {
-	void Clear();
+void gl::Clear()
+{
 }
