@@ -224,7 +224,7 @@ void Planet::Load(const DataNode &node)
 		else
 			attributes.erase(AUTO_ATTRIBUTES[i]);
 	}
-
+	
 	// Precalculate commonly used values that can only change due to Load().
 	inhabited = (HasSpaceport() || requiredReputation || !defenseFleets.empty()) && !attributes.count("uninhabited");
 	SetRequiredAttributes(Attributes(), requiredAttributes);
