@@ -769,11 +769,11 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 	object.parent = parent;
 	
 	bool isAdded = (node.Token(0) == "add");
-	Planet *planet = nullptr;
 	if(node.Size() >= 2 + isAdded)
 	{
-		planet = planets.Get(node.Token(1 + isAdded));
+		Planet *planet = planets.Get(node.Token(1 + isAdded));
 		object.planet = planet;
+		planet->SetSystem(this);
 	}
 	
 	for(const DataNode &child : node)
@@ -801,12 +801,6 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-
-	if(planet)
-		// To correctly generate wormholes we need to know whether this
-		// stellar object has a sprite or not, so we update it only
-		// after we parsed the whole stellar object.
-		planet->SetSystem(this);
 }
 
 
