@@ -241,6 +241,9 @@ bool GameData::BeginLoad(const char * const *argv)
 			[](const StartConditions &it) noexcept -> bool { return !it.IsValid(); }),
 		startConditions.end()
 	);
+
+	for(auto &&it : planets)
+		it.second.FinishLoading();
 	
 	// Store the current state, to revert back to later.
 	defaultFleets = fleets;
@@ -339,15 +342,8 @@ void GameData::CheckReferences()
 		planets.Get(it.second.GetPlanet()->TrueName())->AssignWormhole(&it.second);
 	// Planet names are used by a number of classes.
 	for(auto &&it : planets)
-	{
 		if(it.second.TrueName().empty() && !NameIfDeferred(deferred["planet"], it))
 			NameAndWarn("planet", it);
-
-		// If this planet is a wormhole and doesn't have a valid wormhole
-		// definition, then we create it here.
-		if(!it.second.IsWormhole() && it.second.AppearsInMultipleSystems())
-			AutogenerateWormhole(&it.second);
-	}
 	// Ship model names are used by missions and depreciation.
 	for(auto &&it : ships)
 		if(it.second.ModelName().empty())
@@ -672,6 +668,10 @@ void GameData::UpdateSystems()
 		if(it.first.empty() || it.second.Name().empty())
 			continue;
 		it.second.UpdateSystem(systems, neighborDistances);
+
+		for(const auto &object : it.second.Objects())
+			if(object.GetPlanet())
+				planets.Get(object.GetPlanet()->TrueName())->FinishLoading();
 	}
 }
 
