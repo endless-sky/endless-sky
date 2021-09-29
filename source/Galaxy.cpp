@@ -73,6 +73,20 @@ const vector<const Galaxy *> &Galaxy::Labels() const
 
 
 
+void Galaxy::SetName(const string &name)
+{
+	this->name = name;
+}
+
+
+
+void Galaxy::SetPosition(const Point &pos)
+{
+	position = pos;
+}
+
+
+
 void Galaxy::AddLabel(const Galaxy *label)
 {
 	labels.emplace_back(label);

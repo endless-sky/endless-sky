@@ -382,13 +382,16 @@ void System::FinishLoading(Set<Galaxy> &galaxies)
 			}
 		}
 
-		if(!selected)
-			Files::LogError("Warning: system \"" + name + "\" doesn't have a galaxy.");
-		else
+		// If the system is too far away from the galactic center, we create a new galaxy for it.
+		if(closest > 5000. * 5000.)
 		{
-			galaxy = selected;
-			selected->AddSystem(this);
+			selected = galaxies.Get(name);
+			selected->SetName(name);
+			selected->SetPosition(position);
 		}
+
+		galaxy = selected;
+		selected->AddSystem(this);
 	}
 }
 

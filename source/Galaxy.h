@@ -40,6 +40,9 @@ public:
 	const std::set<const System *> &Systems() const;
 	const std::vector<const Galaxy *> &Labels() const;
 
+	void SetName(const std::string &name);
+	void SetPosition(const Point &pos);
+
 	void AddLabel(const Galaxy *label);
 	void ClearLabels();
 	void AddSystem(const System *system);
