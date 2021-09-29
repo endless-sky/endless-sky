@@ -13,27 +13,44 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef GALAXY_H_
 #define GALAXY_H_
 
+#include "Body.h"
+
 #include "Point.h"
+#include "Set.h"
+
+#include <set>
+#include <string>
+#include <vector>
 
 class DataNode;
 class Sprite;
+class System;
 
 
 
 // This is any object that should be drawn as a backdrop to the map. Multiple
 // galaxies can be handled by just spacing them out so widely that the player
 // will never accidentally scroll the view from one to the other.
-class Galaxy {
+class Galaxy : public Body {
 public:
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, Set<Galaxy> &galaxies);
 	
+	const std::string &Name() const;
 	const Point &Position() const;
-	const Sprite *GetSprite() const;
-	
-	
+	const std::set<const System *> &Systems() const;
+	const std::vector<const Galaxy *> &Labels() const;
+
+	void AddLabel(const Galaxy *label);
+	void ClearLabels();
+	void AddSystem(const System *system);
+	void RemoveSystem(const System *system);
+
+
 private:
+	std::string name;
 	Point position;
-	const Sprite *sprite = nullptr;
+	std::set<const System *> systems;
+	std::vector<const Galaxy *> labels;
 };
 
 #endif

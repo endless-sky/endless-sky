@@ -378,11 +378,13 @@ string PlayerInfo::Identifier() const
 void PlayerInfo::AddChanges(list<DataNode> &changes)
 {
 	bool changedSystems = false;
+	bool changedGalaxy = false;
 	for(const DataNode &change : changes)
 	{
 		changedSystems |= (change.Token(0) == "system");
 		changedSystems |= (change.Token(0) == "link");
 		changedSystems |= (change.Token(0) == "unlink");
+		changedGalaxy |= (change.Token(0) == "galaxy");
 		GameData::Change(change);
 	}
 	if(changedSystems)
@@ -398,6 +400,8 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 					seen.insert(neighbor);
 		}
 	}
+	if(changedGalaxy)
+		GameData::UpdateGalaxies();
 	
 	// Only move the changes into my list if they are not already there.
 	if(&changes != &dataChanges)
@@ -1893,6 +1897,13 @@ bool PlayerInfo::HasVisited(const Planet &planet) const
 
 
 
+bool PlayerInfo::HasVisited(const Galaxy &galaxy) const
+{
+	return visitedGalaxies.count(&galaxy);
+}
+
+
+
 // Check if the player knows the name of a system, either from visiting there or
 // because a job or active mission includes the name of that system.
 bool PlayerInfo::KnowsName(const System &system) const
@@ -1916,6 +1927,7 @@ bool PlayerInfo::KnowsName(const System &system) const
 void PlayerInfo::Visit(const System &system)
 {
 	visitedSystems.insert(&system);
+	visitedGalaxies.insert(system.GetGalaxy());
 	seen.insert(&system);
 	for(const System *neighbor : system.VisibleNeighbors())
 		if(!neighbor->Hidden() || system.Links().count(neighbor))
@@ -1939,6 +1951,17 @@ void PlayerInfo::Unvisit(const System &system)
 	for(const StellarObject &object : system.Objects())
 		if(object.GetPlanet())
 			Unvisit(*object.GetPlanet());
+
+	// Check whether this system's galaxy is still visited.
+	bool visited = false;
+	for(const auto &it : visitedSystems)
+		if(it->GetGalaxy() == system.GetGalaxy())
+		{
+			visited = true;
+			break;
+		}
+	if(!visited)
+		visitedGalaxies.erase(system.GetGalaxy());
 }
 
 

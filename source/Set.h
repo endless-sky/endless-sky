@@ -31,6 +31,7 @@ public:
 	// If an item already exists in this set, get it. Otherwise, return a null
 	// pointer rather than creating the item.
 	const Type *Find(const std::string &name) const;
+	typename std::map<std::string, Type>::const_iterator find(const std::string &name) const { return data.find(name); }
 	
 	bool Has(const std::string &name) const { return data.count(name); }
 	

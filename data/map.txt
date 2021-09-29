@@ -11,66 +11,51 @@
 galaxy "Milky Way"
 	pos 0 0
 	sprite ui/galaxy
+	label "core"
+		pos -136 130
+		sprite label/core
+	label "deep"
+		pos -658 -300
+		sprite label/deep
+	label "dirt belt"
+		pos -515 260
+		sprite "label/dirt belt"
+	label "earth"
+		pos -420 94
+		sprite label/earth
+	label "north"
+		pos -324 -332
+		sprite label/north
+	label "paradise"
+		pos -345 -136
+		sprite label/paradise
+	label "rim"
+		pos -778 265
+		sprite label/rim
+	label "south"
+		pos -566 501
+		sprite label/south
+	label "wanderers"
+		pos -145 -753
+	label "hai"
+		pos -74 -497
+	label "korath"
+		pos 165 -347
+	label "saryds"
+		pos -1080 678
+	label "kimek"
+		pos -1250 215
+	label "arachi"
+		pos -750 615
+	label "waste"
+		pos 80 315
+	label "graveyard"
+		pos 45 590
 
 galaxy "pug empty galaxy"
 	pos 10000 7000
 	sprite ui/pleiades
 
-galaxy "label core"
-	pos -136 130
-	sprite label/core
-
-galaxy "label deep"
-	pos -658 -300
-	sprite label/deep
-
-galaxy "label dirt belt"
-	pos -515 260
-	sprite "label/dirt belt"
-
-galaxy "label earth"
-	pos -420 94
-	sprite label/earth
-
-galaxy "label north"
-	pos -324 -332
-	sprite label/north
-
-galaxy "label paradise"
-	pos -345 -136
-	sprite label/paradise
-
-galaxy "label rim"
-	pos -778 265
-	sprite label/rim
-
-galaxy "label south"
-	pos -566 501
-	sprite label/south
-
-galaxy "label wanderers"
-	pos -145 -753
-
-galaxy "label hai"
-	pos -74 -497
-
-galaxy "label korath"
-	pos 165 -347
-
-galaxy "label saryds"
-	pos -1080 678
-
-galaxy "label kimek"
-	pos -1250 215
-
-galaxy "label arachi"
-	pos -750 615
-
-galaxy "label waste"
-	pos 80 315
-
-galaxy "label graveyard"
-	pos 45 590
 
 system "1 Axis"
 	pos -1274.63 267.214

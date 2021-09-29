@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
+#include "Galaxy.h"
 #include "Information.h"
 #include "Interface.h"
 #include "text/layout.hpp"
@@ -140,11 +141,13 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	if(availableIt != available.end())
 	{
 		selectedSystem = availableIt->Destination()->GetSystem();
+		selectedGalaxy = selectedSystem->GetGalaxy();
 		DoScroll(available, availableIt, availableScroll, false);
 	}
 	else if(acceptedIt != accepted.end())
 	{
 		selectedSystem = acceptedIt->Destination()->GetSystem();
+		selectedGalaxy = selectedSystem->GetGalaxy();
 		DoScroll(accepted, acceptedIt, acceptedScroll, true);
 	}
 	
@@ -207,9 +210,14 @@ void MissionPanel::Draw()
 	while(distance.Days(system) > 0)
 	{
 		const System *next = distance.Route(system);
+		if(next->GetGalaxy() != selectedGalaxy)
+		{
+			system = next;
+			continue;
+		}
 		
-		Point from = Zoom() * (next->Position() + center);
-		Point to = Zoom() * (system->Position() + center);
+		Point from = Zoom() * (next->Position() + center - selectedGalaxy->Position());
+		Point to = Zoom() * (system->Position() + center - selectedGalaxy->Position());
 		Point unit = (from - to).Unit() * 7.;
 		from -= unit;
 		to += unit;
@@ -326,11 +334,13 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	if(availableIt != available.end())
 	{
 		selectedSystem = availableIt->Destination()->GetSystem();
+		selectedGalaxy = selectedSystem->GetGalaxy();
 		DoScroll(available, availableIt, availableScroll, false);
 	}
 	else if(acceptedIt != accepted.end())
 	{
 		selectedSystem = acceptedIt->Destination()->GetSystem();
+		selectedGalaxy = selectedSystem->GetGalaxy();
 		DoScroll(accepted, acceptedIt, acceptedScroll, true);
 	}
 	CenterOnSystem(selectedSystem);
@@ -358,6 +368,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			acceptedIt = accepted.end();
 			dragSide = -1;
 			selectedSystem = availableIt->Destination()->GetSystem();
+			selectedGalaxy = selectedSystem->GetGalaxy();
 			DoScroll(available, availableIt, availableScroll, false);
 			CenterOnSystem(selectedSystem);
 			return true;
@@ -377,6 +388,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			availableIt = available.end();
 			dragSide = 1;
 			selectedSystem = acceptedIt->Destination()->GetSystem();
+			selectedGalaxy = selectedSystem->GetGalaxy();
 			DoScroll(accepted, acceptedIt, acceptedScroll, true);
 			CenterOnSystem(selectedSystem);
 			return true;
@@ -386,11 +398,11 @@ bool MissionPanel::Click(int x, int y, int clicks)
 	// Figure out if a system was clicked on.
 	Point click = Point(x, y) / Zoom() - center;
 	const System *system = nullptr;
-	for(const auto &it : GameData::Systems())
-		if(it.second.IsValid() && click.Distance(it.second.Position()) < 10.
-				&& (player.HasSeen(it.second) || &it.second == specialSystem))
+	for(const auto &it : selectedGalaxy->Systems())
+		if(it->IsValid() && click.Distance(it->Position()) < 10.
+				&& (player.HasSeen(*it) || it == specialSystem))
 		{
-			system = &it.second;
+			system = it;
 			break;
 		}
 	if(system)
@@ -591,22 +603,27 @@ void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color)
 {
 	auto toVisit = set<const System *>{mission.Waypoints()};
 	for(const Planet *planet : mission.Stopovers())
-		toVisit.insert(planet->GetSystem());
+		if(planet->GetSystem()->GetGalaxy() == selectedGalaxy)
+			toVisit.insert(planet->GetSystem());
 	auto hasVisited = set<const System *>{mission.VisitedWaypoints()};
 	for(const Planet *planet : mission.VisitedStopovers())
-		hasVisited.insert(planet->GetSystem());
+		if(planet->GetSystem()->GetGalaxy() == selectedGalaxy)
+			hasVisited.insert(planet->GetSystem());
 	
 	const Color &waypoint = *GameData::Colors().Get("waypoint back");
 	const Color &visited = *GameData::Colors().Get("faint");
 	
 	double zoom = Zoom();
 	auto drawRing = [&](const System *system, const Color &drawColor)
-		{ RingShader::Add(zoom * (system->Position() + center), 22.f, 20.5f, drawColor); };
+		{ RingShader::Add(zoom * (system->Position() + center - selectedGalaxy->Position()),
+				22.f, 20.5f, drawColor); };
 	
 	RingShader::Bind();
 	{
 		// Draw a colored ring around the destination system.
-		drawRing(mission.Destination()->GetSystem(), color);
+		auto destination = mission.Destination()->GetSystem();
+		if(destination->GetGalaxy() == selectedGalaxy)
+			drawRing(destination, color);
 		// Draw bright rings around systems that still need to be visited.
 		for(const System *system : toVisit)
 			drawRing(system, waypoint);

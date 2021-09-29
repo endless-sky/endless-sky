@@ -93,6 +93,7 @@ public:
 	// This must be done any time that a change creates or moves a system.
 	static void UpdateSystems();
 	static void AddJumpRange(double neighborDistance);
+	static void UpdateGalaxies();
 	
 	// Re-activate any special persons that were created previously but that are
 	// still alive.

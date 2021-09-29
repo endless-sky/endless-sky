@@ -40,6 +40,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
+#include "Sprite.h"
 #include "SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -102,6 +103,11 @@ namespace {
 	const int HOVER_TIME = 60;
 	// Length in frames of the recentering animation.
 	const int RECENTER_TIME = 20;
+
+	constexpr double ARROW_LENGTH = 4.;
+	constexpr double ARROW_RATIO = .3;
+	const Angle LEFT(30.);
+	const Angle RIGHT(-30.);
 }
 
 const float MapPanel::OUTER = 6.f;
@@ -116,6 +122,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	: player(player), distance(player),
 	playerSystem(*player.GetSystem()),
 	selectedSystem(special ? special : player.GetSystem()),
+	selectedGalaxy(selectedSystem->GetGalaxy()),
 	specialSystem(special),
 	playerJumpDistance(System::DEFAULT_NEIGHBOR_DISTANCE),
 	commodity(commodity)
@@ -159,6 +166,7 @@ void MapPanel::Step()
 		center += recenterVector * (step * (1. - step) * (6. / RECENTER_TIME));
 		--recentering;
 	}
+	++galaxyStep;
 }
 
 
@@ -167,25 +175,33 @@ void MapPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	
-	for(const auto &it : GameData::Galaxies())
-		SpriteShader::Draw(it.second.GetSprite(), Zoom() * (center + it.second.Position()), Zoom());
+	SpriteShader::Draw(selectedGalaxy->GetSprite(), Zoom() * center, Zoom(), 0,
+			selectedGalaxy->GetFrame(galaxyStep));
+	for(const auto &label : selectedGalaxy->Labels())
+		SpriteShader::Draw(label->GetSprite(),
+				Zoom() * (center + label->Position() - selectedGalaxy->Position()), Zoom(), 0,
+				label->GetFrame(galaxyStep));
 	
 	if(Preferences::Has("Hide unexplored map regions"))
 		FogShader::Draw(center, Zoom(), player);
 	
-	// Draw the "visible range" circle around your current location.
-	Color dimColor(.1f, 0.f);
-	RingShader::Draw(Zoom() * (playerSystem.Position() + center),
-		(System::DEFAULT_NEIGHBOR_DISTANCE + .5) * Zoom(), (System::DEFAULT_NEIGHBOR_DISTANCE - .5) * Zoom(), dimColor);
-	// Draw the jump range circle around your current location if it is different than the
-	// visible range.
-	if(playerJumpDistance != System::DEFAULT_NEIGHBOR_DISTANCE)
-		RingShader::Draw(Zoom() * (playerSystem.Position() + center),
-			(playerJumpDistance + .5) * Zoom(), (playerJumpDistance - .5) * Zoom(), dimColor);
+	if(playerSystem.GetGalaxy() == selectedGalaxy)
+	{
+		Color dimColor(.1f, 0.f);
+		// Draw the "visible range" circle around your current location.
+		RingShader::Draw(Zoom() * (playerSystem.Position() - selectedGalaxy->Position() + center),
+			(System::DEFAULT_NEIGHBOR_DISTANCE + .5) * Zoom(), (System::DEFAULT_NEIGHBOR_DISTANCE - .5) * Zoom(), dimColor);
+		// Draw the jump range circle around your current location if it is different than the
+		// visible range.
+		if(playerJumpDistance != System::DEFAULT_NEIGHBOR_DISTANCE)
+			RingShader::Draw(Zoom() * (playerSystem.Position() - selectedGalaxy->Position() + center),
+				(playerJumpDistance + .5) * Zoom(), (playerJumpDistance - .5) * Zoom(), dimColor);
+	}
 	
 	Color brightColor(.4f, 0.f);
-	RingShader::Draw(Zoom() * (selectedSystem->Position() + center),
-		11.f, 9.f, brightColor);
+	if(selectedSystem->GetGalaxy() == selectedGalaxy)
+		RingShader::Draw(Zoom() * (selectedSystem->Position() - selectedGalaxy->Position() + center),
+			11.f, 9.f, brightColor);
 	
 	// Advance a "blink" timer.
 	++step;
@@ -394,6 +410,33 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS)
 		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
+	else if(key == SDLK_LEFT)
+	{
+		auto it = next(GameData::Galaxies().find(selectedGalaxy->Name()));
+		if(it == GameData::Galaxies().end())
+			it = GameData::Galaxies().begin();
+		while(!it->second.Name().compare(0, 6, "label ") || !player.HasVisited(it->second))
+		{
+			++it;
+			if(it == GameData::Galaxies().end())
+				it = GameData::Galaxies().begin();
+		}
+		selectedGalaxy = &it->second;
+	}
+	else if(key == SDLK_RIGHT)
+	{
+		auto it = GameData::Galaxies().find(selectedGalaxy->Name());
+		if(it == GameData::Galaxies().begin())
+			it = GameData::Galaxies().end();
+		--it;
+		while(!it->second.Name().compare(0, 6, "label ") || !player.HasVisited(it->second))
+		{
+			if(it == GameData::Galaxies().begin())
+				it = GameData::Galaxies().end();
+			--it;
+		}
+		selectedGalaxy = &it->second;
+	}
 	else
 		return false;
 	
@@ -406,11 +449,11 @@ bool MapPanel::Click(int x, int y, int clicks)
 {
 	// Figure out if a system was clicked on.
 	Point click = Point(x, y) / Zoom() - center;
-	for(const auto &it : GameData::Systems())
-		if(it.second.IsValid() && click.Distance(it.second.Position()) < 10.
-				&& (player.HasSeen(it.second) || &it.second == specialSystem))
+	for(const auto &it : selectedGalaxy->Systems())
+		if(it->IsValid() && click.Distance(it->Position() - selectedGalaxy->Position()) < 10.
+				&& (player.HasSeen(*it) || it == specialSystem))
 		{
-			Select(&it.second);
+			Select(it);
 			break;
 		}
 	
@@ -573,6 +616,7 @@ void MapPanel::Select(const System *system)
 	if(!system)
 		return;
 	selectedSystem = system;
+	selectedGalaxy = system->GetGalaxy();
 	vector<const System *> &plan = player.TravelPlan();
 	Ship *flagship = player.Flagship();
 	if(!flagship || (!plan.empty() && system == plan.front()))
@@ -637,6 +681,7 @@ void MapPanel::Find(const string &name)
 			{
 				bestIndex = index;
 				selectedSystem = &it.second;
+				selectedGalaxy = selectedSystem->GetGalaxy();
 				CenterOnSystem(selectedSystem);
 				if(!index)
 				{
@@ -653,6 +698,7 @@ void MapPanel::Find(const string &name)
 			{
 				bestIndex = index;
 				selectedSystem = it.second.GetSystem();
+				selectedGalaxy = selectedSystem->GetGalaxy();
 				CenterOnSystem(selectedSystem);
 				if(!index)
 				{
@@ -700,10 +746,10 @@ int MapPanel::Search(const string &str, const string &sub)
 void MapPanel::CenterOnSystem(const System *system, bool immediate)
 {
 	if(immediate)
-		center = -system->Position();
+		center = -system->Position() + selectedGalaxy->Position();
 	else
 	{
-		recenterVector = -system->Position() - center;
+		recenterVector = -system->Position() - center + selectedGalaxy->Position();
 		recentering = RECENTER_TIME;
 	}
 }
@@ -716,26 +762,26 @@ void MapPanel::UpdateCache()
 {
 	// Remember which commodity the cached systems are colored by.
 	cachedCommodity = commodity;
+	cachedGalaxy = selectedGalaxy;
 	nodes.clear();
 	
 	// Draw the circles for the systems, colored based on the selected criterion,
 	// which may be government, services, or commodity prices.
 	const Color &closeNameColor = *GameData::Colors().Get("map name");
 	const Color &farNameColor = closeNameColor.Transparent(.5);
-	for(const auto &it : GameData::Systems())
+	for(const auto &system : selectedGalaxy->Systems())
 	{
-		const System &system = it.second;
 		// Ignore systems which have been referred to, but not actually defined.
-		if(!system.IsValid())
+		if(!system->IsValid())
 			continue;
 		// Ignore systems the player has never seen, unless they have a pending mission that lets them see it.
-		if(!player.HasSeen(system) && &system != specialSystem)
+		if(!player.HasSeen(*system) && system != specialSystem)
 			continue;
 		
 		Color color = UninhabitedColor();
-		if(!player.HasVisited(system))
+		if(!player.HasVisited(*system))
 			color = UnexploredColor();
-		else if(system.IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL || commodity == SHOW_VISITED)
+		else if(system->IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL || commodity == SHOW_VISITED)
 		{
 			if(commodity >= SHOW_SPECIAL)
 			{
@@ -744,7 +790,7 @@ void MapPanel::UpdateCache()
 				if(commodity >= 0)
 				{
 					const Trade::Commodity &com = GameData::Commodities()[commodity];
-					double price = system.Trade(com.name);
+					double price = system->Trade(com.name);
 					if(!price)
 						value = numeric_limits<double>::quiet_NaN();
 					else
@@ -753,7 +799,7 @@ void MapPanel::UpdateCache()
 				else if(commodity == SHOW_SHIPYARD)
 				{
 					double size = 0;
-					for(const StellarObject &object : system.Objects())
+					for(const StellarObject &object : system->Objects())
 						if(object.HasSprite() && object.HasValidPlanet())
 							size += object.GetPlanet()->Shipyard().size();
 					value = size ? min(10., size) / 10. : -1.;
@@ -761,7 +807,7 @@ void MapPanel::UpdateCache()
 				else if(commodity == SHOW_OUTFITTER)
 				{
 					double size = 0;
-					for(const StellarObject &object : system.Objects())
+					for(const StellarObject &object : system->Objects())
 						if(object.HasSprite() && object.HasValidPlanet())
 							size += object.GetPlanet()->Outfitter().size();
 					value = size ? min(60., size) / 60. : -1.;
@@ -771,7 +817,7 @@ void MapPanel::UpdateCache()
 					bool all = true;
 					bool some = false;
 					colorSystem = false;
-					for(const StellarObject &object : system.Objects())
+					for(const StellarObject &object : system->Objects())
 						if(object.HasSprite() && object.HasValidPlanet() && !object.GetPlanet()->IsWormhole()
 							&& object.GetPlanet()->IsAccessible(player.Flagship()))
 						{
@@ -783,19 +829,19 @@ void MapPanel::UpdateCache()
 					value = -1 + some + all;
 				}
 				else
-					value = SystemValue(&system);
+					value = SystemValue(system);
 				
 				if(colorSystem)
 					color = MapColor(value);
 			}
 			else if(commodity == SHOW_GOVERNMENT)
 			{
-				const Government *gov = system.GetGovernment();
+				const Government *gov = system->GetGovernment();
 				color = GovernmentColor(gov);
 			}
 			else
 			{
-				double reputation = system.GetGovernment()->Reputation();
+				double reputation = system->GetGovernment()->Reputation();
 				
 				// A system should show up as dominated if it contains at least
 				// one inhabited planet and all inhabited planets have been
@@ -805,7 +851,7 @@ void MapPanel::UpdateCache()
 				bool isInhabited = false;
 				bool canLand = false;
 				bool hasSpaceport = false;
-				for(const StellarObject &object : system.Objects())
+				for(const StellarObject &object : system->Objects())
 					if(object.HasSprite() && object.HasValidPlanet())
 					{
 						const Planet *planet = object.GetPlanet();
@@ -826,10 +872,14 @@ void MapPanel::UpdateCache()
 			}
 		}
 		
-		nodes.emplace_back(system.Position(), color,
-			player.KnowsName(system) ? system.Name() : "",
-			(&system == &playerSystem) ? closeNameColor : farNameColor,
-			player.HasVisited(system) ? system.GetGovernment() : nullptr);
+		auto pos = system->Position();
+		// Center the system on the galactic center if it has one.
+		if(selectedGalaxy->Position())
+			pos -= selectedGalaxy->Position();
+		nodes.emplace_back(pos, color,
+			player.KnowsName(*system) ? system->Name() : "",
+			(system == &playerSystem) ? closeNameColor : farNameColor,
+			player.HasVisited(*system) ? system->GetGovernment() : nullptr);
 	}
 	
 	// Now, update the cache of the links.
@@ -838,9 +888,8 @@ void MapPanel::UpdateCache()
 	// The link color depends on whether it's connected to the current system or not.
 	const Color &closeColor = *GameData::Colors().Get("map link");
 	const Color &farColor = closeColor.Transparent(.5);
-	for(const auto &it : GameData::Systems())
+	for(const auto &system : selectedGalaxy->Systems())
 	{
-		const System *system = &it.second;
 		if(!system->IsValid() || !player.HasSeen(*system))
 			continue;
 		
@@ -854,7 +903,8 @@ void MapPanel::UpdateCache()
 					continue;
 				
 				bool isClose = (system == &playerSystem || link == &playerSystem);
-				links.emplace_back(system->Position(), link->Position(), isClose ? closeColor : farColor);
+				auto pos = selectedGalaxy->Position();
+				links.emplace_back(system->Position() - pos, link->Position() - pos, isClose ? closeColor : farColor);
 			}
 	}
 }
@@ -901,15 +951,56 @@ void MapPanel::DrawTravelPlan()
 		bool isJump = !isHyper && previous->JumpNeighbors(jumpRange).count(next);
 		bool systemJumpRange = previous->JumpRange() > 0.;
 		bool isWormhole = false;
+		bool isGalaxyWormhole = false;
 		for(const StellarObject &object : previous->Objects())
-			isWormhole |= (object.HasSprite() && object.HasValidPlanet()
+			if((object.HasSprite() && object.HasValidPlanet()
 				&& player.HasVisited(*object.GetPlanet())
-				&& !object.GetPlanet()->Description().empty()
 				&& player.HasVisited(*previous) && player.HasVisited(*next)
-				&& object.GetPlanet()->WormholeDestination(previous) == next);
+				&& object.GetPlanet()->WormholeDestination(previous) == next))
+			{
+				isWormhole = true;
+				isGalaxyWormhole = object.GetPlanet()->Description().empty();
+				break;
+			}
 		
 		if(!isHyper && !isJump && !isWormhole)
 			break;
+		if(isGalaxyWormhole)
+		{
+			// Draw a dashed wormhole arrow.
+			auto from = Zoom() * (previous->Position() - previous->GetGalaxy()->Position() + center);
+			auto to = Zoom() * (next->Position() - next->GetGalaxy()->Position() + center);
+
+			// Compute the start and end positions of the arrow edges.
+			const auto offset = (from - to).Unit() * LINK_OFFSET;
+			const Point arrowStem = Zoom() * ARROW_LENGTH * offset;
+			const Point arrowLeft = arrowStem - ARROW_RATIO * LEFT.Rotate(arrowStem);
+			const Point arrowRight = arrowStem - ARROW_RATIO * RIGHT.Rotate(arrowStem);
+
+			from -= offset;
+			to += offset;
+
+			const Point fromTip = from - arrowStem;
+			Point destOffset;
+			if(next->GetGalaxy() == selectedGalaxy)
+				destOffset = to - fromTip;
+
+			constexpr int segments = 10;
+			for(int i = 0; i < segments; i += 2)
+				LineShader::Draw(destOffset + from - arrowStem * i / segments,
+						destOffset + from - arrowStem * (i + 1) / segments,
+						LINK_WIDTH * 2, wormholeColor);
+			LineShader::Draw(destOffset + from - arrowLeft, destOffset + fromTip, LINK_WIDTH * 2, wormholeColor);
+			LineShader::Draw(destOffset + from - arrowRight, destOffset + fromTip, LINK_WIDTH * 2, wormholeColor);
+			previous = next;
+			continue;
+		}
+		if(next->GetGalaxy() != selectedGalaxy)
+		{
+			previous = next;
+			continue;
+		}
+
 		
 		double jumpDistance = previous->Position().Distance(next->Position());
 		// Wormholes cost nothing to go through. If this is not a wormhole,
@@ -938,8 +1029,8 @@ void MapPanel::DrawTravelPlan()
 		else if(fuel[flagship] >= 0.)
 			drawColor = defaultColor;
 		
-		Point from = Zoom() * (next->Position() + center);
-		Point to = Zoom() * (previous->Position() + center);
+		Point from = Zoom() * (next->Position() + center - selectedGalaxy->Position());
+		Point to = Zoom() * (previous->Position() + center - selectedGalaxy->Position());
 		Point unit = (from - to).Unit() * LINK_OFFSET;
 		LineShader::Draw(from - unit, to + unit, 3.f, drawColor);
 		
@@ -961,6 +1052,9 @@ void MapPanel::DrawEscorts()
 	const Color &parked = *GameData::Colors().Get("dim");
 	double zoom = Zoom();
 	for(const auto &squad : escortSystems)
+	{
+		if(squad.first->GetGalaxy() != selectedGalaxy)
+			continue;
 		if(player.HasSeen(*squad.first) || squad.first == specialSystem)
 		{
 			Point pos = zoom * (squad.first->Position() + center);
@@ -980,6 +1074,7 @@ void MapPanel::DrawEscorts()
 					LineShader::Draw(from, to, 2.f, active);
 				}
 		}
+	}
 }
 
 
@@ -1002,7 +1097,8 @@ void MapPanel::DrawWormholes()
 		const System *from = waypoints.back();
 		for(const System *to : waypoints)
 		{
-			if(from->FindStellar(&p)->HasSprite() && player.HasVisited(*from) && player.HasVisited(*to))
+			if(from->FindStellar(&p)->HasSprite() && player.HasVisited(*from) && player.HasVisited(*to)
+					&& from->GetGalaxy() == selectedGalaxy && to->GetGalaxy() == selectedGalaxy)
 				arrowsToDraw.emplace(from, to);
 			
 			from = to;
@@ -1011,17 +1107,13 @@ void MapPanel::DrawWormholes()
 	
 	const Color &wormholeDim = *GameData::Colors().Get("map unused wormhole");
 	const Color &arrowColor = *GameData::Colors().Get("map used wormhole");
-	static const double ARROW_LENGTH = 4.;
-	static const double ARROW_RATIO = .3;
-	static const Angle LEFT(30.);
-	static const Angle RIGHT(-30.);
 	const double zoom = Zoom();
 	
 	for(const pair<const System *, const System *> &link : arrowsToDraw)
 	{
 		// Compute the start and end positions of the wormhole link.
-		Point from = zoom * (link.first->Position() + center);
-		Point to = zoom * (link.second->Position() + center);
+		Point from = zoom * (link.first->Position() - selectedGalaxy->Position() + center);
+		Point to = zoom * (link.second->Position() - selectedGalaxy->Position() + center);
 		Point offset = (from - to).Unit() * LINK_OFFSET;
 		from -= offset;
 		to += offset;
@@ -1065,7 +1157,7 @@ void MapPanel::DrawLinks()
 
 void MapPanel::DrawSystems()
 {
-	if(commodity != cachedCommodity)
+	if(commodity != cachedCommodity || selectedGalaxy != cachedGalaxy)
 		UpdateCache();
 	
 	// If coloring by government, we need to keep track of which ones are the
@@ -1157,7 +1249,7 @@ void MapPanel::DrawMissions()
 	{
 		// The special system pointer is larger than the others.
 		Angle a = (angle[specialSystem] += Angle(30.));
-		Point pos = Zoom() * (specialSystem->Position() + center);
+		Point pos = Zoom() * (specialSystem->Position() + center - selectedGalaxy->Position());
 		PointerShader::Draw(pos, a.Unit(), 20.f, 27.f, -4.f, black);
 		PointerShader::Draw(pos, a.Unit(), 11.5f, 21.5f, -6.f, specialColor);
 	}
@@ -1204,7 +1296,7 @@ void MapPanel::DrawTooltips()
 		// Add 10px margin to all sides of the text.
 		Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
 		size += Point(20., 20.);
-		Point topLeft = (hoverSystem->Position() + center) * Zoom();
+		Point topLeft = (hoverSystem->Position() + center - selectedGalaxy->Position()) * Zoom();
 		// Do not overflow the screen dimensions.
 		if(topLeft.X() + size.X() > Screen::Right())
 			topLeft.X() -= size.X();
@@ -1220,7 +1312,7 @@ void MapPanel::DrawTooltips()
 
 void MapPanel::DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger)
 {
-	DrawPointer(Zoom() * (system->Position() + center), angle, color, true, bigger);
+	DrawPointer(Zoom() * (system->Position() + center - selectedGalaxy->Position()), angle, color, true, bigger);
 }
 
 

@@ -15,7 +15,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "DataNode.h"
 #include "Date.h"
+#include "Files.h"
 #include "Fleet.h"
+#include "Galaxy.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Hazard.h"
@@ -26,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
+#include <limits>
 
 using namespace std;
 
@@ -87,7 +90,7 @@ double System::Asteroid::Energy() const
 
 
 // Load a system's description.
-void System::Load(const DataNode &node, Set<Planet> &planets)
+void System::Load(const DataNode &node, Set<Galaxy> &galaxies, Set<Planet> &planets)
 {
 	if(node.Size() < 2)
 		return;
@@ -157,6 +160,12 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			}
 			else if(key == "hidden")
 				hidden = false;
+			else if(key == "galaxy")
+			{
+				if(galaxy)
+					galaxies.Get(galaxy->Name())->RemoveSystem(this);
+				galaxy = nullptr;
+			}
 			
 			// If not in "overwrite" mode, move on to the next node.
 			if(overwriteAll)
@@ -293,6 +302,12 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					grand.PrintTrace("Skipping unsupported arrival distance limitation:");
 			}
 		}
+		else if(key == "galaxy")
+		{
+			auto *galaxy = galaxies.Get(value);
+			galaxy->AddSystem(this);
+			this->galaxy = galaxy;
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -343,6 +358,38 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	// Print a warning if this system wasn't explicitly given a position.
 	if(!hasPosition)
 		node.PrintTrace("Warning: system will be ignored due to missing position:");
+}
+
+
+
+void System::FinishLoading(Set<Galaxy> &galaxies)
+{
+	// If no galaxy was specified assume this system is in the closest galaxy.
+	// Ignore galaxies that start with "label " for backwards compatibility.
+	if(!galaxy)
+	{
+		double closest = numeric_limits<double>::max();
+		Galaxy *selected = nullptr;
+		for(auto &&it : galaxies)
+		{
+			if(!it.second.Name().compare(0, 6, "label "))
+				continue;
+			auto distance = (it.second.Position() - position).LengthSquared();
+			if(distance < closest)
+			{
+				closest = distance;
+				selected = &it.second;
+			}
+		}
+
+		if(!selected)
+			Files::LogError("Warning: system \"" + name + "\" doesn't have a galaxy.");
+		else
+		{
+			galaxy = selected;
+			selected->AddSystem(this);
+		}
+	}
 }
 
 
@@ -451,6 +498,13 @@ const Government *System::GetGovernment() const
 const string &System::MusicName() const
 {
 	return music;
+}
+
+
+
+const Galaxy *System::GetGalaxy() const
+{
+	return galaxy;
 }
 
 

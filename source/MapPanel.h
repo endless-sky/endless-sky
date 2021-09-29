@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class Angle;
+class Galaxy;
 class Government;
 class Mission;
 class Planet;
@@ -107,6 +108,8 @@ protected:
 	const System &playerSystem;
 	// The (non-null) system which is currently selected.
 	const System *selectedSystem;
+	// The (non-null) galaxy which is currently selected.
+	const Galaxy *selectedGalaxy;
 	// The selected planet, if any.
 	const Planet *selectedPlanet = nullptr;
 	// A system associated with a dialog or conversation.
@@ -159,6 +162,7 @@ private:
 private:
 	// This is the coloring mode currently used in the cache.
 	int cachedCommodity = -10;
+	const Galaxy *cachedGalaxy = nullptr;
 	
 	class Node {
 	public:
@@ -183,6 +187,8 @@ private:
 		Color color;
 	};
 	std::vector<Link> links;
+
+	int galaxyStep = 0;
 };
 
 

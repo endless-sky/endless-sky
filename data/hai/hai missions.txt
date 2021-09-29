@@ -97,8 +97,9 @@ mission "Discovered Hai Space"
 		fail
 
 event "label hai space"
-	galaxy "label hai"
-		sprite "label/hai"
+	galaxy "Milky Way"
+		label "hai"
+			sprite "label/hai"
 
 mission "Discovered Wormhole Alpha"
 	landing

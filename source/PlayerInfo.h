@@ -31,6 +31,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <utility>
 #include <vector>
 
+class Galaxy;
 class Government;
 class Outfit;
 class Planet;
@@ -211,6 +212,7 @@ public:
 	bool HasSeen(const System &system) const;
 	bool HasVisited(const System &system) const;
 	bool HasVisited(const Planet &planet) const;
+	bool HasVisited(const Galaxy &galaxy) const;
 	bool KnowsName(const System &system) const;
 	// Marking a system as visited also "sees" its neighbors.
 	void Visit(const System &system);
@@ -343,6 +345,7 @@ private:
 	std::set<const System *> seen;
 	std::set<const System *> visitedSystems;
 	std::set<const Planet *> visitedPlanets;
+	std::set<const Galaxy *> visitedGalaxies;
 	std::vector<const System *> travelPlan;
 	const Planet *travelDestination = nullptr;
 	

@@ -228,6 +228,7 @@ bool GameData::BeginLoad(const char * const *argv)
 	// neighbor distances to be updated.
 	AddJumpRange(System::DEFAULT_NEIGHBOR_DISTANCE);
 	UpdateSystems();
+	UpdateGalaxies();
 	
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &&it : ships)
@@ -242,6 +243,9 @@ bool GameData::BeginLoad(const char * const *argv)
 			[](const StartConditions &it) noexcept -> bool { return !it.IsValid(); }),
 		startConditions.end()
 	);
+
+	for(auto &&it : systems)
+		it.second.FinishLoading(galaxies);
 	
 	// Store the current state, to revert back to later.
 	defaultFleets = fleets;
@@ -635,7 +639,7 @@ void GameData::Change(const DataNode &node)
 	if(node.Token(0) == "fleet" && node.Size() >= 2)
 		fleets.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "galaxy" && node.Size() >= 2)
-		galaxies.Get(node.Token(1))->Load(node);
+		galaxies.Get(node.Token(1))->Load(node, galaxies);
 	else if(node.Token(0) == "government" && node.Size() >= 2)
 		governments.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "outfitter" && node.Size() >= 2)
@@ -645,7 +649,7 @@ void GameData::Change(const DataNode &node)
 	else if(node.Token(0) == "shipyard" && node.Size() >= 2)
 		shipSales.Get(node.Token(1))->Load(node, ships);
 	else if(node.Token(0) == "system" && node.Size() >= 2)
-		systems.Get(node.Token(1))->Load(node, planets);
+		systems.Get(node.Token(1))->Load(node, galaxies, planets);
 	else if(node.Token(0) == "news" && node.Size() >= 2)
 		news.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "link" && node.Size() >= 3)
@@ -668,6 +672,7 @@ void GameData::UpdateSystems()
 		if(it.first.empty() || it.second.Name().empty())
 			continue;
 		it.second.UpdateSystem(systems, neighborDistances);
+		it.second.FinishLoading(galaxies);
 	}
 }
 
@@ -676,6 +681,36 @@ void GameData::UpdateSystems()
 void GameData::AddJumpRange(double neighborDistance)
 {
 	neighborDistances.insert(neighborDistance);
+}
+
+
+
+void GameData::UpdateGalaxies()
+{
+	for(auto &&galaxy : galaxies)
+		galaxy.second.ClearLabels();
+	for(auto &&galaxy : galaxies)
+		if(!galaxy.first.compare(0, 6, "label "))
+		{
+			double closest = numeric_limits<double>::max();
+			Galaxy *selected = nullptr;
+			for(auto &&it : galaxies)
+			{
+				if(!it.second.Name().compare(0, 6, "label "))
+					continue;
+				auto distance = (it.second.Position() - galaxy.second.Position()).LengthSquared();
+				if(distance < closest)
+				{
+					closest = distance;
+					selected = &it.second;
+				}
+			}
+
+			if(!selected)
+				Files::LogError("Warning: galaxy label \"" + galaxy.first + "\" doesn't have a galaxy.");
+			else
+				selected->AddLabel(&galaxy.second);
+		}
 }
 
 
@@ -1081,7 +1116,7 @@ void GameData::LoadFile(const string &path, bool debugMode)
 		else if(key == "fleet" && node.Size() >= 2)
 			fleets.Get(node.Token(1))->Load(node);
 		else if(key == "galaxy" && node.Size() >= 2)
-			galaxies.Get(node.Token(1))->Load(node);
+			galaxies.Get(node.Token(1))->Load(node, galaxies);
 		else if(key == "government" && node.Size() >= 2)
 			governments.Get(node.Token(1))->Load(node);
 		else if(key == "hazard" && node.Size() >= 2)
@@ -1128,7 +1163,7 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			}
 		}
 		else if(key == "system" && node.Size() >= 2)
-			systems.Get(node.Token(1))->Load(node, planets);
+			systems.Get(node.Token(1))->Load(node, galaxies, planets);
 		else if((key == "test") && node.Size() >= 2)
 			tests.Get(node.Token(1))->Load(node);
 		else if((key == "test-data") && node.Size() >= 2)

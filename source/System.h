@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class Date;
 class Fleet;
+class Galaxy;
 class Government;
 class Minable;
 class Planet;
@@ -63,7 +64,8 @@ public:
 	
 public:
 	// Load a system's description.
-	void Load(const DataNode &node, Set<Planet> &planets);
+	void Load(const DataNode &node, Set<Galaxy> &galaxies, Set<Planet> &planets);
+	void FinishLoading(Set<Galaxy> &galaxies);
 	// Update any information about the system that may have changed due to events,
 	// e.g. neighbors, solar wind and power, or if the system is inhabited.
 	void UpdateSystem(const Set<System> &systems, const std::set<double> &neighborDistances);
@@ -81,6 +83,7 @@ public:
 	const Government *GetGovernment() const;
 	// Get the name of the ambient audio to play in this system.
 	const std::string &MusicName() const;
+	const Galaxy *GetGalaxy() const;
 	
 	// Get the list of "attributes" of the planet.
 	const std::set<std::string> &Attributes() const;
@@ -178,6 +181,7 @@ private:
 	Point position;
 	const Government *government = nullptr;
 	std::string music;
+	const Galaxy *galaxy = nullptr;
 	
 	// Hyperspace links to other systems.
 	std::set<const System *> links;

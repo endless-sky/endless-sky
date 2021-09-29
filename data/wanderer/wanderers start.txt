@@ -80,8 +80,9 @@ mission "Discovered Wanderer Space"
 		fail
 
 event "label wanderer space"
-	galaxy "label wanderers"
-		sprite "label/wanderers"
+	galaxy "Milky Way"
+		label "wanderers"
+			sprite "label/wanderers"
 
 
 
