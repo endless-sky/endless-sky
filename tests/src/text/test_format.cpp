@@ -15,6 +15,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // Include only the tested class's header.
 #include "../../../source/text/Format.h"
 
+// ... utility classes
+#include "../../../source/DataNode.h"
+
 // ... and any system includes needed for the test file.
 #include <string>
 
@@ -203,6 +206,9 @@ TEST_CASE( "Format::Number", "[Format][Number]") {
 		CHECK( Format::Number(10.90) == "10.9" );
 		CHECK( Format::Number(10.999) == "10.99" );
 		CHECK( Format::Number(-12.41) == "-12.41" );
+	}
+	SECTION( "Calculations on numbers parsed by DataNode::Value" ) {
+		CHECK( Format::Number(60. * DataNode::Value("22.1") / DataNode::Value("3.4")) == "390");
 	}
 	SECTION( "Decimals between 100 and 1000" ) {
 		CHECK( Format::Number(256.) == "256" );

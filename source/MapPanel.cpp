@@ -1001,7 +1001,8 @@ void MapPanel::DrawWormholes()
 			continue;
 		
 		for(auto &&link : it.second.Links())
-			if(player.HasVisited(*link.first) && player.HasVisited(*link.second))
+			if(link.first->FindStellar(p)->HasSprite()
+					&& player.HasVisited(*link.first) && player.HasVisited(*link.second))
 				arrowsToDraw.emplace(link.first, link.second);
 	}
 	

@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define CONVERSATION_H_
 
 #include "ConditionSet.h"
+#include "GameAction.h"
 
 #include <map>
 #include <string>
@@ -54,16 +55,19 @@ public:
 	
 public:
 	// Read or write to files.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const std::string &missionName = "");
 	void Save(DataWriter &out) const;
 	// Check if any data is loaded in this conversation object.
 	bool IsEmpty() const noexcept;
 	// Check if this conversation includes a name prompt.
 	bool IsValidIntro() const noexcept;
+	// Check if the actions in this conversation are valid.
+	std::string Validate() const;
 	
-	// Do text replacement throughout this conversation. This returns a new
-	// Conversation object with things like the player's name filled in.
-	Conversation Substitute(const std::map<std::string, std::string> &subs) const;
+	// Do text replacement throughout this conversation and instantiate
+	// any GameActions. This returns a new Conversation object with
+	// things like the player's name filled in.
+	Conversation Instantiate(std::map<std::string, std::string> &subs, int jumps = 0, int payload = 0) const;
 	
 	// The beginning of the conversation is node 0. Some nodes have choices for
 	// the user to select; others just automatically continue to another node.
@@ -72,7 +76,8 @@ public:
 	int Choices(int node) const;
 	bool IsBranch(int node) const;
 	bool IsApply(int node) const;
-	const ConditionSet &Conditions(int node) const;
+	const ConditionSet &Branch(int node) const;
+	const GameAction &Apply(int node) const;
 	const std::string &Text(int node, int choice = 0) const;
 	const Sprite *Scene(int node) const;
 	int NextNode(int node, int choice = 0) const;
@@ -90,6 +95,8 @@ private:
 		
 		// For applying condition changes or branching based on conditions:
 		ConditionSet conditions;
+		// For applying actions:
+		GameAction actions;
 		// The actual conversation text. If this node is not a choice, there
 		// will only be one entry in the vector. Each entry also stores the
 		// number of the node to go to next.

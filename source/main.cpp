@@ -362,7 +362,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.9.14" << endl;
+	cerr << "Endless Sky ver. 0.9.15-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
@@ -384,7 +384,7 @@ Conversation LoadConversation()
 			break;
 		}
 	
-	const map<string, string> subs = {
+	map<string, string> subs = {
 		{"<bunks>", "[N]"},
 		{"<cargo>", "[N tons of Commodity]"},
 		{"<commodity>", "[Commodity]"},
@@ -401,7 +401,7 @@ Conversation LoadConversation()
 		{"<system>", "[Star]"},
 		{"<tons>", "[N tons]"}
 	};
-	return conversation.Substitute(subs);
+	return conversation.Instantiate(subs);
 }
 
 
