@@ -175,11 +175,13 @@ void MapPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	
-	SpriteShader::Draw(selectedGalaxy->GetSprite(), Zoom() * center, Zoom(), 0,
+	SpriteShader::Draw(selectedGalaxy->GetSprite(), Zoom() * center,
+			Zoom() * selectedGalaxy->Scale(), 0,
 			selectedGalaxy->GetFrame(galaxyStep));
 	for(const auto &label : selectedGalaxy->Labels())
 		SpriteShader::Draw(label->GetSprite(),
-				Zoom() * (center + label->Position() - selectedGalaxy->Position()), Zoom(), 0,
+				Zoom() * (center + label->Position() - selectedGalaxy->Position()),
+				Zoom() * label->Scale(), 0,
 				label->GetFrame(galaxyStep));
 	
 	if(Preferences::Has("Hide unexplored map regions"))
