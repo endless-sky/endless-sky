@@ -1947,7 +1947,10 @@ void Engine::DoCollisions(Projectile &projectile)
 		
 		// If this "projectile" is a ship explosion, it always explodes.
 		if(!gov)
+		{
 			closestHit = 0.;
+			projectile.Kill();
+		}
 		else if(projectile.GetWeapon().IsPhasing() && projectile.Target())
 		{
 			// "Phasing" projectiles that have a target will never hit any other ship.
@@ -1984,6 +1987,10 @@ void Engine::DoCollisions(Projectile &projectile)
 				{
 					hit = ship->shared_from_this();
 					hitVelocity = ship->Velocity();
+					// Only record direct hits. Phasing projectiles or projectiles
+					// that were set off by their trigger radius don't need to
+					// check for multiple collisions in a single frame.
+					hasHit = true;
 				}
 			}
 			// "Phasing" projectiles can pass through asteroids. For all other
@@ -2005,7 +2012,6 @@ void Engine::DoCollisions(Projectile &projectile)
 		// Check if the projectile hit something.
 		if(closestHit < 1.)
 		{
-			hasHit = true;
 			// Create the explosion the given distance along the projectile's
 			// motion path for this step.
 			projectile.Explode(visuals, closestHit, hitVelocity);
