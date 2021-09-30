@@ -63,6 +63,8 @@ public:
 	// Find out if this is a missile, and if so, how strong it is (i.e. what
 	// chance an anti-missile shot has of destroying it).
 	int MissileStrength() const;
+	// Find out the remaining number of penetrations that this projectile has.
+	int Penetrations() const;
 	// Get information on the weapon that fired this projectile.
 	const Weapon &GetWeapon() const;
 	

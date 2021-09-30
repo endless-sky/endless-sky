@@ -254,6 +254,7 @@ double Projectile::Clip() const
 void Projectile::Kill()
 {
 	lifetime = 0;
+	penetrations = weapon->Penetration() + 1;
 }
 
 
@@ -263,6 +264,14 @@ void Projectile::Kill()
 int Projectile::MissileStrength() const
 {
 	return weapon->MissileStrength();
+}
+
+
+
+// Find out the remaining number of penetrations that this projectile has.
+int Projectile::Penetrations() const
+{
+	return weapon->Penetration() - penetrations;
 }
 
 
