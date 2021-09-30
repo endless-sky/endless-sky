@@ -181,6 +181,12 @@ mission "Humanity: Broadsider 2"
 			`	Andre grimaces a bit at that. "That's what I was afraid we were going to hear." He sighs heavily, then continues. "Well, I'm glad it is progress, but we will have to keep working."`
 			label wrapup
 			`	Almost before Andre can finish speaking he is whisked away by a pack of officious aides that definitely separate you from him and deposit him at a table with several of the VIPs. He catches your eye, nods respectfully, and then turns his attention to the dignitaries. Another researcher approaches you to offer their thanks, and hands you an invoice stating that you have been deposited <payment> in exchange for consulting services to the Republic Navy. They inform you that you are welcome to stay as long as you like, but they suspect that Andre will be tied up in meetings for the foreseeable future.`
-
+			choice
+				`	"Thanks!"`
+					goto finale
+				`	"When will the Broadsider be available?"`
+			`	The aide consults their notes, then replies. "We expect that they should reach our outfitters within the next week or two, although some ships were whitelisted for early deployment. As such, some of our fleet already has them equipped to help secure humanity against future incursions." The aide looks pleased at this. "Well, I must be off. Thank you again for your assistance." They turn, and vanish into the crowd.`
+			label finale
+			`	The broadsider launch event continues on for several more hours, and you have the opportunity to mix and mingle with a variety of dignitaries. There is also a table of food and drinks available. Eventually you decide that there is nothing more to be gained by sticking around, and return to the spaceport.`
 
 
