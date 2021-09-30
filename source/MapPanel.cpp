@@ -1222,7 +1222,8 @@ void MapPanel::DrawMissions()
 	for(const Mission &mission : player.AvailableJobs())
 	{
 		const System *system = mission.Destination()->GetSystem();
-		DrawPointer(system, angle[system], mission.HasSpace(player) ? availableColor : unavailableColor);
+		if(system->GetGalaxy() == selectedGalaxy)
+			DrawPointer(system, angle[system], mission.HasSpace(player) ? availableColor : unavailableColor);
 	}
 	for(const Mission &mission : player.Missions())
 	{
@@ -1238,12 +1239,15 @@ void MapPanel::DrawMissions()
 				blink = (step % (10 * days) > 5 * days);
 		}
 		bool isSatisfied = IsSatisfied(player, mission);
-		DrawPointer(system, angle[system], blink ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
+		if(system->GetGalaxy() == selectedGalaxy)
+			DrawPointer(system, angle[system], blink ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
 		
 		for(const System *waypoint : mission.Waypoints())
-			DrawPointer(waypoint, angle[waypoint], waypointColor);
+			if(waypoint->GetGalaxy() == selectedGalaxy)
+				DrawPointer(waypoint, angle[waypoint], waypointColor);
 		for(const Planet *stopover : mission.Stopovers())
-			DrawPointer(stopover->GetSystem(), angle[stopover->GetSystem()], waypointColor);
+			if(stopover->GetSystem()->GetGalaxy() == selectedGalaxy)
+				DrawPointer(stopover->GetSystem(), angle[stopover->GetSystem()], waypointColor);
 	}
 	if(specialSystem)
 	{

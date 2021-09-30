@@ -399,7 +399,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 	Point click = Point(x, y) / Zoom() - center;
 	const System *system = nullptr;
 	for(const auto &it : selectedGalaxy->Systems())
-		if(it->IsValid() && click.Distance(it->Position()) < 10.
+		if(it->IsValid() && click.Distance(it->Position() - selectedGalaxy->Position()) < 10.
 				&& (player.HasSeen(*it) || it == specialSystem))
 		{
 			system = it;
@@ -615,7 +615,7 @@ void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color)
 	
 	double zoom = Zoom();
 	auto drawRing = [&](const System *system, const Color &drawColor)
-		{ RingShader::Add(zoom * (system->Position() + center - selectedGalaxy->Position()),
+		{ RingShader::Add(zoom * (system->Position() + center - system->GetGalaxy()->Position()),
 				22.f, 20.5f, drawColor); };
 	
 	RingShader::Bind();
