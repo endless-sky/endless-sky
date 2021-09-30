@@ -1931,26 +1931,23 @@ void Engine::HandleMouseClicks()
 // this is multi-threaded in the future, that will need to change.
 void Engine::DoCollisions(Projectile &projectile)
 {	
-	bool hasHit = true;
+	const Government *gov = projectile.GetGovernment();
 	// Keep track of which ships this projectile has directly impacted this frame.
 	set<const Body *> hits;
-	const Government *gov = projectile.GetGovernment();
+	bool hasHit = true;
 	while(projectile.Penetrations() >= 0 && hasHit)
 	{
-		hasHit = false;
 		// The asteroids can collide with projectiles, the same as any other
 		// object. If the asteroid turns out to be closer than the ship, it
 		// shields the ship (unless the projectile has a blast radius).
-		Point hitVelocity;
 		double closestHit = 1.;
 		shared_ptr<Ship> hit;
+		Point hitVelocity;
+		hasHit = false;
 		
 		// If this "projectile" is a ship explosion, it always explodes.
 		if(!gov)
-		{
 			closestHit = 0.;
-			projectile.Kill();
-		}
 		else if(projectile.GetWeapon().IsPhasing() && projectile.Target())
 		{
 			// "Phasing" projectiles that have a target will never hit any other ship.

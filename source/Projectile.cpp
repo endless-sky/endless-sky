@@ -258,7 +258,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 
 
 // This projectile hit something. Create the explosion, if any. This also
-// marks the projectile as needing deletion.
+// marks the projectile as needing deletion if it has run out of penetrations.
 void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hitVelocity)
 {
 	distanceTraveled += velocity.Length() * intersection;
