@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.9.12
+version 0.9.14
 
 This game is open source.
 To report bugs, give feedback,
@@ -14,12 +14,13 @@ Creator and Lead Programmer
 
 Developers
   Amazinite
+  Benjamin Hauch
   Pointedstick
-  tehhowch
 
 Major Programming
   AdamKauffman
   Amazinite
+  Benjamin Hauch
   CyberShadow
   db47h
   Elyssaen
@@ -33,7 +34,6 @@ Major Programming
   NomadicVolcano
   oo13
   Peter van der Meer
-  tehhowch
 
 Storyline & Faction Authors
   Amazinite
@@ -57,6 +57,7 @@ Editors & Proofreaders
   RecursiveParadox
   Tadrix
   temtemy
+  W1zrad
   Zearth Goh aka TheMarksman
 
 Artwork
@@ -74,6 +75,7 @@ Artwork
   Zachary Siple (CC-BY-SA 4.0)
   Darcy Manoel (CC-BY-SA 4.0)
   Lia Gerty (CC-BY-SA 4.0)
+  @Karirawri (CC-BY-SA-4.0)
 
 Photos from Wikimedia Commons
   Berthold Werner (CC-BY-SA 3.0)
@@ -125,24 +127,31 @@ contributed to Endless Sky:
   AMDmi3
   anarcat
   Anarchist2
+  AraCaputDraco
   Arachi-Lover
+  arkhne
+  ashdnazg
   Aurelite
   barthalion
   beccabunny
   BlackVegetable
   Bladewood
+  bobrobbow
   bojidar-bg
   Brick63
   ChamEV
   colbygallup
   comnom
   corecontingency
+  Corraban2
   CyberShadow
   czartrak
   Darcman99
   davidarcher
   davidwhitman
+  dazuma
   db47h
+  DeBlister
   DingusShingleton
   Disiuze
   dplepage
@@ -151,14 +160,21 @@ contributed to Endless Sky:
   dufferzafar
   dzhu
   eflyon
+  EjoThims
   elgeonmb
+  Eloraam
   Elyssaen
   endless-sky
   EndrosG
   fcfort
   Ferociousfeind
+  Floppa-Priest
+  finite-galaxy
+  FixItYondu
   flaviojs
+  FranchuFranchu
   Fzzr
+  Galaucus
   gecko-locator
   Gods-Righthand
   guillochon
@@ -167,14 +183,22 @@ contributed to Endless Sky:
   Hadron1776
   har9862
   Hyugat
+  InfiniteDonuts
+  infinitewarp
   ItsNickBarry
   jafdy
   Janaszar
+  janisozaur
+  jarekchr
+  jerith
   jjhankins
+  jmathes
   jmhorjus
   jostephd
   jozef-mitro
   Jugosloven1612
+  Karirawri
+  kestrel1110
   KevinKorzekwa
   kilobyte
   kkuchta
@@ -194,8 +218,10 @@ contributed to Endless Sky:
   MasterOfGrey
   mattsoulanille
   maxrd2
+  McloughlinGuy
   MCOfficer
   MessyMix
+  michel-slm
   MillerNerd
   mimirzero
   mootootwo
@@ -204,9 +230,12 @@ contributed to Endless Sky:
   Nescio0
   nobodywasishere
   NomadicVolcano
+  NRK4
   oo13
+  Ornok
   OverYrPaygrade
   PaulBlay
+  pega3
   perey
   petervdmeer
   ph2000
@@ -214,20 +243,26 @@ contributed to Endless Sky:
   PhaedrusES
   pkubaj
   plague006
+  Plip-Plop
   Pointedstick
+  prophile
   pscamman
   Rakete1111
   ravenshining
   realityforge
+  Red-57
   redschalken
   reizbar
   RestingImmortal
   retrue
+  Ririshi
   rlane
   Rob59er
   rugk
   rzahniser
+  Sandwichs-del
   schrauger
+  ScruffyKitty
   sdennie
   seanfahey
   sfiera
@@ -236,15 +271,19 @@ contributed to Endless Sky:
   starscollide5
   StrawberryDelite
   strollcata
+  SubstandardZeal
   Tadrix
+  tatami4
   tboby
   tehhowch
   temtemy
+  Terin
   thebigh2014
   TheMarksman-ES
   thenerdfreak
   TheUnfetteredOne
   thomasballinger
+  ThrosturX
   Thunderforge
   tiennou
   timbennett
@@ -253,16 +292,20 @@ contributed to Endless Sky:
   toilethinges
   TurkeyMcMac
   Turtleroku
+  tux2603
   Vilhelm16
+  W1zrad
   Waffleship
   Waladil
   warp-core
   waterhouse
   whismerhill
   willbeason
+  wjbotham
   wjp
   Wrzlprnft
   YellowApple
+  yobbo2020
   ZBok
   Zitchas
   zwparchman

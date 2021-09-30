@@ -10,6 +10,7 @@ environment:
   PYTHON_BINARY: C:/Python38-x64/python.exe
   SCCACHE_DIR: sccache
   CXX: sccache g++
+  AR: gcc-ar
   es_run_mode: 'dist'
   matrix:
     - MINGW_ROOT: C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64

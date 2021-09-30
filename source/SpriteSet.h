@@ -28,8 +28,8 @@ public:
 	// Get a pointer to the sprite data with the given name.
 	static const Sprite *Get(const std::string &name);
 	
-	// Inspect the sprite map and return any paths that loaded no data.
-	static std::set<std::string> CheckReferences();
+	// Inspect the sprite map and warn if some images contain no data.
+	static void CheckReferences();
 	
 	
 private:
