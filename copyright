@@ -343,23 +343,24 @@ License: CC-BY-SA-4.0
 Comment: Derived and completed from works by Maximilian Korber (Wrzlprnft), @Karirawri, and originally drawn up by Tommy Thach (Bladewood) (all under the same license)
 
 Files:
- images/outfit/quarg*
+ images/icon/barrage*
+ images/icon/broadsider*
+ images/hardpoint/broadsider*
  images/hardpoint/quarg*
- images/outfit/small?quarg*
- images/outfit/medium?quarg*
- images/outfit/large?quarg*
+ images/outfit/barrage*
+ images/outfit/broadsider*
  images/outfit/enforcer?riot?staff*
- images/outfit/laser?rifle*
- images/outfit/hai?pebble?core*
  images/outfit/hai?boulder*
  images/outfit/hai?geode*
- images/outfit/broadsider*
- images/outfit/barrage*
- images/icon/broadsider*
- images/icon/barrage*
+ images/outfit/hai?pebble?core*
+ images/outfit/large?quarg*
+ images/outfit/laser?rifle*
+ images/outfit/medium?quarg*
+ images/outfit/quarg*
+ images/outfit/small?quarg*
  images/projectile/broadsider*
  images/projectile/barrage*
- images/hardpoint/broadsider*
+ images/scene/broadsiderscene*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 
