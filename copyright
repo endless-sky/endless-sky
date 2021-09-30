@@ -1189,13 +1189,30 @@ License: CC-BY-SA-4.0
 
 Files:
  images/star/neutron*
-Copyright: Gefüllte Taubenbrust
+Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
 
 Files: sounds/ionball*
 Copyright: pluralz
 License: public-domain
 Comment: Taken from https://freesound.org/people/pluralz/sounds/475806/
+
+Files:
+ images/ship/combat?drone*
+ images/ship/cruiser*
+ images/ship/frigate*
+ images/ship/gunboat*
+ images/ship/lance*
+ images/ship/rainmaker*
+ images/thumbnail/combat?drone*
+ images/thumbnail/cruiser*
+ images/thumbnail/frigate*
+ images/thumbnail/gunboat*
+ images/thumbnail/lance*
+ images/thumbnail/rainmaker*
+Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
