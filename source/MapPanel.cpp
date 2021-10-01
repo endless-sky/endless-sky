@@ -991,8 +991,7 @@ void MapPanel::DrawWormholes()
 	// Keep track of what arrows and links need to be drawn.
 	set<pair<const System *, const System *>> arrowsToDraw;
 	
-	// Avoid iterating each StellarObject in every system by iterating over planets instead. A
-	// system can host more than one set of wormholes (e.g. Cardea), and some wormholes may even
+	// A system can host more than one set of wormholes (e.g. Cardea), and some wormholes may even
 	// share a link vector.
 	for(auto &&it : GameData::Wormholes())
 	{
@@ -1001,8 +1000,7 @@ void MapPanel::DrawWormholes()
 			continue;
 		
 		for(auto &&link : it.second.Links())
-			if(link.first->FindStellar(p)->HasSprite()
-					&& player.HasVisited(*link.first) && player.HasVisited(*link.second))
+			if(player.HasVisited(*link.first) && player.HasVisited(*link.second))
 				arrowsToDraw.emplace(link.first, link.second);
 	}
 	
