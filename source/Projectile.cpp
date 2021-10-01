@@ -284,11 +284,19 @@ double Projectile::Clip() const
 
 
 
+// Get whether the lifetime on this projectile has run out.
+bool Projectile::IsDead() const
+{
+	return lifetime < 0;
+}
+
+
+
 // This projectile was killed, e.g. by an anti-missile system.
 void Projectile::Kill()
 {
 	lifetime = 0;
-	penetrations = weapon->Penetration() + 1;
+	penetrations = weapon->Penetration();
 }
 
 
@@ -298,14 +306,6 @@ void Projectile::Kill()
 int Projectile::MissileStrength() const
 {
 	return weapon->MissileStrength();
-}
-
-
-
-// Find out the remaining number of penetrations that this projectile has.
-int Projectile::Penetrations() const
-{
-	return weapon->Penetration() - penetrations;
 }
 
 

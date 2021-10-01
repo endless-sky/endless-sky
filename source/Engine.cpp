@@ -1930,12 +1930,12 @@ void Engine::HandleMouseClicks()
 // one adds any visuals that are created directly to the main visuals list. If
 // this is multi-threaded in the future, that will need to change.
 void Engine::DoCollisions(Projectile &projectile)
-{	
+{
 	const Government *gov = projectile.GetGovernment();
 	// Keep track of which ships this projectile has directly impacted this frame.
 	set<const Body *> hits;
 	bool hasHit = true;
-	while(projectile.Penetrations() >= 0 && hasHit)
+	while(!projectile.IsDead() && hasHit)
 	{
 		// The asteroids can collide with projectiles, the same as any other
 		// object. If the asteroid turns out to be closer than the ship, it
@@ -2052,7 +2052,7 @@ void Engine::DoCollisions(Projectile &projectile)
 	
 	// If the projectile is still alive, give the anti-missile systems
 	// a chance to shoot it down.
-	if(projectile.Penetrations() >= 0 && projectile.MissileStrength())
+	if(!projectile.IsDead() && projectile.MissileStrength())
 	{
 		for(Ship *ship : hasAntiMissile)
 			if(ship == projectile.Target() || gov->IsEnemy(ship->GetGovernment()))

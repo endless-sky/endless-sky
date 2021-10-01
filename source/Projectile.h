@@ -57,14 +57,14 @@ public:
 	void Explode(std::vector<Visual> &visuals, double intersection, Point hitVelocity = Point());
 	// Get the amount of clipping that should be applied when drawing this projectile.
 	double Clip() const;
+	// Get whether the lifetime on this projectile has run out.
+	bool IsDead() const;
 	// This projectile was killed, e.g. by an anti-missile system.
 	void Kill();
 	
 	// Find out if this is a missile, and if so, how strong it is (i.e. what
 	// chance an anti-missile shot has of destroying it).
 	int MissileStrength() const;
-	// Find out the remaining number of penetrations that this projectile has.
-	int Penetrations() const;
 	// Get information on the weapon that fired this projectile.
 	const Weapon &GetWeapon() const;
 	
