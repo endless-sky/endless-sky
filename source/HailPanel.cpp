@@ -292,7 +292,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			{
 				bribed = ship->GetGovernment();
 				bribed->Bribe();
-				Messages::Add("You bribed a " + ship->GetGovernment()->GetName() + " ship "
+				Messages::Add("You bribed a " + bribed->GetName() + " ship "
 					+ Format::Credits(bribe) + " credits to refrain from attacking you today."
 						, Messages::Importance::High);
 			}
