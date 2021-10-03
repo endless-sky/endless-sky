@@ -149,7 +149,7 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 			// Don't merge "branch" nodes with any other nodes.
 			nodes.emplace_back();
 			nodes.back().canMergeOnto = false;
-			nodes.back().conditions.Load(child);
+			nodes.back().branch.Load(child);
 			// A branch should always specify what node to go to if the test is
 			// true, and may also specify where to go if it is false.
 			for(int i = 1; i <= 2; ++i)
@@ -166,9 +166,9 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 				}
 			}
 		}
-		else if(child.Token(0) == "apply")
+		else if(child.Token(0) == "action" || child.Token(0) == "apply")
 		{
-			// Don't merge "apply" nodes with any other nodes.
+			// Don't merge "action" nodes with any other nodes. Allow the legacy keyword "apply," too.
 			AddNode();
 			nodes.back().canMergeOnto = false;
 			nodes.back().actions.Load(child, missionName);
@@ -239,24 +239,24 @@ void Conversation::Save(DataWriter &out) const
 			
 			if(node.scene)
 				out.Write("scene", node.scene->Name());	
-			if(!node.conditions.IsEmpty())
+			if(!node.branch.IsEmpty())
 			{
 				out.Write("branch", TokenName(node.data[0].second), TokenName(node.data[1].second));
 				// Write the condition set as a child of this node.
 				out.BeginChild();
 				{
-					node.conditions.Save(out);
+					node.branch.Save(out);
 				}
 				out.EndChild();
 				continue;
 			}
 			if(!node.actions.IsEmpty())
 			{
-				out.Write("apply", TokenName(node.data[0].second));
+				out.Write("action");
 				// Write the GameAction as a child of this node.
 				out.BeginChild();
 				{
-					node.actions.SaveAction(out);
+					node.actions.Save(out);
 				}
 				out.EndChild();
 				continue;
@@ -313,9 +313,9 @@ string Conversation::Validate() const
 	{
 		if(!node.actions.IsEmpty())
 		{
-			string reason = node.actions.ValidateAction();
+			string reason = node.actions.Validate();
 			if(!reason.empty())
-				return "conversation applied " + reason;
+				return "conversation action " + std::move(reason);
 		}
 	}
 	return "";
@@ -369,13 +369,13 @@ bool Conversation::IsBranch(int node) const
 	if(static_cast<unsigned>(node) >= nodes.size())
 		return false;
 	
-	return !nodes[node].conditions.IsEmpty();
+	return !nodes[node].branch.IsEmpty();
 }
 
 
 
-// Check if the given conversation node applies an action.
-bool Conversation::IsApply(int node) const
+// Check if the given conversation node performs an action.
+bool Conversation::IsAction(int node) const
 {
 	if(static_cast<unsigned>(node) >= nodes.size())
 		return false;
@@ -392,12 +392,12 @@ const ConditionSet &Conversation::Branch(int node) const
 	if(static_cast<unsigned>(node) >= nodes.size())
 		return empty;
 	
-	return nodes[node].conditions;
+	return nodes[node].branch;
 }
 
 
 // Get the action that the given node applies.
-const GameAction &Conversation::Apply(int node) const
+const GameAction &Conversation::GetAction(int node) const
 {
 	static GameAction empty;
 	if(static_cast<unsigned>(node) >= nodes.size())
