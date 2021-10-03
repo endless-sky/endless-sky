@@ -76,9 +76,6 @@ mission "I Want To Be A Pirate"
 			label end
 			`	Now, you are one!`
 				decline
-				
-
-
 
 
 
@@ -156,6 +153,7 @@ mission "Pirate Intro - Boarding"
 	name "Board a merchant"
 	description `Board a merchant.`
 	destination "Greenrock"
+	waypoint "Umbral"
 	to offer
 		has "I Want To Be A Pirate: active"
 	to fail
@@ -164,15 +162,6 @@ mission "Pirate Intro - Boarding"
 		event "add merchant targets"
 	to complete
 		has "Plunder Defense: done"
-
-mission "Pirate Intro - Boarding Hint"
-	invisible
-	to offer
-		has "Pirate Intro - Boarding: active"
-		random < 20
-	on offer
-		conversation
-			`Hours spent in a spaceport bar proved fruitful. Whether you spent it in revelry, swapping tales and loosening tongues, or simply lurking and listening with a glass gripped solely for the sake of appearance, you eventually piece together a tale - brought to your ears by the brother of a cousin of a hairdresser of the dog walker of a shipping officer - of a ship loaded with unspeakably valuable treasures, and it's due in the Umbral system soon! This could be your big break as a pirate.`
 
 fleet "Merchant Targets"
 	government "Merchant (Target)"
@@ -230,6 +219,7 @@ fleet "Merchant Targets"
 		heroic
 	variant 1
 		"Freighter"
+
 
 
 mission "Pirate Intro - Wealth"
