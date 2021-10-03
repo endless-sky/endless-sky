@@ -148,10 +148,16 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 		
-		if(!testToRunName.empty() && !GameData::Tests().Has(testToRunName))
+		if(!testToRunName.empty())
 		{
-			Files::LogError("Test \"" + testToRunName + "\" not found.");
-			return 1;
+			// If we have a test specified we need to load the game data immediately.
+			while(!GameData::IsDataLoaded())
+				this_thread::yield();
+			if(!GameData::Tests().Has(testToRunName))
+			{
+				Files::LogError("Test \"" + testToRunName + "\" not found.");
+				return 1;
+			}
 		}
 		
 		// On Windows, make sure that the sleep timer has at least 1 ms resolution
