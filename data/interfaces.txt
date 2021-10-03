@@ -118,14 +118,14 @@ interface "menu background"
 		center 0 280
 	sprite "_menu/oberon"
 		center 140 180
-
-
-
-interface "main menu"
 	sprite "_menu/compass"
 		center 0 0
 	sprite "_menu/title"
 		center 0 -170
+
+
+
+interface "main menu"
 	sprite "_menu/side panel"
 		center -360 0
 	sprite "_menu/side panel"

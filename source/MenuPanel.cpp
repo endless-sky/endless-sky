@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MenuPanel.h"
 
+#include "Audio.h"
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "Files.h"
@@ -23,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Information.h"
 #include "LoadPanel.h"
 #include "MainPanel.h"
+#include "MaskManager.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -31,6 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "ShipyardPanel.h"
 #include "Sprite.h"
+#include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
 #include "StartConditionsPanel.h"
@@ -46,6 +49,7 @@ using namespace std;
 
 namespace {
 	float alpha = 1.f;
+	bool isDataLoaded = false;
 	const int scrollSpeed = 2;
 }
 
@@ -70,6 +74,23 @@ void MenuPanel::Step()
 			scroll = 0;
 	}
 	progress = static_cast<int>(GameData::Progress() * 60.);
+	if(GameData::IsDataLoaded() && !isDataLoaded)
+	{
+		GameData::FinishLoading();
+		player.LoadRecent();
+		isDataLoaded = true;
+	}
+	if(GameData::IsLoaded() && alpha == 1.f)
+	{
+		// Now that we have finished loading all the basic sprites and sounds, we can look for invalid file paths,
+		// e.g. due to capitalization errors or other typos.
+		SpriteSet::CheckReferences();
+		Audio::CheckReferences();
+		// All sprites with collision masks should also have their 1x scaled versions, so create
+		// any additional scaled masks from the default one.
+		GameData::GetMaskManager().ScaleMasks();
+	}
+
 	if(GameData::IsLoaded() && gamePanels.IsEmpty())
 	{
 		gamePanels.Push(new MainPanel(player));
@@ -88,40 +109,60 @@ void MenuPanel::Draw()
 	GameData::Background().Draw(Point(), Point());
 	const Font &font = FontSet::Get(14);
 	
-	Information info;
-	if(player.IsLoaded() && !player.IsDead())
+	GameData::Interfaces().Get("menu background")->Draw(Information(), this);
+
+	if(GameData::IsDataLoaded())
 	{
-		info.SetCondition("pilot loaded");
-		info.SetString("pilot", player.FirstName() + " " + player.LastName());
-		if(player.Flagship())
+		Information info;
+		if(player.IsLoaded() && !player.IsDead())
 		{
-			const Ship &flagship = *player.Flagship();
-			info.SetSprite("ship sprite", flagship.GetSprite());
-			info.SetString("ship", flagship.Name());
+			info.SetCondition("pilot loaded");
+			info.SetString("pilot", player.FirstName() + " " + player.LastName());
+			if(player.Flagship())
+			{
+				const Ship &flagship = *player.Flagship();
+				info.SetSprite("ship sprite", flagship.GetSprite());
+				info.SetString("ship", flagship.Name());
+			}
+			if(player.GetSystem())
+				info.SetString("system", player.GetSystem()->Name());
+			if(player.GetPlanet())
+				info.SetString("planet", player.GetPlanet()->Name());
+			info.SetString("credits", Format::Credits(player.Accounts().Credits()));
+			info.SetString("date", player.GetDate().ToString());
+			info.SetString("playtime", Format::PlayTime(player.GetPlayTime()));
 		}
-		if(player.GetSystem())
-			info.SetString("system", player.GetSystem()->Name());
-		if(player.GetPlanet())
-			info.SetString("planet", player.GetPlanet()->Name());
-		info.SetString("credits", Format::Credits(player.Accounts().Credits()));
-		info.SetString("date", player.GetDate().ToString());
-		info.SetString("playtime", Format::PlayTime(player.GetPlayTime()));
+		else if(player.IsLoaded())
+		{
+			info.SetCondition("no pilot loaded");
+			info.SetString("pilot", player.FirstName() + " " + player.LastName());
+			info.SetString("ship", "You have died.");
+		}
+		else
+		{
+			info.SetCondition("no pilot loaded");
+			info.SetString("pilot", "No Pilot Loaded");
+		}
+
+		GameData::Interfaces().Get("main menu")->Draw(info, this);
+		GameData::Interfaces().Get("menu player info")->Draw(info, this);
+
+		int y = 120 - scroll / scrollSpeed;
+		for(const string &line : credits)
+		{
+			float fade = 1.f;
+			if(y < -145)
+				fade = max(0.f, (y + 165) / 20.f);
+			else if(y > 95)
+				fade = max(0.f, (115 - y) / 20.f);
+			if(fade)
+			{
+				Color color(((line.empty() || line[0] == ' ') ? .2f : .4f) * fade, 0.f);
+				font.Draw(line, Point(-470., y), color);
+			}
+			y += 20;
+		}
 	}
-	else if(player.IsLoaded())
-	{
-		info.SetCondition("no pilot loaded");
-		info.SetString("pilot", player.FirstName() + " " + player.LastName());
-		info.SetString("ship", "You have died.");
-	}
-	else
-	{
-		info.SetCondition("no pilot loaded");
-		info.SetString("pilot", "No Pilot Loaded");
-	}
-	
-	GameData::Interfaces().Get("menu background")->Draw(info, this);
-	GameData::Interfaces().Get("main menu")->Draw(info, this);
-	GameData::Interfaces().Get("menu player info")->Draw(info, this);
 	
 	if(progress == 60)
 		alpha -= .02f;
@@ -135,22 +176,6 @@ void MenuPanel::Draw()
 			PointerShader::Draw(Point(), a.Unit(), 8.f, 20.f, 140.f * alpha, color);
 			a += da;
 		}
-	}
-	
-	int y = 120 - scroll / scrollSpeed;
-	for(const string &line : credits)
-	{
-		float fade = 1.f;
-		if(y < -145)
-			fade = max(0.f, (y + 165) / 20.f);
-		else if(y > 95)
-			fade = max(0.f, (115 - y) / 20.f);
-		if(fade)
-		{
-			Color color(((line.empty() || line[0] == ' ') ? .2f : .4f) * fade, 0.f);
-			font.Draw(line, Point(-470., y), color);
-		}
-		y += 20;
 	}
 }
 
