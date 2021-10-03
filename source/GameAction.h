@@ -46,39 +46,37 @@ public:
 	GameAction(const DataNode &node, const std::string &missionName);
 	
 	void Load(const DataNode &node, const std::string &missionName);
-	// Load a single child at a time, used for streamlining MissionAction::Load.
-	void LoadAction(const DataNode &child, const std::string &missionName, bool conversation = true);
-	void SaveAction(DataWriter &out) const;
-	// Determine if this GameAction references content that is not fully defined.
-	std::string ValidateAction() const;
+	// Process a single sibling node.
+	void LoadSingle(const DataNode &child, const std::string &missionName);
+	void Save(DataWriter &out) const;
 	
-	// If this action has not been loaded, then it is empty.
-	bool IsEmpty() const;
+	// Determine if this GameAction references content that is not fully defined.
+	std::string Validate() const;
+	
+	// Whether this action instance contains any tasks to perform.
+	bool IsEmpty() const noexcept;
+	
+	int64_t Payment() const noexcept;
+	int64_t Fine() const noexcept;
+	const std::map<const Outfit *, int> &Outfits() const noexcept;
 	
 	// Perform this action.
-	void DoAction(PlayerInfo &player, UI *ui = nullptr) const;
+	void Do(PlayerInfo &player, UI *ui) const;
 	
 	// "Instantiate" this action by filling in the wildcard data for the actual
 	// payment, event delay, etc.
 	GameAction Instantiate(std::map<std::string, std::string> &subs, int jumps, int payload) const;
 	
 	
-protected:
-	// Instantiate the data that is specific to a GameAction but not a MissionAction.
-	void InstantiateAction(GameAction &result, std::map<std::string, std::string> &subs, int jumps, int payload) const;
-	
-	
-protected:
+private:
+	bool isEmpty = true;
 	std::string logText;
 	std::map<std::string, std::map<std::string, std::string>> specialLogText;
 	
 	std::map<const GameEvent *, std::pair<int, int>> events;
 	std::vector<std::pair<const Ship *, std::string>> giftShips;
 	std::map<const Outfit *, int> giftOutfits;
-	// A GameAction contains a map of required outfits, but only a MissionAction
-	// will populate it. This is for the purpose of catching old mission syntax
-	// "outfit <outfit> 0" now being "require <outfit>".
-	std::map<const Outfit *, int> requiredOutfits;
+	
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	int64_t fine = 0;
@@ -87,10 +85,6 @@ protected:
 	std::set<std::string> fail;
 	
 	ConditionSet conditions;
-	
-	
-private:
-	bool empty = true;
 };
 
 
