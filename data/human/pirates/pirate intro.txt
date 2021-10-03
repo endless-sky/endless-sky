@@ -104,7 +104,7 @@ conversation "I Want To Be A Pirate"
 	`	The trio of pirates stare at you, bewilderment evident on their faces. "What the hell? You've been watching too many serials, kid." The cybernetic Outlaw shakes his head woefully. "Well, you're not going to last long out here." Only the Corsair seems to be - if only a smidgen - delighted with your approach to piracy.`
 	`	The Corsair clears his throat, eager to move back to the topic at hand. "Now, about them tasks-"`
 	label tasks
-	`	The Corsair leans over the table, a wide grin splitting his face perpendicular to the scar that runs from brow to chin. "It's simple, matey. Ye need to prove you're not to be trifled with. Pick a juicy prize, disable them, board them, and when other scalliwags come sniffing? Defend your plunder! No scavenger of the black'll displace you from your next meal, by thunder!" Spit and ale fly from the Corsair's lips as the roars, as jolly as can be - and more than a little drunk.`
+	`	The Corsair leans over the table, a wide grin splitting his face perpendicular to the scar that runs from brow to chin. "It's simple, matey. Ye need to prove you're not to be trifled with. Find a juicy prize, disable them, board them, and when other scalliwags come sniffing? Defend your plunder! No scavenger of the black'll displace you from your next meal, by thunder!" Spit and ale fly from the Corsair's lips as the roars, as jolly as can be - and more than a little drunk.`
 	`	The business-suited woman rolls her eyes, though she's careful to ensure she's safely behind the Corsair's back before doing so. "Violence will get you only so far. True power comes from wealth. The fastest engines and biggest guns won't save you when you're too poor to bribe a judge, or even a lowly spaceport controller. Besides - you also need to keep your quartermaster happy. Liquid solvency, my novice, is the only real safety that a pirate can hope to have. You'll find that other assets are liable to be seized by the state. You're best off keeping your pockets full and your real estate holdings light. You bring me one million credits and I'll consider that proof enough of your talent - and my fee for putting words into the right ears that you're not someone to mess with."`
 	`	There's an electronic laugh from the edge of the table, followed by a cloud of clove-scented smoke emerging from vents in the cyborg's throat. "Wealth. Respect. None of these matter - the only thing that'll keep you safe in the end is power. If you can't control the fates of others, you'll never be able to dictate your own destiny. There are too many people fighting for the top. Prove you belong there. Find a settlement, sack it, slay the defenders or force them to acknowledge your superiority. People like us - we shouldn't work for our rightful rewards. It falls to lesser men to furnish us with what we want. Force others to acknowledge your will and render tribute, and you'll have earned my approval."`
 	choice
@@ -193,7 +193,7 @@ mission "Plunder Defense"
 		government "Merchant (Target)"
 	on offer
 		conversation
-			`You have successfully boarded the merchant, and right on cue, several competitors arrive. Defend yourself!`
+			`You have successfully boarded the merchant, and right on cue, several competitors arrive. Just as the Corsair promised, an ebony lockbox lies among the cargo. You barely have enough time to secure it aboard your ship before the radar contacts get too close for comfort. Defend yourself!`
 				accept
 	destination "Greenrock"
 	npc kill
@@ -220,7 +220,37 @@ fleet "Merchant Targets"
 	variant 1
 		"Freighter"
 
-
+#this is a short conversation that should pop up once the player has a chance to wind down after the Plunder Defense mission. It'll give the player a chance to poke around inside the lockbox before turning it over to the Corsair. If they do look inside, I want to record some notes to their log.
+mission "Lockbox Snooping"
+	conversation
+		`	With the flash of lasers and roar of engines throttled to full finally settled, quiet falls over the ship. You have a moment to inspect your plunder. How closely you inspect it remains to be decided.`
+		choice
+			`	(Yep. That's an admirable stack of booty. Back to whatever it was I was doing.)`
+				decline
+			`	(I think I'll take a closer look at that lockbox.)
+		`	Rich, dark wood. Long extinct upon the cradle of humanity, only a few frontier worlds cultivate such stuff. For reasons unknown to you the wood - used to make crates, weapon parts, or furniture - has been associated with outlaws and Dirt Belt pirates for as long as anyone alive can remember.`
+		choice
+			`	(Time to look inside. It's not like anyone would know, or care.)`
+			`	(Delivering this cargo will earn the respect of my piratical peers. Best not to mess with it.)`
+				decline
+		`	What could lay within? A cursory shake reveals no rattling, nor clinking. Probably not golden coins, then.`
+		`	Rather, you find an old journal in a weatherproof plastic sleeve sitting atop a stack of old clothes. There doesn't seem to be any name anywhere on the journal, and most of the pages have been torn out.`
+		choice
+			`	(Peruse a few pages, perhaps you'll learn something.)`
+			`	(Nope. If I wanted to read things I would've gotten an honest job.)`
+				decline
+		`October 3, '94`
+		`	Bastards took the farm. Funny how you go your whole life never seeing a man in a suit, and the first one you do is there to ruin everything. Well, fine. I'm strong. I'm smart. I can go to the city and find work.`
+		`	The next several pages are filled with landscape sketches, scenes from a verdant farming world. Trees loom tall in the divisions between fields, flowers are abundant where nature hasn't been tamed by the colonist's hand. Here, a flock of sheep graze. There, a ship streaks across the sky, the rest of the drawing seemingly contorted around it as if the world itself is focusing on the vessel as it speeds into the unknown.`
+		`October 28, '94`
+		`	Empty stomach, empty pockets, no jobs to be found. Not a broom that needs pushing, and the mob at the factory wanting employment is at least five men deep and I dare not count how wide.`
+		`	Folk, man and woman, young and old, sit idle in the streets of a modestly sized town. Long faces, hollow with hunger, impassive in idleness, turn their gazes towards the one drawing them. There's the occasional drawing of a field or burst of beauty as captured in the pages before, but the overall spirit seems to've shifted to the sullen.
+		`November 15, '94`
+		`	Today's the day I'm born anew. Not with one of those cults, but with the "merchant" who comes by every season. He said there's room on his crew for a young man who's not afraid to get his hands dirty, and if I help around the ship, and he likes me by the time he takes off again, I can stay and take a share in their next haul... But I don't want to bring the law down on my family. I'll need a new name. "Voidmaster" sounds cool. I'll see if I can get the crew to call me that.`
+		`	The remaining pages have been torn out.`
+			decline
+			
+		#add each journal entry to the logbook, heading/section name "Old Journal"
 
 mission "Pirate Intro - Wealth"
 	landing
