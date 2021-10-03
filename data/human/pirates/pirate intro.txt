@@ -220,7 +220,7 @@ fleet "Merchant Targets"
 	variant 1
 		"Freighter"
 
-#this is a short conversation that should pop up once the player has a chance to wind down after the Plunder Defense mission. It'll give the player a chance to poke around inside the lockbox before turning it over to the Corsair. If they do look inside, I want to record some notes to their log.
+#this is a short conversation that should pop up once the player has a chance to wind down after the Plunder Defense mission. It'll give the player a chance to poke around inside the lockbox before turning it over to the Corsair. If they do look inside, I want to record some notes to their log. If it's easier, we could also have it pop up when landing on Greenrock, just have it offer before the "check in and cash in" mission. If that's a better approach in your appraisal, just mention that in the commit description and I'll get to editing to make it match.
 mission "Lockbox Snooping"
 	conversation
 		`	With the flash of lasers and roar of engines throttled to full finally settled, quiet falls over the ship. You have a moment to inspect your plunder. How closely you inspect it remains to be decided.`
