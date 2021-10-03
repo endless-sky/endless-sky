@@ -376,7 +376,7 @@ conversation "Den Handoff"
 		not "clobbered"
 	`	The soldiers give you a moment to dress yourself and gather your things back up, though the surly looks you're fixed with make it clear they're keen to see you go.`
 	label complete
-	apply
+	action
 		payment -1000000
 	`	The transaction is complete. You've spent a million credits out of your own pocket for something that needs to be delivered to a mysterious pirate in formal wear that you met in a stinking bar. This is definitely the path of wisdom that you walk. Thankfully, no further obstacles ambush you as you return to your ship.`
 		accept
