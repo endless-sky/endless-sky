@@ -1979,7 +1979,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			// If nothing triggered the projectile, check for collisions with ships.
 			if(closestHit > 0.)
 			{
-				Ship *ship = reinterpret_cast<Ship *>(shipCollisions.Line(projectile, hits, &closestHit));
+				Ship *ship = reinterpret_cast<Ship *>(shipCollisions.Line(projectile, &closestHit, &hits));
 				if(ship)
 				{
 					hit = ship->shared_from_this();
