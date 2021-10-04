@@ -254,6 +254,13 @@ void GameData::Preload(const Sprite *sprite)
 
 
 
+void GameData::ProcessSprites()
+{
+	spriteQueue.UploadSprites();
+}
+
+
+
 void GameData::FinishLoadingSprites()
 {
 	spriteQueue.Finish();

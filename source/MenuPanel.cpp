@@ -90,6 +90,11 @@ void MenuPanel::Step()
 		// any additional scaled masks from the default one.
 		GameData::GetMaskManager().ScaleMasks();
 	}
+	else if(alpha == 1.f)
+	{
+		// If the game isn't loaded yet, upload any images to the GPU.
+		GameData::ProcessSprites();
+	}
 
 	if(GameData::IsLoaded() && gamePanels.IsEmpty())
 	{

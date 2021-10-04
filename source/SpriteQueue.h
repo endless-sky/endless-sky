@@ -47,8 +47,9 @@ public:
 	// Unload the texture for the given sprite (to free up memory).
 	void Unload(const std::string &name);
 	// Upload more images and find out our percent completion.
-	// TODO: make this a const accessor.
-	double Progress();
+	double Progress() const;
+	// Uploads any available sprites to the GPU.
+	void UploadSprites();
 	// Finish loading.
 	void Finish();
 	
@@ -57,13 +58,13 @@ public:
 	
 	
 private:
-	double DoLoad(std::unique_lock<std::mutex> &lock);
+	void DoLoad(std::unique_lock<std::mutex> &lock);
 	
 	
 private:
 	// These are the image sets that need to be loaded from disk.
 	std::queue<std::shared_ptr<ImageSet>> toRead;
-	std::mutex readMutex;
+	mutable std::mutex readMutex;
 	std::condition_variable readCondition;
 	int added = 0;
 	

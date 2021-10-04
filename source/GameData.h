@@ -76,6 +76,7 @@ public:
 	// Begin loading a sprite that was previously deferred. Currently this is
 	// done with all landscapes to speed up the program's startup.
 	static void Preload(const Sprite *sprite);
+	static void ProcessSprites();
 	static void FinishLoadingSprites();
 	
 	// Get the list of resource sources (i.e. plugin folders).
