@@ -222,35 +222,39 @@ fleet "Merchant Targets"
 
 #this is a short conversation that should pop up once the player has a chance to wind down after the Plunder Defense mission. It'll give the player a chance to poke around inside the lockbox before turning it over to the Corsair. If they do look inside, I want to record some notes to their log. If it's easier, we could also have it pop up when landing on Greenrock, just have it offer before the "check in and cash in" mission. If that's a better approach in your appraisal, just mention that in the commit description and I'll get to editing to make it match.
 mission "Lockbox Snooping"
-	conversation
-		`	With the flash of lasers and roar of engines throttled to full finally settled, quiet falls over the ship. You have a moment to inspect your plunder. How closely you inspect it remains to be decided.`
-		choice
-			`	(Yep. That's an admirable stack of booty. Back to whatever it was I was doing.)`
+	landing
+	to offer
+		has "Plunder Defense: offered"
+		not "I Want To Be A pirate: done"
+	on offer
+		conversation
+			`	With the flash of lasers and roar of engines throttled to full finally settled, quiet falls over the ship. You have a moment to inspect your plunder. How closely you inspect it remains to be decided.`
+			choice
+				`	(Yep. That's an admirable stack of booty. Back to whatever it was I was doing.)`
+					decline
+				`	(I think I'll take a closer look at that lockbox.)`
+			`	Rich, dark wood. Long extinct upon the cradle of humanity, only a few frontier worlds cultivate such stuff. For reasons unknown to you the wood - used to make crates, weapon parts, or furniture - has been associated with outlaws and Dirt Belt pirates for as long as anyone alive can remember.`
+			choice
+				`	(Time to look inside. It's not like anyone would know, or care.)`
+				`	(Delivering this cargo will earn the respect of my piratical peers. Best not to mess with it.)`
+					decline
+			`	What could lay within? A cursory shake reveals no rattling, nor clinking. Probably not golden coins, then.`
+			`	Rather, you find an old journal in a weatherproof plastic sleeve sitting atop a stack of old clothes. There doesn't seem to be any name anywhere on the journal, and most of the pages have been torn out.`
+			choice
+				`	(Peruse a few pages, perhaps you'll learn something.)`
+				`	(Nope. If I wanted to read things I would've gotten an honest job.)`
+					decline
+			`October 3, '94`
+			`	Bastards took the farm. Funny how you go your whole life never seeing a man in a suit, and the first one you do is there to ruin everything. Well, fine. I'm strong. I'm smart. I can go to the city and find work.`
+			`	The next several pages are filled with landscape sketches, scenes from a verdant farming world. Trees loom tall in the divisions between fields, flowers are abundant where nature hasn't been tamed by the colonist's hand. Here, a flock of sheep graze. There, a ship streaks across the sky, the rest of the drawing seemingly contorted around it as if the world itself is focusing on the vessel as it speeds into the unknown.`
+			`October 28, '94`
+			`	Empty stomach, empty pockets, no jobs to be found. Not a broom that needs pushing, and the mob at the factory wanting employment is at least five men deep and I dare not count how wide.`
+			`	Folk, man and woman, young and old, sit idle in the streets of a modestly sized town. Long faces, hollow with hunger, impassive in idleness, turn their gazes towards the one drawing them. There's the occasional drawing of a field or burst of beauty as captured in the pages before, but the overall spirit seems to've shifted to the sullen.`
+			`November 15, '94`
+			`	Today's the day I'm born anew. Not with one of those cults, but with the "merchant" who comes by every season. He said there's room on his crew for a young man who's not afraid to get his hands dirty, and if I help around the ship, and he likes me by the time he takes off again, I can stay and take a share in their next haul... But I don't want to bring the law down on my family. I'll need a new name. "Voidmaster" sounds cool. I'll see if I can get the crew to call me that.`
+			`	The remaining pages have been torn out.`
 				decline
-			`	(I think I'll take a closer look at that lockbox.)
-		`	Rich, dark wood. Long extinct upon the cradle of humanity, only a few frontier worlds cultivate such stuff. For reasons unknown to you the wood - used to make crates, weapon parts, or furniture - has been associated with outlaws and Dirt Belt pirates for as long as anyone alive can remember.`
-		choice
-			`	(Time to look inside. It's not like anyone would know, or care.)`
-			`	(Delivering this cargo will earn the respect of my piratical peers. Best not to mess with it.)`
-				decline
-		`	What could lay within? A cursory shake reveals no rattling, nor clinking. Probably not golden coins, then.`
-		`	Rather, you find an old journal in a weatherproof plastic sleeve sitting atop a stack of old clothes. There doesn't seem to be any name anywhere on the journal, and most of the pages have been torn out.`
-		choice
-			`	(Peruse a few pages, perhaps you'll learn something.)`
-			`	(Nope. If I wanted to read things I would've gotten an honest job.)`
-				decline
-		`October 3, '94`
-		`	Bastards took the farm. Funny how you go your whole life never seeing a man in a suit, and the first one you do is there to ruin everything. Well, fine. I'm strong. I'm smart. I can go to the city and find work.`
-		`	The next several pages are filled with landscape sketches, scenes from a verdant farming world. Trees loom tall in the divisions between fields, flowers are abundant where nature hasn't been tamed by the colonist's hand. Here, a flock of sheep graze. There, a ship streaks across the sky, the rest of the drawing seemingly contorted around it as if the world itself is focusing on the vessel as it speeds into the unknown.`
-		`October 28, '94`
-		`	Empty stomach, empty pockets, no jobs to be found. Not a broom that needs pushing, and the mob at the factory wanting employment is at least five men deep and I dare not count how wide.`
-		`	Folk, man and woman, young and old, sit idle in the streets of a modestly sized town. Long faces, hollow with hunger, impassive in idleness, turn their gazes towards the one drawing them. There's the occasional drawing of a field or burst of beauty as captured in the pages before, but the overall spirit seems to've shifted to the sullen.
-		`November 15, '94`
-		`	Today's the day I'm born anew. Not with one of those cults, but with the "merchant" who comes by every season. He said there's room on his crew for a young man who's not afraid to get his hands dirty, and if I help around the ship, and he likes me by the time he takes off again, I can stay and take a share in their next haul... But I don't want to bring the law down on my family. I'll need a new name. "Voidmaster" sounds cool. I'll see if I can get the crew to call me that.`
-		`	The remaining pages have been torn out.`
-			decline
-			
-		#add each journal entry to the logbook, heading/section name "Old Journal"
+			#add each journal entry to the logbook, heading/section name "Old Journal"
 
 mission "Pirate Intro - Wealth"
 	landing
