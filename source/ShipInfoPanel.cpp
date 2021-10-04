@@ -111,6 +111,8 @@ void ShipInfoPanel::Draw()
 	
 	// Draw all the different information sections.
 	ClearZones();
+	if(shipIt == player.Ships().end())
+		return;
 	Rectangle cargoBounds = infoPanelUi->GetBox("cargo");
 	DrawShipStats(infoPanelUi->GetBox("stats"));
 	DrawOutfits(infoPanelUi->GetBox("outfits"), cargoBounds);
@@ -758,12 +760,21 @@ void ShipInfoPanel::Disown()
 	if(shipIt == player.Ships().end() || shipIt->get() == player.Flagship())
 		return;
 	
-	// Because you can never disown your flagship, the player's ship list will
-	// never become empty as a result of disowning a ship.
 	const Ship *ship = shipIt->get();
+	// We can remove the very first ship in the list, if the flagship is later
+	// in the list or if the player only owns ships that cannot be flagships (due
+	// to such ships being somewhere else or due to the ships not having crew).
+	// Removing the very first ship will cause the iterator to become invalid,
+	// so then we need to reset it. This is especially true if the player only
+	// has one ship which cannot be a flagship and then disowns that ship.
+	bool invalidatedIterator = false;
 	if(shipIt != player.Ships().begin())
 		--shipIt;
+	else
+		invalidatedIterator = true;
 	
 	player.DisownShip(ship);
+	if(invalidatedIterator)
+		shipIt=player.Ships().begin();
 	UpdateInfo();
 }
