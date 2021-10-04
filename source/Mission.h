@@ -225,6 +225,9 @@ private:
 	std::set<const Planet *> visitedStopovers;
 	std::set<const System *> visitedWaypoints;
 	
+	// User-defined text substitutions:
+	std::map<std::string, std::string> subs;
+	
 	// NPCs:
 	std::list<NPC> npcs;
 	

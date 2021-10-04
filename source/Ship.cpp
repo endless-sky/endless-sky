@@ -1304,7 +1304,7 @@ void Ship::SetHail(const Phrase &phrase)
 
 string Ship::GetHail(const PlayerInfo &player) const
 {
-	map<string, string> subs;
+	map<string, string> subs = GameData::Substitutions();
 	
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();

@@ -120,6 +120,7 @@ namespace {
 	
 	map<string, string> tooltips;
 	map<string, string> helpMessages;
+	map<string, string> substitutions;
 	map<string, string> plugins;
 	
 	SpriteQueue spriteQueue;
@@ -992,6 +993,13 @@ const map<string, string> &GameData::HelpTemplates()
 
 
 
+const map<string, string> &GameData::Substitutions()
+{
+	return substitutions;
+}
+
+
+
 const map<string, string> &GameData::PluginAboutText()
 {
 	return plugins;
@@ -1200,6 +1208,16 @@ void GameData::LoadFile(const string &path, bool debugMode)
 						text += '\t';
 				}
 				text += child.Token(0);
+			}
+		}
+		else if(key == "substitutions" && node.HasChildren())
+		{
+			for(const DataNode &child : node)
+			{
+				if(child.Size() < 2)
+					child.PrintTrace("Skipping improper substitution syntax:");
+				else
+					substitutions[child.Token(0)] = child.Token(1);
 			}
 		}
 		else

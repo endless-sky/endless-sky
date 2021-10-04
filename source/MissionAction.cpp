@@ -287,7 +287,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 	}
 	else if(!dialogText.empty() && ui)
 	{
-		map<string, string> subs;
+		map<string, string> subs = GameData::Substitutions();
 		subs["<first>"] = player.FirstName();
 		subs["<last>"] = player.LastName();
 		if(player.Flagship())

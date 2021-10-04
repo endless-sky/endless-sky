@@ -254,6 +254,16 @@ void Mission::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "stopover" && child.HasChildren())
 			stopoverFilters.emplace_back(child);
+		else if(child.Token(0) == "substitutions" && child.HasChildren())
+		{
+			for(const DataNode &grand : child)
+			{
+				if(grand.Size() < 2)
+					grand.PrintTrace("Skipping improper substitution syntax:");
+				else
+					subs[grand.Token(0)] = grand.Token(1);
+			}
+		}
 		else if(child.Token(0) == "npc")
 			npcs.emplace_back(child);
 		else if(child.Token(0) == "on" && child.Size() >= 2 && child.Token(1) == "enter")
@@ -834,7 +844,9 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 	if(cargoNeeded < 0 && bunksNeeded < 0)
 		return "";
 	
-	map<string, string> subs;
+	map<string, string> subs = this->subs;
+	const auto &substitutions = GameData::Substitutions();
+	subs.insert(substitutions.begin(), substitutions.end());
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
 	if(flagship)
@@ -1247,7 +1259,9 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.toFail = toFail;
 	
 	// Generate the substitutions map.
-	map<string, string> subs;
+	map<string, string> subs = this->subs;
+	const auto &substitutions = GameData::Substitutions();
+	subs.insert(substitutions.begin(), substitutions.end());
 	subs["<commodity>"] = result.cargo;
 	subs["<tons>"] = to_string(result.cargoSize) + (result.cargoSize == 1 ? " ton" : " tons");
 	subs["<cargo>"] = subs["<tons>"] + " of " + subs["<commodity>"];
