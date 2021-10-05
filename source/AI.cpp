@@ -2625,16 +2625,16 @@ bool AI::DoRoving(Ship &ship, Command &command, unsigned int rovingShipCount)
 	const Point target = ship.GetTargetPosition();
 	const auto v = ship.MaxVelocity();
 	if(!target || MoveTo(ship, command, target, Point(), v, v))
-    {
-        Point newTarget = Angle::Random().Unit() * Random::Real() * MAX_DISTANCE_FROM_CENTER;
-        ship.SetTargetPosition(newTarget);
-    }
-    
-    const System *system = ship.GetSystem();
-    if(rovingShipCount > 9 && system)
+	{
+		Point newTarget = Angle::Random().Unit() * Random::Real() * MAX_DISTANCE_FROM_CENTER;
+		ship.SetTargetPosition(newTarget);
+	}
+	
+	const System *system = ship.GetSystem();
+	if(rovingShipCount > 9 && system)
 		return DoBored(ship, command, system);
-    
-    return false;
+	
+	return false;
 }
 
 
