@@ -117,13 +117,6 @@ void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 
 
 
-void StarField::ResetAnimation()
-{
-	transparency = 1.;
-}
-
-
-
 void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 {
 	// Draw the starfield unless it is disabled in the preferences.

@@ -124,7 +124,7 @@ future<void> GameObjects::Load(const vector<string> &sources, bool debugMode)
 			{
 				LoadFile(path, debugMode);
 
-				double val = progress;
+				auto val = progress.load(memory_order::memory_order_relaxed);
 				while(!progress.compare_exchange_weak(val, val + 1. / size));
 			}
 			FinishLoading();

@@ -138,13 +138,9 @@ int main(int argc, char *argv[])
 			GameData::FinishLoading();
 
 			// Load player data, including reference-checking.
-			bool checkedReferences = player.LoadRecent();
-			if(loadOnly)
-			{
-				if(!checkedReferences)
-					GameData::CheckReferences();
-				cout << "Parse completed." << endl;
-			}
+			if(!player.LoadRecent())
+				GameData::CheckReferences();
+			cout << "Parse completed." << endl;
 			return 0;
 		}
 		
