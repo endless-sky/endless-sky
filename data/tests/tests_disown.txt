@@ -117,6 +117,8 @@ test-data "Owned Remote"
 
 test "Test-Disowning - Single drone locally"
 	status active
+	# Broken status; testframework does not have mouse/pointer support working yet, and Disown button requires mouse/pointer input.
+	status broken
 	description "Tests if we can disown a ship that cannot be a flagship."
 	sequence
 		# Create/inject the savegame and load it.
@@ -131,6 +133,7 @@ test "Test-Disowning - Single drone locally"
 		input
 			key "Return"
 		# Give disown command
+		# TODO: Needs to be done using mouse/pointer input.
 		input
 			key "shift" "D"
 		input
@@ -143,7 +146,8 @@ test "Test-Disowning - Single drone locally"
 
 
 test "Test-Disowning - Single ship non-local"
-	status active
+	# Broken status; testframework does not have mouse/pointer support working yet, and Disown button requires mouse/pointer input.
+	status broken
 	description "Tests if we can disown a single ship that is in another system."
 	sequence
 		# Create/inject the savegame and load it.
@@ -158,6 +162,7 @@ test "Test-Disowning - Single ship non-local"
 		input
 			key "Return"
 		# Give disown command
+		# TODO: Needs to be done using mouse/pointer input.
 		input
 			key "shift" "D"
 		input

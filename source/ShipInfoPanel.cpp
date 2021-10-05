@@ -128,7 +128,7 @@ void ShipInfoPanel::Draw()
 bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	bool shift = (mod & KMOD_SHIFT);
-	if((key == 'd' && !shift) || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if(!player.Ships().empty() && ((key == 'p' && !shift) || key == SDLK_LEFT || key == SDLK_UP))
 	{
@@ -156,7 +156,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		if(shipIt->get() != player.Flagship() || (*shipIt)->IsParked())
 			player.ParkShip(shipIt->get(), !(*shipIt)->IsParked());
 	}
-	else if(canEdit && (key == 'D' || (key == 'd' && shift)))
+	else if(canEdit && key == 'D')
 	{
 		if(shipIt->get() != player.Flagship())
 			GetUI()->Push(new Dialog(this, &ShipInfoPanel::Disown, "Are you sure you want to disown \""
@@ -761,20 +761,8 @@ void ShipInfoPanel::Disown()
 		return;
 	
 	const Ship *ship = shipIt->get();
-	// We can remove the very first ship in the list, if the flagship is later
-	// in the list or if the player only owns ships that cannot be flagships (due
-	// to such ships being somewhere else or due to the ships not having crew).
-	// Removing the very first ship will cause the iterator to become invalid,
-	// so then we need to reset it. This is especially true if the player only
-	// has one ship which cannot be a flagship and then disowns that ship.
-	bool invalidatedIterator = false;
-	if(shipIt != player.Ships().begin())
-		--shipIt;
-	else
-		invalidatedIterator = true;
+	// Disown the ship and select a previous ship if available.
+	shipIt = player.DisownShip(ship);
 	
-	player.DisownShip(ship);
-	if(invalidatedIterator)
-		shipIt = player.Ships().begin();
 	UpdateInfo();
 }
