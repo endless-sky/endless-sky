@@ -775,6 +775,6 @@ void ShipInfoPanel::Disown()
 	
 	player.DisownShip(ship);
 	if(invalidatedIterator)
-		shipIt=player.Ships().begin();
+		shipIt = player.Ships().begin();
 	UpdateInfo();
 }
