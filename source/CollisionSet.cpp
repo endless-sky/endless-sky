@@ -23,7 +23,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <cstdlib>
 #include <numeric>
-#include <set>
 #include <string>
 
 using namespace std;
