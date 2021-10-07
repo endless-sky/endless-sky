@@ -2757,7 +2757,7 @@ mission "Stone of our Fathers 5"
 
 mission "Home for Skadenga 1"
 	name "Home for Skadenga"
-	description "Search for the Setstokkr on Windblain and Asgard and then return back to <planet>."
+	description "Search for the Setstokkr on Windblain and Asgard, and then return back to <planet>."
 	minor
 	cargo "Setstokkr" 1
 	to offer
@@ -2768,76 +2768,65 @@ mission "Home for Skadenga 1"
 	stopover "Windblain"
 	on offer
 		conversation
-			`There is a feeling of deep melancholy in the nearly deserted spaceport. A few plaques adorn the walls, proudly boasting of earlier times when Nifel was a place of relevance in the galactic community. Old images of researchers and doctors and their miracle cures.`
+			`There is a feeling of deep melancholy in the nearly deserted spaceport. A few plaques adorn the walls, proudly boasting of earlier times when Nifel was a place of relevance in the galactic community. Most are old images of researchers and doctors and their miracle cures.`
 			`	But now this place is a ghost-town, and you walk its empty halls unsure of why you even bothered to explore it in the first place. `
 			`	You turn a corner and find a woman standing near a booth with blown up images of ice-covered scenery. She waves at you excitedly.`
-			`	"Hello, ser! I hope you've been enjoying your stay in our state of the art spaceport! But why stay cooped up in here, when you could be out there!" She gestures toward the windows.`
-			`	"Explore the breath-taking Glaesisvellir ice-plains, or the boiling Slidr river. We'll even take you to the Hrimbrimr valley where the famous Rigellian cure was discovered!"`
+			`	"Hello, ser! I hope you've been enjoying your stay in our state of the art spaceport! But why stay cooped up in here, when you could be out there?" She gestures toward the windows.`
+			`	"Explore the breath-taking Glaesisvellir ice-plains, or the boiling Slidr river. We'll even take you to the Hrimbrimr valley where the famous Rigellian cure was discovered!`
 			`	"So ser," she continues, "what do you say? Should I sign you up for the VIP Winter-Wonder Excursion Package for a special time limited-only offer of 2,000 credits?"`
 			choice
 				`	"Sure, I'd love to see more of this world."`
 					goto excursion
 				`	"No, uh, thanks. Freezing to death in the frigid tundra doesn't sound like a good time to me."`
-					goto decline
-			label decline
-			`	The woman frowns, but nods knowingly. "I am afraid, ser, most seem to think the way you do. Still if you ever run into anyone out there who might be interested, let them know. We could really use the work." With that she turns and walks briskly back to her booth.`
+			`	The woman frowns, but nods knowingly. "I am afraid, ser, most seem to think the way you do. Still, if you ever run into anyone out there who might be interested, let them know. We could really use the work." With that, she turns and walks briskly back to her booth.`
 				decline
 			label excursion
-			`	The woman's face lights up, and you get the sense that she isn't used to hearing 'yes' very often. "Oh, that is wonderful ser, just wonderful!"`
-			` 	She puts her finger to her ear and says, "Hjlod, we have a customer! Get the crawler warmed up!"`
-			`	She drops her hand and waves to you. "Right this way, ser! And might I add that you will not be disappointed." She chatters excitedly about the cultural, artistic and scientific merits of the trip as she leads you toward a large pressure hatch.`
-			`	She hits a switch, and the hatch opens, she then escorts you into a frigid maintenance dock. A loud ugly vehicle is whirring at the center of a mess of broken and discarded parts.`
-			`	"There she is!" The woman is nearly shouting as she speaks over the mechanical hum. "We call her Brunhilda, the Queen of the Ice, a most.. durable vehicle, capable of giving you an authentic ice-explorer experience!"`
+			apply
+				payment -2000
+			`	The woman's face lights up, and you get the sense that she isn't used to hearing "yes" very often. "Oh, that is wonderful ser, just wonderful!"`
+			` 	She puts her finger to her ear and says, "Hjlod, we have a customer! Get the crawler warmed up!" The woman then drops her hand and waves to you. "Right this way, ser! And might I add - you will not be disappointed." She chatters excitedly about the cultural, artistic and scientific merits of the trip as she leads you toward a large pressure hatch.`
+			`	She hits a switch and the hatch opens; she then escorts you into a frigid maintenance dock. A loud, ugly vehicle is whirring at the center of a mess of broken and discarded parts. "There she is!" The woman is nearly shouting as she speaks over the mechanical hum. "We call her Brunhilda, the Queen of the Ice, a most.. durable vehicle, capable of giving you an authentic ice-explorer experience!"`
 			`	The Ice-Crawler, Brunhilda, looks less than dependable to you. It appears to be a run-down, mismash of parts and jury-rigged technology forced onto a three century old Ice-Crawler, probably used by the original colonists.`
 			choice
 				`	"Are you sure this thing is safe?"`
-					goto safe
 				`	"How old is this thing?!"`
 					goto old
-			label safe
-			`	The woman hesitates, "Don't you worry, why that Ice-Crawler is the safest place in all of Nifel! Those other accidents were flukes, and what happened to her sister Ice-Crawler, Gudrun, was a totally unforeseeable accident."`
+			`	The woman hesitates. "Don't you worry! Why, that Ice-Crawler is the safest place in all of Nifel! Those other accidents were flukes, and what happened to her sister Ice-Crawler, Gudrun, was entirely unforeseeable."`
 					goto what
 			label old
-			`	"Well, you know the old saying, 'that they don't build 'em like they used to'? It's your lucky day because that is when this was built! Part of the excitement of the tour is riding in an authentic four hundred year old colonial Ice-Crawler."`
-					goto what
+			`	"Well, you know the old saying, 'They don't build 'em like they used to?' It's your lucky day because that is when this was built! Part of the excitement of the tour is riding in an authentic four hundred year old colonial Ice-Crawler."`
 			label what
-			`	The woman pulls out a small touchscreen. "For very standard liability reasons, I need you to quickly put your digital signature right here. You, or your estate, can't sue us if you're injured or die on the excursion. Furthermore there is no expectation of rescue should you get lost out there, or the Ice-Crawler breaks down."`
-			`	She gives you a small forced smile. "Not that it ever would happen, and like I said, this is a very standard waiver in the tourist trade. I wouldn't think too much about it."`
+			`	The woman pulls out a small touchscreen. "For very standard liability reasons, I need you to quickly put your digital signature right here. You, or your estate, can't sue us if you're injured or die on the excursion. Furthermore there is no expectation of rescue should you get lost out there, or the Ice-Crawler breaks down." She gives you a small forced smile. "Not that it ever would happen, and like I said, this is a very standard waiver in the tourist trade. I wouldn't think too much about it."`
 			` 	She holds up the touchscreen for you to sign.`
 			choice
-				`	"You only live once," you say and key your signature.`
+				`	"You only live once." (Key your signature.)`
 					goto yolo
 				`	"I've changed my mind. I am going to pass on this excursion."`
 			`	The woman's face, red with the cold, looks crest-fallen, but unsurprised. Like she was half expecting this outcome. "Brunhilda can be an.. intimidating vehicle, it's true. But she is safe ser, I assure you. Either way, I'll take you back to the spaceport."`
-			`	With that you follow the woman back to the warm and nearly empty spaceport, where she leaves you to return to her forlorn booth.`
+			`	With that, you follow the woman back to the warm and nearly empty spaceport, where she leaves you to return to her forlorn booth.`
 				decline
 			label yolo
-			`	With your signature in hand the woman's eyes sparkle, and there is a skip in her step as she leads you to the Ice-Crawler. She pulls a lever on the outside of the vehicle that opens a door and releases a ramshackle ramp for you to climb.`
-			`	She indicates that you should walk up the feeble looking ramp. "Hjlod will be your driver and tour-guide for the duration of your excursion. She is waiting for you within. On behalf of Intrepid Ice Adventures Limited, I would like to wish you a happy and safe expedition!"`
+			`	With your signature in hand, the woman's eyes sparkle, and there is a skip in her step as she leads you to the Ice-Crawler. She pulls a lever on the outside of the vehicle that opens a door and releases a ramshackle ramp for you to climb. She indicates that you should walk up the feeble looking ramp. "Hjlod will be your driver and tour-guide for the duration of your excursion. She is waiting for you within. On behalf of Intrepid Ice Adventures Limited, I would like to wish you a happy and safe expedition!"`
 			choice
 				`	(Board the Ice-Crawler.)`
-			`	The Ice-Crawler, 'Brunhilda', smells of oil, atmosphere, and perspiration. The confines are tight, with a padded bench area and threadbare seat-belts. There are wires and hard angles everywhere. You're careful not to get tangled in the green, white and blue wires running overhead and into the cockpit. You take a seat, and strap in.` 
+			`	The Ice-Crawler, 'Brunhilda,' smells of oil, atmosphere, and perspiration. The confines are tight, with a padded bench area and threadbare seat-belts. There are wires and hard angles everywhere. You're careful not to get tangled in the green, white and blue wires running overhead and into the cockpit. You take a seat and strap in.` 
 			`	It is only a little warmer here than it was in the maintenance dock. To your left and right are wide, scratched, and frost-rimmed windows.`
-			`	"Velcome. I am called Hjlod." The thickly accented woman looks back from the driver's seat, she has short blonde hair, and her face and arms are covered in long weaving blue tattoos.`
-			`	"I am from here. I have spent whole life traversing this tundra. I know like back of hand." She gives you a lopsided grin and then pats the steering console. "And Brunhilda here, she never let you down."`
-			`	Hjlod turns away from you and starts pulling some levers. "Now," she says, "Let's begin."`
+			`	"Velcome. I am called Hjlod." The thickly accented woman looks back from the driver's seat. She has short blonde hair, and her face and arms are covered in long weaving blue tattoos. "I am from here. I have spent whole life traversing this tundra. I know like back of hand." She gives you a lopsided grin and then pats the steering console. "And Brunhilda here, she never let you down."`
+			`	Hjlod turns away from you and starts pulling some levers. "Now," she says, "let's begin."`
 			choice
-				`	(You sit back as the motor hums and the Ice-Crawler lurches to a start.)`
-			`	After a few hours of crawling through a bleak blank wasteland in silence Hjlod turns the crawler into what looks like a bleaker and blanker wasteland.`
-			`	"This is famous Glaesisvellir ice-plain. Story say once whole convoy of researcher disappear here. Can drill hole in ice for fishing, there is very good tasting voolly octopus beneath it."`
+				`	(Sit back as the motor hums and the Ice-Crawler lurches to a start.)`
+			`	After a few hours of crawling through a bleak, blank wasteland in silence, Hjlod turns the crawler into what looks like a bleaker and blanker wasteland.`
 			scene "scene/iceplains"
-			`	Hjlod slows down and looks back at you. "You have question?"`
+			`	"This is famous Glaesisvellir ice-plain. Story say once whole convoy of researcher disappear here. Can drill hole in ice for fishing. There is very good tasting voolly octopus beneath it." Hjlod slows down and looks back at you. "You have question?"`
 			label questions
 			choice
 				`	"Nope. No questions."`
 					goto noquestion
 				`	"What happened to the researchers?"`
-					goto researcher
 				`	"Is it safe to drive over the ice?"`
 					goto ice
 				`	"Are there sea-monsters beneath the ice?"`
 					goto monster
-			label researcher
 			`	"Long time ago. Researcher convoy look for bacterial pharmaceutical. Many researcher convoy in area. Most smart use native pathfinder, like me. This convoy, they not so smart, they say pathfinder waste of money. They go out in ice alone and they never come back."`
 			`	Hjlod shrugs. "Maybe they fall in ice. Maybe they get eaten by Ice-Slug. Maybe avalanche fall on them. Maybe fall on own veapon and die. Nobody ever find them. Tour-guide book say that some night you can see their ghost haunting ice. Tour-guide book dumb."`
 			`	"Any more question?"`
@@ -2847,329 +2836,235 @@ mission "Home for Skadenga 1"
 			` 	"You have more question?"`
 				goto questions
 			label monster
-			`	"Every world have animal. Some animal big, some small. Voolly Octopus, mostly small. Size of this Ice-Crawler, only. Vorst in Glaesisvellir ice-plains is Ice-Slug. They can squeeze through tiniest hole in ice. This take long time, for they are as big as house. They have no teeth, too hard to squeeze through little hole, but they have acid spit. Put hole in Ice-Crawler, easy. They eat many foolish researcher and tourist."`
+			`	"Every world have animal. Some animal big, some small. Voolly octopus, mostly small. Size of this Ice-Crawler, only. Vorst in Glaesisvellir ice-plains is Ice-Slug. They can squeeze through tiniest hole in ice. This take long time, for they are as big as house. They have no teeth, too hard to squeeze through little hole, but they have acid spit. Put hole in Ice-Crawler, easy. They eat many foolish researcher and tourist."`
 			`	She smiles at you. "You're not foolish tourist. You are with Hjlod. You are safe."`
 			`	"Any more question?"`
 				goto questions
 			label noquestion
-			`	"Is smart, not to ask question. Hjlod tell you best parts only." Hjlod gives you a quick grin and swivels back into her makeshift cockpit.`
-			`	"Enough ice-plain, now ve go to next stop."`
+			`	"Is smart, not to ask question. Hjlod tell you best parts only." Hjlod gives you a quick grin and swivels back into her makeshift cockpit. "Enough ice-plain, now ve go to next stop."`
 			scene "scene/iceplains2"
 			choice
-				`	(You look out at the bright Ice-Plains as they slowly disappear into the dull horizon.)`
+				`	(Look out at the bright Ice-Plains as they slowly disappear into the dull horizon.)`
 			`	The Ice-Crawler plows through snow, hill, mountain, and tundra for another hour or two before a massive and oddly shaped rock passes into view. Hjlod stops the Ice-Crawler so you can look at it.`
-			`	"This is rock." She says matter-of-factly.`
-			`	You look at it for a while and realize there is a face half chiseled into it.`
-			`	"You are done looking? Ve are good to move to next stop?" Hjlod asks.`
 			scene "scene/lonelyrock"
+			`	"This is rock," she says matter-of-factly. You look at it for a while and realize there is a face half chiseled into it.`
+			`	"You are done looking? Ve are good to move to next stop?" Hjlod asks.`
 			choice
 				`	"Yep, I don't need to look at this rock any longer."`
-					goto byerock
+					goto riverlike
 				`	"Wait, is that part of a man's face carved into it? What is so special about this rock?"`
-					goto manrock
-			label manrock
-			`	"That rock is supposed to celebrate man who discover Rigellian cure. He was called Hank, or Henry, or Bill, or something." Hjlod shrugs with evident disdain.`
-			`	"The cure was found here, but back when tundra was melting and Nifel was a little varmer. They say this man discover it and they want to make grand statue for him. But it turn out Nifel not so great place for statue. Beside, no one like statue of liar."`
-			`	Hjlod turns back to her controls and gets the Ice-Crawler moving forward again. "That is enough about stupid rock and stupider man."`
-			`	"Now ve go to river."`
-					goto riverlike
-			label byerock
-			`	"Now ve go to river."`
-					goto riverlike
+			`	"That rock is supposed to celebrate man who discover Rigellian cure. He was called Hank, or Henry, or Bill, or something." Hjlod shrugs with evident disdain. "The cure was found here, but back when tundra was melting and Nifel was a little varmer. They say this man discover it and they want to make grand statue for him. But it turn out Nifel not so great place for statue. Beside, no one like statue of liar."`
+			`	Hjlod turns back to her controls and gets the Ice-Crawler moving forward again. "That is enough about stupid rock and stupider man.`
 			label riverlike
-			choice
-				`	(The large oddly shaped rock falls out of your field of view as the Ice-Crawler turns away from it.)`
+			`	"Now ve go to river," she tells you. The large, oddly shaped rock falls out of your field of view as the Ice-Crawler turns away from it.`
 			scene "scene/snowfield"
-			`	The uneventful journey to the boiling ice river of Slidr is suddenly interrupted when a deep tremor followed by a thunderous boom shakes the Ice-Crawler to its core and causes it to slip on the disturbed ice and snow.   Somewhere outside subsequent rumble starts to build rapidly.`
-			`	After Hjlod regains control of the crawler, she immediately veers away from the noise. "That vas Nifel-quake, and loud noise was avalanche, or landslide, maybe both. This is not good."`
-			`	Despite her calm demeanor she wields the Ice-Crawler with reckless abandon as she tries to avoid the rumbling snow. The machine protests with creaks and whirrs and pops as it strains to claw itself out of the way faster than it has probably gone for hundreds of years. The closer the rumbling gets, the more difficulty Hjlod seems to have retaining traction.`
-			`	"I think..." Hjlod starts to say when a mountain of snow crashes into the Ice-Crawler with deafening force. All sense of travelling distance is lost as the snow blots out the windows and the crawler is dragged bumping and twisting over uneven terrain.`
-			`	You and Hjlod hold tight to your seat-belts as you're tossed around until, eventually, the crawler grinds up against something reasonably solid and comes suddenly to a rest, partially on its' side.`
-			`	A few moments later the rumbling finishes passing you by.`
+			`	The uneventful journey to the boiling ice river of Slidr is suddenly interrupted when a deep tremor followed by a thunderous boom shakes the Ice-Crawler to its core and causes it to slip on the disturbed ice and snow. Somewhere outside, subsequent rumble starts to build rapidly. After Hjlod regains control of the crawler, she immediately veers away from the noise. "That vas Nifel-quake, and loud noise was avalanche, or landslide, maybe both. This is not good."`
+			`	Despite her calm demeanor, she wields the Ice-Crawler with reckless abandon as she tries to avoid the rumbling snow. The machine protests with creaks and whirrs and pops as it strains to claw itself out of the way faster than it has probably gone for hundreds of years. The closer the rumbling gets, the more difficulty Hjlod seems to have retaining traction.`
+			`	"I think-" Hjlod starts to say when a mountain of snow crashes into the Ice-Crawler with deafening force. All sense of travelling distance is lost as the snow blots out the windows and the crawler is dragged bumping and twisting over uneven terrain. You and Hjlod hold tight as you're tossed around until, eventually, the crawler grinds up against something reasonably solid and comes suddenly to a rest, partially on its side.`
+			`	A few moments later, the rumbling finishes passing you by.`
 			choice
 				`	(Unbuckle your seatbelt and get yourself up.)`
-			`	By the time you are on your feet Hjlod has already gathered up numerous supplies and is preparing to open the hatch and dig her way to the surface.`
-			`	She looks at you. "Nothing to vorry about. Happens all time. Vell, not really. First time this happen, but Hjlod not let you die, probably. I can lead us to settlement not far from here."`
-			`	She tosses you an old scruffy jacket. "Valking in cold, good for health. Maybe not as far as ve must go, but you laugh about later. Good story to tell back home."`
+			`	By the time you are on your feet, Hjlod has already gathered up numerous supplies and is preparing to open the hatch and dig her way to the surface. She looks at you. "Nothing to vorry about. Happens all time. Vell, not really. First time this happen, but Hjlod not let you die, probably. I can lead us to settlement not far from here."`
+			`	She tosses you an old, scruffy jacket. "Valking in cold, good for health. Maybe not as far as ve must go, but you laugh about later. Good story to tell back home."`
 			choice
-				`	(Put on the jacket and follow Hjlod out onto the Ice.)`
+				`	(Put on the jacket and follow Hjlod out onto the ice.)`
 					goto jacket
-				`	"No way. I am done with this. I am calling my ship, or fixing this Ice-Crawler, either way I am not going anywhere."`
-			`	Hjlod shrugs. "You may die, or maybe not. Signals vork strange here at times. Good luck and remember. No refund."`
-			`	With that Hjlod opens the hatch and disappears in the cold white flurry outside.`
+				`	"No way. I am done with this. I am calling my ship, or fixing this Ice-Crawler. Either way, I am not going anywhere."`
+			`	Hjlod shrugs. "You may die, or maybe not. Signals vork strange here at times. Good luck and remember. No refund." With that, Hjlod opens the hatch and disappears in the cold white flurry outside.`
 			choice
-				`	(You quickly shut the hatch behind her.)`
-			`	Alone, you have a decision to make. You can dismantle portions of the Ice-Crawler and use them to strengthen your personal comms to get a signal out to the <ship>.`
-			`	Or you can try to repair the Ice-Crawler and get it running again. In which case you wouldn't be able to use its parts to boost your comm signal.`
+				`	(Quickly shut the hatch behind her.)`
+			`	Alone, you have a decision to make. You can dismantle portions of the Ice-Crawler and use them to strengthen your personal comms to get a signal out to the <ship>. Or, you can try to repair the Ice-Crawler and get it running again - in which case you wouldn't be able to use its parts to boost your comm signal.`
 			choice
 				`	(Cannibalize the Ice-Crawler and contact your ship.)`
-					goto stickmud
-				`	(Give up trying to contact your ship and fix the Ice-Cutter.)`
+				`	(Give up trying to contact your ship and fix the Ice-Crawler.)`
 					goto fixme
-			label stickmud
-			`	You have much more faith in your ship than some antique vehicle. You spend hours ripping once-vital machinery out of the Ice-Crawler in order to make a signal booster for your comms. Eventually cobbling together a functional booster and programming a repeating burst S.O.S. message into it.`
-			`	You're certain your ship will eventually pick it up. Unfortunately, the damage you've done to the Ice-Crawler has affected its heater, which gives out during your eighth hour of waiting.`
-			`	In the meantime, you put on the jacket Hjlod left you and stuff it with rags and trash in a bid to keep warm.`
+			`	You have much more faith in your ship than some antique vehicle. You spend hours ripping once-vital machinery out of the Ice-Crawler in order to make a signal booster for your comms, eventually cobbling together a functional booster and programming a repeating burst S.O.S. message into it.`
+			`You're certain your ship will eventually pick it up. Unfortunately, the damage you've done to the Ice-Crawler has affected its heater, which gives out during your eighth hour of waiting. In the meantime, you put on the jacket Hjlod left you and stuff it with rags and trash in a bid to keep warm.`
 			choice
-				`	(Shivering, you try to ignore the cold and get some sleep.)`
-			`	It has been 19 hours since the avalanche, and you've lost feeling in your hands, and feet. There are no rations and what stale warmth was once here is now gone.`
-			`	Hopefully you didn't make a mistake waiting here. You know you made a mistake by going on this miserable tour. You just want to be warm again, and you certainly don't want to die here.`
+				`	(Try to ignore the cold and get some sleep.)`
+			`	It has been 19 hours since the avalanche, and you've lost feeling in your hands and feet. There are no rations, and what stale warmth was once here is now gone. Hopefully, you didn't make a mistake waiting here. You know you made a mistake by going on this miserable tour. You just want to be warm again, and you certainly don't want to die here.`
 			`	You begin to fade in and out of consciousness, when suddenly you feel a deep vibration, and hear a low rumble from outside.`
 			`	There is no memory of what happens next. But somehow you must have crawled out of that ice buried Ice-Crawler, through the snow, and into the hatch of your ship. Because the next thing you do remember is laying in your ship, warming up, and being glad that the ordeal is over.`
 				decline
 			label fixme
-			`	After hours of tinkering with the guts of the machine you've managed to repair most of it, and all it cost you was one bad burn on your arm. Now, what it comes down to is a sequence of wires. If you can plug these in correctly, the Ice-Crawler should start back up.`
+			`	After hours of tinkering with the guts of the machine, you've managed to repair most of it, and all it cost you was one bad burn on your arm. Now, what it comes down to is a sequence of wires. If you can plug these in correctly, the Ice-Crawler should start back up.`
 			choice
-				`	(White, Green, Blue.)`
+				`	(White, green, blue.)`
 					goto boom
-				`	(Green, White, Blue.)`
+				`	(Green, white, blue.)`
 					goto greatsuccess
-				`	(Blue, Green, White.)`
+				`	(Blue, green, white.)`
 					goto boom
 			label boom
-			` 	You're confident that this is the correct sequence of wires. You plug each one in and start the Ice-Crawler up.`
-			`	The vehicle hums to life.`
+			` 	You're confident that this is the correct sequence of wires. You plug each one in and start the Ice-Crawler up. The vehicle hums to life.`
 			choice
 				`	(Pump your fist.)`
-					goto fist
 				`	(Cheer.)`
 					goto cheer
-			label fist
-			` 	In a moment of levity you pump your fist into the air.`
-			`	Unfortunately, your fist does not make it very far. As the Ice-Crawler, with its criss-crossed wires, has a critical energy build up that results in an instantaneous completely deadly explosion.`
+			` 	In a moment of levity, you pump your fist into the air.`
+			`	Unfortunately, your fist does not make it very far. The Ice-Crawler, with its criss-crossed wires, has a critical energy build up that results in an instantaneous, completely deadly explosion.`
 			scene "scene/smeer"
-			`	The Ice-Crawler, your entire body, your fist, and more than a couple hundred tons of snow, are all incinerated in a fraction of a second.`
+			`	The Ice-Crawler, your entire body, your fist, and more than a couple hundred tons of snow are all incinerated in a fraction of a second.`
 				die
 			label cheer
-			`	The sense of accomplishment inside you is so overwhelming that you find yourself unable to contain it.`
-			`	A cry of pure joy leaps out of your mouth. Or begins too. Unfortunately, it doesn't get too far. As the Ice-Crawler, with its criss-crossed wires, has a critical energy build up that results in an instantaneous completely deadly explosion.`
+			`	The sense of accomplishment inside you is so overwhelming that you find yourself unable to contain it. A cry of pure joy leaps out of your mouth. Or begins too. Unfortunately, it doesn't get too far. As the Ice-Crawler, with its criss-crossed wires, has a critical energy build up that results in an instantaneous, completely deadly explosion.`
 			scene "scene/smeer"
-			`	The Ice-Crawler, your entire body, and more than a couple hundred tons of snow, are all incinerated in a fraction of a second.`
+			`	The Ice-Crawler, your entire body, and more than a couple hundred tons of snow are all incinerated in a fraction of a second.`
 				die
 			label greatsuccess
 			`	With the final cord in place, you hold your breath as you start the Ice-Crawler. The engine hums to life and you wait a few more cautious seconds for the inevitable explosion... which never comes.`
-			`	You breathe easy. You did it!`
-			`	After a few minutes getting accustomed to the controls you manage to pull the Ice-Crawler out of the snow.`
-			`	What will you do now?`
+			`	You breathe easy. You did it! After a few minutes getting accustomed to the controls you manage to pull the Ice-Crawler out of the snow. What will you do now?`
 			scene "scene/icepicture"
 			choice
 				`	(Follow Hjlod's tracks.)`
 					goto followher
-				`	(Return to the spaceport.)`
-			`	You've had enough of this expedition. Hjlod said she was fine and you'll leave it at that. You turn the Ice-Crawler around and make your way back to the spaceport.`
+				`	(Try and find your way to the spaceport.)`
+			`	You've had enough of this expedition. Hjlod said she was fine, and you'll leave it at that. You turn the Ice-Crawler around and make your way back to the spaceport.`
 			`	It only takes a couple hours, and the controls on the Ice-Crawler are relatively easy. When you pull into the maintenance dock, the sales woman comes to meet you and is dismayed that Hjlod is not with you.`
 			`	She hasn't heard from Hjlod and fears the worst. You hope it all works out as you head back to your ship and as far away from this place as possible.`
 				decline
 			label followher
-			`	Hjlod's tracks are clearly visible in the crisp snow and you're able to follow them for hours. Just as the second sun is setting the footprints come to an end at a mound of snow.`
-			`	You leave the vehicle and investigate. You find an exhausted, freezing, Hjlod and help her back into the Ice-Crawler.`
-			`	She does not have the strength to speak, and you worry without immediate medical attention that she won't make it.`
-			`	As darkness descends you see a flickering light in the distance.`
+			`	Hjlod's tracks are clearly visible in the crisp snow, and you're able to follow them for hours. Just as the second sun is setting, the footprints come to an end at a mound of snow.`
+			`	You leave the vehicle and investigate. You find an exhausted, freezing Hjlod and help her back into the Ice-Crawler. She does not have the strength to speak, and you worry without immediate medical attention that she won't make it.`
+			`	As darkness descends, you see a flickering light in the distance.`
 			choice
 				`	(Drive toward the flickering light.)`
 					goto flicker
 				`	(Drive back to the spaceport.)`
 			`	There is no guarantee that the flicker of light is anything more than a waste of time. You turn the Ice-Crawler around and head back toward the spaceport at the fastest speed you dare.`
-			`	Long hours pass and you press on while Hjlod lays unconscious..`
-			`	Finally, in the dead of night you arrive back at the spaceport. Medics swarm your vehicle, and while you learn she'll live, you are also told that she will lose her hands and feet to frostbite.`
-			`	The woman who sold you the excursion thanks you profusely for saving her friend, but refuses to give you a refund.`
+			`	Long hours pass and you press on while Hjlod lays unconscious...`
+			`	Finally, in the dead of night you arrive back at the spaceport. Medics swarm your vehicle, and while you learn she'll live, you are also told that she will lose her hands and feet to frostbite. The woman who sold you the excursion thanks you profusely for saving her friend, but still refuses to give you a refund.`
 				decline
 			label flicker
 			`	Exhausted, you drive toward the flickering light and discover it is emanating from a small village.`
-			`	Moments after entering what you assume is the village center, people flock toward your idle vehicle. Before you know it they have the hatch open and have carried Hjlod out.`
-			`	A young woman enters, bearing facial tattoos similar to Hjlod and escorts you to a communal bunk house for the night.`
-			`	You're too tired to get a handle on what is going on and decide that it can wait for tomorrow.`
+			`	Moments after entering what you assume is the village center; people flock toward your idle vehicle. Before you know it, they have the hatch open and have carried Hjlod out.`
+			`	A young woman, bearing facial tattoos similar to Hjlod, approaches you and escorts you to a communal bunk house for the night. You're too tired to get a handle on what is going on and decide that it can wait for tomorrow.`
 			scene "scene/snowvillage"
 			choice
 				`	(Sleep now, think later.)`
-
-			`	The pale morning light of the first sun filters in through a synthetic window and onto your face.`
-			`	You try to escape back into sleep, but something feels off and groggily you peer out at your surroundings.`
-			`	You're in a half-wooden, half-synthetic barracks. A strange mix of primitive earth-tech and old colonial architecture.`
-			`	That, in of itself, isn't that alarming. What is, however, is the group of people gathered around your bed quietly staring and pointing at you.`
-			choice
-				`	"Excuse me?"`
-			`	The crowd steps back and an elderly woman steps forward. Her grey hair is rolled up into tight elegant braids, and her face, and hands are covered in faded blue tattoos.`
-			`	"We are pleased to call you guest. You have saved our daughter, and more; you will save us all."`
-			`	The elderly woman, and everyone behind her kneels before you.`
-			choice
-				`	"Woah, Woah, WOAH. What do you mean save us all?"`
-					goto woah
-				`	"Your daughter? Hjlod? Is she alright?"`
-
-			`	The elderly woman smiles warmly. "It is good of you to ask. Thanks to you Hjlod will be fine. Had you been any later and she would have lost her hands, or worse. But she is recovering now and will join us later."`
-			choice
-				`	"Woah, Woah, WOAH. What do you mean save us all?"`
-					goto woah
-			label woah
-			`	The elderly woman opens her palms and spreads them wide. "This is village of Udainsakr, I am Ondurdis, or leader, and we are Skadenga, daughters of Skade, the Troll-Goddess of ice, mountains and cold."`
-			`	"For nearly century we have been waiting for person who bore mark of Skade." She points a tattooed hand at the burn on your arm you received from the Ice-Crawler. "It seems we have been waiting for you."`
-			choice
-				`	"What do you expect me to do?"`
-					goto expect
-				`	"What do you mean a century? How long have you been here? Why were you waiting for me?"`
-			`	The Ondurdis raises an eyebrow. "So you want to know our secrets? We ask much, so I will tell you more than most know. 2,500 years ago the so-called-elves brought the Skadenga to Deep."`
-			`	The Ondurdis frowns. "We had to make penance for some mistakes. Our volva, or seeress, saw that to make amends we must come to Nifel. We did not know why, but when we found the Goddess-Stone, we knew we had made right decision."`
-			`	"Since then we have lived here and acted as guides and pathfinders to others. It was one of our sisters, Eymani, an herbalist, who discovered the cure to Rigellian plague. We thought this was why we had been sent here. Our duty to act as handmaidens of healing."`
-			label expect
-			`	"With each passing year Nifel grows colder and outsiders less frequent. Our numbers dwindle as does our usefulness. This is dying world, and we need new home."`
-			`	"Eighty years ago one of our holiest sisters had vision, she saw that stranger with mark of Skade would arrive and that stranger would help us find new home."`
-			`	The Ondurdis points a boney finger right at you. "First, you must discover which world will be our home. Then you must find us transportation."`
-			`	"We will of course pay you in one way or another. Would you do this for us?"`
-			choice
-				`	"I'll do it. I won't let you guys down."`
-					goto doit
-				`	"No. This isn't my problem. I just need to get back to my ship."`
-			`	The Ondurdis bows and steps back. "If that is your wish. Then you must not be the one we wait for." And with that she and everyone else leave the barracks.`
-			`	You climb out of your bunk, and head to the Ice-Crawler. From there you head straight back to the spaceport.`
-			`	The trip takes a few hours and you spend some of it pondering the strange course of events. How you went from a life or death struggle against the elements to being some rustic community's savior.`
-			`	"Oh, well." You say to yourself, "I can't save everyone."`
-			`	The spaceport rises into to view and before you know it you're back safely onboard your ship.`
-				decline
-			label doit
-			`	The Ondurdis smiles. "Thank you." She nods toward the door. "Come with me."`
-			`	In the light of early day the village looks stranger than you remember. Carved Wooden structures weave flawlessly into sleek fabricated composites in a marriage of ancient with new. Oddly enough the effect does not clash, but instead gives off an impression of seamless artistry.`
-			`	To the south there is an open space filled with high-stacked stone cairns. At the center of the space, or holy site, is a giant wall made of an usual gleaming metal and surrounded by eight ornate wooden pillars. The wall, despite being filled with strange letters and images, is dominated by the single image of a giant humanoid. As you stare into the structure you feel unnaturally chilly.`
-			`	"That is Goddess-Stone." The Ondurdis gestures toward the large stone-wall. "This is why we settled here. Most worlds in Deep have stones like this upon them. They go by many names; Elf-Stones, God-Stones, Jotun-Stones, and more."`
-			`	"Now, at base of wall, those pillars, they are our Setstokkr. They are holy relics of our folk, and guided us here, to this very wall, long ago. Just as they will guide us once more to our new home. There are eight Setstokkr here, but once there was nine."`
-			`	The Ondurdis turns back to you. "You must find the ninth Setstokkr, the missing pillar. It was dropped in space long ago, and we believe based on where it started it could have only found its way to one of two worlds. It either on Windblain in the Regor system, or Asgard in the Naos system."`
-			`	The Ondurdis offers you a small storage device. "Setstokkr have... unusual properties. This drive contains information that will allow you to track them. Go to these worlds, see if you can find the Setstokkr, and return to us with news. We are eager to know where Skade will send us."`
-			`	The sky glows and the earth rumbles as a shuttle lands not far from the village. "That shuttle will return you to the spaceport and your ship. May Skade guide you." With that The Ondurdis leaves you.`
-			apply
-				set "Hjlodsaved"
-			choice
-				`	(Head to the Shuttle)`
-					goto shuttle
-				`	(Take a moment to investigate Goddess-Stone.)`
-
-			`	You walk toward the park filled with stone cairns, wooden pillars and Goddess-Stone.`
-			`	At this distance you can see that the cairns have name-plates at their bases. Some are so faded and worn you cannot make out the names. Others are easier to read. They appear to be family names. Names like Myrlinga, Baning, and Amalung are the few you can read.`
-			`	Beyond the cairns are the well-carved wooden pillars, or Setstokkr as the Ondurdis called them. They are each over 10 meters tall, and all covered entirely in runic script, images, and patterns. A few have unshorn branches that include their own carvings as well, while most are limbless. On one Setstokkr you notice that a frequent carving within its entwined animals is similar in shape to the burn on your arm.`
-			`	Finally, you reach the massive Goddess-Stone itself. You see now almost no part of the wide surface is bare. There are images within images, letters within letters. These exoctic letters bear no relationship to the runes found on the Setstokkr. These are truly alien.`
-			choice
-				`	(You've seen enough, and there is much that needs to be done. You head to the shuttle.)` 
-					goto shuttle
-			label shuttle
-			
-			`	A lone figure stands next to the idling shuttle. As you draw closer you recognize Hjlod.` 
-			`	"I just vant to thank you." Hjlod's grey-blue eyes glitter in the morning light. "I alvays say Hjlod keep tourist safe. But yesterday you save Hjlod. I vill not forgot, know this."`
-			`	Hjlod offers one of her lopsided grins and then leaves you alone with the shuttle. It is time to go.`
-				accept
-			
-				
+					goto villagearrival
 			label jacket
+			apply
+				set "put on jacket"
 			`	You throw on the jacket and stuff a few rags in your coat for good measure.` 
-			`	Hjlod nods at you and opens the hatch, "It is only meter to surface."`
-			` 	She plunges into the snow and swim-climbs her way up it. You follow her, and though the cold is shocking you are relieved when you quickly rise above it into the icy clear air above.`
-			`	"Stay close," she says as she begins to trek through the snow, "any path but mine is dangerous."`
+			`	Hjlod nods at you and opens the hatch. "It is only meter to surface."`
+			` 	She plunges into the snow and swim-climbs her way up it. You follow her, and though the cold is shocking, you are relieved when you quickly rise above it into the icy clear air above.`
+			`	"Stay close," she says as she begins to trek through the snow. "Any path but mine is dangerous."`
 			scene "scene/snowplain"
 			choice
 				`	(Walk in Hjlod's footsteps.)`
 					goto travel
 				`	(Meander around.)`
-					goto fool
-			label fool
 			`	Hjlod abruptly stops and glares at you. "You are fool. You vill certainly die, and you endanger me in process. This is no game, valk only vhere I valk or die.`
 			choice
 				`	(Walk in Hjlod's footsteps.)`
 					goto travel
 				`	(Continue to meander because you are sick of Hjlod telling you what to do.)`
 			`	You walk in your looping meandering pattern, stepping where you want, and not paying any attention to the path Hjlod is taking.`
-			`	You feel righteous vindication as the hours pass and nothing bad happens; proof that Hjlod was just being bossy. She should have no say over what you are doing, it's her fault you're stuck out here stranded on some trash-planet in the blinding cold in the first place.`
-			`	At that thought you do some anger-stomping, really letting her know that you could care less about her worthless warnings. Which is, of course, when you hear a weird gurgling sizzle.`
-			`	You look down at your feet and you see there is not packed snow beneath them, but a grey-purple blob that has wrapped itself around your leg.`
+			`	You feel righteous vindication as the hours pass and nothing bad happens; proof that Hjlod was just being bossy. She should have no say over what you are doing; it's her fault you're stuck out here stranded on some trash-planet in the blinding cold in the first place.`
+			`	At that thought you do some anger-stomping, really letting her know that you could care less about her worthless warnings. Which is, of course, when you hear a weird gurgling sizzle. You look down at your feet and see there is not packed snow beneath them, but that a grey-purple blob that has wrapped itself around your leg.`
 			choice
 				`	(Try and shake your leg free.)`
 					goto free
 				`	(Call out to Hjlod for help.)`
-					goto help
-			label free
-			`	Despite using all your strength, your leg won't budge. The sizzling noise continues and you are overwhelmed with a sharp horrific burning sensation.`
-			`	Your eyes water and you scream out in pain for help and mercy.`
-			`	Ignoring the pain you keep pulling, trying to break free. The air thickens with the scent of your liquified foot, and something gives and you fall forward.`
-			`	You look down to see your leg missing from the knee down. You try to push it out of your mind as you desperately claw forward, trying to escape the grey-purple blob that is forming up behind you.`			
-			`	Try as might you can't cry out Hjlod's name, instead your screams are savage hollow noises, you reach for her though, you reach for anyone, and it's too late. The Ice-Slug has caught up to you, you feel acidic tendrils wrapping around your remaining leg and lower torso. The pain is agonizing as your lower body begins to dissolve.`
-			`	You look up one last desperate time, hoping to see Hjlod coming to rescue you. But instead you see a grey smudge on the horizon. A distant person who has long left you for dead.`
-			`	Alone now with the Ice-Slug and the pain. You consider briefly your mistakes before you are dissolved and eaten.`
-				die
-			label help
-			`	Damn your pride, "Hjlod help! Something's got my foot!"`
+			`	Damn your pride. "Hjlod, help! Something's got my foot!" you cry.`
 			`	Hjlod looks back at you with a dull expression on her face. "Is it purple-grey in color?"`
-			`	"Yes, yes! Quick help. I don't know what to do."`
+			`	"Yes, yes! Quick, help. I don't know what to do."`
 			`	"Vhat you do, is listen to Hjlod, and not make stompy circles in snow like spoilt child."`
-			`	"Please Hjlod!" You cry as the last of your boot dissolves away and you feel the slimy slug on your exposed foot.`
+			`	"Please, Hjlod!" You cry as the last of your boot dissolves away and you feel the slimy slug on your exposed foot.`
 			`	"It is too late. Ice-Slug has you. Vhat you do now is die. Horribly." Hjlod turns and starts jogging away from you.`
 			choice
 				`	(Try and pull your leg free.)`
-					goto free
+			label free
+			`	Despite using all your strength, your leg won't budge. The sizzling noise continues and you are overwhelmed with a sharp horrific burning sensation. Your eyes water and you scream out in pain for help and mercy.`
+			`	You keep pulling, trying to break free. The air thickens with the scent of your liquified foot, and something gives as you fall forward. You look down to see your leg missing from the knee down. You try to push it out of your mind as you desperately claw forward, trying to escape the grey-purple blob that is forming up behind you.`			
+			`	Try as you might, you can't cry out Hjlod's name, instead your screams are savage, hollow noises. You reach for her, you reach for anyone, and it's too late. The Ice-Slug has caught up to you, you feel acidic tendrils wrapping around your remaining leg and lower torso. The pain is agonizing as your lower body begins to dissolve.`
+			`	You look up one last desperate time, hoping to see Hjlod coming to rescue you. But instead you see a grey smudge on the horizon. A distant person who has long left you for dead. You are alone now with the Ice-Slug and the pain. You consider briefly your mistakes before you are dissolved and eaten.`
+				die
 			label travel
-			`	The cold monotonous trudging weighs on you as the hours pass. You're dimly aware of Nifel's two suns as they make their journey across the wide open sky.`
-			`	Evening and exhaustion approach hand in hand and as the last sun sets you're not sure how much farther you can go. `
-			`	"There!" Hjlod breaks the silence of hours as she points at the weak flicker of light in the twilight landscape.`
-			`	"This is good." Hjlod admits hoarsely as you both stumble toward the light. "Ve vould have not survived night."`
+			`	The cold, monotonous trudging weighs on you as the hours pass. You're dimly aware of Nifel's two suns as they make their journey across the wide open sky.`
+			`	Evening and exhaustion approach hand in hand, and as the last sun sets, you're not sure how much farther you can go. "There!" Hjlod breaks the silence of hours as she points at the weak flicker of light in the twilight landscape. "This is good," she admits hoarsely as you both stumble toward the light. "Ve vould have not survived night."`
 			` 	The night air grows too cold. You slow as your body begins to shutdown and frostbite gnaws at your hands, feet and exposed arm. The light is still too distant, and you can barely move. You think you see the shadows of humanoid figures against the light. But then you stumble and fall. You crawl, for as long as you can, you crawl. And then nothing.`
 			choice
 				`	(Wake up.)`
-			`	The pale morning light of the first sun filters in through a synthetic window and onto your face.`
-			`	Your body aches and you try to sink back into sleep, but something feels off and you focus on your surroundings.`
-			`	You're in a half-wooden, half-synthetic barracks. A strange mix of primitive earth-tech and old colonial architecture.`
-			`	That, in of itself, isn't that alarming. What is, however, is the group of people gathered around your bed quietly staring and pointing at you.`
+			label villagearrival
+			branch "bodyaches"
+				has "put on jacket"
+			`	The pale morning light of the first sun filters in through a synthetic window and onto your face. You try to escape back into sleep, but something feels off and groggily you peer out at your surroundings.`
+			goto barracks
+			label bodyaches
+			`	The pale morning light of the first sun filters in through a synthetic window and onto your face. Your body aches and you try to sink back into sleep, but something feels off and you focus on your surroundings.`
+			label barracks
+			`	You're in a half-wooden, half-synthetic barracks, a strange mix of primitive earth-tech and old colonial architecture. That, in and of itself, isn't that alarming. What is, however, is the group of people gathered around your bed quietly staring and pointing at you.`
 			choice
 				`	"Excuse me?"`
-			`	The crowd steps back and an elderly woman steps forward. Her grey hair is rolled up into tight elegant braids, and her face and hands are covered in faded blue tattoos.`
-			`	"We are pleased to call you guest. For you will save us all."`
-			`	The elderly woman, and everyone behind her bows.`
+			`	The crowd steps back, and an elderly woman steps forward. Her grey hair is rolled up into tight, elegant braids, and her face and hands are covered in faded, blue tattoos.`
+			`	"We are pleased to call you guest. You have saved our daughter, and more; you will save us all." The elderly woman and everyone behind her kneels before you.`
+			branch "withhjold"
+				has "put on jacket"
+			apply
+				set "Hjlodsaved"
 			choice
 				`	"Woah, Woah, WOAH. What do you mean save us all?"`
-
-			`	The elderly woman opens her palms and spreads them wide. "This is village of Udainsakr, I am Ondurdis, or leader, and we are Skadenga, daughters of Skade, the Troll-Goddess of ice, mountains and cold."`
-			`	"For nearly century we have been waiting for person who bore mark of Skade." She points a tattooed hand at a frostbitten mark on your arm where your jacket tore. "It seems we have been waiting for you."`
+					goto woah
+				`	"Your daughter? Hjlod? Is she alright?"`
+			`	The elderly woman smiles warmly. "It is good of you to ask. Thanks to you, Hjlod will be fine. Had you been any later, she would have lost her hands, or worse. But she is recovering now and will join us later."`
+			label withhjold
+			choice
+				`	"Woah, Woah, WOAH. What do you mean save us all?"`
+					goto woah
+			label woah
+			`	The elderly woman opens her palms and spreads them wide. "This is village of Udainsakr. I am Ondurdis, or leader, and we are Skadenga, daughters of Skade, the Troll-Goddess of ice, mountains, and cold."`
+			`	"For nearly century we have been waiting for person who bore mark of Skade." She points a tattooed hand at the burn on your arm you received from the Ice-Crawler. "It seems we have been waiting for you."`
 			choice
 				`	"What do you expect me to do?"`
-					goto expect2
-				`	"What do you mean century? How long have you been here? Why were you waiting for me?"`
-			`	The Ondurdis raises an eyebrow. "So you want to know our secrets? We ask much, so I will tell you more than most know. 2,500 years ago the so-called-elves brought the Skadenga to Deep."`
-			`	The Ondurdis frowns. "We had to make penance for some mistakes. Our volva, or seeress, saw that to make amends we must come to Nifel. We did not know why, but when we found the Goddess-Stone, we knew we had made right decision."`
-			`	"Since then we have lived here and acted as guides and pathfinders to others. It was one of our sisters, Eymani, an herbalist, who discovered the cure to Rigellian plague. We thought this was why we had been sent here. Our duty to act as handmaidens of healing."`
-			label expect2
-			`	"With each passing year Nifel grows colder and outsiders less frequent. Our numbers dwindle as does our usefulness. This is dying world, and we need new home."`
-			`	"Eighty years ago one of our holiest sisters had vision, she saw that stranger with mark of Skade would arrive and that stranger would help us find new home."`
-			`	The Ondurdis points a boney finger right at you. "First, you must discover which world will be our home. Then you must find us transportation."`
-			`	"We will of course pay you in one way or another. Would you do this for us?"`
+					goto expect
+				`	"What do you mean a century? How long have you been here? Why were you waiting for me?"`
+			`	The Ondurdis raises an eyebrow. "So you want to know our secrets? We ask much, so I will tell you more than most know. 2,500 years ago, the so-called-elves brought the Skadenga to Deep. We had to make penance for some mistakes. Our volva, or seeress, saw that to make amends we must come to Nifel. We did not know why, but when we found the Goddess-Stone, we knew we had made right decision.`
+			`	"Since then, we have lived here and acted as guides and pathfinders to others. It was one of our sisters, Eymani, an herbalist, who discovered the cure to Rigellian plague. We thought this was why we had been sent here. Our duty to act as handmaidens of healing.`
+			label expect
+			`	"With each passing year, Nifel grows colder and outsiders less frequent. Our numbers dwindle as does our usefulness. This is dying world, and we need new home. Eighty years ago one of our holiest sisters had vision. She saw that stranger with mark of Skade would arrive and that stranger would help us find new home."`
+			`	The Ondurdis points a boney finger right at you. "First, you must discover which world will be our home. Then you must find us transportation. We will of course pay you in one way or another. Would you do this for us?"`
 			choice
 				`	"I'll do it. I won't let you guys down."`
-					goto doitt
+					goto doit
 				`	"No. This isn't my problem. I just need to get back to my ship."`
-			`	The Ondurdis bows and steps back. "If that is your wish. Then you must not be the one we wait for." And with that she and everyone else leave the barracks.`
-			`	You hear the familiar rumble of a shuttle overhead, you climb out of your bunk to go to meet it. From there you head straight back to the spaceport.`
-			`	The trip is brief and you have little time to consider all that has transpired since you decided to take the excursion. You worry you made need therapy.`
-			`	The spaceport rises into to view and before you know it you're back safely aboard your ship.`
+			`	The Ondurdis bows and steps back. "If that is your wish, then you must not be the one we wait for." With that, she and everyone else leave the barracks.`
+			branch "useshuttle"
+				has "put on jacket"
+			`	You climb out of your bunk and head to the Ice-Crawler. From there, you head straight back to the spaceport. The trip takes a few hours and you spend some of it pondering the strange course of events - how you went from a life or death struggle against the elements to being some rustic community's savior.`
+			`	"Oh, well." You say to yourself, "I can't save everyone."`
+			goto onboard
+			label useshuttle
+			`	You hear the familiar rumble of a shuttle overhead, you climb out of your bunk to go to meet it. From there, you head straight back to the spaceport. The trip is brief, and you have little time to consider all that has transpired since you decided to take the excursion. You worry you may need therapy.`
+			label onboard
+			`	The spaceport rises into to view, and before you know it you're back safely onboard your ship.`
 				decline
-			label doitt
+			label doit
 			`	The Ondurdis smiles. "Thank you." She nods toward the door. "Come with me."`
-			`	In the light of early day the village looks stranger than you remember. It is a mix of archaic materials and designs interconnected with much more modern ones. Carved Wooden structures weave flawlessly into sleek fabricated composites. Oddly enough the effect does not clash, but instead gives off an impression of seamless artistry.`
-			`	To the south there is an open space filled with high-stacked stone cairns. At the center of the park, or holy site, is a giant wall made of an usual gleaming metal and surrounded by eight ornate wooden pillars. The wall, despite being filled with strange letters and images, is dominated by the single image of a giant humanoid. As you stare into the structure you feel unnaturally chilly.`
-			`	"That is Goddess-Stone." The Ondurdis gestures toward the large stone-wall. "This is why we settled here. Most worlds in Deep have stones like this upon them. They go by many names; Elf-Stones, God-Stones, Jotun-Stones, and more."`
-			`	"Now, at base of wall, those pillars, they are our Setstokkr. They are holy relics of our folk and guided us here, to this very wall, long ago. Just as they will guide us once more to our new home. There are eight Setstokkr here, but once there was nine."`
-			`	The Ondurdis turns back to you. "You must find the ninth Setstokkr, the missing pillar. It was dropped in space long ago, and we believe based on where it started it could have only found its way to one of two worlds. It either on Windblain in the Regor system, or Asgard in the Naos system."`
-			`	The Ondurdis offers you a small storage device. "Setstokkr have... unusual properties. This drive contains information that will allow you to track them. Go to these worlds, see if you can find the Setstokkr, and return to us with news. We are eager to know where Skade will send us."`
+			`	In the light of early day, the village looks stranger than you remember. Carved wooden structures weave flawlessly into sleek fabricated composites in a marriage of ancient with new. Oddly enough, the effect does not clash, but instead gives off an impression of seamless artistry. To the south, there is an open space filled with high-stacked stone cairns. At the center of the space, or holy site, is a giant wall made of an usual gleaming metal and surrounded by eight ornate wooden pillars. The wall, despite being filled with strange letters and images, is dominated by the single image of a giant humanoid. As you stare into the structure, you feel unnaturally chilly.`
+			`	"That is Goddess-Stone." The Ondurdis gestures toward the large stone-wall. "This is why we settled here. Most worlds in Deep have stones like this upon them. They go by many names; Elf-Stones, God-Stones, Jotun-Stones, and more. Now, at base of wall, those pillars, they are our Setstokkr. They are holy relics of our folk, and guided us here, to this very wall, long ago. Just as they will guide us once more to our new home. There are eight Setstokkr here, but once there was nine."`
+			`	The Ondurdis turns back to you. "You must find the ninth Setstokkr, the missing pillar. It was dropped in space long ago, and we believe based on where it started it could have only found its way to one of two worlds. It either on Windblain in the Regor system, or Asgard in the Naos system." Offering you a small storage device, the Onduris continues, "Setstokkr have... unusual properties. This drive contains information that will allow you to track them. Go to these worlds, see if you can find the Setstokkr, and return to us with news. We are eager to know where Skade will send us."`
 			`	The sky glows and the earth rumbles as a shuttle lands not far from the village. "That shuttle will return you to the spaceport and your ship. May Skade guide you." With that The Ondurdis leaves you.`
-			scene "scene/snowvillage"
 			choice
 				`	(Head to the Shuttle)`
-					goto shuttles
+					goto shuttle
 				`	(Take a moment to investigate Goddess-Stone.)`
-
 			`	You walk toward the park filled with stone cairns, wooden pillars and Goddess-Stone.`
-			`	At this distance you can now see the cairns have name-plates at their bases. Some are so faded and worn you cannot make out the names. Others are easier to read. They appear to be family names. Names like Myrlinga, Baning, and Amalung are the few you can read.`
-			`	Beyond the cairns are the well-carved wooden pillars, or Setstokkr as the Ondurdis called them. They are each over 10 meters tall, and all covered entirely in runic script, images, and patterns. A few have unshorn branches that include their own carvings as well, while most are limbless. You walk up to one and notice a frequent carving within its entwined animals and shapes is similar to burn on your arm.`
-			`	Finally, you reach the massive Goddess-Stone itself. You see now almost no part of the wide surface is bare. There are images within images, letters within letters. These exotic letters bear no relationship to the runes found on the Setstokkr. These are truly alien. `
+			`	At this distance, you can see that the cairns have name-plates at their bases. Some are so faded and worn you cannot make out the names. Others are easier to read and appear to be family names. Myrlinga, Baning, and Amalung are the few you can read.`
+			`	Beyond the cairns are the well-carved wooden pillars, or Setstokkr as the Ondurdis called them. They are each over 10 meters tall, and all covered entirely in runic script, images, and patterns. A few have unshorn branches that include their own carvings as well, while most are limbless. On one Setstokkr, you notice that a frequent carving within its entwined animals is similar in shape to the burn on your arm.`
+			`	Finally, you reach the massive Goddess-Stone itself. You see now almost no part of the wide surface is bare. There are images within images, letters within letters. These exoctic letters bear no relationship to the runes found on the Setstokkr. These are truly alien.`
 			choice
-				`	(You've seen enough, and there is much that needs to be done. You head to the shuttle.)` 
-					goto shuttles
-			label shuttles			
-			`	A lone figure stands next to the idling shuttle. As you draw closer you recognize Hjlod.`
-			`	"You see!" Hjlod says, "Stick with Hjlod, and you live, probably." She holds up a bandaged three fingered hand and shrugs. "Mostly."`
+				`	(Head to the shuttle.)` 
+			label shuttle
+			branch "threefingers"
+				has "put on jacket"
+			`	A lone figure stands next to the idling shuttle. As you draw closer you recognize Hjlod.` 
+			`	"I just vant to thank you." Hjlod's grey-blue eyes glitter in the morning light. "I alvays say Hjlod keep tourist safe. But yesterday you save Hjlod. I vill not forgot, know this."`
+			goto lopsided
+			label threefingers
+			`	A lone figure stands next to the idling shuttle. As you draw closer, you recognize Hjlod. "You see," she says, "Stick with Hjlod, and you live, probably." She holds up a bandaged, three-fingered hand and shrugs. "Mostly."`
+			label lopsided
 			`	Hjlod offers one of her lopsided grins and then leaves you alone with the shuttle. It is time to go.`
 				accept
 	on stopover
@@ -3177,13 +3072,13 @@ mission "Home for Skadenga 1"
 			`	You land on the final world you were asked to visit. Once you're done here you should return to Nifel.`
 	on complete
 		event "nifel waiting" 15
-		payment -2000
 		conversation
-			`	Upon landing you get voice recorded message from Hjlod.`
-			`	"Hey <first>, ve're busy evacuating isolated Skadenga communities. Come back in few veeks vhen things settle down."`
+			`	Upon landing, you get voice recorded message from Hjlod.`
+			`	"<first>, ve're busy evacuating isolated Skadenga communities. Come back in few veeks vhen things settle down."`
 			`	The message abruptly ends.`
-				decline
-				
+
+
+
 event "nifel waiting"
 
 
