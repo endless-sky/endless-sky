@@ -116,7 +116,6 @@ test-data "Owned Remote"
 
 
 test "Test-Disowning - Single drone locally"
-	status active
 	# Broken status; testframework does not have mouse/pointer support working yet, and Disown button requires mouse/pointer input.
 	status broken
 	description "Tests if we can disown a ship that cannot be a flagship."
