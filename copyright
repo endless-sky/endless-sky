@@ -1198,12 +1198,14 @@ License: public-domain
 Comment: Taken from https://freesound.org/people/pluralz/sounds/475806/
 
 Files:
+ images/ship/carrier*
  images/ship/combat?drone*
  images/ship/cruiser*
  images/ship/frigate*
  images/ship/gunboat*
  images/ship/lance*
  images/ship/rainmaker*
+ images/thumbnail/carrier*
  images/thumbnail/combat?drone*
  images/thumbnail/cruiser*
  images/thumbnail/frigate*
