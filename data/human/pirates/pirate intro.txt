@@ -392,8 +392,8 @@ conversation "Den Handoff"
 	label explanation
 	choice
 		`	"I didn't bring that here on purpose, but I did brush against a very friendly janitor on the way here."`
-	`	"Ahh"s of understanding and enlightenment echo from the soldiers standing about the hangar. Most of them visibly relax, appeased by this explanation.`
-	`	"Yeah. That's Steve. Republic Intelligence. We'd shoot him, but they would just send another, and he's incompetent enough that it's better this way. Really, though? You need to be more careful."`
+	`	Ahhs of understanding and enlightenment echo from the soldiers standing about the hangar. Most of them visibly relax, appeased by this explanation.`
+	`	"Yeah. That's Frank. Republic Intelligence. We'd shoot him, but they would just send another, and he's incompetent enough that it's better this way. Really, though? You need to be more careful."`
 	`	You hear a barely-audible "jackass" muttered by one of the soldiers. The officer doesn't appear to have any desire to reprimand them.`
 	branch continued
 		not "clobbered"
@@ -418,7 +418,7 @@ conversation "Den Handoff"
 	`	The transaction is complete. You've spent a million credits out of your own pocket for something that needs to be delivered to a mysterious pirate in formal wear that you met in a stinking bar. This is definitely the path of wisdom that you walk. Thankfully, no further obstacles ambush you as you return to your ship.`
 		accept
 	label retreat
-	`	You leave.`
+	`	You make your apologies - wrong hangar - and beat a hasty retreat. The door seals behind you. On the way to your ship you pass the janitor once more, his ear firmly pressed to the handle of his mop. Upon seeing you he becomes visibly startled and drops his tools all over the floor. What a strange fellow.`
 		decline
 	
 
