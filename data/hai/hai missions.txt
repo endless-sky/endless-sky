@@ -1106,7 +1106,7 @@ mission "Hiding in Plain Sight"
 		government "Hai"
 	destination "Vinci"
 	passengers 2
-	deadline
+	deadline 30
 	to offer
 		random < 30
 		has "First Contact: Hai: offered"
