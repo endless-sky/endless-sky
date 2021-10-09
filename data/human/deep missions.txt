@@ -3092,7 +3092,7 @@ mission "Home for Skadenga 2"
 	destination "Nifel"
 	on offer
 		conversation
-			`	In the high-atmosphere of <origin>, your ship's sensors pick up traces of the exotic Setstokkr matter. They pinpoint the material to the southern rim of a sparsely-populated island-continent, in the small coastal settlement of Hrithfjall.`
+			`In the high-atmosphere of <origin>, your ship's sensors pick up traces of the exotic Setstokkr matter. They pinpoint the material to the southern rim of a sparsely-populated island-continent, in the small coastal settlement of Hrithfjall.`
 			`	Your ship lands just outside the settlement, and you leave with your handheld tracker keyed to the Setstokkr material. The trail goes cold once you enter the settlement. The hamlet Hrithfjall is little more than a few dozen wooden structures along a single overgrown road. The buildings themselves are well-crafted and finely designed, but many of them appear to be abandoned. There are no townsfolk about, but you notice recent footprints headed toward the shore, which you follow.` 
 			scene "scene/seascape"
 			`	The great seas of Windblain churn beneath the chalk-white cliffs and blue-green sky. As you scan the horizon, your eyes catch the glare of reflected light beyond a distant precipice. You head in that direction and find a figure seated at the precipice's edge. An aged man sits cross-legged, looking out into the sea and at a gleaming metal wall towering over the grey waves about a mile out from shore.`
@@ -3128,7 +3128,7 @@ mission "Home for Skadenga 2"
 		has "Home for Skadenga 3: offered"
 	on complete
 		conversation
-			`	When you enter Nifel atmosphere, you receive a message that Hjlod will be waiting for you in the spaceport.`
+			`When you enter Nifel atmosphere, you receive a message that Hjlod will be waiting for you in the spaceport.`
 			`	Before you have a chance to head into the port however, you are met by a well-dressed administrator and a couple of nondescript guards.`
 			`	"Captain <last>," the administrator says crisply. "You are invited to a meeting in the VIP Conference room. If you would please follow me."`
 			choice
@@ -3187,7 +3187,7 @@ mission "Home for Skadenga 3"
 	on offer
 		conversation
 			scene "scene/busystreet"
-			`	In the crowded high-atmosphere of Asgard, it is difficult to find any reading that matches that of the exotic Setstokkr material. You do get one anomalous ping from a related material located in the urban center of Helsingor.`
+			`In the crowded high-atmosphere of Asgard, it is difficult to find any reading that matches that of the exotic Setstokkr material. You do get one anomalous ping from a related material located in the urban center of Helsingor.`
 			`	Your ship lands in a regional spaceport that serves Helsingor, and your handheld tracker leads you to the heart of the city, where you discover a massive, winding mall. The tracker leads you inside the mall.`
 			`	Once inside, your eyes catch the glint of a vast metallic structure around which the entire mall is built. You can make out unusual pictures and alien letters carved into it. It appears that the shopping mall has been built around Asgard's God-Stone, and that the Stone is being used as an exotic accent wall for the myriad of shops in the structure.`
 			choice
@@ -3242,7 +3242,6 @@ mission "Home for Skadenga 3"
 
 mission "Home for Skadenga 4"
 	name "Transport for Skadenga"
-	minor
 	description "Travel to <destination> to secure transportation for the Skadenga."
 	to offer
 		has "Home for Skadenga 2: done"
@@ -3251,115 +3250,86 @@ mission "Home for Skadenga 4"
 	destination "Valhalla"
 	on offer
 		conversation
-			`	There are no signs of Hjlod when you arrive at the mostly empty spaceport. You spend a few minutes wandering around before you see her heading down the hall toward you.`
-			`	"Sorry to be late, you vould not believe all paper-vork they had for me. I think they aren't happy about Ice-Crawler."`
+			`There are no signs of Hjlod when you arrive at the mostly empty spaceport. You spend a few minutes wandering around before you see her heading down the hall toward you. "Sorry to be late, you vould not believe all paper-vork they had for me. I think they aren't happy about Ice-Crawler."`
 			choice
 				`	"That's okay. I didn't mind waiting."`
 					goto waiting
 				`	"I was abducted by the Vice Planetary-Governor."`
 			`	"That is no surprise." Hjlod says nonchalantly. "They alvays do thing like this. It matters not to us."`
-			`	You ask her if she's worried you've been compromised. That you might be working against the Skadenga's best interests.`
-			`	Hjlod shakes her head. "No. Future is set. Vhat vill, vill be. You are given task to tell us vhere to go, ve go vhere you say. The rest is just noise."`
+			`	You ask her if she's worried you've been compromised - that you might be working against the Skadenga's best interests. Hjlod shakes her head. "No. Future is set. Vhat vill, vill be. You are given task to tell us vhere to go, ve go vhere you say. The rest is just noise.`
 			label waiting
-			`	"Now", Hjlod says, "Tell me about Setstokkr, did you find it?"`
+			`	"Now", Hjlod says, "Tell me about Setstokkr. Did you find it?"`
 			choice
 				`	"I found nothing definitive."`
 					goto nothing
 				`	"I think I found traces of it on Windblain."`
 					goto nothing
 				`	"I found a strange box similar to the Setstokkr on Asgard."`
-					goto box
-			label box
 			`	"Sounds like herbalist box. Ondurdis had one long before I vas born. Gave it to liar. It not important though, not Setstokkr."`
 			label nothing
-			`	"Sending big piece of vood through space probably not best idea Ondurdis had." Hjlod smirks.`
-			`	"Still, it does not matter so much what you find. Only how you felt. You saw the vorlds. Vhere should ve go?"`
+			`	"Sending big piece of vood through space probably not best idea Ondurdis had." Hjlod smirks. "Still, it does not matter so much what you find. Only how you felt. You saw the vorlds. Vhere should ve go?"`
 			choice
 				`	"Windblain."`
-					goto windblain
 				`	"Asgard."`
-					goto Asgard
-			label windblain
+					goto asgard
 			apply
 				set "Nifel"
-			`	"There is a nearly abandoned village called Hrithfjall next to a coastal God-Stone. Something about that place felt right. I believe that is where the Skadenga should migrate."`
-			`	Hjlod nods. "Hrithfjall sounds like good place. I vill tell Ondurdis. Vhen you were gone thing, or assembly, vas held. Ondurdis called in all Skadenga from all villages across Nifel. You must find transportation for 2,200 folk. That is what Onderduis told me to tell you."`
-			`	You frown and ask. "Did she provide money?"`
-			`	Hjlod shakes her head. "No. Ve could not afford it. You must go to Valhalla, and convince head of Transport Union to support us."`
-			`	Hjlod squeezes your shoulder. "Thank you for help. For finding us new home. Ve need it. I must report now to Ondurdis. Skade be vith you."`
-			`	She turns and leaves.`
-				accept
-			label Asgard
+			`	You answer, "There is a nearly abandoned village called Hrithfjall next to a coastal God-Stone. Something about that place felt right. I believe that is where the Skadenga should migrate."`
+			`	Hjlod nods. "Hrithfjall sounds like good place. I vill tell Ondurdis.`
+			goto end
+			label asgard
 			apply
 				set "Asgard"
-			`	"On Asgard there is a great market built around their God-Stone, and many new homes in need of people to fill them. The people there have lost their way and they need the Skadenga to remind them of who they were."`
-			`	Hjlod nods. "The Skadenga have alvays been guides, pathfinders. I vill tell Ondurdis. Vhen you were gone thing, or assembly, vas held. Ondurdis called in all Skadenga from all villages across Nifel. You must find transportation for 2,200 folk. That is what Onderduis told me to tell you."`
-			`	You frown and ask. "Did she provide money?"`
-			`	Hjlod shakes her head. "No. Ve could not afford it. You must go to Valhalla, and convince head of Transport Union to support us."`
-			`	Hjlod squeezes your shoulder. "Thank you for help. For finding us new home. Ve need it. I must report now to Ondurdis. Skade be vith you."`
-			`	She turns and leaves.`
+			`	You answer, "On Asgard, there is a great market built around their God-Stone, and many new homes in need of people to fill them. The people there have lost their way and they need the Skadenga to remind them of who they were."`
+			`	Hjlod nods. "The Skadenga have alvays been guides, pathfinders. I vill tell Ondurdis.`
+			label end
+			`	"Vhen you were gone, thing, or assembly, vas held. Ondurdis called in all Skadenga from all villages across Nifel. You must find transportation for 2,200 folk. That is what Onderduis told me to tell you."`
+			`	You frown and ask, "Did she provide money?"`
+			`	Hjlod shakes her head. "No. Ve could not afford it. You must go to Valhalla and convince head of Transport Union to support us." She squeezes your shoulder. "Thank you for help. For finding us new home. Ve need it. I must report now to Ondurdis. Skade be vith you."`
+			`	Hjold turns and leaves.`
 				accept
-			
 	on complete
 		conversation
-			branch Asgard
-					has "Asgard"
-			`	Outside your ship you are met by a representative of the Transport Union. "We have been expecting you, Captain <last>."`
-			`	They escort you to an elevator and up to the penthouse of the tallest building in Valhalla's capital of Himinbjorg."`
+			`	Outside your ship, you are met by a representative of the Transport Union. "We have been expecting you, Captain <last>." They escort you to an elevator and up to the penthouse of the tallest building in Valhalla's capital of Himinbjorg."`
 			scene "scene/tower"
-			`	Three youngish men adorned in trending clothes smile as you enter. "Ah, Captain <last>, what a pleasure to finally meet you. I am Kaiden, and these are my associates Braiden and Grayden, and we are executives of the Transport Union. Obviously, we were made aware you would be coming and are looking forward toward creating a lasting and beneficial relationship with you and your... clients."`
-			`	"We've heard that you have this inspiring idea to transport an entire primitive community from one world to another." Kaiden says.`
-			`	"Really inspirational." Braiden chimes in.`
-			`	"So inspiring." Grayden adds with an opaque hand gesture you think you've seen done by celebrities.`
-			`	"We always say at the Transport Union, that 'it's about the people in the transports', which is why we're humbled and excited to offer you our support in this beautiful and inspiring humanitarian adventure of yours."`
-			`	Braiden and Grayden both clap enthusiastically.`
-			`	Kaiden waits for the ovation to subside then continues with a knowing smile. "So, tell us humble servants of the people, where to transport these rustic primitives?"`
+			`	Three youngish men adorned in trending clothes smile as you enter. "Ah, Captain <last>, what a pleasure to finally meet you. I am Kaiden, and these are my associates Braiden and Grayden. We are executives of the Transport Union. Obviously, we were made aware you would be coming and are looking forward toward creating a lasting and beneficial relationship with you and your... clients.`
+			`	"We've heard that you have this inspiring idea to transport an entire primitive community from one world to another," Kaiden says.`
+			`	"Really inspirational," Braiden chimes in.`
+			`	"So inspiring," Grayden adds with an opaque hand gesture you think you've seen done by celebrities.`
+			`	"At the Transport Union, we say that 'it's about the people in the transports,' which is why we're humbled and excited to offer you our support in this beautiful and inspiring humanitarian adventure of yours," Kaiden finishes. Braiden and Grayden both clap enthusiastically.`
+			`	Kaiden waits for the ovation to subside then continues with a knowing smile. "So, tell us humble servants of the people: where to transport these rustic primitives?"`
+			branch Asgard
+					has "asgard"
 			choice
 				`	"That's fantastic news! The Skakenga will need transport to Windblain."`
 				`	"They need to go to Windblain."`
 			`	A hush falls over the room, and both Braiden and Grayden look to Kaiden with confused expressions on their faces.`
-			`	"Wind. Blain." Kaiden says slowly. "Wiiiindblaaain. Are you sure that is the world these sad, savages wish to travel to? Maybe you got an invoice mixed up? Perhaps wrote the wrong name down?"`
-			`	Braiden and Grayden both silently nod.`
+			`	"Wind. Blain." Kaiden says slowly. "Wiiiindblaaain. Are you sure that is the world these sad, savages wish to travel to? Maybe you got an invoice mixed up? Perhaps wrote the wrong name down?" Braiden and Grayden both silently nod.`
 			choice
 				`	"Windblain. Yes. I am sure."`
 				`	"Did I stutter?"`
-			`	"That changes things then." Kaiden turns to Grayden. "Are there even incentives?"`
+			`	"That changes things, then." Kaiden turns to Grayden. "Are there even incentives?"`
 			`	Grayden is busy scanning through a tablet. "No re-urbanization kickbacks, no university-study grants, not even a housing development utilization bonus. The entire thing will probably still be a tax write off, but the Census and Culture Bureau won't be happy. Plus, obviously, no finder's fee from them."`
-			`	Kaiden then looks to Braiden who shakes his head. "Public Relations for people moving to.. Windblain? No one, who is anyone, lives on Windblain, and no one else cares about those people."`
-			`	"Yeah, we're sorry, but this isn't going to work for us." Kaiden puts on a pained face. "This just isn't the kind of project we are willing to take on at the moment."`
-			`	They all stand in near unison. "In the future, try not to waste our time." Kaiden says as the three of them exit the room.`
-			`	Your escort reappears. "I've been instructed to inform you that there is no one else in The Deep capable of moving the amount of people you want to move. When you're ready to be practical, contact us and we'll be more than happy to help. Now, follow me out of the building."`
-			`	You ride the long elevator down to the lobby and are shown the door. As you leave another employee follows you out, and says quietly as he passes you. "Meet me in the spaceport."`
+			`	Kaiden then looks to Braiden who shakes his head. "Public Relations for people moving to... Windblain? No one who is anyone lives on Windblain, and no one else cares about those people."`
+			`	"Yeah, we're sorry, but this isn't going to work for us." Kaiden puts on a pained face. "This just isn't the kind of project we are willing to take on at the moment." They all stand in near unison. "In the future, try not to waste our time." Kaiden says as the three of them exit the room.`
+			`	Your escort reappears. "I've been instructed to inform you that there is no one else in The Deep capable of moving the amount of people you want to move. When you're ready to be practical, contact us and we'll be more than happy to help. Now, follow me out of the building." You ride the long elevator down to the lobby and are shown the door. As you leave, another employee follows you out. As he passes you, he quietly says, "Meet me in the spaceport."`
 				decline
-			
-			label Asgard
-			`	Outside your ship you are met by a representative of the Transport Union. "We have been expecting you, Captain <last>."`
-			`	They escort you to an elevator and up to the penthouse of the tallest building in Valhalla's capital of Himinbjorg."`
-			scene "scene/tower"
-			`	Three youngish men adorned in trending clothes smile as you enter. "Ah, Captain <last>, what a pleasure to finally meet you. I am Kaiden, and these are my associates Braiden and Grayden, and we are executives of the Transport Union. Obviously, we were made aware you would be coming and are looking forward toward creating a lasting and beneficial relationship with you and your... clients."`
-			`	"We've heard that you have this inspiring idea to transport an entire primitive community from one world to another." Kaiden says.`
-			`	"Really inspirational." Braiden chimes in.`
-			`	"So inspiring." Grayden adds with an opaque hand gesture you think you've seen done by celebrities.`
-			`	"We always say at the Transport Union, that 'it's about the people in the transports', which is why we're humbled and excited to offer you our support in this beautiful and inspiring humanitarian adventure of yours."`
-			`	Braiden and Grayden both clap enthusiastically.`
-			`	Kaiden waits for the ovation to subside then continues with a knowing smile. "So, tell us humble servants of the people, where to transport these rustic primitives?"`
+			label asgard
 			choice
 				`	"That's fantastic news! The Skakenga will need transport to Asgard."`
 				`	"They need to go to Asgard."`
-			`	Kaiden beams. "Brilliant. Just brilliant. I was just telling my colleagues here about what a great place Asgard would be for a gaggle of misfit primitives. The publicity will be huge. The universities will probably want to run various studies. There will be all sorts of government programs and initiatives there to help them accept the proper Deep culture, and become productive citizens like the rest of us."`
-			`	Grayden, Braiden and Kaiden all start shaking each others hands and congratulating each other on being part of something so inspirational.`
-			`	After their celebration is over Kaiden turns back to you. "Our transport fleet is at your disposal. They are being refitted at Mani in the Avior system."`
-			`	The three stand up in unison. Grayden and Braiden leave and Kaiden turns from the door. "We are so happy you stopped by today and gave us this opportunity to really give back to the needy communities out in our neighborhood."`
-			`	With that they are all gone, and your escort returns to lead you out.`
+			`	Kaiden beams. "Brilliant. Just brilliant. I was just telling my colleagues here about what a great place Asgard would be for a gaggle of misfit primitives. The publicity will be huge. The universities will probably want to run various studies. There will be all sorts of government programs and initiatives there to help them accept the proper Deep culture and become productive citizens like the rest of us."`
+			`	Grayden, Braiden and Kaiden all start shaking each others' hands and congratulating each other on being part of something so inspirational. After their celebration is over, Kaiden turns back to you. "Our transport fleet is at your disposal. They are being refitted at Mani in the Avior system."`
+			`	The three stand up in unison. Grayden and Braiden leave, and Kaiden turns from the door. "We are so happy you stopped by today and gave us this opportunity to really give back to the needy communities out in our neighborhood." With that, they are all gone, and your escort returns to lead you out.`
 
 
 
 mission "Home for Skadenga 5"
 	name "Transport for Skadenga"
 	landing
-	description "Travel to <destination>, and learn about the Transport Union Fleet"
+	description "Travel to <destination> to prepare the Transport Union Fleet."
 	to offer
-		has	"Asgard"
+		has	"asgard"
 	source "Valhalla"
 	destination "Mani"
 	on complete
@@ -3367,41 +3337,37 @@ mission "Home for Skadenga 5"
 		conversation
 			apply
 				set "Asgard2"
-			`	Mani is a quiet empty moon, with only a few hubs of human activity. The Deep Secruity forces, Transport Union, and other semi-governmental fleets are all serviced here.`
-			`	A Transport Union executive meets you when you touch down.`
-			`	"It'll take a while for the ships to be ready, Captain <last>. We're primitive-proofing them so that those ice-savages from Nifel don't accidently kill themselves."`
-			`	He goes over some time-tables, "I'll send you a message when the ships are ready, it should take about three weeks.` 
-			`	He shakes his head. "When the ships return covered in hay, feces and other low-tech trash, it'll take us weeks to get them in a usable state again."`
 			scene "scene/citydark"
-			
-			
-			
+			`Mani is a quiet, empty moon with only a few hubs of human activity. The Deep Secruity forces, Transport Union, and other semi-governmental fleets are all serviced here.`
+			`	A Transport Union executive meets you when you touch down. "It'll take a while for the ships to be ready, Captain <last>. We're primitive-proofing them so that those ice-savages from Nifel don't accidently kill themselves. I'll send you a message when the ships are ready. It should take about three weeks," the executive explains as he skims through a time table displayed on his tablet.` 
+			`	"When the ships return covered in hay, feces, and other low-tech trash, it'll take us weeks to get them in a usable state again," he mutters before promptly turning and leaving.`
+
+
+
 event "mani refit"
-			
-			
+
+
+
 mission "Mani Refit"
 	name "Mani Refit"
 	to offer
 		has "event: mani refit"
 		has "Home for Skadenga 5: done"
-	description "Head back to <destination>, and meet up with the Transport Union's Fleet."
+	description "Head back to <destination> and meet up with the Transport Union's Fleet."
 	source
 		government "Republic"
 	destination "Mani"
 	on offer
 		dialog
-			`	Your inbox blinks with a new message from the Transport Union.`
+			`Your inbox blinks with a new message from the Transport Union.`
 			`	'The fleet is ready for its inspirational journey. Please return to Mani.`
-			`				-Jayden, Mani Administrator,`
-			` 					Transport Union`
+			`		-Jayden, Mani Administrator, Transport Union`
 
-	on complete
-		dialog
-			`	As your landing thrusters vibrate over Mani you get a message that the Transport Union Executive is waiting for you in the spaceport.`
-	
-			
+
+
 mission "Home for Skadenga 6"
-	name "Evacuate <planet>"
+	landing
+	name "Transport the Skadenga"
 	description `Escort a fleet of freighters, refitted for carrying primitives, to <destination>.`
 	source "Mani"
 	destination "Nifel"
@@ -3409,8 +3375,7 @@ mission "Home for Skadenga 6"
 		has	"Asgard2"
 	on offer
 		conversation
-			`	 The Union Executive is overseeing the final preperations of his fleet, after a moment the last crewmembers leave his side and board their ships. He walks over to you.`
-			`	"The Fleet is ready to launch. Please, try to bring them back to me in one piece."`
+			`You arrive at the sapceport to see a Union Executive overseeing the final preparations of his fleet. After a moment, the last crewmembers leave his side and board their ships. He walks over to you. "The fleet is ready to launch. Please, try to bring them back to me in one piece."`
 			choice
 				`	"Let's get this over with."`
 			`	The ground you are standing on shakes as the ships begin to launch.`
@@ -3424,13 +3389,14 @@ mission "Home for Skadenga 6"
 		ship "Freighter" "DTU Empathy"
 	on visit
 		dialog
-			`You have reached <planet>, but the Transport Union ships have not all arrived yet. You should take off and wait for them to catch up with you.`
-			
-			
+			`You have reached <planet>, but not all the Transport Union ships have arrived yet. You should take off and wait for them to catch up with you.`
+
+
+
 mission "Home for Skadenga 7"
 	landing
-	name "Evacuate <origin>"
-	description `Escort a fleet of freighters, refitted for carrying primitives, to <destination>.`
+	name "Transport the Skadenga"
+	description `Escort a fleet of freighters, refitted for carrying the Skadenga, to <destination>.`
 	source "Nifel"
 	destination "Asgard"
 	to offer
@@ -3438,9 +3404,7 @@ mission "Home for Skadenga 7"
 	on offer
 		dialog
 			`The fleet touches down just outside the over-crowded village of Udainsakr. The landscape is filled with the gathered Skadenga.`
-			`	The Ondurdis approaches you. "Leaving is difficult. But all winters must come to end."`
-			`	She watches as her people board the ships. "I must rejoin my folk. But thank you for this, and we shall speak again at our new home."`
-	
+			`	The Ondurdis approaches you. "Leaving is difficult, but all winters must come to end." As her people board the ships, she adds, "I must rejoin my folk. But thank you for this, and we shall speak again at our new home."`
 	npc accompany save
 		government "Deep Security"
 		personality timid escort
@@ -3450,29 +3414,26 @@ mission "Home for Skadenga 7"
 		ship "Freighter" "DTU Empathy"
 	on visit
 		dialog
-			`You have reached <planet>, but the Transport Union ships have not all arrived yet. You should take off and wait for them to catch up with you.`
-			
+			`You have reached <planet>, but not all the Transport Union ships have arrived yet. You should take off and wait for them to catch up with you.`
 	on complete
 		payment 850000
 		event "skadenga death" 367
 		conversation
-			`For the occasion of the primitives' arrival, Helsingor has remade itself into a mad circus. There are impromptu bands playing, random unplanned parades, teeming crowds of excited neighbors holding up signs welcoming the Skadenga into the 31st century. There is also every kind of emergency and civil personnel available here. Firemen, police, doctors, social workers; all claiming, testing, prodding and questioning the dazed immigrants.`
-			`	The Ondurdis finds you in the chaos and lets you know she wishes to see the God-Stone. Together you travel to the mall, and you explain to her how the structure was built around it, using it as an accent wall to the various posh establishments within.`
-			`	Upon seeing this the old and overwhelmed matron falls to her knees in tears.`
+			`For the occasion of the Skadenga's arrival, Helsingor has remade itself into a mad circus. There are impromptu bands playing, random, unplanned parades, teeming crowds of excited neighbors holding up signs welcoming the Skadenga into the 31st century. There is also every kind of emergency and civil personnel available here. Firemen, police, doctors, social workers; all claiming, testing, prodding, and questioning the dazed immigrants. The Ondurdis finds you in the chaos and lets you know she wishes to see the God-Stone.`
 			scene "scene/buildings"
-			`	"These folk are lost." She says. "We are lost."`
-			`	She looks at you with her tear-wrecked face and says,"You are instrument of Skade. I saw it. But why? Why this? Why to us?"`
-			`	After that she will say no more to you, she lifts her eyes to the sky and begins to chant wildly. A few Skadenga who have made it this far join her. Various news outlets swarm around them to record the Ondurdis' breakdown.`
-			`	You back away slowly, and bump into someone. You turn to see the real-estate agent Carla Von Hausen smiling at you.`
-			`	"Well done, Captain <last>. I've been authorized to tell you that my superiors have deposited 850,000 credits into your account, as was agreed upon earlier."`
+			`	Together, you travel to the mall, and you explain to her how the structure was built around it, using it as an accent wall to the various posh establishments within.`
+			`	Upon seeing this, the old and overwhelmed matron falls to her knees in tears. "These folk are lost." She says. "We are lost."`
+			`	The Ondurdis looks at you with her tear-wrecked face and says, "You are instrument of Skade. I saw it. But why? Why this? Why to us?"`
+			`	After that, she will say no more to you. She lifts her eyes to the sky and begins to chant wildly. A few Skadenga who have made it this far join her. Various news outlets swarm around them to record the Ondurdis' breakdown.
+			`	You back away slowly and bump into someone. You turn to see the real-estate agent Carla Von Hausen smiling at you. "Well done, Captain <last>. I've been authorized to tell you that my superiors have deposited 850,000 credits into your account, as was agreed upon earlier."`
 			choice
-				`	"Your superiors??"`
-			`	Carla grins. "The Census and Culture Bureau. I am one of their field agents. They are most pleased with how you handled this. Helping the Skadenga reintegrate into our culture is a big win for the Bureau and the Skadenga."`
-			`	She pats you on the back. "Anyways, I just wanted to pass that on. I have lots of work to do, thanks to you." She winks and wanders into the crowd.`
+				`	"Your superiors!?"`
+			`	Carla grins. "The Census and Culture Bureau. I am one of their field agents. They are most pleased with how you handled this. Helping the Skadenga reintegrate into our culture is a big win for both the Bureau and the Skadenga.`
+			`	"Anyways, I just wanted to pass that on. I have lots of work to do, thanks to you." She winks and wanders into the crowd.`
 			`	You return to your ship to count your money.`
-			
-			
-			
+
+
+
 event "skadenga death"
 
 
@@ -3480,7 +3441,7 @@ event "skadenga death"
 mission "Skadenga Call 1"
 	landing
 	name "Check on Hjlod"
-	description `Fly to <destination>, and see what Hjlod and the Skadenga need from you.`
+	description `Fly to <destination> to see what Hjlod and the Skadenga need from you.`
 	source
 		government "Republic"
 	destination "Asgard"
@@ -3489,107 +3450,95 @@ mission "Skadenga Call 1"
 		has "event: skadenga death" 
 	on offer
 		dialog
-			`	There is a new message in your inbox.`
-			`	<first>, we need your help. Come to Asgard.`
-			`			Signed, Hjlod`
-	on complete
-		dialog
-			`Upon landing you receive another message in your inbox that simply says 'spaceport'.`
+			`There is a new message in your inbox from Hjold, one of the Skadenga you helped relocate to <planet>.`
+			`	<first>, we need your help. Come to <planet>.`
 
 
 
 mission "Skadenga Call 2"
-	name "Return the Skadenga."
+	landing
+	name "Return the Skadenga"
 	description "Take the Skadenga refugees back to <destination>."
 	source "Asgard"
 	destination "Nifel"
-	blocked `This mission requires <capacity>.`
+	blocked `This mission requires <capacity>. Return when you have enough room.`
 	passengers 48
 	to offer
 		has "Skadenga Call 1: done"
 	on offer
 		conversation
-			`	The Asgard spaceport hums with a thousand indecipherable conversations. It is a landscape overburdened with kinetic humanity. You spend hours wandering through the crowds for a glimpse of Hjlod. Exhausted you are ready to throw in the towel when you feel a strong hand grab your arm. You turn to see a familiar tattooed face.`
-			`	"Not a vord." Hjlod says as you walk toward a portion of the spaceport that is marked 'Closed - Under Construction.' She draws you along and you catch a glimpse of her face. Her eyes are dark and dull, her hair thin and unkept, her face creased with unhappiness. It's strange to see her so changed over such a short period of time. It's only been a year since you brought her here.`
-			`	She ushers you past various barriers meant to keep a compliant public out. Finally, she leads you into a long hall-way filled with the detritus of life. Empty food containers, dirty blankets, other less savory items. People are also here, dirty, clumped together, wretched looking.`
+			`The Asgard spaceport hums with a thousand indecipherable conversations. It is a landscape overburdened with kinetic humanity. You spend hours wandering through the crowds for a glimpse of Hjlod. Exhausted, you are ready to throw in the towel when you feel a strong hand grab your arm. You turn to see a familiar tattooed face. Her eyes are dark and dull, her hair thin and unkept, her face creased with unhappiness.`
+			`	"Not a vord." Hjlod says as you walk toward a portion of the spaceport that is marked "Closed - Under Construction." She draws you along. It's strange to see her so changed over such a short period of time. It's only been a year since you brought her here.`
+			`	She ushers you past various barriers meant to keep a compliant public out. Finally, she leads you into a long hallway filled with the detritus of life: empty food containers, dirty blankets, other less savory items. People are also here - dirty, clumped together, wretched-looking.`
 			`	Hjlod turns back to you. "It safe to talk novhere. But ve must, so here must do."`
 			choice
 				`	"What do you want from me?"`
-					goto what
 				`	"Who are these people?"`
 					goto who
-			label what
-			`	Hjlod looks at you severely. "From you? Everything. For that is what you took from us."`
-			`	"I do not know vhy you did it. Vhy you brought us here. If Skade really let us down. Or if you ignored her." She growls.`
-			`	"But it does not matter. All that matters is that ve leave, and that is vhy ve need you."`
+			`	Hjlod glares at you. "From you? Everything. For that is what you took from us.`
+			`	"I do not know vhy you did it. Vhy you brought us here. If Skade really let us down. Or if you ignored her," She growls. "But it does not matter. All that matters is that ve leave, and that is vhy ve need you."`
 					goto here
 			label who
 			`	Hjlod laughs and tears run down her cheeks. "Do you not recognize us? Our great savior? Ve are the Skadenga, and this is your handivwork."`
-			`	She look away from you and continues. "The rest are not dead, no. But they have left us. Most are happy; happy to be fed, happy to be entertained, happy to forget vho they are, happy to be Skadenga in name, but not in practice. But, those here cannot accept that. Ve refuse to become them."`
+			`	She look away from you and continues. "The rest are not dead, no. But they have left us. Most are happy; happy to be fed, happy to be entertained, happy to forget vho they are, happy to be Skadenga in name, but not in practice. But those here cannot accept that. Ve refuse to become them.`
 			`	"Ve hide now. From the social workers, from the service providers, from the government. They can still find us, they know ve are here, but vhat they don't know is that ve can leave. That you can take us avay from here."`
 			label here
-			`	Hjlod takes a deep calming breath. "I call because you are only hope. They vill not let us leave. They vill not let us be. They will steal our souls."`
-			`	She points a shaky finger at you. "Take us back to Nifel. All those who are left. Take us home. Ve know the cold vill get us eventually. But better to live on a dying vorld as Skadenga, then live here as nothing."`
+			`	Hjlod takes a deep, calming breath. "I call because you are our only hope. They vill not let us leave. They vill not let us be. They will steal our souls." She points a shaky finger at you. "Take us back to Nifel. All those who are left. Take us home. Ve know the cold vill get us eventually. But better to live on a dying vorld as Skadenga than to live here as nothing."`
 			choice
 				`	"I will help you."`
 					goto help
 				`	"I need to think about it."`
-			`	Hjlod's grimaces. "Once they know you are here, they vill collect us. Come back here in an hour, any longer than that, and ve vill be gone."`
-			`	Hjlod slumps down on the ground as you exit the dark dity tunnel where the remaining Skadenga cling to their fleeting identity.`	
-			`	Alone, you have a decision to make. You can return to help them escape this world. Or you can find Clara Von Hausen, and report to her what is going on. She would probably pay you well for the information.`
+			`	Hjlod grimaces. "Once they know you are here, they vill collect us. Come back here in an hour. Any longer than that, and ve vill be gone." She slumps down on the ground as you exit the dark, dirty tunnel where the remaining Skadenga cling to their fleeting identity.`	
+			`	Alone, you have a decision to make. You can return to help them escape this world. Or you can find Clara Von Hausen, the Census and Culture Bureau undercover agent, and report to her what is going on. She would probably pay you well for the information.`
 			choice
-				`	(Return to Hjlod.)`
+				`	(Return to Hjlod and help the Skadenga.)`
 					goto Hjlod
 				`	(Find Carla.)`
-			`	You leave Hjlod and her gang of stubborn savages behind, and return to the active parts of the thrumming spaceport. Carla's contact information, as a alleged Real-Estate agent, is easy to find and in a few minutes you have her on call.`
-			`	"Captain <last>, it is a pleasure to hear from you again. What-so-ever can I help you with?" She says with believable cheerfulness.`	
+			`	You leave Hjlod and her gang of stubborn savages behind, and return to the active parts of the thrumming spaceport. Carla's contact information, as a alleged real estate agent, is easy to find, and in a few minutes you have her on call. "Captain <last>, it is a pleasure to hear from you again. What-so-ever can I help you with?" She says with believable cheerfulness.`	
 			`	You tell her about the Skadenga hiding in the spaceport and their plans to escape to Nifel.`
-			`	"Oh dear!" Carla says. "How terrible. Those poor foolish savages would surely suffer on that terrible frozen world. How misguided of them. We are aware that some have struggled to assimilate. It's quite tragic, but we will handle things from here. Hopefully, we can convince them to integrate eventually, it is really for the best. I wish their old leader could have seen that before she died. It would have been easier for everyone."`
-			`	"As always, we appreciate your valuable contributions. I'll authorize a generous sum of credits to be transferred to your account. I need to get some approvals so it may take a couple of days to come through. Thank you, and buh-bye."`
+			`	"Oh dear!" Carla says. "How terrible. Those poor, foolish savages would surely suffer on that terrible frozen world. How misguided of them. We are aware that some have struggled to assimilate. It's quite tragic, but we will handle things from here. Hopefully, we can convince them to integrate eventually. It really is for the best. I wish their old leader could have seen that before she died. It would have been easier for everyone.`
+			`	"As always, we appreciate your valuable contributions. I'll authorize a generous sum of credits to be transferred to your account. I need to get some approvals so it may take a couple of days to come through. Thank you, and buh-bye!"`
 				decline
 			label Hjlod
 			`	You return to Hjlod, who is surprised that you came back at all, and let her know that you going to help them.`
 			label help
-			`	Hearing this, the slumped and depressed dredges in the hall stir and rise from their stupor. Hurriedly some gather items while others race off further into the dark unused parts of the spaceport.`
-			`	"Ve have 52 people that need off this vorld right now."`
-			`	Hjlod hesitates a moment and then adds. "I know how much you like money. Ve have pooled all our savings together and will pay you 12,481 credits for this job."`
-			`	Hjlod grabs a raggedy duffle bag and a group gather around her. "The rest vill meet us at your ship. Ve move now."`
+			`	Hearing this, the slumped and depressed dredges in the hall stir and rise from their stupor. Hurriedly, some gather items while others race off further into the dark, unused parts of the spaceport.`
+			`	"Ve have 52 people that need off this vorld right now." Hjlod hesitates a moment and then adds, "I know how much you like money. Ve have pooled all our savings together and will pay you <payment> for this job." She grabs a ragged duffle bag and a group gather around her. "The rest vill meet us at your ship. Ve move now."`
 			choice
 				`	(Follow Hjlod.)`
-			`	Once you're back in the operational spaceport you and your group move quickly, while drawing occasional glances from curious on-lookers. A large group of disheveled Skaldenga are waiting for you when you reach your ship.`
-			`	"Everyone on, quickly!" Hjlod barks at her people.`
-			`	A few moments later they are all on board. "Asdis, headcount!" Hjlod says.`
-			`	As you're waiting two more dirty and gaunt Skadenga show up. Asdis adds them to her count and then addresses Hjlod. "Ondurdis, 48 total."`
+			`	Once you're back in the operational spaceport, you and your group move quickly, while drawing occasional glances from curious on-lookers. A large group of disheveled Skaldenga are waiting for you when you reach your ship. "Everyone on, quickly!" Hjlod barks at her people.`
+			`	A few moments later, they are all on board. "Asdis, headcount!" Hjlod orders. As you're waiting, two more dirty and gaunt Skadenga show up. Asdis adds them to her count and then addresses Hjlod. "Ondurdis, 48 total."`
 			`	Hjlod frowns. "It's Arnson's family isn't it? I told him he was too far."`
-			`	A commotion boils up from a few terminals down, and you see some civil servants and local police officers heading your way.`
-			`	Asdis is also watching. "They could still be coming."`
+			`	A commotion boils up from a few terminals down, and you see some civil servants and local police officers heading your way. Asdis is also watching. "They could still be coming."`
 			`	"It's too late for them." Hjlod shuts the hatch. "<first>, if ever ve vere friends. Take off, now."`
 			choice
 				`	(Take off.)`
 					goto takeoff
 				`	(Power down your ship and open the hatch.)`
-			`	You turn off your ship's ignition, pop open the hatch before Hjlod can react, and jump out. Carla Von Hausen, at least two civil service works, and a squad of police officers arrive within seconds.`
-			`	Carla gives you a tight smile. "Decided to do the right thing in the end? We appreciate it."`
+			`	You turn off your ship's ignition, pop open the hatch before Hjlod can react, and jump out. Carla Von Hausen, at least two civil service workers, and a squad of police officers arrive within seconds. Carla gives you a tight smile. "Decided to do the right thing in the end? We appreciate it."`
 			`	The police officers enter your ship and start restraining and removing the the Skadenga aboard it.`
-			`	"As always, we appreciate your help and value our continued working relationship. Expect a payment in the next couple days, after I've gotten it approved, for your aid." Carla steps back to assess the Skadenga, most of which are sullen and reserved. One though, is screaming, kicking and biting.`
+			`	"As always, we appreciate your help and value our continued working relationship. Expect a payment for your aid in the next couple days, after I've gotten it approved." Carla steps back to assess the Skadenga, most of which are sullen and reserved. One, however, is screaming, kicking, and biting.`
 			`	The unruly Skadenga is dragged past you, and spit splashes against your cheek. "I'll kill you, <first>. If ever ve meet again I'll kill you. You've killed me. You've killed me." Hjlod's red and tear-stained face recedes as officers drag her away.`
 			`	"Misguided girl." Carla says sadly. "We'll take it from here. Have a wonderful day, Captain <last>.`
 				decline
 			label takeoff
-			`	You punch it, and your ship burns for the stars. Hjlod visibly relaxes when the thrust kicks in. She closes her tired eyes and slumps to the floor.`
-			`	"Thank Skade", is all she says.`
+			`	You punch it, and your ship burns for the stars. Hjlod visibly relaxes when the thrust kicks in. She closes her tired eyes and slumps to the floor. "Thank Skade" is all she says.`
 				accept
 	on complete
 		payment 12481
 		event "the book" 200
 		event "nifel hjlod" 2700
 		conversation
-			` 	Your ship touches down just outside the abandoned village of Udainskar. Silently your passengers disembark and drift into the world they once knew and thought never to see again. The village appears to have weathered the abandonment well, and it appears if the people here will not have too much trouble picking up where they left off.`
-			`	Hjlod lingers besides your ship for just a moment. "The credits are in hard-drive on your ship's console. I hope it makes you happy."`
-			`	"I do not know vhy you sent us to that place. But I am happy to be home. So go, and maybe one day I vill not hate to see you again."`
 			scene "scene/snowvillage"
-			
+			` 	Your ship touches down just outside the abandoned village of Udainskar. Silently, your passengers disembark and drift into the world they once knew and thought never to see again. The village appears to have weathered its abandonment well, and it appears the people here will not have too much trouble picking up where they left off.`
+			`	Hjlod lingers besides your ship for just a moment. "The credits are in hard-drive on your ship's console. I hope it makes you happy.`
+			`	"I do not know vhy you sent us to that place. But I am happy to be home. So go, and maybe one day I vill not hate to see you again."`
+
+
+
 event "nifel hjlod"
+
+
 
 event "the book"
 
@@ -3609,9 +3558,11 @@ mission "Skadenga Call 3"
 		payment 300000
 		event "asgard hjlod" 2000
 		conversation
-			`	You receive a message from your bank that 300,000 credits have been deposited into your account from the Census and Culture Bureau of The Deep. The following message is attached:`
+			`You receive a message from your bank that <payment> have been deposited into your account from the Census and Culture Bureau of The Deep. The following memo is attached:`
 			`	'For heroic and selfless service to the ideals and prosperity of The Deep.'`
 				decline
+
+
 
 event "asgard hjlod"
 
