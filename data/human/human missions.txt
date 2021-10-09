@@ -3601,3 +3601,76 @@ mission "Mafia Extortion"
 			label payup
 			`	The man takes your credits, responds with a brief "Thank you," and walks away.`
 				accept
+
+
+
+mission "Repulsor failure"
+	landing
+	#Note: this tag applies to the destination, not to the source...
+	infiltrating
+	to offer
+		random < 8
+		credits >= 2000000
+	on offer
+		conversation
+			"You see a warning that one of the repulsors on your ship is not working when you start de-orbiting."
+			choice
+				"(Return to orbit to fix the issue in space.)"
+					launch
+				"(Attempt to land anyway.)"
+			"Orbital entry is a bit more steep than normal and your ship is starting to lean a bit."
+			choice
+				"(Try to return to orbit to still fix the issue in space.)"
+					goto reorbit
+				"(Continue the attempt to land.)"
+			"You're reaching the point where your ship will not be able to re-orbit on its own power."
+			"The cockpit is filled with warnings about the descent angle and attitude control."
+			choice
+				"(Attempt to re-orbit and hope that the ship still makes it.)"
+					goto reorbit
+				"(Proceed with landing, crashing, or dying. Whichever one it's gonna be.)"
+			"Your decent is still far more steep than normal, and the ship is starting to roll."
+			"It is no longer possible to correct both your descend angle and maintain attitude control."
+			choice
+				"(Prioritize roll stabilization.)"
+					goto rolling
+				"(Prioritize lowering the descent angle.)"
+			"Your ship begins to roll faster and faster, but the autopilot somehow manages to soften the descent angle."
+			choice
+				"(Prioritize roll stabilization now.)"
+					goto rolling
+				"(Continue prioritizing lowering the descent angle.)"
+			branch miracle
+				random < 80
+			"Unfortunately it is not enough, the ship starts rolling even faster. You lose consciousness before your ship crashes and you die."
+				die
+			label rolling
+			"Your ships roll stabilizes, but your descend vector is now almost perpendicular to the surface and the acceleration straight towards the surface pushes you firmly into your chair."
+			choice
+				"(Pray for a miracle.)"
+				"(Scream your lungs out.)"
+			branch miracle
+				random < 70
+			"There is nothing more you can do to save your ship, your ship crashes straight into the ground and your remains are never found in the debris field."
+				die
+			label miracle
+			"Suddenly all repulsors come back online at full strength."
+			choice
+				"(Let the autopilot handle the landing.)"
+				"(Attempt to perform a manual landing.)"
+			branch miraclelanding
+				random < 98
+			"Your ships trajectory and attitude stabilize, but it was too late. The ship still crashes and you die."
+				die
+			label miraclelanding
+			"Your ships trajectory and attitude stabilize and somehow the ship crash-lands on the surface."
+			#"	You are far away from the spaceport, but at least you are still alive."
+			"	You are not sure what is more miraculous, that you landed near the spaceport or that you are still alive."
+				decline
+			label reorbit
+			"The climb back into orbit is turbulent, slow and difficult, but you make it back into orbit safely."
+				launch
+	on enter
+		dialog
+			"You fix the repulsor while in orbit. It should be working fine on next landing."
+				accept
