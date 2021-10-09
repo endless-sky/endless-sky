@@ -2757,7 +2757,7 @@ mission "Stone of our Fathers 5"
 
 mission "Home for Skadenga 1"
 	name "Home for Skadenga"
-	description "Search for the Setstokkr on Windblain and Asgard, and then return back to <planet>."
+	description "Search for the Setstokkr on <stopovers>, and then return back to <planet>."
 	minor
 	cargo "Setstokkr" 1
 	to offer
@@ -3069,12 +3069,11 @@ mission "Home for Skadenga 1"
 				accept
 	on stopover
 		dialog
-			`	You land on the final world you were asked to visit. Once you're done here you should return to Nifel.`
+			`	You land on the final world you were asked to visit. Once you're done here, you should return to Nifel.`
 	on complete
 		event "nifel waiting" 15
 		conversation
-			`	Upon landing, you get voice recorded message from Hjlod.`
-			`	"<first>, ve're busy evacuating isolated Skadenga communities. Come back in few veeks vhen things settle down."`
+			`	Upon landing, you get recorded voice message from Hjlod. "<first>, ve're busy evacuating isolated Skadenga communities. Come back in few veeks vhen things settle down."`
 			`	The message abruptly ends.`
 
 
@@ -3093,105 +3092,87 @@ mission "Home for Skadenga 2"
 	destination "Nifel"
 	on offer
 		conversation
-			`	In the high-atmosphere of Windblain your ship's sensors pick up traces of the exotic Setstokkr matter. They pin-point the material to the southern rim of a sparsely-populated island-continent; in the small coastal settlement of Hrithfjall.`
-			`	Your ship lands just outside the settlement, and you leave with your handheld tracker keyed to the Setstokkr material. The trail goes cold once you enter the settlement. The hamlet Hrithfjall is little more than a few dozen wooden structures along a single overgrown road. The structures themselves are well crafted and finely designed, but many of them appear to be abandoned. There are no townsfolk about, but you notice recent footprints headed toward the shore, which you follow.` 
-			`	The great seas of Windblain churn beneath the chalk-white cliffs and blue-green sky. As you scan the horizon your eyes catche the glare of reflected light beyond a distant precipice. You head in that direction, and find a figure seated at the precipice's edge.`
-			`	An aged man sits cross legged, looking out into the sea, and at a gleaming metal wall towering over the grey waves about a mile out from shore.`
+			`	In the high-atmosphere of <origin>, your ship's sensors pick up traces of the exotic Setstokkr matter. They pinpoint the material to the southern rim of a sparsely-populated island-continent, in the small coastal settlement of Hrithfjall.`
+			`	Your ship lands just outside the settlement, and you leave with your handheld tracker keyed to the Setstokkr material. The trail goes cold once you enter the settlement. The hamlet Hrithfjall is little more than a few dozen wooden structures along a single overgrown road. The buildings themselves are well-crafted and finely designed, but many of them appear to be abandoned. There are no townsfolk about, but you notice recent footprints headed toward the shore, which you follow.` 
 			scene "scene/seascape"
-			`	The old man speaks without turning and says in a raspy voice, "Hail Stranger, have you come to pay your respects?".`
+			`	The great seas of Windblain churn beneath the chalk-white cliffs and blue-green sky. As you scan the horizon, your eyes catch the glare of reflected light beyond a distant precipice. You head in that direction and find a figure seated at the precipice's edge. An aged man sits cross-legged, looking out into the sea and at a gleaming metal wall towering over the grey waves about a mile out from shore.`
+			`	The old man speaks without turning and says in a raspy voice, "Hail Stranger, have you come to pay your respects?"`
 			choice
 				`	"Pay my respects to what?"`
-					goto what
 				`	"Who are you?"`
-					goto why
-			label what
-			`	"Why, the Ran-Stone, of course." The old man points toward the metal tower in the sea.`
-			`	"Few come here any more. Few remember, or care about the old ways. But the goddess Ran, she is as patient, and as terrible as the sea, and like the sea, she has claimed this world."`
+					goto who
+			`	"Why, the Ran-Stone, of course." The old man points toward the metal tower in the sea. "Few come here any more. Few remember, or care, about the old ways. But the goddess Ran, she is as patient and as terrible as the sea, and like the sea, she has claimed this world.`
 			`	"So why are you here bothering old Aldfrith, if not to look upon the great countenance of divinity?"`
 					goto why
 			label who
 			`	"I am called Aldfrith. I live in nearby Hrithfjall, though I spent most my life living on the sea and making every port my home." Aldfrith's eyes glaze over for a moment as he speaks.`
-			`	"But those days are behind me. Now, I mostly sit, think and live. On the high seas I saw things, things that cannot be explained, that cannot be understood. So, now I sit here, before the great Ran-Stone, the very countenance of divinity, and reflect upon mystery."`
+			`	"But those days are behind me. Now, I mostly sit, think, and live. On the high seas I saw things... things that cannot be explained, that cannot be understood. So, now I sit here, before the great Ran-Stone, the very countenance of divinity, and reflect upon mystery."`
 			`	"So why are you here, if not to pay respect to Ran?"`
 			label why
 			choice
 				`	"I am looking for an ornate wooden pillar covered in carvings that fell from space."`
-					goto space
-				`	"Have you seen any old wooden relics around here?"`
+				`	"Have you seen any old, wooden relics around here?"`
 					goto relics
-			label space
-			`	Aldfrith strokes his white beard for a moment, "The tide brings in all sorts of interesting driftwood. But driftwood from space? That's a tall tale or a deep mystery that is."`
+			`	Aldfrith strokes his white beard for a moment. "The tide brings in all sorts of interesting driftwood. But driftwood from space? That's a tall tale or a deep mystery, that is."`
 			`	He looks up at you with a bemused smirk. "Nope. Nothing like that here. If you're interested in the driftwood though, that gets used for our boats and homes."`
 					goto ran
 			label relics
 			`	"Relics, eh?" Aldfrith cackles. "Sailors will always be over-eager to tell a stranger about fantastic treasures in the deep waves."`
-			`	The old man pauses and scratches his head for a moment. "But, alas, I can think of nothing wood-made that would be considered a relic. The salty air and saltier sea don't allow untreated wood to linger long in these parts. Unless its a boat or a home, your relic is not here."`
-					goto ran
+			`	The old man pauses and scratches his head for a moment. "But, alas, I can think of nothing wood-made that would be considered a relic. The salty air and saltier sea don't allow untreated wood to linger long in these parts. Unless it's a boat or a home, your relic is not here."`
 			label ran
-			`	You turn your attention to the great gleaming metal wall in the sea. Unlike the Goddess-Stone of Nifel, this one has no towering figure upon it. Instead it is more abstract, with fractal swirls, and wave like patterns.`
-			`	As you stare at it you feel a wildness growing inside your heart, that dissipates the moment you look away. You turn and leave the stone to its wave, and the man to his stone.`
-			`	You run your tracker in Hrithfjall once more, but again it fails to lock onto anything. There are faint diffuse traces of the exotic material all around you, but nothing concrete.`
-			`	There is little more you can learn here at the moment, and so you head back to your ship.`
+			`	You turn your attention to the great, gleaming metal wall in the sea. Unlike the Goddess-Stone of Nifel, this one has no towering figure upon it. Instead it is more abstract, with fractal swirls and wave-like patterns. As you stare at it, you feel a wildness growing inside your heart that dissipates the moment you look away. You turn, leaving the stone to its wave, and the man to his stone.`
+			`	You run your tracker in Hrithfjall once more, but again it fails to lock onto anything. There are faint diffuse traces of the exotic material all around you, but nothing concrete. There is little more you can learn here at the moment, so you head back to your ship.`
 				accept
-				
 	to complete
 		has "event: nifel waiting"
 		has "Home for Skadenga 3: offered"
 	on complete
 		conversation
-			`	When you enter Nifel atmosphere you receive a message that Hjlod will be waiting for you in the spaceport.`
-			`	However, before you have a chance to head into the port you are met by a well-dressed administrator and a couple of nondescript guards.`
-			`	"Captain <last>", the administrator says crisply, "You are invited to a meeting in the VIP Conference room. If you would please follow me."`
+			`	When you enter Nifel atmosphere, you receive a message that Hjlod will be waiting for you in the spaceport.`
+			`	Before you have a chance to head into the port however, you are met by a well-dressed administrator and a couple of nondescript guards.`
+			`	"Captain <last>," the administrator says crisply. "You are invited to a meeting in the VIP Conference room. If you would please follow me."`
 			choice
 				`	"Pass. But, have your bosses send me a letter or something, and I'll be sure to get to it in my own time."`
 					goto pass
-				`	"No, thanks. I am actually supposed to meeting someone."`
+				`	"No, thanks. I am actually supposed to be meeting someone."`
 					goto someone
 				`	"Sure thing. Lead the way."`
-			`	The guards take you by the arms. "I am pleased you are being so agreeable, consider this a precaution." The administrator promptly turns and you all follow.`
+			`	The guards take you by the arms. "I am pleased you are being so agreeable. Consider this a precaution." The administrator promptly turns, and you all follow.`
 					goto fancypants
-					
 			label pass
 			`	As you try to get around the administrator, his goons grab you. "Respectfully, Captain, this is not an invitation you are at liberty to dismiss."`
 					goto fancypants
 			label someone
-			`	"Ah yes, don't worry, we have the port authority keeping your hill-witch friend busy. You'll likely be done before she is." The administrator nods to his guards who close in on you.`
-			`	"Regrettably, this is not an invitation you are at liberty to ignore, so let us be on our way, shall we?"`
-					goto fancypants
+			`	"Ah yes, don't worry. We have the port authority keeping your hill-witch friend busy. You'll likely be done before she is." The administrator nods to his guards, who close in on you.`
+			`	"Regrettably, this is not an invitation you are at liberty to ignore. So let us be on our way, shall we?"`
 			label fancypants
-			`	You are brought to large research complex just outside the spaceport, and dispoisted in a high-end white minimalistic conference room, with two well-dressed and important looking men.`
-			`	"Thank you, Lars. Take the guards and wait for us outside," the man seated across from you says.`
-			`	"Of course, sir." Lars turns and is followed outside by his two goons.`
-			`	The man who spoke looks at you with a friendly open smile, and says unironically says, "I am so glad you agreed to meet with us. I realize an accomplished Captain like yourself is in great demand, so we will endeavor to keep this brief."`
-			`	"I am Jakob Forsyth, Vice Planetary-Governor of Nifel and CEO of Nifel-Research Solutions Inc., and the man sitting beside me is Henrik Fogel, Deputy Lieutenant-Sub-Director of the Census and Culture Bureau for The Deep."`
-			`	"We've been monitoring you ever since you first arrived, and became entangled with those sad, backwards, hill-witches." Jakob takes a sip from an elegant glass on the table.`
+			`	You are brought to large research complex just outside the spaceport, and dispoisted in a high-end, white, minimalistic conference room with two well-dressed and important looking men. "Thank you, Lars. Take the guards and wait for us outside," the man seated across from you says.`
+			`	"Of course, sir." The administrator, whose name seems to be Lars, turns and is followed outside by his two goons.`
+			`	The man who spoke looks at you with a friendly smile and unironically says, "I am so glad you agreed to meet with us. I realize an accomplished Captain like yourself is in great demand, so we will endeavor to keep this brief."`
+			`	"I am Jakob Forsyth, Vice Planetary-Governor of Nifel and CEO of Nifel-Research Solutions Incorporated, and the man sitting beside me is Henrik Fogel, Deputy Lieutenant-Sub-Director of the Census and Culture Bureau for The Deep. We've been monitoring you ever since you first arrived and became entangled with those sad, backwards, hill-witches." Jakob takes a sip from an elegant glass on the table.`
 			choice
-				`	"If you were watching me, that means you knew about the accident, and did nothing?"`
-			`	"Of course I knew." Jakob answers, "It is my business to know. The only people who live here anymore are employees of my firm, and those hill-witches."`
-			`	Jakob holds up both hands in a placating gesture "And I really am sorry we could not extract you from that avalanche. But we did a cost-benefit analysis, and it just didn't make sense. You run a ship, a business, you understand. How often do you let crew die in boarding action to make a profit?"`
-			`	Jakob puts his hands down. "Anyways, we hardly have the infrastructure to support rescue missions. Our money-guys ran the numbers a few generations back and we realized we could significantly increase our profit margins if we downsized our research division workforce to nothing, and instead focused on managing our existing patents."`
-			`	"Since then we've been shutting things down, laying people off, and sending people off-world. Various services, including emergency ones, are only barely functional. It's much cheaper to shut this world down, then try to keep managing it. That's why within 50 years it will be completely uninhabited."` 
+				`	"If you were watching me, that means you knew about the Ice-Crawler accident and did nothing?"`
+			`	"Of course I knew." Jakob answers. "It is my business to know. The only people who live here anymore are employees of my firm and those hill-witches. Holding up both hands in a placating gesture, he adds, "And I really am sorry we could not extract you from that avalanche. But we did a cost-benefit analysis, and it just didn't make sense. You run a ship, a business, you understand. How often do you let crew die in boarding action to make a profit?"`
+			`	Jakob puts his hands down. "Anyways, we hardly have the infrastructure to support rescue missions. Our financial team ran the numbers a few generations back, and we realized we could significantly increase our profit margins if we downsized our research division workforce to nothing, and instead focused on managing our existing patents.`
+			`	"Since then we've been shutting things down, laying people off, and sending the rest offworld. Various services, including emergency ones, are only barely functional. It's much cheaper to shut this world down rather than try and keep managing it. That's why it will be completely uninhabited within 50 years."` 
 			choice
 				`	"You're abandoning an entire planet to make a profit?"`
-			`	He leans forward with a sly look on his face. "Think about it. Instead of employing a worldwide workforce of 500,000 in the hope that we discover new pharmaceutical products. We instead employ 100 patent lawyers, and the rest of the profits go directly to the shareholders. We then raise the prices on our vast back catalogue of patented medicine, and everyone wins."`
-			`	"There is, however, one hiccup." Jakob leans back. "A thorn that has been in our side since our research firm first colonized this world over 400 years ago. Those crazy hill-witches. Sure, early on they had their uses as guides and what not. But, they are a cultural dead end, an atavistic blight on our corporate world."`
-			`	"You know", he continues with a humorous glint in his eye, "They actually believe that they were brought here during Earth's stone-age by magical space-fairies."`
-			`	"Now, now." Henrik finally cuts in. "We here, in The Deep, do value all our resident people and cultures, and we are not here to denigrate our citizens, no matter how unusual."`
+			`	He leans forward with a sly look on his face. "Think about it. Instead of employing a worldwide workforce of 500,000 in the hope that we discover new pharmaceutical products, we instead employ 100 patent lawyers, and the rest of the profits go directly to the shareholders. We then raise the prices on our vast back catalogue of patented medicine, and everyone wins.`
+			`	"There is, however, one hiccup." Jakob leans back. "A thorn that has been in our side since our research firm first colonized this world over 400 years ago. Those crazy hill-witches. Sure, early on they had their uses as guides and whatnot. But, they are a cultural dead end, an atavistic blight on our corporate world. You know," he continues with a humorous glint in his eye, "They actually believe that they were brought here during Earth's stone-age by magical space-fairies."`
+			`	"Now, now." Henrik finally cuts in. "We here in The Deep do value all our resident people and cultures. We are not here to denigrate our citizens, no matter how unusual."`
 			choice
-				`	"But they are leaving. So what is the problem?"`
-			`	Henrik clears his throat. "Leaving, yes, but to where? These poor people are in grave need of our help, our public services. Their primitive, superstitious existence, is both an embarrassment to The Deep, and a humanitarian crisis that we need to solve."`
-			`	"The Deep would never forcibly resettle a population. But with your help we have an opportunity to guide them to a place where they could receive the help they need."`
-			`	"We know you recently visited Windblain and Asgard. Sending them to Windblain, a barely inhabited world with no useful public services, would be a huge mistake. These poor wretches disappear into the wild cracks there. Asgard, however, has a robust civil service and safety net that would be perfect to help them be absorbed into our modern culture."`
-			`	"This is why I asked the Vice Planetary-Governor to hold this meeting. The Deep needs you to convince these poor backwards people, that they should live on Asgard."`
-			`	Henrik shrugs. "For all we know, you've already decided to tell them Asgard is the best choice. In which case we're really not asking you to do anything you weren't already planning on doing. We will also help facilitate the move by providing transportation. Furthermore, for your support in this delicate matter, we will transfer 850,000 credits to your account upon their arrival in Asgard. Really, everyone wins this way."`
+				`	"But they're leaving. So what's the problem?"`
+			`	Henrik clears his throat. "Leaving, yes, but to where? These poor people are in grave need of our help, our public services. Their primitive, superstitious existence is both an embarrassment to The Deep, and a humanitarian crisis that we need to solve."`
+			`	"The Deep would never forcibly resettle a population. But with your help, we have an opportunity to guide them to a place where they could receive the help they need. We know you recently visited Windblain and Asgard. Sending them to Windblain, a barely inhabited world with no useful public services, would be a huge mistake. These poor wretches disappear into the wild cracks there. Asgard, however, has a robust civil service and safety net that would be perfect to help them adapt to our modern culture."`
+			`	"This is why I asked the Vice Planetary-Governor to hold this meeting. The Deep needs you to convince these poor, backwards people that they should live on Asgard." Henrik shrugs. "For all we know, you've already decided to tell them Asgard is the best choice, in which case we're really not asking you to do anything you weren't already planning on doing. We will also help facilitate the move by providing transportation. Furthermore, for your support in this delicate matter, we will transfer 850,000 credits to your account upon their arrival in Asgard. Really, everyone wins this way."`
 			choice
-				`	(But the Skadenga...)`
-				`	(I don't think...)`
-				`	(That's great news...)`
+				`	"But the Skadenga-"`
+				`	"I don't think-"`
+				`	"That's great news-"`
 			`	Jakob interrupts you before you have a chance to finish your sentence. "Now, listen, you just think it over. We don't need your answer now. All we need is for you to guide those people to Asgard. If you do that, the Transport Union on Valhalla will have the ships you need. If you don't, well, things might be more difficult for everyone. And remember, we'll pay you in real credits. Not charm bracelets."`
 			`	"Lars!" Jakob calls, and the administrator and his two guards promptly enter the room. "Show Captain <last> back to their ship. Our meeting is concluded."`
-			`	"Of course, sir."`
-			`	The guards grab you and 'escort' you off the premises.`
+			`	"Of course, sir," Lars replies.`
+			`	The guards grab you and "escort" you off the premises. With that distraction out of the way, it's time to go meet Hjold at the spaceport.`
 
 
 
@@ -3205,65 +3186,55 @@ mission "Home for Skadenga 3"
 	destination "Nifel"
 	on offer
 		conversation
-			`	In the crowded high-atmosphere of Asgard it is difficult to find any reading that matches that of the exotic Setstokkr material. You do get one anomalous ping from a related material located in the populated urban center of Helsingor.`
-			`	Your ship lands in a regional spaceport that serves Helsingor, and your handheld tracker leads you to the heart of the city, where you discover a massive winding mall. The tracker leads you inside the mall.`
-			scene "scene/busystreet"	
-			`	Once inside your eyes catch the glint of a vast metallic structure around which the entire mall is built. You can make out unusual pictures and alien letters carved into it.`
-			`	It appears, that the shopping mall has been built around Asgard's God-Stone, and that the Stone is being used as an exotic accent wall for the myriad of shops in the structure.`
+			scene "scene/busystreet"
+			`	In the crowded high-atmosphere of Asgard, it is difficult to find any reading that matches that of the exotic Setstokkr material. You do get one anomalous ping from a related material located in the urban center of Helsingor.`
+			`	Your ship lands in a regional spaceport that serves Helsingor, and your handheld tracker leads you to the heart of the city, where you discover a massive, winding mall. The tracker leads you inside the mall.`
+			`	Once inside, your eyes catch the glint of a vast metallic structure around which the entire mall is built. You can make out unusual pictures and alien letters carved into it. It appears that the shopping mall has been built around Asgard's God-Stone, and that the Stone is being used as an exotic accent wall for the myriad of shops in the structure.`
 			choice
 				`	(Follow the tracker.)`
-			`	For the moment you forget the God-Stone, and focus on following the tracker. It leads you to a themed restaurant on the top floor called, 'The Adventurer's Due'. The restaurant is filled with exotic artifacts allegedly taken from all corners of known and unknown space.`
-			`	Your tracker hones in on one case. It contains a rune covered box, with patterns that look similar to those used by the Skadenga.`
-			`	The panel above it reads: `
-			`	`
-			`	'This box once contained the cure to the Rigellian Plague. It belonged to the renowned explorer, adventurer and researcher Dr. Henry Forsyth. It was donated by the Forsyth Foundation for Academic Honesty.'`
-			`	`
-			`	Disappointed, you head back down to the lower levels of the mall, and take a seat at a small in-door park at the base of God-Stone.`
-			`	After a moment, a woman wearing a well-pressed pants suit approaches you.`
+			`	For a moment you forget the God-Stone and focus on following the tracker. It leads you to a themed restaurant on the top floor called "The Adventurer's Due." The restaurant is filled with exotic artifacts allegedly taken from all corners of known and unknown space.`
+			`	Your tracker hones in on one case. It contains a rune covered box, with patterns that look similar to those used by the Skadenga. The panel above it reads: `
+			``
+			`	'This box once contained the cure to the Rigellian Plague. It belonged to the renowned explorer, adventurer, and researcher Dr. Henry Forsyth. It was donated by the Forsyth Foundation for Academic Honesty.'`
+			``
+			`	Disappointed, you head back down to the lower levels of the mall and take a seat at a small in-door park at the base of God-Stone. After a moment, a woman wearing a well-pressed pants suit approaches you.`
 			choice
-				`	(Offer a non-committal "Hello".)`
-				`	(Grin and say "Hey!".)`
+				`	(Offer a non-committal "Hello.")`
+				`	(Grin and say, "Hey!")`
 				`	(Ignore her.)`
-			`	"Hello!" She gives you a professional smile. "It's a beautiful place is it not? Not just the mall, but the town of Helsingor itself."`
-			`	She sits next to you. "You might not realize it, but homes here are incredibly affordable right now. If you are looking for a new place to live, now is the time."` 
-			`	She pulls out a card, and says in a slightly lower voice. "But you'll have to act soon. The Helsingor secret is about to get out, and once it does prices here will sky-rocket!"`
-			`	"There are three huge prefabricated housing developments that have just completed construction on the edges of town. I could get you an appointment today if you're interested."`
-			`	She hands you the card. "My name is Carla Von Hausen, and I am ready to be your real-estate agent." She gives you a sharp practiced smile that does not quite reach her eyes.`
+			`	"Hello!" She gives you a professional smile. "It's a beautiful place, isn't it? Not just the mall, but the town of Helsingor itself."`
+			`	She sits next to you. "You might not realize it, but homes here are incredibly affordable right now. If you're looking for a new place to live, now is the time." She lowers her voice. "But you'll have to act soon. The Helsingor secret is about to get out, and once it does, prices here will skyrocket!`
+			`	"There are three huge prefabricated housing developments that have just completed construction on the edges of town. I could get you an appointment today if you're interested." She hands you a card. "My name is Carla Von Hausen, and I'd be happy to serve as your real-estate agent." She gives you a sharp, practiced smile that does not quite reach her eyes.`
 			choice
 				`	"Beat it, lady."`
-					goto lady
 				`	"Thanks, but I am just passing through."`
 					goto stars
 				`	"My home is among the stars."`
 					goto stars
-			label lady
-			`	A frown flickers across Carla's face for a brief second before her professional smile reasserts itself. "Trust me, why rent when you can own? Why move a large family to an empty world with poor restaurant selections, when you could move them here?".` 
-			`	She stands and smooths her suit jacket. "When you change your mind, I'll be here."`
-			`	With that she's gone and you are free to turn your attention back to the God-Stone.`
+			`	A frown flickers across Carla's face for a brief second before her professional smile reasserts itself. "Trust me, why rent when you can own? Why move a large family to an empty world with poor restaurant selections when you could move them here?".` 
+			`	She stands and smooths her suit jacket. "When you change your mind, I'll be here." With that, she's gone, and you are free to turn your attention back to the God-Stone.`
 					goto elfstone
 			label stars
 			`	Carla rewards you with a condescending smile. "Ah, darling. You might work in space, but eventually, you'll need a world to call home."`
-			`	She stands and smooths her suit jacket. "When you are ready to make the real-estate leap, you know where to find me."`
-			`	She winks at you and then strolls off in the crowds of shoppers. Alone, you turn your attention back to the God-Stone.`
-					goto elfstone
+			`	She stands and smooths her suit jacket. "When you are ready to make the real-estate leap, you know where to find me." Carla winks at you and then strolls off in the crowds of shoppers. Alone, you turn your attention back to the God-Stone.`
 			label elfstone
-			`	The parts of the God-Stone that are exposed at this level are dull and lusterless. You search for a pattern, but can make nothing out due to how little of the wall is visible. It's sectioned off with every shop and restaurant having its own piece. As you stare at it you feel nothing, just an emptiness. You do notice a plaque by a large part of unobstructed wall.`
+			`	The parts of the God-Stone that are exposed at this level are dull and lusterless. You search for a pattern but can make nothing out due to how little of the wall is visible. It's sectioned off, with every shop and restaurant having its own piece. As you stare at it you feel nothing, just an emptiness. You do notice a plaque by a large part of unobstructed wall.`
 			choice
-				`	(Read the Plaque.)`
-					goto plaque
+				`	(Read the plaque.)`
 				`	(Return to your ship.)`
 					goto ship
-			label plaque 
-			`	The plaque labels the God-Stone as 'Colonial Graffiti' and reads:`
-			`	During the Colonization of The Deep in the 26th Century, the earliest colonists erected large metal slabs and wrote nonsensical pseudo-letters on them. It is believed that this was done in order to raise the prestige of their early worlds. They would claim that they were powerful alien artifacts, or that they were made by an earlier population of humans who had arrived on the world thanks to the intercession of fairies.`
-			`	Either for profit, or out of a longing for home, many local communities promoted these superstitious ideas about the origins of these structures. Scientists have determined that these structures were once large segments of the metal hulls of the original colony ships. Although, to date, there has been some trouble identifying exactly what kind of metal they were made from.`
-			`	Most worlds in The Deep have 'Colonial Graffiti', and they are proud reminders of our enterprising colonial origins. They are sometimes known in older texts, and by some outdated communities as God-Stones and Elf-Stones.`
-			`	Here at the Helsingor Family-Fun-Shopping-Center we are committed to celebrating our past! Which is why we, in the spirit of graffiti being the cultural touchstone of the day, have renovated this colonial structure into a central communication piece and made it a vital part of our vibrant community!'` 
-			`	You finish reading the plaque, and look at the dull grey metal wall, and the inhuman things carved upon it. It looks nothing like a ship's hull.`
+			`	The plaque labels the God-Stone as "Colonial Graffiti" and reads:`
+			``
+			`	During the Colonization of The Deep in the 26th Century, the earliest colonists erected large metal slabs and wrote pseudo-letters on them. It is believed that this was done in order to raise the prestige of their early worlds. They would claim the stones were powerful alien artifacts, or that they were made by an earlier population of humans who had arrived on the world thanks to the intercession of fairies.`
+			`	Either for profit, or out of a longing for home, many local communities promoted these ideas about the origins of these structures. Scientists have determined these structures were once large segments of the metal hulls of the original colony ships. To date, there has been some difficulty in identifying exactly what alloy they were constructed from.`
+			`	Most worlds in The Deep have "Colonial Graffiti," and they are proud reminders of our enterprising colonial origins. They are sometimes known in older texts, and by early communities, as God-Stones and Elf-Stones.`
+			``
+			`	Here at the Helsingor Family-Fun-Shopping-Center, we are committed to celebrating our past! This is why we, in the spirit of graffiti being the cultural touchstone of the day, have renovated this colonial structure into a central communication piece and made it a vital part of our vibrant community!'`
+			``
+			`	You finish reading the plaque, and look at the dull grey metal wall and the inhuman things carved upon it. It looks nothing like a ship's hull.`
 			label ship
 			`	These people seem disconnected from their past. You wonder if the Skadenga could help them reconnect with it, but worry that the place would change the Skadenga more than they could change it. There is nothing more you can do here. You head back to your ship.`
 				accept
-				
 	to complete
 		has "Home for Skadenga 2: offered"
 
