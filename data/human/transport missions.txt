@@ -2230,7 +2230,7 @@ mission "Lost Boy 3"
 				`	"I'm sorry but I can't take this from you."`
 					goto reject
 			
-			apply
+			action
 				payment 952
 			`	"This is just so wonderful. There aren't many people around here who would do such a thing for such little pay."`
 				goto end
@@ -3204,7 +3204,7 @@ mission "Earth Retirement"
 					goto reject
 			
 			label payment
-			apply
+			action
 				payment 2000 80
 			`	As you count up the large clump of credits you were handed (the sum comes out to <payment>), they slowly make their way to the train station. Presumably, their new apartment is far from here.`
 				accept
