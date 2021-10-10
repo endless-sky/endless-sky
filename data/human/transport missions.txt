@@ -2221,21 +2221,22 @@ mission "Lost Boy 3"
 		has "Lost Boy 2: done"
 	
 	on offer
-		payment 952
 		conversation
 			`Tod's mother almost tears up at the sight of him as you approach. "Oh, my baby boy is alive!" she exclaims, running up and hugging Tod as his face reddens with embarrassment. "Are you hurt? Are you okay? Do you think you'll be fine?" Tod's mother asks, kissing his cheeks between each question.`
 			`	"I'm fine, Mom," Tod says in an annoyed tone of voice. Some things never change.`
 			`	The mother gives you a handful of credit chips. At a glance, you guess that they couldn't be worth more than 1,000 credits. "I know it isn't much for the work you've done, Captain, but it's all I have to give you in return."`
 			choice
-				`	"Don't worry."`
-				`	"You're lucky I agreed to help you in the first place."`
-					goto money
+				`	"Don't worry about it."`
+				`	"I'm sorry but I can't take this from you."`
+					goto reject
 			
+			action
+				payment 952
 			`	"This is just so wonderful. There aren't many people around here who would do such a thing for such little pay."`
 				goto end
 			
-			label money
-			`	"I know, I know, and I'm eternally grateful for that, Captain. There aren't many people around here who would do such a thing for such little pay."`
+			label reject
+			`	You hand the credits back to the mother as she begins to tear up again. "Thank you so much, Captain."`
 			
 			label end
 			`	"Hold on," Tod chimes in. "I still need to get to <planet>."`
@@ -3194,9 +3195,8 @@ mission "Earth Retirement"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 2000 80 # To be made conditional later.
 		conversation
-			`Once you land on Earth, Donna and Charles pick up their belongings and start to leave your ship. Before he leaves, Charles stops and takes out a large clump of credit chips with a total value of <payment>. "Here you go," he mutters. "I hope your life goes better than ours has."`
+			`Once you land on Earth, Donna and Charles pick up their belongings and start to leave your ship. Before he leaves, Charles stops and takes out a large clump of credit chips. "Here you go," he mutters. "I hope your life goes better than ours has."`
 			choice
 				`	"Thank you. I hope you have the best of luck on Earth."`
 					goto payment
@@ -3204,7 +3204,9 @@ mission "Earth Retirement"
 					goto reject
 			
 			label payment
-			`	They slowly make their way to the train station. Presumably, their new apartment is far from here.`
+			action
+				payment 2000 80
+			`	As you count up the large clump of credits you were handed (the sum comes out to <payment>), they slowly make their way to the train station. Presumably, their new apartment is far from here.`
 				accept
 			label reject
 			`	Charles looks surprised for a moment, and then, for the first time you've seen, he smiles. "Thank you, Captain <last>. I wish there were more people like you in the Paradise Worlds."`

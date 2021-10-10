@@ -63,7 +63,7 @@ private:
 	// possibly activating a callback function and, if docked with an NPC,
 	// destroying it or showing the BoardingPanel (if it is hostile).
 	void Exit();
-	// Handle  mouse click on the "ok," "done," or a conversation choice.
+	// Handle mouse click on the "ok," "done," or a conversation choice.
 	void ClickName(int side);
 	void ClickChoice(int index);
 	
