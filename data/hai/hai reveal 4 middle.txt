@@ -81,7 +81,7 @@ mission "Hai Rescue [A02] Microtransceiver Identification"
 				goto questions
 			label microtransceivers
 			`	A Hai in a medical uniform explains, "The victims each have have thousands of microscale transmitter-receivers in their body, each the size of a single blood cell. We call them microtransceivers. They act together as one big transmitter and receiver, sending and receiving directional messages over great distances."`
-			`	"This technology is clearly not of human or Hai origin. It has similarities to some microbots used in Hai medicine that are used to seal off ruptures causing internal bleeding, but the construction of these is significantly beyond our science, and some materials involved have properties unlike anything we've ever studied up close. Another race's hand has been involved in this technology; we're looking for one that has mastered miniaturized technology and is comfortable with its principles."
+			`	"This technology is clearly not of human or Hai origin. It has similarities to some microbots used in Hai medicine that are used to seal off ruptures causing internal bleeding, but the construction of these is significantly beyond our science, and some materials involved have properties unlike anything we've ever studied up close. Another race's hand has been involved in this technology; we're looking for one that has mastered miniaturized technology and is comfortable with its principles."`
 			`	"What is most troubling is that we don't know how to detect the signals beyond about thirty meters. We can tell they send messages over much longer distances through hyperspace, but they use a method we don't understand."`
 			branch "saved geocoris"
 				has "00 Hai Leaks Response 4B: declined"
