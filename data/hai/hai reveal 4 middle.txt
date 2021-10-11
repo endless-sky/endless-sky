@@ -77,11 +77,11 @@ mission "Hai Rescue [A02] Microtransceiver Identification"
 				`	"How can I help you?"`
 					goto help
 			label uninhabited
-			`	Teeneep looks at you as if you were daft, "The kidnappings happen on Hai and human worlds. The kidnappers have no reason to search an uninhabited planet for kidnapping victims. This gives us a safe place to hide any critical people or information."`
+			`	Teeneep looks at you as if you were daft. "The kidnappings happen on Hai and human worlds. The kidnappers have no reason to search an uninhabited planet for kidnapping victims. This gives us a safe place to hide any critical people or information."`
 				goto questions
 			label microtransceivers
 			`	A Hai in a medical uniform explains, "The victims each have have thousands of microscale transmitter-receivers in their body, each the size of a single blood cell. We call them microtransceivers. They act together as one big transmitter and receiver, sending and receiving directional messages over great distances."`
-			`	"This technology is clearly not of human or Hai origin. It has some similarities to some microbots used in Hai medicine that are used to seal off ruptures causing internal bleeding, but the construction of these  is significantly beyond our science and some materials involved have properties unlike anything we've ever studied up close. Another race's hand has been involved in this technology, a race that has mastered miniaturized technology and is comfortable with its principles."`
+			`	"This technology is clearly not of human or Hai origin. It has similarities to some microbots used in Hai medicine that are used to seal off ruptures causing internal bleeding, but the construction of these is significantly beyond our science, and some materials involved have properties unlike anything we've ever studied up close. Another race's hand has been involved in this technology; we're looking for one that has mastered miniaturized technology and is comfortable with its principles."
 			`	"What is most troubling is that we don't know how to detect the signals beyond about thirty meters. We can tell they send messages over much longer distances through hyperspace, but they use a method we don't understand."`
 			branch "saved geocoris"
 				has "00 Hai Leaks Response 4B: declined"
@@ -106,7 +106,7 @@ mission "Hai Rescue [A02] Microtransceiver Identification"
 			label anyone
 			`	A Hai near Teeneep responds. "Yes... and no. Apart from our own people, we're regularly in contact with police. They investigate the disappearances, and sometimes find the missing person. Other times, they eventually have to give up and work on other crimes."`
 			`	"Our biggest problem is the lack of help in human space. Local police are generally overwhelmed with crime in the regions where the kidnapping victims are found. There, kidnappings are commonplace. In the areas where the victims were taken, there's virtually no evidence. Your navies and intelligence agencies haven't the time to help us; they're busy cleaning up after the war. There is a lot of unfinished business in Syndicate space they don't want to talk about."`
-			`	"Since this problem is tiny compared to the total crime in Hai space, the Hai Elders haven't made it a large priority. They tell me that, if we can prove the kidnappings are from a coordinated effort, they'll put all the resources they can spare into stopping the crime. So far, they say, their investigators have been unable to discover anything."`
+			`	"While the crime in Hai space is rather more manageable, the same lack of evidence makes it hard for the Elders to justify a dedicated task force when more visible priorities still dominate the news feeds. They tell me that if we can prove the kidnappings are from a coordinated effort, they'll put all the resources they can spare into stopping the crime. So far, they say, their investigators have been unable to discover anything."`
 			`	"What we need is a skilled pilot with a jump drive to visit some locations we cannot easily access."`
 				goto questions
 			label help precious opinions  
@@ -134,8 +134,7 @@ mission "ZZ Hai Rescue [A03] Microtransceiver Identification"
 			`	The Quarg makes a series of wheezing sounds which approximate a laugh. "I am merely a pilot. I know nothing of microtransceivers. That is the technology of the Korath, and I will take you to one who is knowledgeable."`
 			`	You pass through another two grey platform transports and reach a warm cave-like structure with a group of Korath and Quarg. From the holograms and equipment, it appears they're discussing science. One hologram looks like a blood cells attached to a tiny machine; this may be a microscale medicine laboratory.`
 			`	The Quarg and Korath discuss your microtransceivers for a few minutes, placing them in various instruments.`
-			`	Finally you have your answer. A Quarg scientist tells you, "These appear to be Korath in origin, but makeshift and primitive. Even the Korath Exiles are more advanced. Those who made these have little resources and simple machinery. This will tell you how to detect these microtransceivers," it hands you a standard data card compatible with human computers.`
-			`	"Take this to Tarazed Shipyards."`
+			`	Finally, you have your answer. A Quarg scientist tells you, "These appear to be Korath in origin, but makeshift and primitive. Even the Korath Exiles are more advanced. Those who made these have little resources and simple machinery. This will tell you how to detect these microtransceivers," it explains, handing you a standard data card compatible with human computers. "Take this to Tarazed Shipyards."`
 			`	You recall Teeneep gave you a contact at Tarazed Shipyards.`
 				accept
 
@@ -242,8 +241,7 @@ mission "Hai Rescue [A04] Tarazed Analysis"
 		log "Factions" "Smugglers" `Some pirate or merchant ships (identified by the computer as "Smuggler") carry slaves with special microtransceivers. They are probably carrying human or Hai researchers.`
 		log `Goraz Zoltof used the galactic network of television transmitters to scan for evidence of smuggling ships carrying kidnapping victims with microtransceivers. He detected hints of transmissions in the uninhabited space between the Far North and the Syndicate, and also near pirate systems.`
 		conversation
-			`You read Teeneep's contact information for Tarazed Shipyards, and it talks about a man named, "Goraz Zoltof," a widower in their communications research laboratory. There's an address and detailed information about the man.`
-			`	After a series of shuttles and trains, you reach his house and knock on the door.`
+			`You read Teeneep's contact information for Tarazed Shipyards, and it talks about a man named Goraz Zoltof, a widower in their communications research laboratory. There's an address and detailed information about the man. After a series of shuttles and trains, you reach his house and knock on the door.`
 			`	He's a little groggy, but manages to ask, "Yes?" You explain about the microtransceivers, the Quarg, and the kidnappings. You avoid mentioning that some of the people are Hai, just in case he's never heard of them. He seems to awaken immediately. "You found a lead on my wife's disappearance? Yes, I can help you modify your ship's communicator to detect these signals. Let's go to my laboratory at once."`
 			choice
 				`	(Head to the laboratory.)`
@@ -256,7 +254,7 @@ mission "Hai Rescue [A04] Tarazed Analysis"
 				`	(Return to your ship.)`
 			`	After one last ride through the shuttles and trains of <origin>, you arrive at your ship. You plug the data card into your computer, and a new "government" shows up: Smuggler. The ships will be colored differently than pirates.`
 			`	It may be risky, but you should disable one and board it.`
-			`	Teeneep gave you the name of a contact within a historical archive on <destination>. She wants you to speak to a woman named, "Giti Gilani" if you find one of the smuggling ships. Giti specializes in history of ship designs and space-faring groups, including the Hai.`
+			`	Teeneep gave you the name of a contact within a historical archive on <destination>. She wants you to speak to a woman named Giti Gilani if you find one of the smuggling ships. Giti specializes in history of ship designs and space-faring groups, including the Hai.`
 				accept
 
 
@@ -348,7 +346,7 @@ mission "Hai Rescue [A07] Logo Identification"
 			`	The Navy observatory was easier to find; when they hear your name, they put you in contact with Giti immediately. She is excited to see the two symbols you found and asks you to visit her. It takes three shuttle journeys and one high-speed rail trip, but you reach the building in under three hours.`
 			choice
 				`	(Enter the building.)`
-			`	You're ushered to an elevator and given a room number: 3017A19, the 301st floor, section 7A, room 19. It's amazing how large Earth's megabuildings have become. Some planets have lower population than one of these buildings.`
+			`	You're ushered to an elevator and given a room number: 3017A19 - the 301st floor, section 7A, room 19. It's amazing how large Earth's megabuildings have become. Some planets have less population than one of these buildings.`
 			`	Giti is even more excited in-person than she was by holocommunicator. She's already researched the Syndicate-like symbol, but needed more detail about the demonic one. You also show her the information about the microtransceivers.`
 			`	"This cat symbol was used by a clandestine organization that worked within the Syndicate over a half-century ago. They called themselves 'Base Principles.' They were anarcho-syndicalists infiltrating the Syndicate from within, supposedly advancing their positions through research findings gleaned from captured alien equipment, but nobody knows where they got it. The organization was eventually torn in two by a collection of regular anarchists and other unsavory characters looking to profit off the backdoor access to the Syndicate; this group kidnapped researchers from other institutes to expand their capabilities.`
 			`	"These others didn't cover their tracks well enough, the trail led back to the syndicalists that started it all in the first place, and Syndicate Internal Affairs put a stop to the organization with extreme prejudice. Most of the anarchist leaders were killed in battle or executed after capture, but the internal players simply... disappeared.`
@@ -359,7 +357,7 @@ mission "Hai Rescue [A07] Logo Identification"
 			`	When you arrive, Giti tells you, "This is a religious materials archive. Give me a minute here..." Her voice trails off as she starts typing on a terminal. She walks back and forth between several bookshelves skimming books for a few minutes.`
 			`	"I found it," she says. "This is a modified version of the Symbol of Baphomet, the official symbol of an older incarnation of the Church of Satan. Contrary to popular belief at the time, they were never devil-worshipers of any sort. Instead, they believed in a sort of rationalist individualism and were one of the first organizations to fund large-scale settlements on Freedom. Since then, the symbol has been co-opted by miscreants.`
 			`	"But you didn't come here for a theological history disquisition. The letters around the pentagram have been replaced with galactic coordinates using an archaic notation." She smiles at you, "I wrote my Ph.D. thesis about that notation! Now I finally need that information for something other than getting a degree!`
-			`	"The circle around the symbol looks almost like a wormhole. A red wormhole. I heard about one in Terminus near The Deep. Apparently nobody is able to enter one without their ship being torn to pieces. This symbol suggests there's another one in the middle of Syndicate space."`
+			`	"The circle around the symbol looks almost like a wormhole. A red wormhole. I heard about one in Terminus near The Deep. Apparently nobody is able to enter one without their ship being torn to pieces. This symbol suggests there's another one in the middle of Syndicate space.`
 			`	"Fly through the wormhole at the coordinates on that card, if you can, come back and tell me what you see. In the meantime, I'll ask other researchers about the microtransceivers."`
 			choice
 				`	(Thank her and return to your ship.)`
@@ -371,7 +369,7 @@ mission "Hai Rescue [A07] Logo Identification"
 		conversation
 			`After a long series of shuttles, high-speed rails, and a several-minute-long elevator ride, you reach Giti's office.`
 			`	As soon as she sees you she asks, "What did you find out?" You explain your journey to her.`
-			`	She responds, "Wait... I... lemme check..." followed by some typing on a nearby terminal. "Yes, you're right. In the late 21st century, there was an effort to map stars in that intergalactic region. They should not have been so visible, but they were due to some strange anomalies. The strangest of all was not a star; it was an object with unknown properties that confuse our scanners even today."`
+			`	She responds, "Wait... I... lemme check..." followed by some typing on a nearby terminal. "Yes, you're right. In the late 21st century, there was an effort to map stars in that intergalactic region. By all rights these stars should not have been so visible, but some strange anomaly made that part of the sky clearer for a while. The strangest thing we spotted was not a star; it was some kind of object with unknown properties that confused our scanners. Even today I'm not sure we'd make sense of it, but the anomaly passed, and we couldn't even make an attempt now."`
 			`	"If the Syndicate criminals and kidnappers are through the wormhole, that's the system they'll be in."`
 			`	"Let me contact some people. Hold on..." Her voice trails off as she begins typing on a nearby terminal.`
 			choice

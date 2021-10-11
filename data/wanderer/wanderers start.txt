@@ -9,7 +9,6 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 mission "Wandering Nightmares"
-	minor
 	landing
 	name "Quiet your Nightmares"
 	description "You have recurring nightmares about an alien world north of Unfettered space. You'll never sleep again unless you investigate it."

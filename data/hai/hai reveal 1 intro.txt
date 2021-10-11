@@ -402,7 +402,7 @@ mission "00 Hai Tour [4] Cloudfire"
 	destination "Cloudfire"
 	to offer
 		or
-			has "Hai Witness Unfettered [1]"
+			has "Hai Witness Unfettered [1]: done"
 			has "ZZ Hai Tour [3] Meet Unfettered: done"
 	on offer
 		conversation
@@ -539,7 +539,7 @@ mission "Hai Leaks Response 2"
 	on visit
 		dialog phrase "generic stopover on visit"
 	on complete
-		log `Brought human diplomatic representatives from each human faction to Hai-home to address the crisis. Something drastic needs to be done to keep the secret from entirely bursting, but they know how long they will have to work with. Asked to route pirates hoping to benefit from the chaos while they work on a solution.`
+		log `Brought human diplomatic representatives from each human faction to Hai-home to address the crisis. Something drastic needs to be done to keep the secret from entirely bursting, but they know how long they will have to work with. Asked to rout pirates hoping to benefit from the chaos while they work on a solution.`
 		conversation
 			`You are directed to an official landing pad on your return to Hai-home, and it is not long before you are introducing your entourage to Sayari. Alondo in particular seems excited to be here and seems to have a knack for charming Sayari with polite and insightful, if rather simple, questions throughout the diplomatic niceties.`
 			`	You get down to business when Sayari inquires how your journey went.`
@@ -590,7 +590,7 @@ mission "Hai Leaks Response 2A"
 	to offer
 		has "Hai Leaks Response 2: active"
 	on offer
-		log "People" "Alondo Gruyere" `Alondo is working to develop the diplomatic core for the Free Worlds. Due to a lack of serious appointed positions (with the few already existing occupied as ambassadors to the Republic), he is looking after the Free World's interests as a diplomat to the Hai.`
+		log "People" "Alondo Gruyere" `Alondo is working to develop the diplomatic corps for the Free Worlds. Due to a lack of serious appointed positions (with the few already existing occupied as ambassadors to the Republic), he is looking after the Free World's interests as a diplomat to the Hai.`
 		conversation
 			`When you land on Deep, Katya is there waiting for you along with Alondo. "<first>! It's so good to see you again! When the Republic briefed the new Chancellor and his Cabinet on the Hai, he brought us in for advice. We thought to try and reach you, but of course you would somehow manage to be in the thick of it before we even knew what was going on."`
 			`	You hug them both in turn and return the greeting. "I thought it seemed odd when they said I was meeting you for this Katya, but it makes much more sense if you were just easier to get a hold of than Alondo here."`
@@ -623,7 +623,7 @@ mission "Hai Leaks Response 2C"
 	to offer
 		has "Hai Leaks Response 2: active"
 	on offer
-		log "People" "Terry Adrianopolous" `Protege to the Syndicate CEO, Terry Adrianopolous has been nominated by her mentor Alastair Korban to represent the Syndicate's interests in the crisis of the Hai's secrecy. She is a very capable woman who appears well equipped for climbing the corporate ladder.`
+		log "People" "Terry Adrianopoulos" `Protege to the Syndicate CEO, Terry Adrianopoulos has been nominated by her mentor Alastair Korban to represent the Syndicate's interests in the crisis of the Hai's secrecy. She is a very capable woman who appears well equipped for climbing the corporate ladder.`
 		conversation
 			`Approaching Foundry, you are hailed on a private encrypted channel and directed to a private hangar where you are greeted personally by Syndicate CEO Alastair Korban.`
 			`	He shakes your hand and smiles warmly. "Apologies, Captain <last>, do excuse the cloak and dagger, but in the current media climate you and I are both too well-known to be seen meeting without causing the rumor mill to grind out a new story."`
