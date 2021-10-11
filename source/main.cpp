@@ -42,7 +42,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 #ifdef _WIN32
+#define STRICT
+#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+#include <mmsystem.h>
 #endif
 
 using namespace std;
@@ -149,7 +152,7 @@ int main(int argc, char *argv[])
 	Preferences::Set("fullscreen", GameWindow::IsFullscreen());
 	Screen::SetRaw(GameWindow::Width(), GameWindow::Height());
 	Preferences::Save();
-
+	
 	Audio::Quit();
 	GameWindow::Quit();
 	
@@ -189,7 +192,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	// Data to track progress of testing if/when a test is running.
 	Test::Context testContext;
 	if(!testToRunName.empty())
-		testContext.testToRun = GameData::Tests().Get(testToRunName);
+		testContext.testToRun.push_back(GameData::Tests().Get(testToRunName));
 	
 	// IsDone becomes true when the game is quit.
 	while(!menuPanels.IsDone())
@@ -260,7 +263,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			showCursor = shouldShowCursor;
 			SDL_ShowCursor(showCursor);
 		}
-
+		
 		// Switch off fast-forward if the player is not in flight or flight-related screen
 		// (for example when the boarding dialog shows up or when the player lands). The player
 		// can switch fast-forward on again when flight is resumed.
@@ -272,12 +275,23 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
 		
 		// All manual events and processing done. Handle any test inputs and events if we have any.
-		if(testContext.testToRun)
-			testContext.testToRun->Step(testContext, menuPanels, gamePanels, player);
-		
+		if(!testContext.testToRun.empty())
+		{
+			testContext.testToRun.back()->Step(testContext, menuPanels, gamePanels, player);
+			// Skip drawing 29 out of every 30 in-flight frames during testing to speedup testing (unless debug mode is set).
+			// We don't skip UI-frames to ensure we test the UI code more.
+			if(inFlight && !debugMode)
+			{
+				skipFrame = (skipFrame + 1) % 30;
+				if(skipFrame)
+					continue;
+			}
+			else
+				skipFrame = 0;
+		}
 		// Caps lock slows the frame rate in debug mode.
 		// Slowing eases in and out over a couple of frames.
-		if((mod & KMOD_CAPS) && inFlight && debugMode)
+		else if((mod & KMOD_CAPS) && inFlight && debugMode)
 		{
 			if(frameRate > 10)
 			{
@@ -310,8 +324,11 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
 		
 		GameWindow::Step();
-
-		timer.Wait();
+		
+		// When we perform automated testing, then we run the game by default as quickly as possible.
+		// Except when debug-mode is set.
+		if(testContext.testToRun.empty() || debugMode)
+			timer.Wait();
 		
 		// If the player ended this frame in-game, count the elapsed time as played time.
 		if(menuPanels.IsEmpty())
@@ -351,7 +368,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky 0.9.13-alpha" << endl;
+	cerr << "Endless Sky ver. 0.9.15-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
@@ -373,7 +390,7 @@ Conversation LoadConversation()
 			break;
 		}
 	
-	const map<string, string> subs = {
+	map<string, string> subs = {
 		{"<bunks>", "[N]"},
 		{"<cargo>", "[N tons of Commodity]"},
 		{"<commodity>", "[Commodity]"},
@@ -390,7 +407,7 @@ Conversation LoadConversation()
 		{"<system>", "[Star]"},
 		{"<tons>", "[N tons]"}
 	};
-	return conversation.Substitute(subs);
+	return conversation.Instantiate(subs);
 }
 
 

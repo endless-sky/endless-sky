@@ -13,11 +13,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef WEAPON_H_
 #define WEAPON_H_
 
+#include "Angle.h"
 #include "Body.h"
 #include "Point.h"
 
+#include <cstddef>
 #include <map>
 #include <utility>
+#include <vector>
 
 class DataNode;
 class Effect;
@@ -34,6 +37,21 @@ class Sprite;
 // string to double significantly reduces access time.
 class Weapon {
 public:
+	struct Submunition{
+		Submunition() noexcept = default;
+		explicit Submunition(const Weapon *weapon, std::size_t count) noexcept
+			: weapon(weapon), count(count) {};
+		
+		const Weapon *weapon = nullptr;
+		std::size_t count = 0;
+		// The angular offset from the source projectile, relative to its current facing.
+		Angle facing;
+		// The base offset from the source projectile's position, relative to its current facing.
+		Point offset;
+	};
+	
+	
+public:
 	// Load from a "weapon" node, either in an outfit, a ship (explosion), or a hazard.
 	void LoadWeapon(const DataNode &node);
 	bool IsWeapon() const;
@@ -49,8 +67,9 @@ public:
 	const std::map<const Effect *, int> &FireEffects() const;
 	const std::map<const Effect *, int> &LiveEffects() const;
 	const std::map<const Effect *, int> &HitEffects() const;
+	const std::map<const Effect *, int> &TargetEffects() const;
 	const std::map<const Effect *, int> &DieEffects() const;
-	const std::map<const Outfit *, int> &Submunitions() const;
+	const std::vector<Submunition> &Submunitions() const;
 	
 	// Accessor functions for various attributes.
 	int Lifetime() const;
@@ -96,6 +115,10 @@ public:
 	double FiringIon() const;
 	double FiringSlowing() const;
 	double FiringDisruption() const;
+	double FiringDischarge() const;
+	double FiringCorrosion() const;
+	double FiringLeak() const;
+	double FiringBurn() const;
 	
 	// Relative damage sustained on firing ship when weapon fired.
 	double RelativeFiringEnergy() const;
@@ -132,6 +155,10 @@ public:
 	double IonDamage() const;
 	double DisruptionDamage() const;
 	double SlowingDamage() const;
+	double DischargeDamage() const;
+	double CorrosionDamage() const;
+	double LeakDamage() const;
+	double BurnDamage() const;
 	// Relative damage types:
 	double RelativeShieldDamage() const;
 	double RelativeHullDamage() const;
@@ -179,8 +206,9 @@ private:
 	std::map<const Effect *, int> fireEffects;
 	std::map<const Effect *, int> liveEffects;
 	std::map<const Effect *, int> hitEffects;
+	std::map<const Effect *, int> targetEffects;
 	std::map<const Effect *, int> dieEffects;
-	std::map<const Outfit *, int> submunitions;
+	std::vector<Submunition> submunitions;
 	
 	// This stores whether or not the weapon has been loaded.
 	bool isWeapon = false;
@@ -231,6 +259,10 @@ private:
 	double firingIon = 0.;
 	double firingSlowing = 0.;
 	double firingDisruption = 0.;
+	double firingDischarge = 0.;
+	double firingCorrosion = 0.;
+	double firingLeak = 0.;
+	double firingBurn = 0.;
 	
 	double relativeFiringEnergy = 0.;
 	double relativeFiringHeat = 0.;
@@ -242,7 +274,7 @@ private:
 	double triggerRadius = 0.;
 	double blastRadius = 0.;
 	
-	static const int DAMAGE_TYPES = 14;
+	static const int DAMAGE_TYPES = 18;
 	static const int HIT_FORCE = 0;
 	// Normal damage types:
 	static const int SHIELD_DAMAGE = 1;
@@ -254,12 +286,16 @@ private:
 	static const int ION_DAMAGE = 6;
 	static const int DISRUPTION_DAMAGE = 7;
 	static const int SLOWING_DAMAGE = 8;
+	static const int DISCHARGE_DAMAGE = 9;
+	static const int CORROSION_DAMAGE = 10;
+	static const int LEAK_DAMAGE = 11;
+	static const int BURN_DAMAGE = 12;
 	// Relative damage types:
-	static const int RELATIVE_SHIELD_DAMAGE = 9;
-	static const int RELATIVE_HULL_DAMAGE = 10;
-	static const int RELATIVE_FUEL_DAMAGE = 11;
-	static const int RELATIVE_HEAT_DAMAGE = 12;
-	static const int RELATIVE_ENERGY_DAMAGE = 13;
+	static const int RELATIVE_SHIELD_DAMAGE = 13;
+	static const int RELATIVE_HULL_DAMAGE = 14;
+	static const int RELATIVE_FUEL_DAMAGE = 15;
+	static const int RELATIVE_HEAT_DAMAGE = 16;
+	static const int RELATIVE_ENERGY_DAMAGE = 17;
 	mutable double damage[DAMAGE_TYPES] = {};
 	
 	double piercing = 0.;
@@ -316,6 +352,10 @@ inline double Weapon::FiringShields() const { return firingShields; }
 inline double Weapon::FiringIon() const{ return firingIon; }
 inline double Weapon::FiringSlowing() const{ return firingSlowing; }
 inline double Weapon::FiringDisruption() const{ return firingDisruption; }
+inline double Weapon::FiringDischarge() const{ return firingDischarge; }
+inline double Weapon::FiringCorrosion() const{ return firingCorrosion; }
+inline double Weapon::FiringLeak() const{ return firingLeak; }
+inline double Weapon::FiringBurn() const{ return firingBurn; }
 
 inline double Weapon::RelativeFiringEnergy() const{ return relativeFiringEnergy; }
 inline double Weapon::RelativeFiringHeat() const{ return relativeFiringHeat; }
@@ -344,6 +384,10 @@ inline double Weapon::EnergyDamage() const { return TotalDamage(ENERGY_DAMAGE); 
 inline double Weapon::IonDamage() const { return TotalDamage(ION_DAMAGE); }
 inline double Weapon::DisruptionDamage() const { return TotalDamage(DISRUPTION_DAMAGE); }
 inline double Weapon::SlowingDamage() const { return TotalDamage(SLOWING_DAMAGE); }
+inline double Weapon::DischargeDamage() const { return TotalDamage(DISCHARGE_DAMAGE); }
+inline double Weapon::CorrosionDamage() const { return TotalDamage(CORROSION_DAMAGE); }
+inline double Weapon::LeakDamage() const { return TotalDamage(LEAK_DAMAGE); }
+inline double Weapon::BurnDamage() const { return TotalDamage(BURN_DAMAGE); }
 
 inline double Weapon::RelativeShieldDamage() const { return TotalDamage(RELATIVE_SHIELD_DAMAGE); }
 inline double Weapon::RelativeHullDamage() const { return TotalDamage(RELATIVE_HULL_DAMAGE); }

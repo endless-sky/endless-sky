@@ -33,6 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ImageSet.h"
 #include "Interface.h"
 #include "LineShader.h"
+#include "MaskManager.h"
 #include "Minable.h"
 #include "Mission.h"
 #include "Music.h"
@@ -102,7 +103,7 @@ namespace {
 	Set<Sale<Outfit>> defaultOutfitSales;
 	
 	Politics politics;
-	StartConditions startConditions;
+	vector<StartConditions> startConditions;
 	
 	Trade trade;
 	map<const System *, map<string, int>> purchases;
@@ -112,6 +113,8 @@ namespace {
 	map<const Sprite *, double> solarWind;
 	Set<News> news;
 	map<string, vector<string>> ratings;
+	
+	map<CategoryType, vector<string>> categories;
 	
 	StarField background;
 	
@@ -127,13 +130,15 @@ namespace {
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
 	map<const Sprite *, int> preloaded;
 	
+	MaskManager maskManager;
+	
 	const Government *playerGovernment = nullptr;
 	
 	// TODO (C++14): make these 3 methods generic lambdas visible only to the CheckReferences method.
 	// Log a warning for an "undefined" class object that was never loaded from disk.
 	void Warn(const string &noun, const string &name)
 	{
-		Files::LogError("Warning: " + noun + " \"" + name + "\" is referred to, but never defined.");
+		Files::LogError("Warning: " + noun + " \"" + name + "\" is referred to, but not fully defined.");
 	}
 	// Class objects with a deferred definition should still get named when content is loaded.
 	template <class Type>
@@ -196,8 +201,8 @@ bool GameData::BeginLoad(const char * const *argv)
 		if(!it.second)
 			continue;
 		
-		// Check that the image set is complete.
-		it.second->Check();
+		// Reduce the set of images to those that are valid.
+		it.second->ValidateFrames();
 		// For landscapes, remember all the source files but don't load them yet.
 		if(ImageSet::IsDeferred(it.first))
 			deferred[SpriteSet::Get(it.first)] = it.second;
@@ -223,12 +228,20 @@ bool GameData::BeginLoad(const char * const *argv)
 	// neighbor distances to be updated.
 	AddJumpRange(System::DEFAULT_NEIGHBOR_DISTANCE);
 	UpdateSystems();
+	
 	// And, update the ships with the outfits we've now finished loading.
-	for(auto &it : ships)
+	for(auto &&it : ships)
 		it.second.FinishLoading(true);
-	for(auto &it : persons)
+	for(auto &&it : persons)
 		it.second.FinishLoading();
-	startConditions.FinishLoading();
+	
+	for(auto &&it : startConditions)
+		it.FinishLoading();
+	// Remove any invalid starting conditions, so the game does not use incomplete data.
+	startConditions.erase(remove_if(startConditions.begin(), startConditions.end(),
+			[](const StartConditions &it) noexcept -> bool { return !it.IsValid(); }),
+		startConditions.end()
+	);
 	
 	// Store the current state, to revert back to later.
 	defaultFleets = fleets;
@@ -278,14 +291,22 @@ void GameData::CheckReferences()
 	for(const auto &it : conversations)
 		if(it.second.IsEmpty())
 			Warn("conversation", it.first);
+	// The "default intro" conversation must invoke the prompt to set the player's name.
+	if(!conversations.Get("default intro")->IsValidIntro())
+		Files::LogError("Error: the \"default intro\" conversation must contain a \"name\" node.");
 	// Effects are serialized as a part of ships.
 	for(auto &&it : effects)
 		if(it.second.Name().empty())
 			NameAndWarn("effect", it);
 	// Fleets are not serialized. Any changes via events are written as DataNodes and thus self-define.
-	for(const auto &it : fleets)
+	for(auto &&it : fleets)
+	{
+		// Plugins may alter stock fleets with new variants that exclusively use plugin ships.
+		// Rather than disable the whole fleet due to these non-instantiable variants, remove them.
+		it.second.RemoveInvalidVariants();
 		if(!it.second.IsValid() && !deferred["fleet"].count(it.first))
 			Warn("fleet", it.first);
+	}
 	// Government names are used in mission NPC blocks and LocationFilters.
 	for(auto &&it : governments)
 		if(it.second.GetTrueName().empty() && !NameIfDeferred(deferred["government"], it))
@@ -333,6 +354,10 @@ void GameData::CheckReferences()
 	for(auto &&it : systems)
 		if(it.second.Name().empty() && !NameIfDeferred(deferred["system"], it))
 			NameAndWarn("system", it);
+	// Hazards are never serialized.
+	for(const auto &it : hazards)
+		if(!it.second.IsValid())
+			Warn("hazard", it.first);
 }
 
 
@@ -367,12 +392,13 @@ double GameData::Progress()
 	{
 		if(!initiallyLoaded)
 		{
-			// Now that we have finished loading all the basic sprites, we can look for invalid file paths,
-			// e.g. due to capitalization errors or other typos. Landscapes are allowed to still be empty.
-			auto unloaded = SpriteSet::CheckReferences();
-			for(const auto &path : unloaded)
-				if(path.compare(0, 5, "land/") != 0)
-					Files::LogError("Warning: image \"" + path + "\" is referred to, but has no pixels.");
+			// Now that we have finished loading all the basic sprites and sounds, we can look for invalid file paths,
+			// e.g. due to capitalization errors or other typos.
+			SpriteSet::CheckReferences();
+			Audio::CheckReferences();
+			// All sprites with collision masks should also have their 1x scaled versions, so create
+			// any additional scaled masks from the default one.
+			maskManager.ScaleMasks();
 			initiallyLoaded = true;
 		}
 	}
@@ -843,7 +869,7 @@ Politics &GameData::GetPolitics()
 
 
 
-const StartConditions &GameData::Start()
+const vector<StartConditions> &GameData::StartOptions()
 {
 	return startConditions;
 }
@@ -913,6 +939,14 @@ const string &GameData::Rating(const string &type, int level)
 
 
 
+// Strings for ship, bay type, and outfit categories.
+const vector<string> &GameData::Category(const CategoryType type)
+{
+	return categories[type];
+}
+
+
+
 const StarField &GameData::Background()
 {
 	return background;
@@ -920,9 +954,9 @@ const StarField &GameData::Background()
 
 
 
-void GameData::SetHaze(const Sprite *sprite)
+void GameData::SetHaze(const Sprite *sprite, bool allowAnimation)
 {
-	background.SetHaze(sprite);
+	background.SetHaze(sprite, allowAnimation);
 }
 
 
@@ -965,6 +999,13 @@ const map<string, string> &GameData::PluginAboutText()
 
 
 
+MaskManager &GameData::GetMaskManager()
+{
+	return maskManager;
+}
+
+
+
 void GameData::LoadSources()
 {
 	sources.clear();
@@ -995,7 +1036,7 @@ void GameData::LoadSources()
 		plugins[name] = Files::Read(*it + "about.txt");
 		
 		// Create an image set for the plugin icon.
-		shared_ptr<ImageSet> icon(new ImageSet(name));
+		auto icon = make_shared<ImageSet>(name);
 		
 		// Try adding all the possible icon variants.
 		if(Files::Exists(*it + "icon.png"))
@@ -1008,6 +1049,7 @@ void GameData::LoadSources()
 		else if(Files::Exists(*it + "icon@2x.jpg"))
 			icon->Add(*it + "icon@2x.jpg");
 		
+		icon->ValidateFrames();
 		spriteQueue.Add(icon);
 	}
 }
@@ -1068,8 +1110,23 @@ void GameData::LoadFile(const string &path, bool debugMode)
 		}
 		else if(key == "shipyard" && node.Size() >= 2)
 			shipSales.Get(node.Token(1))->Load(node, ships);
-		else if(key == "start")
-			startConditions.Load(node);
+		else if(key == "start" && node.HasChildren())
+		{
+			// This node may either declare an immutable starting scenario, or one that is open to extension
+			// by other nodes (e.g. plugins may customize the basic start, rather than provide a unique start).
+			if(node.Size() == 1)
+				startConditions.emplace_back(node);
+			else
+			{
+				const string &identifier = node.Token(1);
+				auto existingStart = find_if(startConditions.begin(), startConditions.end(),
+					[&identifier](const StartConditions &it) noexcept -> bool { return it.Identifier() == identifier; });
+				if(existingStart != startConditions.end())
+					existingStart->Load(node);
+				else
+					startConditions.emplace_back(node);
+			}
+		}
 		else if(key == "system" && node.Size() >= 2)
 			systems.Get(node.Token(1))->Load(node, planets);
 		else if((key == "test") && node.Size() >= 2)
@@ -1105,6 +1162,31 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			for(const DataNode &child : node)
 				list.push_back(child.Token(0));
 		}
+		else if(key == "category" && node.Size() >= 2)
+		{
+			static const map<string, CategoryType> category = {
+				{"ship", CategoryType::SHIP},
+				{"bay type", CategoryType::BAY},
+				{"outfit", CategoryType::OUTFIT}
+			};
+			auto it = category.find(node.Token(1));
+			if(it == category.end())
+			{
+				node.PrintTrace("Skipping unrecognized category:");
+				continue;
+			}
+			
+			vector<string> &categoryList = categories[it->second];
+			for(const DataNode &child : node)
+			{
+				// If a given category already exists, it will be
+				// moved to the back of the list.
+				const auto it = find(categoryList.begin(), categoryList.end(), child.Token(0));
+				if(it != categoryList.end())
+					categoryList.erase(it);
+				categoryList.push_back(child.Token(0));
+			}
+		}
 		else if((key == "tip" || key == "help") && node.Size() >= 2)
 		{
 			string &text = (key == "tip" ? tooltips : helpMessages)[node.Token(1)];
@@ -1138,7 +1220,7 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 		size_t start = directoryPath.size();
 		
 		vector<string> imageFiles = Files::RecursiveList(directoryPath);
-		for(const string &path : imageFiles)
+		for(string &path : imageFiles)
 			if(ImageSet::IsImage(path))
 			{
 				string name = ImageSet::Name(path.substr(start));
@@ -1146,7 +1228,7 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 				shared_ptr<ImageSet> &imageSet = images[name];
 				if(!imageSet)
 					imageSet.reset(new ImageSet(name));
-				imageSet->Add(path);
+				imageSet->Add(std::move(path));
 			}
 	}
 	return images;
@@ -1260,8 +1342,9 @@ void GameData::PrintShipTable()
 void GameData::PrintWeaponTable()
 {
 	cout << "name" << '\t' << "cost" << '\t' << "space" << '\t' << "range" << '\t'
-		<< "energy/s" << '\t' << "heat/s" << '\t' << "shield/s" << '\t' << "hull/s" << '\t'
-		<< "homing" << '\t' << "strength" << '\n';
+		<< "energy/s" << '\t' << "heat/s" << '\t' << "recoil/s" << '\t'
+		<< "shield/s" << '\t' << "hull/s" << '\t' << "push/s" << '\t'
+		<< "homing" << '\t' << "strength" <<'\n';
 	for(auto &it : outfits)
 	{
 		// Skip non-weapons and submunitions.
@@ -1279,11 +1362,15 @@ void GameData::PrintWeaponTable()
 		cout << energy << '\t';
 		double heat = outfit.FiringHeat() * 60. / outfit.Reload();
 		cout << heat << '\t';
+		double firingforce = outfit.FiringForce() * 60. / outfit.Reload();
+		cout << firingforce << '\t';
 		
 		double shield = outfit.ShieldDamage() * 60. / outfit.Reload();
 		cout << shield << '\t';
 		double hull = outfit.HullDamage() * 60. / outfit.Reload();
 		cout << hull << '\t';
+		double hitforce = outfit.HitForce() * 60. / outfit.Reload();
+		cout << hitforce << '\t';
 		
 		cout << outfit.Homing() << '\t';
 		double strength = outfit.MissileStrength() + outfit.AntiMissile();

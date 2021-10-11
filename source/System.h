@@ -13,7 +13,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef SYSTEM_H_
 #define SYSTEM_H_
 
+#include "Hazard.h"
 #include "Point.h"
+#include "RandomEvent.h"
 #include "Set.h"
 #include "StellarObject.h"
 
@@ -25,7 +27,6 @@ class DataNode;
 class Date;
 class Fleet;
 class Government;
-class Hazard;
 class Minable;
 class Planet;
 class Ship;
@@ -57,30 +58,6 @@ public:
 		const Minable *type = nullptr;
 		int count;
 		double energy;
-	};
-	
-	class FleetProbability {
-	public:
-		FleetProbability(const Fleet *fleet, int period);
-		
-		const Fleet *Get() const;
-		int Period() const;
-		
-	private:
-		const Fleet *fleet;
-		int period;
-	};
-	
-	class HazardProbability {
-	public:
-		HazardProbability(const Hazard *hazard, int period);
-		
-		const Hazard *Get() const;
-		int Period() const;
-		
-	private:
-		const Hazard *hazard;
-		int period;
 	};
 	
 	
@@ -115,6 +92,8 @@ public:
 	// If this system has its own jump range, then it will always return the
 	// systems within that jump range instead of the jump range given.
 	const std::set<const System *> &JumpNeighbors(double neighborDistance) const;
+	// Whether this system can be seen when not linked.
+	bool Hidden() const;
 	// Additional travel distance to target for ships entering through hyperspace.
 	double ExtraHyperArrivalDistance() const;
 	// Additional travel distance to target for ships entering using a jumpdrive.
@@ -162,9 +141,9 @@ public:
 	double Exports(const std::string &commodity) const;
 	
 	// Get the probabilities of various fleets entering this system.
-	const std::vector<FleetProbability> &Fleets() const;
+	const std::vector<RandomEvent<Fleet>> &Fleets() const;
 	// Get the probabilities of various hazards in this system.
-	const std::vector<HazardProbability> &Hazards() const;
+	const std::vector<RandomEvent<Hazard>> &Hazards() const;
 	// Check how dangerous this system is (credits worth of enemy ships jumping
 	// in per frame).
 	double Danger() const;
@@ -204,6 +183,9 @@ private:
 	std::set<const System *> links;
 	std::map<double, std::set<const System *>> neighbors;
 	
+	// Defines whether this system can be seen when not linked.
+	bool hidden = false;
+	
 	// Stellar objects, listed in such an order that an object's parents are
 	// guaranteed to appear before it (so that if we traverse the vector in
 	// order, updating positions, an object's parents will already be at the
@@ -211,8 +193,8 @@ private:
 	std::vector<StellarObject> objects;
 	std::vector<Asteroid> asteroids;
 	const Sprite *haze = nullptr;
-	std::vector<FleetProbability> fleets;
-	std::vector<HazardProbability> hazards;
+	std::vector<RandomEvent<Fleet>> fleets;
+	std::vector<RandomEvent<Hazard>> hazards;
 	double habitable = 1000.;
 	double asteroidBelt = 1500.;
 	double jumpRange = 0.;

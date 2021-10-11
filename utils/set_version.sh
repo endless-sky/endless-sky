@@ -18,11 +18,11 @@ else
 fi
 
 # Update main.cpp
-perl -p -i -e "s/(Endless Sky) [\d.]+/\$1 ${replacement}/ig" source/main.cpp
+perl -p -i -e "s/(\"Endless Sky) .+?\"/\$1 ${replacement}\"/ig" source/main.cpp
 rm -rf source/main.cpp.bak
 
 # Update manpage.
-perl -p -i -e "s/\".*?\" \"ver\. [\d.]+\"/\"$(date '+%d %b %Y')\" \"${replacement}\"/ig" endless-sky.6
+perl -p -i -e "s/\".*?\" \"ver\. .+?\"/\"$(date '+%d %b %Y')\" \"${replacement}\"/ig" endless-sky.6
 rm -rf endless-sky.6.bak
 
 # Update the XCode plist version, if the input is spec-conformant
