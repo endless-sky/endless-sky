@@ -1198,9 +1198,9 @@ License: public-domain
 Comment: Taken from https://freesound.org/people/pluralz/sounds/475806/
 
 Files:
- images/planet/stationh-ancient0
- images/planet/stationh-ancient1
- images/planet/stationh-ancient2
+ images/planet/stationh-ancient0*
+ images/planet/stationh-ancient1*
+ images/planet/stationh-ancient2*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-3.0
 Comment: Derived from works by Michael Zahniser (under the same license).
