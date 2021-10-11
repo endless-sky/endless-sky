@@ -28126,7 +28126,7 @@ planet Mainsail
 planet Mahoganybox
 	attributes hai station uninhabited retirement
 	landscape land/space6
-	description `A visitor to this station will immediately notice that the gravity is lower than most planets by about a third. Leaving the docking bay brings one into an expansive room that can only be described as stately. A round reception desk greets you just inside, and is situated such that the occupants can face any direction that suits them and observe the room. A smiling Hai in a suit informs you that unless you have family at this respite facility, you will not be permitted to wander beyond this room. You are, however, welcome to visit with anyone who has come down or ask an orderly if you need to contact someone on business.`
+	description `A visitor to this station will immediately notice that the gravity is lower than most planets by about a third. Leaving the docking bay brings you into a tastefully decorated room with a donut-shaped reception desk made of an exotic material that you can't immediately identify. A smiling Hai in a suit behind the desk informs you that this is a respite home for the elderly, and unless you have family here, you will not be permitted to wander beyond this room. You are, however, welcome to visit with anyone who has come down or ask an orderly if you need to contact someone on business.`
 	spaceport `The spaceport here is scarcely worthy of the name and does not facilitate trading, but is well equipped to handle regular traffic bringing people to and from the station. This place appears to service the fit but retiring demographic, whose minds are as sharp as ever but benefit from fewer demanding pressures on their physical bodies.`
 	government Hai
 	bribe 0.1
