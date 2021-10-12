@@ -40,8 +40,8 @@ using namespace std;
 
 
 
-HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<void(const Government *)> callback)
-	: player(player), ship(ship), callback(callback), sprite(ship->GetSprite()), facing(ship->Facing())
+HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<void(const Government *)> bribeCallback)
+	: player(player), ship(ship), bribeCallback(bribeCallback), sprite(ship->GetSprite()), facing(ship->Facing())
 {
 	SetInterruptible(false);
 	
@@ -234,8 +234,8 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	
 	if(key == 'd' || key == SDLK_ESCAPE || key == SDLK_RETURN || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
-		if(callback)
-			callback(bribed);
+		if(bribeCallback && bribed)
+			bribeCallback(bribed);
 		GetUI()->Pop(this);
 	}
 	else if(key == 't' && hasLanguage && planet)

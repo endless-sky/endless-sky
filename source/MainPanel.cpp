@@ -197,18 +197,17 @@ void MainPanel::OnCallback()
 
 
 
-bool MainPanel::AllowFastForward() const
+// The hail panel calls this when it closes.
+void MainPanel::OnBribeCallback(const Government *bribed)
 {
-	return true;
+	engine.BreakTargeting(bribed);
 }
 
 
 
-// The hail panel calls this when it closes.
-void MainPanel::OnBribeCallback(const Government *bribed)
+bool MainPanel::AllowFastForward() const
 {
-	if(bribed)
-		engine.BreakTargeting(bribed);
+	return true;
 }
 
 
