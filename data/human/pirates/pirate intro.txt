@@ -259,6 +259,7 @@ fleet "Merchant Targets"
 
 #this is a short conversation that should pop up once the player has a chance to wind down after the Plunder Defense mission. It'll give the player a chance to poke around inside the lockbox before turning it over to the Corsair. If they do look inside, I want to record some notes to their log. If it's easier, we could also have it pop up when landing on Greenrock, just have it offer before the "check in and cash in" mission. If that's a better approach in your appraisal, just mention that in the commit description and I'll get to editing to make it match.
 mission "Lockbox Snooping"
+	invisible
 	landing
 	to offer
 		has "Plunder Defense: offered"
@@ -290,8 +291,19 @@ mission "Lockbox Snooping"
 			`November 15, '94`
 			`	Today's the day I'm born anew. Not with one of those cults, but with the "merchant" who comes by every season. He said there's room on his crew for a young man who's not afraid to get his hands dirty, and if I help around the ship, and he likes me by the time he takes off again, I can stay and take a share in their next haul... But I don't want to bring the law down on my family. I'll need a new name. "Voidmaster" sounds cool. I'll see if I can get the crew to call me that.`
 			`	The remaining pages have been torn out.`
-				decline
+				accept
 			#add each journal entry to the logbook, heading/section name "Old Journal"
+	on accept
+		log `Found an old journal inside a chest from a ship I plundered. It had the following entries:`
+		log `October 3, '94`
+		log `	"Bastards took the farm. Funny how you go your whole life never seeing a man in a suit, and the first one you do is there to ruin everything. Well, fine. I'm strong. I'm smart. I can go to the city and find work."`
+		log `	The next several pages are filled with landscape sketches, scenes from a verdant farming world. Trees loom tall in the divisions between fields, flowers are abundant where nature hasn't been tamed by the colonist's hand. Here, a flock of sheep graze. There, a ship streaks across the sky, the rest of the drawing seemingly contorted around it as if the world itself is focusing on the vessel as it speeds into the unknown.`
+		log `October 28, '94`
+		log `	"Empty stomach, empty pockets, no jobs to be found. Not a broom that needs pushing, and the mob at the factory wanting employment is at least five men deep and I dare not count how wide."`
+		log `	"Folk, man and woman, young and old, sit idle in the streets of a modestly sized town. Long faces, hollow with hunger, impassive in idleness, turn their gazes towards the one drawing them. There's the occasional drawing of a field or burst of beauty as captured in the pages before, but the overall spirit seems to've shifted to the sullen."`
+		log `November 15, '94`
+		log `	"Today's the day I'm born anew. Not with one of those cults, but with the 'merchant' who comes by every season. He said there's room on his crew for a young man who's not afraid to get his hands dirty, and if I help around the ship, and he likes me by the time he takes off again, I can stay and take a share in their next haul... But I don't want to bring the law down on my family. I'll need a new name. 'Voidmaster' sounds cool. I'll see if I can get the crew to call me that."`
+		fail
 
 mission "Pirate Intro - Wealth"
 	landing
