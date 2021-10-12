@@ -64,51 +64,55 @@ mission "I Want To Be A Pirate"
 		conversation
 			`	Heads turn to regard you as you disembark into the Greenrock spaceport. Outlaws, pirates, slavers and smugglers regard you, size you up, and turn away with disinterest. That's far better than the ugly leers you used to get. Perhaps it's a swagger in your step, or simply a confident bearing that you now have - maybe you're just imagining things and reading what you want into the manifold expressions within a human morass surrounding a busy port.`
 			`	Your recent adventures have brought you here, tantalizingly close to embracing the pirate's life. All that remains is to take the final step into another spaceport tavern and report back in to your sponsors. It's rather dark in there."`
-			choice
-				`	(I've come this far. Time to become a pirate.)`
-				`	(I've changed my mind. Maybe I'll stay within the light of the law.)`
-					fail
+			# No turning back once you've completed it
+			#choice
+				#`	(I've come this far. Time to become a pirate.)`
+				#`	(I've changed my mind. Maybe I'll stay within the light of the law.)`
+				#	fail
 			`	You're paid no mind as you strut into the tavern and progress to another back room where, just as they said, the three pirates you'd met before are sharing drinks. Heads are lifted from tankards to regard you. The Corsair seems quite pleased to see you, assisted as he is by the reddened bonhomie of liquor. The suit-clad pirate remains impassive, her mien businesslike. And the Outlaw? He's just choked on his drink.`
 			`	"Well slap a collar on me and sell me as a miner, you're still drawing breath. Didn't expect that. Here bearing profitable news, I trust." The Outlaw's speech is as metallic as ever, though his usual semi-musical tones sound somewhat... drowned. Sounds like he sucked some beer into his windpipe with that last sip.`
-			branch domination
-				has "Pirate Intro - Domination: done"
-			choice
-				`	"I conquered Darkstone, defeating the gang that once claimed it. The inhabitants now offer me tribute."`
-			`	(The Outlaw expresses his approval. In the campaign-integrated version of this mission he gives you a signet ring, directing you to take it to the Core Slavers. They'll give you work, thus starting the CMC campaign intro.)`
 			branch boarding
 				has "Pirate Intro - Boarding: done"
-			choice	
-				`	"I've brought the antique lockbox, and defeated the other pirates who came for it."`
-			`	(The Outlaw expresses his approval. In the campaign-integrated version of this mission he asks you to keep the journal and take it to Amity Goodearth. She'll connect you with the Raiders, thus starting the Raider campaign intro.)`
-			branch smugglingalt
-				and
-					has "Pirate Intro - Wealth: done"
-					has "clobbered"
-			`	(The Formal Pirate expresses her approval. In the campaign-integrated version of this mission she gives you a provisional Lightspeed Contractor license, which needs to be delivered to Lightspeed HQ for verification and activation, thus starting the Lightspeed Campaign.)`
-			choice
-				`	"I've got your million-credit... thing, and a splitting headache."`
 			branch smuggling
 				and
 					has "Pirate Intro - Wealth: done"
 					not "clobbered"
+			branch smugglingalt
+				and
+					has "Pirate Intro - Wealth: done"
+					has "clobbered"
+			choice
+				`	"I conquered Darkstone, defeating the gang that once claimed it. The inhabitants now offer me tribute."`
+			`	(The Outlaw expresses his approval. In the campaign-integrated version of this mission he gives you a signet ring, directing you to take it to the Core Slavers. They'll give you work, thus starting the CMC campaign intro.)`
+				goto pirate
+			label boarding
+			choice	
+				`	"I've brought the antique lockbox, and defeated the other pirates who came for it."`
+			`	(The Outlaw expresses his approval. In the campaign-integrated version of this mission he asks you to keep the journal and take it to Amity Goodearth. She'll connect you with the Raiders, thus starting the Raider campaign intro.)`
+				goto pirate
+			label smuggling
 			choice
 				`	"I've got your million-credit... thing."`
 			`	(The Formal Pirate expresses her approval. In the campaign-integrated version of this mission she gives you a provisional Lightspeed Contractor license, which needs to be delivered to Lightspeed HQ for verification and activation, thus starting the Lightspeed Campaign.)`
+				goto pirate
+			label smugglingalt
+			`	(The Formal Pirate expresses her approval. In the campaign-integrated version of this mission she gives you a provisional Lightspeed Contractor license, which needs to be delivered to Lightspeed HQ for verification and activation, thus starting the Lightspeed Campaign.)`
+			choice
+				`	"I've got your million-credit... thing, and a splitting headache."`
+			label pirate
 			`	"And we've got one more thing for you", the Corsair comments before pulling a small booklet out of his coat. It's slid across the table before you. It appears you've been given some sort of coupon book for an establishment called "SLEEZY STEEV'S SCRAP AND SURPLUS". Most of the coupons have been torn out, but one of the remaining offers apparently entitles you to a hefty discount on black and red paint.`
 			`	"You're a pirate now, matey. Best look the part."`
 			`	"You step back into the light of the spaceport, the sun's brightness overwhelming after the tight confines of the dingy bar. Your next stop is Sleezy Steev's. Perhaps a life of violence on the high skies and association with the rougher elements of the galaxy weren't what you had in mind when you left your homeworld, but it's what you found. From here there's no going back - once you're a pirate, you're one for life.`
-			choice
-				`	(This is my life now. Piracy, smuggling, the existence of the outlaw. I'm ready to embrace it.)`
-				`	(This isn't what I wanted. This isn't the life I imagined when I decided to take to the high skies.)`
-					decline
+			#choice
+				#`	(This is my life now. Piracy, smuggling, the existence of the outlaw. I'm ready to embrace it.)`
+				#`	(This isn't what I wanted. This isn't the life I imagined when I decided to take to the high skies.)`
+					#decline
 			`	Resolve will carry you far in this world. Tonight it's carried you to a spaceport surplus supplier; you return to your vessel with a pallet loaded with blacks and reds. Apply it to your vessel, make your intentions known to the galaxy. There can be no pretense of peace when you fly girded in blood and midnight, but maybe that's exactly the way you want it to be.`
-			choice
-			`	(Don the smock and mask, turn on the compressor, conceal your old life beneath bellicose black.)`
-			`	(No. Not now, perhaps not ever. The galaxy at large may consider you a pirate, but you're not ready to adopt their colors.)`
-				decline
+			#choice
+			#`	(Don the smock and mask, turn on the compressor, conceal your old life beneath bellicose black.)`
+			#`	(No. Not now, perhaps not ever. The galaxy at large may consider you a pirate, but you're not ready to adopt their colors.)`
+			#	decline
 			`	Some paint covers all manner of sin. Some speaks of the intention to commit yet more. You've applied the latter sort to your ship.`
-				event "become a pirate"
-				accept
 
 
 
