@@ -3000,7 +3000,7 @@ mission "Home for Skadenga 1"
 				`	"Excuse me?"`
 			`	The crowd steps back, and an elderly woman steps forward. Her grey hair is rolled up into tight, elegant braids, and her face and hands are covered in faded, blue tattoos.`
 			`	"We are pleased to call you guest. You have saved our daughter, and more; you will save us all." The elderly woman and everyone behind her kneels before you.`
-			branch "withhjold"
+			branch "withhjlod"
 				has "put on jacket"
 			apply
 				set "Hjlodsaved"
@@ -3009,7 +3009,7 @@ mission "Home for Skadenga 1"
 					goto woah
 				`	"Your daughter? Hjlod? Is she alright?"`
 			`	The elderly woman smiles warmly. "It is good of you to ask. Thanks to you, Hjlod will be fine. Had you been any later, she would have lost her hands, or worse. But she is recovering now and will join us later."`
-			label withhjold
+			label withhjlod
 			choice
 				`	"Woah, Woah, WOAH. What do you mean save us all?"`
 					goto woah
@@ -3172,7 +3172,7 @@ mission "Home for Skadenga 2"
 			`	Jakob interrupts you before you have a chance to finish your sentence. "Now, listen, you just think it over. We don't need your answer now. All we need is for you to guide those people to Asgard. If you do that, the Transport Union on Valhalla will have the ships you need. If you don't, well, things might be more difficult for everyone. And remember, we'll pay you in real credits. Not charm bracelets."`
 			`	"Lars!" Jakob calls, and the administrator and his two guards promptly enter the room. "Show Captain <last> back to their ship. Our meeting is concluded."`
 			`	"Of course, sir," Lars replies.`
-			`	The guards grab you and "escort" you off the premises. With that distraction out of the way, it's time to go meet Hjold at the spaceport.`
+			`	The guards grab you and "escort" you off the premises. With that distraction out of the way, it's time to go meet Hjlod at the spaceport.`
 
 
 
@@ -3285,8 +3285,7 @@ mission "Home for Skadenga 4"
 			label end
 			`	"Vhen you were gone, thing, or assembly, vas held. Ondurdis called in all Skadenga from all villages across Nifel. You must find transportation for 2,200 folk. That is what Onderduis told me to tell you."`
 			`	You frown and ask, "Did she provide money?"`
-			`	Hjlod shakes her head. "No. Ve could not afford it. You must go to Valhalla and convince head of Transport Union to support us." She squeezes your shoulder. "Thank you for help. For finding us new home. Ve need it. I must report now to Ondurdis. Skade be vith you."`
-			`	Hjold turns and leaves.`
+			`	Hjlod shakes her head. "No. Ve could not afford it. You must go to Valhalla and convince head of Transport Union to support us." She squeezes your shoulder. "Thank you for help. For finding us new home. Ve need it. I must report now to Ondurdis. Skade be vith you." She turns and leaves.`
 				accept
 	on complete
 		conversation
@@ -3450,7 +3449,7 @@ mission "Skadenga Call 1"
 		has "event: skadenga death" 
 	on offer
 		dialog
-			`There is a new message in your inbox from Hjold, one of the Skadenga you helped relocate to <planet>.`
+			`There is a new message in your inbox from Hjlod, one of the Skadenga you helped relocate to <planet>.`
 			`	<first>, we need your help. Come to <planet>.`
 
 
@@ -3578,11 +3577,11 @@ mission "Skadenga Call 4"
 	on complete
 		event "hjlod waits again" 360
 		conversation
-			`	A familiar woman is waiting for you outside your ship. Although it's been more than seven years since you've last seen her, you recognize her instantly. Her eyes are brighter than when last you parted, and she has the same lopsided grin that you remember.`
-			`	"<first>, I saw your ship landing, and thought I vould say hello."`
-			`	You ask her how she has been, and she tells you how the small community of Skadenga have rebuilt and thrived here. That there has even been a small amount of immigration to their tiny town. That word had gotten out about their desperate escape from, Asgard.`
-			`	She tells you that she forgives you the past, and hopes you find whatever it is you are looking for among the stars. She even hugs you before she leaves.`
-			`	As she walks away you wonder, though she might forgive you, if you can ever forgive yourself...`
+			`	A familiar woman is waiting for you outside your ship. Although it's been more than seven years since you've last seen her, you recognize Hjlod instantly. Her eyes are brighter than when last you parted, and she has the same lopsided grin that you remember. "<first>, I saw your ship landing, and thought I vould say hello."`
+			`	You ask her how she has been, and she tells you that the small community of Skadenga have rebuilt and thrived here. That there has even been a small amount of immigration to their tiny town. That word had gotten out about their desperate escape from Asgard.`
+			`	She tells you that she forgives your past actions, and hopes you find whatever it is you are looking for among the stars. She even hugs you before she leaves. Although she might forgive you, you wonder if you can ever forgive yourself...`
+
+
 
 event "hjlod waits again"
 
@@ -3602,7 +3601,9 @@ mission "Skadenga Call 5"
 		event "asgard hjlod letter" 1000
 		payment 27
 		dialog
-			`	You receive a message from the Census and Culture Bureau of The Deep. The Deep Citizen known as Hjlod has died. Cause of death appears to be related to heavy substance abuse. The Bureau has determined that you are her closest relation and has forwarded you her entire inheritance of: 27 credits.`
+			`	You receive a message from the Census and Culture Bureau of The Deep. The Deep Citizen known as Hjlod has died. The cause of death appeared to be related to heavy substance abuse. The Bureau has determined that you are her closest relation and has forwarded you her entire inheritance: <payment>.`
+
+
 
 event "asgard hjlod letter"
 
