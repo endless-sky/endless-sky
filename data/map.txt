@@ -29498,7 +29498,7 @@ planet Swiftsong
 	landscape land/space6
 	description `Swiftsong Station is operated and maintained by the Imo Blep corporation as a giant convention center. Most Hai stations restrict access beyond the docking bay or the promenade to at least some degree, but Swiftsong is almost completely open.`
 	description `	Tens of thousands of Hai pass through on an almost daily basis as the continual churn of summits, forums, conventions, symposiums, productions, conferences, weddings, festivals, and the like roll on in an endless cavalcade of life. With Icelake nearby and Hai-home just one jump away, this station is a major cultural hub that even houses the head office of one of the biggest music labels in Hai space.`
-	spaceport `The spaceport promenade runs around the interior of the station and is divided into the usual two levels, but has four additional ring levels reaching up where the promenade intersects the base of each of the stations main branches. Almost any business or service you could want can be found somewhere in the spaceport, except for that of an outfitter or shipyard, both of which are precluded by the expansion of the docking bay to accommodate the massive volume of daily traffic.`
+	spaceport `The spaceport promenade runs around the interior of the station and is divided into the usual two levels, but has four additional ring levels rising up from the promenade into each of the station's main branches. Almost any business or service you could want can be found here - except for an outfitter or shipyard. Apparently there is simply no room, as the docking bay must take up nearly all the station's exterior space to accommodate its massive volume of daily traffic.`
 	bribe 0.1
 	security 0.5
 
