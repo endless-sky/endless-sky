@@ -1,4 +1,4 @@
-# Copyright (c) 2021 by W1zrad
+# Copyright (c) 2021 by Zitchas
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -134,7 +134,9 @@ mission "Barrage Available"
 	to offer
 		has "event: barrage launcher available"
 	on offer
-		dialog `You receive a message from Horace Lovelace. "Captain <first>- The Barrage Launcher is now available for purchase. Lovelace Labs thanks you for your assistance. -H"`
+		conversation
+			`You receive a message from Horace Lovelace as you land.`
+			`	"Captain <first>- The Barrage Launcher is now available for purchase. Lovelace Labs thanks you for your assistance. -H"`
 		fail
 
 event "barrage launcher available"
@@ -142,3 +144,98 @@ event "barrage launcher available"
 		"Barrage Launcher"
 		"Barrage Storage"
 		"Barrage Missile"
+	fleet "Large Republic"
+		add variant 2
+			"Cruiser"
+			"Combat Drone (Barrage)" 4
+		add variant 2
+			"Cruiser"
+			"Combat Drone (Barrage)" 4
+			"Frigate"
+			"Rainmaker"
+		add variant 1
+			"Carrier"
+			"Lance (Barrage)" 4
+			"Combat Drone (Barrage)" 6
+		add variant 1
+			"Carrier"
+			"Lance (Barrage)" 4
+			"Combat Drone" 6
+			"Cruiser"
+			"Combat Drone (Barrage)" 4
+			"Frigate" 2
+			"Rainmaker" 2
+			"Gunboat" 2
+		add variant 1
+			"Cruiser"
+			"Combat Drone (Barrage)" 4
+			"Frigate" 2
+	fleet "Republic Logistics"
+		add variant 10
+			"Auxiliary"
+			"Dropship" 2
+			"Lance (Barrage)" 2
+			"Cruiser"
+			"Combat Drone (Barrage)" 4
+			"Frigate"
+			"Gunboat" 2
+		add variant 10
+			"Auxiliary (Cargo)"
+			"Dropship" 2
+			"Lance (Barrage)" 2
+			"Cruiser"
+			"Combat Drone (Barrage)" 4
+			"Frigate"
+			"Gunboat" 2
+		add variant 10
+			"Auxiliary (Transport)"
+			"Dropship" 2
+			"Lance (Barrage)" 2
+			"Cruiser"
+			"Combat Drone (Barrage)" 4
+			"Frigate"
+			"Gunboat" 2
+		add variant 1
+			"Auxiliary (Cargo)" 3
+			"Dropship" 3
+			"Lance (Barrage)" 3
+			"Lance" 6
+			"Cruiser" 2
+			"Combat Drone (Barrage)" 4
+			"Combat Drone" 4
+		add variant 1
+			"Auxiliary (Transport)"
+			"Auxiliary (Cargo)"
+			"Auxiliary"
+			"Dropship" 6
+			"Lance (Barrage)" 6
+			"Cruiser" 2
+			"Combat Drone" 8
+		add variant 1
+			"Auxiliary (Transport)" 3
+			"Dropship" 9
+			"Lance" 3
+			"Cruiser" 2
+			"Combat Drone (Barrage)" 8
+	fleet "Large Oathkeeper"
+		add variant 2
+			"Cruiser"
+			"Combat Drone (Barrage)" 4
+		add variant 2
+			"Cruiser"
+			"Combat Drone (Barrage)" 4
+			"Frigate"
+			"Rainmaker"
+		add variant 1
+			"Carrier"
+			"Lance (Barrage)" 4
+			"Combat Drone" 6
+		add variant 1
+			"Carrier"
+			"Lance (Barrage)" 4
+			"Combat Drone" 6
+			"Cruiser"
+			"Combat Drone (Barrage)" 4
+			"Frigate" 2
+			"Rainmaker" 2
+			"Gunboat" 2
