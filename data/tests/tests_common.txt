@@ -196,3 +196,12 @@ test "Depart"
 		# Using empty inputs to trigger those game loops.
 		input
 		input
+		# The ships zoom gets restored at a rate of .02 per step, so wait for a bit more than 50 steps to get to full zoom/full control.
+		apply
+			"test: Depart: zoom_restore_counter" = 55
+		label zoom_restore_loop
+		apply
+			"test: Depart: zoom_restore_counter" -= 1
+		input
+		branch zoom_restore_loop
+			"test: Depart: zoom_restore_counter" > 0
