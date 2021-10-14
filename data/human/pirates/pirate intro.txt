@@ -63,12 +63,6 @@ mission "I Want To Be A Pirate"
 		event "became a pirate"
 		conversation
 			`	Heads turn to regard you as you disembark into the Greenrock spaceport. Outlaws, pirates, slavers and smugglers regard you, size you up, and turn away with disinterest. That's far better than the ugly leers you used to get. Perhaps it's a swagger in your step, or simply a confident bearing that you now have - maybe you're just imagining things and reading what you want into the manifold expressions within a human morass surrounding a busy port.`
-			`	Your recent adventures have brought you here, tantalizingly close to embracing the pirate's life. All that remains is to take the final step into another spaceport tavern and report back in to your sponsors. It's rather dark in there."`
-			# No turning back once you've completed it
-			#choice
-				#`	(I've come this far. Time to become a pirate.)`
-				#`	(I've changed my mind. Maybe I'll stay within the light of the law.)`
-				#	fail
 			`	You're paid no mind as you strut into the tavern and progress to another back room where, just as they said, the three pirates you'd met before are sharing drinks. Heads are lifted from tankards to regard you. The Corsair seems quite pleased to see you, assisted as he is by the reddened bonhomie of liquor. The suit-clad pirate remains impassive, her mien businesslike. And the Outlaw? He's just choked on his drink.`
 			`	"Well slap a collar on me and sell me as a miner, you're still drawing breath. Didn't expect that. Here bearing profitable news, I trust." The Outlaw's speech is as metallic as ever, though his usual semi-musical tones sound somewhat... drowned. Sounds like he sucked some beer into his windpipe with that last sip.`
 			branch boarding
@@ -81,13 +75,54 @@ mission "I Want To Be A Pirate"
 				and
 					has "Pirate Intro - Wealth: done"
 					has "clobbered"
+			#the player claimed Darkstone as a tributary but never visited their new subjects, or took no action upon finding slavers abducting colonists.
+			branch conqueror
+				and
+					has "tribute: Darkstone"
+					not "hero of Darkstone"
+					not "slaver of Darkstone"
+			#the player claimed Darkstone as a tributary and defended the colonists against a slaver raid.
+			branch defender
+				and
+					has "tribute: Darkstone"
+					or
+						has "hero of Darkstone"
+						has "defender of Darkstone"
+			#the player, when faced with slavers raiding their 
+			branch slaver
+				and
+					has "tribute: Darkstone"
+					has "slaver of Darkstone"
+			label conqueror
 			choice
 				`	"I conquered Darkstone, defeating the gang that once claimed it. The inhabitants now offer me tribute."`
-			`	(The Outlaw expresses his approval. In the campaign-integrated version of this mission he gives you a signet ring, directing you to take it to the Core Slavers. They'll give you work, thus starting the CMC campaign intro.)`
+			`	The Outlaw nods in approval. "And a mighty fine job you did, too. Without those ruffians my boys were able to ply their trade far more easily. You've my thanks - and, as I promised, I've got some introductions to make on your behalf.`
+			choice
+				`	"What trade is that, exactly?"`
+				`	"Thank you. I've conquered a world, but I'm only getting started."
+					goto ring
+			`	"Human resources, naturally." The Outlaw lets out a dark laugh, eyes thin and aspect sharklike as he fixed you with a predatory grin.`
+			choice
+				`	(Your face betrays your disgust, but you remain silent.)`
+					goto slaveryspeech
+				`	"Of course. Slavery. A fine and upstanding industry. Someone has to do all the work, and it's damn well not going to be me."`
+						apply terribleperson
+				`	"Slavery? You're a monster."``
+					goto slaveryspeech
+			`	"I'm glad we see eye to eye. Protection racket, landlord, slavemaster; whatever people want to call it, it's simply the natural order of things that some are strong, and some are weak. And the strong will thrive because they put to better use that which the weak produce. And you? I know which of the two you are now. I'll put your name in the ears of others like us."`
+			#the ring token is for integration into the pirate campaign
+				#goto ring
+			label slaveryspeech
+			`	"Don't be stupid. We're in the same business, you and I - the only reason we're having this conversation at all is because you saw fit to force others to pay you, render unto you the fruit of their sweat and tears, without anything in return. You're a slaver as much as I. I'm simply more honest about it. You'll grow to accept that, pirates that think they can survive - or more amusingly, thrive - and still hold onto their precious morals, they're not long for this world."`
+			`	The Corsair's lips curl into a decidedly displeased scowl, but he drowns any words in liquor before they might threaten to spill forth.`
+			`	"Now. Don't be a fool, and remember my words." The Outlaw relaxes, stretching back in his seat. He's regarding you cooly, contemplatively. "But I'm a man of my word. You did as you were instructed, and so I'll fulfil my end of the bargain."`
+			#label ring
+			#`	The Outlaw extends his palm, a shining silver ring glistening in the center. Unadorned by any manner of stone, it's a simple, subdued piece of jewelry. Upon the front a crest has been stamped. "A token of my approval. Consider it sponsorship, and my trust that you'll do what need be done. Take it to Gienah. People will know what it means, and you'll find lucrative work that lines up nicely with the skillset you've demonstrated."`
+			#`	The cyborg offers a genial smile - or at least as much as one can without lips. It's uncanny how expressive articulated artifical jaws can be these days.`
 				goto pirate
 			label boarding
 			choice	
-				`	"I've brought the antique lockbox, and defeated the other pirates who came for it."`
+				`	"I've brought the antique lockbox and defeated the other pirates who came for it."`
 			`	(The Outlaw expresses his approval. In the campaign-integrated version of this mission he asks you to keep the journal and take it to Amity Goodearth. She'll connect you with the Raiders, thus starting the Raider campaign intro.)`
 				goto pirate
 			label smuggling
@@ -102,17 +137,11 @@ mission "I Want To Be A Pirate"
 			label pirate
 			`	"And we've got one more thing for you", the Corsair comments before pulling a small booklet out of his coat. It's slid across the table before you. It appears you've been given some sort of coupon book for an establishment called "SLEEZY STEEV'S SCRAP AND SURPLUS". Most of the coupons have been torn out, but one of the remaining offers apparently entitles you to a hefty discount on black and red paint.`
 			`	"You're a pirate now, matey. Best look the part."`
-			`	"You step back into the light of the spaceport, the sun's brightness overwhelming after the tight confines of the dingy bar. Your next stop is Sleezy Steev's. Perhaps a life of violence on the high skies and association with the rougher elements of the galaxy weren't what you had in mind when you left your homeworld, but it's what you found. From here there's no going back - once you're a pirate, you're one for life.`
-			#choice
-				#`	(This is my life now. Piracy, smuggling, the existence of the outlaw. I'm ready to embrace it.)`
-				#`	(This isn't what I wanted. This isn't the life I imagined when I decided to take to the high skies.)`
-					#decline
-			`	Resolve will carry you far in this world. Tonight it's carried you to a spaceport surplus supplier; you return to your vessel with a pallet loaded with blacks and reds. Apply it to your vessel, make your intentions known to the galaxy. There can be no pretense of peace when you fly girded in blood and midnight, but maybe that's exactly the way you want it to be.`
-			#choice
-			#`	(Don the smock and mask, turn on the compressor, conceal your old life beneath bellicose black.)`
-			#`	(No. Not now, perhaps not ever. The galaxy at large may consider you a pirate, but you're not ready to adopt their colors.)`
-			#	decline
-			`	Some paint covers all manner of sin. Some speaks of the intention to commit yet more. You've applied the latter sort to your ship.`
+			`	"You step back into the light of the spaceport, the sun's light overwhelming after the tight confines of the dingy bar. Your next stop is Sleezy Steev's. Perhaps a life of violence on the high skies and association with the rougher elements of the galaxy weren't what you had in mind when you left your homeworld, but it's what you found. From here there's no going back - once you're a pirate, you're one for life.`
+			choice
+				`	(This is my life now. Piracy, smuggling, the existence of the outlaw. I'm ready to embrace it.)`
+			`	Resolve will carry you far in this world. Tonight it's carried you to a spaceport surplus supplier; you return to your vessel with a pallet loaded with paint. Anoint your vessel in bellicose black and red, make your intentions known to the galaxy. There can be no pretense of peace when you fly girded in blood and midnight, but maybe that's exactly the way you want it to be.`
+			`	Some paint covers all manner of sin. Some speaks of the intention to commit yet more. You've just applied the latter sort to your ship.`
 
 
 
@@ -287,7 +316,7 @@ mission "Lockbox Snooping"
 			`	The next several pages are filled with landscape sketches, scenes from a verdant farming world. Trees loom tall in the divisions between fields, flowers are abundant where nature hasn't been tamed by the colonist's hand. Here, a flock of sheep graze. There, a ship streaks across the sky, the rest of the drawing seemingly contorted around it as if the world itself is focusing on the vessel as it speeds into the unknown.`
 			`October 28, '94`
 			`	Empty stomach, empty pockets, no jobs to be found. Not a broom that needs pushing, and the mob at the factory wanting employment is at least five men deep and I dare not count how wide.`
-			`	Folk, man and woman, young and old, sit idle in the streets of a modestly sized town. Long faces, hollow with hunger, impassive in idleness, turn their gazes towards the one drawing them. There's the occasional drawing of a field or burst of beauty as captured in the pages before, but the overall spirit seems to've shifted to the sullen.`
+			`	Folk, man and woman, young and old, sit idle in the streets of a modestly sized town. Long faces, hollow with hunger, impassive in idleness, turn their gazes towards the one drawing them. There's the occasional drawing of a field or burst of beauty as captured in the pages before, but the overall spirit has shifted to the sullen.`
 			`November 15, '94`
 			`	Today's the day I'm born anew. Not with one of those cults, but with the "merchant" who comes by every season. He said there's room on his crew for a young man who's not afraid to get his hands dirty, and if I help around the ship, and he likes me by the time he takes off again, I can stay and take a share in their next haul... But I don't want to bring the law down on my family. I'll need a new name. "Voidmaster" sounds cool. I'll see if I can get the crew to call me that.`
 			`	The remaining pages have been torn out.`
