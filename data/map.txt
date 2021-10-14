@@ -5870,12 +5870,16 @@ system "Bote Asu"
 			period 31.0553
 	object
 		sprite planet/gas11
-		distance 1249.81
-		period 330.512
+		distance 1762.76
+		period 540.494
+		object Everhope
+			sprite planet/stationh-ancient2
+			distance 380
+			period 31.6482
 	object
 		sprite planet/neptune
-		distance 2700.22
-		period 1049.59
+		distance 2928.28
+		period 1157.23
 		object
 			sprite planet/rock7-b
 			distance 212
@@ -5890,8 +5894,8 @@ system "Bote Asu"
 			period 41.514
 	object
 		sprite planet/gas12-b
-		distance 4451.26
-		period 2221.49
+		distance 4679.32
+		period 2337.62
 		object
 			sprite planet/rhea-b
 			distance 293
@@ -7276,16 +7280,24 @@ system "Da Ent"
 			period 23.3253
 	object
 		sprite planet/desert10-b
-		distance 622.02
-		period 406.282
+		distance 894.39
+		period 700.506
+		object Violetwake
+			sprite planet/stationh-ancient0
+			distance 240
+			period 17.5
 	object
 		sprite planet/lava4
-		distance 1094.46
-		period 948.246
+		distance 1366.83
+		period 1323.41
+		object Darkrest
+			sprite planet/stationh-ancient1
+			distance 240
+			period 17.5
 	object
 		sprite planet/gas12
-		distance 1915.5
-		period 2195.56
+		distance 2187.87
+		period 2680.12
 		object
 			sprite planet/callisto
 			distance 302
@@ -7338,8 +7350,12 @@ system "Da Lest"
 		period 190.204
 	object
 		sprite planet/desert2-b
-		distance 676.46
-		period 393.413
+		distance 877.994
+		period 581.731
+		object Eldergrasp
+			sprite planet/stationh-ancient0
+			distance 240
+			period 17.5
 	object
 		sprite planet/gas9
 		distance 1903.15
@@ -8459,13 +8475,13 @@ system "Due Yoot"
 		distance 391.65
 		period 202.987
 	object
-		sprite planet/lava4-b
-		distance 643.34
-		period 427.348
-	object
 		sprite planet/mercury-b
 		distance 1042.35
 		period 881.336
+		object Greenview
+			sprite planet/stationh-ancient1
+			distance 240
+			period 17.5
 	object
 		sprite planet/gas15
 		distance 2335.56
@@ -9794,8 +9810,12 @@ system "Fah Soom"
 			period 17.3053
 	object
 		sprite planet/lava3
-		distance 884.21
-		period 509.6
+		distance 951.768
+		period 569.106
+		object Firefall
+			sprite planet/stationh-ancient1
+			distance 240
+			period 17.5
 	object
 		sprite planet/gas3-b
 		distance 1760.62
@@ -12205,12 +12225,16 @@ system "Heia Due"
 		period 14.8968
 	object
 		sprite planet/titan
-		distance 279.538
-		period 53.6331
+		distance 224.778
+		period 38.6725
 	object
 		sprite planet/desert3
 		distance 637.538
 		period 184.727
+		object Sandsnap
+			sprite planet/stationh-ancient1
+			distance 240
+			period 17.5
 	object Allhome
 		sprite planet/forest1
 		distance 1294.54
@@ -12912,18 +12936,14 @@ system "Imo Dep"
 		sprite planet/gas10-hot
 		distance 571.36
 		period 131.915
-		object
-			sprite planet/ice8-b
-			distance 271
-			period 14.714
-		object
-			sprite planet/rock14-b
-			distance 409
-			period 27.2812
 	object
 		sprite planet/rock19
 		distance 1157.36
 		period 380.304
+		object Bluerun
+			sprite planet/stationh-ancient0
+			distance 240
+			period 17.5
 	object Stonebreak
 		sprite planet/forest4
 		distance 1708.25
@@ -13042,12 +13062,16 @@ system "Io Lowe"
 		period 56.15
 	object
 		sprite planet/gas11-b
-		distance 500.32
-		period 385.27
+		distance 787.151
+		period 760.291
+		object Greymoon
+			sprite planet/stationh-ancient2
+			distance 380
+			period 31.6482
 	object
 		sprite planet/uranus-b
-		distance 1441.33
-		period 1883.81
+		distance 2110.67
+		period 3338.3
 		object
 			sprite planet/desert4-b
 			distance 241
@@ -13115,16 +13139,20 @@ system "Io Mann"
 			period 22.0677
 	object
 		sprite planet/gas2
-		distance 1068.21
-		period 447.619
+		distance 1212.21
+		period 541.116
 		object Skyfarm
 			sprite planet/ice7
 			distance 182
 			period 14.8772
+		object Thornlight
+			sprite planet/stationh-ancient0
+			distance 422
+			period 28.5
 	object
 		sprite planet/gas6-b
-		distance 2046.3
-		period 1186.8
+		distance 2190.3
+		period 1314.25
 		offset 360
 		object
 			sprite planet/rock3-b
@@ -15407,10 +15435,10 @@ system "Lom Tahr"
 		distance 2759.78
 		period 1190.55
 		offset 21.8728
-		object
-			sprite planet/dust3-b
-			distance 191
-			period 14.0516
+		object Iritoroost
+			sprite planet/stationh-ancient1
+			distance 240
+			period 17.5
 
 system "Lone Cloud"
 	pos -1239.59 747.051
@@ -20284,15 +20312,15 @@ system "Rati Cal"
 		period 10
 	object
 		sprite planet/ice0-b
-		distance 193.64
+		distance 393.64
 		period 52.2262
 	object Dustmaker
 		sprite planet/rock15
-		distance 341.05
+		distance 741.05
 		period 122.074
 	object
 		sprite planet/gas7
-		distance 804.29
+		distance 1204.29
 		period 442.094
 		object
 			sprite planet/dust1-b
@@ -20302,6 +20330,10 @@ system "Rati Cal"
 		sprite planet/gas5
 		distance 2194.1
 		period 1991.96
+		object Limejog
+			sprite planet/stationh-ancient1
+			distance 240
+			period 17.5
 
 system Regor
 	pos -702 -335
@@ -24429,11 +24461,19 @@ system "Ula Mon"
 		distance 1109.57
 		period 584.389
 		offset 301.398
+		object Goldcrawl
+			sprite planet/stationh-ancient0
+			distance 240
+			period 17.5
 	object
 		sprite planet/rock6-b
-		distance 1370.41
-		period 802.132
+		distance 1777.63
+		period 1185.04
 		offset 325.062
+		object Ironfirth
+			sprite planet/stationh-ancient1
+			distance 240
+			period 17.5
 	object
 		sprite planet/gas8-b
 		distance 7288.57
@@ -24734,12 +24774,16 @@ system "Uwa Fahn"
 		period 174.829
 	object
 		sprite planet/ice6-b
-		distance 616.77
-		period 342.507
+		distance 988.21
+		period 694.639
+		object Swiftsong
+			sprite planet/stationh-ancient0
+			distance 240
+			period 17.5
 	object
 		sprite planet/rock4
-		distance 1093.66
-		period 808.739
+		distance 1734.49
+		period 1615.26
 		object
 			sprite planet/dust3
 			distance 178
@@ -25080,18 +25124,22 @@ system "Wah Oh"
 		sprite planet/gas8-hot
 		distance 341.76
 		period 17.1522
+		object Ochrescoop
+			sprite planet/stationh-ancient2
+			distance 240
+			period 17.1522
 	object
 		sprite planet/gas11
-		distance 897.53
-		period 152.107
+		distance 1012.77
+		period 182.324
 		object
 			sprite planet/rock14
 			distance 282
 			period 15.6189
 	object
 		sprite planet/gas15
-		distance 1607.69
-		period 364.652
+		distance 1722.93
+		period 404.555
 		object
 			sprite planet/tethys
 			distance 212
@@ -25558,8 +25606,8 @@ system "Ya Hai"
 			period 25.243
 	object
 		sprite planet/gas15-b
-		distance 1231.97
-		period 838.101
+		distance 1417.62
+		period 1034.51
 		offset 287.069
 		object
 			sprite planet/rock17-b
@@ -25569,6 +25617,10 @@ system "Ya Hai"
 			sprite planet/dust0-b
 			distance 291
 			period 26.1298
+		object Mahoganybox
+			sprite planet/stationh-ancient1
+			distance 440
+			period 47.5
 	object
 		sprite planet/gas16-b
 		distance 2811.53
@@ -25945,8 +25997,12 @@ system "Zuba Zub"
 			period 29.1483
 	object
 		sprite planet/cloud5
-		distance 1458.86
-		period 1079.98
+		distance 1881.56
+		period 1581.88
+		object Redwatch
+			sprite planet/stationh-ancient0
+			distance 240
+			period 17.5
 	object
 		sprite planet/gas3-b
 		distance 3987.87
@@ -26486,6 +26542,14 @@ planet "Blue Interior"
 	shipyard Kimek
 	outfitter "Coalition Advanced"
 
+planet Bluerun
+	attributes hai station uninhabited
+	landscape land/space6
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
+
 planet Bluestone
 	attributes core oil research frontier
 	landscape land/mountain2
@@ -26846,6 +26910,14 @@ planet Darkstone
 		threshold 1500
 		fleet "Small Militia" 18
 
+planet Darkrest
+	attributes hai station uninhabited
+	landscape land/space6
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
+
 planet Darkwaste
 	landscape land/canyon10-harro
 	description `This planet seems to have all the conditions necessary for a vibrant, Earth-like ecology. The gravity and temperature are moderate, and there is a fair amount of surface water, although the oceans are quite small. However, aside from a few stunted plants and lichen, there is almost no native life here. Given how skilled the Hai appear to be at terraforming other worlds, it is strange that this one has been left barren.`
@@ -27020,6 +27092,15 @@ planet Echo
 	bribe 0
 	security 0.9
 
+planet Eldergrasp
+	attributes hai station uninhabited retirement
+	landscape land/space6
+	description `A visitor to this station will immediately notice that the gravity is lower than most planets by about a third. There is a generously appointed reception area with an orderly on duty who informs you that this is a respite home for the elderly, and unless you have family here, you will not be permitted to wander the station.`
+	spaceport `The spaceport is virtually non-existent, with just a single cafeteria, a fuel pump for the desperate, and a dedicated loading area for loading and unloading the facility's regular deliveries. Despite its small size, everything is in excellent condition.`
+	government Hai
+	bribe 0.1
+	security 0.8
+
 planet "Elek Kartanu"
 	attributes korath
 	landscape land/lava2
@@ -27086,6 +27167,14 @@ planet "Esquiline"
 	description `Esquiline's wispy skies billow with raging winds and continuous storms. The Remnant have discovered that its upper atmosphere contains a useful source of certain chemicals. Although few spacecraft can penetrate its depths, specially-designed aero scoop drones can be seen regularly dipping into the atmosphere for shipments to Aventine.`
 	security 0
 	government Uninhabited
+
+planet Everhope
+	attributes hai station
+	landscape land/space6
+	description `This station consistently has a large number of Hai warships docked at it, and further investigation reveals that it serves as the principal supply of fuel for the Hai military, as well as the staging point for resupplying ships heading to defend Wah Ki from the Unfettered. A monument beyond the docking area entrance attests to its history performing a similar role during the Korath raids before that.`
+	spaceport `The spaceport is dominated by its function as a military station, though it still has a dual-level promenade like its civilian counterparts of Ochrescoop and Greymoon. Several areas are restricted, but there are also freely accessible pubs and eateries, as well as an impressive cinema and a warehousing section for trading goods. The flooring is textured to prevent slipping and appears to be fairly new, while the rest of the station has a polished but well-worn feel to it.`
+	bribe 0.5
+	security 1
 
 planet "Factory of Eblumab"
 	attributes arach factory mining
@@ -27197,6 +27286,14 @@ planet "Fenrir Station"
 	tribute 600
 		threshold 3000
 		fleet "Small Deep Security" 14
+
+planet Firefall
+	attributes hai station uninhabited
+	landscape land/space6
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
 
 planet Firelode
 	attributes unfettered
@@ -27424,6 +27521,15 @@ planet Glory
 		threshold 7500
 		fleet "Large Republic" 16
 
+planet Goldcrawl
+	attributes hai station uninhabited retirement
+	landscape land/space6
+	description `A visitor to this station will immediately notice that the gravity is lower than most planets by about a third. There is a reception area just beyond the docking bay with an extremely long desk and a receptionist who informs you that this is a respite home for the elderly, and unless you have family here, you will not be permitted to wander the station. There are different service functions at various kiosks along the desk, as well as a small sales counter with handicrafts made by the residents.`
+	spaceport `The spaceport is virtually non-existent. A trio of vending machines occupy the entranceway from the dedicated loading area for the facility's regular deliveries. The entire place has a somewhat tacky vibe to it, and its ventilation system doesn't quite cover up the antiseptic hospital smell familiar to anyone who has visited terrestrial aged care facilities.`
+	government Hai
+	bribe 0.1
+	security 0.8
+
 planet Grakhord
 	attributes quarg "human quarg" moon
 	landscape land/badlands6
@@ -27438,6 +27544,15 @@ planet "Graveyard Wormhole (Unstable)"
 
 planet "Graveyard Wormhole (Stable)"
 	description ``
+
+planet Greymoon
+	attributes hai station
+	landscape land/space6
+	description `This station is owned and operated by the Far Loo Bah fuel collection corporation. Their logo is emblazoned on nearly every possible surface and sign, indicating their sponsorship of all manner of services and features on the station. Interestingly, this includes a "History of Spaceflight" museum which takes up an entire wing of the facility. Naturally, the museum focuses very heavily on the Far Loo Bah corporation's role in that history.`
+	spaceport `The spaceport consists of a wide, two-level promenade encircling the interior of the station, with the docking access opening directly onto the mezzanine. The upper level is mostly devoted to amenities, light commercial businesses, a medical center, and a bank. The lower level has all of the real businesses: multiple manufacturers, which are supplied by the heavier elements filtered out from the supply of fuel stock from the planet below, have store frontage here. A virtual outfitter provides sale options for locally-manufactured outfits that can be installed on your ship without you ever leaving the comfort of the promenade.`
+	outfitter "Hai Basics"
+	bribe 0.1
+	security 0.5
 
 planet Greenbloom
 	attributes hai "hai tourism" "human tourism"
@@ -27468,6 +27583,15 @@ planet Greenrock
 	tribute 1800
 		threshold 3500
 		fleet "Large Northern Pirates" 13
+
+planet Greenview
+	attributes hai station
+	landscape land/space6
+	description `Although not strictly humid by the standards of a planet, the air here has a rich, moist, and faintly verdant quality atypical of a space station. The station is run by the Hei Low Io species preservation foundation, and each of its four branches features a different internal climate showcasing life from worlds beyond Hai space. An infographic proclaims it to be the largest collection in the galaxy of rare organisms sourced from private collections, rebuilt from genetic samples, or rescued before being exterminated locally when they were deemed invasive on Hai worlds. It also mentions that certain exhibits have been improved in some cases with species recently acquired from human space through secret trade deals.`
+	description `	The central spire is still largely residential, with some nursery and laboratory facilities.`
+	spaceport `The spaceport's wide, two-level promenade is dedicated to a variety of themed eateries and gift stores, as well as some local artist galleries, a handicrafts store selling traditionally made curios from a long-abandoned world, and what appears to be an expansive and very well-equipped hospital which also services the planet below. The docking access opens directly onto the mezzanine, where a pair of information desks detail every possible route to ensure that the sizable number of tourists that visit here daily need not look far for assistance.`
+	bribe 0.1
+	security 0.5
 
 planet Greenwater
 	attributes hai farming fishing "human tourism"
@@ -27740,6 +27864,22 @@ planet "Into White"
 	spaceport `	The Kimek who live here are dressed in puffy winter coats that entirely cover their bodies and heads; only their spindly legs protrude out.`
 	"required reputation" 15
 
+planet Iritoroost
+	attributes hai station uninhabited
+	landscape land/space6
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
+
+planet Ironfirth
+	attributes hai station uninhabited
+	landscape land/space6
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
+
 planet Janiculum
 	attributes "requires: inaccessible" uninhabited
 	landscape land/canyon11
@@ -27899,6 +28039,14 @@ planet Lichen
 		threshold 3000
 		fleet "Large Militia" 8
 
+planet Limejog
+	attributes hai station uninhabited
+	landscape land/space6
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
+
 planet Lodestone
 	attributes core volcanic mining
 	landscape land/lava5
@@ -27974,6 +28122,15 @@ planet Mainsail
 	tribute 1600
 		threshold 3500
 		fleet "Small Republic" 57
+
+planet Mahoganybox
+	attributes hai station uninhabited retirement
+	landscape land/space6
+	description `A visitor to this station will immediately notice that the gravity is lower than most planets by about a third. Leaving the docking bay brings you into a tastefully decorated room with a donut-shaped reception desk made of an exotic material that you can't immediately identify. A smiling Hai in a suit behind the desk informs you that this is a respite home for the elderly, and unless you have family here, you will not be permitted to wander beyond this room. You are, however, welcome to visit with anyone who has come down or ask an orderly if you need to contact someone on business.`
+	spaceport `The spaceport here is scarcely worthy of the name and does not facilitate trading, but is well equipped to handle regular traffic bringing people to and from the station. This place appears to service the fit but retiring demographic, whose minds are as sharp as ever but benefit from fewer demanding pressures on their physical bodies.`
+	government Hai
+	bribe 0.1
+	security 1
 
 planet Maker
 	attributes core factory mining
@@ -28487,6 +28644,15 @@ planet Oblivion
 		threshold 3000
 		fleet "Large Militia" 8
 
+planet Ochrescoop
+	attributes hai station
+	landscape land/space6
+	description `A massive plaque attached to a bulkhead in the promenade entry proudly indicates that station has been run by Yoot Ki Magnetic Fuel Harvesting for over 75,000 years. It seems that the powerful magnetic field of the gas giant below makes this station an ideal location for harvesting and re-harvesting the massive volume of fuel demanded by the Hai space industry. Despite its long history of operation, the station seems to be in an excellent state of repair.`
+	spaceport `The spaceport, which consists of a wide promenade running around the interior of the station, seems to be divided into two distinct areas: the lower level, which contains all manner of amenities, services, and food places, and the upper level, which hosts the official Yoot Ki sales center in addition to a suite of different facilities for various research institutes. As it turns out, the powerful magnetic field of the world below also has certain advantages for scientific experiments.`
+	spaceport `	A holographic sign floating next to the stairs proudly states that over 7,000 years have elapsed since the last fatal safety accident.`
+	bribe 0.1
+	security 0.5
+
 planet Osaeli
 	attributes ka'het uninhabited
 	landscape land/forest4
@@ -28675,6 +28841,14 @@ planet Rand
 		threshold 3000
 		fleet "Large Militia" 8
 
+planet Redwatch
+	attributes hai station uninhabited
+	landscape land/space6
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
+
 planet "Refuge of Belugt"
 	attributes arach tourism urban folklore
 	landscape land/beach9-sfiera
@@ -28828,6 +29002,14 @@ planet "Sandy Two"
 	description `This world is relatively hot and dry by human standards, but nearly ideal for the Kimek, and more than fifteen billion of them live here in cities where the skyscrapers are so densely packed that many of the streets never receive direct sunlight. The residential areas tend to be spread out along the banks of rivers, so the cities are linear, with factories and other industry on their fringes. Access to limitless skilled labor makes it cheap to manufacture almost anything here.`
 	spaceport `The spaceport facility is on an island in the center of a river, surrounded by a city so large that the rows of skyscrapers stretch all the way to the horizon. Civilian aircraft, boats, and cargo trucks swarm around the spaceport, bringing goods and people to and from the residences and the outlying factories.`
 	outfitter "Coalition Advanced"
+
+planet Sandsnap
+	attributes hai station uninhabited
+	landscape land/space6
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
 
 planet "Sapira Mereti"
 	attributes korath
@@ -29311,6 +29493,15 @@ planet Sunracer
 		threshold 5000
 		fleet "Large Syndicate" 10
 
+planet Swiftsong
+	attributes hai station "hai tourism"
+	landscape land/space6
+	description `Swiftsong Station is operated and maintained by the Imo Blep corporation as a giant convention center. Most Hai stations restrict access beyond the docking bay or the promenade to at least some degree, but Swiftsong is almost completely open.`
+	description `	Tens of thousands of Hai pass through on an almost daily basis as the continual churn of summits, forums, conventions, symposiums, productions, conferences, weddings, festivals, and the like roll on in an endless cavalcade of life. With Icelake nearby and Hai-home just one jump away, this station is a major cultural hub that even houses the head office of one of the biggest music labels in Hai space.`
+	spaceport `The spaceport promenade runs around the interior of the station and is divided into the usual two levels, but has four additional ring levels rising up from the promenade into each of the station's main branches. Almost any business or service you could want can be found here - except for an outfitter or shipyard. Apparently there is simply no room, as the docking bay must take up nearly all the station's exterior space to accommodate its massive volume of daily traffic.`
+	bribe 0.1
+	security 0.5
+
 planet "Tebuteb's Table"
 	attributes arach farming longcows
 	landscape land/fields11-sfiera
@@ -29330,6 +29521,15 @@ planet "Third Umber"
 	description `	Closer to the poles, the air is too cold to be comfortable for the Kimek, but a small community of Saryd engineers has established a factory compound where they produce their own equipment to sell to the Kimek.`
 	spaceport `This is a sparsely populated world by Kimek standards, with a population of slightly less than a billion, but by the standards of most other species the spaceport is still a crowded and chaotic metropolis, with constant streams of traffic both on the roads and on the pedestrian walkways and footbridges. It is somewhat disconcerting to be surrounded by a sea of giant beetles scurrying back and forth between the landing pads and the port buildings.`
 	"required reputation" 15
+
+planet Thornlight
+	attributes hai station uninhabited retirement
+	landscape land/space6
+	description `A visitor to this station will immediately notice that the gravity is lower than most planets by about a third. The reception area is lavish with several artworks and exotic plants. A well-groomed Hai receptionist informs you that, unless you have family at this respite facility, you will not be permitted to wander the station.`
+	spaceport `The spaceport is small but serviceable, featuring a luxuriously appointed Centipede parked in a berth, presumably for entertainment voyages. There is a small but fancy cafe, and a gift shop with gold watches, jewelry, wines, and other pricey trinkets. This place must provide aged care services for only the very wealthy.`
+	government Hai
+	bribe 0.3
+	security 1
 
 planet Thrall
 	attributes paradise textiles
@@ -29718,6 +29918,14 @@ planet Vinci
 	tribute 2800
 		threshold 5000
 		fleet "Large Republic" 11
+
+planet Violetwake
+	attributes hai station uninhabited
+	landscape land/space6
+	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
+	government Uninhabited
+	bribe 0
+	security 0
 
 planet Warfeed
 	attributes unfettered
