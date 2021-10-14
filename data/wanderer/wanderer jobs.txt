@@ -831,10 +831,11 @@ mission "Wanderers to Kor Efreti"
 	stopover
 		distance 2 8
 		government "Kor Efret"
+		not attributes "station"
 	on visit
 		dialog phrase "generic missing stopover or passengers"
 	on stopover
-		dialog `The Wanderers tour the planet to investigate the envoronmental problems this Kor Efret world faces. They try to point out specific things to the Korath accompanying them, but it's not very effective. After a few hours, they've gathered enough data and are ready to return home.`
+		dialog `The Wanderers tour the planet to investigate the environmental problems this Kor Efret world faces. They try to point out specific things to the Korath accompanying them, but it's not very effective. After a few hours, they've gathered enough data and are ready to return home.`
 	on complete
 		payment 35000 300
 		dialog `When you return, the Wanderers thank you for taking them to the Kor Efreti and hand you <payment> before disembarking.`

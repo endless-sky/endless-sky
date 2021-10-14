@@ -655,10 +655,10 @@ ship "Blackbird"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -40 55
-	engine 40 55
-	turret -18 0 "Heavy Laser Turret"
-	turret 18 0 "Heavy Anti-Missile Turret"
+	engine -42.5 52
+	engine 42.5 52
+	turret -26 15 "Heavy Laser Turret"
+	turret 26 15 "Heavy Anti-Missile Turret"
 	leak "leak" 50 50
 	leak "flame" 70 80
 	explode "tiny explosion" 15
@@ -1393,16 +1393,16 @@ ship "Falcon"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -17 143
-	engine 17 143
-	gun -17 -88 "Plasma Cannon"
-	gun 17 -88 "Plasma Cannon"
-	gun -17 -88 "Torpedo Launcher"
-	gun 17 -88 "Torpedo Launcher"
-	turret -16 -24 "Heavy Anti-Missile Turret"
-	turret 16 -24 "Quad Blaster Turret"
-	turret -57 40 "Quad Blaster Turret"
-	turret 57 40 "Quad Blaster Turret"
+	engine -16.5 143
+	engine 16.5 143
+	gun -16 -86.5 "Plasma Cannon"
+	gun 16 -86.5 "Plasma Cannon"
+	gun -19 -76.5 "Torpedo Launcher"
+	gun 19 -76.5 "Torpedo Launcher"
+	turret -16 -29 "Heavy Anti-Missile Turret"
+	turret 16 -29 "Quad Blaster Turret"
+	turret -50 39.5 "Quad Blaster Turret"
+	turret 50 39.5 "Quad Blaster Turret"
 	leak "leak" 30 50
 	leak "flame" 50 80
 	leak "big leak" 60 30
@@ -2001,10 +2001,10 @@ ship "Hawk"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
 		
-	engine -24 41
-	engine 24 41
-	gun -9 -17
-	gun 9 -17
+	engine -23.5 41
+	engine 23.5 41
+	gun -8.5 -17.5
+	gun 8.5 -17.5
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -2494,14 +2494,16 @@ ship "Osprey"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -40 67
-	engine 40 67
-	gun -8 -100 "Plasma Cannon"
-	gun 8 -100 "Plasma Cannon"
-	gun -26 -53 "Plasma Cannon"
-	gun 26 -53 "Plasma Cannon"
-	turret -16 -16 "Quad Blaster Turret"
-	turret 16 -16 "Heavy Anti-Missile Turret"
+	engine -45.5 62.5 .8
+	engine 45.5 62.5 .8
+	engine -16.5 105 .6
+	engine 16.5 105 .6
+	gun -6.5 -100 "Plasma Cannon"
+	gun 6.5 -100 "Plasma Cannon"
+	gun -26.5 -54 "Plasma Cannon"
+	gun 26.5 -54 "Plasma Cannon"
+	turret -13 -17 "Quad Blaster Turret"
+	turret 13 -17 "Heavy Anti-Missile Turret"
 	leak "leak" 40 50
 	leak "flame" 80 80
 	leak "big leak" 80 30

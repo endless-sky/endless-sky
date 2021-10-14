@@ -958,7 +958,7 @@ const string &Mission::Identifier() const
 const MissionAction &Mission::GetAction(Trigger trigger) const
 {
 	auto ait = actions.find(trigger);
-	static const MissionAction EMPTY;
+	static const MissionAction EMPTY{};
 	if(ait != actions.end())
 		return ait->second;
 	else
