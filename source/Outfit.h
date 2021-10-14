@@ -45,8 +45,10 @@ public:
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
 	// "attributes" node.
 	void Load(const DataNode &node);
+	bool IsDefined() const;
 	
 	const std::string &Name() const;
+	void SetName(const std::string &name);
 	const std::string &PluralName() const;
 	const std::string &Category() const;
 	const std::string &Description() const;
@@ -81,7 +83,7 @@ public:
 	const std::map<const Sound *, int> &SteeringFlareSounds() const;
 	// Get the afterburner effect, if any.
 	const std::map<const Effect *, int> &AfterburnerEffects() const;
-	// Get this oufit's jump effects and sounds, if any.
+	// Get this outfit's jump effects and sounds, if any.
 	const std::map<const Effect *, int> &JumpEffects() const;
 	const std::map<const Sound *, int> &HyperSounds() const;
 	const std::map<const Sound *, int> &HyperInSounds() const;
@@ -94,6 +96,7 @@ public:
 	
 	
 private:
+	bool isDefined = false;
 	std::string name;
 	std::string pluralName;
 	std::string category;

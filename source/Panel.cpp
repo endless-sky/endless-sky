@@ -26,13 +26,6 @@ using namespace std;
 
 
 
-// Make the destructor just in case any derived class needs it.
-Panel::~Panel()
-{
-}
-
-
-
 // Move the state of this panel forward one game step.
 void Panel::Step()
 {
@@ -113,6 +106,13 @@ bool Panel::ZoneClick(const Point &point)
 			return true;
 		}
 	return false;
+}
+
+
+
+// Queue a command for the Panel to process. Typically only used for MainPanel.
+void Panel::GiveCommand(const Command &command)
+{
 }
 
 

@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 
 #include "Files.h"
-#include "Utf8.h"
+#include "text/Utf8.h"
 
 using namespace std;
 
@@ -222,5 +222,7 @@ void DataFile::LoadData(const string &data)
 				}
 			}
 		}
+		// Now that we've reached the end of the line, we know no more tokens will be added to the node.
+		node.tokens.shrink_to_fit();
 	}
 }
