@@ -15,6 +15,7 @@ Version 0.9.15:
       * Fixed a longstanding bug that prevented carriers from transferring energy and fuel to carried ships. (@vitalchip)
       * Mission NPCs no longer reparent to other NPCs of the same mission that have yet to spawn. (@Amazinite)
       * Fixed a possible segfault caused by disowning a ship without a suitable flagship. (@petervdmeer)
+      * The hidden tag on systems can now be properly removed by events. (@Amazinite)
   * Game content:
     * New content:
       * Added more spaceport news for Coalition, Hai, human, Remnant, Wanderer, and Quarg planets. (@Anarchist2, @Arachi-Lover, @BlazingDiesel, @jerith, @NRK4, @petervdmeer, @roadrunner56, @tibetiroka)
