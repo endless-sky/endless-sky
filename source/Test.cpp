@@ -515,12 +515,30 @@ const string &Test::StatusText() const
 void Test::Fail(const Context &context, const PlayerInfo &player, const string &testFailReason) const
 {
 	string message = "Test failed";
-	if(!context.stepToRun.empty() && context.stepToRun.back() < steps.size())
-		message += " at step " + to_string(1 + context.stepToRun.back()) + " (" +
-			STEPTYPE_TO_TEXT.at(steps[context.stepToRun.back()].stepType) + ")";
-	
 	if(!testFailReason.empty())
 		message += ": " + testFailReason;
+	message += "\n";
+
+	// Print the callstack if we have any.
+	auto stackDepth = context.stepToRun.size();
+	for(size_t i = 0; i < stackDepth; ++i)
+	{
+		if(i > 0)
+			message += "(called) ";
+		else if(stackDepth > 1)
+			message += "(top) ";
+		if(context.testToRun.size() < i)
+			message += "At unknown test!\n";
+		else
+		{
+			auto testPrint = context.testToRun[i];
+			auto testStepNr = context.stepToRun[i];
+			message += "Test: \"" + testPrint->Name() + "\", step: " + to_string(1 + testStepNr);
+			if(testStepNr < testPrint->steps.size())
+				message += " (" + STEPTYPE_TO_TEXT.at((testPrint->steps[testStepNr]).stepType) + ")";
+			message += "\n";
+		}
+	}
 	
 	// Only log the conditions that start with test; we don't want to overload the terminal or errorlog.
 	// Future versions of the test-framework could also print all conditions that are used in the test.
