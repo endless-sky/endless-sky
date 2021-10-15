@@ -1,0 +1,49 @@
+test "Sell 1 ship"
+	status active
+	description "Test selling a single ship."
+	sequence
+		# Create/inject the savegame and load it.
+		inject "Fighters and Carriers and Escorts"
+		call "Load First Savegame"
+		call "Sell first ship"
+		call "Depart"
+		assert
+			and
+				"ships: Fighter" == 1
+				"ships: Heavy Warship" == 1
+				"ships: Medium Warship" == 1
+		
+
+test "Sell 2 ships"
+	status active
+	description "Test selling a single ship."
+	sequence
+		# Create/inject the savegame and load it.
+		inject "Fighters and Carriers and Escorts"
+		call "Load First Savegame"
+		call "Sell first ship"
+		call "Sell first ship"
+		call "Depart"
+		assert
+			and
+				"ships: Fighter" == 0
+				"ships: Heavy Warship" == 1
+				"ships: Medium Warship" == 1
+
+
+test "Sell 3 ships"
+	status active
+	description "Test selling a single ship."
+	sequence
+		# Create/inject the savegame and load it.
+		inject "Fighters and Carriers and Escorts"
+		call "Load First Savegame"
+		call "Sell first ship"
+		call "Sell first ship"
+		call "Sell first ship"
+		call "Depart"
+		assert
+			and
+				"ships: Fighter" == 0
+				"ships: Heavy Warship" == 0
+				"ships: Medium Warship" == 1
