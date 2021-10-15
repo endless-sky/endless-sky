@@ -246,6 +246,22 @@ bool GameData::BeginLoad(const char * const *argv)
 
 	for(auto &&it : systems)
 		it.second.FinishLoading(galaxies);
+	// Now that we have finished loading any system, check to see if any system's
+	// neighbor is in a different galaxy.
+	auto WarnDifferentGalaxy = [](const System &current, const System *neighbor)
+	{
+		if(current.GetGalaxy() != neighbor->GetGalaxy())
+			Files::LogError("Warning: system \"" + current.Name()
+					+ "\" has a neighbor in another galaxy (\"" + neighbor->Name() + "\").");
+	};
+	for(const auto &it : systems)
+	{
+		for(const auto &link : it.second.Links())
+			WarnDifferentGalaxy(it.second, link);
+		for(const auto &neighbor : it.second.VisibleNeighbors())
+			WarnDifferentGalaxy(it.second, neighbor);
+	}
+
 	
 	// Store the current state, to revert back to later.
 	defaultFleets = fleets;
