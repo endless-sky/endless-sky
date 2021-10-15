@@ -108,8 +108,8 @@ Version 0.9.15:
     * Unified the code for damage dealt to ships by hazards and projectiles. (@petervdmeer)
     * Updated the Code::Blocks URL in the README files to use https.
     * Improved handling when image buffer allocation fails. (@tehhowch)
-    * Simplified move-ctor and assignment operator for the File class.
-    * Moved the Windows UTF16-UTF8 conversion helpers to the text/utf8 class.
+    * Simplified move-ctor and assignment operator for the File class. (@tehhowch)
+    * Moved the Windows UTF16-UTF8 conversion helpers to the text/utf8 class. (@tehhowch)
     * Avoided undefined behavior of comparing iterators from separate containers. (@oo13)
     * The importance of a message must now be explicitly defined. (@salqadri)
     * Updated the libraries and added SDL integration for the MacOS builds. (@EricFromCanada)
