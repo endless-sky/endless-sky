@@ -129,15 +129,15 @@ GameAction::GameAction(const DataNode &node, const string &missionName)
 void GameAction::Load(const DataNode &node, const string &missionName)
 {
 	for(const DataNode &child : node)
-		LoadAction(child, missionName);
+		LoadSingle(child, missionName);
 }
 
 
 
 // Load a single child at a time, used for streamlining MissionAction::Load.
-void GameAction::LoadAction(const DataNode &child, const string &missionName, bool conversation)
+void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 {
-	empty = false;
+	isEmpty = false;
 	
 	const string &key = child.Token(0);
 	bool hasValue = (child.Size() >= 2);
@@ -161,12 +161,8 @@ void GameAction::LoadAction(const DataNode &child, const string &missionName, bo
 		int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
 		if(count)
 			giftOutfits[GameData::Outfits().Get(child.Token(1))] = count;
-		else if(!conversation)
-		{
-			// "outfit <outfit> 0" means the player must have this outfit.
-			child.PrintTrace("Warning: deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
-			requiredOutfits[GameData::Outfits().Get(child.Token(1))] = 1;
-		}
+		else
+			child.PrintTrace("Skipping invalid outfit quantity:");
 	}
 	else if(key == "payment")
 	{
@@ -211,7 +207,7 @@ void GameAction::LoadAction(const DataNode &child, const string &missionName, bo
 
 
 
-void GameAction::SaveAction(DataWriter &out) const
+void GameAction::Save(DataWriter &out) const
 {
 	if(!logText.empty())
 	{
@@ -224,8 +220,8 @@ void GameAction::SaveAction(DataWriter &out) const
 		}
 		out.EndChild();
 	}
-	for(const auto &it : specialLogText)
-		for(const auto &eit : it.second)
+	for(auto &&it : specialLogText)
+		for(auto &&eit : it.second)
 		{
 			out.Write("log", it.first, eit.first);
 			out.BeginChild();
@@ -236,22 +232,17 @@ void GameAction::SaveAction(DataWriter &out) const
 			}
 			out.EndChild();
 		}
-	for(const auto &it : giftShips)
+	for(auto &&it : giftShips)
 		out.Write("give", "ship", it.first->VariantName(), it.second);
-	for(const auto &it : giftOutfits)
+	for(auto &&it : giftOutfits)
 		out.Write("outfit", it.first->Name(), it.second);
 	if(payment)
 		out.Write("payment", payment);
 	if(fine)
 		out.Write("fine", fine);
-	for(const auto &it : events)
-	{
-		if(it.second.first == it.second.second)
-			out.Write("event", it.first->Name(), it.second.first);
-		else
-			out.Write("event", it.first->Name(), it.second.first, it.second.second);
-	}
-	for(const auto &name : fail)
+	for(auto &&it : events)
+		out.Write("event", it.first->Name(), it.second.first, it.second.second);
+	for(const string &name : fail)
 		out.Write("fail", name);
 
 	conditions.Save(out);
@@ -261,14 +252,14 @@ void GameAction::SaveAction(DataWriter &out) const
 
 // Check this template or instantiated GameAction to see if any used content
 // is not fully defined (e.g. plugin removal, typos in names, etc.).
-string GameAction::ValidateAction() const
+string GameAction::Validate() const
 {
 	// Events which get activated by this action must be valid.
 	for(auto &&event : events)
 		if(!event.first->IsValid())
 			return "event \"" + event.first->Name() + "\"";
-
-	// Gifted content must be defined & valid.
+	
+	// Transferred content must be defined & valid.
 	for(auto &&it : giftShips)
 		if(!it.first->IsValid())
 			return "gift ship model \"" + it.first->VariantName() + "\"";
@@ -283,30 +274,51 @@ string GameAction::ValidateAction() const
 }
 
 
-bool GameAction::IsEmpty() const
+bool GameAction::IsEmpty() const noexcept
 {
-	return empty;
+	return isEmpty;
 }
 
 
 
-// Do the actions of the GameAction.
-void GameAction::DoAction(PlayerInfo &player, UI *ui) const
+int64_t GameAction::Payment() const noexcept
+{
+	return payment;
+}
+
+
+
+int64_t GameAction::Fine() const noexcept
+{
+	return fine;
+}
+
+
+
+const map<const Outfit *, int> &GameAction::Outfits() const noexcept
+{
+	return giftOutfits;
+}
+
+
+
+// Perform the specified tasks.
+void GameAction::Do(PlayerInfo &player, UI *ui) const
 {
 	if(!logText.empty())
 		player.AddLogEntry(logText);
-	for(const auto &it : specialLogText)
-		for(const auto &eit : it.second)
+	for(auto &&it : specialLogText)
+		for(auto &&eit : it.second)
 			player.AddSpecialLog(it.first, eit.first, eit.second);
 	
-	for(const auto &it : giftShips)
+	for(auto &&it : giftShips)
 		DoGift(player, it.first, it.second);
 	// If multiple outfits are being transferred, first remove them before
 	// adding any new ones.
-	for(const auto &it : giftOutfits)
+	for(auto &&it : giftOutfits)
 		if(it.second < 0)
 			DoGift(player, it.first, it.second, ui);
-	for(const auto &it : giftOutfits)
+	for(auto &&it : giftOutfits)
 		if(it.second > 0)
 			DoGift(player, it.first, it.second, ui);
 	
@@ -353,17 +365,9 @@ void GameAction::DoAction(PlayerInfo &player, UI *ui) const
 GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int payload) const
 {
 	GameAction result;
-	result.empty = empty;
-	InstantiateAction(result, subs, jumps, payload);
+	result.isEmpty = isEmpty;
 	
-	return result;
-}
-
-
-
-void GameAction::InstantiateAction(GameAction &result, map<string, string> &subs, int jumps, int payload) const
-{
-	for(const auto &it : events)
+	for(auto &&it : events)
 	{
 		// Allow randomization of event times. The second value in the pair is
 		// always greater than or equal to the first, so Random::Int() will
@@ -372,7 +376,7 @@ void GameAction::InstantiateAction(GameAction &result, map<string, string> &subs
 		result.events[it.first] = make_pair(day, day);
 	}
 	
-	for(const auto &it : giftShips)
+	for(auto &&it : giftShips)
 		result.giftShips.emplace_back(it.first, !it.second.empty() ? it.second : GameData::Phrases().Get("civilian")->Get());
 	result.giftOutfits = giftOutfits;
 	
@@ -388,11 +392,13 @@ void GameAction::InstantiateAction(GameAction &result, map<string, string> &subs
 	
 	if(!logText.empty())
 		result.logText = Format::Replace(logText, subs);
-	for(const auto &it : specialLogText)
-		for(const auto &eit : it.second)
+	for(auto &&it : specialLogText)
+		for(auto &&eit : it.second)
 			result.specialLogText[it.first][eit.first] = Format::Replace(eit.second, subs);
 	
 	result.fail = fail;
 	
 	result.conditions = conditions;
+	
+	return result;
 }
