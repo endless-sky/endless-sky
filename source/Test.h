@@ -128,7 +128,7 @@ public:
 	// the game. We just provide them as parameter here, because they are not
 	// available when the test got created (and they can change due to loading
 	// and saving of games).
-	void Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const;
+	void Step(Context &context, PlayerInfo &player, Command &commandToGive, bool isActive) const;
 	
 	void Load(const DataNode &node);
 	

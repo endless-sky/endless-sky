@@ -15,15 +15,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "Files.h"
 #include "GameData.h"
-#include "MainPanel.h"
-#include "Panel.h"
 #include "Planet.h"
-#include "PlanetPanel.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
 #include "System.h"
 #include "TestData.h"
-#include "UI.h"
 
 #include <SDL2/SDL.h>
 
@@ -87,6 +83,13 @@ namespace{
 		event.key.repeat = 0;
 		event.key.keysym.sym = SDL_GetKeyFromName(keyName);
 		event.key.keysym.mod = modKeys;
+		return SDL_PushEvent(&event);
+	}
+	
+	bool SendQuitEvent()
+	{
+		SDL_Event event;
+		event.type = SDL_QUIT;
 		return SDL_PushEvent(&event);
 	}
 }
@@ -356,7 +359,7 @@ const string &Test::Name() const
 // When the gamePanels stack contains more than one item, we are either on a planet or
 // busy with something, e.g. reading a dialog, hailing a ship/planet, or boarding.
 // Otherwise, the flagship is in space and controllable.
-void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const
+void Test::Step(Context &context, PlayerInfo &player, Command &commandToGive, bool isActive) const
 {
 	// Tests always wait until the game is fully loaded.
 	if(!GameData::IsLoaded())
@@ -379,7 +382,7 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 		if(context.stepToRun.empty())
 		{
 			// Done, no failures, exit the game with exitcode success.
-			menuPanels.Quit();
+			SendQuitEvent();
 			return;
 		}
 		else
@@ -453,22 +456,7 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 				break;
 			case TestStep::Type::INPUT:
 				if(stepToRun.command)
-				{
-					// We need to send the command through the top gamepanel, and it needs to be active.
-					if(gamePanels.IsEmpty())
-						Fail(context, player, "panel with engine not present, and can only send commands to the engine");
-					
-					if(gamePanels.Root() != gamePanels.Top())
-						Fail(context, player, "engine not active due to panel on top, and can only send commands to the engine");
-					
-					// Both get as well as the cast can result in a nullpointer. In both cases we
-					// will fail the test, since we expect the MainPanel to be here.
-					auto mainPanel = gamePanels.Root().get();
-					if(!mainPanel)
-						Fail(context, player, "root gamepanel not found when sending command");
-
-					mainPanel->GiveCommand(stepToRun.command);
-				}
+					commandToGive = stepToRun.command;
 				if(!stepToRun.inputKeys.empty())
 				{
 					// TODO: handle keys also in-flight (as single inputset)
