@@ -354,7 +354,7 @@ const string &Test::Name() const
 
 // The isActive parameter tells us if the game has the Engine active (if the player
 // is flying around in his/her flagship).
-void Test::Step(Context &context, PlayerInfo &player, Command &commandToGive, bool isActive) const
+void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive, bool isActive) const
 {
 	// Tests always wait until the game is fully loaded.
 	if(!GameData::IsLoaded())
@@ -495,7 +495,7 @@ const string &Test::StatusText() const
 
 
 // Fail the test using the given message as reason.
-void Test::Fail(const Context &context, const PlayerInfo &player, const string &testFailReason) const
+void Test::Fail(const TestContext &context, const PlayerInfo &player, const string &testFailReason) const
 {
 	string message = "Test failed";
 	if(!context.stepToRun.empty() && context.stepToRun.back() < steps.size())

@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Command.h"
 #include "ConditionSet.h"
+#include "TestContext.h"
 
 #include <SDL2/SDL.h>
 
@@ -105,20 +106,6 @@ public:
 		bool clickRight = false;
 	};
 	
-	class Context {
-	friend class Test;
-	public:
-		// Pointer to the test we are running.
-		std::vector<const Test *> testToRun;
-		
-		
-	protected:
-		// Teststep to run.
-		std::vector<unsigned int> stepToRun = { 0 };
-		unsigned int watchdog = 0;
-		std::set<std::vector<unsigned int>> branchesSinceGameStep;
-	};
-	
 	
 public:
 	const std::string &Name() const;
@@ -127,7 +114,7 @@ public:
 	// PlayerInfo, gives the state of the game. We just provide it as parameter
 	// here, because it is not available when the test got created (and they can
 	// change due to loading and saving of games).
-	void Step(Context &context, PlayerInfo &player, Command &commandToGive, bool isActive) const;
+	void Step(TestContext &context, PlayerInfo &player, Command &commandToGive, bool isActive) const;
 	
 	void Load(const DataNode &node);
 	
@@ -136,7 +123,7 @@ private:
 	void LoadSequence(const DataNode &node);
 	
 	// Fail the test using the given message as reason.
-	void Fail(const Context &context, const PlayerInfo &player, const std::string &testFailReason) const;
+	void Fail(const TestContext &context, const PlayerInfo &player, const std::string &testFailReason) const;
 	
 	
 private:

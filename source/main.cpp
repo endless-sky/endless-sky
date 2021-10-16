@@ -32,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "Test.h"
+#include "TestContext.h"
 #include "UI.h"
 
 #include <chrono>
@@ -190,7 +191,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	int toggleTimeout = 0;
 	
 	// Data to track progress of testing if/when a test is running.
-	Test::Context testContext;
+	TestContext testContext;
 	if(!testToRunName.empty())
 		testContext.testToRun.push_back(GameData::Tests().Get(testToRunName));
 	
