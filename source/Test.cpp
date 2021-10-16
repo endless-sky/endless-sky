@@ -562,7 +562,7 @@ void Test::Fail(const Context &context, const PlayerInfo &player, const string &
 		Files::LogError("flagship: " + ShipToString(*flagship));
 		int escortsPrinted = 0;
 		int escortsNotPrinted = 0;
-		for(auto ptr: flagship->GetEscorts())
+		for(auto &&ptr : flagship->GetEscorts())
 		{
 			auto escort = ptr.lock();
 			if(!escort)
