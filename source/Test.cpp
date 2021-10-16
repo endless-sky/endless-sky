@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "Files.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "MainPanel.h"
 #include "Panel.h"
@@ -100,16 +101,16 @@ namespace{
 	
 	string ShipToString(const Ship &ship)
 	{
-		string description;
+		string description = "name: " + ship.Name();
 		const System *system = ship.GetSystem();
 		const Planet *planet = ship.GetPlanet();
 		description += ", system: " + (system ? system->Name() : "<not set>");
 		description += ", planet: " + (planet ? planet->TrueName() : "<not set>");
-		description += ", hull: " + to_string(ship.Hull());
-		description += ", shields: " + to_string(ship.Shields());
-		description += ", energy: " + to_string(ship.Energy());
-		description += ", fuel: " + to_string(ship.Fuel());
-		description += ", heat: " + to_string(ship.Heat());
+		description += ", hull: " + Format::Number(ship.Hull());
+		description += ", shields: " + Format::Number(ship.Shields());
+		description += ", energy: " + Format::Number(ship.Energy());
+		description += ", fuel: " + Format::Number(ship.Fuel());
+		description += ", heat: " + Format::Number(ship.Heat());
 		return description;
 	}
 }
