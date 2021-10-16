@@ -352,13 +352,8 @@ const string &Test::Name() const
 
 
 
-// The UI panel stacks determine both what the player sees and the state of the game.
-// When the menuPanels are not empty, we are in a menu for something, e.g. preferences,
-// creating a new pilot, or loading or saving a game. Any such menu panels always take
-// precedence over game panels.
-// When the gamePanels stack contains more than one item, we are either on a planet or
-// busy with something, e.g. reading a dialog, hailing a ship/planet, or boarding.
-// Otherwise, the flagship is in space and controllable.
+// The isActive parameter tells us if the game has the Engine active (if the player
+// is flying around in his/her flagship).
 void Test::Step(Context &context, PlayerInfo &player, Command &commandToGive, bool isActive) const
 {
 	// Tests always wait until the game is fully loaded.

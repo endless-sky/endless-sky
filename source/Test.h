@@ -124,10 +124,9 @@ public:
 	const std::string &Name() const;
 	const std::string &StatusText() const;
 	
-	// PlayerInfo, the gamePanels and the MenuPanels together give the state of
-	// the game. We just provide them as parameter here, because they are not
-	// available when the test got created (and they can change due to loading
-	// and saving of games).
+	// PlayerInfo, gives the state of the game. We just provide it as parameter
+	// here, because it is not available when the test got created (and they can
+	// change due to loading and saving of games).
 	void Step(Context &context, PlayerInfo &player, Command &commandToGive, bool isActive) const;
 	
 	void Load(const DataNode &node);
