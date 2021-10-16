@@ -24,6 +24,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Radar.h"
 #include "Rectangle.h"
+#include "Test.h"
+#include "TestContext.h"
 
 #include <condition_variable>
 #include <list>
@@ -80,8 +82,8 @@ public:
 	// Draw a frame.
 	void Draw() const;
 	
-	// Give an (automated/scripted) command on behalf of the player.
-	void GiveCommand(const Command &command);
+	// Set the given TestContext in the next step of the Engine.
+	void SetTestContext(TestContext &newTestContext);
 	
 	// Select the object the player clicked on.
 	void Click(const Point &from, const Point &to, bool hasShift);
@@ -227,6 +229,9 @@ private:
 	Point clickPoint;
 	Rectangle clickBox;
 	int groupSelect = -1;
+	
+	// Input, Output and State handling for automated tests.
+	TestContext *testContext = nullptr;
 	
 	double zoom = 1.;
 	
