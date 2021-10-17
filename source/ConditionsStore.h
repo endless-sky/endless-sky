@@ -78,7 +78,18 @@ private:
 		bool Has(const std::string& name) const;
 		bool Set(const std::string& name, int64_t newValue);
 		bool Erase(const std::string& name);
-	
+		
+		// If we want to allow access to the conditions using `operator[]`
+		// on ConditionsStore, then we could implement the following functions:
+		//   operator int64_t() const;
+		//   ConditionEntry &operator=(int64_t val);
+		//   ConditionEntry &operator+=(int64_t val);
+		//   ConditionEntry &operator-=(int64_t val);
+		// Implementing those functions should already be possible for Value
+		// and for Exact conditions. To also support this for Prefix conditions
+		// requires some additional changes to allow prefix-conditions to be in
+		// the list multiple times (where each entry uses a different string key
+		// to access the prefixed condition provider).
 	
 	public:
 		StorageType type = VALUE;
