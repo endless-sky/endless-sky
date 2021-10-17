@@ -22,11 +22,15 @@ class Test;
 class TestContext {
 friend class Test;
 public:
-	// Pointer to the test we are running.
-	std::vector<const Test *> testToRun;
+	TestContext();
+	TestContext(const Test *toRun);
+	const Test *CurrentTest() const noexcept;
 	
 	
 private:
+	// Pointer to the test we are running.
+	std::vector<const Test *> testToRun;
+	
 	// Teststep to run.
 	std::vector<unsigned int> stepToRun = { 0 };
 	unsigned int watchdog = 0;

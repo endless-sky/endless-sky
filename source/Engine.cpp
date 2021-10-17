@@ -485,8 +485,12 @@ void Engine::Step(bool isActive)
 			// Do a testing step if we got an active testContext from main.cpp.
 			// Main.cpp will transfer the context every step where it wants the
 			// engine to handle the testing.
-			if(testContext && !testContext->testToRun.empty())
-				testContext->testToRun.back()->Step(*testContext, player, activeCommands);
+			if(testContext)
+			{
+				const Test *runningTest = testContext->CurrentTest();
+				if(runningTest)
+					runningTest->Step(*testContext, player, activeCommands);
+			}
 			ai.UpdateKeys(player, activeCommands);
 		}
 	}
