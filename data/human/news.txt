@@ -484,7 +484,7 @@ news "tour guide"
 			"Mind the gravity!"
 			"I'm handing out astronaut badges by the dozen for first-time space travelers. It lost a bit of glamour now that every fool can book a flight on a spaceship."
 			"As I get older, I remember all the people I lost along the way. Maybe I'm in the wrong profession."
-			"Before the hyperdrive rich people paid large sums of credits to be very visible going into space, nowadays they pay large sums of credits to be invisible on-planet."
+			"Before the hyperdrive, rich people paid large sums of credits to be very visible going into space. Nowadays they pay large sums of credits to be invisible on-planet."
 		word
 			`"`
 
@@ -873,7 +873,7 @@ news "technical writer"
 			"Documents are written once, and read many times. So every minute I spend polishing someone's writing will pay off many times over in the long run."
 			"Communication skills are essential no matter what your job is. If you can't write well, people will think you're an idiot. Or at least, people like me will think that."
 			"Be careful with the word 'awesome' on other planets. Here it means something great, but somehow the meaning changed to something awful on some other planets."
-			"Can you imagine that the 21st century had dozens of different programming languages? I wonder how they ever got any programming jobs done."
+			"Can you imagine that in the time before the Republic there were dozens of different programming languages? I wonder how they ever got any programming jobs done."
 		word
 			`"`
 
