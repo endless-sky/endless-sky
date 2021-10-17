@@ -65,16 +65,8 @@ mission "I Want To Be A Pirate"
 			`	Heads turn to regard you as you disembark into the Greenrock spaceport. Outlaws, pirates, slavers and smugglers regard you, size you up, and turn away with disinterest. That's far better than the ugly leers you used to get. Perhaps it's a swagger in your step, or simply a confident bearing that you now have - maybe you're just imagining things and reading what you want into the manifold expressions within a human morass surrounding a busy port.`
 			`	You're paid no mind as you strut into the tavern and progress to another back room where, just as they said, the three pirates you'd met before are sharing drinks. Heads are lifted from tankards to regard you. The Corsair seems quite pleased to see you, assisted as he is by the reddened bonhomie of liquor. The suit-clad pirate remains impassive, her mien businesslike. And the Outlaw? He's just choked on his drink.`
 			`	"Well slap a collar on me and sell me as a miner, you're still drawing breath. Didn't expect that. Here bearing profitable news, I trust." The Outlaw's speech is as metallic as ever, though his usual semi-musical tones sound somewhat... drowned. Sounds like he sucked some beer into his windpipe with that last sip.`
-			branch boarding
-				has "Pirate Intro - Boarding: done"
-			branch smuggling
-				and
-					has "Pirate Intro - Wealth: done"
-					not "clobbered"
-			branch smugglingalt
-				and
-					has "Pirate Intro - Wealth: done"
-					has "clobbered"
+			branch tributeskip
+				not "tribute: Darkstone"			
 			#the player claimed Darkstone as a tributary but never visited their new subjects, or took no action upon finding slavers abducting colonists.
 			branch conqueror
 				and
@@ -116,24 +108,36 @@ mission "I Want To Be A Pirate"
 			`	"Don't be stupid. We're in the same business, you and I - the only reason we're having this conversation at all is because you saw fit to force others to pay you, render unto you the fruit of their sweat and tears, without anything in return. You're a slaver as much as I. I'm simply more honest about it. You'll grow to accept that, pirates that think they can survive - or more amusingly, thrive - and still hold onto their precious morals, they're not long for this world."`
 			`	The Corsair's lips curl into a decidedly displeased scowl, but he drowns any words in liquor before they might threaten to spill forth.`
 			`	"Now. Don't be a fool, and remember my words." The Outlaw relaxes, stretching back in his seat. He's regarding you cooly, contemplatively. "But I'm a man of my word. You did as you were instructed, and so I'll fulfil my end of the bargain."`
+				goto tributeskip
+			label defender
+			`	(The Outlaw is somewhat pissed that you killed all his boys and reneges on his deal. The Corsair mentions that the act itself was enough to cement your name in the rumors that swirl the borderworlds, and in so doing has given you what you wanted from sponsorship in the first place.)
+				goto tributeskip
+			label slaver
+			`	(The Outlaw is extremely pleased that you got into the spirit of domination and enslavement so quickly. The Outlaw gives you his sponsorship.)
+				apply RookieSlaver
+				goto tributeskip
 			#label ring
 			#`	The Outlaw extends his palm, a shining silver ring glistening in the center. Unadorned by any manner of stone, it's a simple, subdued piece of jewelry. Upon the front a crest has been stamped. "A token of my approval. Consider it sponsorship, and my trust that you'll do what need be done. Take it to Gienah. People will know what it means, and you'll find lucrative work that lines up nicely with the skillset you've demonstrated."`
 			#`	The cyborg offers a genial smile - or at least as much as one can without lips. It's uncanny how expressive articulated artifical jaws can be these days.`
-				goto pirate
-			label boarding
+			label tributeskip
+			branch boardingskip
+				not "Pirate Intro - Boarding: done"
 			choice	
 				`	"I've brought the antique lockbox and defeated the other pirates who came for it."`
-			`	(The Outlaw expresses his approval. In the campaign-integrated version of this mission he asks you to keep the journal and take it to Amity Goodearth. She'll connect you with the Raiders, thus starting the Raider campaign intro.)`
-				goto pirate
-			label smuggling
+			`	(The Corsair expresses his approval. In the campaign-integrated version of this mission he asks you to keep the journal and take it to Amity Goodearth. She'll connect you with the Raiders, thus starting the Raider campaign intro.)`
+			label boardingskip
+			branch smuggling
+			branch smugglingalt
+				has "clobbered"
 			choice
 				`	"I've got your million-credit... thing."`
 			`	(The Formal Pirate expresses her approval. In the campaign-integrated version of this mission she gives you a provisional Lightspeed Contractor license, which needs to be delivered to Lightspeed HQ for verification and activation, thus starting the Lightspeed Campaign.)`
 				goto pirate
 			label smugglingalt
-			`	(The Formal Pirate expresses her approval. In the campaign-integrated version of this mission she gives you a provisional Lightspeed Contractor license, which needs to be delivered to Lightspeed HQ for verification and activation, thus starting the Lightspeed Campaign.)`
 			choice
 				`	"I've got your million-credit... thing, and a splitting headache."`
+			`	(The Formal Pirate expresses her approval. In the campaign-integrated version of this mission she gives you a provisional Lightspeed Contractor license, which needs to be delivered to Lightspeed HQ for verification and activation, thus starting the Lightspeed Campaign.)`
+				goto pirate
 			label pirate
 			`	"And we've got one more thing for you", the Corsair comments before pulling a small booklet out of his coat. It's slid across the table before you. It appears you've been given some sort of coupon book for an establishment called "SLEEZY STEEV'S SCRAP AND SURPLUS". Most of the coupons have been torn out, but one of the remaining offers apparently entitles you to a hefty discount on black and red paint.`
 			`	"You're a pirate now, matey. Best look the part."`
