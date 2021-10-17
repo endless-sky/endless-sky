@@ -18,13 +18,6 @@ using namespace std;
 
 
 
-// Empty constructor, for if we are running no tests.
-TestContext::TestContext()
-{
-}
-
-
-
 // Constructor to be used when running an actual test.
 TestContext::TestContext(const Test *toRun)
 {

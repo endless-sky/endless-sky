@@ -22,7 +22,7 @@ class Test;
 class TestContext {
 friend class Test;
 public:
-	TestContext();
+	TestContext() = default;
 	TestContext(const Test *toRun);
 	const Test *CurrentTest() const noexcept;
 	
