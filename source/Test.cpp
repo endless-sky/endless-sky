@@ -560,7 +560,7 @@ void Test::Fail(const Context &context, const PlayerInfo &player, const string &
 		Files::LogError("Player did not have flagship at the moment of failure.");
 	else
 	{
-		Files::LogError("flagship: " + ShipToString(*flagship));
+		Files::LogError("flagship " + ShipToString(*flagship));
 		int escortsPrinted = 0;
 		int escortsNotPrinted = 0;
 		for(auto &&ptr : flagship->GetEscorts())
@@ -568,14 +568,13 @@ void Test::Fail(const Context &context, const PlayerInfo &player, const string &
 			auto escort = ptr.lock();
 			if(!escort)
 				continue;
-			if(escortsPrinted < 5)
-				Files::LogError("escort: " + ShipToString(*escort));
+			if(++escorts <= 5)
+				Files::LogError("escort " + ShipToString(*escort));
 			else
-				escortsNotPrinted++;
-			escortsPrinted++;
+				++escortsNotPrinted;
 		}
 		if(escortsNotPrinted > 0)
-			Files::LogError("(plus " + to_string(escortsNotPrinted) + " escorts not displayed)");
+			Files::LogError("(plus " + to_string(escortsNotPrinted) + " additional escorts)");
 	}
 	
 	// Only log the conditions that start with test; we don't want to overload the terminal or errorlog.
