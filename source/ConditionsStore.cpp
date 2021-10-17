@@ -16,12 +16,47 @@ using namespace std;
 
 
 
+// Default constructor
+ConditionsStore::DerivedProvider::DerivedProvider(const string &name, bool isPrefixProvider): name(name), isPrefixProvider(isPrefixProvider)
+{
+}
+
+
+
+void ConditionsStore::DerivedProvider::SetGetFun(std::function<int64_t(const std::string&)> newGetFun)
+{
+	getFun = newGetFun;
+}
+
+
+
+void ConditionsStore::DerivedProvider::SetHasFun(std::function<bool(const std::string&)> newHasFun)
+{
+	hasFun = newHasFun;
+}
+
+
+
+void ConditionsStore::DerivedProvider::SetSetFun(std::function<bool(const std::string&, int64_t)> newSetFun)
+{
+	setFun = newSetFun;
+}
+
+
+
+void ConditionsStore::DerivedProvider::SetEraseFun(std::function<bool(const std::string&)> newEraseFun)
+{
+	eraseFun = newEraseFun;
+}
+
+
+
 int64_t ConditionsStore::ConditionEntry::Get(const string &name) const
 {
 	if(type == VALUE)
 		return value;
 	
-	return provider.getFun(name);
+	return provider->getFun(name);
 };
 
 
@@ -31,7 +66,7 @@ bool ConditionsStore::ConditionEntry::Has(const string& name) const
 	if(type == VALUE)
 		return true;
 	
-	return provider.hasFun(name);
+	return provider->hasFun(name);
 };
 
 
@@ -44,7 +79,7 @@ bool ConditionsStore::ConditionEntry::Set(const string& name, int64_t newValue)
 		return true;
 	}
 	
-	return provider.setFun(name, newValue);
+	return provider->setFun(name, newValue);
 };
 
 
@@ -55,7 +90,7 @@ bool ConditionsStore::ConditionEntry::Erase(const string& name)
 	if(type == VALUE)
 		return false;
 	
-	return provider.eraseFun(name);
+	return provider->eraseFun(name);
 };
 
 
@@ -238,20 +273,28 @@ ConditionsStore::PrimariesIterator ConditionsStore::PrimariesLowerBound(const st
 
 
 
-// Sets a provider for a given prefix.
-void ConditionsStore::SetProviderPrefixed(const string &prefix, DerivedProvider conditionsProvider)
+// Build a provider for a given prefix.
+ConditionsStore::DerivedProvider &ConditionsStore::GetProviderPrefixed(const string &prefix)
 {
-	storage[prefix].provider = conditionsProvider;
+	auto it = providers.emplace(std::piecewise_construct,
+		std::forward_as_tuple(prefix),
+		std::forward_as_tuple(prefix, true));
+	storage[prefix].provider = &(it.first->second);
 	storage[prefix].type = PREFIX_PROVIDER;
+	return it.first->second;
 }
 
 
 
-// Sets a provider for the condition identified by the given name.
-void ConditionsStore::SetProviderNamed(const string &name, DerivedProvider conditionProvider)
+// Build a provider for the condition identified by the given name.
+ConditionsStore::DerivedProvider &ConditionsStore::GetProviderNamed(const string &name)
 {
-	storage[name].provider = conditionProvider;
+	auto it = providers.emplace(std::piecewise_construct,
+		std::forward_as_tuple(name),
+		std::forward_as_tuple(name, false));
+	storage[name].provider = &(it.first->second);
 	storage[name].type = EXACT_PROVIDER;
+	return it.first->second;
 }
 
 

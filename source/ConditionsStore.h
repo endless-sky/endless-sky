@@ -40,15 +40,32 @@ public:
 	//         by the given provider.
 	enum StorageType {VALUE, PREFIX_PROVIDER, EXACT_PROVIDER};
 
-	// Structure that describes the interface for DerivedProviders. When
-	// registering a new provider, then the (lambda)functions for accessing
-	// the conditions in the derived provider are communicated using this
-	// structure.
-	struct DerivedProvider {
-		std::function<int64_t(const std::string&)> getFun;
-		std::function<bool(const std::string&)> hasFun;
-		std::function<bool(const std::string&, int64_t)> setFun;
-		std::function<bool(const std::string&)> eraseFun;
+	// Class for DerivedProviders, the (lambda) functions that provide access
+	// to the derived conditions are registered in this class.
+	class DerivedProvider
+	{
+	friend ConditionsStore;
+	public:
+		// Functions to set the lambda functions for accessing the conditions.
+		void SetGetFun(std::function<int64_t(const std::string&)> newGetFun);
+		void SetHasFun(std::function<bool(const std::string&)> newHasFun);
+		void SetSetFun(std::function<bool(const std::string&, int64_t)> newSetFun);
+		void SetEraseFun(std::function<bool(const std::string&)> newEraseFun);
+
+	public:
+		// Private constructor, only to be called from within ConditionsStore.
+		DerivedProvider(const std::string &name, bool isPrefixProvider);
+		
+	private:
+		std::string name;
+		bool isPrefixProvider;
+	
+		// Lambda functions for accessing the derived conditions, with some sensible
+		// default implementations;
+		std::function<int64_t(const std::string&)> getFun = [](const std::string &name) { return 0; };
+		std::function<bool(const std::string&)> hasFun = [](const std::string &name) { return true; };
+		std::function<bool(const std::string&, int64_t)> setFun = [](const std::string &name, int64_t value) { return false; };
+		std::function<bool(const std::string&)> eraseFun = [](const std::string &name) { return false; };
 	};
 
 	
@@ -66,7 +83,7 @@ private:
 	public:
 		StorageType type = VALUE;
 		int64_t value;
-		DerivedProvider provider;
+		DerivedProvider *provider;
 	};
 	
 	
@@ -95,7 +112,7 @@ public:
 		bool operator!= (const PrimariesIterator& rhs) const;
 	
 	
-	private:
+	public:
 		// Helper function to ensure that the primary-conditions iterator points
 		// to a primary (value) condition or to the end-iterator value.
 		void MoveToValueCondition();
@@ -133,9 +150,9 @@ public:
 	PrimariesIterator PrimariesEnd() const;
 	PrimariesIterator PrimariesLowerBound(const std::string &key) const;
 	
-	// Set providers for derived conditions based on prefix and name.
-	void SetProviderPrefixed(const std::string &prefix, DerivedProvider conditionsProvider);
-	void SetProviderNamed(const std::string &name, DerivedProvider conditionProvider);
+	// Builds providers for derived conditions based on prefix and name.
+	DerivedProvider &GetProviderPrefixed(const std::string &prefix);
+	DerivedProvider &GetProviderNamed(const std::string &name);
 	
 	// Helper to completely remove all data and linked condition-providers from the store.
 	void Clear();
@@ -153,6 +170,7 @@ private:
 private:
 	// Storage for both the primary conditions as well as the providers.
 	std::map<std::string, ConditionEntry> storage;
+	std::map<std::string, DerivedProvider> providers;
 };
 
 
