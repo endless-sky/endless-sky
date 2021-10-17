@@ -24,9 +24,9 @@ friend class Test;
 public:
 	// Pointer to the test we are running.
 	std::vector<const Test *> testToRun;
-		
-		
-protected:
+	
+	
+private:
 	// Teststep to run.
 	std::vector<unsigned int> stepToRun = { 0 };
 	unsigned int watchdog = 0;

@@ -278,11 +278,9 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		// All manual events and processing done. Handle any test inputs and events if we have any.
 		if(!testContext.testToRun.empty())
 		{
-			// The Engine can start a thread in parallel to the main-thread,
-			// so for thread safety we transfer test-control during flight to
-			// the thread-safe part of Engine.
-			// We also need the test-code to control the game when there is no
-			// Engine or when the Engine is inActive; that is handled from here.
+			// When flying around, all test processing must be handled in the
+			// thread-safe section of Engine. When not flying around (and when no
+			// Engine exists), then it is safe to execute the tests from here.
 			auto mainPanel = gamePanels.Root().get();
 			if(!isPaused && inFlight && menuPanels.IsEmpty() && mainPanel)
 				mainPanel->SetTestContext(testContext);
@@ -291,7 +289,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 				// The command will be ignored, since we only support commands
 				// from within the engine at the moment.
 				Command ignored;
-				testContext.testToRun.back()->Step(testContext, player, ignored, false);
+				testContext.testToRun.back()->Step(testContext, player, ignored);
 			}
 			// Skip drawing 29 out of every 30 in-flight frames during testing to speedup testing (unless debug mode is set).
 			// We don't skip UI-frames to ensure we test the UI code more.

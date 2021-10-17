@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Command.h"
 #include "ConditionSet.h"
-#include "TestContext.h"
 
 #include <SDL2/SDL.h>
 
@@ -29,6 +28,7 @@ class Planet;
 class PlayerInfo;
 class UI;
 class System;
+class TestContext;
 
 
 
@@ -111,10 +111,8 @@ public:
 	const std::string &Name() const;
 	const std::string &StatusText() const;
 	
-	// PlayerInfo, gives the state of the game. We just provide it as parameter
-	// here, because it is not available when the test got created (and they can
-	// change due to loading and saving of games).
-	void Step(TestContext &context, PlayerInfo &player, Command &commandToGive, bool isActive) const;
+	// Check the game status and perform the next test action.
+	void Step(TestContext &context, PlayerInfo &player, Command &commandToGive) const;
 	
 	void Load(const DataNode &node);
 	

@@ -24,8 +24,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Radar.h"
 #include "Rectangle.h"
-#include "Test.h"
-#include "TestContext.h"
 
 #include <condition_variable>
 #include <list>
@@ -45,6 +43,7 @@ class Projectile;
 class Ship;
 class ShipEvent;
 class Sprite;
+class TestContext;
 class Visual;
 class Weather;
 

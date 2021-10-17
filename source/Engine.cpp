@@ -54,6 +54,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StarField.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "Test.h"
+#include "TestContext.h"
 #include "Visual.h"
 #include "Weather.h"
 #include "text/WrappedText.h"
@@ -484,7 +486,7 @@ void Engine::Step(bool isActive)
 			// Main.cpp will transfer the context every step where it wants the
 			// engine to handle the testing.
 			if(testContext && !testContext->testToRun.empty())
-				testContext->testToRun.back()->Step(*testContext, player, activeCommands, isActive);
+				testContext->testToRun.back()->Step(*testContext, player, activeCommands);
 			ai.UpdateKeys(player, activeCommands);
 		}
 	}

@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "Ship.h"
 #include "System.h"
+#include "TestContext.h"
 #include "TestData.h"
 
 #include <SDL2/SDL.h>
@@ -352,9 +353,8 @@ const string &Test::Name() const
 
 
 
-// The isActive parameter tells us if the game has the Engine active (if the player
-// is flying around in his/her flagship).
-void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive, bool isActive) const
+// Check the game status and perform the next test action.
+void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive) const
 {
 	// Tests always wait until the game is fully loaded.
 	if(!GameData::IsLoaded())
@@ -451,7 +451,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 				break;
 			case TestStep::Type::INPUT:
 				if(stepToRun.command)
-					commandToGive = stepToRun.command;
+					commandToGive |= stepToRun.command;
 				if(!stepToRun.inputKeys.empty())
 				{
 					// TODO: handle keys also in-flight (as single inputset)
