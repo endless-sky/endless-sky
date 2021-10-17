@@ -290,8 +290,8 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			{
 				// The command will be ignored, since we only support commands
 				// from within the engine at the moment.
-				Command commandToGive;
-				testContext.testToRun.back()->Step(testContext, player, commandToGive, false);
+				Command ignored;
+				testContext.testToRun.back()->Step(testContext, player, ignored, false);
 			}
 			// Skip drawing 29 out of every 30 in-flight frames during testing to speedup testing (unless debug mode is set).
 			// We don't skip UI-frames to ensure we test the UI code more.

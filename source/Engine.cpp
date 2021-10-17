@@ -490,7 +490,7 @@ void Engine::Step(bool isActive)
 	}
 	// Clear the testContext every step. Main.cpp will provide the context before
 	// every step where it expects the Engine to handle testing.
-	testContext=nullptr;
+	testContext = nullptr;
 	
 	wasActive = isActive;
 	Audio::Update(center);
