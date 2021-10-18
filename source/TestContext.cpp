@@ -19,9 +19,8 @@ using namespace std;
 
 
 // Constructor to be used when running an actual test.
-TestContext::TestContext(const Test *toRun)
+TestContext::TestContext(const Test *toRun) : testToRun(1, toRun)
 {
-	testToRun.push_back(toRun);
 }
 
 
