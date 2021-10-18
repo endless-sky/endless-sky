@@ -58,9 +58,9 @@ mission "I Want To Be A Pirate"
 		conversation "I Want To Be A Pirate"
 	to complete
 		or
-			has "Pirate Intro - Boarding: done"
-			has "Pirate Intro - Wealth: done"
-			has "Pirate Intro - Domination: done"
+			has "Pirate Intro: Boarding: done"
+			has "Pirate Intro: Wealth: done"
+			has "Pirate Intro: Domination: done"
 	on complete
 		event "became a pirate"
 		conversation "I Want To Be A Pirate Conclusion"
@@ -125,7 +125,7 @@ conversation "I Want To Be A Pirate Conclusion"
 	`	You're paid no mind as you strut into the tavern and progress to another back room where, just as they said, the three pirates you'd met before are sharing drinks. Heads are lifted from tankards to regard you. The Corsair seems quite pleased to see you, assisted as he is by the reddened bonhomie of liquor. The fatigues-clad Mercenary remains impassive, her mien businesslike. And the Capo? He's just choked on his drink.`
 	`	"Well slap a collar on me and sell me as a miner, you're still drawing breath. Didn't expect that. Here bearing profitable news, I trust." The Capo's speech is as metallic as ever, though his usual semi-musical tones sound somewhat... drowned. Sounds like he sucked some beer into his windpipe with that last sip.`
 	branch tributeskip
-		not "tribute: Darkstone"			
+		not "tribute: Darkstone"
 	#the player claimed Darkstone as a tributary but never visited their new subjects, or took no action upon finding slavers abducting colonists.
 	branch conqueror
 		and
@@ -205,7 +205,7 @@ conversation "I Want To Be A Pirate Conclusion"
 	#`	The cyborg offers a genial smile - or at least as much as one can without lips. It's uncanny how expressive articulated artifical jaws can be these days.`
 	label tributeskip
 	branch boardingskip
-		not "Pirate Intro - Boarding: done"
+		not "Pirate Intro: Boarding: done"
 	choice	
 		`	(You slap the top of the Corsair's trunk.) "I've brought the antique lockbox and defeated the other pirates who came for it."`
 	`	The Corsair, clearly drunk, does his best to straighten up and smile at you. "Well, let's see what we've got then!"`
@@ -229,6 +229,8 @@ conversation "I Want To Be A Pirate Conclusion"
 	#in the campaign-integrated branch he'll ask you to keep the journal and deliver it to Amity Goodearth.
 	`	"Anyhow. This is a mighty important find, but unfortunately incomplete. I'll be hanging onto it, and ye've my thanks for your work in securing this. Family heirloom, and such. Now, yer payment... I've some contacts that'll be pleased to know of yer skills, and folk who'll make sure your name is known where it matters. Congratulations, the life of a pirate ye may call yer own."`
 	label boardingskip
+	branch pirate
+		not "Pirate Intro: Wealth: done"
 	branch smugglingalt
 		has "clobbered"
 	choice
@@ -244,7 +246,6 @@ conversation "I Want To Be A Pirate Conclusion"
 	choice
 		`	(Hand over the canister.)`
 	`	The merc gingerly takes the hazard-warning emblazoned canister from you, as if not trusting you to not drop it. The other two at the table visibly exhale in relief once the canister's out of your hands.`
-		goto pirate
 	label pirate
 	`	"And we've got one more thing for you", the Corsair comments before pulling a small booklet out of his coat. It's slid across the table before you. It appears you've been given some sort of coupon book for an establishment called "SLEEZY STEEV'S SCRAP AND SURPLUS". Most of the coupons have been torn out, but one of the remaining offers apparently entitles you to a hefty discount on black and red paint.`
 	`	"You're a pirate now, matey. Best look the part."`
@@ -259,8 +260,7 @@ conversation "I Want To Be A Pirate Conclusion"
 mission "Pirate Overview"
 	landing
 	to offer
-		has "I Want To Be A Pirate: offered"
-		not "I Want To Be A Pirate: declined"
+		has "I Want To Be A Pirate: active"
 	on offer
 		conversation
 			`You think back to your conversation in that cramped, stinking drinking hole, of the colorful characters met and the tasks assigned.`
@@ -272,7 +272,7 @@ mission "Pirate Overview"
 
 
 
-mission "Pirate Intro - Boarding"
+mission "Pirate Intro: Boarding"
 	landing
 	name "Board a merchant"
 	description `Board a merchant.`
@@ -317,6 +317,8 @@ mission "Plunder Defense"
 	repeat
 	source
 		government "Merchant (Target)"
+	to offer
+		has "Pirate Intro: Boarding: active"
 	on offer
 		conversation
 			`You have successfully boarded the merchant, and right on cue, several competitors arrive. Just as the Corsair promised, an aging chest lies among the cargo. You barely have enough time to secure it aboard your ship before the radar contacts get too close for comfort. Defend yourself!`
@@ -385,7 +387,9 @@ mission "Lockbox Snooping"
 		log `	"Today's the day I'm born anew. Not with one of those cults, but with the 'merchant' who comes by every season. He said there's room on his crew for a young man who's not afraid to get his hands dirty, and if I help around the ship, and he likes me by the time he takes off again, I can stay and take a share in their next haul... But I don't want to bring the law down on my family. I'll need a new name. 'Voidmaster' sounds cool. I'll see if I can get the crew to call me that."`
 		fail
 
-mission "Pirate Intro - Wealth"
+
+
+mission "Pirate Intro: Wealth"
 	landing
 	name "Pay up"
 	description `Bring 1 million credits to Smuggler's Den, then head to <destination>.`
@@ -396,21 +400,21 @@ mission "Pirate Intro - Wealth"
 	to fail
 		has "I Want To Be A Pirate: done"
 	to complete
-		has "Pirate Intro - Payment: active"
+		has "Pirate Intro: Payment: active"
 	
 
 
-mission "Pirate Intro - Payment"
+mission "Pirate Intro: Payment"
 	invisible
 	landing
 	to offer
-		has "Pirate Intro - Wealth: active"
+		has "Pirate Intro: Wealth: active"
 		credits > 1000000
 	source "Smuggler's Den"
 	on offer
 		conversation "Den Handoff"
 	to fail
-		has "Pirate Intro - Wealth: done"
+		has "Pirate Intro: Wealth: done"
 	to complete
 		never
 		
@@ -519,7 +523,7 @@ conversation "Den Handoff"
 	
 
 
-mission "Pirate Intro - Domination"
+mission "Pirate Intro: Domination"
 	landing
 	name "Dominate a planet"
 	description `Dominate Darkstone.`
