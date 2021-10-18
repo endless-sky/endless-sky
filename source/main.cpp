@@ -278,10 +278,16 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		if(!testContext.testToRun.empty())
 		{
 			testContext.testToRun.back()->Step(testContext, menuPanels, gamePanels, player);
-			// Skip drawing 29 out of every 30 frames during testing to speedup testing (unless debug mode is set).
-			skipFrame = (skipFrame + 1) % 30;
-			if(skipFrame && !debugMode)
-				continue;
+			// Skip drawing 29 out of every 30 in-flight frames during testing to speedup testing (unless debug mode is set).
+			// We don't skip UI-frames to ensure we test the UI code more.
+			if(inFlight && !debugMode)
+			{
+				skipFrame = (skipFrame + 1) % 30;
+				if(skipFrame)
+					continue;
+			}
+			else
+				skipFrame = 0;
 		}
 		// Caps lock slows the frame rate in debug mode.
 		// Slowing eases in and out over a couple of frames.
