@@ -44,6 +44,7 @@ news "human merchant anywhere"
 			"Don't call the Luna shipyard workers Lunatics. They seem to be very sensitive about it."
 			"The people from Earth are called Earthlings, but the people from Mars don't want to be called Martians due to those stupid old science fiction stories."
 			"Somebody installed my anti-gravity plates upside-down. Luckily I saw it in time! Can you imagine what would have happened if I wouldn't have seen it?"
+			"To the optimist the glass is half full, but zero gravity is even better, because there you don't even need the glass."
 		word
 			`"`
 
@@ -476,13 +477,14 @@ news "tour guide"
 		word
 			"I've delivered the same speech so many times now that the whole thing runs on continuous repeat in my head when I'm trying to sleep."
 			"Some famous people who you've probably never heard of died near here. If I weren't on break right now I would tell you all about them."
-			"At least they don't make me dress up like anything. I knew a woman whose tour job made her dress up like a twenty-first century person. Apparently back then they all wore very tight-fitting pants."
+			"At least they don't make me dress up like anything. I knew a woman whose tour job made her dress up like someone from the 21st century. Apparently back then they all wore very tight-fitting pants."
 			"It's kind of amazing to me that people would travel halfway across the galaxy to see this dump. To me, it's the one place I've always wished I could get away from."
 			"Always check in at the spaceport. You might find an unprepared tourist looking for a return trip. Trust me, I've seen it far too many times."
 			"If you have any tourists onboard that want to go anti-gravity boarding, then let them ask for me. I'll pay you commission."
 			"Mind the gravity!"
 			"I'm handing out astronaut badges by the dozen for first-time space travelers. It lost a bit of glamour now that every fool can book a flight on a spaceship."
 			"As I get older, I remember all the people I lost along the way. Maybe I'm in the wrong profession."
+			"Before the hyperdrive, rich people paid large sums of credits to be very visible going into space. Nowadays they pay large sums of credits to be invisible on-planet."
 		word
 			`"`
 
@@ -871,6 +873,7 @@ news "technical writer"
 			"Documents are written once, and read many times. So every minute I spend polishing someone's writing will pay off many times over in the long run."
 			"Communication skills are essential no matter what your job is. If you can't write well, people will think you're an idiot. Or at least, people like me will think that."
 			"Be careful with the word 'awesome' on other planets. Here it means something great, but somehow the meaning changed to something awful on some other planets."
+			"Can you imagine that in the time before the Republic there were dozens of different programming languages? I wonder how they ever got any programming jobs done."
 		word
 			`"`
 
@@ -1174,6 +1177,9 @@ news "human tourism"
 			"Hey! Where's platform 5? I need to board there in a few minutes!"
 			"Have you seen my luggage? I'm sure I put it here some minutes ago."
 			"We visited an exhibition about ancient military weapons; stuff like stealth fighters, artillery and tanks. It all became obsolete so fast when we got cheap spaceflight."
+			"I can travel millions of kilometers to another planet, cheaply and within a day; but going to the other side of this planet, just a few thousands kilometers, costs me a fortune and a week of travel time."
+			"Can I speak to the manager? There was a scratch on my cabin-door and it really irritated me. I think my whole vacation is ruined now."
+			"Can I speak to the manager? The landing on this planet was a bit rough and I'm seriously considering filing a complaint."
 		word
 			`"`
 
@@ -1379,6 +1385,7 @@ news "human merchant in pirate space"
 			"I have to admit, the thought of being a pirate is tempting."
 			"You're not going to kill me, are you?"
 			"I flew around half the galaxy to pick up a wedding banquet, but it wasn't here and they stole my cargo instead! The cake was a lie!"
+			"The optimist has the glass half full, the pessimist has the glass half empty, but here you are already lucky if the glass doesn't get shot, stolen, or broken before you take your first sip."
 		word
 			`"`
 
