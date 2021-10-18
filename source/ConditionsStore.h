@@ -32,14 +32,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // formulae).
 class ConditionsStore {
 public:
-	// Storage types for conditions;
-	// - VALUE means that the condition-value is stored directly in this store.
-	// - PREFIX_PROVIDER means that conditions starting with the given prefix
-	//         are all handled by the given provider.
-	// - EXACT_PROVIDER means that the condition with the exact name is handled
-	//         by the given provider.
-	enum StorageType {VALUE, PREFIX_PROVIDER, EXACT_PROVIDER};
-
 	// Class for DerivedProviders, the (lambda) functions that provide access
 	// to the derived conditions are registered in this class.
 	class DerivedProvider
@@ -92,9 +84,8 @@ private:
 		// to access the prefixed condition provider).
 	
 	public:
-		StorageType type = VALUE;
-		int64_t value;
-		DerivedProvider *provider;
+		int64_t value = 0;
+		DerivedProvider *provider = nullptr;
 	};
 	
 	

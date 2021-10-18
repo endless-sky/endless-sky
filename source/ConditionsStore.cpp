@@ -53,7 +53,7 @@ void ConditionsStore::DerivedProvider::SetEraseFun(std::function<bool(const std:
 
 int64_t ConditionsStore::ConditionEntry::Get(const string &name) const
 {
-	if(type == VALUE)
+	if(!provider)
 		return value;
 	
 	return provider->getFun(name);
@@ -63,7 +63,7 @@ int64_t ConditionsStore::ConditionEntry::Get(const string &name) const
 
 bool ConditionsStore::ConditionEntry::Has(const string& name) const
 {
-	if(type == VALUE)
+	if(!provider)
 		return true;
 	
 	return provider->hasFun(name);
@@ -73,7 +73,7 @@ bool ConditionsStore::ConditionEntry::Has(const string& name) const
 
 bool ConditionsStore::ConditionEntry::Set(const string& name, int64_t newValue)
 {
-	if(type == VALUE)
+	if(!provider)
 	{
 		value = newValue;
 		return true;
@@ -87,7 +87,7 @@ bool ConditionsStore::ConditionEntry::Set(const string& name, int64_t newValue)
 bool ConditionsStore::ConditionEntry::Erase(const string& name)
 {
 	// The Erase from ConditionsStore should have handled this case.
-	if(type == VALUE)
+	if(!provider)
 		return false;
 	
 	return provider->eraseFun(name);
@@ -154,7 +154,7 @@ bool ConditionsStore::PrimariesIterator::operator!=(const ConditionsStore::Prima
 // to a primary (value) condition or to the end-iterator value.
 void ConditionsStore::PrimariesIterator::MoveToValueCondition()
 {
-	while((condMapIt != condMapEnd) && (condMapIt->second).type != StorageType::VALUE)
+	while((condMapIt != condMapEnd) && (condMapIt->second).provider)
 		condMapIt++;
 	
 	if(condMapIt != condMapEnd)
@@ -241,7 +241,7 @@ bool ConditionsStore::Erase(const string &name)
 	if(!ce)
 		return true;
 	
-	if(ce->type == VALUE)
+	if(!(ce->provider))
 	{
 		storage.erase(name);
 		return true;
@@ -280,7 +280,6 @@ ConditionsStore::DerivedProvider &ConditionsStore::GetProviderPrefixed(const str
 		std::forward_as_tuple(prefix),
 		std::forward_as_tuple(prefix, true));
 	storage[prefix].provider = &(it.first->second);
-	storage[prefix].type = PREFIX_PROVIDER;
 	return it.first->second;
 }
 
@@ -293,7 +292,6 @@ ConditionsStore::DerivedProvider &ConditionsStore::GetProviderNamed(const string
 		std::forward_as_tuple(name),
 		std::forward_as_tuple(name, false));
 	storage[name].provider = &(it.first->second);
-	storage[name].type = EXACT_PROVIDER;
 	return it.first->second;
 }
 
@@ -320,10 +318,13 @@ ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &name)
 	--it;
 	// The entry is valid if we have an exact string match, but also when we have a
 	// prefix entry and the prefix part matches.
-	if(!(name.compare(0, it->first.length(), it->first)) &&
-			(it->second.type == PREFIX_PROVIDER || it->first.length() == name.length()))
-		return &(it->second);
-	
+	if(!(name.compare(0, it->first.length(), it->first)))
+	{
+		DerivedProvider *provider = it->second.provider;
+		if(it->first.length() == name.length() ||
+				(provider && provider->isPrefixProvider))
+			return &(it->second);
+	}
 	return nullptr;
 }
 
@@ -342,9 +343,12 @@ const ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &n
 	--it;
 	// The entry is valid if we have an exact stringmatch, but also when we have a
 	// prefix entry and the prefix part matches.
-	if(!(name.compare(0, it->first.length(), it->first)) &&
-			(it->second.type == PREFIX_PROVIDER || it->first.length() == name.length()))
-		return &(it->second);
-	
+	if(!(name.compare(0, it->first.length(), it->first)))
+	{
+		DerivedProvider *provider = it->second.provider;
+		if(it->first.length() == name.length() ||
+				(provider && provider->isPrefixProvider))
+			return &(it->second);
+	}
 	return nullptr;
 }
