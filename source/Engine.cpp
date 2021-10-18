@@ -1127,6 +1127,24 @@ void Engine::SelectGroup(int group, bool hasShift, bool hasControl)
 
 
 
+// Break targeting on all projectiles between the player and the given
+// government; gov projectiles stop targeting the player and player's
+// projectiles stop targeting gov.
+void Engine::BreakTargeting(const Government *gov)
+{
+	const Government *playerGov = GameData::PlayerGovernment();
+	for(Projectile &projectile : projectiles)
+	{
+		const Government *projectileGov = projectile.GetGovernment();
+		const Government *targetGov = projectile.TargetGovernment();
+		if((projectileGov == playerGov && targetGov == gov)
+			|| (projectileGov == gov && targetGov == playerGov))
+			projectile.BreakTarget();
+	}
+}
+
+
+
 void Engine::EnterSystem()
 {
 	ai.Clean();
