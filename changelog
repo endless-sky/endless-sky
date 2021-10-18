@@ -1,4 +1,6 @@
 Version 0.9.15:
+  * Big changes:
+    * Completely redid and improved the graphics for all existing stars and added various new star graphics. Also changed the stars for some systems in human space to match what is known about the real star of the same name. (Matteo "Lead" M., @ravenshining)
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@Anarchist2, @nathan-b, @oo13, @Pointedstick, @roadrunner56, @tehhowch, @thomasballinger, @Zitchas)
@@ -6,6 +8,7 @@ Version 0.9.15:
       * Deep merchant fleets no longer have Deep Security names. (@peteryager)
       * Ensured all ship, thumbnail, and outfit sprites have even dimensions to avoid blurriness caused by scaling. (@Anarchist2)
       * Fixed a job with impossible to obtain offer conditions. (@Terin)
+      * Fixed a mission that was assigning reputation for a government that no longer exists. (@Amazinite)
     * Engine bugs:
       * Ships that are already being carried are no longer double-counted when calculating the number of available bays. (@benflodge)
       * The destination of an invisible mission is no longer visible when opening the map during a conversation or dialog from the mission. (@Amazinite)
@@ -38,6 +41,7 @@ Version 0.9.15:
       * Added more civilian and pirate ship names. (@Pointedstick)
       * Added a short series of missions to the Deep. (@SpearDane)
       * Hai space now contains a series of ancient space stations, some still in use, but some long left dormant, having fulfilled their ancient purpose long ago. (@beccabunny, @MasterOfGrey)
+      * Added more Republic ship names. (@Corraban2)
     * Mission changes:
       * Killing both Arfecta that defend the Wanderer planets now causes hostility with the Wanderers upon landing on any of their planets, not just one specific planet. (@Terin)
       * The Deep Archaeology and Unfettered first contact missions now contain branches if the player knows about the Pug or Sheragi respectively before reaching those missions. (@BlazingDiesel)
@@ -54,7 +58,6 @@ Version 0.9.15:
       * Buffed the cargo and bunk capacities of civilian Coalition ships to make them more appealing compared to when you're likely to reach them. (@Arachi-Lover)
     * Graphics:
       * Created a new planet sprite for Saturn. (@ravenshining)
-      * Updated the graphics for all existing stars while adding various new star graphics. Also changed the stars for some systems in human space to match what is known about the real star of the same name. (Matteo "Lead" M., @ravenshining)
     * Other:
       * The Pug worlds at the end of the main campaign now appear as uninhabited after the Pug flee before becoming inhabited by humanity. (@Anarchist2)
       * Reworded a technically incorrect news entry. (@Anarchist2)
@@ -88,6 +91,7 @@ Version 0.9.15:
       * The data syntax for requiring a license on a ship or outfit now accepts one-line specifications. (@tehhowch)
       * Some heat is now removed when firing ammunition with mass. (@tehhowch)
       * Updated collision mask generation to allow for ships to contain holes or disjointed regions. (@flaviojs, @tehhowch)
+      * Bribing a government now breaks all projectile collision between you and the government you bribed, preventing accidentally becoming hostile again just after bribing. (@Amazinite, @tehhowch)
   * User interface:
     * Pilot playtime is now visible in the player info panel. (@Terin)
     * The map is now able to be opened when at the end of a conversation. (@Amazinite)
@@ -106,7 +110,7 @@ Version 0.9.15:
     * Wormholes without a sprite no longer draw a wormhole link arrow on the map. (@quyykk)
   * Under the hood:
     * Unified the code for damage dealt to ships by hazards and projectiles. (@petervdmeer)
-    * Updated the Code::Blocks URL in the README files to use https.
+    * Updated the Code::Blocks URL in the README files to use https. (@TotalCaesar659)
     * Improved handling when image buffer allocation fails. (@tehhowch)
     * Simplified move-ctor and assignment operator for the File class. (@tehhowch)
     * Moved the Windows UTF16-UTF8 conversion helpers to the text/utf8 class. (@tehhowch)
