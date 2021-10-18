@@ -68,11 +68,6 @@ private:
 	class ConditionEntry
 	{
 	public:
-		int64_t Get(const std::string& name) const;
-		bool Has(const std::string& name) const;
-		bool Set(const std::string& name, int64_t newValue);
-		bool Erase(const std::string& name);
-		
 		// If we want to allow access to the conditions using `operator[]`
 		// on ConditionsStore, then we could implement the following functions:
 		//   operator int64_t() const;

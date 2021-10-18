@@ -51,50 +51,6 @@ void ConditionsStore::DerivedProvider::SetEraseFun(std::function<bool(const std:
 
 
 
-int64_t ConditionsStore::ConditionEntry::Get(const string &name) const
-{
-	if(!provider)
-		return value;
-	
-	return provider->getFun(name);
-};
-
-
-
-bool ConditionsStore::ConditionEntry::Has(const string& name) const
-{
-	if(!provider)
-		return true;
-	
-	return provider->hasFun(name);
-};
-
-
-
-bool ConditionsStore::ConditionEntry::Set(const string& name, int64_t newValue)
-{
-	if(!provider)
-	{
-		value = newValue;
-		return true;
-	}
-	
-	return provider->setFun(name, newValue);
-};
-
-
-
-bool ConditionsStore::ConditionEntry::Erase(const string& name)
-{
-	// The Erase from ConditionsStore should have handled this case.
-	if(!provider)
-		return false;
-	
-	return provider->eraseFun(name);
-};
-
-
-
 ConditionsStore::PrimariesIterator::PrimariesIterator(CondMapItType it, CondMapItType endIt) : condMapIt(it), condMapEnd(endIt)
 {
 	MoveToValueCondition();
@@ -190,7 +146,10 @@ int64_t ConditionsStore::Get(const string &name) const
 	if(!ce)
 		return 0;
 	
-	return ce->Get(name);
+	if(!ce->provider)
+		return ce->value;
+	
+	return ce->provider->getFun(name);
 }
 
 
@@ -201,7 +160,10 @@ bool ConditionsStore::Has(const string &name) const
 	if(!ce)
 		return false;
 	
-	return ce->Has(name);
+	if(!ce->provider)
+		return true;
+	
+	return ce->provider->hasFun(name);
 }
 
 
@@ -227,8 +189,12 @@ bool ConditionsStore::Set(const string &name, int64_t value)
 		(storage[name]).value = value;
 		return true;
 	}
-	
-	return ce->Set(name, value);
+	if(!ce->provider)
+	{
+		ce->value = value;
+		return true;
+	}
+	return ce->provider->setFun(name, value);
 }
 
 
@@ -246,8 +212,7 @@ bool ConditionsStore::Erase(const string &name)
 		storage.erase(name);
 		return true;
 	}
-	
-	return ce->Erase(name);
+	return ce->provider->eraseFun(name);
 }
 
 
