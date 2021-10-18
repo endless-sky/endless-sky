@@ -51,6 +51,87 @@ void ConditionsStore::DerivedProvider::SetEraseFun(std::function<bool(const std:
 
 
 
+ConditionsStore::ConditionEntry::operator int64_t() const
+{
+	if(!provider)
+		return value;
+	
+	const string &key = prefixedProviderKey.empty() ? provider->name : prefixedProviderKey;
+	return provider->getFun(key);
+}
+
+
+
+ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator=(int64_t val)
+{
+	if(!provider)
+		value = val;
+	else
+	{
+		const string &key = prefixedProviderKey.empty() ? provider->name : prefixedProviderKey;
+		provider->setFun(key, val);
+	}
+	return *this;
+}
+
+
+
+ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator++()
+{
+	if(!provider)
+		++value;
+	else
+	{
+		const string &key = prefixedProviderKey.empty() ? provider->name : prefixedProviderKey;
+		provider->setFun(key, provider->getFun(key) + 1);
+	}
+	return *this;
+}
+
+
+
+ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator--()
+{
+	if(!provider)
+		--value;
+	else
+	{
+		const string &key = prefixedProviderKey.empty() ? provider->name : prefixedProviderKey;
+		provider->setFun(key, provider->getFun(key) - 1);
+	}
+	return *this;
+}
+
+
+
+ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator+=(int64_t val)
+{
+	if(!provider)
+		value += val;
+	else
+	{
+		const string &key = prefixedProviderKey.empty() ? provider->name : prefixedProviderKey;
+		provider->setFun(key, provider->getFun(key) + val);
+	}
+	return *this;
+}
+
+
+
+ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator-=(int64_t val)
+{
+	if(!provider)
+		value -= val;
+	else
+	{
+		const string &key = prefixedProviderKey.empty() ? provider->name : prefixedProviderKey;
+		provider->setFun(key, provider->getFun(key) - val);
+	}
+	return *this;
+}
+
+
+
 ConditionsStore::PrimariesIterator::PrimariesIterator(CondMapItType it, CondMapItType endIt) : condMapIt(it), condMapEnd(endIt)
 {
 	MoveToValueCondition();
@@ -213,6 +294,44 @@ bool ConditionsStore::Erase(const string &name)
 		return true;
 	}
 	return ce->provider->eraseFun(name);
+}
+
+
+
+ConditionsStore::ConditionEntry &ConditionsStore::operator[](const std::string &name)
+{
+	// If storage in empty, then create the value condition directly.
+	if(storage.empty())
+		return storage[name];
+
+	// If no candidate entries are found, then create it.
+	auto it = storage.upper_bound(name);
+	if(it == storage.begin())
+		return storage[name];
+	
+	--it;
+	// The entry is valid if we have an exact string match, but also when we have a
+	// prefix entry and the prefix part matches.
+	if(!(name.compare(0, it->first.length(), it->first)))
+	{
+		// If we have an exact match, then we have the entry we want.
+		if(it->first.length() == name.length())
+			return it->second;
+		
+		// If we found a matched prefixed entry provider, but no exact match for
+		// the entry itself, then create a new prefixed entry based on the one we
+		// found.
+		DerivedProvider *provider = it->second.provider;
+		if(provider && provider->isPrefixProvider)
+		{
+			ConditionEntry &ce = storage[name];
+			ce.provider = provider;
+			ce.prefixedProviderKey = name;
+			return ce;
+		}
+	}
+	// If the entry is not found, then create it.
+	return storage[name];
 }
 
 

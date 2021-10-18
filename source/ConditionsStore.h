@@ -32,11 +32,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // formulae).
 class ConditionsStore {
 public:
+	// Forward declaration, needed to make ConditionEntry a friend of the
+	// DerivedProvider.
+	class ConditionEntry;
+
 	// Class for DerivedProviders, the (lambda) functions that provide access
 	// to the derived conditions are registered in this class.
 	class DerivedProvider
 	{
 	friend ConditionsStore;
+	friend ConditionEntry;
 	public:
 		// Functions to set the lambda functions for accessing the conditions.
 		void SetGetFun(std::function<int64_t(const std::string&)> newGetFun);
@@ -63,30 +68,30 @@ public:
 	};
 
 	
-private:
-	// Private class that describes the internal storage format of this conditions store.
+	// Storage entry for a condition. Can act as a int64_t proxy when operator[] is used for access
+	// to conditions in the ConditionsStore.
 	class ConditionEntry
 	{
+	friend ConditionsStore;
 	public:
-		// If we want to allow access to the conditions using `operator[]`
-		// on ConditionsStore, then we could implement the following functions:
-		//   operator int64_t() const;
-		//   ConditionEntry &operator=(int64_t val);
-		//   ConditionEntry &operator+=(int64_t val);
-		//   ConditionEntry &operator-=(int64_t val);
-		// Implementing those functions should already be possible for Value
-		// and for Exact conditions. To also support this for Prefix conditions
-		// requires some additional changes to allow prefix-conditions to be in
-		// the list multiple times (where each entry uses a different string key
-		// to access the prefixed condition provider).
+		// int64_t proxy helper functions. Those functions allow access to the conditions
+		// using `operator[]` on ConditionsStore.
+		operator int64_t() const;
+		ConditionEntry &operator=(int64_t val);
+		ConditionEntry &operator++();
+		ConditionEntry &operator--();
+		ConditionEntry &operator+=(int64_t val);
+		ConditionEntry &operator-=(int64_t val);
 	
-	public:
+	private:
 		int64_t value = 0;
 		DerivedProvider *provider = nullptr;
+		// The exact name of the prefixed derived condition that we want to
+		// access using this ConditionEntry.
+		std::string prefixedProviderKey;
 	};
 	
-	
-public:
+
 	// Input_iterator helper class to iterate over primary conditions.
 	// This can be used when saving primary conditions to savegames and/or
 	// for displaying some data based on primary conditions.
@@ -143,6 +148,9 @@ public:
 	bool Add(const std::string &name, int64_t value);
 	bool Set(const std::string &name, int64_t value);
 	bool Erase(const std::string &name);
+	
+	// Direct access to a specific condition (using the ConditionEntry as proxy).
+	ConditionEntry &operator[](const std::string &name);
 	
 	// Direct (read-only) access to the stored primary conditions.
 	PrimariesIterator PrimariesBegin() const;
