@@ -645,8 +645,8 @@ news "athlete"
 			"Have you ever done the long jump on Longjump? Even an untrained individual can jump ten meters in that environment!"
 			"I sure am glad we'll never have to compete against any Alphas. We would all lose!"
 			"Does your ship have a weight room?"
-			"I'm hoping to get a sponsorhip, but nobody here wants to partner with me. Could you recommend a planet where I might find better results?"
-			"I don't expect everyone to be as fit as I am, but do remember to get up and excercise a little every once and a while!"		
+			"I'm hoping to get a sponsorship, but nobody here wants to partner with me. Could you recommend a planet where I might find better results?"
+			"I don't expect everyone to be as fit as I am, but do remember to get up and exercise a little every once in a while!"		
 		word
 			`"`
 

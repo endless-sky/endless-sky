@@ -78,14 +78,8 @@ namespace{
 			+ "\", or \"" + lastValidIt->second + '"';
 	}
 	
-	// Send an SDL_event to one of the UIs.
-	bool EventToUI(UI &menuOrGamePanels, const SDL_Event &event)
-	{
-		return menuOrGamePanels.Handle(event);
-	}
-	
-	// Send an keyboard input to one of the UIs.
-	bool KeyInputToUI(UI &menuOrGamePanels, const char* keyName, Uint16 modKeys)
+	// Prepare an keyboard input to one of the UIs.
+	bool KeyInputToEvent(const char* keyName, Uint16 modKeys)
 	{
 		// Construct the event to send (from keyboard code and modifiers)
 		SDL_Event event;
@@ -94,9 +88,7 @@ namespace{
 		event.key.repeat = 0;
 		event.key.keysym.sym = SDL_GetKeyFromName(keyName);
 		event.key.keysym.mod = modKeys;
-		// Sending directly as event to the UI. We might want to switch to
-		// SDL_PushEvent in the future to use the regular SDL event-handling loops.
-		return EventToUI(menuOrGamePanels, event);
+		return SDL_PushEvent(&event);
 	}
 	
 	string ShipToString(const Ship &ship)
@@ -487,9 +479,9 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 					
 					// Both get as well as the cast can result in a nullpointer. In both cases we
 					// will fail the test, since we expect the MainPanel to be here.
-					auto mainPanel = dynamic_cast<MainPanel *>(gamePanels.Root().get());
+					auto mainPanel = gamePanels.Root().get();
 					if(!mainPanel)
-						Fail(context, player, "root gamepanel of wrong type when sending command");
+						Fail(context, player, "root gamepanel not found when sending command");
 
 					mainPanel->GiveCommand(stepToRun.command);
 				}
@@ -498,16 +490,8 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 					// TODO: handle keys also in-flight (as single inputset)
 					// TODO: combine keys with mouse-inputs
 					for(const string &key : stepToRun.inputKeys)
-					{
-						const char* inputChar = key.c_str();
-						if(!menuPanels.IsEmpty())
-						{
-							if(!KeyInputToUI(menuPanels, inputChar, stepToRun.modKeys))
-								Fail(context, player, "key input on menuPanel failed");
-						}
-						else if(!KeyInputToUI(gamePanels, inputChar, stepToRun.modKeys))
-							Fail(context, player, "key input on gamePanel failed");
-					}
+						if(!KeyInputToEvent(key.c_str(), stepToRun.modKeys))
+							Fail(context, player, "key input towards SDL eventqueue failed");
 				}
 				// TODO: handle mouse inputs
 				// Make sure that we run a gameloop to process the input.

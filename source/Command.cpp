@@ -227,6 +227,7 @@ void Command::Load(const DataNode &node)
 	for(int i = 1; i < node.Size(); ++i)
 	{
 		static const map<string, Command> lookup = {
+			{"none", Command::NONE},
 			{"menu", Command::MENU},
 			{"forward", Command::FORWARD},
 			{"left", Command::LEFT},
@@ -247,10 +248,15 @@ void Command::Load(const DataNode &node)
 			{"cloak", Command::CLOAK},
 			{"map", Command::MAP},
 			{"info", Command::INFO},
+			{"fullscreen", Command::FULLSCREEN},
+			{"fastforward", Command::FASTFORWARD},
 			{"fight", Command::FIGHT},
 			{"gather", Command::GATHER},
 			{"hold", Command::HOLD},
-			{"ammo", Command::AMMO}
+			{"ammo", Command::AMMO},
+			{"wait", Command::WAIT},
+			{"stop", Command::STOP},
+			{"shift", Command::SHIFT}
 		};
 		
 		auto it = lookup.find(node.Token(i));

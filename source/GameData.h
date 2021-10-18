@@ -36,6 +36,7 @@ class Government;
 class Hazard;
 class ImageSet;
 class Interface;
+class MaskManager;
 class Minable;
 class Mission;
 class News;
@@ -149,6 +150,8 @@ public:
 	static const std::map<std::string, std::string> &HelpTemplates();
 	
 	static const std::map<std::string, std::string> &PluginAboutText();
+	
+	static MaskManager &GetMaskManager();
 	
 	
 private:
