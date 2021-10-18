@@ -34,6 +34,8 @@ conversation "You Are A Pirate"
 	`	Some paint covers all manner of sin. Some speaks of the intention to commit yet more. You've applied the latter sort to your ship.`
 		accept
 
+
+
 mission "I Want To Be A Pirate"
 	clearance
 	name "Become a pirate"
@@ -61,139 +63,7 @@ mission "I Want To Be A Pirate"
 			has "Pirate Intro - Domination: done"
 	on complete
 		event "became a pirate"
-		conversation
-			`	Heads turn to regard you as you disembark into the Greenrock spaceport. Capos, pirates, slavers and smugglers regard you, size you up, and turn away with disinterest. That's far better than the ugly leers you used to get. Perhaps it's a swagger in your step, or simply a confident bearing that you now have - maybe you're just imagining things and reading what you want into the manifold expressions within the human morass that constitutes a busy port.`
-			`	You're paid no mind as you strut into the tavern and progress to another back room where, just as they said, the three pirates you'd met before are sharing drinks. Heads are lifted from tankards to regard you. The Corsair seems quite pleased to see you, assisted as he is by the reddened bonhomie of liquor. The fatigues-clad Mercenary remains impassive, her mien businesslike. And the Capo? He's just choked on his drink.`
-			`	"Well slap a collar on me and sell me as a miner, you're still drawing breath. Didn't expect that. Here bearing profitable news, I trust." The Capo's speech is as metallic as ever, though his usual semi-musical tones sound somewhat... drowned. Sounds like he sucked some beer into his windpipe with that last sip.`
-			branch tributeskip
-				not "tribute: Darkstone"			
-			#the player claimed Darkstone as a tributary but never visited their new subjects, or took no action upon finding slavers abducting colonists.
-			branch conqueror
-				and
-					not "hero of Darkstone"
-					not "slaver of Darkstone"
-			#the player claimed Darkstone as a tributary and defended the colonists against a slaver raid.
-			branch defender
-				or
-					has "hero of Darkstone"
-					has "defender of Darkstone"
-			#the player sold the colonists of Darkstone to slavers
-			branch slaver
-				has "slaver of Darkstone"
-			label conqueror
-			choice
-				`	(You address the Capo.) "I conquered Darkstone, defeating the gang that once claimed it. The inhabitants now offer me tribute."`
-			`	The Capo nods in approval. "And a mighty fine job you did, too. Without those ruffians my boys were able to ply their trade far more easily. You've my thanks - and, as I promised, I've got some introductions to make on your behalf.`
-			choice
-				`	"What trade is that, exactly?"`
-				`	"Thank you. I've conquered a world, but I'm only getting started."`
-					goto outlawapproval
-			`	"Human resources, naturally." The Capo lets out a dark laugh, eyes thin and aspect sharklike as he fixes you with a predatory grin.`
-			choice
-				`	(You remain impassive, not caring one way or another about the fates of others than yourself - slavery is neither your business nor your problem)`
-					goto outlawapproval
-				`	(Your face betrays your disgust, but you remain silent.)`
-					goto slaveryspeech
-				`	"Of course. Slavery. A fine and upstanding industry. Someone has to do all the work, and it's damn well not going to be me."`
-				`	"Slavery? You're a monster."`
-					goto slaveryspeech
-			apply
-				set terribleperson
-			`	"I'm glad we see eye to eye. Protection racket, landlord, slavemaster; whatever people want to call it, it's simply the natural order of things that some are strong, and some are weak. The strong thrive because they put to better use that which the weak produce. And you? I know which of the two you are now. I'll put your name into the ears of others like us."`
-			#the ring token is for integration into the pirate campaign
-				#goto ring
-				goto outlawapproval
-			label slaveryspeech
-			`	"Don't be stupid. We're in the same business, you and I - the only reason we're having this conversation at all is because you saw fit to force others to pay you, render unto you the fruit of their sweat and tears, without anything in return. You're a slaver as much as I; I'm simply more honest about it. You'll grow to accept that, pirates that think they can survive - or more amusingly, thrive - and still hold onto their precious morals, they're not long for this galaxy."`
-			`	The Corsair's lips curl into a decidedly displeased scowl, but he drowns any words in liquor before they might threaten to spill forth.`
-			`	"Now. Don't be a fool, and remember my words." The Capo relaxes, stretching back in his seat. He's regarding you cooly, contemplatively. "But I'm a man of honor; you did as you were instructed, and so I'll fulfil my end of the bargain."`
-				goto tributeskip
-			label defender
-			choice
-				`	(You address the Capo.) "I conquered Darkstone, defeating the gang that once claimed it. When others came to enslave my subjects I defeated them as well."`
-			`	"You little shit. I gave you a job to do, an opportunity, and you replay my by killing my men? Did you think you could just muscle in to the trade without people backing you up?" Cold rage burns within the cyborg's eyes, his expression hard to read given lack of lips and most facial muscles.`
-			choice
-				`	"They got what was coming to them. That territory was mine by right of conquest, and by trespassing they signed their own death warrants. You respect my turf and I'll respect you, understood?"`
-					goto grudgingrespect
-				`	"I didn't know those were your men, I simply saw raiders coming in to steal from my new tributaries and I didn't want that to happen. I'm sorry."`
-					goto weak
-				`	"Damn slavers. If I'd known that's what you'd intended all along I never would have gone along with your plan. You disgust me."`
-			`	The Capo fixes you with a hateful gaze. "Don't be stupid. We're in the same business, you and I - the only reason we're having this conversation at all is because you saw fit to force others to pay you, render unto you the fruit of their sweat and tears, without anything in return. You're a slaver as much as I; I'm simply more honest about it. You'll grow to accept that, pirates that think they can survive - or more amusingly, thrive - and still hold onto their precious morals, they're not long for this galaxy."`
-			`	"But I can see there can be no mutually beneficial arrangements between us. You did the job I told you to, true enough, but I'd never sully my reputation by vouching for someone so... stupidly idealistic. Maybe these other idiots will have some use for you." A moment passes before the Capo gives the Mercenary's knee a squeeze. "Not you, dear. I meant the other guy." He's given a roll of the eyes for his trouble.`
-				goto defenderspeech
-			label grudgingrespect
-			`	The Capo stares you down, sizing you up, waiting for some sign of weakness on your part. None is given. Finally, his eyebrows relax and his face seems, accordingly, somewhat less hostile.`
-			`	"Fine. Yes. You speek the truth, you do - you had no way of knowing those slavers were in my employ, and you did well to defend your territory. Truthfully, I didn't expect you'd be able to stand up to my boys, or even fight off the existing occupants. The fault is mine for underestimating your abilities."`
-			`	The cyborg falls into a moment of silence as he deliberates. "I'll still sponsor you. You've turned this venture into a loss for me, but... I believe you'll go far with abilities and a mindset like that. And that's a success I'd like to be responsible for having scouted out. I'll make your name known to the right people, as promised. You've a bright future ahead."`
-				goto tributeskip
-			label weak
-			`	"You apologize? After killing my men and defending territory you took with your own blood and sweat? That's..." The Capo looks like he's on the cusp of shouting at you or breaking into laughter. "Absolutely pathetic. If not for the fact that you killed my entire crew I'd have you erased and remove such a weak individual from the galaxy as a public service. Now, piss off. I've got nothing more to say to you."`
-			label defenderspeech
-			`	Meanwhile, the Corsair has some information for you.`
-			`	"Ye did well defending those poor folks, and they've already spread word of it. Protector of the downtrodden ain't a common reputation one finds in these parts, but it's... Well, a reputation nonetheless. The fact that ye thrashed two different gangs in the process mostlikely has somethin' to do with that, aye? If I had to hazard a guess, ye might find pirate folk treating you with a bit more respect after a display like that. Hells, I know some folk who'd be keen to call ye kin."`
-				goto tributeskip
-			label slaver
-			choice
-				`	(You address the Capo.) "I conquered Darkstone and sold the inhabitants into slavery for a tidy profit."`
-			apply
-				set RookieSlaver
-			`	"So I heard, so I heard! It was my boys you were selling those dirt-grubbers off to. Mind you, I wasn't expecting to need to cut you in on this, but you did chase off the old owners so I suppose it's fair. One thing is sure: you've got a winner's instincts. I'm proud to sponsor you, and rest assured... People will know you're a cutthroat bastard, ready to sell any body that falls into your hands. Just like me." The Capo pauses to wipe a tear from his eye. "I swear, if I still had lips I'd be smiling."`
-			label outlawapproval
-			`	"Now, I'll do as I said and help make your name known to those who matter, and the lowlifes that don't. Pirates will respect you for the deeds you've done."`
-				goto tributeskip
-			#label ring
-			#`	The Capo extends his palm, a shining silver ring glistening in the center. Unadorned by any manner of stone, it's a simple, subdued piece of jewelry. Upon the front a crest has been stamped. "A token of my approval. Consider it sponsorship, and my trust that you'll do what need be done. Take it to Gienah. People will know what it means, and you'll find lucrative work that lines up nicely with the skillset you've demonstrated."`
-			#`	The cyborg offers a genial smile - or at least as much as one can without lips. It's uncanny how expressive articulated artifical jaws can be these days.`
-			label tributeskip
-			branch boardingskip
-				not "Pirate Intro - Boarding: done"
-			choice	
-				`	(You slap the top of the Corsair's trunk.) "I've brought the antique lockbox and defeated the other pirates who came for it."`
-			`	The Corsair, clearly drunk, does his best to straighten up and smile at you. "Well, let's see what we've got then!"`
-			`	The lockbox is hefted up onto the table and the lock unceremoniously blasted with a discharge from the Corsair's sidearm, sending his drinking partners scrambling back in shock. Their chorus of damnations and complaints are soundly ignored as the lid's popped open and the contents laid out. Old clothes, an old journal. The clothes are ignored, left to ignite in the now-smouldering box while the journal is hastily extracted.`
-			`	"It's... Yes. This is it, there's no mistaking the style." The Corsair flips through the journal, poring over sketch after sketch. "Not many entries. Most of them were torn out. You know anything about that?"`
-			choice
-				`	"Nope."`
-					goto negative
-				`	"Naw."`
-					goto negative
-				`	"I'm afraid not, my good sir."`
-					goto negative
-				`	"That's a negative."`
-					goto negative
-				`	"Yes, I stole your precious pages as part of my master plan."`
-			`	The Corsair fixes you with a confused look. The liquor gently embalming his brain probably isn't helping matters here. "Really?"`
-			choice
-				`	"No, not really."`
-			`	"Oh." There's an uncomfortably long pause while the Corsair gathers his thoughts. "Argh, where were we..."`
-			label negative
-			#in the campaign-integrated branch he'll ask you to keep the journal and deliver it to Amity Goodearth.
-			`	"Anyhow. This is a mighty important find, but unfortunately incomplete. I'll be hanging onto it, and ye've my thanks for your work in securing this. Family heirloom, and such. Now, yer payment... I've some contacts that'll be pleased to know of yer skills, and folk who'll make sure your name is known where it matters. Congratulations, the life of a pirate ye may call yer own."`
-			label boardingskip
-			branch smugglingalt
-				has "clobbered"
-			choice
-				`	(You turn to the Mercenary.) "I've got your million-credit... thing."`
-			`	"Smartly done. You'll find this was a wise investment." The Mercenary pulls out her phone, draws up a missive she's apparently already drafted, and thumbs send.`
-			`	"There. That concludes our transaction." The canister's tucked into a pouch on her hip. For the first time, you see an earnest smile on her lips. "That brings you one step closer to your dreams, and me one step closer to a corner office instead of working out of a stinking bar. It's been a pleasure doing business with you."`
-				goto pirate
-			label smugglingalt
-			choice
-				`	"I've got your million-credit... thing, and a splitting headache."`
-			`	"I'll be blunt." The Mercenary thoughtfully presses her fingertips together, as if that'll somehow magically make whatever words come next more diplomatic.`
-			`	"You're an absolute fucking moron. Drawing a gun on my contacts after they found a bug on you? You've got some wild ideas about your own capabilities, but... Somehow you were able to talk your way out of it, so perhaps you're not a lost cause after all. Whatever the case, I can't have a reputation as one who goes back on a deal, so I'll hold up my part of the bargain. Now, the canister please."`
-			choice
-				`	(Hand over the canister.)`
-			`	The merc gingerly takes the hazard-warning emblazoned canister from you, as if not trusting you to not drop it. The other two at the table visibly exhale in relief once the canister's out of your hands.`
-				goto pirate
-			label pirate
-			`	"And we've got one more thing for you", the Corsair comments before pulling a small booklet out of his coat. It's slid across the table before you. It appears you've been given some sort of coupon book for an establishment called "SLEEZY STEEV'S SCRAP AND SURPLUS". Most of the coupons have been torn out, but one of the remaining offers apparently entitles you to a hefty discount on black and red paint.`
-			`	"You're a pirate now, matey. Best look the part."`
-			`	"You step back into the light of the spaceport, the sun's light overwhelming after the tight confines of the dingy bar. Your next stop is Sleezy Steev's. Perhaps a life of violence on the high skies and association with the rougher elements of the galaxy weren't what you had in mind when you left your homeworld, but it's what you found. From here there's no going back - once you're a pirate, you're one for life.`
-			choice
-				`	(This is my life now. Piracy, smuggling, the existence of the outlaw. I'm ready to embrace it.)`
-			`	Resolve will carry you far in this world. Tonight it's carried you to a spaceport surplus supplier; you return to your vessel with a pallet loaded with paint. Anoint your vessel in bellicose black and red, make your intentions known to the galaxy. There can be no pretense of peace when you fly girded in blood and midnight, but maybe that's exactly the way you want it to be.`
-			`	Some paint covers all manner of sin. Some speaks of the intention to commit yet more. You've just applied the latter sort to your ship.`
+		conversation "I Want To Be A Pirate Conclusion"
 
 
 
@@ -250,6 +120,142 @@ conversation "I Want To Be A Pirate"
 	`	Leering eyes bore into your back as you beat a hasty retreat to your ship. Improbably, the alleys you dart through look even grungier on the route back than they did on the way here.`
 		decline
 
+conversation "I Want To Be A Pirate Conclusion"
+	`	Heads turn to regard you as you disembark into the Greenrock spaceport. Capos, pirates, slavers and smugglers regard you, size you up, and turn away with disinterest. That's far better than the ugly leers you used to get. Perhaps it's a swagger in your step, or simply a confident bearing that you now have - maybe you're just imagining things and reading what you want into the manifold expressions within the human morass that constitutes a busy port.`
+	`	You're paid no mind as you strut into the tavern and progress to another back room where, just as they said, the three pirates you'd met before are sharing drinks. Heads are lifted from tankards to regard you. The Corsair seems quite pleased to see you, assisted as he is by the reddened bonhomie of liquor. The fatigues-clad Mercenary remains impassive, her mien businesslike. And the Capo? He's just choked on his drink.`
+	`	"Well slap a collar on me and sell me as a miner, you're still drawing breath. Didn't expect that. Here bearing profitable news, I trust." The Capo's speech is as metallic as ever, though his usual semi-musical tones sound somewhat... drowned. Sounds like he sucked some beer into his windpipe with that last sip.`
+	branch tributeskip
+		not "tribute: Darkstone"			
+	#the player claimed Darkstone as a tributary but never visited their new subjects, or took no action upon finding slavers abducting colonists.
+	branch conqueror
+		and
+			not "hero of Darkstone"
+			not "slaver of Darkstone"
+	#the player claimed Darkstone as a tributary and defended the colonists against a slaver raid.
+	branch defender
+		or
+			has "hero of Darkstone"
+			has "defender of Darkstone"
+	#the player sold the colonists of Darkstone to slavers
+	branch slaver
+		has "slaver of Darkstone"
+	label conqueror
+	choice
+		`	(You address the Capo.) "I conquered Darkstone, defeating the gang that once claimed it. The inhabitants now offer me tribute."`
+	`	The Capo nods in approval. "And a mighty fine job you did, too. Without those ruffians my boys were able to ply their trade far more easily. You've my thanks - and, as I promised, I've got some introductions to make on your behalf.`
+	choice
+		`	"What trade is that, exactly?"`
+		`	"Thank you. I've conquered a world, but I'm only getting started."`
+			goto outlawapproval
+	`	"Human resources, naturally." The Capo lets out a dark laugh, eyes thin and aspect sharklike as he fixes you with a predatory grin.`
+	choice
+		`	(You remain impassive, not caring one way or another about the fates of others than yourself - slavery is neither your business nor your problem)`
+			goto outlawapproval
+		`	(Your face betrays your disgust, but you remain silent.)`
+			goto slaveryspeech
+		`	"Of course. Slavery. A fine and upstanding industry. Someone has to do all the work, and it's damn well not going to be me."`
+		`	"Slavery? You're a monster."`
+			goto slaveryspeech
+	apply
+		set terribleperson
+	`	"I'm glad we see eye to eye. Protection racket, landlord, slavemaster; whatever people want to call it, it's simply the natural order of things that some are strong, and some are weak. The strong thrive because they put to better use that which the weak produce. And you? I know which of the two you are now. I'll put your name into the ears of others like us."`
+	#the ring token is for integration into the pirate campaign
+		#goto ring
+		goto outlawapproval
+	label slaveryspeech
+	`	"Don't be stupid. We're in the same business, you and I - the only reason we're having this conversation at all is because you saw fit to force others to pay you, render unto you the fruit of their sweat and tears, without anything in return. You're a slaver as much as I; I'm simply more honest about it. You'll grow to accept that, pirates that think they can survive - or more amusingly, thrive - and still hold onto their precious morals, they're not long for this galaxy."`
+	`	The Corsair's lips curl into a decidedly displeased scowl, but he drowns any words in liquor before they might threaten to spill forth.`
+	`	"Now. Don't be a fool, and remember my words." The Capo relaxes, stretching back in his seat. He's regarding you cooly, contemplatively. "But I'm a man of honor; you did as you were instructed, and so I'll fulfil my end of the bargain."`
+		goto tributeskip
+	label defender
+	choice
+		`	(You address the Capo.) "I conquered Darkstone, defeating the gang that once claimed it. When others came to enslave my subjects I defeated them as well."`
+	`	"You little shit. I gave you a job to do, an opportunity, and you replay my by killing my men? Did you think you could just muscle in to the trade without people backing you up?" Cold rage burns within the cyborg's eyes, his expression hard to read given lack of lips and most facial muscles.`
+	choice
+		`	"They got what was coming to them. That territory was mine by right of conquest, and by trespassing they signed their own death warrants. You respect my turf and I'll respect you, understood?"`
+			goto grudgingrespect
+		`	"I didn't know those were your men, I simply saw raiders coming in to steal from my new tributaries and I didn't want that to happen. I'm sorry."`
+			goto weak
+		`	"Damn slavers. If I'd known that's what you'd intended all along I never would have gone along with your plan. You disgust me."`
+	`	The Capo fixes you with a hateful gaze. "Don't be stupid. We're in the same business, you and I - the only reason we're having this conversation at all is because you saw fit to force others to pay you, render unto you the fruit of their sweat and tears, without anything in return. You're a slaver as much as I; I'm simply more honest about it. You'll grow to accept that, pirates that think they can survive - or more amusingly, thrive - and still hold onto their precious morals, they're not long for this galaxy."`
+	`	"But I can see there can be no mutually beneficial arrangements between us. You did the job I told you to, true enough, but I'd never sully my reputation by vouching for someone so... stupidly idealistic. Maybe these other idiots will have some use for you." A moment passes before the Capo gives the Mercenary's knee a squeeze. "Not you, dear. I meant the other guy." He's given a roll of the eyes for his trouble.`
+		goto defenderspeech
+	label grudgingrespect
+	`	The Capo stares you down, sizing you up, waiting for some sign of weakness on your part. None is given. Finally, his eyebrows relax and his face seems, accordingly, somewhat less hostile.`
+	`	"Fine. Yes. You speek the truth, you do - you had no way of knowing those slavers were in my employ, and you did well to defend your territory. Truthfully, I didn't expect you'd be able to stand up to my boys, or even fight off the existing occupants. The fault is mine for underestimating your abilities."`
+	`	The cyborg falls into a moment of silence as he deliberates. "I'll still sponsor you. You've turned this venture into a loss for me, but... I believe you'll go far with abilities and a mindset like that. And that's a success I'd like to be responsible for having scouted out. I'll make your name known to the right people, as promised. You've a bright future ahead."`
+		goto tributeskip
+	label weak
+	`	"You apologize? After killing my men and defending territory you took with your own blood and sweat? That's..." The Capo looks like he's on the cusp of shouting at you or breaking into laughter. "Absolutely pathetic. If not for the fact that you killed my entire crew I'd have you erased and remove such a weak individual from the galaxy as a public service. Now, piss off. I've got nothing more to say to you."`
+	label defenderspeech
+	`	Meanwhile, the Corsair has some information for you.`
+	`	"Ye did well defending those poor folks, and they've already spread word of it. Protector of the downtrodden ain't a common reputation one finds in these parts, but it's... Well, a reputation nonetheless. The fact that ye thrashed two different gangs in the process mostlikely has somethin' to do with that, aye? If I had to hazard a guess, ye might find pirate folk treating you with a bit more respect after a display like that. Hells, I know some folk who'd be keen to call ye kin."`
+		goto tributeskip
+	label slaver
+	choice
+		`	(You address the Capo.) "I conquered Darkstone and sold the inhabitants into slavery for a tidy profit."`
+	apply
+		set RookieSlaver
+	`	"So I heard, so I heard! It was my boys you were selling those dirt-grubbers off to. Mind you, I wasn't expecting to need to cut you in on this, but you did chase off the old owners so I suppose it's fair. One thing is sure: you've got a winner's instincts. I'm proud to sponsor you, and rest assured... People will know you're a cutthroat bastard, ready to sell any body that falls into your hands. Just like me." The Capo pauses to wipe a tear from his eye. "I swear, if I still had lips I'd be smiling."`
+	label outlawapproval
+	`	"Now, I'll do as I said and help make your name known to those who matter, and the lowlifes that don't. Pirates will respect you for the deeds you've done."`
+		goto tributeskip
+	#label ring
+	#`	The Capo extends his palm, a shining silver ring glistening in the center. Unadorned by any manner of stone, it's a simple, subdued piece of jewelry. Upon the front a crest has been stamped. "A token of my approval. Consider it sponsorship, and my trust that you'll do what need be done. Take it to Gienah. People will know what it means, and you'll find lucrative work that lines up nicely with the skillset you've demonstrated."`
+	#`	The cyborg offers a genial smile - or at least as much as one can without lips. It's uncanny how expressive articulated artifical jaws can be these days.`
+	label tributeskip
+	branch boardingskip
+		not "Pirate Intro - Boarding: done"
+	choice	
+		`	(You slap the top of the Corsair's trunk.) "I've brought the antique lockbox and defeated the other pirates who came for it."`
+	`	The Corsair, clearly drunk, does his best to straighten up and smile at you. "Well, let's see what we've got then!"`
+	`	The lockbox is hefted up onto the table and the lock unceremoniously blasted with a discharge from the Corsair's sidearm, sending his drinking partners scrambling back in shock. Their chorus of damnations and complaints are soundly ignored as the lid's popped open and the contents laid out. Old clothes, an old journal. The clothes are ignored, left to ignite in the now-smouldering box while the journal is hastily extracted.`
+	`	"It's... Yes. This is it, there's no mistaking the style." The Corsair flips through the journal, poring over sketch after sketch. "Not many entries. Most of them were torn out. You know anything about that?"`
+	choice
+		`	"Nope."`
+			goto negative
+		`	"Naw."`
+			goto negative
+		`	"I'm afraid not, my good sir."`
+			goto negative
+		`	"That's a negative."`
+			goto negative
+		`	"Yes, I stole your precious pages as part of my master plan."`
+	`	The Corsair fixes you with a confused look. The liquor gently embalming his brain probably isn't helping matters here. "Really?"`
+	choice
+		`	"No, not really."`
+	`	"Oh." There's an uncomfortably long pause while the Corsair gathers his thoughts. "Argh, where were we..."`
+	label negative
+	#in the campaign-integrated branch he'll ask you to keep the journal and deliver it to Amity Goodearth.
+	`	"Anyhow. This is a mighty important find, but unfortunately incomplete. I'll be hanging onto it, and ye've my thanks for your work in securing this. Family heirloom, and such. Now, yer payment... I've some contacts that'll be pleased to know of yer skills, and folk who'll make sure your name is known where it matters. Congratulations, the life of a pirate ye may call yer own."`
+	label boardingskip
+	branch smugglingalt
+		has "clobbered"
+	choice
+		`	(You turn to the Mercenary.) "I've got your million-credit... thing."`
+	`	"Smartly done. You'll find this was a wise investment." The Mercenary pulls out her phone, draws up a missive she's apparently already drafted, and thumbs send.`
+	`	"There. That concludes our transaction." The canister's tucked into a pouch on her hip. For the first time, you see an earnest smile on her lips. "That brings you one step closer to your dreams, and me one step closer to a corner office instead of working out of a stinking bar. It's been a pleasure doing business with you."`
+		goto pirate
+	label smugglingalt
+	choice
+		`	"I've got your million-credit... thing, and a splitting headache."`
+	`	"I'll be blunt." The Mercenary thoughtfully presses her fingertips together, as if that'll somehow magically make whatever words come next more diplomatic.`
+	`	"You're an absolute fucking moron. Drawing a gun on my contacts after they found a bug on you? You've got some wild ideas about your own capabilities, but... Somehow you were able to talk your way out of it, so perhaps you're not a lost cause after all. Whatever the case, I can't have a reputation as one who goes back on a deal, so I'll hold up my part of the bargain. Now, the canister please."`
+	choice
+		`	(Hand over the canister.)`
+	`	The merc gingerly takes the hazard-warning emblazoned canister from you, as if not trusting you to not drop it. The other two at the table visibly exhale in relief once the canister's out of your hands.`
+		goto pirate
+	label pirate
+	`	"And we've got one more thing for you", the Corsair comments before pulling a small booklet out of his coat. It's slid across the table before you. It appears you've been given some sort of coupon book for an establishment called "SLEEZY STEEV'S SCRAP AND SURPLUS". Most of the coupons have been torn out, but one of the remaining offers apparently entitles you to a hefty discount on black and red paint.`
+	`	"You're a pirate now, matey. Best look the part."`
+	`	"You step back into the light of the spaceport, the sun's light overwhelming after the tight confines of the dingy bar. Your next stop is Sleezy Steev's. Perhaps a life of violence on the high skies and association with the rougher elements of the galaxy weren't what you had in mind when you left your homeworld, but it's what you found. From here there's no going back - once you're a pirate, you're one for life.`
+	choice
+		`	(This is my life now. Piracy, smuggling, the existence of the outlaw. I'm ready to embrace it.)`
+	`	Resolve will carry you far in this world. Tonight it's carried you to a spaceport surplus supplier; you return to your vessel with a pallet loaded with paint. Anoint your vessel in bellicose black and red, make your intentions known to the galaxy. There can be no pretense of peace when you fly girded in blood and midnight, but maybe that's exactly the way you want it to be.`
+	`	Some paint covers all manner of sin. Some speaks of the intention to commit yet more. You've just applied the latter sort to your ship.`
+
+
+
 mission "Pirate Overview"
 	landing
 	to offer
@@ -302,6 +308,8 @@ government "Merchant (Target)"
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
 
+
+
 mission "Plunder Defense"
 	name "Return with spoils"
 	description `Defeat your rival pirates in Umbral, then return to <destination> with the spoils from the <origin> to confirm your loyalty.`
@@ -328,15 +336,6 @@ event "add merchant targets"
 event "remove merchant targets"
 	system "Umbral"
 		remove fleet "Merchant Targets"
-
-fleet "Merchant Targets"
-	government "Merchant (Target)"
-	names "civilian"
-	cargo 1
-	personality
-		heroic
-	variant 1
-		"Freighter"
 
 #this is a short conversation that should pop up once the player has a chance to wind down after the Plunder Defense mission. It'll give the player a chance to poke around inside the lockbox before turning it over to the Corsair. If they do look inside, I want to record some notes to their log. If it's easier, we could also have it pop up when landing on Greenrock, just have it offer before the "check in and cash in" mission. If that's a better approach in your appraisal, just mention that in the commit description and I'll get to editing to make it match.
 mission "Lockbox Snooping"
@@ -381,7 +380,7 @@ mission "Lockbox Snooping"
 		log `	The next several pages are filled with landscape sketches, scenes from a verdant farming world. Trees loom tall in the divisions between fields, flowers are abundant where nature hasn't been tamed by the colonist's hand. Here, a flock of sheep graze. There, a ship streaks across the sky, the rest of the drawing seemingly contorted around it as if the world itself is focusing on the vessel as it speeds into the unknown.`
 		log `October 28, '94`
 		log `	"Empty stomach, empty pockets, no jobs to be found. Not a broom that needs pushing, and the mob at the factory wanting employment is at least five men deep and I dare not count how wide."`
-		log `	"Folk, man and woman, young and old, sit idle in the streets of a modestly sized town. Long faces, hollow with hunger, impassive in idleness, turn their gazes towards the one drawing them. There's the occasional drawing of a field or burst of beauty as captured in the pages before, but the overall spirit seems to've shifted to the sullen."`
+		log `	"Folk, man and woman, young and old, sit idle in the streets of a modestly sized town. Long faces, hollow with hunger, impassive in idleness, turn their gazes towards the one drawing them. There's the occasional drawing of a field or burst of beauty as captured in the pages before, but the overall spirit has shifted to the sullen."`
 		log `November 15, '94`
 		log `	"Today's the day I'm born anew. Not with one of those cults, but with the 'merchant' who comes by every season. He said there's room on his crew for a young man who's not afraid to get his hands dirty, and if I help around the ship, and he likes me by the time he takes off again, I can stay and take a share in their next haul... But I don't want to bring the law down on my family. I'll need a new name. 'Voidmaster' sounds cool. I'll see if I can get the crew to call me that."`
 		fail
