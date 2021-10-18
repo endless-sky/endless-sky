@@ -466,7 +466,7 @@ conversation "Den Handoff"
 	choice
 		`	(I should open my eyes.)`
 	`	You awaken tied to a chair, a headache pounding in your ears, and where there used to be a serving table with coffee your belongings are instead laid out.`
-	`	There's your gun, there's your shirt, now ironstained from the solid whack you'd sustained to the back of the head, there's your comms, your keys, and a credit chip valued at one million. Laid right in the middle of them is a miniscule device that you don't recognize - possibly due to the fact that it's been smashed into a dozen pieces.`
+	`	There's your gun, there's your shirt, now ironstained from the solid whack you'd sustained to the back of the head, there's your comms, your keys, and a credit chip valued at one million. Laid right in the middle of them is a miniscule device that you don't recognize - possibly due to the fact that it's been smashed into enough pieces to rival the starscape outside.`
 	`	At least your captors were kind enough to shove you back into skivvies after stripping you down and emptying your pockets.`
 	choice
 		`	(Stay silent.)`
