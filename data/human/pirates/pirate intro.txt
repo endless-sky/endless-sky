@@ -69,13 +69,13 @@ mission "I Want To Be A Pirate"
 
 conversation "I Want To Be A Pirate"
 	`The drinking holes flanking this outlaw spaceport are a motley mix indeed, each apparently shabbier, dingier, or more raucous than the last. Perhaps that's just the way you like your establishments; perhaps not. Whatever the case, a sense of purpose has brought you here, far from the factories and fields of New Boston. Out here to the fringes of society.`
-	`Instinct - or just too many swashbuckling serials consumed during your childhood - brings you to the back of a smoky bar, where a trio of grizzled people sit; an eyepatched Corsair festooned in somewhat anachrostistic couture, a jewelry-encrusted Capo with a mechanical jaw and the haughty bearing of a born and bred ganster, and a Mercenary wearing a beret and military fatigues. A patch affixed to her shirt identifies her as a member of the "Devil's Due Contracting Company". The three turn to stare at you. You came here for a reason, didn't you?`
+	`Instinct - or an overabundance of swashbuckling serials consumed during your childhood - brings you to the back of a smoky bar, where a trio of grizzled people sit; an eyepatched Corsair festooned in somewhat anachrostistic couture, a jewelry-encrusted Capo with a mechanical jaw and the haughty bearing of a born and bred ganster, and a Mercenary wearing a beret and military fatigues. A patch affixed to her shirt identifies her as a member of the "Devil's Due Contracting Company". The three turn to stare at you. You came here for a reason, didn't you?`
 	choice
 		`	"My name is <first> <last>, and I want to be a pirate."`
 		`	(This was a terrible idea. Back to the ship.)`
 			goto retreat
 	`The three regard you with a mixture of surprise and bemusement.`
-	`	"Is that so?", inquires the sharp-dressed woman. "And you're telling us why? Because you suspect that we might know the right people to, say, make it known that there's a new terror plying the hyperlanes?" She leans back, pauses, carefully inspects the seat behind her, and satisfied that it's not covered in too much grease, completes the maneuver. "... Well. You'd be right. But nothing in this world is free."`
+	`	"Is that so?", inquires the woman dressed for war. "And you're telling us why? Because you suspect that we might know the right people to, say, make it known that there's a new terror plying the hyperlanes?" She leans back, pauses, carefully inspects the seat behind her, and satisfied that it's not covered in too much grease, completes the maneuver. "... Well. You'd be right. But nothing in this world is free."`
 	`	"Aye, it be not enough to simply cover yer' ship with the old black-and-red. A pirate must earn the respect - or fear - of their fellows, lest they be seen as fair plunder", the Corsair contributes. This is followed up with an entirely gratuitous, but quite hearty "Arrrrgh."`
 	`	The Capo speaks last, jaw motionless; his voice is provided by a cybernetic vocoder, melliflous if gently synthetic. "Indeed. There's three things you'll need to do before you'll be taken seriously. Speaking personally, I'm always on the eye for upcoming talent. Prove that you've got what it takes and I'm sure at least one of us would make it known within our circles that you aren't to be trifled with - and perhaps worth offering work to. But first, those tasks."`
 	choice
@@ -90,6 +90,8 @@ conversation "I Want To Be A Pirate"
 		goto tasks
 	label hahareferencegoeshere
 	`	The trio of outlaws stare at you, bewilderment evident on their faces. "What the hell? You've been watching too many serials, kid." The cybernetic Capo shakes his head woefully. "Well, you're not going to last long out here." Only the Corsair seems to be - if only a smidgen - delighted with your approach to piracy.`
+	choice
+		`	(Marinate in an uncomfortable silence.)`
 	`	The Corsair clears his throat, eager to move back to the topic at hand. "Now, about them tasks-"`
 	label tasks
 	`	The Corsair leans over the table, a wide grin splitting his face perpendicular to the scar that runs from brow to chin. "It's simple, matey. Ye need to prove you're not to be trifled with. Find a juicy prize, disable them, board them, and when other scalliwags come sniffing? Defend your plunder! No scavenger of the black'll displace you from your next meal, by thunder!" Spit and ale fly from the Corsair's lips as the roars, as jolly as can be - and more than a little drunk.`
@@ -109,6 +111,9 @@ conversation "I Want To Be A Pirate"
 			goto explanation
 	`	The Capo groans, shakes his head mournfully, and leans back to excuse himself from the conversation for a minute. Instead, the Mercenary leans forward to speak. "Look, it's simple. You shoot people, they shoot back. You knuckle under at every opportunity, they keep shooting because they think you're weak. If you want to be left alone you need to prove that you're not worth the effort it would take to plunder you, yeah? That's... Well, it's what these little tasks we've mentioned are about. You need to establish a reputation. This is how you do it - and once you've done that, other pirates should leave you alone owing to either fear or respect."`
 	`	She leans back in her chair, matching gaze with the Capo. "And you, don't push it. Not here, you know what my boss thinks." Wistfulness drips from her words, and she leans back into her chair. Her thoughts clearly lie elsewhere at the moment.`
+	choice
+		`	"I understand."`
+		`	"Yeah, I have no idea what you're talking about, but I don't care enough to ask again. Where's the part where I get to be a pirate?"`
 	label explanation
 	`	"Now-", the Corsair begins. "I know a juicy prize is going to be sailing-" The other two turn to fix the Corsair with a skeptical gaze. The Capo's maw slips wide for a moment, as if he wants to interrupt, but eventually it closes silently once more. "-SAILING, I say, through Umbral. In fact, any buccaneer worth their salt knows she'll be there, so you're liable to have more than a little competition. Board her, plunder her, keep what ye like - but should ye find an antique wood lockbox, yer' to bring it back to me without peeking within. That'll be my price for spreading the word of yer' glorious ascent to piratehood.`
 	`	"As for me?" The Devil's Due member takes her turn to speak. "Take a million credits to Smuggler's Den in Men. I don't care where you get the money. In fact, I don't want to know. Just drop by with that million, complete a little transaction I'll have arranged by then, and I'll get you what you want. Prestige. Respect. Fame. Infamy, whatever." A winning smile is flashed your way, and your hand is plucked up, shaken; a datachip is pressed into it. "Contact for an associate of mine, on the station I mentioned. Take the money there, bring the item back to me."`
