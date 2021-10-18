@@ -558,10 +558,10 @@ void Test::Fail(const Context &context, const PlayerInfo &player, const string &
 	string shipsOverview;
 	const Ship *flagship = player.Flagship();
 	if(!flagship)
-		shipsOverview += "Player did not have flagship at the moment of failure.";
+		shipsOverview += "Player did not have flagship at the moment of failure.\n";
 	else
 	{
-		shipsOverview += "flagship " + ShipToString(*flagship);
+		shipsOverview += "flagship " + ShipToString(*flagship) + "\n";
 		int escorts = 0;
 		int escortsNotPrinted = 0;
 		for(auto &&ptr : flagship->GetEscorts())
@@ -570,12 +570,12 @@ void Test::Fail(const Context &context, const PlayerInfo &player, const string &
 			if(!escort)
 				continue;
 			if(++escorts <= 5)
-				shipsOverview += "escort " + ShipToString(*escort);
+				shipsOverview += "escort " + ShipToString(*escort) + "\n";
 			else
 				++escortsNotPrinted;
 		}
 		if(escortsNotPrinted > 0)
-			shipsOverview += "(plus " + to_string(escortsNotPrinted) + " additional escorts)";
+			shipsOverview += "(plus " + to_string(escortsNotPrinted) + " additional escorts)\n";
 	}
 	Files::LogError(shipsOverview);
 	
