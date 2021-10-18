@@ -25,28 +25,28 @@ ConditionsStore::DerivedProvider::DerivedProvider(const string &name, bool isPre
 
 void ConditionsStore::DerivedProvider::SetGetFun(std::function<int64_t(const std::string&)> newGetFun)
 {
-	getFun = newGetFun;
+	getFun = std::move(newGetFun);
 }
 
 
 
 void ConditionsStore::DerivedProvider::SetHasFun(std::function<bool(const std::string&)> newHasFun)
 {
-	hasFun = newHasFun;
+	hasFun = std::move(newHasFun);
 }
 
 
 
 void ConditionsStore::DerivedProvider::SetSetFun(std::function<bool(const std::string&, int64_t)> newSetFun)
 {
-	setFun = newSetFun;
+	setFun = std::move(newSetFun);
 }
 
 
 
 void ConditionsStore::DerivedProvider::SetEraseFun(std::function<bool(const std::string&)> newEraseFun)
 {
-	eraseFun = newEraseFun;
+	eraseFun = std::move(newEraseFun);
 }
 
 

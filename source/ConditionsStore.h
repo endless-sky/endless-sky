@@ -45,7 +45,9 @@ public:
 		void SetEraseFun(std::function<bool(const std::string&)> newEraseFun);
 
 	public:
-		// Private constructor, only to be called from within ConditionsStore.
+		// This is intented as a private constructor, only to be called from within
+		// ConditionsStore. But we need to keep it public because of how the
+		// DerivedProviders are emplaced in the providers-map-variable.
 		DerivedProvider(const std::string &name, bool isPrefixProvider);
 		
 	private:
