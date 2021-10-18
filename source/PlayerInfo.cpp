@@ -2488,7 +2488,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	dayProvider.SetGetFun([this](const string &name) { return date.Day(); });
 	
 	auto &&monthProvider = conditions.GetProviderNamed("month");
-	monthProvider.SetGetFun([this](const string &name) { return date.Year(); });
+	monthProvider.SetGetFun([this](const string &name) { return date.Month(); });
 	
 	auto &&yearProvider = conditions.GetProviderNamed("year");
 	yearProvider.SetGetFun([this](const string &name) { return date.Year(); });
