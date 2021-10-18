@@ -86,7 +86,7 @@ mission "I Want To Be A Pirate"
 			`	The Outlaw nods in approval. "And a mighty fine job you did, too. Without those ruffians my boys were able to ply their trade far more easily. You've my thanks - and, as I promised, I've got some introductions to make on your behalf.`
 			choice
 				`	"What trade is that, exactly?"`
-				`	"Thank you. I've conquered a world, but I'm only getting started."
+				`	"Thank you. I've conquered a world, but I'm only getting started."`
 					goto outlawapproval
 			`	"Human resources, naturally." The Outlaw lets out a dark laugh, eyes thin and aspect sharklike as he fixes you with a predatory grin.`
 			choice
@@ -95,12 +95,14 @@ mission "I Want To Be A Pirate"
 				`	(Your face betrays your disgust, but you remain silent.)`
 					goto slaveryspeech
 				`	"Of course. Slavery. A fine and upstanding industry. Someone has to do all the work, and it's damn well not going to be me."`
-						apply terribleperson
-				`	"Slavery? You're a monster."``
+				`	"Slavery? You're a monster."`
 					goto slaveryspeech
+			apply
+				set terribleperson
 			`	"I'm glad we see eye to eye. Protection racket, landlord, slavemaster; whatever people want to call it, it's simply the natural order of things that some are strong, and some are weak. The strong thrive because they put to better use that which the weak produce. And you? I know which of the two you are now. I'll put your name into the ears of others like us."`
 			#the ring token is for integration into the pirate campaign
 				#goto ring
+				goto outlawapproval
 			label slaveryspeech
 			`	"Don't be stupid. We're in the same business, you and I - the only reason we're having this conversation at all is because you saw fit to force others to pay you, render unto you the fruit of their sweat and tears, without anything in return. You're a slaver as much as I; I'm simply more honest about it. You'll grow to accept that, pirates that think they can survive - or more amusingly, thrive - and still hold onto their precious morals, they're not long for this galaxy."`
 			`	The Corsair's lips curl into a decidedly displeased scowl, but he drowns any words in liquor before they might threaten to spill forth.`
@@ -115,7 +117,7 @@ mission "I Want To Be A Pirate"
 					goto grudgingrespect
 				`	"I didn't know those were your men, I simply saw raiders coming in to steal from my new tributaries and I didn't want that to happen. I'm sorry."`
 					goto weak
-				`	"Damn slavers. If I'd known that's what you'd intended all along I never would have gone along with your plan. You disgust me."
+				`	"Damn slavers. If I'd known that's what you'd intended all along I never would have gone along with your plan. You disgust me."`
 			`	The Outlaw fixes you with a hateful gaze. "Don't be stupid. We're in the same business, you and I - the only reason we're having this conversation at all is because you saw fit to force others to pay you, render unto you the fruit of their sweat and tears, without anything in return. You're a slaver as much as I; I'm simply more honest about it. You'll grow to accept that, pirates that think they can survive - or more amusingly, thrive - and still hold onto their precious morals, they're not long for this galaxy."`
 			`	"But I can see there can be no mutually beneficial arrangements between us. You did the job I told you to, true enough, but I'd never sully my reputation by vouching for someone so... stupidly idealistic. Maybe these other idiots will have some use for you." A moment passes before the Outlaw gives the knee of the suit-clad pirate a squeeze. "Not you, dear. I meant the other guy."`
 				goto defenderspeech
@@ -128,13 +130,14 @@ mission "I Want To Be A Pirate"
 			`	"You apologize? After killing my men and defending territory you took with your own blood and sweat? That's..." The Outlaw looks like he's on the cusp of shouting at you or breaking into laughter. "Absolutely pathetic. If not for the fact that you killed my entire crew I'd have you erased and remove such a weak individual from the galaxy as a public service. Now, piss off. I've got nothing more to say to you."`
 			label defenderspeech
 			`	Meanwhile, the Corsair has some information for you.`
-			`	"Ye did well defending those poor folks, and they've already spread word of it. Protector of the downtrodden ain't a common reputation one finds in these parts, but it's... Well, a reputation nonetheless. The fact that ye thrashed two different gangs in the process mostlikely has somethin' to do with that, aye? If I had to hazard a guess, ye might find pirate folk treating you with a bit more respect after a display like that. Hells, I know some folk who'd be keen to call ye kin."
+			`	"Ye did well defending those poor folks, and they've already spread word of it. Protector of the downtrodden ain't a common reputation one finds in these parts, but it's... Well, a reputation nonetheless. The fact that ye thrashed two different gangs in the process mostlikely has somethin' to do with that, aye? If I had to hazard a guess, ye might find pirate folk treating you with a bit more respect after a display like that. Hells, I know some folk who'd be keen to call ye kin."`
 				goto tributeskip
 			label slaver
 			choice
 				`	(You address the Outlaw.) "I conquered Darkstone and sold the inhabitants into slavery for a tidy profit."`
-					apply RookieSlaver
-			`	"So I heard, so I heard! It was my boys you were selling those dirt-grubbers off to. Mind you, I wasn't expecting to need to cut you in on this, but you did chase off the old owners so I suppose it's fair. One thing is sure: you've got a winner's instincts. I'm proud to sponsor you, and rest assured... People will know you're a cutthroat bastard, ready to sell any body that falls into your hands. Just like me." The Outlaw pauses to wipe a tear from his eye. "I swear, if I still had lips I'd be smiling."
+			apply
+				set RookieSlaver
+			`	"So I heard, so I heard! It was my boys you were selling those dirt-grubbers off to. Mind you, I wasn't expecting to need to cut you in on this, but you did chase off the old owners so I suppose it's fair. One thing is sure: you've got a winner's instincts. I'm proud to sponsor you, and rest assured... People will know you're a cutthroat bastard, ready to sell any body that falls into your hands. Just like me." The Outlaw pauses to wipe a tear from his eye. "I swear, if I still had lips I'd be smiling."`
 			label outlawapproval
 			`	"Now, I'll do as I said and help make your name known to those who matter, and the lowlifes that don't. Pirates will respect you for the deeds you've done."`
 				goto tributeskip
@@ -158,14 +161,14 @@ mission "I Want To Be A Pirate"
 					goto negative
 				`	"That's a negative."`
 					goto negative
-				`	"Yes, I stole your precious pages as part of my master plan.`"
+				`	"Yes, I stole your precious pages as part of my master plan."`
 			`	The Corsair fixes you with a confused look. The liquor gently embalming his brain probably isn't helping matters here. "Really?"`
 			choice
 				`	"No, not really."`
 			`	"Oh." There's an uncomfortably long pause while the Corsair gathers his thoughts. "Argh, where were we..."`
 			label negative
 			#in the campaign-integrated branch he'll ask you to keep the journal and deliver it to Amity Goodearth.
-			`	"Anyhow. This is a mighty important find, but unfortunately incomplete. I'll be hanging onto it, and ye've my thanks for your work in securing this. Family heirloom, and such. Now, yer payment... I've some contacts that'll be pleased to know of yer skills, and folk who'll make sure your name is known where it matters. Congratulations, the life of a pirate ye may call yer own."
+			`	"Anyhow. This is a mighty important find, but unfortunately incomplete. I'll be hanging onto it, and ye've my thanks for your work in securing this. Family heirloom, and such. Now, yer payment... I've some contacts that'll be pleased to know of yer skills, and folk who'll make sure your name is known where it matters. Congratulations, the life of a pirate ye may call yer own."`
 			label boardingskip
 			branch smugglingalt
 				has "clobbered"
@@ -180,7 +183,7 @@ mission "I Want To Be A Pirate"
 			`	"I'll be blunt." The Mercenary thoughtfully presses her fingertips together, as if that'll somehow make whatever words come next magically more diplomatic.`
 			`	"You're an absolute fucking moron. Drawing a gun on my contacts after they found a bug on you? You've got some wild ideas about your own capabilities, but... Somehow you were able to talk your way out of it, so perhaps you're not a lost cause after all. Whatever the case, I can't have a reputation as one who goes back on a deal, so I'll hold up my part of the bargain. Now, the canister please."`
 			choice
-				`	(Hand over the canister.)
+				`	(Hand over the canister.)`
 			`	The merc gingerly takes the hazard-warning emblazoned canister from you, as if not trusting you to not drop it. The other two at the table visibly exhale in relief once the canister's out of your hands.`
 				goto pirate
 			label pirate
