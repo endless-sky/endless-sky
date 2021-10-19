@@ -1018,6 +1018,7 @@ phrase "sometimes a successor"
 
 phrase "standalone civilian ship names"
 	word
+		"Wild Rover"
 		"Hieland Laddie"
 		"Ye Ladies of Mars"
 		"Shenandoah"
