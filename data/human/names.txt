@@ -3454,6 +3454,7 @@ phrase "pirate subphrase 1"
 		"Septimus Severus"
 		"Benighted"
 		"Hispaniola"
+		"Staggers and Jags"
 
 phrase "pirate subphrase 2"
 	phrase
