@@ -2837,11 +2837,12 @@ phrase "sinister names"
 		"Nictis"
 		"Ragnor"
 		"Maggard"
-		"Chernobog"
 
 # e.g. Simon the Brutal, Vexan the Cannibal, Vlad the Impaler
 phrase "pirate adjectives that work as titles"
 	word
+		"Churlish"
+		"Mendacious"
 		"Unpleasant"
 		"Wretched"
 		"Drunken"
