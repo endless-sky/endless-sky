@@ -2989,6 +2989,7 @@ phrase "pirate adjectives that don't work before singular nouns"
 
 phrase "pirate nouns"
 	word
+		"Scalliwag"
 		"Razzia"
 		"Star"
 		"Spectre"
