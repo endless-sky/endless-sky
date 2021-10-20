@@ -1,6 +1,6 @@
 # Unit Tests
 
-This directory contains files that link against a particular source code file used by the game. All test files are required to be prefixed with `test_`. Any C++ source files not prefixed with `test_` will be ignored by the build system.
+This directory contains files that link against a particular source code file used by the game. All test files should be prefixed with `test_`, while other test utilities should be named appropriately.
 
 Tests should be added in their own file, named "test_classToBeTested.cpp"  
 If the test file will become cumbersome, a subdirectory structure is OK:

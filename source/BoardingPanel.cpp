@@ -204,8 +204,8 @@ void BoardingPanel::Draw()
 			Round(defenseOdds.DefenderCasualties(vCrew, crew)));
 	}
 	
-	const Interface *interface = GameData::Interfaces().Get("boarding");
-	interface->Draw(info, this);
+	const Interface *boarding = GameData::Interfaces().Get("boarding");
+	boarding->Draw(info, this);
 	
 	// Draw the status messages from hand to hand combat.
 	Point messagePos(50., 55.);
@@ -560,8 +560,7 @@ const string &BoardingPanel::Plunder::Name() const
 
 
 
-// Get the mass, in the format "<count> x <unit mass>". If this is a
-// commodity, no unit mass is given (because it is 1). If the count is
+// Get the mass, in the format "<count> x <unit mass>". If the count is
 // 1, only the unit mass is reported.
 const string &BoardingPanel::Plunder::Size() const
 {
@@ -620,9 +619,7 @@ void BoardingPanel::Plunder::Take(int count)
 void BoardingPanel::Plunder::UpdateStrings()
 {
 	double mass = UnitMass();
-	if(!outfit)
-		size = to_string(count);
-	else if(count == 1)
+	if(count == 1)
 		size = Format::Number(mass);
 	else
 		size = to_string(count) + " x " + Format::Number(mass);

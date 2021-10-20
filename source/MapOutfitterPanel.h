@@ -54,7 +54,10 @@ private:
 	
 	
 private:
+	// Maps category names to list of outfits in that category, sorted
+	// alphabetically by name.
 	std::map<std::string, std::vector<const Outfit *>> catalog;
+	// Flat list of all outfits shown.
 	std::vector<const Outfit *> list;
 	
 	const Outfit *selected = nullptr;
