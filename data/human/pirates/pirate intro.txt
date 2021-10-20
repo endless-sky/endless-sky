@@ -633,8 +633,8 @@ mission "Pirate Intro: Darkstone Slavers [1]"
 			`	You retreat back to your ship, unable to help these poor souls.`
 				decline
 	on complete
-		set
-			apply "hero of darkstone"
+		apply
+			set "hero of darkstone"
 
 mission "Pirate Intro: Darkstone Slavers [2]"
 	invisible
@@ -670,9 +670,9 @@ mission "Pirate Intro: Darkstone Slavers [2]"
 			choice
 				`	"Done deal.`
 					#give player 250,000 credits
-					set
-						apply "slaver of darkstone"
-						apply "terribleperson"
+					apply
+						set "slaver of darkstone"
+						set "terribleperson"
 					decline
 			label duel
 			`	The leader of the slavers turns to face you, attention finally pulled from his task. "You've got some nerve picking a fight with us, kid. You really think these poor bastards are worth dying for?"`
@@ -700,8 +700,8 @@ mission "Pirate Intro: Darkstone Slavers [2]"
 				accept
 				#force depart?
 	on complete
-		set
-			apply "defender of darkstone"
+		apply
+			set "defender of darkstone"
 
 event "became a pirate"
 	"reputation: Republic" <?= -1000
