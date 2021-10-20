@@ -584,6 +584,7 @@ mission "Pirate Intro: Domination Check-in"
 				
 
 mission "Pirate Intro: Darkstone Slavers [1]"
+	deadline 3
 	invisible
 	landing
 	source "Darkstone"
@@ -592,13 +593,48 @@ mission "Pirate Intro: Darkstone Slavers [1]"
 		not "tribute: Darkstone"
 	on offer
 		conversation
-			`You released the people of Darkstone from their tribute obligations, and they seemed mighty pleased about that. On your next visit they're being raided by slavers!`
+			`	Darkstone looks somewhat less depressing on your next landing. The village near the landing pad, rather than being blacked-out, is well-lit. Festive lanters hang from each building, and there's a crackling bonfire in the center of town to beat back the chill. In fact, the village is far more lively than you'd have expected - the old folk and children must have come out of hiding, and even the adults are more numerous than last count. From what you can see during landing, everybody is assembled in the center of town - and your ship isn't the only one on the landing pad. Visitors?`
 			choice
-				`	(Fight the slavers.)`
-					apply
-						set "hero of darkstone"
-				`	(None of my business.)`
-					decline
+				`	(Disembark and head to the village center.)`
+			`	The outskirts are abandoned. There's not a single hand tending the fields, or in the outlying buildings. They've all assembled at the town center.`
+			`	As it turns out, they're not there to celebrate as you might have thought. No, the villagers are all being held at gunpoint in the center of the village green while a nasty-looking piece of work looks them over one at a time, then directs them into one queue or another: colonists in one are affixed with shackles. Those in the other are made to lie flat with their hands behind their heads. Not a single colonist dare look up; the spirit of defeat hangs too heavily over these broken souls.`
+			choice
+				`	"What's going on here?"`
+				`	(Stroll into the middle of town. Lock eyes with the leader of the slavers. Assume a gunfighter's stance.)`
+					goto duel
+				`	(Return to your ship. This is none of your business.)`
+					goto retreat
+				`	(Return to your ship... and start strafing the slavers.)`
+					goto attack
+			`	"No business of yours, friend. We know who you are, and we thank you for running off the last band of lowlifes that laid claim to these bodies. Now, if you'll excuse, we've got work to do. Piss off." The slaver chief roundly ignores any further attempts to communicate, but he at least seems to be in a good enough mood to not have you shot on the spot.`
+			choice
+				`	"These people are my responsibility, and I'll fight you for their freedom."`
+					goto duel
+				`	(Return to your ship. This is none of your business.)`
+					goto retreat
+				`	(Return to your ship... and start strafing the slavers.)`
+					goto attack	
+			label duel
+			`	The leader of the slavers turns to face you, attention finally pulled from his task. "You've got some nerve picking a fight with us, kid. You really think these poor bastards are worth dying for?"`
+			`	Noon's sun beats down on you. Even with the chill that usually haunts this region of the planet at this time of year, it's enough to bring sweat to your brow. Silence fills the town square, and slavers shy back to leave only four things that matter in the area: You, the slaver boss, and your respective pistols.`
+			`	A bird cries in the distance.`
+			choice
+				(Draw!)
+			`	The slaver boss is fast, but you're faster. You're able to slip your sidearm out of its holster, level it, and cleanly blow him away before he can so much as draw a bead on you - and so it's with the thrill of victory that you die, as you're unceremoniously cut down by massed fire from the gang of slavers surrounding your little duel.`
+			`	The few colonists that are left behind after the slavers have filled their holds honor you with a short burial and a bottle of local moonshine poured out over your cairn in respect for your brave, but fairly ill-conceived attempt to defend them.`
+				die
+			label attack
+			`	You retreat back to your ship, unable to help these poor souls...`
+			`	... Or at least, that's what you want the slavers to think. They're caught unaware as you streak back towards the town, weapons hot and firing on clusters of slavers caught out in the open. Unarmored gangsters are no match for startship-grade weaponry, and your first volley reduces a good amount of the guards to so much greasy mist. Your second pass initiates a full rout, as the slavers start a full retreat from the village and back to the landing pad.`
+			`	Survivors pour through the hatches and into their ships, engines are warmed, weapons brought on-line, and soon enough you're streaking out of atmosphere to finish this fight in the skies above.`
+				accept
+				#force depart?
+			label retreat
+			`	You retreat back to your ship, unable to help these poor souls.`
+				decline
+	on complete
+		set
+			apply "hero of darkstone"
 
 mission "Pirate Intro: Darkstone Slavers [2]"
 	invisible
