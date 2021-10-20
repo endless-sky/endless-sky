@@ -645,18 +645,63 @@ mission "Pirate Intro: Darkstone Slavers [2]"
 		has "tribute: Darkstone"
 	on offer
 		conversation
-			`You conquered Darkstone and they told you to come back later to collect your properly owed tribute, but on your next visit they're being raided by slavers!`
+		conversation
+			`	Darkstone looks somewhat less depressing on your next landing. The village near the landing pad, rather than being blacked-out, is well-lit. The town center is piled high with scrap, apparently looted from the gang you ran off during your last visit. They've certainly made good on their promise, given the amount of labor it must have taken to haul this much in so little time. In fact, the village is far more lively than you'd have expected - the old folk and children must have come out of hiding, and even the adults are more numerous than last count. From what you can see during landing, everybody is assembled in the center of town - and your ship isn't the only one on the landing pad. Visitors?`
 			choice
-				`	(Fight the slavers.)`
-					apply
-						set "defender of darkstone"
-				`	(Sell the colonists into slavery.)`
-					apply
-						set "slaver of darkstone"
-						set terribleperson
-				`	(None of my business.)`
+				`	(Disembark and head to the village center.)`
+			`	The outskirts are abandoned. There's not a single hand tending the fields, or in the outlying buildings. They've all assembled at the town center.`
+			`	As it turns out, they're not there to render tribute unto you as you might have thought. No, the villagers are all being held at gunpoint in the center of the village green while a nasty-looking piece of work looks them over one at a time, then directs them into one queue or another: colonists in one are affixed with shackles. Those in the other are made to lie flat with their hands behind their heads. Not a single colonist dare look up; the spirit of defeat hangs too heavily over these broken souls.`
+			choice
+				`	"What's going on here?"`
+				`	(Stroll into the middle of town. Lock eyes with the leader of the slavers. Assume a gunfighter's stance.)`
+					goto duel
+				`	(Return to your ship. This is none of your business.)`
+					goto retreat
+				`	(Return to your ship... and start strafing the slavers.)`
+					goto attack
+			`	You're given an appraising look-over by the slaver chief. "... Yeah, you'd be too much trouble to sell. What'cha want, kid? We're busy here."`
+			choice
+				`	"These colonists are my property by right of conquest. If you're taking them, I expect to be fairly compensated."`
+				`	"Actually, I was just leaving."`
+					goto retreat
+				`	"Whoah, whoah, whoah, I'm cool with forcing people to give me stuff because I'm holding them at gunpoint, but forcing them into slavery? That's sick."`
+					goto challenge
+			`	The chief works his jaw for a moment, deep in thought. "Alright. You soundly thrashed the last bunch of bastards who were here, so I'm inclined to think we're best off doing business. Market rate on these things is ten-thousand a body. 'course, that's with no shipping and handling - factor that in and we can afford to give you ehhh... Quarter million for the lot of 'em. You'll have some left once we're done, mind."`
+			choice
+				`	"Done deal.`
+					#give player 250,000 credits
+					set
+						apply "slaver of darkstone"
+						apply "terribleperson"
 					decline
-		
+			label duel
+			`	The leader of the slavers turns to face you, attention finally pulled from his task. "You've got some nerve picking a fight with us, kid. You really think these poor bastards are worth dying for?"`
+			`	Noon's sun beats down on you. Even with the chill that usually haunts this region of the planet at this time of year, it's enough to bring sweat to your brow. Silence fills the town square, and slavers shy back to leave only four things that matter in the area: You, the slaver boss, and your respective pistols.`
+			`	A bird cries in the distance.`
+			choice
+				(Draw!)
+			`	The slaver boss is fast, but you're faster. You're able to slip your sidearm out of its holster, level it, and cleanly blow him away before he can so much as draw a bead on you - and so it's with the thrill of victory that you die, as you're unceremoniously cut down by massed fire from the gang of slavers surrounding your little duel.`
+			`	The few colonists that are left behind after the slavers have filled their holds honor your sacrifice by rolling your body into a ditch, spitting on it, and then promptly forgetting you ever lived.`
+				die
+			label retreat
+			`	You retreat back to your ship, unable or unwilling to defend your extortion-subjects against a slaver incursion.`
+				decline
+			label challenge
+			`	"Yeah? And what do you think you can do about that?"`
+			choice
+				`	"You raise a compelling point, sir, and I wish you a good day while I leave to think further upon that."`
+					goto retreat
+				`	"I think I can kick your ass, that's what."`
+					goto duel
+				`	(Make your excuses and return to your ship. You'll be back - once your engines and weapons are warmed up.)`
+			label attack
+			`	You hustle back to your ship, slavers jeering at your back. They're not laughing long, however. They're caught unaware as you streak back towards the town, weapons hot and firing on clusters of slavers caught out in the open. Unarmored gangsters are no match for startship-grade weaponry, and your first volley reduces a good amount of the guards to so much greasy mist. Your second pass initiates a full rout, as the slavers start a full retreat from the village and back to the landing pad.`
+			`	Survivors pour through the hatches and into their ships, engines are warmed, weapons brought on-line, and soon enough you're streaking out of atmosphere to finish this fight in the skies above.`
+				accept
+				#force depart?
+	on complete
+		set
+			apply "defender of darkstone"
 
 event "became a pirate"
 	"reputation: Republic" <?= -1000
