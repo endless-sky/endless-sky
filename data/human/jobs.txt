@@ -2581,7 +2581,11 @@ mission "Bounty Hunting (Very Tiny)"
 	repeat
 	job
 	to offer
-		"combat rating" > 50
+		or
+			"combat rating" > 50
+			has "ships: Interceptor"
+			has "ships: Light Warship"
+		"combat rating" < 200
 		random < 40
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2607,7 +2611,6 @@ mission "Bounty Hunting (Very Tiny)"
 				"Wasp (Plasma)"
 			variant
 				"Wasp (Proton)"
-			
 		dialog phrase "generic hunted bounty eliminated dialog"
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -2621,7 +2624,11 @@ mission "Bounty Hunting (Tiny)"
 	repeat
 	job
 	to offer
-		"combat rating" > 100
+		or
+			"combat rating" > 100
+			has "ships: Interceptor"
+			has "ships: Light Warship"
+		"combat rating" < 300
 		random < 40
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2657,7 +2664,6 @@ mission "Bounty Hunting (Tiny)"
 				"Fury (Laser)"
 			variant
 				"Fury (Bomber)"
-			
 		dialog phrase "generic hunted bounty eliminated dialog"
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -2671,7 +2677,11 @@ mission "Bounty Hunting (Very Small)"
 	repeat
 	job
 	to offer
-		"combat rating" > 200
+		or
+			"combat rating" > 200
+			has "ships: Light Warship"
+			has "ships: Medium Warship"
+		"combat rating" < 400
 		random < 40
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
