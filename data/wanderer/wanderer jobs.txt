@@ -844,7 +844,7 @@ mission "Captured soldiers"
 	name "Transport captured Unfettered soldiers"
 	job 
 	repeat
-	description "Transport <bunks> captured Unfettered soldiers to <planet>. payment is <payment>"
+	description "Transport <bunks> captured Unfettered soldiers to <planet>. Payment is <payment>."
 	to offer
 		has "language: Wanderer"
 		random < 20
@@ -859,13 +859,13 @@ mission "Captured soldiers"
 	on complete
 		payment
 		payment 50000
-		dialog "Once you land on <planet>, you watch as some Wanderers in uniform carry the Unfettered prisoners off of your ship. You collect your payment of <payment>."
+		dialog "Once you land on <planet>, several uniformed Wanderers drive the Unfettered prisoners off of your ship. You collect your payment of <payment>."
 
 mission "Governor transport"
 	name "transport the Governor to <planet>"
 	job
 	repeat
-	description "transport the local governor to the capital city of Vara K'chrai. Payment is <payment>."
+	description "Transport the local governor to the capital city of <planet>. Payment is <payment>."
 	passengers 1
 	deadline
 	to offer
