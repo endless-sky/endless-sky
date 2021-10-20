@@ -546,13 +546,42 @@ mission "Pirate Intro: Domination Check-in"
 	invisible
 	landing
 	source "Darkstone"
+	to complete
+		never
 	to offer
 		has "Pirate Intro: Domination: active"
 		has "tribute: Darkstone"
 	on offer
 		conversation
-			`You dominated Darkstone. The townsfolk tell you to come back in a couple days because they're too poor to offer any actual tribute right now, but they'll salvage what they can from the camp of the last gang and hand it over if you're willing to wait.`
-				accept
+			`	Apparently the mess you made in orbit was visible even from the ground, as when you come in to land there's a delegation of frankly depressed-looking colonists waiting to greet you. The only member of the party who looks even vaguely chipper is a goat that they're holding on the end of a rope, who's otherwise merrily grazing on whatever foliage clings to the edge of the packed-dirt landing pad.`
+			choice
+				`	(Wait for the colonists to speak first.)`
+					goto silence
+				`	"You lot know how it works. Old master's dead, that makes me the new one. Pay up and I'll be off."`
+					goto tribute
+				`	"Kneel before me, peasants!"`
+					goto silence
+				`	"Hello! I'm fairly new to this whole 'conquering the galaxy' thing, but I think that beating that crew of scoundrels like I did makes me the new boss of this place, right?"`
+				`	The colonists exchange looks. They seem far too lost in their own misery to even try dealing with your obnoxiously chipper demeanor, and you're simply given a chorus of shrugs and murmured 'Yah, sure, whynot' responses.`
+				`	"Whatever you say, chief."`
+					goto tribute
+				label silence
+				`	Painfully thick silence stretches between you and the welcoming party as everybody tries to figure out what to do, or say in response to your arrival. It's finally broken by a loud bleating.`
+				`	"We brought you a goat", one of the villagers mentions in an attempt to be helpful. He's promptly slapped on the back of the head by another member of the delegation, silencing the man.`
+				label tribute
+				`	"Hey, chief - landlord - your majesty." A young man at the head of the delegation steps forward. Now that you've had a moment to look them over, it appears that none of the people here are much older than thirty years. "We don't have much, that crew you took down had already taken our crops and sold 'em offworld. All we've really got is..." The goat's fixed with a scornful gaze.`
+				`	"Anyways. We know how this works, you're not the first landlord we've had, and I doubt you'll be the last. We'll scavenge the last gang's camp and gather up any valuables for you, will that cover this month's rents? It'll take a few days, but come back then and we'll have something worthwhile for you. I swear, we really don't have anything else worth taking. We're already down to using hand tools when our ancestors came here with tractors..."`
+				choice
+					`	"You guys can keep the goat. I'll be back in a few days to collect."`
+						accept
+					`	"That's... Pathetic. I expected more. I'm taking your goat, and I expect you sorry bunch of mud-scrapers to have some proper loot by the time I'm back.`
+						accept
+					`	You know, I don't think this whole 'bandit king' thing is going to work out from me. Can we just forget the whole tribute thing? I'll leave you guys alone. Sorry for the trouble."`
+				`	"... You're messing with us, right?" Only a few of the colonists have the barest hints of hope visible on their faces. "That's... Well, it would be mighty fine to actually be able to keep something for a change. Alright! If you're serious, just hail us once you're back in orbit - we'll put the word out once we hear from you."`
+				`	You can see the barest clue of a smile on the young man's lips, and light in his eyes that weren't there when you'd arrived. "And hey! You should come back in a couple days anyways, we don't have much but we'd like to throw you some sort of party to show our thanks. We make a mean corn liquor in these parts, and, well... We really hated that last crew that was camped out here. It'd mean a lot to us if you came by."`
+				`(To release the planet from tribute, select it from orbit and use the hail key.)`
+					accept
+				
 
 mission "Pirate Intro: Darkstone Slavers [1]"
 	invisible
