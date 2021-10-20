@@ -526,7 +526,7 @@ conversation "Den Handoff"
 	
 
 
-mission "Pirate Intro: Domination"
+#mission "Pirate Intro: Domination"
 	landing
 	name "Dominate a planet"
 	description `Dominate Darkstone.`
@@ -542,6 +542,7 @@ mission "Pirate Intro: Domination"
 
 
 mission "Pirate Intro: Domination Check-in"
+	deadline 2
 	invisible
 	landing
 	source "Darkstone"
@@ -550,10 +551,47 @@ mission "Pirate Intro: Domination Check-in"
 		has "tribute: Darkstone"
 	on offer
 		conversation
-			`You dominated a planet.`
-				decline
+			`You dominated Darkstone. The townsfolk tell you to come back in a couple days because they're too poor to offer any actual tribute right now, but they'll salvage what they can from the camp of the last gang and hand it over if you're willing to wait.`
+				accept
 
+mission "Pirate Intro: Darkstone Slavers [1]"
+	invisible
+	landing
+	source "Darkstone"
+	to offer
+		has "Pirate Intro: Domination Check-in: failed"
+		not "tribute: Darkstone"
+	on offer
+		conversation
+			`You released the people of Darkstone from their tribute obligations, and they seemed mighty pleased about that. On your next visit they're being raided by slavers!`
+			choice
+				`	(Fight the slavers.)`
+					apply
+						set "hero of darkstone"
+				`	(None of my business.)`
+					decline
 
+mission "Pirate Intro: Darkstone Slavers [2]"
+	invisible
+	landing
+	source "Darkstone"
+	to offer
+		has "Pirate Intro: Domination Check-in: failed"
+		has "tribute: Darkstone"
+	on offer
+		conversation
+			`You conquered Darkstone and they told you to come back later to collect your properly owed tribute, but on your next visit they're being raided by slavers!`
+			choice
+				`	(Fight the slavers.)`
+					apply
+						set "defender of darkstone"
+				`	(Sell the colonists into slavery.)`
+					apply
+						set "slaver of darkstone"
+						set terribleperson
+				`	(None of my business.)`
+					decline
+		
 
 event "became a pirate"
 	"reputation: Republic" <?= -1000
