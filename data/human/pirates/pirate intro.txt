@@ -344,13 +344,12 @@ event "remove merchant targets"
 	system "Umbral"
 		remove fleet "Merchant Targets"
 
-#this is a short conversation that should pop up once the player has a chance to wind down after the Plunder Defense mission. It'll give the player a chance to poke around inside the lockbox before turning it over to the Corsair. If they do look inside, I want to record some notes to their log. If it's easier, we could also have it pop up when landing on Greenrock, just have it offer before the "check in and cash in" mission. If that's a better approach in your appraisal, just mention that in the commit description and I'll get to editing to make it match.
 mission "Lockbox Snooping"
 	invisible
 	landing
 	to offer
 		has "Plunder Defense: offered"
-		not "I Want To Be A pirate: done"
+		not "I Want To Be A Pirate: done"
 	on offer
 		conversation
 			`	With the flash of lasers and roar of engines throttled to full finally settled, quiet falls over the ship. You have a moment to inspect your plunder. How closely you inspect it remains to be decided.`
@@ -379,7 +378,6 @@ mission "Lockbox Snooping"
 			`	Today's the day I'm born anew. Not with one of those cults, but with the "merchant" who comes by every season. He said there's room on his crew for a young man who's not afraid to get his hands dirty, and if I help around the ship, and he likes me by the time he takes off again, I can stay and take a share in their next haul... But I don't want to bring the law down on my family. I'll need a new name. "Voidmaster" sounds cool. I'll see if I can get the crew to call me that.`
 			`	The remaining pages have been torn out.`
 				accept
-			#add each journal entry to the logbook, heading/section name "Old Journal"
 	on accept
 		log `Found an old journal inside a chest from a ship I plundered. It had the following entries:`
 		log `October 3, '94`
@@ -540,6 +538,21 @@ mission "Pirate Intro: Domination"
 		has "I Want To Be A Pirate: done"
 	to complete
 		has "tribute: Darkstone"
+
+
+
+mission "Pirate Intro: Domination Check-in"
+	invisible
+	landing
+	source "Darkstone"
+	to offer
+		has "Pirate Intro: Domination: active"
+		has "tribute: Darkstone"
+	on offer
+		conversation
+			`You dominated a planet.`
+				decline
+
 
 
 event "became a pirate"
