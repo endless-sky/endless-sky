@@ -126,7 +126,7 @@ conversation "I Want To Be A Pirate"
 		decline
 
 conversation "I Want To Be A Pirate Conclusion"
-	`	Heads turn to regard you as you disembark into the Greenrock spaceport. Capos, pirates, slavers and smugglers regard you, size you up, and turn away with disinterest. That's far better than the ugly leers you used to get. Perhaps it's a swagger in your step, or simply a confident bearing that you now have - maybe you're just imagining things and reading what you want into the manifold expressions within the human morass that constitutes a busy port.`
+	`Heads turn to regard you as you disembark into the Greenrock spaceport. Capos, pirates, slavers and smugglers regard you, size you up, and turn away with disinterest. That's far better than the ugly leers you used to get. Perhaps it's a swagger in your step, or simply a confident bearing that you now have - maybe you're just imagining things and reading what you want into the manifold expressions within the human morass that constitutes a busy port.`
 	`	You're paid no mind as you strut into the tavern and progress to another back room where, just as they said, the three pirates you'd met before are sharing drinks. Heads are lifted from tankards to regard you. The Corsair seems quite pleased to see you, assisted as he is by the reddened bonhomie of liquor. The fatigues-clad Mercenary remains impassive, her mien businesslike. And the Capo? He's just choked on his drink.`
 	`	"Well slap a collar on me and sell me as a miner, you're still drawing breath. Didn't expect that. Here bearing profitable news, I trust." The Capo's speech is as metallic as ever, though his usual semi-musical tones sound somewhat... drowned. Sounds like he sucked some beer into his windpipe with that last sip.`
 	branch tributeskip
@@ -269,10 +269,10 @@ mission "Pirate Overview"
 	on offer
 		conversation
 			`You think back to your conversation in that cramped, stinking drinking hole, of the colorful characters met and the tasks assigned.`
-			`There's a worthy target - sure to attract the attention of every pirate who have eyes and ears in the right places - cruising through Umbral soon. Ambush them, secure an antique lockbox, and then defend your prize against any scavengers.`
-			`Prove your worth through sheer spending power. Accrue one million credits and hand them off to someone reffered to you by a stranger you just happened to meet in a bar, for the promise of words whispered into the right ears. You'll need to head to Smuggler's Den, an orbital installation in the Men system`
-			`Murder a bunch of strangers and make the survivors render tribute on pain of more ass-kickings. Specifically, strangers living on the planet of Darkstone. They probably deserve it anyways, or at least so says the cyborg who issued the task.`
-			`Completing any of these truly important quests and reporting back to the ne'er-do-wells on Greenrock will make you a pirate.`
+			`	There's a worthy target - sure to attract the attention of every pirate who have eyes and ears in the right places - cruising through Umbral soon. Ambush them, secure an antique lockbox, and then defend your prize against any scavengers.`
+			`	Prove your worth through sheer spending power. Accrue one million credits and hand them off to someone reffered to you by a stranger you just happened to meet in a bar, for the promise of words whispered into the right ears. You'll need to head to Smuggler's Den, an orbital installation in the Men system`
+			`	Murder a bunch of strangers and make the survivors render tribute on pain of more ass-kickings. Specifically, strangers living on the planet of Darkstone. They probably deserve it anyways, or at least so says the cyborg who issued the task.`
+			`	Completing any of these truly important quests and reporting back to the ne'er-do-wells on Greenrock will make you a pirate.`
 				decline
 
 
@@ -352,7 +352,7 @@ mission "Lockbox Snooping"
 		not "I Want To Be A Pirate: done"
 	on offer
 		conversation
-			`	With the flash of lasers and roar of engines throttled to full finally settled, quiet falls over the ship. You have a moment to inspect your plunder. How closely you inspect it remains to be decided.`
+			`With the flash of lasers and roar of engines throttled to full finally settled, quiet falls over the ship. You have a moment to inspect your plunder. How closely you inspect it remains to be decided.`
 			choice
 				`	(Yep. That's an admirable stack of booty. Back to whatever it was I was doing.)`
 					decline
@@ -422,7 +422,7 @@ mission "Pirate Intro: Payment"
 		never
 		
 conversation "Den Handoff"
-	`	"That's a key", a janitor cheerfully explains as he spots you staring at the datachip the mercenary had given you back in that dingy tavern. "... Goodness, you've had a few too many, haven't you? Give it here." Without waiting for your permission the fellow snaps the chip up out of your hands and runs it through a device attached to his belt. "Hangar 18, just pop it into the wall console and it'll open up for you. Best get moving before your captain notices you're missing, harhar." With a smile and a wave, the janitor deposits the chip back into your palm, brushes past you, and returns to going about his business.`
+	`"That's a key", a janitor cheerfully explains as he spots you staring at the datachip the mercenary had given you back in that dingy tavern. "... Goodness, you've had a few too many, haven't you? Give it here." Without waiting for your permission the fellow snaps the chip up out of your hands and runs it through a device attached to his belt. "Hangar 18, just pop it into the wall console and it'll open up for you. Best get moving before your captain notices you're missing, harhar." With a smile and a wave, the janitor deposits the chip back into your palm, brushes past you, and returns to going about his business.`
 	choice
 		`	(Proceed to Hangar 18.)`
 	`	Just as promised, the datachip fits right into a slot in the wall, unsealing the airlock and allowing you into the hangar. Voices and light spill from within.`
@@ -553,7 +553,7 @@ mission "Pirate Intro: Domination Check-in"
 		has "tribute: Darkstone"
 	on offer
 		conversation
-			`	Apparently the mess you made in orbit was visible even from the ground, as when you come in to land there's a delegation of frankly depressed-looking colonists waiting to greet you. The only member of the party who looks even vaguely chipper is a goat that they're holding on the end of a rope, who's otherwise merrily grazing on whatever foliage clings to the edge of the packed-dirt landing pad.`
+			`Apparently the mess you made in orbit was visible even from the ground, as when you come in to land there's a delegation of frankly depressed-looking colonists waiting to greet you. The only member of the party who looks even vaguely chipper is a goat that they're holding on the end of a rope, who's otherwise merrily grazing on whatever foliage clings to the edge of the packed-dirt landing pad.`
 			choice
 				`	(Wait for the colonists to speak first.)`
 					goto silence
@@ -574,16 +574,16 @@ mission "Pirate Intro: Domination Check-in"
 			choice
 				`	"You guys can keep the goat. I'll be back in a few days to collect."`
 					accept
-				`	"That's... Pathetic. I expected more. I'm taking your goat, and I expect you sorry bunch of mud-scrapers to have some proper loot by the time I'm back.`
+				`	"That's... Pathetic. I expected more. I'm taking your goat, and I expect you sorry bunch of mud-scrapers to have some proper loot by the time I'm back."`
 					accept
-				`	You know, I don't think this whole 'bandit king' thing is going to work out from me. Can we just forget the whole tribute thing? I'll leave you guys alone. Sorry for the trouble."`
+				`	"You know, I don't think this whole 'bandit king' thing is going to work out from me. Can we just forget the whole tribute thing? I'll leave you guys alone. Sorry for the trouble."`
 			`	"... You're messing with us, right?" Only a few of the colonists have the barest hints of hope visible on their faces. "That's... Well, it would be mighty fine to actually be able to keep something for a change. Alright! If you're serious, just hail us once you're back in orbit - we'll put the word out once we hear from you."`
 			`	You can see the barest clue of a smile on the young man's lips, and light in his eyes that weren't there when you'd arrived. "And hey! You should come back in a couple days anyways, we don't have much but we'd like to throw you some sort of party to show our thanks. We make a mean corn liquor in these parts, and, well... We really hated that last crew that was camped out here. It'd mean a lot to us if you came by."`
 			`(To release the planet from tribute, select it from orbit and use the hail key.)`
 				accept
 				
 
-mission "Pirate Intro: Darkstone Slavers [1]"
+mission "Pirate Intro: Darkstone Slavers (Free)"
 	deadline 3
 	invisible
 	landing
@@ -591,9 +591,13 @@ mission "Pirate Intro: Darkstone Slavers [1]"
 	to offer
 		has "Pirate Intro: Domination Check-in: failed"
 		not "tribute: Darkstone"
+	npc kill
+		personality nemesis
+		government "Pirate"
+		fleet "Small Southern Pirates" 4
 	on offer
 		conversation
-			`	Darkstone looks somewhat less depressing on your next landing. The village near the landing pad, rather than being blacked-out, is well-lit. Festive lanters hang from each building, and there's a crackling bonfire in the center of town to beat back the chill. In fact, the village is far more lively than you'd have expected - the old folk and children must have come out of hiding, and even the adults are more numerous than last count. From what you can see during landing, everybody is assembled in the center of town - and your ship isn't the only one on the landing pad. Visitors?`
+			`Darkstone looks somewhat less depressing on your next landing. The village near the landing pad, rather than being blacked-out, is well-lit. Festive lanters hang from each building, and there's a crackling bonfire in the center of town to beat back the chill. In fact, the village is far more lively than you'd have expected - the old folk and children must have come out of hiding, and even the adults are more numerous than last count. From what you can see during landing, everybody is assembled in the center of town - and your ship isn't the only one on the landing pad. Visitors?`
 			choice
 				`	(Disembark and head to the village center.)`
 			`	The outskirts are abandoned. There's not a single hand tending the fields, or in the outlying buildings. They've all assembled at the town center.`
@@ -625,7 +629,7 @@ mission "Pirate Intro: Darkstone Slavers [1]"
 				die
 			label attack
 			`	You retreat back to your ship, unable to help these poor souls...`
-			`	... Or at least, that's what you want the slavers to think. They're caught unaware as you streak back towards the town, weapons hot and firing on clusters of slavers caught out in the open. Unarmored gangsters are no match for startship-grade weaponry, and your first volley reduces a good amount of the guards to so much greasy mist. Your second pass initiates a full rout, as the slavers start a full retreat from the village and back to the landing pad.`
+			`	... Or at least, that's what you want the slavers to think. They're caught unaware as you streak back towards the town, weapons hot and firing on clusters of slavers caught out in the open. Unarmored gangsters are no match for starship-grade weaponry, and your first volley reduces a good amount of the guards to so much greasy mist. Your second pass initiates a full rout, as the slavers start a full retreat from the village and back to the landing pad.`
 			`	Survivors pour through the hatches and into their ships, engines are warmed, weapons brought on-line, and soon enough you're streaking out of atmosphere to finish this fight in the skies above.`
 				launch
 			label retreat
@@ -634,16 +638,20 @@ mission "Pirate Intro: Darkstone Slavers [1]"
 	on complete
 		set "hero of darkstone"
 
-mission "Pirate Intro: Darkstone Slavers [2]"
+mission "Pirate Intro: Darkstone Slavers (Dominated)"
 	invisible
 	landing
 	source "Darkstone"
 	to offer
 		has "Pirate Intro: Domination Check-in: failed"
 		has "tribute: Darkstone"
+	npc kill
+		personality nemesis
+		government "Pirate"
+		fleet "Small Southern Pirates" 4
 	on offer
 		conversation
-			`	Darkstone looks somewhat less depressing on your next landing. The village near the landing pad, rather than being blacked-out, is well-lit. The town center is piled high with scrap, apparently looted from the gang you ran off during your last visit. They've certainly made good on their promise, given the amount of labor it must have taken to haul this much in so little time. In fact, the village is far more lively than you'd have expected - the old folk and children must have come out of hiding, and even the adults are more numerous than last count. From what you can see during landing, everybody is assembled in the center of town - and your ship isn't the only one on the landing pad. Visitors?`
+			`Darkstone looks somewhat less depressing on your next landing. The village near the landing pad, rather than being blacked-out, is well-lit. The town center is piled high with scrap, apparently looted from the gang you ran off during your last visit. They've certainly made good on their promise, given the amount of labor it must have taken to haul this much in so little time. In fact, the village is far more lively than you'd have expected - the old folk and children must have come out of hiding, and even the adults are more numerous than last count. From what you can see during landing, everybody is assembled in the center of town - and your ship isn't the only one on the landing pad. Visitors?`
 			choice
 				`	(Disembark and head to the village center.)`
 			`	The outskirts are abandoned. There's not a single hand tending the fields, or in the outlying buildings. They've all assembled at the town center.`
@@ -665,13 +673,14 @@ mission "Pirate Intro: Darkstone Slavers [2]"
 					goto challenge
 			`	The chief works his jaw for a moment, deep in thought. "Alright. You soundly thrashed the last bunch of bastards who were here, so I'm inclined to think we're best off doing business. Market rate on these things is ten-thousand a body. 'course, that's with no shipping and handling - factor that in and we can afford to give you ehhh... Quarter million for the lot of 'em. You'll have some left once we're done, mind."`
 			choice
-				`	"Done deal.`
+				`	"Done deal."`
 			action
 				payment 250000
 			apply
 				set "slaver of darkstone"
 				set "terribleperson"
-			decline
+			"You leave with the money."
+				decline
 			label duel
 			`	The leader of the slavers turns to face you, attention finally pulled from his task. "You've got some nerve picking a fight with us, kid. You really think these poor bastards are worth dying for?"`
 			`	Noon's sun beats down on you. Even with the chill that usually haunts this region of the planet at this time of year, it's enough to bring sweat to your brow. Silence fills the town square, and slavers shy back to leave only four things that matter in the area: You, the slaver boss, and your respective pistols.`
@@ -693,7 +702,7 @@ mission "Pirate Intro: Darkstone Slavers [2]"
 					goto duel
 				`	(Make your excuses and return to your ship. You'll be back - once your engines and weapons are warmed up.)`
 			label attack
-			`	You hustle back to your ship, slavers jeering at your back. They're not laughing long, however. They're caught unaware as you streak back towards the town, weapons hot and firing on clusters of slavers caught out in the open. Unarmored gangsters are no match for startship-grade weaponry, and your first volley reduces a good amount of the guards to so much greasy mist. Your second pass initiates a full rout, as the slavers start a full retreat from the village and back to the landing pad.`
+			`	You hustle back to your ship, slavers jeering at your back. They're not laughing long, however. They're caught unaware as you streak back towards the town, weapons hot and firing on clusters of slavers caught out in the open. Unarmored gangsters are no match for starship-grade weaponry, and your first volley reduces a good amount of the guards to so much greasy mist. Your second pass initiates a full rout, as the slavers start a full retreat from the village and back to the landing pad.`
 			`	Survivors pour through the hatches and into their ships, engines are warmed, weapons brought on-line, and soon enough you're streaking out of atmosphere to finish this fight in the skies above.`
 				launch
 	on complete
