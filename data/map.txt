@@ -26908,7 +26908,7 @@ planet Darkstone
 	security 0.1
 	tribute 150
 		threshold 800
-		fleet "Small Pirate" 8
+		fleet "Small Southern Pirates" 8
 
 planet Darkrest
 	attributes hai station uninhabited
