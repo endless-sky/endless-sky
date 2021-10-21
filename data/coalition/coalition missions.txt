@@ -1838,6 +1838,7 @@ mission "Saryd University Lecture"
 			label donttell
 			`	"Sorry, I don't know what's there any more than you do."`
 			`	The Saryd walks away, disappointed.`
+				goto sorry
 			label tell
 			`	"An alien species known as the Korath live there. They're reptillian creatures whose space has been torn apart by fighting. There are four factions. The Kor Sestor and Kor Mereti have been fighting a civil war using autonomous robotic ships. The Kor Efreti have stayed out of the civil war, living under the Quarg's protection." At this there are hisses from several in the crowd. "The last faction, the Korath Exiles, have been banished to the Core by the Quarg, for refusing to give up their ability to manufacture jump drives. They are now raiding humanity for supplies."`
 			`	The crowd shows considerable interest at this last part. "Knowledge of the jump drive, a species besides the Quarg possesses? Great news, this is! Our struggle against the Quarg, we do not take up alone. Escape the cages of the Drak, do any other species?" The Arach does not seem to mind you answering another question.`

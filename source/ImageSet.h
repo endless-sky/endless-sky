@@ -15,6 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ImageBuffer.h"
 
+#include <cstddef>
+#include <map>
 #include <string>
 #include <vector>
 
@@ -39,18 +41,17 @@ public:
 	
 	
 public:
-	// Constructor, optionally specifying the name (for image sets like the
-	// plugin icons, whose name can't be determined from the path names).
-	ImageSet(const std::string &name = "");
+	// ImageSets should be created with a name, as some image paths (e.g. plugin icons)
+	// do not contain the associated image name.
+	ImageSet(std::string name);
 	
 	// Get the name of the sprite for this image set.
 	const std::string &Name() const;
 	// Add a single image to this set. Assume the name of the image has already
 	// been checked to make sure it belongs in this set.
-	void Add(const std::string &path);
-	// Check this image set to determine whether any frames are missing. Report
-	// an error for each missing frame. (It will be left uninitialized.)
-	void Check() const;
+	void Add(std::string path);
+	// Reduce all given paths to frame images into a sequence of consecutive frames.
+	void ValidateFrames() noexcept(false);
 	// Load all the frames. This should be called in one of the image-loading
 	// worker threads. This also generates collision masks if needed.
 	void Load() noexcept(false);
@@ -63,7 +64,9 @@ public:
 private:
 	// Name of the sprite that will be initialized with these images.
 	std::string name;
-	// Paths to all the images that must be loaded:
+	// Paths to all the images that were discovered during loading.
+	std::map<std::size_t, std::string> framePaths[2];
+	// Paths that comprise a valid animation sequence of 1 or more frames.
 	std::vector<std::string> paths[2];
 	// Data loaded from the images:
 	ImageBuffer buffer[2];

@@ -276,11 +276,22 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		
 		// All manual events and processing done. Handle any test inputs and events if we have any.
 		if(!testContext.testToRun.empty())
+		{
 			testContext.testToRun.back()->Step(testContext, menuPanels, gamePanels, player);
-		
+			// Skip drawing 29 out of every 30 in-flight frames during testing to speedup testing (unless debug mode is set).
+			// We don't skip UI-frames to ensure we test the UI code more.
+			if(inFlight && !debugMode)
+			{
+				skipFrame = (skipFrame + 1) % 30;
+				if(skipFrame)
+					continue;
+			}
+			else
+				skipFrame = 0;
+		}
 		// Caps lock slows the frame rate in debug mode.
 		// Slowing eases in and out over a couple of frames.
-		if((mod & KMOD_CAPS) && inFlight && debugMode)
+		else if((mod & KMOD_CAPS) && inFlight && debugMode)
 		{
 			if(frameRate > 10)
 			{
@@ -314,7 +325,10 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		
 		GameWindow::Step();
 		
-		timer.Wait();
+		// When we perform automated testing, then we run the game by default as quickly as possible.
+		// Except when debug-mode is set.
+		if(testContext.testToRun.empty() || debugMode)
+			timer.Wait();
 		
 		// If the player ended this frame in-game, count the elapsed time as played time.
 		if(menuPanels.IsEmpty())
@@ -354,7 +368,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.9.14" << endl;
+	cerr << "Endless Sky ver. 0.9.15-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
@@ -376,7 +390,7 @@ Conversation LoadConversation()
 			break;
 		}
 	
-	const map<string, string> subs = {
+	map<string, string> subs = {
 		{"<bunks>", "[N]"},
 		{"<cargo>", "[N tons of Commodity]"},
 		{"<commodity>", "[Commodity]"},
@@ -393,7 +407,7 @@ Conversation LoadConversation()
 		{"<system>", "[Star]"},
 		{"<tons>", "[N tons]"}
 	};
-	return conversation.Substitute(subs);
+	return conversation.Instantiate(subs);
 }
 
 
