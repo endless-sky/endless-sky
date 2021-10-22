@@ -30,27 +30,45 @@ template<class Type>
 class WeightedList {
 public:
 	const Type &Get() const;
-	std::size_t TotalWeight() const { return total; };
+	std::size_t TotalWeight() const { return total; }
 	
 	typename std::vector<Type>::iterator begin() noexcept { return choices.begin(); }
 	typename std::vector<Type>::const_iterator begin() const noexcept { return choices.begin(); }
 	typename std::vector<Type>::iterator end() noexcept { return choices.end(); }
 	typename std::vector<Type>::const_iterator end() const noexcept { return choices.end(); }
 	
-	void clear() noexcept { choices.clear(); total = 0; };
-	std::size_t size() const noexcept { return choices.size(); };
-	bool empty() const noexcept { return choices.empty(); };
-	Type &back() noexcept { return choices.back(); };
-	const Type &back() const noexcept { return choices.back(); };
+	void clear() noexcept { choices.clear(); total = 0; }
+	std::size_t size() const noexcept { return choices.size(); }
+	bool empty() const noexcept { return choices.empty(); }
+	Type &back() noexcept { return choices.back(); }
+	const Type &back() const noexcept { return choices.back(); }
 	
 	template <class ...Args>
 	Type &emplace_back(Args&&... args);
+	
+	typename std::vector<Type>::iterator erase(typename std::vector<Type>::iterator position);
+	typename std::vector<Type>::iterator erase(typename std::vector<Type>::iterator first, typename std::vector<Type>::iterator last);
 	
 	
 private:
 	std::vector<Type> choices;
 	std::size_t total = 0;
 };
+
+
+
+template <class Type>
+const Type &WeightedList<Type>::Get() const
+{
+	if(empty())
+		throw std::runtime_error("Attempted to call Get on an empty weighted list.");
+	
+	unsigned index = 0;
+	for(int choice = Random::Int(total); choice >= choices[index].Weight(); ++index)
+		choice -= choices[index].Weight();
+	
+	return choices[index];
+}
 
 
 
@@ -72,17 +90,22 @@ Type &WeightedList<Type>::emplace_back(Args&&... args)
 
 
 
-template<class Type>
-const Type &WeightedList<Type>::Get() const
+template <class Type>
+typename std::vector<Type>::iterator WeightedList<Type>::erase(typename std::vector<Type>::iterator position)
 {
-	if(empty())
-		throw std::runtime_error("Attempted to call Get on an empty weighted list.");
+	total -= position->Weight();
+	return choices.erase(position);
+}
+
+
+
+template <class Type>
+typename std::vector<Type>::iterator WeightedList<Type>::erase(typename std::vector<Type>::iterator first, typename std::vector<Type>::iterator last)
+{
+	for(auto it = first; it != last; ++it)
+		total -= it->Weight();
 	
-	unsigned index = 0;
-	for(int choice = Random::Int(total); choice >= choices[index].Weight(); ++index)
-		choice -= choices[index].Weight();
-	
-	return choices[index];
+	return choices.erase(first, last);
 }
 
 
