@@ -69,17 +69,17 @@ mission "I Want To Be A Pirate"
 
 conversation "I Want To Be A Pirate"
 	`The drinking holes flanking this outlaw spaceport are a motley mix indeed, each apparently shabbier, dingier, or more raucous than the last. Perhaps that's just the way you like your establishments; perhaps not. Whatever the case, a sense of purpose has brought you here, far from the factories and fields of New Boston. Out here to the fringes of society.`
-	`Instinct - or an overabundance of swashbuckling serials consumed during your childhood - brings you to the back of a smoky bar, where a trio of grizzled people sit; an eyepatched Corsair festooned in somewhat anachrostistic couture, a jewelry-encrusted Capo with a mechanical jaw and the haughty bearing of a born and bred ganster, and a Mercenary wearing a beret and military fatigues. A patch affixed to her shirt identifies her as a member of the "Devil's Due Contracting Company". The three turn to stare at you. You came here for a reason, didn't you?`
+	`Instinct - or an overabundance of swashbuckling serials consumed during your childhood - brings you to the back of a smoky bar, where a trio of grizzled ruffians sit: an eyepatched Corsair festooned in somewhat anachronistic couture; a jewelry-encrusted Capo with a mechanical jaw and the haughty bearing of a born and bred gangster; and a Mercenary wearing a beret and military fatigues. A patch affixed to her shirt identifies her as a member of the "Devil's Due Contracting Company". The three turn to stare at you. You came here for a reason, didn't you?`
 	choice
 		`	"My name is <first> <last>, and I want to be a pirate."`
 		`	(This was a terrible idea. Back to the ship.)`
 			goto retreat
 	`The three regard you with a mixture of surprise and bemusement.`
-	`	"Is that so?", inquires the woman dressed for war. "And you're telling us why? Because you suspect that we might know the right people to, say, make it known that there's a new terror plying the hyperlanes?" She leans back, pauses, carefully inspects the seat behind her, and satisfied that it's not covered in too much grease, completes the maneuver. "... Well. You'd be right. But nothing in this world is free."`
+	`	"Is that so?" inquires the woman dressed for war. "And you're telling us why? Because you suspect that we might know the right people to, say, make it known that there's a new terror plying the hyperlanes?" She leans back, pauses, carefully inspects the seat behind her, and satisfied that it's not covered in too much grease, completes the maneuver. "...Well, you'd be right. But nothing in this world is free."`
 	`	"Aye, it be not enough to simply cover yer' ship with the old black-and-red. A pirate must earn the respect - or fear - of their fellows, lest they be seen as fair plunder", the Corsair contributes. This is followed up with an entirely gratuitous, but quite hearty "Arrrrgh."`
 	`	The Capo speaks last, jaw motionless; his voice is provided by a cybernetic vocoder, melliflous if gently synthetic. "Indeed. There's three things you'll need to do before you'll be taken seriously. Speaking personally, I'm always on the eye for upcoming talent. Prove that you've got what it takes and I'm sure at least one of us would make it known within our circles that you aren't to be trifled with - and perhaps worth offering work to. But first, those tasks."`
 	choice
-		`	(You nod towards the Corsair.) "Does he always speak like that?"`
+		`	(Nod towards the Corsair.) "Does he always speak like that?"`
 		`	"Oh, I know! I need to master theft, swordplay, and treasure hunting!"`
 			goto hahareferencegoeshere
 		`	"Fine. What should I do if I want other pirates to take me seriously?"`
@@ -126,7 +126,7 @@ conversation "I Want To Be A Pirate"
 		decline
 
 conversation "I Want To Be A Pirate Conclusion"
-	`Heads turn to regard you as you disembark into the Greenrock spaceport. Gangsters, pirates, slavers and smugglers regard you, size you up, and turn away with disinterest. That's far better than the ugly leers you used to get. Perhaps it's a swagger in your step, or simply a confident bearing that you now have - maybe you're just imagining things and reading what you want into the manifold expressions within the human morass that constitutes a busy port.`
+	`Heads turn to regard you as you disembark into the Greenrock spaceport. Gangsters, pirates, slavers and smugglers regard you, size you up, and turn away with disinterest. That's far better than the ugly leers you used to get. Perhaps it's a swagger in your step, or simply a confident bearing that you now have - maybe you're just imagining things and reading what you want into the manifold expressions within the human morass that constitutes this busy spaceport.`
 	`	You're paid no mind as you strut into the tavern and progress to another back room where, just as they said, the three pirates you'd met before are sharing drinks. Heads are lifted from tankards to regard you. The Corsair seems quite pleased to see you, assisted as he is by the reddened bonhomie of liquor. The fatigues-clad Mercenary remains impassive, her mien businesslike. And the Capo? He's just choked on his drink.`
 	`	"Well slap a collar on me and sell me as a miner, you're still drawing breath. Didn't expect that. Here bearing profitable news, I trust." The Capo's speech is as metallic as ever, though his usual semi-musical tones sound somewhat... drowned. Sounds like he sucked some beer into his windpipe with that last sip.`
 	branch tributeskip
@@ -146,7 +146,7 @@ conversation "I Want To Be A Pirate Conclusion"
 		has "slaver of Darkstone"
 	label conqueror
 	choice
-		`	(You address the Capo.) "I conquered Darkstone, defeating the gang that once claimed it. The inhabitants now offer me tribute."`
+		`	(Address the Capo.) "I conquered Darkstone, defeating the gang that once claimed it. The inhabitants now offer me tribute."`
 	`	The Capo nods in approval. "And a mighty fine job you did, too. Without those ruffians my boys were able to ply their trade far more easily. You've my thanks - and, as I promised, I've got some introductions to make on your behalf.`
 	choice
 		`	"What trade is that, exactly?"`
@@ -655,7 +655,7 @@ mission "Pirate Intro: Darkstone Slavers (Dominated)"
 			choice
 				`	(Disembark and head to the village center.)`
 			`	The outskirts are abandoned. There's not a single hand tending the fields, or in the outlying buildings. They've all assembled at the town center.`
-			`	As it turns out, they're not there to render tribute unto you as you might have thought. No, the villagers are all being held at gunpoint in the center of the village green while a nasty-looking piece of work looks them over one at a time, then directs them into one queue or another: colonists in one are affixed with shackles. Those in the other are made to lie flat with their hands behind their heads. Not a single colonist dare look up; the spirit of defeat hangs too heavily over these broken souls.`
+			`	As it turns out, they're not there to render tribute unto you as you might have thought. No, the villagers are all being held at gunpoint by a gang of toughs in the center of the village green while a nasty-looking piece of work examines them one at a time, then directs them into one queue or another. Colonists in one are shackled together. Those in the other are made to lie flat with their hands behind their heads. Not a single colonist dares to look up; the spirit of defeat hangs too heavily over these broken souls.`
 			choice
 				`	"What's going on here?"`
 				`	(Stroll into the middle of town. Lock eyes with the leader of the slavers. Assume a gunfighter's stance.)`
@@ -671,7 +671,7 @@ mission "Pirate Intro: Darkstone Slavers (Dominated)"
 					goto retreat
 				`	"Whoah, whoah, whoah, I'm cool with forcing people to give me stuff because I'm holding them at gunpoint, but forcing them into slavery? That's sick."`
 					goto challenge
-			`	The chief works his jaw for a moment, deep in thought. "Alright. You soundly thrashed the last bunch of bastards who were here, so I'm inclined to think we're best off doing business. Market rate on these things is ten-thousand a body. 'course, that's with no shipping and handling - factor that in and we can afford to give you ehhh... Quarter million for the lot of 'em. You'll have some left once we're done, mind."`
+			`	The chief works his jaw for a moment, deep in thought. "Alright. You soundly thrashed the last bunch of bastards who were here, so I'm inclined to think we're best off doing business. Wholesale rate on these skins is ten thousand a body. 'course, that's with no shipping and handling - factor that in and we can afford to give you ehhh... Quarter million for the lot of 'em. You'll still have some left once we're done, mind."`
 			choice
 				`	"Done deal."`
 			action
@@ -691,7 +691,7 @@ mission "Pirate Intro: Darkstone Slavers (Dominated)"
 			`	The few colonists that are left behind after the slavers have filled their holds honor your sacrifice by rolling your body into a ditch, spitting on it, and then promptly forgetting you ever lived.`
 				die
 			label retreat
-			`	You retreat back to your ship, unable or unwilling to defend your extortion-subjects against a slaver incursion.`
+			`	You retreat to your ship, unable or unwilling to defend your extortion-subjects against a slaver incursion.`
 				flee
 			label challenge
 			`	"Yeah? And what do you think you can do about that?"`
@@ -702,8 +702,8 @@ mission "Pirate Intro: Darkstone Slavers (Dominated)"
 					goto duel
 				`	(Make your excuses and return to your ship. You'll be back - once your engines and weapons are warmed up.)`
 			label attack
-			`	You hustle back to your ship, slavers jeering at your back. They're not laughing long, however. They're caught unaware as you streak back towards the town, weapons hot and firing on clusters of slavers caught out in the open. Unarmored gangsters are no match for starship-grade weaponry, and your first volley reduces a good amount of the guards to so much greasy mist. Your second pass initiates a full rout, as the slavers start a full retreat from the village and back to the landing pad.`
-			`	Survivors pour through the hatches and into their ships, engines are warmed, weapons brought on-line, and soon enough you're streaking out of atmosphere to finish this fight in the skies above.`
+			`	You hustle back to your ship, slavers jeering at your back. They're not laughing long, however. They're caught unaware as you streak back towards the town, weapons hot and firing on clusters of slavers caught out in the open. Unarmored gangsters are no match for starship-grade weaponry, and your first volley reduces a good number of the guards to so much greasy mist. Your second pass initiates a full rout, as the slavers beat a hasty retreat from the village and back to the landing pad.`
+			`	Survivors pour through the hatches and into their ships. Engines are warmed, weapons are brought on-line, and soon enough you're roaring out of atmosphere to finish this fight in the skies above.`
 				launch
 	on complete
 		set "defender of darkstone"
