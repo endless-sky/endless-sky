@@ -471,6 +471,18 @@ ship "Lampyrid-Class Transport"
 	engine 0 80 1.8
 	engine 0 100 1.2
 	engine 64 28 0.7
+	"reverse engine" -64.5 -31.5 0.7
+	"reverse engine" 64.5 -31.5 0.7
+	"steering engine" -64.5 -31.5 0.7
+		angle -180
+		left
+	"steering engine" 64 28 0.7
+		left
+	"steering engine" -64 28 0.7
+		right
+	"steering engine" 64.5 -31.5 0.7
+		angle -180
+		right
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 30
