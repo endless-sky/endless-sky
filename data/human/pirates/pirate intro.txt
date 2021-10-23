@@ -633,7 +633,7 @@ mission "Pirate Intro: Darkstone Slavers (Free)"
 			`	Survivors pour through the hatches and into their ships, engines are warmed, weapons brought on-line, and soon enough you're streaking out of atmosphere to finish this fight in the skies above.`
 				launch
 			label retreat
-			`	You retreat back to your ship, unable to help these poor souls.`
+			`	You retreat to your ship, unable to help these poor souls.`
 				flee
 	on complete
 		set "hero of darkstone"
