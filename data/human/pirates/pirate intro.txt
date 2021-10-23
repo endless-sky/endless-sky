@@ -131,6 +131,7 @@ conversation "I Want To Be A Pirate Conclusion"
 	`	"Well slap a collar on me and sell me as a miner, you're still drawing breath. Didn't expect that. Here bearing profitable news, I trust." The Capo's speech is as metallic as ever, though his usual semi-musical tones sound somewhat... drowned. Sounds like he sucked some beer into his windpipe with that last sip.`
 	branch tributeskip
 		not "tribute: Darkstone"
+		not "hero of Darkstone"
 	#the player claimed Darkstone as a tributary but never visited their new subjects, or took no action upon finding slavers abducting colonists.
 	branch conqueror
 		and
@@ -175,7 +176,7 @@ conversation "I Want To Be A Pirate Conclusion"
 	label defender
 	choice
 		`	(You address the Capo.) "I conquered Darkstone, defeating the gang that once claimed it. When others came to enslave my subjects I defeated them as well."`
-	`	"You little shit. I gave you a job to do, an opportunity, and you replay my by killing my men? Did you think you could just muscle in to the trade without people backing you up?" Cold rage burns within the cyborg's eyes, his expression hard to read given lack of lips and most facial muscles.`
+	`	"You little shit. I gave you a job to do, an opportunity, and you repay me by killing my men? Did you think you could just muscle in to the trade without people backing you up?" Cold rage burns within the cyborg's eyes, his expression hard to read given lack of lips and most facial muscles.`
 	choice
 		`	"They got what was coming to them. That territory was mine by right of conquest, and by trespassing they signed their own death warrants. You respect my turf and I'll respect you, understood?"`
 			goto grudgingrespect
@@ -536,22 +537,29 @@ mission "Pirate Intro: Domination"
 		has "I Want To Be A Pirate: active"
 	to fail
 		has "I Want To Be A Pirate: done"
+	on enter "Han"
+		dialog `To dominate a planet, target the planet by clicking it or attempting to land, then hail. Select "Demand Tribute", and if your combat rating is high enough to be a threat, ships will take off to face you. Defeat every ship sent up, then hail the planet and "Demand Tribute" again to claim your prize!`
 	to complete
-		has "tribute: Darkstone"
+		or
+			has "tribute: Darkstone"
+			has "hero of Darkstone"
 
 
 
 mission "Pirate Intro: Domination Check-in"
-	deadline 2
+	clearance
 	invisible
 	landing
 	source "Darkstone"
 	to complete
-		never
+		has "event: slaver encounter"
+	to fail
+		not "Pirate Intro: Domination: active"
 	to offer
 		has "Pirate Intro: Domination: active"
 		has "tribute: Darkstone"
 	on offer
+		event "slaver encounter" 2
 		conversation
 			`Apparently the mess you made in orbit was visible even from the ground, as when you come in to land there's a delegation of frankly depressed-looking colonists waiting to greet you. The only member of the party who looks even vaguely chipper is a goat that they're holding on the end of a rope, who's otherwise merrily grazing on whatever foliage clings to the edge of the packed-dirt landing pad.`
 			choice
@@ -572,24 +580,28 @@ mission "Pirate Intro: Domination Check-in"
 			`	"Hey, chief - landlord - your majesty." A young man at the head of the delegation steps forward. Now that you've had a moment to look them over, it appears that none of the people here are much older than thirty years. "We don't have much, that crew you took down had already taken our crops and sold 'em offworld. All we've really got is..." The goat's fixed with a scornful gaze.`
 			`	"Anyways. We know how this works, you're not the first landlord we've had, and I doubt you'll be the last. We'll scavenge the last gang's camp and gather up any valuables for you, will that cover this month's rents? It'll take a few days, but come back then and we'll have something worthwhile for you. I swear, we really don't have anything else worth taking. We're already down to using hand tools when our ancestors came here with tractors..."`
 			choice
-				`	"You guys can keep the goat. I'll be back in a few days to collect."`
+				`	"You can keep the goat. I'll be back in a few days to collect."`
 					accept
 				`	"That's... Pathetic. I expected more. I'm taking your goat, and I expect you sorry bunch of mud-scrapers to have some proper loot by the time I'm back."`
 					accept
-				`	"You know, I don't think this whole 'bandit king' thing is going to work out from me. Can we just forget the whole tribute thing? I'll leave you guys alone. Sorry for the trouble."`
+				`	"You know, I don't think this whole 'conquering tyrant' thing is going to work out from me. Can we just forget the whole tribute debacle? I'll leave you all alone. Sorry for the trouble."`
 			`	"... You're messing with us, right?" Only a few of the colonists have the barest hints of hope visible on their faces. "That's... Well, it would be mighty fine to actually be able to keep something for a change. Alright! If you're serious, just hail us once you're back in orbit - we'll put the word out once we hear from you."`
 			`	You can see the barest clue of a smile on the young man's lips, and light in his eyes that weren't there when you'd arrived. "And hey! You should come back in a couple days anyways, we don't have much but we'd like to throw you some sort of party to show our thanks. We make a mean corn liquor in these parts, and, well... We really hated that last crew that was camped out here. It'd mean a lot to us if you came by."`
 			`(To release the planet from tribute, select it from orbit and use the hail key.)`
 				accept
-				
+
+event "slaver encounter"
+
+
 
 mission "Pirate Intro: Darkstone Slavers (Free)"
 	deadline 3
 	invisible
 	landing
 	source "Darkstone"
+	destination "Greenrock"
 	to offer
-		has "Pirate Intro: Domination Check-in: failed"
+		has "event: slaver encounter"
 		not "tribute: Darkstone"
 	npc kill
 		personality nemesis
@@ -636,14 +648,15 @@ mission "Pirate Intro: Darkstone Slavers (Free)"
 			`	You retreat to your ship, unable to help these poor souls.`
 				flee
 	on complete
-		set "hero of darkstone"
+		set "hero of Darkstone"
 
 mission "Pirate Intro: Darkstone Slavers (Dominated)"
 	invisible
 	landing
 	source "Darkstone"
+	destination "Greenrock"
 	to offer
-		has "Pirate Intro: Domination Check-in: failed"
+		has "event: slaver encounter"
 		has "tribute: Darkstone"
 	npc kill
 		personality nemesis
@@ -677,7 +690,7 @@ mission "Pirate Intro: Darkstone Slavers (Dominated)"
 			action
 				payment 250000
 			apply
-				set "slaver of darkstone"
+				set "slaver of Darkstone"
 				set "terribleperson"
 			`	The slave boss counts out an appropriate stack of credits and presses them into your palm. The slaves regard you with a mixture of hatred and resignation. Now rather richer than you would have been just collecting their paltry tribute, you return to the skies.`
 				flee
@@ -706,7 +719,9 @@ mission "Pirate Intro: Darkstone Slavers (Dominated)"
 			`	Survivors pour through the hatches and into their ships. Engines are warmed, weapons are brought on-line, and soon enough you're roaring out of atmosphere to finish this fight in the skies above.`
 				launch
 	on complete
-		set "defender of darkstone"
+		set "defender of Darkstone"
+
+
 
 event "became a pirate"
 	"reputation: Republic" <?= -1000
