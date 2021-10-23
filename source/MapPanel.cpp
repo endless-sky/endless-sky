@@ -771,19 +771,21 @@ void MapPanel::UpdateCache()
 	// which may be government, services, or commodity prices.
 	const Color &closeNameColor = *GameData::Colors().Get("map name");
 	const Color &farNameColor = closeNameColor.Transparent(.5);
-	for(const auto &system : selectedGalaxy->Systems())
+	for(const auto &it : selectedGalaxy->Systems())
 	{
+		const auto &system = *it;
+
 		// Ignore systems which have been referred to, but not actually defined.
-		if(!system->IsValid())
+		if(!system.IsValid())
 			continue;
 		// Ignore systems the player has never seen, unless they have a pending mission that lets them see it.
-		if(!player.HasSeen(*system) && system != specialSystem)
+		if(!player.HasSeen(system) && &system != specialSystem)
 			continue;
 		
 		Color color = UninhabitedColor();
-		if(!player.HasVisited(*system))
+		if(!player.HasVisited(system))
 			color = UnexploredColor();
-		else if(system->IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL || commodity == SHOW_VISITED)
+		else if(system.IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL || commodity == SHOW_VISITED)
 		{
 			if(commodity >= SHOW_SPECIAL)
 			{
@@ -792,7 +794,7 @@ void MapPanel::UpdateCache()
 				if(commodity >= 0)
 				{
 					const Trade::Commodity &com = GameData::Commodities()[commodity];
-					double price = system->Trade(com.name);
+					double price = system.Trade(com.name);
 					if(!price)
 						value = numeric_limits<double>::quiet_NaN();
 					else
@@ -801,7 +803,7 @@ void MapPanel::UpdateCache()
 				else if(commodity == SHOW_SHIPYARD)
 				{
 					double size = 0;
-					for(const StellarObject &object : system->Objects())
+					for(const StellarObject &object : system.Objects())
 						if(object.HasSprite() && object.HasValidPlanet())
 							size += object.GetPlanet()->Shipyard().size();
 					value = size ? min(10., size) / 10. : -1.;
@@ -809,7 +811,7 @@ void MapPanel::UpdateCache()
 				else if(commodity == SHOW_OUTFITTER)
 				{
 					double size = 0;
-					for(const StellarObject &object : system->Objects())
+					for(const StellarObject &object : system.Objects())
 						if(object.HasSprite() && object.HasValidPlanet())
 							size += object.GetPlanet()->Outfitter().size();
 					value = size ? min(60., size) / 60. : -1.;
@@ -819,7 +821,7 @@ void MapPanel::UpdateCache()
 					bool all = true;
 					bool some = false;
 					colorSystem = false;
-					for(const StellarObject &object : system->Objects())
+					for(const StellarObject &object : system.Objects())
 						if(object.HasSprite() && object.HasValidPlanet() && !object.GetPlanet()->IsWormhole()
 							&& object.GetPlanet()->IsAccessible(player.Flagship()))
 						{
@@ -831,19 +833,19 @@ void MapPanel::UpdateCache()
 					value = -1 + some + all;
 				}
 				else
-					value = SystemValue(system);
+					value = SystemValue(&system);
 				
 				if(colorSystem)
 					color = MapColor(value);
 			}
 			else if(commodity == SHOW_GOVERNMENT)
 			{
-				const Government *gov = system->GetGovernment();
+				const Government *gov = system.GetGovernment();
 				color = GovernmentColor(gov);
 			}
 			else
 			{
-				double reputation = system->GetGovernment()->Reputation();
+				double reputation = system.GetGovernment()->Reputation();
 				
 				// A system should show up as dominated if it contains at least
 				// one inhabited planet and all inhabited planets have been
@@ -853,7 +855,7 @@ void MapPanel::UpdateCache()
 				bool isInhabited = false;
 				bool canLand = false;
 				bool hasSpaceport = false;
-				for(const StellarObject &object : system->Objects())
+				for(const StellarObject &object : system.Objects())
 					if(object.HasSprite() && object.HasValidPlanet())
 					{
 						const Planet *planet = object.GetPlanet();
@@ -874,14 +876,14 @@ void MapPanel::UpdateCache()
 			}
 		}
 		
-		auto pos = system->Position();
+		auto pos = system.Position();
 		// Center the system on the galactic center if it has one.
 		if(selectedGalaxy->Position())
 			pos -= selectedGalaxy->Position();
 		nodes.emplace_back(pos, color,
-			player.KnowsName(*system) ? system->Name() : "",
-			(system == &playerSystem) ? closeNameColor : farNameColor,
-			player.HasVisited(*system) ? system->GetGovernment() : nullptr);
+			player.KnowsName(system) ? system.Name() : "",
+			(&system == &playerSystem) ? closeNameColor : farNameColor,
+			player.HasVisited(system) ? system.GetGovernment() : nullptr);
 	}
 	
 	// Now, update the cache of the links.
@@ -890,23 +892,24 @@ void MapPanel::UpdateCache()
 	// The link color depends on whether it's connected to the current system or not.
 	const Color &closeColor = *GameData::Colors().Get("map link");
 	const Color &farColor = closeColor.Transparent(.5);
-	for(const auto &system : selectedGalaxy->Systems())
+	for(const auto &it : selectedGalaxy->Systems())
 	{
-		if(!system->IsValid() || !player.HasSeen(*system))
+		const auto &system = *it;
+		if(!system.IsValid() || !player.HasSeen(system))
 			continue;
 		
-		for(const System *link : system->Links())
-			if(link < system || !player.HasSeen(*link))
+		for(const System *link : system.Links())
+			if(link < &system || !player.HasSeen(*link))
 			{
 				// Only draw links between two systems if one of the two is
 				// visited. Also, avoid drawing twice by only drawing in the
 				// direction of increasing pointer values.
-				if((!player.HasVisited(*system) && !player.HasVisited(*link)) || !link->IsValid())
+				if((!player.HasVisited(system) && !player.HasVisited(*link)) || !link->IsValid())
 					continue;
 				
-				bool isClose = (system == &playerSystem || link == &playerSystem);
+				bool isClose = (&system == &playerSystem || link == &playerSystem);
 				auto pos = selectedGalaxy->Position();
-				links.emplace_back(system->Position() - pos, link->Position() - pos, isClose ? closeColor : farColor);
+				links.emplace_back(system.Position() - pos, link->Position() - pos, isClose ? closeColor : farColor);
 			}
 	}
 }

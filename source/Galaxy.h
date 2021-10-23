@@ -41,7 +41,7 @@ public:
 	const std::vector<const Galaxy *> &Labels() const;
 
 	void SetName(const std::string &name);
-	void SetPosition(const Point &pos);
+	void SetPosition(Point pos);
 
 	void AddLabel(const Galaxy *label);
 	void ClearLabels();

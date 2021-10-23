@@ -80,9 +80,9 @@ void Galaxy::SetName(const string &name)
 
 
 
-void Galaxy::SetPosition(const Point &pos)
+void Galaxy::SetPosition(Point pos)
 {
-	position = pos;
+	position = std::move(pos);
 }
 
 
