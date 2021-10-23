@@ -157,7 +157,7 @@ void Variant::FinishLoading()
 		{
 			if(it->Get().NestedInSelf(name))
 			{
-				it = variants.erase(it);
+				it = variants.eraseAt(it);
 				Files::LogError("Infinite loop detected and removed in variant \"" + name + "\".");
 			}
 			else
