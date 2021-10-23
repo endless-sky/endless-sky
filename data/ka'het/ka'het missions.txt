@@ -500,7 +500,7 @@ mission "Ka'het: Patir Mystery 3"
 			`	As you are preparing to jump away, an artificial structure near the edge of the iridium storage catches your eye and you decide to bring your ship in closer. The first thing you notice is an array of tall pylons arranged into two parallel lines. When you are approach, you discover a large cupola towering over the area. Although understanding its scale without a reference point is hard, you estimate it must be at least a kilometer in diameter.`
 				goto image
 			label explore
-			`	While you are setting up a new route to pass above as much terrain as possible, your eye is caught by an artificial structure near the edge of the iridium storage. The first thing you notice is an array of extremely high pylons put into two parallel lines; then, when you are able to get a better angle of view, you discover a large cupola towering all over the area. Although understanding its scale without a reference point is hard, you estimate it must be at least half a kilometer in diameter.`
+			`	While you are setting up a new route to pass above as much terrain as possible, your eye is caught by an artificial structure near the edge of the iridium storage. The first thing you notice is an array of extremely high pylons put into two parallel lines; then, when you are able to get a better angle of view, you discover a large cupola towering all over the area. Although understanding its scale without a reference point is hard, you estimate it must be at least half a kilometer in diameter. Approaching the settlement further could be risky, as its purpose and function isn't clear.`
 			label image
 			scene "scene/asteroid scene"
 			choice
