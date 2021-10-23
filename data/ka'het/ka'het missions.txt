@@ -552,6 +552,7 @@ mission "Ka'het: Patir Mystery 5"
 	to offer
 		has "Ka'het: Patir Mystery 4: done"
 	on offer
+		"saved ka'sei rep" = "reputation: Ka'sei"
 		conversation
 			`As you approach the structure, Dusk stops preparing the equipment to observe it from the window. "It is a fascinating structure. I've only seen a small number of Builder buildings, but this looks different from anything I have seen. Perhaps it is more structurally similar to their stations than their outposts given the almost negligible gravity, or they had other asteroid colonies that have been gradually lost over time. It would be worth doing a serious exploration of the asteroid belts in the Graveyard at some point.`
 			choice
@@ -644,6 +645,17 @@ mission "Ka'het: Patir Mystery 5"
 	on enter "Patir"
 		dialog
 			`Soon after departing, your ship warns you that a large number of ships are targeting you. It appears the other Ka'sei are also going to attack.`
+	to fail
+		"reputation: Ka'sei" < "saved ka'sei rep"
+	on fail
+		clear "saved ka'sei rep"
+		dialog
+			`One or more Ka'sei were destroyed. You failed your mission.`
+	on complete
+		clear "saved ka'sei rep"
+		"reputation: Ka'sei" = 1
+		conversation
+			`You disembark from your ship with Dusk, discussing the events that occurred in Patir. "Thank you for keeping the Ka'sei alive, <first>. They might be exactly what our Builder research needs, and I really hope I can continue exploring that place with you in the future. I will study what we have gathered in the last days trying to find anything that could give us more clues about them." He waves at you and starts walking towards the exit from the spaceport. "I will contact you again when I find something worth looking at. May the Embers burn bright for you, <first>."`
 	npc save
 		government "Ka'sei"
 		personality plunders mining harvests staying
@@ -653,16 +665,8 @@ mission "Ka'het: Patir Mystery 5"
 			variant
 				"Fetri'sei" 18
 				"Fetri'sei (Disable-able)" 6
-	on fail
-		dialog
-			`One or more Ka'sei were destroyed. You failed your mission.`
-	on complete
-		"reputation: Ka'sei" = 1
-		event "patir mystery timer" 10
-		conversation
-			`You disembark from your ship with Dusk, discussing the events that occurred in Patir. "Thank you for keeping the Ka'sei alive, <first>. They might be exactly what our Builder research needs, and I really hope I can continue exploring that place with you in the future. I will study what we have gathered in the last days trying to find anything that could give us more clues about them." He waves at you and starts walking towards the exit from the spaceport. "I will contact you again when I find something worth looking at. May the Embers burn bright for you, <first>."`
 
 event "pacified ka'sei"
 	"reputation: Ka'sei" = 1
-	
-event "patir mystery timer"
+
+event "patir mistery timer"
