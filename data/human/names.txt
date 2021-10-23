@@ -697,6 +697,7 @@ phrase "all titles"
 
 phrase "male names"
 	word
+		"Elcid"
 		"Henry"
 		"Nelson"
 		"Randall"
@@ -1017,6 +1018,22 @@ phrase "sometimes a successor"
 
 phrase "standalone civilian ship names"
 	word
+		"Wild Rover"
+		"Hieland Laddie"
+		"Ye Ladies of Mars"
+		"Shenandoah"
+		"Old Chariot"
+		"Old Maui"
+		"Gone to Hilo"
+		"Northumbria"
+		"Nelson's Blood"
+		"Nightingale"
+		"Hispaniola"
+		"Billy of Tea"
+		"Bonnie Ship the Diamond"
+		"Mary Ellen Carter"
+		"Shine in the Black"
+		"Alexander Smollett"
 		"Horizon"
 		"Enterprise"
 		"Rabbit"
@@ -1522,7 +1539,7 @@ phrase "civilian subphrase 1"
 	word
 		" "
 	phrase
-		"male names" 123
+		"male names" 124
 		"female names" 132
 		"singular nouns" 201
 		"plural nouns" 110
@@ -1604,7 +1621,7 @@ phrase "civilian subphrase 6"
 	word
 		" "
 	phrase
-		"male names" 123
+		"male names" 124
 		"things you can be of" 416
 
 # e.g.:
@@ -2032,6 +2049,57 @@ phrase "republic capital"
 		"Taranaki"
 		"Huascaran"
 		"Sandia"
+		"Banahaw"
+		"Delos"
+		"Garibaldi"
+		"Gerizim"
+		"Sembrano"
+		"Kailash"
+		"Lykaion"
+		"Meron"
+		"Kamet"
+		"Kabru"
+		"Diran"
+		"Pumori"
+		"Antisana"
+		"Ubinas"
+		"Gistola"
+		"Naltar"
+		"Alverstone"
+		"Antero"
+		"Shavano"
+		"Colima"
+		"Bross"
+		"Galeras"
+		"Strahlhorn"
+		"Muhabura"
+		"Aragats"
+		"Kinabalu"
+		"Azufral"
+		"Latsga"
+		"Lagginhorn"
+		"Tochal"
+		"Crillon"
+		"Saramati"
+		"Kerinci"
+		"Semeru"
+		"Clemenceau"
+		"Timpanogos"
+		"Presanella"
+		"Alvand"
+		"Steere"
+		"Tronador"
+		"Pennell"
+		"Mafadi"
+		"Aneto"
+		"Silberhorn"
+		"Samsari"
+		"Antelao"
+		"Hotaka"
+		"Forellen"
+		"Andrus"
+		"Schilthorn"
+		"Tallac"
 
 phrase "deep"
 	word
@@ -2466,6 +2534,36 @@ phrase "republic small"
 		"Liao"
 		"Congo"
 		"Senegal"
+		"Tambo"
+		"Yenisei"
+		"Lena"
+		"Chambeshi"
+		"Tocantins"
+		"Kolyma"
+		"Ishim"
+		"Kasai"
+		"Rubicon"
+		"Kama"
+		"Voltra"
+		"Daugava"
+		"Naryn"
+		"Salado"
+		"Belaya"
+		"Fraser"
+		"Elbe"
+		"Helmand"
+		"Sepik"
+		"Branco"
+		"Pechora"
+		"Barito"
+		"Kaladan"
+		"Javari"
+		"Mahanadi"
+		"Gandaki"
+		"Atrato"
+		"Pastaza"
+		"Irtysh"
+		"Neva"
 
 phrase "free worlds small"
 	word
@@ -2643,7 +2741,7 @@ phrase "syndicate fighter"
 
 phrase "pirate"
 	phrase
-		"pirate subphrase 1" 261    # standalone pirate ship names
+		"pirate subphrase 1" 265    # standalone pirate ship names
 		"pirate subphrase 2" 2000   # [adjective] [noun or bad outcome]
 		"pirate subphrase 3" 2000   # [adjective] [sinister name or bad outcome]
 		"pirate subphrase 4" 1500   # [sinister name]'s [noun or bad outcome]
@@ -2744,6 +2842,12 @@ phrase "sinister names"
 # e.g. Simon the Brutal, Vexan the Cannibal, Vlad the Impaler
 phrase "pirate adjectives that work as titles"
 	word
+		"Churlish"
+		"Mendacious"
+		"Unpleasant"
+		"Wretched"
+		"Drunken"
+		"Petty"
 		"Bad"
 		"Red"
 		"Crimson"
@@ -2893,6 +2997,8 @@ phrase "pirate adjectives that don't work before singular nouns"
 
 phrase "pirate nouns"
 	word
+		"Scalliwag"
+		"Razzia"
 		"Star"
 		"Spectre"
 		"Queen"
@@ -3084,6 +3190,9 @@ phrase "bad outcomes"
 		"Immolation"
 		"Wrath"
 		"Blackness"
+		"Ennui"
+		"Itchiness"
+		"Poverty"
 
 phrase "pirate subphrase 1"
 	word
@@ -3220,6 +3329,8 @@ phrase "pirate subphrase 1"
 		"Terror"
 		"Blackbeard"
 		"Edward Teach"
+		"Israel Hands"
+		"Elcid Barrett"
 		"William Kidd"
 		"Long Ben"
 		"Henry Morgan"
@@ -3349,28 +3460,30 @@ phrase "pirate subphrase 1"
 		"Virulence"
 		"Septimus Severus"
 		"Benighted"
+		"Hispaniola"
+		"Staggers and Jags"
 
 phrase "pirate subphrase 2"
 	phrase
 		"pirate adjectives that don't work as titles" 67
-		"pirate adjectives that work as titles" 58
+		"pirate adjectives that work as titles" 64
 	word
 		" "
 	phrase
-		"pirate nouns" 108
+		"pirate nouns" 110
 		"pirate nouns that work after bad outcomes" 27
-		"bad outcomes" 50
+		"bad outcomes" 53
 
 phrase "pirate subphrase 3"
 	phrase
 		"pirate adjectives that don't work before singular nouns" 15
 		"pirate adjectives that don't work as titles" 67
-		"pirate adjectives that work as titles" 58
+		"pirate adjectives that work as titles" 64
 	word
 		" "
 	phrase
 		"sinister names" 78
-		"bad outcomes" 50
+		"bad outcomes" 53
 
 phrase "pirate subphrase 4"
 	phrase
@@ -3378,9 +3491,9 @@ phrase "pirate subphrase 4"
 	word
 		"%'s "
 	phrase
-		"pirate nouns" 108
+		"pirate nouns" 110
 		"pirate nouns that work after bad outcomes" 27
-		"bad outcomes" 50
+		"bad outcomes" 53
 	# When making a word ending in "s" possessive, only add an apostrophe.
 	replace
 		"s%'s" "s'"
@@ -3396,7 +3509,7 @@ phrase "pirate subphrase 5"
 
 phrase "pirate subphrase 6"
 	phrase
-		"pirate nouns" 108
+		"pirate nouns" 110
 		"pirate nouns that work after bad outcomes" 27
 	word
 		" of "
@@ -3405,8 +3518,8 @@ phrase "pirate subphrase 6"
 
 phrase "pirate subphrase 7"
 	phrase
-		"bad outcomes" 50
-		"pirate adjectives that work as titles" 58
+		"bad outcomes" 53
+		"pirate adjectives that work as titles" 64
 		"pirate adjectives that don't work as titles" 67
 	word
 		" "
@@ -3415,9 +3528,9 @@ phrase "pirate subphrase 7"
 
 phrase "pirate subphrase 8"
 	phrase
-		"pirate nouns" 108
+		"pirate nouns" 110
 		"pirate nouns that work after bad outcomes" 27
-		"bad outcomes" 50
+		"bad outcomes" 53
 
 phrase "pirate subphrase 9"
 	word

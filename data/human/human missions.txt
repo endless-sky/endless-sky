@@ -3112,7 +3112,7 @@ mission "Pirate Duel"
 					decline
 	
 	on accept
-		"reputation:  Independent " = 10
+		"reputation: Independent (Killable)" = 10
 	
 	on enter
 		dialog `When you take off, you run a quick scan on all other ships that are taking off. You see no sign of the Esca. Maybe it's already waiting for you at Umbral.`
