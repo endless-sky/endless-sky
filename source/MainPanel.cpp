@@ -197,6 +197,14 @@ void MainPanel::OnCallback()
 
 
 
+// The hail panel calls this when it closes.
+void MainPanel::OnBribeCallback(const Government *bribed)
+{
+	engine.BreakTargeting(bribed);
+}
+
+
+
 bool MainPanel::AllowFastForward() const
 {
 	return true;
@@ -423,7 +431,8 @@ bool MainPanel::ShowHailPanel()
 				, Messages::Importance::High);
 		else
 		{
-			GetUI()->Push(new HailPanel(player, target));
+			GetUI()->Push(new HailPanel(player, target,
+				[&](const Government *bribed) { MainPanel::OnBribeCallback(bribed); } ));
 			return true;
 		}
 	}

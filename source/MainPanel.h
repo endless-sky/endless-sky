@@ -38,6 +38,8 @@ public:
 	
 	// The planet panel calls this when it closes.
 	void OnCallback();
+	// The hail panel calls this when it closes.
+	void OnBribeCallback(const Government *bribed);
 	
 	// Forward the given TestContext to the Engine under MainPanel.
 	virtual void SetTestContext(TestContext &testContext) override;

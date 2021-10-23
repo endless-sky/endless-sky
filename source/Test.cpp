@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "Files.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -86,12 +87,27 @@ namespace{
 		event.key.keysym.mod = modKeys;
 		return SDL_PushEvent(&event);
 	}
-	
+
 	bool SendQuitEvent()
 	{
 		SDL_Event event;
 		event.type = SDL_QUIT;
 		return SDL_PushEvent(&event);
+	}
+
+	string ShipToString(const Ship &ship)
+	{
+		string description = "name: " + ship.Name();
+		const System *system = ship.GetSystem();
+		const Planet *planet = ship.GetPlanet();
+		description += ", system: " + (system ? system->Name() : "<not set>");
+		description += ", planet: " + (planet ? planet->TrueName() : "<not set>");
+		description += ", hull: " + Format::Number(ship.Hull());
+		description += ", shields: " + Format::Number(ship.Shields());
+		description += ", energy: " + Format::Number(ship.Energy());
+		description += ", fuel: " + Format::Number(ship.Fuel());
+		description += ", heat: " + Format::Number(ship.Heat());
+		return description;
 	}
 }
 
@@ -504,6 +520,30 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	
 	if(!testFailReason.empty())
 		message += ": " + testFailReason;
+
+	// Print some debug information about the flagship and the first 5 escorts.
+	const Ship *flagship = player.Flagship();
+	if(!flagship)
+		Files::LogError("No flagship at the moment of failure.");
+	else
+	{
+		string shipsOverview = "flagship " + ShipToString(*flagship) + "\n";
+		int escorts = 0;
+		int escortsNotPrinted = 0;
+		for(auto &&ptr : flagship->GetEscorts())
+		{
+			auto escort = ptr.lock();
+			if(!escort)
+				continue;
+			if(++escorts <= 5)
+				shipsOverview += "escort " + ShipToString(*escort) + "\n";
+			else
+				++escortsNotPrinted;
+		}
+		if(escortsNotPrinted > 0)
+			shipsOverview += "(plus " + to_string(escortsNotPrinted) + " additional escorts)\n";
+		Files::LogError(shipsOverview);
+	}
 	
 	// Only log the conditions that start with test; we don't want to overload the terminal or errorlog.
 	// Future versions of the test-framework could also print all conditions that are used in the test.

@@ -167,7 +167,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		
 		// Handle the attributes which can be "removed."
 		if(key == "hidden")
-			hidden = true;
+			hidden = !remove;
 		else if(!hasValue && key != "object")
 		{
 			child.PrintTrace("Expected key to have a value:");
