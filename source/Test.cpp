@@ -559,7 +559,7 @@ void Test::Fail(const Context &context, const PlayerInfo &player, const string &
 		}
 	}
 	if(stackMessage.empty())
-		stackMessage = "No callstack info at moment of failure.");
+		stackMessage = "No callstack info at moment of failure.";
 	Files::LogError(stackMessage);
 
 	// Print some debug information about the flagship and the first 5 escorts.
