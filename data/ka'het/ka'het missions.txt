@@ -301,9 +301,10 @@ mission "Ka'het: Patir Reveal"
 		has "Remnant: Cognizance 19: done"
 	on offer
 		event "patir appears" 3
+		fail
 
 event "patir appears"
-	system Patir
+	system "Patir"
 		remove hidden
 
 mission "Ka'het: Patir Mystery 0"
@@ -331,7 +332,7 @@ mission "Ka'het: Patir Mystery 1"
 		not "dusk busy"
 		random < 50
 	on offer
-		"dusk busy"++
+		set "dusk busy"
 		conversation
 			`You start looking for Taely right after finishing the post-landing procedures. You aren't surprised to find her in the local shipyard, overseeing the welding of some kind of unmanned satellite. Though not familiar enough with Remnant technology to understand its function, you identify a large crystal placed near what you presume to be the front of the probe as a Quantum Key Stone, or at least a derivative of it.`
 			`	When Taely notices you walking towards her, she waves at you. "<first>! It has been a while. Were you looking for me?"`
@@ -339,10 +340,9 @@ mission "Ka'het: Patir Mystery 1"
 				`	"I have some news. A new black hole suddenly appeared near the Graveyard, the same way Ssil Vida did."`
 					goto talk
 				`	"What is the purpose of the satellite over there?"`
-			`	"She is a beauty, is she not? The discovery of the star systems beyond Postverta spurred a large request for exploration probes, more than we had in decades. This one was my own proposal: she is going to make precise LIDAR scans of the four planets most similar to the worlds we found alien settlements on, searching for relics and ancient artifacts! It is unbelievably exciting to see an idea that you came up with become reality right in front of you."`
+			`	"She is a beauty, is she not? The discovery of the star systems beyond Postverta spurred a large request for exploration probes, more than we've had in decades. This one was my own proposal: she is going to make precise LIDAR scans of the four planets most similar to the worlds we found alien settlements on, searching for relics and ancient artifacts! It is unbelievably exciting to see an idea that you came up with become reality right in front of you."`
 			`	She pauses to stare at the probe with pride.`
-			choice
-				`	"I have some news. A new black hole suddenly appeared near the Graveyard, the same way Ssil Vida did."`
+			`	"Funny you mention that. A new black hole has just appeared near the Graveyard, the same way Ssil Vida did."`
 			label talk
 			`	You try to explain the system and its inhabitants as best you can. Taely looks intrigued. "Can you show me what your ship recorded of that system?" she asks. After spending a few minutes checking your ship's registers, she appears even more astonished than before. "This is incredible! It opens so many questions. What if it was the Builders who built Ssil Vida? We thought they never left the Graveyard, but this could change everything. And look at the gravitational slipstreams: this system has no hyperlane connections, at least for the moment. We need to know more." She pauses for a second to think. "Come with me, <first>."`
 			`	You follow Taely into a large elevator at the other end of the building. After a short trip, you find yourself in a large underground hangar, full of oddly shaped dishes and complex pieces of machinery. "We use these old shelters to store the parts we do not need anymore. Sometimes they are still handy for replacing broken machinery, so instead of disassembling them we keep them here for a few years. And this," she says, pointing at an array of cylindrical objects, "is the reason we are here."`
@@ -367,7 +367,7 @@ mission "Ka'het: Patir Mystery 1"
 				
 	on enter "Patir"
 		conversation
-			`When you enter the system, Taely is already sitting at the scanner's control console. She starts counting loudly. "External deployment in 3, 2, 1. Trackers out. Initiating startup sequence." She begins typing commands on a keyboard. "This is going to take a while, <first>," she says, without taking her eyes off the screen. "It is not normally a one-person job."`
+			`When you enter the system, Taely is already sitting at the scanner's control console. She starts counting loudly. "External deployment in three... two... one... trackers out. Initiating startup sequence." She begins typing commands on a keyboard. "This is going to take a while, <first>," she says, without taking her eyes off the screen. "It is not normally a one-person job."`
 			choice
 				`	"Is there anything I can do to help you?"`
 				`	"I'll wait for you to finish in the cockpit."`
@@ -376,12 +376,10 @@ mission "Ka'het: Patir Mystery 1"
 			label wait
 			`	Almost an hour passes, but Taely finally responds. "The scan is complete. The system is currently processing all the data it gathered into something usable; there's nothing we can do but wait." She starts staring out of the cockpit windows. "Black holes are such a wonderful phenomenon. They are so mysterious, and each one is peculiar in its own way, this one especially."`
 			choice
-				`	"What do you mean?"`
-					goto how
 				`	"Did you find anything new on how this system appeared?"`
 					goto how
 				`	"Was this one already known to the Remnant?"`
-			`	"That is the oddest part; it was not. We knew about the existence of the stars beyond Postverta as they could be observed from our own systems; they just were not reachable with a Jump Drive. Patir did not exist until a short time ago.`
+			`	"That is the oddest part; it was not. We knew about the existence of the stars beyond Postverta as they could be observed from our own systems; they just were not reachable with a jump drive. But, from what I can tell from these readings, Patir did not exist until a short time ago.`
 			`	"Do you have anything on why this system appeared?" you ask.`
 			label how
 			`	"I only have theories for now, none of which can be confirmed. People more knowledgeable than me in the subject are examining the phenomena right now. But look at this," she says, opening a star map on a holographic projector. "This white dot is Postverta, and we are here. When Ssil Veda first appeared, it released a strong burst of ionizing radiation, and when we were able to calculate its velocity, we found it was going much faster than the speed of light. It is gradually slowing down, so it will not go much further, but exactly the same day that the energy burst was supposed to arrive here, Patir appeared! It would be an incredible coincidence if the two event were not connected.`
@@ -468,10 +466,10 @@ mission "Ka'het: Patir Mystery 2"
 	on offer
 		event "asteroid on patir"
 		conversation
-			`As soon as you arrive in the cafeteria you start looking for Dusk, but you cannot find him anywhere. He arrives a few minutes later and waves at you. "Sorry if I was late, Captain," he says, "I was finishing up gathering the necessary technology for our mission. Everything is ready now."`
+			`You arrive in the spaceport cafeteria to meet Dusk when he said he'd be there, but he's no where to be seen. You wait for him to arrive, but nearly an hour later he's still not here. Just as you're about to leave, you spot Dusk running into the cafeteria toward you. "Sorry if I was late, Captain," he says, "I was finishing up gathering the necessary technology for our mission. Everything is ready now."`
 			choice
-				`	"What is the next step?"`
-			`	"Well, first we need to install the scanners on your ship. Luckily, they are as simple to use as a normal outfit scanner, so you should not have much trouble once you reach the asteroid. After you have made extensive scans of the sites I indicate to you, reach me back here on Aventine so that I can analyze the data. If everything goes well, you should be back here in a couple weeks. I have already gotten a team ready to install the scanners; all that needs to be done now is for you to head back to <system>."`
+				`	"What's the next step?"`
+			`	"Well, first we need to install the scanners on your ship. Luckily, they are as simple to use as a normal outfit scanner, so you should not have much trouble once you reach the asteroid. After you have made extensive scans of the sites I indicate to you, reach me back here on <origin> so that I can analyze the data. If everything goes well, you should be back here in a couple weeks. I have already gotten a team ready to install the scanners; all that needs to be done now is for you to head back to <system>."`
 				accept
 	on enter "Patir"
 		dialog
@@ -484,7 +482,7 @@ event "asteroid on patir"
 mission "Ka'het: Patir Mystery 3"
 	landing
 	name "Return to <planet>"
-	description "Return to Dusk on <destination>."
+	description "Return to <destination> to show the results of your scans of the large asteroid in Patir to Dusk."
 	source "Builder Settlement"
 	destination "Aventine"
 	cargo "short range scanner" 15
@@ -496,10 +494,10 @@ mission "Ka'het: Patir Mystery 3"
 			`	You start your exploration from the dark side of the asteroid, and from the little you can see, its surface appears to be completely covered in regolith of little importance. But soon after passing the terminator, you see an extremely reflective patch near the horizon. As you get closer, it becomes clear that this is the storage of iridium that Dusk was talking about: an enormous solidified lake of the reflective metal extending for kilometers in every direction inside a gigantic hole the Ka'sei have dug in the terrain.`
 			`	In a few hours, you are able to check every site you were told to scan, but most of the surface still remains an unknown.`
 			choice
-				`	(Continue your exploration of the asteroid.)`
+				`	(Continue my exploration of the asteroid.)`
 					goto explore
 				`	(Leave and return to Aventine.)`
-			`	As you are preparing to jump away, an artificial structure near the edge of the iridium storage catches your eye. The first thing you notice is an array of tall pylons arranged into two parallel lines. When you are approach, you discover a large cupola towering all over the area. Although understanding its scale without a reference point is hard, you estimate it must be at least a kilometer in diameter.`
+			`	As you are preparing to jump away, an artificial structure near the edge of the iridium storage catches your eye and you decide to bring your ship in closer. The first thing you notice is an array of tall pylons arranged into two parallel lines. When you are approach, you discover a large cupola towering over the area. Although understanding its scale without a reference point is hard, you estimate it must be at least a kilometer in diameter.`
 				goto image
 			label explore
 			`	While you are setting up a new route to pass above as much terrain as possible, your eye is caught by an artificial structure near the edge of the iridium storage. The first thing you notice is an array of extremely high pylons put into two parallel lines; then, when you are able to get a better angle of view, you discover a large cupola towering all over the area. Although understanding its scale without a reference point is hard, you estimate it must be at least half a kilometer in diameter.`
@@ -514,7 +512,7 @@ mission "Ka'het: Patir Mystery 3"
 			label near
 			apply
 				"exploration interest" += 1
-			`	You carefully position your ship above the structure and activate the sensors. As the scan proceeds, you monitor the position of the Ka'sei fleet. Some of the Fetri'sei nearest to you have stopped their standard activities and are just standing by, perhaps observing your actions the same way you are observing theirs. Luckily, after a few minutes the sensors complete their analysis of the structure and you are ready to return to Aventine unmolested.`
+			`	You carefully position your ship above the structure and activate the sensors. As the scan proceeds, you monitor the position of the Ka'sei fleet. Some of the Fetri'sei nearest to you have stopped their standard activities and are just standing by, perhaps observing your actions the same way you are observing theirs. Luckily, after a few minutes the sensors complete their analysis of the structure and you are ready to return to <planet> unmolested.`
 				accept
 	on complete
 		dialog
@@ -542,10 +540,7 @@ mission "Ka'het: Patir Mystery 4"
 			`	"Very approximately, but yes. We have been studying every piece of written language we could find from their cities, mostly inside sealed containers. It is very hard to understand full phrases or even what they mean at times, but we can reliably translate most of the common words and idioms, which will hopefully be enough for our mission."`
 				accept
 	on complete
-		event "angry ka'sei"
-
-event "angry ka'sei"
-	"reputation: Ka'sei" <?= -10
+		"reputation: Ka'sei" <?= -10
 
 mission "Ka'het: Patir Mystery 5"
 	landing
@@ -649,14 +644,6 @@ mission "Ka'het: Patir Mystery 5"
 	on enter "Patir"
 		dialog
 			`Soon after departing, your ship warns you that a large number of ships are targeting you. It appears the other Ka'sei are also going to attack.`
-	on fail
-		dialog
-			`One or more Ka'sei were destroyed. You failed your mission.`
-	on complete
-		event "pacified ka'sei"
-		event "patir mistery timer" 10
-		conversation
-			`You disembark from your ship with Dusk, discussing the events that occurred in Patir. "Thank you for keeping the Ka'sei alive, <first>. They might be exactly what our Builder research needs, and I really hope I can continue exploring that place with you in the future. I will study what we have gathered in the last days trying to find anything that could give us more clues about them." He waves at you and starts walking towards the exit from the spaceport. "I will contact you again when I find something worth looking at. May the Embers burn bright for you, <first>."`
 	npc save
 		government "Ka'sei"
 		personality plunders mining harvests staying
@@ -666,8 +653,16 @@ mission "Ka'het: Patir Mystery 5"
 			variant
 				"Fetri'sei" 18
 				"Fetri'sei (Disable-able)" 6
+	on fail
+		dialog
+			`One or more Ka'sei were destroyed. You failed your mission.`
+	on complete
+		"reputation: Ka'sei" = 1
+		event "patir mystery timer" 10
+		conversation
+			`You disembark from your ship with Dusk, discussing the events that occurred in Patir. "Thank you for keeping the Ka'sei alive, <first>. They might be exactly what our Builder research needs, and I really hope I can continue exploring that place with you in the future. I will study what we have gathered in the last days trying to find anything that could give us more clues about them." He waves at you and starts walking towards the exit from the spaceport. "I will contact you again when I find something worth looking at. May the Embers burn bright for you, <first>."`
 
 event "pacified ka'sei"
 	"reputation: Ka'sei" = 1
 	
-event "patir mistery timer"
+event "patir mystery timer"

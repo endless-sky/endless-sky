@@ -532,6 +532,7 @@ ship "Fetri'sei"
 		"mass" 210
 		"drag" 2.9
 		"heat dissipation" .5
+		"fuel capacity" 100
 		"ramscoop" 0.13
 		"cargo space" 62
 		"outfit space" 383
@@ -540,10 +541,9 @@ ship "Fetri'sei"
 		"energy capacity" 10000
 		"energy generation" 23.3
 		"heat generation" 32
-		"hull repair rate" 0.3
 		"shield heat" 3.4
+		"hull repair rate" 0.3
 		"ka'sei" 1
-		"fuel capacity" 100
 		weapon
 			"blast radius" 120
 			"shield damage" 540
