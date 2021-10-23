@@ -87,6 +87,7 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 						CHECK( list.TotalWeight() == 3 );
 					}
 					THEN( "An iterator pointing to the next object in the list is returned." ) {
+						REQUIRE( it != list.end() );
 						CHECK( it->value == 2 );
 						CHECK( it->Weight() == 3 );
 					}
@@ -115,6 +116,7 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 						CHECK( list.TotalWeight() == 8 );
 					}
 					THEN( "An iterator pointing to the next object in the list is returned." ) {
+						REQUIRE( it != list.end() );
 						CHECK( it->value == 4 );
 						CHECK( it->Weight() == 5 );
 					}
