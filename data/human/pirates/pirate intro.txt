@@ -352,7 +352,7 @@ mission "Lockbox Snooping"
 		not "I Want To Be A Pirate: done"
 	on offer
 		conversation
-			`With the flash of lasers and roar of engines throttled to full finally settled, quiet falls over the ship. You have a moment to inspect your plunder. How closely you inspect it remains to be decided.`
+			`Safe harbor. The flash of lasers and roar of engines fades to memory, and fresh air from a new world fills the ship's hold, carrying with it a sense of calm. You have a moment to inspect your plunder, should you wish. How closely you inspect it remains to be decided.`
 			choice
 				`	(Yep. That's an admirable stack of booty. Back to whatever it was I was doing.)`
 					decline
@@ -518,7 +518,7 @@ conversation "Den Handoff"
 	label complete
 	action
 		payment -1000000
-	`	The transaction is complete. You've spent a million credits out of your own pocket for something that needs to be delivered to a mysterious pirate in formal wear that you met in a stinking bar. This is definitely the path of wisdom that you walk. Thankfully, no further obstacles ambush you as you return to your ship.`
+	`	The transaction is complete. You've spent a million credits out of your own pocket for something that needs to be delivered to a mysterious mercenary you met in a stinking bar. This is definitely the path of wisdom that you walk. Thankfully, no further obstacles ambush you as you return to your ship.`
 		accept
 	label retreat
 	`	You make your apologies - wrong hangar - and beat a hasty retreat. The door seals behind you. On the way to your ship you pass the janitor once more, his ear firmly pressed to the handle of his mop. Upon seeing you he becomes visibly startled and drops his tools all over the floor. What a strange fellow.`
@@ -679,8 +679,8 @@ mission "Pirate Intro: Darkstone Slavers (Dominated)"
 			apply
 				set "slaver of darkstone"
 				set "terribleperson"
-			"You leave with the money."
-				decline
+			`	The slave boss counts out an appropriate stack of credits and presses them into your palm. The slaves regard you with a mixture of hatred and resignation. Now rather richer than you would have been just collecting their paltry tribute, you return to the skies.`
+				flee
 			label duel
 			`	The leader of the slavers turns to face you, attention finally pulled from his task. "You've got some nerve picking a fight with us, kid. You really think these poor bastards are worth dying for?"`
 			`	Noon's sun beats down on you. Even with the chill that usually haunts this region of the planet at this time of year, it's enough to bring sweat to your brow. Silence fills the town square, and slavers shy back to leave only four things that matter in the area: You, the slaver boss, and your respective pistols.`
