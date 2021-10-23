@@ -54,6 +54,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StarField.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "Test.h"
+#include "TestContext.h"
 #include "Visual.h"
 #include "Weather.h"
 #include "text/WrappedText.h"
@@ -479,8 +481,23 @@ void Engine::Step(bool isActive)
 		if(!wasActive)
 			activeCommands.Clear();
 		else
+		{
+			// Do a testing step if we got an active testContext from main.cpp.
+			// Main.cpp will transfer the context every step where it wants the
+			// engine to handle the testing.
+			if(testContext)
+			{
+				const Test *runningTest = testContext->CurrentTest();
+				if(runningTest)
+					runningTest->Step(*testContext, player, activeCommands);
+			}
 			ai.UpdateKeys(player, activeCommands);
+		}
 	}
+	// Clear the testContext every step. Main.cpp will provide the context before
+	// every step where it expects the Engine to handle testing.
+	testContext = nullptr;
+	
 	wasActive = isActive;
 	Audio::Update(center);
 	
@@ -1064,10 +1081,10 @@ void Engine::Draw() const
 
 
 
-// Give an (automated/scripted) command on behalf of the player.
-void Engine::GiveCommand(const Command &command)
+// Set the given TestContext in the next step of the Engine.
+void Engine::SetTestContext(TestContext &newTestContext)
 {
-	activeCommands.Set(command);
+	testContext = &newTestContext;
 }
 
 

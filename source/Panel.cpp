@@ -110,8 +110,8 @@ bool Panel::ZoneClick(const Point &point)
 
 
 
-// Queue a command for the Panel to process. Typically only used for MainPanel.
-void Panel::GiveCommand(const Command &command)
+// Forward the given TestContext to the Engine under MainPanel.
+void Panel::SetTestContext(TestContext &testContext)
 {
 }
 
