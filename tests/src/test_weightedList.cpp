@@ -79,7 +79,7 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 				}
 			
 				AND_WHEN( "A single element is erased." ) {
-					auto it = list.erase(list.begin());
+					auto it = list.eraseAt(list.begin());
 					
 					THEN( "The list has decreased in size and weight." ) {
 						CHECK_FALSE( list.empty() );
@@ -87,6 +87,7 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 						CHECK( list.TotalWeight() == 3 );
 					}
 					THEN( "An iterator pointing to the next object in the list is returned." ) {
+						REQUIRE( it != list.end() );
 						CHECK( it->value == 2 );
 						CHECK( it->Weight() == 3 );
 					}
@@ -105,8 +106,8 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 					list.emplace_back(3, 1);
 					list.emplace_back(4, 5);
 					list.emplace_back(5, 3);
-					CHECK( list.size() == 5 );
-					CHECK( list.TotalWeight() == 14 );
+					REQUIRE( list.size() == 5 );
+					REQUIRE( list.TotalWeight() == 14 );
 					
 					// Delete objects with values 1, 2, and 3.
 					auto it = list.erase(list.begin(), list.begin() + 3);
@@ -115,6 +116,7 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 						CHECK( list.TotalWeight() == 8 );
 					}
 					THEN( "An iterator pointing to the next object in the list is returned." ) {
+						REQUIRE( it != list.end() );
 						CHECK( it->value == 4 );
 						CHECK( it->Weight() == 5 );
 					}

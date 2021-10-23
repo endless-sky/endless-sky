@@ -196,6 +196,12 @@ jobs:
         Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
         Expand-Archive win64-dev.zip -DestinationPath . -Force
         Remove-Item win64-dev.zip
+    - name: Cache scons
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      uses: actions/cache@v2
+      with:
+        path: 'scons-local'
+        key: scons-${{ hashFiles('.winmake') }}
     - name: Cache sccache results
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       uses: actions/cache@v2
@@ -244,6 +250,12 @@ jobs:
     - name: Install development dependencies
       if: steps.cache-tests.outputs.cache-hit != 'true'
       run: choco install sccache
+    - name: Cache scons
+      if: steps.cache-tests.outputs.cache-hit != 'true'
+      uses: actions/cache@v2
+      with:
+        path: 'scons-local'
+        key: scons-${{ hashFiles('.winmake') }}
     - name: Fetch precompiled libraries
       run: |
         Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip

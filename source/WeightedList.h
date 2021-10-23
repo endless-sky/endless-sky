@@ -26,16 +26,19 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // list can be queried to randomly return one object from the list where the
 // probability of an object being returned is the weight of the object over the
 // sum of the weights of all objects in the list.
-template<class Type>
+template <class Type>
 class WeightedList {
 public:
+	using iterator = typename std::vector<Type>::iterator;
+	using const_iterator = typename std::vector<Type>::const_iterator;
+	
 	const Type &Get() const;
 	std::size_t TotalWeight() const { return total; }
 	
-	typename std::vector<Type>::iterator begin() noexcept { return choices.begin(); }
-	typename std::vector<Type>::const_iterator begin() const noexcept { return choices.begin(); }
-	typename std::vector<Type>::iterator end() noexcept { return choices.end(); }
-	typename std::vector<Type>::const_iterator end() const noexcept { return choices.end(); }
+	iterator begin() noexcept { return choices.begin(); }
+	const_iterator begin() const noexcept { return choices.begin(); }
+	iterator end() noexcept { return choices.end(); }
+	const_iterator end() const noexcept { return choices.end(); }
 	
 	void clear() noexcept { choices.clear(); total = 0; }
 	std::size_t size() const noexcept { return choices.size(); }
@@ -46,8 +49,8 @@ public:
 	template <class ...Args>
 	Type &emplace_back(Args&&... args);
 	
-	typename std::vector<Type>::iterator erase(typename std::vector<Type>::iterator position);
-	typename std::vector<Type>::iterator erase(typename std::vector<Type>::iterator first, typename std::vector<Type>::iterator last);
+	iterator eraseAt(iterator position) noexcept;
+	iterator erase(iterator first, iterator last) noexcept;
 	
 	
 private:
@@ -91,7 +94,7 @@ Type &WeightedList<Type>::emplace_back(Args&&... args)
 
 
 template <class Type>
-typename std::vector<Type>::iterator WeightedList<Type>::erase(typename std::vector<Type>::iterator position)
+typename std::vector<Type>::iterator WeightedList<Type>::eraseAt(typename std::vector<Type>::iterator position) noexcept
 {
 	total -= position->Weight();
 	return choices.erase(position);
@@ -100,7 +103,7 @@ typename std::vector<Type>::iterator WeightedList<Type>::erase(typename std::vec
 
 
 template <class Type>
-typename std::vector<Type>::iterator WeightedList<Type>::erase(typename std::vector<Type>::iterator first, typename std::vector<Type>::iterator last)
+typename std::vector<Type>::iterator WeightedList<Type>::erase(typename std::vector<Type>::iterator first, typename std::vector<Type>::iterator last) noexcept
 {
 	for(auto it = first; it != last; ++it)
 		total -= it->Weight();
