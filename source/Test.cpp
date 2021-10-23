@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "Files.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "MainPanel.h"
 #include "Panel.h"
@@ -88,6 +89,21 @@ namespace{
 		event.key.keysym.sym = SDL_GetKeyFromName(keyName);
 		event.key.keysym.mod = modKeys;
 		return SDL_PushEvent(&event);
+	}
+	
+	string ShipToString(const Ship &ship)
+	{
+		string description = "name: " + ship.Name();
+		const System *system = ship.GetSystem();
+		const Planet *planet = ship.GetPlanet();
+		description += ", system: " + (system ? system->Name() : "<not set>");
+		description += ", planet: " + (planet ? planet->TrueName() : "<not set>");
+		description += ", hull: " + Format::Number(ship.Hull());
+		description += ", shields: " + Format::Number(ship.Shields());
+		description += ", energy: " + Format::Number(ship.Energy());
+		description += ", fuel: " + Format::Number(ship.Fuel());
+		description += ", heat: " + Format::Number(ship.Heat());
+		return description;
 	}
 }
 
@@ -518,26 +534,56 @@ void Test::Fail(const Context &context, const PlayerInfo &player, const string &
 	if(!testFailReason.empty())
 		message += ": " + testFailReason;
 	message += "\n";
+	
+	Files::LogError(message);
 
 	// Print the callstack if we have any.
 	auto stackDepth = context.stepToRun.size();
+	string stackMessage;
 	for(size_t i = 0; i < stackDepth; ++i)
 	{
 		if(i > 0)
-			message += "(called) ";
+			stackMessage += "(called) ";
 		else if(stackDepth > 1)
-			message += "(top) ";
+			stackMessage += "(top) ";
 		if(context.testToRun.size() < i)
-			message += "At unknown test!\n";
+			stackMessage += "At unknown test!\n";
 		else
 		{
 			auto testPrint = context.testToRun[i];
 			auto testStepNr = context.stepToRun[i];
-			message += "Test: \"" + testPrint->Name() + "\", step: " + to_string(1 + testStepNr);
+			stackMessage += "Test: \"" + testPrint->Name() + "\", step: " + to_string(1 + testStepNr);
 			if(testStepNr < testPrint->steps.size())
-				message += " (" + STEPTYPE_TO_TEXT.at((testPrint->steps[testStepNr]).stepType) + ")";
-			message += "\n";
+				stackMessage += " (" + STEPTYPE_TO_TEXT.at((testPrint->steps[testStepNr]).stepType) + ")";
+			stackMessage += "\n";
 		}
+	}
+	if(stackMessage.empty())
+		stackMessage = "No callstack info at moment of failure.");
+	Files::LogError(stackMessage);
+
+	// Print some debug information about the flagship and the first 5 escorts.
+	const Ship *flagship = player.Flagship();
+	if(!flagship)
+		Files::LogError("No flagship at the moment of failure.");
+	else
+	{
+		string shipsOverview = "flagship " + ShipToString(*flagship) + "\n";
+		int escorts = 0;
+		int escortsNotPrinted = 0;
+		for(auto &&ptr : flagship->GetEscorts())
+		{
+			auto escort = ptr.lock();
+			if(!escort)
+				continue;
+			if(++escorts <= 5)
+				shipsOverview += "escort " + ShipToString(*escort) + "\n";
+			else
+				++escortsNotPrinted;
+		}
+		if(escortsNotPrinted > 0)
+			shipsOverview += "(plus " + to_string(escortsNotPrinted) + " additional escorts)\n";
+		Files::LogError(shipsOverview);
 	}
 	
 	// Only log the conditions that start with test; we don't want to overload the terminal or errorlog.
