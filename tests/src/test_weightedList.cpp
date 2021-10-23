@@ -105,8 +105,8 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 					list.emplace_back(3, 1);
 					list.emplace_back(4, 5);
 					list.emplace_back(5, 3);
-					CHECK( list.size() == 5 );
-					CHECK( list.TotalWeight() == 14 );
+					REQUIRE( list.size() == 5 );
+					REQUIRE( list.TotalWeight() == 14 );
 					
 					// Delete objects with values 1, 2, and 3.
 					auto it = list.erase(list.begin(), list.begin() + 3);
