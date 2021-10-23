@@ -288,11 +288,6 @@ government "Ka'sei"
 	language "Ka'het"
 	
 	"player reputation" 1
-	"penalty for"
-		assist 0
-		disable 0
-		board 0
-		capture 0
 	"friendly hail" "friendly ka'het"
 	"friendly disabled hail" "friendly disabled ka'het"
 	"hostile hail" "hostile ka'het"

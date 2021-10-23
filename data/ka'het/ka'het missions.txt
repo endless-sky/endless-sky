@@ -669,32 +669,5 @@ mission "Ka'het: Patir Mystery 5"
 
 event "pacified ka'sei"
 	"reputation: Ka'sei" = 1
-
-ship "Cloak Check"
-	attributes
-		"heat dissipation" 1
-		"hull" 3
-		"mass" 100
-		"drag" 5
-		"automaton" 1
-		"thrust" 100
-		"turn" 6000
-	outfits
-		"Cloak Checker"
-	turret 0 0
-
-outfit "Cloak Checker"
-	category "Turret"
-	thumbnail "outfit/unknown"
-	"turret mounts" -1
-	weapon
-		"velocity" 10
-		"lifetime" 1
-		"reload" 1
-		"blast radius" 20
-		"hull damage" 5
-		"no damage scaling"
-		"range override" 1000000
-		"turret turn" 360
-
+	
 event "patir mistery timer"
