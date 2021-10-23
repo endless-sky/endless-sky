@@ -539,13 +539,12 @@ void Test::Fail(const Context &context, const PlayerInfo &player, const string &
 		message += ": " + testFailReason;
 
 	// Print some debug information about the flagship and the first 5 escorts.
-	string shipsOverview;
 	const Ship *flagship = player.Flagship();
 	if(!flagship)
-		shipsOverview += "Player did not have flagship at the moment of failure.\n";
+		Files::LogError("No flagship at the moment of failure.");
 	else
 	{
-		shipsOverview += "flagship " + ShipToString(*flagship) + "\n";
+		string shipsOverview = "flagship " + ShipToString(*flagship) + "\n";
 		int escorts = 0;
 		int escortsNotPrinted = 0;
 		for(auto &&ptr : flagship->GetEscorts())
@@ -560,8 +559,8 @@ void Test::Fail(const Context &context, const PlayerInfo &player, const string &
 		}
 		if(escortsNotPrinted > 0)
 			shipsOverview += "(plus " + to_string(escortsNotPrinted) + " additional escorts)\n";
+		Files::LogError(shipsOverview);
 	}
-	Files::LogError(shipsOverview);
 	
 	// Only log the conditions that start with test; we don't want to overload the terminal or errorlog.
 	// Future versions of the test-framework could also print all conditions that are used in the test.
