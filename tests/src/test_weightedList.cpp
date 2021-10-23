@@ -79,7 +79,7 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 				}
 			
 				AND_WHEN( "A single element is erased." ) {
-					auto it = list.erase(list.begin());
+					auto it = list.eraseAt(list.begin());
 					
 					THEN( "The list has decreased in size and weight." ) {
 						CHECK_FALSE( list.empty() );
