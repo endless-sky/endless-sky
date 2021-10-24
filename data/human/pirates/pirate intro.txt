@@ -625,7 +625,6 @@ mission "Pirate Intro: Darkstone Slavers (Free)"
 			`	"No business of yours, friend. We know who you are, and we thank you for running off the last band of lowlifes that laid claim to these bodies. Now, if you'll excuse, we've got work to do. Piss off." The slaver chief roundly ignores any further attempts to communicate, but he at least seems to be in a good enough mood to not have you shot on the spot.`
 			choice
 				`	"These people are my responsibility, and I'll fight you for their freedom."`
-					goto duel
 				`	(Return to your ship. This is none of your business.)`
 					goto retreat
 				`	(Return to your ship... and start strafing the slavers.)`
