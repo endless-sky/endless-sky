@@ -2393,7 +2393,7 @@ void AI::DoMining(Ship &ship, Command &command)
 	if(isNew)
 		angle = Angle::Random();
 	angle += Angle::Random(1.) - Angle::Random(1.);
-	double miningRadius = ship.GetSystem()->AsteroidBelt() * pow(2., angle.Unit().X());
+	double miningRadius = ship.GetSystem()->AsteroidBeltRadius() * pow(2., angle.Unit().X());
 	
 	shared_ptr<Minable> target = ship.GetTargetAsteroid();
 	if(!target || target->Velocity().Length() > ship.MaxVelocity())
