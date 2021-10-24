@@ -248,7 +248,7 @@ conversation "I Want To Be A Pirate Conclusion"
 	choice
 		`	"I've got your million-credit... thing, and a splitting headache."`
 	`	"I'll be blunt." The Mercenary thoughtfully presses her fingertips together, as if that would somehow magically make whatever words come next more diplomatic.`
-	`	"You're an absolute fucking moron. Drawing a gun on my contacts after they found a bug on you? You've got some wild ideas about your own capabilities, but... Somehow you were able to talk your way out of it, so perhaps you're not a lost cause after all. Whatever the case, I can't have a reputation as one who goes back on a deal, so I'll hold up my part of the bargain. Now, the canister please."`
+	`	"You're the most empty-headed spacer I've seen that isn't yet a corpse, next time you want to try a stunt like that do us all a favor and just take a walk out the airlock first. I've met asteroids with more sense than you. Drawing a gun on my contacts after they found a bug on you? You've got some wild ideas about your own capabilities, but... Somehow you were able to talk your way out of it, so perhaps you're not a lost cause after all. Whatever the case, I can't have a reputation as one who goes back on a deal, so I'll hold up my part of the bargain. Now, the canister please."`
 	choice
 		`	(Hand over the canister.)`
 	`	The merc gingerly takes the hazard-warning emblazoned canister from you, as if not trusting you to not drop it. The other two at the table visibly exhale in relief once the canister's out of your hands.`
