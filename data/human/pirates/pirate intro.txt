@@ -247,7 +247,7 @@ conversation "I Want To Be A Pirate Conclusion"
 	label smugglingalt
 	choice
 		`	"I've got your million-credit... thing, and a splitting headache."`
-	`	"I'll be blunt." The Mercenary thoughtfully presses her fingertips together, as if that'll somehow magically make whatever words come next more diplomatic.`
+	`	"I'll be blunt." The Mercenary thoughtfully presses her fingertips together, as if that would somehow magically make whatever words come next more diplomatic.`
 	`	"You're an absolute fucking moron. Drawing a gun on my contacts after they found a bug on you? You've got some wild ideas about your own capabilities, but... Somehow you were able to talk your way out of it, so perhaps you're not a lost cause after all. Whatever the case, I can't have a reputation as one who goes back on a deal, so I'll hold up my part of the bargain. Now, the canister please."`
 	choice
 		`	(Hand over the canister.)`
