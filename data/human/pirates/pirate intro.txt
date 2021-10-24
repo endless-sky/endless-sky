@@ -128,7 +128,7 @@ conversation "I Want To Be A Pirate"
 conversation "I Want To Be A Pirate Conclusion"
 	`Heads turn to regard you as you disembark into the Greenrock spaceport. Gangsters, pirates, slavers and smugglers regard you, size you up, and turn away with disinterest. That's far better than the ugly leers you used to get. Perhaps it's a swagger in your step, or simply a confident bearing that you now have - maybe you're just imagining things and reading what you want into the manifold expressions within the human morass that constitutes this busy spaceport.`
 	`	You're paid no mind as you strut into the tavern and progress to another back room where, just as they said, the three pirates you'd met before are sharing drinks. Heads are lifted from tankards to regard you. The Corsair seems quite pleased to see you, assisted as he is by the reddened bonhomie of liquor. The fatigues-clad Mercenary remains impassive, her mien businesslike. And the Capo? He's just choked on his drink.`
-	`	"Well slap a collar on me and sell me as a miner, you're still drawing breath. Didn't expect that. Here bearing profitable news, I trust." The Capo's speech is as metallic as ever, though his usual semi-musical tones sound somewhat... drowned. Sounds like he sucked some beer into his windpipe with that last sip.`
+	`	"Well slap a collar on me and sell me as a miner, you're still drawing breath. Didn't expect that. Here bearing profitable news, I trust." The Capo's speech is as metallic as ever, though his usual semi-musical tones sound somewhat... drowned. Seems he sucked some cider into his windpipe with that last sip.`
 	branch tributeskip
 		not "tribute: Darkstone"
 		not "hero of Darkstone"
