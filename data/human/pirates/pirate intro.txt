@@ -109,8 +109,8 @@ conversation "I Want To Be A Pirate"
 		`	"I don't understand. Could you explain that more plainly?"`
 		`	"Tell me what I need to do."`
 			goto explanation
-	`	The Capo groans, shakes his head mournfully, and leans back to excuse himself from the conversation for a minute. Instead, the Mercenary leans forward to speak. "Look, it's simple. You shoot people, they shoot back. You knuckle under at every opportunity, they keep shooting because they think you're weak. If you want to be left alone you need to prove that you're not worth the effort it would take to plunder you, yeah? That's... Well, it's what these little tasks we've mentioned are about. You need to establish a reputation. This is how you do it - and once you've done that, other pirates should leave you alone owing to either fear or respect."`
-	`	She leans back in her chair, matching gaze with the Capo. "And you, don't push it. Not here, you know what my boss thinks." Wistfulness drips from her words, and she leans back into her chair. Her thoughts clearly lie elsewhere at the moment.`
+	`	The Capo groans, shakes his head mournfully, and leans back to excuse himself from the conversation for a minute. The Mercenary quickly fills the conversational. "Look, it's simple. You shoot people, they shoot back. You knuckle under at every opportunity, they keep shooting because they think you're weak. If you want to be left alone you need to prove that you're not worth the effort it would take to plunder you, yeah? That's... Well, it's what these little tasks we've mentioned are about. You need to establish a reputation. This is how you do it - and once you've done that, other pirates should leave you alone owing to either fear or respect."`
+	`	She leans back in her chair, matching gaze with the Capo. "And you, don't push it. Not here, you know what my boss thinks." Wistfulness drips from her words, and her gaze turns elsewhere; this person's thoughts clearly lie elsewhere at the moment.`
 	choice
 		`	"I understand."`
 		`	"Yeah, I have no idea what you're talking about, but I don't care enough to ask again. Where's the part where I get to be a pirate?"`
