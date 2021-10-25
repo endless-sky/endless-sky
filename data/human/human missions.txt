@@ -2108,7 +2108,7 @@ mission "Terminus exploration"
 				log `Ivan said that although he's not sure if the anomaly in Terminus is a wormhole or not, there is a wormhole "just beyond the Republic's borders" that the Republic doesn't like people sharing information on.`
 			`	Ivan looks around the spaceport, as if checking to see if he's being watched. He then looks back to you and motions for you to lean in. Whispering, he says, "The Republic doesn't like when people share this information, but there is one stable wormhole just beyond the Republic's borders."`
 			branch skip
-				not "wormhole alpha found"
+				not "First Contact: Hai"
 			`	"You mean the wormhole to the Hai?" you ask.`
 			`	"Good, you know of it," Ivan responds.`
 			label skip
