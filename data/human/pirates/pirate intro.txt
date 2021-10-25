@@ -585,7 +585,7 @@ mission "Pirate Intro: Domination Check-in"
 				`	"That's... Pathetic. I expected more. I'm taking your goat, and I expect you sorry bunch of mud-scrapers to have some proper loot by the time I'm back."`
 					accept
 				`	"You know, I don't think this whole 'conquering tyrant' thing is going to work out from me. Can we just forget the whole tribute debacle? I'll leave you all alone. Sorry for the trouble."`
-			`	"... You're messing with us, right?" Only a few of the colonists have the barest hints of hope visible on their faces. "That's... Well, it would be mighty fine to actually be able to keep something for a change. Alright! If you're serious, just hail us once you're back in orbit - we'll put the word out once we hear from you."`
+			`	"... You're messing with us, right?" Only a few of the colonists have the barest hints of hope visible on their faces. "That's... Well, it would be mighty fine to actually be able to keep something for a change. Alright!"`
 			`	You can see the barest clue of a smile on the young man's lips, and light in his eyes that weren't there when you'd arrived. "And hey! You should come back in a couple days anyways, we don't have much but we'd like to throw you some sort of party to show our thanks. We make a mean corn liquor in these parts, and, well... We really hated that last crew that was camped out here. It'd mean a lot to us if you came by."`
 			`(To release the planet from tribute, select it from orbit and use the hail key.)`
 				accept
