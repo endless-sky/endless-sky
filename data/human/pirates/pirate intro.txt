@@ -485,7 +485,7 @@ conversation "Den Handoff"
 	label better
 	`	Precious. Delicious. Refreshing. The iron taste of blood is washed down your throat, and your headache slightly lessens. The pain is still there, but as far as you can tell you're not quite as dead as you felt upon waking.`
 	label talking
-	`	The officer settles into the chair across from you. "You brought the money, so I'm inclined to believe you weren't simply here to fuck us. Given your... decisions today, I'm also inclined to believe you may also just be an idiot. More importantly, you brought this bug we found on you. Care to explain yourself? If I like what you say you may remain on this side of the airlock."`
+	`	The officer settles into the chair across from you. "You brought the money, so I'm inclined to believe you weren't simply here to sell us out. Given your... decisions today, I'm also inclined to believe you may also just be an idiot. More importantly, you brought this bug we found on you. Care to explain yourself? If I like what you say you may remain on this side of the airlock."`
 		goto explanation
 	label cool
 	`	You keep your hands where they are and wait for the officer to speak. "There's a listening device on your left hip. Pocket, perhaps. I want you to slowly withdraw it and place it on the table in front of us. Gabriel, get the coffee out of here." A soldier hastily scoops up the beverage and disappears into the gloom of the hangar.`
