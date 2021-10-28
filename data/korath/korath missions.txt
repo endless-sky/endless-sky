@@ -59,9 +59,8 @@ mission "Discovered Korath Space"
 		fail
 
 event "label korath space"
-	galaxy "Milky Way"
-		label "korath"
-			sprite "label/korath"
+	galaxy "label korath"
+		sprite "label/korath"
 		
 mission "Setar Fort Heating"
 	name "Supplies to <planet>"

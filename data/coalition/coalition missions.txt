@@ -91,13 +91,12 @@ mission "Discovered Coalition Space"
 		fail
 
 event "label coalition space"
-	galaxy "Milky Way"
-		label "saryds"
-			sprite "label/saryds"
-		label "kimek"
-			sprite "label/kimek"
-		label "arachi"
-			sprite "label/arachi"
+	galaxy "label saryds"
+		sprite "label/saryds"
+	galaxy "label kimek"
+		sprite "label/kimek"
+	galaxy "label arachi"
+		sprite "label/arachi"
 
 
 

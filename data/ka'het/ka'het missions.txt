@@ -18,9 +18,8 @@ mission "Graveyard Label"
 		fail
 
 event "graveyard label"
-	galaxy "Milky Way"
-		label "graveyard"
-			sprite label/graveyard
+	galaxy "label graveyard"
+		sprite label/graveyard
 
 mission "Disabled Ka'het"
 	boarding

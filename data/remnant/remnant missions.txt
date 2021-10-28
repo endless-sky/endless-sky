@@ -125,9 +125,8 @@ mission "First Contact: Remnant"
 			`	When you return to your ship, you do a search on videos of historical dialects of human sign language. None of them bear even a passing resemblance to the language of these people who call themselves the Remnant.`
 
 event "ember waste label"
-	galaxy "Milky Way"
-		label "waste"
-			sprite label/waste
+	galaxy "label waste"
+		sprite label/waste
 
 
 

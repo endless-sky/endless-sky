@@ -22,22 +22,49 @@ using namespace std;
 
 
 
-void Galaxy::Load(const DataNode &node, Set<Galaxy> &galaxies)
+Galaxy::Label::Label(const DataNode &node)
 {
 	name = node.Token(1);
+
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "pos" && child.Size() >= 3)
 			position = Point(child.Value(1), child.Value(2));
 		else if(child.Token(0) == "sprite" && child.Size() >= 2)
 			LoadSprite(child);
-		else if(child.Token(0) == "label" && child.Size() >= 2)
-		{
-			auto *label = galaxies.Get("label " + child.Token(1));
-			label->Load(child, galaxies);
-			label->name = "label " + child.Token(1);
-			AddLabel(label);
-		}
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+}
+
+
+
+Galaxy::Label::Label(const Galaxy *galaxy)
+{
+	*static_cast<Body *>(this) = *galaxy;
+}
+
+
+
+void Galaxy::Load(const DataNode &node, Set<Galaxy> &galaxies)
+{
+	name = node.Token(1);
+
+	bool isLabel = false;
+	if(!name.compare(0, 6, "label "))
+	{
+		Files::LogError("Warning: root level galaxy label \"" + name + "\" is deprecated.");
+		isLabel = true;
+	}
+
+	for(const DataNode &child : node)
+	{
+		if(child.Token(0) == "pos" && child.Size() >= 3)
+			position = Point(child.Value(1), child.Value(2));
+		else if(child.Token(0) == "sprite" && child.Size() >= 2)
+			LoadSprite(child);
+		else if(child.Token(0) == "label" && !isLabel)
+			labels.emplace_back(child);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -66,7 +93,7 @@ const set<const System *> &Galaxy::Systems() const
 
 
 
-const vector<const Galaxy *> &Galaxy::Labels() const
+const vector<Galaxy::Label> &Galaxy::Labels() const
 {
 	return labels;
 }
@@ -87,18 +114,24 @@ void Galaxy::SetPosition(Point pos)
 
 
 
-void Galaxy::AddLabel(const Galaxy *label)
+void Galaxy::AddLabel(Galaxy *label)
 {
-	labels.emplace_back(label);
-	if(!label->Labels().empty())
-		Files::LogError("Warning: galaxy label with labels themselves are ignored.");
-}
-
-
-
-void Galaxy::ClearLabels()
-{
-	labels.clear();
+	if(!label->parent)
+	{
+		labels.emplace_back(label);
+		label->parent = this;
+	}
+	else
+	{
+		// Since the label is already in the list, we need to update
+		// the entry to the new galaxy value.
+		auto it = find_if(labels.begin(), labels.end(), [&label](const Label &l)
+				{
+					return l.name == label->name;
+				});
+		if(it != labels.end())
+			static_cast<Body &>(*it) = *label;
+	}
 }
 
 

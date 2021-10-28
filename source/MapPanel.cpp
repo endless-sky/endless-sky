@@ -179,10 +179,10 @@ void MapPanel::Draw()
 			Zoom() * selectedGalaxy->Scale(), 0,
 			selectedGalaxy->GetFrame(galaxyStep));
 	for(const auto &label : selectedGalaxy->Labels())
-		SpriteShader::Draw(label->GetSprite(),
-				Zoom() * (center + label->Position() - selectedGalaxy->Position()),
-				Zoom() * label->Scale(), 0,
-				label->GetFrame(galaxyStep));
+		SpriteShader::Draw(label.GetSprite(),
+				Zoom() * (center + label.Position() - selectedGalaxy->Position()),
+				Zoom() * label.Scale(), 0,
+				label.GetFrame(galaxyStep));
 	
 	if(Preferences::Has("Hide unexplored map regions"))
 		FogShader::Draw(center, Zoom(), player);

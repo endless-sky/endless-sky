@@ -28,32 +28,49 @@ class System;
 
 
 
-// This is any object that should be drawn as a backdrop to the map. Multiple
-// galaxies can be handled by just spacing them out so widely that the player
-// will never accidentally scroll the view from one to the other.
+// This is any object that should be drawn as a backdrop to the map.
 class Galaxy : public Body {
+public:
+	// A label that appears on the map that describes a region of the galaxy.
+	class Label : public Body
+	{
+	public:
+		Label(const DataNode &node);
+		// Construct a label from a galaxy (legacy).
+		Label(const Galaxy *galaxy);
+
+		// The name of this label in the data files.
+		std::string name;
+	};
+
+
 public:
 	void Load(const DataNode &node, Set<Galaxy> &galaxies);
 	
 	const std::string &Name() const;
 	const Point &Position() const;
 	const std::set<const System *> &Systems() const;
-	const std::vector<const Galaxy *> &Labels() const;
+	const std::vector<Label> &Labels() const;
 
 	void SetName(const std::string &name);
 	void SetPosition(Point pos);
 
-	void AddLabel(const Galaxy *label);
-	void ClearLabels();
+	// Adds the given label to this galaxy (legacy).
+	void AddLabel(Galaxy *label);
+
+	// Adds or removes a system from a galaxy (backwards compatbility).
 	void AddSystem(const System *system);
 	void RemoveSystem(const System *system);
 
 
 private:
 	std::string name;
-	Point position;
 	std::set<const System *> systems;
-	std::vector<const Galaxy *> labels;
+	std::vector<Label> labels;
+
+	// If this galaxy has a parent. This is only the case when this galaxy
+	// is a legacy label.
+	const Galaxy *parent = nullptr;
 };
 
 #endif

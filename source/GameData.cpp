@@ -703,8 +703,7 @@ void GameData::AddJumpRange(double neighborDistance)
 
 void GameData::UpdateGalaxies()
 {
-	for(auto &&galaxy : galaxies)
-		galaxy.second.ClearLabels();
+	// Assign any legacy galaxy label to their respective galaxy.
 	for(auto &&galaxy : galaxies)
 		if(!galaxy.first.compare(0, 6, "label "))
 		{
@@ -712,6 +711,7 @@ void GameData::UpdateGalaxies()
 			Galaxy *selected = nullptr;
 			for(auto &&it : galaxies)
 			{
+				// Skip any legacy label galaxies.
 				if(!it.second.Name().compare(0, 6, "label "))
 					continue;
 				auto distance = (it.second.Position() - galaxy.second.Position()).LengthSquared();
