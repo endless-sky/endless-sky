@@ -310,11 +310,13 @@ effect "emp spark"
 
 outfit "Ember Tear"
 	category "Secondary Weapons"
-	cost 150000
+	licenses
+		"Remnant Capital"
+	cost 50000000
 	thumbnail "outfit/ember tear"
-	"mass" 100
-	"outfit space" -100
-	"weapon capacity" -100
+	"mass" 250
+	"outfit space" -190
+	"weapon capacity" -200
 	"gun ports" -1
 	"spinal mount" -1
 	"unplunderable" 1
