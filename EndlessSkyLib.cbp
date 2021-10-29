@@ -307,6 +307,8 @@
 		<Unit filename="source/System.h" />
 		<Unit filename="source/Test.cpp" />
 		<Unit filename="source/Test.h" />
+		<Unit filename="source/TestContext.cpp" />
+		<Unit filename="source/TestContext.h" />
 		<Unit filename="source/TestData.cpp" />
 		<Unit filename="source/TestData.h" />
 		<Unit filename="source/Trade.cpp" />
