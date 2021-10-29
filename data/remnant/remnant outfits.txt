@@ -333,13 +333,14 @@ outfit "Ember Tear"
 		"reload" 1
 		"firing force" 1
 		"blast radius" 150
-		"firing energy" 250
-		"firing fuel" 10
-		"firing heat" 100
+		"firing energy" 240
+		"firing fuel" 11
+		"firing heat" 105
 		"shield damage" 200
 		"hull damage" 200
 		"slowing damage" 10
 		"fuel damage" 1
+		"unplunderable" 1
 	description "While their pursuit of the secrets of Jump Drives has yet to result in the successful manufacture of such a drive, it has led to many other advances. One such is the Ember Tear. According to the Remnant technicians, this weapon is the conjunction of techniques developped in the study of the Jump Drives combined with some of the physics derived from the study of the Ember Waste."
 	description "	When asked to clarify whether the name refers to either ripping or crying, the technician looks at you with a curious expression, and replies 'both.' They then go on to explain that a very simplistic explanation for this weapon is that it is making micro-tears in the fabric of space-time, then cauterizing them together again. Should not the Ember Wastes cry at the necessity of such weapons?"
 	description "	These massive weapons require special hardpoints, and are built in such few number that the Remnant distribute them directly on an as-needed basis. Due to the prodigious energy and fuel requirements, only the most massive of Remnant ships can support regular use of these weapons."
