@@ -370,13 +370,13 @@ mission "Lockbox Snooping"
 				`	(Leave it alone. If you wanted to read things, you would've gotten an honest job.)`
 					decline
 			`October 3, '94`
-			`	Bastards took the farm. Funny how you go your whole life never seeing a man in a suit, and the first one you do is there to ruin everything. Well, fine. I'm strong. I'm smart. I can go to the city and find work.`
+			`	"Bastards took the farm. Funny how you go your whole life never seeing a man in a suit, and the first one you do is there to ruin everything. Well, fine. I'm strong. I'm smart. I can go to the city and find work."`
 			`	The next several pages are filled with landscape sketches, scenes from a verdant farming world. Trees loom tall in the divisions between fields, flowers are abundant where nature hasn't been tamed by the colonist's hand. Here, a flock of sheep graze. There, a ship streaks across the sky, the rest of the drawing seemingly contorted around it as if the world itself is focusing on the vessel as it speeds into the unknown.`
 			`October 28, '94`
-			`	Empty stomach, empty pockets, no jobs to be found. Not a broom that needs pushing, and the mob at the factory wanting employment is at least five men deep and I dare not count how wide.`
+			`	"Empty stomach, empty pockets, no jobs to be found. Not a broom that needs pushing, and the mob at the factory wanting employment is at least five men deep and I dare not count how wide."`
 			`	Folk, man and woman, young and old, sit idle in the streets of a modestly sized town. Long faces, hollow with hunger, impassive in idleness, turn their gazes towards the one drawing them. There's the occasional drawing of a field or burst of beauty as captured in the pages before, but the overall spirit has shifted to the sullen.`
 			`November 15, '94`
-			`	Today's the day I'm born anew. Not with one of those cults, but with the "merchant" who comes by every season. He said there's room on his crew for a young man who's not afraid to get his hands dirty, and if I help around the ship, and he likes me by the time he takes off again, I can stay and take a share in their next haul... But I don't want to bring the law down on my family. I'll need a new name. "Voidmaster" sounds cool. I'll see if I can get the crew to call me that.`
+			`	"Today's the day I'm born anew. Not with one of those cults, but with the "merchant" who comes by every season. He said there's room on his crew for a young man who's not afraid to get his hands dirty, and if I help around the ship, and he likes me by the time he takes off again, I can stay and take a share in their next haul... But I don't want to bring the law down on my family. I'll need a new name. "Voidmaster" sounds cool. I'll see if I can get the crew to call me that."`
 			`	The remaining pages have been torn out.`
 				accept
 	on accept
