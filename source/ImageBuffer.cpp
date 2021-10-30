@@ -233,10 +233,15 @@ namespace {
 		if(!width || !height || width != buffer.Width() || height != buffer.Height())
 		{
 			png_destroy_read_struct(&png, &info, nullptr);
+			string message = "Skipped processing \"" + path + "\":\n\tAll image frames must have equal ";
+			if(width && width != buffer.Width())
+				Files::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
+			if(height && height != buffer.Height())
+				Files::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was " + to_string(height));
 			return false;
 		}
 		
-		// Adjust settings to make sure the result will be a BGRA file.
+		// Adjust settings to make sure the result will be a RGBA file.
 		int colorType = png_get_color_type(png, info);
 		int bitDepth = png_get_bit_depth(png, info);
 		
@@ -248,8 +253,6 @@ namespace {
 			png_set_expand_gray_1_2_4_to_8(png);
 		if(colorType == PNG_COLOR_TYPE_GRAY || colorType == PNG_COLOR_TYPE_GRAY_ALPHA)
 			png_set_gray_to_rgb(png);
-		if(colorType & PNG_COLOR_MASK_COLOR)
-			png_set_bgr(png);
 		// Let libpng handle any interlaced image decoding.
 		png_set_interlace_handling(png);
 		png_read_update_info(png, info);
@@ -285,7 +288,7 @@ namespace {
 		
 		jpeg_stdio_src(&cinfo, file);
 		jpeg_read_header(&cinfo, true);
-		cinfo.out_color_space = JCS_EXT_BGRA;
+		cinfo.out_color_space = JCS_EXT_RGBA;
 		
 		// MAYBE: Reading in lots of images in a 32-bit process gets really hairy using the standard approach due to
 		// contiguous memory layout requirements. Investigate using an iterative loading scheme for large images.
@@ -305,6 +308,11 @@ namespace {
 		if(!width || !height || width != buffer.Width() || height != buffer.Height())
 		{
 			jpeg_destroy_decompress(&cinfo);
+			string message = "Skipped processing \"" + path + "\":\t\tAll image frames must have equal ";
+			if(width && width != buffer.Width())
+				Files::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
+			if(height && height != buffer.Height())
+				Files::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was " + to_string(height));
 			return false;
 		}
 		

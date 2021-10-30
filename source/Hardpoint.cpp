@@ -353,5 +353,5 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 	
 	// Expend any ammo that this weapon uses. Do this as the very last thing, in
 	// case the outfit is its own ammunition.
-	ship.ExpendAmmo(outfit);
+	ship.ExpendAmmo(*outfit);
 }

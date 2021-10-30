@@ -36,6 +36,7 @@ class Government;
 class Hazard;
 class ImageSet;
 class Interface;
+class MaskManager;
 class Minable;
 class Mission;
 class News;
@@ -142,13 +143,15 @@ public:
 	static const std::vector<std::string> &Category(const CategoryType type);
 	
 	static const StarField &Background();
-	static void SetHaze(const Sprite *sprite);
+	static void SetHaze(const Sprite *sprite, bool allowAnimation);
 	
 	static const std::string &Tooltip(const std::string &label);
 	static std::string HelpMessage(const std::string &name);
 	static const std::map<std::string, std::string> &HelpTemplates();
 	
 	static const std::map<std::string, std::string> &PluginAboutText();
+	
+	static MaskManager &GetMaskManager();
 	
 	
 private:

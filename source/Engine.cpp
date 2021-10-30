@@ -54,6 +54,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StarField.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "Test.h"
+#include "TestContext.h"
 #include "Visual.h"
 #include "Weather.h"
 #include "text/WrappedText.h"
@@ -238,7 +240,7 @@ Engine::Engine(PlayerInfo &player)
 				(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
 				system->Position() - player.GetSystem()->Position());
 	
-	GameData::SetHaze(player.GetSystem()->Haze());
+	GameData::SetHaze(player.GetSystem()->Haze(), true);
 }
 
 
@@ -479,8 +481,23 @@ void Engine::Step(bool isActive)
 		if(!wasActive)
 			activeCommands.Clear();
 		else
+		{
+			// Do a testing step if we got an active testContext from main.cpp.
+			// Main.cpp will transfer the context every step where it wants the
+			// engine to handle the testing.
+			if(testContext)
+			{
+				const Test *runningTest = testContext->CurrentTest();
+				if(runningTest)
+					runningTest->Step(*testContext, player, activeCommands);
+			}
 			ai.UpdateKeys(player, activeCommands);
+		}
 	}
+	// Clear the testContext every step. Main.cpp will provide the context before
+	// every step where it expects the Engine to handle testing.
+	testContext = nullptr;
+	
 	wasActive = isActive;
 	Audio::Update(center);
 	
@@ -619,7 +636,7 @@ void Engine::Step(bool isActive)
 	}
 	
 	if(flagship && flagship->IsOverheated())
-		Messages::Add("Your ship has overheated.", Messages::Importance::High);
+		Messages::Add("Your ship has overheated.", Messages::Importance::Highest);
 	
 	// Clear the HUD information from the previous frame.
 	info = Information();
@@ -942,8 +959,21 @@ void Engine::Draw() const
 		if(messagePoint.Y() < messageBox.Top())
 			break;
 		float alpha = (it->step + 1000 - step) * .001f;
-		Color color(alpha, 0.f);
-		messageLine.Draw(messagePoint, color);
+		const Color *color = nullptr;
+		switch (it->importance) {
+			case Messages::Importance::Highest:
+				color = GameData::Colors().Find("message importance highest");
+				break;
+			case Messages::Importance::High:
+				color = GameData::Colors().Find("message importance high");
+				break;
+			case Messages::Importance::Low:
+				color = GameData::Colors().Find("message importance low");
+				break;
+		}
+		if(!color)
+			color = GameData::Colors().Get("message importance default");
+		messageLine.Draw(messagePoint, color->Additive(alpha));
 	}
 	
 	// Draw crosshairs around anything that is targeted.
@@ -1051,10 +1081,10 @@ void Engine::Draw() const
 
 
 
-// Give an (automated/scripted) command on behalf of the player.
-void Engine::GiveCommand(const Command &command)
+// Set the given TestContext in the next step of the Engine.
+void Engine::SetTestContext(TestContext &newTestContext)
 {
-	activeCommands.Set(command);
+	testContext = &newTestContext;
 }
 
 
@@ -1114,6 +1144,24 @@ void Engine::SelectGroup(int group, bool hasShift, bool hasControl)
 
 
 
+// Break targeting on all projectiles between the player and the given
+// government; gov projectiles stop targeting the player and player's
+// projectiles stop targeting gov.
+void Engine::BreakTargeting(const Government *gov)
+{
+	const Government *playerGov = GameData::PlayerGovernment();
+	for(Projectile &projectile : projectiles)
+	{
+		const Government *projectileGov = projectile.GetGovernment();
+		const Government *targetGov = projectile.TargetGovernment();
+		if((projectileGov == playerGov && targetGov == gov)
+			|| (projectileGov == gov && targetGov == playerGov))
+			projectile.BreakTarget();
+	}
+}
+
+
+
 void Engine::EnterSystem()
 {
 	ai.Clean();
@@ -1128,7 +1176,7 @@ void Engine::EnterSystem()
 	
 	const System *system = flagship->GetSystem();
 	Audio::PlayMusic(system->MusicName());
-	GameData::SetHaze(system->Haze());	
+	GameData::SetHaze(system->Haze(), false);
 	
 	Messages::Add("Entering the " + system->Name() + " system on "
 		+ today.ToString() + (system->IsInhabited(flagship) ?
@@ -1193,18 +1241,26 @@ void Engine::EnterSystem()
 	// government set.
 	for(int i = 0; i < 5; ++i)
 	{
-		for(const System::FleetProbability &fleet : system->Fleets())
+		for(const auto &fleet : system->Fleets())
 			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60)
 				fleet.Get()->Place(*system, newShips);
-		for(const System::HazardProbability &hazard : system->Hazards())
-			if(Random::Int(hazard.Period()) < 60)
+
+		auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
+		{
+			if(hazard.Get()->IsValid() && Random::Int(hazard.Period()) < 60)
 			{
 				const Hazard *weather = hazard.Get();
 				int hazardLifetime = weather->RandomDuration();
 				// Elapse this weather event by a random amount of time.
 				int elapsedLifetime = hazardLifetime - Random::Int(hazardLifetime + 1);
-				activeWeather.emplace_back(weather, hazardLifetime, elapsedLifetime, weather->RandomStrength());
+				activeWeather.emplace_back(weather, hazardLifetime, elapsedLifetime, weather->RandomStrength(), origin);
 			}
+		};
+		for(const auto &hazard : system->Hazards())
+			CreateWeather(hazard, Point());
+		for(const auto &stellar : system->Objects())
+			for(const auto &hazard : stellar.Hazards())
+				CreateWeather(hazard, stellar.Position());
 	}
 	
 	const Fleet *raidFleet = system->GetGovernment()->RaidFleet();
@@ -1219,7 +1275,7 @@ void Engine::EnterSystem()
 				{
 					raidFleet->Place(*system, newShips);
 					Messages::Add("Your fleet has attracted the interest of a "
-							+ raidGovernment->GetName() + " raiding party.", Messages::Importance::High);
+							+ raidGovernment->GetName() + " raiding party.", Messages::Importance::Highest);
 				}
 	}
 	
@@ -1604,7 +1660,7 @@ void Engine::SpawnFleets()
 	
 	// Non-mission NPCs spawn at random intervals in neighboring systems,
 	// or coming from planets in the current one.
-	for(const System::FleetProbability &fleet : player.GetSystem()->Fleets())
+	for(const auto &fleet : player.GetSystem()->Fleets())
 		if(!Random::Int(fleet.Period()))
 		{
 			const Government *gov = fleet.Get()->GetGovernment();
@@ -1680,16 +1736,23 @@ void Engine::SpawnPersons()
 // Generate weather from the current system's hazards.
 void Engine::GenerateWeather()
 {
-	// If this system has any hazards, see if any have activated this frame.
-	for(const System::HazardProbability &hazard : player.GetSystem()->Hazards())
-		if(!Random::Int(hazard.Period()))
+	auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
+	{
+		if(hazard.Get()->IsValid() && !Random::Int(hazard.Period()))
 		{
 			const Hazard *weather = hazard.Get();
 			// If a hazard has activated, generate a duration and strength of the
 			// resulting weather and place it in the list of active weather.
 			int duration = weather->RandomDuration();
-			activeWeather.emplace_back(weather, duration, duration, weather->RandomStrength());
+			activeWeather.emplace_back(weather, duration, duration, weather->RandomStrength(), origin);
 		}
+	};
+	// If this system has any hazards, see if any have activated this frame.
+	for(const auto &hazard : player.GetSystem()->Hazards())
+		CreateWeather(hazard, Point());
+	for(const auto &stellar : player.GetSystem()->Objects())
+		for(const auto &hazard : stellar.Hazards())
+			CreateWeather(hazard, stellar.Position());
 }
 
 
@@ -2035,11 +2098,11 @@ void Engine::DoWeather(Weather &weather)
 		// Get all ship bodies that are touching a ring defined by the hazard's min
 		// and max ranges at the hazard's origin. Any ship touching this ring takes
 		// hazard damage.
-		for(Body *body : shipCollisions.Ring(Point(), hazard->MinRange(), hazard->MaxRange()))
+		for(Body *body : shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange()))
 		{
 			Ship *hit = reinterpret_cast<Ship *>(body);
-			double distanceTraveled = hit->Position().Length() - hit->GetMask().Radius();
-			hit->TakeDamage(visuals, *hazard, multiplier, distanceTraveled, Point(), nullptr, hazard->BlastRadius() > 0.);
+			double distanceTraveled = weather.Origin().Distance(hit->Position()) - hit->GetMask().Radius();
+			hit->TakeDamage(visuals, *hazard, multiplier, distanceTraveled, weather.Origin(), nullptr, hazard->BlastRadius() > 0.);
 		}
 	}
 }

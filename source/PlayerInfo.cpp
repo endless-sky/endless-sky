@@ -548,7 +548,7 @@ void PlayerInfo::IncrementDate()
 	for(Mission &mission : missions)
 		if(mission.CheckDeadline(date) && mission.IsVisible())
 			Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\"."
-				, Messages::Importance::High);
+				, Messages::Importance::Highest);
 	
 	// Check what salaries and tribute the player receives.
 	int64_t total[2] = {0, 0};
@@ -866,6 +866,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 	int64_t cost = isGift ? 0 : stockDepreciation.Value(*model, day);
 	if(accounts.Credits() >= cost)
 	{
+		// Copy the model instance into a new instance.
 		ships.push_back(make_shared<Ship>(*model));
 		ships.back()->SetName(name);
 		ships.back()->SetSystem(system);
@@ -912,15 +913,16 @@ void PlayerInfo::SellShip(const Ship *selected)
 
 
 
-void PlayerInfo::DisownShip(const Ship *selected)
+vector<shared_ptr<Ship>>::iterator PlayerInfo::DisownShip(const Ship *selected)
 {
 	for(auto it = ships.begin(); it != ships.end(); ++it)
 		if(it->get() == selected)
 		{
-			ships.erase(it);
 			flagship.reset();
-			return;
+			it = ships.erase(it);
+			return (it == ships.begin()) ? it : --it;
 		}
+	return ships.begin();
 }
 
 
@@ -1390,7 +1392,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 		{
 			if(it.first->IsVisible())
 				Messages::Add("Mission \"" + it.first->Name()
-					+ "\" failed because you do not have space for the cargo.", Messages::Importance::High);
+					+ "\" failed because you do not have space for the cargo."
+						, Messages::Importance::Highest);
 			missionsToRemove.push_back(it.first);
 		}
 	for(const auto &it : cargo.PassengerList())
@@ -1398,7 +1401,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 		{
 			if(it.first->IsVisible())
 				Messages::Add("Mission \"" + it.first->Name()
-					+ "\" failed because you do not have enough passenger bunks free.", Messages::Importance::High);
+					+ "\" failed because you do not have enough passenger bunks free."
+						, Messages::Importance::Highest);
 			missionsToRemove.push_back(it.first);
 			
 		}
@@ -2650,6 +2654,12 @@ void PlayerInfo::CreateMissions()
 				++it;
 		}
 	}
+
+	// Sort missions on the job board alphabetically.
+	availableJobs.sort([](const Mission &lhs, const Mission &rhs)
+	{
+		return lhs.Name() < rhs.Name();
+	});
 }
 
 

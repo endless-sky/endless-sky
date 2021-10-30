@@ -137,6 +137,8 @@ void Mission::Load(const DataNode &node)
 	{
 		if(child.Token(0) == "name" && child.Size() >= 2)
 			displayName = child.Token(1);
+		else if(child.Token(0) == "uuid" && child.Size() >= 2)
+			uuid = EsUuid::FromString(child.Token(1));
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 			description = child.Token(1);
 		else if(child.Token(0) == "blocked" && child.Size() >= 2)
@@ -306,6 +308,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 	out.BeginChild();
 	{
 		out.Write("name", displayName);
+		out.Write("uuid", uuid.ToString());
 		if(!description.empty())
 			out.Write("description", description);
 		if(!blocked.empty())
@@ -408,6 +411,13 @@ void Mission::Save(DataWriter &out, const string &tag) const
 
 
 // Basic mission information.
+const EsUuid &Mission::UUID() const noexcept
+{
+	return uuid;
+}
+
+
+
 const string &Mission::Name() const
 {
 	return displayName;
@@ -1029,7 +1039,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		{
 			hasFailed = true;
 			if(isVisible)
-				Messages::Add(message + "Mission failed: \"" + displayName + "\".", Messages::Importance::High);
+				Messages::Add(message + "Mission failed: \"" + displayName + "\".", Messages::Importance::Highest);
 		}
 	}
 	

@@ -805,6 +805,9 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 					auto &npcs = missionIt->NPCs();
 					for(const auto &npc : npcs)
 					{
+						// Don't reparent to NPC ships that have not been spawned.
+						if(!npc.ShouldSpawn())
+							continue;
 						newParent = getParentFrom(npc.Ships());
 						if(newParent)
 							break;
@@ -3572,19 +3575,19 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	{
 		if(!ship.Attributes().Get("hyperdrive") && !ship.Attributes().Get("jump drive"))
 		{
-			Messages::Add("You do not have a hyperdrive installed.", Messages::Importance::High);
+			Messages::Add("You do not have a hyperdrive installed.", Messages::Importance::Highest);
 			autoPilot.Clear();
 			Audio::Play(Audio::Get("fail"));
 		}
 		else if(!ship.JumpFuel(ship.GetTargetSystem()))
 		{
-			Messages::Add("You cannot jump to the selected system.", Messages::Importance::High);
+			Messages::Add("You cannot jump to the selected system.", Messages::Importance::Highest);
 			autoPilot.Clear();
 			Audio::Play(Audio::Get("fail"));
 		}
 		else if(!ship.JumpsRemaining() && !ship.IsEnteringHyperspace())
 		{
-			Messages::Add("You do not have enough fuel to make a hyperspace jump.", Messages::Importance::High);
+			Messages::Add("You do not have enough fuel to make a hyperspace jump.", Messages::Importance::Highest);
 			autoPilot.Clear();
 			Audio::Play(Audio::Get("fail"));
 		}
