@@ -16,6 +16,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Shader.h"
 #include "Sprite.h"
 
+#include <cstdint>
+
 using namespace std;
 
 namespace {
@@ -127,7 +129,7 @@ void BatchShader::Add(const Sprite *sprite, bool isHighDPI, vector<float> data, 
 		return;
 
 	// Before doing anything we need to apply the zoom to the positions.
-	for(int i = 0; i < data.size(); i += 5)
+	for(size_t i = 0; i < data.size(); i += 5)
 	{
 		data[i + 0] *= zoom;
 		data[i + 1] *= zoom;
