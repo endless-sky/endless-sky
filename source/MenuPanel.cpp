@@ -76,7 +76,7 @@ void MenuPanel::Step()
 
 
 
-void MenuPanel::Draw(double dt)
+void MenuPanel::Draw(double deltaTime)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
@@ -118,7 +118,7 @@ void MenuPanel::Draw(double dt)
 	GameData::Interfaces().Get("menu player info")->Draw(info, this);
 	
 	if(progress == 60)
-		alpha -= .02f / (1000.f / 60.f) * dt;
+		alpha -= .02f / (1000.f / 60.f) * deltaTime;
 	if(alpha > 0.f)
 	{
 		Angle da(6.);
@@ -133,7 +133,7 @@ void MenuPanel::Draw(double dt)
 	
 	if(GetUI()->IsTop(this) && alpha < 1.f)
 	{
-		scroll += 60. * dt / 1000.;
+		scroll += 60. * deltaTime / 1000.;
 		if(scroll >= (20 * credits.size() + 300) * scrollSpeed)
 			scroll = 0;
 	}

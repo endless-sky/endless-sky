@@ -103,7 +103,7 @@ Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Tru
 
 
 // Draw this panel.
-void Dialog::Draw(double dt)
+void Dialog::Draw(double deltaTime)
 {
 	DrawBackdrop();
 	

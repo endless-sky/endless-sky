@@ -45,7 +45,7 @@ public:
 	// Provided by ItemInfoDisplay:
 	// void DrawDescription(const Point &topLeft) const;
 	// void DrawAttributes(const Point &topLeft) const;
-	void DrawRequirements(double dt, const Point &topLeft) const;
+	void DrawRequirements(double deltaTime, const Point &topLeft) const;
 	
 	
 private:

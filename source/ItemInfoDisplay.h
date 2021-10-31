@@ -40,8 +40,8 @@ public:
 	
 	// Draw each of the panels.
 	void DrawDescription(const Point &topLeft) const;
-	virtual void DrawAttributes(double dt, const Point &topLeft) const;
-	void DrawTooltips(double dt) const;
+	virtual void DrawAttributes(double deltaTime, const Point &topLeft) const;
+	void DrawTooltips(double deltaTime) const;
 	
 	// Update the location where the mouse is hovering.
 	void Hover(const Point &point);
@@ -50,8 +50,8 @@ public:
 	
 protected:
 	void UpdateDescription(const std::string &text, const std::vector<std::string> &licenses, bool isShip);
-	Point Draw(double dt, Point point, const std::vector<std::string> &labels, const std::vector<std::string> &values) const;
-	void CheckHover(const Table &table, const std::string &label, double dt) const;
+	Point Draw(double deltaTime, Point point, const std::vector<std::string> &labels, const std::vector<std::string> &values) const;
+	void CheckHover(const Table &table, const std::string &label, double deltaTime) const;
 	
 	
 protected:

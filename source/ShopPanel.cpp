@@ -99,7 +99,7 @@ void ShopPanel::Step()
 
 
 
-void ShopPanel::Draw(double dt)
+void ShopPanel::Draw(double deltaTime)
 {
 	const double oldSelectedTopY = selectedTopY;
 	
@@ -109,14 +109,14 @@ void ShopPanel::Draw(double dt)
 	zones.clear();
 	categoryZones.clear();
 	
-	DrawShipsSidebar(dt);
-	DrawDetailsSidebar(dt);
+	DrawShipsSidebar(deltaTime);
+	DrawDetailsSidebar(deltaTime);
 	DrawButtons();
 	DrawMain();
 	DrawKey();
 	
-	shipInfo.DrawTooltips(dt);
-	outfitInfo.DrawTooltips(dt);
+	shipInfo.DrawTooltips(deltaTime);
+	outfitInfo.DrawTooltips(deltaTime);
 	
 	if(!warningType.empty())
 	{
@@ -161,7 +161,7 @@ void ShopPanel::Draw(double dt)
 		{
 			// Redraw with the same selected top (item in the same place).
 			mainScroll = max(0., min(maxMainScroll, mainScroll + selectedTopY - oldSelectedTopY));
-			Draw(dt);
+			Draw(deltaTime);
 		}
 	}
 	mainScroll = min(mainScroll, maxMainScroll);
@@ -169,7 +169,7 @@ void ShopPanel::Draw(double dt)
 
 
 
-void ShopPanel::DrawShipsSidebar(double dt)
+void ShopPanel::DrawShipsSidebar(double deltaTime)
 {
 	const Font &font = FontSet::Get(14);
 	const Color &medium = *GameData::Colors().Get("medium");
@@ -272,7 +272,7 @@ void ShopPanel::DrawShipsSidebar(double dt)
 		DrawShip(*playerShip, point, true);
 		
 		Point offset(SIDEBAR_WIDTH / -2, SHIP_SIZE / 2);
-		sideDetailHeight = DrawPlayerShipInfo(dt, point + offset);
+		sideDetailHeight = DrawPlayerShipInfo(deltaTime, point + offset);
 		point.Y() += sideDetailHeight + SHIP_SIZE / 2;
 	}
 	else if(player.Cargo().Size())
@@ -294,7 +294,7 @@ void ShopPanel::DrawShipsSidebar(double dt)
 
 
 
-void ShopPanel::DrawDetailsSidebar(double dt)
+void ShopPanel::DrawDetailsSidebar(double deltaTime)
 {
 	// Fill in the background.
 	const Color &line = *GameData::Colors().Get("dim");
@@ -312,7 +312,7 @@ void ShopPanel::DrawDetailsSidebar(double dt)
 		Screen::Right() - SIDE_WIDTH + INFOBAR_WIDTH / 2,
 		Screen::Top() + 10 - infobarScroll);
 	
-	int heightOffset = DrawDetails(dt, point);
+	int heightOffset = DrawDetails(deltaTime, point);
 	
 	maxInfobarScroll = max(0., heightOffset + infobarScroll - Screen::Bottom());
 	

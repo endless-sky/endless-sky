@@ -37,7 +37,7 @@ public:
 	// Step all the panels forward (advance animations, move objects, etc.).
 	void StepAll();
 	// Draw all the panels.
-	void DrawAll(double dt);
+	void DrawAll(double deltaTime);
 	
 	// Add the given panel to the stack. If you do not want a panel to be
 	// deleted when it is popped, save a copy of its shared pointer elsewhere.

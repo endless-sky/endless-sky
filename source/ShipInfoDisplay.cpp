@@ -66,9 +66,9 @@ int ShipInfoDisplay::SaleHeight() const
 
 
 // Draw each of the panels.
-void ShipInfoDisplay::DrawAttributes(double dt, const Point &topLeft) const
+void ShipInfoDisplay::DrawAttributes(double deltaTime, const Point &topLeft) const
 {
-	Point point = Draw(dt, topLeft, attributeLabels, attributeValues);
+	Point point = Draw(deltaTime, topLeft, attributeLabels, attributeValues);
 	
 	// Get standard colors to draw with.
 	const Color &labelColor = *GameData::Colors().Get("medium");
@@ -88,7 +88,7 @@ void ShipInfoDisplay::DrawAttributes(double dt, const Point &topLeft) const
 	
 	for(unsigned i = 0; i < tableLabels.size(); ++i)
 	{
-		CheckHover(table, tableLabels[i], dt);
+		CheckHover(table, tableLabels[i], deltaTime);
 		table.Draw(tableLabels[i], labelColor);
 		table.Draw(energyTable[i], valueColor);
 		table.Draw(heatTable[i], valueColor);
@@ -97,16 +97,16 @@ void ShipInfoDisplay::DrawAttributes(double dt, const Point &topLeft) const
 
 
 
-void ShipInfoDisplay::DrawOutfits(double dt, const Point &topLeft) const
+void ShipInfoDisplay::DrawOutfits(double deltaTime, const Point &topLeft) const
 {
-	Draw(dt, topLeft, outfitLabels, outfitValues);
+	Draw(deltaTime, topLeft, outfitLabels, outfitValues);
 }
 
 
 
-void ShipInfoDisplay::DrawSale(double dt, const Point &topLeft) const
+void ShipInfoDisplay::DrawSale(double deltaTime, const Point &topLeft) const
 {
-	Draw(dt, topLeft, saleLabels, saleValues);
+	Draw(deltaTime, topLeft, saleLabels, saleValues);
 	
 	const Color &color = *GameData::Colors().Get("medium");
 	FillShader::Fill(topLeft + Point(.5 * WIDTH, saleHeight + 8.), Point(WIDTH - 20., 1.), color);

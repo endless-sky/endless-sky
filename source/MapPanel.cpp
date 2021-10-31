@@ -163,7 +163,7 @@ void MapPanel::Step()
 
 
 
-void MapPanel::Draw(double dt)
+void MapPanel::Draw(double deltaTime)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	
@@ -188,7 +188,7 @@ void MapPanel::Draw(double dt)
 		11.f, 9.f, brightColor);
 	
 	// Advance a "blink" timer.
-	step += dt;
+	step += deltaTime;
 	// Update the tooltip timer [0-60].
 	hoverCount += hoverSystem ? (hoverCount < HOVER_TIME) : (hoverCount ? -1 : 0);
 	

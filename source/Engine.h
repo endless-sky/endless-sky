@@ -79,7 +79,7 @@ public:
 	std::list<ShipEvent> &Events();
 	
 	// Draw a frame.
-	void Draw(double dt);
+	void Draw(double deltaTime);
 	
 	// Set the given TestContext in the next step of the Engine.
 	void SetTestContext(TestContext &newTestContext);

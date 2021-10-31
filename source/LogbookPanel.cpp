@@ -67,7 +67,7 @@ LogbookPanel::LogbookPanel(PlayerInfo &player)
 
 
 // Draw this panel.
-void LogbookPanel::Draw(double dt)
+void LogbookPanel::Draw(double deltaTime)
 {
 	// Dim out everything outside this panel.
 	DrawBackdrop();

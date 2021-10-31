@@ -111,9 +111,9 @@ void MapDetailPanel::Step()
 
 
 
-void MapDetailPanel::Draw(double dt)
+void MapDetailPanel::Draw(double deltaTime)
 {
-	MapPanel::Draw(dt);
+	MapPanel::Draw(deltaTime);
 	
 	DrawInfo();
 	DrawOrbits();

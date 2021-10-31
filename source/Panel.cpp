@@ -33,8 +33,8 @@ void Panel::Step()
 
 
 
-// Draw this panel.
-void Panel::Draw(double dt)
+// Draw this panel. Delta time is the time between frames rendered by the GPU.
+void Panel::Draw(double deltaTime)
 {
 }
 

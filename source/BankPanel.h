@@ -29,7 +29,7 @@ public:
 	explicit BankPanel(PlayerInfo &player);
 	
 	virtual void Step() override;
-	virtual void Draw(double dt) override;
+	virtual void Draw(double deltaTime) override;
 	
 	
 protected:

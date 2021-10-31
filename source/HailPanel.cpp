@@ -157,7 +157,7 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 
 
 
-void HailPanel::Draw(double dt)
+void HailPanel::Draw(double deltaTime)
 {
 	DrawBackdrop();
 	

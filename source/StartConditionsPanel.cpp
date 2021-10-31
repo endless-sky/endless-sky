@@ -74,7 +74,7 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, c
 
 
 
-void StartConditionsPanel::Draw(double dt)
+void StartConditionsPanel::Draw(double deltaTime)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());

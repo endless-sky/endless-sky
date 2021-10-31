@@ -20,7 +20,7 @@ namespace {
 
 
 
-unsigned NewID()
+unsigned ID::NewID()
 {
 	return ++idSet;
 }

@@ -45,7 +45,7 @@ template <class T>
 	void SetCallback(T *t, void (T::*fun)(int));
 	
 	// Draw this panel.
-	virtual void Draw(double dt) override;
+	virtual void Draw(double deltaTime) override;
 	
 	
 protected:

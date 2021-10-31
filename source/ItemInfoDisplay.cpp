@@ -86,20 +86,20 @@ void ItemInfoDisplay::DrawDescription(const Point &topLeft) const
 
 
 
-void ItemInfoDisplay::DrawAttributes(double dt, const Point &topLeft) const
+void ItemInfoDisplay::DrawAttributes(double deltaTime, const Point &topLeft) const
 {
-	Draw(dt, topLeft, attributeLabels, attributeValues);
+	Draw(deltaTime, topLeft, attributeLabels, attributeValues);
 }
 
 
 
-void ItemInfoDisplay::DrawTooltips(double dt) const
+void ItemInfoDisplay::DrawTooltips(double deltaTime) const
 {
 	if(!hoverCount)
 		return;
 
 	const auto oldCount = hoverCount;
-	hoverCount -= dt;
+	hoverCount -= deltaTime;
 	if(oldCount < HOVER_TIME || !hoverText.Height())
 		return;
 	
@@ -169,7 +169,7 @@ void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string>
 
 
 
-Point ItemInfoDisplay::Draw(double dt, Point point, const vector<string> &labels, const vector<string> &values) const
+Point ItemInfoDisplay::Draw(double deltaTime, Point point, const vector<string> &labels, const vector<string> &values) const
 {
 	// Add ten pixels of padding at the top.
 	point.Y() += 10.;
@@ -193,7 +193,7 @@ Point ItemInfoDisplay::Draw(double dt, Point point, const vector<string> &labels
 			continue;
 		}
 		
-		CheckHover(table, labels[i], dt);
+		CheckHover(table, labels[i], deltaTime);
 		table.Draw(labels[i], values[i].empty() ? valueColor : labelColor);
 		table.Draw(values[i], valueColor);
 	}
@@ -202,7 +202,7 @@ Point ItemInfoDisplay::Draw(double dt, Point point, const vector<string> &labels
 
 
 
-void ItemInfoDisplay::CheckHover(const Table &table, const string &label, double dt) const
+void ItemInfoDisplay::CheckHover(const Table &table, const string &label, double deltaTime) const
 {
 	if(!hasHover)
 		return;
@@ -211,7 +211,7 @@ void ItemInfoDisplay::CheckHover(const Table &table, const string &label, double
 	Point radius = .5 * table.GetRowSize();
 	if(abs(distance.X()) < radius.X() && abs(distance.Y()) < radius.Y())
 	{
-		hoverCount += 2 * (label == hover) * dt;
+		hoverCount += 2 * (label == hover) * deltaTime;
 		hover = label;
 		if(hoverCount >= HOVER_TIME)
 		{

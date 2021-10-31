@@ -117,7 +117,7 @@ void PlayerInfoPanel::Step()
 
 
 
-void PlayerInfoPanel::Draw(double dt)
+void PlayerInfoPanel::Draw(double deltaTime)
 {
 	// Dim everything behind this panel.
 	DrawBackdrop();

@@ -46,9 +46,9 @@ public:
 	
 	// Provided by ItemInfoDisplay:
 	// void DrawDescription(const Point &topLeft) const;
-	virtual void DrawAttributes(double dt, const Point &topLeft) const override;
-	void DrawOutfits(double dt, const Point &topLeft) const;
-	void DrawSale(double dt, const Point &topLeft) const;
+	virtual void DrawAttributes(double deltaTime, const Point &topLeft) const override;
+	void DrawOutfits(double deltaTime, const Point &topLeft) const;
+	void DrawSale(double deltaTime, const Point &topLeft) const;
 	
 	
 private:

@@ -198,9 +198,9 @@ void MissionPanel::Step()
 
 
 
-void MissionPanel::Draw(double dt)
+void MissionPanel::Draw(double deltaTime)
 {
-	MapPanel::Draw(dt);
+	MapPanel::Draw(deltaTime);
 	
 	Color routeColor(.2f, .1f, 0.f, 0.f);
 	const System *system = selectedSystem;

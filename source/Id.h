@@ -15,10 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
-unsigned NewID();
-
-
-
+// This class represents a unique id for an object. It is used to be able
+// to "tag" objects that are batched drawn together.
 class ID {
 public:
 	ID() noexcept : id(NewID()) {}
@@ -26,6 +24,11 @@ public:
 	ID &operator=(ID &&other) noexcept { id = other.id; other.id = 0; return *this; }
 
 	operator unsigned() const noexcept { return id; }
+
+
+private:
+	static unsigned NewID();
+
 
 private:
 	// The id number of this id.

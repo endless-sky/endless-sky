@@ -108,7 +108,7 @@ LoadPanel::LoadPanel(PlayerInfo &player, UI &gamePanels)
 
 
 
-void LoadPanel::Draw(double dt)
+void LoadPanel::Draw(double deltaTime)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());

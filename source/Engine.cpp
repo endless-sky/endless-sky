@@ -885,7 +885,7 @@ list<ShipEvent> &Engine::Events()
 
 
 // Draw a frame.
-void Engine::Draw(double dt)
+void Engine::Draw(double deltaTime)
 {
 	GameData::Background().DrawInterpolated(RenderState::interpolated.centerVelocity, zoom);
 	static const Set<Color> &colors = GameData::Colors();
@@ -905,9 +905,9 @@ void Engine::Draw(double dt)
 
 			double zoomRatio = max(MIN_SPEED, min(MAX_SPEED, abs(log2(zoom) - log2(zoomTarget)) * ZOOM_SPEED));
 			if(zoom < zoomTarget)
-				zoom = min(zoomTarget, zoom * (1. + zoomRatio * 60. * dt / 1000.));
+				zoom = min(zoomTarget, zoom * (1. + zoomRatio * 60. * deltaTime / 1000.));
 			else if(zoom > zoomTarget)
-				zoom = max(zoomTarget, zoom * (1. / (1. + zoomRatio * 60. * dt / 1000.)));
+				zoom = max(zoomTarget, zoom * (1. / (1. + zoomRatio * 60. * deltaTime / 1000.)));
 		}
 	}
 

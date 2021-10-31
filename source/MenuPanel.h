@@ -31,7 +31,7 @@ public:
 	MenuPanel(PlayerInfo &player, UI &gamePanels);
 	
 	virtual void Step() override;
-	virtual void Draw(double dt) override;
+	virtual void Draw(double deltaTime) override;
 	
 	
 protected:

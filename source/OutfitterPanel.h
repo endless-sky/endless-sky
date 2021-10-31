@@ -45,12 +45,12 @@ public:
 	
 protected:
 	virtual int TileSize() const override;
-	virtual int DrawPlayerShipInfo(double dt, const Point &point) override;
+	virtual int DrawPlayerShipInfo(double deltaTime, const Point &point) override;
 	virtual bool HasItem(const std::string &name) const override;
 	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) override;
 	virtual int DividerOffset() const override;
 	virtual int DetailWidth() const override;
-	virtual int DrawDetails(double dt, const Point &center) override;
+	virtual int DrawDetails(double deltaTime, const Point &center) override;
 	virtual bool CanBuy(bool checkAlreadyOwned = true) const override;
 	virtual void Buy(bool alreadyOwned = false) override;
 	virtual void FailBuy() const override;

@@ -90,7 +90,7 @@ void PlanetPanel::Step()
 
 
 
-void PlanetPanel::Draw(double dt)
+void PlanetPanel::Draw(double deltaTime)
 {
 	if(player.IsDead())
 		return;

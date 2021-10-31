@@ -40,7 +40,7 @@ public:
 	explicit ShipInfoPanel(PlayerInfo &player, int index = -1);
 	
 	virtual void Step() override;
-	virtual void Draw(double dt) override;
+	virtual void Draw(double deltaTime) override;
 	
 	
 protected:
@@ -58,7 +58,7 @@ private:
 	void ClearZones();
 	
 	// Draw the ship tab (and its subsections).
-	void DrawShipStats(double dt, const Rectangle &bounds);
+	void DrawShipStats(double deltaTime, const Rectangle &bounds);
 	void DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds);
 	void DrawWeapons(const Rectangle &bounds);
 	void DrawCargo(const Rectangle &bounds);

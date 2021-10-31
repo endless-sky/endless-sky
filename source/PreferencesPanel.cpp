@@ -72,8 +72,8 @@ PreferencesPanel::PreferencesPanel()
 
 
 
-// Draw this panel.
-void PreferencesPanel::Draw(double dt)
+// Draw this panel. Delta time is the time between frames rendered by the GPU.
+void PreferencesPanel::Draw(double deltaTime)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());

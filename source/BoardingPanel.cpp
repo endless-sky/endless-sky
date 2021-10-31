@@ -115,7 +115,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 
 
 // Draw the panel.
-void BoardingPanel::Draw(double dt)
+void BoardingPanel::Draw(double deltaTime)
 {
 	// Draw a translucent black scrim over everything beneath this panel.
 	DrawBackdrop();

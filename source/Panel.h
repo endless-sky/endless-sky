@@ -41,8 +41,8 @@ public:
 	// Move the state of this panel forward one game step.
 	virtual void Step();
 	
-	// Draw this panel.
-	virtual void Draw(double dt);
+	// Draw this panel. Delta time is the time between frames rendered by the GPU.
+	virtual void Draw(double deltaTime);
 	
 	// Return true if this is a full-screen panel, so there is no point in
 	// drawing any of the panels under it.

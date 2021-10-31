@@ -29,8 +29,8 @@ class PreferencesPanel : public Panel {
 public:
 	PreferencesPanel();
 	
-	// Draw this panel.
-	virtual void Draw(double dt) override;
+	// Draw this panel. Delta time is the time between frames rendered by the GPU.
+	virtual void Draw(double deltaTime) override;
 	
 	
 protected:

@@ -142,11 +142,11 @@ void MainPanel::Step()
 
 
 
-void MainPanel::Draw(double dt)
+void MainPanel::Draw(double deltaTime)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	
-	engine.Draw(dt);
+	engine.Draw(deltaTime);
 	
 	if(isDragging)
 	{

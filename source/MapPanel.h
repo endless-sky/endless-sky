@@ -58,7 +58,7 @@ public:
 	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
 	
 	virtual void Step() override;
-	virtual void Draw(double dt) override;
+	virtual void Draw(double deltaTime) override;
 	
 	void DrawButtons(const std::string &condition);
 	static void DrawMiniMap(const PlayerInfo &player, float alpha, const System *const jump[2], int step);
