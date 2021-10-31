@@ -12,7 +12,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "SpriteShader.h"
 
+#include "Body.h"
 #include "Point.h"
+#include "RenderState.h"
 #include "Screen.h"
 #include "Shader.h"
 #include "Sprite.h"
@@ -330,17 +332,47 @@ void SpriteShader::Bind()
 
 
 
-void SpriteShader::Add(const Item &item, bool withBlur)
+void SpriteShader::Add(const Item &item, bool withBlur, double zoom)
 {
+	auto prevIt = RenderState::interpolated.bodies.find(item.id);
+	auto position = item.position;
+	auto transform = item.transform;
+	auto blur = item.blur;
+	if(prevIt != RenderState::interpolated.bodies.end())
+	{
+		position = prevIt->second.position;
+		transform = prevIt->second.transform;
+		blur = prevIt->second.blur;
+	}
+	else
+	{
+		auto it = RenderState::interpolated.asteroids.find(item.id);
+		if(it != RenderState::interpolated.asteroids.end())
+		{
+			position[0] += it->second.X();
+			position[1] += it->second.Y();
+		}
+	}
+
+	// We need to apply the 'zoom' factor to the item before drawing it.
+	position[0] *= zoom;
+	position[1] *= zoom;
+	transform[0] *= zoom;
+	transform[1] *= zoom;
+	transform[2] *= zoom;
+	transform[3] *= zoom;
+	blur[0] *= zoom;
+	blur[1] *= zoom;
+
 	glBindTexture(GL_TEXTURE_2D_ARRAY, item.texture);
 
 	glUniform1f(frameI, item.frame);
 	glUniform1f(frameCountI, item.frameCount);
-	glUniform2fv(positionI, 1, item.position);
-	glUniformMatrix2fv(transformI, 1, false, item.transform);
+	glUniform2fv(positionI, 1, position.data());
+	glUniformMatrix2fv(transformI, 1, false, transform.data());
 	// Special case: check if the blur should be applied or not.
 	static const float UNBLURRED[2] = {0.f, 0.f};
-	glUniform2fv(blurI, 1, withBlur ? item.blur : UNBLURRED);
+	glUniform2fv(blurI, 1, withBlur ? blur.data() : UNBLURRED);
 	// Clipping has the opposite sense in the shader.
 	glUniform1f(clipI, 1.f - item.clip);
 	glUniform1f(alphaI, item.alpha);

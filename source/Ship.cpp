@@ -1929,6 +1929,24 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				for(int i = 0; i < it.second; ++i)
 					visuals.emplace_back(*it.first, pos, effectVelocity, angle);
 		}
+
+	// Update the various positions of engine flares from this ship.
+	auto UpdateFlare = [this](vector<EnginePoint> &engines, const vector<pair<Body, int>> &flares)
+	{
+		for(auto &point : engines)
+		{
+			Point pos = Facing().Rotate(point) * Zoom() + position;
+			// If multiple engines with the same flare are installed, up to
+			// three copies of the flare sprite are draw so we don't need to
+			// update any more than that.
+			for(const auto &it : flares)
+				for(int i = 0; i < it.second && i < 3; ++i)
+					point.sprite[i] = Body(it.first, pos, velocity, angle + point.facing, point.zoom);
+		}
+	};
+	UpdateFlare(enginePoints, attributes.FlareSprites());
+	UpdateFlare(reverseEnginePoints, attributes.ReverseFlareSprites());
+	UpdateFlare(steeringEnginePoints, attributes.SteeringFlareSprites());
 }
 
 

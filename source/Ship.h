@@ -96,6 +96,8 @@ public:
 		
 		double zoom;
 		Angle facing;
+
+		Body sprite[3];
 	};
 	
 	

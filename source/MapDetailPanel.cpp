@@ -111,9 +111,9 @@ void MapDetailPanel::Step()
 
 
 
-void MapDetailPanel::Draw()
+void MapDetailPanel::Draw(double dt)
 {
-	MapPanel::Draw();
+	MapPanel::Draw(dt);
 	
 	DrawInfo();
 	DrawOrbits();

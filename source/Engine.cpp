@@ -23,7 +23,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
-#include "FrameTimer.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Hazard.h"
@@ -174,7 +173,6 @@ namespace {
 	{
 		for(const Ship::EnginePoint &point : enginePoints)
 		{
-			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
 			// If multiple engines with the same flare are installed, draw up to
 			// three copies of the flare sprite.
 			for(const auto &it : flareSprites)
@@ -182,10 +180,7 @@ namespace {
 					|| (point.steering == Ship::EnginePoint::LEFT && ship.SteeringDirection() < 0.) 
 					|| (point.steering == Ship::EnginePoint::RIGHT && ship.SteeringDirection() > 0.)))
 					for(int i = 0; i < it.second && i < 3; ++i)
-					{
-						Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing, point.zoom);
-						draw.Add(sprite, ship.Cloaking());
-					}
+						draw.Add(point.sprite[i], ship.Cloaking());
 		}
 	}
 	
@@ -217,7 +212,8 @@ Engine::Engine(PlayerInfo &player)
 		center = object->Position();
 	
 	// Now we know the player's current position. Draw the planets.
-	draw[calcTickTock].Clear(step, zoom);
+	draw[calcTickTock].Clear(step);
+	draw[calcTickTock].UpdateZoom(zoom);
 	draw[calcTickTock].SetCenter(center);
 	radar[calcTickTock].SetCenter(center);
 	const Ship *flagship = player.Flagship();
@@ -441,6 +437,10 @@ void Engine::Step(bool isActive)
 	eventQueue.clear();
 	
 	// The calculation thread was paused by MainPanel before calling this function, so it is safe to access things.
+	RenderState::states[0].bodies = draw[!calcTickTock].ConsumeState().bodies;
+	RenderState::states[0].batchData = batchDraw[!calcTickTock].ConsumeState().batchData;
+	RenderState::states[0].asteroids = asteroids.ConsumeState().asteroids;
+
 	const shared_ptr<Ship> flagship = player.FlagshipPtr();
 	const StellarObject *object = player.GetStellarObject();
 	if(object)
@@ -500,26 +500,6 @@ void Engine::Step(bool isActive)
 	
 	wasActive = isActive;
 	Audio::Update(center);
-	
-	// Smoothly zoom in and out.
-	if(isActive)
-	{
-		double zoomTarget = Preferences::ViewZoom();
-		if(zoom != zoomTarget)
-		{
-			static const double ZOOM_SPEED = .05;
-			
-			// Define zoom speed bounds to prevent asymptotic behavior.
-			static const double MAX_SPEED = .05;
-			static const double MIN_SPEED = .002;
-			
-			double zoomRatio = max(MIN_SPEED, min(MAX_SPEED, abs(log2(zoom) - log2(zoomTarget)) * ZOOM_SPEED));
-			if(zoom < zoomTarget)
-				zoom = min(zoomTarget, zoom * (1. + zoomRatio));
-			else if(zoom > zoomTarget)
-				zoom = max(zoomTarget, zoom * (1. / (1. + zoomRatio)));
-		}
-	}
 	
 	// Draw a highlight to distinguish the flagship from other ships.
 	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))
@@ -615,8 +595,9 @@ void Engine::Step(bool isActive)
 			if(isEnemy || it->IsYours() || it->GetPersonality().IsEscort())
 			{
 				double width = min(it->Width(), it->Height());
-				statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
+				statuses.emplace_back(&*it, it->Shields(), it->Hull(),
 					min(it->Hull(), it->DisabledHull()), max(20., width * .5), isEnemy);
+				RenderState::states[0].overlays[&*it] = it->Position() - center;
 			}
 		}
 	
@@ -682,11 +663,12 @@ void Engine::Step(bool isActive)
 		info.SetString("destination", name);
 		
 		targets.push_back({
-			object->Position() - center,
+			object,
 			object->Facing(),
 			object->Radius(),
 			object->GetPlanet()->CanLand() ? Radar::FRIENDLY : Radar::HOSTILE,
 			5});
+		RenderState::states[0].crosshairs[object] = object->Position() - center;
 	}
 	else if(flagship && flagship->GetTargetSystem())
 	{
@@ -762,11 +744,12 @@ void Engine::Step(bool isActive)
 			// of the width and the height of the sprite.
 			double size = (target->Width() + target->Height()) * .35;
 			targets.push_back({
-				target->Position() - center,
+				&*target,
 				Angle(45.) + target->Facing(),
 				size,
 				targetType,
 				4});
+			RenderState::states[0].crosshairs[&*target] = target->Position() - center;
 			
 			targetVector = target->Position() - center;
 			
@@ -799,8 +782,9 @@ void Engine::Step(bool isActive)
 	{
 		double width = max(target->Width(), target->Height());
 		Point pos = target->Position() - center;
-		statuses.emplace_back(pos, flagship->OutfitScanFraction(), flagship->CargoScanFraction(),
+		statuses.emplace_back(&*target, flagship->OutfitScanFraction(), flagship->CargoScanFraction(),
 			0, 10. + max(20., width * .5), 2, Angle(pos).Degrees() + 180.);
+		RenderState::states[0].overlays[&*target] = pos;
 	}
 	// Handle any events that change the selected ships.
 	if(groupSelect >= 0)
@@ -844,11 +828,12 @@ void Engine::Step(bool isActive)
 		{
 			double size = (ship->Width() + ship->Height()) * .35;
 			targets.push_back({
-				ship->Position() - center,
+				&*ship,
 				Angle(45.) + ship->Facing(),
 				size,
 				Radar::PLAYER,
 				4});
+			RenderState::states[0].crosshairs[&*ship] = ship->Position() - center;
 		}
 	}
 	
@@ -862,12 +847,17 @@ void Engine::Step(bool isActive)
 				continue;
 			
 			targets.push_back({
-				offset,
+				&*minable,
 				minable->Facing(),
 				.8 * minable->Radius(),
 				minable == flagship->GetTargetAsteroid() ? Radar::SPECIAL : Radar::INACTIVE,
 				3});
+			RenderState::states[0].crosshairs[&*minable] = offset;
 		}
+
+	// Reposition the center for the background starfield.
+	RenderState::states[0].starFieldCenter = center;
+	RenderState::states[0].centerVelocity = centerVelocity;
 }
 
 
@@ -895,16 +885,39 @@ list<ShipEvent> &Engine::Events()
 
 
 // Draw a frame.
-void Engine::Draw() const
+void Engine::Draw(double dt)
 {
-	GameData::Background().Draw(center, centerVelocity, zoom);
+	GameData::Background().DrawInterpolated(RenderState::interpolated.centerVelocity, zoom);
 	static const Set<Color> &colors = GameData::Colors();
 	const Interface *hud = GameData::Interfaces().Get("hud");
 	
+	// Smoothly zoom in and out.
+	if(wasActive)
+	{
+		double zoomTarget = Preferences::ViewZoom();
+		if(zoom != zoomTarget)
+		{
+			constexpr double ZOOM_SPEED = .05;
+
+			// Define zoom speed bounds to prevent asymptotic behavior.
+			constexpr double MAX_SPEED = .05;
+			constexpr double MIN_SPEED = .002;
+
+			double zoomRatio = max(MIN_SPEED, min(MAX_SPEED, abs(log2(zoom) - log2(zoomTarget)) * ZOOM_SPEED));
+			if(zoom < zoomTarget)
+				zoom = min(zoomTarget, zoom * (1. + zoomRatio * 60. * dt / 1000.));
+			else if(zoom > zoomTarget)
+				zoom = max(zoomTarget, zoom * (1. / (1. + zoomRatio * 60. * dt / 1000.)));
+		}
+	}
+
 	// Draw any active planet labels.
 	for(const PlanetLabel &label : labels)
-		label.Draw();
+		label.Draw(zoom);
 	
+	draw[drawTickTock].UpdateZoom(zoom);
+	batchDraw[drawTickTock].UpdateZoom(zoom);
+
 	draw[drawTickTock].Draw();
 	batchDraw[drawTickTock].Draw();
 	
@@ -920,7 +933,7 @@ void Engine::Draw() const
 			*colors.Get("overlay friendly disabled"),
 			*colors.Get("overlay hostile disabled")
 		};
-		Point pos = it.position * zoom;
+		Point pos = RenderState::interpolated.overlays[it.body] * zoom;
 		double radius = it.radius * zoom;
 		if(it.outer > 0.)
 			RingShader::Draw(pos, radius + 3., 1.5f, it.outer, color[it.type], 0.f, it.angle);
@@ -982,10 +995,11 @@ void Engine::Draw() const
 		Angle a = target.angle;
 		Angle da(360. / target.count);
 		
+		const auto targetCenter = RenderState::interpolated.crosshairs[target.body];
 		PointerShader::Bind();
 		for(int i = 0; i < target.count; ++i)
 		{
-			PointerShader::Add(target.center * zoom, a.Unit(), 12.f, 14.f, -target.radius * zoom,
+			PointerShader::Add(targetCenter * zoom, a.Unit(), 12.f, 14.f, -target.radius * zoom,
 				Radar::GetColor(target.type));
 			a += da;
 		}
@@ -1069,14 +1083,6 @@ void Engine::Draw() const
 	// Upload any preloaded sprites that are now available. This is to avoid
 	// filling the entire backlog of sprites before landing on a planet.
 	GameData::Progress();
-	
-	if(Preferences::Has("Show CPU / GPU load"))
-	{
-		string loadString = to_string(lround(load * 100.)) + "% CPU";
-		Color color = *colors.Get("medium");
-		font.Draw(loadString,
-			Point(-10 - font.Width(loadString), Screen::Height() * -.5 + 5.), color);
-	}
 }
 
 
@@ -1329,11 +1335,9 @@ void Engine::ThreadEntryPoint()
 
 void Engine::CalculateStep()
 {
-	FrameTimer loadTimer;
-	
 	// Clear the list of objects to draw.
-	draw[calcTickTock].Clear(step, zoom);
-	batchDraw[calcTickTock].Clear(step, zoom);
+	draw[calcTickTock].Clear(step);
+	batchDraw[calcTickTock].Clear(step);
 	radar[calcTickTock].Clear();
 	
 	if(!player.GetSystem())
@@ -1389,9 +1393,21 @@ void Engine::CalculateStep()
 	}
 	Prune(ships);
 	
+	// Draw the objects. Start by figuring out where the view should be centered:
+	Point newCenter = center;
+	Point newCenterVelocity;
+	if(flagship)
+	{
+		newCenter = flagship->Position();
+		newCenterVelocity = flagship->Velocity();
+	}
+	draw[calcTickTock].SetCenter(newCenter, newCenterVelocity);
+	batchDraw[calcTickTock].SetCenter(newCenter);
+	radar[calcTickTock].SetCenter(newCenter);
+
 	// Move the asteroids. This must be done before collision detection. Minables
 	// may create visuals or flotsam.
-	asteroids.Step(newVisuals, newFlotsam, step);
+	asteroids.Step(newVisuals, newFlotsam, step, newCenter);
 	
 	// Move the flotsam. This must happen after the ships move, because flotsam
 	// checks if any ship has picked it up.
@@ -1456,18 +1472,6 @@ void Engine::CalculateStep()
 	// Check for ship scanning.
 	for(const shared_ptr<Ship> &it : ships)
 		DoScanning(it);
-	
-	// Draw the objects. Start by figuring out where the view should be centered:
-	Point newCenter = center;
-	Point newCenterVelocity;
-	if(flagship)
-	{
-		newCenter = flagship->Position();
-		newCenterVelocity = flagship->Velocity();
-	}
-	draw[calcTickTock].SetCenter(newCenter, newCenterVelocity);
-	batchDraw[calcTickTock].SetCenter(newCenter);
-	radar[calcTickTock].SetCenter(newCenter);
 	
 	// Populate the radar.
 	FillRadar();
@@ -1540,15 +1544,6 @@ void Engine::CalculateStep()
 	// Draw the visuals.
 	for(const Visual &visual : visuals)
 		batchDraw[calcTickTock].AddVisual(visual);
-	
-	// Keep track of how much of the CPU time we are using.
-	loadSum += loadTimer.Time();
-	if(++loadCount == 60)
-	{
-		load = loadSum;
-		loadSum = 0.;
-		loadCount = 0;
-	}
 }
 
 
@@ -2427,7 +2422,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 
 
 // Constructor for the ship status display rings.
-Engine::Status::Status(const Point &position, double outer, double inner, double disabled, double radius, int type, double angle)
-	: position(position), outer(outer), inner(inner), disabled(disabled), radius(radius), type(type), angle(angle)
+Engine::Status::Status(const Body *body, double outer, double inner, double disabled, double radius, int type, double angle)
+	: body(body), outer(outer), inner(inner), disabled(disabled), radius(radius), type(type), angle(angle)
 {
 }

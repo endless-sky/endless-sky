@@ -198,9 +198,9 @@ void MissionPanel::Step()
 
 
 
-void MissionPanel::Draw()
+void MissionPanel::Draw(double dt)
 {
-	MapPanel::Draw();
+	MapPanel::Draw(dt);
 	
 	Color routeColor(.2f, .1f, 0.f, 0.f);
 	const System *system = selectedSystem;

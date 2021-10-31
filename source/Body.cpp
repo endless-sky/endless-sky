@@ -49,6 +49,16 @@ Body::Body(const Body &sprite, Point position, Point velocity, Angle facing, dou
 
 
 
+void Body::Update(Point position, Point velocity, Angle facing, double zoom)
+{
+	this->position = position;
+	this->velocity = velocity;
+	this->angle = facing;
+	this->zoom = zoom;
+}
+
+
+
 // Check that this Body has a sprite and that the sprite has at least one frame.
 bool Body::HasSprite() const
 {

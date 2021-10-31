@@ -79,7 +79,7 @@ public:
 	std::list<ShipEvent> &Events();
 	
 	// Draw a frame.
-	void Draw() const;
+	void Draw(double dt);
 	
 	// Set the given TestContext in the next step of the Engine.
 	void SetTestContext(TestContext &newTestContext);
@@ -127,7 +127,7 @@ private:
 private:
 	class Target {
 	public:
-		Point center;
+		const Body *body;
 		Angle angle;
 		double radius;
 		int type;
@@ -136,9 +136,9 @@ private:
 	
 	class Status {
 	public:
-		Status(const Point &position, double outer, double inner, double disabled, double radius, int type, double angle = 0.);
+		Status(const Body *body, double outer, double inner, double disabled, double radius, int type, double angle = 0.);
 		
-		Point position;
+		const Body *body;
 		double outer;
 		double inner;
 		double disabled;
@@ -238,10 +238,6 @@ private:
 	TestContext *testContext = nullptr;
 	
 	double zoom = 1.;
-	
-	double load = 0.;
-	int loadCount = 0;
-	double loadSum = 0.;
 };
 
 

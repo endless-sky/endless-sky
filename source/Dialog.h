@@ -59,7 +59,7 @@ template <class T>
 	Dialog(T *t, void (T::*fun)(), const std::string &text, Truncate truncate = Truncate::NONE);
 	
 	// Draw this panel.
-	virtual void Draw() override;
+	virtual void Draw(double dt) override;
 	
 	// Static method used to convert a DataNode into formatted Dialog text.
 	static void ParseTextNode(const DataNode &node, size_t startingIndex, std::string &text);

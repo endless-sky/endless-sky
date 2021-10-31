@@ -1468,9 +1468,9 @@ bool PlayerInfo::TakeOff(UI *ui)
 
 
 
-void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal)
+void PlayerInfo::AddPlayTime(double timeVal)
 {
-	playTime += timeVal.count() * .000000001;
+	playTime += timeVal * .001;
 }
 
 

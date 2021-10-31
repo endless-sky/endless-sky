@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define BODY_H_
 
 #include "Angle.h"
+#include "Id.h"
 #include "Point.h"
 
 #include <cstdint>
@@ -36,6 +37,9 @@ public:
 	Body(const Sprite *sprite, Point position, Point velocity = Point(), Angle facing = Angle(), double zoom = 1.);
 	Body(const Body &sprite, Point position, Point velocity = Point(), Angle facing = Angle(), double zoom = 1.);
 	
+	// Updates the positional attributes of this body.
+	void Update(Point position, Point velocity = Point(), Angle facing = Angle(), double zoom = 1.);
+
 	// Check that this Body has a sprite and that the sprite has at least one frame.
 	bool HasSprite() const;
 	// Access the underlying Sprite object.

@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Body.h"
 
 #include "Angle.h"
+#include "Id.h"
 #include "Point.h"
 
 class Effect;
@@ -40,9 +41,12 @@ public:
 	
 	// Step the effect forward.
 	void Move();
+
+	const ID &GetID() const { return id; };
 	
 	
 private:
+	ID id;
 	Angle spin;
 	int lifetime = 0;
 };

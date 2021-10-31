@@ -117,7 +117,7 @@ void PlayerInfoPanel::Step()
 
 
 
-void PlayerInfoPanel::Draw()
+void PlayerInfoPanel::Draw(double dt)
 {
 	// Dim everything behind this panel.
 	DrawBackdrop();

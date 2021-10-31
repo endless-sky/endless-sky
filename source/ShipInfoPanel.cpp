@@ -76,7 +76,7 @@ void ShipInfoPanel::Step ()
 
 
 
-void ShipInfoPanel::Draw()
+void ShipInfoPanel::Draw(double dt)
 {
 	// Dim everything behind this panel.
 	DrawBackdrop();
@@ -114,13 +114,13 @@ void ShipInfoPanel::Draw()
 	if(shipIt == player.Ships().end())
 		return;
 	Rectangle cargoBounds = infoPanelUi->GetBox("cargo");
-	DrawShipStats(infoPanelUi->GetBox("stats"));
+	DrawShipStats(dt, infoPanelUi->GetBox("stats"));
 	DrawOutfits(infoPanelUi->GetBox("outfits"), cargoBounds);
 	DrawWeapons(infoPanelUi->GetBox("weapons"));
 	DrawCargo(cargoBounds);
 	
 	// If the player hovers their mouse over a ship attribute, show its tooltip.
-	info.DrawTooltips();
+	info.DrawTooltips(dt);
 }
 
 
@@ -294,7 +294,7 @@ void ShipInfoPanel::ClearZones()
 
 
 
-void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
+void ShipInfoPanel::DrawShipStats(double dt, const Rectangle &bounds)
 {
 	// Check that the specified area is big enough.
 	if(bounds.Width() < WIDTH)
@@ -315,7 +315,7 @@ void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
 	table.DrawTruncatedPair("ship:", dim, ship.Name(), bright, Truncate::MIDDLE, true);
 	table.DrawTruncatedPair("model:", dim, ship.ModelName(), bright, Truncate::MIDDLE, true);
 	
-	info.DrawAttributes(table.GetRowBounds().TopLeft() - Point(10., 10.));
+	info.DrawAttributes(dt, table.GetRowBounds().TopLeft() - Point(10., 10.));
 }
 
 

@@ -52,7 +52,7 @@ namespace {
 
 
 MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
-	: player(player), gamePanels(gamePanels), scroll(0)
+	: player(player), gamePanels(gamePanels), scroll(0.)
 {
 	SetIsFullScreen(true);
 	
@@ -63,12 +63,6 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 
 void MenuPanel::Step()
 {
-	if(GetUI()->IsTop(this) && alpha < 1.f)
-	{
-		++scroll;
-		if(scroll >= (20 * credits.size() + 300) * scrollSpeed)
-			scroll = 0;
-	}
 	progress = static_cast<int>(GameData::Progress() * 60.);
 	if(GameData::IsLoaded() && gamePanels.IsEmpty())
 	{
@@ -82,7 +76,7 @@ void MenuPanel::Step()
 
 
 
-void MenuPanel::Draw()
+void MenuPanel::Draw(double dt)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
@@ -124,7 +118,7 @@ void MenuPanel::Draw()
 	GameData::Interfaces().Get("menu player info")->Draw(info, this);
 	
 	if(progress == 60)
-		alpha -= .02f;
+		alpha -= .02f / (1000.f / 60.f) * dt;
 	if(alpha > 0.f)
 	{
 		Angle da(6.);
@@ -137,6 +131,13 @@ void MenuPanel::Draw()
 		}
 	}
 	
+	if(GetUI()->IsTop(this) && alpha < 1.f)
+	{
+		scroll += 60. * dt / 1000.;
+		if(scroll >= (20 * credits.size() + 300) * scrollSpeed)
+			scroll = 0;
+	}
+
 	int y = 120 - scroll / scrollSpeed;
 	for(const string &line : credits)
 	{

@@ -35,7 +35,7 @@ public:
 	explicit MissionPanel(const MapPanel &panel);
 	
 	virtual void Step() override;
-	virtual void Draw() override;
+	virtual void Draw(double dt) override;
 	
 	
 protected:

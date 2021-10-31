@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Body.h"
 
 #include "Angle.h"
+#include "Id.h"
 #include "Point.h"
 
 #include <memory>
@@ -79,6 +80,8 @@ public:
 	
 	// Get the distance that this projectile has traveled.
 	double DistanceTraveled() const;
+
+	const ID &GetID() const { return id; }
 	
 	
 private:
@@ -86,6 +89,8 @@ private:
 	
 	
 private:
+	ID id;
+
 	const Weapon *weapon = nullptr;
 	
 	std::weak_ptr<Ship> targetShip;

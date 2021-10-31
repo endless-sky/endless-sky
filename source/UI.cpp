@@ -104,7 +104,7 @@ void UI::StepAll()
 
 
 // Draw all the panels.
-void UI::DrawAll()
+void UI::DrawAll(double dt)
 {
 	// First, clear all the clickable zones. New ones will be added in the
 	// course of drawing the screen.
@@ -118,7 +118,7 @@ void UI::DrawAll()
 			break;
 	
 	for( ; it != stack.end(); ++it)
-		(*it)->Draw();
+		(*it)->Draw(dt);
 }
 
 

@@ -28,7 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	const int HOVER_TIME = 60;
+	const int HOVER_TIME = 1000;
 }
 
 
@@ -86,16 +86,21 @@ void ItemInfoDisplay::DrawDescription(const Point &topLeft) const
 
 
 
-void ItemInfoDisplay::DrawAttributes(const Point &topLeft) const
+void ItemInfoDisplay::DrawAttributes(double dt, const Point &topLeft) const
 {
-	Draw(topLeft, attributeLabels, attributeValues);
+	Draw(dt, topLeft, attributeLabels, attributeValues);
 }
 
 
 
-void ItemInfoDisplay::DrawTooltips() const
+void ItemInfoDisplay::DrawTooltips(double dt) const
 {
-	if(!hoverCount || hoverCount-- < HOVER_TIME || !hoverText.Height())
+	if(!hoverCount)
+		return;
+
+	const auto oldCount = hoverCount;
+	hoverCount -= dt;
+	if(oldCount < HOVER_TIME || !hoverText.Height())
 		return;
 	
 	Point textSize(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
@@ -164,7 +169,7 @@ void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string>
 
 
 
-Point ItemInfoDisplay::Draw(Point point, const vector<string> &labels, const vector<string> &values) const
+Point ItemInfoDisplay::Draw(double dt, Point point, const vector<string> &labels, const vector<string> &values) const
 {
 	// Add ten pixels of padding at the top.
 	point.Y() += 10.;
@@ -188,7 +193,7 @@ Point ItemInfoDisplay::Draw(Point point, const vector<string> &labels, const vec
 			continue;
 		}
 		
-		CheckHover(table, labels[i]);
+		CheckHover(table, labels[i], dt);
 		table.Draw(labels[i], values[i].empty() ? valueColor : labelColor);
 		table.Draw(values[i], valueColor);
 	}
@@ -197,7 +202,7 @@ Point ItemInfoDisplay::Draw(Point point, const vector<string> &labels, const vec
 
 
 
-void ItemInfoDisplay::CheckHover(const Table &table, const string &label) const
+void ItemInfoDisplay::CheckHover(const Table &table, const string &label, double dt) const
 {
 	if(!hasHover)
 		return;
@@ -206,7 +211,7 @@ void ItemInfoDisplay::CheckHover(const Table &table, const string &label) const
 	Point radius = .5 * table.GetRowSize();
 	if(abs(distance.X()) < radius.X() && abs(distance.Y()) < radius.Y())
 	{
-		hoverCount += 2 * (label == hover);
+		hoverCount += 2 * (label == hover) * dt;
 		hover = label;
 		if(hoverCount >= HOVER_TIME)
 		{

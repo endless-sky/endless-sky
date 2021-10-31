@@ -34,7 +34,7 @@ public:
 	MapSalesPanel(PlayerInfo &player, bool isOutfitters);
 	MapSalesPanel(const MapPanel &panel, bool isOutfitters);
 	
-	virtual void Draw() override;
+	virtual void Draw(double dt) override;
 	
 	
 protected:
@@ -59,7 +59,7 @@ protected:
 	
 	void DrawKey() const;
 	void DrawPanel() const;
-	void DrawInfo() const;
+	void DrawInfo(double dt) const;
 	
 	bool DrawHeader(Point &corner, const std::string &category);
 	void DrawSprite(const Point &corner, const Sprite *sprite) const;

@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
 #include "Audio.h"
+#include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
 #include "ConversationPanel.h"
@@ -21,13 +22,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Dialog.h"
 #include "Files.h"
 #include "text/Font.h"
-#include "FrameTimer.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "GameWindow.h"
 #include "MenuPanel.h"
 #include "Panel.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
+#include "RenderState.h"
 #include "Screen.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
@@ -36,6 +38,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include <chrono>
+#include <cmath>
 #include <iostream>
 #include <map>
 
@@ -179,13 +182,16 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	
 	bool showCursor = true;
 	int cursorTime = 0;
-	int frameRate = 60;
-	FrameTimer timer(frameRate);
 	bool isPaused = false;
-	bool isFastForward = false;
-	
-	// If fast forwarding, keep track of whether the current frame should be drawn.
-	int skipFrame = 0;
+
+	enum MotionState
+	{
+		SlowMo,
+		Normal,
+		FastForward,
+	};
+	MotionState lastMotion = Normal;
+	MotionState motion = Normal;
 	
 	// Limit how quickly full-screen mode can be toggled.
 	int toggleTimeout = 0;
@@ -194,13 +200,42 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	TestContext testContext;
 	if(!testToRunName.empty())
 		testContext = TestContext(GameData::Tests().Get(testToRunName));
-	
+
+	// The speed of the physics update loop in ms.
+	constexpr auto defaultFps = 1000. / 60.;
+	constexpr auto fastForwardFps = 1000. / 180.;
+	constexpr auto slowMotionFps = 1000. / 20.;
+
+	// The max amount of frame time between frames in ms.
+	constexpr auto frameTimeLimit = 250.;
+
+	// The current frame rate of the physics loop.
+	double updateFps = testToRunName.empty() || debugMode ? defaultFps : fastForwardFps;
+	// The current time in ms since epoch. Used to calculate the frame delta.
+	auto currentTime = chrono::duration<double, milli>(chrono::high_resolution_clock::now().time_since_epoch()).count();
+	// Used to store any "extra" time after a frame.
+	double accumulator = 0.;
+
+	const auto &font = FontSet::Get(14);
+
+	// Used to smooth fps display.
+	int totalFrames = 0;
+	double totalElapsedTime = 0.;
+	string fpsString;
+
 	// IsDone becomes true when the game is quit.
 	while(!menuPanels.IsDone())
 	{
+		auto newTime = chrono::duration<double, milli>(chrono::high_resolution_clock::now().time_since_epoch()).count();
+		double frameTime = newTime - currentTime;
+		currentTime = newTime;
+
+		if(frameTime > frameTimeLimit)
+			frameTime = frameTimeLimit;
+		accumulator += frameTime;
+
 		if(toggleTimeout)
 			--toggleTimeout;
-		chrono::steady_clock::time_point start = chrono::steady_clock::now();
 		
 		// Handle any events that occurred in this frame.
 		SDL_Event event;
@@ -248,105 +283,121 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			else if(event.type == SDL_KEYDOWN && !event.key.repeat
 					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD)))
 			{
-				isFastForward = !isFastForward;
+				switch(motion)
+				{
+				case SlowMo:
+					motion = Normal;
+					break;
+				case Normal:
+					motion = FastForward;
+					break;
+				case FastForward:
+					motion = SlowMo;
+					break;
+				}
 			}
 		}
 		SDL_Keymod mod = SDL_GetModState();
 		Font::ShowUnderlines(mod & KMOD_ALT);
 		
-		// In full-screen mode, hide the cursor if inactive for ten seconds,
-		// but only if the player is flying around in the main view.
 		bool inFlight = (menuPanels.IsEmpty() && gamePanels.Root() == gamePanels.Top());
-		++cursorTime;
-		bool shouldShowCursor = (!GameWindow::IsFullscreen() || cursorTime < 600 || !inFlight);
-		if(shouldShowCursor != showCursor)
+		if(accumulator >= updateFps)
 		{
-			showCursor = shouldShowCursor;
-			SDL_ShowCursor(showCursor);
+			// We are starting a new physics frame. Cache the last state for interpolation.
+			RenderState::states[1] = std::move(RenderState::states[0]);
+
+			// In full-screen mode, hide the cursor if inactive for ten seconds,
+			// but only if the player is flying around in the main view.
+			++cursorTime;
+			bool shouldShowCursor = (!GameWindow::IsFullscreen() || cursorTime < 600 || !inFlight);
+			if(shouldShowCursor != showCursor)
+			{
+				showCursor = shouldShowCursor;
+				SDL_ShowCursor(showCursor);
+			}
+
+			// Tell all the panels to step forward, then draw them.
+			((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
+
+			// All manual events and processing done. Handle any test inputs and events if we have any.
+			const Test *runningTest = testContext.CurrentTest();
+			if(runningTest)
+			{
+				// When flying around, all test processing must be handled in the
+				// thread-safe section of Engine. When not flying around (and when no
+				// Engine exists), then it is safe to execute the tests from here.
+				auto mainPanel = gamePanels.Root().get();
+				if(!isPaused && inFlight && menuPanels.IsEmpty() && mainPanel)
+					mainPanel->SetTestContext(testContext);
+				else
+				{
+					// The command will be ignored, since we only support commands
+					// from within the engine at the moment.
+					Command ignored;
+					runningTest->Step(testContext, player, ignored);
+				}
+			}
+
+			Audio::Step();
+
+			accumulator -= updateFps;
+
+			// Aggressively drop frames if the CPU can't keep up.
+			while(accumulator >= updateFps)
+				accumulator -= updateFps;
 		}
-		
-		// Switch off fast-forward if the player is not in flight or flight-related screen
-		// (for example when the boarding dialog shows up or when the player lands). The player
-		// can switch fast-forward on again when flight is resumed.
-		bool allowFastForward = !gamePanels.IsEmpty() && gamePanels.Top()->AllowFastForward();
-		if(Preferences::Has("Interrupt fast-forward") && !inFlight && isFastForward && !allowFastForward)
-			isFastForward = false;
-		
-		// Tell all the panels to step forward, then draw them.
-		((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
-		
-		// All manual events and processing done. Handle any test inputs and events if we have any.
-		const Test *runningTest = testContext.CurrentTest();
-		if(runningTest)
+
+		if(lastMotion != motion)
 		{
-			// When flying around, all test processing must be handled in the
-			// thread-safe section of Engine. When not flying around (and when no
-			// Engine exists), then it is safe to execute the tests from here.
-			auto mainPanel = gamePanels.Root().get();
-			if(!isPaused && inFlight && menuPanels.IsEmpty() && mainPanel)
-				mainPanel->SetTestContext(testContext);
-			else
+			switch(motion)
 			{
-				// The command will be ignored, since we only support commands
-				// from within the engine at the moment.
-				Command ignored;
-				runningTest->Step(testContext, player, ignored);
+			case SlowMo:
+				updateFps = slowMotionFps;
+				break;
+			case Normal:
+				updateFps = defaultFps;
+				break;
+			case FastForward:
+				updateFps = fastForwardFps;
+				break;
 			}
-			// Skip drawing 29 out of every 30 in-flight frames during testing to speedup testing (unless debug mode is set).
-			// We don't skip UI-frames to ensure we test the UI code more.
-			if(inFlight && !debugMode)
-			{
-				skipFrame = (skipFrame + 1) % 30;
-				if(skipFrame)
-					continue;
-			}
-			else
-				skipFrame = 0;
+			lastMotion = motion;
 		}
-		// Caps lock slows the frame rate in debug mode.
-		// Slowing eases in and out over a couple of frames.
-		else if((mod & KMOD_CAPS) && inFlight && debugMode)
-		{
-			if(frameRate > 10)
-			{
-				frameRate = max(frameRate - 5, 10);
-				timer.SetFrameRate(frameRate);
-			}
-		}
-		else
-		{
-			if(frameRate < 60)
-			{
-				frameRate = min(frameRate + 5, 60);
-				timer.SetFrameRate(frameRate);
-			}
-			
-			if(isFastForward && inFlight)
-			{
-				skipFrame = (skipFrame + 1) % 3;
-				if(skipFrame)
-					continue;
-			}
-		}
-		
-		Audio::Step();
-		
+
+		const double alpha = accumulator / updateFps;
+		// Interpolate the last two physics states. The interpolated state will
+		// be used by the drawing code.
+		RenderState::interpolated = RenderState::states[0].Interpolate(RenderState::states[1], alpha);
+
 		// Events in this frame may have cleared out the menu, in which case
 		// we should draw the game panels instead:
-		(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
-		if(isFastForward)
+		(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll(frameTime);
+		if(motion == FastForward)
 			SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
-		
+		else if(motion == SlowMo)
+			SpriteShader::Draw(SpriteSet::Get("ui/slow motion"), Screen::TopLeft() + Point(10., 10.));
+
+		if(Preferences::Has("Show CPU / GPU load"))
+		{
+			totalElapsedTime += frameTime;
+			++totalFrames;
+			if(totalElapsedTime >= 250.)
+			{
+				fpsString = to_string(lround(1000. * totalFrames / totalElapsedTime)) + " FPS";
+				totalElapsedTime = 0.;
+				totalFrames = 0;
+			}
+
+			font.Draw(fpsString,
+				Point(-font.Width(fpsString), Screen::Height() * -.5 + 5.),
+					*GameData::Colors().Get("medium"));
+		}
+
 		GameWindow::Step();
-		
-		// When we perform automated testing, then we run the game by default as quickly as possible.
-		// Except when debug-mode is set.
-		if(!testContext.CurrentTest() || debugMode)
-			timer.Wait();
 		
 		// If the player ended this frame in-game, count the elapsed time as played time.
 		if(menuPanels.IsEmpty())
-			player.AddPlayTime(chrono::steady_clock::now() - start);
+			player.AddPlayTime(frameTime);
 	}
 	
 	// If player quit while landed on a planet, save the game if there are changes.

@@ -36,7 +36,7 @@ class StartConditionsPanel : public Panel {
 public:
 	StartConditionsPanel(PlayerInfo &player, UI &gamePanels, const StartConditionsList &scenarios, const Panel *parent);
 	
-	virtual void Draw() override final;
+	virtual void Draw(double dt) override final;
 	
 	
 protected:

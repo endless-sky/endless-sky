@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define DRAW_LIST_H_
 
 #include "Point.h"
+#include "RenderState.h"
 #include "SpriteShader.h"
 
 #include <cstdint>
@@ -32,8 +33,9 @@ class Sprite;
 class DrawList {
 public:
 	// Clear the list, also setting the global time step for animation.
-	void Clear(int step = 0, double zoom = 1.);
+	void Clear(int step = 0);
 	void SetCenter(const Point &center, const Point &centerVelocity = Point());
+	void UpdateZoom(double zoom = 1.);
 	
 	// Add an object based on the Body class.
 	bool Add(const Body &body, double cloak = 0.);
@@ -47,6 +49,9 @@ public:
 	
 	// Draw all the items in this list.
 	void Draw() const;
+
+	// Returns the state of the objects added to this draw list.
+	RenderState ConsumeState();
 	
 	
 private:
@@ -61,6 +66,7 @@ private:
 	double zoom = 1.;
 	bool isHighDPI = false;
 	std::vector<SpriteShader::Item> items;
+	RenderState state;
 	
 	Point center;
 	Point centerVelocity;

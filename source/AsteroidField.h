@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Body.h"
 #include "CollisionSet.h"
 #include "Point.h"
+#include "RenderState.h"
 
 #include <list>
 #include <memory>
@@ -51,7 +52,7 @@ public:
 	void Add(const Minable *minable, int count, double energy = 1., double beltRadius = 1500.);
 	
 	// Move all the asteroids forward one time step, and populate the asteroid and minable collision sets.
-	void Step(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam, int step);
+	void Step(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam, int step, const Point &center);
 	// Draw the asteroid field, with the field of view centered on the given point.
 	void Draw(DrawList &draw, const Point &center, double zoom) const;
 	// Check if the given projectile has hit any of the asteroids, using the information
@@ -60,6 +61,8 @@ public:
 	
 	// Get the list of minable asteroids.
 	const std::list<std::shared_ptr<Minable>> &Minables() const;
+
+	RenderState ConsumeState() { return std::move(state); }
 	
 	
 private:
@@ -69,7 +72,7 @@ private:
 	public:
 		Asteroid(const Sprite *sprite, double energy);
 		
-		void Step();
+		bool Step();
 		void Draw(DrawList &draw, const Point &center, double zoom) const;
 		
 	private:
@@ -84,6 +87,8 @@ private:
 	
 	CollisionSet asteroidCollisions;
 	CollisionSet minableCollisions;
+
+	RenderState state;
 };
 
 

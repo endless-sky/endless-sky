@@ -141,8 +141,6 @@
 		<Unit filename="source/Flotsam.h" />
 		<Unit filename="source/FogShader.cpp" />
 		<Unit filename="source/FogShader.h" />
-		<Unit filename="source/FrameTimer.cpp" />
-		<Unit filename="source/FrameTimer.h" />
 		<Unit filename="source/Galaxy.cpp" />
 		<Unit filename="source/Galaxy.h" />
 		<Unit filename="source/GameAction.cpp" />

@@ -33,7 +33,7 @@ public:
 	LogbookPanel(PlayerInfo &player);
 	
 	// Draw this panel.
-	virtual void Draw() override;
+	virtual void Draw(double dt) override;
 	
 	
 protected:

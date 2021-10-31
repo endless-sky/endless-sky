@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "pi.h"
 #include "Planet.h"
 #include "PointerShader.h"
+#include "RenderState.h"
 #include "RingShader.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -41,8 +42,10 @@ namespace {
 
 
 PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, const System *system, double zoom)
-	: position(position * zoom), radius(object.Radius() * zoom)
+	: object(&object), radius(object.Radius())
 {
+	RenderState::states[0].planetLabels[&object] = position;
+
 	const Planet &planet = *object.GetPlanet();
 	name = planet.Name();
 	if(planet.IsWormhole())
@@ -106,8 +109,11 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 
 
 
-void PlanetLabel::Draw() const
+void PlanetLabel::Draw(double zoom) const
 {
+	const auto &position = RenderState::interpolated.planetLabels[object] * zoom;
+	auto radius = this->radius * zoom;
+
 	// Draw any active planet labels.
 	const Font &font = FontSet::Get(14);
 	const Font &bigFont = FontSet::Get(18);

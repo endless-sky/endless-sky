@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Preferences.h"
 #include "Random.h"
+#include "RenderState.h"
 #include "Screen.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
@@ -117,6 +118,13 @@ void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 
 
 
+void StarField::DrawInterpolated(const Point &vel, double zoom) const
+{
+	Draw(RenderState::interpolated.starFieldCenter, vel, zoom);
+}
+
+
+
 void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 {
 	// Draw the starfield unless it is disabled in the preferences.
@@ -180,7 +188,8 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 		return;
 	
 	DrawList drawList;
-	drawList.Clear(0, zoom);
+	drawList.Clear(0);
+	drawList.UpdateZoom(zoom);
 	drawList.SetCenter(pos);
 	
 	if(transparency > FADE_PER_FRAME)

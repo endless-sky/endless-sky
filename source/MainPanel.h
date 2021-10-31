@@ -34,7 +34,7 @@ public:
 	explicit MainPanel(PlayerInfo &player);
 	
 	virtual void Step() override;
-	virtual void Draw() override;
+	virtual void Draw(double dt) override;
 	
 	// The planet panel calls this when it closes.
 	void OnCallback();
@@ -74,11 +74,6 @@ private:
 	bool handledFront = false;
 	
 	Command show;
-	
-	// For displaying the GPU load.
-	double load = 0.;
-	double loadSum = 0.;
-	int loadCount = 0;
 	
 	// Keep track of how long a starting player has spent drifting in deep space.
 	int lostness = 0;

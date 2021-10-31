@@ -163,7 +163,7 @@ void MapPanel::Step()
 
 
 
-void MapPanel::Draw()
+void MapPanel::Draw(double dt)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	
@@ -188,7 +188,7 @@ void MapPanel::Draw()
 		11.f, 9.f, brightColor);
 	
 	// Advance a "blink" timer.
-	++step;
+	step += dt;
 	// Update the tooltip timer [0-60].
 	hoverCount += hoverSystem ? (hoverCount < HOVER_TIME) : (hoverCount ? -1 : 0);
 	
@@ -1143,7 +1143,7 @@ void MapPanel::DrawMissions()
 		{
 			int days = min(5, mission.Deadline() - player.GetDate()) + 1;
 			if(days > 0)
-				blink = (step % (10 * days) > 5 * days);
+				blink = (fmod(step, 1000. / 6. * days) > 1000. / 12. * days);
 		}
 		bool isSatisfied = IsSatisfied(player, mission);
 		DrawPointer(system, angle[system], blink ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);

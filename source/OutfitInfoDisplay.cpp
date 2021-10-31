@@ -176,9 +176,9 @@ int OutfitInfoDisplay::RequirementsHeight() const
 
 
 
-void OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
+void OutfitInfoDisplay::DrawRequirements(double dt, const Point &topLeft) const
 {
-	Draw(topLeft, requirementLabels, requirementValues);
+	Draw(dt, topLeft, requirementLabels, requirementValues);
 }
 
 

@@ -58,7 +58,7 @@ public:
 	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
 	
 	virtual void Step() override;
-	virtual void Draw() override;
+	virtual void Draw(double dt) override;
 	
 	void DrawButtons(const std::string &condition);
 	static void DrawMiniMap(const PlayerInfo &player, float alpha, const System *const jump[2], int step);
@@ -118,7 +118,7 @@ protected:
 	Point recenterVector;
 	int recentering = 0;
 	int commodity;
-	int step = 0;
+	double step = 0.;
 	std::string buttonCondition;
 	
 	// Distance from the screen center to the nearest owned system,
@@ -135,7 +135,7 @@ protected:
 	void UpdateCache();
 	
 	// For tooltips:
-	int hoverCount = 0;
+	double hoverCount = 0;
 	const System *hoverSystem = nullptr;
 	std::string tooltip;
 	WrappedText hoverText;

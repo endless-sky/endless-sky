@@ -31,7 +31,7 @@ public:
 	MenuPanel(PlayerInfo &player, UI &gamePanels);
 	
 	virtual void Step() override;
-	virtual void Draw() override;
+	virtual void Draw(double dt) override;
 	
 	
 protected:
@@ -44,7 +44,7 @@ private:
 	UI &gamePanels;
 	
 	std::vector<std::string> credits;
-	unsigned scroll;
+	double scroll;
 	int progress = 0;
 };
 

@@ -94,10 +94,10 @@ int OutfitterPanel::TileSize() const
 
 
 
-int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
+int OutfitterPanel::DrawPlayerShipInfo(double dt, const Point &point)
 {
 	shipInfo.Update(*playerShip, player.FleetDepreciation(), day);
-	shipInfo.DrawAttributes(point);
+	shipInfo.DrawAttributes(dt, point);
 	
 	return shipInfo.AttributesHeight();
 }
@@ -223,7 +223,7 @@ int OutfitterPanel::DetailWidth() const
 
 
 
-int OutfitterPanel::DrawDetails(const Point &center)
+int OutfitterPanel::DrawDetails(double dt, const Point &center)
 {
 	string selectedItem = "Nothing Selected";
 	const Font &font = FontSet::Get(14);
@@ -287,8 +287,8 @@ int OutfitterPanel::DrawDetails(const Point &center)
 		if(thumbnail)
 			SpriteShader::Draw(thumbnail, thumbnailCenter);
 		
-		outfitInfo.DrawAttributes(attrPoint);
-		outfitInfo.DrawRequirements(reqsPoint);
+		outfitInfo.DrawAttributes(dt, attrPoint);
+		outfitInfo.DrawRequirements(dt, reqsPoint);
 		
 		heightOffset = reqsPoint.Y() + outfitInfo.RequirementsHeight();
 	}

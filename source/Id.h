@@ -1,5 +1,5 @@
-/* PlanetLabel.h
-Copyright (c) 2016 by Michael Zahniser
+/* Id.h
+Copyright (c) 2021 by quyykk
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -10,34 +10,26 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef PLANET_LABEL_H_
-#define PLANET_LABEL_H_
-
-#include "Color.h"
-#include "Point.h"
-
-#include <string>
-
-class StellarObject;
-class System;
+#ifndef ID_H_
+#define ID_H_
 
 
 
-class PlanetLabel {
+unsigned NewID();
+
+
+
+class ID {
 public:
-	PlanetLabel(const Point &position, const StellarObject &object, const System *system, double zoom);
-	
-	void Draw(double zoom) const;
-	
-	
+	ID() noexcept : id(NewID()) {}
+	ID(ID &&other) noexcept : id(other.id) { other.id = 0; }
+	ID &operator=(ID &&other) noexcept { id = other.id; other.id = 0; return *this; }
+
+	operator unsigned() const noexcept { return id; }
+
 private:
-	const StellarObject *object;
-	double radius = 0.;
-	std::string name;
-	std::string government;
-	Color color;
-	int hostility = 0;
-	int direction = 0;
+	// The id number of this id.
+	unsigned id;
 };
 
 

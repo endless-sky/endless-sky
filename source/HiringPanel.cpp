@@ -41,7 +41,7 @@ void HiringPanel::Step()
 
 
 
-void HiringPanel::Draw()
+void HiringPanel::Draw(double dt)
 {
 	if(!player.Flagship())
 		return;

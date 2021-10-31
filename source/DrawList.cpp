@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Body.h"
 #include "Preferences.h"
+#include "RenderState.h"
 #include "Screen.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
@@ -26,12 +27,10 @@ using namespace std;
 
 
 // Clear the list.
-void DrawList::Clear(int step, double zoom)
+void DrawList::Clear(int step)
 {
 	items.clear();
 	this->step = step;
-	this->zoom = zoom;
-	isHighDPI = (Screen::IsHighResolution() ? zoom > .5 : zoom > 1.);
 }
 
 
@@ -40,6 +39,14 @@ void DrawList::SetCenter(const Point &center, const Point &centerVelocity)
 {
 	this->center = center;
 	this->centerVelocity = centerVelocity;
+}
+
+
+
+void DrawList::UpdateZoom(double zoom)
+{
+	this->zoom = zoom;
+	isHighDPI = (Screen::IsHighResolution() ? zoom > .5 : zoom > 1.);
 }
 
 
@@ -98,9 +105,16 @@ void DrawList::Draw() const
 	
 	bool withBlur = Preferences::Has("Render motion blur");
 	for(const SpriteShader::Item &item : items)
-		SpriteShader::Add(item, withBlur);
+		SpriteShader::Add(item, withBlur, zoom);
 	
 	SpriteShader::Unbind();
+}
+
+
+
+RenderState DrawList::ConsumeState()
+{
+	return std::move(state);
 }
 
 
@@ -151,24 +165,31 @@ void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, doubl
 		pos -= uh * ((1. - clip) * .5);
 		uh *= clip;
 	}
-	item.position[0] = static_cast<float>(pos.X() * zoom);
-	item.position[1] = static_cast<float>(pos.Y() * zoom);
+	item.position[0] = static_cast<float>(pos.X());
+	item.position[1] = static_cast<float>(pos.Y());
 	
 	// (0, -1) means a zero-degree rotation (since negative Y is up).
-	uw *= zoom;
-	uh *= zoom;
 	item.transform[0] = -uw.Y();
 	item.transform[1] = uw.X();
 	item.transform[2] = -uh.X();
 	item.transform[3] = -uh.Y();
 	
 	// Calculate the blur vector, in texture coordinates.
-	blur *= zoom;
 	item.blur[0] = unit.Cross(blur) / (width * 4.);
 	item.blur[1] = -unit.Dot(blur) / (height * 4.);
 	
 	item.alpha = 1. - cloak;
 	item.swizzle = swizzle;
 	
+	item.id = &body;
+
+	auto bodyPos = body.Position() - center;
+	if(bodyPos.X() == pos.X() && bodyPos.Y() == pos.Y())
+	{
+		state.bodies[&body].position = item.position;
+		state.bodies[&body].transform = item.transform;
+		state.bodies[&body].blur = item.blur;
+	}
+
 	items.push_back(item);
 }

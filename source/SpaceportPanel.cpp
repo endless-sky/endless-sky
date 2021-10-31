@@ -86,7 +86,7 @@ void SpaceportPanel::Step()
 
 
 
-void SpaceportPanel::Draw()
+void SpaceportPanel::Draw(double dt)
 {
 	if(player.IsDead())
 		return;

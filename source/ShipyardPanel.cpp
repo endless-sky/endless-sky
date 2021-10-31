@@ -47,9 +47,9 @@ namespace {
 		NameDialog(ShipyardPanel *panel, void (ShipyardPanel::*fun)(const string &), const string &message)
 			: Dialog(panel, fun, message) {}
 		
-		virtual void Draw() override
+		virtual void Draw(double dt) override
 		{
-			Dialog::Draw();
+			Dialog::Draw(dt);
 			
 			randomPos = cancelPos - Point(80., 0.);
 			SpriteShader::Draw(SpriteSet::Get("ui/dialog cancel"), randomPos);
@@ -98,11 +98,11 @@ int ShipyardPanel::TileSize() const
 
 
 
-int ShipyardPanel::DrawPlayerShipInfo(const Point &point)
+int ShipyardPanel::DrawPlayerShipInfo(double dt, const Point &point)
 {
 	shipInfo.Update(*playerShip, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
-	shipInfo.DrawSale(point);
-	shipInfo.DrawAttributes(point + Point(0, shipInfo.SaleHeight()));
+	shipInfo.DrawSale(dt, point);
+	shipInfo.DrawAttributes(dt, point + Point(0, shipInfo.SaleHeight()));
 	
 	return shipInfo.SaleHeight() + shipInfo.AttributesHeight();
 }
@@ -143,7 +143,7 @@ int ShipyardPanel::DetailWidth() const
 
 
 
-int ShipyardPanel::DrawDetails(const Point &center)
+int ShipyardPanel::DrawDetails(double dt, const Point &center)
 {
 	string selectedItem = "No Ship Selected";
 	const Font &font = FontSet::Get(14);
@@ -207,8 +207,8 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		if(shipSprite)
 			SpriteShader::Draw(shipSprite, spriteCenter, spriteScale, swizzle);
 		
-		shipInfo.DrawAttributes(attrPoint);
-		shipInfo.DrawOutfits(outfPoint);
+		shipInfo.DrawAttributes(dt, attrPoint);
+		shipInfo.DrawOutfits(dt, outfPoint);
 		
 		heightOffset = outfPoint.Y() + shipInfo.OutfitsHeight();
 	}

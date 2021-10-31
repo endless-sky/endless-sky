@@ -74,9 +74,9 @@ MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 
 
 
-void MapSalesPanel::Draw()
+void MapSalesPanel::Draw(double dt)
 {
-	MapPanel::Draw();
+	MapPanel::Draw(dt);
 	
 	zones.clear();
 	hidPrevious = true;
@@ -89,7 +89,7 @@ void MapSalesPanel::Draw()
 	DrawPanel();
 	DrawItems();
 	DrawButtons(isOutfitters ? "is outfitters" : "is shipyards");
-	DrawInfo();
+	DrawInfo(dt);
 }
 
 
@@ -254,7 +254,7 @@ void MapSalesPanel::DrawPanel() const
 
 
 
-void MapSalesPanel::DrawInfo() const
+void MapSalesPanel::DrawInfo(double dt) const
 {
 	if(selected >= 0)
 	{
@@ -290,7 +290,7 @@ void MapSalesPanel::DrawInfo() const
 		
 		if(compare >= 0)
 		{
-			compareInfo.DrawAttributes(topLeft);
+			compareInfo.DrawAttributes(dt, topLeft);
 			topLeft.X() += compareInfo.PanelWidth() + box->Width();
 			
 			SpriteShader::Draw(box, topLeft + Point(-50., 100.));
@@ -302,7 +302,7 @@ void MapSalesPanel::DrawInfo() const
 			SpriteShader::Draw(box, topLeft + Point(-60., 50.));
 			DrawSprite(topLeft + Point(-95., 5.), SelectedSprite());
 		}
-		selectedInfo.DrawAttributes(topLeft);
+		selectedInfo.DrawAttributes(dt, topLeft);
 	}
 }
 

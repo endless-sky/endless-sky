@@ -36,7 +36,7 @@ public:
 	PlanetPanel(PlayerInfo &player, std::function<void()> callback);
 	
 	virtual void Step() override;
-	virtual void Draw() override;
+	virtual void Draw(double dt) override;
 	
 	
 protected:

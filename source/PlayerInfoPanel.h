@@ -34,7 +34,7 @@ public:
 	explicit PlayerInfoPanel(PlayerInfo &player);
 	
 	virtual void Step() override;
-	virtual void Draw() override;
+	virtual void Draw(double dt) override;
 	
 	// The player info panel allow fast-forward to stay active.
 	virtual bool AllowFastForward() const override;

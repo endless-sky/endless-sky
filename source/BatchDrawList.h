@@ -14,12 +14,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define BATCH_DRAW_LIST_H_
 
 #include "Point.h"
+#include "RenderState.h"
 
+#include <array>
 #include <map>
 #include <vector>
 
 class Body;
+class Projectile;
 class Sprite;
+class Visual;
 
 
 
@@ -28,15 +32,18 @@ class Sprite;
 class BatchDrawList {
 public:
 	// Clear the list, also setting the global time step for animation.
-	void Clear(int step = 0, double zoom = 1.);
+	void Clear(int step = 0);
 	void SetCenter(const Point &center);
+	void UpdateZoom(double zoom = 1.);
 	
 	// Add an unswizzled object based on the Body class.
-	bool Add(const Body &body, float clip = 1.f);
-	bool AddVisual(const Body &visual);
+	bool Add(const Projectile &body, float clip = 1.f);
+	bool AddVisual(const Visual &visual);
 	
 	// Draw all the items in this list.
 	void Draw() const;
+
+	RenderState ConsumeState();
 	
 	
 private:
@@ -44,7 +51,7 @@ private:
 	bool Cull(const Body &body, const Point &position) const;
 	
 	// Add the given body at the given position.
-	bool Add(const Body &body, Point position, float clip);
+	bool Add(const Body &body, Point position, float clip, unsigned id);
 	
 	
 private:
@@ -53,11 +60,7 @@ private:
 	bool isHighDPI = false;
 	Point center;
 	
-	// Each sprite consists of six vertices (four vertices to form a quad and
-	// two dummy vertices to mark the break in between them). Each of those
-	// vertices has five attributes: (x, y) position in pixels, (s, t) texture
-	// coordinates, and the index of the sprite frame.
-	std::map<const Sprite *, std::vector<float>> data;
+	RenderState state;
 };
 
 

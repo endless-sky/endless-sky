@@ -34,7 +34,7 @@ void Panel::Step()
 
 
 // Draw this panel.
-void Panel::Draw()
+void Panel::Draw(double dt)
 {
 }
 

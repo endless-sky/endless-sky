@@ -30,7 +30,7 @@ public:
 	PreferencesPanel();
 	
 	// Draw this panel.
-	virtual void Draw() override;
+	virtual void Draw(double dt) override;
 	
 	
 protected:

@@ -120,11 +120,18 @@ void BatchShader::Bind()
 
 
 
-void BatchShader::Add(const Sprite *sprite, bool isHighDPI, const vector<float> &data)
+void BatchShader::Add(const Sprite *sprite, bool isHighDPI, vector<float> data, double zoom)
 {
 	// Do nothing if there are no sprites to draw.
 	if(data.empty())
 		return;
+
+	// Before doing anything we need to apply the zoom to the positions.
+	for(int i = 0; i < data.size(); i += 5)
+	{
+		data[i + 0] *= zoom;
+		data[i + 1] *= zoom;
+	}
 	
 	// First, bind the proper texture.
 	glBindTexture(GL_TEXTURE_2D_ARRAY, sprite->Texture(isHighDPI));

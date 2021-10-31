@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Minable.h"
 #include "Projectile.h"
 #include "Random.h"
+#include "RenderState.h"
 #include "Screen.h"
 #include "SpriteSet.h"
 
@@ -78,13 +79,14 @@ void AsteroidField::Add(const Minable *minable, int count, double energy, double
 
 
 // Move all the asteroids forward one step.
-void AsteroidField::Step(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int step)
+void AsteroidField::Step(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int step, const Point &center)
 {
 	asteroidCollisions.Clear(step);
 	for(Asteroid &asteroid : asteroids)
 	{
 		asteroidCollisions.Add(asteroid);
-		asteroid.Step();
+		if(!asteroid.Step())
+			state.asteroids[&asteroid] = asteroid.Position() - center;
 	}
 	asteroidCollisions.Finish();
 	
@@ -201,21 +203,34 @@ AsteroidField::Asteroid::Asteroid(const Sprite *sprite, double energy)
 
 
 // Move the asteroid forward one time step.
-void AsteroidField::Asteroid::Step()
+bool AsteroidField::Asteroid::Step()
 {
 	angle += spin;
 	position += velocity;
 	
 	// Keep the position within the wrap square.
 	if(position.X() < 0.)
+	{
 		position = Point(position.X() + WRAP, position.Y());
+		return true;
+	}
 	else if(position.X() >= WRAP)
+	{
 		position = Point(position.X() - WRAP, position.Y());
+		return true;
+	}
 	
 	if(position.Y() < 0.)
+	{
 		position = Point(position.X(), position.Y() + WRAP);
+		return true;
+	}
 	else if(position.Y() >= WRAP)
+	{
 		position = Point(position.X(), position.Y() - WRAP);
+		return true;
+	}
+	return false;
 }
 
 

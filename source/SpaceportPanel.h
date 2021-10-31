@@ -32,7 +32,7 @@ public:
 	void UpdateNews();
 	
 	virtual void Step() override;
-	virtual void Draw() override;
+	virtual void Draw(double dt) override;
 	
 	
 private:

@@ -90,7 +90,7 @@ void TradingPanel::Step()
 
 
 
-void TradingPanel::Draw()
+void TradingPanel::Draw(double dt)
 {
 	const Color &back = *GameData::Colors().Get("faint");
 	int selectedRow = player.MapColoring();

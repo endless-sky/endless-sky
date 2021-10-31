@@ -42,7 +42,7 @@ public:
 	virtual void Step();
 	
 	// Draw this panel.
-	virtual void Draw();
+	virtual void Draw(double dt);
 	
 	// Return true if this is a full-screen panel, so there is no point in
 	// drawing any of the panels under it.

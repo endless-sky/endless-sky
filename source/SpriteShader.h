@@ -16,7 +16,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Sprite;
 class Point;
 
+#include <array>
 #include <cstdint>
+
+class Body;
 
 
 
@@ -33,11 +36,12 @@ public:
 		uint32_t swizzle = 0;
 		float frame = 0.f;
 		float frameCount = 1.f;
-		float position[2] = {0.f, 0.f};
-		float transform[4] = {0.f, 0.f, 0.f, 0.f};
-		float blur[2] = {0.f, 0.f};
+		std::array<float, 2> position = {0.f, 0.f};
+		std::array<float, 4> transform = {0.f, 0.f, 0.f, 0.f};
+		std::array<float, 2> blur = {0.f, 0.f};
 		float clip = 1.f;
 		float alpha = 1.f;
+		const Body *id = 0;
 	};
 	
 	
@@ -49,7 +53,7 @@ public:
 	static void Draw(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0, float frame = 0.f);
 	
 	static void Bind();
-	static void Add(const Item &item, bool withBlur = false);
+	static void Add(const Item &item, bool withBlur = false, double zoom = 1.);
 	static void Unbind();
 	
 	

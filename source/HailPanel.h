@@ -39,7 +39,7 @@ public:
 	HailPanel(PlayerInfo &player, const std::shared_ptr<Ship> &ship, std::function<void(const Government *)> bribeCallback);
 	HailPanel(PlayerInfo &player, const StellarObject *object);
 	
-	virtual void Draw() override;
+	virtual void Draw(double dt) override;
 	
 	
 protected:

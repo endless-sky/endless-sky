@@ -70,7 +70,7 @@ void BankPanel::Step()
 
 
 // Draw the bank information.
-void BankPanel::Draw()
+void BankPanel::Draw(double dt)
 {
 	// Set up the table that will contain most of the information.
 	Table table;

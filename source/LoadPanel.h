@@ -36,7 +36,7 @@ class LoadPanel : public Panel {
 public:
 	LoadPanel(PlayerInfo &player, UI &gamePanels);
 	
-	virtual void Draw() override;
+	virtual void Draw(double dt) override;
 	
 	
 protected:
