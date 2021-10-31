@@ -301,7 +301,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		Font::ShowUnderlines(mod & KMOD_ALT);
 		
 		bool inFlight = (menuPanels.IsEmpty() && gamePanels.Root() == gamePanels.Top());
-		if(accumulator >= updateFps)
+		while(accumulator >= updateFps)
 		{
 			// We are starting a new physics frame. Cache the last state for interpolation.
 			RenderState::states[1] = std::move(RenderState::states[0]);
@@ -341,10 +341,6 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			Audio::Step();
 
 			accumulator -= updateFps;
-
-			// Aggressively drop frames if the CPU can't keep up.
-			while(accumulator >= updateFps)
-				accumulator -= updateFps;
 		}
 
 		if(lastMotion != motion)
