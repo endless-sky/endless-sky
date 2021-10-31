@@ -209,24 +209,33 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	// The max amount of frame time between frames in ms.
 	constexpr auto frameTimeLimit = 250.;
 
+	// A helper function to get the current time in ms.
+	auto CurrentTime = []
+	{
+		return chrono::duration<double, milli>(chrono::high_resolution_clock::now().time_since_epoch()).count();
+	};
+
 	// The current frame rate of the physics loop.
 	double updateFps = testToRunName.empty() || debugMode ? defaultFps : fastForwardFps;
 	// The current time in ms since epoch. Used to calculate the frame delta.
-	auto currentTime = chrono::duration<double, milli>(chrono::high_resolution_clock::now().time_since_epoch()).count();
+	auto currentTime = CurrentTime();
 	// Used to store any "extra" time after a frame.
 	double accumulator = 0.;
 
 	const auto &font = FontSet::Get(14);
 
 	// Used to smooth fps display.
-	int totalFrames = 0;
-	double totalElapsedTime = 0.;
-	string fpsString;
+	int cpuLoadCount = 0;
+	double cpuLoadSum = 0.;
+	string cpuLoad;
+	int totalFramesGpu = 0;
+	double totalElapsedTimeGpu = 0.;
+	string fpsStringGpu;
 
 	// IsDone becomes true when the game is quit.
 	while(!menuPanels.IsDone())
 	{
-		auto newTime = chrono::duration<double, milli>(chrono::high_resolution_clock::now().time_since_epoch()).count();
+		auto newTime = CurrentTime();
 		double frameTime = newTime - currentTime;
 		currentTime = newTime;
 
@@ -303,6 +312,8 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		bool inFlight = (menuPanels.IsEmpty() && gamePanels.Root() == gamePanels.Top());
 		while(accumulator >= updateFps)
 		{
+			auto cpuStart = CurrentTime();
+
 			// We are starting a new physics frame. Cache the last state for interpolation.
 			RenderState::states[1] = std::move(RenderState::states[0]);
 
@@ -341,6 +352,14 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			Audio::Step();
 
 			accumulator -= updateFps;
+
+			cpuLoadSum += CurrentTime() - cpuStart;
+			if(++cpuLoadCount >= lround(1000. / updateFps))
+			{
+				cpuLoad = to_string(lround(cpuLoadSum / 10.)) + "% CPU";
+				cpuLoadCount = 0;
+				cpuLoadSum = 0.;
+			}
 		}
 
 		if(lastMotion != motion)
@@ -375,17 +394,21 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 
 		if(Preferences::Has("Show CPU / GPU load"))
 		{
-			totalElapsedTime += frameTime;
-			++totalFrames;
-			if(totalElapsedTime >= 250.)
+			font.Draw(cpuLoad,
+				Point(-10 - font.Width(cpuLoad), Screen::Height() * -.5 + 5.),
+					*GameData::Colors().Get("medium"));
+
+			totalElapsedTimeGpu += frameTime;
+			++totalFramesGpu;
+			if(totalElapsedTimeGpu >= 250.)
 			{
-				fpsString = to_string(lround(1000. * totalFrames / totalElapsedTime)) + " FPS";
-				totalElapsedTime = 0.;
-				totalFrames = 0;
+				fpsStringGpu = "GPU: " + to_string(lround(1000. * totalFramesGpu / totalElapsedTimeGpu)) + " FPS";
+				totalElapsedTimeGpu = 0.;
+				totalFramesGpu = 0;
 			}
 
-			font.Draw(fpsString,
-				Point(-font.Width(fpsString), Screen::Height() * -.5 + 5.),
+			font.Draw(fpsStringGpu,
+				Point(10, Screen::Height() * -.5 + 5.),
 					*GameData::Colors().Get("medium"));
 		}
 
