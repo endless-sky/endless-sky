@@ -181,6 +181,15 @@ void Audio::Init(const vector<string> &sources)
 
 
 
+void Audio::CheckReferences()
+{
+	for(auto &&it : sounds)
+		if(it.second.Name().empty())
+			Files::LogError("Warning: sound \"" + it.first + "\" is referred to, but does not exist.");
+}
+
+
+
 // Report the progress of loading sounds.
 double Audio::GetProgress()
 {

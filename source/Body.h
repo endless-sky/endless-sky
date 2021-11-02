@@ -47,7 +47,7 @@ public:
 	double Radius() const;
 	// Which color swizzle should be applied to the sprite?
 	int GetSwizzle() const;
-	// Get the sprite and mask for the given time step.
+	// Get the sprite frame and mask for the given time step.
 	float GetFrame(int step = -1) const;
 	const Mask &GetMask(int step = -1) const;
 	
@@ -57,6 +57,7 @@ public:
 	const Angle &Facing() const;
 	Point Unit() const;
 	double Zoom() const;
+	double Scale() const;
 	
 	// Check if this object is marked for removal from the game.
 	bool ShouldBeRemoved() const;
@@ -93,6 +94,7 @@ protected:
 	// A zoom of 1 means the sprite should be drawn at half size. For objects
 	// whose sprites should be full size, use zoom = 2.
 	float zoom = 1.f;
+	float scale = 1.f;
 	
 	// Government, for use in collision checks.
 	const Government *government = nullptr;

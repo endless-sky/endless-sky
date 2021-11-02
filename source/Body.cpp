@@ -14,6 +14,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "GameData.h"
+#include "Mask.h"
+#include "MaskManager.h"
 #include "Random.h"
 #include "Screen.h"
 #include "Sprite.h"
@@ -62,18 +65,18 @@ const Sprite *Body::GetSprite() const
 
 
 
-// Get the width of this object, in world coordinates (i.e. taking zoom into account).
+// Get the width of this object, in world coordinates (i.e. taking zoom and scale into account).
 double Body::Width() const
 {
-	return static_cast<double>(sprite ? (.5f * zoom) * sprite->Width() : 0.f);
+	return static_cast<double>(sprite ? (.5f * zoom) * scale * sprite->Width() : 0.f);
 }
 
 
 
-// Get the height of this object, in world coordinates (i.e. taking zoom into account).
+// Get the height of this object, in world coordinates (i.e. taking zoom and scale into account).
 double Body::Height() const
 {
-	return static_cast<double>(sprite ? (.5f * zoom) * sprite->Height() : 0.f);
+	return static_cast<double>(sprite ? (.5f * zoom) * scale * sprite->Height() : 0.f);
 }
 
 
@@ -114,7 +117,14 @@ const Mask &Body::GetMask(int step) const
 		SetStep(step);
 	
 	static const Mask EMPTY;
-	return sprite ? sprite->GetMask(round(frame)) : EMPTY;
+	int current = round(frame);
+	if(!sprite || current < 0)
+		return EMPTY;
+	
+	const vector<Mask> &masks = GameData::GetMaskManager().GetMasks(sprite, Scale());
+	
+	// Assume that if a masks array exists, it has the right number of frames.
+	return masks.empty() ? EMPTY : masks[current % masks.size()];
 }
 
 
@@ -160,6 +170,13 @@ double Body::Zoom() const
 
 
 
+double Body::Scale() const
+{
+	return static_cast<double>(scale);
+}
+
+
+
 // Check if this object is marked for removal from the game.
 bool Body::ShouldBeRemoved() const
 {
@@ -196,6 +213,8 @@ void Body::LoadSprite(const DataNode &node)
 			frameRate = 1. / child.Value(1);
 		else if(child.Token(0) == "delay" && child.Size() >= 2 && child.Value(1) > 0.)
 			delay = child.Value(1);
+		else if(child.Token(0) == "scale" && child.Size() >= 2 && child.Value(1) > 0.)
+			scale = static_cast<float>(child.Value(1));
 		else if(child.Token(0) == "start frame" && child.Size() >= 2)
 		{
 			frameOffset += static_cast<float>(child.Value(1));
@@ -213,6 +232,9 @@ void Body::LoadSprite(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	
+	if(scale != 1.f)
+		GameData::GetMaskManager().RegisterScale(sprite, Scale());
 }
 
 
@@ -230,6 +252,8 @@ void Body::SaveSprite(DataWriter &out, const string &tag) const
 			out.Write("frame rate", frameRate * 60.);
 		if(delay)
 			out.Write("delay", delay);
+		if(scale != 1.f)
+			out.Write("scale", scale);
 		if(randomize)
 			out.Write("random start frame");
 		if(!repeat)
