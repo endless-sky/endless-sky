@@ -149,23 +149,18 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 
 
 
-void MapPanel::Step()
+void MapPanel::Draw(double deltaTime)
 {
+	glClear(GL_COLOR_BUFFER_BIT);
+
 	if(recentering > 0)
 	{
 		double step = (recentering - .5) / RECENTER_TIME;
 		// Interpolate with the smoothstep function, 3x^2 - 2x^3. Its derivative
 		// gives the fraction of the distance to move at each time step:
 		center += recenterVector * (step * (1. - step) * (6. / RECENTER_TIME));
-		--recentering;
+		recentering -= deltaTime * 60. / 1000.;
 	}
-}
-
-
-
-void MapPanel::Draw(double deltaTime)
-{
-	glClear(GL_COLOR_BUFFER_BIT);
 	
 	for(const auto &it : GameData::Galaxies())
 		SpriteShader::Draw(it.second.GetSprite(), Zoom() * (center + it.second.Position()), Zoom());

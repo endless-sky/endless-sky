@@ -57,7 +57,6 @@ public:
 public:
 	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
 	
-	virtual void Step() override;
 	virtual void Draw(double deltaTime) override;
 	
 	void DrawButtons(const std::string &condition);
@@ -116,7 +115,7 @@ protected:
 	
 	Point center;
 	Point recenterVector;
-	int recentering = 0;
+	double recentering = 0.;
 	int commodity;
 	double step = 0.;
 	std::string buttonCondition;
