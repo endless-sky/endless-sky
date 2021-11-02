@@ -43,6 +43,9 @@ namespace {
 	// This is how fast the crossfading of previous haze and current haze is
 	const double FADE_PER_FRAME = 0.01;
 	
+	const double STAR_ZOOM = 0.70;
+	const double HAZE_ZOOM = 0.90;
+	
 	void AddHaze(DrawList &drawList, const std::vector<Body> &haze, const Point &topLeft, const Point &bottomRight, double transparency)
 	{
 		for(auto &&it : haze)
@@ -126,7 +129,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 	{
 		// Modify zoom for first parallax layer
 		if(Preferences::Has("Parallax space"))
-			zoom = savedZoom * Preferences::StarViewZoom();	
+			zoom = savedZoom * STAR_ZOOM;	
 		glUseProgram(shader.Object());
 		glBindVertexArray(vao);
 		
@@ -186,14 +189,11 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 	
 	// Modify zoom for second parallax layer
 	if(Preferences::Has("Parallax space"))
-		zoom = savedZoom * Preferences::HazeViewZoom();
+		zoom = savedZoom * HAZE_ZOOM;
 	
 	DrawList drawList;
 	drawList.Clear(0, zoom);
 	drawList.SetCenter(pos);
-	
-	// Set zoom to max for haze, so they won't get culled prematurely
-	zoom = .25;
 	
 	if(transparency > FADE_PER_FRAME)
 		transparency -= FADE_PER_FRAME;
