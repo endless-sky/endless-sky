@@ -14,16 +14,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "Files.h"
+#include "text/Format.h"
 #include "GameData.h"
-#include "MainPanel.h"
-#include "Panel.h"
 #include "Planet.h"
-#include "PlanetPanel.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
 #include "System.h"
+#include "TestContext.h"
 #include "TestData.h"
-#include "UI.h"
 
 #include <SDL2/SDL.h>
 
@@ -88,6 +86,28 @@ namespace{
 		event.key.keysym.sym = SDL_GetKeyFromName(keyName);
 		event.key.keysym.mod = modKeys;
 		return SDL_PushEvent(&event);
+	}
+
+	bool SendQuitEvent()
+	{
+		SDL_Event event;
+		event.type = SDL_QUIT;
+		return SDL_PushEvent(&event);
+	}
+
+	string ShipToString(const Ship &ship)
+	{
+		string description = "name: " + ship.Name();
+		const System *system = ship.GetSystem();
+		const Planet *planet = ship.GetPlanet();
+		description += ", system: " + (system ? system->Name() : "<not set>");
+		description += ", planet: " + (planet ? planet->TrueName() : "<not set>");
+		description += ", hull: " + Format::Number(ship.Hull());
+		description += ", shields: " + Format::Number(ship.Shields());
+		description += ", energy: " + Format::Number(ship.Energy());
+		description += ", fuel: " + Format::Number(ship.Fuel());
+		description += ", heat: " + Format::Number(ship.Heat());
+		return description;
 	}
 }
 
@@ -349,14 +369,8 @@ const string &Test::Name() const
 
 
 
-// The UI panel stacks determine both what the player sees and the state of the game.
-// When the menuPanels are not empty, we are in a menu for something, e.g. preferences,
-// creating a new pilot, or loading or saving a game. Any such menu panels always take
-// precedence over game panels.
-// When the gamePanels stack contains more than one item, we are either on a planet or
-// busy with something, e.g. reading a dialog, hailing a ship/planet, or boarding.
-// Otherwise, the flagship is in space and controllable.
-void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const
+// Check the game status and perform the next test action.
+void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive) const
 {
 	// Tests always wait until the game is fully loaded.
 	if(!GameData::IsLoaded())
@@ -379,7 +393,7 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 		if(context.stepToRun.empty())
 		{
 			// Done, no failures, exit the game with exitcode success.
-			menuPanels.Quit();
+			SendQuitEvent();
 			return;
 		}
 		else
@@ -453,22 +467,7 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 				break;
 			case TestStep::Type::INPUT:
 				if(stepToRun.command)
-				{
-					// We need to send the command through the top gamepanel, and it needs to be active.
-					if(gamePanels.IsEmpty())
-						Fail(context, player, "panel with engine not present, and can only send commands to the engine");
-					
-					if(gamePanels.Root() != gamePanels.Top())
-						Fail(context, player, "engine not active due to panel on top, and can only send commands to the engine");
-					
-					// Both get as well as the cast can result in a nullpointer. In both cases we
-					// will fail the test, since we expect the MainPanel to be here.
-					auto mainPanel = gamePanels.Root().get();
-					if(!mainPanel)
-						Fail(context, player, "root gamepanel not found when sending command");
-
-					mainPanel->GiveCommand(stepToRun.command);
-				}
+					commandToGive |= stepToRun.command;
 				if(!stepToRun.inputKeys.empty())
 				{
 					// TODO: handle keys also in-flight (as single inputset)
@@ -512,7 +511,7 @@ const string &Test::StatusText() const
 
 
 // Fail the test using the given message as reason.
-void Test::Fail(const Context &context, const PlayerInfo &player, const string &testFailReason) const
+void Test::Fail(const TestContext &context, const PlayerInfo &player, const string &testFailReason) const
 {
 	string message = "Test failed";
 	if(!context.stepToRun.empty() && context.stepToRun.back() < steps.size())
@@ -521,6 +520,30 @@ void Test::Fail(const Context &context, const PlayerInfo &player, const string &
 	
 	if(!testFailReason.empty())
 		message += ": " + testFailReason;
+
+	// Print some debug information about the flagship and the first 5 escorts.
+	const Ship *flagship = player.Flagship();
+	if(!flagship)
+		Files::LogError("No flagship at the moment of failure.");
+	else
+	{
+		string shipsOverview = "flagship " + ShipToString(*flagship) + "\n";
+		int escorts = 0;
+		int escortsNotPrinted = 0;
+		for(auto &&ptr : flagship->GetEscorts())
+		{
+			auto escort = ptr.lock();
+			if(!escort)
+				continue;
+			if(++escorts <= 5)
+				shipsOverview += "escort " + ShipToString(*escort) + "\n";
+			else
+				++escortsNotPrinted;
+		}
+		if(escortsNotPrinted > 0)
+			shipsOverview += "(plus " + to_string(escortsNotPrinted) + " additional escorts)\n";
+		Files::LogError(shipsOverview);
+	}
 	
 	// Only log the conditions that start with test; we don't want to overload the terminal or errorlog.
 	// Future versions of the test-framework could also print all conditions that are used in the test.

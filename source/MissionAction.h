@@ -13,9 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef MISSION_ACTION_H_
 #define MISSION_ACTION_H_
 
-#include "GameAction.h"
-
 #include "Conversation.h"
+#include "GameAction.h"
 #include "LocationFilter.h"
 #include "Phrase.h"
 
@@ -25,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class DataNode;
 class DataWriter;
+class Outfit;
 class PlayerInfo;
 class System;
 class UI;
@@ -32,11 +32,10 @@ class UI;
 
 
 // A MissionAction represents what happens when a Mission reaches a certain
-// milestone. This can include when the Mission is offered, accepted, declined,
-// completed, or failed. A MissionAction can include anything a GameAction can
-// do while also being capable of displaying dialogs or Conversations and requiring
-// that the player have certain outfits for the action to be done.
-class MissionAction : public GameAction {
+// milestone, including offered, accepted, declined, completed, or failed.
+// In addition to performing a GameAction, a MissionAction can gate the task on
+// the ownership of specific outfits and also display dialogs or conversations.
+class MissionAction {
 public:
 	MissionAction() = default;
 	// Construct and Load() at the same time.
@@ -75,6 +74,12 @@ private:
 	
 	const Conversation *stockConversation = nullptr;
 	Conversation conversation;
+	
+	// Outfits that are required to be owned (or not) for this action to be performable.
+	std::map<const Outfit *, int> requiredOutfits;
+	
+	// Tasks this mission action performs, such as modifying accounts, inventory, or conditions.
+	GameAction action;
 };
 
 
