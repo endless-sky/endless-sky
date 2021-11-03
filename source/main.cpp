@@ -32,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "Test.h"
+#include "TestContext.h"
 #include "UI.h"
 
 #include <chrono>
@@ -42,7 +43,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 #ifdef _WIN32
+#define STRICT
+#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+#include <mmsystem.h>
 #endif
 
 using namespace std;
@@ -187,9 +191,9 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	int toggleTimeout = 0;
 	
 	// Data to track progress of testing if/when a test is running.
-	Test::Context testContext;
+	TestContext testContext;
 	if(!testToRunName.empty())
-		testContext.testToRun = GameData::Tests().Get(testToRunName);
+		testContext = TestContext(GameData::Tests().Get(testToRunName));
 	
 	// IsDone becomes true when the game is quit.
 	while(!menuPanels.IsDone())
@@ -272,12 +276,36 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
 		
 		// All manual events and processing done. Handle any test inputs and events if we have any.
-		if(testContext.testToRun)
-			testContext.testToRun->Step(testContext, menuPanels, gamePanels, player);
-		
+		const Test *runningTest = testContext.CurrentTest();
+		if(runningTest)
+		{
+			// When flying around, all test processing must be handled in the
+			// thread-safe section of Engine. When not flying around (and when no
+			// Engine exists), then it is safe to execute the tests from here.
+			auto mainPanel = gamePanels.Root().get();
+			if(!isPaused && inFlight && menuPanels.IsEmpty() && mainPanel)
+				mainPanel->SetTestContext(testContext);
+			else
+			{
+				// The command will be ignored, since we only support commands
+				// from within the engine at the moment.
+				Command ignored;
+				runningTest->Step(testContext, player, ignored);
+			}
+			// Skip drawing 29 out of every 30 in-flight frames during testing to speedup testing (unless debug mode is set).
+			// We don't skip UI-frames to ensure we test the UI code more.
+			if(inFlight && !debugMode)
+			{
+				skipFrame = (skipFrame + 1) % 30;
+				if(skipFrame)
+					continue;
+			}
+			else
+				skipFrame = 0;
+		}
 		// Caps lock slows the frame rate in debug mode.
 		// Slowing eases in and out over a couple of frames.
-		if((mod & KMOD_CAPS) && inFlight && debugMode)
+		else if((mod & KMOD_CAPS) && inFlight && debugMode)
 		{
 			if(frameRate > 10)
 			{
@@ -311,7 +339,10 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		
 		GameWindow::Step();
 		
-		timer.Wait();
+		// When we perform automated testing, then we run the game by default as quickly as possible.
+		// Except when debug-mode is set.
+		if(!testContext.CurrentTest() || debugMode)
+			timer.Wait();
 		
 		// If the player ended this frame in-game, count the elapsed time as played time.
 		if(menuPanels.IsEmpty())
@@ -351,7 +382,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.9.13" << endl;
+	cerr << "Endless Sky ver. 0.9.15-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
@@ -373,7 +404,7 @@ Conversation LoadConversation()
 			break;
 		}
 	
-	const map<string, string> subs = {
+	map<string, string> subs = {
 		{"<bunks>", "[N]"},
 		{"<cargo>", "[N tons of Commodity]"},
 		{"<commodity>", "[Commodity]"},
@@ -390,7 +421,7 @@ Conversation LoadConversation()
 		{"<system>", "[Star]"},
 		{"<tons>", "[N tons]"}
 	};
-	return conversation.Substitute(subs);
+	return conversation.Instantiate(subs);
 }
 
 

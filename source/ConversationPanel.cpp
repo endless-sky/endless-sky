@@ -202,8 +202,9 @@ void ConversationPanel::Draw()
 bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	// Map popup happens when you press the map key, unless the name text entry
-	// fields are currently active.
-	if(command.Has(Command::MAP) && !choices.empty())
+	// fields are currently active. The name text entry fields are active if
+	// choices is empty and we aren't at the end of the conversation.
+	if(command.Has(Command::MAP) && (!choices.empty() || node < 0))
 		GetUI()->Push(new MapDetailPanel(player, system));
 	if(node < 0)
 	{
@@ -330,16 +331,14 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 		{
 			// Branch nodes change the flow of the conversation based on the
 			// player's condition variables rather than player input.
-			choice = !conversation.Conditions(node).Test(player.Conditions());
+			choice = !conversation.Branch(node).Test(player.Conditions());
 		}
-		else if(conversation.IsApply(node))
+		else if(conversation.IsAction(node))
 		{
-			// Apply nodes alter the player's condition variables but do not
-			// display any conversation text of their own.
-			player.SetReputationConditions();
-			conversation.Conditions(node).Apply(player.Conditions());
-			// Update any altered government reputations.
-			player.CheckReputationConditions();
+			// Action nodes are able to perform various actions, e.g. changing
+			// the player's conditions, granting payments, triggering events,
+			// and more. They are not allowed to spawn additional UI elements.
+			conversation.GetAction(node).Do(player, nullptr);
 		}
 		else
 		{

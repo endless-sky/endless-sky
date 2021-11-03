@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipInfoPanel.h"
 
 #include "text/alignment.hpp"
+#include "CategoryTypes.h"
 #include "Command.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
@@ -110,6 +111,8 @@ void ShipInfoPanel::Draw()
 	
 	// Draw all the different information sections.
 	ClearZones();
+	if(shipIt == player.Ships().end())
+		return;
 	Rectangle cargoBounds = infoPanelUi->GetBox("cargo");
 	DrawShipStats(infoPanelUi->GetBox("stats"));
 	DrawOutfits(infoPanelUi->GetBox("outfits"), cargoBounds);
@@ -337,7 +340,7 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 	table.DrawAt(start);
 	
 	// Draw the outfits in the same order used in the outfitter.
-	for(const string &category : Outfit::CATEGORIES)
+	for(const string &category : GameData::Category(CategoryType::OUTFIT))
 	{
 		auto it = outfits.find(category);
 		if(it == outfits.end())
@@ -423,7 +426,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 		scale = min(scale, (LABEL_DX - LABEL_PAD) / (2. * maxX));
 	
 	// Draw the ship, using the black silhouette swizzle.
-	SpriteShader::Draw(sprite, bounds.Center(), scale, 8);
+	SpriteShader::Draw(sprite, bounds.Center(), scale, 28);
 	OutlineShader::Draw(sprite, bounds.Center(), scale * Point(sprite->Width(), sprite->Height()), Color(.5f));
 	
 	// Figure out how tall each part of the weapon listing will be.
@@ -707,7 +710,8 @@ void ShipInfoPanel::Dump()
 	
 	info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
 	if(loss)
-		Messages::Add("You jettisoned " + Format::Credits(loss) + " credits worth of cargo.");
+		Messages::Add("You jettisoned " + Format::Credits(loss) + " credits worth of cargo."
+			, Messages::Importance::High);
 }
 
 
@@ -723,7 +727,8 @@ void ShipInfoPanel::DumpPlunder(int count)
 		info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
 		
 		if(loss)
-			Messages::Add("You jettisoned " + Format::Credits(loss) + " credits worth of cargo.");
+			Messages::Add("You jettisoned " + Format::Credits(loss) + " credits worth of cargo."
+				, Messages::Importance::High);
 	}
 }
 
@@ -742,7 +747,8 @@ void ShipInfoPanel::DumpCommodities(int count)
 		info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
 		
 		if(loss)
-			Messages::Add("You jettisoned " + Format::Credits(loss) + " credits worth of cargo.");
+			Messages::Add("You jettisoned " + Format::Credits(loss) + " credits worth of cargo."
+				, Messages::Importance::High);
 	}
 }
 
@@ -754,12 +760,9 @@ void ShipInfoPanel::Disown()
 	if(shipIt == player.Ships().end() || shipIt->get() == player.Flagship())
 		return;
 	
-	// Because you can never disown your flagship, the player's ship list will
-	// never become empty as a result of disowning a ship.
 	const Ship *ship = shipIt->get();
-	if(shipIt != player.Ships().begin())
-		--shipIt;
+	// Disown the ship and select a previous ship if available.
+	shipIt = player.DisownShip(ship);
 	
-	player.DisownShip(ship);
 	UpdateInfo();
 }

@@ -14,16 +14,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "Files.h"
+#include "text/Format.h"
 #include "GameData.h"
-#include "MainPanel.h"
-#include "Panel.h"
 #include "Planet.h"
-#include "PlanetPanel.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
 #include "System.h"
+#include "TestContext.h"
 #include "TestData.h"
-#include "UI.h"
 
 #include <SDL2/SDL.h>
 
@@ -42,12 +40,14 @@ namespace{
 		{Test::Status::BROKEN, "broken"},
 		{Test::Status::KNOWN_FAILURE, "known failure"},
 		{Test::Status::MISSING_FEATURE, "missing feature"},
+		{Test::Status::PARTIAL, "partial"},
 	};
 	
 	const map<Test::TestStep::Type, const string> STEPTYPE_TO_TEXT = {
 		{Test::TestStep::Type::APPLY, "apply"},
 		{Test::TestStep::Type::ASSERT, "assert"},
 		{Test::TestStep::Type::BRANCH, "branch"},
+		{Test::TestStep::Type::CALL, "call"},
 		{Test::TestStep::Type::INJECT, "inject"},
 		{Test::TestStep::Type::INPUT, "input"},
 		{Test::TestStep::Type::LABEL, "label"},
@@ -74,6 +74,41 @@ namespace{
 			})
 			+ "\", or \"" + lastValidIt->second + '"';
 	}
+	
+	// Prepare an keyboard input to one of the UIs.
+	bool KeyInputToEvent(const char* keyName, Uint16 modKeys)
+	{
+		// Construct the event to send (from keyboard code and modifiers)
+		SDL_Event event;
+		event.type = SDL_KEYDOWN;
+		event.key.state = SDL_PRESSED;
+		event.key.repeat = 0;
+		event.key.keysym.sym = SDL_GetKeyFromName(keyName);
+		event.key.keysym.mod = modKeys;
+		return SDL_PushEvent(&event);
+	}
+
+	bool SendQuitEvent()
+	{
+		SDL_Event event;
+		event.type = SDL_QUIT;
+		return SDL_PushEvent(&event);
+	}
+
+	string ShipToString(const Ship &ship)
+	{
+		string description = "name: " + ship.Name();
+		const System *system = ship.GetSystem();
+		const Planet *planet = ship.GetPlanet();
+		description += ", system: " + (system ? system->Name() : "<not set>");
+		description += ", planet: " + (planet ? planet->TrueName() : "<not set>");
+		description += ", hull: " + Format::Number(ship.Hull());
+		description += ", shields: " + Format::Number(ship.Shields());
+		description += ", energy: " + Format::Number(ship.Energy());
+		description += ", fuel: " + Format::Number(ship.Fuel());
+		description += ", heat: " + Format::Number(ship.Heat());
+		return description;
+	}
 }
 
 
@@ -81,6 +116,69 @@ namespace{
 Test::TestStep::TestStep(Type stepType) : stepType(stepType)
 {
 };
+
+
+
+void Test::TestStep::LoadInput(const DataNode &node)
+{
+	for(const DataNode &child : node)
+	{
+		if(child.Token(0) == "key")
+		{
+			for(int i = 1; i < child.Size(); ++i)
+				inputKeys.insert(child.Token(i));
+			
+			for(const DataNode &grand: child){
+				if(grand.Token(0) == "shift")
+					modKeys |= KMOD_SHIFT;
+				else if(grand.Token(0) == "alt")
+					modKeys |= KMOD_ALT;
+				else if(grand.Token(0) == "control")
+					modKeys |= KMOD_CTRL;
+				else
+					grand.PrintTrace("Warning: Unknown keyword in \"input\" \"key\" section:");
+			}
+		}
+		else if(child.Token(0) == "pointer")
+		{
+			for(const DataNode &grand: child)
+			{
+				if(grand.Token(0) == "X")
+				{
+					if(grand.Size() < 2)
+						grand.PrintTrace("Warning: Pointer X axis input without coordinate:");
+					else
+						XValue = grand.Value(1);
+				}
+				else if(grand.Token(0) == "Y")
+				{
+					if(grand.Size() < 2)
+						grand.PrintTrace("Warning: Pointer Y axis input without coordinate:");
+					else
+						YValue = grand.Value(1);
+				}
+				else if(grand.Token(0) == "click")
+					for(int i = 1; i < grand.Size(); ++i)
+					{
+						if(grand.Token(i) == "left")
+							clickLeft = true;
+						else if(grand.Token(i) == "right")
+							clickRight = true;
+						else if(grand.Token(i) == "middle")
+							clickMiddle = true;
+						else
+							grand.PrintTrace("Warning: Unknown click/button \"" + grand.Token(i) + "\":");
+					}
+				else
+					grand.PrintTrace("Warning: Unknown keyword in \"input\" \"pointer\" section:");
+			}
+		}
+		else if(child.Token(0) == "command")
+			command.Load(child);
+		else
+			child.PrintTrace("Warning: Unknown keyword in \"input\" section:");
+	}
+}
 
 
 
@@ -128,6 +226,16 @@ void Test::LoadSequence(const DataNode &node)
 					step.jumpOnFalseTarget = child.Token(2);
 				step.conditions.Load(child);
 				break;
+			case TestStep::Type::CALL:
+				if(child.Size() < 2)
+				{
+					status = Status::BROKEN;
+					child.PrintTrace("Error: Invalid use of \"call\" without name of called (sub)test:");
+					return;
+				}
+				else
+					step.nameOrLabel = child.Token(1);
+				break;
 			case TestStep::Type::INJECT:
 				if(child.Size() < 2)
 				{
@@ -137,10 +245,10 @@ void Test::LoadSequence(const DataNode &node)
 				}
 				else
 					step.nameOrLabel = child.Token(1);
+				break;
 			case TestStep::Type::INPUT:
-				child.PrintTrace("Error: Not yet implemented step type input");
-				status = Status::BROKEN;
-				return;
+				step.LoadInput(child);
+				break;
 			case TestStep::Type::LABEL:
 				if(child.Size() < 2)
 					child.PrintTrace("Ignoring empty label");
@@ -158,14 +266,17 @@ void Test::LoadSequence(const DataNode &node)
 				}
 				break;
 			case TestStep::Type::NAVIGATE:
-				if(child.Token(0) == "travel" && child.Size() >= 2)
-					step.travelPlan.push_back(GameData::Systems().Get(child.Token(1)));
-				else if(child.Token(0) == "travel destination" && child.Size() >= 2)
-					step.travelDestination = GameData::Planets().Get(child.Token(1));
-				else
+				for(const DataNode &grand: child)
 				{
-					child.PrintTrace("Error: Invalid or incomplete keywords for navigation");
-					status = Status::BROKEN;
+					if(grand.Token(0) == "travel" && grand.Size() >= 2)
+						step.travelPlan.push_back(GameData::Systems().Get(grand.Token(1)));
+					else if(grand.Token(0) == "travel destination" && grand.Size() >= 2)
+						step.travelDestination = GameData::Planets().Get(grand.Token(1));
+					else
+					{
+						grand.PrintTrace("Error: Invalid or incomplete keywords for navigation");
+						status = Status::BROKEN;
+					}
 				}
 				break;
 			case TestStep::Type::WATCHDOG:
@@ -258,14 +369,8 @@ const string &Test::Name() const
 
 
 
-// The UI panel stacks determine both what the player sees and the state of the game.
-// When the menuPanels are not empty, we are in a menu for something, e.g. preferences,
-// creating a new pilot, or loading or saving a game. Any such menu panels always take
-// precedence over game panels.
-// When the gamePanels stack contains more than one item, we are either on a planet or
-// busy with something, e.g. reading a dialog, hailing a ship/planet, or boarding.
-// Otherwise, the flagship is in space and controllable.
-void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const
+// Check the game status and perform the next test action.
+void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive) const
 {
 	// Tests always wait until the game is fully loaded.
 	if(!GameData::IsLoaded())
@@ -273,19 +378,36 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 		
 	if(status == Status::BROKEN)
 		Fail(context, player, "Test has a broken status.");
+
+	// Track if we need to return to the main gameloop.
+	bool continueGameLoop = false;
 	
-	if(context.stepToRun >= steps.size())
+	// If the step to run is beyond the end of the steps, then we finished
+	// the current test (and step to the step higher in the stack or we are
+	// done testing if we are at toplevel).
+	if(context.stepToRun.back() >= steps.size())
 	{
-		// Done, no failures, exit the game with exitcode success.
-		menuPanels.Quit();
-		return;
+		context.testToRun.pop_back();
+		context.stepToRun.pop_back();
+		
+		if(context.stepToRun.empty())
+		{
+			// Done, no failures, exit the game with exitcode success.
+			SendQuitEvent();
+			return;
+		}
+		else
+			// Step beyond the call statement we just finished.
+			++(context.stepToRun.back());
+		
+		// We changed the active test or are quitting, so don't run the current one.
+		continueGameLoop = true;
 	}
 	
 	// All processing was done just before this step started.
 	context.branchesSinceGameStep.clear();
 	
-	bool continueGameLoop = false;
-	do
+	while(context.stepToRun.back() < steps.size() && !continueGameLoop)
 	{
 		// Fail if we encounter a watchdog timeout
 		if(context.watchdog == 1)
@@ -293,17 +415,17 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 		else if(context.watchdog > 1)
 			--(context.watchdog);
 		
-		const TestStep &stepToRun = steps[context.stepToRun];
+		const TestStep &stepToRun = steps[context.stepToRun.back()];
 		switch(stepToRun.stepType)
 		{
 			case TestStep::Type::APPLY:
 				stepToRun.conditions.Apply(player.Conditions());
-				++(context.stepToRun);
+				++(context.stepToRun.back());
 				break;
 			case TestStep::Type::ASSERT:
 				if(!stepToRun.conditions.Test(player.Conditions()))
 					Fail(context, player, "asserted false");
-				++(context.stepToRun);
+				++(context.stepToRun.back());
 				break;
 			case TestStep::Type::BRANCH:
 				// If we encounter a branch entry twice, then resume the gameloop before the second encounter.
@@ -314,13 +436,25 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 					continueGameLoop = true;
 					break;
 				}
+				context.branchesSinceGameStep.emplace(context.stepToRun);
 				if(stepToRun.conditions.Test(player.Conditions()))
-					context.stepToRun = jumpTable.find(stepToRun.jumpOnTrueTarget)->second;
+					context.stepToRun.back() = jumpTable.find(stepToRun.jumpOnTrueTarget)->second;
 				else if(!stepToRun.jumpOnFalseTarget.empty())
-					context.stepToRun = jumpTable.find(stepToRun.jumpOnFalseTarget)->second;
+					context.stepToRun.back() = jumpTable.find(stepToRun.jumpOnFalseTarget)->second;
 				else
-					++(context.stepToRun);
-				context.branchesSinceGameStep.insert(context.stepToRun);
+					++(context.stepToRun.back());
+				break;
+			case TestStep::Type::CALL:
+				{
+					auto calledTest = GameData::Tests().Find(stepToRun.nameOrLabel);
+					if(nullptr == calledTest)
+						Fail(context, player, "Calling non-existing test \"" + stepToRun.nameOrLabel + "\"");
+					// Put the called test on the stack and start it from 0.
+					context.testToRun.push_back(calledTest);
+					context.stepToRun.push_back(0);
+					// Break the loop to switch to the test just pushed.
+				}
+				continueGameLoop = true;
 				break;
 			case TestStep::Type::INJECT:
 				{
@@ -329,33 +463,42 @@ void Test::Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &pl
 					if(!testData->Inject())
 						Fail(context, player, "injecting data failed");
 				}
-				++(context.stepToRun);
+				++(context.stepToRun.back());
 				break;
 			case TestStep::Type::INPUT:
-				// Give the relevant inputs here.
-				Fail(context, player, "Input not implemented");
+				if(stepToRun.command)
+					commandToGive |= stepToRun.command;
+				if(!stepToRun.inputKeys.empty())
+				{
+					// TODO: handle keys also in-flight (as single inputset)
+					// TODO: combine keys with mouse-inputs
+					for(const string &key : stepToRun.inputKeys)
+						if(!KeyInputToEvent(key.c_str(), stepToRun.modKeys))
+							Fail(context, player, "key input towards SDL eventqueue failed");
+				}
+				// TODO: handle mouse inputs
 				// Make sure that we run a gameloop to process the input.
 				continueGameLoop = true;
-				++(context.stepToRun);
+				++(context.stepToRun.back());
 				break;
 			case TestStep::Type::LABEL:
-				++(context.stepToRun);
+				++(context.stepToRun.back());
 				break;
 			case TestStep::Type::NAVIGATE:
 				player.TravelPlan().clear();
 				player.TravelPlan() = stepToRun.travelPlan;
 				player.SetTravelDestination(stepToRun.travelDestination);
+				++(context.stepToRun.back());
 				break;
 			case TestStep::Type::WATCHDOG:
 				context.watchdog = stepToRun.watchdog;
-				++(context.stepToRun);
+				++(context.stepToRun.back());
 				break;
 			default:
 				Fail(context, player, "Unknown step type");
 				break;
 		}
 	}
-	while(context.stepToRun < steps.size() && !continueGameLoop);
 }
 
 
@@ -368,15 +511,39 @@ const string &Test::StatusText() const
 
 
 // Fail the test using the given message as reason.
-void Test::Fail(const Context &context, const PlayerInfo &player, const string &testFailReason) const
+void Test::Fail(const TestContext &context, const PlayerInfo &player, const string &testFailReason) const
 {
 	string message = "Test failed";
-	if(context.stepToRun < steps.size())
-		message += " at step " + to_string(1 + context.stepToRun) + " (" +
-			STEPTYPE_TO_TEXT.at(steps[context.stepToRun].stepType) + ")";
+	if(!context.stepToRun.empty() && context.stepToRun.back() < steps.size())
+		message += " at step " + to_string(1 + context.stepToRun.back()) + " (" +
+			STEPTYPE_TO_TEXT.at(steps[context.stepToRun.back()].stepType) + ")";
 	
 	if(!testFailReason.empty())
 		message += ": " + testFailReason;
+
+	// Print some debug information about the flagship and the first 5 escorts.
+	const Ship *flagship = player.Flagship();
+	if(!flagship)
+		Files::LogError("No flagship at the moment of failure.");
+	else
+	{
+		string shipsOverview = "flagship " + ShipToString(*flagship) + "\n";
+		int escorts = 0;
+		int escortsNotPrinted = 0;
+		for(auto &&ptr : flagship->GetEscorts())
+		{
+			auto escort = ptr.lock();
+			if(!escort)
+				continue;
+			if(++escorts <= 5)
+				shipsOverview += "escort " + ShipToString(*escort) + "\n";
+			else
+				++escortsNotPrinted;
+		}
+		if(escortsNotPrinted > 0)
+			shipsOverview += "(plus " + to_string(escortsNotPrinted) + " additional escorts)\n";
+		Files::LogError(shipsOverview);
+	}
 	
 	// Only log the conditions that start with test; we don't want to overload the terminal or errorlog.
 	// Future versions of the test-framework could also print all conditions that are used in the test.

@@ -149,3 +149,10 @@ double StellarObject::Distance() const
 {
 	return distance;
 }
+
+
+
+const vector<RandomEvent<Hazard>> &StellarObject::Hazards() const
+{
+	return hazards;
+}

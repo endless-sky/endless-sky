@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		03624EC39EE09C7A786B4A3D /* CoreStartData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DF34095B64BC64F666ECF5F /* CoreStartData.cpp */; };
+		03DC4253AA8390FE0A8FB4EA /* MaskManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 499B4DA7A9C7351120660643 /* MaskManager.cpp */; };
+		072599D126A8CB2F007EC229 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072599CC26A8C942007EC229 /* SDL2.framework */; };
+		072599D426A8CD5D007EC229 /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 072599CC26A8C942007EC229 /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		16AD4CACA629E8026777EA00 /* truncate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CA44855BD0AFF45DCAEEA5D /* truncate.hpp */; settings = {ATTRIBUTES = (Project, ); }; };
-		4C2DEF56201B8FAE0062315E /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C2DEF55201B8FAD0062315E /* libSDL2-2.0.0.dylib */; };
-		4C2DEF57201B90310062315E /* libSDL2-2.0.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4C2DEF55201B8FAD0062315E /* libSDL2-2.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5155CD731DBB9FF900EF090B /* Depreciation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5155CD711DBB9FF900EF090B /* Depreciation.cpp */; };
 		5AB644C9B37C15C989A9DBE9 /* DisplayText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E1E458DB603BF979429117C /* DisplayText.cpp */; };
 		6245F8251D301C7400A7A094 /* Body.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8231D301C7400A7A094 /* Body.cpp */; };
@@ -20,15 +21,17 @@
 		62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62C311181CE172D000409D91 /* Flotsam.cpp */; };
 		6A5716331E25BE6F00585EB2 /* CollisionSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */; };
 		6EC347E6A79BA5602BA4D1EA /* StartConditionsPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */; };
+		87D6407E8B579EB502BFBCE5 /* GameAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F0F4096A9008E2D8F3304BB /* GameAction.cpp */; };
+		90CF46CE84794C6186FC6CE2 /* EsUuid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 950742538F8CECF5D4168FBC /* EsUuid.cpp */; };
 		94DF4B5B8619F6A3715D6168 /* Weather.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E8A4C648B242742B22A34FA /* Weather.cpp */; };
 		9E1F4BF78F9E1FC4C96F76B5 /* Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E8047A8987DD8EC99FF8E2E /* Test.cpp */; };
 		A90633FF1EE602FD000DA6C0 /* LogbookPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90633FD1EE602FD000DA6C0 /* LogbookPanel.cpp */; };
 		A90C15D91D5BD55700708F3A /* Minable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90C15D71D5BD55700708F3A /* Minable.cpp */; };
 		A90C15DC1D5BD56800708F3A /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90C15DA1D5BD56800708F3A /* Rectangle.cpp */; };
 		A93931FB1988135200C2A87B /* libturbojpeg.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
-		A93931FD1988136B00C2A87B /* libpng16.16.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng16.16.dylib */; };
-		A93931FE1988136E00C2A87B /* libturbojpeg.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		A93931FF1988136F00C2A87B /* libpng16.16.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng16.16.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A93931FD1988136B00C2A87B /* libpng16.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng16.dylib */; };
+		A93931FE1988136E00C2A87B /* libturbojpeg.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
+		A93931FF1988136F00C2A87B /* libpng16.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng16.dylib */; };
 		A94408A51982F3E600610427 /* endless-sky.iconset in Resources */ = {isa = PBXBuildFile; fileRef = A94408A41982F3E600610427 /* endless-sky.iconset */; };
 		A966A5AB1B964E6300DFF69C /* Person.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A966A5A91B964E6300DFF69C /* Person.cpp */; };
 		A96863A01AE6FD0E004FE1FE /* Account.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862CD1AE6FD0A004FE1FE /* Account.cpp */; };
@@ -146,7 +149,7 @@
 		A9B99D051C616AF200BE7C2E /* MapSalesPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9B99D031C616AF200BE7C2E /* MapSalesPanel.cpp */; };
 		A9BDFB541E00B8AA00A6B27E /* Music.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9BDFB521E00B8AA00A6B27E /* Music.cpp */; };
 		A9BDFB561E00B94700A6B27E /* libmad.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A9BDFB551E00B94700A6B27E /* libmad.0.dylib */; };
-		A9BDFB571E00BD6A00A6B27E /* libmad.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9BDFB551E00B94700A6B27E /* libmad.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A9BDFB571E00BD6A00A6B27E /* libmad.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9BDFB551E00B94700A6B27E /* libmad.0.dylib */; };
 		A9C70E101C0E5B51000B3D14 /* File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C70E0E1C0E5B51000B3D14 /* File.cpp */; };
 		A9CC526D1950C9F6004E4E22 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC526C1950C9F6004E4E22 /* Cocoa.framework */; };
 		A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D40D19195DFAA60086EE52 /* OpenGL.framework */; };
@@ -161,8 +164,19 @@
 		DFAAE2A61FD4A25C0072C0A8 /* BatchDrawList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFAAE2A21FD4A25C0072C0A8 /* BatchDrawList.cpp */; };
 		DFAAE2A71FD4A25C0072C0A8 /* BatchShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFAAE2A41FD4A25C0072C0A8 /* BatchShader.cpp */; };
 		DFAAE2AA1FD4A27B0072C0A8 /* ImageSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFAAE2A81FD4A27B0072C0A8 /* ImageSet.cpp */; };
+		ED5E4F2ABA89E9DE00603E69 /* TestContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3134EC4B1CCA5546A10C3EF /* TestContext.cpp */; };
 		F55745BDBC50E15DCEB2ED5B /* layout.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF4321AF819E944EC02FB9 /* layout.hpp */; settings = {ATTRIBUTES = (Project, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		072599CE26A8CADA007EC229 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9CC52611950C9F6004E4E22 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 072599BD26A8C67D007EC229;
+			remoteInfo = SDL2;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		A93931ED19880ECA00C2A87B /* CopyFiles */ = {
@@ -171,10 +185,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4C2DEF57201B90310062315E /* libSDL2-2.0.0.dylib in CopyFiles */,
 				A9BDFB571E00BD6A00A6B27E /* libmad.0.dylib in CopyFiles */,
-				A93931FF1988136F00C2A87B /* libpng16.16.dylib in CopyFiles */,
+				A93931FF1988136F00C2A87B /* libpng16.dylib in CopyFiles */,
 				A93931FE1988136E00C2A87B /* libturbojpeg.0.dylib in CopyFiles */,
+				072599D426A8CD5D007EC229 /* SDL2.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,14 +196,18 @@
 
 /* Begin PBXFileReference section */
 		02D34A71AE3BC4C93FC6865B /* TestData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestData.cpp; path = source/TestData.cpp; sourceTree = "<group>"; };
+		072599BE26A8C67D007EC229 /* SDL2.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = SDL2.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		072599CC26A8C942007EC229 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = build/SDL2.framework; sourceTree = "<group>"; };
+		0C90483BB01ECD0E3E8DDA44 /* WeightedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeightedList.h; path = source/WeightedList.h; sourceTree = "<group>"; };
 		0DF34095B64BC64F666ECF5F /* CoreStartData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CoreStartData.cpp; path = source/CoreStartData.cpp; sourceTree = "<group>"; };
 		11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StartConditionsPanel.cpp; path = source/StartConditionsPanel.cpp; sourceTree = "<group>"; };
 		13B643F6BEC24349F9BC9F42 /* alignment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = alignment.hpp; path = source/text/alignment.hpp; sourceTree = "<group>"; };
+		191E4107A4F1CBBC2526A0E9 /* MaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaskManager.h; path = source/MaskManager.h; sourceTree = "<group>"; };
 		2CA44855BD0AFF45DCAEEA5D /* truncate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = truncate.hpp; path = source/text/truncate.hpp; sourceTree = "<group>"; };
 		2E1E458DB603BF979429117C /* DisplayText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DisplayText.cpp; path = source/text/DisplayText.cpp; sourceTree = "<group>"; };
 		2E644A108BCD762A2A1A899C /* Hazard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hazard.h; path = source/Hazard.h; sourceTree = "<group>"; };
 		2E8047A8987DD8EC99FF8E2E /* Test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Test.cpp; path = source/Test.cpp; sourceTree = "<group>"; };
-		4C2DEF55201B8FAD0062315E /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "/usr/local/lib/libSDL2-2.0.0.dylib"; sourceTree = "<absolute>"; };
+		499B4DA7A9C7351120660643 /* MaskManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MaskManager.cpp; path = source/MaskManager.cpp; sourceTree = "<group>"; };
 		5155CD711DBB9FF900EF090B /* Depreciation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Depreciation.cpp; path = source/Depreciation.cpp; sourceTree = "<group>"; };
 		5155CD721DBB9FF900EF090B /* Depreciation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Depreciation.h; path = source/Depreciation.h; sourceTree = "<group>"; };
 		5CE3475B85CE8C48D98664B7 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Test.h; path = source/Test.h; sourceTree = "<group>"; };
@@ -203,20 +221,28 @@
 		62A405B91D47DA4D0054F6A0 /* FogShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FogShader.h; path = source/FogShader.h; sourceTree = "<group>"; };
 		62C311181CE172D000409D91 /* Flotsam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Flotsam.cpp; path = source/Flotsam.cpp; sourceTree = "<group>"; };
 		62C311191CE172D000409D91 /* Flotsam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flotsam.h; path = source/Flotsam.h; sourceTree = "<group>"; };
+		6833448DAEB9861D28445DD5 /* GameAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameAction.h; path = source/GameAction.h; sourceTree = "<group>"; };
 		6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollisionSet.cpp; path = source/CollisionSet.cpp; sourceTree = "<group>"; };
 		6A5716321E25BE6F00585EB2 /* CollisionSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollisionSet.h; path = source/CollisionSet.h; sourceTree = "<group>"; };
+		6DCF4CF2972F569E6DBB8578 /* CategoryTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryTypes.h; path = source/CategoryTypes.h; sourceTree = "<group>"; };
+		86AB4B6E9C4C0490AE7F029B /* EsUuid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EsUuid.h; path = source/EsUuid.h; sourceTree = "<group>"; };
 		8E8A4C648B242742B22A34FA /* Weather.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Weather.cpp; path = source/Weather.cpp; sourceTree = "<group>"; };
+		950742538F8CECF5D4168FBC /* EsUuid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EsUuid.cpp; path = source/EsUuid.cpp; sourceTree = "<group>"; };
 		98104FFDA18E40F4A712A8BE /* CoreStartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreStartData.h; path = source/CoreStartData.h; sourceTree = "<group>"; };
 		9BCF4321AF819E944EC02FB9 /* layout.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = layout.hpp; path = source/text/layout.hpp; sourceTree = "<group>"; };
 		9DA14712A9C68E00FBFD9C72 /* TestData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestData.h; path = source/TestData.h; sourceTree = "<group>"; };
+		9F0F4096A9008E2D8F3304BB /* GameAction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameAction.cpp; path = source/GameAction.cpp; sourceTree = "<group>"; };
+		A00D4207B8915B5E7E9B4619 /* RandomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RandomEvent.h; path = source/RandomEvent.h; sourceTree = "<group>"; };
+		A2A948EE929342C8F84C65D1 /* TestContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestContext.h; path = source/TestContext.h; sourceTree = "<group>"; };
+		A3134EC4B1CCA5546A10C3EF /* TestContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestContext.cpp; path = source/TestContext.cpp; sourceTree = "<group>"; };
 		A90633FD1EE602FD000DA6C0 /* LogbookPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LogbookPanel.cpp; path = source/LogbookPanel.cpp; sourceTree = "<group>"; };
 		A90633FE1EE602FD000DA6C0 /* LogbookPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogbookPanel.h; path = source/LogbookPanel.h; sourceTree = "<group>"; };
 		A90C15D71D5BD55700708F3A /* Minable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Minable.cpp; path = source/Minable.cpp; sourceTree = "<group>"; };
 		A90C15D81D5BD55700708F3A /* Minable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Minable.h; path = source/Minable.h; sourceTree = "<group>"; };
 		A90C15DA1D5BD56800708F3A /* Rectangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Rectangle.cpp; path = source/Rectangle.cpp; sourceTree = "<group>"; };
 		A90C15DB1D5BD56800708F3A /* Rectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Rectangle.h; path = source/Rectangle.h; sourceTree = "<group>"; };
-		A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libturbojpeg.0.dylib; path = "/usr/local/opt/libjpeg-turbo/lib/libturbojpeg.0.dylib"; sourceTree = "<absolute>"; };
-		A93931FC1988136B00C2A87B /* libpng16.16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng16.16.dylib; path = /usr/local/lib/libpng16.16.dylib; sourceTree = "<absolute>"; };
+		A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libturbojpeg.0.dylib; path = "/usr/local/opt/jpeg-turbo/lib/libturbojpeg.0.dylib"; sourceTree = "<absolute>"; };
+		A93931FC1988136B00C2A87B /* libpng16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng16.dylib; path = /usr/local/opt/libpng/lib/libpng16.dylib; sourceTree = "<absolute>"; };
 		A94408A41982F3E600610427 /* endless-sky.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = "endless-sky.iconset"; path = "icons/endless-sky.iconset"; sourceTree = "<group>"; };
 		A966A5A91B964E6300DFF69C /* Person.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Person.cpp; path = source/Person.cpp; sourceTree = "<group>"; };
 		A966A5AA1B964E6300DFF69C /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Person.h; path = source/Person.h; sourceTree = "<group>"; };
@@ -446,7 +472,7 @@
 		A9B99D041C616AF200BE7C2E /* MapSalesPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapSalesPanel.h; path = source/MapSalesPanel.h; sourceTree = "<group>"; };
 		A9BDFB521E00B8AA00A6B27E /* Music.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Music.cpp; path = source/Music.cpp; sourceTree = "<group>"; };
 		A9BDFB531E00B8AA00A6B27E /* Music.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Music.h; path = source/Music.h; sourceTree = "<group>"; };
-		A9BDFB551E00B94700A6B27E /* libmad.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmad.0.dylib; path = /usr/local/lib/libmad.0.dylib; sourceTree = "<absolute>"; };
+		A9BDFB551E00B94700A6B27E /* libmad.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmad.0.dylib; path = /usr/local/opt/libmad/lib/libmad.0.dylib; sourceTree = "<absolute>"; };
 		A9C70E0E1C0E5B51000B3D14 /* File.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = File.cpp; path = source/File.cpp; sourceTree = "<group>"; };
 		A9C70E0F1C0E5B51000B3D14 /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = File.h; path = source/File.h; sourceTree = "<group>"; };
 		A9CC52691950C9F6004E4E22 /* Endless Sky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Endless Sky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -483,11 +509,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9BDFB561E00B94700A6B27E /* libmad.0.dylib in Frameworks */,
-				A9A5297619996CC3002D7C35 /* OpenAL.framework in Frameworks */,
-				4C2DEF56201B8FAE0062315E /* libSDL2-2.0.0.dylib in Frameworks */,
-				A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */,
+				A93931FD1988136B00C2A87B /* libpng16.dylib in Frameworks */,
 				A93931FB1988135200C2A87B /* libturbojpeg.0.dylib in Frameworks */,
-				A93931FD1988136B00C2A87B /* libpng16.16.dylib in Frameworks */,
+				072599D126A8CB2F007EC229 /* SDL2.framework in Frameworks */,
+				A9A5297619996CC3002D7C35 /* OpenAL.framework in Frameworks */,
+				A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */,
 				A9CC526D1950C9F6004E4E22 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -772,6 +798,17 @@
 				F434470BA8F3DE8B46D475C5 /* StartConditionsPanel.h */,
 				0DF34095B64BC64F666ECF5F /* CoreStartData.cpp */,
 				98104FFDA18E40F4A712A8BE /* CoreStartData.h */,
+				6DCF4CF2972F569E6DBB8578 /* CategoryTypes.h */,
+				0C90483BB01ECD0E3E8DDA44 /* WeightedList.h */,
+				950742538F8CECF5D4168FBC /* EsUuid.cpp */,
+				86AB4B6E9C4C0490AE7F029B /* EsUuid.h */,
+				499B4DA7A9C7351120660643 /* MaskManager.cpp */,
+				191E4107A4F1CBBC2526A0E9 /* MaskManager.h */,
+				A00D4207B8915B5E7E9B4619 /* RandomEvent.h */,
+				9F0F4096A9008E2D8F3304BB /* GameAction.cpp */,
+				6833448DAEB9861D28445DD5 /* GameAction.h */,
+				A2A948EE929342C8F84C65D1 /* TestContext.h */,
+				A3134EC4B1CCA5546A10C3EF /* TestContext.cpp */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -797,6 +834,7 @@
 			isa = PBXGroup;
 			children = (
 				A9CC52691950C9F6004E4E22 /* Endless Sky.app */,
+				072599BE26A8C67D007EC229 /* SDL2.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -804,11 +842,11 @@
 		A9CC526B1950C9F6004E4E22 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A9A5297519996CC3002D7C35 /* OpenAL.framework */,
-				A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */,
-				A93931FC1988136B00C2A87B /* libpng16.16.dylib */,
 				A9BDFB551E00B94700A6B27E /* libmad.0.dylib */,
-				4C2DEF55201B8FAD0062315E /* libSDL2-2.0.0.dylib */,
+				A93931FC1988136B00C2A87B /* libpng16.dylib */,
+				A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */,
+				072599CC26A8C942007EC229 /* SDL2.framework */,
+				A9A5297519996CC3002D7C35 /* OpenAL.framework */,
 				A9D40D19195DFAA60086EE52 /* OpenGL.framework */,
 				A9CC526C1950C9F6004E4E22 /* Cocoa.framework */,
 				A9CC526E1950C9F6004E4E22 /* Other Frameworks */,
@@ -859,19 +897,36 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		072599BD26A8C67D007EC229 /* SDL2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 072599C826A8C67D007EC229 /* Build configuration list for PBXNativeTarget "SDL2" */;
+			buildPhases = (
+				072599CB26A8C7AB007EC229 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SDL2;
+			productName = SDL2;
+			productReference = 072599BE26A8C67D007EC229 /* SDL2.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
 		A9CC52681950C9F6004E4E22 /* EndlessSky */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A9CC529A1950C9F6004E4E22 /* Build configuration list for PBXNativeTarget "EndlessSky" */;
 			buildPhases = (
+				A93931ED19880ECA00C2A87B /* CopyFiles */,
+				072599A726A0CDC9007EC229 /* ShellScript */,
 				A9CC52651950C9F6004E4E22 /* Sources */,
 				A9CC52661950C9F6004E4E22 /* Frameworks */,
 				A9CC52671950C9F6004E4E22 /* Resources */,
-				A93931ED19880ECA00C2A87B /* CopyFiles */,
 				179C4966BD83E1B6FC2B24A0 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				072599CF26A8CADA007EC229 /* PBXTargetDependency */,
 			);
 			name = EndlessSky;
 			productName = EndlessSky;
@@ -885,6 +940,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0920;
+				TargetAttributes = {
+					072599BD26A8C67D007EC229 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = A9CC52641950C9F6004E4E22 /* Build configuration list for PBXProject "EndlessSky" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -899,6 +960,7 @@
 			projectRoot = "";
 			targets = (
 				A9CC52681950C9F6004E4E22 /* EndlessSky */,
+				072599BD26A8C67D007EC229 /* SDL2 */,
 			);
 		};
 /* End PBXProject section */
@@ -920,6 +982,38 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		072599A726A0CDC9007EC229 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/utils/set_dylibs_rpath.sh\"";
+		};
+		072599CB26A8C7AB007EC229 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TEMP_ROOT)/sdl2.dmg",
+			);
+			outputPaths = (
+				"$(TEMP_ROOT)/SDL2.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/utils/fetch_sdl2_framework.sh\"";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A9CC52651950C9F6004E4E22 /* Sources */ = {
@@ -1059,12 +1153,74 @@
 				94DF4B5B8619F6A3715D6168 /* Weather.cpp in Sources */,
 				6EC347E6A79BA5602BA4D1EA /* StartConditionsPanel.cpp in Sources */,
 				03624EC39EE09C7A786B4A3D /* CoreStartData.cpp in Sources */,
+				90CF46CE84794C6186FC6CE2 /* EsUuid.cpp in Sources */,
+				03DC4253AA8390FE0A8FB4EA /* MaskManager.cpp in Sources */,
+				87D6407E8B579EB502BFBCE5 /* GameAction.cpp in Sources */,
+				ED5E4F2ABA89E9DE00603E69 /* TestContext.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		072599CF26A8CADA007EC229 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 072599BD26A8C67D007EC229 /* SDL2 */;
+			targetProxy = 072599CE26A8CADA007EC229 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		072599C626A8C67D007EC229 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = "";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_STYLE = all;
+			};
+			name = Debug;
+		};
+		072599C726A8C67D007EC229 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				COPY_PHASE_STRIP = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = "";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_STYLE = all;
+			};
+			name = Release;
+		};
 		A9CC52981950C9F6004E4E22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1167,20 +1323,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"/usr/local/opt/libjpeg-turbo/include",
+					"/usr/local/opt/jpeg-turbo/include",
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "XCode/EndlessSky-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/usr/local/opt/libjpeg-turbo/lib",
-					/usr/local/lib,
+					"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "${PRODUCT_NAME:rfc1034identifier}";
@@ -1193,20 +1352,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"/usr/local/opt/libjpeg-turbo/include",
+					"/usr/local/opt/jpeg-turbo/include",
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "XCode/EndlessSky-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/usr/local/opt/libjpeg-turbo/lib",
-					/usr/local/lib,
+					"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "${PRODUCT_NAME:rfc1034identifier}";
@@ -1218,6 +1380,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		072599C826A8C67D007EC229 /* Build configuration list for PBXNativeTarget "SDL2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				072599C626A8C67D007EC229 /* Debug */,
+				072599C726A8C67D007EC229 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A9CC52641950C9F6004E4E22 /* Build configuration list for PBXProject "EndlessSky" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

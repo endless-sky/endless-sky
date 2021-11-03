@@ -1,4 +1,6 @@
 #!/bin/bash
+set -eo pipefail
+
 if [ -z "$1" ]; then
   echo "You must supply a path to the binary as an argument, e.g."
   echo "~$ ./tests/test_parse.sh ./endless-sky"
@@ -20,20 +22,16 @@ if [ -f "$ERR_FILE" ]; then
 fi
 
 # Parse the game data files.
-"$1" -p 2>"$RUNTIME_ERRS"
-EXIT_CODE=$?
-
-# If the game executed, then assert there is no 'errors.txt' file,
-# or that it is an empty file.
-if [ $EXIT_CODE -ne 0 ]; then
+if ! "$1" -p 2>"$RUNTIME_ERRS"; then
+  EXIT_CODE=$?
   echo "Error executing file/command '$1':"
   cat "$RUNTIME_ERRS"
   rm -f "$RUNTIME_ERRS"
   exit $EXIT_CODE
+# Assert there is no 'errors.txt' file, or that it is an empty file.
 elif [ -f "$ERR_FILE" ] && [ -s "$ERR_FILE" ]; then
   cat "$ERR_FILE"
   echo && echo "Assertion failed: content written to $ERR_FILE" && echo
   exit 1
-else
-  echo "Parse test completed successfully."
 fi
+echo "Parse test completed successfully."

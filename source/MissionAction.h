@@ -13,34 +13,28 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef MISSION_ACTION_H_
 #define MISSION_ACTION_H_
 
-#include "ConditionSet.h"
 #include "Conversation.h"
+#include "GameAction.h"
 #include "LocationFilter.h"
 #include "Phrase.h"
 
-#include <cstdint>
 #include <map>
 #include <memory>
-#include <set>
 #include <string>
-#include <utility>
-#include <vector>
 
 class DataNode;
 class DataWriter;
-class GameEvent;
 class Outfit;
 class PlayerInfo;
-class Ship;
 class System;
 class UI;
 
 
 
-// A MissionAction represents what happens when a mission reaches a certain
-// milestone: offered, accepted, declined, completed or failed. Actions might
-// include showing a dialog or conversation, giving the player payment or a
-// special item, modifying condition flags, or queueing an event to occur.
+// A MissionAction represents what happens when a Mission reaches a certain
+// milestone, including offered, accepted, declined, completed, or failed.
+// In addition to performing a GameAction, a MissionAction can gate the task on
+// the ownership of specific outfits and also display dialogs or conversations.
 class MissionAction {
 public:
 	MissionAction() = default;
@@ -53,8 +47,6 @@ public:
 	void Save(DataWriter &out) const;
 	// Determine if this MissionAction references content that is not fully defined.
 	std::string Validate() const;
-	
-	int Payment() const;
 	
 	const std::string &DialogText() const;
 	
@@ -76,9 +68,6 @@ private:
 	std::string system;
 	LocationFilter systemFilter;
 	
-	std::string logText;
-	std::map<std::string, std::map<std::string, std::string>> specialLogText;
-	
 	std::string dialogText;
 	const Phrase *stockDialogPhrase = nullptr;
 	Phrase dialogPhrase;
@@ -86,17 +75,11 @@ private:
 	const Conversation *stockConversation = nullptr;
 	Conversation conversation;
 	
-	std::map<const GameEvent *, std::pair<int, int>> events;
-	std::vector<std::pair<const Ship *, std::string>> giftShips;
-	std::map<const Outfit *, int> giftOutfits;
+	// Outfits that are required to be owned (or not) for this action to be performable.
 	std::map<const Outfit *, int> requiredOutfits;
-	int64_t payment = 0;
-	int64_t paymentMultiplier = 0;
 	
-	// When this action is performed, the missions with these names fail.
-	std::set<std::string> fail;
-	
-	ConditionSet conditions;
+	// Tasks this mission action performs, such as modifying accounts, inventory, or conditions.
+	GameAction action;
 };
 
 

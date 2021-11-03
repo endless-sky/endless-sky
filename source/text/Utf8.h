@@ -17,6 +17,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 namespace Utf8 {
+#if defined(_WIN32)
+	std::wstring ToUTF16(const std::string &str, bool isPath = true);
+	std::string ToUTF8(const wchar_t *str);
+#endif
+	
 	// Skip to the next unicode code point after pos in utf8.
 	// Return string::npos when there are no more code points.
 	std::size_t NextCodePoint(const std::string &str, std::size_t pos);

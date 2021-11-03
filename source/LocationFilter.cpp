@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "LocationFilter.h"
 
+#include "CategoryTypes.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "DistanceMap.h"
@@ -293,8 +294,9 @@ bool LocationFilter::IsValid() const
 	if(!shipCategory.empty())
 	{
 		// At least one desired category must be valid.
-		auto categories = set<string>(Ship::CATEGORIES.begin(), Ship::CATEGORIES.end());
-		if(!SetsIntersect(shipCategory, categories))
+		const auto &shipCategories = GameData::Category(CategoryType::SHIP);
+		auto categoriesSet = set<string>(shipCategories.begin(), shipCategories.end());
+		if(!SetsIntersect(shipCategory, categoriesSet))
 			return false;
 	}
 	
