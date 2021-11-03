@@ -2090,17 +2090,34 @@ mission "Terminus exploration"
 		dialog `You've returned to <planet>, but you don't have the drone's data. Go to Terminus and board the science drone to retrieve the data.`
 	on complete
 		payment 90000
-		log `Recovered data from a derelict science drone for a team of scientists, who were studying a strange red anomaly in the Terminus system. They suggest that it may be a partially collapsed wormhole.`
+		log `Recovered data from a derelict science drone for a team of scientists who were studying a strange red anomaly in the Terminus system. The lead scientist on the team, Ivan, suggested that it may be a partially collapsed wormhole.`
 		conversation
 			`The scientist is overjoyed that you were able to retrieve the data from the drone. Almost in tears, he says, "We were worried that all our planning and fundraising had been for nothing. These measurements will help us to understand that spatial anomaly far better than we do right now." He hands you a credit chip worth <payment>. "And by the way, my name is Ivan. I have an office near the spaceport on Valhalla that you can visit if ever you're wanting to help, or just curious."`
 			choice
 				`	"Can you tell me more about this anomaly you are studying?"`
 				`	"I'm glad I was able to help."`
 					decline
-			`	Ivan says, "It seems to be a partially collapsed wormhole, something that once linked this part of the galaxy to somewhere else. But, we haven't succeeded in sending anything through it. Maybe the wormhole is no longer passable. Or maybe there's some way to make it open more fully. Or maybe only ships that are specially attuned to its energy signature can travel through it. We don't even know if the wormhole is a natural phenomenon or some sort of alien artifact. Honestly, we aren't even sure if it's even a wormhole at all. We'll need to study the data you've recovered to understand it further."`
-			`	You thank him for the information, and return to your ship.`
-				decline
-	
+			`	Ivan says, "It seems to be a partially collapsed wormhole, something that once linked this part of the galaxy to somewhere else. But, we haven't succeeded in sending anything through it. Maybe the wormhole is no longer passable. Or maybe there's some way to make it open more fully. Or maybe only ships that are specially attuned to its energy signature can travel through it. We don't even know if the wormhole is a natural phenomenon or some sort of alien artifact. Honestly, we aren't sure if it's even a wormhole at all. We'll need to study the data you've recovered to understand it further."`
+			choice
+				`	"A wormhole? Those actually exist?"`
+				`	"What makes you think it's a wormhole? Have you found anomalies similar to this before?"`
+					goto similar
+			`	"Well of course. The existence of wormholes has been proven for some time now. The Deep managed to create wormholes on the atomic scale before the Republic was even founded." He lowers his voice. "But I suspect that you're asking about wormholes large enough for a ship to pass through."`
+			label similar
+			`	Ivan looks around the spaceport, as if checking to see if he's being watched. He then looks back to you and motions for you to lean in. Whispering, he says, "The Republic doesn't like when people share this information, but there is one stable wormhole just beyond the Republic's borders."`
+			branch skip
+				not "First Contact: Hai: offered"
+			action
+				log `Ivan said that although he's not sure if the anomaly is a wormhole or not, it does bear striking resemblance to the wormhole that leads to the Hai.`
+			`	"You mean the wormhole to the Hai?" you ask.`
+			`	"Interesting, you know of it," Ivan responds. "The anomaly in Terminus bearings striking resemblence to it in some of our readings, although it is very different in others."`
+				goto end
+			label skip
+			action
+				log `Ivan said that although he's not sure if the anomaly is a wormhole or not, there is a wormhole "just beyond the Republic's borders" that the Republic doesn't like people sharing information on.`
+			label end
+			`	He looks around again and stands up straight. He then raises his voice, almost projecting it for anyone around you to hear. "But of course the Deep never figured out how to make wormholes big enough for anything useful, otherwise we wouldn't even need hyperdrives," he says with a wink. "Anyway, thank you again for helping me. Hopefully we meet again in the future."`
+
 ship "Science Drone"
 	sprite "ship/science drone"
 	attributes
