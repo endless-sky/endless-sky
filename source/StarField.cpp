@@ -42,6 +42,9 @@ namespace {
 	const size_t HAZE_COUNT = 16;
 	// This is how fast the crossfading of previous haze and current haze is
 	const double FADE_PER_FRAME = 0.01;
+	// An additional zoom factor applied to stars/haze on top of the base zoom, to simulate parallax.
+	const double STAR_ZOOM = 0.70;
+	const double HAZE_ZOOM = 0.90;
 	
 	void AddHaze(DrawList &drawList, const std::vector<Body> &haze, const Point &topLeft, const Point &bottomRight, double transparency)
 	{
@@ -119,14 +122,14 @@ void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 
 void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 {
-	double savedZoom = zoom;
+	double baseZoom = zoom;
 
 	// Draw the starfield unless it is disabled in the preferences.
 	if(Preferences::Has("Draw starfield"))
 	{
-		// Modify zoom for first parallax layer
-		if(Preferences::Has("Parallax space"))
-			zoom = savedZoom * Preferences::StarViewZoom();	
+		// Modify zoom for the first parallax layer.
+		if(Preferences::Has("Parallax background"))
+			zoom = baseZoom * STAR_ZOOM;	
 		glUseProgram(shader.Object());
 		glBindVertexArray(vao);
 		
@@ -184,16 +187,14 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 	if(!Preferences::Has("Draw background haze"))
 		return;
 	
-	// Modify zoom for second parallax layer
-	if(Preferences::Has("Parallax space"))
-		zoom = savedZoom * Preferences::HazeViewZoom();
+	// Modify zoom for the second parallax layer.
+	if(Preferences::Has("Parallax background"))
+		zoom = baseZoom * HAZE_ZOOM;
 	
 	DrawList drawList;
 	drawList.Clear(0, zoom);
 	drawList.SetCenter(pos);
 	
-	// Set zoom to max for haze, so they won't get culled prematurely
-	zoom = .25;
 	if(transparency > FADE_PER_FRAME)
 		transparency -= FADE_PER_FRAME;
 	else

@@ -197,6 +197,14 @@ void MainPanel::OnCallback()
 
 
 
+// The hail panel calls this when it closes.
+void MainPanel::OnBribeCallback(const Government *bribed)
+{
+	engine.BreakTargeting(bribed);
+}
+
+
+
 bool MainPanel::AllowFastForward() const
 {
 	return true;
@@ -233,10 +241,10 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
-// Send a command through the main-panel to the engine
-void MainPanel::GiveCommand(const Command &command)
+// Forward the given TestContext to the Engine under MainPanel.
+void MainPanel::SetTestContext(TestContext &testContext)
 {
-	engine.GiveCommand(command);
+	engine.SetTestContext(testContext);
 }
 
 
@@ -427,7 +435,8 @@ bool MainPanel::ShowHailPanel()
 				, Messages::Importance::High);
 		else
 		{
-			GetUI()->Push(new HailPanel(player, target));
+			GetUI()->Push(new HailPanel(player, target,
+				[&](const Government *bribed) { MainPanel::OnBribeCallback(bribed); } ));
 			return true;
 		}
 	}

@@ -27,11 +27,11 @@ class Sprite;
 
 
 
-// Class representing a conversation, generally occurring when the you are asked to
+// Class representing a conversation, generally occurring when the player is asked to
 // accept or decline a mission. The conversation can take different paths depending
 // on what responses you choose, leading you to accept, decline, or (rarely) to be
 // killed. A conversation can also branch based on various condition flags that
-// are set for the player, and can also modify those flags.
+// are set for the player, or even trigger various changes to the game's state.
 class Conversation {
 public:
 	// The possible outcomes of a conversation:
@@ -64,9 +64,8 @@ public:
 	// Check if the actions in this conversation are valid.
 	std::string Validate() const;
 	
-	// Do text replacement throughout this conversation and instantiate
-	// any GameActions. This returns a new Conversation object with
-	// things like the player's name filled in.
+	// Generate a new conversation from this template, filling in any text
+	// substitutions and instantiating any actions.
 	Conversation Instantiate(std::map<std::string, std::string> &subs, int jumps = 0, int payload = 0) const;
 	
 	// The beginning of the conversation is node 0. Some nodes have choices for
@@ -75,9 +74,9 @@ public:
 	bool IsChoice(int node) const;
 	int Choices(int node) const;
 	bool IsBranch(int node) const;
-	bool IsApply(int node) const;
+	bool IsAction(int node) const;
 	const ConditionSet &Branch(int node) const;
-	const GameAction &Apply(int node) const;
+	const GameAction &GetAction(int node) const;
 	const std::string &Text(int node, int choice = 0) const;
 	const Sprite *Scene(int node) const;
 	int NextNode(int node, int choice = 0) const;
@@ -93,9 +92,9 @@ private:
 		// choice can be merged into what came before it, to simplify things.
 		explicit Node(bool isChoice = false) noexcept : isChoice(isChoice), canMergeOnto(!isChoice) {}
 		
-		// For applying condition changes or branching based on conditions:
-		ConditionSet conditions;
-		// For applying actions:
+		// The condition expressions that determine the next node to load.
+		ConditionSet branch;
+		// Tasks performed when this node is reached.
 		GameAction actions;
 		// The actual conversation text. If this node is not a choice, there
 		// will only be one entry in the vector. Each entry also stores the
@@ -113,7 +112,7 @@ private:
 	
 	
 private:
-	// Parse the children of the given node to see if then contain any "gotos."
+	// Parse the children of the given node to see if they contain any "gotos."
 	// If so, link them up properly. Return true if gotos were found.
 	bool LoadGotos(const DataNode &node);
 	// Add a label, pointing to whatever node is created next.
