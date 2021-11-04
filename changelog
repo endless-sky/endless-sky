@@ -3,7 +3,7 @@ Version 0.9.15:
     * Completely redid and improved the graphics for all existing stars and added various new star graphics. Also changed the stars for some systems in human space to match what is known about the real star of the same name. (Matteo "Lead" M., @ravenshining)
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@Anarchist2, @nathan-b, @oo13, @Pointedstick, @roadrunner56, @tehhowch, @thomasballinger, @Zitchas)
+      * Typo fixes. (@Anarchist2, @nathan-b, @oo13, @Pointedstick, @roadrunner56, @tehhowch, @Terin, @thomasballinger, @Zitchas)
       * Removed a duplicate "landing" tag on a mission. (@shitwolfymakes)
       * Deep merchant fleets no longer have Deep Security names. (@peteryager)
       * Ensured all ship, thumbnail, and outfit sprites have even dimensions to avoid blurriness caused by scaling. (@Anarchist2)
@@ -38,10 +38,12 @@ Version 0.9.15:
       * Added a pirate mission involving a mafia with a penitent for extorting unwilling victims. (@petervdmeer)
       * Added a mission where the player is invited to a Coalition university seminar. (@roadrunner56)
       * Added a mission where the player transports a human to Hai space. (@roadrunner56)
-      * Added more civilian and pirate ship names. (@Pointedstick)
+      * Added more civilian and pirate ship names. (@Galaucus, @Pointedstick)
       * Added a short series of missions to the Deep. (@SpearDane)
       * Hai space now contains a series of ancient space stations, some still in use, but some long left dormant, having fulfilled their ancient purpose long ago. (@beccabunny, @MasterOfGrey)
       * Added more Republic ship names. (@Corraban2)
+      * Created three low-level bounty jobs for beginner combat pilots. (@samoja12)
+      * Created two Wanderer jobs that utilize the brig and luxury accomodations outfits. (@unjown)
     * Mission changes:
       * Killing both Arfecta that defend the Wanderer planets now causes hostility with the Wanderers upon landing on any of their planets, not just one specific planet. (@Terin)
       * The Deep Archaeology and Unfettered first contact missions now contain branches if the player knows about the Pug or Sheragi respectively before reaching those missions. (@BlazingDiesel)
@@ -52,10 +54,14 @@ Version 0.9.15:
       * Reworked most pirate jobs to be higher risk but also higher reward. (@Pointedstick)
       * The "Hiding in plain sight" mission now has a deadline. (@Pointedstick, @waterhouse)
       * Changed some missions to take advantage of the new conversation action behavior. (@Amazinite)
+      * Greatly reduced the threshold on the raid warning mission for players with high pirate attraction fleets from about 50% to about 14%. (@Amazinite)
+      * Ivan in Terminus exploration now gives the player a hint on where to go in order to continue the storyline in the Deep. (@Amazinite)
     * Balance:
       * Altered the default equation for when a ship becomes disabled to become continuous. The lowest-hull ships still become disabled at about 45% remaining hull, but the highest-hull ships approach a threshold of 10% hull remaining instead of all ships over 4,500 hull becoming disabled at 15%. This results in most human ships becoming disabled slightly earlier while higher health alien ships become disabled slightly later. (@Ferociousfiend)
       * Buffed the Heavy Shuttle while also increasing its price to make it more of a midpoint between the Shuttle and the Scout or Bounder rather than having a massive price gap between the Shuttle and Heavy Shuttle and the aformentioned ships. (@Zitchas)
       * Buffed the cargo and bunk capacities of civilian Coalition ships to make them more appealing compared to when you're likely to reach them. (@Arachi-Lover)
+      * Gave the Sparrow an extra bunk to slightly increase its effectiveness in capturing other interceptors during the early game. (@Terin)
+      * Greatly reduced the required crew and bunks on the Rainmaker so that it's no longer tied with the Gunboat as the highest required crew among human light warships, instead having one of the lowest crew requirements. (@Terin)
     * Graphics:
       * Created a new planet sprite for Saturn. (@ravenshining)
     * Other:
@@ -69,6 +75,8 @@ Version 0.9.15:
       * Added ships to Remnant fleets that were missing. (@Zitchas)
       * Poisonwood's spaceport description changes depending on the outcome of certain FW missions. (@Anarchist2)
       * Updated smaller human ships to make use of the new small secondary weapons. (@Zitchas)
+      * Tweaked the descriptions on over 100 planets for better readbility. (@skilaa)
+      * Added reverse and steering flares to the Lampyrid. (@Zitchas)
   * Game mechanics:
     * New mechanics:
       * Expanded the total number of swizzles from 7 to 27. (@Amazinite)
@@ -108,6 +116,8 @@ Version 0.9.15:
     * The background haze on the main menu now fades to match the haze of the player's system in the loaded save instead of instantly transitioning. (@pakyinwww)
     * Tab can now be used to swap the focus between the main and side shop panels. (@Terin)
     * Wormholes without a sprite no longer draw a wormhole link arrow on the map. (@quyykk)
+    * Outfits that are considered an atrocity to have now display that fact in the outfitter as a boolean attribute instead of a value. (@Terin)
+    * The background haze and stars are now slightly parallax to the foreground. This can be disabled in the preferences panel. (@Terin)
   * Under the hood:
     * Unified the code for damage dealt to ships by hazards and projectiles. (@petervdmeer)
     * Updated the Code::Blocks URL in the README files to use https. (@TotalCaesar659)
@@ -134,6 +144,8 @@ Version 0.9.15:
     * A warning is now thrown for sprites with uneven dimensions that may result in blurriness when rendered. (@tehhowch)
     * A warning is now thrown for undefined hazards. (@quyykk)
     * Files and directories are now guaranteed to be loaded in alphabetical order. (@quyykk)
+    * Renamed "transport missions.txt" to "human missions.txt" to match the naming scheme from other folders. (@Amazinite)
+    * WeightedLists can now be erased from. (@Amazinite)
   * CI/CD and development environment:
     * Added unit tests for the Account class. (@petervdmeer)
     * Removed Ubuntu-16.04 from the CICD pipeline. (@tehhowch)
@@ -146,6 +158,8 @@ Version 0.9.15:
     * Removed Runtime Type Information from code and compilation and forbid its use. (@petervdmeer)
     * Updated SCons version to 4.2.0 and cache scons locally. (@tehhowch)
     * Support reading additional command from text nodes for automated testing. (@petervdmeer)
+    * Tests now print flagship and escort info upon failure. (@petervdmeer)
+    * Removed Panel dependencies from Test.cpp / Test.h. (@petervdmeer)
 
 Version 0.9.14:
   * Bug fixes:
