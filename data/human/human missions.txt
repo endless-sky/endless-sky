@@ -3601,3 +3601,43 @@ mission "Mafia Extortion"
 			label payup
 			`	The man takes your credits, responds with a brief "Thank you," and walks away.`
 				accept
+
+
+
+mission "Block Hai Wormhole Warning"
+	landing
+	invisible
+	to offer
+		has "First Contact: Hai"
+		has "chosen sides"
+		not "main plot completed"
+	on offer
+		fail
+
+mission "Hai Wormhole Warning"
+	minor
+	source
+		government "Republic"
+		not attributes "deep"
+	to offer
+		has "First Contact: Hai"
+		not "Block Hai Wormhole Warning: offered"
+		not "Wanderers: Alpha Surveillance E: offered"
+	on offer
+		log "Was pulled aside by a Navy officer and told to keep the wormhole to the Hai a secret. The Republic doesn't want the knowledge of the wormhole to be widespread, as that could cause chaos for both the Republic and the Hai."
+		conversation
+			`Upon entering the spaceport, you're stopped by Navy officer. "Captain <last>. I'd like to speak with you for a few minutes. In private." He motions toward a Frigate on a landing pad behind you.`
+			choice
+				`	"What about?"`
+					goto what
+				`	"Sorry, I'm really busy right now."`
+			`	"No, I'm sorry, but this isn't a matter if whether you're busy or not right now. Come with me."`
+				goto frigate
+			label what
+			`	"I did say in private, did I not?"`
+			label frigate
+			`	The man puts a hand on your shoulder and begins walking you toward the Frigate. As you approach, you note that the man's uniform doesn't have any Naval markings that you recgonize.`
+			`	`
+			`	Despite the decent crew requirement of a Frigate, you don't notice anyone else on board.`
+			`	`
+				decline
