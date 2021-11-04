@@ -42,7 +42,7 @@ namespace {
 	const size_t HAZE_COUNT = 16;
 	// This is how fast the crossfading of previous haze and current haze is
 	const double FADE_PER_FRAME = 0.01;
-	// Percentage of screen the stars/haze are from the screen, to simulate parallax
+	// An additional zoom factor applied to stars/haze on top of the base zoom, to simulate parallax.
 	const double STAR_ZOOM = 0.70;
 	const double HAZE_ZOOM = 0.90;
 	
@@ -127,7 +127,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 	// Draw the starfield unless it is disabled in the preferences.
 	if(Preferences::Has("Draw starfield"))
 	{
-		// Modify zoom for first parallax layer
+		// Modify zoom for the first parallax layer.
 		if(Preferences::Has("Parallax space"))
 			zoom = baseZoom * STAR_ZOOM;	
 		glUseProgram(shader.Object());
@@ -187,7 +187,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 	if(!Preferences::Has("Draw background haze"))
 		return;
 	
-	// Modify zoom for second parallax layer
+	// Modify zoom for the second parallax layer.
 	if(Preferences::Has("Parallax space"))
 		zoom = baseZoom * HAZE_ZOOM;
 	
