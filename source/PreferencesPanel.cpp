@@ -452,7 +452,7 @@ void PreferencesPanel::DrawSettings()
 		"Reduce large graphics",
 		"Draw background haze",
 		"Draw starfield",
-		"Parallax space",
+		"Parallax background",
 		"Show hyperspace flash",
 		SHIP_OUTLINES,
 		"",
