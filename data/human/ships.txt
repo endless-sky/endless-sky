@@ -2678,8 +2678,8 @@ ship "Rainmaker"
 		"cost" 1580000
 		"shields" 3500
 		"hull" 1200
-		"required crew" 7
-		"bunks" 14
+		"required crew" 3
+		"bunks" 7
 		"mass" 180
 		"drag" 3.8
 		"heat dissipation" .6
@@ -3020,7 +3020,7 @@ ship "Sparrow"
 		"shields" 1200
 		"hull" 300
 		"required crew" 1
-		"bunks" 2
+		"bunks" 3
 		"mass" 50
 		"drag" .9
 		"heat dissipation" .8
