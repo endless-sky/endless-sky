@@ -155,7 +155,7 @@ conversation "I Want To Be A Pirate Conclusion"
 			goto outlawapproval
 	`	"Human resources, naturally." The Capo lets out a dark laugh, eyes thin and aspect sharklike as he fixes you with a predatory grin.`
 	choice
-		`	(Remain impassive, not caring one way or another about the fates of others than yourself - slavery is neither your business nor your problem)`
+		`	(Remain impassive, not caring one way or another about the fates of others than yourself - slavery is neither your business nor your problem.)`
 			goto outlawapproval
 		`	(Remain silent, though your face will betray your disgust.)`
 			goto slaveryspeech
@@ -248,10 +248,10 @@ conversation "I Want To Be A Pirate Conclusion"
 	choice
 		`	"I've got your million-credit... thing, and a splitting headache."`
 	`	"I'll be blunt." The Mercenary thoughtfully presses her fingertips together, as if that would somehow magically make whatever words come next more diplomatic.`
-	`	"You're the most empty-headed spacer I've seen that isn't yet a corpse, next time you want to try a stunt like that do us all a favor and just take a walk out the airlock first. I've met asteroids with more sense than you. Drawing a gun on my contacts after they found a bug on you? You've got some wild ideas about your own capabilities, but... Somehow you were able to talk your way out of it, so perhaps you're not a lost cause after all. Whatever the case, I can't have a reputation as one who goes back on a deal, so I'll hold up my part of the bargain. Now, the canister please."`
+	`	"You're the most empty-headed spacer I've seen that isn't yet a corpse. Next time you want to try a stunt like that, do us all a favor and just take a walk out the airlock first. I've met asteroids with more sense than you. Drawing a gun on my contacts after they found a bug on you? You've got some wild ideas about your own capabilities, but... Somehow you were able to talk your way out of it, so perhaps you're not a lost cause after all. Whatever the case, I can't have a reputation as one who goes back on a deal, so I'll hold up my part of the bargain. Now, the canister please."`
 	choice
 		`	(Hand over the canister.)`
-	`	The merc gingerly takes the hazard-warning emblazoned canister from you, as if not trusting you to not drop it. The other two at the table visibly exhale in relief once the canister's out of your hands.`
+	`	The merc gingerly takes the hazard-warning emblazoned canister from you, as if half expecting you to drop it on the floor and release who-knows-what into the room. The other two at the table visibly exhale in relief once the canister's out of your hands.`
 	label pirate
 	`	"And we've got one more thing for you," the Corsair comments before pulling a small booklet out of his coat. It's slid across the table before you. It appears you've been given some sort of coupon book for an establishment called "SLEEZY STEEV'S SCRAP AND SURPLUS". Most of the coupons have been torn out, but one of the remaining offers apparently entitles you to a hefty discount on black and red paint.`
 	`	"You're a pirate now, matey. Best look the part."`
@@ -270,7 +270,7 @@ mission "Pirate Overview"
 	on offer
 		conversation
 			`You think back to your conversation in that cramped, stinking drinking hole, of the colorful characters met and the tasks assigned:`
-			`	There's a worthy target - sure to attract the attention of every pirate who have eyes and ears in the right places - cruising through Umbral soon. Ambush them, secure an antique lockbox, and then defend your prize against any scavengers.`
+			`	There's a worthy target - sure to attract the attention of every pirate with eyes and ears in the right places - cruising through Umbral soon. Ambush them, secure an antique lockbox, and then defend your prize against any scavengers.`
 			`	Alternatively, you can prove your worth through sheer spending power. Accrue one million credits and hand them off to someone referred to you by a stranger you just happened to meet in a bar, for the promise of words whispered into the right ears. You'll need to head to Smuggler's Den, an orbital installation in the Men system.`
 			`	Finally, you could murder a bunch of strangers and demand tribute from the survivors on pain of more ass-kicking. Specifically, strangers living on the planet of Darkstone. They probably deserve it anyways, or at least so says the cyborg who issued this task.`
 			`	Completing any of these truly important quests and reporting back to the ne'er-do-wells on Greenrock will make you a pirate.`
@@ -358,7 +358,7 @@ mission "Lockbox Snooping"
 				`	(Go back to whatever it was that you were doing, admirable stack of booty or no.)`
 					decline
 				`	(Take a closer look at that lockbox.)`
-			`	The lockbox is fashioned from a rich, dark wood that you have no words to identify. Long extinct upon the cradle of humanity, only a few frontier worlds cultivate such stuff. For reasons unknown to you, this material - used to make crates, weapon parts, or furniture - has been associated with outlaws and Dirt Belt pirates for as long as anyone alive can remember, often appearing in films and other generally somewhat romanticized media associated with swashbuckling and law-breaking. The thrill is exhilarating.`
+			`	The lockbox is fashioned from a rich, dark wood that you have no words to identify. Long extinct upon the cradle of humanity, only a few frontier worlds cultivate such stuff. For reasons unknown to you, this material - used to make crates, weapon parts, or furniture - has been associated with outlaws and Dirt Belt pirates for as long as anyone alive can remember, often appearing in films and other generally somewhat romanticized media depicting swashbuckers and law-breakers. The thrill is exhilarating.`
 			choice
 				`	(Look inside. It's not like anyone would know, or care.)`
 				`	(Don't mess with it; delivering this cargo unmolested will earn the respect of your piratical peers.)`
