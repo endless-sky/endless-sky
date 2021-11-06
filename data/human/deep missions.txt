@@ -4180,25 +4180,3 @@ mission "The Book of Skadenga"
 			`	You keep walking. You already know that story.`
 				decline
 
-
-
-mission "The Angry Letter"
-	invisible
-	source
-		government "Republic"
-	to offer
-		or
-			has "Skadenga Call 5: done"
-			has "Skadenga Call 5: offered"
-			has "Sakdenga call 5: declined"
-		random < 10
-		has "event: asgard hjlod letter"
-	on offer
-		conversation
-			`Your terminal beeps that you have recieved a new message in your inbox. The message's address has been spoofed, and it has no point of origin. You pull it up on screen.`
-			`	Captain <last>,`
-			`	You think you got away with it. You think it's all behind you now, but it's not. You fattened your purse on the misery of a people, and it will not be forgotten.`
-			`	You may have taken everything from me. My happy home, my family, my religion, my culture, my identity. But you've also given me purpose. Know that your crimes go unforgotten. Know that your legacy is forever tarnished. Know that I will never forget.`
-			`	And know that I am coming for you. Because I am a monster-slayer, and you are a monster.`
-			`				Signed, Rekkskald Skadegothi`
-				decline
