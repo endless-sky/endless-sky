@@ -95,6 +95,8 @@ void NPC::Load(const DataNode &node)
 			else
 				location.Load(child);
 		}
+		else if(child.Token(0) == "uuid" && child.Size() >= 2)
+			uuid = EsUuid::FromString(child.Token(1));
 		else if(child.Token(0) == "planet" && child.Size() >= 2)
 			planet = GameData::Planets().Get(child.Token(1));
 		else if(child.Token(0) == "succeed" && child.Size() >= 2)
@@ -223,6 +225,7 @@ void NPC::Save(DataWriter &out) const
 	out.Write("npc");
 	out.BeginChild();
 	{
+		out.Write("uuid", uuid.ToString());
 		if(succeedIf)
 			out.Write("succeed", succeedIf);
 		if(failIf)
@@ -343,6 +346,13 @@ string NPC::Validate(bool asTemplate) const
 
 
 
+const EsUuid &NPC::UUID() const noexcept
+{
+	return uuid;
+}
+
+
+
 // Update spawning and despawning for this NPC.
 void NPC::UpdateSpawning(const PlayerInfo &player)
 {
@@ -399,6 +409,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 			if(event.Type() & ShipEvent::CAPTURE)
 			{
 				Ship *copy = new Ship(*ptr);
+				copy->SetUUID(ptr->UUID());
 				copy->Destroy();
 				actions[copy] = actions[ptr.get()];
 				// Count this ship as destroyed, as well as captured.
@@ -434,7 +445,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 	
 	// Check if the success status has changed. If so, display a message.
 	if(isVisible && !alreadyFailed && HasFailed())
-		Messages::Add("Mission failed.");
+		Messages::Add("Mission failed.", Messages::Importance::Highest);
 	else if(ui && !alreadySucceeded && HasSucceeded(player.GetSystem(), false))
 	{
 		// If "completing" this NPC displays a conversation, reference
@@ -625,9 +636,9 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		result.dialogText = Format::Replace(dialogText, subs);
 	
 	if(stockConversation)
-		result.conversation = stockConversation->Substitute(subs);
+		result.conversation = stockConversation->Instantiate(subs);
 	else if(!conversation.IsEmpty())
-		result.conversation = conversation.Substitute(subs);
+		result.conversation = conversation.Instantiate(subs);
 	
 	return result;
 }

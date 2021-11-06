@@ -25,7 +25,7 @@ namespace { // test namespace
 
 
 // #region unit tests
-TEST_CASE( "Random::Int", "[random]") {
+TEST_CASE( "Random::Int", "[random][int]") {
 	REQUIRE( Random::Int(1) == 0 );
 }
 // Test code goes here. Preferably, use scenario-driven language making use of the SCENARIO, GIVEN,

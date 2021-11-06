@@ -71,7 +71,7 @@ void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 	// Upload the image data.
 	glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_RGBA8, // target, mipmap level, internal format,
 		buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
-		0, GL_BGRA, GL_UNSIGNED_BYTE, buffer.Pixels()); // border, input format, data type, data.
+		0, GL_RGBA, GL_UNSIGNED_BYTE, buffer.Pixels()); // border, input format, data type, data.
 	
 	// Unbind the texture.
 	glBindTexture(GL_TEXTURE_2D_ARRAY, 0);
@@ -82,23 +82,12 @@ void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 
 
 
-// Move the given masks into this sprite's internal storage. The given
-// vector will be cleared.
-void Sprite::AddMasks(vector<Mask> &masks)
-{
-	this->masks.swap(masks);
-	masks.clear();
-}
-
-
-
 // Free up all textures loaded for this sprite.
 void Sprite::Unload()
 {
 	glDeleteTextures(2, texture);
 	texture[0] = texture[1] = 0;
 	
-	masks.clear();
 	width = 0.f;
 	height = 0.f;
 	frames = 0;
@@ -151,17 +140,4 @@ uint32_t Sprite::Texture() const
 uint32_t Sprite::Texture(bool isHighDPI) const
 {
 	return (isHighDPI && texture[1]) ? texture[1] : texture[0];
-}
-
-
-
-// Get the collision mask for the given frame of the animation.
-const Mask &Sprite::GetMask(int frame) const
-{
-	static const Mask EMPTY;
-	if(frame < 0 || masks.empty())
-		return EMPTY;
-	
-	// Assume that if a masks array exists, it has the right number of frames.
-	return masks[frame % masks.size()];
 }

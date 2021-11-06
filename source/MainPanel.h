@@ -38,10 +38,12 @@ public:
 	
 	// The planet panel calls this when it closes.
 	void OnCallback();
+	// The hail panel calls this when it closes.
+	void OnBribeCallback(const Government *bribed);
 	
-	// Send a command to the engine (on behalf of the player).
-	void GiveCommand(const Command &command);
-
+	// Forward the given TestContext to the Engine under MainPanel.
+	virtual void SetTestContext(TestContext &testContext) override;
+	
 	// The main panel allows fast-forward.
 	virtual bool AllowFastForward() const override;
 	
