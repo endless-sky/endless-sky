@@ -216,7 +216,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	};
 
 	// The current frame rate of the physics loop.
-	double updateFps = testToRunName.empty() || debugMode ? defaultFps : fastForwardFps;
+	double updateFps = defaultFps;
 	// The current time in ms since epoch. Used to calculate the frame delta.
 	auto currentTime = CurrentTime();
 	// Used to store any "extra" time after a frame.
@@ -231,6 +231,10 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	int totalFramesGpu = 0;
 	double totalElapsedTimeGpu = 0.;
 	string fpsStringGpu;
+
+	// When running tests, fast forward is on by default.
+	if(!testToRunName.empty() && !debugMode)
+		motion = FastForward;
 
 	// IsDone becomes true when the game is quit.
 	while(!menuPanels.IsDone())
