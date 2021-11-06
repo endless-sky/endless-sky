@@ -310,8 +310,10 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		Font::ShowUnderlines(mod & KMOD_ALT);
 		
 		bool inFlight = (menuPanels.IsEmpty() && gamePanels.Root() == gamePanels.Top());
+		bool didUpdate = false;
 		while(accumulator >= updateFps)
 		{
+			didUpdate = true;
 			auto cpuStart = CurrentTime();
 
 			// We are starting a new physics frame. Cache the last state for interpolation.
@@ -330,6 +332,22 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			// Tell all the panels to step forward, then draw them.
 			((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
 
+			Audio::Step();
+
+			accumulator -= updateFps;
+
+			cpuLoadSum += CurrentTime() - cpuStart;
+			if(++cpuLoadCount >= lround(1000. / updateFps))
+			{
+				cpuLoad = to_string(lround(cpuLoadSum / 10.)) + "% CPU";
+				cpuLoadCount = 0;
+				cpuLoadSum = 0.;
+			}
+		}
+
+		// Run any tests if the game updated.
+		if(didUpdate)
+		{
 			// All manual events and processing done. Handle any test inputs and events if we have any.
 			const Test *runningTest = testContext.CurrentTest();
 			if(runningTest)
@@ -347,18 +365,6 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 					Command ignored;
 					runningTest->Step(testContext, player, ignored);
 				}
-			}
-
-			Audio::Step();
-
-			accumulator -= updateFps;
-
-			cpuLoadSum += CurrentTime() - cpuStart;
-			if(++cpuLoadCount >= lround(1000. / updateFps))
-			{
-				cpuLoad = to_string(lround(cpuLoadSum / 10.)) + "% CPU";
-				cpuLoadCount = 0;
-				cpuLoadSum = 0.;
 			}
 		}
 
