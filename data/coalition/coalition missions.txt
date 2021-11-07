@@ -1872,7 +1872,7 @@ mission "Saryd University Lecture"
 mission "Coalition: Expeditions Past 1"
 	minor
 	name "Scouting Permit"
-	description "Transport Sedlitaris, a Heliarch Tribune, to <destination>, where she will try to petition for the Heliarch council to allow her to go on a scouting expedition out of the Coalition. Payment is <payment>."
+	description "Transport Sedlitaris, a Heliarch Tribune, to the <destination>, where she will try to petition for the Heliarch council to allow her to go on a scouting expedition out of the Coalition. Payment is <payment>."
 	passengers 1
 	to offer
 		"coalition jobs" >= 40
@@ -2260,7 +2260,7 @@ mission "Coalition: Expeditions Past 9"
 mission "Coalition: Expeditions Past 10"
 	landing
 	name "Expeditions Past"
-	description "Head back to <destination>, where"
+	description "Head back to the <destination>, where Sedlitaris will report her findings to the Heliarch council."
 	passengers 1
 	to offer
 		has "Coalition: Expeditions Past 9: active"
