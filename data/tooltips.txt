@@ -194,7 +194,7 @@ tip "heat generation:"
 tip "heat protection:"
 	`Protection against weapons that do heat damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in heat damage, while a total value of 11 only results in a 10 percent reduction.`
 
-tip "hull repair / max:"
+tip "hull (repair):"
 	`Total hull strength and repair rate (per second). The smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
 
 tip "hull:"
@@ -377,7 +377,7 @@ tip "shield generation:"
 tip "shield generation multiplier:"
 	`Modifies the amount of shield points recharged per second by the given factor.`
 
-tip "shields charge / max:"
+tip "shields (charge):"
 	`Total shield strength and regeneration rate (per second).`
 
 tip "shields:"
