@@ -1948,7 +1948,7 @@ mission "Coalition: Expeditions Past 2"
 			`	"Ready to go outside, we are not. Not for the purpose of finding out about the last expedition, at least. A tool from House Idriss, we need, if to trace my ancestor's steps, we are, so to <destination>, we must go."`
 			`	As she's about to continue, your conversation is cut short by a Kimek rushing towards you two, shouting frantically. Once he's closer, you recognize him as arbiter Kicharri from earlier, and Sedlitaris tries to calm him down while he's catching his breath. "Professor, if about my request this is, already met with the council, I have. Approved it--"`
 			`	"I know! Exactly what I'm furious about, that is!" He shouts. "Asked them to give you a definitive answer, I had, but not this kind of definitive! Listen, permission or not, safe to leave, it is not. Know that, you do." He looks at her for a few moments, then to you. "Captain, as her superior, greatly appreciate your intent to help Sedlitaris, I do, but too brash about this, she has been. Take her out of our space, you must not."`
-			`	He looks at her again, as if expecting some response. After a fez seconds, he turns away slowly, saying "Don't waste your life on this," and walking away. Sedlitaris sighs once he turns a corridor, and says she's ready for the trip.`
+			`	He looks at her again, as if expecting some response. After a few seconds, he turns away slowly, saying "Don't waste your life on this," and walking away. Sedlitaris sighs once he turns a corridor, and says she's ready for the trip.`
 			choice
 				`	"Hold on, what did he mean by it not being safe to leave? I thought you had permission."`
 				`	"Alright, let's head back to the ship."`
