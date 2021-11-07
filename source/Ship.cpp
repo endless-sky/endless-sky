@@ -2775,10 +2775,7 @@ void Ship::Recharge(bool atSpaceport)
 		return;
 	
 	if(atSpaceport)
-	{
 		crew = min<int>(max(crew, RequiredCrew()), attributes.Get("bunks"));
-		fuel = attributes.Get("fuel capacity");
-	}
 	pilotError = 0;
 	pilotOkay = 0;
 	
@@ -2788,6 +2785,8 @@ void Ship::Recharge(bool atSpaceport)
 		hull = attributes.Get("hull");
 	if(atSpaceport || attributes.Get("energy generation"))
 		energy = attributes.Get("energy capacity");
+	if(atSpaceport || attributes.Get("fuel generation"))
+		fuel = attributes.Get("fuel capacity");
 	
 	heat = IdleHeat();
 	ionization = 0.;
