@@ -99,7 +99,7 @@ namespace {
 	const Color red(1.f, 0.f, 0.f, 1.f);
 	
 	// Hovering an escort pip for this many frames activates the tooltip.
-	const int HOVER_TIME = 60;
+	const int HOVER_TIME = 1000;
 	// Length in frames of the recentering animation.
 	const int RECENTER_TIME = 20;
 }
@@ -158,8 +158,9 @@ void MapPanel::Draw(double deltaTime)
 		double step = (recentering - .5) / RECENTER_TIME;
 		// Interpolate with the smoothstep function, 3x^2 - 2x^3. Its derivative
 		// gives the fraction of the distance to move at each time step:
-		center += recenterVector * (step * (1. - step) * (6. / RECENTER_TIME));
-		recentering -= deltaTime * 60. / 1000.;
+		const double fraction = deltaTime * 60. / 1000.;
+		center += recenterVector * (step * (1. - step) * (6. / RECENTER_TIME)) * fraction;
+		recentering -= fraction;
 	}
 	
 	for(const auto &it : GameData::Galaxies())
@@ -185,7 +186,7 @@ void MapPanel::Draw(double deltaTime)
 	// Advance a "blink" timer.
 	step += deltaTime;
 	// Update the tooltip timer [0-60].
-	hoverCount += hoverSystem ? (hoverCount < HOVER_TIME) : (hoverCount ? -1 : 0);
+	hoverCount += (hoverSystem ? (hoverCount < HOVER_TIME) : (hoverCount > 0. ? -1 : 0)) * deltaTime;
 	
 	DrawWormholes();
 	DrawTravelPlan();
