@@ -73,7 +73,7 @@ bool BatchDrawList::Add(const Projectile &body, float clip)
 	// we want it to be drawn with its center halfway to the target. For longer-lived projectiles, we
 	// expect the position to be the actual location of the projectile at that point in time.
 	Point position = body.Position() + .5 * body.Velocity() - center;
-	return Add(body, position, clip, body.GetID());
+	return Add(body, position, clip, body);
 }
 
 
@@ -81,7 +81,7 @@ bool BatchDrawList::Add(const Projectile &body, float clip)
 // TODO: Once we have sprite reference positions, this method will not be needed.
 bool BatchDrawList::AddVisual(const Visual &visual)
 {
-	return Add(visual, visual.Position() - center, 1.f, visual.GetID());
+	return Add(visual, visual.Position() - center, 1.f, visual);
 }
 
 

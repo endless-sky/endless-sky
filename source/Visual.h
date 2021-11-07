@@ -25,7 +25,7 @@ class Effect;
 
 // A Visual is the object created by an Effect. This is a separate class from
 // Effect to allow it to be much more lightweight.
-class Visual : public Body {
+class Visual : public Body, public ID {
 public:
 	Visual() = default;
 	Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point hitVelocity = Point());
@@ -41,12 +41,9 @@ public:
 	
 	// Step the effect forward.
 	void Move();
-
-	const ID &GetID() const { return id; };
 	
 	
 private:
-	ID id;
 	Angle spin;
 	int lifetime = 0;
 };

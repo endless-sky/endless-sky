@@ -35,7 +35,7 @@ class Weapon;
 // change course to track its target. Also, when they hit their target or reach
 // the end of their lifetime, some projectiles split into "sub-munitions," new
 // projectiles that may look different or travel in a new direction.
-class Projectile : public Body {
+class Projectile : public Body, public ID {
 public:
 	Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon);
 	Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon);
@@ -80,8 +80,6 @@ public:
 	
 	// Get the distance that this projectile has traveled.
 	double DistanceTraveled() const;
-
-	const ID &GetID() const { return id; }
 	
 	
 private:
@@ -89,8 +87,6 @@ private:
 	
 	
 private:
-	ID id;
-
 	const Weapon *weapon = nullptr;
 	
 	std::weak_ptr<Ship> targetShip;
