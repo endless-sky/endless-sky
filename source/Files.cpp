@@ -61,25 +61,21 @@ namespace {
 	
 	void SetResourceDirectory(string &resources)
 	{
-		bool specifiedWithArg = resources.empty();
-		if(resources.empty())
-		{
-			// Find the path to the resource directory. This will depend on the
-			// operating system, and can be overridden by a command line argument.
-			char *str = SDL_GetBasePath();
-			if(!str)
-				throw runtime_error("Unable to get path to resource directory!");
-			
-			resources = str;
-			SDL_free(str);
+		// Find the path to the resource directory. This will depend on the
+		// operating system, and can be overridden by a command line argument.
+		char *str = SDL_GetBasePath();
+		if(!str)
+			throw runtime_error("Unable to get path to resource directory!");
 
-			// Create the "plugins" directory if it does not yet exist, so that it is
-			// clear to the user where plugins should go.
-			{
-				char *str = SDL_GetPrefPath("endless-sky", "plugins");
-				if(str != nullptr)
-					SDL_free(str);
-			}
+		resources = str;
+		SDL_free(str);
+
+		// Create the "plugins" directory if it does not yet exist, so that it is
+		// clear to the user where plugins should go.
+		{
+			char *str = SDL_GetPrefPath("endless-sky", "plugins");
+			if(str != nullptr)
+				SDL_free(str);
 		}
 
 #if defined _WIN32
@@ -87,73 +83,50 @@ namespace {
 #endif
 		if(resources.back() != '/')
 			resources += '/';
-		if(!specifiedWithArg)
-		{
 #if defined __linux__ || defined __FreeBSD__ || defined __DragonFly__
-			// Special case, for Linux: the resource files are not in the
-			// same place as the executable, but are under the same prefix
-			// (/usr or /usr/local).
-			static const string LOCAL_PATH = "/usr/local/";
-			static const string STANDARD_PATH = "/usr/";
-			static const string RESOURCE_PATH = "share/games/endless-sky/";
-			if(!resources.compare(0, LOCAL_PATH.length(), LOCAL_PATH))
-				resources = LOCAL_PATH + RESOURCE_PATH;
-			else if(!resources.compare(0, STANDARD_PATH.length(), STANDARD_PATH))
-				resources = STANDARD_PATH + RESOURCE_PATH;
+		// Special case, for Linux: the resource files are not in the
+		// same place as the executable, but are under the same prefix
+		// (/usr or /usr/local).
+		static const string LOCAL_PATH = "/usr/local/";
+		static const string STANDARD_PATH = "/usr/";
+		static const string RESOURCE_PATH = "share/games/endless-sky/";
+		if(!resources.compare(0, LOCAL_PATH.length(), LOCAL_PATH))
+			resources = LOCAL_PATH + RESOURCE_PATH;
+		else if(!resources.compare(0, STANDARD_PATH.length(), STANDARD_PATH))
+			resources = STANDARD_PATH + RESOURCE_PATH;
 #elif defined __APPLE__
-			// Special case for Mac OS X: the resources are in ../Resources
-			// relative to the folder the binary is in.
-			resources = resources + "../Resources/";
+		// Special case for Mac OS X: the resources are in ../Resources
+		// relative to the folder the binary is in.
+		resources = resources + "../Resources/";
 #endif
-		}
 		// If the resources are not here, search in the directories containing this
 		// one. This allows, for example, a Mac app that does not actually have the
 		// resources embedded within it.
 		while(!Files::Exists(resources + "credits.txt"))
 		{
 			size_t pos = resources.rfind('/', resources.length() - 2);
-			if(pos == string::npos || pos == 0 || specifiedWithArg)
+			if(pos == string::npos || pos == 0)
 				throw runtime_error("Unable to find the resource directories!");
 			resources.erase(pos + 1);
 		}
-
-		dataPath = resources + "data/";
-		imagePath = resources + "images/";
-		soundPath = resources + "sounds/";
-		if(!Files::Exists(dataPath) || !Files::Exists(imagePath) || !Files::Exists(soundPath))
-			throw runtime_error("Unable to find the resource directories!");
 	}
 	
 	void SetConfigDirectoryAndSavePath(string &config, string &savePath)
 	{
-		if(config.empty())
-		{
-			// Find the path to the directory for saved games (and create it if it does
-			// not already exist). This can also be overridden in the command line.
-			char *str = SDL_GetPrefPath("endless-sky", "saves");
-			if(!str)
-				throw runtime_error("Unable to get path to saves directory!");
-			
-			savePath = str;
+		// Find the path to the directory for saved games (and create it if it does
+		// not already exist). This can also be overridden in the command line.
+		char *str = SDL_GetPrefPath("endless-sky", "saves");
+		if(!str)
+			throw runtime_error("Unable to get path to saves directory!");
+		
+		savePath = str;
 #if defined _WIN32
-			FixWindowsSlashes(savePath);
+		FixWindowsSlashes(savePath);
 #endif
-			SDL_free(str);
-			if(savePath.back() != '/')
-				savePath += '/';
-			config = savePath.substr(0, savePath.rfind('/', savePath.length() - 2) + 1);
-		}
-		else
-		{
-#if defined _WIN32
-			FixWindowsSlashes(config);
-#endif
-			if(config.back() != '/')
-				config += '/';
-			savePath = config + "saves/";
-		}
-		if(!Files::Exists(savePath))
-			throw runtime_error("Unable to create config directory!");
+		SDL_free(str);
+		if(savePath.back() != '/')
+			savePath += '/';
+		config = savePath.substr(0, savePath.rfind('/', savePath.length() - 2) + 1);
 	}
 }
 
@@ -170,11 +143,41 @@ void Files::Init(const char * const *argv)
 			resources = *it;
 		else if((arg == "-c" || arg == "--config") && *++it)
 			config = *it;
-			
 	}
-	
-	SetResourceDirectory(resources);
-	SetConfigDirectoryAndSavePath(config, savePath);
+
+	if(resources.empty())
+		SetResourceDirectory(resources);
+	else
+	{
+#if defined _WIN32
+		FixWindowsSlashes(resources);
+#endif
+		if(resources.back() != '/')
+			resources += '/';
+	}
+
+	dataPath = resources + "data/";
+	imagePath = resources + "images/";
+	soundPath = resources + "sounds/";
+	if(!Files::Exists(dataPath) || !Files::Exists(imagePath) || !Files::Exists(soundPath))
+		throw runtime_error("Unable to find the resource directories!");
+
+	if(config.empty())
+		SetConfigDirectoryAndSavePath(config, savePath);
+	else
+	{
+#if defined _WIN32
+		FixWindowsSlashes(config);
+#endif
+		if(config.back() != '/')
+			config += '/';
+		savePath = config + "saves/";
+	}
+
+	if(!Files::Exists(config))
+		throw runtime_error("Unable to find the config directory!");
+	if(!Files::Exists(savePath))
+		throw runtime_error("Unable to find the saves directory in config directory!");
 }
 
 
