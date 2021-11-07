@@ -340,13 +340,20 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 
 			accumulator -= updateFps;
 
-			cpuLoadSum += CurrentTime() - cpuStart;
+			auto updateTime = CurrentTime() - cpuStart;
+			cpuLoadSum += updateTime;
 			if(++cpuLoadCount >= lround(1000. / updateFps))
 			{
 				cpuLoad = to_string(lround(cpuLoadSum / 10.)) + "% CPU";
 				cpuLoadCount = 0;
 				cpuLoadSum = 0.;
 			}
+
+			// Aggresively drop frames if the CPU cannot keep up.
+			// This will slow down the game for the player.
+			if(updateTime >= updateFps)
+				while(accumulator >= updateFps)
+					accumulator -= updateFps;
 		}
 
 		// Run any tests if the game updated.
