@@ -2006,6 +2006,7 @@ mission "Coalition: Expeditions Past 3"
 			`	The elevator arrives, bringing up an Arachi pair, and a tall, antenna-like pylon, covered in insulating wires that spiral around it. The Arachi bring the machine out of the elevator, and present some documents for the Heliarch representatives, who take turns reading and signing them. At the end, Sedlitaris signs as well, and the Arachi bring the pylon to your ship.`
 			`	Once everything's ready, the Heliarch representatives ask you to bring them to the spaceport city. They are quick to leave your ship once you land, not bothering to say goodbye to either you or Sedlitaris, just disappearing into a Heliarch building.`
 			`	"Well, all set to leave now, we are," Sedlitaris says. "Ready to leave for our first stop, are you, Captain?"`
+			choice
 				`	"Of course. Where are we headed?"`
 					goto stop
 				`	"Can you tell me what that machine is? How is it going to help?"`
