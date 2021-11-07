@@ -44,7 +44,7 @@ namespace {
 PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, const System *system, double zoom)
 	: object(&object), radius(object.Radius())
 {
-	RenderState::states[0].planetLabels[&object] = position;
+	RenderState::current.planetLabels[&object] = position;
 
 	const Planet &planet = *object.GetPlanet();
 	name = planet.Name();

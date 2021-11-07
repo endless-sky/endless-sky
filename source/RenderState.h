@@ -39,8 +39,8 @@ public:
 		float frame = 0.;
 	};
 
-	// The states used by the physics loop. The first entry is the current state.
-	static RenderState states[2];
+	// The current state of the physics.
+	static RenderState current;
 	// The interpolated render state of the current graphics frame.
 	static RenderState interpolated;
 
@@ -86,7 +86,7 @@ public:
 	RenderState &operator=(RenderState &&) noexcept = default;
 
 	// Interpolates the given previous state with the given alpha and returns the new state.
-	RenderState Interpolate(const RenderState &previous, double alpha) const;
+	static void Interpolate(const RenderState &previous, double alpha);
 };
 
 

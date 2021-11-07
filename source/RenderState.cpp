@@ -25,22 +25,29 @@ using namespace std;
 
 
 
-RenderState RenderState::states[2];
+RenderState RenderState::current;
 RenderState RenderState::interpolated;
 
 
 
 // Interpolates the given previous state with the given alpha and returns the new state.
-RenderState RenderState::Interpolate(const RenderState &previous, double alpha) const
+void RenderState::Interpolate(const RenderState &previous, double alpha)
 {
-	RenderState state;
-	for(const auto &it : bodies)
+	// Clear the previous entries.
+	interpolated.bodies.clear();
+	interpolated.planetLabels.clear();
+	interpolated.batchData.clear();
+	interpolated.asteroids.clear();
+	interpolated.crosshairs.clear();
+	interpolated.overlays.clear();
+
+	for(const auto &it : current.bodies)
 	{
 		auto prevInformation = previous.bodies.find(it.first);
 		if(prevInformation == previous.bodies.end())
 		{
 			// The current body appeared in the current frame.
-			state.bodies.emplace(it);
+			interpolated.bodies.emplace(it);
 			continue;
 		}
 
@@ -58,26 +65,26 @@ RenderState RenderState::Interpolate(const RenderState &previous, double alpha) 
 		info.blur[0] = it.second.blur[0] * alpha + prev.blur[0] * (1. - alpha);
 		info.blur[1] = it.second.blur[1] * alpha + prev.blur[1] * (1. - alpha);
 		info.frame = it.second.frame * alpha + prev.frame * (1. - alpha);
-		state.bodies.emplace(it.first, std::move(info));
+		interpolated.bodies.emplace(it.first, std::move(info));
 	}
-	for(const auto &label : planetLabels)
+	for(const auto &label : current.planetLabels)
 	{
 		auto prev = previous.planetLabels.find(label.first);
 		if(prev == previous.planetLabels.end())
 		{
-			state.planetLabels.emplace(label);
+			interpolated.planetLabels.emplace(label);
 			continue;
 		}
-		state.planetLabels.emplace(label.first, label.second * alpha + prev->second * (1. - alpha));
+		interpolated.planetLabels.emplace(label.first, label.second * alpha + prev->second * (1. - alpha));
 	}
-	state.starFieldCenter = starFieldCenter * alpha + previous.starFieldCenter * (1. - alpha);
-	state.centerVelocity = centerVelocity * alpha + previous.centerVelocity * (1. - alpha);
-	for(const auto &it : batchData)
+	interpolated.starFieldCenter = current.starFieldCenter * alpha + previous.starFieldCenter * (1. - alpha);
+	interpolated.centerVelocity = current.centerVelocity * alpha + previous.centerVelocity * (1. - alpha);
+	for(const auto &it : current.batchData)
 	{
 		auto prev = previous.batchData.find(it.first);
 		if(prev == previous.batchData.end())
 		{
-			state.batchData.emplace(it);
+			interpolated.batchData.emplace(it);
 			continue;
 		}
 
@@ -92,51 +99,49 @@ RenderState RenderState::Interpolate(const RenderState &previous, double alpha) 
 			if(prevBody == prev->second.end())
 			{
 				// This body didn't exist in the previous frame so we just add it.
-				state.batchData[it.first].emplace_back(data);
+				interpolated.batchData[it.first].emplace_back(data);
 				continue;
 			}
 
-			state.batchData[it.first].emplace_back();
-			auto &newData = state.batchData[it.first].back();
+			interpolated.batchData[it.first].emplace_back();
+			auto &newData = interpolated.batchData[it.first].back();
 			newData.object = body;
 			for(size_t i = 0; i < newData.vertices.size(); ++i)
 				newData.vertices[i] = data.vertices[i] * alpha + prevBody->vertices[i] * (1. - alpha);
 		}
 	}
-	for(const auto &it : asteroids)
+	for(const auto &it : current.asteroids)
 	{
 		auto prev = previous.asteroids.find(it.first);
 		if(prev == previous.asteroids.end())
 		{
-			state.asteroids[it.first] = Point();
+			interpolated.asteroids[it.first] = Point();
 			continue;
 		}
 
-		state.asteroids[it.first] = it.second * alpha + prev->second * (1. - alpha);
-		state.asteroids[it.first] -= prev->second;
+		interpolated.asteroids[it.first] = it.second * alpha + prev->second * (1. - alpha);
+		interpolated.asteroids[it.first] -= prev->second;
 	}
-	for(const auto &it : crosshairs)
+	for(const auto &it : current.crosshairs)
 	{
 		auto prev = previous.crosshairs.find(it.first);
 		if(prev == previous.crosshairs.end())
 		{
-			state.crosshairs.emplace(it);
+			interpolated.crosshairs.emplace(it);
 			continue;
 		}
 
-		state.crosshairs[it.first] = it.second * alpha + prev->second * (1. - alpha);
+		interpolated.crosshairs[it.first] = it.second * alpha + prev->second * (1. - alpha);
 	}
-	for(const auto &it : overlays)
+	for(const auto &it : current.overlays)
 	{
 		auto prev = previous.overlays.find(it.first);
 		if(prev == previous.overlays.end())
 		{
-			state.overlays.emplace(it);
+			interpolated.overlays.emplace(it);
 			continue;
 		}
 
-		state.overlays[it.first] = it.second * alpha + prev->second * (1. - alpha);
+		interpolated.overlays[it.first] = it.second * alpha + prev->second * (1. - alpha);
 	}
-
-	return state;
 }

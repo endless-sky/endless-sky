@@ -221,6 +221,8 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	auto currentTime = CurrentTime();
 	// Used to store any "extra" time after a frame.
 	double accumulator = 0.;
+	// The previous frame's information for interpolation.
+	RenderState previous;
 
 	const auto &font = FontSet::Get(14);
 
@@ -324,7 +326,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			showCursor = shouldShowCursor;
 			SDL_ShowCursor(showCursor);
 		}
-		
+
 		bool didUpdate = false;
 		while(accumulator >= updateFps)
 		{
@@ -332,7 +334,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			auto cpuStart = CurrentTime();
 
 			// We are starting a new physics frame. Cache the last state for interpolation.
-			RenderState::states[1] = std::move(RenderState::states[0]);
+			previous = std::move(RenderState::current);
 
 			// Tell all the panels to step forward, then draw them.
 			((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
@@ -405,7 +407,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		const double alpha = accumulator / updateFps;
 		// Interpolate the last two physics states. The interpolated state will
 		// be used by the drawing code.
-		RenderState::interpolated = RenderState::states[0].Interpolate(RenderState::states[1], alpha);
+		RenderState::Interpolate(previous, alpha);
 
 		// Events in this frame may have cleared out the menu, in which case
 		// we should draw the game panels instead:

@@ -437,9 +437,9 @@ void Engine::Step(bool isActive)
 	eventQueue.clear();
 	
 	// The calculation thread was paused by MainPanel before calling this function, so it is safe to access things.
-	RenderState::states[0].bodies = draw[!calcTickTock].ConsumeState().bodies;
-	RenderState::states[0].batchData = batchDraw[!calcTickTock].ConsumeState().batchData;
-	RenderState::states[0].asteroids = asteroids.ConsumeState().asteroids;
+	RenderState::current.bodies = draw[!calcTickTock].ConsumeState().bodies;
+	RenderState::current.batchData = batchDraw[!calcTickTock].ConsumeState().batchData;
+	RenderState::current.asteroids = asteroids.ConsumeState().asteroids;
 
 	const shared_ptr<Ship> flagship = player.FlagshipPtr();
 	const StellarObject *object = player.GetStellarObject();
@@ -597,7 +597,7 @@ void Engine::Step(bool isActive)
 				double width = min(it->Width(), it->Height());
 				statuses.emplace_back(&*it, it->Shields(), it->Hull(),
 					min(it->Hull(), it->DisabledHull()), max(20., width * .5), isEnemy);
-				RenderState::states[0].overlays[&*it] = it->Position() - center;
+				RenderState::current.overlays[&*it] = it->Position() - center;
 			}
 		}
 	
@@ -668,7 +668,7 @@ void Engine::Step(bool isActive)
 			object->Radius(),
 			object->GetPlanet()->CanLand() ? Radar::FRIENDLY : Radar::HOSTILE,
 			5});
-		RenderState::states[0].crosshairs[object] = object->Position() - center;
+		RenderState::current.crosshairs[object] = object->Position() - center;
 	}
 	else if(flagship && flagship->GetTargetSystem())
 	{
@@ -749,7 +749,7 @@ void Engine::Step(bool isActive)
 				size,
 				targetType,
 				4});
-			RenderState::states[0].crosshairs[&*target] = target->Position() - center;
+			RenderState::current.crosshairs[&*target] = target->Position() - center;
 			
 			targetVector = target->Position() - center;
 			
@@ -784,7 +784,7 @@ void Engine::Step(bool isActive)
 		Point pos = target->Position() - center;
 		statuses.emplace_back(&*target, flagship->OutfitScanFraction(), flagship->CargoScanFraction(),
 			0, 10. + max(20., width * .5), 2, Angle(pos).Degrees() + 180.);
-		RenderState::states[0].overlays[&*target] = pos;
+		RenderState::current.overlays[&*target] = pos;
 	}
 	// Handle any events that change the selected ships.
 	if(groupSelect >= 0)
@@ -833,7 +833,7 @@ void Engine::Step(bool isActive)
 				size,
 				Radar::PLAYER,
 				4});
-			RenderState::states[0].crosshairs[&*ship] = ship->Position() - center;
+			RenderState::current.crosshairs[&*ship] = ship->Position() - center;
 		}
 	}
 	
@@ -852,12 +852,12 @@ void Engine::Step(bool isActive)
 				.8 * minable->Radius(),
 				minable == flagship->GetTargetAsteroid() ? Radar::SPECIAL : Radar::INACTIVE,
 				3});
-			RenderState::states[0].crosshairs[&*minable] = offset;
+			RenderState::current.crosshairs[&*minable] = offset;
 		}
 
 	// Reposition the center for the background starfield.
-	RenderState::states[0].starFieldCenter = center;
-	RenderState::states[0].centerVelocity = centerVelocity;
+	RenderState::current.starFieldCenter = center;
+	RenderState::current.centerVelocity = centerVelocity;
 }
 
 
