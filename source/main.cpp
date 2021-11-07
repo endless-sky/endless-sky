@@ -181,7 +181,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		menuPanels.Push(new ConversationPanel(player, conversation));
 	
 	bool showCursor = true;
-	int cursorTime = 0;
+	double cursorTime = 0.;
 	bool isPaused = false;
 
 	enum MotionState
@@ -258,7 +258,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			
 			// If the mouse moves, reset the cursor movement timeout.
 			if(event.type == SDL_MOUSEMOTION)
-				cursorTime = 0;
+				cursorTime = 0.;
 			
 			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
 			{
@@ -312,8 +312,19 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		}
 		SDL_Keymod mod = SDL_GetModState();
 		Font::ShowUnderlines(mod & KMOD_ALT);
+
+		const bool inFlight = (menuPanels.IsEmpty() && gamePanels.Root() == gamePanels.Top());
+
+		// In full-screen mode, hide the cursor if inactive for ten seconds,
+		// but only if the player is flying around in the main view.
+		cursorTime += frameTime;
+		bool shouldShowCursor = (!GameWindow::IsFullscreen() || cursorTime < 10000. || !inFlight);
+		if(shouldShowCursor != showCursor)
+		{
+			showCursor = shouldShowCursor;
+			SDL_ShowCursor(showCursor);
+		}
 		
-		bool inFlight = (menuPanels.IsEmpty() && gamePanels.Root() == gamePanels.Top());
 		bool didUpdate = false;
 		while(accumulator >= updateFps)
 		{
@@ -322,16 +333,6 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 
 			// We are starting a new physics frame. Cache the last state for interpolation.
 			RenderState::states[1] = std::move(RenderState::states[0]);
-
-			// In full-screen mode, hide the cursor if inactive for ten seconds,
-			// but only if the player is flying around in the main view.
-			++cursorTime;
-			bool shouldShowCursor = (!GameWindow::IsFullscreen() || cursorTime < 600 || !inFlight);
-			if(shouldShowCursor != showCursor)
-			{
-				showCursor = shouldShowCursor;
-				SDL_ShowCursor(showCursor);
-			}
 
 			// Tell all the panels to step forward, then draw them.
 			((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
