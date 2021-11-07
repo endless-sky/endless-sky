@@ -356,6 +356,23 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 					accumulator -= updateFps;
 		}
 
+		if(lastMotion != motion)
+		{
+			switch(motion)
+			{
+			case SlowMo:
+				updateFps = slowMotionFps;
+				break;
+			case Normal:
+				updateFps = defaultFps;
+				break;
+			case FastForward:
+				updateFps = fastForwardFps;
+				break;
+			}
+			lastMotion = motion;
+		}
+
 		// Run any tests if the game updated.
 		if(didUpdate)
 		{
@@ -379,22 +396,10 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			}
 		}
 
-		if(lastMotion != motion)
-		{
-			switch(motion)
-			{
-			case SlowMo:
-				updateFps = slowMotionFps;
-				break;
-			case Normal:
-				updateFps = defaultFps;
-				break;
-			case FastForward:
-				updateFps = fastForwardFps;
-				break;
-			}
-			lastMotion = motion;
-		}
+		// Skip drawing in-flight frames during testing to speedup testing (unless debug mode is set).
+		// We don't skip UI-frames to ensure we test the UI code more.
+		if(testContext.CurrentTest() && inFlight && !debugMode)
+			continue;
 
 		const double alpha = accumulator / updateFps;
 		// Interpolate the last two physics states. The interpolated state will
