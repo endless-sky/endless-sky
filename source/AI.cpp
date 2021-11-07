@@ -805,6 +805,9 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 					auto &npcs = missionIt->NPCs();
 					for(const auto &npc : npcs)
 					{
+						// Don't reparent to NPC ships that have not been spawned.
+						if(!npc.ShouldSpawn())
+							continue;
 						newParent = getParentFrom(npc.Ships());
 						if(newParent)
 							break;

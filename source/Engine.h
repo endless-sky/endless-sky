@@ -43,6 +43,7 @@ class Projectile;
 class Ship;
 class ShipEvent;
 class Sprite;
+class TestContext;
 class Visual;
 class Weather;
 
@@ -80,13 +81,18 @@ public:
 	// Draw a frame.
 	void Draw() const;
 	
-	// Give an (automated/scripted) command on behalf of the player.
-	void GiveCommand(const Command &command);
+	// Set the given TestContext in the next step of the Engine.
+	void SetTestContext(TestContext &newTestContext);
 	
 	// Select the object the player clicked on.
 	void Click(const Point &from, const Point &to, bool hasShift);
 	void RClick(const Point &point);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
+	
+	// Break targeting on all projectiles between the player and the given
+	// government; gov projectiles stop targeting the player and player's
+	// projectiles stop targeting gov.
+	void BreakTargeting(const Government *gov);
 	
 	
 private:
@@ -227,6 +233,9 @@ private:
 	Point clickPoint;
 	Rectangle clickBox;
 	int groupSelect = -1;
+	
+	// Input, Output and State handling for automated tests.
+	TestContext *testContext = nullptr;
 	
 	double zoom = 1.;
 	

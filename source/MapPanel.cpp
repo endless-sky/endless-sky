@@ -1002,7 +1002,7 @@ void MapPanel::DrawWormholes()
 		const System *from = waypoints.back();
 		for(const System *to : waypoints)
 		{
-			if(player.HasVisited(*from) && player.HasVisited(*to))
+			if(from->FindStellar(&p)->HasSprite() && player.HasVisited(*from) && player.HasVisited(*to))
 				arrowsToDraw.emplace(from, to);
 			
 			from = to;

@@ -2431,3 +2431,324 @@ event "battle in arneb end"
 		add fleet "Small Northern Pirates" 400
 		add fleet "Large Northern Pirates" 500
 		add fleet "Large Republic" 15000
+
+
+
+mission "Stone of our Fathers 1"
+	name "Stone of our Fathers"
+	description "Travel to <destination>, and drop Skaldgar off at the home he abandoned long ago."
+	minor
+	passengers 1
+	to offer
+		random < 50
+	source "Helheim"
+	destination "Norn"
+	on offer
+		conversation
+			`Helheim's spaceport has all the constant hustle and bustle of a boomtown. It's dirty, lively, and packed with workers. As you walk through the spaceport, an aged man in a worn and weathered roustabout jacket waves his arm toward you and approaches you.`
+			`	"You've got the look of one who knows a ship inside and out," he says. "Name's Skaldgar, ain't much for ships; earth, soil, and rock are my domain. But I do got a need to travel." He pauses as a wistful look briefly passes over his face. "I left, you see, decades ago. No goodbye. No note. Just... left. Living with others, taking care of others, hard on a man like me. I like solitude, peace, and work. But now my bones are brittle: the radiation, earth-rot as we call it, has taken hold and my time is running out. And I find, I don't want to be alone anymore."`
+			`	He stops and frowns. "Look at me, rambling like an ol' man. Ser, Captain, I'd like to pay you <payment> to take me home, to <destination>."`
+			choice
+				`	"If you have coin, I have room."`
+				`	"I guess I can take a small detour."`
+				`	(You shake your head. You have better things to do than bus old men around.)`
+					goto decline
+			`	He nods, grunts, and heads to your ship with a small knapsack cradled under his arm, clearly ready to travel to <planet> at a moment's notice.`
+				accept
+			label decline
+			`	With a disappointed look on his face, he nods once and slides back into the endless sea of people.`
+				decline
+	on visit
+		dialog `You have reached <planet>, but your escort carrying Skaldgar has not arrived! Better depart and wait for your escorts to arrive in this star system.`
+	on complete
+		payment 15000
+		event "Stone waiting" 30
+		dialog `Skaldgar is as clean as you've seen him: scrubbed, shaved and wearing clothes that are respectable, if a few decades out of style. His eyes glisten, and he turns to you.`
+			`	"I've made a lot of mistakes in my life. Comin' home, even if I'm hated - or worse, forgotten - ain't one of them. Thank ya kindly for the passage."`
+			`	You wish the old codger a joyful homecoming, and watch as he disappears into the sleepy spaceport.`
+		
+event "Stone waiting"	
+
+
+
+mission "Stone of our Fathers 2"
+	name "Stone of our Fathers"
+	description "Return Skaldgar to <destination>."
+	minor
+	passengers 1
+	to offer
+		has "event: Stone waiting"
+		has "Stone of our Fathers 1: done"
+	source "Norn"
+	destination "Helheim"
+	on offer
+		conversation
+			`In the nearly abandoned spaceport of Norn, a scruffy and slow-moving figure shuffles toward you. "Captain <first>! Good to see you, friend. It's Skaldgar; ya gave me a ride here some time ago," he calls out as he approaches you.`
+			`	"Got a nephew who works at the port, let me know he saw you comin' in." He claps you on the back. "Things have been mostly good, hard though, the family - some are glad to see me, to remember me, and others..." he pauses. "Well, some mistakes you just can't take back."`
+			`	He looks away briefly, and then nods at his packed bag. "It was good to come back here one last time. But the soil, the work calls to me. I'm only good at one thing in this world, and I intend to do it to the very end. So, I was wonderin', could ya take me back to <destination>?`
+			choice
+				`	(You nod. Skaldgar and his hard-earned money are more than welcome aboard your ship.)`
+					goto accept
+				`	"No, thanks. I have better things to do than bus old men around."`
+			`	Skaldgar glares at you briefly then shrugs. "S'pose you do. S'pose you do." He turns and wanders away.`
+				decline
+			label accept
+			`	Skaldgar rewards you with a genuine, if uneven, smile and then picks up his pack to board your ship.`
+				accept
+	on visit
+		dialog `You have reached <planet>, but your escort with Skaldgar has not arrived! Better depart and wait for your escorts to arrive in this star system.`
+	on complete
+		event "Stone Waiting more" 60
+		payment 25000
+		dialog `Helheim's hustle and bustle threatens to overwhelm the senses, yet Skaldgar, for all his age and illness, seems to have a skip in his step as he saunters out of your ship and into the teeming masses.`
+			`	Just as he is about to be swept up in the current of humanity, Skaldgar turns and gives you one last wave, and then is gone.`
+		
+event "Stone Waiting more"
+
+
+
+mission "Stone of our Fathers 3"
+	name "Stone of our Fathers"
+	description "Take Skaldgar's stone back to his family on <destination>."
+	minor
+	to offer
+		has "event: Stone Waiting more"
+		has "Stone of our Fathers 2: done"
+	source "Helheim"
+	destination "Norn"
+	on offer
+		conversation
+			`As always, Helheim is packed to the brim with transient workers coming and going, with dreams of either getting rich or getting out. A youngish looking man in a dirty roustabout jacket waves at you and approaches.`
+			`	"Yer that Cap'n that Skaldgar always went on about, aren'tcha?" The young man attempts to imitate Skaldgar with a deep and ponderous voice, "Him that knows the currents of space like we know our stone, and the like." The man grins sheepishly, " Ol' Skaldgar always had a way with words, he did."`
+			`	The young man then looks down, somberly, and pulls from his pocket a small, well-worn stone with some strange markings on it and holds it out to you.`
+			`	"He wanted," he begins haltingly, "he wanted you, only you, to take this back to his folk on Norn." He swallows. "It's the old ways, it is. This, it needs to be returned, and not by a stranger." The young man then shrugs. "Best to let'cha know, I ain't have no money to pay you. This would be a favor for the ol' man."`
+			choice
+				`	(Reach out and accept the stone.)`
+					goto accept
+				`	"Nope. Not going to do it. I run a ship, not a charity."`
+			`	The young man nods knowingly. "Guess Skaldgar was wrong about you, but I understand. We all gotta eat." He turns and slides back into the endless crowd.`
+				decline
+			label accept
+			`	You're surprised at how cool the smooth stone feels in your palm.`
+			`	He smiles sadly. "Skaldgar always had a nose for good folks. Anyways, he told me he had a nephew named Helm who worked at the Norn spaceport. Find 'im and he can get'cha and this stone where it needs to go." The young man than looks you in the eye and gives a slow respectful nod, "For Ol' Skaldgar, may he be findin' ore in hel."`
+			`	And with that, the man disappears into the crowd.`
+				accept
+	on complete
+		dialog `It turns out there is no need to search for Helm, as he is waiting for you when you land.`
+			`	"I figured for you to be returning, it would either be with Skaldgar or with" - he pauses - "news." He looks around. "And I don't see Skaldgar."`
+			`	You show him the odd stone you'd been given, and Helm stiffens then nods. "As I figured. Best we meet in the spaceport to discuss what comes next."`
+
+
+
+mission "Stone of our Fathers 4"
+	name "Stone of our Fathers"
+	description "Take Skaldgar's stone back to his Family-Cairn on <destination>."
+	minor
+	passengers 1
+	to offer
+		has "Stone of our Fathers 3: done"
+	source "Norn"
+	destination "Alfheim"
+	on offer
+		conversation
+			`Helm meets you in the nearly deserted spaceport bar. "Ma always had a soft spot for Uncle Skaldgar. Even after he ran off 35 years ago, she still spoke fondly of him. He always sent the family money, he was good like that. Not as good, though, in sending his love."`
+			`	Helm sighs, "This is going to be tough, but as bearer of the Stone, you are going to need to present it to his son. His family lives on a drifting algae island to the south of here. Are you willing to accompany me?"`
+			choice
+				`	"I've come this far. I might as well finish it."`
+					goto accept
+				`	"Absolutely, I want to see this through."`
+					goto accept
+				`	"No, This is as far as I go. I got the stone to you, and it's your problem now."`
+					goto decline
+			label decline
+			`	Helm nods, knowingly, "Fair enough, star-traveler. I will handle it from here."`
+				decline
+			label accept
+			`	Helm smiles when you agree to accompany him. "This is right," he says.`
+			`	After making a few preparations, he leads you out to the harbor, where you climb aboard a small ocean-going craft that you assume belongs to him. He works on the controls for a bit and then sits down across from you as the ship veers out into the open ocean.`
+			`	"It's an old custom," he says, nodding toward the stone in your hand. "Goes back to the founding of The Deep, the first settlers. On a person's 16th birthday they are given a stone to carry with them through their lives. On special, or momentous occasions, they are to carve a few runes into it, a few cherished memories chiseled into hard stone."`
+			`	Helm pauses as a flock of jabbering sea-birds passes near the ship, indicating a nearby island, and then continues. "And then when that person dies, that stone is returned by the closest family member to the Family-Cairn."`
+			`	Helm looks up and his eyes scan the horizon. "We're almost there; gather your things." Helm stands and returns to the ship's controls.`
+			choice
+				`	"But why do I have to be the one to bring the stone to his son?"`
+					goto why
+				`	"Where do the stones come from?"`
+					goto from
+			label why
+			`	Helm shrugs as he maneuvers the ship into dock. "It is the old way. To make certain the stone is not lost, mishandled, or acquired by enemies. If the family is not near when its owner passes, it is given to a trusted friend who becomes its bearer. That task is too important and too sacred to be given to a stranger or courier. For you to take it all the way to his son, so that he may return it to earth, is right."`
+					goto earth
+			label from
+			`	Helm shrugs as he maneuvers the ship into dock. "Wherever makes the most sense at the time a stone is given. If I recall correctly Skaldgar's stone was given to him by his mother, my grandmother, from an old mine Skaldgar had been exploring on the mainland. Even at 16 he loved the earth."`
+			label earth
+			`	Helm ties up the ship at a makeshift dock and you follow him toward a dour grey building not far away. You realize this entire algae island, as small as it is, must belong to a single individual or family.`
+			`	When you arrive at the hardy and sea-stained wooden door, Helm knocks thunderously upon it and calls out, "Thorleif, open up!"`
+			`	After a brief wait the door opens ponderously revealing, a large, red-bearded, middle aged man who looks like a younger and much healthier Skaldgar. You realize that you must be standing before the man's son. A wide and open grin forms on his face when he sees Helm, and he gives the man a warm embrace. "Ah cousin! It's been too long, what brings you to my humble home?"`
+			`	Thorlief then notices you and frowns. "And who have you brought with you?"`
+			choice
+				`	(Answer for yourself.)`
+				`	(Let Helm answer for you.)`
+					goto helm
+			`	You smile somberly at Thorleif. "I was a friend of Skaldgar. I gave him a ride a few times, and, most recently, was entrusted with his stone."`
+					goto stone
+			label helm
+			`	Helm puts a hand on Thorleif's shoulder. "This here is <first>, they've come a long way to see you, and to bring you Skaldgar's stone."`
+			label stone
+			`	Thorleif tenses up. "Never speak that name!" His eyes narrow. "Helm, I want nothing to do with that stone, this person," Thorleif says, gesturing toward you, "or whatever else that old man wanted or cared about."`
+			`	Thorleif glances toward the horizon as he clenches and unclenches his fists, taking a few slow breaths, regaining his composure. "I realize you have traveled far and would not be able to get back to the mainland before night. So you may stay in the guest quarters, and leave first thing in the morning. I will have no one say that Thorleif was inhospitable."`
+			choice
+				`	(Keep quiet and follow Helm towards the guest rooms.)`
+					goto rooms
+				`	(Try to say something on Skaldgar's behalf.)`
+			`	"Wait," you say before Thorleif can stomp off. "I do not, could not, know all that has happened here, that has gone on between you and your father. But I know that every time I met him he clearly regretted whatever happened, and constantly spoke of his mistakes. He's gone now, mistakes and all, and this stone... I don't think it represents forgiveness, but maybe acceptance of who he was, and that now he is gone."`
+			`	Thorleif turns to you, his face flashing red, and speaks through clenched teeth, "I have no father. I have no memories of such a man, and I will make no effort to remember someone who didn't stick around long enough to know me. Now, go to your rooms and leave me be!"`
+			label rooms
+			`	You quietly follow Helm to two small, sparsely decorated rooms, clearly intended for guest use. Helm clears his throat, "This may surprise you, but that actually went better than I thought it would."`
+			`	Helm then turns his attention to a small window and the darkening horizon beyond it. "Dark clouds are gathering, I fear we may be here longer than a single night."`
+			choice
+				`	(Head off to bed as the first rains begin to patter against the roof.)`
+			`	You awake to the riotous din of hard rain crashing against the building. As Helm predicted, a powerful storm blew in during the night, the floating island besieged by savage weather. By midmorning, the walls are starting to creak as howling forces of nature bash against it unceasingly.`
+			`	You hear a door open and struggle to close, followed by the sound of heavy sloshing footsteps. Thorleif, soaked to the bone, stands before you and Helm in the main room. "It's a Fimbulhrithr," Thorleif exclaims, "One of the worst I've yet seen. If we do not act quickly it could well flatten everything on this isle. Will you help me?"`
+			choice
+				`	(You offer to help Thorleif.)`
+					goto help
+				`	"No, I've done enough for this family already. Especially for free!"`
+			`	Thorleif growls, "Knew better than to trust a friend of that useless old man. I gave you a place to sleep, and now you won't lift a hand to save it? I should have expected no less!" Thorleif and Helm hurry off to tend to the island during the storm, leaving you idle inside.`
+			`	Thorleif and Helm heroically use the island's metal rudder and rudimentary engine to steer it away from the storm and to calmer, safer seas. However, with only the two of them many of the out-buildings are destroyed, along with a few of the small watercraft Thorleif used to fish and work on.`
+			`	You get the impression that this is an expensive and major loss for Thorleif. The moment the winds are calm, he demands Helm take you back to the mainland and your ship. "This Captain," Thorleif says, his voice oozing with disgust, "is just as lucky as my so-called father. I want him gone."`
+			`	For most of the trip back to your ship, Helm says nothing. He has been cool to you ever since you refused to help save the island. Finally, as you are preparing to disembark from his ship, he stops you. "You've done Skaldgar no favors here. I'd appreciate it if we don't see from you again."`
+			`	Helm holds up his hand showing off the stone in his palm. "I took it while you were napping. Skaldgar made a mistake with you, and I will at least see the stone properly tended. Goodbye." Helm indicates toward the exit and waits for you to depart before casting off again in his ship.`
+				decline
+			label help
+			`	Thorleif nods and takes you and Helm outside into the storm, or Fimbulhrithr. Thorleif and Helm work the island's metal rudder and rudimentry engine to steer the island away from the storm, while you are given the task of tying everything down that is liable to fly away.`
+			`	With the storm comes unnatural darkness, and the sky is filled with debris and fish and all manner of items that do not belong in it. You hurry as fast as you can, saving as much as possible.`
+			`	After hours of hard work, the storm begins to subside, and the sea and sky begin to calm. An exhausted Thorleif and Helm stagger over to you, and Thorleif surveys his small island. "Without your help I would have lost much of what stands intact. It was a lucky thing you came when you did."`
+			`	With that, he turns and heads back to the main dwelling, with you and Helm in tired tow.`
+			choice
+				`	(Wash up and warm up in the main room around the fire.)`
+			`	 You spend the evening warming yourself by a roaring fire, telling Helm and Thorleif tales of your exploits in space and many of the wonders you've seen.`
+			`	In turn, they tell you about the sea beasts, leviathans, and krakens that they have met on the ocean currents of Norn. Of lost isles filled with forgotten treasure or strange people, or stories even, about the ancient elves who once aided their ancestors and are said to be around still.`
+			choice
+				`	(Ask about the elves.)`
+				`	(Ask about lost treasure.)`
+					goto treasure
+			`	The idea of Elves, or Alfar as they call them, intrigues you, and you ask what they know of them.`
+			`	"The Alfar," Thorleif begins, "are said to have been a great help to us in the early days. Some say they spared us from plagues and protected us from monsters. Many still offer sacrifices and prayers to them, so that they remember us and know that we are friends and allies still."`
+			`	Thorleif shrugs. "This may be true, and good at that, but others think the Alfar, for all their apparent good works, cannot be trusted. Their minds are unknowable and filled with mischief, and their aims are not ours. This is the belief that our family holds to. They should be respected, but also feared. We must look to each other for support and strength, and trust not in the deeds of strangers."`
+					goto family
+			label treasure
+			`	You could always use a little extra money, and this trip, while engaging, has certainly not made you any richer, so you ask about hidden treasures. Helm and Thorleif both grin at this and glance at each other knowingly. They launch into tales of the riches of lost civilizations, or forgotten pirate hoards, or even early human kingdoms. It's easy to lose things on a fog-covered ocean world with floating islands, all too easy.`
+			`	When they are done regaling you with tales, they mention to you that maybe some other time they'll take you out into the deep ocean and perhaps you'll find what you're looking for. They smile wolfishly at that, and you think they might be putting you on. "Have you ever found treasure out here?" you ask.`
+			`	Thorleif shrugs. "Coming here... from Alfheim long ago, our descendants felt that the world itself was the real treasure. We have no need to go chasing dreams in the abyss."`
+			label family
+			`	As the conversation winds down and the hour grows late Helm excuses himself to bed, for he, like the rest of you, is dog tired after the day's events. You stand too, feeling your own need for sleep.`
+			`	"<first>," Thorleif says without looking up from the fire. "I've been thinking. I can never forgive my father for what he did. Leaving me and mom like that. But I can, I think, make peace with it. I can accept the stone." He looks up and smiles, "You brought some luck with you, and a man should never argue with luck."`
+			`	He stands up. "We'll talk in the morning."`
+			choice
+				`	(You head to bed for some well deserved sleep.)`
+			`	The day is bright and the sky is clear, the storm long forgotten as you prepare your things. Both men meet you in the main room. Thorleif opens up his hand to accept the stone, which you gladly place into it. He smiles and looks it over, tracing his finger along its chiseled runes.`
+			`	"Thank you, <first>". You nod, happy to be done with this mission and free to fly the space lanes once more.`
+			`	"Just more thing," Thorleif adds with a sly grin. "I'll need a captain willing to ferry me to Alfheim. That's where my family's cairn is located."`
+			choice
+				`	(After all you've been through, you don't see any way to refuse the request.)`
+			`	"Of course," you answer, and before you know it the three of you are on Helm's boat and heading for the spaceport.`
+			`	"Alfheim," Thorleif says idly, "you know of it? The name means the home of the Alfar, or elves as you call them. I've never been there, only heard of it. It'll be strange to visit the world of my ancestors."`
+			`	Helm stays behind as you and Thorleif load your gear onto your ship.`
+			`	You're not sure exactly how you got mixed up into all this, and yet, it all feels right to you. Like you are where you should be, doing what you should do. This adventure may not involve intergalactic wars or the secrets of the ancients, but sometimes it really is just about people. People like Skaldgar and Thorleif and Helm.`
+				accept
+	on complete
+		conversation 
+			`The journey to Alfheim was interesting, if uneventful. Thorleif had never been in space before, and every jump left him quite ill. At the same time, however, he found so much wonder in it: seeing the dark void and bright stars with his own eyes; watching the tiny worlds recede into the distance. You could, through his eyes, experience the wild adventure of space anew.`
+			`	Throughout the trip, he told you stories of his family: They were called the Hlewagast and originally settled as some of the first colonists on Alfheim in the early history of The Deep. How they had been explorers and adventurers before taking land here to settle down on and work. How his great grandparents had decided to leave Alfheim, dismayed by the rampant pillaging of resources and looking once more for adventure, and how they had come to Norn. Seeking the waves, and the storms, and the solitude.`
+			`	Through all of this, you got a better feel for Thorleif, Skaldgard and his people, and are almost sorry when your ship approaches Alfheim.`
+			`	On landing, you are surprised by how much Alfheim reminds you of Helheim. Though the environment and ecology of the worlds are remarkably different, both are primarily used for resource extraction, and thus filled with boomtown employees and migrants looking for work, chasing dreams, and trying to make their way in the world.`
+			`	Thorleif points to the spaceport. "Let's see if we can find a guide in there. There's a village we'll need to find, assuming it even exists anymore and hasn't been abandoned or destroyed to make room for a new oil rig."`
+	on visit
+		dialog `You have reached <planet>, but your escort carrying Thorleif and Helm has not arrived! Better depart and wait for your escorts to arrive in this star system.`
+
+
+
+mission "Stone of our Fathers 5"
+	name "Stone of our Fathers"
+	description "Take Ragnhild and Thorleif back to <destination>."
+	minor
+	passengers 2
+	to offer
+		has "Stone of our Fathers 4: done"
+	source "Alfheim"
+	destination "Norn"
+	on offer
+		conversation
+			`Thorleif clearly is uncomfortable being in a place so jam-packed with people. You help him keep his bearings and work your way to a young woman managing a visitor kiosk in the Spaceport.`
+			`	The woman looks up with a tired, practiced smile. "Welcome to Alfheim. Are you looking for work, or looking for a specific rig site? Please be aware that proof of employment is required before I can give you any details on company rigs."`
+			`	Thorleif shakes his head. "Lady, no. We're not... anyone's employees, nor do we need work here. I am looking for a village, hamlet really, called Grimssalr. It's where my folk come from."`
+			`	The woman frowns for a second then seems to break from a trance as real warmth washes over her face. "I am sorry, it's been so long since I've dealt with people who weren't just looking for work. Alfheim, well, it is what it used to be, but only just more so now." She shrugs, "I know of Grimssalr though. I'm actually from Lindsvoll which is in the same valley."`
+			`	"So can you tell us where it is?" Thorleif asks earnestly. The woman smiles shyly at Thorleif. "Tell you? How about I take you there?"`
+			choice
+				`	(Invite her with you.)`
+					goto accompany
+				`	(Reject the offer.)`
+			`	You start to say that it isn't necessary for her to accompany you, when Thorleif cuts you off. "That sounds great!"`
+			`	She smiles broadly at Thorleif and nods.`
+			choice
+				`	(Sigh and shake your head.)`
+			label accompany
+			`	She immediately abandons her kiosk and shrugs. "I didn't care much for that job anyways."`
+			`	You and Thorleif follow her to a local transit hovercraft, where she and Thorleif quickly sit together. You find yourself sitting alone.`
+			`	For the next three hours, it sounds as if they are in deep conversation, while you drift in and out of sleep watching as oil fields give way to rainforests and then rainforests shrink before great wooded mountains.`
+			`	At some point you feel Thorleif shaking your shoulder. "We're here."`
+			choice
+				`	(Rise from your seat.)`
+			`	The town of Grimssalr is nestled along the foothills of the towering Ettin mountains in western Alfheim. Town is perhaps too generous a word; it is instead more like a couple dozen houses mostly filled with old people long abandoned by their children seeking wealth and adventure elsewhere.`
+			`	The woman, who you've learned is named Ragnhild, introduces Thorleif to some of the folks here, and before long they have found ways to connect their ancient genealogies together and everyone is suddenly treated as family. Before you know it, you are eating their meager yet hearty fare, swapping stories of adventures, and listening to legends about the old times.`
+			`	As the sun begins to set, Thorleif approaches you, "It is time," he says. "The journey to the cairn is only a short hike from here. I would like you to accompany me. I think Skaldgar would have wanted that."`	
+			choice
+				`	(Accompany Thorleif.)`
+					goto followcairn
+				`	"It's best that you do this alone."`
+			`	Thorleif frowns. "I cannot. It does not feel right. It is only because of you, that I am here at all. I need you by my side to finish this. For me, and for him."`
+			choice
+				`	(Accompany Thorleif.)`
+					goto followcairn
+				`	"I am sorry. But I will not go."`
+			`	Thorleif's face reddens and he abruptly turns from you. He has no words left to argue with and leaves you to wait in the village.`
+			`	A short time later he returns, his eyes wet and red.`
+			`	"I have made my peace, I have read the runes of his life and returned his stone to the Family-Cairn of Hlewagast. He had few happy moments, and the only recent ones involved us both. He is gone now, and we remain." Thorleif wipes tears from his eyes. "Let us rest, and eat, and drink for a time. Skaldgar would have liked that, too."`
+				goto drinkandbemerry
+			label followcairn
+			`	You follow Thorleif up a mostly overgrown trail for about 30 minutes before finally stepping out into a wide open plain. The wind is cool and refreshing, and the grass blows with a steadiness that is somehow reassuring. There is something special and timeless about this meadow.`
+			`	You notice over two dozen columns of stone arranged in a circle around a much more massive and impressive structure - a wall cut from some sort of metal you don't recognize.  It is covered with filled with letters and images that are unfamiliar to you.`
+			`	"That is an Elf-Stone. It is why we built our Family-Cairns here. Such stones can be found on most worlds in The Deep. Indestructible, and left by the Alfar for some unknowable reason. Some, like this one, have been mostly forgotten. Others though, are important places of celebration and even worship."`
+			`	He points at a smallish cairn next to the Elf-Stone. "This, though, is what we're here for."`
+			`	You eye the worn and weather-beaten cairn with a faded name plate that has 'Hlewagast' carved into its base.`
+			`	Thorleif approaches the cairn.`
+			`	Thorleif holds up the stone of his father in his palm and begins to read the runes carved upon it.`
+			`	"The day my mother gave me this stone and said she was proud of me."`
+			`	"The day my son Thorleif was born."`
+			`	"The day I struck the mother lode on Helheim."`
+			`	"The day I met <first> and he helped me find my family again."`
+			`	"The day I saw my son again, even though he would not see me."`
+			`	Thorleif sniffs, takes a moment to write something down he saw on the stone, and then walks forward and places it upon the cairn, at home now with hundreds of other stones each with their own handful of memories.`
+			`	"He had not so many good memories, I think," Thorleif said quietly. "I realize now, that mine too are quite few. Perhaps that, if nothing else, is a lesson he can teach me. For that, I thank you, father."`
+			`	With that, Thorleif turns from the cairn with teary eyes. "It is done. Let us head back."`
+			choice
+				`	(Follow Thorleif back to the village.)`	
+			`	The two of you trudge back to the small hamlet of Grimssalr, with its people happy at having guests and long lost relatives, and to Ragnhild, happy to spend more time with Thorlief, where you feast and talk and laugh and remember.`
+			label drinkandbemerry
+			`	You enjoy yourself well into the evening before Thorleif approaches you. It's time to head back.`
+			`	"This place," Thorleif begins, "this world, it feels like it has forgotten its soul. Industry and greed have taken hold, and the old happy places like Grimssalr are dying. It is good my family left here all those years ago. Norn is, and has been, a good place to be."`
+			`	Thorleif then nods to Ragnhild. "Which is also why my very new and very dear friend Ragnhild has decided to join us on the return trip to Norn." You look to Ragnhild but somehow you can't feel that you're surprised at the news.`
+			`	She smiles brightly. "Best offer I've had in a long time." The three of you board your ship and prepare for the journey home.`
+				accept
+	on visit
+		dialog `You have reached <planet>, but your escort with the space reserved for Thorleif and Ragnhild has not arrived! Better depart and wait for your escorts to arrive in this star system.`
+	on complete
+		payment 500000
+		conversation 
+			`The trip back to Norn was restful.`
+			`	You spent most of it listening to Ragnhild tell the old stories and legends of Alfheim that she had learned as a child.`
+			`	Stories about alien trees whispering dark secrets, of oil barons destroying sacred sites and being cursed by alien artifacts they were too blinded by greed to see, and even tales of the elves and miracles of the Elf-Stones.`
+			`	Again, as before, you're almost sad when you make it back to Norn and the time for telling stories has ended, and the time for saying goodbye has begun.`
+			`	Thorleif wraps you in a bear hug. "I thank you for all you have done <first>. I was so wound up in my own anger and bitterness I couldn't see anything beyond my own pain. But now, I feel like I can live again. Trust that our meeting has been etched into my own stone. I hope someday you come back and visit us. To remember us small folk on a small world so far from places of power and grand events. Remember you'll always have a home here."`
+			`	With that Thorleif and Ragnhild make their way off your ship. Thorleif only takes a few steps out into the quiet Norn spaceport before stopping suddenly and turning back towards you.`
+			`	"I almost forgot. The old man, Skaldgar, well he had quite a bit of money saved up. I don't think he hardly spent anything on himself. Anyways, I've decided to split the inheritance with you. After taxes your half comes out to around 500,000 even."`
+			`	Thorleif, shrugs, laughs, and walks with Ragnhild hand in hand out into the foggy mists of Norn.`

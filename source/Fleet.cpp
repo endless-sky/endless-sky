@@ -300,7 +300,7 @@ const Government *Fleet::GetGovernment() const
 // Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
 void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet) const
 {
-	if(!total || variants.empty())
+	if(!total || variants.empty() || personality.IsDerelict())
 		return;
 	
 	// Pick a fleet variant to instantiate.
@@ -491,7 +491,11 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 		
 		Angle angle = Angle::Random();
 		Point pos = center.first + Angle::Random().Unit() * OffsetFrom(center);
-		double velocity = Random::Real() * ship->MaxVelocity();
+		double velocity = 0;
+		if(!ship->GetPersonality().IsDerelict())
+			velocity = Random::Real() * ship->MaxVelocity();
+		else
+			ship->Disable();
 		
 		ships.push_front(ship);
 		ship->SetSystem(&system);

@@ -86,48 +86,6 @@ double System::Asteroid::Energy() const
 
 
 
-System::FleetProbability::FleetProbability(const Fleet *fleet, int period)
-	: fleet(fleet), period(period > 0 ? period : 200)
-{
-}
-
-
-
-const Fleet *System::FleetProbability::Get() const
-{
-	return fleet;
-}
-
-
-
-int System::FleetProbability::Period() const
-{
-	return period;
-}
-
-
-
-System::HazardProbability::HazardProbability(const Hazard *hazard, int period)
-	: hazard(hazard), period(period > 0 ? period : 200)
-{
-}
-
-
-
-const Hazard *System::HazardProbability::Get() const
-{
-	return hazard;
-}
-
-
-
-int System::HazardProbability::Period() const
-{
-	return period;
-}
-
-
-
 // Load a system's description.
 void System::Load(const DataNode &node, Set<Planet> &planets)
 {
@@ -209,7 +167,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		
 		// Handle the attributes which can be "removed."
 		if(key == "hidden")
-			hidden = true;
+			hidden = !remove;
 		else if(!hasValue && key != "object")
 		{
 			child.PrintTrace("Expected key to have a value:");
@@ -775,7 +733,7 @@ double System::Exports(const string &commodity) const
 
 
 // Get the probabilities of various fleets entering this system.
-const vector<System::FleetProbability> &System::Fleets() const
+const vector<RandomEvent<Fleet>> &System::Fleets() const
 {
 	return fleets;
 }
@@ -783,7 +741,7 @@ const vector<System::FleetProbability> &System::Fleets() const
 
 
 // Get the probabilities of various hazards in this system.
-const vector<System::HazardProbability> &System::Hazards() const
+const vector<RandomEvent<Hazard>> &System::Hazards() const
 {
 	return hazards;
 }
@@ -836,6 +794,8 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 			object.speed = 360. / child.Value(1);
 		else if(child.Token(0) == "offset" && child.Size() >= 2)
 			object.offset = child.Value(1);
+		else if(child.Token(0) == "hazard" && child.Size() >= 3)
+			object.hazards.emplace_back(GameData::Hazards().Get(child.Token(1)), child.Value(2));
 		else if(child.Token(0) == "object")
 			LoadObject(child, planets, index);
 		else
