@@ -417,9 +417,10 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 
 		if(Preferences::Has("Show CPU / GPU load"))
 		{
-			font.Draw(cpuLoad,
-				Point(-10 - font.Width(cpuLoad), Screen::Height() * -.5 + 5.),
-					*GameData::Colors().Get("medium"));
+			if(inFlight)
+				font.Draw(cpuLoad,
+					Point(-10 - font.Width(cpuLoad), Screen::Height() * -.5 + 5.),
+						*GameData::Colors().Get("medium"));
 
 			totalElapsedTimeGpu += frameTime;
 			++totalFramesGpu;
@@ -430,9 +431,10 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 				totalFramesGpu = 0;
 			}
 
-			font.Draw(fpsStringGpu,
-				Point(10, Screen::Height() * -.5 + 5.),
-					*GameData::Colors().Get("medium"));
+			if(inFlight)
+				font.Draw(fpsStringGpu,
+					Point(10, Screen::Height() * -.5 + 5.),
+						*GameData::Colors().Get("medium"));
 		}
 
 		GameWindow::Step();
