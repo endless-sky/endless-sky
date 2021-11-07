@@ -12,13 +12,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "BoardingPanel.h"
 
+#include "text/alignment.hpp"
 #include "CargoHold.h"
 #include "Depreciation.h"
 #include "Dialog.h"
+#include "text/DisplayText.h"
 #include "FillShader.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Information.h"
@@ -31,6 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipEvent.h"
 #include "ShipInfoPanel.h"
 #include "System.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include <algorithm>
@@ -145,12 +148,8 @@ void BoardingPanel::Draw()
 		const Color &color = item.CanTake(*you) ? isSelected ? bright : medium : dim;
 		Point pos(-320., y + fontOff);
 		font.Draw(item.Name(), pos, color);
-		
-		Point valuePos(pos.X() + 260. - font.Width(item.Value()), pos.Y());
-		font.Draw(item.Value(), valuePos, color);
-		
-		Point sizePos(pos.X() + 330. - font.Width(item.Size()), pos.Y());
-		font.Draw(item.Size(), sizePos, color);
+		font.Draw({item.Value(), {260, Alignment::RIGHT}}, pos, color);
+		font.Draw({item.Size(), {330, Alignment::RIGHT}}, pos, color);
 	}
 	
 	// Set which buttons are active.
@@ -205,8 +204,8 @@ void BoardingPanel::Draw()
 			Round(defenseOdds.DefenderCasualties(vCrew, crew)));
 	}
 	
-	const Interface *interface = GameData::Interfaces().Get("boarding");
-	interface->Draw(info, this);
+	const Interface *boarding = GameData::Interfaces().Get("boarding");
+	boarding->Draw(info, this);
 	
 	// Draw the status messages from hand to hand combat.
 	Point messagePos(50., 55.);
@@ -561,8 +560,7 @@ const string &BoardingPanel::Plunder::Name() const
 
 
 
-// Get the mass, in the format "<count> x <unit mass>". If this is a
-// commodity, no unit mass is given (because it is 1). If the count is
+// Get the mass, in the format "<count> x <unit mass>". If the count is
 // 1, only the unit mass is reported.
 const string &BoardingPanel::Plunder::Size() const
 {
@@ -621,9 +619,7 @@ void BoardingPanel::Plunder::Take(int count)
 void BoardingPanel::Plunder::UpdateStrings()
 {
 	double mass = UnitMass();
-	if(!outfit)
-		size = to_string(count);
-	else if(count == 1)
+	if(count == 1)
 		size = Format::Number(mass);
 	else
 		size = to_string(count) + " x " + Format::Number(mass);

@@ -35,7 +35,7 @@ namespace {
 			sortedOutfits.emplace_back(it.first);
 		
 		sort(sortedOutfits.begin(), sortedOutfits.end(),
-			[] (const Outfit *lhs, const Outfit *rhs)
+			[](const Outfit *lhs, const Outfit *rhs)
 			{
 				return lhs->Mass() > rhs->Mass();
 			}
@@ -113,9 +113,10 @@ void CargoHold::Save(DataWriter &out) const
 	if(!first)
 		out.EndChild();
 	
+	// Save all outfits, even ones which have only been referred to.
 	bool firstOutfit = true;
 	for(const auto &it : outfits)
-		if(it.second && !it.first->Name().empty())
+		if(it.second)
 		{
 			// It is possible this cargo hold contained no commodities, meaning
 			// we must print the opening tag now.
@@ -542,7 +543,7 @@ int64_t CargoHold::Value(const System *system) const
 {
 	int64_t value = 0;
 	for(const auto &it : commodities)
-		value += system->Trade(it.first) * it.second;
+		value += static_cast<int64_t>(system->Trade(it.first)) * it.second;
 	// For outfits, assume they're fully depreciated, since that will always be
 	// the case unless the player bought into cargo for some reason.
 	for(const auto &it : outfits)
@@ -551,28 +552,34 @@ int64_t CargoHold::Value(const System *system) const
 }
 
 
-	
+
 // If anything you are carrying is illegal, return the maximum fine you can
-// be charged. If the returned value is negative, you are carrying something
-// so bad that it warrants a death sentence.
+// be charged for any illegal outfits plus the sum of the fines for all
+// missions. If the returned value is negative, you are carrying something so
+// bad that it warrants a death sentence.
 int CargoHold::IllegalCargoFine() const
 {
-	int worst = 0;
+	int totalFine = 0;
 	// Carrying an illegal outfit is only half as bad as having it equipped.
+	// Only the worst illegal outfit is fined.
 	for(const auto &it : outfits)
 	{
 		int fine = it.first->Get("illegal");
 		if(fine < 0)
 			return fine;
-		worst = max(worst, fine / 2);
+		totalFine = max(totalFine, fine / 2);
 	}
 	
+	// Fines for illegal mission cargo and passengers are added together to
+	// avoid the player being able to stack multiple illegal jobs at once
+	// and avoid the bulk of the penalties when fined.
 	for(const auto &it : missionCargo)
 	{
 		int fine = it.first->IllegalCargoFine();
 		if(fine < 0)
 			return fine;
-		worst = max(worst, fine);
+		if(!it.first->IsFailed())
+			totalFine += fine;
 	}
 	
 	for(const auto &it : passengers)
@@ -580,8 +587,9 @@ int CargoHold::IllegalCargoFine() const
 		int fine = it.first->IllegalCargoFine();
 		if(fine < 0)
 			return fine;
-		worst = max(worst, fine);
+		if(!it.first->IsFailed())
+			totalFine += fine;
 	}
 	
-	return worst;
+	return totalFine;
 }

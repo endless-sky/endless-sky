@@ -29,13 +29,10 @@ class ImageBuffer;
 // the image itself.
 class Mask {
 public:
-	// Default constructor.
-	Mask();
-	
-	// Construct a mask from the alpha channel of an image.
+	// Construct a mask from the alpha channel of an RGBA-formatted image.
 	void Create(const ImageBuffer &image, int frame = 0);
 	
-	// Check whether a mask was successfully loaded.
+	// Check whether a mask was successfully generated from the image.
 	bool IsLoaded() const;
 	
 	// Check if this mask intersects the given line segment (from sA to vA). If
@@ -48,17 +45,21 @@ public:
 	// Check whether the mask contains the given point.
 	bool Contains(Point point, Angle facing) const;
 	
-	// Find out whether this object (rotated and scaled as represented by the
-	// given unit vector) is within the given range of the given point.
-	bool WithinRange(Point point, Angle facing, double range) const;
+	// Find out whether this object (rotated and scaled as represented by the given
+	// unit vector) is touching a ring defined by the given inner and outer ranges.
+	bool WithinRing(Point point, Angle facing, double inner, double outer) const;
 	
 	// Find out how close the given point is to the mask.
 	double Range(Point point, Angle facing) const;
 	// Get the maximum distance from the center of this mask.
 	double Radius() const;
 	
-	// Get the list of points in the outline.
-	const std::vector<Point> &Points() const;
+	// Get the individual outlines that comprise this mask.
+	const std::vector<std::vector<Point>> &Outlines() const;
+	
+	// Scale all the points in the mask.
+	Mask operator*(double scale) const;
+	friend Mask operator*(double scale, const Mask &mask);
 	
 	
 private:
@@ -67,8 +68,8 @@ private:
 	
 	
 private:
-	std::vector<Point> outline;
-	double radius;
+	std::vector<std::vector<Point>> outlines;
+	double radius = 0.;
 };
 
 

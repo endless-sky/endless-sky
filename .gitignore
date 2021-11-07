@@ -1,21 +1,32 @@
 # Compiled Binaries and shortcuts
-/endless-sky
+endless-sky
+endless-sky-tests
+libendless-sky.a
 *.exe
 *.lnk
 
 # dlls needed to run the binary
 *.dll
 
+# Files::LogError output from unit tests
+errors.txt
+
 # Build Directories and toolchain-generated files
-/build/
-/obj
-/bin/
+build/
+obj/
+bin/
+lib/
 x64/
 Debug/
 Release/
 *.layout
 *.depend
+scons-local*
 .sconsign.dblite
+/*.d
+
+# Test Reports
+test-report.xml
 
 # User-installed plugins
 plugins/
@@ -23,11 +34,6 @@ plugins/
 # OS-specific generated files
 .DS_Store
 *.db
-
-# CI configs (allow local edits)
-.winmake
-.appveyor.yml
-.travis.yml
 
 # IDEs (no support implied)
 .vscode
@@ -51,3 +57,7 @@ ipch/
 *.userosscache
 *.sln.docstates
 *.xcodeproj/**
+.idea/
+.idea_modules/
+CMakeLists.txt
+/.gitmodules

@@ -50,11 +50,17 @@ Government::Government()
 void Government::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
+	{
 		name = node.Token(1);
+		if(displayName.empty())
+			displayName = name;
+	}
 	
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "swizzle" && child.Size() >= 2)
+		if(child.Token(0) == "display name" && child.Size() >= 2)
+			displayName = child.Token(1);
+		else if(child.Token(0) == "swizzle" && child.Size() >= 2)
 			swizzle = child.Value(1);
 		else if(child.Token(0) == "color" && child.Size() >= 4)
 			color = Color(child.Value(1), child.Value(2), child.Value(3));
@@ -134,8 +140,23 @@ void Government::Load(const DataNode &node)
 
 
 
-// Get the name of this government.
+// Get the display name of this government.
 const string &Government::GetName() const
+{
+	return displayName;
+}
+
+
+
+// Set / Get the name used for this government in the data files.
+void Government::SetName(const string &trueName)
+{
+	this->name = trueName;
+}
+
+
+
+const string &Government::GetTrueName() const
 {
 	return name;
 }

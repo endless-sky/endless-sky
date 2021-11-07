@@ -1,5 +1,5 @@
 /* Dialog.cpp
-Copyright (c) 2014 by Michael Zahniser
+Copyright (c) 2014-2020 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -16,9 +16,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "Conversation.h"
 #include "DataNode.h"
+#include "text/DisplayText.h"
 #include "FillShader.h"
-#include "Font.h"
-#include "FontSet.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
@@ -30,7 +31,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include <cmath>
-#include <functional>
 
 using namespace std;
 
@@ -85,19 +85,19 @@ namespace {
 
 // Dialog that has no callback (information only). In this form, there is
 // only an "ok" button, not a "cancel" button.
-Dialog::Dialog(const string &text)
+Dialog::Dialog(const string &text, Truncate truncate)
 {
-	Init(text, false);
+	Init(text, truncate, false);
 }
 
 
 
 // Mission accept / decline dialog.
-Dialog::Dialog(const string &text, PlayerInfo &player, const System *system)
+Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Truncate truncate)
 	: intFun(bind(&PlayerInfo::MissionCallback, &player, placeholders::_1)),
 	system(system), player(&player)
 {
-	Init(text, true, true);
+	Init(text, truncate, true, true);
 }
 
 
@@ -168,10 +168,10 @@ void Dialog::Draw()
 		Point stringPos(
 			inputPos.X() - (WIDTH - 20) * .5 + 5.,
 			inputPos.Y() - .5 * font.Height());
-		string truncated = font.TruncateFront(input, WIDTH - 30);
-		font.Draw(truncated, stringPos, bright);
+		const auto inputText = DisplayText(input, {WIDTH - 30, Truncate::FRONT});
+		font.Draw(inputText, stringPos, bright);
 		
-		Point barPos(stringPos.X() + font.Width(truncated) + 2., inputPos.Y());
+		Point barPos(stringPos.X() + font.FormattedWidth(inputText) + 2., inputPos.Y());
 		FillShader::Fill(barPos, Point(1., 16.), dim);
 	}
 }
@@ -276,15 +276,16 @@ bool Dialog::Click(int x, int y, int clicks)
 
 
 // Common code from all three constructors:
-void Dialog::Init(const string &message, bool canCancel, bool isMission)
+void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool isMission)
 {
 	this->isMission = isMission;
 	this->canCancel = canCancel;
 	okIsActive = true;
 	
-	text.SetAlignment(WrappedText::JUSTIFIED);
+	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(WIDTH - 20);
 	text.SetFont(FontSet::Get(14));
+	text.SetTruncate(truncate);
 	
 	text.Wrap(message);
 	
