@@ -116,7 +116,7 @@ void MenuPanel::Draw()
 	
 	GameData::Interfaces().Get("menu background")->Draw(Information(), this);
 
-	if(GameData::IsDataLoaded())
+	if(isDataLoaded)
 	{
 		Information info;
 		if(player.IsLoaded() && !player.IsDead())
