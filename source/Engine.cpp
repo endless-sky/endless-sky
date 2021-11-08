@@ -1615,10 +1615,13 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	
 	// Boarding:
 	bool autoPlunder = !ship->IsYours();
-	shared_ptr<Ship> originalTarget = ship->GetTargetShip();
 	shared_ptr<Ship> victim = ship->Board(autoPlunder);
-	if(ship.get() == flagship && !ship->GetSystem() && originalTarget)
-		ChangePlayerFlagship(player.FlagshipPtr(), originalTarget);
+	if(ship.get() == flagship && !ship->GetSystem())
+	{
+		shared_ptr<Ship> originalTarget = ship->GetTargetShip();
+		if(originalTarget)
+			ChangePlayerFlagship(player.FlagshipPtr(), originalTarget);
+	}
 	if(victim)
 		eventQueue.emplace_back(ship, victim,
 			ship->GetGovernment()->IsEnemy(victim->GetGovernment()) ?
@@ -1641,7 +1644,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 
 // Changing the players flagship during flight requires an update of all active
 // data that references the players flagship.
-void Engine::ChangePlayerFlagship(const shared_ptr<Ship> oldFlagship, shared_ptr<Ship> &newFlagship)
+void Engine::ChangePlayerFlagship(const shared_ptr<Ship> oldFlagship, shared_ptr<Ship> newFlagship)
 {
 	// Remove active data in the old flagship.
 	if(oldFlagship)
@@ -1652,13 +1655,9 @@ void Engine::ChangePlayerFlagship(const shared_ptr<Ship> oldFlagship, shared_ptr
 	
 	// Update all ships that still have the old flagship as parent, for example
 	// NPCs that are following the player.
-	for(std::shared_ptr<Ship>& ship : ships)
-	{
+	for(auto& ship : ships)
 		if(ship && ship->GetParent() == oldFlagship)
-		{
 			ship->SetParent(newFlagship);
-		}
-	}
 }
 
 
