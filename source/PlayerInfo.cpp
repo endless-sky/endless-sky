@@ -913,15 +913,16 @@ void PlayerInfo::SellShip(const Ship *selected)
 
 
 
-void PlayerInfo::DisownShip(const Ship *selected)
+vector<shared_ptr<Ship>>::iterator PlayerInfo::DisownShip(const Ship *selected)
 {
 	for(auto it = ships.begin(); it != ships.end(); ++it)
 		if(it->get() == selected)
 		{
-			ships.erase(it);
 			flagship.reset();
-			return;
+			it = ships.erase(it);
+			return (it == ships.begin()) ? it : --it;
 		}
+	return ships.begin();
 }
 
 

@@ -333,12 +333,12 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 			// player's condition variables rather than player input.
 			choice = !conversation.Branch(node).Test(player.Conditions());
 		}
-		else if(conversation.IsApply(node))
+		else if(conversation.IsAction(node))
 		{
-			// Apply nodes are able to take various actions, be that changing
+			// Action nodes are able to perform various actions, e.g. changing
 			// the player's conditions, granting payments, triggering events,
-			// and more.
-			conversation.Apply(node).DoAction(player);
+			// and more. They are not allowed to spawn additional UI elements.
+			conversation.GetAction(node).Do(player, nullptr);
 		}
 		else
 		{
