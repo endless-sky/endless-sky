@@ -1645,13 +1645,7 @@ void Engine::ChangePlayerFlagship(const shared_ptr<Ship> oldFlagship, shared_ptr
 {
 	// Remove active data in the old flagship.
 	if(oldFlagship)
-	{
-		oldFlagship->SetTargetAsteroid(nullptr);
-		oldFlagship->SetTargetFlotsam(nullptr);
-		oldFlagship->SetTargetShip(nullptr);
-		oldFlagship->SetTargetStellar(nullptr);
-		oldFlagship->SetTargetSystem(nullptr);
-	}
+		oldFlagship->ClearTargetsAndOrders();
 	
 	// Let PlayerInfo handle the default administration (like the players escorts).
 	player.SetFlagship(newFlagship);

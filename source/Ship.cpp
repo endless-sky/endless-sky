@@ -2797,18 +2797,10 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 		AddCrew(transfer);
 	}
 	
-	commands.Clear();
+	// Clear this ship's previous targets.
+	ClearTargetsAndOrders();
 	// Set the capturer as this ship's parent.
 	SetParent(capturer);
-	// Clear this ship's previous targets.
-	SetTargetShip(shared_ptr<Ship>());
-	SetTargetStellar(nullptr);
-	SetTargetSystem(nullptr);
-	shipToAssist.reset();
-	targetAsteroid.reset();
-	targetFlotsam.reset();
-	hyperspaceSystem = nullptr;
-	landingPlanet = nullptr;
 	
 	// This ship behaves like its new parent does.
 	isSpecial = capturer->isSpecial;
@@ -2829,6 +2821,22 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	}
 	// This ship should not care about its now-unallied escorts.
 	escorts.clear();
+}
+
+
+
+// Clear all orders and targets this ship has (after capture or transfer of control).
+void Ship::ClearTargetsAndOrders()
+{
+	commands.Clear();
+	SetTargetShip(shared_ptr<Ship>());
+	SetTargetStellar(nullptr);
+	SetTargetSystem(nullptr);
+	shipToAssist.reset();
+	targetAsteroid.reset();
+	targetFlotsam.reset();
+	hyperspaceSystem = nullptr;
+	landingPlanet = nullptr;
 }
 
 
