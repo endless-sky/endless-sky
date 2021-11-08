@@ -2527,7 +2527,7 @@ bool AI::DoCloak(Ship &ship, Command &command)
 		// Otherwise, always cloak if you are in imminent danger.
 		static const double MAX_RANGE = 10000.;
 		double range = MAX_RANGE;
-		const Ship *nearestEnemy;
+		const Ship *nearestEnemy = nullptr;
 		// Find the nearest targetable, in-system enemy that could attack this ship.
 		const auto enemies = GetShipsList(ship, true);
 		for(const auto &foe : enemies)
