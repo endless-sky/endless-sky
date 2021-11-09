@@ -89,7 +89,7 @@ future<void> GameObjects::Load(const vector<string> &sources, bool debugMode)
 						make_move_iterator(list.end()));
 			}
 
-			const int step = 1 / static_cast<int>(files.size()) + 1;
+			const double step = 1. / (static_cast<int>(files.size()) + 1);
 			for(const auto &path : files)
 			{
 				LoadFile(path, debugMode);
