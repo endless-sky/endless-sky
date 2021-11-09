@@ -28,6 +28,9 @@ using namespace std;
 // of them handles it. If none do, this returns false.
 bool UI::Handle(const SDL_Event &event)
 {
+	// Handle any queued push or pop commands.
+	PushOrPop();
+
 	bool handled = false;
 	
 	vector<shared_ptr<Panel>>::iterator it = stack.end();
