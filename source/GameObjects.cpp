@@ -104,6 +104,9 @@ future<void> GameObjects::Load(const vector<string> &sources, bool debugMode)
 {
 	progress = 0.;
 
+	// We need to copy any variables used for loading to avoid a race condition.
+	// 'this' is not copied, so 'this' shouldn't be accessed after calling this
+	// function (except for calling Progress which is safe due to the atomic).
 	return async(launch::async, [this, sources, debugMode]
 		{
 			vector<string> files;
@@ -119,13 +122,15 @@ future<void> GameObjects::Load(const vector<string> &sources, bool debugMode)
 						make_move_iterator(list.end()));
 			}
 
-			const int size = static_cast<int>(files.size()) + 1;
+			const int step = 1 / static_cast<int>(files.size()) + 1;
 			for(const auto &path : files)
 			{
 				LoadFile(path, debugMode);
 
-				auto val = progress.load(memory_order::memory_order_relaxed);
-				while(!progress.compare_exchange_weak(val, val + 1. / size));
+				// Increment the atomic progress by one step.
+				// We use acquire + release to prevent any reordering.
+				auto val = progress.load(memory_order_acquire);
+				progress.store(val + step, memory_order_release);
 			}
 			FinishLoading();
 			progress = 1.;
@@ -180,7 +185,7 @@ void GameObjects::UpdateSystems()
 
 double GameObjects::Progress() const
 {
-	return progress.load(memory_order::memory_order_relaxed);
+	return progress.load(memory_order_relaxed);
 }
 
 
