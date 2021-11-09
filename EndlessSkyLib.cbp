@@ -175,6 +175,8 @@
 		<Unit filename="source/ItemInfoDisplay.h" />
 		<Unit filename="source/LineShader.cpp" />
 		<Unit filename="source/LineShader.h" />
+		<Unit filename="source/LoadingPanel.cpp" />
+		<Unit filename="source/LoadingPanel.h" />
 		<Unit filename="source/LoadPanel.cpp" />
 		<Unit filename="source/LoadPanel.h" />
 		<Unit filename="source/LocationFilter.cpp" />

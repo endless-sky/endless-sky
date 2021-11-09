@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "GameObjects.h"
 #include "GameWindow.h"
+#include "LoadingPanel.h"
 #include "MenuPanel.h"
 #include "Panel.h"
 #include "PlayerInfo.h"
@@ -211,7 +212,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	// game loading and game saving.
 	UI menuPanels;
 	
-	menuPanels.Push(new MenuPanel(player, gamePanels));
+	menuPanels.Push(new LoadingPanel(player, gamePanels));
 	if(!conversation.IsEmpty())
 		menuPanels.Push(new ConversationPanel(player, conversation));
 	
