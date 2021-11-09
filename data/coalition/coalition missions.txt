@@ -1584,8 +1584,7 @@ mission "Coalition: Council of Ahr: Drama"
 			`	"Absurd, childish, that is. The one to start mocking me, you were," she says. "Captain <last>, urge you to make haste for Ahr, I must. Put up with this buffoon for much longer, I cannot."`
 			`	Lady Plubat closes the door to her room again, and you convince house Chamgar's representative to also go back to his room. You return to your cockpit, hoping that's the last of that.`
 	on enter "Sol Arach"
-		dialog
-			`In spite of your best attempts to keep them away from each other, Plubat and Plubat have been brief on their breaks from insulting one another. However, once you enter this system, they head back to their rooms on their own without you needing to leave the cockpit to interfere. Being so close to their destination, you hope they won't give you any more headaches.`
+		dialog `In spite of your best attempts to keep them away from each other, Plubat and Plubat have been brief on their breaks from insulting one another. However, once you enter this system, they head back to their rooms on their own without you needing to leave the cockpit to interfere. Being so close to their destination, you hope they won't give you any more headaches.`
 
 mission "Coalition: Council of Ahr: On Complete"
 	invisible
