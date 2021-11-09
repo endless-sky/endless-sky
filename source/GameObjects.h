@@ -20,9 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "Conversation.h"
-#include "DataFile.h"
 #include "Effect.h"
-#include "GameEvent.h"
 #include "Fleet.h"
 #include "Galaxy.h"
 #include "Government.h"
@@ -36,7 +34,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Phrase.h"
 #include "Planet.h"
 #include "Ship.h"
-#include "Sprite.h"
 #include "StartConditions.h"
 #include "System.h"
 #include "Test.h"
@@ -46,6 +43,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 #include <string>
 #include <vector>
+
+
+class Sprite;
 
 
 
