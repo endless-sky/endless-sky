@@ -32,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "Test.h"
+#include "TestContext.h"
 #include "UI.h"
 
 #include <chrono>
@@ -190,9 +191,9 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	int toggleTimeout = 0;
 	
 	// Data to track progress of testing if/when a test is running.
-	Test::Context testContext;
+	TestContext testContext;
 	if(!testToRunName.empty())
-		testContext.testToRun.push_back(GameData::Tests().Get(testToRunName));
+		testContext = TestContext(GameData::Tests().Get(testToRunName));
 	
 	// IsDone becomes true when the game is quit.
 	while(!menuPanels.IsDone())
@@ -275,9 +276,22 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
 		
 		// All manual events and processing done. Handle any test inputs and events if we have any.
-		if(!testContext.testToRun.empty())
+		const Test *runningTest = testContext.CurrentTest();
+		if(runningTest)
 		{
-			testContext.testToRun.back()->Step(testContext, menuPanels, gamePanels, player);
+			// When flying around, all test processing must be handled in the
+			// thread-safe section of Engine. When not flying around (and when no
+			// Engine exists), then it is safe to execute the tests from here.
+			auto mainPanel = gamePanels.Root().get();
+			if(!isPaused && inFlight && menuPanels.IsEmpty() && mainPanel)
+				mainPanel->SetTestContext(testContext);
+			else
+			{
+				// The command will be ignored, since we only support commands
+				// from within the engine at the moment.
+				Command ignored;
+				runningTest->Step(testContext, player, ignored);
+			}
 			// Skip drawing 29 out of every 30 in-flight frames during testing to speedup testing (unless debug mode is set).
 			// We don't skip UI-frames to ensure we test the UI code more.
 			if(inFlight && !debugMode)
@@ -327,7 +341,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		
 		// When we perform automated testing, then we run the game by default as quickly as possible.
 		// Except when debug-mode is set.
-		if(testContext.testToRun.empty() || debugMode)
+		if(!testContext.CurrentTest() || debugMode)
 			timer.Wait();
 		
 		// If the player ended this frame in-game, count the elapsed time as played time.
