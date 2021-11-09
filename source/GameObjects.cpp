@@ -28,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "StarField.h"
 
+#include <algorithm>
 #include <iterator>
 #include <map>
 #include <set>
