@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class Command;
 class Point;
+class TestContext;
 class UI;
 
 
@@ -61,8 +62,8 @@ public:
 	// so, apply that zone's action and return true.
 	bool ZoneClick(const Point &point);
 	
-	// Queue a command for the Panel to process. Typically only used for MainPanel.
-	virtual void GiveCommand(const Command &command);
+	// Forward the given TestContext to the Engine under MainPanel.
+	virtual void SetTestContext(TestContext &testContext);
 	
 	// Is fast-forward allowed to be on when this panel is on top of the GUI stack?
 	virtual bool AllowFastForward() const;

@@ -11,7 +11,7 @@
 mission "First Contact: Hai"
 	landing
 	source
-		attributes "hai"
+		government "Hai"
 	on offer
 		conversation
 			branch unfettered
@@ -250,7 +250,7 @@ mission "First Contact: Unfettered"
 mission "Ask the Hai about the Unfettered"
 	landing
 	source
-		attributes "hai"
+		government "Hai"
 	to offer
 		has "First Contact: Hai: offered"
 		has "First Contact: Unfettered: offered"
