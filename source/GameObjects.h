@@ -97,7 +97,7 @@ public:
 	// This must be done any time that a change creates or moves a system.
 	void UpdateSystems();
 
-	double Progress();
+	double Progress() const;
 
 	// Check for objects that are referred to but never defined.
 	void CheckReferences();
