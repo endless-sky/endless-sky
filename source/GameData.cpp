@@ -131,7 +131,6 @@ void GameData::BeginLoad(bool onlyLoadData, bool debugMode)
 
 		// Generate a catalog of music files.
 		Music::Init(sources);
-		Audio::Init(sources);
 	}
 
 	dataLoading = objects.Load(sources, debugMode);

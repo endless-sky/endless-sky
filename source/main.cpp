@@ -172,6 +172,8 @@ int main(int argc, char *argv[])
 		
 		// Show something other than a blank window.
 		GameWindow::Step();
+
+		Audio::Init(GameData::Sources());
 		
 		// This is the main loop where all the action begins.
 		GameLoop(player, conversation, testToRunName, debugMode);
