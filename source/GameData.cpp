@@ -316,7 +316,7 @@ void GameData::ReadEconomy(const DataNode &node)
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 3 && grand.Value(2))
-					purchases[objects.systems.Get(grand.Token(0))][grand.Token(1)] += grand.Value(2);
+					purchases[Systems().Get(grand.Token(0))][grand.Token(1)] += grand.Value(2);
 		}
 		else if(child.Token(0) == "system")
 		{
@@ -405,7 +405,7 @@ void GameData::StepEconomy()
 	{
 		System &system = it.second;
 		if(!system.Links().empty())
-			for(const Trade::Commodity &commodity : objects.trade.Commodities())
+			for(const Trade::Commodity &commodity : Commodities())
 			{
 				double supply = system.Supply(commodity.name);
 				for(const System *neighbor : system.Links())
