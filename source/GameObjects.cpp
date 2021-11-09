@@ -153,7 +153,7 @@ void GameObjects::UpdateSystems()
 
 double GameObjects::Progress() const
 {
-	return progress.load(memory_order_relaxed);
+	return progress.load(memory_order_acquire);
 }
 
 
