@@ -32,7 +32,6 @@ class Effect;
 class Fleet;
 class Galaxy;
 class GameEvent;
-class GameObjects;
 class Government;
 class Hazard;
 class ImageSet;

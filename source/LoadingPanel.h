@@ -30,8 +30,8 @@ class LoadingPanel final : public Panel {
 public:
 	LoadingPanel(PlayerInfo &player, UI &gamePanels);
 
-	virtual void Step() override;
-	virtual void Draw() override;
+	void Step() final;
+	void Draw() final;
 
 
 private:
