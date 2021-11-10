@@ -1846,7 +1846,7 @@ mission "Terraforming 9"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the scientists and their equipment hasn't entered the system yet. Better depart and wait for it.`
 	on complete
-		dialog 
+		dialog
 			`The journey to Tundra was spent by your passengers discussing the possible methods of terraforming the planet. The Republic representative was none too pleased when Nolan, perhaps jokingly, suggested crashing an asteroid into it.`
 			`	Everyone except for the Tundra native begins to shiver after stepping out of your ship onto the planet, even while inside a protective dome. "Meet us in the spaceport bar in a few hours. We need to finalize our plans of how we're going to execute this experiment."`
 
@@ -2052,7 +2052,7 @@ mission "A wolf, a goat, and a cabbage"
 mission "Terminus exploration"
 	name "Missing drone"
 	description "Travel to the <waypoints> system to see if you can find any sign of a probe drone that had been launched by a team of scientists before they were attacked by pirates and forced to flee."
-	source 
+	source
 		planet "Memory" "Haze" "Nifel"
 	waypoint "Terminus"
 	destination "Bounty"
@@ -2981,7 +2981,7 @@ mission "Hauler VI cargo prototype 2"
 	destination "Zug"
 	landing
 	to offer
-		has "Hauler VI cargo prototype 1: done"	
+		has "Hauler VI cargo prototype 1: done"
 	npc accompany
 		government "Merchant"
 		personality escort timid

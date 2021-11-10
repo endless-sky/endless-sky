@@ -781,7 +781,7 @@ ship "Ursa Polaris"
 		"tactical scan power" 99
 		"asteroid scan power" 69
 		"cargo space" 1408
-		"outfit space" 1768	
+		"outfit space" 1768
 		"weapon capacity" 861
 		"engine capacity" 301
 		weapon
@@ -1133,7 +1133,7 @@ ship "Marauder Bactrian"
 			"blast radius" 260
 			"shield damage" 2600
 			"hull damage" 1300
-			"hit force" 3900		
+			"hit force" 3900
 	outfits
 		"Dual Sunbeam Turret" 7
 		"Point Defense Turret"
@@ -1362,7 +1362,7 @@ ship "Modified Boxwing"
 	gun 8.5 -43 "Heavy Laser"
 	gun -15 -39 "Electron Beam"
 	gun 15 -39 "Electron Beam"
-	turret 0 7.5 "Quarg Anti-Missile"	
+	turret 0 7.5 "Quarg Anti-Missile"
 	engine -5 42
 		zoom 1
 	engine 5 42

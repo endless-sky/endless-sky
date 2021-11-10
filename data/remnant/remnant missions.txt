@@ -1049,7 +1049,7 @@ event "remnant: sign studies complete"
 
 mission "Remnant: Learn Sign Follow Up"
 	invisible
-	source 
+	source
 		government "Remnant"
 	to offer
 		has "event: remnant: sign studies complete"
@@ -1248,7 +1248,7 @@ mission "Remnant: Deep Surveillance"
 			apply
 				set "remnant: told that deep has tech"
 			`	"And you were the one who brought it to them," Torza responds.`
-			branch reciprocal 
+			branch reciprocal
 				has "Remnant: Tech Retrieval: done"
 			
 			choice
@@ -1479,7 +1479,7 @@ mission "Remnant: Deep Surveillance"
 			`	Ivan leans over to his desk. "This will be for your eyes only."`
 				goto next
 			
-			label again 
+			label again
 			`	"Again?" Ivan asks. He leans over to his desk. "I like that you're so interested in my research. I suppose it only makes sense with you helping me, but typically merchant captains aren't this interested in following up on odd jobs they do."`
 			
 			label next
@@ -2132,7 +2132,7 @@ mission "Remnant: Return the Samples"
 		conversation
 			`Once again you have successfully dodged the Archon to land on Nasqueron. Somehow, knowing it was going to be there was both better and worse than the surprise of the first time.`
 			`	As the <ship> sinks through the cloud layers, you gently activate the repulsors to slow your descent to avoid startling the void sprites. A few nearby sprites descend with you, seeming to match your velocity. You slow down as you reach the altitude listed in the log of where the eggs are to be released.`
-			`	Setting the ship on auto-pilot, you walk to the back and struggle into the pressure suit. Readying the eggs in the cargo hold, you equalize pressure in the main cargo hold to the swirling clouds outside, and open the bay doors. As predicted, at this pressure level, the eggs are almost weightless, and are fairly easy to carry to the door of the ship and release.`	
+			`	Setting the ship on auto-pilot, you walk to the back and struggle into the pressure suit. Readying the eggs in the cargo hold, you equalize pressure in the main cargo hold to the swirling clouds outside, and open the bay doors. As predicted, at this pressure level, the eggs are almost weightless, and are fairly easy to carry to the door of the ship and release.`
 			`	By the time you finish releasing the eggs back into the clouds, several void sprites have converged on your ship and appear to be herding the eggs away from you with gentle buffets of their wings. You take a moment to appreciate the alien beauty of these creatures before closing the hatch and purging the ship with fresh air.`
 	on visit
 		dialog phrase "generic stopover on visit"
@@ -2478,7 +2478,7 @@ mission "Remnant: Salvage 6"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 150000
-		conversation 
+		conversation
 			`Taely meets you at the dock with a flatbed ready to offload the shipment. As you run through your shutdown routine you hit the switch for the cargo bay doors, and by the time you have gone down to the hold, Taely has half the shipment already unloaded.`
 			`	Her signs flick at you with a gentleness that you are slowly deciding equates to a cheerful tone. "Thank you for all the help you've provided in recovering this salvage," she says as she hands you <payment>. "I have discussed it with the other engineers, and we have decided to give you access to our salvage."`
 			`	She leads you over to the warehouse, scans her ID on the console, and taps a few commands. Then she scans your ID card. "There you go, I have updated your access codes," she signs cheerfully. She hands you your ID and pulls you to a door on the far side of the outfitting shop. Beyond the door is a vast room filled with outfits and weapons that clearly don't fit the same style as the other Remnant technology. You have seen most of the things here on scans and when salvaging equipment from other ships, but never up close.`
@@ -2585,7 +2585,7 @@ mission "Remnant: Expanded Horizons Quarg 2"
 	description "Perform an outfit scan on the Quarg ship <npc>, then land again on <destination>."
 	source "Wayfarer"
 	to offer
-		has "Remnant: Expanded Horizons Quarg 1: done"	
+		has "Remnant: Expanded Horizons Quarg 1: done"
 	on offer
 		conversation
 			`Dawn and her fellow researchers show up a few minutes after you do, excitedly talking about the various things they have seen. "<first>, there is a Quarg ship taking off shortly, and we were hoping you might be able to get scans of it while it is in flight. It would be really helpful for our understanding of how they work."`
@@ -3984,7 +3984,7 @@ mission "Remnant: Cognizance 12"
 		event "remnant: postverta reveal"
 		conversation
 			`You arrive at the hidden station on <planet> where Gavriil is waiting to offload the atmospheric gases. His team quickly hooks the Puffins up to ports on the bay walls, and hidden equipment starts pumping their contents into the system. After a few minutes, they disconnect the ships, and you and the Puffins head up to the Pelican to refill your reservoirs and ferry it down to the station.`
-			`	As the last load starts to empty into the station, another tech comes up to you. "Captain, we just received a message from Prefect Chilia. He would like you to meet him on Viminal as soon as possible." You nod and start to run checks on the <ship>, making ready to leave once the cargo is done unloading.` 
+			`	As the last load starts to empty into the station, another tech comes up to you. "Captain, we just received a message from Prefect Chilia. He would like you to meet him on Viminal as soon as possible." You nod and start to run checks on the <ship>, making ready to leave once the cargo is done unloading.`
 
 
 
@@ -4404,7 +4404,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 			choice
 				`	"Interesting. I'll see you onboard the <ship>."`
 					accept
-				`	"Could you tell me more about them?"`			
+				`	"Could you tell me more about them?"`
 			label dawndetails
 			apply
 				"remnant symbionts info" += 1
@@ -4530,7 +4530,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 			choice
 				`	"Is the equipment finished?"`
 				`	"How much longer does the equipment need?"`
-			label astralfinish 
+			label astralfinish
 			`	"The equipment will be finished shortly, Captain <first>. I just need to make a few observations, and then we will be able to depart. In the meantime, I would recommend against maintaining an active cloak or engaging any systems that consume fuel. For whatever reason, Sagittarius A* continues to be the one place that the stellar wind is utterly devoid of anything to collect as fuel."`
 			`	"I will be going outside for a few minutes," Dawn declares. "I shall just be on the hull."`
 			choice
