@@ -168,7 +168,7 @@ void Fleet::Load(const DataNode &node)
 		bool remove = (child.Token(0) == "remove");
 		bool hasValue = (child.Size() >= 2);
 		if((add || remove) && (!hasValue || (child.Token(1) != "variant" && child.Token(1) != "personality")))
-		{	
+		{
 			child.PrintTrace("Skipping invalid \"" + child.Token(0) + "\" tag:");
 			continue;
 		}

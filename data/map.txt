@@ -14800,7 +14800,7 @@ system Korsmanath
 system Kraz
 	pos -876 204
 	government Republic
-	attributes "rim" 
+	attributes "rim"
 	habitable 1080
 	belt 1056
 	haze _menu/haze-67
