@@ -101,7 +101,7 @@ void Flotsam::Move(vector<Visual> &visuals)
 	if(lifetime > 0)
 		return;
 	
-	// This flotsam has reached the end of its life. 
+	// This flotsam has reached the end of its life.
 	const Effect *effect = GameData::Effects().Get("flotsam death");
 	for(int i = 0; i < 3; ++i)
 	{

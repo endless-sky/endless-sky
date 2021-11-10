@@ -648,7 +648,7 @@ news "athlete"
 			"I sure am glad we'll never have to compete against any Alphas. We would all lose!"
 			"Does your ship have a weight room?"
 			"I'm hoping to get a sponsorship, but nobody here wants to partner with me. Could you recommend a planet where I might find better results?"
-			"I don't expect everyone to be as fit as I am, but do remember to get up and exercise a little every once in a while!"		
+			"I don't expect everyone to be as fit as I am, but do remember to get up and exercise a little every once in a while!"
 		word
 			`"`
 
@@ -938,7 +938,7 @@ news "insurance agent"
 			"Insurance is all about mitigating risks. But you're flying around the vacuum of space in a tin can, so you probably don't know much about that."
 			"I just got done handling an insurance fraud case where the owner claimed her entire home had been eaten by Sagittarian sand-fleas."
 			"It's a real shame that not everyone is able to afford insurance. More people insured means more money for us."
-			"I used to be a gambler. Still am in a way, but I'm acceptable to society now." 
+			"I used to be a gambler. Still am in a way, but I'm acceptable to society now."
 		word
 			`"`
 
