@@ -93,7 +93,8 @@ bool GameWindow::Init()
 	
 	// Get details about the current display.
 	SDL_DisplayMode mode;
-	if(SDL_GetCurrentDisplayMode(0, &mode))	{
+	if(SDL_GetCurrentDisplayMode(0, &mode))
+	{
 		ExitWithError("Unable to query monitor resolution!");
 		return false;
 	}
