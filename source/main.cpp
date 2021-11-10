@@ -212,7 +212,10 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	// game loading and game saving.
 	UI menuPanels;
 	
-	menuPanels.Push(new LoadingPanel(player, gamePanels));
+	// Whether the game data is done loading. This is used to trigger any
+	// tests to run.
+	bool dataFinishedLoading = false;
+	menuPanels.Push(new LoadingPanel(player, gamePanels, dataFinishedLoading));
 	if(!conversation.IsEmpty())
 		menuPanels.Push(new ConversationPanel(player, conversation));
 	
@@ -316,7 +319,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		
 		// All manual events and processing done. Handle any test inputs and events if we have any.
 		const Test *runningTest = testContext.CurrentTest();
-		if(runningTest)
+		if(runningTest && dataFinishedLoading)
 		{
 			// When flying around, all test processing must be handled in the
 			// thread-safe section of Engine. When not flying around (and when no

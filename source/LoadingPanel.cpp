@@ -34,8 +34,8 @@ using namespace std;
 
 
 
-LoadingPanel::LoadingPanel(PlayerInfo &player, UI &gamePanels)
-	: player(player), gamePanels(gamePanels)
+LoadingPanel::LoadingPanel(PlayerInfo &player, UI &gamePanels, bool &finishedLoading)
+	: player(player), gamePanels(gamePanels), finishedLoading(finishedLoading)
 {
 	SetIsFullScreen(true);
 }
@@ -65,6 +65,7 @@ void LoadingPanel::Step()
 
 		GetUI()->Pop(this);
 		GetUI()->Push(new MenuPanel(player, gamePanels));
+		finishedLoading = true;
 	}
 }
 

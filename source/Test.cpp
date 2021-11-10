@@ -372,10 +372,6 @@ const string &Test::Name() const
 // Check the game status and perform the next test action.
 void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive) const
 {
-	// Tests always wait until the game is fully loaded.
-	if(!GameData::IsLoaded())
-		return;
-		
 	if(status == Status::BROKEN)
 		Fail(context, player, "Test has a broken status.");
 

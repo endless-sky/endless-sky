@@ -28,7 +28,7 @@ class UI;
 // (like game data and save files).
 class LoadingPanel final : public Panel {
 public:
-	LoadingPanel(PlayerInfo &player, UI &gamePanels);
+	LoadingPanel(PlayerInfo &player, UI &gamePanels, bool &finishedLoading);
 
 	void Step() final;
 	void Draw() final;
@@ -37,6 +37,7 @@ public:
 private:
 	PlayerInfo &player;
 	UI &gamePanels;
+	bool &finishedLoading;
 
 	// Used to draw the loading circle.
 	int progress = 0;
