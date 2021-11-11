@@ -1624,7 +1624,7 @@ event "deep: arculus restored"
 
 
 conversation "deep: remnant 3"
-	`The team of scientists is already waiting in the spaceport when you arrive. They remove the equipment from your ship and immediately being analyzing the results after returning to the lab.`
+	`The team of scientists is already waiting in the spaceport when you arrive. They remove the equipment from your ship and immediately begin analyzing the results after returning to the lab.`
 	`	"At first glance, this series of wormholes seems no different than the one that is used to enter this region of space, but it will require some time for us to go over all the data the sensors collected," Ivan explains to you.`
 	branch revealed
 		has "deep: did reveal remnant"
