@@ -25,7 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "GameObjects.h"
 #include "GameWindow.h"
-#include "LoadingPanel.h"
+#include "GameLoadingPanel.h"
 #include "MenuPanel.h"
 #include "Panel.h"
 #include "PlayerInfo.h"

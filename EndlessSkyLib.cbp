@@ -151,6 +151,8 @@
 		<Unit filename="source/GameData.h" />
 		<Unit filename="source/GameEvent.cpp" />
 		<Unit filename="source/GameEvent.h" />
+		<Unit filename="source/GameLoadingPanel.cpp" />
+		<Unit filename="source/GameLoadingPanel.h" />
 		<Unit filename="source/GameObjects.cpp" />
 		<Unit filename="source/GameObjects.h" />
 		<Unit filename="source/GameWindow.cpp" />
@@ -177,8 +179,6 @@
 		<Unit filename="source/ItemInfoDisplay.h" />
 		<Unit filename="source/LineShader.cpp" />
 		<Unit filename="source/LineShader.h" />
-		<Unit filename="source/LoadingPanel.cpp" />
-		<Unit filename="source/LoadingPanel.h" />
 		<Unit filename="source/LoadPanel.cpp" />
 		<Unit filename="source/LoadPanel.h" />
 		<Unit filename="source/LocationFilter.cpp" />
