@@ -260,7 +260,7 @@ news "remnant incomprehensible"
 		word
 			". "
 		word
-			"You can not "
+			"You cannot "
 		word
 			"make out"
 			"figure out"
