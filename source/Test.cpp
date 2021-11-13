@@ -374,7 +374,12 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 {
 	if(status == Status::BROKEN)
 		Fail(context, player, "Test has a broken status.");
-
+	
+	// Only run tests when all data is loaded. Panels like MenuPanel don't accept input
+	// when not all data is loaded yet.
+	if(!GameData::IsLoaded())
+		return;
+	
 	// Track if we need to return to the main gameloop.
 	bool continueGameLoop = false;
 	
