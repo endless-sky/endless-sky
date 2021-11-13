@@ -1119,7 +1119,7 @@ mission "Remnant: Deep Surveillance"
 					goto threat
 				`	"I'm sorry, but I helped them before coming to understand this."`
 			
-			`	Torza seems to relax slightly. "This is unfortunate. I can not get angry at you for that which you did not understand. But now that you do understand, seek to not make this same mistake in the future.`
+			`	Torza seems to relax slightly. "This is unfortunate. I cannot get angry at you for that which you did not understand. But now that you do understand, seek to not make this same mistake in the future.`
 			`	"What do they know?"`
 				goto knowledge
 			
@@ -1368,7 +1368,7 @@ mission "Remnant: Deep Surveillance"
 			label liar2
 			apply
 				set "remnant: player is surveilled"
-			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Know that you will be watched closely by us from now on, Captain. I commend you for agreeing to bring us this information, but we can not allow another situation like this to occur."`
+			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Know that you will be watched closely by us from now on, Captain. I commend you for agreeing to bring us this information, but we cannot allow another situation like this to occur."`
 				accept
 	
 	on stopover
@@ -4672,7 +4672,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 					goto tempunits
 				`	"I think that is all the technical detail I can take."`
 					goto stormend
-			`	She looks mischievous. "I can not tell you where or how we got it, but look at this." Her display shifts again with the hazes vanishing, and shows the galaxy map with one key difference. "Yes, the Ember Wastes are violet. Actually, they are off the visual spectrum into the ultraviolets, but this downshifts it so we can see it. This is what the Ember Wastes looked like a very long time ago.`
+			`	She looks mischievous. "I cannot tell you where or how we got it, but look at this." Her display shifts again with the hazes vanishing, and shows the galaxy map with one key difference. "Yes, the Ember Wastes are violet. Actually, they are off the visual spectrum into the ultraviolets, but this downshifts it so we can see it. This is what the Ember Wastes looked like a very long time ago.`
 			`	She takes on a serious tone. "This data suggests there is enough energy in the area to maintain the hydrogen at somewhere in excess of 61A8 degrees. It does not tell us the source of that energy, but based on patterns and some other data we have collected, the two appear to be intertwined. At the very least, the ion storms are one of the means by which energy is being transferred into the clouds." Her display vanishes, and she slings her backpack over her shoulder.`
 				goto stormend
 			label numericsystem
