@@ -1075,14 +1075,14 @@ mission "Remnant: Deep Surveillance"
 			and
 				has "Terminus exploration: done"
 				not "Deep: Remnant 0: done"
-			has "Deep: Remnant Research: done"
+			has "Deep: Remnant Research: offered"
 	on offer
 		conversation
 			branch "told before"
 				has "remnant: told about deep"
 			
 			branch terminus1
-				not "Deep: Remnant Research: done"
+				not "Deep: Remnant Research: offered"
 			
 			`	While wandering the spaceport, you think back to the scientists from the Deep that you helped discover the Ember Waste. Given that the Remnant value their secrecy, they may be interested in knowing about this.`
 			choice
@@ -1104,7 +1104,7 @@ mission "Remnant: Deep Surveillance"
 			`	You ask one of the Remnant in the spaceport where you would be able to find a prefect, and they point you to what looks like an information desk of sorts. There you tell the attendant that you have something potentially important to discuss in regards to Remnant security. They tap a few buttons then give you directions down a hallway. You quickly find yourself in an armory where several Remnant guards are in the process of cleaning their weapons. One stands up and comes over to you.`
 			`	"Greetings, Captain. I am Prefect Torza. I was told you had information that could be important to our security." He takes a seat on a bench on the far side of the room from the other Remnant and gestures for you to do the same. "What do you have to tell us?"`
 			branch terminus2
-				not "Deep: Remnant Research: done"
+				not "Deep: Remnant Research: offered"
 			
 			choice
 				`	"I helped a group of scientists from the Deep to discover the Ember Waste."`
@@ -1379,7 +1379,7 @@ mission "Remnant: Deep Surveillance"
 			
 			`	You look up the location of Ivan's office that he gave you back when you helped him save the science drone in Terminus and find that it is in a building just outside the spaceport, just one room among many in a massive office complex. The complex looks pristine by Dirt Belt standards, but when compared to architecture you've seen elsewhere in the Deep, it's rather brutalistic.`
 			branch gone
-				has "Deep: Remnant Research: done"
+				has "Deep: Remnant Research: offered"
 			
 			`	You ask a receptionist what Ivan's room number is, and he points you to a room on the twentieth floor. After taking an elevator up, you knock on the door to Ivan's office.`
 			`	"Who is it?" Ivan says before peaking out the blinds. "Oh! Captain <last>! Please, come in."`
