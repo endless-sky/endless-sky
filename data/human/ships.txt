@@ -531,8 +531,8 @@ ship "Behemoth"
 	engine 56 148.5 0.6
 	gun -47.5 -57.5
 	gun 47.5 -57.5
-	turret -31 -50 "Heavy Laser Turret"	
-	turret 31 -50 "Heavy Anti-Missile Turret"	
+	turret -31 -50 "Heavy Laser Turret"
+	turret 31 -50 "Heavy Anti-Missile Turret"
 	turret -47.5 33.5 "Heavy Laser Turret"
 	turret 47.5 33.5 "Heavy Laser Turret"
 	turret -22 66.5 "Heavy Anti-Missile Turret"
@@ -1550,7 +1550,7 @@ ship "Firebird"
 	gun 27 -28 "Particle Cannon"
 	gun -38 -13 "Meteor Missile Launcher"
 	gun 38 -13 "Meteor Missile Launcher"
-	turret 0 -38 "Anti-Missile Turret"	
+	turret 0 -38 "Anti-Missile Turret"
 	turret 0 3 "Quad Blaster Turret"
 	leak "leak" 50 50
 	leak "flame" 30 80

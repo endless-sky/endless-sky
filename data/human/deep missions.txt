@@ -1529,7 +1529,7 @@ conversation "deep: remnant"
 	choice
 		`	"I'm always willing to go on an adventure."`
 		`	"This sounds too risky. You're going to need to find someone else to go exploring."`
-			decline	
+			decline
 	`	"Splendid! We will give you a single quantum keystone in order to travel through the wormhole. Return here once you have finished exploring."`
 		accept
 
@@ -1624,7 +1624,7 @@ event "deep: arculus restored"
 
 
 conversation "deep: remnant 3"
-	`The team of scientists is already waiting in the spaceport when you arrive. They remove the equipment from your ship and immediately being analyzing the results after returning to the lab.`
+	`The team of scientists is already waiting in the spaceport when you arrive. They remove the equipment from your ship and immediately begin analyzing the results after returning to the lab.`
 	`	"At first glance, this series of wormholes seems no different than the one that is used to enter this region of space, but it will require some time for us to go over all the data the sensors collected," Ivan explains to you.`
 	branch revealed
 		has "deep: did reveal remnant"
@@ -1868,7 +1868,7 @@ mission "Deep: Remnant Surveillance"
 	on complete
 		payment 500000
 		log `Secretly placed sensor cubes near the spaceport of each Remnant planet. Ivan hopes to use the data gathered from these cubes to learn more about Remnant ships.`
-		dialog 
+		dialog
 			`When you return to <planet>, you are unable to find Ivan. Instead, Rayna waves you down and hands you a credits chip worth <payment>.`
 			`"Ivan told me to give this to you, Captain. Thanks again for helping us out so much. We couldn't have done it without you."`
 
@@ -2467,7 +2467,7 @@ mission "Stone of our Fathers 1"
 			`	"I've made a lot of mistakes in my life. Comin' home, even if I'm hated - or worse, forgotten - ain't one of them. Thank ya kindly for the passage."`
 			`	You wish the old codger a joyful homecoming, and watch as he disappears into the sleepy spaceport.`
 		
-event "Stone waiting"	
+event "Stone waiting"
 
 
 
@@ -2656,7 +2656,7 @@ mission "Stone of our Fathers 4"
 			`	You're not sure exactly how you got mixed up into all this, and yet, it all feels right to you. Like you are where you should be, doing what you should do. This adventure may not involve intergalactic wars or the secrets of the ancients, but sometimes it really is just about people. People like Skaldgar and Thorleif and Helm.`
 				accept
 	on complete
-		conversation 
+		conversation
 			`The journey to Alfheim was interesting, if uneventful. Thorleif had never been in space before, and every jump left him quite ill. At the same time, however, he found so much wonder in it: seeing the dark void and bright stars with his own eyes; watching the tiny worlds recede into the distance. You could, through his eyes, experience the wild adventure of space anew.`
 			`	Throughout the trip, he told you stories of his family: They were called the Hlewagast and originally settled as some of the first colonists on Alfheim in the early history of The Deep. How they had been explorers and adventurers before taking land here to settle down on and work. How his great grandparents had decided to leave Alfheim, dismayed by the rampant pillaging of resources and looking once more for adventure, and how they had come to Norn. Seeking the waves, and the storms, and the solitude.`
 			`	Through all of this, you got a better feel for Thorleif, Skaldgard and his people, and are almost sorry when your ship approaches Alfheim.`
@@ -2700,7 +2700,7 @@ mission "Stone of our Fathers 5"
 				`	(Rise from your seat.)`
 			`	The town of Grimssalr is nestled along the foothills of the towering Ettin mountains in western Alfheim. Town is perhaps too generous a word; it is instead more like a couple dozen houses mostly filled with old people long abandoned by their children seeking wealth and adventure elsewhere.`
 			`	The woman, who you've learned is named Ragnhild, introduces Thorleif to some of the folks here, and before long they have found ways to connect their ancient genealogies together and everyone is suddenly treated as family. Before you know it, you are eating their meager yet hearty fare, swapping stories of adventures, and listening to legends about the old times.`
-			`	As the sun begins to set, Thorleif approaches you, "It is time," he says. "The journey to the cairn is only a short hike from here. I would like you to accompany me. I think Skaldgar would have wanted that."`	
+			`	As the sun begins to set, Thorleif approaches you, "It is time," he says. "The journey to the cairn is only a short hike from here. I would like you to accompany me. I think Skaldgar would have wanted that."`
 			choice
 				`	(Accompany Thorleif.)`
 					goto followcairn
@@ -2731,7 +2731,7 @@ mission "Stone of our Fathers 5"
 			`	"He had not so many good memories, I think," Thorleif said quietly. "I realize now, that mine too are quite few. Perhaps that, if nothing else, is a lesson he can teach me. For that, I thank you, father."`
 			`	With that, Thorleif turns from the cairn with teary eyes. "It is done. Let us head back."`
 			choice
-				`	(Follow Thorleif back to the village.)`	
+				`	(Follow Thorleif back to the village.)`
 			`	The two of you trudge back to the small hamlet of Grimssalr, with its people happy at having guests and long lost relatives, and to Ragnhild, happy to spend more time with Thorlief, where you feast and talk and laugh and remember.`
 			label drinkandbemerry
 			`	You enjoy yourself well into the evening before Thorleif approaches you. It's time to head back.`
@@ -2743,7 +2743,7 @@ mission "Stone of our Fathers 5"
 		dialog `You have reached <planet>, but your escort with the space reserved for Thorleif and Ragnhild has not arrived! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		payment 500000
-		conversation 
+		conversation
 			`The trip back to Norn was restful.`
 			`	You spent most of it listening to Ragnhild tell the old stories and legends of Alfheim that she had learned as a child.`
 			`	Stories about alien trees whispering dark secrets, of oil barons destroying sacred sites and being cursed by alien artifacts they were too blinded by greed to see, and even tales of the elves and miracles of the Elf-Stones.`

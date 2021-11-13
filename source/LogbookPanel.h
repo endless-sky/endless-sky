@@ -65,7 +65,7 @@ private:
 	Point hoverPoint;
 	
 	// Current scroll:
-	double categoryScroll = 0.; 
+	double categoryScroll = 0.;
 	double scroll = 0.;
 	mutable double maxCategoryScroll = 0.;
 	mutable double maxScroll = 0.;

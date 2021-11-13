@@ -277,7 +277,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		+ attributes.Get("fuel energy")
 		- attributes.Get("energy consumption")
 		- attributes.Get("cooling energy");
-	const double idleHeatPerFrame = attributes.Get("heat generation") 
+	const double idleHeatPerFrame = attributes.Get("heat generation")
 		+ attributes.Get("solar heat")
 		+ attributes.Get("fuel heat")
 		- ship.CoolingEfficiency() * (attributes.Get("cooling") + attributes.Get("active cooling"));

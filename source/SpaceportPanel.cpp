@@ -56,7 +56,7 @@ void SpaceportPanel::UpdateNews()
 	hasNews = true;
 	
 	// Randomly pick which portrait, if any, is to be shown. Depending on if
-	// this news has a portrait, different interface information gets filled in. 
+	// this news has a portrait, different interface information gets filled in.
 	auto portrait = news->Portrait();
 	// Cache the randomly picked results until the next update is requested.
 	hasPortrait = portrait;

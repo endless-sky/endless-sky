@@ -47,7 +47,7 @@ ship "Maeri'het"
 		"Ka'het Ravager Turret" 2
 		"Ka'het Ravager Beam" 2
 
-		"Ka'het Support Cooling" 
+		"Ka'het Support Cooling"
 		"Ka'het Primary Cooling"
 		"Ka'het Shield Restorer" 2
 		"Ka'het MHD Generator" 2
