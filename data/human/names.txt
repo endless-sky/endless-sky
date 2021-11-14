@@ -53,7 +53,7 @@ phrase "letter"
 
 # Civilian names:
 
-# The sum of all weights of the final phrase that is used for generating names should 
+# The sum of all weights of the final phrase that is used for generating names should
 # generally equal the total number of possible names, but each subphrase may weight
 # names differently if it fits (e.g. weighting male and female names equally regardless
 # of the number of male and female names).

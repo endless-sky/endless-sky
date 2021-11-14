@@ -280,12 +280,12 @@ License: CC-BY-SA-4.0
 Comment: Screenshots of environments created with assets purchased by Tymoteusz
  Kapuściński from the Unity Asset Store. Post-processing applied by Michael
  Zahniser to make the images look less artificial.
- 
+
 Files: images/outfit/scan?module*
 Copyright: Zachary Siple
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (from under the same license).
- 
+
 Files:
  images/outfit/tactical?scanner*
  images/effect/jump?drive?red*
@@ -334,7 +334,7 @@ Copyright: Various
 License: public-domain
  Taken from unsplash.com, a collection of photographs that have been donated and
  placed in the public domain.
- 
+
 Files:
  images/outfit/quarg?skylance*
  images/hardpoint/quarg?skylance*
@@ -656,7 +656,7 @@ Copyright: Copyright Mike Koenig
 License: CC-BY-SA-3.0
 Comment: Taken from http://soundbible.com/1151-Grenade.html
 
-Files: 
+Files:
  sounds/asteroid crunch small.wav
  sounds/asteroid crunch medium.wav
 License: public-domain
@@ -1138,7 +1138,7 @@ Files:
  images/star/b3*
  images/star/b5*
  images/star/b8*
- images/star/black-hole* 
+ images/star/black-hole*
  images/star/carbon*
  images/star/f-dwarf*
  images/star/f-giant*
