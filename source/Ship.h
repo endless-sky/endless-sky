@@ -248,7 +248,7 @@ public:
 	bool IsThrusting() const;
 	bool IsReversing() const;
 	bool IsSteering() const;
-	// The direction that the ship is steering. If positive, the ship is steering right. 
+	// The direction that the ship is steering. If positive, the ship is steering right.
 	// If negative, the ship is steering left.
 	double SteeringDirection() const;
 	// Get the points from which engine flares should be drawn.

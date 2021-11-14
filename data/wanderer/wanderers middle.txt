@@ -3470,4 +3470,4 @@ event "wanderers taking jobs from kor efreti"
 	system "Kaliptari"
 		add fleet "Wanderer Kor Efret Traders" 1500
 	system "Solifar"
-		add fleet "Wanderer Kor Efret Traders" 1500		
+		add fleet "Wanderer Kor Efret Traders" 1500
