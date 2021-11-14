@@ -492,7 +492,7 @@ phrase "friendly wanderer"
 	word
 		"us "
 		"us to "
-		""	
+		""
 	word
 		"[repair, fix]"
 		"restore"
@@ -538,7 +538,7 @@ phrase "hostile wanderer"
 		"We do not wish to "
 		"We do not want to "
 		"We wish not to "
-		"It gives us no [joy, pleasure] to "	
+		"It gives us no [joy, pleasure] to "
 	word
 		"harm you"
 		"destroy you"
@@ -686,7 +686,7 @@ phrase "hostile disabled wanderer"
 		"[harm, abuse]"
 	word
 		". "
-	word 
+	word
 		"You must "
 		"Please "
 	word

@@ -293,7 +293,7 @@ contributed to Endless Sky:
   TurkeyMcMac
   Turtleroku
   tux2603
-  Unjown  
+  Unjown
   Vilhelm16
   W1zrad
   Waffleship
@@ -313,6 +313,6 @@ contributed to Endless Sky:
 
 Special thanks to MCOfficer for
 creating, managing, and hosting
-the ESLauncher, nightly, & 
+the ESLauncher, nightly, &
 continuous builds that make so
 much of this work possible.

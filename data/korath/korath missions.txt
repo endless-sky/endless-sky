@@ -234,7 +234,7 @@ phrase "kor efret small package offer"
 		`It shouldn't take up any significant room on your ship.`
 		`It's small enough to fit below your seat.`
 		`The item is small enough for you to hold in your hands.`
-		`It's small enough that it won't take up any cargo space.`	
+		`It's small enough that it won't take up any cargo space.`
 
 mission "Small Scale Delivery"
 	name "Package to <planet>"

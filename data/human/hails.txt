@@ -1578,7 +1578,7 @@ phrase "friendly civilian"
 	word
 		" "
 	word
-		"a job that paid only" 
+		"a job that paid only"
 		"a gig for only"
 		"something for just"
 	word
@@ -3685,10 +3685,10 @@ phrase "hostile bounty"
 		" "
 	word
 		"I"
-		"my ship" 
+		"my ship"
 	word
 		" "
-	word 
+	word
 		"was going to be"
 		"was to be"
 		"would be"

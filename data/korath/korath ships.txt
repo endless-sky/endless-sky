@@ -299,7 +299,7 @@ ship "Korath Chaser"
 		
 		"Generator (Furnace Class)"
 		"Small Heat Shunt"
-		"Korath Repeater Rifle" 
+		"Korath Repeater Rifle"
 		
 		"Thruster (Asteroid Class)" 2
 		"Steering (Asteroid Class)" 2
