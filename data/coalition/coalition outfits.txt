@@ -224,6 +224,14 @@ outfit "Scanning Module"
 	"tactical scan power" 25
 	description "This system allows the Heliarchs to scan nearby ships, enabling them to detect weapons or illegal goods."
 
+outfit "Outskirts Gauger"
+	category "Systems"
+	cost 669300
+	thumbnail "outfit/outskirts gauger"
+	"mass" 8
+	"outfit space" -8
+	"tactical scan power" 289
+	description "Completed with the data from one of their long-lost satellites, the newest scanner of House Idriss excels at reading various energy signatures across vast distances."
 
 outfit "Small Thrust Module"
 	category "Engines"
