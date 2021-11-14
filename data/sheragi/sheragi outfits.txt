@@ -144,7 +144,7 @@ outfit "Dragonflame Cannon"
 	"gun ports" -1
 	"spinal mount" -1
 	weapon
-		sound "dragonflame" 
+		sound "dragonflame"
 		icon "icon/dragonflame"
 		"fire effect" "dragonflame"
 		"hit effect" "bright hit"

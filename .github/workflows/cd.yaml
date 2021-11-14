@@ -73,6 +73,11 @@ jobs:
           Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
           Expand-Archive win64-dev.zip -DestinationPath . -Force
           Remove-Item win64-dev.zip
+      - name: Cache scons
+        uses: actions/cache@v2
+        with:
+          path: 'scons-local'
+          key: scons-${{ hashFiles('.winmake') }}
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
         shell: bash

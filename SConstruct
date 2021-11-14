@@ -47,7 +47,7 @@ Help(opts.GenerateHelpText(env))
 #   $ CXXFLAGS=-msse3 scons
 #   $ CXXFLAGS=-march=native scons
 # or modify the `flags` variable:
-flags = ["-std=c++11", "-Wall", "-Werror", "-Wold-style-cast"]
+flags = ["-std=c++11", "-Wall", "-Werror", "-Wold-style-cast", "-fno-rtti"]
 if env["mode"] != "debug":
 	flags += ["-O3", "-flto"]
 	env.Append(LINKFLAGS = ["-O3", "-flto"])
@@ -138,7 +138,7 @@ def RecursiveGlob(pattern, dir_name=buildDirectory):
 		if isinstance(sub_dir, Dir)]
 	# Add source files in this directory, except for main.cpp
 	matches += Glob(pathjoin(str(dir_name), pattern))
-	matches = [i for i in matches if not "/main.cpp" in str(i)]
+	matches = [i for i in matches if not '{}main.cpp'.format(os.path.sep) in str(i)]
 	return matches
 
 # By default, invoking scons will build the backing archive file and then the game binary.
