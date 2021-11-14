@@ -72,7 +72,7 @@ mission "Asteroid Course"
 		category "Light Freighter" "Interceptor"
 		not attributes "automaton"
 	passengers 3 7
-	destination 
+	destination
 		distance 1 3
 		not government "Pirate"
 		attributes shipyard

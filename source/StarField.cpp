@@ -129,7 +129,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 	{
 		// Modify zoom for the first parallax layer.
 		if(Preferences::Has("Parallax background"))
-			zoom = baseZoom * STAR_ZOOM;	
+			zoom = baseZoom * STAR_ZOOM;
 		glUseProgram(shader.Object());
 		glBindVertexArray(vao);
 		

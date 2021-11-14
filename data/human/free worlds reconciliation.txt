@@ -1867,13 +1867,13 @@ mission "FW Pug 4A"
 			names "pug"
 			variant
 				"Pug Maboro"
-				"Pug Enfolta" 
+				"Pug Enfolta"
 				"Pug Zibruka" 2
 		fleet
 			names "pug"
 			variant
 				"Pug Enfolta"
-				"Pug Zibruka" 2	
+				"Pug Zibruka" 2
 	
 	npc disable
 		system Rasalhague
@@ -1884,7 +1884,7 @@ mission "FW Pug 4A"
 			names "pug"
 			variant
 				"Pug Maboro"
-				"Pug Enfolta" 
+				"Pug Enfolta"
 				"Pug Zibruka" 2
 		fleet 3
 			names "pug"
@@ -1951,7 +1951,7 @@ mission "FW Pug 4B: Enemies"
 			names "pug"
 			variant
 				"Pug Maboro"
-				"Pug Enfolta" 
+				"Pug Enfolta"
 				"Pug Zibruka" 2
 
 
@@ -2049,12 +2049,12 @@ mission "FW Pug 5"
 			names "pug"
 			variant
 				"Pug Maboro"
-				"Pug Enfolta" 
+				"Pug Enfolta"
 				"Pug Zibruka" 2
 		fleet
 			names "pug"
 			variant
-				"Pug Enfolta" 
+				"Pug Enfolta"
 				"Pug Zibruka" 2
 
 
@@ -2076,7 +2076,7 @@ mission "FW Pug 5A: Enemies"
 			names "pug"
 			variant
 				"Pug Maboro"
-				"Pug Enfolta" 
+				"Pug Enfolta"
 				"Pug Zibruka" 2
 
 

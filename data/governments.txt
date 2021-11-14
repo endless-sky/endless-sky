@@ -25,7 +25,7 @@ government "Bad Trip"
 	"player reputation" -1000
 
 government "Builder"
-	# While when you attack the drones they will try to defend themselves, when you come back 
+	# While when you attack the drones they will try to defend themselves, when you come back
 	# as long as you don't attack them again they will focus on their usual activities
 	color .91 .13 .82
 	language "Builder"
