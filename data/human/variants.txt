@@ -82,8 +82,8 @@ ship "Argosy" "Argosy (Turret)"
 
 ship "Arrow" "Arrow (Hai)"
 	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile Pod" 2
+		"Sidewinder Missile" 8
 		"Bullfrog Anti-Missile"
 		"Pebble Core"
 		"Supercapacitor" 2
@@ -325,8 +325,8 @@ ship "Behemoth" "Behemoth (Speedy)"
 ship "Berserker" "Berserker (Afterburner)"
 	outfits
 		"Energy Blaster" 2
-		"Javelin Pod" 2
-		"Javelin" 400
+		"Javelin Mini Pod" 2
+		"Javelin" 80
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"D23-QP Shield Generator"
@@ -339,10 +339,10 @@ ship "Berserker" "Berserker (Afterburner)"
 
 ship "Berserker" "Berserker (Strike)"
 	outfits
-		"Heavy Rocket Launcher"
-		"Heavy Rocket" 20
-		"Sidewinder Missile Launcher"
-		"Sidewinder Missile" 45
+		"Heavy Rocket Pod"
+		"Heavy Rocket" 2
+		"Sidewinder Missile Pod"
+		"Sidewinder Missile" 4
 		"nGVF-CC Fuel Cell"
 		"Supercapacitor"
 		"D23-QP Shield Generator"
@@ -529,8 +529,8 @@ ship "Carrier" "Carrier (Mark II)"
 
 ship "Clipper" "Clipper (Heavy)"
 	outfits
-		"Heavy Rocket Launcher" 2
-		"Heavy Rocket" 40
+		"Heavy Rocket Pod" 2
+		"Heavy Rocket" 4
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 60
 		"RT-I Radiothermal"
@@ -978,8 +978,8 @@ ship "Flivver" "Flivver (Hai)"
 
 ship "Flivver" "Flivver (Luxury)"
 	outfits
-		"Meteor Missile Launcher"
-		"Meteor Missile" 30
+		"Meteor Missile Pod"
+		"Meteor Missile" 7
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
@@ -1095,10 +1095,10 @@ ship "Frigate" "Frigate (Mark II)"
 
 ship "Fury" "Fury (Bomber)"
 	outfits
-		"Heavy Rocket Launcher"
-		"Heavy Rocket" 20
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Heavy Rocket Pod"
+		"Heavy Rocket" 2
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 14
 		"nGVF-BB Fuel Cell"
 		"Supercapacitor"
 		"D14-RN Shield Generator"
@@ -1161,9 +1161,8 @@ ship "Fury" "Fury (Missile)"
 	outfits
 		"Javelin Pod"
 		"Javelin" 200
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 75
-		"Meteor Missile Box"
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 14
 		"nGVF-BB Fuel Cell"
 		"Supercapacitor" 3
 		"D14-RN Shield Generator"
@@ -1269,10 +1268,10 @@ ship "Hauler III" "Hauler III (Hai)"
 
 ship "Hawk" "Hawk (Bomber)"
 	outfits
-		"Heavy Rocket Launcher"
-		"Heavy Rocket" 20
-		"Torpedo Launcher"
-		"Torpedo" 30
+		"Heavy Rocket Pod"
+		"Heavy Rocket" 2
+		"Torpedo Pod"
+		"Torpedo" 3
 		"nGVF-CC Fuel Cell"
 		"Supercapacitor"
 		"D41-HY Shield Generator"
@@ -1295,8 +1294,8 @@ ship "Hawk" "Hawk (Plasma)"
 
 ship "Hawk" "Hawk (Rocket)"
 	outfits
-		"Heavy Rocket Launcher" 2
-		"Heavy Rocket" 40
+		"Heavy Rocket Pod" 2
+		"Heavy Rocket" 4
 		"RT-I Radiothermal"
 		"Supercapacitor" 2
 		"D41-HY Shield Generator"
@@ -1368,8 +1367,8 @@ ship "Headhunter" "Headhunter (Strike)"
 	outfits
 		"Javelin Pod" 2
 		"Javelin" 400
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 14
 		"Anti-Missile Turret"
 		"RT-I Radiothermal"
 		"LP072a Battery Pack"
@@ -2009,10 +2008,10 @@ ship "Roost" "Roost (Sidewinder)"
 
 ship "Scout" "Scout (Speedy)"
 	outfits
-		"Meteor Missile Launcher"
-		"Meteor Missile" 30
-		"Sidewinder Missile Launcher"
-		"Sidewinder Missile" 45
+		"Meteor Missile Pod"
+		"Meteor Missile" 7
+		"Sidewinder Missile Pod"
+		"Sidewinder Missile" 4
 		"Anti-Missile Turret"
 		"NT-200 Nucleovoltaic"
 		"Supercapacitor"
@@ -2230,8 +2229,8 @@ ship "Wasp" "Wasp (Javelin)"
 ship "Wasp" "Wasp (Meteor)"
 	outfits
 		"Energy Blaster"
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 14
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
@@ -2239,8 +2238,8 @@ ship "Wasp" "Wasp (Meteor)"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 	gun "Energy Blaster"
-	gun "Meteor Missile Launcher"
-	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Pod"
+	gun "Meteor Missile Pod"
 
 
 ship "Wasp" "Wasp (Plasma)"
