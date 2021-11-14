@@ -306,6 +306,9 @@ outfitter "Coalition Advanced"
 	"Hyperdrive"
 	"Local Map"
 
+outfitter "Outskirts Gauger"
+	"Outskirts Gauger"
+
 outfitter "Heliarch"
 	"Small Reactor Module"
 	"Large Reactor Module"
