@@ -531,8 +531,8 @@ ship "Behemoth"
 	engine 56 148.5 0.6
 	gun -47.5 -57.5
 	gun 47.5 -57.5
-	turret -31 -50 "Heavy Laser Turret"	
-	turret 31 -50 "Heavy Anti-Missile Turret"	
+	turret -31 -50 "Heavy Laser Turret"
+	turret 31 -50 "Heavy Anti-Missile Turret"
 	turret -47.5 33.5 "Heavy Laser Turret"
 	turret 47.5 33.5 "Heavy Laser Turret"
 	turret -22 66.5 "Heavy Anti-Missile Turret"
@@ -1550,7 +1550,7 @@ ship "Firebird"
 	gun 27 -28 "Particle Cannon"
 	gun -38 -13 "Meteor Missile Launcher"
 	gun 38 -13 "Meteor Missile Launcher"
-	turret 0 -38 "Anti-Missile Turret"	
+	turret 0 -38 "Anti-Missile Turret"
 	turret 0 3 "Quad Blaster Turret"
 	leak "leak" 50 50
 	leak "flame" 30 80
@@ -2678,8 +2678,8 @@ ship "Rainmaker"
 		"cost" 1580000
 		"shields" 3500
 		"hull" 1200
-		"required crew" 7
-		"bunks" 14
+		"required crew" 3
+		"bunks" 7
 		"mass" 180
 		"drag" 3.8
 		"heat dissipation" .6
@@ -3020,7 +3020,7 @@ ship "Sparrow"
 		"shields" 1200
 		"hull" 300
 		"required crew" 1
-		"bunks" 2
+		"bunks" 3
 		"mass" 50
 		"drag" .9
 		"heat dissipation" .8

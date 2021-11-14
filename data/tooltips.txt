@@ -826,3 +826,9 @@ tip "no bays?"
 
 tip "insufficient energy to fire?"
 	`This ship has insufficient energy storage to fire an installed weapon.`
+
+
+
+# Boolean attributes:
+tip "This outfit is considered an atrocity."
+	`Governments that scan for illegal goods will attack you upon discovering this item in your posession in space, or arrest you if found when landed.`
