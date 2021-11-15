@@ -404,10 +404,9 @@ void Ship::Load(const DataNode &node)
 				else
 					grand.PrintTrace("Skipping invalid outfit count:");
 			}
-
-			// Check if the new outfits correspond to the equipped weapons.
-			// If not, we need to uninstall und unequip the weapons so that they
-			// can get auto equipped later.
+			
+			// Verify we have at least as many installed outfits as were identified as "equipped."
+			// If not (e.g. a variant definition), ensure FinishLoading equips into a blank slate.
 			if(!hasArmament)
 				for(const auto &it : equipped)
 					if(static_cast<int>(outfits.count(it.first)) < it.second)
