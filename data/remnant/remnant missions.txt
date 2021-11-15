@@ -1183,11 +1183,11 @@ mission "Remnant: Deep Surveillance"
 			branch unknown
 				has "deep: did not reveal remnant"
 			
-			branch technology
-				has "Deep: Remnant: Engines: done"
-			
 			branch surveillance
 				has "Deep: Remnant Surveillance: done"
+			
+			branch technology
+				has "Deep: Remnant: Engines: done"
 			
 			choice
 				`	"They know where the Remnant are in the Ember Waste."`
