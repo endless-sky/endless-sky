@@ -57,6 +57,7 @@ namespace {
 	const string SCROLL_SPEED = "Scroll speed";
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
+	const string BOARDING_PRIORITY = "Boarding target priority";
 }
 
 
@@ -442,6 +443,7 @@ void PreferencesPanel::DrawSettings()
 		"AI",
 		"Automatic aiming",
 		"Automatic firing",
+		BOARDING_PRIORITY,
 		EXPEND_AMMO,
 		FIGHTER_REPAIR,
 		TURRET_TRACKING,
@@ -528,6 +530,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = Preferences::Has(SHIP_OUTLINES) ? "fancy" : "fast";
+		}
+		else if(setting == BOARDING_PRIORITY)
+		{
+			isOn = true;
+			text = Preferences::Has(BOARDING_PRIORITY) ? "closest" : "priciest";
 		}
 		else if(setting == REACTIVATE_HELP)
 		{
