@@ -408,13 +408,16 @@ void Ship::Load(const DataNode &node)
 			// Verify we have at least as many installed outfits as were identified as "equipped."
 			// If not (e.g. a variant definition), ensure FinishLoading equips into a blank slate.
 			if(!hasArmament)
-				for(const auto &it : equipped)
-					if(static_cast<int>(outfits.count(it.first)) < it.second)
+				for(const auto &pair : equipped)
+				{
+					auto it = outfits.find(pair.first);
+					if(it == outfits.end() || it->second < pair.second)
 					{
 						armament.UninstallAll();
 						equipped.clear();
 						break;
 					}
+				}
 		}
 		else if(key == "cargo")
 			cargo.Load(child);
