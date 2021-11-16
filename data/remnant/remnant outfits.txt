@@ -323,7 +323,6 @@ outfit "Ember Tear"
 	weapon
 		sprite "projectile/ember tear/ember tear"
 			"frame rate" 30
-			"random start frame"
 		sound "ion"
 		"hit effect" "ember tear spark"
 		"hit effect" "ember tear impact"
