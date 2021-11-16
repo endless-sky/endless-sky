@@ -234,7 +234,7 @@ outfit "Outskirts Gauger"
 	"energy consumption" .25
 	"energy capacity" -200
 	description "Completed with the data from one of their long-lost satellites, the newest scanner of House Idriss excels at reading various energy signatures across vast distances."
-	description "	Constantly running its calculations about every little thing it detects within its impressive range, the gauger needs a constant supply of energy to function, as well as a set amount of battery capacity dedicated to it."
+	description "	Constantly running its calculations about every little thing it detects within its impressive range, the gauger needs a steady supply of energy to function, as well as a set amount of battery capacity dedicated to it."
 
 outfit "Small Thrust Module"
 	category "Engines"
