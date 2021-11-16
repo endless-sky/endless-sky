@@ -51,6 +51,8 @@ public:
 	void FinishLoading();
 	// Reload all weapons (because a day passed in-game).
 	void ReloadAll();
+	// Uninstall all weapons (because the weapon outfits have potentially changed).
+	void UninstallAll();
 	
 	// Swap the weapons in the given two hardpoints.
 	void Swap(int first, int second);
