@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef GAME_DATA_H_
 #define GAME_DATA_H_
 
+#include "CategoryTypes.h"
 #include "Sale.h"
 #include "Set.h"
 #include "Trade.h"
@@ -35,6 +36,7 @@ class Government;
 class Hazard;
 class ImageSet;
 class Interface;
+class MaskManager;
 class Minable;
 class Mission;
 class News;
@@ -123,7 +125,7 @@ public:
 	
 	static const Government *PlayerGovernment();
 	static Politics &GetPolitics();
-	static const StartConditions &Start();
+	static const std::vector<StartConditions> &StartOptions();
 	
 	static const std::vector<Trade::Commodity> &Commodities();
 	static const std::vector<Trade::Commodity> &SpecialCommodities();
@@ -137,15 +139,19 @@ public:
 	
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);
+	// Strings for ship, bay type, and outfit categories.
+	static const std::vector<std::string> &Category(const CategoryType type);
 	
 	static const StarField &Background();
-	static void SetHaze(const Sprite *sprite);
+	static void SetHaze(const Sprite *sprite, bool allowAnimation);
 	
 	static const std::string &Tooltip(const std::string &label);
 	static std::string HelpMessage(const std::string &name);
 	static const std::map<std::string, std::string> &HelpTemplates();
 	
 	static const std::map<std::string, std::string> &PluginAboutText();
+	
+	static MaskManager &GetMaskManager();
 	
 	static double Gamerule(const std::string &rule);
 	

@@ -20,6 +20,7 @@
 				</Compiler>
 				<Linker>
 					<Add library="lib/Debug/libendless-sky.a" />
+					<Add library="librpcrt4.a" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -39,12 +40,16 @@
 				<Linker>
 					<Add option="-flto" />
 					<Add library="lib/Release/libendless-sky.a" />
+					<Add library="librpcrt4.a" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-std=c++11" />
+			<Add option="-Werror" />
+			<Add option="-Wold-style-cast" />
+			<Add option="-fno-rtti" />
 			<Add directory="tests/include" />
 			<Add directory="C:/dev64/include" />
 		</Compiler>
@@ -60,16 +65,22 @@
 			<Add library="libglew32.dll.a" />
 			<Add library="libopengl32.a" />
 			<Add directory="C:/dev64/lib" />
-			<Add directory="C:/Program Files/mingw64/x86_64-w64-mingw32/lib" />
+			<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/lib" />
 		</Linker>
+		<Unit filename="tests/src/helpers/datanode-factory.cpp" />
+		<Unit filename="tests/src/test_account.cpp" />
 		<Unit filename="tests/src/test_conditionSet.cpp" />
 		<Unit filename="tests/src/test_datanode.cpp" />
+		<Unit filename="tests/src/test_esuuid.cpp" />
 		<Unit filename="tests/src/test_main.cpp" />
 		<Unit filename="tests/src/test_point.cpp" />
 		<Unit filename="tests/src/test_random.cpp" />
 		<Unit filename="tests/src/test_set.cpp" />
+		<Unit filename="tests/src/test_ship.cpp" />
+		<Unit filename="tests/src/test_weightedList.cpp" />
 		<Unit filename="tests/src/text/test_alignment.cpp" />
 		<Unit filename="tests/src/text/test_displaytext.cpp" />
+		<Unit filename="tests/src/text/test_format.cpp" />
 		<Unit filename="tests/src/text/test_layout.cpp" />
 		<Unit filename="tests/src/text/test_truncate.cpp" />
 		<Extensions>

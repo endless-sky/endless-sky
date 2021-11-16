@@ -551,7 +551,7 @@ ship "Ibis"
 		"Forge-Class Steering" 2
 		"Scram Drive"
 		
-	bay "Drone" 0 30 over 
+	bay "Drone" 0 30 over
 	bay "Drone" -34 68 over
 	bay "Drone" 0 81 over
 	bay "Drone" 34 68 over
@@ -760,7 +760,7 @@ ship "Penguin"
 	
 ship "Peregrine"
 	sprite "ship/peregrine/peregrine"
-		"frame rate" 3 
+		"frame rate" 3
 		"rewind"
 	thumbnail "thumbnail/peregrine"
 	attributes
@@ -905,6 +905,8 @@ ship "Puffin"
 	thumbnail "thumbnail/puffin"
 	attributes
 		category Transport
+		licenses
+			Remnant
 		cost 530000
 		"shields" 800
 		"hull" 1500
@@ -917,14 +919,13 @@ ship "Puffin"
 		"energy capacity" 150
 		"ramscoop" 0.5
 		"cargo space" 8
-		"outfit space" 79
+		"outfit space" 80
 		"engine capacity" 26
 		"shield generation" 0.6
 		"shield energy" 0.4
 		"hull repair rate" 1.2
 		"hull energy" 0.9
 		"gaslining" 1
-		"quantum keystone" 1
 		"cooling" 1
 		"active cooling" 8
 		"cooling energy" .4
@@ -935,10 +936,11 @@ ship "Puffin"
 	outfits
 		"Millennium Cell"
 		"Emergency Ramscoop"
-
+		"Quantum Key Stone"
+		
 		"Anvil-Class Engine"
 		"Hyperdrive"
-
+		
 	engine 0 30
 	leak "remnant leak sparkle" 20 2
 	explode "tiny explosion" 8

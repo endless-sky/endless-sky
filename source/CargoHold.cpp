@@ -543,7 +543,7 @@ int64_t CargoHold::Value(const System *system) const
 {
 	int64_t value = 0;
 	for(const auto &it : commodities)
-		value += system->Trade(it.first) * it.second;
+		value += static_cast<int64_t>(system->Trade(it.first)) * it.second;
 	// For outfits, assume they're fully depreciated, since that will always be
 	// the case unless the player bought into cargo for some reason.
 	for(const auto &it : outfits)
@@ -565,6 +565,8 @@ int CargoHold::IllegalCargoFine() const
 	for(const auto &it : outfits)
 	{
 		int fine = it.first->Get("illegal");
+		if(it.first->Get("atrocity") > 0.)
+			return -1;
 		if(fine < 0)
 			return fine;
 		totalFine = max(totalFine, fine / 2);

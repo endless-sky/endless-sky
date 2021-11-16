@@ -39,10 +39,10 @@ public:
 	// Last known windowed-mode width & height.
 	static int Width();
 	static int Height();
-	// 
+	
 	static bool IsMaximized();
 	static bool IsFullscreen();
-	static void ToggleFullscreen();	
+	static void ToggleFullscreen();
 	
 	// Check if the initialized window system supports OpenGL texture_swizzle.
 	static bool HasSwizzle();
