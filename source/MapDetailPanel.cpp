@@ -496,11 +496,11 @@ void MapDetailPanel::DrawInfo()
 	{
 		set<const Planet *> shown;
 		const Sprite *planetSprite = SpriteSet::Get("ui/map planet");
-		int currentPlanet = 0;
+		int currentPlanet = 1;
 		for(const StellarObject &object : selectedSystem->Objects()) {
 			// makes sure it does not go out of the screen
 			if(object.HasSprite() && object.HasValidPlanet() && uiPoint.Y() <= Screen::Bottom() - 230 - 130
-			   && currentPlanet >= planetNbr)
+			   && currentPlanet > planetNbr)
 			{
 				// The same "planet" may appear multiple times in one system,
 				// providing multiple landing and departure points (e.g. ringworlds).
@@ -556,6 +556,20 @@ void MapDetailPanel::DrawInfo()
 		}
 		// checks if all planets can be shown at once
 		overflow = (uiPoint.Y() > Screen::Bottom() - 230 - 130);
+	}
+	if(overflow)
+	{
+		const string &down = "\\/";
+		Point point(Screen::Left() + font.Width(down) / 2 + 80., uiPoint.Y() - 65. - font.Width(down));
+		font.Draw(down, point + Point(1, 1), Color(0.f, 1.f));
+		font.Draw(down, point, medium);
+		if(planetNbr > 0)
+		{
+			const string &up = "/\\";
+			Point point(Screen::Left() + font.Width(down) / 2 + 80., governmentY + 10. + font.Width(up));
+			font.Draw(up, point + Point(1, 1), Color(0.f, 1.f));
+			font.Draw(up, point, medium);
+		}
 	}
 	uiPoint.Y() += 45.;
 	tradeY = uiPoint.Y() - 95.;
