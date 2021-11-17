@@ -36,6 +36,7 @@ public:
 	
 	virtual void Step() override;
 	virtual void Draw() override;
+	virtual bool Scroll(double dx, double dy) override;
 	
 	
 protected:
@@ -58,6 +59,9 @@ private:
 private:
 	int governmentY = 0;
 	int tradeY = 0;
+	// For when there are too many planets to display on the screen at once, id of the first one that is shown on screen.
+	int planetNbr = 0;
+	int excessPlanet = 0;
 	
 	// Default display scaling for orbits within the currently displayed system.
 	double scale = .03;

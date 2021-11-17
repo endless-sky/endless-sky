@@ -121,6 +121,23 @@ void MapDetailPanel::Draw()
 }
 
 
+// Navigates trough the shown planets when there are too many.
+bool MapDetailPanel::Scroll(double dx, double dy)
+{
+	Point point = UI::GetMouse();
+	if(excessPlanet && point.X() < Screen::Left() + 160 && point.Y() > Screen::Top() + 90 && point.Y() < Screen::Bottom() - 230)
+	{
+		if(dy > 0. && planetNbr < excessPlanet)
+			++planetNbr;
+		else if(dy < 0. && planetNbr > 0)
+			--planetNbr;
+		return true;
+	}
+	else
+		return MapPanel::Scroll(dx, dy);
+}
+
+
 
 // Only override the ones you need; the default action is to return false.
 bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
@@ -283,11 +300,17 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		return true;
 	}
 	
+	string temp = selectedSystem->Name();
 	// The click was not on an interface element, so check if it was on a system.
 	MapPanel::Click(x, y, clicks);
 	// If the system just changed, the selected planet is no longer valid.
 	if(selectedPlanet && !selectedPlanet->IsInSystem(selectedSystem))
+	{
 		selectedPlanet = nullptr;
+	}
+	// If the system just changed, the planet scroll in the system needs to be reset.
+	if(selectedSystem->Name() != temp)
+		planetNbr = 0;
 	return true;
 }
 
@@ -451,6 +474,7 @@ void MapDetailPanel::DrawInfo()
 	const Color &faint = *GameData::Colors().Get("faint");
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
+	const Color &bold = *GameData::Colors().Get("bold");
 	
 	Point uiPoint(Screen::Left() + 100., Screen::Top() + 45.);
 	
@@ -473,14 +497,26 @@ void MapDetailPanel::DrawInfo()
 			10.f, 10.f, 0.f, medium);
 	
 	uiPoint.Y() += 115.;
-	
+
 	planetY.clear();
+
+	// Hint more planets can be seen by scrolling up.
+	if(planetNbr > 0)
+	{
+		const string &up = "/\\";
+		Point point(Screen::Left() + font.Width(up) / 2 + 80., governmentY + 10. + font.Width(up));
+		font.Draw(up, point + Point(1, 1), Color(0.f, 1.f));
+		font.Draw(up, point, bold);
+	}
+
 	// Draw the basic information for visitable planets in this system.
 	if(player.HasVisited(*selectedSystem))
 	{
 		set<const Planet *> shown;
 		const Sprite *planetSprite = SpriteSet::Get("ui/map planet");
-		for(const StellarObject &object : selectedSystem->Objects())
+		excessPlanet = 0;
+		int currentPlanetNbr = 0;
+		for(const StellarObject &object : selectedSystem->Objects()) {
 			if(object.HasSprite() && object.HasValidPlanet())
 			{
 				// The same "planet" may appear multiple times in one system,
@@ -488,6 +524,9 @@ void MapDetailPanel::DrawInfo()
 				const Planet *planet = object.GetPlanet();
 				if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.count(planet))
 					continue;
+
+				// Makes sure it would not go out of the screen.
+				if(uiPoint.Y() <= (Screen::Bottom() - 230 - 130) && currentPlanetNbr >= planetNbr) {
 				shown.insert(planet);
 				
 				SpriteShader::Draw(planetSprite, uiPoint);
@@ -533,6 +572,23 @@ void MapDetailPanel::DrawInfo()
 				
 				uiPoint.Y() += 130.;
 			}
+				// Lacking space for a new planet to be displayed.
+				else
+				{
+					++excessPlanet;
+				}
+				++currentPlanetNbr;
+		}
+		}
+	}
+	
+	// Hints that more planets can be seen by scrolling down.
+	if(excessPlanet > planetNbr)
+	{
+		const string &down = "\\/";
+		Point point(Screen::Left() + font.Width(down) / 2 + 80., uiPoint.Y() - 62.5 - font.Width(down));
+		font.Draw(down, point + Point(1, 1), Color(0.f, 1.f));
+		font.Draw(down, point, bold);
 	}
 	
 	uiPoint.Y() += 45.;
