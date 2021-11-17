@@ -43,7 +43,7 @@ conversation "default intro"
 
 start "paradise"
 	name "Endless Sky - Paradise"
-	description `You grew up on Mainsail, an uninteresting world in the Paradise Planets. You've dreamed of owning a starship ever since your first visit to the spaceport at the age of fifteen. After many long years of managing the logistics of a textile company, you've finally saved enough credits to apply for a pilot's license from the Republic.`
+	description `You grew up on Mainsail, a world in the Paradise Planets. You've dreamed of owning a starship ever since your first visit to the spaceport at the age of fifteen. After many long years of managing the logistics of a textile company, you've finally saved enough credits to apply for a pilot's license from the Republic.`
 	description `	After receiving the license and with freedom from this planet at your fingertips, you travel to the bank to cash out your investments to pay for your first ship...`
 	thumbnail "scene/lobby"
 	date 16 11 3013
