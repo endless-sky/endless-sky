@@ -38,3 +38,32 @@ conversation "default intro"
 	name
 	`	The elevator is so well-tuned that you do not even realize it is moving until it has deposited you back in the lobby. But as you leave the bank, you are smiling. This crazy adventure suddenly feels real to you. You are going to do it. You are finally going to get off this planet.`
 	`	Compared to the bank, you feel much more at home in the shipyard, walking among the rusted out hulks and newer ships that gleam in the sunlight. You smell grease and dirt and rocket fuel; wonderful smells. There are three ship models within your price range. Which one you choose will determine your future...`
+
+
+
+start "paradise"
+	name "Endless Sky - Paradise"
+	description `You grew up on Mainsail, an uninteresting world in the Paradise Planets. You've dreamed of owning a starship ever since your first visit to the spaceport at the age of fifteen. After many long years of managing the logistics of a textile company, you've finally saved enough credits to apply for a pilot's license from the Republic.`
+	description `	After receiving the license and with freedom from this planet at your fingertips, you travel to the bank to cash out your investments to pay for your first ship...`
+	thumbnail "scene/lobby"
+	date 16 11 3013
+	system "Alhena"
+	planet "Mainsail"
+	conversation "paradise intro"
+	account
+		credits 480000
+		score 500
+	set "license: Pilot's"
+
+
+
+conversation "paradise intro"
+	scene "scene/lobby"
+	`The bank's architecture is what you would have called "futuristic" back when you dreamed that the future would be less squalid than the present: story above story of curves and spires and balconies, all in gleaming metal. A doorman stands by each of the heavy glass doors. You are wearing your very best clothes, but you feel shabby next to them.`
+	`	The loan broker's office is equally intimidating. Large computer monitors fill the walls, with stock quotes and other information spilling down them almost too fast to read. You occasionally glimpse the names of places that you have only seen in movies: Aldebaran. Tarazed. Earth.`
+	`	The pen is heavy as lead but glides almost without friction as you print your initials on the bottom of page after page of ominous legal documents and sign several dozen statements, notices, and agreements. The banker, a balding middle-aged man in a suit that you suspect costs more than the spaceship you are about to purchase, flips the pages past you quickly, uttering a curt, "Sign here. Now here," as he points to each page. He moves swiftly, mechanically.`
+	`	The only moment when he becomes truly animated is when explaining the Terms of Closing statement to you. "You are withdrawing 500,000 credits," he says, "which will close your investment account. Your account withdrawal rate is 4%, which means that your closing fee is 20,000, and as such will be receiving 480,000 credits. Sign here." He grins.`
+	`	You sign your name one final time:`
+	name
+	`	The elevator is so well-tuned that you do not even realize it is moving until it has deposited you back in the lobby. But as you leave the bank, you are smiling. This crazy adventure suddenly feels real to you. You are going to do it. You are finally going to get off this planet.`
+	`	Compared to the bank, you feel much more at home in the shipyard, walking among the rusted out hulks and newer ships that gleam in the sunlight. You smell grease and dirt and rocket fuel; wonderful smells. There are three ship models within your price range. Which one you choose will determine your future...`
