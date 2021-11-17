@@ -185,7 +185,7 @@ void ConversationPanel::Draw()
 
 			auto zone = Rectangle::FromCorner(point, size);
 			// If the mouse is hovering over this choice then we need to highlight it.
-			if(zone.Contains(hoverPoint))
+			if(isHovering && zone.Contains(hoverPoint))
 				choice = index;
 		
 			if(index == choice)
@@ -199,6 +199,9 @@ void ConversationPanel::Draw()
 	}
 	// Store the total height of the text.
 	maxScroll = min(0., Screen::Top() - (point.Y() - scroll) + font.Height() + 15.);
+
+	// Reset the hover flag. If the mouse is still moving than the flag will be set in the next frame.
+	isHovering = false;
 }
 
 
@@ -310,6 +313,7 @@ bool ConversationPanel::Scroll(double dx, double dy)
 bool ConversationPanel::Hover(int x, int y)
 {
 	hoverPoint = Point(x, y);
+	isHovering = true;
 	return true;
 }
 

@@ -131,6 +131,8 @@ private:
 	// have boarded).
 	std::shared_ptr<Ship> ship;
 
+	// Whether the mouse moved in the current frame.
+	bool isHovering = false;
 	Point hoverPoint;
 };
 
