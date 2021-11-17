@@ -475,7 +475,7 @@ void MapDetailPanel::DrawInfo()
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bold = *GameData::Colors().Get("bold");
-	
+
 	Point uiPoint(Screen::Left() + 100., Screen::Top() + 45.);
 
 	// System sprite goes from 0 to 90.
@@ -763,7 +763,7 @@ void MapDetailPanel::DrawOrbits()
 			RingShader::Draw(orbitCenter + object.Position() * scale,
 				object.Radius() * scale + 5., object.Radius() * scale + 4.,
 				habitColor[6]);
-
+				
 	// Draw the name of the selected planet.
 	const string &name = selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name();
 	Point namePos(Screen::Right() - 190., Screen::Top() + 7.);
