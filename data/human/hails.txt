@@ -3011,7 +3011,7 @@ phrase "disabled hostile"
 	word
 		" "
 	word
-		"Look what you did to my ship."
+		"Look what you did to my ship!"
 		"This is all your fault."
 		"This isn't over."
 		"You got lucky this time."
