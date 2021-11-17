@@ -121,13 +121,13 @@ void MapDetailPanel::Draw()
 }
 
 
-// navigates trough the shown planets when there are too many
+// Navigates trough the shown planets when there are too many.
 bool MapDetailPanel::Scroll(double dx, double dy)
 {
 	Point point = UI::GetMouse();
-	if(overflow && point.X() < Screen::Left() + 160 && point.Y() > Screen::Top() + 90 && point.Y() < Screen::Bottom() - 230)
+	if(excessPlanet && point.X() < Screen::Left() + 160 && point.Y() > Screen::Top() + 90 && point.Y() < Screen::Bottom() - 230)
 	{
-		if(dy > 0.)
+		if(dy > 0. && planetNbr < excessPlanet)
 			++planetNbr;
 		else if(dy < 0. && planetNbr > 0)
 			--planetNbr;
@@ -300,11 +300,17 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		return true;
 	}
 
+	string temp = selectedSystem->Name();
 	// The click was not on an interface element, so check if it was on a system.
 	MapPanel::Click(x, y, clicks);
 	// If the system just changed, the selected planet is no longer valid.
 	if(selectedPlanet && !selectedPlanet->IsInSystem(selectedSystem))
+	{
 		selectedPlanet = nullptr;
+	}
+	// If the system just changed, the planet scroll in the system needs to be reset.
+	if(selectedSystem->Name() != temp)
+		planetNbr = 0;
 	return true;
 }
 
@@ -468,7 +474,8 @@ void MapDetailPanel::DrawInfo()
 	const Color &faint = *GameData::Colors().Get("faint");
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
-
+	const Color &bold = *GameData::Colors().Get("bold");
+	
 	Point uiPoint(Screen::Left() + 100., Screen::Top() + 45.);
 
 	// System sprite goes from 0 to 90.
@@ -491,85 +498,92 @@ void MapDetailPanel::DrawInfo()
 
 	uiPoint.Y() += 115.;
 	planetY.clear();
+	// Hint more planets can be seen by scrolling up.
+	if(planetNbr > 0)
+	{
+		const string &up = "/\\";
+		Point point(Screen::Left() + font.Width(up) / 2 + 80., governmentY + 10. + font.Width(up));
+		font.Draw(up, point + Point(1, 1), Color(0.f, 1.f));
+		font.Draw(up, point, bold);
+	}
 	// Draw the basic information for visitable planets in this system.
 	if(player.HasVisited(*selectedSystem))
 	{
 		set<const Planet *> shown;
 		const Sprite *planetSprite = SpriteSet::Get("ui/map planet");
-		int currentPlanet = 1;
+		excessPlanet = 0;
+		int currentPlanetNbr = 0;
 		for(const StellarObject &object : selectedSystem->Objects()) {
-			// makes sure it does not go out of the screen
-			if(object.HasSprite() && object.HasValidPlanet() && uiPoint.Y() <= Screen::Bottom() - 230 - 130
-			   && currentPlanet > planetNbr)
+			if(object.HasSprite() && object.HasValidPlanet())
 			{
 				// The same "planet" may appear multiple times in one system,
 				// providing multiple landing and departure points (e.g. ringworlds).
 				const Planet *planet = object.GetPlanet();
 				if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.count(planet))
 					continue;
-				shown.insert(planet);
+				// Makes sure it would not go out of the screen.
+				if(uiPoint.Y() <= (Screen::Bottom() - 230 - 130) && currentPlanetNbr >= planetNbr) {
+					shown.insert(planet);
 
-				SpriteShader::Draw(planetSprite, uiPoint);
-				planetY[planet] = uiPoint.Y() - 60;
+					SpriteShader::Draw(planetSprite, uiPoint);
+					planetY[planet] = uiPoint.Y() - 60;
 
-				font.Draw({object.Name(), alignLeft},
-					uiPoint + Point(-70., -52.),
-					planet == selectedPlanet ? medium : dim);
+					font.Draw({object.Name(), alignLeft},
+						uiPoint + Point(-70., -52.),
+						planet == selectedPlanet ? medium : dim);
 
-				bool hasSpaceport = planet->HasSpaceport();
-				string reputationLabel = !hasSpaceport ? "No Spaceport" :
-					GameData::GetPolitics().HasDominated(planet) ? "Dominated" :
-					planet->GetGovernment()->IsEnemy() ? "Hostile" :
-					planet->CanLand() ? "Friendly" : "Restricted";
-				font.Draw(reputationLabel,
-					uiPoint + Point(-60., -32.),
-					hasSpaceport ? medium : faint);
-				if(commodity == SHOW_REPUTATION)
-					PointerShader::Draw(uiPoint + Point(-60., -25.), Point(1., 0.),
-						10.f, 10.f, 0.f, medium);
+					bool hasSpaceport = planet->HasSpaceport();
+					string reputationLabel = !hasSpaceport ? "No Spaceport" :
+						GameData::GetPolitics().HasDominated(planet) ? "Dominated" :
+						planet->GetGovernment()->IsEnemy() ? "Hostile" :
+						planet->CanLand() ? "Friendly" : "Restricted";
+					font.Draw(reputationLabel,
+						uiPoint + Point(-60., -32.),
+						hasSpaceport ? medium : faint);
+					if(commodity == SHOW_REPUTATION)
+						PointerShader::Draw(uiPoint + Point(-60., -25.), Point(1., 0.),
+							10.f, 10.f, 0.f, medium);
 
-				font.Draw("Shipyard",
-					uiPoint + Point(-60., -12.),
-					planet->HasShipyard() ? medium : faint);
-				if(commodity == SHOW_SHIPYARD)
-					PointerShader::Draw(uiPoint + Point(-60., -5.), Point(1., 0.),
-						10.f, 10.f, 0.f, medium);
+					font.Draw("Shipyard",
+						uiPoint + Point(-60., -12.),
+						planet->HasShipyard() ? medium : faint);
+					if(commodity == SHOW_SHIPYARD)
+						PointerShader::Draw(uiPoint + Point(-60., -5.), Point(1., 0.),
+							10.f, 10.f, 0.f, medium);
 
-				font.Draw("Outfitter",
-					uiPoint + Point(-60., 8.),
-					planet->HasOutfitter() ? medium : faint);
-				if(commodity == SHOW_OUTFITTER)
-					PointerShader::Draw(uiPoint + Point(-60., 15.), Point(1., 0.),
-						10.f, 10.f, 0.f, medium);
+					font.Draw("Outfitter",
+						uiPoint + Point(-60., 8.),
+						planet->HasOutfitter() ? medium : faint);
+					if(commodity == SHOW_OUTFITTER)
+						PointerShader::Draw(uiPoint + Point(-60., 15.), Point(1., 0.),
+							10.f, 10.f, 0.f, medium);
 
-				bool hasVisited = player.HasVisited(*planet);
-				font.Draw(hasVisited ? "(has been visited)" : "(not yet visited)",
-					uiPoint + Point(-70., 28.),
-					dim);
-				if(commodity == SHOW_VISITED)
-					PointerShader::Draw(uiPoint + Point(-70., 35.), Point(1., 0.),
-						10.f, 10.f, 0.f, medium);
+					bool hasVisited = player.HasVisited(*planet);
+					font.Draw(hasVisited ? "(has been visited)" : "(not yet visited)",
+						uiPoint + Point(-70., 28.),
+						dim);
+					if(commodity == SHOW_VISITED)
+						PointerShader::Draw(uiPoint + Point(-70., 35.), Point(1., 0.),
+							10.f, 10.f, 0.f, medium);
 
-				uiPoint.Y() += 130.;
+					uiPoint.Y() += 130.;
+				}
+				// Lacking space for a new planet to be displayed.
+				else
+				{
+					++excessPlanet;
+				}
+				++currentPlanetNbr;
 			}
-			++currentPlanet;
 		}
-		// checks if all planets can be shown at once
-		overflow = (uiPoint.Y() > Screen::Bottom() - 230 - 130);
 	}
-	if(overflow)
+	// Hints that more planets can be seen by scrolling down.
+	if(excessPlanet > planetNbr)
 	{
 		const string &down = "\\/";
-		Point point(Screen::Left() + font.Width(down) / 2 + 80., uiPoint.Y() - 65. - font.Width(down));
+		Point point(Screen::Left() + font.Width(down) / 2 + 80., uiPoint.Y() - 62.5 - font.Width(down));
 		font.Draw(down, point + Point(1, 1), Color(0.f, 1.f));
-		font.Draw(down, point, medium);
-		if(planetNbr > 0)
-		{
-			const string &up = "/\\";
-			Point point(Screen::Left() + font.Width(down) / 2 + 80., governmentY + 10. + font.Width(up));
-			font.Draw(up, point + Point(1, 1), Color(0.f, 1.f));
-			font.Draw(up, point, medium);
-		}
+		font.Draw(down, point, bold);
 	}
 	uiPoint.Y() += 45.;
 	tradeY = uiPoint.Y() - 95.;
