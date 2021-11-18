@@ -477,7 +477,6 @@ void MapDetailPanel::DrawInfo()
 	const Color &faint = *GameData::Colors().Get("faint");
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
-	const Color &bold = *GameData::Colors().Get("bold");
 	
 	Point uiPoint(Screen::Left() + 100., Screen::Top() + 45.);
 	
@@ -510,7 +509,7 @@ void MapDetailPanel::DrawInfo()
 		const string &up = "/\\";
 		Point point(Screen::Left() + font.Width(up) / 2 + 80., governmentY + 20. + font.Width(up));
 		font.Draw(up, point + Point(1, 1), Color(0.f, 1.f));
-		font.Draw(up, point, bold);
+		font.Draw(up, point, medium);
 	}
 
 	// Draw the basic information for visitable planets in this system.
@@ -594,7 +593,7 @@ void MapDetailPanel::DrawInfo()
 		const string &down = "\\/";
 		Point point(Screen::Left() + font.Width(down) / 2 + 80., uiPoint.Y() - 62.5 - font.Width(down));
 		font.Draw(down, point + Point(1, 1), Color(0.f, 1.f));
-		font.Draw(down, point, bold);
+		font.Draw(down, point, medium);
 		uiPoint.Y() += 10;
 	}
 	
