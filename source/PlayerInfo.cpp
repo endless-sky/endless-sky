@@ -1155,20 +1155,20 @@ void PlayerInfo::Land(UI *ui)
 	// Ships that are landed with you on the planet should fully recharge
 	// and pool all their cargo together. Those in remote systems restore
 	// what they can without landing.
-	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
+	bool hasPort = planet->HasPort() && planet->CanUseServices();
 	UpdateCargoCapacities();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled())
 		{
 			if(ship->GetSystem() == system)
 			{
-				ship->Recharge(hasSpaceport);
+				ship->Recharge(hasPort ? planet->GetPort().recharge : Planet::Port::None);
 				ship->Cargo().TransferAll(cargo);
 				if(!ship->GetPlanet())
 					ship->SetPlanet(planet);
 			}
 			else
-				ship->Recharge(false);
+				ship->Recharge(Planet::Port::None);
 		}
 	// Adjust cargo cost basis for any cargo lost due to a ship being destroyed.
 	for(const auto &it : lostCargo)
@@ -1214,7 +1214,8 @@ void PlayerInfo::Land(UI *ui)
 	
 	// Hire extra crew back if any were lost in-flight (i.e. boarding) or
 	// some bunks were freed up upon landing (i.e. completed missions).
-	if(Preferences::Has("Rehire extra crew when lost") && hasSpaceport && flagship)
+	if(Preferences::Has("Rehire extra crew when lost")
+			&& (planet->HasSpaceport() && planet->CanUseServices()) && flagship)
 	{
 		int added = desiredCrew - flagship->Crew();
 		if(added > 0)
@@ -1289,17 +1290,17 @@ bool PlayerInfo::TakeOff(UI *ui)
 	}
 	
 	// Recharge any ships that can be recharged, and load available cargo.
-	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
+	bool hasPort = planet->HasPort() && planet->CanUseServices();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled())
 		{
 			if(ship->GetSystem() != system)
 			{
-				ship->Recharge(false);
+				ship->Recharge(Planet::Port::None);
 				continue;
 			}
 			else
-				ship->Recharge(hasSpaceport);
+				ship->Recharge(hasPort ? planet->GetPort().recharge : Planet::Port::None);
 			
 			if(ship != flagship)
 			{

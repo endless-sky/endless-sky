@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "EsUuid.h"
 #include "Outfit.h"
+#include "Planet.h"
 #include "Personality.h"
 #include "Point.h"
 
@@ -38,7 +39,6 @@ class Flotsam;
 class Government;
 class Minable;
 class Phrase;
-class Planet;
 class PlayerInfo;
 class Projectile;
 class StellarObject;
@@ -264,7 +264,7 @@ public:
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
 	// Recharge and repair this ship (e.g. because it has landed).
-	void Recharge(bool atSpaceport = true);
+	void Recharge(Planet::Port::RechargeType rechargeType = Planet::Port::All);
 	// Check if this ship is able to give the given ship enough fuel to jump.
 	bool CanRefuel(const Ship &other) const;
 	// Give the other ship enough fuel for it to jump.

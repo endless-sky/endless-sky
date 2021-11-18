@@ -644,10 +644,10 @@ interface "planet"
 		align left
 		pad 10 0
 	
-	visible if "has spaceport"
+	visible if "has port"
 	sprite "ui/planet dialog button"
 		center -400 270
-	button p "Space_port"
+	"dynamic button" p "port name"
 		center -400 270
 		dimensions 140 40
 		size 18

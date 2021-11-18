@@ -60,7 +60,7 @@ void Planet::Load(const DataNode &node)
 	
 	// If this planet has been loaded before, these sets of items should be
 	// reset instead of appending to them:
-	set<string> shouldOverwrite = {"attributes", "description", "spaceport"};
+	set<string> shouldOverwrite = {"attributes", "description", "spaceport", "port"};
 	
 	for(const DataNode &child : node)
 	{
@@ -99,7 +99,17 @@ void Planet::Load(const DataNode &node)
 			else if(key == "description")
 				description.clear();
 			else if(key == "spaceport")
-				spaceport.clear();
+			{
+				port = Port();
+				if(overwriteAll)
+					shouldOverwrite.erase("port");
+			}
+			else if(key == "port")
+			{
+				port = Port();
+				if(overwriteAll)
+					shouldOverwrite.erase("spaceport");
+			}
 			else if(key == "shipyard")
 				shipSales.clear();
 			else if(key == "outfitter")
@@ -122,8 +132,37 @@ void Planet::Load(const DataNode &node)
 				continue;
 		}
 		
+		if(key == "port")
+		{
+			port.name = hasValue ? value : "Space_port";
+			for(const auto &grand : child)
+			{
+				if(grand.Token(0) == "shields")
+					port.recharge = static_cast<Port::RechargeType>(port.recharge | Port::Shields);
+				else if(grand.Token(0) == "hull")
+					port.recharge = static_cast<Port::RechargeType>(port.recharge | Port::Hull);
+				else if(grand.Token(0) == "energy")
+					port.recharge = static_cast<Port::RechargeType>(port.recharge | Port::Energy);
+				else if(grand.Token(0) == "fuel")
+					port.recharge = static_cast<Port::RechargeType>(port.recharge | Port::Fuel);
+				else if(grand.Token(0) == "news")
+					port.hasNews = true;
+				else if(grand.Token(0) == "spaceport")
+					port.isSpaceport = true;
+				else if(grand.Token(0) == "description" && grand.Size() >= 2)
+				{
+					const auto &value = grand.Token(1);
+					if(!port.description.empty() && !value.empty() && value[0] > ' ')
+						port.description += '\t';
+					port.description += value;
+					port.description += '\n';
+				}
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
+		}
 		// Handle the attributes which can be "removed."
-		if(!hasValue)
+		else if(!hasValue)
 		{
 			child.PrintTrace("Expected key to have a value:");
 			continue;
@@ -163,7 +202,16 @@ void Planet::Load(const DataNode &node)
 			music = value;
 		else if(key == "description" || key == "spaceport")
 		{
-			string &text = (key == "description") ? description : spaceport;
+			const bool isDescription = key == "description";
+			if(!isDescription)
+			{
+				port.name = "Space_port";
+				port.recharge = Port::All;
+				port.hasNews = true;
+				port.isSpaceport = true;
+			}
+
+			string &text = isDescription ? description : port.description;
 			if(!text.empty() && !value.empty() && value[0] > ' ')
 				text += '\t';
 			text += value;
@@ -215,7 +263,7 @@ void Planet::Load(const DataNode &node)
 	}
 	
 	static const vector<string> AUTO_ATTRIBUTES = {"spaceport", "shipyard", "outfitter"};
-	bool autoValues[3] = {!spaceport.empty(), !shipSales.empty(), !outfitSales.empty()};
+	bool autoValues[3] = {port.isSpaceport, !shipSales.empty(), !outfitSales.empty()};
 	for(unsigned i = 0; i < AUTO_ATTRIBUTES.size(); ++i)
 	{
 		if(autoValues[i])
@@ -319,15 +367,23 @@ const string &Planet::Noun() const
 // jobs, banking, and hiring).
 bool Planet::HasSpaceport() const
 {
-	return !spaceport.empty();
+	return port.isSpaceport;
 }
 
 
 
-// Get the spaceport's descriptive text.
-const string &Planet::SpaceportDescription() const
+// Check whether there is a port (which may even be a full spaceport).
+bool Planet::HasPort() const
 {
-	return spaceport;
+	return !port.name.empty();
+}
+
+
+
+// Get this planet's port. Might be empty if there is no port.
+const Planet::Port &Planet::GetPort() const
+{
+	return port;
 }
 
 

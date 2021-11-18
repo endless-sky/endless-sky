@@ -684,7 +684,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	// If this ship is being instantiated for the first time, make sure its
 	// crew, fuel, etc. are all refilled.
 	if(isNewInstance)
-		Recharge(true);
+		Recharge();
 	
 	// Ensure that all defined bays are of a valid category. Remove and warn about any
 	// invalid bays. Add a default "launch effect" to any remaining internal bays if
@@ -2719,7 +2719,7 @@ void Ship::Restore()
 	explosionCount = 0;
 	explosionRate = 0;
 	UnmarkForRemoval();
-	Recharge(true);
+	Recharge();
 }
 
 
@@ -2733,23 +2733,23 @@ bool Ship::IsDestroyed() const
 
 
 // Recharge and repair this ship (e.g. because it has landed).
-void Ship::Recharge(bool atSpaceport)
+void Ship::Recharge(Planet::Port::RechargeType rechargeType)
 {
 	if(IsDestroyed())
 		return;
 	
-	if(atSpaceport)
+	if(rechargeType == Planet::Port::All)
 		crew = min<int>(max(crew, RequiredCrew()), attributes.Get("bunks"));
 	pilotError = 0;
 	pilotOkay = 0;
 	
-	if(atSpaceport || attributes.Get("shield generation"))
+	if((rechargeType & Planet::Port::Shields) || attributes.Get("shield generation"))
 		shields = attributes.Get("shields");
-	if(atSpaceport || attributes.Get("hull repair rate"))
+	if((rechargeType & Planet::Port::Hull) || attributes.Get("hull repair rate"))
 		hull = attributes.Get("hull");
-	if(atSpaceport || attributes.Get("energy generation"))
+	if((rechargeType & Planet::Port::Energy) || attributes.Get("energy generation"))
 		energy = attributes.Get("energy capacity");
-	if(atSpaceport || attributes.Get("fuel generation"))
+	if((rechargeType & Planet::Port::Fuel) || attributes.Get("fuel generation"))
 		fuel = attributes.Get("fuel capacity");
 	
 	heat = IdleHeat();

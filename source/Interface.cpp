@@ -111,7 +111,8 @@ void Interface::Load(const DataNode &node)
 			// Check if this node specifies a known element type.
 			if(child.Token(0) == "sprite" || child.Token(0) == "image" || child.Token(0) == "outline")
 				elements.push_back(new ImageElement(child, anchor));
-			else if(child.Token(0) == "label" || child.Token(0) == "string" || child.Token(0) == "button")
+			else if(child.Token(0) == "label" || child.Token(0) == "string" || child.Token(0) == "button"
+					|| child.Token(0) == "dynamic button")
 				elements.push_back(new TextElement(child, anchor));
 			else if(child.Token(0) == "bar" || child.Token(0) == "ring")
 				elements.push_back(new BarElement(child, anchor));
@@ -480,8 +481,8 @@ Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnc
 	if(node.Size() < 2)
 		return;
 	
-	isDynamic = (node.Token(0) == "string");
-	if(node.Token(0) == "button")
+	isDynamic = (node.Token(0) == "string" || node.Token(0) == "dynamic button");
+	if(node.Token(0) == "button" || node.Token(0) == "dynamic button")
 	{
 		buttonKey = node.Token(1).front();
 		if(node.Size() >= 3)

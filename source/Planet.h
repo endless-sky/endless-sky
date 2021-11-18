@@ -38,6 +38,39 @@ class System;
 // might choose it as a source or destination.
 class Planet {
 public:
+	class Port
+	{
+	public:
+		// The different properties that can be recharged by a port.
+		enum RechargeType
+		{
+			None = 0x0,
+			Shields = 0x1,
+			Hull = 0x2,
+			Energy = 0x4,
+			Fuel = 0x8,
+			All = Shields | Hull | Energy | Fuel,
+		};
+	public:
+		// The name of this port.
+		std::string name;
+
+		// The description of this port. Shown when clicking on the
+		// port button on the planet panel.
+		std::string description;
+
+		// What is recharged when landing on this port.
+		RechargeType recharge = None;
+
+		// Whether this port has news.
+		bool hasNews = false;
+
+		// Whether this is a 'spaceport'. Implies banking, hiring crews, etc.
+		bool isSpaceport = false;
+	};
+
+
+public:
 	// Load a planet's description from a file.
 	void Load(const DataNode &node);
 	// Check if both this planet and its containing system(s) have been defined.
@@ -67,8 +100,10 @@ public:
 	// Check whether there is a spaceport (which implies there is also trading,
 	// jobs, banking, and hiring).
 	bool HasSpaceport() const;
-	// Get the spaceport's descriptive text.
-	const std::string &SpaceportDescription() const;
+	// Check whether there is a port (which may even be a full spaceport).
+	bool HasPort() const;
+	// Get this planet's port. Might be empty if there is no port.
+	const Port &GetPort() const;
 	
 	// Check if this planet is inhabited (i.e. it has a spaceport, and does not
 	// have the "uninhabited" attribute).
@@ -139,7 +174,7 @@ private:
 	bool isDefined = false;
 	std::string name;
 	std::string description;
-	std::string spaceport;
+	Port port;
 	const Sprite *landscape = nullptr;
 	std::string music;
 	

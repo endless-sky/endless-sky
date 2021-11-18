@@ -115,8 +115,11 @@ void PlanetPanel::Draw()
 			}
 		}
 		
-		if(flagship && planet.HasSpaceport())
-			info.SetCondition("has spaceport");
+		if(flagship && planet.HasPort())
+		{
+			info.SetCondition("has port");
+			info.SetString("port name", planet.GetPort().name);
+		}
 		
 		if(planet.HasShipyard())
 			info.SetCondition("has shipyard");
@@ -162,7 +165,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		selectedPanel = bank.get();
 		GetUI()->Push(bank);
 	}
-	else if(key == 'p' && hasAccess && flagship && planet.HasSpaceport())
+	else if(key == 'p' && hasAccess && flagship && planet.HasPort())
 	{
 		selectedPanel = spaceport.get();
 		if(isNewPress)
