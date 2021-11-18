@@ -100,7 +100,7 @@ public:
 	// actually consider it to be an offense). This may result in temporary
 	// hostilities (if the even type is PROVOKE), or a permanent change to your
 	// reputation.
-	void Offend(int eventType, int count = 1, int value = 1) const;
+	void Offend(int eventType, int count = 1, int64_t value = 1) const;
 	// Bribe this government to be friendly to you for one day.
 	void Bribe() const;
 	// Check to see if the player has done anything they should be fined for.

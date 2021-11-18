@@ -77,7 +77,7 @@ bool Politics::IsEnemy(const Government *first, const Government *second) const
 // actually consider it to be an offense). This may result in temporary
 // hostilities (if the even type is PROVOKE), or a permanent change to your
 // reputation.
-void Politics::Offend(const Government *gov, int eventType, int count, int value)
+void Politics::Offend(const Government *gov, int eventType, int count, int64_t value)
 {
 	if(gov->IsPlayer())
 		return;
@@ -105,12 +105,8 @@ void Politics::Offend(const Government *gov, int eventType, int count, int value
 			// changes. This is to allow two governments to be hostile or
 			// friendly without the player's behavior toward one of them
 			// influencing their reputation with the other.
-			double severity;
-			if(count)
-				severity = count * other->PenaltyFor(eventType);
-			else
-			    severity = value * other->PenaltyFor(eventType, true) / 500000.;
-			double penalty = severity * weight;
+			double severity = (count != 0) ? count : value / 500000.;
+			double penalty = severity * weight * other->PenaltyFor(eventType, !count);
 			if(eventType & ShipEvent::ATROCITY && weight > 0)
 				reputationWith[other] = min(0., reputationWith[other]);
 			

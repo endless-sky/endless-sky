@@ -362,7 +362,7 @@ bool Government::IsPlayer() const
 // actually consider it to be an offense). This may result in temporary
 // hostilities (if the even type is PROVOKE), or a permanent change to your
 // reputation.
-void Government::Offend(int eventType, int count, int value) const
+void Government::Offend(int eventType, int count, int64_t value) const
 {
 	return GameData::GetPolitics().Offend(this, eventType, count, value);
 }
