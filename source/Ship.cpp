@@ -2365,7 +2365,7 @@ int Ship::Scan()
 	if(isYours || (target->isYours && activeScanning))
 		Audio::Play(Audio::Get("scan"), Position());
 	// Potential relation penalties for scanning.
-	if(isYours && target->GetGovernment())
+	if(isYours && target->GetGovernment() && (result & ShipEvent::SCAN_OUTFITS || result & ShipEvent::SCAN_CARGO))
 		target->GetGovernment()->Offend(ShipEvent::SCAN_OUTFITS, target->RequiredCrew(), target->Cost());
 	
 	if(startedScanning && isYours)

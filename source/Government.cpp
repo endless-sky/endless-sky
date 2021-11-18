@@ -39,15 +39,15 @@ Government::Government()
 	penaltyFor[ShipEvent::BOARD] = 0.3;
 	penaltyFor[ShipEvent::CAPTURE] = 1.;
 	penaltyFor[ShipEvent::DESTROY] = 1.;
-    penaltyFor[ShipEvent::SCAN_OUTFITS] = 0.;
+	penaltyFor[ShipEvent::SCAN_OUTFITS] = 0.;
 	penaltyFor[ShipEvent::ATROCITY] = 10.;
 
-    dronePenaltyFor[ShipEvent::ASSIST] = 0.;
-    dronePenaltyFor[ShipEvent::DISABLE] = 0.;
-    dronePenaltyFor[ShipEvent::BOARD] = 0.;
-    dronePenaltyFor[ShipEvent::CAPTURE] = 0.;
-    dronePenaltyFor[ShipEvent::DESTROY] = 0.;
-    dronePenaltyFor[ShipEvent::SCAN_OUTFITS] = 0.;
+	dronePenaltyFor[ShipEvent::ASSIST] = 0.;
+	dronePenaltyFor[ShipEvent::DISABLE] = 0.;
+	dronePenaltyFor[ShipEvent::BOARD] = 0.;
+	dronePenaltyFor[ShipEvent::CAPTURE] = 0.;
+	dronePenaltyFor[ShipEvent::DESTROY] = 0.;
+	dronePenaltyFor[ShipEvent::SCAN_OUTFITS] = 0.;
 	
 	id = nextID++;
 }
@@ -108,30 +108,30 @@ void Government::Load(const DataNode &node)
 						penaltyFor[ShipEvent::CAPTURE] = grand.Value(1);
 					else if(grand.Token(0) == "destroy")
 						penaltyFor[ShipEvent::DESTROY] = grand.Value(1);
-                    else if(grand.Token(0) == "scanning")
-                        penaltyFor[ShipEvent::SCAN_OUTFITS] = grand.Value(1);
-                    else if(grand.Token(0) == "atrocity")
-                        penaltyFor[ShipEvent::ATROCITY] = grand.Value(1);
+					else if(grand.Token(0) == "scanning")
+						penaltyFor[ShipEvent::SCAN_OUTFITS] = grand.Value(1);
+					else if(grand.Token(0) == "atrocity")
+						penaltyFor[ShipEvent::ATROCITY] = grand.Value(1);
 					else
 						grand.PrintTrace("Skipping unrecognized attribute:");
 				}
-			    if(grand.Size() > 2)
-                {
-                    if(grand.Token(0) == "assist")
-                        dronePenaltyFor[ShipEvent::ASSIST] = grand.Value(2);
-                    else if(grand.Token(0) == "disable")
-                        dronePenaltyFor[ShipEvent::DISABLE] = grand.Value(2);
-                    else if(grand.Token(0) == "board")
-                        dronePenaltyFor[ShipEvent::BOARD] = grand.Value(2);
-                    else if(grand.Token(0) == "capture")
-                        dronePenaltyFor[ShipEvent::CAPTURE] = grand.Value(2);
-                    else if(grand.Token(0) == "destroy")
-                        dronePenaltyFor[ShipEvent::DESTROY] = grand.Value(2);
-                    else if(grand.Token(0) == "scanning")
-                        dronePenaltyFor[ShipEvent::SCAN_OUTFITS] = grand.Value(2);
-                    else
-                        grand.PrintTrace("Skipping unrecognized attribute:");
-                }
+				if(grand.Size() > 2)
+				{
+					if(grand.Token(0) == "assist")
+						dronePenaltyFor[ShipEvent::ASSIST] = grand.Value(2);
+					else if(grand.Token(0) == "disable")
+						dronePenaltyFor[ShipEvent::DISABLE] = grand.Value(2);
+					else if(grand.Token(0) == "board")
+						dronePenaltyFor[ShipEvent::BOARD] = grand.Value(2);
+					else if(grand.Token(0) == "capture")
+						dronePenaltyFor[ShipEvent::CAPTURE] = grand.Value(2);
+					else if(grand.Token(0) == "destroy")
+						dronePenaltyFor[ShipEvent::DESTROY] = grand.Value(2);
+					else if(grand.Token(0) == "scanning")
+						dronePenaltyFor[ShipEvent::SCAN_OUTFITS] = grand.Value(2);
+					else
+						grand.PrintTrace("Skipping unrecognized attribute:");
+				}
             }
 		}
 		else if(child.Token(0) == "bribe" && child.Size() >= 2)
@@ -236,7 +236,7 @@ double Government::InitialPlayerReputation() const
 double Government::PenaltyFor(int eventType, bool onDrone) const
 {
 	double penalty = 0.;
-	if(onDrone)
+	if(!onDrone)
 	{
 	    for(const auto &it : penaltyFor)
             if(eventType & it.first)
