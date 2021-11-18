@@ -44,11 +44,11 @@ public:
 		// The different properties that can be recharged by a port.
 		enum RechargeType
 		{
-			None = 0x0,
-			Shields = 0x1,
-			Hull = 0x2,
-			Energy = 0x4,
-			Fuel = 0x8,
+			None = 0,
+			Shields = (1 << 0),
+			Hull = (1 << 1),
+			Energy = (1 << 2),
+			Fuel = (1 << 3),
 			All = Shields | Hull | Energy | Fuel,
 		};
 	public:
