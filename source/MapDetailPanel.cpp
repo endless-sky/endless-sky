@@ -249,18 +249,23 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 			SetCommodity(SHOW_GOVERNMENT);
 		else
 		{
+			int offset;
 			// The player clicked within the region associated with this system's planets.
 			for(const auto &it : planetY)
 			{
-				if(y >= it.second && y < it.second + 110)
+				offset = planetExtended[it.first] ? 110 : 70;
+				if(y >= it.second && y < it.second + offset)
 				{
 					selectedPlanet = it.first;
-					if(y >= it.second + 30 && y < it.second + 110)
+					if(y >= it.second + 30 && y < it.second + offset)
 					{
 						// Figure out what row of the planet info was clicked.
 						int row = (y - (it.second + 30)) / 20;
 						static const int SHOW[4] = {
 							SHOW_REPUTATION, SHOW_SHIPYARD, SHOW_OUTFITTER, SHOW_VISITED};
+						// In the case of a non extended planet shipyard and outfitter are not shown.
+						if(!planetExtended[it.first] && row == 1)
+							row = 3;
 						SetCommodity(SHOW[row]);
 						
 						// Double-click the Shipyard or Outfitter line to open that map view.
@@ -541,6 +546,7 @@ void MapDetailPanel::DrawInfo()
 					
 					hasSpaceport ? SpriteShader::Draw(planetSprite, uiPoint) : SpriteShader::Draw(uninhabitedPlanetSprite, uiPoint);
 					planetY[planet] = uiPoint.Y() - 60;
+					planetExtended[planet] = hasSpaceport;
 					
 					font.Draw({object.Name(), alignLeft},
 						uiPoint + Point(-70., -52.),

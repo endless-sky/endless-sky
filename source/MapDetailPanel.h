@@ -68,6 +68,8 @@ private:
 	
 	// Y-indices of the selected system's "info displays" that feature its planets' names and basic information.
 	std::map<const Planet *, int> planetY;
+	// Wether planets are fully shown or without outfitter and shipyard
+	std::map<const Planet *, bool> planetExtended;
 	// Vector offsets from the center of the "orbits" UI.
 	std::map<const Planet *, Point> planets;
 };
