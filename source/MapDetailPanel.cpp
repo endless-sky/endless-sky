@@ -251,6 +251,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		{
 			// The player clicked within the region associated with this system's planets.
 			for(const auto &it : planetY)
+			{
 				if(y >= it.second && y < it.second + 110)
 				{
 					selectedPlanet = it.first;
@@ -276,6 +277,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 					}
 					return true;
 				}
+			}
 		}
 	}
 	else if(x >= Screen::Right() - 240 && y <= Screen::Top() + 270)
@@ -300,7 +302,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		return true;
 	}
 	
-	const string oldSystem = selectedSystem->Name();
+	const string &oldSystem = selectedSystem->Name();
 	
 	// The click was not on an interface element, so check if it was on a system.
 	MapPanel::Click(x, y, clicks);
@@ -517,6 +519,7 @@ void MapDetailPanel::DrawInfo()
 	{
 		set<const Planet *> shown;
 		const Sprite *planetSprite = SpriteSet::Get("ui/map planet");
+		const Sprite *uninhabitedPlanetSprite = SpriteSet::Get("ui/map uninhabited");
 		excessPlanet = 0;
 		int currentPlanetNbr = 0;
 		for(const StellarObject &object : selectedSystem->Objects())
@@ -534,48 +537,53 @@ void MapDetailPanel::DrawInfo()
 				{
 					shown.insert(planet);
 					
-					SpriteShader::Draw(planetSprite, uiPoint);
+					bool hasSpaceport = planet->HasSpaceport();
+					
+					hasSpaceport ? SpriteShader::Draw(planetSprite, uiPoint) : SpriteShader::Draw(uninhabitedPlanetSprite, uiPoint);
 					planetY[planet] = uiPoint.Y() - 60;
 					
 					font.Draw({object.Name(), alignLeft},
 						uiPoint + Point(-70., -52.),
 						planet == selectedPlanet ? medium : dim);
 					
-					bool hasSpaceport = planet->HasSpaceport();
 					string reputationLabel = !hasSpaceport ? "No Spaceport" :
 						GameData::GetPolitics().HasDominated(planet) ? "Dominated" :
 						planet->GetGovernment()->IsEnemy() ? "Hostile" :
 						planet->CanLand() ? "Friendly" : "Restricted";
+					
 					font.Draw(reputationLabel,
 						uiPoint + Point(-60., -32.),
 						hasSpaceport ? medium : faint);
 					if(commodity == SHOW_REPUTATION)
 						PointerShader::Draw(uiPoint + Point(-60., -25.), Point(1., 0.),
 							10.f, 10.f, 0.f, medium);
+							
+					if(hasSpaceport)
+					{
+						font.Draw("Shipyard",
+							uiPoint + Point(-60., -12.),
+							planet->HasShipyard() ? medium : faint);
+						if(commodity == SHOW_SHIPYARD)
+							PointerShader::Draw(uiPoint + Point(-60., -5.), Point(1., 0.),
+								10.f, 10.f, 0.f, medium);
+						
+						font.Draw("Outfitter",
+							uiPoint + Point(-60., 8.),
+							planet->HasOutfitter() ? medium : faint);
+						if(commodity == SHOW_OUTFITTER)
+							PointerShader::Draw(uiPoint + Point(-60., 15.), Point(1., 0.),
+								10.f, 10.f, 0.f, medium);
+					}
 					
-					font.Draw("Shipyard",
-						uiPoint + Point(-60., -12.),
-						planet->HasShipyard() ? medium : faint);
-					if(commodity == SHOW_SHIPYARD)
-						PointerShader::Draw(uiPoint + Point(-60., -5.), Point(1., 0.),
-							10.f, 10.f, 0.f, medium);
-					
-					font.Draw("Outfitter",
-						uiPoint + Point(-60., 8.),
-						planet->HasOutfitter() ? medium : faint);
-					if(commodity == SHOW_OUTFITTER)
-						PointerShader::Draw(uiPoint + Point(-60., 15.), Point(1., 0.),
-							10.f, 10.f, 0.f, medium);
-					
+					double yHasVisited = hasSpaceport ? 28. : -12;
 					bool hasVisited = player.HasVisited(*planet);
 					font.Draw(hasVisited ? "(has been visited)" : "(not yet visited)",
-						uiPoint + Point(-70., 28.),
+						uiPoint + Point(-70., yHasVisited),
 						dim);
 					if(commodity == SHOW_VISITED)
-						PointerShader::Draw(uiPoint + Point(-70., 35.), Point(1., 0.),
+						PointerShader::Draw(uiPoint + Point(-70., yHasVisited+7), Point(1., 0.),
 							10.f, 10.f, 0.f, medium);
-					
-					uiPoint.Y() += 130.;
+					uiPoint.Y() += hasSpaceport ? 130. : 90;
 				}
 				// Lacking space for a new planet to be displayed.
 				else
