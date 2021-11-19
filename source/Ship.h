@@ -539,7 +539,6 @@ private:
 	Point acceleration;
 	
 	int crew = 0;
-	int crewEquivalent = 0;
 	int pilotError = 0;
 	int pilotOkay = 0;
 	

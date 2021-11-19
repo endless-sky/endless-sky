@@ -423,8 +423,6 @@ void Ship::Load(const DataNode &node)
 			cargo.Load(child);
 		else if(key == "crew" && child.Size() >= 2)
 			crew = static_cast<int>(child.Value(1));
-		else if(key == "crew equivalent" && child.Size() >= 2)
-			crewEquivalent = static_cast<int>(child.Value(1));
 		else if(key == "fuel" && child.Size() >= 2)
 			fuel = child.Value(1);
 		else if(key == "shields" && child.Size() >= 2)
@@ -873,8 +871,6 @@ void Ship::Save(DataWriter &out) const
 		
 		cargo.Save(out);
 		out.Write("crew", crew);
-		if(crewEquivalent)
-			out.Write("crew equivalent", crewEquivalent);
 		out.Write("fuel", fuel);
 		out.Write("shields", shields);
 		out.Write("hull", hull);
@@ -3096,7 +3092,7 @@ int Ship::Crew() const
 
 const int Ship::CrewValue() const
 {
-	return max(Crew(), RequiredCrew()) + crewEquivalent;
+	return max(Crew(), RequiredCrew()) + attributes.Get("crew equivalent");
 }
 
 
