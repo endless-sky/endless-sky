@@ -155,7 +155,6 @@ void Ship::Load(const DataNode &node)
 	isDefined = true;
 	
 	government = GameData::PlayerGovernment();
-	equipped.clear();
 	
 	// Note: I do not clear the attributes list here so that it is permissible
 	// to override one ship definition with another.
@@ -243,6 +242,7 @@ void Ship::Load(const DataNode &node)
 		{
 			if(!hasArmament)
 			{
+				equipped.clear();
 				armament = Armament();
 				hasArmament = true;
 			}
@@ -404,6 +404,20 @@ void Ship::Load(const DataNode &node)
 				else
 					grand.PrintTrace("Skipping invalid outfit count:");
 			}
+			
+			// Verify we have at least as many installed outfits as were identified as "equipped."
+			// If not (e.g. a variant definition), ensure FinishLoading equips into a blank slate.
+			if(!hasArmament)
+				for(const auto &pair : equipped)
+				{
+					auto it = outfits.find(pair.first);
+					if(it == outfits.end() || it->second < pair.second)
+					{
+						armament.UninstallAll();
+						equipped.clear();
+						break;
+					}
+				}
 		}
 		else if(key == "cargo")
 			cargo.Load(child);
