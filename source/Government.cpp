@@ -212,7 +212,6 @@ double Government::InitialPlayerReputation() const
 double Government::PenaltyFor(int eventType) const
 {
 	double penalty = 0.;
-
 	for(const auto &it : penaltyFor)
 		if(eventType & it.first)
 			penalty += it.second;
