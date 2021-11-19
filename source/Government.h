@@ -61,7 +61,7 @@ public:
 	double InitialPlayerReputation() const;
 	// Get the amount that your reputation changes for the given offense. The
 	// given value should be a combination of one or more ShipEvent values.
-	double PenaltyFor(int eventType, bool onDrone = false) const;
+	double PenaltyFor(int eventType) const;
 	// In order to successfully bribe this government you must pay them this
 	// fraction of your fleet's value. (Zero means they cannot be bribed.)
 	double GetBribeFraction() const;
@@ -100,7 +100,7 @@ public:
 	// actually consider it to be an offense). This may result in temporary
 	// hostilities (if the even type is PROVOKE), or a permanent change to your
 	// reputation.
-	void Offend(int eventType, int count = 1, int64_t value = 1) const;
+	void Offend(int eventType, int count = 1) const;
 	// Bribe this government to be friendly to you for one day.
 	void Bribe() const;
 	// Check to see if the player has done anything they should be fined for.
@@ -127,7 +127,6 @@ private:
 	std::vector<double> attitudeToward;
 	double initialPlayerReputation = 0.;
 	std::map<int, double> penaltyFor;
-	std::map<int, double> dronePenaltyFor;
 	double bribe = 0.;
 	double fine = 1.;
 	std::vector<LocationFilter> enforcementZones;

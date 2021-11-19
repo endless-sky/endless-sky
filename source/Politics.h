@@ -39,7 +39,7 @@ public:
 	// actually consider it to be an offense). This may result in temporary
 	// hostilities (if the event type is PROVOKE), or a permanent change to your
 	// reputation.
-	void Offend(const Government *gov, int eventType, int count = 1, int64_t value = 1);
+	void Offend(const Government *gov, int eventType, int count = 1);
 	// Bribe the given government to be friendly to you for one day.
 	void Bribe(const Government *gov);
 	

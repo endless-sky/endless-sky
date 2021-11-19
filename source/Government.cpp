@@ -41,13 +41,6 @@ Government::Government()
 	penaltyFor[ShipEvent::DESTROY] = 1.;
 	penaltyFor[ShipEvent::SCAN_OUTFITS] = 0.;
 	penaltyFor[ShipEvent::ATROCITY] = 10.;
-
-	dronePenaltyFor[ShipEvent::ASSIST] = 0.;
-	dronePenaltyFor[ShipEvent::DISABLE] = 0.;
-	dronePenaltyFor[ShipEvent::BOARD] = 0.;
-	dronePenaltyFor[ShipEvent::CAPTURE] = 0.;
-	dronePenaltyFor[ShipEvent::DESTROY] = 0.;
-	dronePenaltyFor[ShipEvent::SCAN_OUTFITS] = 0.;
 	
 	id = nextID++;
 }
@@ -112,23 +105,6 @@ void Government::Load(const DataNode &node)
 						penaltyFor[ShipEvent::SCAN_OUTFITS] = grand.Value(1);
 					else if(grand.Token(0) == "atrocity")
 						penaltyFor[ShipEvent::ATROCITY] = grand.Value(1);
-					else
-						grand.PrintTrace("Skipping unrecognized attribute:");
-				}
-				if(grand.Size() > 2)
-				{
-					if(grand.Token(0) == "assist")
-						dronePenaltyFor[ShipEvent::ASSIST] = grand.Value(2);
-					else if(grand.Token(0) == "disable")
-						dronePenaltyFor[ShipEvent::DISABLE] = grand.Value(2);
-					else if(grand.Token(0) == "board")
-						dronePenaltyFor[ShipEvent::BOARD] = grand.Value(2);
-					else if(grand.Token(0) == "capture")
-						dronePenaltyFor[ShipEvent::CAPTURE] = grand.Value(2);
-					else if(grand.Token(0) == "destroy")
-						dronePenaltyFor[ShipEvent::DESTROY] = grand.Value(2);
-					else if(grand.Token(0) == "scanning")
-						dronePenaltyFor[ShipEvent::SCAN_OUTFITS] = grand.Value(2);
 					else
 						grand.PrintTrace("Skipping unrecognized attribute:");
 				}
@@ -233,21 +209,13 @@ double Government::InitialPlayerReputation() const
 
 
 // Get the amount that your reputation changes for the given offense.
-double Government::PenaltyFor(int eventType, bool onDrone) const
+double Government::PenaltyFor(int eventType) const
 {
 	double penalty = 0.;
-	if(!onDrone)
-	{
-	    for(const auto &it : penaltyFor)
-            if(eventType & it.first)
-                penalty += it.second;
-    }
-	else
-	{
-        for(const auto &it : dronePenaltyFor)
-            if(eventType & it.first)
-                penalty += it.second;
-    }
+	
+	for(const auto &it : penaltyFor)
+		if(eventType & it.first)
+			penalty += it.second;
 	return penalty;
 }
 
@@ -362,9 +330,9 @@ bool Government::IsPlayer() const
 // actually consider it to be an offense). This may result in temporary
 // hostilities (if the even type is PROVOKE), or a permanent change to your
 // reputation.
-void Government::Offend(int eventType, int count, int64_t value) const
+void Government::Offend(int eventType, int count) const
 {
-	return GameData::GetPolitics().Offend(this, eventType, count, value);
+	return GameData::GetPolitics().Offend(this, eventType, count);
 }
 
 

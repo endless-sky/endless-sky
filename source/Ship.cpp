@@ -423,6 +423,8 @@ void Ship::Load(const DataNode &node)
 			cargo.Load(child);
 		else if(key == "crew" && child.Size() >= 2)
 			crew = static_cast<int>(child.Value(1));
+		else if(key == "crew equivalent" && child.Size() >= 2)
+			crewEquivalent = static_cast<int>(child.Value(1));
 		else if(key == "fuel" && child.Size() >= 2)
 			fuel = child.Value(1);
 		else if(key == "shields" && child.Size() >= 2)
@@ -871,6 +873,8 @@ void Ship::Save(DataWriter &out) const
 		
 		cargo.Save(out);
 		out.Write("crew", crew);
+		if(crewEquivalent)
+			out.Write("crew equivalent", crewEquivalent);
 		out.Write("fuel", fuel);
 		out.Write("shields", shields);
 		out.Write("hull", hull);
@@ -2366,7 +2370,7 @@ int Ship::Scan()
 		Audio::Play(Audio::Get("scan"), Position());
 	// Potential relation penalties for scanning.
 	if(isYours && target->GetGovernment() && (result & ShipEvent::SCAN_OUTFITS || result & ShipEvent::SCAN_CARGO))
-		target->GetGovernment()->Offend(ShipEvent::SCAN_OUTFITS, target->RequiredCrew(), target->Cost());
+		target->GetGovernment()->Offend(ShipEvent::SCAN_OUTFITS, target->CrewValue());
 	
 	if(startedScanning && isYours)
 	{
@@ -3089,6 +3093,11 @@ int Ship::Crew() const
 	return crew;
 }
 
+
+const int Ship::CrewValue() const
+{
+	return max(Crew(), RequiredCrew()) + crewEquivalent;
+}
 
 
 int Ship::RequiredCrew() const

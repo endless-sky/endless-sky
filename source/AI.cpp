@@ -456,7 +456,7 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 				if(event.Type() & ShipEvent::PROVOKE)
 					newActions |= ShipEvent::PROVOKE;
 
-				event.TargetGovernment()->Offend(newActions, target->Crew(), target->Cost());
+				event.TargetGovernment()->Offend(newActions, target->CrewValue());
 			}
 		}
 	}
