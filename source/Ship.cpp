@@ -3102,16 +3102,16 @@ int Ship::RequiredCrew() const
 
 
 
-void Ship::AddCrew(int count)
+int Ship::CrewValue() const
 {
-	crew = min<int>(crew + count, attributes.Get("bunks"));
+	return max(Crew(), RequiredCrew()) + attributes.Get("crew equivalent");
 }
 
 
 
-int Ship::CrewValue() const
+void Ship::AddCrew(int count)
 {
-	return max(Crew(), RequiredCrew()) + attributes.Get("crew equivalent");
+	crew = min<int>(crew + count, attributes.Get("bunks"));
 }
 
 

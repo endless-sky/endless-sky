@@ -309,10 +309,10 @@ public:
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
 	int RequiredCrew() const;
-	void AddCrew(int count);
 	// Get this ship's crew equivalent value, depending on its crew and its
 	// "crew equivalent" attribute that is mostly used for drones.
 	int CrewValue() const;
+	void AddCrew(int count);
 	// Check if this is a ship that can be used as a flagship.
 	bool CanBeFlagship() const;
 	
