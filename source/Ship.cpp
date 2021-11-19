@@ -3090,7 +3090,7 @@ int Ship::Crew() const
 }
 
 
-const int Ship::CrewValue() const
+int Ship::CrewValue() const
 {
 	return max(Crew(), RequiredCrew()) + attributes.Get("crew equivalent");
 }

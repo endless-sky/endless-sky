@@ -311,7 +311,7 @@ public:
 	int RequiredCrew() const;
 	void AddCrew(int count);
 	// Get this ship's crew equivalent value.
-	const int CrewValue() const;
+	int CrewValue() const;
 	// Check if this is a ship that can be used as a flagship.
 	bool CanBeFlagship() const;
 	

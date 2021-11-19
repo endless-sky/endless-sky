@@ -108,7 +108,7 @@ void Government::Load(const DataNode &node)
 					else
 						grand.PrintTrace("Skipping unrecognized attribute:");
 				}
-            }
+			}
 		}
 		else if(child.Token(0) == "bribe" && child.Size() >= 2)
 			bribe = child.Value(1);
@@ -212,7 +212,7 @@ double Government::InitialPlayerReputation() const
 double Government::PenaltyFor(int eventType) const
 {
 	double penalty = 0.;
-	
+
 	for(const auto &it : penaltyFor)
 		if(eventType & it.first)
 			penalty += it.second;
