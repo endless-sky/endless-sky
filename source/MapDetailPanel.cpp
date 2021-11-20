@@ -564,7 +564,7 @@ void MapDetailPanel::DrawInfo()
 						PointerShader::Draw(uiPoint + Point(-60., -25.), Point(1., 0.),
 							10.f, 10.f, 0.f, medium);
 							
-					if(hasSpaceport)
+					if(planet->IsInhabited())
 					{
 						font.Draw("Shipyard",
 							uiPoint + Point(-60., -12.),
