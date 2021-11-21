@@ -72,7 +72,7 @@ mission "First Contact: Hai"
 			
 			label travel
 			`	"Yes," it says, "but be careful. The north is the territory of some renegade Hai who are misled in their ways: bandits and pirates, living off what they steal from the rest of us. If you travel among them, you will not be safe."`
-			`	"Also," the human adds, "I've heard rumors that the 'Unfettered' Hai are trying to get human captains who land on their worlds to do some tasks for them. I'm not particularily interested in finding out what those tasks are, but if you see something suspicious happening, that might be it."`
+			`	"Also," the human adds, "I've heard rumors that the 'Unfettered' Hai are trying to get human captains who land on their worlds to do some tasks for them. I'm not particularly interested in finding out what those tasks are, but if you see something suspicious happening, that might be it."`
 				goto end
 			
 			label question
