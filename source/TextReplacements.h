@@ -37,6 +37,7 @@ public:
 	
 	
 private:
+	// Vector with "string to be replaced", "condition when to replace", and "replacement text".
 	std::vector<std::pair<std::string, std::pair<ConditionSet, std::string>>> substitutions;
 };
 
