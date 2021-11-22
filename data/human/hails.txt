@@ -3000,7 +3000,6 @@ phrase "hostile disabled"
 phrase "disabled hostile"
 	word
 		"You piece of"
-		"Son of a"
 	word
 		" "
 	phrase
