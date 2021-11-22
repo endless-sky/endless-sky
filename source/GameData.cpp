@@ -16,7 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "BatchShader.h"
 #include "Color.h"
 #include "Command.h"
-#include "ConditionSet.h"
 #include "Conversation.h"
 #include "DataFile.h"
 #include "DataNode.h"
@@ -44,7 +43,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
-#include "PlayerInfo.h"
 #include "PointerShader.h"
 #include "Politics.h"
 #include "Random.h"
@@ -122,7 +120,6 @@ namespace {
 	
 	map<string, string> tooltips;
 	map<string, string> helpMessages;
-	vector<pair<string, pair<ConditionSet, string>>> substitutions;
 	map<string, string> plugins;
 	
 	SpriteQueue spriteQueue;
@@ -134,6 +131,8 @@ namespace {
 	map<const Sprite *, int> preloaded;
 	
 	MaskManager maskManager;
+	
+	TextReplacements substitutions;
 	
 	const Government *playerGovernment = nullptr;
 	
@@ -995,22 +994,6 @@ const map<string, string> &GameData::HelpTemplates()
 
 
 
-map<string, string> GameData::Substitutions(const PlayerInfo &player)
-{
-	map<string, string> subs;
-	for(const auto &sub : substitutions)
-	{
-		const string &key = sub.first;
-		const ConditionSet &toSub = sub.second.first;
-		const string &replacement = sub.second.second;
-		if(toSub.Test(player.Conditions()))
-			subs[key] = replacement;
-	}
-	return subs;
-}
-
-
-
 const map<string, string> &GameData::PluginAboutText()
 {
 	return plugins;
@@ -1021,6 +1004,13 @@ const map<string, string> &GameData::PluginAboutText()
 MaskManager &GameData::GetMaskManager()
 {
 	return maskManager;
+}
+
+
+
+const TextReplacements &GameData::GetTextReplacements()
+{
+	return substitutions;
 }
 
 
@@ -1222,20 +1212,7 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			}
 		}
 		else if(key == "substitutions" && node.HasChildren())
-		{
-			for(const DataNode &child : node)
-			{
-				if(child.Size() < 2)
-					child.PrintTrace("Skipping improper substitution syntax:");
-				else
-				{
-					ConditionSet toSubstitute;
-					if(child.HasChildren())
-						toSubstitute.Load(child);
-					substitutions.emplace_back(child.Token(0), make_pair(toSubstitute, child.Token(1)));
-				}
-			}
-		}
+			substitutions.Load(node);
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
 	}

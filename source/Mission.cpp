@@ -255,20 +255,7 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "stopover" && child.HasChildren())
 			stopoverFilters.emplace_back(child);
 		else if(child.Token(0) == "substitutions" && child.HasChildren())
-		{
-			for(const DataNode &grand : child)
-			{
-				if(grand.Size() < 2)
-					grand.PrintTrace("Skipping improper substitution syntax:");
-				else
-				{
-					ConditionSet toSubstitute;
-					if(grand.HasChildren())
-						toSubstitute.Load(grand);
-					substitutions.emplace_back(grand.Token(0), make_pair(toSubstitute, grand.Token(1)));
-				}
-			}
-		}
+			substitutions.Load(child);
 		else if(child.Token(0) == "npc")
 			npcs.emplace_back(child);
 		else if(child.Token(0) == "on" && child.Size() >= 2 && child.Token(1) == "enter")
@@ -849,8 +836,8 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 	if(cargoNeeded < 0 && bunksNeeded < 0)
 		return "";
 	
-	map<string, string> subs = GameData::Substitutions(player);
-	const auto missionSubs = Substitutions(player);
+	map<string, string> subs = GameData::GetTextReplacements().Substitutions(player);
+	const auto missionSubs = substitutions.Substitutions(player);
 	subs.insert(missionSubs.begin(), missionSubs.end());
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
@@ -1264,8 +1251,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.toFail = toFail;
 	
 	// Generate the substitutions map.
-	map<string, string> subs = GameData::Substitutions(player);
-	const auto missionSubs = Substitutions(player);
+	map<string, string> subs = GameData::GetTextReplacements().Substitutions(player);
+	const auto missionSubs = substitutions.Substitutions(player);
 	subs.insert(missionSubs.begin(), missionSubs.end());
 	subs["<commodity>"] = result.cargo;
 	subs["<tons>"] = to_string(result.cargoSize) + (result.cargoSize == 1 ? " ton" : " tons");
@@ -1434,20 +1421,4 @@ bool Mission::ParseContraband(const DataNode &node)
 		return false;
 	
 	return true;
-}
-
-
-
-map<string, string> Mission::Substitutions(const PlayerInfo &player) const
-{
-	map<string, string> subs;
-	for(const auto &sub : substitutions)
-	{
-		const string &key = sub.first;
-		const ConditionSet &toSub = sub.second.first;
-		const string &replacement = sub.second.second;
-		if(toSub.Test(player.Conditions()))
-			subs[key] = replacement;
-	}
-	return subs;
 }

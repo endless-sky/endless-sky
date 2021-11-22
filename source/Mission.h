@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "LocationFilter.h"
 #include "MissionAction.h"
 #include "NPC.h"
+#include "TextReplacements.h"
 
 #include <list>
 #include <map>
@@ -172,7 +173,6 @@ private:
 	// For legacy code, contraband definitions can be placed in two different
 	// locations, so move that parsing out to a helper function.
 	bool ParseContraband(const DataNode &node);
-	std::map<std::string, std::string> Substitutions(const PlayerInfo &player) const;
 	
 	
 private:
@@ -226,8 +226,8 @@ private:
 	std::set<const Planet *> visitedStopovers;
 	std::set<const System *> visitedWaypoints;
 	
-	// User-defined text substitutions:
-	std::vector<std::pair<std::string, std::pair<ConditionSet, std::string>>> substitutions;
+	// User-defined text replacements unique to this mission:
+	TextReplacements substitutions;
 	
 	// NPCs:
 	std::list<NPC> npcs;
