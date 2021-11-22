@@ -27,7 +27,7 @@ void TextReplacements::Load(const DataNode &node)
 	// Check for reserved keys. Only some hardcoded replacement keys are
 	// reserved, as these ones are done on the fly after all other replacements
 	// have been done.
-	set<string> reserved = {"<first>", "<last>", "<ship>"};
+	const set<string> reserved = {"<first>", "<last>", "<ship>"};
 	
 	for(const DataNode &child : node)
 	{
