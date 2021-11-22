@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef TEXT_REPLACEMENTS_H_
 #define TEXT_REPLACEMENTS_H_
 
-
 #include <map>
 #include <string>
 #include <vector>
@@ -23,6 +22,7 @@ class DataNode;
 class PlayerInfo;
 
 
+
 // A class containing a list of text replacements. Text replacements consist of a
 // key to search for and the text to replace it with. One key can have multiple potential
 // replacement texts, with the specific text chosen being defined by whichever replacement
@@ -30,7 +30,11 @@ class PlayerInfo;
 // by a ConditionSet.
 class TextReplacements {
 public:
+	// Load a substitutions node.
 	void Load(const DataNode &node);
+	
+	// Clear this TextReplacement's substitutions and insert the substitutions of other.
+	void Revert(TextReplacements &other);
 	
 	// Add new text replacements to the given map after evaltuating all possible replacements.
 	// This TextReplacements will overwrite the value of any existing keys in the given map

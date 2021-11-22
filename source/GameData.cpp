@@ -101,6 +101,7 @@ namespace {
 	Set<Galaxy> defaultGalaxies;
 	Set<Sale<Ship>> defaultShipSales;
 	Set<Sale<Outfit>> defaultOutfitSales;
+	TextReplacements defaultSubstitutions;
 	
 	Politics politics;
 	vector<StartConditions> startConditions;
@@ -253,6 +254,7 @@ bool GameData::BeginLoad(const char * const *argv)
 	defaultGalaxies = galaxies;
 	defaultShipSales = shipSales;
 	defaultOutfitSales = outfitSales;
+	defaultSubstitutions = substitutions;
 	playerGovernment = governments.Get("Escort");
 	
 	politics.Reset();
@@ -488,6 +490,7 @@ void GameData::Revert()
 	galaxies.Revert(defaultGalaxies);
 	shipSales.Revert(defaultShipSales);
 	outfitSales.Revert(defaultOutfitSales);
+	substitutions.Revert(defaultSubstitutions);
 	for(auto &it : persons)
 		it.second.Restore();
 	

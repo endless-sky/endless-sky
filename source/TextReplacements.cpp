@@ -22,6 +22,7 @@ using namespace std;
 
 
 
+// Load a substitutions node.
 void TextReplacements::Load(const DataNode &node)
 {
 	// Check for reserved keys. Only some hardcoded replacement keys are
@@ -62,6 +63,15 @@ void TextReplacements::Load(const DataNode &node)
 		ConditionSet toSubstitute(child);
 		substitutions.emplace_back(key, make_pair(std::move(toSubstitute), child.Token(1)));
 	}
+}
+
+
+
+// Clear this TextReplacement's substitutions and insert the substitutions of other.
+void TextReplacements::Revert(TextReplacements &other)
+{
+	substitutions.clear();
+	substitutions.insert(substitutions.begin(), other.substitutions.begin(), other.substitutions.end());
 }
 
 
