@@ -2280,7 +2280,10 @@ mission "Deep: Scientist Rescue 2"
 ship "Bactrian" "Bactrian (Cosmic Devil)"
 	outfits
 		"Inhibitor Cannon" 2
-		"Thrasher Turret" 4
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 168
+		"Tracker Storage Pod" 2
+		"Pulse Turret" 4
 		"Point Defense Turret"
 		"Heavy Anti-Missile Turret"
 		"Boulder Reactor" 2
@@ -2290,10 +2293,23 @@ ship "Bactrian" "Bactrian (Cosmic Devil)"
 		"Liquid Helium Cooler"
 		"Outfits Expansion" 4
 		"Quantum Keystone"
+		"Tactical Scanner"
+		"Outfit Scanner"
+		"Cargo Scanner"
 		"Ramscoop"
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
-		Hyperdrive
+		"Hyperdrive"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	turret "Heavy Anti-Missile Turret"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Point Defense Turret"
 
 
 
