@@ -28,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/FontSet.h"
 #include "Galaxy.h"
 #include "GameEvent.h"
+#include "GameRules.h"
 #include "Government.h"
 #include "Hazard.h"
 #include "ImageSet.h"
@@ -122,7 +123,7 @@ namespace {
 	map<string, string> helpMessages;
 	map<string, string> plugins;
 	
-	map<string, double> gamerules;
+	GameRules gamerules;
 	
 	SpriteQueue spriteQueue;
 	// Whether sprites and audio have finished loading at game startup.
@@ -491,6 +492,7 @@ void GameData::Revert()
 	for(auto &it : persons)
 		it.second.Restore();
 	
+	gamerules.Reset();
 	politics.Reset();
 	purchases.clear();
 }
@@ -1010,7 +1012,7 @@ MaskManager &GameData::GetMaskManager()
 
 double GameData::Gamerule(const string &rule)
 {
-	return gamerules[rule];
+	return gamerules.Get(rule);
 }
 
 
@@ -1212,19 +1214,7 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			}
 		}
 		else if(key == "gamerule" && node.HasChildren())
-		{
-			for(const DataNode &child : node)
-			{
-				if(child.Size() < 2)
-				{
-					child.PrintTrace("Skipping gamerule with no value:");
-					continue;
-				}
-				
-				const string &token = child.Token(1);
-				gamerules[child.Token(0)] = token == "true" ? 1. : (token == "false" ? 0. : child.Value(1));
-			}
-		}
+			gamerules.Load(node, true);
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
 	}
