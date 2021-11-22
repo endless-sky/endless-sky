@@ -111,6 +111,8 @@ void ShipInfoPanel::Draw()
 	
 	// Draw all the different information sections.
 	ClearZones();
+	if(shipIt == player.Ships().end())
+		return;
 	Rectangle cargoBounds = infoPanelUi->GetBox("cargo");
 	DrawShipStats(infoPanelUi->GetBox("stats"));
 	DrawOutfits(infoPanelUi->GetBox("outfits"), cargoBounds);
@@ -758,12 +760,9 @@ void ShipInfoPanel::Disown()
 	if(shipIt == player.Ships().end() || shipIt->get() == player.Flagship())
 		return;
 	
-	// Because you can never disown your flagship, the player's ship list will
-	// never become empty as a result of disowning a ship.
 	const Ship *ship = shipIt->get();
-	if(shipIt != player.Ships().begin())
-		--shipIt;
+	// Disown the ship and select a previous ship if available.
+	shipIt = player.DisownShip(ship);
 	
-	player.DisownShip(ship);
 	UpdateInfo();
 }

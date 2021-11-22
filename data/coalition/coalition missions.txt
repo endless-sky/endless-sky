@@ -164,7 +164,7 @@ event "lost in coalition"
 
 mission "Coalition: Lost: Marker"
 	name "Foreign Aid"
-	description "The Heliarchs have noticed that you've lost your jump drive, being now stranded in Coalition space, and have offered to help. Head to <destination> to speak with them."
+	description "The Heliarchs have noticed that you've lost your jump drive, being now stranded in Coalition space, and have offered to help. Head to the <destination> to speak with them."
 	landing
 	source
 		near "Ekuarik" 1 100
@@ -176,7 +176,7 @@ mission "Coalition: Lost: Marker"
 			`You're approached by a Heliarch delegation shortly after you leave your ship.`
 			`	"Cautiously observed during the past few weeks, scans of your ship have been, Captain <last>," the Saryd begins.`
 			`	"Unlike previous scans, a jump drive in your ship, our scanners found not," the Kimek continues.`
-			`	"Though appreciate the work you here perform, we do, for you to be cut-off from the galaxy, we wish not," the Arach says. "Discussed much, our consuls have, and to help you, they decided. To <destination> you must go, there discussed, the terms will be."`
+			`	"Though appreciate the work you here perform, we do, for you to be cut-off from the galaxy, we wish not," the Arach says. "Discussed much, our consuls have, and to help you, they decided. To the <destination> you must go, there discussed, the terms will be."`
 			choice
 				`	"By that you mean you'll get me another jump drive? That's pretty generous of you."`
 				`	"What? I lost my jump drive? You've gotta be kidding!"`
@@ -186,7 +186,7 @@ mission "Coalition: Lost: Marker"
 			label unaware
 			`	"A good thing that a watchful eye we keep, if noticed you had not," the Kimek says. "But even still, more careful with your outfits you should be."`
 			label end
-			`	You thank them for bringing you this information, and go back to your ship to prepare a route to <destination>.`
+			`	You thank them for bringing you this information, and go back to your ship to prepare a route to the <destination>.`
 				accept
 	to complete
 		never
@@ -195,7 +195,7 @@ mission "Coalition: Lost: Marker"
 
 mission "Coalition: Lost: Offer"
 	name "Jump Drive Loan"
-	description "The Heliarchs have provided you a jump drive to leave Coalition space. Bring another jump drive to <destination> by <date>, to replace the one you borrowed, or they will be extremely angered by you breaking their trust."
+	description "The Heliarchs have provided you a jump drive to leave Coalition space. Bring another jump drive to the <destination> by <date>, to replace the one you borrowed, or they will be extremely angered by you breaking their trust."
 	deadline 333
 	landing
 	source "Ring of Wisdom"
@@ -503,7 +503,7 @@ mission "Coalition Yottrite 8"
 
 mission "Coalition Yottrite 9"
 	name "Yottrite Presentation"
-	description "Transport Lugglop and his team, alongside <cargo>, to <destination>, where they will share with the Coalition's scientific community their findings on Yottrite."
+	description "Transport Lugglop and his team, alongside <cargo>, to the <destination>, where they will share with the Coalition's scientific community their findings on Yottrite."
 	passengers 6
 	cargo "yottrite presentation materials" 6.14
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
@@ -513,7 +513,7 @@ mission "Coalition Yottrite 9"
 	destination "Ring of Wisdom"
 	on offer
 		conversation
-			`You meet Lugglop in the spaceport and follow him to meet with Nasilor, Alituri, and Pichiie, who are overseeing some workers place a few sealed metal crates inside a container and the yottrite sample you just brought here into another. They detail how they have prepared all the material they needed and now just need a transport to <destination>.`
+			`You meet Lugglop in the spaceport and follow him to meet with Nasilor, Alituri, and Pichiie, who are overseeing some workers place a few sealed metal crates inside a container and the yottrite sample you just brought here into another. They detail how they have prepared all the material they needed and now just need a transport to the <destination>.`
 			`	"If with us, you come, Captain, perhaps a better detailed description of the systems where the yottrite was found, you could provide," Nasilor says.`
 			`	"<payment>, I would pay you," Lugglop says.`
 			choice
@@ -535,7 +535,7 @@ mission "Coalition Yottrite 9"
 		conversation
 			`Immediately when you land, Lugglop gives you your payment of <payment>. You and the four researchers then follow some Heliarch agents that were waiting for you at the docks. You five are brought to an area akin to a theater with some type of podium on the stage. The seats are all taken by Heliarch agents.`
 			`	Lugglop's team apparently will wait until the contents of the two containers are brought here, so you're asked to describe the systems with supernovae where you encountered yottrite asteroids. This only lasts a few minutes, as the audience doesn't seem too keen on inquiring about details, though one particular Saryd did puzzle you when they asked about the state of the supernovas you visited. You tell them you don't know what they mean, and they press the topic no further.`
-			`	After you finish, and right as the materials for Lugglop's presentation arrives, you're escorted back to your ship by some agents. Several hours later, you're contacted by Lugglop, who says the presentation is finished, and his group is coming back to your ship. When they arrive, they each thank you for providing the means to perform their experiments. "Officially commended for our efforts, we were!" he says.` 
+			`	After you finish, and right as the materials for Lugglop's presentation arrives, you're escorted back to your ship by some agents. Several hours later, you're contacted by Lugglop, who says the presentation is finished, and his group is coming back to your ship. When they arrive, they each thank you for providing the means to perform their experiments. "Officially commended for our efforts, we were!" he says.`
 			`	"Though allowed to publicly share our findings, we are not still, invited to be part of the team here that will continue the research, we were," Pichiie adds. The Saryd twins say they will reside here for as long as the project continues, while Pichiie comments on how she'll often be taking trips to visit her family in House Mallob's property.`
 			`	"As for me, a job as overseer, I still have to perform," Lugglop says. "Stay here for a few days I will, but even with all the advanced equipment of this ring, still our Coalition's most capable, the smelters of Bloptab's Furnace are. In their optimal state they must be, if to deepen our knowledge on yottrite, we are. Return there shortly, I will."`
 			`	They thank you again for all your help and wish you safe travels as you continue exploring.`
@@ -713,7 +713,7 @@ mission "Kimek Student 3"
 
 mission "Kimek Student 4"
 	name "Transport Chikee"
-	description "Chikee, the young Kimek whom you've transported many times, has finally become a candidate for elevation to the rank of Heliarch. Bring him to <destination> by <date>."
+	description "Chikee, the young Kimek whom you've transported many times, has finally become a candidate for elevation to the rank of Heliarch. Bring him to the <destination> by <date>."
 	deadline
 	landing
 	passengers 1
@@ -727,7 +727,7 @@ mission "Kimek Student 4"
 		conversation
 			`You're contacted by Chikee when you land.`
 			`	"Captain <last>! Good news and another job for you, I have," he says, asking that you meet him in the spaceport.`
-			`	You head there, and he's already with his bags, prepared to board your ship. "Helped me a lot, House Idriss has. An audience with the Heliarch, on <destination> I have!"`
+			`	You head there, and he's already with his bags, prepared to board your ship. "Helped me a lot, House Idriss has. An audience with the Heliarch, on the <destination> I have!"`
 			`	He tells you that he needs to be there by <date>, and wastes no time as he heads into your ship.`
 				accept
 	on visit
@@ -940,7 +940,7 @@ mission "Saryd Students 1"
 				`	"Sorry, but I'm against smuggling alcohol to students."`
 					decline
 	on visit
-		dialog `You ask around and are directed to a large refinery on one of the more populated cities here. The beer's price is impressive indeed, 5,642 credits per ton, but what is more impressive is how you worried about the students' irresponsibility when they asked you to buy this when you yourself aren't responsible enough to have a bit over ten thousand credits to spend. Go earn some money, then return here.`
+		dialog `You ask around and are directed to a large refinery on one of the more populated cities here. The rum's price is impressive indeed, 5,642 credits per ton, but what is more impressive is how you worried about the students' irresponsibility when they asked you to buy this when you yourself aren't responsible enough to have a bit over ten thousand credits to spend. Go earn some money, then return here.`
 	on complete
 		payment -11284
 
@@ -1655,7 +1655,7 @@ mission "Coalition: Alpha Encounter"
 			`	He stares at you for a moment, as if unsure if you're telling the truth. "What the hell are you doing here then? Did you just stumble onto this place?" He stops struggling, but the Arach agent doesn't loosen her grip.`
 			label detained
 			`	The Saryd walks closer to the Alpha, stomping his hoofs on the ground with each step. "Whatever your motivation was, a transgression, you have committed. Punished accordingly, you shall be," he says. "Kindly follow us to the detention facility, would you, Captain?" he asks you, but doesn't wait for an answer, as more agents arrive to escort you and the Alpha to the "detention facility."`
-			`	On your way there, you start feeling stings on your arms and legs, and realize the Alpha's tackle left you with some bruises. "Treat those, we will, after faced trial, your agressor has," the Saryd says as you approach your destination: a building similar to a police station. The Alpha is brought before a Kimek that you guess is in charge of the facility. He asks you to give a testimony of what happened, with the Heliarch agents confirming what you say. "Your first offense in a long time this is, Alitis," the Kimek says, after checking a computer for the Alpha's data. "Three years in seclusion, your sentence is."`
+			`	On your way there, you start feeling stings on your arms and legs, and realize the Alpha's tackle left you with some bruises. "Treat those, we will, after faced trial, your aggressor has," the Saryd says as you approach your destination: a building similar to a police station. The Alpha is brought before a Kimek that you guess is in charge of the facility. He asks you to give a testimony of what happened, with the Heliarch agents confirming what you say. "Your first offense in a long time this is, Alitis," the Kimek says, after checking a computer for the Alpha's data. "Three years in seclusion, your sentence is."`
 			`	After the short verdict, which seems to lack much of the due process you would expect in human space, the agents bring both you and the Alpha to a lower level of the building. This floor has several empty cells kept shut by thick, tough walls of some transparent material. While the cell block does appear to go further beyond this section and around a corner, the first few cells appear to be directly opposite a modest medical space, presumably used mostly for treating any injured prisoners without leaving the secure level. At present though, all of the cells appear to be empty, and the Heliarchs simply lock him in the second cell, where accessing his would not obstruct any other doorways. The agents then ask that you wait a few minutes for a medic to arrive so that they can take care of your bruises.`
 			`	You notice that cut into the transparent material of the walls are a series of small holes at head-height with a cover that can be slid across them, presumably to silence a prisoner if needed. By default, they appear to be left open, and the Heliarch agents have not closed the one on the Alpha's cell.`
 			`	Your eyes shift from the holes in the wall to the Alpha to find his eyes fixated on you, not looking away or even blinking. After you stare him down for a couple of seconds, he speaks up. "What is it, are you expecting some sort of apology? I'd consider my caution to be entirely justified, so you won't get one."`
@@ -1693,7 +1693,7 @@ mission "Saryd University Lecture"
 	passengers 1
 	deadline
 	to offer
-		random < 40 
+		random < 40
 		has "Coalition: First Contact: done"
 	source "Warm Slope"
 	destination "Shadow of Leaves"
@@ -1764,7 +1764,7 @@ mission "Saryd University Lecture"
 			`	You wait for a while, until an Arach walks up to the stage. The box's volume is much louder than normal, and you can easily hear what is being spoken.`
 			`	"Pleased to announce that the 103rd Xenology Seminar, generously hosted by Starlit University, is now in session, I am. Noticed as you may have, in the presence of a very... unusual guest, we are. The honor of having <first> <last> of the Rutilicus system answer some questions at the end of today's seminar, we will have." The Arach gestures to you, as Aelbris sits down at your table.`
 			`	The first speaker, a Kimek, talks about human farming methods as they compare to other members of the Coalition. Strangely enough, you see him cite human news broadcasts and television shows as if they were academic papers. All of the broadcasts are hundreds of years out of date. Viewing your own society from the outside feels surreal.`
-			`	The seminar goes on for some time. A Saryd gives a suprisingly accurate lecture on the human body. An Arach goes into detail explaining the technological level of human ships. There are even occasional speeches given on supposed aliens to the east and north. Seeing as they have no direct evidence, however, the scientists can do little more than speculate. Once all the speakers have finished, Aelbris informs you that it is now your turn to answer their questions.`
+			`	The seminar goes on for some time. A Saryd gives a surprisingly accurate lecture on the human body. An Arach goes into detail explaining the technological level of human ships. There are even occasional speeches given on supposed aliens to the east and north. Seeing as they have no direct evidence, however, the scientists can do little more than speculate. Once all the speakers have finished, Aelbris informs you that it is now your turn to answer their questions.`
 			choice
 				`	"Alright, let's go!"`
 					goto questions

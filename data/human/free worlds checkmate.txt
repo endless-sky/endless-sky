@@ -354,7 +354,7 @@ mission "FWC Nuke Supply: Enemies"
 		fleet
 			names "republic capital"
 			variant
-				"Gunboat (Mark II)" 3	
+				"Gunboat (Mark II)" 3
 	npc kill
 		government Republic
 		personality nemesis heroic
@@ -1695,7 +1695,7 @@ mission "FWC Pug 3D: Reinforcements"
 			variant
 				"Dreadnought"
 				"Falcon (Plasma)"
-				"Skein" 
+				"Skein"
 				"Finch" 6
 		fleet
 			names "free worlds capital"
