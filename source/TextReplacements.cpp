@@ -28,7 +28,7 @@ void TextReplacements::Load(const DataNode &node)
 			child.PrintTrace("Skipping improper substitution syntax:");
 		else
 		{
-			ConditionSet toSubstitute.Load(child);
+			ConditionSet toSubstitute(child);
 			substitutions.emplace_back(child.Token(0), make_pair(toSubstitute, child.Token(1)));
 		}
 	}
