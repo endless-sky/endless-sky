@@ -2938,7 +2938,40 @@ phrase "friendly disabled"
 		"Please come and help!"
 		"Any chance you can get us out of this bind?"
 		"Any chance you could bail us out?"
-		
+
+phrase "disabled free worlds"
+	word
+		"Well, this sucks."
+		"Darn it!"
+		"Oh, great."
+		"" 4
+	word
+		" "
+	word
+		"I knew I should"
+		"I knew I shouldn't"
+	word
+		" "
+	word
+		"have"
+	word
+		" "
+	word
+		"installed those weapons"
+		"bought those engines"
+		"made a left"
+		"made a right"
+		"had a drink"
+		"waited to take off"
+		"listened to that top brass"
+		"tried that move I saw"
+		"swapped my ship out"
+	word
+		"." 4
+		"!" 2
+		". Don't rub it in, okay?"
+		" yesterday."
+
 # Shakespearean insults.
 phrase "hostile disabled"
 	word
@@ -2954,6 +2987,7 @@ phrase "hostile disabled"
 		"Stay away from me, you"
 		"How dare you, you"
 		"Back off, you"
+		"Alright, well played. Now go away, you"
 	word
 		" "
 	phrase
@@ -2961,6 +2995,33 @@ phrase "hostile disabled"
 	word
 		"."
 		"!"
+
+# Shakespearean insults.
+phrase "disabled hostile"
+	word
+		"You piece of"
+	word
+		" "
+	phrase
+		"shakespearean insults"
+	word
+		"!"
+		"."
+	word
+		" "
+	word
+		"Look what you did to my ship!"
+		"This is all your fault."
+		"This isn't over."
+		"You got lucky this time."
+		"I'll make you regret that!"
+		"My beautiful ship!"
+		"Look what you've done!"
+		"I'm ruined!"
+		"Happy now?"
+		"Want a medal?"
+		"What do you want from me?"
+		"You're nothing special, you know?"
 
 phrase "shakespearean insults"
 	word
