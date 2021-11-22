@@ -48,5 +48,11 @@ map<string, string> TextReplacements::Substitutions(const PlayerInfo &player) co
 		if(toSub.Test(player.Conditions()))
 			subs[key] = replacement;
 	}
+	
+	// Erase any reserved keys.
+	subs.erase("<first>"); 
+	subs.erase("<last>"); 
+	subs.erase("<ship>");
+	
 	return subs;
 }
