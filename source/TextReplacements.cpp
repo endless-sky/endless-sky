@@ -37,11 +37,21 @@ void TextReplacements::Load(const DataNode &node)
 			continue;
 		}
 		
-		const string &key = child.Token(0);
+		string key = child.Token(0);
 		if(key.empty())
 		{
 			child.PrintTrace("Cannot replace an empty string:");
 			continue;
+		}
+		if(key.front() != '<')
+		{
+			key = "<" + key;
+			child.PrintTrace("Warning: text replacements must be prefixed by \"<\":");
+		}
+		if(key.back() != '>')
+		{
+			key += ">";
+			child.PrintTrace("Warning: text replacements must be suffixed by \">\":");
 		}
 		if(reserved.count(key))
 		{
