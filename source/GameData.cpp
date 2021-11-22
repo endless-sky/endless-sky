@@ -998,7 +998,7 @@ const map<string, string> &GameData::HelpTemplates()
 map<string, string> GameData::Substitutions(const PlayerInfo &player)
 {
 	map<string, string> subs;
-	for(const auto sub : substitutions)
+	for(const auto &sub : substitutions)
 	{
 		const string &key = sub.first;
 		const ConditionSet &toSub = sub.second.first;

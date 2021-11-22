@@ -1441,7 +1441,7 @@ bool Mission::ParseContraband(const DataNode &node)
 map<string, string> Mission::Substitutions(const PlayerInfo &player) const
 {
 	map<string, string> subs;
-	for(const auto sub : substitutions)
+	for(const auto &sub : substitutions)
 	{
 		const string &key = sub.first;
 		const ConditionSet &toSub = sub.second.first;
