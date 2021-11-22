@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "BatchShader.h"
 #include "Color.h"
 #include "Command.h"
+#include "ConditionSet.h"
 #include "Conversation.h"
 #include "DataFile.h"
 #include "DataNode.h"
@@ -43,6 +44,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "PointerShader.h"
 #include "Politics.h"
 #include "Random.h"
@@ -120,7 +122,7 @@ namespace {
 	
 	map<string, string> tooltips;
 	map<string, string> helpMessages;
-	map<string, string> substitutions;
+	vector<pair<string, pair<ConditionSet, string>>> substitutions;
 	map<string, string> plugins;
 	
 	SpriteQueue spriteQueue;
@@ -993,9 +995,18 @@ const map<string, string> &GameData::HelpTemplates()
 
 
 
-const map<string, string> &GameData::Substitutions()
+map<string, string> GameData::Substitutions(const PlayerInfo &player)
 {
-	return substitutions;
+	map<string, string> subs;
+	for(const auto sub : substitutions)
+	{
+		const string &key = sub.first;
+		const ConditionSet &toSub = sub.second.first;
+		const string &replacement = sub.second.second;
+		if(toSub.Test(player.Conditions()))
+			subs[key] = replacement;
+	}
+	return subs;
 }
 
 
@@ -1217,7 +1228,12 @@ void GameData::LoadFile(const string &path, bool debugMode)
 				if(child.Size() < 2)
 					child.PrintTrace("Skipping improper substitution syntax:");
 				else
-					substitutions[child.Token(0)] = child.Token(1);
+				{
+					ConditionSet toSubstitute;
+					if(child.HasChildren())
+						toSubstitute.Load(child);
+					substitutions.emplace_back(child.Token(0), make_pair(toSubstitute, child.Token(1)));
+				}
 			}
 		}
 		else

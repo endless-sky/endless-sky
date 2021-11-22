@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class Color;
+class ConditionSet;
 class Conversation;
 class DataNode;
 class DataWriter;
@@ -44,6 +45,7 @@ class Outfit;
 class Person;
 class Phrase;
 class Planet;
+class PlayerInfo;
 class Politics;
 class Ship;
 class Sprite;
@@ -149,7 +151,8 @@ public:
 	static std::string HelpMessage(const std::string &name);
 	static const std::map<std::string, std::string> &HelpTemplates();
 	
-	static const std::map<std::string, std::string> &Substitutions();
+	// Return a map of substitutions according to the player's current conditions.
+	static std::map<std::string, std::string> Substitutions(const PlayerInfo &player);
 	
 	static const std::map<std::string, std::string> &PluginAboutText();
 	

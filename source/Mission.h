@@ -172,6 +172,7 @@ private:
 	// For legacy code, contraband definitions can be placed in two different
 	// locations, so move that parsing out to a helper function.
 	bool ParseContraband(const DataNode &node);
+	std::map<std::string, std::string> Substitutions(const PlayerInfo &player) const;
 	
 	
 private:
@@ -226,7 +227,7 @@ private:
 	std::set<const System *> visitedWaypoints;
 	
 	// User-defined text substitutions:
-	std::map<std::string, std::string> subs;
+	std::vector<std::pair<std::string, std::pair<ConditionSet, std::string>>> substitutions;
 	
 	// NPCs:
 	std::list<NPC> npcs;
