@@ -57,6 +57,8 @@ private:
 	double randomAngle = 0.;
 	double randomSpin = 0.;
 	double randomFrameRate = 0.;
+    bool absoluteAngle = false;
+    bool absoluteVelocity = false;
 	
 	int lifetime = 0;
 	int randomLifetime = 0;

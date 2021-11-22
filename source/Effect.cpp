@@ -58,7 +58,11 @@ void Effect::Load(const DataNode &node)
 			randomSpin = child.Value(1);
 		else if(child.Token(0) == "random frame rate" && child.Size() >= 2)
 			randomFrameRate = child.Value(1);
-		else
+        else if(child.Token(0) == "absolute angle")
+            absoluteAngle = true;
+        else if(child.Token(0) == "absolute velocity")
+            absoluteVelocity = true;
+        else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
