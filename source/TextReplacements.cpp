@@ -16,27 +16,42 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "PlayerInfo.h"
 
+#include <set>
+
 using namespace std;
 
 
 
 void TextReplacements::Load(const DataNode &node)
 {
+	// Check for reserved keys. Only some hardcoded replacement keys are
+	// reserved, as these ones are done on the fly after all other replacements
+	// have been done.
+	set<string> reserved = {"<first>", "<last>", "<ship>"};
+	
 	for(const DataNode &child : node)
 	{
 		if(child.Size() < 2)
 			child.PrintTrace("Skipping improper substitution syntax:");
 		else
 		{
+			const string &key = child.Token(0);
+			
+			if(reserved.count(key))
+			{
+				child.PrintTrace("Skipping reserved substitution key \"" + key + "\":");
+				return;
+			}
+			
 			ConditionSet toSubstitute(child);
-			substitutions.emplace_back(child.Token(0), make_pair(toSubstitute, child.Token(1)));
+			substitutions.emplace_back(key, make_pair(toSubstitute, child.Token(1)));
 		}
 	}
 }
 
 
 
-// Get a map of text replacements.
+// Get a map of text replacements after evaluating all possible replacements.
 map<string, string> TextReplacements::Substitutions(const PlayerInfo &player) const
 {
 	map<string, string> subs;
