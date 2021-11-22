@@ -30,9 +30,6 @@ class PlayerInfo;
 // by a ConditionSet.
 class TextReplacements {
 public:
-	TextReplacements() = default;
-	TextReplacements(const DataNode &node);
-	
 	void Load(const DataNode &node);
 	
 	// Get a map of text replacements after evaluating all possible replacements.

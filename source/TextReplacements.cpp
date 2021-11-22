@@ -18,11 +18,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-TextReplacements::TextReplacements(const DataNode &node)
-{
-	Load(node);
-}
-
 
 
 void TextReplacements::Load(const DataNode &node)
