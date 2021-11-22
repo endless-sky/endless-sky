@@ -32,20 +32,20 @@ void TextReplacements::Load(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		if(child.Size() < 2)
-			child.PrintTrace("Skipping improper substitution syntax:");
-		else
 		{
-			const string &key = child.Token(0);
-			
-			if(reserved.count(key))
-			{
-				child.PrintTrace("Skipping reserved substitution key \"" + key + "\":");
-				return;
-			}
-			
-			ConditionSet toSubstitute(child);
-			substitutions.emplace_back(key, make_pair(toSubstitute, child.Token(1)));
+			child.PrintTrace("Skipping improper substitution syntax:");
+			continue;
 		}
+		
+		const string &key = child.Token(0);
+		if(reserved.count(key))
+		{
+			child.PrintTrace("Skipping reserved substitution key \"" + key + "\":");
+			continue;
+		}
+		
+		ConditionSet toSubstitute(child);
+		substitutions.emplace_back(key, make_pair(toSubstitute, child.Token(1)));
 	}
 }
 
@@ -63,11 +63,5 @@ map<string, string> TextReplacements::Substitutions(const PlayerInfo &player) co
 		if(toSub.Test(player.Conditions()))
 			subs[key] = replacement;
 	}
-	
-	// Erase any reserved keys.
-	subs.erase("<first>"); 
-	subs.erase("<last>"); 
-	subs.erase("<ship>");
-	
 	return subs;
 }

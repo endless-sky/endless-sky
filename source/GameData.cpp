@@ -654,6 +654,8 @@ void GameData::Change(const DataNode &node)
 		systems.Get(node.Token(1))->Link(systems.Get(node.Token(2)));
 	else if(node.Token(0) == "unlink" && node.Size() >= 3)
 		systems.Get(node.Token(1))->Unlink(systems.Get(node.Token(2)));
+	else if(node.Token(0) == "substitutions" && node.HasChildren())
+		substitutions.Load(node);
 	else
 		node.PrintTrace("Invalid \"event\" data:");
 }
