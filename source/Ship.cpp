@@ -1319,7 +1319,12 @@ void Ship::SetHail(const Phrase &phrase)
 
 string Ship::GetHail(const PlayerInfo &player) const
 {
-	map<string, string> subs = GameData::GetTextReplacements().Substitutions(player);
+	string hailStr = hail ? hail->Get() : government ? government->GetHail(isDisabled) : "";
+	
+	if(hailStr.empty())
+		return hailStr;
+	
+	map<string, string> subs = GameData::GetTextReplacements().Substitutions(player.Conditions());
 	
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
@@ -1331,7 +1336,6 @@ string Ship::GetHail(const PlayerInfo &player) const
 	subs["<date>"] = player.GetDate().ToString();
 	subs["<day>"] = player.GetDate().LongString();
 	
-	string hailStr = hail ? hail->Get() : government ? government->GetHail(isDisabled) : "";
 	return Format::Replace(hailStr, subs);
 }
 

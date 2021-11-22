@@ -837,8 +837,8 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 	if(cargoNeeded < 0 && bunksNeeded < 0)
 		return "";
 	
-	map<string, string> subs = substitutions.Substitutions(player);
-	auto globalSubs = GameData::GetTextReplacements().Substitutions(player);
+	map<string, string> subs = substitutions.Substitutions(player.Conditions());
+	auto globalSubs = GameData::GetTextReplacements().Substitutions(player.Conditions());
 	subs.insert(make_move_iterator(globalSubs.begin()), make_move_iterator(globalSubs.end()));
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
@@ -1252,8 +1252,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.toFail = toFail;
 	
 	// Generate the substitutions map.
-	map<string, string> subs = substitutions.Substitutions(player);
-	auto globalSubs = GameData::GetTextReplacements().Substitutions(player);
+	map<string, string> subs = substitutions.Substitutions(player.Conditions());
+	auto globalSubs = GameData::GetTextReplacements().Substitutions(player.Conditions());
 	subs.insert(make_move_iterator(globalSubs.begin()), make_move_iterator(globalSubs.end()));
 	subs["<commodity>"] = result.cargo;
 	subs["<tons>"] = to_string(result.cargoSize) + (result.cargoSize == 1 ? " ton" : " tons");

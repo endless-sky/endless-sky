@@ -38,6 +38,11 @@ void TextReplacements::Load(const DataNode &node)
 		}
 		
 		const string &key = child.Token(0);
+		if(key.empty())
+		{
+			child.PrintTrace("Cannot replace an empty string:");
+			continue;
+		}
 		if(reserved.count(key))
 		{
 			child.PrintTrace("Skipping reserved substitution key \"" + key + "\":");
@@ -52,7 +57,7 @@ void TextReplacements::Load(const DataNode &node)
 
 
 // Get a map of text replacements after evaluating all possible replacements.
-map<string, string> TextReplacements::Substitutions(const PlayerInfo &player) const
+map<string, string> TextReplacements::Substitutions(const map<string, int64_t> &conditions) const
 {
 	map<string, string> subs;
 	for(const auto &sub : substitutions)
@@ -60,7 +65,7 @@ map<string, string> TextReplacements::Substitutions(const PlayerInfo &player) co
 		const string &key = sub.first;
 		const ConditionSet &toSub = sub.second.first;
 		const string &replacement = sub.second.second;
-		if(toSub.Test(player.Conditions()))
+		if(toSub.Test(conditions))
 			subs[key] = replacement;
 	}
 	return subs;

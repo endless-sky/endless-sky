@@ -33,7 +33,7 @@ public:
 	void Load(const DataNode &node);
 	
 	// Get a map of text replacements after evaluating all possible replacements.
-	std::map<std::string, std::string> Substitutions(const PlayerInfo &player) const;
+	std::map<std::string, std::string> Substitutions(const std::map<std::string, int64_t> &conditions) const;
 	
 	
 private:
