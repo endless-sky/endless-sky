@@ -56,10 +56,11 @@ void TextReplacements::Load(const DataNode &node)
 
 
 
-// Get a map of text replacements after evaluating all possible replacements.
-map<string, string> TextReplacements::Substitutions(const map<string, int64_t> &conditions) const
+// Add new text replacements to the given map after evaltuating all possible replacements.
+// This text replacement will overwrite the value of any existing keys in the given map
+// if the map and this TextReplacements share a key.
+void TextReplacements::Substitutions(map<string, string> &subs, const map<string, int64_t> &conditions) const
 {
-	map<string, string> subs;
 	for(const auto &sub : substitutions)
 	{
 		const string &key = sub.first;
@@ -68,5 +69,4 @@ map<string, string> TextReplacements::Substitutions(const map<string, int64_t> &
 		if(toSub.Test(conditions))
 			subs[key] = replacement;
 	}
-	return subs;
 }

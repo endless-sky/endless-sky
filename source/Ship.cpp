@@ -1324,7 +1324,8 @@ string Ship::GetHail(const PlayerInfo &player) const
 	if(hailStr.empty())
 		return hailStr;
 	
-	map<string, string> subs = GameData::GetTextReplacements().Substitutions(player.Conditions());
+	map<string, string> subs;
+	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
 	
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
