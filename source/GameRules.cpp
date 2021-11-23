@@ -14,7 +14,41 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 
+#include <map>
+#include <set>
+
 using namespace std;
+
+namespace {
+	// Allowable rule names.
+	const set<string> RULE_NAMES = {
+		"depreciation: full",
+		"depreciation: daily",
+		"depreciation: grace period",
+		"depreciation: max age",
+		
+		"flotsam: drag",
+		"flotsam: commodity: base lifetime",
+		"flotsam: commodity: random lifetime",
+		"flotsam: outfit: base lifetime",
+		"flotsam: outfit: cost scale",
+		"flotsam: outfit: base cost",
+		
+		"hit force: base mass",
+		"hit force: base scale",
+		
+		"person spawnrate",
+	};
+	
+	// A mapping of gamerule constant names to specifically-allowed minimum values.
+	// Based on the specific usage of the constant, the allowed minimum value is
+	// chosen to avoid disallowed or undesirable behaviors (such as dividing by zero).
+	// The default behavior (for those constant names not in this map) is a minimum
+	// value of 0.
+	const auto MINIMUM_ALLOWED = map<string, double>{
+		{"person spawnrate", 1.},
+	};
+}
 
 
 
@@ -30,10 +64,22 @@ void GameRules::Load(const DataNode &node)
 		}
 		
 		const string &key = child.Token(0);
+		
+		if(!RULE_NAMES.count(key))
+		{
+			child.PrintTrace("Skipping unrecognized gamerule:");
+			continue;
+		}
+		
 		const string &token = child.Token(1);
-		rules[key] = (token == "true") ? 1. : ((token == "false") ? 0. : child.Value(1));
-		if(saveToDefault)
-			defaultRules[key] = rules[key];
+		double value = (token == "true") ? 1. : ((token == "false") ? 0. : child.Value(1));
+		double minValue = 0.;
+		
+		auto it = MINIMUM_ALLOWED.find(key);
+		if(it != MINIMUM_ALLOWED.end())
+			minValue = it->second;
+		
+		rules[key] = max(minValue, value);
 	}
 }
 
