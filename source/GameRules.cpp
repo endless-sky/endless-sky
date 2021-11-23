@@ -18,7 +18,8 @@ using namespace std;
 
 
 
-void GameRules::Load(const DataNode &node, bool saveToDefault)
+// Load a gamerules node.
+void GameRules::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
 	{
@@ -38,13 +39,16 @@ void GameRules::Load(const DataNode &node, bool saveToDefault)
 
 
 
-void GameRules::Reset()
+// Revert the rules of this GameRule to the rules of other.
+void GameRules::Revert(const GameRules &other)
 {
-	rules = defaultRules;
+	for(const auto &rule : other.rules)
+		rules[rule.first] = rule.second;
 }
 
 
 
+// Get a gamerule constant.
 double GameRules::Get(const string &key) const
 {
 	return rules.Get(key);

@@ -124,6 +124,7 @@ namespace {
 	map<string, string> plugins;
 	
 	GameRules gamerules;
+	GameRules defaultGamerules;
 	
 	SpriteQueue spriteQueue;
 	// Whether sprites and audio have finished loading at game startup.
@@ -254,6 +255,7 @@ bool GameData::BeginLoad(const char * const *argv)
 	defaultGalaxies = galaxies;
 	defaultShipSales = shipSales;
 	defaultOutfitSales = outfitSales;
+	defaultGamerules = gamerules;
 	playerGovernment = governments.Get("Escort");
 	
 	politics.Reset();
@@ -489,10 +491,10 @@ void GameData::Revert()
 	galaxies.Revert(defaultGalaxies);
 	shipSales.Revert(defaultShipSales);
 	outfitSales.Revert(defaultOutfitSales);
+	gamerules.Revert(defaultGamerules);
 	for(auto &it : persons)
 		it.second.Restore();
 	
-	gamerules.Reset();
 	politics.Reset();
 	purchases.clear();
 }
@@ -656,6 +658,8 @@ void GameData::Change(const DataNode &node)
 		systems.Get(node.Token(1))->Link(systems.Get(node.Token(2)));
 	else if(node.Token(0) == "unlink" && node.Size() >= 3)
 		systems.Get(node.Token(1))->Unlink(systems.Get(node.Token(2)));
+	else if(node.Token(0) == "gamerules" && node.HasChildren())
+		gamerules.Load(node);
 	else
 		node.PrintTrace("Invalid \"event\" data:");
 }
@@ -1213,8 +1217,8 @@ void GameData::LoadFile(const string &path, bool debugMode)
 				text += child.Token(0);
 			}
 		}
-		else if(key == "gamerule" && node.HasChildren())
-			gamerules.Load(node, true);
+		else if(key == "gamerules" && node.HasChildren())
+			gamerules.Load(node);
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
 	}

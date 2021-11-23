@@ -25,13 +25,11 @@ class DataNode;
 // or the lifetime of flotsams.
 class GameRules {
 public:
-	// Load a gamerules node. Only save to default if this is during the initial
-	// loading of the game. All later changes to gamerules do not get saved to
-	// the default.
-	void Load(const DataNode &node, bool saveToDefault = false);
+	// Load a gamerules node.
+	void Load(const DataNode &node);
 	
-	// Reset to the initial gamerules defined in the game data.
-	void Reset();
+	// Revert the rules of this GameRule to the rules of other.
+	void Revert(const GameRules &other);
 	
 	// Get a gamerule constant.
 	double Get(const std::string &key) const;
@@ -39,7 +37,6 @@ public:
 	
 private:
 	Dictionary rules;
-	Dictionary defaultRules;
 };
 
 

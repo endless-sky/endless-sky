@@ -8,8 +8,8 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-gamerule
-	"depreciation: full" 0.10
+gamerules
+	"depreciation: full" 0.25
 	"depreciation: daily" 0.997
 	"depreciation: grace period" 7
 	"depreciation: max age" 1000
