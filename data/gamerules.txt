@@ -13,21 +13,28 @@ gamerules
 	# The % value of a fully depreciated item. Plundered, captured, or gifted outfits
 	# and ships are automatically fully depreciated:
 	"depreciation: full" 0.25
+	
 	# The % value of an item that is maintained each day:
 	"depreciation: daily" 0.997
+	
 	# The number of days after an item is purchased before depreciation begins:
 	"depreciation: grace period" 7
+	
 	# The number of days after the grace period until an item is fully depreciated:
 	"depreciation: max age" 1000
 	
 	
+	
 	# The percentage of velocity that flotsams maintain each frame.
 	"flotsam: drag" 0.999
+	
+	# Lifetimes are in number of frames. There are 60 frames in a second.
 	# The lifetime of flotsams that contain commodities.
 	# Commodity flotsam lifetimes are determined by:
 	#	base lifetime + (random number from 0 to random lifetime)
 	"flotsam: commodity: base lifetime" 7200
 	"flotsam: commodity: random lifetime" 3600
+	
 	# The lifetime of flotsams that contain outfits.
 	# Outfit flotsam lifetimes are determined by:
 	#	var = cost scale / (outfit cost + base cost)
@@ -35,7 +42,7 @@ gamerules
 	"flotsam: outfit: base lifetime" 600
 	"flotsam: outfit: cost scale" 3000000000
 	"flotsam: outfit: base cost" 1000000
-	# Lifetimes are in number of frames. There are 60 frames in a second.
+	
 	
 	
 	# Whether special hit force scaling is active.
@@ -48,6 +55,7 @@ gamerules
 	"hit force scaling" true
 	"hit force: base mass" 400
 	"hit force: base scale" 0.3
+	
 	
 	
 	# The average number of frames between attempts to spawn a person ship.

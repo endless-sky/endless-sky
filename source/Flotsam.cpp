@@ -36,8 +36,8 @@ Flotsam::Flotsam(const string &commodity, int count, const Government *sourceGov
 	: commodity(commodity), count(count), sourceGovernment(sourceGovernment)
 {
 	drag = GameData::Gamerule("flotsam: drag");
-	double randomLifetime = GameData::Gamerule("flotsam: commodity: random lifetime");
-	double baseLifetime = GameData::Gamerule("flotsam: commodity: base lifetime");
+	int randomLifetime = GameData::Gamerule("flotsam: commodity: random lifetime");
+	int baseLifetime = GameData::Gamerule("flotsam: commodity: base lifetime");
 	
 	lifetime = baseLifetime + Random::Int(randomLifetime);
 	// Scale lifetime in proportion to the expected amount per box.
@@ -53,11 +53,11 @@ Flotsam::Flotsam(const Outfit *outfit, int count, const Government *sourceGovern
 	drag = GameData::Gamerule("flotsam: drag");
 	double costScale = GameData::Gamerule("flotsam: outfit: cost scale");
 	double baseCost = GameData::Gamerule("flotsam: outfit: base cost");
-	double baseLifetime = GameData::Gamerule("flotsam: outfit: base lifetime");
+	int baseLifetime = GameData::Gamerule("flotsam: outfit: base lifetime");
 	
 	// The more the outfit costs, the faster this flotsam should disappear.
-	int scale = max<int>(1, costScale / (outfit->Cost() * count + baseCost));
-	lifetime = baseLifetime + scale + Random::Int(scale);
+	int randomLifetime = max<int>(1, costScale / (outfit->Cost() * count + baseCost));
+	lifetime = baseLifetime + randomLifetime + Random::Int(randomLifetime);
 }
 
 
