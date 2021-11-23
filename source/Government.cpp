@@ -40,6 +40,7 @@ Government::Government()
 	penaltyFor[ShipEvent::CAPTURE] = 1.;
 	penaltyFor[ShipEvent::DESTROY] = 1.;
 	penaltyFor[ShipEvent::SCAN_OUTFITS] = 0.;
+	penaltyFor[ShipEvent::SCAN_CARGO] = 0.;
 	penaltyFor[ShipEvent::ATROCITY] = 10.;
 	
 	id = nextID++;
@@ -88,7 +89,6 @@ void Government::Load(const DataNode &node)
 		else if(child.Token(0) == "penalty for")
 		{
 			for(const DataNode &grand : child)
-			{
 				if(grand.Size() >= 2)
 				{
 					if(grand.Token(0) == "assist")
@@ -102,13 +102,15 @@ void Government::Load(const DataNode &node)
 					else if(grand.Token(0) == "destroy")
 						penaltyFor[ShipEvent::DESTROY] = grand.Value(1);
 					else if(grand.Token(0) == "scanning")
+					{
 						penaltyFor[ShipEvent::SCAN_OUTFITS] = grand.Value(1);
+						penaltyFor[ShipEvent::SCAN_CARGO] = grand.Value(1);
+					}
 					else if(grand.Token(0) == "atrocity")
 						penaltyFor[ShipEvent::ATROCITY] = grand.Value(1);
 					else
 						grand.PrintTrace("Skipping unrecognized attribute:");
 				}
-			}
 		}
 		else if(child.Token(0) == "bribe" && child.Size() >= 2)
 			bribe = child.Value(1);

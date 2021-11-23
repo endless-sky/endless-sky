@@ -2364,9 +2364,6 @@ int Ship::Scan()
 	// Play the scanning sound if the actor or the target is the player's ship.
 	if(isYours || (target->isYours && activeScanning))
 		Audio::Play(Audio::Get("scan"), Position());
-	// Potential relation penalties for scanning.
-	if(isYours && target->GetGovernment() && (result & ShipEvent::SCAN_OUTFITS || result & ShipEvent::SCAN_CARGO))
-		target->GetGovernment()->Offend(ShipEvent::SCAN_OUTFITS, target->CrewValue());
 	
 	if(startedScanning && isYours)
 	{
