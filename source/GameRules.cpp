@@ -34,6 +34,7 @@ namespace {
 		"flotsam: outfit: cost scale",
 		"flotsam: outfit: base cost",
 		
+		"hit force scaling",
 		"hit force: base mass",
 		"hit force: base scale",
 		
@@ -52,6 +53,7 @@ namespace {
 		{"hit force: base mass", 1.},
 		
 		// The following constants are used in Random::Int, which disallows 0.
+		{"flotsam: commodity: random lifetime", 1.},
 		{"person spawnrate", 1.},
 	};
 	
@@ -62,6 +64,7 @@ namespace {
 		// The following constants are percentage values that must be between 0 and 1.
 		{"depreciation: full", 1.},
 		{"depreciation: daily", 1.},
+		{"flotsam: drag", 1.},
 		{"hit force: base scale", 1.},
 	};
 }
@@ -96,7 +99,7 @@ void GameRules::Load(const DataNode &node)
 		else
 			value = max(0., value);
 		
-		auto it = MAXIMUM_ALLOWED.find(key);
+		it = MAXIMUM_ALLOWED.find(key);
 		if(it != MAXIMUM_ALLOWED.end())
 			value = min(value, it->second);
 		

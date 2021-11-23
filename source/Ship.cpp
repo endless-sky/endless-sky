@@ -3307,7 +3307,7 @@ void Ship::ApplyForce(const Point &force, bool gravitational)
 	double baseMass = GameData::Gamerule("hit force: base mass");
 	if(gravitational)
 	{
-		// Treat all ships as if they have a mass of 400. This prevents
+		// Treat all ships as if they have a fixed mass. This prevents
 		// gravitational hit force values from needing to be extremely
 		// small in order to have a reasonable effect.
 		acceleration += force / baseMass;
@@ -3318,11 +3318,15 @@ void Ship::ApplyForce(const Point &force, bool gravitational)
 	if(!currentMass)
 		return;
 	
-	// Reduce acceleration of small ships and increase acceleration of large
-	// ones by having 30% of the force be based on a fixed mass of 400, i.e. the
-	// mass of a typical light warship:
-	double scale = GameData::Gamerule("hit force: base scale");
-	acceleration += force * (scale / baseMass + (1. - scale) / currentMass);
+	if(GameData::Gamerule("hit force scaling"))
+	{
+		// Reduce acceleration of small ships and increase acceleration of large
+		// ones by having a certain percentage of the force be based on a fixed mass.
+		double scale = GameData::Gamerule("hit force: base scale");
+		acceleration += force * (scale / baseMass + (1. - scale) / currentMass);
+	}
+	else
+		acceleration += force / currentMass;
 }
 
 
