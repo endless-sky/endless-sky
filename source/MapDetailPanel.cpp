@@ -122,7 +122,6 @@ void MapDetailPanel::Draw()
 
 
 
-// Navigates trough the shown planets when there are too many.
 bool MapDetailPanel::Scroll(double dx, double dy)
 {
 	Point point = UI::GetMouse();
@@ -250,11 +249,10 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 			SetCommodity(SHOW_GOVERNMENT);
 		else
 		{
-			int offset;
 			// The player clicked within the region associated with this system's planets.
 			for(const auto &it : planetY)
 			{
-				offset = planetExtended[it.first] ? 110 : 70;
+				int offset = planetExtended[it.first] ? 110 : 70;
 				if(y >= it.second && y < it.second + offset)
 				{
 					selectedPlanet = it.first;
