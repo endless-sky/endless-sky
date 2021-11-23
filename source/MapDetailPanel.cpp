@@ -545,7 +545,7 @@ void MapDetailPanel::DrawInfo()
 					bool hasSpaceport = planet->HasSpaceport();
 					bool isInhabited = planet->IsInhabited();
 					
-					hasSpaceport ? SpriteShader::Draw(planetSprite, uiPoint) : SpriteShader::Draw(uninhabitedPlanetSprite, uiPoint);
+					isInhabited ? SpriteShader::Draw(planetSprite, uiPoint) : SpriteShader::Draw(uninhabitedPlanetSprite, uiPoint + Point(0, -20));
 					planetY[planet] = uiPoint.Y() - 60;
 					planetExtended[planet] = isInhabited;
 					
