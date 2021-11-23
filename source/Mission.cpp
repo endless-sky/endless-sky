@@ -30,7 +30,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include <cmath>
-#include <iterator>
 #include <sstream>
 
 using namespace std;
