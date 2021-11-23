@@ -64,7 +64,7 @@ void Preferences::Load()
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
-	settings["Boarding target priority"] = true;
+	settings["Board closest target"] = true;
 	
 	DataFile prefs(Files::Config() + "preferences.txt");
 	for(const DataNode &node : prefs)
