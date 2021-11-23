@@ -514,7 +514,7 @@ void MapDetailPanel::DrawInfo()
 	{
 		uiPoint.Y() += 10;
 		const Sprite *up = SpriteSet::Get("ui/up");
-		Point point(Screen::Left() + 100., governmentY + 45.);
+		Point point(Screen::Left() + 100., governmentY + 40.);
 		SpriteShader::Draw(up, point);
 	}
 
@@ -607,7 +607,7 @@ void MapDetailPanel::DrawInfo()
 	if(excessPlanet > firstPlanet)
 	{
 		const Sprite *down = SpriteSet::Get("ui/down");
-		Point point(Screen::Left() + 100., uiPoint.Y() - 70.);
+		Point point(Screen::Left() + 100., uiPoint.Y() - 65.);
 		SpriteShader::Draw(down, point);
 		uiPoint.Y() += 10;
 	}
