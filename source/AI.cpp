@@ -3285,8 +3285,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		{
 			if(shift)
 				ship.SetTargetShip(shared_ptr<Ship>());
+			
 			double best = numeric_limits<double>::infinity();
-
 			bool foundEnemy = false;
 			bool foundAnything = false;
 			bool distancePriority = Preferences::Has("Board target");
