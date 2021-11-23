@@ -1656,7 +1656,7 @@ mission "Deep: Remnant Research"
 	on offer
 		payment 250000
 		conversation
-			`You receive a message from Ivan after you land. "Thanks for all your help recently. We brought our findings to the Deep government, but given their sensitive nature the Deep is taking its time deciding whether to fund further research. In the mean time, I've transfered <payment> of my own funds to your account. I have no doubt the Deep will approve further funding for our project in the future, so I've simply written this off as a business expense. I'll contact you once we continue our research beyond the wormhole. Thanks again!"`
+			`You receive a message from Ivan after you land. "Thanks for all your help recently. We brought our findings to the Deep government, but given their sensitive nature the Deep is taking its time deciding whether to fund further research. In the mean time, I've transferred <payment> of my own funds to your account. I have no doubt the Deep will approve further funding for our project in the future, so I've simply written this off as a business expense. I'll contact you once we continue our research beyond the wormhole. Thanks again!"`
 				decline
 
 
@@ -2280,7 +2280,10 @@ mission "Deep: Scientist Rescue 2"
 ship "Bactrian" "Bactrian (Cosmic Devil)"
 	outfits
 		"Inhibitor Cannon" 2
-		"Thrasher Turret" 4
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 168
+		"Tracker Storage Pod" 2
+		"Pulse Turret" 4
 		"Point Defense Turret"
 		"Heavy Anti-Missile Turret"
 		"Boulder Reactor" 2
@@ -2290,10 +2293,23 @@ ship "Bactrian" "Bactrian (Cosmic Devil)"
 		"Liquid Helium Cooler"
 		"Outfits Expansion" 4
 		"Quantum Keystone"
+		"Tactical Scanner"
+		"Outfit Scanner"
+		"Cargo Scanner"
 		"Ramscoop"
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
-		Hyperdrive
+		"Hyperdrive"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	turret "Heavy Anti-Missile Turret"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Point Defense Turret"
 
 
 
@@ -2619,7 +2635,7 @@ mission "Stone of our Fathers 4"
 			`	Helm holds up his hand showing off the stone in his palm. "I took it while you were napping. Skaldgar made a mistake with you, and I will at least see the stone properly tended. Goodbye." Helm indicates toward the exit and waits for you to depart before casting off again in his ship.`
 				decline
 			label help
-			`	Thorleif nods and takes you and Helm outside into the storm, or Fimbulhrithr. Thorleif and Helm work the island's metal rudder and rudimentry engine to steer the island away from the storm, while you are given the task of tying everything down that is liable to fly away.`
+			`	Thorleif nods and takes you and Helm outside into the storm, or Fimbulhrithr. Thorleif and Helm work the island's metal rudder and rudimentary engine to steer the island away from the storm, while you are given the task of tying everything down that is liable to fly away.`
 			`	With the storm comes unnatural darkness, and the sky is filled with debris and fish and all manner of items that do not belong in it. You hurry as fast as you can, saving as much as possible.`
 			`	After hours of hard work, the storm begins to subside, and the sea and sky begin to calm. An exhausted Thorleif and Helm stagger over to you, and Thorleif surveys his small island. "Without your help I would have lost much of what stands intact. It was a lucky thing you came when you did."`
 			`	With that, he turns and heads back to the main dwelling, with you and Helm in tired tow.`
