@@ -543,16 +543,18 @@ void MapDetailPanel::DrawInfo()
 					shown.insert(planet);
 					
 					bool hasSpaceport = planet->HasSpaceport();
+					bool isInhabited = planet->IsInhabited();
 					
 					hasSpaceport ? SpriteShader::Draw(planetSprite, uiPoint) : SpriteShader::Draw(uninhabitedPlanetSprite, uiPoint);
 					planetY[planet] = uiPoint.Y() - 60;
-					planetExtended[planet] = hasSpaceport;
+					planetExtended[planet] = isInhabited;
 					
 					font.Draw({object.Name(), alignLeft},
 						uiPoint + Point(-70., -52.),
 						planet == selectedPlanet ? medium : dim);
 					
-					string reputationLabel = !hasSpaceport ? "No Spaceport" :
+					string reputationLabel = !isInhabited ? "Uninhabited" :
+						!hasSpaceport ? "No Spaceport" :
 						GameData::GetPolitics().HasDominated(planet) ? "Dominated" :
 						planet->GetGovernment()->IsEnemy() ? "Hostile" :
 						planet->CanLand() ? "Friendly" : "Restricted";
@@ -564,7 +566,7 @@ void MapDetailPanel::DrawInfo()
 						PointerShader::Draw(uiPoint + Point(-60., -25.), Point(1., 0.),
 							10.f, 10.f, 0.f, medium);
 							
-					if(planet->IsInhabited())
+					if(isInhabited)
 					{
 						font.Draw("Shipyard",
 							uiPoint + Point(-60., -12.),
