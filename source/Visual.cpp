@@ -32,7 +32,8 @@ Visual::Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point h
 	
 	velocity *= effect.velocityScale;
 	if(!effect.absoluteVelocity)
-	    velocity += hitVelocity * (1. - effect.velocityScale);
+		velocity += hitVelocity * (1. - effect.velocityScale);
+
 	if(effect.randomVelocity)
 		velocity += angle.Unit() * Random::Real() * effect.randomVelocity;
 	
