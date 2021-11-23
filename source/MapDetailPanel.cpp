@@ -127,10 +127,10 @@ bool MapDetailPanel::Scroll(double dx, double dy)
 	Point point = UI::GetMouse();
 	if(excessPlanet && point.X() < Screen::Left() + 160 && point.Y() > Screen::Top() + 90 && point.Y() < Screen::Bottom() - 230)
 	{
-		if(dy > 0. && planetNbr < excessPlanet)
-			++planetNbr;
-		else if(dy < 0. && planetNbr > 0)
-			--planetNbr;
+		if(dy > 0. && firstPlanet < excessPlanet)
+			++firstPlanet;
+		else if(dy < 0. && firstPlanet > 0)
+			--firstPlanet;
 		return true;
 	}
 	else
@@ -263,7 +263,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 						int row = (y - (it.second + 30)) / 20;
 						static const int SHOW[4] = {
 							SHOW_REPUTATION, SHOW_SHIPYARD, SHOW_OUTFITTER, SHOW_VISITED};
-						// In the case of a non extended planet shipyard and outfitter are not shown.
+						// In the case of a non extended planet shipyard and outfitter are not shown, the second row is show visited.
 						if(!planetExtended[it.first] && row == 1)
 							row = 3;
 						SetCommodity(SHOW[row]);
@@ -320,7 +320,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	
 	// If the system just changed, the planet scroll in the system needs to be reset.
 	if(selectedSystem->Name() != oldSystem)
-		planetNbr = 0;
+		firstPlanet = 0;
 	return true;
 }
 
@@ -509,14 +509,13 @@ void MapDetailPanel::DrawInfo()
 
 	planetY.clear();
 
-	// Hint more planets can be seen by scrolling up.
-	if(planetNbr > 0)
+	// Hints that more planets can be seen by scrolling up.
+	if(firstPlanet > 0)
 	{
 		uiPoint.Y() += 10;
-		const string &up = "/\\";
-		Point point(Screen::Left() + font.Width(up) / 2 + 80., governmentY + 20. + font.Width(up));
-		font.Draw(up, point + Point(1, 1), Color(0.f, 1.f));
-		font.Draw(up, point, medium);
+		const Sprite *up = SpriteSet::Get("ui/up");
+		Point point(Screen::Left() + 100., governmentY + 45.);
+		SpriteShader::Draw(up, point);
 	}
 
 	// Draw the basic information for visitable planets in this system.
@@ -526,7 +525,7 @@ void MapDetailPanel::DrawInfo()
 		const Sprite *planetSprite = SpriteSet::Get("ui/map planet");
 		const Sprite *uninhabitedPlanetSprite = SpriteSet::Get("ui/map uninhabited");
 		excessPlanet = 0;
-		int currentPlanetNbr = 0;
+		int currentPlanet = 0;
 		for(const StellarObject &object : selectedSystem->Objects())
 		{
 			if(object.HasSprite() && object.HasValidPlanet())
@@ -538,14 +537,15 @@ void MapDetailPanel::DrawInfo()
 					continue;
 
 				// Makes sure it would not go out of the screen.
-				if(uiPoint.Y() <= (Screen::Bottom() - 230 - 130) && currentPlanetNbr >= planetNbr)
+				if(uiPoint.Y() <= (Screen::Bottom() - 230 - 130) && currentPlanet >= firstPlanet)
 				{
 					shown.insert(planet);
 					
 					bool hasSpaceport = planet->HasSpaceport();
 					bool isInhabited = planet->IsInhabited();
 					
-					isInhabited ? SpriteShader::Draw(planetSprite, uiPoint) : SpriteShader::Draw(uninhabitedPlanetSprite, uiPoint + Point(0, -20));
+					isInhabited ? SpriteShader::Draw(planetSprite, uiPoint) : 
+						SpriteShader::Draw(uninhabitedPlanetSprite, uiPoint + Point(0, -20));
 					planetY[planet] = uiPoint.Y() - 60;
 					planetExtended[planet] = isInhabited;
 					
@@ -583,7 +583,7 @@ void MapDetailPanel::DrawInfo()
 								10.f, 10.f, 0.f, medium);
 					}
 					
-					double yHasVisited = hasSpaceport ? 28. : -12;
+					double yHasVisited = isInhabited ? 28. : -12;
 					bool hasVisited = player.HasVisited(*planet);
 					font.Draw(hasVisited ? "(has been visited)" : "(not yet visited)",
 						uiPoint + Point(-70., yHasVisited),
@@ -591,25 +591,24 @@ void MapDetailPanel::DrawInfo()
 					if(commodity == SHOW_VISITED)
 						PointerShader::Draw(uiPoint + Point(-70., yHasVisited+7), Point(1., 0.),
 							10.f, 10.f, 0.f, medium);
-					uiPoint.Y() += hasSpaceport ? 130. : 90;
+					uiPoint.Y() += isInhabited ? 130. : 90;
 				}
-				// Lacking space for a new planet to be displayed.
 				else
 				{
+					// Lacking space for a new planet to be displayed.
 					++excessPlanet;
 				}
-				++currentPlanetNbr;
+				++currentPlanet;
 			}
 		}
 	}
 	
 	// Hints that more planets can be seen by scrolling down.
-	if(excessPlanet > planetNbr)
+	if(excessPlanet > firstPlanet)
 	{
-		const string &down = "\\/";
-		Point point(Screen::Left() + font.Width(down) / 2 + 80., uiPoint.Y() - 62.5 - font.Width(down));
-		font.Draw(down, point + Point(1, 1), Color(0.f, 1.f));
-		font.Draw(down, point, medium);
+		const Sprite *down = SpriteSet::Get("ui/down");
+		Point point(Screen::Left() + 100., uiPoint.Y() - 70.);
+		SpriteShader::Draw(down, point);
 		uiPoint.Y() += 10;
 	}
 	

@@ -59,8 +59,9 @@ private:
 private:
 	int governmentY = 0;
 	int tradeY = 0;
-	// For when there are too many planets to display on the screen at once, id of the first one that is shown on screen.
-	int planetNbr = 0;
+	// The first planet of the list that is displayed (used when there are too many to all fit at once).
+	int firstPlanet = 0;
+	// The amount of planets that do not fit on screen.
 	int excessPlanet = 0;
 	
 	// Default display scaling for orbits within the currently displayed system.
@@ -68,7 +69,7 @@ private:
 	
 	// Y-indices of the selected system's "info displays" that feature its planets' names and basic information.
 	std::map<const Planet *, int> planetY;
-	// Wether planets are fully shown or without outfitter and shipyard
+	// Wether planets are fully shown or without outfitter and shipyard.
 	std::map<const Planet *, bool> planetExtended;
 	// Vector offsets from the center of the "orbits" UI.
 	std::map<const Planet *, Point> planets;
