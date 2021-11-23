@@ -121,6 +121,7 @@ void MapDetailPanel::Draw()
 }
 
 
+
 // Navigates trough the shown planets when there are too many.
 bool MapDetailPanel::Scroll(double dx, double dy)
 {
@@ -263,7 +264,8 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 						int row = (y - (it.second + 30)) / 20;
 						static const int SHOW[4] = {
 							SHOW_REPUTATION, SHOW_SHIPYARD, SHOW_OUTFITTER, SHOW_VISITED};
-						// In the case of a non extended planet shipyard and outfitter are not shown, the second row is show visited.
+						// In the case of a non extended planet shipyard and outfitter are not shown,
+						// the second row is SHOW_VISITED.
 						if(!planetExtended[it.first] && row == 1)
 							row = 3;
 						SetCommodity(SHOW[row]);
@@ -306,18 +308,13 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		
 		return true;
 	}
-	
+
 	const string &oldSystem = selectedSystem->Name();
-	
 	// The click was not on an interface element, so check if it was on a system.
 	MapPanel::Click(x, y, clicks);
-	
 	// If the system just changed, the selected planet is no longer valid.
 	if(selectedPlanet && !selectedPlanet->IsInSystem(selectedSystem))
-	{
 		selectedPlanet = nullptr;
-	}
-	
 	// If the system just changed, the planet scroll in the system needs to be reset.
 	if(selectedSystem->Name() != oldSystem)
 		firstPlanet = 0;
@@ -506,9 +503,7 @@ void MapDetailPanel::DrawInfo()
 			10.f, 10.f, 0.f, medium);
 	
 	uiPoint.Y() += 115.;
-
 	planetY.clear();
-
 	// Hints that more planets can be seen by scrolling up.
 	if(firstPlanet > 0)
 	{
@@ -517,7 +512,6 @@ void MapDetailPanel::DrawInfo()
 		Point point(Screen::Left() + 100., governmentY + 40.);
 		SpriteShader::Draw(up, point);
 	}
-
 	// Draw the basic information for visitable planets in this system.
 	if(player.HasVisited(*selectedSystem))
 	{
@@ -558,14 +552,13 @@ void MapDetailPanel::DrawInfo()
 						GameData::GetPolitics().HasDominated(planet) ? "Dominated" :
 						planet->GetGovernment()->IsEnemy() ? "Hostile" :
 						planet->CanLand() ? "Friendly" : "Restricted";
-					
 					font.Draw(reputationLabel,
 						uiPoint + Point(-60., -32.),
 						hasSpaceport ? medium : faint);
 					if(commodity == SHOW_REPUTATION)
 						PointerShader::Draw(uiPoint + Point(-60., -25.), Point(1., 0.),
 							10.f, 10.f, 0.f, medium);
-							
+					
 					if(isInhabited)
 					{
 						font.Draw("Shipyard",
@@ -582,7 +575,6 @@ void MapDetailPanel::DrawInfo()
 							PointerShader::Draw(uiPoint + Point(-60., 15.), Point(1., 0.),
 								10.f, 10.f, 0.f, medium);
 					}
-					
 					double yHasVisited = isInhabited ? 28. : -12;
 					bool hasVisited = player.HasVisited(*planet);
 					font.Draw(hasVisited ? "(has been visited)" : "(not yet visited)",
@@ -591,18 +583,15 @@ void MapDetailPanel::DrawInfo()
 					if(commodity == SHOW_VISITED)
 						PointerShader::Draw(uiPoint + Point(-70., yHasVisited+7), Point(1., 0.),
 							10.f, 10.f, 0.f, medium);
+					
 					uiPoint.Y() += isInhabited ? 130. : 90;
 				}
 				else
-				{
-					// Lacking space for a new planet to be displayed.
 					++excessPlanet;
-				}
 				++currentPlanet;
 			}
 		}
 	}
-	
 	// Hints that more planets can be seen by scrolling down.
 	if(excessPlanet > firstPlanet)
 	{
