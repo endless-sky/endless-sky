@@ -37,7 +37,7 @@ class Weapon;
 class Projectile : public Body {
 public:
 	Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon);
-	Projectile(const Projectile &parent, const Weapon *weapon);
+	Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon);
 	// Ship explosion.
 	Projectile(Point position, const Weapon *weapon);
 	
@@ -66,12 +66,16 @@ public:
 	// Get information on the weapon that fired this projectile.
 	const Weapon &GetWeapon() const;
 	
-	// Find out which ship this projectile is targeting. Note: this pointer is
-	// not guaranteed to be dereferenceable, so only use it for comparing.
+	// Find out which ship or government this projectile is targeting. Note:
+	// this pointer is not guaranteed to be dereferenceable, so only use it
+	// for comparing.
 	const Ship *Target() const;
+	const Government *TargetGovernment() const;
 	// This function is much more costly, so use it only if you need to get a
-	// non-const shared pointer to the target.
+	// non-const shared pointer to the target ship.
 	std::shared_ptr<Ship> TargetPtr() const;
+	// Clear the targeting information on this projectile.
+	void BreakTarget();
 	
 	// Get the distance that this projectile has traveled.
 	double DistanceTraveled() const;

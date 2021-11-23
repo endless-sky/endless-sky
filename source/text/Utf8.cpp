@@ -12,9 +12,51 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Utf8.h"
 
+#if defined(_WIN32)
+#define STRICT
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#endif
+
 using namespace std;
 
 namespace Utf8 {
+#if defined(_WIN32)
+	wstring ToUTF16(const string &input, bool isPath)
+	{
+		const auto page = CP_UTF8;
+		wstring result;
+		if(input.empty())
+			return result;
+		
+		bool endsInSlash = isPath && (input.back() == '/' || input.back() == '\\');
+		int size = MultiByteToWideChar(page, 0, &input[0], input.length() - endsInSlash, nullptr, 0);
+		result.resize(size);
+		MultiByteToWideChar(page, 0, &input[0], input.length() - endsInSlash, &result[0], size);
+		
+		return result;
+	}
+	
+	
+	
+	string ToUTF8(const wchar_t *str)
+	{
+		string result;
+		if(!str || !*str)
+			return result;
+		
+		const auto page = CP_UTF8;
+		// The returned size will include the null character at the end.
+		int size = WideCharToMultiByte(page, 0, str, -1, nullptr, 0, nullptr, nullptr) - 1;
+		result.resize(size);
+		WideCharToMultiByte(page, 0, str, -1, &result[0], size, nullptr, nullptr);
+		
+		return result;
+	}
+#endif
+	
+	
+	
 	size_t NextCodePoint(const string &str, size_t pos)
 	{
 		if(pos >= str.length())

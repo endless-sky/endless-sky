@@ -1,0 +1,42 @@
+data:
+ - 'changelog*'
+ - 'copyright*'
+ - credits.txt
+ - icon.png
+ - keys.txt
+ - license.txt
+ - 'data/**/*'
+ - 'images/**/*'
+ - 'sounds/**/*'
+
+game_code: &build
+ - 'source/**'
+
+macos:
+ - 'XCode/**'
+ - '**/*.xcodeproj'
+ - 'icons/endless-sky.iconset/**'
+ - 'utils/fetch_sdl2_framework.sh'
+ - 'utils/set_dylibs_rpath.sh'
+ - *build
+
+windows:
+ - '**/*.cbp'
+ - EndlessSky.workspace
+ - SConstruct
+ - .winmake
+ - *build
+
+linux:
+ - SConstruct
+ - *build
+
+unit_tests:
+ - 'tests/**/*.h'
+ - 'tests/**/*.hpp'
+ - 'tests/**/*.cpp'
+
+integration_tests:
+ - 'tests/test_parse.*'
+ - 'tests/run_tests*'
+ - 'data/tests/**'

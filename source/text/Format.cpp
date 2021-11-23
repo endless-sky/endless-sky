@@ -119,8 +119,8 @@ std::string Format::PlayTime(double timeVal)
 
 
 
-// Convert the given number to a string, with at most one decimal place.
-// This is primarily for displaying ship and outfit attributes.
+// Convert the given number to a string, with a reasonable number of decimal
+// places. (This is primarily for displaying ship and outfit attributes.)
 string Format::Number(double value)
 {
 	if(!value)
@@ -130,19 +130,34 @@ string Format::Number(double value)
 	bool isNegative = (value < 0.);
 	value = fabs(value);
 	
-	// Check if this is a whole number.
+	// Only show decimal places for numbers between +/-10'000.
 	double decimal = modf(value, &value);
-	if(decimal)
+	if(decimal && value < 10000)
 	{
-		if(decimal >= .95)
+		double tenths = 0.;
+		// Account for floating-point representation error by adding EPS after multiplying.
+		constexpr double EPS = 0.0000000001;
+		int hundredths = static_cast<int>(EPS + 10. * modf(decimal * 10., &tenths));
+		if(hundredths > 9)
 		{
-			result += '0';
-			++value;
+			hundredths = 0;
+			++tenths;
 		}
-		else
-			result += static_cast<char>('0' + static_cast<int>(round(decimal * 10.)));
+		if(tenths >= 10. - EPS)
+		{
+			++value;
+			tenths = hundredths = 0;
+		}
 		
-		result += '.';
+		// Values up to 1000 may have two decimal places.
+		bool two = value < 1000 && hundredths;
+		if(two)
+			result += static_cast<char>('0' + hundredths);
+		if(two || tenths)
+		{
+			result += static_cast<char>('0' + tenths);
+			result += '.';
+		}
 	}
 	
 	// Convert the number to a string, adding commas if needed.
@@ -186,6 +201,7 @@ double Format::Parse(const string &str)
 	{
 		if(*it == '.')
 			place = .1;
+		else if(*it == ',') {}
 		else if(*it < '0' || *it > '9')
 			break;
 		else
@@ -221,7 +237,7 @@ double Format::Parse(const string &str)
 
 
 
-string Format::Replace(const string &source, const map<string, string> keys)
+string Format::Replace(const string &source, const map<string, string> &keys)
 {
 	string result;
 	result.reserve(source.length());
@@ -297,7 +313,7 @@ string Format::Capitalize(const string &str)
 	bool first = true;
 	for(char &c : result)
 	{
-		if(!isalpha(c))
+		if(isspace(c))
 			first = true;
 		else
 		{

@@ -57,6 +57,8 @@
 			<Add option="-Wall" />
 			<Add option="-std=c++11" />
 			<Add option="-Werror" />
+			<Add option="-Wold-style-cast" />
+			<Add option="-fno-rtti" />
 			<Add directory="C:/dev64/include" />
 		</Compiler>
 		<Unit filename="source/AI.cpp" />
@@ -85,6 +87,7 @@
 		<Unit filename="source/CaptureOdds.h" />
 		<Unit filename="source/CargoHold.cpp" />
 		<Unit filename="source/CargoHold.h" />
+		<Unit filename="source/CategoryTypes.h" />
 		<Unit filename="source/ClickZone.h" />
 		<Unit filename="source/CollisionSet.cpp" />
 		<Unit filename="source/CollisionSet.h" />
@@ -124,6 +127,8 @@
 		<Unit filename="source/Engine.h" />
 		<Unit filename="source/EscortDisplay.cpp" />
 		<Unit filename="source/EscortDisplay.h" />
+		<Unit filename="source/EsUuid.cpp" />
+		<Unit filename="source/EsUuid.h" />
 		<Unit filename="source/File.cpp" />
 		<Unit filename="source/File.h" />
 		<Unit filename="source/Files.cpp" />
@@ -140,6 +145,8 @@
 		<Unit filename="source/FrameTimer.h" />
 		<Unit filename="source/Galaxy.cpp" />
 		<Unit filename="source/Galaxy.h" />
+		<Unit filename="source/GameAction.cpp" />
+		<Unit filename="source/GameAction.h" />
 		<Unit filename="source/GameData.cpp" />
 		<Unit filename="source/GameData.h" />
 		<Unit filename="source/GameEvent.cpp" />
@@ -188,6 +195,8 @@
 		<Unit filename="source/MapShipyardPanel.h" />
 		<Unit filename="source/Mask.cpp" />
 		<Unit filename="source/Mask.h" />
+		<Unit filename="source/MaskManager.cpp" />
+		<Unit filename="source/MaskManager.h" />
 		<Unit filename="source/MenuPanel.cpp" />
 		<Unit filename="source/MenuPanel.h" />
 		<Unit filename="source/Messages.cpp" />
@@ -298,6 +307,8 @@
 		<Unit filename="source/System.h" />
 		<Unit filename="source/Test.cpp" />
 		<Unit filename="source/Test.h" />
+		<Unit filename="source/TestContext.cpp" />
+		<Unit filename="source/TestContext.h" />
 		<Unit filename="source/TestData.cpp" />
 		<Unit filename="source/TestData.h" />
 		<Unit filename="source/Trade.cpp" />
@@ -308,10 +319,11 @@
 		<Unit filename="source/UI.h" />
 		<Unit filename="source/Visual.cpp" />
 		<Unit filename="source/Visual.h" />
-		<Unit filename="source/Weather.cpp" />
-		<Unit filename="source/Weather.h" />
 		<Unit filename="source/Weapon.cpp" />
 		<Unit filename="source/Weapon.h" />
+		<Unit filename="source/Weather.cpp" />
+		<Unit filename="source/Weather.h" />
+		<Unit filename="source/WeightedList.h" />
 		<Unit filename="source/gl_header.h" />
 		<Unit filename="source/pi.h" />
 		<Unit filename="source/shift.h" />
