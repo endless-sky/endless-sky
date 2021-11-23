@@ -308,7 +308,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		
 		return true;
 	}
-
+	
 	const string &oldSystem = selectedSystem->Name();
 	// The click was not on an interface element, so check if it was on a system.
 	MapPanel::Click(x, y, clicks);
