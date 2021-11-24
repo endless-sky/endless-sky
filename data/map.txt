@@ -27209,7 +27209,7 @@ planet "Far Garden"
 planet "Far Home"
 	attributes saryd tourism urban
 	landscape land/valley10-sfiera
-	description `The weather on Far Home is a nearly perfect blend of what is most comfortable for each of the three member species of the Coalition. The mountains and boreal forests have been settled by the Saryds, the grasslands and savanna by the Kimek, and the rainforests by the Arachi, even though this is technically part of Saryd territory.`
+	description `The weather on Far Home is a nearly perfect blend of what is most comfortable for each of the three member species of the Coalition. The mountains and boreal forests have been settled by the Saryds, the monsoonal savannas and coastlines by the Kimek, and the rainforests by the Arachi, even though this is technically part of Saryd territory.`
 	description `	This world is also home to the annual Coalition Games, where athletes from throughout Coalition space compete. The winners become eligible for immediate elevation to Heliarch rank.`
 	spaceport `The spaceport is a large city on the edge of a temperate forest. The city's layout, with green space and parks woven throughout it, is clearly a Saryd design, but the architecture borrows equally from all three cultures. As with the other ports where interspecies interactions are frequent, hundreds of Heliarch representatives wander around to mediate conversations and prevent misunderstandings.`
 	spaceport `	Once a year, when the Games begin, the spaceport city grows to nearly four times its usual population.`
@@ -27965,7 +27965,7 @@ planet "Ki Patek Ka"
 	attributes kimek farming tourism urban folklore
 	landscape land/fields10-sfiera
 	description `This is the Kimek home world. Before they developed spaceflight, billions of Kimek died either from famine or from civil wars brought on by overpopulation. Today, every major city still has "hunger towers": kilometer-high skyscrapers where yeast and bacterial cultures are grown in massive vats in order to provide a bland but stable source of emergency rations if the crops and the food shipments from off-world should ever fail.`
-	spaceport `Nearly all the land mass on Ki Patek Ka is covered in cities; the only undeveloped land is the high mountain peaks and the ice caps near the poles. The spaceport alone is larger than most human cities, stretching from horizon to horizon, with a ship taking off or landing every few seconds. The sheer number of people here - mostly Kimek, but a fair number of Saryds and Arachi as well - is overwhelming.`
+	spaceport `Once dominated by monsoonal savanna and extensive intertidal reagions, now no piece of useful land on Ki Patek Ka goes unused. Huge mega-cities dominate the landscape with spoke-like corridors of civilisation spidering between them in unbroken urbanisation. Every other piece of useful land is managed, protected, or cultivated in one form or another, with the only undeveloped land being high mountain peaks or buried beneath ice caps. The spaceport alone is larger than most human cities, stretching from horizon to horizon when stood in the middle, with a ship taking off or landing every few seconds. The sheer number of people here - mostly Kimek, but a fair number of Saryds and Arachi as well - is overwhelming.`
 	shipyard "Coalition Basics"
 	shipyard Kimek
 	outfitter "Coalition Advanced"
@@ -29079,7 +29079,8 @@ planet "Safaresk Enlai"
 planet "Sandy Two"
 	attributes kimek factory farming urban folklore
 	landscape land/badlands1
-	description `This world is relatively hot and dry by human standards, but nearly ideal for the Kimek, and more than fifteen billion of them live here in cities where the skyscrapers are so densely packed that many of the streets never receive direct sunlight. The residential areas tend to be spread out along the banks of rivers, so the cities are linear, with factories and other industry on their fringes. Access to limitless skilled labor makes it cheap to manufacture almost anything here.`
+	description `This world is relatively hot and dry by human standards, but fairly ideal for the Kimek, with broad and deep rivers slowly carrying water from where it falls on the rugged and unstable highlands across the otherwise arid landscape to the small seas.`
+	description `More than fifteen billion Kimek live here in cities where the skyscrapers are so densely packed that many of the streets never receive direct sunlight. The residential areas spread out along the banks of the rivers, so the cities are linear, with factories and other industry on their fringes. Access to limitless skilled labor makes it cheap to manufacture almost anything here.`
 	spaceport `The spaceport facility is on an island in the center of a river, surrounded by a city so large that the rows of skyscrapers stretch all the way to the horizon. Civilian aircraft, boats, and cargo trucks swarm around the spaceport, bringing goods and people to and from the residences and the outlying factories.`
 	outfitter "Coalition Advanced"
 
@@ -29140,7 +29141,7 @@ planet "Second Cerulean"
 planet "Second Rose"
 	attributes kimek farming mining
 	landscape land/beach5
-	description `Second Rose is a warm planet, but a bit too rainy for Kimek preferences. That, plus its relatively remote location, means that its population is low despite its fertile fields and fisheries: most Kimek prefer to live somewhere closer to their inner core of bustling metropolitan worlds.`
+	description `Second Rose is a warm planet, but a bit too conistently rainy for Kimek preferences. That, plus its relatively remote location, means that its population is low despite its fertile fields and fisheries: most Kimek prefer to live somewhere closer to their inner core of bustling metropolitan worlds.`
 	description `	The planet's crust is rich in metal, and in some areas mine shafts have been sunk two or three kilometers below the surface to tap the richest seams.`
 	spaceport `A surprising number of Saryds and Arachi are wandering through this spaceport, conversing with the locals and sampling the food that is served here while they wait either for transport off-world or for local flights to other parts of the planet's surface. Apparently this is something of a tourist destination.`
 	"required reputation" 15
