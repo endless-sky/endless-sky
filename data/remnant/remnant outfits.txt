@@ -416,7 +416,7 @@ outfit "Quantum Key Stone"
 	"mass" 1
 	"outfit space" -1
 	"quantum keystone" 1
-	description "This precious artifact attunes a ship's quantum oscillations in a way that allows it to travel through certain otherwise impassible wormholes in the Ember Waste. The stones are rare and valuable, because they can only be mined from one location in the Waste."
+	description "This precious artifact attunes a ship's quantum oscillations in a way that allows it to travel through certain otherwise impassable wormholes in the Ember Waste. The stones are rare and valuable, because they can only be mined from one location in the Waste."
 
 outfit "Salvage Scanner"
 	category "Systems"

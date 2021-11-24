@@ -43,6 +43,7 @@ public:
 		// of that ship's government; this will result in temporary animosities
 		// between the two governments. If a ship is "forbearing," it can only
 		// be "provoked" if its shields are below 90%.
+		// Some governments are provoked by starting a scan.
 		PROVOKE = (1 << 3),
 		// This ship disabled the given ship. This will have a permanent effect
 		// on your reputation with the given government. This event is generated
