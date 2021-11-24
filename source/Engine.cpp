@@ -1979,7 +1979,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			// If nothing triggered the projectile, check for collisions with ships.
 			if(closestHit > 0.)
 			{
-				Ship *ship = reinterpret_cast<Ship *>(shipCollisions.Line(projectile, &closestHit, &hits));
+				Ship *ship = reinterpret_cast<Ship *>(shipCollisions.Line(projectile, hits, &closestHit));
 				if(ship)
 				{
 					hit = ship->shared_from_this();
@@ -1995,13 +1995,23 @@ void Engine::DoCollisions(Projectile &projectile)
 			// ship that they have hit.
 			if(!projectile.GetWeapon().IsPhasing())
 			{
-				Body *asteroid = asteroids.Collide(projectile, &closestHit);
+				Body *asteroid = asteroids.Collide(projectile, hits, &closestHit);
 				if(asteroid)
 				{
 					hitVelocity = asteroid->Velocity();
 					hit.reset();
-					// Projectiles always die when impacting an asteroid.
-					projectile.Kill();
+					hasHit = true;
+					
+					// Insert the asteroid body into the hits set. If a tiled asteroid
+					// was hit and this projectile traveled far enough in a single frame
+					// then it could potentially hit the same asteroid body in a
+					// separate tile, in which case that second hit would be ignored,
+					// but that would require a projectile with a velocity above 4096
+					// (the asteroid field tile length/height) to even occur, and
+					// velocities that high aren't recommended given that they can
+					// hit the max velocity cap in the collision set, so don't bother
+					// trying to remember in which tile this asteroid was hit..
+					hits.insert(asteroid);
 				}
 			}
 		}

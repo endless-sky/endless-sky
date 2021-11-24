@@ -119,7 +119,7 @@ void AsteroidField::Draw(DrawList &draw, const Point &center, double zoom) const
 
 
 // Check if the given projectile collides with any asteroids.
-Body *AsteroidField::Collide(const Projectile &projectile, double *closestHit)
+Body *AsteroidField::Collide(const Projectile &projectile, const set<const Body *> &hits, double *closestHit)
 {
 	Body *hit = nullptr;
 	
@@ -144,7 +144,7 @@ Body *AsteroidField::Collide(const Projectile &projectile, double *closestHit)
 		for(int x = 0; x < tileX; ++x)
 		{
 			Point offset = Point(x, y) * WRAP;
-			Body *body = asteroidCollisions.Line(from + offset, to + offset, closestHit);
+			Body *body = asteroidCollisions.Line(from + offset, to + offset, hits, closestHit);
 			if(body)
 				hit = body;
 		}
@@ -153,7 +153,7 @@ Body *AsteroidField::Collide(const Projectile &projectile, double *closestHit)
 	// very last collision check to be done, if a minable asteroid is the
 	// closest hit, it really is what the projectile struck - that is, we are
 	// not going to later find a ship or something else that is closer.
-	Body *body = minableCollisions.Line(projectile, closestHit);
+	Body *body = minableCollisions.Line(projectile, hits, closestHit);
 	if(body)
 	{
 		hit = body;

@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <list>
 #include <memory>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -56,7 +57,7 @@ public:
 	void Draw(DrawList &draw, const Point &center, double zoom) const;
 	// Check if the given projectile has hit any of the asteroids, using the information
 	// in the collision sets. If a collision occurs, returns a pointer to the hit body.
-	Body *Collide(const Projectile &projectile, double *closestHit);
+	Body *Collide(const Projectile &projectile, const std::set<const Body *> &hits, double *closestHit);
 	
 	// Get the list of minable asteroids.
 	const std::list<std::shared_ptr<Minable>> &Minables() const;

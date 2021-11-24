@@ -126,7 +126,7 @@ void CollisionSet::Finish()
 
 // Get the first object that collides with the given projectile. If a
 // "closest hit" value is given, update that value.
-Body *CollisionSet::Line(const Projectile &projectile, double *closestHit, const set<const Body *> *hits) const
+Body *CollisionSet::Line(const Projectile &projectile, const set<const Body *> &hits, double *closestHit) const
 {
 	// What objects the projectile hits depends on its government.
 	const Government *pGov = projectile.GetGovernment();
@@ -134,15 +134,15 @@ Body *CollisionSet::Line(const Projectile &projectile, double *closestHit, const
 	// Convert the start and end coordinates to integers.
 	Point from = projectile.Position();
 	Point to = from + projectile.Velocity();
-	return Line(from, to, closestHit, hits, pGov, projectile.Target());
+	return Line(from, to, hits, closestHit, pGov, projectile.Target());
 }
 
 
 
 // Check for collisions with a line, which may be a projectile's current
 // position or its entire expected trajectory (for the auto-firing AI).
-Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
-		const set<const Body *> *hits, const Government *pGov, const Body *target) const
+Body *CollisionSet::Line(const Point &from, const Point &to, const set<const Body *> &hits, double *closestHit,
+		const Government *pGov, const Body *target) const
 {
 	int x = from.X();
 	int y = from.Y();
@@ -181,7 +181,7 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 			// If this projectile has already hit this object, it won't hit it again.
 			const Government *iGov = it->body->GetGovernment();
 			if((it->body != target && iGov && pGov && !iGov->IsEnemy(pGov))
-					|| (hits && hits->count(it->body)))
+					|| (hits.count(it->body)))
 				continue;
 			
 			const Mask &mask = it->body->GetMask(step);
@@ -209,7 +209,7 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 			warned = true;
 		}
 		Point newEnd = from + pVelocity.Unit() * USED_MAX_VELOCITY;
-		return Line(from, newEnd, closestHit, hits, pGov, target);
+		return Line(from, newEnd, hits, closestHit, pGov, target);
 	}
 	
 	// When stepping from one grid cell to the next, we'll go in this direction.
@@ -257,7 +257,7 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 			// If this projectile has already hit this object, it won't hit it again.
 			const Government *iGov = it->body->GetGovernment();
 			if((it->body != target && iGov && pGov && !iGov->IsEnemy(pGov))
-					|| (hits && hits->count(it->body)))
+					|| (hits.count(it->body)))
 				continue;
 			
 			const Mask &mask = it->body->GetMask(step);
