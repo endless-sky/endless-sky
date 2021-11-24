@@ -2395,12 +2395,11 @@ int Ship::Scan()
 	}
 
 	// Some governments are provoked when scanned.
-	if(auto gov = target->GetGovernment())
-		if(gov->IsHostileWhenScanned()
-				&& !gov->IsEnemy(government)
-				&& (target->Shields() < .9 || target->Hull() < .9 || !target->GetPersonality().IsForbearing())
-				&& !target->GetPersonality().IsPacifist())
-			result |= ShipEvent::PROVOKE;
+	const Government *gov = target->GetGovernment();
+	if(gov && gov->IsHostileWhenScanned() && !gov->IsEnemy(government)
+			&& (target->Shields() < .9 || target->Hull() < .9 || !target->GetPersonality().IsForbearing())
+			&& !target->GetPersonality().IsPacifist())
+		result |= ShipEvent::PROVOKE;
 	
 	return result;
 }
