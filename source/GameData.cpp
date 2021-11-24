@@ -103,6 +103,7 @@ namespace {
 	Set<Galaxy> defaultGalaxies;
 	Set<Sale<Ship>> defaultShipSales;
 	Set<Sale<Outfit>> defaultOutfitSales;
+	Set<Wormhole> defaultWormholes;
 	TextReplacements defaultSubstitutions;
 	
 	Politics politics;
@@ -262,6 +263,7 @@ bool GameData::BeginLoad(const char * const *argv)
 	defaultGalaxies = galaxies;
 	defaultShipSales = shipSales;
 	defaultOutfitSales = outfitSales;
+	defaultWormholes = wormholes;
 	defaultSubstitutions = substitutions;
 	playerGovernment = governments.Get("Escort");
 	
@@ -502,6 +504,7 @@ void GameData::Revert()
 	galaxies.Revert(defaultGalaxies);
 	shipSales.Revert(defaultShipSales);
 	outfitSales.Revert(defaultOutfitSales);
+	wormholes.Revert(defaultWormholes);
 	substitutions.Revert(defaultSubstitutions);
 	for(auto &it : persons)
 		it.second.Restore();
