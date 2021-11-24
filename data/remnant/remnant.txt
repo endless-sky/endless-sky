@@ -431,7 +431,7 @@ phrase "friendly remnant"
 	word
 		"friend"
 		"comrade"
-		"brethen"
+		"brethren"
 	word
 		"."
 		"!"
