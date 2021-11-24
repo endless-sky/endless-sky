@@ -40,6 +40,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
 {
 	government = parent.GetGovernment();
+	penetrations = weapon->Penetration();
 	
 	// If you are boarding your target, do not fire on it.
 	if(parent.IsBoarding() || parent.Commands().Has(Command::BOARD))
@@ -67,6 +68,7 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 {
 	government = parent.government;
 	targetGovernment = parent.targetGovernment;
+	penetrations = weapon->Penetration();
 	
 	cachedTarget = TargetPtr().get();
 	double inaccuracy = weapon->Inaccuracy();
@@ -267,7 +269,7 @@ void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hit
 		{
 			visuals.emplace_back(*it.first, position + velocity * intersection, velocity, angle, hitVelocity);
 		}
-	if(++penetrations > weapon->Penetration())
+	if(--penetrations < 0)
 	{
 		clip = intersection;
 		lifetime = -100;
@@ -296,7 +298,7 @@ bool Projectile::IsDead() const
 void Projectile::Kill()
 {
 	lifetime = 0;
-	penetrations = weapon->Penetration();
+	penetrations = 0;
 }
 
 
