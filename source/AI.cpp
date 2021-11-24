@@ -455,7 +455,7 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 				// If you provoke the same ship twice, it should have an effect both times.
 				if(event.Type() & ShipEvent::PROVOKE)
 					newActions |= ShipEvent::PROVOKE;
-				event.TargetGovernment()->Offend(newActions, target->RequiredCrew());
+				event.TargetGovernment()->Offend(newActions, target->CrewValue());
 			}
 		}
 	}
