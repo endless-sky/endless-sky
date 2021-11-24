@@ -101,7 +101,7 @@ void Government::Load(const DataNode &node)
 						penaltyFor[ShipEvent::CAPTURE] = grand.Value(1);
 					else if(grand.Token(0) == "destroy")
 						penaltyFor[ShipEvent::DESTROY] = grand.Value(1);
-					else if(grand.Token(0) == "scanning")
+					else if(grand.Token(0) == "scan")
 					{
 						penaltyFor[ShipEvent::SCAN_OUTFITS] = grand.Value(1);
 						penaltyFor[ShipEvent::SCAN_CARGO] = grand.Value(1);
