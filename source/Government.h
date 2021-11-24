@@ -116,7 +116,7 @@ public:
 	double CrewAttack() const;
 	double CrewDefense() const;
 
-	bool IsHostileWhenScanned() const;
+	bool IsProvokedOnScan() const;
 	
 	
 private:
@@ -141,7 +141,7 @@ private:
 	const Fleet *raidFleet = nullptr;
 	double crewAttack = 1.;
 	double crewDefense = 2.;
-	bool hostileWhenScanned = false;
+	bool provokedOnScan = false;
 };
 
 
