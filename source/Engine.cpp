@@ -1932,7 +1932,8 @@ void Engine::HandleMouseClicks()
 void Engine::DoCollisions(Projectile &projectile)
 {
 	const Government *gov = projectile.GetGovernment();
-	// Keep track of which ships this projectile has directly impacted this frame.
+	// Keep track of which ships and asteroids this projectile has directly
+	// impacted this frame.
 	set<const Body *> hits;
 	bool hasHit = true;
 	while(!projectile.IsDead() && hasHit)
@@ -2010,7 +2011,7 @@ void Engine::DoCollisions(Projectile &projectile)
 					// (the asteroid field tile length/height) to even occur, and
 					// velocities that high aren't recommended given that they can
 					// hit the max velocity cap in the collision set, so don't bother
-					// trying to remember in which tile this asteroid was hit..
+					// trying to remember in which tile this asteroid was hit.
 					hits.insert(asteroid);
 				}
 			}
