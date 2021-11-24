@@ -70,7 +70,7 @@ void SpaceportPanel::UpdateNews()
 
 void SpaceportPanel::Step()
 {
-	if(GetUI()->IsTop(this) && port.isSpaceport)
+	if(GetUI()->IsTop(this) && port.services & Port::ServicesType::OffersMissions)
 	{
 		Mission *mission = player.MissionToOffer(Mission::SPACEPORT);
 		// Special case: if the player somehow got to the spaceport before all

@@ -1597,7 +1597,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				{
 					for(const StellarObject &object : currentSystem->Objects())
 						if(object.HasSprite() && object.HasValidPlanet()
-								&& object.GetPlanet()->HasSpaceport())
+								&& object.GetPlanet()->HasServices())
 						{
 							target = object.Position();
 							break;
@@ -1705,7 +1705,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		}
 		// Only refuel if this planet has a spaceport.
 		else if(fuel >= attributes.Get("fuel capacity")
-				|| !landingPlanet || !landingPlanet->HasSpaceport())
+				|| !landingPlanet || !landingPlanet->CanRecharge(Port::RechargeType::Fuel))
 		{
 			zoom = min(1.f, zoom + .02f);
 			SetTargetStellar(nullptr);
@@ -2733,23 +2733,23 @@ bool Ship::IsDestroyed() const
 
 
 // Recharge and repair this ship (e.g. because it has landed).
-void Ship::Recharge(Planet::Port::RechargeType rechargeType)
+void Ship::Recharge(int rechargeType, bool hireCrew)
 {
 	if(IsDestroyed())
 		return;
 	
-	if(rechargeType == Planet::Port::All)
+	if(hireCrew)
 		crew = min<int>(max(crew, RequiredCrew()), attributes.Get("bunks"));
 	pilotError = 0;
 	pilotOkay = 0;
 	
-	if((rechargeType & Planet::Port::Shields) || attributes.Get("shield generation"))
+	if((rechargeType & Port::RechargeType::Shields) || attributes.Get("shield generation"))
 		shields = attributes.Get("shields");
-	if((rechargeType & Planet::Port::Hull) || attributes.Get("hull repair rate"))
+	if((rechargeType & Port::RechargeType::Hull) || attributes.Get("hull repair rate"))
 		hull = attributes.Get("hull");
-	if((rechargeType & Planet::Port::Energy) || attributes.Get("energy generation"))
+	if((rechargeType & Port::RechargeType::Energy) || attributes.Get("energy generation"))
 		energy = attributes.Get("energy capacity");
-	if((rechargeType & Planet::Port::Fuel) || attributes.Get("fuel generation"))
+	if((rechargeType & Port::RechargeType::Fuel) || attributes.Get("fuel generation"))
 		fuel = attributes.Get("fuel capacity");
 	
 	heat = IdleHeat();

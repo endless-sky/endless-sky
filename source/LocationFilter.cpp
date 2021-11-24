@@ -469,7 +469,9 @@ const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance
 		if(!planet.IsValid())
 			continue;
 		// Skip planets that do not offer special jobs or missions, unless they were explicitly listed as options.
-		if(planet.IsWormhole() || (requireSpaceport && !planet.HasSpaceport()) || (!hasClearance && !planet.CanLand()))
+		if(planet.IsWormhole()
+				|| (requireSpaceport && !(planet.GetPort().services & Port::ServicesType::OffersMissions))
+				|| (!hasClearance && !planet.CanLand()))
 			if(planets.empty() || !planets.count(&planet))
 				continue;
 		if(Matches(&planet, origin))

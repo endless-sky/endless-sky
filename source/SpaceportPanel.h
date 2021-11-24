@@ -16,7 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 
 #include "Information.h"
-#include "Planet.h"
+#include "Port.h"
 #include "text/WrappedText.h"
 
 class News;
@@ -43,7 +43,7 @@ private:
 private:
 	PlayerInfo &player;
 	WrappedText text;
-	const Planet::Port &port;
+	const Port &port;
 	
 	// Current news item (if any):
 	bool hasNews = false;

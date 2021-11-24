@@ -497,7 +497,7 @@ void MapDetailPanel::DrawInfo()
 					uiPoint + Point(-70., -52.),
 					planet == selectedPlanet ? medium : dim);
 				
-				bool hasSpaceport = planet->HasSpaceport();
+				bool hasSpaceport = planet->HasServices();
 				string reputationLabel = !hasSpaceport ? "No Spaceport" :
 					GameData::GetPolitics().HasDominated(planet) ? "Dominated" :
 					planet->GetGovernment()->IsEnemy() ? "Hostile" :

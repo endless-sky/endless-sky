@@ -360,7 +360,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		vector<const Planet *> planetVector;
 		if(!personality.IsSurveillance())
 			for(const StellarObject &object : system.Objects())
-				if(object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
+				if(object.HasValidPlanet() && object.GetPlanet()->IsInhabited()
 						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					planetVector.push_back(object.GetPlanet());
 	
@@ -611,7 +611,7 @@ pair<Point, double> Fleet::ChooseCenter(const System &system)
 {
 	auto centers = vector<pair<Point, double>>();
 	for(const StellarObject &object : system.Objects())
-		if(object.HasValidPlanet() && object.GetPlanet()->HasSpaceport())
+		if(object.HasValidPlanet() && object.GetPlanet()->IsInhabited())
 			centers.emplace_back(object.Position(), object.Radius());
 	
 	if(centers.empty())

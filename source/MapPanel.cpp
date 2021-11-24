@@ -809,10 +809,10 @@ void MapPanel::UpdateCache()
 					if(object.HasSprite() && object.HasValidPlanet())
 					{
 						const Planet *planet = object.GetPlanet();
-						hasSpaceport |= !planet->IsWormhole() && planet->HasSpaceport();
+						hasSpaceport |= !planet->IsWormhole() && planet->HasServices();
 						if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()))
 							continue;
-						canLand |= planet->CanLand() && planet->HasSpaceport();
+						canLand |= planet->CanLand() && planet->HasServices();
 						isInhabited |= planet->IsInhabited();
 						hasDominated &= (!planet->IsInhabited()
 							|| GameData::GetPolitics().HasDominated(planet));

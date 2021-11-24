@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef PLANET_H_
 #define PLANET_H_
 
+#include "Port.h"
 #include "Sale.h"
 
 #include <list>
@@ -37,39 +38,6 @@ class System;
 // are available, as well as attributes that determine what sort of missions
 // might choose it as a source or destination.
 class Planet {
-public:
-	class Port
-	{
-	public:
-		// The different properties that can be recharged by a port.
-		enum RechargeType
-		{
-			None = 0,
-			Shields = (1 << 0),
-			Hull = (1 << 1),
-			Energy = (1 << 2),
-			Fuel = (1 << 3),
-			All = Shields | Hull | Energy | Fuel,
-		};
-	public:
-		// The name of this port.
-		std::string name;
-
-		// The description of this port. Shown when clicking on the
-		// port button on the planet panel.
-		std::string description;
-
-		// What is recharged when landing on this port.
-		RechargeType recharge = None;
-
-		// Whether this port has news.
-		bool hasNews = false;
-
-		// Whether this is a 'spaceport'. Implies banking, hiring crews, etc.
-		bool isSpaceport = false;
-	};
-
-
 public:
 	// Load a planet's description from a file.
 	void Load(const DataNode &node);
@@ -97,13 +65,17 @@ public:
 	// Get planet's noun descriptor from attributes
 	const std::string &Noun() const;
 	
-	// Check whether there is a spaceport (which implies there is also trading,
-	// jobs, banking, and hiring).
-	bool HasSpaceport() const;
 	// Check whether there is a port (which may even be a full spaceport).
 	bool HasPort() const;
 	// Get this planet's port. Might be empty if there is no port.
 	const Port &GetPort() const;
+	// Check whether there are port services (such as trading, jobs, banking, and hiring)
+	// available on this planet.
+	bool HasServices() const;
+	// Check whether the given recharging is possible on this planet.
+	bool CanRecharge(int type) const;
+	// Check whether the given service is available on this planet.
+	bool IsAvailable(int type) const;
 	
 	// Check if this planet is inhabited (i.e. it has a spaceport, and does not
 	// have the "uninhabited" attribute).

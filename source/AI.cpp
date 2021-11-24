@@ -1253,7 +1253,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			target.reset();
 		else
 			for(const StellarObject &object : system->Objects())
-				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
+				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsInhabited()
 						&& object.GetPlanet()->CanLand(ship))
 				{
 					target.reset();
@@ -1471,7 +1471,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		// not land anywhere without a port.
 		vector<const StellarObject *> planets;
 		for(const StellarObject &object : origin->Objects())
-			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
+			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasServices()
 					&& object.GetPlanet()->CanLand(ship))
 			{
 				planets.push_back(&object);
@@ -3378,7 +3378,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 						double distance = ship.Position().Distance(object->Position());
 						const Planet *planet = object->GetPlanet();
 						types.insert(planet->Noun());
-						if((!planet->CanLand() || !planet->HasSpaceport()) && !planet->IsWormhole())
+						if((!planet->CanLand() || !planet->CanRecharge(Port::RechargeType::Fuel))
+								&& !planet->IsWormhole())
 							distance += 10000.;
 						
 						if(distance < closest)
