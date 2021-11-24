@@ -1,4 +1,4 @@
-# Copyright (c) 2016 by Michael Zahniser
+# Copyright (c) 2021 by MasterofGrey
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -13,17 +13,129 @@ mission "Grubbing Crisis Initial"
 	to offer
 		has "known to the heliarchs"
 		random < 2
-		#these criteria are incomplete
+		#these criteria could be refined to avoid conflict with any other plot chains
 	source
 		government "Coalition"
 		attributes "kimek"
+		not planet "Third Umber"
 	on offer
 		event "grubbing ground crisis"
+		event "grub crisis timer" 180
 		conversation
-			`An event triggers when you're in Kimek space somewhere announcing a crisis on a Kimek world (Third Umber?) that does not have a well-developed biosphere. The Kimek have been setting up an isolated valley on this world to act as a grubbing ground, because at present the entire population has had to migrate there. No Kimek are born on this world.`
-			`	The first generation of Kimek grubs have nearly matured, but a major storm has caused huge damage to the delicate ecology of the nascent grubbing ground. As a result, jobs will appear on every Kimek world to take emergency supplies of plants, bugs, animals, and biodegradables, to be dumped into the valley.`
+			`As you conduct your business in the spaceport a very unusual sound suddenly rings out from a great many directions at once and you see coalition citizens of all types pause in their business and glance around with surprise and concern. Your translator snatches a couple of half-formed sentences to the effect of, "famine?" and "Ki Patek Ka?" which you recognize to be the Kimek homeworld. Such commentary vanishes within a handful of seconds though. As one, every screen or projector in the port flicks to the same broadcast, transmitting in perfect sync. People shuffle to ensure they have a view and your translator begins to do its best to relay to you the content of the message.`
+			`	The message is not short and follows a thorough structure, informing you that this is a civic emergency broadcast, explaining from where the emergency has arisen, providing context on what exactly is at risk, and detailing the cause, expected consequence, and desired call to action. It is... profoundly professional.`
+			`	It would seem that on Third Umber, a world naturally devoid of either a functioning biosphere or hydrosphere, an ambitious project has been underway for some time to turn a deep and secluded equatorial valley into a contained ecosystem. You learn that Kimek, while capable of reproducing and raising their larval young in birthing pods, naturally would spend their first year or so as a grub underground. The project has been a long-term effort in establishing a 'Grubbing Ground'. A relatively controlled environment with a functional but contained, and more importantly protected, ecosystem capable of supporting Kimek grubs in their infancy as a way to better support the billion or so inhabitants; a workforce who are otherwise dependent on immigration or comparatively resource-intensive birthing pods for rearing subsequent generations.`
+			`	The world is relatively stable. In the inhabited areas this cool, dry world is so naturally sterile as to nearly be considered a sort of natural cleanroom. However, rarely, storms of surprising intensity occasionally sweep out of the polar areas, usually after being agitated by solar flux. While these storms pose no threat to the massive multi-storey, arcology-style structures that the Kimek favor for both accommodation and industry, it seems that there was a miscalculation in the designing of the project, and one such storm has slipped in and scoured the valley with frozen air and carbon sleet carried from the pole. Months of work on the final support structures has been lost, though the bulk of the project remains securely intact.`
+			`	More problematically though, the delicate, freshly built ecosystem within the valley has been savaged. Whole species frozen to local extinction in a few short hours of furious bluster.`
+			`	The developing ecosystem, the work of multiple years of effort, has been gutted only six months out from the date when the first grubs would expect to emerge into their final nymph phase above ground. A situation which would promptly see most of them starve in the current situation. The grubs would all have been burrowed deeply enough to endure the storm, but swift action needs to be taken to ensure their safety when they emerge.`
+			`Significant funds have been allocated to rapidly bolster the project. The broadcast ends with a statement that, while government resources would obviously be mobilised to prevent the humanitarian disaster, the scale and urgency of the situation was such that all pilots, if they're able, are called upon to render assistance in transporting supplies until the crisis is resolved. Such jobs should appear on the boards within a day.`
+				decline
 
 event "grubbing ground crisis"
+
+event "grub crisis timer"
+
+
+mission "A Grateful Head"
+	to offer
+		has "grub savior" > 200
+		not "grubbing ground resolved"
+	source
+		planet "Third Umber"
+	stopover "Second Rose"
+	to fail
+		has "grubbing ground resolution delayed"
+	on offer
+		payment 1200000
+		conversation
+			`After unloading your last delivery a well-insulated Kimek wearing something that you can only begin to describe as a padded lab coat arrives and begins looking around very conspicuously. After a moment the Kimek approaches you directly.`
+			`	"Are you Captain <last>?"`
+			choice
+				`	"Yes."`
+				`	"Who's asking?"`
+			`	"Head ecological scientist and project lead Rounded Purple B14 am I. Deepest thanks to outsider such as you express, I must. Been great contributor to resolving crisis you have."`
+			`	It is difficult to determine this particular Kimek's gender, not that they're they easiest to distinguish at the best of times, and they tilt their head to one side stroking their mandibles with their pedipalps while they consider you for a moment.`
+			`	"More assistance would be of use if interest you have. Prefer to send nearer experts does government, but I lead project. Would prefer experts from Second Rose, experience with restoring after sudden disaster they are. Worked with geoscaper there have I before. Bring them will you?"`
+			choice
+				`	"I will bring them."`
+					goto yeahok
+				`	"I'm sorry but I am busy."`
+			`	"To hear this, sorry I am. Still, special thanks of <payment> credits I extend to you for efforts so far. Good travels to you."`
+				decline
+			label yeahok
+			`	"To hear, thrilling, this is. Personal project ship I provide to you. Very pretty ship is it, fast and quite spacious. Ensure capacity you have to swiftly return. All haste, please make."`
+				accept
+	on accept
+		#give ship - special kimek spire
+	on stopover
+		conversation
+			`A collection of climatological, ecological and geoscaping experts are waiting for you when you land. Some have even traveled from nearby worlds to rendezvous here. They urge you to depart for Third Umber immediately.`
+	on fail
+		event "kimek disappointed"
+		conversation
+			`You receive a message from Rounded Purple B14; "Expired time for action has. Best of situation we have made. Disappointed, but understanding."`
+
+event "kimek disappointed"
+
+	
+mission "Mound Reconstruction"
+	Upon returning you are asked to go and collect a large shipment of geotextiles and cavern-root seeds from the homeworld. The isolated valley was made so by building a mound-city in the main mountain pass that allowed the weather systems to flow in and out of the valley, but the city (still largely uninhabited and not technically finished) was damaged by the storm. The mound-city is a traditional, though now rarely used, building method using a plant from their world that creates underground chambers in which it fosters a specific micro-biome for procesing nutrients in nutrient-poor environs (it's native to cold, stagnant swamps near the poles of their homeworld). With the aid of geotextiles they can manipulate it into building very stable, earthquake resistant, hive-like structures many dozens of stories taller than it would naturally grow in nature. They now need to repair and expand the one here to better seal off the valley.
+		Note: update planet description here
+	
+mission "Creche Herders"
+	With the mound-city provisioned you're asked to go and collect a number of creche herders, Kimek who specialise in the raising of freshly matured Kimek emerging from their underground grub state. Their ship has been waylaid by Heliarch demands, leaving them without transport and the great birthing is imminent. 
+	
+mission "Double Haze Soup"
+	The experts you brought earlier have been making progress and now some of them have identified something they think they need. You are sent to collect a large shipment of non-pressurised gas containers containing atmosphere from Double Haze, rich in its bacterial soup, to enhance the ecosystem of the valley.
+	
+mission "Witness the Birthing"
+	You are thanked (and rewarded) again for all of your assistance. You are invited to (optionally) witness the great birthing. This ends the mission chain either way. If you witness it you get to see tens of thousands of Kimek crawl their way out of the ground and engage in a feeding frenzy on the tuberous plantlife and supplementary piles of food distributed about the valley. You will find that the digestive juices they vomit up onto their food bond with soil particles, creating a thin impermeable layer that prevents all their juices and dissolved food from seeping into the soil before they can eat it. This layer is later eaten by a soil bacterium, so that the soil isn't just covered in a permanent layer of kimek digestive juices.
+
+
+
+
+"Young Kimek only emerge from underground when it has recently rained and the air is humid. Adult Kimek would learn to take food back to their burrow in the dry season. Of course, that became unnecessary when we developed houses."
+
+
+mission "Grubbing Crisis Resolution A"
+	invisible
+	landing
+	to offer
+		has "grub crisis timer"
+		not "A Grateful Head: Offered"
+	on offer
+		event "grubbing ground resolved"
+
+
+event "grubbing ground resolved"
+
+
+mission "Grubbing Crisis Resolution B"
+	invisible
+	landing
+	to offer
+		has "grub crisis timer"
+		has "A Grateful Head: Offered"
+	on offer
+		event "grubbing ground resolution delayed" 30
+		conversation
+			`	You receive an urgent message from Rounded Purple B14; "Delaying weather cycle we are. Opportunity window closing though. Hurry please."`
+
+
+event "grubbing ground resolution delayed"
+
+
+mission "Grubbing Crisis Resolution A"
+	invisible
+	landing
+	to offer
+		has "grubbing ground resolution delayed"
+	on offer
+		event "grubbing ground resolved"
+
+
+
+
 
 phrase "grub savior invertebrates"
 	word
@@ -45,17 +157,7 @@ phrase "grub savior food stock biodegradables"
 	word
 		`You deliver the food stock biodegradables to a harried Kimek scientist on <planet>'s spaceport. A host of assistants inspect the shipment and implore you to bring more before transferring <payment> and rushing off.`
 
-#Jobs for the Job Board located at the end of the file.
-
-
-
-
-
-
-
-
-
-
+#Crisis Jobs for the Job Board.
 mission "FoA: Transport Invertebrates 50t"
 	job
 	repeat
