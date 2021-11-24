@@ -2110,7 +2110,7 @@ mission "Terminus exploration"
 			action
 				log `Ivan said that although he's not sure if the anomaly is a wormhole or not, it does bear striking resemblance to the wormhole that leads to the Hai.`
 			`	"You mean the wormhole to the Hai?" you ask.`
-			`	"Interesting, you know of it," Ivan responds. "The anomaly in Terminus bearings striking resemblence to it in some of our readings, although it is very different in others."`
+			`	"Interesting, you know of it," Ivan responds. "The anomaly in Terminus bearings striking resemblance to it in some of our readings, although it is very different in others."`
 				goto end
 			label skip
 			action

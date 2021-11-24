@@ -103,6 +103,7 @@ namespace {
 	Set<Galaxy> defaultGalaxies;
 	Set<Sale<Ship>> defaultShipSales;
 	Set<Sale<Outfit>> defaultOutfitSales;
+	TextReplacements defaultSubstitutions;
 	
 	Politics politics;
 	vector<StartConditions> startConditions;
@@ -133,6 +134,8 @@ namespace {
 	map<const Sprite *, int> preloaded;
 	
 	MaskManager maskManager;
+	
+	TextReplacements substitutions;
 	
 	const Government *playerGovernment = nullptr;
 	
@@ -259,6 +262,7 @@ bool GameData::BeginLoad(const char * const *argv)
 	defaultGalaxies = galaxies;
 	defaultShipSales = shipSales;
 	defaultOutfitSales = outfitSales;
+	defaultSubstitutions = substitutions;
 	playerGovernment = governments.Get("Escort");
 	
 	politics.Reset();
@@ -498,6 +502,7 @@ void GameData::Revert()
 	galaxies.Revert(defaultGalaxies);
 	shipSales.Revert(defaultShipSales);
 	outfitSales.Revert(defaultOutfitSales);
+	substitutions.Revert(defaultSubstitutions);
 	for(auto &it : persons)
 		it.second.Restore();
 	
@@ -666,6 +671,8 @@ void GameData::Change(const DataNode &node)
 		systems.Get(node.Token(1))->Link(systems.Get(node.Token(2)));
 	else if(node.Token(0) == "unlink" && node.Size() >= 3)
 		systems.Get(node.Token(1))->Unlink(systems.Get(node.Token(2)));
+	else if(node.Token(0) == "substitutions" && node.HasChildren())
+		substitutions.Load(node);
 	else
 		node.PrintTrace("Invalid \"event\" data:");
 }
@@ -1031,6 +1038,13 @@ MaskManager &GameData::GetMaskManager()
 
 
 
+const TextReplacements &GameData::GetTextReplacements()
+{
+	return substitutions;
+}
+
+
+
 void GameData::LoadSources()
 {
 	sources.clear();
@@ -1229,6 +1243,8 @@ void GameData::LoadFile(const string &path, bool debugMode)
 				text += child.Token(0);
 			}
 		}
+		else if(key == "substitutions" && node.HasChildren())
+			substitutions.Load(node);
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
 	}

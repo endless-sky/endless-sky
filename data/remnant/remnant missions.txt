@@ -1183,11 +1183,11 @@ mission "Remnant: Deep Surveillance"
 			branch unknown
 				has "deep: did not reveal remnant"
 			
-			branch technology
-				has "Deep: Remnant: Engines: done"
-			
 			branch surveillance
 				has "Deep: Remnant Surveillance: done"
+			
+			branch technology
+				has "Deep: Remnant: Engines: done"
 			
 			choice
 				`	"They know where the Remnant are in the Ember Waste."`
@@ -1296,7 +1296,7 @@ mission "Remnant: Deep Surveillance"
 			label end
 			`	Torza begins tapping on a data pad. "We must act to rectify this situation," he says calmly.`
 			branch repeat
-				has "retreived before"
+				has "retrieved before"
 			
 			`	"I presume that you know of the whereabouts of these scientists. Would you be able to get us a copy of their findings?"`
 			choice
