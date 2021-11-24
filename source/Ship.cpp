@@ -2394,7 +2394,7 @@ int Ship::Scan()
 					+ Name() + "\" completed its scan of your outfits.", Messages::Importance::High);
 	}
 
-	// Some governments are provoked when scanned.
+	// Some governments are provoked when a scan is started on one of their ships.
 	const Government *gov = target->GetGovernment();
 	if(gov && gov->IsHostileWhenScanned() && !gov->IsEnemy(government)
 			&& (target->Shields() < .9 || target->Hull() < .9 || !target->GetPersonality().IsForbearing())
