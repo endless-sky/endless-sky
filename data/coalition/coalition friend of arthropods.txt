@@ -121,7 +121,7 @@ mission "Mound Reconstruction"
 				`	"Yeah ok I'll get them."`
 					goto yeahok
 				`	"I'm sorry but I am done here."`
-				decline
+					decline
 			label yeahok
 			`	"To hear, excellent, this is. Made shall arrangements be before you arrive at destination. Project ship, capacity should have. All haste, please make."`
 				accept
@@ -174,32 +174,55 @@ mission "Creche Herders"
 				`	"Don't worry, I'll get them."`
 					goto yeahok
 				`	"They will have to find their own transport now."`
-				decline
+					decline
 			label yeahok
 			`	"Appreciated deeply is your continued support."`
 				accept
 	on stopover
 		passengers 42
 		conversation
-			`The pallets of seeds and geotextiles are already standing on the platform waiting for you to land to be loaded immediately.`
+			`The creche herders hurry to board with their gear, conscious of the timeline they are working to.`
 	on fail
 		event "kimek disappointed"
 		conversation
 			`You receive a message from Rounded Purple B14; "Expired time for action has. Best of situation we have made. Disappointed, but understanding."`
-	
-	
-	
-	
+
+
+
 mission "Double Haze Soup"
-	The experts you brought earlier have been making progress and now some of them have identified something they think they need. You are sent to collect a large shipment of non-pressurised gas containers containing atmosphere from Double Haze, rich in its bacterial soup, to enhance the ecosystem of the valley.
-	
+	landing
+	deadline 12 1
+	payment 10000000
+	to offer
+		has "Creche Herders: Done"
+		not "grubbing ground resolution delayed"
+	source
+		planet "Third Umber"
+	stopover "Double Haze"
+	on offer
+		conversation
+			`No sooner have the creche herders begun to debark than yet again Rounded Purple B14 is there to speak with you.`
+			`	"No time to spare, no time at all. Go to Double Haze and retrieve cannisters prepared for you. Extremely tight is deadline, but <payment> will I give you! Go! Go!"
+			choice
+				`	"I'm going!"`
+					accept
+				`	"No."`
+					decline
+	on stopover
+		cargo "Bacterial Soup Cannisters" 36
+		conversation
+			`On your way here you actually receive the details of why you've been sent here. The experts you brought earlier have been making progress and now some of them have identified something they think they need for long-term health of the system. You are sent to collect a large shipment of non-pressurized gas containers containing atmosphere from Double Haze, rich in its bacterial soup, to enhance the ecosystem of the valley. It must be released before the first rainfall though to be useful for this cycle.`
+			`	Once you have landed safely the bottled atmospheric bacterial soup is quickly loaded onto your ship.`
+	on fail
+		conversation
+			`You receive a message from Rounded Purple B14; "Time to release before birthing we have not. Still, return swiftly and witness the event you may."`
+
+
+
 mission "Witness the Birthing"
 	You are thanked (and rewarded) again for all of your assistance. You are invited to (optionally) witness the great birthing. This ends the mission chain either way. If you witness it you get to see tens of thousands of Kimek crawl their way out of the ground and engage in a feeding frenzy on the tuberous plantlife and supplementary piles of food distributed about the valley. You will find that the digestive juices they vomit up onto their food bond with soil particles, creating a thin impermeable layer that prevents all their juices and dissolved food from seeping into the soil before they can eat it. This layer is later eaten by a soil bacterium, so that the soil isn't just covered in a permanent layer of kimek digestive juices.
 
 
-
-
-"Young Kimek only emerge from underground when it has recently rained and the air is humid. Adult Kimek would learn to take food back to their burrow in the dry season. Of course, that became unnecessary when we developed houses."
 
 
 
