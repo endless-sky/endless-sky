@@ -495,7 +495,6 @@ government "Remnant"
 		"Indigenous Lifeform" 0.05
 		"Korath" -.05
 		"Alpha" -.05
-		"Remnant (scannable)" 1
 	"penalty for"
 		assist -0.25
 		disable 1
@@ -507,7 +506,7 @@ government "Remnant"
 	"friendly hail" "remnant uncontacted"
 	"hostile hail" "remnant uncontacted hostile"
 
-government "Remnant (scannable)"
+government "Remnant (research)"
 	"display name" "Remnant"
 	swizzle 0
 	color .89 .38 .62
@@ -522,7 +521,6 @@ government "Remnant (scannable)"
 		"Remnant" 1
 	"penalty for"
 		assist -0.25
-		disable 1
 		board 1
 		capture 10
 		destroy 10
