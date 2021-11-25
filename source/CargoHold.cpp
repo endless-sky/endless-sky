@@ -595,3 +595,26 @@ int CargoHold::IllegalCargoFine() const
 	
 	return totalFine;
 }
+
+
+
+// Returns the amount tons of illegal cargo.
+int CargoHold::IllegalCargoAmount() const
+{
+	int count = 0;
+
+	// Find any illegal outfits inside the cargo hold.
+	for(const auto &it : outfits)
+		if(it.first->Get("illegal") > 0. || it.first->Get("atrocity") > 0.)
+			count += it.second;
+
+	// Find any illegal mission cargo and passengers.
+	for(const auto &it : missionCargo)
+		if(it.first->IllegalCargoFine())
+			count += it.second;
+	for(const auto &it : passengers)
+		if(it.first->IllegalCargoFine())
+			count += it.second;
+
+	return count;
+}
