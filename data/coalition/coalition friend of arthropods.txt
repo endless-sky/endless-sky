@@ -37,6 +37,7 @@ event "grub crisis timer"
 
 
 mission "A Grateful Head"
+	landing
 	to offer
 		has "grub savior" > 200
 		not "grubbing ground resolved"
@@ -79,11 +80,80 @@ event "kimek disappointed"
 
 	
 mission "Mound Reconstruction"
-	Upon returning you are asked to go and collect a large shipment of geotextiles and cavern-root seeds from the homeworld. The isolated valley was made so by building a mound-city in the main mountain pass that allowed the weather systems to flow in and out of the valley, but the city (still largely uninhabited and not technically finished) was damaged by the storm. The mound-city is a traditional, though now rarely used, building method using a plant from their world that creates underground chambers in which it fosters a specific micro-biome for procesing nutrients in nutrient-poor environs (it's native to cold, stagnant swamps near the poles of their homeworld). With the aid of geotextiles they can manipulate it into building very stable, earthquake resistant, hive-like structures many dozens of stories taller than it would naturally grow in nature. They now need to repair and expand the one here to better seal off the valley.
-		Note: update planet description here
-	
+	landing	
+	to offer
+		has "A Grateful Head: Done"
+		not "grubbing ground resolution delayed"
+	source
+		planet "Third Umber"
+	stopover "Ki Patek Ka"
+	to fail
+		has "grubbing ground resolution delayed"
+	on offer
+		conversation
+			`As you approach to land this time you are instead directed to a small landing pad set up some considerable distance away from the spaceport, nearly a fifth of the way around the planet in fact. The reason for this becomes swiftly evident as high ridges rise around your ship and a truly massive structure slides into view.`
+			`	Spanning between two peaks that stand above the ridge now flanking your ship, and set against the backdrop of a yet higher ridge with peaks of its own, a single monstrous construction stands a dizzying nearly eleven kilometers tall from the valley floor to the wavering, artificial ridge line created by its highest reaches. A ridge line which traces a path just over two kilometers in length from one side of the mountainous valley wall to the other.`
+			`	The core of the structure is quite typical of Kimek design. A slightly irregular and blocky structure, wide at the base and tapering only extremely incrementally as each level stacks upon the previous one, reaching from the valley floor to perhaps eight kilometers off the ground. Its matte white exterior gleams brilliantly, standing out amongst the grey rocky crags surrounding it. Once your eyes have a second to adjust though you can focus on what surrounds it.`
+			`	Flanking the artificial structural core, and extending far above it to the ridge line, is something which looks undeniably organic. A towering wall of burnt ocher with flecks of deep green that seems to have a lumpy texture, until you approach it closely enough to see that whatever it is is in fact millions of the same modular type structure mounded one atop the other in an interlocking slope which envelops the artificial core at the base and soars at a sheer angle well beyond it. On final approach to the landing pad you note with surprise, that the flecks of green are in fact leaves. Short pinnate fronds of something fern-like growing straight out of the ocher hued structure.`
+			`	One of the geoscapers appears at your shoulder. "The living wall is impressive is it not?"`
+			choice
+				`	"It's alive?"`
+					goto alive
+				`	"It's enormous!"`
+			`	"It is the most massive cavern-root structure ever built by Kimek. A project, greatly ambitious it is," confirms the Kimek.`
+			label alive
+			`	"The cavern-root tree from stagnant swamps native is, cultivated in prehistory by those who braved to endure the cold polar islands during great strife of Ki Patek Ka. Forms warm open spaces underground. Good microbiome it fosters, made good fake burrows before learn to build better Kimek did. Tricked into growing above ground it can be with geotextiles and moisture gel. Ancient building technique still use by religious sect, make one grow into next, join to make greater whole, made larger by smart Kimek today."`
+			choice
+				`	"Larger feels like an understatement."`
+				`	"Can a tree that large truly support itself?"`
+			`	The Kimek tilts its head and your translator seems to take a slightly longer time to process their next statement. "On other side valley floor lies against it, kilometers of roots stretch out and water table intersects with foundation. Prevents outflow from valley does cavern-root mound, plenty to sustain itself. Hard to tell also because such great height, but nearly kilometer thick at base it is. Very strong natural structure is, made like," and here the translator seems to pause lengthily for a second before continuing, "honeycomb."`
+			`	The Kimek focuses your ship display on a section near the top where you now suddenly notice that the wavering property of the ridge line was not at all intentional, "Damaged by storm there it has been. Reason for our presence it is."`
+			`	Before you can raise further question though the Kimek wordlessly turns to leave as the final landing procedure completes and the specialists begin rapidly disembarking. Outside Rounded Purple B14 emerges and gesticulates at you until you go outside to meet him.`
+			`	"Returned to us you have Captain, great appreciation have I," says Rounded Purple B14.`
+			`	"Conducted has full assessment of damage been, more supplies will specialists need soon to be safe. From Ki Patek Ka we require more cavern-root seeds and geotextiles. Little time do I have but project ship remains at your service. Collect them will you?"`
+			choice
+				`	"I will."`
+					goto yeahok
+				`	"I'm sorry but I am busy."`
+			`	"To hear this, sorry I am. Are you sure you will not help? Entrusted ship to you I have," pleads Rounded Purple B14.`
+			choice
+				`	"Yeah ok I'll get them."`
+					goto yeahok
+				`	"I'm sorry but I am done here."`
+				decline
+			label yeahok
+			`	"To hear, excellent, this is. Made shall arrangements be before you arrive at destination. Project ship capacity should have. All haste, please make."`
+				accept
+	on stopover
+		cargo "Seeds and Geotextiles" 36
+		conversation
+			`The pallets of seeds and geotextiles are already standing on the platform waiting for you to land to be loaded immediately.`
+	on fail
+		event "kimek disappointed"
+		conversation
+			`You receive a message from Rounded Purple B14; "Expired time for action has. Best of situation we have made. Disappointed, but understanding."`
+	on complete
+		#		Note: update planet description here
+
+
+
 mission "Creche Herders"
 	With the mound-city provisioned you're asked to go and collect a number of creche herders, Kimek who specialise in the raising of freshly matured Kimek emerging from their underground grub state. Their ship has been waylaid by Heliarch demands, leaving them without transport and the great birthing is imminent. 
+
+	landing	
+	to offer
+		has "Mound Reconstruction: Done"
+		not "grubbing ground resolution delayed"
+	source
+		planet "Third Umber"
+	stopover "Ki Patek Ka"
+	to fail
+		has "grubbing ground resolution delayed"
+	on offer
+		conversation
+			`As you approach to la
+	
+	
 	
 mission "Double Haze Soup"
 	The experts you brought earlier have been making progress and now some of them have identified something they think they need. You are sent to collect a large shipment of non-pressurised gas containers containing atmosphere from Double Haze, rich in its bacterial soup, to enhance the ecosystem of the valley.
@@ -96,6 +166,9 @@ mission "Witness the Birthing"
 
 "Young Kimek only emerge from underground when it has recently rained and the air is humid. Adult Kimek would learn to take food back to their burrow in the dry season. Of course, that became unnecessary when we developed houses."
 
+
+
+event "clean grubbing resolution"
 
 mission "Grubbing Crisis Resolution A"
 	invisible
@@ -116,6 +189,7 @@ mission "Grubbing Crisis Resolution B"
 	to offer
 		has "grub crisis timer"
 		has "A Grateful Head: Offered"
+		not "clean grubbing resolution"
 	on offer
 		event "grubbing ground resolution delayed" 30
 		conversation
