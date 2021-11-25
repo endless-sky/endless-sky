@@ -410,7 +410,7 @@ bool Planet::CanRecharge(int type) const
 
 
 // Check whether the given service is available on this planet.
-bool Planet::IsAvailable(int type) const
+bool Planet::HasService(int type) const
 {
 	return port.services & type;
 }
@@ -610,7 +610,7 @@ bool Planet::IsUnrestricted() const
 // but do so with a less convoluted syntax:
 bool Planet::HasFuelFor(const Ship &ship) const
 {
-	return !IsWormhole() && (port.recharge & Port::RechargeType::Fuel) && CanLand(ship);
+	return !IsWormhole() && CanRecharge(Port::RechargeType::Fuel) && CanLand(ship);
 }
 
 

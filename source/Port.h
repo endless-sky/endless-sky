@@ -13,22 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef PORT_H_
 #define PORT_H_
 
-#include "Sale.h"
-
-#include <list>
-#include <memory>
-#include <set>
 #include <string>
-#include <vector>
-
-class DataNode;
-class Fleet;
-class Government;
-class Outfit;
-class PlayerInfo;
-class Ship;
-class Sprite;
-class System;
 
 
 

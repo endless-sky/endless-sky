@@ -75,7 +75,7 @@ public:
 	// Check whether the given recharging is possible on this planet.
 	bool CanRecharge(int type) const;
 	// Check whether the given service is available on this planet.
-	bool IsAvailable(int type) const;
+	bool HasService(int type) const;
 	
 	// Check if this planet is inhabited (i.e. it has a spaceport, and does not
 	// have the "uninhabited" attribute).

@@ -1163,7 +1163,7 @@ void PlayerInfo::Land(UI *ui)
 			if(ship->GetSystem() == system)
 			{
 				ship->Recharge(canUseServices ? planet->GetPort().recharge : Port::RechargeType::None,
-						planet->IsAvailable(Port::ServicesType::HireCrew));
+						planet->HasService(Port::ServicesType::HireCrew));
 				ship->Cargo().TransferAll(cargo);
 				if(!ship->GetPlanet())
 					ship->SetPlanet(planet);
@@ -1216,7 +1216,7 @@ void PlayerInfo::Land(UI *ui)
 	// Hire extra crew back if any were lost in-flight (i.e. boarding) or
 	// some bunks were freed up upon landing (i.e. completed missions).
 	if(Preferences::Has("Rehire extra crew when lost")
-			&& (planet->IsAvailable(Port::ServicesType::HireCrew) && canUseServices) && flagship)
+			&& (planet->HasService(Port::ServicesType::HireCrew) && canUseServices) && flagship)
 	{
 		int added = desiredCrew - flagship->Crew();
 		if(added > 0)
@@ -1302,7 +1302,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 			}
 			else
 				ship->Recharge(canUseServices ? planet->GetPort().recharge : Port::RechargeType::None,
-						planet->IsAvailable(Port::ServicesType::HireCrew));
+						planet->HasService(Port::ServicesType::HireCrew));
 			
 			if(ship != flagship)
 			{

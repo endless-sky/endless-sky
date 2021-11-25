@@ -1709,7 +1709,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				zoom = 0.f;
 			}
 		}
-		// Only refuel if this planet has a spaceport.
+		// Only refuel if this planet has fuel services.
 		else if(fuel >= attributes.Get("fuel capacity")
 				|| !landingPlanet || !landingPlanet->CanRecharge(Port::RechargeType::Fuel))
 		{

@@ -21,7 +21,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "EsUuid.h"
 #include "Outfit.h"
-#include "Planet.h"
 #include "Port.h"
 #include "Personality.h"
 #include "Point.h"
@@ -40,6 +39,7 @@ class Flotsam;
 class Government;
 class Minable;
 class Phrase;
+class Planet;
 class PlayerInfo;
 class Projectile;
 class StellarObject;
