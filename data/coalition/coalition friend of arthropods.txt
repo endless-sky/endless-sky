@@ -202,7 +202,7 @@ mission "Double Haze Soup"
 	on offer
 		conversation
 			`No sooner have the creche herders begun to debark than yet again Rounded Purple B14 is there to speak with you.`
-			`	"No time to spare, no time at all. Go to Double Haze and retrieve cannisters prepared for you. Extremely tight is deadline, but <payment> will I give you! Go! Go!"
+			`	"No time to spare, no time at all. Go to Double Haze and retrieve cannisters prepared for you. Extremely tight is deadline, but <payment> will I give you! Go! Go!"`
 			choice
 				`	"I'm going!"`
 					accept
@@ -214,19 +214,46 @@ mission "Double Haze Soup"
 			`On your way here you actually receive the details of why you've been sent here. The experts you brought earlier have been making progress and now some of them have identified something they think they need for long-term health of the system. You are sent to collect a large shipment of non-pressurized gas containers containing atmosphere from Double Haze, rich in its bacterial soup, to enhance the ecosystem of the valley. It must be released before the first rainfall though to be useful for this cycle.`
 			`	Once you have landed safely the bottled atmospheric bacterial soup is quickly loaded onto your ship.`
 	on fail
+		event "haze birth timer" 6
 		conversation
 			`You receive a message from Rounded Purple B14; "Time to release before birthing we have not. Still, return swiftly and witness the event you may."`
 
 
 
 mission "Witness the Birthing"
-	You are thanked (and rewarded) again for all of your assistance. You are invited to (optionally) witness the great birthing. This ends the mission chain either way. If you witness it you get to see tens of thousands of Kimek crawl their way out of the ground and engage in a feeding frenzy on the tuberous plantlife and supplementary piles of food distributed about the valley. You will find that the digestive juices they vomit up onto their food bond with soil particles, creating a thin impermeable layer that prevents all their juices and dissolved food from seeping into the soil before they can eat it. This layer is later eaten by a soil bacterium, so that the soil isn't just covered in a permanent layer of kimek digestive juices.
+	landing
+	invisible
+	payment 10000000
+	to offer
+		or
+			has "Double Haze Soup: Done"
+			has "Double Haze Soup: Failed"
+	source
+		planet "Third Umber"
+	on offer
+		log `A thing has happened with a breeding ground. TBD`
+		conversation
+			`When you return there is no Rounded Purple B14 on the landing pad to meet you.`
+			branch madeit
+				not "haze birth timer"
+			`	An aide is there and informs you that you have missed the main event. The project ship is yours to keep, for services rendered, but no further participation on your part is required or desired.`
+				decline
+			label madeit
+			`	An aide is there though and offers you the opportunity to hurry inside and join them at the observation position.`
+			choice
+				`	"I will witness this."`
+					goto witness
+				`	"I will pass."`
+					decline
+			label witness
+			`	The instant you arrive Rounded Purple B14 begins to excitedly describe what you're about to witness as you watch the contents of your cargo hold get vent  into the valley as a thick greenish purple mist right as the first rain begins to fall. It is hard to believe how verdant this little microclimate actually looks given the severe sterility of the rest of the world.`
+			`	Within moments you watch as tens of thousands of Kimek crawl their way out of the ground and engage in a feeding frenzy on the tuberous plantlife and supplementary piles of food distributed about the valley. Various screens present you highly detailed views of all different corners of the valley and the sight is... well a little unsettling actually. Thousands of shiny soft-shelled beetles vomiting juices onto things they intend to eat is not the most pleasant sight. Creche herders roam amongst them though, ensuring none of them injure each other in their quest for food, and there's a certain charming quality to their gentle tending.`
+			`	You learn that the digestive juices they vomit up onto their food bond with soil particles, creating a thin impermeable layer that prevents all their juices and dissolved food from seeping into the soil before they can eat it. This layer is later eaten by a soil bacterium, so that the soil isn't just covered in a permanent layer of Kimek digestive juices.`
+			`	Eventually, it is over, and as the creche herders start steering the young Kimek to their next steps, Rounded Purple desists their educational rambling to address you topically. "Captain <last>, invaluable to the acclaimed success of this project have you been. Much notice have many others beside myself taken, and much more notice will they take forward going. Now much work there is to do for me, so going I shall be. Know this though, friends you have made here."`
+			`	Rounded Purple B14 performs a strange beetle bow to you before departing to go about their business. No rest for the project lead you suppose. The aide makes sure you safely find your way to the exit of the massive structure and wishes you the best, as well as transferring you the promised payment from delivering the bacterial soup.`
+				decline
 
 
-
-
-
-event "clean grubbing resolution"
 
 mission "Grubbing Crisis Resolution A"
 	invisible
@@ -239,6 +266,7 @@ mission "Grubbing Crisis Resolution A"
 
 
 event "grubbing ground resolved"
+
 
 
 mission "Grubbing Crisis Resolution B"
@@ -254,20 +282,24 @@ mission "Grubbing Crisis Resolution B"
 		conversation
 			`	You receive an urgent message from Rounded Purple B14; "Delaying weather cycle we are. Opportunity window closing though. Hurry please."`
 
+
 event "grubbing time running out"
 
 event "grubbing ground resolution delayed"
 
 
-mission "Grubbing Crisis Resolution A"
+
+mission "Grubbing Crisis Resolution C"
 	invisible
 	landing
 	to offer
-		has "grubbing ground resolution delayed"
+		has "Witness the Birthing: Offered"
+		not "Double Haze Soup: Failed"
 	on offer
-		event "grubbing ground resolved"
+		event "clean grubbing resolution"
 
 
+event "clean grubbing resolution"
 
 
 
@@ -290,6 +322,8 @@ phrase "grub savior caged birds"
 phrase "grub savior food stock biodegradables"
 	word
 		`You deliver the food stock biodegradables to a harried Kimek scientist on <planet>'s spaceport. A host of assistants inspect the shipment and implore you to bring more before transferring <payment> and rushing off.`
+
+
 
 #Crisis Jobs for the Job Board.
 mission "FoA: Transport Invertebrates 50t"
