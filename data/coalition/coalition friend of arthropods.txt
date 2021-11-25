@@ -69,6 +69,7 @@ mission "A Grateful Head"
 	on accept
 		#give ship - special kimek spire
 	on stopover
+		passengers 28
 		conversation
 			`A collection of climatological, ecological and geoscaping experts are waiting for you when you land. Some have even traveled from nearby worlds to rendezvous here. They urge you to depart for Third Umber immediately.`
 	on fail
@@ -122,7 +123,7 @@ mission "Mound Reconstruction"
 				`	"I'm sorry but I am done here."`
 				decline
 			label yeahok
-			`	"To hear, excellent, this is. Made shall arrangements be before you arrive at destination. Project ship capacity should have. All haste, please make."`
+			`	"To hear, excellent, this is. Made shall arrangements be before you arrive at destination. Project ship, capacity should have. All haste, please make."`
 				accept
 	on stopover
 		cargo "Seeds and Geotextiles" 36
@@ -138,20 +139,54 @@ mission "Mound Reconstruction"
 
 
 mission "Creche Herders"
-	With the mound-city provisioned you're asked to go and collect a number of creche herders, Kimek who specialise in the raising of freshly matured Kimek emerging from their underground grub state. Their ship has been waylaid by Heliarch demands, leaving them without transport and the great birthing is imminent. 
-
 	landing	
 	to offer
 		has "Mound Reconstruction: Done"
 		not "grubbing ground resolution delayed"
 	source
 		planet "Third Umber"
-	stopover "Ki Patek Ka"
+	stopover "Rusty Second"
 	to fail
 		has "grubbing ground resolution delayed"
 	on offer
 		conversation
-			`As you approach to la
+			`Returning with the seeds and textiles sees you directed to the same grubbing ground landing pad as before, though this time with slightly more fanfare and a slightly less harried-looking Rounded Purple B14 waiting for you. The intensity of the activity seems to have settled to an intense orderliness. The mountains of crates being sorted and transported from the unloading area last time you were here has all but gone, suggesting that the crisis response was now firmly in hand, rather than actively racing the clock to level the odds.`
+			`	Rounded Purple B14 approaches you as the ship is unloaded. "Captain <last>. Your arrival has been well-timed. For use tomorrow are these materials you have returned with. You have earned much thanks."`
+			branch shorttime
+				has "grubbing time running out"
+			`	"There is no longer great personal danger to the grubs, but there is much that still remains to be finalized for the project to be considered a success and receive appropriate recognition."`
+			goto continue
+			label shorttime
+			`	"Time is very short to save the project from an administrative inquiry, and if we are not fully prepared for the birthing some risk remains to occur."`
+			label continue
+			`	"There are creche herders on Rusty Second which are meant to be hear to assist, specialize do they in the raising of freshly matured Kimek emerging from their underground grub state. Priority of the crisis, and the interests of Heliarchs, have caused them to be absent their planned transportation. The project has recovered sufficiently that we can afford to cause some delay, but these creche herders must arrive before the birthing still."
+			choice
+				`	"I'll get them."`
+					goto yeahok
+				`	"Cause a delay?"`
+			`	"On a weather cycle is the birthing dependent. Only when it has recently rained and the air is humid will young Kimek emerge from underground. With the extra work of the specialists and this new delivery, afford to utilize our systems to delay it can we. Not forever can delay be though, grubs must emerge eventually or die."`
+			choice
+				`	"Don't worry, I'll get them."`
+					goto yeahok
+				`	"I thought Kimek liked it hot and dry?"`
+			`	Rounded Purple B14 clacks their mandibles before responding, "Like it hot and dry do adult Kimek, but access to water must we still have. Before houses would adults dig burrows to find groundwater, learn to take food back to their burrow in the dry season they would. Obviously unnecessary when developed houses we did. Emerge very hungry do young Kimek though, only in wet season is food plentiful for great birthing. So grubs in the ground will not emerge without rain... or until they absolutely must."`
+			choice
+				`	"Don't worry, I'll get them."`
+					goto yeahok
+				`	"They will have to find their own transport now."`
+				decline
+			label yeahok
+			`	"Appreciated deeply is your continued support."`
+				accept
+	on stopover
+		passengers 42
+		conversation
+			`The pallets of seeds and geotextiles are already standing on the platform waiting for you to land to be loaded immediately.`
+	on fail
+		event "kimek disappointed"
+		conversation
+			`You receive a message from Rounded Purple B14; "Expired time for action has. Best of situation we have made. Disappointed, but understanding."`
+	
 	
 	
 	
@@ -191,10 +226,12 @@ mission "Grubbing Crisis Resolution B"
 		has "A Grateful Head: Offered"
 		not "clean grubbing resolution"
 	on offer
+		event "grubbing time running out"
 		event "grubbing ground resolution delayed" 30
 		conversation
 			`	You receive an urgent message from Rounded Purple B14; "Delaying weather cycle we are. Opportunity window closing though. Hurry please."`
 
+event "grubbing time running out"
 
 event "grubbing ground resolution delayed"
 
