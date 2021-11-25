@@ -193,7 +193,7 @@ void MapOutfitterPanel::DrawItems()
 			string price = Format::Credits(outfit->Cost()) + " credits";
 			
 			string info;
-			if(outfit->Get("installable") < 0.)
+			if(outfit->Get("minable") > 0.)
 				info = "(Mined from asteroids)";
 			else
 			{
