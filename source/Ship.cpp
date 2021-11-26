@@ -1711,7 +1711,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		}
 		// Only refuel if this planet has fuel services.
 		else if(fuel >= attributes.Get("fuel capacity")
-				|| !landingPlanet || !landingPlanet->CanRecharge(Port::RechargeType::Fuel))
+				|| !landingPlanet || !landingPlanet->GetPort().CanRecharge(Port::RechargeType::Fuel))
 		{
 			zoom = min(1.f, zoom + .02f);
 			SetTargetStellar(nullptr);

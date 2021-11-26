@@ -3378,7 +3378,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 						double distance = ship.Position().Distance(object->Position());
 						const Planet *planet = object->GetPlanet();
 						types.insert(planet->Noun());
-						if((!planet->CanLand() || !planet->CanRecharge(Port::RechargeType::Fuel))
+						if((!planet->CanLand() || !planet->GetPort().CanRecharge(Port::RechargeType::Fuel))
 								&& !planet->IsWormhole())
 							distance += 10000.;
 						

@@ -15,6 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <string>
 
+class DataNode;
+
 
 
 // Class representing a port on a planet.
@@ -48,6 +50,31 @@ public:
 
 
 public:
+	// Load a port's description from a node.
+	void Load(const DataNode &node);
+	void LoadDefaultSpaceport();
+
+	// Whether this is in fact a port in some matter.
+	bool IsValid() const;
+	// Whether this port has any services available.
+	bool HasServices() const;
+
+	// Get all the possible sources that can get recharged at this port.
+	int GetRecharges() const;
+
+	const std::string &Name() const;
+	std::string &Description();
+	const std::string &Description() const;
+
+	// Check whether the given recharging is possible.
+	bool CanRecharge(int type) const;
+	// Check whether the given service is available.
+	bool HasService(int type) const;
+
+	bool HasNews() const;
+
+
+private:
 	// The name of this port.
 	std::string name;
 

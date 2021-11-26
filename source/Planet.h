@@ -72,10 +72,6 @@ public:
 	// Check whether there are port services (such as trading, jobs, banking, and hiring)
 	// available on this planet.
 	bool HasServices() const;
-	// Check whether the given recharging is possible on this planet.
-	bool CanRecharge(int type) const;
-	// Check whether the given service is available on this planet.
-	bool HasService(int type) const;
 	
 	// Check if this planet is inhabited (i.e. it has a spaceport, and does not
 	// have the "uninhabited" attribute).

@@ -133,47 +133,7 @@ void Planet::Load(const DataNode &node)
 		}
 		
 		if(key == "port")
-		{
-			if(hasValue)
-				port.name = value;
-			for(const auto &grand : child)
-			{
-				if(grand.Token(0) == "shields")
-					port.recharge |= Port::RechargeType::Shields;
-				else if(grand.Token(0) == "hull")
-					port.recharge |= Port::RechargeType::Hull;
-				else if(grand.Token(0) == "energy")
-					port.recharge |= Port::RechargeType::Energy;
-				else if(grand.Token(0) == "fuel")
-					port.recharge |= Port::RechargeType::Fuel;
-				else if(grand.Token(0) == "news")
-					port.hasNews = true;
-				else if(grand.Token(0) == "trading")
-					port.services |= Port::ServicesType::Trading;
-				else if(grand.Token(0) == "job board")
-					port.services |= Port::ServicesType::JobBoard;
-				else if(grand.Token(0) == "bank")
-					port.services |= Port::ServicesType::Bank;
-				else if(grand.Token(0) == "hire crew")
-					port.services |= Port::ServicesType::HireCrew;
-				else if(grand.Token(0) == "offers missions")
-					port.services |= Port::ServicesType::OffersMissions;
-				else if(grand.Token(0) == "description" && grand.Size() >= 2)
-				{
-					const auto &value = grand.Token(1);
-					if(!port.description.empty() && !value.empty() && value[0] > ' ')
-						port.description += '\t';
-					port.description += value;
-					port.description += '\n';
-
-					// If we have a description but no name then use the default spaceport name.
-					if(port.name.empty())
-						port.name = "Space_port";
-				}
-				else
-					grand.PrintTrace("Skipping unrecognized attribute:");
-			}
-		}
+			port.Load(child);
 		// Handle the attributes which can be "removed."
 		else if(!hasValue)
 		{
@@ -217,14 +177,9 @@ void Planet::Load(const DataNode &node)
 		{
 			const bool isDescription = key == "description";
 			if(!isDescription)
-			{
-				port.name = "Space_port";
-				port.recharge = Port::RechargeType::All;
-				port.services = Port::ServicesType::All;
-				port.hasNews = true;
-			}
+				port.LoadDefaultSpaceport();
 
-			string &text = isDescription ? description : port.description;
+			string &text = isDescription ? description : port.Description();
 			if(!text.empty() && !value.empty() && value[0] > ' ')
 				text += '\t';
 			text += value;
@@ -276,7 +231,7 @@ void Planet::Load(const DataNode &node)
 	}
 	
 	static const vector<string> AUTO_ATTRIBUTES = {"spaceport", "shipyard", "outfitter"};
-	bool autoValues[3] = {port.services == Port::ServicesType::All, !shipSales.empty(), !outfitSales.empty()};
+	bool autoValues[3] = {port.HasService(Port::ServicesType::All), !shipSales.empty(), !outfitSales.empty()};
 	for(unsigned i = 0; i < AUTO_ATTRIBUTES.size(); ++i)
 	{
 		if(autoValues[i])
@@ -379,7 +334,7 @@ const string &Planet::Noun() const
 // Check whether there is a port (which may even be a full spaceport).
 bool Planet::HasPort() const
 {
-	return !port.name.empty();
+	return port.IsValid();
 }
 
 
@@ -396,23 +351,7 @@ const Port &Planet::GetPort() const
 // available on this planet.
 bool Planet::HasServices() const
 {
-	return port.services;
-}
-
-
-
-// Check whether the given recharging is possible on this planet.
-bool Planet::CanRecharge(int type) const
-{
-	return port.recharge & type;
-}
-
-
-
-// Check whether the given service is available on this planet.
-bool Planet::HasService(int type) const
-{
-	return port.services & type;
+	return port.HasServices();
 }
 
 
@@ -610,7 +549,7 @@ bool Planet::IsUnrestricted() const
 // but do so with a less convoluted syntax:
 bool Planet::HasFuelFor(const Ship &ship) const
 {
-	return !IsWormhole() && CanRecharge(Port::RechargeType::Fuel) && CanLand(ship);
+	return !IsWormhole() && port.CanRecharge(Port::RechargeType::Fuel) && CanLand(ship);
 }
 
 

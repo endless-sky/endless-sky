@@ -104,22 +104,24 @@ void PlanetPanel::Draw()
 	
 	if(planet.CanUseServices())
 	{
-		if(planet.HasService(Port::ServicesType::Bank))
+		const auto &port = planet.GetPort();
+
+		if(port.HasService(Port::ServicesType::Bank))
 			info.SetCondition("has bank");
 		if(flagship)
 		{
-			if(planet.HasService(Port::ServicesType::JobBoard))
+			if(port.HasService(Port::ServicesType::JobBoard))
 				info.SetCondition("has job board");
-			if(planet.HasService(Port::ServicesType::HireCrew))
+			if(port.HasService(Port::ServicesType::HireCrew))
 				info.SetCondition("can hire crew");
-			if(planet.HasService(Port::ServicesType::Trading) && system.HasTrade())
+			if(port.HasService(Port::ServicesType::Trading) && system.HasTrade())
 				info.SetCondition("has trade");
 		}
 		
 		if(flagship && planet.HasPort())
 		{
 			info.SetCondition("has port");
-			info.SetString("port name", planet.GetPort().name);
+			info.SetString("port name", port.Name());
 		}
 		
 		if(planet.HasShipyard())
@@ -157,12 +159,12 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	else if(key == 'l')
 		selectedPanel = nullptr;
 	else if(key == 't' && hasAccess && flagship
-			&& planet.HasService(Port::ServicesType::Trading) && system.HasTrade())
+			&& planet.GetPort().HasService(Port::ServicesType::Trading) && system.HasTrade())
 	{
 		selectedPanel = trading.get();
 		GetUI()->Push(trading);
 	}
-	else if(key == 'b' && hasAccess && planet.HasService(Port::ServicesType::Bank))
+	else if(key == 'b' && hasAccess && planet.GetPort().HasService(Port::ServicesType::Bank))
 	{
 		selectedPanel = bank.get();
 		GetUI()->Push(bank);
@@ -188,12 +190,12 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 				return true;
 			}
 	}
-	else if(key == 'j' && hasAccess && flagship && planet.HasService(Port::ServicesType::JobBoard))
+	else if(key == 'j' && hasAccess && flagship && planet.GetPort().HasService(Port::ServicesType::JobBoard))
 	{
 		GetUI()->Push(new MissionPanel(player));
 		return true;
 	}
-	else if(key == 'h' && hasAccess && flagship && planet.HasService(Port::ServicesType::HireCrew))
+	else if(key == 'h' && hasAccess && flagship && planet.GetPort().HasService(Port::ServicesType::HireCrew))
 	{
 		selectedPanel = hiring.get();
 		GetUI()->Push(hiring);
