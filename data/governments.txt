@@ -522,6 +522,7 @@ government "Remnant (Research)"
 		"Remnant" 1
 	"penalty for"
 		assist -0.25
+		disable 1
 		board 1
 		capture 10
 		destroy 10
