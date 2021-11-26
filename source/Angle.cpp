@@ -165,6 +165,6 @@ Point Angle::Rotate(const Point &point) const
 
 // Constructor using Angle's internal representation.
 Angle::Angle(int32_t angle)
-	: angle(angle)
+	: angle(angle & MASK)
 {
 }
