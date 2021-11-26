@@ -10,7 +10,6 @@
 
 ########################################################################
 
-# Part 2: Hai-Human Conflict
 
 mission "Hai Rescue [B01] Election"
 	landing
@@ -294,23 +293,23 @@ event "hai and human ships at wormhole"
 mission "Hai Rescue [B02] Diplomacy: Syndicate"
 	landing
 	name "Missing Researchers"
-	description "Visit <waypoints> then escort Teeneep's Centipede to <destination>. Payment is <payment>."
+	description "Visit <waypoints>, then escort Teeneep's Centipede to <destination>. Payment is <payment>."
 	source "Hai-home"
 	waypoint "Waypoint"
 	waypoint "Ultima Thule"
 	destination "Sunracer"
 	on visit
-		dialog `To finish this mission, you must visit Waypoint and Ultima Thule, and then land with Teeneep's Centipede.`
+		dialog `To finish this mission, you must visit <waypoints>, and then land with Teeneep's Centipede.`
 	to offer
 		has "Hai Rescue [B01] Election: done"
 	on enter "Waypoint"
-		dialog `There is a massive fleet of Hai ships here, and more coming in all the time. If this fleet were to enter human space, we might be overrun.`
+		dialog `There is a massive fleet of Hai ships here, and more coming in all the time. If this fleet were to enter human space, the Navy might be overrun.`
 	on enter "Ultima Thule"
 		dialog `Although it is reassuring to see humans come together for a common cause, you don't look forward to seeing two species enter an all-out war over a misunderstanding. You also wonder how the human authorities are keeping the Hai a secret with a huge fleet at the wormhole.`
 	on enter "Mirfak"
 		dialog `As you enter the system, authorities ask you to land as soon as possible with Teeneep and meet a Syndicate representative.`
 	on offer
-		log `The Hai and humans have huge fleets on either side of the wormhole with more ships pouring in all the time. Teeneep wants to visit the human authorities to prevent a war.`
+		log `The Hai and humans have huge fleets on either side of the wormhole, with more ships pouring in all the time. Teeneep wants to visit the human authorities to prevent a war.`
 		conversation
 			`When you arrive at <origin>, Teeneep meets you at your ship as soon as you touch down. She's wearing the robes of a Hai Elder and has four bodyguards. They're wearing full body armor with personal energy shields. Their pulse rifles are the lethal variety built during the Korath war, rather than the non-lethal ones made today. You notice Teeneep is wearing a backpack with a personal shield.`
 			`	She greets you, "Times are changing quickly, <first>. The Navy sent a message ahead of you. Your information is considerably more detailed, but theirs was enough to anger the entire Elder Council. I advised against rash action, but my words went unheeded."`
@@ -332,7 +331,7 @@ mission "Hai Rescue [B02] Diplomacy: Syndicate"
 mission "Hai Rescue [B02B] Diplomacy: Syndicate (Retry)"
 	landing
 	name "Missing Researchers"
-	description "Visit <waypoints> then escort Teeneep's Centipede to <destination>. Payment is <payment>."
+	description "Visit <waypoints>, then escort Teeneep's Centipede to <destination>. Payment is <payment>."
 	source "Hai-home"
 	waypoint "Waypoint"
 	waypoint "Ultima Thule"
@@ -353,7 +352,7 @@ mission "Hai Rescue [B02B] Diplomacy: Syndicate (Retry)"
 		dialog `As you enter the system, authorities ask you to land as soon as possible with Teeneep and meet a Syndicate representative.`
 	on offer
 		conversation
-			`Teeneep meets you at your ship again, "Are you ready to escort me to <destination>?"`
+			`Teeneep meets you at your ship again. "Are you ready to escort me to <destination>?"`
 			choice
 				`	"Of course. Let's go."`
 					accept
@@ -381,19 +380,17 @@ mission "Hai Rescue [B03] Diplomacy: Syndicate Internal Affairs"
 	on offer
 		log "People" "Stephen Moray" `Deputy Director Moray works for Syndicate Internal Affairs dealing with pirate-related matters. In addition to enforcing the law, he also smuggles slaves from pirate worlds into freedom in Syndicate space. He has promised to find out who is responsible for the kidnappings.`
 		conversation
-			`Deputy Director Stephen Moray meets you at the entrance of your ship. "I work for Syndicate Internal Affairs. We're the internal police of the Syndicate; when an employee of any rank does misdeeds, we track them down. Janitor or executive; it doesn't matter. My part of Internal Affairs works on piracy-related matters."`
-			`	"I know what your people are going through," he says. "When I was a teenager, pirates kidnapped my brother and father, and forced them to serve on pirate vessels, calling them 'indentured servants.' My father watched helplessly as my brother's disabled ship was destroyed by a Navy Frigate just as it exited hyperspace. My father eventually escaped. He is serving his seventeenth year of a twenty-five-year sentence for piracy, even though his deeds were against his will"`
-			`	"You see the hails of the Navy: loyalty, honor, bravery. Half-truths at best. We see the Navy as heroes because they are the only large organization capable of self-sacrifice. Yes, they do many good deeds. Those deeds blind us to their brutality and immorality."`
-			`	"Not all humans are like that - many members of the Navy disagree with the barbaric rules about slavery. Some of us in the Syndicate, Free Worlds, and elsewhere, are trying to solve this problem."`
-			`	You reach the meeting room, and he says, "Please come in."`
+			`Deputy Director Stephen Moray meets you at the entrance of your ship. "I work for Syndicate Internal Affairs. We're the internal police of the Syndicate; when an employee of any rank does misdeeds, we track them down. Janitor or executive; it doesn't matter. My part of Internal Affairs works on piracy-related matters.`
+			`	"I know what your people are going through," he says. "When I was a teenager, pirates kidnapped my brother and father, and forced them to serve on pirate vessels, calling them 'indentured servants.' My father watched helplessly as my brother's disabled ship was destroyed by a Navy Frigate just as it exited hyperspace. He eventually escaped - but he's now serving his seventeenth year of a twenty-five-year sentence for piracy, even though his deeds were against his will," Moray explains as he leads you into a large building.`
+			`	"You see, the hails of the Navy: loyalty, honor, bravery - half-truths at best. We see the Navy as heroes because they are the only large organization capable of self-sacrifice. Yes, they do many good deeds, but those deeds blind us to their brutality and immorality. Not all humans are like that - many members of the Navy disagree with the barbaric rules about slavery. Some of us in the Syndicate, Free Worlds, and elsewhere, are trying to solve this problem."`
+			`	You reach a meeting room, and he says, "Please come in."`
 			choice
 				`	(Find a seat in the meeting room.)`
-			`	After everyone sits, Stephen Moray turns on a device, "Communications jammer," he says, "so we're not heard."`
-			`	"In my time as a Syndicate executive, I have smuggled over 80,000 slaves from pirate planets to freedom in Syndicate space. I have extensive contacts within the slaver community. If I smuggle any of your people back here, I will tell you immediately."`
-			`	"I have some leads on the organization behind this. There is a pirate gang with an extensive array of contacts with organized crime both up in the Far North and closer to home within the Syndicate; possibly even Syndicate executives. I can say for sure though that they're definitely doing this without the permission of the Syndicate proper. I swear to you, I will do everything in my power to track down whoever is responsible for this reprehensible act. They will be brought to justice."`
-			`	"I know there are two holding facilities in human space where the kidnapped researchers are brought for processing before passing through the wormhole at Devil-Run. They're on the pirate planets of Stormhold and Deadman's Cove. I don't know the exact locations yet."`
-			`	"Please, leave at once to talk to our government. Perhaps you can stall this conflict long enough for us to get some answers."`
-			`	Teeneep bids him farewell and the two of you approach your ships. Teeneep hands you <payment> and is eager to go to <destination>.`
+			`	After everyone sits, Stephen Moray turns on a device. "Communications jammer," he explains, "so we're not heard.`
+			`	"In my time as a Syndicate executive, I have smuggled over 80,000 slaves from pirate planets to freedom in Syndicate space. I have extensive contacts within the slaver community. If I smuggle any of your people back here, I will tell you immediately.`
+			`	"I have some leads on the organization behind this. There is a pirate gang with an extensive array of contacts in organized crime both up in the Far North and closer to home within the Syndicate - possibly even Syndicate executives. I can say for sure though that they're definitely doing this without the permission of the Syndicate proper. I swear to you that I will do everything in my power to track down whoever is responsible for this reprehensible act. They will be brought to justice.`
+			`	"I know there are two holding facilities human space where the kidnapped researchers are brought for processing before passing through the wormhole at Devil-Run. They're on the pirate planets of Stormhold and Deadman's Cove, but I don't know the exact locations yet. Please, leave at once to talk to humanity's government. Perhaps you can stall this conflict long enough for us to get some answers."`
+			`	Teeneep bids him farewell, and the two of you return to your ships. Teeneep hands you <payment> and is eager to go to <destination>.`
 				accept
 	on complete
 		payment 400000
@@ -421,7 +418,7 @@ mission "Hai Rescue [B04] Diplomacy: Treaty Negotiation"
 		log `The President of the Republic and Chancellor of the Free Worlds met Teeneep, who claims to speak with the authority of the entire Hai government. They came to a tentative agreement about carefully tracking Hai movements in human space, but Teeneep won't agree until her people are returned. The human leaders asked us to talk to Stephen Moray again.`
 		conversation
 			`Earth authorities ask you to land in the Republic Capital Building, a vast skyscraper over a kilometer high which has its own spaceport. You land in one of several hangars built for ships significantly larger than a Carrier. In the distance, you spy an unfamiliar ship design which looks like a massive gunship. You've heard rumors that the Navy is working on advanced ships built to fight alien races. They may have left one here for Teeneep to see, as a warning to the Hai Elders.`
-			`	A formal delegation meets Teeneep at her ship, but she awaits you before continuing into the building. It takes about a ten minutes of elevators and walkways to get to the top of the building: the Parliament Chamber. The chamber is empty; your delegation is walking through it to a room on the far end of the chamber.`
+			`	A formal delegation meets Teeneep at her ship, but she awaits you before continuing into the building. It takes about a ten minutes of elevators and hallways to get to the top of the building: the Parliament Chamber. The chamber is empty; your delegation walks through it to a room on the far end of the chamber.`
 			choice
 				`	(Enter the room.)`
 					goto room
@@ -433,18 +430,17 @@ mission "Hai Rescue [B04] Diplomacy: Treaty Negotiation"
 				`	(Enter the room.)`
 			label room
 			`	You're surprised to see before you the President of the Republic and the Chancellor of the Free Worlds.`
-			`	Teeneep begins, "I speak as the voice of the Hai and with the full authority of the Elder Council. Many of our people have been kidnapped over the past few decades, and some still reside beyond the wormhole at Devil-Run. Worst of all, your authorities have killed numerous Hai on slaver ships, without attempting rescue or even offering surrender. We demand the return of our people and the immediate cease of the killing of slaves."`
-			`	The President is the first to respond, "The problem of piracy in human space is a difficult one and cannot be solved overnight. The pirates are well-entrenched in their planets, and fighting them is a long and brutal struggle. The war left them stronger than ever with our navies distracted fighting one another."`
+			`	Teeneep begins, "I speak as the voice of the Hai and with the full authority of the Elder Council. Many of our people have been kidnapped over the past few decades, and some still reside beyond the wormhole at Devil-Run. Worst of all, your authorities have killed numerous Hai on slaver ships, without attempting rescue or even offering surrender. We demand the return of our people and an immediate end to the killing of slaves."`
+			`	The President is the first to respond. "The problem of piracy in human space is a difficult one and cannot be solved overnight. The pirates are well-entrenched in their planets, and fighting them is a long and brutal struggle. With our navies distracted fighting one another, our recent war has left them stronger than ever."`
 			`	The Chancellor continues, "The Free Worlds has made great strides reducing piracy by befriending the peoples of the anarchist worlds. We're discussing similar approaches with the Republic. Perhaps in another few years, piracy will be entirely eliminated."`
-			`	The President says, "We have a counter-proposal. The Free Worlds and Republic will establish a customs service on Mountaintop. Hai visiting human space will check in with us. Our intelligence agencies will track their movements and see to their safety as best we can; they'll be given contacts on every planet to go to for help. In the meantime, we will place extensive surveillance fleets at Ultima Thule to detect any unapproved Hai travel. We will do our best to disable and capture ships with kidnapped Hai, no matter the risk of Navy lives."`
-			`	The Chancellor says, "The Free Worlds will also extend our protection of course."`
+			`	"We have a counter-proposal," the President says. "The Free Worlds and Republic will establish a customs service on Mountaintop. Hai visiting human space will check in with us. Our intelligence agencies will track their movements and see to their safety as best we can; they'll be given contacts on every planet to go to for help. In the meantime, we will place extensive surveillance fleets at Ultima Thule to detect any unapproved Hai travel. We will do our best to disable and capture ships with kidnapped Hai, no matter the risk of Navy lives."`
+			`	"The Free Worlds will also extend our protection, of course," the Chancellor adds.`
 			`	Teeneep responds, "I cannot sign that treaty yet. My people won't be satisfied until the kidnapped Hai are returned."`
-			`	The President responds, "We heard back from Syndicate Internal Affairs that they know the exact location of three staging facilities for a group called the 'Devil-Run Gang.' That group is behind the kidnappings."`
-			`	The President turns to you, "Please return to <destination> and speak with Deputy Director Moray again. He may have a solution."`
-			`	Teeneep concludes the discussion, "I will travel with Captain <last> and see this matter through. I will expect your fleets and armies to be ready to assist us when the time is right." She turns to leave.`
+			`	The President replies, "We heard back from Syndicate Internal Affairs that they know the exact location of three staging facilities for a group called the 'Devil-Run Gang.' That group is behind the kidnappings." Turning to you, the President continues, "Please return to <destination>, and speak with Deputy Director Moray again. He may have a solution."`
+			`	Teeneep concludes the discussion. "I will travel with Captain <last> and see this matter through. I will expect your fleets and armies to be ready to assist us when the time is right." She turns to leave.`
 			choice
 				`	(Return to your ship.)`
-			`	On the way out, Teeneep tells you her next move, "The humans are so eager to raid the facilities that they haven't considered the need for information. We will have to arrange for someone to be, 'captured,' and brought to Philosopher's Paradise. The human authorities must delay their strike until then."`
+			`	On the way out, Teeneep tells you her next move. "The humans are so eager to raid the facilities that they haven't considered the need for information. We will have to arrange for someone to be 'captured' and brought to Philosopher's Paradise. The human authorities must delay their strike until then.`
 			`	"I'll need an escort back to <destination>. We'll need help from one more group, but I'll contact them on the way. You'll be paid, of course." She hands you <payment> for her most recent journey.`
 				accept
 	on complete
