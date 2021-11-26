@@ -1,5 +1,5 @@
 /* test_angle.cpp
-Copyright (c) 2020 by quyykk
+Copyright (c) 2021 by quyykk
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -84,8 +84,7 @@ TEST_CASE( "Angle arithmetic", "[angle][arithmetic]") {
 TEST_CASE( "Angle::Random", "[angle][random]") {
 	auto value = GENERATE(10, 100, 1000, 10000, 100000, 1000000, 3600000);
 
-	const int iterations = std::min(value, 10);
-	for(int i = 0; i < iterations; ++i)
+	for(int i = 0; i < 10; ++i)
 	{
 		auto random = Angle::Random(value);
 		CHECK( random.Degrees() >= Approx(-180.).margin(0.05));
