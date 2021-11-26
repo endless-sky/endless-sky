@@ -102,6 +102,7 @@ namespace {
 	Set<Galaxy> defaultGalaxies;
 	Set<Sale<Ship>> defaultShipSales;
 	Set<Sale<Outfit>> defaultOutfitSales;
+	TextReplacements defaultSubstitutions;
 	
 	Politics politics;
 	vector<StartConditions> startConditions;
@@ -135,6 +136,8 @@ namespace {
 	map<const Sprite *, int> preloaded;
 	
 	MaskManager maskManager;
+	
+	TextReplacements substitutions;
 	
 	const Government *playerGovernment = nullptr;
 	
@@ -255,6 +258,7 @@ bool GameData::BeginLoad(const char * const *argv)
 	defaultGalaxies = galaxies;
 	defaultShipSales = shipSales;
 	defaultOutfitSales = outfitSales;
+	defaultSubstitutions = substitutions;
 	defaultGamerules = gamerules;
 	playerGovernment = governments.Get("Escort");
 	
@@ -491,6 +495,7 @@ void GameData::Revert()
 	galaxies.Revert(defaultGalaxies);
 	shipSales.Revert(defaultShipSales);
 	outfitSales.Revert(defaultOutfitSales);
+	substitutions.Revert(defaultSubstitutions);
 	gamerules.Revert(defaultGamerules);
 	for(auto &it : persons)
 		it.second.Restore();
@@ -658,6 +663,8 @@ void GameData::Change(const DataNode &node)
 		systems.Get(node.Token(1))->Link(systems.Get(node.Token(2)));
 	else if(node.Token(0) == "unlink" && node.Size() >= 3)
 		systems.Get(node.Token(1))->Unlink(systems.Get(node.Token(2)));
+	else if(node.Token(0) == "substitutions" && node.HasChildren())
+		substitutions.Load(node);
 	else if(node.Token(0) == "gamerules" && node.HasChildren())
 		gamerules.Load(node);
 	else
@@ -1014,6 +1021,13 @@ MaskManager &GameData::GetMaskManager()
 
 
 
+const TextReplacements &GameData::GetTextReplacements()
+{
+	return substitutions;
+}
+
+
+
 double GameData::Gamerule(const string &rule)
 {
 	return gamerules.Get(rule);
@@ -1217,6 +1231,8 @@ void GameData::LoadFile(const string &path, bool debugMode)
 				text += child.Token(0);
 			}
 		}
+		else if(key == "substitutions" && node.HasChildren())
+			substitutions.Load(node);
 		else if(key == "gamerules" && node.HasChildren())
 			gamerules.Load(node);
 		else

@@ -309,6 +309,9 @@ public:
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
 	int RequiredCrew() const;
+	// Get the reputational value of this ship's crew, which depends
+	// on its crew size and "crew equivalent" attribute.
+	int CrewValue() const;
 	void AddCrew(int count);
 	// Check if this is a ship that can be used as a flagship.
 	bool CanBeFlagship() const;
