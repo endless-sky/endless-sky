@@ -155,11 +155,11 @@ mission "Creche Herders"
 			branch shorttime
 				has "grubbing time running out"
 			`	"There is no longer great personal danger to the grubs, but there is much that still remains to be finalized for the project to be considered a success and receive appropriate recognition."`
-			goto continue
+				goto continue
 			label shorttime
 			`	"Time is very short to save the project from an administrative inquiry, and if we are not fully prepared for the birthing some risk remains to occur."`
 			label continue
-			`	"There are creche herders on Rusty Second which are meant to be hear to assist, specialize do they in the raising of freshly matured Kimek emerging from their underground grub state. Priority of the crisis, and the interests of Heliarchs, have caused them to be absent their planned transportation. The project has recovered sufficiently that we can afford to cause some delay, but these creche herders must arrive before the birthing still."
+			`	"There are creche herders on Rusty Second which are meant to be hear to assist, specialize do they in the raising of freshly matured Kimek emerging from their underground grub state. Priority of the crisis, and the interests of Heliarchs, have caused them to be absent their planned transportation. The project has recovered sufficiently that we can afford to cause some delay, but these creche herders must arrive before the birthing still."`
 			choice
 				`	"I'll get them."`
 					goto yeahok
@@ -192,7 +192,6 @@ mission "Creche Herders"
 mission "Double Haze Soup"
 	landing
 	deadline 12 1
-	payment 10000000
 	to offer
 		has "Creche Herders: Done"
 		not "grubbing ground resolution delayed"
@@ -217,13 +216,14 @@ mission "Double Haze Soup"
 		event "haze birth timer" 6
 		conversation
 			`You receive a message from Rounded Purple B14; "Time to release before birthing we have not. Still, return swiftly and witness the event you may."`
+	on complete
+		payment 10000000
 
 
 
 mission "Witness the Birthing"
 	landing
 	invisible
-	payment 10000000
 	to offer
 		or
 			has "Double Haze Soup: Done"
@@ -367,7 +367,7 @@ mission "FoA: Transport Invertebrates 100t"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"grub savior" +2
+		"grub savior" += 2
 		payment 100000 1000
 		dialog phrase "grub savior invertebrates"
 
@@ -390,7 +390,7 @@ mission "FoA: Transport Invertebrates 200t"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"grub savior" +4
+		"grub savior" += 4
 		payment 200000 1000
 		dialog phrase "grub savior invertebrates"
 
@@ -413,7 +413,7 @@ mission "FoA: Transport Invertebrates 500t"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"grub savior" +10
+		"grub savior" += 10
 		payment 500000 1000
 		dialog phrase "grub savior invertebrates"
 
@@ -436,7 +436,7 @@ mission "FoA: Transport Invertebrates 1000t"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"grub savior" +20
+		"grub savior" += 20
 		payment 1000000 1000
 		dialog phrase "grub savior invertebrates"
 
@@ -483,7 +483,7 @@ mission "FoA: Transport Caged Small Animals 100t"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"grub savior" +2
+		"grub savior" += 2
 		payment 100000 1000
 		dialog phrase "grub savior caged small animals"
 
@@ -506,7 +506,7 @@ mission "FoA: Transport Caged Small Animals 200t"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"grub savior" +4
+		"grub savior" += 4
 		payment 200000 1000
 		dialog phrase "grub savior caged small animals"
 
@@ -529,7 +529,7 @@ mission "FoA: Transport Caged Small Animals 500t"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"grub savior" +10
+		"grub savior" += 10
 		payment 500000 1000
 		dialog phrase "grub savior caged small animals"
 
@@ -552,7 +552,7 @@ mission "FoA: Transport Caged Small Animals 1000t"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"grub savior" +20
+		"grub savior" += 20
 		payment 1000000 1000
 		dialog phrase "grub savior caged small animals"
 
@@ -599,7 +599,7 @@ mission "FoA: Transport Seed Crates 100t"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"grub savior" +2
+		"grub savior" += 2
 		payment 100000 1000
 		dialog phrase "grub savior seed crates"
 
@@ -622,7 +622,7 @@ mission "FoA: Transport Seed Crates 200t"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"grub savior" +4
+		"grub savior" += 4
 		payment 200000 1000
 		dialog phrase "grub savior seed crates"
 
@@ -645,7 +645,7 @@ mission "FoA: Transport Seed Crates 500t"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"grub savior" +10
+		"grub savior" += 10
 		payment 500000 1000
 		dialog phrase "grub savior seed crates"
 
@@ -668,7 +668,7 @@ mission "FoA: Transport Seed Crates 1000t"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"grub savior" +20
+		"grub savior" += 20
 		payment 1000000 1000
 		dialog phrase "grub savior seed crates"
 
@@ -715,7 +715,7 @@ mission "FoA: Transport Caged Birds 100t"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"grub savior" +2
+		"grub savior" += 2
 		payment 100000 1000
 		dialog phrase "grub savior caged birds"
 
@@ -738,7 +738,7 @@ mission "FoA: Transport Caged Birds 200t"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"grub savior" +4
+		"grub savior" += 4
 		payment 200000 1000
 		dialog phrase "grub savior caged birds"
 
@@ -761,7 +761,7 @@ mission "FoA: Transport Caged Birds 500t"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"grub savior" +10
+		"grub savior" += 10
 		payment 500000 1000
 		dialog phrase "grub savior caged birds"
 
@@ -784,7 +784,7 @@ mission "FoA: Transport Caged Birds 1000t"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"grub savior" +20
+		"grub savior" += 20
 		payment 1000000 1000
 		dialog phrase "grub savior caged birds"
 
@@ -831,7 +831,7 @@ mission "FoA: Transport Food Stock Biodegradables 100t"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"grub savior" +2
+		"grub savior" += 2
 		payment 100000 1000
 		dialog phrase "grub savior food stock biodegradables"
 
@@ -854,7 +854,7 @@ mission "FoA: Transport Food Stock Biodegradables 200t"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"grub savior" +4
+		"grub savior" += 4
 		payment 200000 1000
 		dialog phrase "grub savior food stock biodegradables"
 
@@ -877,7 +877,7 @@ mission "FoA: Transport Food Stock Biodegradables 500t"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"grub savior" +10
+		"grub savior" += 10
 		payment 500000 1000
 		dialog phrase "grub savior food stock biodegradables"
 
@@ -900,6 +900,6 @@ mission "FoA: Transport Food Stock Biodegradables 1000t"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"grub savior" +20
+		"grub savior" += 20
 		payment 1000000 1000
 		dialog phrase "grub savior food stock biodegradables"
