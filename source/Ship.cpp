@@ -36,6 +36,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "TextReplacements.h"
 #include "Visual.h"
 
 #include <algorithm>
@@ -1318,7 +1319,13 @@ void Ship::SetHail(const Phrase &phrase)
 
 string Ship::GetHail(const PlayerInfo &player) const
 {
+	string hailStr = hail ? hail->Get() : government ? government->GetHail(isDisabled) : "";
+	
+	if(hailStr.empty())
+		return hailStr;
+	
 	map<string, string> subs;
+	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
 	
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
@@ -1330,7 +1337,6 @@ string Ship::GetHail(const PlayerInfo &player) const
 	subs["<date>"] = player.GetDate().ToString();
 	subs["<day>"] = player.GetDate().LongString();
 	
-	string hailStr = hail ? hail->Get() : government ? government->GetHail(isDisabled) : "";
 	return Format::Replace(hailStr, subs);
 }
 
@@ -2387,6 +2393,13 @@ int Ship::Scan()
 			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
 					+ Name() + "\" completed its scan of your outfits.", Messages::Importance::High);
 	}
+
+	// Some governments are provoked when a scan is started on one of their ships.
+	const Government *gov = target->GetGovernment();
+	if(gov && gov->IsProvokedOnScan() && !gov->IsEnemy(government)
+			&& (target->Shields() < .9 || target->Hull() < .9 || !target->GetPersonality().IsForbearing())
+			&& !target->GetPersonality().IsPacifist())
+		result |= ShipEvent::PROVOKE;
 	
 	return result;
 }
@@ -3095,6 +3108,13 @@ int Ship::RequiredCrew() const
 	
 	// Drones do not need crew, but all other ships need at least one.
 	return max<int>(1, attributes.Get("required crew"));
+}
+
+
+
+int Ship::CrewValue() const
+{
+	return max(Crew(), RequiredCrew()) + attributes.Get("crew equivalent");
 }
 
 
