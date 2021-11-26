@@ -501,7 +501,7 @@ government "Remnant"
 		board 1
 		capture 10
 		destroy 10
-		scan 1
+		scan 0.1
 	"provoked on scan"
 	"friendly hail" "remnant uncontacted"
 	"hostile hail" "remnant uncontacted hostile"
