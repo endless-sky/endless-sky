@@ -495,6 +495,7 @@ government "Remnant"
 		"Indigenous Lifeform" 0.05
 		"Korath" -.05
 		"Alpha" -.05
+		"Remnant (Research)" 1
 	"penalty for"
 		assist -0.25
 		disable 1
