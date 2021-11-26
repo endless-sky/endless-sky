@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "LocationFilter.h"
 #include "MissionAction.h"
 #include "NPC.h"
+#include "TextReplacements.h"
 
 #include <list>
 #include <map>
@@ -224,6 +225,9 @@ private:
 	std::list<LocationFilter> stopoverFilters;
 	std::set<const Planet *> visitedStopovers;
 	std::set<const System *> visitedWaypoints;
+	
+	// User-defined text replacements unique to this mission:
+	TextReplacements substitutions;
 	
 	// NPCs:
 	std::list<NPC> npcs;
