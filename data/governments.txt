@@ -506,7 +506,7 @@ government "Remnant"
 	"friendly hail" "remnant uncontacted"
 	"hostile hail" "remnant uncontacted hostile"
 
-government "Remnant (research)"
+government "Remnant (Research)"
 	"display name" "Remnant"
 	swizzle 0
 	color .89 .38 .62
