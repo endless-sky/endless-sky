@@ -10272,10 +10272,10 @@ system Fearis
 	habitable 486.68
 	link Feraticus
 	link Lire
-	asteroids "large metal" 1.9865 1.34234
-	asteroids "large rock" 2.25464 2.242
-	asteroids "medium rock" 7.241 2.3423
-	asteroids "small rock" 1.2312 0.2312
+	asteroids "large metal" 2 1.34234
+	asteroids "large rock" 2 2.242
+	asteroids "medium rock" 7 2.3423
+	asteroids "small rock" 1 0.2312
 	trade Clothing 271
 	trade Electronics 824
 	trade Equipment 531
