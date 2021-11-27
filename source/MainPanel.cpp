@@ -120,7 +120,7 @@ void MainPanel::Step()
 				message.back() += lostCount;
 				++lostCount;
 				
-				GetUI()->Push(new Dialog(GameData::HelpMessage(message)));
+				isActive = !DoHelp(message);
 			}
 		}
 	}
