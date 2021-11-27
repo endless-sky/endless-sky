@@ -34,7 +34,7 @@ using namespace std;
 
 
 
-LoadingPanel::LoadingPanel(PlayerInfo &player, UI &gamePanels, bool &finishedLoading)
+GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, UI &gamePanels, bool &finishedLoading)
 	: player(player), gamePanels(gamePanels), finishedLoading(finishedLoading)
 {
 	SetIsFullScreen(true);
@@ -42,7 +42,7 @@ LoadingPanel::LoadingPanel(PlayerInfo &player, UI &gamePanels, bool &finishedLoa
 
 
 
-void LoadingPanel::Step()
+void GameLoadingPanel::Step()
 {
 	progress = static_cast<int>(GameData::Progress() * 60.);
 
@@ -71,7 +71,7 @@ void LoadingPanel::Step()
 
 
 
-void LoadingPanel::Draw()
+void GameLoadingPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());

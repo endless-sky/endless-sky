@@ -215,7 +215,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	// Whether the game data is done loading. This is used to trigger any
 	// tests to run.
 	bool dataFinishedLoading = false;
-	menuPanels.Push(new LoadingPanel(player, gamePanels, dataFinishedLoading));
+	menuPanels.Push(new GameLoadingPanel(player, gamePanels, dataFinishedLoading));
 	if(!conversation.IsEmpty())
 		menuPanels.Push(new ConversationPanel(player, conversation));
 	

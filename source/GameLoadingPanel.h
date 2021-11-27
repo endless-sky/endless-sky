@@ -10,8 +10,8 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef LOADING_PANEL_H_
-#define LOADING_PANEL_H_
+#ifndef GAME_LOADING_PANEL_H_
+#define GAME_LOADING_PANEL_H_
 
 #include "Panel.h"
 
@@ -26,9 +26,9 @@ class UI;
 
 // Class representing the loading menu, which is shown when loading resources
 // (like game data and save files).
-class LoadingPanel final : public Panel {
+class GameLoadingPanel final : public Panel {
 public:
-	LoadingPanel(PlayerInfo &player, UI &gamePanels, bool &finishedLoading);
+	GameLoadingPanel(PlayerInfo &player, UI &gamePanels, bool &finishedLoading);
 
 	void Step() final;
 	void Draw() final;
