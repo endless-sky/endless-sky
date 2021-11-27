@@ -521,7 +521,7 @@ outfit `"Biroo" Atomic Thruster`
 	"flare sprite" "effect/atomic flare/small"
 		"frame rate" 13
 	"flare sound" "atomic small"
-	description "This thruster is the standard thruster on most Hai light warships, providing enough thrust to make them useable in combat, but it is not quite big enough to suffice for something as large as a Hai Shield Beetle."
+	description "This thruster is the standard thruster on most Hai light warships, providing enough thrust to make them usable in combat, but it is not quite big enough to suffice for something as large as a Hai Shield Beetle."
 
 outfit `"Bondir" Atomic Thruster`
 	category "Engines"

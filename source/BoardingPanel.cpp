@@ -382,7 +382,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			else if(!victim->Crew())
 			{
 				messages.push_back("You have succeeded in capturing this ship.");
-				victim->GetGovernment()->Offend(ShipEvent::CAPTURE, victim->RequiredCrew());
+				victim->GetGovernment()->Offend(ShipEvent::CAPTURE, victim->CrewValue());
 				victim->WasCaptured(you);
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
 					you->TransferFuel(victim->JumpFuelMissing(), &*victim);
