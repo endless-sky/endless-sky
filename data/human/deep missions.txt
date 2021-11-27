@@ -2596,7 +2596,7 @@ mission "Stone of our Fathers 4"
 			label from
 			`	Helm shrugs as he maneuvers the ship into dock. "Wherever makes the most sense at the time a stone is given. If I recall correctly Skaldgar's stone was given to him by his mother, my grandmother, from an old mine Skaldgar had been exploring on the mainland. Even at 16 he loved the earth."`
 			label earth
-			`	Helm ties up the ship at a makeshift dock and you follow him toward a dour grey building not far away. You realize this entire algae island, as small as it is, must belong to a single individual or family.`
+			`	Helm ties up the ship at a makeshift dock and you follow him toward a dour gray building not far away. You realize this entire algae island, as small as it is, must belong to a single individual or family.`
 			`	When you arrive at the hardy and sea-stained wooden door, Helm knocks thunderously upon it and calls out, "Thorleif, open up!"`
 			`	After a brief wait the door opens ponderously revealing, a large, red-bearded, middle aged man who looks like a younger and much healthier Skaldgar. You realize that you must be standing before the man's son. A wide and open grin forms on his face when he sees Helm, and he gives the man a warm embrace. "Ah cousin! It's been too long, what brings you to my humble home?"`
 			`	Thorlief then notices you and frowns. "And who have you brought with you?"`

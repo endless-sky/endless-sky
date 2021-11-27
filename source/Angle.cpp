@@ -49,7 +49,7 @@ Angle Angle::Random(double range)
 	// The given range would have to be about 22.6 million degrees to overflow
 	// the size of a 32-bit int, which should never happen in normal usage.
 	uint32_t mod = static_cast<uint32_t>(fabs(range) * DEG_TO_STEP) + 1;
-	return Angle(mod ? static_cast<int32_t>(Random::Int(mod)) : 0);
+	return Angle(mod ? static_cast<int32_t>(Random::Int(mod)) & MASK : 0);
 }
 
 

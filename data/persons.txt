@@ -911,7 +911,7 @@ person "Prototype B3-CC4"
 		word
 			"<"
 		word
-			"Unauthorised"
+			"Unauthorized"
 			"Unknown"
 		word
 			" "
