@@ -132,7 +132,7 @@ mission "Wanderers: Diplomacy"
 			`	She laughs, in the Hai manner: a rapid chittering sound. "Yes, the humans and the Hai both worried that too many humans would emigrate all at once if they knew of our peaceful lands. So we agreed that the Hai would be a secret, always here for the adventurous to discover, but difficult to find, so that the human immigration would be slow enough for us to gradually adjust to it."`
 			`	"Are you the translator who will travel with me?" you ask.`
 			label travel
-			`	"Yes," she says. "If these aliens will provide a place for me, I mean to live with them permanently, an ambassador between their people and ours. I am old, and in need of a great novelty like this to make my life interesting once more." You note that the fur on her face, especially on the snout, has turned from brown to silvery grey - a sign of age in terrestrial creatures, and perhaps in the Hai as well.`
+			`	"Yes," she says. "If these aliens will provide a place for me, I mean to live with them permanently, an ambassador between their people and ours. I am old, and in need of a great novelty like this to make my life interesting once more." You note that the fur on her face, especially on the snout, has turned from brown to silvery gray - a sign of age in terrestrial creatures, and perhaps in the Hai as well.`
 			choice
 				`	"I'm glad to have the company of such a distinguished ambassador. Let's go visit these aliens immediately!"`
 					accept
@@ -1378,7 +1378,7 @@ mission "Wanderers: Alpha Surveillance H"
 			`	"Interesting," he says, as he wipes the spittle off his face with his sleeve. Then he glances over at the technician. "Did you get a read on that?"`
 			`	"<last> is well within human parameters, sir," says the technician.`
 			label human
-			`	The officer nods in acknowledgement, then unclips your arm restraints. "It seems I owe you an apology, Captain," he says. "Would you like to hit me back?" He leans in toward you to put his face within striking range.`
+			`	The officer nods in acknowledgment, then unclips your arm restraints. "It seems I owe you an apology, Captain," he says. "Would you like to hit me back?" He leans in toward you to put his face within striking range.`
 			choice
 				`	"No thanks."`
 				`	(Punch him back.)`
@@ -1952,7 +1952,7 @@ mission "Wanderers Solifuge Recon 1"
 	on offer
 		log `Returned to Wanderer space, and discovered that Iktat Rek has begun the "Molt." He is afraid that because the Eye has not yet opened, the Molt will not be viable and it will end up killing him.`
 		conversation
-			`You have been gone for several weeks, and Iktat Rek's appearance has changed drastically in that time. Nearly half his head is bald, showing scaly grey skin and scattered white under-feathers in place of his usual plumage. Patches on other parts of his body have lost their feathers as well. His appearance is shocking. In a terrestrial animal you would attribute it to a mange... or to a molt.`
+			`You have been gone for several weeks, and Iktat Rek's appearance has changed drastically in that time. Nearly half his head is bald, showing scaly gray skin and scattered white under-feathers in place of his usual plumage. Patches on other parts of his body have lost their feathers as well. His appearance is shocking. In a terrestrial animal you would attribute it to a mange... or to a molt.`
 			choice
 				`	"What is happening to you? Are you ill?"`
 				`	"Are you molting?"`
@@ -2461,7 +2461,7 @@ mission "Wanderers Rek 0"
 		has "Wanderers Rescue 1C: done"
 	on offer
 		conversation
-			`When Rek meets you in the spaceport, he is in the Wanderer equivalent of a motorized wheelchair. He has lost even more of his brown and grey plumage, and nothing but thin, withered, black feathers have grown in their place, like dark hairs growing from diseased skin. You are not sure if he has lost weight, or the loss of feathers simply makes him appear more gaunt. "I am glad you are here, <first> <last>," he says.`
+			`When Rek meets you in the spaceport, he is in the Wanderer equivalent of a motorized wheelchair. He has lost even more of his brown and gray plumage, and nothing but thin, withered, black feathers have grown in their place, like dark hairs growing from diseased skin. You are not sure if he has lost weight, or the loss of feathers simply makes him appear more gaunt. "I am glad you are here, <first> <last>," he says.`
 			choice
 				`	"Don't worry, Iktat Rek. You'll make it through this."`
 			`	He winces when you say his name. "You must not call me that anymore," he says. "'Iktat' was my role-name, and I can serve in that role no longer. I am now known only by my core-name of Rek, or my child-name Rek d' Esta'a i' Veruk. If I survive the Molt, I will become someone new, and will receive a new role-name as well."`

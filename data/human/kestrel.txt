@@ -106,7 +106,7 @@ mission "Kestrel Testing"
 			choice
 				`	"The Wraith."`
 					goto wraith
-				`	"The Grey Goose."`
+				`	"The Gray Goose."`
 					goto goose
 			
 			label wraith
@@ -128,7 +128,7 @@ mission "Kestrel Testing"
 			label wolf
 			`	"Not bad," he says, "but all our other ships - the Falcon, the Osprey, the Hawk - they're all birds. Maybe a bird name?"`
 			choice
-				`	"The Grey Goose."`
+				`	"The Gray Goose."`
 					goto goose
 				`	"The Kestrel."`
 					goto kestrel

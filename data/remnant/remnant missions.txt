@@ -3409,7 +3409,7 @@ mission "Remnant: Keystone Research 6"
 	on offer
 		conversation
 			`When you and the <npc> settle back onto the landing pad, there is already a dockworker waiting with a Key Stone. Once the Starling is settled, the dockworker climbs up the outside of the ship, hooks the keystone to a lift and disconnects it from the ship. As the keystone is hauled up to the roof another lift lowers the replacement Key Stone. The dockworker quickly installs it and jumps down, landing gracefully from the several-meter drop.`
-			`	"Ready? Let's go!" Aeolus signs as he fires up his systems and gestures an acknowledgement to the dockworker. You check your cameras and see the worker nimbly step clear of the engine exhausts as the two ships head back out of the dome.`
+			`	"Ready? Let's go!" Aeolus signs as he fires up his systems and gestures an acknowledgment to the dockworker. You check your cameras and see the worker nimbly step clear of the engine exhausts as the two ships head back out of the dome.`
 				launch
 	on visit
 		dialog `You land on <planet>, but you haven't scanned the <npc> in <waypoints>. Make sure you scan the ship before returning.`
