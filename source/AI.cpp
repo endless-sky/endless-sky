@@ -455,7 +455,7 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 				// If you provoke the same ship twice, it should have an effect both times.
 				if(event.Type() & ShipEvent::PROVOKE)
 					newActions |= ShipEvent::PROVOKE;
-				event.TargetGovernment()->Offend(newActions, target->RequiredCrew());
+				event.TargetGovernment()->Offend(newActions, target->CrewValue());
 			}
 		}
 	}
@@ -1127,7 +1127,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			&& ship.Position().Distance(oldTarget->Position()) > 1000.)
 		oldTarget.reset();
 	// Ships with 'plunders' personality always destroy the ships they have boarded.
-	if(oldTarget && person.Plunders() && !person.Disables() 
+	if(oldTarget && person.Plunders() && !person.Disables()
 			&& oldTarget->IsDisabled() && Has(ship, oldTarget, ShipEvent::BOARD))
 		return oldTarget;
 	shared_ptr<Ship> parentTarget;

@@ -38,6 +38,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 #include "Test.h"
 #include "TestData.h"
+#include "TextReplacements.h"
 
 #include <future>
 #include <map>
@@ -76,6 +77,7 @@ public:
 	Set<Sale<Outfit>> outfitSales;
 	std::set<double> neighborDistances;
 
+	TextReplacements substitutions;
 	Trade trade;
 	std::vector<StartConditions> startConditions;
 	std::map<std::string, std::vector<std::string>> ratings;

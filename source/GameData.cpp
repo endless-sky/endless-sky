@@ -80,6 +80,7 @@ namespace {
 	Set<Galaxy> defaultGalaxies;
 	Set<Sale<Ship>> defaultShipSales;
 	Set<Sale<Outfit>> defaultOutfitSales;
+	TextReplacements defaultSubstitutions;
 	
 	Politics politics;
 	
@@ -148,6 +149,7 @@ void GameData::FinishLoading()
 	defaultGalaxies = objects.galaxies;
 	defaultShipSales = objects.shipSales;
 	defaultOutfitSales = objects.outfitSales;
+	defaultSubstitutions = objects.substitutions;
 	playerGovernment = objects.governments.Get("Escort");
 
 	politics.Reset();
@@ -285,6 +287,7 @@ void GameData::Revert()
 	objects.galaxies.Revert(defaultGalaxies);
 	objects.shipSales.Revert(defaultShipSales);
 	objects.outfitSales.Revert(defaultOutfitSales);
+	objects.substitutions.Revert(defaultSubstitutions);
 	for(auto &it : objects.persons)
 		it.second.Restore();
 	
@@ -774,6 +777,13 @@ const map<string, string> &GameData::PluginAboutText()
 MaskManager &GameData::GetMaskManager()
 {
 	return maskManager;
+}
+
+
+
+const TextReplacements &GameData::GetTextReplacements()
+{
+	return objects.substitutions;
 }
 
 

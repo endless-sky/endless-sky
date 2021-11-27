@@ -551,7 +551,7 @@ ship "Ibis"
 		"Forge-Class Steering" 2
 		"Scram Drive"
 		
-	bay "Drone" 0 30 over 
+	bay "Drone" 0 30 over
 	bay "Drone" -34 68 over
 	bay "Drone" 0 81 over
 	bay "Drone" 34 68 over
@@ -760,7 +760,7 @@ ship "Penguin"
 	
 ship "Peregrine"
 	sprite "ship/peregrine/peregrine"
-		"frame rate" 3 
+		"frame rate" 3
 		"rewind"
 	thumbnail "thumbnail/peregrine"
 	attributes

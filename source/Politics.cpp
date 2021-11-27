@@ -270,7 +270,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		}
 		if(failedMissions && maxFine > 0)
 		{
-			reason += "\n\tYou failed " + Format::Number(failedMissions) + ((failedMissions > 1) ? " missions" : " mission") 
+			reason += "\n\tYou failed " + Format::Number(failedMissions) + ((failedMissions > 1) ? " missions" : " mission")
 				+ " after your illegal cargo was discovered.";
 		}
 	}

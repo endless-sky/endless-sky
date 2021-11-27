@@ -52,6 +52,7 @@ class StartConditions;
 class System;
 class Test;
 class TestData;
+class TextReplacements;
 
 
 
@@ -154,6 +155,8 @@ public:
 	static const std::map<std::string, std::string> &PluginAboutText();
 	
 	static MaskManager &GetMaskManager();
+	
+	static const TextReplacements &GetTextReplacements();
 	
 	
 private:

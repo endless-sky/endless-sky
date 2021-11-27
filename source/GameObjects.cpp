@@ -130,6 +130,8 @@ void GameObjects::Change(const DataNode &node)
 		systems.Get(node.Token(1))->Link(systems.Get(node.Token(2)));
 	else if(node.Token(0) == "unlink" && node.Size() >= 3)
 		systems.Get(node.Token(1))->Unlink(systems.Get(node.Token(2)));
+	else if(node.Token(0) == "substitutions" && node.HasChildren())
+		substitutions.Load(node);
 	else
 		node.PrintTrace("Invalid \"event\" data:");
 }
@@ -304,6 +306,8 @@ void GameObjects::LoadFile(const string &path, bool debugMode)
 				text += child.Token(0);
 			}
 		}
+		else if(key == "substitutions" && node.HasChildren())
+			substitutions.Load(node);
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
 	}

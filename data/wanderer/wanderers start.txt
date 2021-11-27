@@ -401,7 +401,7 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 	description "Transport <cargo> to <destination>, where repairs are needed from Unfettered attacks."
 	passengers 1
 	cargo "building supplies" 10
-	source 
+	source
 		near "Sich'ka'ara" 1 100
 	destination "Vara Ke'sok"
 	to offer
@@ -2721,7 +2721,7 @@ mission "Wanderers Ap'arak 2"
 
 
 
-# TODO: When "complete anywhere" functionality is available, 
+# TODO: When "complete anywhere" functionality is available,
 # condense the following three missions into a single mission
 mission "Wanderers Ap'arak 3: Pug 1"
 	landing
