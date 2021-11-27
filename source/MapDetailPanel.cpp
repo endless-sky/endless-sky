@@ -516,7 +516,6 @@ void MapDetailPanel::DrawInfo()
 		excessPlanet = 0;
 		int currentPlanet = 0;
 		for(const StellarObject &object : selectedSystem->Objects())
-		{
 			if(object.HasSprite() && object.HasValidPlanet())
 			{
 				// The same "planet" may appear multiple times in one system,
@@ -578,7 +577,6 @@ void MapDetailPanel::DrawInfo()
 					++excessPlanet;
 				++currentPlanet;
 			}
-		}
 	}
 	// Hints that more planets can be seen by scrolling up.
 	if(excessPlanet > firstPlanet)
