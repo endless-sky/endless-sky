@@ -348,12 +348,13 @@ bool OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 void OutfitterPanel::Buy(bool alreadyOwned)
 {
 	int64_t licenseCost = LicenseCost(selectedOutfit);
+	auto &playerConditions = player.Conditions();
 	if(licenseCost)
 	{
 		player.Accounts().AddCredits(-licenseCost);
 		for(const string &licenseName : selectedOutfit->Licenses())
-			if(!player.GetCondition("license: " + licenseName))
-				player.Conditions()["license: " + licenseName] = true;
+			if(!playerConditions["license: " + licenseName])
+				playerConditions["license: " + licenseName] = true;
 	}
 	
 	int modifier = Modifier();
@@ -378,7 +379,7 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 		// Special case: licenses.
 		if(IsLicense(selectedOutfit->Name()))
 		{
-			auto &entry = player.Conditions()[LicenseName(selectedOutfit->Name())];
+			auto &entry = playerConditions[LicenseName(selectedOutfit->Name())];
 			if(entry <= 0)
 			{
 				entry = true;
