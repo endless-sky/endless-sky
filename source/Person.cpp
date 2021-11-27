@@ -138,7 +138,7 @@ void Person::Restore()
 
 
 
-// Check if a person is already placed somehwere.
+// Check if a person is already placed somewhere.
 bool Person::IsPlaced() const
 {
 	for(const shared_ptr<Ship> &ship : ships)
