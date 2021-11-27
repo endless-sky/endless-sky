@@ -43,6 +43,7 @@ class Projectile;
 class Ship;
 class ShipEvent;
 class Sprite;
+class TestContext;
 class Visual;
 class Weather;
 
@@ -80,8 +81,8 @@ public:
 	// Draw a frame.
 	void Draw() const;
 	
-	// Give an (automated/scripted) command on behalf of the player.
-	void GiveCommand(const Command &command);
+	// Set the given TestContext in the next step of the Engine.
+	void SetTestContext(TestContext &newTestContext);
 	
 	// Select the object the player clicked on.
 	void Click(const Point &from, const Point &to, bool hasShift);
@@ -232,6 +233,9 @@ private:
 	Point clickPoint;
 	Rectangle clickBox;
 	int groupSelect = -1;
+	
+	// Input, Output and State handling for automated tests.
+	TestContext *testContext = nullptr;
 	
 	double zoom = 1.;
 	

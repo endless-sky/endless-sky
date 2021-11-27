@@ -49,6 +49,7 @@ namespace {
 		{"slowing resistance energy", 0.},
 		{"slowing resistance fuel", 0.},
 		{"slowing resistance heat", 0.},
+		{"crew equivalent", 0.},
 		
 		// "Protection" attributes appear in denominators and are incremented by 1.
 		{"disruption protection", -0.99},
@@ -190,7 +191,7 @@ void Outfit::Load(const DataNode &node)
 					if(isNewLicense(licenses, *it))
 						licenses.push_back(*it);
 			}
-			// Add any new licenses that were specifed as an indented list.
+			// Add any new licenses that were specified as an indented list.
 			for(const DataNode &grand : child)
 				if(isNewLicense(licenses, grand.Token(0)))
 					licenses.push_back(grand.Token(0));

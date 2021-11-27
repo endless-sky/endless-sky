@@ -33,6 +33,7 @@ namespace {
 		"planet",
 		"shipyard",
 		"system",
+		"substitutions",
 	};
 }
 

@@ -120,7 +120,7 @@ void MainPanel::Step()
 				message.back() += lostCount;
 				++lostCount;
 				
-				GetUI()->Push(new Dialog(GameData::HelpMessage(message)));
+				isActive = !DoHelp(message);
 			}
 		}
 	}
@@ -237,10 +237,10 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
-// Send a command through the main-panel to the engine
-void MainPanel::GiveCommand(const Command &command)
+// Forward the given TestContext to the Engine under MainPanel.
+void MainPanel::SetTestContext(TestContext &testContext)
 {
-	engine.GiveCommand(command);
+	engine.SetTestContext(testContext);
 }
 
 
