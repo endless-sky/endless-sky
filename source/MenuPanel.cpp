@@ -57,6 +57,14 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 	SetIsFullScreen(true);
 	
 	credits = Format::Split(Files::Read(Files::Resources() + "credits.txt"), "\n");
+	if(gamePanels.IsEmpty())
+	{
+		gamePanels.Push(new MainPanel(player));
+		// It takes one step to figure out the planet panel should be created, and
+		// another step to actually place it. So, take two steps to avoid a flicker.
+		gamePanels.StepAll();
+		gamePanels.StepAll();
+	}
 }
 
 
@@ -68,14 +76,6 @@ void MenuPanel::Step()
 		++scroll;
 		if(scroll >= (20 * credits.size() + 300) * scrollSpeed)
 			scroll = 0;
-	}
-	if(gamePanels.IsEmpty())
-	{
-		gamePanels.Push(new MainPanel(player));
-		// It takes one step to figure out the planet panel should be created, and
-		// another step to actually place it. So, take two steps to avoid a flicker.
-		gamePanels.StepAll();
-		gamePanels.StepAll();
 	}
 }
 
