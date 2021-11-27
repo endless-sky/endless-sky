@@ -128,7 +128,7 @@ void TradingPanel::Draw()
 		for(const auto &it : player.Cargo().Outfits())
 			if(it.second)
 			{
-				bool isHarvested = (it.first->Get("installable") < 0.);
+				bool isHarvested = (it.first->Get("minable") > 0.);
 				(isHarvested ? hasHarvested : hasOutfits) = true;
 			}
 		sellOutfits = (hasOutfits && !hasHarvested);
