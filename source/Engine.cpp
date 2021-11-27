@@ -1655,7 +1655,7 @@ void Engine::ChangePlayerFlagship(const shared_ptr<Ship> oldFlagship, shared_ptr
 	
 	// Update all ships that still have the old flagship as parent, for example
 	// NPCs that are following the player.
-	for(auto& ship : ships)
+	for(auto &ship : ships)
 		if(ship && ship->GetParent() == oldFlagship)
 			ship->SetParent(newFlagship);
 }

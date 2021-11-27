@@ -769,6 +769,7 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 }
 
 
+
 // Move the flagship to the start of your list of ships. It does not make
 // sense that the flagship would change if you are reunited with a different
 // ship that was higher up the list. This function should not be used during
