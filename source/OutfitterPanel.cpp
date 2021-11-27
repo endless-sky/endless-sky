@@ -379,10 +379,10 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 		// Special case: licenses.
 		if(IsLicense(selectedOutfit->Name()))
 		{
-			string licenseName = LicenseName(selectedOutfit->Name());
-			if(playerConditions.Get(licenseName) <= 0)
+			auto &entry = playerConditions[LicenseName(selectedOutfit->Name())];
+			if(entry <= 0)
 			{
-				playerConditions.Set(licenseName, true);
+				entry = true;
 				int64_t price = player.StockDepreciation().Value(selectedOutfit, day);
 				player.Accounts().AddCredits(-price);
 			}

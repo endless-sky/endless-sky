@@ -232,7 +232,7 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "conditions")
 		{
 			for(const DataNode &grand : child)
-				conditions.Set(grand.Token(0), (grand.Size() >= 2) ? grand.Value(1) : 1);
+				conditions[grand.Token(0)] = (grand.Size() >= 2) ? grand.Value(1) : 1;
 		}
 		else if(child.Token(0) == "event")
 			gameEvents.emplace_back(child);
@@ -1778,10 +1778,9 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 	if(event.ActorGovernment() && event.ActorGovernment()->IsPlayer())
 		if((event.Type() & ShipEvent::DISABLE) && event.Target() && !event.Target()->IsYours())
 		{
-			auto rating = conditions.Get("combat rating");
+			auto &rating = conditions["combat rating"];
 			static const int64_t maxRating = 2000000000;
 			rating = min(maxRating, rating + (event.Target()->Cost() + 250000) / 500000);
-			conditions.Set("combat rating", rating);
 		}
 	
 	for(Mission &mission : missions)
@@ -2458,7 +2457,7 @@ void PlayerInfo::ValidateLoad()
 			startData = GameData::StartOptions().front();
 			// When necessary, record in the pilot file that the starting data is just an assumption.
 			if(startCount >= 2)
-				conditions.Set("unverified start scenario", true);
+				conditions["unverified start scenario"] = true;
 		}
 		else
 			throw runtime_error("Unable to set a starting scenario for an existing pilot. (No valid \"start\" "
@@ -2498,7 +2497,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	// Bound financial conditions to +/- 4.6 x 10^18 credits, within the range of a 64-bit int.
 	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
 
-	auto &&netWorthProvider = 	conditions.GetProviderNamed("net worth");
+	auto &&netWorthProvider = conditions.GetProviderNamed("net worth");
 	netWorthProvider.SetGetFun([this](const string &name) { return min(limit, max(-limit, accounts.NetWorth())); });
 	
 	auto &&creditsProvider = conditions.GetProviderNamed("credits");
