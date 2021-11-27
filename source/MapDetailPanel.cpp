@@ -264,7 +264,6 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		{
 			// The player clicked within the region associated with this system's planets.
 			for(const auto &it : planetY)
-			{
 				if(y >= it.second && y < it.second + 110)
 				{
 					selectedPlanet = it.first;
@@ -290,7 +289,6 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 					}
 					return true;
 				}
-			}
 		}
 	}
 	else if(x >= Screen::Right() - 240 && y <= Screen::Top() + 270)
@@ -510,7 +508,6 @@ void MapDetailPanel::DrawInfo()
 	
 	uiPoint.Y() += 115.;
 	planetY.clear();
-	
 	// Draw the basic information for visitable planets in this system.
 	if(player.HasVisited(*selectedSystem))
 	{
