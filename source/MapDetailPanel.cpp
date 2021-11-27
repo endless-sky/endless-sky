@@ -535,7 +535,7 @@ void MapDetailPanel::DrawInfo()
 					
 					bool hasSpaceport = planet->HasSpaceport();
 					
-					SpriteShader::Draw(planetSprite, uiPoint)
+					SpriteShader::Draw(planetSprite, uiPoint);
 					planetY[planet] = uiPoint.Y() - 60;
 					
 					font.Draw({object.Name(), alignLeft},
@@ -569,10 +569,10 @@ void MapDetailPanel::DrawInfo()
 							
 					bool hasVisited = player.HasVisited(*planet);
 					font.Draw(hasVisited ? "(has been visited)" : "(not yet visited)",
-						uiPoint + Point(-70., -12.),
+						uiPoint + Point(-70., 28.),
 						dim);
 					if(commodity == SHOW_VISITED)
-						PointerShader::Draw(uiPoint + Point(-70., yHasVisited+7), Point(1., 0.),
+						PointerShader::Draw(uiPoint + Point(-70., 35), Point(1., 0.),
 							10.f, 10.f, 0.f, medium);
 					
 					uiPoint.Y() += 130.;
@@ -587,14 +587,14 @@ void MapDetailPanel::DrawInfo()
 	if(excessPlanet > firstPlanet)
 	{
 		const Sprite *up = SpriteSet::Get("ui/up");
-		Point point(Screen::Left() + 98., governmentY + 32.5);
+		Point point(Screen::Left() + 98., governmentY + 35.);
 		SpriteShader::Draw(up, point);
 	}
 	// Hints that more planets can be seen by scrolling down.
 	if(firstPlanet > 0)
 	{
 		const Sprite *down = SpriteSet::Get("ui/down");
-		Point point(Screen::Left() + 98., uiPoint.Y() - 67.5);
+		Point point(Screen::Left() + 98., uiPoint.Y() - 70.);
 		SpriteShader::Draw(down, point);
 	}
 	
