@@ -249,13 +249,13 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		else if(y >= governmentY && y < governmentY + 20)
 			SetCommodity(SHOW_GOVERNMENT);
 		// Clicking the arrow below makes the planet view go up.
-		else if(y >= governmentY + 20 && y < governmentY + 45 && firstPlanet < excessPlanet)
+		else if(y >= governmentY + 20 && y < governmentY + 40 && firstPlanet < excessPlanet)
 		{
 			++firstPlanet;
 			return true;
 		}
 		// Clicking the arrow below makes the planet view go down.
-		else if(y <= tradeY && y > tradeY - 25 && firstPlanet > 0)
+		else if(y <= tradeY && y > tradeY - 20 && firstPlanet > 0)
 		{
 			--firstPlanet;
 			return true;
@@ -265,20 +265,15 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 			// The player clicked within the region associated with this system's planets.
 			for(const auto &it : planetY)
 			{
-				int offset = planetExtended[it.first] ? 110 : 70;
-				if(y >= it.second && y < it.second + offset)
+				if(y >= it.second && y < it.second + 110)
 				{
 					selectedPlanet = it.first;
-					if(y >= it.second + 30 && y < it.second + offset)
+					if(y >= it.second + 30 && y < it.second + 110)
 					{
 						// Figure out what row of the planet info was clicked.
 						int row = (y - (it.second + 30)) / 20;
 						static const int SHOW[4] = {
 							SHOW_REPUTATION, SHOW_SHIPYARD, SHOW_OUTFITTER, SHOW_VISITED};
-						// In the case of a non extended planet shipyard and outfitter are not shown,
-						// the second row is SHOW_VISITED.
-						if(!planetExtended[it.first] && row == 1)
-							row = 3;
 						SetCommodity(SHOW[row]);
 						
 						// Double-click the Shipyard or Outfitter line to open that map view.
@@ -513,7 +508,7 @@ void MapDetailPanel::DrawInfo()
 		PointerShader::Draw(uiPoint + Point(-90., 20.), Point(1., 0.),
 			10.f, 10.f, 0.f, medium);
 	
-	uiPoint.Y() += 120.;
+	uiPoint.Y() += 115.;
 	planetY.clear();
 	
 	// Draw the basic information for visitable planets in this system.
@@ -521,7 +516,6 @@ void MapDetailPanel::DrawInfo()
 	{
 		set<const Planet *> shown;
 		const Sprite *planetSprite = SpriteSet::Get("ui/map planet");
-		const Sprite *uninhabitedPlanetSprite = SpriteSet::Get("ui/map uninhabited");
 		excessPlanet = 0;
 		int currentPlanet = 0;
 		for(const StellarObject &object : selectedSystem->Objects())
@@ -534,25 +528,21 @@ void MapDetailPanel::DrawInfo()
 				if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.count(planet))
 					continue;
 				
-				// Makes sure it would not go out of the screen.
+				// Makes sure one more planet does not go out of the screen.
 				if(uiPoint.Y() <= (Screen::Bottom() - 230 - 130) && currentPlanet >= firstPlanet)
 				{
 					shown.insert(planet);
 					
 					bool hasSpaceport = planet->HasSpaceport();
-					bool isInhabited = planet->IsInhabited();
 					
-					isInhabited ? SpriteShader::Draw(planetSprite, uiPoint) : 
-						SpriteShader::Draw(uninhabitedPlanetSprite, uiPoint + Point(0, -20));
+					SpriteShader::Draw(planetSprite, uiPoint)
 					planetY[planet] = uiPoint.Y() - 60;
-					planetExtended[planet] = isInhabited;
 					
 					font.Draw({object.Name(), alignLeft},
 						uiPoint + Point(-70., -52.),
 						planet == selectedPlanet ? medium : dim);
 					
-					string reputationLabel = !isInhabited ? "Uninhabited" :
-						!hasSpaceport ? "No Spaceport" :
+					string reputationLabel = !hasSpaceport ? "No Spaceport" :
 						GameData::GetPolitics().HasDominated(planet) ? "Dominated" :
 						planet->GetGovernment()->IsEnemy() ? "Hostile" :
 						planet->CanLand() ? "Friendly" : "Restricted";
@@ -563,32 +553,29 @@ void MapDetailPanel::DrawInfo()
 						PointerShader::Draw(uiPoint + Point(-60., -25.), Point(1., 0.),
 							10.f, 10.f, 0.f, medium);
 					
-					if(isInhabited)
-					{
-						font.Draw("Shipyard",
-							uiPoint + Point(-60., -12.),
-							planet->HasShipyard() ? medium : faint);
-						if(commodity == SHOW_SHIPYARD)
-							PointerShader::Draw(uiPoint + Point(-60., -5.), Point(1., 0.),
-								10.f, 10.f, 0.f, medium);
-						
-						font.Draw("Outfitter",
-							uiPoint + Point(-60., 8.),
-							planet->HasOutfitter() ? medium : faint);
-						if(commodity == SHOW_OUTFITTER)
-							PointerShader::Draw(uiPoint + Point(-60., 15.), Point(1., 0.),
-								10.f, 10.f, 0.f, medium);
-					}
-					double yHasVisited = isInhabited ? 28. : -12;
+					font.Draw("Shipyard",
+						uiPoint + Point(-60., -12.),
+						planet->HasShipyard() ? medium : faint);
+					if(commodity == SHOW_SHIPYARD)
+						PointerShader::Draw(uiPoint + Point(-60., -5.), Point(1., 0.),
+							10.f, 10.f, 0.f, medium);
+					
+					font.Draw("Outfitter",
+						uiPoint + Point(-60., 8.),
+						planet->HasOutfitter() ? medium : faint);
+					if(commodity == SHOW_OUTFITTER)
+						PointerShader::Draw(uiPoint + Point(-60., 15.), Point(1., 0.),
+							10.f, 10.f, 0.f, medium);
+							
 					bool hasVisited = player.HasVisited(*planet);
 					font.Draw(hasVisited ? "(has been visited)" : "(not yet visited)",
-						uiPoint + Point(-70., yHasVisited),
+						uiPoint + Point(-70., -12.),
 						dim);
 					if(commodity == SHOW_VISITED)
 						PointerShader::Draw(uiPoint + Point(-70., yHasVisited+7), Point(1., 0.),
 							10.f, 10.f, 0.f, medium);
 					
-					uiPoint.Y() += isInhabited ? 130. : 90;
+					uiPoint.Y() += 130.;
 				}
 				else
 					++excessPlanet;
@@ -600,18 +587,18 @@ void MapDetailPanel::DrawInfo()
 	if(excessPlanet > firstPlanet)
 	{
 		const Sprite *up = SpriteSet::Get("ui/up");
-		Point point(Screen::Left() + 98., governmentY + 35.);
+		Point point(Screen::Left() + 98., governmentY + 32.5);
 		SpriteShader::Draw(up, point);
 	}
 	// Hints that more planets can be seen by scrolling down.
 	if(firstPlanet > 0)
 	{
 		const Sprite *down = SpriteSet::Get("ui/down");
-		Point point(Screen::Left() + 98., uiPoint.Y() - 65.);
+		Point point(Screen::Left() + 98., uiPoint.Y() - 67.5);
 		SpriteShader::Draw(down, point);
 	}
 	
-	uiPoint.Y() += 50.;
+	uiPoint.Y() += 45.;
 	tradeY = uiPoint.Y() - 95.;
 	
 	// Trade sprite goes from 310 to 540.
