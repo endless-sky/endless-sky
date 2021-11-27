@@ -162,9 +162,7 @@ test "Load First Savegame"
 
 
 test "Save To Default Snapshot"
-	# Broken status due to this bug (the loading happens very fast after saving during automated testing):
-	# https://github.com/endless-sky/endless-sky/issues/4810
-	status broken
+	status active
 	description "Helper function to save the game to the first snapshot. Typically used directly after opening the menu."
 	sequence
 		# Open the menu.
@@ -182,8 +180,10 @@ test "Save To Default Snapshot"
 		input
 			key "enter"
 		# Exit the menu that we are in (and return to the game)
-		input b
-		input e
+		input
+			key b
+		input
+			key e
 
 
 test "Depart"

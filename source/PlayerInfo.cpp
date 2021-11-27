@@ -913,15 +913,16 @@ void PlayerInfo::SellShip(const Ship *selected)
 
 
 
-void PlayerInfo::DisownShip(const Ship *selected)
+vector<shared_ptr<Ship>>::iterator PlayerInfo::DisownShip(const Ship *selected)
 {
 	for(auto it = ships.begin(); it != ships.end(); ++it)
 		if(it->get() == selected)
 		{
-			ships.erase(it);
 			flagship.reset();
-			return;
+			it = ships.erase(it);
+			return (it == ships.begin()) ? it : --it;
 		}
+	return ships.begin();
 }
 
 
@@ -1144,7 +1145,7 @@ void PlayerInfo::Land(UI *ui)
 			it = ships.erase(it);
 		}
 		else
-			++it; 
+			++it;
 	}
 	
 	// "Unload" all fighters, so they will get recharged, etc.
@@ -2505,7 +2506,7 @@ void PlayerInfo::ValidateLoad()
 	}
 	
 	// Validate the missions that were loaded. Active-but-invalid missions are removed from
-	// the standard mission list, effectively pausing them until necessary data is restored. 
+	// the standard mission list, effectively pausing them until necessary data is restored.
 	missions.sort([](const Mission &lhs, const Mission &rhs) noexcept -> bool { return lhs.IsValid(); });
 	auto isInvalidMission = [](const Mission &m) noexcept -> bool { return !m.IsValid(); };
 	auto mit = find_if(missions.begin(), missions.end(), isInvalidMission);
@@ -2719,7 +2720,7 @@ void PlayerInfo::StepMissions(UI *ui)
 	if(!visitText.empty())
 	{
 		if(missionVisits > 1)
-			visitText += "\n\t(You have " + Format::Number(missionVisits - 1) + " other unfinished " 
+			visitText += "\n\t(You have " + Format::Number(missionVisits - 1) + " other unfinished "
 				+ ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
 		ui->Push(new Dialog(visitText));
 	}

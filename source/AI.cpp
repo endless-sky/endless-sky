@@ -41,7 +41,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	// If the player issues any of those commands, then any auto-pilot actions for the player get cancelled
+	// If the player issues any of those commands, then any auto-pilot actions for the player get canceled
 	const Command &AutopilotCancelCommands()
 	{
 		static const Command cancelers(Command::LAND | Command::JUMP | Command::BOARD | Command::AFTERBURNER
@@ -142,7 +142,7 @@ namespace {
 			toRecall.reserve(maxCount);
 		}
 		
-		// First, check if the player selected any carreid ships.
+		// First, check if the player selected any carried ships.
 		for(const weak_ptr<Ship> &it : player.SelectedShips())
 		{
 			shared_ptr<Ship> ship = it.lock();
@@ -455,7 +455,7 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 				// If you provoke the same ship twice, it should have an effect both times.
 				if(event.Type() & ShipEvent::PROVOKE)
 					newActions |= ShipEvent::PROVOKE;
-				event.TargetGovernment()->Offend(newActions, target->RequiredCrew());
+				event.TargetGovernment()->Offend(newActions, target->CrewValue());
 			}
 		}
 	}
@@ -805,6 +805,9 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 					auto &npcs = missionIt->NPCs();
 					for(const auto &npc : npcs)
 					{
+						// Don't reparent to NPC ships that have not been spawned.
+						if(!npc.ShouldSpawn())
+							continue;
 						newParent = getParentFrom(npc.Ships());
 						if(newParent)
 							break;
@@ -1124,7 +1127,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			&& ship.Position().Distance(oldTarget->Position()) > 1000.)
 		oldTarget.reset();
 	// Ships with 'plunders' personality always destroy the ships they have boarded.
-	if(oldTarget && person.Plunders() && !person.Disables() 
+	if(oldTarget && person.Plunders() && !person.Disables()
 			&& oldTarget->IsDisabled() && Has(ship, oldTarget, ShipEvent::BOARD))
 		return oldTarget;
 	shared_ptr<Ship> parentTarget;
