@@ -313,14 +313,14 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		return true;
 	}
 	
-	const string &oldSystem = selectedSystem->Name();
+	const System *const &previous = selectedSystem;
 	// The click was not on an interface element, so check if it was on a system.
 	MapPanel::Click(x, y, clicks);
 	// If the system just changed, the selected planet is no longer valid.
 	if(selectedPlanet && !selectedPlanet->IsInSystem(selectedSystem))
 		selectedPlanet = nullptr;
 	// If the system just changed, the planet scroll in the system needs to be reset.
-	if(selectedSystem->Name() != oldSystem)
+	if(selectedSystem == previous)
 		firstPlanet = 0;
 	return true;
 }
@@ -586,7 +586,7 @@ void MapDetailPanel::DrawInfo()
 		SpriteShader::Draw(up, point);
 	}
 	// Hints that more planets can be seen by scrolling down.
-	if(firstPlanet > 0)
+	if(firstPlanet)
 	{
 		const Sprite *down = SpriteSet::Get("ui/down");
 		Point point(Screen::Left() + 98., uiPoint.Y() - 70.);

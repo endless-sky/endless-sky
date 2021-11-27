@@ -36,7 +36,7 @@ public:
 	
 	virtual void Step() override;
 	virtual void Draw() override;
-	// Navigate trough the shown planets when there are too many, otherwise use the parrent function.
+	// Navigate through the shown planets when there are too many, otherwise use the parent function.
 	virtual bool Scroll(double dx, double dy) override;
 	
 	
