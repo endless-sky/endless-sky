@@ -146,6 +146,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	{
 		// Clear the selected planet, if any.
 		selectedPlanet = nullptr;
+		firstPlanet = 0;
 		// Toggle to the next link connected to the "source" system. If the
 		// shift key is down, the source is the end of the travel plan; otherwise
 		// it is one step before the end.
@@ -247,6 +248,18 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		// Clicking the government name activates the view of system / planet ownership.
 		else if(y >= governmentY && y < governmentY + 20)
 			SetCommodity(SHOW_GOVERNMENT);
+		// Clicking the arrow below makes the planet view go up.
+		else if(y >= governmentY + 20 && y < governmentY + 45 && firstPlanet < excessPlanet)
+		{
+			++firstPlanet;
+			return true;
+		}
+		// Clicking the arrow below makes the planet view go down.
+		else if(y <= tradeY && y > tradeY - 25 && firstPlanet > 0)
+		{
+			--firstPlanet;
+			return true;
+		}
 		else
 		{
 			// The player clicked within the region associated with this system's planets.
@@ -500,16 +513,9 @@ void MapDetailPanel::DrawInfo()
 		PointerShader::Draw(uiPoint + Point(-90., 20.), Point(1., 0.),
 			10.f, 10.f, 0.f, medium);
 	
-	uiPoint.Y() += 115.;
+	uiPoint.Y() += 120.;
 	planetY.clear();
-	// Hints that more planets can be seen by scrolling up.
-	if(firstPlanet > 0)
-	{
-		uiPoint.Y() += 10;
-		const Sprite *up = SpriteSet::Get("ui/up");
-		Point point(Screen::Left() + 100., governmentY + 40.);
-		SpriteShader::Draw(up, point);
-	}
+	
 	// Draw the basic information for visitable planets in this system.
 	if(player.HasVisited(*selectedSystem))
 	{
@@ -527,7 +533,7 @@ void MapDetailPanel::DrawInfo()
 				const Planet *planet = object.GetPlanet();
 				if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.count(planet))
 					continue;
-
+				
 				// Makes sure it would not go out of the screen.
 				if(uiPoint.Y() <= (Screen::Bottom() - 230 - 130) && currentPlanet >= firstPlanet)
 				{
@@ -590,16 +596,22 @@ void MapDetailPanel::DrawInfo()
 			}
 		}
 	}
-	// Hints that more planets can be seen by scrolling down.
+	// Hints that more planets can be seen by scrolling up.
 	if(excessPlanet > firstPlanet)
 	{
+		const Sprite *up = SpriteSet::Get("ui/up");
+		Point point(Screen::Left() + 98., governmentY + 35.);
+		SpriteShader::Draw(up, point);
+	}
+	// Hints that more planets can be seen by scrolling down.
+	if(firstPlanet > 0)
+	{
 		const Sprite *down = SpriteSet::Get("ui/down");
-		Point point(Screen::Left() + 100., uiPoint.Y() - 65.);
+		Point point(Screen::Left() + 98., uiPoint.Y() - 65.);
 		SpriteShader::Draw(down, point);
-		uiPoint.Y() += 10;
 	}
 	
-	uiPoint.Y() += 45.;
+	uiPoint.Y() += 50.;
 	tradeY = uiPoint.Y() - 95.;
 	
 	// Trade sprite goes from 310 to 540.
