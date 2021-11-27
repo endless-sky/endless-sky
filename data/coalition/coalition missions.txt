@@ -1563,7 +1563,7 @@ mission "Saryd University Lecture"
 			choice
 				`	"Yes, humans are in contact with the Hai. They live to the north of human space, and we can visit them through a wormhole."`
 					goto "know"
-				`	"A few humans know about the Hai, but there's no official acknowledgement of their existence. They live to the north of human space, and we can visit them through a wormhole."`
+				`	"A few humans know about the Hai, but there's no official acknowledgment of their existence. They live to the north of human space, and we can visit them through a wormhole."`
 					goto "know"
 				`	"No, the only aliens humans know about are the Quarg."`
 					goto "sad"

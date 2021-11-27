@@ -1124,6 +1124,7 @@ ship "Tern"
 		"shields" 500
 		"hull" 2500
 		"automaton" 1
+		"crew equivalent" 1
 		"cargo space" 5
 		"mass" 16
 		"drag" 2.0

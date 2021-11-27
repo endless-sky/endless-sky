@@ -3378,7 +3378,7 @@ mission "Remnant: Keystone Research 5"
 			`	"Oh, yes. It is actually quite common among the Remnant. I am not a particularly good pilot, but it is considered an important skill that is taught to almost everyone as a part of a general education. It is especially worthwhile for those of us who work directly with starships on a daily basis and may be called upon to move or fly one at a moment's notice." His gestures suggest both pride and humility as he talks about his piloting skills. "Anyway, let's go!"`
 				accept
 	npc "scan outfits" "save"
-		government "Remnant"
+		government "Remnant (Research)"
 		personality coward disables plunders staying surveillance target mining
 		system "Peragenor"
 		ship "Starling (Keystone)" "Winds of Light"
@@ -3398,7 +3398,7 @@ mission "Remnant: Keystone Research 6"
 	waypoint "Peragenor"
 	source "Viminal"
 	npc "scan outfits" "save"
-		government "Remnant"
+		government "Remnant (Research)"
 		personality coward disables plunders staying surveillance target mining
 		system "Peragenor"
 		ship "Starling" "Winds of Light"
@@ -3409,7 +3409,7 @@ mission "Remnant: Keystone Research 6"
 	on offer
 		conversation
 			`When you and the <npc> settle back onto the landing pad, there is already a dockworker waiting with a Key Stone. Once the Starling is settled, the dockworker climbs up the outside of the ship, hooks the keystone to a lift and disconnects it from the ship. As the keystone is hauled up to the roof another lift lowers the replacement Key Stone. The dockworker quickly installs it and jumps down, landing gracefully from the several-meter drop.`
-			`	"Ready? Let's go!" Aeolus signs as he fires up his systems and gestures an acknowledgement to the dockworker. You check your cameras and see the worker nimbly step clear of the engine exhausts as the two ships head back out of the dome.`
+			`	"Ready? Let's go!" Aeolus signs as he fires up his systems and gestures an acknowledgment to the dockworker. You check your cameras and see the worker nimbly step clear of the engine exhausts as the two ships head back out of the dome.`
 				launch
 	on visit
 		dialog `You land on <planet>, but you haven't scanned the <npc> in <waypoints>. Make sure you scan the ship before returning.`

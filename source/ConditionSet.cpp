@@ -404,7 +404,7 @@ bool ConditionSet::Add(const vector<string> &lhs, const string &op, const vector
 
 
 
-// Check if the given condition values satify this set of conditions. Performs any assignments
+// Check if the given condition values satisfy this set of conditions. Performs any assignments
 // on a temporary condition map, if this set mixes comparisons and modifications.
 bool ConditionSet::Test(const Conditions &conditions) const
 {
