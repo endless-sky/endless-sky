@@ -1111,6 +1111,7 @@ ship "Model 8"
 		"shields" 5450
 		"hull" 3320
 		"automaton" 1
+		"crew equivalent" 5
 		"mass" 110
 		"drag" 3.2
 		"heat dissipation" 1.5
@@ -1157,6 +1158,7 @@ ship "Model 16"
 		"shields" 15700
 		"hull" 9800
 		"automaton" 1
+		"crew equivalent" 10
 		"mass" 250
 		"drag" 6.9
 		"heat dissipation" 1.3
@@ -1210,6 +1212,7 @@ ship "Model 32"
 		"shields" 27900
 		"hull" 13400
 		"automaton" 1
+		"crew equivalent" 25
 		"mass" 370
 		"drag" 9.0
 		"heat dissipation" 1.3
@@ -1264,6 +1267,7 @@ ship "Model 64"
 		"shields" 41700
 		"hull" 18000
 		"automaton" 1
+		"crew equivalent" 50
 		"mass" 580
 		"drag" 11.1
 		"heat dissipation" 1.1
@@ -1320,6 +1324,7 @@ ship "Model 128"
 		"shields" 57000
 		"hull" 23100
 		"automaton" 1
+		"crew equivalent" 75
 		"mass" 780
 		"drag" 13.2
 		"heat dissipation" 1.0
@@ -1377,6 +1382,7 @@ ship "Model 256"
 		"shields" 71700
 		"hull" 28700
 		"automaton" 1
+		"crew equivalent" 100
 		"mass" 970
 		"drag" 15.3
 		"heat dissipation" .9
@@ -1436,6 +1442,7 @@ ship "Model 512"
 		"shields" 86400
 		"hull" 34200
 		"automaton" 1
+		"crew equivalent" 150
 		"mass" 1150
 		"drag" 17.4
 		"heat dissipation" .8
