@@ -94,7 +94,7 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 			if(weight > 0.)
 			{
 				// If you bribe a government but then attack it, the effect of
-				// your bribe is cancelled out.
+				// your bribe is canceled out.
 				bribed.erase(other);
 				provoked.insert(other);
 			}

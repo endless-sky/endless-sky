@@ -65,7 +65,7 @@ private:
 		// Sources of text, either literal or via phrase invocation.
 		WeightedList<Choice> choices;
 		// Character sequences that should be replaced, e.g. "llo"->"y"
-		// would transfrom "Hello hello" into "Hey hey"
+		// would transform "Hello hello" into "Hey hey"
 		std::vector<std::pair<std::string, std::string>> replacements;
 	};
 	
