@@ -36,6 +36,7 @@ class Government;
 class Hazard;
 class ImageSet;
 class Interface;
+class MaskManager;
 class Minable;
 class Mission;
 class News;
@@ -51,6 +52,7 @@ class StartConditions;
 class System;
 class Test;
 class TestData;
+class TextReplacements;
 
 
 
@@ -149,6 +151,10 @@ public:
 	static const std::map<std::string, std::string> &HelpTemplates();
 	
 	static const std::map<std::string, std::string> &PluginAboutText();
+	
+	static MaskManager &GetMaskManager();
+	
+	static const TextReplacements &GetTextReplacements();
 	
 	
 private:

@@ -50,7 +50,7 @@
 DIR_ESLIB ?= C:\dev64
 BIN_DIR ?= bin
 BUILDDIR ?= build
-SCONS_VERSION ?= 4.0.1
+SCONS_VERSION ?= 4.2.0
 PYTHON_BINARY ?= py
 AR ?= gcc-ar
 

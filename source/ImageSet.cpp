@@ -13,7 +13,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ImageSet.h"
 
 #include "Files.h"
+#include "GameData.h"
 #include "Mask.h"
+#include "MaskManager.h"
 #include "Sprite.h"
 
 #include <algorithm>
@@ -248,8 +250,18 @@ void ImageSet::Load() noexcept(false)
 		{
 			Files::LogError("Removing @2x frames for \"" + name + "\" due to read error");
 			buffer[1].Clear();
-			return;
+			break;
 		}
+	
+	// Warn about a "high-profile" image that will be blurry due to rendering at 50% scale.
+	bool willBlur = (buffer[0].Width() & 1) || (buffer[0].Height() & 1);
+	if(willBlur && (
+			(name.length() > 5 && !name.compare(0, 5, "ship/"))
+			|| (name.length() > 7 && !name.compare(0, 7, "outfit/"))
+			|| (name.length() > 10 && !name.compare(0, 10, "thumbnail/"))
+	))
+		Files::LogError("Warning: image \"" + name + "\" will be blurry since width and/or height are not even ("
+			+ to_string(buffer[0].Width()) + "x" + to_string(buffer[0].Height()) + ").");
 }
 
 
@@ -259,8 +271,9 @@ void ImageSet::Load() noexcept(false)
 // the paths are saved in case the sprite needs to be loaded again.
 void ImageSet::Upload(Sprite *sprite)
 {
-	// Load the frames. This will clear the buffers and the mask vector.
+	// Load the frames (this will clear the buffers).
 	sprite->AddFrames(buffer[0], false);
 	sprite->AddFrames(buffer[1], true);
-	sprite->AddMasks(masks);
+	GameData::GetMaskManager().SetMasks(sprite, std::move(masks));
+	masks.clear();
 }

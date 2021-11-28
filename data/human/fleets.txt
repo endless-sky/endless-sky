@@ -69,7 +69,7 @@ fleet "Small Southern Merchants"
 		"Hauler"
 		"Berserker"
 	variant 1
-		"Scout" 
+		"Scout"
 
 fleet "Large Southern Merchants"
 	government "Merchant"
@@ -519,7 +519,7 @@ fleet "Small Northern Merchants"
 		"Hauler II"
 		"Hauler"
 	variant 10
-		"Scout" 
+		"Scout"
 	variant 5
 		"Scout (Speedy)"
 

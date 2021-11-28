@@ -54,6 +54,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StarField.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "Test.h"
+#include "TestContext.h"
 #include "Visual.h"
 #include "Weather.h"
 #include "text/WrappedText.h"
@@ -177,7 +179,7 @@ namespace {
 			// three copies of the flare sprite.
 			for(const auto &it : flareSprites)
 				if(point.side == side && (point.steering == Ship::EnginePoint::NONE
-					|| (point.steering == Ship::EnginePoint::LEFT && ship.SteeringDirection() < 0.) 
+					|| (point.steering == Ship::EnginePoint::LEFT && ship.SteeringDirection() < 0.)
 					|| (point.steering == Ship::EnginePoint::RIGHT && ship.SteeringDirection() > 0.)))
 					for(int i = 0; i < it.second && i < 3; ++i)
 					{
@@ -479,8 +481,23 @@ void Engine::Step(bool isActive)
 		if(!wasActive)
 			activeCommands.Clear();
 		else
+		{
+			// Do a testing step if we got an active testContext from main.cpp.
+			// Main.cpp will transfer the context every step where it wants the
+			// engine to handle the testing.
+			if(testContext)
+			{
+				const Test *runningTest = testContext->CurrentTest();
+				if(runningTest)
+					runningTest->Step(*testContext, player, activeCommands);
+			}
 			ai.UpdateKeys(player, activeCommands);
+		}
 	}
+	// Clear the testContext every step. Main.cpp will provide the context before
+	// every step where it expects the Engine to handle testing.
+	testContext = nullptr;
+	
 	wasActive = isActive;
 	Audio::Update(center);
 	
@@ -1064,10 +1081,10 @@ void Engine::Draw() const
 
 
 
-// Give an (automated/scripted) command on behalf of the player.
-void Engine::GiveCommand(const Command &command)
+// Set the given TestContext in the next step of the Engine.
+void Engine::SetTestContext(TestContext &newTestContext)
 {
-	activeCommands.Set(command);
+	testContext = &newTestContext;
 }
 
 
@@ -1123,6 +1140,24 @@ void Engine::SelectGroup(int group, bool hasShift, bool hasControl)
 	groupSelect = group;
 	this->hasShift = hasShift;
 	this->hasControl = hasControl;
+}
+
+
+
+// Break targeting on all projectiles between the player and the given
+// government; gov projectiles stop targeting the player and player's
+// projectiles stop targeting gov.
+void Engine::BreakTargeting(const Government *gov)
+{
+	const Government *playerGov = GameData::PlayerGovernment();
+	for(Projectile &projectile : projectiles)
+	{
+		const Government *projectileGov = projectile.GetGovernment();
+		const Government *targetGov = projectile.TargetGovernment();
+		if((projectileGov == playerGov && targetGov == gov)
+			|| (projectileGov == gov && targetGov == playerGov))
+			projectile.BreakTarget();
+	}
 }
 
 
@@ -1206,18 +1241,26 @@ void Engine::EnterSystem()
 	// government set.
 	for(int i = 0; i < 5; ++i)
 	{
-		for(const System::FleetProbability &fleet : system->Fleets())
+		for(const auto &fleet : system->Fleets())
 			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60)
 				fleet.Get()->Place(*system, newShips);
-		for(const System::HazardProbability &hazard : system->Hazards())
-			if(Random::Int(hazard.Period()) < 60)
+
+		auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
+		{
+			if(hazard.Get()->IsValid() && Random::Int(hazard.Period()) < 60)
 			{
 				const Hazard *weather = hazard.Get();
 				int hazardLifetime = weather->RandomDuration();
 				// Elapse this weather event by a random amount of time.
 				int elapsedLifetime = hazardLifetime - Random::Int(hazardLifetime + 1);
-				activeWeather.emplace_back(weather, hazardLifetime, elapsedLifetime, weather->RandomStrength());
+				activeWeather.emplace_back(weather, hazardLifetime, elapsedLifetime, weather->RandomStrength(), origin);
 			}
+		};
+		for(const auto &hazard : system->Hazards())
+			CreateWeather(hazard, Point());
+		for(const auto &stellar : system->Objects())
+			for(const auto &hazard : stellar.Hazards())
+				CreateWeather(hazard, stellar.Position());
 	}
 	
 	const Fleet *raidFleet = system->GetGovernment()->RaidFleet();
@@ -1617,7 +1660,7 @@ void Engine::SpawnFleets()
 	
 	// Non-mission NPCs spawn at random intervals in neighboring systems,
 	// or coming from planets in the current one.
-	for(const System::FleetProbability &fleet : player.GetSystem()->Fleets())
+	for(const auto &fleet : player.GetSystem()->Fleets())
 		if(!Random::Int(fleet.Period()))
 		{
 			const Government *gov = fleet.Get()->GetGovernment();
@@ -1693,16 +1736,23 @@ void Engine::SpawnPersons()
 // Generate weather from the current system's hazards.
 void Engine::GenerateWeather()
 {
-	// If this system has any hazards, see if any have activated this frame.
-	for(const System::HazardProbability &hazard : player.GetSystem()->Hazards())
-		if(!Random::Int(hazard.Period()))
+	auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
+	{
+		if(hazard.Get()->IsValid() && !Random::Int(hazard.Period()))
 		{
 			const Hazard *weather = hazard.Get();
 			// If a hazard has activated, generate a duration and strength of the
 			// resulting weather and place it in the list of active weather.
 			int duration = weather->RandomDuration();
-			activeWeather.emplace_back(weather, duration, duration, weather->RandomStrength());
+			activeWeather.emplace_back(weather, duration, duration, weather->RandomStrength(), origin);
 		}
+	};
+	// If this system has any hazards, see if any have activated this frame.
+	for(const auto &hazard : player.GetSystem()->Hazards())
+		CreateWeather(hazard, Point());
+	for(const auto &stellar : player.GetSystem()->Objects())
+		for(const auto &hazard : stellar.Hazards())
+			CreateWeather(hazard, stellar.Position());
 }
 
 
@@ -2048,11 +2098,11 @@ void Engine::DoWeather(Weather &weather)
 		// Get all ship bodies that are touching a ring defined by the hazard's min
 		// and max ranges at the hazard's origin. Any ship touching this ring takes
 		// hazard damage.
-		for(Body *body : shipCollisions.Ring(Point(), hazard->MinRange(), hazard->MaxRange()))
+		for(Body *body : shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange()))
 		{
 			Ship *hit = reinterpret_cast<Ship *>(body);
-			double distanceTraveled = hit->Position().Length() - hit->GetMask().Radius();
-			hit->TakeDamage(visuals, *hazard, multiplier, distanceTraveled, Point(), nullptr, hazard->BlastRadius() > 0.);
+			double distanceTraveled = weather.Origin().Distance(hit->Position()) - hit->GetMask().Radius();
+			hit->TakeDamage(visuals, *hazard, multiplier, distanceTraveled, weather.Origin(), nullptr, hazard->BlastRadius() > 0.);
 		}
 	}
 }

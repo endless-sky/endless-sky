@@ -33,6 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ImageSet.h"
 #include "Interface.h"
 #include "LineShader.h"
+#include "MaskManager.h"
 #include "Minable.h"
 #include "Mission.h"
 #include "Music.h"
@@ -100,6 +101,7 @@ namespace {
 	Set<Galaxy> defaultGalaxies;
 	Set<Sale<Ship>> defaultShipSales;
 	Set<Sale<Outfit>> defaultOutfitSales;
+	TextReplacements defaultSubstitutions;
 	
 	Politics politics;
 	vector<StartConditions> startConditions;
@@ -128,6 +130,10 @@ namespace {
 	vector<string> sources;
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
 	map<const Sprite *, int> preloaded;
+	
+	MaskManager maskManager;
+	
+	TextReplacements substitutions;
 	
 	const Government *playerGovernment = nullptr;
 	
@@ -248,6 +254,7 @@ bool GameData::BeginLoad(const char * const *argv)
 	defaultGalaxies = galaxies;
 	defaultShipSales = shipSales;
 	defaultOutfitSales = outfitSales;
+	defaultSubstitutions = substitutions;
 	playerGovernment = governments.Get("Escort");
 	
 	politics.Reset();
@@ -351,6 +358,10 @@ void GameData::CheckReferences()
 	for(auto &&it : systems)
 		if(it.second.Name().empty() && !NameIfDeferred(deferred["system"], it))
 			NameAndWarn("system", it);
+	// Hazards are never serialized.
+	for(const auto &it : hazards)
+		if(!it.second.IsValid())
+			Warn("hazard", it.first);
 }
 
 
@@ -389,6 +400,9 @@ double GameData::Progress()
 			// e.g. due to capitalization errors or other typos.
 			SpriteSet::CheckReferences();
 			Audio::CheckReferences();
+			// All sprites with collision masks should also have their 1x scaled versions, so create
+			// any additional scaled masks from the default one.
+			maskManager.ScaleMasks();
 			initiallyLoaded = true;
 		}
 	}
@@ -476,6 +490,7 @@ void GameData::Revert()
 	galaxies.Revert(defaultGalaxies);
 	shipSales.Revert(defaultShipSales);
 	outfitSales.Revert(defaultOutfitSales);
+	substitutions.Revert(defaultSubstitutions);
 	for(auto &it : persons)
 		it.second.Restore();
 	
@@ -642,6 +657,8 @@ void GameData::Change(const DataNode &node)
 		systems.Get(node.Token(1))->Link(systems.Get(node.Token(2)));
 	else if(node.Token(0) == "unlink" && node.Size() >= 3)
 		systems.Get(node.Token(1))->Unlink(systems.Get(node.Token(2)));
+	else if(node.Token(0) == "substitutions" && node.HasChildren())
+		substitutions.Load(node);
 	else
 		node.PrintTrace("Invalid \"event\" data:");
 }
@@ -989,6 +1006,20 @@ const map<string, string> &GameData::PluginAboutText()
 
 
 
+MaskManager &GameData::GetMaskManager()
+{
+	return maskManager;
+}
+
+
+
+const TextReplacements &GameData::GetTextReplacements()
+{
+	return substitutions;
+}
+
+
+
 void GameData::LoadSources()
 {
 	sources.clear();
@@ -1185,6 +1216,8 @@ void GameData::LoadFile(const string &path, bool debugMode)
 				text += child.Token(0);
 			}
 		}
+		else if(key == "substitutions" && node.HasChildren())
+			substitutions.Load(node);
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
 	}

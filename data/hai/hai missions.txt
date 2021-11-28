@@ -11,7 +11,7 @@
 mission "First Contact: Hai"
 	landing
 	source
-		attributes "hai"
+		government "Hai"
 	on offer
 		conversation
 			branch unfettered
@@ -72,7 +72,7 @@ mission "First Contact: Hai"
 			
 			label travel
 			`	"Yes," it says, "but be careful. The north is the territory of some renegade Hai who are misled in their ways: bandits and pirates, living off what they steal from the rest of us. If you travel among them, you will not be safe."`
-			`	"Also," the human adds, "I've heard rumors that the 'Unfettered' Hai are trying to get human captains who land on their worlds to do some tasks for them. I'm not particularily interested in finding out what those tasks are, but if you see something suspicious happening, that might be it."`
+			`	"Also," the human adds, "I've heard rumors that the 'Unfettered' Hai are trying to get human captains who land on their worlds to do some tasks for them. I'm not particularly interested in finding out what those tasks are, but if you see something suspicious happening, that might be it."`
 				goto end
 			
 			label question
@@ -250,7 +250,7 @@ mission "First Contact: Unfettered"
 mission "Ask the Hai about the Unfettered"
 	landing
 	source
-		attributes "hai"
+		government "Hai"
 	to offer
 		has "First Contact: Hai: offered"
 		has "First Contact: Unfettered: offered"
@@ -1100,12 +1100,13 @@ mission "Expanding Business: shipyard complete"
 
 
 mission "Hiding in Plain Sight"
-	description "Bring Arthur and his Hai friend, Kiru, to <destination> for a gaming convention."
+	description "Bring Arthur and his Hai friend Kiru to <destination> for a gaming convention by <date>"
 	minor
 	source
 		government "Hai"
 	destination "Vinci"
 	passengers 2
+	deadline 30
 	to offer
 		random < 30
 		has "First Contact: Hai: offered"
@@ -1116,7 +1117,7 @@ mission "Hiding in Plain Sight"
 				`	"I do. Why do you want to go there?"`
 				`	"I don't. You'll have to ask someone else."`
 					decline
-			`	The human responds, "There's a massive convention on <planet> for a game called 'Boundless Frontiers.' The convention has a huge cosplaying scene, and I think Kiru would fit right in."`
+			`	The human responds, "There's a massive convention on <planet> on <date> for a game called 'Boundless Frontiers.' The convention has a huge cosplaying scene, and I think Kiru would fit right in."`
 			`	"Arthur and I have <payment> to give you if you bring us to the <planet>," Kiru says. "We can find our own way back to the Hai space, as well."`
 			choice
 				`	"Alright, I can take you there."`
@@ -1295,7 +1296,7 @@ mission "Pirate Troubles [1]: Farpoint"
 mission "Pirate Troubles [1]: Freedom or Zenith"
 	landing
 	invisible
-	source 
+	source
 		planet "Freedom" "Zenith"
 	to offer
 		has "Pirate Troubles [1]: active"
@@ -2084,7 +2085,7 @@ mission "Strider: Remnant 3"
 				`	"I spend much of my time exploring the galaxy. Sometimes you stumble upon interesting things."`
 				`	"Well, the same way I'd imagine most people found you - by just wandering aimlessly."`
 			`	Yashili nods. "This is an understandable situation."`
-			``	
+			``
 			`	An hour of conversation later, the Ambassador's assistant returns with a large data drive and hands it to her. The Remnant pull out a data chip of their own, and the two groups formally exchange the data. In response to an unseen signal, another Remnant pulls back one side of the tent, and a team carries in a segment from a systems core with several of the small robots. "There are more of these waiting outside, but here is a sample for you to inspect. Using the instructions we have provided, you should have no problem making use of this technology." They poke at the console, and the robots promptly spring to life and assemble a small pile of parts into a model ship.`
 			`	"Thank you for doing business with us," says Ambassador Yashili. "You have a friend in the Hai." She bows and the Remnant return the bow with fluid grace before quickly shouldering the Korath equipment. They load everything onto the <ship> as the delegation boards, and you set out to return to <planet>.`
 			`	As you take off, a final glance at your exterior cameras shows the Remnant have already almost finished packing up their encampment onto the camels. As one tent comes down, it reveals an anti-aircraft artillery cannon installed on a sled. Despite the rustic appearance they portrayed, the Remnant certainly took their security seriously. There is still no ship visible, but you suspect that a Starling or Gull is undoubtedly hiding nearby.`
@@ -2251,7 +2252,7 @@ mission "Strider 3"
 			label end
 			`	Osen is about to run off, but one of the elders stops him. "Can you give us any estimate on how long it will take to make use of this data?"`
 			`	"Oh, yes," Osen says. "It may take us a few months to get everything working. A single month at the least if we are lucky."`
-			`	"This is good to know. The sooner we have these ships function, the better."`
+			`	"This is good to know. The sooner we have these ships functional, the better."`
 			`	Osen once again gets ready to run off, but this time stops himself and turns to you. "Thank you Captain. Without this information, it could have taken me years to finish this project." You nod in response, and Osen finally runs off to his shipyard.`
 			`	"I would like to thank you as well," Yashili says. "It has been some time since I have had the chance to leave our space. It is always exciting to go to new places and meet new people." Yashili bows to you, and you return a bow of your own.`
 			`	"And we also need to express our gratitude," one of the elders says. "It is good to have you as a friend of the Hai. We shall keep you no longer, though. May you stay safe on your adventures."`

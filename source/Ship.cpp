@@ -36,6 +36,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "TextReplacements.h"
 #include "Visual.h"
 
 #include <algorithm>
@@ -94,7 +95,7 @@ namespace {
 		}
 	}
 	
-	// Helper function to reduce a given status effect according 
+	// Helper function to reduce a given status effect according
 	// to its resistance, limited by how much energy, fuel, and heat are available.
 	// Updates the stat and the energy, fuel, and heat amounts.
 	void DoStatusEffect(bool isDeactivated, double &stat, double resistance, double &energy, double energyCost, double &fuel, double fuelCost, double &heat, double heatCost)
@@ -155,7 +156,6 @@ void Ship::Load(const DataNode &node)
 	isDefined = true;
 	
 	government = GameData::PlayerGovernment();
-	equipped.clear();
 	
 	// Note: I do not clear the attributes list here so that it is permissible
 	// to override one ship definition with another.
@@ -213,8 +213,8 @@ void Ship::Load(const DataNode &node)
 			bool reverse = (key == "reverse engine");
 			bool steering = (key == "steering engine");
 			
-			vector<EnginePoint> &editPoints = (!steering && !reverse) ? enginePoints : 
-				(reverse ? reverseEnginePoints : steeringEnginePoints); 
+			vector<EnginePoint> &editPoints = (!steering && !reverse) ? enginePoints :
+				(reverse ? reverseEnginePoints : steeringEnginePoints);
 			editPoints.emplace_back(0.5 * child.Value(1), 0.5 * child.Value(2),
 				(child.Size() > 3 ? child.Value(3) : 1.));
 			EnginePoint &engine = editPoints.back();
@@ -243,6 +243,7 @@ void Ship::Load(const DataNode &node)
 		{
 			if(!hasArmament)
 			{
+				equipped.clear();
 				armament = Armament();
 				hasArmament = true;
 			}
@@ -404,6 +405,20 @@ void Ship::Load(const DataNode &node)
 				else
 					grand.PrintTrace("Skipping invalid outfit count:");
 			}
+			
+			// Verify we have at least as many installed outfits as were identified as "equipped."
+			// If not (e.g. a variant definition), ensure FinishLoading equips into a blank slate.
+			if(!hasArmament)
+				for(const auto &pair : equipped)
+				{
+					auto it = outfits.find(pair.first);
+					if(it == outfits.end() || it->second < pair.second)
+					{
+						armament.UninstallAll();
+						equipped.clear();
+						break;
+					}
+				}
 		}
 		else if(key == "cargo")
 			cargo.Load(child);
@@ -1304,7 +1319,13 @@ void Ship::SetHail(const Phrase &phrase)
 
 string Ship::GetHail(const PlayerInfo &player) const
 {
+	string hailStr = hail ? hail->Get() : government ? government->GetHail(isDisabled) : "";
+	
+	if(hailStr.empty())
+		return hailStr;
+	
 	map<string, string> subs;
+	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
 	
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
@@ -1316,7 +1337,6 @@ string Ship::GetHail(const PlayerInfo &player) const
 	subs["<date>"] = player.GetDate().ToString();
 	subs["<day>"] = player.GetDate().LongString();
 	
-	string hailStr = hail ? hail->Get() : government ? government->GetHail(isDisabled) : "";
 	return Format::Replace(hailStr, subs);
 }
 
@@ -1997,13 +2017,15 @@ void Ship::DoGeneration()
 			
 			// Now that there is no more need to use energy for hull and shield
 			// repair, if there is still excess energy, transfer it.
-			double energyRemaining = min(0., energy - attributes.Get("energy capacity"));
-			double fuelRemaining = min(0., fuel - attributes.Get("fuel capacity"));
+			double energyRemaining = energy - attributes.Get("energy capacity");
+			double fuelRemaining = fuel - attributes.Get("fuel capacity");
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
-				DoRepair(ship.energy, energyRemaining, ship.attributes.Get("energy capacity"));
-				DoRepair(ship.fuel, fuelRemaining, ship.attributes.Get("fuel capacity"));
+				if(energyRemaining > 0.)
+					DoRepair(ship.energy, energyRemaining, ship.attributes.Get("energy capacity"));
+				if(fuelRemaining > 0.)
+					DoRepair(ship.fuel, fuelRemaining, ship.attributes.Get("fuel capacity"));
 			}
 		}
 		// Decrease the shield and hull delays by 1 now that shield generation
@@ -2137,7 +2159,7 @@ void Ship::DoGeneration()
 		
 		// Convert fuel into energy and heat only when the required amount of fuel is available.
 		if(attributes.Get("fuel consumption") <= fuel)
-		{	
+		{
 			fuel -= attributes.Get("fuel consumption");
 			energy += attributes.Get("fuel energy");
 			heat += attributes.Get("fuel heat");
@@ -2371,6 +2393,13 @@ int Ship::Scan()
 			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
 					+ Name() + "\" completed its scan of your outfits.", Messages::Importance::High);
 	}
+
+	// Some governments are provoked when a scan is started on one of their ships.
+	const Government *gov = target->GetGovernment();
+	if(gov && gov->IsProvokedOnScan() && !gov->IsEnemy(government)
+			&& (target->Shields() < .9 || target->Hull() < .9 || !target->GetPersonality().IsForbearing())
+			&& !target->GetPersonality().IsPacifist())
+		result |= ShipEvent::PROVOKE;
 	
 	return result;
 }
@@ -2723,10 +2752,7 @@ void Ship::Recharge(bool atSpaceport)
 		return;
 	
 	if(atSpaceport)
-	{
 		crew = min<int>(max(crew, RequiredCrew()), attributes.Get("bunks"));
-		fuel = attributes.Get("fuel capacity");
-	}
 	pilotError = 0;
 	pilotOkay = 0;
 	
@@ -2736,6 +2762,8 @@ void Ship::Recharge(bool atSpaceport)
 		hull = attributes.Get("hull");
 	if(atSpaceport || attributes.Get("energy generation"))
 		energy = attributes.Get("energy capacity");
+	if(atSpaceport || attributes.Get("fuel generation"))
+		fuel = attributes.Get("fuel capacity");
 	
 	heat = IdleHeat();
 	ionization = 0.;
@@ -3084,6 +3112,13 @@ int Ship::RequiredCrew() const
 
 
 
+int Ship::CrewValue() const
+{
+	return max(Crew(), RequiredCrew()) + attributes.Get("crew equivalent");
+}
+
+
+
 void Ship::AddCrew(int count)
 {
 	crew = min<int>(crew + count, attributes.Get("bunks"));
@@ -3220,7 +3255,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damag
 	burning += burnDamage * shieldDegradation;
 	
 	// The following special damage types have 0% effectiveness against ships with
-	// active shields. Disruption or piercing weapons still increase this effectivness.
+	// active shields. Disruption or piercing weapons still increase this effectiveness.
 	shieldDegradation = (1. - shieldFraction);
 	corrosion += corrosionDamage * shieldDegradation;
 	leakage += leakDamage * shieldDegradation;
@@ -3356,7 +3391,7 @@ bool Ship::CanCarry(const Ship &ship) const
 	for(const auto &it : escorts)
 	{
 		auto escort = it.lock();
-		if(escort && escort.get() != &ship && escort->attributes.Category() == category 
+		if(escort && escort.get() != &ship && escort->attributes.Category() == category
 			&& !escort->IsDestroyed())
 			--free;
 	}
