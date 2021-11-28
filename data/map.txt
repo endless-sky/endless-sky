@@ -2774,7 +2774,7 @@ system Algol
 	pos -210 17
 	government Syndicate
 	attributes "core"
-	habitable 8645
+	habitable 3490
 	belt 1839
 	haze _menu/haze-133
 	link Ruchbah
@@ -2795,30 +2795,26 @@ system Algol
 	fleet "Large Core Pirates" 5000
 	fleet "Small Syndicate" 2400
 	object
-		sprite star/a0
+		sprite star/a8
 		distance 42.7246
 		period 19.0178
 	object
-		sprite star/a5
+		sprite star/k0
 		distance 113.775
 		period 19.0178
 		offset 180
 	object
 		sprite planet/desert6
 		distance 336.885
-		period 26.6011
-	object Quicksilver
-		sprite planet/ocean9
-		distance 599.175
-		period 63.0968
+		period 41.8668
 	object
 		sprite planet/desert4-b
-		distance 1101.87
-		period 157.352
+		distance 801.87
+		period 153.745
 	object
 		sprite planet/uranus
-		distance 2249.12
-		period 458.877
+		distance 1749.12
+		period 495.309
 		object
 			sprite planet/io-b
 			distance 219
@@ -2831,6 +2827,10 @@ system Algol
 			sprite planet/rock14
 			distance 514
 			period 47.0131
+	object Quicksilver
+		sprite planet/ocean9
+		distance 2899.17
+		period 1056.96
 
 system Algorel
 	pos -631 145
@@ -3151,7 +3151,7 @@ system Almaaz
 	pos -349 -538
 	government Pirate
 	attributes "north"
-	habitable 13900
+	habitable 6950
 	belt 2873
 	haze _menu/haze-33
 	link Hatysa
@@ -3179,20 +3179,20 @@ system Almaaz
 	fleet "Large Northern Pirates" 600
 	fleet "Large Republic" 4000
 	object
-		sprite star/f-supergiant
+		sprite star/f-giant
 		period 10
 	object
 		sprite planet/rock10-b
 		distance 1186.96
-		period 138.741
+		period 196.210
 	object
 		sprite planet/ganymede
 		distance 1588.37
-		period 214.773
+		period 303.735
 	object Freedom
 		sprite planet/cloud2
-		distance 1930.93
-		period 287.873
+		distance 5330.93
+		period 1867.54
 
 system Almach
 	pos -7 232
@@ -3471,7 +3471,7 @@ system Alnitak
 	pos -331 -412
 	government Republic
 	attributes "north"
-	habitable 109760
+	habitable 1310
 	belt 1907
 	haze _menu/haze-67
 	link Mintaka
@@ -3499,29 +3499,24 @@ system Alnitak
 	fleet "Large Republic" 4000
 	fleet "Republic Logistics" 6000
 	object
-		sprite star/o-supergiant
-		period 15.4564
-	object
-		sprite star/b0
-		distance 249.394
-		period 15.4564
-		offset 180
+		sprite star/f8
+		period 10
 	object Farpoint
 		sprite planet/forest0-b
 		distance 1292.48
-		period 56.1016
+		period 513.525
 	object
 		sprite planet/gas13-b
 		distance 1851.72
-		period 96.2060
+		period 880.620
 	object
 		sprite planet/rock7
 		distance 2223.93
-		period 126.625
+		period 1159.06
 	object
 		sprite planet/gas1
 		distance 3144.82
-		period 212.927
+		period 1949.02
 
 system Alniyat
 	pos -691 501
@@ -3697,32 +3692,34 @@ system "Alpha Centauri"
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 6000
 	object
-		sprite star/k0
+		sprite star/g3
+		distance 26.7033
 		period 16.011
-	object Chiron
-		sprite planet/forest1
+		offset 180
+	object
+		sprite star/k0
+		distance 63.2967
+		period 16.011
+	object
+		sprite planet/desert2
 		distance 346.547
 		period 74.8048
+	object
+		sprite planet/oberon
+		distance 749.037
+		period 237.706
+	object Chiron
+		sprite planet/forest1
+		distance 976.197
+		period 353.665
 		object
 			sprite planet/rock17
 			distance 126
 			period 14.7361
 	object
-		sprite planet/desert2
-		distance 749.037
-		period 237.706
-	object
-		sprite planet/oberon
-		distance 976.197
-		period 353.665
-	object
 		sprite planet/rock15-b
 		distance 1718.2
 		period 825.842
-	object
-		sprite star/g3
-		distance 3700
-		period 4888.11
 	object
 		sprite planet/gas13
 		distance 4080.61
@@ -5472,22 +5469,26 @@ system Betelgeuse
 		sprite planet/rock0-b
 		distance 1035.69
 		period 196.573
-	object Prime
-		sprite planet/forest2-b
-		distance 1581.98
-		period 371.092
 	object
-		sprite planet/ocean4
-		distance 2082.62
-		period 560.526
+		sprite planet/dust6
+		distance 1582.62
+		period 371.318
 		object
 			sprite planet/lava1-b
 			distance 182
 			period 21.6509
 	object
+		sprite planet/fog0
+		distance 2215.83
+		period 615.156
+	object Prime
+		sprite planet/forest2-b
+		distance 4081.98
+		period 1538.10
+	object
 		sprite planet/gas13-b
-		distance 5080.11
-		period 2135.45
+		distance 6080.11
+		period 2796.07
 		object
 			sprite planet/rock17-b
 			distance 282
@@ -16071,16 +16072,8 @@ system Mebsuta
 		sprite planet/gas0-hot
 		distance 605.544
 		period 63.9946
-	object Featherweight
-		sprite planet/forest3-b
-		distance 1155.03
-		period 168.584
-		object
-			sprite planet/desert4
-			distance 127
-			period 17.9915
 	object
-		sprite planet/ocean8
+		sprite planet/dust0
 		distance 1566.24
 		period 266.202
 	object
@@ -16103,6 +16096,14 @@ system Mebsuta
 			sprite planet/rock3
 			distance 300
 			period 25.612
+	object Featherweight
+		sprite planet/forest3-b
+		distance 6155.03
+		period 2073.81
+		object
+			sprite planet/desert4
+			distance 127
+			period 17.9915
 
 system Meftarkata
 	pos 52.4305 -276.812
@@ -17511,7 +17512,7 @@ system Naos
 	pos -653 -396
 	government Republic
 	attributes "deep"
-	habitable 16875
+	habitable 1310
 	belt 1045
 	haze _menu/haze-67
 	link Aludra
@@ -17542,12 +17543,12 @@ system Naos
 	fleet "Large Deep Merchants" 2800
 	fleet "Human Miners" 2000
 	object
-		sprite star/o5
+		sprite star/f8
 		period 10
 	object
 		sprite planet/cloud6-b
 		distance 284.04
-		period 14.7403
+		period 52.9046
 		object
 			sprite planet/rock7-b
 			distance 147
@@ -17555,19 +17556,19 @@ system Naos
 	object
 		sprite planet/cloud5-b
 		distance 698.29
-		period 56.8187
+		period 203.928
 	object Asgard
 		sprite planet/forest1-b
 		distance 1403.38
-		period 161.882
+		period 581.014
 	object
 		sprite planet/ice0
 		distance 1754.42
-		period 226.275
+		period 812.128
 	object
 		sprite planet/gas9
 		distance 3348.18
-		period 596.556
+		period 2141.10
 		object
 			sprite planet/desert4
 			distance 231
@@ -23542,7 +23543,7 @@ system Suhail
 	pos -774 -338
 	government Republic
 	attributes "deep"
-	habitable 6000
+	habitable 3000
 	belt 2715
 	haze _menu/haze-33
 	link Regor
@@ -23572,20 +23573,20 @@ system Suhail
 	fleet "Large Deep Merchants" 7000
 	fleet "Large Northern Pirates" 9000
 	object
-		sprite star/k-supergiant
+		sprite star/k-giant
 		period 10
 	object
 		sprite planet/water1
 		distance 1193.41
-		period 212.896
+		period 301.081
 	object
 		sprite planet/io-b
 		distance 1461.7
-		period 288.583
+		period 408.118
 	object
 		sprite planet/gas14-b
 		distance 2034.31
-		period 473.816
+		period 670.077
 		object "Leviathan Station"
 			sprite planet/station6
 			distance 252
@@ -23593,7 +23594,7 @@ system Suhail
 	object Helheim
 		sprite planet/ocean9
 		distance 2842.75
-		period 782.694
+		period 1106.89
 		object
 			sprite planet/europa
 			distance 166
