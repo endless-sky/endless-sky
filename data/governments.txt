@@ -320,6 +320,14 @@ government "Kor Mereti"
 		"Kor Sestor" -.01
 		"Wanderer" -.01
 	
+	"penalty for"
+		assist 0
+		disable 0.5
+		board 0.5
+		capture 5
+		destroy 5
+		atrocity 0
+	
 	"player reputation" -1000
 
 # A Kor Mereti government that is always hostile to the player.

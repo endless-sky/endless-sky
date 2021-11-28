@@ -1067,14 +1067,6 @@ event "wanderers: kor mereti friendly"
 	government "Kor Mereti"
 		"attitude toward"
 			"Wanderer" 1
-		"bribe" 0
-		"penalty for"
-			assist 0
-			disable 0.5
-			board 0.5
-			capture 10
-			destroy 10
-			atrocity 0
 	government "Quarg"
 		"attitude toward"
 			"Kor Mereti" 0
