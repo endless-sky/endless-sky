@@ -50,7 +50,7 @@ public:
 	void Destroy();
 	// Mark this person as no longer destroyed.
 	void Restore();
-	// Check if a person is already placed somehwere.
+	// Check if a person is already placed somewhere.
 	bool IsPlaced() const;
 	// Mark this person as being no longer "placed" somewhere.
 	void ClearPlacement();
