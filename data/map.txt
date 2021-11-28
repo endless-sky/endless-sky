@@ -10414,7 +10414,7 @@ system Feraticus
 	pos 58 630
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	habitable 0
+	habitable 10
 	belt 1500
 	haze _menu/haze-red
 	link Dixere
@@ -18288,7 +18288,7 @@ system Paeli
 	pos 129 497
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
-	habitable 0
+	habitable 10
 	belt 1500
 	haze _menu/haze-red
 	link Esix
@@ -18754,7 +18754,7 @@ system Perfica
 	pos 185.87 419.242
 	government Uninhabited
 	attributes "ember waste"
-	habitable 0
+	habitable 10
 	belt 1160
 	haze _menu/haze-red
 	link Cinxia
