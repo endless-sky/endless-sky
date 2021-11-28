@@ -308,6 +308,7 @@ ship "Korath Chaser"
 		
 		"Generator (Furnace Class)"
 		"Small Heat Shunt"
+	
 		"Korath Repeater Rifle" 
 	
 	engine -7 23
