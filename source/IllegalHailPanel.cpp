@@ -37,7 +37,7 @@ using namespace std;
 
 
 IllegalHailPanel::IllegalHailPanel(PlayerInfo &player, const Ship &hailingShip, Ship &scannedShip, const Politics::Punishment &fine)
-	: player(player), hailingShip(hailingShip), scannedShip(scannedShip)
+	: player(player), hailingShip(hailingShip), scannedShip(scannedShip), fine(fine)
 {
 	const Government *gov = hailingShip.GetGovernment();
 	if(!hailingShip.Name().empty())
