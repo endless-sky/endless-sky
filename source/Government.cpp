@@ -134,6 +134,8 @@ void Government::Load(const DataNode &node)
 			language = child.Token(1);
 		else if(child.Token(0) == "raid" && child.Size() >= 2)
 			raidFleet = GameData::Fleets().Get(child.Token(1));
+		else if(child.Token(0) == "provoked on scan")
+			provokedOnScan = true;
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -387,4 +389,11 @@ double Government::CrewAttack() const
 double Government::CrewDefense() const
 {
 	return crewDefense;
+}
+
+
+
+bool Government::IsProvokedOnScan() const
+{
+	return provokedOnScan;
 }

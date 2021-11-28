@@ -2394,6 +2394,13 @@ int Ship::Scan()
 			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
 					+ Name() + "\" completed its scan of your outfits.", Messages::Importance::High);
 	}
+
+	// Some governments are provoked when a scan is started on one of their ships.
+	const Government *gov = target->GetGovernment();
+	if(gov && gov->IsProvokedOnScan() && !gov->IsEnemy(government)
+			&& (target->Shields() < .9 || target->Hull() < .9 || !target->GetPersonality().IsForbearing())
+			&& !target->GetPersonality().IsPacifist())
+		result |= ShipEvent::PROVOKE;
 	
 	return result;
 }
@@ -3249,7 +3256,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damag
 	burning += burnDamage * shieldDegradation;
 	
 	// The following special damage types have 0% effectiveness against ships with
-	// active shields. Disruption or piercing weapons still increase this effectivness.
+	// active shields. Disruption or piercing weapons still increase this effectiveness.
 	shieldDegradation = (1. - shieldFraction);
 	corrosion += corrosionDamage * shieldDegradation;
 	leakage += leakDamage * shieldDegradation;
