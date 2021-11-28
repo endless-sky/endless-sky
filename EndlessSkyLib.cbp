@@ -163,6 +163,8 @@
 		<Unit filename="source/Hazard.h" />
 		<Unit filename="source/HiringPanel.cpp" />
 		<Unit filename="source/HiringPanel.h" />
+		<Unit filename="source/IllegalHailPanel.cpp" />
+		<Unit filename="source/IllegalHailPanel.h" />
 		<Unit filename="source/ImageBuffer.cpp" />
 		<Unit filename="source/ImageBuffer.h" />
 		<Unit filename="source/ImageSet.cpp" />
@@ -239,6 +241,8 @@
 		<Unit filename="source/PlanetLabel.h" />
 		<Unit filename="source/PlanetPanel.cpp" />
 		<Unit filename="source/PlanetPanel.h" />
+		<Unit filename="source/PlayerHailPanel.cpp" />
+		<Unit filename="source/PlayerHailPanel.h" />
 		<Unit filename="source/PlayerInfo.cpp" />
 		<Unit filename="source/PlayerInfo.h" />
 		<Unit filename="source/PlayerInfoPanel.cpp" />

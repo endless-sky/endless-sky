@@ -1134,6 +1134,7 @@ interface "hail panel"
 		width 330
 		truncate back
 
+interface "player hail panel"
 	button d "_Done"
 		center 250 115
 		dimensions 80 30
@@ -1155,5 +1156,28 @@ interface "hail panel"
 	visible if "show assist"
 	active if "can assist"
 	button h "Ask For _Help"
+		center -20 115
+		dimensions 140 30
+
+
+
+interface "illegal hail panel"
+	button f "_Flee"
+		center 250 115
+		dimensions 80 30
+
+	active if "can bribe"
+	button b "Offer _Bribe"
+		center 130 115
+		dimensions 140 30
+
+	visible if "can surrender"
+	active if "can surrender"
+	button s "_Surrender Cargo"
+		center -20 115
+		dimensions 140 30
+	visible if "can pay"
+	active if "can pay"
+	button p "_Pay Fine"
 		center -20 115
 		dimensions 140 30

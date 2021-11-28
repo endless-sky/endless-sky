@@ -98,11 +98,11 @@ public:
 	// Get the total value of all this cargo, in the given system.
 	int64_t Value(const System *system) const;
 	
-	// If anything you are carrying is illegal, return the maximum fine you can
-	// be charged for any illegal outfits plus the sum of the fines for all
+	// If anything you are carrying is illegal, return the sum of the fines
+	// for all illegal outfits plus the sum of the fines for all
 	// missions. If the returned value is negative, you are carrying something so
 	// bad that it warrants a death sentence.
-	int IllegalCargoFine() const;
+	int64_t IllegalCargoFine() const;
 	
 	
 private:

@@ -13,9 +13,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef POLITICS_H_
 #define POLITICS_H_
 
+#include <cstdint>
 #include <map>
 #include <set>
 #include <string>
+
 
 class Government;
 class Planet;
@@ -29,6 +31,36 @@ class Ship;
 // player. The player has a reputation with each government, which is affected
 // by what they do for a government or its allies or enemies.
 class Politics {
+public:
+	// This class represents a punishment a government can give to a player.
+	// This is currently either a fine or a death sentence for an atrocity.
+	class Punishment
+	{
+	public:
+		static constexpr int Cargo = 1;
+		static constexpr int Outfit = 2;
+
+
+	public:
+		// The cost of the fine, i.e. how much the player has to pay.
+		int64_t cost = 0;
+		// Whether this punishment is an atrocity and warrants the death penalty.
+		bool isAtrocity = false;
+		// For what the type of goods punishment was issued (see above).
+		int reason = 0;
+		// The amount of missions that failed as a result of this punishment.
+		int failedMissions = 0;
+		// If any failed mission as a result of this punishment includes any custom
+		// message, this string will contain all of them.
+		std::string missionReason;
+
+
+	public:
+		// Whether this punishment isn't "empty".
+		bool HasPunishment() const { return cost || isAtrocity; }
+	};
+
+
 public:
 	// Reset to the initial political state defined in the game data.
 	void Reset();
@@ -53,9 +85,11 @@ public:
 	void DominatePlanet(const Planet *planet, bool dominate = true);
 	bool HasDominated(const Planet *planet) const;
 	
-	// Check to see if the player has done anything they should be fined for.
+	// Check to see if the player has done anything they should be fined for on a planet.
 	// Each government can only fine you once per day.
-	std::string Fine(PlayerInfo &player, const Government *gov, int scan, const Ship *target, double security);
+	std::string Fine(PlayerInfo &player, const Government *gov, double security);
+	// Fine the player when in space. This can result in multiple fines per day, but only once per ship.
+	Punishment Fine(PlayerInfo &player, const Ship &ship, int scan, const Ship &target);
 	
 	// Get or set your reputation with the given government.
 	double Reputation(const Government *gov) const;
@@ -66,6 +100,10 @@ public:
 	void ResetDaily();
 	
 	
+private:
+	Punishment CalculateFine(PlayerInfo &player, const Government *gov, int scan, const Ship *target);
+
+
 private:
 	// attitude[target][other] stores how much an action toward the given target
 	// government will affect your reputation with the given other government.

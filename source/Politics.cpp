@@ -202,99 +202,72 @@ bool Politics::HasDominated(const Planet *planet) const
 
 
 
-// Check to see if the player has done anything they should be fined for.
-string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const Ship *target, double security)
+// Check to see if the player has done anything they should be fined for on a planet.
+string Politics::Fine(PlayerInfo &player, const Government *gov, double security)
 {
+	Punishment punishment = CalculateFine(player, gov, 0, nullptr);
+
 	// Do nothing if you have already been fined today, or if you evade
 	// detection.
-	if(fined.count(gov) || Random::Real() > security || !gov->GetFineFraction())
+	if(!punishment.HasPunishment() || fined.count(gov) || Random::Real() > security)
 		return "";
 	
 	string reason;
-	int64_t maxFine = 0;
-	for(const shared_ptr<Ship> &ship : player.Ships())
+	if(punishment.reason & Punishment::Cargo)
+		reason = " for carrying illegal cargo";
+	if(punishment.reason & Punishment::Outfit)
 	{
-		// Check if the ship evades being scanned due to interference plating.
-		if(Random::Real() > 1. / (1. + ship->Attributes().Get("scan interference")))
-			continue;
-		if(target && target != &*ship)
-			continue;
-		if(ship->GetSystem() != player.GetSystem())
-			continue;
-		
-		int failedMissions = 0;
-		
-		if(!scan || (scan & ShipEvent::SCAN_CARGO))
-		{
-			int64_t fine = ship->Cargo().IllegalCargoFine();
-			if((fine > maxFine && maxFine >= 0) || fine < 0)
-			{
-				maxFine = fine;
-				reason = " for carrying illegal cargo.";
-
-				for(const Mission &mission : player.Missions())
-				{
-					if(mission.IsFailed())
-						continue;
-					
-					// Append the illegalCargoMessage from each applicable mission, if available
-					string illegalCargoMessage = mission.IllegalCargoMessage();
-					if(!illegalCargoMessage.empty())
-					{
-						reason = ".\n\t";
-						reason.append(illegalCargoMessage);
-					}
-					// Fail any missions with illegal cargo and "Stealth" set
-					if(mission.IllegalCargoFine() > 0 && mission.FailIfDiscovered())
-					{
-						player.FailMission(mission);
-						++failedMissions;
-					}
-				}
-			}
-		}
-		if(!scan || (scan & ShipEvent::SCAN_OUTFITS))
-		{
-			for(const auto &it : ship->Outfits())
-				if(it.second)
-				{
-					int64_t fine = it.first->Get("illegal");
-					if(it.first->Get("atrocity") > 0.)
-						fine = -1;
-					if((fine > maxFine && maxFine >= 0) || fine < 0)
-					{
-						maxFine = fine;
-						reason = " for having illegal outfits installed on your ship.";
-					}
-				}
-		}
-		if(failedMissions && maxFine > 0)
-		{
-			reason += "\n\tYou failed " + Format::Number(failedMissions) + ((failedMissions > 1) ? " missions" : " mission")
-				+ " after your illegal cargo was discovered.";
-		}
+		if(!reason.empty())
+			reason += " and";
+		reason += " for having illegal outfits installed on your ship";
 	}
-	
-	if(maxFine < 0)
+	reason += '.';
+
+	if(!punishment.missionReason.empty())
+	{
+		reason = ".\n\t";
+		reason += punishment.missionReason;
+	}
+
+	if(punishment.failedMissions)
+		reason += "\n\tYou failed " + Format::Number(punishment.failedMissions)
+			+ ((punishment.failedMissions > 1) ? " missions" : " mission")
+			+ " after your illegal cargo was discovered.";
+
+	if(punishment.isAtrocity)
 	{
 		gov->Offend(ShipEvent::ATROCITY);
-		if(!scan)
-			reason = "atrocity";
-		else
-			reason = "After scanning your ship, the " + gov->GetName()
-				+ " captain hails you with a grim expression on his face. He says, "
-				"\"I'm afraid we're going to have to put you to death " + reason + " Goodbye.\"";
+		reason = "After scanning your ship, the " + gov->GetName()
+			+ " captain hails you with a grim expression on his face. He says, "
+			"\"I'm afraid we're going to have to put you to death " + reason + " Goodbye.\"";
 	}
-	else if(maxFine > 0)
+	else
 	{
 		// Scale the fine based on how lenient this government is.
-		maxFine = lround(maxFine * gov->GetFineFraction());
 		reason = "The " + gov->GetName() + " authorities fine you "
-			+ Format::Credits(maxFine) + " credits" + reason;
-		player.Accounts().AddFine(maxFine);
+			+ Format::Credits(punishment.cost) + " credits" + reason;
+		player.Accounts().AddFine(punishment.cost);
 		fined.insert(gov);
 	}
+
 	return reason;
+}
+
+
+
+// Fine the player when in space. This can result in multiple fines per day, but only once per ship.
+Politics::Punishment Politics::Fine(PlayerInfo &player, const Ship &ship, int scan, const Ship &target)
+{
+	auto punishment = CalculateFine(player, ship.GetGovernment(), scan, &target);
+
+	// Do nothing if there is nothing to fine for or the target ship has already been fined today.
+	if(!punishment.HasPunishment() || fined.count(ship.GetGovernment()))
+		return {};
+
+	if(punishment.isAtrocity)
+		ship.GetGovernment()->Offend(ShipEvent::ATROCITY);
+	fined.insert(ship.GetGovernment());
+	return punishment;
 }
 
 
@@ -329,4 +302,88 @@ void Politics::ResetDaily()
 	bribed.clear();
 	bribedPlanets.clear();
 	fined.clear();
+}
+
+
+
+Politics::Punishment Politics::CalculateFine(PlayerInfo &player, const Government *gov, int scan, const Ship *target)
+{
+	Punishment punishment;
+
+	// Check if the government actually fines.
+	if(!gov->GetFineFraction())
+		return punishment;
+
+	for(const auto &ship : player.Ships())
+	{
+		// Check if the ship evades being scanned due to interference plating.
+		if(Random::Real() > 1. / (1. + ship->Attributes().Get("scan interference")))
+			continue;
+		if(target && target != &*ship)
+			continue;
+		if(ship->GetSystem() != player.GetSystem())
+			continue;
+
+		if(!scan || (scan & ShipEvent::SCAN_CARGO))
+			if(auto fine = ship->Cargo().IllegalCargoFine())
+			{
+				punishment.cost += fine;
+				punishment.reason |= Punishment::Cargo;
+			}
+		if(!scan || (scan & ShipEvent::SCAN_OUTFITS))
+		{
+			for(const auto &it : ship->Outfits())
+				if(it.second)
+				{
+					int64_t fine = it.first->Get("illegal");
+					if(it.first->Get("atrocity") > 0. || fine < 0)
+						punishment.isAtrocity = true;
+
+					if(fine > 0 || punishment.isAtrocity)
+					{
+						// Negative fines are an alternative way of specifying an atrocity.
+						// We don't add them to the total fines that the player needs to pay.
+						if(!punishment.isAtrocity)
+							punishment.cost += fine;
+						punishment.reason |= Punishment::Outfit;
+					}
+				}
+		}
+	}
+
+	// Handle any missions that were failed because of punishment.
+	// TODO: When scanning a single ship only mission cargo aboard that ship
+	// should be failed.
+	if(!scan || (scan & ShipEvent::SCAN_CARGO))
+	{
+		for(const Mission &mission : player.Missions())
+		{
+			if(mission.IsFailed())
+				continue;
+
+			// Append the illegalCargoMessage from each applicable mission, if available
+			string illegalCargoMessage = mission.IllegalCargoMessage();
+			if(!illegalCargoMessage.empty())
+			{
+				// Check to see if the message is already present. This is to avoid
+				// displaying the same duplicate message to the player.
+				if(punishment.missionReason.find(illegalCargoMessage) == string::npos)
+				{
+					if(!punishment.missionReason.empty())
+						punishment.missionReason += "\n\t";
+					punishment.missionReason += illegalCargoMessage;
+				}
+			}
+			// Fail any missions with illegal cargo and "Stealth" set
+			if(mission.IllegalCargoFine() > 0 && mission.FailIfDiscovered())
+			{
+				player.FailMission(mission);
+				++punishment.failedMissions;
+			}
+		}
+	}
+
+	// Scale the fine based on how lenient this government is.
+	punishment.cost = lround(punishment.cost * gov->GetFineFraction());
+	return punishment;
 }

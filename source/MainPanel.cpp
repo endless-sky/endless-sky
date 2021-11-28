@@ -21,7 +21,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "Government.h"
-#include "HailPanel.h"
+#include "PlayerHailPanel.h"
+#include "IllegalHailPanel.h"
 #include "LineShader.h"
 #include "MapDetailPanel.h"
 #include "Messages.h"
@@ -31,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlanetPanel.h"
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
+#include "Politics.h"
 #include "Preferences.h"
 #include "Random.h"
 #include "Screen.h"
@@ -431,7 +433,7 @@ bool MainPanel::ShowHailPanel()
 				, Messages::Importance::High);
 		else
 		{
-			GetUI()->Push(new HailPanel(player, target,
+			GetUI()->Push(new PlayerHailPanel(player, target,
 				[&](const Government *bribed) { MainPanel::OnBribeCallback(bribed); } ));
 			return true;
 		}
@@ -448,7 +450,7 @@ bool MainPanel::ShowHailPanel()
 		}
 		else if(planet->IsInhabited())
 		{
-			GetUI()->Push(new HailPanel(player, flagship->GetTargetStellar()));
+			GetUI()->Push(new PlayerHailPanel(player, flagship->GetTargetStellar()));
 			return true;
 		}
 		else
@@ -539,10 +541,10 @@ void MainPanel::StepEvents(bool &isActive)
 			}
 			else if(event.TargetGovernment() && event.TargetGovernment()->IsPlayer())
 			{
-				string message = actor->Fine(player, event.Type(), &*event.Target());
-				if(!message.empty())
+				auto punishment = GameData::GetPolitics().Fine(player, *event.Actor(), event.Type(), *event.Target());
+				if(punishment.HasPunishment())
 				{
-					GetUI()->Push(new Dialog(message));
+					GetUI()->Push(new IllegalHailPanel(player, *event.Actor(), *event.Target(), punishment));
 					isActive = false;
 				}
 			}

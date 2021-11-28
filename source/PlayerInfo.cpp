@@ -3048,7 +3048,7 @@ void PlayerInfo::Fine(UI *ui)
 	if(!gov->CanEnforce(planet))
 		return;
 	
-	string message = gov->Fine(*this, 0, nullptr, planet->Security());
+	string message = gov->Fine(*this, planet->Security());
 	if(!message.empty())
 	{
 		if(message == "atrocity")

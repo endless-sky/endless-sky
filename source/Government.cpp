@@ -58,6 +58,8 @@ void Government::Load(const DataNode &node)
 			displayName = name;
 	}
 	
+	bool hasInterdiction = false;
+	bool hasInterdictionBribe = false;
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "display name" && child.Size() >= 2)
@@ -116,6 +118,8 @@ void Government::Load(const DataNode &node)
 			bribe = child.Value(1);
 		else if(child.Token(0) == "fine" && child.Size() >= 2)
 			fine = child.Value(1);
+		else if(child.Token(0) == "bribe factor" && child.Size() >= 2)
+			bribeFactor = child.Value(1);
 		else if(child.Token(0) == "enforces" && child.HasChildren())
 			enforcementZones.emplace_back(child);
 		else if(child.Token(0) == "enforces" && child.Size() == 2 && child.Token(1) == "all")
@@ -136,6 +140,25 @@ void Government::Load(const DataNode &node)
 			raidFleet = GameData::Fleets().Get(child.Token(1));
 		else if(child.Token(0) == "provoked on scan")
 			provokedOnScan = true;
+		else if((child.Token(0) == "interdiction" || child.Token(0) == "interdiction bribe")
+				&& child.Size() >= 2)
+		{
+			const bool isInterdiction = child.Token(0) == "interdiction";
+			string &text = isInterdiction ? interdiction : interdictionBribe;
+			bool &seen = isInterdiction ? hasInterdiction : hasInterdictionBribe;
+
+			if(!seen)
+			{
+				text.clear();
+				seen = true;
+			}
+
+			const auto &value = child.Token(1);
+			if(!text.empty() && !value.empty() && value[0] > ' ')
+				text += '\t';
+			text += child.Token(1);
+			text += "\n\t";
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -236,6 +259,13 @@ double Government::GetBribeFraction() const
 double Government::GetFineFraction() const
 {
 	return fine;
+}
+
+
+
+double Government::GetBribeFactor() const
+{
+	return bribeFactor;
 }
 
 
@@ -348,11 +378,11 @@ void Government::Bribe() const
 
 
 
-// Check to see if the player has done anything they should be fined for.
+// Check to see if the player has done anything they should be fined for on a planet.
 // Each government can only fine you once per day.
-string Government::Fine(PlayerInfo &player, int scan, const Ship *target, double security) const
+string Government::Fine(PlayerInfo &player, double security) const
 {
-	return GameData::GetPolitics().Fine(player, this, scan, target, security);
+	return GameData::GetPolitics().Fine(player, this, security);
 }
 
 
@@ -396,4 +426,18 @@ double Government::CrewDefense() const
 bool Government::IsProvokedOnScan() const
 {
 	return provokedOnScan;
+}
+
+
+
+const string &Government::GetInterdiction() const
+{
+	return interdiction;
+}
+
+
+
+const string &Government::GetInterdictionBribe() const
+{
+	return interdictionBribe;
 }

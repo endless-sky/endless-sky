@@ -16,58 +16,29 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 
 #include "Angle.h"
-#include "Point.h"
 
-#include <cstdint>
-#include <memory>
 #include <string>
 
-class Government;
-class Planet;
-class PlayerInfo;
 class Ship;
 class Sprite;
-class StellarObject;
 
 
 
-// This panel is shown when you hail a ship or planet. It allows you to ask for
-// assistance from friendly ships, to bribe hostile ships to leave you alone, or
-// to bribe a planet to allow you to land there.
+// This panel is shown when a ship hails another that involves a player's ships.
 class HailPanel : public Panel {
 public:
-	HailPanel(PlayerInfo &player, const std::shared_ptr<Ship> &ship, std::function<void(const Government *)> bribeCallback);
-	HailPanel(PlayerInfo &player, const StellarObject *object);
-	
-	virtual void Draw() override;
+	HailPanel();
 	
 	
 protected:
-	// Only override the ones you need; the default action is to return false.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
+	void DrawHail();
+	void DrawIcon(const Ship &ship);
+	void DrawIcon(const Sprite &sprite, Angle facing);
 	
 	
-private:
-	void SetBribe(double scale);
-	
-	
-private:
-	PlayerInfo &player;
-	std::shared_ptr<Ship> ship = nullptr;
-	std::function<void(const Government *)> bribeCallback = nullptr;
-	const Planet *planet = nullptr;
-	const Sprite *sprite = nullptr;
-	Angle facing;
-	
+protected:
 	std::string header;
 	std::string message;
-	
-	int64_t bribe = 0;
-	const Government *bribed = nullptr;
-	bool playerNeedsHelp = false;
-	bool canGiveFuel = false;
-	bool canRepair = false;
-	bool hasLanguage = true;
 };
 
 
