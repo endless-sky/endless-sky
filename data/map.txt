@@ -8029,7 +8029,7 @@ system Diespiter
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	habitable 534.375
-	belt 1500
+	belt 2000
 	haze _menu/haze-red
 	link Statina
 	asteroids "small rock" 65 3
@@ -8752,7 +8752,7 @@ system Egeria
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	habitable 1505.92
-	belt 1500
+	belt 2000
 	haze _menu/haze-red
 	link Statina
 	link Vaticanus
@@ -18474,7 +18474,7 @@ system Parca
 			sprite planet/rhea
 			distance 305
 			period 15.037
-		object
+		object Baianus
 			sprite planet/callisto
 			distance 424
 			period 24.6467
@@ -19516,8 +19516,8 @@ system Postverta
 	pos 297 269
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	belt 2000
 	habitable 135
-	belt 1500
 	haze _menu/haze-red
 	asteroids "medium rock" 4 2
 	asteroids "large rock" 4 3
@@ -19693,6 +19693,7 @@ system Prosa
 	belt 1500
 	haze _menu/haze-red
 	link Vaticanus
+	belt 2000
 	asteroids "medium metal" 11 2
 	asteroids "large metal" 2 2
 	asteroids "small rock" 4 1
@@ -23356,8 +23357,8 @@ system Statina
 	pos 385 198
 	government Uninhabited
 	attributes "ember waste" "inaccessible" "wormhole"
+	belt 2000
 	habitable 135
-	belt 1500
 	haze _menu/haze-red
 	link Diespiter
 	link Egeria
@@ -24825,6 +24826,7 @@ system Vaticanus
 	haze _menu/haze-red
 	link Egeria
 	link Prosa
+	belt 2000
 	asteroids "small rock" 3 6
 	asteroids "medium rock" 11 9
 	asteroids "large rock" 5 8
@@ -26484,6 +26486,13 @@ planet Babiali
 	government Uninhabited
 	security 0
 
+planet Baianus
+	attributes uninhabited
+	landscape land/canyon12
+	description `This frozen water world is reminiscent of Titan back in Sol: The surface is little more than a shattered wasteland of ice and the ocassional rock outcropping, but the unbreathably thin atmosphere contains countless tantilizing traces of chemicals that suggest that something more might exist below the surface.`
+	description `	Unlike Titan, however, Baianus is regularly wracked by both waves of heat and energy, and a stay of any length on the surface is likely to see waves of auroras accompanied by glows and sparks rippling across the terrain. Your environmental system strongly recommends remaining inside your ship whenever ion storms are active.`
+	government Uninhabited
+
 planet "Bank of Blugtad"
 	attributes arach urban wealthy
 	landscape land/valley14-harro
@@ -27326,6 +27335,13 @@ planet "Fenrir Station"
 	tribute 600
 		threshold 3000
 		fleet "Small Deep Security" 14
+
+planet Fertriery
+	attributes deep station
+	landscape land/clouds_00
+	description `It is unclear exactly what Fertriery is. While it does orbit Postverta, and it has sufficent pressure to threaten most ships. Despite that pressure and the gravity it implies, Fertriery lacks the cohesion or distinct shape normally expected of a planet. Preliminary sensor sweeps have been been stymied by inconsistent readings. Given Fertriery's history, the Remnant are disinclined to rule out even the most far-fetched idea as to what it is or how it exists.`
+	description `	What is clear, however, is that there are somehow void sprites that live here. They spiral in and out of the clouds with abandon, and you note that seem to be able to enter and leave the planet without inflating like they do in Nenia.`
+	bribe 0
 
 planet Firefall
 	attributes hai station uninhabited
