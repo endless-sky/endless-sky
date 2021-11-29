@@ -455,12 +455,10 @@ system "12 Autumn Above"
 		sprite planet/gas13-b
 		distance 2145.85
 		period 1227.05
-		offset 159.403
 		object "Station Cian"
 			sprite planet/station3c
 			distance 392.805
 			period 251.263
-			offset 170.143
 	object
 		sprite planet/gas3-b
 		distance 8021.02
@@ -2180,27 +2178,22 @@ system Aki'il
 		sprite planet/rock7
 		distance 1209.76
 		period 433.850
-		offset 29.5665
 	object
 		sprite planet/rock18
 		distance 252.757
 		period 41.4330
-		offset 61.3079
 	object
 		sprite planet/neptune
 		distance 2740.76
 		period 1479.44
-		offset 9.66291
 	object
 		sprite planet/desert7
 		distance 600.757
 		period 151.823
-		offset 57.1944
 	object Kaeyin
 		sprite planet/ocean3
 		distance 927.757
 		period 291.368
-		offset 4.23336
 
 system "Al Dhanab"
 	pos -177 207
@@ -7687,17 +7680,14 @@ system Delia
 		sprite planet/cloud3
 		distance 589.01
 		period 258.312
-		offset 20.1203
 	object
 		sprite planet/desert9-b
 		distance 748.5
 		period 370.040
-		offset 34.9671
 	object
 		sprite planet/gas11
 		distance 2258.66
 		period 1939.71
-		offset 23.3162
 		object
 			sprite planet/station3bd
 			distance 255
@@ -8157,27 +8147,22 @@ system Dixere
 	object
 		sprite star/k0-old
 		period 10
-		offset 240
 	object
 		sprite planet/lava1
 		distance 269.69
 		period 56.5905
-		offset 120
 	object Veliante
 		sprite planet/lava4
 		distance 967.18
 		period 384.333
-		offset 203
 	object
 		sprite planet/desert2-b
 		distance 1204.67
 		period 534.255
-		offset 40
 	object
 		sprite planet/desert8
 		distance 1515.76
 		period 754.036
-		offset 192
 	object
 		sprite planet/gas8
 		distance 2232.25
@@ -9561,7 +9546,6 @@ system Eshkoshtar
 			sprite planet/station2kd
 			distance 237.94
 			period 12.1054
-			offset 203.816
 	object
 		sprite planet/gas4
 		distance 2400.09
@@ -9623,7 +9607,6 @@ system Esix
 		sprite planet/gas3
 		distance 2694.88
 		period 602.021
-		offset 47.9894
 		object
 			sprite planet/ice0-b
 			distance 270
@@ -9636,7 +9619,6 @@ system Esix
 		sprite planet/wormhole-red
 		distance 3618.74
 		period 936.783
-		offset 278.315
 
 system Eteron
 	pos -330 33
@@ -10203,7 +10185,6 @@ system Faronektu
 		sprite planet/uranus
 		distance 1360.42
 		period 610.741
-		offset 126.212
 		object "Fara Skaeruti"
 			sprite planet/station2k
 			distance 270.911
@@ -10324,7 +10305,6 @@ system Fearis
 		sprite planet/jupiter-b
 		distance 2525.49
 		period 1621.68
-		offset 11.7572
 		object Letis'sei
 			sprite planet/station4bd
 			distance 282
@@ -10333,7 +10313,6 @@ system Fearis
 		sprite planet/wormhole
 		distance 3606.64
 		period 2767.58
-		offset 195.653
 
 system "Fell Omen"
 	pos -1156.59 475.051
@@ -10449,18 +10428,15 @@ system Feraticus
 	object
 		sprite planet/rock0-b
 		distance 264.77
-		period Infinit
-		offset 339.997
+		period 544.958
 	object
 		sprite planet/lava0
 		distance 422.81
-		period Infinit
-		offset 81.6258
+		period 1099.71
 	object
 		sprite planet/gas10-b
 		distance 893.22
-		period Infinit
-		offset 271.075
+		period 3376.74
 		object
 			sprite planet/dust7
 			distance 223
@@ -10472,8 +10448,7 @@ system Feraticus
 	object
 		sprite planet/gas1-b
 		distance 2487.73
-		period Infinit
-		offset 276.106
+		period 15695.1
 
 system Fereti
 	pos -39 600
@@ -10903,17 +10878,14 @@ system Fornarep
 		sprite planet/gas9
 		distance 985.84
 		period 692.141
-		offset 296.234
 	object
 		sprite planet/rock5
 		distance 1479.93
 		period 1273.05
-		offset 94.342
 	object
 		sprite planet/gas17
 		distance 2002.34
 		period 2003.51
-		offset 41.653
 		object
 			sprite planet/rock0-b
 			distance 240
@@ -12493,17 +12465,14 @@ system "Hi Yahr"
 		sprite planet/ocean2
 		distance 625.02
 		period 250.012
-		offset 47.6623
 	object
 		sprite planet/gas15-b
 		distance 1187.26
 		period 654.543
-		offset 19.1907
 	object
 		sprite planet/rock18-b
 		distance 1939.51
 		period 1366.65
-		offset 5.57518
 		object
 			sprite planet/rock7-b
 			distance 156
@@ -13163,7 +13132,6 @@ system "Io Mann"
 		sprite planet/gas6-b
 		distance 2190.3
 		period 1309.79
-		offset 360
 		object
 			sprite planet/rock3-b
 			distance 302
@@ -15417,22 +15385,18 @@ system "Lom Tahr"
 		sprite planet/desert8-b
 		distance 170.795
 		period 17.6462
-		offset 149.808
 	object
 		sprite planet/uranus
 		distance 554.485
 		period 103.222
-		offset 3.25911
 		object
 			sprite planet/miranda
 			distance 225
 			period 14.4194
-			offset 93.1794
 	object
 		sprite planet/gas7
 		distance 1337.49
 		period 386.701
-		offset 138.785
 		object
 			sprite planet/io-b
 			distance 268
@@ -15445,7 +15409,6 @@ system "Lom Tahr"
 		sprite planet/gas8
 		distance 2759.78
 		period 1146.17
-		offset 21.8728
 		object Iritoroost
 			sprite planet/stationh-ancient1
 			distance 240
@@ -17674,7 +17637,7 @@ system Nenia
 	trade Plastic 465
 	fleet "Void Sprites" 500
 	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base St orm" 25000
+	hazard "Ember Waste Base Storm" 25000
 	object
 		sprite star/f5-old
 		distance 37.2996
@@ -18321,17 +18284,15 @@ system Paeli
 	object
 		sprite planet/desert4-b
 		distance 275
-		period Infinit
+		period 576.844
 	object
 		sprite planet/cloud3
 		distance 746.89
-		period Infinit
-		offset 16.1975
+		period 2581.93
 	object
 		sprite planet/desert6-b
 		distance 1213.03
-		period Infinit
-		offset 125.921
+		period 5334.01
 		object
 			sprite planet/rock14
 			distance 201
@@ -18339,18 +18300,15 @@ system Paeli
 	object
 		sprite planet/gas2-b
 		distance 2010.84
-		period Infinit
-		offset 270.243
+		period 12267.1
 		object Eavine
 			sprite planet/ice8-b
 			distance 302.81
 			period 31.9279
-			offset 256.243
 		object
 			sprite planet/oberon-b
 			distance 457.81
 			period 59.353
-			offset 360
 
 system Pantica
 	pos 303.87 445.242
@@ -18620,12 +18578,10 @@ system Pelubta
 		sprite planet/gas6
 		distance 1831.43
 		period 302.371
-		offset 337.566
 		object "Pelubta Station"
 			sprite planet/station2c
 			distance 303
 			period 13.4719
-			offset 176
 	object
 		sprite planet/gas2-b
 		distance 2309.75
@@ -18786,23 +18742,23 @@ system Perfica
 	object
 		sprite planet/ice5
 		distance 351
-		period Infinit
+		period 831.803
 	object
 		sprite planet/dust6-b
 		distance 652
-		period Infinit
+		period 2105.86
 	object
 		sprite planet/cloud6-b
 		distance 962
-		period Infinit
+		period 3774.18
 	object
 		sprite planet/desert4-b
 		distance 1757.75
-		period Infinit
+		period 9321.71
 	object
 		sprite planet/gas4
 		distance 2712.71
-		period Infinit
+		period 17871.7
 
 system Persian
 	pos -203 331
@@ -20525,12 +20481,10 @@ system Relifer
 		sprite planet/mercury
 		distance 167.69
 		period 27.7464
-		offset 339.439
 	object
 		sprite planet/cloud0-b
 		distance 467.7
 		period 129.240
-		offset 195.125
 		object
 			sprite planet/dust7-b
 			distance 134
@@ -20539,22 +20493,18 @@ system Relifer
 		sprite planet/ice3
 		distance 781.79
 		period 279.307
-		offset 99.1324
 	object
 		sprite planet/water1
 		distance 1126.04
 		period 482.811
-		offset 252.049
 	object
 		sprite planet/ice1
 		distance 1804.04
 		period 979.075
-		offset 348.55
 	object
 		sprite planet/gas11-b
 		distance 2539.85
 		period 1635.53
-		offset 144.237
 		object
 			sprite planet/tethys-b
 			distance 221
@@ -20571,7 +20521,6 @@ system Relifer
 		sprite planet/wormhole-red
 		distance 3462.04
 		period 2602.82
-		offset 114.016
 
 system Remembrance
 	pos -884.587 641.051
@@ -20763,17 +20712,14 @@ system Ritilas
 		sprite planet/wormhole
 		distance 1666
 		period 868.879
-		offset 109.88
 	object
 		sprite planet/gas6
 		distance 2320
 		period 1427.83
-		offset 73.9578
 	object
 		sprite planet/gas9
 		distance 4065
 		period 3311.59
-		offset 15.7954
 		object
 			sprite planet/lava0
 			distance 234
@@ -21020,7 +20966,6 @@ system Sabriset
 		sprite planet/lava7
 		distance 738.015
 		period 202.398
-		offset 212.423
 	object
 		sprite planet/desert2
 		distance 1012.78
@@ -22275,7 +22220,6 @@ system Sich'ka'ara
 		sprite planet/ocean6
 		distance 2370.98
 		period 1115.11
-		offset 337.352
 
 system Silikatakfar
 	pos 248.431 -481.812
@@ -22315,7 +22259,6 @@ system Silikatakfar
 		sprite planet/rock6
 		distance 445.293
 		period 182.320
-		offset 99.2705
 		object
 			sprite planet/dust7
 			distance 140
@@ -22324,12 +22267,10 @@ system Silikatakfar
 		sprite planet/gas2
 		distance 1189.91
 		period 796.409
-		offset 328.062
 		object "Sebra Skira"
 			sprite planet/station3k
 			distance 293.717
 			period 30.5006
-			offset 276.215
 
 system "Silver Bell"
 	pos -1045.59 541.051
@@ -22993,12 +22934,10 @@ system "Sol Kimek"
 		sprite planet/ocean1
 		distance 679.68
 		period 343.812
-		offset 43.5788
 		object "Starting Rubin"
 			sprite planet/station1c
 			distance 194.851
 			period 27.367
-			offset 56.4009
 	object
 		sprite planet/gas12-b
 		distance 1153.05
@@ -24478,12 +24417,10 @@ system "Ula Mon"
 		sprite planet/desert2
 		distance 597.32
 		period 230.823
-		offset 221.651
 	object
 		sprite planet/desert0-b
 		distance 1109.57
 		period 584.389
-		offset 301.398
 		object Goldcrawl
 			sprite planet/stationh-ancient0
 			distance 240
@@ -24492,7 +24429,6 @@ system "Ula Mon"
 		sprite planet/rock6-b
 		distance 1777.63
 		period 1185.03
-		offset 325.062
 		object Ironfirth
 			sprite planet/stationh-ancient1
 			distance 240
@@ -24501,7 +24437,6 @@ system "Ula Mon"
 		sprite planet/gas8-b
 		distance 7288.57
 		period 9838.60
-		offset 359.444
 		object
 			sprite planet/rock0
 			distance 191
@@ -25151,7 +25086,7 @@ system "Wah Oh"
 		object Ochrescoop
 			sprite planet/stationh-ancient2
 			distance 240
-			period 17.1522
+			period 35.7401
 	object
 		sprite planet/gas11
 		distance 1012.77
@@ -25618,12 +25553,10 @@ system "Ya Hai"
 		sprite planet/ice6
 		distance 147.36
 		period 34.7084
-		offset 249.973
 	object Hai-home
 		sprite planet/forest2-b
 		distance 512.61
 		period 225.188
-		offset 94.4538
 		object Mirrorlake
 			sprite planet/ice7
 			distance 191
@@ -25632,7 +25565,6 @@ system "Ya Hai"
 		sprite planet/gas15-b
 		distance 1417.62
 		period 1035.63
-		offset 287.069
 		object
 			sprite planet/rock17-b
 			distance 199
@@ -25649,7 +25581,6 @@ system "Ya Hai"
 		sprite planet/gas16-b
 		distance 2811.53
 		period 2892.54
-		offset 338.654
 		object
 			sprite planet/tethys
 			distance 184
@@ -26132,62 +26063,50 @@ system Zubenelhakrabi
 		sprite planet/lava4
 		distance 147
 		period 32.2060
-		offset 98.3841
 	object "Valley of the Damned"
 		sprite planet/earth
 		distance 502.704
 		period 203.671
-		offset 314.841
 	object
 		sprite planet/gas8
 		distance 1345.85
 		period 892.189
-		offset 153.957
 		object
 			sprite planet/luna
 			distance 288.272
 			period 26.0544
-			offset 72.9809
 		object
 			sprite planet/ice8
 			distance 373.272
 			period 38.3898
-			offset 185.14
 	object
 		sprite planet/rock17
 		distance 2322.59
 		period 2022.65
-		offset 267.221
 		object
 			sprite planet/oberon
 			distance 83
 			period 41.6711
-			offset 44.2239
 	object
 		sprite planet/gas6
 		distance 3672.78
 		period 4022.11
-		offset 46.4282
 		object
 			sprite planet/lava0
 			distance 281.814
 			period 12.0839
-			offset 337.102
 		object
 			sprite planet/dust5
 			distance 464.272
 			period 25.5519
-			offset 284.511
 		object
 			sprite planet/ice7
 			distance 568.272
 			period 34.6019
-			offset 45.9014
 		object
 			sprite planet/callisto
 			distance 672.272
 			period 44.5228
-			offset 128.448
 
 system Zubeneschamali
 	pos -759 338
