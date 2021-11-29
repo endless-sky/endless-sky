@@ -238,7 +238,7 @@ void Conversation::Save(DataWriter &out) const
 			const Node &node = nodes[i];
 			
 			if(node.scene)
-				out.Write("scene", node.scene->Name());	
+				out.Write("scene", node.scene->Name());
 			if(!node.branch.IsEmpty())
 			{
 				out.Write("branch", TokenName(node.data[0].second), TokenName(node.data[1].second));

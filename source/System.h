@@ -116,7 +116,7 @@ public:
 	// Get the radius of the asteroid belt.
 	double AsteroidBelt() const;
 	// Get how far ships can jump from this system.
-	double JumpRange() const; 
+	double JumpRange() const;
 	// Get the rate of solar collection and ramscoop refueling.
 	double SolarPower() const;
 	double SolarWind() const;

@@ -36,7 +36,7 @@ void Phrase::Load(const DataNode &node)
 	if(sentences.back().empty())
 	{
 		sentences.pop_back();
-		node.PrintTrace("Skipping unparseable node:");
+		node.PrintTrace("Skipping unparsable node:");
 	}
 }
 

@@ -13,7 +13,7 @@
 # but not both. That's not realistic, but it creates a more interesting dynamic.
 
 # For convenience, every spectral class (o, b, a, f, g, k, m) has the same variants:
-# 0, 3, 5, 8, -dwarf, -giant, and -supergiant 
+# 0, 3, 5, 8, -dwarf, -giant, and -supergiant
 
 # Main sequence stars.
 star "star/o0"

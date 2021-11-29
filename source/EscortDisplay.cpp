@@ -285,7 +285,7 @@ void EscortDisplay::MergeStacks(int maxHeight) const
 			else
 			{
 				mit->second->Merge(*it);
-				it = icons.erase(it);	
+				it = icons.erase(it);
 			}
 		}
 		unstackable.insert(sprite);
