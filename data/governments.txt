@@ -322,7 +322,7 @@ government "Kor Mereti"
 	
 	"penalty for"
 		assist 0
-		disable 0.5
+		disable 0
 		board 0.5
 		capture 5
 		destroy 5
@@ -406,8 +406,8 @@ government "Navy (Oathkeeper)"
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3
-		"Kor Sestor" -.1
-		"Kor Mereti" -.1
+		"Kor Sestor" -.01
+		"Kor Mereti" -.01
 		"Navy Intelligence" 1
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"

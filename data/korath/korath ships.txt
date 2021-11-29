@@ -531,6 +531,7 @@ ship "Kar Ik Vot 349"
 		"shields" 57200
 		"hull" 65400
 		"automaton" 1
+		"crew equivalent" 150
 		"mass" 1350
 		"drag" 16.8
 		"heat dissipation" .5
@@ -688,6 +689,7 @@ ship "Tek Far 71 - Lek"
 		"shields" 25400
 		"hull" 29500
 		"automaton" 1
+		"crew equivalent" 50
 		"mass" 610
 		"drag" 9.6
 		"heat dissipation" .6
@@ -781,6 +783,7 @@ ship "Tek Far 78 - Osk"
 		"shields" 27600
 		"hull" 34100
 		"automaton" 1
+		"crew equivalent" 50
 		"mass" 690
 		"drag" 10.2
 		"heat dissipation" .55
@@ -873,6 +876,7 @@ ship "Tek Far 109"
 		"shields" 17900
 		"hull" 15800
 		"automaton" 1
+		"crew equivalent" 100
 		"mass" 540
 		"drag" 9.1
 		"heat dissipation" .65
@@ -944,6 +948,7 @@ ship "Met Par Tek 53"
 		"shields" 15100
 		"hull" 22200
 		"automaton" 1
+		"crew equivalent" 25
 		"mass" 420
 		"drag" 5.7
 		"heat dissipation" .8
@@ -1033,6 +1038,7 @@ ship "Far Lek 14"
 		"shields" 900
 		"hull" 1600
 		"automaton" 1
+		"crew equivalent" 1
 		"mass" 26
 		"drag" .8
 		"heat dissipation" 1.1
@@ -1071,6 +1077,7 @@ ship "Far Osk 27"
 		"shields" 1500
 		"hull" 2400
 		"automaton" 1
+		"crew equivalent" 2
 		"mass" 34
 		"drag" 1.1
 		"heat dissipation" 1.0
