@@ -101,7 +101,7 @@ bool IllegalHailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		// Dump illegal cago. Only spare outfits are removed. Any mission cargo
 		// is automatically removed since the missions are failed.
 		for(const auto &pair : scannedShip.Cargo().Outfits())
-			if(pair.first->Get("illegal") || pair.first->Get("atrocity"))
+			if(pair.first->Get("illegal") || pair.first->Get("atrocity") > 0.)
 				scannedShip.Jettison(pair.first, pair.second, true);
 
 		// Pay the required fine.
