@@ -568,7 +568,7 @@ int64_t CargoHold::IllegalCargoFine() const
 			return -1;
 		if(fine < 0)
 			return fine;
-		totalFine += fine / 2;
+		totalFine += (fine / 2) * it.second;
 	}
 	
 	// Fines for illegal mission cargo and passengers are added together to
