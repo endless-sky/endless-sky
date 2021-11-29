@@ -608,7 +608,7 @@ int CargoHold::IllegalCargoAmount() const
 		if(it.first->Get("illegal") > 0. || it.first->Get("atrocity") > 0.)
 			count += it.second * it.first->Mass();
 
-	// Find any illegal mission cargo and passengers.
+	// Find any illegal mission cargo.
 	for(const auto &it : missionCargo)
 		if(it.first->IllegalCargoFine())
 			count += it.second;
