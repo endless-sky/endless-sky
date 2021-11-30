@@ -307,21 +307,13 @@ minable "large plant cluster"
 	explode "bolide" 40
 	explode "final explosion medium"
 
-minable "stealth space flora"
-	sprite "asteroid/stealth space flora/stealth space flora"
+minable "live crystal"
+	sprite "asteroid/livecrystal/livecrystal"
 	hull 1000
 	payload "Void Orchid" 8
 	explode "smoke" 15
 	explode "bolide" 10
 	explode "final explosion small"
-
-minable "stealth large space flora"
-	sprite "asteroid/stealth large space flora/stealth large space flora"
-	hull 2000
-	payload "Void Orchid" 16
-	explode "smoke" 25
-	explode "bolide" 20
-	explode "final explosion medium"
 
 minable "space flora"
 	sprite "asteroid/space flora/space flora"

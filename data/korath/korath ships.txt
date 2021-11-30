@@ -134,10 +134,10 @@ ship "Korath Dredger" "Korath Dredger (Ground Assault)"
 		"Korath Banisher" 2
 		"Korath Warder" 2
 		
-		"Outfit Expansion" 6
+		"Outfits Expansion" 6
 		"Systems Core (Large)"
 		"Double Plasma Core"
-		"Large Bunk Room" 19
+		"Bunk Room" 19
 		"Large Heat Shunt" 2
 		"Small Bunk Room"
 		"Small Heat Shunt"

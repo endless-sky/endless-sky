@@ -477,8 +477,6 @@ Files:
  images/asteroid/large?plant2*
  images/asteroid/large?plant?cluster*
  images/asteroid/large?space?flora*
- images/asteroid/stealth?space?flora*
- images/asteroid/stealth?large?space?flora*
  images/asteroid/yottrite*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
@@ -1205,8 +1203,9 @@ Copyright: Matteo "Lead" M.
 License: CC-BY-SA-4.0
 
 Files:
+ images/asteroid/livecrystal/livecrystal*
  images/star/neutron*
-Copyright: Gefüllte Taubenbrust
+Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
 
 Files: sounds/ionball*

@@ -2102,8 +2102,7 @@ event "remnant: ssil vida reactivation"
 		minables "large plant cluster" 40 3
 		minables "space flora" 80 5
 		minables "large space flora" 40 3
-		minables "stealth space flora" 40 5
-		minables "stealth large space flora" 25 3
+		mineables "live crystal" 60 3
 		fleet "Void Sprites" 400
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
@@ -2154,8 +2153,7 @@ event "remnant: ssil vida reactivation"
 		minables "large plant cluster" 40 3
 		minables "space flora" 80 5
 		minables "large space flora" 40 3
-		minables "stealth space flora" 40 5
-		minables "stealth large space flora" 25 3
+		mineables "live crystal" 60 3
 		fleet "Void Sprites" 400
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
@@ -2208,8 +2206,7 @@ event "remnant: ssil vida reactivation"
 		minables "large plant cluster" 40 3
 		minables "space flora" 80 5
 		minables "large space flora" 40 3
-		minables "stealth space flora" 40 5
-		minables "stealth large space flora" 25 3
+		mineables "live crystal" 60 3
 		fleet "Void Sprites" 300
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
@@ -2260,8 +2257,7 @@ event "remnant: ssil vida reactivation"
 		minables "large plant cluster" 40 3
 		minables "space flora" 80 5
 		minables "large space flora" 40 3
-		minables "stealth space flora" 40 5
-		minables "stealth large space flora" 25 3
+		mineables "live crystal" 60 3
 		fleet "Void Sprites" 400
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
@@ -2320,8 +2316,7 @@ event "remnant: ssil vida reactivation"
 		minables "large plant cluster" 40 3
 		minables "space flora" 80 5
 		minables "large space flora" 40 3
-		minables "stealth space flora" 40 5
-		minables "stealth large space flora" 25 3
+		mineables "live crystal" 60 3
 		fleet "Void Sprites" 400
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
@@ -2373,8 +2368,7 @@ event "remnant: ssil vida reactivation"
 		minables "large plant cluster" 40 3
 		minables "space flora" 80 5
 		minables "large space flora" 40 3
-		minables "stealth space flora" 40 5
-		minables "stealth large space flora" 25 3
+		mineables "live crystal" 60 3
 		fleet "Void Sprites" 400
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
