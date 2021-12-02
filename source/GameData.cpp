@@ -169,7 +169,10 @@ bool GameData::BeginLoad(const char * const *argv)
 {
 	bool printShips = false;
 	bool printTests = false;
-	bool printWeapons = false;
+	bool printGuns = false;
+    bool printTurrets = false;
+    bool printSecondaryWeapons = false;
+    bool printAntiMissile = false;
 	bool debugMode = false;
 	for(const char * const *it = argv + 1; *it; ++it)
 	{
@@ -178,8 +181,14 @@ bool GameData::BeginLoad(const char * const *argv)
 			string arg = *it;
 			if(arg == "-s" || arg == "--ships")
 				printShips = true;
-			if(arg == "-w" || arg == "--weapons")
-				printWeapons = true;
+			if(arg == "-g" || arg == "--guns")
+				printGuns = true;
+            if(arg == "-tu" || arg == "--turrets")
+                printTurrets = true;
+            if(arg == "-se" || arg == "--secondary-weapons")
+                printSecondaryWeapons = true;
+            if(arg == "-a" || arg == "--anti-missile")
+                printAntiMissile = true;
 			if(arg == "--tests")
 				printTests = true;
 			if(arg == "-d" || arg == "--debug")
@@ -263,9 +272,15 @@ bool GameData::BeginLoad(const char * const *argv)
 		PrintShipTable();
 	if(printTests)
 		PrintTestsTable();
-	if(printWeapons)
-		PrintWeaponTable();
-	return !(printShips || printWeapons || printTests);
+	if(printGuns)
+		PrintGunTable();
+    if (printTurrets)
+        PrintTurretTable();
+    if (printSecondaryWeapons)
+        PrintSecondaryWeaponTable();
+    if (printAntiMissile) PrintAntiMissileTable();
+
+	return !(printShips || printGuns || printTurrets || printSecondaryWeapons || printAntiMissile || printTests);
 }
 
 
@@ -1355,16 +1370,18 @@ void GameData::PrintShipTable()
 
 
 
-void GameData::PrintWeaponTable()
+void GameData::PrintGunTable()
 {
 	cout << "name" << '\t' << "cost" << '\t' << "space" << '\t' << "range" << '\t'
-		<< "energy/s" << '\t' << "heat/s" << '\t' << "recoil/s" << '\t'
-		<< "shield/s" << '\t' << "hull/s" << '\t' << "push/s" << '\t'
-		<< "homing" << '\t' << "strength" <<'\n';
+		 << "reload/s" << '\t' << "energy/s" << '\t' << "heat/s" << '\t'
+         << "recoil/s" << '\t' << "shield/s" << '\t' << "hull/s" << '\t'
+         << "push/s" << '\t' << "heat dmg/s" << '\t' << "slow/s" << '\t'
+         << "disruption/s" << '\t' << "ion/s" << '\t' << "homing" << '\t'
+         << "strength" << '\t' << "velocity" << '\n';
 	for(auto &it : outfits)
 	{
-		// Skip non-weapons and submunitions.
-		if(!it.second.IsWeapon() || it.second.Category().empty())
+		// only iterate over guns
+		if(it.second.Category() != "Guns")
 			continue;
 		
 		const Outfit &outfit = it.second;
@@ -1373,6 +1390,7 @@ void GameData::PrintWeaponTable()
 		cout << -outfit.Get("weapon capacity") << '\t';
 		
 		cout << outfit.Range() << '\t';
+        cout << 60. / outfit.Reload() <<  '\t';
 		
 		double energy = outfit.FiringEnergy() * 60. / outfit.Reload();
 		cout << energy << '\t';
@@ -1387,10 +1405,161 @@ void GameData::PrintWeaponTable()
 		cout << hull << '\t';
 		double hitforce = outfit.HitForce() * 60. / outfit.Reload();
 		cout << hitforce << '\t';
+        double heatdmg = outfit.HeatDamage() * 60. / outfit.Reload();
+        cout << heatdmg << '\t';
+        double slow = outfit.SlowingDamage() * 60. / outfit.Reload();
+        cout << slow << '\t';
+        double disruption = outfit.DisruptionDamage() * 60. / outfit.Reload();
+        cout << disruption << '\t';
+        double ion = outfit.IonDamage() * 60. / outfit.Reload();
+        cout << ion << '\t';
 		
 		cout << outfit.Homing() << '\t';
-		double strength = outfit.MissileStrength() + outfit.AntiMissile();
-		cout << strength << '\n';
+        cout << outfit.MissileStrength() << '\t';
+        cout << outfit.Velocity() << '\n';
+
 	}
 	cout.flush();
+}
+
+
+
+void GameData::PrintTurretTable()
+{
+    cout << "name" << '\t' << "cost" << '\t' << "space" << '\t' << "range" << '\t'
+         << "reload/s" << '\t' << "energy/s" << '\t' << "heat/s" << '\t'
+         << "recoil/s" << '\t' << "shield/s" << '\t' << "hull/s" << '\t'
+         << "push/s" << '\t' << "heat dmg/s" << '\t' << "slow/s" << '\t'
+         << "disruption/s" << '\t' << "ion/s" << '\t' << "turn" << '\t'
+         << "homing" << '\t' << "strength" << '\t' << "velocity" << '\n';
+    for(auto &it : outfits)
+    {
+        // only iterate over turrets without antimissile
+        if(it.second.Category() != "Turrets" || it.second.AntiMissile() != 0)
+            continue;
+
+        const Outfit &outfit = it.second;
+        cout << it.first << '\t';
+        cout << outfit.Cost() << '\t';
+        cout << -outfit.Get("weapon capacity") << '\t';
+
+        cout << outfit.Range() << '\t';
+        cout << 60. / outfit.Reload() <<  '\t';
+
+        double energy = outfit.FiringEnergy() * 60. / outfit.Reload();
+        cout << energy << '\t';
+        double heat = outfit.FiringHeat() * 60. / outfit.Reload();
+        cout << heat << '\t';
+        double firingforce = outfit.FiringForce() * 60. / outfit.Reload();
+        cout << firingforce << '\t';
+
+        double shield = outfit.ShieldDamage() * 60. / outfit.Reload();
+        cout << shield << '\t';
+        double hull = outfit.HullDamage() * 60. / outfit.Reload();
+        cout << hull << '\t';
+        double hitforce = outfit.HitForce() * 60. / outfit.Reload();
+        cout << hitforce << '\t';
+        double heatdmg = outfit.HeatDamage() * 60. / outfit.Reload();
+        cout << heatdmg << '\t';
+        double slow = outfit.SlowingDamage() * 60. / outfit.Reload();
+        cout << slow << '\t';
+        double disruption = outfit.DisruptionDamage() * 60. / outfit.Reload();
+        cout << disruption << '\t';
+        double ion = outfit.IonDamage() * 60. / outfit.Reload();
+        cout << ion << '\t';
+
+        cout << outfit.TurretTurn() <<'\t';
+        cout << outfit.Homing() << '\t';
+        cout << outfit.MissileStrength() << '\t';
+        cout << outfit.Velocity() << '\n';
+
+    }
+    cout.flush();
+}
+
+
+
+void GameData::PrintSecondaryWeaponTable()
+{
+    cout << "name" << '\t' << "cost" << '\t' << "space" << '\t' << "range" << '\t'
+            << "reload/s" << '\t' << "energy/s" << '\t' << "heat/s" << '\t'
+            << "recoil/s" << '\t' << "shield/s" << '\t' << "hull/s" << '\t'
+            << "push/s" << '\t' << "heat dmg/s" << '\t' << "slow/s" << '\t'
+            << "disruption/s" << '\t' << "ion/s" << '\t' << "homing" << '\t'
+            << "strength" << '\t' << "velocity" << '\n';
+    for(auto &it : outfits)
+    {
+        // only iterate over secondaries
+        if(it.second.Category() != "Secondary Weapons")
+            continue;
+
+        const Outfit &outfit = it.second;
+        cout << it.first << '\t';
+        cout << outfit.Cost() << '\t';
+        cout << -outfit.Get("weapon capacity") << '\t';
+
+        cout << outfit.Range() << '\t';
+        cout << 60. / outfit.Reload() <<  '\t';
+
+        double energy = outfit.FiringEnergy() * 60. / outfit.Reload();
+        cout << energy << '\t';
+        double heat = outfit.FiringHeat() * 60. / outfit.Reload();
+        cout << heat << '\t';
+        double firingforce = outfit.FiringForce() * 60. / outfit.Reload();
+        cout << firingforce << '\t';
+
+        double shield = outfit.ShieldDamage() * 60. / outfit.Reload();
+        cout << shield << '\t';
+        double hull = outfit.HullDamage() * 60. / outfit.Reload();
+        cout << hull << '\t';
+        double hitforce = outfit.HitForce() * 60. / outfit.Reload();
+        cout << hitforce << '\t';
+        double heatdmg = outfit.HeatDamage() * 60. / outfit.Reload();
+        cout << heatdmg << '\t';
+        double slow = outfit.SlowingDamage() * 60. / outfit.Reload();
+        cout << slow << '\t';
+        double disruption = outfit.DisruptionDamage() * 60. / outfit.Reload();
+        cout << disruption << '\t';
+        double ion = outfit.IonDamage() * 60. / outfit.Reload();
+        cout << ion << '\t';
+
+        cout << outfit.Homing() << '\t';
+        cout << outfit.MissileStrength() << '\t';
+        cout << outfit.Velocity() << '\n';
+
+    }
+    cout.flush();
+}
+
+
+
+void GameData::PrintAntiMissileTable()
+{
+    cout << "name" << '\t' << "cost" << '\t' << "space" << '\t' << "range" << '\t'
+         << "reload/s" << '\t' << "energy/s" << '\t' << "heat/s" << '\t'
+         << "antimissile" << '\t' << "velocity" << '\n';
+    for(auto &it : outfits)
+    {
+        // only iterate over turrets without antimissile
+        if(it.second.Category() != "Turrets" || it.second.AntiMissile() == 0)
+            continue;
+
+        const Outfit &outfit = it.second;
+        cout << it.first << '\t';
+        cout << outfit.Cost() << '\t';
+        cout << -outfit.Get("weapon capacity") << '\t';
+
+        cout << outfit.Range() << '\t';
+        cout << 60. / outfit.Reload() <<  '\t';
+
+        double energy = outfit.FiringEnergy() * 60. / outfit.Reload();
+        cout << energy << '\t';
+        double heat = outfit.FiringHeat() * 60. / outfit.Reload();
+        cout << heat << '\t';
+
+        cout << outfit.AntiMissile() <<'\t';
+        cout << outfit.Velocity() << '\n';
+
+    }
+    cout.flush();
 }

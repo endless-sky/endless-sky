@@ -363,7 +363,10 @@ void PrintHelp()
 	cerr << "    -h, --help: print this help message." << endl;
 	cerr << "    -v, --version: print version information." << endl;
 	cerr << "    -s, --ships: print table of ship statistics, then exit." << endl;
-	cerr << "    -w, --weapons: print table of weapon statistics, then exit." << endl;
+    cerr << "    -g, --guns: print table of gun statistics, then exit." << endl;
+    cerr << "    -tu, --turrets: print table of turret statistics, then exit." << endl;
+    cerr << "    -se, --secondary-weapons: print table of secondary weapon statistics, then exit." << endl;
+    cerr << "    -a, --anti-missile: print table of anti-missile statistics, then exit." << endl;
 	cerr << "    -t, --talk: read and display a conversation from STDIN." << endl;
 	cerr << "    -r, --resources <path>: load resources from given directory." << endl;
 	cerr << "    -c, --config <path>: save user's files to given directory." << endl;

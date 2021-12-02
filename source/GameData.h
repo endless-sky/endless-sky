@@ -164,7 +164,10 @@ private:
 	
 	static void PrintShipTable();
 	static void PrintTestsTable();
-	static void PrintWeaponTable();
+	static void PrintGunTable();
+    static void PrintTurretTable();
+    static void PrintSecondaryWeaponTable();
+    static void PrintAntiMissileTable();
 };
 
 
