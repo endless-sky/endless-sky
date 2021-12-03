@@ -30189,7 +30189,7 @@ planet Yedikule
 	attributes gas moon "requires: gaslining" uninhabited
 	landscape land/nasa11
 	description `Although much smaller than most gaseous planets - including the one it orbits - the thick atmosphere of Yedikule and its rocky core make it a gas dwarf. While it was not the first to be discovered in human history, it is very improbable to have formed around a gas giant, and the extreme differences between its atmosphere and the one of Xerolophos further suggest this was not its original location.`
-	description `	While virtually every craft that tries to land here is a fuel scooping drone, a large number of satellites orbit Yedikule at various heights, meaning that it must have been exhaustively studied in the past.`
+	description `	While virtually every craft that currently comes here is a fuel scooping drone, a large number of satellites orbit Yedikule at various heights, meaning that it must have been exhaustively studied in the past.`
 	government Uninhabited
 	security 0
 
