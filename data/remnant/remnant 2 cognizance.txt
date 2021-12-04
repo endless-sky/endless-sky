@@ -823,6 +823,7 @@ mission "Remnant: Cognizance 20"
 		government "Remnant"
 	to offer
 		has "Remnant: Cognizance 19: done"
+		has "event: remnant: lab availability"
 	on offer
 		conversation
 			`The crowd inside the spaceport cafeteria is an excited flurry of movement. You squeeze through a gap in the crowd to discover that they are gathered around a holoprojector displaying footage of the strange creature that recently followed you to Viminal and then on to Nenia. From the snippets of conversation that you catch, it appears that they are discussing theories about it. Almost as soon as you arrive, however, the gestures still and one of the Remnant gestures to you. "Greetings, Seeker. You are the one who found this creature. Since you traveled with it, could you share more recordings of it?"`
@@ -866,7 +867,7 @@ mission "Remnant: Cognizance 20"
 				`	"Later."`
 					goto maybelater
 			label takemission
-			`	"Excellent. We will load our equipment racks on-board, and the equipment to go in them will be waiting for you on from pad D43A on <stopover>. Once it is loaded, return here to pick up the team of researchers who will be going with you. Remember, you will need 5 bunks free as well as an on-board research laboratory to complement our equipment."`
+			`	"Excellent. We will load our equipment racks on-board, and the equipment to go in them will be waiting for you on from pad D43A on <stopovers>. Once it is loaded, return here to pick up the team of researchers who will be going with you. Remember, you will need 5 bunks free as well as an on-board research laboratory to complement our equipment."`
 				accept
 			label maybelater
 			`	"Oh, that is unfortunate. Maybe some other time, then." The crowd makes various gestures of disappointment, and turn back to observing the projection and discussing their theories.`
@@ -909,12 +910,14 @@ mission "Remnant: Cognizance 21"
 				`	"Interesting. Well, what is our mission?"`
 					goto missiondescription
 			`	Dusk looks thoughtful for a moment. "Our ancestors came from a different era for humanity. They were the heirs of a golden age of human scientific progress and progress, when governments and institutions poured vast wealth into science. The developments of that time period resulted in the completion of the hyperspace relay network, new terraforming techniques, and advanced genetic engineering capabilities." His face clouds at that. "This, of course, culminated in the Alphas." He pauses, then shakes his head. "But you asked who are ancestors were, not about human history.`
-			`	"In that era there were a number of burgeoning astronomy and exploration programs across human space. Despite also benefiting from the substantial budgets science in general as receiving, they were being pushed to the margins of the academic community: Unlike many of the more practical sciences like biology and chemistry which were coming up with new wonders, astronomy and astrophysics was purely academic. There was no budget in explaining the whys of the universe, not when other scientists were creating homo superior and unleashing instantaneous interstellar communication. So they banded together. It was not, I gather from the records, an unusual thing for academics of a particular field to meet with others of their field. If one faculty could not fund an expedition, perhaps two different faculties working together could. Eventually they formed a loose organization, a sort of 'standing conference' on astronomy and astrophysics, through which they met to discuss, debate, and organize."`
+			`	"In that era there were a number of burgeoning astronomy and exploration programs across human space. Despite also benefiting from the substantial budgets science in general as receiving, they were being pushed to the margins of the academic community: Unlike many of the more practical sciences like biology and chemistry which were coming up with new wonders, astronomy and astrophysics was purely academic. There was no budget in explaining the whys of the universe, not when other scientists were creating homo superior and unleashing instantaneous interstellar communication.`
+			`	"So they banded together. It was not, I gather from the records, an unusual thing for academics of a particular field to meet with others of their field. If one faculty could not fund an expedition, perhaps two different faculties working together could. Eventually they formed a loose organization, a sort of 'standing conference' on astronomy and astrophysics, through which they met to discuss, debate, and organize."`
 			choice
 				`	"Your ancestors were originally a scientific conference?"`
 				`	"Thanks for the background. So, what is our mission?"`
 					goto missiontransition
-			`	Several of the Remnant nod, and another signs. "They gathered together to talk of their science, and each brought with them the captains and crew who enabled them. Some of those captains brought with them resources, too. Who else would appreciate learning of the void as much as those who ply their trades across it? The association grew over time, although as best we can tell from our records it made an effort to remain both politically and economically neutral. As such, it remained comparatively small and close-knit. Many of our ancestors have told stories about calling themselves the 'Exploration Vector,' alluding to the fact that they were the one subset of humanity on a course to head out into the furthest reaches of space. They even held contests about who could go the furthest from inhabited space, or who could spend the longest time between resupply stops.`
+			`	Several of the Remnant nod, and another signs. "They gathered together to talk of their science, and each brought with them the captains and crew who enabled them. Some of those captains brought with them resources, too. Who else would appreciate learning of the void as much as those who ply their trades across it?`
+			`	"The association grew over time, although as best we can tell from our records it made an effort to remain both politically and economically neutral. As such, it remained comparatively small and close-knit. Many of our ancestors have told stories about calling themselves the 'Exploration Vector,' alluding to the fact that they were the one subset of humanity on a course to head out into the furthest reaches of space. They even held contests about who could go the furthest from inhabited space, or who could spend the longest time between resupply stops.`
 			`	"When the war against the Alphas started, it was these people who had the most knowledge and experience with the farthest reaches of space. While many outfitters might sell a captain a map showing the hyperjumps a few systems into the uninhabited territories, it was our ancestors who had spent years living in those systems while they did their research. Thus they were the ones who got the jobs running supplies, or flying reconnaissance. They saw first-hand the way the war was going. They made the rendezvous' and picked up the equipment drops, and they grew increasingly worried."`
 			choice
 				`	"They were worried about the course the war was taking?"`
@@ -925,7 +928,8 @@ mission "Remnant: Cognizance 21"
 				`	"Which ship was that?"`
 				`	"I think I can see where this is going. Time to get to work."`
 					goto missiontransition
-			`	Dust smiles "The Shadow Step, an independent science vessel who did double-duty as a gas miner. She made a quiet fortune harvesting rarer gases from obscure gas planets off the charted paths. Never enough to attract the attention of the big corporate entities, but enough to be comfortable. Her captain was always making modifications. Not a genius by any means, but what they lacked in brilliance, they made up for in dedication and willingness to experiment. According to our records, making modifications to the Shadow Step was their main hobby, and the small crew she flew with had similar interests." Dust pauses to take a drink. "Thanks to the bravery of the Shadow Step and her crew, the hard work of the researchers that worked with them, and the contributions of a vast number of other ships and teams, the way out was discovered." Dust signs this last with a note of finality, and many of the Remnant who were listening make the sign for 'respect' and 'together.'`
+			`	Dust smiles "The Shadow Step, an independent science vessel who did double-duty as a gas miner. She made a quiet fortune harvesting rarer gases from obscure gas planets off the charted paths. Never enough to attract the attention of the big corporate entities, but enough to be comfortable. Her captain was always making modifications. Not a genius by any means, but what they lacked in brilliance, they made up for in dedication and willingness to experiment. According to our records, making modifications to the Shadow Step was their main hobby, and the small crew she flew with had similar interests." Dust pauses to take a drink.`
+			`	"Thanks to the bravery of the Shadow Step and her crew, the hard work of the researchers that worked with them, and the contributions of a vast number of other ships and teams, the way out was discovered." Dust signs this last with a note of finality, and many of the Remnant who were listening make the sign for 'respect' and 'together.'`
 			label missiontransition
 			`	Dusk smiles and signs apologetically. "My apologies for being overly detailed. I found the study of our ancestors to be an intriguing one, so I have spent much time searching out my families' history. That, in turn, has led to a detailed interest in the early years of our society." Dust gestures towards the holo of Ssil Vida. "But enough of history, the present calls to us."`
 			label missiondescription
@@ -990,7 +994,8 @@ mission "Remnant: Cognizance 22"
 				`	Not today.`
 					decline
 				`	Go check out the activity.`
-			`	You follow the stream of engineers and technicians to find Taely wedged into a cavity on what must be a ship. You cannot quite tell what it looks like, however, because it is still surrounded by scaffolding, tubes, and other systems. Whatever it is, it is quite small: Without all the construction rigging you suspect that it would probably be only slightly larger than a puffin. As you peer around the supports a Remnant scurries up with a slimy cable in a bag and hands it to you. "Here, Taely will need this in a few seconds, could you hand it to her when she asks for it? I need to go find the next part. Thanks!" The Remnant vanishes into an adjacent storage room before you even have the chance to respond. Almost immediately, however, Taely twists around to look back at you. "Oh, <first>! I was expecting Cora to be there with the... Ah, they gave it to you. Excellent. If you could just hand it up to me, it would be much appreciated." You reach up to hand her the bag, and Taely inches farther into the craft until only her feet are visible. A few liquid sounds later, and Taely slides back out and drops to the ground.`
+			`	You follow the stream of engineers and technicians to find Taely wedged into a cavity on what must be a ship. You cannot quite tell what it looks like, however, because it is still surrounded by scaffolding, tubes, and other systems. Whatever it is, it is quite small: Without all the construction rigging you suspect that it would probably be only slightly larger than a puffin.`
+			`	As you peer around the supports a Remnant scurries up with a slimy cable in a bag and hands it to you. "Here, Taely will need this in a few seconds, could you hand it to her when she asks for it? I need to go find the next part. Thanks!" The Remnant vanishes into an adjacent storage room before you even have the chance to respond. Almost immediately, however, Taely twists around to look back at you. "Oh, <first>! I was expecting Cora to be there with the... Ah, they gave it to you. Excellent. If you could just hand it up to me, it would be much appreciated." You reach up to hand her the bag, and Taely inches farther into the craft until only her feet are visible. A few liquid sounds later, and Taely slides back out and drops to the ground.`
 			`	"So, you came to see what the excitement was about?"`
 			choice
 				`	"I spotted it on final for landing and I was curious."`
@@ -1112,7 +1117,7 @@ mission "Remnant: Cognizance 23"
 			`	Taely nods in agreement. "I am glad you can appreciate some of the things we have achieved here. It makes me think that you will appreciate some of my other projects too."`
 			label turndown
 			`	"Historically, we have relied on starlings to fill light combat roles here in the Ember Waste, but as we spread out through the galaxy finding new systems it stretches the number available for defense and patrols rather thin." She pauses, then continues. "Of course, we could just make more starlings, but our pool of specialized crew is not infinite either. The solution is these Mergansers. They are sufficiently advanced that they only require a single crew to operate, and have sufficient range to patrol significant amounts of the Ember Waste. This makes them ideal for escorting gulls on resource gathering expeditions, patrolling for incursions, and other uses. Perhaps most importantly, though, is that they are fast enough to chase down anything we have encountered out here so far."`
-			`	She frowns a bit at that. Unfortunately, the weapons program is not moving as quickly as I would like, so the Merganser does not have the tackling ability that I was originally envisioning for it. But at least it is an adept hunter we can use to pursue our enemies.`
+			`	She frowns a bit at that. "Unfortunately, the weapons program is not moving as quickly as I would like, so the Merganser does not have the tackling ability that I was originally envisioning for it. But at least it is an adept hunter we can use to pursue our enemies."`
 			choice
 				`	"OK"`
 					goto mergansermission
@@ -1136,7 +1141,7 @@ mission "Remnant: Cognizance 23"
 		give ship Merganser
 	npc kill
 		government "Korath"
-		personality coward target uninterested marked waiting
+		personality coward target uninterested waiting
 		system
 			system "Farinus"
 		fleet
@@ -1380,6 +1385,7 @@ mission "Remnant: Cognizance 27"
 	npc
 		government "Korath"
 		personality heroic plunders harvests waiting staying
+		system "Parca"
 		fleet
 			names "korath"
 			cargo 3
@@ -1397,7 +1403,7 @@ mission "Remnant: Cognizance 28"
 	name "Recover equipment from Baianus."
 	description "Torza has asked you to recover equipment from Baianus by <date>."
 	landing
-	blocked `The scene is one of organized chaos. One Remnant signs "We need a ship that can carry 302 cargo and 20 passengers."`
+	blocked `The scene is one of organized chaos. One Remnant signs "We need a ship that can carry 280 cargo and 20 passengers."`
 	deadline 12
 	cargo "equipment" 280
 	passengers 20
@@ -1415,6 +1421,7 @@ mission "Remnant: Cognizance 28"
 	npc
 		government "Korath"
 		personality heroic plunders harvests waiting staying
+		system "Parca"
 		fleet
 			names "korath"
 			cargo 3
@@ -1436,7 +1443,6 @@ mission "Remnant: Cognizance 28"
 mission "Remnant: Cognizance 29"
 	name "Recover equipment from Baianus."
 	description "Torza has tasked you with transporting a team of technicians to Ssil Vida."
-	landing
 	blocked `You check in with Torza, who glances at his commlink. "You will need a ship with space for 15 people and 30 cubic meters of cargo."`
 	cargo "equipment" 30
 	passengers 15
@@ -1463,11 +1469,13 @@ mission "Remnant: Cognizance 29"
 			label powerbriefing
 			`	After a few minutes Torza gestures for everyone to pay attention. "Now, to review the paramters: Ssil Vida appears to be a giant mechanism for doing something we do not yet know. The core systems have exhausted the capacity of its large fusion reactor to supply it. The installation of the Aeon Cell has reduced the strain on the system, but cannot fully power the station. You need to focus on the power systems, and figure out how to fully stabilize the distribution. While you are doing that, <first> will be returning to Viminal for the next step in this operation. You will all be staying on Ssil Vida for at least a few months, maybe longer as the situation warrants. Agreed?" Around the room there are a variety of nods and gestures of affirmation.`
 			`	Torza makes a gesture of respect. "Embers sharpen your sight, friends."`
+				accept
 	on complete
 		payment 250000
 		conversation
 			`Gavriil is waiting at the dock when the <ship>'s hatches finish cycling. "Welcome," he gestures. "It is good to have fresh minds to share Ssil Vida with." The Remnant onbard stream out of the ship in a rush, each carrying a heavy pack of equipment. They gesture respect, and head off in different directions. Evidently they have studied the maps prior to arrival, as they all seem to know where they are going. Several stay behind with Gavriil and help unload the rest of the equipment.`
-			`	"We have made good progress since you were here last. We have managed to take over control of life support systems in several wings of rooms, and now those are run entirely from our own systems. Aside from relieving a tiny amount of load from the station's power core, it also means that the station could fail completely and we would still have safe living quarters to serve as base of operations." He pauses, and is gestures take on a tone of disgust. "Of course, we are working to avoid that. But having multiple backup systems is the key to survival in hostile conditions." He looks around at the few Remnant who have yet to vanish into the rest of the station. "Thank you for bringing more explorers." He hands you a datacrystal. "I have already transmitted this data to Viminal, but I would appreciate it if you could take this to them to ensure there are no errors or data corruption in the transmission.`
+			`	"We have made good progress since you were here last. We have managed to take over control of life support systems in several wings of rooms, and now those are run entirely from our own systems. Aside from relieving a tiny amount of load from the station's power core, it also means that the station could fail completely and we would still have safe living quarters to serve as base of operations." He pauses, and is gestures take on a tone of disgust. "Of course, we are working to avoid that. But having multiple backup systems is the key to survival in hostile conditions."`
+			`	He looks around at the few Remnant who have yet to vanish into the rest of the station. "Thank you for bringing more explorers." He hands you a datacrystal. "I have already transmitted this data to Viminal, but I would appreciate it if you could take this to them to ensure there are no errors or data corruption in the transmission.`
 
 
 
@@ -1488,7 +1496,7 @@ mission "Remnant: Cognizance 30"
 mission "Remnant: Cognizance 31"
 	name "Pickup Refined Fuel"
 	description "Chilia has asked you to pick up a refined fuel from Clink by <date>."
-	deadline 15
+	deadline 19
 	stealth
 	infiltrating
 	source "Viminal"
@@ -1513,7 +1521,8 @@ mission "Remnant: Cognizance 31"
 				`	(Decline)`
 					decline
 			`	All four of them look pleased, and exchange looks that seem to indicate they expected that response. Taely gestures with a thankful tone. "We appreciate your willingness to help us explore this mystery, <first>. Given that time is of the essence here, this seems like an opportune time to reveal a new ship that has just reached production." She stands up, and gestures for you to accompany her to the shipyard.`
-			`	There, crouched next to <ship>, is what you can only describe as a predator: It has long sleek lines with flared wings that resemble feathers, and a massive engine array that suggest incomparable mobility in a ship of its size. As you approach you can see several Remnant working around it. One gestures, and the ship extends a wing and the Remnant reaches in between the feathers to do something, then steps back and the ship runs through a range of twisting motions as it moves its wings around. It strongly resembles a raptor preening its feathers. Taely walks right up to the nose and the ship crouches down so she can put her hand on its nose. "Captain <first>, I would like to introduce you to the Peregrine. It is the first new capital warship design we have built in over a century, and is the result of decades of work on my part as well as many others. Hopefully, it is the first of many new ships that are successful."`
+			`	There, crouched next to <ship>, is what you can only describe as a predator: It has long sleek lines with flared wings that resemble feathers, and a massive engine array that suggest incomparable mobility in a ship of its size. As you approach you can see several Remnant working around it. One gestures, and the ship extends a wing and the Remnant reaches in between the feathers to do something, then steps back and the ship runs through a range of twisting motions as it moves its wings around. It strongly resembles a raptor preening its feathers.`
+			`	Taely walks right up to the nose and the ship crouches down so she can put her hand on its nose. "Captain <first>, I would like to introduce you to the Peregrine. It is the first new capital warship design we have built in over a century, and is the result of decades of work on my part as well as many others. Hopefully, it is the first of many new ships that are successful."`
 			choice
 				`	"Looks great. Let's fly!"`
 					goto letsfly
@@ -1544,7 +1553,7 @@ mission "Remnant: Cognizance 32"
 	name "Pickup refined fuel."
 	description "Deliver the refined fuel to Ssil Vida by <date>."
 	landing
-	deadline 15
+	deadline 19
 	cargo "Refined Fuel" 58
 	stealth
 	source "Clink"
