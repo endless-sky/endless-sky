@@ -1618,9 +1618,15 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	shared_ptr<Ship> victim = ship->Board(autoPlunder);
 	if(ship.get() == flagship && !ship->GetSystem())
 	{
-		shared_ptr<Ship> originalTarget = ship->GetTargetShip();
-		if(originalTarget)
-			ChangePlayerFlagship(player.Flagship(), *originalTarget);
+		// If the players flagship just docked, then it got the new flagship as parent.
+		shared_ptr<Ship> newFlag = ship->GetParent();
+		if(newFlag)
+			ChangePlayerFlagship(player.Flagship(), *newFlag);
+		else
+		{
+			Files::LogError("Engine::MoveShip: Undocked flagship without system!");
+			ship->SetSystem(player.GetSystem());
+		}
 	}
 	if(victim)
 		eventQueue.emplace_back(ship, victim,
