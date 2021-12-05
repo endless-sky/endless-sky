@@ -731,7 +731,7 @@ mission "Remnant: Cognizance 19"
 
 mission "Remnant: Cognizance 20"
 	name "Preparation for expedition"
-	description "Outfit a research laboratory and go to <planet>."
+	description "Outfit a research laboratory, retrieve equipment from <stopovers>, then bring it to <destination>."
 	blocked "You need 10 free cargo space as well as a research laboratory for this mission."
 	cargo "supplies" 10
 	source
