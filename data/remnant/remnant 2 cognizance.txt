@@ -1364,7 +1364,6 @@ mission "Remnant: Cognizance 31"
 	description "Chilia has asked you to pick up a refined fuel from Clink by <date>."
 	deadline 19
 	cargo "Reserved" 58
-		stealth
 	stealth
 	infiltrating
 	source "Viminal"
@@ -1423,7 +1422,6 @@ mission "Remnant: Cognizance 32"
 	landing
 	deadline 19
 	cargo "Refined Fuel" 58
-		stealth
 	stealth
 	source "Clink"
 	destination "Ssil Vida"
