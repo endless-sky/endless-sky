@@ -794,7 +794,11 @@ void PlayerInfo::MoveFlagshipBegin()
 // Set the flagship (on departure or during flight).
 void PlayerInfo::SetFlagship(Ship &other)
 {
-	// Set the flagship pointer.
+	// Remove active data in the old flagship.
+	if(flagship && flagship.get() != &other)
+		flagship->ClearTargetsAndOrders();
+	
+	// Set the new flagship pointer.
 	flagship = other.shared_from_this();
 	
 	// Make sure your jump-capable ships all know who the flagship is.

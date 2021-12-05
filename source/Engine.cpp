@@ -1621,7 +1621,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		// If the players flagship just docked, then it got the new flagship as parent.
 		shared_ptr<Ship> newFlag = ship->GetParent();
 		if(newFlag)
-			ChangePlayerFlagship(player.Flagship(), *newFlag);
+			ChangePlayerFlagship(*flagship, *newFlag);
 		else
 		{
 			Files::LogError("Engine::MoveShip: Undocked flagship without system!");
@@ -1650,19 +1650,15 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 
 // Changing the players flagship during flight requires an update of all active
 // data that references the players flagship.
-void Engine::ChangePlayerFlagship(Ship *oldFlagship, Ship &newFlagship)
+void Engine::ChangePlayerFlagship(const Ship &oldFlagship, Ship &newFlagship)
 {
-	// Remove active data in the old flagship.
-	if(oldFlagship)
-		oldFlagship->ClearTargetsAndOrders();
-	
 	// Let PlayerInfo handle the default administration (like the players escorts).
 	player.SetFlagship(newFlagship);
 	
 	// Update all ships that still have the old flagship as parent, for example
 	// NPCs that are following the player.
 	for(auto &ship : ships)
-		if(ship && ship->GetParent().get() == oldFlagship)
+		if(ship && ship->GetParent().get() == &oldFlagship)
 			ship->SetParent(newFlagship.shared_from_this());
 }
 
