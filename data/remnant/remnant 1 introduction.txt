@@ -312,7 +312,7 @@ mission "Remnant: Defense 2"
 				`	"Sorry, I don't have time to help you out."`
 					decline
 
-			`	"Thank you," she sings. "It keeps jumping between systems in our territory. Maybe its jump drive was damaged or something, and it can't escape. I'll spread news that you've taken on the bounty for hunting it, so others won't risk their lives fighting it."`
+			`	"Thank you," she sings. "It keeps jumping between systems in our territory. Maybe its jump drive was damaged or something, and it cannot escape. I will spread the information that you've taken on the bounty for hunting it, so others will not risk their lives fighting it."`
 				accept
 	npc kill
 		government "Korath"
@@ -678,7 +678,7 @@ mission "Remnant: Void Sprites 1"
 				accept
 	
 			label name
-			`	He says, "My name is..." and then performs an elaborate gesture with his hands. "Don't worry if you can't perform my name," he says, "I will seek you out when you land. You won't need to ask around for me."`
+			`	He says, "My name is..." and then performs an elaborate gesture with his hands. "Do not worry if you can not perform my name," he says, "I will seek you out when you land. You will not need to ask around for me."`
 				accept
 	
 	npc
@@ -756,7 +756,7 @@ mission "Remnant: Void Sprites 3"
 		has "Remnant: Void Sprites 2: done"
 	on offer
 		conversation
-			`The Remnant researcher seems disappointed that an outfit scan didn't reveal any information about the void sprites, but he is also excited about a new idea for studying them. "I found that we have several old mothballed ships suitable for exploring the upper atmosphere of a gas giant," he says. "Until I can publish my results I won't have the resources to compensate you, but I can provide you with one of our ships. Then you could land on the void sprite worlds and observe them in their natural habitat."`
+			`The Remnant researcher seems disappointed that an outfit scan didn't reveal any information about the void sprites, but he is also excited about a new idea for studying them. "I found that we have several old mothballed ships suitable for exploring the upper atmosphere of a gas giant," he says. "Until I can publish my results I will not have the resources to compensate you, but I can provide you with one of our ships. Then you could land on the void sprite worlds and observe them in their natural habitat."`
 			choice
 				`	"How much will it cost to buy one?"`
 				`	"Didn't you say before that anyone entering that system in a Remnant ship gets attacked?"`
@@ -764,11 +764,11 @@ mission "Remnant: Void Sprites 3"
 				`	"Sorry, I'm not interested in helping you anymore."`
 					decline
 
-			`	"Only a few million credits," he says. "Don't worry, I will provide you with one. Consider it an advance on the resources I owe you. And, just think of how much you will be doing to advance the cause of science."`
+			`	"Only a few million credits," he says. "Do not worry, I will provide you with one. Consider it an advance on the resources I owe you. And, just think of how much you will be doing to advance the cause of science."`
 				goto end
 
 			label attack
-			`	"Don't worry about it," he says. "These exploration craft are exceptionally fast and maneuverable. Even if you do provoke a negative reaction, you should be able to dodge any direct confrontation."`
+			`	"Do not worry about it," he says. "These exploration craft are exceptionally fast and maneuverable. Even if you do provoke a negative reaction, you should be able to dodge any direct confrontation."`
 
 			label end
 			choice
@@ -905,7 +905,7 @@ mission "Remnant: Technology Available"
 			choice
 				`	"That sounds thorough."`
 					goto thorough
-				`	"So why haven't I been shot down yet?"`
+				`	"So why have I not been shot down yet?"`
 					goto shotdown
 				`	"What is an 'IFF' system?"`
 			`	"You aren't familiar with IFF?" he asks, looking slightly incredulous. "IFF stands for 'Identify Friend or Foe,' and is the general name for the system that identifies your ship to those around it. It is what determines which ships should be highlighted red or orange on your system map, and provides limited movement detail to allied ships so that targeting systems can fire past you. I do not know about their current practices, but historically the Navy and most other organizations had complex methods of verifying the identify of other ships, so it is not simply a case of having your IFF state that you are a friendly."`
@@ -914,7 +914,7 @@ mission "Remnant: Technology Available"
 					goto continue
 				`	"That sounds thorough."`
 					goto thorough
-				`	"So why haven't I been shot down yet?"`
+				`	"So why have I not been shot down yet?"`
 			label shotdown
 			`	"Because every system has potential failures and vulnerabilities, we ensure that people are always involved in the decision making process. Our initial scans showed that you were not likely an Alpha, and we were curious as to who you were and what opportunities might come of it. Since then the various monitors of the system have had to manually designate you as 'friendly' every time you made an approach. It worked, for a time. But now it is time to make your acceptance official. While our monitors are effective, it still wastes time to force them to track you and cancel the alerts every time you approach. Since you are trustworthy, better to give you the means to identify yourself so our defenses can focus on real threats.`
 				goto continue
@@ -1709,7 +1709,7 @@ mission "Remnant: Deep Surveillance"
 			`	"No," you respond. "The lead scientist guessed correctly that I was asking for his research to give to you."`
 			
 			label disappointing
-			`	Torza scratches his chin. "This is... disappointing. You've helped to place us in a scenario where a potential adversary knows much about us, but we know little about them." Torza stares at you, but doesn't appear to be angry. "Perhaps espionage is in order. But given your connections to the Deep, we will pursue such actions on our own. Should something arise in the future where we need you, we'll contact you. Until then, do not compromise our position any further. We won't take it so lightly a second time."`
+			`	Torza scratches his chin. "This is... disappointing. You've helped to place us in a scenario where a potential adversary knows much about us, but we know little about them." Torza stares at you, but doesn't appear to be angry. "Perhaps espionage is in order. But given your connections to the Deep, we will pursue such actions on our own. Should something arise in the future where we need you, we'll contact you. Until then, do not compromise our position any further. We will not take it so lightly a second time."`
 				decline
 
 
@@ -1790,7 +1790,7 @@ mission "Remnant: Heavy Laser"
 				`	(Yes.)`
 			branch familiar
 				has "Remnant: Tech Retrieval: done"
-			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely just finishing the installation of a thrasher cannon in a Starling. "Greetings, <first>. I'll be down in a minute." She does a few more things inside a panel, reseals the hatch, and slides down a fin to land next to you. "So, do you have something for me?"`
+			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely just finishing the installation of a thrasher cannon in a Starling. "Greetings, <first>. I will be down in a minute." She does a few more things inside a panel, reseals the hatch, and slides down a fin to land next to you. "So, do you have something for me?"`
 				goto next
 			label familiar
 			`	You recall that Taely is responsible for the shipyards, so you head straight there and ask the nearest mechanic. They direct you to a large hangar tucked into a cliff face, where you find her working at a terminal filled with schematics. Behind her, the room fades quickly into darkness where you can faintly make out what appears to be a large tank and a lot of whirring machinery. As you approach she looks up from her work and turns to face you. "Ah, you have returned. Do you have something new for me?"`
@@ -2200,7 +2200,7 @@ conversation "taely cultural data"
 			defer
 	`	Replying that you can, you make your way through the crowds and find an empty table. Moments later Taely appears and grabs two trays from the dispenser before heading towards you. She settles down in the opposite chair with a look of exhaustion.`
 	`	"It is good to see you again, <first>," she sings softly. When you sign a reply she sits up, smiles, and switches to sign. "My, you are a quick learner. This is much faster." Her quick gestures are hard to follow, but the language videos seem to have focused on a practical vocabulary that has most of the words she uses.`
-	`	"I haven't fully..." (She makes a sign that you don't understand, but seems similar to the signs for "break" and "understand".) "...the technology you retrieved for us, but we are learning much from what we have already found. Could you help us catch up with what has happened in ancestral space since our Exodus?"`
+	`	"I have not fully..." (She makes a sign that you don't understand, but seems similar to the signs for "break" and "understand".) "...the technology you retrieved for us, but we are learning much from what we have already found. Could you help us catch up with what has happened in ancestral space since our Exodus?"`
 	choice
 		`	"Yes. What can I do to help?"`
 		`	"Sorry, not interested."`
@@ -2309,7 +2309,7 @@ mission "Remnant: Salvage 2"
 		conversation
 			`As some ships maintain orbital sentry positions, most ships return to their berths. Mechanics are soon swarming over the ships, and what you suppose are ambulances are waiting at the ramps to collect the injured. Farther back, flatbed tractor units wait to pick up any salvage that has been collected.`
 			`	Eventually a tired but pleased-looking prefect stops by your ship. He starts chanting, "Do you understand our language, or do I need to sing?" He looks relieved when you reply that you can understand most of what is said so long as he signs slowly. "Thank you for your assistance during the raid. The sensors you placed in Parca picked up the fleet coming in and gave us sufficient warning to get everyone ready."`
-			`	He is silent for a moment, with the air of someone who is enjoying not having to run for the first time in a while. "Oh, Taely said that you might have some historical records for us?" You hand over the copy of the archive in response, telling him that it is probably the best available. He hands you a credit chip with <payment> on it. "Thank you, I'll make sure this gets where it needs to go. In the meantime, we could use your help in the spaceport."`
+			`	He is silent for a moment, with the air of someone who is enjoying not having to run for the first time in a while. "Oh, Taely said that you might have some historical records for us?" You hand over the copy of the archive in response, telling him that it is probably the best available. He hands you a credit chip with <payment> on it. "Thank you, I will make sure this gets where it needs to go. In the meantime, we could use your help in the spaceport."`
 
 
 
@@ -2325,7 +2325,7 @@ mission "Remnant: Salvage 3"
 		has "Remnant: Salvage 2: done"
 	on offer
 		conversation
-			`After watching the mechanics start repairs on the <ship>, you make the short trek to the spaceport common area. People are still rushing around as ships continue to land. No wrecks so far, and judging by the scrolling arrivals displays there are still quite a few ships on approach. Looking around for someone to talk to, you spot the prefect who had just visited your ship. He notices you and comes over. "No ships lost yet," he signs harshly, "but there are a few ships that haven't checked in."`
+			`After watching the mechanics start repairs on the <ship>, you make the short trek to the spaceport common area. People are still rushing around as ships continue to land. No wrecks so far, and judging by the scrolling arrivals displays there are still quite a few ships on approach. Looking around for someone to talk to, you spot the prefect who had just visited your ship. He notices you and comes over. "No ships lost yet," he signs harshly, "but there are a few ships that have not checked in."`
 			`	He shakes his head and continues, "We need to keep our medical facilities as free as possible. Could you take some of our injured to Aventine? They are stable and healthy enough for an unattended transport, and it would free up medics and space here."`
 			choice
 				`	"Of course."`
@@ -2455,7 +2455,7 @@ mission "Remnant: Salvage 6"
 			`	Her signs flick at you with a gentleness that you are slowly deciding equates to a cheerful tone. "Thank you for all the help you've provided in recovering this salvage," she says as she hands you <payment>. "I have discussed it with the other engineers, and we have decided to give you access to our salvage."`
 			`	She leads you over to the warehouse, scans her ID on the console, and taps a few commands. Then she scans your ID card. "There you go, I have updated your access codes," she signs cheerfully. She hands you your ID and pulls you to a door on the far side of the outfitting shop. Beyond the door is a vast room filled with outfits and weapons that clearly don't fit the same style as the other Remnant technology. You have seen most of the things here on scans and when salvaging equipment from other ships, but rarely up close.`
 			`	"This section of our warehouse is the salvage area. Everything in here, we have collected in sufficient quantities that it is available for general use." She nods at a rack of Korath Heat Shunts while she explains, then turns back to you.`
-			`	"Of course the really advanced and rare stuff is still going to the labs first, and won't be available until we have learned all we can from it." She looks around proudly. "We don't have the industrial capacity or the number of researchers to keep up with the Alphas, the Korath, or whoever else might be out there. But we are very good at figuring out what others have built and learning from it.`
+			`	"Of course the really advanced and rare stuff is still going to the labs first, and will not be available until we have learned all we can from it." She looks around proudly. "We do not have the industrial capacity or the number of researchers to keep up with the Alphas, the Korath, and whoever else might be out there. But we are very good at figuring out what others have built and learning from it.`
 			`	"Any salvage or unrecognized technology gets scanned in our quarantine area for threats, then looked over to figure out if there is anything new in it. If there is, it is shipped to a lab for our researchers to dissect. Anything we have already figured out ends up in here, where a select few captains are welcome to use it as they see fit."`
 			choice
 				`	"Threats?"`
@@ -2464,7 +2464,7 @@ mission "Remnant: Salvage 6"
 			`	"Yes, it is, isn't it? So many new things out there to discover and learn about.`
 				goto end
 			label threats
-			`	"Yes, sometimes salvage that is brought in is dangerous. A Systems Core comes with fleets of micro-bots, for instance. If they aren't de-activated properly, they keep trying to rebuild their surroundings in the form of the last ship they were configured to serve. And while it hasn't happened yet, we are worried that someday we might run into someone who builds traps into their equipment, or uses nanobots that have run amok. We haven't seen any of that yet, but our science-fiction stories are filled with tales of nanotech apocalypses and things like that.`
+			`	"Yes, sometimes salvage that is brought in is dangerous. A Systems Core comes with fleets of micro-bots, for instance. If they aren't de-activated properly, they keep trying to rebuild their surroundings in the form of the last ship they were configured to serve. And while it hasn't happened yet, we are worried that someday we might run into someone who builds traps into their equipment, or uses nanobots that have run amok. We have not seen any of that yet, but our science-fiction stories are filled with tales of nanotech apocalypses and things like that.`
 			label end
 			`	"Well, I need to get back to work. That last battle put us behind schedule on our repairs. Have a good day!" With a final flourish that you think is the equivalent of an exclamation mark, Taely strides out of the outfitters, heading towards another landing bay.`
 
@@ -2566,7 +2566,7 @@ mission "Remnant: Expanded Horizons Quarg 2"
 			`Dawn and her compatriots eagerly pore over the readouts as they come in, then ask if you could land again to compare their scans to ones taken on the ground.`
 
 	on visit
-		dialog `You've landed on <planet>, but you haven't yet scanned the <npc>'s. Depart and use an outfit scanner to scan the ship.`
+		dialog `You have landed on <planet>, but you have not yet scanned the <npc>'s. Depart and use an outfit scanner to scan the ship.`
 	on complete
 		conversation
 			`The Remnant researchers' attention to detail is impressive. They carefully quantify every aspect of the scans, including notes about the ship's behaviors. By the time you are on the ground again, they have amassed quite a collection of data crystals filled with analysis. You note that they are careful to ensure everything they collect is backed up in multiple places, including what appears to be a small lead lined box.`
@@ -2662,7 +2662,7 @@ mission "Remnant: Broken Jump Drive 1"
 				`	"Aren't you going to replace it with a hyperdrive?"`
 			`	The engineer looks at you incredulously. "You mean you were actually trying to use this drive?" He shakes his head in disbelief. "You are lucky you managed to get this far, then. It is surprising that they exist at all, so it is too much to expect them to work too. If you need a replacement drive, there are plenty available in the outfitter.`
 			label end
-			`	"Next time you find one of these drives, just check with a starport director. They will know where it will need to go. A word of warning though; I strongly recommend not trying to use these drives - they may disappear at the most inconvenient of times, and there won't always be an outfitter on hand." He turns and heads off with the rest of the team, turning briefly to give you friendly wave as they disembark.`
+			`	"Next time you find one of these drives, just check with a starport director. They will know where it will need to go. A word of warning though; I strongly recommend not trying to use these drives - they may disappear at the most inconvenient of times, and there will not always be an outfitter on hand." He turns and heads off with the rest of the team, turning briefly to give you friendly wave as they disembark.`
 
 
 
@@ -2731,7 +2731,7 @@ mission "Remnant: Broken Jump Drive 3"
 				`	(Yes.)`
 			`	As you approach the director in the spaceport concourse, he looks up and waves at you. "Good timing, Captain <first>," he sings. "We have a team of researchers on <planet> who have requested a broken jump drive. Could you deliver one to them?"`
 			`	"I can," you respond.`
-			`	"Excellent. The recent discovery of these broken drives has spurred discussion and excitement in various quarters. We have had teams researching jump drives for at least a century now without a lot of success. I'm told they are rather intricate, but your finds are opening new avenues of investigation. That being said, I'll notify the team on <planet> to expect you."`
+			`	"Excellent. The recent discovery of these broken drives has spurred discussion and excitement in various quarters. We have had teams researching jump drives for at least a century now without a lot of success. I'm told they are rather intricate, but your finds are opening new avenues of investigation. That being said, I will notify the team on <planet> to expect you."`
 				accept
 	on visit
 		dialog phrase "broken jump drive on visit"
@@ -3015,7 +3015,7 @@ mission "Remnant: Face to Maw 2B"
 			label chilia
 			`You follow the directions provided to you and eventually find yourself at a Remnant weapons lab. You enter and are met by security, who asks you to wait. A few minutes later a fit young man emerges from another door. "Greetings, captain <first>," he sings. "We meet once again." You immediately recognize the voice as being the man who convinced you to provide the blood sample and get to know the Remnant. "We didn't get a proper introduction last time, but you have probably figured out that I have the nominal responsibility for the overall defense of Remnant space and military operations." He smiles depreciatingly, "I say 'nominal' as virtually all our activities are military in some way, but usually fall under the purview of those who better understand them."`
 			label main
-			`	He leads you to a room that looks like an armory where a team of technicians is putting the finishing touches on a rifle stock. "The request from the technician on your behalf caught my attention, as we haven't had the key resources for making void rifles in centuries. Fortunately, we haven't really needed them since we resolved the threats that originally plagued our settlements.`
+			`	He leads you to a room that looks like an armory where a team of technicians is putting the finishing touches on a rifle stock. "The request from the technician on your behalf caught my attention, as we have not had the key resources for making void rifles in centuries. Fortunately, we have not really needed them since we resolved the threats that originally plagued our settlements.`
 			choice
 				`	"It's called a void rifle?"`
 				`	"I don't need details."`
@@ -3341,7 +3341,7 @@ mission "Remnant: Keystone Research 5"
 		dialog
 			`The scanner chimes softly, informing you that it has completed scanning the Winds of Light and has successfully archived the data.`
 	on visit
-		dialog `You land on <planet>, but you haven't scanned the Starling in <waypoints>. Make sure you scan the ship before returning.`
+		dialog `You land on <planet>, but you have not scanned the Starling in <waypoints>. Make sure you scan the ship before returning.`
 	on complete
 		payment 150000
 
@@ -3368,7 +3368,7 @@ mission "Remnant: Keystone Research 6"
 			`	"Ready? Let's go!" Aeolus signs as he fires up his systems and gestures an acknowledgment to the dockworker. You check your cameras and see the worker nimbly step clear of the engine exhausts as the two ships head back out of the dome.`
 				launch
 	on visit
-		dialog `You land on <planet>, but you haven't scanned the <npc> in <waypoints>. Make sure you scan the ship before returning.`
+		dialog `You land on <planet>, but you have not scanned the <npc> in <waypoints>. Make sure you scan the ship before returning.`
 	on complete
 		payment 150000
 		conversation
@@ -3554,7 +3554,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"Developed quite the appetite, haven't you?"`
 			`	She nods. "Yes, I am not yet used to the nutrient intake required to maintain my symbiont, so I have to consciously make sure that I eat enough to sustain it."`
 			choice
-				`	"Interesting. I'll see you onboard the <ship>."`
+				`	"Interesting. I will see you onboard the <ship>."`
 					accept
 				`	"Could you tell me more about them?"`
 			label dawndetails
