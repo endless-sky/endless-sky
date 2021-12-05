@@ -126,14 +126,6 @@ mission "Remnant: Cognizance 2"
 
 
 
-event "korath hunting"
-	government "Korath"
-		"attitude toward"
-			"Indigenous Lifeform" -.01
-			"Ember Waste" -.01
-
-
-
 mission "Remnant: Cognizance 3"
 	name "Go to <planet>"
 	description "Prefect Chilia left a message with Plume asking you to meet him on <destination> immediately."
@@ -520,41 +512,6 @@ mission "Remnant: Cognizance 13"
 		has "Remnant: Cognizance 12: done"
 		not "Remnant: Cognizance 14: offered"
 
-	
-
-event "remnant: postverta reveal"
-	unvisit Caeculus
-	unvisit Diespiter
-	unvisit Egeria
-	unvisit Levana
-	unvisit Prosa
-	unvisit Statina
-	link Postverta Diespiter
-	link Postverta Prosa
-	link Postverta Statina
-	system Postverta
-		remove hidden
-	system Egeria
-		add object "Wormhole Barren Alpha"
-			sprite planet/wormhole-red
-			distance 2313
-			period 389
-	system Levana
-		add object "Wormhole Barren Alpha"
-			sprite planet/wormhole-red
-			distance 2313
-			period 389
-	system Caeculus
-		add object "Wormhole Barren Beta"
-			sprite planet/wormhole-red
-			distance 2400
-			period 391
-	system Prosa
-		add object "Wormhole Barren Beta"
-			sprite planet/wormhole-red
-			distance 2313
-			period 389
-
 
 
 mission "Remnant: Cognizance 14"
@@ -657,12 +614,6 @@ mission "Remnant: Cognizance 16"
 		dialog `It seems the analysis of the location was right. The creature quickly approaches you and repeats its previous dance, ending up with a slightly different frozen position. From this vantage, you suspect that it is probably Nenia. This time, as you watch it more closely, it looks like it is following in your wake somehow.`
 	on enter Nenia
 		dialog `You have never seen such activity from the void sprites. Many quickly congregate around the strange creature that has been guiding you, and escort it to Nasqueron. It seems like that is where it wanted to be. In the distance, you can see the Archon methodically pulverizing a Korath Raider.`
-
-
-
-event "remnant: nenia ember waste node"
-	system "Nenia"
-		add fleet "Ember Waste Node" 10000
 	
 
 
@@ -754,24 +705,6 @@ mission "Remnant: Cognizance 18"
 
 
 
-event "remnant: pantica void sprites"
-	system "Pantica"
-		add fleet "Void Sprites" 4000
-	planet "Esquiline"
-		government "Remnant"
-		add attributes remnant
-		remove attributes uninhabited
-		description `While Esquiline used to be simply another planet the Remnant harvested valuable resources from, the introduction of void sprites and the activation of their station has turned this world into a hidden research lab: The first human astrobiology station studying void sprites.`
-		add spaceport `Although the facilities here are basic, the Remnant cafeteria boasts a food dispenser that is available at any time, along with a mesmerizing view of the clouds outside. Occasionally a void sprite will pass in front of the window, much to the delight of everyone.`
-
-
-
-event "remnant: cognizance timer"
-	system "Nenia"
-		fleet "Ember Waste Node" 6000
-
-
-
 mission "Remnant: Cognizance 19"
 	landing
 	name "Deliver nav data"
@@ -793,22 +726,6 @@ mission "Remnant: Cognizance 19"
 		payment 100000
 		event "remnant: cognizance 1 systems available"
 		dialog `As the starport computer downloads the data, your computer displays a message tacked onto the log file: "Thank you for providing the additional data from your navigational logs. It will be useful to contrast against those of our scouts. A logistics adjustment of <payment> has been authorized for the <ship>."`
-
-
-
-event "remnant: cognizance 1 systems available"
-	system Diespiter
-		remove attributes "inaccessible"
-	system Egeria
-		remove attributes "inaccessible"
-	system Porrima
-		remove attributes "inaccessible"
-	system Prosa
-		remove attributes "inaccessible"
-	system Statina
-		remove attributes "inaccessible"
-	system Vaticanus
-		remove attributes "inaccessible"
 
 
 
@@ -1168,47 +1085,6 @@ mission "Remnant: Cognizance 23"
 
 
 
-event "Remnant: Merganser"
-	shipyard "Remnant"
-		"Merganser"
-
-
-
-event "Remnant: Merganser Fleet"
-	fleet "Small Remnant"
-		add variant 5
-			"Merganser" 2
-		add variant 3
-			"Merganser" 4
-		add variant 1
-			"Starling"
-			"Merganser" 2
-	fleet "Large Remnant"
-		add variant 5
-			"Albatross"
-			"Merganser" 4
-		add variant 4
-			"Ibis"
-			"Petrel" 2
-			"Tern" 4
-			"Merganser" 8
-	fleet "Remnant Transport"
-		add variant 3
-			"Gull"
-			"Merganser" 2
-		add variant 1
-			"Pelican"
-			"Merganser" 4
-	fleet "Remnant Home Guard"
-		add variant 5
-			"Merganser"
-		add variant 3
-			"Merganser"
-			"Petrel" 2
-			"Tern" 4
-
-
-
 mission "Remnant: Cognizance 24"
 	name "Equipment to Ssil Vida"
 	description "Dusk needs a load of <cargo> taken to Ssil Vida."
@@ -1328,16 +1204,6 @@ mission "Remnant: Cognizance 25"
 		conversation
 			`Back on Ssil Vida, you check in with Gavriil and report the destruction of three Korath chasers that you located. "Three?" He signs quizickly. "That is an odd number. Raiders only carry two at most. I will report this right away. But in the meantime, come take a look at what I have set up." He leads you off towards the spaceport.`
 
-event "remnant: ssil vida inhabited"
-	planet "Ssil Vida"
-		attributes emitter sheragi remnant
-		landscape land/station0
-		description `The silence of this station rings in your ears, and as you explore you are increasingly surprised that it even has an atmosphere. It is obviously ancient, and patches of ambiguous green and purple material resembling fungus grow through the walls. Whoever built this station designed it for beings much larger than you. Either that, or they liked spacious environments. Even the shortest doorway you pass through is easily double your height. They are always wider than they are tall.`
-		description `Exploring beyond the docks reveals that most of this facility is infrastructure for some type of massive emitter. It is not clear exactly what it's supposed to be emitting, but it might have something to do with how this system appeared in the first place.`
-		spaceport `The Remnant have set up a fully self-contained base of operations in this part of the station. Independent life support, its own power system, and controls tapping into the rest of station occupy much of the space, while a research laboratory and additional equipment occupy most of the rest. A rudimentary cafeteria, communication links, basic repair equipment, and sleeping quarters round out the amenities of this research camp.`
-		bribe 0
-		government Remnant
-
 
 mission "Remnant: Cognizance 26"
 	name "Bring an Aeon Cell to Ssil Vida"
@@ -1441,7 +1307,7 @@ mission "Remnant: Cognizance 28"
 
 
 mission "Remnant: Cognizance 29"
-	name "Recover equipment from Baianus."
+	name "Transport team to Ssil Vida."
 	description "Torza has tasked you with transporting a team of technicians to Ssil Vida."
 	blocked `You check in with Torza, who glances at his commlink. "You will need a ship with space for 15 people and 30 cubic meters of cargo."`
 	cargo "equipment" 30
@@ -1497,6 +1363,8 @@ mission "Remnant: Cognizance 31"
 	name "Pickup Refined Fuel"
 	description "Chilia has asked you to pick up a refined fuel from Clink by <date>."
 	deadline 19
+	cargo "Reserved" 58
+		stealth
 	stealth
 	infiltrating
 	source "Viminal"
@@ -1555,6 +1423,7 @@ mission "Remnant: Cognizance 32"
 	landing
 	deadline 19
 	cargo "Refined Fuel" 58
+		stealth
 	stealth
 	source "Clink"
 	destination "Ssil Vida"
@@ -1565,11 +1434,12 @@ mission "Remnant: Cognizance 32"
 			`Your reception is as friendly as Clink's reputation suggests: No-one is there to meet you, and no-one arrives to help load the cargo. Just a forlorn datapad mounted on a post in front of the pile of crates requesting that you enter your pickup code to disarm the security sensors, and a statement that ships depart as soon as they are done loading. You enter the pickup code Chilia had sent you while you were in flight, load the <ship>, and get ready to head to Ssil Vida.`
 			`	As you are completing your checks your sensors alert you to the arrival of a small fleet that seems to be maintaining orbit over this area. It looks like you might have to take steps to avoid observers right away.`
 				accept
+	on enter "Kornephoros"
+		dialog `Your comms pick up a crackling broadcast: "Don't know who you are, but there's a bounty on unaffiliated people picking up large volumes of weapons grade materials that I intend to collect!"`
 	npc evade
 		government "Bounty Hunter"
 		personality waiting unconstrained surveillance
 		system "Kornephoros"
-		dialog "Don't know who you are, but there's a bounty on unaffiliated people picking up large volumes of weapons grade materials that I intend to collect!"
 		fleet
 			names "bounty hunter"
 			variant
@@ -1581,108 +1451,6 @@ mission "Remnant: Cognizance 32"
 		event "remnant: ssil vida activation"
 		conversation
 			`When you contact Ssil Vida to confirm where to unload your cargo you are greeted by Dust, who directs you to a docking bay closer to the main reactor. As you open the hatch, though, it is Gavriil and a group of Remnant with lifters waiting. They greet you cheerfully, but they definitely seem in a rush to get the processed fuel unloaded and shuttled into the depths of the station. Once the last unit is off your ship Gavriil slows down enough to thank you for the prompt delivery, but apologizes as he rushes off as there is not much time left. His parting gesture suggests you talk to Dusk up in the control room.`
-
-event "remnant: ssil vida activation"
-	unvisit "Vaticanus"
-	unvisit "Egeria"
-	unvisit "Prosa"
-	unvisit "Diespiter"
-	unvisit "Statina"
-	unvisit "Postverta"
-	system Egeria
-		remove object "Wormhole Barren Alpha"
-		add "jump range" 50
-		add minables "plant" 80 5
-		add minables "plant2" 80 5
-		add minables "plant cluster" 80 5
-		add minables "large plant" 40 3
-		add minables "large plant2" 40 3
-		add minables "large plant cluster" 40 3
-		add minables "space flora" 80 5
-		add minables "large space flora" 40 3
-		add minables "stealth space flora" 40 5
-		add minables "stealth large space flora" 25 3
-		add hazard "Ember Waste Base Heat" 100
-		add hazard "Ember Waste Base Storm" 15000
-	system Diespiter
-		add "jump range" 50
-		add minables "plant" 80 5
-		add minables "plant2" 80 5
-		add minables "plant cluster" 80 5
-		add minables "large plant" 40 3
-		add minables "large plant2" 40 3
-		add minables "large plant cluster" 40 3
-		add minables "space flora" 80 5
-		add minables "large space flora" 40 3
-		add minables "stealth space flora" 40 5
-		add minables "stealth large space flora" 25 3
-		add hazard "Ember Waste Base Heat" 100
-		add hazard "Ember Waste Base Storm" 15000
-	system Levana
-		remove object "Wormhole Barren Alpha"
-	system Caeculus
-		remove object "Wormhole Barren Beta"
-	system Postverta
-		add "jump range" 50
-		add minables "plant" 80 5
-		add minables "plant2" 80 5
-		add minables "plant cluster" 80 5
-		add minables "large plant" 40 3
-		add minables "large plant2" 40 3
-		add minables "large plant cluster" 40 3
-		add minables "space flora" 80 5
-		add minables "large space flora" 40 3
-		add minables "stealth space flora" 40 5
-		add minables "stealth large space flora" 25 3
-		add hazard "Ember Waste Base Heat" 100
-		add hazard "Ember Waste Base Storm" 15000
-		add object "Fertriery"
-			sprite planet/nebula1
-			distance 2004.06
-			period 2098.28
-	system Prosa
-		remove object "Wormhole Barren Beta"
-		add "jump range" 50
-		add minables "plant" 80 5
-		add minables "plant2" 80 5
-		add minables "plant cluster" 80 5
-		add minables "large plant" 40 3
-		add minables "large plant2" 40 3
-		add minables "large plant cluster" 40 3
-		add minables "space flora" 80 5
-		add minables "large space flora" 40 3
-		add minables "stealth space flora" 40 5
-		add minables "stealth large space flora" 25 3
-		add hazard "Ember Waste Base Heat" 100
-		add hazard "Ember Waste Base Storm" 15000
-	system Statina
-		add "jump range" 50
-		add minables "plant" 80 5
-		add minables "plant2" 80 5
-		add minables "plant cluster" 80 5
-		add minables "large plant" 40 3
-		add minables "large plant2" 40 3
-		add minables "large plant cluster" 40 3
-		add minables "space flora" 80 5
-		add minables "large space flora" 40 3
-		add minables "stealth space flora" 40 5
-		add minables "stealth large space flora" 25 3
-		add hazard "Ember Waste Base Heat" 100
-		add hazard "Ember Waste Base Storm" 15000
-	system Vaticanus
-		add "jump range" 50
-		add minables "plant" 80 5
-		add minables "plant2" 80 5
-		add minables "plant cluster" 80 5
-		add minables "large plant" 40 3
-		add minables "large plant2" 40 3
-		add minables "large plant cluster" 40 3
-		add minables "space flora" 80 5
-		add minables "large space flora" 40 3
-		add minables "stealth space flora" 40 5
-		add minables "stealth large space flora" 25 3
-		add hazard "Ember Waste Base Heat" 100
-		add hazard "Ember Waste Base Storm" 15000
 
 
 
@@ -1764,655 +1532,38 @@ mission "Remnant: Cognizance 34"
 mission "Remnant: Cognizance 35"
 	name "De-activate Ssil Vida Power."
 	description "Accept this to signal everyone to cut the power."
+	invisible
 	job
 	repeat
 	source "Ssil Vida"
 	to offer
 		has "Remnant: Cognizance 34: done"
-		not "Remnant: Cognizance 35: failed"
+		has "Remnant: Ssil Vida Active"
 	on accept
 		event "remnant: ssil vida deactivation"
 		conversation
 			`With a shudder that is felt in every fiber of your being, you glimpse the ripple that makes reality look like the surface of a pond after a single rain drop. Almost before it begins, everything is still again. You look at your sensors, and it looks like Postverta has once again returned to its prior, barren, form.`
 			action
-				fail "Remnant: Cognizance 35"
-				"Remnant: Cognizance 36: failed" --
-
-event "remnant: ssil vida deactivation"
-	unvisit "Vaticanus"
-	unvisit "Egeria"
-	unvisit "Prosa"
-	unvisit "Diespiter"
-	unvisit "Statina"
-	unvisit "Postverta"
-	system Egeria
-		pos 288 146
-		government Uninhabited
-		attributes "ember waste"
-		belt 2000
-		habitable 1505.92
-		haze _menu/haze-red
-		link Statina
-		link Vaticanus
-		asteroids "small rock" 1 8
-		asteroids "medium rock" 20 5
-		asteroids "large rock" 9 7
-		asteroids "medium metal" 86 3
-		asteroids "large metal" 5 4
-		minables iron 20 4
-		minables lead 28 5
-		hazard "Ember Waste Base Heat" 50
-		hazard "Ember Waste Base Storm" 9000
-		hazard "Ember Waste Base Storm" 15000
-		object
-			sprite star/k5-old
-			distance 40
-			period 19
-			offset 180
-		object
-			sprite star/g0
-			distance 74
-			period 19
-		object
-			sprite planet/ice4
-			distance 248
-			period 61
-		object
-			sprite planet/gas9
-			distance 1326
-			period 2174
-			object
-				sprite planet/rhea
-				distance 270
-				period 16
-		object "Wormhole Barren Alpha"
-			sprite planet/wormhole-red
-			distance 2313
-			period 389
-	system Diespiter
-		pos 332 210
-		government Uninhabited
-		attributes "ember waste"
-		belt 2000
-		habitable 534.375
-		haze _menu/haze-red
-		link Statina
-		link Postverta
-		asteroids "small rock" 65 3
-		asteroids "medium rock" 14 1
-		asteroids "large rock" 3 1
-		asteroids "small metal" 74 2
-		asteroids "medium metal" 26 4
-		asteroids "large metal" 76 3
-		minables iron 22 3
-		minables silicon 46 3
-		minables tungsten 17 3
-		hazard "Ember Waste Base Heat" 50
-		hazard "Ember Waste Base Storm" 9000
-		hazard "Ember Waste Base Storm" 15000
-		object
-			sprite star/k5-old
-			period 10
-		object
-			sprite planet/ice6
-			distance 745
-			period 394
-		object
-			sprite planet/lava0
-			distance 922
-			period 543
-		object
-			sprite planet/gas11
-			distance 1600
-			period 398
-			object
-				sprite planet/rock3
-				distance 270
-				period 14
-	system Levana
-		add object "Wormhole Barren Alpha"
-			sprite planet/wormhole-red
-			distance 2313
-			period 389
-	system Caeculus
-		add object "Wormhole Barren Beta"
-			sprite planet/wormhole-red
-			distance 2400
-			period 391
-	system Postverta
-		pos 297 269
-		government Remnant
-		attributes "ember waste"
-		belt 2000
-		habitable 135
-		haze _menu/haze-red
-		link Diespiter
-		link Prosa
-		link Statina
-		asteroids "medium rock" 4 2
-		asteroids "large rock" 4 3
-		asteroids "medium metal" 52 1
-		asteroids "large metal" 9 3
-		hazard "Ember Waste Base Heat" 50
-		hazard "Ember Waste Base Storm" 9000
-		hazard "Ember Waste Base Storm" 15000
-		object
-			sprite star/m3
-			period 19
-		object
-			sprite planet/desert7
-			distance 439
-			period 143
-		object
-			sprite planet/fog0
-			distance 814
-			period 362
-			object
-				sprite planet/dust4
-				distance 202
-				period 21
-		object
-			sprite planet/rock10
-			distance 1208
-			period 654
-		object "Ssil Vida"
-			sprite planet/sheragi_postverta
-			distance 1408
-			period 554
-	system Prosa
-		pos 303 194
-		government Uninhabited
-		attributes "ember waste"
-		habitable 2372.76
-		belt 2000
-		haze _menu/haze-red
-		link Vaticanus
-		link Postverta
-		asteroids "medium metal" 11 2
-		asteroids "large metal" 2 2
-		asteroids "small rock" 4 1
-		asteroids "medium rock" 16 1
-		asteroids "large rock" 16 1
-		minables copper 5 2
-		hazard "Ember Waste Base Heat" 50
-		hazard "Ember Waste Base Storm" 9000
-		hazard "Ember Waste Base Storm" 15000
-		object
-			sprite star/o-giant
-			period 7
-			offset 180
-		object
-			sprite planet/cloud1
-			distance 443.879
-			period 76.7945
-		object
-			sprite planet/desert9
-			distance 881.879
-			period 215.054
-		object
-			sprite planet/rock6
-			distance 1073.88
-			period 288.979
-		object
-			sprite planet/gas17
-			distance 1443.88
-			period 450.536
-			object
-				sprite planet/callisto
-				distance 227
-				period 14
-			object
-				sprite planet/dust5
-				distance 351
-				period 28
-	system Statina
-		pos 385 198
-		government Uninhabited
-		attributes "ember waste" "wormhole"
-		belt 2000
-		habitable 135
-		haze _menu/haze-red
-		link Diespiter
-		link Egeria
-		link Postverta
-		asteroids "large rock" 1 4
-		asteroids "small metal" 39 3
-		asteroids "medium metal" 72 3
-		asteroids "large metal" 3 5
-		minables iron 5 6
-		minables silicon 11 5
-		minables titanium 10 4
-		hazard "Ember Waste Base Heat" 50
-		hazard "Ember Waste Base Storm" 9000
-		hazard "Ember Waste Base Storm" 15000
-		object
-			sprite star/m3
-			period 10
-		object
-			sprite planet/desert4
-			distance 111
-			period 30
-		object
-			sprite planet/dust3
-			distance 308
-			period 142
-		object
-			sprite planet/gas8
-			distance 636
-			period 420
-		object
-			sprite planet/ice5
-			distance 1364
-			period 84
-			object
-				sprite planet/dust4
-				distance 158
-				period 17
-		object "Wormhole Link"
-			sprite planet/wormhole-red
-			distance 2754
-			period 389
-	system Vaticanus
-		pos 324 112
-		government Uninhabited
-		attributes "ember waste"
-		belt 2000
-		habitable 320
-		haze _menu/haze-red
-		link Egeria
-		link Prosa
-		asteroids "small rock" 3 6
-		asteroids "medium rock" 11 9
-		asteroids "large rock" 5 8
-		asteroids "small metal" 14 8
-		asteroids "medium metal" 47 11
-		asteroids "large metal" 11 7
-		minables lead 16 13
-		minables tungsten 10 13
-		hazard "Ember Waste Base Heat" 50
-		hazard "Ember Waste Base Storm" 9000
-		hazard "Ember Waste Base Storm" 15000
-		object
-			sprite star/m0
-			period 19
-		object
-			sprite planet/ice6
-			distance 261
-			period 73
-		object
-			sprite planet/tethys
-			distance 768
-			period 368
-		object
-			sprite planet/gas16
-			distance 1670
-			period 1181
-			object
-				sprite planet/lava1
-				distance 204
-				period 14
-		object
-			sprite planet/uranus
-			distance 2105
-			period 3438
-			object
-				sprite planet/luna
-				distance 235
-				period 14
-		object "Wormhole Link"
-			sprite planet/wormhole-red
-			distance 2754
-			period 389
+				fail
 
 
 
 mission "Remnant: Cognizance 36"
 	name "Activate Ssil Vida Power."
 	description "Accept this to signal everyone to restore the power."
+	invisible
 	job
 	repeat
 	source "Ssil Vida"
 	to offer
 		has "Remnant: Cognizance 34: done"
-		has "Remnant: Cognizance 35: failed"
-		not "Remnant: Cognizance 36: failed"
+		not "Remnant: Ssil Vida Active"
 	on accept
-		event "remnant: ssil vida reactivation"
+		event "remnant: ssil vida activation"
 		conversation
 			`With a shudder that is felt in every fiber of your being, you glimpse the ripple that makes reality look like the surface of a pond after a single rain drop. Almost before it begins, everything is still again. You look at your sensors, and it looks like Postverta is once again overflowing with life.`
 			action
-				fail "Remnant: Cognizance 36"
-				"Remnant: Cognizance 35: failed" --
-
-event "remnant: ssil vida reactivation"
-	unvisit "Vaticanus"
-	unvisit "Egeria"
-	unvisit "Prosa"
-	unvisit "Diespiter"
-	unvisit "Statina"
-	unvisit "Postverta"
-	system Egeria
-		pos 288 146
-		government Uninhabited
-		attributes "ember waste"
-		belt 2000
-		habitable 1505.92
-		haze _menu/haze-red
-		"jump range" 50
-		link Statina
-		link Vaticanus
-		minables iron 20 4
-		minables lead 28 5
-		minables "plant" 80 5
-		minables "plant2" 80 5
-		minables "plant cluster" 80 5
-		minables "large plant" 40 3
-		minables "large plant2" 40 3
-		minables "large plant cluster" 40 3
-		minables "space flora" 80 5
-		minables "large space flora" 40 3
-		mineables "live crystal" 60 3
-		fleet "Void Sprites" 400
-		hazard "Ember Waste Base Heat" 50
-		hazard "Ember Waste Base Storm" 9000
-		hazard "Ember Waste Base Storm" 15000
-		object
-			sprite star/k5-old
-			distance 40
-			period 19
-			offset 180
-		object
-			sprite star/g0
-			distance 74
-			period 19
-		object
-			sprite planet/ice4
-			distance 248
-			period 61
-		object
-			sprite planet/gas9
-			distance 1326
-			period 2174
-			object
-				sprite planet/rhea
-				distance 270
-				period 16
-		object "Wormhole Barren Alpha"
-			sprite planet/wormhole-red
-			distance 2313
-			period 389
-	system Diespiter
-		pos 332 210
-		government Uninhabited
-		attributes "ember waste"
-		belt 2000
-		habitable 534.375
-		haze _menu/haze-red
-		"jump range" 50
-		link Statina
-		link Postverta
-		minables iron 22 3
-		minables silicon 46 3
-		minables tungsten 17 3
-		minables "plant" 80 5
-		minables "plant2" 80 5
-		minables "plant cluster" 80 5
-		minables "large plant" 40 3
-		minables "large plant2" 40 3
-		minables "large plant cluster" 40 3
-		minables "space flora" 80 5
-		minables "large space flora" 40 3
-		mineables "live crystal" 60 3
-		fleet "Void Sprites" 400
-		hazard "Ember Waste Base Heat" 50
-		hazard "Ember Waste Base Storm" 9000
-		hazard "Ember Waste Base Storm" 15000
-		object
-			sprite star/k5-old
-			period 10
-		object
-			sprite planet/ice6
-			distance 745
-			period 394
-		object
-			sprite planet/lava0
-			distance 922
-			period 543
-		object
-			sprite planet/gas11
-			distance 1600
-			period 398
-			object
-				sprite planet/rock3
-				distance 270
-				period 14
-	system Levana
-		add object "Wormhole Barren Alpha"
-			sprite planet/wormhole-red
-			distance 2313
-			period 389
-	system Caeculus
-		add object "Wormhole Barren Beta"
-			sprite planet/wormhole-red
-			distance 2400
-			period 391
-	system Postverta
-		pos 297 269
-		government Remnant
-		attributes "ember waste"
-		belt 2000
-		habitable 135
-		haze _menu/haze-red
-		"jump range" 50
-		link Diespiter
-		link Prosa
-		link Statina
-		minables "plant" 80 5
-		minables "plant2" 80 5
-		minables "plant cluster" 80 5
-		minables "large plant" 40 3
-		minables "large plant2" 40 3
-		minables "large plant cluster" 40 3
-		minables "space flora" 80 5
-		minables "large space flora" 40 3
-		mineables "live crystal" 60 3
-		fleet "Void Sprites" 300
-		hazard "Ember Waste Base Heat" 50
-		hazard "Ember Waste Base Storm" 9000
-		hazard "Ember Waste Base Storm" 15000
-		object
-			sprite star/m3
-			period 19
-		object
-			sprite planet/desert7
-			distance 439
-			period 143
-		object
-			sprite planet/fog0
-			distance 814
-			period 362
-			object
-				sprite planet/dust4
-				distance 202
-				period 21
-		object
-			sprite planet/rock10
-			distance 1208
-			period 654
-		object "Ssil Vida"
-			sprite planet/sheragi_postverta
-			distance 1408
-			period 554
-		object "Fertriery"
-			sprite planet/nebula1
-			distance 2004.06
-			period 2098.28
-	system Prosa
-		pos 303 194
-		government Uninhabited
-		attributes "ember waste"
-		habitable 2372.76
-		belt 2000
-		haze _menu/haze-red
-		"jump range" 50
-		link Vaticanus
-		link Postverta
-		minables copper 5 2
-		minables "plant" 80 5
-		minables "plant2" 80 5
-		minables "plant cluster" 80 5
-		minables "large plant" 40 3
-		minables "large plant2" 40 3
-		minables "large plant cluster" 40 3
-		minables "space flora" 80 5
-		minables "large space flora" 40 3
-		mineables "live crystal" 60 3
-		fleet "Void Sprites" 400
-		hazard "Ember Waste Base Heat" 50
-		hazard "Ember Waste Base Storm" 9000
-		hazard "Ember Waste Base Storm" 15000
-		object
-			sprite star/o-giant
-			period 7
-			offset 180
-		object
-			sprite planet/cloud1
-			distance 443.879
-			period 76.7945
-		object
-			sprite planet/desert9
-			distance 881.879
-			period 215.054
-		object
-			sprite planet/rock6
-			distance 1073.88
-			period 288.979
-		object
-			sprite planet/gas17
-			distance 1443.88
-			period 450.536
-			object
-				sprite planet/callisto
-				distance 227
-				period 14
-			object
-				sprite planet/dust5
-				distance 351
-				period 28
-		object "Wormhole Barren Beta"
-			sprite planet/wormhole-red
-			distance 2313
-			period 389
-	system Statina
-		pos 385 198
-		government Uninhabited
-		attributes "ember waste" "wormhole"
-		belt 2000
-		habitable 135
-		haze _menu/haze-red
-		"jump range" 50
-		link Diespiter
-		link Egeria
-		link Postverta
-		minables iron 5 6
-		minables silicon 11 5
-		minables titanium 10 4
-		minables "plant" 80 5
-		minables "plant2" 80 5
-		minables "plant cluster" 80 5
-		minables "large plant" 40 3
-		minables "large plant2" 40 3
-		minables "large plant cluster" 40 3
-		minables "space flora" 80 5
-		minables "large space flora" 40 3
-		mineables "live crystal" 60 3
-		fleet "Void Sprites" 400
-		hazard "Ember Waste Base Heat" 50
-		hazard "Ember Waste Base Storm" 9000
-		hazard "Ember Waste Base Storm" 15000
-		object
-			sprite star/m3
-			period 10
-		object
-			sprite planet/desert4
-			distance 111
-			period 30
-		object
-			sprite planet/dust3
-			distance 308
-			period 142
-		object
-			sprite planet/gas8
-			distance 636
-			period 420
-		object
-			sprite planet/ice5
-			distance 1364
-			period 84
-			object
-				sprite planet/dust4
-				distance 158
-				period 17
-		object "Wormhole Link"
-			sprite planet/wormhole-red
-			distance 2754
-			period 389
-	system Vaticanus
-		pos 324 112
-		government Uninhabited
-		attributes "ember waste"
-		belt 2000
-		habitable 320
-		haze _menu/haze-red
-		"jump range" 50
-		link Egeria
-		link Prosa
-		minables lead 16 13
-		minables tungsten 10 13
-		minables "plant" 80 5
-		minables "plant2" 80 5
-		minables "plant cluster" 80 5
-		minables "large plant" 40 3
-		minables "large plant2" 40 3
-		minables "large plant cluster" 40 3
-		minables "space flora" 80 5
-		minables "large space flora" 40 3
-		mineables "live crystal" 60 3
-		fleet "Void Sprites" 400
-		hazard "Ember Waste Base Heat" 50
-		hazard "Ember Waste Base Storm" 9000
-		hazard "Ember Waste Base Storm" 15000
-		object
-			sprite star/m0
-			period 19
-		object
-			sprite planet/ice6
-			distance 261
-			period 73
-		object
-			sprite planet/tethys
-			distance 768
-			period 368
-		object
-			sprite planet/gas16
-			distance 1670
-			period 1181
-			object
-				sprite planet/lava1
-				distance 204
-				period 14
-		object
-			sprite planet/uranus
-			distance 2105
-			period 3438
-			object
-				sprite planet/luna
-				distance 235
-				period 14
-		object "Wormhole Link"
-			sprite planet/wormhole-red
-			distance 2754
-			period 389
+				fail
 
 
 
@@ -2424,8 +1575,9 @@ mission "Remnant: Cognizance 37"
 	destination "Viminal"
 	to offer
 		has "Remnant: Cognizance 34: done"
-	on complete
+	on offer
 		event "remnant: cognizance salvage expansion"
+	on complete
 		conversation
 			`A crowd of Remnant cluster around your ship as you land, but it is just one who gestures quickly, asking if the rest of the team who went with you are safe. You nod, and a ripple of relief goes through the crowd. "So, what happened?" asks another.`
 			choice
@@ -2458,14 +1610,4 @@ mission "Remnant: Cognizance 37"
 				`	"Alright, you convinced me."`
 			`	The Remnant watch you attentively as you explain everything that went on at Postverta and the surrounding area. Once you hand over the data crystals, one Remnant slots it into a console on the spot while another pair take the case and hustle off toward the information desk. As you reach the end of your report, one of the Remnant nods in approval. "We are starting to diseminate your report along with the data Dusk and Gavriil collected. Both copies of the data match, and have passed the initial verifications, so it appears they were not affected by your departing... shift."`
 			`	They look around at the surrounding Remnant, and you have the sudden feeling that there is an entire level of discussion happening around you. You spot Aeolus moving through the crowd to the front, and he gestures with tones of appreciation. "Thank you for all your work on this, <first>. We have a strong appreciation for the risks you have taken alongside us, and I hope we will continue to explore together. That being said, I suspect it will take much collective effort to determine our next course of action." He looks around, and then winks at you. "In the meantime, I have unlocked access to a few more bits of rarer Korath salvage. It is not much, but it may give you a little more ease of outfitting the <ship>.`
-
-event "remnant: cognizance salvage expansion"
-	outfitter "Remnant Salvage"
-		add "Systems Core (Medium)"
-		add "Large Heat Shunt"
-		add "Fuel Processor"
-		add "Korath Repeater Rifle"
-		add "Korath Grab-Strike"
-		add "Korath Banisher"
-		add "Korath Warder"
 

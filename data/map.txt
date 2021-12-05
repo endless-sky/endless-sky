@@ -27341,6 +27341,7 @@ planet Fertriery
 	landscape land/clouds_00
 	description `It is unclear exactly what Fertriery is. While it does orbit Postverta, and it has sufficent pressure to threaten most ships. Despite that pressure and the gravity it implies, Fertriery lacks the cohesion or distinct shape normally expected of a planet. Preliminary sensor sweeps have been been stymied by inconsistent readings. Given Fertriery's history, the Remnant are disinclined to rule out even the most far-fetched idea as to what it is or how it exists.`
 	description `	What is clear, however, is that there are somehow void sprites that live here. They spiral in and out of the clouds with abandon, and you note that seem to be able to enter and leave the planet without inflating like they do in Nenia.`
+	government "Ember Waste"
 	bribe 0
 
 planet Firefall

@@ -124,10 +124,6 @@ mission "First Contact: Remnant"
 			`	Eventually they invite you to a dinner. Their food has strange and complex flavors, not all of them pleasant, but you do your best to be polite and pretend to enjoy it all. After the meal, they entertain you by singing songs, some of which you recognize as classical Earth music. It appears that people in this culture use sign language for day to day communication, and use their voices only for making music.`
 			`	When you return to your ship, you do a search on videos of historical dialects of human sign language. None of them bear even a passing resemblance to the language of these people who call themselves the Remnant.`
 
-event "ember waste label"
-	galaxy "label waste"
-		sprite label/waste
-
 
 
 # Compatibility patch for those who made contact with the Remnant prior to v0.9.9
@@ -140,6 +136,8 @@ mission "Remnant Blood Test Patch"
 		set "remnant blood test pure"
 		fail
 
+
+
 # Changes Remnant hails once contacted and submitted to blood test
 mission "Remnant Hails Change"
 	landing
@@ -150,10 +148,7 @@ mission "Remnant Hails Change"
 		event "remnant change hail"
 		fail
 
-event "remnant change hail"
-	government "Remnant"
-		"friendly hail" "friendly remnant"
-		"hostile hail" "hostile remnant"
+
 
 mission "lost in ember waste"
 	landing
@@ -169,8 +164,6 @@ mission "lost in ember waste"
 		require "Jump Drive" 0
 		event "lost in ember waste" 14
 		fail
-
-event "lost in ember waste"
 
 
 
@@ -286,9 +279,6 @@ mission "Remnant: Defense 1"
 		dialog "There are still Korath raiders circling overhead. You should take off and help the Remnant ships to fight them."
 	on complete
 		payment 500000
-
-event "remnant defense timer"
-	clear "Remnant defense delay"
 
 
 
@@ -420,14 +410,6 @@ mission "Remnant: Defense 3"
 				`	"You know, a great way to say 'thank you' would be to offer me a license to buy your technology."`
 
 			`	He grins, very slightly. "That is not my decision alone to make," he says, "but I will put in a word for you and see what I can do."`
-
-event "remnant: surveillance begin"
-	system "Parca"
-		remove fleet "Korath Ember Waste Raid"
-
-event "remnant: surveillance end"
-	system "Parca"
-		add fleet "Korath Ember Waste Raid" 10000
 
 
 
@@ -759,14 +741,6 @@ mission "Remnant: Void Sprites 2"
 	on complete
 		event "remnant: nenia restored"
 
-event "remnant: nenia empty"
-	system "Nenia"
-		remove fleet "Void Sprites"
-
-event "remnant: nenia restored"
-	system "Nenia"
-		add fleet "Void Sprites" 500
-
 
 
 mission "Remnant: Void Sprites 3"
@@ -838,12 +812,6 @@ mission "Remnant: Void Sprites 3"
 
 			`	He says, "As long as you did not harm any of the void sprites, I doubt they will bear you a permanent grudge. The Archons are thinking creatures, after all; they cannot blame you for your curiosity."`
 			`	You thank him for the information and tell him that you will look forward to reading the results of his study (and, getting paid for your help) once it is complete.`
-
-event "remnant: puffin"
-	planet "Viminal"
-		add shipyard "Remnant Puffin"
-
-event "remnant: void sprite research"
 
 
 
@@ -1042,8 +1010,6 @@ mission "Remnant: Learn Sign 2"
 			`	You thank the man for explaining the scanners to you and accept the next set of lessons.`
 			`	You spend a few hours viewing some of the lessons, one of which involves watching an ancient show about a merchant captain making his way through the galaxy with an unlikely crew, re-enacted by a cast of Remnant who sing and sign their way through the dialogs with exaggerated simplicity. It is oddly familiar, but you can't quite place it. You notice that it seems to have a lot of subtext about the dangers of manipulation and government secrecy, especially surrounding genetics.`
 			`	Skimming through the rest of the lessons, you notice that there is a lot more here than the last two times. It may take some time to get through it all, but you should be fairly fluent if you practice over a couple of months.`
-
-event "remnant: sign studies complete"
 
 
 
@@ -2185,9 +2151,6 @@ mission "Remnant: Return the Samples 2"
 
 
 
-event "remnant: return the samples timer"
-
-
 # Compatibility patch for those who completed Return the Samples 2 before 0.9.11, where it did not have the timer.
 mission "Remnant Return the Samples Compatibility Patch"
 	landing
@@ -2198,6 +2161,7 @@ mission "Remnant Return the Samples Compatibility Patch"
 	on offer
 		event "remnant: return the samples timer" 2
 		fail
+
 
 
 # "This mission is intended to serve as a notification that one timer has elapsed and how long to wait until the missions start again."
@@ -2223,10 +2187,6 @@ mission "Remnant: Return the Samples 3 Exploration Hint"
 			`As you disembark from <ship> you almost run into Plume as he strides across the landing area. "Captain <first>, I didn't see you there!" You glance back at the bulk of your ship that you just stepped out of and look at him curiously, wondering how he could have missed seeing a spaceship land in front of him. His chant takes on a slightly apologetic tone. "I've been lost in thought thinking about everything we have discovered lately, especially the most recent recordings you made. I still have a lot to analyze, though." He pauses, looking thoughtful. "That being said, I will probably have more work for you in a week or two."`
 			`	Plume asks a few more questions about what you have been doing, then politely excuses himself to continue his research. "Please let me know if you uncover anything else about Nenia!" he trills to you as he departs.`
 				decline
-
-
-
-event "remnant: wait for plume"
 
 
 
@@ -2507,14 +2467,6 @@ mission "Remnant: Salvage 6"
 			`	"Yes, sometimes salvage that is brought in is dangerous. A Systems Core comes with fleets of micro-bots, for instance. If they aren't de-activated properly, they keep trying to rebuild their surroundings in the form of the last ship they were configured to serve. And while it hasn't happened yet, we are worried that someday we might run into someone who builds traps into their equipment, or uses nanobots that have run amok. We haven't seen any of that yet, but our science-fiction stories are filled with tales of nanotech apocalypses and things like that.`
 			label end
 			`	"Well, I need to get back to work. That last battle put us behind schedule on our repairs. Have a good day!" With a final flourish that you think is the equivalent of an exclamation mark, Taely strides out of the outfitters, heading towards another landing bay.`
-
-event "remnant salvage available"
-	planet "Aventine"
-		outfitter "Remnant Salvage"
-	planet "Caelian"
-		outfitter "Remnant Salvage"
-	planet "Viminal"
-		outfitter "Remnant Salvage"
 
 
 
@@ -2888,10 +2840,6 @@ mission "Remnant: Broken Jump Drive 5"
 
 
 
-event "remnant research update bjd1"
-
-
-
 mission "Remnant: Broken Jump Drive job"
 	name "Broken Jump Drive Delivery"
 	description "The researchers on <planet> need another broken jump drive to continue their project."
@@ -3034,10 +2982,6 @@ mission "Remnant: Face to Maw 2"
 			`	The ship before you has some faint traces of the Puffin you have flown to Nenia, along with other elements of Remnant design, but it is clearly something new. Its antennae swivel around, as if taking in its environment, and the tentacles along the side twitch and reach out to touch its surroundings. Solidly built tendrils underneath it flex as it lifts itself off its supports and begins to move around. You have a momentary vision of what this ship might look like in the skies of Nenia.`
 			scene "scene/penguinscene"
 			`	Taely's droning chant of technical details finally seeps through your reverie: "... So from a captain's point of view flying the penguin should be very similar to a normal ship, except she flies herself and doesn't need a crew to run her systems." She pauses, and looks at you. "Your curiosity provided the final ingredients to bring her to life. You should be the first to have one." She pats the nose of the Penguin and it makes a whooshing noise. "I call her the 'Shadow Hope,' but you can rename her whatever you like." After a moment she starts going over the ship with a scanner, leaving you to contemplate in silence.`
-
-event "remnant: penguin"
-	shipyard "Remnant Puffin"
-		"Penguin"
 
 
 
@@ -3661,12 +3605,6 @@ mission "Remnant: Expanded Horizons Astral 1"
 			`	"If you want good data, you need to spend time to get it. And especially when we are tracking stellar phenomenon, you need periods of long observation. Snapshots of the sky are good - that is what we will be collecting on this trip. But for watching the galaxy at large, other civilizations, and things of that ilk... Nothing is better than long-term observation." She looks lost in thought for a moment. "That is neither here nor there, however.`
 			label labnext
 			`	"Now that you have the research laboratory, you will need to locate a jump drive in order to reach Sagittarius A*." She pauses and checks her commlink. "If you do not already have one, you can salvage one from a Korath Raider. Our early warning system indicates that there are several incoming Korath fleets that should be here within the next day or two. Any one of them should have a jump drive you can take. Meet me in the starport once you have a jump drive."`
-
-
-
-event "remnant: lab availability"
-	outfitter "Remnant"
-		add "Research Laboratory"
 
 
 
