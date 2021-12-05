@@ -1620,7 +1620,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	{
 		shared_ptr<Ship> originalTarget = ship->GetTargetShip();
 		if(originalTarget)
-			ChangePlayerFlagship(player.FlagshipPtr(), originalTarget);
+			ChangePlayerFlagship(player.Flagship(), *originalTarget);
 	}
 	if(victim)
 		eventQueue.emplace_back(ship, victim,
@@ -1644,7 +1644,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 
 // Changing the players flagship during flight requires an update of all active
 // data that references the players flagship.
-void Engine::ChangePlayerFlagship(const shared_ptr<Ship> oldFlagship, shared_ptr<Ship> newFlagship)
+void Engine::ChangePlayerFlagship(Ship *oldFlagship, Ship &newFlagship)
 {
 	// Remove active data in the old flagship.
 	if(oldFlagship)
@@ -1656,8 +1656,8 @@ void Engine::ChangePlayerFlagship(const shared_ptr<Ship> oldFlagship, shared_ptr
 	// Update all ships that still have the old flagship as parent, for example
 	// NPCs that are following the player.
 	for(auto &ship : ships)
-		if(ship && ship->GetParent() == oldFlagship)
-			ship->SetParent(newFlagship);
+		if(ship && ship->GetParent().get() == oldFlagship)
+			ship->SetParent(newFlagship.shared_from_this());
 }
 
 

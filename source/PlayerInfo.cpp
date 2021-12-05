@@ -1322,7 +1322,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	// Move the flagship to the start of the list of ships and ensure that all
 	// escorts know which ship is acting as flagship.
 	MoveFlagshipBegin();
-	SetFlagship(flagship);
+	SetFlagship(*flagship);
 	
 	// Recharge any ships that can be recharged, and load available cargo.
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();

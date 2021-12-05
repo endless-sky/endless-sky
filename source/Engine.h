@@ -102,7 +102,7 @@ private:
 	void CalculateStep();
 	
 	void MoveShip(const std::shared_ptr<Ship> &ship);
-	void ChangePlayerFlagship(const std::shared_ptr<Ship> oldFlagship, std::shared_ptr<Ship> newFlagship);
+	void ChangePlayerFlagship(Ship *oldFlagship, Ship &newFlagship);
 	
 	void SpawnFleets();
 	void SpawnPersons();
