@@ -772,10 +772,9 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 
 // Move the flagship to the start of your list of ships. It does not make
 // sense that the flagship would change if you are reunited with a different
-// ship that was higher up the list. This function should not be used during
-// flight, since all shared-pointers to ships in the ships-list would be
-// invalidated (causing all kind of actions like ship and/or missile targeting
-// to be reset).
+// ship that was higher up the list. This function should not be used while
+// other functions have direct references to the shared_pointer elements in
+// this list.
 void PlayerInfo::MoveFlagshipBegin()
 {
 	if(flagship)
