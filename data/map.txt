@@ -26489,7 +26489,7 @@ planet Babiali
 planet Baianus
 	attributes uninhabited
 	landscape land/canyon12
-	description `This frozen water world is reminiscent of Titan back in Sol: The surface is little more than a shattered wasteland of ice and the ocassional rock outcropping, but the unbreathably thin atmosphere contains countless tantilizing traces of chemicals that suggest that something more might exist below the surface.`
+	description `This frozen water world is reminiscent of Titan back in Sol: The surface is little more than a shattered wasteland of ice and the occasional rock outcropping, but the unbreathably thin atmosphere contains countless tantalizing traces of chemicals that suggest that something more might exist below the surface.`
 	description `	Unlike Titan, however, Baianus is regularly wracked by both waves of heat and energy, and a stay of any length on the surface is likely to see waves of auroras accompanied by glows and sparks rippling across the terrain. Your environmental system strongly recommends remaining inside your ship whenever ion storms are active.`
 	government Uninhabited
 
@@ -27339,8 +27339,8 @@ planet "Fenrir Station"
 planet Fertriery
 	attributes deep station
 	landscape land/clouds_00
-	description `It is unclear exactly what Fertriery is. While it does orbit Postverta, and it has sufficent pressure to threaten most ships. Despite that pressure and the gravity it implies, Fertriery lacks the cohesion or distinct shape normally expected of a planet. Preliminary sensor sweeps have been been stymied by inconsistent readings. Given Fertriery's history, the Remnant are disinclined to rule out even the most far-fetched idea as to what it is or how it exists.`
-	description `	What is clear, however, is that there are somehow void sprites that live here. They spiral in and out of the clouds with abandon, and you note that seem to be able to enter and leave the planet without inflating like they do in Nenia.`
+	description `It is unclear what exactly Fertriery is. While it does orbit Postverta, and has sufficient pressure to threaten most ships, Fertriery lacks the cohesion or distinct shape normally expected of a planet. Preliminary sensor sweeps have been stymied by inconsistent readings. Given Fertriery's history, the Remnant is disinclined to rule out even the most far-fetched idea as to what it is or how it exists.`
+	description `	What is clear, however, is that there are somehow void sprites that live here. They spiral in and out of the clouds with abandon, and you note that they seem to be able to enter and leave the planet without inflating like they do in Nenia.`
 	government "Ember Waste"
 	bribe 0
 
