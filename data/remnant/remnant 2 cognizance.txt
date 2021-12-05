@@ -840,7 +840,7 @@ mission "Remnant: Cognizance 21"
 				`	"They were worried about the course the war was taking?"`
 				`	"That would be worrisome. We should focus on the mission."`
 					goto missiontransition
-			`	Dusk starts gesturing again. "Yes, but also by what they saw. Strange ships that slipped over the horizon, odd energy signatures in the distance, novel equipment that simply showed up on Deep ships without explanation... It seemed like someone out there was taking advantage of the chaos to influence humanity. Someone beyond the reach of the normal hyperspace network. It spurred our ancestors to revisit old theories and kindle new ones. Knowing that there was someone, something beyond what we knew made us bold. It was not long before the first ship travelled through the wormhole."`
+			`	Dusk starts gesturing again. "Yes, but also by what they saw. Strange ships that slipped over the horizon, odd energy signatures in the distance, novel equipment that simply showed up on Deep ships without explanation... It seemed like someone out there was taking advantage of the chaos to influence humanity. Someone beyond the reach of the normal hyperspace network. It spurred our ancestors to revisit old theories and kindle new ones. Knowing that there was someone, something beyond what we knew made us bold. It was not long before the first ship traveled through the wormhole."`
 			choice
 				`	"Which ship was that?"`
 				`	"I think I can see where this is going. Time to get to work."`
@@ -956,7 +956,7 @@ mission "Remnant: Cognizance 22"
 				`	"Well, onwards we go."`
 					goto vault
 				`	"How far down are we?"`
-			`	The Remnant smiles, and gestures "I do not know the exact distance, but suffice to say that it is far enough that multiple direct strikes to the spaceport with nuclear ordiance would be insufficient to penetrate to this depth."`
+			`	The Remnant smiles, and gestures "I do not know the exact distance, but suffice to say that it is far enough that multiple direct strikes to the spaceport with nuclear ordnance would be insufficient to penetrate to this depth."`
 			label vault
 			`	Outside the elevator, the Remnant leads you down a short hallway with many doors, and eventually it opens onto a larger hall. At the opposite end of the hall is a massive door flanked with several large devices that look remarkably similar to Point Defense Turrets, but subtly different. Your guide takes a few steps into the room, and a short pedestal pops out of the floor near him. He pulls a license out of his pocket, places it in the slot, and presses firmly on it for a second, before removing it once again.`
 			`	He then walks briskly across the hall, gesturing you to follow. Shields flare in and out of existence around the two of you, forming a series of openings that allow you to approach the vault door, which opens when you reach it. Inside is a disappointingly small room with a small tray on a pedestal.`
