@@ -3656,7 +3656,7 @@ mission "Kindred Spirit"
 					goto movingon
 				`	"Well, how are you enjoying space so far?"`
 			`	His eyes light up. "Oh, it's so much fun! There's lots of work, but so much to do at the same time. I'm trying to save up for a freighter ship, but I don't know which ones I want...I've heard the heavy ones are better at surviving pirates, but the light ones give you more storage for your buck."`
-			goto movingon
+				goto movingon
 			label movingon
 			`	"Ah, sorry for going on about all that. Anyway, do you want to come with to <destination>?"`
 			choice
@@ -3685,7 +3685,8 @@ mission "Kindred Spirit"
 				`	"Don't push your luck, kid."`
 					goto goodbye
 				`	"Sure, why not." Pay 100 credits.`
-			payment -100 
 			`	"Hey, thanks!" He pockets the credits, giving you a fist bump. "I'm going to go spend these on...something. It'll be productive, I swear. Anyway, see you around!"`
-		label goodbye
-		`	"Okay, sounds good," he laughs. " Hope I see you around sometime!"`
+			action
+				payment -100
+			label goodbye
+			`	"Okay, sounds good," he laughs. " Hope I see you around sometime!"`
