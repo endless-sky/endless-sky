@@ -2420,7 +2420,6 @@ mission "Remnant: Cognizance 37"
 	name "Take data to Viminal."
 	description "The rest of the Remnant need to know what is happening. Take this data to them."
 	landing
-	repeat
 	source "Ssil Vida"
 	destination "Viminal"
 	to offer
