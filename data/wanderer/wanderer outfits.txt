@@ -407,6 +407,17 @@ outfit "Wanderer Ramscoop"
 	"ramscoop" 4
 	description "Wanderer ships are designed to be self-sufficient even when traveling through uninhabited space, and their compact and efficient ramscoops are a key part of that self-sufficiency."
 
+outfit "Pressurized Fuel Pod"
+	category "Systems"
+	licenses
+		"Wanderer Outfits"
+	cost 125000
+	thumbnail "outfit/fuel pod"
+	"mass" 5
+	"outfit space" -5
+	"energy consumption" .4
+	description "Wanderer ships often need to travel great distances after a migration. These fuel pods allow them to traverse systems where even their ramscoops struggle to provide sufficient fuel."
+
 
 outfit "Wanderer Heat Sink"
 	category "Systems"
