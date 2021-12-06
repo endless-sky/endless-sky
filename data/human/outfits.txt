@@ -340,6 +340,17 @@ outfit "Fuel Pod"
 	"fuel capacity" 100
 	description "A fuel pod increases your fuel capacity, allowing your ship to make one additional hyperspace jump before it needs to land and refuel."
 
+outfit "External Fuel Pod"
+	category "Systems"
+	cost 15000
+	thumbnail "outfit/fuel pod"
+	"mass" 8
+	"hull" -200
+	"drag" +.1
+	"fuel capacity" 100
+	description "In the old days of exploration, many ships traveled great distances between refueling depots. While fuel pods are still fairly common in civilian and Navy ships, external fuel pods are a niche market. They take no internal outfit space, but they reduce a ship's speed and hull durability, making them impractical for most military and civilian use."
+	description "	Almost all external fuel pods sold go to Navy Intelligence stealth ships, but a few merchant captains find it easier to complete time-sensitive cargo runs with fewer stop to refuel."
+
 outfit "Interference Plating"
 	category "Systems"
 	cost 50000
