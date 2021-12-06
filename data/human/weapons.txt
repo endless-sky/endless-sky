@@ -413,6 +413,34 @@ effect "particle impact"
 	"random spin" 10
 	"velocity scale" -.05
 
+outfit "Particle Cannon Turret"
+	category "Turrets"
+	cost 345000
+	thumbnail "outfit/particle cannon turret"
+	"mass" 35
+	"outfit space" -35
+	"weapon capacity" -35
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/particle beam"
+		"hardpoint sprite" "hardpoint/particle turret"
+		"hardpoint offset" 14.
+		sound "particle"
+		"hit effect" "particle impact"
+		"inaccuracy" .5
+		"turret turn" 1.7
+		"velocity" 30
+		"lifetime" 25
+		"reload" 20
+		"firing energy" 35
+		"firing force" 10
+		"firing heat" 120
+		"hit force" 80
+		"shield damage" 54
+		"hull damage" 52
+	description "Simply a Particle Cannon mounted on a turret frame, this weapon has a reputation for being used by merchants who would rather run away from an enemy while firing behind themselves at the longest range possible."
+
 
 outfit "Proton Gun"
 	category "Guns"
