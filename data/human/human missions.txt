@@ -3680,15 +3680,16 @@ mission "Kindred Spirit"
 
 	on complete
 		conversation
-			`Charles approaches you from his Sparrow after landing. "Well, that was fun." he says. "Thanks for the fun trip! ...I don't suppose you'll pay me for escorting you?"`
+			`Charles approaches you from his Sparrow after landing. "Well, that was fun." he says. "Thanks for the directions! ...I don't suppose you'll pay me for successfully escorting you?"`
 			choice
 				`	"Sure, why not." Pay 100 credits.`
 					goto whynot
 				`	"Don't push your luck, kid."`
-			`	"Okay, sounds good," he laughs. " Hope I see you around sometime!"`
-
+			`	"Okay, sounds good," he laughs. " Hope to see you around sometime!"`
+				goto notachance
 			label whynot
 			`	"Hey, thanks!" He pockets the credits, giving you a fist bump. "I'm going to go spend these on...something. It'll be productive, I swear. Anyway, see you around!"`
 			action
 				payment -100
+			label notachance
 			
