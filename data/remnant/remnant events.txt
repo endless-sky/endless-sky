@@ -238,14 +238,18 @@ event "remnant: ssil vida inhabited"
 
 
 
-event "remnant: ssil vida activation"
-	set "Remnant: Ssil Vida Active"
+event "remnant: ssil vida area unvisted"
 	unvisit "Vaticanus"
 	unvisit "Egeria"
 	unvisit "Prosa"
 	unvisit "Diespiter"
 	unvisit "Statina"
 	unvisit "Postverta"
+
+
+
+event "remnant: ssil vida activation"
+	set "Remnant: Ssil Vida Active"
 	system Caeculus
 		pos 162.87 343.242
 		government Uninhabited
@@ -699,12 +703,6 @@ event "remnant: ssil vida activation"
 
 event "remnant: ssil vida deactivation"
 	clear "Remnant: Ssil Vida Active"
-	unvisit "Vaticanus"
-	unvisit "Egeria"
-	unvisit "Prosa"
-	unvisit "Diespiter"
-	unvisit "Statina"
-	unvisit "Postverta"
 	system Egeria
 		pos 288 146
 		government Uninhabited
