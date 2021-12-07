@@ -39,6 +39,8 @@ Government::Government()
 	penaltyFor[ShipEvent::BOARD] = 0.3;
 	penaltyFor[ShipEvent::CAPTURE] = 1.;
 	penaltyFor[ShipEvent::DESTROY] = 1.;
+	penaltyFor[ShipEvent::SCAN_OUTFITS] = 0.;
+	penaltyFor[ShipEvent::SCAN_CARGO] = 0.;
 	penaltyFor[ShipEvent::ATROCITY] = 10.;
 	
 	id = nextID++;
@@ -99,6 +101,11 @@ void Government::Load(const DataNode &node)
 						penaltyFor[ShipEvent::CAPTURE] = grand.Value(1);
 					else if(grand.Token(0) == "destroy")
 						penaltyFor[ShipEvent::DESTROY] = grand.Value(1);
+					else if(grand.Token(0) == "scan")
+					{
+						penaltyFor[ShipEvent::SCAN_OUTFITS] = grand.Value(1);
+						penaltyFor[ShipEvent::SCAN_CARGO] = grand.Value(1);
+					}
 					else if(grand.Token(0) == "atrocity")
 						penaltyFor[ShipEvent::ATROCITY] = grand.Value(1);
 					else
@@ -127,6 +134,8 @@ void Government::Load(const DataNode &node)
 			language = child.Token(1);
 		else if(child.Token(0) == "raid" && child.Size() >= 2)
 			raidFleet = GameData::Fleets().Get(child.Token(1));
+		else if(child.Token(0) == "provoked on scan")
+			provokedOnScan = true;
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -380,4 +389,11 @@ double Government::CrewAttack() const
 double Government::CrewDefense() const
 {
 	return crewDefense;
+}
+
+
+
+bool Government::IsProvokedOnScan() const
+{
+	return provokedOnScan;
 }

@@ -110,7 +110,7 @@ void ConversationPanel::Draw()
 	const Font &font = FontSet::Get(14);
 	const Color &selectionColor = *GameData::Colors().Get("faint");
 	const Color &dim = *GameData::Colors().Get("dim");
-	const Color &grey = *GameData::Colors().Get("medium");
+	const Color &gray = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 	
 	// Figure out where we should start drawing.
@@ -119,7 +119,7 @@ void ConversationPanel::Draw()
 		Screen::Top() + MARGIN + scroll);
 	// Draw all the conversation text up to this point.
 	for(const Paragraph &it : text)
-		point = it.Draw(point, grey);
+		point = it.Draw(point, gray);
 	
 	// Draw whatever choices are being presented.
 	if(node < 0)
@@ -157,10 +157,10 @@ void ConversationPanel::Draw()
 		}
 		
 		font.Draw("First name:", point + Point(40, 0), dim);
-		font.Draw({firstName, layout}, point + Point(120, 0), choice ? grey : bright);
+		font.Draw({firstName, layout}, point + Point(120, 0), choice ? gray : bright);
 		
 		font.Draw("Last name:", point + Point(270, 0), dim);
-		font.Draw({lastName, layout}, point + Point(350, 0), choice ? bright : grey);
+		font.Draw({lastName, layout}, point + Point(350, 0), choice ? bright : gray);
 		
 		// Draw the OK button, and remember its location.
 		static const string ok = "[ok]";
