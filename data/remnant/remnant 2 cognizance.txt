@@ -804,7 +804,7 @@ mission "Remnant: Cognizance 20"
 
 mission "Remnant: Cognizance 21"
 	name "Expedition to Ssil Vida"
-	description "Outfit a research laboratory and go to <stopover>."
+	description "Outfit a research laboratory and go to <stopovers>."
 	blocked "You need 10 free space for this mission."
 	cargo "supplies" 10
 	source
@@ -994,7 +994,7 @@ mission "Remnant: Cognizance 22"
 
 mission "Remnant: Cognizance 23"
 	name "First Flight"
-	description "Escort the Merganser to <stopover>."
+	description "Escort the Merganser to <stopovers>."
 	landing
 	source
 		government "Remnant"
