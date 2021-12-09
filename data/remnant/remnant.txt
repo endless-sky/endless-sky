@@ -794,6 +794,9 @@ shipyard "Remnant"
 shipyard "Remnant Puffin"
 	"Puffin"
 
+shipyard "Remnant Salvage Ships"
+	"Korath Chaser"
+
 outfitter "Remnant"
 	"Inhibitor Cannon"
 	"Thrasher Cannon"

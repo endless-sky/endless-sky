@@ -185,13 +185,13 @@ event "remnant: cognizance 1 systems available"
 
 
 
-event "Remnant: Merganser"
+event "remnant: cognizance merganser"
 	shipyard "Remnant"
 		"Merganser"
 
 
 
-event "Remnant: Merganser Fleet"
+event "remnant: merganser fleet"
 	fleet "Small Remnant"
 		add variant 5
 			"Merganser" 2
@@ -235,6 +235,12 @@ event "remnant: ssil vida inhabited"
 		spaceport `The Remnant have set up a fully self-contained base of operations in this part of the station. Independent life support, its own power system, and controls tapping into the rest of station occupy much of the space, while a research laboratory and additional equipment occupy most of the rest. A rudimentary cafeteria, communication links, basic repair equipment, and sleeping quarters round out the amenities of this research camp.`
 		bribe 0
 		government Remnant
+
+
+
+event "remnant: cognizance peregrine"
+	shipyard "Remnant"
+		"Peregrine"
 
 
 
@@ -1009,3 +1015,9 @@ event "remnant: cognizance salvage expansion"
 		add "Korath Grab-Strike"
 		add "Korath Banisher"
 		add "Korath Warder"
+	planet "Viminal"
+		add shipyard "Remnant Salvage Ships"
+	planet "Aventine"
+		add shipyard "Remnant Salvage Ships"
+	planet "Caelian"
+		add shipyard "Remnant Salvage Ships"
