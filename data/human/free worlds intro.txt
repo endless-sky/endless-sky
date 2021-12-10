@@ -1215,9 +1215,12 @@ mission "FW Katya 7B"
 			`	Eyes says, "Mining world. Dusty atmosphere. Frequent meteorite impacts. You could set off a nuke on the far side of that world and the miners would probably sleep right through it."`
 			choice
 				`	"Okay, I'll take you to this one last world, and then we're done."`
-					accept
+					goto thanks
 				`	"Sorry, 'one more world' is what you said two planets ago. I'm done with this."`
 					decline
+			label thanks
+			`	"I promise it will be the last one," says Katya.`
+				accept
 	on visit
 		dialog `You land on <planet>, but you realize that Katya and Mr. Eyes are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
