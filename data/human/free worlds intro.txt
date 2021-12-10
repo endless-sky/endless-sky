@@ -1168,9 +1168,12 @@ mission "FW Katya 7"
 			`	Katya says, "So then we wondered, what sort of world would you go to if you wanted rumblings in the ocean to go unnoticed? Either an unpopulated one, or one with lots of meteorite activity. And that leads us to... Deep." She points out the system on your map. "Mild tidal surges on almost a weekly basis, due to impacts from all the asteroids in system. Perfect place to hide an undersea explosion."`
 			choice
 				`	"Sounds like a good possibility. Let's give it a try!"`
-					accept
+					goto thanks
 				`	"Sorry, I've got some other missions I need to run instead of continuing this wild goose chase."`
 					decline
+			label thanks
+			`	"I appreciate your help, Captain <last>," says Katya.`
+				accept			
 	on visit
 		dialog `You land on <planet>, but you realize that Katya and Mr. Eyes are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
