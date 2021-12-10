@@ -1749,7 +1749,7 @@ event "wanderers: kor sestor are aimless"
 	"unvisit planet" "Varu K'prai"
 	government "Navy (Oathkeeper)"
 		"attitude toward"
-			"Kor Sestor" -.5
+			"Kor Sestor" -.1
 
 mission "Wanderers: Sestor Search"
 	landing
