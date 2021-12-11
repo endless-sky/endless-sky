@@ -10,9 +10,6 @@
 
 
 
-#log "People" "Sha-Ri" `An unfettered elder worried for his poeple, inside Hai or unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he has a lot of influence.`
-#`"I am Sha-Ri."	He does a little reverence which you try to imitate, apparentely badly, amusing him slightly.`"""
-
 mission "Unfettered: Solifuge 1: Geocoris Design"
 	name `Scan the Geocoris`
 	description `Scan the outfits of the Hai Geocoris in Ya Hai, then return to <destination> with the scanner logs.`
@@ -81,7 +78,33 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 
 
 
-mission "Unfettered: Solifuge 2: Carrier Design"
+ship "Auxiliary" "Auxiliary (Alpha)"
+	sprite "ship/auxiliaryc"
+	thumbnail "thumbnail/auxiliaryc"
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Korath Disruptor"
+		"Korath Slicer Turret"
+		"Chameleon Anti-Missile" 2
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 3
+		"Wanderer Ramscoop"
+		"Laser Rifle" 138
+		
+		`"Buaffer" Atomic Thruster`
+		"Steering (Stellar Class)"
+		"Jump Drive"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	turret "Chameleon Anti-Missile"
+	turret "Korath Disruptor"
+	turret "Korath Slicer Turret"
+	turret "Chameleon Anti-Missile"
+
+mission "Unfettered: Solifuge 2: Auxiliary Design"
 	name `Scan the human ship`
 	description `Scan the outfits of the human ship in Hi Yahr by <data> and then come back to <destination> with the logs.`
 	deadline 6
@@ -89,7 +112,7 @@ mission "Unfettered: Solifuge 2: Carrier Design"
 	waypoint "Hi Yahr"
 	to offer
 		has "Unfettered: Solifuge 1: Geocoris Design: done"
-		has "Unfettered: Jump Drive 4: offered"
+		has "Unfettered: Jump Drive 3: offered"
 		not "Wanderers: Jump Drive Source: active"
 	to fail
 		has "Wanderers: Jump Drive Source: done"
@@ -121,25 +144,24 @@ mission "Unfettered: Solifuge 2: Carrier Design"
 		government "Alpha"
 		personality timid staying target
 		system "Hi Yahr"
-		
 		fleet
-			outfits "Jump Drive"
+			outfits "Jump Drive" 10
 			variant
-				"Carrier (Alpha)" "GiftBringer"
-		dialog `You have finished scanning the Carrier. You may now return to <destination> with the scanner logs.`
+				"Auxiliary (Alpha)" "Settler"
+		dialog `You have finished scanning the Auxiliary. You may now return to <destination> with the scanner logs.`
 	
 	on visit
 		dialog `You have not finished scanning the human ship in Hi Yahr yet, quickly go to Hi Yahr to scan it !`
 	on fail
 		dialog "You have failed an essential unfettered mission. You may want to reload."
-		# set flag alpha carrier down
 	on complete
 		payment 300000
 		log `Scanned a navy carrier for the unfettered, I wonder what it was doing so far from Republic space, and with alien technology.`
 		dialog
 			`You send your logs as you land and receive a very generous payment of <payment>, with a request to meet with the elders on Darkcloak. You decide to go to the spaceport to gather your thoughts about all of this...`
 		conversation
-			`You are thinking about how to present the matter to the elders when you hear a voice from the com.	"Oh you are back, good !" You are a bit surprised of the intervention but quickly recognize Taer-Fi. "Can I speak to you before you bring the results to the council ? I am really intrigued as to how that carrier could work, and you probably want to wait for the tension to calm down a bit before entering the discussion anyway."`
+	#REWORK FOR AUXILIARY
+			`You are thinking about how to present the matter to the elders when you hear a voice from the com.	"Oh you are back, good !" You are a bit surprised of the intervention but quickly recognize Taer-Fi. "Can I speak to you before you bring the results to the council ? I am really intrigued as to how that auxiliary could work, and you probably want to wait for the tension to calm down a bit before entering the discussion anyway."`
 			choice
 				`	"I really want to go speak to the council right now, maybe another time."`
 					goto hurry
@@ -190,28 +212,30 @@ mission "Unfettered: Solifuge 3: Carrier Discussion"
 					decline
 			`Some of the council members are whispering, tension is becoming palpable.	"Very well I am willing to trust you, but first you most bring us proof of such accusations."`
 			choice
-				`	"I will go to get data on the alpha wars."`
+				`	"I will go to get data on the Alpha wars."`
 					accept
 				`	"I do not know how to get access to such data, and maybe it is better for you not to make an ennemy of the Alphas."`
 					decline
 				`	"Anyone who does not shoot alphas on sight is my ennemy. Do not ever contact me again."`
 					decline
-					set "Alpha bias" 1
+					apply
+						set "Alpha bias" ++
 	on stopover
-		dialog `You ask them for a record of everything related to the alpha wars and they seem more than happy to comply.`
+		dialog `You ask them for a record of everything related to the Alpha wars and they seem more than happy to comply.`
 	on visit
-		dialog `You landed but you have not gotten the record of the alpha wars. Come back when you have them, it will probably be available on Earth.`
+		dialog `You landed but you have not gotten the record of the Alpha wars. Come back when you have them, it will probably be available on Earth.`
 	on complete
 		log `Showed proof to the unfettered of the Alpha attrocities.`
-			
 
-# it seems like the jump drives are moved to that ship, board it and recover them
+
+
 mission "Unfettered: Solifuge 4A: Alpha Jump Drives"
 	name `Steal Alpha jump drives`
-	description `Go to the alpha hidden depot and steal the jump drives, and then bring them to Darkcloak.`
+	description `Go to the alpha hidden depot and steal the jump drives. Then bring them back to Darkcloak.`
 	source "Darkcloak"
-	waypoint "Hope"
-	cargo 200
+	destination "Hope"
+	cargo "(reserved)" 200
+	blocked `You will need 200 cargo space for the next unfettered mission.`
 	to offer
 		has "Unfettered: Solifuge 3: Carrier Discussion: done"
 	to fail
@@ -223,67 +247,59 @@ mission "Unfettered: Solifuge 4A: Alpha Jump Drives"
 			`All discussion seems to stop as you arrive, they apparently noticed the logs you are carrying. "Finally, Captain <last>, you arrive right on time, we were discussing if the alphas could betray us. That is why our warlords are also present, any tactical expertise is sound. It does not seem they have too strong of a military power though, especially considering they seem to have some sworn ennemies..."	The council debates on what he just said, you are amazed by how calm they are staying during all of this, not one of them has gotten up or risen his fist. Except for the younger ones, that is.`
 			choice
 				`	"I have brought you the records I promised."`
-				`	"Actually nevermind I do not think you should be ennemy to the alphas."`	
+				`	"Actually nevermind I do not think you should be ennemy to the alphas."`
 					goto cancel
-			`"We were prepared for that possibility, but wanted to make sure ourselves"`
+			`"We were prepared for that possibility, but wanted to make sure ourselves. There was some interesting information in your scanner logs, we know of the location of their base, far north east, after the territory of the automated murder machines."`
+			choice
+				`	"I will go and recover all jump drives, one way or the other."`	
+					accept
+				`	"Actually nevermind I do not think you should be ennemy to the alphas."`
 			label cancel
 			`He thinks a bit, when he speaks it seems like the others are in agreement. "Well you do seem to know a lot about these alphas, so we will do as you say, better to avoid too many ennemies, especially with what is coming..."`
 				decline
-			#there was some interesting information in your scanner logs, we know of the location of their base, far north east, after the territory of the automated murder machines.
-	on stopover
-		dialog `It seems the Unfettered were not lying about there being an alpha depos here, you find 10 jump drives !`
 	on visit
 		dialog `You landed but you have not gotten the Alpha's jump drives yet. Come back when you have them.`
-	on complete
-		log `Stole jump drives from the Alphas.`
+	on fail
+		dialog "You have failed an essential unfettered mission. You may want to reload."
 
 
 
-# make the amount random
-mission "Unfettered: Silicon Asteroid Mining"
-	name `Gather silicon asteroids`
-	job
-	repeat
-	description `Mine and then collect 50 tons of Silicon from the asteroid field in Wah Yoot and then bring them back to the planet for <payment>.`
-	source "Darkcloak"
+mission "Unfettered: Solifuge 5A: Alpha Jump Drives"
+	invisible
+	name `Steal Alpha jump drives`
+	description `Go to the alpha hidden depot and steal the jump drives. Then bring them back to Darkcloak.`
+	source "Hope"
+	destination "Darkcloak"
 	to offer
-		has "First Contact: Unfettered: declined"
-		random < 70
+		has "Unfettered: Solifuge 4A: Alpha Jump Drives: active"
+	dialog `It seems like their supply ship is in the system, disable it and claim the jump drives for yourself !`
+	npc board
+		government "Alpha"
+		system "Host"
+		personality heroic nemesis staying vindictive target
+		ship "Auxiliary (Alpha)" "Settler"
+		dialog `You have managed to disable their ship, and taken the 10 jump drives, now you may destroy it if you want.`
+		"outfit" "jump drive" 10
+	npc
+		government "Alpha"
+		system "Host"
+		personality heroic nemesis staying vindictive
+		ship "Far Osk 27" "Prancer"
+		ship "Far Osk 27" "Vixen"
+		ship "Far Lek 14" "Cupid"
+		ship "Far Lek 14" "Comet"
+	
+	on fail
+		dialog "You have failed an essential unfettered mission. You may want to reload."
 	on complete
-		payment 250000
-		dialog `The Unfettered seem happy. "This will allow us to repair our ships !" They hand you <payment> credits.`
-		outfit "Silicon" -50
+		log `Stole jump drives from the an Alpha auxiliary.`
+		"outfit" "jump drive" -10
 
-
-# scripted version of this one for friend
-mission "Unfettered Medicals"
-	name "Hai medicals to <planet>"
-	job
-	repeat
-	deadline 20
-	description "The Unfettered hospitals on Darkcloak are in urgent need of resupply. Collect a supply of <tons> of medicals from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>."
-	to offer
-		has "Unfettered Jump Drive 1: offered"
-		random < 80
-	cargo "medicals" 15 2 .05
-	source "Darkcloak"
-	stopover
-		distance 5 7
-		attributes "hai"
-		attributes "spaceport"
-	on visit
-		dialog phrase "generic cargo on visit"
-	on stopover
-		dialog phrase `You are surprised to see the Hai are more than happy to give you the medical supplies needed. "Tell our brothers are sisters to stay strong,"	they say to you.`
-	on complete
-		payment 10000 3000
-		dialog `The local health specialists seems relieved to learn that you have managed to bring the medical supplies back in time.`
 
 #not "Alpha Bias"
-#mission to get the alpha's jump drive if you do the unfets side with you, you can also accept the fact they have deals with the alphas
+#mission to get the alpha's jump drive if you do the unfets side with you, you can also accept the fact they have deals with the alphas, they have a navy auxiliary fitted for full cargo carying their supplies, and most importantly their precious jd
 #.we downloaded those from your ship as soon as you arrived in orbit, knowing you would not mind. We have seen enough to come to an accord : we will not do any other agreements with the alphas, other than accepting their jump drives"`
 
-# why do they fight all the time
 """
 -Also they will have questions about the carriers of the republic, caus they saw the gift bringer (wont tell u why though) do a detailed scan of that carrier when it comes to bring jd (conversation+they will turn hostile?)
 
