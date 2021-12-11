@@ -221,7 +221,14 @@ mission "Unfettered: Prove your strength 3"
 	invisible
 	on offer
 		conversation
-			`Following the advice of the Hai, you park your ship close to the hidden depot in case something goes wrong, and then follow the Hai outside. Before exiting, he warns you,	"Do not try anything stupid, and stay behind me."	He seems worried and keeps looking around, without making a sound.`
+			`Following the advice of the Hai, you park your ship close to the hidden depot in case something goes wrong, and then follow the Hai outside.`
+			choice
+				`	"Who made this vault, what should I expect ?"`
+				`	(No time for talking.)`
+					goto outside
+			`	"As you know once in the past, our ancestors had a great empire. This vault was a part of that empire, and is well protected, so there could not be too big of a fight ahead,"	he assures you.	He is fully armoured, so as long as you stay with him, everything should be fine.`			
+			label outside
+			`Before exiting, he warns you,	"Do not try anything stupid, and stay behind me."	He seems worried and keeps looking around, without making a sound.`
 			choice
 				`	"Is everything alright ?"`
 				`	"There is no need to be worried, that cache is well hidden."`
@@ -237,7 +244,7 @@ mission "Unfettered: Prove your strength 3"
 			`As you reach for the door the Hai cries something, probably trying to warn you, but it is too late. You have already triggered the security systems, and are ripped to shreds by the turrets.`
 				die
 			label stay
-			`The Hai reaches for something in his pocket, resembling a command device, and enters what you assume to be the access codes. It does not seem to be working very well by the look on his face...	"Someone else has had access to the vault, this was not expected."	His grip on his weapon tightens, and he equips his helmet, he is now in full armour.	"Stay here, I will take care of it," he says.`
+			`The Hai reaches for something in his pocket, resembling a command device, and enters what you assume to be the access codes. It does not seem to be working very well by the look on his face...	"Someone else has had access to the vault, this was not expected,"	he says. His grip on his weapon tightens, and he equips his helmet, he is now in full armour.	"Stay here, I will take care of it," he says.`
 			choice
 				`	"I will not cower away while you do all the heavy lifting. I am coming with you."`
 					goto fight
