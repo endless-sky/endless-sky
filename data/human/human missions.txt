@@ -3696,4 +3696,3 @@ mission "Kindred Spirit"
 			action
 				payment -100
 			label notachance
-			
