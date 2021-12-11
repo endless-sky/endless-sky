@@ -3609,9 +3609,9 @@ mission "Kindred Spirit"
 		government "Republic"
 	destination
 		government "Syndicate"
-	#to offer
-		#random < 35
-		#credits <= 10000
+	to offer
+		random < 30
+		credits <= 10000
 	npc save
 		government "Merchant"
 		personality timid escort
@@ -3679,14 +3679,14 @@ mission "Kindred Spirit"
 			`	"Oh, that's too bad...well, have a good day!"`
 				decline
 			label helpfuldecline
-			`	"Oh, that's too bad...well, thanks anyway! I'm Charlie, by the way. Maybe we'll see each other around sometime!"`
+			`	"Oh, that's too bad...well, thanks anyway!"`
 				decline
 
 	on complete
 		conversation
 			`Charlie approaches you from his Sparrow after landing. "Well, that was fun." he says. "Thanks for the directions! ...I don't suppose you'll pay me for successfully escorting you?"`
 			choice
-				`	"Sure, why not." Pay 100 credits.`
+				`	"Sure, why not." (Pay 100 credits.)`
 					goto whynot
 				`	"Don't push your luck, kid."`
 			`	"Okay, sounds good," he laughs. " Hope to see you around sometime!"`
@@ -3696,3 +3696,66 @@ mission "Kindred Spirit"
 			action
 				payment -100
 			label notachance
+
+mission "Kindred Spirit 2"
+	name "Charlie's Delivery"
+	description "Help Charlie deliver 120 tons of industrial materials to <planet> by <date>. Payment will be <payment>."
+	deadline
+	cargo "Industrial Materials" 120
+	source 
+		government "Republic" "Syndicate"
+		#attributes "factory"
+	destination
+		attributes "research"
+		distance 5 12
+	#to offer
+		#has "Kindred Spirit: done"
+		#random <10
+		#credits >= 300000
+	npc accompany save
+		government "Merchant"
+		personality timid escort
+		ship "Quicksilver" "Timiria the Swift"
+		ship "Freighter" "Sunset Mist"
+		ship "Freighter" "Star of Light"
+	npc
+		government "Pirate"
+		personality entering plunders
+		ship "Sparrow" "Bloodletter"
+		ship "Fury" "Hand of Fate"
+	on offer
+		conversation
+			`	A familiar face catches your eye in the spaceport. "Oh, <first>!" Charlie calls. "It's great to see you! How's it going?" He sizes up your ship. "It looks like you've done well for yourself since we last met."`
+			choice
+				`	"I'm doing well, Charlie. How about you?"`
+					goto continue
+				`	"Now is not a good time. Sorry."`
+			`	"Before you leave," he says, "I'm in a bind right now. One of my ships crapped out, and I need help completing a contract. I can pay you this time," he adds quickly.`
+			choice
+				`	"That sounds rough. How can I help?"`
+					goto goodfriend
+				`	"How much payment are we talking?"`
+					goto details
+				`	"You need to start takng care of yourself, Charlie."`
+					decline
+			label continue
+			`	"Well," he laughs quickly, "Funny you should ask. See, I recently got this big job hauling industrial cargo, right? But one of my freighter's engines crapped out. The deadline is <date>, and I'm really in a jam unless I find someone to help me. Here, I can offer you half my payment. That'll be <payment>."`
+			choice
+				`	"Anything for a friend in need."`
+					goto goodfriend
+				`	"You need to start taking care of yourself, Charlie."`
+					decline
+			label details
+			`	"I can give you half my payment. That'll total <payment>."`
+			choice
+				`	"That sounds good to me!"`
+					goto goodfriend
+				`	"Hm. Sorry, but I think I can make more working alone."`
+					decline
+			label goodfriend
+			`	"Great! I'll have the cargo moved onto your ship." As the porters shift the cargo, he gives you a side hug and says, "Thanks. You're a good friend." `
+			`	Once everything is loaded, he tells you, "By the way, the cargo's also very valuable, so we might attract some attention along the way." Before you can respond, he jumps into his ship.`
+					accept
+	on complete
+		payment 8000
+	
