@@ -182,6 +182,25 @@ government "Hai (Unfettered)"
 	"hostile hail" "hostile unfettered"
 	"hostile disabled hail" "hostile disabled unfettered"
 
+government "Hai (Unfettered Challenge)"
+	swizzle 4
+	color .69 .33 .82
+	
+	"player reputation" -1000
+	"attitude toward"
+		"Hai" -.01
+		"Hai (Wormhole Access)" -.01
+		"Wanderer" -.01
+		"Pug" -.01
+		"Pug (Wanderer)" -.01
+		"Merchant" -.01
+		"Kor Efret" -.01
+	"bribe" .0001
+	"fine" 0
+	"friendly hail" "friendly unfettered"
+	"friendly disabled hail" "friendly disabled unfettered"
+	"hostile hail" "hostile civilian"  # normally unfettered asks to finish them off
+
 government "Heliarch"
 	swizzle 0
 	color 1 .8 .5
