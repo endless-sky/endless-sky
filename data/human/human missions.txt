@@ -3603,35 +3603,25 @@ mission "Mafia Extortion"
 				accept
 
 mission "Kindred Spirit"
-	name "Escort Charles to <planet>"
+	name "Escort Charlie to <planet>"
 	description "Travel alongside a young pilot to <destination>."
 	source
 		government "Republic"
 	destination
 		government "Syndicate"
 	#to offer
-		#or
-			#has "ships: Interceptor"
-			#has "ships: Drone"
-			#has "ships: Fighter"
-			#has "ships: Light Warship"
-			#has "ships: Medium Warship"
-			#has "ships: Heavy Warship"
+		#random < 35
+		#credits <= 10000
 	npc save
-		government Merchant
+		government "Merchant"
 		personality timid escort
 		ship "Sparrow" "Timax the Conquerer"
-	#npc
-		# government Pirate
-		# personality entering plunders
-		# ship "Sparrow" "Bloodletter"
-		# ship "Fury" "Hand of Fate"
 	
 	on offer
 		conversation
-			`A young pilot approaches you. "Hey, you look like you know what you're doing. Do you know how to get to <destination>?"`
+			`A young pilot approaches you. "Hey, you look like you know what you're doing. Do you know how to get to a planet called <planet>?"`
 			choice
-				`	"Uh, yes?"`
+				`	"Yeah, would you like some directions?"`
 					goto knowledgeable
 				`	"No. But there are these really cool things called maps..."`
 					goto knowledgeable
@@ -3642,45 +3632,59 @@ mission "Kindred Spirit"
 					goto sure
 				`	"Sorry, I'm busy right now."`
 					goto unhelpfuldecline
+				`	"What are you worried about? Pirates?"`
+					goto pirates
 			label knowledgeable
-			`	You help him locate <destination> on his map. "Cool, thank you so much!" he says. "I don't suppose you're traveling that direction, are you? We could go together."`
+			`	You help him locate <destination> on his map. "Cool, thank you so much!" he says. "I don't suppose you're traveling that way, are you? We could go together."`
 			choice
-				`	"I'm sorry, I'm pretty busy right now."`
-					goto helpfuldecline
 				`	"Sure, I could make that work."`
 					goto sure
 				`	"What are you worried about? Pirates?"`
-			`	"Yeah," he admits. "I grew up on Heartland in Cor Caroli. My parents used to be farmers, but now they have to work in factories like everyone else. They told me stories about evil pirates in space to keep me from wanting to leave. I'd hate to prove them right about that. I only left Heartland last week."`
+					goto pirates
+				`	"I'm sorry, I'm pretty busy right now."`
+					goto helpfuldecline	
+			label pirates
+			`	"Yeah," he admits. "I grew up on Heartland in Cor Caroli. My parents used to be farmers, but now they have to work in factories like everyone else. They told me stories about evil pirates in space to keep me on the planet. I'd hate to prove them right about that. I only left Heartland last week."`
 			choice
 				`	"Um...okay."`
 					goto movingon
 				`	"Well, how are you enjoying space so far?"`
-			`	His eyes light up. "Oh, it's so much fun! There's lots of work, but so much to do at the same time. I'm trying to save up for a freighter ship, but I don't know which ones I want...I've heard the heavy ones are better at surviving pirates, but the light ones give you more storage for your buck."`
-				goto movingon
-			label movingon
-			`	"Ah, sorry for going on about all that. Anyway, do you want to come with to <destination>?"`
+					goto friendly
+				`	"Are you saying you ran away? Your parents are probably worried."`
+			`	He frowns defensively. "I left them a note. It's not like I just disappeared, I wouldn't do that. But...you're probably right. I'll send something to them soon."`
+			`	"Anyway, I would appreciate some company," he continues. "Do you want to come with?"`
 			choice
-				`	"Sorry, I really am busy right now."`
-					goto helpfuldecline
 				`	"Sure, let's do it."`
 					goto sure
-			label sure
-			`	"Okay, heck yeah! I'll hang around here until you're ready to depart. My name is Charles, by the way."`
+				`	"Sorry, I really am busy right now."`
+					goto helpfuldecline		
+			label friendly
+			`	His eyes light up. "Oh, it's so much fun! There's lots of work, but so much else to do at the same time. I'm trying to save up for a freighter ship, but I don't know which ones I want...I've heard the heavy ones are better at surviving pirates, but the light ones give you more storage for your buck."`
+				goto movingon
+			label movingon
+			`	"Ah, sorry for going on about all that. Anyway, do you want to come with me?"`
 			choice
-				`	"Nice to meet you, Charles. I'm <first>."`
+				`	"Sure, let's do it."`
+					goto sure
+				`	"Sorry, I really am busy right now."`
+					goto helpfuldecline	
+			label sure
+			`	"Okay, heck yeah! I'll hang around here until you're ready to depart. My name is Charlie, by the way."`
+			choice
+				`	"Nice to meet you, Charlie. I'm <first>."`
 					accept
-				`	Walk away.`
+				`	(Walk away.)`
 					accept
 			label unhelpfuldecline
 			`	"Oh, that's too bad...well, have a good day!"`
 				decline
 			label helpfuldecline
-			`	"Oh, that's too bad...well, thanks for the help! Maybe I'll see you around sometime!"`
+			`	"Oh, that's too bad...well, thanks anyway! I'm Charlie, by the way. Maybe we'll see each other around sometime!"`
 				decline
 
 	on complete
 		conversation
-			`Charles approaches you from his Sparrow after landing. "Well, that was fun." he says. "Thanks for the directions! ...I don't suppose you'll pay me for successfully escorting you?"`
+			`Charlie approaches you from his Sparrow after landing. "Well, that was fun." he says. "Thanks for the directions! ...I don't suppose you'll pay me for successfully escorting you?"`
 			choice
 				`	"Sure, why not." Pay 100 credits.`
 					goto whynot
