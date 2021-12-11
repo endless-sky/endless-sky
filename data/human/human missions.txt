@@ -3701,7 +3701,7 @@ mission "Kindred Spirit 2"
 	name "Charlie's Delivery"
 	description "Help Charlie deliver 120 tons of industrial materials to <planet> by <date>. Payment will be <payment>."
 	deadline
-	cargo "Industrial Materials" 120
+	#cargo "Industrial Materials" 120
 	source 
 		government "Republic" "Syndicate"
 		#attributes "factory"
@@ -3725,7 +3725,7 @@ mission "Kindred Spirit 2"
 		ship "Fury" "Hand of Fate"
 	on offer
 		conversation
-			`	A familiar face catches your eye in the spaceport. "Oh, <first>!" Charlie calls. "It's great to see you! How's it going?" He sizes up your ship. "It looks like you've done well for yourself since we last met."`
+			`	A familiar face catches your eye in the spaceport. "Hey, <first>!" Charlie calls. "It's great to see you! How's it going?" Sizing up your ship, he says, "It looks like you've done well for yourself since we last met."`
 			choice
 				`	"I'm doing well, Charlie. How about you?"`
 					goto continue
@@ -3746,16 +3746,21 @@ mission "Kindred Spirit 2"
 				`	"You need to start taking care of yourself, Charlie."`
 					decline
 			label details
-			`	"I can give you half my payment. That'll total <payment>."`
+			`	"I can give you half my payment. That'll total 7000 units."`
 			choice
 				`	"That sounds good to me!"`
 					goto goodfriend
 				`	"Hm. Sorry, but I think I can make more working alone."`
 					decline
 			label goodfriend
-			`	"Great! I'll have the cargo moved onto your ship." As the porters shift the cargo, he gives you a side hug and says, "Thanks. You're a good friend." `
+			`	"Great! I'll have the cargo moved onto your ship." As porters shift the cargo, he gives you a hug from the side and says, "Thanks. You've been a good friend."`
 			`	Once everything is loaded, he tells you, "By the way, the cargo's also very valuable, so we might attract some attention along the way." Before you can respond, he jumps into his ship.`
 					accept
 	on complete
-		payment 8000
+		payment 10000
+		conversation
+			`	When you land, Charlie pulls you aside. "Sorry for pulling you into this," he says, handing you the payment. "I threw in a bit extra, since we got attacked and all. Thanks for saving my hide." He looks blankly into the distance for a moment.`
+			choice
+				`	"No worries. What else are friends for?"`
+				`	"Thanks. But you'll want to be more careful in the future."`
 	
