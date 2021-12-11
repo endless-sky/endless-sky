@@ -191,7 +191,7 @@ void Outfit::Load(const DataNode &node)
 					if(isNewLicense(licenses, *it))
 						licenses.push_back(*it);
 			}
-			// Add any new licenses that were specifed as an indented list.
+			// Add any new licenses that were specified as an indented list.
 			for(const DataNode &grand : child)
 				if(isNewLicense(licenses, grand.Token(0)))
 					licenses.push_back(grand.Token(0));

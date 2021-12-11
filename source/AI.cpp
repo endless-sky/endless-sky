@@ -41,7 +41,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	// If the player issues any of those commands, then any auto-pilot actions for the player get cancelled
+	// If the player issues any of those commands, then any auto-pilot actions for the player get canceled
 	const Command &AutopilotCancelCommands()
 	{
 		static const Command cancelers(Command::LAND | Command::JUMP | Command::BOARD | Command::AFTERBURNER
@@ -142,7 +142,7 @@ namespace {
 			toRecall.reserve(maxCount);
 		}
 		
-		// First, check if the player selected any carreid ships.
+		// First, check if the player selected any carried ships.
 		for(const weak_ptr<Ship> &it : player.SelectedShips())
 		{
 			shared_ptr<Ship> ship = it.lock();
@@ -1171,19 +1171,19 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		double range = (foe->Position() + 60. * foe->Velocity()).Distance(
 			ship.Position() + 60. * ship.Velocity());
 		// Prefer the previous target, or the parent's target, if they are nearby.
-		if(foe == oldTarget || foe == parentTarget)
+		if(foe == oldTarget.get() || foe == parentTarget.get())
 			range -= 500.;
 		
 		// Unless this ship is "heroic", it should not chase much stronger ships.
 		if(maxStrength && range > 1000. && !foe->IsDisabled())
 		{
-			const auto otherStrengthIt = shipStrength.find(foe.get());
+			const auto otherStrengthIt = shipStrength.find(foe);
 			if(otherStrengthIt != shipStrength.end() && otherStrengthIt->second > maxStrength)
 				continue;
 		}
 		
 		// Ships which only disable never target already-disabled ships.
-		if((person.Disables() || (!person.IsNemesis() && foe != oldTarget))
+		if((person.Disables() || (!person.IsNemesis() && foe != oldTarget.get()))
 				&& foe->IsDisabled() && !canPlunder)
 			continue;
 		
@@ -1192,7 +1192,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			range += 5000. * foe->IsDisabled();
 		// While those that do, do so only if no "live" enemies are nearby.
 		else
-			range += 2000. * (2 * foe->IsDisabled() - !Has(ship, foe, ShipEvent::BOARD));
+			range += 2000. * (2 * foe->IsDisabled() - !Has(ship, foe->shared_from_this(), ShipEvent::BOARD));
 		
 		// Prefer to go after armed targets, especially if you're not a pirate.
 		range += 1000. * (!IsArmed(*foe) * (1 + !person.Plunders()));
@@ -1206,7 +1206,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		if((isPotentialNemesis && !hasNemesis) || range < closest)
 		{
 			closest = range;
-			target = foe;
+			target = foe->shared_from_this();
 			isDisabled = foe->IsDisabled();
 			hasNemesis = isPotentialNemesis;
 		}
@@ -1225,16 +1225,17 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			for(const auto &it : allies)
 				if(it->GetGovernment() != gov)
 				{
+					auto ptr = it->shared_from_this();
 					// Scan friendly ships that are as-yet unscanned by this ship's government.
-					if((!cargoScan || Has(gov, it, ShipEvent::SCAN_CARGO))
-							&& (!outfitScan || Has(gov, it, ShipEvent::SCAN_OUTFITS)))
+					if((!cargoScan || Has(gov, ptr, ShipEvent::SCAN_CARGO))
+							&& (!outfitScan || Has(gov, ptr, ShipEvent::SCAN_OUTFITS)))
 						continue;
 					
 					double range = it->Position().Distance(ship.Position());
 					if(range < closest)
 					{
 						closest = range;
-						target = it;
+						target = std::move(ptr);
 					}
 				}
 		}
@@ -1278,12 +1279,12 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 // Return a list of all targetable ships in the same system as the player that
 // match the desired hostility (i.e. enemy or non-enemy). Does not consider the
 // ship's current target, as its inclusion may or may not be desired.
-vector<shared_ptr<Ship>> AI::GetShipsList(const Ship &ship, bool targetEnemies, double maxRange) const
+vector<Ship *> AI::GetShipsList(const Ship &ship, bool targetEnemies, double maxRange) const
 {
 	if(maxRange < 0.)
 		maxRange = numeric_limits<double>::infinity();
 	
-	auto targets = vector<shared_ptr<Ship>>();
+	auto targets = vector<Ship *>();
 	
 	// The cached lists are built each step based on the current ships in the player's system.
 	const auto &rosters = targetEnemies ? enemyLists : allyLists;
@@ -2238,14 +2239,14 @@ void AI::DoSwarming(Ship &ship, Command &command, shared_ptr<Ship> &target)
 		int lowestCount = 7;
 		// Consider swarming around non-hostile ships in the same system.
 		const auto others = GetShipsList(ship, false);
-		for(const shared_ptr<Ship> &other : others)
+		for(auto *other : others)
 			if(!other->GetPersonality().IsSwarming())
 			{
 				// Prefer to swarm ships that are not already being heavily swarmed.
-				int count = swarmCount[other.get()] + Random::Int(4);
+				int count = swarmCount[other] + Random::Int(4);
 				if(count < lowestCount)
 				{
-					target = other;
+					target = other->shared_from_this();
 					lowestCount = count;
 				}
 			}
@@ -2324,7 +2325,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		const Government *gov = ship.GetGovernment();
 		
 		// Consider scanning any non-hostile ship in this system that you haven't yet personally scanned.
-		vector<shared_ptr<Ship>> targetShips;
+		vector<Ship *> targetShips;
 		bool cargoScan = ship.Attributes().Get("cargo scan power");
 		bool outfitScan = ship.Attributes().Get("outfit scan power");
 		if(cargoScan || outfitScan)
@@ -2332,10 +2333,11 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 			{
 				if(gov == grit.first || gov->IsEnemy(grit.first))
 					continue;
-				for(const shared_ptr<Ship> &it : grit.second)
+				for(const auto &it : grit.second)
 				{
-					if((!cargoScan || Has(ship, it, ShipEvent::SCAN_CARGO))
-							&& (!outfitScan || Has(ship, it, ShipEvent::SCAN_OUTFITS)))
+					auto ptr = it->shared_from_this();
+					if((!cargoScan || Has(ship, ptr, ShipEvent::SCAN_CARGO))
+							&& (!outfitScan || Has(ship, ptr, ShipEvent::SCAN_OUTFITS)))
 						continue;
 					
 					if(it->IsTargetable())
@@ -2370,7 +2372,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		
 		unsigned index = Random::Int(total);
 		if(index < targetShips.size())
-			ship.SetTargetShip(targetShips[index]);
+			ship.SetTargetShip(targetShips[index]->shared_from_this());
 		else
 		{
 			index -= targetShips.size();
@@ -2525,7 +2527,7 @@ bool AI::DoCloak(Ship &ship, Command &command)
 		// Otherwise, always cloak if you are in imminent danger.
 		static const double MAX_RANGE = 10000.;
 		double range = MAX_RANGE;
-		shared_ptr<const Ship> nearestEnemy;
+		const Ship *nearestEnemy = nullptr;
 		// Find the nearest targetable, in-system enemy that could attack this ship.
 		const auto enemies = GetShipsList(ship, true);
 		for(const auto &foe : enemies)
@@ -2734,7 +2736,7 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 		// at a targeted asteroid. Skip disabled ships, which pose no threat.
 		for(auto &&foe : enemies)
 			if(!foe->IsDisabled())
-				targets.emplace_back(foe.get());
+				targets.emplace_back(foe);
 		// Even if the ship's current target ship is beyond maxRange,
 		// or is already disabled, consider aiming at it.
 		if(currentTarget && currentTarget->IsTargetable()
@@ -2913,8 +2915,8 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 	// Consider the current target if it is not already considered (i.e. it
 	// is a friendly ship and this is a player ship ordered to attack it).
 	if(currentTarget && currentTarget->IsTargetable()
-			&& find(enemies.cbegin(), enemies.cend(), currentTarget) == enemies.cend())
-		enemies.push_back(currentTarget);
+			&& find(enemies.cbegin(), enemies.cend(), currentTarget.get()) == enemies.cend())
+		enemies.push_back(currentTarget.get());
 	
 	int index = -1;
 	for(const Hardpoint &hardpoint : ship.Weapons())
@@ -2997,7 +2999,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 		for(const auto &target : enemies)
 		{
 			// NPCs shoot ships that they just plundered.
-			bool hasBoarded = !ship.IsYours() && Has(ship, target, ShipEvent::BOARD);
+			bool hasBoarded = !ship.IsYours() && Has(ship, target->shared_from_this(), ShipEvent::BOARD);
 			if(target->IsDisabled() && (disables || (plunders && !hasBoarded)) && !disabledOverride)
 				continue;
 			
@@ -3677,7 +3679,7 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 	for(const auto &it : ships)
 		if(it->GetGovernment() && it->GetSystem() == playerSystem)
 		{
-			governmentRosters[it->GetGovernment()].emplace_back(it);
+			governmentRosters[it->GetGovernment()].emplace_back(it.get());
 			if(!it->IsDisabled())
 				strength[it->GetGovernment()] += it->Cost();
 		}
@@ -3738,9 +3740,9 @@ void AI::CacheShipLists()
 	enemyLists.clear();
 	for(const auto &git : governmentRosters)
 	{
-		allyLists.emplace(git.first, vector<shared_ptr<Ship>>());
+		allyLists.emplace(git.first, vector<Ship *>());
 		allyLists.at(git.first).reserve(ships.size());
-		enemyLists.emplace(git.first, vector<shared_ptr<Ship>>());
+		enemyLists.emplace(git.first, vector<Ship *>());
 		enemyLists.at(git.first).reserve(ships.size());
 		for(const auto &oit : governmentRosters)
 		{
