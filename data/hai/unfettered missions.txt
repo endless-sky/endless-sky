@@ -79,7 +79,55 @@ mission "Unfettered: Bring Hai"
 	on complete
 		payment 100000
 		log `Helped some Hai to join the unfettered.`
-		dialog `The Unfettered thank you for bringing these "soon True" Hai back, and give you <payment>.` #The Unfettered elder has left you a message, "If you want to help us again, the hospitals on Darkcloak are in grave need of resupply."`
+		dialog `The Unfettered thank you for bringing these "soon True" Hai back, and give you <payment>. After discussing with them, the Unfettered elder sends you a message, "If you want to help us again, the hospitals on Darkcloak are in grave need of resupply."`
+
+
+
+mission "Unfettered: Bring Medical Supplies"
+	landing
+	name "Bring medicals to <planet>"
+	deadline 8
+	description "The Unfettered hospitals on Darkcloak are in urgent need of resupply. Collect a supply of <tons> of medicals from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>."
+	source "Darkcloak"
+	blocked `You need 120 cargo space to carry the medicals supplies.`
+	cargo "medicals" 120
+	stopover "Snowfeather"
+	to offer
+		has "Unfettered: Bring Hai: done"
+	on offer
+		conversation
+			`The medical staff from the hospitals is emitting a distress message, asking all who can to bring back medical supplies from <stopovers>.	When landing on an Unfettered planet there always is some tension, even after you brougth them one jump drive. Here you feel the tension is stronger than usual, probably because of the medical emergency. They may not take no for an answer...`
+			choice
+				`	(Signal them I am going to get medical.)`
+					accept
+				`	(I do not have time for this.)`
+			`Hopefully it seems that everyone is too busy with the local problem to annoy you or press you into accepting this mission.`
+				decline
+	on visit
+		dialog phrase "generic cargo on visit"
+	on stopover
+		dialog `You are surprised to see the Hai are more than happy to give you the medical supplies needed. They load up the cargo and once they are done one of they adresses,	"Tell our brothers are sisters to stay strong, hopefully it is not too late."`
+	on complete
+		payment 1500000
+		conversation
+			`The local health specialists seems relieved to learn that you have managed to bring the medical supplies back in time. They give you the agreed <payment>.	You find the same Hai elder speaking with them, and he moves your way when he sees you. He seems a bit emotional when he speaks,	"I knew I could count on you ! Without these medical supplies a lot of Unfettered would have died, captain. We did not have the time to get properly introduced yet,I am Sha-Ri."	He does a little reverence which you try to imitate, apparentely badly, amusing him slightly.	"Worry not I already know who you are, <first> <last>."`
+			choice
+				`	"I only did what little I could do to help your people be saved. Hopefully I will be able to do more next time we meet."`
+					goto end
+				`	"Were these supplies for soldiers ?"`
+			`	"That is a very legitimate question but I do not view the Hai as "soldiers" or others, they are all Hai and they all deserve to be saved, and we do not designate supplies to help one kind of Hai before the others. Most got their wounds in battle, that is true, but the "soldiers" as you say need to be fit else we all suffer."`
+			choice
+				`	"Glad to have prevented a disaster then."`
+					goto end
+				`	"So you just tricked me into helping the war effort ?"`
+				`	"Do you mean all Unfettered are soldiers ?"`
+					goto soldier
+			`	"If you really most know, these supplies were used to prevent an outbreak or a disease on soldiers, that could have affected all of us. But if the soldiers are not fit to protect us, then civilians will suffer. The fettered Hai would not dare to kill us of course, but they would destroy our way of life, our spirits."`
+			label soldier
+			`	"Do I look like a soldier to you ? Does this medic look like one ? No, we Unfettered only dare to think in another way, in truth quite a few of us would like to be artists and it is a shame we have to fight for our right to live another way than the one the Hai allow, to break of the prison they have casted next to our systems !"`
+			label end
+		log "People" "Sha-Ri" `An unfettered elder worried for his poeple, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he probably has quite some influence.`
+
 
 
 
