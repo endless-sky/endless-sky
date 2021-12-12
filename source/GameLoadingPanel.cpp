@@ -30,8 +30,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "gl_header.h"
 
-using namespace std;
-
 
 
 GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, UI &gamePanels, bool &finishedLoading)
@@ -44,7 +42,7 @@ GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, UI &gamePanels, bool &fin
 
 void GameLoadingPanel::Step()
 {
-	progress = static_cast<int>(GameData::Progress() * 60.);
+	progress = static_cast<int>(GameData::GetProgress() * 60.);
 
 	// If the game isn't loaded yet, upload any images to the GPU.
 	GameData::ProcessSprites();

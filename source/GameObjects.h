@@ -99,7 +99,8 @@ public:
 	// This must be done any time that a change creates or moves a system.
 	void UpdateSystems();
 
-	double Progress() const;
+	// Determine the fraction of data files read from disk.
+	double GetProgress() const;
 
 	// Check for objects that are referred to but never defined.
 	void CheckReferences();

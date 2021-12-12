@@ -187,23 +187,23 @@ void GameData::LoadShaders(bool useShaderSwizzle)
 
 
 
-double GameData::Progress()
+double GameData::GetProgress()
 {
-	return min(min(spriteQueue.Progress(), Audio::GetProgress()), objects.Progress());
+	return min(min(spriteQueue.GetProgress(), Audio::GetProgress()), objects.GetProgress());
 }
 
 
 
 bool GameData::IsLoaded()
 {
-	return Progress() == 1.;
+	return GetProgress() == 1.;
 }
 
 
 
 bool GameData::IsDataLoaded()
 {
-	return objects.Progress() == 1.;
+	return objects.GetProgress() == 1.;
 }
 
 
@@ -262,6 +262,7 @@ void GameData::ProcessSprites()
 
 
 
+// Wait until all pending sprite uploads are completed.
 void GameData::FinishLoadingSprites()
 {
 	spriteQueue.Finish();

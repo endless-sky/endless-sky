@@ -74,7 +74,7 @@ future<void> GameObjects::Load(const vector<string> &sources, bool debugMode)
 
 	// We need to copy any variables used for loading to avoid a race condition.
 	// 'this' is not copied, so 'this' shouldn't be accessed after calling this
-	// function (except for calling Progress which is safe due to the atomic).
+	// function (except for calling GetProgress which is safe due to the atomic).
 	return async(launch::async, [this, sources, debugMode]
 		{
 			vector<string> files;
@@ -153,7 +153,7 @@ void GameObjects::UpdateSystems()
 
 
 
-double GameObjects::Progress() const
+double GameObjects::GetProgress() const
 {
 	return progress.load(memory_order_acquire);
 }

@@ -75,8 +75,8 @@ void SpriteQueue::Unload(const string &name)
 
 
 
-// Find out our percent completion.
-double SpriteQueue::Progress() const
+// Determine the fraction of sprites uploaded to the GPU.
+double SpriteQueue::GetProgress() const
 {
 	// Wait until we have completed loading of as many sprites as we have added.
 	// The value of "added" is protected by readMutex.
@@ -107,7 +107,7 @@ void SpriteQueue::Finish()
 		
 		// Load whatever is already queued up for loading.
 		DoLoad(lock);
-		if(Progress() == 1.)
+		if(GetProgress() == 1.)
 			break;
 		
 		// We still have sprites to upload, but none of them have been read from

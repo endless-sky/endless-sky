@@ -69,14 +69,16 @@ public:
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();
 	static void LoadShaders(bool useShaderSwizzle);
-	static double Progress();
+	static double GetProgress();
 	// Whether initial game loading is complete (data, sprites and audio are loaded).
 	static bool IsLoaded();
+	// Whether all text data has been read from disk.
 	static bool IsDataLoaded();
 	// Begin loading a sprite that was previously deferred. Currently this is
 	// done with all landscapes to speed up the program's startup.
 	static void Preload(const Sprite *sprite);
 	static void ProcessSprites();
+	// Wait until all pending sprite uploads are completed.
 	static void FinishLoadingSprites();
 	
 	// Get the list of resource sources (i.e. plugin folders).

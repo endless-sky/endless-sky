@@ -46,8 +46,8 @@ public:
 	void Add(const std::shared_ptr<ImageSet> &images);
 	// Unload the texture for the given sprite (to free up memory).
 	void Unload(const std::string &name);
-	// Upload more images and find out our percent completion.
-	double Progress() const;
+	// Determine the fraction of sprites uploaded to the GPU.
+	double GetProgress() const;
 	// Uploads any available sprites to the GPU.
 	void UploadSprites();
 	// Finish loading.
@@ -68,7 +68,7 @@ private:
 	std::condition_variable readCondition;
 	int added = 0;
 	
-	// These image sets have been loaded from disk but have not been uplodaed.
+	// These image sets have been loaded from disk but have not been uploaded.
 	std::queue<std::shared_ptr<ImageSet>> toLoad;
 	std::mutex loadMutex;
 	std::condition_variable loadCondition;
