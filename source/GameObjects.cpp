@@ -16,7 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "Files.h"
 #include "text/FontSet.h"
-#include "GameEvent.h"
 #include "ImageSet.h"
 #include "MaskManager.h"
 #include "Music.h"

@@ -16,13 +16,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "CategoryTypes.h"
 #include "Sale.h"
 #include "Set.h"
-#include "Trade.h"
 
 #include "Color.h"
 #include "Conversation.h"
 #include "Effect.h"
 #include "Fleet.h"
 #include "Galaxy.h"
+#include "GameEvent.h"
 #include "Government.h"
 #include "Hazard.h"
 #include "Interface.h"
@@ -39,6 +39,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Test.h"
 #include "TestData.h"
 #include "TextReplacements.h"
+#include "Trade.h"
 
 #include <future>
 #include <map>
