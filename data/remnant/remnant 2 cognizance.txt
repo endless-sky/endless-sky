@@ -864,7 +864,7 @@ mission "Remnant: Cognizance 21"
 				`	(Explore Ssil Vida.)`
 			apply explorationinterest += 1
 			`	You pick up some instruments, recording equipment, and wayfinding labels, then check the map tracking the other Remnant researchers. Picking an unexplored direction, you set off.`
-			`	The first few corridors are marked with labels indicating the direction that other explorers traveled. Picking an unmarked hallway, you put up a wayfinding label of your own, and set off along it. Almost immediately the sense of scale you noticed in the main room is reinforced, as you travel considerable distance between doorways. Glancing inside, you find room after room containing large platforms. Examining them, you find that each platform is lightly padded with several bars set into it along each side. At each end of the platform the surface has what you would guess to be storage lockers embedded in it. Based on your experience, you realize that these resemble storage platforms used to secure delicate cargo, but there is no indication of what that cargo might be.`
+			`	The first few corridors are marked with labels indicating the direction that other explorers traveled, and so you easily find your way into unexplored territory. As you explore the empty corridors, your early impressions of scale are reinforced by the massive doors and significant distances between them. Glancing inside, you find room after room containing large platforms. Each platform is lightly padded with several bars set into it along each side and what appears to be a storage locker set into it at the end. Based on your experience, you realize that these resemble storage platforms used to secure delicate cargo, but there is no indication of what that cargo might be.`
 			`	Further exploration reveals considerably more oversized rooms, including one with vast amounts of storage lockers and freezers. You note that the rooms you search appear to be fairly well organized, so you conclude that either whatever happened to this station did not cause a panic, or someone else cleaned up afterwards. After a few hours exploring you head back to the main area.`
 				goto wrapup
 			label scienceassistant
@@ -1017,10 +1017,10 @@ mission "Remnant: Cognizance 23"
 			label merganserintro
 			branch penguin
 				has "event: remnant: penguin"
-			`	"Captain <first>," she signs, "Please meet our first three Mergansers. I have been working on them for years now, and recent breakthroughs in our materials science have enabled significant progress in our ship designs." She pauses and gestures to one. Would you like to touch it?`
+			`	"Captain <first>," she signs, "Please meet our first three Mergansers. I have been working on them for years now, and recent breakthroughs in our materials science have enabled significant progress in our ship designs." She pauses and gestures to one. Would you like to touch them?`
 				goto touch
 			label penguin
-			`	"Captain <first>," she signs, "Please meet our first three Mergansers. I have been working on them for years now. In fact, the penguin that you helped me complete was an early prototype that was testing some of the techniques for these. With that and other recent breakthroughs in our materials science, significant progress in our ship designs has been made possible." She pauses and gestures to one. Would you like to touch it?`
+			`	"Captain <first>," she signs, "Please meet our first three Mergansers. I have been working on them for years now. In fact, the penguin that you helped me complete was an early prototype that was testing some of the techniques for these. With that and other recent breakthroughs in our materials science, significant progress in our ship designs has been made possible." She pauses and gestures to one. Would you like to touch them?`
 			label touch
 			choice
 				`	"No."`
@@ -1341,7 +1341,8 @@ mission "Remnant: Cognizance 29"
 		payment 250000
 		conversation
 			`Gavriil is waiting at the dock when the <ship>'s hatches finish cycling. "Welcome," he gestures. "It is good to have fresh minds to share Ssil Vida with." The Remnant onboard stream out of the ship in a rush, each carrying a heavy pack of equipment. They gesture respect, and head off in different directions. Evidently they have studied the maps prior to arrival, as they all seem to know where they are going. Several stay behind with Gavriil and help unload the rest of the equipment.`
-			`	"We have made good progress since you were here last. We have managed to take over control of life support systems in several wings of rooms, and now those are run entirely from our own systems. Aside from relieving a tiny amount of load from the station's power core, it also means that the station could fail completely and we would still have safe living quarters to serve as base of operations." He pauses, and is gestures take on a tone of disgust. "Of course, we are working to avoid that. But having multiple backup systems is the key to survival in hostile conditions."`
+			`	"We have made good progress since you were here last. We have managed to take over control of life support systems in several wings of rooms, and now those are run entirely from our own systems. Aside from relieving a tiny amount of load from the station's power core, it also means that the station could fail completely and we would still have safe living quarters to serve as base of operations."`
+			`	He pauses, and is gestures take on a tone of disgust. "Of course, we are working to avoid that. But having multiple backup systems is the key to survival in hostile conditions."`
 			`	He looks around at the few Remnant who have yet to vanish into the rest of the station. "Thank you for bringing more explorers." He hands you a datacrystal. "I have already transmitted this data to Viminal, but I would appreciate it if you could take this to them to ensure there are no errors or data corruption in the transmission.`
 
 
@@ -1365,7 +1366,7 @@ mission "Remnant: Cognizance 31"
 	description "Chilia has asked you to pick up a refined fuel from Clink by <date>."
 	deadline 19
 	cargo "Reserved" 58
-	illegal 0
+	illegal -1 "Your communication panel beeps insistently with a message that a scan has been detected, and thus the mission has been terminated."
 	stealth
 	infiltrating
 	source "Viminal"
