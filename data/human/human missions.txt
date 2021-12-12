@@ -3609,13 +3609,13 @@ mission "Kindred Spirit"
 		government "Republic"
 	destination
 		government "Syndicate"
-	to offer
-		random < 30
-		credits <= 10000
+	#to offer
+		#random < 15
+		#credits <= 10000
 	npc save
 		government "Merchant"
 		personality timid escort
-		ship "Sparrow" "Timax the Conquerer"
+		ship "Sparrow" "Timax the Tiger"
 	
 	on offer
 		conversation
@@ -3644,7 +3644,7 @@ mission "Kindred Spirit"
 				`	"I'm sorry, I'm pretty busy right now."`
 					goto helpfuldecline	
 			label pirates
-			`	"Yeah," he admits. "I grew up on Heartland in Cor Caroli. My parents used to be farmers, but now they have to work in factories like everyone else. They told me stories about evil pirates in space to keep me on the planet. I'd hate to prove them right about that. I only left Heartland last week."`
+			`	"Yeah," he admits. "I grew up on Heartland in Cor Caroli. My parents used to be farmers, but now they have to work in factories like everyone else. They told me stories about evil pirates in space to keep me from leaving the planet. I'd hate to prove them right about that. I only got my spaceship last week." His eyes shift guiltily sideways.`
 			choice
 				`	"Um...okay."`
 					goto movingon
@@ -3684,18 +3684,20 @@ mission "Kindred Spirit"
 
 	on complete
 		conversation
-			`Charlie approaches you from his Sparrow after landing. "Well, that was fun." he says. "Thanks for the directions! ...I don't suppose you'll pay me for successfully escorting you?"`
+			`Charlie approaches you from his Sparrow after landing. "Well, that was fun." he says. "Thanks for the directions! ...I don't suppose you'll pay me for successfully escorting you here?"`
 			choice
+				`	"Don't push your luck, kid."`
+					goto nope
 				`	"Sure, why not." (Pay 100 credits.)`
 					goto whynot
-				`	"Don't push your luck, kid."`
+			label nope
 			`	"Okay, sounds good," he laughs. " Hope to see you around sometime!"`
-				goto notachance
+				goto nopay
 			label whynot
 			`	"Hey, thanks!" He pockets the credits, giving you a fist bump. "I'm going to go spend these on...something. It'll be productive, I swear. Anyway, see you around!"`
 			action
 				payment -100
-			label notachance
+			label nopay
 
 mission "Kindred Spirit 2"
 	name "Charlie's Delivery"
@@ -3708,9 +3710,9 @@ mission "Kindred Spirit 2"
 	destination
 		attributes "research"
 		distance 5 12
-	#to offer
-		#has "Kindred Spirit: done"
-		#random <10
+	to offer
+		has "Kindred Spirit: done"
+		#random <15
 		#credits >= 300000
 	npc accompany save
 		government "Merchant"
@@ -3721,45 +3723,49 @@ mission "Kindred Spirit 2"
 	npc
 		government "Pirate"
 		personality entering plunders
-		ship "Sparrow" "Bloodletter"
-		ship "Fury" "Hand of Fate"
+		ship "Berserker" "Targos the Furious"
+		ship "Fury" "Headbroker"
+		ship "Hawk" "Shadow Hand"
 	on offer
 		conversation
 			`	A familiar face catches your eye in the spaceport. "Hey, <first>!" Charlie calls. "It's great to see you! How's it going?" Sizing up your ship, he says, "It looks like you've done well for yourself since we last met."`
 			choice
 				`	"I'm doing well, Charlie. How about you?"`
 					goto continue
-				`	"Now is not a good time. Sorry."`
-			`	"Before you leave," he says, "I'm in a bind right now. One of my ships crapped out, and I need help completing a contract. I can pay you this time," he adds quickly.`
+				`	"Now's not a good time. Sorry."`
+			`	"Before you leave," he says quickly, "I might be in a bind right now. One of my ships crapped out, and I can't complete my contract. I can pay you for helping out this time," he adds.`
 			choice
 				`	"That sounds rough. How can I help?"`
 					goto goodfriend
 				`	"How much payment are we talking?"`
 					goto details
-				`	"You need to start takng care of yourself, Charlie."`
-					decline
+				`	"You need to start takng care of yourself, Charlie. You can't expect other people to bail you out."`
+					goto sorry
 			label continue
-			`	"Well," he laughs quickly, "Funny you should ask. See, I recently got this big job hauling industrial cargo, right? But one of my freighter's engines crapped out. The deadline is <date>, and I'm really in a jam unless I find someone to help me. Here, I can offer you half my payment. That'll be <payment>."`
+			`	"Well," he laughs quickly, "Funny you should ask. See, I recently got this big job hauling industrial cargo, right? But one of my freighter's engines crapped out. The deadline is <date>, and I'm in a real bind unless I find someone to help. Here, I can offer you half my payment. That'll be 7000 credits."`
 			choice
-				`	"Anything for a friend in need."`
+				`	"Of course, anything for a friend in need."`
 					goto goodfriend
-				`	"You need to start taking care of yourself, Charlie."`
-					decline
+				`	"You need to start taking care of yourself, Charlie. You can't expect other people to bail you out."`
+					goto sorry
 			label details
-			`	"I can give you half my payment. That'll total 7000 units."`
+			`	"Let's say half the profit. That'll be 7000 credits."`
 			choice
-				`	"That sounds good to me!"`
+				`	"Sounds good. What do I need to do?"`
 					goto goodfriend
 				`	"Hm. Sorry, but I think I can make more working alone."`
-					decline
+					goto sorry
 			label goodfriend
 			`	"Great! I'll have the cargo moved onto your ship." As porters shift the cargo, he gives you a hug from the side and says, "Thanks. You've been a good friend."`
 			`	Once everything is loaded, he tells you, "By the way, the cargo's also very valuable, so we might attract some attention along the way." Before you can respond, he jumps into his ship.`
-					accept
+				accept
+			label sorry
+			`	"Oh," he says with disappointment. "I guess...I'll figure something out. See you."`
+				decline
 	on complete
 		payment 10000
 		conversation
-			`	When you land, Charlie pulls you aside. "Sorry for pulling you into this," he says, handing you the payment. "I threw in a bit extra, since we got attacked and all. Thanks for saving my hide." He looks blankly into the distance for a moment.`
+			`	When you land, Charlie pulls you aside. "Sorry for pulling you into this," he says, handing you a payment of <payment>. "I threw in a bit extra, since we got attacked and all. Thanks for saving my hide." He stares distantly for a moment.`
 			choice
 				`	"No worries. What else are friends for?"`
 				`	"Thanks. But you'll want to be more careful in the future."`
