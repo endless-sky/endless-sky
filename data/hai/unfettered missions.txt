@@ -37,14 +37,14 @@ mission "Unfettered: Bring Hai"
 				`	"This seems like a bad idea, ask someone else."`
 					decline
 			label whyme
-			`	"The Hai are preventing us from reaching out to anywhere in space, as you have probably noticed they have a fleet at the edge of our system. And not many Hai captains are willing to bring them here, because of the obvious risks involved, they could get killed in the cross fire. Yet you somehow made your way here, probably under fire from our own people, but now that we are allied you should not have any issues getting out of here. So, are you willing to help us ?"`
+			`	"The Hai are preventing our ships from reaching out to anywhere in space, as you have probably noticed they have a fleet at the edge of our system. And not many Hai captains are willing to bring them here, because of the obvious risks involved, they could get killed in the cross fire. Yet you somehow made your way here, probably under fire from our own people, but now that we are allied you should not have any issues getting out of here. So, are you willing to help us ?"`
 			choice
 				`	"Of course, what do you need me to do ?"`
 					goto action
 				`	"This seems like a bad idea, ask someone else."`
 					decline
 			label brethren
-			`	"Then you have heard about the stories of the Drak modifying our people..."	He seems a bit sad.	"I do not believe in such things, what makes a Hai -or any other specie- “True” is in his heart. It will take him wherever he wants to go."	He pauses a bit, thinking, then he speaks again, with deep conviction,	"Even if we war the Hai it does not mean we hate them or them us, we only do it because we have to. We can still communicate with our people, and eventually they will all be freed from the limits the Hai government imposes upon them."`
+			`	"Then you have heard about the stories of the Drak modifying our people..."	He seems a bit sad.	"I do not believe in such things, what makes a Hai -or any other specie- “True” is in his heart. It will take him wherever he wants to go."	He pauses a bit, thinking, then he speaks again, with deep conviction,	"Even if we war the Hai government it does not mean we hate it's people or them us, we only do it because we have to. We can still communicate with our people, and eventually they will all be freed from the limits of the Hai government."`
 			choice
 				`	"Will this get me into any trouble with the Hai ?"`
 				`	"What limits ?"`
@@ -60,7 +60,7 @@ mission "Unfettered: Bring Hai"
 				`	"I am not interested in moving people around."`
 					decline
 			label limits
-			`	"I mean that they are prevented from reaching their true potential. Once we had most of the stars but since and some of us have decided to stop changing, to stay peaceful, with all species, no matter how primitive. They have chosen to decay, to grow soft. We are the ones who choose to find our legacy, to evolve, to grow."`
+			`	"I mean that they are prevented from reaching their true potential. Once we had most of the stars but since and most of the Hai have decided to stop changing, to stay peaceful, with all species, no matter how primitive. They have chosen to decay, to grow soft. The Unfettered are the ones who choose to find our legacy, our way of life and then to evolve, to grow."`
 			choice
 				`	"What is it exactly you want me to do ?"`
 				`	"I am not interested in moving people around."`
@@ -78,8 +78,8 @@ mission "Unfettered: Bring Hai"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 100000
-		log `Helped some Hai to join the unfettered.`
-		dialog `The Unfettered thank you for bringing these "soon True" Hai back, and give you <payment>. After discussing with them, the Unfettered elder sends you a message, "If you want to help us again, the hospitals on Darkcloak are in grave need of resupply."`
+		log `Helped some Hai to join the Unfettered.`
+		dialog `The Unfettered thank you for bringing these "True" Hai, and give you <payment>. After discussing with them, the Unfettered elder sends you a message, "If you want to help us again, the hospitals on Darkcloak are in grave need of resupply."`
 
 
 
@@ -110,38 +110,37 @@ mission "Unfettered: Bring Medical Supplies"
 	on complete
 		payment 1500000
 		conversation
-			`The local health specialists seems relieved to learn that you have managed to bring the medical supplies back in time. They give you the agreed <payment>.	You find the same Hai elder speaking with them, and he moves your way when he sees you. He seems a bit emotional when he speaks,	"I knew I could count on you ! Without these medical supplies a lot of Unfettered would have died, captain. We did not have the time to get properly introduced yet,I am Sha-Ri."	He does a little reverence which you try to imitate, apparentely badly, amusing him slightly.	"Worry not I already know who you are, <first> <last>."`
+			`The local health specialists seems relieved to learn that you have managed to bring the medical supplies back in time. They give you <payment>.	You find the same Hai elder speaking with them, and he moves your way when he sees you. He seems a bit emotional when he speaks,	"I knew I could count on you ! Without these medical supplies a lot of Unfettered would have died, captain. We did not have the time to get properly introduced yet, I am Sha-Ri."	He does a little reverence which you try to imitate, apparentely badly, amusing him slightly.	"Worry not I already know who you are, <first> <last>."`
 			choice
 				`	"I only did what little I could do to help your people be saved. Hopefully I will be able to do more next time we meet."`
 					goto end
 				`	"Were these supplies for soldiers ?"`
-			`	"That is a very legitimate question but I do not view the Hai as "soldiers" or others, they are all Hai and they all deserve to be saved, and we do not designate supplies to help one kind of Hai before the others. Most got their wounds in battle, that is true, but the "soldiers" as you say need to be fit else we all suffer."`
+			`	"That is a very legitimate question but I do not view the Hai as "soldiers" or others, they are all Hai and they all deserve to be saved, and we do not designate supplies to help some before the others. Most got their wounds came from battle, that is true, but the "soldiers" as you say need to be fit else we all suffer."`
 			choice
 				`	"Glad to have prevented a disaster then."`
 					goto end
 				`	"So you just tricked me into helping the war effort ?"`
-				`	"Do you mean all Unfettered are soldiers ?"`
+				`	"Are all Unfettered not soldiers ?"`
 					goto soldier
-			`	"If you really most know, these supplies were used to prevent an outbreak or a disease on soldiers, that could have affected all of us. But if the soldiers are not fit to protect us, then civilians will suffer. The fettered Hai would not dare to kill us of course, but they would destroy our way of life, our spirits."`
+			`He does not answer your question directly,	"If you really most know, these supplies were used to prevent an outbreak or a disease on soldiers, that could have affected all of us. But if the soldiers are not fit to protect us, then civilians will suffer. The Hai would not dare to kill us of course, but they would destroy our way of life, our spirits."`
 			label soldier
 			`	"Do I look like a soldier to you ? Does this medic look like one ? No, we Unfettered only dare to think in another way, in truth quite a few of us would like to be artists and it is a shame we have to fight for our right to live another way than the one the Hai allow, to break of the prison they have casted next to our systems !"`
 			label end
-		log "People" "Sha-Ri" `An unfettered elder worried for his poeple, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he probably has quite some influence.`
-
+		log "People" "Sha-Ri" `An Unfettered elder worried for his poeple, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he probably has quite some influence.`
 
 
 
 mission "Unfettered: Prove your strength"
-	name `Defeat the warlord`
-	description `A young Unfettered warlord has provoked you in a duel, disable his ship.`
+	name `Defeat the captain`
+	description `A young Unfettered captain has provoked you in a duel, disable his ship.`
 	source "Darkcloak"
 	to offer
 		has "Unfettered Jump Drive 2: offered"
 	on fail
-		dialog `You have failed an essential unfettered mission. You may want to reload.`
+		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 	on offer
 		conversation
-			`You start wandering in the spaceport, and notice that everything around here is so... simple, efficient, ordered. There seems to be more warriors here than on the other unfettered planets, or at least they are less affrayed to wonder around with their weapon, they seem ready for action at any time, you are happy not to be their enemy, or at least, for now.	As you continue walking you notice someone speaking to a crowd of people. They seem very familiar with each others, and it seems they have noticed you too, the one who was adressing the others approaches you.`
+			`You start wandering in the spaceport, and notice that everything around here is so... simple, efficient, ordered. There seems to be more warriors here than on the other Unfettered planets, or at least they are less affrayed to wonder around with their weapon, they seem ready for action at any time, you are happy not to be their enemy, or at least, for now.	As you continue walking you notice someone speaking to a crowd of people. They seem very familiar with each others, and it seems they have noticed you too, the one who was adressing the others approaches you.`
 			`	"This is the monkey you speak so highly off ? The one who fears not to come into our space, to fight our ships ?"	He asks the others, apparently mocking you. This could get you into trouble.`
 			choice
 				`	"I fear nothing. Do you ?"`
@@ -186,7 +185,7 @@ mission "Unfettered: Prove your strength"
 			`	"Hopefully we see each other again, sometime."	He and his crew seem quite busy with the repairs.`
 	on complete
 		payment 25000
-		log `Tought a lesson to a young Unfettered warlord.`
+		log `Tought a lesson to a young Unfettered captain.`
 		dialog `You receive a message from the <npc> : "Hopefully these <payment> credits will be enough to repair any damage I may have done to your ship."`
 
 
@@ -203,7 +202,7 @@ mission "Unfettered: Prove your strength 2"
 		has "Unfettered Jump Drive 3: offered"
 	on offer
 		conversation
-			`As you go near what seems to be a bar in the spaceport you find the same Hai that challenged you. "So we meet again, he ? It will take a lot more than what you did last time if you want to take me down this time ! But that is not why I am here," he says, apparently happy to see you.`
+			`As you go near what seems to be a bar in the spaceport you find the same Hai that challenged you. "So we meet again, he ? It will take a lot more than what you did last time if you want to take me down this time ! Well... once I have gotten my ship back anyway. But that is not why I am here," he says, apparently happy to see you.`
 			choice
 				`	"What is the job about ?"`
 					goto job
@@ -228,7 +227,7 @@ mission "Unfettered: Prove your strength 2"
 			label insult
 			`He does not seem to react to the insult. He did call you monkey a few times before, so it is only fair to return the courtesy.`
 			label job
-			`	"We are going to collect a few jump drives ! Normally you would not be able to get such a job because it requires trust, but I have gotten it for you, meaning officially this is my mission, and a very lucrative one at that !"`
+			`	"We are going to collect a few jump drives ! Normally you would not be able to get such a job because it requires a lot of trust, but I have gotten it for you, meaning officially this is my mission, and a very lucrative one at that !"`
 			choice
 				`	"Okay... It seems too good to be true, what is the catch ?"`
 				`	"Well if this is your mission you just do it yourself."`
@@ -251,12 +250,12 @@ mission "Unfettered: Prove your strength 2"
 			label cut
 			`	"You humans always seem obsessed with money... It will be a lot... really a lot !"`
 			label leave
-			`	"One last thing : We should not go there by jump drive, it would only attract unwanted attention to us, especially considering where we are going. It would not be of a big advantage anyway considering I do not want to travel trough wanderer space."`
+			`	"One last thing : We should not go there by jump drive, it would only attract unwanted attention to us, especially considering where we are going. It would not be of a big advantage anyway considering I do not want us to travel trough wanderer space."`
 				accept
 	on visit
-		dialog phrase "generic missing stopover or cargo"
+		dialog `You left your escort allocated to carrying the jump drives behind, better launch and wait for it.`
 	on fail
-		dialog `You have failed an essential unfettered mission. You may want to reload.`
+		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 
 
 
@@ -266,7 +265,8 @@ mission "Unfettered: Prove your strength 3"
 	source "Freedom"
 	destination "Darkcloak"
 	landing
-	invisible
+	to offer
+		has "Unfettered: Prove your strength 2: done"
 	on offer
 		conversation
 			`Following the advice of the Hai, you park your ship close to the hidden depot in case something goes wrong, and then follow the Hai outside.`
@@ -329,9 +329,9 @@ mission "Unfettered: Prove your strength 3"
 			label ship
 			`You go back to your ship with the Hai, and give the orders to collect and install them.`
 			`A bit later the Hai comes to speak to you on the bridge.	"It took us too long to install the jump drives, we seem to have attracted attention. I guess that if some of the pirates got away from the vault, they have contacted some friends..."	As you look outside you see multiple ships getting ready to launch far away. You should launch as soon as you can.`
-				accept
+				launch
 	on accept
-		"outfit" "Jump Drive" 4	
+		"outfit" "Jump Drive" 4
 	npc
 		government "Pirate"
 		personality plunders waiting
@@ -340,10 +340,23 @@ mission "Unfettered: Prove your strength 3"
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on fail
-		dialog `You have failed an essential unfettered mission. You may want to reload.`
+		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 	on complete
 		payment 3000000
 		outfit "Jump Drive" -4
-		log `Helped a young unfettered warlord to bring jump drives from a pirate world.`
+		log `Helped a young Unfettered captain to bring jump drives from a pirate world.`
 		dialog `"Here is your share : <payment>. You have saved my life, captain <first>, and I shall never forget it. You have earned the right to know my name : "Si-Ra". Come see me again soon if you are up for a challenge."`
-		log "People" "Si-Ra" `A young impetuous Unfettered warlord who seems to grow wiser by the day. He has impressive leading and combat skill, and seems to be a fan of getting bigger and bigger ship. He always leaves room for improving tactics.`
+		log "People" "Si-Ra" `A young impetuous Unfettered captain who seems to grow wiser by the day. He has impressive leading and combat skill, and seems to be a fan of getting bigger and bigger ship. He always leaves room for improving tactics.`
+
+mission "Unfettered: Attracted Attention"
+	landing
+	invisible
+	source "Freedom"
+	to offer
+		has "Unfettered: Prove your strength 2: done"
+	on offer
+		require "Jump Drive" 1
+	npc
+		government "Pirate"
+		personality plunders waiting
+		fleet "Large Northern Pirates"
