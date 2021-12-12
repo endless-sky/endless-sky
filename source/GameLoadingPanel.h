@@ -16,7 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 
 #include <string>
-#include <functional>
 #include <vector>
 
 class PlayerInfo;

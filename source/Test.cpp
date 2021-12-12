@@ -372,8 +372,7 @@ const string &Test::Name() const
 // Check the game status and perform the next test action.
 void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive) const
 {
-	// Only run tests when all data is loaded. Panels like MenuPanel don't accept input
-	// when not all data is loaded yet.
+	// Only run tests once all data has been loaded.
 	if(!GameData::IsLoaded())
 		return;
 
@@ -556,8 +555,10 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	
 	if(!conditions.empty())
 		Files::LogError(conditions);
+	else if(player.Conditions().empty())
+		Files::LogError("Player had no conditions set at the moment of failure.");
 	else
-		Files::LogError("No conditions were set at the moment of failure.");
+		Files::LogError("No test conditions were set at the moment of failure.");
 	
 	// Throwing a runtime_error is kinda rude, but works for this version of
 	// the tester. Might want to add a menuPanels.QuitError() function in

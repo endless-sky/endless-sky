@@ -40,6 +40,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "gl_header.h"
 
 #include <algorithm>
+#include <cassert>
 #include <stdexcept>
 
 using namespace std;
@@ -54,6 +55,7 @@ namespace {
 MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 	: player(player), gamePanels(gamePanels), scroll(0)
 {
+	assert(GameData::IsLoaded() && "MenuPanel should only be created after all data is fully loaded");
 	SetIsFullScreen(true);
 	
 	credits = Format::Split(Files::Read(Files::Resources() + "credits.txt"), "\n");
@@ -122,6 +124,7 @@ void MenuPanel::Draw()
 	GameData::Interfaces().Get("main menu")->Draw(info, this);
 	GameData::Interfaces().Get("menu player info")->Draw(info, this);
 	
+	// TODO: move this animation (e.g. to a non-fullscreen panel).
 	alpha -= .02f;
 	if(alpha > 0.f)
 	{
@@ -134,7 +137,9 @@ void MenuPanel::Draw()
 			a += da;
 		}
 	}
+	// END animation TODO
 	
+	// TODO: allow pausing the credits scroll
 	int y = 120 - scroll / scrollSpeed;
 	for(const string &line : credits)
 	{
@@ -156,9 +161,6 @@ void MenuPanel::Draw()
 
 bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(!GameData::IsLoaded())
-		return false;
-	
 	if(player.IsLoaded() && (key == 'e' || command.Has(Command::MENU)))
 	{
 		gamePanels.CanSave(true);
