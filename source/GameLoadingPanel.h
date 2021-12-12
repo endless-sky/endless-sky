@@ -39,7 +39,10 @@ private:
 	UI &gamePanels;
 	bool &finishedLoading;
 
-	// Used to draw the loading circle.
+	// The circular loading indicator shows 60 tick marks when all game data is loaded.
+	const int MAX_TICKS = 60;
+	const double ANGLE_OFFSET;
+	// The current number of ticks to be displayed.
 	int progress = 0;
 };
 

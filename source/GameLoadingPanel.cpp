@@ -33,7 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, UI &gamePanels, bool &finishedLoading)
-	: player(player), gamePanels(gamePanels), finishedLoading(finishedLoading)
+	: player(player), gamePanels(gamePanels), finishedLoading(finishedLoading), ANGLE_OFFSET(360. / MAX_TICKS)
 {
 	SetIsFullScreen(true);
 }
@@ -42,12 +42,11 @@ GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, UI &gamePanels, bool &fin
 
 void GameLoadingPanel::Step()
 {
-	progress = static_cast<int>(GameData::GetProgress() * 60.);
+	progress = static_cast<int>(GameData::GetProgress() * MAX_TICKS);
 
-	// If the game isn't loaded yet, upload any images to the GPU.
+	// While the game is loading, upload sprites to the GPU.
 	GameData::ProcessSprites();
-
-	if(progress == 60)
+	if(progress == MAX_TICKS)
 	{
 		// Now that we have finished loading all the basic sprites and sounds, we can look for invalid file paths,
 		// e.g. due to capitalization errors or other typos.
@@ -77,7 +76,7 @@ void GameLoadingPanel::Draw()
 	GameData::Interfaces().Get("menu background")->Draw(Information(), this);
 
 	// Draw the loading circle.
-	Angle da(6.);
+	Angle da(ANGLE_OFFSET);
 	Angle a(0.);
 	PointerShader::Bind();
 	for(int i = 0; i < progress; ++i)
