@@ -425,7 +425,7 @@ mission "Unfettered: The Word Has Spread"
 			label end
 	on offer
 		conversation
-			`The recent activity has still not dimnished, people are moving around everywhere, getting to their ships or doing simply their jobs but with renewed purpose. In all that activity you find your elder friend, $$$, who seems more than content with seeing you, and speaks with joy,	"Ah, here you are, when you are most needed like always, <first> ! All true Hai have felt the call to battle now, but some have difficulties joining us because of the Hai government... Could you help getting them here ?"`
+			`The recent activity has still not dimnished, people are moving around everywhere, getting to their ships or doing simply their jobs but with renewed purpose. In all that activity you find your elder friend, Sha-Ri, who seems more than content with seeing you, and speaks with joy,	"Ah, here you are, when you are most needed like always, <first> ! All true Hai have felt the call to battle now, but some have difficulties joining us because of the Hai government... Could you help getting them here ?"`
 			choice
 				`	"Sure !"`
 					accept
