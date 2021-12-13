@@ -16,8 +16,7 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 	source "Firelode"
 	waypoint "Ya Hai"
 	to offer
-		has "Unfettered Jump Drive 1: offered"
-		# other missions when merged
+		has "Unfettered Jump Drive 2: offered"
 	to fail
 		has "Wanderers: Jump Drive Source: done"
 	on offer
@@ -131,6 +130,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 	to offer
 		has "Unfettered: Solifuge 1: Geocoris Design: done"
 		has "Unfettered Jump Drive 3: offered"
+		# other missions when merged
 	to fail
 		has "Wanderers: Jump Drive Source: done"
 	on offer
@@ -254,13 +254,11 @@ mission "Unfettered: Solifuge 3: Carrier Discussion"
 		dialog `You have proof of the Attrocities commited by the Alphas, now get ready to confront the council.`
 
 
-#has to land to drop the reserved cargo ? notice there is nothing on the planet then takeoff
+
 mission "Unfettered: Solifuge 4: Alpha Jump Drives"
 	name `Steal Alpha jump drives`
 	description `Go to the hidden Alpha depot far east with a jump drive and steal the jump drives. Then bring them back to Darkcloak.`
 	source "Darkcloak"
-	cargo "(reserved)" 200
-	blocked `You will need 200 cargo space for the next Unfettered mission.`
 	to offer
 		has "Unfettered: Solifuge 3: Carrier Discussion: done"
 	to fail
@@ -277,16 +275,19 @@ mission "Unfettered: Solifuge 4: Alpha Jump Drives"
 			`	"We were prepared for that possibility, but wanted to make sure ourselves. There was some interesting information in your scanner logs, we know of the location of their base, far to the east, after the territory of the automated murder machines."`
 			choice
 				`	"I will go and recover all jump drives, one way or the other."`	
-					accept
+					goto accept
 				`	"Actually nevermind I do not think you should be ennemy to the alphas."`
 			label cancel
 			`	"Actually they would not even know we had anything to do with it, you are the one who scanned their ship after all, and about any expert can extract this information, all they know is we do not shoot you on sight, and for all they are concerned about it can just be because you bring jump drives to us. So are you sure you do not want to do this ?"`
 			choice
 				`	"I will go and recover all jump drives, one way or the other."`	
-					accept
+					goto accept
 				`	"Yes I am sure we should not do this. It actually looks like a trap, and you do not want to underestimate these Alphas."`
 			`He thinks a bit, when he speaks it seems like the others are in agreement. "Well you do seem to know a lot about these alphas, so we will do as you say, better to avoid too many ennemies, especially with what is coming..."`
 				decline
+			label accept
+			`	"Good luck, then ! Be sure to have enough place for those jump drives with you and do not get stuck in hostile space, you probably want quite a bit of fuel reserve."`
+				accept
 	npc board
 		government "Alpha"
 		system "Host"
@@ -308,11 +309,24 @@ mission "Unfettered: Solifuge 4: Alpha Jump Drives"
 		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 	on complete
 		log `Stole jump drives from the Alpha auxiliary.`
+		outfit "Jump Drive" -10
 		payment 10000000
 		dialog `The Unfettered seem surprised to see you, when they adress you they do so with respect,	"It seems like you are a better ally than the Alphas after all. Good ! Now we have enough jump drives for the next phase..."	You look at them intensively, and after a few seconds they realise,	"Oh right, your payment ! Here it is : <payment> !"`
 
+mission "Unfettered: Jump Drive Theft"
+	boarding
+	invisible
+	to offer
+		has Unfettered: Solifuge 4: Alpha Jump Drives: active"
+	source
+		government "Alpha"
+		not attribute "fighter"
+		#<name> == "Settler"
+	on offer
+		outfit "Jump Drive" 10
+	
 
-# increase the amount of asteroids in the systems ?
+
 mission "Unfettered: Solifuge 5: Materials For Ships"
 	name `Gather silicon from asteroids`
 	description `Mine and collect 100 tons of Silicon from the asteroid field in Wah Yoot and 15 tons of Silver from the asteroid field in Ehma Ti and then bring them back to <destination> for <payment>.`
@@ -355,7 +369,7 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 				`	"Sorry but I am no miner."`
 					decline
 			label where
-			`	"That is simple, silicon can be found right over our heads and silver in Ehma Ti. The silicon asteroid look similar to copper but they are bigger, but you can also just differenciate them with an asteroid scanner."`
+			`	"That is simple, silicon can be found right over our heads and silver in Ehma Ti. The silicon asteroid look similar to copper but they are bigger, but you can also just differenciate them with an asteroid scanner. Silver is easy to recognize with it's very small size, and natural resistance."`
 			choice
 				`	"I have no more questions, see you soon."`
 					accept
@@ -365,7 +379,7 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 					decline
 	npc
 		government "Hai (Unfettered)"
-		personality harvests uninterested
+		personality harvests mining uninterested
 		system "Wah Yoot"
 		fleet
 			names "hai"
@@ -378,8 +392,15 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 		fleet
 			names "hai"
 			variant
-				"Water Bug"
 				"Lightning Bug"
+	npc
+		government "Hai (Unfettered)"
+		personality harvests uninterested
+		system "Wah Yoot"
+		fleet
+			names "hai"
+			variant
+				"Water Bug"
 	on complete
 		payment 500000
 		dialog `You bring your cargo to the local Unfettered shipyards, they hand you <payment> credits. You see a huge ship being built in the distance.`
@@ -391,7 +412,7 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 mission "Unfettered: The Word Has Spread"
 	name `Gather the true Hai`
 	description `Now that the Hai know of the Unfettered plan, a lot of them are eager to join them whilst most cower in fear.`
-	passengers 216
+	passengers 156
 	source "Firelode"
 	blocked `You need 156 passenger space for the next Unfettered mission.`
 	to offer
@@ -456,7 +477,21 @@ mission "Unfettered: The Word Has Spread"
 	on complete
 		payment 5000000
 		dialog `The Hai are all excited to join the Unfettered, you did notice that more of them are ready for battle than usual, though. You receive your payment of <payment>.`
-	
+
+
+
+mission "Unfettered: Hai Intel"
+	invisible`
+	source "Darkcloak"
+	to offer
+		has "Unfettered: : The Word Has Spread: done"
+	on offer
+		dialog `The Unfettered warlords would like to know if you can give them your sensor logs of all Hai systems you have come accross when gathering the True Hai.`
+	on complete
+		payment 50000
+		`They hand you a payment of <payment>.`
+
+
 	
 #young captain just became warlord and wants to see if you are rd for a fight, doesn't want you to get killed fighting the Wanderers, need to wait for intro to be merged
 
