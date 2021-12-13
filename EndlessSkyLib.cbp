@@ -311,6 +311,8 @@
 		<Unit filename="source/TestContext.h" />
 		<Unit filename="source/TestData.cpp" />
 		<Unit filename="source/TestData.h" />
+		<Unit filename="source/TextReplacements.cpp" />
+		<Unit filename="source/TextReplacements.h" />
 		<Unit filename="source/Trade.cpp" />
 		<Unit filename="source/Trade.h" />
 		<Unit filename="source/TradingPanel.cpp" />
