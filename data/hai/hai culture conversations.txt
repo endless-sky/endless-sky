@@ -221,12 +221,12 @@ mission "Academy Motto"
 		has "language: Wanderer"
 	on offer
 		conversation
-			`	On this particular day the spaceport is crowded beyond belief by some arcane confluence of chance and logistics. Despite having resolved the bulk of your business the port authorities have informed you that there is no safe departure slot open for at least seven hours (and even that's not a promise). Leaving you to fill quite a bit of time in the relatively early morning.`
+			`	On this particular day, the spaceport is crowded beyond belief by some arcane confluence of chance and logistics. Despite having resolved the bulk of your business the port authorities have informed you that there is no safe departure slot open for at least seven hours (and even that's not a promise.) Leaving you alone to fill in your unexpected bit of time in the relatively early morning.`
 			choice
 				`	(Play games on your ship.)`
 				`	(Have a look around further afield.)`
 					goto fieldtrip
-			`	Not interested in getting lost in an expansive Hai city you simply load up an entertainment console to keep you occupied for a few more hours.`
+			`	Not interested in getting lost in an expansive Hai city, you simply load up an entertainment console to keep you occupied for the next few hours.`
 				decline
 			label fieldtrip
 			`	The tendency of the Hai to efficiently pack people into vibrant but densely populated spaces is on full display as you navigate through throngs of Hai who mostly make polite efforts to avoid bumping into you. Colorful banners, flags, murals and even windows all provide brilliant highlights to the oft-utilitarian architectural styles underlying them. Holoprojected welcome signs even grace the entry-ways of several apartment buildings that you pass, with caveats for door-to-door salespeople.`
@@ -243,7 +243,7 @@ mission "Academy Motto"
 			label finishingchat
 			`	As you eat your strange, but actually surprisingly tasty, lunch you take note of the text written large above the gateway into the grounds for the building complex opposite you. After a moment your translator box takes note of where you're looking and reads it aloud for you.`
 			`	'To know is to lead, to study is to know, to serve is to study, to lead is to serve.'`
-			`	Naturally, your translator cannot answer questions. So, you eat your lunch and leave it be until a staff member emerges to take your plate.`
+			`	Naturally, your translator cannot answer questions, so you eat your lunch and leave it be until a staff member emerges to take your plate.`
 			choice	
 				`	(Ask them about it.)`
 				`	(Keep your thoughts to yourself.)`
@@ -252,8 +252,8 @@ mission "Academy Motto"
 				decline
 			label question
 			`	As they clear your plate from the table you ask them about the text on the gateway.`
-			`	"Oh that's the city Academy. It's a uh," she pauses for a moment and relays something in Hai which your translator immediately converts to, "non-technical university."`
-			`	Giving the box a surprised look she smiles and continues in Hai, "If you want to be a manager, a politician, a social worker, or even just a public speaker, you go to the Academy and do courses on leadership and communications. Strictly speaking it's not necessary to go, but lots of places simply won't accept you into those sorts of roles without some sort of Academy qualification, and they really do provide some great skills. I'm actually going there next year to do a proper human language course.`
+			`	"Oh, that's the city Academy. It's a... uh..." she pauses for a moment and relays something in Hai which your translator immediately converts to, "non-technical university."`
+			`	Giving the box a surprised look she smiles and continues in Hai, "If you want to be a manager, a politician, a social worker, or even just a public speaker, you go to the Academy and do courses on leadership and communications. Strictly speaking, it's not necessary to go, but lots of places simply won't accept you into those sorts of roles without some sort of Academy qualification, and they really do provide some great skills. I'm actually going there next year to do a proper human language course."`
 			`	"Technically the Academies are all independent, but they all share the same motto. It's an obligatory thing too though. That's what the motto is about. I'm told most humans think it's backwards, but it's not. The Academies keep tabs on their graduates; if you lead with self-interest, serve without studying, study without learning or waste your knowledge without applying it, they've been known to revoke people's qualifications. Attendance is free, so there's an expectation that you don't waste what they spend time teaching you.`
 			`	"This one is quite prestigious, but the ones near the spaceports always are." She winks, "Natural life exposure experience is worth more than what money can buy after all."`
 			`	A moment later your comm pad alerts you that you've been assigned a departure window from the spaceport in relatively short order.`
