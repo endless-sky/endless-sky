@@ -286,9 +286,9 @@ mission "Unfettered: Prove your strength 3"
 				`	"Who made this vault, what should I expect ?"`
 				`	(No time for talking.)`
 					goto outside
-			`	"As you know once in the past, our ancestors had a great empire. This vault was a part of that empire, and is well protected, so there could not be too big of a fight ahead,"	he assures you.	He is fully armoured, so as long as you stay with him, everything should be fine.`			
+			`	"That is an information I cannot trust anyone with, not even you, and especially not here. I do not want the owner of this cache to be in danger as the Unfettered need jump drives to expand. Assume it is owned by pirates, and we are ready to face them,"	he tells you. He is fully armoured, so as long as you stay with him, everything should be fine.`			
 			label outside
-			`Before exiting, he warns you,	"Do not try anything stupid, and stay behind me."	He seems worried and keeps looking around, without making a sound.`
+			`Before exiting, he warns you,	"Do not try anything stupid, and stay behind me at all times."	He seems worried and keeps looking around, without making a sound.`
 			choice
 				`	"Is everything alright ?"`
 				`	"There is no need to be worried, that cache is well hidden."`
