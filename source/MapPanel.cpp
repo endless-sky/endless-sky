@@ -109,7 +109,8 @@ const float MapPanel::INNER = 3.5f;
 const float MapPanel::LINK_WIDTH = 1.2f;
 // Draw links only outside the system ring, which has radius MapPanel::OUTER.
 const float MapPanel::LINK_OFFSET = 7.f;
-
+double MapPanel::minColor = 1.;
+double MapPanel::maxColor = 1.;
 
 
 MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
@@ -490,6 +491,32 @@ Color MapPanel::MapColor(double value)
 {
 	if(std::isnan(value))
 		return UninhabitedColor();
+	else if(value <= 0. || value == 1.)
+		return CommodityColor(value);
+	// Comparing different prices, with colors in the cold or hot ranges whilst ignoring too blue.
+	if(value < 1.)
+	{
+		double unvalue = 1. / value;
+		return Color(
+			.3 - value * minColor * .8,
+			unvalue * minColor * .8,
+			(unvalue > (1. / minColor) * .4 && unvalue < (1. / minColor) * .75) ? unvalue * minColor * .4 : 0.);
+	}
+	else
+	{
+		return Color(
+			.6 + ((value > maxColor * .8) ? value / maxColor * .4 : 0.),
+			1. - value / maxColor * 2.,
+			(value > maxColor * .6) ? value / maxColor * .8 : .5 - value / maxColor);
+	}
+}
+
+
+
+Color MapPanel::CommodityColor(double value)
+{
+	if(std::isnan(value))
+		return UninhabitedColor();
 	
 	value = min(1., max(-1., value));
 	if(value < 0.)
@@ -722,6 +749,8 @@ void MapPanel::UpdateCache()
 	// which may be government, services, or commodity prices.
 	const Color &closeNameColor = *GameData::Colors().Get("map name");
 	const Color &farNameColor = closeNameColor.Transparent(.5);
+	minColor = 1.;
+	maxColor = 1.;
 	for(const auto &it : GameData::Systems())
 	{
 		const System &system = it.second;
@@ -786,7 +815,7 @@ void MapPanel::UpdateCache()
 					value = SystemValue(&system);
 				
 				if(colorSystem)
-					color = MapColor(value);
+					color = (commodity >= 0 ? CommodityColor(value) : MapColor(value));
 			}
 			else if(commodity == SHOW_GOVERNMENT)
 			{

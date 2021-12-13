@@ -22,12 +22,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "OutfitSale.h"
 #include "OutlineShader.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "PointerShader.h"
 #include "Preferences.h"
-#include "Sale.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -877,7 +877,7 @@ int64_t ShopPanel::LicenseCost(const Outfit *outfit) const
 			(player.Storage() && player.Storage()->Get(outfit)))
 		return 0;
 	
-	const Sale<Outfit> &available = player.GetPlanet()->Outfitter();
+	const OutfitSale &available = player.GetPlanet()->Outfitter();
 	
 	int64_t cost = 0;
 	for(const string &name : outfit->Licenses())

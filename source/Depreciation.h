@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class DataNode;
 class DataWriter;
+class Planet;
 class Outfit;
 class Ship;
 
@@ -53,11 +54,11 @@ public:
 	// Get the value of an entire fleet.
 	int64_t Value(const std::vector<std::shared_ptr<Ship>> &fleet, int day) const;
 	// Get the value of a ship, along with all its outfits.
-	int64_t Value(const Ship &ship, int day) const;
+	int64_t Value(const Ship &ship, int day, const Planet *planet) const;
 	// Get the value just of the chassis of a ship.
 	int64_t Value(const Ship *ship, int day, int count = 1) const;
 	// Get the value of an outfit.
-	int64_t Value(const Outfit *outfit, int day, int count = 1) const;
+	int64_t Value(const Outfit *outfit, int day, const Planet *planet, int count = 1) const;
 	
 	
 private:

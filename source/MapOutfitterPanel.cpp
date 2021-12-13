@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Outfit.h"
+#include "OutfitSale.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -138,12 +139,30 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 	
 	// Visiting a system is sufficient to know what ports are available on its planets.
 	double value = -.5;
+	double basePrice = selected ? selected->Cost() : 1.;
 	for(const StellarObject &object : system->Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
 		{
 			const auto &outfitter = object.GetPlanet()->Outfitter();
-			if(outfitter.Has(selected))
-				return 1.;
+			const Sold* sold = outfitter.GetSold(selected);
+			if(sold)
+			{
+				const auto &storage = player.PlanetaryStorage();
+				const auto pit = storage.find(object.GetPlanet());
+				bool storedInSystem = (pit != storage.end());
+				double cost = sold->GetCost() / basePrice;
+				
+				if(cost && !(sold->GetShown() == Sold::ShowSold::HIDDEN && !storedInSystem))
+				{
+					if(cost > MapPanel::maxColor)
+						MapPanel::maxColor = cost;
+					else if(cost < MapPanel::minColor)
+						MapPanel::minColor = cost;
+					return cost;
+				}
+				else
+					return 1.;
+			}
 			if(!outfitter.empty())
 				value = 0.;
 		}
@@ -220,13 +239,19 @@ void MapOutfitterPanel::DrawItems()
 						continue;
 
 					const Planet &planet = *object.GetPlanet();
+					const Sold* sold = planet.Outfitter().GetSold(outfit);
 					const auto pit = storage.find(&planet);
 					if(pit != storage.end())
 						storedInSystem += pit->second.Get(outfit);
-					if(planet.Outfitter().Has(outfit))
+						
+					isForSale = (sold && !(sold->GetShown() == Sold::ShowSold::HIDDEN && !storedInSystem));
+
+					if (isForSale)
 					{
-						isForSale = true;
-						break;
+  						price = sold->GetCost() ? Format::Credits(sold->GetCost()) : price;
+  						if(sold->GetShown() != Sold::ShowSold::DEFAULT)
+							price += " (" + (sold->GetShow()) + ")";
+  						break;
 					}
 				}
 			}
@@ -257,11 +282,11 @@ void MapOutfitterPanel::Init()
 	// Add all outfits sold by outfitters of visited planets.
 	for(auto &&it : GameData::Planets())
 		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
-			for(const Outfit *outfit : it.second.Outfitter())
-				if(!seen.count(outfit))
+			for(const auto& outfitSale : it.second.Outfitter())
+				if(!seen.count(outfitSale.first) && outfitSale.second.GetShown() != Sold::ShowSold::HIDDEN)
 				{
-					catalog[outfit->Category()].push_back(outfit);
-					seen.insert(outfit);
+					catalog[outfitSale.first->Category()].push_back(outfitSale.first);
+					seen.insert(outfitSale.first);
 				}
 
 	// Add outfits in storage

@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DistanceMap.h"
 #include "GameData.h"
 #include "Government.h"
+#include "OutfitSale.h"
 #include "Planet.h"
 #include "Random.h"
 #include "Ship.h"
@@ -59,6 +60,23 @@ namespace {
 			if(*ait == *bit)
 				return true;
 			else if(*ait < *bit)
+				++ait;
+			else
+				++bit;
+		}
+		return false;
+	}
+	bool SetsIntersect(const set<const Outfit *> &a, const map<const Outfit *, Sold> &b)
+	{
+		auto ait = a.begin();
+		auto bit = b.begin();
+		// The stored values are pointers to the same GameData array:
+		// directly compare them.
+		while(ait != a.end() && bit != b.end())
+		{
+			if(*ait == bit->first)
+				return true;
+			else if(*ait < bit->first)
 				++ait;
 			else
 				++bit;

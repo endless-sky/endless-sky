@@ -223,6 +223,8 @@
 		<Unit filename="source/OutfitInfoDisplay.h" />
 		<Unit filename="source/OutfitterPanel.cpp" />
 		<Unit filename="source/OutfitterPanel.h" />
+		<Unit filename="source/OutfitSale.cpp" />
+		<Unit filename="source/OutfitSale.h" />
 		<Unit filename="source/OutlineShader.cpp" />
 		<Unit filename="source/OutlineShader.h" />
 		<Unit filename="source/Panel.cpp" />
@@ -305,6 +307,8 @@
 		<Unit filename="source/StellarObject.h" />
 		<Unit filename="source/System.cpp" />
 		<Unit filename="source/System.h" />
+		<Unit filename="source/Sold.cpp" />
+		<Unit filename="source/Sold.h" />
 		<Unit filename="source/Test.cpp" />
 		<Unit filename="source/Test.h" />
 		<Unit filename="source/TestContext.cpp" />

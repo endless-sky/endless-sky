@@ -77,6 +77,7 @@ protected:
 	
 	// Get the color mapping for various system attributes.
 	static Color MapColor(double value);
+	static Color CommodityColor(double value);
 	static Color ReputationColor(double reputation, bool canLand, bool hasDominated);
 	static Color GovernmentColor(const Government *government);
 	static Color UninhabitedColor();
@@ -139,6 +140,9 @@ protected:
 	const System *hoverSystem = nullptr;
 	std::string tooltip;
 	WrappedText hoverText;
+	// Minimum and maximum color ranges used by mapColor.
+	static double minColor;
+	static double maxColor;
 	
 	
 private:

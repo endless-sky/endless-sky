@@ -15,14 +15,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ShopPanel.h"
 
-#include "Sale.h"
-
 #include <map>
 #include <set>
 #include <string>
 #include <vector>
 
 class Outfit;
+class Planet;
 class PlayerInfo;
 class Point;
 class Ship;
@@ -87,7 +86,7 @@ private:
 	Ship *previousShip = nullptr;
 	std::set<Ship *> previousShips;
 	
-	Sale<Outfit> outfitter;
+	OutfitSale outfitter;
 	
 	// Keep track of how many of the outfitter help screens have been shown
 	bool checkedHelp = false;

@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Government.h"
 #include "Phrase.h"
 #include "pi.h"
+#include "OutfitSale.h"
 #include "Planet.h"
 #include "Random.h"
 #include "Ship.h"
@@ -43,9 +44,9 @@ namespace {
 	}
 	
 	// Construct a list of all outfits for sale in this system and its linked neighbors.
-	Sale<Outfit> GetOutfitsForSale(const System *here)
+	OutfitSale GetOutfitsForSale(const System *here)
 	{
-		auto outfits = Sale<Outfit>();
+		auto outfits = OutfitSale();
 		if(here)
 		{
 			for(const StellarObject &object : here->Objects())
@@ -60,12 +61,12 @@ namespace {
 	
 	// Construct a list of varying numbers of outfits that were either specified for
 	// this fleet directly, or are sold in this system or its linked neighbors.
-	vector<const Outfit *> OutfitChoices(const set<const Sale<Outfit> *> &outfitters, const System *hub, int maxSize)
+	vector<const Outfit *> OutfitChoices(const set<const OutfitSale *> &outfitters, const System *hub, int maxSize)
 	{
 		auto outfits = vector<const Outfit *>();
 		if(maxSize > 0)
 		{
-			auto choices = Sale<Outfit>();
+			auto choices = OutfitSale();
 			// If no outfits were directly specified, choose from those sold nearby.
 			if(outfitters.empty() && hub)
 			{
@@ -79,22 +80,22 @@ namespace {
 			
 			if(!choices.empty())
 			{
-				for(const auto outfit : choices)
+				for(const auto &outfit : choices)
 				{
-					double mass = outfit->Mass();
-					// Avoid free outfits, massless outfits, and those too large to fit.
-					if(mass > 0. && mass < maxSize && outfit->Cost() > 0)
+					double mass = outfit.first->Mass();
+					// Avoid free outfits, massless outfits, and those too large to fit, and the hidden ones.
+					if(mass > 0. && mass < maxSize && outfit.first->Cost() > 0 && outfit.second.GetShown() != Sold::ShowSold::HIDDEN)
 					{
 						// Also avoid outfits that add space (such as Outfits / Cargo Expansions)
 						// or modify bunks.
 						// TODO: Specify rejection criteria in datafiles as ConditionSets or similar.
-						const auto &attributes = outfit->Attributes();
+						const auto &attributes = outfit.first->Attributes();
 						if(attributes.Get("outfit space") > 0.
 								|| attributes.Get("cargo space") > 0.
 								|| attributes.Get("bunks"))
 							continue;
 						
-						outfits.push_back(outfit);
+						outfits.push_back(outfit.first);
 					}
 				}
 			}

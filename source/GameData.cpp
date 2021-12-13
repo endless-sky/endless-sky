@@ -39,6 +39,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Music.h"
 #include "News.h"
 #include "Outfit.h"
+#include "OutfitSale.h"
 #include "OutlineShader.h"
 #include "Person.h"
 #include "Phrase.h"
@@ -92,7 +93,7 @@ namespace {
 	set<double> neighborDistances;
 	
 	Set<Sale<Ship>> shipSales;
-	Set<Sale<Outfit>> outfitSales;
+	Set<OutfitSale> outfitSales;
 	
 	Set<Fleet> defaultFleets;
 	Set<Government> defaultGovernments;
@@ -100,7 +101,7 @@ namespace {
 	Set<System> defaultSystems;
 	Set<Galaxy> defaultGalaxies;
 	Set<Sale<Ship>> defaultShipSales;
-	Set<Sale<Outfit>> defaultOutfitSales;
+	Set<OutfitSale> defaultOutfitSales;
 	TextReplacements defaultSubstitutions;
 	
 	Politics politics;
@@ -799,7 +800,7 @@ const Set<Outfit> &GameData::Outfits()
 
 
 
-const Set<Sale<Outfit>> &GameData::Outfitters()
+const Set<OutfitSale> &GameData::Outfitters()
 {
 	return outfitSales;
 }

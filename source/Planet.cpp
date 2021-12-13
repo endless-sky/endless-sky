@@ -16,9 +16,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "OutfitSale.h"
 #include "PlayerInfo.h"
 #include "Politics.h"
 #include "Random.h"
+#include "Sale.h"
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "SpriteSet.h"
@@ -369,11 +371,11 @@ bool Planet::HasOutfitter() const
 
 
 
-// Get the list of outfits available from the outfitter.
-const Sale<Outfit> &Planet::Outfitter() const
+// Get the list of outfits available from the outfitter with their custom elements.
+const OutfitSale &Planet::Outfitter() const
 {
 	outfitter.clear();
-	for(const Sale<Outfit> *sale : outfitSales)
+	for(const OutfitSale *sale : outfitSales)
 		outfitter.Add(*sale);
 	
 	return outfitter;

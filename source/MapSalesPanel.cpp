@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "ItemInfoDisplay.h"
@@ -201,7 +202,7 @@ void MapSalesPanel::DrawKey() const
 	SpriteShader::Draw(back, Screen::TopLeft() + Point(WIDTH + 10, 0) + .5 * Point(back->Width(), back->Height()));
 	
 	Color bright(.6f, .6f);
-	Color dim(.3f, .3f);
+	const Color &dim = *GameData::Colors().Get("dim");
 	const Font &font = FontSet::Get(14);
 	
 	Point pos(Screen::Left() + 50. + WIDTH, Screen::Top() + 12.);
@@ -220,11 +221,39 @@ void MapSalesPanel::DrawKey() const
 		RingShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
 		font.Draw(KeyLabel(i), pos + textOff, isSelected ? bright : dim);
 		if(onlyShowSoldHere && i == 2)
-		{
 			// If we're filtering out items not sold here, draw a pointer.
 			PointerShader::Draw(pos + Point(-7., 0.), Point(1., 0.), 10.f, 10.f, 0.f, bright);
-		}
 		pos.Y() += 20.;
+	}
+	
+	if(MapPanel::maxColor > 1. || MapPanel::minColor < 1.)
+	{
+		const Color &medium = *GameData::Colors().Get("medium");
+		const Sprite *sales = SpriteSet::Get("ui/key");
+		
+		int height = max(SelectedInfo().AttributesHeight(), CompareInfo().AttributesHeight());
+		pos = Screen::TopRight() + Point(-110., height + sales->Height() / 2. + 15);
+		SpriteShader::Draw(sales, pos + Point(110. - sales->Width() / 2., sales->Height() / 2. - 25.));
+		Point headerOff(-5., -.5 * font.Height());
+		
+		font.Draw("Price multiplier:", pos + headerOff, medium);
+		pos.Y() += 20.;
+		// Each system is colored by the selected item's price. Draw
+		// 6 distinct representative colors and the price multiplier each color represents.
+		static const double commodities[] = {
+			MapPanel::minColor,
+			(1. - (1. - MapPanel::minColor) * MapPanel::minColor + MapPanel::minColor) / 2.,
+			1. - (1. - MapPanel::minColor) * MapPanel::minColor,
+			(MapPanel::maxColor - 1.) * (1./3.) + 1.,
+			(MapPanel::maxColor - 1.) * (2./3.) + 1.,
+			MapPanel::maxColor
+		};
+		for(int i = 0; i < 6; ++i)
+		{
+			RingShader::Draw(pos, OUTER, INNER, MapColor(commodities[i]));
+			font.Draw(Format::Decimal(commodities[i], 2), pos + textOff, dim);
+			pos.Y() += 20.;
+		}
 	}
 }
 

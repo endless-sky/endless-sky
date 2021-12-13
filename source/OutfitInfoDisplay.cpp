@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Depreciation.h"
 #include "text/Format.h"
 #include "Outfit.h"
+#include "OutfitSale.h"
 #include "PlayerInfo.h"
 
 #include <algorithm>
@@ -190,9 +191,9 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 	requirementsHeight = 20;
 	
 	int day = player.GetDate().DaysSinceEpoch();
-	int64_t cost = outfit.Cost();
-	int64_t buyValue = player.StockDepreciation().Value(&outfit, day);
-	int64_t sellValue = player.FleetDepreciation().Value(&outfit, day);
+	int64_t cost = player.GetPlanet() ? player.GetPlanet()->Outfitter().GetCost(&outfit) : outfit.Cost();
+	int64_t buyValue = player.StockDepreciation().Value(&outfit, day, player.GetPlanet());
+	int64_t sellValue = player.FleetDepreciation().Value(&outfit, day, player.GetPlanet());
 	
 	if(buyValue == cost)
 		requirementLabels.push_back("cost:");
