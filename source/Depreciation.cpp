@@ -263,7 +263,8 @@ int64_t Depreciation::Value(const Ship *ship, int day, int count) const
 // Get the value of an outfit.
 int64_t Depreciation::Value(const Outfit *outfit, int day, const Planet *planet, int count) const
 {
-	int64_t cost = planet ? planet->Outfitter().GetCost(outfit) : outfit->Cost();
+	int64_t basePrice = planet ? planet->Outfitter().GetCost(outfit) : 0;
+	int64_t cost = basePrice ? basePrice : outfit->Cost();
 	if(outfit->Get("installable") < 0.)
 		return count * cost;
 	

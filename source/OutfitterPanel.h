@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef OUTFITTER_PANEL_H_
 #define OUTFITTER_PANEL_H_
 
+#include "OutfitSale.h"
 #include "ShopPanel.h"
 
 #include <map>
