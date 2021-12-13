@@ -16,10 +16,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 namespace 
 {
-	const std::map<Sold::ShowSold, const std::string> show{{Sold::ShowSold::DEFAULT, ""},
-															{Sold::ShowSold::IMPORT, "import"},
-															{Sold::ShowSold::HIDDEN, "hidden"},
-															{Sold::ShowSold::NONE, ""}};
+const std::map<Sold::SellType, const std::string> show{{Sold::SellType::VISIBLE, ""},
+													   {Sold::SellType::IMPORT, "import"},
+													   {Sold::SellType::HIDDEN, "hidden"},
+													   {Sold::SellType::NONE, ""}};
 }
 
 
@@ -38,27 +38,32 @@ void Sold::SetCost(double newCost)
 
 
 
-Sold::ShowSold Sold::GetShown() const
+Sold::SellType Sold::GetSellType() const
 {
 	return shown;
 }
 
 
 
-const std::string &Sold::GetShow() const
+const std::string &Sold::GetShown() const
 {
 	return show.find(shown)->second;
 }
 
 
 
-void Sold::SetBase(double cost, const std::string shown) 
+void Sold::SetBase(double cost, const Sold::SellType shown) 
 {
 	this->cost = cost;
-	if(shown == "")
-		this->shown = ShowSold::DEFAULT;
-	else if(shown == "import")
-		this->shown = ShowSold::IMPORT;
-	else if(shown == "hidden")
-		this->shown = ShowSold::HIDDEN;
+	this->shown = shown;
+}
+
+
+
+Sold::SellType Sold::StringToSellType(std::string name)
+{
+	for(const auto& it : show)
+		if(name == it.second)
+			return it.first;
+	return SellType::NONE;
 }

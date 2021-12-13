@@ -249,7 +249,7 @@ int64_t Depreciation::Value(const Ship &ship, int day, const Planet *planet) con
 int64_t Depreciation::Value(const Ship *ship, int day, int count) const
 {
 	// Check whether a record exists for this ship. If not, its value is full
-	// if this is in the planet's stock, or fully depreciated if this is the player.
+	// if this is planet's stock, or fully depreciated if this is the player.
 	ship = GameData::Ships().Get(ship->ModelName());
 	auto recordIt = ships.find(ship);
 	if(recordIt == ships.end() || recordIt->second.empty())

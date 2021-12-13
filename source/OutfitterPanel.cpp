@@ -107,9 +107,9 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
 bool OutfitterPanel::HasItem(const string &name) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
-	const Sold::ShowSold selling = outfitter.GetShown(outfit);
+	const Sold::SellType selling = outfitter.GetShown(outfit);
 	// Do not show hidden items except if the player has them in cargo.
-	if(((selling != Sold::ShowSold::NONE && selling != Sold::ShowSold::HIDDEN) 
+	if(((selling != Sold::SellType::NONE && selling != Sold::SellType::HIDDEN) 
 		|| player.Stock(outfit) > 0) && showForSale)
 		return true;
 	
@@ -184,7 +184,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 	int cargo = player.Cargo().Get(outfit);
 	int storage = player.Storage() ? player.Storage()->Get(outfit) : 0;
 	const Sold* sold = outfitter.GetSold(outfit);
-	const std::string show = sold ? sold->GetShow() : "";
+	const std::string show = sold ? sold->GetShown() : "";
 	
 	string message;
 	if(cargo && storage && stock)
@@ -201,7 +201,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		message = "in storage: " + to_string(storage);
 	else if(stock)
 		message = "in stock: " + to_string(stock);
-	else if(show != "")
+	else if(!show.empty())
 		message = show;
 	else if(!outfitter.Has(outfit))
 		message = "(not sold here)";
@@ -316,7 +316,7 @@ bool OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 		return false;
 	
 	bool isAlreadyOwned = checkAlreadyOwned && IsAlreadyOwned();
-	if(!(outfitter.GetShown(selectedOutfit) == Sold::ShowSold::DEFAULT || player.Stock(selectedOutfit) > 0 || isAlreadyOwned))
+	if(!(outfitter.GetShown(selectedOutfit) == Sold::SellType::VISIBLE || player.Stock(selectedOutfit) > 0 || isAlreadyOwned))
 		return false;
 	
 	int mapSize = selectedOutfit->Get("map");
@@ -489,11 +489,10 @@ void OutfitterPanel::FailBuy() const
 		return;
 	}
 	
-	if(outfitter.GetShown(selectedOutfit) != Sold::ShowSold::DEFAULT)
+	if(outfitter.GetShown(selectedOutfit) != Sold::SellType::VISIBLE)
 	{
-		GetUI()->Push(new Dialog("You cannot buy this outfit here. "
-			"It is meant to be imported, legally or not for a good price, "
-			"this " + planet->Noun() + " does not sell them."));
+		GetUI()->Push(new Dialog("You can only sell this outfit here, "
+			"it is meant to be imported, legally or not, generally for a good price."));
 		return;
 	}
 	

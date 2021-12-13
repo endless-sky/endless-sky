@@ -84,7 +84,7 @@ namespace {
 				{
 					double mass = outfit.first->Mass();
 					// Avoid free outfits, massless outfits, and those too large to fit, and the hidden ones.
-					if(mass > 0. && mass < maxSize && outfit.first->Cost() > 0 && outfit.second.GetShown() != Sold::ShowSold::HIDDEN)
+					if(mass > 0. && mass < maxSize && outfit.first->Cost() > 0 && outfit.second.GetSellType() != Sold::SellType::HIDDEN)
 					{
 						// Also avoid outfits that add space (such as Outfits / Cargo Expansions)
 						// or modify bunks.

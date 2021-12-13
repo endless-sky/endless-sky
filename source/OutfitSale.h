@@ -14,12 +14,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define OUTFITSALE_H_
 
 #include "Outfit.h"
+#include "Set.h"
 #include "Sold.h"
+
 #include <map>
+#include <set>
 
 class DataNode;
-template <class Type>
-class Set;
 
 
 
@@ -35,7 +36,7 @@ public:
 	
 	double GetCost(const Outfit *item) const;
 	
-	Sold::ShowSold GetShown(const Outfit *item) const;
+	Sold::SellType GetShown(const Outfit *item) const;
 	
 	bool Has(const Outfit *item) const;
 };

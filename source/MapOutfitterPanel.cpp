@@ -152,7 +152,7 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 				bool storedInSystem = (pit != storage.end());
 				double cost = sold->GetCost() / basePrice;
 				
-				if(cost && !(sold->GetShown() == Sold::ShowSold::HIDDEN && !storedInSystem))
+				if(cost && !(sold->GetSellType() == Sold::SellType::HIDDEN && !storedInSystem))
 				{
 					if(cost > MapPanel::maxColor)
 						MapPanel::maxColor = cost;
@@ -244,13 +244,13 @@ void MapOutfitterPanel::DrawItems()
 					if(pit != storage.end())
 						storedInSystem += pit->second.Get(outfit);
 						
-					isForSale = (sold && !(sold->GetShown() == Sold::ShowSold::HIDDEN && !storedInSystem));
+					isForSale = (sold && !(sold->GetSellType() == Sold::SellType::HIDDEN && !storedInSystem));
 
 					if (isForSale)
 					{
   						price = sold->GetCost() ? Format::Credits(sold->GetCost()) : price;
-  						if(sold->GetShown() != Sold::ShowSold::DEFAULT)
-							price += " (" + (sold->GetShow()) + ")";
+  						if(sold->GetSellType() != Sold::SellType::VISIBLE)
+							price += " (" + (sold->GetShown()) + ")";
   						break;
 					}
 				}
@@ -283,7 +283,7 @@ void MapOutfitterPanel::Init()
 	for(auto &&it : GameData::Planets())
 		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
 			for(const auto& outfitSale : it.second.Outfitter())
-				if(!seen.count(outfitSale.first) && outfitSale.second.GetShown() != Sold::ShowSold::HIDDEN)
+				if(!seen.count(outfitSale.first) && outfitSale.second.GetSellType() != Sold::SellType::HIDDEN)
 				{
 					catalog[outfitSale.first->Category()].push_back(outfitSale.first);
 					seen.insert(outfitSale.first);

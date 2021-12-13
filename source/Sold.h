@@ -17,12 +17,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
-// Container used for the price and selling type of different items (outfits in this case).
+// Container used for the price and selling type of different items.
 class Sold {
 public:
-	enum ShowSold {
+	enum class SellType {
 		NONE = 0,
-		DEFAULT = (1 << 0),
+		VISIBLE = (1 << 0),
 		IMPORT = (1 << 1),
 		HIDDEN = (1 << 2)
 	};
@@ -33,16 +33,18 @@ public:
 	
 	void SetCost(double newCost);
 	
-	ShowSold GetShown() const;
+	SellType GetSellType() const;
 	
-	const std::string &GetShow() const;
+	const std::string &GetShown() const;
 	
-	void SetBase(double cost = 0., std::string shown = "");
+	void SetBase(double cost = 0., Sold::SellType = SellType::NONE);
+
+	static SellType StringToSellType(std::string name);
 	
 	
 private:
 	double cost = 0.;
-	ShowSold shown = ShowSold::DEFAULT;
+	SellType shown = SellType::VISIBLE;
 };
 
 #endif

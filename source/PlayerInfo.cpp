@@ -25,7 +25,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Messages.h"
 #include "Mission.h"
 #include "Outfit.h"
-#include "OutfitSale.h"
 #include "Person.h"
 #include "Planet.h"
 #include "Politics.h"
