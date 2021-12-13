@@ -78,7 +78,7 @@ mission "Unfettered: Bring Hai"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 100000
-		log `Helped some Hai to join the Unfettered.`
+		log `Helped some Hai citizens to join the Unfettered.`
 		dialog `The Unfettered thank you for bringing these "True" Hai, and give you <payment>. After discussing with them, the Unfettered elder sends you a message, "If you want to help us again, the hospitals on Darkcloak are in grave need of resupply."`
 
 
@@ -136,8 +136,6 @@ mission "Unfettered: Prove your strength"
 	source "Darkcloak"
 	to offer
 		has "Unfettered Jump Drive 2: offered"
-	on fail
-		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 	on offer
 		conversation
 			`You start wandering in the spaceport, and notice that everything around here is so... simple, efficient, ordered. There seems to be more warriors here than on the other Unfettered planets, or at least they are less affrayed to wonder around with their weapon, they seem ready for action at any time, you are happy not to be their enemy, or at least, for now.	As you continue walking you notice someone speaking to a crowd of people. They seem very familiar with each others, and it seems they have noticed you too, the one who was adressing the others approaches you.`
@@ -167,7 +165,7 @@ mission "Unfettered: Prove your strength"
 		fleet
 			names "hai"
 			variant
-				"Lightning Bug (Pulse)"
+				"Sea Scorpion (Challenge)"
 		conversation
 			`Now that you have disabled the <npc> its captain hails you.	"It seems you fight well, you have earned my respect today." He says`
 			choice
@@ -183,10 +181,24 @@ mission "Unfettered: Prove your strength"
 			`	"Worry not, my respect is only to be earned once."`
 			label end
 			`	"Hopefully we see each other again, sometime."	He and his crew seem quite busy with the repairs.`
+	on fail
+		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 	on complete
 		payment 25000
 		log `Tought a lesson to a young Unfettered captain.`
 		dialog `You receive a message from the <npc> : "Hopefully these <payment> credits will be enough to repair any damage I may have done to your ship."`
+
+mission "Unfettered: Betrayal"
+	boarding
+	repeat
+	source
+		government "Hai (Unfettered Challenge)"
+		not attributes "automaton"
+	on offer
+		conversation
+			`Better go down with my ship than surrender it and my crew to you scum !` # Brethren, chase him out of this system, avenge me !` this should PROVOKE Unfettered but idk how to
+			decline
+	destination "Darkcloak"
 
 
 
