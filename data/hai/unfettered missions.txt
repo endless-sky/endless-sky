@@ -185,7 +185,7 @@ mission "Unfettered: Prove your strength"
 		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 	on complete
 		payment 25000
-		log `Tought a lesson to a young Unfettered captain.`
+		log `Taught a lesson to a young Unfettered captain.`
 		dialog `You receive a message from the <npc> : "Hopefully these <payment> credits will be enough to repair any damage I may have done to your ship."`
 
 mission "Unfettered: Betrayal"
@@ -196,8 +196,8 @@ mission "Unfettered: Betrayal"
 		not attributes "automaton"
 	on offer
 		conversation
-			`Better go down with my ship than surrender it and my crew to you scum !` # Brethren, chase him out of this system, avenge me !` this should PROVOKE Unfettered but idk how to
-			decline
+			`Better go down with my ship than surrender it and my crew to you scum ! Brethren, chase him out of this system, avenge me !`
+				decline
 	destination "Darkcloak"
 
 

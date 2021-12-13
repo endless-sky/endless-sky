@@ -175,6 +175,7 @@ government "Hai (Unfettered)"
 		"Pug (Wanderer)" -.01
 		"Merchant" -.01
 		"Kor Efret" -.01
+		"Hai (Unfettered Challenge)" 1
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly unfettered"
@@ -195,8 +196,17 @@ government "Hai (Unfettered Challenge)"
 		"Pug (Wanderer)" -.01
 		"Merchant" -.01
 		"Kor Efret" -.01
+		"Hai (Unfettered)" 1
 	"bribe" .0001
 	"fine" 0
+
+	"penalty for"
+		assist -.1
+		disable -1
+		board .5
+		capture 5
+		destroy 2
+
 	"friendly hail" "friendly unfettered"
 	"friendly disabled hail" "friendly disabled unfettered"
 	"hostile hail" "hostile civilian"  # normally unfettered asks to finish them off
