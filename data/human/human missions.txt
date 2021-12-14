@@ -3769,4 +3769,36 @@ mission "Kindred Spirit 2"
 			choice
 				`	"No worries. What else are friends for?"`
 				`	"Thanks. But you'll want to be more careful in the future."`
+
+mission "Kindred Spirit 3"
+	name "Charlie's Return"
+	description "Convince Charlie to return to his parents."
+	source 
+		government "Syndicate"
+	destination "Heartland"
+	to offer
+		has "Kindred Spirit 2: done"
+		#random < 15
+		#credits >= 300000
+	npc save
+		government "Merchant"
+		personality timid escort
+		ship "Quicksilver" "Tyran the Brave"
+	on offer
+		conversation
+			`	You see Charlie through the window of a bar. He recognizes you and tips his drink. He looks drunk.`
+				accept
+mission "Kindred Spirit 4"
+	name "Companion"
+	description "Travel with Charlie until you return home safely."
+	repeat
+	to offer
+		has "Kindred Spirit 3: done"
+		random < 50
+	on offer
+		conversation
+			`	"So!" Charlie says. "Are you ready to go traveling again?`
+			choice
+				`	"Of course! `
+
 	
