@@ -61,7 +61,7 @@ private:
 	int governmentY = 0;
 	int tradeY = 0;
 	
-	int planetNbr = 0.;
+	int planetNbr = 0;
 	double scroll = 0.;
 	double maxScroll = 0.;
 	
