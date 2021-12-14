@@ -1881,7 +1881,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		{
 			thrust = attributes.Get("afterburner thrust");
 			double shieldCost = attributes.Get("afterburner shields");
-			double shullCost = attributes.Get("afterburner hull");
+			double hullCost = attributes.Get("afterburner hull");
 			double energyCost = attributes.Get("afterburner energy");
 			double fuelCost = attributes.Get("afterburner fuel");
 			double heatCost = -attributes.Get("afterburner heat");
@@ -1903,7 +1903,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				&& heat >= heatCost)
 			{
 				shields -= shieldCost;
-				hull -= hulCost;
+				hull -= hullCost;
 				energy -= energyCost;
 				fuel -= fuelCost;
 				heat -= heatCost;
