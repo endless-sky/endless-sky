@@ -3707,6 +3707,7 @@ mission "Kindred Spirit 2"
 	source 
 		government "Republic" "Syndicate"
 		#attributes "factory"
+		category "Interceptor" "Light Warship" "Heavy Warship"
 	destination
 		attributes "research"
 		distance 5 12
@@ -3714,6 +3715,7 @@ mission "Kindred Spirit 2"
 		has "Kindred Spirit: done"
 		#random <15
 		#credits >= 300000
+		"combat rating" > 100
 	npc accompany save
 		government "Merchant"
 		personality timid escort
@@ -3723,7 +3725,7 @@ mission "Kindred Spirit 2"
 	npc
 		government "Pirate"
 		personality entering plunders
-		ship "Berserker" "Targos the Furious"
+		ship "Berserker" "Minotaur"
 		ship "Fury" "Headbroker"
 		ship "Hawk" "Shadow Hand"
 	on offer
