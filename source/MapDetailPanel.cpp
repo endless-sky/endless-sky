@@ -128,7 +128,7 @@ bool MapDetailPanel::Scroll(double dx, double dy)
 	Point point = UI::GetMouse();
 	if(maxScroll && point.X() < Screen::Left() + 160 && point.Y() > Screen::Top() + 90 && point.Y() < Screen::Bottom() - 230)
 	{
-		if(dy > 0. && scroll < maxScroll - 130.)
+		if(dy > 0. && scroll < maxScroll - 65.)
 			scroll += dy * 25.;
 		else if(dy < 0. && scroll > 0.)
 			scroll += dy * 25.;
@@ -520,8 +520,10 @@ void MapDetailPanel::DrawInfo()
 		set<const Planet *> shown;
 		maxScroll = 0.;
 		planetNbr = 0.;
-		if(scroll)
-			uiPoint.Y() += 130 - int(scroll) % 130;
+		uiPoint.Y() -= int(scroll) % 130;
+		// For planets that go from being half shown to not shown.
+		if(int(scroll) % 130 > 65 && int(scroll) % 130 < 130)
+			uiPoint.Y() += 130.;
 		for(const StellarObject &object : selectedSystem->Objects())
 			if(object.HasSprite() && object.HasValidPlanet())
 			{
@@ -531,7 +533,7 @@ void MapDetailPanel::DrawInfo()
 				if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.count(planet))
 					continue;
 				
-				if(scroll / 130. <= planetNbr && uiPoint.Y() + int(scroll) % 130 < Screen::Bottom() - 360)
+				if((scroll - 65.)/ 130. <= planetNbr && uiPoint.Y() + int(scroll) % 130 < Screen::Bottom() - 230)
 				{
 					shown.insert(planet);
 					
