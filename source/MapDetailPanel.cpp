@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
+#include "FillShader.h"
 #include "GameData.h"
 #include "Government.h"
 #include "text/layout.hpp"
@@ -125,12 +126,17 @@ void MapDetailPanel::Draw()
 bool MapDetailPanel::Scroll(double dx, double dy)
 {
 	Point point = UI::GetMouse();
-	if(excessPlanet && point.X() < Screen::Left() + 160 && point.Y() > Screen::Top() + 90 && point.Y() < Screen::Bottom() - 230)
+	if(maxScroll && point.X() < Screen::Left() + 160 && point.Y() > Screen::Top() + 90 && point.Y() < Screen::Bottom() - 230)
 	{
-		if(dy > 0. && firstPlanet < excessPlanet)
-			++firstPlanet;
-		else if(dy < 0. && firstPlanet > 0)
-			--firstPlanet;
+		if(dy > 0. && scroll >= 0.)
+			scroll += dy * 26.;
+		else if(dy < 0. && scroll < maxScroll + (Screen::Bottom() - 320 - 130))
+			scroll += dy * 26.;
+			
+		if(scroll < 0.)
+			scroll = 0.;
+		else if(scroll > maxScroll)
+			scroll = maxScroll;
 		return true;
 	}
 	else
@@ -146,7 +152,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	{
 		// Clear the selected planet, if any.
 		selectedPlanet = nullptr;
-		firstPlanet = 0;
+		scroll = 0.;
 		// Toggle to the next link connected to the "source" system. If the
 		// shift key is down, the source is the end of the travel plan; otherwise
 		// it is one step before the end.
@@ -249,15 +255,19 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		else if(y >= governmentY && y < governmentY + 20)
 			SetCommodity(SHOW_GOVERNMENT);
 		// Clicking the arrow below makes the planet view go up.
-		else if(y >= governmentY + 20 && y < governmentY + 40 && firstPlanet < excessPlanet)
+		else if(y >= governmentY + 20 && y < governmentY + 40)
 		{
-			++firstPlanet;
+			scroll += 130.;
+			if(scroll > maxScroll)
+				scroll = maxScroll;
 			return true;
 		}
 		// Clicking the arrow below makes the planet view go down.
-		else if(y <= tradeY && y > tradeY - 20 && firstPlanet > 0)
+		else if(y <= tradeY && y > tradeY - 20)
 		{
-			--firstPlanet;
+			scroll -= 130.;
+			if(scroll < 0.)
+				scroll = 0.;
 			return true;
 		}
 		else
@@ -321,7 +331,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		selectedPlanet = nullptr;
 	// If the system just changed, the planet scroll in the system needs to be reset.
 	if(selectedSystem == previous)
-		firstPlanet = 0;
+		scroll = 0.;
 	return true;
 }
 
@@ -486,6 +496,23 @@ void MapDetailPanel::DrawInfo()
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	
+	const Color &back = *GameData::Colors().Get("map side panel background");
+	// Draw the panel.
+	// 5 => planets on screen
+	Point size(250, (Screen::Bottom() - 182.5) * 2);//(planetNbr >= 5 ? 5 : planetNbr % 5) * 130 + 115);
+	FillShader::Fill(Point(Screen::Left() + size.X() / 2, Screen::Top() + size.Y() / 2), size, back);
+	
+	// Edges:
+	const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
+	Point pos(Screen::TopLeft());
+	Point edgePos = pos + Point(.5 * size.X(), size.Y());
+	Point bottomOff(0., .5 * bottom->Height());
+	SpriteShader::Draw(bottom, edgePos + bottomOff);
+	
+	const Sprite *right = SpriteSet::Get("ui/right edge");
+	Point rightOff(.5 * (size.X() + right->Width()), -right->Height() / 2.);
+	SpriteShader::Draw(right, edgePos + rightOff);
+	
 	Point uiPoint(Screen::Left() + 100., Screen::Top() + 45.);
 	
 	// System sprite goes from 0 to 90.
@@ -510,11 +537,12 @@ void MapDetailPanel::DrawInfo()
 	planetY.clear();
 	// Draw the basic information for visitable planets in this system.
 	if(player.HasVisited(*selectedSystem))
-	{
+	{	
 		set<const Planet *> shown;
-		const Sprite *planetSprite = SpriteSet::Get("ui/map planet");
-		excessPlanet = 0;
-		int currentPlanet = 0;
+		maxScroll = 0.;
+		planetNbr = 0.;
+		if(scroll)
+			uiPoint.Y() += 130 - int(scroll) % 130;
 		for(const StellarObject &object : selectedSystem->Objects())
 			if(object.HasSprite() && object.HasValidPlanet())
 			{
@@ -524,18 +552,19 @@ void MapDetailPanel::DrawInfo()
 				if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.count(planet))
 					continue;
 				
-				// Makes sure one more planet does not go out of the screen.
-				if(uiPoint.Y() <= (Screen::Bottom() - 230 - 130) && currentPlanet >= firstPlanet)
+				if(scroll / 130. <= planetNbr && uiPoint.Y() + int(scroll) % 130 + 130 < Screen::Bottom() - 230)
 				{
 					shown.insert(planet);
 					
 					bool hasSpaceport = planet->HasSpaceport();
 					
-					SpriteShader::Draw(planetSprite, uiPoint);
-					planetY[planet] = uiPoint.Y() - 60;
+					int pointLeft = 30.;
+					
+					SpriteShader::Draw(object.GetSprite(), Point(Screen::Left() + object.Width()/2, uiPoint.Y()));
+					planetY[planet] = uiPoint.Y() - 65;
 					
 					font.Draw({object.Name(), alignLeft},
-						uiPoint + Point(-70., -52.),
+						uiPoint + Point(pointLeft, -52.),
 						planet == selectedPlanet ? medium : dim);
 					
 					string reputationLabel = !hasSpaceport ? "No Spaceport" :
@@ -543,60 +572,53 @@ void MapDetailPanel::DrawInfo()
 						planet->GetGovernment()->IsEnemy() ? "Hostile" :
 						planet->CanLand() ? "Friendly" : "Restricted";
 					font.Draw(reputationLabel,
-						uiPoint + Point(-60., -32.),
+						uiPoint + Point(pointLeft + 10., -32.),
 						hasSpaceport ? medium : faint);
 					if(commodity == SHOW_REPUTATION)
-						PointerShader::Draw(uiPoint + Point(-60., -25.), Point(1., 0.),
+						PointerShader::Draw(uiPoint + Point(pointLeft + 10., -25.), Point(1., 0.),
 							10.f, 10.f, 0.f, medium);
 					
 					font.Draw("Shipyard",
-						uiPoint + Point(-60., -12.),
+						uiPoint + Point(pointLeft + 10., -12.),
 						planet->HasShipyard() ? medium : faint);
 					if(commodity == SHOW_SHIPYARD)
-						PointerShader::Draw(uiPoint + Point(-60., -5.), Point(1., 0.),
+						PointerShader::Draw(uiPoint + Point(pointLeft + 10., -5.), Point(1., 0.),
 							10.f, 10.f, 0.f, medium);
 					
 					font.Draw("Outfitter",
-						uiPoint + Point(-60., 8.),
+						uiPoint + Point(pointLeft + 10., 8.),
 						planet->HasOutfitter() ? medium : faint);
 					if(commodity == SHOW_OUTFITTER)
-						PointerShader::Draw(uiPoint + Point(-60., 15.), Point(1., 0.),
+						PointerShader::Draw(uiPoint + Point(pointLeft + 10., 15.), Point(1., 0.),
 							10.f, 10.f, 0.f, medium);
 							
 					bool hasVisited = player.HasVisited(*planet);
 					font.Draw(hasVisited ? "(has been visited)" : "(not yet visited)",
-						uiPoint + Point(-70., 28.),
+						uiPoint + Point(pointLeft + 10., 28.),
 						dim);
 					if(commodity == SHOW_VISITED)
-						PointerShader::Draw(uiPoint + Point(-70., 35), Point(1., 0.),
+						PointerShader::Draw(uiPoint + Point(pointLeft + 10., 35), Point(1., 0.),
 							10.f, 10.f, 0.f, medium);
 					
 					uiPoint.Y() += 130.;
 				}
 				else
-					++excessPlanet;
-				++currentPlanet;
+					maxScroll += 130.;
+				++planetNbr;
 			}
+		uiPoint.Y() += int(scroll) % 130;
 	}
-	// Hints that more planets can be seen by scrolling up.
-	if(excessPlanet > firstPlanet)
-	{
-		const Sprite *up = SpriteSet::Get("ui/up");
-		Point point(Screen::Left() + 98., governmentY + 35.);
-		SpriteShader::Draw(up, point);
-	}
-	// Hints that more planets can be seen by scrolling down.
-	if(firstPlanet)
-	{
-		const Sprite *down = SpriteSet::Get("ui/down");
-		Point point(Screen::Left() + 98., uiPoint.Y() - 70.);
-		SpriteShader::Draw(down, point);
-	}
+	if(maxScroll > Screen::Bottom() - 320)
+		PointerShader::Draw(Point(Screen::Left() + 98., governmentY + 27.5), Point(0., -1.),
+							14.5f, 20.f, 0.f, medium);
+	if(scroll)
+		PointerShader::Draw(Point(Screen::Left() + 98., uiPoint.Y() - 62.5), Point(0., 1.),
+							14.5f, 20.f, 0.f, medium);
 	
-	uiPoint.Y() += 45.;
-	tradeY = uiPoint.Y() - 95.;
+	uiPoint.Y() = Screen::Bottom() - 230;
+	tradeY = uiPoint.Y() - 140.;
 	
-	// Trade sprite goes from 310 to 540.
+	// Trade sprite goes from bottom-230 to bottom.
 	const Sprite *tradeSprite = SpriteSet::Get("ui/map trade");
 	SpriteShader::Draw(tradeSprite, uiPoint);
 	

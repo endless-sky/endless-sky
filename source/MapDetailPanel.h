@@ -60,10 +60,10 @@ private:
 private:
 	int governmentY = 0;
 	int tradeY = 0;
-	// The first planet of the list that is displayed (used when there are too many to all fit at once).
-	int firstPlanet = 0;
-	// The amount of planets that do not fit on screen.
-	int excessPlanet = 0;
+	
+	int planetNbr = 0.;
+	double scroll = 0.;
+	double maxScroll = 0.;
 	
 	// Default display scaling for orbits within the currently displayed system.
 	double scale = .03;
