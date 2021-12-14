@@ -3690,18 +3690,18 @@ mission "Street Swindle"
 				`	"Right."`
 					goto right
 			label left
-			`	With a grin, she reveals the left cup, and it's...wrong! "Nice try," she says, pocketing your money. "It is a bit tricky."`
+			`	With a grin, she reveals the left cup, and it's... wrong! "Nice try," she says, pocketing your money. "It is a bit tricky."`
 			`	"Well, that's all for today, folks!" the announcer says as you realize you've been conned. Worse still, after they pack up and leave, you notice that the first winner walks away beside them.`
 				accept
 			label center
-			`	With a raised eyebrow, she reveals the center cup. It's...wrong! "Nice try," she says, pocketing your money. "That one was a bit tricky."`
+			`	With a raised eyebrow, she reveals the center cup. It's... wrong! "Nice try," she says, pocketing your money. "That one was a bit tricky."`
 			`	"Well, that's all for today, folks!" the announcer says. As they pack up and leave, you notice that the first winner walks away beside them.`
 				accept
 			label right
-			`	With a raised eyebrow, she reveals the right cup. It's...wrong! "Nice try," she says, pocketing your money. "That one was a bit tricky."`
+			`	With a raised eyebrow, she reveals the right cup. It's... wrong! "Nice try," she says, pocketing your money. "That one was a bit tricky."`
 			`	"Well, that's all for today, folks!" the announcer says. As they pack up and leave, you notice that the first winner walks away beside them.`
 				accept
 			label secondgamewatch
-			`	Sensing that something's up, you decide to watch the next game. A sprightly young fellow confidently hands over 6000 credits; when the cups stop, you're certain the ball is under the left one. The boy points to it; with a grin, the magician reveals the left cup, and it's...wrong! "Nice try," she says, pocketing the shocked boy's money. "It is a bit tricky."`
+			`	Sensing that something's up, you decide to watch the next game. A sprightly young fellow confidently hands over 6000 credits; when the cups stop, you're certain the ball is under the left one. The boy points to it; with a grin, the magician reveals the left cup, and it's... wrong! "Nice try," she says, pocketing the shocked boy's money. "It is a bit tricky."`
 			`	"Well, that's all for today, folks!" the announcer says. You're glad you avoided the con. As they pack up and leave, you notice the first winner walks away beside them.`
 				decline
