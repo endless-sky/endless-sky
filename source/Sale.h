@@ -69,7 +69,7 @@ void Sale<Item>::Add(const Sale<Item> &other)
 template <class Item>
 void Sale<Item>::Add(const OutfitSale &other)
 {
-	for(const auto& it : other)
+	for(const auto& it : other.GetSoldOutfits())
 		this->insert(it.first);
 }
 

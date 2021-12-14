@@ -26,7 +26,7 @@ class DataNode;
 
 // Class used to stock Outfits and their local changes, it has
 // their corresponding custom prices or showing/sellable types in the form of Sold.
-class OutfitSale : public std::map<const Outfit *, Sold> {
+class OutfitSale {
 public:
 	void Load(const DataNode &node, const Set<Outfit> &items);
 	
@@ -39,6 +39,14 @@ public:
 	Sold::SellType GetShown(const Outfit *item) const;
 	
 	bool Has(const Outfit *item) const;
+
+	const std::map<const Outfit *, Sold> &GetSoldOutfits() const;
+
+	void clear();
+
+	
+private:
+	std::map<const Outfit *, Sold> soldOutfits;
 };
 
 #endif

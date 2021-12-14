@@ -163,7 +163,7 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 				else
 					return 1.;
 			}
-			if(!outfitter.empty())
+			if(!outfitter.GetSoldOutfits().empty())
 				value = 0.;
 		}
 	return value;
@@ -282,7 +282,7 @@ void MapOutfitterPanel::Init()
 	// Add all outfits sold by outfitters of visited planets.
 	for(auto &&it : GameData::Planets())
 		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
-			for(const auto& outfitSale : it.second.Outfitter())
+			for(const auto& outfitSale : it.second.Outfitter().GetSoldOutfits())
 				if(!seen.count(outfitSale.first) && outfitSale.second.GetSellType() != Sold::SellType::HIDDEN)
 				{
 					catalog[outfitSale.first->Category()].push_back(outfitSale.first);

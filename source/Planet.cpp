@@ -366,7 +366,7 @@ const Sale<Ship> &Planet::Shipyard() const
 // Check if this planet has an outfitter.
 bool Planet::HasOutfitter() const
 {
-	return !Outfitter().empty();
+	return !Outfitter().GetSoldOutfits().empty();
 }
 
 

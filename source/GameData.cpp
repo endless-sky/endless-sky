@@ -334,7 +334,7 @@ void GameData::CheckReferences()
 			NameAndWarn("outfit", it);
 	// Outfitters are never serialized.
 	for(const auto &it : outfitSales)
-		if(it.second.empty() && !deferred["outfitter"].count(it.first))
+		if(it.second.GetSoldOutfits().empty() && !deferred["outfitter"].count(it.first))
 			Files::LogError("Warning: outfitter \"" + it.first + "\" is referred to, but has no outfits.");
 	// Phrases are never serialized.
 	for(const auto &it : phrases)

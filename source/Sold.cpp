@@ -16,10 +16,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 namespace 
 {
-const std::map<Sold::SellType, const std::string> show{{Sold::SellType::VISIBLE, ""},
-													   {Sold::SellType::IMPORT, "import"},
-													   {Sold::SellType::HIDDEN, "hidden"},
-													   {Sold::SellType::NONE, ""}};
+	const std::map<Sold::SellType, const std::string> show{{Sold::SellType::VISIBLE, ""},
+		{Sold::SellType::IMPORT, "import"}, {Sold::SellType::HIDDEN, "hidden"}, {Sold::SellType::NONE, ""}};
 }
 
 

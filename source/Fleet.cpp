@@ -78,9 +78,9 @@ namespace {
 				for(const auto outfitter : outfitters)
 					choices.Add(*outfitter);
 			
-			if(!choices.empty())
+			if(!choices.GetSoldOutfits().empty())
 			{
-				for(const auto &outfit : choices)
+				for(const auto &outfit : choices.GetSoldOutfits())
 				{
 					double mass = outfit.first->Mass();
 					// Avoid free outfits, massless outfits, and those too large to fit, and the hidden ones.

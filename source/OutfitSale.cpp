@@ -26,18 +26,18 @@ void OutfitSale::Load(const DataNode &node, const Set<Outfit> &items)
 		const std::string &token = child.Token(0);
 		bool remove = (token == "clear" || token == "remove");
 		if(remove && child.Size() == 1)
-			this->clear();
+			soldOutfits.clear();
 		else if(remove && child.Size() >= 2)
-			this->erase(items.Get(child.Token(1)));
+			soldOutfits.erase(items.Get(child.Token(1)));
 		else if(token == "add" && child.Size() >= 2)
-			(*this)[items.Get(child.Token(1))].SetBase(child.Size() > 2 ? 
+			soldOutfits[items.Get(child.Token(1))].SetBase(child.Size() > 2 ? 
 				child.Value(2) : 0., child.Size() > 3 ? Sold::StringToSellType(child.Token(3)) : Sold::SellType::VISIBLE);
 		else if(token == "hidden" || token == "import")
 			for(const DataNode &subChild : child)
-				(*this)[items.Get(subChild.Token(0))].SetBase(subChild.Size() > 1 ? 
+				soldOutfits[items.Get(subChild.Token(0))].SetBase(subChild.Size() > 1 ? 
 					subChild.Value(1) : 0., Sold::StringToSellType(token));
 		else
-			(*this)[items.Get(child.Token(0))].SetBase(child.Size() > 1 ? 
+			soldOutfits[items.Get(child.Token(0))].SetBase(child.Size() > 1 ? 
 				child.Value(1) : 0., child.Size() > 2 ? Sold::StringToSellType(child.Token(2)) : Sold::SellType::VISIBLE);
 	}
 }
@@ -48,20 +48,20 @@ void OutfitSale::Load(const DataNode &node, const Set<Outfit> &items)
 // hidden > import > highest price
 void OutfitSale::Add(const OutfitSale &other)
 {
-	for(const auto& it : other)
+	for(const auto& it : other.GetSoldOutfits())
 	{
 		const Sold* sold = GetSold(it.first);
 		if(!sold)
 		{
 			// This will not override existing items.
-			this->insert(it);
+			soldOutfits.insert(it);
 			continue;
 		}
 
 		if(sold->GetSellType() == it.second.GetSellType())
-			(*this)[it.first].SetCost(std::max(sold->GetCost(), it.second.GetCost()));
+			soldOutfits[it.first].SetCost(std::max(sold->GetCost(), it.second.GetCost()));
 		else if(sold->GetSellType() < it.second.GetSellType())
-			(*this)[it.first].SetBase(it.second.GetCost(), Sold::StringToSellType(it.second.GetShown()));
+			soldOutfits[it.first].SetBase(it.second.GetCost(), Sold::StringToSellType(it.second.GetShown()));
 	}
 }
 
@@ -69,8 +69,8 @@ void OutfitSale::Add(const OutfitSale &other)
 
 const Sold* OutfitSale::GetSold(const Outfit *item) const
 {
-	auto sold = this->find(item);
-	return (sold != this->end()) ? &sold->second : nullptr;
+	auto sold = soldOutfits.find(item);
+	return (sold != soldOutfits.end()) ? &sold->second : nullptr;
 }
 
 
@@ -96,6 +96,19 @@ Sold::SellType OutfitSale::GetShown(const Outfit *item) const
 
 bool OutfitSale::Has(const Outfit *item) const
 {
-	return this->count(item);
+	return soldOutfits.count(item);
 }
 
+
+
+const std::map<const Outfit *, Sold> &OutfitSale::GetSoldOutfits() const
+{
+	return soldOutfits;
+}
+
+
+
+void OutfitSale::clear()
+{
+	soldOutfits.clear();
+}
