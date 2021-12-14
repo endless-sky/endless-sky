@@ -1803,7 +1803,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				
 				shields    -= scale * attributes.Get("turning shields");
 				hull       -= scale * attributes.Get("turning hull");
-				energy     -= scale * cost;
+				energy     -= scale * attributes.Get("turning energy");
 				fuel       -= scale * attributes.Get("turning fuel");
 				heat       += scale * attributes.Get("turning heat");
 				discharge  += scale * attributes.Get("turning discharge");
@@ -1860,7 +1860,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					
 					shields    -= scale * attributes.Get(isThrusting ? "thrusting shields" : "reverse thrusting shields");
 					hull       -= scale * attributes.Get(isThrusting ? "thrusting hull" : "reverse thrusting hull");
-					energy     -= scale * cost;
+					energy     -= scale * attributes.Get(isThrusting ? "thrusting energy" : "reverse thrusting energy");
 					fuel       -= scale * attributes.Get(isThrusting ? "thrusting fuel" : "reverse thrusting fuel");
 					heat       += scale * attributes.Get(isThrusting ? "thrusting heat" : "reverse thrusting heat");
 					discharge  += scale * attributes.Get(isThrusting ? "thrusting discharge" : "reverse thrusting discharge");
