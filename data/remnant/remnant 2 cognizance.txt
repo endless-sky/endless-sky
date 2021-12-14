@@ -1555,7 +1555,6 @@ mission "Remnant: Cognizance 35"
 mission "Remnant: Cognizance 36"
 	name "Activate Ssil Vida Power"
 	description "Accept this to signal everyone to restore the power."
-	invisible
 	job
 	repeat
 	source "Ssil Vida"
