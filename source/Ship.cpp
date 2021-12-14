@@ -1880,13 +1880,43 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(applyAfterburner)
 		{
 			thrust = attributes.Get("afterburner thrust");
-			double fuelCost = attributes.Get("afterburner fuel");
+			double shieldCost = attributes.Get("afterburner shields");
+			double shullCost = attributes.Get("afterburner hull");
 			double energyCost = attributes.Get("afterburner energy");
-			if(thrust && fuel >= fuelCost && energy >= energyCost)
+			double fuelCost = attributes.Get("afterburner fuel");
+			double heatCost = -attributes.Get("afterburner heat");
+			
+			double dischargeCost = attributes.Get("afterburner discharge");
+			double corrosionCost = attributes.Get("afterburner corrosion");
+			double ionCost = attributes.Get("afterburner ion");
+			double leakageCost = attributes.Get("afterburner leakage");
+			double burningCost = attributes.Get("afterburner burning");
+			
+			double slownessCost = attributes.Get("afterburner slowing");
+			double disruptionCost = attributes.Get("afterburner disruption");
+			
+			if(thrust
+				&& shields >= shieldCost
+				&& hull >= hullCost
+				&& energy >= energyCost
+				&& fuel >= fuelCost
+				&& heat >= heatCost)
 			{
-				heat += attributes.Get("afterburner heat");
-				fuel -= fuelCost;
+				shields -= shieldCost;
+				hull -= hulCost;
 				energy -= energyCost;
+				fuel -= fuelCost;
+				heat -= heatCost;
+				
+				discharge += dischargeCost;
+				corrosion += corrosionCost;
+				ionization += ionCost;
+				leakage += leakageCost;
+				burning += burningCost;
+				
+				slowness += slownessCost;
+				disruption += disruptionCost;
+				
 				acceleration += angle.Unit() * thrust / mass;
 				
 				// Only create the afterburner effects if the ship is in the player's system.
