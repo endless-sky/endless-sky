@@ -1808,7 +1808,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				heat       += scale * attributes.Get("turning heat");
 				discharge  += scale * attributes.Get("turning discharge");
 				corrosion  += scale * attributes.Get("turning corrosion");
-				ion        += scale * attributes.Get("turning ion");
+				ionization += scale * attributes.Get("turning ion");
 				leakage    += scale * attributes.Get("turning leakage");
 				burning    += scale * attributes.Get("turning burning");
 				slowness   += scale * attributes.Get("turning slowing");
@@ -1865,7 +1865,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					heat       += scale * attributes.Get(isThrusting ? "thrusting heat" : "reverse thrusting heat");
 					discharge  += scale * attributes.Get(isThrusting ? "thrusting discharge" : "reverse thrusting discharge");
 					corrosion  += scale * attributes.Get(isThrusting ? "thrusting corrosion" : "reverse thrusting corrosion");
-					ion        += scale * attributes.Get(isThrusting ? "thrusting ion" : "reverse thrusting ion");
+					ionization += scale * attributes.Get(isThrusting ? "thrusting ion" : "reverse thrusting ion");
 					burning    += scale * attributes.Get(isThrusting ? "thrusting burning" : "reverse thrusting burning");
 					leakage    += scale * attributes.Get(isThrusting ? "thrusting leakage" : "reverse thrusting leakage");
 					slowness   += scale * attributes.Get(isThrusting ? "thrusting slowing" : "reverse thrusting slowing");
