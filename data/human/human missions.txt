@@ -3605,13 +3605,13 @@ mission "Mafia Extortion"
 mission "Street Swindle"
 	minor
 	source
-		government "Free Worlds" "Syndicate"
+		government "Free Worlds" "Republic" "Syndicate"
 		attributes "urban"
 	on accept
 		payment -6000
 		fail
 	to offer
-		random < 2
+		random < 4
 		credits >= 10000
 	on offer
 		conversation
