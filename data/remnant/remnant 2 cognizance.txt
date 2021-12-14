@@ -1165,7 +1165,7 @@ mission "Remnant: Cognizance 24"
 
 
 mission "Remnant: Cognizance 25"
-	name "Equipment to Ssil Vida"
+	name "Patrol systems near Postverta."
 	description "Gavriil has asked you to do a patrol through the nearby systems."
 	landing
 	source "Ssil Vida"
@@ -1405,7 +1405,8 @@ mission "Remnant: Cognizance 31"
 				`	"Sounds good. Time to go."`
 					goto departure
 				`	"What about people seeing the ship?"`
-			`	Chilia grins. "Fortunately for us, the diversity of human preference lends itself to our cause. While there may be only a handful of ships available for sale, spaceships are a surprisingly diverse and unregulated industry. As such, shipyards have carried on the tradition dating back to the earliest of vehicles: If someone has the wealth to pay for it, there is a shipwright willing to build it. In our time observing Ancestral space, we have seen replicas in flight of every spaceship that has ever graced popular culture or a media production. While many are barely able to manage interplanetary travel, a surprising number are in use as fully functional ships plying interstellar space. Given the similarity between our ships and those of certain productions, we are not concerned with being seen - only with being scanned."`
+			`	Chilia grins. "Fortunately for us, the diversity of human preference lends itself to our cause. While there may be only a handful of ships available for sale, spaceships are a surprisingly diverse and unregulated industry. As such, shipyards have carried on the tradition dating back to the earliest of vehicles: If someone has the wealth to pay for it, there is a shipwright willing to build it.`
+			`	In our time observing Ancestral space, we have seen replicas in flight of every spaceship that has ever graced popular culture or a media production. While many are barely able to manage interplanetary travel, a surprising number are in use as fully functional ships plying interstellar space. Given the similarity between our ships and those of certain productions, we are not concerned with being seen - only with being scanned."`
 			label departure
 			`	A hatch opens on the Peregrine, and all the workers quickly finish their tasks and stow their equipment onboard. "Ready for departure when you are, Captain!" calls one from the hatch.`
 				accept
@@ -1536,7 +1537,6 @@ mission "Remnant: Cognizance 34"
 mission "Remnant: Cognizance 35"
 	name "De-activate Ssil Vida Power"
 	description "Accept this to signal everyone to cut the power."
-	invisible
 	job
 	repeat
 	source "Ssil Vida"
