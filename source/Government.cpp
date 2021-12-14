@@ -112,6 +112,18 @@ void Government::Load(const DataNode &node)
 						grand.PrintTrace("Skipping unrecognized attribute:");
 				}
 		}
+		else if(child.Token(0) == "illegal")
+		{
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 2)
+						illegals[GameData::Outfits().Get(grand.Token(0))] = grand.Value(1);
+		}
+		else if(child.Token(0) == "atrocities")
+		{
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 1)
+						atrocities.emplace(GameData::Outfits().Get(grand.Token(0)));
+		}
 		else if(child.Token(0) == "bribe" && child.Size() >= 2)
 			bribe = child.Value(1);
 		else if(child.Token(0) == "fine" && child.Size() >= 2)
@@ -353,6 +365,23 @@ void Government::Bribe() const
 string Government::Fine(PlayerInfo &player, int scan, const Ship *target, double security) const
 {
 	return GameData::GetPolitics().Fine(player, this, scan, target, security);
+}
+
+
+
+bool Government::Condemns(const Outfit *outfit) const
+{
+	return atrocities.find(outfit) != atrocities.cend();
+}
+
+
+
+int Government::Fines(const Outfit *outfit) const
+{
+	for(const auto& it : illegals)
+		if(it.first == outfit)
+			return it.second;
+	return -1;
 }
 
 

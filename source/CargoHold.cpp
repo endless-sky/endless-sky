@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 #include "Depreciation.h"
 #include "GameData.h"
+#include "Government.h"
 #include "Mission.h"
 #include "Outfit.h"
 #include "System.h"
@@ -557,17 +558,18 @@ int64_t CargoHold::Value(const System *system) const
 // be charged for any illegal outfits plus the sum of the fines for all
 // missions. If the returned value is negative, you are carrying something so
 // bad that it warrants a death sentence.
-int CargoHold::IllegalCargoFine() const
+int CargoHold::IllegalCargoFine(const Government *government) const
 {
 	int totalFine = 0;
 	// Carrying an illegal outfit is only half as bad as having it equipped.
 	// Only the worst illegal outfit is fined.
 	for(const auto &it : outfits)
 	{
-		int fine = it.first->Get("illegal");
-		if(it.first->Get("atrocity") > 0.)
+		int govFine = government->Fines(it.first);
+		int fine = govFine >= 0 ? govFine : it.first->Get("illegal");
+		if(government->Condemns(it.first))
 			return -1;
-		if(fine < 0)
+		if(fine > 0)
 			return fine;
 		totalFine = max(totalFine, fine / 2);
 	}

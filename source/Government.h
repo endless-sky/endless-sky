@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define GOVERNMENT_H_
 
 #include "Color.h"
+#include "Outfit.h"
 #include "LocationFilter.h"
 
 #include <map>
@@ -106,6 +107,9 @@ public:
 	// Check to see if the player has done anything they should be fined for.
 	// Each government can only fine you once per day.
 	std::string Fine(PlayerInfo &player, int scan = 0, const Ship *target = nullptr, double security = 1.) const;
+	// Check to see if the items are condemnable (attrocities) or warrant a fine.
+	bool Condemns(const Outfit *outfit) const;
+	int Fines(const Outfit *outfit) const;
 	
 	// Get or set the player's reputation with this government.
 	double Reputation() const;
@@ -129,6 +133,8 @@ private:
 	std::vector<double> attitudeToward;
 	double initialPlayerReputation = 0.;
 	std::map<int, double> penaltyFor;
+	std::map<const Outfit*, int> illegals;
+	std::set<const Outfit*> atrocities;
 	double bribe = 0.;
 	double fine = 1.;
 	std::vector<LocationFilter> enforcementZones;
