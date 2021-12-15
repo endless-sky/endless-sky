@@ -3672,7 +3672,7 @@ mission "Street Swindle"
 				`	"I think I'm done."`
 					goto secondgamewatch
 			label correct
-			`	She asks if you're sure, and you stick with your gut. With a grimace, she lifts the cup to reveal the ball and counts out your winnings. "And the player prevails!" the announcer says. "Earning a small bounty. But wait: the next buy-in is the biggest yet! Six thousand credits, reserved for the most daring. As previous player, you have first priority."`
+			`	She asks if you're sure, and you stick with your gut. With a grimace, she lifts the cup to reveal the ball and counts out your winnings. "And the player prevails!" the announcer says. "Earning a small bounty. But wait: the next buy-in is bigger yet! Six thousand credits, reserved for the most daring. As previous player, you have first priority."`
 			action
 				payment 400
 			choice
