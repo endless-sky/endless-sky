@@ -23,14 +23,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Font.h"
 #include "FrameTimer.h"
 #include "GameData.h"
-#include "GameObjects.h"
 #include "GameWindow.h"
 #include "GameLoadingPanel.h"
+#include "Hardpoint.h"
 #include "MenuPanel.h"
+#include "Outfit.h"
 #include "Panel.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Screen.h"
+#include "Ship.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "Test.h"
@@ -42,6 +44,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 #include <thread>
 
+#include <cassert>
 #include <stdexcept>
 #include <string>
 
@@ -55,12 +58,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 void PrintHelp();
-void PrintShipTable();
-void PrintTestsTable();
 void PrintVersion();
-void PrintWeaponTable();
 void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRun, bool debugMode);
 Conversation LoadConversation();
+void PrintShipTable();
+void PrintTestsTable();
+void PrintWeaponTable();
 #ifdef _WIN32
 void InitConsole();
 #endif
@@ -82,7 +85,7 @@ int main(int argc, char *argv[])
 	bool printTests = false;
 	bool printWeapons = false;
 	string testToRunName = "";
-
+	
 	Files::Init(argv);
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
@@ -97,8 +100,6 @@ int main(int argc, char *argv[])
 			PrintVersion();
 			return 0;
 		}
-		else if(arg == "-s" || arg == "--ships")
-			printShips = true;
 		else if(arg == "-t" || arg == "--talk")
 			conversation = LoadConversation();
 		else if(arg == "-d" || arg == "--debug")
@@ -109,22 +110,31 @@ int main(int argc, char *argv[])
 			testToRunName = *it;
 		else if(arg == "--tests")
 			printTests = true;
+		else if(arg == "-s" || arg == "--ships")
+			printShips = true;
 		else if(arg == "-w" || arg == "--weapons")
 			printWeapons = true;
 	}
 	
 	try {
 		// Begin loading the game data.
-		GameData::BeginLoad(loadOnly || printShips || printTests || printWeapons, debugMode);
-
-		PlayerInfo player;
-
-		// Exit early if we are not using the UI.
-		if(printShips || printTests || printWeapons)
-		{
+		bool isConsoleOnly = loadOnly || printShips || printTests || printWeapons;
+		GameData::BeginLoad(isConsoleOnly, debugMode);
+		
+		// If we are not using the UI, or performing some automated task, we should load
+		// all data now. (Sprites and sounds can safely be deferred.)
+		if(isConsoleOnly || !testToRunName.empty())
 			while(!GameData::IsDataLoaded())
 				this_thread::yield();
-
+		
+		if(!testToRunName.empty() && !GameData::Tests().Has(testToRunName))
+		{
+			Files::LogError("Test \"" + testToRunName + "\" not found.");
+			return 1;
+		}
+		
+		if(printShips || printTests || printWeapons)
+		{
 			if(printShips)
 				PrintShipTable();
 			if(printTests)
@@ -133,30 +143,21 @@ int main(int argc, char *argv[])
 				PrintWeaponTable();
 			return 0;
 		}
+		
+		PlayerInfo player;
 		if(loadOnly)
 		{
-			while(!GameData::IsDataLoaded())
-				this_thread::yield();
+			// Set the game's initial internal state.
 			GameData::FinishLoading();
-
-			// Load player data, including reference-checking.
+			
+			// Reference check the universe, as known to the player. If no player found,
+			// then check the default state of the universe.
 			if(!player.LoadRecent())
 				GameData::CheckReferences();
 			cout << "Parse completed." << endl;
 			return 0;
 		}
-		
-		if(!testToRunName.empty())
-		{
-			// If we have a test specified we need to load the game data immediately.
-			while(!GameData::IsDataLoaded())
-				this_thread::yield();
-			if(!GameData::Tests().Has(testToRunName))
-			{
-				Files::LogError("Test \"" + testToRunName + "\" not found.");
-				return 1;
-			}
-		}
+		assert(!isConsoleOnly && "Attempting to use UI when only data was loaded!");
 		
 		// On Windows, make sure that the sleep timer has at least 1 ms resolution
 		// to avoid irregular frame rates.
@@ -198,6 +199,8 @@ int main(int argc, char *argv[])
 	
 	return 0;
 }
+
+
 
 void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRunName, bool debugMode)
 {
@@ -421,6 +424,53 @@ void PrintHelp()
 
 
 
+void PrintVersion()
+{
+	cerr << endl;
+	cerr << "Endless Sky ver. 0.9.15-alpha" << endl;
+	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
+	cerr << "This is free software: you are free to change and redistribute it." << endl;
+	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
+	cerr << endl;
+	cerr << GameWindow::SDLVersions() << endl;
+	cerr << endl;
+}
+
+
+
+Conversation LoadConversation()
+{
+	Conversation conversation;
+	DataFile file(cin);
+	for(const DataNode &node : file)
+		if(node.Token(0) == "conversation")
+		{
+			conversation.Load(node);
+			break;
+		}
+	
+	map<string, string> subs = {
+		{"<bunks>", "[N]"},
+		{"<cargo>", "[N tons of Commodity]"},
+		{"<commodity>", "[Commodity]"},
+		{"<date>", "[Day Mon Year]"},
+		{"<day>", "[The Nth of Month]"},
+		{"<destination>", "[Planet in the Star system]"},
+		{"<fare>", "[N passengers]"},
+		{"<first>", "[First]"},
+		{"<last>", "[Last]"},
+		{"<origin>", "[Origin Planet]"},
+		{"<passengers>", "[your passengers]"},
+		{"<planet>", "[Planet]"},
+		{"<ship>", "[Ship]"},
+		{"<system>", "[Star]"},
+		{"<tons>", "[N tons]"}
+	};
+	return conversation.Instantiate(subs);
+}
+
+
+
 // This prints out the list of tests that are available and their status
 // (active/missing feature/known failure)..
 void PrintTestsTable()
@@ -451,11 +501,11 @@ void PrintShipTable()
 		// Skip variants and unnamed / partially-defined ships.
 		if(it.second.ModelName() != it.first)
 			continue;
-
+		
 		const Ship &ship = it.second;
 		cout << it.first << '\t';
 		cout << ship.Cost() << '\t';
-
+		
 		const Outfit &attributes = ship.Attributes();
 		auto mass = attributes.Mass() ? attributes.Mass() : 1.;
 		cout << attributes.Get("shields") << '\t';
@@ -465,14 +515,14 @@ void PrintShipTable()
 		cout << attributes.Get("cargo space") << '\t';
 		cout << attributes.Get("bunks") << '\t';
 		cout << attributes.Get("fuel capacity") << '\t';
-
+		
 		cout << ship.BaseAttributes().Get("outfit space") << '\t';
 		cout << ship.BaseAttributes().Get("weapon capacity") << '\t';
 		cout << ship.BaseAttributes().Get("engine capacity") << '\t';
 		cout << (attributes.Get("drag") ? (60. * attributes.Get("thrust") / attributes.Get("drag")) : 0) << '\t';
 		cout << 3600. * attributes.Get("thrust") / mass << '\t';
 		cout << 60. * attributes.Get("turn") / mass << '\t';
-
+		
 		double energyConsumed = attributes.Get("energy consumption")
 			+ max(attributes.Get("thrusting energy"), attributes.Get("reverse thrusting energy"))
 			+ attributes.Get("turning energy")
@@ -482,7 +532,7 @@ void PrintShipTable()
 			+ (attributes.Get("shield energy") * (1 + attributes.Get("shield energy multiplier")))
 			+ attributes.Get("cooling energy")
 			+ attributes.Get("cloaking energy");
-
+		
 		double heatProduced = attributes.Get("heat generation") - attributes.Get("cooling")
 			+ max(attributes.Get("thrusting heat"), attributes.Get("reverse thrusting heat"))
 			+ attributes.Get("turning heat")
@@ -492,7 +542,7 @@ void PrintShipTable()
 			+ (attributes.Get("shield heat") * (1 + attributes.Get("shield heat multiplier")))
 			+ attributes.Get("solar heat")
 			+ attributes.Get("cloaking heat");
-
+		
 		for(const auto &oit : ship.Outfits())
 			if(oit.first->IsWeapon() && oit.first->Reload())
 			{
@@ -507,7 +557,7 @@ void PrintShipTable()
 		cout << 60. * heatProduced << '\t';
 		// Maximum heat is 100 degrees per ton. Bleed off rate is 1/1000 per 60th of a second, so:
 		cout << 60. * ship.HeatDissipation() * ship.MaximumHeat() << '\t';
-
+		
 		int numTurrets = 0;
 		int numGuns = 0;
 		for(auto &hardpoint : ship.Weapons())
@@ -520,20 +570,6 @@ void PrintShipTable()
 		cout << numGuns << '\t' << numTurrets << '\n';
 	}
 	cout.flush();
-}
-
-
-
-void PrintVersion()
-{
-	cerr << endl;
-	cerr << "Endless Sky ver. 0.9.15-alpha" << endl;
-	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
-	cerr << "This is free software: you are free to change and redistribute it." << endl;
-	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
-	cerr << endl;
-	cerr << GameWindow::SDLVersions() << endl;
-	cerr << endl;
 }
 
 
@@ -576,39 +612,6 @@ void PrintWeaponTable()
 		cout << strength << '\n';
 	}
 	cout.flush();
-}
-
-
-
-Conversation LoadConversation()
-{
-	Conversation conversation;
-	DataFile file(cin);
-	for(const DataNode &node : file)
-		if(node.Token(0) == "conversation")
-		{
-			conversation.Load(node);
-			break;
-		}
-	
-	map<string, string> subs = {
-		{"<bunks>", "[N]"},
-		{"<cargo>", "[N tons of Commodity]"},
-		{"<commodity>", "[Commodity]"},
-		{"<date>", "[Day Mon Year]"},
-		{"<day>", "[The Nth of Month]"},
-		{"<destination>", "[Planet in the Star system]"},
-		{"<fare>", "[N passengers]"},
-		{"<first>", "[First]"},
-		{"<last>", "[Last]"},
-		{"<origin>", "[Origin Planet]"},
-		{"<passengers>", "[your passengers]"},
-		{"<planet>", "[Planet]"},
-		{"<ship>", "[Ship]"},
-		{"<system>", "[Star]"},
-		{"<tons>", "[N tons]"}
-	};
-	return conversation.Instantiate(subs);
 }
 
 
