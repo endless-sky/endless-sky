@@ -34,9 +34,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <utility>
 #include <vector>
 
-class Sprite;
-
 using namespace std;
+
+
 
 namespace {
 	// TODO (C++14): make these 3 methods generic lambdas visible only to the CheckReferences method.
@@ -106,6 +106,38 @@ future<void> GameObjects::Load(const vector<string> &sources, bool debugMode)
 
 
 
+double GameObjects::GetProgress() const
+{
+	return progress.load(memory_order_acquire);
+}
+
+
+
+void GameObjects::FinishLoading()
+{
+	// Now that all data is loaded, update the neighbor lists and other
+	// system information. Make sure that the default jump range is among the
+	// neighbor distances to be updated.
+	neighborDistances.insert(System::DEFAULT_NEIGHBOR_DISTANCE);
+	UpdateSystems();
+
+	// And, update the ships with the outfits we've now finished loading.
+	for(auto &&it : ships)
+		it.second.FinishLoading(true);
+	for(auto &&it : persons)
+		it.second.FinishLoading();
+
+	for(auto &&it : startConditions)
+		it.FinishLoading();
+	// Remove any invalid starting conditions, so the game does not use incomplete data.
+	startConditions.erase(remove_if(startConditions.begin(), startConditions.end(),
+			[](const StartConditions &it) noexcept -> bool { return !it.IsValid(); }),
+		startConditions.end()
+	);
+}
+
+
+
 // Apply the given change to the universe.
 void GameObjects::Change(const DataNode &node)
 {
@@ -152,9 +184,98 @@ void GameObjects::UpdateSystems()
 
 
 
-double GameObjects::GetProgress() const
+// Check for objects that are referred to but never defined. Some elements, like
+// fleets, don't need to be given a name if undefined. Others (like outfits and
+// planets) are written to the player's save and need a name to prevent data loss.
+void GameObjects::CheckReferences()
 {
-	return progress.load(memory_order_acquire);
+	// Parse all GameEvents for object definitions.
+	auto deferred = map<string, set<string>>{};
+	for(auto &&it : events)
+	{
+		// Stock GameEvents are serialized in MissionActions by name.
+		if(it.second.Name().empty())
+			NameAndWarn("event", it);
+		else
+		{
+			// Any already-named event (i.e. loaded) may alter the universe.
+			auto definitions = GameEvent::DeferredDefinitions(it.second.Changes());
+			for(auto &&type : definitions)
+				deferred[type.first].insert(type.second.begin(), type.second.end());
+		}
+	}
+
+	// Stock conversations are never serialized.
+	for(const auto &it : conversations)
+		if(it.second.IsEmpty())
+			Warn("conversation", it.first);
+	// The "default intro" conversation must invoke the prompt to set the player's name.
+	if(!conversations.Get("default intro")->IsValidIntro())
+		Files::LogError("Error: the \"default intro\" conversation must contain a \"name\" node.");
+	// Effects are serialized as a part of ships.
+	for(auto &&it : effects)
+		if(it.second.Name().empty())
+			NameAndWarn("effect", it);
+	// Fleets are not serialized. Any changes via events are written as DataNodes and thus self-define.
+	for(auto &&it : fleets)
+	{
+		// Plugins may alter stock fleets with new variants that exclusively use plugin ships.
+		// Rather than disable the whole fleet due to these non-instantiable variants, remove them.
+		it.second.RemoveInvalidVariants();
+		if(!it.second.IsValid() && !deferred["fleet"].count(it.first))
+			Warn("fleet", it.first);
+	}
+	// Government names are used in mission NPC blocks and LocationFilters.
+	for(auto &&it : governments)
+		if(it.second.GetTrueName().empty() && !NameIfDeferred(deferred["government"], it))
+			NameAndWarn("government", it);
+	// Minables are not serialized.
+	for(const auto &it : minables)
+		if(it.second.Name().empty())
+			Warn("minable", it.first);
+	// Stock missions are never serialized, and an accepted mission is
+	// always fully defined (though possibly not "valid").
+	for(const auto &it : missions)
+		if(it.second.Name().empty())
+			Warn("mission", it.first);
+
+	// News are never serialized or named, except by events (which would then define them).
+
+	// Outfit names are used by a number of classes.
+	for(auto &&it : outfits)
+		if(it.second.Name().empty())
+			NameAndWarn("outfit", it);
+	// Outfitters are never serialized.
+	for(const auto &it : outfitSales)
+		if(it.second.empty() && !deferred["outfitter"].count(it.first))
+			Files::LogError("Warning: outfitter \"" + it.first + "\" is referred to, but has no outfits.");
+	// Phrases are never serialized.
+	for(const auto &it : phrases)
+		if(it.second.Name().empty())
+			Warn("phrase", it.first);
+	// Planet names are used by a number of classes.
+	for(auto &&it : planets)
+		if(it.second.TrueName().empty() && !NameIfDeferred(deferred["planet"], it))
+			NameAndWarn("planet", it);
+	// Ship model names are used by missions and depreciation.
+	for(auto &&it : ships)
+		if(it.second.ModelName().empty())
+		{
+			it.second.SetModelName(it.first);
+			Warn("ship", it.first);
+		}
+	// Shipyards are never serialized.
+	for(const auto &it : shipSales)
+		if(it.second.empty() && !deferred["shipyard"].count(it.first))
+			Files::LogError("Warning: shipyard \"" + it.first + "\" is referred to, but has no ships.");
+	// System names are used by a number of classes.
+	for(auto &&it : systems)
+		if(it.second.Name().empty() && !NameIfDeferred(deferred["system"], it))
+			NameAndWarn("system", it);
+	// Hazards are never serialized.
+	for(const auto &it : hazards)
+		if(!it.second.IsValid())
+			Warn("hazard", it.first);
 }
 
 
@@ -275,7 +396,7 @@ void GameObjects::LoadFile(const string &path, bool debugMode)
 			auto it = category.find(node.Token(1));
 			if(it == category.end())
 			{
-				node.PrintTrace("Skipping unrecognized category:");
+				node.PrintTrace("Skipping unrecognized category type:");
 				continue;
 			}
 
@@ -310,125 +431,4 @@ void GameObjects::LoadFile(const string &path, bool debugMode)
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
 	}
-}
-
-
-
-// Check for objects that are referred to but never defined. Some elements, like
-// fleets, don't need to be given a name if undefined. Others (like outfits and
-// planets) are written to the player's save and need a name to prevent data loss.
-void GameObjects::CheckReferences()
-{
-	// Parse all GameEvents for object definitions.
-	auto deferred = map<string, set<string>>{};
-	for(auto &&it : events)
-	{
-		// Stock GameEvents are serialized in MissionActions by name.
-		if(it.second.Name().empty())
-			NameAndWarn("event", it);
-		else
-		{
-			// Any already-named event (i.e. loaded) may alter the universe.
-			auto definitions = GameEvent::DeferredDefinitions(it.second.Changes());
-			for(auto &&type : definitions)
-				deferred[type.first].insert(type.second.begin(), type.second.end());
-		}
-	}
-
-	// Stock conversations are never serialized.
-	for(const auto &it : conversations)
-		if(it.second.IsEmpty())
-			Warn("conversation", it.first);
-	// The "default intro" conversation must invoke the prompt to set the player's name.
-	if(!conversations.Get("default intro")->IsValidIntro())
-		Files::LogError("Error: the \"default intro\" conversation must contain a \"name\" node.");
-	// Effects are serialized as a part of ships.
-	for(auto &&it : effects)
-		if(it.second.Name().empty())
-			NameAndWarn("effect", it);
-	// Fleets are not serialized. Any changes via events are written as DataNodes and thus self-define.
-	for(auto &&it : fleets)
-	{
-		// Plugins may alter stock fleets with new variants that exclusively use plugin ships.
-		// Rather than disable the whole fleet due to these non-instantiable variants, remove them.
-		it.second.RemoveInvalidVariants();
-		if(!it.second.IsValid() && !deferred["fleet"].count(it.first))
-			Warn("fleet", it.first);
-	}
-	// Government names are used in mission NPC blocks and LocationFilters.
-	for(auto &&it : governments)
-		if(it.second.GetTrueName().empty() && !NameIfDeferred(deferred["government"], it))
-			NameAndWarn("government", it);
-	// Minables are not serialized.
-	for(const auto &it : minables)
-		if(it.second.Name().empty())
-			Warn("minable", it.first);
-	// Stock missions are never serialized, and an accepted mission is
-	// always fully defined (though possibly not "valid").
-	for(const auto &it : missions)
-		if(it.second.Name().empty())
-			Warn("mission", it.first);
-
-	// News are never serialized or named, except by events (which would then define them).
-
-	// Outfit names are used by a number of classes.
-	for(auto &&it : outfits)
-		if(it.second.Name().empty())
-			NameAndWarn("outfit", it);
-	// Outfitters are never serialized.
-	for(const auto &it : outfitSales)
-		if(it.second.empty() && !deferred["outfitter"].count(it.first))
-			Files::LogError("Warning: outfitter \"" + it.first + "\" is referred to, but has no outfits.");
-	// Phrases are never serialized.
-	for(const auto &it : phrases)
-		if(it.second.Name().empty())
-			Warn("phrase", it.first);
-	// Planet names are used by a number of classes.
-	for(auto &&it : planets)
-		if(it.second.TrueName().empty() && !NameIfDeferred(deferred["planet"], it))
-			NameAndWarn("planet", it);
-	// Ship model names are used by missions and depreciation.
-	for(auto &&it : ships)
-		if(it.second.ModelName().empty())
-		{
-			it.second.SetModelName(it.first);
-			Warn("ship", it.first);
-		}
-	// Shipyards are never serialized.
-	for(const auto &it : shipSales)
-		if(it.second.empty() && !deferred["shipyard"].count(it.first))
-			Files::LogError("Warning: shipyard \"" + it.first + "\" is referred to, but has no ships.");
-	// System names are used by a number of classes.
-	for(auto &&it : systems)
-		if(it.second.Name().empty() && !NameIfDeferred(deferred["system"], it))
-			NameAndWarn("system", it);
-	// Hazards are never serialized.
-	for(const auto &it : hazards)
-		if(!it.second.IsValid())
-			Warn("hazard", it.first);
-}
-
-
-
-void GameObjects::FinishLoading()
-{
-	// Now that all data is loaded, update the neighbor lists and other
-	// system information. Make sure that the default jump range is among the
-	// neighbor distances to be updated.
-	neighborDistances.insert(System::DEFAULT_NEIGHBOR_DISTANCE);
-	UpdateSystems();
-
-	// And, update the ships with the outfits we've now finished loading.
-	for(auto &&it : ships)
-		it.second.FinishLoading(true);
-	for(auto &&it : persons)
-		it.second.FinishLoading();
-
-	for(auto &&it : startConditions)
-		it.FinishLoading();
-	// Remove any invalid starting conditions, so the game does not use incomplete data.
-	startConditions.erase(remove_if(startConditions.begin(), startConditions.end(),
-			[](const StartConditions &it) noexcept -> bool { return !it.IsValid(); }),
-		startConditions.end()
-	);
 }

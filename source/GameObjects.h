@@ -93,20 +93,24 @@ public:
 public:
 	// Load the game objects from the given definitions.
 	std::future<void> Load(const std::vector<std::string> &sources, bool debugMode = false);
-	void LoadFile(const std::string &path, bool debugMode = false);
+	// Determine the fraction of data files read from disk.
+	double GetProgress() const;
+	// Resolve every game object dependency.
+	void FinishLoading();
+
 	// Apply the given change to the universe.
 	void Change(const DataNode &node);
 	// Update the neighbor lists and other information for all the systems.
 	// This must be done any time that a change creates or moves a system.
 	void UpdateSystems();
 
-	// Determine the fraction of data files read from disk.
-	double GetProgress() const;
-
 	// Check for objects that are referred to but never defined.
 	void CheckReferences();
-	// Resolve every game object dependency.
-	void FinishLoading();
+
+
+private:
+	void LoadFile(const std::string &path, bool debugMode = false);
+
 
 private:
 	std::atomic<double> progress;
