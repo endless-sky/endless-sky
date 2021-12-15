@@ -478,7 +478,7 @@ void MapDetailPanel::DrawInfo()
 	
 	const Color &back = *GameData::Colors().Get("map side panel background");
 	// Draw the panel.
-	Point size(220., min((Screen::Height() - 360.), planetNbr * 130. + 75.));
+	Point size(225., min((Screen::Height() - 360.), planetNbr * 130. + 75.));
 	FillShader::Fill(Point(Screen::Left() + size.X() / 2., Screen::Top() + size.Y() / 2.), size, back);
 	
 	// Edges:
@@ -533,9 +533,12 @@ void MapDetailPanel::DrawInfo()
 				if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.count(planet))
 					continue;
 				
-				if((scroll - 65.)/ 130. <= planetNbr && uiPoint.Y() + int(scroll) % 130 < Screen::Bottom() - 230)
+				if((scroll - 65.)/ 130. <= planetNbr && uiPoint.Y() + int(scroll) % 130 < Screen::Bottom() - 295)
 				{
 					shown.insert(planet);
+					
+					if(planet == selectedPlanet)
+						FillShader::Fill(Point(Screen::Left() + 110., uiPoint.Y()), Point(220., 110.), faint);
 					
 					bool hasSpaceport = planet->HasSpaceport();
 
