@@ -1227,6 +1227,27 @@ Copyright: Jeverett (jeverett on Discord)
 License: CC-BY-SA-3.0
 Comment: Derived from works by Becca Tommaso (under the same license).
 
+Files:
+ images/ship/auxiliary*
+ images/ship/carrier*
+ images/ship/combat?drone*
+ images/ship/cruiser*
+ images/ship/frigate*
+ images/ship/gunboat*
+ images/ship/lance*
+ images/ship/rainmaker*
+ images/thumbnail/auxiliary*
+ images/thumbnail/carrier*
+ images/thumbnail/combat?drone*
+ images/thumbnail/cruiser*
+ images/thumbnail/frigate*
+ images/thumbnail/gunboat*
+ images/thumbnail/lance*
+ images/thumbnail/rainmaker*
+Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
