@@ -107,7 +107,7 @@ void DataFile::LoadData(const string &data)
 	// Ignore lines which are only comments regardless of whitespace.
 	bool lineIsCommentOnly = false;
 	size_t lineNumber = 0;
-
+	
 	size_t end = data.length();
 	for(size_t pos = 0; pos < end; )
 	{
