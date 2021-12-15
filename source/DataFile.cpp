@@ -103,8 +103,11 @@ void DataFile::LoadData(const string &data)
 	vector<int> whiteStack(1, -1);
 	bool fileIsSpaces = false;
 	bool warned = false;
+
+	// Ignore lines which are only comments regardless of whitespace.
+	bool lineIsCommentOnly = false;
 	size_t lineNumber = 0;
-	
+
 	size_t end = data.length();
 	for(size_t pos = 0; pos < end; )
 	{
@@ -118,7 +121,7 @@ void DataFile::LoadData(const string &data)
 		while(c <= ' ' && c != '\n')
 		{
 			// Warn about mixed indentations when parsing files.
-			if(!isSpaces && c == ' ')
+			if(!isSpaces && c == ' ' && !lineIsCommentOnly)
 			{
 				// If we've parsed whitespace that wasn't a space, issue a warning.
 				if(white)
@@ -140,9 +143,11 @@ void DataFile::LoadData(const string &data)
 		}
 		
 		// If the line is a comment, skip to the end of the line.
-		if(c == '#')
-			while(c != '\n')
+		if(c == '#') {
+			lineIsCommentOnly = true;
+			while (c != '\n')
 				c = Utf8::DecodeCodePoint(data, pos);
+		}
 		// Skip empty lines (including comment lines).
 		if(c == '\n')
 			continue;
