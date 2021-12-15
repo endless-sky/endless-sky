@@ -41,9 +41,9 @@ public:
 	// The hail panel calls this when it closes.
 	void OnBribeCallback(const Government *bribed);
 	
-	// Send a command to the engine (on behalf of the player).
-	virtual void GiveCommand(const Command &command) override;
-
+	// Forward the given TestContext to the Engine under MainPanel.
+	virtual void SetTestContext(TestContext &testContext) override;
+	
 	// The main panel allows fast-forward.
 	virtual bool AllowFastForward() const override;
 	

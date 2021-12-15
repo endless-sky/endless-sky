@@ -272,7 +272,7 @@ mission "Ringworld Debris: Quarg"
 				`	"What happened to your ringworld in the Graveyard? Was it in the system I found that thing?"`
 				`	(Let the Quarg walk away.)`
 					decline
-			`	For the briefest moment, you see patches of skin all over the Quarg's body radically shift from the usual grey to red and blue, some spots mixing into purple, and you could have sworn you saw some part of the iris on its eyes "open" very slightly.`
+			`	For the briefest moment, you see patches of skin all over the Quarg's body radically shift from the usual gray to red and blue, some spots mixing into purple, and you could have sworn you saw some part of the iris on its eyes "open" very slightly.`
 			`	After coming back to normal, it ponders for a second, then says, "It was in that system, and it was lost in a war, millennia after the Builders had perished."`
 			`	It doesn't seem too inclined on answering any more questions, and swiftly walks away.`
 				decline
@@ -281,7 +281,7 @@ mission "Ringworld Debris: Quarg"
 				`	"What happened to your ringworld in the Graveyard? Was it in the system I found that thing?"`
 				`	(Let the Quarg walk away.)`
 					decline
-			`	For the briefest moment, you see patches of skin all over the Quarg's body radically shift from the usual grey to red and blue, some spots mixing into purple, and you could have sworn you saw some part of the iris on its eyes "open" very slightly.`
+			`	For the briefest moment, you see patches of skin all over the Quarg's body radically shift from the usual gray to red and blue, some spots mixing into purple, and you could have sworn you saw some part of the iris on its eyes "open" very slightly.`
 			`	After coming back to normal, it ponders for a second, then says, "It was in that system, and it was lost in our war with the despicable Pug. When we tried to resist them. By then, the Builders had been gone for millennia."`
 			`	It doesn't seem too inclined on answering any more questions, and swiftly walks away.`
 				accept

@@ -53,7 +53,7 @@ phrase "letter"
 
 # Civilian names:
 
-# The sum of all weights of the final phrase that is used for generating names should 
+# The sum of all weights of the final phrase that is used for generating names should
 # generally equal the total number of possible names, but each subphrase may weight
 # names differently if it fits (e.g. weighting male and female names equally regardless
 # of the number of male and female names).
@@ -86,11 +86,12 @@ phrase "adjectives"
 		"Lilac"
 		"Azure"
 		"Grey"
+		"Gray"
 		"Golden"
 		"Marigold"
 		"Lavender"
 		"Alabaster"
-		"Vermillion"
+		"Vermilion"
 		"Ivory"
 		"Shimmering"
 		"Rainbow"
@@ -697,6 +698,7 @@ phrase "all titles"
 
 phrase "male names"
 	word
+		"Elcid"
 		"Henry"
 		"Nelson"
 		"Randall"
@@ -1017,6 +1019,22 @@ phrase "sometimes a successor"
 
 phrase "standalone civilian ship names"
 	word
+		"Wild Rover"
+		"Hieland Laddie"
+		"Ye Ladies of Mars"
+		"Shenandoah"
+		"Old Chariot"
+		"Old Maui"
+		"Gone to Hilo"
+		"Northumbria"
+		"Nelson's Blood"
+		"Nightingale"
+		"Hispaniola"
+		"Billy of Tea"
+		"Bonnie Ship the Diamond"
+		"Mary Ellen Carter"
+		"Shine in the Black"
+		"Alexander Smollett"
 		"Horizon"
 		"Enterprise"
 		"Rabbit"
@@ -1522,7 +1540,7 @@ phrase "civilian subphrase 1"
 	word
 		" "
 	phrase
-		"male names" 123
+		"male names" 124
 		"female names" 132
 		"singular nouns" 201
 		"plural nouns" 110
@@ -1536,7 +1554,7 @@ phrase "civilian subphrase 1"
 # Cobalt Winds
 phrase "civilian subphrase 2"
 	phrase
-		"adjectives" 151
+		"adjectives" 152
 		"singular nouns" 201
 		"nouns of indeterminate quantity" 101
 	word
@@ -1604,7 +1622,7 @@ phrase "civilian subphrase 6"
 	word
 		" "
 	phrase
-		"male names" 123
+		"male names" 124
 		"things you can be of" 416
 
 # e.g.:
@@ -1640,7 +1658,7 @@ phrase "civilian subphrase 8"
 phrase "civilian subphrase 9"
 	phrase
 		"singular nouns" 201
-		"adjectives" 151
+		"adjectives" 152
 	word
 		" "
 	phrase
@@ -1680,7 +1698,7 @@ phrase "civilian subphrase 11"
 
 phrase "civilian subphrase 12"
 	phrase
-		"adjectives" 151
+		"adjectives" 152
 		"nouns of indeterminate quantity" 101
 		"singular nouns" 201
 		"all titles" 25
@@ -2724,7 +2742,7 @@ phrase "syndicate fighter"
 
 phrase "pirate"
 	phrase
-		"pirate subphrase 1" 261    # standalone pirate ship names
+		"pirate subphrase 1" 265    # standalone pirate ship names
 		"pirate subphrase 2" 2000   # [adjective] [noun or bad outcome]
 		"pirate subphrase 3" 2000   # [adjective] [sinister name or bad outcome]
 		"pirate subphrase 4" 1500   # [sinister name]'s [noun or bad outcome]
@@ -2825,10 +2843,17 @@ phrase "sinister names"
 # e.g. Simon the Brutal, Vexan the Cannibal, Vlad the Impaler
 phrase "pirate adjectives that work as titles"
 	word
+		"Churlish"
+		"Mendacious"
+		"Unpleasant"
+		"Wretched"
+		"Drunken"
+		"Petty"
 		"Bad"
 		"Red"
 		"Crimson"
 		"Grey"
+		"Gray"
 		"Black"
 		"Dark"
 		"Dead"
@@ -2974,6 +2999,8 @@ phrase "pirate adjectives that don't work before singular nouns"
 
 phrase "pirate nouns"
 	word
+		"Scalliwag"
+		"Razzia"
 		"Star"
 		"Spectre"
 		"Queen"
@@ -3165,6 +3192,9 @@ phrase "bad outcomes"
 		"Immolation"
 		"Wrath"
 		"Blackness"
+		"Ennui"
+		"Itchiness"
+		"Poverty"
 
 phrase "pirate subphrase 1"
 	word
@@ -3301,6 +3331,8 @@ phrase "pirate subphrase 1"
 		"Terror"
 		"Blackbeard"
 		"Edward Teach"
+		"Israel Hands"
+		"Elcid Barrett"
 		"William Kidd"
 		"Long Ben"
 		"Henry Morgan"
@@ -3430,28 +3462,30 @@ phrase "pirate subphrase 1"
 		"Virulence"
 		"Septimus Severus"
 		"Benighted"
+		"Hispaniola"
+		"Staggers and Jags"
 
 phrase "pirate subphrase 2"
 	phrase
 		"pirate adjectives that don't work as titles" 67
-		"pirate adjectives that work as titles" 58
+		"pirate adjectives that work as titles" 65
 	word
 		" "
 	phrase
-		"pirate nouns" 108
+		"pirate nouns" 110
 		"pirate nouns that work after bad outcomes" 27
-		"bad outcomes" 50
+		"bad outcomes" 53
 
 phrase "pirate subphrase 3"
 	phrase
 		"pirate adjectives that don't work before singular nouns" 15
 		"pirate adjectives that don't work as titles" 67
-		"pirate adjectives that work as titles" 58
+		"pirate adjectives that work as titles" 65
 	word
 		" "
 	phrase
 		"sinister names" 78
-		"bad outcomes" 50
+		"bad outcomes" 53
 
 phrase "pirate subphrase 4"
 	phrase
@@ -3459,9 +3493,9 @@ phrase "pirate subphrase 4"
 	word
 		"%'s "
 	phrase
-		"pirate nouns" 108
+		"pirate nouns" 110
 		"pirate nouns that work after bad outcomes" 27
-		"bad outcomes" 50
+		"bad outcomes" 53
 	# When making a word ending in "s" possessive, only add an apostrophe.
 	replace
 		"s%'s" "s'"
@@ -3477,7 +3511,7 @@ phrase "pirate subphrase 5"
 
 phrase "pirate subphrase 6"
 	phrase
-		"pirate nouns" 108
+		"pirate nouns" 110
 		"pirate nouns that work after bad outcomes" 27
 	word
 		" of "
@@ -3486,8 +3520,8 @@ phrase "pirate subphrase 6"
 
 phrase "pirate subphrase 7"
 	phrase
-		"bad outcomes" 50
-		"pirate adjectives that work as titles" 58
+		"bad outcomes" 53
+		"pirate adjectives that work as titles" 65
 		"pirate adjectives that don't work as titles" 67
 	word
 		" "
@@ -3496,9 +3530,9 @@ phrase "pirate subphrase 7"
 
 phrase "pirate subphrase 8"
 	phrase
-		"pirate nouns" 108
+		"pirate nouns" 110
 		"pirate nouns that work after bad outcomes" 27
-		"bad outcomes" 50
+		"bad outcomes" 53
 
 phrase "pirate subphrase 9"
 	word
@@ -3698,6 +3732,7 @@ phrase "bounty hunter subphrase 1"
 		"Sharpened"
 		"Green"
 		"Grey"
+		"Gray"
 		"Black"
 		"Dark"
 		"Obsidian"
