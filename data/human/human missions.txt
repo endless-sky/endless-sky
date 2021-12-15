@@ -3790,6 +3790,7 @@ mission "Kindred Spirit 3"
 		conversation
 			`	You see Charlie through the window of a bar. He recognizes you and tips his drink. He looks drunk.`
 				accept
+	
 mission "Kindred Spirit 4"
 	name "Companion"
 	description "Travel with Charlie until you return home safely."
