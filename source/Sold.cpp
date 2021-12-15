@@ -22,16 +22,16 @@ namespace
 
 
 
-double Sold::GetCost() const
+float Sold::GetRelativeCost() const
 {
-	return cost;
+	return relativeCost;
 }
 
 
 
-void Sold::SetCost(double newCost)
+void Sold::SetRelativeCost(float newRelativeCost)
 {
-	cost = newCost;
+	relativeCost = newRelativeCost;
 }
 
 
@@ -50,9 +50,9 @@ const std::string &Sold::GetShown() const
 
 
 
-void Sold::SetBase(double cost, const Sold::SellType shown) 
+void Sold::SetBase(float relativeCost, const Sold::SellType shown) 
 {
-	this->cost = cost;
+	this->relativeCost = relativeCost;
 	this->shown = shown;
 }
 

@@ -1,4 +1,4 @@
-/* OutfitSale.cpp
+/* CustomSale.cpp
 Copyright (c) 2021 by Hurleveur
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -11,15 +11,17 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
 #include "DataNode.h"
-#include "OutfitSale.h"
+#include "CustomSale.h"
 #include "Set.h"
 #include "Sold.h"
 
 #include <string>
 
+const Sold *CustomSale::defaultSold = new Sold();
 
 
-void OutfitSale::Load(const DataNode &node, const Set<Outfit> &items)
+
+void CustomSale::Load(const DataNode &node, const Set<Outfit> &items)
 {
 	for(const DataNode &child : node)
 	{
@@ -46,7 +48,7 @@ void OutfitSale::Load(const DataNode &node, const Set<Outfit> &items)
 
 // operator[] is used to override existing data instead, priorities are
 // hidden > import > highest price
-void OutfitSale::Add(const OutfitSale &other)
+void CustomSale::Add(const CustomSale &other)
 {
 	for(const auto& it : other.GetSoldOutfits())
 	{
@@ -59,15 +61,15 @@ void OutfitSale::Add(const OutfitSale &other)
 		}
 
 		if(sold->GetSellType() == it.second.GetSellType())
-			soldOutfits[it.first].SetCost(std::max(sold->GetCost(), it.second.GetCost()));
+			soldOutfits[it.first].SetRelativeCost(std::max(sold->GetRelativeCost(), it.second.GetRelativeCost()));
 		else if(sold->GetSellType() < it.second.GetSellType())
-			soldOutfits[it.first].SetBase(it.second.GetCost(), Sold::StringToSellType(it.second.GetShown()));
+			soldOutfits[it.first].SetBase(it.second.GetRelativeCost(), Sold::StringToSellType(it.second.GetShown()));
 	}
 }
 
 
 
-const Sold* OutfitSale::GetSold(const Outfit *item) const
+const Sold* CustomSale::GetSold(const Outfit *item) const
 {
 	auto sold = soldOutfits.find(item);
 	return (sold != soldOutfits.end()) ? &sold->second : nullptr;
@@ -76,16 +78,16 @@ const Sold* OutfitSale::GetSold(const Outfit *item) const
 
 
 
-double OutfitSale::GetCost(const Outfit *item) const
+double CustomSale::GetCost(const Outfit *item) const
 {
 	const Sold* sold = GetSold(item);
-	return sold ? sold->GetCost() : 0.;
+	return sold ? sold->GetRelativeCost() : 1.f;
 }
 
 
 
 
-Sold::SellType OutfitSale::GetShown(const Outfit *item) const
+Sold::SellType CustomSale::GetShown(const Outfit *item) const
 {
 	const Sold* sold = GetSold(item);
 	return sold ? sold->GetSellType() : Sold::SellType::NONE;
@@ -94,21 +96,28 @@ Sold::SellType OutfitSale::GetShown(const Outfit *item) const
 
 
 
-bool OutfitSale::Has(const Outfit *item) const
+bool CustomSale::Has(const Outfit *item) const
 {
 	return soldOutfits.count(item);
 }
 
 
 
-const std::map<const Outfit *, Sold> &OutfitSale::GetSoldOutfits() const
+const std::map<const Outfit *, Sold> &CustomSale::GetSoldOutfits() const
 {
 	return soldOutfits;
 }
 
 
 
-void OutfitSale::clear()
+void CustomSale::clear()
 {
 	soldOutfits.clear();
+}
+
+
+
+const Sold* CustomSale::GetDefaultSold()
+{
+	return CustomSale::defaultSold;
 }

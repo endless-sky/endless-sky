@@ -1,4 +1,4 @@
-/* OutfitSale.h
+/* CustomSale.h
 Copyright (c) 2021 by Hurleveur
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -10,8 +10,8 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef OUTFITSALE_H_
-#define OUTFITSALE_H_
+#ifndef CustomSale_H_
+#define CustomSale_H_
 
 #include "Outfit.h"
 #include "Set.h"
@@ -26,11 +26,11 @@ class DataNode;
 
 // Class used to stock Outfits and their local changes, it has
 // their corresponding custom prices or showing/sellable types in the form of Sold.
-class OutfitSale {
+class CustomSale {
 public:
 	void Load(const DataNode &node, const Set<Outfit> &items);
 	
-	void Add(const OutfitSale &other);
+	void Add(const CustomSale &other);
 	
 	const Sold* GetSold(const Outfit *item) const;
 	
@@ -43,10 +43,13 @@ public:
 	const std::map<const Outfit *, Sold> &GetSoldOutfits() const;
 
 	void clear();
+	
+	static const Sold* GetDefaultSold();
 
 	
 private:
 	std::map<const Outfit *, Sold> soldOutfits;
+	static const Sold *defaultSold;
 };
 
 #endif

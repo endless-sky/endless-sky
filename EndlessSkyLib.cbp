@@ -223,8 +223,8 @@
 		<Unit filename="source/OutfitInfoDisplay.h" />
 		<Unit filename="source/OutfitterPanel.cpp" />
 		<Unit filename="source/OutfitterPanel.h" />
-		<Unit filename="source/OutfitSale.cpp" />
-		<Unit filename="source/OutfitSale.h" />
+		<Unit filename="source/CustomSale.cpp" />
+		<Unit filename="source/CustomSale.h" />
 		<Unit filename="source/OutlineShader.cpp" />
 		<Unit filename="source/OutlineShader.h" />
 		<Unit filename="source/Panel.cpp" />

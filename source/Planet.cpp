@@ -16,13 +16,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
-#include "OutfitSale.h"
+#include "CustomSale.h"
 #include "PlayerInfo.h"
 #include "Politics.h"
 #include "Random.h"
 #include "Sale.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "Sold.h"
 #include "SpriteSet.h"
 #include "System.h"
 
@@ -366,19 +367,34 @@ const Sale<Ship> &Planet::Shipyard() const
 // Check if this planet has an outfitter.
 bool Planet::HasOutfitter() const
 {
-	return !Outfitter().GetSoldOutfits().empty();
+	return !Outfitter().empty();
 }
 
 
 
-// Get the list of outfits available from the outfitter with their custom elements.
-const OutfitSale &Planet::Outfitter() const
+// Get the list of outfits available from the outfitter.
+const Sale<Outfit> &Planet::Outfitter() const
 {
 	outfitter.clear();
-	for(const OutfitSale *sale : outfitSales)
+	for(const Sale<Outfit> *sale : outfitSales)
 		outfitter.Add(*sale);
-	
+	/*for(const auto &custom : customSales.GetSoldOutfits())
+		if(custom.second.GetSellType() == Sold::SellType::IMPORT || custom.second.GetSellType() == Sold::SellType::VISIBLE)
+			outfitter.emplace(custom);*/
+
 	return outfitter;
+}
+
+
+
+// Get the custom status of this outfit, it's price etc
+const Sold* Planet::GetCustom(const Outfit *outfit) const
+{
+	const Sold* sold = customSales.GetSold(outfit);
+	if(sold == nullptr)
+		return customSales.GetDefaultSold();
+	else
+		return sold;
 }
 
 

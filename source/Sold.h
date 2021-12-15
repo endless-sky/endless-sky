@@ -29,21 +29,21 @@ public:
 	
 	
 public:
-	double GetCost() const;
+	float GetRelativeCost() const;
 	
-	void SetCost(double newCost);
+	void SetRelativeCost(float newRelativeCost);
 	
 	SellType GetSellType() const;
 	
 	const std::string &GetShown() const;
 	
-	void SetBase(double cost = 0., Sold::SellType = SellType::NONE);
+	void SetBase(float relativeCost = 1.f, Sold::SellType = SellType::NONE);
 
 	static SellType StringToSellType(std::string name);
 	
 	
 private:
-	double cost = 0.;
+	float relativeCost = 1.f;
 	SellType shown = SellType::VISIBLE;
 };
 

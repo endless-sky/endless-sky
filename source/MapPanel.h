@@ -141,8 +141,8 @@ protected:
 	std::string tooltip;
 	WrappedText hoverText;
 	// Minimum and maximum color ranges used by mapColor.
-	static double minColor;
-	static double maxColor;
+	static float minColor;
+	static float maxColor;
 	
 	
 private:

@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define FLEET_H_
 
 #include "Personality.h"
+#include "Sale.h"
 
 #include <list>
 #include <memory>
@@ -25,7 +26,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class Government;
 class Outfit;
-class OutfitSale;
 class Phrase;
 class Planet;
 class Ship;
@@ -98,7 +98,7 @@ private:
 	// The number of different items the ships in this fleet will carry in cargo.
 	int cargo = 3;
 	std::vector<std::string> commodities;
-	std::set<const OutfitSale *> outfitters;
+	std::set<const Sale<Outfit> *> outfitters;
 	
 	Personality personality;
 };

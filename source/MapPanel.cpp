@@ -109,8 +109,8 @@ const float MapPanel::INNER = 3.5f;
 const float MapPanel::LINK_WIDTH = 1.2f;
 // Draw links only outside the system ring, which has radius MapPanel::OUTER.
 const float MapPanel::LINK_OFFSET = 7.f;
-double MapPanel::minColor = 1.;
-double MapPanel::maxColor = 1.;
+float MapPanel::minColor = 1.;
+float MapPanel::maxColor = 1.;
 
 
 MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
@@ -792,7 +792,7 @@ void MapPanel::UpdateCache()
 					double size = 0;
 					for(const StellarObject &object : system.Objects())
 						if(object.HasSprite() && object.HasValidPlanet())
-							size += object.GetPlanet()->Outfitter().GetSoldOutfits().size();
+							size += object.GetPlanet()->Outfitter().size();
 					value = size ? min(60., size) / 60. : -1.;
 				}
 				else if(commodity == SHOW_VISITED)

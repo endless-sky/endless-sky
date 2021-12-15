@@ -39,7 +39,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Music.h"
 #include "News.h"
 #include "Outfit.h"
-#include "OutfitSale.h"
 #include "OutlineShader.h"
 #include "Person.h"
 #include "Phrase.h"
@@ -93,7 +92,7 @@ namespace {
 	set<double> neighborDistances;
 	
 	Set<Sale<Ship>> shipSales;
-	Set<OutfitSale> outfitSales;
+	Set<Sale<Outfit>> outfitSales;
 	
 	Set<Fleet> defaultFleets;
 	Set<Government> defaultGovernments;
@@ -101,7 +100,7 @@ namespace {
 	Set<System> defaultSystems;
 	Set<Galaxy> defaultGalaxies;
 	Set<Sale<Ship>> defaultShipSales;
-	Set<OutfitSale> defaultOutfitSales;
+	Set<Sale<Outfit>> defaultOutfitSales;
 	TextReplacements defaultSubstitutions;
 	
 	Politics politics;
@@ -334,7 +333,7 @@ void GameData::CheckReferences()
 			NameAndWarn("outfit", it);
 	// Outfitters are never serialized.
 	for(const auto &it : outfitSales)
-		if(it.second.GetSoldOutfits().empty() && !deferred["outfitter"].count(it.first))
+		if(it.second.empty() && !deferred["outfitter"].count(it.first))
 			Files::LogError("Warning: outfitter \"" + it.first + "\" is referred to, but has no outfits.");
 	// Phrases are never serialized.
 	for(const auto &it : phrases)
@@ -800,7 +799,7 @@ const Set<Outfit> &GameData::Outfits()
 
 
 
-const Set<OutfitSale> &GameData::Outfitters()
+const Set<Sale<Outfit>> &GameData::Outfitters()
 {
 	return outfitSales;
 }

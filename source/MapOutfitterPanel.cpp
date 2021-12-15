@@ -16,11 +16,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Outfit.h"
-#include "OutfitSale.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Screen.h"
+#include "Sold.h"
 #include "Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -139,20 +139,18 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 	
 	// Visiting a system is sufficient to know what ports are available on its planets.
 	double value = -.5;
-	double basePrice = selected ? selected->Cost() : 1.;
 	for(const StellarObject &object : system->Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
 		{
-			const auto &outfitter = object.GetPlanet()->Outfitter();
-			const Sold* sold = outfitter.GetSold(selected);
+			const Sold* sold = object.GetPlanet()->GetCustom(selected);
 			if(sold)
 			{
 				const auto &storage = player.PlanetaryStorage();
 				const auto pit = storage.find(object.GetPlanet());
 				bool storedInSystem = (pit != storage.end());
-				double cost = sold->GetCost() / basePrice;
+				float cost = sold->GetRelativeCost();
 				
-				if(cost && !(sold->GetSellType() == Sold::SellType::HIDDEN && !storedInSystem))
+				if(cost != 1.f && !(sold->GetSellType() == Sold::SellType::HIDDEN && !storedInSystem))
 				{
 					if(cost > MapPanel::maxColor)
 						MapPanel::maxColor = cost;
@@ -160,10 +158,9 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 						MapPanel::minColor = cost;
 					return cost;
 				}
-				else
-					return 1.;
 			}
-			if(!outfitter.GetSoldOutfits().empty())
+
+			if(object.GetPlanet()->HasOutfitter())
 				value = 0.;
 		}
 	return value;
@@ -239,16 +236,16 @@ void MapOutfitterPanel::DrawItems()
 						continue;
 
 					const Planet &planet = *object.GetPlanet();
-					const Sold* sold = planet.Outfitter().GetSold(outfit);
+					const Sold* sold = planet.GetCustom(outfit);
 					const auto pit = storage.find(&planet);
 					if(pit != storage.end())
 						storedInSystem += pit->second.Get(outfit);
 						
 					isForSale = (sold && !(sold->GetSellType() == Sold::SellType::HIDDEN && !storedInSystem));
 
-					if (isForSale)
+					if(isForSale)
 					{
-  						price = sold->GetCost() ? Format::Credits(sold->GetCost()) : price;
+  						price = Format::Credits(sold->GetRelativeCost() * outfit->Cost()) + " credits";
   						if(sold->GetSellType() != Sold::SellType::VISIBLE)
 							price += " (" + (sold->GetShown()) + ")";
   						break;
@@ -282,11 +279,11 @@ void MapOutfitterPanel::Init()
 	// Add all outfits sold by outfitters of visited planets.
 	for(auto &&it : GameData::Planets())
 		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
-			for(const auto& outfitSale : it.second.Outfitter().GetSoldOutfits())
-				if(!seen.count(outfitSale.first) && outfitSale.second.GetSellType() != Sold::SellType::HIDDEN)
+			for(const auto& outfit : it.second.Outfitter())
+				if(!seen.count(outfit))
 				{
-					catalog[outfitSale.first->Category()].push_back(outfitSale.first);
-					seen.insert(outfitSale.first);
+					catalog[outfit->Category()].push_back(outfit);
+					seen.insert(outfit);
 				}
 
 	// Add outfits in storage

@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "CoreStartData.h"
 #include "text/Format.h"
 #include "GameData.h"
-#include "OutfitSale.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -132,18 +131,13 @@ double MapShipyardPanel::SystemValue(const System *system) const
 			const auto &shipyard = object.GetPlanet()->Shipyard();
 			if(shipyard.Has(selected))
 			{
-				int64_t relativePrice = selected->LocalCost(object.GetPlanet());
-				if(relativePrice)
-				{
-					relativePrice /= selected->Cost();
-					if(relativePrice > MapPanel::maxColor)
-						MapPanel::maxColor = relativePrice;
-					else if(relativePrice < MapPanel::minColor)
-						MapPanel::minColor = relativePrice;
-					return relativePrice;
-				}
-				else
-					return 1.;
+				int64_t relativeCost = selected->LocalCost(object.GetPlanet());
+				
+				if(relativeCost > MapPanel::maxColor)
+					MapPanel::maxColor = relativeCost;
+				else if(relativeCost < MapPanel::minColor)
+					MapPanel::minColor = relativeCost;
+				return relativeCost;
 			}
 			if(!shipyard.empty())
 				value = 0.;
@@ -206,7 +200,7 @@ void MapShipyardPanel::DrawItems()
 						double outfitValue = 0;
 						for(const auto &it : ship->Outfits())
 						{
-							double cost = object.GetPlanet()->Outfitter().GetCost(it.first);
+							double cost = object.GetPlanet()->GetCustom(it.first)->GetRelativeCost();
 							outfitValue += (cost ? cost : it.first->Cost()) * it.second;
 						}
 						price = Format::Credits(ship->ChassisCost() + outfitValue) + " credits";
