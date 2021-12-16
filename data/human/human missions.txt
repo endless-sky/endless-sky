@@ -3615,7 +3615,7 @@ mission "Street Swindle"
 		credits >= 10000
 	on offer
 		conversation
-			`	You see a small crowd begining to gather on a street corner. A man in a flamboyant striped suit and matching hat calls "Come here! Come here! Come see the marvelous magician Mistress Marionette corral the crowded crossroads with her extravagant schemes!"`
+			`You see a small crowd begining to gather on a street corner. A man in a flamboyant striped suit and matching hat calls, "Come here! Come here! Come see the marvelous magician Mistress Marionette corral the crowded crossroads with her extravagant schemes!"`
 			choice
 				`	(Check it out.)`
 					goto observe
