@@ -3681,7 +3681,7 @@ mission "Street Swindle"
 				`	"I think I'm done."`
 					goto secondgamewatch
 			label secondgameplay
-			`	You place your 6000 unit bet on the table, and the game begins. The pattern is slightly longer, but once the magician's hands stop, you are certain the ball lies beneath the left cup.`
+			`	You place your 6000 credit bet on the table, and the game begins. The pattern is slightly longer, but once the magician's hands stop, you feel like the ball lies beneath the left cup.`
 			choice
 				`	"Left."`
 					goto left
