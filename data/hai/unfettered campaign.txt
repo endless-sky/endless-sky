@@ -175,10 +175,10 @@ ship "Auxiliary" "Auxiliary (Alpha)"
 
 mission "Unfettered: Solifuge 2: Auxiliary Design"
 	name `Scan the human ship`
-	description `Scan the outfits of the human ship in Hi Yahr by <date> and then come back to <destination> with the logs.`
-	deadline 8
+	description `Scan the outfits of the human ship in Hi Yahr by <date> and then land on <stopover> to later come back to <origin> with the logs.`
+	deadline 4
 	source "Firelode"
-	waypoint "Hi Yahr"
+	destination "Warfeed"
 	to offer
 		has "Unfettered: Solifuge 1: Geocoris Design: done"
 		has "Unfettered Jump Drive 3: offered"
@@ -215,31 +215,33 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		personality target staying
 		system "Hi Yahr"
 		ship "Auxiliary (Alpha)" "Settler"
-		dialog `You have finished scanning the Auxiliary. You may now return to <destination> with the scanner logs. There can be no doubt, this is a ship populated by Alphas.`
+		dialog `You have finished scanning the Auxiliary. There can be no doubt, this is a ship populated by Alphas.`
+		dialog `The local Unfettered authorities want you to land right away, worried that if you go to any other system, the hostile ship may pursue you. They assure you he would not dare follow you there.`
 	npc
 		government "Alpha"
 		personality heroic nemesis staying vindictive
 		system "Hi Yahr"
 		ship "Far Osk 27" "Prancer"
 		ship "Far Osk 27" "Vixen"
-		ship "Far Lek 14" "Cupid"
-		ship "Far Lek 14" "Comet"
-	on visit
-		dialog `You have not finished scanning the human ship in Hi Yahr yet, quickly go to Hi Yahr to scan it !`
+		ship "Far Osk 27" "Anger"
+		ship "Far Osk 27" "Dart"
+	on stopover
+		dialog `After a while, the Alpha ship goes away, and you can now go back to <origin> with the scanner logs.`
 	on fail
 		dialog `You have failed an essential Unfettered mission. You may want to reload.`
-	#to complete just scan the ship, and make deadline be 4
+
 
 
 mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
+	source "Warfeed"
+	destination "Firelode"
 	name `Bring back the scanner logs`
 	description `Now that you have scanned the Alpha ship, come back to <destination> to get your reward.`
 	to offer
 		has "Unfettered: Solifuge 2: Auxiliary Design: done"
-	destination `Firelode`
 	on complete
 		payment 300000
-		log `Scanned a navy Auxiliary for the Unfettered, I wonder what it was doing so far from Republic space, and with alien technology. The fact that Alphas were on it has probably something to do with that.`
+		log `Scanned an Auxiliary for the Unfettered, I wonder what it was doing so far from Republic space, and with alien technology. The fact that Alphas were on it has probably something to do with that.`
 		dialog
 			`You send your logs as you land and receive a very generous payment of <payment>, with a request to meet with the elders on Darkcloak.`
 		conversation
@@ -271,6 +273,10 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 
 
 
+#escort unfettered ships the Hai accepted to let pass bringing civilians/supplies and make sure nothing happens to them
+
+
+
 mission "Unfettered: Solifuge 4: Meet The Elders"
 	name `Go see the elders on <stopovers>`
 	description `The Unfettered elders have asked you to go see them on <stopovers> when you have the time, probably to discuss your scan results.`
@@ -282,159 +288,165 @@ mission "Unfettered: Solifuge 4: Meet The Elders"
 
 
 
-mission "Unfettered: Solifuge 5: Carrier Discussion"
-	name `Proof of alpha attrocities`
-	description `Bring back proof of what you say about the alphas from the <destination>.`
+mission "Unfettered: Alphas: Find The Auxiliary"
+	name `Find the Auxiliary`
+	description `Go to <stopover> to learn where you can find the Alpha ship.`
 	source "Darkcloak"
 	landing
-	stopover "Earth"
+	destination "Firelode"
 	to offer
 		has "Unfettered: Solifuge 3: Auxiliary Design Logs: done"
 	to fail
 		has "Wanderers: Jump Drive Source: done"
 	on offer
 		conversation
-			`As you enter the spaceport you quickly find the council, it seems like they are waiting for you. It will finally be the time for answers.`
-			`One of the leaders steps forward.	"Hopefully this is not too fast for you. Taer-Fi was in such a hurry to get those designs that he monitored your situation as soon as he heard of weapons fire. He has told us of your recent success. We wanted to appologise for putting you in danger, we did not expect you to be ennemy to the green humans."	He says, seemingly happy.`
+			`As you enter the spaceport you quickly find the council, it looks like they are waiting for you. It will finally be the time for answers.`
+			`One of the leaders steps forward. You recognize Sha-Ri,	"It seems like you are an enemy to the Unfettered Humans, and we cannot risk a disruption in our supply of jump drives, you have provided some to us, but so did they."`
 			choice
-				`	"Green humans ? I assume you mean Alphas. Are you their allies ?"`
-			`Another leader comes to you, you recognize Sha-Ri.	"We are very sorry of this misunderstanding, and I can see you are quite worried. We are not their allies they only bring us jump drives, like you do, for a given payment. Also you will be compensated as the nature of the mission we gave you did not include getting attacked by that carrier."`
-			choice
-				`	"You do not seem to understand, they are dangerous, engineered to kill."`
-				`	"It is quite alright, I guess I was just a bit shocked at the news, and did not expect to get shot at."`
+				`	"What is it you want me to do ? I do not like these Alphas."`
+					goto hate
+				`	"Who supplies you jump drive is none of my concern."`
+				`	"I will not tolerate you not firing on Alphas on sight. I am not interested in helping you anymore."`
 					decline
-			`	"What do you mean ? According to the stories they told us they seem to fight for the same reasons we do, survival. They do not have a choice, except it is worse, they are being hunted down because of who they are, and have little choice how to respond. To some, you could be viewed as monsters." This seems to be a very sensitive subject, you wonder if you should press the matter further.`
+			`	"Good because it should not be, but if you want to continue working for us you will have to prove yourself, by destroying that Auxiliary and bringing back any loot you may find."`
+			goto next
+			label hate
+			`	"That is perfect because we want you to prove your worth. Destroy that Ufettered human Auxiliary and come back here, for the greatest reward you can imagine."`
+			label next
+			`	"And find out where they are getting these jump drives from, so you can become our new supplier, for even richer rewards. Of course, if you cannot obtain such informations, we will at least ask proof that you have taken on the Alphas, bring their ship back."`
 			choice
-				`	"They have caused a lot of suffering on our worlds, and do not hesitate to murder civilians if it gets them a bit closer to their goals."`
-				`	"It is quite alright, I guess I was just a bit shocked at the news, and did not expect to get shot at."`
-					decline
-			`Some of the council members are whispering, tension is becoming palpable.	"First you most bring us proof of such accusations."`
-			choice
-				`	"I will go to get data on the Alpha wars."`
+				`	"I better get on my way to kill Alphas then."`
 					accept
-				`	"I do not know how to get access to such data, and maybe it is better for you not to make an ennemy of the Alphas."`
-					defer
-				`	"Anyone who does not shoot alphas on sight is my ennemy. Do not ever contact me again."`
+				`	"How can I find them ?"`
+				`	"I will not risk engaging the Alphas."`
 					decline
-	on stopover
-		dialog `You ask the authorities for a record of everything related to the Alpha wars and they seem more than happy to comply.`
-	on visit
-		dialog `You landed but you have not gotten the record of the Alpha wars. Come back when you have them, it will probably be available on Earth.`
-	on defer
-		set "Unfettered: Solifuge 5: Carrier Discussion: declined"
-	on decline
-		set "alpha bias"
-	on complete
-		log `Showed proof to the Unfettered of the Alpha attrocities.`
-		dialog `You have proof of the Attrocities commited by the Alphas, now get ready to confront the council in the spaceport.`
+			`He seems amused,	"That, <first>, is the easy part. You still have those sensor logs about their ships... Maybe it can point you in a direction. You should probably go to Taer-Fi, to ask her if she found anything usefull in the logs."`
+			choice
+				`	"I better get on my way to kill Alphas then."`
+					accept
+				`	"I will not risk engaging the Alphas."`
+					decline
+			`Before you go, one of the warlords come to speak to you personnaly,	"Do not dare come back to us asking for more cooperation if you fail this. And never forget that Jump Drives matter more than anything else, you should steal as many as you can if you do indeed manage to beat the Alphas."`
+	on enter "Wah Yooth"
+		dialog `Taer-Fi sent you a message : "Hello, <first>, I have reviewed the scanner logs you brought me and I think I may have found something interesting..."`
+#advise to take fuel pods
 
 
-
-mission "Unfettered: Solifuge 6: Alpha Jump Drives"
-	name `Steal Alpha jump drives`
-	description `Go to the hidden Alpha depot far to the East with a jump drive and steal the Alpha jump drives, then bring them back to <destination>.`
-	source "Darkcloak"
-	waypoint "Host"
+mission "Unfettered: Alphas 2: Prove Yourself"
+	name `Find and capture the Alpha Auxiliary`
+	description `You found out that the Auxiliary has a leak, try and find traces of fuel around the system you last saw it in, then capture it.`
+	source "Firelode"
+	destination "Darkcloak"
+	landing
 	to offer
-		has "Unfettered: Solifuge 5: Carrier Discussion: done"
-		not "alpha bias"
-	to fail
-		has "Wanderers: Jump Drive Source: done"
+		has "Unfettered: Alphas: Find The Auxiliary: done"
 	on offer
 		conversation
-			`You arrive in the spaceport and quickly notice that there is activity, it seems that you have started quite a bit of discussion among the council members. There also seem to be others who joined the discussion, you wonder why. Hopefully they will listen to reason once you show them the records...`
-			`All discussion seems to stop as you arrive, they apparently noticed the logs you are carrying. "Finally, Captain <last>, you arrive right on time, we were discussing if the alphas could betray us. That is why our warlords are also present, any tactical expertise is sound. It does not seem they have too strong of a military power though, especially considering they seem to have some sworn ennemies..."	The council debates on what he just said, you are amazed by how calm they are staying during all of this, not one of them has gotten up or risen his fist. Except for the warlords, that is.`
+			`Taer-Fi is expecting you, and comes to your ship right away, she is eager to give you the intel, hopefully it will help you find the Auxiliary.	"I am glad you came so fast ! But not to worry that auxiliary cannot be going very far before some serious repairs, not with the kind of damage it suffered anyway."`
 			choice
-				`	"I have brought you the records."`
-				`	"Actually nevermind I do not think you should be ennemy to the alphas."`
-					goto cancel
-			`	"We were prepared for that possibility, but wanted to make sure ourselves. There was some interesting information in your scanner logs, we know of the location of their base, far to the east, after the territory of the automated murder machines."`
+				`	"Get to the point, where can I find it ?"`
+				`	"What kind of damage ?"`
+					goto damage
+			`	"Are you always in a rush ? Just look for traces of this chemical, it should lead you to them. But this auxiliary is no joke, it can field up to 138 people on it, be sure to have what it takes to capture it !"`
+				goto agree
+			label damage
+			`	"Some kind of beam weapon, and very strong one at that, it looks like they only got partially deflected by the shields, I wonder what kind of weapon can do that..."	she says, seeming intrigued.`
 			choice
-				`	"I will go and recover all jump drives, one way or the other."`	
-					goto accept
-				`	"Actually nevermind I do not think you should be ennemy to the alphas."`
-			label cancel
-			`	"We would never be enemies to the Alpha. You, however, still have those sensor logs about their ships... Maybe it can point you in a direction. All that the Alphas know is we do not shoot you on sight, and for all they are concerned about it can just be because you bring jump drives to us. This is your choice, as you have noticed we are not concerned with the source of our jump drives."`
-			choice
-				`	"I will go and recover all jump drives, one way or the other."`	
-					goto accept
-				`	"Yes I am sure we should not do this. It actually looks like a trap, and you do not want to underestimate these Alphas."`
-			`He thinks a bit, when he speaks it seems like the others are in agreement. "Well you do seem to know a lot about these alphas, so we will do as you say, better to avoid too many ennemies, especially with what is coming..."`
-				decline
-			label accept
-			`	"Good luck, then ! Be sure to have enough place for those jump drives with you and do not get stuck in hostile space, you probably want quite a bit of fuel reserve."`
+				`	"They seemed to be using the same weapon against me."`
+				`	"What can we use that information for ?"`
+					goto information
+			`	"Yes I have noticed from the outfit scanner logs, I would advise not relying not to heavily on your shields. But they do not seem to have that many of those weapons, so you should be fine."`
+			label information
+			`	"Obviously, this amount of damage has consequences, it looks like they have quickly patched it up so it will not affect their hull resistance to weapon's fire, however there are some microfractures, which should in theory be big enough that the ship would lose some quantity of this hyperdrive fuel, wherever it goes. Just follow the trail."`
+			label agree
+			`You were ready to go but she seems to have something more to say,	"Oh and one last thing before you leave, you should not expect to find much fuel on their ship, and the base is probably far away, so I would advise taking some fuel pods, especially considering these marks on the Auxiliary mean you will not have much time to wait to fuel up from the local stars."`
 				accept
-	on waypoint
-		dialog `You arrive in the system, expecting to find a vault, but it looks like you may in have have fallen into a trap... Or the same auxiliary as earlier has just come back, to resupply. Watever the case it has probably the jump drives on board, disable it and take them.`
-	npc board
+	on enter "Hi Yahr"
+		dialog `You indeed notice the fuel traces as you come back in the system where you found the Auxiliary. You figure they probably went east next, because they would not be likely to go into Hai territory.`
+	on enter "Celeborim"
+		dialog `This is the right track indeed, you find small traces of fuel. They did not stay here long though, and probably neither should you.`
+	on enter "Asikafarnut"
+		dialog `You are still on the right path, you even find small debris of ships. They probably had to stay here a bit longer to fight them.`
+	on enter "Makfureti" "Sobarati"
+		dialog `There are no traces of fuel here, they probably went to another system, looking for refuge from the hostile drones.`
+	on enter "Silikatakfar" "Eneremprukt" "Mesuket"
+		dialog `You cannot find any traces of fuel here, you should probably go East from here.`
+	on enter "Persistar"
+		dialog `This does not look like a good hiding spot, given the Archon here.`
+	on enter "Ferukistek"
+		dialog `You spot one system not connected by hyperdrive North, it would seem like a logical place for them to go, considering the drones do not seem to have jump drives.`
+	on enter "Host"
+		dialog `You arrive in the system, expecting to find a vault, but it looks like you may in have have fallen into a trap... Or the same auxiliary as earlier has just come back, to resupply. Watever the case it has probably the jump drives on board, disable it and take them. You also notice more drones deploying from the base.`
+	npc capture
 		government "Alpha"
 		system "Host"
 		personality heroic nemesis staying vindictive target
 		ship "Auxiliary (Alpha)" "Settler"
-		dialog `You have managed to disable their ship, take the jump drives and then destroy it, or claim it for yourself. If you do not have enough place you can always go and store them in an outfitter and then come back for the rest.`
 	npc
 		government "Alpha"
 		system "Host"
 		personality heroic nemesis staying vindictive
 		ship "Far Osk 27" "Prancer"
 		ship "Far Osk 27" "Vixen"
-		ship "Far Lek 14" "Cupid"
-		ship "Far Lek 14" "Comet"
-		
+		ship "Far Osk 27" "Cupid"
+		ship "Far Osk 27" "Comet"
+		ship "Far Osk 27" "Dagger"
+		ship "Far Osk 27" "Oren"
+		ship "Far Osk 27" "Mert"
+		ship "Far Osk 27" "Greedy"
+		ship "Far Osk 27" "Selfish"
+		ship "Far Osk 27" "Vengeful"
+		ship "Far Osk 27" "Anger"
+		ship "Far Osk 27" "Dart"
 	on visit
-		dialog `You landed but you have not gotten the Alpha's jump drives yet, or they are on one of your escorts. If you did not have enough space for the jump drives, you can store the ones you currently have in the outfitter, and go back to collect the rest.`
+		dialog `You have landed but without the Alpha Auxiliary. Go and find for traces of it, in systems neighbouring Hi Yahr.`
+	on fail
+		conversation
+			branch captured
+				has "captured the alpha ship"
+			`You have managed to capture the Alpha ship, but as you do you also find a brig with some Koraths in it. You should go to the Alpha base to see if you find anything else, and decide what to do with them once there.`
+			label captured
+			`You have failed an essential Unfettered mission. You may want to reload.`
+
+
+
+mission "Unfettered: Alphas 3: Bring The Spoils"
+	boarding
+	to offer
+		has "Unfettered: Alphas 2: Prove Yourself: active"
+	source
+		government "Alpha"
+		not attributes "automaton"
+	stopover "Avalon"
+	destination "Darkcloak"
+	on offer
+		set "captured the alpha ship"
+		fail "Unfettered: Alphas 2: Prove Yourself"
+	on stopover
+		conversation
+			`As you land you go and explore the Alpha base to see if there are any more jump drives, or anyone who would have witnessed the fight but do not find anything. Then you come back to the Auxiliary to see the Koraths.`
+			`They seem to be prisonners, and you find what seems to be a primitive translator with them. They do not look in a state to talk about anything though, so you should probably go to Darkcloak and talk to the elders about this, hopefully the Koraths will have recovered by then.`
+				accept
 	on complete
-		log `Stole jump drives from an Alpha auxiliary.`
+		log `Stole an Alpha auxiliary with its cargo of jump drives, and also found Koraths on board.`
 		outfit "Jump Drive" -10
 		payment 10000000
-		dialog `The Unfettered seem surprised to see you, when they adress you they do so with respect,	"It seems you have managed to prove yourself. Now we have almost enough jump drives for the next phase..."	You look at them intensively, and after a few seconds they realise,	"Oh right, your payment ! Here it is : <payment> !"`
-
-
-
-mission "Unfettered: Solifuge 7: Alpha Base"
-	source "Avalon"
-	landing
-	destination "Septar Lorku"
-	clearance `The Korath speaks in his main language so fast that the translator cannot keep up with it, but it seems like you are cleared to land.`
-	to offer
-		has "Unfettered: Solifuge 6: Alpha Jump Drives: active"
-	on offer
 		conversation
-			`As you land you go and explore the Alpha base to see if there are any more jump drives. You find none but you notice a Korath who seems to be a prisonner, along with what seems to be a primitive translator.`
+			`The Unfettered warlord that annoyed you earlier seems surprised to see you, but when he and the Unfettered adress you they do so with respect,	"It seems you have managed to prove yourself. Now we have almost enough jump drives for the next phase..."	You look at them intensively, and after a few seconds they realise,	"Oh right, your payment ! Here it is : <payment> !"`
 			choice
-				`	(Go help him.)`
-				`	(Ignore him and go back to my ship.)`
-					goto end
-			`He seems very worried as you come his way, but after he sees you up close he seems to realise you are not an Alpha, and speaks trough the translator in a rudimentary fashion,	"I [am, will be] Keri, I was detained here to help the Alphas in their plans. Could you bring me back to my people ?"`
-			choice
-				`	(Accept.)`
-					accept
-				`	"No way, you're coming with me to help with technology."`
-				`	(Decline.)`
-					defer
-			`He sighs very deeply and then, before you can react, completely collapses. It seems like he was not in the mood to be going from one captor to the next, and somehow killed himself.`
-				decline
-			label end
-	on decline
-		dialog `You leave the Korath there to rot, as you go you wonder if it was the right decision...`
-		log `Found a Korath on the Alpha base on <origin>, it did not end well for him.`
-	on defer
-		set "Unfettered: Solifuge 7: Alpha Base: declined"
-		log `Found a Korath on the Alpha base on <origin>, and left him there.`
-	on complete
-		dialog `The Korath is happy to meet back with his people, but it does not seem like they are that happy to see you, you should go as soon as possible.`
-		log `Helped a Korath that was prisonner of the Alphas to go back to his people.`
+				`	"I have found Korath prisonners on the Alpha ship."`
+			`They talk about it and then an Unfettered elder speak up,	"Perfect, hand them over to us, we will see to it they have all the confort they need, hopefully in exchange for some technology."`
 
 
 
-mission "Unfettered: Solifuge 8: Materials For Ships"
+mission "Unfettered: Solifuge 5: Materials For Ship"
 	name `Gather materials from asteroids`
 	description `Mine and collect 100 tons of Silicon from the asteroid field in Wah Yoot and 15 tons of Silver from the asteroid field in Ehma Ti and then bring them back to <destination> for <payment>.`
 	source "Darkcloak"
 	waypoint "Ehma Ti"
 	to offer
 		not "alpha bias"
-		has "Unfettered: Solifuge 5: Carrier Discussion: offered"
+		has "Unfettered: Alphas 3: Bring The Spoils: done"
 	on offer
 		conversation
 			`You have never seen so much agitation in the Unfettered, until now. It looks like a big event is about to happen, and you will probably be a part of it.	It seems like Taer-Fi is spreading a message to all Unfettered to hear,	"The time has come, brothers and sisters ! Now all that is needed is to spread the world, and our brethren from Hai space will join us in glorious victory ! But let us not be reckless, in order to win we will need ships and in order to get ships we will need materials. That is why we should all start gathering materials here."`
@@ -591,11 +603,11 @@ mission "Unfettered: Hai Intel"
 		dialog `The Unfettered give you <payment> for the intel.`
 
 
+#TODO after this:
+#get missions to add Shield Beetle to darkcloak
+#get missions to add new rifles, bringing back all kinds of guns
+#get missions to help pirates annoying the Hai, by bringing them tech
 
-# korath helps you make coolers, and against the Kor later, the alphas were using him to get intel on jump drives and how to make them + most importantly on the Kor to prepare for their Kor Sestor assault. There is also what seems to be a rudimentary translator here`
+# the korath prisoners helps you make coolers, and help against the Kor later, the alphas were using them to get intel on jump drives and how to make them + most importantly on the Kor to prepare for their Kor Sestor assault.
 
-#young captain just became warlord and wants to see if you are rd for a fight, doesn't want you to get killed fighting the Wanderers, need to wait for intro to be merged
-
-#if you war Hai somewhere it should be said it is not in your best interest to do it + option to have peace if it blocks the missions, the Hai are for later. they agree for peace if you behave properly from now on so you can keep bringing food to Unfets
-
-#escort unfettered ships the Hai accepted to let pass bringing civilians and make sure nothing happens to them (rare generic too)
+#start of wanderer war : young captain just became warlord and wants to see if you are rd for a fight, doesn't want you to get killed fighting the Wanderers, need to wait for intro to be merged
