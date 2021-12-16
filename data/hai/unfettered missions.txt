@@ -26,7 +26,7 @@ mission "Unfettered: Bring Hai"
 				`	(Go see them.)`
 				`	(Ignore them.)`
 					decline
-			`You start moving their way and you notice one of them separates from the rest to come your way and seems to be rumbling on about something,	"We do not get alien visitors often here. There has to be a reason for your presence..."	The Unfettered seems a bit lost in his thoughts. When he speaks again is it with renewed focus,	"Sorry, I was thinking out loud ! Well you are here so maybe you could help us."`
+			`You start moving their way and you notice one of them separates from the rest to come your way and seems to be rumbling on about something,	"We do not get alien visitors often here. There has to be a reason for your presence..."	The Unfettered seems a bit lost in his thoughts. When he speaks again is it with renewed focus,	"Sorry, I was thinking out loud ! Well you are here anyway so maybe you could help us."`
 			`	"We have friends outside of our space, civilians and others. We would do anything to help a friend, and some Hai contacted us : they want to join us. I can only hope you are willing to help us reunite with our brothers and sisters from Hai space,"	he says. He seems a bit desperate.`
 			choice
 				`	"Of course, what do you need me to do ?"`
@@ -98,7 +98,7 @@ mission "Unfettered: Bring Medical Supplies"
 		conversation
 			`The medical staff from the hospitals is emitting a distress message, asking all who can to bring back medical supplies from <stopovers>.	When landing on an Unfettered planet there always is some tension, even after you brougth them one jump drive. Here you feel the tension is stronger than usual, probably because of the medical emergency. They may not take no for an answer...`
 			choice
-				`	(Signal them I am going to get medical.)`
+				`	(Signal them I am going to get the supplies.)`
 					accept
 				`	(I do not have time for this.)`
 			`Hopefully it seems that everyone is too busy with the local problem to annoy you or press you into accepting this mission.`
@@ -206,9 +206,7 @@ mission "Unfettered: Prove your strength 2"
 	name `Get jump drives`
 	description `Go to the pirate world of <destination> and recover jump drives from a vault.`
 	source "Darkcloak"
-	destination "Freedom"
-	blocked "You will need 80 cargo space in order to take the next Unfettered mission."
-	cargo "(reserved)" 80
+	stopover "Freedom"
 	to offer
 		has "Unfettered: Prove your strength: done"
 		has "Unfettered Jump Drive 3: offered"
@@ -244,7 +242,7 @@ mission "Unfettered: Prove your strength 2"
 				`	"Okay... It seems too good to be true, what is the catch ?"`
 				`	"Well if this is your mission you just do it yourself."`
 					decline
-			`	"Well... The name of the world is freedom, and whilst it may sound nice, it is a pirate world, that is why I need your ship for transportation trough Hai space. You will also need to have cargo space available for 4 jump drives."`
+			`	"Well... The name of the world is Freedom, and whilst it may sound nice, it is a pirate world, that is why I need your ship for transportation trough Hai space. You will also need to have cargo space available for 4 jump drives."`
 			choice
 				`	"Let's go then !"`
 					goto leave
@@ -253,7 +251,7 @@ mission "Unfettered: Prove your strength 2"
 					goto cut
 				`	"Sorry I will not risk my ship by going anywhere close to these pirates."`
 					decline
-			`	"Jump drives are a very prized possession among my people, I would not risk one by travelling trough hostile space. You had access to a jump drive yet you do not know about the hostiles to the South ? The wanderers would not be very happy to see me either..." it seems like you disappointed him a bit.`
+			`	"Jump drives are a very prized possession among my people, I would not risk one by travelling trough hostile space. You had access to a jump drive so you should know about the hostiles to the South ? The wanderers would not be very happy to see me either..." it seems like you disappointed him a bit.`
 			choice
 				`	"Let's go then !"`
 					goto leave
@@ -268,17 +266,22 @@ mission "Unfettered: Prove your strength 2"
 		dialog `You left your escort allocated to carrying the jump drives behind, better launch and wait for it.`
 	on fail
 		dialog `You have failed an essential Unfettered mission. You may want to reload.`
+	on complete
+		payment 3000000
+		outfit "Jump Drive" -4
+		log `Helped a young Unfettered captain to bring jump drives from a pirate world.`
+		dialog `"Here is your share : <payment>. You have saved my life, captain <first>, and I shall never forget it. You have earned the right to know my name : "Si-Ra". Come see me again soon if you are up for a challenge."`
+		log "People" "Si-Ra" `A young impetuous Unfettered captain who seems to grow wiser by the day. He has impressive leading and combat skill, and seems to be a fan of getting bigger and bigger ship. He always leaves room for improving tactics.`
 
 
 
-mission "Unfettered: Prove your strength 3"
-	name `Bring jump drives back`
-	description `Go back to <destination> with the jump drives.`
+mission "Unfettered: Jump Drive Retrieval"
+	invisible
 	source "Freedom"
 	destination "Darkcloak"
 	landing
 	to offer
-		has "Unfettered: Prove your strength 2: done"
+		has "Unfettered: Prove your strength 2: active"
 	on offer
 		conversation
 			`Following the advice of the Hai, you park your ship close to the hidden depot in case something goes wrong, and then follow the Hai outside.`
@@ -341,34 +344,26 @@ mission "Unfettered: Prove your strength 3"
 			label ship
 			`You go back to your ship with the Hai, and give the orders to collect and install them.`
 			`A bit later the Hai comes to speak to you on the bridge.	"It took us too long to install the jump drives, we seem to have attracted attention. I guess that if some of the pirates got away from the vault, they have contacted some friends..."	As you look outside you see multiple ships getting ready to launch far away. You should launch as soon as you can.`
-				launch
-	on accept
+				flee
+	on decline
 		"outfit" "Jump Drive" 4
-	npc
+	npc evade
 		government "Pirate"
-		personality plunders waiting
+		personality disables plunders vindictive
+		system "Almaaz"
 		fleet "Large Northern Pirates"
 		fleet "Small Northern Pirates"
-	on visit
-		dialog phrase "generic missing stopover or cargo"
-	on fail
-		dialog `You have failed an essential Unfettered mission. You may want to reload.`
-	on complete
-		payment 3000000
-		outfit "Jump Drive" -4
-		log `Helped a young Unfettered captain to bring jump drives from a pirate world.`
-		dialog `"Here is your share : <payment>. You have saved my life, captain <first>, and I shall never forget it. You have earned the right to know my name : "Si-Ra". Come see me again soon if you are up for a challenge."`
-		log "People" "Si-Ra" `A young impetuous Unfettered captain who seems to grow wiser by the day. He has impressive leading and combat skill, and seems to be a fan of getting bigger and bigger ship. He always leaves room for improving tactics.`
 
 mission "Unfettered: Attracted Attention"
 	landing
 	invisible
 	source "Freedom"
 	to offer
-		has "Unfettered: Prove your strength 2: done"
+		has "Unfettered: Prove your strength 2: active"
 	on offer
 		require "Jump Drive" 1
-	npc
+	npc evade
 		government "Pirate"
-		personality plunders waiting
+		system "Almaaz"
+		personality disables plunders vindictive
 		fleet "Large Northern Pirates"
