@@ -636,13 +636,15 @@ mission "Hai Rescue [C01] Bloody Love Blooms"
 			`	"To Unfettered Hai leadership, this meeting is all a political ploy. They know it's in their best interest to help us. It will raise public opinion towards them among the Fettered and likely lure more recruits to their side. But before they agree, I have to prove myself in front of their troops. If I don't, the public's perception will be that the Unfettered leaders helped a weak coward.`
 			`	"Why else do you think the Hai Elders would pick the one fencing champion among their number for this trip?"`
 			label follow
+			`	Teeneep takes a step forward, pauses, then turns back to you. "Actually, there was something I wanted to make sure I explained before we meet the Unfettered leadership: I'm carrying real weapons for a reason. This meeting will probably seem violent, and that will probably make you think the Unfettered are a barbaric people. They're not; they 'play up' their violent nature. It's a hard concept to explain - we have Hai words for this that don't translate well into your language. That's the simplest way I can think to explain it without spending twenty minutes here, so it'll have to suffice."`
+			`	She glances around. "Besides, we're already close to running late. Let's get going."`
 			`	You pass through a hallway filled with battle trophies and enter a large room filled with uniformed Hai. You notice many of them have swords similar to Teeneep's, though they look more ceremonial than functional.`
 			`	As Teeneep walks in, an Unfettered moves to block her path. From the extensive decorations on his uniform, it appears he's a high-ranking officer. "You're not welcome here, False Hai." He starts to push her away. In one motion, Teeneep spins around, unsheathes a sword, and swipes it across his arm, drawing blood. The Hai grunts, surprised, and steps aside to let Teeneep pass. She walks toward the gigantic leader of the Unfettered, whose face betrays his surprise and admiration.`
 			choice
 				`	(Walk in and join Teeneep.)`
 				`	(Stand in the room's entrance and watch.)`
 					goto watch
-			`	As you enter the room, a pair of Unfettered grab you. Teeneep holds her hand on the hilt of her sword and says, "Let Captain <last> go, now." The Unfettered let go immediately, and she nods for you to stay where you are.`
+			`	As you enter the room, a pair of Unfettered grab you. Teeneep draws a throwing knife, saying with intensity, "Let Captain <last> go. Now." The Unfettered let go immediately, and she nods for you to stay where you are, sheathing the knife.`
 			label watch
 			`	Teeneep explains to the leader, "Twenty thousand Hai have been enslaved by human pirates. They're concealed in a subterranean base that can only be reached with a Jump Drive and a Quantum Keystone. Dozens of human capital ships and thousands of human pirates guard the Hai. We haven't enough Jump Drives to rescue them.`
 			# Note: Teeneep is using hyperbole; she knows most of the 20,000 Hai at Philosopher's Paradise were probably born there.
@@ -650,7 +652,7 @@ mission "Hai Rescue [C01] Bloody Love Blooms"
 			`	The Unfettered leader responds, "Your people have outlawed and abandoned us. You give us insulting food donations with propaganda on them. You block our ships from returning to Hai-home. Why should we help you, a race of slothful cowards? Your people are an insult to all Hai."`
 			`	Teeneep suddenly takes three strides forward, closing the distance between her and the Unfettered leader in less than a second. You had forgotten how quick Hai are; few humans could do what she just did. "I challenge you for rule of the Unfettered military!"`
 			`	"You haven't the authority to do that," he responds, laughing.`
-			`	Teeneep draws both swords. "Fight me! Are you afraid to fight a woman half your size? Fight me, coward!" From her expression, you're unsure if she genuinely has that much faith in her abilities, or if this is a bluff.`
+			`	Teeneep draws a throwing knife and launches it. It zips through the air, passing within a hand's width of the Unfettered leader before embedding itself in the wall behind. "Fight me! Are you afraid to fight a woman half your size? Fight me, coward!" From her expression, you're unsure if she genuinely has that much faith in her abilities, or if this is a bluff.`
 			`	The Unfettered leader pauses, then smiles. "There is no need. Even on our planets, I've rarely met a Hai half as brave as you. You are a True Hai, and we protect our own. You have vouched for the value of the lives of these Hai, so we will send a fleet to rescue them. I will lead the attack myself."`
 			`	She re-sheaths her swords and calls you over. "I have brought with me one of the greatest war heroes of the humans."`
 			choice
@@ -690,7 +692,7 @@ mission "Hai Rescue [C02] Escort to Arms Purchase"
 	on offer
 		conversation
 			`Teeneep departs from an eleventh Shield Beetle, which is equipped with weapons sticking out that are not of Hai or human origin. When she comes closer, you can see that she's still in her fencing outfit.`
-			`	"I've had a good time with the Unfettered," she starts, gesturing to her outfit, now torn in a few different places, "but now we must advance our plans. We need to reach <destination> immediately. Neither the Hai nor the Republic want this fleet in their space for long. You'll be paid <payment> when we arrive. And also," she says, nodding to the Shield Beetle behind her, "we'll be escorting this ship in addition to the ten to be refitted."`
+			`	"I've had a good time with the Unfettered," she starts, gesturing to her outfit, now torn in a few different places and with more than a few red stains, "but now we must advance our plans. We need to reach <destination> immediately. Neither the Hai nor the Republic want this fleet in their space for long. You'll be paid <payment> when we arrive. And also," she says, nodding to the Shield Beetle behind her, "we'll be escorting this ship in addition to the ten to be refitted."`
 				accept
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
@@ -738,13 +740,13 @@ mission "Hai Rescue [C04] Foundry"
 		log `Equipped eleven Unfettered Hai Shield Beetles, led by Teeneep and General Choot'k, for the battle at Philosopher's Paradise.`
 		log `People` `General Choot'k` `Supreme commander of the Unfettered Hai military. It is unclear whether he also leads the Unfettered Hai government. Compared to his troops, he is a man of great restraint and intelligence. He's also unusually large for a Hai, taller than most humans.`
 		conversation
-			`Teeneep and the Unfettered leader leave a Shield Beetle together. Teeneep is still wearing her fencing outfit and swords, but she now wears a sash that indicates she's a Hai Elder. She's patched up the tears, but left just enough to remind people she can fight. The marshal, a man named Kaine, approaches from the opposite direction.`
+			`Teeneep and the Unfettered leader leave a Shield Beetle together. Teeneep is still wearing her fencing outfit and swords, but she now wears a sash that indicates she's a Hai Elder. She's patched it up and cleaned it off, but left just enough wear to remind people it isn't for show. The marshal, a man named Kaine, approaches from the opposite direction.`
 			`	The Unfettered leader opens his mouth to speak, but Teeneep raises her hand to silence him and steps forward instead. Surprisingly, he stops without complaint.`
 			`	"This is General Choot'k, supreme commander of the Unfettered Hai military. I will join him on his flagship during this fight. Ten of our Shield Beetles must be re-outfitted. His is already equipped with superior equipment from past conquests."`
-			`	Marshal Kaine responds, "Good to meet you. We're currently preparing a group of 200 elite operatives, trained in fighting pirates. I will leave it to Captain <last> to see them safely to the surfac, since we have no transport ships that can survive a battle of this scale. If they reach Philosopher's Paradise, they will free your people."`
+			`	Marshal Kaine responds, "Good to meet you. We're currently preparing a group of 200 elite operatives, trained in fighting pirates. I will leave it to Captain <last> to see them safely to the surface, since we have no transport ships that can survive a battle of this scale. If they reach Philosopher's Paradise, they will free your people."`
 			`	General Choot'k says, "I look forward to joining your people in combat. We haven't had a chance to fight with - or against - your species. I hope we won't be disappointed."`
 			`	"I can vouch for the skill of my operatives, but not the pirates," Kaine replies, smiling. "Good hunting, general."`
-			`	Choot'k turns to you and says, "Here is our plan, Captain <last>." You notice the respect in his voice: he speaks to you as an equal. "Your ships and ours will shield the operatives. The designs of the facility show a weak point in one of the hangars. My flagship has weapons pillaged from another species of aliens, which are strong enough to cut open the hangar doors yet precise enough not to destroy the hangar.`
+			`	Choot'k turns to you and says, "Here is our plan, Captain <last>." You notice the respect in his voice: he speaks to you as an equal. "Your ships and ours will shield the operatives. The designs of the facility show a weak point in one of the hangars. My flagship has weapons pillaged from Wanderers, which are strong enough to cut open the hangar doors yet precise enough not to destroy the hangar.`
 			`	"First though, we must regroup at <destination>. The human escorts that shadow us cannot follow to Devil-Run."`
 			`	As you prepare to leave, you notice <payment> has been added to your account. Hopefully you'll get the same when you reach <destination>.`
 				accept
@@ -990,7 +992,7 @@ mission "Hai Rescue [C08] Freedom"
 				goto questions
 			label leave
 			`	As you return to your ship, Teeneep interrupts you. "I need you to escort me one last time, Captain <last>. I must return to <destination> to resolve things now that the threat is ended. You will be well-paid, of course."`
-			`	Anticipating your next question, she says, "The ships of the Unfettered Hai will be escorted back with us since the Philosophers are convinced they are at no risk and still have a ship at their disposal. Some of the Unfettered have chosen to remain here and join the philosophers. More than enough bunks have subsequently been freed to return those who have chosen to come home with us. The surviving operatives are planning how to back to Foundry themselves."`
+			`	Anticipating your next question, she says, "The ships of the Unfettered Hai will be escorted back with us since the Philosophers are convinced they are at no risk and still have a ship at their disposal. Some of them have chosen to remain here and join the philosophers. More than enough bunks have subsequently been freed to return those who have chosen to come home with us. The surviving operatives are planning how to back to Foundry themselves."`
 			`	Teeneep follows you back to your ship as you prepare to leave the Philosopher's Paradise.`
 				accept
 	on complete
