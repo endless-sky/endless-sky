@@ -3652,7 +3652,7 @@ mission "Street Swindle"
 					decline
 			label firstgameplay
 			`	You pay 400 credits and sit across from the magician. "Double or nothing, bet your bet!" the announcer repeats. "Are you a player or a puppet?"`
-			`	The magician places the ball beneath the center and begins moving the cups. This one seems faster, but that might just be from the pressure. You keep your eyes trained on the cup as it shifts back and forth, around in circles, and occasionally remains untouched. By the end, you're sure it's in the center cup.`
+			`	The magician places the ball beneath the center and begins moving the cups. This one seems faster, but that might just be from the pressure. You keep your eyes trained on the cup as it shifts back and forth, around in circles, and occasionally remains untouched. By the end, you're pretty sure it's in the center cup.`
 			`	"What's your choice?" the magician asks, smirking.`
 			choice
 				`	"Left."`
