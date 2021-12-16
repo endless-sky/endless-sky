@@ -3663,7 +3663,7 @@ mission "Street Swindle"
 					goto wrong
 			label wrong
 			`	"Better luck next time," she says as she reveals your incorrect choice. The ball was in the center; you feel silly for not going with your gut.`
-			`	"The next buy-in is a larger prize!" the announcer calls. "Six thousand credits, reserved for the most daring. As previous player, you have first priority."`
+			`	"The next buy-in is a larger prize!" the announcer calls. "Six thousand credits, reserved for the most daring. As the previous player, you have first priority."`
 			action
 				payment -400
 			choice
