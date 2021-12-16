@@ -433,7 +433,7 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 	to offer
 		has "Unfettered Jump Drive 2: offered"
 	to fail
-		has "Wanderers: Jump Drive Source: done"
+		has "Wanderers: Defend Vara Ke'sok: done"
 	on offer
 		conversation
 			`As you wander in the spaceport an Unfettered approaches you. At first you wonder why that is but then you realise that you naturally stand out among the Hai.`
@@ -552,7 +552,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		has "Unfettered: Solifuge 1: Geocoris Design: done"
 		has "Unfettered Jump Drive 3: offered"
 	to fail
-		has "Wanderers: Jump Drive Source: done"
+		has "Wanderers: Defend Vara Ke'sok: done"
 	on offer
 		conversation
 			`You go get a drink in the spaceport, thinking about the Unfettered you met earlier, Taer-Fi. He said he would tell you more about it once he gets the logs but you have not seen him yet. Hopefully he can be trusted. After an hour of talking with the local Unfettered, you see him coming. He seems to be in a hurry.`
@@ -594,10 +594,84 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		ship "Far Osk 27" "Vixen"
 		ship "Far Osk 27" "Anger"
 		ship "Far Osk 27" "Dart"
-	on stopover
-		dialog `After a while, the Alpha ship goes away, and you can now go back to <origin> with the scanner logs.`
 	on fail
 		dialog `You have failed an essential Unfettered mission. You may want to reload.`
+	on complete
+		dialog `After a while, the Alpha ship goes away, and you can now go back to <origin> with the scanner logs.`
+
+
+#make this the intro elder
+mission "Unfettered: Escort Civilians"
+	source "Warfeed"
+	stopover "Greenbloom"
+	name `Escort an Unfettered convoy from <stopovers> to <destination> before the truce expires by <date>.`
+	landing
+	deadline 20
+	to offer
+		has "Unfettered: Solifuge 2: Auxiliary Design: done"
+		has "Unfettered: Bring Medical Supplies: done"
+	on offer
+		event "hai / unfettered truce"
+		event "end of hai / unfettered truce" 20
+		conversation
+			`As you prepare yourself to leave, you see an Unfettered elder approaching you, it is Sha-Ri, the one you helped earlier with moving people and supplies. You have never seen him so worried, or moving at this pace before. He comes to speak to you,	"<first> ! I, or more precisely a fleet of True Hai needs your immediate assistance in escorting them trough Hai space, from <stopovers>."`
+			choice
+				`	"What are you doing here?"`
+				`	"Why do you need my help?"`
+					goto help
+				`	"I am quite busy right now."`
+					goto busy
+			
+			`	"I am talking with all the warlords, to make sure nobody tries something stupid, else True Hai may get hurt."`
+			goto busy
+			label help
+			`	"It is not that I do not trust the Hai not to fire on their own people, but a misunderstanding could happen quickly, and someone of your expertise would be helpful. I cannot really trust any Unfettered Hai captain with this, as he could easily get provoked, or make a fatal mistake. I hope you would be able to make a rational decision."`
+			label busy
+			`	"Watever it is you are busy with, I am sure it can wait. This fleet needs to come back before the end of the truce."`
+			choice
+				`	"Sure, let's do it !"`
+				`	"I do not want to help the Unfettered anymore.`
+					decline
+			`	"Good ! The ships are mostly carying supplies and passengers, so you would do well to stay with them watever happens. If I understand correctly, a small Hai fleet will accompany you too."`
+				accept
+	on stopover
+		set "stopped on Greenbloom"
+	npc accompany save
+		government "Hai"
+		personality escort timid
+		fleet "Small Hai"
+		fleet
+			names "hai"
+			"Centipede"
+			"Geocoris"
+			"Water Bug"
+	to fail
+		has "Wanderers: Defend Vara Ke'sok: done"
+	on fail
+		dialog `You have failed an essential Unfettered mission. You may want to reload.`
+	on complete
+		payment 500000
+		dialog `The fleet admiral thanks you for escorting them. You then go see the Unfettered elder who gives you <payment>.`
+		log `Escorted a Hai fleet carying supplies and passengers into Unfettered space during a truce.`
+		clear "stopped on Greenbloom"
+
+event "hai / unfettered truce"
+	government "Hai"
+		"attitude toward"
+			"Hai (Unfettered)" 0
+		
+	government "Hai (Unfettered)"
+		"attitude toward"
+			"Hai" 0
+
+event "end of hai / unfettered truce"
+	government "Hai"
+		"attitude toward"
+			"Hai (Unfettered)" -.1
+		
+	government "Hai (Unfettered)"
+		"attitude toward"
+			"Hai" -.01
 
 
 
@@ -608,6 +682,10 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 	description `Now that you have scanned the Alpha ship, come back to <destination> to get your reward.`
 	to offer
 		has "Unfettered: Solifuge 2: Auxiliary Design: done"
+	to fail
+		has "Wanderers: Defend Vara Ke'sok: done"
+	on fail
+		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 	on complete
 		payment 300000
 		log `Scanned an Auxiliary for the Unfettered, I wonder what it was doing so far from Republic space, and with alien technology. The fact that Alphas were on it has probably something to do with that.`
@@ -642,10 +720,6 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 
 
 
-#escort unfettered ships the Hai accepted to let pass bringing civilians/supplies and make sure nothing happens to them
-
-
-
 mission "Unfettered: Solifuge 4: Meet The Elders"
 	name `Go see the elders on <stopovers>`
 	description `The Unfettered elders have asked you to go see them on <stopovers> when you have the time, probably to discuss your scan results.`
@@ -666,7 +740,7 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 	to offer
 		has "Unfettered: Solifuge 3: Auxiliary Design Logs: done"
 	to fail
-		has "Wanderers: Jump Drive Source: done"
+		has "Wanderers: Defend Vara Ke'sok: done"
 	on offer
 		conversation
 			`As you enter the spaceport you quickly find the council, it looks like they are waiting for you. It will finally be the time for answers.`
@@ -698,7 +772,9 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 			`Before you go, one of the warlords come to speak to you personnaly,	"Do not dare come back to us asking for more cooperation if you fail this. And never forget that Jump Drives matter more than anything else, you should steal as many as you can if you do indeed manage to beat the Alphas."`
 	on enter "Wah Yooth"
 		dialog `Taer-Fi sent you a message : "Hello, <first>, I have reviewed the scanner logs you brought me and I think I may have found something interesting..."`
-#advise to take fuel pods
+	on fail
+		dialog `You have failed an essential Unfettered mission. You may want to reload.`
+
 
 
 mission "Unfettered: Alphas 2: Prove Yourself"
@@ -709,6 +785,8 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 	landing
 	to offer
 		has "Unfettered: Alphas: Find The Auxiliary: done"
+	to fail
+		has "Wanderers: Defend Vara Ke'sok: done"
 	on offer
 		conversation
 			`Taer-Fi is expecting you, and comes to your ship right away, she is eager to give you the intel, hopefully it will help you find the Auxiliary.	"I am glad you came so fast ! But not to worry that auxiliary cannot be going very far before some serious repairs, not with the kind of damage it suffered anyway."`
@@ -791,11 +869,15 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 	on offer
 		set "captured the alpha ship"
 		fail "Unfettered: Alphas 2: Prove Yourself"
+	to fail
+		has "Wanderers: Defend Vara Ke'sok: done"
 	on stopover
 		conversation
 			`As you land you go and explore the Alpha base to see if there are any more jump drives, or anyone who would have witnessed the fight but do not find anything. Then you come back to the Auxiliary to see the Koraths.`
 			`They seem to be prisonners, and you find what seems to be a primitive translator with them. They do not look in a state to talk about anything though, so you should probably go to Darkcloak and talk to the elders about this, hopefully the Koraths will have recovered by then.`
 				accept
+	on fail
+		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 	on complete
 		log `Stole an Alpha auxiliary with its cargo of jump drives, and also found Koraths on board.`
 		outfit "Jump Drive" -10
@@ -816,6 +898,8 @@ mission "Unfettered: Solifuge 5: Materials For Ship"
 	to offer
 		not "alpha bias"
 		has "Unfettered: Alphas 3: Bring The Spoils: done"
+	to fail
+		has "Wanderers: Defend Vara Ke'sok: done"
 	on offer
 		conversation
 			`You have never seen so much agitation in the Unfettered, until now. It looks like a big event is about to happen, and you will probably be a part of it.	It seems like Taer-Fi is spreading a message to all Unfettered to hear,	"The time has come, brothers and sisters ! Now all that is needed is to spread the world, and our brethren from Hai space will join us in glorious victory ! But let us not be reckless, in order to win we will need ships and in order to get ships we will need materials. That is why we should all start gathering materials here."`
@@ -880,6 +964,8 @@ mission "Unfettered: Solifuge 5: Materials For Ship"
 			names "hai"
 			variant
 				"Water Bug"
+	on fail
+		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 	on complete
 		payment 500000
 		dialog `You bring your cargo to the local Unfettered shipyards, they hand you <payment> credits. You see a huge ship being built in the distance.`
@@ -896,6 +982,8 @@ mission "Unfettered: The Word Has Spread"
 	blocked `You need <bunks> passenger space for the next Unfettered mission.`
 	to offer
 		has "Unfettered: Solifuge 8: Materials For Ships: done"
+	to fail
+		has "Wanderers: Defend Vara Ke'sok: done"
 	stopover "Cloudfire"
 	stopover "Snowfeather"
 	stopover "Darkmetal"
@@ -953,6 +1041,8 @@ mission "Unfettered: The Word Has Spread"
 			`	"I like your enthousiasm but all things in good time, first you need to bring these people back to their new home."`
 	on visit
 		dialog phrase "generic stopover on visit"
+	on fail
+		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 	on complete
 		payment 5000000
 		dialog `The Hai are all excited to join the Unfettered, you did notice that more of them are ready for battle than usual, though. You receive your payment of <payment>.`
@@ -970,6 +1060,7 @@ mission "Unfettered: Hai Intel"
 	on complete
 		payment 50000
 		dialog `The Unfettered give you <payment> for the intel.`
+
 
 
 #TODO after this:
