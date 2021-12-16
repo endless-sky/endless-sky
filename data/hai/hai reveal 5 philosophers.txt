@@ -571,6 +571,7 @@ mission "Hai Rescue [B07] Return"
 				goto questions
 			label old
 			`	"Our intel believed the city was established fifty years ago when Base Principles and their partners were supposed to have been scoured from Syndicate space, but the locals claim they're descendants of anarchists from Freedom. There's also no way a city this size could have been built in only fifty years; it must be at least a hundred years old.`
+			`	goto questions`
 			label large
 			`	"I've only seen small parts of it. The top few levels are docking bays and cargo storage, and the next several house people, laboratories, factories, shipyards, and communal areas. Below that, there are several levels of industrial machinery, generators, and life support systems.`
 			`	"As for population, there's least a hundred thousand. Most are human, but one out of every four or five is Hai. I've seen a couple Korath too, but not many. There are also several thousand pirates, all human."`
