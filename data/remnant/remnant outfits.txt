@@ -312,7 +312,7 @@ outfit "Ember Tear"
 	category "Secondary Weapons"
 	licenses
 		"Remnant Capital"
-	cost 50000000
+	cost 270000000
 	thumbnail "outfit/ember tear"
 	"mass" 250
 	"outfit space" -190
