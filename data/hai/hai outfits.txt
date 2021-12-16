@@ -150,7 +150,7 @@ outfit "Railgun"
 		"firing force" 70
 		"stream"
 		"submunition" "rslug" 1
-	description "The Hai designed this weapon to best compliment their Flea drones. Each railgun provides a significant amount of force upon firing, pushing the Flea drone backwards and therefore forcing it to keep its distance from its target."
+	description "The Hai designed this weapon to best complement their Flea drones. Each railgun provides a significant amount of force upon firing, pushing the Flea drone backwards and therefore forcing it to keep its distance from its target."
 	description "	Flea drone pilots joke that they provide more thrust than engines of similar size, so Unfettered should be using them at the back of their ships. There's probably a cultural component to the joke that many miss, because it's told quite often and the Hai laugh hysterically about it - every time."
 
 outfit "rslug"
@@ -521,7 +521,7 @@ outfit `"Biroo" Atomic Thruster`
 	"flare sprite" "effect/atomic flare/small"
 		"frame rate" 13
 	"flare sound" "atomic small"
-	description "This thruster is the standard thruster on most Hai light warships, providing enough thrust to make them useable in combat, but it is not quite big enough to suffice for something as large as a Hai Shield Beetle."
+	description "This thruster is the standard thruster on most Hai light warships, providing enough thrust to make them usable in combat, but it is not quite big enough to suffice for something as large as a Hai Shield Beetle."
 
 outfit `"Bondir" Atomic Thruster`
 	category "Engines"

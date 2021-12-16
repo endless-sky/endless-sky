@@ -57,7 +57,7 @@ public:
 			CALL,
 			// Step that adds game-data, either in the config-directories or in the game directly.
 			INJECT,
-			// Step that performs input (key, mouse, command). Does cause the game to step (to proces the inputs).
+			// Step that performs input (key, mouse, command). Does cause the game to step (to process the inputs).
 			INPUT,
 			// Label to jump to (similar as is done in conversations). Does not cause the game to step.
 			LABEL,
