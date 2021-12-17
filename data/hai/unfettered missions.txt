@@ -255,7 +255,7 @@ mission "Unfettered: Prove your strength 2"
 	on fail
 		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 	to complete
-		has "Unfettered: Jump Drive Retrieval: 
+		has "Unfettered: Jump Drive Retrieval: offered"
 	on complete
 		payment 3000000
 		outfit "Jump Drive" -4
