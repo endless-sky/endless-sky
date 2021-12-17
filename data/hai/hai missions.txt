@@ -824,12 +824,12 @@ mission "Pirate Troubles [0]"
 		near "Waypoint" 2
 		government "Hai"
 	to offer
-		"combat rating" > 1100
 		or
-			"Unfettered: Pirate Help: active"
+			has "Unfettered: Pirate Help: active"
 			and
 				has "First Contact: Unfettered: offered"
 				random < 10
+				"combat rating" > 1100
 	on offer
 		conversation
 			`The peaceful spaceport is suddenly filled with the harsh sound of sirens. You spot some Hai and a small number of humans running to their ships and speeding quickly into orbit. It appears that the system is under attack, but the Unfettered Hai never reach this far south. A loud speaker begins blaring throughout the spaceport: "Unfettered humans have entered the system in a large fleet and have begun attacking! Requesting all combat-worthy pilots to assist in the defense of our space. These enemies of harmony are not welcome here."`
@@ -1130,7 +1130,7 @@ mission "Pirate Troubles [3]"
 				flee
 			
 			label unfettered
-				choice
+			choice
 				`	"I'm <first> <last>, here to negotiate on behalf of the Unfettered Hai."`
 					goto offer
 				`	"I'm <first> <last>, here to negotiate on behalf of the Hai."`
@@ -1143,15 +1143,11 @@ mission "Pirate Troubles [3]"
 			`	The floodlights turn off, revealing a large room with what must be hundreds of pirates with guns of various sizes trained on your ship. One wrong move and you're toast. "Please, Captain. Step out of your ship."`
 			choice
 				`	(Comply with the orders.)`
-					goto comply
+					goto obey
 				`	(Attempt to escape.)`
 			`	You activate your ship's engines to escape. The floodlights suddenly reactivate.`
 			
-			label die
-			`	Before you can even react, several dozen lasers and streams of bullets come flying out from behind the floodlights. You attempt to pull your ship up and fly straight through the ceiling before your ship is too damaged to move, but then you spot a number of rockets flying straight at your cockpit. You die instantly as the rockets impact the glass in front of you.`
-				die
-			
-			label comply
+			label obey
 			`	You step out of your ship, and a tall man with a scar across his cheek steps forward from the crowd of pirates, presumably the leader of the gang.`
 			choice
 				`	"The Unfettered Hai ask that you continue attacking the Hai systems."`
@@ -1183,10 +1179,10 @@ mission "Pirate Troubles [3]"
 					goto systems
 				`	"The Unfettered paint their ships purple, it should be easy to differenciate them."`
 			`	The leader pauses to think for a bit, then speak, "Now it comes back to me... Yes we did see some purple ships and were wondering what the fight with the Hai was all about. We won't shoot them, captain, you have my word. Now go and bring us tech !"`
-				goto offer
+				goto proposition
 			label systems
 			`	The leader pauses to think for a while, then speak, "You are telling me not to attack the systems that are the most distant for us? I don't see why there would be a problem with that, we weren't doing it anyway."`
-			label offer
+			label proposition
 			choice
 				`	"I will escort Hai ships here, pretending that if I do you will stop attacking them."`
 					decline

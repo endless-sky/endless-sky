@@ -104,6 +104,60 @@ effect "ion impact"
 	"random velocity" 2
 	"velocity scale" -.05
 
+outfit "Ionic Blaster"
+	category "Guns"
+	cost 530000
+	thumbnail "outfit/hai ionic blaster"
+	"mass" 21
+	"outfit space" -21
+	"weapon capacity" -21
+	"gun ports" -1
+	weapon
+		sprite "projectile/ion bolt"
+			"frame rate" 5
+		sound "ion"
+		"hit effect" "ion impact" 2
+		"inaccuracy" 1
+		"velocity" 16
+		"lifetime" 45
+		"reload" 60
+		"firing energy" 145
+		"firing force" 20
+		"firing heat" 210
+		"hit force" 90
+		"shield damage" 125
+		"hull damage" 32
+		"ion damage" 1.6
+	description "Since the Unfettered started their perennial war against the rest of the Hai, they tried to determinate which weapon they should produce the most. They preferred to focus on the Ion Cannon, but the largest downside was its huge size; because of that, it was impossible to mount many of them on a Shield Beetle. After dozens of years of research, a team finally developed a less bulky version, small enough to be installed in large numbers and more focused on normal damage to be also effective once the target's power sources became ineffective."
+
+outfit "Ionic Turret"
+	category "Turrets"
+	cost 1260000
+	thumbnail "outfit/hai ionic turret"
+	"mass" 49
+	"outfit space" -49
+	"weapon capacity" -49
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/ion bolt"
+			"frame rate" 5
+		sound "ion"
+		"hit effect" "ion impact" 2
+		"inaccuracy" 1
+		"turret turn" 2.6
+		"velocity" 16
+		"lifetime" 45
+		"reload" 60
+		"firing energy" 290
+		"firing force" 40
+		"firing heat" 420
+		"hit force" 180
+		"shield damage" 250
+		"hull damage" 64
+		"ion damage" 3.2
+	description "This is a dual turret version of the Ionic Blaster, the first weapon that the Unfetttered developed completely on their own."
+
 
 outfit "Railgun Slug"
 	category "Ammunition"
@@ -644,3 +698,12 @@ outfit "Pulse Rifle"
 	"capture defense" 1.0
 	"unplunderable" 1
 	description "The Pulse Rifle was first developed by the Hai to help protect their ships from boarders during the Korath raids. While it has since been adapted to more effectively incapacitate its target, if several bolts land in quick succession, the accumulated charge has a lethal effect on most species' nervous systems."
+
+outfit "Ionic Rifle"
+	category "Hand to Hand"
+	cost 19000
+	thumbnail "outfit/hai ionic rifle"
+	"capture attack" 1.2
+	"capture defense" 1.5
+	"unplunderable" 1
+	description "After the end of the Korath raids, most of the Hai stopped designing new weapons, included those intended to harm other Hai. The Unfettered instead made this new rifle, with the capacity of shooting ionized shots in fast succession with a higher charge than the ones fired by the older Pulse Rifle."
