@@ -358,6 +358,7 @@ mission "Unfettered: Attracted Attention"
 	landing
 	invisible
 	source "Freedom"
+	destination "Darkcloak"
 	to offer
 		has "Unfettered: Prove your strength 2: active"
 	on offer
