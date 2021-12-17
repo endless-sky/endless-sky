@@ -13,8 +13,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef COMMAND_H_
 #define COMMAND_H_
 
+#include "Bitset.h"
+
 #include <cstdint>
 #include <string>
+#include <vector>
 
 class DataNode;
 
@@ -90,7 +93,7 @@ public:
 	// Load or save the keyboard preferences.
 	static void LoadSettings(const std::string &path);
 	static void SaveSettings(const std::string &path);
-	static void SetKey(Command command, int keycode);
+	static void SetKey(const Command &command, int keycode);
 	
 	// Get the description or keycode name for this command. If this command is
 	// a combination of more than one command, an empty string is returned.
@@ -104,13 +107,13 @@ public:
 	// Reset this to an empty command.
 	void Clear();
 	// Clear, set, or check the given bits. This ignores the turn field.
-	void Clear(Command command);
-	void Set(Command command);
-	bool Has(Command command) const;
+	void Clear(const Command &command);
+	void Set(const Command &command);
+	bool Has(const Command &command) const;
 	// Get the commands that are set in this and in the given command.
-	Command And(Command command) const;
+	Command And(const Command &command) const;
 	// Get the commands that are set in this and not in the given command.
-	Command AndNot(Command command) const;
+	Command AndNot(const Command &command) const;
 	
 	// Get or set the turn amount. The amount must be between -1 and 1, but it
 	// can be a fractional value to allow finer control.
@@ -138,19 +141,20 @@ public:
 	
 	
 private:
-	explicit Command(uint64_t state);
-	Command(uint64_t state, const std::string &text);
+	explicit Command(uint32_t state);
+	Command(uint32_t state, const std::string &text);
 	
 	
 private:
-	// The key commands and weapons to fire are stored in a single bitmask, with
-	// 32 bits for key commands and 32 bits for individual weapons.
-	// Ship::Load gives a soft warning for ships with more than 32 weapons.
-	uint64_t state = 0;
+	// The key commands are stored in a single bitmask with
+	// 32 bits for key commands.
+	uint32_t state = 0;
 	// Turning amount is stored as a separate double to allow fractional values.
 	double turn = 0.;
+	// The weapon commands stores whether the given weapon is active.
+	Bitset weapon;
 	// Turret turn rates, reduced to 8 bits to save space.
-	signed char aim[32] = {};
+	std::vector<signed char> aim;
 };
 
 

@@ -186,7 +186,7 @@ public:
 	std::string GetHail(const PlayerInfo &player) const;
 	
 	// Set the commands for this ship to follow this timestep.
-	void SetCommands(const Command &command);
+	void SetCommands(Command command);
 	const Command &Commands() const;
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up.

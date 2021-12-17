@@ -601,7 +601,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		else if(DoCloak(*it, command))
 		{
 			// The ship chose to retreat from its target, e.g. to repair.
-			it->SetCommands(command);
+			it->SetCommands(std::move(command));
 			continue;
 		}
 		
@@ -637,7 +637,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		// launching or landing, it can't do anything else.
 		if(it->IsHyperspacing() || it->Zoom() < 1.)
 		{
-			it->SetCommands(command);
+			it->SetCommands(std::move(command));
 			continue;
 		}
 		
@@ -694,7 +694,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			if(shipToAssist)
 			{
 				it->SetTargetShip(shipToAssist);
-				it->SetCommands(command);
+				it->SetCommands(std::move(command));
 				continue;
 			}
 		}
@@ -716,7 +716,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			}
 			// Flock between allied, in-system ships.
 			DoSwarming(*it, command, target);
-			it->SetCommands(command);
+			it->SetCommands(std::move(command));
 			continue;
 		}
 		
@@ -726,14 +726,14 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				&& (scanPermissions[gov] || it->IsSpecial()))
 		{
 			DoSurveillance(*it, command, target);
-			it->SetCommands(command);
+			it->SetCommands(std::move(command));
 			continue;
 		}
 		
 		// Ships that harvest flotsam prioritize it over stopping to be refueled.
 		if(isPresent && personality.Harvests() && DoHarvesting(*it, command))
 		{
-			it->SetCommands(command);
+			it->SetCommands(std::move(command));
 			continue;
 		}
 		
@@ -751,7 +751,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 					Deploy(*it, false);
 				}
 				DoMining(*it, command);
-				it->SetCommands(command);
+				it->SetCommands(std::move(command));
 				continue;
 			}
 			// Fighters and drones should assist their parent's mining operation if they cannot
@@ -763,7 +763,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				it->SetTargetAsteroid(minable);
 				MoveToAttack(*it, command, *minable);
 				AutoFire(*it, command, *minable);
-				it->SetCommands(command);
+				it->SetCommands(std::move(command));
 				continue;
 			}
 			else
@@ -844,7 +844,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				it->SetTargetShip(parent);
 				MoveTo(*it, command, parent->Position(), parent->Velocity(), 40., .8);
 				command |= Command::BOARD;
-				it->SetCommands(command);
+				it->SetCommands(std::move(command));
 				continue;
 			}
 			// If we get here, it means that the ship has not decided to return
@@ -944,7 +944,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		// Force ships that are overlapping each other to "scatter":
 		DoScatter(*it, command);
 		
-		it->SetCommands(command);
+		it->SetCommands(std::move(command));
 	}
 }
 
@@ -3624,7 +3624,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	if(isCloaking)
 		command |= Command::CLOAK;
 	
-	ship.SetCommands(command);
+	ship.SetCommands(std::move(command));
 }
 
 

@@ -167,7 +167,7 @@ void Command::SaveSettings(const string &path)
 
 
 // Set the key that is mapped to the given command.
-void Command::SetKey(Command command, int keycode)
+void Command::SetKey(const Command &command, int keycode)
 {
 	// Always reset *all* the mappings when one is set. That way, if two commands
 	// are mapped to the same key and you change one of them, the other stays mapped.
@@ -272,13 +272,15 @@ void Command::Load(const DataNode &node)
 // Reset this to an empty command.
 void Command::Clear()
 {
-	*this = Command();
+	state = 0;
+	weapon.clear();
+	aim.clear();
 }
 
 
 
 // Clear any commands that are set in the given command.
-void Command::Clear(Command command)
+void Command::Clear(const Command &command)
 {
 	state &= ~command.state;
 }
@@ -286,7 +288,7 @@ void Command::Clear(Command command)
 
 
 // Set any commands that are set in the given command.
-void Command::Set(Command command)
+void Command::Set(const Command &command)
 {
 	state |= command.state;
 }
@@ -294,15 +296,17 @@ void Command::Set(Command command)
 
 
 // Check if any of the given command's bits that are set, are also set here.
-bool Command::Has(Command command) const
+bool Command::Has(const Command &command) const
 {
-	return (state & command.state);
+	if(state & command.state)
+		return true;
+	return weapon.intersects(command.weapon);
 }
 
 
 
 // Get the commands that are set in this and in the given command.
-Command Command::And(Command command) const
+Command Command::And(const Command &command) const
 {
 	return Command(state & command.state);
 }
@@ -310,7 +314,7 @@ Command Command::And(Command command) const
 
 
 // Get the commands that are set in this and not in the given command.
-Command Command::AndNot(Command command) const
+Command Command::AndNot(const Command &command) const
 {
 	return Command(state & ~command.state);
 }
@@ -336,10 +340,10 @@ double Command::Turn() const
 // Check if this command includes a command to fire the given weapon.
 bool Command::HasFire(int index) const
 {
-	if(index < 0 || index >= 32)
+	if(index < 0 || index >= static_cast<int>(weapon.size()))
 		return false;
 	
-	return state & ((1ull << 32) << index);
+	return weapon.test(index);
 }
 
 
@@ -347,10 +351,12 @@ bool Command::HasFire(int index) const
 // Add to this set of commands a command to fire the given weapon.
 void Command::SetFire(int index)
 {
-	if(index < 0 || index >= 32)
+	if(index < 0)
 		return;
+	if(index >= static_cast<int>(weapon.size()))
+		weapon.resize(index + 1);
 	
-	state |= ((1ull << 32) << index);
+	weapon.set(index);
 }
 
 
@@ -358,7 +364,7 @@ void Command::SetFire(int index)
 // Check if any weapons are firing.
 bool Command::IsFiring() const
 {
-	return (state & 0xFFFFFFFF00000000ull);
+	return weapon.any();
 }
 
 
@@ -367,7 +373,7 @@ bool Command::IsFiring() const
 // -1 or 1 means to turn at the full speed the turret is capable of.
 double Command::Aim(int index) const
 {
-	if(index < 0 || index >= 32)
+	if(index < 0 || index >= static_cast<int>(aim.size()))
 		return 0;
 	
 	return aim[index] / 127.;
@@ -377,8 +383,10 @@ double Command::Aim(int index) const
 
 void Command::SetAim(int index, double amount)
 {
-	if(index < 0 || index >= 32)
+	if(index < 0)
 		return;
+	if(index >= static_cast<int>(aim.size()))
+		aim.resize(index + 1);
 	
 	aim[index] = round(127. * max(-1., min(1., amount)));
 }
@@ -396,7 +404,9 @@ Command::operator bool() const
 // Check whether this command is entirely empty.
 bool Command::operator!() const
 {
-	return !state && !turn;
+	if(state || turn)
+		return false;
+	return weapon.none();
 }
 
 
@@ -432,7 +442,7 @@ Command &Command::operator|=(const Command &command)
 
 
 // Private constructor.
-Command::Command(uint64_t state)
+Command::Command(uint32_t state)
 	: state(state)
 {
 }
@@ -441,7 +451,7 @@ Command::Command(uint64_t state)
 
 // Private constructor that also stores the given description in the lookup
 // table. (This is used for the enumeration at the top of this file.)
-Command::Command(uint64_t state, const string &text)
+Command::Command(uint32_t state, const string &text)
 	: state(state)
 {
 	if(!text.empty())

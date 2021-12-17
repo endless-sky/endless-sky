@@ -135,6 +135,7 @@
 		A96864061AE6FD0E004FE1FE /* WrappedText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968639E1AE6FD0D004FE1FE /* WrappedText.cpp */; };
 		A97C24EA1B17BE35007DDFA1 /* MapOutfitterPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A97C24E81B17BE35007DDFA1 /* MapOutfitterPanel.cpp */; };
 		A97C24ED1B17BE3C007DDFA1 /* MapShipyardPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A97C24EB1B17BE3C007DDFA1 /* MapShipyardPanel.cpp */; };
+		A97C4460852BF852334C0CB1 /* Bitset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 74F543598EEFB3745287E663 /* Bitset.cpp */; };
 		A98150821EA9634A00428AD6 /* ShipInfoPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A98150801EA9634A00428AD6 /* ShipInfoPanel.cpp */; };
 		A98150851EA9635D00428AD6 /* PlayerInfoPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A98150831EA9635D00428AD6 /* PlayerInfoPanel.cpp */; };
 		A99F7A50195DF3E8002C30B8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A99F7A4F195DF3E8002C30B8 /* Images.xcassets */; };
@@ -204,6 +205,7 @@
 		11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StartConditionsPanel.cpp; path = source/StartConditionsPanel.cpp; sourceTree = "<group>"; };
 		13B643F6BEC24349F9BC9F42 /* alignment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = alignment.hpp; path = source/text/alignment.hpp; sourceTree = "<group>"; };
 		191E4107A4F1CBBC2526A0E9 /* MaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaskManager.h; path = source/MaskManager.h; sourceTree = "<group>"; };
+		210C41C0BA33F71A694D5F98 /* Bitset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bitset.h; path = source/Bitset.h; sourceTree = "<group>"; };
 		2CA44855BD0AFF45DCAEEA5D /* truncate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = truncate.hpp; path = source/text/truncate.hpp; sourceTree = "<group>"; };
 		2E1E458DB603BF979429117C /* DisplayText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DisplayText.cpp; path = source/text/DisplayText.cpp; sourceTree = "<group>"; };
 		2E644A108BCD762A2A1A899C /* Hazard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hazard.h; path = source/Hazard.h; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 		6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollisionSet.cpp; path = source/CollisionSet.cpp; sourceTree = "<group>"; };
 		6A5716321E25BE6F00585EB2 /* CollisionSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollisionSet.h; path = source/CollisionSet.h; sourceTree = "<group>"; };
 		6DCF4CF2972F569E6DBB8578 /* CategoryTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryTypes.h; path = source/CategoryTypes.h; sourceTree = "<group>"; };
+		74F543598EEFB3745287E663 /* Bitset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Bitset.cpp; path = source/Bitset.cpp; sourceTree = "<group>"; };
 		86AB4B6E9C4C0490AE7F029B /* EsUuid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EsUuid.h; path = source/EsUuid.h; sourceTree = "<group>"; };
 		86D9414E818561143BD298BC /* TextReplacements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextReplacements.h; path = source/TextReplacements.h; sourceTree = "<group>"; };
 		8E8A4C648B242742B22A34FA /* Weather.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Weather.cpp; path = source/Weather.cpp; sourceTree = "<group>"; };
@@ -814,6 +817,8 @@
 				A3134EC4B1CCA5546A10C3EF /* TestContext.cpp */,
 				6A4E42FEB3B265A91D5BD2FC /* TextReplacements.cpp */,
 				86D9414E818561143BD298BC /* TextReplacements.h */,
+				74F543598EEFB3745287E663 /* Bitset.cpp */,
+				210C41C0BA33F71A694D5F98 /* Bitset.h */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -1163,6 +1168,7 @@
 				87D6407E8B579EB502BFBCE5 /* GameAction.cpp in Sources */,
 				ED5E4F2ABA89E9DE00603E69 /* TestContext.cpp in Sources */,
 				F78A44BAA8252F6D53B24B69 /* TextReplacements.cpp in Sources */,
+				A97C4460852BF852334C0CB1 /* Bitset.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
