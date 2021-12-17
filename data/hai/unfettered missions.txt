@@ -601,7 +601,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 
 
 
-mission "Unfettered: Escort Civilians"
+mission "Unfettered: Escort Hai Fleet"
 	source "Warfeed"
 	stopover "Greenbloom"
 	name `Escort a Hai convoy`
@@ -691,7 +691,7 @@ event "end of hai / unfettered truce"
 
 mission "Unfettered: Pirate Help"
 	source "Warfeed"
-	stopover "Hai-Home"
+	destination "Hai-Home"
 	name `Help the pirates.`
 	description `Once you are strong enough, go to Hai-home and convince the governor to let you help them against their pirate problem. You will instead find a way to help the pirates.`
 	landing
@@ -735,14 +735,14 @@ mission "Unfettered: Pirate Help"
 					accept
 				`	"I am not interested in doing this."`
 					decline
-	on stopover
+	on visit
 		branch weak
 			"combat rating" < 1100
+		dialog `Show the Hai you are strong enough to deal with their pirate problem if you get an opportunity.`
 		goto nothing
 		label weak
 		dialog `You are not yet strong enough to be considered of any serious aid to the Hai against pirates, come back once you are.`
 		label nothing
-		dialog `Show the Hai you are strong enough to deal with their pirate problem if you get an opportunity.`
 	to fail
 		has "defeated scar's legion"
 	on fail
@@ -751,6 +751,17 @@ mission "Unfettered: Pirate Help"
 		has "accepted scar's legion tribute"
 	on complete
 		"reputation: Scar's Legion" >?= 1
+
+
+
+mission "Unfettered: Report On Success"
+	source "Hai-home"
+	destination "Warfeed"
+	name `Report on your success`
+	description `Return to <destination> to report on your success to the Unfettered warlords.`
+	to offer
+		has "accepted scar's legion tribute"
+	on complete
 		payment 500000
 		dialog `The Unfettered thank you for deceiving the Hai and give you your payment of <payment>.`
 
@@ -1127,6 +1138,8 @@ mission "Unfettered: The Word Has Spread"
 
 
 mission "Unfettered: Hai Intel"
+	name `Bring Intel`
+	description `Unfettered warlords have asked you to bring your sensor logs of all Hai systems you have come accros recently.`
 	source "Firelode"
 	destination "Darkcloak"
 	landing
@@ -1137,6 +1150,87 @@ mission "Unfettered: Hai Intel"
 	on complete
 		payment 50000
 		dialog `The Unfettered give you <payment> for the intel.`
+
+
+# replace some Korath words with translator errors
+mission "Unfettered: Solifuge 6: Useful Korath Scientists"
+	name `"Primitive" Cooling Technology`
+	description `Taer-Fi has asked you to bring all kinds of coolers made by humans to her and the Koraths to help them design a better cooling system.`
+	source "Firelode"
+	landing
+	to offer
+		has "Unfettered: Alphas 3: Bring The Spoils: done"
+		has "Unfettered: The Word Has Spread: done"
+	on offer
+		conversation
+			`As soon as you land an Unfettered notifies you Taer-Fi wishes to speak with you, and you should go see her in her labs.`
+			choice
+				`	(Follow him.)`
+				`	"I do not have time right now, I will come back later."`
+					defer
+			`	The lab is like nothing you have seen before, certainly not on the surface, here things do not only seem to be efficient but also have some aesthetics properties to it. It almost looks like a museum, with all different kinds of alien technologies. You find Taer-Fi working around a Williwaw cooler, but she is not alone... The Korath prisonners you rescued are with her, it looks like they have recovered from recent events, altough one of them is missing. They appear to be staring at the cooler as if they could steal it's secrets from it.`
+			choice
+				`	"Here I am, what do you need me for?"`
+				`	(Wait for them to notice me.)`
+					goto wait
+				`	"What happened to the other Korath?"`
+					goto other
+			`	After you spoke a voice in an alien language that seems robotic in nature speaks. You realise it is the crude translator you found with them, it probably just translated everything that you just said.`
+			goto objective
+			label other
+			`	After you spoke a voice in an alien language that seems robotic in nature speaks. You realise it is the crude translator you found with them, it probably just translated everything that you just said.`
+			`	"We will not speak about it to one we do not trust." It seems like you have saddened them, you probably cannot get anymore information out of them yet.`
+			label wait
+			`	The Korath eventually notice you and start staring at you now. Then they speak in alien language and the translator starts working, "Ah it is the one who saved us. Why is it surprised to see us? Did it expect we would all die off?" You wonder if they have any ability to read your thoughts... But then you realise your surprise to see them working here can be read all over your face.`
+			choice
+				`	"I did not expect you to be back to working so soon."`
+					goto working
+				`	"I did not think you would be trusted enough to have access to Hai technology already."`
+			`	They make a weird sound that is probably laughter. "You call this technology," he says, showing you the cooler, "even our young ones can do something so primitive!"`
+			goto objective
+			label working
+			`	"Unlike it, we are strong."`
+			choice
+				`	"I see why the Hai allowed you to acces their technology, you think in a similar way."`
+				`	"Oh is that why you got captured by the Alphas?"`
+			`	They seem to grumble a bit about what you just said, but the translator cannot decipher meaning, it is probably for the best though considering what they might be saying...`			
+			label objective
+			`	Taer-Fi stops watever it is that she was doing on that cooler. "We need some samples of other "primitive" cooling technologies, so I thought I would ask you, considering you came from a very... young civilisation," she says.`
+			choice
+				`	"That cannot be hard, I will go look for those then."`
+					accept
+				`	"Can you be more precise?"`
+				`	"I am not interested in helping you anymore."`
+					decline
+			`	"Not really, I do not know all kinds of cooling your specie could have, but it most be a lot considering your technology is not as heat efficient as ours. We want all kinds, from the smaller to the bigger ones brought together. You are probably using things like 'water', ha !"`
+			choice
+				`	"I will go look for those then."`
+					accept
+				`	"I am not interested in helping you anymore."`
+					decline
+	on visit
+		dialog `You do not yet have all different kinds of human coolers that Taer-Fi requested in your cargo hold or installed on your ships.`
+	on complete
+		log `Brought different kinds of human cooling technology to the Unfettered. Hopefully they will design a better cooling system soon.`
+		outfit "Liquid Helium Cooler" -1
+		outfit "Liquid Nitrogen Cooler" -1
+		outfit "Water Coolant System" -1
+		event "new cooling system" 40
+		payment 1000000
+		dialog `Seeing you brought all the coolers, she thanks you and hands you <payment>`
+
+mission "Unfettered: New Cooling Available"
+	source
+		attributes "unfettered"
+	landing
+	on offer
+		dialog `You receive a message from Taer-Fi, "Hi <first>, remember the coolers you helped to develop? They are finally available, on Darkcloak."`
+			decline
+
+event "new cooling system"
+	outfitter "Unfettered basics"
+		add "Hai Zephyr Cooling"
+	# change ship designs
 
 
 
