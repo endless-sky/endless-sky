@@ -695,6 +695,8 @@ mission "Unfettered: Pirate Help"
 	name `Help the pirates.`
 	description `Once you are strong enough, go to Hai-home and convince the governor to let you help them against their pirate problem. You will instead find a way to help the pirates.`
 	landing
+	to offer
+		has "Unfettered: Escort Civilians: done"
 	on offer
 		conversation
 			`You quickly find Sha-Ri, he seems relieved you are here and that all have arrived well and good. It seems like he speaks to you with more respect than before,	"Finally you have arrived, when I heard about the pirate attack, I was worried sick."`
@@ -703,7 +705,7 @@ mission "Unfettered: Pirate Help"
 					goto strong
 				`	"I almost did not make it back alive, that was a tough battle."`
 				`	"We had to run for our lifes."`
-			`	"Oh then I may have overestimated your strenght then, you should wait a while before doing this, because it will require some strenght."`
+			`	"Oh then I may have overestimated your strength then, you should wait a while before doing this, because it will require some strength."`
 			goto attacks
 			label strong
 			`	"Perfect! That means you should be ready for what I am about to ask you."`
@@ -722,16 +724,25 @@ mission "Unfettered: Pirate Help"
 				`	"All of this seems a bit vague, what exactly are you proposing?"`
 				`	"I am not interested in doing this."`
 					decline
-			`	"Once you are strong enough we want you to go to Hai-home and speak to the local governor, asking him if he has any... issues with pirates. Then you will find him"`
+			`	"Once you are strong enough we want you to go to Hai-home and speak to the local governor, asking him if he has any... issues with pirates. Then you will find those pirates and help them instead. A good way would be to convince the Hai to give him a technology tribute, so they have even less weapons!"`
+			choice
+				`	"How will I show my strength to them ?"`
+				`	"I am not interested in doing this."`
+					decline
+			`	"I hear those pirates attack are very frequent these days... Help them repell one and they will most probably trust you with the job. But this is not an urgent mission at all, <first>. You may return to your previous occupations if you are not strong enough yet."`
+			choice
+				`	"I will go to Hai-home and help them repell this attack, once I am strong enough that is."`
+					accept
+				`	"I am not interested in doing this."`
+					decline
 	on stopover
 		branch weak
 			"combat rating" < 1100
 		goto nothing
 		label weak
 		dialog `You are not yet strong enough to be considered of any serious aid to the Hai against pirates, come back once you are.`
-		label nothing	
-	to offer
-		has "Unfettered: Escort Civilians: done"
+		label nothing
+		dialog `Show the Hai you are strong enough to deal with their pirate problem if you get an opportunity.`
 	to fail
 		has "defeated scar's legion"
 	on fail
@@ -783,7 +794,7 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 			`	"Yes, my thoughts exactly! The fighters are too agile to be shot down by the conventional weapons that do not turn, obviously any guns mounted on a turret will easily take the small ships down... Very good! I was effrayed that having a ship with fighters would mean it would be too limited in it's weaponry, but it seems even you humans have found a way to remedy that." She barrely finishes his phrase before going back to wherever he came for, even more excited than before.`
 				goto hurry
 			label price
-			`	"Yes the price part needs to be adressed... But their strenght is still something to be respected. The best advantage is that the fighters enjoy the ride and do not need independant moving systems!"	She seems a bit disapointed but what you said does not seem to change any big plans for him.`
+			`	"Yes the price part needs to be adressed... But their strength is still something to be respected. The best advantage is that the fighters enjoy the ride and do not need independant moving systems!"	She seems a bit disapointed but what you said does not seem to change any big plans for him.`
 			label stories
 			`	"Yes, so have I and for once the stories were not exagerated, compared to the facts! I have heard stories ever since the Carrier was first seen by our people, of a ship so big and strong it is almost a space station, it inspired us."`
 			label hurry
