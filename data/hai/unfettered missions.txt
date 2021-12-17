@@ -391,7 +391,7 @@ mission "Unfettered: Neutral with the Hai"
 		has "Unfettered Jump Drive 3: offered"
 	on offer
 		conversation
-			`On your promenade you quickly find an Unfettered elder, or, to be more precise, he finds you, and speaks to you like a father would to a bad child,	"What have you done to anger our brethren ? Nevermind, it matters not, what matters is that you settle this petty dispute right now, or future cooperation between us will be difficult."`
+			`On your promenade you quickly find an Unfettered elder, or, to be more precise, he finds you, and speaks to you like a father would to a bad child,	"What have you done to anger our brethren? Nevermind, it matters not, what matters is that you settle this petty dispute right now, or future cooperation between us will be difficult."`
 			choice
 				`	(Accept.)`
 					goto agree
@@ -400,7 +400,7 @@ mission "Unfettered: Neutral with the Hai"
 					decline
 			`He looks at you gravely,	"Your loss. Do not come here crying if the Hai are causing you difficulties."`
 			choice
-				`	"Wait, I have changed my mind !"`
+				`	"Wait, I have changed my mind!"`
 				`	(Go.)`
 					decline
 			`He is thinking,	"Mhhhh, I guess I can forgive you for your insolence, now go and make yourself forgiven."`
@@ -408,9 +408,9 @@ mission "Unfettered: Neutral with the Hai"
 			`	"Go to their homeworld and make your demand, the Hai government despises conflict, so they will probably grand it."`
 	on complete
 		conversation
-			`You go find Hai leaders and express your request for peace with them. They consider it seriously and ask you,	"Tell us, <last>, captain of the <ship>, why should we grand you such a request ?"`
+			`You go find Hai leaders and express your request for peace with them. They consider it seriously and ask you,	"Tell us, <last>, captain of the <ship>, why should we grand you such a request?"`
 			choice
-				`	"Because otherwise you get shot !" (Draw my side weapon)`
+				`	"Because otherwise you get shot!" (Draw my side weapon)`
 					goto death
 				`	"I know I have done stupid things in the past, but I promise not to do so again."`
 				`	"I can bring food to the Unfettered for you, so they do not starve to death."`
@@ -437,53 +437,53 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 	on offer
 		conversation
 			`As you wander in the spaceport an Unfettered approaches you. At first you wonder why that is but then you realise that you naturally stand out among the Hai.`
-			`	"Captain <last> ! I am Taer-Fi, and I have received the responsibility of mechanics. We have an easy job for you if you are interested," she says.`
+			`	"Captain <last>! I am Taer-Fi, and I have received the responsibility of mechanics. We have an easy job for you if you are interested," she says.`
 			choice
-				`	"Sure, what can I do for you ?"`
-				`	"How do you know me ?"`
+				`	"Sure, what can I do for you?"`
+				`	"How do you know me?"`
 					goto know
 				`	"Sorry, but I'm quite busy at the moment."`
 					decline
-			`	"Straight to the point ! I'm starting to like you."`
+			`	"Straight to the point! I'm starting to like you."`
 				goto job
 			label know
-			`	"Someone who brings us something as precious as a jump drive is not quickly forgotten ! Now back to our business if you don't mind."`
+			`	"Someone who brings us something as precious as a jump drive is not quickly forgotten! Now back to our business if you don't mind."`
 			label job
 			`	"As you probably know, the other Hai do not think like us, they have preoccupations other than war, they believe in trading with all the galaxy in harmony forever, without seeing how it softens them. As such, they have wasted time designing a ship for the sole purpose of transporting goods in great quantity, the Geocoris. Or at least that is how it appeared to us at first, it now seems like such a design is... interesting, so we want you to scan it. It is pretty much garanteed there will be one such ship at all times around their home system, Ya-Hai, the center of their trade. For obvious reasons we cannot scan that ship ourselves, and we prefer that the Hai be ignorant of our interest in that design anyway. Bring us the full scanner logs and you will be well rewarded."`
 			choice
 				`	"Seems easy, I will do it."`
 					goto agree
-				`	"Why do you want to learn about that ship design all out of a sudden ?"`
+				`	"Why do you want to learn about that ship design all out of a sudden?"`
 					goto design
-				`	"Can you not just ask the Hai that come to you from their space about it ?"`
+				`	"Can you not just ask the Hai that come to you from their space about it?"`
 				`	"I do not want to get in trouble with the Hai."`
 					decline
 			`	"That is what we will be forced to do if you refuse, but we would prefer if this was kept a secret, without asking everyone about it. Also most Hai joining us are not warriors, but rather artists and others who want to explore diverse ways of seeing the world, or simply disagree with the way the Hai government do things.`
 			choice
 				`	"Seems easy, I will do it."`
 					goto agree
-				`	"How do I scan it ?"`
+				`	"How do I scan it?"`
 					goto scan
 				`	"I do not want to get in trouble with the Hai."`
 					decline
 			label design
-			`	"We would like to know how they avoided vulnerabilities in the hull of such a ship. Extra space on a ship cannot only be used for cargo... I will tell you more about it later, once you bring us the scans, that is if you are willing of course ?"`
+			`	"We would like to know how they avoided vulnerabilities in the hull of such a ship. Extra space on a ship cannot only be used for cargo... I will tell you more about it later, once you bring us the scans, that is if you are willing of course?"`
 			choice
 				`	"Sure, will do."`
 					goto agree
-				`	"How do I scan it ?"`
+				`	"How do I scan it?"`
 					goto scan
 				`	"That is way too mysterious for me, I am not interested."`
 					decline
 			label scan
-			`	"The informations provided by an outfit scanner should be enough, if you do not have one you can get one in the system of Wah Ki, on the way there. You may want to get multiple scanners, so you can scan the ship from a longer range !"`
+			`	"The informations provided by an outfit scanner should be enough, if you do not have one you can get one in the system of Wah Ki, on the way there. You may want to get multiple scanners, so you can scan the ship from a longer range!"`
 			choice
 				`	"Sure, will do."`
 					goto agree
 				`	"I am not interested in scanning ships for you."`
 					decline
 			label agree
-			`You go on your way to your ship but she catches up to you, running to tell you,	"One... last... thing, captain !"	You let her catch her breath,	"We have noticed one Geocoris just entered Ya Hai as we predicted, but seems to have some extra modifications, please scan that one specificaly."`
+			`You go on your way to your ship but she catches up to you, running to tell you,	"One... last... thing, captain!"	You let her catch her breath,	"We have noticed one Geocoris just entered Ya Hai as we predicted, but seems to have some extra modifications, please scan that one specificaly."`
 				accept
 		log "People" "Taer-Fi" `An Unfettered specialized in mechanics that seems interested in ship designs of all kind. She seems to like to stay mysterious, and is easily exited by new technologies and ships.`
 	on waypoint
@@ -561,15 +561,15 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 			choice
 				`	"Okay, I better get going right now then."`
 					accept
-				`	"Why not just do it yourself ?"`
+				`	"Why not just do it yourself?"`
 				`	"Sorry, but this seems too risky for me."`
 					decline
 			`	"We do not know what their reaction could be, it would be preferable if you did it because watever happens they will think of you as independant of us. We value friendship a lot, and once trust is damaged it cannot really be repaired."`
 			choice
 				`	"Seems good to me, I will do it."`
 					accept
-				`	"What kind of ship are we talking about ?"`
-				`	"Wait you mean they could shoot me ? No way, I am out !"`
+				`	"What kind of ship are we talking about?"`
+				`	"Wait you mean they could shoot me? No way, I am out!"`
 					decline
 			`He seems anxious to tell you.	"It is a human ship, and quite a big one at that. We do not know it's designation but carries multiple small ships, and uses alien technologies. You do not need to be able to destroy it, just scan it and come back here."`
 			choice
@@ -578,7 +578,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 				`	"That seems way too dangerous to me."`
 					decline
 	on waypoint
-		dialog `You see the ship as you enter the system, it is a navy Auxiliary. But it looks like it is hostile ?? The Unfettered asked you not to destroy it, at least for now.`
+		dialog `You see the ship as you enter the system, it is a navy Auxiliary. But it looks like it is hostile?? The Unfettered asked you not to destroy it, at least for now.`
 	npc save "scan outfits"
 		government "Alpha"
 		personality target staying
@@ -600,21 +600,24 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		dialog `After a while, the Alpha ship goes away, and you can now go back to <origin> with the scanner logs.`
 
 
-#make this the intro elder
+
 mission "Unfettered: Escort Civilians"
 	source "Warfeed"
 	stopover "Greenbloom"
-	name `Escort an Unfettered convoy from <stopovers> to <destination> before the truce expires by <date>.`
+	name `Escort a Hai convoy`
+	description `Escort a Hai convoy from <stopovers> to <destination> before the truce expires by <date>.`
 	landing
 	deadline 20
 	to offer
 		has "Unfettered: Solifuge 2: Auxiliary Design: done"
 		has "Unfettered: Bring Medical Supplies: done"
+		not "Pirate Troubles [0]: offered"
+		has "combat rating" > 100
 	on offer
 		event "hai / unfettered truce"
 		event "end of hai / unfettered truce" 20
 		conversation
-			`As you prepare yourself to leave, you see an Unfettered elder approaching you, it is Sha-Ri, the one you helped earlier with moving people and supplies. You have never seen him so worried, or moving at this pace before. He comes to speak to you,	"<first> ! I, or more precisely a fleet of True Hai needs your immediate assistance in escorting them trough Hai space, from <stopovers>."`
+			`As you prepare yourself to leave, you see an Unfettered elder approaching you, after some time you realize it is Sha-Ri, the one you helped earlier with moving people and supplies. You have never seen him so worried, or moving at this pace before. He comes to speak to you,	"<first>! I, or more precisely a fleet of True Hai needs your immediate assistance in escorting them trough Hai space, from <stopovers>."`
 			choice
 				`	"What are you doing here?"`
 				`	"Why do you need my help?"`
@@ -629,29 +632,40 @@ mission "Unfettered: Escort Civilians"
 			label busy
 			`	"Watever it is you are busy with, I am sure it can wait. This fleet needs to come back before the end of the truce."`
 			choice
-				`	"Sure, let's do it !"`
+				`	"Sure, let's do it!"`
 				`	"I do not want to help the Unfettered anymore.`
 					decline
-			`	"Good ! The ships are mostly carying supplies and passengers, so you would do well to stay with them watever happens. If I understand correctly, a small Hai fleet will accompany you too."`
+			`	"Good! The ships are mostly carying supplies and passengers, so you would do well to stay with them watever happens. If I understand correctly, a small Hai fleet will accompany you too."`
 				accept
 	on stopover
 		set "stopped on Greenbloom"
+		dialog `You see the convoy in the spaceport, waiting for you, they are all ready to lauch on your signal.`
 	npc accompany save
 		government "Hai"
-		personality escort timid
+		to spawn
+			has "stopped on Greenbloom"
+		personality escort timid marked
 		fleet "Small Hai"
 		fleet
 			names "hai"
 			"Centipede"
 			"Geocoris"
 			"Water Bug"
+	npc evade
+		government "Pirate"
+		to spawn
+			has "stopped on Greenbloom"
+		system "Ya Hai"
+		personality disables plunders vindictive
+		fleet "Large Northern Pirates" 3
+		fleet "Small Northern Pirates"
 	to fail
 		has "Wanderers: Defend Vara Ke'sok: done"
 	on fail
 		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 	on complete
 		payment 500000
-		dialog `The fleet admiral thanks you for escorting them. You then go see the Unfettered elder who gives you <payment>.`
+		dialog `The fleet admiral thanks you for escorting them. You then go see the Unfettered elder who gives you <payment>. He says you should probably go in the spaceport to speak with Sha-Ri.`
 		log `Escorted a Hai fleet carying supplies and passengers into Unfettered space during a truce.`
 		clear "stopped on Greenbloom"
 
@@ -675,6 +689,62 @@ event "end of hai / unfettered truce"
 
 
 
+mission "Unfettered: Pirate Help"
+	source "Warfeed"
+	stopover "Hai-Home"
+	name `Help the pirates.`
+	description `Once you are strong enough, go to Hai-home and convince the governor to let you help them against their pirate problem. You will instead find a way to help the pirates.`
+	landing
+	on offer
+		conversation
+			`You quickly find Sha-Ri, he seems relieved you are here and that all have arrived well and good. It seems like he speaks to you with more respect than before,	"Finally you have arrived, when I heard about the pirate attack, I was worried sick."`
+			choice
+				`	"It takes more than a few pirates to scare me off."`
+					goto strong
+				`	"I almost did not make it back alive, that was a tough battle."`
+				`	"We had to run for our lifes."`
+			`	"Oh then I may have overestimated your strenght then, you should wait a while before doing this, because it will require some strenght."`
+			goto attacks
+			label strong
+			`	"Perfect! That means you should be ready for what I am about to ask you."`
+			label attacks
+			`	"These pirate attacks do not seem all that bad to us, after all they only plunder a bit, like we do, but this potential attack on the Hai backlines means they will be able to have fewer ships on our border."`
+			choice
+				`	"You want me to help these pirates?"`
+					goto help
+				`	"Are you planning an offensive on the Hai?"`
+			`	"Absolutely not, but as you know, we are planning an offensive to the North of our space, and it would be better if we did not have to leave too many ships behind, on the border."`
+			goto next
+			label help
+			`	"Yes, we need you to find some way to help them, so they can disrupt the Hai operations even more, this way we do not have to keep too many of our ships on the border."`
+			label next
+			choice
+				`	"All of this seems a bit vague, what exactly are you proposing?"`
+				`	"I am not interested in doing this."`
+					decline
+			`	"Once you are strong enough we want you to go to Hai-home and speak to the local governor, asking him if he has any... issues with pirates. Then you will find him"`
+	on stopover
+		branch weak
+			"combat rating" < 1100
+		goto nothing
+		label weak
+		dialog `You are not yet strong enough to be considered of any serious aid to the Hai against pirates, come back once you are.`
+		label nothing	
+	to offer
+		has "Unfettered: Escort Civilians: done"
+	to fail
+		has "defeated scar's legion"
+	on fail
+		dialog `You have failed an essential Unfettered mission. You may want to reload.`
+	to complete
+		has "accepted scar's legion tribute"
+	on complete
+		"reputation: Scar's Legion" >?= 1
+		payment 500000
+		dialog `The Unfettered thank you for deceiving the Hai and give you your payment of <payment>.`
+
+
+
 mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 	source "Warfeed"
 	destination "Firelode"
@@ -692,30 +762,30 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 		dialog
 			`You send your logs as you land and receive a very generous payment of <payment>, with a request to meet with the elders on Darkcloak.`
 		conversation
-			`You are thinking about how to present the fact that this was an alpha ship to the elders when you hear a voice from the coms on your ship.	"Oh you are back, good !" You are a bit surprised of the intervention but quickly recognize Taer-Fi. "Can I speak to you before you bring the results to the council ? I am really intrigued as to how that auxiliary could work, and you probably want to wait for the tension to calm down a bit before entering the discussion anyway."`
+			`You are thinking about how to present the fact that this was an alpha ship to the elders when you hear a voice from the coms on your ship.	"Oh you are back, good!" You are a bit surprised of the intervention but quickly recognize Taer-Fi. "Can I speak to you before you bring the results to the council? I am really intrigued as to how that auxiliary could work, and you probably want to wait for the tension to calm down a bit before entering the discussion anyway."`
 			choice
 				`	"I really want to go speak to the council right now, maybe another time."`
 					goto hurry
 				`	"Sorry but I am no engineer myself, I have no idea about how those carriers work."`
-				`	"Sure, what is it you want to know about them ?"`
-			`	"I already have access to the specifications of the ship, my questions are mostly related to how they fare in battle. We have never tried ships carying fighters before because of some ethical, ethical implications and also, to be honnest, of the technical difficulties of building a ship large enough to contain multiple ones. How do they fare, how are they countered ?" He seems very exited to learn about them.`
+				`	"Sure, what is it you want to know about them?"`
+			`	"I already have access to the specifications of the ship, my questions are mostly related to how they fare in battle. We have never tried ships carying fighters before because of some ethical, ethical implications and also, to be honnest, of the technical difficulties of building a ship large enough to contain multiple ones. How do they fare, how are they countered?" He seems very exited to learn about them.`
 			choice
 				`	"Well I have never seen them in combat personnaly so you will have to ask someone else, I have only heard stories."`
 					goto stories
 				`	"What you have seen was not really a proper Carrier... wait until you see the navy Carriers."`
 				`	"They are so expensive we do not see too many of them, with the obvious cost of losing fighters all the time... Do not bother with them."`
 					goto price
-			`	"Oh you mean the version of the ship with more fighters and weapons ? We have already scans of that one, exciting scans at that ! But do tell me more about it."	She seems to be drinking your words, waiting for more about those Carriers.`
+			`	"Oh you mean the version of the ship with more fighters and weapons? We have already scans of that one, exciting scans at that! But do tell me more about it."	She seems to be drinking your words, waiting for more about those Carriers.`
 			choice
 					`	"Carriers dominate in human space, they have weapons to take down any ships and with their fighters they can even take down small fleets."`
 					`	"Well I have never seen them in combat personnaly so you will have to ask someone else, I have only heard stories."`
 						goto stories
-			`	"Yes, my thoughts exactly ! The fighters are too agile to be shot down by the conventional weapons that do not turn, obviously any guns mounted on a turret will easily take the small ships down... Very good ! I was effrayed that having a ship with fighters would mean it would be too limited in it's weaponry, but it seems even you humans have found a way to remedy that." She barrely finishes his phrase before going back to wherever he came for, even more excited than before.`
+			`	"Yes, my thoughts exactly! The fighters are too agile to be shot down by the conventional weapons that do not turn, obviously any guns mounted on a turret will easily take the small ships down... Very good! I was effrayed that having a ship with fighters would mean it would be too limited in it's weaponry, but it seems even you humans have found a way to remedy that." She barrely finishes his phrase before going back to wherever he came for, even more excited than before.`
 				goto hurry
 			label price
-			`	"Yes the price part needs to be adressed... But their strenght is still something to be respected. The best advantage is that the fighters enjoy the ride and do not need independant moving systems !"	She seems a bit disapointed but what you said does not seem to change any big plans for him.`
+			`	"Yes the price part needs to be adressed... But their strenght is still something to be respected. The best advantage is that the fighters enjoy the ride and do not need independant moving systems!"	She seems a bit disapointed but what you said does not seem to change any big plans for him.`
 			label stories
-			`	"Yes, so have I and for once the stories were not exagerated, compared to the facts ! I have heard stories ever since the Carrier was first seen by our people, of a ship so big and strong it is almost a space station, it inspired us."`
+			`	"Yes, so have I and for once the stories were not exagerated, compared to the facts! I have heard stories ever since the Carrier was first seen by our people, of a ship so big and strong it is almost a space station, it inspired us."`
 			label hurry
 
 
@@ -746,7 +816,7 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 			`As you enter the spaceport you quickly find the council, it looks like they are waiting for you. It will finally be the time for answers.`
 			`One of the leaders steps forward. You recognize Sha-Ri,	"It seems like you are an enemy to the Unfettered Humans, and we cannot risk a disruption in our supply of jump drives, you have provided some to us, but so did they."`
 			choice
-				`	"What is it you want me to do ? I do not like these Alphas."`
+				`	"What is it you want me to do? I do not like these Alphas."`
 					goto hate
 				`	"Who supplies you jump drive is none of my concern."`
 				`	"I will not tolerate you not firing on Alphas on sight. I am not interested in helping you anymore."`
@@ -760,7 +830,7 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 			choice
 				`	"I better get on my way to kill Alphas then."`
 					accept
-				`	"How can I find them ?"`
+				`	"How can I find them?"`
 				`	"I will not risk engaging the Alphas."`
 					decline
 			`He seems amused,	"That, <first>, is the easy part. You still have those sensor logs about their ships... Maybe it can point you in a direction. You should probably go to Taer-Fi, to ask her if she found anything usefull in the logs."`
@@ -789,18 +859,18 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		has "Wanderers: Defend Vara Ke'sok: done"
 	on offer
 		conversation
-			`Taer-Fi is expecting you, and comes to your ship right away, she is eager to give you the intel, hopefully it will help you find the Auxiliary.	"I am glad you came so fast ! But not to worry that auxiliary cannot be going very far before some serious repairs, not with the kind of damage it suffered anyway."`
+			`Taer-Fi is expecting you, and comes to your ship right away, she is eager to give you the intel, hopefully it will help you find the Auxiliary.	"I am glad you came so fast! But not to worry that auxiliary cannot be going very far before some serious repairs, not with the kind of damage it suffered anyway."`
 			choice
-				`	"Get to the point, where can I find it ?"`
-				`	"What kind of damage ?"`
+				`	"Get to the point, where can I find it?"`
+				`	"What kind of damage?"`
 					goto damage
-			`	"Are you always in a rush ? Just look for traces of this chemical, it should lead you to them. But this auxiliary is no joke, it can field up to 138 people on it, be sure to have what it takes to capture it !"`
+			`	"Are you always in a rush? Just look for traces of this chemical, it should lead you to them. But this auxiliary is no joke, it can field up to 138 people on it, be sure to have what it takes to capture it!"`
 				goto agree
 			label damage
 			`	"Some kind of beam weapon, and very strong one at that, it looks like they only got partially deflected by the shields, I wonder what kind of weapon can do that..."	she says, seeming intrigued.`
 			choice
 				`	"They seemed to be using the same weapon against me."`
-				`	"What can we use that information for ?"`
+				`	"What can we use that information for?"`
 					goto information
 			`	"Yes I have noticed from the outfit scanner logs, I would advise not relying not to heavily on your shields. But they do not seem to have that many of those weapons, so you should be fine."`
 			label information
@@ -851,9 +921,9 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		conversation
 			branch captured
 				has "captured the alpha ship"
-			`You have managed to capture the Alpha ship, but as you do you also find a brig with some Koraths in it. You should go to the Alpha base to see if you find anything else, and decide what to do with them once there.`
-			label captured
 			`You have failed an essential Unfettered mission. You may want to reload.`
+			label captured
+			`You have managed to capture the Alpha ship, but as you do you also find a brig with some Koraths in it. You should go to the Alpha base to see if you find anything else, and decide what to do with them once there.`
 
 
 
@@ -883,7 +953,7 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 		outfit "Jump Drive" -10
 		payment 10000000
 		conversation
-			`The Unfettered warlord that annoyed you earlier seems surprised to see you, but when he and the Unfettered adress you they do so with respect,	"It seems you have managed to prove yourself. Now we have almost enough jump drives for the next phase..."	You look at them intensively, and after a few seconds they realise,	"Oh right, your payment ! Here it is : <payment> !"`
+			`The Unfettered warlord that annoyed you earlier seems surprised to see you, but when he and the Unfettered adress you they do so with respect,	"It seems you have managed to prove yourself. Now we have almost enough jump drives for the next phase..."	You look at them intensively, and after a few seconds they realise,	"Oh right, your payment! Here it is : <payment>!"`
 			choice
 				`	"I have found Korath prisonners on the Alpha ship."`
 			`They talk about it and then an Unfettered elder speak up,	"Perfect, hand them over to us, we will see to it they have all the confort they need, hopefully in exchange for some technology."`
@@ -902,32 +972,28 @@ mission "Unfettered: Solifuge 5: Materials For Ship"
 		has "Wanderers: Defend Vara Ke'sok: done"
 	on offer
 		conversation
-			`You have never seen so much agitation in the Unfettered, until now. It looks like a big event is about to happen, and you will probably be a part of it.	It seems like Taer-Fi is spreading a message to all Unfettered to hear,	"The time has come, brothers and sisters ! Now all that is needed is to spread the world, and our brethren from Hai space will join us in glorious victory ! But let us not be reckless, in order to win we will need ships and in order to get ships we will need materials. That is why we should all start gathering materials here."`
+			`You have never seen so much agitation in the Unfettered, until now. It looks like a big event is about to happen, and you will probably be a part of it.	It seems like Taer-Fi is spreading a message to all Unfettered to hear,	"The time has come, brothers and sisters! Now all that is needed is to spread the world, and our brethren from Hai space will join us in glorious victory! But let us not be reckless, in order to win we will need ships and in order to get ships we will need materials. That is why we should all start gathering materials here."`
 			choice
-				`	"What kind of materials do you need ?"`
+				`	"What kind of materials do you need?"`
 				`	(Leave, I am not interested.)`
 					decline
 			`She notices you and responds to your question by adressing all again,	"Do not bother with lead friends, it is useless for we are not a barbaric people. We need a lot of silver, and silicon."`
 			choice
 				`	(I know how and where to mine asteroids, better get going.)`
 					accept
-				`	"How do I even collect minerals from asteroids ?"`
+				`	"How do I even collect minerals from asteroids?"`
 					goto asteroidtuto
-				`	"Where can I get those ressources from ?"`
+				`	"Where can I get those ressources from?"`
 					goto where
 				`	(Leave, I do not have time to start looking for those.)`
 					decline
-			branch auxiliary
-				has "Unfettered: Solifuge 5: done"
-			`It looks like she is done speaking to the others, now she comes to you and says,	"Hi <first>, it has been a while since I last saw you. Heard you took care of that Auxiliary and brought back quite the treasure, great work ! Now back about your question, allow me to explain."`
-			label auxiliary
-			`It looks like she is done speaking to the others, now she comes to you and says,	"Hi <first>, back at action I see. Now back about your question, allow me to explain."`
+			`It looks like she is done speaking to the others, now she comes to you and says,	"Hi <first>, it has been a while since I last saw you. Heard you took care of that Auxiliary and brought back quite the treasure, great work! Now back about your question, allow me to explain."`
 			label asteroidtuto
-			`	"You have never mined asteroids ? Well I recommend you got with an asteroid scanner so your ship may target them automatically. Just try to keep your ship stable around one and shoot it as you would any other ships. Keep in mind they are just hull and maybe you don't want to waste missiles on them since they do not shoot back."`
+			`	"You have never mined asteroids? Well I recommend you got with an asteroid scanner so your ship may target them automatically. Just try to keep your ship stable around one and shoot it as you would any other ships. Keep in mind they are just hull and maybe you don't want to waste missiles on them since they do not shoot back."`
 			choice
 				`	"I have no more questions, see you soon."`
 					accept
-				`	"Where can I get those ressources from ?"`
+				`	"Where can I get those ressources from?"`
 					goto where
 				`	"Sorry but I am no miner."`
 					decline
@@ -936,7 +1002,7 @@ mission "Unfettered: Solifuge 5: Materials For Ship"
 			choice
 				`	"I have no more questions, see you soon."`
 					accept
-				`	"How do I even collect minerals from asteroids ?"`
+				`	"How do I even collect minerals from asteroids?"`
 					goto asteroidtuto
 				`	"Sorry but I am no miner."`
 					decline
@@ -1013,12 +1079,12 @@ mission "Unfettered: The Word Has Spread"
 			label end
 	on offer
 		conversation
-			`The recent activity has still not dimnished, people are moving around everywhere, getting to their ships or doing simply their jobs but with renewed purpose. In all that activity you find your elder friend, Sha-Ri, who seems more than content with seeing you, and speaks with joy,	"Ah, here you are, when you are most needed like always, <first> ! All true Hai have felt the call to battle now, but some have difficulties joining us because of the Hai government... Could you help getting them here ?"`
+			`The recent activity has still not dimnished, people are moving around everywhere, getting to their ships or doing simply their jobs but with renewed purpose. In all that activity you find your elder friend, Sha-Ri, who seems more than content with seeing you, and speaks with joy,	"Ah, here you are, when you are most needed like always, <first>! All true Hai have felt the call to battle now, but some have difficulties joining us because of the Hai government... Could you help getting them here?"`
 			choice
-				`	"Sure !"`
+				`	"Sure!"`
 					accept
-				`	"Why would they want to join you ?"`
-				`	"What battle are you even talking about ?"`
+				`	"Why would they want to join you?"`
+				`	"What battle are you even talking about?"`
 					goto battle
 				`	"No way, I am not helping your crusade."`
 					decline
@@ -1027,14 +1093,14 @@ mission "Unfettered: The Word Has Spread"
 			choice
 				`	"Let's gather the Hai then."`
 					accept
-				`	"What battle are you even talking about ?"`
+				`	"What battle are you even talking about?"`
 				`	"No way, I am not helping your crusade."`
 					decline
 			label battle
 			`	"The only battle there is, the one you have helped us plan for so long, the reconquest of our lost glory and lost worlds, up north."	He seems to really believe in what he is saying, it looks like the fire of battle has lit once more in him.`
 			choice
-				`	"Sure ! I will join this battle then."`
-				`	"Why would they want to join you ?"`
+				`	"Sure! I will join this battle then."`
+				`	"Why would they want to join you?"`
 					goto why
 				`	"No way, I am not helping your crusade."`
 					decline
