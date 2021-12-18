@@ -713,7 +713,7 @@ mission "Pirate Intro: Darkstone Slavers (Dominated)"
 					goto duel
 				`	(Make your excuses and return to your ship. You'll be back - once your engines and weapons are warmed up.)`
 			label attack
-			`	You hustle back to your ship, slavers jeering at your back. They're not laughing long, however. They're caught unaware as you streak back towards the town, weapons hot and firing on clusters of slavers caught out in the open. Unarmored gangsters are no match for starship-grade weaponry, and your first volley reduces a good number of the guards to so much greasy mist. Your second pass initiates a full rout, as the slavers beat a hasty retreat from the village and back to the landing pad.`
+			`	You hustle back to your ship, slavers jeering at your back. They're not laughing long, however. They're caught unaware as you streak back toward the town, weapons hot and firing on clusters of slavers caught out in the open. Unarmored gangsters are no match for starship-grade weaponry, and your first volley reduces a good number of the guards to so much greasy mist. Your second pass initiates a full rout, as the slavers beat a hasty retreat from the village and back to the landing pad.`
 			`	Survivors pour through the hatches and into their ships. Engines are warmed, weapons are brought online, and soon enough you're roaring out of atmosphere to finish this fight in the skies above.`
 				launch
 	on complete
