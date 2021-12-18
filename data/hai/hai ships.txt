@@ -733,6 +733,70 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 
+ship "Shield Beetle Prototype"
+	sprite "ship/hai modified shield beetle"
+	thumbnail "thumbnail/hai shield beetle"
+	attributes
+		category "Heavy Warship"
+		licenses
+			"Unfettered Militia"
+		"cost" 25400000
+		"shields" 42000
+		"hull" 10600
+		"required crew" 59
+		"bunks" 78
+		"mass" 720
+		"drag" 9.1
+		"heat dissipation" .35
+		"fuel capacity" 700
+		"cargo space" 134
+		"outfit space" 843
+		"weapon capacity" 354
+		"engine capacity" 150
+		weapon
+			"blast radius" 500
+			"shield damage" 4500
+			"hull damage" 2200
+			"hit force" 3600
+	outfits
+		"Ionic Blaster" 4
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 336
+		"Tracker Storage Pod" 4
+		"Ionic Turret" 2
+		"Chameleon Anti-Missile"
+		"Boulder Reactor" 2
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator" 2
+		"Hai Zephyr Cooling" 5
+		"Outfits Expansion" 5
+		"Ionic Rifle" 10
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+	engine -42 134.5
+	engine 42 134.5
+	gun -21.5 -93
+	gun -34 -71
+	gun -47.5 -31
+	gun -60.5 -7.5
+	gun 21.5 -93
+	gun 34 -71
+	gun 47.5 -31
+	gun 60.5 -7.5
+	turret -54 74.5
+	turret 0 15
+	turret 54 74.5
+	leak "leak" 35 45
+	leak "flame" 60 95
+	leak "big leak" 50 45
+	explode "tiny explosion" 60
+	explode "small explosion" 51
+	explode "medium explosion" 54
+	explode "large explosion" 53
+	explode "huge explosion" 22
+	"final explode" "final explosion large"
+	description "This is a prototype build by the Unfettered, after the increase in ship production capacity. They have upgraded its shield matrix as well as everything else they could, at the cost of stability and heat."
 
 
 ship "Solifuge"
