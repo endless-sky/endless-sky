@@ -2741,7 +2741,7 @@ mission "Stone of our Fathers 5"
 			`	"The day my mother gave me this stone and said she was proud of me."`
 			`	"The day my son Thorleif was born."`
 			`	"The day I struck the mother lode on Helheim."`
-			`	"The day I met <first> and he helped me find my family again."`
+			`	"The day I met <first>, who helped me find my family again."`
 			`	"The day I saw my son again, even though he would not see me."`
 			`	Thorleif sniffs, takes a moment to write something down he saw on the stone, and then walks forward and places it upon the cairn, at home now with hundreds of other stones each with their own handful of memories.`
 			`	"He had not so many good memories, I think," Thorleif said quietly. "I realize now, that mine too are quite few. Perhaps that, if nothing else, is a lesson he can teach me. For that, I thank you, father."`
