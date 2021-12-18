@@ -128,10 +128,10 @@ bool MapDetailPanel::Scroll(double dx, double dy)
 	Point point = UI::GetMouse();
 	if(maxScroll && point.X() < Screen::Left() + 160 && point.Y() > Screen::Top() + 90 && point.Y() < Screen::Bottom() - 230)
 	{
-		if(dy > 0. && scroll < maxScroll - 65.)
-			scroll += dy * 25.;
-		else if(dy < 0. && scroll > 0.)
-			scroll += dy * 25.;
+		if(dy > 0. && scroll > dy * 25.)
+			scroll -= dy * 25.;
+		else if(dy < 0. && scroll - dy * 25. < maxScroll)
+			scroll -= dy * 25.;
 			
 		return true;
 	}
@@ -478,7 +478,7 @@ void MapDetailPanel::DrawInfo()
 	
 	const Color &back = *GameData::Colors().Get("map side panel background");
 	// Draw the panel.
-	Point size(225., min((Screen::Height() - 360.), planetNbr * 130. + 75.));
+	Point size(230., min((Screen::Height() - 360.), planetNbr * 130. + 75.));
 	FillShader::Fill(Point(Screen::Left() + size.X() / 2., Screen::Top() + size.Y() / 2.), size, back);
 	
 	// Edges:
