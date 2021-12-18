@@ -1512,17 +1512,20 @@ mission "Remnant: Cognizance 34"
 			choice
 				`	"What happened to us? Did we all see the same thing?"`
 				`	"Where did those feelings and images come from?"`
-			`	Gavriil frowns in thought. "Based on our initial survey, each person had a slightly different experience. We think that everyone had basically the same event, but as it was a series of impressions, images, and feelings, each person picked up on different aspects of it." He gestures take on a confident tone. "Which makes sense, since our life experiences shape our perceptions. Still, as to what it was..." He pauses, gathering his thoughts. "Our best guess is that this was first contact with some sort of entity." He grins at that. "I know, stating the obvious. But anyway, Dusk thinks that it might be some sort of solitary entity, as it did not use words or meanings, despite having access to our minds. As such, it uses internals to convey meaning instead of words." He glances at a map of the system. "There is, however, no indication as to where it came from.`
+			`	Gavriil frowns in thought. "Based on our initial survey, each person had a slightly different experience. We think that everyone had basically the same event, but as it was a series of impressions, images, and feelings, each person picked up on different aspects of it."`
+			`	He gestures take on a confident tone. "Which makes sense, since our life experiences shape our perceptions. Still, as to what it was..." He pauses, gathering his thoughts. "Our best guess is that this was first contact with some sort of entity." He grins at that. "I know, stating the obvious. But anyway, Dusk thinks that it might be some sort of solitary entity, as it did not use words or meanings, despite having access to our minds. As such, it uses internals to convey meaning instead of words." He glances at a map of the system. "There is, however, no indication as to where it came from.`
 			choice
 				`	"How do we get back?"`
 					goto cutpower
 				`	"What happened to the long range communication?"`
-			`	"Well, that is a good question. We have, and still are, running diagnostics on them, and so far they are passing all their checks. The system safeties, isolation mechanisms, security monitoring, tamper-proofing, self-destruct systems, backup hardening..." He shakes his head, stymied. "Everything looks in perfect working order. The only problem is that the quantum pairs at the heart just do not seem to have a pair anymore. In terms of quantum mechanics, it seems that the rest of the universe quite simply does not exist."`
+			`	"Well, that is a good question. We have, and still are, running diagnostics on them, and so far they are passing all their checks. The system safeties, isolation mechanisms, security monitoring, tamper-proofing, self-destruct systems, backup hardening..." He shakes his head, stymied.`
+			`	"Everything looks in perfect working order. The only problem is that the quantum pairs at the heart just do not seem to have a pair anymore. In terms of quantum mechanics, it seems that the rest of the universe quite simply does not exist."`
 			choice
 				`	"That seems problematic. How do we get back?"`
 					goto cutpower
 				`	"Did we destroy the universe by powering up this station?"`
-			`	Gavrill smiles with amusement. "It is certainly a possibility. However, the fact that it was, as best we can tell, powered up previously without destroying the universe as far as we can tell suggests that it transported us rather than destroy everything else." He frowns at the communication panel. "Although everything I know about quantum mechanics refuses to countenance something being able to leave the universe so absolutely like this." He smiles again. "But that is the way of science! Finding new things in the universe that tells us that what we know is not so absolute."`
+			`	Gavrill smiles with amusement. "It is certainly a possibility. However, the fact that it was, as best we can tell, powered up previously without destroying the universe as far as we can tell suggests that it transported us rather than destroy everything else."`
+			`	He frowns at the communication panel. "Although everything I know about quantum mechanics refuses to countenance something being able to leave the universe so absolutely like this." He smiles again. "But that is the way of science! Finding new things in the universe that tells us that what we know is not so absolute."`
 			choice
 				`	"I think we should focus on getting back."`
 					goto cutpower
@@ -1530,7 +1533,9 @@ mission "Remnant: Cognizance 34"
 			`	Gavriil gestures neutrally "Well, I am worried, of course. I would be devastated to find out I had destroyed humanity, and everything else in existence." He looks somber, but then perks up again. "But if everything has been annihilated, there is nothing I can do about it. So I shall focus on learning what I can, doing what must be done, and enjoy the fact that the universe has inexplicably revealed once again that the sum of all our knowledge is merely the introductory metaphor to help us grasp how things work." His gestures abruptly change tone. "Speaking of which, we need to report what we have learned to the rest, which means leaving this place."`
 			label cutpower
 			`	Gavriil gestures at the control panel in front of him. "I do not know for sure, but based on events, I suspect that if we manually induce a power failure we should be able to reverse the process that transported us to this realm." He smiles eagerly. "I have everything all set up, and we have people waiting across the station." He looks confident. "We think that we can safely spin down the reactor and cut power across a number of these arrays in a controlled fashion. This should replicate the original power failure, except with fewer risks and less damage to the system."`
-			`	He leads you over to a panel in the main loading dock. "I know, it says 'Job Board' on it. I re-used the coding for our task list to improvise this mass-notification system." He smiles in amusement. "When you are ready to go, just select the 'De-activate Array' option from the panel. That will notify everyone and begin the shutdown." He hands you a datacrystal, and then a large case. "Here is an encrypted datacrystal of all our data so far. The case has several sets, with the data stored in a variety of different mechanisms and encryptions. We do not know what happens when the station is activated or deactivated, so multiple formats for storing the data will give a better chance that at least some of it will remain intact to be delivered." He steps back. "Well, I will return to the controls. Just give the signal when you are ready to leave. Embers light your path, Captain <first>."`
+			`	He leads you over to a panel in the main loading dock. "I know, it says 'Job Board' on it. I re-used the coding for our task list to improvise this mass-notification system." He smiles in amusement. "When you are ready to go, just select the 'De-activate Array' option from the panel. That will notify everyone and begin the shutdown."`
+			`	He hands you a datacrystal, and then a large case. "Here is an encrypted datacrystal of all our data so far. The case has several sets, with the data stored in a variety of different mechanisms and encryptions. We do not know what happens when the station is activated or deactivated, so multiple formats for storing the data will give a better chance that at least some of it will remain intact to be delivered."`
+			`	He steps back. "Well, I will return to the controls. Just give the signal when you are ready to leave. Embers light your path, Captain <first>."`
 
 
 
@@ -1547,8 +1552,8 @@ mission "Remnant: Cognizance 35"
 		event "remnant: ssil vida deactivation"
 		conversation
 			`With a shudder that is felt in every fiber of your being, you glimpse the ripple that makes reality look like the surface of a pond after a single rain drop. Almost before it begins, everything is still again. You look at your sensors, and it looks like Postverta has once again returned to its prior, barren, form.`
-			action
-				fail
+	on enter Postverta
+		fail
 
 
 
@@ -1565,8 +1570,8 @@ mission "Remnant: Cognizance 36"
 		event "remnant: ssil vida activation"
 		conversation
 			`With a shudder that is felt in every fiber of your being, you glimpse the ripple that makes reality look like the surface of a pond after a single rain drop. Almost before it begins, everything is still again. You look at your sensors, and it looks like Postverta is once again overflowing with life.`
-			action
-				fail
+	on enter Postverta
+		fail
 
 
 
@@ -1599,10 +1604,13 @@ mission "Remnant: Cognizance 37"
 				`	"How can you reach consensus so easily?"`
 			branch cognizanceuntrusted
 				has "remnant untrusted"
-			`	She looks around with an uncertain expression, then nods. "As I am sure has occurred to you, communication by gestures has some disadvantages. We still prefer it for some tasks, but it can be awkward to watch or gesture in the midst of some situations. While we have some vocabulary we can do without needing hands or arms, it is very limited. Fortunately, one of the original abilities of our companions is related to the nervous system. I believe Dawn may have told you a little about it, but was scarce on details." She smiles wryly, then another Remnant takes up the conversation. "To put it simply, we can form ad-hoc neural networks between us, of varying levels of intensity. Without the necessity of speech or gestures, we can have entire conversations in the blink of an eye."`
-			`	He gestures confidently. "A team of Remnant, for instance, could all review incoming data from an experiment, form their own analysis, and then hold what amounts to a conference where each fully presents their thoughts and ideas with supporting data and reasoning within the span of a few minutes." His gestures take on a cautionary tone. "Of course, accelerating to that level takes effort, and it is a long process to learn to manage our thoughts in such a way as to have productive conversations. But the results speak for themselves." He gestures broadly at the group. "One such benefit is that in a policy debate, each person can be heard in depth, and include checking the veracity of data and sources. This has significant benefits for minimizing the numbers of decisions made with incomplete or erroneous data, and maximizes the amount of information available to any one of us."`
+			`	She looks around with an uncertain expression, then nods. "As I am sure has occurred to you, communication by gestures has some disadvantages. We still prefer it for some tasks, but it can be awkward to watch or gesture in the midst of some situations. While we have some vocabulary we can do without needing hands or arms, it is very limited.`
+			`	"Fortunately, one of the original abilities of our companions is related to the nervous system. I believe Dawn may have told you a little about it, but was scarce on details." She smiles wryly, then another Remnant takes up the conversation. "To put it simply, we can form ad-hoc neural networks between us, of varying levels of intensity. Without the necessity of speech or gestures, we can have entire conversations in the blink of an eye."`
+			`	He gestures confidently. "A team of Remnant, for instance, could all review incoming data from an experiment, form their own analysis, and then hold what amounts to a conference where each fully presents their thoughts and ideas with supporting data and reasoning within the span of a few minutes."`
+			`	His gestures take on a cautionary tone. "Of course, accelerating to that level takes effort, and it is a long process to learn to manage our thoughts in such a way as to have productive conversations. But the results speak for themselves." He gestures broadly at the group.`
+			`	"One such benefit is that in a policy debate, each person can be heard in depth, and includes checking the veracity of data and sources. This has significant benefits for minimizing the numbers of decisions made with incomplete or erroneous data, and maximizes the amount of information available to any one of us."`
 			action
-				set "Remnant: Cognizance Neural Net Explanation"
+				set "Remnant: Cognizance Neural Communication Explanation"
 			`	A third Remnant steps up. "As to the matter at hand, this means that the sooner any of us hear your report, the sooner everyone will have heard it." They look at you expectantly.`
 				goto cognizanceexplanation
 			label cognizanceuntrusted
@@ -1611,6 +1619,7 @@ mission "Remnant: Cognizance 37"
 				`	"OK, I will explain what happened."`
 				`	"Alright, you convinced me."`
 			label cognizanceexplanation
-			`	The Remnant watch you attentively as you explain everything that went on at Postverta and the surrounding area. Once you hand over the data crystals, one Remnant slots it into a console on the spot while another pair take the case and hustle off toward the information desk. As you reach the end of your report, one of the Remnant nods in approval. "We are starting to disseminate your report along with the data Dusk and Gavriil collected. Both copies of the data match, and have passed the initial verifications, so it appears they were not affected by your departing... shift."`
+			`	The Remnant watch you attentively as you explain everything that went on at Postverta and the surrounding area. Once you hand over the data crystals, one Remnant slots it into a console on the spot while another pair take the case and hustle off toward the information desk.`
+			`	As you reach the end of your report, one of the Remnant nods in approval. "We are starting to disseminate your report along with the data Dusk and Gavriil collected. Both copies of the data match, and have passed the initial verifications, so it appears they were not affected by your departing... shift."`
 			`	They look around at the surrounding Remnant, and you have the sudden feeling that there is an entire level of discussion happening around you. You spot Aeolus moving through the crowd to the front, and he gestures with tones of appreciation. "Thank you for all your work on this, <first>. We have a strong appreciation for the risks you have taken alongside us, and I hope we will continue to explore together. That being said, I suspect it will take much collective effort to determine our next course of action." He looks around, and then winks at you. "In the meantime, I have unlocked access to a few more bits of rarer Korath salvage. It is not much, but it may give you a little more ease of outfitting the <ship>.`
 
