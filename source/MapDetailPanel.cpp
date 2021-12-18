@@ -516,7 +516,7 @@ void MapDetailPanel::DrawInfo()
 	planetY.clear();
 	// Draw the basic information for visitable planets in this system.
 	if(player.HasVisited(*selectedSystem))
-	{	
+	{
 		set<const Planet *> shown;
 		maxScroll = 0.;
 		planetNbr = 0.;
