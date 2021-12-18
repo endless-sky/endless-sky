@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "opengl.h"
 
-#ifndef __APPLE__
+#if !defined(__APPLE__) && !defined(ES_GLES)
 #ifdef _WIN32
 #include <GL/wglew.h>
 #else
@@ -24,8 +24,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 bool OpenGL::HasAdaptiveVSyncSupport()
 {
-#ifdef __APPLE__
-	// macOS doesn't support Adaptive VSync for OpenGL.
+#if defined(__APPLE__) || defined(ES_GLES)
+	// macOS and OpenGL ES don't support Adaptive VSync for OpenGL.
 	return false;
 #elif defined(_WIN32)
 	return wglewIsSupported("WGL_EXT_swap_control_tear");
