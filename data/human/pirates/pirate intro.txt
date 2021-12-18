@@ -1,6 +1,7 @@
 
 mission "You Are A Pirate"
 	landing
+	invisible
 	source
 		government "Pirate"
 	to offer
@@ -30,7 +31,6 @@ conversation "You Are A Pirate"
 		`	(Don the smock and mask, turn on the compressor, conceal your old life beneath bellicose black.)`
 		`	(No. Not now, perhaps not ever. The galaxy at large may consider you a pirate, but you're not ready to adopt their colors.)`
 			decline
-
 	`	Some paint covers all manner of sin. Some speaks of the intention to commit yet more. You've applied the latter sort to your ship.`
 		accept
 
