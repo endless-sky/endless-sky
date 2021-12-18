@@ -12,10 +12,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "opengl.h"
 
+#ifndef __APPLE__
 #ifdef _WIN32
 #include <GL/wglew.h>
 #else
 #include <GL/glxew.h>
+#endif
 #endif
 
 
