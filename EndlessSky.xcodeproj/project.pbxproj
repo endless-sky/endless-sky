@@ -159,6 +159,7 @@
 		B5DDA6942001B7F600DBA76A /* News.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5DDA6922001B7F600DBA76A /* News.cpp */; };
 		C4264774A89C0001B6FFC60E /* Hazard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C49D4EA08DF168A83B1C7B07 /* Hazard.cpp */; };
 		C7354A3E9C53D6C5E3CC352F /* TestData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 02D34A71AE3BC4C93FC6865B /* TestData.cpp */; };
+		CE3F49A88B6DCBE09A711110 /* opengl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3754152958FBC924E9F76A9 /* opengl.cpp */; };
 		DF8D57E11FC25842001525DA /* Dictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF8D57DF1FC25842001525DA /* Dictionary.cpp */; };
 		DF8D57E51FC25889001525DA /* Visual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF8D57E21FC25889001525DA /* Visual.cpp */; };
 		DFAAE2A61FD4A25C0072C0A8 /* BatchDrawList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFAAE2A21FD4A25C0072C0A8 /* BatchDrawList.cpp */; };
@@ -238,6 +239,7 @@
 		A00D4207B8915B5E7E9B4619 /* RandomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RandomEvent.h; path = source/RandomEvent.h; sourceTree = "<group>"; };
 		A2A948EE929342C8F84C65D1 /* TestContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestContext.h; path = source/TestContext.h; sourceTree = "<group>"; };
 		A3134EC4B1CCA5546A10C3EF /* TestContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestContext.cpp; path = source/TestContext.cpp; sourceTree = "<group>"; };
+		A3754152958FBC924E9F76A9 /* opengl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opengl.cpp; path = source/opengl.cpp; sourceTree = "<group>"; };
 		A90633FD1EE602FD000DA6C0 /* LogbookPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LogbookPanel.cpp; path = source/LogbookPanel.cpp; sourceTree = "<group>"; };
 		A90633FE1EE602FD000DA6C0 /* LogbookPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogbookPanel.h; path = source/LogbookPanel.h; sourceTree = "<group>"; };
 		A90C15D71D5BD55700708F3A /* Minable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Minable.cpp; path = source/Minable.cpp; sourceTree = "<group>"; };
@@ -320,7 +322,6 @@
 		A96863171AE6FD0B004FE1FE /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameData.h; path = source/GameData.h; sourceTree = "<group>"; };
 		A96863181AE6FD0B004FE1FE /* GameEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameEvent.cpp; path = source/GameEvent.cpp; sourceTree = "<group>"; };
 		A96863191AE6FD0B004FE1FE /* GameEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameEvent.h; path = source/GameEvent.h; sourceTree = "<group>"; };
-		A968631A1AE6FD0B004FE1FE /* gl_header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gl_header.h; path = source/gl_header.h; sourceTree = "<group>"; };
 		A968631B1AE6FD0B004FE1FE /* Government.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Government.cpp; path = source/Government.cpp; sourceTree = "<group>"; };
 		A968631C1AE6FD0B004FE1FE /* Government.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Government.h; path = source/Government.h; sourceTree = "<group>"; };
 		A968631D1AE6FD0B004FE1FE /* HailPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HailPanel.cpp; path = source/HailPanel.cpp; sourceTree = "<group>"; };
@@ -502,6 +503,7 @@
 		DFAAE2A51FD4A25C0072C0A8 /* BatchShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BatchShader.h; path = source/BatchShader.h; sourceTree = "<group>"; };
 		DFAAE2A81FD4A27B0072C0A8 /* ImageSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageSet.cpp; path = source/ImageSet.cpp; sourceTree = "<group>"; };
 		DFAAE2A91FD4A27B0072C0A8 /* ImageSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageSet.h; path = source/ImageSet.h; sourceTree = "<group>"; };
+		EB634E95A88454ADDB8644B1 /* opengl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opengl.h; path = source/opengl.h; sourceTree = "<group>"; };
 		F434470BA8F3DE8B46D475C5 /* StartConditionsPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartConditionsPanel.h; path = source/StartConditionsPanel.h; sourceTree = "<group>"; };
 		F8C14CFB89472482F77C051D /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Weather.h; path = source/Weather.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -619,7 +621,6 @@
 				A96863191AE6FD0B004FE1FE /* GameEvent.h */,
 				B55C239B2303CE8A005C1A14 /* GameWindow.cpp */,
 				B55C239C2303CE8A005C1A14 /* GameWindow.h */,
-				A968631A1AE6FD0B004FE1FE /* gl_header.h */,
 				A968631B1AE6FD0B004FE1FE /* Government.cpp */,
 				A968631C1AE6FD0B004FE1FE /* Government.h */,
 				A968631D1AE6FD0B004FE1FE /* HailPanel.cpp */,
@@ -814,6 +815,8 @@
 				A3134EC4B1CCA5546A10C3EF /* TestContext.cpp */,
 				6A4E42FEB3B265A91D5BD2FC /* TextReplacements.cpp */,
 				86D9414E818561143BD298BC /* TextReplacements.h */,
+				A3754152958FBC924E9F76A9 /* opengl.cpp */,
+				EB634E95A88454ADDB8644B1 /* opengl.h */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -1163,6 +1166,7 @@
 				87D6407E8B579EB502BFBCE5 /* GameAction.cpp in Sources */,
 				ED5E4F2ABA89E9DE00603E69 /* TestContext.cpp in Sources */,
 				F78A44BAA8252F6D53B24B69 /* TextReplacements.cpp in Sources */,
+				CE3F49A88B6DCBE09A711110 /* opengl.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
