@@ -21,7 +21,7 @@ mission "You Are A Pirate"
 		fail
 
 conversation "You Are A Pirate"
-	`Preparing to land is second nature by now: patch any perforations in the inner hull, get in touch with ground control, and then make sure your chosen parking pad isn't controlled by extortionists. When you disembark it's with a pistol at your hip, bribe money in your pocket, and a swagger in your step; to leave behind any one of these is to invite trouble. Perhaps a life of violence on the high skies and association with the rougher elements of the galaxy weren't what you had in mind when you left your homeworld, but it's what you found.`
+	`Preparing to land is second nature by now: patch any perforations in the inner hull, get in touch with ground control, and then make sure your chosen parking pad isn't controlled by extortionists. When you disembark, it's with a pistol at your hip, bribe money in your pocket, and a swagger in your step; to leave behind any one of these is to invite trouble. Perhaps a life of violence on the high skies and association with the rougher elements of the galaxy weren't what you had in mind when you left your homeworld, but it's what you found.`
 	choice
 		`	(This is my life now. Piracy, smuggling, the existence of the outlaw. I'm ready to embrace it.)`
 		`	(This isn't what I wanted. This isn't the life I imagined when I decided to take to the high skies.)`
@@ -69,15 +69,15 @@ mission "I Want To Be A Pirate"
 
 conversation "I Want To Be A Pirate"
 	`The drinking holes flanking this outlaw spaceport are a motley mix indeed, each apparently shabbier, dingier, or more raucous than the last. Perhaps that's just the way you like your establishments; perhaps not. Whatever the case, a sense of purpose has brought you here, far from the factories and fields of New Boston. Out here to the fringes of society.`
-	`Instinct - or an overabundance of swashbuckling serials consumed during your childhood - brings you to the back of a smoky bar, where a trio of grizzled ruffians sit: an eyepatched Corsair festooned in somewhat anachronistic couture; a jewelry-encrusted Capo with a mechanical jaw and the haughty bearing of a born and bred gangster; and a Mercenary wearing a beret and military fatigues. A patch affixed to her shirt identifies her as a member of the "Devil's Due Contracting Company". The three turn to stare at you. You came here for a reason, didn't you?`
+	`	Instinct - or an overabundance of swashbuckling serials consumed during your childhood - brings you to the back of a smoky bar, where a trio of grizzled ruffians sit: an eyepatched Corsair festooned in somewhat anachronistic couture; a jewelry-encrusted Capo with a mechanical jaw and the haughty bearing of a born and bred gangster; and a Mercenary wearing a beret and military fatigues. A patch affixed to her shirt identifies her as a member of the "Devil's Due Contracting Company". The three turn to stare at you. You came here for a reason, didn't you?`
 	choice
 		`	"My name is <first> <last>, and I want to be a pirate."`
 		`	(This was a terrible idea. Back to the ship.)`
 			goto retreat
-	`The three regard you with a mixture of surprise and bemusement.`
+	`	The three regard you with a mixture of surprise and bemusement.`
 	`	"Is that so?" inquires the woman dressed for war. "And you're telling us why? Because you suspect that we might know the right people to, say, make it known that there's a new terror plying the hyperlanes?" She leans back, pauses, carefully inspects the seat behind her, and satisfied that it's not covered in too much grease, completes the maneuver. "...Well, you'd be right. But nothing in this world is free."`
-	`	"Aye, it be not enough to simply cover yer' ship with the old black-and-red. A pirate must earn the respect - or fear - of their fellows, lest they be seen as fair plunder," the Corsair contributes. This is followed up with an entirely gratuitous, but quite hearty "Arrrrgh."`
-	`	The Capo speaks last, jaw motionless; his voice is provided by a cybernetic vocoder, meliflous if gently synthetic. "Indeed. There's three things you'll need to do before you'll be taken seriously. Speaking personally, I'm always on the eye for upcoming talent. Prove that you've got what it takes and I'm sure at least one of us would make it known within our circles that you aren't to be trifled with - and perhaps worth offering work to. But first, those tasks."`
+	`	"Aye, it be not enough to simply cover yer' ship with the old black-and-red. A pirate must earn the respect - or fear - of their fellows, lest they be seen as fair plunder," the Corsair contributes. This is followed up with an entirely gratuitous but quite hearty "Arrrrgh."`
+	`	The Capo speaks last, jaw motionless; his voice is provided by a cybernetic vocoder, mellifluous if gently synthetic. "Indeed. There's three things you'll need to do before you'll be taken seriously. Speaking personally, I'm always on the eye for upcoming talent. Prove that you've got what it takes and I'm sure at least one of us would make it known within our circles that you aren't to be trifled with - and perhaps even worth offering work to. But first, those tasks."`
 	choice
 		`	(Nod towards the Corsair.) "Does he always speak like that?"`
 		`	"Oh, I know! I need to master theft, swordplay, and treasure hunting!"`
@@ -86,13 +86,13 @@ conversation "I Want To Be A Pirate"
 			goto tasks
 		`	(This was a terrible idea. Back to the ship.)`
 			goto retreat
-	`	"Oh, leave him be." The Mercenary scolds you. "He always wanted to retire to Buccaneer Bay and, well, you know how they've got that romanticized view of the old Earth tales, back when ships didn't need to be pressurized cans." The Corsair smiles, somewhat sheepishly. He doesn't seem to have the heart to "Aaargh" this time.`
+	`	"Oh, leave him be," the Mercenary scolds you. "He always wanted to retire to Buccaneer Bay and, well, you know how they've got that romanticized view of the old Earth tales, back when ships didn't need to be pressurized cans." The Corsair smiles, somewhat sheepishly. He doesn't seem to have the heart to "Aaargh" this time.`
 		goto tasks
 	label hahareferencegoeshere
 	`	The trio of outlaws stare at you, bewilderment evident on their faces. "What the hell? You've been watching too many serials, kid." The cybernetic Capo shakes his head woefully. "Well, you're not going to last long out here." Only the Corsair seems to be - if only a smidgen - delighted with your approach to piracy.`
 	choice
 		`	(Marinate in an uncomfortable silence.)`
-	`	The Corsair clears his throat, eager to move back to the topic at hand. "Now, about them tasks-"`
+	`	The Corsair clears his throat, eager to move back to the topic at hand. "Now, about them tasks..."`
 	label tasks
 	`	The Corsair leans over the table, a wide grin splitting his face perpendicular to the scar that runs from brow to chin. "It's simple, matey. Ye need to prove you're not to be trifled with. Find a juicy prize, disable them, board them, and when other scalliwags come sniffing? Defend your plunder! No scavenger of the black'll displace you from your next meal, by thunder!" Spit and ale fly from the Corsair's lips as he roars, as jolly as can be - and more than a little drunk.`
 	`	The gun-for-hire rolls her eyes, though she's careful to ensure she's safely behind the Corsair's back before doing so. "Violence will get you only so far. True power comes from wealth. The fastest engines and biggest guns won't save you when you're too poor to bribe a judge, or even a lowly spaceport controller. Besides - you also need to keep your quartermaster happy. Liquid solvency, my novice, is the only real safety that a pirate can hope to have. You'll find that other assets are liable to be seized by the state. You're best off keeping your pockets full and your real estate holdings light. You show off your spending power and I'll consider that proof enough of your talent - and my fee for putting words into the right ears that you're not someone to mess with."`
@@ -104,21 +104,21 @@ conversation "I Want To Be A Pirate"
 	`	The three take a moment to look at one-another, apparently gauging which of them is to field that particular question. Eventually, the Capo speaks up, setting down his mug in order to lace ring-laden fingers together in an attempt to look thoughtful and measured.`
 	`	"The path of violence only creates more violence, friend. To truly walk the path of the pirate you need to learn to live in harmony with your fellow buccaneers." The Capo smiles beatifically; the effect is somewhat ruined by the wicked titanium teeth machined into his mechanical jaw. Meanwhile, the Corsair is struggling to keep a straight face while the camoflage-clad woman leaks muffled laughs into a napkin.`
 	`	"More seriously, no. Simply slaughtering your way across the stars will only get you mired in endless strife, and it's hard to accomplish goals when you've got enemies breathing down your neck at all hours. It's an easy path to sleeping alone, every night, for the rest of your life, lest you wake with a knife in your guts. And that's not a life well lived by my reckoning." The cyborg unlaces his fingers, instead reaching to his side to twine them around the wrist of the Mercenary, taking her hand and guiding it to his fearsome metal maw. In lieu of a kiss, he simply scrapes his teeth across her fingers, one by one, with loving care and measured pace.`
-	`	"Mark my words, there are better things in life than simply seeing your enemies laid to waste. You want them to respect your power, but not feel so threatened that they would devote themselves to your destruction. When you kill, do so thoughtfully." The Mercenary, meanwhile, is sporting thoroughly flushed cheeks by this point - though she yanks her hand back and gives the Capo a gentle smack on the jaw before averting her gaze. There's a hint of a smile upon her chapped lips, and regret hidden deep within tired eyes.`
+	`	"Mark my words: there are better things in life than simply seeing your enemies laid to waste. You want them to respect your power, but not feel so threatened that they would devote themselves to your destruction. When you kill, do so thoughtfully." The Mercenary, meanwhile, is sporting thoroughly flushed cheeks by this point - though she yanks her hand back and gives the Capo a gentle smack on the jaw before averting her gaze. There's a hint of a smile upon her chapped lips, and regret hidden deep within tired eyes.`
 	choice
 		`	"I don't understand. Could you explain that more plainly?"`
 		`	"Tell me what I need to do."`
 			goto explanation
-	`	The Capo groans, shakes his head mournfully, and leans back to excuse himself from the conversation for a minute. The Mercenary quickly fills the conversational. "Look, it's simple. You shoot people, they shoot back. You knuckle under at every opportunity, they keep shooting because they think you're weak. If you want to be left alone you need to prove that you're not worth the effort it would take to plunder you, yeah? That's... Well, it's what these little tasks we've mentioned are about. You need to establish a reputation. This is how you do it - and once you've done that, other pirates should leave you alone owing to either fear or respect."`
-	`	She leans back in her chair, matching gaze with the Capo. "And you, don't push it. Not here, you know what my boss thinks." Wistfulness drips from her words, and her gaze turns elsewhere; this person's thoughts clearly lie elsewhere at the moment.`
+	`	The Capo groans, shakes his head mournfully, and leans back to excuse himself from the conversation for a minute. The Mercenary quickly fills the silence. "Look, it's simple. You shoot people, they shoot back. You knuckle under at every opportunity, they keep shooting because they think you're weak. If you want to be left alone you need to prove that you're not worth the effort it would take to plunder you, yeah? That's... Well, it's what these little tasks we've mentioned are about. You need to establish a reputation. This is how you do it - and once you've done that, other pirates should leave you alone owing to either fear or respect."`
+	`	She leans back in her chair, matching gaze with the Capo. "And you, don't push it. Not here, you know what my boss thinks." Wistfulness drips from her words, and her gaze turns past the table and off into the distance. This person's thoughts clearly lie elsewhere at the moment.`
 	choice
 		`	"I understand."`
 		`	"Yeah, I have no idea what you're talking about, but I don't care enough to ask again. Where's the part where I get to be a pirate?"`
 	label explanation
-	`	"Now-" the Corsair begins. "I know a juicy prize is going to be sailing-" The other two turn to fix the Corsair with a skeptical gaze. The Capo's maw slips wide for a moment, as if he wants to interrupt, but eventually it closes silently once more. "-SAILING, I say, through Umbral. In fact, any buccaneer worth their salt knows she'll be there, so you're liable to have more than a little competition. Board her, plunder her, keep what ye like - but should ye find an antique wood lockbox, yer' to bring it back to me without peeking within. That'll be my price for spreading the word of yer' glorious ascent to piratehood.`
-	`	"As for me?" The Devil's Due member takes her turn to speak. "Take a million credits to Smuggler's Den in Men. I don't care where you get the money. In fact, I don't want to know. Just drop by with that million, complete a little transaction I'll have arranged by then, and I'll get you what you want. Prestige. Respect. Fame. Infamy, whatever." A winning smile is flashed your way, and your hand is plucked up, shaken; a datachip is pressed into it. "Contact for an associate of mine, on the station I mentioned. Take the money there, bring the item back to me."`
+	`	"Now," the Corsair begins, "I know a juicy prize is going to be sailing-" The other two turn to fix the Corsair with a skeptical gaze. The Capo's maw slips wide for a moment, as if he wants to interrupt, but eventually it closes silently once more, and the Corsair continues. "-SAILING, I say, through Umbral. In fact, any buccaneer worth their salt knows she'll be there, so you're liable to have more than a little competition. Board her, plunder her, keep what ye like - but should ye find an antique wood lockbox, yer' to bring it back to me without peeking within. That'll be my price for spreading the word of yer' glorious ascent to piratehood.`
+	`	"As for me?" The Devil's Due member takes her turn to speak. "Take a million credits to Smuggler's Den in Men. I don't care where you get the money -in fact, I don't want to know. Just drop by with that million, complete a little transaction I'll have arranged by then, and I'll get you what you want. Prestige. Respect. Fame. Infamy, whatever." A winning smile is flashed your way, and your hand is plucked up, shaken; a datachip is pressed into it. "Contact for an associate of mine, on the station I mentioned. Take the money there, bring the item back to me."`
 	`	Finally, the Capo takes his turn. "Have you heard of the planet Darkstone, in the system Han? Pathetic bunch of dirt-farmers, only worthy of enslavement. Impose yourself as their master, take the meager tribute they offer, and return. Know that you'll make enemies this way, but really - if you want to be a pirate, I'm sure that's not something that concerns you overmuch."`
-	`"Whichever path you take, we expect to be on Greenrock for the forseeable future. Drop by once you've got something one of us will find impressive; or all, if that's your style."`
+	`	"Whichever path you take, we expect to be on Greenrock for the foreseeable future. Drop by once you've got something one of us will find impressive; or all, if that's your style."`
 		accept
 	label retreat
 	`	As your nostrils fill with the scent of stale piss, cheap alcohol, and a modest breeze carrying the metallic tang of blood upon it, you come to your senses and realize that perhaps the pirate's life isn't as romantic as you'd made it out to be.`
@@ -171,11 +171,11 @@ conversation "I Want To Be A Pirate Conclusion"
 	label slaveryspeech
 	`	"Don't be stupid. We're in the same business, you and I - the only reason we're having this conversation at all is because you saw fit to force others to pay you, render unto you the fruit of their sweat and tears, without anything in return. You're a slaver as much as I; I'm simply more honest about it. You'll grow to accept that. Pirates who think they can survive - or more amusingly, thrive - and still hold onto their precious morals; they're not long for this galaxy."`
 	`	The Corsair's lips curl into a decidedly displeased scowl, but he drowns any words in liquor before they might threaten to spill forth.`
-	`	"Now. Don't be a fool, and remember my words." The Capo relaxes, stretching back in his seat. He's regarding you cooly, contemplatively. "But I'm a man of honor; you did as you were instructed, and so I'll fulfil my end of the bargain."`
+	`	"Now. Don't be a fool, and remember my words." The Capo relaxes, stretching back in his seat. He's regarding you coolly, contemplatively. "But I'm a man of honor; you did as you were instructed, and so I'll fulfill my end of the bargain."`
 		goto tributeskip
 	label defender
 	choice
-		`	(You address the Capo.) "I conquered Darkstone, defeating the gang that once claimed it. When others came to enslave my subjects I defeated them as well."`
+		`	(You address the Capo.) "I conquered Darkstone, defeating the gang that once claimed it. When others came to enslave my subjects, I defeated them as well."`
 	`	"You little shit. I gave you a job to do, an opportunity, and you repay me by killing my men? Did you think you could just muscle in to the trade without people backing you up?" Cold rage burns within the cyborg's eyes, his expression hard to read given lack of lips and most facial muscles.`
 	choice
 		`	"They got what was coming to them. That territory was mine by right of conquest, and by trespassing they signed their own death warrants. You respect my turf and I'll respect you, understood?"`
@@ -187,8 +187,8 @@ conversation "I Want To Be A Pirate Conclusion"
 	`	"But I can see there can be no mutually beneficial arrangements between us. You did the job I told you to, true enough, but I'd never sully my reputation by vouching for someone so... stupidly idealistic. Maybe these other idiots will have some use for you." A moment passes before the Capo gives the Mercenary's knee a squeeze. "Not you, dear. I meant the other guy." He's given a roll of the eyes for his trouble.`
 		goto defenderspeech
 	label grudgingrespect
-	`	The Capo stares you down, sizing you up, waiting for some sign of weakness on your part. None is given. Finally, his eyebrows relax and his face seems, accordingly, somewhat less hostile.`
-	`	"Fine. Yes. You speek the truth, you do - you had no way of knowing those slavers were in my employ, and you did well to defend your territory. Truthfully, I didn't expect you'd be able to stand up to my boys, or even fight off the existing occupants. The fault is mine for underestimating your abilities."`
+	`	The Capo stares you down, sizing you up, waiting for some sign of weakness on your part. None is given. Finally, his eyebrows relax, and his face seems, accordingly, somewhat less hostile.`
+	`	"Fine. Yes. You speak the truth, you do - you had no way of knowing those slavers were in my employ, and you did well to defend your territory. Truthfully, I didn't expect you'd be able to stand up to my boys, or even fight off the existing occupants. The fault is mine for underestimating your abilities."`
 	`	The cyborg falls into a moment of silence as he deliberates. "I'll still sponsor you. You've turned this venture into a loss for me, but... I believe you'll go far with abilities and a mindset like that. And that's a success I'd like to be responsible for having scouted out. I'll make your name known to the right people, as promised. You've a bright future ahead."`
 		goto tributeskip
 	label weak
@@ -233,7 +233,7 @@ conversation "I Want To Be A Pirate Conclusion"
 	`	"Oh." There's an uncomfortably long pause while the Corsair gathers his thoughts. "Argh, where were we..."`
 	label negative
 	#in the campaign-integrated branch he'll ask you to keep the journal and deliver it to Amity Goodearth.
-	`	"Anyhow. This is a mighty important find, but unfortunately incomplete. I'll be hanging onto it, and ye've my thanks for your work in securing this. Family heirloom, and such. Now, yer payment... I've some contacts that'll be pleased to know of yer skills, and folk who'll make sure your name is known where it matters. Congratulations, the life of a pirate ye may call yer own."`
+	`	"Anyhow. This is a mighty important find, but unfortunately incomplete. I'll be hanging onto it, and ye've my thanks for yer work in securing this. Family heirloom, and such. Now, yer payment... I've some contacts that'll be pleased to know of yer skills, and folk who'll make sure your name is known where it matters. Congratulations, the life of a pirate ye may call yer own."`
 	label boardingskip
 	branch pirate
 		not "Pirate Intro: Wealth: done"
@@ -371,10 +371,10 @@ mission "Lockbox Snooping"
 					decline
 			`October 3, '94`
 			`	"Bastards took the farm. Funny how you go your whole life never seeing a man in a suit, and the first one you do is there to ruin everything. Well, fine. I'm strong. I'm smart. I can go to the city and find work."`
-			`	The next several pages are filled with landscape sketches, scenes from a verdant farming world. Trees loom tall in the divisions between fields, flowers are abundant where nature hasn't been tamed by the colonist's hand. Here, a flock of sheep graze. There, a ship streaks across the sky, the rest of the drawing seemingly contorted around it as if the world itself is focusing on the vessel as it speeds into the unknown.`
+			`	The next several pages are filled with landscape sketches, scenes from a verdant farming world. Trees loom tall in the divisions between fields; flowers are abundant where nature hasn't been tamed by the colonist's hand. Here, a flock of sheep graze. There, a ship streaks across the sky, the rest of the drawing seemingly contorted around it as if the world itself is focusing on the vessel as it speeds into the unknown.`
 			`October 28, '94`
 			`	"Empty stomach, empty pockets, no jobs to be found. Not a broom that needs pushing, and the mob at the factory wanting employment is at least five men deep and I dare not count how wide."`
-			`	Folk, man and woman, young and old, sit idle in the streets of a modestly sized town. Long faces, hollow with hunger, impassive in idleness, turn their gazes towards the one drawing them. There's the occasional drawing of a field or burst of beauty as captured in the pages before, but the overall spirit has shifted to the sullen.`
+			`	Folk, man and woman, young and old, sit idle in the streets of a modestly sized town. Long faces, hollow with hunger, impassive in idleness, turn their gazes toward the one drawing them. There's the occasional drawing of a field or burst of beauty as captured in the pages before, but the overall spirit has shifted to the sullen.`
 			`November 15, '94`
 			`	"Today's the day I'm born anew. Not with one of those cults, but with the "merchant" who comes by every season. He said there's room on his crew for a young man who's not afraid to get his hands dirty, and if I help around the ship, and he likes me by the time he takes off again, I can stay and take a share in their next haul... But I don't want to bring the law down on my family. I'll need a new name. "Voidmaster" sounds cool. I'll see if I can get the crew to call me that."`
 			`	The remaining pages have been torn out.`
@@ -383,10 +383,10 @@ mission "Lockbox Snooping"
 		log `Found an old journal inside a chest from a ship I plundered. It had the following entries:`
 		log `October 3, '94`
 		log `	"Bastards took the farm. Funny how you go your whole life never seeing a man in a suit, and the first one you do wants everything you've got. Well, fine. I'm strong. I'm smart. I can go to the city and find work."`
-		log `	The next several pages are filled with landscape sketches, scenes from a verdant farming world. Trees loom tall in the divisions between fields, flowers are abundant where nature hasn't been tamed by the colonist's hand. Here, a flock of sheep graze. There, a ship streaks across the sky, the rest of the drawing seemingly contorted around it as if the world itself is focusing on the vessel as it speeds into the unknown.`
+		log `	The next several pages are filled with landscape sketches, scenes from a verdant farming world. Trees loom tall in the divisions between fields; flowers are abundant where nature hasn't been tamed by the colonist's hand. Here, a flock of sheep graze. There, a ship streaks across the sky, the rest of the drawing seemingly contorted around it as if the world itself is focusing on the vessel as it speeds into the unknown.`
 		log `October 28, '94`
 		log `	"Empty stomach, empty pockets, no jobs to be found. Not a broom that needs pushing, and the mob at the factory wanting employment is at least five men deep and I dare not count how wide."`
-		log `	"Folk, man and woman, young and old, sit idle in the streets of a modestly sized town. Long faces, hollow with hunger, impassive in idleness, turn their gazes towards the one drawing them. There's the occasional drawing of a field or burst of beauty as captured in the pages before, but the overall spirit has shifted to the sullen."`
+		log `	"Folk, man and woman, young and old, sit idle in the streets of a modestly sized town. Long faces, hollow with hunger, impassive in idleness, turn their gazes toward the one drawing them. There's the occasional drawing of a field or burst of beauty as captured in the pages before, but the overall spirit has shifted to the sullen."`
 		log `November 15, '94`
 		log `	"Today's the day I'm born anew. Not with one of those cults, but with the 'merchant' who comes by every season. He said there's room on his crew for a young man who's not afraid to get his hands dirty, and if I help around the ship, and he likes me by the time he takes off again, I can stay and take a share in their next haul... But I don't want to bring the law down on my family. I'll need a new name. 'Voidmaster' sounds cool. I'll see if I can get the crew to call me that."`
 		fail
@@ -423,7 +423,7 @@ mission "Pirate Intro: Payment"
 		never
 		
 conversation "Den Handoff"
-	`"That's a key," a janitor cheerfully explains as he spots you staring at the datachip the mercenary had given you back in that dingy tavern. "... Goodness, you've had a few too many, haven't you? Give it here." Without waiting for your permission the fellow snaps the chip up out of your hands and runs it through a device attached to his belt. "Hangar 18, just pop it into the wall console and it'll open up for you. Best get moving before your captain notices you're missing, harhar." With a smile and a wave, the janitor deposits the chip back into your palm, brushes past you, and returns to going about his business.`
+	`"That's a key," a janitor cheerfully explains as he spots you staring at the datachip the mercenary had given you back in that dingy tavern. "... Goodness, you've had a few too many, haven't you? Give it here." Without waiting for your permission, the fellow snaps the chip up out of your hands and runs it through a device attached to his belt. "Hangar 18, just pop it into the wall console and it'll open up for you. Best get moving before your captain notices you're missing, harhar." With a smile and a wave, the janitor deposits the chip back into your palm, brushes past you, and returns to going about his business.`
 	choice
 		`	(Proceed to Hangar 18.)`
 	`	Just as promised, the datachip fits right into a slot in the wall, unsealing the airlock and allowing you into the hangar. Voices and light spill from within.`
@@ -435,7 +435,7 @@ conversation "Den Handoff"
 	#`	"Eu sei, mas é que eu realmente não acho que isso vai só acontecer. O vô do meu vô também passou a vida esperando a mesma coisa, e hoje eu e tu tamos aqui, negociando com capitalistas."`
 	`	"Eu sei, mas e que eu realmente nao acho que isso vai so acontecer. O vo do meu vo tambem passou a vida esperando a mesma coisa, e hoje eu e tu tamos aqui, negociando com capitalistas."`
 	#`	"Eu preferiria se tu não fosse tão negativo, camarada. Tu sabe tão bem quanto eu que é só uma questão de esperar as coisas entrarem em colapso. Porra, tem uma guerra civil arriscando começar a qualquer momento, se segura por só mais um pouquinho! Inclusive, eu escutei a pouco que – "`
-	`	"Eu preferiria se tu nao fosse tao negativo, camarada. Tu sabe tao bem quanto eu que e so uma questao de esperar as coisas entrarem em colapso. Porra, tem uma guerra civil arriscando começar a qualquer momento, se segura por so mais um pouquinho! Inclusive, eu escutei a pouco que – "`
+	`	"Eu preferiria se tu nao fosse tao negativo, camarada. Tu sabe tao bem quanto eu que e so uma questao de esperar as coisas entrarem em colapso. Porra, tem uma guerra civil arriscando começar a qualquer momento, se segura por so mais um pouquinho! Inclusive, eu escutei a pouco que-"`
 	`	Without warning a figure steps in front of the doorway, silhouetted by strong lights pointed at the doorframe from within. "In or out, you're letting through a draft. We can conduct business inside."`
 	choice
 		`	(In.)`
@@ -444,7 +444,7 @@ conversation "Den Handoff"
 	`	With a smile and a nod, the figure gestures you inside. "Good, good. In you go."`
 	label CCOR
 	#`	The hangar is dominated by an orange-painted Hauler of older make looming behind everything else. Once you step beyond the glare of the floodlight pointed at the door you can make out some details. Those aren't crates stacked in a rough perimeter around the door, but sandbags. Behind one row a tripod with an old-style machine gun rests, "Mãe Dois" painted in white upon the housing. The gunner, a tanned young woman with a cigarette hanging jauntily from her lips, notices your look and offers a friendly enough wave. Like the other five people in the room, she's wearing a burgundy military uniform, with gleaming strips of brass where one might usually find decorating ribbons.`
-	`	The hangar is dominated by an orange-painted Hauler of older make looming behind everything else. Once you step beyond the glare of the floodlight pointed at the door you can make out some details. Those aren't crates stacked in a rough perimeter around the door, but sandbags. Behind one row a tripod with an old-style machine gun rests, "Mae Dois" painted in white upon the housing. The gunner, a tanned young woman with a cigarette hanging jauntily from her lips, notices your look and offers a friendly enough wave. Like the other five people in the room, she's wearing a burgundy military uniform, with gleaming strips of brass where one might usually find decorating ribbons.`
+	`	The hangar is dominated by an orange-painted Hauler of older make looming behind everything else. Once you step beyond the glare of the floodlight pointed at the door, you can make out some details. Those aren't crates stacked in a rough perimeter around the door, but sandbags. Behind one row a tripod with an old-style machine gun rests, "Mae Dois" painted in white upon the housing. The gunner, a tanned young woman with a cigarette hanging jauntily from her lips, notices your look and offers a friendly enough wave. Like the other five people in the room, she's wearing a burgundy military uniform, with gleaming strips of brass where one might usually find decorating ribbons.`
 	`	"Since you had the key I'll assume you're here to do business," says the oldest of the six soldiers - a dark-haired man in his apparent fifties whose uniform practically gleams with medals - as he ushers you into a seat. He's the only one wearing a hat, which you can only assume means he's in charge.. "Coffee?" The brew appears dark, the scent rich and glorious as it cuts through the nicotine haze of the hangar.`
 	choice
 		`	"I would love some, thank you."`
@@ -465,7 +465,7 @@ conversation "Den Handoff"
 	choice
 		`	(I should open my eyes.)`
 	`	You awaken tied to a chair, a headache pounding in your ears, and where there used to be a serving table with coffee your belongings are instead laid out.`
-	`	There's your gun, there's your shirt - now bloodstained from the solid whack you'd sustained to the back of the head - there's your comms, your keys, and a credit chip valued at one million. Laid right in the middle of them is a minuscule device that you don't recognize - possibly due to the fact that it's been smashed into enough pieces to rival the starscape outside.`
+	`	There's your gun, your shirt - now bloodstained from the solid whack you'd sustained to the back of the head - your comms, your keys, and a credit chip valued at one million. Laid right in the middle of them is a minuscule device that you don't recognize - possibly due to the fact that it's been smashed into enough pieces to rival the starscape outside.`
 	`	At least your captors were kind enough to shove you back into skivvies after stripping you down and emptying your pockets.`
 	choice
 		`	(Stay silent.)`
@@ -485,7 +485,7 @@ conversation "Den Handoff"
 	label better
 	`	Precious. Delicious. Refreshing. The iron taste of blood is washed down your throat, and your headache slightly lessens. The pain is still there, but as far as you can tell you're not quite as dead as you felt upon waking.`
 	label talking
-	`	The officer settles into the chair across from you. "You brought the money, so I'm inclined to believe you weren't simply here to sell us out. Given your... decisions today, I'm also inclined to believe you may also just be an idiot. More importantly, you brought this bug we found on you. Care to explain yourself? If I like what you say you may remain on this side of the airlock."`
+	`	The officer settles into the chair across from you. "You brought the money, so I'm inclined to believe you weren't simply here to sell us out. Given your... decisions today, I'm also inclined to believe you may also just be an idiot. More importantly, you brought this bug we found on you. Care to explain yourself? If I like what you say, you may remain on this side of the airlock."`
 		goto explanation
 	label cool
 	`	You keep your hands where they are and wait for the officer to speak. "There's a listening device on your left hip. Pocket, perhaps. I want you to slowly withdraw it and place it on the table in front of us. Gabriel, get the coffee out of here." A soldier hastily scoops up the beverage and disappears into the gloom of the hangar.`
@@ -570,8 +570,7 @@ mission "Pirate Intro: Domination Check-in"
 				`	"Kneel before me, peasants!"`
 					goto silence
 				`	"Hello! I'm fairly new to this whole 'conquering the galaxy' thing, but I think that beating that crew of scoundrels like I did makes me the new boss of this place, right?"`
-			`	The colonists exchange looks. They seem far too lost in their own misery to even try dealing with your obnoxiously chipper demeanor, and you're simply given a chorus of shrugs and murmured 'Yah, sure, whynot' responses.`
-			`	"Whatever you say, chief."`
+			`	The colonists exchange looks. They seem far too lost in their own misery to even try dealing with your obnoxiously chipper demeanor, and you're simply given a chorus of shrugs and murmured "Yah, sure, whynot" responses. "Whatever you say, chief," one mutters.`
 				goto tribute
 			label silence
 			`	Painfully thick silence stretches between you and the welcoming party as everybody tries to figure out what to do, or say in response to your arrival. It's finally broken by a loud bleating.`
@@ -636,12 +635,12 @@ mission "Pirate Intro: Darkstone Slavers (Free)"
 			choice
 				`	(Draw!)`
 			`	The slaver boss is fast, but you're faster. You're able to slip your sidearm out of its holster, level it, and cleanly blow him away before he can so much as draw a bead on you - and so it's with the thrill of victory that you die, as you're unceremoniously cut down by massed fire from the gang of slavers surrounding your little duel.`
-			`	The few colonists that are left behind after the slavers have filled their holds honor you with a short burial and a bottle of local moonshine poured out over your cairn in respect for the brave, but fairly ill-conceived attempt to defend them.`
+			`	The few colonists that are left behind after the slavers have filled their holds honor you with a short burial and a bottle of local moonshine poured out over your cairn in respect for the brave, but fairly ill-conceived, attempt to defend them.`
 				die
 			label attack
 			`	You retreat to your ship, unable to help these poor souls...`
 			`	... Or at least, that's what you want the slavers to think. They're caught unaware as you streak back towards the town, weapons hot and firing on clusters of slavers caught out in the open. Unarmored gangsters are no match for starship-grade weaponry, and your first volley reduces a good number of the guards to so much greasy mist. Your second pass initiates a full rout, as the slavers beat a hasty retreat from the village back to the landing pad.`
-			`	Survivors pour through the hatches and into their ships. Engines are warmed, weapons are brought on-line, and soon enough you're roaring out of atmosphere to finish this fight in the skies above.`
+			`	Survivors pour through the hatches and into their ships. Engines are warmed, weapons are brought online, and soon enough you're roaring out of atmosphere to finish this fight in the skies above.`
 				launch
 			label retreat
 			`	You retreat to your ship, unable to help these poor souls.`
@@ -715,7 +714,7 @@ mission "Pirate Intro: Darkstone Slavers (Dominated)"
 				`	(Make your excuses and return to your ship. You'll be back - once your engines and weapons are warmed up.)`
 			label attack
 			`	You hustle back to your ship, slavers jeering at your back. They're not laughing long, however. They're caught unaware as you streak back towards the town, weapons hot and firing on clusters of slavers caught out in the open. Unarmored gangsters are no match for starship-grade weaponry, and your first volley reduces a good number of the guards to so much greasy mist. Your second pass initiates a full rout, as the slavers beat a hasty retreat from the village and back to the landing pad.`
-			`	Survivors pour through the hatches and into their ships. Engines are warmed, weapons are brought on-line, and soon enough you're roaring out of atmosphere to finish this fight in the skies above.`
+			`	Survivors pour through the hatches and into their ships. Engines are warmed, weapons are brought online, and soon enough you're roaring out of atmosphere to finish this fight in the skies above.`
 				launch
 	on complete
 		set "defender of Darkstone"
