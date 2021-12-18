@@ -16,14 +16,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
-#include "CustomSale.h"
 #include "PlayerInfo.h"
 #include "Politics.h"
 #include "Random.h"
 #include "Sale.h"
 #include "Ship.h"
 #include "ShipEvent.h"
-#include "Sold.h"
 #include "SpriteSet.h"
 #include "System.h"
 
@@ -378,23 +376,33 @@ const Sale<Outfit> &Planet::Outfitter() const
 	outfitter.clear();
 	for(const Sale<Outfit> *sale : outfitSales)
 		outfitter.Add(*sale);
-	/*for(const auto &custom : customSales.GetSoldOutfits())
-		if(custom.second.GetSellType() == Sold::SellType::IMPORT || custom.second.GetSellType() == Sold::SellType::VISIBLE)
-			outfitter.emplace(custom);*/
 
 	return outfitter;
 }
 
 
 
-// Get the custom status of this outfit, it's price etc
-const Sold* Planet::GetCustom(const Outfit *outfit) const
+// Get the local price of this outfit.
+double Planet::GetLocalRelativePrice(const Outfit *outfit) const
 {
-	const Sold* sold = customSales.GetSold(outfit);
-	if(sold == nullptr)
-		return customSales.GetDefaultSold();
-	else
-		return sold;
+	customSale.clear();
+	for(const auto& sale : GameData::CustomSales())
+		if(sale.second.HasPlanet(this))
+			customSale.Add(sale.second);
+	return customSale.GetRelativeCost(outfit);
+}
+
+
+
+// Get the availability of this outfit.
+CustomSale::SellType Planet::GetAvailability(const Outfit *outfit) const
+{
+	customSale.clear();
+	CustomSale::SellType selling = Outfitter().Has(outfit) ? CustomSale::SellType::VISIBLE : CustomSale::SellType::NONE;
+	for(const auto& sale : GameData::CustomSales())
+		if(sale.second.HasPlanet(this) && sale.second.Has(outfit) && sale.second.GetSellType() > selling)
+			selling = sale.second.GetSellType();
+	return selling;
 }
 
 

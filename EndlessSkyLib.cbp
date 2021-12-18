@@ -307,8 +307,6 @@
 		<Unit filename="source/StellarObject.h" />
 		<Unit filename="source/System.cpp" />
 		<Unit filename="source/System.h" />
-		<Unit filename="source/Sold.cpp" />
-		<Unit filename="source/Sold.h" />
 		<Unit filename="source/Test.cpp" />
 		<Unit filename="source/Test.h" />
 		<Unit filename="source/TestContext.cpp" />

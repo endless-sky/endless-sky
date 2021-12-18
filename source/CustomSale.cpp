@@ -10,114 +10,187 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#include "DataNode.h"
 #include "CustomSale.h"
+#include "DataNode.h"
+#include "GameData.h"
+#include "Planet.h"
 #include "Set.h"
-#include "Sold.h"
 
 #include <string>
 
-const Sold *CustomSale::defaultSold = new Sold();
+namespace 
+{
+	const std::map<CustomSale::SellType, const std::string> show{{CustomSale::SellType::VISIBLE, ""},
+		{CustomSale::SellType::IMPORT, "import"}, {CustomSale::SellType::HIDDEN, "hidden"}, {CustomSale::SellType::NONE, ""}};
+}
 
 
 
-void CustomSale::Load(const DataNode &node, const Set<Outfit> &items)
+// take care of the "add" even though idk why that keyword exists
+void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, const Set<Outfit> &outfits)
 {
 	for(const DataNode &child : node)
 	{
 		const std::string &token = child.Token(0);
 		bool remove = (token == "clear" || token == "remove");
 		if(remove && child.Size() == 1)
-			soldOutfits.clear();
-		else if(remove && child.Size() >= 2)
-			soldOutfits.erase(items.Get(child.Token(1)));
-		else if(token == "add" && child.Size() >= 2)
-			soldOutfits[items.Get(child.Token(1))].SetBase(child.Size() > 2 ? 
-				child.Value(2) : 0., child.Size() > 3 ? Sold::StringToSellType(child.Token(3)) : Sold::SellType::VISIBLE);
+		{
+			clear();
+		}
+		else if(remove && child.Token(1) == "outfitter" && child.Size() >= 3)
+		{
+			const Sale<Outfit> *item = items.Get(child.Token(2));
+			relativePrices.erase(item);
+			relativeOffsets.erase(item);
+		}
+		else if(remove && child.Token(1) == "outfit" && child.Size() >= 3)
+		{
+			const Outfit *outfit = outfits.Get(child.Token(2));
+			relativeOutfitPrices.erase(outfit);
+			relativeOutfitOffsets.erase(outfit);
+		}
+		else if(token == "outfit" && child.Size() >= 3)
+		{
+			const Outfit *outfit = outfits.Get(child.Token(1));
+			if(child.Token(2) == "value")
+			{
+				relativeOutfitPrices[outfit] = child.Value(3);
+				if(child.Size() < 5)
+					relativeOutfitPrices[outfit] /= outfit->Cost();
+			}
+			else if(child.Token(2) == "offset")
+			{
+				relativeOutfitOffsets[outfit] = child.Value(3);
+				if(child.Size() < 5)
+					relativeOutfitOffsets[outfit] /= outfit->Cost();
+			}
+		}
+		else if(token == "outfitter" && child.Size() >= 2)
+		{
+			const Sale<Outfit> *item = items.Get(child.Token(1));
+			if(child.Token(2) == "value")
+				relativePrices[item] = child.Value(3);
+			else if(child.Token(2) == "offset")
+				relativeOffsets[item] = child.Value(3);
+		}
 		else if(token == "hidden" || token == "import")
-			for(const DataNode &subChild : child)
-				soldOutfits[items.Get(subChild.Token(0))].SetBase(subChild.Size() > 1 ? 
-					subChild.Value(1) : 0., Sold::StringToSellType(token));
+		{
+			for(const auto& it : show)
+				if(token == it.second)
+					shown = it.first;
+		}
+		else if(child.Token(0) == "location")
+			locationFilter.Load(child);
 		else
-			soldOutfits[items.Get(child.Token(0))].SetBase(child.Size() > 1 ? 
-				child.Value(1) : 0., child.Size() > 2 ? Sold::StringToSellType(child.Token(2)) : Sold::SellType::VISIBLE);
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
 
 
 
-// operator[] is used to override existing data instead, priorities are
-// hidden > import > highest price
+// priorities are hidden > import > highest price
 void CustomSale::Add(const CustomSale &other)
 {
-	for(const auto& it : other.GetSoldOutfits())
+	if(other.shown > this->shown)
+		clear();
+	for(const auto& it : other.relativePrices)
 	{
-		const Sold* sold = GetSold(it.first);
-		if(!sold)
-		{
-			// This will not override existing items.
-			soldOutfits.insert(it);
-			continue;
-		}
-
-		if(sold->GetSellType() == it.second.GetSellType())
-			soldOutfits[it.first].SetRelativeCost(std::max(sold->GetRelativeCost(), it.second.GetRelativeCost()));
-		else if(sold->GetSellType() < it.second.GetSellType())
-			soldOutfits[it.first].SetBase(it.second.GetRelativeCost(), Sold::StringToSellType(it.second.GetShown()));
+		const auto& item = relativePrices.find(it.first);
+		if(item == relativePrices.cend())
+			relativePrices[it.first] = it.second;
+		else if(item->second < it.second)
+			item->second = it.second;
+	}
+	for(const auto& it : other.relativeOffsets)
+	{
+		const auto& item = relativeOffsets.find(it.first);
+		if(item == relativeOffsets.cend())
+			relativeOffsets[it.first] = it.second;
+		else if(item->second < it.second)
+			item->second = it.second;
+	}
+	for(const auto& it : other.relativeOutfitPrices)
+	{
+		const auto& item = relativeOutfitPrices.find(it.first);
+		if(item == relativeOutfitPrices.cend())
+			relativeOutfitPrices[it.first] = it.second;
+		else if(item->second < it.second)
+			item->second = it.second;
+	}
+	for(const auto& it : other.relativeOutfitOffsets)
+	{
+		const auto& item = relativeOutfitOffsets.find(it.first);
+		if(item == relativeOutfitOffsets.cend())
+			relativeOutfitOffsets[it.first] = it.second;
+		else if(item->second < it.second)
+			item->second = it.second;
 	}
 }
 
 
 
-const Sold* CustomSale::GetSold(const Outfit *item) const
+double CustomSale::GetRelativeCost(const Outfit *item) const
 {
-	auto sold = soldOutfits.find(item);
-	return (sold != soldOutfits.end()) ? &sold->second : nullptr;
+	const auto& baseRelative = relativeOutfitPrices.find(item);
+	const auto& baseOffset = relativeOutfitOffsets.find(item);
+	double finalPrice = (baseRelative != relativeOutfitPrices.cend() ? baseRelative->second : 1.) +
+						(baseOffset != relativeOutfitOffsets.cend() ? baseOffset->second : 0.);
+	if(finalPrice != 1.)
+		return finalPrice;
+	else
+	{
+		double baseRelative = -1.;
+		for(const auto& it : relativePrices)
+			if(it.first->Has(item))
+			{
+				baseRelative = it.second;
+				break;
+			}
+		double baseOffset = 0.;
+		for(const auto& it : relativeOffsets)
+			if(it.first->Has(item))
+			{
+				baseOffset = it.second;
+				break;
+			}
+		return baseRelative + baseOffset;
+	}
 }
 
 
 
-
-double CustomSale::GetCost(const Outfit *item) const
+CustomSale::SellType CustomSale::GetSellType() const
 {
-	const Sold* sold = GetSold(item);
-	return sold ? sold->GetRelativeCost() : 1.f;
+	return shown;
 }
 
 
 
-
-Sold::SellType CustomSale::GetShown(const Outfit *item) const
+const std::string &CustomSale::GetShown(CustomSale::SellType sellType)
 {
-	const Sold* sold = GetSold(item);
-	return sold ? sold->GetSellType() : Sold::SellType::NONE;
+	return show.find(sellType)->second;
 }
-
 
 
 
 bool CustomSale::Has(const Outfit *item) const
 {
-	return soldOutfits.count(item);
+	return GetRelativeCost(item) != -1.;
 }
 
 
 
-const std::map<const Outfit *, Sold> &CustomSale::GetSoldOutfits() const
+bool CustomSale::HasPlanet(const Planet *planet) const
 {
-	return soldOutfits;
+	return locationFilter.Matches(planet);
 }
 
 
 
 void CustomSale::clear()
 {
-	soldOutfits.clear();
-}
-
-
-
-const Sold* CustomSale::GetDefaultSold()
-{
-	return CustomSale::defaultSold;
+	relativeOffsets.clear();
+	relativePrices.clear();
+	relativeOutfitOffsets.clear();
+	relativeOutfitPrices.clear();
 }

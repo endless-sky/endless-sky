@@ -197,12 +197,10 @@ void MapShipyardPanel::DrawItems()
 				for(const StellarObject &object : selectedSystem->Objects())
 					if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->Shipyard().Has(ship))
 					{
-						double outfitValue = 0;
+						double outfitValue = 0.;
 						for(const auto &it : ship->Outfits())
-						{
-							double cost = object.GetPlanet()->GetCustom(it.first)->GetRelativeCost();
-							outfitValue += (cost ? cost : it.first->Cost()) * it.second;
-						}
+							outfitValue += object.GetPlanet()->GetLocalRelativePrice(it.first) * it.first->Cost() * it.second;
+						
 						price = Format::Credits(ship->ChassisCost() + outfitValue) + " credits";
 						isForSale = true;
 						break;

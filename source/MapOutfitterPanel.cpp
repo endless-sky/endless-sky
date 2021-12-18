@@ -20,7 +20,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Screen.h"
-#include "Sold.h"
 #include "Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -142,15 +141,17 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 	for(const StellarObject &object : system->Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
 		{
-			const Sold* sold = object.GetPlanet()->GetCustom(selected);
-			if(sold)
+			double cost = object.GetPlanet()->GetLocalRelativePrice(selected);
+			CustomSale::SellType sellType = object.GetPlanet()->GetAvailability(selected);
+			const auto &storage = player.PlanetaryStorage();
+			bool storedInSystem = (storage.find(object.GetPlanet()) != storage.cend());
+			
+			if(cost != -1)
 			{
 				const auto &storage = player.PlanetaryStorage();
-				const auto pit = storage.find(object.GetPlanet());
-				bool storedInSystem = (pit != storage.end());
-				float cost = sold->GetRelativeCost();
+				bool storedInSystem = (storage.find(object.GetPlanet()) != storage.cend());
 				
-				if(cost != 1.f && !(sold->GetSellType() == Sold::SellType::HIDDEN && !storedInSystem))
+				if(sellType != CustomSale::SellType::HIDDEN || storedInSystem)
 				{
 					if(cost > MapPanel::maxColor)
 						MapPanel::maxColor = cost;
@@ -159,8 +160,9 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 					return cost;
 				}
 			}
-
-			if(object.GetPlanet()->HasOutfitter())
+			if(sellType != CustomSale::SellType::NONE && (sellType != CustomSale::SellType::HIDDEN || storedInSystem))
+				value = 1.;
+			else if(object.GetPlanet()->HasOutfitter())
 				value = 0.;
 		}
 	return value;
@@ -236,18 +238,18 @@ void MapOutfitterPanel::DrawItems()
 						continue;
 
 					const Planet &planet = *object.GetPlanet();
-					const Sold* sold = planet.GetCustom(outfit);
+					CustomSale::SellType sold = planet.GetAvailability(outfit);
 					const auto pit = storage.find(&planet);
 					if(pit != storage.end())
 						storedInSystem += pit->second.Get(outfit);
 						
-					isForSale = (sold && !(sold->GetSellType() == Sold::SellType::HIDDEN && !storedInSystem));
+					isForSale = (sold != CustomSale::SellType::NONE && (sold != CustomSale::SellType::HIDDEN || storedInSystem));
 
 					if(isForSale)
 					{
-  						price = Format::Credits(sold->GetRelativeCost() * outfit->Cost()) + " credits";
-  						if(sold->GetSellType() != Sold::SellType::VISIBLE)
-							price += " (" + (sold->GetShown()) + ")";
+  						price = Format::Credits(planet.GetLocalRelativePrice(outfit) * outfit->Cost()) + " credits";
+  						if(sold != CustomSale::SellType::VISIBLE)
+							price += " (" + (CustomSale::GetShown(sold)) + ")";
   						break;
 					}
 				}

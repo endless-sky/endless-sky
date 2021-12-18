@@ -192,7 +192,8 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 	requirementsHeight = 20;
 	
 	int day = player.GetDate().DaysSinceEpoch();
-	int64_t cost = (player.GetPlanet() ? player.GetPlanet()->GetCustom(&outfit)->GetRelativeCost() : 1.f) * outfit.Cost();
+	int64_t relativeCost = player.GetPlanet() ? player.GetPlanet()->GetLocalRelativePrice(&outfit) * outfit.Cost() : -1;
+	int64_t cost = relativeCost >= 0 ? relativeCost : outfit.Cost();
 	int64_t buyValue = player.StockDepreciation().Value(&outfit, day, player.GetPlanet());
 	int64_t sellValue = player.FleetDepreciation().Value(&outfit, day, player.GetPlanet());
 	

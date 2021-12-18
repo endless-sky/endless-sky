@@ -107,9 +107,9 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
 bool OutfitterPanel::HasItem(const string &name) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
-	const Sold::SellType selling = player.GetPlanet()->GetCustom(outfit)->GetSellType();
+	const CustomSale::SellType selling = player.GetPlanet()->GetAvailability(outfit);
 	// Do not show hidden items except if the player has them in stock.
-	if(((outfitter.count(outfit) && selling != Sold::SellType::HIDDEN) 
+	if(((outfitter.count(outfit) && selling != CustomSale::SellType::HIDDEN) 
 		|| player.Stock(outfit) > 0) && showForSale)
 		return true;
 	
@@ -183,8 +183,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		stock = max(0, player.Stock(outfit));
 	int cargo = player.Cargo().Get(outfit);
 	int storage = player.Storage() ? player.Storage()->Get(outfit) : 0;
-	const Sold* sold = player.GetPlanet()->GetCustom(outfit);
-	const std::string show = sold ? sold->GetShown() : "";
+	const std::string show = CustomSale::GetShown(player.GetPlanet()->GetAvailability(outfit));
 	
 	string message;
 	if(cargo && storage && stock)
@@ -316,7 +315,7 @@ bool OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 		return false;
 	
 	bool isAlreadyOwned = checkAlreadyOwned && IsAlreadyOwned();
-	if(!(player.GetPlanet()->GetCustom(selectedOutfit)->GetSellType() == Sold::SellType::VISIBLE || player.Stock(selectedOutfit) > 0 || isAlreadyOwned))
+	if(!(player.GetPlanet()->GetAvailability(selectedOutfit) == CustomSale::SellType::VISIBLE || player.Stock(selectedOutfit) > 0 || isAlreadyOwned))
 		return false;
 	
 	int mapSize = selectedOutfit->Get("map");
@@ -489,7 +488,7 @@ void OutfitterPanel::FailBuy() const
 		return;
 	}
 	
-	if(player.GetPlanet()->GetCustom(selectedOutfit)->GetSellType() != Sold::SellType::VISIBLE)
+	if(player.GetPlanet()->GetAvailability(selectedOutfit) != CustomSale::SellType::VISIBLE)
 	{
 		GetUI()->Push(new Dialog("You can only sell this outfit here, "
 			"it is meant to be imported, legally or not, generally for a good price."));

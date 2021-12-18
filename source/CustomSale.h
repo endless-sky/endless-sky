@@ -14,42 +14,55 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define CustomSale_H_
 
 #include "Outfit.h"
+#include "LocationFilter.h"
 #include "Set.h"
-#include "Sold.h"
+#include "Sale.h"
 
 #include <map>
 #include <set>
 
 class DataNode;
+class LocationFilter;
+class Planet;
 
 
 
-// Class used to stock Outfits and their local changes, it has
-// their corresponding custom prices or showing/sellable types in the form of Sold.
+// Class used to stock Outfits and their local changes, being prices and sell types, linked by outfit or by group of outfits.
 class CustomSale {
 public:
-	void Load(const DataNode &node, const Set<Outfit> &items);
+	enum class SellType {
+		NONE = 0,
+		VISIBLE = (1 << 0),
+		IMPORT = (1 << 1),
+		HIDDEN = (1 << 2)
+	};
+
+
+public:
+	void Load(const DataNode &node, const Set<Sale<Outfit>> &items, const Set<Outfit> &outfits);
 	
 	void Add(const CustomSale &other);
 	
-	const Sold* GetSold(const Outfit *item) const;
+	double GetRelativeCost(const Outfit *item) const;
 	
-	double GetCost(const Outfit *item) const;
-	
-	Sold::SellType GetShown(const Outfit *item) const;
+	SellType GetSellType() const;
+
+	static const std::string &GetShown(SellType sellType);
 	
 	bool Has(const Outfit *item) const;
 
-	const std::map<const Outfit *, Sold> &GetSoldOutfits() const;
+	bool HasPlanet(const Planet *planet) const;
 
 	void clear();
-	
-	static const Sold* GetDefaultSold();
 
 	
 private:
-	std::map<const Outfit *, Sold> soldOutfits;
-	static const Sold *defaultSold;
+	LocationFilter locationFilter;
+	std::map<const Sale<Outfit> *, double> relativePrices;
+	std::map<const Sale<Outfit> *, double> relativeOffsets;
+	std::map<const Outfit *, double> relativeOutfitPrices;
+	std::map<const Outfit *, double> relativeOutfitOffsets;
+	SellType shown = SellType::VISIBLE;
 };
 
 #endif
