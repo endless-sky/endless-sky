@@ -3601,9 +3601,9 @@ mission "Mafia Extortion"
 			label payup
 			`	The man takes your credits, responds with a brief "Thank you," and walks away.`
 				accept
-mission "Syndicate Immigrant"
-	name "Thrall Family to Delve"
-	description "Transport a father and his two eldest children to <destination>, where he hopes they can find better employment. They cannot pay you."
+mission "Thrall Emigration"
+	name "Thrall Emigration"
+	description "Transport a family from Thrall to <destination>, where they hope to find better employment. They cannot pay you."
 	minor
 	source
 		planet "Thrall"
@@ -3614,18 +3614,18 @@ mission "Syndicate Immigrant"
 	
 	on offer
 		conversation
-			`	By the edge of the spaceport at night, you see a thin sweaty man turn away from a pilot, disheartened. You make eye contact, and he begins hurrying over to you.`
+			`By the edge of the spaceport at night, you see a thin sweaty man turn away from a pilot, disheartened. You make eye contact, and he begins hurrying over to you.`
 			choice
 				`	(Wait for him.)`
 				`	(Walk away quickly.)`
 					decline
-			`	"Excuse me! Are you a pilot?" Without waiting for a response, he continues, "I need to go to the Syndicate. I work all day picking cotton with these hands, but my family's still starving. We can't afford transport..."`
+			`	"Excuse me! Are you a pilot?" Without waiting for a response, he continues "I need to go to the Syndicate. I work all day picking cotton with these hands, but my family's still starving. We can't afford transport..."`
 			`	You can barely understand him through his accent. The man's teeth look worse than his clothes, and his breath makes you step back. His eyes are human.`
 			choice
 				`	"I might be able to help you. What planet do you need to reach?"`
-				`	"I'm sorry, I only do transport for pay."`
+				`	"I'm sorry, I only transport for pay."`
 					goto disappointment
-			`	His eyes brighten with hope. "Oh! I, I heard some people going to Delve to be miners. They hire folk like us. I, if you could get me, and my wife and our two sons there, I'd praise you to the high moons. You'd save our lives."`
+			`	His eyes brighten with hope. "Oh! I, I heard some people going to Delve to be miners. They hire folk like us. I, if you could get me, and my wife and our two sons there, I'd praise you to the high stars. You'd save our lives."`
 			choice
 				`	"I can take you, but no more."`
 					goto separation
@@ -3643,7 +3643,7 @@ mission "Syndicate Immigrant"
 					goto disappointment
 			label offer
 			`	"Oh, thank you, thank you!" he says, vigorously shaking your hand. "I'll get them fast, we can leave tonight! I'm Gaint, by the way" He quickly disappears, turning back at least three times to tip his hat to you and make sure you haven't left.`
-			`	When Gaint's family arrives, your heart instantly warms. His wife, Mell, is carrying their infant child, and a toddler clutches on her leg. His fingers look like a skeleton, but his eyes look like his dad's. "Thank you so much," Mell says as you load them onto the ship.`
+			`	When Gaint's family arrives, your heart warms. His wife, Mell, is carrying their infant child, and a toddler clutches on her leg. His fingers look like a skeleton, and his eyes look like his dad's. "Thank you so much," Mell says as you load them onto the ship.`
 				accept
 			label disappointment
 			`	You fend off a few more pleas before he understands it's hopeless and begins looking for someone else.`
@@ -3654,5 +3654,5 @@ mission "Syndicate Immigrant"
 	
 	on complete
 		conversation
-			`	As your ship enters Delve's cavernous spaceport, you can sense a mixture of hope and apprehension in Gaint and Mell. "Andrin talks too much. I didn't know it's all underground." you catch Gaint saying, and Mell responds, "We'll figure it out." When they notice you, they both become very thankful once again. They collect their things quickly and leave the ship. You wish them well on their way out.`
+			`	As your ship enters Delve's cavernous spaceport, you can sense a mixture of hope and apprehension in Gaint and Mell. "Andrin talks too much. I didn't know it's all underground," you catch Gaint saying. Mell responds "We'll figure it out." When they notice you, they both become very thankful once again. They collect their things and quickly leave the ship. You wish them well on their way out.`
 		
