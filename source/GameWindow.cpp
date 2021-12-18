@@ -16,7 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ImageBuffer.h"
 #include "Screen.h"
 
-#include "gl_header.h"
+#include "opengl.h"
 #include <SDL2/SDL.h>
 
 #include <cstring>
@@ -208,7 +208,7 @@ bool GameWindow::Init()
 	
 	// Check for support of various graphical features.
 	hasSwizzle = HasOpenGLExtension("_texture_swizzle");
-	supportsAdaptiveVSync = HasOpenGLExtension("_swap_control_tear");
+	supportsAdaptiveVSync = OpenGL::HasAdaptiveVSyncSupport();
 	
 	// Enable the user's preferred VSync state, otherwise update to an available
 	// value (e.g. if an external program is forcing a particular VSync state).
