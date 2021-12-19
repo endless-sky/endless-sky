@@ -1189,7 +1189,7 @@ License: CC-BY-SA-4.0
 
 Files:
  images/star/neutron*
-Copyright: Gefüllte Taubenbrust
+Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
 
 Files: sounds/ionball*
@@ -1203,6 +1203,27 @@ Files:
  images/planet/stationh-ancient2*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-3.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/ship/auxiliary*
+ images/ship/carrier*
+ images/ship/combat?drone*
+ images/ship/cruiser*
+ images/ship/frigate*
+ images/ship/gunboat*
+ images/ship/lance*
+ images/ship/rainmaker*
+ images/thumbnail/auxiliary*
+ images/thumbnail/carrier*
+ images/thumbnail/combat?drone*
+ images/thumbnail/cruiser*
+ images/thumbnail/frigate*
+ images/thumbnail/gunboat*
+ images/thumbnail/lance*
+ images/thumbnail/rainmaker*
+Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
+License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 License: GPL-3+
