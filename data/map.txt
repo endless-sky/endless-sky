@@ -10427,28 +10427,12 @@ system Feraticus
 		period 10
 	object
 		sprite planet/rock0-b
-		distance 264.77
-		period 385.343
+		distance 364.77
+		period 623.122
 	object
 		sprite planet/lava0
-		distance 422.81
-		period 777.611
-	object
-		sprite planet/gas10-b
-		distance 893.22
-		period 2387.71
-		object
-			sprite planet/dust7
-			distance 223
-			period 12.4867
-		object
-			sprite planet/rhea-b
-			distance 325
-			period 21.9693
-	object
-		sprite planet/gas1-b
-		distance 2487.73
-		period 11098.1
+		distance 622.81
+		period 1390.20
 
 system Fereti
 	pos -39 600
@@ -18287,28 +18271,12 @@ system Paeli
 		period 407.890
 	object
 		sprite planet/cloud3
-		distance 746.89
-		period 1825.70
+		distance 546.89
+		period 1143.91
 	object
 		sprite planet/desert6-b
-		distance 1213.03
-		period 3778.78
-		object
-			sprite planet/rock14
-			distance 201
-			period 15
-	object
-		sprite planet/gas2-b
-		distance 2010.84
-		period 8065.12
-		object Eavine
-			sprite planet/ice8-b
-			distance 302.81
-			period 31.9279
-		object
-			sprite planet/oberon-b
-			distance 457.81
-			period 59.353
+		distance 1013.03
+		period 2883.88
 
 system Pantica
 	pos 303.87 445.242
@@ -18751,14 +18719,6 @@ system Perfica
 		sprite planet/cloud6-b
 		distance 962
 		period 2668.74
-	object
-		sprite planet/desert4-b
-		distance 1757.75
-		period 6591.44
-	object
-		sprite planet/gas4
-		distance 2712.71
-		period 12637.1
 
 system Persian
 	pos -203 331
