@@ -4340,7 +4340,7 @@ system Antevorta
 	pos -36.1297 446.242
 	government Uninhabited
 	attributes "ember waste"
-	habitable 2000
+	habitable 625
 	belt 1994
 	haze _menu/haze-red
 	link Cardea
@@ -4375,23 +4375,23 @@ system Antevorta
 	object
 		sprite planet/desert8
 		distance 152.41
-		period 16.8292
+		period 30.1051
 	object
 		sprite planet/io
 		distance 449.3
-		period 85.1823
+		period 152.378
 	object
 		sprite planet/lava7-b
 		distance 622.34
-		period 138.863
+		period 248.405
 	object
 		sprite planet/cloud8
 		distance 1538.34
-		period 539.664
+		period 965.380
 	object
 		sprite planet/gas2-b
 		distance 3887.63
-		period 2168.06
+		period 3878.35
 		object
 			sprite planet/dust3
 			distance 178
@@ -10237,19 +10237,19 @@ system Fasitopfar
 	object
 		sprite planet/lava1
 		distance 863.513
-		period 1014.99
+		period 143.541
 	object
 		sprite planet/lava6
 		distance 1181.27
-		period 1623.99
+		period 229.667
 	object
 		sprite planet/rock4-b
 		distance 1471.99
-		period 2259.00
+		period 319.471
 	object
 		sprite planet/dust0-b
 		distance 1927.7
-		period 3385.47
+		period 478.777
 
 system Fearis
 	pos -16 643
@@ -10428,15 +10428,15 @@ system Feraticus
 	object
 		sprite planet/rock0-b
 		distance 264.77
-		period 544.958
+		period 385.343
 	object
 		sprite planet/lava0
 		distance 422.81
-		period 1099.71
+		period 777.611
 	object
 		sprite planet/gas10-b
 		distance 893.22
-		period 3376.74
+		period 2387.71
 		object
 			sprite planet/dust7
 			distance 223
@@ -10448,7 +10448,7 @@ system Feraticus
 	object
 		sprite planet/gas1-b
 		distance 2487.73
-		period 15695.1
+		period 11098.1
 
 system Fereti
 	pos -39 600
@@ -13691,15 +13691,15 @@ system Kasikfar
 	object
 		sprite planet/rock13-b
 		distance 947.181
-		period 1166.02
+		period 164.901
 	object
 		sprite planet/miranda
 		distance 1115.2
-		period 1489.66
+		period 210.670
 	object
 		sprite planet/callisto
 		distance 1339.26
-		period 1960.45
+		period 277.250
 
 system "Kaus Australis"
 	pos -284 395
@@ -14218,7 +14218,7 @@ system "Kor Ak'Mari"
 	pos 43 42
 	government Korath
 	attributes "korath" "wolf-rayet"
-	habitable 2000
+	habitable 625
 	belt 1606
 	haze _menu/haze-full
 	asteroids "small metal" 13 3.024
@@ -14246,15 +14246,15 @@ system "Kor Ak'Mari"
 	object
 		sprite planet/lava6
 		distance 179.89
-		period 21.5802
+		period 38.6038
 	object
 		sprite planet/lava0-b
 		distance 492.58
-		period 97.7822
+		period 174.918
 	object
 		sprite planet/ocean6-b
 		distance 874.19
-		period 231.181
+		period 413.550
 		object
 			sprite planet/callisto-b
 			distance 166
@@ -14262,11 +14262,11 @@ system "Kor Ak'Mari"
 	object
 		sprite planet/ice0-b
 		distance 1777.8
-		period 670.454
+		period 1199.34
 	object
 		sprite planet/oberon
 		distance 2107.64
-		period 865.445
+		period 1548.15
 
 system "Kor En'lakfar"
 	pos -31 -33
@@ -18084,7 +18084,7 @@ system Orvala
 	pos -334 303
 	government Republic
 	attributes "dirt belt"
-	habitable 535
+	habitable 520
 	belt 1431
 	link "Zeta Aquilae"
 	asteroids "small rock" 27 1.44
@@ -18119,7 +18119,7 @@ system Orvala
 	object
 		sprite planet/cloud4-b
 		distance 410.58
-		period 143.873
+		period 145.933
 		object
 			sprite planet/dust5-b
 			distance 161
@@ -18127,7 +18127,7 @@ system Orvala
 	object
 		sprite planet/rock1
 		distance 995.94
-		period 543.541
+		period 551.325
 		object
 			sprite planet/desert4-b
 			distance 152
@@ -18135,11 +18135,11 @@ system Orvala
 	object
 		sprite planet/rock3
 		distance 1695.94
-		period 1207.81
+		period 1225.10
 	object
 		sprite planet/gas15-b
 		distance 2258.3
-		period 1855.90
+		period 1882.48
 		object
 			sprite planet/dust3
 			distance 202
@@ -18284,15 +18284,15 @@ system Paeli
 	object
 		sprite planet/desert4-b
 		distance 275
-		period 576.844
+		period 407.890
 	object
 		sprite planet/cloud3
 		distance 746.89
-		period 2581.93
+		period 1825.70
 	object
 		sprite planet/desert6-b
 		distance 1213.03
-		period 5334.01
+		period 3778.78
 		object
 			sprite planet/rock14
 			distance 201
@@ -18300,7 +18300,7 @@ system Paeli
 	object
 		sprite planet/gas2-b
 		distance 2010.84
-		period 12267.1
+		period 8065.12
 		object Eavine
 			sprite planet/ice8-b
 			distance 302.81
@@ -18696,15 +18696,15 @@ system Peresedersi
 	object
 		sprite planet/lava5
 		distance 1567.08
-		period 2481.39
+		period 350.922
 	object
 		sprite planet/lava1
 		distance 1761.08
-		period 2956.16
+		period 418.064
 	object
 		sprite planet/lava7
 		distance 2248.08
-		period 4263.61
+		period 602.965
 
 system Perfica
 	pos 185.87 419.242
@@ -18742,23 +18742,23 @@ system Perfica
 	object
 		sprite planet/ice5
 		distance 351
-		period 831.803
+		period 588.173
 	object
 		sprite planet/dust6-b
 		distance 652
-		period 2105.86
+		period 1489.07
 	object
 		sprite planet/cloud6-b
 		distance 962
-		period 3774.18
+		period 2668.74
 	object
 		sprite planet/desert4-b
 		distance 1757.75
-		period 9321.71
+		period 6591.44
 	object
 		sprite planet/gas4
 		distance 2712.71
-		period 17871.7
+		period 12637.1
 
 system Persian
 	pos -203 331
@@ -18863,11 +18863,11 @@ system Persitar
 	object
 		sprite planet/lava1-b
 		distance 480.258
-		period 420.990
+		period 59.5369
 	object
 		sprite planet/lava5
 		distance 825.017
-		period 947.882
+		period 134.050
 
 system Phact
 	pos -375 -191
@@ -19646,7 +19646,7 @@ system Prosa
 	pos 303 194
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
-	habitable 49130
+	habitable 40960
 	belt 1500
 	haze _menu/haze-red
 	link Vaticanus
@@ -19665,19 +19665,19 @@ system Prosa
 	object
 		sprite planet/cloud1
 		distance 443.879
-		period 16.8765
+		period 18.4831
 	object
 		sprite planet/desert9
 		distance 881.879
-		period 47.2606
+		period 51.7599
 	object
 		sprite planet/rock6
 		distance 1073.88
-		period 63.5068
+		period 69.5526
 	object
 		sprite planet/gas17
 		distance 1443.88
-		period 99.0109
+		period 108.436
 		object
 			sprite planet/callisto
 			distance 227
@@ -21326,7 +21326,7 @@ system Saquergen
 	object
 		sprite planet/lava2
 		distance 938.342
-		period 1149.74
+		period 162.598
 
 system Sargas
 	pos -542 445
@@ -25414,11 +25414,11 @@ system Wezen
 	object
 		sprite planet/miranda-b
 		distance 255.401
-		period 31.3623
+		period 32.2681
 	object
 		sprite planet/gas5-b
 		distance 664.041
-		period 131.482
+		period 135.279
 		object "Phoenix Station"
 			sprite planet/station1
 			distance 257
@@ -25426,11 +25426,11 @@ system Wezen
 	object
 		sprite planet/water0-b
 		distance 1273.29
-		period 349.113
+		period 359.195
 	object Alfheim
 		sprite planet/forest0
 		distance 1768.53
-		period 571.470
+		period 587.974
 		object
 			sprite planet/ice0-b
 			distance 181
@@ -25438,7 +25438,7 @@ system Wezen
 	object
 		sprite planet/gas9-b
 		distance 3579.78
-		period 1645.73
+		period 1693.26
 		object
 			sprite planet/rock0
 			distance 220
