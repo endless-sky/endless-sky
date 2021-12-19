@@ -20,8 +20,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 namespace 
 {
-	const std::map<CustomSale::SellType, const std::string> show{{CustomSale::SellType::VISIBLE, ""},
-		{CustomSale::SellType::IMPORT, "import"}, {CustomSale::SellType::HIDDEN, "hidden"}, {CustomSale::SellType::NONE, ""}};
+	const std::map<CustomSale::SellType, const std::string> show{{CustomSale::SellType::NONE, ""}, {CustomSale::SellType::VISIBLE, ""},
+		{CustomSale::SellType::IMPORT, "import"}, {CustomSale::SellType::HIDDEN, "hidden"}};
 }
 
 
@@ -34,9 +34,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 		const std::string &token = child.Token(0);
 		bool remove = (token == "clear" || token == "remove");
 		if(remove && child.Size() == 1)
-		{
 			clear();
-		}
 		else if(remove && child.Token(1) == "outfitter" && child.Size() >= 3)
 		{
 			const Sale<Outfit> *item = items.Get(child.Token(2));
@@ -65,7 +63,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 					relativeOutfitOffsets[outfit] /= outfit->Cost();
 			}
 		}
-		else if(token == "outfitter" && child.Size() >= 2)
+		else if(token == "outfitter" && child.Size() >= 4)
 		{
 			const Sale<Outfit> *item = items.Get(child.Token(1));
 			if(child.Token(2) == "value")
@@ -77,7 +75,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 		{
 			for(const auto& it : show)
 				if(token == it.second)
-					shown = it.first;
+					sellType = it.first;
 		}
 		else if(child.Token(0) == "location")
 			locationFilter.Load(child);
@@ -88,11 +86,14 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 
 
 
-// priorities are hidden > import > highest price
-void CustomSale::Add(const CustomSale &other)
+// Can only add between CustomSales of same sellType.
+bool CustomSale::Add(const CustomSale &other)
 {
-	if(other.shown > this->shown)
-		clear();
+	// sellType::NONE means a new CustomSale created with no data and default sellType
+	if(this->sellType == SellType::NONE)
+		this->sellType = other.sellType;
+	else if(other.sellType != this->sellType)
+		return false;
 	for(const auto& it : other.relativePrices)
 	{
 		const auto& item = relativePrices.find(it.first);
@@ -125,6 +126,7 @@ void CustomSale::Add(const CustomSale &other)
 		else if(item->second < it.second)
 			item->second = it.second;
 	}
+	return true;
 }
 
 
@@ -132,36 +134,29 @@ void CustomSale::Add(const CustomSale &other)
 double CustomSale::GetRelativeCost(const Outfit *item) const
 {
 	const auto& baseRelative = relativeOutfitPrices.find(item);
+	double baseRelativePrice = (baseRelative != relativeOutfitPrices.cend() ? baseRelative->second : -1.);
+	for(const auto& it : relativePrices)
+		if(it.first->Has(item) && it.second > baseRelativePrice)
+		{
+			baseRelativePrice = it.second;
+			break;
+		}
 	const auto& baseOffset = relativeOutfitOffsets.find(item);
-	double finalPrice = (baseRelative != relativeOutfitPrices.cend() ? baseRelative->second : 1.) +
-						(baseOffset != relativeOutfitOffsets.cend() ? baseOffset->second : 0.);
-	if(finalPrice != 1.)
-		return finalPrice;
-	else
-	{
-		double baseRelative = -1.;
-		for(const auto& it : relativePrices)
-			if(it.first->Has(item))
-			{
-				baseRelative = it.second;
-				break;
-			}
-		double baseOffset = 0.;
-		for(const auto& it : relativeOffsets)
-			if(it.first->Has(item))
-			{
-				baseOffset = it.second;
-				break;
-			}
-		return baseRelative + baseOffset;
-	}
+	double baseOffsetPrice = (baseOffset != relativeOutfitOffsets.cend() ? baseOffset->second : 0.);
+	for(const auto& it : relativeOffsets)
+		if(it.first->Has(item) && it.second > baseOffsetPrice)
+		{
+			baseOffsetPrice = it.second;
+			break;
+		}
+	return baseRelativePrice + baseOffsetPrice;
 }
 
 
 
 CustomSale::SellType CustomSale::GetSellType() const
 {
-	return shown;
+	return sellType;
 }
 
 
@@ -189,6 +184,7 @@ bool CustomSale::HasPlanet(const Planet *planet) const
 
 void CustomSale::clear()
 {
+	sellType = SellType::NONE;
 	relativeOffsets.clear();
 	relativePrices.clear();
 	relativeOutfitOffsets.clear();

@@ -1097,8 +1097,6 @@ void GameData::LoadFile(const string &path, bool debugMode)
 				node.Value(2), node.Value(3), node.Value(4), node.Value(5));
 		else if(key == "conversation" && node.Size() >= 2)
 			conversations.Get(node.Token(1))->Load(node);
-		else if(key == "sale" && node.Size() >= 2)
-			customSales.Get(node.Token(1))->Load(node, outfitSales, outfits);
 		else if(key == "effect" && node.Size() >= 2)
 			effects.Get(node.Token(1))->Load(node);
 		else if(key == "event" && node.Size() >= 2)
@@ -1127,6 +1125,8 @@ void GameData::LoadFile(const string &path, bool debugMode)
 			phrases.Get(node.Token(1))->Load(node);
 		else if(key == "planet" && node.Size() >= 2)
 			planets.Get(node.Token(1))->Load(node);
+		else if(key == "pricing" && node.Size() >= 2)
+			customSales.Get(node.Token(1))->Load(node, outfitSales, outfits);
 		else if(key == "ship" && node.Size() >= 2)
 		{
 			// Allow multiple named variants of the same ship model.

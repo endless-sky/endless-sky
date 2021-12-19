@@ -13,8 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef CustomSale_H_
 #define CustomSale_H_
 
-#include "Outfit.h"
 #include "LocationFilter.h"
+#include "Outfit.h"
 #include "Set.h"
 #include "Sale.h"
 
@@ -41,7 +41,7 @@ public:
 public:
 	void Load(const DataNode &node, const Set<Sale<Outfit>> &items, const Set<Outfit> &outfits);
 	
-	void Add(const CustomSale &other);
+	bool Add(const CustomSale &other);
 	
 	double GetRelativeCost(const Outfit *item) const;
 	
@@ -62,7 +62,7 @@ private:
 	std::map<const Sale<Outfit> *, double> relativeOffsets;
 	std::map<const Outfit *, double> relativeOutfitPrices;
 	std::map<const Outfit *, double> relativeOutfitOffsets;
-	SellType shown = SellType::VISIBLE;
+	SellType sellType = SellType::NONE;
 };
 
 #endif

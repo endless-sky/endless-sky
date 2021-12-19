@@ -386,8 +386,9 @@ const Sale<Outfit> &Planet::Outfitter() const
 double Planet::GetLocalRelativePrice(const Outfit *outfit) const
 {
 	customSale.clear();
+	CustomSale::SellType sellType = GetAvailability(outfit);
 	for(const auto& sale : GameData::CustomSales())
-		if(sale.second.HasPlanet(this))
+		if(sale.second.HasPlanet(this) && sale.second.GetSellType() == sellType)
 			customSale.Add(sale.second);
 	return customSale.GetRelativeCost(outfit);
 }
@@ -398,11 +399,11 @@ double Planet::GetLocalRelativePrice(const Outfit *outfit) const
 CustomSale::SellType Planet::GetAvailability(const Outfit *outfit) const
 {
 	customSale.clear();
-	CustomSale::SellType selling = Outfitter().Has(outfit) ? CustomSale::SellType::VISIBLE : CustomSale::SellType::NONE;
+	CustomSale::SellType sellType = Outfitter().Has(outfit) ? CustomSale::SellType::VISIBLE : CustomSale::SellType::NONE;
 	for(const auto& sale : GameData::CustomSales())
-		if(sale.second.HasPlanet(this) && sale.second.Has(outfit) && sale.second.GetSellType() > selling)
-			selling = sale.second.GetSellType();
-	return selling;
+		if(sale.second.HasPlanet(this) && sale.second.Has(outfit) && sale.second.GetSellType() > sellType)
+			sellType = sale.second.GetSellType();
+	return sellType;
 }
 
 
