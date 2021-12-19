@@ -18,7 +18,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DistanceMap.h"
 #include "GameData.h"
 #include "Government.h"
-#include "CustomSale.h"
 #include "Planet.h"
 #include "Random.h"
 #include "Ship.h"

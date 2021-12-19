@@ -82,6 +82,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	sellType = SellType::VISIBLE;
 }
 
 
@@ -134,22 +135,24 @@ bool CustomSale::Add(const CustomSale &other)
 double CustomSale::GetRelativeCost(const Outfit *item) const
 {
 	const auto& baseRelative = relativeOutfitPrices.find(item);
-	double baseRelativePrice = (baseRelative != relativeOutfitPrices.cend() ? baseRelative->second : -1.);
-	for(const auto& it : relativePrices)
-		if(it.first->Has(item) && it.second > baseRelativePrice)
-		{
-			baseRelativePrice = it.second;
-			break;
-		}
+	double baseRelativePrice = (baseRelative != relativeOutfitPrices.cend() ? baseRelative->second : -.5);
+	if(baseRelativePrice < 0.)
+		for(const auto& it : relativePrices)
+			if(it.first->Has(item) && it.second > baseRelativePrice)
+			{
+				baseRelativePrice = it.second;
+				break;
+			}
 	const auto& baseOffset = relativeOutfitOffsets.find(item);
-	double baseOffsetPrice = (baseOffset != relativeOutfitOffsets.cend() ? baseOffset->second : 0.);
-	for(const auto& it : relativeOffsets)
-		if(it.first->Has(item) && it.second > baseOffsetPrice)
-		{
-			baseOffsetPrice = it.second;
-			break;
-		}
-	return baseRelativePrice + baseOffsetPrice;
+	double baseOffsetPrice = (baseOffset != relativeOutfitOffsets.cend() ? baseOffset->second : -.5);
+	if(baseOffsetPrice < 0.)
+		for(const auto& it : relativeOffsets)
+			if(it.first->Has(item) && it.second > baseOffsetPrice)
+			{
+				baseOffsetPrice = it.second;
+				break;
+			}
+	return (baseRelativePrice >= 0. ? baseRelativePrice : 0.) + (baseOffsetPrice >= 0. ? baseOffsetPrice : 0.);
 }
 
 
