@@ -152,7 +152,12 @@ double CustomSale::GetRelativeCost(const Outfit *item) const
 				baseOffsetPrice = it.second;
 				break;
 			}
-	return (baseRelativePrice >= 0. ? baseRelativePrice : 0.) + (baseOffsetPrice >= 0. ? baseOffsetPrice : 0.);
+	if(baseRelativePrice >= 0.)
+		return baseRelativePrice + (baseOffsetPrice >= 0. ? baseOffsetPrice : 0.);
+	else if(baseOffsetPrice >= 0.)
+		return 1. + baseOffsetPrice;
+	else
+		return -1.;
 }
 
 
