@@ -841,7 +841,6 @@ ship "Shield Beetle Prototype"
 		"Hai Diamond Regenerator" 2
 		"Hai Zephyr Cooling" 5
 		"Outfits Expansion" 5
-		"Ionic Rifle" 10
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"

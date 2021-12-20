@@ -104,7 +104,8 @@ effect "ion impact"
 	"random velocity" 2
 	"velocity scale" -.05
 
-thumbnail "outfit/hai ionic blaster"
+outfit "Ionic Blaster"
+	thumbnail "outfit/hai ionic blaster"
 	"mass" 21
 	"outfit space" -21
 	"weapon capacity" -21
