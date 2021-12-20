@@ -128,7 +128,7 @@ outfit "Ionic Blaster"
 		"shield damage" 125
 		"hull damage" 32
 		"ion damage" 1.6
-	description "Since the Unfettered started their perennial war against the rest of the Hai, they tried to determinate which weapon they should produce the most. They preferred to focus on the Ion Cannon, but the largest downside was its huge size; because of that, it was impossible to mount many of them on a Shield Beetle. After dozens of years of research, a team finally developed a less bulky version, small enough to be installed in large numbers and more focused on normal damage to be also effective once the target's power sources became ineffective."
+	description "Since the start of the war with the rest of the Hai the Unfettered tried to gain a technological edge, knowing resources were spare, in order to plunder more easily. To that goal, they started developping this weapon which not only does a lot of ion damage to disable the target but also does enough raw damage to be usefull in all situations. The only problem is that until now they have lacked the resources to mass produce them, so it is only a prized possession of a lucky few."
 
 outfit "Ionic Turret"
 	category "Turrets"
