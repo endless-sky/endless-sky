@@ -734,7 +734,7 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		"Hyperdrive"
 
 ship "Shield Beetle Prototype"
-	sprite "ship/hai modified shield beetle"
+	sprite "ship/hai shield beetle prototype"
 	thumbnail "thumbnail/hai shield beetle"
 	attributes
 		category "Heavy Warship"

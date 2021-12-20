@@ -991,6 +991,16 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 		conversation
 			`You go and explore the Alpha base to see if there are any more jump drives, or anyone who would have witnessed the fight but do not find anything. Then you come back to the Auxiliary to see the Koraths.`
 			`	They seem to be prisonners, and you find what appears to be a primitive translator with them. They do not look in a state to talk about anything though, so you should probably go to Darkcloak and talk to the elders about this, hopefully the Koraths will have recovered by then.`
+			choice
+				`	(Explore the Auxiliary further.)`
+				`	(Leave the planet.)`
+					decline
+			`	As you explore the Auxiliary further, you find out more about their flight patterns, it seems like the Alphas had big plans for these prisonners, but they are so well encrypted there is no hope in finding out anytime soon. You find their captain's log. It seems like they had been waiting here for quite some time, probably for you to come.`
+			choice
+				`	(Look for reports of the leak.)`
+				`	(Leave.)`
+					decline
+			`	You find out the leak was intentionaly provoked to lure you here and be done with you. Thankfully you have gotten the upper hand in the fight. There are also multiple flight logs, it seems they had been using this Auxiliary as a mobile base, carying the Jump Drives wherever they went. So, you did indeed find the Alpha base! These logs probably contain indications of where they have gotten the Jump Drives from, but analysing all of them would take more time. You do notice they seemed to spend quite some time near the Korath Exiles territory. It is now time to leave the planet and go see the elders.`
 				decline
 
 
@@ -1083,7 +1093,7 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 		outfit "Silver" -15
 
 
-
+#missions that trigger on some of these planets
 mission "Unfettered: The Word Has Spread"
 	name `Gather the true Hai`
 	description `Now that the Hai know of the Unfettered plan, a lot of them are eager to join them whilst most cower in fear.`
@@ -1181,6 +1191,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 	name `Gather intel on Hai Shipyards`
 	description `Go to <stopovers> and try to discretely learn how their ships are produced.`
 	cargo "Food" 34
+	infiltrating
 	source "Darkcloak"
 	stopover "Hai-home"
 	clearance `After explaining you are here to take a tribute, you receive clearance to land.`
@@ -1488,7 +1499,7 @@ mission "Unfettered: Close Quarter"
 					goto ready
 				`	(Go to the cover on the right.)`
 			`	You try to head for the cover but he is too fast, and you receive a shot on your leg, making you fall. It hurts a lot but nothing seems to be broken. You opponant comes to you and helps you to get up. "Pain is a good teacher, sometimes," he says. Then he goes back to fight with his friends, seemingly in teams.`
-			goto heyi
+				goto heyi
 			label ready
 			`	You try to shoot him but he is too fast and you too unexperienced. By moving still you made an easy target for him though, you fall as you receive a shot to your shoulder. It hurts a lot but nothing seems to be broken. You opponant comes to you and helps you to get up. "Pain is a good teacher, sometimes," he says. Then he goes back to fight with his friends, seemingly in teams.`
 			label heyi
@@ -1508,7 +1519,10 @@ mission "Unfettered: Close Quarter"
 			`	"Experience? Fun? There is always something to be gained when there is not the risk of losing your life."`
 				goto speak
 			label challenge
-			`	You try to get a challenge with him, but you are not experienced enough for them to allow it. You did attract his attention however.`
+			`	You try to get a challenge with him, but you are not experienced enough for them to allow it. You did attract his attention however and he comes to speak to you.`
+				goto speak
+			label nope
+			`	You look at them battling for so long you do not see the time pass, then you realize you are being watched. It is He Yi, he looks satisfied of your interest in this fight. "You should try it someday," he says.`
 			label speak
 			`	"As you have noticed, we do this training quite often. Because our rifles are not deadly on the first shots, we almost never get anyone killed. But it still happens too often, especially with some of the older ones... Do you happen to know any weapons that would not have such weakness?"`
 			choice
@@ -1518,6 +1532,7 @@ mission "Unfettered: Close Quarter"
 			`	"I have heard stories of weapons that could not ever kill anyone, no matter how much you shoot him."`
 			label idea
 			`	"If you ever do see any weapon that is less risky that our, please bring it to me, I would be interested to use them in fights."`
+			choice
 				`	"I will see what I can do."`
 					accept
 				`	"I have no interested in bringing you weapons, even non deadly ones."`
@@ -1529,15 +1544,32 @@ mission "Unfettered: Close Quarter"
 			has "Bring Pug Staffs: done"
 			has "Bring Coalition Weapons: done"
 			has "Bring Void Rifle: done"
+	on complete
+		conversation
+			`You go see He Yi with the non lethal rifles to see if he has anything else to ask you. He seems very happy you managed to find them, and says, "Great job! It will be decisive in the coming war."`
+			choice
+				`	"How can a few better trained troops make a difference?"`
+				`	"Glad I could make a difference then."`
+					goto getrd
+			`	"Well... To be completely honnest with you these rifles are not only intended for training purposes but I cannot tell you anymore for now."`
+			label getrd
+			`	"We will soon want your help with the upcoming invasion, get ready for it! Having a strong flagship is always an important asset but it is not all."`
+			choice
+				`	"The Bastilodon will not be enough I take it?"`
+				`	"Okay in that case I will get ready."`
+					goto train
+			`	"The Bastilodon is very strong, but it is only a prototype, it has a few weaknesses."`
+			label train
+			`	"Remember, having a strong fleet and flagship does not matter much if you do not know how to use it properly! If you want to learn how to do that there are a lot of Unfettered captains looking forward to challenging you."`
 
 mission "Bring Pug Staffs"
 	invisible
 	landing
 	source "Warfeed"
 	to offer
-		require "Pug Peacekeeping Staff" 10
 		has "Unfettered: Close Quarter: offered"
 	on offer
+		require "Pug Peacekeeping Staff" 10
 		dialog `Do you want to sell 10 Pug Peacekeeping Staff to the Unfettered? He Yi says they can give you <payment> for it.`
 	on accept
 		payment 2500000
@@ -1549,26 +1581,22 @@ mission "Bring Coalition Weapons"
 	landing
 	source "Warfeed"
 	to offer
-		require "Enforcer Riot Staff" 10
 		has "Unfettered: Close Quarter: offered"
 	on offer
+		require "Enforcer Riot Staff" 10
 		dialog `Do you want to sell 10 Enforcer Riot Staffs to the Unfettered? He Yi says they can give you <payment> for it.`
 	on accept
 		payment 2000000
 		outfit "Enforcer Riot Staff" -10
 		dialog `The Unfettered thank you for bringing these 10 Coalition riot staffs to them, they will be usefull in training. They give you <payment>.`
 
-mission "Bring Coalition Weapons"
+mission "Bring Void Rifle"
 	invisible
 	source "Warfeed"
 	to offer
-		require "Void Rifle"
 		has "Unfettered: Close Quarter: offered"
 	on offer
-		dialog `Do you want to sell the Void Rifle to the Unfettered? He Yi says they can give you <payment> for it.`
-	on accept
-		payment 10000000
-		outfit "Void Rifle" -1
+		require "Void Rifle" 1
 		conversation
 			`He Yi seems very, very interested in this weapon. "Where did you find it? Can you bring us more? We would gladly make you rich if you do, this is the perfect weapon for training."`
 			choice
@@ -1577,11 +1605,12 @@ mission "Bring Coalition Weapons"
 			choice
 				`	"<payment> is much more precious thank you."`
 				`	"Yes I have changed my mind, cancel the exchange."`
-					action
-						payment -10000000
-						outfit "Void Rifle" 1
 					decline
 			`	"This will be my personal weapon, I will take care of it worry not!"`
+				accept
+	on accept
+		payment 10000000
+		outfit "Void Rifle" -1
 
 
 
@@ -1593,13 +1622,14 @@ mission "Unfettered: Start Of The War"
 		has "event: shield beetle mass production"
 		has "event: new cooling system"
 		has "Unfettered: The Word Has Spread: done"
+		has "main plot completed"
 		never
 	on offer
 		conversation
-			``
+			``#start of wanderer war : young captain just became warlord and wants to see if you are rd for a fight, doesn't want you to get killed fighting the Wanderers, need to wait for intro to be merged. When you beat him he gives you his old ship (sea scorpion). 	has "Unfettered: The Word Has Spread"
 
 
-# use the non lethal guns to capture the wanderer emmisary
 
+# use the non lethal guns to capture the wanderer emmissary
 
-#start of wanderer war : young captain just became warlord and wants to see if you are rd for a fight, doesn't want you to get killed fighting the Wanderers, need to wait for intro to be merged. When you beat him he gives you his old ship (sea scorpion). 	has "Unfettered: The Word Has Spread"
+# add new mission to plunder smth (good opportunity found by intro captain) prob not Hai or you would have to kill all of them and they aint really likely to be isolated so human cargo of importance
