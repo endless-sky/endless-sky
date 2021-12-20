@@ -6076,7 +6076,7 @@ system Caeculus
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/wr
+		sprite star/wr1
 		period 10
 	object
 		sprite planet/dust6-b
@@ -11699,7 +11699,7 @@ system Gorvi
 	fleet "Large Republic" 4000
 	fleet "Small Northern Merchants" 8000
 	object
-		sprite star/wr
+		sprite star/wr0
 		period 10
 	object
 		sprite planet/lava0
@@ -12838,7 +12838,7 @@ system Ildaria
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2000
 	object
-		sprite star/wr
+		sprite star/wr0
 		period 10
 	object
 		sprite planet/ice4-b
@@ -23093,7 +23093,7 @@ system Sospi
 	fleet "Large Republic" 9000
 	fleet "Human Miners" 5000
 	object
-		sprite star/wr
+		sprite star/wr0
 		period 10
 	object
 		sprite planet/lava2-b
