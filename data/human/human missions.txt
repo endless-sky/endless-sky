@@ -3632,7 +3632,7 @@ mission "Street Swindle"
 				goto continue
 			label continue
 			`	"Are you certain in your choice?" the magician asks. "Once you..."`
-			`	"Yes, I'm certain," the man repeats. He draws 7000 credits and tosses them on the table. The magician lifts the cup, and a small red ball rolls from beneath. "And the first challenger proves to be a player!" the announcer says, mustering enthusiasm as the magician counts 14,000 credits to pay the man. "Let us find a new challenger! The next buy in is a mere 400 credits; if you haven't played before, now's the time to test your skill!"`
+			`	"Yes, I'm certain," the man repeats. He draws 7000 credits and tosses them on the table. The magician lifts the cup, and a small red ball rolls from beneath. "And the first challenger proves to be a player!" the announcer says, mustering enthusiasm as the magician counts 14,000 credits to pay the man. "Let us find a new challenger! The next buy-in is a mere 400 credits; if you haven't played before, now's the time to test your skill!"`
 			choice
 				`	"I'd like to give it a try." (Bet 400 credits).`
 					goto firstgameplay
@@ -3642,7 +3642,7 @@ mission "Street Swindle"
 					decline
 			label firstgamewatch
 			`	A short woman volunteers. The game progresses in a similar manner; by the end, you are certain the ball is underneath the center cup. Sure enough, the woman chooses that cup, and she walks away 400 credits richer.`
-			`	"The next buy in is a larger prize!" the announcer calls after her before turing to address the crowd. "Six thousand credits, only for the proudest of players." The magician shakes her head softly, frowning at the cups.` 
+			`	"The next buy-in is a larger prize!" the announcer calls after her before turing to address the crowd. "Six thousand credits, only for the proudest of players." The magician shakes her head softly, frowning at the cups.` 
 			choice
 				`	"I'll do it!" (Bet 6000 credits).`
 					goto secondgameplay
