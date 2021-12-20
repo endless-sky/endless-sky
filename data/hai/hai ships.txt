@@ -410,6 +410,77 @@ ship "Lightning Bug" "Lightning Bug (Surveillance)"
 		"Hyperdrive"
 
 
+ship "Sea Scorpion"
+	sprite "ship/hai sea scorpion"
+	thumbnail "thumbnail/hai sea scorpion"
+	attributes
+		category "Medium Warship"
+		"cost" 2950000
+		"shields" 10700
+		"hull" 4100
+		"required crew" 15
+		"bunks" 31
+		"mass" 340
+		"drag" 4.7
+		"heat dissipation" .8
+		"fuel capacity" 500
+		"cargo space" 31
+		"outfit space" 523
+		"weapon capacity" 158
+		"engine capacity" 104
+		weapon
+			"blast radius" 84
+			"shield damage" 840
+			"hull damage" 420
+			"hit force" 1260
+	outfits
+		"Hai Tracker Pod" 5
+		"Chameleon Anti-Missile" 2
+		"Tracker Storage Pod" 5
+		"Hai Tracker" 420
+		"Hai Williwaw Cooling" 2
+		"Boulder Reactor"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator"
+		`"Bondir" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Hyperdrive"
+		"Pulse Rifle" 15
+
+	turret -17.5 -14.5
+	turret 17.5 -14.5
+	gun -23 -48.5
+	gun 23 -48.5
+	gun -13 -60.5
+	gun 13 -60.5
+	gun 0 -71
+	engine -34.5 60.5 0.6
+	engine 34.5 60.5 0.6
+	engine -15 70 0.8
+	engine 15 70 0.8
+	leak "leak" 40 50
+	leak "flame" 40 30
+	explode "tiny explosion" 24
+	explode "small explosion" 50
+	explode "medium explosion" 30
+	explode "large explosion" 14
+	"final explode" "final explosion medium"
+	description "Most of the ships the Unfettered had when they splintered from the rest of the Hai weren't usable as missile boats, so they had to rely heavily on pulse weapons instead. Only after several decades of hard work on a unique design were they able to take the Sea Scorpion into mass production, but it was well worth it; its low price and high number of gun ports make it perfect for its role, even at the cost of its weak hull and shielding."
+
+ship "Sea Scorpion" "Sea Scorpion (Pulse)"
+	outfits
+		"Pulse Cannon" 5
+		"Pulse Turret" 2
+		"Boulder Reactor"
+		"Hai Williwaw Cooling" 2
+		"Hai Ravine Batteries"
+		"Supercapacitor" 5
+		"Hai Diamond Regenerator" 2
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Hyperdrive"
+		"Pulse Rifle" 15
+
 
 ship "Pond Strider"
 	sprite "ship/hai pond strider"
