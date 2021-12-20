@@ -385,14 +385,14 @@ mission "Unfettered: Neutral with the Hai"
 	description `The Unfettered have asked you to go negociate with the Hai to stop your conflict with them. Go to <destination>.`
 	source
 		attributes "unfettered"
-	destination "Hai-home"
-	clearance `You speak with the local authorities and they accept to give you a meeting.` "Ya Hai"
+	destination "Mirrorlake"
+	clearance `You speak with the local authorities and they accept to give you a meeting.`
 	to offer
 		has "reputation: Hai" < 0
 		has "Unfettered Jump Drive 3: offered"
 	on offer
 		conversation
-			`On your promenade you quickly find an Unfettered elder, or, to be more precise, he finds you, and speaks to you like a father would to a bad child, "What have you done to anger our brethren? Nevermind, it matters not, what matters is that you settle this petty dispute right now, or future cooperation between us will be difficult."`
+			`On your promenade you quickly find an Unfettered elder, or, to be more precise, he finds you, and speaks to you like a father would to a bad child, "What have you done to anger our brethren?" You were about to answer but he interrupts you, "Nevermind, it matters not, what matters is that you settle this petty dispute you have with the Hai government right now, or future cooperation between us will be more difficult."`
 			choice
 				`	(Accept.)`
 					goto agree
@@ -406,7 +406,8 @@ mission "Unfettered: Neutral with the Hai"
 					decline
 			`He is thinking, "Mhhhh, I guess I can forgive you for your insolence, now go and make yourself forgiven."`
 			label agree
-			`	"Go to their homeworld and make your demand, the Hai government despises conflict, so they will probably grand it."`
+			`	"Go to their home system and make your request, the Hai government despises conflict, so they will probably grand it. They will probably not let you land on their homeworld giving the circumstances though so you should go to Mirrorlake instead."`
+				accept
 	on complete
 		conversation
 			`You go find Hai leaders and express your request for peace with them. They consider it seriously and ask you, "Tell us, <last>, captain of the <ship>, why should we grand you such a request?"`
@@ -415,7 +416,7 @@ mission "Unfettered: Neutral with the Hai"
 					goto death
 				`	"I know I have done stupid things in the past, but I promise not to do so again."`
 				`	"I can bring food to the Unfettered for you, so they do not starve to death."`
-			`They seem willing to give you a second chance.	"You have convinced us, but we will not grant you this pardon twice."`
+			`They seem willing to give you a second chance. "You have convinced us, but we will not grant you this pardon twice."`
 				goto end
 			label death
 			`The leaders gasp and then for a moment that seems to last forever, there is silence, everyone looking at you. Then one of the gards kills you.`
