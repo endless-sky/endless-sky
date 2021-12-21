@@ -48,6 +48,26 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	// Move the flagship to the start of your list of ships. It does not make
+	// sense that the flagship would change if you are reunited with a different
+	// ship that was higher up the list. This function should not be used while
+	// other functions have direct references to the shared_pointer elements in
+	// this list.
+	void MoveFlagshipBegin(vector<shared_ptr<Ship>> &ships, const shared_ptr<Ship> &flagship)
+	{
+		if(flagship)
+		{
+			auto it = find(ships.begin(), ships.end(), flagship);
+			if(it != ships.begin() && it != ships.end())
+			{
+				ships.erase(it);
+				ships.insert(ships.begin(), flagship);
+			}
+		}
+	}
+}
+
 
 
 // Completely clear all loaded information, to prepare for loading a file or
@@ -770,23 +790,7 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 
 
 
-// Move the flagship to the start of your list of ships. It does not make
-// sense that the flagship would change if you are reunited with a different
-// ship that was higher up the list. This function should not be used while
-// other functions have direct references to the shared_pointer elements in
-// this list.
-void PlayerInfo::MoveFlagshipBegin()
-{
-	if(flagship)
-	{
-		auto it = find(ships.begin(), ships.end(), flagship);
-		if(it != ships.begin() && it != ships.end())
-		{
-			ships.erase(it);
-			ships.insert(ships.begin(), flagship);
-		}
-	}
-}
+
 
 
 
@@ -1209,7 +1213,7 @@ void PlayerInfo::Land(UI *ui)
 	
 	// If we switched flagships during flight, then we want to move the new
 	// flagship to the start of the list of ships.
-	MoveFlagshipBegin();
+	MoveFlagshipBegin(ships, flagship);
 	
 	// "Unload" all fighters, so they will get recharged, etc.
 	for(const shared_ptr<Ship> &ship : ships)
@@ -1324,7 +1328,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	
 	// Move the flagship to the start of the list of ships and ensure that all
 	// escorts know which ship is acting as flagship.
-	MoveFlagshipBegin();
+	MoveFlagshipBegin(ships, flagship);
 	SetFlagship(*flagship);
 	
 	// Recharge any ships that can be recharged, and load available cargo.
