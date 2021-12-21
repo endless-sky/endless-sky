@@ -840,7 +840,7 @@ ship "Shield Beetle Prototype"
 		"Hai Ravine Batteries"
 		"Hai Diamond Regenerator" 2
 		"Hai Zephyr Cooling" 5
-		"Outfits Expansion" 5
+		"Outfits Expansion" 3
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
@@ -848,14 +848,14 @@ ship "Shield Beetle Prototype"
 	engine 42 134.5
 	gun -21.5 -93
 	gun -34 -71
-	gun -47.5 -31
-	gun -60.5 -7.5
+	gun -47.5 -31 "Hai Tracker Pod"
+	gun -60.5 -7.5 "Hai Tracker Pod"
 	gun 21.5 -93
 	gun 34 -71
-	gun 47.5 -31
-	gun 60.5 -7.5
+	gun 47.5 -31 "Hai Tracker Pod"
+	gun 60.5 -7.5 "Hai Tracker Pod"
 	turret -54 74.5
-	turret 0 15
+	turret 0 15 "Chameleon Anti-Missile"
 	turret 54 74.5
 	leak "leak" 35 45
 	leak "flame" 60 95

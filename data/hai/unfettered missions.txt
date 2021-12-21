@@ -909,6 +909,7 @@ ship "Auxiliary" "Auxiliary (Alpha)"
 		"Systems Core (Large)" 2
 		"Large Heat Shunt" 2
 		"Wanderer Ramscoop"
+		"Fuel Pod" 7
 		
 		`"Bufaer" Atomic Thruster`
 		"Steering (Planetary Class)"
@@ -1296,7 +1297,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 	on enter "Ferukistek"
 		dialog `You spot one system not connected by hyperdrive North-East of here, it seems like a logical place for them to go, considering the drones do not appear to have jump drives.`
 	on enter "Host"
-		dialog `You arrive in the system, expecting to find a vault, but it looks like you may in have have fallen into a trap... Either that or the same auxiliary as earlier has just come back to resupply. Whatever the case it has probably the jump drives on board. Capture the ship, as asked by the Unfettered. You notice more drones deploying from the base.`
+		dialog `You arrive in the system, expecting to find a vault, but it looks like you may in have have fallen into a trap... Either that or the same auxiliary as earlier has just come back to resupply. Whatever the case it has probably the jump drives on board. Capture the ship, as asked by the Unfettered. You notice a lot of drones around, this may be a trap.`
 	npc capture
 		government "Alpha"
 		system "Host"
@@ -1306,7 +1307,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 	npc
 		government "Alpha"
 		system "Host"
-		personality heroic nemesis staying vindictive marked
+		personality heroic nemesis staying vindictive
 		ship "Far Osk 27" "Prancer"
 		ship "Far Osk 27" "Vixen"
 		ship "Far Osk 27" "Cupid"
@@ -1987,7 +1988,7 @@ mission "Unfettered: Shield Beetles Available"
 
 mission "Unfettered: Close Quarter"
 	name `Close Quarter Fighting`
-	description `Hi Ye informed you of his interest towards close quarter fighting. He wants you to bring all kinds of different melee weapons and equipments you can find, bring them by 10.`
+	description `Hi Ye wants you to bring non lethal weapons for him to train with the other Unfettered without any danger, bring at least 10.`
 	source "Warfeed"
 	to offer
 		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
@@ -2097,10 +2098,10 @@ mission "Unfettered: Close Quarter"
 			label getrd
 			`	"We will soon want your help with the upcoming invasion, get ready for it! Having a strong flagship is always an important asset but it is not all."`
 			choice
-				`	"The Bastilodon will not be enough I take it?"`
+				`	"The Basilisk will not be enough I take it?"`
 				`	"Okay in that case I will get ready."`
 					goto train
-			`	"The Bastilodon is very strong, but it is only a prototype, it has a few weaknesses."`
+			`	"The Basilisk is very strong, but it is only a prototype, it has a few weaknesses."`
 			label train
 			`	"Remember, having a strong fleet and flagship does not matter much if you do not know how to use it properly! If you want to learn how to do that there are a lot of Unfettered captains looking forward to challenging you."`
 
