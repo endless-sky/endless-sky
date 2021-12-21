@@ -1074,7 +1074,6 @@ mission "Unfettered: Escort Hai Fleet"
 					decline
 			`	"Good! The ships are mostly carrying supplies and passengers, so you would do well to stay with them whatever happens. If I understand correctly, a small Hai fleet will accompany you too."`
 				accept
-	waypoint "Due Yoot"
 	on waypoint
 		set "stopped on Greenbloom"
 		dialog `The fleet signals you they are waiting for one last ship. They ask you to land so you can launch with all of them at once.`
@@ -1082,7 +1081,7 @@ mission "Unfettered: Escort Hai Fleet"
 		government "Hai"
 		to spawn
 			has "stopped on Greenbloom"
-		personality escort timid marked
+		personality escort timid
 		system "Due Yoot"
 		fleet "Small Hai"
 		fleet
@@ -1099,8 +1098,6 @@ mission "Unfettered: Escort Hai Fleet"
 		personality disables plunders vindictive
 		fleet "Large Northern Pirates" 3
 		fleet "Small Northern Pirates"
-	to complete
-		has "Unfettered: Taking Off With Hai Fleet: offered"
 	on fail
 		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 	on complete
@@ -1141,7 +1138,8 @@ mission "Unfettered: Taking Off With Hai Fleet"
 	on offer
 		conversation
 			`You go see the fleet admiral assigned to this so you can coordinate better on this, after a while everyone signals they are ready to take off.`
-				launch
+				flee
+
 
 
 mission "Unfettered: Pirate Help"
@@ -1192,11 +1190,7 @@ mission "Unfettered: Pirate Help"
 				`	"I am not interested in doing this."`
 					decline
 	on visit
-		conversation
-			branch defended
-				has "Pirate Troubles [0]: offered"
-			`Go to the spaceport to talk to the local authorities about the pirate problem.`
-			label defended
+		dialog `Go to the spaceport to talk to the local authorities on <stopovers> about the pirate problem.`
 	to fail
 		has "defeated scar's legion"
 	on fail
@@ -1364,140 +1358,6 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 				decline
 
 
-outfit "Loot"
-	category "Specials"
-	cost 10000
-	"mass" 1
-	description "You are not sure what this is, but you feel your hair go up when you are near the cargo... Probably best not to touch it."
-
-ship "Behemoth" "Mamoth"
-	outfits
-		"Boulder Reactor"
-		"Chameleon Anti-Missile"
-		"Fuel Pod"
-		"Hai Diamond Regenerator"
-		"Hai Fissure Batteries"
-		"Hai Tracker" 112
-		"Hai Tracker Pod" 2
-		"Pulse Turret" 5
-		"Scram Drive"
-		"Small Radar Jammer"
-		"X3200 Ion Steering"
-		"X3700 Ion Thruster"
-	cargo
-		outfit "Loot" 400
-
-mission "Unfettered: Loot: Ion Canon Materials"
-	name `Take what is rightfully yours`
-	description `There is an undefended cargo ship near <waypoint>, find it and bring back it's cargo!`
-	source "Darkcloak"
-	to offer
-		has "Unfettered: Prove Your Strength 2: done"
-		has "Unfettered: Alphas 2: Prove Yourself: done"
-	on offer
-		conversation
-			`When passing in front of a bar, you notice Si-Ra is in it, and seems to be having quite a lot of fun.`
-			choice
-				`	(Join him.)`
-				`	(I do not have time for this now.)`
-					defer
-			`	As you enter you can make sense of all that he is saying. Well you can understand the words at least but it seems he is speaking in your language to make fun of humans. He probably had one too many drinks... He sees you and starts shouting, "This is my friend, <last>, folks. Do not toy around with him or you will get beaten, he does not mess around! Lots of holes in my old ship can attest to that."`
-			choice
-				`	"Old ship? You do not have it any more?"`
-					goto ship
-				`	"Well to be fair you did ask for it."`
-			`	"True... true... I even provoked ya a bit too much did I not? I am sure you did one more hole in my ship than you needed to in order to disable it!" He is probably not angry about it, but he really seems agitated.`
-			choice
-				`	"What happened to your ship anyway?"`
-			label ship
-			`	He seems nostalgic. "My beauty, the Intrepid! Pretty she was! Well... we made quite a large sum of money last time and I thought I just needed a wee bit more to get a new ship so... I sold the old one. But it turns out it was closer than I thought, and now I have a big debt to pay, and money but not quite enough for the ship I want!"`
-			choice
-				`	"Can I help you in any way?"`
-				`	"Do you happen to have any good jobs like the one of last time?"`
-			`	"Well, now that you ask... I do have an idea but I do not think I am quite fit for it, I could not help you much anyway, and you are a big monkey are you not? There may be a defenceless cargo moving around in space, asking to be taken... And well it is a heavy burden for the one who most transport it, maybe we should remove that burden, if you see what I mean?"`
-			choice
-				`	"I see what you mean."`
-					goto tellmore
-				`	"Please be more specific."`
-				`	"You mean attack a defenceless ship? I would never! I am out."`
-					decline
-			`	He seems to get a bit angry. "There is a cargo ship moving around in space with a precious cargo that we want. Specific enough for you?"`
-			choice
-				`	"Tell me more about it."`
-				`	"That is still not that clear, but I will make do with it."`
-			label tellmore
-			`	"It would probably be a good idea to be around <waypoint> very soon, monkey. There will be good a business opportunity there, you would not want to miss it. But I still want my cut... Like last time, for giving you this very sensible information. I will only take 25% worry not. But be sure to bring back at least 400 tons of cargo or there is no deal!"`
-			choice
-				`	"I will go before the trail gets cold."`
-					accept
-				`	"20%."`
-			`	"It is 25%, leave it or take it. And do not even think about bringing the cargo without my accord, trust is something very important to us Hai, Unfettered or not!"`
-			choice
-				`	"Okay, whatever."`
-					accept
-				`	"I am out then."`
-					decline
-	waypoint "Rajak"
-	on waypoint
-		dialog `You cannot find the ship here, but you find some abandonned cargo. There may have been a fight... Quickly go find the ship!`
-		set "checked waypoint"
-	on enter "Sumar"
-		dialog `It seems like you may have to fight in order to get this cargo... Multiples pirate ships already have disabled the Mamoth, and taken control of it. They seem to be engaged in repairs, and hail you once they notice your presence.`
-		conversation
-			`This is our loot, maggot! Get out of here right now and we'll pretend we didn't see your ugly ship!`
-			choice
-				`	"I will take this loot out of your mouth."`
-					goto words
-				`	"Can I just take the loot and leave you with the ship?"`
-				`	"Okay I do not want any trouble."`
-					accept
-			`	"It's all or nothing mate, we got the all. If you want it, you may try and lose what little you have."`
-				decline
-			label words
-			`	"Those will be your last words then. Might have wanted to choose better ones..."`
-	npc board
-		government "Pirate"
-		to spawn
-			has "checked waypoint"
-		system "Sumar"
-		personality derelict staying target
-		ship "Behemoth" "Mamoth"
-	npc evade
-		government "Pirate"
-		personality harvests plunders disables staying
-		to spawn
-			has "checked waypoint"
-		system "Sumar"
-		fleet "Small Northern Pirates" 4
-		ship "Firebird" "Valkiry"
-	on fail
-		dialog `You have failed an essential Unfettered mission. You may want to reload.`
-	on visit
-		dialog `You have landed on <origin> but you do not have the spoils yet, or they are in one of your escort.`
-	on complete
-		outfit "Loot" -400
-		payment 3000000
-		conversation
-			`You arrive back and the bar and find Sa-Ri speaking to his friends. He appears more sober now. "It looks like you got the loot! Songs games and fun, friends! Here is your share, <payment>. Now we can forget this business, and enjoy the loot!"`
-			choice
-				`	(Rejoice with them.)`
-				`	(Go.)`
-					decline
-			`	You continue the celebration with them, and before long Sa-Ri is drunk again. The pirates from earlier probably knew about the behemoth because of his lack of discretion.`
-			choice
-				`	"You should be more careful, I almost got beaten to the chase by pirates."`
-				`	"What was this loot about anyway?"`
-					goto loot
-			`	"A little bit of competition cannot hurt, can it? Since when are you affrayed of a few pirates? You may have softened up since we last saw each others..."`
-			label loot
-			`	"Well I guess I can tell you, we had arranged for this behemoth to bring us important tech materials. I cannot tell you more than this but I can guarantee you that you will like the final outcome of it..."`
-			choice
-				`	"Final outcome?"`
-				`	(Leave.)`
-					decline
-			`	"Better guns! These new ones will be perfect against those who dared to occupy our old worlds."`
-
-
 
 mission "Unfettered: Solifuge 5: Materials For Ships"
 	name `Gather materials from asteroids`
@@ -1586,6 +1446,137 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 
 
 
+outfit "Loot"
+	category "Specials"
+	cost 10000
+	"mass" 1
+	description "You are not sure what this is, but you feel your hair go up when you are near the cargo... Probably best not to touch it."
+
+ship "Behemoth" "Behemoth (Mamoth)"
+	outfits
+		"Boulder Reactor"
+		"Chameleon Anti-Missile"
+		"Fuel Pod"
+		"Hai Diamond Regenerator"
+		"Hai Fissure Batteries"
+		"Hai Tracker" 112
+		"Hai Tracker Pod" 2
+		"Pulse Turret" 5
+		"Scram Drive"
+		"Small Radar Jammer"
+		"X3200 Ion Steering"
+		"X3700 Ion Thruster"
+	cargo
+		outfit "Loot" 400
+
+mission "Unfettered: Loot: Ion Canon Materials"
+	name `Take what is rightfully yours`
+	description `There is an undefended cargo ship near <waypoint>, find it and bring back it's cargo!`
+	source "Darkcloak"
+	to offer
+		has "Unfettered: Prove Your Strength 2: done"
+		has "Unfettered: Alphas 2: Prove Yourself: done"
+		has "Unfettered: Solifuge 5: Materials For Ships: done"
+	on offer
+		conversation
+			`When passing in front of a bar, you notice Si-Ra is in it, and seems to be having quite a lot of fun.`
+			choice
+				`	(Join him.)`
+				`	(I do not have time for this now.)`
+					defer
+			`	As you enter you can make sense of all that he is saying. Well you can understand the words at least but it seems he is speaking in your language to make fun of humans. He probably had one too many drinks... He sees you and starts shouting, "This is my friend, <last>, folks. Do not toy around with him or you will get beaten, he does not mess around! Lots of holes in my old ship can attest to that."`
+			choice
+				`	"Old ship? You do not have it any more?"`
+					goto ship
+				`	"Well to be fair you did ask for it."`
+			`	"True... true... I even provoked ya a bit too much did I not? I am sure you did one more hole in my ship than you needed to in order to disable it!" He is probably not angry about it, but he really seems agitated.`
+			choice
+				`	"What happened to your ship anyway?"`
+			label ship
+			`	He seems nostalgic. "My beauty, the Intrepid! Pretty she was! Well... we made quite a large sum of money last time and I thought I just needed a wee bit more to get a new ship so... I sold the old one. But it turns out it was closer than I thought, and now I have a big debt to pay, and money but not quite enough for the ship I want!"`
+			choice
+				`	"Can I help you in any way?"`
+				`	"Do you happen to have any good jobs like the one of last time?"`
+			`	"Well, now that you ask... I do have an idea but I do not think I am quite fit for it, I could not help you much anyway, and you are a big monkey are you not? There may be a defenceless cargo moving around in space, asking to be taken... And well it is a heavy burden for the one who most transport it, maybe we should remove that burden, if you see what I mean?"`
+			choice
+				`	"I see what you mean."`
+					goto tellmore
+				`	"Please be more specific."`
+				`	"You mean attack a defenceless ship? I would never! I am out."`
+					decline
+			`	He seems to get a bit angry. "There is a cargo ship moving around in space with a precious cargo that we want. Specific enough for you?"`
+			choice
+				`	"Tell me more about it."`
+				`	"That is still not that clear, but I will make do with it."`
+			label tellmore
+			`	"It would probably be a good idea to be around <waypoint> very soon, monkey. There will be good a business opportunity there, you would not want to miss it. But I still want my cut... Like last time, for giving you this very sensible information. I will only take 25% worry not. But be sure to bring back at least 400 tons of cargo or there is no deal!"`
+			choice
+				`	"I will go before the trail gets cold."`
+					accept
+				`	"20%."`
+			`	"It is 25%, leave it or take it. And do not even think about bringing the cargo without my accord, trust is something very important to us Hai, Unfettered or not!"`
+			choice
+				`	"Okay, whatever."`
+					accept
+				`	"I am out then."`
+					decline
+	waypoint "Rajak"
+	on waypoint
+		dialog `You cannot find the ship here, but you find some abandonned cargo. There may have been a fight... Quickly go find the ship!`
+	on enter "Sumar"
+		dialog `It seems like you may have to fight in order to get this cargo... Multiples pirate ships already have disabled the Mamoth, and taken control of it. They seem to be engaged in repairs, and hail you once they notice your presence.`
+		conversation
+			`This is our loot, maggot! Get out of here right now and we'll pretend we didn't see your ugly ship!`
+			choice
+				`	"I will take this loot out of your mouth."`
+					goto words
+				`	"Can I just take the loot and leave you with the ship?"`
+				`	"Okay I do not want any trouble."`
+					accept
+			`	"It's all or nothing mate, we got the all. If you want it, you may try and lose what little you have."`
+				decline
+			label words
+			`	"Those will be your last words then. Might have wanted to choose better ones..."`
+	npc board
+		government "Pirate"
+		system "Sumar"
+		personality derelict staying target
+		ship "Behemoth (Mamoth)" "Mamoth"
+	npc evade
+		government "Pirate"
+		personality harvests plunders disables staying
+		system "Sumar"
+		fleet "Small Northern Pirates" 4
+		ship "Firebird" "Valkiry"
+	on fail
+		dialog `You have failed an essential Unfettered mission. You may want to reload.`
+	on visit
+		dialog `You have landed on <origin> but you do not have the spoils yet, or they are in one of your escort.`
+	on complete
+		outfit "Loot" -400
+		payment 3000000
+		conversation
+			`You arrive back and the bar and find Sa-Ri speaking to his friends. He appears more sober now. "It looks like you got the loot! Songs games and fun, friends! Here is your share, <payment>. Now we can forget this business, and enjoy the loot!"`
+			choice
+				`	(Rejoice with them.)`
+				`	(Go.)`
+					decline
+			`	You continue the celebration with them, and before long Sa-Ri is drunk again. The pirates from earlier probably knew about the behemoth because of his lack of discretion.`
+			choice
+				`	"You should be more careful, I almost got beaten to the chase by pirates."`
+				`	"What was this loot about anyway?"`
+					goto loot
+			`	"A little bit of competition cannot hurt, can it? Since when are you affrayed of a few pirates? You may have softened up since we last saw each others..."`
+			label loot
+			`	"Well I guess I can tell you, we had arranged for this behemoth to bring us important tech materials. I cannot tell you more than this but I can guarantee you that you will like the final outcome of it..."`
+			choice
+				`	"Final outcome?"`
+				`	(Leave.)`
+					decline
+			`	"Better guns! These new ones will be perfect against those who dared to occupy our old worlds."`
+
+
+
 mission "Unfettered: The Word Has Spread"
 	name `Gather the true Hai`
 	description `Now that the Hai know of the Unfettered plan, a lot of them are eager to join them whilst most cower in fear.`
@@ -1646,6 +1637,7 @@ mission "Unfettered: The Word Has Spread"
 
 mission "Unfettered: Greenbloom"
 	invisible
+	landing
 	source "Greenbloom"
 	destination "Firelode"
 	to offer
@@ -1670,6 +1662,7 @@ mission "Unfettered: Greenbloom"
 
 mission "Unfettered: Mirrorlake"
 	invisible
+	landing
 	source "Mirrorlake"
 	to offer
 		has "Unfettered: The Word Has Spread: active"
@@ -1680,6 +1673,7 @@ mission "Unfettered: Mirrorlake"
 
 mission "Unfettered: Makerplace"
 	invisible
+	landing
 	source "Makerplace"
 	to offer
 		has "Unfettered: The Word Has Spread: active"
@@ -1690,6 +1684,7 @@ mission "Unfettered: Makerplace"
 
 mission "Unfettered: Newhome"
 	invisible
+	landing
 	source "Newhome"
 	to offer
 		has "Unfettered: The Word Has Spread: active"
@@ -1700,6 +1695,7 @@ mission "Unfettered: Newhome"
 
 mission "Unfettered: Darkmetal"
 	invisible
+	landing
 	source "Darkmetal"
 	to offer
 		has "Unfettered: The Word Has Spread: active"
@@ -1710,6 +1706,7 @@ mission "Unfettered: Darkmetal"
 
 mission "Unfettered: Snowfeather"
 	invisible
+	landing
 	source "Snowfeather"
 	to offer
 		has "Unfettered: The Word Has Spread: active"
@@ -1740,7 +1737,6 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 	name `Gather intel on Hai Shipyards`
 	description `Go to <stopovers> and try to discretely learn how their ships are produced.`
 	cargo "Food" 34
-	infiltrating
 	source "Darkcloak"
 	stopover "Hai-home"
 	clearance `After explaining you are here to take a tribute, you receive clearance to land.`
@@ -1872,6 +1868,7 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 			label other
 			`	After you spoke a voice in an alien language that seems robotic in nature speaks. You realise it is the crude translator you found with them, it probably just translated everything that you just said, but you have the impression it left some words untranslated.`
 			`	"We will 'Ak' speak about it to 'Mer' which we do 'Ak' trust." It seems like you have saddened them, you probably cannot get any more information out of them yet.`
+				goto objective
 			label wait
 			`	The Korath eventually notice you and start staring at you now. Then they speak in alien language and the translator starts working, "Ah it is the 'Mer' who saved us. Why is it 'Terah' to see us? Did it expect we would all 'Fel'?" You realise your surprise to see them working here can probably be read all over your face.`
 			choice
@@ -1935,7 +1932,7 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 	blocked `You need 500 cargo space for the next Unfettered mission.`
 	to offer
 		has "Unfettered: Solifuge 8: Useful Korath Scientists: done"
-		has "Unfettered: Loot: Ion Canon Materials"
+		has "Unfettered: Loot: Ion Canon Materials: done"
 	on offer
 		conversation
 			`You see the same Unfettered warlord in the shipyard, he seems to be giving orders to make preparations for incoming changes in the shipyard. Do you go see him?`
@@ -1994,7 +1991,6 @@ mission "Unfettered: Close Quarter"
 	source "Warfeed"
 	to offer
 		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
-		random > 30
 	on offer
 		conversation
 			`You can see movement in the spaceport, people seem to he heading to one place in particular and you hear some shouting. Do you want to go take a look?`

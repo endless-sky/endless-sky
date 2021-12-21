@@ -245,7 +245,7 @@ mission "Unfettered Challenge[0]"
 		attributes "unfettered"
 	to offer
 		has "Unfettered Jump Drive 2: offered"
-		random < 70
+		random < 60
 	npc save disable
 		government "Hai (Unfettered Challenge)"
 		personality disables staying heroic target
@@ -271,7 +271,8 @@ mission "Unfettered Challenge[1]"
 		attributes "unfettered"
 	to offer
 		has "Unfettered Jump Drive 2: offered"
-		random < 50
+		has "Unfettered: Prove Your Strength"
+		random < 40
 	npc save disable
 		government "Hai (Unfettered Challenge)"
 		personality disables staying heroic target
@@ -297,14 +298,16 @@ mission "Unfettered Challenge[2]"
 		attributes "unfettered"
 	to offer
 		has "Unfettered Jump Drive 3: offered"
-		random < 30
+		has "Unfettered: Prove Your Strength"
+		random < 10
 	npc save disable
 		government "Hai (Unfettered Challenge)"
 		personality disables staying heroic target
 		fleet
 			names "hai"
 			variant
-				"Shield Beetle (Pulse)" 2
+				"Shield Beetle (Pulse)"
+				"Sea Scorpion (Pulse)"
 		dialog `You seem to learn from our encounters as well... Well next time it will be different.`
 		conversation
 			action
