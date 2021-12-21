@@ -105,6 +105,8 @@ effect "ion impact"
 	"velocity scale" -.05
 
 outfit "Ionic Blaster"
+	category "Guns"
+	cost 530000
 	thumbnail "outfit/hai ionic blaster"
 	"mass" 21
 	"outfit space" -21

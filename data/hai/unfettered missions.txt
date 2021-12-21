@@ -1453,8 +1453,9 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 
 
 outfit "Loot"
-	category "Specials"
-	cost 10000
+	category "Special"
+	cost 1000
+	thumbnail "outfit/unknown"
 	"mass" 1
 	description "You are not sure what this is, but you feel your hair go up when you are near the cargo... Probably best not to touch it."
 

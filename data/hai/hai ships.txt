@@ -819,11 +819,11 @@ ship "Shield Beetle Prototype"
 		"mass" 720
 		"drag" 9.1
 		"heat dissipation" .35
-		"fuel capacity" 700
-		"cargo space" 134
-		"outfit space" 843
+		"fuel capacity" 600
+		"cargo space" 80
+		"outfit space" 809
 		"weapon capacity" 354
-		"engine capacity" 150
+		"engine capacity" 140
 		weapon
 			"blast radius" 500
 			"shield damage" 4500
@@ -832,31 +832,30 @@ ship "Shield Beetle Prototype"
 	outfits
 		"Ionic Blaster" 4
 		"Hai Tracker Pod" 4
-		"Hai Tracker" 336
-		"Tracker Storage Pod" 4
+		"Hai Tracker" 224
 		"Ionic Turret" 2
 		"Chameleon Anti-Missile"
 		"Boulder Reactor" 2
-		"Hai Ravine Batteries"
-		"Hai Diamond Regenerator" 2
-		"Hai Zephyr Cooling" 5
-		"Outfits Expansion" 3
+		"Hai Gorge Batteries"
+		"Hai Diamond Regenerator" 3
+		"Hai Zephyr Cooling" 3
+		"Outfits Expansion" 2
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 	engine -42 134.5
 	engine 42 134.5
-	gun -21.5 -93
-	gun -34 -71
+	gun -21.5 -93 "Ionic Blaster"
+	gun -34 -71 "Ionic Blaster"
 	gun -47.5 -31 "Hai Tracker Pod"
 	gun -60.5 -7.5 "Hai Tracker Pod"
-	gun 21.5 -93
-	gun 34 -71
+	gun 21.5 -93 "Ionic Blaster"
+	gun 34 -71 "Ionic Blaster"
 	gun 47.5 -31 "Hai Tracker Pod"
 	gun 60.5 -7.5 "Hai Tracker Pod"
-	turret -54 74.5
+	turret -54 74.5 "Ionic Turret"
 	turret 0 15 "Chameleon Anti-Missile"
-	turret 54 74.5
+	turret 54 74.5 "Ionic Turret"
 	leak "leak" 35 45
 	leak "flame" 60 95
 	leak "big leak" 50 45
