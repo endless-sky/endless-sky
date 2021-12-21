@@ -759,8 +759,8 @@ mission "Wanderers: Jump Drive Source"
 	to offer
 		has "main plot completed"
 		has "event: wanderers: truce timer"
-		not "Unfettered: Alphas: Find The Auxiliary: done"
-		not "Unfettered: Alphas: Find The Auxiliary: active"
+		not "Unfettered: Alphas 2: Prove Yourself: done"
+		not "Unfettered: Alphas 2: Prove Yourself: active"
 	on offer
 		conversation
 			`When you arrive on <origin>, Iktat Rek greets you warmly. "Human," he says, "it is a [relief, delight] to have [peace, safety] within our territory. But the Unfettered will not be [placated, satisfied] forever. I have spoken with ambassador Sayari about this and we are agreed that we must know what [allies, accomplices] the Unfettered have, what their [strength, capability] is, and how they have acquired jump drives."`
