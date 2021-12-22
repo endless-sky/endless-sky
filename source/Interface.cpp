@@ -114,6 +114,8 @@ void Interface::Load(const DataNode &node)
 				elements.push_back(new ImageElement(child, anchor));
 			else if(child.Token(0) == "label" || child.Token(0) == "string" || child.Token(0) == "button")
 				elements.push_back(new TextElement(child, anchor));
+			else if(child.Token(0) == "wrapped text")
+				elements.push_back(new WrappedTextElement(child, anchor));
 			else if(child.Token(0) == "bar" || child.Token(0) == "ring")
 				elements.push_back(new BarElement(child, anchor));
 			else if(child.Token(0) == "line")
@@ -591,6 +593,90 @@ void Interface::TextElement::Place(const Rectangle &bounds, Panel *panel) const
 string Interface::TextElement::GetString(const Information &info) const
 {
 	return isDynamic ? info.GetString(str) : str;
+}
+
+
+
+// Members of the WrappedTextElement class:
+
+// Constructor.
+Interface::WrappedTextElement::WrappedTextElement(const DataNode &node, const Point &globalAnchor)
+{
+	if(node.Size() < 2)
+		return;
+
+	name = node.Token(1);
+
+	// This function will call ParseLine() for any line it does not recognize.
+	Load(node, globalAnchor);
+
+	if(!color)
+		color = GameData::Colors().Get("bright");
+
+	// Initialize the underlying wrapped text.
+	text.SetTruncate(truncate);
+	text.SetAlignment(alignment);
+	text.SetWrapWidth(Bounds().Width() - padding.X());
+}
+
+
+
+// Parse the given data line: one that is not recognized by Element
+// itself. This returns false if it does not recognize the line, either.
+bool Interface::WrappedTextElement::ParseLine(const DataNode &node)
+{
+	if(node.Token(0) == "size" && node.Size() >= 2)
+		fontSize = node.Value(1);
+	else if(node.Token(0) == "color" && node.Size() >= 2)
+		color = GameData::Colors().Get(node.Token(1));
+	else if(node.Token(0) == "truncate" && node.Size() >= 2)
+	{
+		if(node.Token(1) == "none")
+			truncate = Truncate::NONE;
+		else if(node.Token(1) == "front")
+			truncate = Truncate::FRONT;
+		else if(node.Token(1) == "middle")
+			truncate = Truncate::MIDDLE;
+		else if(node.Token(1) == "back")
+			truncate = Truncate::BACK;
+		else
+			return false;
+	}
+	else if(node.Token(0) == "alignment" && node.Size() >= 2)
+	{
+		if(node.Token(1) == "left")
+			alignment = Alignment::LEFT;
+		else if(node.Token(1) == "center")
+			alignment = Alignment::CENTER;
+		else if(node.Token(1) == "right")
+			alignment = Alignment::RIGHT;
+		else if(node.Token(1) == "justified")
+			alignment = Alignment::JUSTIFIED;
+		else
+			return false;
+	}
+	else
+		return false;
+
+	return true;
+}
+
+
+
+// Report the actual dimensions of the object that will be drawn.
+Point Interface::WrappedTextElement::NativeDimensions(const Information &info, int state) const
+{
+	text.SetFont(FontSet::Get(fontSize));
+	text.Wrap(info.GetString(name));
+	return Point(text.WrapWidth(), text.Height());
+}
+
+
+
+// Draw this element in the given rectangle.
+void Interface::WrappedTextElement::Draw(const Rectangle &rect, const Information &info, int state) const
+{
+	text.Draw(rect.TopLeft(), *color);
 }
 
 

@@ -15,8 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
-#include "text/WrappedText.h"
-
 #include <functional>
 #include <memory>
 
@@ -63,8 +61,6 @@ private:
 	std::shared_ptr<SpaceportPanel> spaceport;
 	std::shared_ptr<Panel> hiring;
 	Panel *selectedPanel = nullptr;
-	
-	WrappedText text;
 };
 
 

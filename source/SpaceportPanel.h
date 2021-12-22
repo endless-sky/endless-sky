@@ -16,7 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 
 #include "Information.h"
-#include "text/WrappedText.h"
 
 class News;
 class PlayerInfo;
@@ -41,15 +40,9 @@ private:
 	
 private:
 	PlayerInfo &player;
-	WrappedText text;
 	
 	// Current news item (if any):
-	bool hasNews = false;
-	bool hasPortrait = false;
-	int portraitWidth;
-	int normalWidth;
-	Information newsInfo;
-	WrappedText newsMessage;
+	Information info;
 };
 
 

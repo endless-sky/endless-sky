@@ -585,6 +585,12 @@ interface "planet"
 	button l
 		center -60 -140
 		dimensions 720 360
+	"wrapped text" description
+		size 14
+		align top left
+		alignment justified
+		from -300 80
+		dimensions 480 0
 	
 	visible if "has shipyard"
 	sprite "ui/planet dialog button"
@@ -666,7 +672,15 @@ interface "planet"
 
 
 
-interface "news"
+interface "spaceport"
+	"wrapped text" description
+		size 14
+		align top left
+		alignment justified
+		from -300 80
+		dimensions 480 0
+
+	visible if "has news"
 	sprite "ui/news"
 		center -160 -45
 	image "portrait"
@@ -675,12 +689,24 @@ interface "news"
 		from -400 -100
 		align center left
 		color "bright"
-	box "message portrait"
+
+	visible if "has portrait"
+	"wrapped text" news
+		size 14
+		align top left
+		alignment justified
 		from -400 -80
-		to -50 10
-	box "message"
+		dimensions 350 0
+		color medium
+
+	visible if "has no portrait"
+	"wrapped text" news
+		size 14
+		align top left
+		alignment justified
 		from -400 -80
-		to 80 10
+		dimensions 480 0
+		color medium
 
 
 

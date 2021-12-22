@@ -12,9 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "SpaceportPanel.h"
 
-#include "text/alignment.hpp"
 #include "Color.h"
-#include "text/FontSet.h"
 #include "GameData.h"
 #include "Interface.h"
 #include "News.h"
@@ -32,18 +30,6 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 	: player(player)
 {
 	SetTrapAllEvents(false);
-	
-	text.SetFont(FontSet::Get(14));
-	text.SetAlignment(Alignment::JUSTIFIED);
-	text.SetWrapWidth(480);
-	text.Wrap(player.GetPlanet()->SpaceportDescription());
-	
-	// Query the news interface to find out the wrap width.
-	// TODO: Allow Interface to handle wrapped text directly.
-	const Interface *newsUi = GameData::Interfaces().Get("news");
-	portraitWidth = newsUi->GetBox("message portrait").Width();
-	normalWidth = newsUi->GetBox("message").Width();
-	newsMessage.SetFont(FontSet::Get(14));
 }
 
 
@@ -53,17 +39,18 @@ void SpaceportPanel::UpdateNews()
 	const News *news = PickNews();
 	if(!news)
 		return;
-	hasNews = true;
+	info = Information();
+	info.SetCondition("has news");
 	
 	// Randomly pick which portrait, if any, is to be shown. Depending on if
 	// this news has a portrait, different interface information gets filled in.
-	auto portrait = news->Portrait();
 	// Cache the randomly picked results until the next update is requested.
-	hasPortrait = portrait;
-	newsInfo.SetSprite("portrait", portrait);
-	newsInfo.SetString("name", news->Name() + ':');
-	newsMessage.SetWrapWidth(hasPortrait ? portraitWidth : normalWidth);
-	newsMessage.Wrap(news->Message());
+	auto portrait = news->Portrait();
+	info.SetCondition(portrait ? "has portrait" : "has no portrait");
+
+	info.SetSprite("portrait", portrait);
+	info.SetString("name", news->Name() + ':');
+	info.SetString("news", news->Message());
 }
 
 
@@ -91,17 +78,9 @@ void SpaceportPanel::Draw()
 	if(player.IsDead())
 		return;
 	
-	text.Draw(Point(-300., 80.), *GameData::Colors().Get("bright"));
-	
-	if(hasNews)
-	{
-		const Interface *newsUi = GameData::Interfaces().Get("news");
-		newsUi->Draw(newsInfo);
-		// Depending on if the news has a portrait, the interface box that
-		// gets filled in changes.
-		newsMessage.Draw(newsUi->GetBox(hasPortrait ? "message portrait" : "message").TopLeft(),
-			*GameData::Colors().Get("medium"));
-	}
+	const Interface *ui = GameData::Interfaces().Get("spaceport");
+	info.SetString("description", player.GetPlanet()->SpaceportDescription());
+	ui->Draw(info);
 }
 
 

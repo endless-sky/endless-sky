@@ -13,10 +13,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef INTERFACE_H_
 #define INTERFACE_H_
 
+#include "text/alignment.hpp"
 #include "Color.h"
 #include "Point.h"
 #include "Rectangle.h"
 #include "text/truncate.hpp"
+#include "text/WrappedText.h"
 
 #include <map>
 #include <string>
@@ -171,6 +173,33 @@ private:
 		char buttonKey = '\0';
 		bool isDynamic = false;
 		Truncate truncate = Truncate::NONE;
+	};
+
+	// This class handles "wrapped text" elements.
+	class WrappedTextElement : public Element {
+	public:
+		WrappedTextElement(const DataNode &node, const Point &globalAnchor);
+
+	protected:
+		// Parse the given data line: one that is not recognized by Element
+		// itself. This returns false if it does not recognize the line, either.
+		virtual bool ParseLine(const DataNode &node) override;
+		// Report the actual dimensions of the object that will be drawn.
+		virtual Point NativeDimensions(const Information &info, int state) const override;
+		// Draw this element in the given rectangle.
+		virtual void Draw(const Rectangle &rect, const Information &info, int state) const override;
+
+	private:
+		mutable WrappedText text;
+
+		// The name of the dynamic text.
+		std::string name;
+
+		// Properties of the text to draw.
+		int fontSize = 14;
+		const Color *color = nullptr;
+		Truncate truncate = Truncate::NONE;
+		Alignment alignment = Alignment::LEFT;
 	};
 	
 	// This class handles "bar" and "ring" elements.
