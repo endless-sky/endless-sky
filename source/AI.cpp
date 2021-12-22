@@ -644,11 +644,13 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		if(healthRemaining < RETREAT_HEALTH + .1)
 		{
 			// Cowards abandon their fleets.
-			if(parent && personality.IsCoward())
+			if(personality.IsCoward())
 			{
-				parent.reset();
-				it->SetParent(parent);
-				it->SetTargetShip(nullptr);
+				if(parent) {
+					parent.reset();
+					it->SetParent(parent);
+				}
+				it->SetTargetShip(parent);
 			}
 			// Appeasing ships jettison cargo to distract their pursuers.
 			if(personality.IsAppeasing() && it->Cargo().Used())
