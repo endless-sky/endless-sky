@@ -2029,7 +2029,16 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 
 event "shield beetle mass production"
 	shipyard "Unfettered"
-		"Shield Beetle"
+		"Shield Beetle (Unfettered)"
+	outfitter "Unfettered"
+		"Pulse Turret"
+		"Hai Tracker Pod"
+		"Tracker Storage Pod"
+		"Hai Ravine Batteries"
+		"Boulder Reactor"
+		"Hai Diamond Regenerator"
+		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic Steering`
 
 mission "Unfettered: Shield Beetles Available"
 	source
@@ -2040,7 +2049,7 @@ mission "Unfettered: Shield Beetles Available"
 	on offer
 		log "people" "Hi Ye" `An Unfettered warlord that likes to be direct and to call humans monkey apparently. He has some great managing capabilities though.`
 		conversation
-			`You receive a message from the Unfettered warlord, who finally gives you his name : "Hi Ye", "Thanks to you the Shipyard on Darkcloak is finally capable of producing shield beetles in great quantities."`
+			`You receive a message from the Unfettered warlord, who finally gives you his name : "Hi Ye", "Thanks to you the Shipyard on Darkcloak is finally capable of producing shield beetles in great quantities. However in order to buy them you will require a license. Continue helping me and you will have it in no time! In the mean time you can enjoy the additional outfits we can produce there."`
 				decline
 
 
@@ -2253,7 +2262,7 @@ mission "Unfettered: Start Of The War"
 				"reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)" + 100
 			`"You sure know how to fight, but sheer firepower may not be enough, you should train more before we are ready to start the war. Also we would require more jump drives that what we currently have, because our Alpha supplies have been disrupted by your actions."`
 	on complete
-		dialog `"We will notify you once you may be of help to the war effort. In the mean time, we have increased your salary to 5000 so you can muster an even bigger fleet. Also from now on you will officially have the permission, nay, the obligation to proudly wear our colours."`
+		dialog `"We will notify you once you may be of help to the war effort. In the mean time, we have increased your salary to 5000 so you can muster an even bigger fleet. Also from now on you will officially have the permission, nay, the obligation to proudly wear our colours. We have signaled this change of colors to the Hai meaning they will not change their behaviour with you, recognizing your signature. You have also deserved the right to have this." He hands you a small trophy. "It is a proof of our trust towards you and means you will be able to buy all of our ships."`
 		"salary: Unfettered" = 5000
 		event "joined the unfettered"
 		set "license: Unfettered Militia"

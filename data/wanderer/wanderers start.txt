@@ -674,6 +674,8 @@ fleet "Unfettered Tribute"
 	government "Hai (Unfettered)"
 	names "hai"
 	cargo 3
+	personality
+		coward
 	variant
 		"Water Bug (Jump)"
 
