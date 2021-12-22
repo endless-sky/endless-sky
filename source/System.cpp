@@ -623,7 +623,7 @@ double System::AsteroidBeltRadius() const
 
 
 
-// Get the list of asteroid belt radii.
+// Get the list of asteroid belts.
 const WeightedList<System::Belt> &System::AsteroidBelts() const
 {
 	return belts;

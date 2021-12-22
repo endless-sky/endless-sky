@@ -125,7 +125,7 @@ public:
 	double HabitableZone() const;
 	// Get the radius of an asteroid belt.
 	double AsteroidBeltRadius() const;
-	// Get the list of asteroid belt radii.
+	// Get the list of asteroid belts.
 	const WeightedList<Belt> &AsteroidBelts() const;
 	// Get how far ships can jump from this system.
 	double JumpRange() const; 
