@@ -475,6 +475,7 @@ void AI::Clean()
 	swarmCount.clear();
 	fenceCount.clear();
 	miningAngle.clear();
+	miningRadius.clear();
 	miningTime.clear();
 	appeasmentThreshold.clear();
 	shipStrength.clear();
@@ -2393,9 +2394,12 @@ void AI::DoMining(Ship &ship, Command &command)
 	bool isNew = !miningAngle.count(&ship);
 	Angle &angle = miningAngle[&ship];
 	if(isNew)
+	{
 		angle = Angle::Random();
+		miningRadius[&ship] = ship.GetSystem()->AsteroidBeltRadius();
+	}
 	angle += Angle::Random(1.) - Angle::Random(1.);
-	double miningRadius = ship.GetSystem()->AsteroidBelt() * pow(2., angle.Unit().X());
+	double radius = miningRadius[&ship] * pow(2., angle.Unit().X());
 	
 	shared_ptr<Minable> target = ship.GetTargetAsteroid();
 	if(!target || target->Velocity().Length() > ship.MaxVelocity())
@@ -2427,7 +2431,7 @@ void AI::DoMining(Ship &ship, Command &command)
 		}
 	}
 	
-	Point heading = Angle(30.).Rotate(ship.Position().Unit() * miningRadius) - ship.Position();
+	Point heading = Angle(30.).Rotate(ship.Position().Unit() * radius) - ship.Position();
 	command.SetTurn(TurnToward(ship, heading));
 	if(ship.Velocity().Dot(heading.Unit()) < .7 * ship.MaxVelocity())
 		command |= Command::FORWARD;
