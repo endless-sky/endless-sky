@@ -648,6 +648,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			{
 				parent.reset();
 				it->SetParent(parent);
+				it->SetTargetShip(nullptr);
 			}
 			// Appeasing ships jettison cargo to distract their pursuers.
 			if(personality.IsAppeasing() && it->Cargo().Used())
