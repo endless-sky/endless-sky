@@ -640,30 +640,34 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			continue;
 		}
 		
-		// Cowards abandon their fleets when their shields are down.
-		if(parent && personality.IsCoward() && !it->Shields())
+		// Special actions when a ship is heavily damaged:
+		if(healthRemaining < RETREAT_HEALTH + .1)
 		{
-			parent.reset();
-			it->SetParent(parent);
-		}
-		// Appeasing ships jettison cargo to distract their pursuers when their ship is heavily damaged.
-		if(healthRemaining < RETREAT_HEALTH + .1 && personality.IsAppeasing() && it->Cargo().Used())
-		{
-			double health = .5 * it->Shields() + it->Hull();
-			double &threshold = appeasmentThreshold[it.get()];
-			if(1. - health > threshold)
+			// Cowards abandon their fleets.
+			if(parent && personality.IsCoward())
 			{
-				int toDump = 11 + (1. - health) * .5 * it->Cargo().Size();
-				for(const auto &commodity : it->Cargo().Commodities())
-					if(commodity.second && toDump > 0)
-					{
-						int dumped = min(commodity.second, toDump);
-						it->Jettison(commodity.first, dumped, true);
-						toDump -= dumped;
-					}
-				Messages::Add(gov->GetName() + " " + it->Noun() + " \"" + it->Name()
-					+ "\": Please, just take my cargo and leave me alone.", Messages::Importance::High);
-				threshold = (1. - health) + .1;
+				parent.reset();
+				it->SetParent(parent);
+			}
+			// Appeasing ships jettison cargo to distract their pursuers.
+			if(personality.IsAppeasing() && it->Cargo().Used())
+			{
+				double health = .5 * it->Shields() + it->Hull();
+				double &threshold = appeasmentThreshold[it.get()];
+				if(1. - health > threshold)
+				{
+					int toDump = 11 + (1. - health) * .5 * it->Cargo().Size();
+					for(const auto &commodity : it->Cargo().Commodities())
+						if(commodity.second && toDump > 0)
+						{
+							int dumped = min(commodity.second, toDump);
+							it->Jettison(commodity.first, dumped, true);
+							toDump -= dumped;
+						}
+					Messages::Add(gov->GetName() + " " + it->Noun() + " \"" + it->Name()
+						+ "\": Please, just take my cargo and leave me alone.", Messages::Importance::High);
+					threshold = (1. - health) + .1;
+				}
 			}
 		}
 		
