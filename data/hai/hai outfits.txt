@@ -104,6 +104,12 @@ effect "ion impact"
 	"random velocity" 2
 	"velocity scale" -.05
 
+
+outfit "Unfettered Militia License"
+	category "Special"
+	thumbnail "outfit/unfettered militia license"
+	description "Proved my worth to the Unfettered multiple times to earn the right to have this license, and proudly fly their colors. The ship on it looks like the one I saw from far away in their shipyard."
+
 outfit "Ionic Blaster"
 	category "Guns"
 	cost 530000
