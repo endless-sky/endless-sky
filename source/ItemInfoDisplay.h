@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "text/WrappedText.h"
 
+#include <set>
 #include <string>
 #include <vector>
 
@@ -49,7 +50,7 @@ public:
 	
 	
 protected:
-	void UpdateDescription(const std::string &text, const std::vector<std::string> &licenses, bool isShip);
+	void UpdateDescription(const std::string &text, const std::set<std::string> &licenses, bool isShip);
 	Point Draw(Point point, const std::vector<std::string> &labels, const std::vector<std::string> &values) const;
 	void CheckHover(const Table &table, const std::string &label) const;
 	

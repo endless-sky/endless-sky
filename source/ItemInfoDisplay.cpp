@@ -129,7 +129,7 @@ void ItemInfoDisplay::ClearHover()
 
 
 
-void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string> &licenses, bool isShip)
+void ItemInfoDisplay::UpdateDescription(const string &text, const set<string> &licenses, bool isShip)
 {
 	if(licenses.empty())
 		description.Wrap(text);
@@ -137,22 +137,22 @@ void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string>
 	{
 		static const string NOUN[2] = {"outfit", "ship"};
 		string fullText = text + "\tTo purchase this " + NOUN[isShip] + " you must have ";
-		for(unsigned i = 0; i < licenses.size(); ++i)
+		for(auto it = licenses.begin(); it != licenses.end(); ++it)
 		{
 			bool isVoweled = false;
 			for(const char &c : "aeiou")
-				if(*licenses[i].begin() == c || *licenses[i].begin() == toupper(c))
+				if(it->front() == c || it->front() == toupper(c))
 					isVoweled = true;
-			if(i)
+			if(it != licenses.begin())
 			{
 				if(licenses.size() > 2)
 					fullText += ", ";
 				else
 					fullText += " ";
+				if(next(it) == licenses.end())
+					fullText += "and ";
 			}
-			if(i && i == licenses.size() - 1)
-				fullText += "and ";
-			fullText += (isVoweled ? "an " : "a ") + licenses[i] + " License";
+			fullText += (isVoweled ? "an " : "a ") + *it + " License";
 		}
 		fullText += ".\n";
 		description.Wrap(fullText);

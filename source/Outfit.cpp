@@ -181,20 +181,12 @@ void Outfit::Load(const DataNode &node)
 			mass = child.Value(1);
 		else if(child.Token(0) == "licenses" && (child.HasChildren() || child.Size() >= 2))
 		{
-			auto isNewLicense = [](const vector<string> &c, const string &val) noexcept -> bool {
-				return find(c.begin(), c.end(), val) == c.end();
-			};
 			// Add any new licenses that were specified "inline".
 			if(child.Size() >= 2)
-			{
-				for(auto it = ++begin(child.Tokens()); it != end(child.Tokens()); ++it)
-					if(isNewLicense(licenses, *it))
-						licenses.push_back(*it);
-			}
+				licenses.insert(child.Tokens().begin() + 1, child.Tokens().end());
 			// Add any new licenses that were specified as an indented list.
 			for(const DataNode &grand : child)
-				if(isNewLicense(licenses, grand.Token(0)))
-					licenses.push_back(grand.Token(0));
+				licenses.insert(grand.Token(0));
 		}
 		else if(child.Token(0) == "jump range" && child.Size() >= 2)
 		{
@@ -291,7 +283,7 @@ const string &Outfit::Description() const
 
 
 // Get the licenses needed to purchase this outfit.
-const vector<string> &Outfit::Licenses() const
+const set<string> &Outfit::Licenses() const
 {
 	return licenses;
 }
@@ -363,6 +355,7 @@ void Outfit::Add(const Outfit &other, int count)
 {
 	cost += other.cost * count;
 	mass += other.mass * count;
+	licenses.insert(other.licenses.begin(), other.licenses.end());
 	for(const auto &at : other.attributes)
 	{
 		attributes[at.first] += at.second * count;

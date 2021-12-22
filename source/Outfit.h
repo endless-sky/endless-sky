@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Dictionary.h"
 
 #include <map>
+#include <set>
 #include <string>
 #include <utility>
 #include <vector>
@@ -55,7 +56,7 @@ public:
 	int64_t Cost() const;
 	double Mass() const;
 	// Get the licenses needed to buy or operate this ship.
-	const std::vector<std::string> &Licenses() const;
+	const std::set<std::string> &Licenses() const;
 	// Get the image to display in the outfitter when buying this item.
 	const Sprite *Thumbnail() const;
 	
@@ -105,7 +106,7 @@ private:
 	int64_t cost = 0;
 	double mass = 0.;
 	// Licenses needed to purchase this item.
-	std::vector<std::string> licenses;
+	std::set<std::string> licenses;
 	
 	Dictionary attributes;
 	
