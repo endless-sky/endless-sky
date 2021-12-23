@@ -119,7 +119,7 @@ public:
 	// Calculate the daily salaries for crew, not counting crew on "parked" ships.
 	int64_t Salaries() const;
 	// Calculate the daily maintenance cost for all ships and in cargo outfits.
-	int64_t Maintenance() const;
+	void MaintenanceAndReturns(int64_t &maintenance, int64_t &assetReturns) const;
 	
 	// Access the flagship (the first ship in the list). This returns null if
 	// the player does not have any ships that can be a flagship.

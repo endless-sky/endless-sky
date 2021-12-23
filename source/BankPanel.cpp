@@ -115,11 +115,13 @@ void BankPanel::Draw()
 			income[i] += it->second;
 	}
 	// Check if maintenance needs to be drawn.
-	int64_t maintenance = player.Maintenance();
+	int64_t assetsReturns = 0;
+	int64_t maintenance = 0;
+	player.MaintenanceAndReturns(maintenance, assetsReturns);
 	int64_t maintenanceDue = player.Accounts().MaintenanceDue();
 	// Figure out how many rows of the display are for mortgages, and also check
 	// whether multiple mortgages have to be combined into the last row.
-	mortgageRows = MAX_ROWS - (salaries != 0 || salariesOwed != 0) - (maintenance != 0 || maintenanceDue != 0) - (income[0] != 0 || income[1] != 0);
+	mortgageRows = MAX_ROWS - (salaries != 0 || salariesOwed != 0) - (maintenance != 0 || maintenanceDue != 0) - (income[0] != 0 || income[1] != 0) - (assetsReturns != 0);
 	int mortgageCount = player.Accounts().Mortgages().size();
 	mergedMortgages = (mortgageCount > mortgageRows);
 	if(!mergedMortgages)
@@ -205,6 +207,15 @@ void BankPanel::Draw()
 		else
 			table.Advance(3);
 		table.Draw(maintenance);
+		table.Advance();
+	}
+	if(assetsReturns)
+	{
+		totalPayment -= assetsReturns;
+		const auto incomeLayout = Layout(310, Truncate::BACK);
+		table.DrawCustom({"Return on ships and outfits", incomeLayout});
+		table.Advance(3);
+		table.Draw(-(assetsReturns));
 		table.Advance();
 	}
 	if(income[0] || income[1])
