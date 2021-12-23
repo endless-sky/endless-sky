@@ -12,7 +12,7 @@ def pathjoin(*args):
 # If we are compiling on Windows, then we need to change the toolset to MinGW.
 is_windows_host = platform.system().startswith('Windows')
 scons_toolset = ['mingw' if is_windows_host else 'default']
-env = DefaultEnvironment(tools = scons_toolset, ENV = os.environ)
+env = DefaultEnvironment(tools = scons_toolset, ENV = os.environ, COMPILATIONDB_USE_ABSPATH=True)
 
 if 'CXX' in os.environ:
 	env['CXX'] = os.environ['CXX']
@@ -140,6 +140,10 @@ def RecursiveGlob(pattern, dir_name=buildDirectory):
 	matches += Glob(pathjoin(str(dir_name), pattern))
 	matches = [i for i in matches if not '{}main.cpp'.format(os.path.sep) in str(i)]
 	return matches
+
+env.Tool('compilation_db')
+cbd = env.CompilationDatabase()
+Alias('cbd', cbd)
 
 # By default, invoking scons will build the backing archive file and then the game binary.
 sourceLib = env.StaticLibrary(pathjoin(libDirectory, "endless-sky"), RecursiveGlob("*.cpp", buildDirectory))
