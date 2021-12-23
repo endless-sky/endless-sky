@@ -4,7 +4,7 @@
 import os
 import platform
 from SCons.Node.FS import Dir
-from SCons.Errors import SConsEnvironmentError
+from SCons.Errors import *
 
 def pathjoin(*args):
 	return os.path.join(*args)
@@ -146,8 +146,10 @@ try:
     env.Tool('compilation_db')
     cbd = env.CompilationDatabase()
     Alias('cbd', cbd)
+# scons before 4.0.0 is used. In that case, simply don't provide a compilation database.
+except EnvironmentError:
+    pass
 except SConsEnvironmentError:
-    # scons before 4.0.0 is used. In that case, simply don't provide a compilation database.
     pass
 
 # By default, invoking scons will build the backing archive file and then the game binary.
