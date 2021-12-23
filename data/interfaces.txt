@@ -586,7 +586,6 @@ interface "planet"
 		center -60 -140
 		dimensions 720 360
 	"wrapped text" description
-		size 14
 		align top left
 		alignment justified
 		from -300 80
@@ -674,7 +673,6 @@ interface "planet"
 
 interface "spaceport"
 	"wrapped text" description
-		size 14
 		align top left
 		alignment justified
 		from -300 80
@@ -692,7 +690,6 @@ interface "spaceport"
 
 	visible if "has portrait"
 	"wrapped text" news
-		size 14
 		align top left
 		alignment justified
 		from -400 -80
@@ -701,7 +698,6 @@ interface "spaceport"
 
 	visible if "has no portrait"
 	"wrapped text" news
-		size 14
 		align top left
 		alignment justified
 		from -400 -80
