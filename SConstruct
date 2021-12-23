@@ -144,7 +144,7 @@ def RecursiveGlob(pattern, dir_name=buildDirectory):
 
 try:
     env.Tool('compilation_db')
-    cbd = env.CompilationDatabase()
+    env.CompilationDatabase()
 # scons before 4.0.0 is used. In that case, simply don't provide a compilation database.
 except EnvironmentError:
     pass
