@@ -141,9 +141,13 @@ def RecursiveGlob(pattern, dir_name=buildDirectory):
 	matches = [i for i in matches if not '{}main.cpp'.format(os.path.sep) in str(i)]
 	return matches
 
-env.Tool('compilation_db')
-cbd = env.CompilationDatabase()
-Alias('cbd', cbd)
+try:
+    env.Tool('compilation_db')
+    cbd = env.CompilationDatabase()
+    Alias('cbd', cbd)
+except SConsEnvironmentError:
+    # scons before 4.0.0 is used. In that case, simply don't provide a compilation database.
+    pass
 
 # By default, invoking scons will build the backing archive file and then the game binary.
 sourceLib = env.StaticLibrary(pathjoin(libDirectory, "endless-sky"), RecursiveGlob("*.cpp", buildDirectory))
