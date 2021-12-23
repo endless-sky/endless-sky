@@ -30,6 +30,8 @@ public:
 public:
 	// Returns the number of bits this bitset can hold.
 	size_t size() const noexcept;
+	// Returns the number of bits this bitset has reserved.
+	size_t capacity() const noexcept;
 
 	// Resizes the bitset to hold at least the specific amount of bits.
 	void resize(size_t size);

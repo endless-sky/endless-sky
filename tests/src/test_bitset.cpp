@@ -30,6 +30,9 @@ SCENARIO( "Creating a Bitset instance", "[bitset]") {
 		Bitset bitset;
 		THEN( "it has the correct default properties" ) {
 			CHECK( bitset.size() == 0 );
+			CHECK( bitset.capacity() == 0 );
+			CHECK( bitset.none() );
+			CHECK( !bitset.any() );
 		}
 	}
 }
@@ -54,6 +57,15 @@ SCENARIO( "A Bitset instance is being copied", "[bitset]" ) {
 				CHECK( copy.any() == bitset.any() );
 				CHECK( copy.none() == bitset.none() );
 			}
+			THEN( "the two bitsets are independent" ) {
+				bitset.set(0);
+				CHECK( bitset.test(0) );
+				CHECK_FALSE( copy.test(0) );
+
+				copy.set(4);
+				CHECK_FALSE( bitset.test(4) );
+				CHECK( copy.test(4) );
+			}
 		}
 	}
 }
@@ -64,11 +76,14 @@ SCENARIO( "A Bitset instance is being used", "[bitset]") {
 		THEN( "resizing it works" ) {
 			bitset.resize(10);
 			CHECK( bitset.size() >= 10 );
+			CHECK( bitset.capacity() >= 10 );
 		}
 	}
 	GIVEN( "a bitset of a specific size" ) {
 		Bitset bitset;
 		bitset.resize(10);
+
+		REQUIRE( bitset.size() >= 10 );
 		THEN( "setting and testing bits works" ) {
 			CHECK( bitset.none() );
 
@@ -85,6 +100,8 @@ SCENARIO( "A Bitset instance is being used", "[bitset]") {
 		THEN( "clearing it works" ) {
 			bitset.clear();
 			CHECK( bitset.size() == 0 );
+			CHECK( bitset.none() );
+			CHECK( !bitset.any() );
 		}
 	}
 	GIVEN( "two non-empty bitsets" ) {
@@ -95,10 +112,13 @@ SCENARIO( "A Bitset instance is being used", "[bitset]") {
 
 		Bitset two;
 		two.resize(3);
-		two.set(1);
 		two.set(2);
 
 		THEN( "bit intersect works" ) {
+			CHECK_FALSE( one.intersects(two) );
+			CHECK_FALSE( two.intersects(one) );
+
+			two.set(1);
 			CHECK( one.intersects(two) );
 			CHECK( two.intersects(one) );
 		}

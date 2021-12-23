@@ -95,7 +95,7 @@ Command::Command(int keycode)
 
 
 
-// Reserves the specified amount of hardpoints.
+// Sets the specified amount of hardpoints desired.
 void Command::SetHardpoints(int count)
 {
 	weapon.resize(count);

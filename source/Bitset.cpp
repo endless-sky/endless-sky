@@ -26,6 +26,14 @@ size_t Bitset::size() const noexcept
 
 
 
+// Returns the number of bits this bitset has reserved.
+size_t Bitset::capacity() const noexcept
+{
+	return bits.capacity() * BITS_PER_BLOCK;
+}
+
+
+
 // Resizes the bitset to hold at least the specific amount of bits.
 void Bitset::resize(size_t size)
 {

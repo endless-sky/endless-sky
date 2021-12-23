@@ -87,7 +87,7 @@ public:
 	// keycode (if any).
 	explicit Command(int keycode);
 
-	// Reserves the specified amount of hardpoints.
+	// Sets the specified amount of hardpoints desired.
 	void SetHardpoints(int count);
 	
 	// Read the current keyboard state and set this object to reflect it.
