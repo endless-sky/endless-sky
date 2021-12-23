@@ -50,8 +50,6 @@ namespace {
 		{"slowing resistance fuel", 0.},
 		{"slowing resistance heat", 0.},
 		{"crew equivalent", 0.},
-		{"maintenance costs", 0.},
-		{"operating costs", 0.},
 		
 		// "Protection" attributes appear in denominators and are incremented by 1.
 		{"disruption protection", -0.99},
