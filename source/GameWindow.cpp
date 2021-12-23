@@ -46,23 +46,6 @@ namespace {
 		
 		return false;
 	}
-	
-	bool HasOpenGLExtension(const char *name) {
-#ifndef __APPLE__
-		auto extensions = reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS));
-		return strstr(extensions, name);
-#else
-		bool value = false;
-		GLint extensionCount = 0;
-		glGetIntegerv(GL_NUM_EXTENSIONS, &extensionCount);
-		for(GLint i = 0; i < extensionCount && !value; ++i)
-		{
-			auto extension = reinterpret_cast<const char *>(glGetStringi(GL_EXTENSIONS, i));
-			value = (extension && strstr(extension, name));
-		}
-		return value;
-#endif
-	}
 }
 
 
@@ -207,7 +190,7 @@ bool GameWindow::Init()
 	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 	
 	// Check for support of various graphical features.
-	hasSwizzle = HasOpenGLExtension("_texture_swizzle");
+	hasSwizzle = OpenGL::HasSwizzleSupport();
 	supportsAdaptiveVSync = OpenGL::HasAdaptiveVSyncSupport();
 	
 	// Enable the user's preferred VSync state, otherwise update to an available

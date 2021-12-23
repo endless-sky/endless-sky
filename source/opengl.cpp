@@ -20,6 +20,27 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #endif
 #endif
 
+#include <cstring>
+
+namespace {
+	bool HasOpenGLExtension(const char *name) {
+#ifndef __APPLE__
+		auto extensions = reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS));
+		return strstr(extensions, name);
+#else
+		bool value = false;
+		GLint extensionCount = 0;
+		glGetIntegerv(GL_NUM_EXTENSIONS, &extensionCount);
+		for(GLint i = 0; i < extensionCount && !value; ++i)
+		{
+			auto extension = reinterpret_cast<const char *>(glGetStringi(GL_EXTENSIONS, i));
+			value = (extension && strstr(extension, name));
+		}
+		return value;
+#endif
+	}
+}
+
 
 
 bool OpenGL::HasAdaptiveVSyncSupport()
@@ -28,8 +49,15 @@ bool OpenGL::HasAdaptiveVSyncSupport()
 	// macOS and OpenGL ES don't support Adaptive VSync for OpenGL.
 	return false;
 #elif defined(_WIN32)
-	return wglewIsSupported("WGL_EXT_swap_control_tear");
+	return WGL_EXT_swap_control_tear || HasOpenGLExtension("_swap_control_tear");
 #else
-	return glxewIsSupported("GLX_EXT_swap_control_tear");
+	return GLX_EXT_swap_control_tear;
 #endif
+}
+
+
+
+bool OpenGL::HasSwizzleSupport()
+{
+	return HasOpenGLExtension("_texture_swizzle");
 }
