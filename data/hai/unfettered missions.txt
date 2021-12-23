@@ -419,7 +419,7 @@ mission "Unfettered: Neutral With The Hai"
 			`They seem willing to give you a second chance. "You have convinced us, but we will not grant you this pardon twice."`
 				goto end
 			label death
-			`The leaders gasp and then for a moment that seems to last forever, there is silence, everyone looking at you. Then one of the gards kills you.`
+			`The leaders gasp, and then for a moment that seems to last forever, there is silence, whilst everyone is looking at you. Then the gards start shooting, probably not with the intention of killing you but you seem to have worried them so much for the safety of the council that they see you as a threat.`
 				die
 			label end
 		"reputation: Hai" >?= 1
@@ -494,8 +494,8 @@ mission "Unfettered: Bring Hai"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 100000
 		log `Helped some Hai citizens to join the Unfettered.`
+		payment 100000
 		dialog `The Unfettered thank you for bringing these "True" Hai find their way home, and give you <payment>. After discussing with them, the Unfettered elder says, "If you want to help us again, the hospitals on Darkcloak are in grave need of resupply."`
 
 
@@ -539,6 +539,7 @@ mission "Unfettered: Bring Medical Supplies"
 	on fail
 		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 	on complete
+		log `Brought medial supplies to Darkcloak when it was in great need of them, to prevent an epidemic.`
 		payment 1500000
 		conversation
 			`The local health specialists seem relieved to learn that you have managed to bring the medical supplies back in time. They give you <payment>.	You find the same Hai elder speaking with them, and he moves your way when he sees you. He seems a bit emotional when he speaks, "I knew I could count on you! Without these medical supplies a lot of Unfettered would have died, captain. We did not have the time to get properly introduced yet, I am Sha-Ri." He does a little reverence which you try to imitate, apparently badly, amusing him slightly. "Worry not I already know who you are, <first> <last>."`
@@ -689,7 +690,7 @@ mission "Unfettered: Prove Your Strength 2"
 	on complete
 		outfit "Jump Drive" -4
 		payment 3000000
-		log `Helped a young Unfettered captain to bring jump drives from a pirate world. It was a really... unforgettable experience.`
+		log `Helped a young Unfettered captain to bring jump drives from a pirate world. It was a really... unforgettable experience, I almost died multiple times but in the end I saved him.`
 		dialog `"Here is your share : <payment>. You have saved my life, captain <first>, and I shall never forget it. You have earned the right to know my name : "Si-Ra". Come see me again soon if you are up for a challenge."`
 		log "People" "Si-Ra" `A young impetuous Unfettered captain who seems to grow wiser by the day. He has impressive leading and combat skill, and seems to be a fan of getting bigger and bigger ship. He always leaves room for improving tactics.`
 
@@ -874,8 +875,8 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 	on visit
 		dialog `You have not scanned the Geocoris yet, go to Ya Hai to scan it, and come back here.`
 	on complete
+		log `Scanned a Geocoris for the Unfettered, they seemed interested in the design, probably with a ship of their own in mind.`
 		payment 150000
-		log `Scanned a Geocoris for the Unfettered, they seemed interested in the design.`
 		dialog `You send the scans to the Unfettered government and receive a payment of <payment>.`
 
 
@@ -1002,8 +1003,8 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 	on fail
 		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 	on complete
-		payment 300000
 		log `Scanned an Auxiliary for the Unfettered, I wonder what it was doing so far from Republic space, and with alien technology. The fact that Alphas were on it probably has something to do with that.`
+		payment 300000
 		conversation
 			`You send your logs as you land and receive a very generous payment of <payment>, with a request to meet with the elders on Darkcloak.`
 			`	Moments later you are on the bridge, thinking about how to present the fact that this was an Alpha ship to the elders when you hear a voice from the coms on your ship. "Oh you are back, good!" You are a bit surprised of the intervention but quickly recognize the voice of Taer Fi. She apparently found a way to directly establish communication. "Can I speak to you before you bring the results to the council? I really am intrigued as to how that auxiliary could work."`
@@ -1210,6 +1211,7 @@ mission "Unfettered: Pirate Help"
 		has "accepted scar's legion tribute"
 		has "Pirate Troubles [4]: done"
 	on complete
+		log `Helped the Scar's Legion obtain Hai technology, except I fooled the Hai making them think it would be in exchange of a stopping in their attacks, as asked by the Unfettered.`
 		"reputation: Scar's Legion" >?= 1
 		payment 500000
 		dialog `The Unfettered authorities thank you for deceiving the Hai and give you a payment of <payment>.`
@@ -1333,9 +1335,9 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 	to complete
 		has "Unfettered: Alphas 3: Bring The Spoils: offered"
 	on complete
+		log `Stole an Alpha auxiliary with its cargo of jump drives, and also found Koraths on board. They tried to trap me, but I got the upper hand. I wonder if the Unfettered were in on this, considering it is trough them I learned about the fuel leak. Hopefully not...`
 		outfit "Jump Drive" -10
 		payment 10000000
-		log `Stole an Alpha auxiliary with its cargo of jump drives, and also found Koraths on board. They tried to trap me, but I got the upper hand. I wonder if the Unfettered were in on this.`
 		conversation
 			`The Unfettered warlord that annoyed you earlier seems surprised to see you same for the rest of the council, but they address you they do so with respect. "You have proven yourself. Now we have almost enough jump drives for the next phase..." You look at them intensively, and after a few seconds they realise, "Oh right, your payment! Here it is : <payment>!"`
 			choice
@@ -1350,6 +1352,8 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 				`	(Do not speak to them about the logs).`
 					decline
 			action
+				log `Found out where the Alphas were getting their jump drives from, in theory at least. The problem is the information is crypted, but the Unfettered will work hard to decypher it.`
+				set "unfettered jump drive source"
 				payment 200000
 			`	"Those are probably too well encrypted to be of much use, but we will try to break them anyway. Thank you for sharing this information with us. Here is an extra <payment> for your troubles."`
 		"salary: Unfettered" = 1000
@@ -1458,6 +1462,7 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 			variant
 				"Water Bug"
 	on complete
+		log `Gathered materials for the Unfettered shipyards, I saw some big ships in construction there, I wonder what they could be.`
 		outfit "Silicon" -100
 		outfit "Silver" -15
 		payment 500000
@@ -1573,6 +1578,7 @@ mission "Unfettered: Loot: Ion Canon Materials"
 	on visit
 		dialog `You have landed on <origin> but you do not have the spoils yet, or they are in one of your escort.`
 	on complete
+		log `Found a "defenceless" cargo in space, and brought it back to the Unfettered. The cargo itself seemed ionized, I wonder what they could do with it. I think they asked the freighter to come only to ask me to intercept it, weird.`
 		outfit "Loot" -400
 		payment 2000000
 		conversation
@@ -1656,6 +1662,7 @@ mission "Unfettered: The Word Has Spread"
 	on fail
 		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 	on complete
+		log `Gathered all the Hai who wanted to join the Unfettered that I could find.`
 		payment 5000000
 		dialog `The Hai are all excited to join the Unfettered, you did notice that more of them are ready for battle than usual, though. You receive your payment of <payment>.`
 
@@ -1684,7 +1691,7 @@ mission "Unfettered: Greenbloom"
 			action
 				payment 10000
 			`You take the drawing and give it back to the Hai, he seems happy and gives you <payment>.`
-				decline
+				accept
 
 mission "Unfettered: Mirrorlake"
 	invisible
@@ -1746,6 +1753,58 @@ mission "Unfettered: Snowfeather"
 			`5 Hai are waiting for you on the spaceport. They say they are artists and are looking for inspiration, and a purpose.`
 				decline
 
+mission "Unfettered: Snowfeather"
+	invisible
+	source "Icelake"
+	landing
+	destination "Firelode"
+	to offer
+		has "Unfettered: The Word Has Spread: active"
+	on offer
+		conversation
+			`You only find very few Hai here, and they look hesitant to come. One of them asks you, "If we change our mind about joining the Unfettered, could you bring us back?"`
+			choice
+				`	"Sure, it only makes sense for your to have a choice."`
+					accept
+				`	"Sorry but I have other things to do."`
+			`They talk for a bit and after a while still decide to come with you.`
+
+mission "Unfettered: Changed Their Mind"
+	name `Return Hai`
+	description `These Hai have changed their minds about the Unfettered when they saw them, you agreed to take them back to <destination>.`
+	source "Filelode"
+	destination "Icelake"
+	passengers 4
+	blocked `You need space for 4 passengers for the next Unfettered mission.`
+	to offer
+		has "Unfettered: Snowfeather: done"
+	on offer
+		conversation
+			`Some Hai seem completely lost in the spaceport, as if they had lost all purpose and direction. You notice these are the same Hai you promised to bring back earlier. Do you want to keep your word and go and see if you could help them?`
+			choice
+				`	(I only have one word.)`
+				`	(Later, maybe they will change their mind again.)`
+					defer
+				`	(I do not remember making any promises.)`
+					decline
+			`	They recognize you as you approach, and are very happy to see you. "We were worried that you would not come. We are happy to see you did not go back on your word, it means a lot to us. We were exited to see our brethren but this is too brutal for us, it is war that is coming and we do not want to be caught in the middle of it, only now did we realize the limited resources of our brethren. We would like to help them in another way, from our old home."`
+			choice
+				`	"I will take you back to <destination> then."`
+					accept
+				`	"What do you mean, how could you possibly help them from there?"`
+				`	"I only came to check on you, you will have to find someone else for transport."`
+					decline
+			`	"We will spread the word. Our brethren need us, they need our support and they need our resources, they need more food, more supplies. We will speak about our firsthand experience to other Hai, and they will come to see our way."`
+			choice
+				`	"I will take you back to <destination> then."`
+					accept
+				`	"I only came to check on you, you will have to find someone else for transport."`
+					decline
+	on complete
+		log `Brought a few Hai back to their space, they seemed to have changed their minds about the best way to help the Unfettered.`
+		payment 100000
+		dialog `The <bunks> Hai thank you for bringing them here and excuse themselves for any trouble they may have caused, and give you <payment> as compensation.`
+
 
 
 mission "Unfettered: Hai Intel"
@@ -1759,6 +1818,7 @@ mission "Unfettered: Hai Intel"
 	on offer
 		dialog `The Unfettered warlords would like to know if you can bring them your sensor logs of all Hai systems you have come across when gathering the True Hai to <destination>.`
 	on complete
+		log `Unfettered warlords were interested in the positioning of the Hai fleets, I gave them my sensor logs.`
 		payment 50000
 		dialog `The Unfettered give you <payment> for the intel.`
 
@@ -2007,7 +2067,7 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 				`	"Why do you say that?"`
 			`	"I know that your specie loves big things. I guess that makes two of us. Since you are here, you can help us getting big ships anyway."`
 			label help
-			`	He checks some plans and consults a few experts, estimating the quantities you should bring. "We need industrial materials to build the new sections, a lot of them. We already have a big cargo on the way, but more would help speed things up significantly, especially given the distance."`
+			`	He checks his plans and consults a few experts, estimating the quantities you should bring. "We need industrial materials to build the new sections, a lot of them. We already have a big cargo on the way, but more would help speed things up significantly, especially given the distance."`
 			choice
 				`	"Whatever the distance the cross, I will do it."`
 				`	"I do not want to do long distance cargo mission, screw the Unfettered and your big ships."`
@@ -2023,6 +2083,7 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 	on fail
 		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 	on complete
+		log `I helped the Unfettered upgrade their shipyards and received a brand new ship! It appears to be a prototype, quite an unstable one at that. However, shield beetles will have to wait.`
 		give ship "Shield Beetle Prototype" "Basilisk"
 		dialog `After unloading all the cargo you go check for the warlord in the shipyard, and you find a Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship, "We have a very special reward for you, captain: a brand new ship, produced just for you. It is equiped with plenty prototypes and has some particularities which I am sure you will like, including a reinforced shield matrix!" You guess that Taer-Fi left you the message.`
 		event "shield beetle mass production" 30
@@ -2158,6 +2219,7 @@ mission "Unfettered: Close Quarter"
 			has "Bring Coalition Weapons: done"
 			has "Bring Void Rifle: done"
 	on complete
+		log `Brought very strong stunning weapons to the Unfettered so they can do their training without risk, or at least that is what they said, apparently there may be more to it.`
 		conversation
 			`You go see He Yi with the non lethal rifles to see if he has anything else to ask you. He seems very happy you managed to find them, and says, "Great job! It will be decisive in the coming war."`
 			choice
@@ -2216,7 +2278,7 @@ mission "Bring Void Rifle"
 				`	"Sorry, this is one of a kind."`
 			`	"Oh, if you want I can cancel the exchange then, if it is precious to your eyes."`
 			choice
-				`	"<payment> is much more precious thank you."`
+				`	"<payment> is much more precious, thank you."`
 				`	"Yes I have changed my mind, cancel the exchange."`
 					decline
 			`	"This will be my personal weapon, I will take good care of it worry not!"`
@@ -2262,6 +2324,7 @@ mission "Unfettered: Start Of The War"
 				"reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)" + 100
 			`"You sure know how to fight, but sheer firepower may not be enough, you should train more before we are ready to start the war. Also we would require more jump drives that what we currently have, because our Alpha supplies have been disrupted by your actions."`
 	on complete
+		log `Officialy joined the Unfettered Militia. It should be the last time I have to prove my worth to them. At the very least I may now buy all of their ships with this license.`
 		dialog `"We will notify you once you may be of help to the war effort. In the mean time, we have increased your salary to 5000 so you can muster an even bigger fleet. Also from now on you will officially have the permission, nay, the obligation to proudly wear our colours. We have signaled this change of colors to the Hai meaning they will not change their behaviour with you, recognizing your signature. You have also deserved the right to have this." He hands you a small trophy. "It is a proof of our trust towards you and means you will be able to buy all of our ships."`
 		"salary: Unfettered" = 5000
 		event "joined the unfettered"
