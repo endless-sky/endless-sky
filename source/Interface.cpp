@@ -666,6 +666,7 @@ bool Interface::WrappedTextElement::ParseLine(const DataNode &node)
 // Report the actual dimensions of the object that will be drawn.
 Point Interface::WrappedTextElement::NativeDimensions(const Information &info, int state) const
 {
+	// Update the underlying wrapped text to update its size and word wrap calculations.
 	text.SetFont(FontSet::Get(fontSize));
 	text.Wrap(info.GetString(name));
 	return Point(text.WrapWidth(), text.Height());
@@ -676,6 +677,9 @@ Point Interface::WrappedTextElement::NativeDimensions(const Information &info, i
 // Draw this element in the given rectangle.
 void Interface::WrappedTextElement::Draw(const Rectangle &rect, const Information &info, int state) const
 {
+	// Before calling Draw NativeDimensions was called to get the bounding box
+	// of the wrapped text.
+	// As such, we do not need to update the underlying text here again.
 	text.Draw(rect.TopLeft(), *color);
 }
 
