@@ -145,7 +145,7 @@ try:
     env.Tool('compilation_db')
     cbd = env.CompilationDatabase()
     Alias('cbd', cbd)
-except SConsEnvironmentError:
+except:
     # scons before 4.0.0 is used. In that case, simply don't provide a compilation database.
     pass
 
