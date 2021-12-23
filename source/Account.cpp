@@ -224,6 +224,19 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	// makes you at least as credit-worthy as someone who pays debts on time.)
 	creditScore = max(200, min(800, creditScore + (missedPayment ? -5 : 1)));
 	
+	auto creditString = [](int64_t payment) -> string
+	{
+		return payment == 1 ? "1 credit" : Format::Credits(payment) + " credits";
+	};
+	
+	if(maintenancePaid < 0)
+	{
+		if(missedPayment)
+			out << " ";
+		out << "You received " << creditString(-maintenancePaid) << " in maintenance.";
+		maintenancePaid = 0;
+	}
+	
 	// If you didn't make any payments, no need to continue further.
 	if(!(salariesPaid + maintenancePaid + mortgagesPaid + finesPaid))
 		return out.str();
@@ -231,11 +244,6 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 		out << " ";
 	
 	out << "You paid ";
-	
-	auto creditString = [](int64_t payment) -> string
-	{
-		return payment == 1 ? "1 credit" : Format::Credits(payment) + " credits";
-	};
 	
 	map<string, int64_t> typesPaid;
 	if(salariesPaid)
@@ -265,7 +273,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 			out << creditString(salariesPaid) << " in crew salaries"
 				<< ((mortgagesPaid || finesPaid || maintenancePaid) ? " and " : ".");
 		if(maintenancePaid)
-			out << creditString(maintenancePaid) << "  in maintenance"
+			out << creditString(maintenancePaid) << " in maintenance"
 				<< ((mortgagesPaid || finesPaid) ? " and " : ".");
 		if(mortgagesPaid)
 			out << creditString(mortgagesPaid) << " in mortgages"
