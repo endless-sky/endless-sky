@@ -19,7 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Shader.h"
 #include "System.h"
 
-#include "gl_header.h"
+#include "opengl.h"
 
 #include <algorithm>
 #include <cmath>
@@ -193,7 +193,7 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 					ORTH + min(buffer[(x + 1) + y * columns], buffer[x + (y + 1) * columns]),
 					DIAG + min(buffer[(x - 1) + (y + 1) * columns], buffer[(x + 1) + (y + 1) * columns])));
 	
-		// Strech the distance values so there is no shading up to about 200 pixels
+		// Stretch the distance values so there is no shading up to about 200 pixels
 		// away, then it transitions somewhat quickly.
 		for(unsigned char &value : buffer)
 			value = max(0, min(LIMIT, (value - 60) * 4));
