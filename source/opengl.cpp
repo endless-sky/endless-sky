@@ -45,9 +45,11 @@ namespace {
 
 bool OpenGL::HasAdaptiveVSyncSupport()
 {
-#if defined(__APPLE__) || defined(ES_GLES)
-	// macOS and OpenGL ES don't support Adaptive VSync for OpenGL.
+#ifdef __APPLE__
+	// macOS doesn't support Adaptive VSync for OpenGL.
 	return false;
+#elif defined(ES_GLES)
+	return HasOpenGLExtension("_swap_control_tear");
 #elif defined(_WIN32)
 	return WGL_EXT_swap_control_tear || HasOpenGLExtension("_swap_control_tear");
 #else
