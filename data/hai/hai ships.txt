@@ -684,11 +684,6 @@ ship "Shield Beetle"
 	"final explode" "final explosion large"
 	description "This ship was first built millennia ago, near the end of a more violent time in Hai history. Since then, it has served as the only heavy warship at the disposal of the Hai. The Shield Beetle is a versatile warship used by the Hai to guard their merchant convoys, or by the Unfettered to attack those very same convoys."
 
-ship "Shield Beetle" "Shield Beetle (Unfettered)"
-	attributes
-		licenses
-			"Unfettered Militia"
-
 ship "Shield Beetle" "Shield Beetle (Police)"
 	outfits
 		"Ion Cannon" 4

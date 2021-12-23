@@ -567,6 +567,7 @@ mission "Unfettered: Prove Your Strength"
 	source "Darkcloak"
 	to offer
 		has "Unfettered Jump Drive 2: offered"
+		has "Unfettered: Bring Medical Supplies: done"
 		has "armament deterrence" > 5
 	on offer
 		conversation
@@ -620,7 +621,7 @@ mission "Unfettered: Prove Your Strength"
 
 
 mission "Unfettered: Prove Your Strength 2"
-	name `Get jump drives`
+	name `Recover the jump drives`
 	description `Go to the pirate world of <stopovers> and recover jump drives from a vault.`
 	source "Darkcloak"
 	stopover "Freedom"
@@ -628,7 +629,6 @@ mission "Unfettered: Prove Your Strength 2"
 	to offer
 		has "Unfettered: Prove Your Strength: done"
 		has "Unfettered Jump Drive 3: offered"
-		has "Unfettered: Bring Medical Supplies: done"
 	on offer
 		conversation
 			`As you go near what looks like a bar in the spaceport you find the same Hai that challenged you. "So we meet again. It will take a lot more than what you did last time if you want to take me down this time! Well... once I have gotten my ship back anyway. But that is not why I am here," he says, apparently happy to see you. "I have a job for you."`
@@ -800,8 +800,7 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 	source "Firelode"
 	waypoint "Ya Hai"
 	to offer
-		has "Unfettered Jump Drive 2: offered"
-		has "Unfettered: Bring Hai: done"
+		has "Unfettered: Bring Medical Supplies: done"
 		has "Unfettered: Prove Your Strength: done"
 	on offer
 		conversation
@@ -937,10 +936,10 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 	deadline 4
 	to offer
 		has "Unfettered: Solifuge 1: Geocoris Design: done"
-		has "Unfettered Jump Drive 3: offered"
+		has "Unfettered: Prove Your Strength 2: done"
 	on offer
 		conversation
-			`You go get a drink in the spaceport, thinking about the Unfettered you met earlier, Taer-Fi. She said he would tell you more about it once she gets the logs but you have yet to see her. Hopefully she can be trusted. After you spend an hour talking with the local Unfettered and drinking, she finally arrives. She seems to be in a hurry.`
+			`You go get a drink in the spaceport, thinking about the Unfettered you met before, Taer-Fi. She said he would tell you more about it once she gets the logs but you have yet to see her since you brought the Geocoris logs to the local authorities. Hopefully she can be trusted. After you spend an hour talking with the local Unfettered and drinking, she finally arrives. She seems to be in a hurry.`
 			`	"Sorry I could not see you earlier, I was busy. I know I have promised you information, but there is a more pressing matter we should focus on. A human ship will enter <system> in a few days, I need you to scan it for me, then I will meet you back here with the others and answer any questions you may have," she promises.`
 			`	"Oh and before I forget, you should not attack them, even if they strike first. I am not sure how they will even react to your presence," she adds.`
 			choice
@@ -1006,10 +1005,10 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 		log `Scanned an Auxiliary for the Unfettered, I wonder what it was doing so far from Republic space, and with alien technology. The fact that Alphas were on it probably has something to do with that.`
 		payment 300000
 		conversation
-			`You send your logs as you land and receive a very generous payment of <payment>, with a request to meet with the elders on Darkcloak.`
-			`	Moments later you are on the bridge, thinking about how to present the fact that this was an Alpha ship to the elders when you hear a voice from the coms on your ship. "Oh you are back, good!" You are a bit surprised of the intervention but quickly recognize the voice of Taer Fi. She apparently found a way to directly establish communication. "Can I speak to you before you bring the results to the council? I really am intrigued as to how that auxiliary could work."`
+			`You send your logs as you land and receive a very generous payment of <payment>.`
+			`	Moments later you are on the bridge, thinking about how to present the fact that this was an Alpha ship to the elders when you hear a voice from the coms on your ship. "Oh you are back, good!" You are a bit surprised of the intervention but quickly recognize the voice of Taer Fi. She apparently found a way to directly establish communication. "Can I speak to you about your scans? I really am intrigued as to how that auxiliary could work."`
 			choice
-				`	"I want to go speak to the council right now, maybe another time."`
+				`	"I will not discuss those things with you."`
 					decline
 				`	"Sorry but I am no engineer, I have no idea about how those Carriers work."`
 				`	"Sure, what is it you want to know about them?"`
@@ -1035,17 +1034,6 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 
 
 
-mission "Unfettered: Solifuge 4: Meet The Elders"
-	name `Go see the elders`
-	description `The Unfettered elders have asked you to go see them on <destination> when you have the time, probably to discuss your scan results.`
-	source "Firelode"
-	landing
-	destination "Darkcloak"
-	to offer
-		has "Unfettered: Solifuge 3: Auxiliary Design Logs: done"
-
-
-
 mission "Unfettered: Escort Hai Fleet"
 	name `Escort a Hai convoy`
 	description `Escort a Hai convoy from <stopovers> to <destination> before the truce expires by <date>.`
@@ -1055,11 +1043,10 @@ mission "Unfettered: Escort Hai Fleet"
 	deadline 20
 	to offer
 		has "Unfettered: Solifuge 2: Auxiliary Design: done"
-		has "Unfettered: Bring Medical Supplies: done"
 		has "combat rating" > 100
 	on offer
 		conversation
-			`As you prepare yourself to leave this planet, you an Unfettered elder approaches you. After some time you realize it is Sha-Ri, the one you helped earlier with moving people and medical supplies. You have not yet seen him so worried, or moving at this pace before. He comes to speak to you. "<first>! I, or more precisely a fleet of True Hai need your immediate assistance to escorting them trough Hai space, from <stopovers>."`
+			`As you prepare to leave this planet, an Unfettered elder approaches you. After some time you recognize Sha-Ri, the one you helped earlier with moving people and medical supplies. You have not yet seen him so worried, or moving at this pace before. He comes to speak to you. "<first>! I, or more precisely a fleet of True Hai need your immediate assistance to escorting them trough Hai space, from <stopovers>."`
 			choice
 				`	"What are you doing here?"`
 				`	"Why do you need my help?"`
@@ -1222,21 +1209,25 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 	name `Find the Auxiliary`
 	description `Go to <stopover> to learn where you can find the Alpha ship.`
 	source "Darkcloak"
-	landing
 	destination "Firelode"
 	to offer
 		has "Unfettered: Solifuge 3: Auxiliary Design Logs: done"
+		has "Unfettered: Escort Hai Fleet: done"
 	on offer
 		conversation
-			`As you enter the spaceport you quickly find the council in the same stadium as before, and it looks like they are waiting for you. It will finally be the time for answers.`
-			`	One of the leaders steps forward. You recognize Sha-Ri, "It seems like you are an enemy to the Unfettered humans, and we cannot risk a disruption in our supply of jump drives. You may have provided some to us, but so did they." You assume that by Unfettered humans they mean Alphas.`
+			`As you enter the spaceport you see the council gathered in a stadium looking similar to the one on Firelode, except it is bigger. It looks like will finally be the time for answers, if you want to go see them now, that is.`
+			choice
+				`	(Enter the stadium and go see them.)`
+				`	(I do not have time right now, later.)`
+					defer
+			`	Seeing you approach, one of the leaders steps forward. You recognize Sha-Ri. "It seems like you are an enemy to the Unfettered humans, and we cannot risk a disruption in our supply of jump drives. You may have provided some to us, but so did they. Because of this, we have a task to ask of you, should you accept you would be able to join us, maybe not officialy for now, but all things come in good time." You assume that by Unfettered humans they mean Alphas.`
 			choice
 				`	"What is it you want me to do? I do not like these Alphas."`
 					goto hate
 				`	"Who supplies you jump drive is none of my concern."`
 				`	"I will not tolerate you not being enemies to the Alphas. I am not interested in helping you any more."`
 					decline
-			`	"Good, and neither should it be, but if you want to continue working for us you will have to prove yourself. Beat that Auxiliary and bringing back any loot you may find."`
+			`	"Good, and neither should it be, but if you want to join us you will have to prove yourself. Beat that Auxiliary and bringing back any loot you may find."`
 				goto next
 			label hate
 			`	"Perfect! We want you to prove your worth. Beat that Unfettered human Auxiliary and come back here, for the greatest reward you can imagine."`
@@ -1270,7 +1261,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		has "Unfettered: Alphas: Find The Auxiliary: done"
 	on offer
 		conversation
-			`Taer-Fi is expecting you, and comes to your ship right away, she is eager to give you the intel, hopefully it will help you find the Auxiliary. "I am glad you came so fast! But not to worry that auxiliary cannot be going very far before some serious repairs, not with the kind of damage it suffered anyway."`
+			`Taer-Fi is expecting you, and comes to your ship right away, she is eager to give you the intel. Hopefully it will help you find the Auxiliary. "I am glad you came so fast! But not to worry that auxiliary cannot be going very far before some serious repairs, not with the kind of damage it suffered anyway."`
 			choice
 				`	"Get to the point, where can I find it?"`
 				`	"What kind of damage?"`
@@ -1315,7 +1306,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 	npc
 		government "Alpha"
 		system "Host"
-		personality heroic nemesis staying vindictive swarming
+		personality heroic nemesis staying
 		ship "Far Osk 27" "Prancer"
 		ship "Far Osk 27" "Vixen"
 		ship "Far Osk 27" "Cupid"
@@ -1352,7 +1343,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 				`	(Do not speak to them about the logs).`
 					decline
 			action
-				log `Found out where the Alphas were getting their jump drives from, in theory at least. The problem is the information is crypted, but the Unfettered will work hard to decypher it.`
+				log `Found out where the Alphas were getting their jump drives from, in theory at least. The problem is the information is encrypted, but the Unfettered will work hard to decypher it.`
 				set "unfettered jump drive source"
 				payment 200000
 			`	"Those are probably too well encrypted to be of much use, but we will try to break them anyway. Thank you for sharing this information with us. Here is an extra <payment> for your troubles."`
@@ -1491,7 +1482,6 @@ ship "Behemoth" "Behemoth (Mamoth)"
 		"Small Radar Jammer"
 		"X3200 Ion Steering"
 		"X3700 Ion Thruster"
-	cargo
 		outfit "Loot" 400
 
 mission "Unfettered: Loot: Ion Canon Materials"
@@ -1499,8 +1489,6 @@ mission "Unfettered: Loot: Ion Canon Materials"
 	description `There is an undefended cargo ship near <waypoint>, find it and bring its cargo back!`
 	source "Darkcloak"
 	to offer
-		has "Unfettered: Prove Your Strength 2: done"
-		has "Unfettered: Alphas 2: Prove Yourself: done"
 		has "Unfettered: Solifuge 5: Materials For Ships: done"
 	on offer
 		conversation
@@ -1628,7 +1616,6 @@ mission "Unfettered: The Word Has Spread"
 		dialog `You have gathered all the Hai that had been assigned to you, time to bring them to <destination>.`
 	to offer
 		has "Unfettered: Solifuge 5: Materials For Ships: done"
-		has "Unfettered: Bring Medical Supplies: done"
 	on offer
 		conversation
 			`The recent activity has still not diminished, people are moving around everywhere, getting to their ships or doing simply their jobs but with renewed purpose. In all that activity you find your elder friend, Sha-Ri, who seems happy to see you. "Ah, here you are, when you are most needed, like always, <first>! Many True Hai have felt the calling of battle now, or the need to change. However, some have difficulties joining us because of the Hai government... Could you help getting them here?"`
@@ -1697,7 +1684,6 @@ mission "Unfettered: Mirrorlake"
 	invisible
 	source "Mirrorlake"
 	landing
-	destination "Firelode"
 	to offer
 		has "Unfettered: The Word Has Spread: active"
 	on offer
@@ -1709,7 +1695,6 @@ mission "Unfettered: Makerplace"
 	invisible
 	source "Makerplace"
 	landing
-	destination "Firelode"
 	to offer
 		has "Unfettered: The Word Has Spread: active"
 	on offer
@@ -1721,7 +1706,6 @@ mission "Unfettered: Newhome"
 	invisible
 	source "Newhome"
 	landing
-	destination "Firelode"
 	to offer
 		has "Unfettered: The Word Has Spread: active"
 	on offer
@@ -1733,7 +1717,6 @@ mission "Unfettered: Darkmetal"
 	invisible
 	source "Darkmetal"
 	landing
-	destination "Firelode"
 	to offer
 		has "Unfettered: The Word Has Spread: active"
 	on offer
@@ -1745,7 +1728,6 @@ mission "Unfettered: Snowfeather"
 	invisible
 	source "Snowfeather"
 	landing
-	destination "Firelode"
 	to offer
 		has "Unfettered: The Word Has Spread: active"
 	on offer
@@ -1753,7 +1735,7 @@ mission "Unfettered: Snowfeather"
 			`5 Hai are waiting for you on the spaceport. They say they are artists and are looking for inspiration, and a purpose.`
 				decline
 
-mission "Unfettered: Snowfeather"
+mission "Unfettered: Icelake"
 	invisible
 	source "Icelake"
 	landing
@@ -1772,7 +1754,7 @@ mission "Unfettered: Snowfeather"
 mission "Unfettered: Changed Their Mind"
 	name `Return Hai`
 	description `These Hai have changed their minds about the Unfettered when they saw them, you agreed to take them back to <destination>.`
-	source "Filelode"
+	source "Firelode"
 	destination "Icelake"
 	passengers 4
 	blocked `You need space for 4 passengers for the next Unfettered mission.`
@@ -1816,7 +1798,7 @@ mission "Unfettered: Hai Intel"
 	to offer
 		has "Unfettered: The Word Has Spread: done"
 	on offer
-		dialog `The Unfettered warlords would like to know if you can bring them your sensor logs of all Hai systems you have come across when gathering the True Hai to <destination>.`
+		dialog `The Unfettered warlords would like to know if you can bring them your sensor logs of all Hai systems you have come across whilst gathering the True Hai to <destination>.`
 	on complete
 		log `Unfettered warlords were interested in the positioning of the Hai fleets, I gave them my sensor logs.`
 		payment 50000
@@ -2038,7 +2020,7 @@ mission "Unfettered: New Cooling Available"
 		has "event: new cooling system"
 	on offer
 		conversation
-			`You receive a message from Taer-Fi, "Hi <first>, remember the coolers you helped to develop? They are finally available, on Darkcloak. We do not have yet enough to equip all of our ships with them, unfortunately but you can buy as many as you want!"`
+			`You receive a message from Taer-Fi, "Hi <first>, remember the coolers you helped to develop? They are finally available, on Darkcloak. We do not have yet enough to equip all of our ships with them, but that is not yet required because our current weapons do not generate that much heat. However you can buy as many as you want!"`
 				decline
 
 
@@ -2089,8 +2071,6 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 		event "shield beetle mass production" 30
 
 event "shield beetle mass production"
-	shipyard "Unfettered"
-		"Shield Beetle (Unfettered)"
 	outfitter "Unfettered"
 		"Pulse Turret"
 		"Hai Tracker Pod"
@@ -2333,3 +2313,5 @@ mission "Unfettered: Start Of The War"
 event "joined the unfettered"
 	government "Escort"
 		swizzle 4
+	shipyard "Unfettered"
+		"Shield Beetle"
