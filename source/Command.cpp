@@ -95,6 +95,15 @@ Command::Command(int keycode)
 
 
 
+// Reserves the specified amount of hardpoints.
+void Command::SetHardpoints(int count)
+{
+	weapon.resize(count);
+	aim.resize(count);
+}
+
+
+
 // Read the current keyboard state.
 void Command::ReadKeyboard()
 {

@@ -585,6 +585,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			&& autoPilot.Has(Command::BOARD));
 		
 		Command command;
+		command.SetHardpoints(it->Weapons().size());
 		if(it->IsYours())
 		{
 			if(it->HasBays() && thisIsLaunching)
@@ -3122,6 +3123,8 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands)
 {
 	Command command;
+	command.SetHardpoints(ship.Weapons().size());
+
 	bool shift = activeCommands.Has(Command::SHIFT);
 	
 	bool isWormhole = false;

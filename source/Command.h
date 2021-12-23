@@ -86,6 +86,9 @@ public:
 	// Create a command representing whatever command is mapped to the given
 	// keycode (if any).
 	explicit Command(int keycode);
+
+	// Reserves the specified amount of hardpoints.
+	void SetHardpoints(int count);
 	
 	// Read the current keyboard state and set this object to reflect it.
 	void ReadKeyboard();
