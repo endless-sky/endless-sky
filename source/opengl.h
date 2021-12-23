@@ -10,8 +10,8 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef OPENGL_
-#define OPENGL_
+#ifndef ES_OPENGL_H_
+#define ES_OPENGL_H_
 
 // Include whichever header is used for OpenGL on this operating system.
 #ifdef __APPLE__
