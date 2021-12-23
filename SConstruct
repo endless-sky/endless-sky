@@ -4,6 +4,7 @@
 import os
 import platform
 from SCons.Node.FS import Dir
+from SCons.Errors import SConsEnvironmentError
 
 def pathjoin(*args):
 	return os.path.join(*args)
@@ -145,7 +146,7 @@ try:
     env.Tool('compilation_db')
     cbd = env.CompilationDatabase()
     Alias('cbd', cbd)
-except:
+except SConsEnvironmentError:
     # scons before 4.0.0 is used. In that case, simply don't provide a compilation database.
     pass
 
