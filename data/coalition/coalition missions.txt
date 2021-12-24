@@ -1476,7 +1476,7 @@ mission "Saryd University Lecture"
 	destination "Shadow of Leaves"
 	on offer
 		conversation
-			`As you exit a restaurant in the spaceport, you notice a rumpled-looking Saryd staring at you. Attention from others is not unusual for you in Coalition space, as you are quite an unusual sight here. You don't pay him much mind until he begins to gallop towards you, hailing you down.`
+			`As you exit a restaurant in the spaceport, you notice a rumpled-looking Saryd staring at you. Attention from others is not new for you in Coalition space, as you are quite an unusual sight here. You don't pay him much mind until he begins to gallop towards you, hailing you down.`
 			`	"Captain! Excited to finally meet you, I am. Heard of the human in our space, I have, but to see you myself, special it is."`
 			`	"A scientist, I am, and invitied to speak at a university seminar, I have been. Be there by <date>, I must. The honor of transporting me to <planet>, will you give me?"`
 			choice
@@ -1499,7 +1499,7 @@ mission "Saryd University Lecture"
 		"coalition jobs" += 3
 		payment 25000
 		conversation
-			`	Once you and your passenger depart from your ship, he turns around.`
+			`	During the trip, Aelbris was polite, if a bit intrusive in his questions about your homeworld. You answered as best you could, though at times you struggled to understand what was even being asked. Once you and your passenger depart from your ship, he turns around.`
 			`	"Captain, that you must be very busy, I realize, but wondering if you could stay for the seminar, I was. You see, studying human space for years, I have been, but actually met a human, I had not. A great boon to our field to have a human guest speaker, it would be."`
 			choice
 				`	"What do I have to do there?"`
@@ -1559,7 +1559,9 @@ mission "Saryd University Lecture"
 			`	"What is the extent of contact that humans have with other aliens?"`
 			choice
 				`	"Humans have official contact with the Quarg, but the Quarg don't trade technology with humanity."`
+					goto quarg
 				`	"Humans have official contact with the Quarg, but humans and Quarg don't really intermix."`
+					goto quarg
 				`	"Humans know about the Quarg, but most people know little about them."`
 					goto quarg
 			label hai
@@ -1572,7 +1574,6 @@ mission "Saryd University Lecture"
 				`	"Humans have official contact with the Quarg, but the Quarg don't trade technology with humanity."`
 				`	"Humans have official contact with the Quarg, but humans and Quarg don't really intermix."`
 				`	"Humans know about the Quarg, but most people know little about them."`
-					goto "quarg"
 			label quarg
 			`	The audience response is muted. You get the impression that you haven't told them anything they don't already know.`
 				goto nextquestion
@@ -1608,7 +1609,7 @@ mission "Saryd University Lecture"
 					goto pirategood
 			`	"Stamped out, may lawlessness soon be," says the Heliarch in a solemn tone of voice. She picks a Saryd for the next question.`
 			label pirategood
-			`	Again, your microphone starts to fizzle out as you attempt to answer. The Heliarch's eight eyes are all on you, and you sense that it might not be a good idea to finish your sentence. The Heliarch selects a Saryd for the next question.`
+			`	Your microphone starts to fizzle out as you attempt to answer. The Heliarch's eight eyes are all on you, and you sense that it might not be a good idea to finish your sentence. The Heliarch selects a Saryd for the next question.`
 			`	"A fairly comprehensive map of human space, we have." The Saryd brings out a star map of the galactic south. "But of the core, we know not. Inform us of the galaxy, can you?"`
 			branch korath
 				or
@@ -1632,7 +1633,7 @@ mission "Saryd University Lecture"
 			`	The Saryd walks away, disappointed.`
 				goto sorry
 			label tell
-			`	"I've met an alien species there called the Korath. They're reptillian creatures. What's left of their planets has been ruined by infighting. The Kor Sestor and Kor Mereti have been fighting a civil war using autonomous ships. The Kor Efreti have stayed out of the civil war, living under the Quarg's protection. The Korath Exiles, have been banished to the Core by the Quarg, for refusing to give up their ability to manufacture jump drives. They are now raiding humanity for supplies."`
+			`	"I've met an alien species there called the Korath. They're reptillian creatures. What's left of their planets has been ruined by infighting. The Kor Sestor and Kor Mereti have been fighting a civil war using autonomous ships. The Kor Efreti have stayed out of the civil war, living under the Quarg's protection. The Korath Exiles have been banished to the Core by the Drak, for refusing to give up their ability to manufacture jump drives. They are now raiding humanity for supplies."`
 			`	The crowd shows considerable interest at this last part. "Knowledge of the jump drive, a species besides the Quarg possesses? Great news, this is! Our struggle against the Quarg, we do not take up alone. Possess jump drives, do any other species?" The Heliarch does not seem to mind you answering another question.`
 			branch unfettered
 				has  "First Contact: Unfettered: offered"
