@@ -77,6 +77,8 @@ mission "Coalition: First Contact"
 					goto end
 				`	"But, the Quarg do let the humans and the Hai make contact with each other."`
 			`	This, apparently, is news to them. You explain to them who the Hai are, and that some humans have made contact with them and are living in their territory. "A second Coalition you are forming!" says the centaur, tapping its hooves on the floor in excitement. "Once again, foiled the Quarg are. A secret way for species to work together, they have overlooked. Great things, from this may come."`
+			action
+				set "coalition knows hai"
 			label end
 			`	You talk with them for a while longer, and learn that the centaurs are called "Saryds," and are the oldest of the three species. The beetles are the "Kimek," and come next, and the spiders are called "Arachi," and were the last of the three to discover spaceflight.`
 			`	They tell you that the best way to learn more about them is to visit their worlds, and to see for yourself how the three species live in friendship and equality. They also offer to give you jobs to do in their territory, so that you may become a "valuable contributor" to their society.`
@@ -1567,7 +1569,7 @@ mission "Saryd University Lecture"
 			label hai
 			`	"What is the extent of contact that humans have with other aliens?"`
 			choice
-				`	"Humans are in contact with the Hai. Some of them even live in Hai space. They live to the north of human space, and we can visit them through a wormhole."`
+				`	"Humans are in contact with the Hai. Some of them even live on Hai planets. They live to the north of human space, and we can visit them through a wormhole."`
 					goto "know"
 				`	"A few humans know about the Hai, but there's no official acknowledgment of their existence. They live to the north of human space, and we can visit them through a wormhole."`
 					goto "know"
@@ -1578,8 +1580,13 @@ mission "Saryd University Lecture"
 			`	The audience response is muted. You get the impression that you haven't told them anything they don't already know.`
 				goto nextquestion
 			label know
-			`	Several members of the audience are delighted. "Ah, the Hai, we have heard of," says the Heliarch. "Tell us more of them, could you?"`
-			`	As you open your mouth to speak, the Heliarch cuts you off. "Enough questions on the Hai, we have." The crowd looks disappointed at this development.`
+			branch coalitionknow
+				has coalition knows hai
+			`	"Several members of the audience are delighted. "Unknown to us, this species is," says the Heliarch. "That you have made contact with them despite the Quarg, good news it is." 
+			`	"Tell us more of them, could you?" asks another scientist. As you open your mouth to speak, the Heliarch cuts you off. "Enough questions on the Hai, we have." The crowd looks disappointed at this development.`
+			label coalitionknow
+			`	Several members of the audience are delighted. "Ah, the Hai, we have heard of," says the Heliarch. "That you have made contact with them despite the Quarg, good news it is." 
+			`	"Tell us more of them, could you?" asks another scientist. As you open your mouth to speak, the Heliarch cuts you off. "Enough questions on the Hai, we have." The crowd looks disappointed at this development.`
 			label nextquestion
 			branch war
 				has "FWC End: completed"
