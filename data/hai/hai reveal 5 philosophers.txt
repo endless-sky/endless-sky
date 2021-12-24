@@ -508,7 +508,7 @@ mission "Hai Rescue [B05] Plant a Spy"
 		dialog `You quickly notice a Korath Raider with pirate markings. Your last visit must have encouraged increased security.`
 	on offer
 		conversation
-			`You reach the spaceport with Teeneep and head to the room you were told to visit. A Hai stands before you, nervously eyeing the strange orb you're holding. "You must be Tutitot," Teeneept says. The Hai nods. "This is Captain <first> <last>. While you two work together, I will stay behind to prepare for our next steps."`
+			`You reach the spaceport with Teeneep and head to the room you were told to visit. A Hai stands before you, nervously eyeing the strange orb you're holding. "You must be Tutitot," Teeneep says. The Hai nods. "This is Captain <first> <last>. While you two work together, I will stay behind to prepare for our next steps."`
 			`	Tutitot addresses you. "The Quarg told me I'm supposed to put the worm in my ear. It's just so... weird and gross." You give him the orb, and he lifts it up and brings it near his head. The worm immediately jumps out and vanishes into his ear. The Hai stiffens for a few seconds, and then returns to normal. "I can... feel your mind. I can see the orb in my mind. It's like the whole world is in my mind! This is amazing!`
 			`	"I'm ready to go. Please deliver the orb to <stopovers> and then take me to <destination>. When I'm at the Philosopher's Paradise, the orb will... touch your mind? It will probably be two or three weeks after you place the it. Then you will return to Devil-Eye to contact me."`
 			`	Tutitot walks toward your ship as if in a trance. Teeneep follows from a distance, watching the Hai's odd behavior. After a moment, she turns to you. "You will be paid well upon your return," says Teeneep. "Please hurry."`
@@ -850,7 +850,7 @@ mission "Hai Rescue [C07] Devil-Hide Battle"
 		has "Hai Rescue [C06] Meet the Fleet: done"
 	on offer
 		conversation
-			`General Choot'k meets you as you're preparing for the invasion. "I want to see you prove yourself in battle before I open the entrance to the Philosopher's Paradise. When we arrive at Devil-Hide, you'll demand tribute from the city. They'll keep sending defense fleets until they resign to their fate and pay you daily tribute. We won't help you fight the tribute defense fleets, but we'll kill any other pirates that show up."`
+			`General Choot'k meets you as you're preparing for the invasion. "I want to see you prove yourself in battle before I open the entrance to the Philosopher's Paradise. When we arrive at Devil-Hide, we'll first fight the defense fleet waiting for us. Then, you'll demand tribute from the city. They'll keep sending defense fleets until they resign to their fate and pay you daily tribute. We won't help you fight the tribute defense fleets, but we'll fight the pirates waiting for our arrival and any other pirates that show up."`
 				accept
 	on fail
 		fail "Hai Rescue [C07A] Devil-Hide Fleet"
@@ -915,7 +915,7 @@ mission "Hai Rescue [C08] Freedom"
 		fail "Hai Rescue [C07A] Devil-Hide Fleet"
 	on offer
 		fail "Hai Rescue [B04Z] Guard"
-		log `Factions` `Philosopher's Paradise` `Formerly a pirate stronghold, this city of scientists is a hundred twenty years old now. Korath, Hai, and Humans live peacefully, working side-by-side, and most have no desire to leave. They value their independence and have refused Republic membership. This city orbits a strange world that defies analysis in a region of space untoouched by civilization. Quarg refuse to go here.`
+		log `Factions` `Philosopher's Paradise` `Formerly a pirate stronghold, this city of scientists is a hundred twenty years old now. Korath, Hai, and Humans live peacefully, working side-by-side, and most have no desire to leave. They value their independence and have refused Republic membership. This city orbits a strange world that defies analysis in a region of space untouched by civilization. Quarg refuse to go here.`
 		log `Liberated Philosopher's Paradise.`
 		conversation
 			`General Choot'k cuts open the doors of a large hangar, and your ships land. The two hundred operatives pour out, wearing exoskeletons with built-in shields. As they storm through the complex, you follow some of them. Their guns melt away meter-thick walls in seconds, and they have have gas bombs which can knock people out for hours. The pirates outnumber the Republic operatives two dozen to one, but this huge advantage in equipment, combined with training, gives the operatives a fighting chance.`
