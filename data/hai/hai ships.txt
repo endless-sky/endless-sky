@@ -843,6 +843,7 @@ ship "Shield Beetle Prototype"
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
+		"Quantum Keystone"
 	engine -42 134.5
 	engine 42 134.5
 	gun -21.5 -93 "Ionic Blaster"
