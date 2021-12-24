@@ -194,9 +194,6 @@ government "Hai (Unfettered Challenge)"
 	"bribe" .0001
 	"fine" 0
 
-	"penalty for"
-		disable -1
-
 	"friendly hail" "friendly unfettered"
 	"friendly disabled hail" "friendly disabled unfettered"
 	"hostile hail" "hostile civilian"  # normally unfettered asks to finish them off

@@ -1482,7 +1482,9 @@ ship "Behemoth" "Behemoth (Mamoth)"
 		"Small Radar Jammer"
 		"X3200 Ion Steering"
 		"X3700 Ion Thruster"
-		outfit "Loot" 400
+	cargo
+		outfits
+			"Loot" 400
 
 mission "Unfettered: Loot: Ion Canon Materials"
 	name `Take what is rightfully yours`
