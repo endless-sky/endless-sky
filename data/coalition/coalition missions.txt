@@ -1542,7 +1542,7 @@ mission "Saryd University Lecture"
 			`	"Now, unplanned, your visit is, so consult with the seminar organizers, I must." He brings out a small box that projects a holograph of an Arach Heliarch once turned on. Aelbris begins a conversation with him, but you cannot hear much of it; Aelbris makes an effort to keep his voice down in order to not disturb the other guests.`
 			`	You wait for a while, until a Kimek walks up to the stage in front. The box's volume is much louder than normal, and you can easily hear what is being said.`
 			`	"Pleased to announce that the 103rd Xenology Seminar, generously hosted by Starlit University, is now in session, I am. Noticed as you may have, in the presence of a very... unusual guest, we are. The honor of having <first> <last> answer some questions at the end of today's seminar, we will have." The Kimek gestures to you, as Aelbris sits down at your table.`
-			`	The first speaker, another Kimek, talks about human farming methods as they compare to other members of the Coalition. You see him cite information from a modified data chip that appears to contain documents from the Library of Alexandria. The whole thing feels slightly surreal.`
+			`	The first speaker, another Kimek, talks about human farming methods as they compare to other members of the Coalition. You see him cite information from a modified data chip that appears to contain documents from the Library of Alexandria.`
 			`	The seminar goes on for some time. A Saryd gives a surprisingly accurate lecture on the human body. An Arach goes into detail explaining the technological level of human ships. Once all the speakers have finished, Aelbris informs you that it is now your turn to answer their questions.`
 			choice
 				`	"Alright, let's go!"`
