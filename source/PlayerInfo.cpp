@@ -551,7 +551,7 @@ void PlayerInfo::IncrementDate()
 				, Messages::Importance::Highest);
 	
 	// Check what salaries and tribute the player receives.
-	auto getIncome = [&](string prefix){
+	auto getIncome = [&](string prefix) {
 		int64_t total = 0;
 		auto it = conditions.lower_bound(prefix);
 		for( ; it != conditions.end() && !it->first.compare(0, prefix.length(), prefix); ++it)
@@ -716,7 +716,7 @@ int64_t PlayerInfo::Salaries() const
 
 
 
-// Calculate the daily maintenance cost for all ships and in cargo outfits.
+// Calculate the daily maintenance cost and generated income for all ships and in cargo outfits.
 void PlayerInfo::MaintenanceAndReturns(int64_t &maintenance, int64_t &assetReturns) const
 {
 	// If the player is landed, then cargo will be in the player's

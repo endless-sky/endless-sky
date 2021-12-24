@@ -118,7 +118,7 @@ public:
 	Account &Accounts();
 	// Calculate the daily salaries for crew, not counting crew on "parked" ships.
 	int64_t Salaries() const;
-	// Calculate the daily maintenance cost for all ships and in cargo outfits.
+	// Calculate the daily maintenance cost and generated income for all ships and in cargo outfits.
 	void MaintenanceAndReturns(int64_t &maintenance, int64_t &assetReturns) const;
 	
 	// Access the flagship (the first ship in the list). This returns null if
