@@ -46,7 +46,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Trade.h"
 #include "UI.h"
 
-#include "gl_header.h"
+#include "opengl.h"
 
 #include <algorithm>
 #include <cctype>

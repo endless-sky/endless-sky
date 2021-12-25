@@ -15,7 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Shader.h"
 
-#include "gl_header.h"
+#include "opengl.h"
 
 #include <vector>
 

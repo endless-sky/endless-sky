@@ -62,7 +62,7 @@ void AsteroidField::Add(const string &name, int count, double energy)
 
 
 
-void AsteroidField::Add(const Minable *minable, int count, double energy, double beltRadius)
+void AsteroidField::Add(const Minable *minable, int count, double energy, const WeightedList<System::Belt> &belts)
 {
 	// Double check that the given asteroid is defined.
 	if(!minable || !minable->GetMask().IsLoaded())
@@ -72,7 +72,7 @@ void AsteroidField::Add(const Minable *minable, int count, double energy, double
 	for(int i = 0; i < count; ++i)
 	{
 		minables.emplace_back(new Minable(*minable));
-		minables.back()->Place(energy, beltRadius);
+		minables.back()->Place(energy, belts.Get().Radius());
 	}
 }
 

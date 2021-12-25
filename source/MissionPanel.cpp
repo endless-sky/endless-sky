@@ -805,6 +805,7 @@ void MissionPanel::MakeSpaceAndAccept()
 		player.AdjustBasis(it.first, -basis);
 		player.Cargo().Remove(it.first, toSell);
 		player.Accounts().AddCredits(toSell * price);
+		cargoToSell -= toSell;
 	}
 	
 	player.UpdateCargoCapacities();

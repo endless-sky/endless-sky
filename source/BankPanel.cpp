@@ -87,7 +87,6 @@ void BankPanel::Draw(double deltaTime)
 	const Color &selected = *GameData::Colors().Get("bright");
 	
 	// Draw the heading of the table.
-	table.DrawUnderline(unselected);
 	table.SetColor(selected);
 	for(const string &heading : HEADING)
 		table.Draw(heading);
