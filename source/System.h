@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "RandomEvent.h"
 #include "Set.h"
 #include "StellarObject.h"
+#include "WeightedList.h"
 
 #include <set>
 #include <string>
@@ -58,6 +59,18 @@ public:
 		const Minable *type = nullptr;
 		int count;
 		double energy;
+	};
+	
+	class Belt {
+	public:
+		Belt(double radius, int weight = 1);
+		
+		double Radius() const;
+		int Weight() const;
+		
+	private:
+		double radius;
+		int weight;
 	};
 	
 	
@@ -110,8 +123,10 @@ public:
 	const StellarObject *FindStellar(const Planet *planet) const;
 	// Get the habitable zone's center.
 	double HabitableZone() const;
-	// Get the radius of the asteroid belt.
-	double AsteroidBelt() const;
+	// Get the radius of an asteroid belt.
+	double AsteroidBeltRadius() const;
+	// Get the list of asteroid belts.
+	const WeightedList<Belt> &AsteroidBelts() const;
 	// Get how far ships can jump from this system.
 	double JumpRange() const;
 	// Get the rate of solar collection and ramscoop refueling.
@@ -196,7 +211,7 @@ private:
 	std::vector<RandomEvent<Fleet>> fleets;
 	std::vector<RandomEvent<Hazard>> hazards;
 	double habitable = 1000.;
-	double asteroidBelt = 1500.;
+	WeightedList<Belt> belts;
 	double jumpRange = 0.;
 	double solarPower = 0.;
 	double solarWind = 0.;
