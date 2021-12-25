@@ -183,6 +183,12 @@ void Audio::Init(const vector<string> &sources)
 
 void Audio::CheckReferences()
 {
+	if(!isInitialized)
+	{
+		Files::LogError("Warning: audio could not be initialized. No audio will play.");
+		return;
+	}
+
 	for(auto &&it : sounds)
 		if(it.second.Name().empty())
 			Files::LogError("Warning: sound \"" + it.first + "\" is referred to, but does not exist.");
