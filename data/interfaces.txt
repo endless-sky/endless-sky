@@ -808,6 +808,10 @@ interface "hiring"
 		color "bright"
 		align right
 	
+	line
+		from -60 95
+		dimensions 480 1
+
 	label "bunks"
 		center -290 110
 		align left
@@ -886,6 +890,10 @@ interface "hiring"
 
 
 interface "trade"
+	line
+		from -60 95
+		dimensions 480 1
+
 	active if "can buy"
 	sprite "ui/dialog cancel"
 		center 40 355
@@ -911,6 +919,10 @@ interface "trade"
 
 
 interface "bank"
+	line
+		from -60 95
+		dimensions 480 1
+
 	active if "can pay"
 	sprite "ui/dialog cancel"
 		center 140 355
