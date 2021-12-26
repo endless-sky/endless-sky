@@ -825,6 +825,7 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 	to offer
 		has "Unfettered: Bring Medical Supplies: done"
 		has "Unfettered: Prove Your Strength: done"
+		not "Wanderers: Defend Vara Ke'sok: done"
 	on offer
 		conversation
 			`As you wander in the spaceport an Unfettered approaches you. At first you wonder why the Hai happens to be coming towards you in particular, but then you realize that you naturally stand out here. There are not many non-Hai on the Unfettered worlds.`
@@ -1002,7 +1003,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		
 		conversation
 			`You have finished scanning the Auxiliary. There can be no doubt, this is a ship populated by Alphas. As you prepare yourself to exit the system and bring the logs back, you receive a message from the local Unfettered authorities.`
-			`	"We demand that you land right away. If you go to any other system that ship may pursue you. We do not want a dispute between our suppliers of jump drives; this is probably just a misunderstanding. If you land we can guarantee your safety here, we have temporarily removed permission to land from that ship, since it did fire on you first you without any apparent provocation."`
+			`	"We demand that you land right away. If you go to any other system that ship may pursue you. We do not want a dispute between our suppliers of jump drives; this is probably just a misunderstanding. If you land we can guarantee your safety here, we have requested that ship to land on another port, on Firelode, since it did fire on you first you without any apparent provocation."`
 			choice
 				`	"I will land as you ask."`
 					accept
@@ -1386,7 +1387,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		"salary: Unfettered" = 1000
 		conversation
 			`As you land with the Auxiliary you notice tens, then hundreds Unfettered start coming your way, cheering. They are probably expecting jump drives, and more keep coming from every direction. Maybe they have not seen this Auxiliary yet, but only heard tales of it, or maybe this is what always happens when it lands, loaded with jump drives. Whatever the case, they seem surprised when they see you exiting the ship. They murmur with each others and then they just start saluting, by rising one fist up. First a few do it, then more, until finally all of them are there, saluting in front of you in respect. They lead you to the stadium.`
-			`	The Unfettered warlord that annoyed you earlier seems surprised to see you same for the rest of the council, but they address you they do so with respect. "You have proven yourself. Now we have almost enough jump drives for the next phase..." You look at them intensively, and after a few seconds they realise, "Oh right, your payment! Here it is : <payment>!"`
+			`	The council seems surprised to see you return, especially the Unfettered warlord that annoyed you earlier, but they address you with a deeper respect than before. "You have proven yourself. Now we have almost enough jump drives for the next phase..." You look at them intensively, and after a few moments they realize, "Oh right, your payment! Here it is : <payment>!"`
 			choice
 				`	"I have found Korath prisoners on the Alpha ship."`
 			`They talk about it and then one of the Unfettered elders speak up, "Perfect, hand them over to us, we will see to it they have all the comfort they need, hopefully in exchange for some technology." They discuss among themselves again, then the warlord from earlier speaks, seemingly with a heavy burden. "Now that you officially work for us, you will have a salary of 1000. We will not make you wear our colors yet because it could cause problems with the Hai. We do not want you to get shot on sight."`
@@ -2397,7 +2398,7 @@ mission "Unfettered: Start Of The War"
 		set "license: Unfettered Militia"
 		event "joined the unfettered"
 		conversation
-			`Sa-Ri rejoins you on your ship after having parked his, which looks like it is not in the best shape... "We will notify you once you may be of help to the war effort. In the mean time, we have increased your salary to 5000 so you can muster an even bigger fleet. Also from now on you will officially have the permission, nay, the obligation to proudly wear our colours. We have signaled this change of colors to the Hai meaning they will not change their behaviour with you, recognizing your signature."`
+			`Sa-Ri rejoins you on your ship after having parked his, which looks like it is not in the best shape... "We will notify you once you may be of help to the war effort. In the mean time, we have increased your salary to 5000 so you can muster an even larger fleet. Also from now on you will officially have the permission, nay, the obligation to proudly wear our colors. We have signaled this change of colors to the Hai meaning they will not change their behavior with you, recognizing your signature."`
 			`	He then draws his long sword, that has the same appearance as keystone. You stand back, worried he might attack you for some reason but instead he hands it to you. "You have also deserved the right to have this. It is a proof of our trust towards you and means you will be able to buy all of our ships. Whenever a warlord is defeated in battle he has to surrender his sword to the one who vanquished him."`
 			choice
 				`	"I am honoured."`
