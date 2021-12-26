@@ -812,7 +812,7 @@ ship "Shield Beetle Prototype"
 		licenses
 			"Unfettered Militia"
 		"cost" 25400000
-		"shields" 42000
+		"shields" 40600
 		"hull" 10600
 		"required crew" 59
 		"bunks" 78
