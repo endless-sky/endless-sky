@@ -2192,7 +2192,7 @@ mission "Unfettered: Close Quarter"
 				`	(Join the fight!)`
 					goto fight
 				`	(Keep looking.)`
-			`	You keep looking around and are eventually attracted towards the bigger fight, the one He Yi is in. He seems to be handling 6 younger Unfettered all by himself, and you most admit he is doing quite a good job at it.`
+			`	You keep looking around and are eventually attracted towards the bigger fight, the one Hi Ye is in. He seems to be handling 6 younger Unfettered all by himself, and you most admit he is doing quite a good job at it.`
 			choice
 				`	(Challenge him.)`
 					goto challenge
@@ -2234,7 +2234,7 @@ mission "Unfettered: Close Quarter"
 			`	You try to shoot him but he is too fast and you too inexperienced. By moving you have made yourself an easy target for him, though; you fall as you receive a shot to your shoulder. It hurts, but nothing seems to be broken, and soon after you cannot feel anything in your arm at all. You opponent comes to you and helps you to get up. "Pain is a good teacher, sometimes," he says. Then he goes back to fight with his friends, seemingly in teams.`
 			
 			label heyi
-			`	It seems like your fight has attracted the attention of many of the Unfettered, including He Yi. He comes to speak to you, "That was a nice fight, especially considering this must be your first!"`
+			`	It seems like your fight has attracted the attention of many of the Unfettered, including Hi Ye. He comes to speak to you, "That was a nice fight, especially considering this must be your first!"`
 			choice
 				`	"Can I help you with something?"`
 					goto speak
@@ -2257,7 +2257,7 @@ mission "Unfettered: Close Quarter"
 			`	You try to get a challenge with him, but you are not experienced enough for them to allow it. You did attract his attention however and he comes to speak to you.`
 				goto speak
 			label nope
-			`	You look at them battling for so long you do not see the time pass, then you realize you are being watched. It is He Yi, he looks satisfied of your interest in this fight. "You should try it someday," he says.`
+			`	You look at them battling for so long you do not see the time pass, then you realize you are being watched. It is Hi Ye, he looks satisfied of your interest in this fight. "You should try it someday," he says.`
 			
 			label speak
 			`	"As you have noticed, we do this training quite often. Because our rifles are not deadly on the first shots, we almost never have anyone get killed. But it still happens too often, especially with some of the older ones who are more fragile... Or with the young ones who are too, enthusiastic. Do you happen to know any weapons that would not have such weakness?"`
@@ -2285,7 +2285,7 @@ mission "Unfettered: Close Quarter"
 	on complete
 		log `Brought very strong stunning weapons to the Unfettered so they can do their training without risk, or at least that is what they said, apparently there may be more to it.`
 		conversation
-			`You go see He Yi with the non lethal rifles to see if he has anything else to ask you. He seems very happy you managed to find them, and says, "Great job! It will be decisive in the coming war."`
+			`You go see Hi Ye with the non lethal rifles to see if he has anything else to ask you. He seems very happy you managed to find them, and says, "Great job! It will be decisive in the coming war."`
 			choice
 				`	"How can a few better trained troops make a difference?"`
 				`	"Glad I could make a difference then."`
@@ -2311,7 +2311,7 @@ mission "Bring Pug Staffs"
 		has "Unfettered: Close Quarter: offered"
 	on offer
 		require "Pug Peacekeeping Staff" 10
-		dialog `Do you want to sell 10 Pug Peacekeeping Staff to the Unfettered? He Yi says they can give you <payment> for it.`
+		dialog `Do you want to sell 10 Pug Peacekeeping Staff to the Unfettered? Hi Ye says they can give you <payment> for it.`
 	on accept
 		payment 2500000
 		outfit "Pug Peacekeeping Staff" -10
@@ -2325,7 +2325,7 @@ mission "Bring Coalition Weapons"
 		has "Unfettered: Close Quarter: offered"
 	on offer
 		require "Enforcer Riot Staff" 10
-		dialog `Do you want to sell 10 Enforcer Riot Staffs to the Unfettered? He Yi says they can give you <payment> for it.`
+		dialog `Do you want to sell 10 Enforcer Riot Staffs to the Unfettered? Hi Ye says they can give you <payment> for it.`
 	on accept
 		payment 2000000
 		outfit "Enforcer Riot Staff" -10
@@ -2339,7 +2339,7 @@ mission "Bring Void Rifle"
 	on offer
 		require "Void Rifle" 1
 		conversation
-			`He Yi seems very, very interested in this weapon. "Where did you find it? Can you bring us more? We would gladly make you rich if you do, this is the perfect weapon for training."`
+			`Hi Ye seems very, very interested in this weapon. "Where did you find it? Can you bring us more? We would gladly make you rich if you do, this is the perfect weapon for training."`
 			choice
 				`	"Sorry, this is one of a kind."`
 			`	"Oh, if you want I can cancel the exchange then, if it is precious to your eyes."`
@@ -2352,6 +2352,40 @@ mission "Bring Void Rifle"
 	on accept
 		payment 10000000
 		outfit "Void Rifle" -1
+
+mission "Unfettered: Non Lethal Weapons"
+	invisible
+	source
+		attributes "unfettered"
+	to offer
+		has "main plot completed"
+		has "Unfettered: Close Quarter: active"
+	on offer
+		event "looking for a gun" 30
+
+event "looking for a gun"
+
+mission "Unfettered: Non Lethal Weapons Hint"
+	name `Learn more about pugs.`
+	description `Go to <destination> to see if you can ask your old friend from the pug war and learn more about what kind of weapons they are using, which may be interesting to Hi Ye.`
+	minor
+	source
+		attributes "unfettered"
+	destination "Farpoint"
+	to offer
+		has "event: looking for a gun"
+		has "Unfettered: Close Quarter: active"
+	on offer
+		conversation
+			`As you land on this Unfettered planet you think back of the peculiar request Hi Ye made to you: bring back non deadly guns. After thinking a while about it, you remember tales about the pugs having special weapons, that could easily knock people out. Maybe you should go to <destination> and speak to the Oathkeepers, they may be able to tell you more about this... Also there could be other weapons, as any highly advanced civilization with a police would want to have this kind of non deadly weapon.`
+				accept
+	to fail
+		has "Unfettered: Close Quarter: done"
+	on complete
+		conversation
+			`You cannot find Admiral Danforth, he is probably busy with the pirates above. You think of disturbing him but another Oathbreaker sees you and asks what you are looking for. You start speaking with him of the pug war and he says he knows a lot about it, and recognizing you he seems eager to share his experience.`
+			`	"I was a simple soldier fighting with the rest of the fleet, in the Republic, at that time. We managed to find an isolated, and disabled pug ship. That by itself seemed like a too good opportunity to let go, our captain was anxious to get on it and get renomn for capturing such a ship. Also given we were in a cruiser, we did not fear the crew of such a small ship. But we were wrong: as soon as we boarded said ship we knew something was wrong. But we were commited so we went in anyway. Being a soldier, I was on the frontline, and I saw things... Things you do not want to see, trust me. I saw people falling for no apparent reason, out of a sudden. But that was not the worst of it. As you can see, I have survived, and that by itself is terrifying. They shot me! They shot me, yet I lived, and the feelings I had when shot where weird to say the least..."`
+			`	You thank him for telling you this story and then think to yourself... This means there is a good chance the pugs have the non lethal weapons you are looking for. Now you just have to find pugs, but they will probably not give you these weapons willingly...`
 
 
 
@@ -2398,13 +2432,13 @@ mission "Unfettered: Start Of The War"
 		set "license: Unfettered Militia"
 		event "joined the unfettered"
 		conversation
-			`Sa-Ri rejoins you on your ship after having parked his, which looks like it is not in the best shape... "We will notify you once you may be of help to the war effort. In the mean time, we have increased your salary to 5000 so you can muster an even larger fleet. Also from now on you will officially have the permission, nay, the obligation to proudly wear our colors. We have signaled this change of colors to the Hai meaning they will not change their behavior with you, recognizing your signature."`
+			`He Yi rejoins you on your ship after having parked his, which looks like it is not in the best shape... "We will notify you once you may be of help to the war effort. In the mean time, we have increased your salary to 5000 so you can muster an even larger fleet. Also from now on you will officially have the permission, nay, the obligation to proudly wear our colors. We have signaled this change of colors to the Hai meaning they will not change their behavior with you, recognizing your signature."`
 			`	He then draws his long sword, that has the same appearance as keystone. You stand back, worried he might attack you for some reason but instead he hands it to you. "You have also deserved the right to have this. It is a proof of our trust towards you and means you will be able to buy all of our ships. Whenever a warlord is defeated in battle he has to surrender his sword to the one who vanquished him."`
 			choice
 				`	"I am honoured."`
 					accept
 				`	"What does this sword do?"`
-			`	"You are aware of what keystones are? They are not believed to give luck for no reason, after all. I cannot tell you much more about it, but rest assured this sword is worth way more than a gun in case of a boarding."`
+			`	"You are aware of what keystones are, right? They are not believed to give luck for no reason, after all. I cannot tell you much more about it, but rest assured this sword would be more useful than a gun for boarding."`
 
 event "joined the unfettered"
 	government "Escort"
