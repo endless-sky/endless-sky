@@ -537,7 +537,7 @@ mission "Hai Leaks Response 2"
 				`	"Yes."`
 					goto conclude
 				`	"Alastair?"`
-			`	"Alastair Korban is the Syndicate CEO, naturally the CEO has some involvement here, but I trust that won't be a problem?
+			`	"Alastair Korban is the Syndicate CEO, naturally the CEO has some involvement here, but I trust that won't be a problem?"`
 			choice
 				`	"It should be fine."`
 			label conclude
