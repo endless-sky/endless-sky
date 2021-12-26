@@ -189,7 +189,7 @@ mission "Unfettered Silicon Asteroid Mining"
 		random < 70
 	on complete
 		payment 250000
-		dialog `The Unfettered seem happy when they speak,	"This will allow us to repair our ships !"	They hand you <payment> credits.`
+		dialog `The Unfettered unloading the materials you mined seem enthused.	"This will allow us to repair our ships!" they tell you and hand over your payment of <payment> credits.`
 		outfit "Silicon" -50
 
 
@@ -206,14 +206,14 @@ mission "Unfettered Silver Asteroid Mining"
 		random < 70
 	on complete
 		payment 400000
-		dialog `The Unfettered seem satisfied when they speak,	"This will allow us to repair our ships !"	They hand you <payment> credits.`
+		dialog `The Unfettered unloading the materials you mined seem satisfied.	"This will allow us to repair our ships!" they tell you and hand over your payment of <payment> credits.`
 		outfit "Silver" -20
 
 
 
 mission "Unfettered Medicals"
 	name `Express medical supplies to <planet>`
-	description `The Unfettered hospitals on Darkcloak are in urgent need of resupply. Collect a supply of <tons> of medicals from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>.`
+	description `The Unfettered hospitals on Darkcloak are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>.`
 	job
 	repeat
 	deadline 10 1
@@ -229,10 +229,10 @@ mission "Unfettered Medicals"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on stopover
-		dialog `You are surprised to see the Hai are more than happy to give you the medical supplies needed. "Tell our brothers are sisters to stay strong,"	they say to you.`
+		dialog `You are surprised to see the Hai are more than happy to give you the medical supplies needed. "Tell our brothers and sisters to stay strong,"	they ask while loading the supplies on your ship.`
 	on complete
 		payment 10000 4000
-		dialog `The local health specialists seem relieved to learn that you have managed to bring the medical supplies back in time.`
+		dialog `The local health specialists seem relieved that you have managed to bring the needed medical supplies back in time.`
 
 
 
@@ -257,7 +257,7 @@ mission "Unfettered Challenge[0]"
 			action
 				payment 200000
 				"reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)" + 15
-			`You receive a message from the <npc> : "Raaaah... Well you have beaten me alright... Here is the agreed payment of <payment>, captain."`
+			`You receive a message from the <npc> : "Raaaah... Well you have beaten me alright, so I'll pay up... Here are the <payment> credits, captain."`
 				decline
 
 
@@ -284,7 +284,7 @@ mission "Unfettered Challenge[1]"
 			action
 				payment 400000
 				"reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)" + 30
-			`You receive a message from the <npc> : "Well done captain ! But I will not be so easy to beat next time. Here is the agreed payment of <payment>. You deserve it."`
+			`You receive a message from the <npc> : "Well done captain! But, I will not be so easy to beat next time! Here is the agreed <payment> credits. You earned it."`
 				decline
 
 
@@ -313,7 +313,7 @@ mission "Unfettered Challenge[2]"
 			action
 				payment 600000
 				"reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)" + 60
-			`You receive a message from the <npc> : "ou seem to learn from our encounters as well... Well next time it will be different. Here are the agreed <payment>, captain. Hopefully it allows you to improve the <ship> before our next battle..."`
+			`You receive a message from the <npc> : "You seem to learn from our encounters as well! Well, next time it will be different. Here are the agreed <payment> credits, captain. Hopefully it allows you to improve the <ship> before our next battle..."`
 				decline
 
 
@@ -331,14 +331,14 @@ mission "Get Jump Drive"
 		distance 12 18
 		government "Pirate"
 	on stopover
-		dialog `You manage to land and retrieve the jump drive without too much trouble. Do not rely on your luck too much though, you better depart quickly !`
+		dialog `You manage to land and retrieve the jump drive without too much trouble. Do not rely on luck too long though, you had better depart quickly!`
 		outfit "Jump Drive"
 	on visit
 		dialog `You have a mission to bring a jump drive here. You may have left your escort allocated to carrying the jump drive behind, in which case you better launch and wait for it.`
 	on complete
 		payment 1000000
 		outfit "Jump Drive" -1
-		dialog `The Unfettered are more than content with giving you these <payment> in exchange for your precious cargo.`
+		dialog `The Unfettered are more than content with paying <payment> credits in exchange for your precious cargo.`
 
 
 
@@ -372,7 +372,7 @@ mission "Bring True Hai"
 
 mission "Darkcloak Ship Materials"
 	name `Ship materials from <stopovers>`
-	description `The Shipyards of <origin> are in grave need of supplies. Go to the pirate world of <destination> to get materials to build new ships, and bring them back by <date> for <payment>.`
+	description `The Shipyards of <origin> are in grave need of raw materials. Go to the pirate world of <destination> to get the materials for building new ships, and bring them back by <date> for <payment>.`
 	job
 	repeat
 	deadline 15 1
@@ -386,7 +386,7 @@ mission "Darkcloak Ship Materials"
 		distance 12 18
 		government "Pirate"
 	on stopover
-		dialog `After some search you manage to find shady individuals who seem anxious not to be seen. You go to a quiet place to proceed to the exchange, and later find the materials at the agreed location. Now go back to <origin>.`
+		dialog `After some searching you manage to find your contacts, a few shady individuals who seem especially anxious not to be noticed dealing with you. Together you find a quieter place to proceed with the exchange, and later find the materials at the agreed location. Now head back to <origin> to deliver them.`
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete

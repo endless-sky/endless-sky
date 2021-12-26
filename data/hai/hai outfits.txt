@@ -130,7 +130,7 @@ outfit "Ionic Blaster"
 		"firing energy" 145
 		"firing force" 20
 		"firing heat" 210
-		"hit force" 90
+		"hit force" 60
 		"shield damage" 125
 		"hull damage" 32
 		"ion damage" 1.6
@@ -154,14 +154,14 @@ outfit "Ionic Turret"
 		"turret turn" 2.6
 		"velocity" 16
 		"lifetime" 45
-		"reload" 60
-		"firing energy" 290
-		"firing force" 40
-		"firing heat" 420
-		"hit force" 180
-		"shield damage" 250
-		"hull damage" 64
-		"ion damage" 3.2
+		"reload" 30
+		"firing energy" 145
+		"firing force" 20
+		"firing heat" 210
+		"hit force" 60
+		"shield damage" 125
+		"hull damage" 32
+		"ion damage" 1.6
 	description "This is a dual turret version of the Ionic Blaster, the first weapon that the Unfetttered developed completely on their own."
 
 
