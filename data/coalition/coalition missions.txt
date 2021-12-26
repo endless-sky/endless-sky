@@ -1935,7 +1935,7 @@ mission "Coalition: Expeditions Past 2"
 			`Looking for a place to sit by the entrance to the spaceport, you spot a set of seats made for the Quarg, still around to this day. You find one that you assume was meant for a Quarg child, standing lower than the others, and wait. Captains and workers that pass by give you all sorts of looks, and after a few minutes even some Heliarch agents are gawking at you, discussing among themselves. Just as you think if you should get up to sit somewhere else, you look to see Sedlitaris coming into the spaceport.`
 			`	"A short wait, wasn't it?" She comments once you're close. "Care to hear my case, the consuls didn't, just told me that to leave whenever I wish, I may. 'If I can,' they said, as provide me a jump drive, they won't, but that's where you come in."`
 			choice
-				`	"I certainly didn't wait around for long. So, are we heading for human space?"`
+				`	"I certainly didn't wait around for long. So, where are we heading?"`
 					goto heading
 				`	"Didn't care to hear your case? What do you mean?"`
 			`	"According to protocol, present valid reasoning for their expedition, aspiring inspectors must. This time, taken every legal detail into account, I had, in preparation for the meeting, but once I entered, barely time to greet them, they gave me." She explains. "Said that thought it over and willing to oblige, they were, so just sign a few documents, I did, and now officially an inspector, I am."`
