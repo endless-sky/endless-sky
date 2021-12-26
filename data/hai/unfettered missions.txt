@@ -578,7 +578,8 @@ mission "Unfettered: Prove Your Strength"
 		has "armament deterrence" > 5
 	on offer
 		conversation
-			`You start wandering in the spaceport, and notice that everything around you here is incredibly simple, efficient, and ordered. There seems to also be more warriors here than on the other Unfettered planets, or at least they are less afraid to wander around armed. It seems they ready for action at any time, you are happy to no longer be their enemy, at least for now.	Eventually you find a gathering, someone speaking to a small crowd of people. They all seem very familiar with each other, and as you watch, they have noticed you too. The one who was addressing the others saunters through the group and over to you. This could mean trouble.`
+			`You start wandering in the spaceport, and notice that everything around you here is incredibly simple, efficient, and ordered. There seems to also be more warriors here than on the other Unfettered planets, or at least they are less afraid to wander around armed. It seems they ready for action at any time, you are happy to no longer be their enemy, at least for now.`
+			`	Eventually you find a gathering, someone speaking to a small crowd of people. They all seem very familiar with each other, and as you watch, they have noticed you too. The one who was addressing the others saunters through the group and over to you. This could mean trouble.`
 			`	"This is the monkey you speak so highly off? The one who fears not to come into our space, to fight our ships?" He asks the others, apparently mocking you.`
 			choice
 				`	"I fear nothing. Do you?"`
@@ -586,7 +587,7 @@ mission "Unfettered: Prove Your Strength"
 				`	(Say nothing.)`
 				`	(Run away.)`
 					decline
-			`	"See? The monkey dares not even speak! He would not stand a chance in combat! Even our modest ship would bring him straight out of the sky! But we should not even try, or we could hurt the little monkey! But my friends, there is no shame for him to have... with a ship looking like that one I too would be hesitant to fight!"	He seems very full of himself, perhaps someone should teach him a lesson.`
+			`	"See? The monkey dares not even speak! He would not stand a chance in combat! Even our modest ship would bring him straight out of the sky! But we should not even try, or we could hurt the little monkey! But my friends, there is no shame for him to have... with a ship looking like that one I too would be hesitant to fight!" He seems very full of himself, perhaps someone should teach him a lesson.`
 			choice
 				`	"How dare you call the <ship>?"`
 				`	"I have no need to prove myself to a rodent."`
@@ -594,7 +595,9 @@ mission "Unfettered: Prove Your Strength"
 					decline
 			
 			label provoke
-			`	"So the monkey can speak? Let us see if it can fight as well!"	He seems very full of himself, time for that lesson. Or perhaps you are the one who needs to learn humility? After a cheering from his crowd, the arrogant Hai then speaks to you directly. "You and me, in battle, and leave your fleet parked. Meet me in the sky when you are ready, except if you lack the courage to fight me. But rest assured, this is not to be a fight to the death, monkey."`
+			`	"So the monkey can speak? Let us see if it can fight as well," he says, with a provocative tone.`
+			`	Time for him to learn a lesson. But then it occurs to you that perhaps you are the one who needs to learn humility.`
+			`	After a cheering from his crowd, the arrogant Hai then speaks to you directly. "You and me, in battle, and leave your fleet parked. Meet me in the sky when you are ready, except if you lack the courage to fight me. But rest assured, this is not to be a fight to the death, monkey."`
 			choice
 				`	"Let me show you my worth in battle. Right now."`
 					accept
