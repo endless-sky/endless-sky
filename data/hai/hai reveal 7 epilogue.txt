@@ -45,8 +45,8 @@ mission "HRF 01A Summoned to Mountaintop"
 		event "cardax site chosen"
 		conversation
 			#A message summons you for the treaty resolution.
-			`When you land at the spaceport you find a message waiting for you from Teneep in the system buffer.`
-			`	The message has traveled a very long way and filtered through a great many buffers and relays to reach you, but it is nice that you can safely send messages across the wormhole now.`
+			`When you land at the spaceport, you find a message waiting for you from Teneep in the system buffer.`
+			`	The message has traveled a very long way and filtered through a great many relays to reach you, but it is nice that you can safely send messages across the wormhole now.`
 			`	The content of the message is very simple. The Hai-human treaty, which both peoples' governments resolved to work on, has reached its final stages of drafting and acceptance. Apparently there's something they want you to assist with to get it over the line. They'll be waiting for you on <destination> when you're ready.`
 				accept
 	
@@ -73,8 +73,8 @@ mission "HRF 01B Summoned to Mountaintop"
 		event "cardax site chosen"
 		conversation
 			#A message summons you for the treaty resolution.
-			`When you land at the spaceport you find a message waiting for you from Teneep in the system buffer.`
-			`	The content of the message is very simple. The Hai-human treaty, which both peoples' governments resolved to work on, has reached its final stages of drafting and acceptance. Apparently there's something they want you to assist with to get it over the line. They'll be waiting for you on Mountaintop when you're ready.`
+			`When you land at the spaceport, you find a message waiting for you from Teneep in the system buffer.`
+			`	The content of the message is very simple. The Hai-human treaty, which both peoples' governments resolved to work on, has reached its final stages of drafting and acceptance. Apparently there's something they want you to assist with to get it over the line. They'll be waiting for you on <destination> when you're ready.`
 				accept
 	
 #Redefine Cardax to have a named location for the station.
@@ -144,20 +144,20 @@ mission "HRF 02 Escort to Cardax"
 				`	"Yes, we met briefly over some business with Alphas."`
 					goto alphas
 				`	"I'm sorry, but I'm afraid I don't recall the occasion."`
-			`	Hiyamaharu looks hurt for a moment but quickly saves face, "Not to worry, I'm sure the famous Captain has a great many adventures to recall. A short chat with an old Hai is no offense to have forgotten."`
+			`	Hiyamaharu looks hurt for a moment, but quickly saves face. "Not to worry, I'm sure the famous Captain has a great many adventures to recall. A short chat with an old Hai is no offense to have forgotten."`
 				goto main
 			label alphas
-			`	Hiyamaharu looks faintly pleased that you remember him, "Yes that is quite right, I'm only sorry I wasn't able to offer more assistance at the time."`
-			`	Xilin looks shocked, "Seriously? Will there never be an end to their tale?"`
-			`	He waves his hand dismissively and continues though.`
+			`	Hiyamaharu looks faintly pleased that you remember him. "Yes, that is quite right, I'm only sorry I wasn't able to offer more assistance at the time."`
+			`	Xilin looks shocked. "The Alphas? Seriously? Will there never be an end to their tale?"`
+			`	He waves his hand dismissively and continues.`
 			label main
 			`	"In any event," Xilin continues, "Hiyamaharu and I would like you to do something. You completed a similar task when this station was first built.`
 			`	"The pirate threat to ships traveling to and from Hai space is just as bad as it ever was, possibly worse for the increased number of ships. So, on top of a mountain of legalese, an endless stipulation of trade obligations, and a nightmare of judicial jurisprudence jurisdiction boundaries, there is a very physical and tangible action that needs to be taken.`
 			`	"The Navy base on Farpoint helps to limit the mobility of pirates coming from the Far North, but there is no restraint other than distance to put a check on the pirates that come out of Stormhold. Something needs to be done to secure the space lanes, and so the solution that has been agreed upon is to build a station in Cardax. The volume of pirate activity there is intense enough that the Hai's rapid ship conversion approach to building a station is the only really viable approach."`
 			choice
 				`	"So what am I going to do?"`
-			`	"Well," says Hiyamaharu, "the number of ships involved in this represents a considerable investment, and we'd hate for them to be destroyed during a vulnerable construction phase. The prior concerns about human agents observing the inner core of the station also continues to apply."`
-			`	"So, we would like you to escort a security force and the core Geocoris to the site in Cardax, clear out any threats in the system, and get the ship through the first construction phase so it can safely raise its shield again. Once that has been completed the rest of the Geocoris' will travel with their escort to join you. You and the security force will have to protect the station while the rest of the convoy arrives to finish the construction."`
+			`	"Well," says Hiyamaharu, "the number of ships involved in this represents a considerable investment, and we'd hate for them to be destroyed during a vulnerable construction phase. The prior concerns about human agents observing the inner core of the station also continue to apply.`
+			`	"So, we would like you to escort a security force and the core Geocoris to the site in Cardax, clear out any threats in the system, and get the ship through the first construction phase so it can safely raise its shield again. Once that has been completed, the rest of the Geocoris will travel with their escort to join you. You and the security force will have to protect the station while the rest of the convoy arrives to finish the construction."`
 			choice
 				`"Why not just send all of them with their entire escort at once? Surely that would be safer?"`
 			`	Xilin shrugs. "We've heard a rumor that the pirates might have caught wind of what we're doing. The reality is that the marauders up here can field a truly formidable force, if they get their act together. They've overrun the Navy outpost on Farpoint a number of times before, and it would be devastating if an entire naval flotilla, the Hai construction fleet, and a whole security force were all caught out in the open by such a fleet, possibly attacked from both sides.`
@@ -421,9 +421,9 @@ mission "HRF 06 Escort Syndicate Outfitters"
 	on offer
 		event "mooncreek republic garrison"
 		conversation
-			`The Republic garrison and Lovelace transports arrive to suitable fanfare and media pomp. Xilin and Hiyamaharu appear to have hitched a ride to Mooncreek in your abence and they greet you in what passes for a spaceport that is not yet serving drinks.`
-			`	"Good job there <last>," says Xilin.`
-			`	"I know it's trivial but don't underestimate the impact of a stately arrival. After the crisis last time it's really very important to penetrate the public consciousness and get people to know what's going on."`
+			`The Republic garrison and Lovelace transports arrive to suitable fanfare and media pomp. Xilin and Hiyamaharu appear to have hitched a ride to Mooncreek in your absence, and they greet you in what passes for a spaceport that is not yet serving drinks.`
+			`	"Good job out there, <last>," says Xilin.`
+			`	"I know it's trivial, but don't underestimate the impact of a stately arrival. After the crisis last time, it's really very important to penetrate the public consciousness and get people to appreciate the magnitude of these steps."`
 			choice
 				`	"I understand."`
 				`	"As long as I get paid for it."`
