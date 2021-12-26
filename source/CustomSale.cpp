@@ -149,18 +149,18 @@ double CustomSale::GetRelativeCost(const Outfit *item) const
 {
 	const auto& baseRelative = relativeOutfitPrices.find(item);
 	double baseRelativePrice = (baseRelative != relativeOutfitPrices.cend() ? baseRelative->second : DEFAULT);
-	if(baseRelativePrice != DEFAULT)
+	if(baseRelativePrice == DEFAULT)
 		for(const auto& it : relativePrices)
-			if(it.first->Has(item) && it.second > baseRelativePrice)
+			if(it.first->Has(item))
 			{
 				baseRelativePrice = it.second;
 				break;
 			}
 	const auto& baseOffset = relativeOutfitOffsets.find(item);
 	double baseOffsetPrice = (baseOffset != relativeOutfitOffsets.cend() ? baseOffset->second : DEFAULT);
-	if(baseOffsetPrice != DEFAULT)
+	if(baseOffsetPrice == DEFAULT)
 		for(const auto& it : relativeOffsets)
-			if(it.first->Has(item) && it.second > baseOffsetPrice)
+			if(it.first->Has(item))
 			{
 				baseOffsetPrice = it.second;
 				break;
