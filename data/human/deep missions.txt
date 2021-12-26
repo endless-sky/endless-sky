@@ -2596,7 +2596,7 @@ mission "Stone of our Fathers 4"
 			label from
 			`	Helm shrugs as he maneuvers the ship into dock. "Wherever makes the most sense at the time a stone is given. If I recall correctly Skaldgar's stone was given to him by his mother, my grandmother, from an old mine Skaldgar had been exploring on the mainland. Even at 16 he loved the earth."`
 			label earth
-			`	Helm ties up the ship at a makeshift dock and you follow him toward a dour grey building not far away. You realize this entire algae island, as small as it is, must belong to a single individual or family.`
+			`	Helm ties up the ship at a makeshift dock and you follow him toward a dour gray building not far away. You realize this entire algae island, as small as it is, must belong to a single individual or family.`
 			`	When you arrive at the hardy and sea-stained wooden door, Helm knocks thunderously upon it and calls out, "Thorleif, open up!"`
 			`	After a brief wait the door opens ponderously revealing, a large, red-bearded, middle aged man who looks like a younger and much healthier Skaldgar. You realize that you must be standing before the man's son. A wide and open grin forms on his face when he sees Helm, and he gives the man a warm embrace. "Ah cousin! It's been too long, what brings you to my humble home?"`
 			`	Thorlief then notices you and frowns. "And who have you brought with you?"`
@@ -2741,7 +2741,7 @@ mission "Stone of our Fathers 5"
 			`	"The day my mother gave me this stone and said she was proud of me."`
 			`	"The day my son Thorleif was born."`
 			`	"The day I struck the mother lode on Helheim."`
-			`	"The day I met <first> and he helped me find my family again."`
+			`	"The day I met <first>, who helped me find my family again."`
 			`	"The day I saw my son again, even though he would not see me."`
 			`	Thorleif sniffs, takes a moment to write something down he saw on the stone, and then walks forward and places it upon the cairn, at home now with hundreds of other stones each with their own handful of memories.`
 			`	"He had not so many good memories, I think," Thorleif said quietly. "I realize now, that mine too are quite few. Perhaps that, if nothing else, is a lesson he can teach me. For that, I thank you, father."`

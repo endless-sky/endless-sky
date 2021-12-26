@@ -3255,7 +3255,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damag
 	burning += burnDamage * shieldDegradation;
 	
 	// The following special damage types have 0% effectiveness against ships with
-	// active shields. Disruption or piercing weapons still increase this effectivness.
+	// active shields. Disruption or piercing weapons still increase this effectiveness.
 	shieldDegradation = (1. - shieldFraction);
 	corrosion += corrosionDamage * shieldDegradation;
 	leakage += leakDamage * shieldDegradation;

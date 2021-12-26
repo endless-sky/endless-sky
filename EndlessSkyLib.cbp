@@ -151,6 +151,10 @@
 		<Unit filename="source/GameData.h" />
 		<Unit filename="source/GameEvent.cpp" />
 		<Unit filename="source/GameEvent.h" />
+		<Unit filename="source/GameLoadingPanel.cpp" />
+		<Unit filename="source/GameLoadingPanel.h" />
+		<Unit filename="source/GameObjects.cpp" />
+		<Unit filename="source/GameObjects.h" />
 		<Unit filename="source/GameRules.cpp" />
 		<Unit filename="source/GameRules.h" />
 		<Unit filename="source/GameWindow.cpp" />
@@ -328,7 +332,8 @@
 		<Unit filename="source/Weather.cpp" />
 		<Unit filename="source/Weather.h" />
 		<Unit filename="source/WeightedList.h" />
-		<Unit filename="source/gl_header.h" />
+		<Unit filename="source/opengl.cpp" />
+		<Unit filename="source/opengl.h" />
 		<Unit filename="source/pi.h" />
 		<Unit filename="source/shift.h" />
 		<Unit filename="source/text/DisplayText.cpp" />

@@ -102,8 +102,6 @@ void TradingPanel::Draw()
 	const Color &selected = *GameData::Colors().Get("bright");
 	
 	int y = FIRST_Y;
-	FillShader::Fill(Point(-60., y + 15.), Point(480., 1.), unselected);
-	
 	font.Draw("Commodity", Point(NAME_X, y), selected);
 	font.Draw("Price", Point(PRICE_X, y), selected);
 	

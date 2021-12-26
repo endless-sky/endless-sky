@@ -57,15 +57,18 @@ test "Loading and Saving"
 		label notAlpha1
 		branch notAlpha1
 			not "flagship system: Alpha Centauri"
+		# Terminate jumping if it still is active.
+		input
+			command forward
 		navigate
 			travel "Sol"
 			"travel destination" Earth
+		input
+			command jump
 		watchdog 12000
 		label notReturned1
 		branch notReturned1
 			not "flagship planet: Earth"
-		apply
-			"test: day" = day
 		assert
 			year == 3013
 			month == 11
