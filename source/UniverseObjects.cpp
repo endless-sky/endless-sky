@@ -163,6 +163,8 @@ void UniverseObjects::Change(const DataNode &node)
 		systems.Get(node.Token(1))->Unlink(systems.Get(node.Token(2)));
 	else if(node.Token(0) == "substitutions" && node.HasChildren())
 		substitutions.Load(node);
+	else if(node.Token(0) == "gamerules" && node.HasChildren())
+		gamerules.Load(node);
 	else
 		node.PrintTrace("Invalid \"event\" data:");
 }
@@ -428,6 +430,8 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 		}
 		else if(key == "substitutions" && node.HasChildren())
 			substitutions.Load(node);
+		else if(key == "gamerules" && node.HasChildren())
+			gamerules.Load(node);
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
 	}

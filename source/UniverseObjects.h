@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Fleet.h"
 #include "Galaxy.h"
 #include "GameEvent.h"
+#include "GameRules.h"
 #include "Government.h"
 #include "Hazard.h"
 #include "Interface.h"
@@ -108,6 +109,7 @@ private:
 	Set<Sale<Outfit>> outfitSales;
 	std::set<double> neighborDistances;
 
+	GameRules gamerules;
 	TextReplacements substitutions;
 	Trade trade;
 	std::vector<StartConditions> startConditions;

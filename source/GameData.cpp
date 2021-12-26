@@ -81,6 +81,7 @@ namespace {
 	Set<Sale<Ship>> defaultShipSales;
 	Set<Sale<Outfit>> defaultOutfitSales;
 	TextReplacements defaultSubstitutions;
+	GameRules defaultGamerules;
 	
 	Politics politics;
 	
@@ -150,6 +151,7 @@ void GameData::FinishLoading()
 	defaultShipSales = objects.shipSales;
 	defaultOutfitSales = objects.outfitSales;
 	defaultSubstitutions = objects.substitutions;
+	defaultGamerules = objects.gamerules;
 	playerGovernment = objects.governments.Get("Escort");
 
 	politics.Reset();
@@ -289,6 +291,7 @@ void GameData::Revert()
 	objects.shipSales.Revert(defaultShipSales);
 	objects.outfitSales.Revert(defaultOutfitSales);
 	objects.substitutions.Revert(defaultSubstitutions);
+	objects.gamerules.Revert(defaultGamerules);
 	for(auto &it : objects.persons)
 		it.second.Restore();
 	
@@ -785,6 +788,13 @@ MaskManager &GameData::GetMaskManager()
 const TextReplacements &GameData::GetTextReplacements()
 {
 	return objects.substitutions;
+}
+
+
+
+double GameData::Gamerule(const string &rule)
+{
+	return objects.gamerules.Get(rule);
 }
 
 
