@@ -121,10 +121,14 @@ void UniverseObjects::FinishLoading()
 	neighborDistances.insert(System::DEFAULT_NEIGHBOR_DISTANCE);
 	UpdateSystems();
 
-	// And, update the ships with the outfits we've now finished loading.
+	// Update the ships with the outfits we've now finished loading.
 	for(auto &&it : ships)
 		it.second.FinishLoading(true);
 	for(auto &&it : persons)
+		it.second.FinishLoading();
+
+	// Allow each named variant to prevent it from containing itself.
+	for(auto &&it : variants)
 		it.second.FinishLoading();
 
 	for(auto &&it : startConditions)
@@ -157,6 +161,8 @@ void UniverseObjects::Change(const DataNode &node)
 		systems.Get(node.Token(1))->Load(node, planets);
 	else if(node.Token(0) == "news" && node.Size() >= 2)
 		news.Get(node.Token(1))->Load(node);
+	else if(node.Token(0) == "variant" && node.Size() >= 2 && !node.IsNumber(1))
+		variants.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "link" && node.Size() >= 3)
 		systems.Get(node.Token(1))->Link(systems.Get(node.Token(2)));
 	else if(node.Token(0) == "unlink" && node.Size() >= 3)
@@ -216,6 +222,10 @@ void UniverseObjects::CheckReferences()
 	for(auto &&it : effects)
 		if(it.second.Name().empty())
 			NameAndWarn("effect", it);
+	// Variants are not serialized. Any changes via events are written as DataNodes and thus self-define.
+	for(auto &&it : variants)
+		if(!it.second.IsValid() && !deferred["variant"].count(it.first))
+			Warn("variant", it.first);
 	// Fleets are not serialized. Any changes via events are written as DataNodes and thus self-define.
 	for(auto &&it : fleets)
 	{
@@ -359,6 +369,8 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 			testDataSets.Get(node.Token(1))->Load(node, path);
 		else if(key == "trade")
 			trade.Load(node);
+		else if(key == "variant" && node.Size() >= 2 && !node.IsNumber(1))
+			variants.Get(node.Token(1))->Load(node);
 		else if(key == "landing message" && node.Size() >= 2)
 		{
 			for(const DataNode &child : node)

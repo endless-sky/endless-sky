@@ -58,6 +58,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Test.h"
 #include "TestData.h"
 #include "UniverseObjects.h"
+#include "Variant.h"
 
 #include <algorithm>
 #include <future>
@@ -80,6 +81,7 @@ namespace {
 	Set<Galaxy> defaultGalaxies;
 	Set<Sale<Ship>> defaultShipSales;
 	Set<Sale<Outfit>> defaultOutfitSales;
+	Set<Variant> defaultVariants;
 	TextReplacements defaultSubstitutions;
 	
 	Politics politics;
@@ -149,6 +151,7 @@ void GameData::FinishLoading()
 	defaultGalaxies = objects.galaxies;
 	defaultShipSales = objects.shipSales;
 	defaultOutfitSales = objects.outfitSales;
+	defaultVariants = objects.variants;
 	defaultSubstitutions = objects.substitutions;
 	playerGovernment = objects.governments.Get("Escort");
 
@@ -288,6 +291,7 @@ void GameData::Revert()
 	objects.galaxies.Revert(defaultGalaxies);
 	objects.shipSales.Revert(defaultShipSales);
 	objects.outfitSales.Revert(defaultOutfitSales);
+	objects.variants.Revert(defaultVariants);
 	objects.substitutions.Revert(defaultSubstitutions);
 	for(auto &it : objects.persons)
 		it.second.Restore();
@@ -627,6 +631,13 @@ const Set<Sale<Ship>> &GameData::Shipyards()
 const Set<System> &GameData::Systems()
 {
 	return objects.systems;
+}
+
+
+
+const Set<Variant> &GameData::Variants()
+{
+	return objects.variants;
 }
 
 
