@@ -19,7 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Shader.h"
 #include "System.h"
 
-#include "gl_header.h"
+#include "opengl.h"
 
 #include <algorithm>
 #include <cmath>

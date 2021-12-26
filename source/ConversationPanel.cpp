@@ -182,10 +182,15 @@ void ConversationPanel::Draw()
 		
 			Point center = point + it.Center();
 			Point size(WIDTH, it.Height());
+
+			auto zone = Rectangle::FromCorner(point, size);
+			// If the mouse is hovering over this choice then we need to highlight it.
+			if(isHovering && zone.Contains(hoverPoint))
+				choice = index;
 		
 			if(index == choice)
 				FillShader::Fill(center + Point(-5, 0), size + Point(30, 0), selectionColor);
-			AddZone(Rectangle::FromCorner(point, size), [this, index](){ this->ClickChoice(index); });
+			AddZone(zone, [this, index](){ this->ClickChoice(index); });
 			++index;
 		
 			font.Draw(label, point + Point(-15, 0), dim);
@@ -194,6 +199,9 @@ void ConversationPanel::Draw()
 	}
 	// Store the total height of the text.
 	maxScroll = min(0., Screen::Top() - (point.Y() - scroll) + font.Height() + 15.);
+
+	// Reset the hover flag. If the mouse is still moving than the flag will be set in the next frame.
+	isHovering = false;
 }
 
 
@@ -297,6 +305,16 @@ bool ConversationPanel::Drag(double dx, double dy)
 bool ConversationPanel::Scroll(double dx, double dy)
 {
 	return Drag(0., dy * Preferences::ScrollSpeed());
+}
+
+
+
+// Handle selecting choices by hovering with the mouse.
+bool ConversationPanel::Hover(int x, int y)
+{
+	hoverPoint = Point(x, y);
+	isHovering = true;
+	return true;
 }
 
 
