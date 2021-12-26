@@ -94,6 +94,7 @@ government "Bunrodea (Guard)"
 	
 	"penalty for"
 		assist 0
+		disable 0
 
 government "Bunrodea (Megasa)"
 	"display name" "Bunrodea"
