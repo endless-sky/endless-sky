@@ -28,7 +28,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/FontSet.h"
 #include "Galaxy.h"
 #include "GameEvent.h"
-#include "GameObjects.h"
 #include "Government.h"
 #include "Hazard.h"
 #include "ImageSet.h"
@@ -58,6 +57,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 #include "Test.h"
 #include "TestData.h"
+#include "UniverseObjects.h"
 
 #include <algorithm>
 #include <future>
@@ -72,7 +72,7 @@ class Sprite;
 using namespace std;
 
 namespace {
-	GameObjects objects;
+	UniverseObjects objects;
 	Set<Fleet> defaultFleets;
 	Set<Government> defaultGovernments;
 	Set<Planet> defaultPlanets;

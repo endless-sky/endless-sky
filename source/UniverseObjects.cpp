@@ -10,7 +10,7 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#include "GameObjects.h"
+#include "UniverseObjects.h"
 
 #include "DataFile.h"
 #include "DataNode.h"
@@ -67,14 +67,14 @@ namespace {
 
 
 
-future<void> GameObjects::Load(const vector<string> &sources, bool debugMode)
+future<void> UniverseObjects::Load(const vector<string> &sources, bool debugMode)
 {
 	progress = 0.;
 
 	// We need to copy any variables used for loading to avoid a race condition.
 	// 'this' is not copied, so 'this' shouldn't be accessed after calling this
 	// function (except for calling GetProgress which is safe due to the atomic).
-	return async(launch::async, [this, sources, debugMode]
+	return async(launch::async, [this, sources, debugMode]() noexcept -> void
 		{
 			vector<string> files;
 			for(const string &source : sources)
@@ -106,14 +106,14 @@ future<void> GameObjects::Load(const vector<string> &sources, bool debugMode)
 
 
 
-double GameObjects::GetProgress() const
+double UniverseObjects::GetProgress() const
 {
 	return progress.load(memory_order_acquire);
 }
 
 
 
-void GameObjects::FinishLoading()
+void UniverseObjects::FinishLoading()
 {
 	// Now that all data is loaded, update the neighbor lists and other
 	// system information. Make sure that the default jump range is among the
@@ -139,7 +139,7 @@ void GameObjects::FinishLoading()
 
 
 // Apply the given change to the universe.
-void GameObjects::Change(const DataNode &node)
+void UniverseObjects::Change(const DataNode &node)
 {
 	if(node.Token(0) == "fleet" && node.Size() >= 2)
 		fleets.Get(node.Token(1))->Load(node);
@@ -170,8 +170,8 @@ void GameObjects::Change(const DataNode &node)
 
 
 // Update the neighbor lists and other information for all the systems.
-// This must be done any time that a change creates or moves a system.
-void GameObjects::UpdateSystems()
+// (This must be done any time a GameEvent creates or moves a system.)
+void UniverseObjects::UpdateSystems()
 {
 	for(auto &it : systems)
 	{
@@ -187,7 +187,7 @@ void GameObjects::UpdateSystems()
 // Check for objects that are referred to but never defined. Some elements, like
 // fleets, don't need to be given a name if undefined. Others (like outfits and
 // planets) are written to the player's save and need a name to prevent data loss.
-void GameObjects::CheckReferences()
+void UniverseObjects::CheckReferences()
 {
 	// Parse all GameEvents for object definitions.
 	auto deferred = map<string, set<string>>{};
@@ -280,7 +280,7 @@ void GameObjects::CheckReferences()
 
 
 
-void GameObjects::LoadFile(const string &path, bool debugMode)
+void UniverseObjects::LoadFile(const string &path, bool debugMode)
 {
 	// This is an ordinary file. Check to see if it is an image.
 	if(path.length() < 4 || path.compare(path.length() - 4, 4, ".txt"))

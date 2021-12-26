@@ -1,4 +1,4 @@
-/* GameObjects.h
+/* UniverseObjects.h
 Copyright (c) 2021 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -10,8 +10,8 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef GAME_OBJECTS_H_
-#define GAME_OBJECTS_H_
+#ifndef UNIVERSE_OBJECTS_H_
+#define UNIVERSE_OBJECTS_H_
 
 #include "CategoryTypes.h"
 #include "Sale.h"
@@ -51,9 +51,39 @@ class Sprite;
 
 
 
-// Class representing every game object.
-class GameObjects {
+// This class contains all active game objects, representing the current state of the Endless Sky universe.
+// All pointers to game objects must refer to the same UniverseObjects instance.
+class UniverseObjects {
+	// GameData currently is the orchestrating controller for all game definitions.
+	friend class GameData;
 public:
+	// Load game objects from the given directories of definitions.
+	std::future<void> Load(const std::vector<std::string> &sources, bool debugMode = false);
+	// Determine the fraction of data files read from disk.
+	double GetProgress() const;
+	// Resolve every game object dependency.
+	void FinishLoading();
+
+	// Apply the given change to the universe.
+	void Change(const DataNode &node);
+	// Update the neighbor lists and other information for all the systems.
+	// (This must be done any time a GameEvent creates or moves a system.)
+	void UpdateSystems();
+
+	// Check for objects that are referred to but never defined.
+	void CheckReferences();
+
+
+private:
+	void LoadFile(const std::string &path, bool debugMode = false);
+
+
+private:
+	// A value in [0, 1] representing how many source files have been processed for content.
+	std::atomic<double> progress;
+
+
+private:
 	Set<Color> colors;
 	Set<Conversation> conversations;
 	Set<Effect> effects;
@@ -90,30 +120,7 @@ public:
 	std::map<std::string, std::string> tooltips;
 	std::map<std::string, std::string> helpMessages;
 
-public:
-	// Load the game objects from the given definitions.
-	std::future<void> Load(const std::vector<std::string> &sources, bool debugMode = false);
-	// Determine the fraction of data files read from disk.
-	double GetProgress() const;
-	// Resolve every game object dependency.
-	void FinishLoading();
 
-	// Apply the given change to the universe.
-	void Change(const DataNode &node);
-	// Update the neighbor lists and other information for all the systems.
-	// This must be done any time that a change creates or moves a system.
-	void UpdateSystems();
-
-	// Check for objects that are referred to but never defined.
-	void CheckReferences();
-
-
-private:
-	void LoadFile(const std::string &path, bool debugMode = false);
-
-
-private:
-	std::atomic<double> progress;
 };
 
 
