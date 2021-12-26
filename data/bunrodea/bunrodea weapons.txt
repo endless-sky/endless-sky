@@ -1,0 +1,215 @@
+# Copyright (c) 2021 by Amazinite
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+outfit "Locust Blaster"
+	category "Guns"
+	cost 284000
+	thumbnail "outfit/locust blaster"
+	"mass" 7
+	"outfit space" -7
+	"weapon capacity" -7
+	"gun ports" -1
+	weapon
+		sprite "projectile/repeater"
+			"frame rate" 5
+		sound "repeater"
+		"hit effect" "repeater impact"
+		"inaccuracy" 5
+		"velocity" 10
+		"random velocity" 2
+		"lifetime" 40
+		"reload" 3
+		"firing energy" 6
+		"firing heat" 4
+		"shield damage" 6
+		"hull damage" 5
+	description "The Locust Blaster might look small, but its destructive potential for its size is nothing to scoff at. A single blaster is capable of sustaining 1,200 rounds per minute. While each individual projectile from the blaster deals rather insignificant damage, the sheer deluge of projectiles can rip even the largest of ships to shreds in due time."
+
+outfit "Locust Turret"
+	category "Turrets"
+	cost 1265000
+	thumbnail "outfit/locust turret"
+	"mass" 28
+	"outfit space" -28
+	"weapon capacity" -28
+	"turret mounts" -1
+	weapon
+		sprite "projectile/repeater"
+			"frame rate" 5
+		"hardpoint sprite" "hardpoint/repeater turret"
+		"hardpoint offset" 7.
+		sound "repeater"
+		"hit effect" "repeater impact"
+		"inaccuracy" 5
+		"turret turn" 6
+		"velocity" 10
+		"random velocity" 2
+		"lifetime" 40
+		"reload" 1
+		"firing energy" 5
+		"firing heat" 3
+		"shield damage" 6
+		"hull damage" 5
+	description "Although Bunrodean ships typically rely on the power of their foward facing guns and fill any turret mounts with anti-missile systems, they have developed a turret mount for the Locust Blaster. This turret carries three Locust Blasters that all fire at once, resulting in an astonishing 3,600 projectiles per minute being thrown at the target."
+
+
+
+outfit "Mandible Cannon"
+	category "Guns"
+	cost 1670000
+	thumbnail "outfit/mandible cannon"
+	"mass" 29
+	"outfit space" -29
+	"weapon capacity" -29
+	"gun ports" -1
+	weapon
+		sprite "projectile/particle beam"
+		sound "particle"
+		"hit effect" "particle impact"
+		"inaccuracy" .1
+		"velocity" 34
+		"lifetime" 25
+		"reload" 30
+		"burst reload" 5
+		"burst count" 2
+		"firing energy" 144
+		"firing force" 20
+		"firing heat" 40
+		"hit force" 140
+		"shield damage" 179
+		"hull damage" 115
+	description "The Mandible Cannon is a significant part of the Bunrodean arsenal due to its versatility. Its range exceeds that of smaller weapons, and its size allows it to be used in numbers on most Bunrodean ships. The energy draw required to fire is rather significant, though, particularly for Bunrodean ships that rely on solar cells."
+
+
+
+outfit "Thorax Cannon"
+	category "Guns"
+	cost 3484000
+	thumbnail "outfit/thorax cannon"
+	"mass" 105
+	"outfit space" -105
+	"weapon capacity" -105
+	"gun ports" -1
+	"active cooling" 3.1
+	"cooling energy" 0.31
+	weapon
+		sprite "projectile/ionball"
+			"frame rate" 15
+			"rewind"
+		sound "ionball"
+		"fire effect" "finisher sparks" 20
+		"hit effect" "ionball ring" 15
+		"hit effect" "ionball impact"
+		"hit effect" "ionball fragment" 24
+		"live effect" "ionball spark" 140
+		"live effect" "ionball trail" 140
+		"live effect" "ionball twinkle" 560
+		"inaccuracy" 0
+		"velocity" 15
+		"lifetime" 120
+		"reload" 120
+		"firing energy" 3815
+		"firing force" 1250
+		"firing heat" 1905
+		"hit force" 2500
+		"shield damage" 2870
+		"hull damage" 3430
+	description "The Thorax Cannon is a massive, slow firing weapon that few ships can even support, not only because of its size but also because of the energy needed to fire it. It is also a particularly hot weapon, at least by Bunrodean standards, so it comes with its own cooling system in order to help alleviate the heat produced when fired."
+
+
+
+outfit "Swarm Clip"
+	category "Ammunition"
+	cost 24000
+	thumbnail "outfit/swarm storage"
+	"mass" 10
+	"swarm capacity" 150
+	description "Swarm clips provide a sizeable increase in ammo capacity for Swarm Pods, holding a respectible 150 missiles able to be swiftly loaded into a launcher after its current clip is empty."
+
+outfit "Swarm Missile"
+	category "Ammunition"
+	cost 1500
+	thumbnail "outfit/swarm missile"
+	"mass" 0.05
+	"swarm capacity" -1
+	description "Swarm missiles are small, fast moving munitions for the Swarm Pod."
+
+outfit "Swarm Pod"
+	category "Secondary Weapons"
+	cost 617000
+	thumbnail "outfit/swarm pod"
+	"mass" 6
+	"outfit space" -21
+	"weapon capacity" -21
+	"gun ports" -1
+	"swarm capacity" 300
+	weapon
+		sprite "effect/swarm"
+			"frame rate" .01
+		sound "meteor"
+		ammo "Swarm Missile"
+		icon "icon/meteor"
+		"die effect" "missile death"
+		"hit effect" "particle impact"
+		"live effect" "swarm flare" 1000000
+		"inaccuracy" 90
+		"velocity" 13
+		"lifetime" 460
+		"reload" 10
+		"firing energy" 10
+		"firing heat" 1
+		"acceleration" 1.3
+		"drag" .1
+		"turn" 5.35
+		"homing" 2
+		"radar tracking" 0.5
+		"optical tracking" 0.5
+		"shield damage" 88
+		"hull damage" 55
+		"missile strength" 8
+		"stream"
+	description "The Swarm Pod proved to be an effective weapon in early conflicts with the Korath by overpowering early Korath anti-missile defenses. But just as the Bunrodea developed technology to combat Korath weaponry, the Korath did the same, prompting them to create their own rapid-fire anti-missile turret that limited the usefulness of the Swarm Pod against some Korath targets."
+
+effect "swarm flare"
+	sprite "effect/swarm"
+		"no repeat"
+		"frame rate" 5
+	"lifetime" 40
+	"velocity scale" 0.1
+
+
+
+outfit "Buzzer Anti-Missile"
+	category "Turrets"
+	cost 1195000
+	thumbnail "outfit/buzzer"
+	"mass" 19
+	"outfit space" -19
+	"weapon capacity" -19
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/warder"
+		"hardpoint offset" 3.
+		"hit effect" "buzzer"
+		"anti-missile" 9
+		"velocity" 300
+		"lifetime" 1
+		"reload" 2
+		"firing energy" 13
+		"firing heat" 1
+	description "As the Korath began to saturate systems with mines, the effectiveness of Bunrodean fighters dropped substantially. In response, the Bunrodea developed this rapid-fire anti-missile turret, able to clear sections of a system of Korath mines at blinding speed."
+
+effect "buzzer"
+	sprite "effect/warder"
+		"no repeat"
+		"frame rate" 6
+	sound "hion"
+	"lifetime" 11
+	"velocity scale" 1

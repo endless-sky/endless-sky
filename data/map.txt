@@ -4970,6 +4970,69 @@ system Avior
 			distance 212
 			period 15.2148
 
+system "Avo Chigo"
+	pos 242.817 -205.83
+	government "Bunrodea (Guard)"
+	habitable 8640
+	belt 1500
+	link "Eragaru Le"
+	link "Jentu Le"
+	link "Paru Paru"
+	asteroids "small rock" 13 5.46
+	asteroids "medium rock" 11 7.32
+	asteroids "large rock" 3 7.26
+	asteroids "small metal" 34 6
+	asteroids "medium metal" 8 6.24
+	asteroids "large metal" 30 9
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Erabu Freight" 1200
+	fleet "Bunrodea Defense" 2000
+	fleet "Bunrodea Royal Guard" 2000
+	object
+		sprite star/b5
+		period 10
+	object
+		sprite planet/gas13-b
+		distance 979.93
+		period 132.006
+	object
+		sprite planet/gas4
+		distance 2019.93
+		period 390.667
+	object
+		sprite planet/cloud8
+		distance 2932.03
+		period 683.212
+	object
+		sprite planet/gas11
+		distance 4710.9
+		period 1391.42
+	object
+		sprite planet/gas2-b
+		distance 7673.34
+		period 2892.54
+		object
+			sprite planet/io
+			distance 300
+			period 31.4845
+		object "Illbo Avo"
+			sprite planet/desert4-b
+			distance 405
+			period 49.3852
+		object
+			sprite planet/lava0-b
+			distance 547
+			period 77.5168
+
 system Aya'k'k
 	pos -434.245 -616.57
 	government Wanderer
@@ -6044,6 +6107,74 @@ system "Broken Bowl"
 			sprite planet/dust4
 			distance 297
 			period 13.0737
+
+system "Bunri Lemeta"
+	pos 317.9 -94.3
+	government "Bunrodea (Guard)"
+	habitable 5000
+	belt 1500
+	link "Erabu Lemeta"
+	link "Schisa Le"
+	link "Shini Bori"
+	asteroids "small rock" 2 0.8788
+	asteroids "medium rock" 25 1.69
+	asteroids "large rock" 8 1.8928
+	asteroids "small metal" 22 1.5717
+	asteroids "medium metal" 26 0.9295
+	asteroids "large metal" 14 0.9633
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Erabu Freight" 3000
+	fleet "Bunrodea Defense" 2000
+	fleet "Bunrodea Royalty" 3000
+	fleet "Bunrodea Royal Guard" 2000
+	object
+		sprite star/a0
+		period 10
+	object
+		sprite planet/rock2-b
+		distance 1024.96
+		period 185.624
+		object
+			sprite planet/rock14
+			distance 148
+			period 19.4415
+	object
+		sprite planet/ocean4
+		distance 2876.38
+		period 872.658
+		object
+			sprite planet/miranda
+			distance 155
+			period 17.5682
+	object Bunthro
+		sprite planet/forest5
+		distance 4015.45
+		period 1439.38
+		object
+			sprite planet/desert4
+			distance 167
+			period 23.303
+	object
+		sprite planet/gas13
+		distance 6042.24
+		period 2656.88
+		object
+			sprite planet/dust1-b
+			distance 301
+			period 14.7421
+		object
+			sprite planet/rock7-b
+			distance 445
+			period 26.5003
 
 system Caeculus
 	pos 162.87 343.242
@@ -9081,6 +9212,66 @@ system Ekuarik
 		period 342.094
 		offset 312
 
+system "Elabi Choati"
+	pos 205.2 -175.9
+	government Bunrodea
+	habitable 625
+	belt 1500
+	link "Elo Chigo"
+	link "Thshybo Le"
+	asteroids "small rock" 9 8.7808
+	asteroids "medium rock" 32 9.3296
+	asteroids "large rock" 4 10.4272
+	asteroids "small metal" 2 6.9776
+	asteroids "medium metal" 14 11.4464
+	asteroids "large metal" 20 11.76
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Erabu Freight" 2000
+	fleet "Bunrodea Defense" 1000
+	object
+		sprite star/carbon
+		period 10
+	object
+		sprite star/carbon-core
+		period 10
+	object
+		sprite planet/cloud1-b
+		distance 199.04
+		period 44.9293
+	object
+		sprite planet/gas2
+		distance 780.29
+		period 348.741
+		object
+			sprite planet/dust7
+			distance 212
+			period 18.7033
+	object
+		sprite planet/rock16-b
+		distance 1452.1
+		period 885.349
+		object Iddesato
+			sprite planet/station1
+			distance 142
+			period 23.094
+	object
+		sprite planet/oberon-b
+		distance 1731.14
+		period 1152.43
+	object
+		sprite planet/gas13-b
+		distance 2183.75
+		period 1632.76
+
 system Elnath
 	pos -288 -77
 	government Republic
@@ -9145,6 +9336,62 @@ system Elnath
 			sprite planet/station9
 			distance 253
 			period 12.546
+
+system "Elo Chigo"
+	pos 170.2 -121.8
+	government Bunrodea
+	habitable 3000
+	belt 1500
+	link "Elabi Choati"
+	link "Era Natta"
+	link "Thshybo Le"
+	asteroids "medium rock" 28 2.6163
+	asteroids "large rock" 1 4.5144
+	asteroids "small metal" 3 6.3612
+	asteroids "large metal" 2 4.7709
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Erabu Freight" 2000
+	fleet "Bunrodea Defense" 1000
+	object
+		sprite star/a8
+		period 10
+	object
+		sprite planet/lava4
+		distance 199
+		period 20.5011
+	object
+		sprite planet/rock9-b
+		distance 866.979
+		period 186.428
+		object
+			sprite planet/luna-b
+			distance 156
+			period 24.9916
+	object "Illbo Elo"
+		sprite planet/rock16
+		distance 1875.67
+		period 593.244
+		object
+			sprite planet/io
+			distance 158
+			period 27.1052
+	object
+		sprite planet/gas9
+		distance 2931.78
+		period 1159.30
+	object
+		sprite planet/gas12-b
+		distance 4754.07
+		period 2393.85
 
 system Eltanin
 	pos -328 433
@@ -9261,6 +9508,61 @@ system Eneremprukt
 		sprite planet/gas6-b
 		distance 2137.8
 		period 1786.12
+
+system "Eneva Katta"
+	pos 193 -27
+	government Bunrodea
+	habitable 4320
+	belt 1500
+	link "Genta Bo"
+	asteroids "small rock" 1 2.431
+	asteroids "medium rock" 5 2.244
+	asteroids "large rock" 8 1.666
+	asteroids "small metal" 17 1.819
+	asteroids "medium metal" 128 2.278
+	asteroids "large metal" 10 0.935
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Defense" 5000
+	object
+		sprite star/g-giant
+		period 10
+	object
+		sprite planet/lava1-b
+		distance 380.61
+		period 45.1895
+	object
+		sprite planet/desert1-b
+		distance 904.231
+		period 165.476
+		object
+			sprite planet/io
+			distance 151
+			period 16.1069
+	object Kalbai
+		sprite planet/desert2-b
+		distance 2253.31
+		period 650.952
+	object
+		sprite planet/desert8-b
+		distance 3252.18
+		period 1128.70
+	object
+		sprite planet/jupiter
+		distance 4738.48
+		period 1985.07
+		object
+			sprite planet/ice7-b
+			distance 279
+			period 14.6443
 
 system Enif
 	pos -177 498
@@ -9425,6 +9727,208 @@ system "Epsilon Leonis"
 			sprite planet/mercury
 			distance 515
 			period 37.9234
+
+system "Era Natta"
+	pos 129.2 -134.8
+	government Bunrodea
+	habitable 2200
+	belt 1500
+	link "Elo Chigo"
+	asteroids "small rock" 5 4.1952
+	asteroids "medium rock" 9 4.9128
+	asteroids "large rock" 3 6.0168
+	asteroids "medium metal" 3 5.0784
+	asteroids "large metal" 1 2.9808
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Defense" 4000
+	object
+		sprite star/f3
+		period 10
+	object
+		sprite planet/desert8
+		distance 161.89
+		period 17.5662
+	object
+		sprite planet/rock11
+		distance 397.14
+		period 67.4938
+	object
+		sprite planet/rock0-b
+		distance 683.14
+		period 152.269
+	object
+		sprite planet/lava7-b
+		distance 1349.98
+		period 422.999
+	object Byrucawo
+		sprite planet/ocean3-b
+		distance 1708.22
+		period 602.094
+	object
+		sprite planet/gas17-b
+		distance 2382.54
+		period 991.765
+		object
+			sprite planet/dust3-b
+			distance 201
+			period 12.175
+		object
+			sprite planet/dust5
+			distance 295
+			period 21.6474
+
+system "Erabu Lemeta"
+	pos 284.9 -136.3
+	government "Bunrodea (Guard)"
+	habitable 5000
+	belt 1500
+	link "Bunri Lemeta"
+	link "Jentu Le"
+	link "Schisa Le"
+	link "Shini Bori"
+	link "Thshybo Le"
+	asteroids "small rock" 1 5.382
+	asteroids "medium rock" 16 3.042
+	asteroids "large rock" 60 5.226
+	asteroids "medium metal" 11 5.733
+	asteroids "large metal" 1 2.379
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Erabu Freight" 500
+	fleet "Bunrodea Defense" 1000
+	fleet "Bunrodea Royalty" 2000
+	fleet "Bunrodea Royal Guard" 1000
+	object
+		sprite star/a0
+		period 10
+	object
+		sprite planet/rock2-b
+		distance 1024.96
+		period 185.624
+		object
+			sprite planet/callisto-b
+			distance 148
+			period 19.4415
+	object
+		sprite planet/cloud4-b
+		distance 2876.38
+		period 872.658
+		object
+			sprite planet/desert4
+			distance 155
+			period 17.5682
+	object Erabuthro
+		sprite planet/forest5-b
+		distance 4015.45
+		period 1439.38
+		object
+			sprite planet/desert4-b
+			distance 167
+			period 23.303
+	object
+		sprite planet/gas13
+		distance 6042.24
+		period 2656.88
+		object
+			sprite planet/dust1
+			distance 301
+			period 14.7421
+		object
+			sprite planet/rock7
+			distance 445
+			period 26.5003
+
+system "Eragaru Le"
+	pos 302.817 -185.83
+	government "Bunrodea (Guard)"
+	habitable 5000
+	belt 1500
+	link "Avo Chigo"
+	link "Paru Paru"
+	link "Schisa Le"
+	asteroids "small rock" 6 3.9672
+	asteroids "medium rock" 2 2.8044
+	asteroids "large rock" 1 3.0438
+	asteroids "small metal" 2 3.249
+	asteroids "medium metal" 1 4.4118
+	asteroids "large metal" 4 3.8646
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Erabu Freight" 1200
+	fleet "Bunrodea Defense" 2000
+	fleet "Bunrodea Royal Guard" 2000
+	object
+		sprite star/a0
+		period 10
+	object
+		sprite planet/fog0-b
+		distance 457.716
+		period 55.3948
+		object
+			sprite planet/dust4-b
+			distance 187
+			period 18.8643
+	object
+		sprite planet/cloud1-b
+		distance 1035.53
+		period 188.503
+	object
+		sprite planet/gas4-b
+		distance 1731.99
+		period 407.749
+	object
+		sprite planet/gas2-b
+		distance 3049.48
+		period 952.606
+		object
+			sprite planet/rhea
+			distance 197
+			period 16.7538
+		object
+			sprite planet/ice7
+			distance 330
+			period 36.3233
+		object
+			sprite planet/io
+			distance 466
+			period 60.9528
+	object
+		sprite planet/gas1-b
+		distance 4852.84
+		period 1912.35
+		object Eragarthro
+			sprite planet/dust5-b
+			distance 341.05
+			period 25.1735
+		object
+			sprite planet/dust3
+			distance 539.746
+			period 50.1187
 
 system Es'sprak'ai
 	pos -469.044 -733.375
@@ -11195,6 +11699,121 @@ system "Gamma Corvi"
 		sprite planet/io
 		distance 3454.86
 		period 2076.63
+
+system "Genta Bo"
+	pos 185.2 -65.9
+	government Bunrodea
+	habitable 86920
+	belt 1500
+	link "Eneva Katta"
+	link "Thshybo Le"
+	asteroids "medium rock" 7 11.76
+	asteroids "large rock" 1 11.424
+	asteroids "small metal" 6 10.836
+	asteroids "medium metal" 11 7.728
+	asteroids "large metal" 12 9.912
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Defense" 3500
+	object
+		sprite star/o-supergiant
+		distance 14.1508
+		period 5.23479
+	object
+		sprite star/a0
+		distance 231.848
+		period 5.23479
+		offset 180
+	object
+		sprite planet/rock11-b
+		distance 461.753
+		period 13.4621
+	object
+		sprite planet/lava3-b
+		distance 709.963
+		period 25.6657
+	object
+		sprite planet/rock17-b
+		distance 1089.12
+		period 48.7656
+	object
+		sprite planet/gas15
+		distance 1497.21
+		period 78.6003
+		object
+			sprite planet/oberon-b
+			distance 208
+			period 15.7904
+	object
+		sprite planet/gas8
+		distance 2020.25
+		period 123.199
+
+system "Gento Ah"
+	pos 351.9 -352.3
+	government Bunrodea
+	habitable 24000
+	belt 1500
+	link "Jentu Centi"
+	link "Mego Seo"
+	link "Navo Chigo"
+	link "Urba Pest"
+	asteroids "medium rock" 29 1.4144
+	asteroids "large rock" 3 2.1488
+	asteroids "small metal" 28 3.5632
+	asteroids "medium metal" 29 3.9712
+	asteroids "large metal" 17 3.2912
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Megasa Freight" 2000
+	fleet "Bunrodea Defense" 1500
+	object
+		sprite star/a-supergiant
+		period 10
+	object
+		sprite planet/io
+		distance 416.636
+		period 21.9578
+	object
+		sprite planet/miranda-b
+		distance 611.326
+		period 39.0268
+	object
+		sprite planet/desert2
+		distance 1009.75
+		period 82.8466
+	object
+		sprite planet/gas16
+		distance 1627.52
+		period 169.528
+		object
+			sprite planet/luna
+			distance 187
+			period 13.4605
+	object
+		sprite planet/lava6-b
+		distance 2553.6
+		period 333.183
+	object
+		sprite planet/gas5
+		distance 3995.19
+		period 652.019
 
 system Gerenus
 	pos 197 514
@@ -13310,6 +13929,114 @@ system Izar
 			distance 201
 			period 12.6652
 
+system "Jentu Centi"
+	pos 390.9 -291.3
+	government Bunrodea
+	habitable 4320
+	belt 1500
+	link "Gento Ah"
+	link "Mego Faro"
+	link "Mego Inito"
+	asteroids "small rock" 7 9.6432
+	asteroids "large rock" 31 9.7216
+	asteroids "small metal" 24 11.6032
+	asteroids "medium metal" 34 4.2336
+	asteroids "large metal" 5 11.5248
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Megasa Freight" 2000
+	fleet "Bunrodea Defense" 1000
+	object
+		sprite star/g-giant
+		period 10
+	object
+		sprite planet/lava7-b
+		distance 443.102
+		period 56.7640
+	object
+		sprite planet/luna
+		distance 1073.75
+		period 214.127
+	object
+		sprite planet/dust3-b
+		distance 1728.6
+		period 437.380
+	object
+		sprite planet/rock9
+		distance 2531.11
+		period 774.969
+	object
+		sprite planet/gas14-b
+		distance 4954.61
+		period 2122.42
+		object Melenci
+			sprite planet/rock17
+			distance 221
+			period 13.3797
+
+system "Jentu Le"
+	pos 243.817 -162.83
+	government "Bunrodea (Guard)"
+	habitable 2200
+	belt 1500
+	link "Avo Chigo"
+	link "Erabu Lemeta"
+	asteroids "small rock" 5 2.16
+	asteroids "medium rock" 43 2.052
+	asteroids "large rock" 5 2.1384
+	asteroids "small metal" 34 1.6416
+	asteroids "medium metal" 95 1.8792
+	asteroids "large metal" 43 2.4408
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Erabu Freight" 1500
+	fleet "Bunrodea Defense" 2000
+	fleet "Bunrodea Royalty" 5000
+	fleet "Bunrodea Royal Guard" 2000
+	object
+		sprite star/f3
+		period 10
+	object
+		sprite planet/lava4-b
+		distance 485.963
+		period 91.3594
+	object
+		sprite planet/cloud1-b
+		distance 1038.11
+		period 285.242
+	object Jentuthro
+		sprite planet/ocean4
+		distance 2056.46
+		period 795.296
+	object
+		sprite planet/rock13
+		distance 2812.31
+		period 1271.87
+	object
+		sprite planet/gas10
+		distance 5017.38
+		period 3030.84
+		object
+			sprite planet/oberon-b
+			distance 195
+			period 14.3334
+
 system Ka'ch'chrai
 	pos -240.163 -822.448
 	government Wanderer
@@ -14018,6 +14745,56 @@ system "Ki War Ek"
 		distance 830
 		period 361.516
 		offset 250
+
+system "Kifrana Terberah"
+	pos 362.817 -200.83
+	government Bunrodea
+	habitable 2300
+	belt 1500
+	link "Mego Inito"
+	link "Ravu Kon"
+	link "Xutluno Fali"
+	asteroids "small rock" 5 3.6432
+	asteroids "medium rock" 13 4.6
+	asteroids "large rock" 5 2.5024
+	asteroids "small metal" 10 5.0048
+	asteroids "medium metal" 1 5.0784
+	asteroids "large metal" 27 2.3552
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Megasa Freight" 1200
+	fleet "Bunrodea Defense" 1500
+	object
+		sprite star/m-giant
+		period 10
+	object
+		sprite planet/venus
+		distance 487.26
+		period 89.7092
+	object
+		sprite planet/desert8-b
+		distance 1067.52
+		period 290.910
+	object
+		sprite planet/dust0-b
+		distance 1780.83
+		period 626.801
+	object Kisarra
+		sprite planet/dust6
+		distance 2720.54
+		period 1183.52
+	object
+		sprite planet/gas11
+		distance 5592.93
+		period 3488.63
 
 system Kiro'ku
 	pos -131.923 -884.46
@@ -16112,6 +16889,177 @@ system Meftarkata
 			distance 315
 			period 29.4282
 
+system "Mego Faro"
+	pos 412.9 -347.3
+	government Bunrodea
+	habitable 1080
+	belt 1500
+	link "Jentu Centi"
+	link "Urba Pest"
+	link "Xutluno Rees"
+	asteroids "medium rock" 4 2.9412
+	asteroids "large rock" 1 2.3028
+	asteroids "small metal" 1 1.5048
+	asteroids "medium metal" 5 2.2116
+	asteroids "large metal" 1 2.7816
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Megasa Freight" 1200
+	fleet "Bunrodea Defense" 1500
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/desert8-b
+		distance 289.89
+		period 60.0755
+		object
+			sprite planet/rock14
+			distance 161
+			period 26.2027
+	object
+		sprite planet/cloud0-b
+		distance 654.25
+		period 203.687
+	object "Deli Kat"
+		sprite planet/cloud3
+		distance 1118.25
+		period 455.152
+	object
+		sprite planet/neptune-b
+		distance 1389.74
+		period 630.591
+	object
+		sprite planet/water0-b
+		distance 1642.03
+		period 809.878
+	object
+		sprite planet/gas17-b
+		distance 4556.52
+		period 3743.67
+		object
+			sprite planet/tethys-b
+			distance 227
+			period 14.6121
+		object
+			sprite planet/rock17-b
+			distance 350
+			period 27.9753
+
+system "Mego Inito"
+	pos 394.9 -230.3
+	government Bunrodea
+	habitable 2200
+	belt 1500
+	link "Jentu Centi"
+	link "Kifrana Terberah"
+	link "Ravu Kon"
+	link "Xutluno Fali"
+	link "Xutluno Rees"
+	asteroids "small rock" 2 5.481
+	asteroids "medium rock" 1 5.8058
+	asteroids "large rock" 3 4.1006
+	asteroids "small metal" 5 2.7202
+	asteroids "medium metal" 35 2.8014
+	asteroids "large metal" 91 6.0088
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Megasa Freight" 1200
+	fleet "Bunrodea Defense" 1500
+	object
+		sprite star/f3
+		period 10
+	object
+		sprite planet/rock10-b
+		distance 433.463
+		period 76.9620
+		object
+			sprite planet/tethys-b
+			distance 185
+			period 21.1774
+	object
+		sprite planet/desert2
+		distance 796.823
+		period 191.818
+	object
+		sprite planet/io
+		distance 1766.07
+		period 632.937
+	object Angko
+		sprite planet/water1-b
+		distance 2288.16
+		period 933.422
+
+system "Mego Seo"
+	pos 354.817 -279.83
+	government Bunrodea
+	habitable 2560
+	belt 1500
+	link "Gento Ah"
+	link "Ravu Kon"
+	asteroids "small metal" 1 4.374
+	asteroids "medium metal" 14 5.5404
+	asteroids "large metal" 1 3.5964
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Megasa Freight" 1200
+	fleet "Bunrodea Defense" 1500
+	object
+		sprite star/f0
+		period 10
+	object
+		sprite planet/desert5-b
+		distance 494.59
+		period 86.9576
+	object
+		sprite planet/mars-b
+		distance 842.59
+		period 193.359
+	object "Deli Kasi"
+		sprite planet/forest3-b
+		distance 2164.91
+		period 796.342
+	object
+		sprite planet/uranus-b
+		distance 3270.95
+		period 1478.94
+		object
+			sprite planet/rock7
+			distance 238
+			period 15.687
+		object
+			sprite planet/tethys
+			distance 314
+			period 23.7721
+		object
+			sprite planet/rock17-b
+			distance 391
+			period 33.0323
+
 system "Mei Yohn"
 	pos -106.757 -581.698
 	government Hai
@@ -17589,6 +18537,68 @@ system Naper
 			distance 286
 			period 23.8403
 
+system "Navo Chigo"
+	pos 318.817 -338.83
+	government Bunrodea
+	habitable 6000
+	belt 1500
+	link "Gento Ah"
+	asteroids "small rock" 12 4.6176
+	asteroids "medium rock" 83 3.3696
+	asteroids "large rock" 6 5.5744
+	asteroids "medium metal" 8 5.7408
+	asteroids "large metal" 4 4.368
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Defense" 1000
+	object
+		sprite star/k-supergiant
+		period 10
+	object
+		sprite planet/lava3
+		distance 548.933
+		period 66.4145
+	object
+		sprite planet/rock5
+		distance 924.573
+		period 145.176
+	object
+		sprite planet/rock2
+		distance 1734.31
+		period 372.970
+	object
+		sprite planet/ocean0-b
+		distance 3157.69
+		period 916.301
+	object "Illbo Navo"
+		sprite planet/forest3-b
+		distance 4958.7
+		period 1803.16
+		object
+			sprite planet/rock3-b
+			distance 169
+			period 23.7229
+	object
+		sprite planet/gas15
+		distance 7111.5
+		period 3096.89
+		object
+			sprite planet/dust7
+			distance 228
+			period 18.1217
+		object
+			sprite planet/europa-b
+			distance 323
+			period 30.5563
+
 system Nenia
 	pos -39.1297 467.242
 	government Uninhabited
@@ -18409,6 +19419,76 @@ system Parca
 			sprite planet/io
 			distance 545
 			period 35.9174
+
+system "Paru Paru"
+	pos 275.9 -237.3
+	government Bunrodea
+	attributes "neutron"
+	habitable 100
+	belt 1500
+	link "Avo Chigo"
+	link "Eragaru Le"
+	link "Ravu Kon"
+	asteroids "small rock" 59 3.3852
+	asteroids "medium rock" 4 2.184
+	asteroids "large rock" 30 3.5308
+	asteroids "small metal" 8 3.6764
+	asteroids "medium metal" 10 3.4216
+	asteroids "large metal" 11 5.1688
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Erabu Freight" 900
+	fleet "Bunrodea Defense" 2000
+	object
+		sprite star/neutron-core
+		period 10
+	object
+		sprite star/neutron
+		period 10
+	object
+		sprite planet/desert10
+		distance 821.186
+		period 133.118
+		object
+			sprite planet/dust4
+			distance 154
+			period 19.5654
+	object
+		sprite planet/lava3
+		distance 1289.95
+		period 262.080
+	object
+		sprite planet/rock9
+		distance 1791.24
+		period 428.850
+	object
+		sprite planet/gas2
+		distance 2311.88
+		period 628.815
+		object
+			sprite planet/tethys
+			distance 167
+			period 13.0764
+	object
+		sprite planet/gas16
+		distance 4238.09
+		period 1560.73
+		object
+			sprite planet/dust1-b
+			distance 205
+			period 15.45
+		object
+			sprite planet/dust0
+			distance 350
+			period 34.4667
 
 system Peacock
 	pos -307 350
@@ -20270,6 +21350,74 @@ system "Rati Cal"
 			distance 240
 			period 17.5
 
+system "Ravu Kon"
+	pos 332.9 -251.3
+	government Bunrodea
+	habitable 6600
+	belt 1500
+	link "Kifrana Terberah"
+	link "Mego Inito"
+	link "Mego Seo"
+	link "Paru Paru"
+	asteroids "small rock" 41 1.314
+	asteroids "medium rock" 36 2.484
+	asteroids "large rock" 14 1.098
+	asteroids "small metal" 19 1.332
+	asteroids "medium metal" 46 2.502
+	asteroids "large metal" 7 1.152
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Megasa Freight" 800
+	fleet "Bunrodea Erabu Freight" 800
+	fleet "Bunrodea Defense" 1200
+	object
+		sprite star/b8
+		period 10
+	object
+		sprite planet/gas4-b
+		distance 1035.53
+		period 164.071
+		object
+			sprite planet/rock7-b
+			distance 239
+			period 13.0315
+		object
+			sprite planet/dust7-b
+			distance 350
+			period 23.094
+	object
+		sprite planet/gas2-b
+		distance 2125.74
+		period 482.562
+	object
+		sprite planet/gas16-b
+		distance 2527.78
+		period 625.744
+	object Sopoyra
+		sprite planet/dust5
+		distance 4673.79
+		period 1573.22
+	object
+		sprite planet/gas8
+		distance 6110.71
+		period 2351.93
+		object
+			sprite planet/oberon-b
+			distance 184
+			period 13.2863
+		object
+			sprite planet/rock3-b
+			distance 275
+			period 24.2759
+
 system Regor
 	pos -702 -335
 	government Republic
@@ -21572,6 +22720,61 @@ system Schedar
 			distance 298
 			period 25.3563
 
+system "Schisa Le"
+	pos 335.9 -152.3
+	government "Bunrodea (Guard)"
+	habitable 4200
+	belt 1500
+	link "Bunri Lemeta"
+	link "Erabu Lemeta"
+	link "Eragaru Le"
+	asteroids "small rock" 30 4.5724
+	asteroids "medium rock" 20 3.9284
+	asteroids "large rock" 5 4.508
+	asteroids "small metal" 10 5.474
+	asteroids "large metal" 56 8.4364
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Erabu Freight" 1200
+	fleet "Bunrodea Defense" 2000
+	fleet "Bunrodea Royalty" 5000
+	fleet "Bunrodea Royal Guard" 2000
+	object
+		sprite star/a3
+		period 10
+	object
+		sprite planet/lava6-b
+		distance 391.663
+		period 47.8414
+	object
+		sprite planet/lava7
+		distance 1024.59
+		period 202.423
+	object
+		sprite planet/ganymede-b
+		distance 1712.9
+		period 437.555
+	object Schisathro
+		sprite planet/rock11-b
+		distance 2928.71
+		period 978.250
+	object
+		sprite planet/gas0-b
+		distance 4837.14
+		period 2076.43
+		object
+			sprite planet/ice8
+			distance 275
+			period 13.3646
+
 system Segesta
 	pos 111.87 294.242
 	government Uninhabited
@@ -21871,6 +23074,57 @@ system Sepriaptu
 		distance 2309.96
 		period 984.429
 
+system "Sera Natta"
+	pos 344.9 -418.3
+	government Bunrodea
+	habitable 3000
+	belt 1500
+	link "Urba Pest"
+	asteroids "small rock" 81 1.7472
+	asteroids "medium rock" 6 1.5561
+	asteroids "large rock" 7 3.0303
+	asteroids "small metal" 8 2.9757
+	asteroids "medium metal" 35 2.3478
+	asteroids "large metal" 8 1.4196
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Defense" 3000
+	object
+		sprite star/k-giant
+		period 10
+	object
+		sprite planet/desert8-b
+		distance 452.155
+		period 70.2150
+	object
+		sprite planet/lava6
+		distance 868.284
+		period 186.849
+	object
+		sprite planet/ice4-b
+		distance 1060.17
+		period 252.094
+	object
+		sprite planet/gas3
+		distance 1608.17
+		period 470.974
+		object
+			sprite planet/dust1
+			distance 300
+			period 13.2723
+	object Olohoa
+		sprite planet/ocean6
+		distance 2631.05
+		period 985.582
+
 system Sevrelect
 	pos -114.569 -239.812
 	government "Kor Efret"
@@ -22049,6 +23303,63 @@ system Sheratan
 		sprite planet/dust3-b
 		distance 4399.99
 		period 2556.72
+
+system "Shini Bori"
+	pos 258.9 -74.3
+	government "Bunrodea (Guard)"
+	habitable 2560
+	belt 1500
+	link "Bunri Lemeta"
+	link "Erabu Lemeta"
+	asteroids "large rock" 2 3.1395
+	asteroids "small metal" 16 1.8837
+	asteroids "medium metal" 12 2.8405
+	asteroids "large metal" 19 3.2292
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Erabu Freight" 1500
+	fleet "Bunrodea Defense" 2000
+	fleet "Bunrodea Royalty" 3000
+	fleet "Bunrodea Royal Guard" 2000
+	object
+		sprite star/f0
+		period 10
+	object
+		sprite planet/lava1
+		distance 367.992
+		period 55.8081
+	object
+		sprite planet/rock4
+		distance 920.336
+		period 220.729
+		object
+			sprite planet/rhea-b
+			distance 173
+			period 20.7157
+	object Sardva
+		sprite planet/cloud1
+		distance 2122.92
+		period 773.286
+	object
+		sprite planet/gas9
+		distance 3518.74
+		period 1650.13
+		object
+			sprite planet/desert4-b
+			distance 238
+			period 13.7675
+		object
+			sprite planet/dust0-b
+			distance 333
+			period 22.7854
 
 system Si'yak'ku
 	pos -329.235 -760.435
@@ -24123,6 +25434,61 @@ system "Terra Incognita"
 			distance 543
 			period 32.7715
 
+system "Thshybo Le"
+	pos 217.2 -94.9
+	government "Bunrodea (Guard)"
+	habitable 3645
+	belt 1500
+	link "Elabi Choati"
+	link "Elo Chigo"
+	link "Erabu Lemeta"
+	link "Genta Bo"
+	asteroids "medium rock" 131 3.2256
+	asteroids "large rock" 1 2.016
+	asteroids "medium metal" 60 3.6624
+	asteroids "large metal" 4 5.0064
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Erabu Freight" 1500
+	fleet "Bunrodea Defense" 2000
+	fleet "Bunrodea Royalty" 5000
+	fleet "Bunrodea Royal Guard" 2000
+	object
+		sprite star/a5
+		period 10
+	object
+		sprite planet/rock5
+		distance 474.146
+		period 68.4036
+	object
+		sprite planet/rock10
+		distance 1315.6
+		period 316.152
+	object
+		sprite planet/cloud3-b
+		distance 2321.69
+		period 741.169
+	object
+		sprite planet/gas6
+		distance 3417.15
+		period 1323.44
+	object Thshybothro
+		sprite planet/dust3-b
+		distance 3764.71
+		period 1530.41
+	object
+		sprite planet/gas0-b
+		distance 4964.03
+		period 2317.19
+
 system Torbab
 	pos -949.587 490.051
 	government Coalition
@@ -24648,6 +26014,63 @@ system Unukalhai
 		sprite planet/miranda-b
 		distance 3243.71
 		period 2955.85
+
+system "Urba Pest"
+	pos 391.9 -394.3
+	government Bunrodea
+	habitable 6600
+	belt 1500
+	link "Gento Ah"
+	link "Mego Faro"
+	link "Sera Natta"
+	asteroids "small rock" 11 10.36
+	asteroids "medium rock" 4 7
+	asteroids "large rock" 24 9.59
+	asteroids "small metal" 1 8.4
+	asteroids "large metal" 1 3.71
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Megasa Freight" 1000
+	fleet "Bunrodea Defense" 1000
+	object
+		sprite star/b8
+		period 10
+	object
+		sprite planet/dust4
+		distance 603.334
+		period 72.9667
+	object
+		sprite planet/titan
+		distance 2026.22
+		period 449.074
+	object
+		sprite planet/mercury-b
+		distance 2764.22
+		period 715.561
+	object Okoity
+		sprite planet/cloud3-b
+		distance 5223.4
+		period 1858.73
+		object
+			sprite planet/dust5
+			distance 187
+			period 28.1187
+	object
+		sprite planet/gas12
+		distance 6781.96
+		period 2749.92
+		object
+			sprite planet/rock7-b
+			distance 257
+			period 10.8214
 
 system "Uwa Fahn"
 	pos 35.1585 -491.67
@@ -25472,6 +26895,116 @@ system "World's End"
 		period 349.820
 		offset 290
 
+system "Xutluno Fali"
+	pos 399.817 -177.83
+	government Bunrodea
+	attributes "ringworld"
+	habitable 700
+	belt 1500
+	link "Kifrana Terberah"
+	link "Mego Inito"
+	asteroids "large rock" 1 3.84
+	asteroids "small metal" 1 4.8
+	asteroids "medium metal" 9 4.2
+	asteroids "large metal" 10 4.26
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Defense" 2500
+	object
+		sprite star/g3
+		period 10
+	object
+		sprite planet/tethys-b
+		distance 240
+		period 56.2118
+	object
+		sprite planet/lava3
+		distance 1020
+		period 492.505
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 349.820
+		offset -30
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 349.820
+		offset -50
+	object
+		sprite planet/saturn
+		distance 3812
+		period 3558.28
+
+system "Xutluno Rees"
+	pos 435.817 -281.83
+	government Bunrodea
+	habitable 14145
+	belt 1500
+	link "Mego Faro"
+	link "Mego Inito"
+	asteroids "small rock" 2 2.464
+	asteroids "medium rock" 45 3.724
+	asteroids "large rock" 2 3.108
+	asteroids "small metal" 6 3.64
+	asteroids "medium metal" 1 2.548
+	asteroids "large metal" 1 1.988
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	fleet "Bunrodea Defense" 3500
+	object
+		sprite star/o8
+		distance 3.38968
+		period 4.03012
+	object
+		sprite star/k5
+		distance 109.426
+		period 4.03012
+	object
+		sprite planet/dust2-b
+		distance 489.448
+		period 36.4181
+	object
+		sprite planet/gas8
+		distance 1130.17
+		period 127.783
+		object
+			sprite planet/rock17
+			distance 172
+			period 12.008
+	object
+		sprite planet/uranus-b
+		distance 2061.41
+		period 314.778
+		object
+			sprite planet/dust3-b
+			distance 208
+			period 12.8165
+		object
+			sprite planet/dust5-b
+			distance 303
+			period 22.5339
+	object
+		sprite planet/gas15-b
+		distance 3516.64
+		period 701.375
+
 system "Ya Hai"
 	pos -24.9453 -505.571
 	government Hai
@@ -26266,6 +27799,16 @@ planet Amazon
 		threshold 3500
 		fleet "Small Syndicate" 10
 
+planet Angko
+	attributes bunrodea factory manufacturing
+	landscape land/water6
+	description "x"
+	spaceport "x"
+	outfitter "Bunrodea Basic"
+	"required reputation" 10
+	bribe 0
+	security 0
+
 planet Antipode
 	attributes core frontier mining
 	landscape land/snow5
@@ -26532,6 +28075,15 @@ planet "Buccaneer Bay"
 		threshold 3000
 		fleet "Large Core Pirates" 9
 
+planet Bunthro
+	attributes bunrodea religious
+	landscape land/sky6
+	description "x"
+	spaceport "x"
+	"required reputation" 500
+	bribe 0
+	security 0
+
 planet Burthen
 	attributes core mining
 	landscape land/fields9
@@ -26543,6 +28095,11 @@ planet Burthen
 	tribute 500
 		threshold 4000
 		fleet "Small Syndicate" 7
+
+planet Byrucawo
+	attributes bunrodea uninhabited
+	landscape land/sea2
+	description "x"
 
 planet Caelian
 	attributes remnant
@@ -26877,6 +28434,24 @@ planet "Deep Water"
 	spaceport `	The spaceport is moored in place to keep it from drifting on the ocean currents and colliding with the natural islands that dot the planet's surface.`
 	"required reputation" 15
 
+planet "Deli Kasi"
+	attributes bunrodea farming
+	landscape land/field3
+	description "x"
+	spaceport "x"
+	"required reputation" 10
+	bribe 0
+	security 0
+
+planet "Deli Kat"
+	attributes bunrodea farming
+	landscape land/field0
+	description "x"
+	spaceport "x"
+	"required reputation" 10
+	bribe 0
+	security 0
+
 planet Delve
 	attributes core mining
 	landscape land/snow1
@@ -27048,6 +28623,34 @@ planet Eminonu
 	landscape land/snow12
 	description `Eminonu's notably green rocks show a remarkably high copper content and the historic presence of atmospheric water. Scattered vegetative debris suggests that this world was, until recently, some variety of garden planet, albeit likely a cold one. Today the vast majority of moisture is locked up in ice fields, and the ambient temperatures are far too cold for even hardy lichens to survive.`
 	government Uninhabited
+	security 0
+
+planet Erabuthro
+	attributes bunrodea urban
+	landscape land/mountain5
+	description "x"
+	spaceport "x"
+	shipyard "Bunrodea Basic"
+	shipyard "Bunrodea Advanced"
+	shipyard "Bunrodea Capital"
+	outfitter "Bunrodea Basic"
+	outfitter "Bunrodea Advanced"
+	outfitter "Bunrodea Capital"
+	"required reputation" 100
+	bribe 0
+	security 0
+
+planet Eragarthro
+	attributes bunrodea guild military moon
+	landscape land/sea5
+	description "x"
+	spaceport "x"
+	shipyard "Bunrodea Basic"
+	shipyard "Bunrodea Advanced"
+	outfitter "Bunrodea Basic"
+	outfitter "Bunrodea Advanced"
+	"required reputation" 50
+	bribe 0
 	security 0
 
 planet "Esayaku Fen"
@@ -27778,6 +29381,55 @@ planet Icelake
 	outfitter "Hai Advanced"
 	security 0.3
 
+planet Iddesato
+	attributes bunrodea research station
+	landscape land/space2
+	description "x"
+	spaceport "x"
+	outfitter "Bunrodea Basic"
+	"required reputation" 50
+	bribe 0
+	security 0
+
+planet "Illbo Avo"
+	attributes bunrodea military moon
+	landscape land/badlands6
+	description "x"
+	spaceport "x"
+	shipyard "Bunrodea Basic"
+	shipyard "Bunrodea Advanced"
+	outfitter "Bunrodea Basic"
+	outfitter "Bunrodea Advanced"
+	"required reputation" 25
+	bribe 0
+	security 0
+
+planet "Illbo Elo"
+	attributes bunrodea military
+	landscape land/badlands0
+	description "x"
+	spaceport "x"
+	shipyard "Bunrodea Basic"
+	shipyard "Bunrodea Advanced"
+	outfitter "Bunrodea Basic"
+	outfitter "Bunrodea Advanced"
+	"required reputation" 25
+	bribe 0
+	security 0
+
+planet "Illbo Navo"
+	attributes bunrodea military
+	landscape land/forest2
+	description "x"
+	spaceport "x"
+	shipyard "Bunrodea Basic"
+	shipyard "Bunrodea Advanced"
+	outfitter "Bunrodea Basic"
+	outfitter "Bunrodea Advanced"
+	"required reputation" 25
+	bribe 0
+	security 0
+
 planet Ingot
 	attributes "dirt belt" mining moon volcanic
 	landscape land/mountain8
@@ -27829,12 +29481,29 @@ planet Janiculum
 	government Uninhabited
 	security 0
 
+planet Jentuthro
+	attributes bunrodea guild medical
+	landscape land/sky5
+	description "x"
+	spaceport "x"
+	shipyard "Bunrodea Basic"
+	outfitter "Bunrodea Basic"
+	outfitter "Bunrodea Advanced"
+	"required reputation" 50
+	bribe 0
+	security 0
+
 planet Kaeyin
 	attributes uninhabited
 	landscape land/myrabella5
 	description `The world of Kaeyin now seems to be completely uninhabited, but it hasn't always been like that. Large, empty cities with towers of indescribable design encompass a portion of one single continent. The rest of the land remains almost untouched by anything not native to this planet, as if the buildings were simply lowered down onto the land rather than built up over time.`
 	spaceport `The only word you can think of to describe the spaceport is "impressive." It is on the top of the largest tower, placed in the exact center of a gargantuan city. With a base almost as big as a sizable village, very quickly getting thinner as it raises into the city's skyline.`
 	spaceport `	Tiny, four-legged robots walk on the walls of every room, cleaning them in a matter of seconds. You can see more on the road below, and you presume they are everywhere in this city; this makes it impossible to estimate how long the planet has been abandoned, since everything here is perfect and clean.`
+
+planet Kalbai
+	attributes bunrodea uninhabited
+	landscape land/forest4
+	description "x"
 
 planet "Karek Fornati"
 	attributes efret korath
@@ -27872,6 +29541,16 @@ planet "Ki Patek Ka"
 	shipyard "Coalition Basics"
 	shipyard Kimek
 	outfitter "Coalition Advanced"
+
+planet Kisarra
+	attributes bunrodea mining
+	landscape land/desert2
+	description "x"
+	spaceport "x"
+	outfitter "Bunrodea Basic"
+	"required reputation" 10
+	bribe 0
+	security 0
 
 planet "Korati Efreti"
 	attributes efret station
@@ -28150,6 +29829,17 @@ planet "Mebla's Portion"
 	landscape land/fog5
 	description `A stormy world with unpredictable and rapidly changing weather, Mebla's Portion is nonetheless home to several billion Arachi and millions of members of the other Coalition species, in part because rent is cheaper here than on worlds with more idyllic weather. Many of the residents are artists or work in other creative fields that allow them to work from home on days when the weather is too violent for them to venture outside.`
 	spaceport `The spaceport is a sprawling complex of hangars and warehouses connected by covered walkways and underground tunnels. Because it has grown larger and larger over the millennia as this world's population increased, the spaceport's current layout is maze-like and seemingly random. Colored stripes painted on the floors mark the pathways between the major sections of the complex, and many local children earn a living just by wandering around offering to give directions to visitors who seem to be lost.`
+
+planet Melenci
+	attributes bunrodea medical moon
+	landscape land/badlands8
+	description "x"
+	spaceport "x"
+	shipyard "Bunrodea Basic"
+	outfitter "Bunrodea Basic"
+	"required reputation" 50
+	bribe 0
+	security 0
 
 planet Memory
 	attributes deep factory medical research
@@ -28632,6 +30322,22 @@ planet Ochrescoop
 	bribe 0.1
 	security 0.5
 
+planet Okoity
+	attributes bunrodea urban
+	landscape land/fog2
+	description "x"
+	spaceport "x"
+	shipyard "Bunrodea Basic"
+	outfitter "Bunrodea Basic"
+	"required reputation" 25
+	bribe 0
+	security 0
+
+planet Olohoa
+	attributes bunrodea uninhabited
+	landscape land/sky3
+	description "x"
+
 planet Osaeli
 	attributes ka'het uninhabited
 	landscape land/forest4
@@ -29003,6 +30709,15 @@ planet "Sapira Mereti"
 	bribe 0
 	security 0
 
+planet Sardva
+	attributes bunrodea religious
+	landscape land/fields6
+	description "x"
+	spaceport "x"
+	"required reputation" 200
+	bribe 0
+	security 0
+
 planet "Sarisa Fentra"
 	attributes korath
 	landscape land/sky1
@@ -29022,6 +30737,18 @@ planet "Sasirka Gatru"
 	attributes korath
 	landscape land/desert7
 	description `This was probably a habitable world at one point. It is no longer. Nothing lives or grows here, and the atmosphere is full of toxic chemicals.`
+
+planet Schisathro
+	attributes bunrodea guild manufacturing
+	landscape land/canyon5
+	description "x"
+	spaceport "x"
+	shipyard "Bunrodea Basic"
+	shipyard "Bunrodea Advanced"
+	outfitter "Bunrodea Basic"
+	"required reputation" 50
+	bribe 0
+	security 0
 
 planet "Sebra Skira"
 	attributes korath station
@@ -29356,6 +31083,17 @@ planet "Sopi Lefarkata"
 	bribe 0
 	security 0
 
+planet Sopoyra
+	attributes bunrodea manufacturing shipping
+	landscape land/industrial0-iridium
+	description "x"
+	spaceport "x"
+	shipyard "Bunrodea Basic"
+	outfitter "Bunrodea Basic"
+	"required reputation" 10
+	bribe 0
+	security 0
+
 planet "Spera Anatrusk"
 	attributes korath
 	landscape land/badlands6
@@ -29539,6 +31277,18 @@ planet Thrall
 	tribute 2000
 		threshold 5000
 		fleet "Large Republic" 8
+
+planet Thshybothro
+	attributes bunrodea guild medical
+	landscape land/mountain0
+	description "x"
+	spaceport "x"
+	shipyard "Bunrodea Basic"
+	outfitter "Bunrodea Basic"
+	outfitter "Bunrodea Advanced"
+	"required reputation" 50
+	bribe 0
+	security 0
 
 planet Thule
 	attributes frontier pirate south "south pirate"
