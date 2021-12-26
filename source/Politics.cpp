@@ -94,7 +94,7 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 			if(weight > 0.)
 			{
 				// If you bribe a government but then attack it, the effect of
-				// your bribe is cancelled out.
+				// your bribe is canceled out.
 				bribed.erase(other);
 				provoked.insert(other);
 			}
@@ -270,7 +270,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		}
 		if(failedMissions && maxFine > 0)
 		{
-			reason += "\n\tYou failed " + Format::Number(failedMissions) + ((failedMissions > 1) ? " missions" : " mission") 
+			reason += "\n\tYou failed " + Format::Number(failedMissions) + ((failedMissions > 1) ? " missions" : " mission")
 				+ " after your illegal cargo was discovered.";
 		}
 	}

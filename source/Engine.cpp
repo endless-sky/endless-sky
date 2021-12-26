@@ -179,7 +179,7 @@ namespace {
 			// three copies of the flare sprite.
 			for(const auto &it : flareSprites)
 				if(point.side == side && (point.steering == Ship::EnginePoint::NONE
-					|| (point.steering == Ship::EnginePoint::LEFT && ship.SteeringDirection() < 0.) 
+					|| (point.steering == Ship::EnginePoint::LEFT && ship.SteeringDirection() < 0.)
 					|| (point.steering == Ship::EnginePoint::RIGHT && ship.SteeringDirection() > 0.)))
 					for(int i = 0; i < it.second && i < 3; ++i)
 					{
@@ -1068,7 +1068,7 @@ void Engine::Draw() const
 	
 	// Upload any preloaded sprites that are now available. This is to avoid
 	// filling the entire backlog of sprites before landing on a planet.
-	GameData::Progress();
+	GameData::ProcessSprites();
 	
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
@@ -1229,7 +1229,7 @@ void Engine::EnterSystem()
 	{
 		// Check whether this is a minable or an ordinary asteroid.
 		if(a.Type())
-			asteroids.Add(a.Type(), a.Count(), a.Energy(), system->AsteroidBelt());
+			asteroids.Add(a.Type(), a.Count(), a.Energy(), system->AsteroidBelts());
 		else
 			asteroids.Add(a.Name(), a.Count(), a.Energy());
 	}

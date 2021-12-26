@@ -81,7 +81,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 		int count = 0;
 		// Merge the outfit lists from the ship itself and its cargo bay. If an
 		// outfit exists in both locations, combine the counts.
-		bool shipIsFirst = (cit == victim->Cargo().Outfits().end() || 
+		bool shipIsFirst = (cit == victim->Cargo().Outfits().end() ||
 			(sit != victim->Outfits().end() && sit->first <= cit->first));
 		bool cargoIsFirst = (sit == victim->Outfits().end() ||
 			(cit != victim->Cargo().Outfits().end() && cit->first <= sit->first));
@@ -382,7 +382,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			else if(!victim->Crew())
 			{
 				messages.push_back("You have succeeded in capturing this ship.");
-				victim->GetGovernment()->Offend(ShipEvent::CAPTURE, victim->RequiredCrew());
+				victim->GetGovernment()->Offend(ShipEvent::CAPTURE, victim->CrewValue());
 				victim->WasCaptured(you);
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
 					you->TransferFuel(victim->JumpFuelMissing(), &*victim);

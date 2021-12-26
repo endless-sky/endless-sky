@@ -130,7 +130,7 @@ Version 0.9.13:
       * Reduced likelihood of integer overflow when selling commodities. (@tehhowch)
       * Fixed a divide-by-zero error when a fleet contains no variant definitions. (@tehhowch)
   * Game content:
-    * New content: 
+    * New content:
       * New missions:
         * New missions offered by the Quarg. (@Arachi-Lover)
         * Created two short spaceport missions in human space. (@Naminson)
@@ -401,7 +401,7 @@ Version 0.9.11:
   * Bug fixes:
     * Typo fixes. (@alextd, @Amazinite, @Anarchist2, @Arachi-lover, @Darcman99, @Gods-Righthand, @Jozephi-Krakowskije, @Mageking17, @MCOfficer, @oo13, @otsohelos, @perey, @petervdmeer, @tehhowch, @Waffleship, @wjp, @Zitchas)
     * The Quicksilver (Mark II) variant no longer has the exact same outfits as the base variant. (@Amazinite)
-    * The Shuttle and Behemoth no longer contact the image border. (@beccabunny) 
+    * The Shuttle and Behemoth no longer contact the image border. (@beccabunny)
     * Terraforming 7 will no longer offer on every planet. (@Bladewood)
     * Explicitly stated the source of various missions so that they don't accidentally offer where they shouldn't. (@Amazinite)
     * Pact Recon missions no longer offer on pirate planets. (@Amazinite)
@@ -467,7 +467,7 @@ Version 0.9.11:
       * The Ring of Power and Ring of Wisdom graphics have been swapped to reflect the age of the Kimek and Arachi. (@Arachi-Lover)
       * Renamed the Militia Carrier License to the Militia License and added it to the Dreadnought. (@Arachi-Lover)
   * Game mechanics:
-    * Created an "enforces" government attribute that dictates in which systems the government will scan other ships. (@tehhowch) 
+    * Created an "enforces" government attribute that dictates in which systems the government will scan other ships. (@tehhowch)
     * Uninhabited planets will now have a default security rating of 0. (@Amazinite)
     * Added "maintenance costs" and "operating costs" attributes that allow for an outfit or ship to cost credits daily without needing them to increase crew requirements. (@Amazinite)
     * Conditions for offering/failing/completing missions now support basic math expressions to allow for more complex condition requirements. (@tehhowch)
@@ -626,7 +626,7 @@ Version 0.9.9:
       * NPC carrier-fighter assignment properly counts available bays. (@oo13)
       * Unrepresentable condition values generate a warning, rather than result in signed integer overflow. (@tehhowch)
       * Weapon outfits that do not specify a hardpoint no longer occupy a gun port. (@tehhowch)
-      * The system of a carried ship's parent is now checked for mission NPCs that must be evaded or accompanied. (@comnom) 
+      * The system of a carried ship's parent is now checked for mission NPCs that must be evaded or accompanied. (@comnom)
     * Minor issues:
       * Typo fixes. (@abenkovskii, @Alkallid, @Amazinite, @Bladewood, @Fzzr, @jafdy, @Janaszar, @jostephd, @Jugosloven1612, @LordInsane, @MCOfficer, @MessyMix, @Nescio0, @redshalken, @seanfahey, @solardawning, @temtemy, @themightygrunt, @tmbutterworth, @toilethinges, @Turtleroku, @UnciaPrima, @warp-core, @whismerhill)
       * Fixed missions that give "gifts" not being colored as ready to be completed. (@tehhowch)
@@ -693,7 +693,7 @@ Version 0.9.9:
       * Altered the shield/hull balance of the Corvette and Firebird to better fit their intended roles. (@Pointedstick)
       * Adjusted the stats of the Kestrel to make it more enticing to use and to better reflect when it is unlock. (@Nescio0)
       * Tweaked the Headhunter and Raven to better differentiate the various human light warships. (@Amazinite)
-      * Increased the velocity of blaster projectiles by roughly 25%. (@Nescio0) 
+      * Increased the velocity of blaster projectiles by roughly 25%. (@Nescio0)
       * Attacking the Pug Arfectas will now anger the Wanderers. (@tehhowch)
       * Slightly lowered the heat generation of the Armageddon Core to make it a more viable choice. (@Lineth)
       * Certain factions now have higher base crew attack and defense stats. (@Tadrix)
@@ -1079,7 +1079,7 @@ Version 0.9.7:
       * Made it possible to add or remove single items from fleets, sales, etc. without clearing the rest.
       * The "on visit" mission messages no longer get shown when you first load the game.
       * Made it possible to specify a fleet's government in an NPC definition instead of the fleet itself.
-    * Other:    
+    * Other:
       * You can now customize a government's hostile and friendly disabled hail. (@EndrosG, @Elyssaen)
       * Fixed some places where large numbers of credits weren't pretty-printed. (@TurkeyMcMac)
       * The messages shown when trying to hail a wormhole are now customizable. (@tehhowch)
@@ -1520,7 +1520,7 @@ Version 0.9.3:
     * Replaced a few remaining instances of "NULL" with "nullptr."
     * Added a "Rectangle" class to make defining rectangular regions simpler.
     * Simplified the tracking of clickable zones on the screen.
- 
+
 Version 0.9.2:
   * Bug fixes:
     * Typo fixes. (@Alkallid, @egony, @lheckemann, @MarcelineVQ)
@@ -1597,7 +1597,7 @@ Version 0.9.2:
     * On Windows, saved games and preferences will now use Windows line endings.
     * Removed a lot of duplicated and fragile code in the Fleet class.
     * Cleaned up some superfluous namespace qualifiers.
- 
+
 Version 0.9.1:
   * Bug fixes:
     * Typo fixes. (@Alkallid, @Wrzlprnft, @toilethinges)
