@@ -1501,7 +1501,7 @@ mission "Saryd University Lecture"
 		"coalition jobs" += 3
 		payment 25000
 		conversation
-			`	During the trip, Aelbris was polite, if a bit intrusive in his questions about your homeworld. You answered as best you could, though at times you struggled to understand what was even being asked. Once you and your passenger depart from your ship, he turns around.`
+			`During the trip, Aelbris was polite, if a bit intrusive in his questions about your homeworld. You answered as best you could, though at times you struggled to understand what was even being asked. Once you and your passenger depart from your ship, he turns around.`
 			`	"Captain, that you must be very busy, I realize, but wondering if you could stay for the seminar, I was. You see, studying human space for years, I have been, but actually met a human, I had not. A great boon to our field to have a human guest speaker, it would be."`
 			choice
 				`	"What do I have to do there?"`
@@ -1543,7 +1543,7 @@ mission "Saryd University Lecture"
 			`	"Ah, work closely with the Heliarchs, we do," Aelbris explains. "Share information with them and inform them of our conclusions, so that better informed about possible threats and opportunities, they are."`
 			`	"Now, unplanned, your visit is, so consult with the seminar organizers, I must." He brings out a small box that projects a holograph of an Arach Heliarch once turned on. Aelbris begins a conversation with him, but you cannot hear much of it; Aelbris makes an effort to keep his voice down in order to not disturb the other guests.`
 			`	You wait for a while, until a Kimek walks up to the stage in front. The box's volume is much louder than normal, and you can easily hear what is being said.`
-			`	"Pleased to announce that the 103rd Xenology Seminar, generously hosted by Starlit University, is now in session, I am. Noticed as you may have, in the presence of a very... unusual guest, we are. The honor of having <first> <last> answer some questions at the end of today's seminar, we will have." The Kimek gestures to you, as Aelbris sits down at your table.`
+			`	"Pleased to announce that the 103rd Xenology Seminar, generously hosted by Starlit University, is now in session, I am. Noticed as you may have, in the presence of a very... unusual guest, we are. The honor of having <first> <last> answer some questions at the end of today's seminar, we will have." The Kimek gestures to you as Aelbris sits down at your table.`
 			`	The first speaker, another Kimek, talks about human farming methods as they compare to other members of the Coalition. You see him cite information from a modified data chip that appears to contain documents from the Library of Alexandria.`
 			`	The seminar goes on for some time. A Saryd gives a surprisingly accurate lecture on the human body. An Arach goes into detail explaining the technological level of human ships. Once all the speakers have finished, Aelbris informs you that it is now your turn to answer their questions.`
 			choice
@@ -1583,12 +1583,14 @@ mission "Saryd University Lecture"
 			branch coalitionknow
 				has "coalition knows hai"
 			`	"Several members of the audience are delighted. "Unknown to us, this species is," says the Heliarch. "That you have made contact with them despite the Quarg, good news it is."`
-			`	"Tell us more of them, could you?" asks another scientist. As you open your mouth to speak, the Heliarch cuts you off. "Enough questions on the Hai, we have." The crowd looks disappointed at this development.`
+			`	"Tell us more of them, could you?" asks another scientist.`
+			`	As you open your mouth to speak, the Heliarch cuts you off. "Enough questions on the Hai, we have." The crowd looks disappointed at this development.`
 			action
 				set "coalition knows hai"
 			label coalitionknow
 			`	Several members of the audience are delighted. "Ah, the Hai, we have heard of," says the Heliarch. "That you have made contact with them despite the Quarg, good news it is."`
-			`	"Tell us more of them, could you?" asks another scientist. As you open your mouth to speak, the Heliarch cuts you off. "Enough questions on the Hai, we have." The crowd looks disappointed at this development.`
+			`	"Tell us more of them, could you?" asks another scientist.`
+			`	As you open your mouth to speak, the Heliarch cuts you off. "Enough questions on the Hai, we have." The crowd looks disappointed at this development.`
 			label nextquestion
 			branch war
 				has "FWC End: completed"
@@ -1642,7 +1644,7 @@ mission "Saryd University Lecture"
 			`	The Saryd walks away, disappointed.`
 				goto sorry
 			label tell
-			`	"I've met an alien species there called the Korath. They're reptillian creatures. What's left of their planets has been ruined by infighting. The Kor Sestor and Kor Mereti have been fighting a civil war using autonomous ships. The Kor Efreti have stayed out of the civil war, living under the Quarg's protection. The Korath Exiles have been banished to the Core by the Drak, for refusing to give up their ability to manufacture jump drives. They are now raiding humanity for supplies."`
+			`	"I've met an alien species there called the Korath," you say. "They're reptillian creatures. What's left of their planets has been ruined by infighting. The Kor Sestor and Kor Mereti have been fighting a civil war using autonomous ships. The Kor Efreti have stayed out of the civil war, living under the Quarg's protection. The Korath Exiles have been banished to the Core by the Drak for refusing to give up their ability to manufacture jump drives. They are now raiding humanity for supplies."`
 			`	The crowd shows considerable interest at this last part. "Knowledge of the jump drive, a species besides the Quarg possesses? Great news, this is! Our struggle against the Quarg, we do not take up alone. Possess jump drives, do any other species?" The Heliarch does not seem to mind you answering another question.`
 			branch unfettered
 				has "coalition knows hai"
