@@ -239,7 +239,7 @@ void MapSalesPanel::DrawKey() const
 		pos.Y() += 20.;
 		// Each system is colored by the selected item's price. Draw
 		// 6 distinct representative colors and the price multiplier each color represents.
-		static const double priceRange[] = {
+		const double priceRange[] = {
 			minColor,
 			(1. - (1. - minColor) * minColor + minColor) / 2.,
 			1. - (1. - minColor) * minColor,

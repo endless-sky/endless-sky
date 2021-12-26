@@ -201,11 +201,12 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		message = "in storage: " + to_string(storage);
 	else if(stock)
 		message = "in stock: " + to_string(stock);
-		
-	if(!show.empty())
-		message += " (" + show + ")";
 	else if(!outfitter.count(outfit))
 		message = "(not sold here)";
+	
+	if(!show.empty())
+		message += " (" + show + ")";
+	
 	if(!message.empty())
 	{
 		Point pos = point + Point(
