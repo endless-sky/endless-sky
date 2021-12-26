@@ -49,6 +49,8 @@ public:
 
 	static const std::string &GetShown(SellType sellType);
 	
+	const Sale<Outfit> &GetShownOutfits() const;
+	
 	bool Has(const Outfit *item) const;
 
 	bool HasPlanet(const Planet *planet) const;
@@ -57,11 +59,17 @@ public:
 
 	
 private:
+	mutable Sale<Outfit> seen;
+	
 	LocationFilter locationFilter;
+	const Planet *source = nullptr;
+	
 	std::map<const Sale<Outfit> *, double> relativePrices;
 	std::map<const Sale<Outfit> *, double> relativeOffsets;
+	
 	std::map<const Outfit *, double> relativeOutfitPrices;
 	std::map<const Outfit *, double> relativeOutfitOffsets;
+	
 	SellType sellType = SellType::NONE;
 };
 

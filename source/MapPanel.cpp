@@ -109,8 +109,8 @@ const float MapPanel::INNER = 3.5f;
 const float MapPanel::LINK_WIDTH = 1.2f;
 // Draw links only outside the system ring, which has radius MapPanel::OUTER.
 const float MapPanel::LINK_OFFSET = 7.f;
-float MapPanel::minColor = 1.;
-float MapPanel::maxColor = 1.;
+double MapPanel::minColor = 1.;
+double MapPanel::maxColor = 1.;
 
 
 MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)

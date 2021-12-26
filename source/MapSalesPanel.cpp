@@ -226,7 +226,7 @@ void MapSalesPanel::DrawKey() const
 		pos.Y() += 20.;
 	}
 	
-	if(MapPanel::maxColor > 1.f || MapPanel::minColor < 1.f)
+	if(maxColor > 1. || minColor < 1.)
 	{
 		const Color &medium = *GameData::Colors().Get("medium");
 		const Sprite *sales = SpriteSet::Get("ui/key");
@@ -235,18 +235,17 @@ void MapSalesPanel::DrawKey() const
 		pos = Screen::TopRight() + Point(-110., height + sales->Height() / 2. + 15);
 		SpriteShader::Draw(sales, pos + Point(110. - sales->Width() / 2., sales->Height() / 2. - 25.));
 		Point headerOff(-5., -.5 * font.Height());
-		
 		font.Draw("Price multiplier:", pos + headerOff, medium);
 		pos.Y() += 20.;
 		// Each system is colored by the selected item's price. Draw
 		// 6 distinct representative colors and the price multiplier each color represents.
 		static const double priceRange[] = {
-			MapPanel::minColor,
-			(1. - (1. - MapPanel::minColor) * MapPanel::minColor + MapPanel::minColor) / 2.,
-			1. - (1. - MapPanel::minColor) * MapPanel::minColor,
-			(MapPanel::maxColor - 1.) * (1./3.) + 1.,
-			(MapPanel::maxColor - 1.) * (2./3.) + 1.,
-			MapPanel::maxColor
+			minColor,
+			(1. - (1. - minColor) * minColor + minColor) / 2.,
+			1. - (1. - minColor) * minColor,
+			(maxColor - 1.) * (1./3.) + 1.,
+			(maxColor - 1.) * (2./3.) + 1.,
+			maxColor
 		};
 		for(int i = 0; i < 6; ++i)
 		{
