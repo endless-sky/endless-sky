@@ -1385,7 +1385,8 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		payment 10000000
 		"salary: Unfettered" = 1000
 		conversation
-			`The Unfettered warlord that annoyed you earlier seems surprised to see you same for the rest of the council, but they address you they do so with respect. "You have proven yourself. Now we have almost enough jump drives for the next phase..." You look at them intensively, and after a few seconds they realise, "Oh right, your payment! Here it is : <payment>!"`
+			`As you land with the Auxiliary you notice tens, then hundreds Unfettered start coming your way, cheering. They are probably expecting jump drives, and more keep coming from every direction. Maybe they have not seen this Auxiliary yet, but only heard tales of it, or maybe this is what always happens when it lands, loaded with jump drives. Whatever the case, they seem surprised when they see you exiting the ship. They murmur with each others and then they just start saluting, by rising one fist up. First a few do it, then more, until finally all of them are there, saluting in front of you in respect. They lead you to the stadium.`
+			`	The Unfettered warlord that annoyed you earlier seems surprised to see you same for the rest of the council, but they address you they do so with respect. "You have proven yourself. Now we have almost enough jump drives for the next phase..." You look at them intensively, and after a few seconds they realise, "Oh right, your payment! Here it is : <payment>!"`
 			choice
 				`	"I have found Korath prisoners on the Alpha ship."`
 			`They talk about it and then an Unfettered elder speak up, "Perfect, hand them over to us, we will see to it they have all the comfort they need, hopefully in exchange for some technology." They discuss something and then the warlord from earlier speaks, seemingly with a heavy burden. "Now that you officially work for us, you will have a salary of 1000. We will not make you wear our colours yet because it could cause problems with the Hai. We do not want you to get shot on sight."`
@@ -2395,7 +2396,14 @@ mission "Unfettered: Start Of The War"
 		"salary: Unfettered" = 5000
 		set "license: Unfettered Militia"
 		event "joined the unfettered"
-		dialog `"We will notify you once you may be of help to the war effort. In the mean time, we have increased your salary to 5000 so you can muster an even bigger fleet. Also from now on you will officially have the permission, nay, the obligation to proudly wear our colours. We have signaled this change of colors to the Hai meaning they will not change their behaviour with you, recognizing your signature. You have also deserved the right to have this." He hands you a small trophy. "It is a proof of our trust towards you and means you will be able to buy all of our ships."`
+		conversation
+			`Sa-Ri rejoins you on your ship after having parked his, which looks like it is not in the best shape... "We will notify you once you may be of help to the war effort. In the mean time, we have increased your salary to 5000 so you can muster an even bigger fleet. Also from now on you will officially have the permission, nay, the obligation to proudly wear our colours. We have signaled this change of colors to the Hai meaning they will not change their behaviour with you, recognizing your signature."`
+			`	He then draws his long sword, that has the same appearance as keystone. You stand back, worried he might attack you for some reason but instead he hands it to you. "You have also deserved the right to have this. It is a proof of our trust towards you and means you will be able to buy all of our ships. Whenever a warlord is defeated in battle he has to surrender his sword to the one who vanquished him."`
+			choice
+				`	"I am honoured."`
+					accept
+				`	"What does this sword do?"`
+			`	"You are aware of what keystones are? They are not believed to give luck for no reason, after all. I cannot tell you much more about it, but rest assured this sword is worth way more than a gun in case of a boarding."`
 
 event "joined the unfettered"
 	government "Escort"

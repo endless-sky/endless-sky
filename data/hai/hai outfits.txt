@@ -107,8 +107,10 @@ effect "ion impact"
 
 outfit "Unfettered Militia License"
 	category "Special"
+	"capture attack" 10
+	"capture defense" 10
 	thumbnail "outfit/unfettered militia license"
-	description "Proved my worth to the Unfettered multiple times to earn the right to have this license, and proudly fly their colors. The ship on it looks like the one I saw from far away in their shipyard."
+	description "This is a bit of a special license, but whenever I look at this sword I feel pride, and whenever they look at this sword I see respect. This was given to me by one of their warlord, as a sign of trust. It is quite handy in fights too, thanks to the special properties of the keystone it is crafted from..."
 
 outfit "Ionic Blaster"
 	category "Guns"
