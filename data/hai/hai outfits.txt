@@ -642,4 +642,5 @@ outfit "Failed Control System"
 	cost 0
 	thumbnail "outfit/control transceiver"
 	"mass" 1
+	"unplunderable" 1
 	description "This was meant to control some sort of experimental system, but it appears to have failed."

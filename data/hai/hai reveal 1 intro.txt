@@ -516,7 +516,7 @@ mission "Hai Leaks Response 2"
 		conversation
 			`On approach to the spaceport on Earth, you request to speak to an official of significant standing on diplomatic business. Thanks to your renown from the Pug war, you are able to shortcut objections stemming from you yourself not being a diplomat. The diplomatic ID from the box Sayari gave you doesn't hurt either.`
 			`	The Republic Deputy Minister for Foreign Affairs meets you in a private room at the spaceport.`
-			`	"Captain <last>," he steps around the table to grasp your hand in a firm handshake. "Xilin Yang. It's an honor to meet a war hero like yourself."`
+			`	"Captain <last>," he steps around the table to grasp your hand in a firm handshake. "Xilin Yang. It's an honor to meet a hero of the Pug crisis such as yourself."`
 			choice
 				`	"It was hard-fought, but it was necessary."`
 				`	"Thanks, but it wasn't as dramatic as they made it out to be. I'm just happy to have helped where I could."`
@@ -533,7 +533,14 @@ mission "Hai Leaks Response 2"
 			`	He asks a few questions for clarity, and when you're done he requests you wait while he makes a call. He leaves the room for a long while, and at one point an aide comes in and offers you refreshments while deliberations continue elsewhere. Much to your surprise the fruity beverage is actually quite light and not too sweet, reminding you briefly that most of humanity's food styles originated here.`
 			`	Eventually Mr. Yang returns. "So sorry for that. I hope you were looked after suitably while you waited."`
 			`	Once you nod your assent, he continues, "Well, obviously the Republic knows about the Hai, but for the moment our official "line" is that the government does not trade in rumors. However, an appropriate response is clearly needed. Republic Intelligence briefed the Cabinet of the Free Worlds Senate just yesterday. They have demanded that they have a diplomatic representative along for any decisions. This is already standard practice for the Syndicate. If you are willing, I will come with you to meet two individuals known as Katya and Alastair on Deep and Foundry respectively. I believe you already know them?"`
-			`	You indicate as such.`
+			choice
+				`	"Yes."`
+					goto conclude
+				`	"Alastair?"`
+			`	"Alastair Korban is the Syndicate CEO, naturally the CEO has some involvement here, but I trust that won't be a problem?
+			choice
+				`	"It should be fine."`
+			label conclude
 			`	"Excellent. The situation is progressing quickly and plans are still being made, so I am not entirely sure if it is they themselves who will be coming with us. Alastair is likely too busy to come personally, but we'll find out when we get there. In any case I think we should go to Deep first for speed, but you are the captain. Shall we be off?"`
 				accept
 	on visit
@@ -678,7 +685,7 @@ mission "Hai Leaks Response 4"
 					accept
 	npc
 		government "Hai"
-		personality escort heroic
+		personality escort heroic disables
 		fleet "Anti-Pirate Hai (No Wormhole Travel)" 5
 	npc
 		government "Pirate"

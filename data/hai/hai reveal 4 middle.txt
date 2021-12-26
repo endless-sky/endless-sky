@@ -361,7 +361,7 @@ mission "Hai Rescue [A07] Logo Identification"
 			`	"Fly through the wormhole at the coordinates on that card, if you can, come back and tell me what you see. In the meantime, I'll ask other researchers about the microtransceivers."`
 			choice
 				`	(Thank her and return to your ship.)`
-			`	Upon returning to your ship, you ponder Giti's findings. The coordinates are for a system in Syndicate space that is not reachable by starlane, so you'll need a Jump Drive. The red wormhole requires another key.`
+			`	Upon returning to your ship, you ponder Giti's findings. The coordinates are for a system in Syndicate space that is not reachable by hyperlane, so you'll need a Jump Drive. The red wormhole requires another key.`
 			`	Once you've passed through that wormhole, hopefully Giti will have more information for you.`
 				accept
 	on complete

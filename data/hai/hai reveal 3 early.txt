@@ -128,7 +128,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 				`	"The Alphas."`
 				`	"Unknown Jump-Capable Aliens."`
 				`	"Experimental Technologies."`
-				`	"Hubris."`
+				`	"Humanity's Hubris."`
 					goto wise
 			`	There is a collection of chittering laughs from the various council members. You're not sure if there was something wrong with what you said, but you aren't left long to ponder.`
 			`	"It seems the human agent is an honest fool, but an honest fool can at least be trusted to be foolish honestly on all fronts."`

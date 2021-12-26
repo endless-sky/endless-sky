@@ -1538,6 +1538,7 @@ mission "Pirate Troubles [3]"
 		fleet "Large Northern Pirates" 4
 	
 	on enter
+	on enter
 		"reputation: Scar's Legion" = -1000
 	
 	on visit
