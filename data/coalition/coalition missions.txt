@@ -1497,6 +1497,8 @@ mission "Saryd University Lecture"
 			label accept
 			`	"Thank you! Aelbris, my name is. To be late I do not wish, as not recorded, the event is." He soon gathers his things and boards your ship.`
 					accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Aelbris hasn't entered the system yet. Better depart and wait for it.`
 	on complete
 		"coalition jobs" += 3
 		payment 25000
