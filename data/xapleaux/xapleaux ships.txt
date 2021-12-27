@@ -87,7 +87,7 @@ ship Blastoc
 		bunks 138
 		"cargo space" 104
 		drag 22.3
-		"engine capacity" 44
+		"engine capacity" 54
 		"fuel capacity" 600
 		"heat dissipation" 0.82
 		hull 93800
@@ -148,7 +148,7 @@ ship Basidio
 		bunks 138
 		"cargo space" 104
 		drag 22.3
-		"engine capacity" 44
+		"engine capacity" 54
 		"fuel capacity" 600
 		"heat dissipation" 0.82
 		hull 93800

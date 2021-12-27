@@ -3314,7 +3314,7 @@ system Alkaid
 			period 42.0132
 
 system Almaaz
-	pos -7 228
+	pos -349 -538
 	government Pirate
 	attributes "north"
 	habitable 6950
@@ -3361,7 +3361,7 @@ system Almaaz
 		period 1867.54
 
 system Almach
-	pos -63 232
+	pos -7 228
 	government Pirate
 	attributes "core"
 	habitable 370
@@ -24275,7 +24275,7 @@ system "Sagittarius A*"
 	arrival 2000
 	haze _menu/haze-full
 	fleet "Xapleaux Small Passenger" 12000
-  hazard "Black Hole Accretion Disk" 1
+	hazard "Black Hole Accretion Disk" 1
 	hazard "Black Hole Event Horizon" 1
 	hazard "Black Hole Gravity" 1
 	object
