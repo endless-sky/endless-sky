@@ -555,7 +555,7 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	
 	if(!conditions.empty())
 		Files::LogError(conditions);
-	else if(player.Conditions().empty())
+	else if(player.Conditions().PrimariesBegin() == player.Conditions().PrimariesEnd())
 		Files::LogError("Player had no conditions set at the moment of failure.");
 	else
 		Files::LogError("No test conditions were set at the moment of failure.");
