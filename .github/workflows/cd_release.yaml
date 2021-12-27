@@ -7,11 +7,10 @@ on:
 
 jobs:
   appimage_amd64:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-18.04
     env:
       ARCH: x86_64
       OUTPUT: endless-sky-amd64-${{ github.event.release.tag_name }}.AppImage
-      RANLIB: gcc-ranlib
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -19,7 +18,7 @@ jobs:
         run: |
           sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons
+          sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev uuid-dev scons
       - name: Build AppImage
         run: ./utils/build_appimage.sh
       - name: Upload artifact
@@ -33,4 +32,43 @@ jobs:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ${{ env.OUTPUT }}
           asset_name: ${{ env.OUTPUT }}
+          asset_content_type: application/octet-stream
+
+  dmg_macos:
+    runs-on: macos-latest
+    env:
+      OUTPUT: endless-sky-macos-${{ github.event.release.tag_name }}
+      SDL2_FRAMEWORK: build/SDL2.framework
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Update Homebrew
+        run: brew update
+      - name: Install dependencies
+        run: brew install libmad libpng jpeg-turbo
+      - name: Restore cached SDL2 framework
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.SDL2_FRAMEWORK }}
+          key: macos-latest-sdl2-${{ hashFiles('utils/fetch_sdl2_framework.sh', 'EndlessSky.xcodeproj/**') }}
+      - name: Build Application
+        run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) -quiet
+      - name: Package Application
+        run: |
+          cd build/Release
+          mkdir ${{ env.OUTPUT }}
+          mv Endless\ Sky.app ${{ env.OUTPUT }}
+          ln -s /Applications ${{ env.OUTPUT }}
+          hdiutil create -ov -fs HFS+ -format UDZO -imagekey zlib-level=9 -srcfolder ${{ env.OUTPUT }} ${{ github.workspace }}/${{ env.OUTPUT }}.dmg
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.OUTPUT }}.dmg
+          path: ${{ env.OUTPUT }}.dmg
+      - name: Upload disk image
+        uses: actions/upload-release-asset@v1.0.2
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ${{ env.OUTPUT }}.dmg
+          asset_name: ${{ env.OUTPUT }}.dmg
           asset_content_type: application/octet-stream

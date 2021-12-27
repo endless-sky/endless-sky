@@ -148,9 +148,11 @@ void StartConditions::FinishLoading()
 	for(Ship &ship : ships)
 		ship.FinishLoading(true);
 	
-	if(!GetConversation().IsValidIntro())
+	string reason = GetConversation().Validate();
+	if(!GetConversation().IsValidIntro() || !reason.empty())
 		Files::LogError("Warning: The start scenario \"" + Identifier() + "\" (named \""
-			+ GetDisplayName() + "\") has an invalid starting conversation.");
+			+ GetDisplayName() + "\") has an invalid starting conversation."
+			+ (reason.empty() ? "" : "\n\t" + std::move(reason)));
 }
 
 
@@ -166,7 +168,7 @@ bool StartConditions::IsValid() const
 		return false;
 	
 	// A start must reference a valid "intro" conversation, either stock or custom.
-	if((stockConversation && !stockConversation->IsValidIntro()) || (!stockConversation && !conversation.IsValidIntro()))
+	if(!GetConversation().IsValidIntro() || !GetConversation().Validate().empty())
 		return false;
 	
 	// All ship models must be valid.

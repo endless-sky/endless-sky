@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipInfoDisplay.h"
 
 #include "text/alignment.hpp"
+#include "CategoryTypes.h"
 #include "Color.h"
 #include "Depreciation.h"
 #include "FillShader.h"
@@ -169,9 +170,10 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		attributeValues.push_back(Format::Number(attributes.Get("hull")));
 	}
 	attributesHeight += 20;
-	double emptyMass = ship.Mass();
+	double emptyMass = attributes.Mass();
+	double currentMass = ship.Mass();
 	attributeLabels.push_back(isGeneric ? "mass with no cargo:" : "mass:");
-	attributeValues.push_back(Format::Number(emptyMass));
+	attributeValues.push_back(Format::Number(isGeneric ? emptyMass : currentMass));
 	attributesHeight += 20;
 	attributeLabels.push_back(isGeneric ? "cargo space:" : "cargo:");
 	if(isGeneric)
@@ -193,7 +195,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 			+ " / " + Format::Number(fuelCapacity));
 	attributesHeight += 20;
 	
-	double fullMass = emptyMass + (isGeneric ? attributes.Get("cargo space") : ship.Cargo().Used());
+	double fullMass = emptyMass + attributes.Get("cargo space");
 	isGeneric &= (fullMass != emptyMass);
 	double forwardThrust = attributes.Get("thrust") ? attributes.Get("thrust") : attributes.Get("afterburner thrust");
 	attributeLabels.push_back(string());
@@ -208,15 +210,15 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	
 	attributeLabels.push_back("acceleration:");
 	if(!isGeneric)
-		attributeValues.push_back(Format::Number(3600. * forwardThrust / fullMass));
+		attributeValues.push_back(Format::Number(3600. * forwardThrust / currentMass));
 	else
 		attributeValues.push_back(Format::Number(3600. * forwardThrust / fullMass)
-			+ " / " + Format::Number(3600. *forwardThrust / emptyMass));
+			+ " / " + Format::Number(3600. * forwardThrust / emptyMass));
 	attributesHeight += 20;
 	
 	attributeLabels.push_back("turning:");
 	if(!isGeneric)
-		attributeValues.push_back(Format::Number(60. * attributes.Get("turn") / fullMass));
+		attributeValues.push_back(Format::Number(60. * attributes.Get("turn") / currentMass));
 	else
 		attributeValues.push_back(Format::Number(60. * attributes.Get("turn") / fullMass)
 			+ " / " + Format::Number(60. * attributes.Get("turn") / emptyMass));
@@ -249,7 +251,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	}
 	
 	// Print the number of bays for each bay-type we have
-	for(auto bayType : Ship::BAY_TYPES)
+	for(auto &&bayType : GameData::Category(CategoryType::BAY))
 	{
 		int totalBays = ship.BaysTotal(bayType);
 		if(totalBays)
@@ -275,7 +277,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		+ attributes.Get("fuel energy")
 		- attributes.Get("energy consumption")
 		- attributes.Get("cooling energy");
-	const double idleHeatPerFrame = attributes.Get("heat generation") 
+	const double idleHeatPerFrame = attributes.Get("heat generation")
 		+ attributes.Get("solar heat")
 		+ attributes.Get("fuel heat")
 		- ship.CoolingEfficiency() * (attributes.Get("cooling") + attributes.Get("active cooling"));
