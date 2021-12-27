@@ -4069,7 +4069,7 @@ system Alpheratz
 	habitable 1115
 	belt 1645
 	haze _menu/haze-133
-	link link Atlas
+	link Atlas
 	link Meissa
 	link Ruchbah
 	asteroids "small rock" 8 5.44
