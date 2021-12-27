@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "text/DisplayText.h"
+#include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
@@ -115,6 +116,8 @@ void Interface::Load(const DataNode &node)
 				elements.push_back(new TextElement(child, anchor));
 			else if(child.Token(0) == "bar" || child.Token(0) == "ring")
 				elements.push_back(new BarElement(child, anchor));
+			else if(child.Token(0) == "line")
+				elements.push_back(new LineElement(child, anchor));
 			else
 			{
 				child.PrintTrace("Unrecognized interface element:");
@@ -674,4 +677,44 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 			LineShader::Draw(from, to, width, *color);
 		}
 	}
+}
+
+
+
+// Members of the LineElement class:
+
+// Constructor.
+Interface::LineElement::LineElement(const DataNode &node, const Point &globalAnchor)
+{
+	// This function will call ParseLine() for any line it does not recognize.
+	Load(node, globalAnchor);
+
+	// Fill in a default color if none is specified.
+	if(!color)
+		color = GameData::Colors().Get("medium");
+}
+
+
+
+// Parse the given data line: one that is not recognized by Element
+// itself. This returns false if it does not recognize the line, either.
+bool Interface::LineElement::ParseLine(const DataNode &node)
+{
+	if(node.Token(0) == "color" && node.Size() >= 2)
+		color = GameData::Colors().Get(node.Token(1));
+	else
+		return false;
+
+	return true;
+}
+
+
+
+// Draw this element in the given rectangle.
+void Interface::LineElement::Draw(const Rectangle &rect, const Information &info, int state) const
+{
+	// Avoid crashes for malformed interface elements that are not fully loaded.
+	if(!from.Get() && !to.Get())
+		return;
+	FillShader::Fill(rect.TopLeft(), rect.Dimensions(), *color);
 }

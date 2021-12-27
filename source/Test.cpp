@@ -372,13 +372,13 @@ const string &Test::Name() const
 // Check the game status and perform the next test action.
 void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive) const
 {
-	// Tests always wait until the game is fully loaded.
+	// Only run tests once all data has been loaded.
 	if(!GameData::IsLoaded())
 		return;
-		
+
 	if(status == Status::BROKEN)
 		Fail(context, player, "Test has a broken status.");
-
+	
 	// Track if we need to return to the main gameloop.
 	bool continueGameLoop = false;
 	
@@ -555,8 +555,10 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	
 	if(!conditions.empty())
 		Files::LogError(conditions);
+	else if(player.Conditions().empty())
+		Files::LogError("Player had no conditions set at the moment of failure.");
 	else
-		Files::LogError("No conditions were set at the moment of failure.");
+		Files::LogError("No test conditions were set at the moment of failure.");
 	
 	// Throwing a runtime_error is kinda rude, but works for this version of
 	// the tester. Might want to add a menuPanels.QuitError() function in
