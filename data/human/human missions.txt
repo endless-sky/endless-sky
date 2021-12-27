@@ -3615,7 +3615,7 @@ mission "Street Swindle"
 		credits >= 10000
 	on offer
 		conversation
-			`	You see a small crowd begining to gather on a street corner. A man in a flamboyant striped suit and matching hat calls "Come here! Come here! Come see the marvelous magician Mistress Marionette corral the crowded crossroads with her extravagant schemes!"`
+			`You see a small crowd begining to gather on a street corner. A man in a flamboyant striped suit and matching hat calls, "Come here! Come here! Come see the marvelous magician Mistress Marionette corral the crowded crossroads with her extravagant schemes!"`
 			choice
 				`	(Check it out.)`
 					goto observe
@@ -3631,8 +3631,8 @@ mission "Street Swindle"
 			`	You try to warn him, but someone in the crowd shushes you. He doesn't hear.`
 				goto continue
 			label continue
-			`	"Are you certain in your choice?" the magician asks. "Once you..."`
-			`	"Yes, I'm certain," the man repeats. He draws 7000 credits and tosses them on the table. The magician lifts the cup, and a small red ball rolls from beneath. "And the first challenger proves to be a player!" the announcer says, mustering enthusiasm as the magician counts 14,000 credits to pay the man. "Let us find a new challenger! The next buy-in is a mere 400 credits; if you haven't played before, now's the time to test your skill!"`
+			`	"Are you certain in your choice?" the magician asks. "Once you-"`
+			`	"Yes, I'm certain," the man interrupts. He draws 7000 credits and tosses them on the table. The magician lifts the cup, and a small red ball rolls from beneath. "And the first challenger proves to be a player!" the announcer says, mustering enthusiasm as the magician counts 14,000 credits to pay the man. "Let us find a new challenger! The next buy-in is a mere 400 credits; if you haven't played before, now's the time to test your skill!"`
 			choice
 				`	"I'd like to give it a try." (Bet 400 credits).`
 					goto firstgameplay
@@ -3652,7 +3652,7 @@ mission "Street Swindle"
 					decline
 			label firstgameplay
 			`	You pay 400 credits and sit across from the magician. "Double or nothing, bet your bet!" the announcer repeats. "Are you a player or a puppet?"`
-			`	The magician places the ball beneath the center and begins moving the cups. This one seems faster, but that might just be from the pressure. You keep your eyes trained on the cup as it shifts back and forth, around in circles, and occasionally remains untouched. By the end, you're sure it's in the center cup.`
+			`	The magician places the ball beneath the center and begins moving the cups. This one seems faster, but that might just be from the pressure. You keep your eyes trained on the cup as it shifts back and forth, around in circles, and occasionally remains untouched. By the end, you're pretty sure it's in the center cup.`
 			`	"What's your choice?" the magician asks, smirking.`
 			choice
 				`	"Left."`
@@ -3663,7 +3663,7 @@ mission "Street Swindle"
 					goto wrong
 			label wrong
 			`	"Better luck next time," she says as she reveals your incorrect choice. The ball was in the center; you feel silly for not going with your gut.`
-			`	"The next buy-in is a larger prize!" the announcer calls. "Six thousand credits, reserved for the most daring. As previous player, you have first priority."`
+			`	"The next buy-in is a larger prize!" the announcer calls. "Six thousand credits, reserved for the most daring. As the previous player, you have first priority."`
 			action
 				payment -400
 			choice
@@ -3672,7 +3672,7 @@ mission "Street Swindle"
 				`	"I think I'm done."`
 					goto secondgamewatch
 			label correct
-			`	She asks if you're sure, and you stick with your gut. With a grimace, she lifts the cup to reveal the ball and counts out your winnings. "And the player prevails!" the announcer says. "Earning a small bounty. But wait: the next buy-in is bigger yet! Six thousand credits, reserved for the most daring. As previous player, you have first priority."`
+			`	She asks if you're sure, and you stick with your gut. With a grimace, she lifts the cup to reveal the ball and counts out your winnings. "And the player prevails!" the announcer says. "Earning a small bounty. But wait: the next buy-in is bigger yet! Six thousand credits, reserved for the most daring. As the previous player, you have first priority."`
 			action
 				payment 400
 			choice
@@ -3681,7 +3681,7 @@ mission "Street Swindle"
 				`	"I think I'm done."`
 					goto secondgamewatch
 			label secondgameplay
-			`	You place your 6000 unit bet on the table, and the game begins. The pattern is slightly longer, but once the magician's hands stop, you are certain the ball lies beneath the left cup.`
+			`	You place your 6000 credit bet on the table, and the game begins. The pattern is slightly longer, but once the magician's hands stop, you feel like the ball lies beneath the left cup.`
 			choice
 				`	"Left."`
 					goto left
@@ -3702,6 +3702,6 @@ mission "Street Swindle"
 			`	"Well, that's all for today, folks!" the announcer says. As they pack up and leave, you notice that the first winner walks away beside them.`
 				accept
 			label secondgamewatch
-			`	Sensing that something's up, you decide to watch the next game. A sprightly young fellow confidently hands over 6000 credits; when the cups stop, you're certain the ball is under the left one. The boy points to it; with a grin, the magician reveals the left cup, and it's... wrong! "Nice try," she says, pocketing the shocked boy's money. "It is a bit tricky."`
+			`	Sensing that something's up, you decide to watch the next game. A sprightly young fellow confidently hands over 6000 credits; when the cups stop, you feel like the ball is under the left one. The boy points to it; with a grin, the magician reveals the left cup, and it's... wrong! "Nice try," she says, pocketing the shocked boy's money. "It is a bit tricky."`
 			`	"Well, that's all for today, folks!" the announcer says. You're glad you avoided the con. As they pack up and leave, you notice the first winner walks away beside them.`
 				decline
