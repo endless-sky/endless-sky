@@ -419,6 +419,10 @@ interface "hud"
 		from -20 65
 		color "medium"
 		align right
+	string "recent change"
+		from -70 85
+		color "medium"
+		align right
 	
 	outline "player sprite"
 		center -75 155

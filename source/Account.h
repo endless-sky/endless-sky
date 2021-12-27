@@ -35,6 +35,8 @@ public:
 	// Get or change the player's credits.
 	int64_t Credits() const;
 	void AddCredits(int64_t value);
+	int64_t RecentChange() const;
+	bool Actualize();
 	void PayExtra(int mortgage, int64_t amount);
 	
 	// Step forward one day, and return a string summarizing payments made.
@@ -67,6 +69,8 @@ private:
 	
 private:
 	int64_t credits = 0;
+	int64_t recentChange = 0;
+	int64_t timeActualize = 0;
 	// If back salaries and maintenance cannot be paid, they pile up rather
 	// than being ignored.
 	int64_t salariesOwed = 0;
