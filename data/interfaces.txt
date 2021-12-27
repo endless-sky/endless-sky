@@ -421,7 +421,15 @@ interface "hud"
 		align right
 	string "recent change"
 		from -70 85
+		color "bright"
+		align right
+	string "recent change medium"
+		from -70 85
 		color "medium"
+		align right
+	string "recent change faint"
+		from -70 85
+		color "dim"
 		align right
 	
 	outline "player sprite"

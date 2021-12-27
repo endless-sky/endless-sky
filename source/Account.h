@@ -36,7 +36,7 @@ public:
 	int64_t Credits() const;
 	void AddCredits(int64_t value);
 	int64_t RecentChange() const;
-	bool Actualize();
+	int Actualize();
 	void PayExtra(int mortgage, int64_t amount);
 	
 	// Step forward one day, and return a string summarizing payments made.

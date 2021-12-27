@@ -106,7 +106,7 @@ void Account::AddCredits(int64_t value)
 {
 	credits += value;
 	recentChange = value;
-	timeActualize = 240;
+	timeActualize = 200;
 }
 
 
@@ -118,9 +118,9 @@ int64_t Account::RecentChange() const
 
 
 
-bool Account::Actualize()
+int Account::Actualize()
 {
-	return --timeActualize > 0;
+	return --timeActualize;
 }
 
 
