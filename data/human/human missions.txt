@@ -3601,6 +3601,7 @@ mission "Mafia Extortion"
 			label payup
 			`	The man takes your credits, responds with a brief "Thank you," and walks away.`
 				accept
+	
 mission "Thrall Emigration"
 	name "Thrall Emigration"
 	description "Transport a family from Thrall to <destination>, where they hope to find better employment. They cannot pay you."
@@ -3611,7 +3612,6 @@ mission "Thrall Emigration"
 	to offer
 		random < 50
 	passengers 2
-	
 	on offer
 		conversation
 			`By the edge of the spaceport at night, you see a thin sweaty man turn away from a pilot, disheartened. You make eye contact, and he begins hurrying over to you.`
