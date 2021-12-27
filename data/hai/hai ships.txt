@@ -821,7 +821,7 @@ ship "Shield Beetle Prototype"
 		"heat dissipation" .35
 		"fuel capacity" 600
 		"cargo space" 80
-		"outfit space" 809
+		"outfit space" 849
 		"weapon capacity" 354
 		"engine capacity" 140
 		weapon

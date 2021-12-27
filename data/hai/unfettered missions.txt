@@ -399,12 +399,12 @@ mission "Unfettered: Neutral With The Hai"
 				`	"You have no place to tell me what to do."`
 				`	"I can manage your weak brethren, bother me not with this again."`
 					decline
-			`He looks at you gravely, "Your loss. Do not come here crying when the Hai are causing you difficulties."`
+			`	He looks at you gravely, "Your loss. Do not come here crying when the Hai are causing you difficulties."`
 			choice
 				`	"Wait, I have changed my mind!"`
 				`	(Go.)`
 					decline
-			`He makes a show of thinking it over before responding, "Well, I guess I can forgive your insolence, now go and make yourself forgiven."`
+			`	He makes a show of thinking it over before responding, "Well, I guess I can forgive your insolence, this time. But listen to what I am about to say."`
 			label agree
 			`	"Go to their home system and make your request, the Hai government despises conflict, so they will most likely grant it. They won't let you land on their homeworld given the circumstances, though, so go to Mirrorlake instead."`
 				accept
@@ -416,12 +416,11 @@ mission "Unfettered: Neutral With The Hai"
 					goto death
 				`	"I know I have done stupid things in the past, but I have learned my error. I promise not to make such mistakes again."`
 				`	"I can continue bringing food to the Unfettered for you, so they do not starve to death."`
-			`They seem willing to give you a second chance. "You have convinced us, but we will not grant you this pardon twice."`
-				goto end
+			`	They seem willing to give you a second chance. "You have convinced us, but we will not grant you this pardon twice."`
+				accept
 			label death
-			`The leaders gasp, and then, in a moment that seems to last forever, there is silence whilst everyone is looking at you. The silence is shattered when the guards start shooting. They probably did not intend to kill you outright, but apparently they see you as enough of a threat that the result is the same.`
+			`	The leaders gasp, and then, in a moment that seems to last forever, there is silence whilst everyone is looking at you. The silence is shattered when the guards start shooting. They probably did not intend to kill you outright, but apparently they see you as enough of a threat that the result is the same.`
 				die
-			label end
 		"reputation: Hai" >?= 1
 		log `Convinced the Hai to stop their conflict with me.`
 
@@ -438,7 +437,7 @@ mission "Unfettered: Bring Hai"
 		has "Unfettered Jump Drive 1: offered"
 	on offer
 		conversation
-			`As you exit your ship you notice a group of Unfettered that seem to be discussing something of importance in a big, yet simple, square-shape stadium nearby.`
+			`As you exit your ship you notice a group of Unfettered that seem to be discussing something of importance in a big, yet simple, square-shape stadium nearby. A few Unfettered are already heading their way to listen, it does not seem to be restricted of access.`
 			choice
 				`	(Go see them.)`
 				`	(Ignore them.)`
@@ -485,15 +484,15 @@ mission "Unfettered: Bring Hai"
 				`	"What is it exactly you want me to do?"`
 				`	"I am not interested in moving people around."`
 					decline
-
+			
 			label action
-			`	"Oh it is pretty simple actually, you only need to go to <stopovers>, pick up <bunks> Hai and bring them here."`
+			`	"Oh it is pretty simple actually, you only need to go to <stopovers>, pick up <bunks> Hai and bring them to this planet, they will find their way from there." You somehow doubt that affirmation, seeing how everything here is in a decadent state to say the least. You hope that at least the Hai actually know about that fact, or you may actually have to bring them back...`
 			choice
 				`	"I will get to it right away then."`
 					accept
 				`	"I do not want to bring you Hai defectors, sorry."`
 					decline
-
+	
 	on stopover
 		dialog `The Hai seem happy to get on your ship, now return to <origin> with them.`
 	on visit
@@ -501,7 +500,7 @@ mission "Unfettered: Bring Hai"
 	on complete
 		log `Helped some Hai citizens to join the Unfettered.`
 		payment 100000
-		dialog `The Unfettered thank you for bringing these "True" Hai find their way home, and give you <payment>. After discussing with them, the Unfettered elder says, "If you want to help us again, the hospitals on Darkcloak are in grave need of resupply."`
+		dialog `The Unfettered thank you for helping these "True" Hai find their way home, and give you <payment>. After discussing with them, the Unfettered elder says, "If you want to help us again, the hospitals on Darkcloak are in grave need of resupply." Checking back onto the group, you can see they are doing fine, and already finding a place to call home, shared among the others. They may not have much, but they seem to require anything at all, other than to be here.`
 
 
 
@@ -530,17 +529,18 @@ mission "Unfettered: Bring Medical Supplies"
 	on offer
 		conversation
 			`As you land, you receive a distress message, originating from one of the hospitals nearby. Staff are asking all who can to immediately bring back medical supplies from <stopovers>.`
-			`When landing on an Unfettered planet, even after you brought them a jump drive, there is always some lingering tension. Now you feel the tension much more than usual, probably because of the medical emergency. They may not take no for an answer...`
+			`	When landing on an Unfettered planet, even after you brought them a jump drive, there is always some lingering tension. Now you feel the tension much more than usual, probably because of the medical emergency. Unfettered are all around, launching small ships to bring the wounded to the hospitals as quickly as possible. The hospital itself looks different than the rest of Unfettered structures, it seems more organized, proper, it is probably the one structure that has the best appearance, because it is the most useful to them, with the shipyards. But one part of it looks like it has been grafted onto the rest, and not by a well trained physician to say the least... You figure they must really be needing more space for the sicks.`
+			`	Considering all of this, the Unfettered may not take no for an answer... Plenty of ships are already taking off to try and get those much needed medicals.`
 			choice
 				`	(Signal them I am going to get the supplies.)`
 					accept
 				`	(I do not have time for this.)`
-			`Thankfully it seems that everyone is too busy with the local problem to annoy you or press you into accepting this mission.`
-			
+			`	Thankfully it seems that everyone is too busy with the local problem to annoy you or press you into accepting this mission, but this will probably have consequences later. You better not stay landed for too long, or you could draw attention.`
+	
 	on visit
 		dialog phrase "generic cargo on visit"
 	on stopover
-		dialog `You are surprised to see the Hai are more than happy to give you the medical supplies needed. They load up the cargo and once they are done one of they addresses you, "Tell our brothers and sisters to stay strong, hopefully it is not too late," he says with determination.`
+		dialog `You are surprised to see the Hai are more than happy to give you the medical supplies needed. They load up the cargo and once they are done one of they addresses you, "Tell our brothers and sisters to stay strong, hopefully it is not too late," he says with determination. Hopefully these supplies will help to make a difference.`
 	on fail
 		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 	
@@ -549,22 +549,23 @@ mission "Unfettered: Bring Medical Supplies"
 		log "People" "Sha-Ri" `An Unfettered elder worried for his poeple, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he probably has quite some influence.`
 		payment 1500000
 		conversation
-			`The local health specialists seem greatly relieved when you manage to bring the medical supplies back in time. They give you <payment>.	As you head to leave, you notice the same Hai elder speaking with the medical teams. He soon sees you as well and moves to speak with you, seeming more than a bit emotional, "I knew I could count on you! Without these medical supplies a lot of us Unfettered would have died, captain. We did not before have the time to get properly introduced. I am Sha-Ri." He makes a little gesture, you assume of reverence. You try to imitate the motion, apparently badly, amusing Sha-Ri. "Worry not, <first> <last>, I already know who you are."`
+			`The local health specialists seem greatly relieved when you manage to bring the medical supplies back in time. They give you <payment>.`
+			`	As you head to leave, you notice the same Hai elder speaking with the medical teams. He soon sees you as well and moves to speak with you, seeming more than a bit emotional, "I knew I could count on you! Without these medical supplies a lot of us Unfettered would have died, captain. We did not before have the time to get properly introduced. I am Sha-Ri." He makes a little gesture, you assume of reverence. You try to imitate the motion, apparently badly, amusing Sha-Ri. "Worry not, <first> <last>, I already know who you are."`
 			choice
 				`	"I only did what little I could do to help save people. Hopefully I will be able to do more next time we meet."`
-					decline
+					accept
 				`	"Were these supplies for soldiers?"`
 			`	"That is a very legitimate question, but I do not view any of the Hai as "soldiers" or otherwise separate. We are all Hai and all deserve to be saved; we do not designate supplies to help some before others. Most of the wounds came from battle, that is true, but the "soldiers" as you say need to be kept well just as everyone else, or else we do all suffer."`
 			choice
 				`	"Glad to have prevented a disaster then."`
-					decline
+					accept
 				`	"So you just tricked me into helping the war effort?"`
 				`	"Are all Unfettered not soldiers?"`
 					goto soldier
 			`He does not answer your question directly, "If you really must know, these supplies were used to treat an outbreak of a disease among soldiers, and thus prevent an outbreak that would have affected all of us. If the soldiers are not able to protect us, then civilians will suffer as well. The Hai would not dare to kill us, of course, but they would destroy our way of life, our spirits."`
 			
 			label soldier
-			`	"Do I look like a soldier to you? Does this medic look like one? No, we Unfettered only dare to think in another way, in truth quite a few of us would like to be artists! It is a shame we have to fight for our right to live another way than the one the Hai allow, to break out of the prison they have cast next to our systems!"`
+			`	He looks around him, before answering, "Do I look like a soldier to you? Does this medic look like one? No, we Unfettered only dare to think in another way, in truth quite a few of us would like to be artists! It is a shame we have to fight for our right to live another way than the one the Hai allow, to break out of the prison they have cast next to our systems!"`
 
 
 
@@ -591,43 +592,45 @@ mission "Unfettered: Prove Your Strength"
 			choice
 				`	"How dare you call the <ship>?"`
 				`	"I have no need to prove myself to a rodent."`
+					goto provoke
 				`	(Go, he is not worth it.)`
 					decline
-			
+			`	"Oh so that was your ship indeed! I was not sure, given your reputation that you would fly in something like that. Your prowess is not exaggerated indeed then, for you managed to not crash on landing with such a thing," he says, then he turns to adress the crowd once again.`
+
 			label provoke
 			`	"So the monkey can speak? Let us see if it can fight as well," he says, with a provocative tone.`
 			`	Time for him to learn a lesson. But then it occurs to you that perhaps you are the one who needs to learn humility.`
-			`	After a cheering from his crowd, the arrogant Hai then speaks to you directly. "You and me, in battle, and leave your fleet parked. Meet me in the sky when you are ready, except if you lack the courage to fight me. But rest assured, this is not to be a fight to the death, monkey."`
+			`	After a cheering from his crowd, the arrogant Hai then speaks to you directly. "You and me, in battle, and leave your fleet parked. Meet me in the skies, above the tallest trees, when you are ready. Except, of course, if you lack the courage to fight me. But rest assured, this is not to be a fight to the death, monkey."`
 			choice
 				`	"Let me show you my worth in battle. Right now."`
 					accept
 				`	(Run away.)`
-					decline
+			`	As you move away you hear laughter, but nobody tries to stop you. You have just shown to the Unfettered how much of a coward you are, and will probably never be offered any missions to them anymore.`
 			
 	npc save disable
 		government "Hai (Unfettered Challenge)"
 		personality disables staying heroic target
 		ship "Sea Scorpion (Pulse)" "Intrepid"
 		conversation
-			`Now that you have disabled the <npc> its captain hails you. "It seems you fight well, you have earned my respect today," he says`
+			`Now that you have disabled the <npc> its captain hails you, "It seems you fight well, you have earned my respect today," he says with a voice so calm you are surprised it came from the same captain who minutes ago was provoking you for no apparent reason. In the background you can hear a fire roaring, it looks like the damage to his ship was serious.`
 			choice
 				`	"Be careful with provoking me, you may have gotten killed. Do not count on me to repair your ship."`
 					goto dangerous
 				`	"What was this really about?"`
-			`	"You have earned the right to know. We Unfettered always seek to improve ourselves, be it in combat or otherwise. You come from far away, we do not have many strangers around here, and I wanted to find out new new approaches to the fight."`
+			`	"You have earned the right to know. We Unfettered always seek to improve ourselves, be it in combat or otherwise. You come from far away, we do not have many strangers around here, and I wanted to find out new new approaches to the fight. It looks like I may have underestimated your ability to fight too... A mistake which I shall not make again."`
 			choice
 				`	"You could have just asked."`
-			`	"One cannot learn much from words only, and I was not sure how you would react. That is why I provoked you." One of his crew tells him something you do not understand. "Well that, and, yes,  maybe I was a bit too prideful, took on a challenge I should not have."`
+			`	"One cannot learn much from words only, and I was not sure how you would react. That is why I provoked you." One of his crew tells him something you do not understand. "Well that, and, yes, maybe I was a bit too prideful, took on a challenge I should not have from someone..." He shouts something in Hai, presumably to the crew member who just spoke.`
 				goto end
 			
 			label dangerous
-			`	"Worry not, respect is only to be earned once."`
+			`	"Worry not, respect is only to be earned once. From me, at least. Do know there are other captains eager to challenge you, and most are stronger than me. Or at least they have more ships..."`
 			label end
-			`	"Hopefully we see each other again, sometime." He and his crew seem quite busy with the repairs. I have transferred a small amount of credits to you to repair any damage I may have done to your ship.`
 			action
 				log `Taught a lesson to a young Unfettered captain, in time we shall see if he learned anything from it.`
 				payment 100000
 				"reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)" + 15
+			`	"Hopefully we see each other again, sometime." He and his crew seem quite busy with the repairs. I have transferred a small amount of <payment> credits to you to repair any damage I may have done to your ship. I will be landing on the surface soon, to think about something else than this humiliating defeat I have just suffered. I do not need nor want your assistance in repairing damage, for that is a task best suited for the vanquished.`
 	on fail
 		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 
@@ -644,23 +647,23 @@ mission "Unfettered: Prove Your Strength 2"
 		has "Unfettered Jump Drive 3: offered"
 	on offer
 		conversation
-			`As you pass what looks like a bar in the spaceport, you're greeted by the same Hai that challenged you earlier. "So we meet again! Next time we fight it will take a lot more if you want to take me down again! Well... once I have my ship back, anyway. But that is not why I am here," he says, apparently happy to see you. "I have a job for you!"`
+			`As you pass what looks like a bar in the spaceport, you're greeted by the same Hai captain that challenged you earlier. "So we meet again! Next time we fight it will take a lot more if you want to take me down again! Well... once I have my ship back, anyway. But that is not why I am here," he says, apparently happy to see you. "I have a job for you!"`
 			choice
 				`	"What is the job about?"`
 					goto job
 				`	"Sure, I would do anything for my favourite squirrel!"`
 					goto insult
-				`	"Oh just admit it, you are scared."`
+				`	"Oh just admit it, you are scared to fight me."`
 				`	"I am not interested in helping you."`
 					decline
-			`	"Nice try but I have learned my lesson. But worry not, soon I shall have a bigger ship, and when I do I will be glad to accept that challenge! Most of the time, having the bigger guns at the right place is all the strategy and diplomacy that is needed."`
+			`	"Nice try but I have learned my lesson. But worry not, soon I shall have a bigger ship, and when I do I will be glad to accept that challenge! Most of the time, having the bigger guns at the right place is all the strategy and diplomacy that is needed. However, in this case I am lacking said guns so the best choice is for me to fold. For now at least."`
 			choice
 				`	"What can I do for my favourite squirrel?"`
 					goto insult
-				`	"How soon?"`
+				`	"How soon will you have that new ship?"`
 				`	"Well just do it with that bigger ship then, I am not interested."`
 					decline
-			`	"As soon as the end of this job, hopefully! It should pay well. Being able to buy a brand new ship kind of well."`
+			`	"As soon as the end of this job, hopefully! It should pay well. Being able to buy a brand new ship kind of well." Knowing him this will probably be a very dangerous mission, but it seems like it may be worth it.`
 			choice
 				`	"What kind of job is it?"`
 					goto job
@@ -670,12 +673,12 @@ mission "Unfettered: Prove Your Strength 2"
 			label insult
 			`	He does not seem to react to the insult. He did call you monkey a few times before, so it is only fair for you to return the courtesy.`
 			label job
-			`	"We are going to collect a few jump drives! Normally you would not be able to get such a job because it requires a lot of trust, but I have gotten it for you, meaning officially this is my mission, and a very lucrative one at that!"`
+			`	"We are going to collect a few jump drives! Normally you would not be able to get such a job because it requires a lot of trust, but I have gotten it for you, meaning officially this is my mission, and a very lucrative one at that! On top of that should we succeed, next time you may be entrusted with such missions, on your own, albeit on a smaller scale."`
 			choice
 				`	"Okay... That just seems too good to be true. What is the catch?"`
 				`	"If this is your mission you just do it yourself."`
 					decline
-			`	"Well... The name of the world is Freedom, and whilst it may sound nice, it is a pirate world and is thus dangerous. That is why I need your ship for transportation trough Hai space. You will also need to have cargo space available for 4 jump drives."`
+			`	"Well... The name of the world is 'Freedom', and whilst it may sound nice, it is a pirate world and is thus dangerous. That is why I need your ship for transportation trough Hai space. You will also need to have cargo space available for 4 jump drives. You should be warned, this is not a mission for the light hearted."`
 			choice
 				`	"Let's go then!"`
 					goto leave
@@ -692,13 +695,13 @@ mission "Unfettered: Prove Your Strength 2"
 					decline
 			
 			label cut
-			`	"You humans always seem obsessed with money... It will be a lot... really a lot!"`
+			`	"You humans always seem obsessed with money... It will be a lot... really a lot! I will only take 25% of it, and you know how much my people value jump drives."`
 			label leave
-			`	"One last thing: We should not go there by jump drive,  especially considering where we are going, it would only attract unwanted attention to us. It would not be of use anyway considering we should not travel trough wanderer space."`
+			`	"One last thing: We should not go there by jump drive, especially considering where we are going, it would only attract unwanted attention to us. It would not be of use anyway considering we should not travel trough wanderer space, I do not want to try their patience or tolerance to seeing me on your ship." You accompagny him to your ship, and he admits to quite like the interior of it, as well as general look of it, this ship "is adequate for a warrior," he says.`
 				accept
 	
 	on visit
-		dialog `You left your escort allocated to carrying the jump drives behind, better launch and wait for it.`
+		dialog `You left your escort allocated to carrying the jump drives behind, better launch and wait for it. Either that or you have not went to <destination> to get the jump drives.`
 	on fail
 		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 	to complete
@@ -708,7 +711,7 @@ mission "Unfettered: Prove Your Strength 2"
 		payment 3000000
 		log `Helped a young Unfettered captain to bring jump drives from a pirate world. It was a really... unforgettable experience, I almost died multiple times but in the end I saved him.`
 		log "People" "Si-Ra" `A young impetuous Unfettered captain who seems to grow wiser by the day. He has impressive leading and combat skill, and seems to be a fan of getting bigger and bigger ship. He always leaves room for improving tactics.`
-		dialog `"Here is your share : <payment>. You have saved my life, captain <first>, and I shall never forget it. You have earned the right to know my name : "Si-Ra". Come see me again soon if you are up for a challenge."`	
+		dialog `"Here is your share : <payment>. You have saved my life, captain <first>, and I shall never forget it. You have earned the right to know my name : "Si-Ra". Come see me again soon if you are up for a challenge, I am sure that I will have what you want." Then he leaves, after doing what you assume to be a salute to you, his fist risen. You are taken by surprise by the act, and before you have the time to react, he is already leaving. He is probably in a hurry to buy that new ship he told you about.`
 
 
 
@@ -721,7 +724,7 @@ mission "Unfettered: Jump Drive Retrieval"
 		has "Unfettered: Prove Your Strength 2: active"
 	on offer
 		conversation
-			`Following the advice of the Hai, you park your ship close to the hidden depot in case something goes wrong, and then start following him to the hatch.`
+			`Following the advice of the Hai, you park your ship close to the hidden depot in case something goes wrong, and then start following him to the hatch. He is moving at a quick pace, you have difficulties following him, even given the fact he is wearing a combat suit.`
 			choice
 				`	"Who made this vault, what should I expect?"`
 				`	(No time for talking.)`
@@ -729,7 +732,7 @@ mission "Unfettered: Jump Drive Retrieval"
 			`	"That is an information I cannot trust anyone with, not even you, and especially not here. I do not want the owner of this cache to be in danger whilst we need jump drives to expand. Assume it is owned by pirates, and that we are ready to face them," he tells you. He is fully armoured, meaning as long as you stay with him, everything should be fine.`
 			
 			label outside
-			`	Before exiting, he warns you, "Whatever happens, do not try anything stupid, and stay behind me at all times." He seems worried and keeps looking around, without making much sound.`
+			`	Before exiting, he warns you, "Whatever happens, do not try anything stupid, and stay behind me at all times." He seems worried and keeps looking around, without making a sound. Well as little sound as possible, anyway, given he is in quite an impressive suit. It must have been crafted specifically for him in order to be so discrete. He does not have his helmet on, probably in order to see his surroundings better.`
 			choice
 				`	"Is everything alright?"`
 				`	"There is no need to be worried, that cache is well hidden."`
@@ -773,7 +776,7 @@ mission "Unfettered: Jump Drive Retrieval"
 				`	"We could have just come into the vault swarming with ground forces instead of risking our lives..."`
 				`	"Why did we have to go into the vault instead of just connecting it to the ship earlier?"`
 					goto vault
-			`	"As you have probably noticed, we did not have access to this vault for quite some time. Some pirates could have snuck in and sabotaged the jump drives. To cripple your ship, or worse."`
+			`	"As you have probably noticed, we did not have access to this vault for quite some time. Some pirates could have snuck in and sabotaged the jump drives. To cripple your ship, or worse." As you head back to your ship, you notice more activity than on the way in. He keeps his rifle well in sight in order to dissuade any potential attackers.`
 				goto ship
 			
 			label vault
@@ -782,7 +785,7 @@ mission "Unfettered: Jump Drive Retrieval"
 				`	(Go back to the ship.)`
 					goto ship
 				`	"If this world is so wild, why put the jump drives here in the first place?"`
-			`	"The Unfettered are not the ones who placed those jump drives here..."`
+			`	"The Unfettered are not the ones who placed those jump drives here..." He really does not seem to want to tell you much about this vault.`
 			
 			label ship
 			`	You go back to your ship with the Hai, and give the orders to collect and install the jump drives.`
@@ -1208,7 +1211,7 @@ mission "Unfettered: Pirate Help"
 			`	"Perfect! That means you should be ready for what I am about to ask you."`
 			
 			label attacks
-			`	"These pirate attacks do not seem that bad to us, after all they only plunder a bit, like we do, but this potential attack on the Hai backlines means they will be able to have fewer ships on our border."`
+			`	"I do not know much about warfare, but we elders often speak with the warlords, who are charged with military responsabilities. These pirate attacks do not seem that bad to us, after all they only plunder a bit, like we do, but this potential attack on the Hai backlines means they will be able to have fewer ships on our border."`
 			choice
 				`	"You mean you want me to help these pirates?"`
 					goto help
@@ -1833,10 +1836,11 @@ mission "Unfettered: Icelake"
 mission "Unfettered: Changed Their Mind"
 	name `Return Hai`
 	description `These Hai have changed their minds about the Unfettered when they saw them, you agreed to take them back to <destination>.`
+	minor
 	source "Firelode"
 	destination "Icelake"
 	passengers 4
-	blocked `You need space for 4 passengers for the next Unfettered mission.`
+	blocked `You need space for 4 passengers for an Unfettered mission.`
 	to offer
 		has "Unfettered: Snowfeather: done"
 	on offer
