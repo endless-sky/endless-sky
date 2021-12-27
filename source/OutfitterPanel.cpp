@@ -400,7 +400,7 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 			}
 			else
 			{
-				// Check if the outfit is for sale or in stock so that we can actualy buy it.
+				// Check if the outfit is for sale or in stock so that we can actually buy it.
 				if(!outfitter.Has(selectedOutfit) && player.Stock(selectedOutfit) <= 0)
 					continue;
 				player.Cargo().Add(selectedOutfit);

@@ -18,6 +18,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #if defined _WIN32
 #include "text/Utf8.h"
+#define STRICT
+#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #endif
 
@@ -25,6 +27,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <dirent.h>
 #include <unistd.h>
 
+#include <algorithm>
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
@@ -260,6 +263,8 @@ vector<string> Files::List(string directory)
 	
 	closedir(dir);
 #endif
+
+	sort(list.begin(), list.end());
 	return list;
 }
 
@@ -319,6 +324,8 @@ vector<string> Files::ListDirectories(string directory)
 	
 	closedir(dir);
 #endif
+
+	sort(list.begin(), list.end());
 	return list;
 }
 
@@ -328,6 +335,7 @@ vector<string> Files::RecursiveList(const string &directory)
 {
 	vector<string> list;
 	RecursiveList(directory, &list);
+	sort(list.begin(), list.end());
 	return list;
 }
 

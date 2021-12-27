@@ -66,10 +66,12 @@ void OutlineShader::Init()
 	// aliasing effects between the two.
 	static const char *fragmentCode =
 		"// fragment outline shader\n"
+		"precision mediump float;\n"
+		"precision mediump sampler2DArray;\n"
 		"uniform sampler2DArray tex;\n"
-		"uniform float frame = 0;\n"
-		"uniform float frameCount = 0;\n"
-		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
+		"uniform float frame;\n"
+		"uniform float frameCount;\n"
+		"uniform vec4 color;\n"
 		"uniform vec2 off;\n"
 		"const vec4 weight = vec4(.4, .4, .4, 1.);\n"
 		
@@ -78,7 +80,7 @@ void OutlineShader::Init()
 		"out vec4 finalColor;\n"
 		
 		"float Sobel(float layer) {\n"
-		"  float sum = 0;\n"
+		"  float sum = 0.f;\n"
 		"  for(int dy = -1; dy <= 1; ++dy)\n"
 		"  {\n"
 		"    for(int dx = -1; dx <= 1; ++dx)\n"
@@ -88,12 +90,12 @@ void OutlineShader::Init()
 		"      float ne = dot(texture(tex, vec3(center + vec2(off.x, -off.y), layer)), weight);\n"
 		"      float sw = dot(texture(tex, vec3(center + vec2(-off.x, off.y), layer)), weight);\n"
 		"      float se = dot(texture(tex, vec3(center + vec2(off.x, off.y), layer)), weight);\n"
-		"      float h = nw + sw - ne - se + 2 * (\n"
-		"        dot(texture(tex, vec3(center + vec2(-off.x, 0), layer)), weight)\n"
-		"          - dot(texture(tex, vec3(center + vec2(off.x, 0), layer)), weight));\n"
-		"      float v = nw + ne - sw - se + 2 * (\n"
-		"        dot(texture(tex, vec3(center + vec2(0, -off.y), layer)), weight)\n"
-		"          - dot(texture(tex, vec3(center + vec2(0, off.y), layer)), weight));\n"
+		"      float h = nw + sw - ne - se + 2.f * (\n"
+		"        dot(texture(tex, vec3(center + vec2(-off.x, 0.f), layer)), weight)\n"
+		"          - dot(texture(tex, vec3(center + vec2(off.x, 0.f), layer)), weight));\n"
+		"      float v = nw + ne - sw - se + 2.f * (\n"
+		"        dot(texture(tex, vec3(center + vec2(0.f, -off.y), layer)), weight)\n"
+		"          - dot(texture(tex, vec3(center + vec2(0.f, off.y), layer)), weight));\n"
 		"      sum += h * h + v * v;\n"
 		"    }\n"
 		"  }\n"
@@ -105,7 +107,7 @@ void OutlineShader::Init()
 		"  float second = mod(ceil(frame), frameCount);\n"
 		"  float fade = frame - first;\n"
 		"  float sum = mix(Sobel(first), Sobel(second), fade);\n"
-		"  finalColor = color * sqrt(sum / 180);\n"
+		"  finalColor = color * sqrt(sum / 180.f);\n"
 		"}\n";
 	
 	shader = Shader(vertexCode, fragmentCode);

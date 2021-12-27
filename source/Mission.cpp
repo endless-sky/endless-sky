@@ -137,6 +137,8 @@ void Mission::Load(const DataNode &node)
 	{
 		if(child.Token(0) == "name" && child.Size() >= 2)
 			displayName = child.Token(1);
+		else if(child.Token(0) == "uuid" && child.Size() >= 2)
+			uuid = EsUuid::FromString(child.Token(1));
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 			description = child.Token(1);
 		else if(child.Token(0) == "blocked" && child.Size() >= 2)
@@ -252,6 +254,8 @@ void Mission::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "stopover" && child.HasChildren())
 			stopoverFilters.emplace_back(child);
+		else if(child.Token(0) == "substitutions" && child.HasChildren())
+			substitutions.Load(child);
 		else if(child.Token(0) == "npc")
 			npcs.emplace_back(child);
 		else if(child.Token(0) == "on" && child.Size() >= 2 && child.Token(1) == "enter")
@@ -306,6 +310,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 	out.BeginChild();
 	{
 		out.Write("name", displayName);
+		out.Write("uuid", uuid.ToString());
 		if(!description.empty())
 			out.Write("description", description);
 		if(!blocked.empty())
@@ -408,6 +413,13 @@ void Mission::Save(DataWriter &out, const string &tag) const
 
 
 // Basic mission information.
+const EsUuid &Mission::UUID() const noexcept
+{
+	return uuid;
+}
+
+
+
 const string &Mission::Name() const
 {
 	return displayName;
@@ -825,6 +837,8 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 		return "";
 	
 	map<string, string> subs;
+	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
+	substitutions.Substitutions(subs, player.Conditions());
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
 	if(flagship)
@@ -1029,7 +1043,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		{
 			hasFailed = true;
 			if(isVisible)
-				Messages::Add(message + "Mission failed: \"" + displayName + "\".", Messages::Importance::High);
+				Messages::Add(message + "Mission failed: \"" + displayName + "\".", Messages::Importance::Highest);
 		}
 	}
 	
@@ -1238,6 +1252,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	
 	// Generate the substitutions map.
 	map<string, string> subs;
+	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
+	substitutions.Substitutions(subs, player.Conditions());
 	subs["<commodity>"] = result.cargo;
 	subs["<tons>"] = to_string(result.cargoSize) + (result.cargoSize == 1 ? " ton" : " tons");
 	subs["<cargo>"] = subs["<tons>"] + " of " + subs["<commodity>"];

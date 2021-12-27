@@ -35,7 +35,7 @@ void Person::Load(const DataNode &node)
 			// Name ships that are not the flagship with the name provided, if any.
 			// The flagship, and any unnamed fleet members, will be given the name of the Person.
 			bool setName = !ships.empty() && child.Size() >= 3;
-			ships.emplace_back(new Ship(child));
+			ships.emplace_back(make_shared<Ship>(child));
 			if(setName)
 				ships.back()->SetName(child.Token(2));
 		}
@@ -138,7 +138,7 @@ void Person::Restore()
 
 
 
-// Check if a person is already placed somehwere.
+// Check if a person is already placed somewhere.
 bool Person::IsPlaced() const
 {
 	for(const shared_ptr<Ship> &ship : ships)

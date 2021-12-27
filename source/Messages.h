@@ -26,19 +26,22 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // to keep repeated messages from filling up the whole screen.
 class Messages {
 public:
+	enum class Importance : uint_least8_t {
+		Highest,
+		High,
+		Low
+	};
+	
 	class Entry {
 	public:
 		Entry() = default;
-		Entry(int step, const std::string &message) : step(step), message(message) {}
+		Entry(int step, const std::string &message, Importance importance)
+			: step(step), message(message), importance(importance) {}
 		
 		int step;
 		std::string message;
+		Importance importance;
 	};
-    
-    enum class Importance : uint_least8_t {
-        High,
-        Low
-    };
 	
 public:
 	// Add a message to the list along with its level of importance

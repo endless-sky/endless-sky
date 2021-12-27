@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Armament.h"
 #include "CargoHold.h"
 #include "Command.h"
+#include "EsUuid.h"
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
@@ -128,6 +129,10 @@ public:
 	bool IsValid() const;
 	// Save a full description of this ship, as currently configured.
 	void Save(DataWriter &out) const;
+	
+	const EsUuid &UUID() const noexcept;
+	// Explicitly set this ship's ID.
+	void SetUUID(const EsUuid &id);
 	
 	// Get the name of this particular ship.
 	const std::string &Name() const;
@@ -243,7 +248,7 @@ public:
 	bool IsThrusting() const;
 	bool IsReversing() const;
 	bool IsSteering() const;
-	// The direction that the ship is steering. If positive, the ship is steering right. 
+	// The direction that the ship is steering. If positive, the ship is steering right.
 	// If negative, the ship is steering left.
 	double SteeringDirection() const;
 	// Get the points from which engine flares should be drawn.
@@ -304,6 +309,9 @@ public:
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
 	int RequiredCrew() const;
+	// Get the reputational value of this ship's crew, which depends
+	// on its crew size and "crew equivalent" attribute.
+	int CrewValue() const;
 	void AddCrew(int count);
 	// Check if this is a ship that can be used as a flagship.
 	bool CanBeFlagship() const;
@@ -382,7 +390,7 @@ public:
 	bool CanFire(const Weapon *weapon) const;
 	// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
 	// and add whatever heat it generates. Assume that CanFire() is true.
-	void ExpendAmmo(const Weapon *weapon);
+	void ExpendAmmo(const Weapon &weapon);
 	
 	// Each ship can have a target system (to travel to), a target planet (to
 	// land on) and a target ship (to move to, and attack if hostile).
@@ -450,6 +458,7 @@ private:
 	std::string description;
 	const Sprite *thumbnail = nullptr;
 	// Characteristics of this particular ship:
+	EsUuid uuid;
 	std::string name;
 	bool canBeCarried = false;
 	
@@ -514,9 +523,20 @@ private:
 	double fuel = 0.;
 	double energy = 0.;
 	double heat = 0.;
-	double ionization = 0.;
-	double disruption = 0.;
-	double slowness = 0.;
+ 	// Accrued "ion damage" that will affect this ship's energy over time.
+ 	double ionization = 0.;
+ 	// Accrued "disruption damage" that will affect this ship's shield effectiveness over time.
+ 	double disruption = 0.;
+ 	// Accrued "slowing damage" that will affect this ship's movement over time.
+ 	double slowness = 0.;
+ 	// Accrued "discharge damage" that will affect this ship's shields over time.
+ 	double discharge = 0.;
+ 	// Accrued "corrosion damage" that will affect this ship's hull over time.
+ 	double corrosion = 0.;
+ 	// Accrued "leak damage" that will affect this ship's fuel over time.
+ 	double leakage = 0.;
+ 	// Accrued "burn damage" that will affect this ship's heat over time.
+ 	double burning = 0.;
 	// Delays for shield generation and hull repair.
 	int shieldDelay = 0;
 	int hullDelay = 0;

@@ -15,9 +15,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionSet.h"
 #include "Date.h"
+#include "EsUuid.h"
 #include "LocationFilter.h"
 #include "MissionAction.h"
 #include "NPC.h"
+#include "TextReplacements.h"
 
 #include <list>
 #include <map>
@@ -61,6 +63,7 @@ public:
 	void Save(DataWriter &out, const std::string &tag = "mission") const;
 	
 	// Basic mission information.
+	const EsUuid &UUID() const noexcept;
 	const std::string &Name() const;
 	const std::string &Description() const;
 	// Check if this mission should be shown in your mission list. If not, the
@@ -158,7 +161,7 @@ public:
 	// Get a specific mission action from this mission.
 	// If the mission action is not found for the given trigger, returns an empty
 	// mission action.
-	const MissionAction &GetAction(Trigger trigger) const; 
+	const MissionAction &GetAction(Trigger trigger) const;
 	
 	// "Instantiate" a mission by replacing randomly selected values and places
 	// with a single choice, and then replacing any wildcard text as well.
@@ -178,6 +181,8 @@ private:
 	std::string description;
 	std::string blocked;
 	Location location = SPACEPORT;
+	
+	EsUuid uuid;
 	
 	bool hasFailed = false;
 	bool isVisible = true;
@@ -220,6 +225,9 @@ private:
 	std::list<LocationFilter> stopoverFilters;
 	std::set<const Planet *> visitedStopovers;
 	std::set<const System *> visitedWaypoints;
+	
+	// User-defined text replacements unique to this mission:
+	TextReplacements substitutions;
 	
 	// NPCs:
 	std::list<NPC> npcs;
