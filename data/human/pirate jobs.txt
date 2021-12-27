@@ -269,7 +269,7 @@ mission "Bulk Cargo Smuggling [0]"
 		"reputation: Pirate" -= 1
 	on complete
 		payment 7000 300
-		dialog phase "generic completed pirate cargo mission"
+		dialog phrase "generic completed pirate cargo mission"
 
 mission "Bulk Cargo Smuggling [1]"
 	name "Bulk smuggling to <planet>"

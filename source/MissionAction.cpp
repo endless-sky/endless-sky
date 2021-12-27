@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Outfit.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
+#include "TextReplacements.h"
 #include "UI.h"
 
 using namespace std;
@@ -288,6 +289,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 	else if(!dialogText.empty() && ui)
 	{
 		map<string, string> subs;
+		GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
 		subs["<first>"] = player.FirstName();
 		subs["<last>"] = player.LastName();
 		if(player.Flagship())

@@ -52,6 +52,7 @@ class StartConditions;
 class System;
 class Test;
 class TestData;
+class TextReplacements;
 
 
 
@@ -63,18 +64,22 @@ class TestData;
 // universe.
 class GameData {
 public:
-	static bool BeginLoad(const char * const *argv);
+	static void BeginLoad(bool onlyLoadData, bool debugMode);
+	static void FinishLoading();
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();
 	static void LoadShaders(bool useShaderSwizzle);
-	// TODO: make Progress() a simple accessor.
-	static double Progress();
-	// Whether initial game loading is complete (sprites and audio are loaded).
+	static double GetProgress();
+	// Whether initial game loading is complete (data, sprites and audio are loaded).
 	static bool IsLoaded();
+	// Whether all text data has been read from disk.
+	static bool IsDataLoaded();
 	// Begin loading a sprite that was previously deferred. Currently this is
 	// done with all landscapes to speed up the program's startup.
 	static void Preload(const Sprite *sprite);
-	static void FinishLoading();
+	static void ProcessSprites();
+	// Wait until all pending sprite uploads are completed.
+	static void FinishLoadingSprites();
 	
 	// Get the list of resource sources (i.e. plugin folders).
 	static const std::vector<std::string> &Sources();
@@ -153,15 +158,12 @@ public:
 	
 	static MaskManager &GetMaskManager();
 	
+	static const TextReplacements &GetTextReplacements();
+	
 	
 private:
 	static void LoadSources();
-	static void LoadFile(const std::string &path, bool debugMode);
 	static std::map<std::string, std::shared_ptr<ImageSet>> FindImages();
-	
-	static void PrintShipTable();
-	static void PrintTestsTable();
-	static void PrintWeaponTable();
 };
 
 

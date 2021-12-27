@@ -225,7 +225,7 @@ mission "Pact Questioning"
 					goto quit
 			label recon
 			`	"Are you certain your reconnaissance was only targeted at pirates?" he asks. "Did they collect only your logs on pirate ships, or on every ship you saw?"`
-			choice 
+			choice
 				`	"I honestly don't know."`
 				`	"I think it was only the pirate ships."`
 				`	"I just gave them all my logs. I'm not sure what parts of them they ended up using."`
