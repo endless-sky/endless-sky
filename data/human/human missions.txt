@@ -3782,7 +3782,7 @@ mission "Kindred Spirit 2"
 
 mission "Kindred Spirit 3"
 	name "Family Reunion"
-	description "Return with Charlie to his parents."
+	description "Convince Charlie to return home."
 	source
 		government "Syndicate"
 	#destination "Heartland"
@@ -3790,10 +3790,6 @@ mission "Kindred Spirit 3"
 		has "Kindred Spirit 2: done"
 		#random < 15
 		#credits >= 500000
-	#npc save
-		#government "Merchant"
-		#personality timid escort
-		#ship "Quicksilver" "Tyran the Brave"
 	on offer
 		conversation
 			`	You see Charlie through the window of a bar. He recognizes you and tips his drink. He looks drunk.`
@@ -3840,8 +3836,10 @@ mission "Kindred Spirit 3"
 				`	"I don't think there's any rush. Keep exploring space, this is your life's dream. It's not like your family is going anywhere."`
 					goto easyresponse
 			label goodresponse
+			apply
+				set "Fix Charlie's Life"
 			`	Slowly, he nods. "Okay... yeah, that makes sense. It'll be difficult, but I'll talk to them soon. I'll... I'll return home. Just for a bit." As he stands to pay his tab, he says "Thanks, <first>. You're a good friend. And, I won't even make you come with me this time." Then he staggers away.`
-				accept
+				decline
 			label easyresponse
 			`	Slowly, he nods. "Yeah... yeah, I can do that. Thanks, <first>." He stands to pay his tab, then drunkenly staggers away.`
 				decline
@@ -3851,7 +3849,7 @@ mission "Kindred Spirit 4"
 	description "Travel with Charlie for as long as you want."
 	source "Heartland"
 	to offer
-		has "Kindred Spirit 3: done"
+		has "Fix Charlie's Life"
 	npc save
 		government "Merchant"
 		personality heroic escort
