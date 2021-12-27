@@ -75,11 +75,24 @@ void SpriteQueue::Unload(const string &name)
 
 
 
-// Find out our percent completion.
-double SpriteQueue::Progress()
+// Determine the fraction of sprites uploaded to the GPU.
+double SpriteQueue::GetProgress() const
+{
+	// Wait until we have completed loading of as many sprites as we have added.
+	// The value of "added" is protected by readMutex.
+	unique_lock<mutex> readLock(readMutex);
+	// Special cases: we're bailing out, or we are done.
+	if(added <= 0 || added == completed)
+		return 1.;
+	return static_cast<double>(completed) / static_cast<double>(added);
+}
+
+
+
+void SpriteQueue::UploadSprites()
 {
 	unique_lock<mutex> lock(loadMutex);
-	return DoLoad(lock);
+	DoLoad(lock);
 }
 
 
@@ -93,7 +106,8 @@ void SpriteQueue::Finish()
 		unique_lock<mutex> lock(loadMutex);
 		
 		// Load whatever is already queued up for loading.
-		if(DoLoad(lock) == 1.)
+		DoLoad(lock);
+		if(GetProgress() == 1.)
 			break;
 		
 		// We still have sprites to upload, but none of them have been read from
@@ -147,7 +161,7 @@ void SpriteQueue::operator()()
 
 
 
-double SpriteQueue::DoLoad(unique_lock<mutex> &lock)
+void SpriteQueue::DoLoad(unique_lock<mutex> &lock)
 {
 	while(!toUnload.empty())
 	{
@@ -173,12 +187,4 @@ double SpriteQueue::DoLoad(unique_lock<mutex> &lock)
 		lock.lock();
 		++completed;
 	}
-	
-	// Wait until we have completed loading of as many sprites as we have added.
-	// The value of "added" is protected by readMutex.
-	unique_lock<mutex> readLock(readMutex);
-	// Special cases: we're bailing out, or we are done.
-	if(added <= 0 || added == completed)
-		return 1.;
-	return static_cast<double>(completed) / static_cast<double>(added);
 }

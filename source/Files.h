@@ -30,7 +30,9 @@ class Files {
 public:
 	static void Init(const char * const *argv);
 	
+	// The game's installation directory, or whichever directory was passed on the command line via `--resources`
 	static const std::string &Resources();
+	// The user-specific configuration directory, or whichever directory was passed on the command line via `--config`
 	static const std::string &Config();
 	
 	static const std::string &Data();
