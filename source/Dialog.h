@@ -54,6 +54,14 @@ template <class T>
 template <class T>
 	Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text, std::string initialValue = "",
 		Truncate truncate = Truncate::NONE);
+
+	// This callback requests text input but with validation. The "ok" button is disabled
+	// if the validation callback returns false.
+	template <class T>
+	Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text,
+			bool (T::*validate)(const std::string &),
+			std::string initialValue = "",
+			Truncate truncate = Truncate::NONE);
 	
 template <class T>
 	Dialog(T *t, void (T::*fun)(), const std::string &text, Truncate truncate = Truncate::NONE);
@@ -85,6 +93,7 @@ protected:
 	std::function<void(int)> intFun;
 	std::function<void(const std::string &)> stringFun;
 	std::function<void()> voidFun;
+	std::function<bool(const std::string &)> validateFun;
 	
 	bool canCancel;
 	bool okIsActive;
@@ -123,6 +132,18 @@ template <class T>
 Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text,
 	std::string initialValue, Truncate truncate)
 	: stringFun(std::bind(fun, t, std::placeholders::_1)), input(initialValue)
+{
+	Init(text, truncate);
+}
+
+
+
+template <class T>
+Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text,
+	bool (T::*validate)(const std::string &), std::string initialValue, Truncate truncate)
+	: stringFun(std::bind(fun, t, std::placeholders::_1)),
+	validateFun([t, validate] (const std::string &text) { return (t->*validate)(text); }),
+	input(initialValue)
 {
 	Init(text, truncate);
 }

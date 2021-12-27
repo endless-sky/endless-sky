@@ -235,9 +235,16 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 		if(key == 'd' || (canCancel && isCloseRequest))
 			okIsActive = false;
 		if(okIsActive || isMission)
-			DoCallback();
-		
-		GetUI()->Pop(this);
+		{
+			// Validate the input string if required.
+			if(!validateFun || validateFun(input))
+			{
+				DoCallback();
+				GetUI()->Pop(this);
+			}
+		}
+		else
+			GetUI()->Pop(this);
 	}
 	else if((key == 'm' || command.Has(Command::MAP)) && system && player)
 		GetUI()->Push(new MapDetailPanel(*player, system));

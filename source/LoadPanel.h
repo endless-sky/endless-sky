@@ -58,6 +58,7 @@ private:
 	void LoadCallback();
 	// Delete callbacks.
 	void DeletePilot(const std::string &pilot);
+	bool ValidateDeletePilot(const std::string &pilot);
 	void DeleteSave();
 	
 	
