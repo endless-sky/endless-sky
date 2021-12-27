@@ -1880,7 +1880,7 @@ mission "Coalition: Long Lost Property 1"
 	destination "Darkstone"
 	on offer
 		conversation
-			`You notice a pair of Arachi, who you assume to be spaceport workers due to their uniforms, talking while pointing to your ship. One of them is slightly shorter than most Arachi you've seen, while the other is a good bit taller. They approach you after they see you noticed them, and the larger of them says, "Excuse us you must, Captain, but in need of your help, we are."`
+			`You notice a pair of Arachi, who you assume to be spaceport workers due to their uniforms, talking while pointing to your ship. One of them is slightly shorter than most Arachi you've seen, while the other is a good bit taller. They approach you after they see you noticed them, and the larger of them speaks up. "Excuse us you must, Captain, but in need of your help, we are."`
 			`	"Work at House Idriss, we do, and looking to recover some lost property, the House is." the shorter one explains. "Accompany us to our headquarters, could you? Meet up with you, our boss-"`
 			`	"President." The other one interrupts him.`
 			`	"Our president will."`
@@ -1902,7 +1902,7 @@ mission "Coalition: Long Lost Property 1"
 			choice
 				`	"These two told me House Idriss lost something."`
 				`	"No, not really."`
-			`	"Nearly nine thousand years ago, before even formed, the Coalition was, launched a... probe of sorts, for a long term experiment, that time's House Idriss had," she explains. "Sent to a nearby system where a habitable planet could be, it was, at around half the speed of light, once done accelerating, it was." She taps somewhere on the desk with one of her legs, and a screen appears at the top, showing a map of the local star systems. "Recognize this one, do you?" She asks, pointing to one of the systems. "A system inhabited by humans, it should be. Arrive there, the probe soon should, if arrived already, it hasn't."`
+			`	"Nearly nine thousand years ago, before even formed, the Coalition was, launched a... probe of sorts, for a long term experiment, that time's House Idriss had," she explains. "Sent to a nearby system where a habitable planet could be, it was, at around half the speed of light, once done accelerating, it was." She taps somewhere on the desk with one of her legs, and a screen appears at the top, showing a map of the local star systems. "Recognize this one, do you?" she asks, pointing to one of the systems. "A system inhabited by humans, it should be. Arrive there, the probe soon should, if arrived already, it hasn't."`
 			`	Upon further inspection, you piece together the systems in the screen, and realize the system she's pointing to is <system>, just one jump away.`
 			choice
 				`	"I haven't heard news of any probes entering Han."`
@@ -2011,7 +2011,7 @@ mission "Coalition: Long Lost Property 3"
 			`	He tells you the ship the probe was loaded onto was a Quicksilver, heavily modified to make for a stronger warship. You walk out of the junkyard with the information, and prepare your ship to look for the pirates.`
 				accept
 	on enter "Persian"
-		dialog `Entering the system, your scanners catch a trio of heavily modified Quicksilvers. They also inform you that the probe is in the system, though it fails at giving you its exact location, as if something is causing interference. The Quicksilvers notice you, and ready their guns.`
+		dialog `Entering the system, your scanners catch a trio of heavily modified Quicksilvers. They also inform you that the probe is in the system, though it fails at giving you its exact location, as if something is causing interference. The Quicksilvers notice you and ready their guns.`
 	npc board
 		personality staying nemesis target
 		government "Bounty"
@@ -2089,7 +2089,7 @@ mission "Coalition: Long Lost Property 4"
 			`	Once they're done with your scanners a few minutes later, they leave your ship and wish you good luck.`
 				accept
 	on enter "Alnasl"
-		dialog `One of your monitors brings up various sets of data written in the Arach language when you enter the system, and your scanners begin gathering the data House Idriss wants. A few minutes pass, and just when it seems to end, a loading bar comes up. When it reaches the end, another one appears, and the process repeats a few more times. After about an hour, your monitor goes back to normal.`
+		dialog `One of your monitors brings up various sets of data written in the Arach language when you enter the system, and your scanners begin gathering the data House Idriss wants. A few minutes pass untill a loading bar comes up. When it reaches the end, another one appears, and the process repeats a few more times. After about an hour, your monitor goes back to normal.`
 	on complete
 		event "outskirts gauger available" 25 63
 		payment 250000
@@ -2112,7 +2112,7 @@ mission "Coalition: Outskirts Gauger Ready"
 	source "Ablub's Invention"
 	on offer
 		conversation
-			`When you leave your ship, you're greeted by Flopug, of House Idriss. "Completed work on our newest set of scanners, we have. Since helped us with recovering the probe and its data, you have, only fair, it is, that allowed access to the equipment, you are."`
+			`When you leave your ship, you're greeted by Flopug of House Idriss. "Completed work on our newest set of scanners, we have. Since helped us with recovering the probe and its data, you have, only fair, it is, that allowed access to the equipment, you are."`
 			`	She asks you to follow her to the storage section of the local outfitter, normally a place only for employees, and shows you many large containers scattered about. "Now, still... experimental, the outfit is, and provide the Heliarchs with a potentially faulty product, we do not wish. So, naturally, not yet registered it with them, we have. Because of that, need to provide a license when purchasing copies, you will not. Of course, due to confidentiality, ask for the outfit itself, you should not. When interested in equipping your ships with them, you are, ask the outfitter supervisor for the 'special-grade cockpit cleaners,' you should. Brought to your ship as cargo, it will be, and from then on install it adequately, the workers shall."`
 			`	She explains that they used the probe's algorithms to have the scanners excel at finding basic energy signatures, such as heat or energy levels of other ships. "Made to check for complex machinery like outfits, or recognize specific cargo types, it was not, but still find uses for its current form, I'm sure you will."`
 			`	You follow her back to the main area of the outfitter, where she thanks you again for helping out, and leaves for her workplace.`
