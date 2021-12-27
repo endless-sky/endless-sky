@@ -47,7 +47,7 @@ function detect_retryable_issues () {
 # 3 = recoverable failure (could retry)
 function run_single_testrun () {
 	local TEST="$1"
-	
+
 	# Setup environment for the test
 	local ES_CONFIG_PATH=$(mktemp --directory)
 	if [ ! $? ]
@@ -55,7 +55,7 @@ function run_single_testrun () {
 		echo "not ok ${RUNNING_TEST} Couldn't create temporary directory"
 		return 2
 	fi
-	
+
 	local ES_SAVES_PATH="${ES_CONFIG_PATH}/saves"
 	mkdir -p "${ES_CONFIG_PATH}"
 	mkdir -p "${ES_SAVES_PATH}"
@@ -63,7 +63,7 @@ function run_single_testrun () {
 		echo "not ok ${RUNNING_TEST} Couldn't copy default config data"
 		return 2
 	fi
-	
+
 	local TEST_NAME=$(echo ${TEST} | sed "s/\"//g")
 	local RETURN=0
 	echo "# Running test \"${TEST_NAME}\":"
@@ -89,7 +89,7 @@ function run_single_testrun () {
 		fi
 		print_graphics_data
 	fi
-	
+
 	return ${RETURN}
 }
 

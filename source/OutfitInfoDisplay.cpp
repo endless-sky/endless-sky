@@ -277,7 +277,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		string units = (sit == SCALE.end() ? "" : SCALE_LABELS[sit->second].second);
 		
 		auto bit = BOOLEAN_ATTRIBUTES.find(it.first);
-		if(bit != BOOLEAN_ATTRIBUTES.end()) 
+		if(bit != BOOLEAN_ATTRIBUTES.end())
 		{
 			attributeLabels.emplace_back(bit->second);
 			attributeValues.emplace_back(" ");

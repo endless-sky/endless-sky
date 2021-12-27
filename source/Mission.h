@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "LocationFilter.h"
 #include "MissionAction.h"
 #include "NPC.h"
+#include "TextReplacements.h"
 
 #include <list>
 #include <map>
@@ -160,7 +161,7 @@ public:
 	// Get a specific mission action from this mission.
 	// If the mission action is not found for the given trigger, returns an empty
 	// mission action.
-	const MissionAction &GetAction(Trigger trigger) const; 
+	const MissionAction &GetAction(Trigger trigger) const;
 	
 	// "Instantiate" a mission by replacing randomly selected values and places
 	// with a single choice, and then replacing any wildcard text as well.
@@ -224,6 +225,9 @@ private:
 	std::list<LocationFilter> stopoverFilters;
 	std::set<const Planet *> visitedStopovers;
 	std::set<const System *> visitedWaypoints;
+	
+	// User-defined text replacements unique to this mission:
+	TextReplacements substitutions;
 	
 	// NPCs:
 	std::list<NPC> npcs;

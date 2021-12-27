@@ -16,7 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ImageBuffer.h"
 #include "Screen.h"
 
-#include "gl_header.h"
+#include "opengl.h"
 #include <SDL2/SDL.h>
 
 #include <cstring>
@@ -45,23 +45,6 @@ namespace {
 		}
 		
 		return false;
-	}
-	
-	bool HasOpenGLExtension(const char *name) {
-#ifndef __APPLE__
-		auto extensions = reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS));
-		return strstr(extensions, name);
-#else
-		bool value = false;
-		GLint extensionCount = 0;
-		glGetIntegerv(GL_NUM_EXTENSIONS, &extensionCount);
-		for(GLint i = 0; i < extensionCount && !value; ++i)
-		{
-			auto extension = reinterpret_cast<const char *>(glGetStringi(GL_EXTENSIONS, i));
-			value = (extension && strstr(extension, name));
-		}
-		return value;
-#endif
 	}
 }
 
@@ -93,7 +76,8 @@ bool GameWindow::Init()
 	
 	// Get details about the current display.
 	SDL_DisplayMode mode;
-	if(SDL_GetCurrentDisplayMode(0, &mode))	{	
+	if(SDL_GetCurrentDisplayMode(0, &mode))
+	{
 		ExitWithError("Unable to query monitor resolution!");
 		return false;
 	}
@@ -130,7 +114,7 @@ bool GameWindow::Init()
 		flags |= SDL_WINDOW_MAXIMIZED;
 	
 	// The main window spawns visibly at this point.
-	mainWindow = SDL_CreateWindow("Endless Sky", SDL_WINDOWPOS_UNDEFINED, 
+	mainWindow = SDL_CreateWindow("Endless Sky", SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, flags);
 		
 	if(!mainWindow){
@@ -206,8 +190,8 @@ bool GameWindow::Init()
 	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 	
 	// Check for support of various graphical features.
-	hasSwizzle = HasOpenGLExtension("_texture_swizzle");
-	supportsAdaptiveVSync = HasOpenGLExtension("_swap_control_tear");
+	hasSwizzle = OpenGL::HasSwizzleSupport();
+	supportsAdaptiveVSync = OpenGL::HasAdaptiveVSyncSupport();
 	
 	// Enable the user's preferred VSync state, otherwise update to an available
 	// value (e.g. if an external program is forcing a particular VSync state).
@@ -246,7 +230,7 @@ void GameWindow::Quit()
 		SDL_DestroyWindow(mainWindow);
 		
 	SDL_Quit();
-}	
+}
 
 
 
@@ -307,7 +291,7 @@ void GameWindow::AdjustViewport()
 	// may be larger than the window.
 	int drawWidth, drawHeight;
 	SDL_GL_GetDrawableSize(mainWindow, &drawWidth, &drawHeight);
-	Screen::SetHighDPI(drawWidth > windowWidth || drawHeight > windowHeight);	
+	Screen::SetHighDPI(drawWidth > windowWidth || drawHeight > windowHeight);
 	
 	// Set the viewport to go off the edge of the window, if necessary, to get
 	// everything pixel-aligned.
@@ -389,10 +373,10 @@ bool GameWindow::IsFullscreen()
 
 void GameWindow::ToggleFullscreen()
 {
-	// This will generate a window size change event, 
-	// no need to adjust the viewport here.		
+	// This will generate a window size change event,
+	// no need to adjust the viewport here.
 	if(IsFullscreen())
-	{ 
+	{
 		SDL_SetWindowFullscreen(mainWindow, 0);
 		SDL_SetWindowSize(mainWindow, width, height);
 	}
@@ -412,7 +396,7 @@ bool GameWindow::HasSwizzle()
 void GameWindow::ExitWithError(const string& message, bool doPopUp)
 {
 	// Print the error message in the terminal and the error file.
-	Files::LogError(message);		
+	Files::LogError(message);
 	checkSDLerror();
 	
 	// Show the error message in a message box.
@@ -436,7 +420,7 @@ void GameWindow::ExitWithError(const string& message, bool doPopUp)
 		SDL_ShowMessageBox(&box, &result);
 	}
 	
-	GameWindow::Quit();	
+	GameWindow::Quit();
 }
 
 

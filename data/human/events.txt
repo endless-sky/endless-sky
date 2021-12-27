@@ -2166,7 +2166,7 @@ event "pug territory liberated"
 		fleet "Small Northern Merchants" 1000
 		fleet "Large Northern Merchants" 3000
 		fleet "Small Republic" 700
-		fleet "Large Republic" 900 
+		fleet "Large Republic" 900
 		fleet "Small Syndicate" 1200
 		fleet "Large Syndicate" 2000
 	planet "Pugglemug"
@@ -2651,7 +2651,7 @@ event "fwc peace with the navy"
 		tribute 1
 			threshold 3000
 			fleet "Small Pug" 15
-			fleet "Large Pug" 3	
+			fleet "Large Pug" 3
 	planet Martini
 		"required reputation" 80
 	planet Thrall
