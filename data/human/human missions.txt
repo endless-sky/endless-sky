@@ -3615,7 +3615,7 @@ mission "Street Swindle"
 		credits >= 10000
 	on offer
 		conversation
-			`You see a small crowd begining to gather on a street corner. A man in a flamboyant striped suit and matching hat calls, "Come here! Come here! Come see the marvelous magician Mistress Marionette corral the crowded crossroads with her extravagant schemes!"`
+			`You see a small crowd beginning to gather on a street corner. A man in a flamboyant striped suit and matching hat calls, "Come here! Come here! Come see the marvelous magician Mistress Marionette corral the crowded crossroads with her extravagant schemes!"`
 			choice
 				`	(Check it out.)`
 					goto observe
@@ -3703,5 +3703,5 @@ mission "Street Swindle"
 				accept
 			label secondgamewatch
 			`	Sensing that something's up, you decide to watch the next game. A sprightly young fellow confidently hands over 6000 credits; when the cups stop, you feel like the ball is under the left one. The boy points to it; with a grin, the magician reveals the left cup, and it's... wrong! "Nice try," she says, pocketing the shocked boy's money. "It is a bit tricky."`
-			`	"Well, that's all for today, folks!" the announcer says. You're glad you avoided the con. As they pack up and leave, you notice the first winner walks away beside them.`
+			`	"Well, that's all for today, folks!" the announcer says. You're glad you avoided the con. As they pack up and leave, you notice that the first winner walks away beside them.`
 				decline
