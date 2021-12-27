@@ -70,7 +70,7 @@ private:
 private:
 	int64_t credits = 0;
 	int64_t recentChange = 0;
-	int64_t timeActualize = 0;
+	int timeActualize = 0;
 	// If back salaries and maintenance cannot be paid, they pile up rather
 	// than being ignored.
 	int64_t salariesOwed = 0;

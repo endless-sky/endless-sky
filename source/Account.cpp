@@ -12,16 +12,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Account.h"
 
-#include "Color.h"
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "GameData.h"
-#include "Screen.h"
 #include "text/Format.h"
-#include "text/Font.h"
 
 #include <algorithm>
 #include <sstream>
+#include <cmath>
 
 using namespace std;
 
@@ -109,7 +106,7 @@ void Account::AddCredits(int64_t value)
 {
 	credits += value;
 	recentChange = value;
-	timeActualize = abs(value);
+	timeActualize = 240;
 }
 
 
@@ -123,8 +120,7 @@ int64_t Account::RecentChange() const
 
 bool Account::Actualize()
 {
-	timeActualize -= 2000;
-	return timeActualize > 0;
+	return --timeActualize > 0;
 }
 
 
