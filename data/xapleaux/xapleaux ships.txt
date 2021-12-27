@@ -1,0 +1,199 @@
+ship Ascomy
+	sprite ship/ascomy
+	thumbnail thumbnail/ascomy
+	uncapturable
+	attributes
+		category "Heavy Warship"
+		cost 42140000
+		mass 945
+		bunks 138
+		"cargo space" 104
+		drag 22.3
+		"engine capacity" 44
+		"fuel capacity" 600
+		"heat dissipation" 0.82
+		hull 93800
+		"outfit space" 982
+		ramscoop 3
+		"required crew" 42
+		shields 32800
+		"solar collection" 88.4
+		"weapon capacity" 385
+		weapon
+			"blast radius" 450
+			"shield damage" 6400
+			"hull damage" 3200
+			"hit force" 9600
+	outfits
+		"Control Transceiver"
+		"EMP Torpedo" 64
+		"Ka'het EMP Deployer" 4
+		"Ka'het Ravager Beam" 4
+		"Ka'het Ravager Turret" 4
+		"Korath Warder" 2
+		"Large Heat Shunt" 4
+		"Plasma Core"
+		"Small Heat Shunt" 2
+		"String Drive"
+		"Systems Core (Large)"
+		"Triple Plasma Core"
+		`Type X "Coleo" Engine`
+	engine -142.5 42.5
+	engine 142.5 42.5
+	"reverse engine" -142.5 -42.5
+		angle -360
+	"reverse engine" 142.5 -42.5
+		angle -360
+	"steering engine" 142.5 -42.5
+		angle -180
+		right
+	"steering engine" -142.5 -42.5
+		angle -180
+		left
+	"steering engine" -142.5 42.5
+		right
+	"steering engine" 142.5 42.5
+		left
+	turret -96.5 -31.5 "Ka'het Ravager Turret"
+	turret 96.5 -31.5 "Ka'het Ravager Turret"
+	turret -56 -31.5 "Ka'het Ravager Turret"
+	turret 56 -31.5 "Ka'het Ravager Turret"
+	turret -76 70.5 "Korath Warder"
+	turret 76 70.5 "Korath Warder"
+	gun -108.5 -33 "Ka'het Ravager Beam"
+	gun 108.5 -33 "Ka'het Ravager Beam"
+	gun -84 -33 "Ka'het Ravager Beam"
+	gun 84 -33 "Ka'het Ravager Beam"
+	gun -69 -33 "Ka'het EMP Deployer"
+	gun 69 -33 "Ka'het EMP Deployer"
+	gun -44 -33 "Ka'het EMP Deployer"
+	gun 44 -33 "Ka'het EMP Deployer"
+	explode "huge explosion" 15
+	explode "large explosion" 50
+	explode "medium explosion" 70
+	explode "small explosion" 60
+	explode "tiny explosion" 120
+	"final explode" "final explosion large"
+	description "The mainline security vessel of the Xapleaux, it was designed to hold sufficient people as to allow a sense of community among the crew. While the ship itself can be run by a moderate crew, there are plenty of bunks to facilitate the efficiency gains from having crew to oversee various standard outfits that the Ascomy is typically equipped with. All Xapleaux ships have substantial solar collection and heat dissipation capabilities to enable long-term operations in the brilliant core environment. Security ships are equipped with enough fuel to respond to events at the opposite end of The Brilliance without having to waste time refuelling, as a lesson learned from their encounter with Korath raids."
+
+ship Blastoc
+	sprite ship/blastoc
+	thumbnail "Heavy Freighter"
+	uncapturable
+	attributes
+		category "Heavy Warship"
+		cost 42140000
+		mass 945
+		bunks 138
+		"cargo space" 104
+		drag 22.3
+		"engine capacity" 44
+		"fuel capacity" 600
+		"heat dissipation" 0.82
+		hull 93800
+		"outfit space" 982
+		ramscoop 3
+		"required crew" 42
+		shields 32800
+		"solar collection" 88.4
+		"weapon capacity" 385
+		weapon
+			"blast radius" 450
+			"shield damage" 6400
+			"hull damage" 3200
+			"hit force" 9600
+	outfits
+		"Control Transceiver"
+		"Ka'het Ravager Turret" 3
+		"Large Heat Shunt" 4
+		"Plasma Core"
+		"Small Heat Shunt" 2
+		"String Drive"
+		"Systems Core (Large)"
+		"Triple Plasma Core"
+		`Type I "Lepido" Engine`
+	engine -81 107
+	engine 81 107
+	"reverse engine" -81 -101
+	"reverse engine" 81 -101
+	"steering engine" 81 -101
+		angle -180
+		right
+	"steering engine" -81 -101
+		angle -180
+		left
+	"steering engine" -81 101
+		right
+	"steering engine" 81 101
+		left
+	turret -48.5 1 "Ka'het Ravager Turret"
+	turret 48.5 1 "Ka'het Ravager Turret"
+	turret 0 -86 "Ka'het Ravager Turret"
+	explode "huge explosion" 15
+	explode "large explosion" 50
+	explode "medium explosion" 70
+	explode "small explosion" 60
+	explode "tiny explosion" 120
+	"final explode" "final explosion large"
+	description Blastoc.dsc
+
+ship Basidio
+	sprite ship/basidio
+	thumbnail thumbnail/basidio
+	uncapturable
+	attributes
+		category Transport
+		cost 42140000
+		mass 945
+		bunks 138
+		"cargo space" 104
+		drag 22.3
+		"engine capacity" 44
+		"fuel capacity" 600
+		"heat dissipation" 0.82
+		hull 93800
+		"outfit space" 982
+		ramscoop 3
+		"required crew" 42
+		shields 32800
+		"solar collection" 88.4
+		"weapon capacity" 385
+		weapon
+			"blast radius" 450
+			"shield damage" 6400
+			"hull damage" 3200
+			"hit force" 9600
+	outfits
+		"Control Transceiver"
+		"Ka'het Ravager Turret" 2
+		"Large Heat Shunt" 4
+		"Plasma Core"
+		"Small Heat Shunt" 2
+		"String Drive"
+		"Systems Core (Large)"
+		"Triple Plasma Core"
+		`Type I "Lepido" Engine`
+	engine -109.5 104
+	engine 109.5 104
+	"reverse engine" -109.5 -104
+	"reverse engine" 109.5 -104
+	"steering engine" 109.5 -104
+		angle -180
+		right
+	"steering engine" -109.5 -104
+		angle -180
+		left
+	"steering engine" -109.5 104
+		right
+	"steering engine" 109.5 104
+		left
+	turret -43.5 -5 "Ka'het Ravager Turret"
+	turret 43.5 -5 "Ka'het Ravager Turret"
+	explode "huge explosion" 15
+	explode "large explosion" 50
+	explode "medium explosion" 70
+	explode "small explosion" 60
+	explode "tiny explosion" 120
+	"final explode" "final explosion large"
+	description Basidio.dsc
+

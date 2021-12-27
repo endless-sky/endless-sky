@@ -625,7 +625,8 @@ government "Wanderer"
 
 
 government "Xapleaux"
-	swizzle 3
+	swizzle 0
+	color 1 1 1
 	"player reputation" 1
 	language "Xapleaux"
 
