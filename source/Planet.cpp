@@ -391,7 +391,7 @@ double Planet::GetLocalRelativePrice(const Outfit *outfit) const
 		if(sale.second.HasPlanet(this) && sale.second.GetSellType() == sellType)
 			customSale.Add(sale.second);
 	double priceChange = customSale.GetRelativeCost(outfit);
-	return priceChange != -1. ? priceChange : Outfitter().Has(outfit);
+	return priceChange >= 0. ? priceChange : 1.;
 }
 
 
