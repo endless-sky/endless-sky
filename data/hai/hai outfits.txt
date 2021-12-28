@@ -136,7 +136,7 @@ outfit "Ionic Blaster"
 		"shield damage" 125
 		"hull damage" 32
 		"ion damage" 1.6
-	description "Since the start of the war with the rest of the Hai the Unfettered tried to gain a technological edge, knowing resources were spare, in order to plunder more easily. To that goal, they started developping this weapon which not only does a lot of ion damage to disable the target but also does enough raw damage to be usefull in all situations. The only problem is that until now they have lacked the resources to mass produce them, so it is only a prized possession of a lucky few."
+	description "Since the start of the war with the rest of the Hai the Unfettered tried to gain a technological edge, knowing resources were spare, in order to plunder more easily. To that goal, they started developping this weapon which not only does a lot of ion damage to disable the target but also does enough raw damage to be useful in all situations. The only problem is that until now they have lacked the resources to mass produce them, so it is only a prized possession of a lucky few."
 
 outfit "Ionic Turret"
 	category "Turrets"
@@ -422,7 +422,7 @@ outfit "Hai Zephyr Cooling"
 	"mass" 14
 	"outfit space" -14
 	"cooling" 21
-	description `This advanced cooling system was developped by the Unfettered with significant help from Korath scientists, who apparently laughed at the "primitive" old design the Hai had developped, and which they had found sufficient until then.`
+	description `This advanced cooling system was developed by the Unfettered with significant help from Korath scientists, who apparently laughed at the "primitive" old design the Hai had developed, and which they had found sufficient until then.`
 
 outfit "Quantum Keystone"
 	category "Systems"
