@@ -3625,7 +3625,7 @@ mission "Thrall Emigration"
 				`	"I might be able to help you. What planet do you need to reach?"`
 				`	"I'm sorry, I only transport for pay."`
 					goto disappointment
-			`	His eyes brighten with hope. "Oh! I, I heard some people going to Delve to be miners. They hire folk like us. I, if you could get me, and my wife and our two sons there, I'd praise you to the high stars. You'd save our lives."`
+			`	His eyes brighten with hope. "Oh! I, I heard some people are going to Delve to be miners. They hire folk like us. I, if you could get me, and my wife and our two sons there, I'd praise you to the high stars. You'd save our lives."`
 			choice
 				`	"I can take you, but no more."`
 					goto separation
