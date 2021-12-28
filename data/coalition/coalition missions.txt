@@ -2091,7 +2091,7 @@ mission "Coalition: Long Lost Property 4"
 	on enter "Alnasl"
 		dialog `One of your monitors brings up various sets of data written in the Arach language when you enter the system, and your scanners begin gathering the data House Idriss wants. A few minutes pass untill a loading bar comes up. When it reaches the end, another one appears, and the process repeats a few more times. After about an hour, your monitor goes back to normal.`
 	on complete
-		event "outskirts gauger available" 25 63
+		event "outskirts gauger available" 135 286
 		payment 250000
 		conversation
 			`Flopug is waiting by the landing bays for you, with the Arach duo beside her. They come inside your ship when you've landed, and start checking the data, after Flopug pays you <payment>.`
