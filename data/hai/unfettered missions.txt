@@ -576,7 +576,7 @@ mission "Unfettered: Prove Your Strength"
 	to offer
 		has "Unfettered Jump Drive 2: offered"
 		has "Unfettered: Bring Medical Supplies: done"
-		has "armament deterrence" > 5
+		has "armament deterrence" > 4
 	on offer
 		conversation
 			`You start wandering in the spaceport, and notice that everything around you here is incredibly simple, efficient, and ordered. There seems to also be more warriors here than on the other Unfettered planets, or at least they are less afraid to wander around armed. It seems they ready for action at any time, you are happy to no longer be their enemy, at least for now.`
@@ -2210,15 +2210,8 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 		dialog `After unloading all the cargo you go check for the warlord in the shipyard, and you find a Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship, "We have a very special reward for you, captain: a brand new ship, produced just for you. It is equipped with plenty of prototypes and has some particularities which I am sure you will like, including a reinforced shield matrix!" You guess that Taer-Fi left you the message.`
 
 event "shield beetle mass production"
-	outfitter "Unfettered Basics"
-		"Pulse Turret"
-		"Hai Tracker Pod"
-		"Tracker Storage Pod"
-		"Hai Ravine Batteries"
-		"Boulder Reactor"
-		"Hai Diamond Regenerator"
-		`"Bondir" Atomic Thruster`
-		`"Bondir" Atomic Steering`
+	planet "Darkcloak"
+		add outfitter "Unfettered"
 
 mission "Unfettered: Shield Beetles Available"
 	source
@@ -2510,5 +2503,5 @@ event "joined the unfettered"
 		swizzle 4
 
 event "shield beetles accessible"
-	shipyard "Unfettered Basics"
-		"Shield Beetle"
+	planet "Darkcloak"
+		add shipyard "Unfettered"

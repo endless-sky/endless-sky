@@ -445,6 +445,9 @@ shipyard "Unfettered Basics"
 	"Water Bug"
 	"Sea Scorpion"
 
+shipyard "Unfettered"
+	"Shield Beetle"
+
 outfitter "Unfettered Basics"
 	"Pulse Cannon"
 	"Hai Tracker"
@@ -464,6 +467,16 @@ outfitter "Unfettered Basics"
 	"Local Map"
 	"Quantum Keystone"
 	"Pulse Rifle"
+
+outfitter "Unfettered"
+	"Pulse Turret"
+	"Hai Tracker Pod"
+	"Tracker Storage Pod"
+	"Hai Ravine Batteries"
+	"Boulder Reactor"
+	"Hai Diamond Regenerator"
+	`"Bondir" Atomic Thruster`
+	`"Bondir" Atomic Steering`
 
 phrase "hai"
 	word
