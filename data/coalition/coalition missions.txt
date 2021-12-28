@@ -1923,7 +1923,7 @@ mission "Coalition: Long Lost Property 1"
 			`	"Not too long," the short Arach answers. "Minor changes in its speed, the probe might have had, but delay its arrival for more than a few weeks, it could not. One week from now, the absolute limit date for its arrival is."`
 			`	"If locate it immediately, you do not, maybe ask the local humans you could," the taller one adds. "Newsworthy in most systems, such an event would be."`
 			label accept
-			`	They show you an image of the probe, which looks pretty much like an ordinary satellite, and say they'll work on your ship's scanning system to pick up the object's signature easier. Flopug says goodbye, telling you she must continue working, but has the two Arachi bring you back to your ship and adjust your scanners. They wish you good luck once they're done, and leave your ship.`
+			`	They show you an image of the probe, which looks pretty much like an ordinary satellite, and say they'll work on your ship's scanning system to pick up the object's signature easier. Flopug says goodbye and tells you she must continue working, but has the two Arachi bring you back to your ship and adjust your scanners. They wish you good luck once they're done, and leave your ship.`
 				accept
 	on enter "Han"
 		dialog `You let your scanners work for a few minutes, but they don't manage to locate House Idriss' probe. It might not yet have arrived in the system, but it would be best to look for information on Darkstone.`
@@ -2003,7 +2003,7 @@ mission "Coalition: Long Lost Property 3"
 				`	"What do you think they meant by that?"`
 					goto meant
 				`	"Did you catch their names?"`
-			`	"Did they tell me their names? Yes. Their real ones? Doubt it, they seemed organized enough they wanted to keep that information hidden. I did get a look at their ships while we were loading the product into one of them, though."`
+			`	"Did they tell me their names? Yes. Their real ones? Doubt it, they seemed organized enough that they wanted to keep that information hidden. I did get a look at their ships while we were loading the product into one of them, though."`
 				goto ships
 			label meant
 			`	He shrugs, "My guess is their base is behind some bottleneck, so they wanted something that could tell them in advance if any Navy or bounty hunter was coming for them. I did get to look at their ships, seemed very well equipped for running away, if they knew someone was coming."`
@@ -2084,7 +2084,7 @@ mission "Coalition: Long Lost Property 4"
 			`The Arach duo greet you in the spaceport and ask you to bring them inside your ship to talk. They look to the sides and behind them every other moment, as if watching out for something. When you're inside your ship's command room, the taller one speaks. "Compared the probe's prediction with its last reading of the system of arrival, we have. A very good approximation to real conditions, it reached. Though incredibly outdated, its hardware is, an ingenious program, what my ancestors-"`
 			`	"My ancestors," the short one interrupts him.`
 			`	"What our ancestors created is."`
-			`	They show you a device with a map on screen, depicting nearby star systems, and the short Arach starts explaining, "Intrigued as to just how accurate its predictions have become, we are, so to verify its data about a star deeper in human space, the next step is." He points to a system at the edge of the map. "Have humans discovered this system, Captain? Interested in comparing the probe's data on far away binary stars, the president is."`
+			`	They show you a device with a map on screen, depicting nearby star systems, and the short Arach starts explaining. "Intrigued as to just how accurate its predictions have become, we are, so to verify its data about a star deeper in human space, the next step is." He points to a system at the edge of the map. "Have humans discovered this system, Captain? Interested in comparing the probe's data on far away binary stars, the president is."`
 			`	You look at the screen and at your own map for a moment, and recognize the system as <waypoints>. "Settled it is, then. Head to that system, you should," the taller one speaks again. "Still with our adjustments, your scanners are, so just tinker them a bit to gather the needed data, we will."`
 			`	Once they're done with your scanners a few minutes later, they leave your ship and wish you good luck.`
 				accept
