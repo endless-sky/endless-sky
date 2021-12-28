@@ -420,15 +420,15 @@ interface "hud"
 		color "medium"
 		align right
 	string "recent change"
-		from -70 85
+		from -70 80
 		color "bright"
 		align right
 	string "recent change medium"
-		from -70 85
+		from -70 80
 		color "medium"
 		align right
 	string "recent change faint"
-		from -70 85
+		from -70 80
 		color "dim"
 		align right
 	

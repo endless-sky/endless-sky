@@ -106,7 +106,7 @@ void Account::AddCredits(int64_t value)
 {
 	credits += value;
 	recentChange = value;
-	timeActualize = 200;
+	timeActualize = 180;
 }
 
 
