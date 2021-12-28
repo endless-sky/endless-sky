@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 #include "GameData.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "Outfit.h"
 #include "CustomSale.h"
 #include "Ship.h"
@@ -235,11 +236,11 @@ int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day) cons
 
 
 // Get the value of a ship, along with all its outfits.
-int64_t Depreciation::Value(const Ship &ship, int day, const Planet *planet) const
+int64_t Depreciation::Value(const Ship &ship, int day, const PlayerInfo *player) const
 {
 	int64_t value = Value(&ship, day);
 	for(const auto &it : ship.Outfits())
-		value += Value(it.first, day, planet, it.second);
+		value += Value(it.first, day, player, it.second);
 	return value;
 }
 
@@ -261,9 +262,9 @@ int64_t Depreciation::Value(const Ship *ship, int day, int count) const
 
 
 // Get the value of an outfit.
-int64_t Depreciation::Value(const Outfit *outfit, int day, const Planet *planet, int count) const
+int64_t Depreciation::Value(const Outfit *outfit, int day, const PlayerInfo *player, int count) const
 {
-	int64_t cost = (planet ? planet->GetLocalRelativePrice(outfit) : 1) * outfit->Cost();
+	int64_t cost = (player ? player->GetPlanet() ? player->GetPlanet()->GetLocalRelativePrice(outfit, player->Conditions()) : 1 : 1) * outfit->Cost();
 	if(outfit->Get("installable") < 0.)
 		return count * cost;
 	

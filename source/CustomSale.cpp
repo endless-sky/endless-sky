@@ -107,6 +107,8 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 			else
 				child.PrintTrace("Warning: use a location filter to choose from multiple planets:");
 		}
+		else if(token == "conditions")
+			toApply.Load(child);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -228,9 +230,10 @@ bool CustomSale::Has(const Outfit *item) const
 
 
 
-bool CustomSale::HasPlanet(const Planet *planet) const
+bool CustomSale::Matches(const Planet *planet, const ConditionSet::Conditions conditions) const
 {
-	return (source != nullptr) ? source == planet : locationFilter.Matches(planet);
+	return ((source != nullptr) ? source == planet : locationFilter.Matches(planet)) && 
+		(toApply.IsEmpty() || toApply.Test(conditions));
 }
 
 

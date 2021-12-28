@@ -131,7 +131,7 @@ double MapShipyardPanel::SystemValue(const System *system) const
 			const auto &shipyard = object.GetPlanet()->Shipyard();
 			if(shipyard.Has(selected))
 			{
-				int64_t relativeCost = selected->LocalCost(object.GetPlanet());
+				int64_t relativeCost = selected->LocalCost(object.GetPlanet(), player.Conditions());
 				
 				if(relativeCost > MapPanel::maxColor)
 					MapPanel::maxColor = relativeCost;
@@ -199,7 +199,7 @@ void MapShipyardPanel::DrawItems()
 					{
 						double outfitValue = 0.;
 						for(const auto &it : ship->Outfits())
-							outfitValue += object.GetPlanet()->GetLocalRelativePrice(it.first) * it.first->Cost() * it.second;
+							outfitValue += object.GetPlanet()->GetLocalRelativePrice(it.first, player.Conditions()) * it.first->Cost() * it.second;
 						
 						price = Format::Credits(ship->ChassisCost() + outfitValue) + " credits";
 						isForSale = true;

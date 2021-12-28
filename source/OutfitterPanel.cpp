@@ -96,7 +96,7 @@ int OutfitterPanel::TileSize() const
 
 int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
 {
-	shipInfo.Update(*playerShip, player.FleetDepreciation(), day, player.GetPlanet());
+	shipInfo.Update(*playerShip, player.FleetDepreciation(), day, &player);
 	shipInfo.DrawAttributes(point);
 	
 	return shipInfo.AttributesHeight();
@@ -107,7 +107,7 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
 bool OutfitterPanel::HasItem(const string &name) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
-	const CustomSale::SellType selling = player.GetPlanet()->GetAvailability(outfit);
+	const CustomSale::SellType selling = player.GetPlanet()->GetAvailability(outfit, player.Conditions());
 	// Do not show hidden items except if the player has them in stock.
 	if((selling != CustomSale::SellType::NONE && (selling != CustomSale::SellType::HIDDEN 
 		|| player.Stock(outfit) > 0)) && showForSale)
@@ -179,7 +179,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 	// Don't show the "in stock" amount if the outfit has an unlimited stock or
 	// if it is not something that you can buy.
 	int stock = 0;
-	const CustomSale::SellType sellType = player.GetPlanet()->GetAvailability(outfit);
+	const CustomSale::SellType sellType = player.GetPlanet()->GetAvailability(outfit, player.Conditions());
 	if(sellType != CustomSale::SellType::VISIBLE && outfit->Get("installable") >= 0.)
 		stock = max(0, player.Stock(outfit));
 	int cargo = player.Cargo().Get(outfit);
@@ -318,7 +318,7 @@ bool OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 		return false;
 	
 	bool isAlreadyOwned = checkAlreadyOwned && IsAlreadyOwned();
-	if(!(player.GetPlanet()->GetAvailability(selectedOutfit) == CustomSale::SellType::VISIBLE
+	if(!(player.GetPlanet()->GetAvailability(selectedOutfit, player.Conditions()) == CustomSale::SellType::VISIBLE
 		|| player.Stock(selectedOutfit) > 0 || isAlreadyOwned))
 		return false;
 	
@@ -327,7 +327,7 @@ bool OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 		return false;
 	
 	// Determine what you will have to pay to buy this outfit.
-	int64_t cost = player.StockDepreciation().Value(selectedOutfit, day, player.GetPlanet());
+	int64_t cost = player.StockDepreciation().Value(selectedOutfit, day, &player);
 	// Check that the player has any necessary licenses.
 	int64_t licenseCost = LicenseCost(selectedOutfit);
 	if(licenseCost < 0)
@@ -379,7 +379,7 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 				for(const System *system : distance.Systems())
 					if(!player.HasVisited(*system))
 						player.Visit(*system);
-				int64_t price = player.StockDepreciation().Value(selectedOutfit, day, player.GetPlanet());
+				int64_t price = player.StockDepreciation().Value(selectedOutfit, day, &player);
 				player.Accounts().AddCredits(-price);
 			}
 			return;
@@ -392,7 +392,7 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 			if(entry <= 0)
 			{
 				entry = true;
-				int64_t price = player.StockDepreciation().Value(selectedOutfit, day, player.GetPlanet());
+				int64_t price = player.StockDepreciation().Value(selectedOutfit, day, &player);
 				player.Accounts().AddCredits(-price);
 			}
 			return;
@@ -411,11 +411,11 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 			else
 			{
 				// Check if the outfit is for sale or in stock so that we can actually buy it.
-				if(player.GetPlanet()->GetAvailability(selectedOutfit) != CustomSale::SellType::VISIBLE 
+				if(player.GetPlanet()->GetAvailability(selectedOutfit, player.Conditions()) != CustomSale::SellType::VISIBLE 
 					&& player.Stock(selectedOutfit) <= 0)
 					continue;
 				player.Cargo().Add(selectedOutfit);
-				int64_t price = player.StockDepreciation().Value(selectedOutfit, day, player.GetPlanet());
+				int64_t price = player.StockDepreciation().Value(selectedOutfit, day, &player);
 				player.Accounts().AddCredits(-price);
 				player.AddStock(selectedOutfit, -1);
 				continue;
@@ -435,11 +435,11 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 			else if(player.Storage() && player.Storage()->Get(selectedOutfit))
 				player.Storage()->Remove(selectedOutfit);
 			else if(alreadyOwned || !(player.Stock(selectedOutfit) > 0 ||
-				player.GetPlanet()->GetAvailability(selectedOutfit) == CustomSale::SellType::VISIBLE))
+				player.GetPlanet()->GetAvailability(selectedOutfit, player.Conditions()) == CustomSale::SellType::VISIBLE))
 				break;
 			else
 			{
-				int64_t price = player.StockDepreciation().Value(selectedOutfit, day, player.GetPlanet());
+				int64_t price = player.StockDepreciation().Value(selectedOutfit, day, &player);
 				player.Accounts().AddCredits(-price);
 				player.AddStock(selectedOutfit, -1);
 			}
@@ -459,7 +459,7 @@ void OutfitterPanel::FailBuy() const
 	if(!selectedOutfit)
 		return;
 	
-	int64_t cost = player.StockDepreciation().Value(selectedOutfit, day, player.GetPlanet());
+	int64_t cost = player.StockDepreciation().Value(selectedOutfit, day, &player);
 	int64_t credits = player.Accounts().Credits();
 	bool isInCargo = player.Cargo().Get(selectedOutfit);
 	bool isInStorage = player.Storage() && player.Storage()->Get(selectedOutfit);
@@ -494,7 +494,7 @@ void OutfitterPanel::FailBuy() const
 		return;
 	}
 	
-	if(player.GetPlanet()->GetAvailability(selectedOutfit) != CustomSale::SellType::VISIBLE)
+	if(player.GetPlanet()->GetAvailability(selectedOutfit, player.Conditions()) != CustomSale::SellType::VISIBLE)
 	{
 		GetUI()->Push(new Dialog("You can only sell this outfit here, "
 			"it is meant to be imported, legally or not, generally for a good price."));
@@ -635,7 +635,7 @@ void OutfitterPanel::Sell(bool toStorage)
 		}
 		else
 		{
-			int64_t price = player.FleetDepreciation().Value(selectedOutfit, day, player.GetPlanet());
+			int64_t price = player.FleetDepreciation().Value(selectedOutfit, day, &player);
 			player.Accounts().AddCredits(price);
 			player.AddStock(selectedOutfit, 1);
 		}
@@ -670,7 +670,7 @@ void OutfitterPanel::Sell(bool toStorage)
 			}
 			else
 			{
-				int64_t price = player.FleetDepreciation().Value(selectedOutfit, day, player.GetPlanet());
+				int64_t price = player.FleetDepreciation().Value(selectedOutfit, day, &player);
 				player.Accounts().AddCredits(price);
 				player.AddStock(selectedOutfit, 1);
 			}
@@ -691,7 +691,7 @@ void OutfitterPanel::Sell(bool toStorage)
 						mustSell -= storage->Add(ammo, mustSell);
 					if(mustSell)
 					{
-						int64_t price = player.FleetDepreciation().Value(ammo, day, player.GetPlanet(), mustSell);
+						int64_t price = player.FleetDepreciation().Value(ammo, day, &player, mustSell);
 						player.Accounts().AddCredits(price);
 						player.AddStock(ammo, mustSell);
 					}
@@ -704,7 +704,7 @@ void OutfitterPanel::Sell(bool toStorage)
 	if(!toStorage && storage && storage->Get(selectedOutfit))
 	{
 		storage->Remove(selectedOutfit);
-		int64_t price = player.FleetDepreciation().Value(selectedOutfit, day, player.GetPlanet());
+		int64_t price = player.FleetDepreciation().Value(selectedOutfit, day, &player);
 		player.Accounts().AddCredits(price);
 		player.AddStock(selectedOutfit, 1);
 	}
@@ -956,7 +956,7 @@ void OutfitterPanel::CheckRefill()
 		it.second = max(0, it.second - player.Cargo().Get(it.first));
 		if(!outfitter.count(it.first))
 			it.second = min(it.second, max(0, player.Stock(it.first)));
-		cost += player.StockDepreciation().Value(it.first, day, player.GetPlanet(), it.second);
+		cost += player.StockDepreciation().Value(it.first, day, &player, it.second);
 	}
 	if(!needed.empty() && cost < player.Accounts().Credits())
 	{
@@ -994,7 +994,7 @@ void OutfitterPanel::Refill()
 				int available = outfitter.count(outfit) ? neededAmmo : min<int>(neededAmmo, max<int>(0, player.Stock(outfit)));
 				if(neededAmmo && available > 0)
 				{
-					int64_t price = player.StockDepreciation().Value(outfit, day, player.GetPlanet(), available);
+					int64_t price = player.StockDepreciation().Value(outfit, day, &player, available);
 					player.Accounts().AddCredits(-price);
 					player.AddStock(outfit, -available);
 				}

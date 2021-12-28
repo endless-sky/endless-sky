@@ -142,8 +142,8 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 		if(object.HasSprite() && object.HasValidPlanet())
 		{
 			const Planet *planet = object.GetPlanet();
-			double cost = planet->GetLocalRelativePrice(selected);
-			CustomSale::SellType sellType = planet->GetAvailability(selected);
+			double cost = planet->GetLocalRelativePrice(selected, player.Conditions());
+			CustomSale::SellType sellType = planet->GetAvailability(selected, player.Conditions());
 			const auto &storage = player.PlanetaryStorage();
 			bool storedInSystem = (storage.find(planet) != storage.cend());
 			
@@ -240,7 +240,7 @@ void MapOutfitterPanel::DrawItems()
 						continue;
 
 					const Planet &planet = *object.GetPlanet();
-					CustomSale::SellType sold = planet.GetAvailability(outfit);
+					CustomSale::SellType sold = planet.GetAvailability(outfit, player.Conditions());
 					const auto pit = storage.find(&planet);
 					if(pit != storage.end())
 						storedInSystem += pit->second.Get(outfit);
@@ -250,7 +250,7 @@ void MapOutfitterPanel::DrawItems()
 
 					if(isForSale)
 					{
-  						price = Format::Credits(planet.GetLocalRelativePrice(outfit) * outfit->Cost()) + " credits";
+  						price = Format::Credits(planet.GetLocalRelativePrice(outfit, player.Conditions()) * outfit->Cost()) + " credits";
   						if(sold != CustomSale::SellType::VISIBLE)
 							price += " (" + (CustomSale::GetShown(sold)) + ")";
   						break;
@@ -293,7 +293,7 @@ void MapOutfitterPanel::Init()
 				}
 			for(auto &&sales : GameData::CustomSales())
 				if(sales.second.GetSellType() != CustomSale::SellType::HIDDEN && 
-					it.second.HasOutfitter() && sales.second.HasPlanet(&it.second))
+					it.second.HasOutfitter() && sales.second.Matches(&it.second, player.Conditions()))
 					for(const auto& outfit : sales.second.GetShownOutfits())
 						if(!seen.count(outfit))
 						{

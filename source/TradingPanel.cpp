@@ -253,7 +253,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			if(it.first->Get("installable") >= 0. && !sellOutfits)
 				continue;
 			
-			int64_t value = player.FleetDepreciation().Value(it.first, day, player.GetPlanet(), it.second);
+			int64_t value = player.FleetDepreciation().Value(it.first, day, &player, it.second);
 			profit += value;
 			tonsSold += static_cast<int>(it.second * it.first->Mass());
 			

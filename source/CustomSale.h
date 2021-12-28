@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef CustomSale_H_
 #define CustomSale_H_
 
+#include "ConditionSet.h"
 #include "LocationFilter.h"
 #include "Outfit.h"
 #include "Set.h"
@@ -53,7 +54,7 @@ public:
 	
 	bool Has(const Outfit *item) const;
 
-	bool HasPlanet(const Planet *planet) const;
+	bool Matches(const Planet *planet, const ConditionSet::Conditions conditions) const;
 
 	void clear();
 
@@ -62,6 +63,7 @@ private:
 	mutable Sale<Outfit> seen;
 	
 	LocationFilter locationFilter;
+	ConditionSet toApply;
 	const Planet *source = nullptr;
 	
 	std::map<const Sale<Outfit> *, double> relativePrices;

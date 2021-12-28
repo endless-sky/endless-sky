@@ -863,7 +863,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 		return;
 	
 	int day = date.DaysSinceEpoch();
-	int64_t cost = isGift ? 0 : stockDepreciation.Value(*model, day, GetPlanet());
+	int64_t cost = isGift ? 0 : stockDepreciation.Value(*model, day, this);
 	if(accounts.Credits() >= cost)
 	{
 		// Copy the model instance into a new instance.
@@ -897,7 +897,7 @@ void PlayerInfo::SellShip(const Ship *selected)
 		if(it->get() == selected)
 		{
 			int day = date.DaysSinceEpoch();
-			int64_t cost = depreciation.Value(*selected, day, GetPlanet());
+			int64_t cost = depreciation.Value(*selected, day, this);
 			
 			// Record the transfer of this ship in the depreciation and stock info.
 			stockDepreciation.Buy(*selected, day, &depreciation);
@@ -1442,7 +1442,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 			// Compute the total value for each type of excess outfit.
 			if(!outfit.second)
 				continue;
-			int64_t cost = depreciation.Value(outfit.first, day, planet, outfit.second);
+			int64_t cost = depreciation.Value(outfit.first, day, this, outfit.second);
 			for(int i = 0; i < outfit.second; ++i)
 				stockDepreciation.Buy(outfit.first, day, &depreciation);
 			income += cost;
