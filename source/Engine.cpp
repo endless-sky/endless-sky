@@ -671,9 +671,9 @@ void Engine::Step(bool isActive)
 	info.SetString("credits",
 		Format::Credits(player.Accounts().Credits()) + " credits");
 	int framesRemaining = player.Accounts().Actualize();
-	if(framesRemaining > 150)
+	if(framesRemaining > 120)
 		info.SetString("recent change", Format::Credits(player.Accounts().RecentChange()));
-	else if(framesRemaining > 90)
+	else if(framesRemaining > 80)
 		info.SetString("recent change medium", Format::Credits(player.Accounts().RecentChange()));
 	else if(framesRemaining > 0)
 		info.SetString("recent change faint", Format::Credits(player.Accounts().RecentChange()));
