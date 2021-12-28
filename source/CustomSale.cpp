@@ -53,13 +53,19 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 			const Outfit *outfit = outfits.Get(child.Token(1 + id));
 			if(child.Token(2 + id) == "value")
 			{
-				relativeOutfitPrices[outfit] = child.Value(3 + id);
+				if(id)
+					relativeOutfitPrices[outfit] += child.Value(3 + id);
+				else
+					relativeOutfitPrices[outfit] = child.Value(3 + id);
 				if(child.Size() < 5 + id)
 					relativeOutfitPrices[outfit] /= outfit->Cost();
 			}
 			else if(child.Token(2 + id) == "offset")
 			{
-				relativeOutfitOffsets[outfit] = child.Value(3 + id);
+				if(id)
+					relativeOutfitOffsets[outfit] += child.Value(3 + id);
+				else
+					relativeOutfitOffsets[outfit] = child.Value(3 + id);
 				if(child.Size() < 5 + id)
 					relativeOutfitOffsets[outfit] /= outfit->Cost();
 			}
@@ -68,9 +74,19 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 		{
 			const Sale<Outfit> *item = items.Get(child.Token(1 + id));
 			if(child.Token(2 + id) == "value")
-				relativePrices[item] = child.Value(3 + id);
+			{
+				if(id)
+					relativePrices[item] += child.Value(3 + id);
+				else
+					relativePrices[item] = child.Value(3 + id);
+			}
 			else if(child.Token(2 + id) == "offset")
-				relativeOffsets[item] = child.Value(3 + id);
+			{
+				if(id)
+					relativeOffsets[item] += child.Value(3 + id);
+				else
+					relativeOffsets[item] = child.Value(3 + id);
+			}
 		}
 		else if(token == "hidden" || token == "import")
 		{
@@ -121,8 +137,8 @@ bool CustomSale::Add(const CustomSale &other)
 		const auto& item = relativeOffsets.find(it.first);
 		if(item == relativeOffsets.cend())
 			relativeOffsets[it.first] = it.second;
-		else if(item->second < it.second)
-			item->second = it.second;
+		else
+			item->second += it.second;
 	}
 	for(const auto& it : other.relativeOutfitPrices)
 	{
@@ -137,8 +153,8 @@ bool CustomSale::Add(const CustomSale &other)
 		const auto& item = relativeOutfitOffsets.find(it.first);
 		if(item == relativeOutfitOffsets.cend())
 			relativeOutfitOffsets[it.first] = it.second;
-		else if(item->second < it.second)
-			item->second = it.second;
+		else
+			item->second += it.second;
 	}
 	return true;
 }
@@ -158,15 +174,15 @@ double CustomSale::GetRelativeCost(const Outfit *item) const
 			}
 	const auto& baseOffset = relativeOutfitOffsets.find(item);
 	double baseOffsetPrice = (baseOffset != relativeOutfitOffsets.cend() ? baseOffset->second : DEFAULT);
-	if(baseOffsetPrice == DEFAULT)
-		for(const auto& it : relativeOffsets)
-			if(it.first->Has(item))
-			{
-				baseOffsetPrice = it.second;
-				break;
-			}
+	for(const auto& it : relativeOffsets)
+		if(it.first->Has(item))
+		{
+			if(baseOffsetPrice == DEFAULT)
+				baseOffsetPrice = 0.;
+			baseOffsetPrice += it.second;
+		}
 	if(baseRelativePrice != DEFAULT)
-		return baseRelativePrice + (baseOffsetPrice != DEFAULT ? baseOffsetPrice : 0.);
+		return baseRelativePrice + (baseOffsetPrice != DEFAULT ? baseRelativePrice * baseOffsetPrice : 0.);
 	else if(baseOffsetPrice != DEFAULT)
 		return 1. + baseOffsetPrice;
 	else
