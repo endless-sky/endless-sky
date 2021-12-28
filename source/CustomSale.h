@@ -50,7 +50,7 @@ public:
 
 	static const std::string &GetShown(SellType sellType);
 	
-	const Sale<Outfit> &GetShownOutfits() const;
+	const Sale<Outfit> &GetOutfits() const;
 	
 	bool Has(const Outfit *item) const;
 

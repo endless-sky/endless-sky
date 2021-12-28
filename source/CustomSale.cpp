@@ -31,61 +31,98 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 {
 	for(const DataNode &child : node)
 	{
-		int id = (child.Token(0) == "add");
-		const std::string &token = child.Token(id);
-		bool remove = (token == "clear" || token == "remove");
-		if(remove && child.Size() == 1)
-			clear();
-		else if(remove && child.Token(1) == "outfitter" && child.Size() >= 3)
+		const std::string &token = child.Token(0);
+		if((token == "clear" || token == "remove"))
 		{
-			const Sale<Outfit> *item = items.Get(child.Token(2));
-			relativePrices.erase(item);
-			relativeOffsets.erase(item);
-		}
-		else if(remove && child.Token(1) == "outfit" && child.Size() >= 3)
-		{
-			const Outfit *outfit = outfits.Get(child.Token(2));
-			relativeOutfitPrices.erase(outfit);
-			relativeOutfitOffsets.erase(outfit);
-		}
-		else if(token == "outfit" && child.Size() >= 3 + id)
-		{
-			const Outfit *outfit = outfits.Get(child.Token(1 + id));
-			if(child.Token(2 + id) == "value")
+			if(child.Size() == 1)
+				clear();
+			else if(child.Token(1) == "outfit" && child.Size() >= 3)
 			{
-				if(id)
-					relativeOutfitPrices[outfit] += child.Value(3 + id);
-				else
-					relativeOutfitPrices[outfit] = child.Value(3 + id);
-				if(child.Size() < 5 + id)
-					relativeOutfitPrices[outfit] /= outfit->Cost();
+				const Outfit *outfit = outfits.Get(child.Token(2));
+				relativeOutfitPrices.erase(outfit);
+				relativeOutfitOffsets.erase(outfit);
 			}
-			else if(child.Token(2 + id) == "offset")
+			else if(child.Token(1) == "outfitter" && child.Size() >= 3)
 			{
-				if(id)
-					relativeOutfitOffsets[outfit] += child.Value(3 + id);
-				else
-					relativeOutfitOffsets[outfit] = child.Value(3 + id);
-				if(child.Size() < 5 + id)
-					relativeOutfitOffsets[outfit] /= outfit->Cost();
+				const Sale<Outfit> *item = items.Get(child.Token(2));
+				relativePrices.erase(item);
+				relativeOffsets.erase(item);
 			}
 		}
-		else if(token == "outfitter" && child.Size() >= 4 + id)
+		else if(token == "outfit")
 		{
-			const Sale<Outfit> *item = items.Get(child.Token(1 + id));
-			if(child.Token(2 + id) == "value")
+			for(const DataNode &grandChild : child)
 			{
-				if(id)
-					relativePrices[item] += child.Value(3 + id);
-				else
-					relativePrices[item] = child.Value(3 + id);
+				bool value = (grandChild.Token(0) == "value");
+				bool offset = (grandChild.Token(0) == "offset");
+				if(value || offset)
+					for(const DataNode &kid : grandChild)
+					{
+						bool add = (kid.Token(0) == "add");
+						const Outfit *outfit = outfits.Get(kid.Token(add));
+						
+						if(kid.Size() < 2 + add)
+							continue;
+						if(value)
+						{
+							if(add)
+								relativeOutfitPrices[outfit] += kid.Value(2);
+							else
+								relativeOutfitPrices[outfit] = kid.Value(1);
+							if(child.Size() == 2 + add)
+								relativeOutfitPrices[outfit] /= outfit->Cost();
+						}
+						else if(offset)
+						{
+							if(add)
+								relativeOutfitOffsets[outfit] += kid.Value(2);
+							else
+								relativeOutfitOffsets[outfit] = kid.Value(1);
+							if(child.Size() == 2 + add)
+								relativeOutfitOffsets[outfit] /= outfit->Cost();
+						}
+					}
+				else if(grandChild.Size() >= 2)
+				{
+					const Outfit *outfit = outfits.Get(grandChild.Token(0));
+					relativeOutfitPrices[outfit] = grandChild.Value(1) / outfit->Cost();
+				}
 			}
-			else if(child.Token(2 + id) == "offset")
+		}
+		else if(token == "outfitter")
+		{
+			for(const DataNode &grandChild : child)
 			{
-				if(id)
-					relativeOffsets[item] += child.Value(3 + id);
-				else
-					relativeOffsets[item] = child.Value(3 + id);
+				bool value = (grandChild.Token(0) == "value");
+				bool offset = (grandChild.Token(0) == "offset");
+				if(value || offset)
+					for(const DataNode &kid : grandChild)
+					{
+						bool add = (kid.Token(0) == "add");
+						const Sale<Outfit> *item = items.Get(kid.Token(add));
+
+						if(kid.Size() < 2 + add)
+							continue;
+						if(value)
+						{
+							if(add)
+								relativePrices[item] += kid.Value(2);
+							else
+								relativePrices[item] = kid.Value(1);
+						}
+						else if(offset)
+						{
+							if(add)
+								relativeOffsets[item] += kid.Value(2);
+							else
+								relativeOffsets[item] = kid.Value(1);
+						}
+					}
+				else if(grandChild.Size() >= 2)
+				{
+					const Sale<Outfit> *item = items.Get(grandChild.Token(0));
+					relativePrices[item] = grandChild.Value(1);
+				}
 			}
 		}
 		else if(token == "hidden" || token == "import")
@@ -94,6 +131,8 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 				if(token == it.second)
 					sellType = it.first;
 		}
+		else if(token == "visible")
+			sellType = CustomSale::SellType::VISIBLE;
 		else if(token == "location")
 		{
 			if(child.Size() == 1)
@@ -207,7 +246,7 @@ const std::string &CustomSale::GetShown(CustomSale::SellType sellType)
 
 
 
-const Sale<Outfit> &CustomSale::GetShownOutfits() const
+const Sale<Outfit> &CustomSale::GetOutfits() const
 {
 	seen.clear();
 	for(auto it : relativeOutfitPrices)

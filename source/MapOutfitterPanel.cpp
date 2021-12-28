@@ -294,7 +294,7 @@ void MapOutfitterPanel::Init()
 			for(auto &&sales : GameData::CustomSales())
 				if(sales.second.GetSellType() != CustomSale::SellType::HIDDEN && 
 					it.second.HasOutfitter() && sales.second.Matches(&it.second, player.Conditions()))
-					for(const auto& outfit : sales.second.GetShownOutfits())
+					for(const auto& outfit : sales.second.GetOutfits())
 						if(!seen.count(outfit))
 						{
 							catalog[outfit->Category()].push_back(outfit);
