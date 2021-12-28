@@ -1941,7 +1941,7 @@ mission "Coalition: Expeditions Past 2"
 			`	"According to protocol, present valid reasoning for their expedition, aspiring inspectors must. This time, taken every legal detail into account, I had, in preparation for the meeting, but once I entered, barely time to greet them, they gave me." She explains. "Said that thought it over and willing to oblige, they were, so just sign a few documents, I did, and now officially an inspector, I am."`
 			choice
 				`	"I take it 'inspector' is what the people sent out are called?"`
-				`	"Good to hear they had a change of heart. So, are we heading for human space?"`
+				`	"Good to hear they had a change of heart. So, where are we heading?"`
 					goto heading
 			`	"Date back thousands of years, the title does. First used by early Saryds, when set out to explore beyond the home system, they had, adopted by the Heliarchs, it was, and remained in use to this day, the term has," she says in excitement, pausing with a smile as if considering that she herself is one such 'inspector' now.`
 			label heading
