@@ -427,7 +427,7 @@ interface "hud"
 		from -65 80
 		color "medium"
 		align right
-	string "recent change faint"
+	string "recent change dim"
 		from -65 80
 		color "dim"
 		align right
