@@ -99,6 +99,9 @@ void UI::StepAll()
 	// Step all the panels.
 	for(shared_ptr<Panel> &panel : stack)
 		panel->Step();
+
+	// Handle any queud panels added by another panel.
+	PushOrPop();
 }
 
 

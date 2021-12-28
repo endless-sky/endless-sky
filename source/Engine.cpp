@@ -1079,7 +1079,7 @@ void Engine::Draw() const
 	
 	// Upload any preloaded sprites that are now available. This is to avoid
 	// filling the entire backlog of sprites before landing on a planet.
-	GameData::Progress();
+	GameData::ProcessSprites();
 	
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
@@ -1240,7 +1240,7 @@ void Engine::EnterSystem()
 	{
 		// Check whether this is a minable or an ordinary asteroid.
 		if(a.Type())
-			asteroids.Add(a.Type(), a.Count(), a.Energy(), system->AsteroidBelt());
+			asteroids.Add(a.Type(), a.Count(), a.Energy(), system->AsteroidBelts());
 		else
 			asteroids.Add(a.Name(), a.Count(), a.Energy());
 	}
