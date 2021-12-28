@@ -670,16 +670,16 @@ void Engine::Step(bool isActive)
 	}
 	info.SetString("credits",
 		Format::Credits(player.Accounts().Credits()) + " credits");
-	int framesRemaining = player.Accounts().Actualize();
-	int amount = player.Accounts().RecentChange();
-	if(amount)
+	int recentChange = player.Accounts().RecentChange();
+	if(recentChange)
 	{
+		int framesRemaining = player.Accounts().Actualize();
 		if(framesRemaining > 120)
-			info.SetString("recent change", Format::Credits(amount));
+			info.SetString("recent change", Format::Credits(recentChange));
 		else if(framesRemaining > 70)
-			info.SetString("recent change medium", Format::Credits(amount));
+			info.SetString("recent change medium", Format::Credits(recentChange));
 		else if(framesRemaining > 0)
-			info.SetString("recent change faint", Format::Credits(amount));
+			info.SetString("recent change faint", Format::Credits(recentChange));
 	}
 	bool isJumping = flagship && (flagship->Commands().Has(Command::JUMP) || flagship->IsEnteringHyperspace());
 	if(flagship && flagship->GetTargetStellar() && !isJumping)
