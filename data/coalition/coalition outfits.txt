@@ -230,7 +230,7 @@ outfit "Outskirts Gauger"
 	thumbnail "outfit/outskirts gauger"
 	"mass" 8
 	"outfit space" -8
-	"tactical scan power" 256
+	"tactical scan power" 196
 	"energy consumption" .25
 	"energy capacity" -200
 	description "Completed with the data from one of their long-lost satellites, the newest scanner of House Idriss excels at reading various energy signatures across vast distances."
