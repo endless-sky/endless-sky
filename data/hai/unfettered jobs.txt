@@ -1,4 +1,4 @@
-# Copyright (c) 2014 by Michael Zahniser for the first 6 missions
+# Copyright (c) 2014 by Michael Zahniser for the first 6 jobs
 # Copyright (c) 2021 by Hurleveur for the rest
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -137,7 +137,7 @@ mission "Unfettered Tribute 2"
 	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
 	to offer
 		has "Unfettered Jump Drive 2: offered"
-		random < 60
+		random < 50
 	cargo "food (tribute)" 35 2 .05
 	on complete
 		payment 7000 2000
@@ -160,7 +160,7 @@ mission "Unfettered Tribute 3"
 	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
 	to offer
 		has "Unfettered Jump Drive 2: offered"
-		random < 40
+		random < 20
 	cargo "food (tribute)" 45 2 .05
 	on complete
 		payment 9000 2400
@@ -186,28 +186,27 @@ mission "Unfettered Silicon Asteroid Mining"
 	source "Darkcloak"
 	to offer
 		has "First Contact: Unfettered: declined"
-		random < 70
+		random < 60
 	on complete
 		payment 250000
 		dialog `The Unfettered unloading the materials you mined seem enthused.	"This will allow us to repair our ships!" they tell you and hand over your payment of <payment> credits.`
 		outfit "Silicon" -50
 
-
-
 mission "Unfettered Silver Asteroid Mining"
 	name `Gather silver from asteroids`
-	description `Mine and then collect 20 tons of Silver from the asteroid field in Ehma Ti and then bring them back to <destination> for <payment>.`
+	description `Mine and then collect 15 tons of Silver from the asteroid field in Ehma Ti and then bring them back to <destination> for <payment>.`
 	job
 	repeat
-	source "Darkcloak"
+	source "Firelode"
+	destination "Darkcloak"
 	waypoint "Ehma Ti"
 	to offer
 		has "First Contact: Unfettered: declined"
-		random < 70
+		random < 60
 	on complete
 		payment 400000
 		dialog `The Unfettered unloading the materials you mined seem satisfied.	"This will allow us to repair our ships!" they tell you and hand over your payment of <payment> credits.`
-		outfit "Silver" -20
+		outfit "Silver" -15
 
 
 
@@ -217,7 +216,9 @@ mission "Unfettered Medicals"
 	job
 	repeat
 	deadline 10 1
-	source "Darkcloak"
+	source
+		attributes "unfettered"
+	destination "Darkcloak"
 	to offer
 		has "Unfettered Jump Drive 1: offered"
 		random < 80
@@ -257,10 +258,9 @@ mission "Unfettered Challenge[0]"
 			action
 				payment 200000
 				"reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)" + 15
+				fail "Unfettered Challenge[0]"
 			`You receive a message from the <npc> : "Raaaah... Well you have beaten me alright, so I'll pay up... Here are the <payment> credits, captain."`
 				decline
-
-
 
 mission "Unfettered Challenge[1]"
 	name `Defeat the captain`
@@ -284,10 +284,9 @@ mission "Unfettered Challenge[1]"
 			action
 				payment 400000
 				"reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)" + 30
+				fail "Unfettered Challenge[1]"
 			`You receive a message from the <npc> : "Well done captain! But, I will not be so easy to beat next time! Here is the agreed <payment> credits. You earned it."`
 				decline
-
-
 
 mission "Unfettered Challenge[2]"
 	name `Defeat the experienced captain`
@@ -313,19 +312,22 @@ mission "Unfettered Challenge[2]"
 			action
 				payment 600000
 				"reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)" + 60
+				fail "Unfettered Challenge[2]"
 			`You receive a message from the <npc> : "You seem to learn from our encounters as well! Well, next time it will be different. Here are the agreed <payment> credits, captain. Hopefully it allows you to improve the <ship> before our next battle..."`
 				decline
 
 
-mission "Get Jump Drive"
-	name `Bring a jump drive back`
+
+mission "Get Jump Drives(1)"
+	name `Collect a jump drive`
 	description `Go to the pirate world of <destination> and recover a jump drive from a vault for <payment>.`
 	job
 	repeat
 	source
 		attributes "unfettered"
+	destination "Darkcloak"
 	to offer
-		random < 85
+		random < 75
 		has "Unfettered: Prove your strength 2: done"
 	stopover
 		distance 12 18
@@ -340,19 +342,63 @@ mission "Get Jump Drive"
 		outfit "Jump Drive" -1
 		dialog `The Unfettered are more than content with paying <payment> credits in exchange for your precious cargo.`
 
+mission "Get Jump Drives(2)"
+	name `Collect 2 jump drives`
+	description `Go to the pirate world of <destination> and recover 2 jump drives from a vault for <payment>.`
+	job
+	repeat
+	source
+		attributes "unfettered"
+	destination "Darkcloak"
+	to offer
+		random < 45
+		has "Unfettered: Prove your strength 2: done"
+	stopover
+		distance 12 18
+		government "Pirate"
+	on stopover
+		dialog `You manage to land and retrieve the jump drives without too much trouble. Do not rely on luck too long though, you had better depart quickly!`
+		outfit "Jump Drive" 2
+	on visit
+		dialog `You have a mission to bring a jump drive here. You may have left your escort allocated to carrying the jump drive behind, in which case you better launch and wait for it.`
+	on complete
+		payment 2000000
+		outfit "Jump Drive" -2
+		dialog `The Unfettered are more than content with paying <payment> credits in exchange for your precious cargo.`
 
-
-# add generic steal cargo from X ship and bring back
+mission "Get Jump Drives(3)"
+	name `Collect 3 jump drives`
+	description `Go to the pirate world of <destination> and recover 3 jump drives from a vault for <payment>.`
+	job
+	repeat
+	source
+		attributes "unfettered"
+	destination "Darkcloak"
+	to offer
+		random < 15
+		has "Unfettered: Prove your strength 2: done"
+	stopover "Deadman's Cove"
+	on stopover
+		dialog `You manage to land and retrieve the jump drives without too much trouble. Do not rely on luck too long though, you had better depart quickly!`
+		outfit "Jump Drive" 3
+	on visit
+		dialog `You have a mission to bring a jump drive here. You may have left your escort allocated to carrying the jump drive behind, in which case you better launch and wait for it.`
+	on complete
+		payment 3000000
+		outfit "Jump Drive" -3
+		dialog `The Unfettered are more than content with paying <payment> credits in exchange for your precious cargo.`
 
 
 
 mission "Bring True Hai"
 	name `Bring True Hai`
-	description `Land on <stopovers> and bring back <bunks> True Hai to where they belong, on <origin> for <payment>.`
+	description `Land on <stopovers> and bring back <bunks> True Hai to where they belong, on <destination> for <payment>.`
 	job
 	repeat
 	passengers 5 8 .2
 	source
+		attributes "unfettered"
+	destination
 		attributes "unfettered"
 	to offer
 		random < 75

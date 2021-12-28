@@ -604,8 +604,17 @@ mission "Unfettered: Prove Your Strength"
 			choice
 				`	"Let me show you my worth in battle. Right now."`
 					accept
+				`	"Can you tell me more about the rules of this fight?"`
+					goto rules
 				`	(Run away.)`
 			`	As you move away you hear laughter, but nobody tries to stop you. You have just shown to the Unfettered how much of a coward you are, and will probably never be offered any missions to them anymore.`
+				decline
+			label rules
+			`	"I guess you ought to know... You are supposed to bring only your flagship but if it is too weak then more ships can be accepted, so long as it is a fair battle. It will last until either one of our ship is disabled, or one of us gives up. You can call it to later at any given time for a symbolic bribe of 1000. So, are you ready to fight?"`
+			choice
+				`	"Let me show you my worth in battle. Right now."`
+					accept
+				`	(Run away.)`
 			
 	npc save disable
 		government "Hai (Unfettered Challenge)"
@@ -715,6 +724,23 @@ mission "Unfettered: Prove Your Strength 2"
 
 
 
+mission "Unfettered: Attracted Attention"
+	invisible
+	source "Freedom"
+	landing
+	destination "Darkcloak"
+	to offer
+		has "Unfettered: Prove your strength 2: active"
+	on offer
+		require "Jump Drive" 1
+	on enter "Almaaz"
+		dialog `The Unfettered comes to the bridge to warn you, "There are even more pirates than anticipated. I told you not to come here with a jump drive!"`
+	npc evade
+		government "Pirate"
+		system "Almaaz"
+		personality disables plunders vindictive
+		fleet "Large Northern Pirates"
+
 mission "Unfettered: Jump Drive Retrieval"
 	invisible
 	source "Freedom"
@@ -800,23 +826,6 @@ mission "Unfettered: Jump Drive Retrieval"
 		system "Almaaz"
 		fleet "Large Northern Pirates"
 		fleet "Small Northern Pirates" 2
-
-mission "Unfettered: Attracted Attention"
-	invisible
-	source "Freedom"
-	landing
-	destination "Darkcloak"
-	to offer
-		has "Unfettered: Prove your strength 2: active"
-	on offer
-		require "Jump Drive" 1
-	on enter "Almaaz"
-		dialog `The Unfettered comes to the bridge to warn you, "There are even more pirates than anticipated. I told you not to come here with a jump drive!"`
-	npc evade
-		government "Pirate"
-		system "Almaaz"
-		personality disables plunders vindictive
-		fleet "Large Northern Pirates"
 
 
 
@@ -1203,7 +1212,6 @@ mission "Unfettered: Pirate Help"
 					goto run
 			`	"Close call, I see. Maybe the Hai should assign a slightly larger fleet next time... Or maybe you yourself need more ships."`
 				goto attacks
-			
 			label run
 			`	"Oh I may have overestimated your strength then, you should wait a while before doing what I am about to ask, because it will require some strength."`
 				goto attacks
@@ -1211,12 +1219,12 @@ mission "Unfettered: Pirate Help"
 			`	"Perfect! That means you should be ready for what I am about to ask you."`
 			
 			label attacks
-			`	"I do not know much about warfare, but we elders often speak with the warlords, who are charged with military responsabilities. These pirate attacks do not seem that bad to us, after all they only plunder a bit, like we do, but this potential attack on the Hai backlines means they will be able to have fewer ships on our border."`
+			`	"I do not know much about warfare, but we elders often speak with the warlords, who are charged with military responsabilities, among other things. One such warlord spoke to me about the pirate attacks, and suggested an idea. Said attacks do not seem that bad to us, after all they only plunder a bit, like we do, but this potential attack on the Hai backlines means they will be able to have fewer ships on our border."`
 			choice
 				`	"You mean you want me to help these pirates?"`
 					goto help
 				`	"Are you planning an offensive on the Hai?"`
-			`	"Absolutely not, but as you know, we are planning an offensive to the North of our space, and it would be better if we did not have to leave too many ships behind, on the border with the Hai."`
+			`	"Absolutely not, but as you know, we are planning an offensive to the North of our space, and it would be better if we did not have to leave too many ships behind, on the border with the Hai." This does indeed make sense tactically, the warlord must have been forced to justify his position in order to convince Sha-Ri to do such a thing, which may result in casualties on the Hai side.`
 				goto next
 			
 			label help
@@ -1226,12 +1234,12 @@ mission "Unfettered: Pirate Help"
 				`	"All of this seems a bit vague to me, what exactly are you proposing?"`
 				`	"I am not interested in doing this."`
 					decline
-			`	"Once you are strong enough we want you to go to Allhome, which is on the border with the pirates, coming from the whormhole. Once there, speak to the local governor, asking him if he has any... issues with pirates. Then you will find those pirates and help them instead. A good way would be to convince the Hai to give him a technology tribute, so they have even less weapons!"`
+			`	"Once you are strong enough we want you to go to Allhome, which is on the border with the pirates, coming from the whormhole. Once there, speak to the local governor, asking him if he has any... issues with pirates. Then you will find those pirates and help them instead. A good way would be to convince the Hai to give them a tribute of technology, so they have even less weapons! The border is easy for our Hai friends to defend, however it will take even more defenders if the pirates are well equipped, with Hai technology."`
 			choice
 				`	"How will I show my strength to them ?"`
 				`	"I am not interested in doing this."`
 					decline
-			`	"I hear those pirates attack are very frequent these days... And that planet is on the border of Hai space, it is a very likely target for pirates, I also have... informations indicating an attack will come, soon... It is easy to arrange this. Help them repel it and they will most probably trust you with the job. But this is not an urgent mission at all, <first>. You may return to your previous occupations if you do not feel strong enough yet."`
+			`	"I hear those pirates attack are very frequent these days... And that planet is on the border of Hai space, it is a very likely target for pirates, I also have... informations indicating an attack will come, soon... It is easy to arrange this. Help them repel it and they will most probably trust you with the job. But this is not an urgent mission at all, <first>. You may return to your previous occupations if you do not feel strong enough yet, this is no urgent matter."`
 			choice
 				`	"I will go to Allhome and help them repel this attack then, once I am strong enough to repell a pirate fleet."`
 					accept
@@ -1248,7 +1256,7 @@ mission "Unfettered: Pirate Help"
 		has "accepted scar's legion tribute"
 		has "Pirate Troubles [4]: done"
 	on complete
-		log `Helped the Scar's Legion obtain Hai technology, except I fooled the Hai making them think it would be in exchange of a stopping in their attacks, as asked by the Unfettered.`
+		log `Helped the Scar's Legion obtain Hai technology, except I fooled the Hai, making them think it would be in exchange of a stopping in their attacks, as asked by the Unfettered.`
 		"reputation: Scar's Legion" >?= 1
 		payment 500000
 		dialog `The Unfettered authorities thank you for deceiving the Hai and give you a payment of <payment>.`
@@ -1927,7 +1935,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 			`	He was about to say something, but instead ignores your question.`
 			
 			label mighty
-			`	"If you want to help us and get access to our mighty shield beetles, go to <destination> where they make most if not all of their big ships and gather intel on how they mass produce them."`
+			`	"If you want to help us and get access to our mighty shield beetles, go to <destination> where they make most if not all of their big ships and gather intel on how they mass produce them." The Hai will probably not approve if they learn about this.`
 			choice
 				`	"Will the Hai will let me land on their home world?"`
 			`	"Why would you need a permission? Discretely land in an isolated region, whilst nobody is looking. If they detect you, just pretend you have a navigation issue."`	
@@ -1945,6 +1953,16 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 		payment 250000
 		conversation
 			`The warlord from earlier hands you <payment>.`
+			branch noboughtship
+				not "bought ship"
+			choice
+				`	(Ask him to pay your loan for the ship, and show him the detailed scanner logs.)`
+				`	(Just roll with it, you do not need extra money and the more detailed scans were not asked for.)`
+					goto noboughtship
+			action
+				payment 5000000
+			`	"You had to pay a ship? That is actually quite a smart way to remove suspicion from you, or just to corrupt the local guy." He asks you to show him the loan you had to take, which you do. "Seeing this, he probably suspected something and would have arrested you if you did not give him this good reason to let you be: approximately 1 extra million credits! Worry not I will give you an extra of <payment> to compensate, the scans you brought me are indeed much more detailed that what I even asked for, this is perfect! You are free to keep it if you want to though, you can always sell it and you will not have lost any money, quite the opposite indeed. Do not forget to pay the loan though."`
+			label noboughtship
 			choice	
 				`	"Does this mean I can buy Shield Beetles now?"`
 				`	"What about my pay for the tribute?"`
@@ -1975,6 +1993,8 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 			`You land and ask the Hai for tribute, which they then prepare. They probably do not suspect anything. While they load up your ship, you pretend to go to the shipyard to consider buying a new ship, and a big one at that. 'Unfortunately', you get lost and start looking at the place where they build the Geocoris, but also the Shield Beetles. There is only so much you can learn by looking, so you start discretely scanning the place. A Hai engineer seems to notice you and comes your way, "Hi, how may I help you," he asks. Maybe he did not notice anything.`
 			choice
 				`	"Do not mind me, I am just admiring the shipyard, it is so well... optimised, compared to human standards. (Pretend to move on and go scan another area.)"`
+				`	"Actually I am here to buy a ship."`
+					goto buyship
 				`	"I have never seen such a big shipyard before, how can you manage it?"`
 					goto questions
 			`	"Oh that it is! Well I will leave you to it then." He seems to be watching you, but stops as you move far enough away.`
@@ -1989,16 +2009,57 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 			`	He actually gives you a VIP tour of the whole shipyard facility, which is too good to be true. At the end he drops you at the local militia office, and they have some questions for you about that scanner they find on you...`
 				decline
 			
+			label buyship
+			`	"Oh, it that so. Well normally I cannot sell you a ship but I could make an exception for you... But you do understand I cannot sell you a warship." You understand he may mean you will have to pay more for said ship. Better prepare your bank account! It may not be prudent for you to back off now, as he would probably suspect something... Seeing you are hesitat, he adds, "There is no issue if you do not have the money right now, I can offer you a loan of the exact price of the ship, with a small... bonus."`
+			choice
+				`	"I would like a Centipede."`
+					goto centipede
+				`	"This Water Bug seems efficient, I like that."`
+					goto waterbug
+				`	"Actually I am only here to get a tribute for the Unfettered, these ships seem too costly for me."`
+			action
+				set "too suspect"
+			``
+				goto suspect
+			
+			label centipede
+			action
+				give ship "Centipede"
+				fine 12000000
+			`	"You will see it has no equal as cost efficient to transport troops, euh I mean peoples around! And for a mere <fine>."`
+				goto bought
+			
+			label waterbug
+			action
+				give ship "Water Bug"
+				fine 13000000
+			`	"A fine ship sir, best in all of the cargo haulers! You may have to pay a bit but I can assure you it can take a lot more punishment than any human hauler can! And it only costed you <fine>."`
+			
+			label bought
+			action
+				set "bought ship"
+			`	He shows you to the ship you requested and tells you all about its different qualities, but you do not really listen as you only bought this ship so he would let you finish your scans. You did have to spend a fine sum for it though... You could always sell it back to someone else, at the shipyard. Now you can even use this ship's scanners to get the most detailed scans ever!`
+			label shipbought
+			`	Now that you are in the newly acquired ship, you pretend to look around until he leaves, seeing you are satisfied with your purchase. Then you get back to scanning the shipyard.`
+				goto finishscan
 			label suspect
-			`	"Oh well, that is indeed a most important thing! Do leave this shipyard immediately." You wonder if this is a threat.`
+			`	"Oh well, that is indeed a most important thing! Do leave this shipyard, immediately." You wonder if this is a threat.`
 			choice
 				`	(Pretend to leave, then come back to finish the scans.)`
 				`	(Leave without the scans.)`
 					decline
 			
 			label finishscan
+			branch toosuspect
+				has "too suspect"
 			`	You manage to finish the scans without any more interruption, and are eager to get back to your ship to get all of this over with.`
 				accept
+			label toosuspect
+			action
+				fine 100000
+			`	It looks like you have arrisen too much suspicion. Maybe he was waiting to see if you would actually leave, or maybe he alerted the local authorities, but the result is the same: they arrest you and even fine you <fine>.`
+			action
+				clear "too suspect"
 	
 	on decline
 		fail "Unfettered: Solifuge 6: Shipyard Upgrade"
@@ -2442,7 +2503,7 @@ mission "Unfettered: Start Of The War"
 				`	"I am honoured."`
 					accept
 				`	"What does this sword do?"`
-			`	"You are aware of what keystones are, right? They are not believed to give luck for no reason, after all. I cannot tell you much more about it, but rest assured this sword would be more useful than a gun for boarding."`
+			`	"You are aware of what keystones are, right? They are not believed to give luck for no reason, after all. I cannot tell you much more about it, but rest assured this sword would be more useful than a gun for boarding. It was given to me by the council many years ago, and it fits my responsability as well as my character."`
 
 event "joined the unfettered"
 	government "Escort"
