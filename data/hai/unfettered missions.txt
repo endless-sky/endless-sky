@@ -840,7 +840,8 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 		not "Wanderers: Defend Vara Ke'sok: done"
 	on offer
 		conversation
-			`As you wander in the spaceport an Unfettered approaches you. At first you wonder why the Hai happens to be coming towards you in particular, but then you realize that you naturally stand out here. There are not many non-Hai on the Unfettered worlds.`
+			`As you wander in the spaceport you find a market. You notice that the amount and diversity of goods are very limited. Some of it seems to be completely alien, even by Hai standards. Most Unfettered here are just busy with buying food, that is if they can even afford it. You see two Unfettered disputing, probably over the cost of some item, but decide not to intervene given how they generally response to your mere presence...`
+			`	An Unfettered approaches you. At first you wonder why the Hai happens to be coming towards you in particular, but then you realize that you naturally stand out here. There are not many non-Hai on the Unfettered worlds.`
 			`	"Captain <last>! I am Taer-Fi, an Unfettered engineer. We have an easy job for you if you are interested," she says.`
 			choice
 				`	"Sure, what can I do for you?"`
@@ -981,7 +982,8 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		has "Unfettered: Prove Your Strength 2: done"
 	on offer
 		conversation
-			`You go get a drink in the spaceport, looking for Taer-Fi, the Unfettered engineer you met before. She said she would tell you more about it once she gets the Geocoris logs but you have yet to see her since you brought those logs to the local authorities. Hopefully she can be trusted. After you spend an hour talking with the local Unfettered and drinking, she finally arrives. She seems to be in quite a hurry.`
+			`You go get a drink in the spaceport. You take a beverage that appears to be water, wanting to take no risks on this alien world. After tasting it you are sure it is indeed water, the Unfettered here do not have the habit of consumming many special drinks, at least not on a regular basis.`
+			`	You ask around for Taer-Fi, the Unfettered engineer you met before. She said she would tell you more about it once she gets the Geocoris logs but you have yet to see her since you brought those logs to the local authorities. Hopefully she can be trusted. After you spend an hour talking with the local Unfettered and drinking, she finally arrives. She seems to be in quite a hurry.`
 			`	"Sorry I could not see you earlier, I was busy. I know I have promised you information, but there is a more pressing matter we should focus on. A human ship will enter <system> in a few days, I need you to scan it for me, then I will meet you back here with the others and answer any questions you may have," she promises.`
 			`	"Oh and before I forget, you should not attack them, even if they strike first. I am not sure how they will even react to your presence," she adds.`
 			choice
@@ -990,14 +992,14 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 				`	"Why not just do it yourself?"`
 				`	"Sorry, but this seems too risky for me."`
 					decline
-			`	"We do not know what their reaction could be. It would be preferable if you did it because whatever happens they will think of you as an independent of us, except for the fact we do not shoot you on sight. We value friendship a lot, and once trust is damaged it cannot easily be repaired."`
+			`	"We do not know what their reaction could be. It would be preferable if you did it because whatever happens they will think of you as an independent of us, except for the fact we do not shoot you on sight. We value friendship a lot, and once trust is damaged it cannot easily be repaired." She still seems to be in a hurry, but you figure one more minute would not change much in your ability to catch that ship.`
 			choice
 				`	"Seems good to me, I will do it."`
 					accept
 				`	"What kind of ship are we talking about?"`
 				`	"Wait you mean they could shoot me? No way, I am out!"`
 					decline
-			`	She seems anxious to tell you. "It is a human ship, and quite a big one. We do not know its designation in human space but it carries a few small ships, and uses alien technologies. You do not need to be able to destroy it, just scan it and then come back here."`
+			`	She seems anxious to tell you. "It is a human ship, and quite a big one. We do not know its designation in human space but it carries a few small ships, and uses alien technologies. You do not need to be able to destroy it, just scan it and then come back here." She did not seem to want to answer the last question, and maybe only answered this one so you would go away. Now she is waiting for an answer, maybe you should reassure her in your abilities before she starts doubting you, and hiring someone else.`
 			choice
 				`	"I am not worried about any one ship, I will do it."`
 					accept
@@ -1014,7 +1016,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		ship "Auxiliary (Alpha)" "Settler"
 		
 		conversation
-			`You have finished scanning the Auxiliary. There can be no doubt, this is a ship populated by Alphas. As you prepare yourself to exit the system and bring the logs back, you receive a message from the local Unfettered authorities.`
+			`You have finished scanning the Auxiliary. There can be no doubt, this is has Alphas on it. As you prepare yourself to exit the system and bring the logs back, you receive a message from the local Unfettered authorities.`
 			`	"We demand that you land right away. If you go to any other system that ship may pursue you. We do not want a dispute between our suppliers of jump drives; this is probably just a misunderstanding. If you land we can guarantee your safety here, we have requested that ship to land on another port, on Firelode, since it did fire on you first you without any apparent provocation."`
 			choice
 				`	"I will land as you ask."`
@@ -1033,7 +1035,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 	on fail
 		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 	on complete
-		dialog `After a while, the Alpha ship goes away, you can now go back to <origin> with the scanner logs.`
+		dialog `You are offered some very good beverages to keep you waiting, even by your standards. They probably know of your mission. After a while, the Alpha ship goes away, you can now go back to <origin> with the scanner logs.`
 
 
 
@@ -1153,7 +1155,7 @@ mission "Unfettered: Escort Hai Fleet"
 		clear "stopped on Greenbloom"
 		log `Escorted a Hai fleet carying supplies and passengers into Unfettered space during a truce.`
 		payment 500000
-		dialog `The fleet admiral thanks you for escorting them. You then go see the Unfettered elder who gives you <payment>. He says you should probably go in the spaceport to speak with Sha-Ri.`
+		dialog `The fleet admiral thanks you for escorting them, and gives you <payment>. He says you should probably go in the spaceport to speak with Sha-Ri.`
 
 event "hai / unfettered truce"
 	government "Hai"
@@ -1326,7 +1328,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 				`	"Get to the point, where can I find it?"`
 				`	"What kind of damage?"`
 					goto damage
-			`	You seem to have stressed her a bit. "Are you always in a rush?" she asks. "Just look for traces of this chemical, it should lead you to them. But this auxiliary is no joke, it can field more than 100 people on it, be sure to have what it takes to capture it!"`
+			`	You seem to have stressed her a bit. "Are you always in a rush?" she asks. "Just look for traces of this chemical, it should lead you to them. But this auxiliary is no joke, it can field more than 100 people on it, be sure to have what it takes to capture it!" You remember it had also fighters accompanying it. It will probably be a tough fight.`
 				goto agree
 			
 			label damage
@@ -1335,13 +1337,13 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 				`	"They seemed to be using the same weapon against me."`
 				`	"What can we use that information for?"`
 					goto information
-			`	"Yes I have noticed from the outfit scanner logs, I would advise not relying too heavily on your shields. But they do not seem to have that many of those weapons, so you should be fine."`
+			`	"Yes I have noticed from the outfit scanner logs, I would advise not relying too heavily on your shields. But they do not seem to have that many of those weapons, so you should be fine. They could not have designed such weapons by themselves, they probably just stole them from nearby aliens."`
 			
 			label information
 			`	"Obviously, this amount of damage has consequences, it looks like they have quickly patched it up so it will not affect their hull resistance to weapon's fire, however there are still some microfractures, which should in theory be big enough for the ship to lose some hyperdrive fuel wherever it goes. Just follow the fuel trail."`
 			
 			label agree
-			`	You were ready to go but she seems to have something more to say,	"Oh and one last thing before you leave, the base is probably far away, so I would advise taking some fuel pods, especially considering these marks on the Auxiliary mean you will probably not have much time to wait to fuel up from the local stars."`
+			`	You were ready to go but she seems to have something more to say, "Oh and one last thing before you leave, the base is probably far away, so I would advise taking some fuel pods, especially considering these marks on the Auxiliary mean you will probably not have much time to wait to fuel up from the local stars."`
 				accept
 	
 	waypoint "Hi Yahr"
@@ -1367,7 +1369,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		system "Host"
 		personality heroic nemesis staying vindictive target
 		ship "Auxiliary (Alpha)" "Settler"
-		dialog `You have managed to capture the Alpha ship, but you have discovered a brig full of captured Korath. You should head to the Alpha base to see if you find anything else, and decide what to do with the prisoners once there.`
+		dialog `Whilst capturing the ship you noticed that only very few of the crew were actually Alphas, even if they were nevertheless equipped, some were probably mercenaries. There was no doubt who was in command of this vessel though. You have managed to capture it, but you have discovered a brig full of captured Koraths. You should head to the Alpha base to see if you find anything else, and decide what to do with the prisoners once there.`
 	npc
 		government "Alpha"
 		system "Host"
@@ -1388,7 +1390,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 	on fail
 		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 	on visit
-		dialog `You have landed but without the Alpha Auxiliary and its cargo of Jump Drives. Go and find traces of fuel from it, in systems neighboring Hi Yahr. Do not forget to land on the Alpha base to recover any information it may have!`
+		dialog `You have landed but without the Alpha Auxiliary and its cargo of Jump Drives. Go and find traces of fuel from it, in systems neighboring Hi Yahr. Do not forget to land on the Alpha base to recover any information, jump drives it may have!`
 	to complete
 		has "Unfettered: Alphas 3: Bring The Spoils: offered"
 	on complete
@@ -1397,7 +1399,19 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		payment 10000000
 		"salary: Unfettered" = 1000
 		conversation
-			`As you land with the Auxiliary you notice tens, then hundreds Unfettered start coming your way, cheering. They are probably expecting jump drives, and more keep coming from every direction. Maybe they have not seen this Auxiliary yet, but only heard tales of it, or maybe this is what always happens when it lands, loaded with jump drives. Whatever the case, they seem surprised when they see you exiting the ship. They murmur with each others and then they just start saluting, by rising one fist up. First a few do it, then more, until finally all of them are there, saluting in front of you in respect. They lead you to the stadium.`
+			`As you land with the Auxiliary you notice tens, then hundreds Unfettered start coming your way, cheering. They are probably expecting jump drives, and more keep coming from every direction. Maybe they have not seen this Auxiliary yet, but only heard tales of it, or maybe this is what always happens when it lands, loaded with jump drives. Whatever the case, they seem surprised when they see you exiting the ship. They murmur with each others and then they just start saluting, by rising one fist up. First a few do it, then more, until finally all of them are there, saluting in front of you in respect. You notice they are doing different signs with their hand.`
+			choice
+				`	(Raise my fist like warriors do.)`
+				`	(Bow.)`
+					goto bow
+				`	(Do nothing.)`
+					goto stadium
+			`	They approve of your risen fist, and seem happy you understand their culture.`
+				goto stadium
+			label bow
+			`	It does not seem to be the right reaction at all. They shout at you, all form of respect is gone. One very shocked Unfettered soldier even tries to shoot you for this insult! It looks like you have shown yourself to be weak to them. After some time a Warlord arrives and calms them down.`
+			label stadium
+			`	The crowd lead you to the stadium.`
 			`	The council seems surprised to see you return, especially the Unfettered warlord that annoyed you earlier, but they address you with a deeper respect than before. "You have proven yourself. Now we have almost enough jump drives for the next phase..." You look at them intensively, and after a few moments they realize, "Oh right, your payment! Here it is : <payment>!"`
 			choice
 				`	"I have found Korath prisoners on the Alpha ship."`
@@ -1413,8 +1427,9 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 			action
 				log `Found out where the Alphas were getting their jump drives from, in theory at least. The problem is the information is encrypted, but the Unfettered will work hard to decipher it.`
 				set "unfettered jump drive source"
+				clear "alpha logs"
 				payment 200000
-			`	"Those are probably too well encrypted to be of much use, but we will try to break them anyway. Thank you for sharing this information with us. Here is an extra <payment> for your troubles."`
+			`	"Those are probably too well encrypted to be of much use, but we will try to break them anyway. Thank you for sharing this information with us. Here is an extra of <payment> for your troubles."`
 
 mission "Unfettered: Alphas 3: Bring The Spoils"
 	invisible
@@ -1565,13 +1580,15 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 	source "Darkcloak"
 	to offer
 		has "Unfettered: Solifuge 5: Materials For Ships: done"
+		random < 30
 	on offer
 		conversation
-			`When passing in front of a bar, you notice Si-Ra, he seems to be having quite a lot of fun.`
+			`When passing in front of a bar, you notice Si-Ra, he seems to be having quite a lot of fun. The bar itself does not seem that alien to you.`
 			choice
 				`	(Join him.)`
 				`	(I do not have time for this now.)`
 					defer
+			`	The bar almost feels familiar, there are of course weird beverages, and the general architecture of it is simple to say the least, like all Unfettered buildings. But, in a way it looks similar to pirates bars. Maybe there are things that are common between alien species...`
 			`	As you enter you can understand the words he says, he is speaking in your language, probably to make fun of humans. What he says does not seem to have much sense to it, he probably had one too many drinks. When he sees you he starts shouting, "This is my friend, <last>, folks! Do not toy around with him or you will get beaten, he does not mess around! Lots of holes in my old ship can attest to that!"`
 			choice
 				`	"Old ship? You do not have it any more?"`
@@ -1586,20 +1603,20 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 			choice
 				`	"Can I help you in any way?"`
 				`	"Do you happen to have any good jobs like the one of last time?"`
-			`	"Well, now that you ask... I do have an idea but I do not think I am quite fit for it. I could not help you much anyway, and you are a big monkey are you not? There may be a defenseless cargo moving around in space, almost asking to be taken. It is such a heavy burden for the one who most transport it. Maybe we should remove that burden, if you see what I mean?"`
+			`	"Well, now that you ask... I do have an idea but I do not think I am quite fit for it. I could not help you much anyway, and you are a big monkey are you not? There may be a defenseless cargo moving around in space, almost asking to be taken. It is such a heavy burden for the one who most transport it. Maybe we should remove that burden, if you see what I mean?" This does not seem like a very legal proposition.`
 			choice
 				`	"I see what you mean."`
 					goto tellmore
 				`	"Please be more specific."`
 				`	"You mean attack a defenceless ship? I would never! I am out."`
 					decline
-			`	He seems to get a bit angry. "There is a cargo ship moving around in space with a precious cargo that we want. Specific enough for you?"`
+			`	He seems to get a bit angry. "There is a cargo ship moving around in space with a precious cargo that we want. Specific enough for you?" It is probably best not to push him too far, especially considering the state he is in right now. The Hai seem to have a different reaction to alcohol, or maybe this was not even alcohol at all... Anyway he is not really 'drunk' as you would expect it, more like very excited.`
 			choice
 				`	"Tell me more about it."`
 				`	"That is still not that clear, but I will make do with it."`
 			
 			label tellmore
-			`	"It would probably be a good idea to be around <waypoint> very soon, monkey. There will be good a business opportunity there, you would not want to miss it. But I still want my cut... Like last time, for giving you this very sensible information. I will only take 25% worry not. But be sure to bring back at least 400 tons of cargo or there is no deal!"`
+			`	"It would probably be a good idea to be around <waypoint> very soon, monkey. There will be good a business opportunity there, you would not want to miss it. But I still want my cut... Like last time, for giving you this very sensible information. I will only take 25% worry not. But be sure to bring back at least 400 tons of cargo or there is no deal!" The Alpha Auxiliary you managed to capture not long ago seems perfect for this task, but maybe it is not as easy as he presents it.`
 			choice
 				`	"I will go before the trail gets cold."`
 					accept
@@ -1617,13 +1634,16 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 	on enter "Sumar"
 		dialog `It seems like you may have to fight in order to get this cargo... Multiples pirate ships already have disabled the Mamoth, and taken control of it. They seem to be engaged in repairs, and hail you once they notice your presence.`
 		conversation
-			`This is our loot, maggot! Get out of here right now and we'll pretend we didn't see your ugly ship!`
+			`"This is our loot, maggot! Get out of here right now and we'll pretend we didn't see your ugly ship!" They do not seem to be in the mood for negotiations.`
 			choice
 				`	"I will take this loot out of your mouth."`
 					goto words
 				`	"Can I just take the loot and leave you with the ship?"`
+					goto loot
 				`	"Okay I do not want any trouble. I will leave immediately."`
-					accept
+			`	"I am feeling very generous today, mate! We'll help you find your way out, fast!"`
+				accept
+			label loot
 			`	"It's all or nothing mate, we got the all. If you want it, you may try and lose what little you have."`
 				decline
 			label words
@@ -1646,11 +1666,11 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 	on visit
 		dialog `You have landed on <origin> but you do not have the spoils yet, or they are in one of your escort.`
 	on complete
-		log `Found some "defenseless" cargo in space, and brought it back to the Unfettered. The cargo itself seemed ionized, I wonder what they could do with it. I think they asked the freighter to come only to ask me to intercept it, weird.`
+		log `Found some 'defenseless' cargo in space, and brought it back to the Unfettered. The cargo itself seemed ionized, I wonder what they could do with it. I think they asked the freighter to come only to ask me to intercept it, weird.`
 		outfit "Loot" -400
 		payment 2000000
 		conversation
-			`You arrive back at the bar and find Sa-Ri speaking to his friends. He appears more sober now. "It looks like you got the loot! Songs, games and fun, friends! Here is your share, <payment>. Now we can forget about problems, and celebrate victory!"`
+			`You arrive back at the bar and find Sa-Ri speaking to his friends. He appears more sober now. "It looks like you got the loot! Songs, games and fun, friends! Here is your share, <payment>. Now we can forget about problems, and celebrate victory!" He rises his drink and then moves it to the right, soon followed by all others. This is probably a Hai custom of some kind, or at least an Unfettered one.`
 			choice
 				`	(Rejoice with them.)`
 				`	(Go.)`
@@ -1670,11 +1690,30 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 				`	"Final outcome?"`
 				`	(Leave.)`
 					decline
-			`	"Better guns! These new ones will be perfect against those who dared to occupy our old worlds."`
-				decline
+			`	"Better guns! These new ones will be perfect against those who dared to occupy our old worlds. Now listen to my words, and listen well: you have to earn your rewards, they do not just drop out of the sky. Well maybe for me it just did, but I did plan the setting!"`
 			
 			label celebrate
-			`	You continue the party late into the night. There will not be any way to get information out of Sa-Ri now, he is quite unconscious. You leave, feeling your head hurt. These Unfettered drinks seem stronger than what you first thought.`
+			`	Now that the celebration is advancing, you realize you are the only one without a drink. Which beverage do you take? The green one is the one Sha-Ri was taking when you first came here, now he is has a purple one. You do not feel confident enough to try anything he does not have.`
+			choice
+				`	(The Purple one.)`
+				`	(The Green one.)`
+					goto green
+				`	(Both of them!)`
+					goto toomuch
+				`	(None.)`
+					goto none
+			`	The purple beverage seems to make you dizzy, but you do not get knocked out and it is only a bit of tiredness, there is no real reason to stop partying.`
+				goto continue
+			label green
+			`	The green beverage is very exciting, it keeps you awake and partying to full!`
+			label continue
+			`	You continue the party late into the night. There will not be any way to get information out of Sa-Ri now, he is quite unconscious, meaning he has taken a different drink than last time. You leave, feeling your head hurt. These Unfettered drinks seem stronger than what you first thought, but at least it does not give you much diziness at all, quite the contrary: you feel excited, although still exhausted.`
+				decline
+			label toomuch
+			`	These beverages are much stronger than what you are used to, you get knocked out and never wake up again. This has probably something to do with a combination of the two drinks.`
+				die
+			label none
+			`	Even without a drink you can celebrate! You are able to continue the party very late, even though some Unfettered do not seem to appreciate the fact you drink very little, if at all. But what they were drinking was very strong, and it seems to make them quite calm.`
 
 
 
@@ -1702,7 +1741,7 @@ mission "Unfettered: The Word Has Spread"
 		has "Unfettered: Solifuge 5: Materials For Ships: done"
 	on offer
 		conversation
-			`The recent activity has not diminished, people are still moving around everywhere, getting to their ships or simply doing their jobs with renewed purpose. In all that activity you find your elder friend, Sha-Ri, who seems happy to see you. "Ah, here you are, when you are most needed, like always, <first>! Many True Hai have felt the calling of battle now, or the need to change. However, some have difficulties joining us because of the Hai government... Could you help getting them here?"`
+			`The recent activity has not diminished, people are still moving around everywhere, getting to their ships or simply doing their jobs with renewed purpose. In all that activity you find your elder friend, Sha-Ri, who seems happy to see you. "Ah, here you are, when you are most needed, like always, <first>! Many True Hai have felt the calling of battle now, or the need to change. However, some have difficulties joining us because of the Hai government... Could you help getting them here? They have decided to give up all of their belongings, to show they care not for such things."`
 			choice
 				`	"Sure!"`
 					accept
@@ -1713,7 +1752,7 @@ mission "Unfettered: The Word Has Spread"
 					decline
 			
 			label why
-			`	"It depends, for some they just to enjoy the resources of the new worlds that are ready for the taking. Others seek inspiration by seeing our warriors fight. Others still want to join us as civilians now that they are convinced the living conditions will not be as bad in our territory, or as health specialists to mitigate the loss of life."`
+			`	"It depends, for some they just to enjoy the resources of the new worlds that are ready for the taking. Others seek inspiration by seeing our warriors fight. Others still want to join us as civilians now that they are convinced the living conditions will not be as bad in our territory, or as health specialists to mitigate the loss of life. They want change, and we offer that change, they may have all they could possibly need at home, it does not mean they feel like they have a purpose, or that they are fullfilling it."`
 			choice
 				`	"Let's gather the Hai then."`
 					accept
@@ -1722,7 +1761,7 @@ mission "Unfettered: The Word Has Spread"
 					decline
 			
 			label battle
-			`	"The only battle there is, the one you have helped us plan for so long, the reconquest of our lost glory and lost worlds, up north." He seems to really believe in what he is saying, it looks like the fire of battle has lit once more in him.`
+			`	"The only battle there is, the one you have helped us plan for so long, the reconquest of our lost glory and lost worlds, up north. It will be good to finally reclaim our lost glory, and you have the chance to be able to join us!" He seems to really believe in what he is saying, it looks like the fire of battle has lit once more in him.`
 			choice
 				`	"Sure! I will join this battle."`
 				`	"Why would they want to join you?"`
@@ -1750,7 +1789,7 @@ mission "Unfettered: Greenbloom"
 		has "Unfettered: The Word Has Spread: active"
 	on offer
 		conversation
-			`These 17 Hai calmly enter your ship, most of them do not look like warriors. You see one of them dropping a drawing.`
+			`These 17 Hai calmly enter your ship, most of them do not look like warriors. You see one of them dropping a drawing. He does not seem to have noticed.`
 			choice
 				`	(Pick it up.)`
 					goto take
@@ -1761,7 +1800,7 @@ mission "Unfettered: Greenbloom"
 				decline
 			
 			label take
-			`You wait for them to leave to pick it up but he seems to have noticed and comes back for it. Oh well, no big deal.`
+			`You wait for them to leave to pick it up but he seems to have suddenly noticed he dropped something and comes back for it. Oh well, no big deal.`
 				decline
 			
 			label give
@@ -1774,12 +1813,23 @@ mission "Unfettered: Mirrorlake"
 	invisible
 	source "Mirrorlake"
 	landing
+	destination "Firelode"
+	cargo "supplies" 15
 	to offer
 		has "Unfettered: The Word Has Spread: active"
 	on offer
 		conversation
-			`These 14 Hai seem to be ready for war, you see great determination in their eyes.`
-				decline
+			`These 14 Hai seem to be ready for war, you see great determination in their eyes. They also have plenty of supplies with them, which appear heavy. This is weird because you were told they would not have any belongings with them...`
+			choice
+				`	(Bring the crates with them.)`
+					accept
+				`	"You are not supposed to bring any belongings with you."`
+			action
+				payment -100000
+			`	They look surprised, maybe they did not get the word. Whatever the case, they agree to leave their belongings here, moderating a small change in the fee they were asked to prepare for you, of <payment>.`
+	on complete
+		payment 100000
+		dialog `The Hai bringing supply apparently learned now that it was not part of the original deal, and insist on giving you <payment>.`
 
 mission "Unfettered: Makerplace"
 	invisible
@@ -1789,7 +1839,7 @@ mission "Unfettered: Makerplace"
 		has "Unfettered: The Word Has Spread: active"
 	on offer
 		conversation
-			`The Hai here are late, you need to wait a few hours before they finally come, and they do not even seem to be in a rush whatsoever.`
+			`The Hai you were sent to collect here are late, you need to wait a few hours before they finally come, and they do not even seem to be in a rush whatsoever.`
 				decline
 
 mission "Unfettered: Newhome"
@@ -1800,7 +1850,7 @@ mission "Unfettered: Newhome"
 		has "Unfettered: The Word Has Spread: active"
 	on offer
 		conversation
-			`You find a Hai family waiting for you at the spaceport. They happily come with you once you tell them you are here to pick them up. They say they are excited to learn more about their cousins (you assume they refer to the Unfettered).`
+			`You find a Hai family waiting for you at the spaceport. They happily come with you once you tell them you are here to pick them up. They say they are excited to learn more about their cousins (you assume they refer to the Unfettered). Hopefully the children will not be lacking food on the Unfettered worlds, where resources are scarce.`
 				decline
 
 mission "Unfettered: Darkmetal"
@@ -1811,7 +1861,7 @@ mission "Unfettered: Darkmetal"
 		has "Unfettered: The Word Has Spread: active"
 	on offer
 		conversation
-			`These Hai appear to be desperate, they say they are looking for a new life, with their brethren.`
+			`These Hai appear to be desperate, they say they are looking for a new life, with their brethren. They do not seem to have much to lose.`
 				decline
 
 mission "Unfettered: Snowfeather"
@@ -1867,7 +1917,7 @@ mission "Unfettered: Changed Their Mind"
 				`	"What do you mean, how could you possibly help them from there?"`
 				`	"I only came to check on you, you will have to find someone else for transport."`
 					decline
-			`	"We will spread the word. Our brethren need us, they need our support and they need our resources. They need more food, more supplies. We will speak about our firsthand experience to other Hai, and they will come to see our way."`
+			`	"We will spread the word. Our brethren need us, they need our support and they need our resources. They need more food, more supplies. We will speak about our firsthand experience to other Hai, and they will come to see our way." Maybe what changed their mind was how the little resources were going to be available for themselves, in more egoistic mindset. A thought comes into your mind that maybe, just maybe they could have been sent here by the Hai to gather intel, but that seems highly unlikely.`
 			choice
 				`	"I will take you back to <destination> then."`
 					accept
@@ -1914,12 +1964,12 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 				`	(Sure.)`
 				`	(Later.)`
 					defer
-			`	Curious to check on the huge ships you had seen under construction before, you go to the shipyard. There, you find an Unfettered warlord and ask to learn more about them. "It looks like even the monkeys cannot resist the attraction of these ships," he says.`
+			`	Curious to check on the huge ships you had seen under construction before, you go to the shipyard. There, you find an Unfettered warlord and ask to learn more about them. "It looks like even the monkeys cannot resist the attraction of these ships," he says. You did indeed come here curious to see more about ships you did not recognize.`
 			choice
 				`	"Are these Shield Beetles? They do not really look like it."`
 				`	"I am simply curious. Why do you call me monkey, have I not earned your respect yet?"`
 					goto curious
-			`	"Not at all, they are something much more powerful, something so strong it would put to shame even your famous 'carriers'. We were producing Shield Beetles here for quite some time already, long before your pitiful existence."`
+			`	"Not at all, they are something much more powerful, something so strong it would put to shame even your famous 'carriers'. We were producing Shield Beetles here for quite some time already, long before your pitiful existence." He actually seems to be believing what he just said, but it is a bit difficult to imagine something that much stronger than a carrier, with Unfettered technology that is.`
 			choice
 				`	"Why can I not buy Shield Beetles here then?"`
 				`	"Nothing is better than a carrier."`
@@ -1928,17 +1978,17 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 				goto mighty
 			
 			label brag
-			`	"Stupid monkey, thinks he knows everything... There are higher powers in this galaxy, and even then that is not required to match that carrier, because even if it is big and impressive, we have made something more advanced."`
+			`	"Stupid monkey, thinks it knows everything... There are higher powers in this galaxy, and even then that is not required to match that carrier, because even if it is big and impressive, we have made something more advanced."`
 				goto mighty
 			
 			label curious
 			`	He was about to say something, but instead ignores your question.`
 			
 			label mighty
-			`	"If you want to help us and get access to our mighty shield beetles, go to <destination> where they make most if not all of their big ships and gather intel on how they mass produce them." The Hai will probably not approve if they learn about this.`
+			`	"If you want to help us and get access to our mighty shield beetles, go to <destination> where they make most if not all of their big ships and gather intel on how they mass produce them." The Hai will probably not approve if they learn about this, but who needs their approval if you can buy shield beetles here instead?`
 			choice
 				`	"Will the Hai will let me land on their home world?"`
-			`	"Why would you need a permission? Discretely land in an isolated region, whilst nobody is looking. If they detect you, just pretend you have a navigation issue."`	
+			`	"Why would you need a permission? Discretely land in an isolated region, whilst nobody is looking. If they detect you, just pretend you have a navigation issue." What he is proposing appears to be a very bold plan, maybe even too bold to suceed.`	
 			choice
 				`	"I have a better idea: I will tell them I come to collect tribute."`
 				`	"This seems like it could easily go wrong, I am not interested."`
@@ -1967,7 +2017,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 				`	"Does this mean I can buy Shield Beetles now?"`
 				`	"What about my pay for the tribute?"`
 					goto tribute
-			`	He seems amused. "For that you would have to do a bit more than bringing some intel, we still do not have much capacity to build ships. But that will come soon, I first have to do some managing."`
+			`	He seems amused. "For that you would have to do a bit more than bringing some intel, we still do not have much capacity to build ships. But that will come soon, I first have to do some managing." He may have exaggerated how quickly you will get access to Shield Beetles.`
 				decline
 			choice
 				`	(Go.)`
@@ -2172,6 +2222,7 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 	to offer
 		has "Unfettered: Solifuge 8: Useful Korath Scientists: done"
 		has "Unfettered: Loot: Ion Canon Materials: done"
+		random < 80
 	on offer
 		conversation
 			`You see the Unfettered warlord you brought intel to, near the shipyard. He seems to be giving orders to make preparations for incoming changes. Do you go see him?`
@@ -2184,7 +2235,7 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 				`	"Yes, just tell me what to do to help."`
 					goto help
 				`	"Why do you say that?"`
-			`	"I know that your species loves big things. I guess that makes two of us. Since you are here, you can help us getting big ships anyway."`
+			`	"I know that your species loves big things. I guess that makes two of us. Since you are here, you can help us anyway."`
 			
 			label help
 			`	He checks his plans and consults a few experts, estimating the quantities you should bring. "We need industrial materials to build the new sections, a lot of them. We already have a big cargo on the way, but more would help speed things up significantly, especially given the distance."`
@@ -2222,7 +2273,7 @@ mission "Unfettered: Shield Beetles Available"
 	on offer
 		log "people" "Hi Ye" `An Unfettered warlord that likes to be direct and to call humans monkey apparently. He has some great managing capabilities though.`
 		conversation
-			`You receive a message from the Unfettered warlord, who finally gives you his name : "Hi Ye", "Thanks to you the Shipyard on Darkcloak is finally capable of producing shield beetles in great quantities. However in order to buy them you will require a license. Continue helping me and you will have it in no time! In the mean time you can enjoy the additional outfits we can produce there."`
+			`You receive a message from the Unfettered warlord, who finally gives you his name : "Hi Ye", "Thanks to you the Shipyard on Darkcloak is finally capable of producing Shield Beetles in great quantities. However in order to buy them you will require a license. Continue helping me and you will have it in no time! In the mean time you can enjoy the additional outfits we can produce there."`
 				decline
 
 
@@ -2233,6 +2284,7 @@ mission "Unfettered: Close Quarter"
 	source "Warfeed"
 	to offer
 		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
+		random < 30
 	on offer
 		conversation
 			`You can see movement in the spaceport, people seem to he heading to one place in particular and you can hear some shouting coming from that direction. Do you want to go take a look?`
@@ -2351,7 +2403,7 @@ mission "Unfettered: Close Quarter"
 			`	"Well... To be completely honest with you these rifles are not only intended for training purposes but I cannot tell you any more for now."`
 			
 			label getrd
-			`	"We will soon want your help with the upcoming invasion, get ready for it! Having a strong flagship is always an important asset but it is not all."`
+			`	"We will soon want your help with the upcoming invasion, get ready for it! Having a strong flagship is always an important asset but it is not all." It is not clear wether he means more ships or better strategy, and knowing him it could be either.`
 			choice
 				`	"The Basilisk will not be enough I take it?"`
 				`	"Okay in that case I will get ready."`
