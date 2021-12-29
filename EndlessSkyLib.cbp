@@ -137,6 +137,8 @@
 		<Unit filename="source/Files.h" />
 		<Unit filename="source/FillShader.cpp" />
 		<Unit filename="source/FillShader.h" />
+		<Unit filename="source/FireCommand.cpp" />
+		<Unit filename="source/FireCommand.h" />
 		<Unit filename="source/Fleet.cpp" />
 		<Unit filename="source/Fleet.h" />
 		<Unit filename="source/Flotsam.cpp" />

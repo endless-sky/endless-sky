@@ -13,11 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef COMMAND_H_
 #define COMMAND_H_
 
-#include "Bitset.h"
-
 #include <cstdint>
 #include <string>
-#include <vector>
 
 class DataNode;
 
@@ -86,9 +83,6 @@ public:
 	// Create a command representing whatever command is mapped to the given
 	// keycode (if any).
 	explicit Command(int keycode);
-
-	// Sets the specified amount of hardpoints desired.
-	void SetHardpoints(int count);
 	
 	// Read the current keyboard state and set this object to reflect it.
 	void ReadKeyboard();
@@ -110,27 +104,18 @@ public:
 	// Reset this to an empty command.
 	void Clear();
 	// Clear, set, or check the given bits. This ignores the turn field.
-	void Clear(const Command &command);
-	void Set(const Command &command);
-	bool Has(const Command &command) const;
+	void Clear(Command command);
+	void Set(Command command);
+	bool Has(Command command) const;
 	// Get the commands that are set in this and in the given command.
-	Command And(const Command &command) const;
+	Command And(Command command) const;
 	// Get the commands that are set in this and not in the given command.
-	Command AndNot(const Command &command) const;
+	Command AndNot(Command command) const;
 	
 	// Get or set the turn amount. The amount must be between -1 and 1, but it
 	// can be a fractional value to allow finer control.
 	void SetTurn(double amount);
 	double Turn() const;
-	// Get or set the fire commands.
-	bool HasFire(int index) const;
-	void SetFire(int index);
-	// Check if any weapons are firing.
-	bool IsFiring() const;
-	// Set the turn rate of the turret with the given weapon index. A value of
-	// -1 or 1 means to turn at the full speed the turret is capable of.
-	double Aim(int index) const;
-	void SetAim(int index, double amount);
 	
 	// Check if any bits are set in this command (including a nonzero turn).
 	explicit operator bool() const;
@@ -154,10 +139,6 @@ private:
 	uint32_t state = 0;
 	// Turning amount is stored as a separate double to allow fractional values.
 	double turn = 0.;
-	// The weapon commands stores whether the given weapon is active.
-	Bitset weapon;
-	// Turret turn rates, reduced to 8 bits to save space.
-	std::vector<signed char> aim;
 };
 
 

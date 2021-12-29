@@ -49,6 +49,10 @@ public:
 	// Whether no bits are set.
 	bool none() const noexcept;
 
+	// Access to the internal block array used by the bitset.
+	std::vector<uint64_t> &Bits();
+	const std::vector<uint64_t> &Bits() const;
+
 
 private:
 	// Stores the bits of the bitset.

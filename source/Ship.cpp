@@ -678,6 +678,9 @@ void Ship::FinishLoading(bool isNewInstance)
 	weaponRadius = 0.;
 	for(const Hardpoint &hardpoint : armament.Get())
 		weaponRadius = max(weaponRadius, hardpoint.GetPoint().Length());
+
+	// Allocate enough firing bits for this ship.
+	firingCommands.SetHardpoints(armament.Get().size());
 	
 	// If this ship is being instantiated for the first time, make sure its
 	// crew, fuel, etc. are all refilled.
@@ -1343,9 +1346,16 @@ string Ship::GetHail(const PlayerInfo &player) const
 
 
 // Set the commands for this ship to follow this timestep.
-void Ship::SetCommands(Command command)
+void Ship::SetCommands(const Command &command)
 {
-	commands = std::move(command);
+	commands = command;
+}
+
+
+
+void Ship::SetCommands(const FireCommand &firingCommand)
+{
+	firingCommands.AssignSubsetOf(firingCommand);
 }
 
 
@@ -1353,6 +1363,13 @@ void Ship::SetCommands(Command command)
 const Command &Ship::Commands() const
 {
 	return commands;
+}
+
+
+
+const FireCommand &Ship::FiringCommands() const
+{
+	return firingCommands;
 }
 
 
@@ -1380,7 +1397,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		hyperspaceSystem = nullptr;
 	
 	// Adjust the error in the pilot's targeting.
-	personality.UpdateConfusion(commands.IsFiring());
+	personality.UpdateConfusion(firingCommands.IsFiring());
 	
 	// Generate energy, heat, etc.
 	DoGeneration();
@@ -1411,7 +1428,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	
 	// Move the turrets.
 	if(!isDisabled)
-		armament.Aim(commands);
+		armament.Aim(firingCommands);
 	
 	if(!isInvisible)
 	{
@@ -2447,7 +2464,7 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 		{
 			if(weapon->AntiMissile())
 				antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
-			else if(commands.HasFire(i))
+			else if(firingCommands.HasFire(i))
 				armament.Fire(i, *this, projectiles, visuals);
 		}
 	}

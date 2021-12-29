@@ -95,15 +95,6 @@ Command::Command(int keycode)
 
 
 
-// Sets the specified amount of hardpoints desired.
-void Command::SetHardpoints(int count)
-{
-	weapon.resize(count);
-	aim.resize(count);
-}
-
-
-
 // Read the current keyboard state.
 void Command::ReadKeyboard()
 {
@@ -282,14 +273,12 @@ void Command::Load(const DataNode &node)
 void Command::Clear()
 {
 	state = 0;
-	weapon.clear();
-	aim.clear();
 }
 
 
 
 // Clear any commands that are set in the given command.
-void Command::Clear(const Command &command)
+void Command::Clear(Command command)
 {
 	state &= ~command.state;
 }
@@ -297,7 +286,7 @@ void Command::Clear(const Command &command)
 
 
 // Set any commands that are set in the given command.
-void Command::Set(const Command &command)
+void Command::Set(Command command)
 {
 	state |= command.state;
 }
@@ -305,17 +294,15 @@ void Command::Set(const Command &command)
 
 
 // Check if any of the given command's bits that are set, are also set here.
-bool Command::Has(const Command &command) const
+bool Command::Has(Command command) const
 {
-	if(state & command.state)
-		return true;
-	return weapon.intersects(command.weapon);
+	return (state & command.state);
 }
 
 
 
 // Get the commands that are set in this and in the given command.
-Command Command::And(const Command &command) const
+Command Command::And(Command command) const
 {
 	return Command(state & command.state);
 }
@@ -323,7 +310,7 @@ Command Command::And(const Command &command) const
 
 
 // Get the commands that are set in this and not in the given command.
-Command Command::AndNot(const Command &command) const
+Command Command::AndNot(Command command) const
 {
 	return Command(state & ~command.state);
 }
@@ -346,62 +333,6 @@ double Command::Turn() const
 
 
 
-// Check if this command includes a command to fire the given weapon.
-bool Command::HasFire(int index) const
-{
-	if(index < 0 || index >= static_cast<int>(weapon.size()))
-		return false;
-	
-	return weapon.test(index);
-}
-
-
-
-// Add to this set of commands a command to fire the given weapon.
-void Command::SetFire(int index)
-{
-	if(index < 0)
-		return;
-	if(index >= static_cast<int>(weapon.size()))
-		weapon.resize(index + 1);
-	
-	weapon.set(index);
-}
-
-
-
-// Check if any weapons are firing.
-bool Command::IsFiring() const
-{
-	return weapon.any();
-}
-
-
-
-// Set the turn rate of the turret with the given weapon index. A value of
-// -1 or 1 means to turn at the full speed the turret is capable of.
-double Command::Aim(int index) const
-{
-	if(index < 0 || index >= static_cast<int>(aim.size()))
-		return 0;
-	
-	return aim[index] / 127.;
-}
-
-
-
-void Command::SetAim(int index, double amount)
-{
-	if(index < 0)
-		return;
-	if(index >= static_cast<int>(aim.size()))
-		aim.resize(index + 1);
-	
-	aim[index] = round(127. * max(-1., min(1., amount)));
-}
-
-
-
 // Check if any bits are set in this command (including a nonzero turn).
 Command::operator bool() const
 {
@@ -413,9 +344,7 @@ Command::operator bool() const
 // Check whether this command is entirely empty.
 bool Command::operator!() const
 {
-	if(state || turn)
-		return false;
-	return weapon.none();
+	return !state && !turn;
 }
 
 

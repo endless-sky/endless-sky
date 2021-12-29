@@ -98,3 +98,18 @@ bool Bitset::none() const noexcept
 {
 	return !any();
 }
+
+
+
+// Access to the internal block array used by the bitset.
+std::vector<uint64_t> &Bitset::Bits()
+{
+	return bits;
+}
+
+
+
+const std::vector<uint64_t> &Bitset::Bits() const
+{
+	return bits;
+}
