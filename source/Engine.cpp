@@ -1068,7 +1068,7 @@ void Engine::Draw() const
 	
 	// Upload any preloaded sprites that are now available. This is to avoid
 	// filling the entire backlog of sprites before landing on a planet.
-	GameData::Progress();
+	GameData::ProcessSprites();
 	
 	if(Preferences::Has("Show CPU / GPU load"))
 	{

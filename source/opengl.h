@@ -1,4 +1,4 @@
-/* gl_header.h
+/* opengl.h
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -9,6 +9,9 @@ Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
+
+#ifndef ES_OPENGL_H_
+#define ES_OPENGL_H_
 
 // Include whichever header is used for OpenGL on this operating system.
 #ifdef __APPLE__
@@ -21,3 +24,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #endif
 #endif
 
+// A helper class for various OpenGL platform specific calls.
+class OpenGL
+{
+public:
+	static bool HasAdaptiveVSyncSupport();
+	static bool HasSwizzleSupport();
+};
+
+#endif
