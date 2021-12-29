@@ -1752,7 +1752,7 @@ mission "Unfettered: The Word Has Spread"
 					decline
 			
 			label why
-			`	"It depends, for some they just to enjoy the resources of the new worlds that are ready for the taking. Others seek inspiration by seeing our warriors fight. Others still want to join us as civilians now that they are convinced the living conditions will not be as bad in our territory, or as health specialists to mitigate the loss of life. They want change, and we offer that change, they may have all they could possibly need at home, it does not mean they feel like they have a purpose, or that they are fullfilling it."`
+			`	"It depends, for some they just to enjoy the resources of the new worlds that are ready for the taking. Others seek inspiration by seeing our warriors fight. Others still want to join us as civilians now that they are convinced the living conditions will not be as bad in our territory, or as health specialists to mitigate the loss of life. They want change, and we offer that change, they may have all they could possibly need at home, it does not mean they feel like they have a purpose, or that they are fulfilling it."`
 			choice
 				`	"Let's gather the Hai then."`
 					accept
@@ -1988,7 +1988,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 			`	"If you want to help us and get access to our mighty shield beetles, go to <destination> where they make most if not all of their big ships and gather intel on how they mass produce them." The Hai will probably not approve if they learn about this, but who needs their approval if you can buy shield beetles here instead?`
 			choice
 				`	"Will the Hai will let me land on their home world?"`
-			`	"Why would you need a permission? Discretely land in an isolated region, whilst nobody is looking. If they detect you, just pretend you have a navigation issue." What he is proposing appears to be a very bold plan, maybe even too bold to suceed.`	
+			`	"Why would you need a permission? Discretely land in an isolated region, whilst nobody is looking. If they detect you, just pretend you have a navigation issue." What he is proposing appears to be a very bold plan, maybe even too bold to succeed.`	
 			choice
 				`	"I have a better idea: I will tell them I come to collect tribute."`
 				`	"This seems like it could easily go wrong, I am not interested."`
@@ -2403,7 +2403,7 @@ mission "Unfettered: Close Quarter"
 			`	"Well... To be completely honest with you these rifles are not only intended for training purposes but I cannot tell you any more for now."`
 			
 			label getrd
-			`	"We will soon want your help with the upcoming invasion, get ready for it! Having a strong flagship is always an important asset but it is not all." It is not clear wether he means more ships or better strategy, and knowing him it could be either.`
+			`	"We will soon want your help with the upcoming invasion, get ready for it! Having a strong flagship is always an important asset but it is not all." It is not clear whether he means more ships or better strategy, and knowing him it could be either.`
 			choice
 				`	"The Basilisk will not be enough I take it?"`
 				`	"Okay in that case I will get ready."`
