@@ -662,7 +662,7 @@ mission "Remnant: Cognizance 18"
 					goto goodidea
 				`	"Okay, let's go do this."`
 					goto letsgo
-			`	Plume looks a bit embarrassed. "Centuries ago when we first studied the void sprites, we learned how to harvest them. As part of that, we discovered that they were particularly interested in certain types of radiation. Likewise, if they discovered a certain kind of element common in some asteroids, they would ignore almost everything while they chewed on it. So, we have emitters inside the cargo holds along with asteroids to keep them busy for a short while."`
+			`	Plume looks a bit embarrassed. "When we first studied the void sprites centuries ago, we learned how to harvest them. As part of that, we discovered that they were particularly interested in certain types of radiation. Likewise, if they discovered a certain kind of element common in some asteroids, they would ignore almost everything while they chewed on it. So, we have emitters inside the cargo holds along with asteroids to keep them busy for a short while."`
 			choice
 				`	"Are we sure this is a good idea?"`
 				`	"Okay, let's go."`
@@ -817,6 +817,7 @@ mission "Remnant: Cognizance 21"
 		planet "Ssil Vida"
 	to offer
 		has "Remnant: Cognizance 20: done"
+		not "dusk busy"
 	on offer
 		require "Research Laboratory"
 		conversation
@@ -856,6 +857,8 @@ mission "Remnant: Cognizance 21"
 			label missiondescription
 			`	Dusk leans over the holo, peering at the details. "The mission is a very standard arc: We go to the station, set up our equipment to get some detailed readings, and return here once we are done. For these initial readings we should need about a day onsite, and we will leave some of our equipment to take ongoing recordings for retrieval later. After that... Well, we will see what the data says and decide from there."`
 				accept
+	on accept
+		set "dusk busy"
 	on stopover
 		require "Research Laboratory"
 		conversation
@@ -949,7 +952,7 @@ mission "Remnant: Cognizance 22"
 			`	The Remnant leads you through several sets of increasingly impressive doors before arriving at a room filled with tiny doors. He picks one, uses a key to open it, and pull out a small metal box that they unlock with a second key. "If you would place the data crystal here, we will record the surface metadata, and those who need it will be able to retrieve it when necessary." He waits until you have placed it in the box, then reverses the process to secure it in the vault wall again.`
 				goto departure
 			label trusted
-			`	The Remnant gestures, "Would you prefer to put it in the surface vault or the deep vault?"`
+			`	The Remnant gestures, "If you are in a rush, you can drop it off in the surface vault for now, and I will move it to its proper storage location myself later. Or you can deliver it to the deep vault yourself."`
 			choice
 				`	"The surface vault."`
 					goto surfacevault
@@ -1592,6 +1595,7 @@ mission "Remnant: Cognizance 37"
 	on offer
 		event "remnant: cognizance salvage expansion"
 	on complete
+		clear "dusk busy"
 		conversation
 			`A crowd of Remnant cluster around your ship as you land, but it is just one who gestures quickly, asking if the rest of the team who went with you are safe. You nod, and a ripple of relief goes through the crowd. "So, what happened?" asks another.`
 			choice
