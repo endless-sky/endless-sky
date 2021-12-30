@@ -34,6 +34,14 @@ namespace {
 
 
 
+// Initializer based on the formation pattern to follow.
+FormationPositioner::FormationPositioner(const Body *formationLead, const FormationPattern *pattern)
+	: formationLead(formationLead), pattern(pattern), direction(formationLead->Facing())
+{
+}
+
+
+
 void FormationPositioner::Step()
 {
 	// Set scaling based on results from previous run.
@@ -144,7 +152,7 @@ void FormationPositioner::Step()
 	}
 	
 	// Angle at which to perform longitudinal or transverse mirror instead of turn.
-	static const double MIN_FLIP_TRIGGER = 135.;
+	constexpr double MIN_FLIP_TRIGGER = 135.;
 	
 	// If we are beyond the triggers for flipping, then immediately go to the desired direction.
 	if(fabs(deltaDir.Degrees()) >= MIN_FLIP_TRIGGER &&
@@ -161,7 +169,7 @@ void FormationPositioner::Step()
 	{
 		// Turn max 1/4th degree per frame. The game runs at 60fps, so a turn of 180 degrees will take
 		// about 12 seconds.
-		static const double MAX_FORMATION_TURN = 0.25;
+		constexpr double MAX_FORMATION_TURN = 0.25;
 		
 		if(deltaDir.Degrees() > MAX_FORMATION_TURN)
 			deltaDir = Angle(MAX_FORMATION_TURN);

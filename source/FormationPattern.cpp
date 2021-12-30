@@ -183,13 +183,15 @@ void FormationPattern::Load(const DataNode &node)
 					flippable_x = true;
 				else if(child.Token(i) == "y")
 					flippable_y = true;
+				else
+					child.PrintTrace("Skipping unrecognized attribute:");
 			}
 		else if(child.Token(0) == "rotatable" && child.Size() >= 2)
 			rotatable = child.Value(1);
 		else if(child.Token(0) == "point" && child.Size() >= 3)
 		{
 			lines.emplace_back();
-			Line &line = lines[lines.size() - 1];
+			Line &line = lines.back();
 			// A point is a line with just 1 slot.
 			line.slots = 1;
 			// The specification of the coordinates is on the same line as the keyword.
@@ -199,7 +201,7 @@ void FormationPattern::Load(const DataNode &node)
 		else if(child.Token(0) == "line" || child.Token(0) == "arc")
 		{
 			lines.emplace_back();
-			Line &line = lines[lines.size() - 1];
+			Line &line = lines.back();
 			
 			if(child.Token(0) == "arc")
 				line.isArc = true;
@@ -225,6 +227,8 @@ void FormationPattern::Load(const DataNode &node)
 							line.skipFirst = true;
 						else if(grand.Token(i) == "last")
 							line.skipLast = true;
+						else
+							grand.PrintTrace("Skipping unrecognized attribute:");
 					}
 				else if(grand.Token(0) == "repeat")
 				{
@@ -480,6 +484,8 @@ void FormationPattern::MultiAxisPoint::AddLoad(const DataNode &node)
 			axis = WIDTHS;
 		else if(node.Token(i) == "height")
 			axis = HEIGHTS;
+		else
+			node.PrintTrace("Skipping unrecognized token " + node.Token(i) + ":");
 	}
 
 	// The last 2 numbers are always the coordinate.

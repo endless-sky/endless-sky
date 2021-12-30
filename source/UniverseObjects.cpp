@@ -277,7 +277,7 @@ void UniverseObjects::CheckReferences()
 		if(!it.second.IsValid())
 			Warn("hazard", it.first);
 	// Formation patterns are not serialized, but their usage is.
-	for(auto &it : formations)
+	for(auto &&it : formations)
 		if(it.second.Name().empty())
 			NameAndWarn("formation", it);
 }

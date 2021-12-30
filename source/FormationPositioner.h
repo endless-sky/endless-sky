@@ -30,8 +30,7 @@ class Ship;
 class FormationPositioner {
 public:
 	// Initializer based on the formation pattern to follow.
-	FormationPositioner(const Body *formationLead, const FormationPattern *pattern)
-		: formationLead(formationLead), pattern(pattern), direction(formationLead->Facing()) {}
+	FormationPositioner(const Body *formationLead, const FormationPattern *pattern);
 
 	// TODO: Should we replace the Start() and NextPosition() by Add(Ship*), Remove(Ship*) and GetPosition(Ship*)? (and move some calculations now done every frame to the Add function?)
 	// Start/reset/initialize for a (new) round of formation position calculations

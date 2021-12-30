@@ -132,11 +132,11 @@ namespace {
 	{
 		// Figure out what ships we are giving orders to
 		vector<Ship *> targetShips;
-		auto selectedShips = player.SelectedShips();
+		auto &selectedShips = player.SelectedShips();
 		bool fullFleet = selectedShips.empty();
 		if(fullFleet)
 		{
-			auto playerShips = player.Ships();
+			auto &playerShips = player.Ships();
 			targetShips.reserve(playerShips.size() - 1);
 			for(const shared_ptr<Ship> &it : player.Ships())
 				if(it.get() != player.Flagship() && !it->IsParked()
@@ -154,7 +154,8 @@ namespace {
 			}
 		}
 		
-		// This should never happen, but just in case:
+		// This can happen when the player only has a flagship or when
+		// all selected escorts are disabled.
 		if(targetShips.empty())
 		{
 			if(fullFleet)
@@ -358,13 +359,11 @@ void AI::IssueFormationChange(const PlayerInfo &player)
 {
 	// Figure out what ships we are giving orders to
 	vector<Ship *> targetShips = GetShipsForFormationCommand(player);
-	
-	// This should never happen, but just in case:
 	if(targetShips.empty())
 		return;
 	
 	const auto &formationPatterns = GameData::Formations();
-	if(formationPatterns.size() < 1)
+	if(formationPatterns.empty())
 	{
 		Messages::Add("No formations available.", Messages::Importance::High);
 		return;
@@ -421,31 +420,13 @@ void AI::IssueFormationChange(const PlayerInfo &player)
 
 
 
-// Fleet commands from the player.
-void AI::IssueFormationRingDecrease(const PlayerInfo &player)
+// Change the formation ring in which ships fly. This function acts on
+// the maximum ring in the set of affected ships and then applies the
+// change.
+void AI::IssueFormationRingChange(const PlayerInfo &player, int change)
 {
 	// Figure out what ships we are giving orders to
 	vector<Ship *> targetShips = GetShipsForFormationCommand(player);
-	
-	// This should never happen, but just in case:
-	if(targetShips.empty())
-		return;
-	
-	for(Ship *ship : targetShips)
-		ship->SetFormationRing(0);
-	
-	Messages::Add(to_string(targetShips.size()) + " ships are now flying in formation ring 0.", Messages::Importance::Low);
-}
-
-
-
-// Fleet commands from the player.
-void AI::IssueFormationRingIncrease(const PlayerInfo &player)
-{
-	// Figure out what ships we are giving orders to
-	vector<Ship *> targetShips = GetShipsForFormationCommand(player);
-	
-	// This should never happen, but just in case:
 	if(targetShips.empty())
 		return;
 	
@@ -457,7 +438,9 @@ void AI::IssueFormationRingIncrease(const PlayerInfo &player)
 		if(shipRing > maxRing)
 			maxRing = shipRing;
 	}
-	maxRing++;
+	maxRing += change;
+	if(maxRing < 0)
+		maxRing = 0;
 	
 	// Now set the new ring on the selected ships.
 	for(Ship *ship : targetShips)
@@ -543,7 +526,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	if(activeCommands.Has(Command::DEPLOY))
 		IssueDeploy(player);
 	
-	bool shift = activeCommands.Has(Command::SHIFT);
+	const bool shift = activeCommands.Has(Command::SHIFT);
 	
 	// The gather, hold and fight commands control formation flying when combined with shift.
 	if(shift)
@@ -551,9 +534,9 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		if(activeCommands.Has(Command::GATHER))
 			IssueFormationChange(player);
 		else if(activeCommands.Has(Command::FIGHT))
-			IssueFormationRingIncrease(player);
+			IssueFormationRingChange(player, 1);
 		else if(activeCommands.Has(Command::HOLD))
-			IssueFormationRingDecrease(player);
+			IssueFormationRingChange(player, -1);
 	}
 	
 	shared_ptr<Ship> target = flagship->GetTargetShip();
@@ -697,9 +680,9 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 	
 	// Allow all formation-positioners to handle their internal administration to
 	// prepare for the next cycle.
-	for(auto &bIt : formations)
-		for(auto &pIt : bIt.second)
-			pIt.second.Step();
+	for(auto &bodyIt : formations)
+		for(auto &positionerIt : bodyIt.second)
+			positionerIt.second.Step();
 	
 	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
@@ -1571,10 +1554,10 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 	// Set an iterator to point to the just found or emplaced value.
 	auto it = insert.first;
 	
-	// Aggresively try to match the position and velocity for the formation position.
-	double POSITION_DEADBAND = ship.Radius() * 1.25;
-	static const double VELOCITY_DEADBAND = 0.1;
-	bool inPosition = MoveTo(ship, command, it->second.Position(&ship), formationLead->Velocity(), POSITION_DEADBAND, VELOCITY_DEADBAND);
+	// Aggressively try to match the position and velocity for the formation position.
+	const double PositionDeadband = ship.Radius() * 1.25;
+	constexpr double VELOCITY_DEADBAND = 0.1;
+	bool inPosition = MoveTo(ship, command, it->second.Position(&ship), formationLead->Velocity(), PositionDeadband, VELOCITY_DEADBAND);
 	
 	// If we match the position and velocity, then also match the facing angle.
 	if(inPosition)
@@ -4007,7 +3990,6 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 		}
 		who = ships.size() > 1 ? "The selected escorts are " : "The selected escort is ";
 	}
-	// This should never happen, but just in case:
 	if(ships.empty())
 		return;
 	

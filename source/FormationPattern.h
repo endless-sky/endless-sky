@@ -37,7 +37,7 @@ public:
 	public:
 		// Center radius of the formation that is to be kept clear. This
 		// is typically used to avoid positions of ships overlapping with
-		// the  body around which the formation is formed. The actual radius
+		// the body around which the formation is formed. The actual radius
 		// that will be kept clear is this centerBodyRadius plus half of the
 		// maxDiameter.
 		double centerBodyRadius = 100;
