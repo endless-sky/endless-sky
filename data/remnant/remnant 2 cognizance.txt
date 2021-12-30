@@ -817,15 +817,25 @@ mission "Remnant: Cognizance 21"
 		planet "Ssil Vida"
 	to offer
 		has "Remnant: Cognizance 20: done"
-		not "dusk busy"
+		not "Remnant: Dusk Busy"
 	on offer
 		require "Research Laboratory"
 		conversation
+			branch duskknown
+				has "remnant met dusk"
 			`	In the cafeteria the scene hasn't changed much: There is still a large group of Remnant gathered around a cluster of projectors, with a constant stream of gestures discussing various points of the data. You understand enough to figure out that most of the conversation is deep into technical discussions of how the lifesign sensors might give the readings they do without having anything visible. The principle differences from before is that there is a stack of small bags and helmets next to the door and five of the Remnant present are wearing pressure suits. One of them notices you and waves you over. "Captain <first>! My name is Dusk, and I am one of the researchers that you volunteered to transport to Ssil Vida."`
 			choice
-				`	"Dusk? Are names of like that common?"`
 				`	"Pleased to meet you, Dusk."`
 					goto missiondescription
+				`	"Dusk? Are names like that common?"`
+					goto duskname
+			label duskknown
+			`	In the cafeteria the scene hasn't changed much: There is still a large group of Remnant gathered around a cluster of projectors, with a constant stream of gestures discussing various points of the data. You understand enough to figure out that most of the conversation is deep into technical discussions of how the lifesign sensors might give the readings they do without having anything visible. The principle differences from before is that there is a stack of small bags and helmets next to the door and five of the Remnant present are wearing pressure suits. You recognize one of them as Dusk as they waves you over. "Captain <first>! The Embers crossed our paths once again. I am one of the researchers that you volunteered to transport to Ssil Vida."`
+			choice
+				`	"Good to see you again, Dusk."`
+					goto missiondescription
+				`	"I was meaning to ask: Are names like that common?"`
+			label duskname
 			`	"You mean names of the various phases of daylight?" He pauses for a few seconds. "I would not say they are common, but nor are they rare, either. Our ancestors devoted their lives, one way or another, to studying the stars and the ever-changing light of the universe. It should not be surprising that their vocabulary should be so entwined in our culture."`
 			choice
 				`	"Who were your ancestors?"`
@@ -858,7 +868,7 @@ mission "Remnant: Cognizance 21"
 			`	Dusk leans over the holo, peering at the details. "The mission is a very standard arc: We go to the station, set up our equipment to get some detailed readings, and return here once we are done. For these initial readings we should need about a day onsite, and we will leave some of our equipment to take ongoing recordings for retrieval later. After that... Well, we will see what the data says and decide from there."`
 				accept
 	on accept
-		set "dusk busy"
+		set "Remnant: Dusk Busy"
 	on stopover
 		require "Research Laboratory"
 		conversation
@@ -1595,7 +1605,7 @@ mission "Remnant: Cognizance 37"
 	on offer
 		event "remnant: cognizance salvage expansion"
 	on complete
-		clear "dusk busy"
+		clear "Remnant: Dusk Busy"
 		conversation
 			`A crowd of Remnant cluster around your ship as you land, but it is just one who gestures quickly, asking if the rest of the team who went with you are safe. You nod, and a ripple of relief goes through the crowd. "So, what happened?" asks another.`
 			choice
