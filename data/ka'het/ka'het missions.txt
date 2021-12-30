@@ -321,6 +321,7 @@ mission "Ka'het: Patir Mystery 1"
 	landing
 	name "Visit <waypoints>"
 	description "Bring Taely with you to visit the <waypoints> system before going to <destination>."
+	blocked "To investigate the new system in Ka'het space, you'll need <capacity> available. Return when you have the space free."
 	source
 		government "Remnant"
 	destination "Aventine"
@@ -364,7 +365,10 @@ mission "Ka'het: Patir Mystery 1"
 			label mount
 			`	Taely replies, "I will gather a team to install the scanning system. We should be done in around an hour." She leaves the warehouse carrying a scanner, leaving you to prepare your ship for the upcoming mission.`
 				accept
-				
+
+	on visit
+		dialog "You've arrived at <planet>, but your mission is not complete! Make sure Taely and all the equipment passes through <waypoints>. If they are on an escort, you must wait for it to arrive at <waypoints> before you return to <planet>."
+
 	on enter "Patir"
 		conversation
 			`When you enter the system, Taely is already sitting at the scanner's control console. She starts counting loudly. "External deployment in three... two... one... trackers out. Initiating startup sequence." She begins typing commands on a keyboard. "This is going to take a while, <first>," she says, without taking her eyes off the screen. "It is not normally a one-person job."`
@@ -458,6 +462,7 @@ mission "Ka'het: Patir Mystery 1"
 mission "Ka'het: Patir Mystery 2"
 	name "Scanners in <system>"
 	description "Make detailed scans of the asteroid Dusk indicated in the <system> system."
+	blocked "You'll need <capacity> available to carry Dusk's scanner. Return here when you have enough free space."
 	source "Aventine"
 	destination "Builder Settlement"
 	cargo "short range scanner" 15
@@ -471,6 +476,8 @@ mission "Ka'het: Patir Mystery 2"
 				`	"What's the next step?"`
 			`	"Well, first we need to install the scanners on your ship. Luckily, they are as simple to use as a normal outfit scanner, so you should not have much trouble once you reach the asteroid. After you have made extensive scans of the sites I indicate to you, reach me back here on <origin> so that I can analyze the data. If everything goes well, you should be back here in a couple weeks. I have already gotten a team ready to install the scanners; all that needs to be done now is for you to head back to <system>."`
 				accept
+	on visit
+		dialog "You've arrived, but you realize your escort carrying the <commodity> has not yet entered the system! Better depart and wait for it."
 	on enter "Patir"
 		dialog
 			`After a brief scan of the system, your ship's computers identify the asteroid that Dusk talked about. Compared to the asteroids you are used to, this one is orders of magnitude bigger, almost the size of a small moon.`
@@ -514,6 +521,8 @@ mission "Ka'het: Patir Mystery 3"
 				"exploration interest" += 1
 			`	You carefully position your ship above the structure and activate the sensors. As the scan proceeds, you monitor the position of the Ka'sei fleet. Some of the Fetri'sei nearest to you have stopped their standard activities and are just standing by, perhaps observing your actions the same way you are observing theirs. Luckily, after a few minutes the sensors complete their analysis of the structure and you are ready to return to <planet> unmolested.`
 				accept
+	on visit
+		dialog "You've returned to <planet>, but you realize your escort carrying the <commodity> has not yet entered the system! Better depart and wait for it."
 	on complete
 		dialog
 			`Near the landing area, you discuss with Dusk what you have found next to the iridium storage. "This is fantastic! It is so much more than I hoped to find with this expedition. Give me a few hours to analyze the data and meet me in the spaceport."`
@@ -521,6 +530,7 @@ mission "Ka'het: Patir Mystery 3"
 mission "Ka'het: Patir Mystery 4"
 	name "Visit the asteroid"
 	description "Bring Dusk to <system> to visit the ancient Builder settlement."
+	blocked "You'll need <capacity> available so Dusk can join you on your mission. Return with the available space to continue."
 	source "Aventine"
 	destination "Builder Settlement"
 	passengers 1
@@ -539,6 +549,8 @@ mission "Ka'het: Patir Mystery 4"
 				`	"Wait, are you saying that you can read the Builder language?"`
 			`	"Very approximately, but yes. We have been studying every piece of written language we could find from their cities, mostly inside sealed containers. It is very hard to understand full phrases or even what they mean at times, but we can reliably translate most of the common words and idioms, which will hopefully be enough for our mission."`
 				accept
+	on visit
+		dialog "You've arrived, but you realize your escort carrying Dusk has not yet entered the system! Better depart and wait for it."
 	on complete
 		"reputation: Ka'sei" <?= -10
 
@@ -651,6 +663,8 @@ mission "Ka'het: Patir Mystery 5"
 		clear "saved ka'sei rep"
 		dialog
 			`One or more Ka'sei were destroyed. You failed your mission.`
+	on visit
+		dialog "You've returned to <planet>, but you realize your escort carrying Dusk has not yet entered the system! Better depart and wait for it."
 	on complete
 		clear "Remnant: Dusk Busy"
 		event "patir mystery timer" 10
