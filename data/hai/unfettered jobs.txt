@@ -178,22 +178,22 @@ mission "Unfettered Tribute 3"
 
 
 
+# When outnumbered 2 to 1 at least, they may consider themselves unable to beat you and prefer to die standing than slaughtered.
 mission "Proud Unfettered Boarded"
 	boarding
 	repeat
 	minor
 	to offer
-		random < 32
+		"flagship crew" > 120
+		random < "flagship crew" / 8
 	source
 		government "Hai (Unfettered)"
 		category "Heavy Warship"
-		"flagship crew" > 55
 	on offer
 		conversation
-			`As you board the <origin> you immediately notice something is wrong, the ship is starting to explode! The captain sends you a message. "Better to die with my crew, standing, than risk being slaughtered by false, inferior, fettered humans! I will take you down with us!"`
+			`As you board the <origin> you immediately notice something is wrong, the ship is starting to explode! The captain sends you a message. "This is not a fair fight. Better to die with my crew, standing, than risk being slaughtered by false, inferior, fettered humans! You will not be allowed to us this ship against our brothers and sisters, I will take you down with us!"`
 				flee
 	destination "Darkcloak"
-
 
 
 mission "Unfettered Silicon Asteroid Mining"
