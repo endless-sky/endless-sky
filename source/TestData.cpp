@@ -98,7 +98,7 @@ bool TestData::InjectSavegame() const
 					for(const DataNode &child : dataNode)
 						dataWriter.Write(child);
 					
-					// Data was found and written. We are done succesfully.
+					// Data was found and written. We are done successfully.
 					return true;
 				}
 			

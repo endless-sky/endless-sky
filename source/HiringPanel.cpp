@@ -12,7 +12,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "HiringPanel.h"
 
-#include "FillShader.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -46,9 +45,6 @@ void HiringPanel::Draw()
 	if(!player.Flagship())
 		return;
 	const Ship &flagship = *player.Flagship();
-	
-	// Draw a line in the same place as the trading and bank panels.
-	FillShader::Fill(Point(-60., 95.), Point(480., 1.), *GameData::Colors().Get("medium"));
 	
 	const Interface *hiring = GameData::Interfaces().Get("hiring");
 	Information info;

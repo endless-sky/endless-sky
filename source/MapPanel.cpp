@@ -46,7 +46,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Trade.h"
 #include "UI.h"
 
-#include "gl_header.h"
+#include "opengl.h"
 
 #include <algorithm>
 #include <cctype>
@@ -1002,7 +1002,7 @@ void MapPanel::DrawWormholes()
 		const System *from = waypoints.back();
 		for(const System *to : waypoints)
 		{
-			if(player.HasVisited(*from) && player.HasVisited(*to))
+			if(from->FindStellar(&p)->HasSprite() && player.HasVisited(*from) && player.HasVisited(*to))
 				arrowsToDraw.emplace(from, to);
 			
 			from = to;

@@ -40,8 +40,8 @@ using namespace std;
 
 
 
-HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
-	: player(player), ship(ship), sprite(ship->GetSprite()), facing(ship->Facing())
+HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<void(const Government *)> bribeCallback)
+	: player(player), ship(ship), bribeCallback(bribeCallback), sprite(ship->GetSprite()), facing(ship->Facing())
 {
 	SetInterruptible(false);
 	
@@ -233,7 +233,11 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	bool shipIsEnemy = (ship && ship->GetGovernment()->IsEnemy());
 	
 	if(key == 'd' || key == SDLK_ESCAPE || key == SDLK_RETURN || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+	{
+		if(bribeCallback && bribed)
+			bribeCallback(bribed);
 		GetUI()->Pop(this);
+	}
 	else if(key == 't' && hasLanguage && planet)
 	{
 		if(GameData::GetPolitics().HasDominated(planet))
@@ -286,15 +290,18 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		{
 			if(ship)
 			{
-				ship->GetGovernment()->Bribe();
-				Messages::Add("You bribed a " + ship->GetGovernment()->GetName() + " ship "
-					+ Format::Credits(bribe) + " credits to refrain from attacking you today.");
+				bribed = ship->GetGovernment();
+				bribed->Bribe();
+				Messages::Add("You bribed a " + bribed->GetName() + " ship "
+					+ Format::Credits(bribe) + " credits to refrain from attacking you today."
+						, Messages::Importance::High);
 			}
 			else
 			{
 				planet->Bribe();
 				Messages::Add("You bribed the authorities on " + planet->Name() + " "
-					+ Format::Credits(bribe) + " credits to permit you to land.");
+					+ Format::Credits(bribe) + " credits to permit you to land."
+						, Messages::Importance::High);
 			}
 			
 			player.Accounts().AddCredits(-bribe);

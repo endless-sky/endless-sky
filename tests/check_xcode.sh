@@ -74,7 +74,7 @@ do
 			fi
 			add_new ${FILE} ${NO_BUILD}
 		fi
-		
+
 		# If the addition or rename was unsuccessful, flag it.
 		if has_file ${FILE}; then
 			ADDED+=(${FILE})

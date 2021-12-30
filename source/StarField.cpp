@@ -40,6 +40,29 @@ namespace {
 	const double HAZE_DISTANCE = 1200.;
 	// This is how many haze fields should be drawn.
 	const size_t HAZE_COUNT = 16;
+	// This is how fast the crossfading of previous haze and current haze is
+	const double FADE_PER_FRAME = 0.01;
+	// An additional zoom factor applied to stars/haze on top of the base zoom, to simulate parallax.
+	const double STAR_ZOOM = 0.70;
+	const double HAZE_ZOOM = 0.90;
+	
+	void AddHaze(DrawList &drawList, const std::vector<Body> &haze, const Point &topLeft, const Point &bottomRight, double transparency)
+	{
+		for(auto &&it : haze)
+		{
+			// Figure out the position of the first instance of this haze that is to
+			// the right of and below the top left corner of the screen.
+			double startX = fmod(it.Position().X() - topLeft.X(), HAZE_WRAP);
+			startX += topLeft.X() + HAZE_WRAP * (startX < 0.);
+			double startY = fmod(it.Position().Y() - topLeft.Y(), HAZE_WRAP);
+			startY += topLeft.Y() + HAZE_WRAP * (startY < 0.);
+
+			// Draw any instances of this haze that are on screen.
+			for(double y = startY; y < bottomRight.Y(); y += HAZE_WRAP)
+				for(double x = startX; x < bottomRight.X(); x += HAZE_WRAP)
+					drawList.Add(it, Point(x, y), transparency);
+		}
+	}
 }
 
 
@@ -49,7 +72,7 @@ void StarField::Init(int stars, int width)
 	SetUpGraphics();
 	MakeStars(stars, width);
 	
-	const Sprite *sprite = SpriteSet::Get("_menu/haze");
+	lastSprite = SpriteSet::Get("_menu/haze");
 	for(size_t i = 0; i < HAZE_COUNT; ++i)
 	{
 		Point next;
@@ -58,7 +81,7 @@ void StarField::Init(int stars, int width)
 		{
 			next = Point(Random::Real() * HAZE_WRAP, Random::Real() * HAZE_WRAP);
 			overlaps = false;
-			for(const Body &other : haze)
+			for(const Body &other : haze[0])
 			{
 				Point previous = other.Position();
 				double dx = remainder(previous.X() - next.X(), HAZE_WRAP);
@@ -70,47 +93,61 @@ void StarField::Init(int stars, int width)
 				}
 			}
 		}
-		haze.emplace_back(sprite, next, Point(), Angle::Random(), 8.);
+		haze[0].emplace_back(lastSprite, next, Point(), Angle::Random(), 8.);
 	}
+	haze[1].assign(haze[0].begin(), haze[0].end());
 }
 
 
 
-void StarField::SetHaze(const Sprite *sprite)
+void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 {
 	// If no sprite is given, set the default one.
 	if(!sprite)
 		sprite = SpriteSet::Get("_menu/haze");
 	
-	for(Body &body : haze)
+	for(Body &body : haze[0])
 		body.SetSprite(sprite);
+	
+	if(allowAnimation && sprite != lastSprite)
+	{
+		transparency = 1.;
+		for(Body &body: haze[1])
+			body.SetSprite(lastSprite);
+	}
+	lastSprite = sprite;
 }
 
 
 
 void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 {
+	double baseZoom = zoom;
+
 	// Draw the starfield unless it is disabled in the preferences.
 	if(Preferences::Has("Draw starfield"))
 	{
+		// Modify zoom for the first parallax layer.
+		if(Preferences::Has("Parallax background"))
+			zoom = baseZoom * STAR_ZOOM;
 		glUseProgram(shader.Object());
 		glBindVertexArray(vao);
-	
+		
 		float length = vel.Length();
 		Point unit = length ? vel.Unit() : Point(1., 0.);
 		// Don't zoom the stars at the same rate as the field; otherwise, at the
 		// farthest out zoom they are too small to draw well.
 		unit /= pow(zoom, .75);
-	
+		
 		float baseZoom = static_cast<float>(2. * zoom);
 		GLfloat scale[2] = {baseZoom / Screen::Width(), -baseZoom / Screen::Height()};
 		glUniform2fv(scaleI, 1, scale);
-	
+		
 		GLfloat rotate[4] = {
 			static_cast<float>(unit.Y()), static_cast<float>(-unit.X()),
 			static_cast<float>(unit.X()), static_cast<float>(unit.Y())};
 		glUniformMatrix2fv(rotateI, 1, false, rotate);
-	
+		
 		glUniform1f(elongationI, length * zoom);
 		glUniform1f(brightnessI, min(1., pow(zoom, .5)));
 	
@@ -125,7 +162,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 		// Round down to the start of the nearest tile.
 		minX &= ~(TILE_SIZE - 1l);
 		minY &= ~(TILE_SIZE - 1l);
-	
+		
 		for(int gy = minY; gy < maxY; gy += TILE_SIZE)
 			for(int gx = minX; gx < maxX; gx += TILE_SIZE)
 			{
@@ -141,7 +178,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 				int count = 6 * tileIndex[index + 1] - first;
 				glDrawArrays(GL_TRIANGLES, first, count);
 			}
-	
+		
 		glBindVertexArray(0);
 		glUseProgram(0);
 	}
@@ -150,29 +187,28 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 	if(!Preferences::Has("Draw background haze"))
 		return;
 	
+	// Modify zoom for the second parallax layer.
+	if(Preferences::Has("Parallax background"))
+		zoom = baseZoom * HAZE_ZOOM;
+	
 	DrawList drawList;
 	drawList.Clear(0, zoom);
 	drawList.SetCenter(pos);
 	
+	if(transparency > FADE_PER_FRAME)
+		transparency -= FADE_PER_FRAME;
+	else
+		transparency = 0.;
+	
 	// Any object within this range must be drawn. Some haze sprites may repeat
 	// more than once if the view covers a very large area.
-	Point size = Point(1., 1.) * haze.front().Radius();
+	Point size = Point(1., 1.) * haze[0].front().Radius();
 	Point topLeft = pos + (Screen::TopLeft() - size) / zoom;
 	Point bottomRight = pos + (Screen::BottomRight() + size) / zoom;
-	for(const Body &it : haze)
-	{
-		// Figure out the position of the first instance of this haze that is to
-		// the right of and below the top left corner of the screen.
-		double startX = fmod(it.Position().X() - topLeft.X(), HAZE_WRAP);
-		startX += topLeft.X() + HAZE_WRAP * (startX < 0.);
-		double startY = fmod(it.Position().Y() - topLeft.Y(), HAZE_WRAP);
-		startY += topLeft.Y() + HAZE_WRAP * (startY < 0.);
+	if(transparency > 0.)
+		AddHaze(drawList, haze[1], topLeft, bottomRight, 1 - transparency);
+	AddHaze(drawList, haze[0], topLeft, bottomRight, transparency);
 	
-		// Draw any instances of this haze that are on screen.
-		for(double y = startY; y < bottomRight.Y(); y += HAZE_WRAP)
-			for(double x = startX; x < bottomRight.X(); x += HAZE_WRAP)
-				drawList.Add(it, Point(x, y));
-	}
 	drawList.Draw();
 }
 
@@ -200,9 +236,10 @@ void StarField::SetUpGraphics()
 		"  vec2 elongated = vec2(coord.x * size, coord.y * (size + elongation));\n"
 		"  gl_Position = vec4((rotate * elongated + translate + offset) * scale, 0, 1);\n"
 		"}\n";
-
+	
 	static const char *fragmentCode =
 		"// fragment starfield shader\n"
+		"precision mediump float;\n"
 		"in float fragmentAlpha;\n"
 		"in vec2 coord;\n"
 		"out vec4 finalColor;\n"
@@ -327,7 +364,7 @@ void StarField::MakeStars(int stars, int width)
 	}
 	// Adjust the tile indices so that tileIndex[i] is the start of tile i.
 	tileIndex.insert(tileIndex.begin(), 0);
-
+	
 	glBufferData(GL_ARRAY_BUFFER, sizeof(data.front()) * data.size(), data.data(), GL_STATIC_DRAW);
 	
 	// Connect the xy to the "vert" attribute of the vertex shader.

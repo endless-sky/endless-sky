@@ -1,3 +1,6 @@
+# steamrt scons is v2.1.0
+# https://repo.steampowered.com/steamrt-images-scout/snapshots/latest-container-runtime-depot/com.valvesoftware.SteamRuntime.Sdk-amd64,i386-scout-sources.sources.txt
+# Documentation available at https://scons.org/doc/2.1.0/HTML/scons-user/a10706.html
 import os
 import platform
 from SCons.Node.FS import Dir
@@ -19,17 +22,10 @@ if 'LDFLAGS' in os.environ:
 	env.Append(LINKFLAGS = os.environ['LDFLAGS'])
 if 'AR' in os.environ:
 	env['AR'] = os.environ['AR']
-if 'RANLIB' in os.environ:
-	env['RANLIB'] = os.environ['RANLIB']
 if 'DIR_ESLIB' in os.environ:
 	path = os.environ['DIR_ESLIB']
 	env.Prepend(CPPPATH = [pathjoin(path, 'include')])
 	env.Append(LIBPATH = [pathjoin(path, 'lib')])
-
-# The Steam runtime has an out-of-date libstdc++, so link it in statically:
-chroot_name = os.environ.get('SCHROOT_CHROOT_NAME', '')
-if 'steamrt' in chroot_name:
-	env.Append(LINKFLAGS = ["-static-libstdc++"])
 
 # Don't spawn a console window by default on Windows builds.
 if is_windows_host:
@@ -38,6 +34,7 @@ if is_windows_host:
 opts = Variables()
 opts.AddVariables(
 	EnumVariable("mode", "Compilation mode", "release", allowed_values=("release", "debug", "profile")),
+	EnumVariable("opengl", "Whether to use OpenGL or OpenGL ES", "desktop", allowed_values=("desktop", "gles")),
 	PathVariable("BUILDDIR", "Directory to store compiled object files in", "build", PathVariable.PathIsDirCreate),
 	PathVariable("BIN_DIR", "Directory to store binaries in", ".", PathVariable.PathIsDirCreate),
 	PathVariable("DESTDIR", "Destination root directory, e.g. if building a package", "", PathVariable.PathAccept),
@@ -50,7 +47,7 @@ Help(opts.GenerateHelpText(env))
 #   $ CXXFLAGS=-msse3 scons
 #   $ CXXFLAGS=-march=native scons
 # or modify the `flags` variable:
-flags = ["-std=c++11", "-Wall", "-Werror", "-Wold-style-cast"]
+flags = ["-std=c++11", "-Wall", "-Werror", "-Wold-style-cast", "-fno-rtti"]
 if env["mode"] != "debug":
 	flags += ["-O3", "-flto"]
 	env.Append(LINKFLAGS = ["-O3", "-flto"])
@@ -60,10 +57,28 @@ elif env["mode"] == "profile":
 	flags += ["-pg"]
 	env.Append(LINKFLAGS = ["-pg"])
 env.Append(CCFLAGS = flags)
-# Omit emitting a symbol table when creating/updating static libraries, because Scons
-# will run ranlib. If we are using gcc-ranlib, assume support for thin archives as well.
-create_thin_archives = any(env.get(var, '').startswith('gcc') for var in ('AR', 'RANLIB'))
-env.Replace(ARFLAGS = 'rcST' if create_thin_archives else 'rcS')
+
+# Always use `ar` to create the symbol table, and don't use ranlib at all, since it fails to preserve
+# LTO information, even when passed the plugin path, when run in Steam's "Scout" runtime.
+env['RANLIBCOM'] = ''
+# TODO: can we derive thin archive support from the host system somehow? Or just always use it?
+create_thin_archives = env.get('AR', '').startswith('gcc')
+env.Replace(ARFLAGS = 'rcsT' if create_thin_archives else 'rcs')
+
+# The Steam runtime fails to correctly invoke the LTO plugin for gcc-5, so pass it explicitly
+chroot_name = os.environ.get('SCHROOT_CHROOT_NAME', '')
+if 'steamrt_scout' in chroot_name:
+	# MAYBE: read g++ version to determine correct path to the LTO plugin
+	plugin_path = '--plugin={}'.format(os.environ.get('LTO_PLUGIN_PATH', '/usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so'))
+	env.Append(ARFLAGS = [plugin_path])
+
+# Required system libraries, such as UUID generator runtimes.
+sys_libs = [
+	"rpcrt4",
+] if is_windows_host else [
+	"uuid"
+]
+env.Append(LIBS = sys_libs)
 
 game_libs = [
 	"winmm",
@@ -74,18 +89,33 @@ game_libs = [
 	"turbojpeg.dll",
 	"jpeg.dll",
 	"openal32.dll",
-	"glew32.dll",
-	"opengl32",
 ] if is_windows_host else [
 	"SDL2",
 	"png",
 	"jpeg",
-	"GL",
-	"GLEW",
 	"openal",
 	"pthread",
 ]
 env.Append(LIBS = game_libs)
+
+if env["opengl"] == "gles":
+	if is_windows_host:
+		print("OpenGL ES builds are not supported on Windows")
+		Exit(1)
+	env.Append(LIBS = [
+		"GLESv2",
+	])
+	env.Append(CCFLAGS = ["-DES_GLES"])
+elif is_windows_host:
+	env.Append(LIBS = [
+		"glew32.dll",
+		"opengl32",
+	])
+else:
+	env.Append(LIBS = [
+		"GL",
+		"GLEW",
+	])
 
 # libmad is not in the Steam runtime, so link it statically:
 if 'steamrt_scout_i386' in chroot_name:
@@ -108,7 +138,7 @@ def RecursiveGlob(pattern, dir_name=buildDirectory):
 		if isinstance(sub_dir, Dir)]
 	# Add source files in this directory, except for main.cpp
 	matches += Glob(pathjoin(str(dir_name), pattern))
-	matches = [i for i in matches if not "/main.cpp" in str(i)]
+	matches = [i for i in matches if not '{}main.cpp'.format(os.path.sep) in str(i)]
 	return matches
 
 # By default, invoking scons will build the backing archive file and then the game binary.
@@ -127,11 +157,11 @@ testBuildDirectory = pathjoin("tests", env["BUILDDIR"])
 VariantDir(testBuildDirectory, pathjoin("tests", "src"), duplicate = 0)
 test = env.Program(
 	target=pathjoin("tests", "endless-sky-tests"),
-	source=RecursiveGlob("test_*.cpp", testBuildDirectory) + sourceLib,
+	source=RecursiveGlob("*.cpp", testBuildDirectory) + sourceLib,
 	 # Add Catch header & additional test includes to the existing search paths
 	CPPPATH=(env.get('CPPPATH', []) + [pathjoin('tests', 'include')]),
 	# Do not link against the actual implementations of SDL, OpenGL, etc.
-	LIBS=[],
+	LIBS=sys_libs,
 	# Pass the necessary link flags for a console program.
 	LINKFLAGS=[x for x in env.get('LINKFLAGS', []) if x not in ('-mwindows',)]
 )

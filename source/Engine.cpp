@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Engine.h"
 
 #include "Audio.h"
+#include "CategoryTypes.h"
 #include "CoreStartData.h"
 #include "Effect.h"
 #include "Files.h"
@@ -53,6 +54,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StarField.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "Test.h"
+#include "TestContext.h"
 #include "Visual.h"
 #include "Weather.h"
 #include "text/WrappedText.h"
@@ -164,7 +167,7 @@ namespace {
 		else
 			tag = ship->ModelName() + " (" + gov + "): ";
 		
-		Messages::Add(tag + message);
+		Messages::Add(tag + message, Messages::Importance::High);
 	}
 	
 	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints, const vector<pair<Body, int>> &flareSprites, uint8_t side)
@@ -176,7 +179,7 @@ namespace {
 			// three copies of the flare sprite.
 			for(const auto &it : flareSprites)
 				if(point.side == side && (point.steering == Ship::EnginePoint::NONE
-					|| (point.steering == Ship::EnginePoint::LEFT && ship.SteeringDirection() < 0.) 
+					|| (point.steering == Ship::EnginePoint::LEFT && ship.SteeringDirection() < 0.)
 					|| (point.steering == Ship::EnginePoint::RIGHT && ship.SteeringDirection() > 0.)))
 					for(int i = 0; i < it.second && i < 3; ++i)
 					{
@@ -237,7 +240,7 @@ Engine::Engine(PlayerInfo &player)
 				(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
 				system->Position() - player.GetSystem()->Position());
 	
-	GameData::SetHaze(player.GetSystem()->Haze());
+	GameData::SetHaze(player.GetSystem()->Haze(), true);
 }
 
 
@@ -364,7 +367,7 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 			if(ship->HasBays())
 			{
 				ship->UnloadBays();
-				for(const string &bayType : Ship::BAY_TYPES)
+				for(const string &bayType : GameData::Category(CategoryType::BAY))
 				{
 					int baysTotal = ship->BaysTotal(bayType);
 					if(baysTotal)
@@ -478,8 +481,23 @@ void Engine::Step(bool isActive)
 		if(!wasActive)
 			activeCommands.Clear();
 		else
+		{
+			// Do a testing step if we got an active testContext from main.cpp.
+			// Main.cpp will transfer the context every step where it wants the
+			// engine to handle the testing.
+			if(testContext)
+			{
+				const Test *runningTest = testContext->CurrentTest();
+				if(runningTest)
+					runningTest->Step(*testContext, player, activeCommands);
+			}
 			ai.UpdateKeys(player, activeCommands);
+		}
 	}
+	// Clear the testContext every step. Main.cpp will provide the context before
+	// every step where it expects the Engine to handle testing.
+	testContext = nullptr;
+	
 	wasActive = isActive;
 	Audio::Update(center);
 	
@@ -618,7 +636,7 @@ void Engine::Step(bool isActive)
 	}
 	
 	if(flagship && flagship->IsOverheated())
-		Messages::Add("Your ship has overheated.");
+		Messages::Add("Your ship has overheated.", Messages::Importance::Highest);
 	
 	// Clear the HUD information from the previous frame.
 	info = Information();
@@ -941,8 +959,21 @@ void Engine::Draw() const
 		if(messagePoint.Y() < messageBox.Top())
 			break;
 		float alpha = (it->step + 1000 - step) * .001f;
-		Color color(alpha, 0.f);
-		messageLine.Draw(messagePoint, color);
+		const Color *color = nullptr;
+		switch (it->importance) {
+			case Messages::Importance::Highest:
+				color = GameData::Colors().Find("message importance highest");
+				break;
+			case Messages::Importance::High:
+				color = GameData::Colors().Find("message importance high");
+				break;
+			case Messages::Importance::Low:
+				color = GameData::Colors().Find("message importance low");
+				break;
+		}
+		if(!color)
+			color = GameData::Colors().Get("message importance default");
+		messageLine.Draw(messagePoint, color->Additive(alpha));
 	}
 	
 	// Draw crosshairs around anything that is targeted.
@@ -1016,7 +1047,8 @@ void Engine::Draw() const
 		if(pos.Y() < ammoBox.Top() + ammoPad)
 			break;
 		
-		bool isSelected = it.first == player.SelectedWeapon();
+		const auto &playerSelectedWeapons = player.SelectedWeapons();
+		bool isSelected = (playerSelectedWeapons.find(it.first) != playerSelectedWeapons.end());
 		
 		SpriteShader::Draw(it.first->Icon(), pos + iconOff);
 		SpriteShader::Draw(isSelected ? selectedSprite : unselectedSprite, pos + boxOff);
@@ -1036,7 +1068,7 @@ void Engine::Draw() const
 	
 	// Upload any preloaded sprites that are now available. This is to avoid
 	// filling the entire backlog of sprites before landing on a planet.
-	GameData::Progress();
+	GameData::ProcessSprites();
 	
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
@@ -1049,10 +1081,10 @@ void Engine::Draw() const
 
 
 
-// Give an (automated/scripted) command on behalf of the player.
-void Engine::GiveCommand(const Command &command)
+// Set the given TestContext in the next step of the Engine.
+void Engine::SetTestContext(TestContext &newTestContext)
 {
-	activeCommands.Set(command);
+	testContext = &newTestContext;
 }
 
 
@@ -1112,6 +1144,24 @@ void Engine::SelectGroup(int group, bool hasShift, bool hasControl)
 
 
 
+// Break targeting on all projectiles between the player and the given
+// government; gov projectiles stop targeting the player and player's
+// projectiles stop targeting gov.
+void Engine::BreakTargeting(const Government *gov)
+{
+	const Government *playerGov = GameData::PlayerGovernment();
+	for(Projectile &projectile : projectiles)
+	{
+		const Government *projectileGov = projectile.GetGovernment();
+		const Government *targetGov = projectile.TargetGovernment();
+		if((projectileGov == playerGov && targetGov == gov)
+			|| (projectileGov == gov && targetGov == playerGov))
+			projectile.BreakTarget();
+	}
+}
+
+
+
 void Engine::EnterSystem()
 {
 	ai.Clean();
@@ -1126,11 +1176,11 @@ void Engine::EnterSystem()
 	
 	const System *system = flagship->GetSystem();
 	Audio::PlayMusic(system->MusicName());
-	GameData::SetHaze(system->Haze());	
+	GameData::SetHaze(system->Haze(), false);
 	
 	Messages::Add("Entering the " + system->Name() + " system on "
 		+ today.ToString() + (system->IsInhabited(flagship) ?
-			"." : ". No inhabited planets detected."));
+			"." : ". No inhabited planets detected."), Messages::Importance::High);
 	
 	// Preload landscapes and determine if the player used a wormhole.
 	// (It is allowed for a wormhole's exit point to have no sprite.)
@@ -1179,7 +1229,7 @@ void Engine::EnterSystem()
 	{
 		// Check whether this is a minable or an ordinary asteroid.
 		if(a.Type())
-			asteroids.Add(a.Type(), a.Count(), a.Energy(), system->AsteroidBelt());
+			asteroids.Add(a.Type(), a.Count(), a.Energy(), system->AsteroidBelts());
 		else
 			asteroids.Add(a.Name(), a.Count(), a.Energy());
 	}
@@ -1191,18 +1241,26 @@ void Engine::EnterSystem()
 	// government set.
 	for(int i = 0; i < 5; ++i)
 	{
-		for(const System::FleetProbability &fleet : system->Fleets())
+		for(const auto &fleet : system->Fleets())
 			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60)
 				fleet.Get()->Place(*system, newShips);
-		for(const System::HazardProbability &hazard : system->Hazards())
-			if(Random::Int(hazard.Period()) < 60)
+
+		auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
+		{
+			if(hazard.Get()->IsValid() && Random::Int(hazard.Period()) < 60)
 			{
 				const Hazard *weather = hazard.Get();
 				int hazardLifetime = weather->RandomDuration();
 				// Elapse this weather event by a random amount of time.
 				int elapsedLifetime = hazardLifetime - Random::Int(hazardLifetime + 1);
-				activeWeather.emplace_back(weather, hazardLifetime, elapsedLifetime, weather->RandomStrength());
+				activeWeather.emplace_back(weather, hazardLifetime, elapsedLifetime, weather->RandomStrength(), origin);
 			}
+		};
+		for(const auto &hazard : system->Hazards())
+			CreateWeather(hazard, Point());
+		for(const auto &stellar : system->Objects())
+			for(const auto &hazard : stellar.Hazards())
+				CreateWeather(hazard, stellar.Position());
 	}
 	
 	const Fleet *raidFleet = system->GetGovernment()->RaidFleet();
@@ -1217,7 +1275,7 @@ void Engine::EnterSystem()
 				{
 					raidFleet->Place(*system, newShips);
 					Messages::Add("Your fleet has attracted the interest of a "
-							+ raidGovernment->GetName() + " raiding party.");
+							+ raidGovernment->GetName() + " raiding party.", Messages::Importance::Highest);
 				}
 	}
 	
@@ -1235,8 +1293,8 @@ void Engine::EnterSystem()
 	// since the new player ships can make at most four jumps before landing.
 	if(today <= player.StartData().GetDate() + 4)
 	{
-		Messages::Add(GameData::HelpMessage("basics 1"));
-		Messages::Add(GameData::HelpMessage("basics 2"));
+		Messages::Add(GameData::HelpMessage("basics 1"), Messages::Importance::High);
+		Messages::Add(GameData::HelpMessage("basics 2"), Messages::Importance::High);
 	}
 }
 
@@ -1602,7 +1660,7 @@ void Engine::SpawnFleets()
 	
 	// Non-mission NPCs spawn at random intervals in neighboring systems,
 	// or coming from planets in the current one.
-	for(const System::FleetProbability &fleet : player.GetSystem()->Fleets())
+	for(const auto &fleet : player.GetSystem()->Fleets())
 		if(!Random::Int(fleet.Period()))
 		{
 			const Government *gov = fleet.Get()->GetGovernment();
@@ -1678,16 +1736,23 @@ void Engine::SpawnPersons()
 // Generate weather from the current system's hazards.
 void Engine::GenerateWeather()
 {
-	// If this system has any hazards, see if any have activated this frame.
-	for(const System::HazardProbability &hazard : player.GetSystem()->Hazards())
-		if(!Random::Int(hazard.Period()))
+	auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
+	{
+		if(hazard.Get()->IsValid() && !Random::Int(hazard.Period()))
 		{
 			const Hazard *weather = hazard.Get();
 			// If a hazard has activated, generate a duration and strength of the
 			// resulting weather and place it in the list of active weather.
 			int duration = weather->RandomDuration();
-			activeWeather.emplace_back(weather, duration, duration, weather->RandomStrength());
+			activeWeather.emplace_back(weather, duration, duration, weather->RandomStrength(), origin);
 		}
+	};
+	// If this system has any hazards, see if any have activated this frame.
+	for(const auto &hazard : player.GetSystem()->Hazards())
+		CreateWeather(hazard, Point());
+	for(const auto &stellar : player.GetSystem()->Objects())
+		for(const auto &hazard : stellar.Hazards())
+			CreateWeather(hazard, stellar.Position());
 }
 
 
@@ -1814,11 +1879,11 @@ void Engine::HandleMouseClicks()
 					{
 						if(!planet->CanLand(*flagship))
 							Messages::Add("The authorities on " + planet->Name()
-									+ " refuse to let you land.");
+									+ " refuse to let you land.", Messages::Importance::High);
 						else
 						{
 							activeCommands |= Command::LAND;
-							Messages::Add("Landing on " + planet->Name() + ".");
+							Messages::Add("Landing on " + planet->Name() + ".", Messages::Importance::High);
 						}
 					}
 					else
@@ -1986,14 +2051,16 @@ void Engine::DoCollisions(Projectile &projectile)
 				if(isSafe && projectile.Target() != ship && !gov->IsEnemy(ship->GetGovernment()))
 					continue;
 				
-				int eventType = ship->TakeDamage(projectile, ship != hit.get());
+				int eventType = ship->TakeDamage(visuals, projectile.GetWeapon(), 1.,
+					projectile.DistanceTraveled(), projectile.Position(), projectile.GetGovernment(), ship != hit.get());
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
 		}
 		else if(hit)
 		{
-			int eventType = hit->TakeDamage(projectile);
+			int eventType = hit->TakeDamage(visuals, projectile.GetWeapon(), 1.,
+				projectile.DistanceTraveled(), projectile.Position(), projectile.GetGovernment());
 			if(eventType)
 				eventQueue.emplace_back(gov, hit, eventType);
 		}
@@ -2031,8 +2098,12 @@ void Engine::DoWeather(Weather &weather)
 		// Get all ship bodies that are touching a ring defined by the hazard's min
 		// and max ranges at the hazard's origin. Any ship touching this ring takes
 		// hazard damage.
-		for(Body *body : shipCollisions.Ring(Point(), hazard->MinRange(), hazard->MaxRange()))
-			reinterpret_cast<Ship *>(body)->TakeHazardDamage(visuals, hazard, multiplier);
+		for(Body *body : shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange()))
+		{
+			Ship *hit = reinterpret_cast<Ship *>(body);
+			double distanceTraveled = weather.Origin().Distance(hit->Position()) - hit->GetMask().Radius();
+			hit->TakeDamage(visuals, *hazard, multiplier, distanceTraveled, weather.Origin(), nullptr, hazard->BlastRadius() > 0.);
+		}
 	}
 }
 
@@ -2046,7 +2117,8 @@ void Engine::DoCollection(Flotsam &flotsam)
 	for(Body *body : shipCollisions.Circle(flotsam.Position(), 5.))
 	{
 		Ship *ship = reinterpret_cast<Ship *>(body);
-		if(!ship->CannotAct() && ship != flotsam.Source() && ship->Cargo().Free() >= flotsam.UnitSize())
+		if(!ship->CannotAct() && ship != flotsam.Source() && ship->GetGovernment() != flotsam.SourceGovernment()
+			&& ship->Cargo().Free() >= flotsam.UnitSize())
 		{
 			collector = ship;
 			break;
@@ -2097,7 +2169,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 		int free = collector->Cargo().Free();
 		message += " (" + to_string(free) + (free == 1 ? " ton" : " tons");
 		message += " of free space remaining.)";
-		Messages::Add(message);
+		Messages::Add(message, Messages::Importance::High);
 	}
 }
 
@@ -2218,7 +2290,7 @@ void Engine::AddSprites(const Ship &ship)
 		// Draw cloaked/cloaking sprites swizzled red, and overlay this solid
 		// sprite with an increasingly transparent "regular" sprite.
 		if(drawCloaked)
-			itemsToDraw.AddSwizzled(body, 7);
+			itemsToDraw.AddSwizzled(body, 27);
 		itemsToDraw.Add(body, cloak);
 	};
 	
@@ -2234,8 +2306,8 @@ void Engine::AddSprites(const Ship &ship)
 	if(ship.IsSteering() && !ship.SteeringEnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.SteeringEnginePoints(), ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::UNDER);
 	
-	drawObject(ship);
-	for(const Hardpoint &hardpoint : ship.Weapons())
+	auto drawHardpoint = [&drawObject, &ship](const Hardpoint &hardpoint) -> void
+	{
 		if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
 		{
 			Body body(
@@ -2246,6 +2318,15 @@ void Engine::AddSprites(const Ship &ship)
 				ship.Zoom());
 			drawObject(body);
 		}
+	};
+	
+	for(const Hardpoint &hardpoint : ship.Weapons())
+		if(hardpoint.IsUnder())
+			drawHardpoint(hardpoint);
+	drawObject(ship);
+	for(const Hardpoint &hardpoint : ship.Weapons())
+		if(!hardpoint.IsUnder())
+			drawHardpoint(hardpoint);
 	
 	if(ship.IsThrusting() && !ship.EnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.EnginePoints(), ship.Attributes().FlareSprites(), Ship::EnginePoint::OVER);
