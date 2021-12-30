@@ -43,6 +43,12 @@ public:
 
 
 private:
+	// Re-generate the list of (relative) positions for the ships in the formation.
+	void CalculatePositions();
+	
+	// Calculate the direction the formation is facing.
+	void CalculateDirection();
+
 	// Check if a ship is actually still participating in the current formation(ring).
 	bool IsActiveInFormation(unsigned int ring, const Ship *ship) const;
 
@@ -59,6 +65,9 @@ private:
 	// Lookup/cache of the ship coordinates in the formation, its ring-section and
 	// an indicator if it was seen since last generate loop.
 	std::map<const Ship *, std::pair<Point, bool>> shipPositions;
+	
+	// Timer that controls the (re)generation of ship positions.
+	int positionsTimer = 0;
 	
 	// The scaling factors as we currently have for this formation and
 	// the scaling factors that we are preparing in the currently running

@@ -44,6 +44,69 @@ FormationPositioner::FormationPositioner(const Body *formationLead, const Format
 
 void FormationPositioner::Step()
 {
+	// Calculate the direction in which the formation is facing. We perform
+	// this calculation every step, because we want to act on course-changes
+	// from the lead ship as soon as they happen.
+	CalculateDirection();
+
+	// Calculate the set of positions for the participating ships. This calculation
+	// can be performed once very 20 game-steps, because the positions are
+	// relatively stable and slower changes don't impact the formation a lot.
+	constexpr int POSITIONS_INTERVAL = 20;
+	if(positionsTimer == 0)
+	{
+		CalculatePositions();
+		positionsTimer = POSITIONS_INTERVAL;
+	}
+	else
+		positionsTimer--;
+}
+
+
+
+Point FormationPositioner::Position(const Ship *ship)
+{
+	unsigned int formationRing = ship->GetFormationRing();
+	
+	Point relPos;
+	
+	auto it = shipPositions.find(ship);
+	if(it != shipPositions.end())
+	{
+		// Retrieve the ships currently known coordinate in the formation.
+		auto &status = it->second;
+		
+		// Register that this ship was seen.
+		if(status.second != tickTock)
+			status.second = tickTock;
+		
+		// Return the cached position that we have for the ship.
+		relPos = status.first;
+	}
+	else
+	{
+		// Add the ship to the set of coordinates. We add it with a default
+		// coordinate of Point(0,0), it will gets its proper coordinate in
+		// the next generate round.
+		shipPositions[ship] = make_pair(relPos, tickTock);
+		
+		// Add the ship to the ring.
+		ringShips[formationRing].push_back(ship->shared_from_this());
+		
+		// Trigger immediate re-generation of the formation positions (to
+		// ensure that this new ship also gets a valid position).
+		positionsTimer = 0;
+		
+	}
+	
+	return formationLead->Position() + direction.Rotate(relPos);
+}
+
+
+
+// Re-generate the list of (relative) positions for the ships in the formation.
+void FormationPositioner::CalculatePositions()
+{
 	// Set scaling based on results from previous run.
 	activeData = nextActiveData;
 	nextActiveData.ClearParticipants();
@@ -95,8 +158,17 @@ void FormationPositioner::Step()
 			}
 			else
 			{
+				// Set scaling for next round based on the sizes of the
+				// participating ships.
+				Tally(nextActiveData, *ship);
+				
 				// Calculate the new coordinate for the current ship.
-				itCoor->second.first = *itPos;
+				Point &shipRelPos = itCoor->second.first;
+				shipRelPos = *itPos;
+				if(flippedY)
+					shipRelPos.Set(-shipRelPos.X(), shipRelPos.Y());
+				if(flippedX)
+					shipRelPos.Set(shipRelPos.X(), -shipRelPos.Y());
 				++itPos;
 				++shipIndex;
 			}
@@ -106,7 +178,12 @@ void FormationPositioner::Step()
 	}
 	// Switch marker to detect stale/missing ships in the next iteration.
 	tickTock = !tickTock;
-	
+}
+
+
+
+void FormationPositioner::CalculateDirection()
+{
 	// Calculate new direction, if the formationLead is moving, then we use the movement vector.
 	// Otherwise we use the facing vector.
 	Point velocity = formationLead->Velocity();
@@ -137,10 +214,14 @@ void FormationPositioner::Step()
 	{
 		direction = desiredDir;
 		deltaDir = Angle(0.);
-		if(pattern->FlippableY())
+		if(pattern->FlippableY()){
 			flippedY = !flippedY;
-		if(pattern->FlippableX())
+			positionsTimer = 0;
+		}
+		if(pattern->FlippableX()){
 			flippedX = !flippedX;
+			positionsTimer = 0;
+		}
 	}
 	else
 	{
@@ -155,49 +236,6 @@ void FormationPositioner::Step()
 		
 		direction += deltaDir;
 	}
-}
-
-
-
-Point FormationPositioner::Position(const Ship *ship)
-{
-	unsigned int formationRing = ship->GetFormationRing();
-	
-	Point relPos;
-	
-	auto it = shipPositions.find(ship);
-	if(it != shipPositions.end())
-	{
-		// Retrieve the ships currently known coordinate in the formation.
-		auto &status = it->second;
-		if(status.second != tickTock)
-		{
-			// Register that this ship was seen.
-			status.second = tickTock;
-			
-			// Set scaling for next round based on the sizes of the participating ships.
-			Tally(nextActiveData, *ship);
-		}
-		// Return the cached position that we have for the ship.
-		relPos = status.first;
-	}
-	else
-	{
-		// Add the ship to the set of coordinates. We add it with a default
-		// coordinate of Point(0,0), it will gets its proper coordinate in
-		// the next generate round.
-		shipPositions[ship] = make_pair(relPos, tickTock);
-		
-		// Add the ship to the ring.
-		ringShips[formationRing].push_back(ship->shared_from_this());
-	}
-	
-	if(flippedY)
-		relPos.Set(-relPos.X(), relPos.Y());
-	if(flippedX)
-		relPos.Set(relPos.X(), -relPos.Y());
-	
-	return formationLead->Position() + direction.Rotate(relPos);
 }
 
 
