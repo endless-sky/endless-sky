@@ -1657,7 +1657,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 		ship "Behemoth (Mamoth)" "Mamoth"
 	npc evade
 		government "Pirate"
-		personality harvests plunders disables staying
+		personality plunders disables staying
 		system "Sumar"
 		fleet "Small Northern Pirates" 6
 		ship "Firebird" "Valkiry"
@@ -2198,7 +2198,7 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 
 event "new cooling system"
 	outfitter "Unfettered Basics"
-		"Hai Zephyr Cooling"
+		add "Hai Zephyr Cooling"
 
 mission "Unfettered: New Cooling Available"
 	source
@@ -2316,7 +2316,7 @@ mission "Unfettered: Special Cargo"
 		conversation
 			`You are starting to get quite used to Unfettered spaceports, and strangely you are not even surprised by the amount of damage there is around on different non essentials structures anymore. At least the shipyards, hospitals and the stadium of the council are all in perfect shape, that is what matters most after all.`
 			`	You want to see a bit of change for once, and wander on a side of the spaceport you have not explored before, but it does not seem that much different than the rest.`
-			`	You get interrupted in your thinking by a local Unfettered, he seems to have a very important mission to give you, given how fast he is speaking. "He Yi has asked me to deliver you a message! It has come to his attention that an item of great importance to us is currently in the possession of an unfettered human warlord." You guess he is referring to a pirate leader. "Said warlord can be found in <waypoint>, we want you to go and retrieve that item right now, in whatever way you deem fit."`
+			`	You get interrupted in your thinking by a local Unfettered, he seems to have a very important mission to give you, given how fast he is speaking. "He Yi has asked me to deliver you a message! It has come to his attention that an item of great importance to us is currently in the possession of an unfettered human warlord." You guess he is referring to a pirate leader. "Said warlord can be found in <waypoints>, we want you to go and retrieve that item right now, in whatever way you deem fit."`
 			choice
 				`	"How will I know which warlord it is?"`
 				`	"This seems too risky for me."`
@@ -2351,6 +2351,7 @@ mission "Unfettered: Special Cargo"
 		government "Mari's Legion"
 		system "Alcyone"
 		ship "Leviathan (Cube)" "Degenerate"
+		dialog `You have managed to disable and board Mari's flagship. The item that fits best the description given is without any doubt the Mystery Cube. Bring it back to Warfeed.`
 	npc
 		personality coward plunders vindictive staying
 		government "Mari's Legion"
@@ -2544,8 +2545,9 @@ mission "Unfettered: Special Cargo 2"
 					decline
 	
 	on stopover
-		dialog `You land and the Hai start loading their food on your ship. You pretend to want to go outside a bit because you have been crammed in a spaceship for too long (which is actually kind of true), and they do not appear to be suspecting a thing. You find a clearing, in which you happily dig the cube in. You remember to mark the exact spot. And then come back to your ship.`
 		outfit "Mystery Cube" -1
+		dialog `You land and the Hai start loading their food on your ship. You pretend to want to go outside a bit because you have been crammed in a spaceship for too long (which is actually kind of true), and they do not appear to be suspecting a thing. You find a clearing, in which you happily dig the cube in. You remember to mark the exact spot. And then come back to your ship.`
+		
 	
 	on complete
 		log `Placed a mysterious cube in a clearing on Everhope. It should give intel on Hai ship movements to the Unfettered.`
@@ -2775,6 +2777,9 @@ mission "Unfettered: Non Lethal Weapons Hint"
 
 
 
+ship "Shield Beetle Prototype" "Shield Beetle Prototype (Black)"
+	sprite "ship/hai marauder shield beetle"
+
 mission "Unfettered: Start Of The War"
 	name `Strength Of A Leader`
 	description `Prove your strength against Si-Ra and Hi-Ye in a battle. But do not kill them.`
@@ -2792,7 +2797,7 @@ mission "Unfettered: Start Of The War"
 				`	"Not yet, I will come back when I am."`
 					goto later
 				`	"I was born ready."`
-			`	"And may you die ready, as well." Hi-Ye comes closer and takes you aside to speak to you, privately. "I have managed to buy myself a ship with the money from our last business opportunity. It is much stronger than the old one! And as a warlord, he has a strong fleet as well. You may want to consider this seriously. Do not forget you can call the fight off, to continue it later once you are ready, by giving us a small fee."`
+			`	"And may you die ready, as well." Hi-Ye comes closer and takes you aside to speak to you, privately. "I have managed to buy myself a ship with the money from our last business opportunity. It is much stronger than the old one! And as a warlord, he has a strong fleet as well. You may want to consider this seriously. Do not forget you can call the fight off, to continue it later once you are ready, by giving us a symbolic fee."`
 			choice
 				`	"You do not scare me."`
 					accept
@@ -2806,12 +2811,12 @@ mission "Unfettered: Start Of The War"
 	npc save disable
 		government "Hai (Unfettered Challenge)"
 		ship "Shield Beetle (Pulse)" "Intrepid II"
-		ship "Shield Beetle" "The Strategist"
+		ship "Shield Beetle Prototype (Black)" "The Strategist"
 		conversation
 			action
 				"reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)" + 100
 				event "shield beetles accessible"
-			`"You sure know how to fight, but sheer firepower may not be enough, you should still train more before we are ready to start the war. Also we will require more jump drives than what we currently have, because our Alpha supplies have been disrupted by your actions."`
+			`	"You sure know how to fight, but sheer firepower may not be enough, you should still train more before we are ready to start the war. Also we will require more jump drives than what we currently have, because our Alpha supplies have been disrupted by your actions."`
 	
 	on complete
 		log `Officialy joined the Unfettered Militia. It should be the last time I have to prove my worth to them. At the very least I may now buy all of their ships with this license.`

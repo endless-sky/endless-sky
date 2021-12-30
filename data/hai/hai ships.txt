@@ -846,14 +846,14 @@ ship "Shield Beetle Prototype"
 		"Quantum Keystone"
 	engine -42 134.5
 	engine 42 134.5
-	gun -21.5 -93 "Ionic Blaster"
-	gun -34 -71 "Ionic Blaster"
-	gun -47.5 -31 "Hai Tracker Pod"
-	gun -60.5 -7.5 "Hai Tracker Pod"
-	gun 21.5 -93 "Ionic Blaster"
-	gun 34 -71 "Ionic Blaster"
-	gun 47.5 -31 "Hai Tracker Pod"
-	gun 60.5 -7.5 "Hai Tracker Pod"
+	gun -21.5 -93 "Hai Tracker Pod"
+	gun -34 -71 "Hai Tracker Pod"
+	gun -47.5 -31
+	gun -60.5 -7.5 
+	gun 21.5 -93 "Hai Tracker Pod"
+	gun 34 -71 "Hai Tracker Pod"
+	gun 47.5 -31
+	gun 60.5 -7.5
 	turret -54 74.5 "Ionic Turret"
 	turret 0 15 "Chameleon Anti-Missile"
 	turret 54 74.5 "Ionic Turret"
