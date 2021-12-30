@@ -467,6 +467,7 @@ outfitter "Unfettered Basics"
 	"Local Map"
 	"Quantum Keystone"
 	"Pulse Rifle"
+	"Asteroid Scanner"
 
 outfitter "Unfettered"
 	"Pulse Turret"

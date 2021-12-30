@@ -608,7 +608,7 @@ mission "Unfettered: Prove Your Strength"
 				`	"Can you tell me more about the rules of this fight?"`
 					goto rules
 				`	(Run away.)`
-			`	As you move away you hear laughter, but nobody tries to stop you. You have just shown to the Unfettered how much of a coward you are, and will probably never be offered any missions to them anymore.`
+			`	As you move away you hear laughter, but nobody tries to stop you. You have just shown to the Unfettered how much of a coward you are, and will probably never be offered any missions from them anymore.`
 				decline
 			label rules
 			`	"I guess you ought to know... You are supposed to bring only your flagship but if it is too weak then more ships can be accepted, so long as it is a fair battle. It will last until either one of our ship is disabled, or one of us gives up. You can call it to later at any given time for a symbolic bribe of 1000. So, are you ready to fight?"`
@@ -616,7 +616,7 @@ mission "Unfettered: Prove Your Strength"
 				`	"Let me show you my worth in battle. Right now."`
 					accept
 				`	(Run away.)`
-			
+
 	npc save disable
 		government "Hai (Unfettered Challenge)"
 		personality disables staying heroic target
@@ -2385,7 +2385,7 @@ mission "Unfettered: Special Cargo 1B"
 			`	You manage to find one isolated pirate that looks like he is important, but still not enough to have personal bodyguards. You manage to take him hostage, but it is hard to restrain him, given his strength. Then you go and ask for the special item and all pirates laugh at your face before shooting you. It does not seem like they care the least in the world about any other pirate.`
 				die
 			label steal
-			`	You manage to enter the ship discretely, some people will always notice but you try to pretend being a worker there to assist in the repairs, using equipment you found laying around without anyone to care for them. You should be able to go pretty much anywhere on the ship. You do not have any expertise in actual ship repairs though so your cover could easily be blown. There is no going back now, except maybe if you choose to provoke the captain in a fight to get the item, in space.`
+			`	You manage to enter the ship discretely, some people will always notice but you try to pretend being a worker there to assist in the repairs, using equipment you found laying around without anyone to care for them. You should be able to go pretty much anywhere on the ship. You do not have any expertise in actual ship repairs though so your cover could easily be blown. There is no going back now, except maybe if you choose to provoke the warlord in a fight to get the item, in space.`
 			choice
 				`	(Search the lower decks.)`
 				`	(Search close to the weapons stations.)`
@@ -2399,7 +2399,7 @@ mission "Unfettered: Special Cargo 1B"
 				`	(Search the upper decks.)`
 				`	(Leave the ship before you get caught, and provoke the warlord.)`
 					goto challenge
-			`	You notice a lot of security stations around, they obviously care a lot about their warlord's security. Or at least he does.`
+			`	You notice a lot of security stations around, they obviously care a lot about their warlord's security. Or at least she does.`
 				goto caught
 			
 			label weapons
@@ -2407,7 +2407,7 @@ mission "Unfettered: Special Cargo 1B"
 				goto found
 			
 			label bridge
-			`	This bridge is very luxurious, you see that this warlord like confort, for himself at least. But you cannot find anything that looks unique at all.`
+			`	This bridge is very luxurious, you see that this warlord likes comfort, for herself at least. But you cannot find anything that looks unique at all.`
 				goto caught
 			label cargo
 			`	There are a lot of exotic things here with the cargo, most of which are probably not legal at all. You better choose what to take with you, and fast!`
@@ -2422,7 +2422,7 @@ mission "Unfettered: Special Cargo 1B"
 				`	(Take a strong personal shield.)`
 				`	(Take what looks like a bomb.)`
 			label wrongitem
-			`	You take the item and swiftly leave the ship, hoping it is the right one. If only you had been given a more precise description, you could know for sure. As you reach your ship you notice that the Degenerate just launched, before you. They most have noticed the item was missing.`
+			`	You take the item hoping it is the right one, and swiftly leave the ship. If only you had been given a more precise description, you could know for sure. Some pirates seem to notice you, maybe they suspect something or recognize this item, but nobody tries to stop you. As you reach your ship you notice that the Degenerate just launched, right before you. They most have noticed the item was missing.`
 				flee
 			label caught
 			`	You do not manage to find the item here, however you have attracted way too much suspicions by looking and opening crates everywhere you could. One local worker asks you something about mechanics. Being no engineer yourself, you cannot make any sense of what he says, even less formulate a correct response, and he denounces you. You are captured and sold as a slave.`
@@ -2435,7 +2435,7 @@ mission "Unfettered: Special Cargo 1B"
 				`	(Take an alien skull.)`
 					goto wrongitem
 				`	(Take a weird looking small cube.)`
-			`	Surprisingly, you appear to have found what you where looking for: a small cube, completely regular and seemingly alien in design. Maybe the warlord was not aware of its value, considering he placed it here, without much protection, and without even trying to hide it. This has to be the item that He Yi wants, so you take it with you. Its small size makes it perfect for any spying, and also for taking it with you, discretely. This probably will not go unnoticed for long however, so you launch as soon as you can. The original pirate fleet is already heading your way, smelling something suspicious...`
+			`	Surprisingly, you appear to have found what you where looking for: a small cube, completely regular and seemingly alien in design. Maybe the warlord was not aware of its value, considering he placed it here, without much protection, and without even trying to hide it. This has to be the item that He Yi wants, so you take it with you. Its small size makes it perfect for any spying, as well as for taking it with you, discretely. This probably will not go unnoticed for long however, so you launch as soon as you can. The original pirate fleet is already heading your way, smelling something suspicious...`
 				launch
 			label stupid
 			`	You try to disassemble the torpedo, but you do not have enough time to do so.`
