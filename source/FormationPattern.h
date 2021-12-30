@@ -29,7 +29,7 @@ class Body;
 // pattern, the actual assignment of ships to positions is handled outside this class.
 class FormationPattern {
 public:
-	// Struct that describes the properties of an active formation, like the maximum
+	// Class that describes the properties of an active formation, like the maximum
 	// sizes of the ships participating in the formation and some data on the Body
 	// around which the formation is formed.
 	class ActiveFormation
@@ -96,7 +96,7 @@ public:
 		// ships need to be placed.
 		// The shipsToPlace can be a subset of the total ships in a formation
 		// if the formation is constructed in parts (as sections of rings).
-		unsigned int shipsToPlace= 0;
+		unsigned int shipsToPlace = 0;
 		// Currently calculated Point.
 		Point currentPoint;
 		// Internal status variable;
