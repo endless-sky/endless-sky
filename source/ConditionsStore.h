@@ -95,17 +95,19 @@ public:
 	// Input_iterator helper class to iterate over primary conditions.
 	// This can be used when saving primary conditions to savegames and/or
 	// for displaying some data based on primary conditions.
-	class PrimariesIterator : public std::iterator<
-		std::input_iterator_tag,                      // iterator_category
-		std::pair<const std::string, int64_t>,        // iterator: value_type
-		std::ptrdiff_t,                               // iterator: difference_type
-		const std::pair<const std::string, int64_t>*, // iterator: pointer
-		std::pair<const std::string, int64_t>>        // iterator: reference
+	class PrimariesIterator
 	{
 		using CondMapItType = std::map<std::string, ConditionEntry>::const_iterator;
 	
 	public:
 		PrimariesIterator(CondMapItType it, CondMapItType endIt);
+		
+		// Iterator traits
+		using iterator_category = std::input_iterator_tag;
+		using value_type = std::pair<const std::string, int64_t>;
+		using difference_type = void;
+		using pointer = const std::pair<const std::string, int64_t>*;
+		using reference = std::pair<const std::string, int64_t>;
 		
 		// Default input_iterator operations.
 		std::pair<std::string, int64_t> operator*() const;
