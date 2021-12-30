@@ -159,7 +159,7 @@ public:
 	
 	void SetPosition(Point position);
 	// When creating a new ship, you must set the following:
-	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle());
+	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle(), bool isDeparting = true);
 	void SetName(const std::string &name);
 	void SetSystem(const System *system);
 	void SetPlanet(const Planet *planet);
@@ -248,7 +248,7 @@ public:
 	bool IsThrusting() const;
 	bool IsReversing() const;
 	bool IsSteering() const;
-	// The direction that the ship is steering. If positive, the ship is steering right. 
+	// The direction that the ship is steering. If positive, the ship is steering right.
 	// If negative, the ship is steering left.
 	double SteeringDirection() const;
 	// Get the points from which engine flares should be drawn.
@@ -309,6 +309,9 @@ public:
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
 	int RequiredCrew() const;
+	// Get the reputational value of this ship's crew, which depends
+	// on its crew size and "crew equivalent" attribute.
+	int CrewValue() const;
 	void AddCrew(int count);
 	// Check if this is a ship that can be used as a flagship.
 	bool CanBeFlagship() const;

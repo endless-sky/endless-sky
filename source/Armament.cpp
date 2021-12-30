@@ -139,6 +139,15 @@ void Armament::ReloadAll()
 
 
 
+// Uninstall all weapons (because the weapon outfits have potentially changed).
+void Armament::UninstallAll()
+{
+	for(auto &hardpoint : hardpoints)
+		hardpoint.Uninstall();
+}
+
+
+
 // Swap the weapons in the given two hardpoints.
 void Armament::Swap(int first, int second)
 {

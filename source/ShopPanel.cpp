@@ -37,7 +37,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 #include "text/WrappedText.h"
 
-#include "gl_header.h"
+#include "opengl.h"
 #include <SDL2/SDL.h>
 
 #include <algorithm>
@@ -379,7 +379,7 @@ void ShopPanel::DrawButtons()
 		int modWidth = font.Width(mod);
 		font.Draw(mod, buyCenter + Point(-.5 * modWidth, 10.), dim);
 		if(CanSellMultiple())
-			font.Draw(mod, sellCenter + Point(-.5 * modWidth, 10.), dim);	
+			font.Draw(mod, sellCenter + Point(-.5 * modWidth, 10.), dim);
 	}
 }
 
@@ -1020,7 +1020,7 @@ void ShopPanel::SideSelect(Ship *ship)
 			else if(on)
 				playerShips.insert(other.get());
 		}
-	}	
+	}
 	else if(!control)
 		playerShips.clear();
 	else if(playerShips.count(ship))

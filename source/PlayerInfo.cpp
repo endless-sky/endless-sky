@@ -718,15 +718,15 @@ int64_t PlayerInfo::Maintenance() const
 	// in the player's ships instead of in the pooled cargo, so no outfit
 	// will be counted twice.
 	for(const auto &outfit : Cargo().Outfits())
-		maintenance += max<int64_t>(0, outfit.first->Get("maintenance costs")) * outfit.second;
+		maintenance += outfit.first->Get("maintenance costs") * outfit.second;
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsDestroyed())
 		{
-			maintenance += max<int64_t>(0, ship->Attributes().Get("maintenance costs"));
+			maintenance += ship->Attributes().Get("maintenance costs");
 			for(const auto &outfit : ship->Cargo().Outfits())
-				maintenance += max<int64_t>(0, outfit.first->Get("maintenance costs")) * outfit.second;
+				maintenance += outfit.first->Get("maintenance costs") * outfit.second;
 			if(!ship->IsParked())
-				maintenance += max<int64_t>(0, ship->Attributes().Get("operating costs"));
+				maintenance += ship->Attributes().Get("operating costs");
 		}
 	return maintenance;
 }
@@ -1145,7 +1145,7 @@ void PlayerInfo::Land(UI *ui)
 			it = ships.erase(it);
 		}
 		else
-			++it; 
+			++it;
 	}
 	
 	// "Unload" all fighters, so they will get recharged, etc.
@@ -2506,7 +2506,7 @@ void PlayerInfo::ValidateLoad()
 	}
 	
 	// Validate the missions that were loaded. Active-but-invalid missions are removed from
-	// the standard mission list, effectively pausing them until necessary data is restored. 
+	// the standard mission list, effectively pausing them until necessary data is restored.
 	missions.sort([](const Mission &lhs, const Mission &rhs) noexcept -> bool { return lhs.IsValid(); });
 	auto isInvalidMission = [](const Mission &m) noexcept -> bool { return !m.IsValid(); };
 	auto mit = find_if(missions.begin(), missions.end(), isInvalidMission);
@@ -2720,7 +2720,7 @@ void PlayerInfo::StepMissions(UI *ui)
 	if(!visitText.empty())
 	{
 		if(missionVisits > 1)
-			visitText += "\n\t(You have " + Format::Number(missionVisits - 1) + " other unfinished " 
+			visitText += "\n\t(You have " + Format::Number(missionVisits - 1) + " other unfinished "
 				+ ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
 		ui->Push(new Dialog(visitText));
 	}

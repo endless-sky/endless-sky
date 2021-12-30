@@ -384,7 +384,7 @@ ship "Heliarch Hunter"
 	thumbnail "thumbnail/heliarch hunter"
 	attributes
 		category "Medium Warship"
-		licenses	
+		licenses
 			Heliarch
 		"cost" 32985000
 		"shields" 54900
