@@ -2299,7 +2299,7 @@ ship "Marauder Leviathan" "Leviathan (Cube)"
 		"Liquid Helium Cooler"
 		"Luxury Accommodations"
 		"Proton Turret" 3
-		Torpedo 210
+		Torpedo 102
 		"Torpedo Launcher" 4
 		"Torpedo Storage Rack" 6
 		"Mystery Cube"
@@ -2359,7 +2359,7 @@ mission "Unfettered: Special Cargo"
 		fleet "Small Northern Pirates" 5
 	
 	on visit
-		dialog `You do not have the item He Yi asked for. It may be in one of your escorts. Or you have not brought the right item back.`
+		dialog `You do not have the item He Yi asked for. It may be in one of your escorts. Or you have not brought the right item back. If that is the case, go back and board the ship to take the right item.`
 	on fail
 		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 	on complete
@@ -2403,27 +2403,44 @@ mission "Unfettered: Special Cargo 1B"
 				goto caught
 			
 			label weapons
-			`	This part of the ship is mostly full of toperdoes, apparently the warlord loves them. But there are not many people here, this part of the ship having suffered no damage, and many torpedoes have been used, they will probably come to refill them soon so you should hurry.
+			`	This part of the ship is mostly full of toperdoes, apparently the warlord loves them. But there are not many people here, this part of the ship having suffered no damage, and many torpedoes have been used, they will probably come to refill them soon so you should hurry.`
 				goto found
 			
 			label bridge
 			`	This bridge is very luxurious, you see that this warlord like confort, for himself at least. But you cannot find anything that looks unique at all.`
 				goto caught
 			label cargo
-			`	There are a lot of exotic things here with the cargo, most of which are probably not legal at all. But no item matches the description you were given.`
-				goto caught
+			`	There are a lot of exotic things here with the cargo, most of which are probably not legal at all. You better choose what to take with you, and fast!`
+				goto fake
 			label engine
 			`	Now these are some fine last generation atomic engines, a beauty. But that does not help you find the item at all. Why would there be anything near the engines?`
 				goto caught
 			
+			label fake
+			choice
+				`	(Take a heavily modified alien looking pistol.)`
+				`	(Take a strong personal shield.)`
+				`	(Take what looks like a bomb.)`
+			label wrongitem
+			`	You take the item and swiftly leave the ship, hoping it is the right one. If only you had been given a more precise description, you could know for sure. As you reach your ship you notice that the Degenerate just launched, before you. They most have noticed the item was missing.`
+				flee
 			label caught
 			`	You do not manage to find the item here, however you have attracted way too much suspicions by looking and opening crates everywhere you could. One local worker asks you something about mechanics. Being no engineer yourself, you cannot make any sense of what he says, even less formulate a correct response, and he denounces you. You are captured and sold as a slave.`
 				die
 			
 			label found
-			`	Surprisingly, you appear to have found what you where looking for: a small cube, completely regular and seemingly alien in design. That has to be the item that He Yi wants, so you take it with you. Its small size makes it perfect for any spying, and also for taking it with you, discretely. This probably will not go unnoticed for long however, so you launch as soon as you can. The original pirate fleet is already heading your way, smelling something suspicious...`
+			choice
+				`	(Take an alien looking modified torpedo warhead.)`
+					goto stupid
+				`	(Take an alien skull.)`
+					goto wrongitem
+				`	(Take a weird looking small cube.)`
+			`	Surprisingly, you appear to have found what you where looking for: a small cube, completely regular and seemingly alien in design. Maybe the warlord was not aware of its value, considering he placed it here, without much protection, and without even trying to hide it. This has to be the item that He Yi wants, so you take it with you. Its small size makes it perfect for any spying, and also for taking it with you, discretely. This probably will not go unnoticed for long however, so you launch as soon as you can. The original pirate fleet is already heading your way, smelling something suspicious...`
 				launch
-			
+			label stupid
+			`	You try to disassemble the torpedo, but you do not have enough time to do so.`
+				goto caught
+
 			label bargain
 			`	You ask around and find the first mate of the warlord, Mip. He seems intrigued by your request. "I assume you are referring to the item my warlord just acquired, it is indeed very mysterious, which sells well on the black market. Also I do not know you, so you would have to give quite a large sum if you really want it, especially because you cannot just go and speak to my boss as if you knew him." He thinks a bit, looking at what kind of things you are wearing, estimating how much you would be willing to pay, he also looks on his pad, probably for records of your ship and fleet. "10 million credits."`
 			choice
@@ -2493,7 +2510,7 @@ mission "Unfettered: Special Cargo 2"
 				log `Bought a mystery cube for the Unfettered for a very big price, I hope it will be worth it.`
 			
 			label afterlog
-			`You find He Yi in his war room, which is very impressive to say the least, full of weird things, that are probably not all weapons. He seems to have multiple missives, serving as his eyes and ears everywhere. You bring him the cube. "Very well done! But this is not all, you will have a big payment once the mission is completed."`
+			`You find He Yi in his war room, which is very impressive to say the least, full of weird things, that are probably not all weapons. You notice some keystone carvings, but also a statue, probably of some Hai goddess. He seems to have multiple missives, serving as his eyes and ears everywhere. You bring him the cube. "Very well done! But this is not all, you will have a big payment once the mission is completed."`
 			branch nodeal
 				not "brokered deal"
 			action
