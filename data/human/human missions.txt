@@ -3603,8 +3603,8 @@ mission "Mafia Extortion"
 				accept
 	
 mission "Thrall Emigration"
-	name "Thrall Emigration"
-	description "Transport a family from Thrall to <destination>, where they hope to find better employment. They cannot pay you."
+	name "<origin> Emigration"
+	description "Transport a family from <origin> to <destination>, where they hope to find better employment. They cannot pay you."
 	minor
 	source
 		planet "Thrall"
