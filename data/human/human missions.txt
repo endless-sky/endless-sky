@@ -3614,7 +3614,7 @@ mission "Thrall Emigration"
 	passengers 2
 	on offer
 		conversation
-			`By the edge of the spaceport at night, you see a thin sweaty man turn away from a pilot, disheartened. You make eye contact, and he begins hurrying over to you.`
+			`By the edge of the spaceport at night, you see a thin, sweaty man turn away from a pilot, disheartened. You make eye contact, and he begins hurrying over to you.`
 			choice
 				`	(Wait for him.)`
 				`	(Walk away quickly.)`
