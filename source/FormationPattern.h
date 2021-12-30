@@ -64,7 +64,7 @@ public:
 		// Iterator traits
 		using iterator_category = std::input_iterator_tag;
 		using value_type = Point;
-		using difference_type = std::ptrdiff_t;
+		using difference_type = void;
 		using pointer = const Point *;
 		using reference = Point &;
 		
