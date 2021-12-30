@@ -894,7 +894,7 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 					decline
 			
 			label agree
-			`	On the way back to your ship, Taer-Fi runs up to you, "One... last... thing, captain!" You let her catch her breath, "We have noticed one Geocoris just entered <waypoint> as expected, but seems to have some special modifications. Please scan that one specifically, we have marked it's signature for you to recognize it. Also I have just found a captain willing to give you an outfit scanner, it will be placed in your cargo hold if there is no space on your ship."`
+			`	On the way back to your ship, Taer-Fi runs up to you, "One... last... thing, captain!" You let her catch her breath, "We have noticed one Geocoris just entered <waypoints> as expected, but seems to have some special modifications. Please scan that one specifically, we have marked it's signature for you to recognize it. Also I have just found a captain willing to give you an outfit scanner, it will be placed in your cargo hold if there is no space on your ship."`
 				accept
 		outfit "Outfit Scanner"
 		log "People" "Taer-Fi" `An Unfettered engineer that is interested in ship designs of all kind. She seems to like to stay mysterious, and is easily exited by new technologies and ships.`
@@ -1460,7 +1460,7 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 
 mission "Unfettered: Solifuge 5: Materials For Ships"
 	name `Gather materials from asteroids`
-	description `Mine 100 tons of Silicon from the asteroid field in Wah Yoot and 15 tons of Silver from the asteroid field in <waypoint> and then bring them back to <destination> for <payment>.`
+	description `Mine 100 tons of Silicon from the asteroid field in Wah Yoot and 15 tons of Silver from the asteroid field in <waypoints> and then bring them back to <destination> for <payment>.`
 	source "Darkcloak"
 	waypoint "Ehma Ti"
 	to offer
@@ -1577,7 +1577,7 @@ ship "Behemoth" "Behemoth (Mamoth)"
 
 mission "Unfettered: Loot: Ion Cannon Materials"
 	name `Take what is rightfully yours`
-	description `There is an undefended cargo ship near <waypoint>, find it and bring its cargo back!`
+	description `There is an undefended cargo ship near <waypoints>, find it and bring its cargo back!`
 	source "Darkcloak"
 	to offer
 		has "Unfettered: Solifuge 5: Materials For Ships: done"
@@ -1617,7 +1617,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 				`	"That is still not that clear, but I will make do with it."`
 			
 			label tellmore
-			`	"It would probably be a good idea to be around <waypoint> very soon, monkey. There will be good a business opportunity there, you would not want to miss it. But I still want my cut... Like last time, for giving you this very sensible information. I will only take 25% worry not. But be sure to bring back at least 400 tons of cargo or there is no deal!" The Alpha Auxiliary you managed to capture not long ago seems perfect for this task, but maybe it is not as easy as he presents it.`
+			`	"It would probably be a good idea to be around <waypoints> very soon, monkey. There will be good a business opportunity there, you would not want to miss it. But I still want my cut... Like last time, for giving you this very sensible information. I will only take 25% worry not. But be sure to bring back at least 400 tons of cargo or there is no deal!" The Alpha Auxiliary you managed to capture not long ago seems perfect for this task, but maybe it is not as easy as he presents it.`
 			choice
 				`	"I will go before the trail gets cold."`
 					accept
