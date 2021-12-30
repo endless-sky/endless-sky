@@ -107,12 +107,9 @@ void FormationPositioner::Step()
 			// Perform removes if we need to.
 			if(removeShip)
 			{
-				// Move the last element to the current position and remove the last
-				// element; this will let last ship take the position of the ship that
-				// we will remove.
-				if(shipIndex < (shipsInRing.size() - 1))
-					shipsInRing[shipIndex].swap(shipsInRing.back());
-				shipsInRing.pop_back();
+				// Remove the ship from the ring.
+				RemoveFromRing(desiredRing, shipIndex);
+				// And remove the ship from the shipsPositions map.
 				if(itCoor != shipPositions.end())
 					shipPositions.erase(itCoor);
 			}
@@ -221,4 +218,23 @@ Point FormationPositioner::Position(const Ship *ship)
 		relPos.Set(relPos.X(), -relPos.Y());
 	
 	return formationLead->Position() + direction.Rotate(relPos);
+}
+
+
+
+// Remove a ship from the formation-ring (based on its index). The last ship
+// in the ring will take the position of the removed ship (if the removed
+// ship itself is not the last ship).
+void FormationPositioner::RemoveFromRing(unsigned int ring, unsigned int index)
+{
+	auto &shipsInRing = ringShips[ring];
+	if(shipsInRing.empty())
+		return;
+	
+	// Move the last element to the current position and remove the last
+	// element; this will let last ship take the position of the ship that
+	// we will remove.
+	if(index < (shipsInRing.size() - 1))
+		shipsInRing[index].swap(shipsInRing.back());
+	shipsInRing.pop_back();
 }

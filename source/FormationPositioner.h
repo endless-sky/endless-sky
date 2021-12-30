@@ -37,9 +37,16 @@ public:
 	// for a formation around the ship given as parameter.
 	void Step();
 	
-	// Get the formation position for the ship given as parameter. Caller should ensure
-	// that the ships are offered in the right order to the calculator.
+	// Get the formation position for the ship given as parameter. If a given ship is
+	// not participating yet, then it will be added.
 	Point Position(const Ship *ship);
+
+
+private:
+	// Remove a ship from the formation-ring (based on its index). The last ship
+	// in the ring will take the position of the removed ship (if the removed
+	// ship itself is not the last ship).
+	void RemoveFromRing(unsigned int ring, unsigned int index);
 
 
 private:
