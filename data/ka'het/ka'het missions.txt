@@ -466,7 +466,7 @@ mission "Ka'het: Patir Mystery 2"
 	on offer
 		event "asteroid on patir"
 		conversation
-			`You arrive in the spaceport cafeteria to meet Dusk when he said he'd be there, but he's no where to be seen. You wait for him to arrive, but nearly an hour later he's still not here. Just as you're about to leave, you spot Dusk running into the cafeteria toward you. "Sorry if I was late, Captain," he says, "I was finishing up gathering the necessary technology for our mission. Everything is ready now."`
+			`You arrive in the spaceport cafeteria to meet Dusk when he said he'd be there, but he's nowhere to be seen. You wait for him to arrive, but nearly an hour later he's still not here. Just as you're about to leave, you spot Dusk running into the cafeteria toward you. "Sorry if I was late, Captain," he says, "I was finishing up gathering the necessary technology for our mission. Everything is ready now."`
 			choice
 				`	"What's the next step?"`
 			`	"Well, first we need to install the scanners on your ship. Luckily, they are as simple to use as a normal outfit scanner, so you should not have much trouble once you reach the asteroid. After you have made extensive scans of the sites I indicate to you, reach me back here on <origin> so that I can analyze the data. If everything goes well, you should be back here in a couple weeks. I have already gotten a team ready to install the scanners; all that needs to be done now is for you to head back to <system>."`
@@ -497,7 +497,7 @@ mission "Ka'het: Patir Mystery 3"
 				`	(Continue my exploration of the asteroid.)`
 					goto explore
 				`	(Leave and return to Aventine.)`
-			`	As you are preparing to jump away, an artificial structure near the edge of the iridium storage catches your eye and you decide to bring your ship in closer. The first thing you notice is an array of tall pylons arranged into two parallel lines. When you are approach, you discover a large cupola towering over the area. Although understanding its scale without a reference point is hard, you estimate it must be at least a kilometer in diameter.`
+			`	As you are preparing to jump away, an artificial structure near the edge of the iridium storage catches your eye, and you decide to bring your ship in closer. The first thing you notice is an array of tall pylons arranged into two parallel lines. When you approach, you discover a large cupola towering over the area. Although understanding its scale without a reference point is hard, you estimate it must be at least a kilometer in diameter.`
 				goto image
 			label explore
 			`	While you are setting up a new route to pass above as much terrain as possible, your eye is caught by an artificial structure near the edge of the iridium storage. The first thing you notice is an array of extremely high pylons put into two parallel lines; then, when you are able to get a better angle of view, you discover a large cupola towering all over the area. Although understanding its scale without a reference point is hard, you estimate it must be at least half a kilometer in diameter. Approaching the settlement further could be risky, as its purpose and function isn't clear.`
