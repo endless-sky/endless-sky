@@ -231,7 +231,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 	
 	for(auto &&it : requiredOutfits)
 	{
-		// Special case: map
+		// Maps are not normal outfits; they represent the player's spatial awareness.
 		int mapSize = it.first->Get("map");
 		if(mapSize > 0)
 		{
@@ -242,9 +242,9 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 					return false;
 			}
 			else
-			// Condition is to have mapped at least the given amount of systems
+			// Condition is to have mapped the whole local map
 			{
-				if(!player.HasMapped(it.second))
+				if(!player.HasMapped(mapSize))
 					return false;
 			}
 			continue;

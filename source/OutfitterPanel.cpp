@@ -358,7 +358,7 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 	int modifier = Modifier();
 	for(int i = 0; i < modifier && CanBuy(alreadyOwned); ++i)
 	{
-		// Special case: maps.
+		// Maps are not transferrable; when bought, they make nearby planets known to the player.
 		int mapSize = selectedOutfit->Get("map");
 		if(mapSize > 0)
 		{

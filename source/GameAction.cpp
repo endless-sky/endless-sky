@@ -42,16 +42,16 @@ namespace {
 	
 	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
 	{
-		// Special case: map
+		// Maps are not transferrable; they represent the player's spatial awareness.
 		int mapSize = outfit->Get("map");
 		if(mapSize > 0)
 		{
-		        if(player.HasMapped(mapSize))
-		                return;
+		    if(player.HasMapped(mapSize))
+				return;
 		
-		        player.Map(mapSize);
-		        Messages::Add("You received a map of nearby systems");
-		        return;
+		    player.Map(mapSize);
+		    Messages::Add("You received a map of nearby systems", Messages::Importance::High);
+		    return;
 		}
 
 		Ship *flagship = player.Flagship();
