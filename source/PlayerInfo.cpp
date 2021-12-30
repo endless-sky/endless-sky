@@ -551,15 +551,15 @@ void PlayerInfo::IncrementDate()
 				, Messages::Importance::Highest);
 	
 	// Check what salaries and tribute the player receives.
-	auto getIncome = [&](string prefix) {
+	auto GetIncome = [&](string prefix) {
 		int64_t total = 0;
 		auto it = conditions.lower_bound(prefix);
 		for( ; it != conditions.end() && !it->first.compare(0, prefix.length(), prefix); ++it)
 			total += it->second;
 		return total;
 	};
-	int64_t salariesIncome = getIncome("salary: ");
-	int64_t tributeIncome = getIncome("tribute: ");
+	int64_t salariesIncome = GetIncome("salary: ");
+	int64_t tributeIncome = GetIncome("tribute: ");
 	int64_t assetsReturns = 0;
 	int64_t maintenanceCosts = 0;
 	MaintenanceAndReturns(maintenanceCosts, assetsReturns);
