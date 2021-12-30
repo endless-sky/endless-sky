@@ -2316,7 +2316,7 @@ mission "Unfettered: Special Cargo"
 		conversation
 			`You are starting to get quite used to Unfettered spaceports, and strangely you are not even surprised by the amount of damage there is around on different non essentials structures anymore. At least the shipyards, hospitals and the stadium of the council are all in perfect shape, that is what matters most after all.`
 			`	You want to see a bit of change for once, and wander on a side of the spaceport you have not explored before, but it does not seem that much different than the rest.`
-			`	You get interrupted in your thinking by a local Unfettered, he seems to have a very important mission to give you, given how fast he is speaking. "He Yi has asked me to deliver you a message! It has come to his attention that an item of great importance to us is currently in the posession of an unfettered human warlord." You guess he is referring to a pirate leader. "Said warlord can be found in <waypoint>, we want you to go and retrieve that item right now, in whatever way you deem fit."`
+			`	You get interrupted in your thinking by a local Unfettered, he seems to have a very important mission to give you, given how fast he is speaking. "He Yi has asked me to deliver you a message! It has come to his attention that an item of great importance to us is currently in the possession of an unfettered human warlord." You guess he is referring to a pirate leader. "Said warlord can be found in <waypoint>, we want you to go and retrieve that item right now, in whatever way you deem fit."`
 			choice
 				`	"How will I know which warlord it is?"`
 				`	"This seems too risky for me."`
@@ -2328,7 +2328,7 @@ mission "Unfettered: Special Cargo"
 				`	"Is it common for the Unfettered to use messagers?"`
 				`	"This seems too risky for me."`
 					decline
-			`	"We do not believe technical ways of communicating to be safe, and they break the link between us. Messages could easily be spied upon by anyone intercepting it, so for some confidential missions like this one, yes it is quite common to use messagers. On top of that, the warlords generally have better things to do than moving around giving missions all the time. Do you have enough informations? What shall I say to my warlord?"`
+			`	"We do not believe technical ways of communicating to be safe, and they break the link between us. Messages could easily be spied upon by anyone intercepting it, so for some confidential missions like this one, yes it is quite common to use messagers. On top of that, the warlords generally have better things to do than moving around giving missions all the time. Do you have enough information? What shall I say to my warlord?"`
 			choice
 				`	"You could have just sent a message on a secure channel."`
 				`	"This seems too risky for me."`
@@ -2385,23 +2385,47 @@ mission "Unfettered: Special Cargo 1B"
 			`	You manage to find one isolated pirate that looks like he is important, but still not enough to have personal bodyguards. You manage to take him hostage, but it is hard to restrain him, given his strength. Then you go and ask for the special item and all pirates laugh at your face before shooting you. It does not seem like they care the least in the world about any other pirate.`
 				die
 			label steal
-			`	You manage to enter the ship discretely, some people will always notice but you try to pretend being a worker there to assist in the repairs, using equipment you found laying around without anyone to care for them. You should be able to go pretty much anywhere on the ship. You do not havea any expertise in actual ship repairs though so your cover could easily be blown. There is no going back now, except maybe if you choose to provoke the captain in a fight to get the item, in space.`
+			`	You manage to enter the ship discretely, some people will always notice but you try to pretend being a worker there to assist in the repairs, using equipment you found laying around without anyone to care for them. You should be able to go pretty much anywhere on the ship. You do not have any expertise in actual ship repairs though so your cover could easily be blown. There is no going back now, except maybe if you choose to provoke the captain in a fight to get the item, in space.`
 			choice
 				`	(Search the lower decks.)`
 				`	(Search close to the weapons stations.)`
-					goto found
+					goto weapons
 				`	(Search the bridge.)`
+					goto bridge
+				`	(Look near the engines.)`
+					goto engine
 				`	(Check amongst the cargo.)`
+					goto cargo
 				`	(Search the upper decks.)`
-				`	(Go back to space and provoke the captain)`
+				`	(Leave the ship before you get caught, and provoke the warlord.)`
 					goto challenge
-			`	You do not manage to find the item here, however you have attracted way too much suspicions by looking all over the place. One local worker asks you what was apparently a test question, something about mechanics. You cannot make any sense of what he is saying, even less formulate a correct response, and he denounces you. You are captured and sold as a slave.`
+			`	You notice a lot of security stations around, they obviously care a lot about their warlord's security. Or at least he does.`
+				goto caught
+			
+			label weapons
+			`	This part of the ship is mostly full of toperdoes, apparently the warlord loves them. But there are not many people here, this part of the ship having suffered no damage, and many torpedoes have been used, they will probably come to refill them soon so you should hurry.
+				goto found
+			
+			label bridge
+			`	This bridge is very luxurious, you see that this warlord like confort, for himself at least. But you cannot find anything that looks unique at all.`
+				goto caught
+			label cargo
+			`	There are a lot of exotic things here with the cargo, most of which are probably not legal at all. But no item matches the description you were given.`
+				goto caught
+			label engine
+			`	Now these are some fine last generation atomic engines, a beauty. But that does not help you find the item at all. Why would there be anything near the engines?`
+				goto caught
+			
+			label caught
+			`	You do not manage to find the item here, however you have attracted way too much suspicions by looking and opening crates everywhere you could. One local worker asks you something about mechanics. Being no engineer yourself, you cannot make any sense of what he says, even less formulate a correct response, and he denounces you. You are captured and sold as a slave.`
 				die
+			
 			label found
-			`	This part of the ship is mostly full of toperdoes, apparently the warlord loves them. But there are not many people here, this part of the ship having suffered no damage, and many torpedoes have been used, they will probably come to refill them soon so you should hurry. Surprisingly, you appear to have found what you where looking for: a small cube, completely regular and seemingly alien in design. That has to be the item that He Yi wants, so you take it with you. Its small size makes it perfect for any spying, and also for taking it with you, discretely. This probably will not go unnoticed for long however, so you launch as soon as you can. The original pirate fleet is already heading your way, smelling something suspicious...`
+			`	Surprisingly, you appear to have found what you where looking for: a small cube, completely regular and seemingly alien in design. That has to be the item that He Yi wants, so you take it with you. Its small size makes it perfect for any spying, and also for taking it with you, discretely. This probably will not go unnoticed for long however, so you launch as soon as you can. The original pirate fleet is already heading your way, smelling something suspicious...`
 				launch
+			
 			label bargain
-			`	You ask around and find the first mate of the warlord, Mip. He seems intrigued by your request. "I assume you are refering to the item my warlord just acquired, it is indeed very mysterious, which sells well on the black market. Also I do not know you, so you would have to give quite a large sum if you really want it, especially because you cannot just go and speak to my boss as if you knew him." He thinks a bit, looking at what kind of things you are wearing, estimating how much you would be willing to pay, he also looks on his pad, probably for records of your ship and fleet. "10 million credits."`
+			`	You ask around and find the first mate of the warlord, Mip. He seems intrigued by your request. "I assume you are referring to the item my warlord just acquired, it is indeed very mysterious, which sells well on the black market. Also I do not know you, so you would have to give quite a large sum if you really want it, especially because you cannot just go and speak to my boss as if you knew him." He thinks a bit, looking at what kind of things you are wearing, estimating how much you would be willing to pay, he also looks on his pad, probably for records of your ship and fleet. "10 million credits."`
 			choice
 				`	"That low? Well here you go mate."`
 				`	"I do not have that kind of money, perhaps we could negotiate?"`
