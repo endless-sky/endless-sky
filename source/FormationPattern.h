@@ -55,16 +55,18 @@ public:
 	
 	
 	// Iterator that provides sequential access to all formation positions.
-	class PositionIterator : public std::iterator<
-		std::input_iterator_tag, // iterator_category
-		Point,                   // iterator: value_type
-		std::ptrdiff_t,          // iterator: difference_type
-		const Point *,           // iterator: pointer
-		Point &>                 // iterator: reference
+	class PositionIterator
 	{
 	public:
 		PositionIterator(const FormationPattern &pattern, const ActiveFormation &af,
 			unsigned int startRing = 0, unsigned int shipsToPlace = 0);
+		
+		// Iterator traits
+		using iterator_category = std::input_iterator_tag;
+		using value_type = Point;
+		using difference_type = std::ptrdiff_t;
+		using pointer = const Point *;
+		using reference = Point &;
 		
 		// A subset of the default input_iterator operations. Limiting to
 		// only a subset, since not all operations are used in-game.
