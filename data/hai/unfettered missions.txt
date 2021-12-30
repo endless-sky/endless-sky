@@ -894,9 +894,9 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 					decline
 			
 			label agree
-			`	On the way back to your ship, Taer-Fi runs up to you, "One... last... thing, captain!" You let her catch her breath, "We have noticed one Geocoris just entered <waypoint> as expected, but seems to have some special modifications. Please scan that one specifically, we have marked it's signature for you to recognize it."`
+			`	On the way back to your ship, Taer-Fi runs up to you, "One... last... thing, captain!" You let her catch her breath, "We have noticed one Geocoris just entered <waypoint> as expected, but seems to have some special modifications. Please scan that one specifically, we have marked it's signature for you to recognize it. Also I have just found a captain willing to give you an outfit scanner, it will be placed in your cargo hold if there is no space on your ship."`
 				accept
-		
+		outfit "Outfit Scanner"
 		log "People" "Taer-Fi" `An Unfettered engineer that is interested in ship designs of all kind. She seems to like to stay mysterious, and is easily exited by new technologies and ships.`
 	
 	on waypoint
@@ -1472,7 +1472,7 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 				`	"What kind of materials do you need?"`
 				`	(Leave, I am not interested.)`
 					decline
-			`She notices you and responds to your question explicitly, speaking to all that are present, "Do not bother with lead friends, it is useless for we are not a barbaric people. No, we need a lot of silver and silicon."`
+			`She notices you and responds to your question explicitly, speaking to all that are present, "Do not bother with lead friends, it is useless for we are not a barbaric people. No, we need a lot of silver and silicon. Also do not forget we are selling asteroid scanners in the outfitter, should you require any."`
 			choice
 				`	(I know how and where to mine asteroids, better get going.)`
 					accept
