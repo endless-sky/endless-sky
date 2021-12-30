@@ -33,7 +33,7 @@ formation "Delta (centered)"
 		start polar diameter 30 1
 		start polar 30 40
 		# Combine two end coordinates into one (walking the "triangular grid" one step "right" one step "right-down").
-		# This is simpler than performing the Pythagoras type calculations for the final coordinate and lenghts.
+		# This is simpler than performing the Pythagoras type calculations for the final coordinate and lengths.
 		end polar diameter 90 1
 		end polar diameter 150 1
 		end polar 90 40
