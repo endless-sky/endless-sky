@@ -2779,6 +2779,8 @@ mission "Unfettered: Non Lethal Weapons Hint"
 
 ship "Shield Beetle Prototype" "Shield Beetle Prototype (Black)"
 	sprite "ship/hai marauder shield beetle"
+	add attributes
+		"shield" 2000
 
 mission "Unfettered: Start Of The War"
 	name `Strength Of A Leader`
@@ -2811,7 +2813,7 @@ mission "Unfettered: Start Of The War"
 	npc save disable
 		government "Hai (Unfettered Challenge)"
 		ship "Shield Beetle (Pulse)" "Intrepid II"
-		ship "Shield Beetle Prototype (Black)" "The Strategist"
+		ship "Shield Beetle Prototype (Black)" "Hermes"
 		conversation
 			action
 				"reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)" + 100
