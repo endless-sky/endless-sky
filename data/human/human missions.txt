@@ -3619,7 +3619,7 @@ mission "Thrall Emigration"
 				`	(Wait for him.)`
 				`	(Walk away quickly.)`
 					decline
-			`	"Excuse me! Are you a pilot?" Without waiting for a response, he continues "I need to go to the Syndicate. I work all day picking cotton with these hands, but my family's still starving. We can't afford transport..."`
+			`	"Excuse me! Are you a pilot?" Without waiting for a response, he continues, "I need to go to the Syndicate. I work all day picking cotton with these hands, but my family's still starving. We can't afford transport..."`
 			`	You can barely understand him through his accent. The man's teeth look worse than his clothes, and his breath makes you step back. His eyes are human.`
 			choice
 				`	"I might be able to help you. What planet do you need to reach?"`
