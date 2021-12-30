@@ -3654,5 +3654,6 @@ mission "Thrall Emigration"
 	
 	on complete
 		conversation
-			`	As your ship enters Delve's cavernous spaceport, you can sense a mixture of hope and apprehension in Gaint and Mell. "Andrin talks too much. I didn't know it's all underground," you catch Gaint saying. Mell responds "We'll figure it out." When they notice you, they both become very thankful once again. They collect their things and quickly leave the ship. You wish them well on their way out.`
+			`	As your ship enters Delve's cavernous spaceport, you can sense a mixture of hope and apprehension in Gaint and Mell. "Andrin talks too much," you overhear Gaint saying. "I didn't know it's all underground."`
+			`	"We'll figure it out," Mell assures him. When they notice you're listening in, the conversation stops. Your ship lands, and the family collects their things to leave. They thank you again on their way out.`
 		
