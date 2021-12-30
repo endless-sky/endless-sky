@@ -110,7 +110,7 @@ void ConversationPanel::Draw()
 	const Font &font = FontSet::Get(14);
 	const Color &selectionColor = *GameData::Colors().Get("faint");
 	const Color &dim = *GameData::Colors().Get("dim");
-	const Color &grey = *GameData::Colors().Get("medium");
+	const Color &gray = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 	
 	// Figure out where we should start drawing.
@@ -119,7 +119,7 @@ void ConversationPanel::Draw()
 		Screen::Top() + MARGIN + scroll);
 	// Draw all the conversation text up to this point.
 	for(const Paragraph &it : text)
-		point = it.Draw(point, grey);
+		point = it.Draw(point, gray);
 	
 	// Draw whatever choices are being presented.
 	if(node < 0)
@@ -157,10 +157,10 @@ void ConversationPanel::Draw()
 		}
 		
 		font.Draw("First name:", point + Point(40, 0), dim);
-		font.Draw({firstName, layout}, point + Point(120, 0), choice ? grey : bright);
+		font.Draw({firstName, layout}, point + Point(120, 0), choice ? gray : bright);
 		
 		font.Draw("Last name:", point + Point(270, 0), dim);
-		font.Draw({lastName, layout}, point + Point(350, 0), choice ? bright : grey);
+		font.Draw({lastName, layout}, point + Point(350, 0), choice ? bright : gray);
 		
 		// Draw the OK button, and remember its location.
 		static const string ok = "[ok]";
@@ -182,10 +182,15 @@ void ConversationPanel::Draw()
 		
 			Point center = point + it.Center();
 			Point size(WIDTH, it.Height());
+
+			auto zone = Rectangle::FromCorner(point, size);
+			// If the mouse is hovering over this choice then we need to highlight it.
+			if(isHovering && zone.Contains(hoverPoint))
+				choice = index;
 		
 			if(index == choice)
 				FillShader::Fill(center + Point(-5, 0), size + Point(30, 0), selectionColor);
-			AddZone(Rectangle::FromCorner(point, size), [this, index](){ this->ClickChoice(index); });
+			AddZone(zone, [this, index](){ this->ClickChoice(index); });
 			++index;
 		
 			font.Draw(label, point + Point(-15, 0), dim);
@@ -194,6 +199,9 @@ void ConversationPanel::Draw()
 	}
 	// Store the total height of the text.
 	maxScroll = min(0., Screen::Top() - (point.Y() - scroll) + font.Height() + 15.);
+
+	// Reset the hover flag. If the mouse is still moving than the flag will be set in the next frame.
+	isHovering = false;
 }
 
 
@@ -301,6 +309,16 @@ bool ConversationPanel::Scroll(double dx, double dy)
 
 
 
+// Handle selecting choices by hovering with the mouse.
+bool ConversationPanel::Hover(int x, int y)
+{
+	hoverPoint = Point(x, y);
+	isHovering = true;
+	return true;
+}
+
+
+
 // The player just selected the given choice.
 void ConversationPanel::Goto(int index, int selectedChoice)
 {
@@ -331,16 +349,14 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 		{
 			// Branch nodes change the flow of the conversation based on the
 			// player's condition variables rather than player input.
-			choice = !conversation.Conditions(node).Test(player.Conditions());
+			choice = !conversation.Branch(node).Test(player.Conditions());
 		}
-		else if(conversation.IsApply(node))
+		else if(conversation.IsAction(node))
 		{
-			// Apply nodes alter the player's condition variables but do not
-			// display any conversation text of their own.
-			player.SetReputationConditions();
-			conversation.Conditions(node).Apply(player.Conditions());
-			// Update any altered government reputations.
-			player.CheckReputationConditions();
+			// Action nodes are able to perform various actions, e.g. changing
+			// the player's conditions, granting payments, triggering events,
+			// and more. They are not allowed to spawn additional UI elements.
+			conversation.GetAction(node).Do(player, nullptr);
 		}
 		else
 		{

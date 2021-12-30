@@ -298,7 +298,7 @@ phrase "friendly ka'het"
 		" target: <ship>. Government: "
 	word
 		"unknown"
-		"unrecognised"
+		"unrecognized"
 		"no data"
 		"unidentified"
 	word
@@ -508,9 +508,9 @@ phrase "hostile ka'het"
 	word
 		"identified"
 		"discovered"
-		"recognised"
+		"recognized"
 		"analyzed"
-		"determinated"
+		"determined"
 		"spotted"
 	word
 		". Threat level: "
@@ -534,7 +534,7 @@ phrase "hostile ka'het"
 		" target: <ship>. Government: "
 	word
 		"unknown"
-		"unrecognised"
+		"unrecognized"
 		"no data"
 		"unidentified"
 	word
@@ -581,9 +581,9 @@ phrase "hostile disabled ka'het"
 	word
 		"identified"
 		"discovered"
-		"recognised"
+		"recognized"
 		"analyzed"
-		"determinated"
+		"determined"
 		"spotted"
 	word
 		". Countermeasures: "

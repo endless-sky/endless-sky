@@ -155,8 +155,8 @@ ship "Arrow"
 			"hull damage" 120
 			"hit force" 360
 	outfits
-		"Sidewinder Missile Launcher"
-		"Sidewinder Missile" 45
+		"Sidewinder Missile Pod" 2
+		"Sidewinder Missile" 8
 		"Anti-Missile Turret"
 		
 		"Dwarf Core"
@@ -171,8 +171,8 @@ ship "Arrow"
 		
 	engine -8 56
 	engine 8 56
-	gun -7.5 -36 "Sidewinder Missile Launcher"
-	gun 7.5 -36
+	gun -7.5 -36 "Sidewinder Missile Pod"
+	gun 7.5 -36 "Sidewinder Missile Pod"
 	turret 0 17.5 "Anti-Missile Turret"
 	leak "leak" 80 50
 	explode "tiny explosion" 12
@@ -227,18 +227,18 @@ ship "Auxiliary"
 		"X1700 Ion Thruster"
 		"X5200 Ion Steering"
 		"Scram Drive"
-	engine -41 181
-	engine 41 181
-	gun -12 -180
-	gun 12 -180
-	turret 0 -75 "Heavy Anti-Missile Turret"
-	turret 0 -18
-	turret 0 22.5
-	turret 0 73.5 "Heavy Anti-Missile Turret"
-	bay "Fighter" 0 -75
-	bay "Fighter" 0 -18
-	bay "Fighter" 0 22.5
-	bay "Fighter" 0 73.5
+	engine -40.5 175 0.45
+	engine 40.5 175 0.45
+	gun -12 -186
+	gun 12.5 -186
+	turret 0 -77.5 "Heavy Anti-Missile Turret"
+	turret 0 -22
+	turret 0 28
+	turret 0 79 "Heavy Anti-Missile Turret"
+	bay "Fighter" 0 -77.5
+	bay "Fighter" 0 -22
+	bay "Fighter" 0 28
+	bay "Fighter" 0 79
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 30 30
@@ -258,16 +258,16 @@ ship "Auxiliary" "Auxiliary (Cargo)"
 	add attributes
 		"bunks" -112
 		"cargo space" 200
-	gun -12 -180
-	gun 12 -180
-	turret 0 -72 "Heavy Anti-Missile Turret"
-	turret 0 -21
-	turret 0 31
-	turret 0 83 "Heavy Anti-Missile Turret"
-	bay "Fighter" 0 -72
-	bay "Fighter" 0 -21
-	bay "Fighter" 0 31
-	bay "Fighter" 0 83
+	gun -12 -186
+	gun 12.5 -186
+	turret 0 -76.5 "Heavy Anti-Missile Turret"
+	turret 0 -24
+	turret 0 28
+	turret 0 79 "Heavy Anti-Missile Turret"
+	bay "Fighter" 0 -76.5
+	bay "Fighter" 0 -24
+	bay "Fighter" 0 28
+	bay "Fighter" 0 79
 
 ship "Auxiliary" "Auxiliary (Transport)"
 	plural "Auxiliaries"
@@ -276,16 +276,16 @@ ship "Auxiliary" "Auxiliary (Transport)"
 	add attributes
 		"bunks" 112
 		"cargo space" -200
-	gun -12 -180
-	gun 12 -180
-	turret 0 -73.5 "Heavy Anti-Missile Turret"
-	turret 0 -17
-	turret 0 20
-	turret 0 79 "Heavy Anti-Missile Turret"
-	bay "Fighter" 0 -73.5
-	bay "Fighter" 0 -17
-	bay "Fighter" 0 20
-	bay "Fighter" 0 79
+	gun -12 -186
+	gun 12.5 -186
+	turret 0 -77.5 "Heavy Anti-Missile Turret"
+	turret 0 -22
+	turret 0 16.5
+	turret 0 73 "Heavy Anti-Missile Turret"
+	bay "Fighter" 0 -77.5
+	bay "Fighter" 0 -22
+	bay "Fighter" 0 16.5
+	bay "Fighter" 0 73
 
 
 
@@ -531,8 +531,8 @@ ship "Behemoth"
 	engine 56 148.5 0.6
 	gun -47.5 -57.5
 	gun 47.5 -57.5
-	turret -31 -50 "Heavy Laser Turret"	
-	turret 31 -50 "Heavy Anti-Missile Turret"	
+	turret -31 -50 "Heavy Laser Turret"
+	turret 31 -50 "Heavy Anti-Missile Turret"
 	turret -47.5 33.5 "Heavy Laser Turret"
 	turret 47.5 33.5 "Heavy Laser Turret"
 	turret -22 66.5 "Heavy Anti-Missile Turret"
@@ -574,8 +574,8 @@ ship "Berserker"
 			"hit force" 450
 	outfits
 		"Energy Blaster" 2
-		"Javelin Pod" 2
-		"Javelin" 400
+		"Javelin Mini Pod" 2
+		"Javelin" 80
 		
 		"nGVF-CC Fuel Cell"
 		"LP072a Battery Pack"
@@ -589,8 +589,8 @@ ship "Berserker"
 	engine 10 45
 	gun -20 12 "Energy Blaster"
 	gun 20 12 "Energy Blaster"
-	gun -44 10 "Javelin Pod"
-	gun 44 10 "Javelin Pod"
+	gun -44 10 "Javelin Mini Pod"
+	gun 44 10 "Javelin Mini Pod"
 	leak "leak" 60 50
 	leak "flame" 80 80
 	explode "tiny explosion" 10
@@ -846,30 +846,30 @@ ship "Carrier"
 		"X4200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -35 200
-	engine 35 200
-	gun -16 -176 "Particle Cannon"
-	gun 16 -176 "Particle Cannon"
-	gun -16 -176 "Meteor Missile Launcher"
-	gun 16 -176 "Meteor Missile Launcher"
-	gun -25 -166 "Particle Cannon"
-	gun 25 -166 "Particle Cannon"
-	gun -25 -166 "Meteor Missile Launcher"
-	gun 25 -166 "Meteor Missile Launcher"
-	turret 0 -114 "Heavy Anti-Missile Turret"
-	turret 0 15 "Heavy Laser Turret"
-	turret 0 103 "Heavy Anti-Missile Turret"
-	turret 0 157 "Heavy Laser Turret"
-	bay "Fighter" -37 -65
-	bay "Fighter" 37 -65
-	bay "Fighter" -46 40
-	bay "Fighter" 46 40
-	bay "Drone" -72 -46
-	bay "Drone" 72 -46
-	bay "Drone" -101 57
-	bay "Drone" 101 57
-	bay "Drone" -74 57
-	bay "Drone" 74 57
+	engine -36.5 200 0.65
+	engine 36.5 200 0.65
+	gun -17.5 -176.5 "Particle Cannon"
+	gun 17.5 -176.5 "Particle Cannon"
+	gun -17.5 -176.5 "Meteor Missile Launcher"
+	gun 17.5 -176.5 "Meteor Missile Launcher"
+	gun -26 -167.5 "Particle Cannon"
+	gun 26 -167.5 "Particle Cannon"
+	gun -26 -167.5 "Meteor Missile Launcher"
+	gun 26 -167.5 "Meteor Missile Launcher"
+	turret 0 -49 "Heavy Laser Turret"
+	turret 0 14 "Heavy Laser Turret"
+	turret -22 22 "Heavy Anti-Missile Turret"
+	turret 22 22 "Heavy Anti-Missile Turret"
+	bay "Fighter" -38.5 -64.5
+	bay "Fighter" 38.5 -64.5
+	bay "Fighter" -50 40.5
+	bay "Fighter" 50 40.5
+	bay "Drone" -71.5 -49.5
+	bay "Drone" 71.5 -49.5
+	bay "Drone" -115 55
+	bay "Drone" 115 55
+	bay "Drone" -85 55
+	bay "Drone" 85 55
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 30 30
@@ -974,8 +974,8 @@ ship "Clipper"
 			"hit force" 540
 	outfits
 		"Beam Laser" 2
-		"Javelin Pod" 2
-		"Javelin" 400
+		"Javelin Mini Pod" 2
+		"Javelin" 80
 		
 		"nGVF-DD Fuel Cell"
 		"LP072a Battery Pack"
@@ -987,8 +987,8 @@ ship "Clipper"
 		
 	engine -22 47
 	engine 22 47
-	gun -21.5 -18 "Javelin Pod"
-	gun 21.5 -18 "Javelin Pod"
+	gun -21.5 -18 "Javelin Mini Pod"
+	gun 21.5 -18 "Javelin Mini Pod"
 	gun -11 -8.5 "Beam Laser"
 	gun 11 -8.5 "Beam Laser"
 	leak "leak" 60 50
@@ -1031,9 +1031,9 @@ ship "Combat Drone"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		
-	engine -9 29
-	engine 9 29
-	gun 0 -29 "Beam Laser"
+	engine -8.5 28 0.9
+	engine 8.5 28 0.9
+	gun 0 -25.5 "Beam Laser"
 	explode "tiny explosion" 15
 	description "Combat drones are pilotless attack ships used primarily by the Republic Navy. Although very weak and easy to destroy, they can be very effective in large numbers. Because drones do not need a cockpit, they can be filled entirely with equipment and solid metal, which makes their hulls stronger than other small ships."
 
@@ -1207,22 +1207,24 @@ ship "Cruiser"
 		"X4200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -29 156
-	engine 29 156
-	gun -31 -63 "Particle Cannon"
-	gun 31 -63 "Particle Cannon"
-	gun -41 -52 "Particle Cannon"
-	gun 41 -52 "Particle Cannon"
-	gun -20 -44 "Sidewinder Missile Launcher"
-	gun 20 -44 "Sidewinder Missile Launcher"
-	turret 0 -40 "Heavy Anti-Missile Turret"
-	turret -33 -19 "Heavy Laser Turret"
-	turret 33 -19 "Heavy Laser Turret"
+	engine -28 154 0.95
+	engine 28 154 0.95
+	engine -52 151 0.75
+	engine 52 151 0.75
+	gun -30 -55 "Particle Cannon"
+	gun 30 -55 "Particle Cannon"
+	gun -40.5 -52 "Particle Cannon"
+	gun 40.5 -52 "Particle Cannon"
+	gun -30 -30 "Sidewinder Missile Launcher"
+	gun 30 -30 "Sidewinder Missile Launcher"
+	turret 0 -39.5 "Heavy Anti-Missile Turret"
+	turret -32 -23 "Heavy Laser Turret"
+	turret 32 -23 "Heavy Laser Turret"
 	turret 0 0 "Heavy Anti-Missile Turret"
-	bay "Drone" -25 18
-	bay "Drone" 25 18
-	bay "Drone" -25 49
-	bay "Drone" 25 49
+	bay "Drone" -25 19.5
+	bay "Drone" 25 19.5
+	bay "Drone" -25 49.5
+	bay "Drone" 25 49.5
 	leak "leak" 30 50
 	leak "flame" 50 80
 	leak "big leak" 40 30
@@ -1259,8 +1261,8 @@ ship "Dagger"
 			"hit force" 180
 	outfits
 		"Beam Laser"
-		"Javelin Pod"
-		"Javelin" 200
+		"Javelin Mini Pod"
+		"Javelin" 40
 		
 		"nGVF-AA Fuel Cell"
 		"Supercapacitor"
@@ -1273,7 +1275,7 @@ ship "Dagger"
 	engine -15 30
 	engine 15 30
 	gun -14 -10 "Beam Laser"
-	gun 14 -10 "Javelin Pod"
+	gun 14 -10 "Javelin Mini Pod"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -1483,8 +1485,8 @@ ship "Finch"
 			"hit force" 180
 	outfits
 		"Beam Laser"
-		"Javelin Pod"
-		"Javelin" 200
+		"Javelin Mini Pod"
+		"Javelin" 40
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
@@ -1496,7 +1498,7 @@ ship "Finch"
 	engine -5 32
 	engine 5 32
 	gun -7 -14 "Beam Laser"
-	gun 7 -14 "Javelin Pod"
+	gun 7 -14 "Javelin Mini Pod"
 	leak "flame" 60 80
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -1550,7 +1552,7 @@ ship "Firebird"
 	gun 27 -28 "Particle Cannon"
 	gun -38 -13 "Meteor Missile Launcher"
 	gun 38 -13 "Meteor Missile Launcher"
-	turret 0 -38 "Anti-Missile Turret"	
+	turret 0 -38 "Anti-Missile Turret"
 	turret 0 3 "Quad Blaster Turret"
 	leak "leak" 50 50
 	leak "flame" 30 80
@@ -1587,8 +1589,8 @@ ship "Flivver"
 			"hull damage" 80
 			"hit force" 240
 	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 14
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
@@ -1704,15 +1706,15 @@ ship "Frigate"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -26 92
-	engine 26 92
-	gun -10 -83 "Particle Cannon"
-	gun 10 -83 "Particle Cannon"
-	gun -10 -83 "Torpedo Launcher"
-	gun 10 -83 "Torpedo Launcher"
-	turret 0 -37 "Anti-Missile Turret"
-	turret -12 -12 "Blaster Turret"
-	turret 12 -12 "Blaster Turret"
+	engine -26 96.5
+	engine 26 96.5
+	gun -11 -84.5 "Particle Cannon"
+	gun 11 -84.5 "Particle Cannon"
+	gun -11 -84.5 "Torpedo Launcher"
+	gun 11 -84.5 "Torpedo Launcher"
+	turret 0 -37.5 "Anti-Missile Turret"
+	turret -15.5 -12.5 "Blaster Turret"
+	turret 15.5 -12.5 "Blaster Turret"
 	leak "leak" 40 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -1818,11 +1820,11 @@ ship "Gunboat"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -12 57
-	engine 12 57
-	gun -28 -28 "Heavy Laser"
-	gun 28 -28 "Heavy Laser"
-	turret 0 -8 "Heavy Laser Turret"
+	engine -12 57.5 0.7
+	engine 12 57.5 0.7
+	gun -28.5 -27.5 "Heavy Laser"
+	gun 28.5 -27.5 "Heavy Laser"
+	turret 0 -1 "Heavy Laser Turret"
 	leak "leak" 50 50
 	leak "flame" 80 80
 	explode "tiny explosion" 10
@@ -1857,8 +1859,8 @@ ship "Hauler"
 			"hull damage" 300
 			"hit force" 900
 	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 14
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -2176,8 +2178,8 @@ ship "Lance"
 			"hit force" 180
 	outfits
 		"Energy Blaster"
-		"Sidewinder Missile Launcher"
-		"Sidewinder Missile" 45
+		"Sidewinder Missile Pod"
+		"Sidewinder Missile" 4
 		
 		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
@@ -2187,10 +2189,10 @@ ship "Lance"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		
-	engine -15 30
-	engine 15 30
-	gun -14 -10 "Energy Blaster"
-	gun 14 -10 "Sidewinder Missile Launcher"
+	engine -14.5 30.5 0.5
+	engine 14.5 30.5 0.5
+	gun -13.5 -6.5 "Energy Blaster"
+	gun 13.5 -6.5 "Sidewinder Missile Pod"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "The Lance is the primary fighter used by the Republic Navy. As with all fighters, it is weak by itself but very effective as part of a larger squadron."
@@ -2678,8 +2680,8 @@ ship "Rainmaker"
 		"cost" 1580000
 		"shields" 3500
 		"hull" 1200
-		"required crew" 7
-		"bunks" 14
+		"required crew" 3
+		"bunks" 7
 		"mass" 180
 		"drag" 3.8
 		"heat dissipation" .6
@@ -2709,14 +2711,14 @@ ship "Rainmaker"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -8 46
-	engine 8 46
-	gun -10 -30 "Energy Blaster"
-	gun 10 -30 "Energy Blaster"
-	gun -27 -5 "Meteor Missile Launcher"
-	gun 27 -5 "Meteor Missile Launcher"
-	gun -17 -5 "Meteor Missile Launcher"
-	gun 17 -5 "Meteor Missile Launcher"
+	engine -8.5 45.5 0.4
+	engine 8.5 45.5 0.4
+	gun -11 -30.5 "Energy Blaster"
+	gun 11 -30.5 "Energy Blaster"
+	gun -28.5 3.5 "Meteor Missile Launcher"
+	gun 28.5 3.5 "Meteor Missile Launcher"
+	gun -21.5 3.5 "Meteor Missile Launcher"
+	gun 21.5 3.5 "Meteor Missile Launcher"
 	leak "leak" 50 50
 	explode "tiny explosion" 10
 	explode "small explosion" 20
@@ -3020,7 +3022,7 @@ ship "Sparrow"
 		"shields" 1200
 		"hull" 300
 		"required crew" 1
-		"bunks" 2
+		"bunks" 3
 		"mass" 50
 		"drag" .9
 		"heat dissipation" .8
@@ -3347,8 +3349,8 @@ ship "Wasp"
 			"hit force" 300
 	outfits
 		"Energy Blaster" 2
-		"Sidewinder Missile Launcher"
-		"Sidewinder Missile" 45
+		"Sidewinder Missile Pod"
+		"Sidewinder Missile" 4
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
@@ -3361,7 +3363,7 @@ ship "Wasp"
 		
 	engine -5.5 32.5
 	engine 5.5 32.5
-	gun 0 -41 "Sidewinder Missile Launcher"
+	gun 0 -41 "Sidewinder Missile Pod"
 	gun -13 -30.5 "Energy Blaster"
 	gun 13 -30.5 "Energy Blaster"
 	leak "leak" 60 50

@@ -233,6 +233,11 @@ namespace {
 		if(!width || !height || width != buffer.Width() || height != buffer.Height())
 		{
 			png_destroy_read_struct(&png, &info, nullptr);
+			string message = "Skipped processing \"" + path + "\":\n\tAll image frames must have equal ";
+			if(width && width != buffer.Width())
+				Files::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
+			if(height && height != buffer.Height())
+				Files::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was " + to_string(height));
 			return false;
 		}
 		
@@ -303,6 +308,11 @@ namespace {
 		if(!width || !height || width != buffer.Width() || height != buffer.Height())
 		{
 			jpeg_destroy_decompress(&cinfo);
+			string message = "Skipped processing \"" + path + "\":\t\tAll image frames must have equal ";
+			if(width && width != buffer.Width())
+				Files::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
+			if(height && height != buffer.Height())
+				Files::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was " + to_string(height));
 			return false;
 		}
 		

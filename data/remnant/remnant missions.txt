@@ -772,9 +772,8 @@ event "remnant: nenia restored"
 mission "Remnant: Void Sprites 3"
 	landing
 	name "Visit void sprite planets"
-	description `Purchase a "Puffin" from the Remnant world of Viminal, and use it to explore the two gas giants where the void sprites live. Then, return to <planet>.`
+	description `Use the Puffin to explore the two gas giants where the void sprites live. Then, return to <planet>.`
 	source "Aventine"
-	stopover "Viminal"
 	stopover "Nasqueron"
 	stopover "Slylandro"
 	cargo "scanning equipment" 8
@@ -1050,7 +1049,7 @@ event "remnant: sign studies complete"
 
 mission "Remnant: Learn Sign Follow Up"
 	invisible
-	source 
+	source
 		government "Remnant"
 	to offer
 		has "event: remnant: sign studies complete"
@@ -1076,14 +1075,14 @@ mission "Remnant: Deep Surveillance"
 			and
 				has "Terminus exploration: done"
 				not "Deep: Remnant 0: done"
-			has "Deep: Remnant Research: done"
+			has "Deep: Remnant Research: offered"
 	on offer
 		conversation
 			branch "told before"
 				has "remnant: told about deep"
 			
 			branch terminus1
-				not "Deep: Remnant Research: done"
+				not "Deep: Remnant Research: offered"
 			
 			`	While wandering the spaceport, you think back to the scientists from the Deep that you helped discover the Ember Waste. Given that the Remnant value their secrecy, they may be interested in knowing about this.`
 			choice
@@ -1105,7 +1104,7 @@ mission "Remnant: Deep Surveillance"
 			`	You ask one of the Remnant in the spaceport where you would be able to find a prefect, and they point you to what looks like an information desk of sorts. There you tell the attendant that you have something potentially important to discuss in regards to Remnant security. They tap a few buttons then give you directions down a hallway. You quickly find yourself in an armory where several Remnant guards are in the process of cleaning their weapons. One stands up and comes over to you.`
 			`	"Greetings, Captain. I am Prefect Torza. I was told you had information that could be important to our security." He takes a seat on a bench on the far side of the room from the other Remnant and gestures for you to do the same. "What do you have to tell us?"`
 			branch terminus2
-				not "Deep: Remnant Research: done"
+				not "Deep: Remnant Research: offered"
 			
 			choice
 				`	"I helped a group of scientists from the Deep to discover the Ember Waste."`
@@ -1120,7 +1119,7 @@ mission "Remnant: Deep Surveillance"
 					goto threat
 				`	"I'm sorry, but I helped them before coming to understand this."`
 			
-			`	Torza seems to relax slightly. "This is unfortunate. I can not get angry at you for that which you did not understand. But now that you do understand, seek to not make this same mistake in the future.`
+			`	Torza seems to relax slightly. "This is unfortunate. I cannot get angry at you for that which you did not understand. But now that you do understand, seek to not make this same mistake in the future.`
 			`	"What do they know?"`
 				goto knowledge
 			
@@ -1184,11 +1183,11 @@ mission "Remnant: Deep Surveillance"
 			branch unknown
 				has "deep: did not reveal remnant"
 			
-			branch technology
-				has "Deep: Remnant: Engines: done"
-			
 			branch surveillance
 				has "Deep: Remnant Surveillance: done"
+			
+			branch technology
+				has "Deep: Remnant: Engines: done"
 			
 			choice
 				`	"They know where the Remnant are in the Ember Waste."`
@@ -1249,7 +1248,7 @@ mission "Remnant: Deep Surveillance"
 			apply
 				set "remnant: told that deep has tech"
 			`	"And you were the one who brought it to them," Torza responds.`
-			branch reciprocal 
+			branch reciprocal
 				has "Remnant: Tech Retrieval: done"
 			
 			choice
@@ -1297,7 +1296,7 @@ mission "Remnant: Deep Surveillance"
 			label end
 			`	Torza begins tapping on a data pad. "We must act to rectify this situation," he says calmly.`
 			branch repeat
-				has "retreived before"
+				has "retrieved before"
 			
 			`	"I presume that you know of the whereabouts of these scientists. Would you be able to get us a copy of their findings?"`
 			choice
@@ -1369,7 +1368,7 @@ mission "Remnant: Deep Surveillance"
 			label liar2
 			apply
 				set "remnant: player is surveilled"
-			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Know that you will be watched closely by us from now on, Captain. I commend you for agreeing to bring us this information, but we can not allow another situation like this to occur."`
+			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Know that you will be watched closely by us from now on, Captain. I commend you for agreeing to bring us this information, but we cannot allow another situation like this to occur."`
 				accept
 	
 	on stopover
@@ -1380,7 +1379,7 @@ mission "Remnant: Deep Surveillance"
 			
 			`	You look up the location of Ivan's office that he gave you back when you helped him save the science drone in Terminus and find that it is in a building just outside the spaceport, just one room among many in a massive office complex. The complex looks pristine by Dirt Belt standards, but when compared to architecture you've seen elsewhere in the Deep, it's rather brutalistic.`
 			branch gone
-				has "Deep: Remnant Research: done"
+				has "Deep: Remnant Research: offered"
 			
 			`	You ask a receptionist what Ivan's room number is, and he points you to a room on the twentieth floor. After taking an elevator up, you knock on the door to Ivan's office.`
 			`	"Who is it?" Ivan says before peaking out the blinds. "Oh! Captain <last>! Please, come in."`
@@ -1480,7 +1479,7 @@ mission "Remnant: Deep Surveillance"
 			`	Ivan leans over to his desk. "This will be for your eyes only."`
 				goto next
 			
-			label again 
+			label again
 			`	"Again?" Ivan asks. He leans over to his desk. "I like that you're so interested in my research. I suppose it only makes sense with you helping me, but typically merchant captains aren't this interested in following up on odd jobs they do."`
 			
 			label next
@@ -2133,7 +2132,7 @@ mission "Remnant: Return the Samples"
 		conversation
 			`Once again you have successfully dodged the Archon to land on Nasqueron. Somehow, knowing it was going to be there was both better and worse than the surprise of the first time.`
 			`	As the <ship> sinks through the cloud layers, you gently activate the repulsors to slow your descent to avoid startling the void sprites. A few nearby sprites descend with you, seeming to match your velocity. You slow down as you reach the altitude listed in the log of where the eggs are to be released.`
-			`	Setting the ship on auto-pilot, you walk to the back and struggle into the pressure suit. Readying the eggs in the cargo hold, you equalize pressure in the main cargo hold to the swirling clouds outside, and open the bay doors. As predicted, at this pressure level, the eggs are almost weightless, and are fairly easy to carry to the door of the ship and release.`	
+			`	Setting the ship on auto-pilot, you walk to the back and struggle into the pressure suit. Readying the eggs in the cargo hold, you equalize pressure in the main cargo hold to the swirling clouds outside, and open the bay doors. As predicted, at this pressure level, the eggs are almost weightless, and are fairly easy to carry to the door of the ship and release.`
 			`	By the time you finish releasing the eggs back into the clouds, several void sprites have converged on your ship and appear to be herding the eggs away from you with gentle buffets of their wings. You take a moment to appreciate the alien beauty of these creatures before closing the hatch and purging the ship with fresh air.`
 	on visit
 		dialog phrase "generic stopover on visit"
@@ -2479,7 +2478,7 @@ mission "Remnant: Salvage 6"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 150000
-		conversation 
+		conversation
 			`Taely meets you at the dock with a flatbed ready to offload the shipment. As you run through your shutdown routine you hit the switch for the cargo bay doors, and by the time you have gone down to the hold, Taely has half the shipment already unloaded.`
 			`	Her signs flick at you with a gentleness that you are slowly deciding equates to a cheerful tone. "Thank you for all the help you've provided in recovering this salvage," she says as she hands you <payment>. "I have discussed it with the other engineers, and we have decided to give you access to our salvage."`
 			`	She leads you over to the warehouse, scans her ID on the console, and taps a few commands. Then she scans your ID card. "There you go, I have updated your access codes," she signs cheerfully. She hands you your ID and pulls you to a door on the far side of the outfitting shop. Beyond the door is a vast room filled with outfits and weapons that clearly don't fit the same style as the other Remnant technology. You have seen most of the things here on scans and when salvaging equipment from other ships, but never up close.`
@@ -2586,7 +2585,7 @@ mission "Remnant: Expanded Horizons Quarg 2"
 	description "Perform an outfit scan on the Quarg ship <npc>, then land again on <destination>."
 	source "Wayfarer"
 	to offer
-		has "Remnant: Expanded Horizons Quarg 1: done"	
+		has "Remnant: Expanded Horizons Quarg 1: done"
 	on offer
 		conversation
 			`Dawn and her fellow researchers show up a few minutes after you do, excitedly talking about the various things they have seen. "<first>, there is a Quarg ship taking off shortly, and we were hoping you might be able to get scans of it while it is in flight. It would be really helpful for our understanding of how they work."`
@@ -3379,7 +3378,7 @@ mission "Remnant: Keystone Research 5"
 			`	"Oh, yes. It is actually quite common among the Remnant. I am not a particularly good pilot, but it is considered an important skill that is taught to almost everyone as a part of a general education. It is especially worthwhile for those of us who work directly with starships on a daily basis and may be called upon to move or fly one at a moment's notice." His gestures suggest both pride and humility as he talks about his piloting skills. "Anyway, let's go!"`
 				accept
 	npc "scan outfits" "save"
-		government "Remnant"
+		government "Remnant (Research)"
 		personality coward disables plunders staying surveillance target mining
 		system "Peragenor"
 		ship "Starling (Keystone)" "Winds of Light"
@@ -3399,7 +3398,7 @@ mission "Remnant: Keystone Research 6"
 	waypoint "Peragenor"
 	source "Viminal"
 	npc "scan outfits" "save"
-		government "Remnant"
+		government "Remnant (Research)"
 		personality coward disables plunders staying surveillance target mining
 		system "Peragenor"
 		ship "Starling" "Winds of Light"
@@ -3410,7 +3409,7 @@ mission "Remnant: Keystone Research 6"
 	on offer
 		conversation
 			`When you and the <npc> settle back onto the landing pad, there is already a dockworker waiting with a Key Stone. Once the Starling is settled, the dockworker climbs up the outside of the ship, hooks the keystone to a lift and disconnects it from the ship. As the keystone is hauled up to the roof another lift lowers the replacement Key Stone. The dockworker quickly installs it and jumps down, landing gracefully from the several-meter drop.`
-			`	"Ready? Let's go!" Aeolus signs as he fires up his systems and gestures an acknowledgement to the dockworker. You check your cameras and see the worker nimbly step clear of the engine exhausts as the two ships head back out of the dome.`
+			`	"Ready? Let's go!" Aeolus signs as he fires up his systems and gestures an acknowledgment to the dockworker. You check your cameras and see the worker nimbly step clear of the engine exhausts as the two ships head back out of the dome.`
 				launch
 	on visit
 		dialog `You land on <planet>, but you haven't scanned the <npc> in <waypoints>. Make sure you scan the ship before returning.`
@@ -3696,7 +3695,11 @@ mission "Remnant: Bounty 3"
 	source
 		government "Remnant"
 	to offer
-		has "Remnant: Cognizance 4: failed"
+		# 0.9.13 Compatibility patch
+		or
+			has "Remnant: Cognizance 4: done"
+			has "Remnant: Cognizance 4: failed"
+		not "Remnant: Cognizance 4: aborted"
 		random < 40
 	npc kill
 		government "Korath"
@@ -3723,7 +3726,11 @@ mission "Remnant: Cognizance 5"
 	source "Caelian"
 	waypoint "Aescolanus"
 	to offer
-		has "Remnant: Cognizance 4: done"
+		# 0.9.13 Compatibility patch
+		or
+			has "Remnant: Cognizance 4: done"
+			has "Remnant: Cognizance 4: failed"
+		not "Remnant: Cognizance 4: aborted"
 	on offer
 		conversation
 			branch fleetkilled
@@ -3977,7 +3984,7 @@ mission "Remnant: Cognizance 12"
 		event "remnant: postverta reveal"
 		conversation
 			`You arrive at the hidden station on <planet> where Gavriil is waiting to offload the atmospheric gases. His team quickly hooks the Puffins up to ports on the bay walls, and hidden equipment starts pumping their contents into the system. After a few minutes, they disconnect the ships, and you and the Puffins head up to the Pelican to refill your reservoirs and ferry it down to the station.`
-			`	As the last load starts to empty into the station, another tech comes up to you. "Captain, we just received a message from Prefect Chilia. He would like you to meet him on Viminal as soon as possible." You nod and start to run checks on the <ship>, making ready to leave once the cargo is done unloading.` 
+			`	As the last load starts to empty into the station, another tech comes up to you. "Captain, we just received a message from Prefect Chilia. He would like you to meet him on Viminal as soon as possible." You nod and start to run checks on the <ship>, making ready to leave once the cargo is done unloading.`
 
 
 
@@ -4397,7 +4404,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 			choice
 				`	"Interesting. I'll see you onboard the <ship>."`
 					accept
-				`	"Could you tell me more about them?"`			
+				`	"Could you tell me more about them?"`
 			label dawndetails
 			apply
 				"remnant symbionts info" += 1
@@ -4523,7 +4530,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 			choice
 				`	"Is the equipment finished?"`
 				`	"How much longer does the equipment need?"`
-			label astralfinish 
+			label astralfinish
 			`	"The equipment will be finished shortly, Captain <first>. I just need to make a few observations, and then we will be able to depart. In the meantime, I would recommend against maintaining an active cloak or engaging any systems that consume fuel. For whatever reason, Sagittarius A* continues to be the one place that the stellar wind is utterly devoid of anything to collect as fuel."`
 			`	"I will be going outside for a few minutes," Dawn declares. "I shall just be on the hull."`
 			choice
@@ -4665,7 +4672,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 					goto tempunits
 				`	"I think that is all the technical detail I can take."`
 					goto stormend
-			`	She looks mischievous. "I can not tell you where or how we got it, but look at this." Her display shifts again with the hazes vanishing, and shows the galaxy map with one key difference. "Yes, the Ember Wastes are violet. Actually, they are off the visual spectrum into the ultraviolets, but this downshifts it so we can see it. This is what the Ember Wastes looked like a very long time ago.`
+			`	She looks mischievous. "I cannot tell you where or how we got it, but look at this." Her display shifts again with the hazes vanishing, and shows the galaxy map with one key difference. "Yes, the Ember Wastes are violet. Actually, they are off the visual spectrum into the ultraviolets, but this downshifts it so we can see it. This is what the Ember Wastes looked like a very long time ago.`
 			`	She takes on a serious tone. "This data suggests there is enough energy in the area to maintain the hydrogen at somewhere in excess of 61A8 degrees. It does not tell us the source of that energy, but based on patterns and some other data we have collected, the two appear to be intertwined. At the very least, the ion storms are one of the means by which energy is being transferred into the clouds." Her display vanishes, and she slings her backpack over her shoulder.`
 				goto stormend
 			label numericsystem
