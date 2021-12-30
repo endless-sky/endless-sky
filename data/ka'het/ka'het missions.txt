@@ -652,6 +652,7 @@ mission "Ka'het: Patir Mystery 5"
 		dialog
 			`One or more Ka'sei were destroyed. You failed your mission.`
 	on complete
+		event "patir mistery timer" 10
 		clear "saved ka'sei rep"
 		"reputation: Ka'sei" = 1
 		conversation
@@ -669,4 +670,4 @@ mission "Ka'het: Patir Mystery 5"
 event "pacified ka'sei"
 	"reputation: Ka'sei" = 1
 
-event "patir mistery timer"
+event "patir mystery timer"
