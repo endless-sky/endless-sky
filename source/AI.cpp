@@ -623,9 +623,9 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 // the player has entered a new one.
 void AI::Clean()
 {
+	// Records of what various AI ships and factions have done.
 	actions.clear();
 	notoriety.clear();
-	formations.clear();
 	governmentActions.clear();
 	scanPermissions.clear();
 	playerActions.clear();
@@ -635,6 +635,9 @@ void AI::Clean()
 	miningRadius.clear();
 	miningTime.clear();
 	appeasmentThreshold.clear();
+	// Records for formations flying around leadships and other objects.
+	formations.clear();
+	// Records that affect the combat behavior of various governments.
 	shipStrength.clear();
 	enemyStrength.clear();
 	allyStrength.clear();
