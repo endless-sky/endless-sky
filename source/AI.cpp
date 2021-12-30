@@ -350,10 +350,6 @@ AI::AI(const List<Ship> &ships, const List<Minable> &minables, const List<Flotsa
 
 
 
-
-
-
-
 // Fleet commands from the player.
 void AI::IssueFormationChange(const PlayerInfo &player)
 {
@@ -448,7 +444,6 @@ void AI::IssueFormationRingChange(const PlayerInfo &player, int change)
 	
 	Messages::Add(to_string(targetShips.size()) + " ships are now flying in ring " + to_string(maxRing) + " of their formation.", Messages::Importance::Low);
 }
-
 
 
 

@@ -344,7 +344,7 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 	// Perform common start and end/anchor position calculations in pixels.
 	Point startPx = line.start.GetPx(diameterToPx, widthToPx, heightToPx);
 	Point endOrAnchorPx = line.endOrAnchor.GetPx(diameterToPx, widthToPx, heightToPx);
-
+	
 	// Get the number of slots for this line or arc.
 	int slots = line.slots;
 	
@@ -364,7 +364,6 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 		++lineSlot;
 	else if(line.skipFirst)
 		++lineSlot;
-
 	
 	// Switch to arc-specific calculations if this line is an arc.
 	if(line.isArc)
@@ -458,14 +457,14 @@ void FormationPattern::MultiAxisPoint::AddLoad(const DataNode &node)
 	// We need at least the slot-name keyword and 2 coordinate numbers.
 	if(node.Size() < 3)
 		return;
-
+	
 	// Track if we are parsing a polar coordinate.
 	bool parsePolar = false;
-
+	
 	// By default we parse for pixels.
 	Axis axis = PIXELS;
 	double scalingFactor = 1.;
-
+	
 	// Parse all the keywords before the coordinate
 	for(int i = 1; i < node.Size() - 2; ++i)
 	{

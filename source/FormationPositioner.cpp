@@ -197,7 +197,7 @@ Point FormationPositioner::Position(const Ship *ship)
 		{
 			// Register that this ship was seen.
 			status.second = tickTock;
-
+			
 			// Set scaling for next round based on the sizes of the participating ships.
 			Tally(nextActiveData, *ship);
 		}

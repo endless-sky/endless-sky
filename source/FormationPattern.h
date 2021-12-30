@@ -104,9 +104,8 @@ public:
 		// Internal status variable;
 		bool atEnd = false;
 	};
-
-
-
+	
+	
 	// Returns the name of this pattern.
 	const std::string &Name() const;
 	void SetName(const std::string &name);
@@ -164,7 +163,7 @@ private:
 		MultiAxisPoint repeatEndOrAnchor;
 		
 		double repeatAngle = 0;
-
+		
 		// Slots to add or remove in this repeat section.
 		int repeatSlots = 0;
 		
