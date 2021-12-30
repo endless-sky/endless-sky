@@ -2587,8 +2587,8 @@ void PlayerInfo::RegisterDerivedConditions()
 			return false;
 		return name == "flagship system: " + flagship->GetSystem()->Name();
 	};
-	flagshipSystemProvider .SetHasFun(flagshipSystemFun);
-	flagshipSystemProvider .SetGetFun(flagshipSystemFun);
+	flagshipSystemProvider.SetHasFun(flagshipSystemFun);
+	flagshipSystemProvider.SetGetFun(flagshipSystemFun);
 	
 	auto &&flagshipPlanetProvider = conditions.GetProviderPrefixed("flagship planet: ");
 	auto flagshipPlanetFun = [this](const string &name) -> bool
