@@ -2231,7 +2231,7 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 				`	(Sure I want my Shield Beetles!)`
 				`	(Later.)`
 					defer
-			`	He does not seem very surprised to see you. "Coming for more big ships?"`
+			`	He does not seem very surprised to see you. "Coming for more big ships?" You feel like him asking this is just a formality, he already knows your answer.`
 			choice
 				`	"Yes, just tell me what to do to help."`
 					goto help
@@ -2813,7 +2813,7 @@ mission "Unfettered: Start Of The War"
 	npc save disable
 		government "Hai (Unfettered Challenge)"
 		ship "Shield Beetle (Pulse)" "Intrepid II"
-		ship "Shield Beetle Prototype (Black)" "Hermes"
+		ship "Shield Beetle Prototype (Black)" "Tejolis"
 		conversation
 			action
 				"reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)" + 100
@@ -2833,6 +2833,11 @@ mission "Unfettered: Start Of The War"
 					accept
 				`	"What does this sword do?"`
 			`	"You are aware of what keystones are, right? They are not believed to give luck for no reason, after all. I cannot tell you much more about it, but rest assured this sword would be more useful than a gun for boarding. It was given to me by the council many years ago, and it fits my responsibility as well as my character."`
+			choice
+				`	"Why is your ship named Tejolis?"`
+				`	"I am honoured."`
+					accept
+			`	"Tejolis is the goddess of apt thinking, which you could call intelligence. It is the aptitude to do good judgments, based on context. For instance, if you have time to choose a quick decision does not make sense, and a wrong decision is hard to justify. Likewise, when time is of the essence one must learn to do quick action, or be overwelmed by the actions of others, or lack of actions. I named this ship in her honor, just like I have a statue of her in my war room, because I follow her ways."`
 
 event "joined the unfettered"
 	government "Escort"
