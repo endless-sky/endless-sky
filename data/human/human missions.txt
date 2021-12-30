@@ -3642,7 +3642,7 @@ mission "Thrall Emigration"
 				`	"Sorry, but that's still too many. Have a nice day."`
 					goto disappointment
 			label offer
-			`	"Oh, thank you, thank you!" he says, vigorously shaking your hand. "I'll get them fast, we can leave tonight! I'm Gaint, by the way" He quickly disappears, turning back at least three times to tip his hat to you and make sure you haven't left.`
+			`	"Oh, thank you, thank you!" he says, vigorously shaking your hand. "I'll get them fast, we can leave tonight! I'm Gaint, by the way." He quickly leaves to get them, turning back at least three times to tip his hat to you and make sure you haven't left.`
 			`	Gaint's family arrives quickly. His wife, Mell, is carrying their infant child, and a toddler clutches her leg. His fingers look like a skeleton, and his eyes look like his dad's. "Thank you so much," Mell says as they enter your ship.`
 				accept
 			label disappointment
