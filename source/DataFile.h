@@ -33,19 +33,19 @@ public:
 	DataFile() = default;
 	explicit DataFile(const std::string &path);
 	explicit DataFile(std::istream &in);
-	
+
 	void Load(const std::string &path);
 	void Load(std::istream &in);
-	
+
 	// Functions for iterating through all DataNodes in this file.
 	std::list<DataNode>::const_iterator begin() const;
 	std::list<DataNode>::const_iterator end() const;
-	
-	
+
+
 private:
 	void LoadData(const std::string &data);
-	
-	
+
+
 private:
 	// This is the container for all DataNodes in this file.
 	DataNode root;

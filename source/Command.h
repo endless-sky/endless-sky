@@ -72,35 +72,35 @@ public:
 	// other commands like NEAREST, TARGET, HAIL and BOARD.
 	static const Command SHIFT;
 
-	
+
 public:
 	// In the given text, replace any instances of command names (in angle
 	// brackets) with key names (in quotes).
 	static std::string ReplaceNamesWithKeys(const std::string &text);
-	
+
 public:
 	Command() = default;
 	// Create a command representing whatever command is mapped to the given
 	// keycode (if any).
 	explicit Command(int keycode);
-	
+
 	// Read the current keyboard state and set this object to reflect it.
 	void ReadKeyboard();
-	
+
 	// Load or save the keyboard preferences.
 	static void LoadSettings(const std::string &path);
 	static void SaveSettings(const std::string &path);
 	static void SetKey(Command command, int keycode);
-	
+
 	// Get the description or keycode name for this command. If this command is
 	// a combination of more than one command, an empty string is returned.
 	const std::string &Description() const;
 	const std::string &KeyName() const;
 	bool HasConflict() const;
-	
+
 	// Load this command from an input file (for testing or scripted missions).
 	void Load(const DataNode &node);
-	
+
 	// Reset this to an empty command.
 	void Clear();
 	// Clear, set, or check the given bits. This ignores the turn field.
@@ -111,7 +111,7 @@ public:
 	Command And(Command command) const;
 	// Get the commands that are set in this and not in the given command.
 	Command AndNot(Command command) const;
-	
+
 	// Get or set the turn amount. The amount must be between -1 and 1, but it
 	// can be a fractional value to allow finer control.
 	void SetTurn(double amount);
@@ -125,23 +125,23 @@ public:
 	// -1 or 1 means to turn at the full speed the turret is capable of.
 	double Aim(int index) const;
 	void SetAim(int index, double amount);
-	
+
 	// Check if any bits are set in this command (including a nonzero turn).
 	explicit operator bool() const;
 	bool operator!() const;
 	// This operator is just provided to allow commands to be used in a map.
 	bool operator<(const Command &command) const;
-	
+
 	// Get the commands that are set in either of these commands.
 	Command operator|(const Command &command) const;
 	Command &operator|=(const Command &command);
-	
-	
+
+
 private:
 	explicit Command(uint64_t state);
 	Command(uint64_t state, const std::string &text);
-	
-	
+
+
 private:
 	// The key commands and weapons to fire are stored in a single bitmask, with
 	// 32 bits for key commands and 32 bits for individual weapons.

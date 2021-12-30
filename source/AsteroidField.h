@@ -46,12 +46,12 @@ class AsteroidField {
 public:
 	// Constructor, to set up the collision set parameters.
 	AsteroidField();
-	
+
 	// Reset the asteroid field (typically because you entered a new system).
 	void Clear();
 	void Add(const std::string &name, int count, double energy = 1.);
 	void Add(const Minable *minable, int count, double energy, const WeightedList<System::Belt> &belts);
-	
+
 	// Move all the asteroids forward one time step, and populate the asteroid and minable collision sets.
 	void Step(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam, int step);
 	// Draw the asteroid field, with the field of view centered on the given point.
@@ -59,31 +59,31 @@ public:
 	// Check if the given projectile has hit any of the asteroids, using the information
 	// in the collision sets. If a collision occurs, returns a pointer to the hit body.
 	Body *Collide(const Projectile &projectile, double *closestHit);
-	
+
 	// Get the list of minable asteroids.
 	const std::list<std::shared_ptr<Minable>> &Minables() const;
-	
-	
+
+
 private:
 	// This class represents an asteroid that cannot be destroyed or even
 	// deflected from its trajectory, and that repeats every 4096 pixels.
 	class Asteroid : public Body {
 	public:
 		Asteroid(const Sprite *sprite, double energy);
-		
+
 		void Step();
 		void Draw(DrawList &draw, const Point &center, double zoom) const;
-		
+
 	private:
 		Angle spin;
 		Point size;
 	};
-	
-	
+
+
 private:
 	std::vector<Asteroid> asteroids;
 	std::list<std::shared_ptr<Minable>> minables;
-	
+
 	CollisionSet asteroidCollisions;
 	CollisionSet minableCollisions;
 };
