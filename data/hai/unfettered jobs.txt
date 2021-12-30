@@ -178,7 +178,6 @@ mission "Unfettered Tribute 3"
 
 
 
-# When outnumbered 2 to 1 at least, they may consider themselves unable to beat you and prefer to die standing than slaughtered.
 mission "Proud Unfettered Boarded"
 	boarding
 	repeat

@@ -435,6 +435,7 @@ mission "Unfettered: Bring Hai"
 	blocked "You will need room for 10 passengers in order to take the next Unfettered mission."
 	to offer
 		has "Unfettered Jump Drive 1: offered"
+		random < 50
 	on offer
 		conversation
 			`As you exit your ship you notice a group of Unfettered that seem to be discussing something of importance in a big, yet simple, square-shape stadium nearby. A few Unfettered are already heading their way to listen, it does not seem to be restricted of access.`
@@ -687,7 +688,7 @@ mission "Unfettered: Prove Your Strength 2"
 				`	"Okay... That just seems too good to be true. What is the catch?"`
 				`	"If this is your mission you just do it yourself."`
 					decline
-			`	"Well... The name of the world is 'Freedom', and whilst it may sound nice, it is a pirate world and is thus dangerous. That is why I need your ship for transportation trough Hai space. You will also need to have cargo space available for 4 jump drives. You should be warned, this is not a mission for the light hearted."`
+			`	"Well... The name of the world is 'Freedom', and whilst it may sound nice, it is a unfettered human world and is thus dangerous. That is why I need your ship for transportation trough Hai space. You will also need to have cargo space available for 4 jump drives. You should be warned, this is not a mission for the light hearted."`
 			choice
 				`	"Let's go then!"`
 					goto leave
@@ -734,7 +735,7 @@ mission "Unfettered: Attracted Attention"
 	on offer
 		require "Jump Drive" 1
 	on enter "Almaaz"
-		dialog `The Unfettered comes to the bridge to warn you, "There are even more pirates than anticipated. I told you not to come here with a jump drive!"`
+		dialog `The Unfettered comes to the bridge to warn you, "There are even more unfettered humans than anticipated. I told you not to come here with a jump drive!"`
 	npc evade
 		government "Pirate"
 		system "Almaaz"
@@ -755,7 +756,7 @@ mission "Unfettered: Jump Drive Retrieval"
 				`	"Who made this vault, what should I expect?"`
 				`	(No time for talking.)`
 					goto outside
-			`	"That is an information I cannot trust anyone with, not even you, and especially not here. I do not want the owner of this cache to be in danger whilst we need jump drives to expand. Assume it is owned by pirates, and that we are ready to face them," he tells you. He is fully armoured, meaning as long as you stay with him, everything should be fine.`
+			`	"That is an information I cannot trust anyone with, not even you, and especially not here. I do not want the owner of this cache to be in danger whilst we need jump drives to expand. Assume it is owned by unfettered humans, or pirates as I think you call them, and that we are ready to face them," he tells you. He is fully armoured, meaning as long as you stay with him, everything should be fine.`
 			
 			label outside
 			`	Before exiting, he warns you, "Whatever happens, do not try anything stupid, and stay behind me at all times." He seems worried and keeps looking around, without making a sound. Well as little sound as possible, anyway, given he is in quite an impressive suit. It must have been crafted specifically for him in order to be so discrete. He does not have his helmet on, probably in order to see his surroundings better.`
@@ -802,7 +803,7 @@ mission "Unfettered: Jump Drive Retrieval"
 				`	"We could have just come into the vault swarming with ground forces instead of risking our lives..."`
 				`	"Why did we have to go into the vault instead of just connecting it to the ship earlier?"`
 					goto vault
-			`	"As you have probably noticed, we did not have access to this vault for quite some time. Some pirates could have snuck in and sabotaged the jump drives. To cripple your ship, or worse." As you head back to your ship, you notice more activity than on the way in. He keeps his rifle well in sight in order to dissuade any potential attackers.`
+			`	"As you have probably noticed, we did not have access to this vault for quite some time. Some unfettered humans could have snuck in and sabotaged the jump drives. To cripple your ship, or worse." As you head back to your ship, you notice more activity than on the way in. He keeps his rifle well in sight in order to dissuade any potential attackers.`
 				goto ship
 			
 			label vault
@@ -815,7 +816,7 @@ mission "Unfettered: Jump Drive Retrieval"
 			
 			label ship
 			`	You go back to your ship with the Hai, and give the orders to collect and install the jump drives.`
-			`	A bit later the Hai comes to speak to you on the bridge. "It took us too long to install the jump drives, and we seem to have attracted attention. I guess that if some of the pirates got away from the vault, they have contacted some friends..." As you look outside you see multiple ships getting ready to launch far away. You launch as soon as you can, rushing trough the correct procedures.`
+			`	A bit later the Hai comes to speak to you on the bridge. "It took us too long to install the jump drives, and we seem to have attracted attention. I guess that if some of the unfettered humans got away from the vault, they have contacted some friends..." As you look outside you see multiple ships getting ready to launch far away. You launch as soon as you can, rushing trough the correct procedures.`
 				launch
 	
 	on accept
@@ -1205,7 +1206,7 @@ mission "Unfettered: Pirate Help"
 		not "Pirate Troubles [0]: offered"
 	on offer
 		conversation
-			`Entering the spaceport, you quickly find Sha-Ri. He looks relieved you are here and that you have arrived well and safe with the convoy. It seems like he speaks to you with more respect than before, "Finally you have arrived. When I heard about the pirate attack, I was worried sick."`
+			`Entering the spaceport, you quickly find Sha-Ri. He looks relieved you are here and that you have arrived well and safe with the convoy. It seems like he speaks to you with more respect than before, "Finally you have arrived. When I heard about the unfettered human attack, I was worried sick."`
 			choice
 				`	"It takes more than a few pirates to scare me off."`
 					goto strong
@@ -1221,7 +1222,7 @@ mission "Unfettered: Pirate Help"
 			`	"Perfect! That means you should be ready for what I am about to ask you."`
 			
 			label attacks
-			`	"I do not know much about warfare, but we elders often speak with the warlords, who are charged with military responsibilities, among other things. One such warlord spoke to me about the pirate attacks, and suggested an idea. Said attacks do not seem that bad to us, after all they only plunder a bit, like we do, but this potential attack on the Hai backlines means they will be able to have fewer ships on our border."`
+			`	"I do not know much about warfare, but we elders often speak with the warlords, who are charged with military responsibilities, among other things. One such warlord spoke to me about the unfettered humans attacks, and suggested an idea. Said attacks do not seem that bad to us, after all they only plunder a bit, like we do, but this potential attack on the Hai backlines means they will be able to have fewer ships on our border."`
 			choice
 				`	"You mean you want me to help these pirates?"`
 					goto help
@@ -1236,12 +1237,12 @@ mission "Unfettered: Pirate Help"
 				`	"All of this seems a bit vague to me, what exactly are you proposing?"`
 				`	"I am not interested in doing this."`
 					decline
-			`	"Once you are strong enough we want you to go to Allhome, which is on the border with the pirates, coming from the whormhole. Once there, speak to the local governor, asking him if he has any... issues with pirates. Then you will find those pirates and help them instead. A good way would be to convince the Hai to give them a tribute of technology, so they have even less weapons! The border is easy for our Hai friends to defend, however it will take even more defenders if the pirates are well equipped, with Hai technology."`
+			`	"Once you are strong enough we want you to go to Allhome, which is on the border with the unfettered humans, coming from the whormhole. Once there, speak to the local governor, asking him if he has any... issues with unfettered humans. Then you will find those unfettered humans and help them instead. A good way would be to convince the Hai to give them a tribute of technology, so they have even less weapons! The border is easy for our Hai friends to defend, however it will take even more defenders if the unfettered humans are well equipped, with Hai technology."`
 			choice
 				`	"How will I show my strength to them ?"`
 				`	"I am not interested in doing this."`
 					decline
-			`	"I hear those pirates attack are very frequent these days... And that planet is on the border of Hai space, it is a very likely target for pirates, I also have... information indicating an attack will come, soon... It is easy to arrange this. Help them repel it and they will most probably trust you with the job. But this is not an urgent mission at all, <first>. You may return to your previous occupations if you do not feel strong enough yet, this is no urgent matter."`
+			`	"I hear those unfettered humans attack are very frequent these days... And that planet is on the border of Hai space, it is a very likely target for unfettered humans, I also have... information indicating an attack will come, soon... It is easy to arrange this. Help them repel it and they will most probably trust you with the job. But this is not an urgent mission at all, <first>. You may return to your previous occupations if you do not feel strong enough yet, this is no urgent matter."`
 			choice
 				`	"I will go to Allhome and help them repel this attack then, once I am strong enough to repell a pirate fleet."`
 					accept
@@ -2243,7 +2244,7 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 				`	"Whatever the distance to cross, I will do it."`
 				`	"I do not want to do long distance cargo mission, screw the Unfettered and your big ships."`
 					decline
-			`	"Good, then go to <destination> and take the materials there, on this exact location. Do not stay too long and try not to attract attention. These pirates are relentless, like us, and they will not stop at anything if they learn you have this cargo. The place is a shipyard with major extracting operations, so we can easily arrange for you to get said supplies from there without you even having to see anyone."`
+			`	"Good, then go to <destination> and take the materials there, on this exact location. Do not stay too long and try not to attract attention. These unfettered humans are relentless, like us, and they will not stop at anything if they learn you have this cargo. The place is a shipyard with major extracting operations, so we can easily arrange for you to get said supplies from there without you even having to see anyone."`
 			choice
 				`	"Time to go then."`
 					accept	
@@ -2275,6 +2276,240 @@ mission "Unfettered: Shield Beetles Available"
 		conversation
 			`You receive a message from the Unfettered warlord, who finally gives you his name : "Hi Ye", "Thanks to you the Shipyard on Darkcloak is finally capable of producing Shield Beetles in great quantities. However in order to buy them you will require a license. Continue helping me and you will have it in no time! In the mean time you can enjoy the additional outfits we can produce there."`
 				decline
+
+
+
+outfit "Mystery Cube"
+	category "Special"
+	cost 1000000
+	thumbnail "outfit/unknown"
+
+ship "Marauder Leviathan" "Leviathan (Cube)"
+	outfits
+		"A370 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Anti-Missile Turret"
+		"D94-YV Shield Generator"
+		"Fusion Reactor"
+		Hyperdrive
+		"LP144a Battery Pack"
+		"Laser Rifle" 69
+		"Security Station" 5
+		"Small Bunk Room"
+		"Liquid Helium Cooler"
+		"Luxury Accommodations"
+		"Proton Turret" 3
+		Torpedo 210
+		"Torpedo Launcher" 4
+		"Torpedo Storage Rack" 6
+		"Mystery Cube"
+
+mission "Unfettered: Special Cargo"
+	name `Mystery item`
+	description `Go to <waypoints> and find a way to acquire the 'unique' item from the prominent warlord there. His ship is the Degenerate. Then bring the item to He Yi, on Warfeed.`
+	to offer
+		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
+	source "Darkcloak"
+	waypoint "Alcyone"
+	destination "Warfeed"
+	on offer
+		conversation
+			`You are starting to get quite used to Unfettered spaceports, and strangely you are not even surprised by the amount of damage there is around on different non essentials structures anymore. At least the shipyards, hospitals and the stadium of the council are all in perfect shape, that is what matters most after all.`
+			`	You want to see a bit of change for once, and wander on a side of the spaceport you have not explored before, but it does not seem that much different than the rest.`
+			`	You get interrupted in your thinking by a local Unfettered, he seems to have a very important mission to give you, given how fast he is speaking. "He Yi has asked me to deliver you a message! It has come to his attention that an item of great importance to us is currently in the posession of an unfettered human warlord." You guess he is referring to a pirate leader. "Said warlord can be found in <waypoint>, we want you to go and retrieve that item right now, in whatever way you deem fit."`
+			choice
+				`	"How will I know which warlord it is?"`
+				`	"This seems too risky for me."`
+					decline
+			`	"It is no common warlord. To say the truth it is the most powerful warlord there, and his ship is the 'Degenerate', you may have to bring it down in order to complete the mission. He may accept a payment instead, but do remember, we are not willing to pay a fortune for this item so if you cannot face him you may have to debourse quite a large sum of your own money. The warlord, Mari, got the item from another warlord. Also you need not worry about how to find said item, it is... unique, you will understand once you see it. Once you have it, bring it back to my master, you have been given access to his war room, on <planet>." Mari sounds like the name of a woman to you, it is impressive she has managed to rise so high in power, among a pirate culture that is. But maybe you have misjudged them.`
+			choice
+				`	"I will depart as soon as I can."`
+					accept
+				`	"Is it common for the Unfettered to use messagers?"`
+				`	"This seems too risky for me."`
+					decline
+			`	"We do not believe technical ways of communicating to be safe, and they break the link between us. Messages could easily be spied upon by anyone intercepting it, so for some confidential missions like this one, yes it is quite common to use messagers. On top of that, the warlords generally have better things to do than moving around giving missions all the time. Do you have enough informations? What shall I say to my warlord?"`
+			choice
+				`	"You could have just sent a message on a secure channel."`
+				`	"This seems too risky for me."`
+					decline
+			`	"What is secure? There is no code that cannot be broken, and I did not have to travel far anyway. The Hai government has become quite apt at languages, by communicating with so many different species. Encryption is just like another language. We cannot risk them learning of this particular mission, you will understand why later. Information is the key here, and it always has been. We also do not want those North to learn from this, they would surely be able to decrypt it.`
+			`	We are not all as brutal as we let other races think. My warlord believes that it is to our advantage to not appear cunning, so that they may underestimate us." He seems to have had enough of talking, and is now waiting for you to answer He Yi's request.`
+			choice
+				`	"I will depart as soon as I can."`
+					accept
+				`	"This seems too risky for me."`
+					decline
+	
+	on waypoint
+		dialog `It seems that the Degenerate is in this system indeed, but judging from the marks on his hull it has just been in a battle and it will probably land soon. You may be able to get the item without too much risks that way, and bribing them will mean secure landing. Or you could always just board it now and be done with it.`
+	
+	npc board
+		personality staying target
+		to despawn
+			has "Unfettered: Special Cargo 1B: active"
+		government "Mari's Legion"
+		system "Alcyone"
+		ship "Leviathan (Cube)" "Degenerate"
+	npc
+		personality coward plunders vindictive staying
+		government "Mari's Legion"
+		system "Alcyone"
+		fleet "Large Northern Pirates" 3
+		fleet "Small Northern Pirates" 5
+	
+	on visit
+		dialog `You do not have the item He Yi asked for. It may be in one of your escorts. Or you have not brought the right item back.`
+	on fail
+		dialog `You have failed an essential Unfettered mission. You may want to reload.`
+	on complete
+		require "Mystery Cube"
+
+mission "Unfettered: Special Cargo 1B"
+	invisible
+	source "Stormhold"
+	landing
+	destination "Warfeed"
+	to offer
+		has "Unfettered: Special Cargo: active"
+	on offer
+		require "Mystery Cube" 0
+		conversation
+			`You land on the planet, next to one empty spot, hoping the Degenerate will land there. He does not seem to want to take any chances, and lands near a few of his own warships, in the middle of his boys. You feel like you are in a pirate nest. You try to get close to the Degenerate without dragging too much attention to yourself, and are now very close to it. You assume that the item would be within said ship.`
+			choice
+				`	(Try to steal the item.)`
+					goto steal
+				`	(Try to bargain.)`
+					goto bargain
+				`	(Take a captive and ask for the item in exchange.)`
+			`	You manage to find one isolated pirate that looks like he is important, but still not enough to have personal bodyguards. You manage to take him hostage, but it is hard to restrain him, given his strength. Then you go and ask for the special item and all pirates laugh at your face before shooting you. It does not seem like they care the least in the world about any other pirate.`
+				die
+			label steal
+			`	You manage to enter the ship discretely, some people will always notice but you try to pretend being a worker there to assist in the repairs, using equipment you found laying around without anyone to care for them. You should be able to go pretty much anywhere on the ship. You do not havea any expertise in actual ship repairs though so your cover could easily be blown. There is no going back now, except maybe if you choose to provoke the captain in a fight to get the item, in space.`
+			choice
+				`	(Search the lower decks.)`
+				`	(Search close to the weapons stations.)`
+					goto found
+				`	(Search the bridge.)`
+				`	(Check amongst the cargo.)`
+				`	(Search the upper decks.)`
+				`	(Go back to space and provoke the captain)`
+					goto challenge
+			`	You do not manage to find the item here, however you have attracted way too much suspicions by looking all over the place. One local worker asks you what was apparently a test question, something about mechanics. You cannot make any sense of what he is saying, even less formulate a correct response, and he denounces you. You are captured and sold as a slave.`
+				die
+			label found
+			`	This part of the ship is mostly full of toperdoes, apparently the warlord loves them. But there are not many people here, this part of the ship having suffered no damage, and many torpedoes have been used, they will probably come to refill them soon so you should hurry. Surprisingly, you appear to have found what you where looking for: a small cube, completely regular and seemingly alien in design. That has to be the item that He Yi wants, so you take it with you. Its small size makes it perfect for any spying, and also for taking it with you, discretely. This probably will not go unnoticed for long however, so you launch as soon as you can. The original pirate fleet is already heading your way, smelling something suspicious...`
+				launch
+			label bargain
+			`	You ask around and find the first mate of the warlord, Mip. He seems intrigued by your request. "I assume you are refering to the item my warlord just acquired, it is indeed very mysterious, which sells well on the black market. Also I do not know you, so you would have to give quite a large sum if you really want it, especially because you cannot just go and speak to my boss as if you knew him." He thinks a bit, looking at what kind of things you are wearing, estimating how much you would be willing to pay, he also looks on his pad, probably for records of your ship and fleet. "10 million credits."`
+			choice
+				`	"That low? Well here you go mate."`
+				`	"I do not have that kind of money, perhaps we could negotiate?"`
+					goto negotiate
+				`	"There is no way I am paying so much for an item I have not even seen! I challenge your warlord to a fight."`
+					goto challenge
+			`	He seems disappointed and wishing he had asked for more, but he shows you to the item, which is a little cube, and you bring it back to your ship without any trouble. He also signaled the local warships belonging to the warlord to land to let you leave without trouble.`
+			action
+				set "brokered deal"
+				"reputation: Mari's Legion" >?= 1
+				payment -10000000
+			``
+				accept
+			
+			label negotiate
+			`	"I can cut it down by... 2 millions. Last change, boy. 8 million credits, what do you say?"`
+			choice
+				`	"Deal!"`
+				`	"There is no way I am paying so much for an item I have not even seen! I challenge your warlord to a fight."`
+					goto challenge
+			`	He seems disappointed to have only 8 million credits but you feel like he still had the upper hand in that trade. He shows you to the item, which is a little cube, and you bring it back to your ship without any trouble. He also signaled the local warships belonging to the warlord to land to let you leave without trouble.`
+			action
+				set "brokered deal"
+				"reputation: Mari's Legion" >?= 1
+				payment -8000000
+			``
+				accept
+			
+			label challenge
+			`	You launch your fleet and send a challenge to the warlord, putting his authority and competence in question. He cannot resist the urge to come and kill you, you only hope you can beat him and collect the item from his ship.`
+				flee
+	on accept
+		outfit "Mystery Cube" 1
+
+
+mission "Unfettered: Special Cargo 2"
+	name `Mystery Gathering`
+	description `Pretend to bring food to <stopovers> and discretely place the mystery cube there, without anyone noticing.`
+	source "Warfeed"
+	landing
+	stopover "Mirrorlake"
+	cargo "food (tribute)" 93
+	blocked `You need 93 cargo space for the next Unfettered mission.`
+	to offer
+		has "Unfettered: Special Cargo: done"
+	on offer
+		conversation
+			branch bought
+				has "brokered deal"
+			branch stole
+				has "Unfettered: Special Cargo 1B: done"
+			action
+				log `Recovered a mystery cube from a pirate ship, in the heat of battle. These pathethic pirates should show me some respect next time, starting by not shooting me on sight.`
+			``
+				goto afterlog
+
+			label stole
+			action
+				log `I got very lucky and managed to steal a very precious mystery cube from a pirate ship. I do hope the Unfettered will reward me appropriately for it.`
+			``
+				goto afterlog
+
+			label bought
+			action
+				log `Bought a mystery cube for the Unfettered for a very big price, I hope it will be worth it.`
+			
+			label afterlog
+			`You find He Yi in his war room, which is very impressive to say the least, full of weird things, that are probably not all weapons. He seems to have multiple missives, serving as his eyes and ears everywhere. You bring him the cube. "Very well done! But this is not all, you will have a big payment once the mission is completed."`
+			branch nodeal
+				not "brokered deal"
+			action
+				clear "brokered deal"
+				payment 2000000
+			`	You tell him that you had to pay a few millions to get the cube. "You were not supposed to negotiate, but I guess that is acceptable. These <payment> will alleviate the cost. Next time try to show more strength, it is all that Unfettered in general respect. Thankfully money is not really much of an issue to us."`
+			label nodeal
+			`	"I want you to go to <stopovers> and pretend to take food for us there. You will of course take the food, like last time, but that is not the main reason for your visit. The trick you pulled of last time, with pretending to bring food supplies, should work again. I have no desire to innovate until it is required by the conditions."`
+			`	"All I want you to do is go there and place this cube at a spot that seems convenient to you, it can be anywhere on said world, but it has to not be spoted by anyone. You will need to be able to describe its exact locatio to me though, so we can get it back later."`
+			choice
+				`	"I will do it."`
+					accept
+				`	"What will this cube do?"`
+				`	"I almost got caught last time, I am not trying again."`
+					decline
+			`	"You have earned the right to know, considering it is you who brought it to us. It is a very advanced spying device, that should let us know everything that happens on this world, as well as in orbit of it."`
+			choice
+				`	"Why this particular world?"`
+				`	"I will do it."`
+					accept
+			`	"All important Hai ships are built on their homeworld. That would be a perfect place to put this cube, but we do not want to bring too much heat on you. Ships that get produced there are sent to the worlds who border us. Also because this is their home system, it makes sense that a lot of their fleets go trough it. We want to learn more about their fleet movements, in order to be able to react in time, should the worst arrive: our lessers could attack us when we seem weak."`
+			choice
+				`	"You could just have me place the cube in orbit if it is so sensible to movement all over the system."`
+				`	"I will do it."`
+					accept
+			`	"We could, but it would be very suspicious for you to just go in that system and then come back here, and we do not want to risk anyone finding it by accident with their ship's scanner. I do understand this is undetectable for any scanners though. Also we have good reasons for having the cube on the planet, but I cannot tell you everything or I would risk much, should you be captured. You already know too much."`
+			choice
+				`	"I will do it."`
+					accept
+				`	"I almost got caught last time, I am not trying again."`
+					decline
+	
+	on stopover
+		dialog `You land and the Hai start loading their food on your ship. You pretend to want to go outside a bit because you have been crammed in a spaceship for too long (which is actually kind of true), and they do not appear to be suspecting a thing. You find a clearing, in which you happily dig the cube in. You remember to mark the exact spot. And then come back to your ship.`
+		outfit "Mystery Cube" -1
+	
+	on complete
+		log `Placed a mysterious cube in a clearing on Everhope. It should give intel on Hai ship movements to the Unfettered.`
+		payment 5000000
+		dialog `He Yi is more than happy to see you in his trone room, and gives you a generous payment of <payment>.`
 
 
 
@@ -2507,6 +2742,7 @@ mission "Unfettered: Start Of The War"
 		has "event: shield beetle mass production"
 		has "event: new cooling system"
 		has "Unfettered: The Word Has Spread: done"
+		has "Unfettered: Special Cargo 2: done"
 		has "main plot completed"
 	on offer
 		conversation

@@ -150,6 +150,7 @@ outfit "Ionic Turret"
 	weapon
 		sprite "projectile/ion bolt"
 			"frame rate" 5
+		# no hardpoint
 		sound "ion"
 		"hit effect" "ion impact" 2
 		"inaccuracy" 1
