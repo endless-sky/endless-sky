@@ -1594,7 +1594,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 				`	"Old ship? You do not have it any more?"`
 					goto ship
 				`	"Well to be fair you did ask for it."`
-			`	"True... true... I even provoked ya a bit too much did I not? I am sure you did one more hole in my ship than you needed to in order to disable it!" He is probably not really angry about it, but he really seems agitated.`
+			`	"True... true... I even provoked ya a bit too much did I not? I am sure you did one more hole in my ship than you needed to in order to disable it!" He is probably not really angry about it, but he really seems agitated. So much so that he drops some purple liquid from his drink on the floor when doing a big gesture.`
 			choice
 				`	"What happened to your ship anyway?"`
 			

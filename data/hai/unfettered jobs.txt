@@ -178,6 +178,24 @@ mission "Unfettered Tribute 3"
 
 
 
+mission "Proud Unfettered Boarded"
+	boarding
+	repeat
+	minor
+	to offer
+		random < 32
+	source
+		government "Hai (Unfettered)"
+		category "Heavy Warship"
+		"flagship crew" > 55
+	on offer
+		conversation
+			`As you board the <origin> you immediately notice something is wrong, the ship is starting to explode! The captain sends you a message. "Better to die with my crew, standing, than risk being slaughtered by false, inferior, fettered humans! I will take you down with us!"`
+				flee
+	destination "Darkcloak"
+
+
+
 mission "Unfettered Silicon Asteroid Mining"
 	name `Gather silicon from asteroids`
 	description `Mine and then collect 50 tons of Silicon from the asteroid field in Wah Yoot and then bring them back to <destination> for <payment>.`
