@@ -43,6 +43,9 @@ public:
 
 
 private:
+	// Check if a ship is actually still participating in the current formation(ring).
+	bool IsActiveInFormation(unsigned int ring, const Ship *ship) const;
+
 	// Remove a ship from the formation-ring (based on its index). The last ship
 	// in the ring will take the position of the removed ship (if the removed
 	// ship itself is not the last ship).

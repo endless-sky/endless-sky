@@ -72,35 +72,15 @@ void FormationPositioner::Step()
 			// If the ship is no longer valid or not or no longer part of this
 			// formation, then we need to remove it.
 			auto ship = (shipsInRing[shipIndex]).lock();
-			bool removeShip = !ship ||
-				ship->GetFormationPattern() != pattern ||
-				ship->GetFormationRing() != desiredRing ||
-				ship->IsDisabled();
-			
-			// Check if this ship is set to follow the current formationleader
-			// either through targetShip (for gather/keep-station commands) or
-			// through the child/parent relationship.
-			if(ship)
-			{
-				auto targetShip = ship->GetTargetShip();
-				auto parentShip = ship->GetParent();
-				removeShip = removeShip ||
-					((!targetShip || &(*targetShip) != formationLead) &&
-					(!parentShip || &(*parentShip) != formationLead));
-			}
-			
-			// TODO: add removeShip check if ship and lead are in the same system.
-			// TODO: add removeShip check for isBoarding
-			// TODO: add removeShip check for isAssisting
-			// TODO: add removeShip check for isLanded/Landing/Refueling
+			bool removeShip = !ship || !IsActiveInFormation(desiredRing, ship.get());
 			
 			// Lookup the ship in the positions map.
 			auto itCoor = shipPositions.end();
 			if(ship)
 				itCoor = shipPositions.find(&(*ship));
 			
-			// If the ship is not in the overall table or not updated in the
-			// last iteration, then we also remove it.
+			// If the ship is not in the overall table or if it was not
+			// active since the last iteration, then we also remove it.
 			removeShip = removeShip || itCoor == shipPositions.end() ||
 					itCoor->second.second != tickTock;
 			
@@ -218,6 +198,36 @@ Point FormationPositioner::Position(const Ship *ship)
 		relPos.Set(relPos.X(), -relPos.Y());
 	
 	return formationLead->Position() + direction.Rotate(relPos);
+}
+
+
+
+// Check if a ship is active in the current formation.
+bool FormationPositioner::IsActiveInFormation(unsigned int ring, const Ship *ship) const
+{
+	// Ships need to be active, need to have the same formation pattern and
+	// need to be in the same system as their formation lead in order to
+	// participate in the formation.
+	if(ship->GetFormationPattern() != pattern ||
+			ship->GetFormationRing() != ring ||
+			ship->IsDisabled() || ship->IsLanding() || ship->IsBoarding())
+		return false;
+	
+	// TODO: add check if ship is attacking.
+	// TODO: add check if ship and lead are in the same system.
+	// TODO: add check for isAssisting.
+	// TODO: check if we can move many checks to Ship and get an ship->IsStationKeeping() instead.
+	
+	// A ship active in the formation should follow the current formationleader
+	// either through targetShip (for gather/keep-station commands) or through
+	// the child/parent relationship.
+	auto targetShip = ship->GetTargetShip();
+	auto parentShip = ship->GetParent();
+	if ((!targetShip || &(*targetShip) != formationLead) &&
+		(!parentShip || &(*parentShip) != formationLead))
+		return false;
+	
+	return true;
 }
 
 
