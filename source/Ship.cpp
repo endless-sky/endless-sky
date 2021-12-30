@@ -1159,7 +1159,7 @@ void Ship::SetPosition(Point position)
 
 
 // Instantiate a newly-created ship in-flight.
-void Ship::Place(Point position, Point velocity, Angle angle)
+void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 {
 	this->position = position;
 	this->velocity = velocity;
@@ -1191,7 +1191,10 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	forget = 1;
 	targetShip.reset();
 	shipToAssist.reset();
-	if(government)
+
+	// The swizzle is only updated if this ship has a government or when it is departing
+	// from a planet. Launching a carry from a carrier does not update its swizzle.
+	if(government && isDeparting)
 	{
 		auto swizzle = customSwizzle >= 0 ? customSwizzle : government->GetSwizzle();
 		SetSwizzle(swizzle);
@@ -2237,7 +2240,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 			// When ejected, ships depart haphazardly.
 			Angle launchAngle = ejecting ? Angle(exitPoint - position) : angle + bay.facing;
 			Point v = velocity + (.3 * maxV) * launchAngle.Unit() + (.2 * maxV) * Angle::Random().Unit();
-			bay.ship->Place(exitPoint, v, launchAngle);
+			bay.ship->Place(exitPoint, v, launchAngle, false);
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetParent(shared_from_this());
 			bay.ship->UnmarkForRemoval();
