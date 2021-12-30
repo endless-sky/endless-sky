@@ -886,7 +886,7 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 				`	"That is too mysterious for me, I am not interested."`
 					decline
 			label scan
-			`	"The information provided by an outfit scanner should be sufficient, if you do not have one you can install one in Wah Ki, on the way there. You may want to get multiple scanners, so you can scan the ship from a longer range, and faster."`
+			`	"The information provided by an outfit scanner should be sufficient, if you do not have one you can install one on Darkcloak, on the way there. You may want to get multiple scanners, so you can scan the ship from a longer range, and faster."`
 			choice
 				`	"Sure, will do."`
 					goto agree

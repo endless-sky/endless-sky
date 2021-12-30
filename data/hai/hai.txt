@@ -468,6 +468,8 @@ outfitter "Unfettered Basics"
 	"Quantum Keystone"
 	"Pulse Rifle"
 	"Asteroid Scanner"
+	"Outfit Scanner"
+	"Cargo Scanner"
 
 outfitter "Unfettered"
 	"Pulse Turret"
