@@ -66,7 +66,7 @@ PreferencesPanel::PreferencesPanel()
 {
 	if(!GameData::PluginAboutText().empty())
 		selectedPlugin = GameData::PluginAboutText().begin()->first;
-	
+
 	SetIsFullScreen(true);
 }
 
@@ -77,14 +77,14 @@ void PreferencesPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
-	
+
 	Information info;
 	info.SetBar("volume", Audio::Volume());
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : "plugins");
 	GameData::Interfaces().Get(pageName)->Draw(info, this);
 	GameData::Interfaces().Get("preferences")->Draw(info, this);
-	
+
 	zones.clear();
 	prefZones.clear();
 	pluginZones.clear();
@@ -106,7 +106,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		EndEditing();
 		return true;
 	}
-	
+
 	if(key == SDLK_DOWN && static_cast<unsigned>(selected + 1) < zones.size())
 		++selected;
 	else if(key == SDLK_UP && selected > 0)
@@ -119,7 +119,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		page = key;
 	else
 		return false;
-	
+
 	return true;
 }
 
@@ -128,19 +128,19 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 bool PreferencesPanel::Click(int x, int y, int clicks)
 {
 	EndEditing();
-	
+
 	if(x >= 265 && x < 295 && y >= -220 && y < 70)
 	{
 		Audio::SetVolume((20 - y) / 200.);
 		Audio::Play(Audio::Get("warder"));
 		return true;
 	}
-	
+
 	Point point(x, y);
 	for(unsigned index = 0; index < zones.size(); ++index)
 		if(zones[index].Contains(point))
 			editing = selected = index;
-	
+
 	for(const auto &zone : prefZones)
 		if(zone.Contains(point))
 		{
@@ -200,14 +200,14 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
 			break;
 		}
-	
+
 	for(const auto &zone : pluginZones)
 		if(zone.Contains(point))
 		{
 			selectedPlugin = zone.Value();
 			break;
 		}
-	
+
 	return true;
 }
 
@@ -216,22 +216,22 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 bool PreferencesPanel::Hover(int x, int y)
 {
 	hoverPoint = Point(x, y);
-	
+
 	hover = -1;
 	for(unsigned index = 0; index < zones.size(); ++index)
 		if(zones[index].Contains(hoverPoint))
 			hover = index;
-	
+
 	hoverPreference.clear();
 	for(const auto &zone : prefZones)
 		if(zone.Contains(hoverPoint))
 			hoverPreference = zone.Value();
-	
+
 	hoverPlugin.clear();
 	for(const auto &zone : pluginZones)
 		if(zone.Contains(hoverPoint))
 			hoverPlugin = zone.Value();
-	
+
 	return true;
 }
 
@@ -242,7 +242,7 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 {
 	if(!dy || hoverPreference.empty())
 		return false;
-	
+
 	if(hoverPreference == ZOOM_FACTOR)
 	{
 		int zoom = Screen::UserZoom();
@@ -250,11 +250,11 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 			zoom -= ZOOM_FACTOR_INCREMENT;
 		if(dy > 0. && zoom < ZOOM_FACTOR_MAX)
 			zoom += ZOOM_FACTOR_INCREMENT;
-		
+
 		Screen::SetZoom(zoom);
 		if(Screen::Zoom() != zoom)
 			Screen::SetZoom(Screen::Zoom());
-		
+
 		// Convert to raw window coordinates, at the new zoom level.
 		Point point = hoverPoint * (Screen::Zoom() / 100.);
 		point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
@@ -294,18 +294,18 @@ void PreferencesPanel::DrawControls()
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
-	
+
 	// Check for conflicts.
 	const Color &warning = *GameData::Colors().Get("warning conflict");
-	
+
 	Table table;
 	table.AddColumn(-115, {230, Alignment::LEFT});
 	table.AddColumn(115, {230, Alignment::RIGHT});
 	table.SetUnderline(-120, 120);
-	
+
 	int firstY = -248;
 	table.DrawAt(Point(-130, firstY));
-	
+
 	static const string CATEGORIES[] = {
 		"Navigation",
 		"Weapons",
@@ -353,7 +353,7 @@ void PreferencesPanel::DrawControls()
 		// The "BREAK" line is where to go to the next column.
 		if(&command == BREAK)
 			table.DrawAt(Point(130, firstY));
-		
+
 		if(!command)
 		{
 			table.DrawGap(10);
@@ -376,7 +376,7 @@ void PreferencesPanel::DrawControls()
 				table.SetHighlight(56, 120);
 				table.DrawHighlight(isEditing ? dim: warning);
 			}
-			
+
 			// Mark the selected row.
 			bool isHovering = (index == hover && !isEditing);
 			if(!isHovering && index == selected)
@@ -384,24 +384,24 @@ void PreferencesPanel::DrawControls()
 				table.SetHighlight(-120, 54);
 				table.DrawHighlight(back);
 			}
-			
+
 			// Highlight whichever row the mouse hovers over.
 			table.SetHighlight(-120, 120);
 			if(isHovering)
 				table.DrawHighlight(back);
-			
+
 			zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), command);
-			
+
 			table.Draw(command.Description(), medium);
 			table.Draw(command.KeyName(), isEditing ? bright : medium);
 		}
 	}
-	
+
 	Table shiftTable;
 	shiftTable.AddColumn(125, {150, Alignment::RIGHT});
 	shiftTable.SetUnderline(0, 130);
 	shiftTable.DrawAt(Point(-400, 52));
-	
+
 	shiftTable.DrawUnderline(medium);
 	shiftTable.Draw("With <shift> key", bright);
 	shiftTable.DrawGap(5);
@@ -419,15 +419,15 @@ void PreferencesPanel::DrawSettings()
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
-	
+
 	Table table;
 	table.AddColumn(-115, {230, Alignment::LEFT});
 	table.AddColumn(115, {230, Alignment::RIGHT});
 	table.SetUnderline(-120, 120);
-	
+
 	int firstY = -248;
 	table.DrawAt(Point(-130, firstY));
-	
+
 	static const string SETTINGS[] = {
 		"Display",
 		ZOOM_FACTOR,
@@ -478,7 +478,7 @@ void PreferencesPanel::DrawSettings()
 				table.DrawAt(Point(130, firstY));
 			continue;
 		}
-		
+
 		if(isCategory)
 		{
 			isCategory = false;
@@ -489,10 +489,10 @@ void PreferencesPanel::DrawSettings()
 			table.DrawGap(5);
 			continue;
 		}
-		
+
 		// Record where this setting is displayed, so the user can click on it.
 		prefZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), setting);
-		
+
 		// Get the "on / off" text for this setting. Setting "isOn"
 		// draws the setting "bright" (i.e. the setting is active).
 		bool isOn = Preferences::Has(setting);
@@ -544,14 +544,14 @@ void PreferencesPanel::DrawSettings()
 				for(const string &str : SPECIAL_HELP)
 					if(it.first.find(str) == 0)
 						special = true;
-				
+
 				if(!special)
 				{
 					++total;
 					shown += Preferences::Has("help: " + it.first);
 				}
 			}
-			
+
 			if(shown)
 				text = to_string(shown) + " / " + to_string(total);
 			else
@@ -567,7 +567,7 @@ void PreferencesPanel::DrawSettings()
 		}
 		else
 			text = isOn ? "on" : "off";
-		
+
 		if(setting == hoverPreference)
 			table.DrawHighlight(back);
 		table.Draw(setting, isOn ? medium : dim);
@@ -582,28 +582,28 @@ void PreferencesPanel::DrawPlugins()
 	const Color &back = *GameData::Colors().Get("faint");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
-	
+
 	const int MAX_TEXT_WIDTH = 230;
 	Table table;
 	table.AddColumn(-115, {MAX_TEXT_WIDTH, Truncate::MIDDLE});
 	table.SetUnderline(-120, 120);
-	
+
 	int firstY = -238;
 	table.DrawAt(Point(-130, firstY));
 	table.DrawUnderline(medium);
 	table.Draw("Installed plugins:", bright);
 	table.DrawGap(5);
-	
+
 	const Font &font = FontSet::Get(14);
 	for(const auto &plugin : GameData::PluginAboutText())
 	{
 		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), plugin.first);
-		
+
 		bool isSelected = (plugin.first == selectedPlugin);
 		if(isSelected || plugin.first == hoverPlugin)
 			table.DrawHighlight(back);
 		table.Draw(plugin.first, isSelected ? bright : medium);
-		
+
 		if(isSelected)
 		{
 			const Sprite *sprite = SpriteSet::Get(plugin.first);
@@ -614,7 +614,7 @@ void PreferencesPanel::DrawPlugins()
 				SpriteShader::Draw(sprite, center);
 				top.Y() += sprite->Height() + 10.;
 			}
-			
+
 			WrappedText wrap(font);
 			wrap.SetWrapWidth(MAX_TEXT_WIDTH);
 			static const string EMPTY = "(No description given.)";
@@ -629,6 +629,6 @@ void PreferencesPanel::DrawPlugins()
 void PreferencesPanel::Exit()
 {
 	Command::SaveSettings(Files::Config() + "keys.txt");
-	
+
 	GetUI()->Pop(this);
 }

@@ -507,7 +507,7 @@ jobs:
 
 
 
-  test_ubuntu-spellcheck:
+  spellcheck:
     needs: [changed]
     if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.codespell == 'true' }}
     runs-on: ubuntu-latest

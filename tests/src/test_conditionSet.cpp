@@ -58,7 +58,7 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 	GIVEN( "a node with no children" ) {
 		auto childlessNode = AsDataNode("never");
 		const auto set = ConditionSet{childlessNode};
-		
+
 		THEN( "no conditions are created" ) {
 			REQUIRE( set.IsEmpty() );
 		}
@@ -66,7 +66,7 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 	GIVEN( "a node with valid children" ) {
 		auto nodeWithChildren = AsDataNode("and\n\tnever");
 		const auto set = ConditionSet{nodeWithChildren};
-		
+
 		THEN( "a non-empty ConditionSet is created" ) {
 			REQUIRE_FALSE( set.IsEmpty() );
 		}
@@ -76,11 +76,11 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
 	const std::string validationWarning = "\nAn expression must either perform a comparison or assign a value:\n";
 	OutputSink warnings(std::cerr);
-	
+
 	GIVEN( "an empty ConditionSet" ) {
 		auto set = ConditionSet{};
 		REQUIRE( set.IsEmpty() );
-		
+
 		THEN( "no expressions are added from empty nodes" ) {
 			set.Add(DataNode{});
 			REQUIRE( set.IsEmpty() );
@@ -108,7 +108,7 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 	GIVEN( "an empty ConditionSet" ) {
 		const auto emptySet = ConditionSet{};
 		REQUIRE( emptySet.IsEmpty() );
-		
+
 		AND_GIVEN( "an empty list of Conditions" ) {
 			const auto emptyConditionList = ConditionsStore{};
 			THEN( "the ConditionSet is satisfied" ) {
@@ -127,7 +127,7 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 	GIVEN( "a set containing 'never'" ) {
 		const auto neverSet = ConditionSet{AsDataNode("and\n\tnever")};
 		REQUIRE_FALSE( neverSet.IsEmpty() );
-		
+
 		AND_GIVEN( "a condition list containing the literal 'never'" ) {
 			const auto listWithNever = ConditionsStore{{"never", 1}};
 			THEN( "the ConditionSet is not satisfied" ) {
@@ -140,15 +140,15 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
 	auto store = ConditionsStore{};
 	REQUIRE( primarySize(store) == 0 );
-	
+
 	GIVEN( "an empty ConditionSet" ) {
 		const auto emptySet = ConditionSet{};
 		REQUIRE( emptySet.IsEmpty() );
-		
+
 		THEN( "no conditions are added via Apply" ) {
 			emptySet.Apply(store);
 			REQUIRE( primarySize(store) == 0 );
-			
+
 			store.Set("event: war begins", 1);
 			REQUIRE( primarySize(store) == 1 );
 			emptySet.Apply(store);
@@ -162,11 +162,11 @@ SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
 			"\tc >= random\n";
 		const auto compareSet = ConditionSet{AsDataNode(compareExpressions)};
 		REQUIRE_FALSE( compareSet.IsEmpty() );
-		
+
 		THEN( "no conditions are added via Apply" ) {
 			compareSet.Apply(store);
 			REQUIRE( primarySize(store) == 0 );
-			
+
 			store.Set("event: war begins", 1);
 			REQUIRE( primarySize(store) == 1 );
 			compareSet.Apply(store);
@@ -176,11 +176,11 @@ SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
 	GIVEN( "a ConditionSet with an assignable expression" ) {
 		const auto applySet = ConditionSet{AsDataNode("and\n\tyear = 3013")};
 		REQUIRE_FALSE( applySet.IsEmpty() );
-		
+
 		THEN( "the condition list is updated via Apply" ) {
 			applySet.Apply(store);
 			REQUIRE_FALSE( primarySize(store) == 0 );
-			
+
 			auto inserted = store.PrimariesLowerBound("year");
 			REQUIRE( inserted != store.PrimariesEnd() );
 			CHECK( inserted->second == 3013 );

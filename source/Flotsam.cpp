@@ -79,7 +79,7 @@ void Flotsam::Place(const Body &source, const Point &dv)
 	velocity = source.Velocity() + dv;
 	angle = Angle::Random();
 	spin = Angle::Random(10.);
-	
+
 	// Special case: allow a harvested outfit item to define its flotsam sprite
 	// using the field that usually defines a secondary weapon's icon.
 	if(outfit && outfit->FlotsamSprite())
@@ -100,14 +100,14 @@ void Flotsam::Move(vector<Visual> &visuals)
 	--lifetime;
 	if(lifetime > 0)
 		return;
-	
+
 	// This flotsam has reached the end of its life.
 	const Effect *effect = GameData::Effects().Get("flotsam death");
 	for(int i = 0; i < 3; ++i)
 	{
 		Angle smokeAngle = Angle::Random();
 		velocity += smokeAngle.Unit() * Random::Real();
-		
+
 		visuals.emplace_back(*effect, position, velocity, smokeAngle);
 	}
 	MarkForRemoval();
@@ -170,15 +170,15 @@ int Flotsam::TransferTo(Ship *collector)
 	int amount = outfit ?
 		collector->Cargo().Add(outfit, count) :
 		collector->Cargo().Add(commodity, count);
-	
+
 	Point relative = collector->Velocity() - velocity;
 	double proportion = static_cast<double>(amount) / count;
 	velocity += relative * proportion;
-	
+
 	count -= amount;
 	// If this flotsam is now empty, remove it.
 	if(count <= 0)
 		MarkForRemoval();
-	
+
 	return amount;
 }

@@ -55,11 +55,11 @@ namespace {
 			{"-", [](int64_t a, int64_t b) { return a - b; }},
 			{"/", [](int64_t a, int64_t b) { return b ? a / b : numeric_limits<int64_t>::max(); }}
 		};
-		
+
 		auto it = opMap.find(op);
 		return (it != opMap.end() ? it->second : nullptr);
 	}
-	
+
 	// Indicate if the operation is a comparison or modifies the condition.
 	bool IsComparison(const string &op)
 	{
@@ -68,7 +68,7 @@ namespace {
 		};
 		return comparison.count(op);
 	}
-	
+
 	bool IsAssignment(const string &op)
 	{
 		static const set<string> assignment = {
@@ -76,7 +76,7 @@ namespace {
 		};
 		return assignment.count(op);
 	}
-	
+
 	bool IsSimple(const string &op)
 	{
 		static const set<string> simple = {
@@ -84,7 +84,7 @@ namespace {
 		};
 		return simple.count(op);
 	}
-	
+
 	int Precedence(const string &op)
 	{
 		static const map<string, int> precedence = {
@@ -94,7 +94,7 @@ namespace {
 		};
 		return precedence.at(op);
 	}
-	
+
 	// Test to determine if unsupported operations are requested.
 	bool HasInvalidOperators(const vector<string> &tokens)
 	{
@@ -107,7 +107,7 @@ namespace {
 				return true;
 		return false;
 	}
-	
+
 	// Ensure the ConditionSet line has balanced parentheses on both sides.
 	bool HasUnbalancedParentheses(const vector<string> &tokens)
 	{
@@ -125,7 +125,7 @@ namespace {
 		}
 		return parentheses;
 	}
-	
+
 	// Perform a preliminary assessment of the input condition, to determine if it is remotely well-formed.
 	// The final assessment of its validity will be whether it parses into an evaluable Expression.
 	bool IsValidCondition(const DataNode &node)
@@ -144,10 +144,10 @@ namespace {
 			node.PrintTrace("Parentheses must be separate from tokens:");
 		else
 			return true;
-		
+
 		return false;
 	}
-	
+
 	// Converts the given vector of condition tokens (like "reputation: Republic",
 	// "random", or "4") into the integral values they have at runtime.
 	vector<int64_t> SubstituteValues(const vector<string> &side, const ConditionsStore &conditions, const ConditionsStore &created)
@@ -174,7 +174,7 @@ namespace {
 		}
 		return result;
 	}
-	
+
 	bool UsedAll(const vector<bool> &status)
 	{
 		for(auto v : status)
@@ -182,7 +182,7 @@ namespace {
 				return false;
 		return true;
 	}
-	
+
 	// Finding the left operand's index if getLeft = true. The operand's index is the first non-empty, non-used index.
 	size_t FindOperandIndex(const vector<string> &tokens, const vector<int> &resultIndices, const size_t &opIndex, bool getLeft)
 	{
@@ -197,10 +197,10 @@ namespace {
 		// Trace any used data to find the latest result.
 		while(resultIndices.at(index) > 0)
 			index = resultIndices.at(index);
-		
+
 		return index;
 	}
-	
+
 	void PrintConditionError(const vector<string> &side)
 	{
 		string message = "Error decomposing complex condition expression:\nFound:\t";
@@ -208,7 +208,7 @@ namespace {
 			message += " \"" + str + "\"";
 		Files::LogError(message);
 	}
-	
+
 	bool IsUnrepresentable(const string &token)
 	{
 		if(DataNode::IsNumber(token))
@@ -250,7 +250,7 @@ void ConditionSet::Save(DataWriter &out) const
 {
 	for(const Expression &expression : expressions)
 		expression.Save(out);
-	
+
 	for(const ConditionSet &child : children)
 	{
 		out.Write(child.isOr ? "or" : "and");
@@ -369,7 +369,7 @@ bool ConditionSet::Add(const string &firstToken, const string &secondToken)
 		expressions.emplace_back(firstToken, "-=", "1");
 	else
 		return false;
-	
+
 	hasAssign |= !expressions.back().IsTestable();
 	return true;
 }
@@ -383,7 +383,7 @@ bool ConditionSet::Add(const string &name, const string &op, const string &value
 	BinFun fun = Op(op);
 	if(!fun)
 		return false;
-	
+
 	hasAssign |= !IsComparison(op);
 	expressions.emplace_back(name, op, value);
 	return true;
@@ -397,7 +397,7 @@ bool ConditionSet::Add(const vector<string> &lhs, const string &op, const vector
 	BinFun fun = Op(op);
 	if(!fun)
 		return false;
-	
+
 	hasAssign |= !IsComparison(op);
 	expressions.emplace_back(lhs, op, rhs);
 	return true;
@@ -427,7 +427,7 @@ void ConditionSet::Apply(ConditionsStore &conditions) const
 	for(const Expression &expression : expressions)
 		if(!expression.IsTestable())
 			expression.Apply(conditions, unused);
-	
+
 	for(const ConditionSet &child : children)
 		child.Apply(conditions);
 }
@@ -447,7 +447,7 @@ bool ConditionSet::TestSet(const ConditionsStore &conditions, const ConditionsSt
 			if(result == isOr)
 				return result;
 		}
-	
+
 	for(const ConditionSet &child : children)
 	{
 		bool result = child.TestSet(conditions, created);
@@ -468,7 +468,7 @@ void ConditionSet::TestApply(const ConditionsStore &conditions, ConditionsStore 
 	for(const Expression &expression : expressions)
 		if(!expression.IsTestable())
 			expression.TestApply(conditions, created);
-	
+
 	for(const ConditionSet &child : children)
 		child.TestApply(conditions, created);
 }
@@ -571,7 +571,7 @@ ConditionSet::Expression::SubExpression::SubExpression(const vector<string> &sid
 {
 	if(side.empty())
 		return;
-	
+
 	ParseSide(side);
 	GenerateSequence();
 }
@@ -648,11 +648,11 @@ int64_t ConditionSet::Expression::SubExpression::Evaluate(const ConditionsStore 
 	// Sanity check.
 	if(tokens.empty())
 		return 0;
-	
+
 	// For SubExpressions with no Operations (i.e. simple conditions), tokens will consist
 	// of only the condition or numeric value to be returned as-is after substitution.
 	auto data = SubstituteValues(tokens, conditions, created);
-	
+
 	if(!sequence.empty())
 	{
 		// Each Operation adds to the end of the data vector.
@@ -660,7 +660,7 @@ int64_t ConditionSet::Expression::SubExpression::Evaluate(const ConditionsStore 
 		for(const Operation &op : sequence)
 			data.emplace_back(op.fun(data[op.a], data[op.b]));
 	}
-	
+
 	return data.back();
 }
 
@@ -691,7 +691,7 @@ void ConditionSet::Expression::SubExpression::ParseSide(const vector<string> &si
 		else
 			tokens.emplace_back(side[i]);
 	}
-	
+
 	if(tokens.empty() || !operatorCount)
 		operators.clear();
 	else if(parentheses % 2 != 0)
@@ -737,10 +737,10 @@ void ConditionSet::Expression::SubExpression::GenerateSequence()
 				usedOps.at(opIndex++) = true;
 				break;
 			}
-			
+
 			size_t workingIndex = opStack.back();
 			opStack.pop_back();
-			
+
 			// A left parentheses results in a no-op step.
 			if(operators.at(workingIndex) == "(")
 			{
@@ -766,7 +766,7 @@ void ConditionSet::Expression::SubExpression::GenerateSequence()
 	{
 		size_t workingIndex = opStack.back();
 		opStack.pop_back();
-		
+
 		if(operators.at(workingIndex) == "(" || operators.at(workingIndex) == ")")
 		{
 			Files::LogError("Mismatched parentheses:" + ToString());
@@ -790,7 +790,7 @@ bool ConditionSet::Expression::SubExpression::AddOperation(vector<int> &data, si
 	// operator index never exceeds the size of the tokens vector.
 	size_t leftIndex = FindOperandIndex(tokens, data, opIndex, true);
 	size_t rightIndex = FindOperandIndex(tokens, data, opIndex, false);
-	
+
 	// Bail out if the pointed token is in-bounds and empty.
 	if((leftIndex < tokens.size() && tokens.at(leftIndex).empty())
 			|| (rightIndex < tokens.size() && tokens.at(rightIndex).empty()))
@@ -802,7 +802,7 @@ bool ConditionSet::Expression::SubExpression::AddOperation(vector<int> &data, si
 		sequence.clear();
 		return false;
 	}
-	
+
 	// Record use of an operand by writing where its latest value is found.
 	data.at(leftIndex) = index;
 	data.at(rightIndex) = index;
@@ -810,7 +810,7 @@ bool ConditionSet::Expression::SubExpression::AddOperation(vector<int> &data, si
 	sequence.emplace_back(operators.at(opIndex), leftIndex, rightIndex);
 	// Update the pointed index for the next operation.
 	++index;
-	
+
 	return true;
 }
 
