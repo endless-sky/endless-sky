@@ -12,8 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Sound.h"
 
-#include "Files.h"
 #include "File.h"
+#include "Files.h"
 
 #ifndef __APPLE__
 #include <AL/al.h>

@@ -104,7 +104,7 @@ void Radar::Draw(const Point &center, double scale, double radius, double pointe
 		else if(endExcess > 0)
 			v -= endExcess * v.Unit();
 		
-		LineShader::Draw(start + center, start + v + center, 1., line.color);
+		LineShader::Draw(start + center, start + v + center, 1.f, line.color);
 	}
 	
 	// Draw StellarObjects and ships.
@@ -124,7 +124,7 @@ void Radar::Draw(const Point &center, double scale, double radius, double pointe
 	// Draw neighboring system indicators.
 	PointerShader::Bind();
 	for(const Pointer &pointer : pointers)
-		PointerShader::Add(center, pointer.unit, 10., 10., pointerRadius, pointer.color);
+		PointerShader::Add(center, pointer.unit, 10.f, 10.f, pointerRadius, pointer.color);
 	PointerShader::Unbind();
 }
 

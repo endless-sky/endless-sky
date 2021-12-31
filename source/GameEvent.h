@@ -18,6 +18,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Date.h"
 
 #include <list>
+#include <map>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -37,6 +39,11 @@ class System;
 // the player the next time they land on a planet after that event happens.
 class GameEvent {
 public:
+	// Determine the universe object definitions that are defined by the given list of changes.
+	static std::map<std::string, std::set<std::string>> DeferredDefinitions(const std::list<DataNode> &changes);
+	
+	
+public:
 	GameEvent() = default;
 	// Construct and Load() at the same time.
 	GameEvent(const DataNode &node);
@@ -47,17 +54,25 @@ public:
 	void Disable();
 	
 	const std::string &Name() const;
+	void SetName(const std::string &name);
+	
+	// Check if this GameEvent has been loaded (vs. simply referred to) and
+	// if it references any items that have not been defined.
+	bool IsValid() const;
 	
 	const Date &GetDate() const;
 	void SetDate(const Date &date);
 	
 	void Apply(PlayerInfo &player);
 	
+	const std::list<DataNode> &Changes() const;
+	
 	
 private:
 	Date date;
 	std::string name;
 	bool isDisabled = false;
+	bool isDefined = false;
 	
 	ConditionSet conditionsToApply;
 	std::list<DataNode> changes;

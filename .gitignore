@@ -1,25 +1,44 @@
-/endless-sky
-/build/
-/.sconsign.dblite
-.DS_Store
-*.db
-/EndlessSky.xcodeproj/project.xcworkspace/
-/EndlessSky.xcodeproj/xcuserdata/
-/obj/Debug/
-/obj/Release/
-/obj/Win32/
-/bin/
+# Compiled Binaries and shortcuts
+endless-sky
+endless-sky-tests
+libendless-sky.a
+*.exe
+*.lnk
+
+# dlls needed to run the binary
+*.dll
+
+# Files::LogError output from unit tests
+errors.txt
+
+# Build Directories and toolchain-generated files
+build/
+obj/
+bin/
+lib/
 x64/
 Debug/
+Release/
+*.layout
+*.depend
+scons-local*
+.sconsign.dblite
+/*.d
 
-# CI configs (allow local edits)
-.winmake
-.appveyor.yml
-.travis.yml
+# Test Reports
+test-report.xml
+
+# User-installed plugins
+plugins/
+
+# OS-specific generated files
+.DS_Store
+*.db
 
 # IDEs (no support implied)
 .vscode
 .vs
+.metadata
 *.psess
 *.vsp
 *.vspx
@@ -38,3 +57,8 @@ ipch/
 *.vcxproj*
 *.userosscache
 *.sln.docstates
+*.xcodeproj/**
+.idea/
+.idea_modules/
+CMakeLists.txt
+/.gitmodules

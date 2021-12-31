@@ -1,0 +1,198 @@
+test-data "Three Earthly Barges"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 3013
+		system Sol
+		planet Earth
+		clearance
+		# Set some reputations to positive to avoid combat
+		"reputation with"
+			Bounty 1
+			"Bounty Hunter" 1
+			Pirate 1
+		# What you own:
+		ship "Star Barge"
+			name "Buggy Barge"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 70
+				bunks 3
+				"cargo space" 50
+				drag 2.1
+				"engine capacity" 40
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 130
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 20
+			outfits
+				"X1700 Ion Thruster"
+				"X1200 Ion Steering"
+				Hyperdrive
+				"Anti-Missile Turret"
+				"D14-RN Shield Generator"
+				"nGVF-BB Fuel Cell"
+				"LP036a Battery Pack"
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			engine -9 38 1
+			engine 9 38 1
+			turret 0 -8 "Anti-Missile Turret"
+			leak leak 60 50
+			explode "tiny explosion" 10
+			explode "small explosion" 10
+			system Sol
+			planet Earth
+		ship "Star Barge"
+			name "Critical Container"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 70
+				bunks 3
+				"cargo space" 50
+				drag 2.1
+				"engine capacity" 40
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 130
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 20
+			outfits
+				"X1700 Ion Thruster"
+				"X1200 Ion Steering"
+				Hyperdrive
+				"Anti-Missile Turret"
+				"D14-RN Shield Generator"
+				"nGVF-BB Fuel Cell"
+				"LP036a Battery Pack"
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			engine -9 38 1
+			engine 9 38 1
+			turret 0 -8 "Anti-Missile Turret"
+			leak leak 60 50
+			explode "tiny explosion" 10
+			explode "small explosion" 10
+			system Sol
+			planet Earth
+		ship "Star Barge"
+			name "Errorous Enclosement"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 70
+				bunks 3
+				"cargo space" 50
+				drag 2.1
+				"engine capacity" 40
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 130
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 20
+			outfits
+				"X1700 Ion Thruster"
+				"X1200 Ion Steering"
+				Hyperdrive
+				"Anti-Missile Turret"
+				"D14-RN Shield Generator"
+				"nGVF-BB Fuel Cell"
+				"LP036a Battery Pack"
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			engine -9 38 1
+			engine 9 38 1
+			turret 0 -8 "Anti-Missile Turret"
+			leak leak 60 50
+			explode "tiny explosion" 10
+			explode "small explosion" 10
+			system Sol
+			planet Earth
+		account
+			credits 131000
+			score 400
+			history
+		cargo
+			commodities
+				Food 150
+		visited Sol
+		"visited planet" Earth
+		visited "Alpha Centauri"
+		visited "Vega"
+		visited "Menkent"
+
+
+test "Open Menu"
+	status partial
+	description "Helper function to open the in-game menu."
+	sequence
+		input
+			key "escape"
+
+
+test "Load First Savegame"
+	status partial
+	description "Helper function to load the first savegame. Typically used directly after save-game inject."
+	sequence
+		input
+			key l
+		input
+			key l
+
+
+test "Save To Default Snapshot"
+	status active
+	description "Helper function to save the game to the first snapshot. Typically used directly after opening the menu."
+	sequence
+		# Open the menu.
+		# Future versions should detect if the menu is active and only open the menu when required.
+		# But the derived test-conditions that are required for such detection are not yet available.
+		input
+			key "escape"
+		# Go to Load/Save.
+		input
+			key l
+		# Add snapshot.
+		input
+			key a
+		# Confirm usage of the default snapshot name.
+		input
+			key "enter"
+		# Exit the menu that we are in (and return to the game)
+		input
+			key b
+		input
+			key e
+
+
+test "Depart"
+	status partial
+	description "Helper function to depart from a planet."
+	sequence
+		input
+			key d
+		# The game needs 2 gamesteps for processing the launch before commands like the jump command can be given.
+		# Using empty inputs to trigger those game loops.
+		input
+		input

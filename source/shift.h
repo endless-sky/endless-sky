@@ -1,5 +1,5 @@
 /* shift.h
-Copyright (c) 2008 Michael Zahniser
+Copyright (c) 2008 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -17,8 +17,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 // This array maps keys to the values they have when the Shift key is pressed.
 const char SHIFT[128] = {
-	' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 
-	' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 
+	' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+	' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
 	' ', '1', '\'', '3', '4', '5', '7', '"', '9', '0', '8', '=', '<', '_', '>', '?',
 	')', '!', '@', '#', '$', '%', '^', '&', '*', '(', ';', ':', ',', '+', '.', '/',
 	'2', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',

@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef GAME_DATA_H_
 #define GAME_DATA_H_
 
+#include "CategoryTypes.h"
+#include "Sale.h"
 #include "Set.h"
 #include "Trade.h"
 
@@ -31,8 +33,10 @@ class Fleet;
 class Galaxy;
 class GameEvent;
 class Government;
+class Hazard;
 class ImageSet;
 class Interface;
+class MaskManager;
 class Minable;
 class Mission;
 class News;
@@ -46,6 +50,9 @@ class Sprite;
 class StarField;
 class StartConditions;
 class System;
+class Test;
+class TestData;
+class TextReplacements;
 
 
 
@@ -60,8 +67,11 @@ public:
 	static bool BeginLoad(const char * const *argv);
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();
-	static void LoadShaders();
+	static void LoadShaders(bool useShaderSwizzle);
+	// TODO: make Progress() a simple accessor.
 	static double Progress();
+	// Whether initial game loading is complete (sprites and audio are loaded).
+	static bool IsLoaded();
 	// Begin loading a sprite that was previously deferred. Currently this is
 	// done with all landscapes to speed up the program's startup.
 	static void Preload(const Sprite *sprite);
@@ -80,9 +90,10 @@ public:
 	static void AddPurchase(const System &system, const std::string &commodity, int tons);
 	// Apply the given change to the universe.
 	static void Change(const DataNode &node);
-	// Update the neighbor lists of all the systems. This must be done any time
-	// that a change creates or moves a system.
-	static void UpdateNeighbors();
+	// Update the neighbor lists and other information for all the systems.
+	// This must be done any time that a change creates or moves a system.
+	static void UpdateSystems();
+	static void AddJumpRange(double neighborDistance);
 	
 	// Re-activate any special persons that were created previously but that are
 	// still alive.
@@ -97,19 +108,25 @@ public:
 	static const Set<Fleet> &Fleets();
 	static const Set<Galaxy> &Galaxies();
 	static const Set<Government> &Governments();
+	static const Set<Hazard> &Hazards();
 	static const Set<Interface> &Interfaces();
 	static const Set<Minable> &Minables();
 	static const Set<Mission> &Missions();
+	static const Set<News> &SpaceportNews();
 	static const Set<Outfit> &Outfits();
+	static const Set<Sale<Outfit>> &Outfitters();
 	static const Set<Person> &Persons();
 	static const Set<Phrase> &Phrases();
 	static const Set<Planet> &Planets();
 	static const Set<Ship> &Ships();
+	static const Set<Sale<Ship>> &Shipyards();
 	static const Set<System> &Systems();
+	static const Set<Test> &Tests();
+	static const Set<TestData> &TestDataSets();
 	
 	static const Government *PlayerGovernment();
 	static Politics &GetPolitics();
-	static const StartConditions &Start();
+	static const std::vector<StartConditions> &StartOptions();
 	
 	static const std::vector<Trade::Commodity> &Commodities();
 	static const std::vector<Trade::Commodity> &SpecialCommodities();
@@ -121,21 +138,23 @@ public:
 	static double SolarPower(const Sprite *sprite);
 	static double SolarWind(const Sprite *sprite);
 	
-	// Pick a random news object that applies to the given planet. If there is
-	// no applicable news, this returns null.
-	static const News *PickNews(const Planet *planet);
-	
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);
+	// Strings for ship, bay type, and outfit categories.
+	static const std::vector<std::string> &Category(const CategoryType type);
 	
 	static const StarField &Background();
-	static void SetHaze(const Sprite *sprite);
+	static void SetHaze(const Sprite *sprite, bool allowAnimation);
 	
 	static const std::string &Tooltip(const std::string &label);
 	static std::string HelpMessage(const std::string &name);
 	static const std::map<std::string, std::string> &HelpTemplates();
 	
 	static const std::map<std::string, std::string> &PluginAboutText();
+	
+	static MaskManager &GetMaskManager();
+	
+	static const TextReplacements &GetTextReplacements();
 	
 	
 private:
@@ -144,6 +163,7 @@ private:
 	static std::map<std::string, std::shared_ptr<ImageSet>> FindImages();
 	
 	static void PrintShipTable();
+	static void PrintTestsTable();
 	static void PrintWeaponTable();
 };
 

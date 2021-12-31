@@ -38,7 +38,7 @@ public:
 	
 	
 protected:
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
@@ -64,7 +64,8 @@ protected:
 	bool DrawHeader(Point &corner, const std::string &category);
 	void DrawSprite(const Point &corner, const Sprite *sprite) const;
 	void Draw(Point &corner, const Sprite *sprite, bool isForSale, bool isSelected,
-		const std::string &name, const std::string &price, const std::string &info);
+		const std::string &name, const std::string &price, const std::string &info,
+		const std::string &storage = "");
 	
 	void DoFind(const std::string &text);
 	void ScrollTo(int index);

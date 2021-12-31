@@ -1,4 +1,4 @@
-/* Personality.h
+/* Personality.cpp
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -87,7 +87,7 @@ namespace {
 
 
 // Default settings for player's ships.
-Personality::Personality()
+Personality::Personality() noexcept
 	: flags(DISABLES), confusionMultiplier(DEFAULT_CONFUSION), aimMultiplier(1.)
 {
 }
