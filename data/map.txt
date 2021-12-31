@@ -26172,7 +26172,7 @@ planet Ada
 
 planet Ahr
 	attributes arach factory folklore shipping tourism urban
-	landscape land/fields15
+	landscape land/forest4
 	description `The homeworld of the Arach people, Ahr is a metropolitan world with nearly nine billion inhabitants, enough that they cannot all be fed by what this world produces. The government maintains a storehouse with a month's supply of food in each major metropolitan center, as well as a collection of bioreactors, built according to Kimek designs, that can produce a tasteless but nutritious paste as emergency rations in the unlikely event that shipments of food from off-world are somehow disrupted for a prolonged period of time.`
 	spaceport `A constant line of cargo barges and trucks streams through this spaceport city, collecting goods to be distributed to the outlying suburbs and neighboring cities. Inside the main terminal, members of all three Coalition species mix freely, but the Heliarch agents and interpreters here are all Arach.`
 	spaceport `	Carts carrying passengers and cargo whiz past at frightening speeds, expertly navigating to dodge the pedestrians.`
@@ -28634,7 +28634,7 @@ planet Ochrescoop
 
 planet Osaeli
 	attributes ka'het uninhabited
-	landscape land/forest4
+	landscape land/fields15
 	description `An Earth-like planet with a large biodiversity, at first look Osaeli appears to be an idyllic world where no lifeform ever became the predominant one; but looking more closely, the signs of an ancient devastation can still be seen. In the middle of the forests, huge amounts of debris are scattered in large areas; scans reveal many underground bunkers, partly destroyed and filled with water.`
 
 planet Palarei
