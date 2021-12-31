@@ -35,7 +35,7 @@ void SavedGame::Load(const string &path)
 	DataFile file(path);
 	if(file.begin() != file.end())
 		this->path = path;
-	
+
 	for(const DataNode &node : file)
 	{
 		if(node.Token(0) == "pilot" && node.Size() >= 3)
@@ -89,15 +89,15 @@ bool SavedGame::IsLoaded() const
 void SavedGame::Clear()
 {
 	path.clear();
-	
+
 	name.clear();
 	credits.clear();
 	date.clear();
-	
+
 	system.clear();
 	planet.clear();
 	playTime = "0s";
-	
+
 	shipSprite = nullptr;
 	shipName.clear();
 }

@@ -29,7 +29,7 @@ using namespace std;
 bool UI::Handle(const SDL_Event &event)
 {
 	bool handled = false;
-	
+
 	vector<shared_ptr<Panel>>::iterator it = stack.end();
 	while(it != stack.begin() && !handled)
 	{
@@ -37,7 +37,7 @@ bool UI::Handle(const SDL_Event &event)
 		// Panels that are about to be popped cannot handle any other events.
 		if(count(toPop.begin(), toPop.end(), it->get()))
 			continue;
-		
+
 		if(event.type == SDL_MOUSEMOTION)
 		{
 			if(event.motion.state & SDL_BUTTON(1))
@@ -75,16 +75,16 @@ bool UI::Handle(const SDL_Event &event)
 			Command command(event.key.keysym.sym);
 			handled = (*it)->KeyDown(event.key.keysym.sym, event.key.keysym.mod, command, !event.key.repeat);
 		}
-		
+
 		// If this panel does not want anything below it to receive events, do
 		// not let this event trickle further down the stack.
 		if((*it)->TrapAllEvents())
 			break;
 	}
-	
+
 	// Handle any queued push or pop commands.
 	PushOrPop();
-	
+
 	return handled;
 }
 
@@ -95,10 +95,13 @@ void UI::StepAll()
 {
 	// Handle any queued push or pop commands.
 	PushOrPop();
-	
+
 	// Step all the panels.
 	for(shared_ptr<Panel> &panel : stack)
 		panel->Step();
+
+	// Handle any queud panels added by another panel.
+	PushOrPop();
 }
 
 
@@ -110,13 +113,13 @@ void UI::DrawAll()
 	// course of drawing the screen.
 	for(const shared_ptr<Panel> &it : stack)
 		it->ClearZones();
-	
+
 	// Find the topmost full-screen panel. Nothing below that needs to be drawn.
 	vector<shared_ptr<Panel>>::const_iterator it = stack.end();
 	while(it != stack.begin())
 		if((*--it)->IsFullScreen())
 			break;
-	
+
 	for( ; it != stack.end(); ++it)
 		(*it)->Draw();
 }
@@ -165,10 +168,10 @@ shared_ptr<Panel> UI::Top() const
 {
 	if(!toPush.empty())
 		return toPush.back();
-	
+
 	if(!stack.empty())
 		return stack.back();
-	
+
 	return shared_ptr<Panel>();
 }
 
@@ -192,10 +195,10 @@ shared_ptr<Panel> UI::Root() const
 	{
 		if(toPush.empty())
 			return shared_ptr<Panel>();
-		
+
 		return toPush.front();
 	}
-	
+
 	return stack.front();
 }
 
@@ -262,7 +265,7 @@ void UI::PushOrPop()
 		if(panel)
 			stack.push_back(panel);
 	toPush.clear();
-	
+
 	// These panels should be popped but not deleted (because someone else
 	// owns them and is managing their creation and deletion).
 	for(const Panel *panel : toPop)
