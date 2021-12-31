@@ -627,7 +627,7 @@ mission "FW Hope Recon 1C"
 			`	"Thank you," you reply. "You may return to your ship and fly back to Republic space."`
 			`	The Navy sailors exchange looks, apparently surprised, but they recover quickly. Their captain snaps to attention and salutes you. You return the salute, and then, realizing their captain can't see you, flash your ship's external lights in acknowledgment. The R.N.S. Susquehanna's crew fall into formation, march back to their ship, fire up their engines, and take off.`
 			`	Their weapon systems remain unarmed and inactive, as far as your sensors can tell.`
-			`	Your mission on this planet done, you take off too, monitoring the Navy ship. They gave you their word of honor that they would leave this system...`
+			`	Your mission on this planet done, you launch into space too, monitoring the Navy ship. They gave you their word of honor that they would leave this system...`
 				launch
 	
 	
