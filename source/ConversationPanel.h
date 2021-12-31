@@ -40,22 +40,22 @@ class System;
 class ConversationPanel : public Panel {
 public:
 	ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system = nullptr, const std::shared_ptr<Ship> &ship = nullptr);
-	
+
 template <class T>
 	void SetCallback(T *t, void (T::*fun)(int));
-	
+
 	// Draw this panel.
 	virtual void Draw() override;
-	
-	
+
+
 protected:
 	// Event handlers.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 	virtual bool Hover(int x, int y) override;
-	
-	
+
+
 private:
 	// Go to the given conversation node. If a choice index is given, include
 	// the text of that choice in the conversation history.
@@ -67,15 +67,15 @@ private:
 	// Handle mouse click on the "ok," "done," or a conversation choice.
 	void ClickName(int side);
 	void ClickChoice(int index);
-	
-	
+
+
 private:
 	// Text to be displayed is broken up into chunks (paragraphs). Paragraphs
 	// may also include "scene" images.
 	class Paragraph {
 	public:
 		explicit Paragraph(const std::string &text, const Sprite *scene = nullptr, bool isFirst = false);
-		
+
 		// Get the height of this paragraph.
 		int Height() const;
 		// Get the "center point" of this paragraph. This is for drawing a
@@ -84,7 +84,7 @@ private:
 		// Draw this paragraph at the given point, and return the point that the
 		// next paragraph below this one should be drawn at.
 		Point Draw(Point point, const Color &color) const;
-		
+
 	private:
 		const Sprite *scene = nullptr;
 		WrappedText wrap;
@@ -92,37 +92,37 @@ private:
 		// a "scene" image, there is no need for padding above the image.
 		bool isFirst = false;
 	};
-	
-	
+
+
 private:
 	// Reference to the player, to apply any changes to them.
 	PlayerInfo &player;
-	
+
 	// The conversation we are displaying.
 	const Conversation &conversation;
 	// All conversations start with node 0.
 	int node;
 	// This function should be called with the conversation outcome.
 	std::function<void(int)> callback = nullptr;
-	
+
 	// Current scroll position.
 	double scroll;
-	
+
 	// The "history" of the conversation up to this point:
 	std::list<Paragraph> text;
 	// The current choices being presented to you:
 	std::list<Paragraph> choices;
 	int choice;
-	
+
 	// Text entry fields for changing the player's name.
 	std::string firstName;
 	std::string lastName;
 	// Text substitutions (player's name, and ship name).
 	std::map<std::string, std::string> subs;
-	
+
 	// Maximum scroll amount.
 	double maxScroll = 0.;
-	
+
 	// If specified, this is a star system to display with a special big pointer
 	// when the player brings up the map. (Typically a mission destination.)
 	const System *system;

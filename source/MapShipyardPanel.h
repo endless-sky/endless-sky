@@ -32,8 +32,8 @@ class MapShipyardPanel : public MapSalesPanel {
 public:
 	explicit MapShipyardPanel(PlayerInfo &player);
 	explicit MapShipyardPanel(const MapPanel &panel, bool onlyHere = false);
-	
-	
+
+
 protected:
 	virtual const Sprite *SelectedSprite() const override;
 	virtual const Sprite *CompareSprite() const override;
@@ -45,21 +45,21 @@ protected:
 	virtual void Compare(int index) override;
 	virtual double SystemValue(const System *system) const override;
 	virtual int FindItem(const std::string &text) const override;
-	
+
 	virtual void DrawItems() override;
-	
-	
+
+
 private:
 	void Init();
-	
-	
+
+
 private:
 	std::map<std::string, std::vector<const Ship *>> catalog;
 	std::vector<const Ship *> list;
-	
+
 	const Ship *selected = nullptr;
 	const Ship *compare = nullptr;
-	
+
 	ShipInfoDisplay selectedInfo;
 	ShipInfoDisplay compareInfo;
 };

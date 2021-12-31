@@ -11,13 +11,17 @@ trim_trailing_whitespace = false
 indent_style = tab
 
 # Code files
-[*.{cpp,h,rc,hpp}]
-trim_trailing_whitespace = false
+[*.{cpp,h,rc,hpp}, SConstruct, SConscript]
 indent_style = tab
 
 # Markdown
 [*.md]
 trim_trailing_whitespace = false
+
+# Scripts
+[*.{sh,ps1}]
+indent_style = space
+indent_size = 2
 
 [*.xml]
 indent_style = space

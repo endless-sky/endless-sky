@@ -38,7 +38,7 @@ namespace {
 	// Pad beyond the screen enough to include any system that might "cast light"
 	// on the on-screen view.
 	const int PAD = LIMIT / ORTH;
-	
+
 	// OpenGL objects:
 	Shader shader;
 	GLuint cornerI;
@@ -46,7 +46,7 @@ namespace {
 	GLuint vao;
 	GLuint vbo;
 	GLuint texture = 0;
-	
+
 	// Keep track of the previous frame's view so that if it is unchanged we can
 	// skip regenerating the mask.
 	double previousZoom = 0.;
@@ -65,10 +65,10 @@ void FogShader::Init()
 		"// vertex fog shader\n"
 		"uniform vec2 corner;\n"
 		"uniform vec2 dimensions;\n"
-		
+
 		"in vec2 vert;\n"
 		"out vec2 fragTexCoord;\n"
-		
+
 		"void main() {\n"
 		"  gl_Position = vec4(corner + vert * dimensions, 0, 1);\n"
 		"  fragTexCoord = vert;\n"
@@ -79,30 +79,30 @@ void FogShader::Init()
 		"precision mediump sampler2D;\n"
 		"precision mediump float;\n"
 		"uniform sampler2D tex;\n"
-		
+
 		"in vec2 fragTexCoord;\n"
 		"out vec4 finalColor;\n"
-		
+
 		"void main() {\n"
 		"  finalColor = vec4(0, 0, 0, texture(tex, fragTexCoord).r);\n"
 		"}\n";
-	
+
 	// Compile the shader and store indices to its variables.
 	shader = Shader(vertexCode, fragmentCode);
 	cornerI = shader.Uniform("corner");
 	dimensionsI = shader.Uniform("dimensions");
-	
+
 	glUseProgram(shader.Object());
 	glUniform1i(shader.Uniform("tex"), 0);
 	glUseProgram(0);
-	
+
 	// Generate the vertex data for drawing sprites.
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
-	
+
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	
+
 	// Corners of a rectangle to draw.
 	GLfloat vertexData[] = {
 		0.f, 0.f,
@@ -111,11 +111,11 @@ void FogShader::Init()
 		1.f, 1.f
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
-	
+
 	GLuint vertI = shader.Attrib("vert");
 	glEnableVertexAttribArray(vertI);
 	glVertexAttribPointer(vertI, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
-	
+
 	// Unbind the VBO and VAO.
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
@@ -141,7 +141,7 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 	int rows = ceil(Screen::Height() / (GRID * zoom)) + 1 + 2 * PAD;
 	// Round up to a multiple of 4 so the rows will be 32-bit aligned.
 	columns = (columns + 3) & ~3;
-	
+
 	// To avoid extra work, don't regenerate the mask buffer if the view has not
 	// moved. This might cause an inaccurate mask if you explore more systems,
 	// come back to the original, and view the map again without viewing it in
@@ -152,7 +152,7 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 	if(shouldRegenerate)
 	{
 		bool sizeChanged = (!texture || columns != previousColumns || rows != previousRows);
-		
+
 		// Remember the current viewport attributes.
 		previousZoom = zoom;
 		previousCenter = center;
@@ -160,10 +160,10 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 		previousTop = top;
 		previousColumns = columns;
 		previousRows = rows;
-		
+
 		// This buffer will hold the mask image.
 		auto buffer = vector<unsigned char>(static_cast<size_t>(rows) * columns, LIMIT);
-	
+
 		// For each system the player knows about, its "distance" pixel in the
 		// buffer should be set to 0.
 		for(const auto &it : GameData::Systems())
@@ -172,13 +172,13 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 			if(!system.IsValid() || !player.HasVisited(system))
 				continue;
 			Point pos = zoom * (system.Position() + center);
-		
+
 			int x = round((pos.X() - left) / (GRID * zoom));
 			int y = round((pos.Y() - top) / (GRID * zoom));
 			if(x >= 0 && y >= 0 && x < columns && y < rows)
 				buffer[x + y * columns] = 0;
 		}
-	
+
 		// Distance transformation: make two passes through the buffer. In the first
 		// pass, propagate down and to the right. In the second, propagate in the
 		// opposite direction. Once these two passes are done, each value is equal
@@ -192,27 +192,27 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 				buffer[x + y * columns] = min<int>(buffer[x + y * columns], min(
 					ORTH + min(buffer[(x + 1) + y * columns], buffer[x + (y + 1) * columns]),
 					DIAG + min(buffer[(x - 1) + (y + 1) * columns], buffer[(x + 1) + (y + 1) * columns])));
-	
+
 		// Stretch the distance values so there is no shading up to about 200 pixels
 		// away, then it transitions somewhat quickly.
 		for(unsigned char &value : buffer)
 			value = max(0, min(LIMIT, (value - 60) * 4));
 		const void *data = &buffer.front();
-		
+
 		// Set up the OpenGL texture if it doesn't exist yet.
 		if(sizeChanged)
 		{
 			// If the texture size changed, it must be reallocated.
 			if(texture)
 				glDeleteTextures(1, &texture);
-			
+
 			glGenTextures(1, &texture);
 			glBindTexture(GL_TEXTURE_2D, texture);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-			
+
 			// Upload the new "image."
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_R8, columns, rows, 0, GL_RED, GL_UNSIGNED_BYTE, data);
 		}
@@ -224,11 +224,11 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 	}
 	else
 		glBindTexture(GL_TEXTURE_2D, texture);
-	
+
 	// Set up to draw the image.
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);
-	
+
 	GLfloat corner[2] = {
 		static_cast<float>(left - .5 * GRID * zoom) / (.5f * Screen::Width()),
 		static_cast<float>(top - .5 * GRID * zoom) / (-.5f * Screen::Height())};
@@ -237,10 +237,10 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 		GRID * static_cast<float>(zoom) * (columns + 1.f) / (.5f * Screen::Width()),
 		GRID * static_cast<float>(zoom) * (rows + 1.f) / (-.5f * Screen::Height())};
 	glUniform2fv(dimensionsI, 1, dimensions);
-	
+
 	// Call the shader program to draw the image.
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-	
+
 	// Clean up.
 	glBindVertexArray(0);
 	glUseProgram(0);
