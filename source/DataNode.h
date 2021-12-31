@@ -35,7 +35,7 @@ public:
 	DataNode &operator=(const DataNode &other);
 	DataNode(DataNode &&) noexcept;
 	DataNode &operator=(DataNode &&) noexcept;
-	
+
 	// Get the number of tokens in this node.
 	int Size() const noexcept;
 	// Get all the tokens in this node as an iterable vector.
@@ -51,22 +51,22 @@ public:
 	// class is able to parse.
 	bool IsNumber(int index) const;
 	static bool IsNumber(const std::string &token);
-	
+
 	// Check if this node has any children. If so, the iterator functions below
 	// can be used to access them.
 	bool HasChildren() const noexcept;
 	std::list<DataNode>::const_iterator begin() const noexcept;
 	std::list<DataNode>::const_iterator end() const noexcept;
-	
+
 	// Print a message followed by a "trace" of this node and its parents.
 	int PrintTrace(const std::string &message = "") const;
-	
-	
+
+
 private:
 	// Adjust the parent pointers when a copy is made of a DataNode.
 	void Reparent() noexcept;
-	
-	
+
+
 private:
 	// These are "child" nodes found on subsequent lines with deeper indentation.
 	std::list<DataNode> children;
@@ -76,7 +76,7 @@ private:
 	const DataNode *parent = nullptr;
 	// The line number in the given file that produced this node.
 	size_t lineNumber = 0;
-	
+
 	// Allow DataFile to modify the internal structure of DataNodes.
 	friend class DataFile;
 };

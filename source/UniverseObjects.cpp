@@ -1,4 +1,4 @@
-/* GameData.cpp
+/* UniverseObjects.cpp
 Copyright (c) 2021 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the

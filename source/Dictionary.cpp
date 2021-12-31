@@ -28,14 +28,14 @@ namespace {
 		// At each step of the search, we know the key is in [low, high).
 		size_t low = 0;
 		size_t high = v.size();
-		
+
 		while(low != high)
 		{
 			size_t mid = (low + high) / 2;
 			int cmp = strcmp(key, v[mid].first);
 			if(!cmp)
 				return make_pair(mid, true);
-			
+
 			if(cmp < 0)
 				high = mid;
 			else
@@ -43,14 +43,14 @@ namespace {
 		}
 		return make_pair(low, false);
 	}
-	
+
 	// String interning: return a pointer to a character string that matches the
 	// given string but has static storage duration.
 	const char *Intern(const char *key)
 	{
 		static set<string> interned;
 		static mutex m;
-		
+
 		// Just in case this function is accessed from multiple threads:
 		lock_guard<mutex> lock(m);
 		return interned.insert(key).first->c_str();
@@ -64,7 +64,7 @@ double &Dictionary::operator[](const char *key)
 	pair<size_t, bool> pos = Search(key, *this);
 	if(pos.second)
 		return data()[pos.first].second;
-	
+
 	return insert(begin() + pos.first, make_pair(Intern(key), 0.))->second;
 }
 
