@@ -51,7 +51,7 @@ namespace {
 			for(const StellarObject &object : here->Objects())
 			{
 				const Planet *planet = object.GetPlanet();
-				if(planet && planet->HasOutfitter())
+				if(planet && planet->IsValid() && planet->HasOutfitter())
 					outfits.Add(planet->Outfitter());
 			}
 		}
@@ -101,7 +101,8 @@ namespace {
 		}
 		// Sort this list of choices ascending by mass, so it can be easily trimmed to just
 		// the outfits that fit as the ship's free space decreases.
-		sort(outfits.begin(), outfits.end(), [](const Outfit *a, const Outfit *b){ return a->Mass() < b->Mass(); });
+		sort(outfits.begin(), outfits.end(), [](const Outfit *a, const Outfit *b)
+			{ return a->Mass() < b->Mass(); });
 		return outfits;
 	}
 	
@@ -167,7 +168,7 @@ void Fleet::Load(const DataNode &node)
 		bool remove = (child.Token(0) == "remove");
 		bool hasValue = (child.Size() >= 2);
 		if((add || remove) && (!hasValue || (child.Token(1) != "variant" && child.Token(1) != "personality")))
-		{	
+		{
 			child.PrintTrace("Skipping invalid \"" + child.Token(0) + "\" tag:");
 			continue;
 		}
@@ -229,6 +230,62 @@ void Fleet::Load(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	
+	if(variants.empty())
+		node.PrintTrace("Warning: " + (fleetName.empty() ? "unnamed fleet" : "Fleet \"" + fleetName + "\"") + " contains no variants:");
+}
+
+
+
+bool Fleet::IsValid(bool requireGovernment) const
+{
+	// Generally, a government is required for a fleet to be valid.
+	if(requireGovernment && !government)
+		return false;
+	
+	if(names && names->IsEmpty())
+		return false;
+	
+	if(fighterNames && fighterNames->IsEmpty())
+		return false;
+	
+	// A fleet's variants should reference at least one valid ship.
+	for(auto &&v : variants)
+		if(none_of(v.ships.begin(), v.ships.end(),
+				[](const Ship *const s) noexcept -> bool { return s->IsValid(); }))
+			return false;
+	
+	return true;
+}
+
+
+
+void Fleet::RemoveInvalidVariants()
+{
+	auto IsInvalidVariant = [](const Variant &v) noexcept -> bool
+	{
+		return v.ships.empty() || none_of(v.ships.begin(), v.ships.end(),
+			[](const Ship *const s) noexcept -> bool { return s->IsValid(); });
+	};
+	auto firstInvalid = find_if(variants.begin(), variants.end(), IsInvalidVariant);
+	if(firstInvalid == variants.end())
+		return;
+	
+	// Ensure the class invariant can be maintained.
+	// (This must be done first as we cannot do anything but `erase` elements filtered by `remove_if`.)
+	int removedWeight = 0;
+	for(auto it = firstInvalid; it != variants.end(); ++it)
+		if(IsInvalidVariant(*it))
+			removedWeight += it->weight;
+	
+	auto removeIt = remove_if(firstInvalid, variants.end(), IsInvalidVariant);
+	int count = distance(removeIt, variants.end());
+	Files::LogError("Warning: " + (fleetName.empty() ? "unnamed fleet" : "fleet \"" + fleetName + "\"")
+		+ ": Removing " + to_string(count) + " invalid " + (count > 1 ? "variants" : "variant")
+		+ " (" + to_string(removedWeight) + " of " + to_string(total) + " weight)");
+	
+	total -= removedWeight;
+	variants.erase(removeIt, variants.end());
 }
 
 
@@ -243,7 +300,7 @@ const Government *Fleet::GetGovernment() const
 // Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
 void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet) const
 {
-	if(!total || variants.empty())
+	if(!total || variants.empty() || personality.IsDerelict())
 		return;
 	
 	// Pick a fleet variant to instantiate.
@@ -270,11 +327,13 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		// drives and hyperdrives.
 		bool hasJump = false;
 		bool hasHyper = false;
+		double jumpDistance = System::DEFAULT_NEIGHBOR_DISTANCE;
 		for(const Ship *ship : variant.ships)
 		{
 			if(ship->Attributes().Get("jump drive"))
 			{
 				hasJump = true;
+				jumpDistance = ship->JumpRange();
 				break;
 			}
 			if(ship->Attributes().Get("hyperdrive"))
@@ -285,7 +344,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		if(hasJump || hasHyper)
 		{
 			bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
-			for(const System *neighbor : (hasJump ? system.Neighbors() : system.Links()))
+			for(const System *neighbor : (hasJump ? system.JumpNeighbors(jumpDistance) : system.Links()))
 			{
 				// If this ship is not "welcome" in the current system, prefer to have
 				// it enter from a system that is friendly to it. (This is for realism,
@@ -301,7 +360,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		vector<const Planet *> planetVector;
 		if(!personality.IsSurveillance())
 			for(const StellarObject &object : system.Objects())
-				if(object.GetPlanet() && object.GetPlanet()->HasSpaceport()
+				if(object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
 						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					planetVector.push_back(object.GetPlanet());
 	
@@ -312,7 +371,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			// Prefer to launch from inhabited planets, but launch from
 			// uninhabited ones if there is no other option.
 			for(const StellarObject &object : system.Objects())
-				if(object.GetPlanet() && !object.GetPlanet()->GetGovernment()->IsEnemy(government))
+				if(object.HasValidPlanet() && !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					planetVector.push_back(object.GetPlanet());
 			options = planetVector.size();
 			if(!options)
@@ -432,7 +491,11 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 		
 		Angle angle = Angle::Random();
 		Point pos = center.first + Angle::Random().Unit() * OffsetFrom(center);
-		double velocity = Random::Real() * ship->MaxVelocity();
+		double velocity = 0;
+		if(!ship->GetPersonality().IsDerelict())
+			velocity = Random::Real() * ship->MaxVelocity();
+		else
+			ship->Disable();
 		
 		ships.push_front(ship);
 		ship->SetSystem(&system);
@@ -495,6 +558,9 @@ void Fleet::Place(const System &system, Ship &ship)
 
 int64_t Fleet::Strength() const
 {
+	if(!total || variants.empty())
+		return 0;
+	
 	int64_t sum = 0;
 	for(const Variant &variant : variants)
 	{
@@ -545,7 +611,7 @@ pair<Point, double> Fleet::ChooseCenter(const System &system)
 {
 	auto centers = vector<pair<Point, double>>();
 	for(const StellarObject &object : system.Objects())
-		if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+		if(object.HasValidPlanet() && object.GetPlanet()->HasSpaceport())
 			centers.emplace_back(object.Position(), object.Radius());
 	
 	if(centers.empty())
@@ -560,16 +626,17 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const Variant &variant) const
 	vector<shared_ptr<Ship>> placed;
 	for(const Ship *model : variant.ships)
 	{
-		if(model->ModelName().empty())
+		// At least one of this variant's ships is valid, but we should avoid spawning any that are not defined.
+		if(!model->IsValid())
 		{
-			Files::LogError("Skipping unknown ship in fleet \"" + fleetName + "\".");
+			Files::LogError("Skipping invalid ship model \"" + model->ModelName() + "\" in fleet \"" + fleetName + "\".");
 			continue;
 		}
 		
-		shared_ptr<Ship> ship(new Ship(*model));
+		// Copy the model instance into a new instance.
+		auto ship = make_shared<Ship>(*model);
 		
-		bool isFighter = ship->CanBeCarried();
-		const Phrase *phrase = ((isFighter && fighterNames) ? fighterNames : names);
+		const Phrase *phrase = ((ship->CanBeCarried() && fighterNames) ? fighterNames : names);
 		if(phrase)
 			ship->SetName(phrase->Get());
 		ship->SetGovernment(government);
@@ -611,7 +678,7 @@ void Fleet::SetCargo(Ship *ship) const
 	// Choose random outfits or commodities to transport.
 	for(int i = 0; i < cargo; ++i)
 	{
-		if(!free)
+		if(free <= 0)
 			break;
 		// Remove any outfits that do not fit into remaining cargo.
 		if(canChooseOutfits && !outfits.empty())

@@ -16,6 +16,14 @@ effect "jump drive"
 	"random angle" 180
 	"velocity scale" 0.
 
+effect "jump drive red"
+	sprite "effect/jump drive red"
+		"no repeat"
+		"frame rate" 8
+		"rewind"
+	"lifetime" 8
+	"velocity scale" 3
+
 effect "ion spark"
 	sprite "effect/spark"
 		"no repeat"
@@ -42,6 +50,49 @@ effect "slowing spark"
 	"random angle" 360
 	"random spin" 30
 	"random velocity" .1
+
+# Needs unique graphics.
+effect "discharge spark"
+	sprite "effect/static"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 13
+	"random angle" 360
+	"random spin" 10
+	"random velocity" 1
+
+# Needs unique graphics.
+effect "corrosion spark"
+	sprite "effect/nano spark"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 30
+	"random angle" 360
+	"random spin" 30
+	"random velocity" 2
+	"velocity scale" -.005
+
+# Needs unique graphics.
+effect "leakage spark"
+	sprite "effect/nano spark"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 30
+	"random angle" 360
+	"random spin" 30
+	"random velocity" 2
+	"velocity scale" -.005
+
+# Needs unique graphics.
+effect "burning spark"
+	sprite "effect/nano spark"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 30
+	"random angle" 360
+	"random spin" 30
+	"random velocity" 2
+	"velocity scale" -.005
 
 
 effect "flame"
@@ -159,6 +210,15 @@ effect "final explosion medium"
 
 effect "final explosion large"
 	sound "final explosion large"
+
+effect "asteroid crunch small"
+	sound "asteroid crunch small"
+
+effect "asteroid crunch medium"
+	sound "asteroid crunch medium"
+
+effect "asteroid crunch large"
+	sound "asteroid crunch large"
 
 
 

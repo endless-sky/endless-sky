@@ -81,14 +81,14 @@ private:
 	// Pick a new target for the given ship.
 	std::shared_ptr<Ship> FindTarget(const Ship &ship) const;
 	// Obtain a list of ships matching the desired hostility.
-	std::vector<std::shared_ptr<Ship>> GetShipsList(const Ship &ship, bool targetEnemies, double maxRange = -1.) const;
+	std::vector<Ship *> GetShipsList(const Ship &ship, bool targetEnemies, double maxRange = -1.) const;
 	
 	bool FollowOrders(Ship &ship, Command &command) const;
 	void MoveIndependent(Ship &ship, Command &command) const;
 	void MoveEscort(Ship &ship, Command &command) const;
 	static void Refuel(Ship &ship, Command &command);
 	static bool CanRefuel(const Ship &ship, const StellarObject *target);
-	bool ShouldDock(const Ship &ship, const Ship &parent, bool playerShipsLaunch) const;
+	bool ShouldDock(const Ship &ship, const Ship &parent, const System *playerSystem) const;
 	
 	// Methods of moving from the current position to a desired position / orientation.
 	static double TurnBackward(const Ship &ship);
@@ -151,7 +151,10 @@ private:
 	class Orders {
 	public:
 		static const int HOLD_POSITION = 0x000;
-		static const int MOVE_TO = 0x001;
+		// Hold active is the same command as hold position, but it is given when a ship
+		// actively needs to move back to the position it was holding.
+		static const int HOLD_ACTIVE = 0x001;
+		static const int MOVE_TO = 0x002;
 		static const int KEEP_STATION = 0x100;
 		static const int GATHER = 0x101;
 		static const int ATTACK = 0x102;
@@ -186,11 +189,13 @@ private:
 	// Command applied by the player's "autopilot."
 	Command autoPilot;
 	
-	bool isLaunching = false;
 	bool isCloaking = false;
 	
 	bool escortsAreFrugal = true;
 	bool escortsUseAmmo = true;
+
+	// The minimum speed before landing will consider non-landable objects.
+	const float MIN_LANDING_VELOCITY = 80.;
 	
 	// Current orders for the player's ships. Because this map only applies to
 	// player ships, which are never deleted except when landed, it can use
@@ -208,6 +213,7 @@ private:
 	std::map<const Ship *, int> swarmCount;
 	std::map<const Ship *, int> fenceCount;
 	std::map<const Ship *, Angle> miningAngle;
+	std::map<const Ship *, double> miningRadius;
 	std::map<const Ship *, int> miningTime;
 	std::map<const Ship *, double> appeasmentThreshold;
 	
@@ -215,9 +221,9 @@ private:
 	
 	std::map<const Government *, int64_t> enemyStrength;
 	std::map<const Government *, int64_t> allyStrength;
-	std::map<const Government *, std::vector<std::shared_ptr<Ship>>> governmentRosters;
-	std::map<const Government *, std::vector<std::shared_ptr<Ship>>> enemyLists;
-	std::map<const Government *, std::vector<std::shared_ptr<Ship>>> allyLists;
+	std::map<const Government *, std::vector<Ship *>> governmentRosters;
+	std::map<const Government *, std::vector<Ship *>> enemyLists;
+	std::map<const Government *, std::vector<Ship *>> allyLists;
 };
 
 

@@ -13,10 +13,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 
 #include "DataNode.h"
-#include "Font.h"
-#include "FontSet.h"
+#include "text/DisplayText.h"
+#include "FillShader.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
+#include "text/layout.hpp"
 #include "LineShader.h"
 #include "OutlineShader.h"
 #include "Panel.h"
@@ -113,6 +116,8 @@ void Interface::Load(const DataNode &node)
 				elements.push_back(new TextElement(child, anchor));
 			else if(child.Token(0) == "bar" || child.Token(0) == "ring")
 				elements.push_back(new BarElement(child, anchor));
+			else if(child.Token(0) == "line")
+				elements.push_back(new LineElement(child, anchor));
 			else
 			{
 				child.PrintTrace("Unrecognized interface element:");
@@ -529,6 +534,19 @@ bool Interface::TextElement::ParseLine(const DataNode &node)
 		color[Element::INACTIVE] = GameData::Colors().Get(node.Token(1));
 	else if(node.Token(0) == "hover" && node.Size() >= 2)
 		color[Element::HOVER] = GameData::Colors().Get(node.Token(1));
+	else if(node.Token(0) == "truncate" && node.Size() >= 2)
+	{
+		if(node.Token(1) == "none")
+			truncate = Truncate::NONE;
+		else if(node.Token(1) == "front")
+			truncate = Truncate::FRONT;
+		else if(node.Token(1) == "middle")
+			truncate = Truncate::MIDDLE;
+		else if(node.Token(1) == "back")
+			truncate = Truncate::BACK;
+		else
+			return false;
+	}
 	else
 		return false;
 	
@@ -541,8 +559,8 @@ bool Interface::TextElement::ParseLine(const DataNode &node)
 Point Interface::TextElement::NativeDimensions(const Information &info, int state) const
 {
 	const Font &font = FontSet::Get(fontSize);
-	string text = GetString(info);
-	return Point(font.Width(text), font.Height());
+	const auto layout = Layout(static_cast<int>(Bounds().Width() - padding.X()), truncate);
+	return Point(font.FormattedWidth({GetString(info), layout}), font.Height());
 }
 
 
@@ -554,7 +572,8 @@ void Interface::TextElement::Draw(const Rectangle &rect, const Information &info
 	if(!color[state])
 		return;
 	
-	FontSet::Get(fontSize).Draw(GetString(info), rect.TopLeft(), *color[state]);
+	const auto layout = Layout(static_cast<int>(rect.Width()), truncate);
+	FontSet::Get(fontSize).Draw({GetString(info), layout}, rect.TopLeft(), *color[state]);
 }
 
 
@@ -571,7 +590,7 @@ void Interface::TextElement::Place(const Rectangle &bounds, Panel *panel) const
 
 string Interface::TextElement::GetString(const Information &info) const
 {
-	return (isDynamic ? info.GetString(str) : str);
+	return isDynamic ? info.GetString(str) : str;
 }
 
 
@@ -658,4 +677,44 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 			LineShader::Draw(from, to, width, *color);
 		}
 	}
+}
+
+
+
+// Members of the LineElement class:
+
+// Constructor.
+Interface::LineElement::LineElement(const DataNode &node, const Point &globalAnchor)
+{
+	// This function will call ParseLine() for any line it does not recognize.
+	Load(node, globalAnchor);
+
+	// Fill in a default color if none is specified.
+	if(!color)
+		color = GameData::Colors().Get("medium");
+}
+
+
+
+// Parse the given data line: one that is not recognized by Element
+// itself. This returns false if it does not recognize the line, either.
+bool Interface::LineElement::ParseLine(const DataNode &node)
+{
+	if(node.Token(0) == "color" && node.Size() >= 2)
+		color = GameData::Colors().Get(node.Token(1));
+	else
+		return false;
+
+	return true;
+}
+
+
+
+// Draw this element in the given rectangle.
+void Interface::LineElement::Draw(const Rectangle &rect, const Information &info, int state) const
+{
+	// Avoid crashes for malformed interface elements that are not fully loaded.
+	if(!from.Get() && !to.Get())
+		return;
+	FillShader::Fill(rect.TopLeft(), rect.Dimensions(), *color);
 }

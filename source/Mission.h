@@ -15,9 +15,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionSet.h"
 #include "Date.h"
+#include "EsUuid.h"
 #include "LocationFilter.h"
 #include "MissionAction.h"
 #include "NPC.h"
+#include "TextReplacements.h"
 
 #include <list>
 #include <map>
@@ -44,6 +46,13 @@ class UI;
 class Mission {
 public:
 	Mission() = default;
+	// Copying a mission instance isn't allowed.
+	Mission(const Mission &) = delete;
+	Mission &operator=(const Mission &) = delete;
+	Mission(Mission &&) noexcept = default;
+	Mission &operator=(Mission &&) noexcept = default;
+	~Mission() noexcept = default;
+	
 	// Construct and Load() at the same time.
 	Mission(const DataNode &node);
 	
@@ -54,11 +63,15 @@ public:
 	void Save(DataWriter &out, const std::string &tag = "mission") const;
 	
 	// Basic mission information.
+	const EsUuid &UUID() const noexcept;
 	const std::string &Name() const;
 	const std::string &Description() const;
 	// Check if this mission should be shown in your mission list. If not, the
 	// player will not know this mission exists (which is sometimes useful).
 	bool IsVisible() const;
+	// Check if this mission should be quarantined due to requiring currently-
+	// undefined ships, planets, or systems (i.e. is from an inactive plugin).
+	bool IsValid() const;
 	// Check if this mission has high priority. If any high-priority missions
 	// are available, no others will be shown at landing or in the spaceport.
 	// This is to be used for missions that are part of a series.
@@ -107,6 +120,7 @@ public:
 	bool CanComplete(const PlayerInfo &player) const;
 	bool IsSatisfied(const PlayerInfo &player) const;
 	bool HasFailed(const PlayerInfo &player) const;
+	bool IsFailed() const;
 	// Mark a mission failed (e.g. due to a "fail" action in another mission).
 	void Fail();
 	// Get a string to show if this mission is "blocked" from being offered
@@ -126,12 +140,14 @@ public:
 	// information or show new UI panels. PlayerInfo::MissionCallback() will be
 	// used as the callback for an `on offer` conversation, to handle its response.
 	// If it is not possible for this change to happen, this function returns false.
-	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, DEFER, VISIT, STOPOVER};
+	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, ABORT, DEFER, VISIT, STOPOVER, WAYPOINT};
 	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr, const std::shared_ptr<Ship> &boardingShip = nullptr);
 	
 	// Get a list of NPCs associated with this mission. Every time the player
 	// takes off from a planet, they should be added to the active ships.
 	const std::list<NPC> &NPCs() const;
+	// Update which NPCs are active based on their spawn and despawn conditions.
+	void UpdateNPCs(const PlayerInfo &player);
 	// Checks if the given ship belongs to one of the mission's NPCs.
 	bool HasShip(const std::shared_ptr<Ship> &ship) const;
 	// If any event occurs between two ships, check to see if this mission cares
@@ -145,7 +161,7 @@ public:
 	// Get a specific mission action from this mission.
 	// If the mission action is not found for the given trigger, returns an empty
 	// mission action.
-	const MissionAction &GetAction(Trigger trigger) const; 
+	const MissionAction &GetAction(Trigger trigger) const;
 	
 	// "Instantiate" a mission by replacing randomly selected values and places
 	// with a single choice, and then replacing any wildcard text as well.
@@ -153,7 +169,7 @@ public:
 	
 	
 private:
-	void Enter(const System *system, PlayerInfo &player, UI *ui);
+	bool Enter(const System *system, PlayerInfo &player, UI *ui);
 	// For legacy code, contraband definitions can be placed in two different
 	// locations, so move that parsing out to a helper function.
 	bool ParseContraband(const DataNode &node);
@@ -165,6 +181,8 @@ private:
 	std::string description;
 	std::string blocked;
 	Location location = SPACEPORT;
+	
+	EsUuid uuid;
 	
 	bool hasFailed = false;
 	bool isVisible = true;
@@ -207,6 +225,9 @@ private:
 	std::list<LocationFilter> stopoverFilters;
 	std::set<const Planet *> visitedStopovers;
 	std::set<const System *> visitedWaypoints;
+	
+	// User-defined text replacements unique to this mission:
+	TextReplacements substitutions;
 	
 	// NPCs:
 	std::list<NPC> npcs;

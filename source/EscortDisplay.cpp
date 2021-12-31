@@ -13,8 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "EscortDisplay.h"
 
 #include "Color.h"
-#include "Font.h"
-#include "FontSet.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "Government.h"
 #include "LineShader.h"
@@ -285,7 +285,7 @@ void EscortDisplay::MergeStacks(int maxHeight) const
 			else
 			{
 				mit->second->Merge(*it);
-				it = icons.erase(it);	
+				it = icons.erase(it);
 			}
 		}
 		unstackable.insert(sprite);

@@ -17,6 +17,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <SDL2/SDL.h>
 
 #if defined _WIN32
+#include "text/Utf8.h"
+#define STRICT
+#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #endif
 
@@ -24,6 +27,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <dirent.h>
 #include <unistd.h>
 
+#include <algorithm>
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
@@ -36,10 +40,11 @@ namespace {
 	string resources;
 	string config;
 	
-	string data;
-	string images;
-	string sounds;
-	string saves;
+	string dataPath;
+	string imagePath;
+	string soundPath;
+	string savePath;
+	string testPath;
 	
 	mutex errorMutex;
 	File errorLog;
@@ -51,32 +56,6 @@ namespace {
 		for(char &c : path)
 			if(c == '\\')
 				c = '/';
-	}
-	wstring ToUTF16(const string &path)
-	{
-		wstring result;
-		if(path.empty())
-			return result;
-		
-		bool endsInSlash = (path.back() == '/' || path.back() == '\\');
-		int size = MultiByteToWideChar(CP_UTF8, 0, &path[0], path.length() - endsInSlash, nullptr, 0);
-		result.resize(size);
-		MultiByteToWideChar(CP_UTF8, 0, &path[0], path.length() - endsInSlash, &result[0], size);
-		
-		return result;
-	}
-	string ToUTF8(const wchar_t *str)
-	{
-		string result;
-		if(!str || !*str)
-			return result;
-		
-		// The returned size will include the null character at the end.
-		int size = WideCharToMultiByte(CP_UTF8, 0, str, -1, nullptr, 0, nullptr, nullptr) - 1;
-		result.resize(size);
-		WideCharToMultiByte(CP_UTF8, 0, str, -1, &result[0], size, nullptr, nullptr);
-		
-		return result;
 	}
 #endif
 }
@@ -138,9 +117,9 @@ void Files::Init(const char * const *argv)
 			throw runtime_error("Unable to find the resource directories!");
 		resources.erase(pos + 1);
 	}
-	data = resources + "data/";
-	images = resources + "images/";
-	sounds = resources + "sounds/";
+	dataPath = resources + "data/";
+	imagePath = resources + "images/";
+	soundPath = resources + "sounds/";
 	
 	if(config.empty())
 	{
@@ -150,14 +129,14 @@ void Files::Init(const char * const *argv)
 		if(!str)
 			throw runtime_error("Unable to get path to saves directory!");
 		
-		saves = str;
+		savePath = str;
 #if defined _WIN32
-		FixWindowsSlashes(saves);
+		FixWindowsSlashes(savePath);
 #endif
 		SDL_free(str);
-		if(saves.back() != '/')
-			saves += '/';
-		config = saves.substr(0, saves.rfind('/', saves.length() - 2) + 1);
+		if(savePath.back() != '/')
+			savePath += '/';
+		config = savePath.substr(0, savePath.rfind('/', savePath.length() - 2) + 1);
 	}
 	else
 	{
@@ -166,7 +145,7 @@ void Files::Init(const char * const *argv)
 #endif
 		if(config.back() != '/')
 			config += '/';
-		saves = config + "saves/";
+		savePath = config + "saves/";
 	}
 	
 	// Create the "plugins" directory if it does not yet exist, so that it is
@@ -178,9 +157,9 @@ void Files::Init(const char * const *argv)
 	}
 	
 	// Check that all the directories exist.
-	if(!Exists(data) || !Exists(images) || !Exists(sounds))
+	if(!Exists(dataPath) || !Exists(imagePath) || !Exists(soundPath))
 		throw runtime_error("Unable to find the resource directories!");
-	if(!Exists(saves))
+	if(!Exists(savePath))
 		throw runtime_error("Unable to create config directory!");
 }
 
@@ -202,28 +181,35 @@ const string &Files::Config()
 
 const string &Files::Data()
 {
-	return data;
+	return dataPath;
 }
 
 
 
 const string &Files::Images()
 {
-	return images;
+	return imagePath;
 }
 
 
 
 const string &Files::Sounds()
 {
-	return sounds;
+	return soundPath;
 }
 
 
 
 const string &Files::Saves()
 {
-	return saves;
+	return savePath;
+}
+
+
+
+const string &Files::Tests()
+{
+	return testPath;
 }
 
 
@@ -237,7 +223,7 @@ vector<string> Files::List(string directory)
 	
 #if defined _WIN32
 	WIN32_FIND_DATAW ffd;
-	HANDLE hFind = FindFirstFileW(ToUTF16(directory + '*').c_str(), &ffd);
+	HANDLE hFind = FindFirstFileW(Utf8::ToUTF16(directory + '*').c_str(), &ffd);
 	if(!hFind)
 		return list;
 	
@@ -246,7 +232,7 @@ vector<string> Files::List(string directory)
 			continue;
 		
 		if(!(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
-			list.push_back(directory + ToUTF8(ffd.cFileName));
+			list.push_back(directory + Utf8::ToUTF8(ffd.cFileName));
 	} while(FindNextFileW(hFind, &ffd));
 	
 	FindClose(hFind);
@@ -277,6 +263,8 @@ vector<string> Files::List(string directory)
 	
 	closedir(dir);
 #endif
+
+	sort(list.begin(), list.end());
 	return list;
 }
 
@@ -292,7 +280,7 @@ vector<string> Files::ListDirectories(string directory)
 
 #if defined _WIN32
 	WIN32_FIND_DATAW ffd;
-	HANDLE hFind = FindFirstFileW(ToUTF16(directory + '*').c_str(), &ffd);
+	HANDLE hFind = FindFirstFileW(Utf8::ToUTF16(directory + '*').c_str(), &ffd);
 	if(!hFind)
 		return list;
 	
@@ -301,7 +289,7 @@ vector<string> Files::ListDirectories(string directory)
 			continue;
 		
 		if(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-			list.push_back(directory + ToUTF8(ffd.cFileName) + '/');
+			list.push_back(directory + Utf8::ToUTF8(ffd.cFileName) + '/');
 	} while(FindNextFileW(hFind, &ffd));
 	
 	FindClose(hFind);
@@ -336,6 +324,8 @@ vector<string> Files::ListDirectories(string directory)
 	
 	closedir(dir);
 #endif
+
+	sort(list.begin(), list.end());
 	return list;
 }
 
@@ -345,6 +335,7 @@ vector<string> Files::RecursiveList(const string &directory)
 {
 	vector<string> list;
 	RecursiveList(directory, &list);
+	sort(list.begin(), list.end());
 	return list;
 }
 
@@ -357,7 +348,7 @@ void Files::RecursiveList(string directory, vector<string> *list)
 	
 #if defined _WIN32
 	WIN32_FIND_DATAW ffd;
-	HANDLE hFind = FindFirstFileW(ToUTF16(directory + '*').c_str(), &ffd);
+	HANDLE hFind = FindFirstFileW(Utf8::ToUTF16(directory + '*').c_str(), &ffd);
 	if(hFind == INVALID_HANDLE_VALUE)
 		return;
 	
@@ -366,9 +357,9 @@ void Files::RecursiveList(string directory, vector<string> *list)
 			continue;
 		
 		if(!(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
-			list->push_back(directory + ToUTF8(ffd.cFileName));
+			list->push_back(directory + Utf8::ToUTF8(ffd.cFileName));
 		else
-			RecursiveList(directory + ToUTF8(ffd.cFileName) + '/', list);
+			RecursiveList(directory + Utf8::ToUTF8(ffd.cFileName) + '/', list);
 	} while(FindNextFileW(hFind, &ffd));
 	
 	FindClose(hFind);
@@ -410,7 +401,7 @@ bool Files::Exists(const string &filePath)
 {
 #if defined _WIN32
 	struct _stat buf;
-	return !_wstat(ToUTF16(filePath).c_str(), &buf);
+	return !_wstat(Utf8::ToUTF16(filePath).c_str(), &buf);
 #else
 	struct stat buf;
 	return !stat(filePath.c_str(), &buf);
@@ -423,7 +414,7 @@ time_t Files::Timestamp(const string &filePath)
 {
 #if defined _WIN32
 	struct _stat buf;
-	_wstat(ToUTF16(filePath).c_str(), &buf);
+	_wstat(Utf8::ToUTF16(filePath).c_str(), &buf);
 #else
 	struct stat buf;
 	stat(filePath.c_str(), &buf);
@@ -436,7 +427,7 @@ time_t Files::Timestamp(const string &filePath)
 void Files::Copy(const string &from, const string &to)
 {
 #if defined _WIN32
-	CopyFileW(ToUTF16(from).c_str(), ToUTF16(to).c_str(), false);
+	CopyFileW(Utf8::ToUTF16(from).c_str(), Utf8::ToUTF16(to).c_str(), false);
 #else
 	Write(to, Read(from));
 #endif
@@ -447,7 +438,7 @@ void Files::Copy(const string &from, const string &to)
 void Files::Move(const string &from, const string &to)
 {
 #if defined _WIN32
-	MoveFileExW(ToUTF16(from).c_str(), ToUTF16(to).c_str(), MOVEFILE_REPLACE_EXISTING);
+	MoveFileExW(Utf8::ToUTF16(from).c_str(), Utf8::ToUTF16(to).c_str(), MOVEFILE_REPLACE_EXISTING);
 #else
 	rename(from.c_str(), to.c_str());
 #endif
@@ -458,7 +449,7 @@ void Files::Move(const string &from, const string &to)
 void Files::Delete(const string &filePath)
 {
 #if defined _WIN32
-	DeleteFileW(ToUTF16(filePath).c_str());
+	DeleteFileW(Utf8::ToUTF16(filePath).c_str());
 #else
 	unlink(filePath.c_str());
 #endif
@@ -479,7 +470,7 @@ string Files::Name(const string &path)
 FILE *Files::Open(const string &path, bool write)
 {
 #if defined _WIN32
-	return _wfopen(ToUTF16(path).c_str(), write ? L"w" : L"rb");
+	return _wfopen(Utf8::ToUTF16(path).c_str(), write ? L"w" : L"rb");
 #else
 	return fopen(path.c_str(), write ? "wb" : "rb");
 #endif
@@ -544,7 +535,14 @@ void Files::LogError(const string &message)
 	lock_guard<mutex> lock(errorMutex);
 	cerr << message << endl;
 	if(!errorLog)
+	{
 		errorLog = File(config + "errors.txt", true);
+		if(!errorLog)
+		{
+			cerr << "Unable to create \"errors.txt\" " << (config.empty() ? "in current directory" : "in \"" + config + "\"") << endl;
+			return;
+		}
+	}
 	
 	Write(errorLog, message);
 	fwrite("\n", 1, 1, errorLog);

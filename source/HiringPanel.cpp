@@ -12,7 +12,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "HiringPanel.h"
 
-#include "FillShader.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -47,10 +46,7 @@ void HiringPanel::Draw()
 		return;
 	const Ship &flagship = *player.Flagship();
 	
-	// Draw a line in the same place as the trading and bank panels.
-	FillShader::Fill(Point(-60., 95.), Point(480., 1.), *GameData::Colors().Get("medium"));
-	
-	const Interface *interface = GameData::Interfaces().Get("hiring");
+	const Interface *hiring = GameData::Interfaces().Get("hiring");
 	Information info;
 	
 	int flagshipBunks = flagship.Attributes().Get("bunks");
@@ -97,7 +93,7 @@ void HiringPanel::Draw()
 	if(maxFire)
 		info.SetCondition("can fire");
 	
-	interface->Draw(info, this);
+	hiring->Draw(info, this);
 }
 
 
@@ -107,12 +103,12 @@ bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	if(!player.Flagship())
 		return false;
 	
-	if(key == 'h' || key == '=' || key == SDLK_RETURN || key == SDLK_SPACE)
+	if(key == 'h' || key == SDLK_EQUALS || key == SDLK_KP_PLUS || key == SDLK_PLUS || key == SDLK_RETURN || key == SDLK_SPACE)
 	{
 		player.Flagship()->AddCrew(min(maxHire, Modifier()));
 		player.UpdateCargoCapacities();
 	}
-	else if(key == 'f' || key == '-' || key == SDLK_BACKSPACE || key == SDLK_DELETE)
+	else if(key == 'f' || key == SDLK_MINUS || key == SDLK_KP_MINUS || key == SDLK_BACKSPACE || key == SDLK_DELETE)
 	{
 		player.Flagship()->AddCrew(-min(maxFire, Modifier()));
 		player.UpdateCargoCapacities();

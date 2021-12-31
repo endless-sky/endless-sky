@@ -15,7 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Format.h"
+#include "text/Format.h"
 
 #include <SDL2/SDL.h>
 
@@ -125,8 +125,8 @@ void Command::LoadSettings(const string &path)
 	for(const auto &it : description)
 		commands[it.second] = it.first;
 	
-	// Each command can only have one keycode, but misconfigured settings can
-	// temporarily cause one keycode to be used for two commands.
+	// Each command can only have one keycode, one keycode can be assigned
+	// to multiple commands.
 	for(const DataNode &node : file)
 	{
 		auto it = commands.find(node.Token(0));
@@ -156,11 +156,11 @@ void Command::SaveSettings(const string &path)
 {
 	DataWriter out(path);
 	
-	for(const auto &it : commandForKeycode)
+	for(const auto &it : keycodeForCommand)
 	{
-		auto dit = description.find(it.second);
+		auto dit = description.find(it.first);
 		if(dit != description.end())
-			out.Write(dit->second, it.first);
+			out.Write(dit->second, it.second);
 	}
 }
 
@@ -217,6 +217,54 @@ bool Command::HasConflict() const
 	
 	auto cit = keycodeCount.find(it->second);
 	return (cit != keycodeCount.end() && cit->second > 1);
+}
+
+
+
+// Load this command from an input file (for testing or scripted missions).
+void Command::Load(const DataNode &node)
+{
+	for(int i = 1; i < node.Size(); ++i)
+	{
+		static const map<string, Command> lookup = {
+			{"none", Command::NONE},
+			{"menu", Command::MENU},
+			{"forward", Command::FORWARD},
+			{"left", Command::LEFT},
+			{"right", Command::RIGHT},
+			{"back", Command::BACK},
+			{"primary", Command::PRIMARY},
+			{"secondary", Command::SECONDARY},
+			{"select", Command::SELECT},
+			{"land", Command::LAND},
+			{"board", Command::BOARD},
+			{"hail", Command::HAIL},
+			{"scan", Command::SCAN},
+			{"jump", Command::JUMP},
+			{"target", Command::TARGET},
+			{"nearest", Command::NEAREST},
+			{"deploy", Command::DEPLOY},
+			{"afterburner", Command::AFTERBURNER},
+			{"cloak", Command::CLOAK},
+			{"map", Command::MAP},
+			{"info", Command::INFO},
+			{"fullscreen", Command::FULLSCREEN},
+			{"fastforward", Command::FASTFORWARD},
+			{"fight", Command::FIGHT},
+			{"gather", Command::GATHER},
+			{"hold", Command::HOLD},
+			{"ammo", Command::AMMO},
+			{"wait", Command::WAIT},
+			{"stop", Command::STOP},
+			{"shift", Command::SHIFT}
+		};
+		
+		auto it = lookup.find(node.Token(i));
+		if(it != lookup.end())
+			Set(it->second);
+		else
+			node.PrintTrace("Skipping unrecognized command \"" + node.Token(i) + "\":");
+	}
 }
 
 

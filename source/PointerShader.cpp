@@ -39,6 +39,8 @@ namespace {
 void PointerShader::Init()
 {
 	static const char *vertexCode =
+		"// vertex pointer shader\n"
+		"precision mediump float;\n"
 		"uniform vec2 scale;\n"
 		"uniform vec2 center;\n"
 		"uniform vec2 angle;\n"
@@ -56,7 +58,9 @@ void PointerShader::Init()
 		"}\n";
 
 	static const char *fragmentCode =
-		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
+		"// fragment pointer shader\n"
+		"precision mediump float;\n"
+		"uniform vec4 color;\n"
 		"uniform vec2 size;\n"
 		
 		"in vec2 coord;\n"
@@ -66,8 +70,8 @@ void PointerShader::Init()
 		"  float height = (coord.x + coord.y) / size.x;\n"
 		"  float taper = height * height * height;\n"
 		"  taper *= taper * .5 * size.x;\n"
-		"  float alpha = clamp(.8 * min(coord.x, coord.y) - taper, 0, 1);\n"
-		"  alpha *= clamp(1.8 * (1. - height), 0, 1);\n"
+		"  float alpha = clamp(.8 * min(coord.x, coord.y) - taper, 0.f, 1.f);\n"
+		"  alpha *= clamp(1.8 * (1. - height), 0.f, 1.f);\n"
 		"  finalColor = color * alpha;\n"
 		"}\n";
 	

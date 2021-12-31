@@ -43,7 +43,9 @@ class Projectile;
 class Ship;
 class ShipEvent;
 class Sprite;
+class TestContext;
 class Visual;
+class Weather;
 
 
 
@@ -79,10 +81,18 @@ public:
 	// Draw a frame.
 	void Draw() const;
 	
+	// Set the given TestContext in the next step of the Engine.
+	void SetTestContext(TestContext &newTestContext);
+	
 	// Select the object the player clicked on.
 	void Click(const Point &from, const Point &to, bool hasShift);
 	void RClick(const Point &point);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
+	
+	// Break targeting on all projectiles between the player and the given
+	// government; gov projectiles stop targeting the player and player's
+	// projectiles stop targeting gov.
+	void BreakTargeting(const Government *gov);
 	
 	
 private:
@@ -95,6 +105,7 @@ private:
 	
 	void SpawnFleets();
 	void SpawnPersons();
+	void GenerateWeather();
 	void SendHails();
 	void HandleKeyboardInputs();
 	void HandleMouseClicks();
@@ -102,6 +113,7 @@ private:
 	void FillCollisionSets();
 	
 	void DoCollisions(Projectile &projectile);
+	void DoWeather(Weather &weather);
 	void DoCollection(Flotsam &flotsam);
 	void DoScanning(const std::shared_ptr<Ship> &ship);
 	
@@ -141,6 +153,7 @@ private:
 	
 	std::list<std::shared_ptr<Ship>> ships;
 	std::vector<Projectile> projectiles;
+	std::vector<Weather> activeWeather;
 	std::list<std::shared_ptr<Flotsam>> flotsam;
 	std::vector<Visual> visuals;
 	AsteroidField asteroids;
@@ -220,6 +233,9 @@ private:
 	Point clickPoint;
 	Rectangle clickBox;
 	int groupSelect = -1;
+	
+	// Input, Output and State handling for automated tests.
+	TestContext *testContext = nullptr;
 	
 	double zoom = 1.;
 	
