@@ -380,6 +380,12 @@ mission "Unfettered returning home"
 
 
 
+phrase "Essential Unfettered Mission Fail"
+	word
+		`You have failed an essential Unfettered mission. You may want to reload.`
+
+
+
 mission "Unfettered: Neutral With The Hai"
 	name `Get forgiven by the Hai`
 	description `The Unfettered have asked you to go negotiate with the Hai to stop your conflict with them. Go to <destination>.`
@@ -422,7 +428,7 @@ mission "Unfettered: Neutral With The Hai"
 			`	The leaders gasp, and then, in a moment that seems to last forever, there is silence whilst everyone is looking at you. The silence is shattered when the guards start shooting. They probably did not intend to kill you outright, but apparently they see you as enough of a threat that the result is the same.`
 				die
 		"reputation: Hai" >?= 1
-		log `Convinced the Hai to stop their conflict with me.`
+		log `Convinced the Hai to stop their conflict with me, as request by an Unfettered elder.`
 
 
 
@@ -496,6 +502,8 @@ mission "Unfettered: Bring Hai"
 	
 	on stopover
 		dialog `The Hai seem happy to get on your ship, now return to <origin> with them.`
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -543,7 +551,7 @@ mission "Unfettered: Bring Medical Supplies"
 	on stopover
 		dialog `You are surprised to see the Hai are more than happy to give you the medical supplies needed. They load up the cargo and once they are done one of they addresses you, "Tell our brothers and sisters to stay strong, hopefully it is not too late," he says with determination. Hopefully these supplies will help to make a difference.`
 	on fail
-		dialog `You have failed an essential Unfettered mission. You may want to reload.`
+		dialog phrase "Essential Unfettered Mission Fail"
 	
 	on complete
 		log `Brought medial supplies to Darkcloak when it was in great need of them, to prevent an epidemic.`
@@ -642,7 +650,7 @@ mission "Unfettered: Prove Your Strength"
 				"reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)" + 15
 			`	"Hopefully we see each other again, sometime." He and his crew seem quite busy with the repairs. I have transferred a small amount of <payment> credits to you to repair any damage I may have done to your ship. I will be landing on the surface soon, to think about something else than this humiliating defeat I have just suffered. I do not need nor want your assistance in repairing damage, for that is a task best suited for the vanquished.`
 	on fail
-		dialog `You have failed an essential Unfettered mission. You may want to reload.`
+		dialog phrase "Essential Unfettered Mission Fail"
 
 
 
@@ -713,7 +721,7 @@ mission "Unfettered: Prove Your Strength 2"
 	on visit
 		dialog `You left your escort allocated to carrying the jump drives behind, better launch and wait for it. Either that or you have not went to <destination> to get the jump drives.`
 	on fail
-		dialog `You have failed an essential Unfettered mission. You may want to reload.`
+		dialog phrase "Essential Unfettered Mission Fail"
 	to complete
 		has "Unfettered: Jump Drive Retrieval: offered"
 	on complete
@@ -915,6 +923,8 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 				"Geocoris"
 		dialog `You have scanned the Geocoris. You may now return to <destination> with the scanner logs.`
 	
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
 		dialog `You have not scanned the Geocoris yet, go to Ya Hai to scan it, and come back here.`
 	on complete
@@ -1033,8 +1043,9 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		ship "Far Osk 27" "Vixen"
 		ship "Far Osk 27" "Anger"
 		ship "Far Osk 27" "Dart"
+	
 	on fail
-		dialog `You have failed an essential Unfettered mission. You may want to reload.`
+		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
 		dialog `You are offered some very good beverages to keep you waiting, even by your standards. They probably know of your mission. After a while, the Alpha ship goes away, you can now go back to <origin> with the scanner logs.`
 
@@ -1049,7 +1060,7 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 	to offer
 		has "Unfettered: Solifuge 2: Auxiliary Design: done"
 	on fail
-		dialog `You have failed an essential Unfettered mission. You may want to reload.`
+		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
 		log `Scanned an Auxiliary for the Unfettered, I wonder what it was doing so far from Republic space, and with alien technology. The fact that Alphas were on it probably has something to do with that.`
 		payment 300000
@@ -1151,7 +1162,7 @@ mission "Unfettered: Escort Hai Fleet"
 		fleet "Small Northern Pirates" 2
 	
 	on fail
-		dialog `You have failed an essential Unfettered mission. You may want to reload.`
+		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
 		clear "stopped on Greenbloom"
 		log `Escorted a Hai fleet carying supplies and passengers into Unfettered space during a truce.`
@@ -1251,8 +1262,6 @@ mission "Unfettered: Pirate Help"
 	
 	to fail
 		has "defeated scar's legion"
-	on fail
-		dialog `You have failed an essential Unfettered mission. You may want to reload.`
 	on visit
 		dialog `Go to the spaceport to talk to the local authorities on <stopovers> about the pirate problem.`
 	to complete
@@ -1389,7 +1398,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 	to fail
 		has "Wanderers: Defend Vara Ke'sok: done"
 	on fail
-		dialog `You have failed an essential Unfettered mission. You may want to reload.`
+		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
 		dialog `You have landed but without the Alpha Auxiliary and its cargo of Jump Drives. Go and find traces of fuel from it, in systems neighboring Hi Yahr. Do not forget to land on the Alpha base to recover any information, jump drives it may have!`
 	to complete
@@ -1541,6 +1550,8 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 			variant
 				"Water Bug"
 	
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
 		log `Gathered materials for the Unfettered shipyards, I saw some big ships in construction there, I wonder what they could be.`
 		outfit "Silicon" -100
@@ -1663,7 +1674,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 		ship "Firebird" "Valkiry"
 	
 	on fail
-		dialog `You have failed an essential Unfettered mission. You may want to reload.`
+		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
 		dialog `You have landed on <origin> but you do not have the spoils yet, or they are in one of your escort.`
 	on complete
@@ -1775,7 +1786,7 @@ mission "Unfettered: The Word Has Spread"
 	on visit
 		dialog phrase "generic stopover on visit"
 	on fail
-		dialog `You have failed an essential Unfettered mission. You may want to reload.`
+		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
 		log `Gathered all the Hai who wanted to join the Unfettered that I could find.`
 		payment 5000000
@@ -1998,7 +2009,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 				accept
 	
 	on fail
-		dialog `You have failed an essential Unfettered mission. You may want to reload.`
+		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
 		log `Gathered intel on a Hai shipyard for the Unfettered, hopefully I will be able to buy Shield Beetles from them soon.`
 		payment 250000
@@ -2187,6 +2198,8 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 			`	"Be sure to bring back 300 tons of them, so we have a solid base to work on. They will probably be very fragile and primitive, try to bring us nitrogen coolers. Do not bring us stupid things like simple water based systems."`
 				accept
 	
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
 		dialog `You do not yet have 300 tons of nitrogen human coolers that Taer-Fi requested in your cargo hold or installed on your ships. (Unselect your ship with ctrl+click to load in the cargo hold.)`
 	on complete
@@ -2254,7 +2267,7 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 	on stopover
 		dialog `You find your cargo waiting for you, without anyone nearby as planned and take it without asking questions or losing time.`
 	on fail
-		dialog `You have failed an essential Unfettered mission. You may want to reload.`
+		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
 		log `I helped the Unfettered upgrade their shipyards and received a brand new ship! It appears to be a prototype, quite an unstable one at that. However, shield beetles will have to wait.`
 		give ship "Shield Beetle Prototype" "Basilisk"
@@ -2362,7 +2375,7 @@ mission "Unfettered: Special Cargo"
 	on visit
 		dialog `You do not have the item He Yi asked for. It may be in one of your escorts. Or you have not brought the right item back. If that is the case, go back and board the ship to take the right item.`
 	on fail
-		dialog `You have failed an essential Unfettered mission. You may want to reload.`
+		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
 		require "Mystery Cube"
 
@@ -2549,6 +2562,8 @@ mission "Unfettered: Special Cargo 2"
 		dialog `You land and the Hai start loading their food on your ship. You pretend to want to go outside a bit because you have been crammed in a spaceship for too long (which is actually kind of true), and they do not appear to be suspecting a thing. You find a clearing, in which you happily dig the cube in. You remember to mark the exact spot. And then come back to your ship.`
 		
 	
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
 		log `Placed a mysterious cube in a clearing on Everhope. It should give intel on Hai ship movements to the Unfettered.`
 		payment 5000000
@@ -2663,6 +2678,8 @@ mission "Unfettered: Close Quarter"
 				`	"I have no interested in bringing you weapons, even the least deadly."`
 					decline
 	
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
 		dialog `You have not yet brought any kinds of less deadly weapons to Ya Hi, look harder!`
 	to complete
@@ -2777,6 +2794,85 @@ mission "Unfettered: Non Lethal Weapons Hint"
 
 
 
+mission "Unfettered: Know Your Enemy"
+	name `Approach the enemy and learn to communicate`
+	description `You should use your status of independant from the Unfettered to scan all of Wanderer space. Also, you need to be able to communicate with the enemy.`
+	source "Firelode"
+	to offer
+		has "Unfettered: The Word Has Spread: done"
+	on offer
+		conversation
+			`Going in the spaceport, you notice buildings are not as ravaged as before. Maybe this is due to a newly found interest for the Unfettered to restore their past. It could also be because many Hai came and brought with them technique, materials, and they themselves require housing too. Whatever the case is, this does not look like a place of conflict anymore. It looks like a place of hope.`
+			`	An Unfettered messager approaches you, and notices you looking all over the place, almost with wonder. "Increadible, is it not? To see hope on the face of buildings and on the face of people. I am here to say that it is time you learn how to communicate with us with the True language of the Hai. Not only with us, you also need to be able to make demands to the aliens up North, and there is only one appropriate language for it. We have learned that they too speak Hai, even if they disgrace our language by doing so."`
+			branch speakhai
+				not "language: Wanderer"
+			choice
+				`	"I already speak Hai. I have a translator but I did not show it to you yet, worried of how you may react."`
+			`	"That is wonderful! Good initiative. But there still is something we would like you to do. Scout all of their systems for us, and bring back any information you may gather."`
+			choice
+				`	"I will do it."`
+					accept
+				`	"No. I will not help you anymore."`
+					decline
+			label speakhai
+			choice
+				`	"How can I learn Hai?"`
+				`	"Is there some kind of translator?"`
+					goto translator
+			`	"Well to be frank we do not have to ability to teach all of its nuances to you in time. However we believe that our brethren do have some way of doing that, given how apt they are with languages, and how keen they are to meet new races."`
+			label translator
+			`	"We think our Hai brethren may indeed have what we need, but we need a way to convince them to give it to you. You should go and meet the aliens up North, and speak with them. Propose a contact with the rest of the Hai, so they may see how pathethic this alien race is. They may not allow you to land at all of them planets, because they are distrusfull of newcomers, probably because of our actions. Go and see how pathethic these wanderers are."`
+			branch neutral
+				has "reputation: Wanderer" >= 0"
+			choice
+				`	"But I am at war with them already."`
+			`	"We know. Here is a Hai message you will transmit to them, they should listen to reason once you do. Actually they should behave as though they have never seen you before... It is probably best you do not know what is in this message though. You need to make the Hai see this new alien race as an ambassador between our races. The Hai would not believe anything if it came from us. And we do not want to drag our brethren into a conflict that is ours, we are the warriors, not them."`
+			action
+				"reputation: Wanderer" = 1
+			label neutral
+			`	"Do scout all of their systems for us, and bring back any information you may gather."`
+			choice
+				`	"I guess I will try to land on their planets."`
+					accept
+				`	"I am not interested in being able to communicate with them."`
+			`	"Well if you want to work with us then you will have to set that preferance aside. And do not forget the translator is for communicating with us as well. Some among the most conversative of us despise speaking in your language... This will be a token of good faith on your part."`
+			choice
+				`	"I guess I will try to land on their planets."`
+					accept
+				`	"I will not work for you anymore then."`
+					decline
+	
+	on enter "Chy'chra" "Prakacha'a" "Pik'ro'iyak"
+		dialog `It seems like the message you are broadcasting works, the wanderer are not attacking you for now. But you should be very carreful not to anger them again, because there is little chance they would forgive you again.`
+	waypoint "Chy'chra"
+	waypoint "Prakacha'a"
+	waypoint "Pik'ro'iyak"
+	waypoint "Ik'kara'ka"
+	waypoint "Chirr'ay'akai"
+	waypoint "Sich'ka'ara"
+	waypoint "Kiro'ku"
+	waypoint "Ka'pru"
+	waypoint "Ap'arak"
+	waypoint "Ka'ch'chrai"
+	waypoint "Sko'karak"
+	waypoint "Ek'kek'ru"
+	waypoint "Si'yak'ku"
+	waypoint "Iyech'yek"
+	waypoint "Kiru'kichi"
+	waypoint "Aya'k'k"
+	waypoint "Es'sprak'ai"
+	
+	on waypoint
+		dialog `You have scouted all of the wanderer's systems. If you can somehow speak Hai already, it is time to come back to <destination>, for a reward.`
+	to complete
+		has "language: Wanderer"
+	on complete
+		log `The Unfettered asked me to be able to speak like a True Hai, because that is the language in which I should make demands to the Unfettered later.`
+		payment 1000000
+		dialog `You find the messenger back. "Now you can speak to us like a True Hai, finally. By respect to you, we will keep speaking to you in your language. Except for some maybe... You only should use the translator to speak and understand our elders, or at least some of them. They will probably do as if they noticed nothing, but trust me, they care. Oh and here are <payment> for the intel, we could not have gotten it so easily given they shoot our ships on sight."`
+
+
+
 ship "Shield Beetle Prototype" "Shield Beetle Prototype (Black)"
 	sprite "ship/hai marauder shield beetle"
 	add attributes
@@ -2789,9 +2885,9 @@ mission "Unfettered: Start Of The War"
 	to offer
 		has "event: shield beetle mass production"
 		has "event: new cooling system"
-		has "Unfettered: The Word Has Spread: done"
 		has "Unfettered: Special Cargo 2: done"
 		has "main plot completed"
+		has "language: Wanderer"
 	on offer
 		conversation
 			`You find Si-Ra and Hi-Ye waiting for you on the spaceport. Si-Ra starts speaking to you, "Are you ready for war, <last>?"`
@@ -2820,13 +2916,16 @@ mission "Unfettered: Start Of The War"
 				event "shield beetles accessible"
 			`	"You sure know how to fight, but sheer firepower may not be enough, you should still train more before we are ready to start the war. Also we will require more jump drives than what we currently have, because our Alpha supplies have been disrupted by your actions."`
 	
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
 		log `Officialy joined the Unfettered Militia. It should be the last time I have to prove my worth to them. At the very least I may now buy all of their ships with this license.`
 		"salary: Unfettered" = 5000
 		set "license: Unfettered Militia"
 		event "joined the unfettered"
+		"reputation: Wanderer" <?= -1000
 		conversation
-			`He Yi rejoins you on your ship after having parked his, which looks like it is not in the best shape... "We will notify you once you may be of help to the war effort. In the mean time, we have increased your salary to 5000 so you can muster an even larger fleet. Also from now on you will officially have the permission, nay, the obligation to proudly wear our colors. We have signaled this change of colors to the Hai meaning they will not change their behavior with you, recognizing your signature."`
+			`He Yi rejoins you on your ship after having parked his, which looks like it is not in the best shape... "We will notify you once you may be of help to the war effort. In the mean time, we have increased your salary to 5000 so you can muster an even larger fleet. Also from now on you will officially have the permission, nay, the obligation to proudly wear our colors. We have signaled this change of colors to the Hai meaning they will not change their behavior with you, recognizing your signature. We cannot say the same for the wanderers though so be carreful."`
 			`	He then draws his long sword, that has the same appearance as keystone. You stand back, worried he might attack you for some reason but instead he hands it to you. "You have also deserved the right to have this. It is a proof of our trust towards you and means you will be able to buy all of our ships. Whenever a warlord is defeated in battle he has to surrender his sword to the one who vanquished him."`
 			choice
 				`	"I am honoured."`
