@@ -362,6 +362,8 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 		int mapSize = selectedOutfit->Get("map");
 		if(mapSize > 0)
 		{
+			if (player.HasMapped(mapSize))
+				return;
 			player.Map(mapSize);
 			int64_t price = player.StockDepreciation().Value(selectedOutfit, day);
 			player.Accounts().AddCredits(-price);
