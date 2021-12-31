@@ -2803,7 +2803,7 @@ mission "Unfettered: Know Your Enemy"
 	on offer
 		conversation
 			`Going in the spaceport, you notice buildings are not as ravaged as before. Maybe this is due to a newly found interest for the Unfettered to restore their past. It could also be because many Hai came and brought with them technique, materials, and they themselves require housing too. Whatever the case is, this does not look like a place of conflict anymore. It looks like a place of hope.`
-			`	An Unfettered messager approaches you, and notices you looking all over the place, almost with wonder. "Increadible, is it not? To see hope on the face of buildings and on the face of people. I am here to say that it is time you learn how to communicate with us with the True language of the Hai. Not only with us, you also need to be able to make demands to the aliens up North, and there is only one appropriate language for it. We have learned that they too speak Hai, even if they disgrace our language by doing so."`
+			`	An Unfettered messager approaches you, and notices you looking all over the place, almost with wonder. "Incredible, is it not? To see hope on the face of buildings and on the face of people. I am here to say that it is time you learn how to communicate with us with the True language of the Hai. Not only with us, you also need to be able to make demands to the aliens up North, and there is only one appropriate language for it. We have learned that they too speak Hai, even if they disgrace our language by doing so."`
 			branch speakhai
 				not "language: Wanderer"
 			choice
