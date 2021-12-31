@@ -1,0 +1,145 @@
+/* test_firecommand.cpp
+Copyright (c) 2021 by quyykk
+
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+*/
+
+#include "es-test.hpp"
+
+// Include only the tested class's header.
+#include "../../source/FireCommand.h"
+
+// ... and any system includes needed for the test file.
+
+namespace { // test namespace
+
+// #region mock data
+// #endregion mock data
+
+
+
+// #region unit tests
+SCENARIO( "Creating a FireCommand instance", "[firecommand]") {
+	GIVEN( "an instance" ) {
+		FireCommand command;
+		THEN( "it has the correct default properties" ) {
+			CHECK_FALSE( command.IsFiring() );
+			CHECK_FALSE( command.HasFire(0) );
+			CHECK_FALSE( command.Aim(0) );
+		}
+	}
+}
+
+SCENARIO( "A FireCommand instance is being copied", "[firecommand]" ) {
+	FireCommand command;
+	GIVEN( "a specific bitset" ) {
+		command.SetHardpoints(5);
+		command.SetFire(0);
+		command.SetFire(3);
+		command.SetAim(2, 1.);
+
+		WHEN( "the copy is made" ) {
+			auto copy = command;
+			THEN( "the copy has the correct properties" ) {
+				CHECK( copy.IsFiring() == command.IsFiring() );
+				CHECK( copy.HasFire(0) == command.HasFire(0) );
+				CHECK( copy.HasFire(1) == command.HasFire(1) );
+				CHECK( copy.HasFire(2) == command.HasFire(2) );
+				CHECK( copy.HasFire(3) == command.HasFire(3) );
+				CHECK( copy.HasFire(4) == command.HasFire(4) );
+				CHECK( copy.Aim(0) == Approx(command.Aim(0)) );
+				CHECK( copy.Aim(1) == Approx(command.Aim(1)) );
+				CHECK( copy.Aim(2) == Approx(command.Aim(2)) );
+				CHECK( copy.Aim(3) == Approx(command.Aim(3)) );
+				CHECK( copy.Aim(4) == Approx(command.Aim(4)) );
+			}
+			THEN( "the two bitsets are independent" ) {
+				command.SetAim(1, -1.);
+				CHECK( command.Aim(1) == Approx(-1) );
+				CHECK_FALSE( copy.Aim(0) );
+
+				copy.SetFire(4);
+				CHECK_FALSE( command.HasFire(4) );
+				CHECK( copy.HasFire(4) );
+			}
+		}
+	}
+}
+
+SCENARIO( "A FireCommand instance is being used", "[firecommand]") {
+	GIVEN( "an empty FireCommand" ) {
+		FireCommand command;
+		THEN( "resizing it works" ) {
+			command.SetHardpoints(20);
+			command.SetFire(18);
+			CHECK( command.HasFire(18) );
+		}
+	}
+	GIVEN( "a FireCommand of a specific size" ) {
+		FireCommand command;
+		command.SetHardpoints(10);
+
+		THEN( "setting and testing weapon works" ) {
+			CHECK_FALSE( command.IsFiring() );
+
+			command.SetAim(4, -1.);
+			CHECK_FALSE( command.HasFire(4) );
+			CHECK( command.Aim(4) == Approx(-1.) );
+
+			CHECK_FALSE( command.HasFire(5) );
+			command.SetFire(5);
+			CHECK( command.HasFire(5) );
+
+			CHECK( command.IsFiring() );
+		}
+		THEN( "clearing it works" ) {
+			command.SetFire(3);
+			command.SetAim(2, 1.);
+			CHECK( command.HasFire(3) );
+			CHECK( command.Aim(2) == Approx(1.) );
+			CHECK( command.IsFiring() );
+
+			command.Clear();
+			CHECK_FALSE( command.HasFire(3) );
+			CHECK_FALSE( command.Aim(2) == Approx(1.) );
+			CHECK_FALSE( command.IsFiring() );
+		}
+	}
+	GIVEN( "two non-empty FireCommands" ) {
+		FireCommand one;
+		one.SetHardpoints(4);
+		one.SetFire(3);
+		one.SetFire(2);
+
+		FireCommand two;
+		two.SetHardpoints(3);
+		two.SetFire(1);
+
+		THEN( "UpdateWith works" ) {
+			two.UpdateWith(one);
+			CHECK_FALSE( two.HasFire(0) );
+			CHECK_FALSE( two.HasFire(1) );
+			CHECK( two.HasFire(2) );
+		}
+	}
+}
+
+// Test code goes here. Preferably, use scenario-driven language making use of the SCENARIO, GIVEN,
+// WHEN, and THEN macros. (There will be cases where the more traditional TEST_CASE and SECTION macros
+// are better suited to declaration of the public API.)
+
+// When writing assertions, prefer the CHECK and CHECK_FALSE macros when probing the scenario, and prefer
+// the REQUIRE / REQUIRE_FALSE macros for fundamental / "validity" assertions. If a CHECK fails, the rest
+// of the block's statements will still be evaluated, but a REQUIRE failure will exit the current block.
+
+// #endregion unit tests
+
+
+
+} // test namespace
