@@ -26,6 +26,13 @@ const string &Effect::Name() const
 
 
 
+void Effect::SetName(const string &name)
+{
+	this->name = name;
+}
+
+
+
 void Effect::Load(const DataNode &node)
 {
 	if(node.Size() > 1)
@@ -39,6 +46,8 @@ void Effect::Load(const DataNode &node)
 			sound = Audio::Get(child.Token(1));
 		else if(child.Token(0) == "lifetime" && child.Size() >= 2)
 			lifetime = child.Value(1);
+		else if(child.Token(0) == "random lifetime" && child.Size() >= 2)
+			randomLifetime = child.Value(1);
 		else if(child.Token(0) == "velocity scale" && child.Size() >= 2)
 			velocityScale = child.Value(1);
 		else if(child.Token(0) == "random velocity" && child.Size() >= 2)

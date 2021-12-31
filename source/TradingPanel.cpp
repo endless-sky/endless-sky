@@ -15,9 +15,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Command.h"
 #include "FillShader.h"
-#include "Font.h"
-#include "FontSet.h"
-#include "Format.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -77,7 +77,7 @@ TradingPanel::~TradingPanel()
 		else
 			message += "for a total profit of " + Format::Credits(profit) + " credits.";
 		
-		Messages::Add(message);
+		Messages::Add(message, Messages::Importance::High);
 	}
 }
 
@@ -102,8 +102,6 @@ void TradingPanel::Draw()
 	const Color &selected = *GameData::Colors().Get("bright");
 	
 	int y = FIRST_Y;
-	FillShader::Fill(Point(-60., y + 15.), Point(480., 1.), unselected);
-	
 	font.Draw("Commodity", Point(NAME_X, y), selected);
 	font.Draw("Price", Point(PRICE_X, y), selected);
 	
@@ -203,7 +201,7 @@ void TradingPanel::Draw()
 		}
 	}
 	
-	const Interface *interface = GameData::Interfaces().Get("trade");
+	const Interface *tradeUi = GameData::Interfaces().Get("trade");
 	Information info;
 	if(sellOutfits)
 		info.SetCondition("can sell outfits");
@@ -211,21 +209,21 @@ void TradingPanel::Draw()
 		info.SetCondition("can sell");
 	if(player.Cargo().Free() > 0 && canBuy)
 		info.SetCondition("can buy");
-	interface->Draw(info, this);
+	tradeUi->Draw(info, this);
 }
 
 
 
 // Only override the ones you need; the default action is to return false.
-bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
+bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(key == SDLK_UP)
 		player.SetMapColoring(max(0, player.MapColoring() - 1));
 	else if(key == SDLK_DOWN)
 		player.SetMapColoring(max(0, min(COMMODITY_COUNT - 1, player.MapColoring() + 1)));
-	else if(key == '=' || key == SDLK_RETURN || key == SDLK_SPACE)
+	else if(key == SDLK_EQUALS || key == SDLK_KP_PLUS || key == SDLK_PLUS || key == SDLK_RETURN || key == SDLK_SPACE)
 		Buy(1);
-	else if(key == '-' || key == SDLK_BACKSPACE || key == SDLK_DELETE)
+	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS || key == SDLK_BACKSPACE || key == SDLK_DELETE)
 		Buy(-1);
 	else if(key == 'B' || (key == 'b' && (mod & KMOD_SHIFT)))
 		Buy(1000000000);

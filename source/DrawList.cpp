@@ -47,25 +47,19 @@ void DrawList::SetCenter(const Point &center, const Point &centerVelocity)
 // Add an object based on the Body class.
 bool DrawList::Add(const Body &body, double cloak)
 {
-	Point position = body.Position() - center;
-	Point blur = body.Velocity() - centerVelocity;
-	if(Cull(body, position, blur) || cloak >= 1.)
-		return false;
-	
-	Push(body, position, blur, cloak, 1., body.GetSwizzle());
-	return true;
+	return Add(body, body.Position(), cloak);
 }
 
 
 
-bool DrawList::Add(const Body &body, Point position)
+bool DrawList::Add(const Body &body, Point position, double cloak)
 {
 	position -= center;
 	Point blur = body.Velocity() - centerVelocity;
 	if(Cull(body, position, blur))
 		return false;
 	
-	Push(body, position, blur, 0., 1., body.GetSwizzle());
+	Push(body, std::move(position), std::move(blur), cloak, 1., body.GetSwizzle());
 	return true;
 }
 
@@ -79,19 +73,6 @@ bool DrawList::AddUnblurred(const Body &body)
 		return false;
 	
 	Push(body, position, blur, 0., 1., body.GetSwizzle());
-	return true;
-}
-
-
-
-bool DrawList::AddProjectile(const Body &body, const Point &adjustedVelocity, double clip)
-{
-	Point position = body.Position() + .5 * body.Velocity() - center;
-	Point blur = adjustedVelocity - centerVelocity;
-	if(Cull(body, position, blur) || clip <= 0.)
-		return false;
-	
-	Push(body, position, blur, 0., clip, body.GetSwizzle());
 	return true;
 }
 

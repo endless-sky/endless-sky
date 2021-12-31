@@ -38,11 +38,19 @@ public:
 	
 	// The planet panel calls this when it closes.
 	void OnCallback();
+	// The hail panel calls this when it closes.
+	void OnBribeCallback(const Government *bribed);
+	
+	// Forward the given TestContext to the Engine under MainPanel.
+	virtual void SetTestContext(TestContext &testContext) override;
+	
+	// The main panel allows fast-forward.
+	virtual bool AllowFastForward() const override;
 	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool RClick(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;

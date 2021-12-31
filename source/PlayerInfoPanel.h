@@ -36,10 +36,13 @@ public:
 	virtual void Step() override;
 	virtual void Draw() override;
 	
+	// The player info panel allow fast-forward to stay active.
+	virtual bool AllowFastForward() const override;
+	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
@@ -71,7 +74,9 @@ private:
 	// This is the index of the ship at the top of the fleet listing.
 	int scroll = 0;
 	Point hoverPoint;
+	// When the player is landed, they are able to change their flagship and reorder their fleet.
 	bool canEdit = false;
+	// When reordering ships, the names of ships being moved are displayed alongside the cursor.
 	bool isDragging = false;
 };
 

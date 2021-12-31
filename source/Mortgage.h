@@ -70,10 +70,10 @@ public:
 private:
 	// Note: once a mortgage is set up, only the principal and term will change.
 	std::string type;
-	int64_t principal;
-	double interest;
+	int64_t principal = 0;
+	double interest = 0.;
 	std::string interestString;
-	int term;
+	int term = 365;
 };
 
 

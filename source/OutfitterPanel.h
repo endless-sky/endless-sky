@@ -51,12 +51,12 @@ protected:
 	virtual int DividerOffset() const override;
 	virtual int DetailWidth() const override;
 	virtual int DrawDetails(const Point &center) override;
-	virtual bool CanBuy() const override;
-	virtual void Buy(bool fromCargo = false) override;
+	virtual bool CanBuy(bool checkAlreadyOwned = true) const override;
+	virtual void Buy(bool alreadyOwned = false) override;
 	virtual void FailBuy() const override;
-	virtual bool CanSell(bool toCargo = false) const override;
-	virtual void Sell(bool toCargo = false) override;
-	virtual void FailSell(bool toCargo = false) const override;
+	virtual bool CanSell(bool toStorage = false) const override;
+	virtual void Sell(bool toStorage = false) override;
+	virtual void FailSell(bool toStorage = false) const override;
 	virtual bool ShouldHighlight(const Ship *ship) override;
 	virtual void DrawKey() override;
 	virtual void ToggleForSale() override;
@@ -88,6 +88,9 @@ private:
 	std::set<Ship *> previousShips;
 	
 	Sale<Outfit> outfitter;
+	
+	// Keep track of how many of the outfitter help screens have been shown
+	bool checkedHelp = false;
 };
 
 

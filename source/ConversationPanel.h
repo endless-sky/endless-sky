@@ -15,7 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
-#include "WrappedText.h"
+#include "text/WrappedText.h"
 
 #include <functional>
 #include <list>
@@ -50,20 +50,21 @@ template <class T>
 	
 protected:
 	// Event handlers.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
+	virtual bool Hover(int x, int y) override;
 	
 	
 private:
 	// Go to the given conversation node. If a choice index is given, include
 	// the text of that choice in the conversation history.
-	void Goto(int index, int choice = -1);
+	void Goto(int index, int selectedChoice = -1);
 	// Exit this panel and do whatever needs to happen next, which includes
 	// possibly activating a callback function and, if docked with an NPC,
 	// destroying it or showing the BoardingPanel (if it is hostile).
 	void Exit();
-	// Handle  mouse click on the "ok," "done," or a conversation choice.
+	// Handle mouse click on the "ok," "done," or a conversation choice.
 	void ClickName(int side);
 	void ClickChoice(int index);
 	
@@ -129,6 +130,10 @@ private:
 	// acts upon (e.g. the ship failing a "flight check", or the NPC you
 	// have boarded).
 	std::shared_ptr<Ship> ship;
+
+	// Whether the mouse moved in the current frame.
+	bool isHovering = false;
+	Point hoverPoint;
 };
 
 

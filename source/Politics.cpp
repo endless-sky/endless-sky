@@ -1,4 +1,4 @@
-/* Politics.h
+/* Politics.cpp
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Politics.h"
 
-#include "Format.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Planet.h"
@@ -94,7 +94,7 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 			if(weight > 0.)
 			{
 				// If you bribe a government but then attack it, the effect of
-				// your bribe is cancelled out.
+				// your bribe is canceled out.
 				bribed.erase(other);
 				provoked.insert(other);
 			}
@@ -106,7 +106,7 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 			// friendly without the player's behavior toward one of them
 			// influencing their reputation with the other.
 			double penalty = (count * weight) * other->PenaltyFor(eventType);
-			if(eventType & ShipEvent::ATROCITY)
+			if(eventType & ShipEvent::ATROCITY && weight > 0)
 				reputationWith[other] = min(0., reputationWith[other]);
 			
 			reputationWith[other] -= penalty;
@@ -222,6 +222,8 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		if(ship->GetSystem() != player.GetSystem())
 			continue;
 		
+		int failedMissions = 0;
+		
 		if(!scan || (scan & ShipEvent::SCAN_CARGO))
 		{
 			int64_t fine = ship->Cargo().IllegalCargoFine();
@@ -232,6 +234,9 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 
 				for(const Mission &mission : player.Missions())
 				{
+					if(mission.IsFailed())
+						continue;
+					
 					// Append the illegalCargoMessage from each applicable mission, if available
 					string illegalCargoMessage = mission.IllegalCargoMessage();
 					if(!illegalCargoMessage.empty())
@@ -241,7 +246,10 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 					}
 					// Fail any missions with illegal cargo and "Stealth" set
 					if(mission.IllegalCargoFine() > 0 && mission.FailIfDiscovered())
+					{
 						player.FailMission(mission);
+						++failedMissions;
+					}
 				}
 			}
 		}
@@ -259,6 +267,11 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 						reason = " for having illegal outfits installed on your ship.";
 					}
 				}
+		}
+		if(failedMissions && maxFine > 0)
+		{
+			reason += "\n\tYou failed " + Format::Number(failedMissions) + ((failedMissions > 1) ? " missions" : " mission")
+				+ " after your illegal cargo was discovered.";
 		}
 	}
 	
