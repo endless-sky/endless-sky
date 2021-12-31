@@ -57,7 +57,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 {
 	assert(GameData::IsLoaded() && "MenuPanel should only be created after all data is fully loaded");
 	SetIsFullScreen(true);
-	
+
 	credits = Format::Split(Files::Read(Files::Resources() + "credits.txt"), "\n");
 	if(gamePanels.IsEmpty())
 	{
@@ -88,7 +88,7 @@ void MenuPanel::Draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
 	const Font &font = FontSet::Get(14);
-	
+
 	Information info;
 	if(player.IsLoaded() && !player.IsDead())
 	{
@@ -119,11 +119,11 @@ void MenuPanel::Draw()
 		info.SetCondition("no pilot loaded");
 		info.SetString("pilot", "No Pilot Loaded");
 	}
-	
+
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	GameData::Interfaces().Get("main menu")->Draw(info, this);
 	GameData::Interfaces().Get("menu player info")->Draw(info, this);
-	
+
 	// TODO: move this animation (e.g. to a non-fullscreen panel).
 	alpha -= .02f;
 	if(alpha > 0.f)
@@ -138,7 +138,7 @@ void MenuPanel::Draw()
 		}
 	}
 	// END animation TODO
-	
+
 	// TODO: allow pausing the credits scroll
 	int y = 120 - scroll / scrollSpeed;
 	for(const string &line : credits)
@@ -181,6 +181,6 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		GetUI()->Quit();
 	else
 		return false;
-	
+
 	return true;
 }

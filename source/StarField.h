@@ -35,33 +35,33 @@ class StarField {
 public:
 	void Init(int stars, int width);
 	void SetHaze(const Sprite *sprite, bool allowAnimation);
-	
+
 	void Draw(const Point &pos, const Point &vel, double zoom = 1.) const;
-	
-	
+
+
 private:
 	void SetUpGraphics();
 	void MakeStars(int stars, int width);
-	
-	
+
+
 private:
 	int widthMod;
 	int tileCols;
 	std::vector<int> tileIndex;
-	
+
 	// Track the haze sprite, so we can animate the transition between different hazes.
 	const Sprite *lastSprite;
 	mutable double transparency = 0.;
 	std::vector<Body> haze[2];
-	
+
 	Shader shader;
 	GLuint vao;
 	GLuint vbo;
-	
+
 	GLuint offsetI;
 	GLuint sizeI;
 	GLuint cornerI;
-	
+
 	GLuint scaleI;
 	GLuint rotateI;
 	GLuint elongationI;
