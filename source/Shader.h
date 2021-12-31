@@ -25,16 +25,16 @@ class Shader {
 public:
 	Shader() noexcept = default;
 	Shader(const char *vertex, const char *fragment);
-	
+
 	GLuint Object() const noexcept;
 	GLint Attrib(const char *name) const;
 	GLint Uniform(const char *name) const;
-	
-	
+
+
 private:
 	GLuint Compile(const char *str, GLenum type);
-	
-	
+
+
 private:
 	GLuint program;
 };
