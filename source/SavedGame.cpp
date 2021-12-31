@@ -61,7 +61,7 @@ void SavedGame::Load(const string &path)
 					break;
 				}
 		}
-		else if(node.Token(0) == "ship" && !shipSprite && ++flagshipIterator == flagshipTarget)
+		else if(node.Token(0) == "ship" && ++flagshipIterator == flagshipTarget)
 		{
 			for(const DataNode &child : node)
 			{
