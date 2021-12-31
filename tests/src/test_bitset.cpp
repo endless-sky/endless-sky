@@ -101,7 +101,7 @@ SCENARIO( "A Bitset instance is being used", "[bitset]") {
 			bitset.Clear();
 			CHECK( bitset.Size() == 0 );
 			CHECK( bitset.None() );
-			CHECK( !bitset.Any() );
+			CHECK_FALSE( bitset.Any() );
 		}
 	}
 	GIVEN( "two non-empty bitsets" ) {
@@ -123,6 +123,32 @@ SCENARIO( "A Bitset instance is being used", "[bitset]") {
 			CHECK( two.Intersects(one) );
 		}
 	}
+}
+
+TEST_CASE( "Large bitsets", "[bitset]") {
+	auto size = GENERATE(5, 10, 20, 35, 75, 100, 150, 350, 800, 1400, 2000, 3000, 4500, 6000);
+
+	Bitset bitset;
+	bitset.Resize(size);
+
+	REQUIRE( bitset.Size() >= size );
+	CHECK( bitset.Capacity() >= size );
+
+	CHECK( bitset.None() );
+	CHECK_FALSE( bitset.Any() );
+
+	// Test values at various indices.
+	auto increment = GENERATE(1, 3, 7, 13);
+	for(int i = 0; i < size; i += increment)
+		bitset.Set(i);
+	for(int i = 0; i < size; ++i)
+		if(i % increment)
+			CHECK_FALSE( bitset.Test(i) );
+		else
+			CHECK( bitset.Test(i) );
+
+	CHECK_FALSE( bitset.None() );
+	CHECK( bitset.Any() );
 }
 
 // Test code goes here. Preferably, use scenario-driven language making use of the SCENARIO, GIVEN,
