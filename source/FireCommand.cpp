@@ -32,7 +32,7 @@ namespace {
 // Sets the specified amount of hardpoints desired.
 void FireCommand::SetHardpoints(size_t count)
 {
-	weapon.resize(count);
+	weapon.Resize(count);
 	aim.resize(count);
 }
 
@@ -51,7 +51,7 @@ void FireCommand::AssignSubsetOf(const FireCommand &other)
 // Reset this to an empty command.
 void FireCommand::Clear()
 {
-	weapon.clear();
+	weapon.Clear();
 	aim.clear();
 }
 
@@ -60,9 +60,9 @@ void FireCommand::Clear()
 // Check if this command includes a command to fire the given weapon.
 bool FireCommand::HasFire(int index) const
 {
-	if(index < 0 || index >= static_cast<int>(weapon.size()))
+	if(index < 0 || index >= static_cast<int>(weapon.Size()))
 		return false;
-	return weapon.test(index);
+	return weapon.Test(index);
 }
 
 
@@ -70,9 +70,9 @@ bool FireCommand::HasFire(int index) const
 // Add to this set of commands a command to fire the given weapon.
 void FireCommand::SetFire(int index)
 {
-	if(index < 0 || index >= static_cast<int>(weapon.size()))
+	if(index < 0 || index >= static_cast<int>(weapon.Size()))
 		return;
-	weapon.set(index);
+	weapon.Set(index);
 }
 
 
@@ -80,7 +80,7 @@ void FireCommand::SetFire(int index)
 // Check if any weapons are firing.
 bool FireCommand::IsFiring() const
 {
-	return weapon.any();
+	return weapon.Any();
 }
 
 

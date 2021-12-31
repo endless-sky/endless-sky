@@ -29,25 +29,25 @@ public:
 
 public:
 	// Returns the number of bits this bitset can hold.
-	size_t size() const noexcept;
+	size_t Size() const noexcept;
 	// Returns the number of bits this bitset has reserved.
-	size_t capacity() const noexcept;
+	size_t Capacity() const noexcept;
 
 	// Resizes the bitset to hold at least the specific amount of bits.
-	void resize(size_t size);
+	void Resize(size_t size);
 	// Clears the bitset. After this call this bitset is empty.
-	void clear() noexcept;
+	void Clear() noexcept;
 
 	// Whether the given bitset has any bits that are also set in this bitset.
-	bool intersects(const Bitset &other) const noexcept;
+	bool Intersects(const Bitset &other) const noexcept;
 	// Returns the value of the bit at the specified index.
-	bool test(size_t index) const noexcept;
+	bool Test(size_t index) const noexcept;
 	// Sets the bit at the specified index.
-	void set(size_t index) noexcept;
+	void Set(size_t index) noexcept;
 	// Whether any bits are set.
-	bool any() const noexcept;
+	bool Any() const noexcept;
 	// Whether no bits are set.
-	bool none() const noexcept;
+	bool None() const noexcept;
 
 	// Access to the internal block array used by the bitset.
 	std::vector<uint64_t> &Bits();

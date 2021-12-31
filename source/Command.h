@@ -90,7 +90,7 @@ public:
 	// Load or save the keyboard preferences.
 	static void LoadSettings(const std::string &path);
 	static void SaveSettings(const std::string &path);
-	static void SetKey(const Command &command, int keycode);
+	static void SetKey(Command command, int keycode);
 
 	// Get the description or keycode name for this command. If this command is
 	// a combination of more than one command, an empty string is returned.

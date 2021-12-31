@@ -169,7 +169,7 @@ void Command::SaveSettings(const string &path)
 
 
 // Set the key that is mapped to the given command.
-void Command::SetKey(const Command &command, int keycode)
+void Command::SetKey(Command command, int keycode)
 {
 	// Always reset *all* the mappings when one is set. That way, if two commands
 	// are mapped to the same key and you change one of them, the other stays mapped.

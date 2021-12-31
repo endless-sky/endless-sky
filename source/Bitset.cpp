@@ -19,7 +19,7 @@ using namespace std;
 
 
 // Returns the number of bits this bitset can hold.
-size_t Bitset::size() const noexcept
+size_t Bitset::Size() const noexcept
 {
 	return bits.size() * BITS_PER_BLOCK;
 }
@@ -27,7 +27,7 @@ size_t Bitset::size() const noexcept
 
 
 // Returns the number of bits this bitset has reserved.
-size_t Bitset::capacity() const noexcept
+size_t Bitset::Capacity() const noexcept
 {
 	return bits.capacity() * BITS_PER_BLOCK;
 }
@@ -35,7 +35,7 @@ size_t Bitset::capacity() const noexcept
 
 
 // Resizes the bitset to hold at least the specific amount of bits.
-void Bitset::resize(size_t size)
+void Bitset::Resize(size_t size)
 {
 	bits.resize(size / BITS_PER_BLOCK + 1);
 }
@@ -43,7 +43,7 @@ void Bitset::resize(size_t size)
 
 
 // Clears the bitset. After this call this bitset is empty.
-void Bitset::clear() noexcept
+void Bitset::Clear() noexcept
 {
 	bits.clear();
 }
@@ -51,7 +51,7 @@ void Bitset::clear() noexcept
 
 
 // Whether the given bitset has any bits that are also set in this bitset.
-bool Bitset::intersects(const Bitset &other) const noexcept
+bool Bitset::Intersects(const Bitset &other) const noexcept
 {
 	const auto size = bits.size() < other.bits.size() ? bits.size() : other.bits.size();
 	for(size_t i = 0; i < size; ++i)
@@ -63,7 +63,7 @@ bool Bitset::intersects(const Bitset &other) const noexcept
 
 
 // Returns the value of the bit at the specified index.
-bool Bitset::test(size_t index) const noexcept
+bool Bitset::Test(size_t index) const noexcept
 {
 	const auto blockIndex = index / BITS_PER_BLOCK;
 	const auto pos = index % BITS_PER_BLOCK;
@@ -73,7 +73,7 @@ bool Bitset::test(size_t index) const noexcept
 
 
 // Sets the bit at the specified index.
-void Bitset::set(size_t index) noexcept
+void Bitset::Set(size_t index) noexcept
 {
 	const auto blockIndex = index / BITS_PER_BLOCK;
 	const auto pos = index % BITS_PER_BLOCK;
@@ -83,7 +83,7 @@ void Bitset::set(size_t index) noexcept
 
 
 // Whether any bits are set.
-bool Bitset::any() const noexcept
+bool Bitset::Any() const noexcept
 {
 	for(uint64_t block : bits)
 		if(block)
@@ -94,22 +94,22 @@ bool Bitset::any() const noexcept
 
 
 // Whether no bits are set.
-bool Bitset::none() const noexcept
+bool Bitset::None() const noexcept
 {
-	return !any();
+	return !Any();
 }
 
 
 
 // Access to the internal block array used by the bitset.
-std::vector<uint64_t> &Bitset::Bits()
+vector<uint64_t> &Bitset::Bits()
 {
 	return bits;
 }
 
 
 
-const std::vector<uint64_t> &Bitset::Bits() const
+const vector<uint64_t> &Bitset::Bits() const
 {
 	return bits;
 }

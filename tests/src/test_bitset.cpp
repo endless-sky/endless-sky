@@ -29,10 +29,10 @@ SCENARIO( "Creating a Bitset instance", "[bitset]") {
 	GIVEN( "an instance" ) {
 		Bitset bitset;
 		THEN( "it has the correct default properties" ) {
-			CHECK( bitset.size() == 0 );
-			CHECK( bitset.capacity() == 0 );
-			CHECK( bitset.none() );
-			CHECK( !bitset.any() );
+			CHECK( bitset.Size() == 0 );
+			CHECK( bitset.Capacity() == 0 );
+			CHECK( bitset.None() );
+			CHECK( !bitset.Any() );
 		}
 	}
 }
@@ -40,31 +40,31 @@ SCENARIO( "Creating a Bitset instance", "[bitset]") {
 SCENARIO( "A Bitset instance is being copied", "[bitset]" ) {
 	Bitset bitset;
 	GIVEN( "a specific bitset" ) {
-		bitset.resize(5);
-		bitset.set(1);
-		bitset.set(3);
+		bitset.Resize(5);
+		bitset.Set(1);
+		bitset.Set(3);
 
 		WHEN( "the copy is made" ) {
 			auto copy = bitset;
 			THEN( "the copy has the correct properties" ) {
-				CHECK( copy.size() == bitset.size() );
-				CHECK( copy.intersects(bitset) );
-				CHECK( copy.test(0) == bitset.test(0) );
-				CHECK( copy.test(1) == bitset.test(1) );
-				CHECK( copy.test(2) == bitset.test(2) );
-				CHECK( copy.test(3) == bitset.test(3) );
-				CHECK( copy.test(4) == bitset.test(4) );
-				CHECK( copy.any() == bitset.any() );
-				CHECK( copy.none() == bitset.none() );
+				CHECK( copy.Size() == bitset.Size() );
+				CHECK( copy.Intersects(bitset) );
+				CHECK( copy.Test(0) == bitset.Test(0) );
+				CHECK( copy.Test(1) == bitset.Test(1) );
+				CHECK( copy.Test(2) == bitset.Test(2) );
+				CHECK( copy.Test(3) == bitset.Test(3) );
+				CHECK( copy.Test(4) == bitset.Test(4) );
+				CHECK( copy.Any() == bitset.Any() );
+				CHECK( copy.None() == bitset.None() );
 			}
 			THEN( "the two bitsets are independent" ) {
-				bitset.set(0);
-				CHECK( bitset.test(0) );
-				CHECK_FALSE( copy.test(0) );
+				bitset.Set(0);
+				CHECK( bitset.Test(0) );
+				CHECK_FALSE( copy.Test(0) );
 
-				copy.set(4);
-				CHECK_FALSE( bitset.test(4) );
-				CHECK( copy.test(4) );
+				copy.Set(4);
+				CHECK_FALSE( bitset.Test(4) );
+				CHECK( copy.Test(4) );
 			}
 		}
 	}
@@ -74,53 +74,53 @@ SCENARIO( "A Bitset instance is being used", "[bitset]") {
 	GIVEN( "an empty bitset" ) {
 		Bitset bitset;
 		THEN( "resizing it works" ) {
-			bitset.resize(10);
-			CHECK( bitset.size() >= 10 );
-			CHECK( bitset.capacity() >= 10 );
+			bitset.Resize(10);
+			CHECK( bitset.Size() >= 10 );
+			CHECK( bitset.Capacity() >= 10 );
 		}
 	}
 	GIVEN( "a bitset of a specific size" ) {
 		Bitset bitset;
-		bitset.resize(10);
+		bitset.Resize(10);
 
-		REQUIRE( bitset.size() >= 10 );
+		REQUIRE( bitset.Size() >= 10 );
 		THEN( "setting and testing bits works" ) {
-			CHECK( bitset.none() );
+			CHECK( bitset.None() );
 
-			bitset.set(4);
-			CHECK_FALSE( bitset.test(3) );
-			CHECK( bitset.test(4) );
+			bitset.Set(4);
+			CHECK_FALSE( bitset.Test(3) );
+			CHECK( bitset.Test(4) );
 
-			CHECK_FALSE( bitset.test(5) );
-			bitset.set(5);
-			CHECK( bitset.test(5) );
+			CHECK_FALSE( bitset.Test(5) );
+			bitset.Set(5);
+			CHECK( bitset.Test(5) );
 
-			CHECK( bitset.any() );
+			CHECK( bitset.Any() );
 		}
 		THEN( "clearing it works" ) {
-			bitset.clear();
-			CHECK( bitset.size() == 0 );
-			CHECK( bitset.none() );
-			CHECK( !bitset.any() );
+			bitset.Clear();
+			CHECK( bitset.Size() == 0 );
+			CHECK( bitset.None() );
+			CHECK( !bitset.Any() );
 		}
 	}
 	GIVEN( "two non-empty bitsets" ) {
 		Bitset one;
-		one.resize(4);
-		one.set(0);
-		one.set(1);
+		one.Resize(4);
+		one.Set(0);
+		one.Set(1);
 
 		Bitset two;
-		two.resize(3);
-		two.set(2);
+		two.Resize(3);
+		two.Set(2);
 
 		THEN( "bit intersect works" ) {
-			CHECK_FALSE( one.intersects(two) );
-			CHECK_FALSE( two.intersects(one) );
+			CHECK_FALSE( one.Intersects(two) );
+			CHECK_FALSE( two.Intersects(one) );
 
-			two.set(1);
-			CHECK( one.intersects(two) );
-			CHECK( two.intersects(one) );
+			two.Set(1);
+			CHECK( one.Intersects(two) );
+			CHECK( two.Intersects(one) );
 		}
 	}
 }
