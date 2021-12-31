@@ -26,31 +26,31 @@ public:
 		// Store anything sent to the captured stream in our buffer.
 		toCapture.rdbuf(storage.rdbuf());
 	}
-	
+
 	// Restore the original buffer.
 	~OutputSink() { captured.rdbuf(original); }
 	// No moves/copies.
 	OutputSink(const OutputSink &) = delete;
 	OutputSink(OutputSink &&) = delete;
-	
+
 	// Read the captured buffer.
 	std::string Peek() const { return storage.str(); }
-	
+
 	std::string Flush()
 	{
 		std::string result = Peek();
 		Clear();
 		return result;
 	}
-	
+
 	// Clear the captured buffer.
 	void Clear()
 	{
 		storage.str("");
 		storage.clear();
 	}
-	
-	
+
+
 private:
 	// The captured stream.
 	std::ostream &captured;

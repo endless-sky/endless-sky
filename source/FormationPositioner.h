@@ -31,12 +31,12 @@ class FormationPositioner {
 public:
 	// Initializer based on the formation pattern to follow.
 	FormationPositioner(const Body *formationLead, const FormationPattern *pattern);
-	
+
 	// TODO: Should we replace the Start() and NextPosition() by Add(Ship*), Remove(Ship*) and GetPosition(Ship*)? (and move some calculations now done every frame to the Add function?)
 	// Start/reset/initialize for a (new) round of formation position calculations
 	// for a formation around the ship given as parameter.
 	void Step();
-	
+
 	// Get the formation position for the ship given as parameter. If a given ship is
 	// not participating yet, then it will be added.
 	Point Position(const Ship *ship);
@@ -45,7 +45,7 @@ public:
 private:
 	// Re-generate the list of (relative) positions for the ships in the formation.
 	void CalculatePositions();
-	
+
 	// Calculate the direction the formation is facing.
 	void CalculateDirection();
 
@@ -65,27 +65,27 @@ private:
 	// Lookup/cache of the ship coordinates in the formation, its ring-section and
 	// an indicator if it was seen since last generate loop.
 	std::map<const Ship *, std::pair<Point, bool>> shipPositions;
-	
+
 	// Timer that controls the (re)generation of ship positions.
 	int positionsTimer = 0;
-	
+
 	// The scaling factors as we currently have for this formation and
 	// the scaling factors that we are preparing in the currently running
 	// iteration for the next iteration.
 	FormationPattern::ActiveFormation activeData;
 	FormationPattern::ActiveFormation nextActiveData;
-	
+
 	// The body around which the formation will be formed and the pattern to follow.
 	const Body *formationLead;
 	const FormationPattern *pattern;
-	
+
 	// The formation facing direction.
 	Angle direction;
-	
+
 	// Settings for flipping/mirroring of the pattern.
 	bool flippedX = false;
 	bool flippedY = false;
-	
+
 	// Status variable used to track if ships still participate in the formation.
 	bool tickTock = true;
 };

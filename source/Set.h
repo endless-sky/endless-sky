@@ -31,26 +31,26 @@ public:
 	// If an item already exists in this set, get it. Otherwise, return a null
 	// pointer rather than creating the item.
 	const Type *Find(const std::string &name) const;
-	
+
 	bool Has(const std::string &name) const { return data.count(name); }
-	
+
 	using setIt = typename std::map<std::string, Type>::iterator;
 	using setCIt = typename std::map<std::string, Type>::const_iterator;
-	
+
 	setIt begin() { return data.begin(); }
 	setCIt begin() const { return data.begin(); }
 	setIt find(const std::string &key) { return data.find(key); }
 	setCIt find(const std::string &key) const { return data.find(key); }
 	setIt end() { return data.end(); }
 	setCIt end() const { return data.end(); }
-	
+
 	int size() const { return data.size(); }
 	bool empty() const { return data.empty(); }
 	// Remove any objects in this set that are not in the given set, and for
 	// those that are in the given set, revert to their contents.
 	void Revert(const Set<Type> &other);
-	
-	
+
+
 private:
 	mutable std::map<std::string, Type> data;
 };
@@ -71,7 +71,7 @@ void Set<Type>::Revert(const Set<Type> &other)
 {
 	auto it = data.begin();
 	auto oit = other.data.begin();
-	
+
 	while(it != data.end())
 	{
 		if(oit == other.data.end() || it->first < oit->first)
@@ -84,7 +84,7 @@ void Set<Type>::Revert(const Set<Type> &other)
 			++it;
 			++oit;
 		}
-		
+
 		// There should never be a case when an entry in the set we are
 		// reverting to has a name that is not also in this set.
 	}

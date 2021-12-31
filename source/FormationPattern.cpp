@@ -79,16 +79,16 @@ void FormationPattern::PositionIterator::MoveToValidPosition()
 		currentPoint = Point();
 		return;
 	}
-	
+
 	// Check if there are any lines available.
 	unsigned int lines = pattern.Lines();
 	if(lines < 1)
 		atEnd = true;
-	
+
 	unsigned int ringsScanned = 0;
 	unsigned int startingRing = ring;
 	unsigned int lineRepeatSlots = pattern.Slots(ring, line, repeat);
-	
+
 	while(slot >= lineRepeatSlots && !atEnd)
 	{
 		unsigned int patternRepeats = pattern.Repeats(line);
@@ -117,7 +117,7 @@ void FormationPattern::PositionIterator::MoveToValidPosition()
 			repeat = 0;
 			slot = 0;
 			lineRepeatSlots = pattern.Slots(ring, line, repeat);
-			
+
 			// If we scanned more than 5 rings without finding a slot, then we have an empty pattern.
 			++ringsScanned;
 			if(ringsScanned > 5)
@@ -128,14 +128,14 @@ void FormationPattern::PositionIterator::MoveToValidPosition()
 			}
 		}
 	}
-	
+
 	// If we are at the last line and we have less ships still to place than that
 	// would fit on the line, then perform centering if required.
 	if(!atEnd && slot == 0 && shipsToPlace > 0 &&
 			(lineRepeatSlots - 1) > shipsToPlace && pattern.IsCentered(line))
 		// Determine the amount to skip for centering and skip those.
 		slot += (lineRepeatSlots - shipsToPlace) / 2;
-	
+
 	if(atEnd)
 		currentPoint = Point();
 	else
@@ -166,7 +166,7 @@ void FormationPattern::Load(const DataNode &node)
 		node.PrintTrace("Duplicate entry for formation-pattern \"" + name + "\":");
 		return;
 	}
-	
+
 	if(node.Size() >= 2)
 		name = node.Token(1);
 	else
@@ -174,7 +174,7 @@ void FormationPattern::Load(const DataNode &node)
 		node.PrintTrace("Skipping load of unnamed formation-pattern:");
 		return;
 	}
-	
+
 	for(const DataNode &child : node)
 		if(child.Token(0) == "flippable" && child.Size() >= 2)
 			for(int i = 1; i < child.Size(); ++i)
@@ -202,10 +202,10 @@ void FormationPattern::Load(const DataNode &node)
 		{
 			lines.emplace_back();
 			Line &line = lines.back();
-			
+
 			if(child.Token(0) == "arc")
 				line.isArc = true;
-			
+
 			for(const DataNode &grand : child)
 			{
 				if(grand.Token(0) == "start" && grand.Size() >= 3)
@@ -294,29 +294,29 @@ unsigned int FormationPattern::Slots(unsigned int ring, unsigned int lineNr, uns
 	if(lineNr >= lines.size())
 		return 0;
 	const Line &line = lines[lineNr];
-	
+
 	int lineRepeatSlots = line.slots;
-	
+
 	// For the very first ring, only the initial positions are relevant.
 	if(ring > 0)
 	{
 		// For later rings we need to have repeat sections to perform repeating.
 		if(repeatNr >= line.repeats.size())
 			return 0;
-		
+
 		lineRepeatSlots += line.repeats[repeatNr].repeatSlots * ring;
 	}
-	
+
 	// If we skip positions, then remove them from the counting.
 	if(line.skipFirst)
 		--lineRepeatSlots;
 	if(line.skipLast)
 		--lineRepeatSlots;
-	
+
 	// If we are in a later ring, then skip lines that don't repeat.
 	if(lineRepeatSlots < 0)
 		return 0;
-	
+
 	return lineRepeatSlots;
 }
 
@@ -340,14 +340,14 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 	const Line &line = lines[lineNr];
 	if(ring > 0 && repeatNr >= line.repeats.size())
 		return Point();
-	
+
 	// Perform common start and end/anchor position calculations in pixels.
 	Point startPx = line.start.GetPx(diameterToPx, widthToPx, heightToPx);
 	Point endOrAnchorPx = line.endOrAnchor.GetPx(diameterToPx, widthToPx, heightToPx);
-	
+
 	// Get the number of slots for this line or arc.
 	int slots = line.slots;
-	
+
 	// Check if we have a valid repeat section and apply it to the common calculations if we have it.
 	const LineRepeat *repeat = nullptr;
 	if(ring > 0 && repeatNr < line.repeats.size())
@@ -357,14 +357,14 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 		endOrAnchorPx += repeat->repeatEndOrAnchor.GetPx(diameterToPx, widthToPx, heightToPx) * ring;
 		slots += repeat->repeatSlots * ring;
 	}
-	
+
 	// Compensate for any skipped slots. This would usually be the start-slot, but it can be the
 	// end slot if we are on an alternating line.
 	if(ring % 2 && repeat && repeat->alternating && line.skipLast)
 		++lineSlot;
 	else if(line.skipFirst)
 		++lineSlot;
-	
+
 	// Switch to arc-specific calculations if this line is an arc.
 	if(line.isArc)
 	{
@@ -372,12 +372,12 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 		double startAngle = Angle(startPx).Degrees();
 		double endAngle = line.angle;
 		double radius = startPx.Length();
-		
+
 		// Apply repeat section for endAngle, startAngle and anchor were already done before.
 		if(repeat)
 		{
 			endAngle += repeat->repeatAngle * ring;
-			
+
 			// Calculate new start and turn end angle if we need to alternate this repeat.
 			if(ring % 2 && repeat->alternating && slots > 0)
 			{
@@ -385,24 +385,24 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 				endAngle = -endAngle;
 			}
 		}
-		
+
 		// Apply slots to get the correct slot-angle.
 		if(slots > 1)
 			endAngle /= slots - 1;
 		double slotAngle = startAngle + endAngle * lineSlot;
-		
+
 		// Get into the range of 0 to 360 for conversion to angle)
 		if(slotAngle < 0)
 			slotAngle = -fmod(-slotAngle, 360) + 360;
 		else
 			slotAngle = fmod(slotAngle, 360);
-		
+
 		// Combine anchor with the slot-position and return the result.
 		return endOrAnchorPx + Angle(slotAngle).Unit() * radius;
 	}
-	
+
 	// This is not an arc, perform the line-based calculations.
-	
+
 	// Swap start and end if we need to alternate in the repeat section.
 	// Apply repeat section if it is relevant.
 	if(ring % 2 && repeat && repeat->alternating)
@@ -411,14 +411,14 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 		endOrAnchorPx = startPx;
 		startPx = tmpPx;
 	}
-	
+
 	// Calculate the step from each slot between start and end.
 	Point slotPx = endOrAnchorPx - startPx;
-	
+
 	// Divide by slots, but don't count the first (since it is at position 0, not at position 1).
 	if(slots > 1)
 		slotPx /= slots - 1;
-	
+
 	// Calculate position of the current slot.
 	return startPx + slotPx * lineSlot;
 }
@@ -457,14 +457,14 @@ void FormationPattern::MultiAxisPoint::AddLoad(const DataNode &node)
 	// We need at least the slot-name keyword and 2 coordinate numbers.
 	if(node.Size() < 3)
 		return;
-	
+
 	// Track if we are parsing a polar coordinate.
 	bool parsePolar = false;
-	
+
 	// By default we parse for pixels.
 	Axis axis = PIXELS;
 	double scalingFactor = 1.;
-	
+
 	// Parse all the keywords before the coordinate
 	for(int i = 1; i < node.Size() - 2; ++i)
 	{
