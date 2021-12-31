@@ -44,46 +44,46 @@ public:
 	GameAction() = default;
 	// Construct and Load() at the same time.
 	GameAction(const DataNode &node, const std::string &missionName);
-	
+
 	void Load(const DataNode &node, const std::string &missionName);
 	// Process a single sibling node.
 	void LoadSingle(const DataNode &child, const std::string &missionName);
 	void Save(DataWriter &out) const;
-	
+
 	// Determine if this GameAction references content that is not fully defined.
 	std::string Validate() const;
-	
+
 	// Whether this action instance contains any tasks to perform.
 	bool IsEmpty() const noexcept;
-	
+
 	int64_t Payment() const noexcept;
 	int64_t Fine() const noexcept;
 	const std::map<const Outfit *, int> &Outfits() const noexcept;
-	
+
 	// Perform this action.
 	void Do(PlayerInfo &player, UI *ui) const;
-	
+
 	// "Instantiate" this action by filling in the wildcard data for the actual
 	// payment, event delay, etc.
 	GameAction Instantiate(std::map<std::string, std::string> &subs, int jumps, int payload) const;
-	
-	
+
+
 private:
 	bool isEmpty = true;
 	std::string logText;
 	std::map<std::string, std::map<std::string, std::string>> specialLogText;
-	
+
 	std::map<const GameEvent *, std::pair<int, int>> events;
 	std::vector<std::pair<const Ship *, std::string>> giftShips;
 	std::map<const Outfit *, int> giftOutfits;
-	
+
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	int64_t fine = 0;
-	
+
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;
-	
+
 	ConditionSet conditions;
 };
 

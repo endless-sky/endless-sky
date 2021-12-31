@@ -42,7 +42,7 @@ void StartConditions::Load(const DataNode &node)
 	// clearing the previously-defined description text. The plugin may
 	// amend it by using "add description"
 	bool clearDescription = !description.empty();
-	
+
 	for(const DataNode &child : node)
 	{
 		// Check for the "add" or "remove" keyword.
@@ -53,17 +53,17 @@ void StartConditions::Load(const DataNode &node)
 			child.PrintTrace("Skipping " + child.Token(0) + " with no key given:");
 			continue;
 		}
-		
+
 		// Determine if the child is a "core" attribute.
 		if(CoreStartData::LoadChild(child, add, remove))
 			continue;
-		
+
 		// Otherwise, we should try to parse it.
 		const string &key = child.Token((add || remove) ? 1 : 0);
 		int valueIndex = (add || remove) ? 2 : 1;
 		bool hasValue = (child.Size() > valueIndex);
 		const string &value = child.Token(hasValue ? valueIndex : 0);
-		
+
 		if(remove)
 		{
 			if(key == "name")
@@ -127,7 +127,7 @@ void StartConditions::Load(const DataNode &node)
 		description = "(No description provided.)";
 	if(name.empty())
 		name = "(Unnamed start)";
-	
+
 	// If no identifier is supplied, the creator would like this starting scenario to be isolated from
 	// other plugins. Thus, use an unguessable, non-reproducible identifier, this item's memory address.
 	if(identifier.empty() && node.Size() >= 2)
@@ -147,7 +147,7 @@ void StartConditions::FinishLoading()
 {
 	for(Ship &ship : ships)
 		ship.FinishLoading(true);
-	
+
 	string reason = GetConversation().Validate();
 	if(!GetConversation().IsValidIntro() || !reason.empty())
 		Files::LogError("Warning: The start scenario \"" + Identifier() + "\" (named \""
@@ -162,19 +162,19 @@ bool StartConditions::IsValid() const
 	// A start must specify a valid system.
 	if(!system || !system->IsValid())
 		return false;
-	
+
 	// A start must specify a valid planet in its specified system.
 	if(!planet || !planet->IsValid() || planet->GetSystem() != system)
 		return false;
-	
+
 	// A start must reference a valid "intro" conversation, either stock or custom.
 	if(!GetConversation().IsValidIntro() || !GetConversation().Validate().empty())
 		return false;
-	
+
 	// All ship models must be valid.
 	if(any_of(ships.begin(), ships.end(), [](const Ship &it) noexcept -> bool { return !it.IsValid(); }))
 		return false;
-	
+
 	return true;
 }
 
