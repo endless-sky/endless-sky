@@ -9260,7 +9260,8 @@ system "Elabi Choati"
 		distance 1452.1
 		period 885.349
 		object Iddesato
-			sprite planet/station1
+			sprite planet/station-bunrodea
+				"scale" 0.5
 			distance 142
 			period 23.094
 	object
