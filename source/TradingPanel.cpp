@@ -126,8 +126,8 @@ void TradingPanel::Draw()
 		for(const auto &it : player.Cargo().Outfits())
 			if(it.second)
 			{
-				bool inUninstallable = (it.first->Get("installable") < 0.);
-				(inUninstallable ? hasUninstallable : hasOutfits) = true;
+				bool notInstallable = (it.first->Get("installable") < 0.);
+				(notInstallable ? hasUninstallable : hasOutfits) = true;
 			}
 		sellOutfits = (hasOutfits && !hasUninstallable);
 
