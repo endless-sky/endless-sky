@@ -69,7 +69,7 @@ int Person::Frequency(const System *system) const
 	// links, don't create them in systems with no links.
 	if(!system || IsDestroyed() || IsPlaced() || system->Links().empty())
 		return 0;
-	
+
 	return (location.IsEmpty() || location.Matches(system)) ? frequency : 0;
 }
 
@@ -109,7 +109,7 @@ bool Person::IsDestroyed() const
 {
 	if(ships.empty() || !ships.front())
 		return true;
-	
+
 	const Ship &flagship = *ships.front();
 	return (flagship.IsDestroyed() || (flagship.GetSystem() && flagship.GetGovernment() != government));
 }
@@ -144,7 +144,7 @@ bool Person::IsPlaced() const
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem())
 			return true;
-	
+
 	return false;
 }
 

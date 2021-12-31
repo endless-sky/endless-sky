@@ -52,16 +52,16 @@ public:
 	Mission(Mission &&) noexcept = default;
 	Mission &operator=(Mission &&) noexcept = default;
 	~Mission() noexcept = default;
-	
+
 	// Construct and Load() at the same time.
 	Mission(const DataNode &node);
-	
+
 	// Load a mission, either from the game data or from a saved game.
 	void Load(const DataNode &node);
 	// Save a mission. It is safe to assume that any mission that is being saved
 	// is already "instantiated," so only a subset of the data must be saved.
 	void Save(DataWriter &out, const std::string &tag = "mission") const;
-	
+
 	// Basic mission information.
 	const EsUuid &UUID() const noexcept;
 	const std::string &Name() const;
@@ -79,11 +79,11 @@ public:
 	// Check if this mission is a "minor" mission. Minor missions will only be
 	// offered if no other missions (minor or otherwise) are being offered.
 	bool IsMinor() const;
-	
+
 	// Find out where this mission is offered.
 	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING};
 	bool IsAtLocation(Location location) const;
-	
+
 	// Information about what you are doing.
 	const Planet *Destination() const;
 	const std::set<const System *> &Waypoints() const;
@@ -109,7 +109,7 @@ public:
 	// Check whether we have full clearance to land and use the planet's
 	// services, or whether we are landing in secret ("infiltrating").
 	bool HasFullClearance() const;
-	
+
 	// Check if it's possible to offer or complete this mission right now. The
 	// check for whether you can offer a mission does not take available space
 	// into account, so before actually offering a mission you should also check
@@ -135,14 +135,14 @@ public:
 	// Check if this mission is unique, i.e. not something that will be offered
 	// over and over again in different variants.
 	bool IsUnique() const;
-	
+
 	// When the state of this mission changes, it may make changes to the player
 	// information or show new UI panels. PlayerInfo::MissionCallback() will be
 	// used as the callback for an `on offer` conversation, to handle its response.
 	// If it is not possible for this change to happen, this function returns false.
 	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, ABORT, DEFER, VISIT, STOPOVER, WAYPOINT};
 	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr, const std::shared_ptr<Ship> &boardingShip = nullptr);
-	
+
 	// Get a list of NPCs associated with this mission. Every time the player
 	// takes off from a planet, they should be added to the active ships.
 	const std::list<NPC> &NPCs() const;
@@ -153,7 +153,7 @@ public:
 	// If any event occurs between two ships, check to see if this mission cares
 	// about it. This may affect the mission status or display a message.
 	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui);
-	
+
 	// Get the internal name used for this mission. This name is unique and is
 	// never modified by string substitution, so it can be used in condition
 	// variables, etc.
@@ -162,28 +162,28 @@ public:
 	// If the mission action is not found for the given trigger, returns an empty
 	// mission action.
 	const MissionAction &GetAction(Trigger trigger) const;
-	
+
 	// "Instantiate" a mission by replacing randomly selected values and places
 	// with a single choice, and then replacing any wildcard text as well.
 	Mission Instantiate(const PlayerInfo &player, const std::shared_ptr<Ship> &boardingShip = nullptr) const;
-	
-	
+
+
 private:
 	bool Enter(const System *system, PlayerInfo &player, UI *ui);
 	// For legacy code, contraband definitions can be placed in two different
 	// locations, so move that parsing out to a helper function.
 	bool ParseContraband(const DataNode &node);
-	
-	
+
+
 private:
 	std::string name;
 	std::string displayName;
 	std::string description;
 	std::string blocked;
 	Location location = SPACEPORT;
-	
+
 	EsUuid uuid;
-	
+
 	bool hasFailed = false;
 	bool isVisible = true;
 	bool hasPriority = false;
@@ -195,7 +195,7 @@ private:
 	std::string clearance;
 	LocationFilter clearanceFilter;
 	bool hasFullClearance = true;
-	
+
 	int repeat = 1;
 	std::string cargo;
 	int cargoSize = 0;
@@ -209,11 +209,11 @@ private:
 	// Parameters for generating random passenger amounts:
 	int passengerLimit = 0;
 	double passengerProb = 0.;
-	
+
 	ConditionSet toOffer;
 	ConditionSet toComplete;
 	ConditionSet toFail;
-	
+
 	const Planet *source = nullptr;
 	LocationFilter sourceFilter;
 	const Planet *destination = nullptr;
@@ -225,13 +225,13 @@ private:
 	std::list<LocationFilter> stopoverFilters;
 	std::set<const Planet *> visitedStopovers;
 	std::set<const System *> visitedWaypoints;
-	
+
 	// User-defined text replacements unique to this mission:
 	TextReplacements substitutions;
-	
+
 	// NPCs:
 	std::list<NPC> npcs;
-	
+
 	// Actions to perform:
 	std::map<Trigger, MissionAction> actions;
 	// "on enter" actions may name a specific system, or rely on matching a
