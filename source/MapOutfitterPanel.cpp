@@ -83,7 +83,7 @@ const ItemInfoDisplay &MapOutfitterPanel::CompareInfo() const
 const string &MapOutfitterPanel::KeyLabel(int index) const
 {
 	static const string MINE = "Mine this here";
-	if(index == 2 && selected && selected->Get("installable") < 0)
+	if(index == 2 && selected && selected->Get("minable") > 0.)
 		return MINE;
 
 	static const string LABEL[3] = {
@@ -193,8 +193,13 @@ void MapOutfitterPanel::DrawItems()
 			string price = Format::Credits(outfit->Cost()) + " credits";
 
 			string info;
-			if(outfit->Get("installable") < 0.)
+			if(outfit->Get("minable") > 0.)
 				info = "(Mined from asteroids)";
+			else if(outfit->Get("installable") < 0.)
+			{
+				double space = outfit->Mass();
+				info = Format::Number(space) + (abs(space) == 1. ? " ton" : " tons") + " of space";
+			}
 			else
 			{
 				double space = -outfit->Get("outfit space");

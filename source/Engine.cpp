@@ -2142,7 +2142,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 	if(flotsam.OutfitType())
 	{
 		const Outfit *outfit = flotsam.OutfitType();
-		if(outfit->Get("installable") < 0.)
+		if(outfit->Get("minable") > 0.)
 		{
 			commodity = outfit->Name();
 			player.Harvest(outfit);

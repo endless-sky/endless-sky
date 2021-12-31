@@ -122,27 +122,27 @@ void TradingPanel::Draw()
 	if(player.Cargo().HasOutfits() || missionCargo)
 	{
 		bool hasOutfits = false;
-		bool hasHarvested = false;
+		bool hasUninstallable = false;
 		for(const auto &it : player.Cargo().Outfits())
 			if(it.second)
 			{
-				bool isHarvested = (it.first->Get("installable") < 0.);
-				(isHarvested ? hasHarvested : hasOutfits) = true;
+				bool notInstallable = (it.first->Get("installable") < 0.);
+				(notInstallable ? hasUninstallable : hasOutfits) = true;
 			}
-		sellOutfits = (hasOutfits && !hasHarvested);
+		sellOutfits = (hasOutfits && !hasUninstallable);
 
 		string str = to_string(outfits + missionCargo);
 		str += (outfits + missionCargo == 1) ? " ton of " : " tons of ";
-		if(hasHarvested && missionCargo)
+		if(hasUninstallable && missionCargo)
 			str += "mission cargo and other items.";
 		else if(hasOutfits && missionCargo)
 			str += "outfits and mission cargo.";
-		else if(hasOutfits && hasHarvested)
-			str += "outfits and harvested materials.";
+		else if(hasOutfits && hasUninstallable)
+			str += "outfits and special commodities.";
 		else if(hasOutfits)
 			str += "outfits.";
-		else if(hasHarvested)
-			str += "harvested materials.";
+		else if(hasUninstallable)
+			str += "special commodities.";
 		else
 			str += "mission cargo.";
 		font.Draw(str, Point(NAME_X, lastY), unselected);
