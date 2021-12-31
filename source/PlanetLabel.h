@@ -26,10 +26,10 @@ class System;
 class PlanetLabel {
 public:
 	PlanetLabel(const Point &position, const StellarObject &object, const System *system, double zoom);
-	
+
 	void Draw() const;
-	
-	
+
+
 private:
 	Point position;
 	double radius = 0.;
