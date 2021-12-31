@@ -67,8 +67,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <utility>
 #include <vector>
 
-class Sprite;
-
 using namespace std;
 
 namespace {
@@ -81,21 +79,21 @@ namespace {
 	Set<Sale<Ship>> defaultShipSales;
 	Set<Sale<Outfit>> defaultOutfitSales;
 	TextReplacements defaultSubstitutions;
-	
+
 	Politics politics;
-	
+
 	StarField background;
 
 	map<string, string> plugins;
 	SpriteQueue spriteQueue;
 	future<void> dataLoading;
-	
+
 	vector<string> sources;
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
 	map<const Sprite *, int> preloaded;
-	
+
 	MaskManager maskManager;
-	
+
 	const Government *playerGovernment = nullptr;
 	map<const System *, map<string, int>> purchases;
 }
@@ -106,7 +104,7 @@ void GameData::BeginLoad(bool onlyLoadData, bool debugMode)
 {
 	// Initialize the list of "source" folders based on any active plugins.
 	LoadSources();
-	
+
 	if(!onlyLoadData)
 	{
 		// Now, read all the images in all the path directories. For each unique
@@ -168,11 +166,11 @@ void GameData::LoadShaders(bool useShaderSwizzle)
 {
 	FontSet::Add(Files::Images() + "font/ubuntu14r.png", 14);
 	FontSet::Add(Files::Images() + "font/ubuntu18r.png", 18);
-	
+
 	// Load the key settings.
 	Command::LoadSettings(Files::Resources() + "keys.txt");
 	Command::LoadSettings(Files::Config() + "keys.txt");
-	
+
 	FillShader::Init();
 	FogShader::Init();
 	LineShader::Init();
@@ -181,7 +179,7 @@ void GameData::LoadShaders(bool useShaderSwizzle)
 	RingShader::Init();
 	SpriteShader::Init(useShaderSwizzle);
 	BatchShader::Init();
-	
+
 	background.Init(16384, 4096);
 }
 
@@ -216,7 +214,7 @@ void GameData::Preload(const Sprite *sprite)
 	auto dit = deferred.find(sprite);
 	if(!sprite || dit == deferred.end())
 		return;
-	
+
 	// If this sprite is one of the currently loaded ones, there is no need to
 	// load it again. But, make note of the fact that it is the most recently
 	// asked-for sprite.
@@ -226,11 +224,11 @@ void GameData::Preload(const Sprite *sprite)
 		for(pair<const Sprite * const, int> &it : preloaded)
 			if(it.second < pit->second)
 				++it.second;
-		
+
 		pit->second = 0;
 		return;
 	}
-	
+
 	// This sprite is not currently preloaded. Check to see whether we already
 	// have the maximum number of sprites loaded, in which case the oldest one
 	// must be unloaded to make room for this one.
@@ -247,7 +245,7 @@ void GameData::Preload(const Sprite *sprite)
 		else
 			++pit;
 	}
-	
+
 	// Now, load all the files for this sprite.
 	preloaded[sprite] = 0;
 	spriteQueue.Add(dit->second);
@@ -291,7 +289,7 @@ void GameData::Revert()
 	objects.substitutions.Revert(defaultSubstitutions);
 	for(auto &it : objects.persons)
 		it.second.Restore();
-	
+
 	politics.Reset();
 	purchases.clear();
 }
@@ -311,7 +309,7 @@ void GameData::ReadEconomy(const DataNode &node)
 {
 	if(!node.Size() || node.Token(0) != "economy")
 		return;
-	
+
 	vector<string> headings;
 	for(const DataNode &child : node)
 	{
@@ -330,7 +328,7 @@ void GameData::ReadEconomy(const DataNode &node)
 		else
 		{
 			System &system = *objects.systems.Get(child.Token(0));
-			
+
 			int index = 0;
 			for(const string &commodity : headings)
 				system.SetSupply(commodity, child.Value(++index));
@@ -367,13 +365,13 @@ void GameData::WriteEconomy(DataWriter &out)
 		for(const auto &cit : GameData::Commodities())
 			out.WriteToken(cit.name);
 		out.Write();
-		
+
 		// Write the per-system data for all systems that are either known-valid, or non-empty.
 		for(const auto &sit : GameData::Systems())
 		{
 			if(!sit.second.IsValid() && !sit.second.HasTrade())
 				continue;
-			
+
 			out.WriteToken(sit.second.Name());
 			for(const auto &cit : GameData::Commodities())
 				out.WriteToken(static_cast<int>(sit.second.Supply(cit.name)));
@@ -396,11 +394,11 @@ void GameData::StepEconomy()
 			system.SetSupply(cit.first, system.Supply(cit.first) - cit.second);
 	}
 	purchases.clear();
-	
+
 	// Then, have each system generate new goods for local use and trade.
 	for(auto &it : objects.systems)
 		it.second.StepEconomy();
-	
+
 	// Finally, send out the trade goods. This has to be done in a separate step
 	// because otherwise whichever systems trade last would already have gotten
 	// supplied by the other systems.
@@ -708,7 +706,7 @@ const string &GameData::Rating(const string &type, int level)
 	auto it = objects.ratings.find(type);
 	if(it == objects.ratings.end() || it->second.empty())
 		return EMPTY;
-	
+
 	level = max(0, min<int>(it->second.size() - 1, level));
 	return it->second[level];
 }
@@ -793,45 +791,45 @@ void GameData::LoadSources()
 {
 	sources.clear();
 	sources.push_back(Files::Resources());
-	
+
 	vector<string> globalPlugins = Files::ListDirectories(Files::Resources() + "plugins/");
 	for(const string &path : globalPlugins)
 	{
 		if(Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
 			sources.push_back(path);
 	}
-	
+
 	vector<string> localPlugins = Files::ListDirectories(Files::Config() + "plugins/");
 	for(const string &path : localPlugins)
 	{
 		if(Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
 			sources.push_back(path);
 	}
-	
+
 	// Load the plugin data, if any.
 	for(auto it = sources.begin() + 1; it != sources.end(); ++it)
 	{
 		// Get the name of the folder containing the plugin.
 		size_t pos = it->rfind('/', it->length() - 2) + 1;
 		string name = it->substr(pos, it->length() - 1 - pos);
-		
+
 		// Load the about text and the icon, if any.
 		plugins[name] = Files::Read(*it + "about.txt");
-		
+
 		// Create an image set for the plugin icon.
 		auto icon = make_shared<ImageSet>(name);
-		
+
 		// Try adding all the possible icon variants.
 		if(Files::Exists(*it + "icon.png"))
 			icon->Add(*it + "icon.png");
 		else if(Files::Exists(*it + "icon.jpg"))
 			icon->Add(*it + "icon.jpg");
-		
+
 		if(Files::Exists(*it + "icon@2x.png"))
 			icon->Add(*it + "icon@2x.png");
 		else if(Files::Exists(*it + "icon@2x.jpg"))
 			icon->Add(*it + "icon@2x.jpg");
-		
+
 		icon->ValidateFrames();
 		spriteQueue.Add(icon);
 	}
@@ -848,13 +846,13 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 		// this directory prefix.
 		string directoryPath = source + "images/";
 		size_t start = directoryPath.size();
-		
+
 		vector<string> imageFiles = Files::RecursiveList(directoryPath);
 		for(string &path : imageFiles)
 			if(ImageSet::IsImage(path))
 			{
 				string name = ImageSet::Name(path.substr(start));
-				
+
 				shared_ptr<ImageSet> &imageSet = images[name];
 				if(!imageSet)
 					imageSet.reset(new ImageSet(name));
