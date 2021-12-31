@@ -81,7 +81,7 @@ private:
 	// Pick a new target for the given ship.
 	std::shared_ptr<Ship> FindTarget(const Ship &ship) const;
 	// Obtain a list of ships matching the desired hostility.
-	std::vector<std::shared_ptr<Ship>> GetShipsList(const Ship &ship, bool targetEnemies, double maxRange = -1.) const;
+	std::vector<Ship *> GetShipsList(const Ship &ship, bool targetEnemies, double maxRange = -1.) const;
 	
 	bool FollowOrders(Ship &ship, Command &command) const;
 	void MoveIndependent(Ship &ship, Command &command) const;
@@ -193,6 +193,9 @@ private:
 	
 	bool escortsAreFrugal = true;
 	bool escortsUseAmmo = true;
+
+	// The minimum speed before landing will consider non-landable objects.
+	const float MIN_LANDING_VELOCITY = 80.;
 	
 	// Current orders for the player's ships. Because this map only applies to
 	// player ships, which are never deleted except when landed, it can use
@@ -210,6 +213,7 @@ private:
 	std::map<const Ship *, int> swarmCount;
 	std::map<const Ship *, int> fenceCount;
 	std::map<const Ship *, Angle> miningAngle;
+	std::map<const Ship *, double> miningRadius;
 	std::map<const Ship *, int> miningTime;
 	std::map<const Ship *, double> appeasmentThreshold;
 	
@@ -217,9 +221,9 @@ private:
 	
 	std::map<const Government *, int64_t> enemyStrength;
 	std::map<const Government *, int64_t> allyStrength;
-	std::map<const Government *, std::vector<std::shared_ptr<Ship>>> governmentRosters;
-	std::map<const Government *, std::vector<std::shared_ptr<Ship>>> enemyLists;
-	std::map<const Government *, std::vector<std::shared_ptr<Ship>>> allyLists;
+	std::map<const Government *, std::vector<Ship *>> governmentRosters;
+	std::map<const Government *, std::vector<Ship *>> enemyLists;
+	std::map<const Government *, std::vector<Ship *>> allyLists;
 };
 
 

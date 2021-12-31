@@ -1,3 +1,15 @@
+/* text/test_displaytext.cpp
+Copyright (c) 2020 by Benjamin Hauch
+
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+*/
+
 #include "es-test.hpp"
 
 // Include only the tested class's header.
@@ -28,7 +40,9 @@ TEST_CASE( "DisplayText class", "[text][DisplayText]" ) {
 	}
 	SECTION( "Construction Traits" ) {
 		CHECK( std::is_default_constructible<T>::value );
-		CHECK( std::is_nothrow_default_constructible<T>::value );
+		// In gcc-5 (Steam Scout Runtime), std::string is not default nothrow constructible
+		CHECK( std::is_nothrow_default_constructible<T>::value ==
+			std::is_nothrow_default_constructible<std::string>::value );
 		CHECK( std::is_copy_constructible<T>::value );
 		// Copying a string is not "trivial."
 		CHECK_FALSE( std::is_trivially_copy_constructible<T>::value );
@@ -68,7 +82,9 @@ TEST_CASE( "DisplayText class", "[text][DisplayText]" ) {
 		CHECK_FALSE( std::is_trivially_move_assignable<T>::value );
 		CHECK( std::is_trivially_move_assignable<T>::value ==
 			std::is_trivially_move_assignable<std::string>::value );
-		CHECK( std::is_nothrow_move_assignable<T>::value );
+		// In gcc-5 (Steam Scout Runtime), move-assigning a string may throw
+		CHECK( std::is_nothrow_move_assignable<T>::value ==
+			std::is_nothrow_move_assignable<std::string>::value );
 	}
 }
 // #endregion unit tests

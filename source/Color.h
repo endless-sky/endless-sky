@@ -22,7 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // zero the color's components will be added to whatever is underneath them.
 class Color {
 public:
-	// Constructor for shades of grey, opaque unless an alpha is also given.
+	// Constructor for shades of gray, opaque unless an alpha is also given.
 	explicit Color(float i = 1.f, float a = 1.f);
 	// Constructor for colors, opaque unless an alpha is also given.
 	Color(float r, float g, float b, float a = 1.f);
@@ -41,6 +41,9 @@ public:
 	// Assuming that this is an opaque color, get its additive equivalent with
 	// the given fraction of its full brightness.
 	Color Additive(float alpha) const;
+	
+	// Compute a linear combination
+	static Color Combine(float a1, Color c1, float a2, Color c2);
 	
 	
 private:

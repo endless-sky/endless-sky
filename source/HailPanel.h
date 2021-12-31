@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <memory>
 #include <string>
 
+class Government;
 class Planet;
 class PlayerInfo;
 class Ship;
@@ -35,7 +36,7 @@ class StellarObject;
 // to bribe a planet to allow you to land there.
 class HailPanel : public Panel {
 public:
-	HailPanel(PlayerInfo &player, const std::shared_ptr<Ship> &ship);
+	HailPanel(PlayerInfo &player, const std::shared_ptr<Ship> &ship, std::function<void(const Government *)> bribeCallback);
 	HailPanel(PlayerInfo &player, const StellarObject *object);
 	
 	virtual void Draw() override;
@@ -53,6 +54,7 @@ private:
 private:
 	PlayerInfo &player;
 	std::shared_ptr<Ship> ship = nullptr;
+	std::function<void(const Government *)> bribeCallback = nullptr;
 	const Planet *planet = nullptr;
 	const Sprite *sprite = nullptr;
 	Angle facing;
@@ -61,6 +63,7 @@ private:
 	std::string message;
 	
 	int64_t bribe = 0;
+	const Government *bribed = nullptr;
 	bool playerNeedsHelp = false;
 	bool canGiveFuel = false;
 	bool canRepair = false;

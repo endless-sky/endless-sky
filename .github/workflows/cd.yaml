@@ -21,7 +21,7 @@ jobs:
         run: |
           sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons
+          sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev uuid-dev scons
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
         shell: bash
@@ -38,18 +38,17 @@ jobs:
           path: ${{ env.OUTPUT }}
 
   cd_appimage_x86_64:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-18.04
     env:
       ARCH: x86_64
       OUTPUT: endless-sky-x86_64-continuous.AppImage
-      RANLIB: gcc-ranlib
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
         run: |
           sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev scons
+          sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev uuid-dev scons
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
       - name: Build AppImage
@@ -66,6 +65,7 @@ jobs:
       DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
       DIR_ESLIB: .\dev64
       OUTPUT: EndlessSky-win64-continuous.zip
+      AR: gcc-ar
     steps:
       - uses: actions/checkout@v2
       - name: Fetch development libraries
@@ -73,6 +73,11 @@ jobs:
           Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
           Expand-Archive win64-dev.zip -DestinationPath . -Force
           Remove-Item win64-dev.zip
+      - name: Cache scons
+        uses: actions/cache@v2
+        with:
+          path: 'scons-local'
+          key: scons-${{ hashFiles('.winmake') }}
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
         shell: bash
@@ -95,19 +100,19 @@ jobs:
   cd_macos_x86_64:
     runs-on: macos-latest
     env:
-      OUTPUT: EndlessSky-macOS10.15-continuous.zip
+      OUTPUT: EndlessSky-macOS-continuous.zip
+      SDL2_FRAMEWORK: build/SDL2.framework
     steps:
       - uses: actions/checkout@v2
       - name: Update Homebrew
         run: brew update
       - name: Install dependencies
-        run: brew install libpng libjpeg-turbo libmad sdl2
-      - name: Adjust library paths
-        run: |
-          install_name_tool -id "@rpath/libpng16.16.dylib" /usr/local/lib/libpng16.16.dylib
-          install_name_tool -id "@rpath/libmad.0.dylib" /usr/local/lib/libmad.0.dylib
-          install_name_tool -id "@rpath/libturbojpeg.0.dylib" /usr/local/opt/libjpeg-turbo/lib/libturbojpeg.0.dylib
-          install_name_tool -id "@rpath/libSDL2-2.0.0.dylib" /usr/local/lib/libSDL2-2.0.0.dylib
+        run: brew install libmad libpng jpeg-turbo
+      - name: Restore cached SDL2 framework
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.SDL2_FRAMEWORK }}
+          key: macos-latest-sdl2-${{ hashFiles('utils/fetch_sdl2_framework.sh') }}-${{ hashFiles('.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**') }}
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
         shell: bash
@@ -136,7 +141,7 @@ jobs:
       OUTPUT_UBUNTU: endless-sky-x86_64-continuous.tar.gz
       OUTPUT_APPIMAGE: endless-sky-x86_64-continuous.AppImage
       OUTPUT_WINDOWS: EndlessSky-win64-continuous.zip
-      OUTPUT_MACOS: EndlessSky-macOS10.15-continuous.zip
+      OUTPUT_MACOS: EndlessSky-macOS-continuous.zip
     steps:
       - uses: actions/checkout@v2
       - name: Install github-release

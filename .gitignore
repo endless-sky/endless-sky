@@ -38,6 +38,7 @@ plugins/
 # IDEs (no support implied)
 .vscode
 .vs
+.metadata
 *.psess
 *.vsp
 *.vspx
@@ -60,3 +61,4 @@ ipch/
 .idea/
 .idea_modules/
 CMakeLists.txt
+/.gitmodules
