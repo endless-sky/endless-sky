@@ -20,10 +20,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
-// Class mapping key presses to specific commands / actions. The player can
-// change the mappings for most of these keys in the preferences panel.
-// A single Command object can represent multiple individual commands, e.g.
-// everything the AI wants a ship to do, or all keys the player is holding down.
+// Class that represents firing commands from ships, which includes
+// whether a weapon is currently firing and its turn (if any).
 class FireCommand {
 public:
 	// Sets the specified amount of hardpoints desired.
@@ -31,20 +29,25 @@ public:
 
 	// Assigns the subset of other to this class that is no larger than
 	// this command's hardpoint size.
-	void AssignSubsetOf(const FireCommand &other);
+	void UpdateWith(const FireCommand &other) noexcept;
 
 	// Reset this to an empty command.
 	void Clear();
 
 	// Get or set the fire commands.
-	bool HasFire(int index) const;
-	void SetFire(int index);
+	bool HasFire(int index) const noexcept;
+	void SetFire(int index) noexcept;
 	// Check if any weapons are firing.
-	bool IsFiring() const;
+	bool IsFiring() const noexcept;
+	// Gets the current turn rate of the turret at the given weapon index.
+	double Aim(int index) const noexcept;
 	// Set the turn rate of the turret with the given weapon index. A value of
 	// -1 or 1 means to turn at the full speed the turret is capable of.
-	double Aim(int index) const;
-	void SetAim(int index, double amount);
+	void SetAim(int index, double amount) noexcept;
+
+
+private:
+	bool IsIndexValid(int index) const noexcept;
 
 
 private:

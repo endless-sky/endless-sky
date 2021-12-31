@@ -190,7 +190,7 @@ public:
 	void SetCommands(const Command &command);
 	void SetCommands(const FireCommand &firingCommand);
 	const Command &Commands() const;
-	const FireCommand &FiringCommands() const;
+	const FireCommand &FiringCommands() const noexcept;
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up.
 	void Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);

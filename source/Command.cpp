@@ -274,7 +274,7 @@ void Command::Load(const DataNode &node)
 // Reset this to an empty command.
 void Command::Clear()
 {
-	state = 0;
+	*this = Command();
 }
 
 

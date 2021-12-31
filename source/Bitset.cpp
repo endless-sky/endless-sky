@@ -101,15 +101,10 @@ bool Bitset::None() const noexcept
 
 
 
-// Access to the internal block array used by the bitset.
-vector<uint64_t> &Bitset::Bits()
+// Fills the current bitset with the bits of other.
+void Bitset::UpdateWith(const Bitset &other)
 {
-	return bits;
-}
-
-
-
-const vector<uint64_t> &Bitset::Bits() const
-{
-	return bits;
+	const auto size = bits.size() < other.bits.size() ? bits.size() : other.bits.size();
+	for(size_t i = 0; i < size; ++i)
+		bits[i] = other.bits[i];
 }

@@ -20,13 +20,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
-// Class representing a bitset with a dynamic size. Used
-// for turret control.
+// Class representing a bitset with a dynamic size.
 class Bitset {
-public:
-	static constexpr size_t BITS_PER_BLOCK = std::numeric_limits<uint64_t>::digits;
-
-
 public:
 	// Returns the number of bits this bitset can hold.
 	size_t Size() const noexcept;
@@ -49,12 +44,13 @@ public:
 	// Whether no bits are set.
 	bool None() const noexcept;
 
-	// Access to the internal block array used by the bitset.
-	std::vector<uint64_t> &Bits();
-	const std::vector<uint64_t> &Bits() const;
+	// Fills the current bitset with the bits of other.
+	void UpdateWith(const Bitset &other);
 
 
 private:
+	static constexpr size_t BITS_PER_BLOCK = std::numeric_limits<uint64_t>::digits;
+
 	// Stores the bits of the bitset.
 	std::vector<uint64_t> bits;
 };

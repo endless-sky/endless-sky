@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "FireCommand.h"
 
+#include <cassert>
 #include <cmath>
 #include <vector>
 
@@ -19,7 +20,7 @@ using namespace std;
 
 namespace {
 	template <typename T>
-	void SubsetAssign(std::vector<T> &lhs, const std::vector<T> &rhs)
+	void SubsetAssign(std::vector<T> &lhs, const std::vector<T> &rhs) noexcept
 	{
 		const auto size = lhs.size() < rhs.size() ? lhs.size() : rhs.size();
 		for(size_t i = 0; i < size; ++i)
@@ -32,17 +33,21 @@ namespace {
 // Sets the specified amount of hardpoints desired.
 void FireCommand::SetHardpoints(size_t count)
 {
+	Clear();
 	weapon.Resize(count);
 	aim.resize(count);
+
+	assert(aim.size() == count && "aim size must match the requested count");
+	assert(weapon.Size() >= aim.size() && "weapon bits must be at least as big as the aim bits");
 }
 
 
 
 // Assigns the subset of other to this class that is no larger than
 // this command's hardpoint size.
-void FireCommand::AssignSubsetOf(const FireCommand &other)
+void FireCommand::UpdateWith(const FireCommand &other) noexcept
 {
-	SubsetAssign(weapon.Bits(), other.weapon.Bits());
+	weapon.UpdateWith(other.weapon);
 	SubsetAssign(aim, other.aim);
 }
 
@@ -58,7 +63,7 @@ void FireCommand::Clear()
 
 
 // Check if this command includes a command to fire the given weapon.
-bool FireCommand::HasFire(int index) const
+bool FireCommand::HasFire(int index) const noexcept
 {
 	if(index < 0 || index >= static_cast<int>(weapon.Size()))
 		return false;
@@ -68,9 +73,9 @@ bool FireCommand::HasFire(int index) const
 
 
 // Add to this set of commands a command to fire the given weapon.
-void FireCommand::SetFire(int index)
+void FireCommand::SetFire(int index) noexcept
 {
-	if(index < 0 || index >= static_cast<int>(weapon.Size()))
+	if(!IsIndexValid(index))
 		return;
 	weapon.Set(index);
 }
@@ -78,27 +83,34 @@ void FireCommand::SetFire(int index)
 
 
 // Check if any weapons are firing.
-bool FireCommand::IsFiring() const
+bool FireCommand::IsFiring() const noexcept
 {
 	return weapon.Any();
 }
 
 
 
-// Set the turn rate of the turret with the given weapon index. A value of
-// -1 or 1 means to turn at the full speed the turret is capable of.
-double FireCommand::Aim(int index) const
+// Gets the current turn rate of the turret at the given weapon index.
+double FireCommand::Aim(int index) const noexcept
 {
-	if(index < 0 || index >= static_cast<int>(aim.size()))
+	if(!IsIndexValid(index))
 		return 0;
 	return aim[index] / 127.;
 }
 
 
-
-void FireCommand::SetAim(int index, double amount)
+// Set the turn rate of the turret with the given weapon index. A value of
+// -1 or 1 means to turn at the full speed the turret is capable of.
+void FireCommand::SetAim(int index, double amount) noexcept
 {
 	if(index < 0 || index >= static_cast<int>(aim.size()))
 		return;
 	aim[index] = round(127. * max(-1., min(1., amount)));
+}
+
+
+
+bool FireCommand::IsIndexValid(int index) const noexcept
+{
+	return index > 0 && index < static_cast<int>(aim.size());
 }

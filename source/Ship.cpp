@@ -1355,7 +1355,7 @@ void Ship::SetCommands(const Command &command)
 
 void Ship::SetCommands(const FireCommand &firingCommand)
 {
-	firingCommands.AssignSubsetOf(firingCommand);
+	firingCommands.UpdateWith(firingCommand);
 }
 
 
@@ -1367,7 +1367,7 @@ const Command &Ship::Commands() const
 
 
 
-const FireCommand &Ship::FiringCommands() const
+const FireCommand &Ship::FiringCommands() const noexcept
 {
 	return firingCommands;
 }
