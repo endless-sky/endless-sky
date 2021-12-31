@@ -40,7 +40,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 #include "UI.h"
 
-#include "gl_header.h"
+#include "opengl.h"
 
 #include <cmath>
 #include <sstream>
@@ -120,7 +120,7 @@ void MainPanel::Step()
 				message.back() += lostCount;
 				++lostCount;
 				
-				GetUI()->Push(new Dialog(GameData::HelpMessage(message)));
+				isActive = !DoHelp(message);
 			}
 		}
 	}

@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef SHADER_H_
 #define SHADER_H_
 
-#include "gl_header.h"
+#include "opengl.h"
 
 
 
