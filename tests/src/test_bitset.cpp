@@ -126,13 +126,13 @@ SCENARIO( "A Bitset instance is being used", "[bitset]") {
 }
 
 TEST_CASE( "Large bitsets", "[bitset]") {
-	auto size = GENERATE(5, 10, 20, 35, 75, 100, 150, 350, 800, 1400, 2000, 3000, 4500, 6000);
+	int size = GENERATE(5, 10, 20, 35, 75, 100, 150, 350, 800, 1400, 2000, 3000, 4500, 6000);
 
 	Bitset bitset;
 	bitset.Resize(size);
 
-	REQUIRE( bitset.Size() >= size );
-	CHECK( bitset.Capacity() >= size );
+	REQUIRE( static_cast<int>(bitset.Size()) >= size );
+	CHECK( static_cast<int>(bitset.Capacity()) >= size );
 
 	CHECK( bitset.None() );
 	CHECK_FALSE( bitset.Any() );
