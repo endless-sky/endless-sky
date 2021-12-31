@@ -14,8 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class Test;
 
-using namespace std;
-
 
 
 // Constructor to be used when running an actual test.
