@@ -33,11 +33,11 @@ class MissionPanel : public MapPanel {
 public:
 	explicit MissionPanel(PlayerInfo &player);
 	explicit MissionPanel(const MapPanel &panel);
-	
+
 	virtual void Step() override;
 	virtual void Draw() override;
-	
-	
+
+
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
@@ -45,8 +45,8 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
-	
-	
+
+
 private:
 	// Display and explain the various pointers that may appear on the map.
 	void DrawKey() const;
@@ -60,21 +60,21 @@ private:
 	Point DrawList(const std::list<Mission> &list, Point pos,
 		const std::list<Mission>::const_iterator &selectIt) const;
 	void DrawMissionInfo();
-	
+
 	bool CanAccept() const;
 	void Accept();
 	void MakeSpaceAndAccept();
 	void AbortMission();
-	
+
 	int AcceptedVisible() const;
-	
+
 	// Updates availableIt and acceptedIt to select the first available or
 	// accepted mission in the given system. Returns true if a mission was found.
 	bool FindMissionForSystem(const System *system);
 	// Selects the first available or accepted mission if no mission is already
 	// selected. Returns true if the selection was changed.
 	bool SelectAnyMission();
-	
+
 private:
 	const std::list<Mission> &available;
 	const std::list<Mission> &accepted;
@@ -82,7 +82,7 @@ private:
 	std::list<Mission>::const_iterator acceptedIt;
 	double availableScroll = 0.;
 	double acceptedScroll = 0.;
-	
+
 	int dragSide = 0;
 	WrappedText wrap;
 };
