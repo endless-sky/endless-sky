@@ -42,7 +42,7 @@ namespace{
 		{Test::Status::MISSING_FEATURE, "missing feature"},
 		{Test::Status::PARTIAL, "partial"},
 	};
-	
+
 	const map<Test::TestStep::Type, const string> STEPTYPE_TO_TEXT = {
 		{Test::TestStep::Type::APPLY, "apply"},
 		{Test::TestStep::Type::ASSERT, "assert"},
@@ -54,19 +54,19 @@ namespace{
 		{Test::TestStep::Type::NAVIGATE, "navigate"},
 		{Test::TestStep::Type::WATCHDOG, "watchdog"},
 	};
-	
+
 	template<class K, class... Args>
 	string ExpectedOptions(const map<K, const string, Args...> &m)
 	{
 		if(m.empty())
 			return "no options supported";
-		
+
 		string beginning = "expected \"" + m.begin()->second;
 		auto lastValidIt = prev(m.end());
 		// Handle maps with just 1 element.
 		if(lastValidIt == m.begin())
 			return beginning + "\"";
-		
+
 		return accumulate(next(m.begin()), lastValidIt, beginning,
 			[](string a, const pair<K, const string> &b) -> string
 			{
@@ -74,7 +74,7 @@ namespace{
 			})
 			+ "\", or \"" + lastValidIt->second + '"';
 	}
-	
+
 	// Prepare an keyboard input to one of the UIs.
 	bool KeyInputToEvent(const char* keyName, Uint16 modKeys)
 	{
@@ -127,7 +127,7 @@ void Test::TestStep::LoadInput(const DataNode &node)
 		{
 			for(int i = 1; i < child.Size(); ++i)
 				inputKeys.insert(child.Token(i));
-			
+
 			for(const DataNode &grand: child){
 				if(grand.Token(0) == "shift")
 					modKeys |= KMOD_SHIFT;
@@ -190,7 +190,7 @@ void Test::LoadSequence(const DataNode &node)
 		node.PrintTrace("Error: duplicate sequence keyword");
 		return;
 	}
-	
+
 	for(const DataNode &child: node)
 	{
 		const string &typeName = child.Token(0);
@@ -205,7 +205,7 @@ void Test::LoadSequence(const DataNode &node)
 			// Don't bother loading more steps once broken.
 			return;
 		}
-		
+
 		steps.emplace_back(it->first);
 		TestStep &step = steps.back();
 		switch(step.stepType)
@@ -288,7 +288,7 @@ void Test::LoadSequence(const DataNode &node)
 				return;
 		}
 	}
-	
+
 	// Check if all jump-labels are present after loading the sequence.
 	for(const TestStep &step : steps)
 	{
@@ -331,7 +331,7 @@ void Test::Load(const DataNode &node)
 		return;
 	}
 	name = node.Token(1);
-	
+
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "status" && child.Size() >= 2)
@@ -372,16 +372,16 @@ const string &Test::Name() const
 // Check the game status and perform the next test action.
 void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive) const
 {
-	// Tests always wait until the game is fully loaded.
+	// Only run tests once all data has been loaded.
 	if(!GameData::IsLoaded())
 		return;
-		
+
 	if(status == Status::BROKEN)
 		Fail(context, player, "Test has a broken status.");
 
 	// Track if we need to return to the main gameloop.
 	bool continueGameLoop = false;
-	
+
 	// If the step to run is beyond the end of the steps, then we finished
 	// the current test (and step to the step higher in the stack or we are
 	// done testing if we are at toplevel).
@@ -389,7 +389,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 	{
 		context.testToRun.pop_back();
 		context.stepToRun.pop_back();
-		
+
 		if(context.stepToRun.empty())
 		{
 			// Done, no failures, exit the game with exitcode success.
@@ -399,14 +399,14 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 		else
 			// Step beyond the call statement we just finished.
 			++(context.stepToRun.back());
-		
+
 		// We changed the active test or are quitting, so don't run the current one.
 		continueGameLoop = true;
 	}
-	
+
 	// All processing was done just before this step started.
 	context.branchesSinceGameStep.clear();
-	
+
 	while(context.stepToRun.back() < steps.size() && !continueGameLoop)
 	{
 		// Fail if we encounter a watchdog timeout
@@ -414,7 +414,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 			Fail(context, player, "watchdog timeout");
 		else if(context.watchdog > 1)
 			--(context.watchdog);
-		
+
 		const TestStep &stepToRun = steps[context.stepToRun.back()];
 		switch(stepToRun.stepType)
 		{
@@ -517,7 +517,7 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	if(!testFailReason.empty())
 		message += ": " + testFailReason;
 	message += "\n";
-	
+
 	Files::LogError(message);
 
 	// Print the callstack if we have any.
@@ -566,7 +566,7 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 			shipsOverview += "(plus " + to_string(escortsNotPrinted) + " additional escorts)\n";
 		Files::LogError(shipsOverview);
 	}
-	
+
 	// Only log the conditions that start with test; we don't want to overload the terminal or errorlog.
 	// Future versions of the test-framework could also print all conditions that are used in the test.
 	string conditions = "";
@@ -574,12 +574,14 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	auto it = player.Conditions().lower_bound(TEST_PREFIX);
 	for( ; it != player.Conditions().end() && !it->first.compare(0, TEST_PREFIX.length(), TEST_PREFIX); ++it)
 		conditions += "Condition: \"" + it->first + "\" = " + to_string(it->second) + "\n";
-	
+
 	if(!conditions.empty())
 		Files::LogError(conditions);
+	else if(player.Conditions().empty())
+		Files::LogError("Player had no conditions set at the moment of failure.");
 	else
-		Files::LogError("No conditions were set at the moment of failure.");
-	
+		Files::LogError("No test conditions were set at the moment of failure.");
+
 	// Throwing a runtime_error is kinda rude, but works for this version of
 	// the tester. Might want to add a menuPanels.QuitError() function in
 	// a later version (which can set a non-zero exitcode and exit properly).

@@ -47,7 +47,7 @@ mission "Kor Efreti: Cargo [1]"
 	on complete
 		payment
 		payment 500
-		dialog phrase "generic cargo delivery payment"		
+		dialog phrase "generic cargo delivery payment"
 
 mission "Kor Efreti: Food Cargo [0]"
 	name "Food to <planet>"
@@ -132,7 +132,7 @@ mission "Kor Efreti: Cargo to Wanderers"
 	on complete
 		payment
 		payment 700
-		dialog phrase "generic cargo delivery payment"		
+		dialog phrase "generic cargo delivery payment"
 		
 mission "Kor Efreti: Rush Delivery Food"
 	name "Rush delivery to <planet>"

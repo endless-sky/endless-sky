@@ -46,7 +46,7 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 		THEN( "The list has no weight." ) {
 			REQUIRE( list.TotalWeight() == 0 );
 		}
-		
+
 		WHEN( "One object is added to the list." ) {
 			list.emplace_back(1, 2);
 			THEN( "The list is no longer empty." ) {
@@ -65,7 +65,7 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 				CHECK( list.size() == 1 );
 				CHECK( list.TotalWeight() == 2 );
 			}
-			
+
 			AND_WHEN( "A second object is added to the list." ) {
 				list.emplace_back(2, 3);
 				THEN( "The list has increased in size and weight." ) {
@@ -77,9 +77,53 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 					CHECK( list.back().value == 2 );
 					CHECK( list.back().Weight() == 3 );
 				}
+
+				AND_WHEN( "A single element is erased." ) {
+					auto it = list.eraseAt(list.begin());
+
+					THEN( "The list has decreased in size and weight." ) {
+						CHECK_FALSE( list.empty() );
+						CHECK( list.size() == 1 );
+						CHECK( list.TotalWeight() == 3 );
+					}
+					THEN( "An iterator pointing to the next object in the list is returned." ) {
+						REQUIRE( it != list.end() );
+						CHECK( it->value == 2 );
+						CHECK( it->Weight() == 3 );
+					}
+				}
+
+				AND_WHEN( "A range is erased from begin to end." ) {
+					list.erase(list.begin(), list.end());
+					THEN( "The list is empty." ) {
+						CHECK( list.empty() );
+						CHECK( list.TotalWeight() == 0 );
+					}
+				}
+
+				AND_WHEN( "A range is erased from the middle." ) {
+					// Add more objects to the list so that a range can be deleted.
+					list.emplace_back(3, 1);
+					list.emplace_back(4, 5);
+					list.emplace_back(5, 3);
+					REQUIRE( list.size() == 5 );
+					REQUIRE( list.TotalWeight() == 14 );
+
+					// Delete objects with values 1, 2, and 3.
+					auto it = list.erase(list.begin(), list.begin() + 3);
+					THEN( "The list shrinks by the size and weight of the erased range." ) {
+						CHECK( list.size() == 2 );
+						CHECK( list.TotalWeight() == 8 );
+					}
+					THEN( "An iterator pointing to the next object in the list is returned." ) {
+						REQUIRE( it != list.end() );
+						CHECK( it->value == 4 );
+						CHECK( it->Weight() == 5 );
+					}
+				}
 			}
-			
-			AND_WHEN( "The list is cleared" ) {
+
+			AND_WHEN( "The list is cleared." ) {
 				list.clear();
 				THEN( "The list is now empty." ) {
 					REQUIRE( list.empty() );
@@ -107,7 +151,7 @@ SCENARIO( "Test WeightedList error conditions.", "[WeightedList]" ) {
 				}
 			}
 		}
-		
+
 		WHEN( "Attempting to insert a negative weighted object." ) {
 			THEN( "An invalid argument exception is thrown." ) {
 				try{
