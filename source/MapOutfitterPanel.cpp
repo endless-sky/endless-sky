@@ -83,7 +83,7 @@ const ItemInfoDisplay &MapOutfitterPanel::CompareInfo() const
 const string &MapOutfitterPanel::KeyLabel(int index) const
 {
 	static const string MINE = "Mine this here";
-	if(index == 2 && selected && selected->Get("minable") > 0)
+	if(index == 2 && selected && selected->Get("minable") > 0.)
 		return MINE;
 
 	static const string LABEL[3] = {
