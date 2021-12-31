@@ -36,62 +36,62 @@ public:
 	// A destructor is needed to clean up the polymorphic list of elements.
 	Interface() = default;
 	~Interface();
-	
+
 	void Load(const DataNode &node);
-	
+
 	// Draw this interface. If the given panel is not null, also register any
 	// buttons in this interface with the panel's list of clickable zones.
 	void Draw(const Information &info, Panel *panel = nullptr) const;
-	
+
 	// Get the location of a named point or box.
 	bool HasPoint(const std::string &name) const;
 	Point GetPoint(const std::string &name) const;
 	Rectangle GetBox(const std::string &name) const;
-	
+
 	// Get a named value.
 	double GetValue(const std::string &name) const;
-	
-	
+
+
 private:
 	class AnchoredPoint {
 	public:
 		// Get the point's location, given the current screen dimensions.
 		Point Get() const;
 		void Set(const Point &position, const Point &anchor);
-		
+
 	private:
 		Point position;
 		Point anchor;
 	};
-	
+
 	class Element {
 	public:
 		// State enumeration:
 		static const int INACTIVE = 0;
 		static const int ACTIVE = 1;
 		static const int HOVER = 2;
-		
+
 	public:
 		// Make sure the destructor is virtual, because classes derived from
 		// this one will be used in a polymorphic list.
 		Element() = default;
 		virtual ~Element() = default;
-		
+
 		// Create a new element. The alignment of the interface that contains
 		// this element is used to calculate the element's position.
 		void Load(const DataNode &node, const Point &globalAnchor);
-		
+
 		// Draw this element, relative to the given anchor point. If this is a
 		// button, it will add a clickable zone to the given panel.
 		void Draw(const Information &info, Panel *panel) const;
-		
+
 		// Set the conditions that control when this element is visible and active.
 		// An empty string means it is always visible or active.
 		void SetConditions(const std::string &visible, const std::string &active);
-		
+
 		// Get the bounding rectangle, given the current screen dimensions.
 		Rectangle Bounds() const;
-		
+
 	protected:
 		// Parse the given data line: one that is not recognized by Element
 		// itself. This returns false if it does not recognize the line, either.
@@ -103,7 +103,7 @@ private:
 		// Add any click handlers needed for this element. This will only be
 		// called if the element is visible and active.
 		virtual void Place(const Rectangle &bounds, Panel *panel) const;
-		
+
 	protected:
 		AnchoredPoint from;
 		AnchoredPoint to;
@@ -112,12 +112,12 @@ private:
 		std::string visibleIf;
 		std::string activeIf;
 	};
-	
+
 	// This class handles "sprite", "image", and "outline" elements.
 	class ImageElement : public Element {
 	public:
 		ImageElement(const DataNode &node, const Point &globalAnchor);
-		
+
 	protected:
 		// Parse the given data line: one that is not recognized by Element
 		// itself. This returns false if it does not recognize the line, either.
@@ -126,10 +126,10 @@ private:
 		virtual Point NativeDimensions(const Information &info, int state) const override;
 		// Draw this element in the given rectangle.
 		virtual void Draw(const Rectangle &rect, const Information &info, int state) const override;
-		
+
 	private:
 		const Sprite *GetSprite(const Information &info, int state) const;
-		
+
 	private:
 		// If a name is given, look up the sprite with that name and draw it.
 		std::string name;
@@ -141,12 +141,12 @@ private:
 		// Store whether the outline should be colored.
 		bool isColored = false;
 	};
-	
+
 	// This class handles "label", "string", and "button" elements.
 	class TextElement : public Element {
 	public:
 		TextElement(const DataNode &node, const Point &globalAnchor);
-		
+
 	protected:
 		// Parse the given data line: one that is not recognized by Element
 		// itself. This returns false if it does not recognize the line, either.
@@ -158,10 +158,10 @@ private:
 		// Add any click handlers needed for this element. This will only be
 		// called if the element is visible and active.
 		virtual void Place(const Rectangle &bounds, Panel *panel) const override;
-		
+
 	private:
 		std::string GetString(const Information &info) const;
-	
+
 	private:
 		// The string may either be a name of a dynamic string, or static text.
 		std::string str;
@@ -172,19 +172,19 @@ private:
 		bool isDynamic = false;
 		Truncate truncate = Truncate::NONE;
 	};
-	
+
 	// This class handles "bar" and "ring" elements.
 	class BarElement : public Element {
 	public:
 		BarElement(const DataNode &node, const Point &globalAnchor);
-		
+
 	protected:
 		// Parse the given data line: one that is not recognized by Element
 		// itself. This returns false if it does not recognize the line, either.
 		virtual bool ParseLine(const DataNode &node) override;
 		// Draw this element in the given rectangle.
 		virtual void Draw(const Rectangle &rect, const Information &info, int state) const override;
-		
+
 	private:
 		std::string name;
 		const Color *color = nullptr;
@@ -208,8 +208,8 @@ private:
 	private:
 		const Color *color = nullptr;
 	};
-	
-	
+
+
 private:
 	std::vector<Element *> elements;
 	std::map<std::string, Element> points;
