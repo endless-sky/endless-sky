@@ -41,7 +41,7 @@ void SpaceportPanel::UpdateNews()
 		return;
 	info = Information();
 	info.SetCondition("has news");
-	
+
 	// Randomly pick which portrait, if any, is to be shown. Depending on if
 	// this news has a portrait, different interface information gets filled in.
 	// Cache the randomly picked results until the next update is requested.
@@ -77,7 +77,7 @@ void SpaceportPanel::Draw()
 {
 	if(player.IsDead())
 		return;
-	
+
 	const Interface *ui = GameData::Interfaces().Get("spaceport");
 	info.SetString("description", player.GetPlanet()->SpaceportDescription());
 	ui->Draw(info);
@@ -95,6 +95,6 @@ const News *SpaceportPanel::PickNews() const
 	for(const auto &it : GameData::SpaceportNews())
 		if(!it.second.IsEmpty() && it.second.Matches(planet, conditions))
 			matches.push_back(&it.second);
-	
+
 	return matches.empty() ? nullptr : matches[Random::Int(matches.size())];
 }

@@ -49,11 +49,11 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	bank.reset(new BankPanel(player));
 	spaceport.reset(new SpaceportPanel(player));
 	hiring.reset(new HiringPanel(player));
-	
+
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
 	GameData::Preload(planet.Landscape());
-	GameData::FinishLoading();
+	GameData::FinishLoadingSprites();
 }
 
 
@@ -67,7 +67,7 @@ void PlanetPanel::Step()
 		TakeOffIfReady();
 		return;
 	}
-	
+
 	// If the player starts a new game, exits the shipyard without buying
 	// anything, clicks to the bank, then returns to the shipyard and buys a
 	// ship, make sure they are shown an intro mission.
@@ -87,14 +87,14 @@ void PlanetPanel::Draw()
 {
 	if(player.IsDead())
 		return;
-	
+
 	Information info;
 	info.SetSprite("land", planet.Landscape());
-	
+
 	const Ship *flagship = player.Flagship();
 	if(flagship && flagship->CanBeFlagship())
 		info.SetCondition("has ship");
-	
+
 	if(planet.CanUseServices())
 	{
 		if(planet.IsInhabited())
@@ -107,13 +107,13 @@ void PlanetPanel::Draw()
 					info.SetCondition("has trade");
 			}
 		}
-		
+
 		if(flagship && planet.HasSpaceport())
 			info.SetCondition("has spaceport");
-		
+
 		if(planet.HasShipyard())
 			info.SetCondition("has shipyard");
-		
+
 		if(planet.HasOutfitter())
 			for(const auto &it : player.Ships())
 				if(it->GetSystem() == &system && !it->IsDisabled())
@@ -122,7 +122,7 @@ void PlanetPanel::Draw()
 					break;
 				}
 	}
-	
+
 	if(!selectedPanel)
 		info.SetString("description", planet.Description());
 	ui.Draw(info, this);
@@ -135,7 +135,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 {
 	Panel *oldPanel = selectedPanel;
 	const Ship *flagship = player.Flagship();
-	
+
 	bool hasAccess = planet.CanUseServices();
 	if(key == 'd' && flagship && flagship->CanBeFlagship())
 	{
@@ -197,12 +197,12 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else
 		return false;
-	
+
 	// If we are here, it is because something happened to change the selected
 	// planet UI panel. So, we need to pop the old selected panel:
 	if(oldPanel)
 		GetUI()->Pop(oldPanel);
-	
+
 	return true;
 }
 
@@ -214,11 +214,11 @@ void PlanetPanel::TakeOffIfReady()
 	if(!GetUI()->IsTop(this) && !GetUI()->IsTop(trading.get()) && !GetUI()->IsTop(bank.get())
 			&& !GetUI()->IsTop(spaceport.get()) && !GetUI()->IsTop(hiring.get()))
 		return;
-	
+
 	// If something happens here that cancels the order to take off, don't try
 	// to take off until the button is clicked again.
 	requestedLaunch = false;
-	
+
 	// Check for any landing missions that have not been offered.
 	Mission *mission = player.MissionToOffer(Mission::LANDING);
 	if(mission)
@@ -226,14 +226,14 @@ void PlanetPanel::TakeOffIfReady()
 		mission->Do(Mission::OFFER, player, GetUI());
 		return;
 	}
-	
+
 	// Check whether the player can be warned before takeoff.
 	if(player.ShouldLaunch())
 	{
 		TakeOff();
 		return;
 	}
-	
+
 	// Check if any of the player's ships are configured in such a way that they
 	// will be impossible to fly.
 	const auto flightChecks = player.FlightCheck();
@@ -249,7 +249,7 @@ void PlanetPanel::TakeOffIfReady()
 				return;
 			}
 		}
-	
+
 	// Check for items that would be sold, or mission passengers that would be abandoned on-planet.
 	const Ship *flagship = player.Flagship();
 	const CargoHold &cargo = player.Cargo();
@@ -276,7 +276,7 @@ void PlanetPanel::TakeOffIfReady()
 					break;
 				}
 	}
-	
+
 	if(nonJumpCount > 0 || cargoToSell > 0 || overbooked > 0)
 	{
 		ostringstream out;
@@ -285,14 +285,14 @@ void PlanetPanel::TakeOffIfReady()
 		{
 			bool both = ((cargoToSell > 0 && cargo.MissionCargoSize()) && overbooked > 0);
 			out << "If you take off now you will fail a mission due to not having enough ";
-			
+
 			if(overbooked > 0)
 			{
 				out << "bunks available for " << overbooked;
 				out << (overbooked > 1 ? " of the passengers" : " passenger");
 				out << (both ? " and not having enough " : ".");
 			}
-			
+
 			if(missionCargoToSell > 0)
 			{
 				out << "cargo space to hold " << missionCargoToSell;
@@ -314,7 +314,7 @@ void PlanetPanel::TakeOffIfReady()
 		else
 		{
 			out << "If you take off now you will have to sell ";
-			
+
 			if(cargoToSell == 1)
 				out << "a ton of cargo";
 			else if(cargoToSell > 0)
@@ -325,7 +325,7 @@ void PlanetPanel::TakeOffIfReady()
 		GetUI()->Push(new Dialog(this, &PlanetPanel::TakeOff, out.str()));
 		return;
 	}
-	
+
 	// There was no need to ask the player whether we can get rid of anything,
 	// so go ahead and take off.
 	TakeOff();
