@@ -77,7 +77,7 @@ TradingPanel::~TradingPanel()
 		else
 			message += "for a total profit of " + Format::Credits(profit) + " credits.";
 		
-		Messages::Add(message);
+		Messages::Add(message, Messages::Importance::High);
 	}
 }
 
@@ -102,8 +102,6 @@ void TradingPanel::Draw()
 	const Color &selected = *GameData::Colors().Get("bright");
 	
 	int y = FIRST_Y;
-	FillShader::Fill(Point(-60., y + 15.), Point(480., 1.), unselected);
-	
 	font.Draw("Commodity", Point(NAME_X, y), selected);
 	font.Draw("Price", Point(PRICE_X, y), selected);
 	
@@ -203,7 +201,7 @@ void TradingPanel::Draw()
 		}
 	}
 	
-	const Interface *interface = GameData::Interfaces().Get("trade");
+	const Interface *tradeUi = GameData::Interfaces().Get("trade");
 	Information info;
 	if(sellOutfits)
 		info.SetCondition("can sell outfits");
@@ -211,7 +209,7 @@ void TradingPanel::Draw()
 		info.SetCondition("can sell");
 	if(player.Cargo().Free() > 0 && canBuy)
 		info.SetCondition("can buy");
-	interface->Draw(info, this);
+	tradeUi->Draw(info, this);
 }
 
 

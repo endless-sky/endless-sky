@@ -39,8 +39,8 @@ class Visual;
 class Armament {
 public:
 	// Add a gun or turret hard-point.
-	void AddGunPort(const Point &point, const Angle &angle, bool isParallel, const Outfit *outfit = nullptr);
-	void AddTurret(const Point &point, const Outfit *outfit = nullptr);
+	void AddGunPort(const Point &point, const Angle &angle, bool isParallel, bool isUnder, const Outfit *outfit = nullptr);
+	void AddTurret(const Point &point, bool isUnder, const Outfit *outfit = nullptr);
 	// This must be called after all the outfit data is loaded. If you add more
 	// of a given weapon than there are slots for it, the extras will not fire.
 	// But, the "gun ports" attribute should keep that from happening. To
@@ -51,6 +51,8 @@ public:
 	void FinishLoading();
 	// Reload all weapons (because a day passed in-game).
 	void ReloadAll();
+	// Uninstall all weapons (because the weapon outfits have potentially changed).
+	void UninstallAll();
 	
 	// Swap the weapons in the given two hardpoints.
 	void Swap(int first, int second);

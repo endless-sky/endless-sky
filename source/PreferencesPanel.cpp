@@ -34,7 +34,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 #include "text/WrappedText.h"
 
-#include "gl_header.h"
+#include "opengl.h"
 #include <SDL2/SDL.h>
 
 #include <algorithm>
@@ -296,7 +296,7 @@ void PreferencesPanel::DrawControls()
 	const Color &bright = *GameData::Colors().Get("bright");
 	
 	// Check for conflicts.
-	Color red(.3f, 0.f, 0.f, .3f);
+	const Color &warning = *GameData::Colors().Get("warning conflict");
 	
 	Table table;
 	table.AddColumn(-115, {230, Alignment::LEFT});
@@ -374,7 +374,7 @@ void PreferencesPanel::DrawControls()
 			if(isConflicted || isEditing)
 			{
 				table.SetHighlight(56, 120);
-				table.DrawHighlight(isEditing ? dim: red);
+				table.DrawHighlight(isEditing ? dim: warning);
 			}
 			
 			// Mark the selected row.
@@ -452,6 +452,7 @@ void PreferencesPanel::DrawSettings()
 		"Reduce large graphics",
 		"Draw background haze",
 		"Draw starfield",
+		"Parallax background",
 		"Show hyperspace flash",
 		SHIP_OUTLINES,
 		"",

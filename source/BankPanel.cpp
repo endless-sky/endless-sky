@@ -87,7 +87,6 @@ void BankPanel::Draw()
 	const Color &selected = *GameData::Colors().Get("bright");
 	
 	// Draw the heading of the table.
-	table.DrawUnderline(unselected);
 	table.SetColor(selected);
 	for(const string &heading : HEADING)
 		table.Draw(heading);
@@ -252,7 +251,7 @@ void BankPanel::Draw()
 	}
 	
 	// Draw the "Pay All" button.
-	const Interface *interface = GameData::Interfaces().Get("bank");
+	const Interface *bankUi = GameData::Interfaces().Get("bank");
 	Information info;
 	if((salariesOwed || maintenanceDue) && player.Accounts().Credits() > 0)
 		info.SetCondition("can pay");
@@ -260,7 +259,7 @@ void BankPanel::Draw()
 		for(const Mortgage &mortgage : player.Accounts().Mortgages())
 			if(mortgage.Principal() <= player.Accounts().Credits())
 				info.SetCondition("can pay");
-	interface->Draw(info, this);
+	bankUi->Draw(info, this);
 }
 
 

@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapSalesPanel.h"
 
+#include "CategoryTypes.h"
 #include "Command.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
@@ -50,7 +51,7 @@ const int MapSalesPanel::WIDTH = 270;
 
 MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 	: MapPanel(player, SHOW_SPECIAL),
-	categories(isOutfitters ? Outfit::CATEGORIES : Ship::CATEGORIES),
+	categories(GameData::Category(isOutfitters ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	isOutfitters(isOutfitters),
 	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {
@@ -62,7 +63,7 @@ MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 
 MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 	: MapPanel(panel),
-	categories(isOutfitters ? Outfit::CATEGORIES : Ship::CATEGORIES),
+	categories(GameData::Category(isOutfitters ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	isOutfitters(isOutfitters),
 	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {
@@ -234,7 +235,7 @@ void MapSalesPanel::DrawPanel() const
 	const Color &back = *GameData::Colors().Get("map side panel background");
 	FillShader::Fill(
 		Point(Screen::Width() * -.5 + WIDTH * .5, 0.),
-		Point(WIDTH, Screen::Height()), 
+		Point(WIDTH, Screen::Height()),
 		back);
 	
 	const Sprite *edgeSprite = SpriteSet::Get("ui/right edge");
@@ -341,14 +342,20 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite) const
 
 
 void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, bool isForSale, bool isSelected,
-		const string &name, const string &price, const string &info)
+		const string &name, const string &price, const string &info,
+		const std::string &storage)
 {
 	const Font &font = FontSet::Get(14);
 	Color selectionColor(0.f, .3f);
 	
-	Point nameOffset(ICON_HEIGHT, .5 * ICON_HEIGHT - PAD - 1.5 * font.Height());
-	Point priceOffset(ICON_HEIGHT, nameOffset.Y() + font.Height() + PAD);
-	Point infoOffset(ICON_HEIGHT, priceOffset.Y() + font.Height() + PAD);
+	// Set the padding so the text takes the same height overall,
+	// regardless of whether it's three lines of text or four.
+	const auto pad = storage.empty() ? PAD : (PAD * 2. / 3.);
+	const auto lines = storage.empty() ? 3 : 4;
+	Point nameOffset(ICON_HEIGHT, .5 * (ICON_HEIGHT - (lines - 1) * pad - lines * font.Height()));
+	Point priceOffset(ICON_HEIGHT, nameOffset.Y() + font.Height() + pad);
+	Point infoOffset(ICON_HEIGHT, priceOffset.Y() + font.Height() + pad);
+	Point storageOffset(ICON_HEIGHT, infoOffset.Y() + font.Height() + pad);
 	Point blockSize(WIDTH, ICON_HEIGHT);
 
 	if(corner.Y() < Screen::Bottom() && corner.Y() + ICON_HEIGHT >= Screen::Top())
@@ -358,11 +365,15 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, bool isForSale, bo
 		
 		DrawSprite(corner, sprite);
 		
-		const Color &textColor = *GameData::Colors().Get(isForSale ? "medium" : "dim");
+		const Color &mediumColor = *GameData::Colors().Get("medium");
+		const Color &dimColor = *GameData::Colors().Get("dim");
+		const Color textColor = isForSale ? mediumColor : storage.empty() ? dimColor : Color::Combine(.5f, mediumColor, .5f, dimColor);
 		auto layout = Layout(static_cast<int>(WIDTH - ICON_HEIGHT - 1), Truncate::BACK);
 		font.Draw({name, layout}, corner + nameOffset, textColor);
 		font.Draw({price, layout}, corner + priceOffset, textColor);
 		font.Draw({info, layout}, corner + infoOffset, textColor);
+		if(!storage.empty())
+			font.Draw({storage, layout}, corner + storageOffset, textColor);
 	}
 	zones.emplace_back(corner + .5 * blockSize, blockSize, zones.size());
 	corner.Y() += ICON_HEIGHT;

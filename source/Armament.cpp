@@ -26,17 +26,17 @@ using namespace std;
 
 
 // Add a gun hardpoint (fixed-direction weapon).
-void Armament::AddGunPort(const Point &point, const Angle &angle, bool isParallel, const Outfit *outfit)
+void Armament::AddGunPort(const Point &point, const Angle &angle, bool isParallel, bool isUnder, const Outfit *outfit)
 {
-	hardpoints.emplace_back(point, angle, false, isParallel, outfit);
+	hardpoints.emplace_back(point, angle, false, isParallel, isUnder, outfit);
 }
 
 
 
 // Add a turret hardpoint (omnidirectional weapon).
-void Armament::AddTurret(const Point &point, const Outfit *outfit)
+void Armament::AddTurret(const Point &point, bool isUnder, const Outfit *outfit)
 {
-	hardpoints.emplace_back(point, Angle(0.), true, false, outfit);
+	hardpoints.emplace_back(point, Angle(0.), true, false, isUnder, outfit);
 }
 
 
@@ -135,6 +135,15 @@ void Armament::ReloadAll()
 			if(outfit->IsStreamed())
 				streamReload[outfit] = 0;
 		}
+}
+
+
+
+// Uninstall all weapons (because the weapon outfits have potentially changed).
+void Armament::UninstallAll()
+{
+	for(auto &hardpoint : hardpoints)
+		hardpoint.Uninstall();
 }
 
 

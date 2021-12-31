@@ -28,11 +28,8 @@ class DataWriter;
 // over time.
 class Account {
 public:
-	// Default constructor.
-	Account();
-	
 	// Load or save account data.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, bool clearFirst);
 	void Save(DataWriter &out) const;
 	
 	// Get or change the player's credits.
@@ -69,19 +66,19 @@ private:
 	
 	
 private:
-	int64_t credits;
+	int64_t credits = 0;
 	// If back salaries and maintenance cannot be paid, they pile up rather
 	// than being ignored.
-	int64_t salariesOwed;
-	int64_t maintenanceDue;
+	int64_t salariesOwed = 0;
+	int64_t maintenanceDue = 0;
+	// Your credit score determines the interest rate on your mortgages.
+	int creditScore = 400;
 	
 	std::vector<Mortgage> mortgages;
 	
 	// History of the player's net worth. This is used to calculate your average
 	// daily income, which is used to calculate how big a mortgage you can afford.
 	std::vector<int64_t> history;
-	// Your credit score determines the interest rate on your mortgages.
-	int creditScore;
 };
 
 

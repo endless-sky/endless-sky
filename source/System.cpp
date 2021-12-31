@@ -86,44 +86,23 @@ double System::Asteroid::Energy() const
 
 
 
-System::FleetProbability::FleetProbability(const Fleet *fleet, int period)
-	: fleet(fleet), period(period > 0 ? period : 200)
+System::Belt::Belt(double radius, int weight)
+	: radius(radius), weight(weight)
 {
 }
 
 
 
-const Fleet *System::FleetProbability::Get() const
+double System::Belt::Radius() const
 {
-	return fleet;
+	return radius;
 }
 
 
 
-int System::FleetProbability::Period() const
+int System::Belt::Weight() const
 {
-	return period;
-}
-
-
-
-System::HazardProbability::HazardProbability(const Hazard *hazard, int period)
-	: hazard(hazard), period(period > 0 ? period : 200)
-{
-}
-
-
-
-const Hazard *System::HazardProbability::Get() const
-{
-	return hazard;
-}
-
-
-
-int System::HazardProbability::Period() const
-{
-	return period;
+	return weight;
 }
 
 
@@ -138,7 +117,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	
 	// For the following keys, if this data node defines a new value for that
 	// key, the old values should be cleared (unless using the "add" keyword).
-	set<string> shouldOverwrite = {"asteroids", "attributes", "fleet", "link", "object", "hazard"};
+	set<string> shouldOverwrite = {"asteroids", "attributes", "belt", "fleet", "link", "object", "hazard"};
 	
 	for(const DataNode &child : node)
 	{
@@ -187,6 +166,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				fleets.clear();
 			else if(key == "hazard")
 				hazards.clear();
+			else if(key == "belt")
+				belts.clear();
 			else if(key == "object")
 			{
 				// Make sure any planets that were linked to this system know
@@ -197,6 +178,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				
 				objects.clear();
 			}
+			else if(key == "hidden")
+				hidden = false;
 			
 			// If not in "overwrite" mode, move on to the next node.
 			if(overwriteAll)
@@ -206,7 +189,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		}
 		
 		// Handle the attributes which can be "removed."
-		if(!hasValue && key != "object")
+		if(key == "hidden")
+			hidden = !remove;
+		else if(!hasValue && key != "object")
 		{
 			child.PrintTrace("Expected key to have a value:");
 			continue;
@@ -286,6 +271,22 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			else
 				hazards.emplace_back(hazard, child.Value(valueIndex + 1));
 		}
+		else if(key == "belt")
+		{
+			Belt belt(child.Value(valueIndex),
+				child.Size() >= valueIndex + 2 ? max<int>(1, child.Value(valueIndex + 1)) : 1);
+			if(remove)
+			{
+				for(auto it = belts.begin(); it != belts.end(); ++it)
+					if(it->Radius() == belt.Radius())
+					{
+						belts.eraseAt(it);
+						break;
+					}
+			}
+			else
+				belts.emplace_back(belt);
+		}
 		// Handle the attributes which cannot be "removed."
 		else if(remove)
 		{
@@ -303,8 +304,6 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			music = value;
 		else if(key == "habitable")
 			habitable = child.Value(valueIndex);
-		else if(key == "belt")
-			asteroidBelt = child.Value(valueIndex);
 		else if(key == "jump range")
 			jumpRange = max(0., child.Value(valueIndex));
 		else if(key == "haze")
@@ -381,6 +380,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	// Print a warning if this system wasn't explicitly given a position.
 	if(!hasPosition)
 		node.PrintTrace("Warning: system will be ignored due to missing position:");
+	// Systems without an asteroid belt defined default to a radius of 1500.
+	if(belts.empty())
+		belts.emplace_back(1500.);
 }
 
 
@@ -522,6 +524,14 @@ const set<const System *> &System::JumpNeighbors(double neighborDistance) const
 
 
 
+// Whether this system can be seen when not linked.
+bool System::Hidden() const
+{
+	return hidden;
+}
+
+
+
 // Additional travel distance to target for ships entering through hyperspace.
 double System::ExtraHyperArrivalDistance() const
 {
@@ -605,10 +615,18 @@ double System::HabitableZone() const
 
 
 
-// Get the radius of the asteroid belt.
-double System::AsteroidBelt() const
+// Get the radius of an asteroid belt.
+double System::AsteroidBeltRadius() const
 {
-	return asteroidBelt;
+	return belts.Get().Radius();
+}
+
+
+
+// Get the list of asteroid belts.
+const WeightedList<System::Belt> &System::AsteroidBelts() const
+{
+	return belts;
 }
 
 
@@ -640,7 +658,7 @@ double System::SolarWind() const
 bool System::IsInhabited(const Ship *ship) const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet())
+		if(object.HasSprite() && object.HasValidPlanet())
 		{
 			const Planet &planet = *object.GetPlanet();
 			if(!planet.IsWormhole() && planet.IsInhabited() && planet.IsAccessible(ship))
@@ -656,7 +674,7 @@ bool System::IsInhabited(const Ship *ship) const
 bool System::HasFuelFor(const Ship &ship) const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet() && object.GetPlanet()->HasFuelFor(ship))
+		if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasFuelFor(ship))
 			return true;
 	
 	return false;
@@ -668,7 +686,7 @@ bool System::HasFuelFor(const Ship &ship) const
 bool System::HasShipyard() const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet() && object.GetPlanet()->HasShipyard())
+		if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasShipyard())
 			return true;
 	
 	return false;
@@ -680,7 +698,7 @@ bool System::HasShipyard() const
 bool System::HasOutfitter() const
 {
 	for(const StellarObject &object : objects)
-		if(object.GetPlanet() && object.GetPlanet()->HasOutfitter())
+		if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasOutfitter())
 			return true;
 	
 	return false;
@@ -763,7 +781,7 @@ double System::Exports(const string &commodity) const
 
 
 // Get the probabilities of various fleets entering this system.
-const vector<System::FleetProbability> &System::Fleets() const
+const vector<RandomEvent<Fleet>> &System::Fleets() const
 {
 	return fleets;
 }
@@ -771,7 +789,7 @@ const vector<System::FleetProbability> &System::Fleets() const
 
 
 // Get the probabilities of various hazards in this system.
-const vector<System::HazardProbability> &System::Hazards() const
+const vector<RandomEvent<Hazard>> &System::Hazards() const
 {
 	return hazards;
 }
@@ -824,6 +842,8 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 			object.speed = 360. / child.Value(1);
 		else if(child.Token(0) == "offset" && child.Size() >= 2)
 			object.offset = child.Value(1);
+		else if(child.Token(0) == "hazard" && child.Size() >= 3)
+			object.hazards.emplace_back(GameData::Hazards().Get(child.Token(1)), child.Value(2));
 		else if(child.Token(0) == "object")
 			LoadObject(child, planets, index);
 		else

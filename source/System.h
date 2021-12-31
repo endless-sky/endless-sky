@@ -13,9 +13,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef SYSTEM_H_
 #define SYSTEM_H_
 
+#include "Hazard.h"
 #include "Point.h"
+#include "RandomEvent.h"
 #include "Set.h"
 #include "StellarObject.h"
+#include "WeightedList.h"
 
 #include <set>
 #include <string>
@@ -25,7 +28,6 @@ class DataNode;
 class Date;
 class Fleet;
 class Government;
-class Hazard;
 class Minable;
 class Planet;
 class Ship;
@@ -59,28 +61,16 @@ public:
 		double energy;
 	};
 	
-	class FleetProbability {
+	class Belt {
 	public:
-		FleetProbability(const Fleet *fleet, int period);
+		Belt(double radius, int weight = 1);
 		
-		const Fleet *Get() const;
-		int Period() const;
+		double Radius() const;
+		int Weight() const;
 		
 	private:
-		const Fleet *fleet;
-		int period;
-	};
-	
-	class HazardProbability {
-	public:
-		HazardProbability(const Hazard *hazard, int period);
-		
-		const Hazard *Get() const;
-		int Period() const;
-		
-	private:
-		const Hazard *hazard;
-		int period;
+		double radius;
+		int weight;
 	};
 	
 	
@@ -115,6 +105,8 @@ public:
 	// If this system has its own jump range, then it will always return the
 	// systems within that jump range instead of the jump range given.
 	const std::set<const System *> &JumpNeighbors(double neighborDistance) const;
+	// Whether this system can be seen when not linked.
+	bool Hidden() const;
 	// Additional travel distance to target for ships entering through hyperspace.
 	double ExtraHyperArrivalDistance() const;
 	// Additional travel distance to target for ships entering using a jumpdrive.
@@ -131,10 +123,12 @@ public:
 	const StellarObject *FindStellar(const Planet *planet) const;
 	// Get the habitable zone's center.
 	double HabitableZone() const;
-	// Get the radius of the asteroid belt.
-	double AsteroidBelt() const;
+	// Get the radius of an asteroid belt.
+	double AsteroidBeltRadius() const;
+	// Get the list of asteroid belts.
+	const WeightedList<Belt> &AsteroidBelts() const;
 	// Get how far ships can jump from this system.
-	double JumpRange() const; 
+	double JumpRange() const;
 	// Get the rate of solar collection and ramscoop refueling.
 	double SolarPower() const;
 	double SolarWind() const;
@@ -162,9 +156,9 @@ public:
 	double Exports(const std::string &commodity) const;
 	
 	// Get the probabilities of various fleets entering this system.
-	const std::vector<FleetProbability> &Fleets() const;
+	const std::vector<RandomEvent<Fleet>> &Fleets() const;
 	// Get the probabilities of various hazards in this system.
-	const std::vector<HazardProbability> &Hazards() const;
+	const std::vector<RandomEvent<Hazard>> &Hazards() const;
 	// Check how dangerous this system is (credits worth of enemy ships jumping
 	// in per frame).
 	double Danger() const;
@@ -204,6 +198,9 @@ private:
 	std::set<const System *> links;
 	std::map<double, std::set<const System *>> neighbors;
 	
+	// Defines whether this system can be seen when not linked.
+	bool hidden = false;
+	
 	// Stellar objects, listed in such an order that an object's parents are
 	// guaranteed to appear before it (so that if we traverse the vector in
 	// order, updating positions, an object's parents will already be at the
@@ -211,10 +208,10 @@ private:
 	std::vector<StellarObject> objects;
 	std::vector<Asteroid> asteroids;
 	const Sprite *haze = nullptr;
-	std::vector<FleetProbability> fleets;
-	std::vector<HazardProbability> hazards;
+	std::vector<RandomEvent<Fleet>> fleets;
+	std::vector<RandomEvent<Hazard>> hazards;
 	double habitable = 1000.;
-	double asteroidBelt = 1500.;
+	WeightedList<Belt> belts;
 	double jumpRange = 0.;
 	double solarPower = 0.;
 	double solarWind = 0.;
