@@ -31,11 +31,11 @@ class PlayerInfo;
 class LogbookPanel : public Panel {
 public:
 	LogbookPanel(PlayerInfo &player);
-	
+
 	// Draw this panel.
 	virtual void Draw() override;
-	
-	
+
+
 protected:
 	// Event handlers.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
@@ -43,16 +43,16 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 	virtual bool Hover(int x, int y) override;
-	
-	
+
+
 private:
 	void Update(bool selectLast = true);
-	
-	
+
+
 private:
 	// Reference to the player, to apply any changes to them.
 	PlayerInfo &player;
-	
+
 	// Current month being displayed:
 	Date selectedDate;
 	std::string selectedName;
@@ -63,7 +63,7 @@ private:
 	std::vector<Date> dates;
 
 	Point hoverPoint;
-	
+
 	// Current scroll:
 	double categoryScroll = 0.;
 	double scroll = 0.;

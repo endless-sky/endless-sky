@@ -24,17 +24,17 @@ class Date {
 public:
 	Date() = default;
 	Date(int day, int month, int year);
-	
+
 	// Get this date as a string, in the form "Day, DD Mon Year".
 	const std::string &ToString() const;
 	// Get a string in the form "the DDth of Month", suitable to include in
 	// conversation text.
 	std::string LongString() const;
-	
+
 	// Check if this date has been initialized.
 	explicit operator bool() const;
 	bool operator!() const;
-	
+
 	// Move the date forward one day.
 	Date &operator++();
 	Date operator++(int);
@@ -49,16 +49,16 @@ public:
 	bool operator>=(const Date &other) const;
 	bool operator==(const Date &other) const;
 	bool operator!=(const Date &other) const;
-	
+
 	// Get the number of days that have elapsed since the "epoch".
 	int DaysSinceEpoch() const;
-	
+
 	// Get the date as numbers.
 	int Day() const;
 	int Month() const;
 	int Year() const;
-	
-	
+
+
 private:
 	// The date is compressed into a single integer value to make it easy to
 	// compare dates.

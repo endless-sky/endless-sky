@@ -30,7 +30,7 @@ int64_t Mortgage::Maximum(int64_t annualRevenue, int creditScore, int64_t curren
 	annualRevenue -= term * currentPayments;
 	if(annualRevenue <= 0)
 		return 0;
-	
+
 	double interest = (600 - creditScore / 2) * .00001;
 	double power = pow(1. + interest, term);
 	double multiplier = interest * term * power / (power - 1.);
@@ -66,7 +66,7 @@ void Mortgage::Load(const DataNode &node)
 		type = node.Token(1);
 	else
 		type = "Mortgage";
-	
+
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "principal" && child.Size() >= 2)
@@ -105,7 +105,7 @@ int64_t Mortgage::MakePayment()
 	MissPayment();
 	principal -= payment;
 	--term;
-	
+
 	return payment;
 }
 
@@ -172,7 +172,7 @@ int64_t Mortgage::Payment() const
 		return principal;
 	if(!interest)
 		return lround(static_cast<double>(principal) / term);
-	
+
 	// Always require every payment to be at least 1 credit.
 	double power = pow(1. + interest, term);
 	return max<int64_t>(1, lround(principal * interest * power / (power - 1.)));
