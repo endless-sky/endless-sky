@@ -1,0 +1,379 @@
+fleet "Small Vi"
+	government "Gegno Vi"
+	names "gegno vi"
+	cargo 2
+	personality
+		heroic vindictive
+	variant 10
+		Eclogite
+	variant 7
+		Eclogite 2
+	variant
+		Hornfel
+	variant 3
+		Eclogite
+		Hornfel
+	variant
+		Gneiss
+	variant
+		Eclogite 2
+		"Hornfel Light"
+	variant
+		Gneiss
+
+fleet "Large Vi"
+	government "Gegno Vi"
+	names "gegno vi"
+	cargo 2
+	personality
+		heroic vindictive opportunistic
+	variant 6
+		Eclogite 3
+	variant 4
+		Eclogite 2
+		Hornfel
+	variant 3
+		Hornfel
+	variant 3
+		"Hornfel Med"
+	variant 2
+		"Hornfel Light"
+	variant
+		Hornfel 2
+	variant 3
+		Gneiss
+	variant 3
+		Eclogite 2
+		Gneiss
+	variant 2
+		Eclogite 2
+		Hornfel 2
+	variant
+		"Hornfel Med"
+		"Hornfel Light"
+	variant
+		Hornfel
+		Gneiss
+	variant 2
+		"Hornfel Med"
+		Gneiss
+	variant
+		Eclogite
+		Hornfel
+		Gneiss
+	variant 2
+		Eclogite 2
+		"Hornfel Light"
+		"Hornfel Med"
+	variant
+		Eclogite
+		"Hornfel Light"
+		"Hornfel Med"
+		Gneiss
+	variant 2
+		Gneiss 2
+	variant
+		Eclogite 4
+	variant
+		"Hornfel Heavy"
+		"Hornfel Light"
+		Eclogite
+	variant
+		Gneiss
+		"Hornfel Heavy"
+
+fleet "Vi Transport"
+	government "Gegno Vi"
+	names "gegno vi"
+	cargo 2
+	personality
+		timid plunders opportunistic
+	variant 14
+		Slate
+	variant 2
+		Slate 2
+	variant 4
+		Schist
+	variant 3
+		"Schist Light"
+	variant
+		Slate
+		"Schist Heavy"
+		"Schist Med A"
+	variant 2
+		Slate
+		"Schist Med A"
+		"Schist Light"
+	variant 2
+		Slate 2
+		Schist
+	variant 4
+		Slate
+		"Schist Med"
+	variant
+		Slate 4
+	variant
+		Schist 2
+	variant 2
+		"Schist Med A"
+		Slate
+	variant 2
+		"Schist Light"
+		"Schist Med B"
+	variant 2
+		"Schist Heavy"
+	variant
+		"Schist Heavy"
+		"Schist Med B"
+	variant
+		Protolith
+
+fleet "Vi Cargo"
+	government "Gegno Vi"
+	names "gegno vi"
+	cargo 2
+	personality
+		plunders heroic opportunistic
+	variant 4
+		"Schist Heavy"
+	variant 2
+		"Schist Med A"
+	variant 2
+		"Hornfel Light"
+	variant
+		"Hornfel Heavy"
+	variant 2
+		"Schist Light"
+	variant
+		Hornfel
+	variant
+		Schist
+	variant
+		"Hornfel Med"
+		"Schist Med B"
+	variant
+		Protolith
+		"Schist Heavy"
+
+fleet "Small Scin"
+	government "Gegno Scin"
+	names "gegno scin"
+	cargo 2
+	personality
+		heroic vindictive
+	variant 7
+		Coesite
+	variant 5
+		"Coesite P"
+	variant 3
+		"Felsic P"
+		Coesite
+		"Coesite P"
+	variant 2
+		"Felsic P"
+	variant 4
+		Coesite
+		"Coesite P"
+	variant
+		Coesite
+		"Coesite P" 2
+	variant
+		Feldspar
+		Halite 6
+
+fleet "Large Scin"
+	government "Gegno Scin"
+	names "gegno scin"
+	cargo 2
+	personality
+		heroic vindictive opportunistic
+	variant 6
+		Coesite 2
+	variant 4
+		Coesite
+		"Coesite P"
+	variant 3
+		"Felsic P"
+	variant 3
+		Felsic
+	variant 2
+		Felsic
+		"Coesite P" 2
+	variant 2
+		"Felsic P"
+		Coesite
+	variant 2
+		Feldspar
+		Halite 6
+	variant 2
+		Feldspar
+		Halite 6
+		Coesite
+	variant
+		Feldspar
+		Halite 6
+		Felsic
+
+fleet "Scin Transport"
+	government "Gegno Scin"
+	names "gegno scin"
+	cargo 2
+	personality
+		timid
+	variant 15
+		Mica
+	variant 10
+		"Mica P"
+	variant 6
+		"Mica P"
+		Mica
+	variant 4
+		Felsic
+		Mica
+	variant 4
+		"Felsic P"
+		"Mica P" 2
+	variant 2
+		Felsic
+		"Mica P"
+		Mica 2
+	variant 2
+		"Felsic P"
+		"Mica P"
+		"Coesite P"
+	variant
+		Muscovite
+	variant
+		"Muscovite P"
+		Halite
+	variant
+		"Muscovite P"
+		Halite
+		"Coesite P"
+
+fleet "Scin Cargo"
+	government "Gegno Scin"
+	names "gegno scin"
+	cargo 2
+	personality
+		timid
+	variant 4
+		Felsic
+	variant 2
+		"Felsic P"
+	variant 2
+		"Felsic P"
+		"Coesite P"
+	variant
+		Felsic 2
+		Mica
+	variant 2
+		"Felsic P"
+		"Mica P"
+	variant
+		Felsic
+	variant
+		Muscovite 2
+		Halite
+	variant
+		"Muscovite P"
+		Halite
+	variant
+		"Muscovite P" 2
+		Halite 2
+
+fleet "Vi Warfleet"
+	government "Gegno Vi"
+	names "gegno vi"
+	cargo 2
+	personality
+		heroic vindictive opportunistic
+	variant 8
+		Gneiss
+		"Hornfel Med"
+		Eclogite 2
+	variant 4
+		Gneiss
+		"Hornfel Light"
+		"Hornfel Med"
+		Eclogite 3
+	variant 4
+		Gneiss
+		Hornfel
+		Eclogite 2
+	variant
+		"Hornfel Heavy"
+		Eclogite 2
+	variant
+		Gneiss
+		Eclogite
+		"Hornfel Light"
+	variant 8
+		"Hornfel Med"
+		Hornfel
+		Eclogite 2
+	variant 3
+		Hornfel
+		Eclogite 4
+	variant 3
+		Eclogite 2
+	variant 2
+		Eclogite
+	variant 4
+		"Hornfel Heavy"
+		Eclogite
+
+fleet "Scin Warfleet"
+	government "Gegno Scin"
+	names "gegno scin"
+	cargo 2
+	personality
+		heroic vindictive opportunistic
+	variant 2
+		"Coesite P"
+		Felsic
+	variant
+		Feldspar
+		Halite 6
+		"Coesite P"
+	variant 3
+		Coesite
+		"Coesite P" 2
+	variant 2
+		Felsic
+	variant 3
+		"Coesite P"
+	variant 2
+		Feldspar
+		Halite 6
+	variant
+		Feldspar
+		Halite 6
+		"Felsic P"
+		Coesite
+	variant 2
+		"Felsic P"
+
+fleet "Gegno Basic"
+	government Gegno
+	names "gegno scin"
+	personality
+		timid
+	variant 6
+		Shale
+	variant 3
+		Dolomite
+	variant 2
+		Dolomite
+		Shale 2
+	variant 3
+		Shale 2
+	variant 2
+		Shale 3
+	variant 3
+		Dolomite
+		Shale
+	variant
+		Dolomite 2
+		Shale
+

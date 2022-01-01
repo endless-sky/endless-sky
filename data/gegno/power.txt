@@ -1,0 +1,74 @@
+outfit "R01 Skirmish Battery"
+	category Power
+	plural "R01 Skirmish Batteries"
+	mass 12
+	thumbnail outfit/gbatterytiny
+	"energy capacity" 1121
+	"outfit space" -12
+	description "Skirmish batteries are very common amongst ships across Gegno space. They are a perfectly convenient storage of battery power to offset the load of larger Gegno generators, or a nice addition to add on top of them where more energy would be needed."
+
+outfit "R02 Battlezone Battery"
+	category Power
+	plural "R02 Battlezone Batteries"
+	mass 23
+	thumbnail outfit/gbatterysmall
+	"energy capacity" 2237
+	"outfit space" -23
+	description "Battlezone batteries are primarily used on the Gegno's medium-range combat vessels, holding a decent amount of power for long lasting engagements. They also fit nicely on larger vessels as an extra power source to feed their larger systems."
+
+outfit "R03 Warforge Battery"
+	category Power
+	plural "R03 Warforge Batteries"
+	mass 41
+	thumbnail outfit/gbatterymed
+	"energy capacity" 4469
+	"outfit space" -41
+	description "Warforge batteries have proved their usefulness over the years. As large, sturdy battery packs, they assist with equally large vollies that are fired from Gegno ships, and help maintain an excess of power for engine usage."
+
+outfit "R04 Crusade Battery"
+	category Power
+	plural "R04 Crusade Batteries"
+	mass 83
+	thumbnail outfit/gbatterylarge
+	"energy capacity" 8885
+	"outfit space" -83
+	description "As the largest battery mounted on Gegno ships, the Crusade Battery supplies almost enough power as a mini generator. They are enough to support the massive warships of both the Scin and the Vi, however are slightly under the capacity of similar human batteries due to inefficient handling of their scale."
+
+outfit "C3 Scrap Cell"
+	category Power
+	mass 25
+	thumbnail outfit/vicoretiny
+	"energy generation" 1.4
+	"heat generation" 2.2
+	"outfit space" -25
+	description "The Scrap Cell is a small radiothermal generator that produces energy generation in a pinch, making use of the Gegno's slightly hotter running tech. It's output is very limited, and is only used in tandem with the Gegno's smaller-sized systems."
+
+outfit "C7 Brawl Core"
+	category Power
+	mass 39
+	thumbnail outfit/vicoresmall
+	"energy generation" 2.5
+	"heat generation" 3.9
+	"outfit space" -39
+	description "C7 Brawl Cores are a slight deviation from the other C class cores as it is set upright-forward. It is a more rudimentary type of radiothermal reactor than the C3, but nevertheless produces the necessary power for the ships that carry typically carry one."
+
+outfit "C17 Warzone Core"
+	category Power
+	plural "C7 Warzone Cores"
+	mass 87
+	thumbnail outfit/vicoremed
+	"energy generation" 14.1
+	"heat generation" 38.3
+	"outfit space" -87
+	description "The Gegno, as did humans, began developing nuclear technology once their cities grew massive enough. The Warzone Core is a medium-sized nuclear fission reactor that is a suitable power source for most of the Gegno's large ships, though it looks even more discomforting than a human one."
+
+outfit "C27 Campaign Core"
+	category Power
+	plural "C7 Campaign Cores"
+	mass 145
+	thumbnail outfit/vicorelarge
+	"energy generation" 22.3
+	"heat generation" 62.9
+	"outfit space" -145
+	description "In order to power the largest of vessels along with their power-guzzling systems and engines, the Gegno designed the Campaign Fusion Reactor from earlier prototypes during the colony ship era. It's still used to this day and is as efficient as one warship needs it to be, but just looking at it still raises concerns.."
+

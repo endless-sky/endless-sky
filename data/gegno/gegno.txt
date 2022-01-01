@@ -1,0 +1,93 @@
+phrase gegno
+	word
+		A
+	word
+		" "
+	word
+		B
+
+phrase "gegno vi"
+	word
+		""
+		""
+		Beuci
+		Dueyu
+		Tie
+		Efta
+		Gye
+	word
+		" "
+	word
+		Oorevyt
+		Ufftye
+		IiL
+		Tyebbui
+		Yuduue
+		Uhmtyeph
+		Qesscit
+		Cscayim
+		Eisc
+		Iilsc
+		Eitch
+		Ooayvyt
+		Echtyya
+		Tyyasca
+		Iefsct
+		Ieftye
+		Iusta
+		Uffduyeu
+		Bbutye
+		Scbiye
+		Aehietch
+		Dueyoh
+		Uuftei
+		Ootyff
+
+phrase "gegno scin"
+	word
+		""
+		"Kuuay "
+		Jiee
+		Tyuoe
+		Aur
+		Yss
+	word
+		" "
+	word
+		Oorevyt
+		IiL
+		Iievae
+		Gyteienl
+		Piaxenni
+		Ufftye
+		Echtyya
+		Duyeitch
+		Ziurteil
+		Ymiffeft
+		Tchynd
+		Tscael
+		Ymipiae
+		Eisc
+		Pixeni
+		Tiyesca
+		Vduscae
+		Duefyu
+		Llteiurv
+		Enncyurtte
+
+phrase "gegno uncontacted"
+	word
+		"langaunge doint recofgnioze"
+
+phrase "hostile gegno uncontacted" .
+	word
+		grr
+
+phrase "friendly gegno"
+	word
+		hi
+
+phrase "hostile gegno"
+	word
+		"f u"
+

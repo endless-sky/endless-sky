@@ -1,0 +1,188 @@
+
+outfit "RG15 Ion Torch Thruster"
+	category Engines
+	cost 26000
+	mass 31
+	thumbnail "outfit/small torch"
+	"engine capacity" -31
+	"outfit space" -31
+	thrust 7.67
+	"thrusting energy" 0.9
+	"thrusting heat" 2
+	"flare sprite" "effect/ion torch/small"
+		"frame rate" 2.5000001
+	"flare sound" "ion torch small"
+	description "The RG15 Ion Torch Thruster is the the smallest torch thruster found amongst Gegno Vi ships, almost exclusively mounted on the Slate. It's not amazingly efficient, weighing more and producing more heat than most thrusters of a similar sized, but also has a slightly lower energy consumption rate."
+
+outfit "RG15 Ion Torch Steering"
+	category Engines
+	cost 21000
+	mass 25
+	thumbnail "outfit/small torch steer"
+	"engine capacity" -25
+	"outfit space" -25
+	turn 205
+	"turning energy" 0.4
+	"turning heat" 1.4
+	"steering flare sprite" "effect/ion torch/small"
+		"frame rate" 2.3999999
+	"steering flare sound" "ion torch small"
+	description "This steering system that incorporates RG15 thrusters is only meant for the smallest of Gegno Vi ships, unheard of being mounted on anything larger than a Shuttle-class ship. It's energy requirement is a notch lower than normal, so some Gegno pilots use it as a cheap addon."
+
+outfit "RG18 Ion Torch Thruster"
+	category Engines
+	cost 58000
+	mass 51
+	thumbnail "outfit/med torch"
+	"engine capacity" -51
+	"outfit space" -51
+	thrust 14.8
+	"thrusting energy" 1.2
+	"thrusting heat" 3.5
+	"flare sprite" "effect/ion torch/medium"
+		"frame rate" 2.3999999
+	"flare sound" "ion torch medium"
+	description "Ion Torch Thrusters are the Gegno's equivalent of humanity's ion thrusters, but are still earlier in design and lacking in most deparments when compared. They have heavier frames, and their thrust output is a lot more chaotic and explosive, causing them to run notably hotter, but require slightly less energy. The RG18 is the most common-sized thruster amongst Gegno Vi vessels, and a notable size at that."
+
+outfit "RG18 Ion Torch Steering"
+	category Engines
+	cost 46000
+	mass 39
+	thumbnail "outfit/med torch steer"
+	"engine capacity" -39
+	"outfit space" -39
+	turn 420
+	"turning energy" 1.3
+	"turning heat" 2.4
+	"steering flare sprite" "effect/ion torch/medium"
+		"frame rate" 2.3999999
+	"steering flare sound" "ion torch medium"
+	description "The RG18 Steering system is decently hefty for a steering system of its size. Most mid-ranged Gegno Vi ships run these as a minimum to be able to turn their already low-maneuverability ships, and they perform their job just well enough."
+
+outfit "RG3 Ion Torch Thruster"
+	category Engines
+	cost 128000
+	mass 83
+	thumbnail "outfit/large torch"
+	"engine capacity" -83
+	"outfit space" -83
+	thrust 28.4
+	"thrusting energy" 3.1
+	"thrusting heat" 6.6
+	"flare sprite" "effect/ion torch/large"
+		"frame rate" 2.3
+	"flare sound" "ion torch large"
+	description "RG3 Ion Torch Thrusters are the Gegno's `Big Daddy` thrusters, and the oldest in the running. Based off of the massive thrusters that powered early Gegno generation ships, these thrusters are only found on the largest of Gegno ships, weighing and overheating anything smaller out of a choice."
+
+outfit "RG3 Ion Torch Steering"
+	category Engines
+	cost 102000
+	mass 64
+	thumbnail "outfit/large torch steer"
+	"engine capacity" -64
+	"outfit space" -64
+	turn 700
+	"turning energy" 1.6
+	"turning heat" 4.2
+	"steering flare sprite" "effect/ion torch/large"
+		"frame rate" 2.3
+	"steering flare sound" "ion torch large"
+	description "As the largest and oldest steering system seen around Gegno space, only few ships are equipped with RG3 Torch Thrusters, as most are no where near massive enough to be able to run them."
+
+outfit "SC2-1 Plasma Engines"
+	category Engines
+	cost 26000
+	mass 24
+	thumbnail "outfit/tiny scplasma"
+	"engine capacity" -21
+	"outfit space" -21
+	thrust 5.1
+	"thrusting energy" 0.54
+	"thrusting heat" 1.2
+	turn 160
+	"turning energy" 0.31
+	"turning heat" 0.86
+	"flare sprite" effect/scplasma/tiny
+		"frame rate" 0.59999999
+	"flare sound" "scplasma tiny"
+	description Test
+
+outfit "SC2-12 Plasma Thruster"
+	category Engines
+	cost 26000
+	mass 25
+	thumbnail "outfit/small scplasma"
+	"engine capacity" -25
+	"outfit space" -25
+	thrust 10.6
+	"thrusting energy" 0.8
+	"thrusting heat" 2.7
+	"flare sprite" effect/scplasma/small
+		"frame rate" 0.50000003
+	"flare sound" "scplasma small"
+	description Test
+
+outfit "SC2-12 Plasma Steering"
+	category Engines
+	cost 21000
+	mass 19
+	thumbnail "outfit/small scplasma steer"
+	"engine capacity" -19
+	"outfit space" -19
+	turn 270
+	"turning energy" 0.55
+	"turning heat" 1.8
+	"steering flare sprite" effect/scplasma/small
+		"frame rate" 0.50000003
+	"steering flare sound" "scplasma small"
+	description Test
+
+outfit "SC7-14 Plasma Thruster"
+	category Engines
+	cost 58000
+	mass 45
+	thumbnail "outfit/med scplasma"
+	"engine capacity" -45
+	"outfit space" -45
+	thrust 26.8
+	"thrusting energy" 2.8
+	"thrusting heat" 7.9
+	"flare sprite" effect/scplasma/med
+		"frame rate" 0.40000001
+	"flare sound" "scplasma medium"
+	description Test
+
+outfit "SC7-14 Plasma Steering"
+	category Engines
+	cost 46000
+	thumbnail "outfit/med scplasma steer"
+	"engine capacity" -34
+	mas 0
+	"outfit space" -34
+	turn 690
+	"turning energy" 1.5
+	"turning heat" 4.78
+	"steering flare sprite" effect/scplasma/med
+		"frame rate" 0.40000001
+	"steering flare sound" "scplasma medium"
+	description Test
+
+outfit "SC9-15 Plasma Engine System"
+	category Engines
+	cost 128000
+	thumbnail "outfit/large scplasma"
+	"engine capacity" -112
+	"outfit space" -112
+	"reverse thrust" 31.2
+	"reverse thrusting energy" 7.8
+	"reverse thrusting heat" 20.6
+	thrust 62.4
+	"thrusting energy" 11.1
+	"thrusting heat" 26.4
+	"flare sprite" effect/scplasma/large
+		"frame rate" 0.29999999
+	"reverse flare sprite" effect/scplasma/large
+	"flare sound" "scplasma large"
+	"reverse flare sound" "scplasma medium"
+	description Test
+

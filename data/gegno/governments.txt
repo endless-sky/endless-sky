@@ -1,0 +1,32 @@
+government "Gegno Vi"
+	swizzle 28
+	color 0.68137252 0.39746734 0.39746734
+	"player reputation" 1
+	"crew attack" 3
+	"crew defense" 1.9
+	"attitude toward"
+		"Gegno Scin" 1
+	language "Gegno Vi"
+
+government "Gegno Scin"
+	swizzle 28
+	color 0.49498352 0.55392158 0.33126682
+	"player reputation" 1
+	"crew attack" 2.1
+	"crew defense" 2.7
+	"attitude toward"
+		Gegno 1
+		"Gegno Vi" -0.01
+	language "Gegno Scin"
+
+government Gegno
+	swizzle 28
+	color 0.56862748 0.44270304 0.2118416
+	"player reputation" 1
+	"crew attack" 1.7
+	"crew defense" 2.2
+	"attitude toward"
+		"Gegno Scin" 1
+		"Gegno Vi" 1
+	language Gegno
+
