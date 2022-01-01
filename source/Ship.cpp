@@ -40,6 +40,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Visual.h"
 
 #include <algorithm>
+#include <cassert>
 #include <cmath>
 #include <limits>
 #include <sstream>
@@ -128,6 +129,28 @@ namespace {
 		}
 		else
 			stat = max(0., .99 * stat);
+	}
+
+	// Transfer the as many of the given outfits from the source ship to the target
+	// ship as the source ship can remove and the target ship can handle. Returns the
+	// items and amounts that were actually transferred (so e.g. callers can determine
+	// how much material was transferred, if any).
+	map<const Outfit *, int> TransferAmmo(const map<const Outfit *, int> &stockpile, Ship &from, Ship &to)
+	{
+		auto transferred = map<const Outfit *, int>{};
+		for(auto &&item : stockpile)
+		{
+			assert(item.second > 0 && "stockpile count must be positive");
+			int unloadable = abs(from.Attributes().CanAdd(*item.first, -item.second));
+			int loadable = to.Attributes().CanAdd(*item.first, unloadable);
+			if(loadable > 0)
+			{
+				from.AddOutfit(item.first, -loadable);
+				to.AddOutfit(item.first, loadable);
+				transferred[item.first] = loadable;
+			}
+		}
+		return transferred;
 	}
 }
 
@@ -2213,26 +2236,25 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 			if(!ejecting)
 			{
 				// Determine which of the fighter's weapons we can restock.
-				auto toRefill = set<const Outfit *>{};
+				auto toRestock = map<const Outfit *, int>();
 				for(const auto &hardpoint : bay.ship->Weapons())
 				{
 					const Weapon *weapon = hardpoint.GetOutfit();
-					const Outfit *ammo = weapon ? weapon->Ammo() : nullptr;
-					if(ammo && OutfitCount(ammo))
-						toRefill.insert(ammo);
-				}
-				// Transfer as much ammo as the fighter needs.
-				bool tookAmmo = false;
-				for(const Outfit *ammo : toRefill)
-				{
-					int canTake = bay.ship->attributes.CanAdd(*ammo, OutfitCount(ammo));
-					if(canTake > 0)
+					if(weapon)
 					{
-						AddOutfit(ammo, -canTake);
-						bay.ship->AddOutfit(ammo, canTake);
-						tookAmmo = true;
-						carriedMass += ammo->Mass() * canTake;
+						const Outfit *ammo = weapon->Ammo();
+						int count = ammo ? this->OutfitCount(ammo) : 0;
+						if(count > 0)
+							toRestock.emplace(ammo, count);
 					}
+				}
+				auto takenAmmo = TransferAmmo(toRestock, *this, *bay.ship);
+				bool tookAmmo = !takenAmmo.empty();
+				if(tookAmmo)
+				{
+					// Update the carried mass cache.
+					for (auto &&item : takenAmmo)
+						carriedMass += item.first->Mass() * item.second;
 				}
 
 				// This ship will refuel naturally based on the carrier's fuel
@@ -3471,6 +3493,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			// be used by the carrier or other fighters.
 			ship->TransferFuel(ship->fuel, this);
 
+			// Determine the ammunition the recipient can supply.
 			auto toRestock = map<const Outfit *, int>();
 			for(const auto &hardpoint : ship->Weapons())
 			{
@@ -3483,15 +3506,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 						toRestock.emplace(ammo, count);
 				}
 			}
-			for(const auto &stockpile : toRestock)
-			{
-				int unloadable = attributes.CanAdd(*stockpile.first, stockpile.second);
-				if(unloadable > 0)
-				{
-					ship->AddOutfit(stockpile.first, -unloadable);
-					AddOutfit(stockpile.first, unloadable);
-				}
-			}
+			TransferAmmo(toRestock, *ship, *this);
 
 			// Update the cached mass of the mothership.
 			carriedMass += ship->Mass();
