@@ -1277,7 +1277,7 @@ mission "Unfettered: Pirate Help"
 
 mission "Unfettered: Alphas: Find The Auxiliary"
 	name `Find the Auxiliary`
-	description `Go to <stopover> to learn where you can find the Alpha ship.`
+	description `Go to <stopovers> to learn where you can find the Alpha ship.`
 	source "Darkcloak"
 	destination "Firelode"
 	to offer
@@ -2338,10 +2338,10 @@ mission "Unfettered: Special Cargo"
 			choice
 				`	"I will depart as soon as I can."`
 					accept
-				`	"Is it common for the Unfettered to use messagers?"`
+				`	"Is it common for the Unfettered to use heralds to bring messages?"`
 				`	"This seems too risky for me."`
 					decline
-			`	"We do not believe technical ways of communicating to be safe, and they break the link between us. Messages could easily be spied upon by anyone intercepting it, so for some confidential missions like this one, yes it is quite common to use messagers. On top of that, the warlords generally have better things to do than moving around giving missions all the time. Do you have enough information? What shall I say to my warlord?"`
+			`	"We do not believe technical ways of communicating to be safe, and they break the link between us. Messages could easily be spied upon by anyone intercepting it, so for some confidential missions like this one, yes it is quite common to use heralds. On top of that, the warlords generally have better things to do than moving around giving missions all the time. Do you have enough information? What shall I say to my warlord?"`
 			choice
 				`	"You could have just sent a message on a secure channel."`
 				`	"This seems too risky for me."`
@@ -2803,7 +2803,7 @@ mission "Unfettered: Know Your Enemy"
 	on offer
 		conversation
 			`Going in the spaceport, you notice buildings are not as ravaged as before. Maybe this is due to a newly found interest for the Unfettered to restore their past. It could also be because many Hai came and brought with them technique, materials, and they themselves require housing too. Whatever the case is, this does not look like a place of conflict anymore. It looks like a place of hope.`
-			`	An Unfettered messager approaches you, and notices you looking all over the place, almost with wonder. "Incredible, is it not? To see hope on the face of buildings and on the face of people. I am here to say that it is time you learn how to communicate with us with the True language of the Hai. Not only with us, you also need to be able to make demands to the aliens up North, and there is only one appropriate language for it. We have learned that they too speak Hai, even if they disgrace our language by doing so."`
+			`	An Unfettered herald approaches you, and notices you looking all over the place, almost with wonder. "Incredible, is it not? To see hope on the face of buildings and on the face of people. I am here to say that it is time you learn how to communicate with us with the True language of the Hai. Not only with us, you also need to be able to make demands to the aliens up North, and there is only one appropriate language for it. We have learned that they too speak Hai, even if they disgrace our language by doing so."`
 			branch speakhai
 				not "language: Wanderer"
 			choice
@@ -2826,7 +2826,7 @@ mission "Unfettered: Know Your Enemy"
 				has "reputation: Wanderer" >= 0"
 			choice
 				`	"But I am at war with them already."`
-			`	"We know. Here is a Hai message you will transmit to them, they should listen to reason once you do. Actually they should behave as though they have never seen you before... It is probably best you do not know what is in this message though. You need to make the Hai see this new alien race as an ambassador between our races. The Hai would not believe anything if it came from us. And we do not want to drag our brethren into a conflict that is ours, we are the warriors, not them."`
+			`	"We know. Here is a message in Hai that you will transmit to them. Hearing it, they should behave as though they have never seen you before... It is probably best you do not know what is in this message though. You need to make the Hai see this new alien race as an ambassador between our races, the Hai would not believe anything if it came from us. We do not want to drag our brethren into a conflict that is ours, we are the warriors, not them. But they still need to see how weak these aliens are."`
 			action
 				"reputation: Wanderer" = 1
 			label neutral
@@ -2869,7 +2869,45 @@ mission "Unfettered: Know Your Enemy"
 	on complete
 		log `The Unfettered asked me to be able to speak like a True Hai, because that is the language in which I should make demands to the Unfettered later.`
 		payment 1000000
-		dialog `You find the messenger back. "Now you can speak to us like a True Hai, finally. By respect to you, we will keep speaking to you in your language. Except for some maybe... You only should use the translator to speak and understand our elders, or at least some of them. They will probably do as if they noticed nothing, but trust me, they care. Oh and here are <payment> for the intel, we could not have gotten it so easily given they shoot our ships on sight."`
+		dialog `You find the herald back. "Now you can speak to us like a True Hai, finally. By respect to you, we will keep speaking to you in your language. Except for some maybe... You only should use the translator to speak and understand our elders, or at least some of them. They will probably do as if they noticed nothing, but trust me, they care. Oh and here are <payment> for the intel, we could not have gotten it so easily given they shoot our ships on sight."`
+
+
+
+mission "Unfettered: Cloaking Interest"
+	invisible
+	minor
+	source "Warfeed"
+	to offer
+		has "Unfettered: Special Cargo 2: done"
+		random < 20
+	on offer
+		require "Cloaking Device"
+		conversation
+			`A herald tells you He Yi wants to see you again in his war room, for a very generous proposition. He says it is in no means urgent.`
+			choice
+				`	(Comply with the request.)`
+				`	(Later.)`
+					defer
+			`	When you arrive you see He Yi, standing proudly in front of a statue, in his war room. "I had no idea you were a disciple of Tejolis as well."`
+			choice
+				`	"What do you mean?"`
+				`	(Let him continue speaking.)`
+			`	"You have somehow acquired an item I myself was only a thing of legends. Something so precious and yet so evasive. I want it. I am of course referring to the 'cloaking device'. I consider this item of the highest importance, and I am willing to give you 50 millions for it. I will not lie to you, this item almost guarantees the survival of the one who has it, if he knows how to use it properly. It would also allow new ways of approaching this war."`
+			choice
+				`	"I accept."`
+					accept
+				`	"I do not want to trade it at this time."`
+				`	"I refuse."`
+					decline
+			`	"I understand, but keep in mind that my very generous offer may not stand forever..."`
+				defer
+	
+	on accept
+		payment 50000000
+		outfit "Cloaking Device" -1
+		log `Gave my cloaking device to He Yi for a very big sum. It should keep him safe.`
+	on decline
+		log `He Yi asked me to sell him my cloaking device, I refused.`
 
 
 
