@@ -235,18 +235,11 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		int mapSize = it.first->Get("map");
 		if(mapSize > 0)
 		{
-			if(it.second == 0)
-			// Condition is to _not_ have mapped the whole local map
-			{
-				if(player.HasMapped(mapSize))
-					return false;
-			}
-			else
-			// Condition is to have mapped the whole local map
-			{
-				if(!player.HasMapped(mapSize))
-					return false;
-			}
+			bool needsUnmapped = it.second == 0;
+			// This action can't be done if it requires an unmapped region, but the region is
+			// mapped, or if it requires a mapped region but the region is not mapped.
+			if(needsUnmapped == player.HasMapped(mapSize))
+				return false;
 			continue;
 		}
 

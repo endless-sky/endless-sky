@@ -358,11 +358,11 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 	int modifier = Modifier();
 	for(int i = 0; i < modifier && CanBuy(alreadyOwned); ++i)
 	{
-		// Maps are not transferrable; when bought, they make nearby planets known to the player.
+		// Special case: maps.
 		int mapSize = selectedOutfit->Get("map");
 		if(mapSize > 0)
 		{
-			if (player.HasMapped(mapSize))
+			if(player.HasMapped(mapSize))
 				return;
 			player.Map(mapSize);
 			int64_t price = player.StockDepreciation().Value(selectedOutfit, day);
