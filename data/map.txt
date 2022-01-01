@@ -32367,7 +32367,7 @@ system Nisyros
 		period 12873.419
 
 system 33b
-	pos 248.96801 -6.074413
+	pos 175.63468 9.0366981
 	government Uninhabited
 	link 3b
 	asteroids "small rock" 47 1.9095
