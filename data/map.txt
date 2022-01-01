@@ -30089,3 +30089,2613 @@ planet Zug
 		threshold 3000
 		fleet "Large Militia" 18
 
+system 17b
+	pos 409.88721 -43.036003
+	government Uninhabited
+	link 19c
+	link 22b
+	asteroids "medium rock" 10 4.785
+	asteroids "large rock" 2 3.685
+	asteroids "small metal" 33 5.39
+	asteroids "medium metal" 18 4.895
+	asteroids "large metal" 1 4.4
+	minables lead 1 7.702475
+	minables silicon 3 7.275125
+	minables titanium 1 9.4271375
+	haze _menu/haze-blackbody
+	habitable 1125
+	belt 1130
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/ice2-b
+		distance 677
+		period 828.94186
+	object
+		sprite planet/gas6
+		distance 1986
+		period 4164.9513
+		object
+			sprite planet/rock0-b
+			distance 393.20161
+			period 299.01046
+
+system Evrae
+	pos 764.16499 -88.647119
+	government Uninhabited
+	link Gualetri
+	link Kneirc
+	link Pbelnep
+	link Vesvii
+	asteroids "small rock" 1 5.7456
+	asteroids "large rock" 3 5.67
+	asteroids "small metal" 1 7.4088
+	asteroids "medium metal" 12 5.2164
+	asteroids "large metal" 2 5.4432
+	minables platinum 1 6.8625621
+	haze _menu/haze-67
+	fleet "Small Scin" 800
+	fleet "Large Scin" 1600
+	fleet "Scin Cargo" 2200
+	fleet "Small Vi" 1900
+	fleet "Large Vi" 3000
+	habitable 4420
+	belt 1985
+	object
+		sprite star/a5
+		distance 1.2392042
+		period 98.830466
+		offset 180
+	object
+		sprite planet/gas16
+		distance 1038
+		period 591.18178
+		object
+			sprite planet/dust7-b
+			distance 212
+			period 116.68215
+		object
+			sprite planet/callisto-b
+			distance 350
+			period 171.36404
+	object
+		sprite planet/gas14
+		distance 1948
+		period 1519.877
+	object
+		sprite planet/ice8-b
+		distance 2640
+		period 2397.8991
+	object
+		sprite planet/gas2-b
+		distance 3738
+		period 4040.0241
+		object
+			sprite planet/dust3
+			distance 285
+			period 181.87287
+		object
+			sprite planet/ice0
+			distance 417
+			period 321.88794
+		object
+			sprite planet/ice7
+			distance 598
+			period 382.70964
+
+system 23b
+	pos 505.22055 15.352887
+	government Uninhabited
+	link 19b
+	link 22b
+	link 31b
+	link 44b
+	asteroids "small rock" 28 1.904
+	asteroids "medium rock" 23 2.016
+	asteroids "large rock" 27 1.7248
+	asteroids "small metal" 8 1.7472
+	asteroids "medium metal" 20 1.792
+	asteroids "large metal" 39 1.4112
+	minables lead 20 2.1196641
+	minables iron 34 2.5214305
+	minables copper 32 3.061737
+	haze _menu/haze-yellow
+	habitable 2725
+	belt 1920
+	object
+		sprite star/nova
+		period 10
+	object
+		sprite planet/cloud3
+		distance 2863.8953
+		period 109.54451
+	object
+		sprite planet/lava3-b
+		distance 838
+		period 252.69392
+	object
+		sprite planet/gas16
+		distance 3308.2661
+		period 1852.1304
+		object
+			sprite planet/ice7-b
+			distance 225
+			period 88.326577
+	object
+		sprite planet/gas4-b
+		distance 4311
+		period 2948.4638
+	object
+		sprite planet/gas11
+		distance 10053
+		period 10499.589
+	object
+		sprite star/k5
+
+system Cshudlye
+	pos 504.44278 -116.20266
+	government Uninhabited
+	link Karhio
+	link Nnaug
+	link Wreoul
+	asteroids "medium rock" 124 5.046
+	asteroids "large rock" 2 4.4573
+	asteroids "small metal" 149 4.2891
+	asteroids "medium metal" 50 7.0644
+	asteroids "large metal" 33 6.1393
+	minables titanium 10 9.7812425
+	minables lead 20 6.6434772
+	minables tungsten 16 9.2599851
+	haze _menu/haze-fullbright
+	fleet "Small Vi" 4500
+	fleet "Vi Transport" 2800
+	habitable 819.2
+	belt 1675
+	object
+		sprite star/b5
+		period 10
+	object
+		sprite planet/cloud6
+		distance 300
+		period 162.37976
+	object
+		sprite planet/forest0-b
+		distance 685
+		period 560.25518
+	object
+		sprite planet/gas12-b
+		distance 2008
+		period 2811.8722
+	object
+		sprite planet/gas9
+		distance 3013
+		period 5168.312
+		object
+			sprite planet/ice0
+			distance 259
+			period 157.56156
+		object
+			sprite planet/luna
+			distance 425
+			period 331.19519
+	object
+		sprite planet/gas11-b
+		distance 4027
+		period 7985.8742
+		object
+			sprite planet/io-b
+			distance 269
+			period 166.77427
+	object
+		sprite planet/gas14-b
+		distance 11505
+		period 38563.812
+		object
+			sprite planet/dust7-b
+			distance 248
+			period 147.6312
+
+system Ptetubo
+	pos 557.49832 -151.98044
+	government "Gegno Vi"
+	link Nnaug
+	asteroids "small rock" 1 1.136
+	asteroids "medium rock" 5 1.36
+	asteroids "large rock" 10 1.248
+	asteroids "small metal" 4 1.408
+	asteroids "medium metal" 11 1.264
+	asteroids "large metal" 3 1.168
+	haze _menu/haze-67
+	fleet "Small Vi" 1200
+	fleet "Large Vi" 2100
+	fleet "Vi Transport" 1500
+	fleet "Vi Cargo" 1300
+	habitable 2000
+	belt 1478
+	trade Clothing 269
+	trade Electronics 797
+	trade Equipment 580
+	trade Food 364
+	trade "Heavy Metals" 710
+	trade Industrial 795
+	trade "Luxury Goods" 1357
+	trade Medical 625
+	trade Metal 194
+	trade Plastic 415
+	object
+		sprite star/g5-old
+		period 10
+	object
+		sprite planet/lava7
+		distance 400
+		period 160
+	object Essime
+		sprite planet/cloud3
+		distance 1341.1969
+		period 524.77248
+		object
+			sprite planet/luna-b
+			distance 188
+			period 97.440026
+	object
+		sprite planet/cloud7
+		distance 1798.2048
+		period 1289.612
+	object
+		sprite planet/rock0
+		distance 3081
+		period 3420.3263
+		object
+			sprite planet/dust3-b
+			distance 292
+			period 188.61442
+
+system Tscera
+	pos 533.7761 -24.758227
+	government Uninhabited
+	link Acnanjo
+	link Wreoul
+	asteroids "small rock" 4 2.604
+	asteroids "large rock" 7 3.069
+	asteroids "small metal" 9 3.069
+	asteroids "medium metal" 9 4.1385
+	asteroids "large metal" 2 4.278
+	minables aluminum 1 5.7519675
+	minables lead 7 6.190245
+	haze _menu/haze-133
+	fleet "Large Quarg" 4200
+	habitable 1220
+	object
+		sprite star/f0
+		period 10
+	object
+		sprite planet/rock11
+		distance 362
+		period 107.6175
+	object
+		sprite planet/rock8-b
+		distance 700
+		period 289.37905
+	object
+		sprite planet/gas14-b
+		distance 2105
+		period 1509.0311
+	object
+		sprite planet/browndwarf-l
+		distance 3413
+		period 3115.4763
+
+system Nnaug
+	pos 577.08167 -124.92489
+	government "Gegno Vi"
+	link Cshudlye
+	link Ptetubo
+	link Scija
+	link Wreoul
+	asteroids "large metal" 1 1.9383
+	haze _menu/haze-133
+	fleet "Small Vi" 1300
+	fleet "Large Vi" 2300
+	fleet "Vi Transport" 1000
+	fleet "Vi Cargo" 1200
+	habitable 1232.2
+	belt 1901
+	trade Clothing 281
+	trade Electronics 766
+	trade Equipment 629
+	trade Food 367
+	trade "Heavy Metals" 748
+	trade Industrial 761
+	trade "Luxury Goods" 1334
+	trade Medical 636
+	trade Metal 204
+	trade Plastic 427
+	object
+		sprite star/a0
+		period 10
+	object "Sies Upi"
+		sprite planet/dust2
+		distance 1303.5267
+		period 1824.475
+		object
+			sprite planet/lava0
+			distance 166.79518
+			period 600
+			offset 100
+	object
+		sprite planet/gas11
+		distance 2236.145
+		period 5709.5921
+	object
+		sprite planet/gas8-b
+		distance 3346.7793
+		period 33171.026
+		object
+			sprite planet/ice7
+			distance 361
+			period 179.50578
+		object
+			sprite planet/dust5
+			distance 500
+			period 292.59886
+
+system Heutesl
+	pos 771.05388 -218.20267
+	government Gegno
+	link Iigen
+	link Oosuoro
+	link Uttna
+	asteroids "small rock" 2 3.22
+	asteroids "medium rock" 3 2.898
+	asteroids "large rock" 4 3.404
+	asteroids "small metal" 6 2.714
+	asteroids "medium metal" 44 4.002
+	asteroids "large metal" 18 4.508
+	minables copper 2 5.3701284
+	minables lead 14 4.7812985
+	fleet "Gegno Basic" 300
+	habitable 361.25
+	belt 1942
+	trade Clothing 388
+	trade Electronics 814
+	trade Equipment 410
+	trade Food 536
+	trade "Heavy Metals" 944
+	trade Industrial 749
+	trade "Luxury Goods" 1205
+	trade Medical 621
+	trade Metal 361
+	trade Plastic 368
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/desert7-b
+		distance 309.10762
+		period 209.93991
+	object "Dueyu Eitch"
+		sprite planet/rock5-b
+		distance 689
+		period 851.07905
+	object
+		sprite planet/gas16
+		distance 1905.7093
+		period 8220.8382
+	object
+		sprite planet/gas4
+		distance 2741.354
+		period 40655.922
+		object
+			sprite planet/dust3-b
+			distance 258
+			period 156.64992
+
+system Mohuwo
+	pos 821.49831 -113.36934
+	government Uninhabited
+	link Auhru
+	link Pbelnep
+	link Uelawan
+	link Zeinar
+	asteroids "small metal" 1 6.786
+	asteroids "medium metal" 1 5.538
+	asteroids "large metal" 2 5.538
+	haze _menu/haze-67
+	fleet "Small Scin" 1400
+	fleet "Large Scin" 1800
+	fleet "Scin Transport" 2000
+	fleet "Scin Cargo" 1900
+	habitable 1907.2
+	belt 1213
+	object
+		sprite star/a0
+		distance 85.690716
+		period 326.69371
+		offset 180
+	object
+		sprite star/f0
+		distance 101.25997
+		period 326.69371
+	object
+		sprite planet/gas7-hot
+		distance 1959
+		period 1532.7688
+	object
+		sprite planet/gas10-hot
+		distance 2979
+		period 2874.2912
+	object
+		sprite planet/gas15
+		distance 4440
+		period 5229.9732
+	object
+		sprite planet/gas3
+		distance 6222
+		period 8676.0095
+		object
+			sprite planet/tethys-b
+			distance 304
+			period 326.44102
+		object
+			sprite planet/dust0-b
+			distance 428
+			period 545.33077
+
+system Scija
+	pos 619.665 -137.98044
+	government "Gegno Vi"
+	link Nisyros
+	link Nnaug
+	link Ptobeh
+	link Yli
+	asteroids "small rock" 38 2.6144
+	asteroids "medium rock" 7 2.28
+	asteroids "large rock" 1 2.4928
+	asteroids "small metal" 6 3.04
+	asteroids "medium metal" 2 2.4928
+	asteroids "large metal" 10 2.736
+	minables iron 5 5.2146916
+	minables aluminum 5 3.5913491
+	fleet "Small Vi" 1000
+	fleet "Large Vi" 2200
+	fleet "Vi Transport" 1100
+	fleet "Vi Cargo" 1600
+	fleet "Gegno Basic" 3000
+	habitable 2439.2
+	belt 1431
+	trade Clothing 286
+	trade Electronics 783
+	trade Equipment 635
+	trade Food 420
+	trade "Heavy Metals" 661
+	trade Industrial 800
+	trade "Luxury Goods" 1365
+	trade Medical 609
+	trade Metal 245
+	trade Plastic 390
+	object
+		sprite star/b5
+		period 10
+	object Graede
+		sprite planet/earth-b
+		distance 1552.8981
+		period 111.74712
+	object
+		sprite planet/gas3-b
+		distance 2334.1255
+		period 477.10913
+		object Siedi
+			sprite planet/forest3
+			distance 333.79873
+	object
+		sprite planet/lava0
+		distance 1090.636
+		period 1016.3945
+	object
+		sprite planet/gas17
+		distance 4135
+		period 3021.5557
+		object
+			sprite planet/dust7
+			distance 262
+			period 160.30703
+		object
+			sprite planet/miranda
+			distance 513.59632
+			period 413.01005
+	object
+		sprite planet/saturn
+		distance 5287
+		period 4368.4895
+		object
+			sprite planet/europa
+			distance 271
+			period 211.04048
+
+system Vanguwo
+	pos 959.22055 -40.924884
+	government Uninhabited
+	link Iinjma
+	link Zeinar
+	asteroids "small rock" 6 1.4274
+	asteroids "medium rock" 8 1.2402
+	asteroids "large rock" 236 1.8486
+	asteroids "small metal" 1 1.404
+	asteroids "medium metal" 109 1.4976
+	asteroids "large metal" 1 2.3166
+	minables uranium 74 1.8978656
+	minables copper 10 3.44268
+	minables silver 13 2.6263567
+	fleet "Small Scin" 3400
+	fleet "Scin Transport" 4300
+	habitable 11530
+	belt 1964
+	object
+		sprite star/giant
+		period 10
+	object
+		sprite planet/gas0-b
+		distance 4211
+		period 9108.7044
+		object
+			sprite planet/luna
+			distance 297
+			period 193.47965
+	object
+		sprite planet/gas11
+		distance 7325
+		period 20897.301
+
+system Vesvii
+	pos 721.44276 -40.147123
+	government Uninhabited
+	link Eebu
+	link Evrae
+	link Yli
+	asteroids "small rock" 15 2.808
+	asteroids "medium rock" 19 3.9312
+	asteroids "large rock" 2 3.888
+	asteroids "small metal" 15 2.2464
+	asteroids "medium metal" 2 3.3264
+	asteroids "large metal" 4 2.9376
+	minables lead 15 4.1961328
+	minables tungsten 24 2.9650974
+	haze _menu/haze-133
+	fleet "Vi Warfleet" 700
+	fleet "Scin Warfleet" 700
+	habitable 2560
+	belt 1576
+	object
+		sprite star/k5-old
+		distance 139.45132
+		period 130.94846
+	object
+		sprite star/m0
+		distance 135.257
+		period 130.94846
+		offset 180
+	object
+		sprite planet/rhea-b
+		distance 668.76959
+		period 251.40978
+	object
+		sprite planet/lava6
+		distance 447.84644
+		period 448.16837
+	object
+		sprite planet/ocean8-b
+		distance 2272.087
+		period 880.75072
+	object
+		sprite planet/gas1-b
+		distance 3340.5233
+		period 2418.3647
+		object
+			sprite planet/luna
+			distance 289.55162
+			period 948.357
+	object
+		sprite planet/Vesvi
+		distance 1382.7343
+		period 2201
+		offset 300
+
+system Anbrim
+	pos 937.16493 36.075099
+	government Uninhabited
+	link Iinjma
+	asteroids "small rock" 2 3.52
+	asteroids "medium rock" 67 2.684
+	asteroids "large rock" 27 3.96
+	asteroids "small metal" 1 2.64
+	asteroids "medium metal" 39 3.432
+	asteroids "large metal" 9 2.684
+	minables lead 20 3.3659308
+	minables aluminum 22 5.2776792
+	haze _menu/haze-cloudbright
+	fleet "Scin Transport" 4000
+	habitable 450180
+	belt 1101
+	object
+		sprite star/nova
+		period 10
+	object
+		sprite planet/oberon-b
+		distance 1001
+		period 82.474538
+	object
+		sprite planet/dust1
+		distance 4764
+		period 856.30091
+	object
+		sprite planet/gas8-b
+		distance 7469
+		period 1680.9797
+	object
+		sprite planet/rhea-b
+		distance 13205
+		period 3951.631
+	object
+		sprite star/f3
+
+system Zeinar
+	pos 866.88722 -60.091552
+	government "Gegno Scin"
+	link Auhru
+	link Iinjma
+	link Iliniza
+	link Mohuwo
+	link Pbelnep
+	link Vanguwo
+	asteroids "small rock" 2 5.635
+	asteroids "medium rock" 9 5.52
+	asteroids "large rock" 4 4.0825
+	asteroids "small metal" 2 3.2775
+	asteroids "medium metal" 7 4.4275
+	asteroids "large metal" 9 4.1975
+	minables aluminum 2 8.522758
+	minables tungsten 3 8.3192847
+	fleet "Small Scin" 900
+	fleet "Large Scin" 2500
+	fleet "Scin Transport" 1000
+	fleet "Scin Cargo" 1700
+	fleet "Gegno Basic" 2900
+	belt 1960
+	trade Clothing 261
+	trade Electronics 787
+	trade Equipment 373
+	trade Food 412
+	trade "Heavy Metals" 709
+	trade Industrial 699
+	trade "Luxury Goods" 1386
+	trade Medical 873
+	trade Metal 275
+	trade Plastic 262
+	object
+		sprite star/k5-old
+		period 10
+	object "Dueitch Ae"
+		sprite planet/ocean0-b
+		distance 967.4648
+		period 107.0194
+	object
+		sprite planet/dust6
+		distance 453.27188
+		period 322.73591
+	object
+		sprite planet/gas1-b
+		distance 2814
+		period 2388.3948
+		object Cipi
+			sprite planet/ice7-b
+			distance 411.81208
+			period 294.35621
+
+system Karhio
+	pos 468.55389 -76.480446
+	government Uninhabited
+	link Cshudlye
+	asteroids "small rock" 6 5.082
+	asteroids "medium rock" 8 6.6
+	asteroids "large rock" 13 4.224
+	asteroids "small metal" 9 5.28
+	asteroids "medium metal" 10 6.27
+	asteroids "large metal" 15 3.894
+	minables aluminum 1 7.0420918
+	minables tungsten 12 6.825799
+	minables uranium 1 9.7583272
+	haze _menu/haze-133
+	fleet "Small Vi" 5000
+	fleet "Vi Transport" 3500
+	habitable 2560
+	belt 1163
+	object
+		sprite star/k5-old
+		distance 9.482968
+		period 46.465451
+	object
+		sprite planet/rock14-b
+		distance 292
+		period 124.33273
+	object
+		sprite planet/europa-b
+		distance 551
+		period 322.2839
+	object
+		sprite planet/desert0
+		distance 983
+		period 767.9651
+
+system Rouseu
+	pos 606.44277 -12.980449
+	government Uninhabited
+	link Acnanjo
+	asteroids "small rock" 232 1.344
+	asteroids "medium rock" 42 2.328
+	asteroids "large rock" 106 1.752
+	asteroids "large metal" 1 1.512
+	minables silicon 22 1.8060883
+	minables tungsten 65 2.6237622
+	minables uranium 55 2.9495786
+	haze _menu/haze-67
+	habitable 1780
+	belt 1648
+	object
+		sprite star/a5
+		distance 149.73936
+		period 59.042577
+		offset 180
+	object
+		sprite star/b5
+		distance 43.260638
+		period 59.042577
+	object
+		sprite planet/venus
+		distance 1031
+		period 728.9829
+	object
+		sprite planet/rock11
+		distance 1848
+		period 1749.3725
+
+system 22b
+	pos 475.7761 -32.313774
+	government Uninhabited
+	link 17b
+	link 19b
+	link 23b
+	asteroids "small rock" 4 2.604
+	asteroids "large rock" 7 3.069
+	asteroids "small metal" 9 3.069
+	asteroids "medium metal" 9 4.1385
+	asteroids "large metal" 2 4.278
+	minables aluminum 1 5.7519675
+	minables lead 7 6.190245
+	haze _menu/haze-fullbright
+	habitable 1539.2
+	belt 1478
+	object
+		sprite star/b5
+		period 10
+	object
+		sprite planet/rock11
+		distance 362
+		period 107.6175
+	object
+		sprite planet/rock8-b
+		distance 700
+		period 289.37905
+	object
+		sprite planet/gas14-b
+		distance 2105
+		period 1509.0311
+	object
+		sprite planet/browndwarf-l
+		distance 3413
+		period 3115.4763
+		object
+			sprite planet/station14
+			distance 305
+			period 201.34942
+
+system Oosuoro
+	pos 718.74832 -182.95267
+	government Gegno
+	link Asio
+	link Heutesl
+	link Iigen
+	link Uelawan
+	asteroids "small metal" 1 4.158
+	asteroids "medium metal" 13 3.444
+	asteroids "large metal" 2 2.772
+	minables lead 3 5.9955446
+	haze _menu/haze-133
+	fleet "Gegno Basic" 700
+	habitable 10525
+	belt 1068
+	trade Clothing 367
+	trade Electronics 832
+	trade Equipment 405
+	trade Food 495
+	trade "Heavy Metals" 954
+	trade Industrial 701
+	trade "Luxury Goods" 1218
+	trade Medical 576
+	trade Metal 353
+	trade Plastic 360
+	object
+		sprite star/nova-core
+		period 10
+	object
+		sprite planet/gas2-b
+		distance 4029.383
+		period 414.40317
+	object
+		sprite planet/gas6-hot
+		distance 5459.1248
+		period 2300
+		object Tschyss
+			sprite planet/station4
+			distance 224.01485
+			period 120
+	object
+		sprite planet/ice7
+		distance 2229.4888
+		period 3568.1002
+		offset 300
+	object
+		sprite planet/gas14-b
+		distance 6066.0722
+		period 10406.901
+		offset 120
+	object
+		sprite planet/gas1
+		distance 9264
+		period 39629.2
+
+system Eebu
+	pos 727.415 5.713992
+	government Uninhabited
+	link Vesvii
+	asteroids "small rock" 4 1.422
+	asteroids "medium rock" 1 1.458
+	asteroids "large rock" 2 1.134
+	asteroids "small metal" 4 0.918
+	asteroids "medium metal" 4 1.386
+	asteroids "large metal" 12 0.954
+	minables iron 1 1.523952
+	minables copper 4 1.773488
+	haze _menu/haze-fullbright
+	habitable 2405
+	belt 1384
+	object
+		sprite star/g5-old
+		period 10
+	object
+		sprite planet/cloud7
+		distance 332
+		period 1008.2213
+		object
+			sprite planet/tethys
+			distance 134
+			period 95.532589
+	object
+		sprite planet/neptune
+		distance 1316
+		period 7956.6927
+	object
+		sprite planet/neptune-b
+		distance 2530
+		period 21209.456
+		object
+			sprite planet/station2kd
+			distance 226
+			period 88.916075
+		object
+			sprite planet/callisto
+			distance 560
+			period 346.81643
+	object
+		sprite planet/gas1-b
+		distance 4561
+		period 51337.99
+	object
+		sprite planet/gas0
+		distance 7173
+		period 101251.16
+		object
+			sprite planet/ice0-b
+			distance 307
+			period 203.33315
+	object
+		sprite planet/gas7
+		distance 8736
+		period 136087.33
+
+system Jied
+	pos 694.85944 -136.84155
+	government Uninhabited
+	link Asio
+	link Gualetri
+	link Kneirc
+	link Nisyros
+	asteroids "small rock" 24 1.2768
+	asteroids "medium rock" 23 2.2572
+	asteroids "large rock" 20 1.7784
+	asteroids "small metal" 1 2.0976
+	asteroids "medium metal" 4 1.5048
+	asteroids "large metal" 1 1.254
+	minables lead 1 2.6233068
+	minables tungsten 18 2.0906113
+	minables copper 2 2.1622196
+	haze _menu/haze-67
+	fleet "Small Vi" 800
+	fleet "Large Vi" 1400
+	fleet "Vi Cargo" 2300
+	fleet "Small Scin" 2000
+	fleet "Large Scin" 2400
+	habitable 1486.25
+	belt 1377
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/mars
+		distance 437
+		period 103.81007
+	object
+		sprite planet/gas7
+		distance 2836
+		period 1716.2347
+
+system Yranjiu
+	pos 1059.9983 -16.813778
+	government Uninhabited
+	asteroids "small rock" 4 2.604
+	asteroids "large rock" 7 3.069
+	asteroids "small metal" 9 3.069
+	asteroids "medium metal" 9 4.1385
+	asteroids "large metal" 2 4.278
+	minables aluminum 1 5.7519675
+	minables lead 7 6.190245
+	haze _menu/haze-blackbody
+	habitable 3276.8
+	belt 1478
+	object
+		sprite star/o0
+		period 10
+	object
+		sprite planet/rock11
+		distance 362
+		period 107.6175
+	object
+		sprite planet/rock8-b
+		distance 700
+		period 289.37905
+	object
+		sprite planet/gas14-b
+		distance 3592.243
+		period 1509.0311
+	object
+		sprite planet/browndwarf-l-rouge
+		distance 2172.0854
+		period 3115.4763
+
+system Aleit
+	pos 596.08166 48.880658
+	government Quarg
+	link Acnanjo
+	asteroids "small metal" 8 1.7028
+	asteroids "medium metal" 108 1.2078
+	asteroids "large metal" 77 1.7226
+	minables tungsten 6 2.8114948
+	minables titanium 6 2.8286993
+	fleet Quarg 700
+	fleet "Large Quarg" 900
+	habitable 7405
+	belt 1864
+	trade Clothing 275
+	trade Electronics 823
+	trade Equipment 729
+	trade Food 409
+	trade "Heavy Metals" 713
+	trade Industrial 650
+	trade "Luxury Goods" 1239
+	trade Medical 534
+	trade Metal 221
+	trade Plastic 503
+	object
+		sprite star/g5
+		distance 1.9670853
+		period 10
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 30
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 50
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 75
+	object "Giaru Gegno"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 95
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 115
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 150
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 170
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 200
+	object "Giaru Gegno"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 220
+	object "Giaru Gegno"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 240
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 260
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 280
+	object "Giaru Gegno"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 300
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 320
+	object
+		sprite planet/lava6-b
+		distance 812
+		period 360
+
+system 44b
+	pos 546.85944 68.352897
+	government Uninhabited
+	link 23b
+	asteroids "small rock" 85 2.0097
+	asteroids "medium rock" 8 2.3606
+	asteroids "large rock" 14 1.6588
+	asteroids "small metal" 50 1.6907
+	asteroids "medium metal" 9 2.6477
+	asteroids "large metal" 39 1.6269
+	minables tungsten 18 2.9953876
+	habitable 1907.2
+	belt 1222
+	object
+		sprite star/k0-old
+		distance 202.65363
+		period 244.3761
+	object
+		sprite star/a0
+		distance 197.11118
+		period 244.3761
+		offset 180
+	object
+		sprite planet/ocean3
+		distance 1390.7455
+		period 378.44832
+	object
+		sprite planet/jupiter-b
+		distance 2331.9598
+		period 999.3765
+	object
+		sprite planet/gas4-b
+		distance 4624.4502
+		period 4408.5596
+	object
+		sprite planet/gas2-b
+		distance 6258.8289
+		period 5345.2399
+
+system Wreoul
+	pos 574.47054 -67.174882
+	government Uninhabited
+	link Cshudlye
+	link Nnaug
+	link Tscera
+	asteroids "small rock" 3 3.36
+	asteroids "medium rock" 1 2.464
+	asteroids "large rock" 4 2.24
+	asteroids "large metal" 2 3.7184
+	haze _menu/haze-133
+	fleet "Small Vi" 3200
+	fleet "Large Vi" 5000
+	fleet "Vi Transport" 3000
+	fleet "Vi Cargo" 5000
+	habitable 28.8
+	belt 1409
+	object
+		sprite star/g-dwarf
+		period 10
+	object
+		sprite planet/gas13-b
+		distance 1030
+		period 5509.4036
+	object
+		sprite planet/gas5
+		distance 1735
+		period 12044.755
+		object Cyife
+			sprite planet/ice8-b
+			distance 323.01488
+			period 158.47496
+	object
+		sprite planet/dust1
+		distance 4274
+		period 46569.388
+	object
+		sprite planet/gas7-b
+		distance 7744.3811
+		period 95069.674
+
+planet "Dueyu Eitch"
+	shipyard "Gegno Ships"
+	outfitter "Gegno Outfits"
+	landscape land/desert4
+	description Test
+	spaceport "Drink Test"
+	government Gegno
+	security 0
+
+planet Quanitum
+	landscape land/station2
+	description "This is a complete Quarg ringworld."
+	spaceport "If this section of the ring is any indication, there must be trillions of Quarg here."
+	bribe 0
+	security 0.9
+
+planet "Dueitch Ae"
+	shipyard "Gegno Scin Ships"
+	outfitter "Gegno Scin Outfits"
+	landscape land/mountain1
+	description Test
+	spaceport Test
+	government "Gegno Scin"
+
+planet Graede
+	shipyard "Gegno Vi Ships"
+	outfitter "Gegno Vi Outfits"
+	landscape land/forest2
+	description test
+	spaceport test
+	government "Gegno Vi"
+
+planet QuargStationName
+	attributes "gegno quarg" quarg station tourism
+	landscape land/station5
+	description "The Quarg built this station centuries ago, before they began construction on the ringworld. From the dark side of the station, the ring is visible as a thin bright filament stretching out to either side of the system's sun. The ring itself is closed to human visitors, but tour shuttles depart from here on a regular basis, giving human tourists a closer view of this engineering feat that is so far beyond anything human beings have ever attempted to build."
+	spaceport "In the docking section are flexible, oddly organic-looking tubes that snaked out to connect to your ship as it approached. Walking through the tube and into the station was a somewhat disconcerting experience. Inside, crowds of human tourists gawk at the tall, thin Quarg, who for the most part seem unfazed by the attention. The station is perfectly clean; every surface shines."
+	government Quarg
+	security 0.9
+
+system Ptobeh
+	pos 600.89288 -175.77767
+	government Uninhabited
+	link Asio
+	link Kiluit
+	link Ookmya
+	link Scija
+	asteroids "large metal" 1 1.729
+	haze _menu/haze-fullbright
+	fleet "Small Vi" 1400
+	fleet "Large Vi" 2400
+	fleet "Vi Transport" 1300
+	fleet "Vi Cargo" 2000
+	habitable 3276.8
+	belt 1440
+	object
+		sprite star/o0
+		period 10
+	object
+		sprite planet/rock3-b
+		distance 322
+		period 90.282553
+	object
+		sprite planet/water1
+		distance 983
+		period 481.55989
+
+system Auhru
+	pos 889.78177 -109.11099
+	government "Gegno Scin"
+	link "Erba Yle"
+	link Mohuwo
+	link Yllke
+	link Zeinar
+	asteroids "small rock" 13 4.7096
+	asteroids "medium rock" 30 4.7908
+	asteroids "large rock" 45 7.9576
+	asteroids "medium metal" 108 5.0344
+	asteroids "large metal" 1 8.12
+	minables silicon 34 9.7565798
+	minables copper 29 9.9999284
+	haze _menu/haze-33
+	fleet "Small Scin" 1300
+	fleet "Large Scin" 2700
+	fleet "Scin Transport" 1000
+	fleet "Scin Cargo" 1200
+	habitable 1411.2
+	belt 1633
+	trade Clothing 239
+	trade Electronics 814
+	trade Equipment 395
+	trade Food 427
+	trade "Heavy Metals" 739
+	trade Industrial 730
+	trade "Luxury Goods" 1393
+	trade Medical 879
+	trade Metal 280
+	trade Plastic 272
+	object
+		sprite star/o8
+		period 10
+	object "Oup Je"
+		sprite planet/rock2-b
+		distance 808
+		period 546.84941
+	object
+		sprite planet/browndwarf-l
+		distance 8611.2044
+		period 1839.529
+		object
+			sprite planet/rock14
+			distance 291
+			period 129.91434
+	object
+		sprite planet/gas7
+		distance 2526
+		period 3022.7396
+
+system Pbelnep
+	pos 801.94844 -55.72211
+	government "Gegno Scin"
+	link Evrae
+	link Mohuwo
+	link Zeinar
+	asteroids "small rock" 13 2.898
+	asteroids "medium rock" 56 2.8152
+	asteroids "large rock" 6 3.726
+	asteroids "small metal" 7 2.898
+	asteroids "medium metal" 9 3.1464
+	asteroids "large metal" 31 3.6432
+	minables titanium 3 5.7505279
+	minables uranium 28 5.0946569
+	haze _menu/haze-33
+	fleet "Small Scin" 1300
+	fleet "Large Scin" 2300
+	fleet "Scin Transport" 1700
+	fleet "Scin Cargo" 1500
+	habitable 413.65
+	belt 1803
+	trade Clothing 268
+	trade Electronics 807
+	trade Equipment 335
+	trade Food 446
+	trade "Heavy Metals" 718
+	trade Industrial 699
+	trade "Luxury Goods" 1388
+	trade Medical 852
+	trade Metal 238
+	trade Plastic 250
+	object
+		sprite star/k-dwarf
+		distance 50.711444
+		period 59.625579
+		offset 180
+	object
+		sprite star/g5
+		distance 28.472624
+		period 59.625579
+	object
+		sprite planet/rock8
+		distance 314.56297
+		period 187.56945
+	object "Ef Osch "
+		sprite planet/ocean3-b
+		distance 601
+		period 647.94805
+	object
+		sprite planet/rock10-b
+		distance 1043
+		period 1481.3407
+	object
+		sprite planet/mars-b
+		distance 1452
+		period 2433.2033
+
+system Iigen
+	pos 719.504 -227.94433
+	government Uninhabited
+	link Heutesl
+	link Oosuoro
+	asteroids "small rock" 46 3.9208
+	asteroids "medium rock" 57 5.2026
+	asteroids "large rock" 7 6.8614
+	asteroids "small metal" 33 5.4288
+	asteroids "medium metal" 21 5.8058
+	asteroids "large metal" 45 3.8454
+	minables uranium 4 5.8891368
+	minables iron 22 7.4713644
+	haze _menu/haze-33
+	fleet "Gegno Basic" 1600
+	habitable 259.2
+	belt 1699
+	object
+		sprite star/m3
+		period 10
+	object
+		sprite planet/dust6
+		distance 261
+		period 234.25467
+	object
+		sprite planet/gas6
+		distance 2220.7198
+		period 2422.8942
+	object
+		sprite planet/oberon-b
+		distance 5216
+		period 20928.296
+	object
+		sprite planet/browndwarf-y
+		distance 11344
+		period 67123.844
+		object
+			sprite planet/dust3-b
+			distance 301
+			period 197.40146
+
+system Ookmya
+	pos 590.44845 -224.94434
+	government "Gegno Vi"
+	link Kiluit
+	link Ptobeh
+	asteroids "large rock" 17 5.751
+	asteroids "small metal" 136 6.075
+	asteroids "medium metal" 55 4.05
+	asteroids "large metal" 4 7.695
+	minables neodymium 11 6.2400383
+	haze _menu/haze-fullbright
+	fleet "Small Vi" 1100
+	fleet "Large Vi" 2200
+	fleet "Vi Transport" 900
+	fleet "Vi Cargo" 1200
+	habitable 3699.2
+	belt 1144
+	trade Clothing 265
+	trade Electronics 749
+	trade Equipment 639
+	trade Food 370
+	trade "Heavy Metals" 858
+	trade Industrial 759
+	trade "Luxury Goods" 1433
+	trade Medical 696
+	trade Metal 240
+	trade Plastic 419
+	object
+		sprite star/a-giant
+		period 10
+	object Enbi
+		sprite planet/rock18
+		distance 2280.0303
+		period 110.22732
+	object
+		sprite planet/rock2-b
+		distance 2693.0876
+		period 472.73507
+	object
+		sprite planet/gas5-b
+		distance 1302.0189
+		period 875.78167
+	object
+		sprite planet/dust1
+		distance 4120
+		period 3888.9908
+	object
+		sprite planet/gas14-b
+		distance 9260
+		period 13104.111
+		object
+			sprite planet/rhea
+			distance 241
+			period 116.36012
+		object
+			sprite planet/dust0-b
+			distance 371
+			period 440.1039
+
+system "Erba Yle"
+	pos 942.67066 -83.555449
+	government "Gegno Scin"
+	link Auhru
+	asteroids "small rock" 5 5.0778
+	asteroids "medium rock" 1 2.8458
+	asteroids "large rock" 20 4.6872
+	asteroids "small metal" 39 3.4038
+	asteroids "medium metal" 49 4.6872
+	asteroids "large metal" 20 5.0778
+	minables aluminum 17 4.7925937
+	minables titanium 21 8.0109778
+	minables tungsten 20 4.6133087
+	haze _menu/haze-fullbright
+	fleet "Small Scin" 1500
+	fleet "Scin Cargo" 1000
+	fleet "Scin Transport" 1300
+	habitable 296.45
+	belt 1306
+	trade Clothing 265
+	trade Electronics 792
+	trade Equipment 352
+	trade Food 418
+	trade "Heavy Metals" 819
+	trade Industrial 693
+	trade "Luxury Goods" 1387
+	trade Medical 904
+	trade Metal 272
+	trade Plastic 265
+	object
+		sprite star/m0
+		period 10
+	object "Gue Faur"
+		sprite planet/forest0
+		distance 315.44234
+		period 319.9471
+	object
+		sprite planet/dust2-b
+		distance 764
+		period 1097.0068
+	object
+		sprite planet/gas2-hot
+		distance 1545
+		period 3154.7285
+		object
+			sprite planet/luna
+			distance 225
+			period 88.326577
+		object
+			sprite planet/ice0
+			distance 369
+			period 267.94161
+	object
+		sprite planet/uranus
+		distance 4636
+		period 16397.756
+
+system 3b
+	pos 249.50401 -9.3332226
+	government Uninhabited
+	link 33b
+	asteroids "small rock" 19 5.985
+	asteroids "medium rock" 90 4.725
+	asteroids "large rock" 43 5.67
+	asteroids "small metal" 16 3.906
+	asteroids "medium metal" 51 3.465
+	asteroids "large metal" 10 5.607
+	minables gold 8 8.5632483
+	haze _menu/haze-full
+	habitable 3276.8
+	belt 1184
+	object
+		sprite star/o0
+		period 10
+	object
+		sprite planet/gas4
+		distance 1688
+		period 1083.6242
+		object
+			sprite planet/ice8
+			distance 243
+			period 143.18912
+	object
+		sprite planet/gas10-hot
+		distance 7877
+		period 10923.487
+	object
+		sprite planet/jupiter
+		distance 13107.471
+		period 18738.962
+		object
+			sprite planet/miranda-b
+			distance 298
+			period 243.35273
+		object
+			sprite planet/rock3
+			distance 407
+			period 310.37893
+
+system Iinjma
+	pos 914.53177 -17.277664
+	government Uninhabited
+	link Anbrim
+	link Vanguwo
+	link Zeinar
+	asteroids "medium rock" 11 5.1324
+	asteroids "large rock" 1 3.276
+	asteroids "small metal" 51 4.9686
+	asteroids "medium metal" 4 5.46
+	asteroids "large metal" 55 4.8594
+	minables iron 1 8.9101606
+	minables neodymium 4 9.3939255
+	haze _menu/haze-67
+	fleet "Small Scin" 3500
+	fleet "Scin Transport" 4500
+	habitable 614.45
+	belt 1861
+	object
+		sprite star/f-dwarf
+		distance 100.13443
+		period 39.100329
+		offset 180
+	object
+		sprite star/a3
+		distance 5.3655708
+		period 39.100329
+	object
+		sprite planet/desert1
+		distance 301
+		period 188.43061
+	object
+		sprite planet/desert10-b
+		distance 669
+		period 624.36837
+	object
+		sprite planet/gas14
+		distance 1832
+		period 2829.3712
+		object
+			sprite planet/desert4-b
+			distance 501
+			period 530.47927
+	object
+		sprite planet/gas6-hot
+		distance 3002
+		period 5934.9594
+
+system Iliniza
+	pos 832.97621 -11.722114
+	government "Gegno Scin"
+	link Zeinar
+	asteroids "small rock" 4 0.806
+	asteroids "medium rock" 70 0.819
+	asteroids "large rock" 2 0.819
+	asteroids "small metal" 76 0.936
+	asteroids "medium metal" 37 0.858
+	asteroids "large metal" 106 1.131
+	minables aluminum 46 1.1668871
+	fleet "Small Scin" 1200
+	fleet "Large Scin" 2700
+	fleet "Scin Transport" 800
+	fleet "Scin Cargo" 1400
+	habitable 538.45
+	belt 1624
+	trade Clothing 265
+	trade Electronics 775
+	trade Equipment 373
+	trade Food 438
+	trade "Heavy Metals" 794
+	trade Industrial 683
+	trade "Luxury Goods" 1455
+	trade Medical 898
+	trade Metal 245
+	trade Plastic 292
+	object
+		sprite star/m8
+		distance 77.303371
+		period 42.96205
+		offset 180
+	object
+		sprite star/g5
+		distance 30.196629
+		period 42.96205
+	object
+		sprite planet/rock11
+		distance 276
+		period 176.74044
+	object "Enn Bue"
+		sprite planet/oberon-b
+		distance 531
+		period 471.64375
+	object
+		sprite planet/mars-b
+		distance 1009
+		period 1235.4041
+	object
+		sprite planet/gas2-hot
+		distance 1625
+		period 2524.9475
+	object
+		sprite planet/gas2-b
+		distance 4957
+		period 13452.428
+		object
+			sprite planet/dust4
+			distance 323
+			period 180.54371
+		object
+			sprite planet/desert4
+			distance 476
+			period 491.27228
+		object
+			sprite planet/dust3-b
+			distance 575
+			period 521.19757
+
+system Yllke
+	pos 891.75401 -155.27767
+	government Uninhabited
+	link Auhru
+	link Kilema
+	asteroids "small rock" 3 1.7444
+	asteroids "medium rock" 2 1.6268
+	asteroids "large rock" 1 1.8816
+	asteroids "small metal" 126 1.4112
+	asteroids "medium metal" 71 1.5288
+	asteroids "large metal" 36 0.9996
+	minables iron 27 2.3234016
+	minables aluminum 42 1.9433605
+	haze _menu/haze-133
+	fleet "Small Scin" 4600
+	fleet "Scin Cargo" 3300
+	fleet "Scin Transport" 3300
+	habitable 924.8
+	belt 1925
+	object
+		sprite star/m5
+		distance 109.77509
+		period 49.243595
+		offset 180
+	object
+		sprite star/b8
+		distance 31.224913
+		period 49.243595
+	object
+		sprite planet/jupiter
+		distance 545
+		period 374.21039
+		object
+			sprite planet/rock3
+			distance 272
+			period 169.57193
+	object
+		sprite planet/gas14
+		distance 2151.9566
+		period 2509.2951
+	object
+		sprite planet/saturn
+		distance 4161
+		period 7894.3733
+		object
+			sprite planet/rock7-b
+			distance 297
+			period 242.12883
+		object
+			sprite planet/station2k
+			distance 435
+			period 237.4387
+
+system Uttna
+	pos 789.22223 -262.8889
+	government Uninhabited
+	link Heutesl
+	asteroids "medium rock" 3 4.83
+	asteroids "large rock" 2 3.9606
+	asteroids "small metal" 4 2.8497
+	asteroids "large metal" 16 3.4293
+	minables iron 4 6.1294787
+	haze _menu/haze-fullbright
+	fleet "Gegno Basic" 1900
+	habitable 500
+	belt 1748
+	object
+		sprite star/a8
+		period 10
+	object
+		sprite planet/dust6
+		distance 374
+		period 289.31263
+	object
+		sprite planet/rock4
+		distance 1068
+		period 1396.1011
+		object
+			sprite planet/ice0
+			distance 195
+			period 102.9325
+	object
+		sprite planet/gas7
+		distance 7362
+		period 25267.002
+		object
+			sprite planet/tethys-b
+			distance 267
+			period 268.69602
+	object
+		sprite planet/gas7-hot
+		distance 17699
+		period 94185.291
+		object
+			sprite planet/station0
+			distance 218
+			period 55.162553
+		object
+			sprite planet/station2c
+			distance 403
+			period 211.72649
+
+system Kilema
+	pos 950.47222 -170.77778
+	government Uninhabited
+	link Yllke
+	asteroids "small rock" 4 1.995
+	asteroids "medium rock" 4 2.223
+	asteroids "large rock" 1 1.4535
+	asteroids "small metal" 8 1.824
+	asteroids "medium metal" 7 2.7075
+	asteroids "large metal" 3 2.394
+	haze _menu/haze-67
+	fleet "Small Scin" 4600
+	fleet "Scin Transport" 3500
+	habitable 28.8
+	belt 1612
+	object
+		sprite star/g-dwarf
+		period 10
+	object
+		sprite planet/ice8
+		distance 638
+		period 2685.8377
+	object
+		sprite planet/rock17
+		distance 1761
+		period 12316.513
+	object
+		sprite planet/gas0
+		distance 4002
+		period 42195.329
+	object
+		sprite planet/browndwarf-l
+		distance 15993
+		period 337088.28
+
+system Kiluit
+	pos 556.5 -184.19444
+	government "Gegno Vi"
+	link Ookmya
+	link Ptobeh
+	asteroids "small rock" 21 0.53
+	asteroids "medium rock" 254 0.61
+	asteroids "large rock" 5 0.58
+	asteroids "large metal" 1 0.65
+	minables neodymium 9 0.76902448
+	minables lead 35 1.0955883
+	fleet "Small Vi" 1500
+	fleet "Scin Cargo" 1000
+	fleet "Scin Transport" 1300
+	habitable 13107.2
+	belt 1154
+	trade Clothing 277
+	trade Electronics 782
+	trade Equipment 673
+	trade Food 337
+	trade "Heavy Metals" 832
+	trade Industrial 759
+	trade "Luxury Goods" 1392
+	trade Medical 683
+	trade Metal 211
+	trade Plastic 406
+	object
+		sprite star/o-giant
+		period 10
+	object Ternituul
+		sprite planet/rock5-b
+		distance 10314.321
+		period 200
+	object
+		sprite planet/gas16-b
+		distance 1500
+		period 453.86524
+		object
+			sprite planet/europa-b
+			distance 221
+			period 155.41762
+	object
+		sprite planet/gas1
+		distance 12458.998
+		period 1464.8929
+	object
+		sprite planet/jupiter
+		distance 19873.356
+		period 3012.7144
+		object
+			sprite planet/europa
+			distance 267
+			period 206.38528
+
+system 19b
+	pos 435.19446 31.61111
+	government Uninhabited
+	link 19c
+	link 22b
+	link 23b
+	asteroids "small metal" 1 4.158
+	asteroids "medium metal" 13 3.444
+	asteroids "large metal" 2 2.772
+	minables lead 3 5.9955446
+	haze _menu/haze-fullbright
+	habitable 3276.8
+	belt 1068
+	object
+		sprite star/o0
+		period 10
+	object "Long Gone"
+		sprite planet/ice4
+		distance 4427.9399
+		period 348.26337
+	object
+		sprite planet/gas14
+		distance 2155.822
+		period 1153.6897
+		object
+			sprite planet/oberon-b
+			distance 224.45219
+			period 149.9727
+	object
+		sprite planet/gas0
+		distance 6093.2065
+		period 2186.0404
+		object
+			sprite planet/luna-b
+			distance 293
+			period 189.58416
+		object
+			sprite planet/dust5
+			distance 431
+			period 234.17123
+	object
+		sprite planet/rock17-b
+		distance 7296.626
+		period 5557.4505
+
+system Vorsuke
+	pos 887.5 -217.5
+	government Uninhabited
+	asteroids "small rock" 13 4.2336
+	asteroids "medium rock" 1 2.8728
+	asteroids "large rock" 7 3.78
+	asteroids "small metal" 2 4.8888
+	asteroids "medium metal" 6 4.3344
+	asteroids "large metal" 22 4.3344
+	minables silver 1 8.3753257
+	minables tungsten 1 8.4387112
+	minables lead 1 8.0964299
+	haze _menu/haze-blackbody
+	habitable 1316.45
+	belt 1177
+	object
+		sprite star/g5-old
+		distance 2.2578277
+		period 52.961974
+	object
+		sprite planet/earth-b
+		distance 781
+		period 538.04594
+	object
+		sprite planet/gas9-b
+		distance 1637
+		period 1632.7355
+
+system Asio
+	pos 655.30556 -184.97223
+	government Uninhabited
+	link Jied
+	link Oosuoro
+	link Ptobeh
+	asteroids "small rock" 4 2.604
+	asteroids "large rock" 7 3.069
+	asteroids "small metal" 9 3.069
+	asteroids "medium metal" 9 4.1385
+	asteroids "large metal" 2 4.278
+	minables aluminum 1 5.7519675
+	minables lead 7 6.190245
+	haze _menu/haze-33
+	fleet "Gegno Basic" 1200
+	fleet "Small Vi" 1700
+	habitable 3276.8
+	belt 1478
+	object
+		sprite star/o0
+		period 10
+	object
+		sprite planet/rock11
+		distance 362
+		period 107.6175
+	object
+		sprite planet/rock8-b
+		distance 700
+		period 289.37905
+	object
+		sprite planet/gas14-b
+		distance 2105
+		period 1509.0311
+	object
+		sprite planet/browndwarf-y-rouge
+		distance 3413
+		period 3115.4763
+
+system 24b
+	pos 383.52777 34.277778
+	government Uninhabited
+	link 21b
+	asteroids "small rock" 1 1.914
+	asteroids "medium rock" 8 1.782
+	asteroids "large rock" 1 2.574
+	asteroids "small metal" 4 1.815
+	asteroids "medium metal" 58 1.716
+	asteroids "large metal" 33 2.376
+	minables copper 14 3.2280789
+	haze _menu/haze-blackbody
+	habitable 26.45
+	belt 1734
+	object
+		sprite star/k-dwarf
+		period 10
+	object
+		sprite planet/rock1
+		distance 679.46666
+		period 695.71756
+	object
+		sprite planet/water0
+		distance 443.62063
+		period 3117.9419
+	object
+		sprite planet/miranda
+		distance 1865
+		period 14007.17
+	object
+		sprite planet/gas6-b
+		distance 3196
+		period 31422.614
+	object
+		sprite planet/gas1-b
+		distance 6100
+		period 82856.562
+
+system 19c
+	pos 393.30556 -14.666668
+	government Uninhabited
+	link 17b
+	link 19b
+	link 20b
+	asteroids "small rock" 9 3.4362
+	asteroids "medium rock" 8 3.4362
+	asteroids "large rock" 3 2.07
+	asteroids "small metal" 5 2.898
+	asteroids "medium metal" 6 2.4426
+	asteroids "large metal" 3 2.1114
+	minables silver 7 4.3545762
+	minables copper 8 5.7354391
+	haze _menu/haze-blackbody
+	habitable 2560
+	belt 1607
+	object
+		sprite star/a-supergiant
+		distance 378
+		period 367.458
+	object
+		sprite star/f-supergiant
+		distance 378
+		period 367.458
+		offset 180
+	object
+		sprite planet/cloud7
+		distance 971
+		period 534.87692
+	object
+		sprite planet/lava5-b
+		distance 1263
+		period 793.46913
+	object
+		sprite planet/gas9-b
+		distance 1807
+		period 1357.8827
+	object
+		sprite planet/dust1
+		distance 2933
+		period 2807.9741
+	object
+		sprite planet/gas16
+		distance 3533
+		period 3712.2778
+		object
+			sprite planet/station0
+			distance 252
+			period 68.558361
+	object
+		sprite planet/gas9
+		distance 6577
+		period 9429.0247
+
+system 21b
+	pos 325.63888 13.833334
+	government Uninhabited
+	link 20b
+	link 24b
+	link 34b
+	asteroids "small rock" 6 5.082
+	asteroids "medium rock" 8 6.6
+	asteroids "large rock" 13 4.224
+	asteroids "small metal" 9 5.28
+	asteroids "medium metal" 10 6.27
+	asteroids "large metal" 15 3.894
+	minables aluminum 1 7.0420918
+	minables tungsten 12 6.825799
+	minables uranium 1 9.7583272
+	haze _menu/haze-full
+	habitable 1616.2
+	belt 1163
+	object
+		sprite star/k3
+		distance 170.27596
+		period 70.138283
+	object
+		sprite star/k0-old
+		distance 44.724044
+		period 70.138283
+		offset 180
+	object
+		sprite planet/rock1
+		distance 401
+		period 178.65452
+	object
+		sprite planet/forest3
+		distance 888
+		period 588.73098
+		object
+			sprite planet/dust3-b
+			distance 169
+			period 83.048286
+	object
+		sprite planet/rock7
+		distance 1619
+		period 1449.3314
+	object
+		sprite planet/gas7-hot
+		distance 2449
+		period 2696.377
+		object
+			sprite planet/io-b
+			distance 203
+			period 109.33134
+	object
+		sprite planet/jupiter-b
+		distance 3375
+		period 4362.2255
+	object
+		sprite planet/callisto-b
+		distance 6960
+		period 12918.477
+
+system 20b
+	pos 339.86111 -31.055556
+	government Uninhabited
+	link 19c
+	link 21b
+	asteroids "small rock" 4 1.428
+	asteroids "medium rock" 4 1.683
+	asteroids "large rock" 23 1.3515
+	asteroids "small metal" 4 2.5245
+	asteroids "medium metal" 14 1.683
+	asteroids "large metal" 4 1.683
+	minables silver 4 2.1249304
+	minables titanium 10 2.1866832
+	minables copper 7 3.0575563
+	haze _menu/haze-blackbody
+	habitable 44556.8
+	belt 1426
+	object
+		sprite star/g-supergiant
+		period 10
+	object
+		sprite planet/forest6
+		distance 1000.0234
+		period 84.434319
+	object
+		sprite planet/gas7
+		distance 1468.46
+		period 168.70806
+	object
+		sprite planet/gas3-b
+		distance 2452.7749
+		period 308.87385
+	object
+		sprite planet/gas7-b
+		distance 8205.1363
+		period 564.67572
+		object
+			sprite planet/miranda-b
+			distance 435
+			period 429.18617
+	object
+		sprite planet/gas14-b
+		distance 21017
+		period 12910.53
+
+system Kneirc
+	pos 712.08333 -94.91667
+	government Uninhabited
+	link Evrae
+	link Jied
+	asteroids "small rock" 6 5.082
+	asteroids "medium rock" 8 6.6
+	asteroids "large rock" 13 4.224
+	asteroids "small metal" 9 5.28
+	asteroids "medium metal" 10 6.27
+	asteroids "large metal" 15 3.894
+	minables aluminum 1 7.0420918
+	minables tungsten 12 6.825799
+	minables uranium 1 9.7583272
+	fleet "Vi Warfleet" 1600
+	fleet "Scin Warfleet" 1600
+	habitable 1616.2
+	belt 1163
+	object
+		sprite star/k3
+		distance 170.27596
+		period 70.138283
+	object
+		sprite star/k0-old
+		distance 44.724044
+		period 70.138283
+		offset 180
+	object
+		sprite planet/rock1
+		distance 401
+		period 178.65452
+	object
+		sprite planet/forest3
+		distance 888
+		period 588.73098
+		object
+			sprite planet/dust3-b
+			distance 169
+			period 83.048286
+	object
+		sprite planet/rock7
+		distance 1619
+		period 1449.3314
+	object
+		sprite planet/gas8
+		distance 2584
+		period 2922.3768
+		object
+			sprite planet/io-b
+			distance 338
+			period 234.89603
+	object
+		sprite planet/jupiter-b
+		distance 3645
+		period 4896.0263
+	object
+		sprite planet/callisto-b
+		distance 7230
+		period 13677.442
+
+system Nisyros
+	pos 661.41668 -118.91666
+	government Uninhabited
+	link Jied
+	link Scija
+	asteroids "small rock" 26 3.915
+	asteroids "medium rock" 39 2.61
+	asteroids "large rock" 4 3.42
+	asteroids "small metal" 4 4.5
+	asteroids "medium metal" 16 2.88
+	asteroids "large metal" 12 4.095
+	minables titanium 4 4.2798796
+	minables silver 6 5.1371644
+	fleet "Small Vi" 1200
+	fleet "Large Vi" 2000
+	fleet "Vi Transport" 1300
+	fleet "Vi Cargo" 1400
+	habitable 3699.2
+	belt 1175
+	object
+		sprite star/f-giant
+		period 10
+	object "Var Oti"
+		sprite planet/rock2-b
+		distance 2045.5251
+		period 108.07588
+	object
+		sprite planet/desert4-b
+		distance 666
+		period 252.75656
+	object
+		sprite planet/rock15-b
+		distance 1046
+		period 497.49488
+	object
+		sprite planet/gas2-b
+		distance 3076
+		period 2508.8262
+		object
+			sprite planet/ice8
+			distance 299
+			period 195.43728
+		object
+			sprite planet/ice8-b
+			distance 466
+			period 380.25899
+	object
+		sprite planet/gas5
+		distance 9151
+		period 12873.419
+
+system 33b
+	pos 248.96801 -6.074413
+	government Uninhabited
+	link 3b
+	asteroids "small rock" 47 1.9095
+	asteroids "medium rock" 3 1.9095
+	asteroids "large rock" 6 2.1375
+	asteroids "small metal" 30 2.7645
+	asteroids "medium metal" 181 1.9665
+	asteroids "large metal" 6 2.565
+	minables tungsten 1 2.9962067
+	minables iron 31 3.5216762
+	haze _menu/haze-full
+	habitable 423.2
+	belt 1451
+	object
+		sprite star/f3
+		period 10
+	object
+		sprite planet/gas7
+		distance 2590
+		period 5730.8865
+	object
+		sprite planet/gas1-b
+		distance 5730
+		period 18858.368
+		object
+			sprite planet/dust4-b
+			distance 487
+			period 334.25047
+	object
+		sprite planet/jupiter
+		distance 8125
+		period 31842.504
+
+system 31b
+	pos 483.41245 63.036699
+	government Uninhabited
+	link 23b
+	asteroids "small rock" 25 0.671
+	asteroids "medium rock" 54 0.847
+	asteroids "large rock" 15 0.616
+	asteroids "small metal" 5 0.649
+	asteroids "medium metal" 3 1.045
+	asteroids "large metal" 4 0.99
+	minables aluminum 25 0.95568643
+	haze _menu/haze-full
+	habitable 28275.2
+	belt 1795
+	object
+		sprite star/m-giant
+		distance 1.4868643
+		period 10
+	object
+		sprite planet/cloud0
+		distance 4567.3464
+		period 151.58793
+
+system 34b
+	pos 280.07912 22.814476
+	government Uninhabited
+	link 21b
+	asteroids "large metal" 1 2.2344
+	haze _menu/haze-fullbright
+	habitable 6195.2
+	belt 1944
+	object
+		sprite star/g-giant
+		period 10
+	object
+		sprite planet/neptune-b
+		distance 578
+		period 157.9098
+	object
+		sprite planet/venus
+		distance 1263
+		period 510.06128
+	object
+		sprite planet/gas15-b
+		distance 2253
+		period 1215.2318
+	object
+		sprite planet/rock0
+		distance 2757
+		period 1645.0249
+
+planet "Giaru Gegno"
+	attributes "gegno quarg" quarg station
+	landscape land/station2
+	description "This Quarg Ringworld seems to be under construction, yet none of the Quarg here seem to be in any sort of busy rush. It doesn't look like construction was halted, but more slowed down and paced. Some of the hangers and docks on the outer part of the ring are oddly larger than others, and the inner quarters are wider and taller than normal."
+	spaceport "Even if it's under construction, there has to be at least billions of Quarg on this ring. They shift past you at a normal walking pace for a Quarg, and don't mind you much attention except from the occasional uninterested glare or two. There seems to be little conversation, and the silence is slightly unnerving to you as the only non-Quarg in sight."
+	government Quarg
+	bribe 0
+	security 1
+
+planet Ternituul
+	landscape land/mountain19-harro
+	description SDFGVAESWVG
+	spaceport AGVAEWRSVG
+	government "Gegno Vi"
+
+planet Essime
+	landscape land/mountain4
+	spaceport ergerghre
+	government "Gegno Vi"
+
+planet "Sies Upi"
+	landscape land/hills1
+	spaceport cxfbdf
+	government "Gegno Vi"
+
+planet Siedi
+	landscape land/forest5
+	description egtewrg
+	spaceport wegrreg
+	government "Gegno Vi"
+
+planet Enbi
+	landscape land/fog0
+	description serh
+	spaceport rshrsth
+	government "Gegno Vi"
+
+planet "Oup Je"
+	landscape land/canyon4
+	government "Gegno Scin"
+
+planet "Enn Bue"
+	landscape land/canyon01
+	government "Gegno Scin"
+
+planet Cipi
+	landscape land/mountain5
+	government "Gegno Scin"
+
+planet "Ef Osch "
+	landscape land/beach11-harro
+	government "Gegno Scin"
+
+planet "Var Oti"
+	government Uninhabited
+
+planet "Long Gone"
+	description "Although frozen worlds such as this one are barely able to sustain life, there are signs across the surface seem to suggest some sort of civilization was here once long ago. Once in a few hundred miles there are strange glass-like obelisks sticking out of the ground, but visually they seem as though they have no purpose. Very few bird-like species circle these protrusions, but other than that, the planet is long gone. "
+	government Uninhabited
+
+planet Vesii
+
+system Omnis
+	pos 0.44444444 -10000
+
+system Gualetri
+	pos 756.02779 -141.63889
+	government Uninhabited
+	link Evrae
+	link Jied
+	link Uelawan
+	asteroids "large metal" 1 2.832
+	minables copper 14 3.2280789
+	haze _menu/haze-33
+	fleet "Gegno Basic" 1300
+	habitable 26.45
+	belt 1734
+	object
+		sprite star/k-dwarf
+		period 10
+	object
+		sprite planet/water0
+		distance 685
+		period 3117.9419
+	object
+		sprite planet/miranda
+		distance 1865
+		period 14007.17
+	object
+		sprite planet/gas10
+		distance 5840
+		period 77616.03
+
+system Uelawan
+	pos 799.63891 -168.08333
+	government Uninhabited
+	link Gualetri
+	link Mohuwo
+	link Oosuoro
+	asteroids "small rock" 3 2.3688
+	asteroids "medium rock" 18 1.7892
+	asteroids "large rock" 5 1.8396
+	asteroids "small metal" 10 1.4868
+	asteroids "medium metal" 37 1.9908
+	asteroids "large metal" 12 2.1924
+	minables iron 1 3.3418752
+	minables silver 1 3.5820905
+	minables uranium 1 3.5225171
+	haze _menu/haze-67
+	fleet "Gegno Basic" 1200
+	fleet "Small Scin" 1800
+	habitable 500
+	belt 1368
+	object
+		sprite star/a5
+		period 10
+	object
+		sprite planet/water1
+		distance 1144.0189
+		period 483.92261
+		offset 100
+		object
+			sprite planet/dust7-b
+			distance 185
+			period 95.117015
+	object
+		sprite planet/gas1-hot
+		distance 305.46463
+		period 1619.3126
+	object
+		sprite planet/jupiter
+		distance 3383
+		period 7870.6933
+		object
+			sprite planet/desert4
+			distance 297
+			period 242.12883
+	object
+		sprite planet/gas12
+		distance 8115
+		period 29241.037
+		object
+			sprite planet/dust4-b
+			distance 301
+			period 162.41582
+		object
+			sprite planet/dust3-b
+			distance 420
+			period 325.36779
+		object
+			sprite planet/miranda
+			distance 602
+			period 698.72546
+
+system Yli
+	pos 654.41668 -66.972225
+	government Uninhabited
+	link Scija
+	link Vesvii
+	asteroids "large metal" 1 4.3008
+	fleet "Small Vi" 900
+	fleet "Large Vi" 1600
+	fleet "Vi Transport" 2300
+	fleet "Vi Cargo" 1700
+	fleet "Small Scin" 2400
+	habitable 423.2
+	belt 1404
+	object
+		sprite star/f3
+		period 10
+	object
+		sprite planet/gas15-b
+		distance 982.16273
+		period 532.00283
+		object
+			sprite planet/luna-b
+			distance 247
+			period 101.59283
+	object
+		sprite planet/rock5
+		distance 1752.511
+		period 1599.2076
+	object
+		sprite planet/gas1
+		distance 3637.5481
+		period 5153.5696
+		object
+			sprite planet/dust4
+			distance 474
+			period 320.95644
+	object
+		sprite planet/gas2
+		distance 8314
+		period 32959.999
+
+system Acnanjo
+	pos 586.02779 14.416666
+	government Uninhabited
+	link Aleit
+	link Rouseu
+	link Tscera
+	asteroids "medium rock" 6 1.488
+	asteroids "large rock" 4 1.184
+	asteroids "large metal" 3 0.96
+	haze _menu/haze-133
+	habitable 6195.2
+	belt 1944
+	object
+		sprite star/g-giant
+		period 10
+	object
+		sprite planet/neptune-b
+		distance 1651.9989
+		period 157.9098
+	object
+		sprite planet/venus
+		distance 851.78126
+		period 510.06128
+	object
+		sprite planet/gas16
+		distance 3314.9923
+		period 1215.2318
+	object
+		sprite planet/rock0
+		distance 2757
+		period 1645.0249
+
+planet Eiaf
+	description rtdehrth
+	spaceport rsghdhg
+	government "Gegno Scin"
+
+planet Cyife
+	government Uninhabited
+
+planet "Gue Faur"
+	landscape land/forest3
+	description efawe
+	spaceport awefw
+	government "Gegno Scin"
+
+planet Tschyss
+	description rsgbd
+	spaceport ergeag
+	government Gegno
+
+
