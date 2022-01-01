@@ -1,3 +1,13 @@
+# Copyright (c) 2021 by Saugia
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
 fleet "Small Vi"
 	government "Gegno Vi"
 	names "gegno vi"
@@ -329,30 +339,34 @@ fleet "Scin Warfleet"
 	cargo 2
 	personality
 		heroic vindictive opportunistic
-	variant 2
+	variant 3
 		"Coesite P"
 		Felsic
-	variant
+	variant 7
 		Feldspar
 		Halite 6
 		"Coesite P"
-	variant 3
+	variant 6
 		Coesite
 		"Coesite P" 2
-	variant 2
+		"Felsic P"
+	variant 4
 		Felsic
-	variant 3
 		"Coesite P"
+		Coesite
 	variant 2
+		"Coesite P"
+	variant 3
 		Feldspar
 		Halite 6
-	variant
+	variant 2
 		Feldspar
 		Halite 6
 		"Felsic P"
 		Coesite
 	variant 2
 		"Felsic P"
+		"Coesite" 2
 
 fleet "Gegno Basic"
 	government Gegno
