@@ -3651,7 +3651,7 @@ mission "Kindred Spirit"
 				`	"Well, how are you enjoying space so far?"`
 					goto friendly
 				`	"Are you saying you ran away? Your parents are probably worried."`
-			`	He frowns defensively. "I left them a note. It's not like I just disappeared, I wouldn't do that. But... you're probably right. I'll send something to them soon."`
+			`	He frowns defensively. "I left them a note. It's not like I just disappeared, that's not me. But... you're probably right. I'll send something to them soon."`
 			`	"Anyway, I would appreciate some company," he continues. "Do you want to come with?"`
 			choice
 				`	"Sure, let's do it."`
@@ -3659,7 +3659,7 @@ mission "Kindred Spirit"
 				`	"Sorry, I really am busy right now."`
 					goto helpfuldecline		
 			label friendly
-			`	His eyes light up. "Oh, it's so much fun! There's lots of work, but so much else to do at the same time. I'm trying to save up for a freighter ship, but I don't know which ones I want... I've heard the heavy ones are better at surviving pirates, but the light ones give you more storage for your buck."`
+			`	His eyes light up. "Oh, it's so much fun! There's lots of work, but so much else to do at the same time. I'm trying to save up for a freighter ship, but I don't know which ones I want... I've heard the heavy ones are better at surviving pirates, but the light ones give you more storage for your credits."`
 				goto movingon
 			label movingon
 			`	"Ah, sorry for going on about all that. Anyway, do you want to come with me?"`
@@ -3735,11 +3735,11 @@ mission "Kindred Spirit 2"
 				`	"I'm doing well, Charlie. How about you?"`
 					goto continue
 				`	"Now's not a good time. Sorry."`
-			`	"Before you leave," he says quickly, "I might be in a bind right now. One of my ships crapped out, and I can't complete my contract. I can pay you for helping out this time."`
+			`	"Before you leave," he says quickly, "I'm in a bit of a bind right now. One of my ships crapped out, and I can't complete a contract by its deadline at <date>. We could split the payment if you help out."`
 			choice
 				`	"That sounds rough. How can I help?"`
 					goto goodfriend
-				`	"How much payment are we talking?"`
+				`	"What would my cut be?"`
 					goto details
 				`	"You need to start takng care of yourself, Charlie. You can't expect other people to bail you out."`
 					goto sorry
@@ -3755,7 +3755,7 @@ mission "Kindred Spirit 2"
 			choice
 				`	"Sounds good. What do I need to do?"`
 					goto goodfriend
-				`	"Hm. Sorry, but I think I can make more working alone."`
+				`	"Hm. Sorry, but I can make more working alone."`
 					goto sorry
 			label goodfriend
 			`	"Great! It's just a simple transport job. I'll have the cargo moved onto your ship." As porters shift the goods, he pulls you to the side and says "Thanks. You've been a good friend."`
@@ -3785,7 +3785,6 @@ mission "Kindred Spirit 3"
 	description "Convince Charlie to return home."
 	source
 		government "Syndicate"
-	#destination "Heartland"
 	to offer
 		has "Kindred Spirit 2: done"
 		#random < 15
@@ -3799,32 +3798,32 @@ mission "Kindred Spirit 3"
 				`	(Leave him alone.)`
 					decline
 			label checkin
-			`	Inside the bar, an amateur band plays brass jazz music. You slide into the booth opposite the young pilot.`
-			`	"Hey, <first>," Charlie says. "Long time no... see. How do I look?"`
+			`	Inside the bar, a band in the corner plays amateur jazz music. You slide into the booth opposite the young pilot.`
+			`	"Hey, <first>," Charlie slurs. "Long time no... see. How do I look?"`
 			choice
 				`	"You look good."`
 					goto compliment
-				`	"You look like a disaster."`
+				`	"You look like a dead cargo rat."`
 					goto truth
 			label compliment
 			`	He smiles. "Aw. You look good too."`
 				goto continue
 			label truth
-			`	He laughs. "Yeah. You always tell me like it is."`
+			`	He chuckles. "Yeah. You always tell me like it is."`
 				goto continue
 			label continue
-			`	Rubbing his eyes, he nudges his drink aside. "Hey, <first>, can I ask you something?"`
+			`	Rubbing his eyes, he nudges his drink aside. "Hey, <first>, can I talk to you about something?"`
 			choice
-				`	"Ask away."`
+				`	"Go ahead."`
 					goto sure
 				`	"I don't think we're there yet."`
-			`	He shakes his head drunkenly. "No, not like a date or anything. I need some advice about my parents. Like.. you know I ran away from home, right? From Heartland. My parents didn't want me to go to space. I got the loan without their permission, bought my ship, and left." He stares at his drink. "And... I told myself I'd contact them. But I still haven't."`
+			`	He shakes his head. "No... not like a date or anything. I need some advice about my parents. Like.. you know I ran away from home, right? From Heartland. My parents didn't want me to go to space. I got the loan without their permission, bought my ship, and left." He stares at his drink. "And... I told myself I'd contact them. But I still haven't."`
 				goto story
 			label sure
 			`	"Thanks. So... you know I ran away from home, right? From Heartland. My parents didn't want me to go to space. I got the loan without their permission, bought my ship, and left." He stares at his drink. "And... I told myself I'd contact them. But I still haven't.`
 				goto story
 			label story
-			`	"It's just been so busy, so hard trying to stay afloat out here. I made a couple mistakes. Sold some ships. Now..." He grimaces and glances around the bar. The band sounds a wrong note. "I'm not going to give up. But I don't know if I should talk to them. Maybe it's too late.`
+			`	"It's just been so busy, so hard staying afloat out here. I made some mistakes. Sold some ships. Now..." He grimaces and glances around the bar. The band sounds a wrong note. "I'm not going to give up. But I don't know if I should talk to them. Maybe it's too late.`
 			`	"What do you think?"`
 			choice
 				`	"I think you should give it some time. At least pay off your debts first. You don't want to return to your parents in this condition."`
@@ -3838,7 +3837,7 @@ mission "Kindred Spirit 3"
 			label goodresponse
 			apply
 				set "Fix Charlie's Life"
-			`	Slowly, he nods. "Okay... yeah, that makes sense. It'll be difficult, but I'll talk to them soon. I'll... I'll return home. Just for a bit." As he stands to pay his tab, he says "Thanks, <first>. You're a good friend. And, I won't even make you come with me this time." Then he staggers away.`
+			`	Slowly, he nods. "Okay... yeah, that makes sense. It'll be difficult, but I'll talk to them soon. I'll... I'll return home. Just for a bit." As he stands to pay his tab, he says "Thanks, <first>. You're a good friend. Plus, you don't even need to come along this time. But... stop by and visit, alright?" Scrounging his pockets for a credit chip, he pays his tab and staggers away.`
 				decline
 			label easyresponse
 			`	Slowly, he nods. "Yeah... yeah, I can do that. Thanks, <first>." He stands to pay his tab, then drunkenly staggers away.`
@@ -3856,19 +3855,19 @@ mission "Kindred Spirit 4"
 		ship "Quicksilver" "Tyran the Brave"
 	on offer
 		conversation
-			`	A familiar face greets you at the spaceport. "<first>!" Charlie calls, mauling you with an enthusiastic hug.`
-			` "Thank you so much for convincing me to visit my folks," he says sincerely. " I was in a bad place; I really needed someone to push me in that direction. They were relieved at first, then mad, but they got over that, and now they've been giving me financial advice. You should totally come say hi at some point! Or, are you planning to go back to space soon? Because I'd be happy to travel with you for a while. What do you say?"`
+			`	A familiar face greets you at the spaceport. "<first>!" Charlie calls, battering you with an enthusiastic hug.`
+			`	"Thank you so much for telling me to visit my folks," he says sincerely. "I was in a bad place; I really needed someone to convince me to come back here. Mom and Pops were relieved at first, then mad, but they got over that, and now they're helping me figure out my financial stuff. You should totally come say hi at some point! Or, are you planning to go back to space soon? Because I'd be happy to travel with you for a while. What do you say?"`
 			choice
 				`	"I'd love to visit your family."`
 					goto parents
 				`	"I'm leaving again soon, but you're welcome to join me."`
 					goto companion
-				`	"Ah, I think I'm too busy for either of those right now."`
+				`	"I think I'm too busy for either of those right now."`
 					goto goodbye
 			label parents
-			`	Charlie pays for your train ticket to the countryside. In less than an hour, you arrive at his family's home. The farmhouse doesn't look too old, but its red paint is severely worn. "We don't own any of the surrounding land anymore," Charlie says, "But my parents have kept the house with their jobs at the factory. Once I get my stuff paid for soon, I can help them out."`
-			`	His family greets you in the front yard. Posturing gruffly with his suspenders, his dad thanks you for sending him home; fussying over his untidy hair, his mom insists you stay for dinner. And clinging to her dad's leg, Charlie's little sister says nothing to you until she offers you a flower that she really picked herself.`
-			`	After a simple but hearty dinner, Charlie approaches you. "One last thing. I was being serious before. I'd love to travel the galaxy with you, if you're interested. We could do some good work together. How about it?"`
+			`	Charlie pays for your train ticket to the countryside. In less than an hour, you arrive at his family's home. The farmhouse doesn't look old, but its red paint is weathered. "We don't own any of the surrounding land anymore," Charlie says, "But my parents kept the house with their jobs at the factory. Once I get my stuff paid for, I can help them out."`
+			`	His family greets you in the front yard. Posturing gruffly with his suspenders, his dad thanks you for sending Charlie home; fussying over his untidy hair, his mom insists you stay for dinner. And clinging to her dad's leg, Charlie's little sister says nothing to you until she gives you a flower.`
+			`	After a simple but hearty dinner, Charlie approaches you. "One last thing. I was being serious before. It'd be fun to travel the galaxy with you, if you're interested. We could do some good work together. How about it?"`
 			choice
 				`	"I'd love to have you as a member of my fleet."`
 					goto yep
@@ -3878,13 +3877,13 @@ mission "Kindred Spirit 4"
 			`	"Heck yeah! I'll get my things!" You wait as he rushes around his home, quickly throwing together a suitcase of hopefully clean laundry. His mom makes you promise you'll take care of her son, especially against pirates. Soon, you and Charlie the train back to the spaceport together."`
 				accept
 			label nah
-			`	"Oh, stop it," he blushes. "Well, it's been fun. I hope your adventures are entertaining and long. Goodness knows you deserve it."`
+			`	"Oh, stop it," he blushes. "Well, it's been fun. I hope your adventures are entertaining and long. You deserve it."`
 				decline
 			label companion
 			`	"Alright, I'll get my things ready!"`
 				accept
 			label goodbye
-			`	"Alright. Anyway, it's been real. See you!" Charlie jogs back to his ship and trips halfway. You can't help smiling to yourself.`
+			`	"Alright. Anyway, it's been real. See you!" Charlie jogs back across the spaceport and trips spectacularly.`
 				decline
 	on complete
 		conversation
@@ -3918,6 +3917,6 @@ mission "Kindred Spirit 5"
 					decline
 	on complete
 		conversation
-			`	"Alright," Charlie tells you, "I'm going to go visit my folks. If you ever want to travel together again, check back at the spaceport."`
+			`	"Alright," Charlie tells you, "I'm going to go visit my folks. If you ever want to travel together again, check back at the spaceport. See you!"`
 
 	
