@@ -112,5 +112,5 @@ void FireCommand::SetAim(int index, double amount) noexcept
 
 bool FireCommand::IsIndexValid(int index) const noexcept
 {
-	return index > 0 && index < static_cast<int>(aim.size());
+	return index >= 0 && index < static_cast<int>(aim.size());
 }

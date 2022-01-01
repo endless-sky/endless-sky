@@ -62,7 +62,7 @@ SCENARIO( "A FireCommand instance is being copied", "[firecommand]" ) {
 			THEN( "the two bitsets are independent" ) {
 				command.SetAim(1, -1.);
 				CHECK( command.Aim(1) == Approx(-1) );
-				CHECK_FALSE( copy.Aim(0) );
+				CHECK_FALSE( copy.Aim(1) );
 
 				copy.SetFire(4);
 				CHECK_FALSE( command.HasFire(4) );
@@ -77,7 +77,9 @@ SCENARIO( "A FireCommand instance is being used", "[firecommand]") {
 		FireCommand command;
 		THEN( "resizing it works" ) {
 			command.SetHardpoints(20);
+			command.SetFire(0);
 			command.SetFire(18);
+			CHECK( command.HasFire(0) );
 			CHECK( command.HasFire(18) );
 		}
 	}
@@ -85,30 +87,39 @@ SCENARIO( "A FireCommand instance is being used", "[firecommand]") {
 		FireCommand command;
 		command.SetHardpoints(10);
 
-		THEN( "setting and testing weapon works" ) {
-			CHECK_FALSE( command.IsFiring() );
+		AND_GIVEN( "an index is firing" ) {
+			command.SetFire(0);
+			command.SetFire(4);
+			command.SetFire(9);
 
-			command.SetAim(4, -1.);
-			CHECK_FALSE( command.HasFire(4) );
-			CHECK( command.Aim(4) == Approx(-1.) );
-
-			CHECK_FALSE( command.HasFire(5) );
-			command.SetFire(5);
-			CHECK( command.HasFire(5) );
-
-			CHECK( command.IsFiring() );
+			REQUIRE( command.HasFire(0) );
+			REQUIRE( command.HasFire(4) );
+			REQUIRE( command.HasFire(9) );
+			WHEN( "clear is called" ) {
+				command.Clear();
+				THEN( "the command is empty" ) {
+					CHECK_FALSE( command.HasFire(0) );
+					CHECK_FALSE( command.HasFire(4) );
+					CHECK_FALSE( command.HasFire(9) );
+				}
+			}
 		}
-		THEN( "clearing it works" ) {
-			command.SetFire(3);
-			command.SetAim(2, 1.);
-			CHECK( command.HasFire(3) );
-			CHECK( command.Aim(2) == Approx(1.) );
-			CHECK( command.IsFiring() );
+		AND_GIVEN( "an index is aiming" ) {
+			command.SetAim(0, -1.);
+			command.SetAim(4, 1.);
+			command.SetAim(9, 1.);
 
-			command.Clear();
-			CHECK_FALSE( command.HasFire(3) );
-			CHECK_FALSE( command.Aim(2) == Approx(1.) );
-			CHECK_FALSE( command.IsFiring() );
+			REQUIRE( command.Aim(0) == Approx(-1.) );
+			REQUIRE( command.Aim(4) == Approx(1.) );
+			REQUIRE( command.Aim(9) == Approx(1.) );
+			WHEN( "clear is called" ) {
+				command.Clear();
+				THEN( "the command is empty" ) {
+					CHECK( command.Aim(0) == Approx(0.) );
+					CHECK( command.Aim(4) == Approx(0.) );
+					CHECK( command.Aim(9) == Approx(0.) );
+				}
+			}
 		}
 	}
 	GIVEN( "two non-empty FireCommands" ) {
@@ -116,16 +127,19 @@ SCENARIO( "A FireCommand instance is being used", "[firecommand]") {
 		one.SetHardpoints(4);
 		one.SetFire(3);
 		one.SetFire(2);
+		CHECK( one.IsFiring() );
 
 		FireCommand two;
 		two.SetHardpoints(3);
 		two.SetFire(1);
+		CHECK( two.IsFiring() );
 
 		THEN( "UpdateWith works" ) {
 			two.UpdateWith(one);
 			CHECK_FALSE( two.HasFire(0) );
 			CHECK_FALSE( two.HasFire(1) );
 			CHECK( two.HasFire(2) );
+			CHECK( two.IsFiring() );
 		}
 	}
 }
