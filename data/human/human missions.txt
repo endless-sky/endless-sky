@@ -3609,14 +3609,12 @@ mission "Kindred Spirit"
 		government "Republic"
 	destination
 		government "Syndicate"
-	#to offer
-		#random < 15
-		#credits <= 10000
+	to offer
+		random < 10
 	npc save
 		government "Merchant"
 		personality timid escort
 		ship "Sparrow" "Timax the Tiger"
-	
 	on offer
 		conversation
 			`A young pilot approaches you. "Hey, you look like you know what you're doing. Do you know how to get to a planet called <planet>?"`
@@ -3681,7 +3679,6 @@ mission "Kindred Spirit"
 			label helpfuldecline
 			`	"Oh, that's too bad... well, thanks anyway!"`
 				decline
-
 	on complete
 		conversation
 			`Charlie approaches you from his Sparrow after landing. "Well, that was fun." he says. "Thanks for the directions! ...I don't suppose you'll pay me for successfully escorting you here?"`
@@ -3703,19 +3700,19 @@ mission "Kindred Spirit 2"
 	name "Charlie's Delivery"
 	description "Help Charlie deliver 120 tons of industrial materials to <planet> by <date>. Payment will be <payment>."
 	deadline
-	#cargo "Industrial Materials" 120
+	cargo "Industrial Materials" 120
 	source 
 		government "Republic" "Syndicate"
-		#attributes "factory"
-		#category "Interceptor" "Light Warship" "Heavy Warship"
+			not attributes "station"
+		category "Interceptor" "Light Warship" "Heavy Warship"
 	destination
 		attributes "research"
 		distance 5 12
 	to offer
 		has "Kindred Spirit: done"
-		#random <15
-		#credits >= 300000
-		#"combat rating" > 100
+		random < 15
+		credits >= 300000
+		"combat rating" > 100
 	npc accompany save
 		government "Merchant"
 		personality timid escort
@@ -3785,10 +3782,11 @@ mission "Kindred Spirit 3"
 	description "Convince Charlie to return home."
 	source
 		government "Syndicate"
+			not attributes "station"
 	to offer
 		has "Kindred Spirit 2: done"
-		#random < 15
-		#credits >= 500000
+		random < 15
+		credits >= 500000
 	on offer
 		conversation
 			`	You see Charlie through the window of a bar. He recognizes you and tips his drink. He looks drunk.`
