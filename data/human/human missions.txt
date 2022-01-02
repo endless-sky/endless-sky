@@ -3644,7 +3644,7 @@ mission "Kindred Spirit"
 				`	"I'm sorry, I'm pretty busy right now."`
 					goto helpfuldecline	
 			label pirates
-			`	"Yeah," he admits. "I grew up on Heartland in Cor Caroli. My parents used to be farmers, but now they have to work in factories like everyone else. They told me stories about evil pirates in space to keep me from leaving the planet. I'd hate to prove them right about that. I only got my spaceship last week." His eyes look down guiltily.`
+			`	"Yeah," he admits. "I grew up on Heartland in Cor Caroli. My parents used to be farmers, but now they have to work in factories like everyone else. They told me stories about evil pirates in space to keep me from leaving the planet. I'd hate to prove them right about that. I only got my spaceship last week." He looks down guiltily.`
 			choice
 				`	"Um... okay."`
 					goto movingon
@@ -3735,13 +3735,13 @@ mission "Kindred Spirit 2"
 				`	"I'm doing well, Charlie. How about you?"`
 					goto continue
 				`	"Now's not a good time. Sorry."`
-			`	"Before you leave," he says quickly, "I'm in a bit of a bind right now. One of my ships crapped out, and I can't complete a contract by its deadline at <date>. We could split the payment if you help out."`
+			`	"Before you leave," he says quickly, "I'm in a bit of a bind right now. One of my ships crapped out, and if I can't complete a delivery by <date>, I could be in a lot of trouble. We can split the payment if you help out."`
 			choice
 				`	"That sounds rough. How can I help?"`
 					goto goodfriend
 				`	"What would my cut be?"`
 					goto details
-				`	"You need to start takng care of yourself, Charlie. You can't expect other people to bail you out."`
+				`	"You need to start taking care of yourself, Charlie. You can't expect other people to bail you out."`
 					goto sorry
 			label continue
 			`	"Well," he laughs quickly, "Funny you should ask. See, I recently got this big job hauling industrial cargo, right? But one of my freighter's engines crapped out. The deadline is <date>, and I'm in a real bind unless I find someone to help. Here, I can offer you half my payment. That'll be 7000 credits."`
@@ -3769,15 +3769,15 @@ mission "Kindred Spirit 2"
 		conversation
 			`	When you land, Charlie pulls you aside. "Sorry for pulling you into this," he says, handing you a payment of <payment>. "I threw in a bit extra, since we got attacked and all. Thanks for saving my hide." He bites his lip.`
 			choice
-				`	"No worries. What else are friends for?"`
+				`	"No worries. What are friends for?"`
 					goto forgiveness
 				`	"Thanks. But you'll want to be more careful in the future."`
 					goto forthright
 			label forgiveness
-				`	He looks relieved. "Thanks. Hey, I'll see you around again sometime. Have a good one!"`	
+			`	He looks relieved. "Thanks. Hey, I'll see you around again sometime. Have a good one!"`	
 					goto ending
 			label forthright
-				`	He looks down. "Yeah, you're right. I'll... I'll see you around sometime."`
+			`	He looks down. "Yeah, you're right. I'll... I'll see you around sometime."`
 			label ending	
 
 mission "Kindred Spirit 3"
@@ -3809,7 +3809,7 @@ mission "Kindred Spirit 3"
 			`	He smiles. "Aw. You look good too."`
 				goto continue
 			label truth
-			`	He chuckles. "Yeah. You always tell me like it is."`
+			`	He chuckles. "Yeah. Always telling me like it is."`
 				goto continue
 			label continue
 			`	Rubbing his eyes, he nudges his drink aside. "Hey, <first>, can I talk to you about something?"`
@@ -3823,14 +3823,14 @@ mission "Kindred Spirit 3"
 			`	"Thanks. So... you know I ran away from home, right? From Heartland. My parents didn't want me to go to space. I got the loan without their permission, bought my ship, and left." He stares at his drink. "And... I told myself I'd contact them. But I still haven't.`
 				goto story
 			label story
-			`	"It's just been so busy, so hard staying afloat out here. I made some mistakes. Sold some ships. Now..." He grimaces and glances around the bar. The band sounds a wrong note. "I'm not going to give up. But I don't know if I should talk to them. Maybe it's too late.`
+			`	"It's just been so busy, so hard staying afloat out here. I... sold some ships. Now..." He grimaces and glances around the bar. The band sounds a wrong note. "I'm not going to give up. But I don't know if I should talk to them. Maybe it's too late.`
 			`	"What do you think?"`
 			choice
 				`	"I think you should give it some time. At least pay off your debts first. You don't want to return to your parents in this condition."`
 					goto easyresponse
 				`	"I think you should let them know you're okay. It's not too late, they're your family. They're probably worried sick about you."`
 					goto goodresponse
-				`	"I think you would feel better if you talked to them. This is eating you up. I'm sure they'll be understanding."`
+				`	"I think you would feel better if you talked to them. This is eating you up. I'm sure they'll understand."`
 					goto goodresponse
 				`	"I don't think there's any rush. Keep exploring space, this is your life's dream. It's not like your family is going anywhere."`
 					goto easyresponse
@@ -3855,7 +3855,7 @@ mission "Kindred Spirit 4"
 		ship "Quicksilver" "Tyran the Brave"
 	on offer
 		conversation
-			`	A familiar face greets you at the spaceport. "<first>!" Charlie calls, battering you with an enthusiastic hug.`
+			`	A familiar face greets you at the spaceport. "<first>!" Charlie calls, mauling you with an enthusiastic hug.`
 			`	"Thank you so much for telling me to visit my folks," he says sincerely. "I was in a bad place; I really needed someone to convince me to come back here. Mom and Pops were relieved at first, then mad, but they got over that, and now they're helping me figure out my financial stuff. You should totally come say hi at some point! Or, are you planning to go back to space soon? Because I'd be happy to travel with you for a while. What do you say?"`
 			choice
 				`	"I'd love to visit your family."`
@@ -3866,8 +3866,8 @@ mission "Kindred Spirit 4"
 					goto goodbye
 			label parents
 			`	Charlie pays for your train ticket to the countryside. In less than an hour, you arrive at his family's home. The farmhouse doesn't look old, but its red paint is weathered. "We don't own any of the surrounding land anymore," Charlie says, "But my parents kept the house with their jobs at the factory. Once I get my stuff paid for, I can help them out."`
-			`	His family greets you in the front yard. Posturing gruffly with his suspenders, his dad thanks you for sending Charlie home; fussying over his untidy hair, his mom insists you stay for dinner. And clinging to her dad's leg, Charlie's little sister says nothing to you until she gives you a flower.`
-			`	After a simple but hearty dinner, Charlie approaches you. "One last thing. I was being serious before. It'd be fun to travel the galaxy with you, if you're interested. We could do some good work together. How about it?"`
+			`	His family greets you in the front yard. Posturing gruffly with his suspenders, his dad thanks you for sending Charlie home; fussying over his untidy hair, his mom insists you stay for dinner. Charlie's younger sister clings to her dad's leg until she gives you a flower.`
+			`	After a simple dinner, Charlie approaches you. "One last thing. I was being serious before. It'd be fun to travel the galaxy with you, if you're interested. We could do some good work together. How about it?"`
 			choice
 				`	"I'd love to have you as a member of my fleet."`
 					goto yep
@@ -3877,7 +3877,7 @@ mission "Kindred Spirit 4"
 			`	"Heck yeah! I'll get my things!" You wait as he rushes around his home, quickly throwing together a suitcase of hopefully clean laundry. His mom makes you promise you'll take care of her son, especially against pirates. Soon, you and Charlie the train back to the spaceport together."`
 				accept
 			label nah
-			`	"Oh, stop it," he blushes. "Well, it's been fun. I hope your adventures are entertaining and long. You deserve it."`
+			`	"Oh, stop it," he blushes. "Well, it's been fun. I hope your adventures are long and fun. You deserve it."`
 				decline
 			label companion
 			`	"Alright, I'll get my things ready!"`
@@ -3895,7 +3895,7 @@ mission "Kindred Spirit 5"
 	repeat	
 	source "Heartland"
 	to offer
-		has "Kindred Spirit 3: done"
+		has "Kindred Spirit 4: done"
 		random < 50
 	npc save
 		government "Merchant"
