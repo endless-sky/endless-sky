@@ -57,7 +57,7 @@ outfit "Locust Turret"
 		"firing heat" 3
 		"shield damage" 6
 		"hull damage" 5
-	description "Although Bunrodean ships typically rely on the power of their foward facing guns and fill any turret mounts with anti-missile systems, they have developed a turret mount for the Locust Blaster. This turret carries three Locust Blasters that all fire at once, resulting in an astonishing 3,600 projectiles per minute being thrown at the target."
+	description "Although Bunrodean ships typically rely on the power of their forward facing guns and fill any turret mounts with anti-missile systems, they have developed a turret mount for the Locust Blaster. This turret carries three Locust Blasters that all fire at once, resulting in an astonishing 3,600 projectiles per minute being thrown at the target."
 
 
 

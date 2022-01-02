@@ -272,7 +272,7 @@ outfit "Nami Rift Steering"
 	"turn" 688.9
 	"turning energy" 2.1
 	"turning heat" 1.2
-	description "As with many Bunrodean systems, Rift engines produce very little heat. This allows their ships to forgo the use of any significant cooling systems, leaving more room for other systems, by them defensive or offensive."
+	description "As with many Bunrodean systems, Rift engines produce very little heat. This allows their ships to forgo the use of any significant cooling systems, leaving more room for other systems, be they defensive or offensive."
 
 outfit "Ookii Rift Steering"
 	category "Engines"
@@ -284,7 +284,7 @@ outfit "Ookii Rift Steering"
 	"turn" 1272
 	"turning energy" 3.8
 	"turning heat" 2.3
-	description "Although the focus on steering over thrust makes Bunrodean ships easy targets to track, the power of their weapons systems would leave anyone foolish to believe that they are sitting ducks becuase of that."
+	description "Although the focus on steering over thrust makes Bunrodean ships easy targets to track, the power of their weapons systems would leave anyone foolish to believe that they are sitting ducks."
 
 outfit "Subarashii Rift Steering"
 	category "Engines"

@@ -419,7 +419,7 @@ ship "Kama"
 	explode "large explosion" 30
 	explode "huge explosion" 10
 	"final explode" "final explosion medium"
-	description "The Kama gunship is a formidable warship, capable of carrying up to ten guns as well as having a single turret mount typically equipped with an anti-missile turret, making the Kama less suseptible to missile weaponry than its smaller sibling, the Kunai."
+	description "The Kama gunship is a formidable warship, capable of carrying up to ten guns as well as having a single turret mount typically equipped with an anti-missile turret, making the Kama less susceptible to missile weaponry than its smaller sibling, the Kunai."
 
 
 
