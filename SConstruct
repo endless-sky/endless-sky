@@ -47,9 +47,9 @@ Help(opts.GenerateHelpText(env))
 #   $ CXXFLAGS=-msse3 scons
 #   $ CXXFLAGS=-march=native scons
 # or modify the `flags` variable:
-flags = ["-std=c++11", "-Wall", "-Werror", "-Wold-style-cast", "-fno-rtti"]
+flags = ["-std=c++11", "-Wall", "-Wold-style-cast", "-fno-rtti"]
 if env["mode"] != "debug":
-	flags += ["-O3", "-flto"]
+	flags += ["-Werror", "-O3", "-flto"]
 	env.Append(LINKFLAGS = ["-O3", "-flto"])
 if env["mode"] == "debug":
 	flags += ["-g"]
