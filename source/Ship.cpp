@@ -2236,14 +2236,15 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 			if(!ejecting)
 			{
 				// Determine which of the fighter's weapons we can restock.
-				auto toRestock = map<const Outfit *, int>();
+				auto toRestock = map<const Outfit *, int>{};
 				for(const auto &hardpoint : bay.ship->Weapons())
 				{
 					const Weapon *weapon = hardpoint.GetOutfit();
 					if(weapon)
 					{
 						const Outfit *ammo = weapon->Ammo();
-						int count = ammo ? this->OutfitCount(ammo) : 0;
+						// Don't give the fighter an ammo outfit that is installable as a weapon (e.g. "Nuclear Missile" and other one-shots).
+						int count = (ammo && !ammo->IsWeapon()) ? this->OutfitCount(ammo) : 0;
 						if(count > 0)
 							toRestock.emplace(ammo, count);
 					}
@@ -3494,14 +3495,15 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			ship->TransferFuel(ship->fuel, this);
 
 			// Determine the ammunition the recipient can supply.
-			auto toRestock = map<const Outfit *, int>();
+			auto toRestock = map<const Outfit *, int>{};
 			for(const auto &hardpoint : ship->Weapons())
 			{
 				const Weapon *weapon = hardpoint.GetOutfit();
 				if(weapon)
 				{
 					const Outfit *ammo = weapon->Ammo();
-					int count = ammo ? ship->OutfitCount(ammo) : 0;
+					// Don't give the carrier an ammo outfit that is installable as a weapon (e.g. "Nuclear Missile" and other one-shots).
+					int count = (ammo && !ammo->IsWeapon()) ? ship->OutfitCount(ammo) : 0;
 					if(count > 0)
 						toRestock.emplace(ammo, count);
 				}
