@@ -30699,7 +30699,7 @@ planet "Drekag Firask"
 	security 0
 
 planet Dsik-geromil-garikjek
-	attributes miltary research urban xapleaux
+	attributes military research urban xapleaux
 	landscape land/sky1
 	description `This world is scarcely more than a security outpost. One of the few moons inhabited by the Xapleaux, it was once a thriving colony of billions. However, it was always known that there was something fundamentally strange about the black hole in the system beyond. When "things" started occasionally appearing from beyond there it begun to be progressively abandoned, and no incentive has ever been provided to bring people back here.`
 	spaceport "This is the only place in Xapleaux space with a view of any part of the sky beyond The Brilliance, and that tiny sliver worries people. There are never fewer than six security vessels in orbit and a dozen more on the ground, and if there's a thing to be studied or tested it is largely done here."
