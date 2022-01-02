@@ -24,7 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Hazard : public Weapon {
 public:
 	void Load(const DataNode &node);
-	
+
 	// Whether this hazard has a valid definition.
 	bool IsValid() const;
 	// The name of the hazard in the data files.
@@ -40,11 +40,11 @@ public:
 	// The minimum and maximum distances from the origin in which this hazard has an effect.
 	double MinRange() const;
 	double MaxRange() const;
-	
+
 	// Visuals to be created while this hazard is active.
 	const std::map<const Effect *, int> &EnvironmentalEffects() const;
-	
-	
+
+
 private:
 	std::string name;
 	int period = 1;
@@ -56,7 +56,7 @@ private:
 	// Hazards given no range only extend out to the invisible fence defined in AI.cpp.
 	double maxRange = 10000.;
 	bool deviates = true;
-	
+
 	std::map<const Effect *, int> environmentalEffects;
 };
 

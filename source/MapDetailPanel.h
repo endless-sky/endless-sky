@@ -33,35 +33,35 @@ class MapDetailPanel : public MapPanel {
 public:
 	explicit MapDetailPanel(PlayerInfo &player, const System *system = nullptr);
 	explicit MapDetailPanel(const MapPanel &panel);
-	
+
 	virtual void Step() override;
 	virtual void Draw() override;
-	
-	
+
+
 protected:
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	// Handle single & double-clicks on commodities, planet information, or objects in the "orbits" display.
 	virtual bool Click(int x, int y, int clicks) override;
 	// Handle right-clicks within the "orbits" display.
 	virtual bool RClick(int x, int y) override;
-	
-	
+
+
 private:
 	void DrawKey();
 	void DrawInfo();
 	void DrawOrbits();
-	
+
 	// Set the commodity coloring, and update the player info as well.
 	void SetCommodity(int index);
-	
-	
+
+
 private:
 	int governmentY = 0;
 	int tradeY = 0;
-	
+
 	// Default display scaling for orbits within the currently displayed system.
 	double scale = .03;
-	
+
 	// Y-indices of the selected system's "info displays" that feature its planets' names and basic information.
 	std::map<const Planet *, int> planetY;
 	// Vector offsets from the center of the "orbits" UI.
