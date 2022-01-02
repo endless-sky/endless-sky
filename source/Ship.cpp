@@ -152,24 +152,6 @@ namespace {
 		}
 		return transferred;
 	}
-
-	// Determine the restockable ammunition the given ship consumes. Ammo is not restockable if
-	// it is a weapon itself (as then it is installed directly into the ship's hardpoints).
-	set<const Outfit *> UsedAmmo(const Ship &ship)
-	{
-		auto restockable = set<const Outfit *>{};
-		for(auto &&hardpoint : ship.Weapons())
-		{
-			const Weapon *weapon = hardpoint.GetOutfit();
-			if(weapon)
-			{
-				const Outfit *ammo = weapon->Ammo();
-				if(ammo && !ammo->IsWeapon())
-					restockable.emplace(ammo);
-			}
-		}
-		return restockable;
-	}
 }
 
 
@@ -2254,7 +2236,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 			if(!ejecting)
 			{
 				// Determine which of the fighter's weapons we can restock.
-				auto restockable = UsedAmmo(*bay.ship);
+				auto restockable = bay.ship->GetArmament().RestockableAmmo();
 				auto toRestock = map<const Outfit *, int>{};
 				for(auto &&ammo : restockable)
 				{
@@ -3507,8 +3489,8 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			// be used by the carrier or other fighters.
 			ship->TransferFuel(ship->fuel, this);
 
-			// Determine the ammunition the recipient can supply.
-			auto restockable = UsedAmmo(*ship);
+			// Determine the ammunition the fighter can supply.
+			auto restockable = ship->GetArmament().RestockableAmmo();
 			auto toRestock = map<const Outfit *, int>{};
 			for(auto &&ammo : restockable)
 			{
