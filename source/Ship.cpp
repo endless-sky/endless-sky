@@ -152,6 +152,24 @@ namespace {
 		}
 		return transferred;
 	}
+
+	// Determine the restockable ammunition the given ship consumes. Ammo is not restockable if
+	// it is a weapon itself (as then it is installed directly into the ship's hardpoints).
+	set<const Outfit *> UsedAmmo(const Ship &ship)
+	{
+		auto restockable = set<const Outfit *>{};
+		for(auto &&hardpoint : ship.Weapons())
+		{
+			const Weapon *weapon = hardpoint.GetOutfit();
+			if(weapon)
+			{
+				const Outfit *ammo = weapon->Ammo();
+				if(ammo && !ammo->IsWeapon())
+					restockable.emplace(ammo);
+			}
+		}
+		return restockable;
+	}
 }
 
 
@@ -2236,18 +2254,13 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 			if(!ejecting)
 			{
 				// Determine which of the fighter's weapons we can restock.
+				auto restockable = UsedAmmo(*bay.ship);
 				auto toRestock = map<const Outfit *, int>{};
-				for(const auto &hardpoint : bay.ship->Weapons())
+				for(auto &&ammo : restockable)
 				{
-					const Weapon *weapon = hardpoint.GetOutfit();
-					if(weapon)
-					{
-						const Outfit *ammo = weapon->Ammo();
-						// Don't give the fighter an ammo outfit that is installable as a weapon (e.g. "Nuclear Missile" and other one-shots).
-						int count = (ammo && !ammo->IsWeapon()) ? this->OutfitCount(ammo) : 0;
-						if(count > 0)
-							toRestock.emplace(ammo, count);
-					}
+					int count = OutfitCount(ammo);
+					if(count > 0)
+						toRestock.emplace(ammo, count);
 				}
 				auto takenAmmo = TransferAmmo(toRestock, *this, *bay.ship);
 				bool tookAmmo = !takenAmmo.empty();
@@ -3495,18 +3508,13 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			ship->TransferFuel(ship->fuel, this);
 
 			// Determine the ammunition the recipient can supply.
+			auto restockable = UsedAmmo(*ship);
 			auto toRestock = map<const Outfit *, int>{};
-			for(const auto &hardpoint : ship->Weapons())
+			for(auto &&ammo : restockable)
 			{
-				const Weapon *weapon = hardpoint.GetOutfit();
-				if(weapon)
-				{
-					const Outfit *ammo = weapon->Ammo();
-					// Don't give the carrier an ammo outfit that is installable as a weapon (e.g. "Nuclear Missile" and other one-shots).
-					int count = (ammo && !ammo->IsWeapon()) ? ship->OutfitCount(ammo) : 0;
-					if(count > 0)
-						toRestock.emplace(ammo, count);
-				}
+				int count = ship->OutfitCount(ammo);
+				if(count > 0)
+					toRestock.emplace(ammo, count);
 			}
 			TransferAmmo(toRestock, *ship, *this);
 
