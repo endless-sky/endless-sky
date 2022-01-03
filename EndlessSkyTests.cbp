@@ -33,6 +33,7 @@
 				<Option projectIncludeDirsRelation="2" />
 				<Option projectLibDirsRelation="2" />
 				<Compiler>
+					<Add option="-Werror" />
 					<Add option="-flto" />
 					<Add option="-O3" />
 					<Add option="-msse3" />
@@ -47,7 +48,6 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-std=c++11" />
-			<Add option="-Werror" />
 			<Add option="-Wold-style-cast" />
 			<Add option="-fno-rtti" />
 			<Add directory="tests/include" />
