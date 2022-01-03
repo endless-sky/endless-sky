@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 #include "DataWriter.h"
 #include "Dialog.h"
+#include "DistanceMap.h"
 #include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -1947,6 +1948,29 @@ void PlayerInfo::Unvisit(const System &system)
 void PlayerInfo::Unvisit(const Planet &planet)
 {
 	visitedPlanets.erase(&planet);
+}
+
+
+
+bool PlayerInfo::HasMapped(int mapSize) const
+{
+	DistanceMap distance(GetSystem(), mapSize);
+	for(const System *system : distance.Systems())
+		if(!HasVisited(*system))
+			return false;
+
+	return true;
+}
+
+
+
+void PlayerInfo::Map(int mapSize)
+{
+	DistanceMap distance(GetSystem(), mapSize);
+	for(const System *system : distance.Systems())
+		if(!HasVisited(*system))
+			Visit(*system);
+	return;
 }
 
 

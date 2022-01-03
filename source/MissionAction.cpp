@@ -231,6 +231,18 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 
 	for(auto &&it : requiredOutfits)
 	{
+		// Maps are not normal outfits; they represent the player's spatial awareness.
+		int mapSize = it.first->Get("map");
+		if(mapSize > 0)
+		{
+			bool needsUnmapped = it.second == 0;
+			// This action can't be done if it requires an unmapped region, but the region is
+			// mapped, or if it requires a mapped region but the region is not mapped.
+			if(needsUnmapped == player.HasMapped(mapSize))
+				return false;
+			continue;
+		}
+
 		int available = 0;
 		// Requiring the player to have 0 of this outfit means all ships and all cargo holds
 		// must be checked, even if the ship is disabled, parked, or out-of-system.
