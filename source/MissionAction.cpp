@@ -104,12 +104,12 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			if(count >= 0)
 				requiredOutfits[GameData::Outfits().Get(child.Token(1))] = count;
 			else
-				child.PrintTrace("Skipping invalid \"require\" amount:");
+				child.PrintTrace("Error: Skipping invalid \"require\" amount:");
 		}
 		// The legacy syntax "outfit <outfit> 0" means "the player must have this outfit installed."
 		else if(key == "outfit" && child.Size() >= 3 && child.Token(2) == "0")
 		{
-			child.PrintTrace("Warning: deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
+			child.PrintTrace("Warning: Deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
 			requiredOutfits[GameData::Outfits().Get(child.Token(1))] = 1;
 		}
 		else if(key == "system")
@@ -117,7 +117,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			if(system.empty() && child.HasChildren())
 				systemFilter.Load(child);
 			else
-				child.PrintTrace("Unsupported use of \"system\" LocationFilter:");
+				child.PrintTrace("Error: Unsupported use of \"system\" LocationFilter:");
 		}
 		else
 			action.LoadSingle(child, missionName);
