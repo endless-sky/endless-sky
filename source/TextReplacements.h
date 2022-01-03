@@ -32,16 +32,16 @@ class TextReplacements {
 public:
 	// Load a substitutions node.
 	void Load(const DataNode &node);
-	
+
 	// Clear this TextReplacement's substitutions and insert the substitutions of other.
 	void Revert(TextReplacements &other);
-	
+
 	// Add new text replacements to the given map after evaltuating all possible replacements.
 	// This TextReplacements will overwrite the value of any existing keys in the given map
 	// if the map and this TextReplacements share a key.
 	void Substitutions(std::map<std::string, std::string> &subs, const std::map<std::string, int64_t> &conditions) const;
-	
-	
+
+
 private:
 	// Vector with "string to be replaced", "condition when to replace", and "replacement text".
 	std::vector<std::pair<std::string, std::pair<ConditionSet, std::string>>> substitutions;
