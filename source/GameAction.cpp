@@ -46,12 +46,10 @@ namespace {
 		int mapSize = outfit->Get("map");
 		if(mapSize > 0)
 		{
-		    if(player.HasMapped(mapSize))
-				return;
-		
-		    player.Map(mapSize);
-		    Messages::Add("You received a map of nearby systems", Messages::Importance::High);
-		    return;
+			if(!player.HasMapped(mapSize))
+				player.Map(mapSize);
+			Messages::Add("You received a map of nearby systems", Messages::Importance::High);
+			return;
 		}
 
 		Ship *flagship = player.Flagship();
