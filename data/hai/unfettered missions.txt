@@ -441,7 +441,11 @@ mission "Unfettered: Bring Hai"
 	blocked "You will need room for 10 passengers in order to take the next Unfettered mission."
 	to offer
 		has "Unfettered Jump Drive 1: offered"
-		random < 50
+		or
+			not "Unfettered: offered bring hai"
+			random < 20
+	on defer
+		set "Unfettered: offered bring hai"
 	on offer
 		conversation
 			`As you exit your ship you notice a group of Unfettered that seem to be discussing something of importance in a big, yet simple, square-shape stadium nearby. A few Unfettered are already heading their way to listen, it does not seem to be restricted of access.`
@@ -507,6 +511,7 @@ mission "Unfettered: Bring Hai"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
+		clear "Unfettered: offered bring hai"
 		log `Helped some Hai citizens to join the Unfettered.`
 		payment 100000
 		dialog `The Unfettered thank you for helping these "True" Hai find their way home, and give you <payment>. After discussing with them, the Unfettered elder says, "If you want to help us again, the hospitals on Darkcloak are in grave need of resupply." Checking back onto the group, you can see they are doing fine, and already finding a place to call home, shared among the others. They may not have much, but they seem to require anything at all, other than to be here.`
@@ -909,12 +914,12 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 	
 	on waypoint
 		dialog `You do not see the Geocoris that Tear-Fi mentioned, it is probably in a system nearby. You should land and depart when it arrives.`
-		set "entered Ya Hai"
+		set "Unfettered: entered Ya Hai"
 	
 	npc "scan outfits"
 		government "Hai"
 		to spawn
-			has "entered Ya Hai"
+			has "Unfettered: entered Ya Hai"
 		personality target entering uninterested waiting
 		system "Ya Hai"
 		fleet
@@ -940,9 +945,9 @@ mission "Unfettered: Geocoris Arriving"
 		system "Ya Hai"
 	landing
 	to offer
-		has "entered Ya Hai"
+		has "Unfettered: entered Ya Hai"
 	on offer
-		clear "entered Ya Hai"
+		clear "Unfettered: entered Ya Hai"
 		conversation
 			`Shortly after you land you see the Geocoris signature coming into the system on your radar. You take off immediately.`
 				flee
@@ -1141,7 +1146,7 @@ mission "Unfettered: Escort Hai Fleet"
 	npc accompany save
 		government "Hai"
 		to spawn
-			has "stopped on Greenbloom"
+			has "Unfettered: stopped on Greenbloom"
 		personality escort timid launching
 		system "Due Yoot"
 		fleet "Small Hai"
@@ -1155,7 +1160,7 @@ mission "Unfettered: Escort Hai Fleet"
 	npc evade
 		government "Pirate"
 		to spawn
-			has "stopped on Greenbloom"
+			has "Unfettered: stopped on Greenbloom"
 		system "Ya Hai"
 		personality disables plunders vindictive
 		fleet "Large Northern Pirates" 3
@@ -1164,7 +1169,7 @@ mission "Unfettered: Escort Hai Fleet"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
-		clear "stopped on Greenbloom"
+		clear "Unfettered: stopped on Greenbloom"
 		log `Escorted a Hai fleet carying supplies and passengers into Unfettered space during a truce.`
 		payment 500000
 		dialog `The fleet admiral thanks you for escorting them, and gives you <payment>. He says you should probably go in the spaceport to speak with Sha-Ri.`
@@ -1199,7 +1204,7 @@ mission "Unfettered: Taking Off With Hai Fleet"
 	to offer
 		has "Unfettered: Escort Hai Fleet: active"
 	on offer
-		set "stopped on Greenbloom"
+		set "Unfettered: stopped on Greenbloom"
 		conversation
 			`You go see the fleet admiral assigned to this so you can coordinate better on this, after a while everyone signals they are ready to take off.`
 				flee
@@ -1427,7 +1432,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 				`	"I have found Korath prisoners on the Alpha ship."`
 			`They talk about it and then one of the Unfettered elders speak up, "Perfect, hand them over to us, we will see to it they have all the comfort they need, hopefully in exchange for some technology." They discuss among themselves again, then the warlord from earlier speaks, seemingly with a heavy burden. "Now that you officially work for us, you will have a salary of 1000. We will not make you wear our colors yet because it could cause problems with the Hai. We do not want you to get shot on sight."`
 			branch logs
-				has "alpha logs"
+				has "Unfettered: alpha logs"
 			decline
 			label logs
 			choice
@@ -1436,8 +1441,8 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 					decline
 			action
 				log `Found out where the Alphas were getting their jump drives from, in theory at least. The problem is the information is encrypted, but the Unfettered will work hard to decipher it.`
-				set "unfettered jump drive source"
-				clear "alpha logs"
+				set "Unfettered: jump drive source"
+				clear "Unfettered: alpha logs"
 				payment 200000
 			`	"Those are probably too well encrypted to be of much use, but we will try to break them anyway. Thank you for sharing this information with us. Here is an extra of <payment> for your troubles."`
 
@@ -1463,7 +1468,7 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 					decline
 			`	You find out the leak was created deliberately as a lure to draw you into the ambush here, so they could be done with you. Thankfully you were tougher than they anticipated and secured victory for yourself. There are also multiple flight logs. It seems they had been using this Auxiliary as a mobile base, carrying the Jump Drives wherever they went. So maybe you did indeed find the Alpha base, after all! These logs probably contain indications of where they have been getting the Jump Drives, but analyzing all of them will take more time. It doesn't take much, though, to notice they seemed to spend quite some time near the Korath Exiles territory. It is now time to leave the planet and go see the elders.`
 			action
-				set "alpha logs"
+				set "Unfettered: alpha logs"
 
 
 
@@ -1592,7 +1597,11 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 	source "Darkcloak"
 	to offer
 		has "Unfettered: Solifuge 5: Materials For Ships: done"
-		random < 30
+		or
+			not "Unfettered: offered loot"
+			random < 30
+	on defer
+		set "Unfettered: offered loot"
 	on offer
 		conversation
 			`When passing in front of a bar, you notice Si-Ra, he seems to be having quite a lot of fun. The bar itself does not seem that alien to you.`
@@ -1678,6 +1687,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 	on visit
 		dialog `You have landed on <origin> but you do not have the spoils yet, or they are in one of your escort.`
 	on complete
+		clear "Unfettered: offered loot"
 		log `Found some 'defenseless' cargo in space, and brought it back to the Unfettered. The cargo itself seemed ionized, I wonder what they could do with it. I think they asked the freighter to come only to ask me to intercept it, weird.`
 		outfit "Loot" -400
 		payment 2000000
@@ -2016,7 +2026,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 		conversation
 			`The warlord from earlier hands you <payment>.`
 			branch noboughtship
-				not "bought ship"
+				not "Unfettered: bought ship"
 			choice
 				`	(Ask him to pay your loan for the ship, and show him the detailed scanner logs.)`
 				`	(Just roll with it, you do not need extra money and the more detailed scans were not asked for.)`
@@ -2099,7 +2109,7 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 			
 			label bought
 			action
-				set "bought ship"
+				set "Unfettered: bought ship"
 			`	He shows you to the ship you requested and tells you all about its different qualities, but you do not really listen as you only bought this ship so he would let you finish your scans. You did have to spend a fine sum for it though... You could always sell it back to someone else, at the shipyard. Now you can even use this ship's scanners to get the most detailed scans ever!`
 			label shipbought
 			`	Now that you are in the newly acquired ship, you pretend to look around until he leaves, seeing you are satisfied with your purchase. Then you get back to scanning the shipyard.`
@@ -2207,9 +2217,9 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 		log `Brought human cooling systems to the Unfettered. Hopefully they will design a better cooling system soon, but in the mean time they should be able to retrofit these into something more useful.`
 		payment 2500000
 		dialog `Seeing you brought the coolers, Taer-Fi thanks you and hands you <payment>. "This new cooling system will really help us with what we have planned... I guess I should get back to actually designing it. We will upgrade the coolers you brought us into something less... primitive. The only thing we can use here is the base materials, but at least pirates can easily provide as many human coolants as needed, for the right price of course."`
-		event "new cooling system" 40
+		event "Unfettered: new cooling system" 40
 
-event "new cooling system"
+event "Unfettered: new cooling system"
 	outfitter "Unfettered Basics"
 		add "Hai Zephyr Cooling"
 
@@ -2218,7 +2228,7 @@ mission "Unfettered: New Cooling Available"
 		attributes "unfettered"
 	landing
 	to offer
-		has "event: new cooling system"
+		has "event: Unfettered: new cooling system"
 	on offer
 		conversation
 			`You receive a message from Taer-Fi, "Hi <first>, remember the coolers you helped to develop? They are finally available, on Darkcloak. We do not have yet enough to equip all of our ships with them, but that is not yet required because our current weapons do not generate that much heat. However you can buy as many as you want!"`
@@ -2235,8 +2245,7 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 	blocked `You need 500 cargo space for the next Unfettered mission.`
 	to offer
 		has "Unfettered: Solifuge 8: Useful Korath Scientists: done"
-		has "Unfettered: Loot: Ion Canon Materials: done"
-		random < 80
+		has "Unfettered: Loot: Ion Cannon Materials: done"
 	on offer
 		conversation
 			`You see the Unfettered warlord you brought intel to, near the shipyard. He seems to be giving orders to make preparations for incoming changes. Do you go see him?`
@@ -2271,10 +2280,10 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 	on complete
 		log `I helped the Unfettered upgrade their shipyards and received a brand new ship! It appears to be a prototype, quite an unstable one at that. However, shield beetles will have to wait.`
 		give ship "Shield Beetle Prototype" "Basilisk"
-		event "shield beetle mass production" 30
+		event "Unfettered: shield beetle mass production" 30
 		dialog `After unloading all the cargo you go check for the warlord in the shipyard, and you find a Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship, "We have a very special reward for you, captain: a brand new ship, produced just for you. It is equipped with plenty of prototypes and has some particularities which I am sure you will like, including a reinforced shield matrix!" You guess that Taer-Fi left you the message.`
 
-event "shield beetle mass production"
+event "Unfettered: shield beetle mass production"
 	planet "Darkcloak"
 		add outfitter "Unfettered"
 
@@ -2283,7 +2292,7 @@ mission "Unfettered: Shield Beetles Available"
 		attributes "unfettered"
 	landing
 	to offer
-		has "event: shield beetle mass production"
+		has "event: Unfettered: shield beetle mass production"
 	on offer
 		log "people" "Hi Ye" `An Unfettered warlord that likes to be direct and to call humans monkey apparently. He has some great managing capabilities though.`
 		conversation
@@ -2465,7 +2474,7 @@ mission "Unfettered: Special Cargo 1B"
 					goto challenge
 			`	He seems disappointed and wishing he had asked for more, but he shows you to the item, which is a little cube, and you bring it back to your ship without any trouble. He also signaled the local warships belonging to the warlord to land to let you leave without trouble.`
 			action
-				set "brokered deal"
+				set "Unfettered: brokered deal"
 				"reputation: Mari's Legion" >?= 1
 				payment -10000000
 			``
@@ -2479,7 +2488,7 @@ mission "Unfettered: Special Cargo 1B"
 					goto challenge
 			`	He seems disappointed to have only 8 million credits but you feel like he still had the upper hand in that trade. He shows you to the item, which is a little cube, and you bring it back to your ship without any trouble. He also signaled the local warships belonging to the warlord to land to let you leave without trouble.`
 			action
-				set "brokered deal"
+				set "Unfettered: brokered deal"
 				"reputation: Mari's Legion" >?= 1
 				payment -8000000
 			``
@@ -2505,7 +2514,7 @@ mission "Unfettered: Special Cargo 2"
 	on offer
 		conversation
 			branch bought
-				has "brokered deal"
+				has "Unfettered: brokered deal"
 			branch stole
 				has "Unfettered: Special Cargo 1B: done"
 			action
@@ -2526,9 +2535,9 @@ mission "Unfettered: Special Cargo 2"
 			label afterlog
 			`You find He Yi in his war room, which is very impressive to say the least, full of weird things, that are probably not all weapons. You notice some keystone carvings, but also a statue, probably of some Hai goddess. He seems to have multiple missives, serving as his eyes and ears everywhere. You bring him the cube. "Very well done! But this is not all, you will have a big payment once the mission is completed."`
 			branch nodeal
-				not "brokered deal"
+				not "Unfettered: brokered deal"
 			action
-				clear "brokered deal"
+				clear "Unfettered: brokered deal"
 				payment 2000000
 			`	You tell him that you had to pay a few millions to get the cube. "You were not supposed to negotiate, but I guess that is acceptable. These <payment> will alleviate the cost. Next time try to show more strength, it is all that Unfettered in general respect. Thankfully money is not really much of an issue to us."`
 			label nodeal
@@ -2577,7 +2586,11 @@ mission "Unfettered: Close Quarter"
 	source "Warfeed"
 	to offer
 		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
-		random < 30
+		or
+			random < 30
+			not "Unfettered: offered close quarter"
+	on defer
+		set "Unfettered: offered close quarter"
 	on offer
 		conversation
 			`You can see movement in the spaceport, people seem to he heading to one place in particular and you can hear some shouting coming from that direction. Do you want to go take a look?`
@@ -2688,6 +2701,7 @@ mission "Unfettered: Close Quarter"
 			has "Bring Coalition Weapons: done"
 			has "Bring Void Rifle: done"
 	on complete
+		clear "Unfettered: offered close quarter"
 		log `Brought very strong stunning weapons to the Unfettered so they can do their training without risk, or at least that is what they said, apparently there may be more to it.`
 		conversation
 			`You go see Hi Ye with the non lethal rifles to see if he has anything else to ask you. He seems very happy you managed to find them, and says, "Great job! It will be decisive in the coming war."`
@@ -2921,8 +2935,8 @@ mission "Unfettered: Start Of The War"
 	description `Prove your strength against Si-Ra and Hi-Ye in a battle. But do not kill them.`
 	source "Darkcloak"
 	to offer
-		has "event: shield beetle mass production"
-		has "event: new cooling system"
+		has "event: Unfettered: shield beetle mass production"
+		has "event: Unfettered: new cooling system"
 		has "Unfettered: Special Cargo 2: done"
 		has "main plot completed"
 		has "language: Wanderer"
