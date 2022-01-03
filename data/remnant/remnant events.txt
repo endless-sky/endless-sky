@@ -273,10 +273,10 @@ event "remnant: ssil vida area unvisted"
 event "remnant: ssil vida activation"
 	set "Remnant: Ssil Vida Active"
 	planet Fertriery
-		attributes "requires: gaslining"
+		attributes "requires: gaslining" uninhabited
 		landscape land/nasa8
-		description `You are not quite sure what Fetriery is. It lacks cohesive edges, and yet it has sufficient atmospheric pressure to threaten the hull integrity of ships not designed for high pressure environments. Your sensors are unable to find any kind of core. Indeed, the entire planet appears to be a mix of gases, aerosols, and suspended particles.`
-		description `	Despite this, or perhaps because of it, void sprites appear to thrive in its depths, where they can be seen dancing among energy currents reminiscent of the ion storms.`
+		description `You are not quite sure what Fetriery is. It lacks cohesive edges, and yet it has sufficient atmospheric pressure to threaten the hull integrity of ships not designed for high pressure environments. Despite such density, which would indicate a strong gravitational presence, your sensors are unable to find any kind of core.`
+		spaceport `Delving further into the clouds, it becomes obvious that the entire planet appears to be a mix of gases, aerosols, and suspended particles. Despite this, or perhaps because of it, void sprites appear to thrive in its depths, where they can be seen dancing among energy currents reminiscent of the ion storms.`
 		government "Ember Waste"
 		bribe 0
 		security 0
@@ -730,9 +730,10 @@ event "remnant: ssil vida activation"
 event "remnant: ssil vida deactivation"
 	clear "Remnant: Ssil Vida Active"
 	planet Fertriery
-		attributes "requires: gaslining"
+		attributes "requires: gaslining" uninhabited
 		landscape land/nasa8
 		description `Fertriery is a fairly typical world with a particularly dense atmosphere with significant levels of chlorine and fluorine. The only unusual factor is the above-average temperatures, likely due to the decreased energy loss into the surrounding space.`
+		remove spaceport
 		government Uninhabited
 		bribe 0
 		security 0
