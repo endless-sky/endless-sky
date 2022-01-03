@@ -39,20 +39,20 @@ public:
 		float clip = 1.f;
 		float alpha = 1.f;
 	};
-	
-	
+
+
 public:
 	// Initialize the shaders.
 	static void Init(bool useShaderSwizzle);
-	
+
 	// Draw a sprite.
 	static void Draw(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0, float frame = 0.f);
-	
+
 	static void Bind();
 	static void Add(const Item &item, bool withBlur = false);
 	static void Unbind();
-	
-	
+
+
 private:
 	static bool useShaderSwizzle;
 };

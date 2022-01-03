@@ -31,6 +31,7 @@ on:
     - keys.txt
     - SConstruct
     - .winmake
+    - .codespell.exclude
   pull_request:
     # Run for any push to any pull request, if it modifies source code or game text.
     types: [opened, synchronize]
@@ -44,29 +45,13 @@ on:
     - keys.txt
     - SConstruct
     - .winmake
+    - .codespell.exclude
 
 
 jobs:
   # Figure out what changed, so other jobs in this file can conditionally execute.
   changed:
-    runs-on: ubuntu-latest
-    outputs:
-      data: ${{ steps.filter.outputs.data }}
-      game_code: ${{ steps.filter.outputs.game_code }}
-      macos: ${{ steps.filter.outputs.macos }}
-      windows: ${{ steps.filter.outputs.windows }}
-      linux: ${{ steps.filter.outputs.linux }}
-      unit_tests: ${{ steps.filter.outputs.unit_tests }}
-      integration_tests: ${{ steps.filter.outputs.integration_tests }}
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 2
-    - uses: dorny/paths-filter@v2
-      id: filter
-      with:
-        filters: .github/path-filters.yml
-        token: ${{ github.token }}
+    uses: endless-sky/endless-sky/.github/workflows/compute-changes.yml@master
 
   build_ubuntu:
     needs: changed
@@ -501,3 +486,19 @@ jobs:
       # In a perfect world we would run a debug build, but since this will run on PRs, we can limit our search of "what caused the bug" to only the code
       # added by that PR, which means debugging symbols aren't as necessary. (We can ignore the still-reachable cin, cout, cerr inherited file descriptors.)
       run: valgrind --tool=memcheck --leak-check=full --track-origins=yes --track-fds=yes --error-exitcode=1 ./endless-sky -p
+
+
+
+  spellcheck:
+    needs: [changed]
+    if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.codespell == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
+    - uses: codespell-project/actions-codespell@master
+      with:
+        builtin: clear,en-GB_to_en-US
+        path: data/
+        exclude_file: .codespell.exclude
