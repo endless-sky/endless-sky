@@ -8,24 +8,7 @@ on:
 
 jobs:
   changed:
-    runs-on: ubuntu-latest
-    outputs:
-      data: ${{ steps.filter.outputs.data }}
-      game_code: ${{ steps.filter.outputs.game_code }}
-      macos: ${{ steps.filter.outputs.macos }}
-      windows: ${{ steps.filter.outputs.windows }}
-      linux: ${{ steps.filter.outputs.linux }}
-      unit_tests: ${{ steps.filter.outputs.unit_tests }}
-      integration_tests: ${{ steps.filter.outputs.integration_tests }}
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 2
-    - uses: dorny/paths-filter@v2
-      id: filter
-      with:
-        filters: .github/path-filters.yml
-        token: ${{ github.token }}
+    uses: endless-sky/endless-sky/.github/workflows/compute-changes.yml@master
 
   build_linux:
     needs: changed
