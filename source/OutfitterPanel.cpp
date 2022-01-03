@@ -16,7 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
-#include "DistanceMap.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -152,7 +151,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		if(isLicense)
 			minCount = maxCount = player.GetCondition(LicenseName(name));
 		else if(mapSize)
-			minCount = maxCount = HasMapped(mapSize);
+			minCount = maxCount = player.HasMapped(mapSize);
 		else
 		{
 			for(const Ship *ship : playerShips)
@@ -313,7 +312,7 @@ bool OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 		return false;
 
 	int mapSize = selectedOutfit->Get("map");
-	if(mapSize > 0 && HasMapped(mapSize))
+	if(mapSize > 0 && player.HasMapped(mapSize))
 		return false;
 
 	// Determine what you will have to pay to buy this outfit.
@@ -363,12 +362,9 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 		int mapSize = selectedOutfit->Get("map");
 		if(mapSize > 0)
 		{
-			if(!HasMapped(mapSize))
+			if(!player.HasMapped(mapSize))
 			{
-				DistanceMap distance(player.GetSystem(), mapSize);
-				for(const System *system : distance.Systems())
-					if(!player.HasVisited(*system))
-						player.Visit(*system);
+				player.Map(mapSize);
 				int64_t price = player.StockDepreciation().Value(selectedOutfit, day);
 				player.Accounts().AddCredits(-price);
 			}
@@ -859,18 +855,6 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 	Point offset(-.5 * OUTFIT_SIZE, -.5 * OUTFIT_SIZE + 10.);
 	font.Draw({name, {OUTFIT_SIZE, Alignment::CENTER, Truncate::MIDDLE}},
 		center + offset, Color((isSelected | isOwned) ? .8 : .5, 0.));
-}
-
-
-
-bool OutfitterPanel::HasMapped(int mapSize) const
-{
-	DistanceMap distance(player.GetSystem(), mapSize);
-	for(const System *system : distance.Systems())
-		if(!player.HasVisited(*system))
-			return false;
-
-	return true;
 }
 
 
