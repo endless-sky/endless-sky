@@ -28,8 +28,8 @@ public:
 	// Return a random angle up to the given amount (between 0 and 360).
 	static Angle Random();
 	static Angle Random(double range);
-	
-	
+
+
 public:
 	// The default constructor creates an angle pointing up (zero degrees).
 	Angle() noexcept = default;
@@ -38,27 +38,27 @@ public:
 	Angle(double degrees) noexcept;
 	// Construct an angle pointing in the direction of the given vector.
 	explicit Angle(const Point &point) noexcept;
-	
+
 	// Mathematical operators.
 	Angle operator+(const Angle &other) const;
 	Angle &operator+=(const Angle &other);
 	Angle operator-(const Angle &other) const;
 	Angle &operator-=(const Angle &other);
 	Angle operator-() const;
-	
+
 	// Get a unit vector in the direction of this angle.
 	Point Unit() const;
 	// Convert an Angle object to degrees, in the range -180 to 180.
 	double Degrees() const;
-	
+
 	// Return a point rotated by this angle around (0, 0).
 	Point Rotate(const Point &point) const;
-	
-	
+
+
 private:
 	explicit Angle(int32_t angle);
-	
-	
+
+
 private:
 	// The angle is stored as an integer value between 0 and 2^16 - 1. This is
 	// so that any angle can be mapped to a unit vector (a very common operation)
