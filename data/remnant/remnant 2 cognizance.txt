@@ -869,6 +869,7 @@ mission "Remnant: Cognizance 21"
 				accept
 	on accept
 		set "Remnant: Dusk Busy"
+		"remnant met dusk" ++
 	on stopover
 		require "Research Laboratory"
 		conversation

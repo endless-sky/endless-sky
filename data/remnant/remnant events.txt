@@ -251,11 +251,35 @@ event "remnant: ssil vida area unvisted"
 	unvisit "Diespiter"
 	unvisit "Statina"
 	unvisit "Postverta"
+	system Caeculus	
+		remove hidden
+	system Egeria
+		remove hidden
+	system Diespiter
+		remove hidden
+	system Levana
+		remove hidden
+	system Postverta
+		remove hidden
+	system Prosa
+		remove hidden
+	system Statina
+		remove hidden
+	system Vaticanus
+		remove hidden
 
 
 
 event "remnant: ssil vida activation"
 	set "Remnant: Ssil Vida Active"
+	planet Fertriery
+		attributes "requires: gaslining"
+		landscape land/nasa8
+		description `You are not quite sure what Fetriery is. It lacks cohesive edges, and yet it has sufficient atmospheric pressure to threaten the hull integrity of ships not designed for high pressure environments. Your sensors are unable to find any kind of core. Indeed, the entire planet appears to be a mix of gases, aerosols, and suspended particles.`
+		description `	Despite this, or perhaps because of it, void sprites appear to thrive in its depths, where they can be seen dancing among energy currents reminiscent of the ion storms.`
+		government "Ember Waste"
+		bribe 0
+		security 0
 	system Caeculus
 		pos 162.87 343.242
 		government Uninhabited
@@ -519,8 +543,8 @@ event "remnant: ssil vida activation"
 			sprite planet/desert7
 			distance 439
 			period 143
-		object
-			sprite planet/fog0
+		object Fertriery
+			sprite planet/nebula1
 			distance 814
 			period 362
 			object
@@ -535,10 +559,6 @@ event "remnant: ssil vida activation"
 			sprite planet/sheragi_postverta
 			distance 1408
 			period 554
-		object "Fertriery"
-			sprite planet/nebula1
-			distance 2004.06
-			period 2098.28
 	system Prosa
 		pos 303 194
 		government Uninhabited
@@ -709,6 +729,13 @@ event "remnant: ssil vida activation"
 
 event "remnant: ssil vida deactivation"
 	clear "Remnant: Ssil Vida Active"
+	planet Fertriery
+		attributes "requires: gaslining"
+		landscape land/nasa8
+		description `Fertriery is a fairly typical world with a particularly dense atmosphere with significant levels of chlorine and fluorine. The only unusual factor is the above-average temperatures, likely due to the decreased energy loss into the surrounding space.`
+		government Uninhabited
+		bribe 0
+		security 0
 	system Egeria
 		pos 288 146
 		government Uninhabited
@@ -833,7 +860,7 @@ event "remnant: ssil vida deactivation"
 			sprite planet/desert7
 			distance 439
 			period 143
-		object
+		object Fertriery
 			sprite planet/fog0
 			distance 814
 			period 362
