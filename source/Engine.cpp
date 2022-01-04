@@ -143,7 +143,7 @@ namespace {
 
 		// Make sure this ship is able to send a hail.
 		if(ship->IsDisabled() || !ship->Crew()
-				|| ship->Cloaking() >= 1. || ship->GetPersonality().IsMute())
+				|| (ship->Cloaking() == 1. && !ship->Attributes().Get("cloaked action")) || ship->GetPersonality().IsMute())
 			return false;
 
 		// Ships that don't share a language with the player shouldn't send hails.
@@ -2234,7 +2234,7 @@ void Engine::FillRadar()
 		{
 			// Do not show cloaked ships on the radar, except the player's ships.
 			bool isYours = ship->IsYours();
-			if(ship->Cloaking() >= 1. && !ship->Attributes().Get("cloaking shows on radar") && !isYours)
+			if(ship->Cloaking() == 1. && !ship->Attributes().Get("cloaking shows on radar") && !isYours)
 				continue;
 
 			// Figure out what radar color should be used for this ship.
@@ -2284,7 +2284,10 @@ void Engine::AddSprites(const Ship &ship)
 {
 	bool hasFighters = ship.PositionFighters();
 	double cloak = ship.Cloaking();
-	bool drawCloaked = (cloak && (ship.IsYours() || ship.Attributes().Get("cloaking visibility")));
+	double cloakVisibility = ship.Attributes().Get("cloaking visibility");
+	if(cloakVisibility)
+		cloak = min(1. - cloakVisibility, cloak);
+	bool drawCloaked = (cloak && ship.IsYours());
 	auto &itemsToDraw = draw[calcTickTock];
 	auto drawObject = [&itemsToDraw, cloak, drawCloaked](const Body &body) -> void
 	{

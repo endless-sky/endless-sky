@@ -1909,7 +1909,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 			if(distance < 10. && speed < 1. && (CanBeCarried() || !turn))
 			{
-				if(cloak)
+				if(cloak && !attributes.Get("cloaked action"))
 				{
 					// Allow the player to get all the way to the end of the
 					// boarding sequence (including locking on to the ship) but
@@ -2439,6 +2439,9 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 
 	if(CannotAct())
 		return false;
+	double cloakActionCost = attributes.Get("cloaked action");
+	if(cloak && cloakActionCost)
+		cloak -= cloakActionCost;
 
 	antiMissileRange = 0.;
 
@@ -2508,7 +2511,7 @@ bool Ship::IsCapturable() const
 
 bool Ship::IsTargetable() const
 {
-	return (zoom == 1.f && !explosionRate && !forget && !isInvisible && (cloak < 1. || attributes.Get("cloaking visibility")) && hull >= 0. && hyperspaceCount < 70);
+	return (zoom == 1.f && !explosionRate && !forget && !isInvisible && (cloak < 1. && attributes.Get("cloaking visibility")) && hull >= 0. && hyperspaceCount < 70);
 }
 
 
@@ -2565,7 +2568,8 @@ bool Ship::CanLand() const
 
 bool Ship::CannotAct() const
 {
-	return (zoom != 1.f || isDisabled || hyperspaceCount || pilotError || cloak);
+	return (zoom != 1.f || isDisabled || hyperspaceCount || pilotError || 
+		((cloak == 1. && !attributes.Get("cloaked action")) || (cloak != 1. && cloak)));
 }
 
 
@@ -3184,7 +3188,7 @@ double Ship::MaxReverseVelocity() const
 int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damageScaling, double distanceTraveled, const Point &damagePosition, const Government *sourceGovernment, bool isBlast)
 {
 	// If this ship has an invulnerable cloaking device active, it cannot take damage.
-	if(!(Cloaking() < 1.) && attributes.Get("cloaking invulnerability") > 0)
+	if(cloak == 1. && attributes.Get("cloaking invulnerability") > 0.)
 		return 0;
 	
 	if(isBlast && weapon.IsDamageScaled())

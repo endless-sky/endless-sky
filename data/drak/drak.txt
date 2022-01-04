@@ -255,6 +255,8 @@ ship "Archon" "Archon (Cloaked)"
 	"never disabled"
 	add attributes
 		"cloak" .04
+		"cloaking invulnerability" 1
+		"cloaked action" .01
 	turret "Drak Anti-Missile Field"
 	turret "Drak Anti-Missile Field"
 	turret "Drak Draining Field"

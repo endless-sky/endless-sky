@@ -416,7 +416,7 @@ bool MainPanel::ShowHailPanel()
 
 	if(flagship->IsEnteringHyperspace())
 		Messages::Add("Unable to send hail: your flagship is entering hyperspace.", Messages::Importance::High);
-	else if(flagship->Cloaking() == 1.)
+	else if(flagship->Cloaking() == 1. && flagship->Attributes().Get("cloaked action"))
 		Messages::Add("Unable to send hail: your flagship is cloaked.", Messages::Importance::High);
 	else if(target)
 	{
