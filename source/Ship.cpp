@@ -2508,7 +2508,7 @@ bool Ship::IsCapturable() const
 
 bool Ship::IsTargetable() const
 {
-	return (zoom == 1.f && !explosionRate && !forget && !isInvisible && (cloak < 1. || attributes.Get("cloak visible")) && hull >= 0. && hyperspaceCount < 70);
+	return (zoom == 1.f && !explosionRate && !forget && !isInvisible && (cloak < 1. || attributes.Get("cloaking visibility")) && hull >= 0. && hyperspaceCount < 70);
 }
 
 
@@ -3184,7 +3184,7 @@ double Ship::MaxReverseVelocity() const
 int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damageScaling, double distanceTraveled, const Point &damagePosition, const Government *sourceGovernment, bool isBlast)
 {
 	// If this ship has an invulnerable cloaking device active, it cannot take damage.
-	if(!(Cloaking() < 1.) && attributes.Get("cloak invulnerability") > 0)
+	if(!(Cloaking() < 1.) && attributes.Get("cloaking invulnerability") > 0)
 		return 0;
 	
 	if(isBlast && weapon.IsDamageScaled())

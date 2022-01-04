@@ -605,7 +605,7 @@ void Engine::Step(bool isActive)
 	if(isActive && Preferences::Has("Show status overlays"))
 		for(const auto &it : ships)
 		{
-			if(!it->GetGovernment() || it->GetSystem() != currentSystem || (it->Cloaking() == 1. && !it->Attributes().Get("cloak targetable")))
+			if(!it->GetGovernment() || it->GetSystem() != currentSystem || (it->Cloaking() == 1. && !it->Attributes().Get("cloaking targetability")))
 				continue;
 			// Don't show status for dead ships.
 			if(it->IsDestroyed())
@@ -738,7 +738,7 @@ void Engine::Step(bool isActive)
 	}
 	else
 	{
-		if(target->GetSystem() == player.GetSystem() && (target->Cloaking() < 1. || target->Attributes().Get("cloak targetable")))
+		if(target->GetSystem() == player.GetSystem() && (target->Cloaking() < 1. || target->Attributes().Get("cloaking targetability")))
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step));
 		info.SetString("target name", target->Name());
@@ -2000,7 +2000,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			for(const Body *body : shipCollisions.Circle(projectile.Position(), triggerRadius))
 				if(body == projectile.Target() || (gov->IsEnemy(body->GetGovernment())
 						&& (reinterpret_cast<const Ship *>(body)->Cloaking() < 1.
-						|| reinterpret_cast<const Ship *>(body)->Attributes().Get("cloak invulnerability") < 0.)))
+						|| reinterpret_cast<const Ship *>(body)->Attributes().Get("cloaking invulnerability") < 0.)))
 				{
 					closestHit = 0.;
 					break;
@@ -2234,7 +2234,7 @@ void Engine::FillRadar()
 		{
 			// Do not show cloaked ships on the radar, except the player's ships.
 			bool isYours = ship->IsYours();
-			if(ship->Cloaking() >= 1. && !ship->Attributes().Get("cloak shows on radar") && !isYours)
+			if(ship->Cloaking() >= 1. && !ship->Attributes().Get("cloaking shows on radar") && !isYours)
 				continue;
 
 			// Figure out what radar color should be used for this ship.
@@ -2284,7 +2284,7 @@ void Engine::AddSprites(const Ship &ship)
 {
 	bool hasFighters = ship.PositionFighters();
 	double cloak = ship.Cloaking();
-	bool drawCloaked = (cloak && (ship.IsYours() || ship.Attributes().Get("cloak visible")));
+	bool drawCloaked = (cloak && (ship.IsYours() || ship.Attributes().Get("cloaking visibility")));
 	auto &itemsToDraw = draw[calcTickTock];
 	auto drawObject = [&itemsToDraw, cloak, drawCloaked](const Body &body) -> void
 	{
