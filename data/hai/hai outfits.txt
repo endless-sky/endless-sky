@@ -105,12 +105,13 @@ effect "ion impact"
 	"velocity scale" -.05
 
 
-outfit "Unfettered Militia License"
+outfit "True Unfettered License"
 	category "Special"
 	"capture attack" 10
 	"capture defense" 10
-	thumbnail "outfit/unfettered militia license"
-	description "This is a bit of a special license, but whenever I look at this sword I feel pride, and whenever they look at this sword I see respect. This was given to me by one of their warlord, as a sign of trust. It is quite handy in fights too, thanks to the special properties of the keystone it is crafted from..."
+	"quantum keystone" 1
+	thumbnail "outfit/true unfettered license"
+	description "This sword may be bit of a weird license, but whenever I look at it I feel pride, and whenever the Unfettered look at it I see respect in their eyes. This was given to me by one of their warlord, as a sign of trust. It is quite handy in fights too, thanks to the special properties of the keystone it is crafted from... It has some handy properties, and gadgets that can give the upper hand in a melee."
 
 outfit "Ionic Blaster"
 	category "Guns"
@@ -150,7 +151,8 @@ outfit "Ionic Turret"
 	weapon
 		sprite "projectile/ion bolt"
 			"frame rate" 5
-		# no hardpoint
+		"hardpoint sprite" "hardpoint/hai ionic turret"
+		"hardpoint offset" 16.
 		sound "ion"
 		"hit effect" "ion impact" 2
 		"inaccuracy" 1

@@ -624,7 +624,7 @@ mission "Unfettered: Prove Your Strength"
 			`	As you move away you hear laughter, but nobody tries to stop you. You have just shown to the Unfettered how much of a coward you are, and will probably never be offered any missions from them anymore.`
 				decline
 			label rules
-			`	"I guess you ought to know... You are supposed to bring only your flagship but if it is too weak then more ships can be accepted, so long as it is a fair battle. It will last until either one of our ship is disabled, or one of us gives up. You can call it to later at any given time for a symbolic bribe of 1000. So, are you ready to fight?"`
+			`	"I guess you ought to know... You are supposed to bring only your flagship but if it is too weak then more ships can be accepted, so long as it is a fair battle. It will last until either one of our ship is disabled, or one of us gives up. You can call it to later at any given time for a symbolic bribe of 1000. Also it is tolerated that the victor plunders the ashamed, but not boards or kills. So, are you ready to fight?"`
 			choice
 				`	"Let me show you my worth in battle. Right now."`
 					accept
@@ -2090,7 +2090,7 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 					goto waterbug
 				`	"Actually I am only here to get a tribute for the Unfettered, these ships seem too costly for me."`
 			action
-				set "too suspect"
+				set "Unfettered: too suspect"
 			``
 				goto suspect
 			
@@ -2123,7 +2123,7 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 			
 			label finishscan
 			branch toosuspect
-				has "too suspect"
+				has "Unfettered: too suspect"
 			`	You manage to finish the scans without any more interruption, and are eager to get back to your ship to get all of this over with.`
 				accept
 			label toosuspect
@@ -2131,7 +2131,7 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 				fine 100000
 			`	It looks like you have arrisen too much suspicion. Maybe he was waiting to see if you would actually leave, or maybe he alerted the local authorities, but the result is the same: they arrest you and even fine you <fine>.`
 			action
-				clear "too suspect"
+				clear "Unfettered: too suspect"
 	
 	on decline
 		fail "Unfettered: Solifuge 6: Shipyard Upgrade"
@@ -2175,7 +2175,7 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 				`	"I did not think you would be trusted enough to have access to Hai technology already."`
 				`	"I was not sure you would help the Hai at all."`
 					goto help
-			`	They make a weird sound that is probably laughter. "You call this 'Mesuk'," he says, showing you the cooler, "even our 'Rem' 'Sorobeh' can do something so primitive!"`
+			`	They make a weird sound that is probably laughter. "You call this 'Mesuk'," he says, showing you the cooler, "even our 'Rem' 'Sorobeh' can do something so primitive! But to speak true tongue, there are some interesting 'Estar' here, all the ones not made by 'Unkor' races like you and the Hai, like the 'E Shema' cooler they stole from 'Ter'."`
 				goto objective
 			
 			label help
@@ -2810,8 +2810,9 @@ mission "Unfettered: Non Lethal Weapons Hint"
 
 mission "Unfettered: Know Your Enemy"
 	name `Approach the enemy and learn to communicate`
-	description `You should use your status of independent from the Unfettered to scan all of Wanderer space. Also, you need to be able to communicate with the enemy.`
+	description `You should use your status of independent from the Unfettered to scan all of Wanderer space. Also, you need to be able to communicate with the enemy, go and try to speak with them and then go to <stopovers> to see if He Yi managed to get a translator.`
 	source "Firelode"
+	stopover "Warfeed"
 	to offer
 		has "Unfettered: The Word Has Spread: done"
 	on offer
@@ -2835,7 +2836,7 @@ mission "Unfettered: Know Your Enemy"
 					goto translator
 			`	"Well to be frank we do not have to ability to teach all of its nuances to you in time. However we believe that our brethren do have some way of doing that, given how apt they are with languages, and how keen they are to meet new races."`
 			label translator
-			`	"We think our Hai brethren may indeed have what we need, but we need a way to convince them to give it to you. You should go and meet the aliens up North, and speak with them. Propose a contact with the rest of the Hai, so they may see how pathethic this alien race is. They may not allow you to land at all of them planets, because they are distrusfull of newcomers, probably because of our actions. Go and see how pathethic these wanderers are."`
+			`	"We think our Hai brethren may indeed have what we need, but we need a way to obtain it. In the meantime, you should go and meet the aliens up North, and speak with them. They may not allow you to land on most of their planets. They may have grown distrusfull of newcomers, probably because of our actions. Go and see how pathethic these aliens are, and then you should probably go to He Yi about that translator."`
 			branch neutral
 				has "reputation: Wanderer" >= 0"
 			choice
@@ -2856,10 +2857,7 @@ mission "Unfettered: Know Your Enemy"
 				`	"I will not work for you anymore then."`
 					decline
 	
-	on enter "Chy'chra" "Prakacha'a" "Pik'ro'iyak"
-		dialog `It seems like the message you are broadcasting works, the wanderer are not attacking you for now. But you should be very carreful not to anger them again, because there is little chance they would forgive you again.`
 	waypoint "Chy'chra"
-	waypoint "Prakacha'a"
 	waypoint "Pik'ro'iyak"
 	waypoint "Ik'kara'ka"
 	waypoint "Chirr'ay'akai"
@@ -2868,22 +2866,63 @@ mission "Unfettered: Know Your Enemy"
 	waypoint "Ka'pru"
 	waypoint "Ap'arak"
 	waypoint "Ka'ch'chrai"
-	waypoint "Sko'karak"
 	waypoint "Ek'kek'ru"
 	waypoint "Si'yak'ku"
 	waypoint "Iyech'yek"
 	waypoint "Kiru'kichi"
-	waypoint "Aya'k'k"
 	waypoint "Es'sprak'ai"
 	
 	on waypoint
-		dialog `You have scouted all of the wanderer's systems. If you can somehow speak Hai already, it is time to come back to <destination>, for a reward.`
+		dialog `You have scouted all of the Wanderer's systems. If you can somehow speak Hai already, it is time to come back to <destination>, for a reward.`
 	to complete
 		has "language: Wanderer"
 	on complete
 		log `The Unfettered asked me to be able to speak like a True Hai, because that is the language in which I should make demands to the Unfettered later.`
+		log "Wanderer" `The Wanderers are a birdlike specie that seems weak and is said to inhabit the old lands of the Unfettered Hai.`
 		payment 1000000
 		dialog `You find the herald back. "Now you can speak to us like a True Hai, finally. By respect to you, we will keep speaking to you in your language. Except for some maybe... You only should use the translator to speak and understand our elders, or at least some of them. They will probably do as if they noticed nothing, but trust me, they care. Oh and here are <payment> for the intel, we could not have gotten it so easily given they shoot our ships on sight."`
+
+
+
+mission "Unfettered: Bring Detainer"
+	name `Recover a detainer`
+	description `He Yi has asked you to earn a translation device by bringing back a powerful alien weapon, said to be able to neutralize the engines of its target. You should probably look around the sestor automaton's space.`
+	source "Warfeed"
+	landing
+	to offer
+		has "Unfettered: Know Your Enemy: active"
+		has "First Contact: Wanderer: offered"
+		not "language: Wanderer"
+	on offer
+		conversation
+			`You go find He Yi in his war room, he does not seem too surprised to see you. "I expected you to come here. You most want one of us to act as 'diplomat' with the aliens from the North."`
+			`	You nod.`
+			`	"Well that is not our way, we do not ask, we take. Things need to be earned, in battle or otherwise, else they have no value. I  have obtained a translator, that is able to translate your backwards language to the one of the Hai. Because these aliens speak Hai, you will be able to communicate with them later. I was not sure you were unable to speak Hai, or that the aliens would not understand you, they seem to have grasped Hai very quickly, trough methods I prefer not to imagine."`
+			`	"If you want this translator, you will have to earn it. There is something I want, I have heard tales of a weapon that would neutralize one's engines. Such weapon would be a very nice addition to my collection... Well I would obviously use it in battle when the time is right, too. Bring me one of these weapons and you will have earned this translator."`
+			choice
+				`	"Sure, I will go and bring it back for you."`
+					accept
+				`	"Where can I find said weapon?"`
+			`	"The ones who spoke to me about it are the Unfettered humans, and we know that they were moving a lot trough the automated killing machines territory, so you would do well to go and look East of here, maybe a bit more to the South, because there are legends speaking of an everlasting battlefield. One that never ends to make carnage, as if gods were laughing in the background, enjoying the show that seems without end."`
+			choice
+				`	"Sure, I will go and bring it back for you."`
+					accept
+				`	"I doubt I have the strength to face the automatons."`
+			`	"If you cannot get that weapon, then you do not deserve this device. But you do not worry, there should be other ways to get it than brute force, just loot it off a ship whilst the others are looking away. You do not have to dedicate a whole fleet to this, it may get lost, also you may have other tools at your disposal for doing this discretely. So what do you say?"`
+			choice
+				`	"Sure, I will go and bring it back for you."`
+					accept
+				`	"I'm out, this is way too risky."`
+			action
+				fail "Unfettered: Know Your Enemy"
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
+	on visit
+		dialog `You do not yet have the weapon He Yi asked for, look East for it, judging by the tales it should be a pretty big one.`
+	on complete
+		outfit "Korath Detainer" -1
+		set "language: Wanderer"
+		dialog `He Yi is impressed that you managed to bring this detainer to him, and happily exchanges it for a translator.`
 
 
 
@@ -2928,7 +2967,44 @@ mission "Unfettered: Cloaking Interest"
 ship "Shield Beetle Prototype" "Shield Beetle Prototype (Black)"
 	sprite "ship/hai marauder shield beetle"
 	add attributes
-		"shield" 2000
+		"hull" 5200
+		"spinal mount" 1
+		"cloak" .01
+		"cloaking energy" 10
+		"cloaking fuel" .5
+		"cloaking heat" 10
+		"engine capacity" 5
+	outfits
+		"Sunbeam" 4
+		"Korath Detainer"
+		"Korath Grab-Strike" 2
+		"Bullfrog Anti-Missile" 3
+		"Large Heat Shunt"
+		"Systems Core (Large)" 2
+		"Outfits Expansion" 4
+		"Jump Drive"
+		"Fuel Processor"
+		"Wanderer Ramscoop"
+		`"Bufaer" Atomic Steering`
+		"Thruster (Planetary Class)"
+		"White Sun Reactor"
+		"Generator (Furnace Class)"
+		"Korath Repeater Rifle" 20
+		"Pulse Rifle" 60
+	gun 0 -7 "Korath Detainer"
+	gun -22 -102 "Sunbeam"
+	gun 22 -102 "Sunbeam"
+	gun -34 -68
+	gun 34 -68
+	gun -49 -38 "Sunbeam"
+	gun 49 -38 "Sunbeam"
+	gun -61 -14
+	gun 61 -14
+	turret -51 21.5 "Bullfrog Anti-Missile"
+	turret 51 21.5 "Bullfrog Anti-Missile"
+	turret -56.5 75 "Korath Grab-Strike"
+	turret 56.5 75 "Korath Grab-Strike"
+	turret 0 85.5 "Bullfrog Anti-Missile"
 
 mission "Unfettered: Start Of The War"
 	name `Strength Of A Leader`
@@ -2973,22 +3049,55 @@ mission "Unfettered: Start Of The War"
 	on complete
 		log `Officialy joined the Unfettered Militia. It should be the last time I have to prove my worth to them. At the very least I may now buy all of their ships with this license.`
 		"salary: Unfettered" = 5000
-		set "license: Unfettered Militia"
+		set "license: True Unfettered"
 		event "joined the unfettered"
 		"reputation: Wanderer" <?= -1000
 		conversation
 			`He Yi rejoins you on your ship after having parked his, which looks like it is not in the best shape... "We will notify you once you may be of help to the war effort. In the mean time, we have increased your salary to 5000 so you can muster an even larger fleet. Also from now on you will officially have the permission, nay, the obligation to proudly wear our colors. We have signaled this change of colors to the Hai meaning they will not change their behavior with you, recognizing your signature. We cannot say the same for the wanderers though so be carreful."`
-			`	He then draws his long sword, that has the same appearance as keystone. You stand back, worried he might attack you for some reason but instead he hands it to you. "You have also deserved the right to have this. It is a proof of our trust towards you and means you will be able to buy all of our ships. Whenever a warlord is defeated in battle he has to surrender his sword to the one who vanquished him."`
+			`	He then draws his long sword, that has the same appearance as keystone. You stand back, worried he might attack you for some reason but instead he hands it to you. "You have also deserved the right to have this. It is a proof of our trust towards you and means you will be able to buy all of our ships. Whenever a warlord is defeated in battle he has to surrender his sword to the one who vanquished him. You must be burning with questions about my ship. I am prepared to answer a few."`
+			action
+				"Unfettered: questions" = -1
+			label questions
+			action
+				"Unfettered: questions"++
+			branch enough
+				"Unfettered: questions" > 3
 			choice
-				`	"I am honoured."`
-					accept
 				`	"What does this sword do?"`
-			`	"You are aware of what keystones are, right? They are not believed to give luck for no reason, after all. I cannot tell you much more about it, but rest assured this sword would be more useful than a gun for boarding. It was given to me by the council many years ago, and it fits my responsibility as well as my character."`
-			choice
 				`	"Why is your ship named Tejolis?"`
-				`	"I am honoured."`
+					goto tejolis
+				`	"Why is your ship hull so strong?"`
+					goto hull
+				`	"How does your ship cloak?"`
+					goto cloak
+				`	"What kind of weapons are you using?"`
+					goto weapon
+				`	"I am honoured, but I do not have any more questions."`
 					accept
+			`	"You are aware of what keystones are, right? They are not believed to give luck for no reason, after all. I cannot tell you much more about it, but rest assured this sword would be more useful than a gun for boarding. It was given to me by the council many years ago, and it fits my responsibility as well as my character."`
+				goto questions
+			label tejolis
 			`	"Tejolis is the goddess of apt thinking, which you could call intelligence. It is the aptitude to do good judgments, based on context. For instance, if you have time to choose a quick decision does not make sense, and a wrong decision is hard to justify. Likewise, when time is of the essence one must learn to do quick action, or be overwelmed by the actions of others, or lack of actions. I named this ship in her honor, just like I have a statue of her in my war room, because I follow her ways."`
+				goto questions
+			label hull
+			`	"As you have probably noticed, the hull is not in the standard Hai colors. It is, partly, a matter of taste for discretion but the biggest reason is that this ship was built out of the wreck of an old Korath warship. Those materials are more sturdy than normal Hai ones, which is why this ship is so resilient to hull damage."`
+				goto questions
+			label cloak
+			`	"Many years ago, when the Korath attacked us, they used a ghost ship. It would attack the convoys and then diseapear without a trace, without even jumping out, nothing. Then once the warships would get away he came back, always harrassing us. The Ghost managed to take on a lot of convoys and escorts without issues, using its superior technology and strategic advantage. But it was no real ghost, everyone has a weakness. His weakness was that whilst we could not see it, it did not mean that it was not there anymore. With this in mind, the brave Unfettered layed a trap for the ship. When it disapeared they did not stop shooting like usual, instead they made him overconfident, he saw the other ships coming in but did not react to them in time and got close - too close - to the convoy. Once the fleet arrived, he disapeared but it was too late for him and his limited agility. One of the convoy ships near him rammed him, which costed the life of the proud captain but revealed the ship. Then it was just a matter of shooting it down. The cloaking device was damaged in the fight, or maybe it was already damaged before, knowing the ship never cloaked for long, so we could not extract it from the wreckage. Instead we built a ship based on that wreckage's materials, and the cloaking device is a part of it."`
+				goto questions
+			label weapon
+			branch helped
+				has "Unfettered: Bring Detainer: done"
+			`	"I have heard tales from the Unfettered humans of a weapon that neutralizes the target's engines. Knowing it could only come from the automated killing machines to the East, I went looking for such weapon, under the safety of my cloak. I expected to have to fight somewhat to get it but in fact the killing machines are fighting other killing machines. I just looked at them battle from a distance and then swifly looted a ship... Except it exploded on my face. Disturbed, I looked for another one, and that one did not explode so I took the weapon and came home, victorious. I had barrely enough space in my cargo hold for it."`
+				goto otherweapons
+			label helped
+			`	"Well as you know you brought the detainer to me in exchange for the translation device."`
+			label otherweapons
+			`	"For the other weapons, it was loot collected during the Korath raids that we preciously kept until now, for special occasions. The Sunbeams are the most recent addition to the ship, we got them from looting ships from the North. And then of course our anti missiles systems are the best for what is needed here: cheap and efficient countering of a lot of missiles."`
+				goto questions
+			
+			label enough
+			`	"I have answered enough of your questions I think, some things should remain a mystery... Knowledge is power after all."`
 
 event "joined the unfettered"
 	government "Escort"

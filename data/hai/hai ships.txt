@@ -809,8 +809,6 @@ ship "Shield Beetle Prototype"
 	thumbnail "thumbnail/hai shield beetle"
 	attributes
 		category "Heavy Warship"
-		licenses
-			"Unfettered Militia"
 		"cost" 25400000
 		"shields" 40600
 		"hull" 10600
@@ -875,7 +873,7 @@ ship "Solifuge"
 	attributes
 		category "Heavy Warship"
 		licenses
-			"Unfettered Militia"
+			"True Unfettered"
 		"cost" 22800000
 		"shields" 37800
 		"hull" 11000
