@@ -32,7 +32,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 	bool isClustered = false;
 	calculatedDamage = false;
 	doesDamage = false;
-	
+
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
@@ -102,7 +102,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 				else if((grand.Size() >= 3) && (grand.Token(0) == "offset"))
 					submunitions.back().offset = Point(grand.Value(1), grand.Value(2));
 				else
-					child.PrintTrace("Skipping unknown or incomplete sub-munition attribute:");
+					child.PrintTrace("Skipping unknown or incomplete submunition attribute:");
 			}
 		}
 		else
@@ -260,20 +260,20 @@ void Weapon::LoadWeapon(const DataNode &node)
 		burstReload = reload;
 	if(damageDropoffRange.first > damageDropoffRange.second)
 		damageDropoffRange.second = Range();
-	
+
 	// Weapons of the same type will alternate firing (streaming) rather than
 	// firing all at once (clustering) if the weapon is not an anti-missile and
 	// is not vulnerable to anti-missile, or has the "stream" attribute.
 	isStreamed |= !(MissileStrength() || AntiMissile());
 	isStreamed &= !isClustered;
-	
+
 	// Support legacy missiles with no tracking type defined:
 	if(homing && !tracking && !opticalTracking && !infraredTracking && !radarTracking)
 	{
 		tracking = 1.;
 		node.PrintTrace("Warning: Deprecated use of \"homing\" without use of \"[optical|infrared|radar] tracking.\"");
 	}
-	
+
 	// Convert the "live effect" counts from occurrences per projectile lifetime
 	// into chance of occurring per frame.
 	if(lifetime <= 0)
@@ -421,7 +421,7 @@ double Weapon::DamageDropoff(double distance) const
 {
 	double minDropoff = damageDropoffRange.first;
 	double maxDropoff = damageDropoffRange.second;
-	
+
 	if(distance <= minDropoff)
 		return 1.;
 	if(distance >= maxDropoff)

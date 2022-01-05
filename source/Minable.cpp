@@ -37,7 +37,7 @@ void Minable::Load(const DataNode &node)
 	// Set the name of this minable, so we know it has been loaded.
 	if(node.Size() >= 2)
 		name = node.Token(1);
-	
+
 	for(const DataNode &child : node)
 	{
 		// A full sprite definition (frame rate, etc.) is not needed, because
@@ -77,18 +77,18 @@ void Minable::Place(double energy, double beltRadius)
 	// (which, for a game would be overkill) or something will drift over time.
 	// If that drift caused the orbit to decay, that would be a problem, which
 	// rules out just applying gravity as a force from the system center.
-	
+
 	// Instead, each orbit is defined by an ellipse equation:
 	// 1 / radius = constant * (1 + eccentricity * cos(theta)).
-	
+
 	// The only thing that will change over time is theta, the "true anomaly."
 	// That way, the orbital period will only be approximate (which does not
 	// really matter) but the orbit itself will never decay.
-	
+
 	// Generate random orbital parameters. Limit eccentricity so that the
 	// objects do not spend too much time far away and moving slowly.
 	eccentricity = Random::Real() * .6;
-	
+
 	// Since an object is moving slower at apoapsis than at periapsis, it is
 	// more likely to start out there. So, rather than a uniform distribution of
 	// angles, favor ones near 180 degrees. (Note: this is not the "correct"
@@ -96,7 +96,7 @@ void Minable::Place(double energy, double beltRadius)
 	theta = Random::Real();
 	double curved = (pow(asin(theta * 2. - 1.) / (.5 * PI), 3.) + 1.) * .5;
 	theta = (eccentricity * curved + (1. - eccentricity) * theta) * 2. * PI;
-	
+
 	// Now, pick the orbital "scale" such that, relative to the "belt radius":
 	// periapsis distance (scale / (1 + e)) is no closer than .4: scale >= .4 * (1 + e)
 	// apoapsis distance (scale / (1 - e)) is no farther than 4.: scale <= 4. * (1 - e)
@@ -105,19 +105,19 @@ void Minable::Place(double energy, double beltRadius)
 	double sMin = max(.4 * (1. + eccentricity), .8 * (1. - eccentricity));
 	double sMax = min(4. * (1. - eccentricity), 1.3 * (1. + eccentricity));
 	scale = (sMin + Random::Real() * (sMax - sMin)) * beltRadius;
-	
+
 	// At periapsis, the object should have this velocity:
 	double maximumVelocity = (Random::Real() + 2. * eccentricity) * .5 * energy;
 	// That means that its angular momentum is equal to:
 	angularMomentum = (maximumVelocity * scale) / (1. + eccentricity);
-	
+
 	// Start the object off with a random facing angle and spin rate.
 	angle = Angle::Random();
 	spin = Angle::Random(energy) - Angle::Random(energy);
 	SetFrameRate(Random::Real() * 4. * energy + 5.);
 	// Choose a random direction for the angle of periapsis.
 	rotation = Random::Real() * 2. * PI;
-	
+
 	// Calculate the object's initial position.
 	radius = scale / (1. + eccentricity * cos(theta));
 	position = radius * Point(cos(theta + rotation), sin(theta + rotation));
@@ -140,7 +140,7 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			{
 				// Add a random velocity.
 				Point dp = (Random::Real() * scale) * Angle::Random().Unit();
-				
+
 				visuals.emplace_back(*it.first, position + 2. * dp, velocity + dp, angle);
 			}
 		}
@@ -156,21 +156,21 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		}
 		return false;
 	}
-	
+
 	// Spin the object.
 	angle += spin;
-	
+
 	// Advance the object forward one step.
 	theta += angularMomentum / (radius * radius);
 	radius = scale / (1. + eccentricity * cos(theta));
-	
+
 	// Calculate the new position.
 	Point newPosition(radius * cos(theta + rotation), radius * sin(theta + rotation));
 	// Calculate the velocity this object is moving at, so that its motion blur
 	// will be rendered correctly.
 	velocity = newPosition - position;
 	position = newPosition;
-	
+
 	return true;
 }
 
