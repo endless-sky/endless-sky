@@ -149,8 +149,6 @@ try:
     env.CompilationDatabase()
     env.Default('compile_commands.json')
 # scons before 4.0.0 is used. In that case, simply don't provide a compilation database.
-except EnvironmentError:
-    pass
 except SConsEnvironmentError:
     pass
 
