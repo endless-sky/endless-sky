@@ -120,7 +120,7 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 				// Check for common errors such as indenting a goto incorrectly:
 				if(grand.Size() > 1)
 				{
-					grand.PrintTrace("Conversation choices should be a single token:");
+					grand.PrintTrace("Error: Conversation choices should be a single token:");
 					foundErrors = true;
 					continue;
 				}
@@ -135,7 +135,7 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 			if(nodes.back().data.empty())
 			{
 				if(!foundErrors)
-					child.PrintTrace("Conversation contains an empty \"choice\" node:");
+					child.PrintTrace("Warning: Conversation contains an empty \"choice\" node:");
 				nodes.pop_back();
 			}
 		}
@@ -175,7 +175,7 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 		}
 		// Check for common errors such as indenting a goto incorrectly:
 		else if(child.Size() > 1)
-			child.PrintTrace("Conversation text should be a single token:");
+			child.PrintTrace("Error: Conversation text should be a single token:");
 		else
 		{
 			// This is just an ordinary text node.
@@ -199,7 +199,7 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 	// Display a warning if a label was not resolved.
 	if(!unresolved.empty())
 		for(const auto &it : unresolved)
-			node.PrintTrace("Conversation contains unrecognized label \"" + it.first + "\":");
+			node.PrintTrace("Warning: Conversation contains unrecognized label \"" + it.first + "\":");
 
 	// Check for any loops in the conversation.
 	for(const auto &it : labels)
@@ -210,7 +210,7 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 			nodeIndex = NextNode(nodeIndex);
 			if(nodeIndex == it.second)
 			{
-				node.PrintTrace("Conversation contains infinite loop beginning with label \"" + it.first + "\":");
+				node.PrintTrace("Error: Conversation contains infinite loop beginning with label \"" + it.first + "\":");
 				nodes.clear();
 				return;
 			}
@@ -453,7 +453,7 @@ bool Conversation::LoadGotos(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		if(hasGoto)
-			child.PrintTrace("Ignoring extra text in conversation choice:");
+			child.PrintTrace("Warning: Ignoring extra text in conversation choice:");
 		else if(child.Size() == 2 && child.Token(0) == "goto")
 		{
 			// Each choice can only have one goto
@@ -470,7 +470,7 @@ bool Conversation::LoadGotos(const DataNode &node)
 				hasGoto = true;
 			}
 			else
-				child.PrintTrace("Expected goto or endpoint in conversation, found this:");
+				child.PrintTrace("Warning: Expected goto or endpoint in conversation, found this:");
 		}
 	}
 	return hasGoto;
@@ -483,7 +483,7 @@ void Conversation::AddLabel(const string &label, const DataNode &node)
 {
 	if(labels.count(label))
 	{
-		node.PrintTrace("Conversation: label \"" + label + "\" is used more than once:");
+		node.PrintTrace("Error: Conversation: label \"" + label + "\" is used more than once:");
 		return;
 	}
 

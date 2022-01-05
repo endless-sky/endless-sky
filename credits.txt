@@ -15,7 +15,9 @@ Creator and Lead Programmer
 Developers
   Amazinite
   Benjamin Hauch
+  MCOfficer
   Pointedstick
+  W1zrad
 
 Major Programming
   AdamKauffman

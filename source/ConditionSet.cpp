@@ -133,14 +133,14 @@ namespace {
 		int assigns = count_if(tokens.begin(), tokens.end(), IsAssignment);
 		int compares = count_if(tokens.begin(), tokens.end(), IsComparison);
 		if(assigns + compares != 1)
-			node.PrintTrace("An expression must either perform a comparison or assign a value:");
+			node.PrintTrace("Error: An expression must either perform a comparison or assign a value:");
 		else if(HasInvalidOperators(tokens))
-			node.PrintTrace("Brackets, braces, exponentiation, and boolean/bitwise math are not supported:");
+			node.PrintTrace("Error: Brackets, braces, exponentiation, and boolean/bitwise math are not supported:");
 		else if(HasUnbalancedParentheses(tokens))
-			node.PrintTrace("Unbalanced parentheses in condition expression:");
+			node.PrintTrace("Error: Unbalanced parentheses in condition expression:");
 		else if(count_if(tokens.begin(), tokens.end(), [](const string &token)
 				{ return token.size() > 1 && token.front() == '('; }))
-			node.PrintTrace("Parentheses must be separate from tokens:");
+			node.PrintTrace("Error: Parentheses must be separate from tokens:");
 		else
 			return true;
 
@@ -277,8 +277,8 @@ void ConditionSet::Add(const DataNode &node)
 	// Special keywords have a node size of 1 (never, and, or), or 2 (unary operators).
 	// Simple conditions have a node size of 3, while complex conditions feature a single
 	// non-simple operator (e.g. <=) and any number of simple operators.
-	static const string UNRECOGNIZED = "Unrecognized condition expression:";
-	static const string UNREPRESENTABLE = "Unrepresentable condition value encountered";
+	static const string UNRECOGNIZED = "Warning: Unrecognized condition expression:";
+	static const string UNREPRESENTABLE = "Error: Unrepresentable condition value encountered:";
 	if(node.Size() == 2)
 	{
 		if(IsUnrepresentable(node.Token(1)))
@@ -295,7 +295,7 @@ void ConditionSet::Add(const DataNode &node)
 		// If a child node has assignment operators, warn on load since
 		// these will be processed after all non-child expressions.
 		if(children.back().hasAssign)
-			node.PrintTrace("Assignment expressions contained within and/or groups are applied last. This may be unexpected.");
+			node.PrintTrace("Warning: Assignment expressions contained within and/or groups are applied last. This may be unexpected.");
 	}
 	else if(IsValidCondition(node))
 	{
@@ -330,7 +330,7 @@ void ConditionSet::Add(const DataNode &node)
 						op = token;
 					else
 					{
-						node.PrintTrace("Assignment operators must be the second token:");
+						node.PrintTrace("Error: Assignment operators must be the second token:");
 						return;
 					}
 				}
@@ -343,7 +343,7 @@ void ConditionSet::Add(const DataNode &node)
 	}
 	if(!expressions.empty() && expressions.back().IsEmpty())
 	{
-		node.PrintTrace("Condition parses to an empty set:");
+		node.PrintTrace("Warning: Condition parses to an empty set:");
 		expressions.pop_back();
 	}
 }
