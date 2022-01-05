@@ -57,7 +57,7 @@ namespace {
 
 	const double MAXIMUM_TEMPERATURE = 100.;
 
-	const double SCAN_TIME = 60.;
+	const double SCAN_TIME = 600.;
 
 	// Helper function to transfer energy to a given stat if it is less than the
 	// given maximum value.
@@ -2334,44 +2334,57 @@ int Ship::Scan()
 		return 0;
 
 	// The range of a scanner is proportional to the square root of its power.
-	double cargoDistance = 100. * sqrt(attributes.Get("cargo scan power"));
-	double outfitDistance = 100. * sqrt(attributes.Get("outfit scan power"));
+	// Because we fetch the square-distance, a square root here is unnecessary.
+	double cargoDistance = attributes.Get("cargo scan power");
+	double outfitDistance = attributes.Get("outfit scan power");
 
 	// Bail out if this ship has no scanners.
 	if(!cargoDistance && !outfitDistance)
 		return 0;
 
-	// Scanning speed also uses a square root, so you need four scanners to get
-	// twice the speed out of them.
-	double cargoSpeed = sqrt(attributes.Get("cargo scan speed"));
+	// Scanning speed will be reduced by the square-distance to the target, which is
+	// close to above scanner range.
+	double cargoSpeed = attributes.Get("cargo scan speed");
 	if(!cargoSpeed)
 		cargoSpeed = 1.;
-	double outfitSpeed = sqrt(attributes.Get("outfit scan speed"));
+
+	double outfitSpeed = attributes.Get("outfit scan speed");
 	if(!outfitSpeed)
 		outfitSpeed = 1.;
 
 	// Check how close this ship is to the target it is trying to scan.
-	double distance = (target->position - position).Length();
+	// To normalize 1 "scan power" to reach 100 pixels, divide this square distance by 100^2, or 10000.
+	// Because we use distance squared, to reach 200 pixels you need 4 "scan power".
+	double distance = (target->position - position).LengthSquared() * .0001;
+	double blur = 5. / (5. + (Velocity() - target->Velocity()).LengthSquared());
+
+	// Check the target's outfit and cargo space, a larger ship takes longer to scan.
+	// Normalized around 200 tons of cargo/outfit space.
+	double outfits = target->baseAttributes.Get("outfit space") * .005;
+	double cargo = target->attributes.Get("cargo space") * .005;
 
 	// Check if either scanner has finished scanning.
 	bool startedScanning = false;
 	bool activeScanning = false;
 	int result = 0;
-	auto doScan = [&](double &elapsed, const double speed, const double scannerRange, const int event) -> void
+	auto doScan = [&](double &elapsed, const double speed, const double scannerRange, double depth, const int event) -> void
 	{
 		if(elapsed < SCAN_TIME && distance < scannerRange)
 		{
 			startedScanning |= !elapsed;
 			activeScanning = true;
+			// (a/b) * (c/d) * (e/f) is more expensive than the equivalent (a*c*e) / (b*d*f)
+			elapsed += (scannerRange - distance) * speed * blur
+				/ ((sqrt(speed) + distance) * scannerRange * depth);
 			// To make up for the scan decay above:
-			elapsed += speed + 1.;
+			elapsed ++;
 			if(elapsed >= SCAN_TIME)
 				result |= event;
 		}
 	};
-	doScan(cargoScan, cargoSpeed, cargoDistance, ShipEvent::SCAN_CARGO);
-	doScan(outfitScan, outfitSpeed, outfitDistance, ShipEvent::SCAN_OUTFITS);
-
+	doScan(cargoScan, cargoSpeed, cargoDistance, cargo, ShipEvent::SCAN_CARGO);
+	doScan(outfitScan, outfitSpeed, outfitDistance, outfits, ShipEvent::SCAN_OUTFITS);
+	
 	// Play the scanning sound if the actor or the target is the player's ship.
 	if(isYours || (target->isYours && activeScanning))
 		Audio::Play(Audio::Get("scan"), Position());
