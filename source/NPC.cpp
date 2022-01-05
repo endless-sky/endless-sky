@@ -73,14 +73,16 @@ void NPC::Load(const DataNode &node)
 			mustAccompany = true;
 			failIf |= ShipEvent::DESTROY;
 		}
+		else
+			node.PrintTrace("Warning: Skipping unrecognized NPC completion condition \"" + node.Token(i) + "\":");
 	}
-	
+
 	// Check for incorrect objective combinations.
 	if(failIf & ShipEvent::DESTROY && (succeedIf & ShipEvent::DESTROY || succeedIf & ShipEvent::CAPTURE))
-		node.PrintTrace("Warning: conflicting NPC mission objective to save and destroy or capture.");
+		node.PrintTrace("Error: conflicting NPC mission objective to save and destroy or capture.");
 	if(mustEvade && (succeedIf & ShipEvent::DESTROY || succeedIf & ShipEvent::CAPTURE))
 		node.PrintTrace("Warning: redundant NPC mission objective to evade and destroy or capture.");
-	
+
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "system")
@@ -166,7 +168,7 @@ void NPC::Load(const DataNode &node)
 			}
 			else
 			{
-				string message = "Skipping unsupported use of a ship token and child nodes: ";
+				string message = "Error: Skipping unsupported use of a ship token and child nodes: ";
 				if(child.Size() >= 3)
 					message += "to both name and customize a ship, create a variant and then reference it here.";
 				else
@@ -195,13 +197,13 @@ void NPC::Load(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-	
+
 	// Empty spawning conditions imply that an instantiated NPC has spawned (or
 	// if this is an NPC template, that any NPCs created from this will spawn).
 	passedSpawnConditions = toSpawn.IsEmpty();
 	// (Any non-empty `toDespawn` set is guaranteed to evaluate to false, otherwise the NPC would never
 	// have been serialized. Thus, `passedDespawnConditions` is always false if the NPC is being Loaded.)
-	
+
 	// Since a ship's government is not serialized, set it now.
 	for(const shared_ptr<Ship> &ship : ships)
 	{
@@ -221,7 +223,7 @@ void NPC::Save(DataWriter &out) const
 	// If this NPC should no longer appear in-game, don't serialize it.
 	if(passedDespawnConditions)
 		return;
-	
+
 	out.Write("npc");
 	out.BeginChild();
 	{
@@ -234,7 +236,7 @@ void NPC::Save(DataWriter &out) const
 			out.Write("evade");
 		if(mustAccompany)
 			out.Write("accompany");
-		
+
 		// Only save out spawn conditions if they have yet to be met.
 		// This is so that if a player quits the game and returns, NPCs that
 		// were spawned do not then become despawned because they no longer
@@ -257,11 +259,11 @@ void NPC::Save(DataWriter &out) const
 			}
 			out.EndChild();
 		}
-		
+
 		if(government)
 			out.Write("government", government->GetTrueName());
 		personality.Save(out);
-		
+
 		if(!dialogText.empty())
 		{
 			out.Write("dialog");
@@ -275,7 +277,7 @@ void NPC::Save(DataWriter &out) const
 		}
 		if(!conversation.IsEmpty())
 			conversation.Save(out);
-		
+
 		for(const shared_ptr<Ship> &ship : ships)
 		{
 			ship->Save(out);
@@ -299,7 +301,7 @@ void NPC::Save(DataWriter &out) const
 string NPC::Validate(bool asTemplate) const
 {
 	// An NPC with no government will take the player's government
-	
+
 	// NPC templates have certain fields to validate that instantiated NPCs do not:
 	if(asTemplate)
 	{
@@ -307,22 +309,22 @@ string NPC::Validate(bool asTemplate) const
 		// If given, it must be able to resolve to a valid system.
 		if(!location.IsValid())
 			return "location filter";
-		
+
 		// A null system reference is allowed, since it will be set during
 		// instantiation if not given explicitly.
 		if(system && !system->IsValid())
 			return "system \"" + system->Name() + "\"";
-		
+
 		// A planet is optional, but if given must be valid.
 		if(planet && !planet->IsValid())
 			return "planet \"" + planet->TrueName() + "\"";
-		
+
 		// If a stock phrase or conversation is given, it must not be empty.
 		if(stockDialogPhrase && stockDialogPhrase->IsEmpty())
 			return "stock phrase";
 		if(stockConversation && stockConversation->IsEmpty())
 			return "stock conversation";
-		
+
 		// NPC fleets, unlike stock fleets, do not need a valid government
 		// since they will unconditionally inherit this NPC's government.
 		for(auto &&fleet : fleets)
@@ -332,7 +334,7 @@ string NPC::Validate(bool asTemplate) const
 			if(!fleet->IsValid(false))
 				return "stock fleet";
 	}
-	
+
 	// Ships must always be valid.
 	for(auto &&ship : ships)
 		if(!ship->IsValid())
@@ -340,7 +342,7 @@ string NPC::Validate(bool asTemplate) const
 	for(auto &&ship : stockShips)
 		if(!ship->IsValid())
 			return "stock model \"" + ship->VariantName() + "\"";
-	
+
 	return "";
 }
 
@@ -364,7 +366,7 @@ void NPC::UpdateSpawning(const PlayerInfo &player)
 	// doesn't "despawn" before spawning in the first place.
 	if(!passedSpawnConditions)
 		passedSpawnConditions = toSpawn.Test(player.Conditions());
-	
+
 	// It is allowable for an NPC to pass its spawning conditions and then immediately pass its despawning
 	// conditions. (Any such NPC will never be spawned in-game.)
 	if(passedSpawnConditions && !toDespawn.IsEmpty() && !passedDespawnConditions)
@@ -421,28 +423,28 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 		}
 	if(!ship)
 		return;
-	
+
 	// Determine if this NPC is already in the succeeded state,
 	// regardless of whether it will despawn on the next landing.
 	bool alreadySucceeded = HasSucceeded(player.GetSystem(), false);
 	bool alreadyFailed = HasFailed();
-	
+
 	// If this event was "ASSIST", the ship is now known as not disabled.
 	if(type == ShipEvent::ASSIST)
 		actions[ship.get()] &= ~(ShipEvent::DISABLE);
-	
+
 	// Certain events only count towards the NPC's status if originated by
 	// the player: scanning, boarding, assisting, capturing, or provoking.
 	if(!event.ActorGovernment() || !event.ActorGovernment()->IsPlayer())
 		type &= ~(ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS | ShipEvent::ASSIST
 				| ShipEvent::BOARD | ShipEvent::CAPTURE | ShipEvent::PROVOKE);
-	
+
 	// Apply this event to the ship and any ships it is carrying.
 	actions[ship.get()] |= type;
 	for(const Ship::Bay &bay : ship->Bays())
 		if(bay.ship)
 			actions[bay.ship.get()] |= type;
-	
+
 	// Check if the success status has changed. If so, display a message.
 	if(isVisible && !alreadyFailed && HasFailed())
 		Messages::Add("Mission failed.", Messages::Importance::Highest);
@@ -467,10 +469,10 @@ bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) con
 	if(checkedSpawnConditions && (!passedSpawnConditions
 			|| (ignoreIfDespawnable && passedDespawnConditions)))
 		return true;
-	
+
 	if(HasFailed())
 		return false;
-	
+
 	// Evaluate the status of each ship in this NPC block. If it has `accompany`,
 	// it cannot be disabled or destroyed, and must be in the player's system.
 	// Destroyed `accompany` are handled in HasFailed(). If the NPC block has
@@ -501,17 +503,17 @@ bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) con
 			if((isHere && !isImmobile) ^ mustAccompany)
 				return false;
 		}
-	
+
 	if(!succeedIf)
 		return true;
-	
+
 	for(const shared_ptr<Ship> &ship : ships)
 	{
 		auto it = actions.find(ship.get());
 		if(it == actions.end() || (it->second & succeedIf) != succeedIf)
 			return false;
 	}
-	
+
 	return true;
 }
 
@@ -524,11 +526,11 @@ bool NPC::IsLeftBehind(const System *playerSystem) const
 		return true;
 	if(!mustAccompany)
 		return false;
-	
+
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->IsDisabled() || ship->GetSystem() != playerSystem)
 			return true;
-	
+
 	return false;
 }
 
@@ -540,12 +542,12 @@ bool NPC::HasFailed() const
 	// already despawned, is not considered "failed."
 	if(!passedSpawnConditions || passedDespawnConditions)
 		return false;
-	
+
 	for(const auto &it : actions)
 	{
 		if(it.second & failIf)
 			return true;
-	
+
 		// If we still need to perform an action on this NPC, then that ship
 		// being destroyed should cause the mission to fail.
 		if((~it.second & succeedIf) && (it.second & ShipEvent::DESTROY))
@@ -570,11 +572,11 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	result.failIf = failIf;
 	result.mustEvade = mustEvade;
 	result.mustAccompany = mustAccompany;
-	
+
 	result.passedSpawnConditions = passedSpawnConditions;
 	result.toSpawn = toSpawn;
 	result.toDespawn = toDespawn;
-	
+
 	// Pick the system for this NPC to start out in.
 	result.system = system;
 	if(!result.system && !location.IsEmpty())
@@ -584,7 +586,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	// If a planet was specified in the template, it must be in this system.
 	if(planet && result.system->FindStellar(planet))
 		result.planet = planet;
-	
+
 	// Convert fleets into instances of ships.
 	for(const shared_ptr<Ship> &ship : ships)
 	{
@@ -611,7 +613,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		ship->SetPersonality(result.personality);
 		if(result.personality.IsDerelict())
 			ship->Disable();
-		
+
 		if(personality.IsEntering())
 			Fleet::Enter(*result.system, *ship);
 		else if(result.planet)
@@ -623,22 +625,22 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		else
 			Fleet::Place(*result.system, *ship);
 	}
-	
+
 	// String replacement:
 	if(!result.ships.empty())
 		subs["<npc>"] = result.ships.front()->Name();
-	
+
 	// Do string replacement on any dialog or conversation.
 	string dialogText = stockDialogPhrase ? stockDialogPhrase->Get()
 		: (!dialogPhrase.Name().empty() ? dialogPhrase.Get()
 		: this->dialogText);
 	if(!dialogText.empty())
 		result.dialogText = Format::Replace(dialogText, subs);
-	
+
 	if(stockConversation)
 		result.conversation = stockConversation->Instantiate(subs);
 	else if(!conversation.IsEmpty())
 		result.conversation = conversation.Instantiate(subs);
-	
+
 	return result;
 }

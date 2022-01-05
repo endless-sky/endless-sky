@@ -33,7 +33,8 @@ private:
 
 
 template <typename T>
-constexpr RandomEvent<T>::RandomEvent(const T *event, int period) noexcept : event(event), period(period > 0 ? period : 200)
+constexpr RandomEvent<T>::RandomEvent(const T *event, int period) noexcept
+	: event(event), period(period > 0 ? period : 200)
 {
 }
 
