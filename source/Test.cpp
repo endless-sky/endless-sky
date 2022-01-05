@@ -32,10 +32,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-
-
 namespace{
-	const map<Test::Status, const string> STATUS_TO_TEXT = {
+	const auto STATUS_TO_TEXT = map<Test::Status, const string> {
 		{Test::Status::ACTIVE, "active"},
 		{Test::Status::BROKEN, "broken"},
 		{Test::Status::KNOWN_FAILURE, "known failure"},
@@ -43,7 +41,7 @@ namespace{
 		{Test::Status::PARTIAL, "partial"},
 	};
 
-	const map<Test::TestStep::Type, const string> STEPTYPE_TO_TEXT = {
+	const auto STEPTYPE_TO_TEXT = map<Test::TestStep::Type, const string> {
 		{Test::TestStep::Type::APPLY, "apply"},
 		{Test::TestStep::Type::ASSERT, "assert"},
 		{Test::TestStep::Type::BRANCH, "branch"},
@@ -113,9 +111,10 @@ namespace{
 
 
 
-Test::TestStep::TestStep(Type stepType) : stepType(stepType)
+Test::TestStep::TestStep(Type stepType)
+	: stepType(stepType)
 {
-};
+}
 
 
 
@@ -136,24 +135,25 @@ void Test::TestStep::LoadInput(const DataNode &node)
 				else if(grand.Token(0) == "control")
 					modKeys |= KMOD_CTRL;
 				else
-					grand.PrintTrace("Warning: Unknown keyword in \"input\" \"key\" section:");
+					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
 		else if(child.Token(0) == "pointer")
 		{
 			for(const DataNode &grand: child)
 			{
+				static const string BAD_AXIS_INPUT = "Error: Pointer axis input without coordinate:";
 				if(grand.Token(0) == "X")
 				{
 					if(grand.Size() < 2)
-						grand.PrintTrace("Warning: Pointer X axis input without coordinate:");
+						grand.PrintTrace(BAD_AXIS_INPUT);
 					else
 						XValue = grand.Value(1);
 				}
 				else if(grand.Token(0) == "Y")
 				{
 					if(grand.Size() < 2)
-						grand.PrintTrace("Warning: Pointer Y axis input without coordinate:");
+						grand.PrintTrace(BAD_AXIS_INPUT);
 					else
 						YValue = grand.Value(1);
 				}
@@ -170,13 +170,13 @@ void Test::TestStep::LoadInput(const DataNode &node)
 							grand.PrintTrace("Warning: Unknown click/button \"" + grand.Token(i) + "\":");
 					}
 				else
-					grand.PrintTrace("Warning: Unknown keyword in \"input\" \"pointer\" section:");
+					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
 		else if(child.Token(0) == "command")
 			command.Load(child);
 		else
-			child.PrintTrace("Warning: Unknown keyword in \"input\" section:");
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
 
@@ -201,7 +201,7 @@ void Test::LoadSequence(const DataNode &node)
 		if(it == STEPTYPE_TO_TEXT.end())
 		{
 			status = Status::BROKEN;
-			child.PrintTrace("Unsupported step type (" + ExpectedOptions(STEPTYPE_TO_TEXT) + "):");
+			child.PrintTrace("Error: Unsupported step type (" + ExpectedOptions(STEPTYPE_TO_TEXT) + "):");
 			// Don't bother loading more steps once broken.
 			return;
 		}
@@ -313,7 +313,7 @@ void Test::Load(const DataNode &node)
 {
 	if(node.Size() < 2)
 	{
-		node.PrintTrace("Skipping unnamed test:");
+		node.PrintTrace("Error: Unnamed test:");
 		return;
 	}
 	// If a test object is "loaded" twice, that is most likely an error (e.g.
@@ -321,13 +321,13 @@ void Test::Load(const DataNode &node)
 	// or another plugin). Tests should be globally unique.
 	if(!name.empty())
 	{
-		node.PrintTrace("Skipping duplicate test definition:");
+		node.PrintTrace("Error: Duplicate test definition:");
 		return;
 	}
 	// Validate if the testname contains valid characters.
 	if(node.Token(1).find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 _-") != std::string::npos)
 	{
-		node.PrintTrace("Skipping test whose name contains unsupported character(s):");
+		node.PrintTrace("Error: Unsupported character(s) in test name:");
 		return;
 	}
 	name = node.Token(1);
@@ -352,7 +352,7 @@ void Test::Load(const DataNode &node)
 			else
 			{
 				status = Status::BROKEN;
-				child.PrintTrace("Unsupported status (" + ExpectedOptions(STATUS_TO_TEXT) + "):");
+				child.PrintTrace("Error: Unsupported status (" + ExpectedOptions(STATUS_TO_TEXT) + "):");
 			}
 		}
 		else if(child.Token(0) == "sequence")
