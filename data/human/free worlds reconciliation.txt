@@ -244,7 +244,7 @@ mission "FW Reconciliation 2"
 					goto pessimism
 			
 			label optimism
-			`	You continue to feel optimistic as Sawyer presents his story and his evidence, corroborated by the additional data collected by Ijs and by Raven's team. But as the member of Parliament begin questioning Sawyer, nearly all their questions sound more like an attack on him than an attempt to learn more about the Syndicate's involvement in the terrorist attacks.`
+			`	You continue to feel optimistic as Sawyer presents his story and his evidence, corroborated by the additional data collected by Ijs and by Raven's team. But as the members of Parliament begin questioning Sawyer, nearly all their questions sound more like an attack on him than an attempt to learn more about the Syndicate's involvement in the terrorist attacks.`
 				goto why
 			
 			label pessimism
@@ -1509,7 +1509,7 @@ mission "FW Pug 3: Quarg"
 				`	"Can you give us information about the Pug?"`
 					goto info
 			
-			`	"No," it says. Several stripes of skin on its grey face turn a dull red; you have heard that this might indicate sadness, or embarrassment, or possibly anger - one more thing about the Quarg that no one understands well. "Long ago we tried to resist the Pug," it says. "In retribution, they broke one of our rings." It points out the window of the station at the half-finished ringworld. "This ring is half complete, and it has taken a thousand of your years to build. The rings are our most precious creations, nearly impossible to destroy, but the Pug know how to twist and cut the fabric of space itself."`
+			`	"No," it says. Several stripes of skin on its gray face turn a dull red; you have heard that this might indicate sadness, or embarrassment, or possibly anger - one more thing about the Quarg that no one understands well. "Long ago we tried to resist the Pug," it says. "In retribution, they broke one of our rings." It points out the window of the station at the half-finished ringworld. "This ring is half complete, and it has taken a thousand of your years to build. The rings are our most precious creations, nearly impossible to destroy, but the Pug know how to twist and cut the fabric of space itself."`
 			`	"So you've encountered the Pug before?" asks Alondo.`
 			
 			label info
@@ -1867,13 +1867,13 @@ mission "FW Pug 4A"
 			names "pug"
 			variant
 				"Pug Maboro"
-				"Pug Enfolta" 
+				"Pug Enfolta"
 				"Pug Zibruka" 2
 		fleet
 			names "pug"
 			variant
 				"Pug Enfolta"
-				"Pug Zibruka" 2	
+				"Pug Zibruka" 2
 	
 	npc disable
 		system Rasalhague
@@ -1884,7 +1884,7 @@ mission "FW Pug 4A"
 			names "pug"
 			variant
 				"Pug Maboro"
-				"Pug Enfolta" 
+				"Pug Enfolta"
 				"Pug Zibruka" 2
 		fleet 3
 			names "pug"
@@ -1951,7 +1951,7 @@ mission "FW Pug 4B: Enemies"
 			names "pug"
 			variant
 				"Pug Maboro"
-				"Pug Enfolta" 
+				"Pug Enfolta"
 				"Pug Zibruka" 2
 
 
@@ -2049,12 +2049,12 @@ mission "FW Pug 5"
 			names "pug"
 			variant
 				"Pug Maboro"
-				"Pug Enfolta" 
+				"Pug Enfolta"
 				"Pug Zibruka" 2
 		fleet
 			names "pug"
 			variant
-				"Pug Enfolta" 
+				"Pug Enfolta"
 				"Pug Zibruka" 2
 
 
@@ -2076,7 +2076,7 @@ mission "FW Pug 5A: Enemies"
 			names "pug"
 			variant
 				"Pug Maboro"
-				"Pug Enfolta" 
+				"Pug Enfolta"
 				"Pug Zibruka" 2
 
 

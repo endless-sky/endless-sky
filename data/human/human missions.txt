@@ -573,7 +573,7 @@ mission "There Might Be Riots part 2"
 				`	"What do you mean, 'beyond' human space?"`
 				`	"Well, I'll look forward to the next time we meet."`
 					accept
-			`	Ulrich launches into a story. "Years ago when the band was young and we had a month off in between gigs, we found an old grey merchant captain with a glass eye and asked him to transport us to one of the Paradise Worlds for an extended 'drug vacation,' if you know what I mean. He said, 'Boys, why don't you leave the drugs behind, and I'll take you on a real mind-altering trip,' and a few days later we were playing a concert on this world where the people were giant squirrels. They loved our music, too. Never did find anyone who could take us back there, though."`
+			`	Ulrich launches into a story. "Years ago when the band was young and we had a month off in between gigs, we found an old gray merchant captain with a glass eye and asked him to transport us to one of the Paradise Worlds for an extended 'drug vacation,' if you know what I mean. He said, 'Boys, why don't you leave the drugs behind, and I'll take you on a real mind-altering trip,' and a few days later we were playing a concert on this world where the people were giant squirrels. They loved our music, too. Never did find anyone who could take us back there, though."`
 			branch known
 				has "First Contact: Hai: offered"
 			`	You're tempted to laugh, but he sounds serious. "Well," you say, "if I ever find a planet of intelligent squirrels, I'll be glad to take you guys there." You help them to unload their stuff, and say goodbye for now.`
@@ -1846,7 +1846,7 @@ mission "Terraforming 9"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the scientists and their equipment hasn't entered the system yet. Better depart and wait for it.`
 	on complete
-		dialog 
+		dialog
 			`The journey to Tundra was spent by your passengers discussing the possible methods of terraforming the planet. The Republic representative was none too pleased when Nolan, perhaps jokingly, suggested crashing an asteroid into it.`
 			`	Everyone except for the Tundra native begins to shiver after stepping out of your ship onto the planet, even while inside a protective dome. "Meet us in the spaceport bar in a few hours. We need to finalize our plans of how we're going to execute this experiment."`
 
@@ -2052,7 +2052,7 @@ mission "A wolf, a goat, and a cabbage"
 mission "Terminus exploration"
 	name "Missing drone"
 	description "Travel to the <waypoints> system to see if you can find any sign of a probe drone that had been launched by a team of scientists before they were attacked by pirates and forced to flee."
-	source 
+	source
 		planet "Memory" "Haze" "Nifel"
 	waypoint "Terminus"
 	destination "Bounty"
@@ -2090,17 +2090,34 @@ mission "Terminus exploration"
 		dialog `You've returned to <planet>, but you don't have the drone's data. Go to Terminus and board the science drone to retrieve the data.`
 	on complete
 		payment 90000
-		log `Recovered data from a derelict science drone for a team of scientists, who were studying a strange red anomaly in the Terminus system. They suggest that it may be a partially collapsed wormhole.`
+		log `Recovered data from a derelict science drone for a team of scientists who were studying a strange red anomaly in the Terminus system. The lead scientist on the team, Ivan, suggested that it may be a partially collapsed wormhole.`
 		conversation
 			`The scientist is overjoyed that you were able to retrieve the data from the drone. Almost in tears, he says, "We were worried that all our planning and fundraising had been for nothing. These measurements will help us to understand that spatial anomaly far better than we do right now." He hands you a credit chip worth <payment>. "And by the way, my name is Ivan. I have an office near the spaceport on Valhalla that you can visit if ever you're wanting to help, or just curious."`
 			choice
 				`	"Can you tell me more about this anomaly you are studying?"`
 				`	"I'm glad I was able to help."`
 					decline
-			`	Ivan says, "It seems to be a partially collapsed wormhole, something that once linked this part of the galaxy to somewhere else. But, we haven't succeeded in sending anything through it. Maybe the wormhole is no longer passable. Or maybe there's some way to make it open more fully. Or maybe only ships that are specially attuned to its energy signature can travel through it. We don't even know if the wormhole is a natural phenomenon or some sort of alien artifact. Honestly, we aren't even sure if it's even a wormhole at all. We'll need to study the data you've recovered to understand it further."`
-			`	You thank him for the information, and return to your ship.`
-				decline
-	
+			`	Ivan says, "It seems to be a partially collapsed wormhole, something that once linked this part of the galaxy to somewhere else. But, we haven't succeeded in sending anything through it. Maybe the wormhole is no longer passable. Or maybe there's some way to make it open more fully. Or maybe only ships that are specially attuned to its energy signature can travel through it. We don't even know if the wormhole is a natural phenomenon or some sort of alien artifact. Honestly, we aren't sure if it's even a wormhole at all. We'll need to study the data you've recovered to understand it further."`
+			choice
+				`	"A wormhole? Those actually exist?"`
+				`	"What makes you think it's a wormhole? Have you found anomalies similar to this before?"`
+					goto similar
+			`	"Well of course. The existence of wormholes has been proven for some time now. The Deep managed to create wormholes on the atomic scale before the Republic was even founded." He lowers his voice. "But I suspect that you're asking about wormholes large enough for a ship to pass through."`
+			label similar
+			`	Ivan looks around the spaceport, as if checking to see if he's being watched. He then looks back to you and motions for you to lean in. Whispering, he says, "The Republic doesn't like when people share this information, but there is one stable wormhole just beyond the Republic's borders."`
+			branch skip
+				not "First Contact: Hai: offered"
+			action
+				log `Ivan said that although he's not sure if the anomaly is a wormhole or not, it does bear striking resemblance to the wormhole that leads to the Hai.`
+			`	"You mean the wormhole to the Hai?" you ask.`
+			`	"Interesting, you know of it," Ivan responds. "The anomaly in Terminus bearings striking resemblance to it in some of our readings, although it is very different in others."`
+				goto end
+			label skip
+			action
+				log `Ivan said that although he's not sure if the anomaly is a wormhole or not, there is a wormhole "just beyond the Republic's borders" that the Republic doesn't like people sharing information on.`
+			label end
+			`	He looks around again and stands up straight. He then raises his voice, almost projecting it for anyone around you to hear. "But of course the Deep never figured out how to make wormholes big enough for anything useful, otherwise we wouldn't even need hyperdrives," he says with a wink. "Anyway, thank you again for helping me. Hopefully we meet again in the future."`
+
 ship "Science Drone"
 	sprite "ship/science drone"
 	attributes
@@ -2221,21 +2238,22 @@ mission "Lost Boy 3"
 		has "Lost Boy 2: done"
 	
 	on offer
-		payment 952
 		conversation
 			`Tod's mother almost tears up at the sight of him as you approach. "Oh, my baby boy is alive!" she exclaims, running up and hugging Tod as his face reddens with embarrassment. "Are you hurt? Are you okay? Do you think you'll be fine?" Tod's mother asks, kissing his cheeks between each question.`
 			`	"I'm fine, Mom," Tod says in an annoyed tone of voice. Some things never change.`
 			`	The mother gives you a handful of credit chips. At a glance, you guess that they couldn't be worth more than 1,000 credits. "I know it isn't much for the work you've done, Captain, but it's all I have to give you in return."`
 			choice
-				`	"Don't worry."`
-				`	"You're lucky I agreed to help you in the first place."`
-					goto money
+				`	"Don't worry about it."`
+				`	"I'm sorry but I can't take this from you."`
+					goto reject
 			
+			action
+				payment 952
 			`	"This is just so wonderful. There aren't many people around here who would do such a thing for such little pay."`
 				goto end
 			
-			label money
-			`	"I know, I know, and I'm eternally grateful for that, Captain. There aren't many people around here who would do such a thing for such little pay."`
+			label reject
+			`	You hand the credits back to the mother as she begins to tear up again. "Thank you so much, Captain."`
 			
 			label end
 			`	"Hold on," Tod chimes in. "I still need to get to <planet>."`
@@ -2442,7 +2460,7 @@ mission "Paradise Fortune 4"
 			
 			label conversation
 			`	You meet with Alondo at his office in the Free Worlds Senate building. After he and Diana exchange greetings, you explain the situation to him.`
-			`	"You what?" Alondo responds. "You have to turn her in. The war may be over, Captain, but there is still tension between the Republic and Free Worlds that we can not have a situation like this exacerbating."`
+			`	"You what?" Alondo responds. "You have to turn her in. The war may be over, Captain, but there is still tension between the Republic and Free Worlds that we cannot have a situation like this exacerbating."`
 			`	"You can't do that!" Diana yells in protest. "I thought the Free Worlds was supposed to be all about going against the Republic, but you're just going to give in?"`
 			`	"Look here, kid," Alondo says in a stern tone. "The Free Worlds was never about being against the Republic, it was only ever about being against Parliament. There's a big difference there. What you've done is a crime, even to the Free Worlds. We are not about to gain a reputation of harboring criminals of the Republic."`
 			`	Diana, instead of protesting further, puts her head down. "I'll be in your ship, Captain," she says. Diana storms off, making an effort to create as much noise as possible with the stomps of her feet.`
@@ -2963,7 +2981,7 @@ mission "Hauler VI cargo prototype 2"
 	destination "Zug"
 	landing
 	to offer
-		has "Hauler VI cargo prototype 1: done"	
+		has "Hauler VI cargo prototype 1: done"
 	npc accompany
 		government "Merchant"
 		personality escort timid
@@ -3111,7 +3129,7 @@ mission "Pirate Duel"
 					decline
 	
 	on accept
-		"reputation:  Independent " = 10
+		"reputation: Independent (Killable)" = 10
 	
 	on enter
 		dialog `When you take off, you run a quick scan on all other ships that are taking off. You see no sign of the Esca. Maybe it's already waiting for you at Umbral.`
@@ -3194,9 +3212,8 @@ mission "Earth Retirement"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 2000 80 # To be made conditional later.
 		conversation
-			`Once you land on Earth, Donna and Charles pick up their belongings and start to leave your ship. Before he leaves, Charles stops and takes out a large clump of credit chips with a total value of <payment>. "Here you go," he mutters. "I hope your life goes better than ours has."`
+			`Once you land on Earth, Donna and Charles pick up their belongings and start to leave your ship. Before he leaves, Charles stops and takes out a large clump of credit chips. "Here you go," he mutters. "I hope your life goes better than ours has."`
 			choice
 				`	"Thank you. I hope you have the best of luck on Earth."`
 					goto payment
@@ -3204,7 +3221,9 @@ mission "Earth Retirement"
 					goto reject
 			
 			label payment
-			`	They slowly make their way to the train station. Presumably, their new apartment is far from here.`
+			action
+				payment 2000 80
+			`	As you count up the large clump of credits you were handed (the sum comes out to <payment>), they slowly make their way to the train station. Presumably, their new apartment is far from here.`
 				accept
 			label reject
 			`	Charles looks surprised for a moment, and then, for the first time you've seen, he smiles. "Thank you, Captain <last>. I wish there were more people like you in the Paradise Worlds."`
@@ -3238,7 +3257,7 @@ mission "Spacediving professionals accident"
 	job
 	repeat
 	name "Spacediving at <planet>"
-	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay 120000 credits when they land."
+	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay 120,000 credits when they land."
 	passengers 5 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -3260,7 +3279,7 @@ mission "Spacediving professionals disaster"
 	job
 	repeat
 	name "Spacediving at <planet>"
-	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay 120000 credits when they land."
+	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay 120,000 credits when they land."
 	passengers 5 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -3284,7 +3303,7 @@ mission "Spacediving amateurs"
 	job
 	repeat
 	name "Spacediving at <planet>"
-	description "Head to <destination> with <bunks> poorly equipped skydivers and drop them from the edge of space. They've agreed to pay 120000 credits when they land."
+	description "Head to <destination> with <bunks> poorly equipped skydivers and drop them from the edge of space. They've agreed to pay 120,000 credits when they land."
 	passengers 5 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -3300,3 +3319,285 @@ mission "Spacediving amateurs"
 	on complete
 		payment 30000
 		dialog "As you descend through the upper atmosphere, you inform your skydivers that it's time to jump. However, after being able to see the distances and atmospheric conditions involved, all of them are far less keen on the idea than when you first picked them up. You bring them down to the landing pad, and they pay you a meager <payment> before hopping off."
+
+
+mission "Human to Hai Space - No Contact"
+	minor
+	source
+		government "Republic" "Syndicate" "Free Worlds"
+		attributes "tourism" "urban"
+	to offer
+		random < 2
+		not "First Contact: Hai: offered"
+	on offer
+		conversation
+			`	A young man carrying luggage approaches you. "You look like a knowledgeable captain," he says. "In all your travels, have you ever heard tell of any... intelligent rodents?"`
+			choice
+				`	"What are you talking about?"`
+					goto confused
+				`	"What, like in a zoo?"`
+					goto confused
+				`	"Are you high?"`
+			`	"No, I want to go to the high-" He stops once he realizes you have no idea what he's talking about. "Oh, never mind then," he says, with a note of disappointment in his voice. As he leaves, you can't help feeling like you were missing some context.`
+				decline
+			label confused
+			`	"Oh, never mind then," he says, with a note of disappointment in his voice. As he leaves, you can't help feeling like you were missing some context.`
+				decline
+
+
+mission "Human to Hai Space"
+	minor
+	description "Bring a human passenger to <destination> in Hai space."
+	source
+		government "Republic" "Syndicate" "Free Worlds"
+		attributes "tourism" "urban"
+	destination "Greenwater"
+	to offer
+		random < 10
+		has "First Contact: Hai: offered"
+		not "Human to Hai Space - No Contact: offered"
+	on offer
+		conversation
+			`	A young man carrying luggage approaches you. "You look like a knowledgeable captain," he says. "In all your travels, have you ever heard tell of any... intelligent rodents?"`
+			choice
+				`	"You mean the Hai? You'll have to go up north for that."`
+					goto hai
+				`	"Ah, I think I know of some large squirrels to the north of here."`
+					goto hai
+				`	"What are you talking about?"`
+			`	"Oh, never mind then," he says, with a note of disappointment in his voice. You feel good knowing that you are helping to keep the Hai's existence a secret in human space. Better safe than sorry.`
+				decline
+			
+			label hai
+			`	"If that's the case, could you bring me to <destination>? I'll give you <payment>."`
+			choice
+				`	"Alright, I'll take you there."`
+					accept
+				`	"Sorry, I'm too busy right now."`
+					decline
+				`	"Why would you want to go all the way out to <planet>?"`
+			`	"I have family there," he says. "I came out here to do some traveling and see a bit of human space, but now I have to get back home. You see, I was born on <planet>, and this is my first time out of the wormhole."`
+			choice
+				`	"Really? How did you like human space?"`
+					goto travel
+				`	"You've never been to human space before?"`
+			`	"Nope, first time! I've never been so far from home before. Now that I think about it, I probably should've arranged transport back to Hai space beforehand. You wouldn't believe how hard it is to find a captain here that knows about the Hai. I had to ask about six others until I found you. They all thought I was crazy, talking about meeting giant squirrels." He laughs and shakes his head. "So anyways, would you be willing to take me to <destination>?"`
+				goto decision
+			
+			label travel
+			`	"It was quite the trip! It's a bit odd to see only humans around, and I had to be careful to not mention where I was from. But it was definitely worth it! I got to see Earth, Skymoot, Chiron, and so many other beautiful planets. Seeing human culture with my own eyes was an eye-opening experience, although some of the places there were less... clean than I expected. I was almost robbed on Earth; I'm not used to pickpockets back home. Perhaps human space isn't as safe as Hai space, but I still don't regret coming here. It's about time for me to go back, though."`
+				
+			label decision
+			choice
+				`	"Alright, I'll take you there."`
+					accept
+				`	"Sorry, I'm too busy right now."`
+					decline
+	on complete
+		payment 9000
+		conversation
+			`During the trip, you learn that your passenger is named Benjamin. He gets off your ship, thanks you, and gives you your payment of <payment>. Benjamin then walks over to greet a group of Hai, who embrace him and start talking in a mix of the human and Hai languages.`
+			choice
+				`	(Leave.)`
+					decline
+				`	"That's your family?"`
+			`	The man looks at you. "I'm adopted," he says. One of the Hai notices your confusion, and chitters. "Ah, you have not seen a human-Hai family, have you? Perhaps it is strange, but we are happy together nonetheless. Thank you for transporting our son safely."`
+			choice
+				`	"I didn't mean to be rude, I just didn't know that Hai adopted humans here."`
+				`	"No problem, I hope you enjoyed the trip."`
+			`	After thanking you once again, they walk off. As they leave, you overhear Benjamin talk to his family about his trip. "They had so many kinds of food there, it was delicious! Although I did get homesick for pickled acorns..."`
+
+
+
+mission "Mafia Extortion"
+	minor
+	source
+		government "Pirate"
+	on accept
+		payment -200000
+		fail
+	to offer
+		random < 2
+		credits >= 2000000
+	on offer
+		conversation
+			`A man in a tailored suit, sunglasses, shiny shoes, and green hair approaches you. "Hey, that's a very nice ship you have there. Would be a shame if anything happened to it."`
+			`	You notice that he is missing a finger on each hand.`
+			choice
+				`	"Thank you. My name is <first> <last>. To whom do I have the pleasure of speaking?`
+					goto nameless
+				`	"Yes, I'm very happy with my ship."`
+					goto specifics
+				`	"What should I be afraid of happening to my ship?"`
+					goto specifics
+				`	"You sound like one of those Mafia goons."`
+					goto mafia
+				`	"Are you trying to extort me?"`
+					goto mafia
+				`	"Yes, it helps me transport goods for some of the most dangerous people on this planet."`
+					goto unnerved
+				`	"I don't have time to talk."`
+					goto funeral
+			label nameless
+			`	The man snorts. "Wow, telling everybody you meet your full name. That totally won't end up painting a huge target on your head if said name has a bounty on it. But I digress."`
+			choice
+				`	"What should I be afraid of happening to my ship?"`
+					goto specifics
+				`	"You sound like one of those mafia goons."`
+					goto mafia
+				`	"Are you trying to extort me?"`
+					goto mafia
+			label specifics
+			`	The man responds, "Well, a fleet of unfriendly ships in this system might blow you to pieces when you take off. It's been known to happen from time to time."`
+			choice
+				`	"Ha, business as usual around here."`
+					goto unconcerned
+				`	"Are you trying to extort me?"`
+					goto mafia
+				`	"And you have a way to prevent this from happening?"`
+					goto mafia
+				`	"And you're the local goon who takes bribes to keep such ships docked?"`
+					goto mafia
+				`	"That would be unfortunate. I run jobs for some of the most dangerous people on this planet, and they wouldn't be happy if that happened."`
+					goto unnerved
+				`	"I really don't have time to talk to you."`
+					goto funeral
+			label unconcerned
+			`	The man responds, "Maybe you want to improve that situation?`
+				goto donation
+			label mafia
+			`	The man acts shocked by your remark. "No way! I'm just a simple man walking around the spaceport and helping people out. You would be wise to listen to locals with experience, especially in dangerous places like this."`
+			label donation
+			`	"If you care about safety, then I could make a donation to the System Safety Foundation on your behalf. 200,000 credits really goes a long way around here."`
+			choice
+				`	(Pay 200,000 credits.)`
+					goto payup
+				`	"How can I be sure the money is spent well?"`
+					goto impatient
+				`	"Sorry, I already made a donation to the 'Security Support Fund' earlier today, and I don't donate twice in one day."`
+					goto impatient
+				`	"I've already heard enough, I'm going to talk to the authorities."`
+					goto nextsteps
+				`	"And what dangers should I be afraid of?"`
+					goto impatient
+				`	"Listen, I see that you're missing a finger on each hand. You look like a goon, and not a very successful one."`
+					goto unnerved
+			label impatient
+			`	The man sounds annoyed. "Listen, I don't have all day to talk! Are you going to pay or not?!"`
+			choice
+				`	(Pay 200,000 credits.)`
+					goto payup
+				`	"I don't trust you. You aren't getting any money from me."`
+					goto funeral
+				`	"I've heard enough, I'm going to talk to the authorities."`
+					goto nextsteps
+				`	"Listen, I see that you're missing a finger on each hand. You look like a goon, and not a very successful one."`
+					goto unnerved
+			label funeral
+			`	The man responds "Your funeral, not mine," and turns away from you.`
+				goto walksaway
+			label nextsteps
+			`	"Look, that's not a smart move. Most of them are in on it anyway."`
+			label walksaway
+			`	The man walks away. You consider what to do next.`
+			choice
+				`	(Shrug off the whole thing and take no further action.)`
+					decline
+				`	(Find the closest thing to a police force that this planet has.)`
+					goto police
+				`	(Go to a bar and ask for whoever is in charge.)`
+					goto bar
+			label police
+			`	It's not long before you find the ruins of what used to be a police station... you think. The building has been thoroughly destroyed, hopefully not while anybody was inside.`
+			choice
+				`	(Go to a bar and ask for whoever is in charge.)`
+					goto bar
+				`	(Shrug off the whole thing and take no further action.)`
+					decline
+			label bar
+			`	You walk towards the closest bar, but stumble into the green-haired man that you just had a conversation with.`
+			`	He looks surprised and asks, "Were you going to rat me out to the local boss?"`
+			choice
+				`	"What an excellent idea! Yes, I'll just do that."`
+				`	"What I'm going to do is none of your business."`
+				`	"Don't worry, I'm just taking a walk."`
+			label unnerved
+			`	The man is starting to act a bit nervous. "Sorry I bothered you. Can we forget this happened?"`
+			choice
+				`	"Well, conversations like this are hard to forget."`
+					goto cornered
+				`	"Nice scam you have running here. Would be a shame if somebody told the local godfather about it."`
+					goto payback
+				`	(Agree.)`
+					goto zerodeal
+			label cornered
+			`	"Well, what do you want? Do I have to do something for you?"`
+			choice
+				`	"No, let's just forget it happened."`
+					goto zerodeal
+				`	"Compensation for the time that you've wasted would be excellent."`
+			label payback
+			`	A bead of sweat travels down the man's face as he asks, "How many credits do you need to just forget this whole conversation happened?"`
+			choice
+				`	"100,000,000."`
+					goto panicking
+				`	"1,000,000."`
+					goto much
+				`	"200,000."`
+					goto much
+				`	"50,000."`
+					goto much
+				`	"5,000."`
+					goto counterdeal
+				`	"2,000."`
+					goto counterdeal
+				`	"1,000."`
+					goto counterdeal
+				`	"I don't need your credits, just forget it."`
+					goto zerodeal
+			label zerodeal
+			`The man walks away without saying a word.`
+				decline
+			label much
+			`	"That's too much! 2,389 credits is all I have. Would that be enough?"`
+			choice
+				`	"Sure."`
+					goto counterdeal
+				`	"No way, I want a lot more."`
+					goto panicking
+			label counterdeal
+			`	The man hands you a credit chip, nods and walks away. You pocket the chip quickly, more ready to be done with this neighborhood than you want to visibly show.`
+			`	A few minutes later you reach into your pocket for the chip... to find it missing. Looks like even a hardened captain like you isn't immune to being pickpocketed on a planet like this.`
+				decline
+			label panicking
+			`	The man starts panicking and clumsily reaches into his jacket, maybe to get some money, but more likely reaching for a gun.`
+			choice
+				`	(Try to calm down the man.)`
+					goto draws
+				`	(Mock the man further.)`
+					goto draws
+				`	(Draw your sidearm and shoot the man.)`
+					goto shoot
+			label draws
+			`	The man manages to draw a weapon! You brace for impact, but after a few seconds of waiting, you realize his weapon is only making a clicking sound when he tries to shoot.`
+			choice
+				`	"Ha, ha, you really are a failure of a goon."`
+				`	(Draw your sidearm and shoot the man.)`
+					goto shoot
+			`	As you finish talking, you see a flash of light come from the muzzle of the man's weapon as a bullet hits you between the eyes. You die almost instantly, but you do have a few microseconds to reflect on the wisdom of mocking a man that is trying to fire a gun at you.`
+				die
+			label shoot
+			`	Your bullet hits the man right between the eyes; he dies instantly, and a crowd starts to form around you.`
+			`	Most bystanders are surprised, but you also notice an angry sentiment brewing in the (not unarmed) crowd. It might be wise to leave quickly.`
+			choice
+				`	(Run towards your ship and leave immediately.)`
+					goto leave
+				`	(Put away your sidearm and pretend nothing happened.)`
+			`	You walk away nonchalantly, but you don't get far before multiple laser blasts slice through you.`
+				die
+			label leave
+			`	You make it to your ship alive and depart under a rain of bullets and laser-weapons fire. This is a pirate planet so there are unlikely to be any lasting consequences, but you might want to stay away for a few days.`
+				flee
+			label payup
+			`	The man takes your credits, responds with a brief "Thank you," and walks away.`
+				accept
