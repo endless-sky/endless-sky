@@ -3606,8 +3606,8 @@ mission "Mafia Extortion"
 
 mission "Repulsor failure"
 	landing
-	#Note: this tag applies to the destination, not to the source...
-	infiltrating
+	# Don't require the player to pay credits again if the player was already allowed to land when this mission triggered.
+	clearance
 	to offer
 		random < 8
 		credits >= 2000000
@@ -3635,11 +3635,13 @@ mission "Repulsor failure"
 				"(Prioritize roll stabilization.)"
 					goto rolling
 				"(Prioritize lowering the descent angle.)"
+				"(Switch to full auto-pilot control.)"
 			"Your ship begins to roll faster and faster, but the autopilot somehow manages to soften the descent angle."
 			choice
 				"(Prioritize roll stabilization now.)"
 					goto rolling
 				"(Continue prioritizing lowering the descent angle.)"
+				"(Let the autopilot handle the landing.)"
 			branch miracle
 				random < 80
 			"Unfortunately it is not enough, the ship starts rolling even faster. You lose consciousness before your ship crashes and you die."
@@ -3649,6 +3651,7 @@ mission "Repulsor failure"
 			choice
 				"(Pray for a miracle.)"
 				"(Scream your lungs out.)"
+				"(Silently accept the situation as it is.)"
 			branch miracle
 				random < 70
 			"There is nothing more you can do to save your ship, your ship crashes straight into the ground and your remains are never found in the debris field."
@@ -3658,6 +3661,8 @@ mission "Repulsor failure"
 			choice
 				"(Let the autopilot handle the landing.)"
 				"(Attempt to perform a manual landing.)"
+				"(Try to return to orbit to fix the issue in space.)"
+					goto reorbit
 			branch miraclelanding
 				random < 98
 			"Your ships trajectory and attitude stabilize, but it was too late. The ship still crashes and you die."
@@ -3673,4 +3678,3 @@ mission "Repulsor failure"
 	on enter
 		dialog
 			"You fix the repulsor while in orbit. It should be working fine on next landing."
-				accept
