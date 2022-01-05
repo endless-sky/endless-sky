@@ -552,7 +552,7 @@ mission "Ka'het: Patir Mystery 4"
 	on visit
 		dialog "You've arrived, but you realize your escort carrying Dusk has not yet entered the system! Better depart and wait for it."
 	on complete
-		"reputation: Ka'sei" <?= -10
+		"reputation: Ka'sei" = -10
 
 mission "Ka'het: Patir Mystery 5"
 	landing
@@ -564,7 +564,6 @@ mission "Ka'het: Patir Mystery 5"
 	to offer
 		has "Ka'het: Patir Mystery 4: done"
 	on offer
-		"saved ka'sei rep" = "reputation: Ka'sei"
 		conversation
 			`As you approach the structure, Dusk stops preparing the equipment to observe it from the window. "It is a fascinating structure. I've only seen a small number of Builder buildings, but this looks different from anything I have seen. Perhaps it is more structurally similar to their stations than their outposts given the almost negligible gravity, or they had other asteroid colonies that have been gradually lost over time. It would be worth doing a serious exploration of the asteroid belts in the Graveyard at some point.`
 			choice
@@ -658,9 +657,8 @@ mission "Ka'het: Patir Mystery 5"
 		dialog
 			`Soon after departing, your ship warns you that a large number of ships are targeting you. It appears the other Ka'sei are also going to attack.`
 	to fail
-		"reputation: Ka'sei" < "saved ka'sei rep"
+		"reputation: Ka'sei" < -10
 	on fail
-		clear "saved ka'sei rep"
 		dialog
 			`One or more Ka'sei were destroyed. You failed your mission.`
 	on visit
@@ -668,7 +666,6 @@ mission "Ka'het: Patir Mystery 5"
 	on complete
 		clear "Remnant: Dusk Busy"
 		event "patir mystery timer" 10
-		clear "saved ka'sei rep"
 		"reputation: Ka'sei" = 1
 		conversation
 			`You disembark from your ship with Dusk, discussing the events that occurred in Patir. "Thank you for keeping the Ka'sei alive, <first>. They might be exactly what our Builder research needs, and I really hope I can continue exploring that place with you in the future. I will study what we have gathered in the last days trying to find anything that could give us more clues about them." He waves at you and starts walking towards the exit from the spaceport. "I will contact you again when I find something worth looking at. May the Embers burn bright for you, <first>."`
