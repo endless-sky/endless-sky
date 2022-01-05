@@ -34,7 +34,7 @@ void Trade::Load(const DataNode &node)
 					break;
 			if(it == list.end())
 				it = list.insert(it, Commodity());
-			
+
 			it->name = child.Token(1);
 			if(!isSpecial)
 			{

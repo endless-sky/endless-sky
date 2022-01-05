@@ -12,9 +12,10 @@ mission "Cargo Smuggling [0]"
 	name "Smuggling to <planet>"
 	job
 	repeat
-	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 20,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
-	illegal 20000
+	illegal 40000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		or
 			"reputation: Pirate" > -100
@@ -26,17 +27,23 @@ mission "Cargo Smuggling [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog phrase "generic aborted pirate cargo mission"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
-		payment 4000 200
-		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		payment 4000 300
+		dialog phrase "generic completed pirate cargo mission"
 
 mission "Cargo Smuggling [1]"
 	name "Smuggling to <planet>"
 	job
 	repeat
-	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 25,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
-	illegal 25000
+	illegal 50000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 90
 		or
@@ -49,17 +56,23 @@ mission "Cargo Smuggling [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog phrase "generic aborted pirate cargo mission"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
-		payment 4000 200
-		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		payment 4000 300
+		dialog phrase "generic completed pirate cargo mission"
 
 mission "Cargo Smuggling [2]"
 	name "Smuggling to <planet>"
 	job
 	repeat
-	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 32,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
-	illegal 32000
+	illegal 64000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 70
 		or
@@ -72,17 +85,23 @@ mission "Cargo Smuggling [2]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog phrase "generic aborted pirate cargo mission"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
-		payment 5000 200
-		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		payment 5000 300
+		dialog phrase "generic completed pirate cargo mission"
 
 mission "Cargo Smuggling [3]"
 	name "Smuggling to <planet>"
 	job
 	repeat
-	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 40,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
-	illegal 40000
+	illegal 80000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 60
 		or
@@ -95,9 +114,14 @@ mission "Cargo Smuggling [3]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog phrase "generic aborted pirate cargo mission"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
-		payment 6000 200
-		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		payment 6000 300
+		dialog phrase "generic completed pirate cargo mission"
 
 
 
@@ -105,9 +129,9 @@ mission "Drug Running [0]"
 	name "Drug run to <planet>"
 	job
 	repeat
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 37,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
-	illegal 37000
+	illegal 75000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
 	to offer
 		random < 80
 		or
@@ -120,17 +144,23 @@ mission "Drug Running [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog phrase "generic aborted pirate cargo mission"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
-		payment 5000 250
-		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		payment 5000 375
+		dialog phrase "generic completed pirate cargo mission"
 
 mission "Drug Running [1]"
 	name "Drug run to <planet>"
 	job
 	repeat
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 46,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 46,000 credits. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
-	illegal 46000
+	illegal 92000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 70
 		or
@@ -143,17 +173,23 @@ mission "Drug Running [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog phrase "generic aborted pirate cargo mission"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
-		payment 5000 250
-		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		payment 5000 375
+		dialog phrase "generic completed pirate cargo mission"
 
 mission "Drug Running [2]"
 	name "Drug run to <planet>"
 	job
 	repeat
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 55,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
-	illegal 55000
+	illegal 110000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 60
 		or
@@ -166,17 +202,23 @@ mission "Drug Running [2]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog phrase "generic aborted pirate cargo mission"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
-		payment 7000 250
-		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		payment 7000 375
+		dialog phrase "generic completed pirate cargo mission"
 
 mission "Drug Running [3]"
 	name "Drug run to <planet>"
 	job
 	repeat
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 65,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
-	illegal 65000
+	illegal 130000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 50
 		or
@@ -189,9 +231,14 @@ mission "Drug Running [3]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog phrase "generic aborted pirate cargo mission"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
-		payment 9000 250
-		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		payment 9000 375
+		dialog phrase "generic completed pirate cargo mission"
 
 
 
@@ -199,9 +246,10 @@ mission "Bulk Cargo Smuggling [0]"
 	name "Bulk smuggling to <planet>"
 	job
 	repeat
-	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 47,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 25 2 .1
-	illegal 47000
+	illegal 47000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 70
 		or
@@ -214,17 +262,23 @@ mission "Bulk Cargo Smuggling [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog phrase "generic aborted pirate cargo mission"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
-		payment 7000 200
-		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		payment 7000 300
+		dialog phrase "generic completed pirate cargo mission"
 
 mission "Bulk Cargo Smuggling [1]"
 	name "Bulk smuggling to <planet>"
 	job
 	repeat
-	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 65,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 25 2 .1
-	illegal 65000
+	illegal 130000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 60
 		or
@@ -237,17 +291,23 @@ mission "Bulk Cargo Smuggling [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog phrase "generic aborted pirate cargo mission"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
-		payment 10000 200
-		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		payment 10000 300
+		dialog phrase "generic completed pirate cargo mission"
 
 mission "Bulk Cargo Smuggling [2]"
 	name "Bulk smuggling to <planet>"
 	job
 	repeat
-	description "Smuggle <cargo> to <destination>. If law enforcement catches you, you will be fined 86,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 25 2 .1
-	illegal 86000
+	illegal 172000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 40
 		or
@@ -260,9 +320,14 @@ mission "Bulk Cargo Smuggling [2]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog phrase "generic aborted pirate cargo mission"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
-		payment 15000 200
-		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		payment 15000 300
+		dialog phrase "generic completed pirate cargo mission"
 
 
 
@@ -270,9 +335,10 @@ mission "Bulk Drug Running [0]"
 	name "Bulk drug run to <planet>"
 	job
 	repeat
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 86,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 25 2 .1
-	illegal 86000
+	illegal 172000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 50
 		or
@@ -285,17 +351,23 @@ mission "Bulk Drug Running [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog phrase "generic aborted pirate cargo mission"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
-		payment 10000 250
-		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		payment 10000 375
+		dialog phrase "generic completed pirate cargo mission"
 
 mission "Bulk Drug Running [1]"
 	name "Bulk drug run to <planet>"
 	job
 	repeat
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 100,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 25 2 .1
-	illegal 100000
+	illegal 200000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 40
 		or
@@ -308,17 +380,23 @@ mission "Bulk Drug Running [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog phrase "generic aborted pirate cargo mission"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
-		payment 15000 250
-		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		payment 15000 375
+		dialog phrase "generic completed pirate cargo mission"
 
 mission "Bulk Drug Running [2]"
 	name "Bulk drug run to <planet>"
 	job
 	repeat
-	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 120,000 credits. A contact at the location will retrieve the cargo. Payment is <payment>."
+	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 25 2 .1
-	illegal 120000
+	illegal 240000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
+	stealth
 	to offer
 		random < 30
 		or
@@ -331,9 +409,14 @@ mission "Bulk Drug Running [2]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog phrase "generic aborted pirate cargo mission"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
-		payment 20000 250
-		dialog "You find the contact at the edge of the spaceport. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		payment 20000 375
+		dialog phrase "generic completed pirate cargo mission"
 
 
 
@@ -342,9 +425,9 @@ mission "Stealth Cargo Smuggling (North) [0]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. Being scanned will result in a 130,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If you are scanned or caught by planetary law enforcement, the consequences may be severe. Payment is <payment>."
 	cargo "Highly Illegal Cargo" 5 2 .1
-	illegal 130000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	illegal 260000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
 	stealth
 	to offer
 		random < 40
@@ -383,8 +466,9 @@ mission "Stealth Cargo Smuggling (North) [0]"
 				"Gunboat"
 	on abort
 		"reputation: Pirate" -= 1
-		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
+		dialog phrase "generic aborted pirate cargo mission"
 	on fail
+		"reputation: Pirate" -= 1
 		"reputation: Republic" -= 5
 		"reputation: Navy (Oathkeeper)" -= 5
 	on visit
@@ -392,16 +476,16 @@ mission "Stealth Cargo Smuggling (North) [0]"
 	on complete
 		payment 50000 300
 		"reputation: Pirate" += 5
-		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		dialog phrase "generic completed highly illegal pirate cargo mission"
 
 mission "Stealth Cargo Smuggling (North) [1]"
 	name "Highly illegal cargo to <planet>"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. Being scanned will result in a 175,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If you are scanned or caught by planetary law enforcement, the consequences may be severe. Payment is <payment>."
 	cargo "Highly Illegal Cargo" 5 2 .1
-	illegal 175000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	illegal 350000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
 	stealth
 	to offer
 		random < 20
@@ -462,26 +546,27 @@ mission "Stealth Cargo Smuggling (North) [1]"
 		government Republic
 		fleet "Navy Surveillance"
 	on abort
-		"reputation: Pirate" -= 1
-		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
+		"reputation: Pirate" -= 3
+		dialog phrase "generic aborted pirate cargo mission"
 	on fail
+		"reputation: Pirate" -= 3
 		"reputation: Republic" -= 5
 		"reputation: Navy (Oathkeeper)" -= 5
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 75000 300
+		payment 75000 450
 		"reputation: Pirate" += 5
-		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		dialog phrase "generic completed highly illegal pirate cargo mission"
 
 mission "Stealth Cargo Smuggling (Core) [0]"
 	name "Highly illegal cargo to <planet>"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. Being scanned will result in a 130,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If you are scanned or caught by planetary law enforcement, the consequences may be severe. Payment is <payment>."
 	cargo "Highly Illegal Cargo" 5 2 .1
-	illegal 130000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	illegal 260000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
 	stealth
 	to offer
 		random < 40
@@ -519,25 +604,26 @@ mission "Stealth Cargo Smuggling (Core) [0]"
 			variant
 				"Quicksilver (Scanner)"
 	on abort
-		"reputation: Pirate" -= 1
-		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
+		"reputation: Pirate" -= 3
+		dialog phrase "generic aborted pirate cargo mission"
 	on fail
+		"reputation: Pirate" -= 3
 		"reputation: Syndicate" -= 5
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 50000 300
+		payment 50000 450
 		"reputation: Pirate" += 5
-		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		dialog phrase "generic completed highly illegal pirate cargo mission"
 
 mission "Stealth Cargo Smuggling (Core) [1]"
 	name "Highly illegal cargo to <planet>"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. Being scanned will result in a 175,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If you are scanned or caught by planetary law enforcement, the consequences may be severe. Payment is <payment>."
 	cargo "Highly Illegal Cargo" 5 2 .1
-	illegal 175000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	illegal 350000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
 	stealth
 	to offer
 		random < 20
@@ -601,25 +687,26 @@ mission "Stealth Cargo Smuggling (Core) [1]"
 			variant
 				"Quicksilver (Scanner)" 2
 	on abort
-		"reputation: Pirate" -= 1
-		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
+		"reputation: Pirate" -= 3
+		dialog phrase "generic aborted pirate cargo mission"
 	on fail
+		"reputation: Pirate" -= 3
 		"reputation: Syndicate" -= 5
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 75000 300
+		payment 75000 450
 		"reputation: Pirate" += 5
-		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		dialog phrase "generic completed highly illegal pirate cargo mission"
 
 mission "Stealth Cargo Smuggling (South) [0]"
 	name "Highly illegal cargo to <planet>"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. Being scanned will result in a 130,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If you are scanned or caught by planetary law enforcement, the consequences may be severe. Payment is <payment>."
 	cargo "Highly Illegal Cargo" 5 2 .1
-	illegal 130000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	illegal 260000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
 	stealth
 	to offer
 		random < 40
@@ -657,26 +744,27 @@ mission "Stealth Cargo Smuggling (South) [0]"
 			variant
 				"Bastion (Scanner)"
 	on abort
-		"reputation: Pirate" -= 1
-		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
+		"reputation: Pirate" -= 3
+		dialog phrase "generic aborted pirate cargo mission"
 	on fail
+		"reputation: Pirate" -= 3
 		"reputation: Free Worlds" -= 5
 		"reputation: Militia" -= 5
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 50000 300
+		payment 50000 450
 		"reputation: Pirate" += 5
-		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		dialog phrase "generic completed highly illegal pirate cargo mission"
 
 mission "Stealth Cargo Smuggling (South) [1]"
 	name "Highly illegal cargo to <planet>"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. Being scanned will result in a 175,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If you are scanned or caught by planetary law enforcement, the consequences may be severe. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
 	cargo "Highly Illegal Cargo" 5 2 .1
-	illegal 175000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	illegal 350000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
 	stealth
 	to offer
 		random < 20
@@ -740,17 +828,18 @@ mission "Stealth Cargo Smuggling (South) [1]"
 			variant
 				"Bastion (Scanner)" 2
 	on abort
-		"reputation: Pirate" -= 1
-		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
+		"reputation: Pirate" -= 3
+		dialog phrase "generic aborted pirate cargo mission"
 	on fail
+		"reputation: Pirate" -= 3
 		"reputation: Free Worlds" -= 5
 		"reputation: Militia" -= 5
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 75000 300
+		payment 75000 450
 		"reputation: Pirate" += 5
-		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		dialog phrase "generic completed highly illegal pirate cargo mission"
 
 
 
@@ -759,9 +848,9 @@ mission "Stealth Drug Running (North) [0]"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. Being scanned will result in a 175,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If you are scanned or caught by planetary law enforcement, the consequences may be severe. Payment is <payment>."
 	cargo "Highly Illegal Substances" 5 2 .1
-	illegal 175000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	illegal 350000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
 	stealth
 	to offer
 		random < 30
@@ -799,26 +888,27 @@ mission "Stealth Drug Running (North) [0]"
 			variant
 				"Gunboat"
 	on abort
-		"reputation: Pirate" -= 1
-		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
+		"reputation: Pirate" -= 3
+		dialog phrase "generic aborted pirate cargo mission"
 	on fail
+		"reputation: Pirate" -= 3
 		"reputation: Republic" -= 5
 		"reputation: Navy (Oathkeeper)" -= 5
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 75000 375
+		payment 75000 550
 		"reputation: Pirate" += 5
-		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		dialog phrase "generic completed highly illegal pirate cargo mission"
 
 mission "Stealth Drug Running (North) [1]"
 	name "Highly illegal drugs to <planet>"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. Being scanned will result in a 250,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If you are scanned or caught by planetary law enforcement, the consequences may be severe. Payment is <payment>."
 	cargo "Highly Illegal Substances" 5 2 .1
-	illegal 250000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	illegal 500000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
 	stealth
 	to offer
 		random < 15
@@ -879,26 +969,27 @@ mission "Stealth Drug Running (North) [1]"
 		system destination
 		fleet "Navy Surveillance"
 	on abort
-		"reputation: Pirate" -= 1
-		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
+		"reputation: Pirate" -= 3
+		dialog phrase "generic aborted pirate cargo mission"
 	on fail
+		"reputation: Pirate" -= 3
 		"reputation: Republic" -= 5
 		"reputation: Navy (Oathkeeper)" -= 5
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 100000 375
+		payment 100000 550
 		"reputation: Pirate" += 5
-		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		dialog phrase "generic completed highly illegal pirate cargo mission"
 
 mission "Stealth Drug Running (Core) [0]"
 	name "Highly illegal drugs to <planet>"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. Being scanned will result in a 175,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If you are scanned or caught by planetary law enforcement, the consequences may be severe. Payment is <payment>."
 	cargo "Highly Illegal Substances" 5 2 .1
-	illegal 175000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	illegal 350000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
 	stealth
 	to offer
 		random < 30
@@ -936,25 +1027,26 @@ mission "Stealth Drug Running (Core) [0]"
 			variant
 				"Quicksilver (Scanner)"
 	on abort
-		"reputation: Pirate" -= 1
-		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
+		"reputation: Pirate" -= 3
+		dialog phrase "generic aborted pirate cargo mission"
 	on fail
+		"reputation: Pirate" -= 3
 		"reputation: Syndicate" -= 5
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 75000 375
+		payment 75000 550
 		"reputation: Pirate" += 5
-		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		dialog phrase "generic completed highly illegal pirate cargo mission"
 
 mission "Stealth Drug Running (Core) [1]"
 	name "Highly illegal drugs to <planet>"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. Being scanned will result in a 250,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If you are scanned or caught by planetary law enforcement, the consequences may be severe. Payment is <payment>."
 	cargo "Highly Illegal Substances" 5 2 .1
-	illegal 250000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	illegal 500000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
 	stealth
 	to offer
 		random < 15
@@ -1018,25 +1110,26 @@ mission "Stealth Drug Running (Core) [1]"
 			variant
 				"Quicksilver (Scanner)" 2
 	on abort
-		"reputation: Pirate" -= 1
-		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
+		"reputation: Pirate" -= 3
+		dialog phrase "generic aborted pirate cargo mission"
 	on fail
+		"reputation: Pirate" -= 3
 		"reputation: Syndicate" -= 5
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 100000 375
+		payment 100000 550
 		"reputation: Pirate" += 5
-		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		dialog phrase "generic completed highly illegal pirate cargo mission"
 
 mission "Stealth Drug Running (South) [0]"
 	name "Highly illegal drugs to <planet>"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. Being scanned will result in a 175,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If you are scanned or caught by planetary law enforcement, the consequences may be severe. Payment is <payment>."
 	cargo "Highly Illegal Substances" 5 2 .1
-	illegal 175000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	illegal 350000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
 	stealth
 	to offer
 		random < 30
@@ -1074,26 +1167,27 @@ mission "Stealth Drug Running (South) [0]"
 			variant
 				"Bastion (Scanner)"
 	on abort
-		"reputation: Pirate" -= 1
-		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
+		"reputation: Pirate" -= 3
+		dialog phrase "generic aborted pirate cargo mission"
 	on fail
+		"reputation: Pirate" -= 3
 		"reputation: Free Worlds" -= 5
 		"reputation: Militia" -= 5
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 75000 375
+		payment 75000 550
 		"reputation: Pirate" += 5
-		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		dialog phrase "generic completed highly illegal pirate cargo mission"
 
 mission "Stealth Drug Running (South) [1]"
 	name "Highly illegal drugs to <planet>"
 	job
 	repeat
 	infiltrating
-	description "Run <cargo> to <destination>. Being scanned will result in a 250,000 credit fine and the cargo will be seized. You will need to land away from the spaceport or else you may get caught. Payment is <payment>."
+	description "Run <cargo> to <destination>. If you are scanned or caught by planetary law enforcement, the consequences may be severe. Payment is <payment>."
 	cargo "Highly Illegal Substances" 5 2 .1
-	illegal 250000 `After being given a very hefty fine, the illegal cargo is confiscated from your hold. The pirates won't be happy to hear about this.`
+	illegal 500000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
 	stealth
 	to offer
 		random < 15
@@ -1157,17 +1251,18 @@ mission "Stealth Drug Running (South) [1]"
 			variant
 				"Bastion (Scanner)" 2
 	on abort
-		"reputation: Pirate" -= 1
-		dialog "Your cargo of <commodity> never arrived at its destination. The pirates won't be happy to hear about this."
+		"reputation: Pirate" -= 3
+		dialog phrase "generic aborted pirate cargo mission"
 	on fail
+		"reputation: Pirate" -= 3
 		"reputation: Free Worlds" -= 5
 		"reputation: Militia" -= 5
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 100000 375
+		payment 100000 550
 		"reputation: Pirate" += 5
-		dialog "You find the contact outside of the main city. Your cargo of <commodity> is removed from your ship and you collect your payment of <payment>."
+		dialog phrase "generic completed highly illegal pirate cargo mission"
 
 
 
@@ -1178,7 +1273,7 @@ mission "Wanted Passenger [0]"
 	description "This wanted individual wishes to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 1
 	cargo "battle trophies" 1
-	illegal 50000 `Upon scanning your vessel, law enforcement notice the criminal that you have on board. Entering your ship to detain them, they find the criminal in the corner of one of the rooms of your ship, clutching their battle trophies and screaming "you'll never take them from me!" After a short confrontation, they carry the criminal out and leave you with a small fine.`
+	illegal 50000 `Upon scanning your vessel, law enforcement notice the criminal that you have on board. Entering your ship to detain them, they find the criminal in the corner of one of the rooms of your ship, clutching their battle trophies and screaming "you'll never take them from me!" After a short confrontation, they carry the criminal out and leave you with a small fine. This doesn't help to establish your reputation as reliable, no-questions-asked transporter.`
 	stealth
 	to offer
 		or
@@ -1191,6 +1286,11 @@ mission "Wanted Passenger [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog phrase "generic aborted pirate passenger mission"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
 		payment 30000 300
 		dialog "Your <passengers> insists that you land on the edge of the spaceport to avoid being seen. After you land, they pay you <payment> before quickly grabbing their things and leaving your ship."
@@ -1202,7 +1302,7 @@ mission "Wanted Passengers [1]"
 	description "These <bunks> wanted individuals wish to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 2 10 .9
 	cargo "credit chips" 1
-	illegal 75000 `Upon scanning your vessel, law enforcement notice the criminals that you have on board. Entering your ship to detain them, they find the criminals busy scooping their credits into the airlock, hoping that no one can have them. The law enforcement quickly detain the criminals and carry them off along with the rest of the credits, leaving you with a moderately sized fine.`
+	illegal 75000 `Upon scanning your vessel, law enforcement notices the criminals that you have on board. Entering your ship to detain them, they find the criminals busy scooping their credits into the airlock, hoping that no one can have them. The officers quickly detain the criminals and carry them off along with the rest of the credits, leaving you with a moderately sized fine. This doesn't help to establish your reputation as reliable, no-questions-asked transporter.`
 	stealth
 	to offer
 		random < 75
@@ -1215,6 +1315,11 @@ mission "Wanted Passengers [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog phrase "generic aborted pirate passenger mission"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
 		payment 20000 300
 		dialog "Your <passengers> insist that you land on the edge of the spaceport to avoid being seen. After you land, they pay you <payment> before quickly grabbing their things and leaving your ship."
@@ -1226,7 +1331,7 @@ mission "Wanted Passengers [2]"
 	description "These <bunks> wanted individuals wish to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 2 10 .9
 	cargo "customized weapons" 1
-	illegal 75000 `Upon scanning your vessel, law enforcement notice the criminals that you have on board. Entering your ship to detain them, the criminals begin firing down the hallways with their customized weapons. Immediately met with tear gas, the criminals did not put up too much of a fight. The law enforcement carry the criminals out and leave you with a moderate fine and a few laser marks in the halls of your ship.`
+	illegal 75000 `Upon scanning your vessel, law enforcement notices the criminals that you have on board. Entering your ship to detain them, the criminals begin firing down the hallways with their customized weapons. Immediately met with tear gas, the criminals did not put up too much of a fight. The officers carry the criminals out and leave you with a moderate fine and a few laser marks in the halls of your ship. This doesn't help to establish your reputation as reliable, no-questions-asked transporter.`
 	stealth
 	to offer
 		random < 50
@@ -1239,6 +1344,11 @@ mission "Wanted Passengers [2]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog phrase "generic aborted pirate passenger mission"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
 		payment 20000 300
 		dialog "Your <passengers> insist that you land on the edge of the spaceport to avoid being seen. After you land, they pay you <payment> before quickly grabbing their things and leaving your ship."
@@ -1250,7 +1360,7 @@ mission "Wanted Passengers [3]"
 	description "These <bunks> wanted individuals wish to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 2 10 .9
 	cargo "aged wine" 1
-	illegal 75000 `Upon scanning your vessel, law enforcement notice the criminals that you have on board. Entering your ship to detain them, they find them all passed out in their bunks rooms, having drank too much of the wine that they had brought with them. After carrying the criminals out, they give you a moderate fine and leave.`
+	illegal 75000 `Upon scanning your vessel, law enforcement notice the criminals that you have on board. Entering your ship to detain them, they find them all passed out in their bunks rooms, having drank too much of the wine that they had brought with them. After carrying the criminals out, they give you a moderate fine and leave. This doesn't help to establish your reputation as reliable, no-questions-asked transporter.`
 	stealth
 	to offer
 		random < 25
@@ -1263,6 +1373,11 @@ mission "Wanted Passengers [3]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog phrase "generic aborted pirate passenger mission"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
 		payment 20000 300
 		dialog "Your <passengers> insist that you land on the edge of the spaceport to avoid being seen. After you land, they pay you <payment> before quickly grabbing their things and leaving your ship."
@@ -1274,10 +1389,10 @@ mission "Highly Wanted Passenger (North)"
 	job
 	repeat
 	infiltrating
-	description "This criminal is wanted by every law enforcement agency in the galaxy and needs safe transport to <destination> with their <cargo>. The payment is high at an amazing <payment>, but transporting such a person could lead to trouble."
+	description "This criminal is wanted by every law enforcement agency in the galaxy and needs safe transport to <destination> with their <cargo>. The payment is high at an amazing <payment>, but transporting such a person could lead to a lot of trouble."
 	passengers 1
 	cargo "stolen navy secrets" 1
-	illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to only fine you to reduce the trouble they have to go through.`
+	illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to minimize their paperwork by only issuing a fine. This doesn't help to establish your reputation as reliable, no-questions-asked transporter.`
 	stealth
 	to offer
 		random < 15
@@ -1345,9 +1460,10 @@ mission "Highly Wanted Passenger (North)"
 		system destination
 		fleet "Navy Surveillance"
 	on abort
-		"reputation: Pirate" -= 1
-		dialog "Your passenger never arrived at <destination>. This doesn't help to establish a name as reliable, no-questions-asked, transporter."
+		"reputation: Pirate" -= 3
+		dialog phrase "generic aborted pirate passenger mission"
 	on fail
+		"reputation: Pirate" -= 3
 		"reputation: Republic" -= 5
 		"reputation: Navy (Oathkeeper)" -= 5
 	on visit
@@ -1362,10 +1478,10 @@ mission "Highly Wanted Passenger (Core)"
 	job
 	repeat
 	infiltrating
-	description "This criminal is wanted by every law enforcement agency in the galaxy and needs safe transport to <destination> with their <cargo>. The payment is high at an amazing <payment>, but transporting such a person could lead to trouble."
+	description "This criminal is wanted by every law enforcement agency in the galaxy and needs safe transport to <destination> with their <cargo>. The payment is high at an amazing <payment>, but transporting such a person could lead to a lot of trouble."
 	passengers 1
 	cargo "stolen banking records" 1
-	illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to only fine you to reduce the trouble they have to go through.`
+	illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to minimize their paperwork by only issuing a fine. This doesn't help to establish your reputation as reliable, no-questions-asked transporter.`
 	stealth
 	to offer
 		random < 15
@@ -1436,9 +1552,10 @@ mission "Highly Wanted Passenger (Core)"
 			variant
 				"Quicksilver (Scanner)" 2
 	on abort
-		"reputation: Pirate" -= 1
-		dialog "Your passenger never arrived at <destination>. This doesn't help to establish a name as reliable, no-questions-asked, transporter."
+		"reputation: Pirate" -= 3
+		dialog phrase "generic aborted pirate passenger mission"
 	on fail
+		"reputation: Pirate" -= 3
 		"reputation: Syndicate" -= 5
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1452,10 +1569,10 @@ mission "Highly Wanted Passenger (South)"
 	job
 	repeat
 	infiltrating
-	description "This criminal is wanted by every law enforcement agency in the galaxy and needs safe transport to <destination> with their <cargo>. The payment is high at an amazing <payment>, but transporting such a person could lead to trouble."
+	description "This criminal is wanted by every law enforcement agency in the galaxy and needs safe transport to <destination> with their <cargo>. The payment is high at an amazing <payment>, but transporting such a person could lead to a lot of trouble."
 	passengers 1
 	cargo "prototype technology" 1
-	illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to only fine you to reduce the trouble they have to go through.`
+	illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to minimize their paperwork by only issuing a fine. This doesn't help to establish your reputation as reliable, no-questions-asked transporter.`
 	stealth
 	to offer
 		random < 15
@@ -1526,9 +1643,10 @@ mission "Highly Wanted Passenger (South)"
 			variant
 				"Bastion (Scanner)" 2
 	on abort
-		"reputation: Pirate" -= 1
-		dialog "Your passenger never arrived at <destination>. This doesn't help to establish a name as reliable, no-questions-asked, transporter."
+		"reputation: Pirate" -= 3
+		dialog phrase "generic aborted pirate passenger mission"
 	on fail
+		"reputation: Pirate" -= 3
 		"reputation: Free Worlds" -= 5
 		"reputation: Militia" -= 5
 	on visit
@@ -1561,8 +1679,8 @@ mission "Slave Transport [0]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 75000 400
-		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
+		payment 75000 800
+		dialog phrase "generic completed pirate slave mission"
 
 mission "Slave Transport [1]"
 	name "Transfer slaves to <planet>"
@@ -1585,8 +1703,8 @@ mission "Slave Transport [1]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 75000 400
-		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
+		payment 75000 800
+		dialog phrase "generic completed pirate slave mission"
 
 mission "Slave Transport [2]"
 	name "Transfer slaves to <planet>"
@@ -1609,8 +1727,8 @@ mission "Slave Transport [2]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 75000 400
-		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
+		payment 75000 800
+		dialog phrase "generic completed pirate slave mission"
 
 
 
@@ -1635,8 +1753,8 @@ mission "Bulk Slave Transport [0]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 100000 400
-		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
+		payment 100000 800
+		dialog phrase "generic completed pirate slave mission"
 
 mission "Bulk Slave Transport [1]"
 	name "Transfer slaves to <planet>"
@@ -1659,8 +1777,8 @@ mission "Bulk Slave Transport [1]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 100000 400
-		dialog "After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>."
+		payment 100000 800
+		dialog phrase "generic completed pirate slave mission"
 
 
 

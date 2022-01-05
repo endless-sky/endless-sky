@@ -25,6 +25,7 @@
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
 				<Compiler>
+					<Add option="-Werror" />
 					<Add option="-flto" />
 					<Add option="-O3" />
 					<Add option="-msse3" />
@@ -56,7 +57,8 @@
 			<Add option="-Wnon-virtual-dtor" />
 			<Add option="-Wall" />
 			<Add option="-std=c++11" />
-			<Add option="-Werror" />
+			<Add option="-Wold-style-cast" />
+			<Add option="-fno-rtti" />
 			<Add directory="C:/dev64/include" />
 		</Compiler>
 		<Unit filename="source/AI.cpp" />
@@ -143,10 +145,14 @@
 		<Unit filename="source/FrameTimer.h" />
 		<Unit filename="source/Galaxy.cpp" />
 		<Unit filename="source/Galaxy.h" />
+		<Unit filename="source/GameAction.cpp" />
+		<Unit filename="source/GameAction.h" />
 		<Unit filename="source/GameData.cpp" />
 		<Unit filename="source/GameData.h" />
 		<Unit filename="source/GameEvent.cpp" />
 		<Unit filename="source/GameEvent.h" />
+		<Unit filename="source/GameLoadingPanel.cpp" />
+		<Unit filename="source/GameLoadingPanel.h" />
 		<Unit filename="source/GameWindow.cpp" />
 		<Unit filename="source/GameWindow.h" />
 		<Unit filename="source/Government.cpp" />
@@ -191,6 +197,8 @@
 		<Unit filename="source/MapShipyardPanel.h" />
 		<Unit filename="source/Mask.cpp" />
 		<Unit filename="source/Mask.h" />
+		<Unit filename="source/MaskManager.cpp" />
+		<Unit filename="source/MaskManager.h" />
 		<Unit filename="source/MenuPanel.cpp" />
 		<Unit filename="source/MenuPanel.h" />
 		<Unit filename="source/Messages.cpp" />
@@ -301,14 +309,20 @@
 		<Unit filename="source/System.h" />
 		<Unit filename="source/Test.cpp" />
 		<Unit filename="source/Test.h" />
+		<Unit filename="source/TestContext.cpp" />
+		<Unit filename="source/TestContext.h" />
 		<Unit filename="source/TestData.cpp" />
 		<Unit filename="source/TestData.h" />
+		<Unit filename="source/TextReplacements.cpp" />
+		<Unit filename="source/TextReplacements.h" />
 		<Unit filename="source/Trade.cpp" />
 		<Unit filename="source/Trade.h" />
 		<Unit filename="source/TradingPanel.cpp" />
 		<Unit filename="source/TradingPanel.h" />
 		<Unit filename="source/UI.cpp" />
 		<Unit filename="source/UI.h" />
+		<Unit filename="source/UniverseObjects.cpp" />
+		<Unit filename="source/UniverseObjects.h" />
 		<Unit filename="source/Visual.cpp" />
 		<Unit filename="source/Visual.h" />
 		<Unit filename="source/Weapon.cpp" />
@@ -316,7 +330,8 @@
 		<Unit filename="source/Weather.cpp" />
 		<Unit filename="source/Weather.h" />
 		<Unit filename="source/WeightedList.h" />
-		<Unit filename="source/gl_header.h" />
+		<Unit filename="source/opengl.cpp" />
+		<Unit filename="source/opengl.h" />
 		<Unit filename="source/pi.h" />
 		<Unit filename="source/shift.h" />
 		<Unit filename="source/text/DisplayText.cpp" />
