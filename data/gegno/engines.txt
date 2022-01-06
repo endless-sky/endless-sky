@@ -102,7 +102,7 @@ outfit "SC2-1 Plasma Engines"
 	category Engines
 	cost 26000
 	mass 24
-	thumbnail "outfit/tiny scplasma"
+	thumbnail "outfit/tinyscplasma"
 	"engine capacity" -21
 	"outfit space" -21
 	thrust 5.1
@@ -114,13 +114,13 @@ outfit "SC2-1 Plasma Engines"
 	"flare sprite" effect/scplasma/tiny
 		"frame rate" 0.59999999
 	"flare sound" "scplasma tiny"
-	description Test
+	description "In order to power the small Halite frame, the Gegno Scin developed this smaller engine system. Based on their larger plasma thrusters, these engines are much more efficient than the Vi's larger more sluggish Ion Engines, which would never be compact or lighjt enough to run on a fighter." 
 
 outfit "SC2-12 Plasma Thruster"
 	category Engines
 	cost 26000
 	mass 25
-	thumbnail "outfit/small scplasma"
+	thumbnail "outfit/smallscplasma"
 	"engine capacity" -25
 	"outfit space" -25
 	thrust 10.6
@@ -129,13 +129,13 @@ outfit "SC2-12 Plasma Thruster"
 	"flare sprite" effect/scplasma/small
 		"frame rate" 0.50000003
 	"flare sound" "scplasma small"
-	description Test
+	description "Rather than further developing on the Ion Torch design of the Gegno Vi, the Gegno Scin began work on a plasma-based thruster concept. They are more compact, weighing less, and produce significantly more thrust. However, since Ion Torches expel a percentage of heat in their thrust, the more accurate and powerful SC thrusters tend to run notably hotter." 
 
 outfit "SC2-12 Plasma Steering"
 	category Engines
 	cost 21000
 	mass 19
-	thumbnail "outfit/small scplasma steer"
+	thumbnail "outfit/smallscplasmasteer"
 	"engine capacity" -19
 	"outfit space" -19
 	turn 270
@@ -144,13 +144,13 @@ outfit "SC2-12 Plasma Steering"
 	"steering flare sprite" effect/scplasma/small
 		"frame rate" 0.50000003
 	"steering flare sound" "scplasma small"
-	description Test
+	description "The new SC plasma thruster design excels as a better steering system too, allowing Gegno Scin ships to turn at much faster rates than their opposing brothers. What might take a Gegno Vi ship a long time to maneuver, takes a Scin ship running these only a moment's worth or less." 
 
 outfit "SC7-14 Plasma Thruster"
 	category Engines
 	cost 58000
 	mass 45
-	thumbnail "outfit/med scplasma"
+	thumbnail "outfit/medscplasma"
 	"engine capacity" -45
 	"outfit space" -45
 	thrust 26.8
@@ -159,12 +159,12 @@ outfit "SC7-14 Plasma Thruster"
 	"flare sprite" effect/scplasma/med
 		"frame rate" 0.40000001
 	"flare sound" "scplasma medium"
-	description Test
+	description "SC7-class Thrusters power the Scin's average gunboat or transport, providing a more than reliable speed for a ship in need of it. They easily can propel any medium-sized ship forward as fast as they need with acceptable system loads."
 
 outfit "SC7-14 Plasma Steering"
 	category Engines
 	cost 46000
-	thumbnail "outfit/med scplasma steer"
+	thumbnail "outfit/medscplasmasteer"
 	"engine capacity" -34
 	mas 0
 	"outfit space" -34
@@ -174,12 +174,12 @@ outfit "SC7-14 Plasma Steering"
 	"steering flare sprite" effect/scplasma/med
 		"frame rate" 0.40000001
 	"steering flare sound" "scplasma medium"
-	description Test
+	description "At a larger scale than typical SC2 thrusters, SC7 steering thrusters are one of the most impactful steering systems in Gegno space, allowing the Scin to reposition their medium and even largest ships many times faster than others."
 
 outfit "SC9-15 Plasma Engine System"
 	category Engines
 	cost 128000
-	thumbnail "outfit/large scplasma"
+	thumbnail "outfit/largescplasma"
 	"engine capacity" -112
 	"outfit space" -112
 	"reverse thrust" 31.2
@@ -193,5 +193,4 @@ outfit "SC9-15 Plasma Engine System"
 	"reverse flare sprite" effect/scplasma/large
 	"flare sound" "scplasma large"
 	"reverse flare sound" "scplasma medium"
-	description Test
-
+	description "The Gegno Scin have taken a second step forward with the SC9-class Engine System, incorporating both reverse and forward thrust. In order to field the SC9, the Scin had to design their largest ships around the system, rather than fit it on later. The reverse thrust is especially important in engagements with the Gegno Vi's forward-heavy combat vessels, and is able to maneuver ships of almost the same size, almost twice as fast."

@@ -449,9 +449,9 @@ ship Halite
 			"hit force" 160
 	outfits
 		"SC2-1 Plasma Engines"
-		Supercapacitor
+		"I70 Ameliorate Cell"
 		"Talc Laser" 2
-		"nGVF-AA Fuel Cell"
+		
 	engine -9 42
 	engine 9 42
 	gun -18.5 -44.5 "Talc Laser"

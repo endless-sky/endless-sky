@@ -25,6 +25,17 @@ phrase "gegno vi"
 		Tie
 		Efta
 		Gye
+		Kyhe
+		Efe
+		Eys
+		Imnn
+		Yx
+		Isyp
+		Tyyn
+		Hy
+		Eysyp
+		Iidt
+		Ych
 	word
 		" "
 	word
@@ -56,11 +67,21 @@ phrase "gegno vi"
 phrase "gegno scin"
 	word
 		""
-		"Kuuay "
+		""
+		"Kuuay"
 		Jiee
 		Tyuoe
 		Aur
 		Yss
+		Zueyt
+		Zo
+		Tschzer
+		Lleiesid
+		Inyseiet
+		Dy
+		Ispue
+		Jeiys
+		Iepy
 	word
 		" "
 	word
@@ -99,5 +120,5 @@ phrase "friendly gegno"
 
 phrase "hostile gegno"
 	word
-		"f u"
+		"grr"
 
