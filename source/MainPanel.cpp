@@ -50,6 +50,33 @@ using namespace std;
 
 
 
+namespace {
+	// Comparator class for comparing two strings, assumed to represent outfit
+	// category names, by the order of those categories in the UI.
+	class CategoryNameCompare {
+	public:
+		bool operator()(const std::string &a, const std::string &b)
+		{
+			if(a == b)
+				return false;
+
+			// Whichever is first in the array is considered smaller.
+			const vector<string> &outfitCategories = GameData::Category(CategoryType::OUTFIT);
+			for(const auto &it : outfitCategories)
+				if(it == a)
+					return true;
+				else if(it == b)
+					return false;
+
+			// Neither a nor b is a known category name.  Fall back
+			// to lexical comparison.
+			return (a < b);
+		}
+	};
+}
+
+
+
 MainPanel::MainPanel(PlayerInfo &player)
 	: player(player), engine(player)
 {
@@ -360,10 +387,24 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 	else if(event.Type() & ShipEvent::SCAN_OUTFITS)
 	{
 		out << "This " + target->Noun() + " is equipped with:\n";
+
+		// Split target->Outfits() into categories, then iterate over them in order.
+		map<string, map<const Outfit *, int>, CategoryNameCompare> outfitsByCategory;
 		for(const auto &it : target->Outfits())
-			if(it.first && it.second)
-				out << "\t" << it.second << " "
-					<< (it.second == 1 ? it.first->Name() : it.first->PluralName()) << "\n";
+			outfitsByCategory[it.first->Category()][it.first] = it.second;
+		for(const auto &it : outfitsByCategory)
+		{
+			if(it.second.empty())
+				continue;
+
+			// Print the category's name and outfits in it.
+			out << "\t" << it.first << "\n";
+			for(const auto &it2 : it.second)
+				if(it2.first && it2.second)
+					out << "\t\t" << it2.second << " "
+						<< (it2.second == 1 ? it2.first->Name() : it2.first->PluralName())
+						<< "\n";
+		}
 
 		map<string, int> count;
 		for(const Ship::Bay &bay : target->Bays())
