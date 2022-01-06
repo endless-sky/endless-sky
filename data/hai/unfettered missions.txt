@@ -2643,7 +2643,14 @@ mission "Unfettered: Close Quarter"
 				`	(Stay here and get ready for your next shot.)`
 					goto ready
 				`	(Go to the cover on the right.)`
+			branch lucky
+				random < 20
 			`	You try to head for the cover but he is too fast, and you receive a shot on your leg, making you fall. It hurts, but nothing seems to be broken, and soon after you cannot feel anything in your leg at all. You opponent comes to you and helps you to get up. "Pain is a good teacher, sometimes," he says. Then he goes back to fight with his friends, seemingly in teams.`
+				goto heyi
+			label lucky
+			action
+				outfit "Dual Pulse Pistols" 1
+			`	You actually manage to reach the cover, thanks to him stumbling a bit on the approach. He was probably anxious to seize his victory... Now that you are behind this cover you have a good strategic advantage, and he misses his shots. It seems that the pistol quickly runs out of power, and using this opportunity you shoot back at him. Most of your shots miss, but because he cannot shoot back and you are well protected anyway, you can take the time to aim precisely. You manage to shoot his arm and he drops his pistol. He does not shout at all when getting shot, simply sits on the ground on that position, showing he surrenders. You get out of your cover and grab the other pistol. "You can keep them, you have earned it. This was a fair fight, captain! I would like to try again some time, and maybe get my pistols back..." He then goes away, and sits on the side, probably thinking about what mistakes he made.`
 				goto heyi
 			
 			label ready
@@ -2661,7 +2668,7 @@ mission "Unfettered: Close Quarter"
 				goto speak
 			
 			label lost
-			`	"Were you expecting to win the fight? Those of us who choose to fight are well trained to do so, even if we do not overlook other studies whilst doing so. You may not have won the fight, but you have won something else."`
+			`	"Oh well I got distracted near the end, so I would not know, but were you expecting to win the fight? Those of us who choose to fight are well trained to do so, even if we do not overlook other studies whilst doing so. You may not have won the fight, but you have won something else."`
 			choice
 				`	"And what is that?"`
 				`	"Can I help you with anything?"`
@@ -2922,7 +2929,7 @@ mission "Unfettered: Bring Detainer"
 	on complete
 		outfit "Korath Detainer" -1
 		set "language: Wanderer"
-		dialog `He Yi is impressed that you managed to bring this detainer to him, and happily exchanges it for a translator.`
+		dialog `He Yi is impressed that you managed to bring this detainer to him, and happily exchanges it for a translator. He says you should still go to his herald to bring him news of this, and the scans for a reward.`
 
 
 
@@ -2990,7 +2997,8 @@ ship "Shield Beetle Prototype" "Shield Beetle Prototype (Black)"
 		"White Sun Reactor"
 		"Generator (Furnace Class)"
 		"Korath Repeater Rifle" 20
-		"Pulse Rifle" 60
+		"Pulse Rifle" 50
+		"Dual Pulse Pistols" 10
 	gun 0 -7 "Korath Detainer"
 	gun -22 -102 "Sunbeam"
 	gun 22 -102 "Sunbeam"
