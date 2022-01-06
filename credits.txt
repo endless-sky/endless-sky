@@ -15,7 +15,9 @@ Creator and Lead Programmer
 Developers
   Amazinite
   Benjamin Hauch
+  MCOfficer
   Pointedstick
+  W1zrad
 
 Major Programming
   AdamKauffman
@@ -76,6 +78,7 @@ Artwork
   Darcy Manoel (CC-BY-SA 4.0)
   Lia Gerty (CC-BY-SA 4.0)
   @Karirawri (CC-BY-SA-4.0)
+  Gefüllte Taubenbrust (CC-BY-SA-4.0)
 
 Photos from Wikimedia Commons
   Berthold Werner (CC-BY-SA 3.0)
@@ -293,6 +296,7 @@ contributed to Endless Sky:
   TurkeyMcMac
   Turtleroku
   tux2603
+  Unjown
   Vilhelm16
   W1zrad
   Waffleship
@@ -312,6 +316,6 @@ contributed to Endless Sky:
 
 Special thanks to MCOfficer for
 creating, managing, and hosting
-the ESLauncher, nightly, & 
+the ESLauncher, nightly, &
 continuous builds that make so
 much of this work possible.

@@ -8,24 +8,7 @@ on:
 
 jobs:
   changed:
-    runs-on: ubuntu-latest
-    outputs:
-      data: ${{ steps.filter.outputs.data }}
-      game_code: ${{ steps.filter.outputs.game_code }}
-      macos: ${{ steps.filter.outputs.macos }}
-      windows: ${{ steps.filter.outputs.windows }}
-      linux: ${{ steps.filter.outputs.linux }}
-      unit_tests: ${{ steps.filter.outputs.unit_tests }}
-      integration_tests: ${{ steps.filter.outputs.integration_tests }}
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 2
-    - uses: dorny/paths-filter@v2
-      id: filter
-      with:
-        filters: .github/path-filters.yml
-        token: ${{ github.token }}
+    uses: endless-sky/endless-sky/.github/workflows/compute-changes.yml@master
 
   build_linux:
     needs: changed
@@ -69,6 +52,8 @@ jobs:
         curl -sSf https://repo.steampowered.com/steamrt-images-scout/snapshots/${{ env.snapshot }}/${{ env.tarball }} > build/docker/${{ env.tarball }}
     - name: Download steamrt dockerfile
       run: curl -sSf https://repo.steampowered.com/steamrt-images-scout/snapshots/${{ env.snapshot }}/${{ env.sdk }}.Dockerfile > build/docker/Dockerfile
+    - name: Download pip installer
+      run: curl -sSf https://bootstrap.pypa.io/pip/3.5/get-pip.py > ./get-pip.py
     - name: Build inside container
       run: |
         mkdir -p tests/build
@@ -80,6 +65,7 @@ jobs:
           --mount type=bind,src=$(pwd)/tests,dst=/endless-sky/tests \
           --mount type=bind,src=$(pwd)/build,dst=/endless-sky/build \
           --mount type=bind,ro,src=$(pwd)/SConstruct,dst=/endless-sky/SConstruct \
+          --mount type=bind,ro,src=$(pwd)/get-pip.py,dst=/endless-sky/get-pip.py \
           -e SCHROOT_CHROOT_NAME=steamrt_scout_${{ matrix.platform }} \
           -e LTO_PLUGIN_PATH=/usr/lib/gcc/${{ matrix.arch }}-linux-gnu/5/liblto_plugin.so \
           -w /endless-sky s_rt /bin/bash -c \
@@ -95,7 +81,9 @@ jobs:
             && update-alternatives --auto gcc \
             && update-alternatives --auto g++ \
             && update-alternatives --auto cpp-bin \
-            && scons -Qj $(nproc) endless-sky test \
+            && python3.5 get-pip.py \
+            && python3.5 -m pip install SCons==4.2.0 \
+            && python3.5 $(which scons) -Qj $(nproc) endless-sky test \
             && mv ./endless-sky build/ \
             && ./build/endless-sky -v \
           '
