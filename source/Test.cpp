@@ -514,12 +514,34 @@ const string &Test::StatusText() const
 void Test::Fail(const TestContext &context, const PlayerInfo &player, const string &testFailReason) const
 {
 	string message = "Test failed";
-	if(!context.stepToRun.empty() && context.stepToRun.back() < steps.size())
-		message += " at step " + to_string(1 + context.stepToRun.back()) + " (" +
-			STEPTYPE_TO_TEXT.at(steps[context.stepToRun.back()].stepType) + ")";
-
 	if(!testFailReason.empty())
 		message += ": " + testFailReason;
+	message += "\n";
+
+	Files::LogError(message);
+
+	// Print the callstack if we have any.
+	auto stackDepth = context.stepToRun.size();
+	string stackMessage = "Call-stack:\n";
+	if(stackDepth == 0)
+		stackMessage += "  No callstack info at moment of failure.";
+	while(stackDepth > 0)
+	{
+		if(context.testToRun.size() < stackDepth)
+			stackMessage += "At unknown test!\n";
+		else
+		{
+			// Indexing starts from 0, but the stack counter starts at 1.
+			auto testPrint = context.testToRun[stackDepth - 1];
+			auto testStepNr = context.stepToRun[stackDepth - 1];
+			stackMessage += "- \"" + testPrint->Name() + "\", step: " + to_string(1 + testStepNr);
+			if(testStepNr < testPrint->steps.size())
+				stackMessage += " (" + STEPTYPE_TO_TEXT.at((testPrint->steps[testStepNr]).stepType) + ")";
+			stackMessage += "\n";
+		}
+		--stackDepth;
+	}
+	Files::LogError(stackMessage);
 
 	// Print some debug information about the flagship and the first 5 escorts.
 	const Ship *flagship = player.Flagship();
