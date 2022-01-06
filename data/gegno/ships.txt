@@ -36,8 +36,8 @@ ship Shale
 		"C3 Scrap Cell"
 		Hyperdrive
 		"R01 Skirmish Battery"
-		"RG15 Ion Torch Steering"
-		"RG15 Ion Torch Thruster"
+		"RG15 Torch Steering"
+		"RG15 Torch Thruster"
 	engine 0 40
 	leak leak 50 60
 	explode "small explosion" 5
@@ -73,8 +73,8 @@ ship Dolomite
 		Hyperdrive
 		"R01 Skirmish Battery"
 		"R02 Battlezone Battery"
-		"RG15 Ion Torch Steering"
-		"RG15 Ion Torch Thruster"
+		"RG15 Torch Steering"
+		"RG15 Torch Thruster"
 	engine -21 155
 	engine 21 155
 	leak leak 60 50
@@ -114,8 +114,8 @@ ship Slate
 		"C3 Scrap Cell"
 		Hyperdrive
 		"R01 Skirmish Battery"
-		"RG15 Ion Torch Steering"
-		"RG15 Ion Torch Thruster"
+		"RG15 Torch Steering"
+		"RG15 Torch Thruster"
 	engine 0 40
 	leak leak 60 50
 	explode "small explosion" 5
@@ -151,8 +151,8 @@ ship Schist
 		Hyperdrive
 		"Irate Cannon" 2
 		"R02 Battlezone Battery"
-		"RG18 Ion Torch Steering"
-		"RG18 Ion Torch Thruster"
+		"RG18 Torch Steering"
+		"RG18 Torch Thruster"
 	engine 0 150
 	gun -14 -169 "Irate Cannon"
 	gun 14 -169 "Irate Cannon"
@@ -227,8 +227,8 @@ ship Eclogite
 		Hyperdrive
 		"Irate Cannon" 4
 		"R03 Warforge Battery"
-		"RG18 Ion Torch Steering"
-		"RG18 Ion Torch Thruster"
+		"RG18 Torch Steering"
+		"RG18 Torch Thruster"
 	engine 0 70
 	gun 0 -94 "Chloeric Cannon"
 	gun -11 -57.5 "Irate Cannon"
@@ -273,8 +273,8 @@ ship Hornfel
 		Hyperdrive
 		"Irate Cannon" 4
 		"R03 Warforge Battery"
-		"RG18 Ion Torch Steering"
-		"RG18 Ion Torch Thruster"
+		"RG18 Torch Steering"
+		"RG18 Torch Thruster"
 	engine -16.5 206
 	engine 16.5 206
 	gun -13.5 -228 "Irate Cannon"
@@ -321,8 +321,8 @@ ship Hornfel "Hornfel Heavy"
 		"Chloeric Turret"
 		Hyperdrive
 		"R03 Warforge Battery"
-		"RG18 Ion Torch Steering"
-		"RG18 Ion Torch Thruster"
+		"RG18 Torch Steering"
+		"RG18 Torch Thruster"
 
 ship Gneiss
 	sprite ship/gneiss
@@ -354,8 +354,8 @@ ship Gneiss
 		Hyperdrive
 		"Irate Cannon" 4
 		"R04 Crusade Battery"
-		"RG3 Ion Torch Steering"
-		"RG3 Ion Torch Thruster"
+		"RG3 Torch Steering"
+		"RG3 Torch Thruster"
 	engine 0 264
 	gun -17.4 -282 "Irate Cannon"
 	gun 17.4 -282 "Irate Cannon"
@@ -405,8 +405,8 @@ ship Protolith
 		"Irate Cannon" 2
 		"R02 Battlezone Battery"
 		"R03 Warforge Battery"
-		"RG3 Ion Torch Steering"
-		"RG3 Ion Torch Thruster"
+		"RG3 Torch Steering"
+		"RG3 Torch Thruster"
 	engine 0 250
 	engine -41.5 242
 	engine 41.5 242
@@ -448,7 +448,7 @@ ship Halite
 			"hull damage" 85
 			"hit force" 160
 	outfits
-		"SC2-1 Plasma Engines"
+		"SC-1 Plasma Engines"
 		"I70 Ameliorate Cell"
 		"Talc Laser" 2
 		
@@ -489,8 +489,8 @@ ship Mica
 		"C3 Scrap Cell"
 		Hyperdrive
 		"R01 Skirmish Battery"
-		"SC2-12 Plasma Steering"
-		"SC2-12 Plasma Thruster"
+		"SC-12 Plasma Steering"
+		"SC-12 Plasma Thruster"
 	engine 0 40
 	leak leak 30 40
 	explode "small explosion" 4
@@ -535,8 +535,8 @@ ship Coesite
 		"Guile Anti-Missile" 2
 		Hyperdrive
 		"R02 Battlezone Battery"
-		"SC2-12 Plasma Thruster"
-		"SC7-14 Plasma Steering"
+		"SC-12 Plasma Thruster"
+		"SC-14 Plasma Steering"
 	engine -31 85
 	engine 31 85
 	turret 0 -46.5 "Astuit Battery"
@@ -563,8 +563,8 @@ ship Coesite "Coesite P"
 		"Guile Anti-Missile"
 		Hyperdrive
 		"R02 Battlezone Battery"
-		"SC2-12 Plasma Thruster"
-		"SC7-14 Plasma Steering"
+		"SC-12 Plasma Thruster"
+		"SC-14 Plasma Steering"
 
 ship Felsic
 	sprite ship/felsic
@@ -596,8 +596,8 @@ ship Felsic
 		"Guile Anti-Missile"
 		Hyperdrive
 		"R02 Battlezone Battery"
-		"SC7-14 Plasma Steering"
-		"SC7-14 Plasma Thruster"
+		"SC-14 Plasma Steering"
+		"SC-14 Plasma Thruster"
 	engine 0 135
 	turret 0 63 "Guile Anti-Missile"
 	turret 0 -79.5 "Astuit Battery"
@@ -622,8 +622,8 @@ ship Felsic "Felsic P"
 		"C7 Brawl Core"
 		Hyperdrive
 		"R02 Battlezone Battery"
-		"SC7-14 Plasma Steering"
-		"SC7-14 Plasma Thruster"
+		"SC-14 Plasma Steering"
+		"SC-14 Plasma Thruster"
 
 ship Feldspar
 	sprite ship/feldspar
@@ -654,8 +654,8 @@ ship Feldspar
 		"C27 Campaign Core"
 		Hyperdrive
 		"R03 Warforge Battery"
-		"SC7-14 Plasma Steering"
-		"SC9-15 Plasma Engine System"
+		"SC-14 Plasma Steering"
+		"SC-15 Plasma Engines"
 	engine 28.5 196.5
 	engine -28.5 196.5
 	"reverse engine" -34.5 -186.5
@@ -724,8 +724,8 @@ ship Muscovite
 		Hyperdrive
 		"R02 Battlezone Battery"
 		"R03 Warforge Battery"
-		"SC7-14 Plasma Steering"
-		"SC9-15 Plasma Engine System"
+		"SC-14 Plasma Steering"
+		"SC-15 Plasma Engines"
 	engine -55.5 165.5
 	engine 55.5 165.5
 	"reverse engine" 46.5 -157.5
@@ -761,6 +761,6 @@ ship Muscovite "Muscovite P"
 		Hyperdrive
 		"R02 Battlezone Battery"
 		"R03 Warforge Battery"
-		"SC7-14 Plasma Steering"
-		"SC9-15 Plasma Engine System"
+		"SC-14 Plasma Steering"
+		"SC-15 Plasma Engines"
 
