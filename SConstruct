@@ -1,6 +1,3 @@
-# steamrt scons is v2.1.0
-# https://repo.steampowered.com/steamrt-images-scout/snapshots/latest-container-runtime-depot/com.valvesoftware.SteamRuntime.Sdk-amd64,i386-scout-sources.sources.txt
-# Documentation available at https://scons.org/doc/2.1.0/HTML/scons-user/a10706.html
 import os
 import platform
 from SCons.Node.FS import Dir
@@ -13,6 +10,12 @@ def pathjoin(*args):
 is_windows_host = platform.system().startswith('Windows')
 scons_toolset = ['mingw' if is_windows_host else 'default']
 env = DefaultEnvironment(tools = scons_toolset, ENV = os.environ)
+# If manually building within the Steam Runtime (scout), SCons will need to be invoked directly
+# with `python3.5`. Most other runtimes / build hosts will default to a newer version of python.
+env.EnsurePythonVersion(3, 5)
+# Make sure the current SCons version is at least v3.1.0; newer versions are allowed.
+env.EnsureSConsVersion(3, 1, 0)
+
 
 if 'CXX' in os.environ:
 	env['CXX'] = os.environ['CXX']
@@ -47,9 +50,9 @@ Help(opts.GenerateHelpText(env))
 #   $ CXXFLAGS=-msse3 scons
 #   $ CXXFLAGS=-march=native scons
 # or modify the `flags` variable:
-flags = ["-std=c++11", "-Wall", "-Werror", "-Wold-style-cast", "-fno-rtti"]
+flags = ["-std=c++11", "-Wall", "-Wold-style-cast", "-fno-rtti"]
 if env["mode"] != "debug":
-	flags += ["-O3", "-flto"]
+	flags += ["-Werror", "-O3", "-flto"]
 	env.Append(LINKFLAGS = ["-O3", "-flto"])
 if env["mode"] == "debug":
 	flags += ["-g"]
@@ -129,21 +132,21 @@ else:
 binDirectory = '' if env["BIN_DIR"] == '.' else pathjoin(env["BIN_DIR"], env["mode"])
 buildDirectory = pathjoin(env["BUILDDIR"], env["mode"])
 libDirectory = pathjoin("lib", env["mode"])
-VariantDir(buildDirectory, "source", duplicate = 0)
+env.VariantDir(buildDirectory, "source", duplicate = 0)
 
 # Find all regular source files.
 def RecursiveGlob(pattern, dir_name=buildDirectory):
 	# Start with source files in subdirectories.
-	matches = [RecursiveGlob(pattern, sub_dir) for sub_dir in Glob(pathjoin(str(dir_name), "*"))
+	matches = [RecursiveGlob(pattern, sub_dir) for sub_dir in env.Glob(pathjoin(str(dir_name), "*"))
 		if isinstance(sub_dir, Dir)]
 	# Add source files in this directory, except for main.cpp
-	matches += Glob(pathjoin(str(dir_name), pattern))
+	matches += env.Glob(pathjoin(str(dir_name), pattern))
 	matches = [i for i in matches if not '{}main.cpp'.format(os.path.sep) in str(i)]
 	return matches
 
 # By default, invoking scons will build the backing archive file and then the game binary.
 sourceLib = env.StaticLibrary(pathjoin(libDirectory, "endless-sky"), RecursiveGlob("*.cpp", buildDirectory))
-exeObjs = [Glob(pathjoin(buildDirectory, f)) for f in ("main.cpp",)]
+exeObjs = [env.Glob(pathjoin(buildDirectory, f)) for f in ("main.cpp",)]
 if is_windows_host:
 	windows_icon = env.RES(pathjoin(buildDirectory, "WinApp.rc"))
 	exeObjs.append(windows_icon)
@@ -154,7 +157,7 @@ env.Default(sky)
 # The testing infrastructure ignores "mode" specification (i.e. we only test optimized output).
 # (If we add support for code coverage output, this will likely need to change.)
 testBuildDirectory = pathjoin("tests", env["BUILDDIR"])
-VariantDir(testBuildDirectory, pathjoin("tests", "src"), duplicate = 0)
+env.VariantDir(testBuildDirectory, pathjoin("tests", "src"), duplicate = 0)
 test = env.Program(
 	target=pathjoin("tests", "endless-sky-tests"),
 	source=RecursiveGlob("*.cpp", testBuildDirectory) + sourceLib,
