@@ -370,7 +370,7 @@ fleet "Scin Warfleet"
 
 fleet "Gegno Basic"
 	government Gegno
-	names "gegno scin"
+	names "gegno scin" "gegno vi"
 	personality
 		timid
 	variant 6

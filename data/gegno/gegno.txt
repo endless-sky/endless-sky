@@ -8,14 +8,6 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-phrase gegno
-	word
-		A
-	word
-		" "
-	word
-		B
-
 phrase "gegno vi"
 	word
 		""
@@ -108,17 +100,37 @@ phrase "gegno scin"
 
 phrase "gegno uncontacted"
 	word
-		"langaunge doint recofgnioze"
+		"(A deep disgruntled voice says something in a language you cannot understand.)"
+
+phrase "gegno uncontacted leave"
+	word
+		"L Eif"
+		"Dy Purit"
+		"Gou"
+		"Eeb Goumn"
+	word
+		"..."
+		"."
+		"!"
 
 phrase "hostile gegno uncontacted" .
 	word
-		grr
+		"(A loud enraged voice says something in a language you cannot decifer.)"
+		"(You hear loud chants and yells in a language you do not know.)"
 
 phrase "friendly gegno"
 	word
-		hi
+		"Schuyua Oo"
+		"Dei Ynit Eeb Piebm"
+		"Gou Iisef"
+		"Tsiefl
+		"Dei Gno Echmn." 
+	word
+		"."
 
 phrase "hostile gegno"
 	word
-		"grr"
-
+		"Eysyp Ttheid"
+		"Tthei"
+	word	
+		"!"

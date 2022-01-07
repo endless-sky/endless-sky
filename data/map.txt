@@ -30934,9 +30934,9 @@ system Oosuoro
 	object
 		sprite planet/gas6-hot
 		distance 5459.1248
-		period 2300
+		period 2000
 		object Tschyss
-			sprite planet/station4
+			sprite planet/tschyss
 			distance 224.01485
 			period 120
 	object
