@@ -1998,13 +1998,15 @@ void Engine::DoCollisions(Projectile &projectile)
 		double triggerRadius = projectile.GetWeapon().TriggerRadius();
 		if(triggerRadius)
 			for(const Body *body : shipCollisions.Circle(projectile.Position(), triggerRadius))
+			{
+				const Ship *ship = reinterpret_cast<const Ship *>(body);
 				if(body == projectile.Target() || (gov->IsEnemy(body->GetGovernment())
-						&& (reinterpret_cast<const Ship *>(body)->Cloaking() < 1.
-						|| reinterpret_cast<const Ship *>(body)->Attributes().Get("cloaking invulnerability") < 0.)))
+						&& (ship->Cloaking() < 1. || ship->Attributes().Get("cloaking invulnerability") < 0.)))
 				{
 					closestHit = 0.;
 					break;
 				}
+			}
 
 		// If nothing triggered the projectile, check for collisions with ships.
 		if(closestHit > 0.)
@@ -2012,8 +2014,14 @@ void Engine::DoCollisions(Projectile &projectile)
 			Ship *ship = reinterpret_cast<Ship *>(shipCollisions.Line(projectile, &closestHit));
 			if(ship)
 			{
-				hit = ship->shared_from_this();
-				hitVelocity = ship->Velocity();
+				// Check if we can hit this.
+				if(ship->Cloaking() == 1. && ship->Attributes().Get("cloaking invulnerability") > 0.)
+					closestHit = 1.;
+				else
+				{
+					hit = ship->shared_from_this();
+					hitVelocity = ship->Velocity();
+				}
 			}
 		}
 		// "Phasing" projectiles can pass through asteroids. For all other
@@ -2049,7 +2057,8 @@ void Engine::DoCollisions(Projectile &projectile)
 			for(Body *body : shipCollisions.Circle(hitPos, blastRadius))
 			{
 				Ship *ship = reinterpret_cast<Ship *>(body);
-				if(isSafe && projectile.Target() != ship && !gov->IsEnemy(ship->GetGovernment()))
+				if(isSafe && projectile.Target() != ship && !gov->IsEnemy(ship->GetGovernment()) && 
+						(ship->Cloaking() < 1. || ship->Attributes().Get("cloaking invulnerability") <= 0.))
 					continue;
 
 				int eventType = ship->TakeDamage(visuals, projectile.GetWeapon(), 1.,

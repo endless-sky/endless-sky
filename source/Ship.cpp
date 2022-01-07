@@ -3186,11 +3186,7 @@ double Ship::MaxReverseVelocity() const
 // it hit this ship, and add any visuals created as a result
 // of being hit.
 int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damageScaling, double distanceTraveled, const Point &damagePosition, const Government *sourceGovernment, bool isBlast)
-{
-	// If this ship has an invulnerable cloaking device active, it cannot take damage.
-	if(cloak == 1. && attributes.Get("cloaking invulnerability") > 0.)
-		return 0;
-	
+{	
 	if(isBlast && weapon.IsDamageScaled())
 	{
 		// Scale blast damage based on the distance from the blast
