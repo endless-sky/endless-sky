@@ -29,7 +29,7 @@ public:
 
 private:
 	// Struct to describe a running test and running test-step within the test.
-	struct ActiveTestStep{
+	class ActiveTestStep {
 		const Test *test;
 		unsigned int step;
 
