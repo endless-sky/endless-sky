@@ -3644,7 +3644,7 @@ mission "Repulsor failure"
 				"(Let the autopilot handle the landing.)"
 			branch miracle
 				random < 80
-			"Unfortunately it is not enough, the ship starts rolling even faster. You lose consciousness before your ship crashes and you die."
+			"It's not enough! The ship starts rolling even faster, your vision blurs, and consciousness starts to slip from you. The last thing you notice is that your ship is falling apart but you already died by the time your ship fully disintegrates."
 				die
 			label rolling
 			"Your ships roll stabilizes, but your descend vector is now almost perpendicular to the surface and the acceleration straight towards the surface pushes you firmly into your chair."
@@ -3654,10 +3654,10 @@ mission "Repulsor failure"
 				"(Silently accept the situation as it is.)"
 			branch miracle
 				random < 70
-			"There is nothing more you can do to save your ship, your ship crashes straight into the ground and your remains are never found in the debris field."
+			"There is nothing more you can do to save your ship, your ship crashes straight into the ground. Whoever will have to clean this mess up will have a hard time finding your remains."
 				die
 			label miracle
-			"Suddenly all repulsors come back online at full strength."
+			"Suddenly all repulsors come back online at full strength, you feel the seatbelt dig into your skin over the sudden deceleration."
 			choice
 				"(Let the autopilot handle the landing.)"
 				"(Attempt to perform a manual landing.)"
@@ -3665,11 +3665,10 @@ mission "Repulsor failure"
 					goto reorbit
 			branch miraclelanding
 				random < 98
-			"Your ships trajectory and attitude stabilize, but it was too late. The ship still crashes and you die."
+			"Your ships trajectory and attitude stabilize, but it was too late. All warning-lights in the cockpit are lit and sirens are blaring, but the view out of the window, of the fast approaching planet surface, makes the impending crash more clear than any light or siren does. You experience a few seconds of fear, after which you life ends in a short big flash."
 				die
 			label miraclelanding
 			"Your ships trajectory and attitude stabilize and somehow the ship crash-lands on the surface."
-			#"	You are far away from the spaceport, but at least you are still alive."
 			"	You are not sure what is more miraculous, that you landed near the spaceport or that you are still alive."
 				decline
 			label reorbit
