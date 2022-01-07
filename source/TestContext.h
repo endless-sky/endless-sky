@@ -28,11 +28,14 @@ public:
 
 
 private:
-	// Struct to describe a running test and running test-step within the test.
+	// Class to describe a running test and running test-step within the test.
 	class ActiveTestStep {
+	public:
 		const Test *test;
 		unsigned int step;
 
+
+	public:
 		// Support operators for usage in containers like map and set.
 		bool operator==(const ActiveTestStep &rhs) const;
 		bool operator<(const ActiveTestStep &rhs) const;
