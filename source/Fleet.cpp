@@ -169,7 +169,7 @@ void Fleet::Load(const DataNode &node)
 		bool hasValue = (child.Size() >= 2);
 		if((add || remove) && (!hasValue || (child.Token(1) != "variant" && child.Token(1) != "personality")))
 		{
-			child.PrintTrace("Skipping invalid \"" + child.Token(0) + "\" tag:");
+			child.PrintTrace("Warning: Skipping invalid \"" + child.Token(0) + "\" tag:");
 			continue;
 		}
 
@@ -225,7 +225,7 @@ void Fleet::Load(const DataNode &node)
 				}
 
 			if(!didRemove)
-				child.PrintTrace("Did not find matching variant for specified operation:");
+				child.PrintTrace("Warning: Did not find matching variant for specified operation:");
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -629,7 +629,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const Variant &variant) const
 		// At least one of this variant's ships is valid, but we should avoid spawning any that are not defined.
 		if(!model->IsValid())
 		{
-			Files::LogError("Skipping invalid ship model \"" + model->ModelName() + "\" in fleet \"" + fleetName + "\".");
+			Files::LogError("Warning: Skipping invalid ship model \"" + model->ModelName() + "\" in fleet \"" + fleetName + "\".");
 			continue;
 		}
 
