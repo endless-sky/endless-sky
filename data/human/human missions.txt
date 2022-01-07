@@ -3677,4 +3677,4 @@ mission "Repulsor failure"
 				launch
 	on enter
 		dialog
-			"You fix the repulsor while in orbit. It should be working fine on next landing."
+			"You manage to fix the repulsor while in orbit. It should be working fine on next landing."
