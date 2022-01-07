@@ -20,7 +20,7 @@ using namespace std;
 namespace {
 	constexpr double DEFAULT = 1.;
 	map<const Sprite *, bool> warned;
-	
+
 	string PrintScale(double s) {
 		return to_string(100. * s) + "%";
 	}
@@ -29,7 +29,7 @@ namespace {
 
 
 // Move the given masks at 1x scale into the manager's storage.
-void MaskManager::SetMasks(const Sprite *sprite, std::vector<Mask> &&masks)
+void MaskManager::SetMasks(const Sprite *sprite, vector<Mask> &&masks)
 {
 	auto &scales = spriteMasks[sprite];
 	auto it = scales.find(DEFAULT);
@@ -63,7 +63,7 @@ void MaskManager::ScaleMasks()
 		auto baseIt = scales.find(DEFAULT);
 		if(baseIt == scales.end() || baseIt->second.empty())
 			continue;
-		
+
 		const auto &baseMasks = baseIt->second;
 		for(auto it = scales.begin(); it != baseIt; ++it)
 		{
@@ -96,12 +96,12 @@ const std::vector<Mask> &MaskManager::GetMasks(const Sprite *sprite, double scal
 			Files::LogError("Warning: sprite \"" + sprite->Name() + "\": no collision masks found.");
 		return EMPTY;
 	}
-	
+
 	const auto &scales = scalesIt->second;
 	const auto maskIt = scales.find(scale);
 	if(maskIt != scales.end() && !maskIt->second.empty())
 		return maskIt->second;
-	
+
 	// Shouldn't happen, but just in case, print some details about the scales for this sprite (once).
 	if(warned.insert(make_pair(sprite, true)).second)
 	{

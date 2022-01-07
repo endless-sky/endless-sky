@@ -44,8 +44,8 @@ public:
 		uuid_t id;
 #endif
 	};
-	
-	
+
+
 public:
 	static EsUuid FromString(const std::string &input);
 	EsUuid() noexcept = default;
@@ -59,26 +59,26 @@ public:
 	EsUuid(EsUuid &&) noexcept = default;
 	// UUIDs can be move-assigned as-is.
 	EsUuid &operator=(EsUuid &&) noexcept = default;
-	
+
 	// UUIDs can be compared against other UUIDs.
 	bool operator==(const EsUuid &other) const noexcept(false);
 	bool operator!=(const EsUuid &other) const noexcept(false);
 	bool operator<(const EsUuid &other) const noexcept(false);
-	
+
 	// Explicitly clone this UUID.
 	void clone(const EsUuid &other);
-	
+
 	// Get a string representation of this ID, e.g. for serialization.
 	std::string ToString() const noexcept(false);
-	
-	
+
+
 private:
 	// Internal constructor, from a string.
 	explicit EsUuid(const std::string &input);
 	// Lazy initialization getter.
 	const UuidType &Value() const;
-	
-	
+
+
 private:
 	mutable UuidType value;
 };
@@ -92,7 +92,7 @@ struct UUIDComparator {
 	{
 		return a->UUID() < b->UUID();
 	}
-	
+
 	// Comparator for collections of T*, e.g. set<T *>
 	bool operator()(const T *a, const T *b) const noexcept(false)
 	{

@@ -1,5 +1,5 @@
-/* gl_header.h
-Copyright (c) 2014 by Michael Zahniser
+/* TestContext.cpp
+Copyright (c) 2021 by Peter van der Meer
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -10,14 +10,20 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-// Include whichever header is used for OpenGL on this operating system.
-#ifdef __APPLE__
-#include <OpenGL/GL3.h>
-#else
-#ifdef ES_GLES
-#include <GLES3/gl3.h>
-#else
-#include <GL/glew.h>
-#endif
-#endif
+#include "TestContext.h"
 
+class Test;
+
+
+
+// Constructor to be used when running an actual test.
+TestContext::TestContext(const Test *toRun) : testToRun(1, toRun)
+{
+}
+
+
+
+const Test *TestContext::CurrentTest() const noexcept
+{
+	return testToRun.empty() ? nullptr : testToRun.back();
+}
