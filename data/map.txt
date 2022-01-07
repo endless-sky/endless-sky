@@ -14419,7 +14419,6 @@ system Ibvicklidit-fourelia
 	asteroids "large metal" 1 3.648
 	haze _menu/haze-fullbright
 	fleet "Xapleaux Small Security" 1200
-	hazard "Ember Waste Base Heat" 1
 	habitable 1715
 	belt 1768
 	trade Clothing 364
@@ -17314,7 +17313,6 @@ system Krigec-svolurealuo-jik
 	fleet "Xapleaux Small Cargo" 1200
 	fleet "Xapleaux Small Security" 1200
 	fleet "Xapleaux Small Passenger" 1200
-	hazard "Ember Waste Base Heat" 1
 	habitable 2285
 	belt 1257
 	trade Clothing 275
