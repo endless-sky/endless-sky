@@ -2202,6 +2202,7 @@ system Aescolanus
 system Aircakap
 	pos -22.458389 -147.812
 	government Uninhabited
+	attributes korath warm
 	asteroids "medium rock" 222 1.4025
 	asteroids "large rock" 10 2.53
 	asteroids "small metal" 21 2.1175
@@ -2221,7 +2222,7 @@ system Aircakap
 	trade Medical 484
 	trade Metal 536
 	trade Plastic 281
-	attributes korath
+	hazard "Core Sheltered Heat" 16
 	object
 		sprite star/b5
 		distance 130.4878
@@ -5009,6 +5010,7 @@ system Aspidiske
 system Atch-werimoural-nikt
 	pos 26.027733 27.333333
 	government Xapleaux
+	attributes hot sheltered xapleaux
 	link Ick-nearolu-kechink-xi
 	link Rikt-pefaerilum
 	link Vikinik-bounera
@@ -5035,6 +5037,8 @@ system Atch-werimoural-nikt
 	trade Medical 609
 	trade Metal 277
 	trade Plastic 436
+	hazard "Core Sheltered Heat" 1
+	hazard "Core Shadow Passing" 9000
 	object
 		sprite star/k5
 		period 10
@@ -5126,6 +5130,7 @@ system Atik
 system Atke-babounriuer-rik
 	pos 208.694 45.9351
 	government Xapleaux
+	attributes hot sheltered xapleaux
 	link Ifk-groundissemour
 	link Ink-learoumera-cehikli
 	link Kiteg-hamlior-tock
@@ -5155,6 +5160,8 @@ system Atke-babounriuer-rik
 	trade Medical 708
 	trade Metal 334
 	trade Plastic 395
+	hazard "Core Sheltered Heat" 1
+	hazard "Core Shadow Passing" 9000
 	object
 		sprite star/k8
 		period 10
@@ -5442,6 +5449,7 @@ system Aya'k'k
 system Bahagian
 	pos 33.763833 -168.36756
 	government Uninhabited
+	attributes korath warm
 	asteroids "small rock" 9 2.072
 	asteroids "large rock" 2 1.54
 	asteroids "small metal" 1 2.632
@@ -5461,7 +5469,7 @@ system Bahagian
 	trade Medical 484
 	trade Metal 536
 	trade Plastic 281
-	attributes korath
+	hazard "Core Sheltered Heat" 16
 	object
 		sprite star/m3
 		period 10
@@ -5572,6 +5580,7 @@ system Beginning
 system Belak'kor
 	pos -54.222222 68.111111
 	government Korath
+	attributes korath warm
 	asteroids "small rock" 2 2.079
 	asteroids "medium rock" 18 2.5872
 	asteroids "large rock" 7 1.6632
@@ -5595,7 +5604,8 @@ system Belak'kor
 	trade Medical 812
 	trade Metal 301
 	trade Plastic 449
-	attributes korath
+
+	hazard "Core Sheltered Heat" 16
 	object
 		sprite star/f3
 		distance 146.54767
@@ -6021,6 +6031,7 @@ system "Beta Lupi"
 system "Beta Lyrae"
 	pos -120.44445 65.444447
 	government Syndicate
+	attributes core
 	link "Beta Carinae"
 	link Messiah
 	link Ruchbah
@@ -6051,7 +6062,6 @@ system "Beta Lyrae"
 	trade Medical 671
 	trade Metal 292
 	trade Plastic 376
-	attributes core
 	object
 		sprite star/o-supergiant
 		distance 371
@@ -7303,6 +7313,7 @@ system Cebalrai
 system Ceffig-haforiluour-pik
 	pos 152.694 95.9351
 	government Xapleaux
+	attributes hot sheltered xapleaux
 	link Dsik-geromil-jek
 	link Ink-learoumera-cehikli
 	link Kexo-Atch
@@ -7324,6 +7335,8 @@ system Ceffig-haforiluour-pik
 	trade Medical 681
 	trade Metal 279
 	trade Plastic 477
+	hazard "Core Sheltered Heat" 1
+	hazard "Core Shadow Passing" 9000
 	object
 		sprite star/g-dwarf
 		period 10
@@ -7351,6 +7364,7 @@ system Ceffig-haforiluour-pik
 system Ceffig-heffaeriloum
 	pos 168.5 117.8
 	government Xapleaux
+	attributes exposed hot xapleaux
 	link Kiteg-hamlior-tock
 	asteroids "small rock" 2 3.24
 	asteroids "large rock" 3 1.377
@@ -7374,6 +7388,9 @@ system Ceffig-heffaeriloum
 	trade Medical 698
 	trade Metal 410
 	trade Plastic 279
+	hazard "Core Exposed Heat" 1
+	hazard "Core Heat Flare" 1200
+	hazard "Core Shadow Passing" 21000
 	object
 		sprite star/f5
 		distance 25.4207
@@ -7530,6 +7547,7 @@ system Chikatip
 system Chikapmukti
 	pos 173.09717 -491.14533
 	government Uninhabited
+	attributes korath
 	link Mesuket
 	link Tidursangat
 	asteroids "small rock" 40 4.224
@@ -7552,7 +7570,6 @@ system Chikapmukti
 	trade Medical 484
 	trade Metal 536
 	trade Plastic 281
-	attributes korath
 	object
 		sprite star/k5
 		period 10
@@ -8142,6 +8159,7 @@ system "Cor Caroli"
 system Crxst-xialourum
 	pos 45.6944 -20.0649
 	government Xapleaux
+	attributes exposed hot xapleaux
 	link Goxkotrik-feahvir
 	link Ick-nearolu-kechink-xi
 	link Vikinik-bounera
@@ -8164,6 +8182,9 @@ system Crxst-xialourum
 	trade Medical 631
 	trade Metal 192
 	trade Plastic 474
+	hazard "Core Exposed Heat" 1
+	hazard "Core Heat Flare" 1200
+	hazard "Core Shadow Passing" 21000
 	object
 		sprite star/k0
 		period 10
@@ -9320,6 +9341,7 @@ system Dschubba
 system Dsik-geromil-jek
 	pos 99.694 122.935
 	government Xapleaux
+	attributes hot sheltered xapleaux
 	link Ceffig-haforiluour-pik
 	link Faerilloumier-iking-kicklissnika-puol
 	asteroids "large metal" 1 3.7905
@@ -9339,6 +9361,8 @@ system Dsik-geromil-jek
 	trade Medical 642
 	trade Metal 304
 	trade Plastic 490
+	hazard "Core Sheltered Heat" 1
+	hazard "Core Shadow Passing" 9000
 	object
 		sprite star/k0
 		distance 37.6853
@@ -9572,6 +9596,7 @@ system Durax
 system Dygit-hourimaserai
 	pos 171.694 -37.0649
 	government Xapleaux
+	attributes exposed hot xapleaux
 	link Ixikke-faoule-xec
 	link Krigec-svolurealuo-jik
 	link Vik-benoureal
@@ -9599,6 +9624,9 @@ system Dygit-hourimaserai
 	trade Medical 659
 	trade Metal 335
 	trade Plastic 397
+	hazard "Core Exposed Heat" 1
+	hazard "Core Heat Flare" 1200
+	hazard "Core Shadow Passing" 21000
 	object
 		sprite star/f5
 		period 10
@@ -9642,6 +9670,7 @@ system Dygit-hourimaserai
 system Dygit-jarobouillier-cot
 	pos 149.694 10.9351
 	government Xapleaux
+	attributes hot sheltered xapleaux
 	link Krigec-svolurealuo-jik
 	link "Sagittarius A*"
 	link Vik-benoureal
@@ -9667,7 +9696,8 @@ system Dygit-jarobouillier-cot
 	trade Medical 507
 	trade Metal 259
 	trade Plastic 466
-	attributes xapleaux
+	hazard "Core Sheltered Heat" 1
+	hazard "Core Shadow Passing" 9000
 	object
 		sprite star/f-supergiant
 		period 10
@@ -10426,6 +10456,7 @@ system Eltanin
 system Embe'kor
 	pos 72.444444 178.77778
 	government Korath
+	attributes korath warm
 	asteroids "small rock" 49 3.5672
 	asteroids "medium rock" 4 3.2032
 	asteroids "large rock" 46 3.458
@@ -10447,7 +10478,8 @@ system Embe'kor
 	trade Medical 587
 	trade Metal 434
 	trade Plastic 272
-	attributes korath
+	hazard "Ember Waste Base Heat" 100
+	hazard "Core Sheltered Heat" 16
 	object
 		sprite star/m-supergiant
 		period 10
@@ -10640,6 +10672,7 @@ system Enif
 system Epo'kor
 	pos -88.222222 2.1111111
 	government Korath
+	attributes korath warm
 	asteroids "small rock" 2 2.079
 	asteroids "medium rock" 18 2.5872
 	asteroids "large rock" 7 1.6632
@@ -10663,7 +10696,7 @@ system Epo'kor
 	trade Medical 463
 	trade Metal 454
 	trade Plastic 364
-	attributes korath
+	hazard "Core Sheltered Heat" 16
 	object
 		sprite star/k-supergiant
 		period 10
@@ -10703,6 +10736,7 @@ system Epo'kor
 system "Epsilon Indi"
 	pos -213.33334 7.6666689
 	government Syndicate
+	attributes core
 	link Maia
 	link "Tau Ceti"
 	asteroids "small rock" 30 5.0232
@@ -10728,7 +10762,6 @@ system "Epsilon Indi"
 	trade Medical 671
 	trade Metal 292
 	trade Plastic 376
-	attributes core
 	object
 		sprite star/g-dwarf
 		period 10
@@ -11089,7 +11122,8 @@ system Eteron
 
 system Faerilloumier-iking-kicklissnika-puol
 	pos 36.361067 154.935
-	government Xapleaux
+	government Uninhabited
+	attributes "black hole"
 	link Dsik-geromil-jek
 	asteroids "small rock" 16 3.3264
 	asteroids "medium rock" 9 6.3504
@@ -11103,6 +11137,13 @@ system Faerilloumier-iking-kicklissnika-puol
 	haze _menu/haze-cloudbright
 	habitable 115184.45
 	belt 1427
+	hazard "Black Hole Accretion Disk" 4
+	hazard "Black Hole Event Horizon" 4
+	hazard "Black Hole Gravity" 4
+	hazard "Core Sheltered Heat" 1
+	hazard "Core Heat Flare" 960
+	hazard "Core Shadow Passing" 2400
+	hazard "Ember Waste Base Heat" 100
 	object
 		sprite star/black-hole
 		period 10
@@ -11638,7 +11679,7 @@ system Faronektu
 system Fasitopfar
 	pos 31.763833 -120.812
 	government Uninhabited
-	attributes "archon" "korath" "nova"
+	attributes "archon" "korath" "nova" warm
 	habitable 100
 	belt 1670
 	haze _menu/haze-blackbody
@@ -11661,6 +11702,8 @@ system Fasitopfar
 	trade Medical 772
 	trade Metal 433
 	trade Plastic 481
+	hazard "Core Sheltered Heat" 4
+	hazard "Core Shadow Passing" 5000
 	object
 		sprite star/nova
 		period 1000
@@ -11927,6 +11970,7 @@ system Fereti
 system Feromansaath
 	pos -125.33333 -138.66667
 	government Uninhabited
+	attributes korath
 	asteroids "large rock" 1 4.34
 	asteroids "medium metal" 3 3.162
 	asteroids "large metal" 5 5.394
@@ -11946,7 +11990,6 @@ system Feromansaath
 	trade Medical 484
 	trade Metal 536
 	trade Plastic 281
-	attributes korath
 	object
 		sprite star/o3
 		period 10
@@ -13289,6 +13332,7 @@ system Gorvi
 system Goxkotrik-feahvir
 	pos 71.6944 -84.0649
 	government Xapleaux
+	attributes exposed hot xapleaux
 	link Crxst-xialourum
 	link Ixik-swuirelouminore-kek
 	link Ticska-hearaimiumer
@@ -13314,6 +13358,9 @@ system Goxkotrik-feahvir
 	trade Medical 534
 	trade Metal 195
 	trade Plastic 479
+	hazard "Core Exposed Heat" 1
+	hazard "Core Heat Flare" 1200
+	hazard "Core Shadow Passing" 21000
 	object
 		sprite star/g0
 		distance 42.522
@@ -14363,6 +14410,7 @@ system Hunter
 system Ibvicklidit-fourelia
 	pos 137.694 -127.065
 	government Xapleaux
+	attributes exposed hot xapleaux
 	link Ticska-hearaimiumer
 	asteroids "small rock" 2 3.04
 	asteroids "medium rock" 2 3.116
@@ -14384,6 +14432,9 @@ system Ibvicklidit-fourelia
 	trade Medical 515
 	trade Metal 264
 	trade Plastic 477
+	hazard "Core Exposed Heat" 1
+	hazard "Core Heat Flare" 1200
+	hazard "Core Shadow Passing" 21000
 	object
 		sprite star/f5
 		period 10
@@ -14431,6 +14482,7 @@ system Ibvicklidit-fourelia
 system Icibvirk-gwolav-jek
 	pos 33.6944 -57.0649
 	government Xapleaux
+	attributes hot sheltered xapleaux
 	link Vikinik-bounera
 	asteroids "small rock" 11 2.8475
 	asteroids "large rock" 10 4.165
@@ -14455,6 +14507,8 @@ system Icibvirk-gwolav-jek
 	trade Medical 703
 	trade Metal 234
 	trade Plastic 414
+	hazard "Core Sheltered Heat" 1
+	hazard "Core Shadow Passing" 9000
 	object
 		sprite star/g0
 		period 10
@@ -14486,6 +14540,7 @@ system Icibvirk-gwolav-jek
 system Ick-nearolu-kechink-xi
 	pos 67.6944 0.935059
 	government Xapleaux
+	attributes hot sheltered xapleaux
 	link Atch-werimoural-nikt
 	link Crxst-xialourum
 	link Ixik-swuirelouminore-kek
@@ -14514,6 +14569,8 @@ system Ick-nearolu-kechink-xi
 	trade Medical 619
 	trade Metal 251
 	trade Plastic 473
+	hazard "Core Sheltered Heat" 1
+	hazard "Core Shadow Passing" 9000
 	object
 		sprite star/g0
 		distance 34.1709
@@ -14555,6 +14612,7 @@ system Ick-nearolu-kechink-xi
 system Ickewqirk-prouleah-cix
 	pos 121.694 -91.842778
 	government Xapleaux
+	attributes hot sheltered xapleaux
 	link Ixikke-faoule-xec
 	link Retuk-gleurimuw
 	link Ticska-hearaimiumer
@@ -14582,6 +14640,8 @@ system Ickewqirk-prouleah-cix
 	trade Medical 584
 	trade Metal 272
 	trade Plastic 396
+	hazard "Core Sheltered Heat" 1
+	hazard "Core Shadow Passing" 9000
 	object
 		sprite star/k-dwarf
 		distance 42.302862
@@ -14615,6 +14675,7 @@ system Ickewqirk-prouleah-cix
 system Ifk-groundissemour
 	pos 165.694 32.9351
 	government Xapleaux
+	attributes exposed hot xapleaux
 	link Atke-babounriuer-rik
 	link Ink-learoumera-cehikli
 	link Vik-benoureal
@@ -14641,6 +14702,9 @@ system Ifk-groundissemour
 	trade Medical 719
 	trade Metal 350
 	trade Plastic 431
+	hazard "Core Exposed Heat" 1
+	hazard "Core Heat Flare" 1200
+	hazard "Core Shadow Passing" 21000
 	object
 		sprite star/g0
 		period 10
@@ -14917,6 +14981,7 @@ system "Imo Dep"
 system Ink-learoumera-cehikli
 	pos 170.694 59.046211
 	government Xapleaux
+	attributes hot sheltered xapleaux
 	link Atke-babounriuer-rik
 	link Ceffig-haforiluour-pik
 	link Ifk-groundissemour
@@ -14945,6 +15010,8 @@ system Ink-learoumera-cehikli
 	trade Medical 649
 	trade Metal 301
 	trade Plastic 493
+	hazard "Core Sheltered Heat" 1
+	hazard "Core Shadow Passing" 9000
 	object
 		sprite star/o0
 		period 10
@@ -15244,6 +15311,7 @@ system Ipsing
 system Ixik-swuirelouminore-kek
 	pos 80.6943 -30.0649
 	government Xapleaux
+	attributes hot sheltered xapleaux
 	link Goxkotrik-feahvir
 	link Ick-nearolu-kechink-xi
 	link Retuk-gleurimuw
@@ -15264,6 +15332,8 @@ system Ixik-swuirelouminore-kek
 	trade Medical 534
 	trade Metal 221
 	trade Plastic 503
+	hazard "Core Sheltered Heat" 1
+	hazard "Core Shadow Passing" 9000
 	object
 		sprite star/k0
 		period 10
@@ -15295,6 +15365,7 @@ system Ixik-swuirelouminore-kek
 system Ixikke-faoule-xec
 	pos 144.732 -56.6401
 	government Xapleaux
+	attributes hot sheltered xapleaux
 	link Dygit-hourimaserai
 	link Ickewqirk-prouleah-cix
 	asteroids "large rock" 18 5.2026
@@ -15318,6 +15389,8 @@ system Ixikke-faoule-xec
 	trade Medical 737
 	trade Metal 311
 	trade Plastic 281
+	hazard "Core Sheltered Heat" 1
+	hazard "Core Shadow Passing" 9000
 	object Ixikke-foule-jurtwuillemoure-kicheck
 		sprite planet/forest3
 		period 10
@@ -15819,7 +15892,7 @@ system Kashikt
 system Kasikfar
 	pos -22.902833 -107.14533
 	government Uninhabited
-	attributes "archon" "korath" "nova"
+	attributes "archon" "korath" "nova" warm
 	habitable 100
 	belt 1539
 	haze _menu/haze-blackbody
@@ -15841,6 +15914,8 @@ system Kasikfar
 	trade Medical 437
 	trade Metal 288
 	trade Plastic 320
+	hazard "Core Sheltered Heat" 4
+	hazard "Core Shadow Passing" 5000
 	object
 		sprite star/nova
 		period 1000
@@ -15978,6 +16053,7 @@ system "Kaus Borealis"
 system Kertasir
 	pos -153.90283 -211.812
 	government Uninhabited
+	attributes korath
 	asteroids "medium rock" 13 1.736
 	asteroids "large rock" 1 2.324
 	asteroids "small metal" 1 2.324
@@ -15999,7 +16075,6 @@ system Kertasir
 	trade Medical 484
 	trade Metal 536
 	trade Plastic 281
-	attributes korath
 	object
 		sprite star/k8
 		distance 79.41105
@@ -16037,6 +16112,7 @@ system Kertasir
 system Kexo-Atch
 	pos 117.694 68.9351
 	government Xapleaux
+	attributes exposed hot xapleaux
 	link Ceffig-haforiluour-pik
 	link Rikt-pefaerilum
 	link Xivik-beriloumi
@@ -16064,6 +16140,9 @@ system Kexo-Atch
 	trade Medical 622
 	trade Metal 245
 	trade Plastic 421
+	hazard "Core Exposed Heat" 1
+	hazard "Core Heat Flare" 1200
+	hazard "Core Shadow Passing" 21000
 	object
 		sprite star/k5
 		period 10
@@ -16461,6 +16540,7 @@ system Kiru'kichi
 system Kiteg-hamlior-tock
 	pos 199.694 80.9351
 	government Xapleaux
+	attributes hot sheltered xapleaux
 	link Atke-babounriuer-rik
 	link Ceffig-heffaeriloum
 	asteroids "small rock" 40 2.9376
@@ -16487,6 +16567,8 @@ system Kiteg-hamlior-tock
 	trade Medical 654
 	trade Metal 434
 	trade Plastic 299
+	hazard "Core Sheltered Heat" 1
+	hazard "Core Shadow Passing" 9000
 	object
 		sprite star/g5
 		period 10
@@ -16574,7 +16656,7 @@ system Kochab
 system "Kor Ak'Mari"
 	pos -18 8
 	government Korath
-	attributes "korath" "wolf-rayet"
+	attributes "korath" warm "wolf-rayet"
 	habitable 625
 	belt 1606
 	haze _menu/haze-full
@@ -16594,6 +16676,8 @@ system "Kor Ak'Mari"
 	trade Metal 217
 	trade Plastic 524
 	fleet "Korath Raid" 2800
+	hazard "Core Sheltered Heat" 4
+	hazard "Core Shadow Passing" 5000
 	object
 		sprite star/carbon
 		period 100
@@ -16628,7 +16712,7 @@ system "Kor Ak'Mari"
 system "Kor En'lakfar"
 	pos -11.666667 -71.666667
 	government Korath
-	attributes "korath"
+	attributes "korath" warm
 	habitable 1080
 	belt 1115
 	haze _menu/haze-133
@@ -16655,6 +16739,8 @@ system "Kor En'lakfar"
 	trade Plastic 488
 	fleet "Korath Raid" 600
 	fleet "Korath Home" 1800
+	hazard "Core Sheltered Heat" 4
+	hazard "Core Shadow Passing" 5000
 	object
 		sprite star/g0
 		period 10
@@ -16690,7 +16776,7 @@ system "Kor En'lakfar"
 system "Kor Fel'tar"
 	pos -16 -22
 	government Korath
-	attributes "korath"
+	attributes "korath" warm
 	habitable 450
 	belt 1444
 	haze _menu/haze-blackbody
@@ -16717,6 +16803,8 @@ system "Kor Fel'tar"
 	trade Plastic 478
 	fleet "Korath Raid" 1600
 	fleet "Korath Home" 900
+	hazard "Core Sheltered Heat" 4
+	hazard "Core Shadow Passing" 5000
 	object
 		sprite star/k3
 		period 10
@@ -16756,7 +16844,7 @@ system "Kor Fel'tar"
 system "Kor Men"
 	pos -55 -12
 	government Korath
-	attributes "korath"
+	attributes "korath" warm
 	habitable 2340
 	belt 1260
 	haze _menu/haze-blackbody
@@ -16782,6 +16870,8 @@ system "Kor Men"
 	trade Plastic 497
 	fleet "Korath Raid" 1300
 	fleet "Korath Home" 600
+	hazard "Core Sheltered Heat" 4
+	hazard "Core Shadow Passing" 5000
 	object
 		sprite star/f5
 		distance 28.0824
@@ -16819,7 +16909,7 @@ system "Kor Men"
 system "Kor Nor'peli"
 	pos 9.5555556 59.777778
 	government Korath
-	attributes "korath"
+	attributes "korath" warm
 	habitable 585
 	belt 1213
 	haze _menu/haze-blackbody
@@ -16843,6 +16933,8 @@ system "Kor Nor'peli"
 	trade Plastic 423
 	fleet "Korath Raid" 1000
 	fleet "Korath Home" 500
+	hazard "Core Sheltered Heat" 4
+	hazard "Core Shadow Passing" 5000
 	object
 		sprite star/k3
 		distance 22.4307
@@ -16884,7 +16976,7 @@ system "Kor Nor'peli"
 system "Kor Tar'bei"
 	pos -39 35
 	government Korath
-	attributes "korath"
+	attributes "korath" warm
 	habitable 230
 	belt 1614
 	haze _menu/haze-blackbody
@@ -16910,6 +17002,8 @@ system "Kor Tar'bei"
 	trade Plastic 402
 	fleet "Korath Raid" 1200
 	fleet "Korath Home" 600
+	hazard "Core Sheltered Heat" 4
+	hazard "Core Shadow Passing" 5000
 	object
 		sprite star/m3
 		period 10
@@ -16941,7 +17035,7 @@ system "Kor Tar'bei"
 system "Kor Zena'i"
 	pos 12 105
 	government Korath
-	attributes "korath"
+	attributes "korath" warm
 	habitable 1385
 	belt 1866
 	haze _menu/haze-blackbody
@@ -16961,6 +17055,8 @@ system "Kor Zena'i"
 	trade Plastic 381
 	fleet "Korath Raid" 800
 	fleet "Korath Home" 1100
+	hazard "Core Sheltered Heat" 4
+	hazard "Core Shadow Passing" 5000
 	object
 		sprite star/g5-old
 		distance 11.9387
@@ -17203,6 +17299,7 @@ system Kraz
 system Krigec-svolurealuo-jik
 	pos 155.694 -15.065
 	government Xapleaux
+	attributes hot sheltered xapleaux
 	link Dygit-hourimaserai
 	link Dygit-jarobouillier-cot
 	asteroids "small rock" 2 2.106
@@ -17230,7 +17327,8 @@ system Krigec-svolurealuo-jik
 	trade Medical 534
 	trade Metal 221
 	trade Plastic 503
-	attributes sheltered xapleaux
+	hazard "Core Sheltered Heat" 1
+	hazard "Core Shadow Passing" 9000
 	object
 		sprite star/g-dwarf
 		distance 49.134185
@@ -19130,6 +19228,7 @@ system Merak
 system Messiah
 	pos -134.19489 23.601667
 	government Syndicate
+	attributes core
 	link "Beta Lyrae"
 	link Fulu
 	link Maia
@@ -19161,7 +19260,6 @@ system Messiah
 	trade Medical 671
 	trade Metal 292
 	trade Plastic 376
-	attributes core
 	object
 		sprite star/m-dwarf
 		distance 69.97047
@@ -20983,6 +21081,7 @@ system Ossipago
 system Otrisiti
 	pos -110.23617 -335.14533
 	government Uninhabited
+	attributes korath
 	asteroids "small rock" 3 2.5454
 	asteroids "medium rock" 21 2.145
 	asteroids "large rock" 2 1.7446
@@ -21004,7 +21103,6 @@ system Otrisiti
 	trade Medical 484
 	trade Metal 536
 	trade Plastic 281
-	attributes korath
 	object
 		sprite star/l-dwarf
 		period 10
@@ -21410,6 +21508,7 @@ system Pelubta
 system Pemuka
 	pos -161.23617 -276.47867
 	government Uninhabited
+	attributes korath
 	asteroids "small rock" 2 2.106
 	asteroids "medium rock" 15 1.456
 	asteroids "large rock" 1 2.392
@@ -21432,7 +21531,6 @@ system Pemuka
 	trade Medical 484
 	trade Metal 536
 	trade Plastic 281
-	attributes korath
 	object
 		sprite star/k0
 		period 10
@@ -21697,7 +21795,7 @@ system Persian
 system Persitar
 	pos 297.431 -395.812
 	government Uninhabited
-	attributes "korath" "nova"
+	attributes "korath" "nova" warm
 	habitable 100
 	belt 1948
 	haze _menu/haze-blackbody
@@ -21718,6 +21816,8 @@ system Persitar
 	trade Medical 456
 	trade Metal 540
 	trade Plastic 500
+	hazard "Core Sheltered Heat" 4
+	hazard "Core Shadow Passing" 5000
 	object
 		sprite star/nova
 		period 1000
@@ -22214,6 +22314,7 @@ system Polerius
 system Poli'kor
 	pos -26.888889 116.33333
 	government Korath
+	attributes korath warm
 	asteroids "small rock" 2 2.079
 	asteroids "medium rock" 18 2.5872
 	asteroids "large rock" 7 1.6632
@@ -22237,7 +22338,7 @@ system Poli'kor
 	trade Medical 471
 	trade Metal 465
 	trade Plastic 406
-	attributes korath
+	hazard "Core Sheltered Heat" 16
 	object
 		sprite star/giant
 		distance 159.5
@@ -23565,6 +23666,7 @@ system Remembrance
 system Retuk-gleurimuw
 	pos 103.91622 -68.953789
 	government Xapleaux
+	attributes exposed hot xapleaux
 	link Ickewqirk-prouleah-cix
 	link Ixik-swuirelouminore-kek
 	link Ticska-hearaimiumer
@@ -23590,6 +23692,9 @@ system Retuk-gleurimuw
 	trade Medical 492
 	trade Metal 202
 	trade Plastic 478
+	hazard "Core Exposed Heat" 1
+	hazard "Core Heat Flare" 1200
+	hazard "Core Shadow Passing" 21000
 	object
 		sprite star/k0
 		period 10
@@ -23702,6 +23807,7 @@ system Rigel
 system Rikt-pefaerilum
 	pos 97.6944 46.9351
 	government Xapleaux
+	attributes exposed hot xapleaux
 	link Atch-werimoural-nikt
 	link Ick-nearolu-kechink-xi
 	link Kexo-Atch
@@ -23731,6 +23837,9 @@ system Rikt-pefaerilum
 	trade Medical 597
 	trade Metal 258
 	trade Plastic 442
+	hazard "Core Exposed Heat" 1
+	hazard "Core Heat Flare" 1200
+	hazard "Core Shadow Passing" 21000
 	object
 		sprite star/f5
 		distance 21.0713
@@ -24267,6 +24376,7 @@ system Sadr
 system "Sagittarius A*"
 	pos 112 22
 	government Uninhabited
+	attributes "black hole"
 	habitable 10000
 	link Dygit-jarobouillier-cot
 	link Ick-nearolu-kechink-xi
@@ -24278,6 +24388,10 @@ system "Sagittarius A*"
 	hazard "Black Hole Accretion Disk" 1
 	hazard "Black Hole Event Horizon" 1
 	hazard "Black Hole Gravity" 1
+	hazard "Core Exposed Heat" 1
+	hazard "Core Heat Flare" 240
+	hazard "Core Shadow Passing" 600
+	hazard "Ember Waste Base Heat" 100
 	object
 		sprite star/black-hole-core
 		period 1
@@ -24859,6 +24973,7 @@ system Seginus
 system Sejuka
 	pos -71.791722 -153.812
 	government Uninhabited
+	attributes korath
 	asteroids "small rock" 13 2.6163
 	asteroids "medium rock" 1 2.4871
 	asteroids "large rock" 2 3.0362
@@ -24879,7 +24994,6 @@ system Sejuka
 	trade Medical 484
 	trade Metal 536
 	trade Plastic 281
-	attributes korath
 	object
 		sprite star/k5
 		distance 166.50724
@@ -24961,6 +25075,7 @@ system Seketra
 system Semutir
 	pos -113.68061 -181.36756
 	government Uninhabited
+	attributes korath
 	asteroids "large rock" 2 2.4012
 	asteroids "medium metal" 22 2.0976
 	asteroids "large metal" 1 1.9596
@@ -24980,7 +25095,6 @@ system Semutir
 	trade Medical 484
 	trade Metal 536
 	trade Plastic 281
-	attributes korath
 	object
 		sprite star/a3
 		period 10
@@ -25281,6 +25395,7 @@ system Sheratan
 	fleet "Small Core Pirates" 3000
 	fleet "Large Core Pirates" 5000
 	fleet "Korath Raid" 30000
+	hazard "Core Sheltered Heat" 64
 	object
 		sprite star/f5
 		distance 21.0246
@@ -27195,6 +27310,7 @@ system Tarazed
 system "Tau Ceti"
 	pos -168.19488 -53.953889
 	government Syndicate
+	attributes core
 	link "Epsilon Indi"
 	link Menkar
 	link Zaurak
@@ -27225,7 +27341,6 @@ system "Tau Ceti"
 	trade Medical 671
 	trade Metal 292
 	trade Plastic 376
-	attributes core
 	object
 		sprite star/k8
 		distance 85.63135
@@ -27503,6 +27618,7 @@ system "Terra Incognita"
 system Ticska-hearaimiumer
 	pos 90.694 -108.065
 	government Xapleaux
+	attributes exposed hot xapleaux
 	link Goxkotrik-feahvir
 	link Ibvicklidit-fourelia
 	link Ickewqirk-prouleah-cix
@@ -27530,6 +27646,9 @@ system Ticska-hearaimiumer
 	trade Medical 469
 	trade Metal 242
 	trade Plastic 477
+	hazard "Core Exposed Heat" 1
+	hazard "Core Heat Flare" 1200
+	hazard "Core Shadow Passing" 21000
 	object
 		sprite star/k0
 		period 10
@@ -27561,6 +27680,7 @@ system Ticska-hearaimiumer
 system Tidursangat
 	pos 167.20828 -549.25644
 	government Uninhabited
+	attributes korath
 	link Chikapmukti
 	asteroids "small rock" 13 2.5488
 	asteroids "medium rock" 63 3.5856
@@ -27584,7 +27704,6 @@ system Tidursangat
 	trade Medical 484
 	trade Metal 536
 	trade Plastic 281
-	attributes korath
 	object
 		sprite star/g3
 		distance 91.160221
@@ -28321,6 +28440,7 @@ system Vega
 system Vik-benoureal
 	pos 195.47178 -1.8426778
 	government Xapleaux
+	attributes exposed hot xapleaux
 	link Atke-babounriuer-rik
 	link Dygit-hourimaserai
 	link Dygit-jarobouillier-cot
@@ -28348,6 +28468,9 @@ system Vik-benoureal
 	trade Medical 648
 	trade Metal 338
 	trade Plastic 444
+	hazard "Core Exposed Heat" 1
+	hazard "Core Heat Flare" 1200
+	hazard "Core Shadow Passing" 21000
 	object
 		sprite star/k0
 		period 10
@@ -28375,6 +28498,7 @@ system Vik-benoureal
 system Vikinik-bounera
 	pos 14.027703 -9.0649
 	government Xapleaux
+	attributes exposed hot xapleaux
 	link Atch-werimoural-nikt
 	link Crxst-xialourum
 	link Icibvirk-gwolav-jek
@@ -28403,6 +28527,9 @@ system Vikinik-bounera
 	trade Medical 685
 	trade Metal 280
 	trade Plastic 443
+	hazard "Core Exposed Heat" 1
+	hazard "Core Heat Flare" 1200
+	hazard "Core Shadow Passing" 21000
 	object
 		sprite star/m4
 		period 10
@@ -29088,6 +29215,7 @@ system "World's End"
 system Xivik-beriloumi
 	pos 77.6944 102.935
 	government Xapleaux
+	attributes exposed hot xapleaux
 	link Ceffig-haforiluour-pik
 	link Kexo-Atch
 	link Rikt-pefaerilum
@@ -29113,6 +29241,9 @@ system Xivik-beriloumi
 	trade Medical 593
 	trade Metal 219
 	trade Plastic 436
+	hazard "Core Exposed Heat" 1
+	hazard "Core Heat Flare" 1200
+	hazard "Core Shadow Passing" 21000
 	object
 		sprite star/m0
 		period 10
@@ -29144,6 +29275,7 @@ system Xivik-beriloumi
 system Xivik-soubiae-tock
 	pos 56.805511 78.268333
 	government Xapleaux
+	attributes hot sheltered xapleaux
 	link Rikt-pefaerilum
 	asteroids "small rock" 5 5.796
 	asteroids "medium rock" 33 2.562
@@ -29169,6 +29301,8 @@ system Xivik-soubiae-tock
 	trade Medical 577
 	trade Metal 258
 	trade Plastic 421
+	hazard "Core Sheltered Heat" 1
+	hazard "Core Shadow Passing" 9000
 	object
 		sprite star/o-supergiant
 		distance 371

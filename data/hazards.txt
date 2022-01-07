@@ -8,33 +8,6 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-hazard "Ember Waste Base Heat"
-	"duration" 1 200
-	"strength" 0.25 1.75
-	"range" 20000
-	weapon
-		"relative heat damage" 0.00035
-
-hazard "Ember Waste Base Storm"
-	"duration" 300 1500
-	"strength" 1 3
-	"range" 10000
-	"environmental effect" "ion hazard" 20
-	weapon
-		"ion damage" 0.5
-		"shield damage" 5
-		"hull damage" 0.01
-
-effect "ion hazard"
-	sprite "effect/spark"
-		"frame rate" 30
-		"random start frame"
-	"lifetime" 120
-	"random lifetime" 60
-	"random spin" 10
-	"random velocity" 2
-
-
 
 hazard "Black Hole Accretion Disk"
 	"constant strength"
@@ -63,3 +36,68 @@ hazard "Black Hole Gravity"
 		"hit force" -25
 		"damage dropoff" 150 2500
 		"dropoff modifier" 0
+
+
+hazard "Core Exposed Heat"
+	"constant strength"
+	"range" 50000
+	weapon
+		"burn damage" 0.06
+		"relative heat damage" 0.0012
+#replace 0.0006 rel. heat damage with 0.00006 rel. burn damage if/when implemented.
+
+hazard "Core Heat Flare"
+	"duration" 10 60
+	"strength" 0.5 3
+	"range" 50000
+	weapon
+		"heat damage" 50
+		"burn damage" 1
+		"relative heat damage" 0.04
+#replace 0.04 rel. heat damage with 0.0004 rel. burn damage if/when implemented.
+
+hazard "Core Sheltered Heat"
+	"duration" 1
+	"strength" 0.65 0.85
+	"range" 50000
+	weapon
+		"burn damage" 0.06
+		"relative heat damage" 0.0012
+#replace 0.0006 rel. heat damage with 0.00006 rel. burn damage if/when implemented.
+
+hazard "Core Shadow Passing"
+	"duration" 10 360
+	"strength" 1 3
+	"range" 50000
+	weapon
+		"relative heat damage" -0.002
+
+
+
+hazard "Ember Waste Base Heat"
+	"duration" 1 200
+	"strength" 0.25 1.75
+	"range" 20000
+	weapon
+		"relative heat damage" 0.00035
+
+hazard "Ember Waste Base Storm"
+	"duration" 300 1500
+	"strength" 1 3
+	"range" 10000
+	"environmental effect" "ion hazard" 20
+	weapon
+		"ion damage" 0.5
+		"shield damage" 5
+		"hull damage" 0.01
+
+
+
+effect "ion hazard"
+	sprite "effect/spark"
+		"frame rate" 30
+		"random start frame"
+	"lifetime" 120
+	"random lifetime" 60
+	"random spin" 10
+	"random velocity" 2
