@@ -119,7 +119,7 @@ void Mission::Load(const DataNode &node)
 	// All missions need a name.
 	if(node.Size() < 2)
 	{
-		node.PrintTrace("No name specified for mission:");
+		node.PrintTrace("Error: No name specified for mission:");
 		return;
 	}
 	// If a mission object is "loaded" twice, that is most likely an error (e.g.
@@ -128,7 +128,7 @@ void Mission::Load(const DataNode &node)
 	// overriding of mission data from two different definitions.
 	if(!name.empty())
 	{
-		node.PrintTrace("Duplicate definition of mission:");
+		node.PrintTrace("Error: Duplicate definition of mission:");
 		return;
 	}
 	name = node.Token(1);
@@ -168,7 +168,7 @@ void Mission::Load(const DataNode &node)
 				if(!ParseContraband(grand))
 					grand.PrintTrace("Skipping unrecognized attribute:");
 				else
-					grand.PrintTrace("Warning: \"stealth\" and \"illegal\" are now mission-level properties:");
+					grand.PrintTrace("Warning: Deprecated use of \"stealth\" and \"illegal\" as a child of \"cargo\". They are now mission-level properties:");
 			}
 		}
 		else if(child.Token(0) == "passengers" && child.Size() >= 2)
