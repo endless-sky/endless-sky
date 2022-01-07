@@ -42,7 +42,7 @@ ship Shale
 	leak leak 50 60
 	explode "small explosion" 5
 	explode "tiny explosion" 10
-	description "Because the Gegno began splitting up and colonizing new worlds, they needed a smaller ship to do a lot of the grunt work instead of always relying on ther enourmous (and expensive) City-Ships. The Shale is the Gegno's design of a shuttle-ship, small and compact with the single purpose as a transport vessel, whether it be cargo, trade goods, travellers, or recruits to move off homeworld to pursue the efforts of the Vi and the Scin."
+	description "Because the Gegno began splitting up and colonizing new worlds, they needed a smaller ship to do a lot of the grunt work instead of always relying on their enormous (and expensive) City-Ships. The Shale is the Gegno's design of a shuttle-ship, small and compact with the single purpose as a transport vessel, whether it be cargo, trade goods, travellers, or recruits to move off homeworld to pursue the efforts of the Vi and the Scin."
 
 ship Dolomite
 	sprite ship/dolomite
@@ -175,10 +175,10 @@ ship Schist "Schist Light"
 
 ship Schist "Schist Med A"
 	sprite ship/schistmeda
-	thumbnail thumbnail/schistmedb
+	thumbnail thumbnail/schistmeda
 	add attributes
-		mass 24
-		"cargo space" 24
+		mass 22
+		"cargo space" 22
 		drag 0.2
 
 ship Schist "Schist Med B"
@@ -315,10 +315,12 @@ ship Hornfel "Hornfel Heavy"
 		mass 80
 		"cargo space" 80
 		drag 1.1
+		"weapon space" 30
 	outfits
 		"Ballistic Cannon"
 		"C17 Warzone Core"
 		"Chloeric Turret"
+		"Irate Cannon" 2
 		Hyperdrive
 		"R03 Warforge Battery"
 		"RG18 Torch Steering"
@@ -335,14 +337,14 @@ ship Gneiss
 		bunks 162
 		"cargo space" 84
 		drag 18
-		"engine capacity" 140
+		"engine capacity" 150
 		"fuel capacity" 500
 		"heat dissipation" 0.4
 		hull 22275
-		"outfit space" 742
+		"outfit space" 780
 		"required crew" 142
 		shields 0
-		"weapon capacity" 402
+		"weapon capacity" 412
 		weapon
 			"blast radius" 150
 			"shield damage" 1150
@@ -422,7 +424,7 @@ ship Protolith
 	explode "medium explosion" 35
 	explode "small explosion" 25
 	"final explode" "final explosion large"
-	description "Protoliths are decendents of the Gegno's early city ships used to colonize the nearby planets. They carry hundreds of battle-ready Vi both in and out of war, and carry huge cargo loads to supply depots. They are not typically used as warships but can be mounted with a small payload that can threaten most ships smaller than them, or fend off larger ships long enough for reinforcements to arrive."
+	description "Protoliths are descendents of the Gegno's early city ships used to colonize the nearby planets. They carry hundreds of battle-ready Vi both in and out of war, and carry huge cargo loads to supply depots. They are not typically used as warships but can be mounted with a small payload that can threaten most ships smaller than them, or fend off larger ships long enough for reinforcements to arrive."
 
 ship Halite
 	sprite ship/halite
@@ -608,7 +610,7 @@ ship Felsic
 	explode "small explosion" 28
 	explode "tiny explosion" 16
 	"final explode" "final explosion medium"
-	description "Felsics are essentially stripped Schists repurposed for a more engaging role. In place of the more heavy engines that the Vi had mounted on, they have more efficent engines, dedicating the remaining space to a larger cargo capacity. The Scin also outfitted them with two turrent mounts, allowing them to double as a secondary combat vessel, and an extra hand in anti-shell duty when needed."
+	description "Felsics are essentially stripped Schists repurposed for a more engaging role. In place of the more heavy engines that the Vi had mounted on, they have more efficient engines, dedicating the remaining space to a larger cargo capacity. The Scin also outfitted them with two turrent mounts, allowing them to double as a secondary combat vessel, and an extra hand in anti-shell duty when needed."
 
 ship Felsic "Felsic P"
 	sprite ship/felsicp
@@ -754,6 +756,8 @@ ship Muscovite "Muscovite P"
 		mass 41
 		drag 2.1
 		"solar collection" 1.72
+		"outfit space" 50
+		"cargo space" 60
 	outfits
 		"Acuit Artillery"
 		"C27 Campaign Core"

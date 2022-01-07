@@ -51,7 +51,7 @@ outfit "RG18 Torch Thruster"
 	"flare sprite" "effect/ion torch/medium"
 		"frame rate" 2.3999999
 	"flare sound" "ion torch medium"
-	description "Ion Torch Thrusters are the Gegno's equivalent of humanity's ion thrusters, but are still earlier in design and lacking in most deparments when compared. They have heavier frames, and their thrust output is a lot more chaotic and explosive, causing them to run notably hotter but require slightly less energy. The RG18 is the most common-sized thruster amongst Gegno Vi vessels, and a notable size at that."
+	description "Ion Torch Thrusters are the Gegno's equivalent of humanity's ion thrusters, but are still earlier in design and lacking in most departments when compared. They have heavier frames, and their thrust output is a lot more chaotic and explosive, causing them to run notably hotter but require slightly less energy. The RG18 is the most common-sized thruster amongst Gegno Vi vessels, and a notable size at that."
 
 outfit "RG18 Torch Steering"
 	category Engines
