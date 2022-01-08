@@ -604,12 +604,12 @@ mission "Unfettered: Prove Your Strength"
 					decline
 			`	"See? The monkey dares not even speak! He would not stand a chance in combat! Even our modest ship would bring him straight out of the sky! But we should not even try, or we could hurt the little monkey! But my friends, there is no shame for him to have... with a ship looking like that one I too would be hesitant to fight!" He seems very full of himself, perhaps someone should teach him a lesson.`
 			choice
-				`	"How dare you call the <ship>?"`
+				`	"What dare you say about the <ship>?"`
 				`	"I have no need to prove myself to a rodent."`
 					goto provoke
 				`	(Go, he is not worth it.)`
 					decline
-			`	"Oh so that was your ship indeed! I was not sure, given your reputation that you would fly in something like that. Your prowess is not exaggerated indeed then, for you managed to not crash on landing with such a thing," he says, then he turns to address the crowd once again.`
+			`	"Oh so that was your ship indeed! I was not sure, given your reputation, that you would fly in something like that. Your prowess is not exaggerated indeed then, for you managed to not crash on landing with such a thing," he says, then he turns to address the crowd once again.`
 
 			label provoke
 			`	"So the monkey can speak? Let us see if it can fight as well," he says, with a provocative tone.`
@@ -2825,7 +2825,7 @@ mission "Unfettered: Know Your Enemy"
 	on offer
 		conversation
 			`Going in the spaceport, you notice buildings are not as ravaged as before. Maybe this is due to a newly found interest for the Unfettered to restore their past. It could also be because many Hai came and brought with them technique, materials, and they themselves require housing too. Whatever the case is, this does not look like a place of conflict anymore. It looks like a place of hope.`
-			`	An Unfettered herald approaches you, and notices you looking all over the place, almost with wonder. "Incredible, is it not? To see hope on the face of buildings and on the face of people. I am here to say that it is time you learn how to communicate with us with the True language of the Hai. Not only with us, you also need to be able to make demands to the aliens up North, and there is only one appropriate language for it. We have learned that they too speak Hai, even if they disgrace our language by doing so."`
+			`	An Unfettered herald approaches you, and notices you looking all over the place, almost with wonder. "Incredible, is it not? To see hope on the face of buildings and on the face of people. I am here to say that it is time you learn how to communicate with us with the True language of the Hai. Not only with us, you also need to be able to make demands to the birds, and there is only one appropriate language for it. We have learned that they too speak Hai, even if they disgrace our language by doing so."`
 			branch speakhai
 				not "language: Wanderer"
 			choice
@@ -2843,12 +2843,12 @@ mission "Unfettered: Know Your Enemy"
 					goto translator
 			`	"Well to be frank we do not have to ability to teach all of its nuances to you in time. However we believe that our brethren do have some way of doing that, given how apt they are with languages, and how keen they are to meet new races."`
 			label translator
-			`	"We think our Hai brethren may indeed have what we need, but we need a way to obtain it. In the meantime, you should go and meet the aliens up North, and speak with them. They may not allow you to land on most of their planets. They may have grown distrusfull of newcomers, probably because of our actions. Go and see how pathethic these aliens are, and then you should probably go to He Yi about that translator."`
+			`	"We think our Hai brethren may indeed have what we need, but we need a way to obtain it. In the meantime, you should go and meet the aliens up North, and speak with them. They may not allow you to land on most of their planets. They may have grown distrusfull of newcomers, probably because of our actions. Go and see how pathethic these birds are, and then you should probably go to He Yi about that translator."`
 			branch neutral
 				has "reputation: Wanderer" >= 0"
 			choice
 				`	"But I am at war with them already."`
-			`	"We know. Here is a message in Hai that you will transmit to them. Hearing it, they should behave as though they have never seen you before... It is probably best you do not know what is in this message though. You need to make the Hai see this new alien race as an ambassador between our races, the Hai would not believe anything if it came from us. We do not want to drag our brethren into a conflict that is ours, we are the warriors, not them. But they still need to see how weak these aliens are."`
+			`	"We know. Here is a message in Hai that you will transmit to them. Hearing it, they should behave as though they have never seen you before... It is probably best you do not know what is in this message though. You need to make the Hai see this new alien race as an ambassador between our races, the Hai would not believe anything if it came from us. We do not want to drag our brethren into a conflict that is ours, we are the warriors, not them. But they still need to see how weak the birds are."`
 			action
 				"reputation: Wanderer" = 1
 			label neutral
@@ -2904,7 +2904,7 @@ mission "Unfettered: Bring Detainer"
 		conversation
 			`You go find He Yi in his war room, he does not seem too surprised to see you. "I expected you to come here. You most want one of us to act as 'diplomat' with the aliens from the North."`
 			`	You nod.`
-			`	"Well that is not our way, we do not ask, we take. Things need to be earned, in battle or otherwise, else they have no value. I  have obtained a translator, that is able to translate your backwards language to the one of the Hai. Because these aliens speak Hai, you will be able to communicate with them later. I was not sure you were unable to speak Hai, or that the aliens would not understand you, they seem to have grasped Hai very quickly, trough methods I prefer not to imagine."`
+			`	"Well that is not our way, we do not ask, we take. Things need to be earned, in battle or otherwise, else they have no value. I  have obtained a translator, that is able to translate your backwards language to the one of the Hai. Because these birds speak Hai, you will be able to communicate with them later. I was not sure you were unable to speak Hai, or that the birds would not understand you, they seem to have grasped Hai very quickly, trough methods I prefer not to imagine."`
 			`	"If you want this translator, you will have to earn it. There is something I want, I have heard tales of a weapon that would neutralize one's engines. Such weapon would be a very nice addition to my collection... Well I would obviously use it in battle when the time is right, too. Bring me one of these weapons and you will have earned this translator."`
 			choice
 				`	"Sure, I will go and bring it back for you."`
