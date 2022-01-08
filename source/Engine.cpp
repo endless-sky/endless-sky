@@ -1747,7 +1747,7 @@ void Engine::GenerateWeather()
 			activeWeather.emplace_back(weather, duration, duration, weather->RandomStrength(), origin);
 		}
 	};
-	Point origin = Pos();
+	Point origin = Point();
 	if(player.Flagship())
 		origin = player.Flagship()->Position();
 	// If this system has any hazards, see if any have activated this frame.
