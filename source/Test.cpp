@@ -520,7 +520,7 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 
 	// Print the callstack if we have any.
 	string stackMessage = "Call-stack:\n";
-	if(context.callstack.size() == 0)
+	if(context.callstack.empty())
 		stackMessage += "  No callstack info at moment of failure.";
 
 	for(auto i = context.callstack.rbegin(); i != context.callstack.rend(); ++i )
