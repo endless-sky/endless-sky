@@ -389,7 +389,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 		if(!target->Outfits().empty())
 			out << "This " + target->Noun() + " is equipped with:\n";
 		else
-			out << "This " + target->Noun() + " is not carrying any outfits.\n";
+			out << "This " + target->Noun() + " is not equipped with any outfits.\n";
 
 		// Split target->Outfits() into categories, then iterate over them in order.
 		map<string, map<const Outfit *, int>, CategoryNameCompare> outfitsByCategory;
