@@ -107,7 +107,7 @@ void Weather::Step(vector<Visual> &visuals)
 	// Environmental effects are created by choosing a random angle and distance from
 	// their origin, then creating the effect there.
 	double minRange = hazard->MinRange();
-	double maxRange = hazard->MaxRange();
+	double maxRange = SystemWide() ? hazard->MaxRange() : 10000.;
 
 	// Estimate the number of visuals to be generated this frame.
 	// MAYBE: create only a subset of possible effects per frame.

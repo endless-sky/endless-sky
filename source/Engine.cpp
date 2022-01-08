@@ -1257,7 +1257,7 @@ void Engine::EnterSystem()
 			}
 		};
 		for(const auto &hazard : system->Hazards())
-			CreateWeather(hazard, Point());
+			CreateWeather(hazard, flagship->Position());
 		for(const auto &stellar : system->Objects())
 			for(const auto &hazard : stellar.Hazards())
 				CreateWeather(hazard, stellar.Position());
@@ -1749,7 +1749,7 @@ void Engine::GenerateWeather()
 	};
 	// If this system has any hazards, see if any have activated this frame.
 	for(const auto &hazard : player.GetSystem()->Hazards())
-		CreateWeather(hazard, Point());
+		CreateWeather(hazard, player.Flagship()->Position());
 	for(const auto &stellar : player.GetSystem()->Objects())
 		for(const auto &hazard : stellar.Hazards())
 			CreateWeather(hazard, stellar.Position());
