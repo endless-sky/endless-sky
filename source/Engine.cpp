@@ -1747,9 +1747,12 @@ void Engine::GenerateWeather()
 			activeWeather.emplace_back(weather, duration, duration, weather->RandomStrength(), origin);
 		}
 	};
+	Point origin = Pos();
+	if(player.Flagship())
+		origin = player.Flagship()->Position();
 	// If this system has any hazards, see if any have activated this frame.
 	for(const auto &hazard : player.GetSystem()->Hazards())
-		CreateWeather(hazard, player.Flagship()->Position());
+		CreateWeather(hazard, origin);
 	for(const auto &stellar : player.GetSystem()->Objects())
 		for(const auto &hazard : stellar.Hazards())
 			CreateWeather(hazard, stellar.Position());
