@@ -39,7 +39,6 @@ private:
 		// Support operators for usage in containers like map and set.
 		bool operator==(const ActiveTestStep &rhs) const;
 		bool operator<(const ActiveTestStep &rhs) const;
-		bool operator>(const ActiveTestStep &rhs) const;
 	};
 
 private:

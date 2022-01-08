@@ -41,10 +41,3 @@ bool TestContext::ActiveTestStep::operator<(const ActiveTestStep &rhs) const
 {
 	return this->test < rhs.test || (this->test == rhs.test && this->step < rhs.step);
 }
-
-
-
-bool TestContext::ActiveTestStep::operator>(const ActiveTestStep &rhs) const
-{
-	return this->test > rhs.test || (this->test == rhs.test && this->step > rhs.step);
-}
