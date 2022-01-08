@@ -55,7 +55,7 @@ namespace {
 	// category names, by the order of those categories in the UI.
 	class CategoryNameCompare {
 	public:
-		bool operator()(const std::string &a, const std::string &b)
+		bool operator()(const std::string &a, const std::string &b) const
 		{
 			if(a == b)
 				return false;
