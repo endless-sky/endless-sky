@@ -519,25 +519,16 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	Files::LogError(message);
 
 	// Print the callstack if we have any.
-	auto stackDepth = context.callstack.size();
 	string stackMessage = "Call-stack:\n";
-	if(stackDepth == 0)
+	if(context.callstack.size() == 0)
 		stackMessage += "  No callstack info at moment of failure.";
-	while(stackDepth > 0)
+
+	for(auto i = context.callstack.rbegin(); i != context.callstack.rend(); ++i )
 	{
-		if(context.callstack.size() < stackDepth)
-			stackMessage += "At unknown test!\n";
-		else
-		{
-			// Indexing starts from 0, but the stack counter starts at 1.
-			auto testPrint = context.callstack[stackDepth - 1].test;
-			auto testStepNr = context.callstack[stackDepth - 1].step;
-			stackMessage += "- \"" + testPrint->Name() + "\", step: " + to_string(1 + testStepNr);
-			if(testStepNr < testPrint->steps.size())
-				stackMessage += " (" + STEPTYPE_TO_TEXT.at((testPrint->steps[testStepNr]).stepType) + ")";
-			stackMessage += "\n";
-		}
-		--stackDepth;
+		stackMessage += "- \"" + i->test->Name() + "\", step: " + to_string(1 + i->step);
+		if(i->step < i->test->steps.size())
+			stackMessage += " (" + STEPTYPE_TO_TEXT.at(((i->test->steps)[i->step]).stepType) + ")";
+		stackMessage += "\n";
 	}
 	Files::LogError(stackMessage);
 
