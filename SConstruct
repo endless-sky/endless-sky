@@ -1,7 +1,7 @@
 import os
 import platform
 from SCons.Node.FS import Dir
-from SCons.Errors import SconsEnvironmentError
+from SCons.Errors import SConsEnvironmentError
 
 def pathjoin(*args):
 	return os.path.join(*args)
@@ -146,8 +146,7 @@ def RecursiveGlob(pattern, dir_name=buildDirectory):
 
 try:
     env.Tool('compilation_db')
-    env.CompilationDatabase()
-    env.Default('compile_commands.json')
+    env.Default(env.CompilationDatabase())
 # scons before 4.0.0 is used. In that case, simply don't provide a compilation database.
 except SConsEnvironmentError:
     pass
