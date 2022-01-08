@@ -72,6 +72,7 @@ using namespace std;
 
 namespace {
 	UniverseObjects objects;
+	Set<CustomSale> defaultCustomSales;
 	Set<Fleet> defaultFleets;
 	Set<Government> defaultGovernments;
 	Set<Planet> defaultPlanets;
@@ -141,6 +142,7 @@ void GameData::BeginLoad(bool onlyLoadData, bool debugMode)
 void GameData::FinishLoading()
 {
 	// Store the current state, to revert back to later.
+	defaultCustomSales = objects.customSales;
 	defaultFleets = objects.fleets;
 	defaultGovernments = objects.governments;
 	defaultPlanets = objects.planets;
@@ -280,6 +282,7 @@ const vector<string> &GameData::Sources()
 // Revert any changes that have been made to the universe.
 void GameData::Revert()
 {
+	objects.customSales.Revert(defaultCustomSales);
 	objects.fleets.Revert(defaultFleets);
 	objects.governments.Revert(defaultGovernments);
 	objects.planets.Revert(defaultPlanets);
@@ -490,7 +493,7 @@ const Set<Conversation> &GameData::Conversations()
 
 const Set<CustomSale> &GameData::CustomSales()
 {
-	return customSales;
+	return objects.customSales;
 }
 
 
