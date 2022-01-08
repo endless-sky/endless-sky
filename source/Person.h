@@ -33,11 +33,11 @@ public:
 	void Load(const DataNode &node);
 	// Finish loading all the ships in this person specification.
 	void FinishLoading();
-	
+
 	// Find out how often this person should appear in the given system. If this
 	// person is dead or already active, this will return zero.
 	int Frequency(const System *system) const;
-	
+
 	// Get the person's characteristics. The ship object is persistent, i.e. it
 	// will be recycled every time this person appears.
 	const std::list<std::shared_ptr<Ship>> &Ships() const;
@@ -54,12 +54,12 @@ public:
 	bool IsPlaced() const;
 	// Mark this person as being no longer "placed" somewhere.
 	void ClearPlacement();
-	
-	
+
+
 private:
 	LocationFilter location;
 	int frequency = 100;
-	
+
 	std::list<std::shared_ptr<Ship>> ships;
 	const Government *government = nullptr;
 	Personality personality;

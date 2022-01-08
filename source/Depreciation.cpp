@@ -52,19 +52,19 @@ void Depreciation::Load(const DataNode &node)
 	// Check if this is fleet or stock depreciation.
 	isStock = (node.Token(0) == NAME[1]);
 	isLoaded = true;
-	
+
 	for(const DataNode &child : node)
 	{
 		bool isShip = (child.Token(0) == "ship");
 		bool isOutfit = (child.Token(0) == "outfit");
 		if(!(isShip || isOutfit) || child.Size() < 2)
 			continue;
-		
+
 		// Figure out which record we're modifying.
 		map<int, int> &entry = isShip ?
 			ships[GameData::Ships().Get(child.Token(1))] :
 			outfits[GameData::Outfits().Get(child.Token(1))];
-		
+
 		// Load any depreciation records for this item.
 		for(const DataNode &grand : child)
 			if(grand.Size() >= 2)
@@ -138,7 +138,7 @@ void Depreciation::Init(const vector<shared_ptr<Ship>> &fleet, int day)
 	{
 		const Ship *base = GameData::Ships().Get(ship->ModelName());
 		++ships[base][day];
-		
+
 		for(const auto &it : ship->Outfits())
 			outfits[it.first][day] += it.second;
 	}
@@ -153,7 +153,7 @@ void Depreciation::Buy(const Ship &ship, int day, Depreciation *source)
 	for(const auto &it : ship.Outfits())
 		for(int i = 0; i < it.second; ++i)
 			Buy(it.first, day, source);
-	
+
 	// Then, check the base day for the ship chassis itself.
 	const Ship *base = GameData::Ships().Get(ship.ModelName());
 	if(source)
@@ -173,7 +173,7 @@ void Depreciation::Buy(const Ship &ship, int day, Depreciation *source)
 			day -= MAX_AGE;
 		}
 	}
-	
+
 	// Increment our count for this ship on this day.
 	++ships[base][day];
 }
@@ -185,7 +185,7 @@ void Depreciation::Buy(const Outfit *outfit, int day, Depreciation *source)
 {
 	if(outfit->Get("installable") < 0.)
 		return;
-	
+
 	if(source)
 	{
 		// Check if the source has any instances of this outfit.
@@ -203,7 +203,7 @@ void Depreciation::Buy(const Outfit *outfit, int day, Depreciation *source)
 			day -= MAX_AGE;
 		}
 	}
-	
+
 	// Increment our count for this outfit on this day.
 	++outfits[outfit][day];
 }
@@ -215,16 +215,16 @@ int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day) cons
 {
 	map<const Ship *, int> shipCount;
 	map<const Outfit *, int> outfitCount;
-	
+
 	for(const shared_ptr<Ship> &ship : fleet)
 	{
 		const Ship *base = GameData::Ships().Get(ship->ModelName());
 		++shipCount[base];
-		
+
 		for(const auto &it : ship->Outfits())
 			outfitCount[it.first] += it.second;
 	}
-	
+
 	int64_t value = 0;
 	for(const auto &it : shipCount)
 		value += Value(it.first, day, it.second);
@@ -255,7 +255,7 @@ int64_t Depreciation::Value(const Ship *ship, int day, int count) const
 	auto recordIt = ships.find(ship);
 	if(recordIt == ships.end() || recordIt->second.empty())
 		return DefaultDepreciation() * count * ship->ChassisCost();
-	
+
 	return Depreciate(recordIt->second, day, count) * ship->ChassisCost();
 }
 
@@ -286,13 +286,13 @@ int Depreciation::Sell(map<int, int> &record)
 	// If we're a planet, we start by selling the oldest, cheapest thing.
 	auto it = (isStock ? record.begin() : --record.end());
 	int day = it->first;
-	
+
 	// Remove one record from the source. If necessary, delete this
 	// record line or the entire record for this outfit.
 	--it->second;
 	if(!it->second)
 		record.erase(it);
-	
+
 	return day;
 }
 
@@ -303,11 +303,11 @@ double Depreciation::Depreciate(const map<int, int> &record, int day, int count)
 {
 	if(record.empty())
 		return count * DefaultDepreciation();
-	
+
 	// Depending on whether this is a planet's stock or a player's fleet, we
 	// should either start with the oldest item, or the newest.
 	map<int, int>::const_iterator it = (isStock ? record.begin() : --record.end());
-	
+
 	double sum = 0.;
 	while(true)
 	{
@@ -320,7 +320,7 @@ double Depreciation::Depreciate(const map<int, int> &record, int day, int count)
 		// Bail out if we've counted enough items.
 		if(!count)
 			break;
-		
+
 		// Increment the iterator in the proper direction.
 		if(isStock)
 		{
@@ -348,7 +348,7 @@ double Depreciation::Depreciate(int age) const
 		return 1.;
 	if(age >= MAX_AGE)
 		return FULL_DEPRECIATION;
-	
+
 	double daily = pow(DAILY_DEPRECIATION, age - GRACE_PERIOD);
 	double linear = static_cast<double>(MAX_AGE - age) / (MAX_AGE - GRACE_PERIOD);
 	return FULL_DEPRECIATION + (1. - FULL_DEPRECIATION) * daily * linear;

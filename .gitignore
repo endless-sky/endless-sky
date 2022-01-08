@@ -38,6 +38,7 @@ plugins/
 # IDEs (no support implied)
 .vscode
 .vs
+.metadata
 *.psess
 *.vsp
 *.vspx

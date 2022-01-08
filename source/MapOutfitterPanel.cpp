@@ -83,9 +83,9 @@ const ItemInfoDisplay &MapOutfitterPanel::CompareInfo() const
 const string &MapOutfitterPanel::KeyLabel(int index) const
 {
 	static const string MINE = "Mine this here";
-	if(index == 2 && selected && selected->Get("installable") < 0)
+	if(index == 2 && selected && selected->Get("minable") > 0.)
 		return MINE;
-	
+
 	static const string LABEL[3] = {
 		"Has no outfitter",
 		"Has outfitter",
@@ -127,15 +127,15 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 {
 	if(!system || !player.HasVisited(*system))
 		return numeric_limits<double>::quiet_NaN();
-	
+
 	auto it = player.Harvested().lower_bound(pair<const System *, const Outfit *>(system, nullptr));
 	for( ; it != player.Harvested().end() && it->first == system; ++it)
 		if(it->second == selected)
 			return 1.;
-	
+
 	if(!system->IsInhabited(player.Flagship()))
 		return numeric_limits<double>::quiet_NaN();
-	
+
 	// Visiting a system is sufficient to know what ports are available on its planets.
 	double value = -.5;
 	for(const StellarObject &object : system->Objects())
@@ -203,18 +203,23 @@ void MapOutfitterPanel::DrawItems()
 		auto it = catalog.find(category);
 		if(it == catalog.end())
 			continue;
-		
+
 		// Draw the header. If this category is collapsed, skip drawing the items.
 		if(DrawHeader(corner, category))
 			continue;
-		
+
 		for(const Outfit *outfit : it->second)
 		{
 			string price = Format::Credits(outfit->Cost()) + " credits";
-			
+
 			string info;
-			if(outfit->Get("installable") < 0.)
+			if(outfit->Get("minable") > 0.)
 				info = "(Mined from asteroids)";
+			else if(outfit->Get("installable") < 0.)
+			{
+				double space = outfit->Mass();
+				info = Format::Number(space) + (abs(space) == 1. ? " ton" : " tons") + " of space";
+			}
 			else
 			{
 				double space = -outfit->Get("outfit space");
@@ -226,7 +231,7 @@ void MapOutfitterPanel::DrawItems()
 				else
 					info += " of outfit space";
 			}
-			
+
 			bool isForSale = true;
 			unsigned storedInSystem = 0;
 			if(player.HasVisited(*selectedSystem))
@@ -259,7 +264,7 @@ void MapOutfitterPanel::DrawItems()
 			}
 			if(!isForSale && !storedInSystem && onlyShowSoldHere)
 				continue;
-			
+
 			const std::string storage_details =
 				storedInSystem == 0
 				? ""
@@ -318,7 +323,7 @@ void MapOutfitterPanel::Init()
 			catalog[it.second->Category()].push_back(it.second);
 			seen.insert(it.second);
 		}
-	
+
 	// Sort the vectors.
 	for(auto &it : catalog)
 		sort(it.second.begin(), it.second.end(),

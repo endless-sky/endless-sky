@@ -41,31 +41,31 @@ class GameEvent {
 public:
 	// Determine the universe object definitions that are defined by the given list of changes.
 	static std::map<std::string, std::set<std::string>> DeferredDefinitions(const std::list<DataNode> &changes);
-	
-	
+
+
 public:
 	GameEvent() = default;
 	// Construct and Load() at the same time.
 	GameEvent(const DataNode &node);
-	
+
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
-	
+
 	const std::string &Name() const;
 	void SetName(const std::string &name);
-	
+
 	// Check if this GameEvent has been loaded (vs. simply referred to) and
 	// if it references any items that have not been defined.
 	bool IsValid() const;
-	
+
 	const Date &GetDate() const;
 	void SetDate(const Date &date);
-	
+
 	void Apply(PlayerInfo &player);
-	
+
 	const std::list<DataNode> &Changes() const;
-	
-	
+
+
 private:
 	Date date;
 	std::string name;

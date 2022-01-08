@@ -44,14 +44,14 @@ public:
 	// int AttributesHeight() const;
 	int OutfitsHeight() const;
 	int SaleHeight() const;
-	
+
 	// Provided by ItemInfoDisplay:
 	// void DrawDescription(const Point &topLeft) const;
 	virtual void DrawAttributes(const Point &topLeft) const override;
 	void DrawOutfits(const Point &topLeft) const;
 	void DrawSale(const Point &topLeft) const;
-	
-	
+
+
 private:
 	void UpdateAttributes(const Ship &ship, const Depreciation &depreciation, int day, const PlayerInfo *player);
 	void UpdateOutfits(const Ship &ship, const Depreciation &depreciation, int day, const PlayerInfo *player);
@@ -61,11 +61,11 @@ private:
 	std::vector<std::string> tableLabels;
 	std::vector<std::string> energyTable;
 	std::vector<std::string> heatTable;
-	
+
 	std::vector<std::string> outfitLabels;
 	std::vector<std::string> outfitValues;
 	int outfitsHeight = 0;
-	
+
 	std::vector<std::string> saleLabels;
 	std::vector<std::string> saleValues;
 	int saleHeight = 0;

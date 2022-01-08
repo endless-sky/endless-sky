@@ -34,8 +34,8 @@ class Depreciation {
 public:
 	// What fraction of its cost a fully depreciated item has left:
 	static double Full();
-	
-	
+
+
 public:
 	// Load or save depreciation records. Multiple records may be saved in the
 	// player info, under different names (e.g. fleet and stock depreciation).
@@ -45,12 +45,12 @@ public:
 	bool IsLoaded() const;
 	// If no records have been loaded, initialize with an entire fleet.
 	void Init(const std::vector<std::shared_ptr<Ship>> &fleet, int day);
-	
+
 	// Add a ship, and all its outfits, to the depreciation record.
 	void Buy(const Ship &ship, int day, Depreciation *source = nullptr);
 	// Add a single outfit to the depreciation record.
 	void Buy(const Outfit *outfit, int day, Depreciation *source = nullptr);
-	
+
 	// Get the value of an entire fleet.
 	int64_t Value(const std::vector<std::shared_ptr<Ship>> &fleet, int day) const;
 	// Get the value of a ship, along with all its outfits.
@@ -71,8 +71,8 @@ private:
 	// Depreciation of an item for which no record exists. If buying, items
 	// default to no depreciation. When selling, they default to full.
 	double DefaultDepreciation() const;
-	
-	
+
+
 private:
 	// This depreciation record is either a planet's stock or a player's fleet.
 	// If it's the stock, it sells you the most depreciated item first, and once
@@ -81,7 +81,7 @@ private:
 	bool isStock = true;
 	// Check if any data has been loaded.
 	bool isLoaded = false;
-	
+
 	std::map<const Ship *, std::map<int, int>> ships;
 	std::map<const Outfit *, std::map<int, int>> outfits;
 };
