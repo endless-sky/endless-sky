@@ -3771,7 +3771,7 @@ mission "Kindred Spirit 2"
 				`	"Thanks. But you'll want to be more careful in the future."`
 					goto forthright
 			label forgiveness
-			`	He looks relieved. "Thanks. Hey, I'll see you around again sometime. Have a good one!"`	
+			`	He seems relieved. "Thanks. Hey, I'll see you around again sometime. Have a good one!"`	
 					goto ending
 			label forthright
 			`	He looks down. "Yeah, you're right. I'll... I'll see you around sometime."`
@@ -3810,12 +3810,12 @@ mission "Kindred Spirit 3"
 			`	He chuckles. "Yeah. Always telling me like it is."`
 				goto continue
 			label continue
-			`	Rubbing his eyes, he nudges his drink aside. "Hey, <first>, can I talk to you about something?"`
+			`	Rubbing his eyes, he nudges his drink aside. "Hey, <first>, can I talk to you about something personal?"`
 			choice
 				`	"Go ahead."`
 					goto sure
 				`	"I don't think we're there yet."`
-			`	He shakes his head. "No... not like a date or anything. I need some advice about my parents. Like.. you know I ran away from home, right? From Heartland. My parents didn't want me to go to space. I got the loan without their permission, bought my ship, and left." He stares at his drink. "And... I told myself I'd contact them. But I still haven't."`
+			`	He shakes his head. "No, not... like a date or anything. I need some advice about my parents. Like.. you know I ran away from home, right? From Heartland. My parents didn't want me to go to space. I got the loan without their permission, bought my ship, and left." He stares at his drink. "And... I told myself I'd contact them. But I still haven't."`
 				goto story
 			label sure
 			`	"Thanks. So... you know I ran away from home, right? From Heartland. My parents didn't want me to go to space. I got the loan without their permission, bought my ship, and left." He stares at his drink. "And... I told myself I'd contact them. But I still haven't.`
