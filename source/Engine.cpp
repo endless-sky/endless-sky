@@ -2095,15 +2095,24 @@ void Engine::DoWeather(Weather &weather)
 		const Hazard *hazard = weather.GetHazard();
 		double multiplier = weather.DamageMultiplier();
 
-		// Get all ship bodies that are touching a ring defined by the hazard's min
-		// and max ranges at the hazard's origin. Any ship touching this ring takes
-		// hazard damage.
-		for(Body *body : shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange()))
+		// System wide hazards do not act like an explosion, and do not have a limiting range.
+		if(weather.SystemWide())
 		{
-			Ship *hit = reinterpret_cast<Ship *>(body);
-			double distanceTraveled = weather.Origin().Distance(hit->Position()) - hit->GetMask().Radius();
-			hit->TakeDamage(visuals, *hazard, multiplier, distanceTraveled, weather.Origin(), nullptr, hazard->BlastRadius() > 0.);
+			const System *system = player.GetSystem();
+			for(shared_ptr<Ship> ship: ships)
+				if(ship->GetSystem() == system)
+					ship->TakeDamage(visuals, *hazard, multiplier, 0., weather.Origin(), nullptr);
 		}
+		else
+			// Get all ship bodies that are touching a ring defined by the hazard's min
+			// and max ranges at the hazard's origin. Any ship touching this ring takes
+			// hazard damage.
+			for(Body *body : shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange()))
+			{
+				Ship *hit = reinterpret_cast<Ship *>(body);
+				double distanceTraveled = weather.Origin().Distance(hit->Position()) - hit->GetMask().Radius();
+				hit->TakeDamage(visuals, *hazard, multiplier, distanceTraveled, weather.Origin(), nullptr, hazard->BlastRadius() > 0.);
+			}
 	}
 }
 

@@ -94,6 +94,13 @@ const Point &Weather::Origin() const
 
 
 
+bool Weather::SystemWide() const
+{
+	return hazard->MaxRange() < 0.;
+}
+
+
+
 // Create any environmental effects and decrease the lifetime of this weather.
 void Weather::Step(vector<Visual> &visuals)
 {

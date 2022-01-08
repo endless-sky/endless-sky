@@ -38,6 +38,8 @@ public:
 	double DamageMultiplier() const;
 	// The origin of the hazard.
 	const Point &Origin() const;
+	// Checks if this applies in the same way on the entire system.
+	bool SystemWide() const;
 	// Create any environmental effects and decrease the lifetime of this weather.
 	void Step(std::vector<Visual> &newVisuals);
 	// Calculate this weather's strength for the current frame, to be used to find
