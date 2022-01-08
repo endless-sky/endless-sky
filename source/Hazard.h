@@ -37,6 +37,8 @@ public:
 	int RandomDuration() const;
 	// Generates a random double between the minimum and maximum strength of this hazard.
 	double RandomStrength() const;
+	// Checks if this applies in the same way on the entire system.
+	bool SystemWide() const;
 	// The minimum and maximum distances from the origin in which this hazard has an effect.
 	double MinRange() const;
 	double MaxRange() const;
@@ -53,7 +55,7 @@ private:
 	double minStrength = 1.;
 	double maxStrength = 1.;
 	double minRange = 0.;
-	// Hazards given no range have an effect on the entire system.
+	// Hazards without a given range have an effect on the entire system.
 	double maxRange = -1.;
 	bool deviates = true;
 

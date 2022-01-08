@@ -1257,7 +1257,7 @@ void Engine::EnterSystem()
 			}
 		};
 		for(const auto &hazard : system->Hazards())
-			CreateWeather(hazard, flagship->Position());
+			CreateWeather(hazard, hazard.Get()->SystemWide() ? flagship->Position() : Point());
 		for(const auto &stellar : system->Objects())
 			for(const auto &hazard : stellar.Hazards())
 				CreateWeather(hazard, stellar.Position());
@@ -1747,12 +1747,10 @@ void Engine::GenerateWeather()
 			activeWeather.emplace_back(weather, duration, duration, weather->RandomStrength(), origin);
 		}
 	};
-	Point origin = Point();
-	if(player.Flagship())
-		origin = player.Flagship()->Position();
 	// If this system has any hazards, see if any have activated this frame.
 	for(const auto &hazard : player.GetSystem()->Hazards())
-		CreateWeather(hazard, origin);
+		CreateWeather(hazard, 
+			(hazard.Get()->SystemWide() && player.Flagship()) ? player.Flagship()->Position() : Point());
 	for(const auto &stellar : player.GetSystem()->Objects())
 		for(const auto &hazard : stellar.Hazards())
 			CreateWeather(hazard, stellar.Position());

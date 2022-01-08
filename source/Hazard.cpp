@@ -114,6 +114,14 @@ double Hazard::RandomStrength() const
 
 
 
+// Checks if this applies in the same way on the entire system.
+bool Hazard::SystemWide() const
+{
+	return MaxRange() < 0.;
+}
+
+
+
 // The minimum and maximum distances from the origin in which this hazard has an effect.
 double Hazard::MinRange() const
 {

@@ -94,20 +94,13 @@ const Point &Weather::Origin() const
 
 
 
-bool Weather::SystemWide() const
-{
-	return hazard->MaxRange() < 0.;
-}
-
-
-
 // Create any environmental effects and decrease the lifetime of this weather.
 void Weather::Step(vector<Visual> &visuals)
 {
 	// Environmental effects are created by choosing a random angle and distance from
 	// their origin, then creating the effect there.
 	double minRange = hazard->MinRange();
-	double maxRange = !SystemWide() ? hazard->MaxRange() : 10000.;
+	double maxRange = !hazard->SystemWide() ? hazard->MaxRange() : 10000.;
 
 	// Estimate the number of visuals to be generated this frame.
 	// MAYBE: create only a subset of possible effects per frame.
