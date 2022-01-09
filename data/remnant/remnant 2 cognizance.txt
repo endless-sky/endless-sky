@@ -415,10 +415,10 @@ mission "Remnant: Cognizance 9"
 				`	"What do you mean?"`
 				`	"Let's get on with it."`
 					goto skipinfo
-			`	"Well, this place is fairly old. It was built shortly after we learned how to build Starlings - which is where we learned of the troubles of extending the cloaking field beyond small ships. I don't know the mechanics behind it, but it has taken close to two centuries of study and development for cloaks to be feasible on large ships. We had plenty of Puffins back then, and the techniques for building high-pressure systems were well understood. The Alphas hadn't shown any interest in gas giants or 'gaslined ships' as we call them, so having somewhere like this to hide in makes sense. Best place to hide is somewhere no one will look, right?" With that, he nods to himself, climbs to his feet, and heads towards the suit locker.`
+			`	"Well, this place is fairly old. It was built shortly after we learned how to build Starlings - which is where we learned of the troubles of extending the cloaking field beyond small ships. I don't know the mechanics behind it, but it has taken close to two centuries of study and development for cloaks to be feasible on large ships. We had plenty of Puffins back then, and the techniques for building high-pressure systems were well understood. The Alphas hadn't shown any interest in gas giants or 'gaslined ships' as we call them, so having somewhere like this to hide in makes sense. Best place to hide is somewhere no one will look, right?" With that, they nod to themself, climbs to his feet, and heads towards the suit locker.`
 			label skipinfo
 			`	"The station should be pressurized with a normal atmosphere, but it has been running on standby for ages with just yearly maintenance. It is time to get this place up and running again." With two of you operating your ship's loading equipment, everything is transferred in short order. You notice that the last crate includes a substantial amount of field rations and survival gear. It looks like Gavriil is planning on staying here for a while.`
-			`	As he heads off deeper into the station, you receive a notification that "Remnant Logistics" has made a deposit of <payment> to your account.`
+			`	As they head off deeper into the station, you receive a notification that "Remnant Logistics" has made a deposit of <payment> to your account.`
 
 
 
@@ -459,7 +459,7 @@ mission "Remnant: Cognizance 11"
 		has "Remnant: Cognizance 10: done"
 	on offer
 		conversation
-			`As you finish unloading, you spot Gavriil approaching. He gestures in greeting as he approaches. "Thanks for the delivery. We've got standard logistics routes set up now for the rest." He pauses and fishes a data crystal out of a pouch. "Could you take this to Prefect Taely on <planet>? She is overseeing some retrofits and will need this data.`
+			`As you finish unloading, you spot Gavriil approaching. They gesture in greeting as they approach. "Thanks for the delivery. We've got standard logistics routes set up now for the rest." They pause and fish a data crystal out of a pouch. "Could you take this to Prefect Taely on <planet>? She is overseeing some retrofits and will need this data.`
 				accept
 	on complete
 		conversation
@@ -501,7 +501,7 @@ mission "Remnant: Cognizance 12"
 	on complete
 		event "remnant: postverta reveal"
 		conversation
-			`You arrive at the hidden station on <planet> where Gavriil is waiting to offload the atmospheric gases. His team quickly hooks the Puffins up to ports on the bay walls, and hidden equipment starts pumping their contents into the system. After a few minutes, they disconnect the ships, and you and the Puffins head up to the Pelican to refill your reservoirs and ferry it down to the station.`
+			`You arrive at the hidden station on <planet> where Gavriil is waiting to offload the atmospheric gases. Their team quickly hooks the Puffins up to ports on the bay walls, and hidden equipment starts pumping their contents into the system. After a few minutes, they disconnect the ships, and you and the Puffins head up to the Pelican to refill your reservoirs and ferry it down to the station.`
 			`	As the last load starts to empty into the station, another tech comes up to you. "Captain, we just received a message from Prefect Chilia. He would like you to meet him on Viminal as soon as possible." You nod and start to run checks on the <ship>, making ready to leave once the cargo is done unloading.`
 
 
@@ -830,7 +830,7 @@ mission "Remnant: Cognizance 21"
 				`	"Dusk? Are names like that common?"`
 					goto duskname
 			label duskknown
-			`	In the cafeteria the scene hasn't changed much: There is still a large group of Remnant gathered around a cluster of projectors, with a constant stream of gestures discussing various points of the data. You understand enough to figure out that most of the conversation is deep into technical discussions of how the lifesign sensors might give the readings they do without having anything visible. The principle differences from before is that there is a stack of small bags and helmets next to the door and five of the Remnant present are wearing pressure suits. You recognize one of them as Dusk as they waves you over. "Captain <first>! The Embers crossed our paths once again. I am one of the researchers that you volunteered to transport to Ssil Vida."`
+			`	In the cafeteria the scene hasn't changed much: There is still a large group of Remnant gathered around a cluster of projectors, with a constant stream of gestures discussing various points of the data. You understand enough to figure out that most of the conversation is deep into technical discussions of how the lifesign sensors might give the readings they do without having anything visible. The principle differences from before is that there is a stack of small bags and helmets next to the door and five of the Remnant present are wearing pressure suits. You recognize one of them as Dusk as he waves you over. "Captain <first>! The Embers crossed our paths once again. I am one of the researchers that you have volunteered to transport to Ssil Vida."`
 			choice
 				`	"Good to see you again, Dusk."`
 					goto missiondescription
@@ -1130,10 +1130,10 @@ mission "Remnant: Cognizance 24"
 				`	"I know Gavriil."`
 					goto knowgavriil
 				`	"Who is that?"`
-			`	"Gavriil is a technician with a knack for balancing life support systems, especially in situations with multiple environments that need to be kept in harmony. As I recall, you worked with him to set up Esquiline station."`
+			`	"Gavriil is a technician with a knack for balancing life support systems, especially in situations with multiple environments that need to be kept in harmony. As I recall, you worked with them to set up Esquiline station."`
 				goto onwards
 			label knowgavriil
-			`	"Excellent. He is looking forward to working with you again. Now that the multi-environment facet of Esquiline is on track, he is ready to move on to a new challenge."`
+			`	"Excellent. They are looking forward to working with you again. Now that the multi-environment facet of Esquiline is on track, they are ready to move on to a new challenge."`
 			label onwards
 			`	Dusk scans down the list of equipment. "This will be enough to get things started. We will have regular supply runs start after you deliver these, so there should be just the initial load that we would like you to take. Can you do it?"`
 			choice
@@ -1144,11 +1144,11 @@ mission "Remnant: Cognizance 24"
 	on stopover
 		conversation
 			`	As you slip into the dock on Esquiline it quickly becomes apparent that the station is rapidly returning to full functionality, or perhaps even expanding beyond its original design: People are everywhere, and most of them are moving with purpose or diligently working on something. Several technicians cling to the ceiling overhead as they install new conduit. Despite the busy atmosphere, people frequently stop to glance out the windows, and a flutter of gestures break out whenever someone spots a void sprite. Seeing how busy it is, you understand the traffic controller's request that you refrain from taking up a berth for longer than necessary.`
-			`	You find Gavriil nearby, where he is going over a freshly installed hydroponics array with a pair of Remnant in tow. He quickly finishes and gestures farewell to the other two before walking over to you. "Greetings, Captain <first>! Welcome back to Esquiline. It has changed a bit since you were here last." His gestures have an overtone of pride. "Dusk told me that we have a new station to bring online again, so we should probably get moving.`
+			`	You find Gavriil nearby, where they are going over a freshly installed hydroponics array with a pair of Remnant in tow. They quickly finish and gesture farewell to the other two before walking over to you. "Greetings, Captain <first>! Welcome back to Esquiline. It has changed a bit since you were here last." Their gestures have an overtone of pride. "Dusk told me that we have a new station to bring online again, so we should probably get moving.`
 	on complete
 		payment 250000
 		conversation
-			`	The equipment is quickly unloaded as Gavriil quickly scouts some of the nearby rooms. "I have picked a suitable area to start in. If you could help move these over to that room there" - he gestures towards one of the large rooms with the platforms in it - "it would be much appreciated."`
+			`	The equipment is quickly unloaded as Gavriil quickly scouts some of the nearby rooms. "I have picked a suitable area to start in. If you could help move these over to that room there" - they gesture toward one of the large rooms with the platforms in it - "it would be much appreciated."`
 			choice
 				`	"I would rather not."`
 				`	"Sure."`
