@@ -1221,7 +1221,7 @@ mission "Remnant: Cognizance 25"
 	on complete
 		payment 250000
 		conversation
-			`Back on Ssil Vida, you check in with Gavriil and report the destruction of three Korath chasers that you located. "Three?" He signs quizzically. "That is an odd number. Raiders only carry two at most. I will report this right away. But in the meantime, come take a look at what I have set up." He leads you off towards the spaceport.`
+			`Back on Ssil Vida, you check in with Gavriil and report the destruction of three Korath chasers that you located. "Three?" They sign quizzically. "That is an odd number. Raiders only carry two at most. I will report this right away. But in the meantime, come take a look at what I have set up." They lead you off toward the spaceport.`
 
 
 mission "Remnant: Cognizance 26"
