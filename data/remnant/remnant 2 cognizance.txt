@@ -1558,7 +1558,7 @@ mission "Remnant: Cognizance 35"
 					goto cutpower
 				`	"Did we destroy the universe by powering up this station?"`
 			`	Gavrill smiles with amusement. "It is certainly a possibility. However, the fact that it was, as best we can tell, powered up previously without destroying the universe as far as we can tell suggests that it transported us rather than destroy everything else."`
-			`	He frowns at the communication panel. "Although everything I know about quantum mechanics refuses to countenance something being able to leave the universe so absolutely like this." He smiles again. "But that is the way of science! Finding new things in the universe that tells us that what we know is not so absolute."`
+			`	They frown at the communication panel. "Although everything I know about quantum mechanics refuses to countenance something being able to leave the universe so absolutely like this." They smile again. "But that is the way of science! Finding new things in the universe that tells us that what we know is not so absolute."`
 			choice
 				`	"I think we should focus on getting back."`
 					goto cutpower
