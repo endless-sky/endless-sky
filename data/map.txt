@@ -27216,7 +27216,7 @@ planet "Fenrir Station"
 planet Fertriery
 	attributes "requires: gaslining"
 	landscape land/nasa8
-	description `Fertriery is a fairly typical world with a particularly dense atmosphere with significant levels of chlorine and fluorine. The only unusual factor is the above-average temperatures, likely due to the decreased energy loss into the surrounding space.`
+	description `Fertriery is a fairly typical world with a particularly dense atmosphere that includes significant levels of chlorine and fluorine. The only unusual factor is the above-average temperatures, likely due to the decreased energy loss into the surrounding space.`
 	government Uninhabited
 	bribe 0
 	security 0
