@@ -269,7 +269,7 @@ bool CustomSale::Has(const Outfit *item) const
 
 
 
-bool CustomSale::Matches(const Planet *planet, const ConditionSet::Conditions conditions) const
+bool CustomSale::Matches(const Planet *planet, const ConditionSet::Conditions &conditions) const
 {
 	return ((source != nullptr) ? source == planet : locationFilter.Matches(planet)) && 
 		(toApply.IsEmpty() || toApply.Test(conditions));

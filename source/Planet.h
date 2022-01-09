@@ -89,9 +89,9 @@ public:
 	// Get the list of outfits available from the outfitter with their custom elements.
 	const Sale<Outfit> &Outfitter() const;
 	// Get the local price of this outfit.
-	double GetLocalRelativePrice(const Outfit *outfit, const ConditionSet::Conditions conditions) const;
+	double GetLocalRelativePrice(const Outfit *outfit, const ConditionSet::Conditions &conditions) const;
 	// Get the availability of this outfit.
-	CustomSale::SellType GetAvailability(const Outfit *outfit, const ConditionSet::Conditions conditions) const;
+	CustomSale::SellType GetAvailability(const Outfit *outfit, const ConditionSet::Conditions &conditions) const;
 	
 	// Get this planet's government. If not set, returns the system's government.
 	const Government *GetGovernment() const;

@@ -54,7 +54,7 @@ public:
 	
 	bool Has(const Outfit *item) const;
 
-	bool Matches(const Planet *planet, const ConditionSet::Conditions conditions) const;
+	bool Matches(const Planet *planet, const ConditionSet::Conditions &conditions) const;
 
 	void clear();
 
