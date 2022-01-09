@@ -1253,12 +1253,12 @@ mission "Unfettered: Pirate Help"
 				`	"All of this seems a bit vague to me, what exactly are you proposing?"`
 				`	"I am not interested in doing this."`
 					decline
-			`	"Once you are strong enough we want you to go to Allhome, which is on the border with the unfettered humans, coming from the whormhole. Once there, speak to the local governor, asking him if he has any... issues with unfettered humans. Then you will find those unfettered humans and help them instead. A good way would be to convince the Hai to give them a tribute of technology, so they have even less weapons! The border is easy for our Hai friends to defend, however it will take even more defenders if the unfettered humans are well equipped, with Hai technology."`
+			`	"Once you are strong enough we want you to go to Allhome, which is on the border with the unfettered humans, coming from the whormhole. Once there, speak to the local governor, asking him if he has any... issues with unfettered humans. Then you will find those 'pirates', as you call them, and help them instead. A good way would be to convince the Hai to give them a tribute of technology, so they have even less weapons! The border is easy for our Hai friends to defend, however it will take even more defenders if the unfettered humans are well equipped, with Hai technology."`
 			choice
 				`	"How will I show my strength to them ?"`
 				`	"I am not interested in doing this."`
 					decline
-			`	"I hear those unfettered humans attack are very frequent these days... And that planet is on the border of Hai space, it is a very likely target for unfettered humans, I also have... information indicating an attack will come, soon... It is easy to arrange this. Help them repel it and they will most probably trust you with the job. But this is not an urgent mission at all, <first>. You may return to your previous occupations if you do not feel strong enough yet, this is no urgent matter."`
+			`	"I hear those unfettered humans attack are very frequent these days... And that planet is on the border of Hai space, it is a very likely target for any pirates, I also have... information indicating an attack will come, soon... It is easy to arrange this. Help them repel it and they will most probably trust you with the job. But this is not an urgent mission at all, <first>. You may return to your previous occupations if you do not feel strong enough yet, this is no urgent matter."`
 			choice
 				`	"I will go to Allhome and help them repel this attack then, once I am strong enough to repell a pirate fleet."`
 					accept
@@ -2266,7 +2266,7 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 				`	"Whatever the distance to cross, I will do it."`
 				`	"I do not want to do long distance cargo mission, screw the Unfettered and your big ships."`
 					decline
-			`	"Good, then go to <destination> and take the materials there, on this exact location. Do not stay too long and try not to attract attention. These unfettered humans are relentless, like us, and they will not stop at anything if they learn you have this cargo. The place is a shipyard with major extracting operations, so we can easily arrange for you to get said supplies from there without you even having to see anyone."`
+			`	"Good, then go to <destination> and take the materials there, on this exact location. Do not stay too long and try not to attract attention. These green humans are relentless, like us, and they will not stop at anything if they learn you have this cargo. The place is a shipyard with major extracting operations, so we can easily arrange for you to get said supplies from there without you even having to see anyone."`
 			choice
 				`	"Time to go then."`
 					accept	
@@ -2910,7 +2910,7 @@ mission "Unfettered: Bring Detainer"
 				`	"Sure, I will go and bring it back for you."`
 					accept
 				`	"Where can I find said weapon?"`
-			`	"The ones who spoke to me about it are the Unfettered humans, and we know that they were moving a lot trough the automated killing machines territory, so you would do well to go and look East of here, maybe a bit more to the South, because there are legends speaking of an everlasting battlefield. One that never ends to make carnage, as if gods were laughing in the background, enjoying the show that seems without end."`
+			`	"The ones who spoke to me about it are the green humans, and we know that they were moving a lot trough the automated killing machines territory, so you would do well to go and look East of here, maybe a bit more to the South, because there are legends speaking of an everlasting battlefield. One that never ends to make carnage, as if gods were laughing in the background, enjoying the show that seems without end."`
 			choice
 				`	"Sure, I will go and bring it back for you."`
 					accept
@@ -2981,10 +2981,13 @@ ship "Shield Beetle Prototype" "Shield Beetle Prototype (Black)"
 		"cloaking fuel" .5
 		"cloaking heat" 10
 		"engine capacity" 5
+		"outfit space" 2
 	outfits
 		"Sunbeam" 4
+		"Flamethrower" 2
 		"Korath Detainer"
-		"Korath Grab-Strike" 2
+		"Korath Grab-Strike"
+		"Korath Banisher"
 		"Bullfrog Anti-Missile" 3
 		"Large Heat Shunt"
 		"Systems Core (Large)" 2
@@ -3002,15 +3005,15 @@ ship "Shield Beetle Prototype" "Shield Beetle Prototype (Black)"
 	gun 0 -7 "Korath Detainer"
 	gun -22 -102 "Sunbeam"
 	gun 22 -102 "Sunbeam"
-	gun -34 -68
-	gun 34 -68
+	gun -34 -68 "Flamethrower"
+	gun 34 -68 "Flamethrower"
 	gun -49 -38 "Sunbeam"
 	gun 49 -38 "Sunbeam"
 	gun -61 -14
 	gun 61 -14
 	turret -51 21.5 "Bullfrog Anti-Missile"
 	turret 51 21.5 "Bullfrog Anti-Missile"
-	turret -56.5 75 "Korath Grab-Strike"
+	turret -56.5 75 "Korath Banisher"
 	turret 56.5 75 "Korath Grab-Strike"
 	turret 0 85.5 "Bullfrog Anti-Missile"
 
@@ -3082,7 +3085,7 @@ mission "Unfettered: Start Of The War"
 					goto weapon
 				`	"I am honoured, but I do not have any more questions."`
 					accept
-			`	"You are aware of what keystones are, right? They are not believed to give luck for no reason, after all. I cannot tell you much more about it, but rest assured this sword would be more useful than a gun for boarding. It was given to me by the council many years ago, and it fits my responsibility as well as my character."`
+			`	"You are aware of what keystones are, right? They are not believed to give luck for no reason, after all. I cannot tell you much more about it, but rest assured this sword would be more useful than a gun for boarding. It was given to me by the council many years ago, matching my responsibility as well as my character."`
 				goto questions
 			label tejolis
 			`	"Tejolis is the goddess of apt thinking, which you could call intelligence. It is the aptitude to do good judgments, based on context. For instance, if you have time to choose a quick decision does not make sense, and a wrong decision is hard to justify. Likewise, when time is of the essence one must learn to do quick action, or be overwelmed by the actions of others, or lack of actions. I named this ship in her honor, just like I have a statue of her in my war room, because I follow her ways."`
@@ -3102,7 +3105,7 @@ mission "Unfettered: Start Of The War"
 			label helped
 			`	"Well as you know you brought the detainer to me in exchange for the translation device."`
 			label otherweapons
-			`	"For the other weapons, it was loot collected during the Korath raids that we preciously kept until now, for special occasions. The Sunbeams are the most recent addition to the ship, we got them from looting ships from the North. And then of course our anti missiles systems are the best for what is needed here: cheap and efficient countering of a lot of missiles."`
+			`	"For the other weapons, it was loot collected during the Korath raids that we preciously kept until now, for special occasions. The Sunbeams are the most recent addition to the ship, we got them from looting ships North. And then of course our anti missiles systems are the best for what is needed here: cheap and most importantly efficient countering of a lot of missiles. I do not have unlimited energy to spare... Then for the rest I do not need to introduce you to flamethrowers, they may be very crude but they are effective at overheating ships."`
 				goto questions
 			
 			label enough
