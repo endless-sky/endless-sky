@@ -2088,6 +2088,10 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 			shortestRange = min(multiplier * weapon->Range(), shortestRange);
 		}
 	}
+	// Also take into account the radius of this ship when doing minSafeDistance claculations
+	if(minSafeDistance != 0)
+		minSafeDistance += ship.Radius();
+	
 	// If this ship was using the missile boat AI to run away and bombard its
 	// target from a distance, have it stop running once it is out of ammo. This
 	// is not realistic, but it's a whole lot less annoying for the player when
@@ -2125,8 +2129,8 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 		}
 		return;
 	}
-
-	MoveToAttack(ship, command, target);
+	else
+		MoveToAttack(ship, command, target);
 }
 
 
