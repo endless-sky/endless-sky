@@ -1368,10 +1368,10 @@ mission "Remnant: Cognizance 30"
 	on complete
 		payment 250000
 		conversation
-			`Gavriil is waiting at the dock when the <ship>'s hatches finish cycling. "Welcome," he gestures. "It is good to have fresh minds to share <planet> with." The Remnant onboard stream out of the ship in a rush, each carrying a heavy pack of equipment. They gesture respect, and head off in different directions. Evidently they have studied the maps prior to arrival, as they all seem to know where they are going. Several stay behind with Gavriil and help unload the rest of the equipment.`
+			`Gavriil is waiting at the dock when the <ship>'s hatches finish cycling. "Welcome," they gesture. "It is good to have fresh minds to share <planet> with." The Remnant onboard stream out of the ship in a rush, each carrying a heavy pack of equipment. They gesture respect, and head off in different directions. Evidently they have studied the maps prior to arrival, as they all seem to know where they are going. Several stay behind with Gavriil and help unload the rest of the equipment.`
 			`	"We have made good progress since you were here last. We have managed to take over control of life support systems in several wings of rooms, and now those are run entirely from our own systems. Aside from relieving a tiny amount of load from the station's power core, it also means that the station could fail completely and we would still have safe living quarters to serve as base of operations."`
-			`	He pauses, and his gestures take on a tone of disgust. "Of course, we are working to avoid that. But having multiple backup systems is the key to survival in hostile conditions."`
-			`	He looks around at the few Remnant who have yet to vanish into the rest of the station. "Thank you for bringing more explorers." He hands you a data crystal. "I have already transmitted this data to Viminal, but I would appreciate it if you could take this to them to ensure there are no errors or data corruption in the transmission.`
+			`	They pause, and their gestures take on a tone of disgust. "Of course, we are working to avoid that. But having multiple backup systems is the key to survival in hostile conditions."`
+			`	They look around at the few Remnant who have yet to vanish into the rest of the station. "Thank you for bringing more explorers." They hand you a data crystal. "I have already transmitted this data to Viminal, but I would appreciate it if you could take this to them to ensure there are no errors or data corruption in the transmission.`
 
 
 
