@@ -552,26 +552,39 @@ void PlayerInfo::IncrementDate()
 				, Messages::Importance::Highest);
 
 	// Check what salaries and tribute the player receives.
-	int64_t total[2] = {0, 0};
-	static const string prefix[2] = {"salary: ", "tribute: "};
-	for(int i = 0; i < 2; ++i)
-	{
-		auto it = conditions.lower_bound(prefix[i]);
-		for( ; it != conditions.end() && !it->first.compare(0, prefix[i].length(), prefix[i]); ++it)
-			total[i] += it->second;
-	}
-	if(total[0] || total[1])
+	auto GetIncome = [&](string prefix) {
+		int64_t total = 0;
+		auto it = conditions.lower_bound(prefix);
+		for( ; it != conditions.end() && !it->first.compare(0, prefix.length(), prefix); ++it)
+			total += it->second;
+		return total;
+	};
+	int64_t salariesIncome = GetIncome("salary: ");
+	int64_t tributeIncome = GetIncome("tribute: ");
+	FleetBalance b = MaintenanceAndReturns();
+	if(salariesIncome || tributeIncome || b.assetsReturns)
 	{
 		string message = "You receive ";
-		if(total[0])
-			message += Format::Credits(total[0]) + " credits salary";
-		if(total[0] && total[1])
+		if(salariesIncome)
+			message += Format::Credits(salariesIncome) + " credits salary";
+		if(salariesIncome && tributeIncome)
+		{
+			if(b.assetsReturns)
+				message += ", ";
+			else
+				message += " and ";
+		}
+		if(tributeIncome)
+			message += Format::Credits(tributeIncome) + " credits in tribute";
+		if(salariesIncome && tributeIncome && b.assetsReturns)
+			message += ",";
+		if((salariesIncome || tributeIncome) && b.assetsReturns)
 			message += " and ";
-		if(total[1])
-			message += Format::Credits(total[1]) + " credits in tribute";
+		if(b.assetsReturns)
+			message += Format::Credits(b.assetsReturns) + " credits based on outfits and ships";
 		message += ".";
 		Messages::Add(message, Messages::Importance::High);
-		accounts.AddCredits(total[0] + total[1]);
+		accounts.AddCredits(salariesIncome + tributeIncome + b.assetsReturns);
 	}
 
 	// For accounting, keep track of the player's net worth. This is for
@@ -582,7 +595,7 @@ void PlayerInfo::IncrementDate()
 
 	// Have the player pay salaries, mortgages, etc. and print a message that
 	// summarizes the payments that were made.
-	string message = accounts.Step(assets, Salaries(), Maintenance());
+	string message = accounts.Step(assets, Salaries(), b.maintenanceCosts);
 	if(!message.empty())
 		Messages::Add(message, Messages::Importance::High);
 
@@ -709,27 +722,38 @@ int64_t PlayerInfo::Salaries() const
 
 
 
-// Calculate the daily maintenance cost for all ships and in cargo outfits.
-int64_t PlayerInfo::Maintenance() const
+// Calculate the daily maintenance cost and generated income for all ships and in cargo outfits.
+PlayerInfo::FleetBalance PlayerInfo::MaintenanceAndReturns() const
 {
-	int64_t maintenance = 0;
+	FleetBalance b;
+
 	// If the player is landed, then cargo will be in the player's
 	// pooled cargo. Check there so that the bank panel can display the
 	// correct total maintenance costs. When launched all cargo will be
 	// in the player's ships instead of in the pooled cargo, so no outfit
 	// will be counted twice.
 	for(const auto &outfit : Cargo().Outfits())
-		maintenance += max<int64_t>(0, outfit.first->Get("maintenance costs")) * outfit.second;
+	{
+		b.maintenanceCosts += max<int64_t>(0, outfit.first->Get("maintenance costs")) * outfit.second;
+		b.assetsReturns += max<int64_t>(0, outfit.first->Get("income")) * outfit.second;
+	}
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsDestroyed())
 		{
-			maintenance += max<int64_t>(0, ship->Attributes().Get("maintenance costs"));
+			b.maintenanceCosts += max<int64_t>(0, ship->Attributes().Get("maintenance costs"));
+			b.assetsReturns += max<int64_t>(0, ship->Attributes().Get("income"));
 			for(const auto &outfit : ship->Cargo().Outfits())
-				maintenance += max<int64_t>(0, outfit.first->Get("maintenance costs")) * outfit.second;
+			{
+				b.maintenanceCosts += max<int64_t>(0, outfit.first->Get("maintenance costs")) * outfit.second;
+				b.assetsReturns += max<int64_t>(0, outfit.first->Get("income")) * outfit.second;
+			}
 			if(!ship->IsParked())
-				maintenance += max<int64_t>(0, ship->Attributes().Get("operating costs"));
+			{
+				b.maintenanceCosts += max<int64_t>(0, ship->Attributes().Get("operating costs"));
+				b.assetsReturns += max<int64_t>(0, ship->Attributes().Get("operating income"));
+			}
 		}
-	return maintenance;
+	return b;
 }
 
 
