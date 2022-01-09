@@ -1252,6 +1252,16 @@ mission "Remnant: Cognizance 26"
 
 
 mission "Remnant: Cognizance 27"
+	name "Check in with Torza on Caelian"
+	description "Torza should have a team ready on Caelian."
+	source "Ssil Vida"
+	destination "Caelian"
+	to offer
+		has "Remnant: Cognizance 26: done"
+
+
+
+mission "Remnant: Cognizance 28"
 	name "Recover equipment from Baianus."
 	description "Torza has asked you to recover equipment from Baianus by <date>."
 	landing
@@ -1262,7 +1272,7 @@ mission "Remnant: Cognizance 27"
 	source "Caelian"
 	destination "Baianus"
 	to offer
-		has "Remnant: Cognizance 26: done"
+		has "Remnant: Cognizance 27: done"
 	on offer
 		conversation
 			`Your commlink springs to life as you enter final approach to Caelian, revealing Torza in a flurry of motion. He focuses momentarily on the camera. "Captain <first>, and flying a ship with a substantial lifting capacity, excellent! The Korath have discovered one of our forward operating bases, and we need help evacuating it now. It is located on Baianus in the Parca system. There is 20 people and 280 cubic meters of equipment to retrieve. The Korath have setup a blockade, so you will need something reasonably fast to get through it. You can kill them or not, as you wish, but the primary task is evacuating the outpost. Embers speed your flight, Captain."`
@@ -1284,7 +1294,7 @@ mission "Remnant: Cognizance 27"
 
 
 
-mission "Remnant: Cognizance 28"
+mission "Remnant: Cognizance 29"
 	name "Recover equipment from Baianus."
 	description "Torza has asked you to recover equipment from Baianus by <date>."
 	landing
@@ -1295,7 +1305,7 @@ mission "Remnant: Cognizance 28"
 	source "Baianus"
 	destination "Caelian"
 	to offer
-		has "Remnant: Cognizance 27: done"
+		has "Remnant: Cognizance 28: done"
 	on offer
 		conversation
 			`Punching through the Korath blockade finds you racing across the aurora filled skies of Baianus. You quickly slide into the designated approach track and start to enter your IFF code as a barrage of anti-air fire erupts from the ground to lance over your shoulder. As you drop into evasive maneuvers you spot the wreckage of a chaser tumbling to the ice behind you, and a firelance beam sears the air where the <ship> had just been. Moments later you get the confirmation signal that they have accepted your ID and are tracking your position.`
@@ -1325,7 +1335,7 @@ mission "Remnant: Cognizance 28"
 
 
 
-mission "Remnant: Cognizance 29"
+mission "Remnant: Cognizance 30"
 	name "Transport team to <planet>"
 	description "Torza has tasked you with transporting a team of technicians to <destination>."
 	blocked `You check in with Torza, who glances at his commlink. "You will need a ship with space for 15 people and 30 cubic meters of cargo."`
@@ -1334,7 +1344,7 @@ mission "Remnant: Cognizance 29"
 	source "Caelian"
 	destination "Ssil Vida"
 	to offer
-		has "Remnant: Cognizance 28: done"
+		has "Remnant: Cognizance 29: done"
 	on offer
 		conversation
 			`You walk into the cafeteria to find a group of Remnant looking tired but pleased with themselves. Torza is striding among them with a tray filled with bottles, handing them out. "Good work, everyone. Excellent pacing on that run." He turns towards you. "And right on schedule, the captain who will be transporting you over to Ssil Vida." He gestures for you to take a seat and offers you a bottle as well.`
@@ -1365,21 +1375,21 @@ mission "Remnant: Cognizance 29"
 
 
 
-mission "Remnant: Cognizance 30"
+mission "Remnant: Cognizance 31"
 	name "Deliver data crystal to <planet>"
 	description "Gavriil has asked you to take a data crystal to <destination>."
 	landing
 	source "Ssil Vida"
 	destination "Viminal"
 	to offer
-		has "Remnant: Cognizance 29: done"
+		has "Remnant: Cognizance 30: done"
 	on complete
 		conversation
 			`Not knowing who to deliver the data crystal to, you take it to the information desk. The Remnant currently working there gestures that they have been expecting it and thanks you for delivering it. As you leave the information desk, your commlink chimes with a message from Prefect Chilia: he would like to speak with you, and is currently in the spaceport cafeteria.`
 
 
 
-mission "Remnant: Cognizance 31"
+mission "Remnant: Cognizance 32"
 	name "Pickup Refined Fuel"
 	description "Chilia has asked you to pick up a refined fuel from <planet> by <date>."
 	deadline 19
@@ -1390,7 +1400,7 @@ mission "Remnant: Cognizance 31"
 	source "Viminal"
 	destination "Clink"
 	to offer
-		has "Remnant: Cognizance 30: done"
+		has "Remnant: Cognizance 31: done"
 		has "license: Remnant Capital"
 	on offer
 		conversation
@@ -1443,7 +1453,7 @@ mission "Remnant: Cognizance 31"
 
 
 
-mission "Remnant: Cognizance 32"
+mission "Remnant: Cognizance 33"
 	name "Drop off refined fuel"
 	description "Deliver the refined fuel to <destination> by <date>."
 	landing
@@ -1454,7 +1464,7 @@ mission "Remnant: Cognizance 32"
 	source "Clink"
 	destination "Ssil Vida"
 	to offer
-		has "Remnant: Cognizance 31: done"
+		has "Remnant: Cognizance 32: done"
 	on offer
 		conversation
 			`Your reception is as friendly as <origin>'s reputation suggests: No one is there to meet you, and no one arrives to help load the cargo. All that greets you is a forlorn datapad mounted on a post in front of the pile of crates, requesting that you enter your pickup code to disarm the security sensors, as well as a statement that ships depart as soon as they are done loading. You enter the pickup code Chilia had sent you while you were in flight, load the <ship>, and get ready to head to <planet>.`
@@ -1481,14 +1491,14 @@ mission "Remnant: Cognizance 32"
 
 
 
-mission "Remnant: Cognizance 33"
+mission "Remnant: Cognizance 34"
 	name "Observe changes in Postverta"
 	description "Something is going on outside, and Dusk would like you to take a look."
 	landing
 	source "Ssil Vida"
 	waypoint "Postverta"
 	to offer
-		has "Remnant: Cognizance 32: done"
+		has "Remnant: Cognizance 33: done"
 	on offer
 		conversation
 			`Up in the control station Dusk and a small team of Remnant are busily working at a bunch of consoles. Alarms blink and are quickly dealt with, only to have new ones appear elsewhere. There is so much motion that it seems like there is twice as many of them. From a glance at the readings, it appears you brought the shipment of fuel just in time: the Aeon Cell is overloaded trying to take on the load from the fusion reactor, and most of their efforts have been directed toward carefully orchestrating rolling brown outs across the systems to keep everything minimally functional.`
@@ -1508,7 +1518,7 @@ mission "Remnant: Cognizance 33"
 
 
 
-mission "Remnant: Cognizance 34"
+mission "Remnant: Cognizance 35"
 	name "Postverta system sweep"
 	description "Conduct a sweep of nearby systems and return to <origin>."
 	landing
@@ -1519,7 +1529,7 @@ mission "Remnant: Cognizance 34"
 	waypoint "Egeria"
 	waypoint "Prosa"
 	to offer
-		has "Remnant: Cognizance 33: done"
+		has "Remnant: Cognizance 34: done"
 	on offer
 		conversation
 			`The Remnant have a shocked expression, and a couple of them are looking dazed. Most, however, seem to be handling the incursion fairly well. Dusk gestures eagerly to you. "Good to see you recovered quickly, <first>. We will take care of everyone here - we need you out there. Go do a sweep through each of the surrounding systems, and see if you can get a signal to any of the Remnant worlds. Our communicators have all lost connection, as have the isolated backups. So we need to re-establish communication promptly." He shakes his head. "I love meeting new beings, but they always manage to surprise."`
@@ -1561,14 +1571,14 @@ mission "Remnant: Cognizance 34"
 
 
 
-mission "Remnant: Cognizance 35"
+mission "Remnant: Cognizance 36"
 	name "De-activate Ssil Vida Power"
 	description "Accept this to signal everyone to cut the power."
 	job
 	repeat
 	source "Ssil Vida"
 	to offer
-		has "Remnant: Cognizance 34: done"
+		has "Remnant: Cognizance 35: done"
 		has "Remnant: Ssil Vida Active"
 	on accept
 		event "remnant: ssil vida deactivation"
@@ -1579,14 +1589,14 @@ mission "Remnant: Cognizance 35"
 
 
 
-mission "Remnant: Cognizance 36"
+mission "Remnant: Cognizance 37"
 	name "Activate Ssil Vida Power"
 	description "Accept this to signal everyone to restore the power."
 	job
 	repeat
 	source "Ssil Vida"
 	to offer
-		has "Remnant: Cognizance 34: done"
+		has "Remnant: Cognizance 35: done"
 		not "Remnant: Ssil Vida Active"
 	on accept
 		event "remnant: ssil vida activation"
@@ -1597,14 +1607,14 @@ mission "Remnant: Cognizance 36"
 
 
 
-mission "Remnant: Cognizance 37"
+mission "Remnant: Cognizance 38"
 	name "Take data to <planet>"
 	description "The rest of the Remnant need to know what is happening. Take this data to them on <destination>."
 	landing
 	source "Ssil Vida"
 	destination "Viminal"
 	to offer
-		has "Remnant: Cognizance 34: done"
+		has "Remnant: Cognizance 35: done"
 	on offer
 		event "remnant: cognizance salvage expansion"
 	on complete
