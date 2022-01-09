@@ -1174,11 +1174,11 @@ mission "Remnant: Cognizance 24"
 					goto movingon
 				`	"What did you get from them?"`
 			label remnantgain
-			`	You finish unloading the equipment into the room before Gavriil continues. "Well, the Korath have been around for a comparatively long time. So we asked for their astronomical dataset. The data we received was raw, uncorrected, and continuous data covering multiple tens of thousands of years of stellar observations. The data even includes data that likely corresponds to the destruction of some of their worlds during their civil war." He pauses, then continues. "Of course, we need to verify the data first. So far, though, it is checking out successfully against trusted data. If it can be validated, the data will massively expand the dataset our researchers can use to model and study the universe."`
+			`	You finish unloading the equipment into the room before Gavriil continues. "Well, the Korath have been around for a comparatively long time. So we asked for their astronomical dataset. The data we received was raw, uncorrected, and continuous data covering multiple tens of thousands of years of stellar observations. The data even includes data that likely corresponds to the destruction of some of their worlds during their civil war." They pause, then continue. "Of course, we need to verify the data first. So far, though, it is checking out successfully against trusted data. If it can be validated, the data will massively expand the dataset our researchers can use to model and study the universe."`
 			label movingon
 			`	Gavriil tucks the lifter away into a storage alcove. "Well, thank you for your help, <first>. That definitely sped up the process."`
 			label gavriilend
-			`	He looks around at the stacks of equipment, and turns to you. "This will keep me busy for a few days, but if you would be willing to do some patrols, it would be much appreciated. I will have details for you once I have a few things unpacked."`
+			`	They look around at the stacks of equipment, and turn to you. "This will keep me busy for a few days, but if you would be willing to do some patrols, it would be much appreciated. I will have details for you once I have a few things unpacked."`
 
 
 
