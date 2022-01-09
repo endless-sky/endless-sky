@@ -1247,7 +1247,7 @@ mission "Remnant: Cognizance 26"
 		outfit "Aeon Cell" -1
 		conversation
 			`Gavriil has you unload the Aeon Cell into a corner of a nearby bay. "Thank you, <first>! The station is running critically low of power, and this should help stabilize it. We will eventually need a full team out here as well as some fuel to get the main reactor running properly, but first we need to figure out exactly what it uses."`
-			`	He pulls out his commlink and checks a few things. "Go to Caelian and check in with Torza. He should have finished putting the team through their paces by the time you get there. See you soon, Captain!"`
+			`	They pull out their commlink and check a few things. "Go to Caelian and check in with Torza. He should have finished putting the team through their paces by the time you get there. See you soon, Captain!"`
 
 
 
