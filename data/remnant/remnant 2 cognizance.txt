@@ -1551,7 +1551,7 @@ mission "Remnant: Cognizance 35"
 				`	"How do we get back?"`
 					goto cutpower
 				`	"What happened to the long range communication?"`
-			`	"Well, that is a good question. We have, and still are, running diagnostics on them, and so far they are passing all their checks. The system safeties, isolation mechanisms, security monitoring, tamper-proofing, self-destruct systems, backup hardening..." He shakes his head, stymied.`
+			`	"Well, that is a good question. We have, and still are, running diagnostics on them, and so far they are passing all their checks. The system safeties, isolation mechanisms, security monitoring, tamper-proofing, self-destruct systems, backup hardening..." They shake their head, stymied.`
 			`	"Everything looks in perfect working order. The only problem is that the quantum pairs at the heart just do not seem to have a pair anymore. In terms of quantum mechanics, it seems that the rest of the universe quite simply does not exist."`
 			choice
 				`	"That seems problematic. How do we get back?"`
