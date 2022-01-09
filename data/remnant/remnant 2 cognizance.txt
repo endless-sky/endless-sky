@@ -1155,7 +1155,7 @@ mission "Remnant: Cognizance 24"
 					goto sure
 				`	"Why the rush?"`
 					goto rush
-			`	"Suit yourself, I have work to do." He quickly sets to moving the equipment to the desired room.`
+			`	"Suit yourself, I have work to do." They quickly set to moving the equipment to the desired room.`
 				goto gavriilend
 			label sure
 			`	"Thanks, many hands make light work." You quickly have all the equipment moved into the desired room.`
