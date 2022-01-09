@@ -1466,6 +1466,7 @@ mission "Remnant: Cognizance 33"
 	to offer
 		has "Remnant: Cognizance 32: done"
 	on offer
+		event "remnant: remove hidden"
 		conversation
 			`Your reception is as friendly as <origin>'s reputation suggests: No one is there to meet you, and no one arrives to help load the cargo. All that greets you is a forlorn datapad mounted on a post in front of the pile of crates, requesting that you enter your pickup code to disarm the security sensors, as well as a statement that ships depart as soon as they are done loading. You enter the pickup code Chilia had sent you while you were in flight, load the <ship>, and get ready to head to <planet>.`
 			`	As you are completing your checks, your sensors alert you to the arrival of a small fleet that seems to be maintaining orbit over this area. It looks like you might have to take steps to avoid observers right away.`

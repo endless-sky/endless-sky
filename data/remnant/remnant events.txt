@@ -244,20 +244,10 @@ event "remnant: cognizance peregrine"
 
 
 
-event "remnant: ssil vida area unvisted"
-	unvisit "Vaticanus"
-	unvisit "Egeria"
-	unvisit "Prosa"
-	unvisit "Diespiter"
-	unvisit "Statina"
-	unvisit "Postverta"
-	system Caeculus	
-		remove hidden
-	system Egeria
-		remove hidden
+event "remnant: remove hidden"
 	system Diespiter
 		remove hidden
-	system Levana
+	system Egeria
 		remove hidden
 	system Postverta
 		remove hidden
@@ -267,6 +257,16 @@ event "remnant: ssil vida area unvisted"
 		remove hidden
 	system Vaticanus
 		remove hidden
+
+
+
+event "remnant: ssil vida area unvisted"
+	unvisit "Diespiter"
+	unvisit "Egeria"
+	unvisit "Postverta"
+	unvisit "Prosa"
+	unvisit "Statina"
+	unvisit "Vaticanus"
 
 
 

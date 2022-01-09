@@ -334,35 +334,6 @@ mission "Remnant: Defense 2"
 
 
 
-mission "Remnant: Bounty"
-	job
-	repeat
-	name "Crippled Raider Bounty"
-	description "A crippled Korath ship is lurking in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
-	source
-		government "Remnant"
-	to offer
-		has "Remnant: Defense 2: done"
-		random < 60
-	npc kill
-		government "Korath"
-		personality coward target uninterested marked waiting
-		system
-			distance 1 2
-		fleet
-			names "korath"
-			cargo 3
-			variant
-				"Korath Raider (Crippled)"
-		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 300000
-		dialog "A Remnant military leader thanks you for hunting down the <npc>, and gives you the agreed-upon payment of <payment>."
-
-
-
 mission "Remnant: Defense 3"
 	landing
 	name "Remnant surveillance"
@@ -2470,35 +2441,6 @@ mission "Remnant: Salvage 6"
 
 
 
-mission "Remnant: Bounty 2"
-	job
-	repeat
-	name "Troublesome Raider Bounty"
-	description "A Korath ship is proving troublesome in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
-	source
-		government "Remnant"
-	to offer
-		has "Remnant: Salvage 4: offered"
-		random < 50
-	npc kill
-		government "Korath"
-		personality heroic vindictive target uninterested waiting marked
-		system
-			distance 1 2
-		fleet
-			names "korath"
-			cargo 3
-			variant
-				"Korath Raider (Hyperdrive)"
-		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 400000
-		dialog "A Remnant military leader thanks you for hunting down the Korath ship <npc>, and gives you the agreed-upon payment of <payment>."
-
-
-
 mission "Remnant: Expanded Horizons Quarg 1"
 	name "Visiting the Quarg"
 	description "Take Remnant researchers to <destination> to see the Quarg."
@@ -2837,31 +2779,6 @@ mission "Remnant: Broken Jump Drive 5"
 			`	With a pleased expression they break into song about mining the deeps for the mysteries of the sky. As best you can tell, they are trying to figure out the materials that the drive is made with, followed by experiments to replicate those materials.`
 			label end
 			`	"Our experiments await. May your search be fruitful!" they trill as they head off.`
-
-
-
-mission "Remnant: Broken Jump Drive job"
-	name "Broken Jump Drive Delivery"
-	description "The researchers on <planet> need another broken jump drive to continue their project."
-	job
-	repeat 4
-	to offer
-		has "Remnant: Broken Jump Drive 5: done"
-	source
-		government "Remnant"
-	destination
-		government "Remnant"
-		attributes outfitter
-		not distance 0
-	on visit
-		dialog phrase "broken jump drive on visit"
-	on complete
-		outfit "Jump Drive (Broken)" -1
-		"remnant: broken jump drive count" ++
-		payment 300000
-		"reputation: Remnant" ++
-		"Remnant: Broken Jump Drive job: offered" --
-		dialog "The research team quickly offloads the broken jump drive and pays you <payment> before hurrying back to their lab."
 
 
 
@@ -3692,30 +3609,6 @@ mission "Remnant: Expanded Horizons Astral 2"
 		conversation
 			`The journey back to <planet> was a lesson in galactic formation as the <ship> jumped through a steady stream of systems. Gradually, the brilliant density of stars that make up the inner core faded into the ominous and yet comfortingly familiar red glow of the Ember Waste. Finally, you slide into the approach patterns of <planet>, quickly tapping out your code into the IFF system and watching as the protective gaze of the anti-air emplacements sweep the skies around you for shadowing craft.`
 			`You settle onto your assigned pad, and within seconds Remnant technicians have resupply cables hooked up while a cheerful group greets Dawn before helping her unload her luggage and data crystals. "Well, <first>, it has been a good trip." She taps at her commlink. "I have transferred our expedition's logistics allotment of <payment> to you. And in case you're wondering what to do with your research laboratory, you can keep it. We always need fresh data, and if you are interested, you can check up on places designated in the job board. While I handled the science on this expedition, if you keep it installed your ship systems will automatically hire a scientist to run it." She nods her head in respect to you. "Thank you, and may the Embers watch over you." She turns and heads off into the flows of people.`
-
-
-
-mission "Remnant: Expanded Horizons Astral job"
-	job
-	repeat
-	name "Research Expedition to <waypoints>"
-	description "Travel to <waypoints> with a research laboratory to collect data, then return to <destination>."
-	source
-		government "Remnant"
-	waypoint
-		not attributes "pleiades"
-		not attributes "inaccessible"
-	to offer
-		has "Remnant: Expanded Horizons Astral 2: done"
-		random < 50
-	on offer
-		require "Research Laboratory"
-	on waypoint
-		dialog "Your scientist unpacks the laboratory and takes the requested observations. A short while later, they have the data compiled on a set of data crystals and inform you that everything is ready for departure."
-	on complete
-		payment 500000
-		"reputation: Remnant" ++
-		dialog "When you land, a researcher quickly retrieves the data crystals with the information about the surveyed system and hands you the logistics allotment of <payment>."
 
 
 
