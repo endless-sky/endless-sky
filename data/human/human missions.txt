@@ -3608,6 +3608,11 @@ mission "Repulsor failure"
 	landing
 	# Don't require the player to pay credits again if the player was already allowed to land when this mission triggered.
 	clearance
+	source
+		not attributes "station"
+		not attributes "gas giant"
+		not attributes "uninhabited"
+		not attributes "korath"
 	to offer
 		random < 8
 		credits >= 2000000
