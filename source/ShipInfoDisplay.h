@@ -35,7 +35,7 @@ public:
 	ShipInfoDisplay(const Ship &ship, const Depreciation &depreciation, int day, const PlayerInfo *player);
 	
 	// Call this every time the ship changes.
-	void Update(const Ship &ship, const Depreciation &depreciation, int day, const PlayerInfo* player = nullptr);
+	void Update(const Ship &ship, const Depreciation &depreciation, int day, const PlayerInfo* player);
 	
 	// Provided by ItemInfoDisplay:
 	// int PanelWidth();
