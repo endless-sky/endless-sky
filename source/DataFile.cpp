@@ -196,7 +196,7 @@ void DataFile::LoadData(const string &data)
 				node.tokens.emplace_back(data, tokenPos, endPos - tokenPos);
 			// This is not a fatal error, but it may indicate a format mistake:
 			if(isQuoted && c == '\n')
-				node.PrintTrace("Closing quotation mark is missing:");
+				node.PrintTrace("Warning: Closing quotation mark is missing:");
 
 			if(c != '\n')
 			{
