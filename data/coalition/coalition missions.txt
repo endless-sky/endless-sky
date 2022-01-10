@@ -120,7 +120,7 @@ mission "Coalition: Contributor"
 		log "Completed a lot of Coalition jobs and received permission to purchase civilian technology and ships."
 		log "Factions" "Saryds" `Saryds are an alien species who look suspiciously similar to the centaurs found in early human mythology. They prefer to live on worlds with as much green space as possible, and even their major cities are full of parks and gardens. Most Saryds live in small communes with up to a few dozen of them per house.`
 		log "Factions" "Kimek" `The Kimek are large insectoid aliens, and are members of the Coalition. They discovered spaceflight after the Saryds, but before the Arachi. They are intensely social creatures, preferring to live together in massive buildings with thousands of inhabitants, and many of their worlds have populations in the tens of billions, far more than any human world.`
-		log "Factions" "Arachi" `The spider-like Arachi were the last of the three Coalition species to discover interstellar travel. Most members of their society owe allegiance to one of the great Arachi "Houses," organizations that are somewhat similar to guilds and that each specialize in one particular form of industry or technology.`
+		log "Factions" "Arachi" `The spider-like Arachi were the last of the three Coalition species to discover interstellar travel. Most members of their society owe allegiance to one of the great Arach "Houses," organizations that are somewhat similar to guilds and that each specialize in one particular form of industry or technology.`
 		conversation
 			`Once again, when you exit your ship you are met by a member of each of the three Coalition species, wearing the golden circlets that mark them as Heliarchs. "Told we have been," says the Saryd, "that among us with great diligence and commitment, small tasks you have performed."`
 			`	The Kimek says, "Those who in our society's prosperity have invested, with our society's technology may be trusted."`
@@ -164,7 +164,7 @@ event "lost in coalition"
 
 mission "Coalition: Lost: Marker"
 	name "Foreign Aid"
-	description "The Heliarchs have noticed that you've lost your jump drive, being now stranded in Coalition space, and have offered to help. Head to <destination> to speak with them."
+	description "The Heliarchs have noticed that you've lost your jump drive, being now stranded in Coalition space, and have offered to help. Head to the <destination> to speak with them."
 	landing
 	source
 		near "Ekuarik" 1 100
@@ -176,7 +176,7 @@ mission "Coalition: Lost: Marker"
 			`You're approached by a Heliarch delegation shortly after you leave your ship.`
 			`	"Cautiously observed during the past few weeks, scans of your ship have been, Captain <last>," the Saryd begins.`
 			`	"Unlike previous scans, a jump drive in your ship, our scanners found not," the Kimek continues.`
-			`	"Though appreciate the work you here perform, we do, for you to be cut-off from the galaxy, we wish not," the Arach says. "Discussed much, our elders have, and to help you, they decided. To <destination> you must go, there discussed, the terms will be."`
+			`	"Though appreciate the work you here perform, we do, for you to be cut-off from the galaxy, we wish not," the Arach says. "Discussed much, our consuls have, and to help you, they decided. To the <destination> you must go, there discussed, the terms will be."`
 			choice
 				`	"By that you mean you'll get me another jump drive? That's pretty generous of you."`
 				`	"What? I lost my jump drive? You've gotta be kidding!"`
@@ -186,7 +186,7 @@ mission "Coalition: Lost: Marker"
 			label unaware
 			`	"A good thing that a watchful eye we keep, if noticed you had not," the Kimek says. "But even still, more careful with your outfits you should be."`
 			label end
-			`	You thank them for bringing you this information, and go back to your ship to prepare a route to <destination>.`
+			`	You thank them for bringing you this information, and go back to your ship to prepare a route to the <destination>.`
 				accept
 	to complete
 		never
@@ -195,7 +195,7 @@ mission "Coalition: Lost: Marker"
 
 mission "Coalition: Lost: Offer"
 	name "Jump Drive Loan"
-	description "The Heliarchs have provided you a jump drive to leave Coalition space. Bring another jump drive to <destination> by <date>, to replace the one you borrowed, or they will be extremely angered by you breaking their trust."
+	description "The Heliarchs have provided you a jump drive to leave Coalition space. Bring another jump drive to the <destination> by <date>, to replace the one you borrowed, or they will be extremely angered by you breaking their trust."
 	deadline 333
 	landing
 	source "Ring of Wisdom"
@@ -305,7 +305,7 @@ mission "Coalition Yottrite 3"
 	name "Neighbor's Mailbox"
 	description "Deliver the <cargo> to the sister world of <origin>, <destination>."
 	landing
-	cargo "Experimental Yottrite Samples" 5
+	cargo "experimental yottrite samples" 5
 	to offer
 		has "Coalition Yottrite 2: offered"
 	source "Bloptab's Furnace"
@@ -411,7 +411,7 @@ mission "Coalition Yottrite 6"
 			`Lugglop is waiting for you when you land and greets the two researchers as you help them get their things out of the ship.`
 			`	He points them to a hotel where he had a room prepared for them, and asks you to follow him to his office again.`
 			`	"Filled to the brim with cutting edge equipment, our facilities here and on the neighbor planet are. Alas, venture much into the theoretical field needed to study such rare elements, our personnel here does not."`
-			`	He shows you to his map again, this time pointing to a nearby Arachi world. "Once cracked some aspects of yottrite, the twins have, an expert in ship making, we will need," he says. "On <destination>, prepared one of their representatives, House Mallob has. Bring them here, you must."`
+			`	He shows you to his map again, this time pointing to a nearby Arach world. "Once cracked some aspects of yottrite, the twins have, an expert in ship making, we will need," he says. "On <destination>, prepared one of their representatives, House Mallob has. Bring them here, you must."`
 			`	You're about to head back to your ship when he hands you 200,000 credits. "Nearly forgot to pay you for this last service, I did."`
 				accept
 
@@ -430,7 +430,7 @@ mission "Coalition Yottrite 7"
 	on offer
 		conversation
 			`You're immediately hailed by House Mallob when your ship is entering the atmosphere of <origin>. They guide you through the planet, bringing you to what looks like a massive, castle-like structure, which appears to be made out of a similar material to that of Arach ships, sitting at the base of a mountain.`
-			`	You land on a large docking area, where some other ships are also conducting business. Stepping off of your ship you're greeted by what is unmistakingly an outfitter, and as you look around you spot some other large buildings dotting the surrounding area, with members of the Coalition going to and from them. The atmosphere feels like that of a small village turned into an outdoor shopping mall.`
+			`	You land on a large docking area, where some other ships are also conducting business. Stepping off of your ship you're greeted by what is unmistakably an outfitter, and as you look around you spot some other large buildings dotting the surrounding area, with members of the Coalition going to and from them. The atmosphere feels like that of a small village turned into an outdoor shopping mall.`
 			`	Shortly after landing you're greeted by an Arach wearing what you judge to be some sort of uniform. He takes a translation device out of his pocket and formally greets you. "Honored to have you as a guest, the great House Mallob is, Captain <first> <last>."`
 			choice
 				`	"Are you the shipwright I'll be taking to Lugglop?"`
@@ -486,7 +486,7 @@ mission "Coalition Yottrite 8"
 	destination "Pelubta Station"
 	on offer
 		conversation
-			`When you land, you receive a message from Lugglop, the Arach who you brought several Yottrite samples to.`
+			`When you land, you receive a message from Lugglop, the Arach to whom you brought several Yottrite samples.`
 			`	"Captain, some major findings, we have. Preparing a presentation about our research, to present in Ring of Wisdom, we are," he says. "Only, run out of pure samples, we have. Bring us one once more, would you?"`
 			choice
 				`	"Okay, I'll bring you a piece of yottrite once again."`
@@ -503,9 +503,9 @@ mission "Coalition Yottrite 8"
 
 mission "Coalition Yottrite 9"
 	name "Yottrite Presentation"
-	description "Transport Lugglop and his team, alongside <cargo>, to <destination>, where they will share with the Coalition's scientific community their findings on Yottrite."
+	description "Transport Lugglop and his team, alongside <cargo>, to the <destination>, where they will share with the Coalition's scientific community their findings on Yottrite."
 	passengers 6
-	cargo "Yottrite Presentation Materials" 6.14
+	cargo "yottrite presentation materials" 6.14
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
 		has "Coalition Yottrite 8: done"
@@ -513,7 +513,7 @@ mission "Coalition Yottrite 9"
 	destination "Ring of Wisdom"
 	on offer
 		conversation
-			`You meet Lugglop in the spaceport and follow him to meet with Nasilor, Alituri, and Pichiie, who are overseeing some workers place a few sealed metal crates inside a container and the yottrite sample you just brought here into another. They detail how they have prepared all the material they needed and now just need a transport to <destination>.`
+			`You meet Lugglop in the spaceport and follow him to meet with Nasilor, Alituri, and Pichiie, who are overseeing some workers place a few sealed metal crates inside a container and the yottrite sample you just brought here into another. They detail how they have prepared all the material they needed and now just need a transport to the <destination>.`
 			`	"If with us, you come, Captain, perhaps a better detailed description of the systems where the yottrite was found, you could provide," Nasilor says.`
 			`	"<payment>, I would pay you," Lugglop says.`
 			choice
@@ -535,7 +535,7 @@ mission "Coalition Yottrite 9"
 		conversation
 			`Immediately when you land, Lugglop gives you your payment of <payment>. You and the four researchers then follow some Heliarch agents that were waiting for you at the docks. You five are brought to an area akin to a theater with some type of podium on the stage. The seats are all taken by Heliarch agents.`
 			`	Lugglop's team apparently will wait until the contents of the two containers are brought here, so you're asked to describe the systems with supernovae where you encountered yottrite asteroids. This only lasts a few minutes, as the audience doesn't seem too keen on inquiring about details, though one particular Saryd did puzzle you when they asked about the state of the supernovas you visited. You tell them you don't know what they mean, and they press the topic no further.`
-			`	After you finish, and right as the materials for Lugglop's presentation arrives, you're escorted back to your ship by some agents. Several hours later, you're contacted by Lugglop, who says the presentation is finished, and his group is coming back to your ship. When they arrive, they each thank you for providing the means to perform their experiments. "Officially commended for our efforts, we were!" he says.` 
+			`	After you finish, and right as the materials for Lugglop's presentation arrives, you're escorted back to your ship by some agents. Several hours later, you're contacted by Lugglop, who says the presentation is finished, and his group is coming back to your ship. When they arrive, they each thank you for providing the means to perform their experiments. "Officially commended for our efforts, we were!" he says.`
 			`	"Though allowed to publicly share our findings, we are not still, invited to be part of the team here that will continue the research, we were," Pichiie adds. The Saryd twins say they will reside here for as long as the project continues, while Pichiie comments on how she'll often be taking trips to visit her family in House Mallob's property.`
 			`	"As for me, a job as overseer, I still have to perform," Lugglop says. "Stay here for a few days I will, but even with all the advanced equipment of this ring, still our Coalition's most capable, the smelters of Bloptab's Furnace are. In their optimal state they must be, if to deepen our knowledge on yottrite, we are. Return there shortly, I will."`
 			`	They thank you again for all your help and wish you safe travels as you continue exploring.`
@@ -713,7 +713,7 @@ mission "Kimek Student 3"
 
 mission "Kimek Student 4"
 	name "Transport Chikee"
-	description "Chikee, the young Kimek whom you've transported many times, has finally become a candidate for elevation to the rank of Heliarch. Bring him to <destination> by <date>."
+	description "Chikee, the young Kimek whom you've transported many times, has finally become a candidate for elevation to the rank of Heliarch. Bring him to the <destination> by <date>."
 	deadline
 	landing
 	passengers 1
@@ -727,7 +727,7 @@ mission "Kimek Student 4"
 		conversation
 			`You're contacted by Chikee when you land.`
 			`	"Captain <last>! Good news and another job for you, I have," he says, asking that you meet him in the spaceport.`
-			`	You head there, and he's already with his bags, prepared to board your ship. "Helped me a lot, House Idriss has. An audience with the Heliarch, on <destination> I have!"`
+			`	You head there, and he's already with his bags, prepared to board your ship. "Helped me a lot, House Idriss has. An audience with the Heliarch, on the <destination> I have!"`
 			`	He tells you that he needs to be there by <date>, and wastes no time as he heads into your ship.`
 				accept
 	on visit
@@ -750,7 +750,7 @@ mission "Coalition Outbreak 1"
 	description "Bring these <bunks> doctors, along with <cargo> to <destination> by <date>, where they will work to address a major viral outbreak"
 	deadline
 	passengers 75
-	cargo "Medical Supplies" 90
+	cargo "medical supplies" 90
 	to offer
 		has "Coalition: Contributor: done"
 		random < 5
@@ -782,7 +782,7 @@ mission "Coalition Outbreak 2"
 	name "Collect Vaccines"
 	description "Head to <stopovers>, where Saryd researchers have been working on a vaccine for the new virus, and deliver it to <destination> by <date>."
 	deadline
-	cargo "Vaccines" 80
+	cargo "vaccines" 80
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
 		has "Coalition Outbreak 1: done"
@@ -820,9 +820,9 @@ mission "Coalition Outbreak 2"
 
 mission "Coalition Outbreak 3"
 	name "Distribute Vaccines"
-	description "Accompanied by the three volunteer ships, head to the designated Kimek worlds, delivering vaccines to deal with the current viral oubreak, then return to <destination> by <date>."
+	description "Accompanied by the three volunteer ships, head to the designated Kimek worlds, delivering vaccines to deal with the current viral outbreak, then return to <destination> by <date>."
 	deadline
-	cargo "Vaccines" 80
+	cargo "vaccines" 80
 	to offer
 		has "Coalition Outbreak 2: done"
 	source "Ki Patek Ka"
@@ -838,7 +838,7 @@ mission "Coalition Outbreak 3"
 		conversation
 			`This time you're expected and are brought to a large conference room where many Saryds, and the occasional Arach, are waiting. A Kimek that is part of the team organizing the containment procedures comes in and says you will once again be transporting vaccines.`
 			`	"In a few hours, fully replicated, the vaccine samples will be. Load them onto your ships, we will. Deliver them to <stopovers>, you must."`
-			`	Everyone is then separated into groups. You're put with two Saryd captains and an Arachi who is wearing some protective suit of sorts that covers his entire body, making it somewhat difficult for him to walk.`
+			`	Everyone is then separated into groups. You're put with two Saryd captains and an Arach who is wearing some protective suit of sorts that covers his entire body, making it somewhat difficult for him to walk.`
 			`	The captains agree to follow your lead and deliver the vaccines along with you, so you all head back to your ships.`
 				accept
 	npc accompany save
@@ -855,8 +855,8 @@ mission "Coalition Outbreak 3"
 		payment 2593230
 		"coalition jobs" += 3
 		conversation
-			`You and the other captains are told to wait in one of several lines formed here. Your group chats with some others while you wait, and a few mention how their batch of vaccines was delivered to Arachi and Saryd space. Apparently many tourists had contracted the disease before flying to those areas.`
-			`	The line moves quickly, and once it's your turn, you're paid <payment>, and then switfly shoved along by the workers who are already paying the person who was behind you.`
+			`You and the other captains are told to wait in one of several lines formed here. Your group chats with some others while you wait, and a few mention how their batch of vaccines was delivered to Arach and Saryd space. Apparently many tourists had contracted the disease before flying to those areas.`
+			`	The line moves quickly, and once it's your turn, you're paid <payment>, and then swiftly shoved along by the workers who are already paying the person who was behind you.`
 			`	Looking back at the line, and seeing the sheer number of captains waiting for their share, it's no wonder the Kimek that paid you were extremely brief. As you come back to your ship, you see that a message was sent to you by the Coalition government. More specifically, it appears to have been sent by their Department of Health.`
 			`	"To all captains who helped in dealing with the recent viral outbreak, you have our gratitude and may rest tonight knowing you've contributed to the continued prosperity of our Coalition."`
 
@@ -896,8 +896,8 @@ mission "Kimek Gift"
 
 mission "Saryd Students 1"
 	minor
-	name "Acquire Arachi Rum"
-	description "Some Saryd students on <origin> have offered to pay you for bringing them a shipment of traditional Arachi rum, currently only sold on <destination>. To make it in time, the rum must be bought by <date>."
+	name "Acquire Arach Rum"
+	description "Some Saryd students on <origin> have offered to pay you for bringing them a shipment of traditional Arach rum, currently only sold on <destination>. To make it in time, the rum must be bought by <date>."
 	deadline
 	to offer
 		has "Coalition: First Contact: done"
@@ -924,7 +924,7 @@ mission "Saryd Students 1"
 			`	They all start laughing, some clearly finding your joke much funnier than you anticipated. Given the way they are stumbling on flat ground and the scent of alcohol that's permeated the air ever since one of them bumped into you, you realize why.`
 			`	"Fair enough. Not a common sight here, humans are, Captain," the one with a translation box says. "Asking for such a response, I was."`
 			label work
-			`	They tell you that they are students at Starlit University and will be graduating soon. They intend on throwing a party to celebrate and had the idea of buying some traditional Arachi rum for that.`
+			`	They tell you that they are students at Starlit University and will be graduating soon. They intend on throwing a party to celebrate and had the idea of buying some traditional Arach rum for that.`
 			`	"Stopped shipping it here, the Arachi have," another Saryd says, pulling on the translation box on his friend's neck and nearly yanking it off. "Happened with many other drinks, this also has."`
 			`	They explain that the rum is produced on <destination>, and that you'll probably have an easier time finding it there. Despite you not knowing for sure how many people they intend on inviting to this party, and the fact that you don't know how much a Saryd can drink, you still worry a bit when they say that "two tons should do." They also tell you that to make it in time for the party, the rum should be bought by <date>.`
 			choice
@@ -940,25 +940,25 @@ mission "Saryd Students 1"
 				`	"Sorry, but I'm against smuggling alcohol to students."`
 					decline
 	on visit
-		dialog `You ask around and are directed to a large refinery on one of the more populated cities here. The beer's price is impressive indeed, 5,642 credits per ton, but what is more impressive is how you worried about the students' irresposibility when they asked you to buy this when you yourself aren't responsible enough to have a bit over ten thousand credits to spend. Go earn some money, then return here.`
+		dialog `You ask around and are directed to a large refinery on one of the more populated cities here. The rum's price is impressive indeed, 5,642 credits per ton, but what is more impressive is how you worried about the students' irresponsibility when they asked you to buy this when you yourself aren't responsible enough to have a bit over ten thousand credits to spend. Go earn some money, then return here.`
 	on complete
 		payment -11284
 
 
 
 mission "Saryd Students 2"
-	name "Deliver Arachi Rum"
-	description "Now that you've bought the two tons of Arachi rum, deliver it to the Saryd students on <destination> by <date>."
+	name "Deliver Arach Rum"
+	description "Now that you've bought the two tons of Arach rum, deliver it to the Saryd students on <destination> by <date>."
 	landing
 	deadline
-	cargo "Arachi Rum" 2
+	cargo "arach rum" 2
 	to offer
 		has "Saryd Students 1: done"
 	source "Weir of Glubatub"
 	destination "Shadow of Leaves"
 	on offer
 		conversation
-			`You ask around and are directed to a large refinery on one of the more populated cities here. Apparently it's the original building where the Arachi rum was first produced.`
+			`You ask around and are directed to a large refinery on one of the more populated cities here. Apparently it's the original building where the Arach rum was first produced.`
 			`	You ask for two tons, avoiding giving the exact details of what it's for, as you do not wish to be held accountable for whatever some drunken Saryds may do, and pay the price for all the rum: 11,284 credits.`
 			`	The Arachi that take care to load the rum into your ship give you some odd looks, and when it's all done the manager tells you to try and slow down on the drinking.`
 				accept
@@ -974,7 +974,7 @@ mission "Saryd Students 2"
 mission "Saryd Census 1"
 	minor
 	name "Saryd Census"
-	description "Transport these <bunks> Saryds census workers to <destination>, where they will collect data on the population growth there."
+	description "Transport these <bunks> Saryd census workers to <destination>, where they will collect data on the population growth there."
 	passengers 17
 	to offer
 		has "Coalition: Contributor: done"
@@ -1239,8 +1239,8 @@ mission "Saryd Couple Follow-Up B"
 mission "Longcow Antibiotics 1"
 	minor
 	name "Longcow Antibiotics"
-	description "Arachi ranchers have asked you to pick up <cargo> on <stopovers>, then deliver them to <destination>."
-	cargo "Longcow Antibiotics" 7
+	description "Arach ranchers have asked you to pick up <cargo> on <stopovers>, then deliver them to <destination>."
+	cargo "longcow antibiotics" 7
 	to offer
 		has "Coalition: First Contact: done"
 		random < 35
@@ -1253,7 +1253,7 @@ mission "Longcow Antibiotics 1"
 		conversation
 			`You see some Arachi talking among themselves in the spaceport, occasionally glancing at and pointing at you.`
 			`	One of them finally comes to you and says, "Greetings, Captain. Interested in performing a cargo mission for us, are you?"`
-			`	She tells you that they are a cooperative of Arachi ranchers, explains that the safety and health regulations for their business, longcow ranching, were recently updated, and that they need someone to pick up the newest antibiotics for the cattle on <stopovers>.`
+			`	She tells you that they are a cooperative of Arach ranchers, explains that the safety and health regulations for their business, longcow ranching, were recently updated, and that they need someone to pick up the newest antibiotics for the cattle on <stopovers>.`
 			`	"A jump drive you have, so get them faster - and allow us to resume business faster - you would."`
 			choice
 				`	"You've found the perfect person for the job. I'm in."`
@@ -1262,7 +1262,7 @@ mission "Longcow Antibiotics 1"
 			`	The other Arachi come over to thank you after she signals to them that you've accepted to help. They explain that after you've picked up the antibiotics on <stopovers>, you'll have to drop them off on <planet> before wishing you a good trip.`
 				accept
 	on stopover
-		dialog `The dockworkers load <cargo> into your cargo hold after verifying you've been hired by the Arachi cooperative. A bit after the last crate has been placed, you're contacted by the Arachi, and they say you should bring the antibiotics to <destination>, where they will pay you <payment>.`
+		dialog `The dockworkers load <cargo> into your cargo hold after verifying you've been hired by the Arach cooperative. A bit after the last crate has been placed, you're contacted by the Arachi, and they say you should bring the antibiotics to <destination>, where they will pay you <payment>.`
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the longcow antibiotics hasn't entered the system yet. Better depart and wait for it.`
 	on complete
@@ -1275,7 +1275,7 @@ mission "Longcow Antibiotics 2"
 	name "Longcow Antibiotics"
 	description "Deliver the remaining <cargo> to <destination>, where some Arachi also work as longcow ranchers."
 	landing
-	cargo "Longcow Antibiotics" 1
+	cargo "longcow antibiotics" 1
 	to offer
 		has "Longcow Antibiotics 1: done"
 	source "Corral of Meblumem"
@@ -1284,7 +1284,7 @@ mission "Longcow Antibiotics 2"
 		conversation
 			`You're paid 421,000 credits when you land, but as you help the ranchers unload the antibiotics, they say that something is off.`
 			`	"Only 6 tons of antibiotics, we requested," one of them says. "That extra ton surplus, ours is not."`
-			`	She goes away for about ten minutes to contact the lab workers back on New Finding. When she comes back, she seemingly jokes with the other ranchers in the Arachi language, before talking to you.`
+			`	She goes away for about ten minutes to contact the lab workers back on New Finding. When she comes back, she seemingly jokes with the other ranchers in the Arach language, before talking to you.`
 			`	"Mixed up the cargo, they have. His own longcow ranch on <destination>, a cousin of mine has," she says. "Sent along with my own, his batch of antibiotics was."`
 			`	They contact the cousin in question and he asks that you transport his own part of the antibiotics to <destination>, where he will pay you <payment>.`
 				accept
@@ -1299,10 +1299,10 @@ mission "Longcow Antibiotics 2"
 
 mission "Arachi Orphans"
 	minor
-	name "Arachi Orphans"
-	description "Bring these 4 Arachi orphans, their caretaker, and their <cargo> to <destination>, where they will join a foster home."
+	name "Arach Orphans"
+	description "Bring these 4 Arach orphans, their caretaker, and their <cargo> to <destination>, where they will join a foster home."
 	passengers 5
-	cargo "Orphanage Belongings" 2
+	cargo "orphanage belongings" 2
 	to offer
 		has "Coalition: Contributor: done"
 		random < 45
@@ -1311,7 +1311,7 @@ mission "Arachi Orphans"
 	destination "Chosen Nexus"
 	on offer
 		conversation
-			`An elderly Arach beckons to you as you enter the spaceport. He is accompanied by four Arachi children, who all stand close to a large pile of luggage.`
+			`An elderly Arach beckons to you as you enter the spaceport. He is accompanied by four Arach children, who all stand close to a large pile of luggage.`
 			`	He explains that he used to run an orphanage here, but has now gotten too old for the job. He has arranged for the four kids to be transferred to a foster home on <destination>.`
 			`	"Take care of them, the Saryds there will," he says, patting the head of the youngest and shortest of the kids. "Retiring, I am, but abandon them, I will not. An apartment close to the foster home, I will purchase."`
 			`	He offers to pay you <payment> to bring the five of them and their <cargo> to <destination>.`
@@ -1326,7 +1326,7 @@ mission "Arachi Orphans"
 		conversation
 			`You help the old Arach caretaker and some workers take the luggage out of your ship then head to the orphanage.`
 			`	A Saryd couple runs the place and greets you and the old Arach when you get there. Aside from a few Saryd kids, you notice the place already has an Arach child and some Kimek too.`
-			`	After you make sure all their belongings are inside the foster house, the Arachi children head on inside to get acquainted with their new family. Their caretaker thanks you and hands you <payment> before heading inside himself.`
+			`	After you make sure all their belongings are inside the foster house, the Arach children head on inside to get acquainted with their new family. Their caretaker thanks you and hands you <payment> before heading inside himself.`
 
 
 
@@ -1392,6 +1392,257 @@ mission "Arachi Cartoonist 2"
 				accept
 			label noship
 			`	"Ah, I see. Well, just a reference it would be, so the name matters not, I suppose. Anyway, thanks again Captain."`
+
+
+
+mission "Coalition: Alpha Encounter"
+	minor
+	invisible
+	to offer
+		has "Coalition: First Contact: done"
+		has "remembrance day: offered"
+		random < 1
+	source
+		government "Coalition"
+		not attributes "station"
+		not planet "Secret Sky" "Remote Blue" "Bloptab's Furnace" "Ahr"
+	on offer
+		event "alitis freed" 1095
+		log "Minor People" "Alitis" `Alitis, formerly known as Athis, is an Alpha who lives in the Coalition. Centuries ago, he stole a jump drive from an alien ship and used it to explore, but after some sort of encounter in the galactic east, he decided to give up on his former life.`
+		conversation
+			`You're window-browsing a shop in the spaceport when you catch the scuff of too quick footsteps coming towards you. Before you can glance in that direction, you're suddenly tackled into the ground by someone astonishingly human-shaped. You try to get up, but whoever attacked you pins you down, pressing your face into the ground and holding your arms behind your back to restrain you. As you struggle against your attacker you manage to catch sight of long hair and then, with a flash of concern, a glimpse of green skin - an Alpha.`
+			`	You are not pressed for long though. You feel the Alpha's attention shift to the side you cannot see, as an Arach swoops in with a tackle. The Alpha lets go of your arms in an attempt to block the attack, but it does not prevent the Arach from bowling them clear off of you where the two begin to wrestle in your line of sight. The Alpha is a man and, surprisingly to you, despite his strength, it doesn't take long for the Arach Heliarch to restrain your attacker. The Arach firmly pins his arms to his torso with four legs, holds his hips down with two, and uses her last pair to lever herself until she rests her entire body weight into pinning the Alpha.`
+			`	A Saryd Heliarch approaches and tells you to keep your distance before interposing himself partially between you and your assailant. He then looks at the Alpha and asks through his translator box, "What reason for attacking this person, did you have?"`
+			`	The Alpha is still struggling to try and get out of the Arach's grip, and you notice an intricate gold necklace which has splayed across his shoulder and onto the floor in the scuffle, jangling in the quiet every time he struggles. At this point, everyone else has cleared out of the area and is giving the scene a wide berth. As you get to your feet he ignores the Saryd's question and looks at you intensely. "You're with the Navy, aren't you? Finally figured out I was here, thought you'd finish the job?"`
+			branch navy
+				has "license: Navy"
+			choice
+				`	"No, I'm not with the Navy. You could've just asked without slamming me to the ground."`
+					goto notnavy
+				`	"Is that why you attacked me?"`
+					goto detained
+			label navy
+			choice
+				`	"I am with the Navy, but I didn't come here looking for you."`
+				`	"Is that why you attacked me?"`
+					goto detained
+			`	"And I'm supposed to believe that crap?" He lashes out, trying again to knock the Arach off of him, but the agent only tightens the grip. She opens her mandibles, getting them close to the Alpha's neck. "Alright, alright, I get it!" the Alpha shouts, stopping his attempts to break free.`
+				goto detained
+			label notnavy
+			`	He stares at you for a moment, as if unsure if you're telling the truth. "What the hell are you doing here then? Did you just stumble onto this place?" He stops struggling, but the Arach agent doesn't loosen her grip.`
+			label detained
+			`	The Saryd walks closer to the Alpha, stomping his hoofs on the ground with each step. "Whatever your motivation was, a transgression, you have committed. Punished accordingly, you shall be," he says. "Kindly follow us to the detention facility, would you, Captain?" he asks you, but doesn't wait for an answer, as more agents arrive to escort you and the Alpha to the "detention facility."`
+			`	On your way there, you start feeling stings on your arms and legs, and realize the Alpha's tackle left you with some bruises. "Treat those, we will, after faced trial, your aggressor has," the Saryd says as you approach your destination: a building similar to a police station. The Alpha is brought before a Kimek that you guess is in charge of the facility. He asks you to give a testimony of what happened, with the Heliarch agents confirming what you say. "Your first offense in a long time this is, Alitis," the Kimek says, after checking a computer for the Alpha's data. "Three years in seclusion, your sentence is."`
+			`	After the short verdict, which seems to lack much of the due process you would expect in human space, the agents bring both you and the Alpha to a lower level of the building. This floor has several empty cells kept shut by thick, tough walls of some transparent material. While the cell block does appear to go further beyond this section and around a corner, the first few cells appear to be directly opposite a modest medical space, presumably used mostly for treating any injured prisoners without leaving the secure level. At present though, all of the cells appear to be empty, and the Heliarchs simply lock him in the second cell, where accessing his would not obstruct any other doorways. The agents then ask that you wait a few minutes for a medic to arrive so that they can take care of your bruises.`
+			`	You notice that cut into the transparent material of the walls are a series of small holes at head-height with a cover that can be slid across them, presumably to silence a prisoner if needed. By default, they appear to be left open, and the Heliarch agents have not closed the one on the Alpha's cell.`
+			`	Your eyes shift from the holes in the wall to the Alpha to find his eyes fixated on you, not looking away or even blinking. After you stare him down for a couple of seconds, he speaks up. "What is it, are you expecting some sort of apology? I'd consider my caution to be entirely justified, so you won't get one."`
+			choice
+				`	"Who are you? How did you even get here?"`
+				`	"What are you doing here in the Coalition?"`
+			`	He frowns at you. "I don't owe you any answers, cur. Shut up and wait for the law to bring the frail princess some band-aids and a lollipop."`
+			choice
+				`	"Are you so busy in that empty cell that you can't answer me?"`
+				`	"Tough talk for someone who wrestled a spider and lost."`
+			`	He leans forward, his legs twitching as if stopped mid-tackle, and he pauses, turning to look down the hallway to where the Heliarchs went. He backs up, slowing his breathing, and then sits down. "Alright. This may be the last time in three years I can have a proper conversation, so I will entertain you. My name... is Alitis. Over a century ago my kin stumbled upon an alien civilization beyond the Far North in conflict with bands of invaders. These invaders possessed drive capable of jumping between systems without the need for hyperspace links, technology that we greatly desired, for it could put us far outside of the reach of... you." He fixates his eyes on yours, ever so slightly closing his eyelids. "We explored the far reaches of the galaxy to the east, but found no place to call home. Our only choice was to return to the Dirt Belt where we knew of an enclave of more kin, only for the Navy," he spits on the ground, then looks at you again, "to find us. We evacuated, and my kin thought it wise to return to the east, but I knew better. I stole one of the drives my kin had along with a small ship and began traveling west. That is when I discovered the Coalition, and they have provided for me a home that I have been unable to find elsewhere in the galaxy."`
+			choice
+				`	"You 'knew better?' What do you mean?"`
+				`	"What, did you have a change of heart once you got here?"`
+			`	He gets up in a rush. "Full of questions, aren't you?" He approaches the wall again, in slow steps. "I was among the first of my kind. Athis, I was called then. I have traveled the galaxy for many centuries and witnessed many things. I have been ambushed, cornered many times; fear was not a stranger to me, for as soulless as your kind see me, we still feel. But when I traveled to the east, someone, or... something, rather, spoke to me. A voice with an immense weight. And for the first time, I felt something more than fear. I felt dread. So when my kin decided to return to the east, I was not so inclined to return with them."`
+			choice
+				`	"Voices in your head? Are you sure you weren't just imagining them?"`
+					goto imaginary
+				`	"What did the voice say?"`
+			`	He looks away from you. "You're here now, aren't you? This means you must have a device to jump beyond links as I did. Travel to the east and find out for yourself what the voices say. Find out if it classifies you as 'disposable' as well.`
+				goto end
+			label imaginary
+			`	He looks away from you. "No imaginary thing could have such an impact on me. You're here now, aren't you? This means you must have a device to jump beyond links as I did. Travel to the east and find out for yourself that the voices are real."`
+			label end
+			`	The Heliarchs inform you that the medic has arrived, and bring you further down the hallway to a room where they treat your bruises. They examine you briefly, then give you a tube with a thick liquid, almost like a gel, asking that you gently apply it on your wounds. Once you're done, they tell you that the pain should wear off within a few minutes, and an agent escorts you back out. Passing by his cell again, you see Alitis still standing with his back to the hallway, looking straight at the wall. The agent brings you to your ship, and thanks you for your cooperation.`
+				decline
+
+event "alitis freed"
+
+
+
+mission "Saryd University Lecture"
+	name "Transport Saryd Scientists"
+	description "Starlit University on <planet> is hosting a seminar on xenology. Transport a guest speaker there by <date>. Payment is <payment>."
+	passengers 1
+	deadline
+	to offer
+		random < 40
+		has "Coalition: First Contact: done"
+	source "Warm Slope"
+	destination "Shadow of Leaves"
+	on offer
+		conversation
+			`As you exit a restaurant in the spaceport, you notice a rumpled-looking Saryd staring at you. This is not particularly unusual, as consider what a strange sight you must be here in Coalition space. However, he then begins to gallop towards you, hailing you down.`
+			`	"Captain! Excited to finally meet you, I am. Heard of the human in our space, I have, but to see you myself, special it is."`
+			`	"A scientist, I am, and invitied to speak at a university seminar, I have been." This time, he speaks in a calmer tone of voice. "Be there by <date>, I must. The honor of transporting us to <planet>, will you give me?"`
+			choice
+				`	"What is the seminar about?"`
+					goto xeno
+				`	"Sure, I'd be glad to transport you."`
+					goto accept
+				`	"Sorry, I can't take transport jobs right now."`
+					decline
+			label xeno
+			`	"Funny you ask, it is. A xenologist, I am. Alien culture and physiology, I study, and the topic of the seminar, it is. Invited to give lectures on the subject, I have been. Take me there, will you?"`
+			choice
+				`	"Sure, I'd be glad to transport you."`
+				`	"Sorry, I can't take transport jobs right now."`
+					decline
+			label accept
+			`	"Wonderful!" he says. "Aelbris, I am." He soon gathers his things and boards your ship. As he enters, he seems fascinated by its structure and design. His gawking makes it difficult to get him to finally settle down into his bunk.`
+					accept
+	on complete
+		"coalition jobs" += 3
+		payment 25000
+		conversation
+			`During the trip, Aelbris was polite, if a little excited to have a human as his pilot. He asked many questions during the flight, which you answered as best you could. Once you and your passenger depart from your ship, Aelbris turns around.`
+			`	"Captain, that you must be very busy, I realize, but wondering if you could stay for the seminar, I was. You see, studying human space for years, I have been, but actually met a human, I had not. A great boon to our field to have a human guest speaker, it would be."`
+			choice
+				`	"What do I have to do there?"`
+					goto answer
+				`	"I don't think that I'd be a good representative of humanity."`
+					goto low
+				`	"How do you manage to study humanity without meeting any humans?"`
+					goto explanation
+				`	"Sure, I'd be glad to."`
+					goto yes
+				`	"Sorry, I don't have time."`
+					decline
+			label answer
+			`	"Answering some questions from the attendees, would you be comfortable with? Simple, they would be, about aspects of human society, physical structure, and the like, they would pertain to."`
+			choice
+				`	"Sure, I'd be glad to."`
+					goto yes
+				`	"Sorry, I don't have time."`
+					decline
+			label low
+			`	"Nonsense! Travel the galaxy, you do. A most knowledgable individual, surely you must be. Accept my offer, will you?"`
+			choice
+				`	"Sure, I'd be glad to."`
+					goto yes
+				`	"Sorry, I don't have time."`
+					decline
+			label explanation
+			`	"Close to Arachi space, humans are, so study radio and television signals from your part of the galaxy, we are able to. Faint, scattered broadcasts, sophisticated receivers collect, and the signals to us, Arachi colleagues relay. From these broadcasts, we learn. Help us learn more, would you?"`
+			choice
+				`	"Sure, I'd be glad to."`
+					goto yes
+				`	"Sorry, I don't have time."`
+					decline
+			label yes
+			`	"Thank you! A great honor, you have done our field of study." He motions you to follow him.`
+			`	The train you took to the university arrives remarkably quickly, and you are soon on your way towards a large building.`
+			`	You enter a room full of tables packed with citizens from across the Coalition. A stage is at the front, where a Kimek is setting up some sort of diorama. Your entrance immediately causes a stir, and several turn to look at you. Aelbris beams as he shows you to your table."`
+			`	"Now, unplanned, your visit is, so consult with the seminar organizers, I must. Be right back, I will."`
+			`	You wait for a while, until an Arach walks up to the stage. The box's volume is much louder than normal, and you can easily hear what is being spoken.`
+			`	"Pleased to announce that the 103rd Xenology Seminar, generously hosted by Starlit University, is now in session, I am. Noticed as you may have, in the presence of a very... unusual guest, we are. The honor of having <first> <last> of the Rutilicus system answer some questions at the end of today's seminar, we will have." The Arach gestures to you, as Aelbris sits down at your table.`
+			`	The first speaker, a Kimek, talks about human farming methods as they compare to other members of the Coalition. Strangely enough, you see him cite human news broadcasts and television shows as if they were academic papers. All of the broadcasts are hundreds of years out of date. Viewing your own society from the outside feels surreal.`
+			`	The seminar goes on for some time. A Saryd gives a surprisingly accurate lecture on the human body. An Arach goes into detail explaining the technological level of human ships. There are even occasional speeches given on supposed aliens to the east and north. Seeing as they have no direct evidence, however, the scientists can do little more than speculate. Once all the speakers have finished, Aelbris informs you that it is now your turn to answer their questions.`
+			choice
+				`	"Alright, let's go!"`
+					goto questions
+				`	"I don't want to do this anymore."`
+					goto scared
+			label scared
+			`	"To answer their questions, if you really don't want, I can't stop you, I suppose." Aelbris says with a sigh.`
+					decline
+			label questions
+			`	As soon as you walk up to the stage, several scientists in the crowd stand up out of their chairs. An Arach comes up to you on the stage, and explains that this is their way of asking questions. She selects a Saryd from the crowd.`
+			branch hai
+				has "First Contact: Hai: offered"
+			`	"Aliens besides the Quarg, are humans in contact with?"`
+			choice
+				`	"No, the only aliens humans know about are the Quarg."`
+					goto sad
+			label hai
+			`	"Aliens besides the Quarg, are humans in contact with?"`
+			choice
+				`	"Yes, humans are in contact with the Hai. They live to the north of human space, and we can visit them through a wormhole."`
+					goto "know"
+				`	"A few humans know about the Hai, but there's no official acknowledgment of their existence. They live to the north of human space, and we can visit them through a wormhole."`
+					goto "know"
+				`	"No, the only aliens humans know about are the Quarg."`
+					goto "sad"
+			label sad
+			`	At this several in the audience sound disappointed.`
+				goto nextquestion
+			label know
+			`	Several members of the audience are delighted. "Cooperation between different species, it is important to foster," says the Saryd who asked the question. An Arach asks you to point out where the Hai are on a galactic map, and you do so.`
+			label nextquestion
+			branch war
+				has "FWC End: completed"
+			`	The Arach selects another, this time a Kimek. "All of human space, united politically is it?"`
+			choice
+				`	"No, human space is split between the Republic in the north and the Free Worlds in the south."`
+				`	"No, human space is split between the Republic in the west, the Free Worlds in the south, and the Syndicate in the east. The Syndicate is technically part of the Republic, but they have a lot of autonomy."`
+			`	There are murmurs in the crowd, and several begin to write down notes on various devices."`
+				goto questionthree
+			label war
+			`	The Arach selects another, this time a Kimek. "All of human space, united politically is it?"`
+			choice
+				`	"Yes, all of human space is united under the Republic."`
+				`	"Yes, but there are internal subdivisions: the Free Worlds in the south, the Republic in the north, and the Syndicate in the east."`
+				`	"No. Technically all of human space is under the Republic, but the Free Worlds and Syndicate have significant autonomy."`
+			`	There are murmurs in the crowd, and several begin to write down notes on various devices."`
+			label questionthree
+			`	The Arach picks another Kimek. "Still a problem, is piracy in human space?"`
+			choice
+				`	"Yes, there are pirate planets on the fringes of human space."`
+				`	"Piracy was a big problem in the past, but now it's a relatively minor issue."`
+			`	"Stamped out, may human piracy soon be," says the Arach in a solemn tone of voice. She picks a Saryd for the next question.`
+			`	"A fairly comprehensive map of human space, we have." The Saryd brings out a star map of the galactic south. "But of the core, we know not. Inform us of the galaxy, can you?"`
+			branch korath
+				or
+					has "First Contact: Korathi Efreti: offered"
+					has "First Contact: Laki Nemparu: offered"
+					has "First Contact: Karek Fornati: offered"
+					has "First Contact: Setar Fort: offered"
+					has "Wanderers: Rek To Kor Efret: offered"
+			choice
+				`	"Sorry, I don't know what's there any more than you do."`
+			`	The Saryd walks away, disappointed.`
+				goto sorry
+			label korath
+			choice
+				`	(Tell them about the Korath.)`
+					goto tell
+				`	(Don't tell them about the Korath.)`
+					goto donttell
+			label donttell
+			`	"Sorry, I don't know what's there any more than you do."`
+			`	The Saryd walks away, disappointed.`
+				goto sorry
+			label tell
+			`	"An alien species known as the Korath live there. They're reptillian creatures whose space has been torn apart by fighting. There are four factions. The Kor Sestor and Kor Mereti have been fighting a civil war using autonomous robotic ships. The Kor Efreti have stayed out of the civil war, living under the Quarg's protection." At this there are hisses from several in the crowd. "The last faction, the Korath Exiles, have been banished to the Core by the Quarg, for refusing to give up their ability to manufacture jump drives. They are now raiding humanity for supplies."`
+			`	The crowd shows considerable interest at this last part. "Knowledge of the jump drive, a species besides the Quarg possesses? Great news, this is! Our struggle against the Quarg, we do not take up alone. Escape the cages of the Drak, do any other species?" The Arach does not seem to mind you answering another question.`
+			branch unfettered
+				has  "First Contact: Unfettered: offered"
+			choice
+				`	"Sorry, I don't know of any other species that does."`
+					goto sorry
+			label unfettered
+			choice
+				`	"There is a faction among the Hai, the Unfettered. They steal from the normal Hai, and try to get their hands on jump drives any way they can."`
+					goto unfortunate
+				`	"Sorry, I don't know of any other species that does."`
+					goto sorry
+			label unfortunate
+			`	"Driven to such desperation, it is unfortunate that our allies against the Quarg are. Powerful like the Coalition, hopefully one day they will be."`
+				goto exit
+			label sorry
+			`	The crowd's mood dampens a bit, but everyone is still quite exuberant as you leave the building. It is now night, and your eyes take a moment to adjust from the lecture hall's bright lights.  Aelbris meets up with you outside, bubbling with excitement.`
+			`	"Thank you, captain! Expanded our knowledge greatly, you have. Hope to see you again, I do. Safe travels!"`
+			`	After he shakes your hand, you say your goodbyes and board your ship.`
+				decline
+			label exit
+			`	The crowd's mood is exuberant as you leave the building. It is now night, and your eyes take a moment to adjust from the lecture hall's bright lights. Aelbris meets up with you outside, bubbling with excitement.`
+			`	"Thank you, captain! Expanded our knowledge greatly, you have. Hope to see you again, I do. Safe travels!"`
+			`	After he shakes your hand, you say your goodbyes and board your ship.`
+				decline
 
 
 
@@ -1597,4 +1848,4 @@ mission "Coalition: Council of Ahr: On Complete"
 			`A few minutes after the final representative leaves your ship, you receive your payment of 4,500,000 credits. It comes with a message from the royal family, with the symbols of all Arach houses on it. You recognize most from advertisements or offices on some planets, but it's your first time seeing the center one. You imagine it's the emblem of the royal family.`
 			scene "scene/councilofahr2"
 			`	"Greetings, Captain <last>. As the hosts of the Council of Ahr, we thank you for your assistance. Although certain that, to you, such kinds of jobs can appear mundane, it can be difficult, at times, to arrange for appropriate transportation for our compatriots from all great houses, so know that House Oberegt is deeply grateful for your cooperation."`
-				decline
+

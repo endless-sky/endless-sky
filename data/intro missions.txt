@@ -187,7 +187,9 @@ mission "Intro [1 Freighter]"
 	destination "Heartland"
 	to offer
 		has "Intro [0]: done"
-		has "ships: Light Freighter"
+		or
+			has "ships: Light Freighter"
+			has "ships: Heavy Freighter"
 		not "Intro [1 Transport]: offered"
 		not "Intro [1 Interceptor]: offered"
 	
@@ -315,7 +317,13 @@ mission "Intro [1 Interceptor]"
 	destination "Gemstone"
 	to offer
 		has "Intro [0]: done"
-		has "ships: Interceptor"
+		or
+			has "ships: Interceptor"
+			has "ships: Drone"
+			has "ships: Fighter"
+			has "ships: Light Warship"
+			has "ships: Medium Warship"
+			has "ships: Heavy Warship"
 		not "Intro [1 Transport]: offered"
 		not "Intro [1 Freighter]: offered"
 	npc save
