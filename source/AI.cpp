@@ -2080,7 +2080,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 			// Exploding weaponry that can damage this ship requires special
 			// consideration (while we have the ammo to use the weapon).
 			if(hasThisAmmo && weapon->BlastRadius() && !weapon->IsSafe())
-				minSafeDistance = max(weapon->BlastRadius() + weapon->TriggerRadius(), minSafeDistance);
+				minSafeDistance = max(weapon->SafeRange(), minSafeDistance);
 
 			// The missile boat AI should be applied at 1000 pixels range if
 			// all weapons are homing or turrets, and at 2000 if not.
