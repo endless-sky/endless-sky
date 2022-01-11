@@ -320,7 +320,6 @@ mission "Plunder Defense"
 	name "Return with spoils"
 	description `Defeat your rival pirates in Umbral, then return to <destination> with the spoils from the <origin> to confirm your loyalty.`
 	boarding
-	repeat
 	source
 		government "Merchant (Target)"
 	to offer
