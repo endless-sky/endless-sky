@@ -3789,7 +3789,7 @@ mission "Kindred Spirit 3"
 		credits >= 500000
 	on offer
 		conversation
-			`	You see Charlie through the window of a bar. He recognizes you and tips his drink. He looks drunk.`
+			`	You see a familiar face through the window of a bar. Charlie recognizes you and tips his drink. He looks drunk.`
 			choice
 				`	(Check on him.)`
 					goto checkin
