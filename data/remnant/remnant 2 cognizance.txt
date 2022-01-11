@@ -752,14 +752,14 @@ mission "Remnant: Cognizance 20"
 				`	"Definitely."`
 				`	"Maybe later."`
 					goto maybelater
-			`	A few commands on your commlink later, and recordings your ship automatically made from its sensors while in flight pop up on a second projector. Several others pull up their commlinks and start skimming over the attached sensor logs. Almost immediately one waves to get everyone's attention.`
+			`	A few commands on your commlink later, and recordings your ship automatically made from its sensors while in flight pop up on a second projector. Several others pull up their commlinks and start skimming over the attached sensor logs. Almost immediately, one waves to get everyone's attention.`
 			`	"Captain, was there anything unusual when you arrived there?"`
 			choice
 				`	"Yes, sensors reported life signs."`
 				`	"I don't remember. Did you notice something?"`
 			`	One of the Remnant pulls up the relevant section and puts it up on the projector. "Right here, the logs show that there is ambient life-signs all over the system, but nothing of significance shows up on the physical scanners." He frowns at the projector. "All the equipment status signals in the records are nominal, and both the check digits and data hashes match."`
 			choice
-				`	"So there is no problems with the data?"`
+				`	"So there are no problems with the data?"`
 				`	"Skip the technical jargon. What does it mean?"`
 					goto skiptech
 			`	Another Remnant nods. "Exactly. There is no problem with the data or the equipment, so one way or another, this is what it recorded. As such, either there is something here which we have never seen before, or there is something causing problems with conventional sensors." He looks around at the gathered Remnant and pauses as if focusing on something you cannot see or hear, then turns to you. "We have reached a consensus.`
@@ -788,17 +788,17 @@ mission "Remnant: Cognizance 20"
 				`	"Later."`
 					goto maybelater
 			label takemission
-			`	"Excellent. We will load our equipment racks on-board, and the equipment to go in them will be waiting for you on from pad D43A on <stopovers>. Once it is loaded, return here to pick up the team of researchers who will be going with you. Remember, you will need 5 bunks free as well as an on-board research laboratory to complement our equipment."`
+			`	"Excellent. We will load our equipment racks on-board, and the equipment to go in them will be waiting for you on pad D43A on <stopovers>. Once it is loaded, return here to pick up the team of researchers who will be going with you. Remember, you will need 5 bunks free as well as an on-board research laboratory to complement our equipment."`
 				accept
 			label maybelater
 			`	"Oh, that is unfortunate. Maybe some other time, then." The crowd makes various gestures of disappointment, and turn back to observing the projection and discussing their theories.`
 				defer
 	on stopover
 		conversation
-			`You land on pad D43A and sure enough, there is a team waiting to load a bunch of equipment into the racks. Within minutes they are done loading, and cheerfully wave as they head off.`
+			`You land on pad D43A and sure enough, there is a team waiting to load a bunch of equipment into the racks. Within minutes they are done loading, and they cheerfully wave to you as they head off.`
 	on visit
 		conversation
-			`According to your log, you are where you need to be, but something is missing. The mission checklist blinks quietly at you on the side of your console, reminding you that you need to have a Research Laboratory installed, and the requested equipment must be in-system. If you have more than one ship, it might not have arrived yet.`
+			`According to your log, you are where you need to be, but something is missing. The mission checklist blinks quietly at you on the side of your console, reminding you that you need to have a Research Laboratory installed, and that the requested equipment must be in-system. If you have more than one ship, it might not have arrived yet.`
 	on complete
 		require "Research Laboratory"
 		conversation
@@ -873,7 +873,7 @@ mission "Remnant: Cognizance 21"
 	on stopover
 		require "Research Laboratory"
 		conversation
-			`Dusk and the team of scientists waste no time in getting to work: They have the preliminary sensors working almost from the moment you left the spaceport, and by the time you dock with Ssil Vida they have all their equipment arranged to quickly offload and setup. With the space cleared, they expand the research laboratory and set to work analyzing the system. Before long they are clustered around displays and adjusting sensor readings, deep in discussion. Eventually, Dusk strides over to you. "Everything is setup and proceeding nominally, Captain. We will need a few hours to complete the measurements. You do not need to stand around watching, although you are welcome to if you like." Dusk heads back over to check on one of the devices.`
+			`Dusk and the team of scientists waste no time in getting to work: They have the preliminary sensors working almost from the moment you leave the spaceport, and by the time you dock with Ssil Vida they have all their equipment arranged to quickly offload and setup. With the space cleared, they expand the research laboratory and set to work analyzing the system. Before long they are clustered around displays and adjusting sensor readings, deep in discussion. Eventually, Dusk strides over to you. "Everything is setup and proceeding nominally, Captain. We will need a few hours to complete the measurements. You do not need to stand around watching, although you are welcome to if you like." Dusk heads back over to check on one of the devices.`
 			choice
 				`	(Return to the <ship> and prepare for departure.)`
 					goto relax
@@ -882,7 +882,7 @@ mission "Remnant: Cognizance 21"
 				`	(Explore Ssil Vida.)`
 			apply explorationinterest += 1
 			`	You pick up some instruments, recording equipment, and wayfinding labels, then check the map tracking the other Remnant researchers. Picking an unexplored direction, you set off.`
-			`	The first few corridors are marked with labels indicating the direction that other explorers travelled, and so you easily find your way into unexplored territory. As you explore the empty corridors, your early impressions of scale are reinforced by the massive doors and significant distances between them. Glancing inside, you find room after room containing large platforms. Each platform is lightly padded with several bars set into it along each side and what appears to be a storage locker set into it at the end. Based on your experience, you realize that these resemble storage platforms used to secure delicate cargo, but there is no indication of what that cargo might be.`
+			`	The first few corridors are marked with labels indicating the direction that other explorers travelled, and so you easily find your way into unexplored territory. As you explore the empty corridors, your early impressions of scale are reinforced by the massive doors and significant distances between them. Glancing inside, you find room after room containing large platforms. Each platform is lightly padded with several bars along each side, and what appears to be a storage locker set into it at the end. Based on your experience, you realize that these resemble storage platforms used to secure delicate cargo, but there is no indication of what that cargo might be.`
 			`	Further exploration reveals considerably more oversized rooms, including one with vast amounts of storage lockers and freezers. You note that the rooms you search appear to be fairly well organized, so you conclude that whatever happened to this station either did not cause a panic, or someone else cleaned up afterwards. After a few hours exploring you head back to the main area.`
 				goto wrapup
 			label scienceassistant
@@ -938,7 +938,7 @@ mission "Remnant: Cognizance 22"
 				`	"I saw it while inbound for landing and was worried."`
 			`	"Thanks for checking up on us then," she signs with a smile. "People being concerned for the welfare of those around them is the adhesive that makes society strong."`
 			label curious
-			`	She gestures to the ship next to her. "You have arrived in our space at an opportune time, <first>. While most of our developments over the years have been tweaking existing ships, tweaks can only go so far. Even before we established our first shipyard, we have been constantly innovating and trying out new ship designs. Every new development is put on the conceptual model to see if it can help us build a better ship." She grimaces slightly. "Well, that is a bit hyperbolic. Not every development applies to spacecraft, just the ones of most interest to me." She grins at that. "In any case, several of our development projects are nearing the point of production, and this prototype should be operational within a few days."`
+			`	She gestures to the ship next to her. "You have arrived in our space at an opportune time, <first>. While most of our developments over the years have been tweaking existing ships, tweaks can only go so far. Starting long before we established our first shipyard, we have been constantly innovating and trying out new ship designs. Every new development is put on the conceptual model to see if it can help us build a better ship." She grimaces slightly. "Well, that is a bit hyperbolic. Not every development applies to spacecraft, just the ones of most interest to me." She grins at that. "In any case, several of our development projects are nearing the point of production, and this prototype should be operational within a few days."`
 			`	She pats a piece of exposed hull, and you think you can almost feel some kind of vibration or hum in response. Taely takes on a distant expression, as if lost in thought. After a long enough pause to feel awkward, she blinks a few times and focuses on you again. "Sorry about that. A new ship waking up and all that." She smiles, thoughtfully. "Before I get absorbed in my work again, would you be able to make a delivery for me? It is a simple one, but important. I need someone to deliver a crate of data files to <destination>. As my development project has reached its end, it is time to send a hard copy of the data to one of our archives for safe keeping. Could you deliver it for me?"`
 			choice
 				`	"Yes, I can."`
@@ -977,8 +977,10 @@ mission "Remnant: Cognizance 22"
 			`	The Remnant smiles, and gestures, "I do not know the exact distance, but suffice to say that it is far enough that multiple direct strikes to the spaceport with nuclear ordnance would be insufficient to penetrate to this depth."`
 			label vault
 			`	Outside the elevator, the Remnant leads you down a short hallway with many doors, and eventually it opens onto a larger hall. At the opposite end of the hall is a massive door flanked with several large devices that look remarkably similar to Point Defense Turrets, but subtly different. Your guide takes a few steps into the room, and a short pedestal pops out of the floor near him. He pulls a license out of his pocket, places it in the slot, and presses firmly on it for a second, before removing it once again.`
-			`	He then walks briskly across the hall, gesturing you to follow. Shields flare in and out of existence around the two of you, forming a series of openings that allow you to approach the vault door, which opens when you reach it. Inside is a disappointingly small room with a small tray on a pedestal.`
+			`	He then walks briskly across the hall, gesturing for you to follow. Shields flare in and out of existence around the two of you, forming a series of openings that allow you to approach the vault door, which opens when you reach it. Inside is a disappointingly small room with a small tray on a pedestal.`
 			`	"If you would place the data crystal here, we will record the surface metadata, and those who need it will be able to retrieve it when necessary." He gestures to the tray, and once you place the data crystal on it, a shield springs into existence surrounding the tray, and the whole assembly sinks into the floor.`
+			action
+				set "Remnant: visited the vault"
 			choice
 				`	"Well, that is done. Taely is waiting for me."`
 					goto departure
@@ -1022,8 +1024,8 @@ mission "Remnant: Cognizance 23"
 	on offer
 		event "remnant: cognizance merganser"
 		conversation
-			`You disembark from the <ship> just in time to watch a trio of small ships taxi out of the hangar where Taely has been working. They are strange little ships, only somewhat larger than the Terns and Petrels you see on a regular basis. What stands out the most, however, is the fact that the three ships seem to be walking of their own accord, moving forward on flexible landing legs. Taely follows them out, and when they reach the landing pad she whistles, causing the three ships to turn around and cluster around her. You could see her smile even from where you're standing, watching her reach up to pat them on the nose. The trio sparkle with iridescent ripples as they move around, the skin flexing and twisting like some sort of organic creature.`
-			# Again. Wordy portion. Edit as needed.
+			`You disembark from the <ship> just in time to watch a trio of small ships taxi out of the hangar where Taely has been working. They are strange little ships, only somewhat larger than the Terns and Petrels. What stands out the most, however, is the fact that the three ships seem to be walking of their own accord, moving forward on flexible landing legs.`
+			`	Taely follows them out, and when they reach the landing pad she whistles, causing the three ships to turn and cluster around her. You can see her smile even from where you're standing, and as you watch, see her reach up to pat each of them on the nose. The trio sparkle with iridescent ripples as they move around, the skin flexing and twisting like some sort of organic creature.`
 			choice
 				`	(Walk over to where she is standing.)`
 					goto walkover
@@ -1031,7 +1033,7 @@ mission "Remnant: Cognizance 23"
 			`	After several minutes of watching Taely commune with the trio of ships, she turns toward you and waves you over. "Enjoying the view?" she signs as you approach, but she continues without waiting for a response. "They are nice ships, and a major step forward in our ship development. Well worth watching." She nods to herself as she runs a hand along a fin, as if checking something.`
 				goto merganserintro
 			label walkover
-			`	Taely waves to you as you approach. "Eager to meet the latest additions to our fleet?" She pats the nose of the nearest ship. "They definitely are a beautiful addition to the Remnant patrols." She smiles to herself and runs a hand along one of the fins as if checking for something.`
+			`	Taely waves to you as you approach. "Eager to meet the latest additions to our fleet?" She pats the nose of the nearest ship again. "They definitely are a beautiful addition to the Remnant patrols." She smiles to herself and runs a hand along one of the fins as if checking for something.`
 			label merganserintro
 			branch penguin
 				has "event: remnant: penguin"
@@ -1044,7 +1046,7 @@ mission "Remnant: Cognizance 23"
 				`	"No."`
 					goto turndown
 				`	"Yes."`
-			`	Taely smiles. "Just hold out your hand, and let it sense you first. Once it bumps your hand, you can touch it safely." You follow her example, and a few moments later the nearest Merganser nudges your hand. You follow Taely's lead in running your hand along it, and you discover that - despite the slimy appearance - the ship skin is dry and smooth. The surface is clearly metallic, but you can feel it stretch and twist under your hand as the ship shifts and moves. You can feel pulsing vibrations not entirely unlike the ones you are used to on the <ship>, but with subtle fluctuations.`
+			`	Taely smiles. "Just hold out your hand, and let it sense you first. Once it bumps your hand, you can touch it safely." You follow her example, and a few moments later the nearest Merganser nudges your hand. You follow Taely's lead in running your hand along it, and you discover that - despite the slimy appearance - the ship's skin is dry and smooth. The surface is clearly metallic, but you can feel it stretch and twist under your hand as the ship shifts and moves. You can feel pulsing vibrations not entirely unlike the ones you are used to on the <ship>, but with subtle fluctuations.`
 			choice
 				`	"So what do these ships do?"`
 					goto turndown
