@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MainPanel.h"
 
 #include "BoardingPanel.h"
+#include "CompareStringsByGivenOrder.h"
 #include "CoreStartData.h"
 #include "Dialog.h"
 #include "text/Font.h"
@@ -47,33 +48,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 using namespace std;
-
-
-
-namespace {
-	// Comparator class for comparing two strings, assumed to represent outfit
-	// category names, by the order of those categories in the UI.
-	class CategoryNameCompare {
-	public:
-		bool operator()(const std::string &a, const std::string &b) const
-		{
-			if(a == b)
-				return false;
-
-			// Whichever is first in the array is considered smaller.
-			const vector<string> &outfitCategories = GameData::Category(CategoryType::OUTFIT);
-			for(const auto &it : outfitCategories)
-				if(it == a)
-					return true;
-				else if(it == b)
-					return false;
-
-			// Neither a nor b is a known category name.  Fall back
-			// to lexical comparison.
-			return (a < b);
-		}
-	};
-}
 
 
 
@@ -392,7 +366,8 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 			out << "This " + target->Noun() + " is not equipped with any outfits.\n";
 
 		// Split target->Outfits() into categories, then iterate over them in order.
-		map<string, map<const Outfit *, int>, CategoryNameCompare> outfitsByCategory;
+		auto comparator = CompareStringsByGivenOrder(GameData::Category(CategoryType::OUTFIT));
+		map<string, map<const Outfit *, int>, CompareStringsByGivenOrder> outfitsByCategory(comparator);
 		for(const auto &it : target->Outfits())
 			outfitsByCategory[it.first->Category()][it.first] = it.second;
 		for(const auto &it : outfitsByCategory)
