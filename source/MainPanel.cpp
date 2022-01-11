@@ -401,7 +401,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 				continue;
 
 			// Print the category's name and outfits in it.
-			out << "\t" << it.first << "\n";
+			out << "\t" << (it.first.empty() ? "Unknown" : it.first) << "\n";
 			for(const auto &it2 : it.second)
 				if(it2.first && it2.second)
 					out << "\t\t" << it2.second << " "
