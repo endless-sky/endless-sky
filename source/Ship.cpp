@@ -1432,6 +1432,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			cloak = min(1., cloak + cloakingSpeed);
 			fuel -= attributes.Get("cloaking fuel");
 			energy -= attributes.Get("cloaking energy");
+			shields -= attributes.Get("cloaking shields");
+			shieldDelay += attributes.Get("cloaking stops regeneration");
 			heat += attributes.Get("cloaking heat");
 		}
 		else if(cloakingSpeed)
