@@ -51,6 +51,18 @@ using namespace std;
 
 
 
+namespace {
+	class CompareOutfitsByName {
+	public:
+		bool operator()(const Outfit *a, const Outfit *b) const
+		{
+			return a->Name() < b->Name();
+		}
+	};
+}
+
+
+
 MainPanel::MainPanel(PlayerInfo &player)
 	: player(player), engine(player)
 {
@@ -367,7 +379,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 
 		// Split target->Outfits() into categories, then iterate over them in order.
 		auto comparator = CompareStringsByGivenOrder(GameData::Category(CategoryType::OUTFIT));
-		map<string, map<const Outfit *, int>, CompareStringsByGivenOrder> outfitsByCategory(comparator);
+		map<string, map<const Outfit *, int, CompareOutfitsByName>, CompareStringsByGivenOrder> outfitsByCategory(comparator);
 		for(const auto &it : target->Outfits())
 			outfitsByCategory[it.first->Category()][it.first] = it.second;
 		for(const auto &it : outfitsByCategory)
