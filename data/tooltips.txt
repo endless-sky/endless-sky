@@ -71,6 +71,24 @@ tip "cloaking fuel:"
 tip "cloaking heat:"
 	`Heat generated per second while cloaked.`
 
+tip "cloaking shield:"
+	`Shields consumed per second while cloaked.`
+
+tip "cloaking invulnerability:"
+	`How vulnerable this cloaking device is. If this value is negative then it will trigger proximity mines and missiles. If it is positive this device phases through matter, and nothing may hit it.`
+
+tip "cloaking visibility:"
+	`This cloaking device has flaws, and as a result you can still be partially seen by enemies.`
+
+tip "cloaking targetability:"
+	`This value represents how easy this ship is to track using missiles and other guidance systems, when the cloak is active. All missiles will have a really hard time locking on you with this.`
+
+tip "cloaking show on radar:"
+	`This cloaking device does not hide you from radars.`
+
+tip "cloaking action:"
+	`This device is so efficient at hiding you that you may shoot when cloaked, becoming vulnerable for a short moment, before being cloaked again. You can also board and hail whilst cloaked with this device.`
+
 tip "cooling:"
 	`Reduces heat by this amount per second. This is for when your ship's built-in heat dissipation is not sufficient to keep it from overheating.`
 
