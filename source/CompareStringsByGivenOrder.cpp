@@ -12,6 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "CompareStringsByGivenOrder.h"
 
+#include <algorithm>
+
 using namespace std;
 
 
@@ -24,16 +26,17 @@ CompareStringsByGivenOrder::CompareStringsByGivenOrder(const vector<string>& ord
 
 bool CompareStringsByGivenOrder::operator()(const string &a, const string &b) const
 {
-	if(a == b)
-		return false;
+	const auto& find_a = find(order.begin(), order.end(), a);
+	const auto& find_b = find(order.begin(), order.end(), b);
 
-	// Whichever is first in the array is considered smaller.
-	for(const auto &it : order)
-		if(it == a)
-			return true;
-		else if(it == b)
-			return false;
-
-	// Neither a nor b is a known value. Fall back to lexical comparison.
-	return (a < b);
+	if(find_a == order.end() && find_b == order.end())
+	{
+		// Neither a nor b is a known value. Fall back to lexical comparison.
+		return (a < b);
+	}
+	else
+	{
+		// Whichever is first in the array is considered smaller.
+		return (find_a < find_b);
+	}
 }
