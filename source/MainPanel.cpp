@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "BoardingPanel.h"
 #include "CompareStringsByGivenOrder.h"
+#include "CompareOutfitsByName.h"
 #include "CoreStartData.h"
 #include "Dialog.h"
 #include "text/Font.h"
@@ -48,18 +49,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 using namespace std;
-
-
-
-namespace {
-	class CompareOutfitsByName {
-	public:
-		bool operator()(const Outfit *a, const Outfit *b) const
-		{
-			return a->Name() < b->Name();
-		}
-	};
-}
 
 
 
