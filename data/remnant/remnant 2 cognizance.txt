@@ -1545,7 +1545,7 @@ mission "Remnant: Cognizance 35"
 			`Back in the control room the Remnant appear to have regained their composure. Remnant move quickly from station to station, and every sensor and tool is in use. It is as if the Remnant are afraid everything is going to vanish any moment. Which, you realize, might actually happen. You find Gavriil carefully tending a console, and they look up as you approach. "The Embers guided you back, I see. How does the outside world fare?"`
 			`	They listen intently as you described your flight through the surrounding systems, and nods when you mention that your navigation system is reporting no connections to the rest of the Ember Waste. Even predictions as to jump drive performance indicate no valid jumps.`
 			`	"No connections whatsoever?" Gavriil looks thoughtful. "That actually makes sense." They gesture at a display of the area. "As best our sensors can pick up, the universe beyond this pocket of the Ember Waste just does not exist."`
-			`	They quickly continue. "Of course, we can see it out there. But it is like looking through a very thin film." He looks thoughtful. "The current leading theory is that we are in some kind of dimensional bubble. A pocket dimension of sorts. But we have not yet reached a consensus."`
+			`	They quickly continue. "Of course, we can see it out there. But it is like looking through a very thin film." Gavriil looks thoughtful. "The current leading theory is that we are in some kind of dimensional bubble. A pocket dimension of sorts. But we have not yet reached a consensus."`
 			choice
 				`	"What happened to us? Did we all see the same thing?"`
 				`	"Where did those feelings and images come from?"`
@@ -1561,7 +1561,7 @@ mission "Remnant: Cognizance 35"
 				`	"That seems problematic. How do we get back?"`
 					goto cutpower
 				`	"Did we destroy the universe by powering up this station?"`
-			`	Gavriil smiles with amusement. "It is certainly a possibility. However, the fact that it was, as best we can tell, powered up previously without destroying the universe as far as we can tell suggests that it transported us rather than destroy everything else."`
+			`	Gavriil smiles with amusement. "It is certainly a possibility. However, the fact that it was, as best we can tell, powered up previously without destroying the universe suggests that it transported or isolated us rather than destroying everything else."`
 			`	They frown at the communication panel. "Although everything I know about quantum mechanics refuses to countenance something being able to leave the universe so absolutely like this." They smile again. "But that is the way of science! Finding new things in the universe that tells us that what we know is not so absolute."`
 			choice
 				`	"I think we should focus on getting back."`
