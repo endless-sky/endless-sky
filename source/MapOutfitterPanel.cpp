@@ -144,28 +144,26 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 			const Planet *planet = object.GetPlanet();
 			double cost = planet->GetLocalRelativePrice(selected, player.Conditions());
 			CustomSale::SellType sellType = planet->GetAvailability(selected, player.Conditions());
-			const auto &storage = player.PlanetaryStorage();
-			bool storedInSystem = (storage.find(planet) != storage.cend());
 			
-			if(cost && planet->HasOutfitter())
+			if(planet->HasOutfitter())
 			{
-				const auto &storage = player.PlanetaryStorage();
-				bool storedInSystem = (storage.find(planet) != storage.cend());
-				
-				if(sellType != CustomSale::SellType::HIDDEN || storedInSystem)
+				if(sellType != CustomSale::SellType::NONE)
 				{
-					if(cost > MapPanel::maxColor)
-						MapPanel::maxColor = cost;
-					else if(cost < MapPanel::minColor)
-						MapPanel::minColor = cost;
-					return cost;
+					const auto &storage = player.PlanetaryStorage();
+					bool storedInSystem = (storage.find(planet) != storage.cend());
+					
+					if(sellType != CustomSale::SellType::HIDDEN || storedInSystem)
+					{
+						if(cost > MapPanel::maxColor)
+							MapPanel::maxColor = cost;
+						else if(cost < MapPanel::minColor)
+							MapPanel::minColor = cost;
+						return cost;
+					}
 				}
+				else
+					value = 0.;
 			}
-			if(sellType != CustomSale::SellType::NONE && (sellType != CustomSale::SellType::HIDDEN || storedInSystem) && 
-				planet->HasOutfitter())
-				value = 1.;
-			else if(planet->HasOutfitter())
-				value = 0.;
 		}
 	return value;
 }
