@@ -1653,7 +1653,7 @@ mission "Remnant: Cognizance 38"
 			`	A third Remnant steps up. "As to the matter at hand, this means that the sooner any of us hear your report, the sooner everyone will have heard it." They look at you expectantly.`
 				goto cognizanceexplanation
 			label cognizanceuntrusted
-			`	The Remnant smiles mysteriously. "A society has to have some secrets, does it not? Let us just say that our communication networks are very effective. At this point, just know that the sooner you give the report, the sooner that everyone will be able to work on this information." They pause, then continue. "And that does, of course, includes the prefects."`
+			`	The Remnant smiles mysteriously. "A society has to have some secrets, does it not? Let us just say that our communication networks are very effective. At this point, just know that the sooner you give the report, the sooner that everyone will be able to work on this information." They pause, then continue. "And that does, of course, include the prefects."`
 			choice
 				`	"Okay, I will explain what happened."`
 				`	"Alright, you convinced me."`
