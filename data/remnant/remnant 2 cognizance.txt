@@ -1359,7 +1359,7 @@ mission "Remnant: Cognizance 30"
 				`	(Drink in silence.)`
 					goto powerbriefing
 				`	(Ask the Remnant next to you what just happened.)`
-			`	The Remnant smiles tiredly. "We did a ten kilometer run in just under thirty seven minutes, wearing our emergency environmental suits and carrying basic survival and maintenance gear. Torza set a hard pace, but we kept up." She takes a sip from her drink. "It is hard work, but endurance is rather important for survival, especially in an unknown environment like <planet>." She takes another sip. "It was an interesting changes of pace. Normally I carry full engineering kit, so this was a 'fast scramble' in comparison. He" - she gestures at Torza - "likes to change things up. No two runs are the same when he sets the pace."`
+			`	The Remnant smiles tiredly. "We did a ten kilometer run in just under thirty seven minutes, wearing our emergency environmental suits and carrying basic survival and maintenance gear. Torza set a hard pace, but we kept up." She takes a sip from her drink. "It is hard work, but endurance is rather important for survival, especially in an unknown environment like <planet>." She takes another sip. "It was an interesting change of pace. Normally I carry full engineering kit, so this was a 'fast scramble' in comparison. He" - she gestures at Torza - "likes to change things up. No two runs are the same when he sets the pace."`
 				goto powerbriefing
 			label notthirsty
 			`	Torza quickly continues his rounds, and soon everyone is sipping on a drink. Several have pulled up displays of Ssil Vida, while others are chatting as they go over inventory lists. Most of the conversation that you catch sounds like a group of technicians prepping for a mission.`
