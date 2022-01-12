@@ -108,8 +108,7 @@ bool OutfitterPanel::HasItem(const string &name) const
 	const Outfit *outfit = GameData::Outfits().Get(name);
 	const CustomSale::SellType selling = player.GetPlanet()->GetAvailability(outfit, player.Conditions());
 	// Do not show hidden items except if the player has them in stock.
-	if((selling != CustomSale::SellType::NONE && (selling != CustomSale::SellType::HIDDEN 
-		|| player.Stock(outfit) > 0)) && showForSale)
+	if((((selling != CustomSale::SellType::NONE && selling != CustomSale::SellType::HIDDEN) || player.Stock(outfit))) && showForSale)
 		return true;
 
 	if(player.Cargo().Get(outfit) && (!playerShip || showForSale))
@@ -490,7 +489,8 @@ void OutfitterPanel::FailBuy() const
 		return;
 	}
 	
-	if(player.GetPlanet()->GetAvailability(selectedOutfit, player.Conditions()) != CustomSale::SellType::VISIBLE)
+	CustomSale::SellType selling = player.GetPlanet()->GetAvailability(selectedOutfit, player.Conditions());
+	if(selling == CustomSale::SellType::IMPORT || selling == CustomSale::SellType::HIDDEN)
 	{
 		GetUI()->Push(new Dialog("You can only sell this outfit here, "
 			"it is meant to be imported, legally or not, generally for a good price."));
