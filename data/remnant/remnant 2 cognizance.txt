@@ -1176,7 +1176,7 @@ mission "Remnant: Cognizance 24"
 					goto movingon
 				`	"What did you get from them?"`
 			label remnantgain
-			`	You finish unloading the equipment into the room before Gavriil continues. "Well, the Korath have been around for a comparatively long time. So we asked for their astronomical dataset. The data we received was raw, uncorrected, and continuous data covering multiple tens of thousands of years of stellar observations. The data even includes data that likely corresponds to the destruction of some of their worlds during their civil war." They pause, then continue. "Of course, we need to verify the data first. So far, though, it is checking out successfully against trusted data. If it can be validated, the data will massively expand the dataset our researchers can use to model and study the universe."`
+			`	You finish unloading the equipment into the room before Gavriil continues. "Well, the Korath have been around for a comparatively long time. So we asked for their astronomical dataset. The data we received was raw, uncorrected, and continuous data covering multiple tens of thousands of years of stellar observations. The set even includes data that likely corresponds to the destruction of some of their worlds during their civil war." They pause, then continue. "Of course, we need to verify the data first. So far, though, it is checking out successfully against already trusted records. If it can be validated, the set will massively expand the data our researchers can use to model and study the universe."`
 			label movingon
 			`	Gavriil tucks the lifter away into a storage alcove. "Well, thank you for your help, <first>. That definitely sped up the process."`
 			label gavriilend
