@@ -1067,7 +1067,7 @@ mission "Remnant: Cognizance 23"
 				`	"What is the problem with them?"`
 			`	"Decisive strike capability, mostly." Her gestures take on a conciliatory tone. "They are excellent weapons for swarms of ships, or when mounted on a ship that can carry many of them. But when one only has the opportunity to land a few hits, they are insufficient to pin down their target. But that is an aside. For now, we should celebrate our new ships, and see what they can do." She pets the nearest Merganser lovingly.`
 			label mergansermission
-			`	"But enough of that." She shakes her head and assumes a business-like expression. "We would like you to lead a pair of shakedown runs. The first is a hunt a crippled Korath that got stuck in the adjacent system. We will provide you with this Merganser to fly." She pats its nose fondly. "Along with a flight of four to accompany you. Of course you are free to fly your own ship if you prefer; the important part is that you all make it back intact. So, are you up for a test flight?"`
+			`	"But enough of that." She shakes her head and assumes a business-like expression. "We would like you to lead a pair of shakedown runs. The first is a hunt for a crippled Korath ship that got stuck in the adjacent system. We will provide you with this Merganser to fly." She pats its nose fondly. "Along with a flight of four to accompany you. Of course you are free to fly your own ship if you prefer; the important part is that you all make it back intact. So, are you up for a test flight?"`
 			choice
 				`	(Accept.)`
 					accept
