@@ -1119,7 +1119,7 @@ mission "Remnant: Cognizance 24"
 		has "Remnant: Cognizance 23: done"
 	on offer
 		conversation
-			`When you enter the cafeteria you are greeted by Dusk and Taely signing at you to join them from across the room. Collecting a tray from the dispenser, you slide into an empty seat at their table, watching as Taely signs: "We were just exchanging news and discovered we can combine our next assignment."`
+			`When you enter the cafeteria you are greeted by Dusk and Taely signing at you from across the room to join them. Collecting a tray from the dispenser, you slide into an empty seat at their table, watching as Taely signs: "We were just exchanging news and discovered we can combine our next assignment."`
 			`	Dusk continues. "Based on the initial data we collected while we were at Ssil Vida, there is sufficient novel data to deserve a permanent research team there. Conveniently, the station is already habitable, but we will need several shipments of equipment to setup a self-contained section."`
 			choice
 				`	"Okay, clear enough."`
