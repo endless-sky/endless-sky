@@ -845,7 +845,7 @@ mission "Unfettered: Jump Drive Retrieval"
 
 mission "Unfettered: Solifuge 1: Geocoris Design"
 	name `Scan the Geocoris`
-	description `Scan the Hai Geocoris in Ya Hai with an outfit scanner, then return to <destination> with the scanner logs.`
+	description `Scan the cargo of the Hai Geocoris in Ya Hai with the Unfettered scanner, then return to <destination> with the scanner logs.`
 	source "Firelode"
 	waypoint "Ya Hai"
 	to offer
@@ -899,7 +899,7 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 				`	"That is too mysterious for me, I am not interested."`
 					decline
 			label scan
-			`	"The information provided by an outfit scanner should be sufficient, if you do not have one you can install one on Darkcloak, on the way there. You may want to get multiple scanners, so you can scan the ship from a longer range, and faster."`
+			`	"The information provided by a tactical scanner should be sufficient, if you do not have one you can install one on Darkcloak, on the way there. You may want to get multiple scanners, so you can scan the ship from a longer range, and faster."`
 			choice
 				`	"Sure, will do."`
 					goto agree
@@ -907,16 +907,16 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 					decline
 			
 			label agree
-			`	On the way back to your ship, Taer-Fi runs up to you, "One... last... thing, captain!" You let her catch her breath, "We have noticed one Geocoris just entered <waypoints> as expected, but seems to have some special modifications. Please scan that one specifically, we have marked it's signature for you to recognize it. Also I have just found a captain willing to give you an outfit scanner, it will be placed in your cargo hold if there is no space on your ship."`
+			`	On the way back to your ship, Taer-Fi runs up to you, "One... last... thing, captain!" You let her catch her breath, "We have noticed one Geocoris just entered <waypoints> as expected, but seems to have some special modifications. Please scan that one specifically, we have marked it's signature for you to recognize it. We want to have a detailed scan of its cargo. Also I have just found a captain willing to give you one of our scanners, it will be placed in your cargo hold if there is no space on your ship."`
 				accept
-		outfit "Outfit Scanner"
+		outfit "Value Detector"
 		log "People" "Taer-Fi" `An Unfettered engineer that is interested in ship designs of all kind. She seems to like to stay mysterious, and is easily exited by new technologies and ships.`
 	
 	on waypoint
 		dialog `You do not see the Geocoris that Tear-Fi mentioned, it is probably in a system nearby. You should land and depart when it arrives.`
 		set "Unfettered: entered Ya Hai"
 	
-	npc "scan outfits"
+	npc "scan cargo"
 		government "Hai"
 		to spawn
 			has "Unfettered: entered Ya Hai"
@@ -1000,7 +1000,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		conversation
 			`You go get a drink in the spaceport. You take a beverage that appears to be water, wanting to take no risks on this alien world. After tasting it you are sure it is indeed water, the Unfettered here do not have the habit of consumming many special drinks, at least not on a regular basis.`
 			`	You ask around for Taer-Fi, the Unfettered engineer you met before. She said she would tell you more about it once she gets the Geocoris logs but you have yet to see her since you brought those logs to the local authorities. Hopefully she can be trusted. After you spend an hour talking with the local Unfettered and drinking, she finally arrives. She seems to be in quite a hurry.`
-			`	"Sorry I could not see you earlier, I was busy. I know I have promised you information, but there is a more pressing matter we should focus on. A human ship will enter <system> in a few days, I need you to scan it for me, then I will meet you back here with the others and answer any questions you may have," she promises.`
+			`	"Sorry I could not see you earlier, I was busy. I know I have promised you information, but there is a more pressing matter we should focus on. A human ship will enter <system> in a few days, I need you to scan it for me with the same scanner we gave you, then I will meet you back here with the others and answer any questions you may have," she promises.`
 			`	"Oh and before I forget, you should not attack them, even if they strike first. I am not sure how they will even react to your presence," she adds.`
 			choice
 				`	"Okay, I better get going right now then."`
@@ -1025,7 +1025,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 	on enter "Hi Yahr"
 		dialog `You see the ship as you enter the system, it is a navy Auxiliary. Whatever happens, the Unfettered asked you not to destroy it and only scan it, at least for now.`
 	
-	npc save "scan outfits"
+	npc save "scan cargo"
 		government "Alpha"
 		personality target staying timid entering
 		system "Hi Yahr"
@@ -1352,7 +1352,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 				`	"They seemed to be using the same weapon against me."`
 				`	"What can we use that information for?"`
 					goto information
-			`	"Yes I have noticed from the outfit scanner logs, I would advise not relying too heavily on your shields. But they do not seem to have that many of those weapons, so you should be fine. They could not have designed such weapons by themselves, they probably just stole them from nearby aliens."`
+			`	"Yes I have noticed from the scanner logs, I would advise not relying too heavily on your shields. But they do not seem to have that many of those weapons, so you should be fine. They could not have designed such weapons by themselves, they probably just stole them from nearby aliens."`
 			
 			label information
 			`	"Obviously, this amount of damage has consequences, it looks like they have quickly patched it up so it will not affect their hull resistance to weapon's fire, however there are still some microfractures, which should in theory be big enough for the ship to lose some hyperdrive fuel wherever it goes. Just follow the fuel trail."`
@@ -2982,6 +2982,7 @@ ship "Shield Beetle Prototype" "Shield Beetle Prototype (Black)"
 		"cloaking heat" 10
 		"engine capacity" 5
 		"outfit space" 2
+		"weapon space" -1
 	outfits
 		"Sunbeam" 4
 		"Flamethrower" 2
@@ -3005,16 +3006,16 @@ ship "Shield Beetle Prototype" "Shield Beetle Prototype (Black)"
 	gun 0 -7 "Korath Detainer"
 	gun -22 -102 "Sunbeam"
 	gun 22 -102 "Sunbeam"
-	gun -34 -68 "Flamethrower"
-	gun 34 -68 "Flamethrower"
-	gun -49 -38 "Sunbeam"
-	gun 49 -38 "Sunbeam"
-	gun -61 -14
-	gun 61 -14
-	turret -51 21.5 "Bullfrog Anti-Missile"
+	gun -34 -68 "Sunbeam"
+	gun 34 -68 "Sunbeam"
+	gun -49 -38
+	gun 49 -38
+	gun -61 -14 "Flamethrower"
+	gun 61 -14 "Flamethrower"
+	turret -51 21.5 "Korath Grab-Strike"
 	turret 51 21.5 "Bullfrog Anti-Missile"
 	turret -56.5 75 "Korath Banisher"
-	turret 56.5 75 "Korath Grab-Strike"
+	turret 56.5 75 "Bullfrog Anti-Missile"
 	turret 0 85.5 "Bullfrog Anti-Missile"
 
 mission "Unfettered: Start Of The War"

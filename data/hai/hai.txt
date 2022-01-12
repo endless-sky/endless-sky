@@ -472,6 +472,7 @@ outfitter "Unfettered Basics"
 	"Cargo Scanner"
 
 outfitter "Unfettered"
+	"Value Detector"
 	"Pulse Turret"
 	"Hai Tracker Pod"
 	"Tracker Storage Pod"

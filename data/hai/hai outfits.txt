@@ -436,6 +436,16 @@ outfit "Quantum Keystone"
 	"quantum keystone" 1
 	description "This chunk of rock from the mountains on the Hai homeworld is apparently nothing more than a good luck charm, but the Hai have decorated their ships with them since the height of their empire. More superstitious Hai claim that the stones somehow reduce the nausea induced by hyperspace jumps by making travel between star systems easier, and many wealthy Hai refuse to book passage on a ship without one."
 
+outfit "Value Detector"
+	category "Systems"
+	cost 260000
+	thumbnail "outfit/surveillance pod"
+	"mass" 3
+	"outfit space" -3
+	"cargo scan power" 30
+	"cargo scan speed" 4
+	"tactical scan power" 12
+	description "In order to know which ship is worth plundering, or presents less risks to do so, the Unfettered use this scanner. It is quite rudimentary compared to normal Hai technology, but it still gets the job done, that is to get quick information on what the ship is carrying, from afar. The Unfettered also like to know more detailed information about their enemy, as they often test different ship designs, weapons, or may want to board the ship afterwards."
 
 outfit "Hai Chasm Batteries"
 	plural "Hai Chasm Batteries"
