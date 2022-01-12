@@ -1647,7 +1647,7 @@ mission "Remnant: Cognizance 38"
 			`	"To put it simply, we can form ad-hoc neural networks between us, of varying levels of intensity. Without the necessity of speech or gestures, we can have entire conversations in the blink of an eye."`
 			`	He gestures confidently. "A team of Remnant, for instance, could all review incoming data from an experiment, form their own analysis, and then hold what amounts to a conference where each fully presents their thoughts and ideas with supporting data and reasoning within the span of a few minutes."`
 			`	His gestures take on a cautionary tone. "Of course, accelerating to that level takes effort, and it is a long process to learn to manage our thoughts in such a way as to have productive conversations. But the results speak for themselves." He gestures broadly at the group.`
-			`	"One such benefit is that in a policy debate, each person can be heard in depth, and includes checking the veracity of data and sources. This has significant benefits for minimizing the numbers of decisions made with incomplete or erroneous data, and maximizes the amount of information available to any one of us."`
+			`	"One such benefit is that in a policy debate, each person can be heard in depth, including checking the veracity of data and sources. This has significant benefits for minimizing the numbers of decisions made with incomplete or erroneous data, and maximizes the amount of information available to any one of us."`
 			action
 				set "Remnant: Cognizance Neural Communication Explanation"
 			`	A third Remnant steps up. "As to the matter at hand, this means that the sooner any of us hear your report, the sooner everyone will have heard it." They look at you expectantly.`
