@@ -1277,7 +1277,7 @@ mission "Remnant: Cognizance 28"
 		has "Remnant: Cognizance 27: done"
 	on offer
 		conversation
-			`Your commlink springs to life as you enter final approach to Caelian, revealing Torza in a flurry of motion. He focuses momentarily on the camera. "Captain <first>, and flying a ship with a substantial lifting capacity, excellent! The Korath have discovered one of our forward operating bases, and we need help evacuating it now. It is located on Baianus in the Parca system. There is 20 people and 280 cubic meters of equipment to retrieve. The Korath have setup a blockade, so you will need something reasonably fast to get through it. You can kill them or not, as you wish, but the primary task is evacuating the outpost. Embers speed your flight, Captain."`
+			`Your commlink springs to life as you enter final approach to Caelian, revealing Torza in a flurry of motion. He focuses momentarily on the camera. "Captain <first>, and flying a ship with a substantial lifting capacity, excellent! The Korath have discovered one of our forward operating bases, and we need help evacuating it now. It is located on Baianus in the Parca system. There are 20 people and 280 cubic meters of equipment to retrieve. The Korath have setup a blockade, so you will need something reasonably fast to get through it. You can fight them or not, as you wish, but the primary task is evacuating the outpost. Embers speed your flight, Captain."`
 				accept
 	npc
 		government "Korath"
