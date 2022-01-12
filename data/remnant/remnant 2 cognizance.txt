@@ -1150,7 +1150,7 @@ mission "Remnant: Cognizance 24"
 	on complete
 		payment 250000
 		conversation
-			`	The equipment is quickly unloaded as Gavriil quickly scouts some of the nearby rooms. "I have picked a suitable area to start in. If you could help move these over to that room there" - they gesture toward one of the large rooms with the platforms in it - "it would be much appreciated."`
+			`	The equipment is promptly unloaded as Gavriil scouts some of the nearby rooms. "I have picked a suitable area to start in. If you could help move these over to that room there" - they gesture toward one of the large rooms with the platforms in it - "it would be much appreciated."`
 			choice
 				`	"I would rather not."`
 				`	"Sure."`
