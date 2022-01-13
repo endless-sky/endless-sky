@@ -742,6 +742,7 @@ mission "Remnant: Cognizance 20"
 		government "Remnant"
 	stopover
 		government "Remnant"
+		neighbor distance 1 5
 	to offer
 		has "Remnant: Cognizance 19: done"
 		has "event: remnant: lab availability"
@@ -905,6 +906,7 @@ mission "Remnant: Cognizance 21"
 	on complete
 		require "Research Laboratory"
 		payment 350000
+		clear "Remnant: Dusk Busy"
 		conversation
 			`The trip back to <destination> goes quickly but quietly, as all the Remnant seem to be focused on writing reports of their observations. From what you can tell, each member of the team writes up their own observations and experiences, and then Dusk assembles all the reports into an expedition report that includes each researcher's verbatim report as well as his own.`
 			`	The <ship> settles into the current landing pattern for the main spaceport on <destination> as you flip through the exterior camera feeds. In the distance, you notice that one of the research hangars has some activity going on around it, but otherwise, the spaceport seems to be humming along as usual. Dusk stops by the cockpit as you settle the <ship> into its berth. "Thank you for helping us, <first>. It will take us some time to analyze this data, but we will likely be mounting another expedition to Ssil Vida in the near future." He pauses, then adds, "I do not think we ever mentioned it, but, as is appropriate for your assistance, a logistics adjustment of <payment> has been applied to your account to cover your costs and provide resources to prepare for future endeavors." Dusk gives you a polite nod before heading off to help the other researchers unload the equipment.`
@@ -916,12 +918,13 @@ mission "Remnant: Cognizance 22"
 	description "Deliver a data backup to <stopovers> for Taely."
 	source
 		government "Remnant"
+		category "Light Warship"
 	stopover
 		government "Remnant"
-		neighbor distance 1 3
+		neighbor distance 1 5
+		not attributes "requires: gaslining"
 	to offer
 		has "Remnant: Cognizance 21: done"
-	to complete
 	on offer
 		conversation
 			`You step out of the <ship> into the fresh air of <origin>. You recall seeing some unusual activity over at one of the research hangars. There must be something interesting going on to generate that much activity.`
@@ -1018,6 +1021,7 @@ mission "Remnant: Cognizance 23"
 	landing
 	source
 		government "Remnant"
+		category "Light Warship"
 	waypoint "Farinus"
 	to offer
 		has "Remnant: Cognizance 22: done"
@@ -1260,6 +1264,8 @@ mission "Remnant: Cognizance 27"
 	destination "Caelian"
 	to offer
 		has "Remnant: Cognizance 26: done"
+	to complete
+		not "Remnant: Dusk Busy"
 
 
 
@@ -1275,7 +1281,9 @@ mission "Remnant: Cognizance 28"
 	destination "Baianus"
 	to offer
 		has "Remnant: Cognizance 27: done"
+		not "Remnant: Dusk Busy"
 	on offer
+		set "Remnant: Dusk Busy"
 		conversation
 			`Your commlink springs to life as you enter final approach to Caelian, revealing Torza in a flurry of motion. He focuses momentarily on the camera. "Captain <first>, and flying a ship with a substantial lifting capacity, excellent! The Korath have discovered one of our forward operating bases, and we need help evacuating it now. It is located on Baianus in the Parca system. There are 20 people and 280 cubic meters of equipment to retrieve. The Korath have setup a blockade, so you will need something reasonably fast to get through it. You can fight them or not, as you wish, but the primary task is evacuating the outpost. Embers speed your flight, Captain."`
 				accept
