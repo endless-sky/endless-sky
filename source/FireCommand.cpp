@@ -65,7 +65,7 @@ void FireCommand::Clear()
 // Check if this command includes a command to fire the given weapon.
 bool FireCommand::HasFire(int index) const noexcept
 {
-	if(index < 0 || index >= static_cast<int>(weapon.Size()))
+	if(!IsIndexValid(index))
 		return false;
 	return weapon.Test(index);
 }
@@ -103,7 +103,7 @@ double FireCommand::Aim(int index) const noexcept
 // -1 or 1 means to turn at the full speed the turret is capable of.
 void FireCommand::SetAim(int index, double amount) noexcept
 {
-	if(index < 0 || index >= static_cast<int>(aim.size()))
+	if(!IsIndexValid(index))
 		return;
 	aim[index] = round(127. * max(-1., min(1., amount)));
 }
