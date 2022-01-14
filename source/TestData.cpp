@@ -34,12 +34,12 @@ void TestData::Load(const DataNode &node, const string &sourceDataFilePath)
 	sourceDataFile = sourceDataFilePath;
 	if(node.Size() < 2)
 	{
-		node.PrintTrace("Skipping unnamed test data:");
+		node.PrintTrace("Error: Unnamed test data:");
 		return;
 	}
 	if(node.Token(0) != "test-data")
 	{
-		node.PrintTrace("Skipping unsupported root node:");
+		node.PrintTrace("Error: Unsupported root node:");
 		return;
 	}
 	dataSetName = node.Token(1);

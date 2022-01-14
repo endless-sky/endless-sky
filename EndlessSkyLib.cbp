@@ -25,6 +25,7 @@
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
 				<Compiler>
+					<Add option="-Werror" />
 					<Add option="-flto" />
 					<Add option="-O3" />
 					<Add option="-msse3" />
@@ -56,7 +57,6 @@
 			<Add option="-Wnon-virtual-dtor" />
 			<Add option="-Wall" />
 			<Add option="-std=c++11" />
-			<Add option="-Werror" />
 			<Add option="-Wold-style-cast" />
 			<Add option="-fno-rtti" />
 			<Add directory="C:/dev64/include" />
