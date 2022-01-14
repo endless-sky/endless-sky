@@ -3886,6 +3886,10 @@ mission "Kindred Spirit 4"
 	on complete
 		conversation
 			`	"Hey, <first>," Charlie says. "I really enjoyed traveling with you, but I think I should check back in with my family and maybe fly solo for a bit. Anyway, I'll see you around!"`
+	on fail
+		conversation 
+			`	Your comms crackle as Charlie's voice calls, "I'm hit! I'm hit! I..."`
+			`	The feed cuts out.`
 
 mission "Kindred Spirit 5"
 	name "Charlie Companion"
@@ -3916,5 +3920,6 @@ mission "Kindred Spirit 5"
 	on complete
 		conversation
 			`	"Alright," Charlie tells you, "I'm going to go visit my folks. If you ever want to travel together again, check back at the spaceport. See you!"`
+
 
 	
