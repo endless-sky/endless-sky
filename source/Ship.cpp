@@ -1433,7 +1433,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			fuel -= attributes.Get("cloaking fuel");
 			energy -= attributes.Get("cloaking energy");
 			shields -= attributes.Get("cloaking shields");
-			shieldDelay += attributes.Get("cloaking stops regeneration");
+			shieldDelay += attributes.Get("cloaking shield delay");
+			hullDelay += attributes.Get("cloaking hull delay");
 			heat += attributes.Get("cloaking heat");
 		}
 		else if(cloakingSpeed)
@@ -2513,7 +2514,8 @@ bool Ship::IsCapturable() const
 
 bool Ship::IsTargetable() const
 {
-	return (zoom == 1.f && !explosionRate && !forget && !isInvisible && (cloak < 1. || (cloak == 1. && attributes.Get("cloaking targetability"))) && hull >= 0. && hyperspaceCount < 70);
+	return (zoom == 1.f && !explosionRate && !forget && !isInvisible && (cloak < 1. || 
+		(cloak == 1. && attributes.Get("cloaking targetability"))) && hull >= 0. && hyperspaceCount < 70);
 }
 
 

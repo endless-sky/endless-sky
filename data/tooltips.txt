@@ -74,8 +74,11 @@ tip "cloaking heat:"
 tip "cloaking shield:"
 	`Shields consumed per second while cloaked.`
 
-tip "cloaking stops regeneration:"
-	`This ship is unable to regenerate health or shields whilst cloaked.`
+tip "cloaking shield delay:"
+	`This ship is unable to regenerate shields whilst cloaked.`
+
+tip "cloaking hull delay:"
+	`This ship is unable to regenerate hull whilst cloaked.`
 
 tip "cloaking invulnerability:"
 	`How vulnerable this cloaking device is. If this value is negative then it will trigger proximity mines and missiles. If it is positive this device phases through matter, and nothing may hit it.`

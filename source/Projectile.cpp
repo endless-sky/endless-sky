@@ -48,7 +48,8 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	cachedTarget = TargetPtr().get();
 	if(cachedTarget)
 		targetGovernment = cachedTarget->GetGovernment();
-	double inaccuracy = weapon->Inaccuracy();
+	double inaccuracy = weapon->Inaccuracy() + (cachedTarget && cachedTarget->Cloaking() == 1. ?
+		(1. - cachedTarget->Attributes().Get("cloaking targetability")) * 5.: 0.);
 	if(inaccuracy)
 		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
 
@@ -69,7 +70,8 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 	targetGovernment = parent.targetGovernment;
 
 	cachedTarget = TargetPtr().get();
-	double inaccuracy = weapon->Inaccuracy();
+	double inaccuracy = weapon->Inaccuracy() + (cachedTarget && cachedTarget->Cloaking() == 1. ?
+		(1. - cachedTarget->Attributes().Get("cloaking targetability")) * 5.: 0.);
 	if(inaccuracy)
 	{
 		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
@@ -359,7 +361,8 @@ void Projectile::CheckLock(const Ship &target)
 	if(weapon->OpticalTracking())
 	{
 		double weight = target.Mass() * target.Mass();
-		double probability = weapon->OpticalTracking() * weight / (150000. + weight) * cloakJamming;
+		double probability = weapon->OpticalTracking() * weight / (150000. + weight) *
+			(target.Cloaking() == 1. ? (1. - target.Attributes().Get("cloaking visibility")) : 1.);
 		hasLock |= Check(probability, base);
 	}
 

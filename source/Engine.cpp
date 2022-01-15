@@ -605,7 +605,8 @@ void Engine::Step(bool isActive)
 	if(isActive && Preferences::Has("Show status overlays"))
 		for(const auto &it : ships)
 		{
-			if(!it->GetGovernment() || it->GetSystem() != currentSystem || (it->Cloaking() == 1. && !it->Attributes().Get("cloaking targetability")))
+			if(!it->GetGovernment() || it->GetSystem() != currentSystem ||
+					(it->Cloaking() == 1. && !it->Attributes().Get("cloaking targetability")))
 				continue;
 			// Don't show status for dead ships.
 			if(it->IsDestroyed())
@@ -738,7 +739,8 @@ void Engine::Step(bool isActive)
 	}
 	else
 	{
-		if(target->GetSystem() == player.GetSystem() && (target->Cloaking() < 1. || target->Attributes().Get("cloaking targetability")))
+		if(target->GetSystem() == player.GetSystem() && (target->Cloaking() < 1. || 
+				target->Attributes().Get("cloaking targetability")))
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step));
 		info.SetString("target name", target->Name());

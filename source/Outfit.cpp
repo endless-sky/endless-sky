@@ -33,6 +33,9 @@ namespace {
 	const auto MINIMUM_OVERRIDES = map<string, double>{
 		// Attributes which are present and map to zero may have any value.
 		{"cooling energy", 0.},
+		{"cloaking shield", 0.},
+		{"cloaking invulnerability", 0.},
+		{"cloaking targetability", 0.},
 		{"hull energy", 0.},
 		{"hull fuel", 0.},
 		{"hull heat", 0.},
