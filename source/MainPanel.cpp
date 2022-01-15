@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MainPanel.h"
 
 #include "BoardingPanel.h"
-#include "CompareStringsByGivenOrder.h"
+#include "comparators/ByGivenOrder.h"
 #include "comparators/ByName.h"
 #include "CoreStartData.h"
 #include "Dialog.h"
@@ -367,8 +367,8 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 			out << "This " + target->Noun() + " is not equipped with any outfits.\n";
 
 		// Split target->Outfits() into categories, then iterate over them in order.
-		auto comparator = CompareStringsByGivenOrder(GameData::Category(CategoryType::OUTFIT));
-		map<string, map<const Outfit *, int, ByName<Outfit>>, CompareStringsByGivenOrder> outfitsByCategory(comparator);
+		auto comparator = ByGivenOrder<string>(GameData::Category(CategoryType::OUTFIT));
+		map<string, map<const Outfit *, int, ByName<Outfit>>, ByGivenOrder<string>> outfitsByCategory(comparator);
 		for(const auto &it : target->Outfits())
 			outfitsByCategory[it.first->Category()][it.first] = it.second;
 		for(const auto &it : outfitsByCategory)
