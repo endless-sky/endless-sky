@@ -871,6 +871,16 @@ ship "Carrier"
 	bay "Fighter" 38.5 -64.5
 	bay "Fighter" -50 40.5
 	bay "Fighter" 50 40.5
+	bay "Fighter" -38.5 -64.5
+	bay "Fighter" 38.5 -64.5
+	bay "Fighter" -50 40.5
+	bay "Fighter" 50 40.5
+	bay "Drone" -71.5 -49.5
+	bay "Drone" 71.5 -49.5
+	bay "Drone" -115 55
+	bay "Drone" 115 55
+	bay "Drone" -85 55
+	bay "Drone" 85 55
 	bay "Drone" -71.5 -49.5
 	bay "Drone" 71.5 -49.5
 	bay "Drone" -115 55
@@ -1347,6 +1357,14 @@ ship "Dreadnought"
 	turret 39 -63.5 "Heavy Anti-Missile Turret"
 	turret -39 107.5 "Plasma Turret"
 	turret 39 107.5 "Plasma Turret"
+	bay "Drone" 0 0
+	bay "Drone" 0 0
+	bay "Drone" 0 0
+	bay "Drone" 0 0
+	bay "Drone" 0 0
+	bay "Drone" 0 0
+	bay "Drone" 0 0
+	bay "Drone" 0 0
 	leak "leak" 40 50
 	leak "flame" 20 80
 	leak "big leak" 80 30
@@ -1854,7 +1872,7 @@ ship "Hauler"
 		"shields" 2500
 		"hull" 3700
 		"required crew" 3
-		"bunks" 12
+		"bunks" 64
 		"mass" 1857
 		"drag" 10.5
 		"heat dissipation" .6
@@ -1912,7 +1930,7 @@ ship "Hauler II"
 		"shields" 2900
 		"hull" 5200
 		"required crew" 3
-		"bunks" 12
+		"bunks" 64
 		"mass" 2188
 		"drag" 11.5
 		"heat dissipation" .6
@@ -1971,7 +1989,7 @@ ship "Hauler III"
 		"shields" 3300
 		"hull" 6700
 		"required crew" 3
-		"bunks" 12
+		"bunks" 64
 		"mass" 4704
 		"drag" 12.5
 		"heat dissipation" .6
@@ -2583,7 +2601,7 @@ ship "Protector"
 		"shields" 9500
 		"hull" 6500
 		"required crew" 30
-		"bunks" 69
+		"bunks" 384
 		"mass" 4387
 		"drag" 10.3
 		"heat dissipation" .6
