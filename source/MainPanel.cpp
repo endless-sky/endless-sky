@@ -14,7 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "BoardingPanel.h"
 #include "CompareStringsByGivenOrder.h"
-#include "CompareOutfitsByName.h"
+#include "comparators/ByName.h"
 #include "CoreStartData.h"
 #include "Dialog.h"
 #include "text/Font.h"
@@ -368,7 +368,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 
 		// Split target->Outfits() into categories, then iterate over them in order.
 		auto comparator = CompareStringsByGivenOrder(GameData::Category(CategoryType::OUTFIT));
-		map<string, map<const Outfit *, int, CompareOutfitsByName>, CompareStringsByGivenOrder> outfitsByCategory(comparator);
+		map<string, map<const Outfit *, int, ByName<Outfit>>, CompareStringsByGivenOrder> outfitsByCategory(comparator);
 		for(const auto &it : target->Outfits())
 			outfitsByCategory[it.first->Category()][it.first] = it.second;
 		for(const auto &it : outfitsByCategory)

@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapOutfitterPanel.h"
 
-#include "CompareOutfitsByName.h"
+#include "comparators/ByName.h"
 #include "CoreStartData.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -289,5 +289,5 @@ void MapOutfitterPanel::Init()
 
 	// Sort the vectors.
 	for(auto &it : catalog)
-		sort(it.second.begin(), it.second.end(), CompareOutfitsByName());
+		sort(it.second.begin(), it.second.end(), ByName<Outfit>());
 }

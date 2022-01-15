@@ -1,4 +1,4 @@
-/* CompareOutfitsByName.h
+/* comparators/ByName.h
 Copyright (c) 2022 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -10,13 +10,19 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#include "CompareOutfitsByName.h"
-
-#include "Outfit.h"
-
+#ifndef COMPARATORS_BY_NAME_H_
+#define COMPARATORS_BY_NAME_H_
 
 
-bool CompareOutfitsByName::operator()(const Outfit *a, const Outfit *b) const
-{
-	return a->Name() < b->Name();
-}
+
+template<class T>
+class ByName {
+public:
+	bool operator()(const T *a, const T *b) const
+	{
+		return a->Name() < b->Name();
+	}
+};
+
+#endif
+
