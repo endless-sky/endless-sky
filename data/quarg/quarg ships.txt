@@ -72,7 +72,7 @@ ship "Quarg Wardragon"
 		"hull" 50000
 		"required crew" 160
 		"bunks" 185
-		"mass" 360
+		"mass" 122
 		"drag" 9.3
 		"heat dissipation" .5
 		"fuel capacity" 800

@@ -139,6 +139,7 @@ ship "Centipede" "Centipede (Pulse)"
 
 ship "Flea"
 	sprite "ship/hai flea"
+		"scale" 0.71
 	thumbnail "thumbnail/hai flea"
 	attributes
 		category "Drone"
@@ -258,6 +259,7 @@ ship "Geocoris" "Geocoris (Tracker)"
 
 ship "Grasshopper"
 	sprite "ship/hai grasshopper"
+		"scale" 0.82
 	thumbnail "thumbnail/hai grasshopper"
 	attributes
 		category "Interceptor"
@@ -910,6 +912,7 @@ ship "Solifuge" "Solifuge (Tracker)"
 
 ship "Violin Spider"
 	sprite "ship/hai violin spider"
+		"scale" 0.64
 	thumbnail "thumbnail/hai violin spider"
 	attributes
 		category "Fighter"

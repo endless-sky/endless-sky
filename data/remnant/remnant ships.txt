@@ -23,13 +23,13 @@ ship "Albatross"
 		"hull" 12600
 		"required crew" 44
 		"bunks" 75
-		"cargo space" 124
-		"mass" 610
+		"cargo space" 576
+		"mass" 11053
 		"drag" 8.6
 		"heat dissipation" 0.6
 		"fuel capacity" 600
 		"ramscoop" 2
-		"outfit space" 672
+		"outfit space" 3059
 		"weapon capacity" 236
 		"engine capacity" 142
 		"shield generation" 5.2
@@ -245,13 +245,13 @@ ship "Gull"
 		"hull" 2500
 		"required crew" 3
 		"bunks" 20
-		"mass" 270
+		"mass" 937
 		"drag" 6
 		"heat dissipation" 0.7
 		"fuel capacity" 600
 		"ramscoop" 1
-		"cargo space" 175
-		"outfit space" 311
+		"cargo space" 328
+		"outfit space" 154
 		"weapon capacity" 83
 		"engine capacity" 101
 		"shield generation" 1.6
@@ -512,13 +512,13 @@ ship "Ibis"
 		"hull" 6200
 		"required crew" 16
 		"bunks" 36
-		"mass" 350
+		"mass" 2823
 		"drag" 5.1
 		"heat dissipation" 0.7
 		"fuel capacity" 700
 		"ramscoop" 2
-		"cargo space" 103
-		"outfit space" 427
+		"cargo space" 221
+		"outfit space" 915
 		"weapon capacity" 147
 		"engine capacity" 109
 		"shield generation" 3.5
@@ -590,13 +590,13 @@ ship "Pelican"
 		"hull" 5700
 		"required crew" 14
 		"bunks" 35
-		"cargo space" 302
-		"mass" 320
+		"cargo space" 1066
+		"mass" 4635
 		"drag" 7.2
 		"heat dissipation" 0.7
 		"fuel capacity" 600
 		"ramscoop" 2
-		"outfit space" 480
+		"outfit space" 448
 		"weapon capacity" 157
 		"engine capacity" 144
 		"shield generation" 2.7
@@ -660,6 +660,7 @@ ship "Pelican" "Pelican (Heavy Lift)"
 
 ship "Penguin"
 	sprite "ship/penguin/penguin"
+		"scale" 1.34
 		"frame rate" 3
 	thumbnail "thumbnail/penguin"
 	attributes
@@ -961,13 +962,13 @@ ship "Starling"
 		"hull" 4900
 		"required crew" 6
 		"bunks" 15
-		"mass" 270
+		"mass" 1059
 		"drag" 3.8
 		"heat dissipation" 0.7
 		"fuel capacity" 900
 		"ramscoop" 1
-		"cargo space" 36
-		"outfit space" 316
+		"cargo space" 84
+		"outfit space" 732
 		"weapon capacity" 83
 		"engine capacity" 94
 		"shield generation" 1.8

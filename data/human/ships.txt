@@ -133,6 +133,7 @@ ship "Argosy"
 
 ship "Arrow"
 	sprite "ship/arrow"
+		"scale" 1.22
 	thumbnail "thumbnail/arrow"
 	attributes
 		category "Transport"
@@ -365,6 +366,7 @@ ship "Bactrian"
 
 ship "Barb"
 	sprite "ship/barb"
+		"scale" 0.86
 	thumbnail "thumbnail/barb"
 	attributes
 		category "Fighter"
@@ -553,6 +555,7 @@ ship "Behemoth"
 
 ship "Berserker"
 	sprite "ship/berserker"
+		"scale" 0.84
 	thumbnail "thumbnail/berserker"
 	attributes
 		category "Interceptor"
@@ -657,6 +660,7 @@ ship "Blackbird"
 
 ship "Bounder"
 	sprite "ship/bounder"
+		"scale" 0.68
 	thumbnail "thumbnail/bounder"
 	attributes
 		category "Transport"
@@ -705,6 +709,7 @@ ship "Bounder"
 
 ship "Boxwing"
 	sprite "ship/boxwing"
+		"scale" 0.79
 	thumbnail "thumbnail/boxwing"
 	attributes
 		category "Fighter"
@@ -1005,6 +1010,7 @@ ship "Clipper"
 
 ship "Combat Drone"
 	sprite "ship/combat drone"
+		"scale" 0.84
 	thumbnail "thumbnail/combat drone"
 	attributes
 		category "Drone"
@@ -1242,6 +1248,7 @@ ship "Cruiser"
 
 ship "Dagger"
 	sprite "ship/dagger"
+		"scale" 0.77
 	thumbnail "thumbnail/dagger"
 	attributes
 		category "Fighter"
@@ -1732,6 +1739,7 @@ ship "Frigate"
 ship "Fury"
 	plural "Furies"
 	sprite "ship/fury"
+		"scale" 0.78
 	thumbnail "thumbnail/fury"
 	attributes
 		category "Interceptor"
@@ -2116,6 +2124,7 @@ ship "Headhunter"
 
 ship "Heavy Shuttle"
 	sprite "ship/heavy shuttle"
+		"scale" 1.21
 	thumbnail "thumbnail/heavy shuttle"
 	attributes
 		category "Transport"
@@ -2159,6 +2168,7 @@ ship "Heavy Shuttle"
 
 ship "Lance"
 	sprite "ship/lance"
+		"scale" 0.84
 	thumbnail "thumbnail/lance"
 	attributes
 		category "Fighter"
@@ -2627,6 +2637,7 @@ ship "Protector"
 
 ship "Quicksilver"
 	sprite "ship/quicksilver"
+		"scale" 0.74
 	thumbnail "thumbnail/quicksilver"
 	attributes
 		category "Light Warship"
@@ -2851,6 +2862,7 @@ ship "Roost"
 
 ship "Scout"
 	sprite "ship/scout"
+		"scale" 1.15
 	thumbnail "thumbnail/scout"
 	attributes
 		category "Transport"
@@ -2903,6 +2915,7 @@ ship "Scout"
 
 ship "Shuttle"
 	sprite "ship/shuttle"
+		"scale" 1.42
 		"frame time" 4
 		"delay" 14
 		"random start frame"
@@ -3017,6 +3030,7 @@ ship "Skein"
 
 ship "Sparrow"
 	sprite "ship/sparrow"
+		"scale" 0.95
 	thumbnail "thumbnail/sparrow"
 	attributes
 		category "Interceptor"

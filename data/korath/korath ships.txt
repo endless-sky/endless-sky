@@ -19,12 +19,12 @@ ship "Korath Dredger"
 		"hull" 16000
 		"required crew" 201
 		"bunks" 395
-		"mass" 1503
+		"mass" 15799
 		"drag" 18.3
 		"heat dissipation" .65
 		"fuel capacity" 900
-		"cargo space" 605
-		"outfit space" 827
+		"cargo space" 3595
+		"outfit space" 1460
 		"weapon capacity" 297
 		"engine capacity" 181
 		
@@ -140,12 +140,12 @@ ship "Korath Raider"
 		"hull" 9000
 		"required crew" 145
 		"bunks" 250
-		"mass" 720
+		"mass" 8260
 		"drag" 12
 		"heat dissipation" .5
 		"fuel capacity" 600
-		"cargo space" 175
-		"outfit space" 721
+		"cargo space" 856
+		"outfit space" 1560
 		"weapon capacity" 284
 		"engine capacity" 159
 		weapon
@@ -272,6 +272,7 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 
 ship "Korath Chaser"
 	sprite "ship/chaser"
+		"scale" 0.7
 	thumbnail "thumbnail/chaser"
 	attributes
 		category "Fighter"
@@ -319,12 +320,12 @@ ship "Korath World-Ship"
 		hull 34000
 		"required crew" 794
 		"bunks" 1492
-		"mass" 1735
+		"mass" 18057
 		"drag" 21
 		"heat dissipation" .4
 		"fuel capacity" 1000
-		"cargo space" 264
-		"outfit space" 779
+		"cargo space" 3244
+		"outfit space" 2126
 		"weapon capacity" 314
 		"engine capacity" 165
 		weapon
@@ -369,6 +370,9 @@ ship "Korath World-Ship"
 ship "Korath World-Ship" "Korath World-Ship B"
 	sprite "ship/world-ship b"
 	thumbnail "thumbnail/world-ship b"
+	attributes
+		"mass" 18868
+		"cargo space" 3418
 	turret -76 -219 "Korath Grab-Strike"
 	turret 76 -219 "Korath Grab-Strike"
 	turret -75 -112 "Korath Banisher"
@@ -381,6 +385,9 @@ ship "Korath World-Ship" "Korath World-Ship B"
 ship "Korath World-Ship" "Korath World-Ship C"
 	sprite "ship/world-ship c"
 	thumbnail "thumbnail/world-ship c"
+	attributes
+		"mass" 17325
+		"cargo space" 3087
 	turret -45 -243 "Korath Warder"
 	turret 45 -243 "Korath Grab-Strike"
 	turret -47 -136 "Korath Grab-Strike"
@@ -531,12 +538,12 @@ ship "Kar Ik Vot 349"
 		"shields" 57200
 		"hull" 65400
 		"automaton" 1
-		"mass" 1350
+		"mass" 25060
 		"drag" 16.8
 		"heat dissipation" .5
 		"fuel capacity" 400
-		"cargo space" 87
-		"outfit space" 1054
+		"cargo space" 477
+		"outfit space" 5782
 		"weapon capacity" 447
 		"engine capacity" 173
 		"self destruct" .8
@@ -688,12 +695,12 @@ ship "Tek Far 71 - Lek"
 		"shields" 25400
 		"hull" 29500
 		"automaton" 1
-		"mass" 610
+		"mass" 5317
 		"drag" 9.6
 		"heat dissipation" .6
 		"fuel capacity" 400
-		"cargo space" 36
-		"outfit space" 533
+		"cargo space" 84
+		"outfit space" 1240
 		"weapon capacity" 235
 		"engine capacity" 102
 		"self destruct" .7
@@ -781,12 +788,12 @@ ship "Tek Far 78 - Osk"
 		"shields" 27600
 		"hull" 34100
 		"automaton" 1
-		"mass" 690
+		"mass" 6224
 		"drag" 10.2
 		"heat dissipation" .55
 		"fuel capacity" 400
-		"cargo space" 43
-		"outfit space" 611
+		"cargo space" 102
+		"outfit space" 1448
 		"weapon capacity" 272
 		"engine capacity" 117
 		"self destruct" .7
@@ -873,12 +880,12 @@ ship "Tek Far 109"
 		"shields" 17900
 		"hull" 15800
 		"automaton" 1
-		"mass" 540
+		"mass" 15774
 		"drag" 9.1
 		"heat dissipation" .65
 		"fuel capacity" 400
-		"cargo space" 31
-		"outfit space" 491
+		"cargo space" 234
+		"outfit space" 3704
 		"weapon capacity" 217
 		"engine capacity" 98
 		"self destruct" .7
@@ -944,12 +951,12 @@ ship "Met Par Tek 53"
 		"shields" 15100
 		"hull" 22200
 		"automaton" 1
-		"mass" 420
+		"mass" 4482
 		"drag" 5.7
 		"heat dissipation" .8
 		"fuel capacity" 400
-		"cargo space" 26
-		"outfit space" 610
+		"cargo space" 76
+		"outfit space" 1781
 		"weapon capacity" 213
 		"engine capacity" 110
 		"self destruct" .65
@@ -1104,6 +1111,7 @@ ship "Far Osk 27"
 
 ship "Model 8"
 	sprite "ship/model 8"
+		"scale" 0.64
 	thumbnail "thumbnail/model 8"
 	attributes
 		category "Interceptor"
@@ -1157,12 +1165,12 @@ ship "Model 16"
 		"shields" 15700
 		"hull" 9800
 		"automaton" 1
-		"mass" 250
+		"mass" 892
 		"drag" 6.9
 		"heat dissipation" 1.3
 		"fuel capacity" 400
-		"cargo space" 7
-		"outfit space" 426
+		"cargo space" 6
+		"outfit space" 356
 		"weapon capacity" 149
 		"engine capacity" 107
 		"self destruct" .65
@@ -1210,12 +1218,12 @@ ship "Model 32"
 		"shields" 27900
 		"hull" 13400
 		"automaton" 1
-		"mass" 370
+		"mass" 1191
 		"drag" 9.0
 		"heat dissipation" 1.3
 		"fuel capacity" 400
 		"cargo space" 16
-		"outfit space" 481
+		"outfit space" 471
 		"weapon capacity" 205
 		"engine capacity" 110
 		"self destruct" .70
@@ -1264,12 +1272,12 @@ ship "Model 64"
 		"shields" 41700
 		"hull" 18000
 		"automaton" 1
-		"mass" 580
+		"mass" 2564
 		"drag" 11.1
 		"heat dissipation" 1.1
 		"fuel capacity" 400
-		"cargo space" 34
-		"outfit space" 567
+		"cargo space" 36
+		"outfit space" 599
 		"weapon capacity" 263
 		"engine capacity" 114
 		"self destruct" .74
@@ -1320,12 +1328,12 @@ ship "Model 128"
 		"shields" 57000
 		"hull" 23100
 		"automaton" 1
-		"mass" 780
+		"mass" 7491
 		"drag" 13.2
 		"heat dissipation" 1.0
 		"fuel capacity" 400
-		"cargo space" 53
-		"outfit space" 713
+		"cargo space" 129
+		"outfit space" 1738
 		"weapon capacity" 344
 		"engine capacity" 132
 		"self destruct" .77
@@ -1377,12 +1385,12 @@ ship "Model 256"
 		"shields" 71700
 		"hull" 28700
 		"automaton" 1
-		"mass" 970
+		"mass" 14224
 		"drag" 15.3
 		"heat dissipation" .9
 		"fuel capacity" 400
-		"cargo space" 78
-		"outfit space" 857
+		"cargo space" 296
+		"outfit space" 3254
 		"weapon capacity" 393
 		"engine capacity" 145
 		"self destruct" .79
@@ -1436,12 +1444,12 @@ ship "Model 512"
 		"shields" 86400
 		"hull" 34200
 		"automaton" 1
-		"mass" 1150
+		"mass" 17904
 		"drag" 17.4
 		"heat dissipation" .8
 		"fuel capacity" 400
-		"cargo space" 107
-		"outfit space" 994
+		"cargo space" 434
+		"outfit space" 4036
 		"weapon capacity" 440
 		"engine capacity" 161
 		"self destruct" .80

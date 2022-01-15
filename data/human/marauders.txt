@@ -10,6 +10,7 @@
 
 ship "Marauder Arrow"
 	sprite "ship/marrows"
+		"scale" 1.22
 	thumbnail "thumbnail/marrows"
 	attributes
 		category "Interceptor"
@@ -60,6 +61,7 @@ ship "Marauder Arrow"
 
 ship "Marauder Arrow" "Marauder Arrow (Engines)"
 	sprite "ship/marrowe"
+		"scale" 1.22
 	thumbnail "thumbnail/marrowe"
 	add attributes
 		"engine capacity" 20
@@ -81,6 +83,7 @@ ship "Marauder Arrow" "Marauder Arrow (Engines)"
 
 ship "Marauder Arrow" "Marauder Arrow (Weapons)"
 	sprite "ship/marroww"
+		"scale" 1.22
 	thumbnail "thumbnail/marroww"
 	add attributes
 		"weapon capacity" 5
@@ -109,6 +112,7 @@ ship "Marauder Arrow" "Marauder Arrow (Weapons)"
 
 ship "Marauder Bounder"
 	sprite "ship/mbounders"
+		"scale" 0.68
 	thumbnail "thumbnail/mbounders"
 	attributes
 		category "Interceptor"
@@ -162,6 +166,7 @@ ship "Marauder Bounder"
 
 ship "Marauder Bounder" "Marauder Bounder (Engines)"
 	sprite "ship/mboundere"
+		"scale" 0.68
 	thumbnail "thumbnail/mboundere"
 	add attributes
 		"engine capacity" 15
@@ -188,6 +193,7 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 
 ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 	sprite "ship/mbounderw"
+		"scale" 0.68
 	thumbnail "thumbnail/mbounderw"
 	add attributes
 		"weapon capacity" 20
@@ -718,6 +724,7 @@ ship "Marauder Manta" "Marauder Manta (Weapons)"
 
 ship "Marauder Quicksilver"
 	sprite "ship/mquicksilvers"
+		"scale" 0.74
 	thumbnail "thumbnail/mquicksilvers"
 	attributes
 		category "Light Warship"
@@ -768,6 +775,7 @@ ship "Marauder Quicksilver"
 
 ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 	sprite "ship/mquicksilvere"
+		"scale" 0.74
 	thumbnail "thumbnail/mquicksilvere"
 	add attributes
 		"engine capacity" 40
@@ -794,6 +802,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 
 ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons)"
 	sprite "ship/mquicksilverw"
+		"scale" 0.74
 	thumbnail "thumbnail/mquicksilverw"
 	add attributes
 		"weapon capacity" 15

@@ -1493,6 +1493,7 @@ ship "Kimek Thistle"
 
 ship "Kimek Thorn"
 	sprite "ship/kimek thorn"
+		"scale" 0.86
 	thumbnail "thumbnail/kimek thorn"
 	attributes
 		category "Transport"

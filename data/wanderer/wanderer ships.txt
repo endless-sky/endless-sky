@@ -18,12 +18,12 @@ ship "Earth Shaper"
 		"cost" 500000
 		"hull" 3300
 		"automaton" 1
-		"mass" 30
+		"mass" 267
 		"drag" .9
 		"heat dissipation" .9
 		"fuel capacity" 300
-		"cargo space" 27
-		"outfit space" 59
+		"cargo space" 102
+		"outfit space" 53
 		"engine capacity" 26
 		"atmosphere scan" 100
 		weapon
@@ -48,6 +48,7 @@ ship "Earth Shaper"
 
 ship "Flycatcher"
 	sprite "ship/flycatcher"
+		"scale" 1.08
 	thumbnail "thumbnail/flycatcher"
 	attributes
 		category "Drone"
@@ -97,12 +98,12 @@ ship "Summer Leaf"
 		"hull" 6700
 		"required crew" 6
 		"bunks" 15
-		"mass" 110
+		"mass" 476
 		"drag" 2.6
 		"heat dissipation" .8
 		"fuel capacity" 800
-		"cargo space" 41
-		"outfit space" 320
+		"cargo space" 57
+		"outfit space" 445
 		"weapon capacity" 84
 		"engine capacity" 103
 		weapon
@@ -146,12 +147,12 @@ ship "Autumn Leaf"
 		"hull" 7400
 		"required crew" 8
 		"bunks" 16
-		"mass" 130
+		"mass" 802
 		"drag" 2.9
 		"heat dissipation" .8
 		"fuel capacity" 1000
-		"cargo space" 45
-		"outfit space" 361
+		"cargo space" 99
+		"outfit space" 795
 		"weapon capacity" 103
 		"engine capacity" 117
 		weapon
@@ -208,12 +209,12 @@ ship "Strong Wind"
 		"hull" 19600
 		"required crew" 17
 		"bunks" 39
-		"mass" 260
+		"mass" 3183
 		"drag" 4.7
 		"heat dissipation" .7
 		"fuel capacity" 600
-		"cargo space" 68
-		"outfit space" 493
+		"cargo space" 157
+		"outfit space" 1135
 		"weapon capacity" 198
 		"engine capacity" 114
 		"asteroid scan power" 100
@@ -266,12 +267,12 @@ ship "Tempest"
 		"hull" 25900
 		"required crew" 38
 		"bunks" 53
-		"mass" 320
+		"mass" 3923
 		"drag" 6.2
 		"heat dissipation" 0.65
 		"fuel capacity" 600
-		"cargo space" 47
-		"outfit space" 607
+		"cargo space" 114
+		"outfit space" 1472
 		"weapon capacity" 271
 		"engine capacity" 122
 		weapon
@@ -365,12 +366,12 @@ ship "Derecho"
 		"hull" 32700
 		"required crew" 53
 		"bunks" 82
-		"mass" 540
+		"mass" 6848
 		"drag" 8.7
 		"heat dissipation" 0.6
 		"fuel capacity" 500
-		"cargo space" 56
-		"outfit space" 796
+		"cargo space" 110
+		"outfit space" 1564
 		"weapon capacity" 342
 		"engine capacity" 164
 		weapon
@@ -466,12 +467,12 @@ ship "Hurricane"
 		"hull" 46500
 		"required crew" 76
 		"bunks" 117
-		"mass" 770
+		"mass" 17098
 		"drag" 11.9
 		"heat dissipation" 0.55
 		"fuel capacity" 500
-		"cargo space" 98
-		"outfit space" 960
+		"cargo space" 391
+		"outfit space" 3833
 		"weapon capacity" 428
 		"engine capacity" 140
 		weapon
@@ -566,6 +567,7 @@ ship "Hurricane" "Hurricane (Tough)"
 
 ship "Cool Breeze"
 	sprite "ship/cool breeze"
+		"scale" 0.7
 	thumbnail "thumbnail/cool breeze"
 	attributes
 		category "Interceptor"
@@ -633,12 +635,12 @@ ship "Winter Gale"
 		"hull" 14800
 		"required crew" 14
 		"bunks" 23
-		"mass" 240
+		"mass" 1405
 		"drag" 5.6
 		"heat dissipation" .7
 		"fuel capacity" 600
-		"cargo space" 28
-		"outfit space" 478
+		"cargo space" 92
+		"outfit space" 1573
 		"weapon capacity" 171
 		"engine capacity" 120
 		weapon
@@ -736,12 +738,12 @@ ship "Deep River"
 		"hull" 47500
 		"required crew" 13
 		"bunks" 22
-		"mass" 750
+		"mass" 14688
 		"drag" 9.4
 		"heat dissipation" .6
 		"fuel capacity" 500
-		"cargo space" 1140
-		"outfit space" 363
+		"cargo space" 4018
+		"outfit space" 552
 		"weapon capacity" 177
 		"engine capacity" 83
 		weapon
@@ -825,12 +827,12 @@ ship "Deep River Transport"
 		"hull" 47500
 		"required crew" 13
 		"bunks" 166
-		"mass" 750
+		"mass" 8125
 		"drag" 9.4
 		"heat dissipation" .6
 		"fuel capacity" 500
-		"cargo space" 74
-		"outfit space" 321
+		"cargo space" 806
+		"outfit space" 551
 		"weapon capacity" 114
 		"engine capacity" 83
 		weapon
@@ -877,12 +879,12 @@ ship "Riptide"
 		"hull" 22350
 		"required crew" 47
 		"bunks" 233
-		"mass" 500
+		"mass" 3049
 		"drag" 7.3
 		"heat dissipation" .7
 		"fuel capacity" 800
-		"cargo space" 164
-		"outfit space" 488
+		"cargo space" 1096
+		"outfit space" 3260
 		"weapon capacity" 98
 		"engine capacity" 186
 		weapon
