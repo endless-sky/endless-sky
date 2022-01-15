@@ -368,9 +368,12 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 
 		// Split target->Outfits() into categories, then iterate over them in order.
 		auto comparator = ByGivenOrder<string>(GameData::Category(CategoryType::OUTFIT));
-		map<string, map<const Outfit *, int, ByName<Outfit>>, ByGivenOrder<string>> outfitsByCategory(comparator);
+		map<string, map<const string, int>, ByGivenOrder<string>> outfitsByCategory(comparator);
 		for(const auto &it : target->Outfits())
-			outfitsByCategory[it.first->Category()][it.first] = it.second;
+		{
+			string outfitNameForDisplay = (it.second == 1 ? it.first->Name() : it.first->PluralName());
+			outfitsByCategory[it.first->Category()][outfitNameForDisplay] = it.second;
+		}
 		for(const auto &it : outfitsByCategory)
 		{
 			if(it.second.empty())
@@ -379,10 +382,8 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 			// Print the category's name and outfits in it.
 			out << "\t" << (it.first.empty() ? "Unknown" : it.first) << "\n";
 			for(const auto &it2 : it.second)
-				if(it2.first && it2.second)
-					out << "\t\t" << it2.second << " "
-						<< (it2.second == 1 ? it2.first->Name() : it2.first->PluralName())
-						<< "\n";
+				if(!it2.first.empty() && it2.second > 0)
+					out << "\t\t" << it2.second << " " << it2.first << "\n";
 		}
 
 		map<string, int> count;
