@@ -16,8 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
-class Outfit;
-
 
 
 // Compare strings according to the order specified at construction time.
