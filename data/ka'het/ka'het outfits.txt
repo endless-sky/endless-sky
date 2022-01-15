@@ -262,6 +262,62 @@ outfit "Ka'het EMP Deployer"
 		"missile strength" 80
 	description "Eons ago, the Builders were attacked by alien ships which used weapons that ignored their hull and damaged their reactors. Although they never did recover any of these weapons, after years of research they managed to replicate their effects."
 
+outfit "Ka'het Emergency Deployer"
+	category "Secondary Weapons"
+	cost 645000
+	thumbnail "outfit/ka'het mhd deployer"
+	"mass" 13
+	"outfit space" -17
+	"gun ports" -1
+	weapon
+		sprite "projectile/mhd"
+			"frame rate" 2
+		sound "rocket"
+		ammo "Ka'het MHD Generator"
+		icon "icon/mhd"
+		"hit effect" "mhd explosion"
+		"hit effect" "mhd spark" 860
+		"die effect" "small explosion"
+		"inaccuracy" 3
+		"velocity" 12
+		"lifetime" 230
+		"reload" 60
+		"range override" 400
+		"firing energy" -3800
+		"firing force" 900
+		"firing heat" 5800
+		"firing hull" 60
+		"trigger radius" 40
+		"blast radius" 230
+		"shield damage" 28750
+		"hull damage" 9060
+		"heat damage" 4920
+		"hit force" 1600
+		"missile strength" 280
+	description "Most drones the Builders possessed were completely unarmed, making them very vulnerable to enemy attacks. Since installing weapons would have greatly reduced its cargo capacity, they instead decided to dissuade possible hijackers by developing these Emergency Deployers: they work by activating a series of reactions inside the ship's MHD generator and then ejecting it towards the enemy, resulting in a large scale detonation as soon as it hits something."
+
+effect "mhd spark"
+	sprite "effect/mhd spark"
+		"frame rate" 12
+		"rewind"
+		"random start frame"
+	"random angle" 360
+	"lifetime" 30
+	"velocity scale" .2
+	"random lifetime" 30
+	"random velocity" 4.45
+
+effect "mhd explosion"
+	sprite "effect/ion explosion"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion nuke"
+	"lifetime" 5
+	"random angle" 360
+	"random spin" 5
+	"random velocity" 1
+	"velocity scale" .2
+
 # Cooling:
 
 outfit "Ka'het Support Cooling"
@@ -295,7 +351,7 @@ outfit "Ka'het Shield Restorer"
 	"outfit space" -17
 	"shield generation" 1.02
 	"energy consumption" 1.53
-	description "The Builders never relied much on shield matrices, preferring instead to strengthen their hull. The reality of war, however, required that the Builders to develop strong shield technology, leading to some Het vessels making extensive use of this module."
+	description "The Builders never relied much on shield matrices, preferring instead to strengthen their hull. The reality of war, however, required that the Builders develop strong shield technology, leading to some Het vessels making extensive use of this module."
 
 outfit "Ka'het Grand Restorer"
 	category "Systems"
@@ -333,6 +389,7 @@ outfit "Ka'het Reserve Accumulator"
 # Engines:
 
 outfit "Maeri Engine Nacelles"
+	plural "Maeri Engine Nacelles"
 	category "Engines"
 	"cost" 928000
 	thumbnail "outfit/ka'het maeri engine"
@@ -354,6 +411,7 @@ outfit "Maeri Engine Nacelles"
 	description "The Ka'het engines are peculiar in that they continuously draw large amounts of energy, but require no additional energy to activate: while this means that less power remains available for other subsystems, it is also somewhat more efficient than most types of propulsions, and generates only a tiny amount of heat."
 
 outfit "Ka'het Sustainer Nacelles"
+	plural "Ka'het Sustainer Nacelles"
 	category "Engines"
 	"cost" 357000
 	thumbnail "outfit/ka'het sustainer engine"
@@ -375,11 +433,12 @@ outfit "Ka'het Sustainer Nacelles"
 	description "While Ka'het vessels are already equipped with proper engines, most of them use a sustainer engine in addition to give the ship enough maneuverability to be useful in combat. Following the same design as its bigger cousins, the sustainer requires no power to function at the cost of constant energy consumption."
 
 outfit "Telis Engine Nacelles"
+	plural "Telis Engine Nacelles"
 	category "Engines"
 	"cost" 1372000
 	thumbnail "outfit/ka'het telis engine"
 	"mass" 81
-	"outfit space" -109
+	"outfit space" -101
 	"engine capacity" -81
 	"energy consumption" 6.81
 	"heat generation" 1.4
@@ -399,15 +458,15 @@ outfit "Vareti Engine Block"
 	category "Engines"
 	"cost" 1815000
 	thumbnail "outfit/ka'het vareti engine"
-	"mass" 143
-	"outfit space" -171
-	"engine capacity" -143
-	"energy consumption" 13.04
-	"heat generation" 2.7
+	"mass" 137
+	"outfit space" -168
+	"engine capacity" -137
+	"energy consumption" 10.90
+	"heat generation" 2.58
 	"thrust" 93.9
 	"thrusting heat" 6.7
-	"turn" 2288.2
-	"turning heat" 3.9
+	"turn" 2333.9
+	"turning heat" 3.32
 	"flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"flare sound" "plasma large"
