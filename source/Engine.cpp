@@ -2097,7 +2097,7 @@ void Engine::DoWeather(Weather &weather)
 		double multiplier = weather.DamageMultiplier();
 
 		// System wide hazards do not act like an explosion, and do not have a limiting range.
-		if(weather.SystemWide())
+		if(hazard->SystemWide())
 		{
 			const System *system = player.GetSystem();
 			for(shared_ptr<Ship> ship: ships)
