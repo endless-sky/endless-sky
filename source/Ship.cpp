@@ -266,6 +266,7 @@ void Ship::Load(const DataNode &node)
 			if(child.HasChildren())
 			{
 				for(const DataNode &grand : child)
+				{
 					if(grand.Token(0) == "angle" && grand.Size() >= 2)
 						gunPortAngle = grand.Value(1);
 					else if(grand.Token(0) == "parallel")
@@ -275,7 +276,8 @@ void Ship::Load(const DataNode &node)
 					else if(grand.Token(0) == "over")
 						drawUnder = false;
 					else
-						child.PrintTrace("Warning: Child nodes of \"" + key + "\" tokens can only be \"angle\" or \"parallel\":");
+						grand.PrintTrace("Skipping unrecognized attribute:");
+				}
 			}
 			if(outfit)
 				++equipped[outfit];
@@ -350,7 +352,7 @@ void Ship::Load(const DataNode &node)
 								handled = true;
 							}
 						if(!handled)
-							grand.PrintTrace("Child nodes of \"bay\" tokens can only be \"launch effect\", \"angle\", or a facing keyword:");
+							grand.PrintTrace("Skipping unrecognized attribute:");
 					}
 				}
 		}
