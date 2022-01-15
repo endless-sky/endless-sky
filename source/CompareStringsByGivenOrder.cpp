@@ -26,8 +26,8 @@ CompareStringsByGivenOrder::CompareStringsByGivenOrder(const vector<string>& ord
 
 bool CompareStringsByGivenOrder::operator()(const string &a, const string &b) const
 {
-	const auto& find_a = find(order.begin(), order.end(), a);
-	const auto& find_b = find(order.begin(), order.end(), b);
+	const auto find_a = find(order.begin(), order.end(), a);
+	const auto find_b = find(order.begin(), order.end(), b);
 
 	if(find_a == order.end() && find_b == order.end())
 	{
