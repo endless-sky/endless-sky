@@ -50,6 +50,25 @@ namespace {
 		}
 		return available;
 	}
+
+	bool hasShip(const Ship *ship, const std::string &name, const PlayerInfo &player)
+	{
+		if(name.empty())
+		{
+			for(const shared_ptr<Ship> &playerShip : player.Ships())
+				if(playerShip->ModelName() == ship->ModelName())
+					return true;
+		}
+		else
+		{
+			// The UUID of given ship is stocked, in a condition with the name.
+			EsUuid id = EsUuid::FromString(player.Conditions()[name]);
+			for(const shared_ptr<Ship> &playerShip : player.Ships())
+				if(playerShip->UUID() == id)
+					return true;
+		}
+		return false;
+	}
 }
 
 
@@ -98,8 +117,22 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			conversation.Load(child, missionName);
 		else if(key == "conversation" && hasValue)
 			stockConversation = GameData::Conversations().Get(child.Token(1));
+		else if(key == "require" && child.Size() >= 3 && !child.Value(3))
+		{
+			if(child.Token(1) == "ship")
+				requiredShips[GameData::Ships().Get(child.Token(2))] = child.Size() >= 4 ? child.Token(3) : "";
+			else if(child.Token(1) == "outfit")
+			{
+				int count = (child.Size() < 4 ? 1 : static_cast<int>(child.Value(3)));
+				if(count >= 0)
+					requiredOutfits[GameData::Outfits().Get(child.Token(1))] = count;
+				else
+					child.PrintTrace("Error: Skipping invalid \"require\" amount:");
+			}
+		}
 		else if(key == "require" && hasValue)
 		{
+			child.PrintTrace("Warning: Deprecated use of require \"outfit\". Use \"require outfit <outfit>\" instead:");
 			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
 			if(count >= 0)
 				requiredOutfits[GameData::Outfits().Get(child.Token(1))] = count;
@@ -109,7 +142,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		// The legacy syntax "outfit <outfit> 0" means "the player must have this outfit installed."
 		else if(key == "outfit" && child.Size() >= 3 && child.Token(2) == "0")
 		{
-			child.PrintTrace("Warning: Deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
+			child.PrintTrace("Warning: Deprecated use of \"outfit\" with count of 0. Use \"require outfit <outfit>\" instead:");
 			requiredOutfits[GameData::Outfits().Get(child.Token(1))] = 1;
 		}
 		else if(key == "system")
@@ -156,7 +189,9 @@ void MissionAction::Save(DataWriter &out) const
 		if(!conversation.IsEmpty())
 			conversation.Save(out);
 		for(const auto &it : requiredOutfits)
-			out.Write("require", it.first->Name(), it.second);
+			out.Write("require outfit", it.first->Name(), it.second);
+		for(const auto &it : requiredShips)
+			out.Write("require ship", it.first->ModelName(), it.second);
 
 		action.Save(out);
 	}
@@ -190,6 +225,9 @@ string MissionAction::Validate() const
 	for(auto &&outfit : requiredOutfits)
 		if(!outfit.first->IsDefined())
 			return "required outfit \"" + outfit.first->Name() + "\"";
+	for(auto &&ship : requiredShips)
+		if(!ship.first->IsValid())
+			return "ship \"" + ship.first->ModelName() + "\"" + " \"" + ship.second + "\"";
 
 	return action.Validate();
 }
@@ -226,6 +264,16 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 				: CountInCargo(it.first, player);
 
 		if(available < -it.second)
+			return false;
+	}
+
+	for(auto &&it : action.Ships())
+	{
+		// If this ship is being given, the player doesn't need to have it.
+		if(it.second.second)
+			continue;
+
+		if(!hasShip(it.first, it.second.first, player))
 			return false;
 	}
 
@@ -273,6 +321,10 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 			return false;
 	}
 
+	for(auto &&it : requiredShips)
+		if(!hasShip(it.first, it.second, player))
+			return false;
+	
 	// An `on enter` MissionAction may have defined a LocationFilter that
 	// specifies the systems in which it can occur.
 	if(!systemFilter.IsEmpty() && !systemFilter.Matches(player.GetSystem()))
@@ -336,6 +388,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	result.systemFilter = systemFilter.SetOrigin(origin);
 
 	result.requiredOutfits = requiredOutfits;
+	result.requiredShips = requiredShips;
 
 	string previousPayment = subs["<payment>"];
 	string previousFine = subs["<fine>"];

@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define MISSION_ACTION_H_
 
 #include "Conversation.h"
+#include "EsUuid.h"
 #include "GameAction.h"
 #include "LocationFilter.h"
 #include "Phrase.h"
@@ -77,6 +78,8 @@ private:
 
 	// Outfits that are required to be owned (or not) for this action to be performable.
 	std::map<const Outfit *, int> requiredOutfits;
+	// Same for ships.
+	std::map<const Ship *, std::string> requiredShips;
 
 	// Tasks this mission action performs, such as modifying accounts, inventory, or conditions.
 	GameAction action;

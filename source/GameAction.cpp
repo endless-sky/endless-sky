@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
+#include "EsUuid.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "GameEvent.h"
@@ -30,13 +31,42 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	void DoGift(PlayerInfo &player, const Ship *model, const string &name)
+	void DoGift(PlayerInfo &player, const Ship *model, const string &name, bool isGift)
 	{
 		if(model->ModelName().empty())
 			return;
 
-		player.BuyShip(model, name, true);
-		Messages::Add("The " + model->ModelName() + " \"" + name + "\" was added to your fleet."
+		if(isGift)
+		{
+			player.BuyShip(model, name, true);
+			// We need to stock the UUID so that the same exact ship that be retrieved later.
+			if(!name.empty())
+				player.Conditions()[name] = player.Ships().back()->UUID();
+		}
+		else
+		{
+			if(name.empty())
+			{
+				for(const Ship *ship : player.Ships())
+					if(ship->ModelName() == model->ModelName())
+					{
+						player.SellShip(ship, true);
+						break;
+					}
+			}
+			else
+			{
+				// The UUID of given ship is stocked, in a condition with the name.
+				EsUuid id = EsUuid::FromString(player.Conditions()[name]);
+				for(const Ship *ship : player.Ships())
+					if(ship.UUID() == id)
+					{
+						player.SellShip(ship, true);
+						break;
+					}
+			}
+		}
+		Messages::Add("The " + model->ModelName() + " \"" + name + "\" was " + isGift ? "added to" : "removed from" " your fleet."
 			, Messages::Importance::High);
 	}
 
@@ -159,10 +189,10 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 			specialLogText[child.Token(1)][child.Token(2)] : logText);
 		Dialog::ParseTextNode(child, isSpecial ? 3 : 1, text);
 	}
-	else if(key == "give" && hasValue)
+	else if((key == "give" || key == "take") && hasValue)
 	{
 		if(child.Token(1) == "ship" && child.Size() >= 3)
-			giftShips.emplace_back(GameData::Ships().Get(child.Token(2)), child.Size() >= 4 ? child.Token(3) : "");
+			giftShips[GameData::Ships().Get(child.Token(2))] = (child.Size() >= 4 ? child.Token(3) : "", key == "give");
 		else
 			child.PrintTrace("Error: Skipping unsupported \"give\" syntax:");
 	}
@@ -243,7 +273,7 @@ void GameAction::Save(DataWriter &out) const
 			out.EndChild();
 		}
 	for(auto &&it : giftShips)
-		out.Write("give", "ship", it.first->VariantName(), it.second);
+		out.Write(it.second.second ? "give" : "take", "ship", it.first->VariantName(), it.second.first);
 	for(auto &&it : giftOutfits)
 		out.Write("outfit", it.first->Name(), it.second);
 	if(payment)
@@ -312,6 +342,13 @@ const map<const Outfit *, int> &GameAction::Outfits() const noexcept
 
 
 
+const map<const Ship *, pair<std::string, bool>> &GameAction::Ships() const noexcept
+{
+	return giftShips;
+}
+
+
+
 // Perform the specified tasks.
 void GameAction::Do(PlayerInfo &player, UI *ui) const
 {
@@ -321,8 +358,6 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 		for(auto &&eit : it.second)
 			player.AddSpecialLog(it.first, eit.first, eit.second);
 
-	for(auto &&it : giftShips)
-		DoGift(player, it.first, it.second);
 	// If multiple outfits are being transferred, first remove them before
 	// adding any new ones.
 	for(auto &&it : giftOutfits)
@@ -331,6 +366,8 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 	for(auto &&it : giftOutfits)
 		if(it.second > 0)
 			DoGift(player, it.first, it.second, ui);
+	for(auto &&it : giftShips)
+		DoGift(player, it.first, it.second.first, it.second.second);
 
 	if(payment)
 	{
@@ -387,7 +424,7 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	}
 
 	for(auto &&it : giftShips)
-		result.giftShips.emplace_back(it.first, !it.second.empty() ? it.second : GameData::Phrases().Get("civilian")->Get());
+		result.giftShips[it.first] = (!it.second.first.empty() ? it.second.first : GameData::Phrases().Get("civilian")->Get()), it.second.second);
 	result.giftOutfits = giftOutfits;
 
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;

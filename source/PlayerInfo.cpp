@@ -916,20 +916,23 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 
 
 // Sell the given ship (if it belongs to the player).
-void PlayerInfo::SellShip(const Ship *selected)
+void PlayerInfo::SellShip(const Ship *selected, bool isTaking)
 {
 	for(auto it = ships.begin(); it != ships.end(); ++it)
 		if(it->get() == selected)
 		{
-			int day = date.DaysSinceEpoch();
-			int64_t cost = depreciation.Value(*selected, day);
+			if(!isTaking)
+			{
+				int day = date.DaysSinceEpoch();
+				int64_t cost = depreciation.Value(*selected, day);
 
-			// Record the transfer of this ship in the depreciation and stock info.
-			stockDepreciation.Buy(*selected, day, &depreciation);
-			for(const auto &it : selected->Outfits())
-				stock[it.first] += it.second;
+				// Record the transfer of this ship in the depreciation and stock info.
+				stockDepreciation.Buy(*selected, day, &depreciation);
+				for(const auto &it : selected->Outfits())
+					stock[it.first] += it.second;
 
-			accounts.AddCredits(cost);
+				accounts.AddCredits(cost);
+			}
 			ships.erase(it);
 			flagship.reset();
 			return;
