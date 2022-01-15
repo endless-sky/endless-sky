@@ -1615,7 +1615,15 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 
 	// Boarding:
 	bool autoPlunder = !ship->IsYours();
-	shared_ptr<Ship> victim = ship->Board(autoPlunder);
+	shared_ptr<Ship> boardingTarget = ship->GetTargetShip();
+	shared_ptr<Ship> victim;
+	if(ship.get() != flagship || !ship->CanBeCarried() || !boardingTarget || boardingTarget->Crew())
+		victim = ship->Board(autoPlunder);
+	else
+	{
+		Messages::Add("You cannot change your flagship to a ship with no crew.", Messages::Importance::High);
+		ship->CancelBoard();
+	}
 	if(ship.get() == flagship && !ship->GetSystem())
 	{
 		// If the players flagship just docked, then it got the new flagship as parent.

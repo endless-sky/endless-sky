@@ -199,6 +199,8 @@ public:
 	// it or, if this is a player ship, returns the ship it is plundering so a
 	// plunder dialog can be displayed.
 	std::shared_ptr<Ship> Board(bool autoPlunder = true);
+	// Cancel boarding if the boarding command is not or no longer valid.
+	void CancelBoard();
 	// Scan the target, if able and commanded to. Return a ShipEvent bitmask
 	// giving the types of scan that succeeded.
 	int Scan();

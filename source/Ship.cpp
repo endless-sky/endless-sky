@@ -2320,6 +2320,16 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 
 
 
+// Helper function to cancel boarding if boarding is not possible.
+void Ship::CancelBoard()
+{
+	isBoarding = false;
+	hasBoarded = false;
+	commands.Clear(Command::BOARD);
+}
+
+
+
 // Scan the target, if able and commanded to. Return a ShipEvent bitmask
 // giving the types of scan that succeeded.
 int Ship::Scan()
