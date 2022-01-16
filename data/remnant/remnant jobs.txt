@@ -192,7 +192,7 @@ mission "Remnant: Bounty 5"
 	job
 	repeat
 	name "Destroy Ground Assault Bounty"
-	description "A Korath ship is hunting for our outposts. Track it down, eliminate it, and then return to <planet> to receive your payment of <payment>."
+	description "A Korath ship is hunting for our outposts in the Ember Wastes. Track it down, eliminate it, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
 	to offer
@@ -200,12 +200,14 @@ mission "Remnant: Bounty 5"
 		or
 			not "Remnant: Ssil Vida Active"
 			not "flagship planet: Ssil Vida"
-		# random < 5
+		random < 5
 	npc kill
 		government "Korath"
-		personality heroic vindictive target marked
+		personality heroic vindictive uninterested target marked
 		system
-			distance 1 4
+			attributes "ember waste"
+			not attributes "graveyard"
+			not attributes "inaccessible"
 		fleet
 			names "korath"
 			cargo 3
