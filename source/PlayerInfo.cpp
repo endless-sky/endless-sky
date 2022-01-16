@@ -898,7 +898,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 	{
 		// Copy the model instance into a new instance.
 		ships.push_back(make_shared<Ship>(*model));
-		ships.back()->SetName(name.empty() ? name : GameData::Phrases().Get("civilian")->Get());
+		ships.back()->SetName(!name.empty() ? name : GameData::Phrases().Get("civilian")->Get());
 		ships.back()->SetSystem(system);
 		ships.back()->SetPlanet(planet);
 		ships.back()->SetIsSpecial();
@@ -915,9 +915,9 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 			for(const auto &it : model->Outfits())
 				stock[it.first] -= it.second;
 		}
-		// We need to stock the UUID so that the same exact ship can be retrieved later.
-		else if(!name.empty())
-			giftedShips[name].clone(ships.back()->UUID());
+		// Store named, unamed ships under their name or a generic name of their model so they can be checked later.
+		else
+			giftedShips[!name.empty() ? name : ships.back()->VariantName()].clone(ships.back()->UUID());
 	}
 }
 
@@ -941,7 +941,7 @@ void PlayerInfo::SellShip(const Ship *selected, bool isTaking)
 
 				accounts.AddCredits(cost);
 			}
-			ForgetShip(it->UUID());
+			ForgetShip(it->get()->UUID());
 			ships.erase(it);
 			flagship.reset();
 			return;
@@ -956,7 +956,7 @@ vector<shared_ptr<Ship>>::iterator PlayerInfo::DisownShip(const Ship *selected)
 		if(it->get() == selected)
 		{
 			flagship.reset();
-			ForgetShip(it->UUID());
+			ForgetShip(it->get()->UUID());
 			it = ships.erase(it);
 			return (it == ships.begin()) ? it : --it;
 		}
@@ -3184,8 +3184,8 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 void PlayerInfo::ForgetShip(const EsUuid &uuid)
 {
 	string name = "";
-	for(const auto &&ship : giftedShips)
-		if(ship.second == selected->UUID())
+	for(const auto &ship : giftedShips)
+		if(ship.second == uuid)
 		{
 			name = ship.first;
 			break;

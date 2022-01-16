@@ -36,8 +36,12 @@ namespace {
 		if(model->ModelName().empty())
 			return;
 
+		const string shipName;
 		if(isGift)
+		{
 			player.BuyShip(model, name, true);
+			shipName = player.Ships().back()->Name();
+		}
 		else
 		{
 			if(name.empty())
@@ -47,6 +51,7 @@ namespace {
 					if((ship->VariantName() == model->VariantName() || ship->ModelName() == model->VariantName())
 						&& ship->GetSystem() == here && !ship->IsDisabled() && !ship->IsParked())
 					{
+						shipName = ship->Name();
 						player.SellShip(ship.get(), true);
 						break;
 					}
@@ -57,12 +62,13 @@ namespace {
 				for(const auto &ship : player.Ships())
 					if(ship->UUID() == id)
 					{
+						shipName = ship->Name();
 						player.SellShip(ship.get(), true);
 						break;
 					}
 			}
 		}
-		Messages::Add("The " + model->ModelName() + " \"" + name + "\" was " + 
+		Messages::Add("The " + model->ModelName() + " \"" + shipName + "\" was " + 
 			(isGift ? "added to" : "removed from") + " your fleet.", Messages::Importance::High);
 	}
 
@@ -190,7 +196,7 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 		if(child.Token(1) == "ship" && child.Size() >= 3)
 			giftShips[GameData::Ships().Get(child.Token(2))] = pair<string, bool>(child.Size() >= 4 ? child.Token(3) : "", key == "give");
 		else
-			child.PrintTrace("Error: Skipping unsupported \"give\" syntax:");
+			child.PrintTrace("Error: Skipping unsupported \"" + key + "\" syntax:");
 	}
 	else if(key == "outfit" && hasValue)
 	{
