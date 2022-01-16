@@ -63,8 +63,7 @@ namespace {
 		}
 		else
 		{
-			// The UUID of given ship is stocked, in a condition with the name.
-			EsUuid id = EsUuid::FromString(player.Conditions()[name]);
+			const EsUuid &id = player.GiftedShips().find(name)->second;
 			for(const shared_ptr<Ship> &ship : player.Ships())
 				if(ship->UUID() == id)
 					return true;
@@ -179,9 +178,9 @@ void MissionAction::Save(DataWriter &out) const
 		if(!conversation.IsEmpty())
 			conversation.Save(out);
 		for(const auto &it : requiredOutfits)
-			out.Write("require outfit", it.first->Name(), it.second);
+			out.Write("require", it.first->Name(), it.second);
 		for(const auto &it : requiredShips)
-			out.Write("require ship", it.first->ModelName(), it.second);
+			out.Write("owns", it.first->ModelName(), it.second);
 
 		action.Save(out);
 	}

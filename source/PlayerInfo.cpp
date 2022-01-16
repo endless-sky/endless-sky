@@ -233,6 +233,11 @@ void PlayerInfo::Load(const string &path)
 			for(const DataNode &grand : child)
 				conditions[grand.Token(0)] = (grand.Size() >= 2) ? grand.Value(1) : 1;
 		}
+		else if(child.Token(0) == "gifted ships")
+		{
+			for(const DataNode &grand : child)
+				giftedShips[grand.Token(0)] = EsUuid::FromString(grand.Token(1));
+		}
 		else if(child.Token(0) == "event")
 			gameEvents.emplace_back(child);
 		else if(child.Token(0) == "changes")
@@ -910,6 +915,9 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 			for(const auto &it : model->Outfits())
 				stock[it.first] -= it.second;
 		}
+		// We need to stock the UUID so that the same exact ship can be retrieved later.
+		else
+			giftedShips[name].clone(ships.back()->UUID());
 	}
 }
 
@@ -1850,6 +1858,21 @@ const map<string, int64_t> &PlayerInfo::Conditions() const
 	return conditions;
 }
 
+
+
+// Uuid for the gifted ships, with the names they had when they were gifted to the player.
+const std::map<std::string, EsUuid> &PlayerInfo::GiftedShips() const
+{
+	return giftedShips;
+}
+
+
+
+// When we remove a ship that was gifted to the player from him, remove the linked UUID.
+void PlayerInfo::ForgetShip(const string &name)
+{
+	giftedShips.erase(name);
+}
 
 
 // Set and check the reputation conditions, which missions and events can use to
@@ -2970,6 +2993,18 @@ void PlayerInfo::Save(const string &path) const
 				else if(it.second)
 					out.Write(it.first, it.second);
 			}
+		}
+		out.EndChild();
+	}
+
+	// Save the UUID of any ships given to the player with a specified name.
+	if(!giftedShips.empty())
+	{
+		out.Write("gifted ships");
+		out.BeginChild();
+		{
+			for(const auto &it : giftedShips)
+				out.Write(it.first, it.second.ToString());
 		}
 		out.EndChild();
 	}

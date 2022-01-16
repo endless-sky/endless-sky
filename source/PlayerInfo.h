@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "Date.h"
 #include "Depreciation.h"
+#include "EsUuid.h"
 #include "GameEvent.h"
 #include "Mission.h"
 
@@ -207,6 +208,10 @@ public:
 	int64_t GetCondition(const std::string &name) const;
 	std::map<std::string, int64_t> &Conditions();
 	const std::map<std::string, int64_t> &Conditions() const;
+	// Uuid for the gifted ships, with the names they had when they were gifted to the player.
+	const std::map<std::string, EsUuid> &GiftedShips() const;
+	// When we remove a ship that was gifted to the player from him, remove the linked UUID.
+	void ForgetShip(const std::string &name);
 	// Set and check the reputation conditions, which missions and events
 	// can use to modify the player's reputation with other governments.
 	void SetReputationConditions();
@@ -349,6 +354,7 @@ private:
 	Mission *activeBoardingMission = nullptr;
 
 	std::map<std::string, int64_t> conditions;
+	std::map<std::string, EsUuid> giftedShips;
 
 	std::set<const System *> seen;
 	std::set<const System *> visitedSystems;

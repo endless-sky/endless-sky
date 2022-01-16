@@ -41,11 +41,7 @@ namespace {
 			if(name.empty())
 				player.BuyShip(model, GameData::Phrases().Get("civilian")->Get(), true);
 			else
-			{
 				player.BuyShip(model, name, true);
-				// We need to stock the UUID so that the same exact ship that be retrieved later.
-				player.Conditions()[name] = player.Ships().back()->UUID();
-			}
 		}
 		else
 		{
@@ -56,24 +52,24 @@ namespace {
 					if(ship->ModelName() == model->ModelName() && ship->GetSystem() == here
 						&& !ship->IsDisabled() && !ship->IsParked())
 					{
-						player.SellShip(ship, true);
+						player.SellShip(ship.get(), true);
 						break;
 					}
 			}
 			else
 			{
-				// The UUID of given ship is stocked, in a condition with the name.
-				EsUuid id = EsUuid::FromString(player.Conditions()[name]);
-				for(const Ship *ship : player.Ships())
-					if(ship.UUID() == id)
+				const EsUuid &id = player.GiftedShips().find(name)->second;
+				for(const shared_ptr<Ship> &ship : player.Ships())
+					if(ship->UUID() == id)
 					{
-						player.SellShip(ship, true);
+						player.SellShip(ship.get(), true);
+						player.ForgetShip(name);
 						break;
 					}
 			}
 		}
 		Messages::Add("The " + model->ModelName() + " \"" + name + "\" was " + 
-			isGift ? "added to" : "removed from" " your fleet.", Messages::Importance::High);
+			(isGift ? "added to" : "removed from") + " your fleet.", Messages::Importance::High);
 	}
 
 	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
@@ -198,7 +194,7 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 	else if((key == "give" || key == "take") && hasValue)
 	{
 		if(child.Token(1) == "ship" && child.Size() >= 3)
-			giftShips[GameData::Ships().Get(child.Token(2))] = (child.Size() >= 4 ? child.Token(3) : "", key == "give");
+			giftShips[GameData::Ships().Get(child.Token(2))] = pair<string, bool>(child.Size() >= 4 ? child.Token(3) : "", key == "give");
 		else
 			child.PrintTrace("Error: Skipping unsupported \"give\" syntax:");
 	}

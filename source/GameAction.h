@@ -59,7 +59,7 @@ public:
 	int64_t Payment() const noexcept;
 	int64_t Fine() const noexcept;
 	const std::map<const Outfit *, int> &Outfits() const noexcept;
-	std::map<const Ship *, std::pair<std::string, bool>> &Ships() const noexcept;
+	const std::map<const Ship *, std::pair<std::string, bool>> &Ships() const noexcept;
 
 	// Perform this action.
 	void Do(PlayerInfo &player, UI *ui) const;
