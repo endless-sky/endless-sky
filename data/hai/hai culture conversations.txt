@@ -239,15 +239,15 @@ mission "Academy Motto"
 			`	A friendly Hai emerges to take your order, and politely informs you that there's a 10% surcharge for eating on the terrace, but that's hardly a meaningful sum to a ship's captain so you just nod and try and work out what you're eating. Eventually you settle for a sandwich with acorn butter and vegetable slices that appear to be spiced, or pickled, you're not really sure. It was the staff's top recommended item and didn't come with any follow-up questions about Hai food preferences that you couldn't answer.`
 				goto finishingchat
 			label pleasantlunch
-			`	The interface is rather annoying to work with human-sized hands, and eventually you settle for a sandwich with acorn butter and vegetable slices that appear to be spiced, or pickled, you're not really sure. It was the top recommended item and didn't come with any follow-up questions about Hai food preferences that you couldn't answer.`
+			`	The interface is rather annoying to work with human-sized hands, but eventually you settle for a sandwich with acorn butter and vegetable slices that appear to be spiced, or pickled, you're not really sure. It was the top recommended item and didn't come with any follow-up questions about Hai food preferences that you couldn't answer.`
 			label finishingchat
-			`	As you eat your strange, but actually surprisingly tasty, lunch, you take note of the text written large above the gateway into the grounds for the building complex opposite you. After a moment your translator box takes note of where you're looking and reads it aloud for you.`
+			`	As you eat your strange, but actually surprisingly tasty lunch, you take note of the large text written above the gateway into the grounds for the building complex opposite you. After a moment your translator box takes note of where you're looking and reads it aloud for you.`
 			`	"To know is to lead, to study is to know, to serve is to study, to lead is to serve."`
 			`	Naturally, your translator cannot answer questions, so you eat your lunch and leave it be until a staff member emerges to take your plate.`
 			choice	
 				`	(Ask them about it.)`
-				`	(Keep your thoughts to yourself.)`
 					goto question
+				`	(Keep your thoughts to yourself.)`
 			`	The staff member takes your plate and wishes you a lovely day.`
 				decline
 			label question
