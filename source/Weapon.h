@@ -130,8 +130,8 @@ public:
 	double SplitRange() const;
 	double TriggerRadius() const;
 	double BlastRadius() const;
-	double BlastRadius() const;
 	double SafeRange() const;
+	double HitForce() const;
 
 	// A "safe" weapon hits only hostile ships (even if it has a blast radius).
 	// A "phasing" weapon hits only its intended target; it passes through

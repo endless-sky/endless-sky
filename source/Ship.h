@@ -180,6 +180,11 @@ public:
 	// Access the ship's personality, which affects how the AI behaves.
 	const Personality &GetPersonality() const;
 	void SetPersonality(const Personality &other);
+	// Access it's AI data
+	double GetAiAttributes(const char *attribute) const;
+	double GetAiAttributes(const std::string &attribute) const;
+	const Dictionary &AiAttributes() const;
+	void SetAiAttributes(const char *attribute, double value);
 	// Get a random hail message, or set the object used to generate them. If no
 	// object is given the government's default will be used.
 	void SetHail(const Phrase &phrase);
@@ -321,6 +326,7 @@ public:
 	double TurnRate() const;
 	double Acceleration() const;
 	double MaxVelocity() const;
+	double ReverseAcceleration() const;
 	double MaxReverseVelocity() const;
 
 	// This ship just got hit by a projectile or hazard. Take damage according to
@@ -490,6 +496,7 @@ private:
 	Command commands;
 
 	Personality personality;
+	Dictionary aiAttributes;
 	const Phrase *hail = nullptr;
 
 	// Installed outfits, cargo, etc.:

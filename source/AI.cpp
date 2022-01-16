@@ -522,8 +522,11 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		}
 
 	const Ship *flagship = player.Flagship();
-	step = (step + 1) & 31;
+	// Yes, this overflows. but the beauty of bitwise-and means that
+	// overflow doesn't cause any issues.
+	step = step + 1;
 	int targetTurn = 0;
+	int weaponUpdateTurn = 0;
 	int minerCount = 0;
 	const int maxMinerCount = minables.empty() ? 0 : 9;
 	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
@@ -578,6 +581,12 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		// Overheated ships are effectively disabled, and cannot fire, cloak, etc.
 		if(it->IsOverheated())
 			continue;
+		
+		// Update the stats of the ship's weapons and cache the results.
+		// This can be better, but it works fine.
+		weaponUpdateTurn = (weaponUpdateTurn + 1) & 127;
+		if(weaponUpdateTurn == (step & 127))
+			UpdateWeaponStats(*it);
 
 		// Special case: if the player's flagship tries to board a ship to
 		// refuel it, that escort should hold position for boarding.
@@ -623,7 +632,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			// Each ship only switches targets twice a second, so that it can
 			// focus on damaging one particular ship.
 			targetTurn = (targetTurn + 1) & 31;
-			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled()
+			if(targetTurn == (step & 31) || !target || target->IsDestroyed() || (target->IsDisabled()
 					&& personality.Disables()) || !target->IsTargetable())
 				it->SetTargetShip(FindTarget(*it));
 		}
@@ -2061,77 +2070,175 @@ void AI::KeepStation(Ship &ship, Command &command, const Body &target)
 
 
 
-void AI::Attack(Ship &ship, Command &command, const Ship &target)
+void AI::UpdateWeaponStats(Ship &ship)
 {
-	// First, figure out what your shortest-range weapon is.
-	double shortestRange = 4000.;
+	double shortestRange = 1000.;
+	double shortestArtillery = 4000.;
 	bool isArmed = false;
 	bool hasAmmo = false;
+	bool artilleryAI = false;
 	double minSafeDistance = 0.;
+	double totalSpace = 0.;
+	double splashSpace = 0.;
+	double rangedSpace = 0.;
+	
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
-		const Weapon *weapon = hardpoint.GetOutfit();
+		const Outfit  *weapon = hardpoint.GetOutfit();
 		if(weapon && !hardpoint.IsAntiMissile())
 		{
 			isArmed = true;
 			bool hasThisAmmo = (!weapon->Ammo() || ship.OutfitCount(weapon->Ammo()));
 			hasAmmo |= hasThisAmmo;
+			// Account for weapons that may have different weapon capacity
+			// usage compared to outfit space usage. Also account for any
+			// "weapons" that might use engine capacity.
+			double outfitSpace = (weapon->Get("outfit space") + weapon->Get("weapon capacity")
+					+ weapon->Get("engine capacity")) / -2;
+			totalSpace += outfitSpace;
 
 			// Exploding weaponry that can damage this ship requires special
 			// consideration (while we have the ammo to use the weapon).
-			if(hasThisAmmo && weapon->BlastRadius() && !weapon->IsSafe())
+			if(hasThisAmmo && weapon->SafeRange())
+			{
 				minSafeDistance = max(weapon->SafeRange(), minSafeDistance);
+				splashSpace += outfitSpace;
+			}
 
-			// The missile boat AI should be applied at 1000 pixels range if
-			// all weapons are homing or turrets, and at 2000 if not.
-			double multiplier = (hardpoint.IsHoming() || hardpoint.IsTurret()) ? 1. : .5;
-			shortestRange = min(multiplier * weapon->Range(), shortestRange);
+			// The artillery AI should be applied at 1000 pixels range.
+			// regardless of wether the weapon is homing or not.
+			// The AI works fine with non homing weapons
+			double range = weapon->Range();
+			shortestRange = min(range, shortestRange);
+			if(range > 1000)
+			{
+				shortestArtillery = min(range, shortestArtillery);
+				rangedSpace += outfitSpace;
+			}
+			
+			
 		}
 	}
-	// Take into account the radius of this ship when doing minSafeDistance claculations
-	// additionally, add a 50 unit gap to give the ship some room to turn around.
-	if(minSafeDistance != 0)
-		minSafeDistance += ship.Radius() + 50;
+	
+	// Calculate this ship's "turning radius"; that is, the smallest circle it
+	// can make while at full speed.
+	double stepsInFullTurn = 360. / ship.TurnRate();
+	double circumference = stepsInFullTurn * ship.Velocity().Length();
+	double diameter = circumference / PI;
 	
 	// If this ship was using the missile boat AI to run away and bombard its
 	// target from a distance, have it stop running once it is out of ammo. This
 	// is not realistic, but it's a whole lot less annoying for the player when
 	// they are trying to hunt down and kill the last missile boat in a fleet.
 	if(isArmed && !hasAmmo)
+	{
 		shortestRange = 0.;
+		shortestArtillery = 0.;
+	}
+	
+	// ArtilleryAI is the AI responsible for handling the behavior of missile boats
+	// and other ships with exceptionally long range weapons such as detainers
+	// The AI shouldn't use artilleryAI if it has no reverse and it's turning
+	// capabilities are very bad. Otherwise it spends most of it's time flying around
+	if(rangedSpace > totalSpace * 0.5 && (ship.MaxReverseVelocity() ||
+			diameter < 0.2 * shortestArtillery))
+		artilleryAI = true;
+	// Don't try to avoid your own splash damage if it means you whould be losing out
+	// on a lot of DPS. Helps with ships with very slow turning and not a lot of splash
+	// weapons being overly afraid of dying.
+	if(minSafeDistance && !(artilleryAI || shortestRange * splashSpace / totalSpace
+			> diameter))
+		minSafeDistance = 0.;
 
+	
+	ship.SetAiAttributes("artilleryAI", artilleryAI);
+	ship.SetAiAttributes("shortestRange", shortestRange);
+	ship.SetAiAttributes("shortestArtillery", shortestArtillery);
+	ship.SetAiAttributes("minSafeDistance", minSafeDistance);
+	ship.SetAiAttributes("turning radius", diameter);
+}
+
+
+
+void AI::Attack(Ship &ship, Command &command, const Ship &target)
+{
+	const Dictionary aiAttributes = ship.AiAttributes();
+	bool artilleryAI = aiAttributes.Get("artilleryAI") == 1;
+	double shortestRange = aiAttributes.Get("shortestRange");
+	double shortestArtillery = aiAttributes.Get("shortestArtillery");
+	double minSafeDistance = aiAttributes.Get("minSafeDistance");
+	double totalRadius = ship.Radius() + target.Radius();
+	Point d = target.Position() - ship.Position();
+	double weaponDistance = d.Length() - totalRadius/3;
+	
 	// Deploy any fighters you are carrying.
 	if(!ship.IsYours() && ship.HasBays())
 	{
 		command |= Command::DEPLOY;
 		Deploy(ship, false);
 	}
+	
 
-	// If this ship has only long-range weapons, or some weapons have a
+	// If this ship has mostly long-range weapons, or some weapons have a
 	// blast radius, it should keep some distance instead of closing in.
-	Point d = (target.Position() + target.Velocity()) - (ship.Position() + ship.Velocity());
-	if((minSafeDistance > 0. || shortestRange > 1000.)
-			&& d.Length() < max(1.25 * minSafeDistance, .5 * shortestRange))
+	// if a weapon has blast radius, some leeway helps avoid getting hurt
+	if(minSafeDistance > 1 || artilleryAI)
 	{
+		minSafeDistance = 1.25 * minSafeDistance + totalRadius;
+		
+		double approachSpeed = (ship.Velocity() - target.Velocity()).Dot(d.Unit());
+		double slowdownDistance = 0;
 		// If this ship can use reverse thrusters, consider doing so.
 		double reverseSpeed = ship.MaxReverseVelocity();
-		if(reverseSpeed && (reverseSpeed >= min(target.MaxVelocity(), ship.MaxVelocity())
-				|| target.Velocity().Dot(-d.Unit()) <= reverseSpeed))
+		bool useReverse = reverseSpeed && (reverseSpeed >= min(target.MaxVelocity(), ship.MaxVelocity())
+				|| target.Velocity().Dot(-d.Unit()) <= reverseSpeed);
+		if(useReverse)
+			slowdownDistance = approachSpeed * approachSpeed
+					/ ship.ReverseAcceleration() / 2;
+		else
+			slowdownDistance = approachSpeed * (approachSpeed / ship.Acceleration()
+					+ 150. / ship.TurnRate()) / 2;
+		
+	
+		if(d.Length() < max(minSafeDistance + max(slowdownDistance, 0.), artilleryAI *
+				.7 * shortestArtillery))
 		{
-			command.SetTurn(TurnToward(ship, d));
-			if(ship.Facing().Unit().Dot(d) >= 0.)
-				command |= Command::BACK;
+			if(useReverse)
+			{
+				command.SetTurn(TurnToward(ship, d));
+				if(ship.Facing().Unit().Dot(d) >= 0.)
+					command |= Command::BACK;
+			}
+			else
+			{
+				command.SetTurn(TurnToward(ship, -d));
+				if(ship.Facing().Unit().Dot(d) <= 0.)
+					command |= Command::FORWARD;
+			}
+			return;
 		}
 		else
 		{
-			command.SetTurn(TurnToward(ship, -d));
-			if(ship.Facing().Unit().Dot(d) <= 0.)
-				command |= Command::FORWARD;
+			// This isn't perfect, but it works well enough.
+			if((artilleryAI && (approachSpeed > 0 && weaponDistance < shortestArtillery * 0.9)) ||
+					weaponDistance < shortestRange * 0.75)
+				AimToAttack(ship, command, target);
+			else
+				MoveToAttack(ship, command, target);
 		}
-		return;
 	}
 	else
-		MoveToAttack(ship, command, target);
+		if(weaponDistance < shortestRange * 0.75)
+			AimToAttack(ship, command, target);
+		else
+			MoveToAttack(ship, command, target);
+}
+
+
+
+void AI::AimToAttack(Ship &ship, Command &command, const Body &target)
+{
+	command.SetTurn(TurnToward(ship, TargetAim(ship, target)));
 }
 
 
@@ -2139,22 +2246,16 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 {
 	Point d = target.Position() - ship.Position();
-
+	
 	// First of all, aim in the direction that will hit this target.
-	command.SetTurn(TurnToward(ship, TargetAim(ship, target)));
-
-	// Calculate this ship's "turning radius"; that is, the smallest circle it
-	// can make while at full speed.
-	double stepsInFullTurn = 360. / ship.TurnRate();
-	double circumference = stepsInFullTurn * ship.Velocity().Length();
-	double diameter = max(200., circumference / PI);
-
+	AimToAttack(ship, command, target);
+	
 	// If the ship has reverse thrusters and the target is behind it, we can
 	// use them to reach the target more quickly.
 	if(ship.Facing().Unit().Dot(d.Unit()) < -.75 && ship.Attributes().Get("reverse thrust"))
 		command |= Command::BACK;
 	// This isn't perfect, but it works well enough.
-	else if((ship.Facing().Unit().Dot(d) >= 0. && d.Length() > diameter)
+	else if((ship.Facing().Unit().Dot(d) >= 0. && d.Length() > max(200., ship.GetAiAttributes("turning radius")))
 			|| (ship.Velocity().Dot(d) < 0. && ship.Facing().Unit().Dot(d.Unit()) >= .9))
 		command |= Command::FORWARD;
 
