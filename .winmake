@@ -48,8 +48,8 @@
 # 6. Set AR to the binary archive tooling that is capable of link-time optimization
 #
 DIR_ESLIB ?= C:\dev64
-BIN_DIR ?= .\bin
-BUILDDIR ?= .\build
+BIN_DIR ?= bin
+BUILDDIR ?= build
 SCONS_VERSION ?= 4.2.0
 PYTHON_BINARY ?= py
 AR ?= gcc-ar
@@ -83,7 +83,7 @@ dist: BIN_DIR ::= "$(BIN_DIR)/pkgd"
 
 # Target-specific build recipes
 dist:
-	$(scons_env) $(scons_exe) $(scons_opts) mode=debug
+	$(scons_env) $(scons_exe) $(scons_opts) mode=release
 debug release:
 	$(scons_env) $(scons_exe) $(scons_opts) mode=$@
 build-tests test:
