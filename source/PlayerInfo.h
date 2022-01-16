@@ -210,8 +210,6 @@ public:
 	const std::map<std::string, int64_t> &Conditions() const;
 	// Uuid for the gifted ships, with the names they had when they were gifted to the player.
 	const std::map<std::string, EsUuid> &GiftedShips() const;
-	// When we remove a ship that was gifted to the player from him, remove the linked UUID.
-	void ForgetShip(const std::string &name);
 	// Set and check the reputation conditions, which missions and events
 	// can use to modify the player's reputation with other governments.
 	void SetReputationConditions();
@@ -304,6 +302,9 @@ private:
 
 	// Helper function to update the ship selection.
 	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);
+
+	// When we remove a ship, forget it's stored Uuid.
+	void ForgetShip(const EsUuid &uuid);
 
 	// Check that this player's current state can be saved.
 	bool CanBeSaved() const;

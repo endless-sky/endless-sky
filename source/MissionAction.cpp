@@ -56,15 +56,15 @@ namespace {
 		if(name.empty())
 		{
 			const System *here = player.GetSystem();
-			for(const shared_ptr<Ship> &ship : player.Ships())
-				if(ship->ModelName() == model->ModelName() && ship->GetSystem() == here
-						&& !ship->IsDisabled() && !ship->IsParked())
+			for(const auto &ship : player.Ships())
+				if((ship->VariantName() == model->VariantName() || ship->ModelName() == model->VariantName())
+						&& ship->GetSystem() == here && !ship->IsDisabled() && !ship->IsParked())
 					return true;
 		}
 		else
 		{
 			const EsUuid &id = player.GiftedShips().find(name)->second;
-			for(const shared_ptr<Ship> &ship : player.Ships())
+			for(const auto &ship : player.Ships())
 				if(ship->UUID() == id)
 					return true;
 		}

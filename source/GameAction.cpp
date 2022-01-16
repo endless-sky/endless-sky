@@ -37,20 +37,15 @@ namespace {
 			return;
 
 		if(isGift)
-		{
-			if(name.empty())
-				player.BuyShip(model, GameData::Phrases().Get("civilian")->Get(), true);
-			else
-				player.BuyShip(model, name, true);
-		}
+			player.BuyShip(model, name, true);
 		else
 		{
 			if(name.empty())
 			{
 				const System *here = player.GetSystem();
-				for(const shared_ptr<Ship> &ship : player.Ships())
-					if(ship->ModelName() == model->ModelName() && ship->GetSystem() == here
-						&& !ship->IsDisabled() && !ship->IsParked())
+				for(const auto &ship : player.Ships())
+					if((ship->VariantName() == model->VariantName() || ship->ModelName() == model->VariantName())
+						&& ship->GetSystem() == here && !ship->IsDisabled() && !ship->IsParked())
 					{
 						player.SellShip(ship.get(), true);
 						break;
@@ -59,11 +54,10 @@ namespace {
 			else
 			{
 				const EsUuid &id = player.GiftedShips().find(name)->second;
-				for(const shared_ptr<Ship> &ship : player.Ships())
+				for(const auto &ship : player.Ships())
 					if(ship->UUID() == id)
 					{
 						player.SellShip(ship.get(), true);
-						player.ForgetShip(name);
 						break;
 					}
 			}

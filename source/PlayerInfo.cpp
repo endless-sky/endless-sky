@@ -898,7 +898,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 	{
 		// Copy the model instance into a new instance.
 		ships.push_back(make_shared<Ship>(*model));
-		ships.back()->SetName(name);
+		ships.back()->SetName(name.empty() ? name : GameData::Phrases().Get("civilian")->Get());
 		ships.back()->SetSystem(system);
 		ships.back()->SetPlanet(planet);
 		ships.back()->SetIsSpecial();
@@ -916,7 +916,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 				stock[it.first] -= it.second;
 		}
 		// We need to stock the UUID so that the same exact ship can be retrieved later.
-		else
+		else if(!name.empty())
 			giftedShips[name].clone(ships.back()->UUID());
 	}
 }
@@ -941,6 +941,7 @@ void PlayerInfo::SellShip(const Ship *selected, bool isTaking)
 
 				accounts.AddCredits(cost);
 			}
+			ForgetShip(it->UUID());
 			ships.erase(it);
 			flagship.reset();
 			return;
@@ -955,6 +956,7 @@ vector<shared_ptr<Ship>>::iterator PlayerInfo::DisownShip(const Ship *selected)
 		if(it->get() == selected)
 		{
 			flagship.reset();
+			ForgetShip(it->UUID());
 			it = ships.erase(it);
 			return (it == ships.begin()) ? it : --it;
 		}
@@ -1866,13 +1868,6 @@ const std::map<std::string, EsUuid> &PlayerInfo::GiftedShips() const
 	return giftedShips;
 }
 
-
-
-// When we remove a ship that was gifted to the player from him, remove the linked UUID.
-void PlayerInfo::ForgetShip(const string &name)
-{
-	giftedShips.erase(name);
-}
 
 
 // Set and check the reputation conditions, which missions and events can use to
@@ -3181,6 +3176,22 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 			*first = false;
 		}
 	}
+}
+
+
+
+// When we remove a ship, forget it's stored Uuid.
+void PlayerInfo::ForgetShip(const EsUuid &uuid)
+{
+	string name = "";
+	for(const auto &&ship : giftedShips)
+		if(ship.second == selected->UUID())
+		{
+			name = ship.first;
+			break;
+		}
+	if(!name.empty())
+		giftedShips.erase(name);
 }
 
 
