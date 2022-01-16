@@ -3604,6 +3604,62 @@ mission "Mafia Extortion"
 
 
 
+mission "Thrall Emigration"
+	name "<origin> Emigration"
+	description "Transport a family from <origin> to <destination>, where they hope to find better employment. They cannot pay you."
+	minor
+	source "Thrall"
+	destination "Delve"
+	to offer
+		random < 50
+	passengers 2
+	on offer
+		conversation
+			`By the edge of the spaceport at night, you see a thin, sweaty man turn away from a pilot, disheartened. You make eye contact, and he begins hurrying over to you.`
+			choice
+				`	(Wait for him.)`
+				`	(Walk away quickly.)`
+					decline
+			`	"Excuse me! Are you a pilot?" Without waiting for a response, he continues, "I need to go to the Syndicate. I work all day picking cotton with these hands, but my family's still starving. We can't afford transport..."`
+			`	You can barely understand him through his accent. The man's teeth look worse than his clothes, and his breath makes you step back. His eyes implore you.`
+			choice
+				`	"I might be able to help you. What planet do you need to reach?"`
+				`	"I'm sorry, I only transport for pay."`
+					goto disappointment
+			`	His eyes brighten with hope. "Oh! I, I heard some people are going to <planet> to be miners. They hire folk like us. I, if you could get me, and my wife and our two sons there, I'd praise you to the high stars. You'd save our lives."`
+			choice
+				`	"I can take you, but no more."`
+					goto separation
+				`	"I'd be happy to offer you four transport."`
+					goto offer
+				`	"Sorry, I think this won't work out."`
+					goto disappointment
+			label separation
+			`	"The two little ones are really small," he persists. "We can cramp together. You'll just notice two of us. I mean, some go themselves and send money back, but..."`
+			`	He shakes his head. "My wife's already told me we need to stay together, and I agree. I can't leave. Please, nobody else has said yes."`
+			choice
+				`	"I guess I can find room."`
+					goto offer
+				`	"Sorry, but that's still too many. Have a nice day."`
+					goto disappointment
+			label offer
+			`	"Oh, thank you, thank you!" he says, vigorously shaking your hand. "I'll get them fast, we can leave tonight! I'm Gaint, by the way." He quickly leaves to get them, turning back at least three times to tip his hat to you and make sure you haven't left.`
+			`	Gaint's family arrives quickly. His wife, Mell, is carrying their infant child, and a toddler clutches her leg. His fingers look like a skeleton, and his eyes look like his dad's. "Thank you so much," Mell says as they enter your ship.`
+				accept
+			label disappointment
+			`	You fend off a few more pleas before he understands it's hopeless and begins looking for someone else.`
+				decline
+	
+	on visit
+		dialog phrase "generic passenger on visit"
+	
+	on complete
+		conversation
+			`	As your ship enters <planet>'s cavernous spaceport, you can sense a mixture of hope and apprehension in Gaint and Mell. "Andrin talks too much," you overhear Gaint saying. "I didn't know it's all underground."`
+			`	"We'll figure it out," Mell assures him. When they notice you're listening in, the conversation stops. Your ship lands, and the family collects their things to leave. They thank you again on their way out.`
+
+
+
 mission "Repulsor failure"
 	landing
 	# Don't require the player to pay credits again if the player was already allowed to land when this mission triggered.
