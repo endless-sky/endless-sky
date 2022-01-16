@@ -38,17 +38,23 @@ namespace {
 
 		if(isGift)
 		{
-			player.BuyShip(model, name, true);
-			// We need to stock the UUID so that the same exact ship that be retrieved later.
-			if(!name.empty())
+			if(name.empty())
+				player.BuyShip(model, GameData::Phrases().Get("civilian")->Get(), true);
+			else
+			{
+				player.BuyShip(model, name, true);
+				// We need to stock the UUID so that the same exact ship that be retrieved later.
 				player.Conditions()[name] = player.Ships().back()->UUID();
+			}
 		}
 		else
 		{
 			if(name.empty())
 			{
-				for(const Ship *ship : player.Ships())
-					if(ship->ModelName() == model->ModelName())
+				const System *here = player.GetSystem();
+				for(const shared_ptr<Ship> &ship : player.Ships())
+					if(ship->ModelName() == model->ModelName() && ship->GetSystem() == here
+						&& !ship->IsDisabled() && !ship->IsParked())
 					{
 						player.SellShip(ship, true);
 						break;
@@ -66,8 +72,8 @@ namespace {
 					}
 			}
 		}
-		Messages::Add("The " + model->ModelName() + " \"" + name + "\" was " + isGift ? "added to" : "removed from" " your fleet."
-			, Messages::Importance::High);
+		Messages::Add("The " + model->ModelName() + " \"" + name + "\" was " + 
+			isGift ? "added to" : "removed from" " your fleet.", Messages::Importance::High);
 	}
 
 	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
@@ -423,8 +429,7 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 		result.events[it.first] = make_pair(day, day);
 	}
 
-	for(auto &&it : giftShips)
-		result.giftShips[it.first] = (!it.second.first.empty() ? it.second.first : GameData::Phrases().Get("civilian")->Get()), it.second.second);
+	result.giftShips = giftShips;
 	result.giftOutfits = giftOutfits;
 
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;

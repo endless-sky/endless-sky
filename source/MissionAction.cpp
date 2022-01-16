@@ -51,20 +51,22 @@ namespace {
 		return available;
 	}
 
-	bool hasShip(const Ship *ship, const std::string &name, const PlayerInfo &player)
+	bool hasShip(const Ship *model, const std::string &name, const PlayerInfo &player)
 	{
 		if(name.empty())
 		{
-			for(const shared_ptr<Ship> &playerShip : player.Ships())
-				if(playerShip->ModelName() == ship->ModelName())
+			const System *here = player.GetSystem();
+			for(const shared_ptr<Ship> &ship : player.Ships())
+				if(ship->ModelName() == model->ModelName() && ship->GetSystem() == here
+						&& !ship->IsDisabled() && !ship->IsParked())
 					return true;
 		}
 		else
 		{
 			// The UUID of given ship is stocked, in a condition with the name.
 			EsUuid id = EsUuid::FromString(player.Conditions()[name]);
-			for(const shared_ptr<Ship> &playerShip : player.Ships())
-				if(playerShip->UUID() == id)
+			for(const shared_ptr<Ship> &ship : player.Ships())
+				if(ship->UUID() == id)
 					return true;
 		}
 		return false;
@@ -117,22 +119,10 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			conversation.Load(child, missionName);
 		else if(key == "conversation" && hasValue)
 			stockConversation = GameData::Conversations().Get(child.Token(1));
-		else if(key == "require" && child.Size() >= 3 && !child.Value(3))
-		{
-			if(child.Token(1) == "ship")
-				requiredShips[GameData::Ships().Get(child.Token(2))] = child.Size() >= 4 ? child.Token(3) : "";
-			else if(child.Token(1) == "outfit")
-			{
-				int count = (child.Size() < 4 ? 1 : static_cast<int>(child.Value(3)));
-				if(count >= 0)
-					requiredOutfits[GameData::Outfits().Get(child.Token(1))] = count;
-				else
-					child.PrintTrace("Error: Skipping invalid \"require\" amount:");
-			}
-		}
+		else if(key == "owns" && hasValue)
+			requiredShips[GameData::Ships().Get(child.Token(1))] = child.Size() >= 3 ? child.Token(2) : "";
 		else if(key == "require" && hasValue)
 		{
-			child.PrintTrace("Warning: Deprecated use of require \"outfit\". Use \"require outfit <outfit>\" instead:");
 			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
 			if(count >= 0)
 				requiredOutfits[GameData::Outfits().Get(child.Token(1))] = count;
