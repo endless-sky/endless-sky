@@ -29,19 +29,19 @@ void TextReplacements::Load(const DataNode &node)
 	// reserved, as these ones are done on the fly after all other replacements
 	// have been done.
 	const set<string> reserved = {"<first>", "<last>", "<ship>"};
-	
+
 	for(const DataNode &child : node)
 	{
 		if(child.Size() < 2)
 		{
-			child.PrintTrace("Skipping improper substitution syntax:");
+			child.PrintTrace("Skipping substitution key with no replacement:");
 			continue;
 		}
-		
+
 		string key = child.Token(0);
 		if(key.empty())
 		{
-			child.PrintTrace("Cannot replace an empty string:");
+			child.PrintTrace("Error: Cannot replace the empty string:");
 			continue;
 		}
 		if(key.front() != '<')
@@ -56,10 +56,10 @@ void TextReplacements::Load(const DataNode &node)
 		}
 		if(reserved.count(key))
 		{
-			child.PrintTrace("Skipping reserved substitution key \"" + key + "\":");
+			child.PrintTrace("Skipping reserved substitution key:");
 			continue;
 		}
-		
+
 		ConditionSet toSubstitute(child);
 		substitutions.emplace_back(key, make_pair(std::move(toSubstitute), child.Token(1)));
 	}

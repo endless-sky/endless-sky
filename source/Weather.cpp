@@ -101,7 +101,7 @@ void Weather::Step(vector<Visual> &visuals)
 	// their origin, then creating the effect there.
 	double minRange = hazard->MinRange();
 	double maxRange = hazard->MaxRange();
-	
+
 	// Estimate the number of visuals to be generated this frame.
 	// MAYBE: create only a subset of possible effects per frame.
 	int totalAmount = 0;
@@ -109,7 +109,7 @@ void Weather::Step(vector<Visual> &visuals)
 		totalAmount += effect.second;
 	totalAmount *= currentStrength;
 	visuals.reserve(visuals.size() + totalAmount);
-	
+
 	for(auto &&effect : hazard->EnvironmentalEffects())
 		for(int i = 0; i < effect.second * currentStrength; ++i)
 		{
@@ -118,7 +118,7 @@ void Weather::Step(vector<Visual> &visuals)
 			Point pos = origin + (minRange + magnitude) * angle;
 			visuals.emplace_back(*effect.first, std::move(pos), Point(), Angle::Random());
 		}
-	
+
 	if(--lifetimeRemaining <= 0)
 		shouldBeRemoved = true;
 }
