@@ -3608,8 +3608,7 @@ mission "Thrall Emigration"
 	name "<origin> Emigration"
 	description "Transport a family from <origin> to <destination>, where they hope to find better employment. They cannot pay you."
 	minor
-	source
-		planet "Thrall"
+	source "Thrall"
 	destination "Delve"
 	to offer
 		random < 50
@@ -3627,7 +3626,7 @@ mission "Thrall Emigration"
 				`	"I might be able to help you. What planet do you need to reach?"`
 				`	"I'm sorry, I only transport for pay."`
 					goto disappointment
-			`	His eyes brighten with hope. "Oh! I, I heard some people are going to Delve to be miners. They hire folk like us. I, if you could get me, and my wife and our two sons there, I'd praise you to the high stars. You'd save our lives."`
+			`	His eyes brighten with hope. "Oh! I, I heard some people are going to <planet> to be miners. They hire folk like us. I, if you could get me, and my wife and our two sons there, I'd praise you to the high stars. You'd save our lives."`
 			choice
 				`	"I can take you, but no more."`
 					goto separation
@@ -3656,7 +3655,7 @@ mission "Thrall Emigration"
 	
 	on complete
 		conversation
-			`	As your ship enters Delve's cavernous spaceport, you can sense a mixture of hope and apprehension in Gaint and Mell. "Andrin talks too much," you overhear Gaint saying. "I didn't know it's all underground."`
+			`	As your ship enters <planet>'s cavernous spaceport, you can sense a mixture of hope and apprehension in Gaint and Mell. "Andrin talks too much," you overhear Gaint saying. "I didn't know it's all underground."`
 			`	"We'll figure it out," Mell assures him. When they notice you're listening in, the conversation stops. Your ship lands, and the family collects their things to leave. They thank you again on their way out.`
 
 
