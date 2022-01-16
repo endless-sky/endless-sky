@@ -245,6 +245,9 @@ tip "hull repair multiplier:"
 tip "illegal:"
 	`Amount of credits you can be fined for carrying this outfit.`
 
+tip "income:"
+	`Amount of credits you receive per day that you own this outfit, even if it is not in active use.`
+
 tip "ion protection:"
 	`Protection against weapons that do ion damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in ion damage, while a total value of 11 only results in a 10 percent reduction.`
 
@@ -298,6 +301,9 @@ tip "mass:"
 
 tip "operating costs:"
 	`How many credits per day you need to spend to maintain this outfit while it is in active use.`
+
+tip "operating income:"
+	`Amount of credits you receive per day that this outfit is in active use.`
 
 tip "outfit scan:"
 	`Lets you scan your target ship's outfits from up to this distance away.`
