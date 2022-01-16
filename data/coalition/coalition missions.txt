@@ -1886,7 +1886,7 @@ mission "Coalition: Expeditions Past 1"
 			`As you exit your ship and start heading to the spaceport, you hear a rushed galloping getting closer. As you turn you see a Saryd Heliarch coming to you, gesturing for you to wait. She slows down once she sees you're obliging, and slowly walks to you while glancing at your ship.`
 			`	"Apologize for cutting you off, I must, Captain <last>, but in need of extended transport services, I am," she says. "Sedlitaris Quatcid, my name is, and a Heliarch tribune, I am. Brought to <destination>, I must be. A petition to the council, I am to make."`
 			choice
-				`	"A 'petition?' What do you mean?"`
+				`	"A 'petition'? What do you mean?"`
 				`	"I don't think you'd need some 'extended' service just for that."`
 				`	"Sorry, I'm not taking any more passengers right now."`
 					decline
@@ -1918,7 +1918,7 @@ mission "Coalition: Expeditions Past 1"
 			choice
 				`	"Are you two colleagues?"`
 				`	"What was that about her being stubborn?"`
-			`	"Kicharri, I am. For many decades, the arbiter supervising Sedlitaris' work, I have been. A bright girl. Produced many excellent theoretical models of the outside, she has, but in recent years, obsessed with leaving on an official expedition, she became. Denied her nearly a dozen times, the consuls have, but get the hint, she won't." He rapidly taps the ground with his legs, as if the ground was hot to the touch. "Helped her set up this specific 'petition,' I have. Asked the council to be extra strict and definitive this time, I did. Contracted you for a longer trip, I assume she has, but allowed to leave, she will not."`
+			`	"Kicharri, I am. For many decades, the arbiter supervising Sedlitaris' work, I have been. A bright girl. Produced many excellent theoretical models of the outside, she has, but in recent years, obsessed with leaving on an official expedition, she became. Denied her nearly a dozen times, the consuls have, but get the hint, she won't." He rapidly taps the ground with his legs, as if the ground was hot to the touch. "Helped her set up this specific 'petition,' I have. Asked the council to be extra strict and definitive this time, I did. Contracted you for a longer trip, I assume she has, but be allowed to leave, she will not."`
 			`	He wishes you a good day, and leaves to an office opposite to the spaceport.`
 
 mission "Coalition: Expeditions Past 2"
@@ -2041,7 +2041,7 @@ mission "Coalition: Expeditions Past 4"
 			`	"No, employed this method before they ever came in conflict with the Quarg, the ancient Saryds did," she explains. "Actually, the ones who suggested it in the first place, the Quarg were. Worlds apart, the programs used before and after the War of Independence are, but kept in place, the overall practice was."`
 			label pylon
 			`	Once she's done with the wires, she pushes a button and a humming beep comes from one of the machines with the same, spiralling design. "That one, it is," she says, and asks that you help her move her pylon close to the one that emitted the sound. She connects the two with cables by the base of each pylon; the older pylon clicks on after a moment, letting out several beeps in a short chant. "Enough energy to transfer its data now, it should have."`
-			`	A few seconds pass, and another hum comes. She looks at a small screen on the panel, and confirms that the data's all safe. "Copy the data from expeditions prior to their pylon here, the sixth did, so saved us some time, they have. Play their recorded log via my translation device, I shall." She disconnects the two pylons from one another, and inputs a few commands on the pannel. After a short pause, an audio message begins playing, being picked up by Sedlitaris' device and translated.`
+			`	A few seconds pass, and another hum comes. She looks at a small screen on the panel, and confirms that the data's all safe. "Copy the data from expeditions prior to their pylon here, the sixth did, so saved us some time, they have. Play their recorded log via my translation device, I shall." She disconnects the two pylons from one another, and inputs a few commands on the panel. After a short pause, an audio message begins playing, and is picked up by Sedlitaris' device and translated.`
 			`	"Log started, sixth expedition to the outside. Arbiter Mimodum, this is, leading the sixth. Using these pylons, keep track of our major stops, we shall. To push out further than what is recorded in our previous maps, if possible, the mission directive is. Wish to gather data on how safe the outside systems are, I do. Split the fleet in half, I have. To head straight east, the four Punishers of the split group are. After that, rendezvous with us as we come down from the north, they will. Regarding the Punishers currently under my command, headed to Distant Home, we are. Evaluate how the planet has developed, we shall, to determine if sustainable, a base or colony on the planet is. Set a pylon there with our findings, we shall."`
 			`	The recording ends, and Sedlitaris picks up the pylon again, preparing to carry it back out of the caves. "Know our next destination, we now do," she says.`
 			choice
@@ -2100,7 +2100,7 @@ mission "Coalition: Expeditions Past 6"
 	destination "Watcher"
 	on offer
 		conversation
-			`Sedlitaris starts triangulating to find the next pylon again, and brings you to a tall mountain, where some of the local dragons appear to have made some form of nest or breeding ground. You do your best to avoid them as you fly around the mountain, and Sedlitaris continues to send signals to find the pylon.`
+			`Sedlitaris starts triangulating to find the next pylon again, and brings you to a tall mountain where some of the local dragons appear to have made some form of nest or breeding ground. You do your best to avoid them as you fly around the mountain, and Sedlitaris continues to send signals to find the pylon.`
 			`	"Difficult to believe it, I find, that anyone would attempt to dig in a home to the dragons, but maybe inside the mountain, it is. From there, the countersignals are coming." She stops for a few minutes, and looks at the view of the mountain on your monitors. She tries again, and asks that you get closer. When you're finishing yet another lap, she asks that you stop your ship, keeping it steady in the air. "Zoom your cameras here, could you, Captain?" she asks, pointing to the middle of a monitor. You zoom in and see a circle of large rocks, surrounded by dragon nests. Atop the rocks are some patches of foliage, and in the middle lies a small, dark, tower-like structure, stuck in the rocks by one end. After looking at it for a few seconds, it clicks for the two of you that it's an upside-down pylon. "Taken it as some form of token, the dragons must have," Sedlitaris says. "Hopes of retrieving some of the pylons physically, I had, but prefer to dig out the glacier for the previous one than test my luck against the dragons, I do. Unlock this one's data remotely, I will."`
 			`	A dragon perches on your ship as she begins the transfer. It tries to bite down on the engines, but you start moving your ship again to shake it off. You avoid other dragons as they fly by your ship until the download is complete, and you head straight for the spaceport city.`
 			`	Once your ship has safely landed on the hangars, Sedlitaris plays the audio log: "Log started. Scoured the planet with our searches, we have, but no trace of the previously visited ruins, or any other sign of the group that lived here, we found. Assured me that all our ships' navigation systems are working properly, the engineers have, but at the coordinates where they should be, the ruins are not, as if they had never been there. A confusing disappointment, this was, but continue with the mission, we must. Heading far north, to Summit, we are. The last point before regrouping with the split group, it will be."`
@@ -2125,7 +2125,7 @@ mission "Coalition: Expeditions Past 6"
 					goto notknow
 			`	Surprised that you know more, she listens to your story with Albert Foster, and how you had a dream about ships evacuating Zug. You tell her of the city buried under the layers of rock, and how the Quarg eventually sent someone to keep watch of the digging process.`
 			`	"Cities buried whole by lava? Tuned their scanners to look for such odd ruins, no expedition must have..." she stops and thinks for a few minutes, working on the pylon's command panel. "Tell the story again, could you, Captain <last>? Formally record the findings here, I would like." You spend the next few hours retelling what you saw, and helping her search what information humans have gotten on the Sheragi and their ruins since Foster published his initial findings.`
-			`	Once she's satisfied, you two look to your map, to match coordinates with the next stop Mimodum made.`
+			`	Once she's satisfied, you two look to your map and match coordinates with the next stop Mimodum made.`
 				goto end
 			label notknow
 			`	She frowns slightly. "Figured as much, I had. Well, finding out more about them, the point of this expedition wasn't. A nice bonus, it would've been, but prepare to look for the next pylon, we should."`
@@ -2249,7 +2249,7 @@ mission "Coalition: Expeditions Past 9"
 			`	You agree, and look to set a route straight to Ablub.`
 				accept
 	on enter "Girtab"
-		dialog `While Sedlitaris remained in her bunk since you left for Ablub, you can hear her shouting from her bunk as you enter the system. She comes running to you, bringing along the pylon. "Picked up a signal, it has!" She says, pointing at the machine's panel, where some message is repeatedly beeping in and out. "Land on that planet we must, Captain!" You tell her you'll land soon, and she remains with you to figure out the pylon's location on Harmony, once you've landed.`
+		dialog `While Sedlitaris remained in her bunk since you left for Ablub, you can hear her shouting from her bunk as you enter the system. She comes running to you, bringing along the pylon. "Picked up a signal, it has!" She says, pointing at the machine's panel, where some message is repeatedly beeping in and out. "Land on that planet we must, Captain!" You tell her you'll land soon, and she remains with you to figure out the pylon's location on Harmony once you've landed.`
 	to complete
 		never
 	to fail
@@ -2300,7 +2300,7 @@ mission "Coalition: Expeditions Past 10"
 		payment 35000000
 		conversation
 			`Sedlitaris uses your commlink to tell the spaceport authorities that she's returned, and soon after you land a crowd of Heliarchs and Coalition civilians alike are surrounding your ship. The Heliarch agents try and organise the crowd as best as they can, and a group of Heliarch consuls rush through the masses to meet you two at your ship.`
-			`	"Inspector! A most... fortunate return this is. A great deal of information you've collected, we take it?" An Arach consul asks.`
+			`	"Inspector! A most... fortunate return this is. A great deal of information you've collected, we take it?" an Arach consul asks.`
 			`	"Yes, eager to hear your report, we are," one of the Kimek consuls continues. "A rare occasion, it is, to be able to learn of the outside from one of our esteemed inspectors."`
 			`	A Saryd consul, who's kept a stern look on his face, cuts in. "Return with his fleet, why didn't your ancestor, Mimodum? Learned of that, have you?"`
 			`	"Yes," she says. "Recovered as much information as I wished to, I could not, but prepared a report on what me and Captain <last> found, I have. Additionally, recovered two of the pylons Mimodum left, we have."`
@@ -2331,4 +2331,4 @@ mission "Coalition: Expeditions Past 10"
 			`	She breathes in relief. "Thank you, Captain. To trick you, my intention wasn't. Thanks to your help, maybe put an end to this fear of leaving, or even convince the council to get the expedition efforts going again, I can."`
 			label end
 			`	Suddenly, a Saryd Sojourner nearly rams your ship, just barely avoiding it as it comes to a stop while turning. "My little brother," Sedlitaris says as she looks at the ship. "Forgive me Captain, but get to seeing my family, I must. From the discussion earlier, very worried about me, they must have been. Thanks again for everything." Her brother rushes into hugging her as he leaves his ship, then proceeds to shake her while screaming something. An elderly Saryd couple slowly comes out of the Sojourner as well, and Sedlitaris and her brother go and meet them, hugging and going inside. The Sojourner takes off before the spaceport workers can even begin tending to the ship, and you look at it as it leaves the ringworld.`
-			`	When you go back inside your ship, you're notified that more credits have been transferred to your account. It seems to be from the Heliarch government, giving you an extra 25,000,000 credits, thanking you for helping recover the data of the sixth expedition.`
+			`	When you go back inside your ship, you're notified that more credits have been transferred to your account. It seems to be from the Heliarch government, giving you an extra 25,000,000 credits and thanking you for helping recover the data of the sixth expedition.`
