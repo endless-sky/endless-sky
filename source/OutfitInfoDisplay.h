@@ -31,28 +31,28 @@ class OutfitInfoDisplay : public ItemInfoDisplay {
 public:
 	OutfitInfoDisplay() = default;
 	OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player, bool canSell = false);
-	
+
 	// Call this every time the ship changes.
 	void Update(const Outfit &outfit, const PlayerInfo &player, bool canSell = false);
-	
+
 	// Provided by ItemInfoDisplay:
 	// int PanelWidth();
 	// int MaximumHeight() const;
 	// int DescriptionHeight() const;
 	// int AttributesHeight() const;
 	int RequirementsHeight() const;
-	
+
 	// Provided by ItemInfoDisplay:
 	// void DrawDescription(const Point &topLeft) const;
 	// void DrawAttributes(const Point &topLeft) const;
 	void DrawRequirements(const Point &topLeft) const;
-	
-	
+
+
 private:
 	void UpdateRequirements(const Outfit &outfit, const PlayerInfo &player, bool canSell);
 	void UpdateAttributes(const Outfit &outfit);
-	
-	
+
+
 private:
 	std::vector<std::string> requirementLabels;
 	std::vector<std::string> requirementValues;

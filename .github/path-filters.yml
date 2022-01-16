@@ -40,3 +40,6 @@ integration_tests:
  - 'tests/test_parse.*'
  - 'tests/run_tests*'
  - 'data/tests/**'
+
+codespell:
+ - .codespell.exclude
