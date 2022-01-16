@@ -131,7 +131,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		// The legacy syntax "outfit <outfit> 0" means "the player must have this outfit installed."
 		else if(key == "outfit" && child.Size() >= 3 && child.Token(2) == "0")
 		{
-			child.PrintTrace("Warning: Deprecated use of \"outfit\" with count of 0. Use \"require outfit <outfit>\" instead:");
+			child.PrintTrace("Warning: Deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
 			requiredOutfits[GameData::Outfits().Get(child.Token(1))] = 1;
 		}
 		else if(key == "system")
@@ -180,7 +180,7 @@ void MissionAction::Save(DataWriter &out) const
 		for(const auto &it : requiredOutfits)
 			out.Write("require", it.first->Name(), it.second);
 		for(const auto &it : requiredShips)
-			out.Write("owns", it.first->ModelName(), it.second);
+			out.Write("owns", it.first->VariantName(), it.second);
 
 		action.Save(out);
 	}
