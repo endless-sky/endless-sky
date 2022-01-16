@@ -35,9 +35,10 @@ ship Ascomy
 			"hull damage" 3200
 			"hit force" 9600
 	outfits
+		"Large Trajectile Assembler"
+		"Terpenoid Trajectile Template" 4
+		"Terpenoid Trajectile Launcher" 4
 		"Control Transceiver"
-		"EMP Torpedo" 64
-		"Ka'het EMP Deployer" 4
 		"Ka'het Ravager Beam" 4
 		"Ka'het Ravager Turret" 4
 		"Korath Warder" 2
@@ -74,10 +75,10 @@ ship Ascomy
 	gun 108.5 -33 "Ka'het Ravager Beam"
 	gun -84 -33 "Ka'het Ravager Beam"
 	gun 84 -33 "Ka'het Ravager Beam"
-	gun -69 -33 "Ka'het EMP Deployer"
-	gun 69 -33 "Ka'het EMP Deployer"
-	gun -44 -33 "Ka'het EMP Deployer"
-	gun 44 -33 "Ka'het EMP Deployer"
+	gun -69 -33 "Terpenoid Trajectile Launcher"
+	gun 69 -33 "Terpenoid Trajectile Launcher"
+	gun -44 -33 "Terpenoid Trajectile Launcher"
+	gun 44 -33 "Terpenoid Trajectile Launcher"
 	explode "huge explosion" 15
 	explode "large explosion" 50
 	explode "medium explosion" 70
