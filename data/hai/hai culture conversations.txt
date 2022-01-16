@@ -207,3 +207,47 @@ mission "Gambling Judgment"
 			label end
 			`	He takes your order diligently and with a smile.`
 				decline
+
+
+mission "Robotic Musical 1"
+	minor
+	source
+		government "Hai"
+		attributes "tourism"
+		not attributes "station"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`Passing down the main thoroughfare of this spaceport you almost ignore a stack of haphazardly piled crates in the median strip. It's not uncommon for recently unloaded crates to temporarily sit in front of different businesses in a port, placed conspicuously out of the way of the flow of foot traffic, but it is the disordered piling that seems out of place.`
+			`	No sooner do you slow your step to give it your attention though, than the pile of crates immediately springs to life.`
+			branch translator
+				has "language: Wanderer"
+			`	Music plays and some half dozen robotic caricatures of Hai in exaggerated dress spring forth from various crates and begin to caper about in a series of interactions presumably intended to be comedic, at least judging by how they keep turning away from each other to "look" at the audience and wink. Holoprojected banners and glyphs, presumably advertisement information, flicker through a series of displays as it goes through a cycle before the entire cohort appear to finish up; each onlooker the recipient of some kind of entreaty from  at least one robot, before they immediately clamber back into the crates.`
+			`	Throughout this a handful of Hai have stopped to watch, and a couple of them let out small chuckles at the conclusion before continuing on their way. Most of them simply roll their eyes and move on though. One child wanders too close as their parents steer around it and a little red holographic warning sign briefly flashes at them. No one seems keen to explain what you just saw, and for the moment the crates remain resolutely closed.`
+			apply
+				set roboticconfusion
+			#This controls branching if there's a future follow-up where you get to see the performance.
+			`	Now that you think about it, you're not sure they all climbed back into the same boxes they came out of.`
+				decline
+			label translator
+			`	Music plays and some half dozen robotic caricatures of Hai in exaggerated dress spring forth from various crates and begin to caper about in a series of interactions. Your translator struggles to keep up as they run through a rapid-fire string of presumably witty wordplay jokes that don't translate well. The humor appears to be improvisational at first, but the illusion is so good that the realization of the impossibility of robots improvising only catches up with you after the fact. The entire thing is set to a musical score, with beat rests at various points where the animatronic Hai keep turning away from each other to 'look' at the audience and wink. Holoprojected banners and glyphs flicker through a series of displays informing you that this is an advertisement for a fully robotic comedy musical called "The Grandmother's Rules". It claims to be complete with interactive heckling responses and provides a list of dates and venues, all in the far future, where it will be showing.`
+			`	At the end each one of the robots strikes a pose and invites a different demographic to come along and "have the time of a decade," with ticket prices starting from 73 credits, before the entire cohort finish up and immediately clamber back into the crates. You're not sure they all climbed back into the same boxes they came out of.`
+			`	Throughout this a handful of Hai have stopped to watch, and a couple of them let out small chuckles at the conclusion before continuing on their way. Most of them simply roll their eyes and move on though.`
+			`	One middle aged Hai in the crowd with racoon-like gray around his eyes wears the type of attire typical of their merchant captains. He eyes you curiously and steps over to you. "Well well Captain, that's a remarkable box you have there. Didn't know they'd started making live translator devices! Did it keep up alright?"`
+			choice
+				`	"Oh, it's the first of its kind."`
+					goto first
+				`	"I think I got the gist of it, though it only reads things out if I look directly at them."`
+			`	"Ah yes, I suppose that's a logical feature," he says. "I can only imagine it would be quite unwieldy if it tried to read out every piece of text in its vicinity.`
+				goto resolve
+			label first
+			`	"The first?" He studies you for a second. "Oh, you're Captain <last>! What a pleasure to meet you."`
+			`	He looks you up and down with a wry grin. "Somehow you're shorter than I expected.`
+			label resolve
+			`	"Well if you do get the chance, I do recommend the performance. I saw it a few months back and it really is quite good. Particularly popular on our worlds with many humans."`
+			`	He flicks you a friendly wave. "I must be off. Don't get too close to the displays, they don't like being touched!"`
+			`	The Hai sounds very pleased as he ambles off, quietly chortling to himself as he departs.`
+				decline
+
+
