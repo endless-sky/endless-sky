@@ -1,0 +1,87 @@
+# Copyright (c) 2021 by MasterOfGrey
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+outfit "Small Trajectile Assembler"
+	category "Ammunition"
+	cost 2000000
+	thumbnail "outfit/sidewinder storage"
+	"mass" 12
+	"outfit space" 24
+	"assembly line" 1
+	description "The Small Trajectile Assembler has 1 assembly line space for a trajectile template to be loaded. A trajectile, which is much like a missile, is produced on demand by this machine from fuel with components and base resources contained in the template plug-in."
+
+outfit "Medium Trajectile Assembler"
+	category "Ammunition"
+	cost 2000000
+	thumbnail "outfit/sidewinder storage"
+	"mass" 22
+	"outfit space" 44
+	"assembly line" 2
+	description "The Small Trajectile Assembler has 2 assembly lines of space for trajectile templates to be loaded. A trajectile, which is much like a missile, is produced on demand by this machine from fuel with components and base resources contained in the template plug-in."
+
+outfit "Large Trajectile Assembler"
+	category "Ammunition"
+	cost 2000000
+	thumbnail "outfit/sidewinder storage"
+	"mass" 40
+	"outfit space" 80
+	"assembly line" 4
+	description "The Small Trajectile Assembler has 4 assembly lines of space for trajectile templates to be loaded. A trajectile, which is much like a missile, is produced on demand by this machine from fuel with components and base resources contained in the template plug-in."
+
+outfit "Terpenoid Trajectile Template"
+	category "Ammunition"
+	cost 450000
+	thumbnail "outfit/terpenoidtemp"
+	"mass" 12
+	"assembly line" -1
+	"terpenoid assembly" 1
+	description "The Terpenoid Template is the plug-in assembly apparatus for a Xapleaux Trajectile Assembler to support the Terpenoid Launcher. It allows an assembler to build the Terpenoid Trajectile and contains enough parts to have functionally unlimited availability for the duration of any likely conflict. It is easily restocked with base materials at any port."
+
+outfit "Terpenoid Trajectile Launcher"
+	category "Secondary Weapons"
+	cost 95000
+	thumbnail "outfit/terpenoid launcher"
+	"mass" 8
+	"outfit space" -12
+	"weapon capacity" -12
+	"gun ports" -1
+	"terpenoid assembly" -1
+	weapon
+		sprite "projectile/emp torpedo"
+			"frame rate" 2
+			"no repeat"
+		sound "seeker"
+		"fire effect" "tracker fire"
+		"hit effect" "emp spark" 20
+		"hit effect" "tracker impact"
+		"hit effect" "tracker cloud"
+		"hit effect" "seeker impact"
+		"die effect" "piercer impact"
+		"inaccuracy" 2
+		"velocity" 24
+		"lifetime" 600
+		"reload" 30
+		"firing energy" 5
+		"firing heat" 15
+		"firing fuel" 5
+		"acceleration" 1.2
+		"drag" .1
+		"turn" 4
+		"homing" 5
+		"tracking" .98
+		"disruption damage" 55
+		"shield damage" 80
+		"hull damage" 220
+		"hit force" 5
+		"missile strength" 18
+	description "The Terpenoid Trajectile was developed after brief exposure to the Korath Disruptor before it all fell apart and they stopped bothering to raid Xapleaux space. The secrets of how the disruptor work were never understood, but under the right circumstances fuel mixed with certain volatiles can be stimulated to produce a similar effect. Once assembled and fired the concoction will naturally decay explosively after a period of time."
+	description "	Although not a powerful missile, it is very fast and very hard to dodge, and capable of rendering the shields of an enemy vessel thoroughly obsolete under repeated bombardment. The explosive cocktail it carries is not particularly damaging to shields, despite its disruptive effect, but is quite destructive against most hull materials."
+
+
