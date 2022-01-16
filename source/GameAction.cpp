@@ -36,7 +36,7 @@ namespace {
 		if(model->ModelName().empty())
 			return;
 
-		const string shipName;
+		string shipName;
 		if(isGift)
 		{
 			player.BuyShip(model, name, true);
