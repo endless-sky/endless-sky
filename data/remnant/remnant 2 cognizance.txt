@@ -202,37 +202,6 @@ mission "Remnant: Cognizance 4"
 			`	"You have demonstrated good initiative; however, I suspect that it was not the only hunter fleet out there. I will notify a task force. Meet me in the spaceport, and make sure your ship is ready to fight."`
 			`	As he departs from your ship, your commlink beeps with a message that an organization by the name of "Remnant Logistics" has allocated you an additional <payment>.`
 
-			
-mission "Remnant: Bounty 3"
-	job
-	repeat
-	name "Damaged Dredger Bounty"
-	description "A damaged Korath ship is lurking in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
-	source
-		government "Remnant"
-	to offer
-		# 0.9.13 Compatibility patch
-		or
-			has "Remnant: Cognizance 4: done"
-			has "Remnant: Cognizance 4: failed"
-		not "Remnant: Cognizance 4: aborted"
-		random < 40
-	npc kill
-		government "Korath"
-		personality heroic vindictive target uninterested waiting marked
-		system
-			distance 1 2
-		fleet
-			names "korath"
-			cargo 3
-			variant
-				"Korath Dredger (Crippled)"
-		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 400000
-		dialog "A Remnant military leader thanks you for hunting down the Korath ship <npc>, and gives you the agreed-upon payment of <payment>."
 
 
 mission "Remnant: Cognizance 5"
@@ -549,33 +518,6 @@ mission "Remnant: Cognizance 14"
 		dialog
 			`As you arrive back at Viminal, you broadcast a warning to the port authorities that something is following you. You inform them that it is not hostile, but it is an unknown entity that originated in the new system.`
 
-
-mission "Remnant: Bounty 4"
-	job
-	repeat
-	name "Marauding Dredger Bounty"
-	description "A Korath ship is marauding through Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
-	source
-		government "Remnant"
-	to offer
-		has "Remnant: Cognizance 14: done"
-		random < 30
-	npc kill
-		government "Korath"
-		personality heroic vindictive target uninterested waiting marked
-		system
-			distance 1 2
-		fleet
-			names "korath"
-			cargo 3
-			variant
-				"Korath Dredger (Hyperdrive)"
-		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 500000
-		dialog "A Remnant military leader thanks you for hunting down the Korath ship <npc>, and gives you the agreed-upon payment of <payment>."
 
 
 mission "Remnant: Cognizance 15"
@@ -1298,9 +1240,9 @@ mission "Remnant: Cognizance 28"
 			outfitters "Korath Basics" "Korath Exiles"
 			variant
 				"Korath Dredger" 1
-				"Korath Dredger (Ground Assault)" 2
+				"Korath Dredger (Ground Assault)" 4
 				"Korath Raider (Ember)" 6
-				"Korath Chaser" 24
+				"Korath Chaser" 32
 
 
 
@@ -1377,10 +1319,11 @@ mission "Remnant: Cognizance 30"
 				accept
 	on complete
 		payment 250000
+		event "remnant: ssil vida outfitter"
 		conversation
-			`Gavriil is waiting at the dock when the <ship>'s hatches finish cycling. "Welcome," they gesture. "It is good to have fresh minds to share <planet> with." The Remnant onboard stream out of the ship in a rush, each carrying a heavy pack of equipment. They gesture respect, and head off in different directions. Evidently they have studied the maps prior to arrival, as they all seem to know where they are going. Several stay behind with Gavriil and help unload the rest of the equipment.`
+			`Gavriil is waiting at the dock when the <ship>'s hatches finish cycling. "Welcome," they gesture. "It is good to have fresh minds to share <planet> with." The Remnant onboard stream out of the ship in a rush, each carrying a heavy pack of equipment. They gesture respect, and head off in different directions. Evidently they have studied the maps prior to arrival, as they all seem to know where they are going. Several stay behind with Gavriil and help unload the rest of the equipment, some of which appears to include the core equipment of an outfitters.`
 			`	"We have made good progress since you were here last. We have managed to take over control of life support systems in several wings of rooms, and now those are run entirely from our own systems. Aside from relieving a tiny amount of load from the station's power core, it also means that the station could fail completely and we would still have safe living quarters to serve as base of operations."`
-			`	They pause, and their gestures take on a tone of disgust. "Of course, we are working to avoid that. But having multiple backup systems is the key to survival in hostile conditions."`
+			`	They pause, and their gestures take on a tone of disgust. "Of course, we are working to avoid such a failure. But having multiple backup systems is the key to survival in hostile conditions."`
 			`	They look around at the few Remnant who have yet to vanish into the rest of the station. "Thank you for bringing more explorers." They hand you a data crystal. "I have already transmitted this data to Viminal, but I would appreciate it if you could take this to them to ensure there are no errors or data corruption in the transmission.`
 
 

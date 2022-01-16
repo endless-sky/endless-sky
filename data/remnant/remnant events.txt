@@ -99,6 +99,8 @@ event "remnant: penguin"
 event "remnant: lab availability"
 	outfitter "Remnant"
 		add "Research Laboratory"
+	outfitter "Remnant Core"
+		add "Research Laboratory"
 
 
 
@@ -1033,6 +1035,9 @@ event "remnant: ssil vida deactivation"
 
 
 
+event "remnant: ssil vida outfitter"
+	planet "Ssil Vida"
+		add outfitter "Remnant Core"
 event "remnant: cognizance salvage expansion"
 	outfitter "Remnant Salvage"
 		add "Systems Core (Medium)"

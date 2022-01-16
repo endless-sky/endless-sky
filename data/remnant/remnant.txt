@@ -790,12 +790,15 @@ shipyard "Remnant"
 	"Pelican"
 	"Petrel"
 	"Tern"
+	"Korath Dredger (Ground Assault)"
 
 shipyard "Remnant Puffin"
 	"Puffin"
 
 shipyard "Remnant Salvage Ships"
 	"Korath Chaser"
+
+
 
 outfitter "Remnant"
 	"Inhibitor Cannon"
@@ -829,6 +832,20 @@ outfitter "Remnant"
 	"Fuel Pod"
 	"Cargo Scanner"
 	"Outfit Scanner"
+	"Tuning Rifle"
+	"Salvage Scanner"
+
+outfitter "Remnant Core"
+	"Crystal Capacitor"
+	"Millennium Cell"
+	"Thermoelectric Cooler"
+	"Emergency Ramscoop"
+	"Quantum Key Stone"
+	"Anvil-Class Engine"
+	"Crucible-Class Thruster"
+	"Crucible-Class Steering"
+	"Hyperdrive"
+	"Fuel Pod"
 	"Tuning Rifle"
 	"Salvage Scanner"
 

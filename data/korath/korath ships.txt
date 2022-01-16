@@ -130,6 +130,7 @@ ship "Korath Dredger" "Korath Dredger (Hyperdrive)"
 
 
 ship "Korath Dredger" "Korath Dredger (Ground Assault)"
+	"crew" 470
 	outfits
 		"Korath Banisher" 2
 		"Korath Warder" 2
