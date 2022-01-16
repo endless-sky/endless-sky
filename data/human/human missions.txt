@@ -3601,8 +3601,8 @@ mission "Mafia Extortion"
 			label payup
 			`	The man takes your credits, responds with a brief "Thank you," and walks away.`
 				accept
-	
-  
+
+
 
 mission "Thrall Emigration"
 	name "<origin> Emigration"
