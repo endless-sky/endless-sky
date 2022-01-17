@@ -201,17 +201,12 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	else
 		attributeValues.push_back(Format::Number(ship.Cargo().Used())
 			+ " / " + Format::Number(attributes.Get("cargo space")) + " tons");
+
+	const double totalBunks = attributes.Get("bunks");
 	attributesHeight += 20;
-	if(ship.RequiredCrew() != attributes.Get("bunks"))
-	{
-		attributeLabels.push_back("crew (min - max):");
-		attributeValues.push_back(Format::Number(ship.RequiredCrew()) + " - " + Format::Number(attributes.Get("bunks")));
-	}
-	else
-	{
-		attributeLabels.push_back("crew:");
-		attributeValues.push_back(ship.RequiredCrew() == 0 ? "(unmanned)" : Format::Number(ship.RequiredCrew()));
-	}
+	attributeLabels.push_back("bunks free:");
+	attributeValues.push_back(Format::Number(totalBunks - ship.RequiredCrew()) + " / " + Format::Number(totalBunks));
+
 	attributesHeight += 20;
 	attributeLabels.push_back(isGeneric ? "fuel capacity:" : "fuel:");
 	double fuelCapacity = attributes.Get("fuel capacity");
