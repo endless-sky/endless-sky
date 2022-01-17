@@ -1245,7 +1245,7 @@ void Engine::EnterSystem()
 			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60)
 				fleet.Get()->Place(*system, newShips);
 
-		auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point flagshipPosition)
+		auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
 		{
 			if(hazard.Get()->IsValid() && Random::Int(hazard.Period()) < 60)
 			{
@@ -1253,11 +1253,11 @@ void Engine::EnterSystem()
 				int hazardLifetime = weather->RandomDuration();
 				// Elapse this weather event by a random amount of time.
 				int elapsedLifetime = hazardLifetime - Random::Int(hazardLifetime + 1);
-				activeWeather.emplace_back(weather, hazardLifetime, elapsedLifetime, weather->RandomStrength(), flagshipPosition);
+				activeWeather.emplace_back(weather, hazardLifetime, elapsedLifetime, weather->RandomStrength(), origin);
 			}
 		};
 		for(const auto &hazard : system->Hazards())
-			CreateWeather(hazard, flagship->Position());
+			CreateWeather(hazard, hazard.Get()->AroundFlagship() ? flagship->Position() : Point());
 		for(const auto &stellar : system->Objects())
 			for(const auto &hazard : stellar.Hazards())
 				CreateWeather(hazard, stellar.Position());
@@ -1736,7 +1736,7 @@ void Engine::SpawnPersons()
 // Generate weather from the current system's hazards.
 void Engine::GenerateWeather()
 {
-	auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point flagshipPosition)
+	auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
 	{
 		if(hazard.Get()->IsValid() && !Random::Int(hazard.Period()))
 		{
@@ -1744,12 +1744,13 @@ void Engine::GenerateWeather()
 			// If a hazard has activated, generate a duration and strength of the
 			// resulting weather and place it in the list of active weather.
 			int duration = weather->RandomDuration();
-			activeWeather.emplace_back(weather, duration, duration, weather->RandomStrength(), flagshipPosition);
+			activeWeather.emplace_back(weather, duration, duration, weather->RandomStrength(), origin);
 		}
 	};
 	// If this system has any hazards, see if any have activated this frame.
 	for(const auto &hazard : player.GetSystem()->Hazards())
-		CreateWeather(hazard, (player.Flagship()) ? player.Flagship()->Position() : Point());
+		CreateWeather(hazard, (player.Flagship() && hazard.Get()->AroundFlagship()) ?
+			player.Flagship()->Position() : Point());
 	for(const auto &stellar : player.GetSystem()->Objects())
 		for(const auto &hazard : stellar.Hazards())
 			CreateWeather(hazard, stellar.Position());

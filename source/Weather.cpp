@@ -22,9 +22,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-Weather::Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining, double strength, Point flagshipPosition)
-	: hazard(hazard), totalLifetime(totalLifetime), lifetimeRemaining(lifetimeRemaining), strength(strength), 
-		origin(hazard->FlagShipCentre() ? flagshipPosition : hazard->Centre())
+Weather::Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining, double strength, Point origin)
+	: hazard(hazard), totalLifetime(totalLifetime), lifetimeRemaining(lifetimeRemaining), strength(strength), origin(origin)
 {
 	// Using a deviation of totalLifetime / 4.3 causes the strength of the
 	// weather to start and end at about 10% the maximum. Store the entire
@@ -118,8 +117,8 @@ void Weather::Step(vector<Visual> &visuals, const Ship *flagship)
 		{
 			Point angle = Angle::Random().Unit();
 			double magnitude = (maxRange - minRange) * sqrt(Random::Real());
-			Point pos = ((hazard->SystemWide() && flagship) ?
-				flagship->Position() : origin) + (minRange + magnitude) * angle;
+			Point pos = ((hazard->SystemWide() && flagship) ? flagship->Position() : origin)
+				+ (minRange + magnitude) * angle;
 			visuals.emplace_back(*effect.first, std::move(pos), Point(), Angle::Random());
 		}
 

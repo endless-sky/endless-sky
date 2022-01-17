@@ -33,9 +33,7 @@ public:
 	bool Deviates() const;
 	// How often this hazard deals its damage while active.
 	int Period() const;
-	// The centre of the hazard.
-	const Point &Centre() const;
-	bool FlagShipCentre() const;
+	bool AroundFlagship() const;
 	// Generates a random integer between the minimum and maximum duration of this hazard.
 	int RandomDuration() const;
 	// Generates a random double between the minimum and maximum strength of this hazard.
@@ -58,8 +56,7 @@ private:
 	double minStrength = 1.;
 	double maxStrength = 1.;
 	double minRange = 0.;
-	Point centre = Point(0,0);
-	bool flagshipCentre = false;
+	bool aroundFlagship = false;
 	// Hazards without a given range have an effect on the entire system.
 	double maxRange = -1.;
 	bool deviates = true;
