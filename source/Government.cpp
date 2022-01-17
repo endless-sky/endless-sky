@@ -404,5 +404,5 @@ bool Government::IsProvokedOnScan() const
 
 bool Government::Restricted(const System *system) const
 {
-	return restricted.IsEmpty() || restricted.Matches(system);
+	return !restricted.IsEmpty() && restricted.Matches(system);
 }
