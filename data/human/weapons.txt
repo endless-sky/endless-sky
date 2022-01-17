@@ -1377,7 +1377,7 @@ outfit "Barrage Missile"
 	thumbnail "outfit/barrage sprite"
 	"mass" .1
 	"barrage capacity" -1
-	description "A small missile designed by the Republic Navy to Give fighters and drones more firepower, it was purpose built to be fired in large waves, hence its name."
+	description "A small missile designed by the Republic Navy to give fighters and drones more firepower, it was purpose built to be fired in large waves, hence its name."
 
 outfit "Barrage Storage"
 	category "Ammunition"
