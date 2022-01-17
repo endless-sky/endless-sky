@@ -478,10 +478,13 @@ mission "Paradise Job: Retirees"
 	passengers 7 12 .6
 	cargo "treasured possessions" 7 12 .2
 	to offer
+		random < 10
 		"passenger space" > 15
 		"cargo space" > 40
 	on offer
 		require "Luxury Accommodations"
+	source
+		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest" "urban"
 	destination
 		distance 3 16
 		attributes "paradise"
