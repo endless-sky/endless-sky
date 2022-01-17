@@ -1315,34 +1315,6 @@ void Ship::SetPersonality(const Personality &other)
 
 
 
-double Ship::GetAiAttributes(const char *attribute) const
-{
-	return aiAttributes.Get(attribute);
-}
-
-
-
-double Ship::GetAiAttributes(const string &attribute) const
-{
-	return GetAiAttributes(attribute.c_str());
-}
-
-
-
-const Dictionary &Ship::AiAttributes() const
-{
-	return aiAttributes;
-}
-
-
-
-void Ship::SetAiAttributes(const char *attribute, double value)
-{
-	aiAttributes[attribute] = value;
-}
-
-
-
 void Ship::SetHail(const Phrase &phrase)
 {
 	hail = &phrase;

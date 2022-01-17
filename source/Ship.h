@@ -180,15 +180,22 @@ public:
 	// Access the ship's personality, which affects how the AI behaves.
 	const Personality &GetPersonality() const;
 	void SetPersonality(const Personality &other);
-	// Access it's AI data
-	double GetAiAttributes(const char *attribute) const;
-	double GetAiAttributes(const std::string &attribute) const;
-	const Dictionary &AiAttributes() const;
-	void SetAiAttributes(const char *attribute, double value);
 	// Get a random hail message, or set the object used to generate them. If no
 	// object is given the government's default will be used.
 	void SetHail(const Phrase &phrase);
 	std::string GetHail(const PlayerInfo &player) const;
+	
+	// Accessors and setters for AI data
+	bool GetArtilleryAI() const;
+	void SetArtilleryAI(bool value);
+	double GetShortestRange() const;
+	void SetShortestRange(double value);
+	double GetShortestArtillery() const;
+	void SetShortestArtillery(double value);
+	double GetMinSafeDistance() const;
+	void SetMinSafeDistance(double value);
+	double GetTurningRadius() const;
+	void SetTurningRadius(double value);
 
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
@@ -496,8 +503,13 @@ private:
 	Command commands;
 
 	Personality personality;
-	Dictionary aiAttributes;
 	const Phrase *hail = nullptr;
+	
+	bool artilleryAI;
+	double shortestRange;
+	double shortestArtillery;
+	double minSafeDistance;
+	double turningRadius;
 
 	// Installed outfits, cargo, etc.:
 	Outfit attributes;
@@ -598,6 +610,20 @@ private:
 	std::vector<std::weak_ptr<Ship>> escorts;
 	std::weak_ptr<Ship> parent;
 };
+
+
+
+// Inline the accessors and setters because they get called so frequently.
+inline bool Ship::GetArtilleryAI() const { return artilleryAI; }
+inline void Ship::SetArtilleryAI(bool value) { artilleryAI = value; }
+inline double Ship::GetShortestRange() const { return shortestRange; }
+inline void Ship::SetShortestRange(double value) { shortestRange = value; }
+inline double Ship::GetShortestArtillery() const { return shortestArtillery; }
+inline void Ship::SetShortestArtillery(double value) { shortestArtillery = value; }
+inline double Ship::GetMinSafeDistance() const { return minSafeDistance; }
+inline void Ship::SetMinSafeDistance(double value) { minSafeDistance = value; }
+inline double Ship::GetTurningRadius() const { return turningRadius; }
+inline void Ship::SetTurningRadius(double value) { turningRadius = value; }
 
 
 

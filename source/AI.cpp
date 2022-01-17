@@ -2151,22 +2151,21 @@ void AI::UpdateWeaponStats(Ship &ship)
 		minSafeDistance = 0.;
 
 	
-	ship.SetAiAttributes("artilleryAI", artilleryAI);
-	ship.SetAiAttributes("shortestRange", shortestRange);
-	ship.SetAiAttributes("shortestArtillery", shortestArtillery);
-	ship.SetAiAttributes("minSafeDistance", minSafeDistance);
-	ship.SetAiAttributes("turning radius", diameter);
+	ship.SetArtilleryAI(artilleryAI);
+	ship.SetShortestRange(shortestRange);
+	ship.SetShortestArtillery(shortestArtillery);
+	ship.SetMinSafeDistance(minSafeDistance);
+	ship.SetTurningRadius(diameter);
 }
 
 
 
 void AI::Attack(Ship &ship, Command &command, const Ship &target)
 {
-	const Dictionary aiAttributes = ship.AiAttributes();
-	bool artilleryAI = aiAttributes.Get("artilleryAI") == 1;
-	double shortestRange = aiAttributes.Get("shortestRange");
-	double shortestArtillery = aiAttributes.Get("shortestArtillery");
-	double minSafeDistance = aiAttributes.Get("minSafeDistance");
+	bool artilleryAI = ship.GetArtilleryAI();
+	double shortestRange = ship.GetShortestRange();
+	double shortestArtillery = ship.GetShortestArtillery();
+	double minSafeDistance = ship.GetMinSafeDistance();
 	double totalRadius = ship.Radius() + target.Radius();
 	Point d = target.Position() - ship.Position();
 	double weaponDistance = d.Length() - totalRadius/3;
@@ -2255,7 +2254,7 @@ void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 	if(ship.Facing().Unit().Dot(d.Unit()) < -.75 && ship.Attributes().Get("reverse thrust"))
 		command |= Command::BACK;
 	// This isn't perfect, but it works well enough.
-	else if((ship.Facing().Unit().Dot(d) >= 0. && d.Length() > max(200., ship.GetAiAttributes("turning radius")))
+	else if((ship.Facing().Unit().Dot(d) >= 0. && d.Length() > max(200., ship.GetTurningRadius()))
 			|| (ship.Velocity().Dot(d) < 0. && ship.Facing().Unit().Dot(d.Unit()) >= .9))
 		command |= Command::FORWARD;
 
