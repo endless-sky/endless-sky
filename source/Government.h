@@ -118,8 +118,9 @@ public:
 
 	bool IsProvokedOnScan() const;
 
-	// Get if ships from this government can go to that system.
-	bool Restricted(const System *system, const Planet *planet = nullptr) const;
+	// Get if ships from this government can go to that system or planet.
+	bool AllowJumpingTo(const System &system) const;
+	bool AllowLandingOn(const Planet &planet) const;
 
 
 private:

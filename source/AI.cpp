@@ -1458,7 +1458,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		{
 			for(const System *link : links)
 			{
-				if(gov->Restricted(link))
+				if(!gov->AllowJumpingTo(*link))
 					continue;
 				// Prefer systems in the direction we're facing.
 				Point direction = link->Position() - origin->Position();
@@ -1476,7 +1476,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		vector<const StellarObject *> planets;
 		for(const StellarObject &object : origin->Objects())
 			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
-					&& object.GetPlanet()->CanLand(ship) && !gov->Restricted(nullptr, object.GetPlanet()))
+					&& object.GetPlanet()->CanLand(ship) && gov->AllowLandingOn(*object.GetPlanet()))
 			{
 				planets.push_back(&object);
 				totalWeight += planetWeight;
@@ -1486,7 +1486,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		if(!totalWeight)
 			for(const StellarObject &object : origin->Objects())
 				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->CanLand(ship)
-					&& !gov->Restricted(nullptr, object.GetPlanet()))
+					&& gov->AllowLandingOn(*object.GetPlanet()))
 				{
 					planets.push_back(&object);
 					totalWeight += planetWeight;
@@ -1507,7 +1507,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		{
 			for(unsigned i = 0; i < systemWeights.size(); ++i, ++it)
 			{
-				if(gov->Restricted(*it))
+				if(!gov->AllowJumpingTo(*(*it)))
 					continue;
 				choice -= systemWeights[i];
 				if(choice < 0)
@@ -2365,7 +2365,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		{
 			const auto &links = ship.Attributes().Get("jump drive") ? system->JumpNeighbors(ship.JumpRange()) : system->Links();
 			for(const auto &link : links)
-				if(!ship.GetGovernment()->Restricted(link))
+				if(ship.GetGovernment()->AllowJumpingTo(*link))
 					targetSystems.push_back(link);
 		}
 
