@@ -363,6 +363,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		if(!personality.IsSurveillance())
 			for(const StellarObject &object : system.Objects())
 				if(object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
+						&& !government->Restricted(nullptr, object.GetPlanet())
 						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					planetVector.push_back(object.GetPlanet());
 
@@ -373,7 +374,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			// Prefer to launch from inhabited planets, but launch from
 			// uninhabited ones if there is no other option.
 			for(const StellarObject &object : system.Objects())
-				if(object.HasValidPlanet() && !object.GetPlanet()->GetGovernment()->IsEnemy(government))
+				if(object.HasValidPlanet() && !government->Restricted(nullptr, object.GetPlanet())
+						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					planetVector.push_back(object.GetPlanet());
 			options = planetVector.size();
 			if(!options)
@@ -517,10 +519,10 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 // Do the randomization to make a ship enter or be in the given system.
 const System *Fleet::Enter(const System &system, Ship &ship, const System *source)
 {
-	bool canEnter = false;
-	for(const System *link : system.Links())
-		if(!ship.GetGovernment()->Restricted(link))
-			canEnter = true;
+	bool canEnter = (source != nullptr);
+	if(!canEnter && any_of(system.Links().begin(), system.Links().end(),
+			[ship](const System *link) noexcept -> bool { return !ship.GetGovernment()->Restricted(link); }))
+		canEnter = true;
 			
 	if(!canEnter || system.Links().empty() || (source && !system.Links().count(source)))
 	{
@@ -529,12 +531,29 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 	}
 
 	// Choose which system this ship is coming from.
-	while(!source)
+	if(!source)
 	{
+		vector<int> systemWeights;
+		int totalWeight = 0;
+		for(const System *link : system.Links())
+		{
+			bool access = !ship.GetGovernment()->Restricted(link);
+			systemWeights.emplace_back(access);
+			totalWeight += access;
+		}
 		auto it = system.Links().cbegin();
-		advance(it, Random::Int(system.Links().size()));
-		if(!ship.GetGovernment()->Restricted(source))
-			source = *it;
+		int choice = Random::Int(totalWeight);
+		for(unsigned i = 0; i < systemWeights.size(); ++i, ++it)
+		{
+			if(ship.GetGovernment()->Restricted(*it))
+				continue;
+			choice -= systemWeights[i];
+			if(choice < 0)
+			{
+				source = *it;
+				break;
+			}
+		}
 	}
 
 	Angle angle = Angle::Random();

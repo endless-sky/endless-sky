@@ -39,6 +39,8 @@ public:
 
 	// Examine all the children of the given node and load any that are filters.
 	void Load(const DataNode &node);
+	// Empties all conditions.
+	void Clear();
 	// This only saves the children. Save the root node separately. It does
 	// handle indenting, however.
 	void Save(DataWriter &out) const;

@@ -174,6 +174,22 @@ void LocationFilter::Load(const DataNode &node)
 
 
 
+void LocationFilter::Clear()
+{
+	planets.clear();
+	attributes.clear();
+	systems.clear();
+	governments.clear();
+	center = nullptr;
+	originMaxDistance = 0;
+	notFilters.clear();
+	neighborFilters.clear();
+	outfits.clear();
+	shipCategory.clear();
+}
+
+
+
 void LocationFilter::Save(DataWriter &out) const
 {
 	out.BeginChild();

@@ -1476,7 +1476,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		vector<const StellarObject *> planets;
 		for(const StellarObject &object : origin->Objects())
 			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
-					&& object.GetPlanet()->CanLand(ship))
+					&& object.GetPlanet()->CanLand(ship) && !gov->Restricted(nullptr, object.GetPlanet()))
 			{
 				planets.push_back(&object);
 				totalWeight += planetWeight;
@@ -1485,7 +1485,8 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		// landing on uninhabited planets.
 		if(!totalWeight)
 			for(const StellarObject &object : origin->Objects())
-				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->CanLand(ship))
+				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->CanLand(ship)
+					&& !gov->Restricted(nullptr, object.GetPlanet()))
 				{
 					planets.push_back(&object);
 					totalWeight += planetWeight;

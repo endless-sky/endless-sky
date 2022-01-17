@@ -137,7 +137,14 @@ void Government::Load(const DataNode &node)
 		else if(child.Token(0) == "provoked on scan")
 			provokedOnScan = true;
 		else if(child.Token(0) == "restricted")
-			restricted.Load(child);
+		{
+			travelRestrictions.Clear();
+			travelRestrictions.Load(child);
+		}
+		else if(child.Token(0) == "add" && child.Size() >= 2 && child.Token(1) == "restricted")
+			travelRestrictions.Load(child);
+		else if((child.Token(0) == "remove" || child.Token(0) == "clear") && child.Size() >= 2 && child.Token(1) == "restricted")
+			travelRestrictions.Clear();
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -402,7 +409,8 @@ bool Government::IsProvokedOnScan() const
 
 
 
-bool Government::Restricted(const System *system) const
+bool Government::Restricted(const System *system, const Planet *planet) const
 {
-	return !restricted.IsEmpty() && restricted.Matches(system);
+	return !travelRestrictions.IsEmpty() &&
+		(!system || travelRestrictions.Matches(system)) && (!planet || travelRestrictions.Matches(planet));
 }
