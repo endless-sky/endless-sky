@@ -19,12 +19,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+
+
 void Hazard::Load(const DataNode &node)
 {
 	if(node.Size() < 2)
 		return;
 	name = node.Token(1);
-	
+
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);

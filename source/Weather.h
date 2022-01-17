@@ -27,7 +27,7 @@ class Weather {
 public:
 	Weather() = default;
 	explicit Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining, double strength, Point origin);
-	
+
 	// The hazard that is associated with this weather event.
 	const Hazard *GetHazard() const;
 	// Whether the hazard of this weather deals damage or not.
@@ -43,11 +43,11 @@ public:
 	// Calculate this weather's strength for the current frame, to be used to find
 	// out what the current period and damage multipliers are.
 	void CalculateStrength();
-	
+
 	// Check if this object is marked for removal from the game.
 	bool ShouldBeRemoved() const;
-	
-	
+
+
 private:
 	const Hazard *hazard = nullptr;
 	int totalLifetime = 0;
@@ -60,7 +60,7 @@ private:
 	double currentStrength = 0.;
 	double sqrtStrength = 0.;
 	double deviation = 0.;
-	
+
 	// Record when this object is marked for removal from the game.
 	bool shouldBeRemoved = false;
 };

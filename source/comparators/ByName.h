@@ -1,5 +1,5 @@
-/* gl_header.h
-Copyright (c) 2014 by Michael Zahniser
+/* comparators/ByName.h
+Copyright (c) 2022 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -10,14 +10,19 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-// Include whichever header is used for OpenGL on this operating system.
-#ifdef __APPLE__
-#include <OpenGL/GL3.h>
-#else
-#ifdef ES_GLES
-#include <GLES3/gl3.h>
-#else
-#include <GL/glew.h>
-#endif
+#ifndef COMPARATORS_BY_NAME_H_
+#define COMPARATORS_BY_NAME_H_
+
+
+
+template<class T>
+class ByName {
+public:
+	bool operator()(const T *a, const T *b) const
+	{
+		return a->Name() < b->Name();
+	}
+};
+
 #endif
 
