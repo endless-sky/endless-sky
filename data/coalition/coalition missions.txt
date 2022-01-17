@@ -77,6 +77,8 @@ mission "Coalition: First Contact"
 					goto end
 				`	"But, the Quarg do let the humans and the Hai make contact with each other."`
 			`	This, apparently, is news to them. You explain to them who the Hai are, and that some humans have made contact with them and are living in their territory. "A second Coalition you are forming!" says the centaur, tapping its hooves on the floor in excitement. "Once again, foiled the Quarg are. A secret way for species to work together, they have overlooked. Great things, from this may come."`
+			action
+				set "coalition knows hai"
 			label end
 			`	You talk with them for a while longer, and learn that the centaurs are called "Saryds," and are the oldest of the three species. The beetles are the "Kimek," and come next, and the spiders are called "Arachi," and were the last of the three to discover spaceflight.`
 			`	They tell you that the best way to learn more about them is to visit their worlds, and to see for yourself how the three species live in friendship and equality. They also offer to give you jobs to do in their territory, so that you may become a "valuable contributor" to their society.`
@@ -1465,7 +1467,7 @@ event "alitis freed"
 
 
 mission "Saryd University Lecture"
-	name "Transport Saryd Scientists"
+	name "Transport Saryd Scientist"
 	description "Starlit University on <planet> is hosting a seminar on xenology. Transport a guest speaker there by <date>. Payment is <payment>."
 	passengers 1
 	deadline
@@ -1476,9 +1478,9 @@ mission "Saryd University Lecture"
 	destination "Shadow of Leaves"
 	on offer
 		conversation
-			`As you exit a restaurant in the spaceport, you notice a rumpled-looking Saryd staring at you. This is not particularly unusual, as consider what a strange sight you must be here in Coalition space. However, he then begins to gallop towards you, hailing you down.`
+			`As you exit a restaurant in the spaceport, you notice a rumpled-looking Saryd staring at you. Attention from others is not new for you in Coalition space, as you are quite an unusual sight here. You don't pay him much mind until he begins to gallop towards you, hailing you down.`
 			`	"Captain! Excited to finally meet you, I am. Heard of the human in our space, I have, but to see you myself, special it is."`
-			`	"A scientist, I am, and invitied to speak at a university seminar, I have been." This time, he speaks in a calmer tone of voice. "Be there by <date>, I must. The honor of transporting us to <planet>, will you give me?"`
+			`	"A scientist, I am, and invitied to speak at a university seminar, I have been. Be there by <date>, I must. The honor of transporting me to <planet>, will you give me?"`
 			choice
 				`	"What is the seminar about?"`
 					goto xeno
@@ -1487,19 +1489,21 @@ mission "Saryd University Lecture"
 				`	"Sorry, I can't take transport jobs right now."`
 					decline
 			label xeno
-			`	"Funny you ask, it is. A xenologist, I am. Alien culture and physiology, I study, and the topic of the seminar, it is. Invited to give lectures on the subject, I have been. Take me there, will you?"`
+			`	"A xenologist, I am. Alien cultures outside of the Coalition, I study, and the topic of the seminar, it is. Invited to give lectures on the subject, I have been. Take me there, will you?"`
 			choice
 				`	"Sure, I'd be glad to transport you."`
 				`	"Sorry, I can't take transport jobs right now."`
 					decline
 			label accept
-			`	"Wonderful!" he says. "Aelbris, I am." He soon gathers his things and boards your ship. As he enters, he seems fascinated by its structure and design. His gawking makes it difficult to get him to finally settle down into his bunk.`
+			`	"Thank you! Aelbris, my name is. To be late I do not wish, as not recorded, the event is." He soon gathers his things and boards your ship.`
 					accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Aelbris hasn't entered the system yet. Better depart and wait for it.`
 	on complete
 		"coalition jobs" += 3
 		payment 25000
 		conversation
-			`During the trip, Aelbris was polite, if a little excited to have a human as his pilot. He asked many questions during the flight, which you answered as best you could. Once you and your passenger depart from your ship, Aelbris turns around.`
+			`During the trip, Aelbris was polite, if a bit intrusive in his questions about your homeworld. You answered as best you could, though at times you struggled to understand what was even being asked. Once you and your passenger depart from your ship, he turns around.`
 			`	"Captain, that you must be very busy, I realize, but wondering if you could stay for the seminar, I was. You see, studying human space for years, I have been, but actually met a human, I had not. A great boon to our field to have a human guest speaker, it would be."`
 			choice
 				`	"What do I have to do there?"`
@@ -1527,7 +1531,7 @@ mission "Saryd University Lecture"
 				`	"Sorry, I don't have time."`
 					decline
 			label explanation
-			`	"Close to Arachi space, humans are, so study radio and television signals from your part of the galaxy, we are able to. Faint, scattered broadcasts, sophisticated receivers collect, and the signals to us, Arachi colleagues relay. From these broadcasts, we learn. Help us learn more, would you?"`
+			`	"Contact with a human world, Heliarchs have. Some documents on humanity, the government there gave. Shared their knoweldge with civilian researchers, the Heliarchs have, so analyze the info, we do, so that understand humans better, we may."`
 			choice
 				`	"Sure, I'd be glad to."`
 					goto yes
@@ -1535,13 +1539,15 @@ mission "Saryd University Lecture"
 					decline
 			label yes
 			`	"Thank you! A great honor, you have done our field of study." He motions you to follow him.`
-			`	The train you took to the university arrives remarkably quickly, and you are soon on your way towards a large building.`
-			`	You enter a room full of tables packed with citizens from across the Coalition. A stage is at the front, where a Kimek is setting up some sort of diorama. Your entrance immediately causes a stir, and several turn to look at you. Aelbris beams as he shows you to your table."`
-			`	"Now, unplanned, your visit is, so consult with the seminar organizers, I must. Be right back, I will."`
-			`	You wait for a while, until an Arach walks up to the stage. The box's volume is much louder than normal, and you can easily hear what is being spoken.`
-			`	"Pleased to announce that the 103rd Xenology Seminar, generously hosted by Starlit University, is now in session, I am. Noticed as you may have, in the presence of a very... unusual guest, we are. The honor of having <first> <last> of the Rutilicus system answer some questions at the end of today's seminar, we will have." The Arach gestures to you, as Aelbris sits down at your table.`
-			`	The first speaker, a Kimek, talks about human farming methods as they compare to other members of the Coalition. Strangely enough, you see him cite human news broadcasts and television shows as if they were academic papers. All of the broadcasts are hundreds of years out of date. Viewing your own society from the outside feels surreal.`
-			`	The seminar goes on for some time. A Saryd gives a surprisingly accurate lecture on the human body. An Arach goes into detail explaining the technological level of human ships. There are even occasional speeches given on supposed aliens to the east and north. Seeing as they have no direct evidence, however, the scientists can do little more than speculate. Once all the speakers have finished, Aelbris informs you that it is now your turn to answer their questions.`
+			`	You and the Saryd take a train from the city to the base of a mountain. "Secluded, Starlit University is, so direct transportation, there is none," he explains. Instead, he leads you to a steep trail that presumably takes you to the conference. You notice that a small lift is installed along the trail, but it seems to be used exclusively by the elderly and infirm.`
+			`	After a long hike that takes the better part of the afternoon, you approach a collection of gleaming buildings. One of them has a few scientists and students, with Heliarchs guarding the entrance.`
+			`	You enter a small, dusty room where some scientists from the three Coalition species prepare their lectures. Your entrance immediately causes a stir, and several turn to look at you. Aelbris beams as he shows you to your table. You note the presence of several Heliarchs in attendance as well.`
+			`	"Ah, work closely with the Heliarchs, we do," Aelbris explains. "Share information with them and inform them of our conclusions, so that better informed about possible threats and opportunities, they are."`
+			`	"Now, unplanned, your visit is, so consult with the seminar organizers, I must." He brings out a small box that projects a holograph of an Arach Heliarch once turned on. Aelbris begins a conversation with him, but you cannot hear much of it; Aelbris makes an effort to keep his voice down in order to not disturb the other guests.`
+			`	You wait for a while, until a Kimek walks up to the stage in front. The box's volume is much louder than normal, and you can easily hear what is being said.`
+			`	"Pleased to announce that the 103rd Xenology Seminar, generously hosted by Starlit University, is now in session, I am. Noticed as you may have, in the presence of a very... unusual guest, we are. The honor of having <first> <last> answer some questions at the end of today's seminar, we will have." The Kimek gestures to you as Aelbris sits down at your table.`
+			`	The first speaker, another Kimek, talks about human farming methods as they compare to other members of the Coalition. You see him cite information from a modified data chip that appears to contain documents from the Library of Alexandria.`
+			`	The seminar goes on for some time. A Saryd gives a surprisingly accurate lecture on the human body. An Arach goes into detail explaining the technological level of human ships. Once all the speakers have finished, Aelbris informs you that it is now your turn to answer their questions.`
 			choice
 				`	"Alright, let's go!"`
 					goto questions
@@ -1551,27 +1557,42 @@ mission "Saryd University Lecture"
 			`	"To answer their questions, if you really don't want, I can't stop you, I suppose." Aelbris says with a sigh.`
 					decline
 			label questions
-			`	As soon as you walk up to the stage, several scientists in the crowd stand up out of their chairs. An Arach comes up to you on the stage, and explains that this is their way of asking questions. She selects a Saryd from the crowd.`
+			`	As soon as you walk up to the stage, several scientists in the crowd stand up out of their chairs. The Arach Heliarch comes up to you on the stage, and explains that this is their way of asking questions. She selects a Saryd from the crowd.`
 			branch hai
 				has "First Contact: Hai: offered"
-			`	"Aliens besides the Quarg, are humans in contact with?"`
+			`	"What is the extent of contact that humans have with other aliens?"`
 			choice
-				`	"No, the only aliens humans know about are the Quarg."`
-					goto sad
+				`	"Humans have official contact with the Quarg, but the Quarg don't trade technology with humanity."`
+					goto quarg
+				`	"Humans have official contact with the Quarg, but humans and Quarg don't really intermix."`
+					goto quarg
+				`	"Humans know about the Quarg, but most people know little about them."`
+					goto quarg
 			label hai
-			`	"Aliens besides the Quarg, are humans in contact with?"`
+			`	"What is the extent of contact that humans have with other aliens?"`
 			choice
-				`	"Yes, humans are in contact with the Hai. They live to the north of human space, and we can visit them through a wormhole."`
+				`	"Humans are in contact with the Hai. Some of them even live on Hai planets. They live to the north of human space, and we can visit them through a wormhole."`
 					goto "know"
 				`	"A few humans know about the Hai, but there's no official acknowledgment of their existence. They live to the north of human space, and we can visit them through a wormhole."`
 					goto "know"
-				`	"No, the only aliens humans know about are the Quarg."`
-					goto "sad"
-			label sad
-			`	At this several in the audience sound disappointed.`
+				`	"Humans have official contact with the Quarg, but the Quarg don't trade technology with humanity."`
+				`	"Humans have official contact with the Quarg, but humans and Quarg don't really intermix."`
+				`	"Humans know about the Quarg, but most people know little about them."`
+			label quarg
+			`	The audience response is muted. You get the impression that you haven't told them anything they don't already know.`
 				goto nextquestion
 			label know
-			`	Several members of the audience are delighted. "Cooperation between different species, it is important to foster," says the Saryd who asked the question. An Arach asks you to point out where the Hai are on a galactic map, and you do so.`
+			branch coalitionknow
+				has "coalition knows hai"
+			`	"Several members of the audience are delighted. "Unknown to us, this species is," says the Heliarch. "That you have made contact with them despite the Quarg, good news it is."`
+			`	"Tell us more of them, could you?" asks another scientist.`
+			`	As you open your mouth to speak, the Heliarch cuts you off. "Enough questions on the Hai, we have." The crowd looks disappointed at this development.`
+			action
+				set "coalition knows hai"
+			label coalitionknow
+			`	Several members of the audience are delighted. "Ah, the Hai, we have heard of," says the Heliarch. "That you have made contact with them despite the Quarg, good news it is."`
+			`	"Tell us more of them, could you?" asks another scientist.`
+			`	As you open your mouth to speak, the Heliarch cuts you off. "Enough questions on the Hai, we have." The crowd looks disappointed at this development.`
 			label nextquestion
 			branch war
 				has "FWC End: completed"
@@ -1579,21 +1600,29 @@ mission "Saryd University Lecture"
 			choice
 				`	"No, human space is split between the Republic in the north and the Free Worlds in the south."`
 				`	"No, human space is split between the Republic in the west, the Free Worlds in the south, and the Syndicate in the east. The Syndicate is technically part of the Republic, but they have a lot of autonomy."`
-			`	There are murmurs in the crowd, and several begin to write down notes on various devices."`
+			`	As you answer the question, your translator begins to cut out. Repeating your answer does no good, as it contiunes to fizzle out as you talk. You look over to the Heliarch, who eyes the curious Kimek with suspicion. "Apologize for the malfunction, I must," says the Heliarch. "The next question, answer it please."`
 				goto questionthree
 			label war
 			`	The Arach selects another, this time a Kimek. "All of human space, united politically is it?"`
 			choice
 				`	"Yes, all of human space is united under the Republic."`
+					goto united
 				`	"Yes, but there are internal subdivisions: the Free Worlds in the south, the Republic in the north, and the Syndicate in the east."`
 				`	"No. Technically all of human space is under the Republic, but the Free Worlds and Syndicate have significant autonomy."`
-			`	There are murmurs in the crowd, and several begin to write down notes on various devices."`
+			`	As you answer the question, your translator begins to cut out. Repeating your answer does no good, as it continues to fizzle out as you talk. You look over to the Heliarch, who eyes the curious Kimek with suspicion. "Apologize for the malfunction, I must," says the Heliarch. "The next question, answer it please."`
+				goto questionthree
+			label united
+			`	Upon finishing your sentence, several in the crowd begin to write down notes on datapads. It appears that information on human government is new to them.`
 			label questionthree
-			`	The Arach picks another Kimek. "Still a problem, is piracy in human space?"`
+			`	The Arach picks another Kimek. "Piracy in human space, how big of a problem is it?"`
 			choice
-				`	"Yes, there are pirate planets on the fringes of human space."`
+				`	"There are entire pirate planets on the fringes of human space where warlords and criminals rule."`
 				`	"Piracy was a big problem in the past, but now it's a relatively minor issue."`
-			`	"Stamped out, may human piracy soon be," says the Arach in a solemn tone of voice. She picks a Saryd for the next question.`
+				`	"There are many independent worlds that are not ruled by one singular government. Some groups there support piracy, but others are peaceful."`
+					goto pirategood
+			`	"Stamped out, may lawlessness soon be," says the Heliarch in a solemn tone of voice. She picks a Saryd for the next question.`
+			label pirategood
+			`	Your microphone starts to fizzle out as you attempt to answer. The Heliarch's eight eyes are all on you, and you sense that it might not be a good idea to finish your sentence. The Heliarch selects a Saryd for the next question.`
 			`	"A fairly comprehensive map of human space, we have." The Saryd brings out a star map of the galactic south. "But of the core, we know not. Inform us of the galaxy, can you?"`
 			branch korath
 				or
@@ -1617,11 +1646,13 @@ mission "Saryd University Lecture"
 			`	The Saryd walks away, disappointed.`
 				goto sorry
 			label tell
-			`	"An alien species known as the Korath live there. They're reptillian creatures whose space has been torn apart by fighting. There are four factions. The Kor Sestor and Kor Mereti have been fighting a civil war using autonomous robotic ships. The Kor Efreti have stayed out of the civil war, living under the Quarg's protection." At this there are hisses from several in the crowd. "The last faction, the Korath Exiles, have been banished to the Core by the Quarg, for refusing to give up their ability to manufacture jump drives. They are now raiding humanity for supplies."`
-			`	The crowd shows considerable interest at this last part. "Knowledge of the jump drive, a species besides the Quarg possesses? Great news, this is! Our struggle against the Quarg, we do not take up alone. Escape the cages of the Drak, do any other species?" The Arach does not seem to mind you answering another question.`
+			`	"I've met an alien species there called the Korath," you say. "They're reptillian creatures. What's left of their planets has been ruined by infighting. The Kor Sestor and Kor Mereti have been fighting a civil war using autonomous ships. The Kor Efreti have stayed out of the civil war, living under the Quarg's protection. The Korath Exiles have been banished to the Core by the Drak for refusing to give up their ability to manufacture jump drives. They are now raiding humanity for supplies."`
+			`	The crowd shows considerable interest at this last part. "Knowledge of the jump drive, a species besides the Quarg possesses? Great news, this is! Our struggle against the Quarg, we do not take up alone. Possess jump drives, do any other species?" The Heliarch does not seem to mind you answering another question.`
 			branch unfettered
-				has  "First Contact: Unfettered: offered"
+				has "coalition knows hai"
 			choice
+				`	"There are aliens to the north of human space called the Hai. Some of them steal from the normal Hai, and try to get their hands on jump drives any way they can."`
+					goto knowunfettered
 				`	"Sorry, I don't know of any other species that does."`
 					goto sorry
 			label unfettered
@@ -1631,16 +1662,18 @@ mission "Saryd University Lecture"
 				`	"Sorry, I don't know of any other species that does."`
 					goto sorry
 			label unfortunate
-			`	"Driven to such desperation, it is unfortunate that our allies against the Quarg are. Powerful like the Coalition, hopefully one day they will be."`
+			`	The Heliarch speaks up against the murmurs of the crowd. "Driven to such desperation, it is unfortunate that our allies against the Quarg are. Powerful like the Coalition, hopefully one day they will be."`
 				goto exit
+			label knowunfettered
+			`	Several members of the audience are delighted. "Unknown to us, this species is," says the Heliarch. "Powerful in their fight against the Quarg, may they become."`
 			label sorry
 			`	The crowd's mood dampens a bit, but everyone is still quite exuberant as you leave the building. It is now night, and your eyes take a moment to adjust from the lecture hall's bright lights.  Aelbris meets up with you outside, bubbling with excitement.`
-			`	"Thank you, captain! Expanded our knowledge greatly, you have. Hope to see you again, I do. Safe travels!"`
+			`	"Thank you, captain! Expanded our knowledge greatly, you have." He leans in, quieter this time. "Strict with knowledge of humans, the Heliarchs are. Unbiased sources of information, rare they are. Hope to see you again, I do. Safe travels!"`
 			`	After he shakes your hand, you say your goodbyes and board your ship.`
 				decline
 			label exit
-			`	The crowd's mood is exuberant as you leave the building. It is now night, and your eyes take a moment to adjust from the lecture hall's bright lights. Aelbris meets up with you outside, bubbling with excitement.`
-			`	"Thank you, captain! Expanded our knowledge greatly, you have. Hope to see you again, I do. Safe travels!"`
+			`	Upon the announcement of the interview's end, the crowd begins to leave. The mood is exuberant as you exit the building. It is now night, and your eyes take a moment to adjust from the lecture hall's bright lights. Aelbris meets up with you outside, bubbling with excitement.`
+			`	"Thank you, captain! Expanded our knowledge greatly, you have. He leans in, quieter this time. "Strict with knowledge of humans, the Heliarchs are. Unbiased sources of information, rare they are. Hope to see you again, I do. Safe travels!"`
 			`	After he shakes your hand, you say your goodbyes and board your ship.`
 				decline
 
