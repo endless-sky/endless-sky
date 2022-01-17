@@ -1062,7 +1062,8 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 				double damage = weapon->ShieldDamage() + weapon->HullDamage()
 					+ (weapon->RelativeShieldDamage() * ship->Attributes().Get("shields"))
 					+ (weapon->RelativeHullDamage() * ship->Attributes().Get("hull"));
-				deterrence += .12 * damage / weapon->Reload();
+				deterrence += max(.12 * damage / weapon->Reload() * weapon->BurstCount(),
+						0.00012 * weapon->Cost());
 			}
 	}
 
