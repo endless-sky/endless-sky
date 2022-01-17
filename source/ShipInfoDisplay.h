@@ -32,10 +32,10 @@ class ShipInfoDisplay : public ItemInfoDisplay {
 public:
 	ShipInfoDisplay() = default;
 	ShipInfoDisplay(const Ship &ship, const Depreciation &depreciation, int day);
-	
+
 	// Call this every time the ship changes.
 	void Update(const Ship &ship, const Depreciation &depreciation, int day);
-	
+
 	// Provided by ItemInfoDisplay:
 	// int PanelWidth();
 	// int MaximumHeight() const;
@@ -43,19 +43,19 @@ public:
 	// int AttributesHeight() const;
 	int GetAttributesHeight(bool sale) const;
 	int OutfitsHeight() const;
-	
+
 	// Provided by ItemInfoDisplay:
 	// void DrawDescription(const Point &topLeft) const;
 	virtual void DrawAttributes(const Point &topLeft) const override;
 	virtual void DrawAttributes(const Point &topLeft, const bool sale) const;
 	void DrawOutfits(const Point &topLeft) const;
-	
-	
+
+
 private:
 	void UpdateAttributes(const Ship &ship, const Depreciation &depreciation, int day);
 	void UpdateOutfits(const Ship &ship, const Depreciation &depreciation, int day);
-	
-	
+
+
 private:
 	std::vector<std::string> attributeHeaderLabels;
 	std::vector<std::string> attributeHeaderValues;
@@ -63,11 +63,11 @@ private:
 	std::vector<std::string> tableLabels;
 	std::vector<std::string> energyTable;
 	std::vector<std::string> heatTable;
-	
+
 	std::vector<std::string> outfitLabels;
 	std::vector<std::string> outfitValues;
 	int outfitsHeight = 0;
-	
+
 	std::vector<std::string> saleLabels;
 	std::vector<std::string> saleValues;
 	int saleHeight = 0;
