@@ -139,6 +139,8 @@ government "Hai"
 		"Hai (Wormhole Access)" 1
 		"Hai (Unfettered)" -.1
 		"Merchant" .01
+	restricted
+		system "Wah Yoot"
 	"bribe" .02
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"

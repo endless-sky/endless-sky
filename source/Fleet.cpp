@@ -346,6 +346,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
 			for(const System *neighbor : (hasJump ? system.JumpNeighbors(jumpDistance) : system.Links()))
 			{
+				if(government->Restricted(neighbor))
+					continue;
 				// If this ship is not "welcome" in the current system, prefer to have
 				// it enter from a system that is friendly to it. (This is for realism,
 				// so attack fleets don't come from what ought to be a safe direction.)
@@ -515,18 +517,24 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 // Do the randomization to make a ship enter or be in the given system.
 const System *Fleet::Enter(const System &system, Ship &ship, const System *source)
 {
-	if(system.Links().empty() || (source && !system.Links().count(source)))
+	bool canEnter = false;
+	for(const System *link : system.Links())
+		if(!ship.GetGovernment()->Restricted(link))
+			canEnter = true;
+			
+	if(!canEnter || system.Links().empty() || (source && !system.Links().count(source)))
 	{
 		Place(system, ship);
 		return &system;
 	}
 
 	// Choose which system this ship is coming from.
-	if(!source)
+	while(!source)
 	{
 		auto it = system.Links().cbegin();
 		advance(it, Random::Int(system.Links().size()));
-		source = *it;
+		if(!ship.GetGovernment()->Restricted(source))
+			source = *it;
 	}
 
 	Angle angle = Angle::Random();

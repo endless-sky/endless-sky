@@ -118,6 +118,9 @@ public:
 
 	bool IsProvokedOnScan() const;
 
+	// Get if ships from this government can go to that system.
+	bool Restricted(const System *system) const;
+
 
 private:
 	unsigned id;
@@ -132,6 +135,7 @@ private:
 	double bribe = 0.;
 	double fine = 1.;
 	std::vector<LocationFilter> enforcementZones;
+	LocationFilter restricted;
 	const Conversation *deathSentence = nullptr;
 	const Phrase *friendlyHail = nullptr;
 	const Phrase *friendlyDisabledHail = nullptr;
