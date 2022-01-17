@@ -209,6 +209,59 @@ mission "Gambling Judgment"
 				decline
 
 
+
+mission "Academy Motto"
+	minor
+	source
+		government "Hai"
+		attributes "urban"
+		not attributes "station"
+	to offer
+		random < 1
+		has "language: Wanderer"
+	on offer
+		conversation
+			`On this particular day, the spaceport is crowded beyond belief by some arcane confluence of chance and logistics. Despite having resolved the bulk of your business the port authorities have informed you that there is no safe departure slot open for at least seven hours (and even that's not a promise). This leaves you alone to fill in your unexpected bit of time in the early morning.`
+			choice
+				`	(Play games on your ship.)`
+				`	(Have a look around further afield.)`
+					goto fieldtrip
+			`	Not interested in getting lost in an expansive Hai city, you simply load up an entertainment console to keep you occupied for the next few hours.`
+				decline
+			label fieldtrip
+			`	The tendency of the Hai to efficiently pack people into vibrant but densely populated spaces is on full display as you navigate through throngs of Hai who mostly make polite efforts to avoid bumping into you. Colorful banners, flags, murals, and even windows all provide brilliant highlights to the oft-utilitarian architectural styles underlying them. Holoprojected welcome signs even grace the entry-ways of several apartment buildings that you pass, with caveats for door-to-door salespeople.`
+			`	One apartment complex's exterior fencing bears a very large sign which your translator informs you says, "No Meme Content Here Please."`
+			`	After some time you find what appears to be a cafe, or equivalent, and sit down where you can get a good view of one of the more impressive building complexes around. After a moment a holoprojection built into the table asks you in human standard whether you'd like to order through the table or converse with a member of staff.`
+			choice
+				`	(Order through the table.)`
+					goto pleasantlunch
+				`	(Order through a person.)`
+			`	A friendly Hai emerges to take your order and politely informs you that there's a 10% surcharge for eating on the terrace. Since that's hardly a meaningful sum to a ship's captain you just nod and try and work out what you're eating. Eventually you settle for a sandwich with acorn butter and vegetable slices that appear to be spiced, or pickled, you're not really sure. It was the staff's top recommended item and didn't come with any follow-up questions about Hai food preferences that you couldn't answer.`
+				goto finishingchat
+			label pleasantlunch
+			`	The interface is rather annoying to work with human-sized hands, but eventually you settle for a sandwich with acorn butter and vegetable slices that appear to be spiced, or pickled, you're not really sure. It was the top recommended item and didn't come with any follow-up questions about Hai food preferences that you couldn't answer.`
+			label finishingchat
+			`	As you eat your strange, but actually surprisingly tasty lunch, you take note of the large text written above the gateway into the grounds for the building complex opposite you. After a moment your translator box takes note of where you're looking and reads it aloud for you.`
+			`	"To know is to lead, to study is to know, to serve is to study, to lead is to serve."`
+			`	Naturally, your translator cannot answer questions, so you eat your lunch and leave it be until a staff member emerges to take your plate.`
+			choice	
+				`	(Ask them about it.)`
+					goto question
+				`	(Keep your thoughts to yourself.)`
+			`	The staff member takes your plate and wishes you a lovely day.`
+				decline
+			label question
+			`	As they clear your plate from the table you ask them about the text on the gateway.`
+			`	"Oh, that's the city Academy. It's a... uh..." she pauses for a moment and relays something in Hai which your translator immediately converts to, "non-technical university."`
+			`	Giving the box a surprised look she smiles and continues in Hai, "If you want to be a manager, a politician, a social worker, or even just a public speaker, you go to the Academy and do courses on leadership and communications. Strictly speaking, it's not necessary to go, but lots of places simply won't accept you into those sorts of roles without some sort of Academy qualification, and they really do provide some great skills. I'm actually going there next year to do a proper human language course.`
+			`	"Technically the Academies are all independent, but they all share the same motto. It's an obligatory thing too though, that's what the motto is about. I'm told most humans think it's backwards, but it's not. The Academies keep tabs on their graduates; if you lead with self-interest, serve without studying, study without learning or waste your knowledge without applying it, they've been known to revoke people's qualifications. Attendance is free, so there's an expectation that you don't waste what they spend time teaching you.`
+			`	"This one is quite prestigious, but the ones near the spaceports always are." She winks. "Experience through natural exposure is worth more than what money can buy, after all."`
+			`	A moment later your comm pad alerts you that you've been assigned a departure window from the spaceport in relatively short order.`
+			`	"Well, I must be attending to other customers. You have a great day!" she says, leaving you to go about your business.`
+				decline
+
+
+
 mission "Robotic Musical 1"
 	minor
 	source
