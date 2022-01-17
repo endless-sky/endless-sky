@@ -164,7 +164,7 @@ mission "Humanity: Broadsider 2"
 		payment 250000
 		event "humanity: Broadsider Outfit" 1 10
 		conversation
-			`	Back on Geminus you are promptly escorted into a large conference room. Video footage of the test is being broadcast on several walls while others are covered in posters and diagrams. A collection of researchers, officers, and dignitaries mill around talking and gesturing. Threading your way through the crowd, you eventually find Andre cornered by someone you think is a Republic senator. Seeing you approach, he manages to disengage and quickly joins you at a table.`
+			`	Back on Geminus you are promptly escorted into a large conference room. Video footage of the test is being broadcast on several walls while others are covered in posters and diagrams. A collection of researchers, officers, and dignitaries mill around talking and gesturing. Along one wall you can see a large table of hors d'oeuvres and drinks. Threading your way through the crowd, you eventually find Andre cornered by someone you think is a Republic senator. Seeing you approach, he manages to disengage and quickly joins you at a table.`
 			`	"Ah, Captain <last>, I'm glad you made it back safely." He pauses to take a sip from his drink. "So, what do you think about the Broadsider? Do you think it will be an effective tool for the Navy?"`
 			choice
 				`	"Not fast enough to target the drones, but should be good against the larger Sestor ships."`
@@ -187,6 +187,6 @@ mission "Humanity: Broadsider 2"
 				`	"When will the Broadsider be available?"`
 			`	The aide consults their notes, then replies. "We expect that they should reach our outfitters within the next week or two, although some ships were whitelisted for early deployment. As such, some of our fleet already has them equipped to help secure humanity against future incursions." The aide looks pleased at this. "Well, I must be off. Thank you again for your assistance." They turn, and vanish into the crowd.`
 			label finale
-			`	The broadsider launch event continues on for several more hours, and you have the opportunity to mix and mingle with a variety of dignitaries. There is also a table of food and drinks available. Eventually you decide that there is nothing more to be gained by sticking around, and return to the spaceport.`
+			`	The broadsider launch event continues on for several more hours, and you have the opportunity to mix and mingle with a variety of dignitaries. Eventually you decide that there is nothing more to be gained by sticking around, and return to the spaceport.`
 
 
