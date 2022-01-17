@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Angle.h"
 #include "Hazard.h"
+#include "Ship.h"
 #include "Visual.h"
 #include "Random.h"
 
@@ -21,8 +22,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-Weather::Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining, double strength, Point origin)
-	: hazard(hazard), totalLifetime(totalLifetime), lifetimeRemaining(lifetimeRemaining), strength(strength), origin(origin)
+Weather::Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining, double strength, Point flagshipPosition)
+	: hazard(hazard), totalLifetime(totalLifetime), lifetimeRemaining(lifetimeRemaining), strength(strength), 
+		origin(hazard->FlagShipCentre() ? flagshipPosition : hazard->Centre())
 {
 	// Using a deviation of totalLifetime / 4.3 causes the strength of the
 	// weather to start and end at about 10% the maximum. Store the entire
@@ -95,12 +97,13 @@ const Point &Weather::Origin() const
 
 
 // Create any environmental effects and decrease the lifetime of this weather.
-void Weather::Step(vector<Visual> &visuals)
+void Weather::Step(vector<Visual> &visuals, const Ship *flagship)
 {
 	// Environmental effects are created by choosing a random angle and distance from
 	// their origin, then creating the effect there.
 	double minRange = hazard->MinRange();
-	double maxRange = !hazard->SystemWide() ? hazard->MaxRange() : 10000.;
+	// If it is systemwide, only draw around the flagship.
+	double maxRange = !hazard->SystemWide() ? hazard->MaxRange() : 5000.;
 
 	// Estimate the number of visuals to be generated this frame.
 	// MAYBE: create only a subset of possible effects per frame.
@@ -115,7 +118,8 @@ void Weather::Step(vector<Visual> &visuals)
 		{
 			Point angle = Angle::Random().Unit();
 			double magnitude = (maxRange - minRange) * sqrt(Random::Real());
-			Point pos = origin + (minRange + magnitude) * angle;
+			Point pos = ((hazard->SystemWide() && flagship) ?
+				flagship->Position() : origin) + (minRange + magnitude) * angle;
 			visuals.emplace_back(*effect.first, std::move(pos), Point(), Angle::Random());
 		}
 

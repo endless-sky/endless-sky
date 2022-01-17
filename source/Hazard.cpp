@@ -58,6 +58,14 @@ void Hazard::Load(const DataNode &node)
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			environmentalEffects[GameData::Effects().Get(child.Token(1))] += count;
 		}
+		else if(key == "centre")
+		{
+			for(const auto &token : child.Tokens())
+				if(token == "flagship")
+					flagshipCentre = true;
+			if(!flagshipCentre)
+				centre = Point(child.Value(1), child.Size() >= 3 ? child.Value(2) : child.Value(1));
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -93,6 +101,21 @@ bool Hazard::Deviates() const
 int Hazard::Period() const
 {
 	return period;
+}
+
+
+
+// The centre of the hazard.
+const Point &Hazard::Centre() const
+{
+	return centre;
+}
+
+
+
+bool Hazard::FlagShipCentre() const
+{
+	return flagshipCentre;
 }
 
 

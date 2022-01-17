@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class Hazard;
+class Ship;
 class Visual;
 
 
@@ -26,7 +27,7 @@ class Visual;
 class Weather {
 public:
 	Weather() = default;
-	explicit Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining, double strength, Point origin);
+	explicit Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining, double strength, Point flagshipPosition);
 
 	// The hazard that is associated with this weather event.
 	const Hazard *GetHazard() const;
@@ -39,7 +40,7 @@ public:
 	// The origin of the hazard.
 	const Point &Origin() const;
 	// Create any environmental effects and decrease the lifetime of this weather.
-	void Step(std::vector<Visual> &newVisuals);
+	void Step(std::vector<Visual> &newVisuals, const Ship *flagship = nullptr);
 	// Calculate this weather's strength for the current frame, to be used to find
 	// out what the current period and damage multipliers are.
 	void CalculateStrength();
