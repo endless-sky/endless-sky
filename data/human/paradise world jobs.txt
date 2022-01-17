@@ -430,7 +430,7 @@ mission "Paradise Job: Parolees"
 	passengers 20 4 .1
 	to offer
 		random < 15
-		"passenger space" > 50
+		"passenger space" > 40
 	on offer
 		require "Brig"
 	source
@@ -454,7 +454,7 @@ mission "Paradise Job: Debtors"
 	passengers 20 4 .1
 	to offer
 		random < 15
-		"passenger space" > 50
+		"passenger space" > 40
 	on offer
 		require "Brig"
 	source
@@ -478,13 +478,10 @@ mission "Paradise Job: Retirees"
 	passengers 7 12 .6
 	cargo "treasured possessions" 7 12 .2
 	to offer
-		random < 10
-		"passenger space" > 30
-		"cargo space" > 120
+		"passenger space" > 15
+		"cargo space" > 40
 	on offer
 		require "Luxury Accommodations"
-	source
-		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest" "urban"
 	destination
 		distance 3 16
 		attributes "paradise"
@@ -503,7 +500,7 @@ mission "Paradise Job: Wilderness Retreat"
 	passengers 10 4 .1
 	to offer
 		random < 10
-		"passenger space" > 30
+		"passenger space" > 25
 	on offer
 		require "Luxury Accommodations"
 	source
