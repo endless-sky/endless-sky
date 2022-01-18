@@ -38,6 +38,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 #include "TextReplacements.h"
 #include "Visual.h"
+#include "AI/ShipAICache.h"
 
 #include <algorithm>
 #include <cmath>
@@ -762,6 +763,10 @@ void Ship::FinishLoading(bool isNewInstance)
 			targetSystem = nullptr;
 		}
 	}
+	
+	// Initate the AI cache
+	ShipAICache AICache(*this);
+	this->AICache = AICache;
 }
 
 
@@ -1343,6 +1348,13 @@ string Ship::GetHail(const PlayerInfo &player) const
 	subs["<day>"] = player.GetDate().LongString();
 
 	return Format::Replace(hailStr, subs);
+}
+
+
+
+ShipAICache &Ship::GetAICache()
+{
+	return AICache;
 }
 
 

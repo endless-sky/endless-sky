@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
+#include "AI/ShipAICache.h"
 
 #include <list>
 #include <map>
@@ -184,18 +185,8 @@ public:
 	// object is given the government's default will be used.
 	void SetHail(const Phrase &phrase);
 	std::string GetHail(const PlayerInfo &player) const;
-	
-	// Accessors and setters for AI data
-	bool GetArtilleryAI() const;
-	void SetArtilleryAI(bool value);
-	double GetShortestRange() const;
-	void SetShortestRange(double value);
-	double GetShortestArtillery() const;
-	void SetShortestArtillery(double value);
-	double GetMinSafeDistance() const;
-	void SetMinSafeDistance(double value);
-	double GetTurningRadius() const;
-	void SetTurningRadius(double value);
+	// Access the ship's AI cache
+	ShipAICache &GetAICache();
 
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
@@ -504,12 +495,7 @@ private:
 
 	Personality personality;
 	const Phrase *hail = nullptr;
-	
-	bool artilleryAI;
-	double shortestRange;
-	double shortestArtillery;
-	double minSafeDistance;
-	double turningRadius;
+	ShipAICache AICache;
 
 	// Installed outfits, cargo, etc.:
 	Outfit attributes;
@@ -610,20 +596,6 @@ private:
 	std::vector<std::weak_ptr<Ship>> escorts;
 	std::weak_ptr<Ship> parent;
 };
-
-
-
-// Inline the accessors and setters because they get called so frequently.
-inline bool Ship::GetArtilleryAI() const { return artilleryAI; }
-inline void Ship::SetArtilleryAI(bool value) { artilleryAI = value; }
-inline double Ship::GetShortestRange() const { return shortestRange; }
-inline void Ship::SetShortestRange(double value) { shortestRange = value; }
-inline double Ship::GetShortestArtillery() const { return shortestArtillery; }
-inline void Ship::SetShortestArtillery(double value) { shortestArtillery = value; }
-inline double Ship::GetMinSafeDistance() const { return minSafeDistance; }
-inline void Ship::SetMinSafeDistance(double value) { minSafeDistance = value; }
-inline double Ship::GetTurningRadius() const { return turningRadius; }
-inline void Ship::SetTurningRadius(double value) { turningRadius = value; }
 
 
 
