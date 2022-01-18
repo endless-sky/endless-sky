@@ -790,7 +790,6 @@ shipyard "Remnant"
 	"Pelican"
 	"Petrel"
 	"Tern"
-	"Korath Dredger (Ground Assault)"
 
 shipyard "Remnant Puffin"
 	"Puffin"
