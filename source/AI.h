@@ -185,7 +185,7 @@ private:
 	const List<Minable> &minables;
 	const List<Flotsam> &flotsam;
 
-	// The current step count for the AI, it cycles from 0 to 127. Its value
+	// The current step count for the AI, ranging from 0 to 127. Its value
 	// helps limit how often certain actions occur (such as changing targets).
 	int step = 0;
 
