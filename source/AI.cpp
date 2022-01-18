@@ -523,9 +523,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		}
 
 	const Ship *flagship = player.Flagship();
-	// Yes, this overflows. but the beauty of bitwise-and means that
-	// overflow doesn't cause any issues.
-	step = step + 1;
+	step = (step + 1) & 127;
 	int targetTurn = 0;
 	int weaponUpdateTurn = 0;
 	int minerCount = 0;
