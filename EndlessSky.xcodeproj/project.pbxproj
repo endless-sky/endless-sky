@@ -21,6 +21,7 @@
 		62A405BA1D47DA4D0054F6A0 /* FogShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62A405B81D47DA4D0054F6A0 /* FogShader.cpp */; };
 		62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62C311181CE172D000409D91 /* Flotsam.cpp */; };
 		6A5716331E25BE6F00585EB2 /* CollisionSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */; };
+		6BC6485DB66E343A6826F2F0 /* ShipAICache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68614FC0B06D78B38FF3DEC6 /* ShipAICache.cpp */; };
 		6EC347E6A79BA5602BA4D1EA /* StartConditionsPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */; };
 		87D6407E8B579EB502BFBCE5 /* GameAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F0F4096A9008E2D8F3304BB /* GameAction.cpp */; };
 		88A64339B56EBA1F7923E1C7 /* GameLoadingPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7E640C7A366679B27CCADAC /* GameLoadingPanel.cpp */; };
@@ -227,10 +228,12 @@
 		62C311181CE172D000409D91 /* Flotsam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Flotsam.cpp; path = source/Flotsam.cpp; sourceTree = "<group>"; };
 		62C311191CE172D000409D91 /* Flotsam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flotsam.h; path = source/Flotsam.h; sourceTree = "<group>"; };
 		6833448DAEB9861D28445DD5 /* GameAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameAction.h; path = source/GameAction.h; sourceTree = "<group>"; };
+		68614FC0B06D78B38FF3DEC6 /* ShipAICache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShipAICache.cpp; path = source/AI/ShipAICache.cpp; sourceTree = "<group>"; };
 		6A4E42FEB3B265A91D5BD2FC /* TextReplacements.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextReplacements.cpp; path = source/TextReplacements.cpp; sourceTree = "<group>"; };
 		6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollisionSet.cpp; path = source/CollisionSet.cpp; sourceTree = "<group>"; };
 		6A5716321E25BE6F00585EB2 /* CollisionSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollisionSet.h; path = source/CollisionSet.h; sourceTree = "<group>"; };
 		6DCF4CF2972F569E6DBB8578 /* CategoryTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryTypes.h; path = source/CategoryTypes.h; sourceTree = "<group>"; };
+		766542D28E4632A569256F49 /* ShipAICache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShipAICache.h; path = source/AI/ShipAICache.h; sourceTree = "<group>"; };
 		86AB4B6E9C4C0490AE7F029B /* EsUuid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EsUuid.h; path = source/EsUuid.h; sourceTree = "<group>"; };
 		86D9414E818561143BD298BC /* TextReplacements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextReplacements.h; path = source/TextReplacements.h; sourceTree = "<group>"; };
 		8E8A4C648B242742B22A34FA /* Weather.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Weather.cpp; path = source/Weather.cpp; sourceTree = "<group>"; };
@@ -242,8 +245,8 @@
 		A00D4207B8915B5E7E9B4619 /* RandomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RandomEvent.h; path = source/RandomEvent.h; sourceTree = "<group>"; };
 		A2A948EE929342C8F84C65D1 /* TestContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestContext.h; path = source/TestContext.h; sourceTree = "<group>"; };
 		A3134EC4B1CCA5546A10C3EF /* TestContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestContext.cpp; path = source/TestContext.cpp; sourceTree = "<group>"; };
-		A7E640C7A366679B27CCADAC /* GameLoadingPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameLoadingPanel.cpp; path = source/GameLoadingPanel.cpp; sourceTree = "<group>"; };
 		A3754152958FBC924E9F76A9 /* opengl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opengl.cpp; path = source/opengl.cpp; sourceTree = "<group>"; };
+		A7E640C7A366679B27CCADAC /* GameLoadingPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameLoadingPanel.cpp; path = source/GameLoadingPanel.cpp; sourceTree = "<group>"; };
 		A90633FD1EE602FD000DA6C0 /* LogbookPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LogbookPanel.cpp; path = source/LogbookPanel.cpp; sourceTree = "<group>"; };
 		A90633FE1EE602FD000DA6C0 /* LogbookPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogbookPanel.h; path = source/LogbookPanel.h; sourceTree = "<group>"; };
 		A90C15D71D5BD55700708F3A /* Minable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Minable.cpp; path = source/Minable.cpp; sourceTree = "<group>"; };
@@ -827,6 +830,8 @@
 				86D9414E818561143BD298BC /* TextReplacements.h */,
 				A3754152958FBC924E9F76A9 /* opengl.cpp */,
 				EB634E95A88454ADDB8644B1 /* opengl.h */,
+				68614FC0B06D78B38FF3DEC6 /* ShipAICache.cpp */,
+				766542D28E4632A569256F49 /* ShipAICache.h */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -1179,6 +1184,7 @@
 				88A64339B56EBA1F7923E1C7 /* GameLoadingPanel.cpp in Sources */,
 				F78A44BAA8252F6D53B24B69 /* TextReplacements.cpp in Sources */,
 				CE3F49A88B6DCBE09A711110 /* opengl.cpp in Sources */,
+				6BC6485DB66E343A6826F2F0 /* ShipAICache.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
