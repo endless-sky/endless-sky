@@ -72,10 +72,26 @@ void Government::Load(const DataNode &node)
 				travelRestrictions = LocationFilter{};
 			else if(key == "provoked on scan")
 				provokedOnScan = false;
+			else if(key == "raid")
+				raidFleet = nullptr;
+			else if(key == "display name")
+				displayName = name;
+			else if(key == "death sentence")
+				deathSentence = nullptr;
+			else if(key == "friendly hail")
+				friendlyHail = nullptr;
+			else if(key == "friendly disabled hail")
+				friendlyDisabledHail = nullptr;
+			else if(key == "hostile hail")
+				hostileHail = nullptr;
+			else if(key == "hostile disabled hail")
+				hostileDisabledHail = nullptr;
+			else if(key == "language")
+				language = "";
 			else
-				child.PrintTrace("Skipping unrecognized remove:");
+				child.PrintTrace("Skipping unrecognized remove of attribute:");
 		}
-		else if(add && key == "restricted" && hasValue)
+		else if(add && key == "restricted")
 			travelRestrictions.Load(child);
 		else if(key == "display name" && hasValue)
 			displayName = child.Token(valueIndex);
@@ -84,11 +100,11 @@ void Government::Load(const DataNode &node)
 		else if(key == "color" && child.Size() >= 3 + valueIndex)
 			color = Color(child.Value(valueIndex), child.Value(valueIndex + 1), child.Value(valueIndex + 2));
 		else if(key == "player reputation" && hasValue)
-			initialPlayerReputation = child.Value(valueIndex);
+			initialPlayerReputation = add ? initialPlayerReputation + child.Value(valueIndex) : child.Value(valueIndex);
 		else if(key == "crew attack" && hasValue)
-			crewAttack = max(0., child.Value(valueIndex));
+			crewAttack = max(0., add ? child.Value(valueIndex) + crewAttack : child.Value(valueIndex));
 		else if(key == "crew defense" && hasValue)
-			crewDefense = max(0., child.Value(valueIndex));
+			crewDefense = max(0., add ? child.Value(valueIndex) + crewDefense : child.Value(valueIndex));
 		else if(key == "attitude toward")
 		{
 			for(const DataNode &grand : child)
@@ -130,9 +146,9 @@ void Government::Load(const DataNode &node)
 				}
 		}
 		else if(key == "bribe" && hasValue)
-			bribe = child.Value(valueIndex);
+			bribe = add ? bribe + child.Value(valueIndex) : child.Value(valueIndex);
 		else if(key == "fine" && hasValue)
-			fine = child.Value(valueIndex);
+			fine = add ? fine + child.Value(valueIndex) : child.Value(valueIndex);
 		else if(key == "enforces" && child.HasChildren())
 			enforcementZones.emplace_back(child);
 		else if(key == "enforces" && child.Size() == 2 && child.Token(1) == "all")
