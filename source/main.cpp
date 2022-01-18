@@ -279,7 +279,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	double totalElapsedTimeGpu = 0.;
 	string fpsStringGpu;
 
-	// When running tests, fast forward is on by default.
+	// When running tests, fast forward is on by default unless starting the game in debug mode.
 	if(!testToRunName.empty() && !debugMode)
 		motion = FastForward;
 
@@ -444,10 +444,9 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			}
 		}
 
-		// Skip drawing in-flight frames during testing to speedup testing (unless debug mode is set).
-		// We don't skip UI-frames to ensure we test the UI code more.
-		if(testContext.CurrentTest() && inFlight && !debugMode)
-			continue;
+		// If the player ended this frame in-game, count the elapsed time as played time.
+		if(menuPanels.IsEmpty())
+			player.AddPlayTime(frameTime);
 
 		const double alpha = accumulator / updateFps;
 		// Interpolate the last two physics states. The interpolated state will
@@ -485,10 +484,6 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		}
 
 		GameWindow::Step();
-
-		// If the player ended this frame in-game, count the elapsed time as played time.
-		if(menuPanels.IsEmpty())
-			player.AddPlayTime(frameTime);
 	}
 
 	// If player quit while landed on a planet, save the game if there are changes.
