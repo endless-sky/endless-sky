@@ -40,6 +40,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "opengl.h"
 
 #include <algorithm>
+#include <cassert>
 #include <stdexcept>
 
 using namespace std;
@@ -54,17 +55,11 @@ namespace {
 MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 	: player(player), gamePanels(gamePanels), scroll(0.)
 {
+	assert(GameData::IsLoaded() && "MenuPanel should only be created after all data is fully loaded");
 	SetIsFullScreen(true);
-	
+
 	credits = Format::Split(Files::Read(Files::Resources() + "credits.txt"), "\n");
-}
-
-
-
-void MenuPanel::Step()
-{
-	progress = static_cast<int>(GameData::Progress() * 60.);
-	if(GameData::IsLoaded() && gamePanels.IsEmpty())
+	if(gamePanels.IsEmpty())
 	{
 		gamePanels.Push(new MainPanel(player));
 		// It takes one step to figure out the planet panel should be created, and
@@ -81,7 +76,7 @@ void MenuPanel::Draw(double deltaTime)
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
 	const Font &font = FontSet::Get(14);
-	
+
 	Information info;
 	if(player.IsLoaded() && !player.IsDead())
 	{
@@ -112,25 +107,26 @@ void MenuPanel::Draw(double deltaTime)
 		info.SetCondition("no pilot loaded");
 		info.SetString("pilot", "No Pilot Loaded");
 	}
-	
+
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	GameData::Interfaces().Get("main menu")->Draw(info, this);
 	GameData::Interfaces().Get("menu player info")->Draw(info, this);
-	
-	if(progress == 60)
-		alpha -= .02f / (1000.f / 60.f) * deltaTime;
+
+	// TODO: move this animation (e.g. to a non-fullscreen panel).
+	alpha -= .02f / (1000.f / 60.f) * deltaTime;
 	if(alpha > 0.f)
 	{
 		Angle da(6.);
 		Angle a(0.);
-		for(int i = 0; i < progress; ++i)
+		for(int i = 0; i < 60; ++i)
 		{
 			Color color(.5f * alpha, 0.f);
 			PointerShader::Draw(Point(), a.Unit(), 8.f, 20.f, 140.f * alpha, color);
 			a += da;
 		}
 	}
-	
+	// END animation TODO
+
 	if(GetUI()->IsTop(this) && alpha < 1.f)
 	{
 		scroll += 60. * deltaTime / 1000.;
@@ -138,6 +134,7 @@ void MenuPanel::Draw(double deltaTime)
 			scroll = 0;
 	}
 
+	// TODO: allow pausing the credits scroll
 	int y = 120 - scroll / scrollSpeed;
 	for(const string &line : credits)
 	{
@@ -159,9 +156,6 @@ void MenuPanel::Draw(double deltaTime)
 
 bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(!GameData::IsLoaded())
-		return false;
-	
 	if(player.IsLoaded() && (key == 'e' || command.Has(Command::MENU)))
 	{
 		gamePanels.CanSave(true);
@@ -182,6 +176,6 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		GetUI()->Quit();
 	else
 		return false;
-	
+
 	return true;
 }

@@ -29,7 +29,7 @@ class Visual : public Body, public ID {
 public:
 	Visual() = default;
 	Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point hitVelocity = Point());
-	
+
 	/* Functions provided by the Body base class:
 	Frame GetFrame(int step = -1) const;
 	const Point &Position() const;
@@ -38,11 +38,11 @@ public:
 	Point Unit() const;
 	double Zoom() const;
 	*/
-	
+
 	// Step the effect forward.
 	void Move();
-	
-	
+
+
 private:
 	Angle spin;
 	int lifetime = 0;

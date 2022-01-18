@@ -35,31 +35,31 @@ public:
 	void Clear(int step = 0);
 	void SetCenter(const Point &center);
 	void UpdateZoom(double zoom = 1.);
-	
+
 	// Add an unswizzled object based on the Body class.
 	bool Add(const Projectile &body, float clip = 1.f);
 	bool AddVisual(const Visual &visual);
-	
+
 	// Draw all the items in this list.
 	void Draw() const;
 
 	RenderState ConsumeState();
-	
-	
+
+
 private:
 	// Determine if the given body should be drawn at all.
 	bool Cull(const Body &body, const Point &position) const;
-	
+
 	// Add the given body at the given position.
 	bool Add(const Body &body, Point position, float clip, unsigned id);
-	
-	
+
+
 private:
 	int step = 0;
 	double zoom = 1.;
 	bool isHighDPI = false;
 	Point center;
-	
+
 	RenderState state;
 };
 

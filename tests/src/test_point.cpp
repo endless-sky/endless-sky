@@ -73,7 +73,7 @@ SCENARIO( "A position or other geometric vector must be expressed", "[Point]" ) 
 			}
 		}
 	}
-	
+
 	GIVEN( "any Point" ) {
 		auto a = Point();
 		WHEN( "the point represents (0, 0)" ) {

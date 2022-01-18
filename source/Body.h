@@ -36,7 +36,7 @@ public:
 	Body() = default;
 	Body(const Sprite *sprite, Point position, Point velocity = Point(), Angle facing = Angle(), double zoom = 1.);
 	Body(const Body &sprite, Point position, Point velocity = Point(), Angle facing = Angle(), double zoom = 1.);
-	
+
 	// Updates the positional attributes of this body.
 	void Update(Point position, Point velocity = Point(), Angle facing = Angle(), double zoom = 1.);
 
@@ -54,7 +54,7 @@ public:
 	// Get the sprite frame and mask for the given time step.
 	float GetFrame(int step = -1) const;
 	const Mask &GetMask(int step = -1) const;
-	
+
 	// Positional attributes.
 	const Point &Position() const;
 	const Point &Velocity() const;
@@ -62,14 +62,14 @@ public:
 	Point Unit() const;
 	double Zoom() const;
 	double Scale() const;
-	
+
 	// Check if this object is marked for removal from the game.
 	bool ShouldBeRemoved() const;
-	
+
 	// Store the government here too, so that collision detection that is based
 	// on the Body class can figure out which objects will collide.
 	const Government *GetGovernment() const;
-	
+
 	// Sprite serialization.
 	void LoadSprite(const DataNode &node);
 	void SaveSprite(DataWriter &out, const std::string &tag = "sprite") const;
@@ -77,8 +77,8 @@ public:
 	void SetSprite(const Sprite *sprite);
 	// Set the color swizzle.
 	void SetSwizzle(int swizzle);
-	
-	
+
+
 protected:
 	// Adjust the frame rate.
 	void SetFrameRate(float framesPerSecond);
@@ -88,8 +88,8 @@ protected:
 	void MarkForRemoval();
 	// Mark that this object should not be removed (e.g. a launched fighter).
 	void UnmarkForRemoval();
-	
-	
+
+
 protected:
 	// Basic positional attributes.
 	Point position;
@@ -99,23 +99,23 @@ protected:
 	// whose sprites should be full size, use zoom = 2.
 	float zoom = 1.f;
 	float scale = 1.f;
-	
+
 	// Government, for use in collision checks.
 	const Government *government = nullptr;
-	
-	
+
+
 private:
 	// Set what animation step we're on. This affects future calls to GetMask()
 	// and GetFrame().
 	void SetStep(int step) const;
-	
-	
+
+
 private:
 	// Animation parameters.
 	const Sprite *sprite = nullptr;
 	// Allow objects based on this one to adjust their frame rate and swizzle.
 	int swizzle = 0;
-	
+
 	float frameRate = 2.f / 60.f;
 	int delay = 0;
 	// The chosen frame will be (step * frameRate) + frameOffset.
@@ -125,10 +125,10 @@ private:
 	bool repeat = true;
 	bool rewind = false;
 	int pause = 0;
-	
+
 	// Record when this object is marked for removal from the game.
 	bool shouldBeRemoved = false;
-	
+
 	// Cache the frame calculation so it doesn't have to be repeated if given
 	// the same step over and over again.
 	mutable int currentStep = -1;

@@ -25,12 +25,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "GameWindow.h"
+#include "GameLoadingPanel.h"
+#include "Hardpoint.h"
 #include "MenuPanel.h"
+#include "Outfit.h"
 #include "Panel.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "RenderState.h"
 #include "Screen.h"
+#include "Ship.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "Test.h"
@@ -41,7 +45,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cmath>
 #include <iostream>
 #include <map>
+#include <thread>
 
+#include <cassert>
 #include <stdexcept>
 #include <string>
 
@@ -58,6 +64,9 @@ void PrintHelp();
 void PrintVersion();
 void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRun, bool debugMode);
 Conversation LoadConversation();
+void PrintShipTable();
+void PrintTestsTable();
+void PrintWeaponTable();
 #ifdef _WIN32
 void InitConsole();
 #endif
@@ -75,6 +84,9 @@ int main(int argc, char *argv[])
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
+	bool printShips = false;
+	bool printTests = false;
+	bool printWeapons = false;
 	string testToRunName = "";
 
 	for(const char *const *it = argv + 1; *it; ++it)
@@ -98,48 +110,76 @@ int main(int argc, char *argv[])
 			loadOnly = true;
 		else if(arg == "--test" && *++it)
 			testToRunName = *it;
+		else if(arg == "--tests")
+			printTests = true;
+		else if(arg == "-s" || arg == "--ships")
+			printShips = true;
+		else if(arg == "-w" || arg == "--weapons")
+			printWeapons = true;
 	}
-	
+	Files::Init(argv);
+
 	try {
-		// Begin loading the game data. Exit early if we are not using the UI.
-		if(!GameData::BeginLoad(argv))
-			return 0;
-		
+		// Begin loading the game data.
+		bool isConsoleOnly = loadOnly || printShips || printTests || printWeapons;
+		GameData::BeginLoad(isConsoleOnly, debugMode);
+
+		// If we are not using the UI, or performing some automated task, we should load
+		// all data now. (Sprites and sounds can safely be deferred.)
+		if(isConsoleOnly || !testToRunName.empty())
+			while(!GameData::IsDataLoaded())
+				this_thread::yield();
+
 		if(!testToRunName.empty() && !GameData::Tests().Has(testToRunName))
 		{
 			Files::LogError("Test \"" + testToRunName + "\" not found.");
 			return 1;
 		}
-		
-		// Load player data, including reference-checking.
+
+		if(printShips || printTests || printWeapons)
+		{
+			if(printShips)
+				PrintShipTable();
+			if(printTests)
+				PrintTestsTable();
+			if(printWeapons)
+				PrintWeaponTable();
+			return 0;
+		}
+
 		PlayerInfo player;
-		bool checkedReferences = player.LoadRecent();
 		if(loadOnly)
 		{
-			if(!checkedReferences)
+			// Set the game's initial internal state.
+			GameData::FinishLoading();
+
+			// Reference check the universe, as known to the player. If no player found,
+			// then check the default state of the universe.
+			if(!player.LoadRecent())
 				GameData::CheckReferences();
 			cout << "Parse completed." << endl;
 			return 0;
 		}
-		
+		assert(!isConsoleOnly && "Attempting to use UI when only data was loaded!");
+
 		// On Windows, make sure that the sleep timer has at least 1 ms resolution
 		// to avoid irregular frame rates.
 #ifdef _WIN32
 		timeBeginPeriod(1);
 #endif
-		
+
 		Preferences::Load();
-		
+
 		if(!GameWindow::Init())
 			return 1;
-		
+
 		GameData::LoadShaders(!GameWindow::HasSwizzle());
-		
+
 		// Show something other than a blank window.
 		GameWindow::Step();
-		
+
 		Audio::Init(GameData::Sources());
-		
+
 		// This is the main loop where all the action begins.
 		GameLoop(player, conversation, testToRunName, debugMode);
 	}
@@ -150,18 +190,20 @@ int main(int argc, char *argv[])
 		GameWindow::ExitWithError(error.what(), doPopUp);
 		return 1;
 	}
-	
+
 	// Remember the window state and preferences if quitting normally.
 	Preferences::Set("maximized", GameWindow::IsMaximized());
 	Preferences::Set("fullscreen", GameWindow::IsFullscreen());
 	Screen::SetRaw(GameWindow::Width(), GameWindow::Height());
 	Preferences::Save();
-	
+
 	Audio::Quit();
 	GameWindow::Quit();
-	
+
 	return 0;
 }
+
+
 
 void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRunName, bool debugMode)
 {
@@ -171,15 +213,18 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	// priority over the gamePanels. The gamePanels will not be shown until
 	// the stack of menuPanels is empty.
 	UI gamePanels;
-	
+
 	// menuPanels is used for the panels related to pilot creation, preferences,
 	// game loading and game saving.
 	UI menuPanels;
-	
-	menuPanels.Push(new MenuPanel(player, gamePanels));
+
+	// Whether the game data is done loading. This is used to trigger any
+	// tests to run.
+	bool dataFinishedLoading = false;
+	menuPanels.Push(new GameLoadingPanel(player, gamePanels, dataFinishedLoading));
 	if(!conversation.IsEmpty())
 		menuPanels.Push(new ConversationPanel(player, conversation));
-	
+
 	bool showCursor = true;
 	double cursorTime = 0.;
 	bool isPaused = false;
@@ -192,10 +237,10 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	};
 	MotionState lastMotion = Normal;
 	MotionState motion = Normal;
-	
+
 	// Limit how quickly full-screen mode can be toggled.
 	int toggleTimeout = 0;
-	
+
 	// Data to track progress of testing if/when a test is running.
 	TestContext testContext;
 	if(!testToRunName.empty())
@@ -251,17 +296,17 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 
 		if(toggleTimeout)
 			--toggleTimeout;
-		
+
 		// Handle any events that occurred in this frame.
 		SDL_Event event;
 		while(SDL_PollEvent(&event))
 		{
 			UI &activeUI = (menuPanels.IsEmpty() ? gamePanels : menuPanels);
-			
+
 			// If the mouse moves, reset the cursor movement timeout.
 			if(event.type == SDL_MOUSEMOTION)
 				cursorTime = 0.;
-			
+
 			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
 			{
 				isPaused = !isPaused;
@@ -440,12 +485,12 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		}
 
 		GameWindow::Step();
-		
+
 		// If the player ended this frame in-game, count the elapsed time as played time.
 		if(menuPanels.IsEmpty())
 			player.AddPlayTime(frameTime);
 	}
-	
+
 	// If player quit while landed on a planet, save the game if there are changes.
 	if(player.GetPlanet() && gamePanels.CanSave())
 		player.Save();
@@ -500,7 +545,7 @@ Conversation LoadConversation()
 			conversation.Load(node);
 			break;
 		}
-	
+
 	map<string, string> subs = {
 		{"<bunks>", "[N]"},
 		{"<cargo>", "[N tons of Commodity]"},
@@ -523,6 +568,151 @@ Conversation LoadConversation()
 
 
 
+// This prints out the list of tests that are available and their status
+// (active/missing feature/known failure)..
+void PrintTestsTable()
+{
+	cout << "status" << '\t' << "name" << '\n';
+	for(auto &it : GameData::Tests())
+	{
+		const Test &test = it.second;
+		cout << test.StatusText() << '\t';
+		cout << "\"" << test.Name() << "\"" << '\n';
+	}
+	cout.flush();
+}
+
+
+
+void PrintShipTable()
+{
+	cout << "model" << '\t' << "cost" << '\t' << "shields" << '\t' << "hull" << '\t'
+		<< "mass" << '\t' << "crew" << '\t' << "cargo" << '\t' << "bunks" << '\t'
+		<< "fuel" << '\t' << "outfit" << '\t' << "weapon" << '\t' << "engine" << '\t'
+		<< "speed" << '\t' << "accel" << '\t' << "turn" << '\t'
+		<< "energy generation" << '\t' << "max energy usage" << '\t' << "energy capacity" << '\t'
+		<< "idle/max heat" << '\t' << "max heat generation" << '\t' << "max heat dissipation" << '\t'
+		<< "gun mounts" << '\t' << "turret mounts" << '\n';
+	for(auto &it : GameData::Ships())
+	{
+		// Skip variants and unnamed / partially-defined ships.
+		if(it.second.ModelName() != it.first)
+			continue;
+
+		const Ship &ship = it.second;
+		cout << it.first << '\t';
+		cout << ship.Cost() << '\t';
+
+		const Outfit &attributes = ship.Attributes();
+		auto mass = attributes.Mass() ? attributes.Mass() : 1.;
+		cout << attributes.Get("shields") << '\t';
+		cout << attributes.Get("hull") << '\t';
+		cout << mass << '\t';
+		cout << attributes.Get("required crew") << '\t';
+		cout << attributes.Get("cargo space") << '\t';
+		cout << attributes.Get("bunks") << '\t';
+		cout << attributes.Get("fuel capacity") << '\t';
+
+		cout << ship.BaseAttributes().Get("outfit space") << '\t';
+		cout << ship.BaseAttributes().Get("weapon capacity") << '\t';
+		cout << ship.BaseAttributes().Get("engine capacity") << '\t';
+		cout << (attributes.Get("drag") ? (60. * attributes.Get("thrust") / attributes.Get("drag")) : 0) << '\t';
+		cout << 3600. * attributes.Get("thrust") / mass << '\t';
+		cout << 60. * attributes.Get("turn") / mass << '\t';
+
+		double energyConsumed = attributes.Get("energy consumption")
+			+ max(attributes.Get("thrusting energy"), attributes.Get("reverse thrusting energy"))
+			+ attributes.Get("turning energy")
+			+ attributes.Get("afterburner energy")
+			+ attributes.Get("fuel energy")
+			+ (attributes.Get("hull energy") * (1 + attributes.Get("hull energy multiplier")))
+			+ (attributes.Get("shield energy") * (1 + attributes.Get("shield energy multiplier")))
+			+ attributes.Get("cooling energy")
+			+ attributes.Get("cloaking energy");
+
+		double heatProduced = attributes.Get("heat generation") - attributes.Get("cooling")
+			+ max(attributes.Get("thrusting heat"), attributes.Get("reverse thrusting heat"))
+			+ attributes.Get("turning heat")
+			+ attributes.Get("afterburner heat")
+			+ attributes.Get("fuel heat")
+			+ (attributes.Get("hull heat") * (1 + attributes.Get("hull heat multiplier")))
+			+ (attributes.Get("shield heat") * (1 + attributes.Get("shield heat multiplier")))
+			+ attributes.Get("solar heat")
+			+ attributes.Get("cloaking heat");
+
+		for(const auto &oit : ship.Outfits())
+			if(oit.first->IsWeapon() && oit.first->Reload())
+			{
+				double reload = oit.first->Reload();
+				energyConsumed += oit.second * oit.first->FiringEnergy() / reload;
+				heatProduced += oit.second * oit.first->FiringHeat() / reload;
+			}
+		cout << 60. * (attributes.Get("energy generation") + attributes.Get("solar collection")) << '\t';
+		cout << 60. * energyConsumed << '\t';
+		cout << attributes.Get("energy capacity") << '\t';
+		cout << ship.IdleHeat() / max(1., ship.MaximumHeat()) << '\t';
+		cout << 60. * heatProduced << '\t';
+		// Maximum heat is 100 degrees per ton. Bleed off rate is 1/1000 per 60th of a second, so:
+		cout << 60. * ship.HeatDissipation() * ship.MaximumHeat() << '\t';
+
+		int numTurrets = 0;
+		int numGuns = 0;
+		for(auto &hardpoint : ship.Weapons())
+		{
+			if(hardpoint.IsTurret())
+				++numTurrets;
+			else
+				++numGuns;
+		}
+		cout << numGuns << '\t' << numTurrets << '\n';
+	}
+	cout.flush();
+}
+
+
+
+void PrintWeaponTable()
+{
+	cout << "name" << '\t' << "cost" << '\t' << "space" << '\t' << "range" << '\t'
+		<< "energy/s" << '\t' << "heat/s" << '\t' << "recoil/s" << '\t'
+		<< "shield/s" << '\t' << "hull/s" << '\t' << "push/s" << '\t'
+		<< "homing" << '\t' << "strength" <<'\n';
+	for(auto &it : GameData::Outfits())
+	{
+		// Skip non-weapons and submunitions.
+		if(!it.second.IsWeapon() || it.second.Category().empty())
+			continue;
+
+		const Outfit &outfit = it.second;
+		cout << it.first << '\t';
+		cout << outfit.Cost() << '\t';
+		cout << -outfit.Get("weapon capacity") << '\t';
+
+		cout << outfit.Range() << '\t';
+
+		double energy = outfit.FiringEnergy() * 60. / outfit.Reload();
+		cout << energy << '\t';
+		double heat = outfit.FiringHeat() * 60. / outfit.Reload();
+		cout << heat << '\t';
+		double firingforce = outfit.FiringForce() * 60. / outfit.Reload();
+		cout << firingforce << '\t';
+
+		double shield = outfit.ShieldDamage() * 60. / outfit.Reload();
+		cout << shield << '\t';
+		double hull = outfit.HullDamage() * 60. / outfit.Reload();
+		cout << hull << '\t';
+		double hitforce = outfit.HitForce() * 60. / outfit.Reload();
+		cout << hitforce << '\t';
+
+		cout << outfit.Homing() << '\t';
+		double strength = outfit.MissileStrength() + outfit.AntiMissile();
+		cout << strength << '\n';
+	}
+	cout.flush();
+}
+
+
+
 #ifdef _WIN32
 void InitConsole()
 {
@@ -530,15 +720,15 @@ void InitConsole()
 	bool redirectStdout = _fileno(stdout) == UNINITIALIZED;
 	bool redirectStderr = _fileno(stderr) == UNINITIALIZED;
 	bool redirectStdin = _fileno(stdin) == UNINITIALIZED;
-	
+
 	// Bail if stdin, stdout, and stderr are already initialized (e.g. writing to a file)
 	if(!redirectStdout && !redirectStderr && !redirectStdin)
 		return;
-	
+
 	// Bail if we fail to attach to the console
 	if(!AttachConsole(ATTACH_PARENT_PROCESS) && !AllocConsole())
 		return;
-	
+
 	// Perform console redirection.
 	if(redirectStdout && freopen("CONOUT$", "w", stdout))
 		setvbuf(stdout, nullptr, _IOFBF, 4096);
