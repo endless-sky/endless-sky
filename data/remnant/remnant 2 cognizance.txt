@@ -1013,7 +1013,7 @@ mission "Remnant: Cognizance 23"
 				`	"What is the problem with them?"`
 			`	"Decisive strike capability, mostly." Her gestures take on a conciliatory tone. "They are excellent weapons for swarms of ships, or when mounted on a ship that can carry many of them. But when one only has the opportunity to land a few hits, they are insufficient to pin down their target. But that is an aside. For now, we should celebrate our new ships, and see what they can do." She pets the nearest Merganser lovingly.`
 			label mergansermission
-			`	"But enough of that." She shakes her head and assumes a business-like expression. "We would like you to lead a pair of shakedown runs. The first is a hunt for a crippled Korath ship that got stuck in the adjacent system. We will provide you with this Merganser to fly." She pats its nose fondly. "Along with a flight of four to accompany you. Of course you are free to fly your own ship if you prefer; the important part is that you all make it back intact. So, are you up for a test flight?"`
+			`	"But enough of that." She shakes her head and assumes a business-like expression. "We would like you to lead a pair of shakedown runs. The first is a hunt for a crippled Korath ship that got stuck in <waypoints>. We will provide you with this Merganser to fly." She pats its nose fondly. "Along with a flight of four to accompany you. Of course you are free to fly your own ship if you prefer; the important part is that you all make it back intact. So, are you up for a test flight?"`
 			choice
 				`	(Accept.)`
 					accept
@@ -1301,9 +1301,9 @@ mission "Remnant: Cognizance 30"
 		conversation
 			`You walk into the cafeteria to find a group of Remnant looking tired but pleased with themselves. Torza is striding among them with a tray filled with bottles, handing them out. "Good work, everyone. Excellent pacing on that run." He turns towards you. "And right on schedule, the captain who will be transporting you over to Ssil Vida." He gestures for you to take a seat and offers you a bottle as well.`
 			choice
-				`	Gesture that you are not thirsty.`
+				`	(Gesture that you are not thirsty.)`
 					goto notthirsty
-				`	Take a bottle and gesture appreciation.`
+				`	(Take a bottle and gesture appreciation.)`
 			`	You sip from the bottle, and discover that it tastes like some kind of restorative sports drink. You can pick out hints of salt and a few other flavors, but most of it is an indeterminate taste you cannot quite identify. Torza nods in approval as you drink. "Especially in heat like this, hydration is important." He continues weaving around the group handing out the remaining bottles.`
 			choice
 				`	(Drink in silence.)`
@@ -1345,6 +1345,7 @@ mission "Remnant: Cognizance 31"
 mission "Remnant: Cognizance 32"
 	name "Pickup Refined Fuel"
 	description "Chilia has asked you to pick up a refined fuel from <planet> by <date>."
+	blocked "Chilia and Taely look excited about something, but when you inquire, they shake their heads and say you need to have earned their capital license before they can tell you more."
 	deadline 19
 	cargo "Reserved" 58
 	illegal -1 "Your communication panel beeps insistently with a message that a scan has been detected, and thus the mission has been terminated."
