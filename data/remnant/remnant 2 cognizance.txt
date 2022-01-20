@@ -685,6 +685,8 @@ mission "Remnant: Cognizance 20"
 	stopover
 		government "Remnant"
 		neighbor distance 1 5
+		# Without the following line, the stopover planet will occasionally be the origin planet. I don't know why, but that's the way it is
+		not distance 0
 	to offer
 		has "Remnant: Cognizance 19: done"
 		has "event: remnant: lab availability"
@@ -864,6 +866,8 @@ mission "Remnant: Cognizance 22"
 	stopover
 		government "Remnant"
 		neighbor distance 1 5
+		# Without the following line, the stopover planet will occasionally be the origin planet. I don't know why, but that's the way it is
+		not distance 0
 		not attributes "requires: gaslining"
 	to offer
 		has "Remnant: Cognizance 21: done"
