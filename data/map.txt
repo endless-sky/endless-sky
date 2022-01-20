@@ -18682,7 +18682,7 @@ system Parca
 			sprite planet/rhea
 			distance 305
 			period 15.037
-		object
+		object Baianus
 			sprite planet/callisto
 			distance 424
 			period 24.6467
@@ -26640,9 +26640,9 @@ planet Alix
 	description `Alix is a small moon of the gas giant Pathera, lacking a breathable atmosphere but rich in minerals. While the settlements have been destroyed to the extent that all that remains is debris scattered across the terrain, some automated facilities are still functioning and see a constant traffic of cargo drones, passing here to gather raw materials and bringing them to the reserves of the nearby station in a short time.`
 
 planet Allhome
-	attributes farming hai "human tourism"
+	attributes hai farming urban "human tourism"
 	landscape land/dmottl0
-	description `This Earth-like planet has been settled both by human beings and by the Hai, the species that controls this region of space. The human settlements are relatively small, mostly farming communities founded by people who came here to escape the chaos and uncertainty of human space.`
+	description `This Earth-like planet has been settled both by human beings and by the Hai, the species that controls this region of space. The human settlements are relatively small, mostly farming communities founded by people who came here to escape the chaos and uncertainty of human space. More substantial urban settlements exist, particularly near the spaceport, but from the air they appear to exist within strict boundaries.`
 	spaceport `In the spaceport, a handful of human merchants and colonists wander about amid throngs of Hai - vaguely squirrel-like aliens who are somewhat shorter than the average human being, but make up for it with an abundance of energy. You feel a little bit like an adult wading through a sea of hyperactive children as you try to locate the commodity exchange and the other services offered here.`
 	outfitter "Hai Basics"
 	security 0.6
@@ -26743,7 +26743,7 @@ planet Avalon
 	security 0
 
 planet Aventine
-	attributes remnant
+	attributes remnant "has shipyard"
 	landscape land/mountain17-harro
 	description `This is not a particularly warm world, but it is the best that the first Remnant refugees were able to find when they explored the Ember Waste. It is here that they built their capital, in a deep valley that is almost always shrouded in clouds. In meadows farther up the mountain slopes, a few particularly hardy food crops are grown, but for the most part the Remnant rely on artificial greenhouses or cultured yeast for protein supplements. Remnant cuisine is unlikely to ever become a draw for tourists, even if their isolation here is broken.`
 	spaceport `The oldest buildings in the Remnant capital city harken back to classic human architecture, with stone facades and columns reminiscent of ancient Rome. But as you walk outward toward the more recent additions, the buildings become less and less recognizably human, with curved organic shapes and hundreds of overhanging walkways and balconies. It is as if the layers left behind by centuries of habitation are a frozen record of the slow transition of Remnant culture into something bizarre and almost alien.`
@@ -26763,6 +26763,13 @@ planet Babiali
 	description `	At present, Babiali has a regular stream of mining and research craft systematically flying over the crust looking for rare metals or anything else of value. Despite the activity, no one has bothered to set up anything resembling a spaceport.`
 	government Uninhabited
 	security 0
+
+planet Baianus
+	attributes uninhabited
+	landscape land/canyon12
+	description `This frozen water world is reminiscent of Titan back in Sol: The surface is little more than a shattered wasteland of ice and the occasional rock outcropping, but the unbreathably thin atmosphere contains countless tantalizing traces of chemicals that suggest that something more might exist below the surface.`
+	description `	Unlike Titan, however, Baianus is regularly wracked by both waves of heat and energy, and a stay of any length on the surface is likely to see waves of auroras accompanied by glows and sparks rippling across the terrain. Your environmental system strongly recommends remaining inside your ship whenever ion storms are active.`
+	government Uninhabited
 
 planet "Bank of Blugtad"
 	attributes arach urban wealthy
@@ -26946,7 +26953,7 @@ planet Burthen
 		fleet "Small Syndicate" 7
 
 planet Caelian
-	attributes remnant
+	attributes remnant "has shipyard"
 	landscape land/sky7
 	description `When the first members of the Remnant discovered this region of space, Caelian was the only habitable world they found with enough insolation to be able to operate solar-powered factories and bioreactors. The first settlements were scattered widely, with the houses hidden underground in order to be less visible from space, because they feared that the Alphas would overrun human space and eventually find their way into the Waste. Centuries later, when they learned that the Alpha Wars had ended, they began to expand the factories and settlements more openly.`
 	spaceport `Nearly all members of the Remnant are dark-skinned, either from exposure to high levels of ultraviolet radiation or because that is what their first ancestors who came here looked like. So, they walk around this spaceport village without much fear of the scorching desert sun, bringing supplies back and forth to the houses and to the flat clay pavement of the landing zone. Aside from some camels that the settlers brought with them, there are very few animals here.`
@@ -27607,6 +27614,14 @@ planet "Fenrir Station"
 		threshold 3000
 		fleet "Small Deep Security" 14
 
+planet Fertriery
+	attributes "requires: gaslining"
+	landscape land/nasa8
+	description `Fertriery is a fairly typical world with a particularly dense atmosphere that includes significant levels of chlorine and fluorine. The only unusual factor is the above-average temperatures, likely due to the decreased energy loss into the surrounding space.`
+	government Uninhabited
+	bribe 0
+	security 0
+
 planet Firefall
 	attributes hai station uninhabited
 	landscape land/space6
@@ -27722,7 +27737,7 @@ planet Freedom
 		fleet "Small Northern Pirates" 15
 
 planet Frostmark
-	attributes hai "hai tourism"
+	attributes hai urban "hai tourism"
 	landscape land/dmottl5
 	description `There are several large Hai cities near the equator on Frostmark, but much of the planet's surface is cold and uninhabited except by herds of extremely large, six-legged herbivores, and other equally large and frightening animals that prey on them.`
 	spaceport `Every Hai city has an appearance of great age and permanence, but this one, even more so. In Hai cities, transport vehicles carry freight and passengers along underground passages or elevated railways, while the pathways at ground level are reserved for foot traffic. Here, millennia of foot traffic have rounded off the corners of every metal staircase, and polished the railings as smooth as glass. The Hai locals do not seem to have trouble keeping their footing, but you wish your shoes gave you more traction.`
@@ -27937,7 +27952,7 @@ planet Greymoon
 	security 0.5
 
 planet Hai-home
-	attributes hai
+	attributes hai urban
 	landscape land/valley2
 	description `This is the home world of the Hai. Well over half the planet's surface is oceans. The land is mostly covered by sprawling cities, except for some mountain ranges too high or too snowy to build on. Despite its population of nearly eight billion, Hai-home is relatively free of pollution or overcrowding.`
 	spaceport `The spaceport in the capital city of Haimat is massive, with towers well over a kilometer high and hangars large enough to park an entire fleet of capital ships in. Although the port is bustling, with ships taking off and landing almost every minute, nearly three quarters of the landing pads and hangars are empty, and whole sections of the spaceport appear to be unused. Clearly, this port was designed to handle far more traffic than this.`
@@ -28171,7 +28186,7 @@ planet Icefall
 		fleet "Small Syndicate" 8
 
 planet Icelake
-	attributes factory hai "human tourism"
+	attributes hai urban factory "human tourism"
 	landscape land/sky4
 	description `Icelake is the second most populous Hai planet. Since its oil and natural gas reserves have long since been depleted, the large cities and factories here rely heavily on geothermal and wind energy. One fortunate side effect of that is that the air here is almost as pristine as on a non-industrial world.`
 	spaceport `The largest hangars in the spaceport are built of metal beams more than a meter wide, with thick glass panels between them to let in the sunlight. Even the smaller and newer warehouses on the outskirts of the port seem as solid and permanent as the mountains themselves. Thousands of Hai are walking back and forth between the buildings, and many of them regard you with curiosity; there are very few human visitors here.`
@@ -28494,7 +28509,7 @@ planet Maker
 		fleet "Large Syndicate" 10
 
 planet Makerplace
-	attributes hai "hai tourism" manufacturing
+	attributes hai urban manufacturing "hai tourism"
 	landscape land/lava0
 	description `Makerplace has an unusual degree of volcanic activity due to high concentrations of radioactive elements in the planet's mantle. Although it is warm by Hai standards, the abundance of geothermal energy, combined with plentiful solar energy and wind power, has made it an ideal world for manufacturing. Several cities in the temperate regions have populations of over a hundred million Hai, and the factories surrounding the cities spread out for dozens of kilometers in all directions. Near the equator, much of the land is desert or volcanic wasteland.`
 	spaceport `A fair number of the Hai walking through this spaceport are wearing no clothing at all, perhaps as a response to the warm temperatures. Given that they seem to attract no notice or disapproval by doing so, it appears that this is perfectly normal behavior. Others appear to have trimmed their fur shorter than normal as an alternative way to deal with the heat.`
@@ -28933,7 +28948,7 @@ planet "New Washington"
 		fleet "Large Militia" 3
 
 planet Newhome
-	attributes hai textiles
+	attributes hai urban textiles
 	landscape land/myrabella7
 	description `Newhome's gravity, climate, and geography is very similar to the Hai homeworld. Several billion Hai live here. Most dwell in large factory cities, but there are also ranches in the undeveloped areas where the Hai raise animals that are larger than elephants but produce wool similar to sheep. Shearing them is a dangerous undertaking, but their wool can be used to make excellent, long-lasting clothing.`
 	spaceport `The roads in the spaceport are very wide, so that Hai ranchers can lead their massive, sheep-like beasts along them. The animals seem docile enough, but their size is alarming.`
@@ -29812,7 +29827,7 @@ planet "Station Cian"
 	"required reputation" 15
 
 planet Stonebreak
-	attributes hai manufacturing
+	attributes hai urban manufacturing
 	landscape land/hills7-harro
 	description `Stonebreak is home to some of the largest cities in Hai space aside from their homeworld: massive planned communities built in concentric rings, where housing space and community buildings alternate with zones of factories and shipyards. This star system has an unusual number of metallic asteroids, which the Hai harvest for the raw materials for Stonebreak's industries.`
 	spaceport `From above, this city has almost perfect radial symmetry, a sure sign that it was planned and built as a single unit rather than expanding at random over time. Every single building in the city is made from the same metal alloy, a dull and slightly irregular gray color. The corners of each building are slightly beveled instead of meeting at right angles.`
@@ -30300,7 +30315,7 @@ planet "Vibrant Water"
 	"required reputation" 15
 
 planet Viminal
-	attributes remnant
+	attributes remnant "has shipyard"
 	landscape land/snow3
 	description `This cold and dreary world would certainly not be attractive to any modern settlers, but to those who were fleeing the chaos of the Alpha Wars it had the undeniable advantage of being isolated and undiscovered. Today the main reason for the continuing Remnant presence here is that this is the only world they have found where the Key Stones that enable ships to travel through certain wormholes in the Ember Waste can be found.`
 	spaceport `The spaceport is an enormous dome, built of the same resilient and semi-organic material as the hulls of Remnant ships. An opening at one end of the dome allows ships to fly in and out. Inside, the air is still cold, but at least you are sheltered from the violent winds that sweep across the rest of the planet's surface. Some of the locals, accustomed to the cold, walk about in their shirtsleeves as if this were a balmy summer day.`

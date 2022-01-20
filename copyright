@@ -453,12 +453,14 @@ Files:
  images/ship/dredger*
  images/ship/ibis*
  images/ship/mbactriane*
+ images/ship/merganser*
  images/ship/penguin/*
  images/ship/petrel*
  images/ship/tern*
  images/ship/shooting?star/shooting?star*
  images/thumbnail/dredger*
  images/thumbnail/ibis*
+ images/thumbnails/merganser*
  images/thumbnail/penguin*
  images/thumbnail/petrel*
  images/thumbnail/tern*
@@ -467,6 +469,14 @@ Files:
  images/planet/station3c*
  images/ship/archon?b*
  images/ship/archon?c*
+ images/asteroid/plant*
+ images/asteroid/plant2*
+ images/asteroid/plant?cluster*
+ images/asteroid/space?flora*
+ images/asteroid/large?plant*
+ images/asteroid/large?plant2*
+ images/asteroid/large?plant?cluster*
+ images/asteroid/large?space?flora*
  images/asteroid/yottrite*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
@@ -610,6 +620,11 @@ Comment: Taken from https://commons.wikimedia.org/wiki/File:Preamplifier_at_the_
 Files:
  images/land/lava5*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
+License: CC-BY-SA-4.0
+
+Files:
+ images/planet/nebula1*
+Copyright: Azure
 License: CC-BY-SA-4.0
 
 Files: sounds/*
@@ -1188,6 +1203,7 @@ Copyright: Matteo "Lead" M.
 License: CC-BY-SA-4.0
 
 Files:
+ images/asteroid/livecrystal/livecrystal*
  images/star/neutron*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
@@ -1204,6 +1220,12 @@ Files:
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-3.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/scene/ssil?vida?alert?hologram*
+Copyright: Jeverett (jeverett on Discord)
+License: CC-BY-SA-3.0
+Comment: Derived from works by Becca Tommaso (under the same license).
 
 Files:
  images/ship/auxiliary*
