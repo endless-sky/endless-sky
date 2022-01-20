@@ -73,7 +73,10 @@ void GameLoadingPanel::Draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
 
-	GameData::Interfaces().Get("menu background")->Draw(Information(), this);
+	// The interface can only be drawn after the data files have been loaded
+	// to avoid a race condition.
+	if(GameData::IsDataLoaded())
+		GameData::Interfaces().Get("menu background")->Draw(Information(), this);
 
 	// Draw the loading circle.
 	Angle da(ANGLE_OFFSET);
