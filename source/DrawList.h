@@ -65,6 +65,7 @@ private:
 	int step = 0;
 	double zoom = 1.;
 	bool isHighDPI = false;
+	std::vector<const Body *> bodies;
 	std::vector<SpriteShader::Item> items;
 	RenderState state;
 

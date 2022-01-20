@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "Id.h"
 #include "Point.h"
+#include "SpriteShader.h"
 
 #include <cstdint>
 #include <string>
@@ -78,6 +79,13 @@ public:
 	// Set the color swizzle.
 	void SetSwizzle(int swizzle);
 
+	// Cache the properties for use with interpolation.
+	void CacheProperties() const;
+	// Calculate the interpolated properties for this Body.
+	Point GetInterpolatedPosition(double alpha) const;
+	Point GetInterpolatedVelocity(double alpha) const;
+	Point GetInterpolatedAngle(double alpha) const;
+
 
 protected:
 	// Adjust the frame rate.
@@ -133,6 +141,11 @@ private:
 	// the same step over and over again.
 	mutable int currentStep = -1;
 	mutable float frame = 0.f;
+
+	// This body's previously drawned shader information.
+	mutable Point previousPosition;
+	mutable Point previousVelocity;
+	mutable Angle previousAngle;
 };
 
 

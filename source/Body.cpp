@@ -293,6 +293,38 @@ void Body::SetSwizzle(int swizzle)
 
 
 
+// Cache the properties for use with interpolation.
+void Body::CacheProperties() const
+{
+	previousPosition = position;
+	previousVelocity = velocity;
+	previousAngle = angle;
+}
+
+
+
+// Calculate the interpolated properties for this Body.
+Point Body::GetInterpolatedPosition(double alpha) const
+{
+	return position * alpha + previousPosition * (1. - alpha);
+}
+
+
+
+Point Body::GetInterpolatedVelocity(double alpha) const
+{
+	return velocity * alpha + previousVelocity * (1. - alpha);
+}
+
+
+
+Point Body::GetInterpolatedAngle(double alpha) const
+{
+	return angle.Unit() * alpha + previousAngle.Unit() * (1. - alpha);
+}
+
+
+
 // Set the frame rate of the sprite. This is used for objects that just specify
 // a sprite instead of a full animation data structure.
 void Body::SetFrameRate(float framesPerSecond)
