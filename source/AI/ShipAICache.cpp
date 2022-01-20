@@ -39,7 +39,7 @@ void ShipAICache::UpdateWeaponCache()
 	double splashSpace = 0.;
 	double rangedSpace = 0.;
 	
-	shortestRange = 1000.;
+	shortestRange = 4000.;
 	shortestArtillery = 4000.;
 	minSafeDistance = 0.;
 	
