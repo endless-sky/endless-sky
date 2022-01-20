@@ -3604,6 +3604,112 @@ mission "Mafia Extortion"
 
 
 
+mission "Street Swindle"
+	minor
+	source
+		government "Free Worlds" "Republic" "Syndicate"
+		attributes "urban"
+	on accept
+		payment -6000
+		fail
+	to offer
+		random < 4
+		credits >= 10000
+	on offer
+		conversation
+			`You see a small crowd beginning to gather on a street corner. A man in a flamboyant striped suit and matching hat calls, "Come here! Come here! Come see the marvelous magician Mistress Marionette corral the crowded crossroads with her extravagant schemes!"`
+			choice
+				`	(Check it out.)`
+					goto observe
+				`	(Ignore it.)`
+					decline
+			label observe
+			`	You join them. A woman in similarly fancy garb sits behind a table, swiftly shuffling three cups before a hulking man. The announcer continues, "For our new guests, the chosen challenger's chance approaches! The current buy-in bet was 7000 credits; yes, we play with the big money here! Double or nothing, bet your bet: are you a player or a puppet?"`
+			`	The cups stop. After a brief pause, the man points to the cup on the right.`
+			choice
+				`	(Watch what happens.)`
+						goto continue
+				`	"You know these things are scams, right?"`
+			`	You try to warn him, but someone in the crowd shushes you. He doesn't hear.`
+				goto continue
+			label continue
+			`	"Are you certain in your choice?" the magician asks. "Once you-"`
+			`	"Yes, I'm certain," the man interrupts. He draws 7000 credits and tosses them on the table. The magician lifts the cup, and a small red ball rolls from beneath. "And the first challenger proves to be a player!" the announcer says, mustering enthusiasm as the magician counts 14,000 credits to pay the man. "Let us find a new challenger! The next buy-in is a mere 400 credits; if you haven't played before, now's the time to test your skill!"`
+			choice
+				`	"I'd like to give it a try." (Bet 400 credits).`
+					goto firstgameplay
+				`	(Wait and watch.)`
+					goto firstgamewatch
+				`	(Walk away.)`
+					decline
+			label firstgamewatch
+			`	A short woman volunteers. The game progresses in a similar manner; by the end, you are certain the ball is underneath the center cup. Sure enough, the woman chooses that cup, and she walks away 400 credits richer.`
+			`	"The next buy-in is a larger prize!" the announcer calls after her before turing to address the crowd. "Six thousand credits, only for the proudest of players." The magician shakes her head softly, frowning at the cups.` 
+			choice
+				`	"I'll do it!" (Bet 6000 credits).`
+					goto secondgameplay
+				`	(Continue watching.)`
+					goto secondgamewatch
+				`	(Walk away.)`
+					decline
+			label firstgameplay
+			`	You pay 400 credits and sit across from the magician. "Double or nothing, bet your bet!" the announcer repeats. "Are you a player or a puppet?"`
+			`	The magician places the ball beneath the center and begins moving the cups. This one seems faster, but that might just be from the pressure. You keep your eyes trained on the cup as it shifts back and forth, around in circles, and occasionally remains untouched. By the end, you're pretty sure it's in the center cup.`
+			`	"What's your choice?" the magician asks, smirking.`
+			choice
+				`	"Left."`
+					goto wrong
+				`	"Center."`
+					goto correct
+				`	"Right."`
+					goto wrong
+			label wrong
+			`	"Better luck next time," she says as she reveals your incorrect choice. The ball was in the center; you feel silly for not going with your gut.`
+			`	"The next buy-in is a larger prize!" the announcer calls. "Six thousand credits, reserved for the most daring. As the previous player, you have first priority."`
+			action
+				payment -400
+			choice
+				`	"Let's go again."`
+					goto secondgameplay
+				`	"I think I'm done."`
+					goto secondgamewatch
+			label correct
+			`	She asks if you're sure, and you stick with your gut. With a grimace, she lifts the cup to reveal the ball and counts out your winnings. "And the player prevails!" the announcer says. "Earning a small bounty. But wait: the next buy-in is bigger yet! Six thousand credits, reserved for the most daring. As the previous player, you have first priority."`
+			action
+				payment 400
+			choice
+				`	"Let's go again."`
+					goto secondgameplay
+				`	"I think I'm done."`
+					goto secondgamewatch
+			label secondgameplay
+			`	You place your 6000 credit bet on the table, and the game begins. The pattern is slightly longer, but once the magician's hands stop, you feel like the ball lies beneath the left cup.`
+			choice
+				`	"Left."`
+					goto left
+				`	"Center."`
+					goto center
+				`	"Right."`
+					goto right
+			label left
+			`	With a grin, she reveals the left cup, and it's... wrong! "Nice try," she says, pocketing your money. "It is a bit tricky."`
+			`	"Well, that's all for today, folks!" the announcer says as you realize you've been conned. Worse still, after they pack up and leave, you notice that the first winner walks away beside them.`
+				accept
+			label center
+			`	With a raised eyebrow, she reveals the center cup. It's... wrong! "Nice try," she says, pocketing your money. "That one was a bit tricky."`
+			`	"Well, that's all for today, folks!" the announcer says. As they pack up and leave, you notice that the first winner walks away beside them.`
+				accept
+			label right
+			`	With a raised eyebrow, she reveals the right cup. It's... wrong! "Nice try," she says, pocketing your money. "That one was a bit tricky."`
+			`	"Well, that's all for today, folks!" the announcer says. As they pack up and leave, you notice that the first winner walks away beside them.`
+				accept
+			label secondgamewatch
+			`	Sensing that something's up, you decide to watch the next game. A sprightly young fellow confidently hands over 6000 credits; when the cups stop, you feel like the ball is under the left one. The boy points to it; with a grin, the magician reveals the left cup, and it's... wrong! "Nice try," she says, pocketing the shocked boy's money. "It is a bit tricky."`
+			`	"Well, that's all for today, folks!" the announcer says. You're glad you avoided the con. As they pack up and leave, you notice that the first winner walks away beside them.`
+				decline
+
+
+
 mission "Thrall Emigration"
 	name "<origin> Emigration"
 	description "Transport a family from <origin> to <destination>, where they hope to find better employment. They cannot pay you."
