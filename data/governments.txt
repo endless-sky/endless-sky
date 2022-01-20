@@ -225,6 +225,9 @@ government "Indigenous Lifeform"
 	"player reputation" 1
 	"bribe" 0
 	"fine" 0
+	
+	"attitude toward"
+		"Ember Waste" 1
 	"penalty for"
 		assist 0
 		disable 0

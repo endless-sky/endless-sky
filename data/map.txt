@@ -18401,7 +18401,7 @@ system Parca
 			sprite planet/rhea
 			distance 305
 			period 15.037
-		object
+		object Baianus
 			sprite planet/callisto
 			distance 424
 			period 24.6467
@@ -26342,7 +26342,7 @@ planet Avalon
 	security 0
 
 planet Aventine
-	attributes remnant
+	attributes remnant "has shipyard"
 	landscape land/mountain17-harro
 	description `This is not a particularly warm world, but it is the best that the first Remnant refugees were able to find when they explored the Ember Waste. It is here that they built their capital, in a deep valley that is almost always shrouded in clouds. In meadows farther up the mountain slopes, a few particularly hardy food crops are grown, but for the most part the Remnant rely on artificial greenhouses or cultured yeast for protein supplements. Remnant cuisine is unlikely to ever become a draw for tourists, even if their isolation here is broken.`
 	spaceport `The oldest buildings in the Remnant capital city harken back to classic human architecture, with stone facades and columns reminiscent of ancient Rome. But as you walk outward toward the more recent additions, the buildings become less and less recognizably human, with curved organic shapes and hundreds of overhanging walkways and balconies. It is as if the layers left behind by centuries of habitation are a frozen record of the slow transition of Remnant culture into something bizarre and almost alien.`
@@ -26362,6 +26362,13 @@ planet Babiali
 	description `	At present, Babiali has a regular stream of mining and research craft systematically flying over the crust looking for rare metals or anything else of value. Despite the activity, no one has bothered to set up anything resembling a spaceport.`
 	government Uninhabited
 	security 0
+
+planet Baianus
+	attributes uninhabited
+	landscape land/canyon12
+	description `This frozen water world is reminiscent of Titan back in Sol: The surface is little more than a shattered wasteland of ice and the occasional rock outcropping, but the unbreathably thin atmosphere contains countless tantalizing traces of chemicals that suggest that something more might exist below the surface.`
+	description `	Unlike Titan, however, Baianus is regularly wracked by both waves of heat and energy, and a stay of any length on the surface is likely to see waves of auroras accompanied by glows and sparks rippling across the terrain. Your environmental system strongly recommends remaining inside your ship whenever ion storms are active.`
+	government Uninhabited
 
 planet "Bank of Blugtad"
 	attributes arach urban wealthy
@@ -26545,7 +26552,7 @@ planet Burthen
 		fleet "Small Syndicate" 7
 
 planet Caelian
-	attributes remnant
+	attributes remnant "has shipyard"
 	landscape land/sky7
 	description `When the first members of the Remnant discovered this region of space, Caelian was the only habitable world they found with enough insolation to be able to operate solar-powered factories and bioreactors. The first settlements were scattered widely, with the houses hidden underground in order to be less visible from space, because they feared that the Alphas would overrun human space and eventually find their way into the Waste. Centuries later, when they learned that the Alpha Wars had ended, they began to expand the factories and settlements more openly.`
 	spaceport `Nearly all members of the Remnant are dark-skinned, either from exposure to high levels of ultraviolet radiation or because that is what their first ancestors who came here looked like. So, they walk around this spaceport village without much fear of the scorching desert sun, bringing supplies back and forth to the houses and to the flat clay pavement of the landing zone. Aside from some camels that the settlers brought with them, there are very few animals here.`
@@ -27205,6 +27212,14 @@ planet "Fenrir Station"
 	tribute 600
 		threshold 3000
 		fleet "Small Deep Security" 14
+
+planet Fertriery
+	attributes "requires: gaslining"
+	landscape land/nasa8
+	description `Fertriery is a fairly typical world with a particularly dense atmosphere that includes significant levels of chlorine and fluorine. The only unusual factor is the above-average temperatures, likely due to the decreased energy loss into the surrounding space.`
+	government Uninhabited
+	bribe 0
+	security 0
 
 planet Firefall
 	attributes hai station uninhabited
@@ -29899,7 +29914,7 @@ planet "Vibrant Water"
 	"required reputation" 15
 
 planet Viminal
-	attributes remnant
+	attributes remnant "has shipyard"
 	landscape land/snow3
 	description `This cold and dreary world would certainly not be attractive to any modern settlers, but to those who were fleeing the chaos of the Alpha Wars it had the undeniable advantage of being isolated and undiscovered. Today the main reason for the continuing Remnant presence here is that this is the only world they have found where the Key Stones that enable ships to travel through certain wormholes in the Ember Waste can be found.`
 	spaceport `The spaceport is an enormous dome, built of the same resilient and semi-organic material as the hulls of Remnant ships. An opening at one end of the dome allows ships to fly in and out. Inside, the air is still cold, but at least you are sheltered from the violent winds that sweep across the rest of the planet's surface. Some of the locals, accustomed to the cold, walk about in their shirtsleeves as if this were a balmy summer day.`
