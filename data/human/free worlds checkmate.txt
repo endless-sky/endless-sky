@@ -1179,7 +1179,7 @@ mission "FWC Pug 2"
 					goto cut
 			
 			label resist
-			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
+			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And I've heard that a pirate warlord managed to chase down and disable one of their bigger ships with some fancy engines. They're also not undefeatable on the ground either, those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
 			choice
 				`	"What do you think their intentions are?"`
 					goto intentions2
@@ -1203,7 +1203,7 @@ mission "FWC Pug 2"
 					goto intentions2
 			
 			label resist2
-			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
+			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And I've heard that a pirate warlord managed to chase down and disable one of their bigger ships with some fancy engines. They're also not undefeatable on the ground either, those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
 				goto end
 			
 			label intentions2
