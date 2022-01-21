@@ -113,7 +113,7 @@ mission "Worker's Occasion"
 		random < 1
 	on offer
 		conversation
-			`Pausing to consider a restaurant for your dinner, you notice a local worker staring at its menu, hand shaking as he walked in. His clothes are neatly worn, and look freshly brushed, but it's impossible not to notice the dirty marks and stains that just haven't washed out. The man is undeniably nervous and twitchy, yet no one kicks him out. Looking at the menu yourself, you realize the prices are very affordable for you but you recall how unreachable they would've been for you before your career change.`
+			`Pausing to consider a restaurant for your dinner, you notice a local worker staring at the menu, hand shaking as he proceeds to walk in. His clothes are neatly worn, and look freshly brushed, but it's impossible not to notice the dirty marks and stains that just haven't washed out. The man is undeniably nervous and twitchy, yet no one kicks him out. Looking at the menu yourself, you realize the prices are very affordable for you but you recall how unreachable they would've been for you before your career change.`
 			choice
 				`	(Offer to buy the man's diner.)`
 					goto aid
@@ -127,7 +127,7 @@ mission "Worker's Occasion"
 			`	He looks at your pilot's attire and frowns immediately before telling you where you can stick that offer in colorful terms. On reflection you think that perhaps your pride would've been rather heavily wounded were you in his position too.`
 				decline
 			label pity
-			`	You pity the man who as to work a full month to afford this and continue on your business.`
+			`	You pity the man who has to work a full month to afford this and continue on your business.`
 				decline
 
 
@@ -164,7 +164,7 @@ mission "Forest Fire"
 				`	"Hey! What's happening? I can help!" (Shout.)`
 					goto help
 				`	(Look for someone not in motion.)`
-			`	You seek out a pregnant lady sitting on a chair, a mask worn as she explains: "A large fire has sprung up nearby, and the wind is fanning it towards the spaceport. Might have been some fool playing with fire, or one some pirate sending a message to a local. We don't know, could be anything around here really. We're hunkering down and hoping it'll blow over us."`
+			`	You seek out a pregnant lady sitting on a chair, a mask worn as she explains: "A large fire has sprung up nearby, and the wind is fanning it towards the spaceport. Might have been some fool playing with fire, or some pirate sending a message to a local. We don't know, could be anything around here really. We're hunkering down and hoping it'll blow over us."`
 			choice
 				`	"I have a ship out there. Let me help."`
 			`	Her eyes widen and she looks around, sharply catching the attention of one of the many people hurrying about.`
@@ -174,9 +174,9 @@ mission "Forest Fire"
 			choice
 				`	"Yes."`
 			label fight
-			`	The dock-hands scrambled to get the firefighting equipment onto your ship after your proclamation, instructing you to drop the retardants onto the perimeter of the fire. You barely remembered what every button did before the Air Traffic Controller cleared you to depart, navigating your craft towards the fire.`
-			`	The ragging fire flared like an inferno, throwing up black smoke as you approached. Animals scrambled towards safer grounds as you dropped the retardants, making sure to keep your speed low before going back for another batch.`
-			`	Hours later, you look at your handiwork, a long line of red keeping back the flames as the fire starts to smother out. You radio your progress and receive a cherry response, thanking you for your help.`
+			`	The dock-hands scramble to get the firefighting equipment onto your ship after your proclamation, instructing you to drop the retardants onto the perimeter of the fire. You barely manage to remember what every button does before the Air Traffic Controller clears you to depart, navigating your craft towards the fire.`
+			`	The raging fire flares like an inferno, throwing up black smoke in deep billowing waves as you approach. As you drop the retardants, making sure to keep your speed low, animals scramble towards safer grounds. You try to make sure you've not emptied right on top of them each time as you go back for another batch.`
+			`	Hours later, you look at your handiwork, a long line of red keeping back the flames as the fire starts to smother out. You radio your progress and receive a cheery response, thanking you for your help.`
 				decline
 
 
