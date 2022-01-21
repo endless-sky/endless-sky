@@ -13,14 +13,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 
 #include "Audio.h"
-#include "CategoryTypes.h"
-#include "DataNode.h"
 #include "DataWriter.h"
 #include "Effect.h"
 #include "Files.h"
 #include "Flotsam.h"
 #include "text/Format.h"
-#include "GameData.h"
 #include "Government.h"
 #include "Mask.h"
 #include "Messages.h"
@@ -31,7 +28,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "ShipEvent.h"
 #include "Sound.h"
-#include "SpriteSet.h"
 #include "Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -148,334 +144,57 @@ namespace {
 
 
 
-void Ship::Load(const DataNode &node)
+// Static function to help handling of keywords when loading bays.
+bool Ship::HandleBayToken(Bay &bay, const string &token)
 {
-	if(node.Size() >= 2)
-	{
-		modelName = node.Token(1);
-		pluralModelName = modelName + 's';
-	}
-	if(node.Size() >= 3)
-	{
-		base = GameData::Ships().Get(modelName);
-		variantName = node.Token(2);
-	}
-	isDefined = true;
-
-	government = GameData::PlayerGovernment();
-
-	// Note: I do not clear the attributes list here so that it is permissible
-	// to override one ship definition with another.
-	bool hasEngine = false;
-	bool hasArmament = false;
-	bool hasBays = false;
-	bool hasExplode = false;
-	bool hasLeak = false;
-	bool hasFinalExplode = false;
-	bool hasOutfits = false;
-	bool hasDescription = false;
-	for(const DataNode &child : node)
-	{
-		const string &key = child.Token(0);
-		bool add = (key == "add");
-		if(add && (child.Size() < 2 || child.Token(1) != "attributes"))
+	for(unsigned i = 1; i < BAY_SIDE.size(); ++i)
+		if(token == BAY_SIDE[i])
 		{
-			child.PrintTrace("Skipping invalid use of 'add' with " + (child.Size() < 2
-					? "no key." : "key: " + child.Token(1)));
-			continue;
+			bay.side = i;
+			return true;
 		}
-		if(key == "sprite")
-			LoadSprite(child);
-		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
-			thumbnail = SpriteSet::Get(child.Token(1));
-		else if(key == "name" && child.Size() >= 2)
-			name = child.Token(1);
-		else if(key == "plural" && child.Size() >= 2)
-			pluralModelName = child.Token(1);
-		else if(key == "noun" && child.Size() >= 2)
-			noun = child.Token(1);
-		else if(key == "swizzle" && child.Size() >= 2)
-			customSwizzle = child.Value(1);
-		else if(key == "uuid" && child.Size() >= 2)
-			uuid = EsUuid::FromString(child.Token(1));
-		else if(key == "attributes" || add)
+	for(unsigned i = 1; i < BAY_FACING.size(); ++i)
+		if(token == BAY_FACING[i])
 		{
-			if(!add)
-				baseAttributes.Load(child);
-			else
-			{
-				addAttributes = true;
-				attributes.Load(child);
-			}
+			bay.facing = BAY_ANGLE[i];
+			return true;
 		}
-		else if((key == "engine" || key == "reverse engine" || key == "steering engine") && child.Size() >= 3)
-		{
-			if(!hasEngine)
-			{
-				enginePoints.clear();
-				reverseEnginePoints.clear();
-				steeringEnginePoints.clear();
-				hasEngine = true;
-			}
-			bool reverse = (key == "reverse engine");
-			bool steering = (key == "steering engine");
-
-			vector<EnginePoint> &editPoints = (!steering && !reverse) ? enginePoints :
-				(reverse ? reverseEnginePoints : steeringEnginePoints);
-			editPoints.emplace_back(0.5 * child.Value(1), 0.5 * child.Value(2),
-				(child.Size() > 3 ? child.Value(3) : 1.));
-			EnginePoint &engine = editPoints.back();
-			if(reverse)
-				engine.facing = Angle(180.);
-			for(const DataNode &grand : child)
-			{
-				const string &grandKey = grand.Token(0);
-				if(grandKey == "zoom" && grand.Size() >= 2)
-					engine.zoom = grand.Value(1);
-				else if(grandKey == "angle" && grand.Size() >= 2)
-					engine.facing += Angle(grand.Value(1));
-				else
-				{
-					for(unsigned j = 1; j < ENGINE_SIDE.size(); ++j)
-						if(grandKey == ENGINE_SIDE[j])
-							engine.side = j;
-					if(steering)
-						for(unsigned j = 1; j < STEERING_FACING.size(); ++j)
-							if(grandKey == STEERING_FACING[j])
-								engine.steering = j;
-				}
-			}
-		}
-		else if(key == "gun" || key == "turret")
-		{
-			if(!hasArmament)
-			{
-				armament = Armament();
-				hasArmament = true;
-			}
-			const Outfit *outfit = nullptr;
-			Point hardpoint;
-			if(child.Size() >= 3)
-			{
-				hardpoint = Point(child.Value(1), child.Value(2));
-				if(child.Size() >= 4)
-					outfit = GameData::Outfits().Get(child.Token(3));
-			}
-			else
-			{
-				if(child.Size() >= 2)
-					outfit = GameData::Outfits().Get(child.Token(1));
-			}
-			Angle gunPortAngle = Angle(0.);
-			bool gunPortParallel = false;
-			bool drawUnder = (key == "gun");
-			if(child.HasChildren())
-			{
-				for(const DataNode &grand : child)
-				{
-					if(grand.Token(0) == "angle" && grand.Size() >= 2)
-						gunPortAngle = grand.Value(1);
-					else if(grand.Token(0) == "parallel")
-						gunPortParallel = true;
-					else if(grand.Token(0) == "under")
-						drawUnder = true;
-					else if(grand.Token(0) == "over")
-						drawUnder = false;
-					else
-						grand.PrintTrace("Skipping unrecognized attribute:");
-				}
-			}
-			if(key == "gun")
-				armament.AddGunPort(hardpoint, gunPortAngle, gunPortParallel, drawUnder, outfit);
-			else
-				armament.AddTurret(hardpoint, drawUnder, outfit);
-			// Print a warning for the first hardpoint after 32, i.e. only 1 warning per ship.
-			if(armament.Get().size() == 33)
-				child.PrintTrace("Warning: ship has more than 32 weapon hardpoints. Some weapons may not fire:");
-		}
-		else if(key == "never disabled")
-			neverDisabled = true;
-		else if(key == "uncapturable")
-			isCapturable = false;
-		else if(((key == "fighter" || key == "drone") && child.Size() >= 3) ||
-			(key == "bay" && child.Size() >= 4))
-		{
-			// While the `drone` and `fighter` keywords are supported for backwards compatibility, the
-			// standard format is `bay <ship-category>`, with the same signature for other values.
-			string category = "Fighter";
-			int childOffset = 0;
-			if(key == "drone")
-				category = "Drone";
-			else if(key == "bay")
-			{
-				category = child.Token(1);
-				childOffset += 1;
-			}
-
-			if(!hasBays)
-			{
-				bays.clear();
-				hasBays = true;
-			}
-			bays.emplace_back(child.Value(1 + childOffset), child.Value(2 + childOffset), category);
-			Bay &bay = bays.back();
-			for(int i = 3 + childOffset; i < child.Size(); ++i)
-			{
-				for(unsigned j = 1; j < BAY_SIDE.size(); ++j)
-					if(child.Token(i) == BAY_SIDE[j])
-						bay.side = j;
-				for(unsigned j = 1; j < BAY_FACING.size(); ++j)
-					if(child.Token(i) == BAY_FACING[j])
-						bay.facing = BAY_ANGLE[j];
-			}
-			if(child.HasChildren())
-				for(const DataNode &grand : child)
-				{
-					// Load in the effect(s) to be displayed when the ship launches.
-					if(grand.Token(0) == "launch effect" && grand.Size() >= 2)
-					{
-						int count = grand.Size() >= 3 ? static_cast<int>(grand.Value(2)) : 1;
-						const Effect *e = GameData::Effects().Get(grand.Token(1));
-						bay.launchEffects.insert(bay.launchEffects.end(), count, e);
-					}
-					else if(grand.Token(0) == "angle" && grand.Size() >= 2)
-						bay.facing = Angle(grand.Value(1));
-					else
-					{
-						bool handled = false;
-						for(unsigned i = 1; i < BAY_SIDE.size(); ++i)
-							if(grand.Token(0) == BAY_SIDE[i])
-							{
-								bay.side = i;
-								handled = true;
-							}
-						for(unsigned i = 1; i < BAY_FACING.size(); ++i)
-							if(grand.Token(0) == BAY_FACING[i])
-							{
-								bay.facing = BAY_ANGLE[i];
-								handled = true;
-							}
-						if(!handled)
-							grand.PrintTrace("Skipping unrecognized attribute:");
-					}
-				}
-		}
-		else if(key == "leak" && child.Size() >= 2)
-		{
-			if(!hasLeak)
-			{
-				leaks.clear();
-				hasLeak = true;
-			}
-			Leak leak(GameData::Effects().Get(child.Token(1)));
-			if(child.Size() >= 3)
-				leak.openPeriod = child.Value(2);
-			if(child.Size() >= 4)
-				leak.closePeriod = child.Value(3);
-			leaks.push_back(leak);
-		}
-		else if(key == "explode" && child.Size() >= 2)
-		{
-			if(!hasExplode)
-			{
-				explosionEffects.clear();
-				explosionTotal = 0;
-				hasExplode = true;
-			}
-			int count = (child.Size() >= 3) ? child.Value(2) : 1;
-			explosionEffects[GameData::Effects().Get(child.Token(1))] += count;
-			explosionTotal += count;
-		}
-		else if(key == "final explode" && child.Size() >= 2)
-		{
-			if(!hasFinalExplode)
-			{
-				finalExplosions.clear();
-				hasFinalExplode = true;
-			}
-			int count = (child.Size() >= 3) ? child.Value(2) : 1;
-			finalExplosions[GameData::Effects().Get(child.Token(1))] += count;
-		}
-		else if(key == "outfits")
-		{
-			if(!hasOutfits)
-			{
-				outfits.clear();
-				hasOutfits = true;
-			}
-			for(const DataNode &grand : child)
-			{
-				int count = (grand.Size() >= 2) ? grand.Value(1) : 1;
-				if(count > 0)
-					outfits[GameData::Outfits().Get(grand.Token(0))] += count;
-				else
-					grand.PrintTrace("Skipping invalid outfit count:");
-			}
-
-			// Verify we have at least as many installed outfits as were identified as "equipped."
-			// If not (e.g. a variant definition), ensure FinishLoading equips into a blank slate.
-			if(!hasArmament)
-				for(const auto &pair : GetEquipped(Weapons()))
-				{
-					auto it = outfits.find(pair.first);
-					if(it == outfits.end() || it->second < pair.second)
-					{
-						armament.UninstallAll();
-						break;
-					}
-				}
-		}
-		else if(key == "cargo")
-			cargo.Load(child);
-		else if(key == "crew" && child.Size() >= 2)
-			crew = static_cast<int>(child.Value(1));
-		else if(key == "fuel" && child.Size() >= 2)
-			fuel = child.Value(1);
-		else if(key == "shields" && child.Size() >= 2)
-			shields = child.Value(1);
-		else if(key == "hull" && child.Size() >= 2)
-			hull = child.Value(1);
-		else if(key == "position" && child.Size() >= 3)
-			position = Point(child.Value(1), child.Value(2));
-		else if(key == "system" && child.Size() >= 2)
-			currentSystem = GameData::Systems().Get(child.Token(1));
-		else if(key == "planet" && child.Size() >= 2)
-		{
-			zoom = 0.;
-			landingPlanet = GameData::Planets().Get(child.Token(1));
-		}
-		else if(key == "destination system" && child.Size() >= 2)
-			targetSystem = GameData::Systems().Get(child.Token(1));
-		else if(key == "parked")
-			isParked = true;
-		else if(key == "description" && child.Size() >= 2)
-		{
-			if(!hasDescription)
-			{
-				description.clear();
-				hasDescription = true;
-			}
-			description += child.Token(1);
-			description += '\n';
-		}
-		else if(key != "actions")
-			child.PrintTrace("Skipping unrecognized attribute:");
-	}
+	return false;
 }
 
 
 
+bool Ship::HandleEngineToken(EnginePoint &engine, bool isSteering, const std::string &token)
+{
+	for(unsigned j = 1; j < ENGINE_SIDE.size(); ++j)
+		if(token == ENGINE_SIDE[j])
+		{
+			engine.side = j;
+			return true;
+		}
+	if(isSteering)
+		for(unsigned j = 1; j < STEERING_FACING.size(); ++j)
+			if(token == STEERING_FACING[j])
+			{
+				engine.steering = j;
+				return true;
+			}
+	return false;
+}
+
+
 // When loading a ship, some of the outfits it lists may not have been
 // loaded yet. So, wait until everything has been loaded, then call this.
-void Ship::FinishLoading(bool isNewInstance)
+// To be called from ShipsFactory, which handles the load finalization of
+// data that requires GameData and/or UniverseObjects access.
+void Ship::FinishLoading(bool isNewInstance, const Ship *model)
 {
 	// All copies of this ship should save pointers to the "explosion" weapon
 	// definition stored safely in the ship model, which will not be destroyed
 	// until GameData is when the program quits. Also copy other attributes of
 	// the base model if no overrides were given.
-	if(GameData::Ships().Has(modelName))
+	if(model)
 	{
-		const Ship *model = GameData::Ships().Get(modelName);
 		explosionWeapon = &model->BaseAttributes();
 		if(pluralModelName.empty())
 			pluralModelName = model->pluralModelName;
@@ -677,30 +396,9 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(isNewInstance)
 		Recharge(true);
 
-	// Ensure that all defined bays are of a valid category. Remove and warn about any
-	// invalid bays. Add a default "launch effect" to any remaining internal bays if
-	// this ship is crewed (i.e. pressurized).
-	string warning;
-	const auto &bayCategories = GameData::Category(CategoryType::BAY);
-	for(auto it = bays.begin(); it != bays.end(); )
-	{
-		Bay &bay = *it;
-		if(find(bayCategories.begin(), bayCategories.end(), bay.category) == bayCategories.end())
-		{
-			warning += "Invalid bay category: " + bay.category + "\n";
-			it = bays.erase(it);
-			continue;
-		}
-		else
-			++it;
-		if(bay.side == Bay::INSIDE && bay.launchEffects.empty() && Crew())
-			bay.launchEffects.emplace_back(GameData::Effects().Get("basic launch"));
-	}
-
-	canBeCarried = find(bayCategories.begin(), bayCategories.end(), attributes.Category()) != bayCategories.end();
-
 	// Issue warnings if this ship has is misconfigured, e.g. is missing required values
 	// or has negative outfit, cargo, weapon, or engine capacity.
+	string warning;
 	for(auto &&attr : set<string>{"outfit space", "cargo space", "weapon capacity", "engine capacity"})
 	{
 		double val = attributes.Get(attr);
@@ -750,17 +448,6 @@ void Ship::FinishLoading(bool isNewInstance)
 			targetSystem = nullptr;
 		}
 	}
-	
-	// Load the default effects for this ship.
-	effectDisruptionSpark = GameData::Effects().Get("disruption spark");
-	effectIonSpark = GameData::Effects().Get("ion spark");
-	effectSlowingSpark = GameData::Effects().Get("slowing spark");
-	effectSmoke = GameData::Effects().Get("smoke");
-	effectJumpDrive = GameData::Effects().Get("jump drive");
-	effectDischargeSpark = GameData::Effects().Get("discharge spark");
-	effectCorrosionSpark = GameData::Effects().Get("corrosion spark");
-	effectLeakageSpark = GameData::Effects().Get("leakage spark");
-	effectBurningSpark = GameData::Effects().Get("burning spark");
 }
 
 
@@ -1009,10 +696,101 @@ const string &Ship::Name() const
 
 
 
+void Ship::SetIsDefined(bool value)
+{
+	this->isDefined = value;
+}
+
+
+
+void Ship::SetNeverDisabled(bool value)
+{
+	this->neverDisabled = value;
+}
+
+
+
+void Ship::SetCapturable(bool value)
+{
+	this->isCapturable = value;
+}
+
+
+
+void Ship::SetCanBeCarried(bool value)
+{
+	this->canBeCarried = value;
+}
+
+
+
+void Ship::SetBaseModel(const Ship* base)
+{
+	this->base = base;
+}
+
+
+
+void Ship::SetNoun(const string &value)
+{
+	this->noun = value;
+}
+
+
+
+void Ship::SetCustomSwizzle(int swizzle)
+{
+	this->customSwizzle = swizzle;
+}
+
+
+
+void Ship::SetThumbnail(const Sprite *thumb)
+{
+	this->thumbnail = thumb;
+}
+
+
+
+void Ship::SetHull(double value)
+{
+	hull = value;
+}
+
+
+
+void Ship::SetShields(double value)
+{
+	shields = value;
+}
+
+
+
+void Ship::SetFuel(double value)
+{
+	fuel = value;
+}
+
+
+
 // Set / Get the name of this class of ships, e.g. "Marauder Raven."
 void Ship::SetModelName(const string &model)
 {
 	this->modelName = model;
+}
+
+
+
+void Ship::SetPluralModelName(const string &model)
+{
+	this->pluralModelName = model;
+}
+
+
+
+void Ship::SetVariantName(const string &vName)
+{
+	this->variantName = vName;
 }
 
 
@@ -1050,6 +828,13 @@ const string &Ship::Noun() const
 
 // Get this ship's description.
 const string &Ship::Description() const
+{
+	return description;
+}
+
+
+
+string &Ship::Description()
 {
 	return description;
 }
@@ -2675,6 +2460,13 @@ const vector<Ship::EnginePoint> &Ship::EnginePoints() const
 
 
 
+vector<Ship::EnginePoint> &Ship::EnginePoints()
+{
+	return enginePoints;
+}
+
+
+
 const vector<Ship::EnginePoint> &Ship::ReverseEnginePoints() const
 {
 	return reverseEnginePoints;
@@ -2682,7 +2474,21 @@ const vector<Ship::EnginePoint> &Ship::ReverseEnginePoints() const
 
 
 
+vector<Ship::EnginePoint> &Ship::ReverseEnginePoints()
+{
+	return reverseEnginePoints;
+}
+
+
+
 const vector<Ship::EnginePoint> &Ship::SteeringEnginePoints() const
+{
+	return steeringEnginePoints;
+}
+
+
+
+vector<Ship::EnginePoint> &Ship::SteeringEnginePoints()
 {
 	return steeringEnginePoints;
 }
@@ -3091,6 +2897,12 @@ int Ship::Crew() const
 }
 
 
+void Ship::SetCrew(int count)
+{
+	crew = count;
+}
+
+
 
 int Ship::RequiredCrew() const
 {
@@ -3463,6 +3275,13 @@ const vector<Ship::Bay> &Ship::Bays() const
 
 
 
+vector<Ship::Bay> &Ship::Bays()
+{
+	return bays;
+}
+
+
+
 // Adjust the positions and velocities of any visible carried fighters or
 // drones. If any are visible, return true.
 bool Ship::PositionFighters() const
@@ -3544,7 +3363,27 @@ const Outfit &Ship::Attributes() const
 
 
 
+Outfit &Ship::Attributes()
+{
+	return attributes;
+}
+
+
+void Ship::SetAddAttributes(bool value)
+{
+	addAttributes = value;
+}
+
+
+
 const Outfit &Ship::BaseAttributes() const
+{
+	return baseAttributes;
+}
+
+
+
+Outfit &Ship::BaseAttributes()
 {
 	return baseAttributes;
 }
@@ -3553,6 +3392,13 @@ const Outfit &Ship::BaseAttributes() const
 
 // Get outfit information.
 const map<const Outfit *, int> &Ship::Outfits() const
+{
+	return outfits;
+}
+
+
+
+map<const Outfit *, int> &Ship::Outfits()
 {
 	return outfits;
 }
@@ -3594,6 +3440,106 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		if(outfit->Get("jump drive"))
 			jumpRange = JumpRange(false);
 	}
+}
+
+
+
+vector<Ship::Leak> &Ship::Leaks()
+{
+	return leaks;
+}
+
+
+
+void Ship::ClearExplosionEffects()
+{
+	explosionEffects.clear();
+	explosionTotal = 0;
+}
+
+
+
+void Ship::ClearFinalExplosions()
+{
+	finalExplosions.clear();
+}
+
+
+
+void Ship::AddExplosionEffect(const Effect *effect, int count)
+{
+	explosionEffects[effect] += count;
+	explosionTotal += count;
+}
+
+
+
+void Ship::AddFinalExplosion(const Effect *effect, int count)
+{
+	finalExplosions[effect] += count;
+}
+
+
+
+void Ship::SetEffectIonSpark(const Effect *effect)
+{
+	effectIonSpark = effect;
+}
+
+
+
+void Ship::SetEffectDisruptionSpark(const Effect *effect)
+{
+	effectDisruptionSpark = effect;
+}
+
+
+
+void Ship::SetEffectSlowingSpark(const Effect *effect)
+{
+	effectSlowingSpark = effect;
+}
+
+
+
+void Ship::SetEffectDischargeSpark(const Effect *effect)
+{
+	effectDischargeSpark = effect;
+}
+
+
+
+void Ship::SetEffectCorrosionSpark(const Effect *effect)
+{
+	effectCorrosionSpark = effect;
+}
+
+
+
+void Ship::SetEffectLeakageSpark(const Effect *effect)
+{
+	effectLeakageSpark = effect;
+}
+
+
+
+void Ship::SetEffectBurningSpark(const Effect *effect)
+{
+	effectBurningSpark = effect;
+}
+
+
+
+void Ship::SetEffectSmoke(const Effect *effect)
+{
+	effectSmoke = effect;
+}
+
+
+
+void Ship::SetEffectJumpDrive(const Effect *effect)
+{
+	effectJumpDrive = effect;
 }
 
 

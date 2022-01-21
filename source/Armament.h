@@ -53,6 +53,8 @@ public:
 	void ReloadAll();
 	// Uninstall all weapons (because the weapon outfits have potentially changed).
 	void UninstallAll();
+	// Reset the armament (for example for a ship variant that has its own armament spec).
+	void Clear();
 
 	// Swap the weapons in the given two hardpoints.
 	void Swap(int first, int second);

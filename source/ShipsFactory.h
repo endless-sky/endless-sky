@@ -24,7 +24,7 @@ public:
 	ShipsFactory(UniverseObjects &universe);
 
 	// Load a given ship from a DataNode.
-	void LoadShip(Ship &ship, const DataNode &data) const;
+	void LoadShip(Ship &ship, const DataNode &node) const;
 
 	// When loading a ship, some of the outfits it lists may not have been
 	// loaded yet. So, wait until everything has been loaded, then call this.

@@ -150,6 +150,14 @@ void Armament::UninstallAll()
 
 
 
+void Armament::Clear()
+{
+	streamReload.clear();
+	hardpoints.clear();
+}
+
+
+
 // Swap the weapons in the given two hardpoints.
 void Armament::Swap(int first, int second)
 {
