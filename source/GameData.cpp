@@ -48,6 +48,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "RingShader.h"
 #include "Ship.h"
+#include "ShipsFactory.h"
 #include "Sprite.h"
 #include "SpriteQueue.h"
 #include "SpriteSet.h"
@@ -93,6 +94,8 @@ namespace {
 	map<const Sprite *, int> preloaded;
 
 	MaskManager maskManager;
+
+	ShipsFactory shipsFactory(objects);
 
 	const Government *playerGovernment = nullptr;
 	map<const System *, map<string, int>> purchases;
@@ -776,6 +779,13 @@ const map<string, string> &GameData::PluginAboutText()
 MaskManager &GameData::GetMaskManager()
 {
 	return maskManager;
+}
+
+
+
+const ShipsFactory &GameData::GetShipsFactory()
+{
+	return shipsFactory;
 }
 
 

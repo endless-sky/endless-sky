@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Planet.h"
 #include "Ship.h"
+#include "ShipsFactory.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "System.h"
@@ -43,6 +44,7 @@ void StartConditions::Load(const DataNode &node)
 	// amend it by using "add description"
 	bool clearDescription = !description.empty();
 
+	const auto &sf = GameData::GetShipsFactory();
 	for(const DataNode &child : node)
 	{
 		// Check for the "add" or "remove" keyword.
@@ -109,7 +111,10 @@ void StartConditions::Load(const DataNode &node)
 			// a 3rd token (i.e. this will be treated as though it were a ship variant definition,
 			// without making the variant available to the rest of GameData).
 			if(child.HasChildren() || child.Size() >= 3)
-				ships.emplace_back(child);
+			{
+				ships.emplace_back();
+				sf.LoadShip(ships.back(), child);
+			}
 			// If there's only 2 tokens & there's no child nodes, the created instance would be ill-formed.
 			else
 				child.PrintTrace("Skipping unsupported use of a \"stock\" ship (a full definition is required):");
@@ -145,8 +150,9 @@ void StartConditions::Load(const DataNode &node)
 // Finish loading the ship definitions.
 void StartConditions::FinishLoading()
 {
+	const auto &sf = GameData::GetShipsFactory();
 	for(Ship &ship : ships)
-		ship.FinishLoading(true);
+		sf.FinishLoading(ship, true);
 
 	string reason = GetConversation().Validate();
 	if(!GetConversation().IsValidIntro() || !reason.empty())

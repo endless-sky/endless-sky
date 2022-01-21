@@ -34,6 +34,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SavedGame.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "ShipsFactory.h"
 #include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -134,6 +135,7 @@ void PlayerInfo::Load(const string &path)
 	bool hasFullClearance = false;
 
 	DataFile file(path);
+	const auto &sf = GameData::GetShipsFactory();
 	for(const DataNode &child : file)
 	{
 		// Basic player information and persistent UI settings:
@@ -179,7 +181,8 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "ship")
 		{
 			// Ships owned by the player have various special characteristics:
-			ships.push_back(make_shared<Ship>(child));
+			ships.push_back(make_shared<Ship>());
+			sf.LoadShip(*(ships.back().get()), child);
 			ships.back()->SetIsSpecial();
 			ships.back()->SetIsYours();
 			// Defer finalizing this ship until we have processed all changes to game state.
@@ -2472,11 +2475,12 @@ void PlayerInfo::ApplyChanges()
 	GameData::CheckReferences();
 
 	// Now that all outfits have names, we can finish loading the player's ships.
+	const auto &sf = GameData::GetShipsFactory();
 	for(auto &&ship : ships)
 	{
 		// Government changes may have changed the player's ship swizzles.
 		ship->SetGovernment(GameData::PlayerGovernment());
-		ship->FinishLoading(false);
+		sf.FinishLoading(*(ship.get()),false);
 	}
 }
 

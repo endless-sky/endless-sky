@@ -116,8 +116,6 @@ public:
 	*/
 
 	Ship() = default;
-	// Construct and Load() at the same time.
-	Ship(const DataNode &node);
 
 	// Load data for a type of ship:
 	void Load(const DataNode &node);

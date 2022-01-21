@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "ShipsFactory.h"
 #include "System.h"
 #include "UI.h"
 
@@ -83,6 +84,7 @@ void NPC::Load(const DataNode &node)
 	if(mustEvade && (succeedIf & ShipEvent::DESTROY || succeedIf & ShipEvent::CAPTURE))
 		node.PrintTrace("Warning: redundant NPC mission objective to evade and destroy or capture.");
 
+	const auto &sf = GameData::GetShipsFactory();
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "system")
@@ -155,7 +157,8 @@ void NPC::Load(const DataNode &node)
 			{
 				// Loading an NPC from a save file, or an entire ship specification.
 				// The latter may result in references to non-instantiated outfits.
-				ships.emplace_back(make_shared<Ship>(child));
+				ships.emplace_back(make_shared<Ship>());
+				sf.LoadShip(*(ships.back().get()), child);
 				for(const DataNode &grand : child)
 					if(grand.Token(0) == "actions" && grand.Size() >= 2)
 						actions[ships.back().get()] = grand.Value(1);
@@ -210,7 +213,7 @@ void NPC::Load(const DataNode &node)
 		ship->SetGovernment(government);
 		ship->SetPersonality(personality);
 		ship->SetIsSpecial();
-		ship->FinishLoading(false);
+		sf.FinishLoading(*(ship.get()), false);
 	}
 }
 
@@ -592,7 +595,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	{
 		// This ship is being defined from scratch.
 		result.ships.push_back(make_shared<Ship>(*ship));
-		result.ships.back()->FinishLoading(true);
+		GameData::GetShipsFactory().FinishLoading(*(result.ships.back().get()), true);
 	}
 	auto shipIt = stockShips.begin();
 	auto nameIt = shipNames.begin();

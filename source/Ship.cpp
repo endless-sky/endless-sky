@@ -148,14 +148,6 @@ namespace {
 
 
 
-// Construct and Load() at the same time.
-Ship::Ship(const DataNode &node)
-{
-	Load(node);
-}
-
-
-
 void Ship::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)

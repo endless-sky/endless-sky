@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Ship.h"
+#include "ShipsFactory.h"
 #include "System.h"
 
 using namespace std;
@@ -24,6 +25,7 @@ using namespace std;
 
 void Person::Load(const DataNode &node)
 {
+	const auto &sf = GameData::GetShipsFactory();
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "system")
@@ -35,7 +37,8 @@ void Person::Load(const DataNode &node)
 			// Name ships that are not the flagship with the name provided, if any.
 			// The flagship, and any unnamed fleet members, will be given the name of the Person.
 			bool setName = !ships.empty() && child.Size() >= 3;
-			ships.emplace_back(make_shared<Ship>(child));
+			ships.emplace_back(make_shared<Ship>());
+			sf.LoadShip(*(ships.back().get()), child);
 			if(setName)
 				ships.back()->SetName(child.Token(2));
 		}
@@ -55,8 +58,9 @@ void Person::Load(const DataNode &node)
 // Finish loading all the ships in this person specification.
 void Person::FinishLoading()
 {
+	const auto &sf = GameData::GetShipsFactory();
 	for(const shared_ptr<Ship> &ship : ships)
-		ship->FinishLoading(true);
+		sf.FinishLoading(*(ship.get()), true);
 }
 
 
