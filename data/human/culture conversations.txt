@@ -120,6 +120,35 @@ mission "Paradise Cleaner Incident"
 
 
 
+mission "Class Trip to Port"
+	minor
+	source
+		attributes "south"
+		not attributes "station"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`A group of children wave at you as you step off your ship, marveling at the ships on display as their teachers try and fail to hold their attention. You could see the fading of their uniform colors from afar as their group walked past, yet none of them looked one bit displeased. You wonder how many of them may eventually own their own spaceship and fly across the stars as you make your way into the spaceport itself.`
+				decline
+ 
+
+
+mission "Sojourn Sunday Sales"
+	minor
+	source
+		government "Free Worlds"
+		attributes "urban"
+		not attributes "station"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`You blink in surprise as you enter the spaceport, watching throngs of people pushing their way through the human chains of queues wrapped around and around the commercial area. You look around and see advertisements upon advertisements of vacation locations, all at an absurdly high discount. Yet you couldn't help but notice that to the younger you, it'd still be a price you'd never have be willing to spend on such things.`
+				decline
+
+
+
 mission "Tarazed Ship Christening"
 	minor
 	source "Wayfarer"
