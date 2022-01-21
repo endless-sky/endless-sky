@@ -21,13 +21,31 @@ namespace { // test namespace
 
 // #region unit tests
 SCENARIO( "Test basic ByGivenOrder functionality." , "[ByGivenOrder]" ) {
-	const std::vector<int> givenOrder = { 4, 2, 8, 6 };
-	std::vector<int> toSort = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-	const std::vector<int> expectedOrder = { 4, 2, 8, 6, 0, 1, 3, 5, 7, 9 };
+	GIVEN("An order") {
+		const std::vector<int> givenOrder = { 4, 2, 8, 6 };
+		ByGivenOrder<int> comparator(givenOrder);
 
-	std::sort(toSort.begin(), toSort.end(), ByGivenOrder<int>(givenOrder));
-	REQUIRE( toSort == expectedOrder );
+		THEN( "Known elements are sorted by the given order" ) {
+			std::vector<int> toSort = { 2, 4, 6 };
+			const std::vector<int> expectedOrder = { 4, 2, 6 };
+			std::sort(toSort.begin(), toSort.end(), comparator);
+			REQUIRE( toSort == expectedOrder );
+		}
 
+		THEN( "Unknown elements are sorted by their native order" ) {
+			std::vector<int> toSort = { 5, 1, 3 };
+			const std::vector<int> expectedOrder = { 1, 3, 5 };
+			std::sort(toSort.begin(), toSort.end(), comparator);
+			REQUIRE( toSort == expectedOrder );
+		}
+
+		THEN( "Unknown elements are sorted after known elements" ) {
+			std::vector<int> toSort = { 2, 4, 6, 8, 5, 1, 3 };
+			const std::vector<int> expectedOrder = { 4, 2, 8, 6, 1, 3, 5 };
+			std::sort(toSort.begin(), toSort.end(), comparator);
+			REQUIRE( toSort == expectedOrder );
+		}
+	}
 }
 // #endregion unit tests
 
