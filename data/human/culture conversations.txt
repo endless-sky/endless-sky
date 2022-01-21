@@ -174,7 +174,7 @@ mission "Forest Fire"
 			choice
 				`	"Yes."`
 			label fight
-			`	The dock-hands scrambled to get the firefighting equipments onto your ship after your proclamation, instructing you to drop the retardants onto the perimeter of the fire. You barely remembered what every button did before the Air Traffic Controller cleared you to depart, navigating your craft towards the fire.`
+			`	The dock-hands scrambled to get the firefighting equipment onto your ship after your proclamation, instructing you to drop the retardants onto the perimeter of the fire. You barely remembered what every button did before the Air Traffic Controller cleared you to depart, navigating your craft towards the fire.`
 			`	The ragging fire flared like an inferno, throwing up black smoke as you approached. Animals scrambled towards safer grounds as you dropped the retardants, making sure to keep your speed low before going back for another batch.`
 			`	Hours later, you look at your handiwork, a long line of red keeping back the flames as the fire starts to smother out. You radio your progress and receive a cherry response, thanking you for your help.`
 				decline
