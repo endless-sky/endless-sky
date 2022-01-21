@@ -120,6 +120,37 @@ mission "Paradise Cleaner Incident"
 
 
 
+mission "Local Politics"
+	minor
+	source
+		government "Free Worlds"
+		attributes "frontier"
+		not attributes "station"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`As you land on the pad, you note a general lack of presence around the spaceport. No one scrambled to hook up your ship nor were there a full contingent waiting to receive you. Instead, when you leave your ship, all you find is a note within the spaceport detailing where their overlords can find their yearly tribute.`
+			`	You decide against finding out where the inhabitants went.`
+				decline
+
+
+
+mission "Forest Fire"
+	minor
+	source
+		government "Free Worlds"
+		not attributes "station" "frontier"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`The sun had already set when you walked out of the spaceport, trying to find a nearby restaurant to sample their wares. Looking around, the only source of light came from the building you walked out of, a beacon within the sea of darkness.`
+			`	Choosing a random direction, you decide to walk down the quiet street, taking in the sights before two men rush from an alley, pushing past you as they go. Before you could reply with a profanity, you see a woman run out, clothes in disarray as she gives chase to the two men to no avail. Belatedly, you realize that they were holding a purse, yet before you could do anything they had already disappeared, melting into the blackness beyond.`
+				decline
+
+
+
 mission "Tarazed Ship Christening"
 	minor
 	source "Wayfarer"
