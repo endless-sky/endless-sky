@@ -211,6 +211,7 @@ public:
 	// can use to modify the player's reputation with other governments.
 	void SetReputationConditions();
 	void CheckReputationConditions();
+	void FillHailSubs(std::map<std::string, std::string> &subs);
 
 	// Check what the player knows about the given system or planet.
 	bool HasSeen(const System &system) const;
