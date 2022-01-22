@@ -723,4 +723,7 @@ government "Wormhole Alpha"
 	"fine" 0
 	"attitude toward"
 		"Hai" -.01
+		"Hai Merchant" -.01
+		"Hai Merchant (Sympathizers)" -.01
+		"Hai Merchant (Human)" -.01
 		"Hai (Unfettered)" -.01
