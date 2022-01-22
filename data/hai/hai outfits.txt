@@ -111,7 +111,7 @@ outfit "True Unfettered License"
 	"capture defense" 10
 	"quantum keystone" 1
 	thumbnail "outfit/true unfettered license"
-	description "This sword may be bit of a weird license, but whenever I look at it I feel pride, and whenever the Unfettered look at it I see respect in their eyes. This was given to me by one of their warlord, as a sign of trust. It is quite handy in fights too, thanks to the special properties of the keystone it is crafted from... It has some handy properties, and legends say it allows the user to phase trough matter for a short time."
+	description "This sword may be bit of a weird license, but whenever I look at it I feel pride, and whenever the Unfettered look at it I see respect in their eyes. This was given to me by one of their warlords, as a sign of trust. It is quite handy in fights too, thanks to the special properties of the keystone it is crafted from. It has some useful properties, and legends say it allows the user to phase through matter for a short time."
 
 outfit "Ionic Blaster"
 	category "Guns"
@@ -137,7 +137,7 @@ outfit "Ionic Blaster"
 		"shield damage" 125
 		"hull damage" 32
 		"ion damage" 1.6
-	description "Since the start of the war with the rest of the Hai the Unfettered tried to gain a technological edge, knowing resources were spare, in order to plunder more easily. To that goal, they started developping this weapon which not only does a lot of ion damage to disable the target but also does enough raw damage to be useful in all situations. The only problem is that until now they have lacked the resources to mass produce them, so it is only a prized possession of a lucky few."
+	description "Since the start of the war with the rest of the Hai the Unfettered tried to gain a technological edge, in order to more efficiently plunder ships using their limited resources. To that goal, they started developing this weapon which not only does a lot of ion damage to disable the target but also does enough raw damage to be useful in all situations. The only problem is that until now they have lacked the resources to mass produce them, so it is only a prized possession of a lucky few."
 
 outfit "Ionic Turret"
 	category "Turrets"
@@ -445,7 +445,7 @@ outfit "Value Detector"
 	"cargo scan power" 30
 	"cargo scan speed" 4
 	"tactical scan power" 12
-	description "In order to know which ship is worth plundering, or presents less risks to do so, the Unfettered use this scanner. It is quite rudimentary compared to normal Hai technology, but it still gets the job done, that is to get quick information on what the ship is carrying, from afar. The Unfettered also like to know more detailed information about their enemy, as they often test different ship designs, weapons, or may want to board the ship afterwards."
+	description "In order to know which ship is worth plundering, or presents less risks to do so, the Unfettered use this scanner. It is quite rudimentary compared to normal Hai technology, but it still does what it's supposed to do: get quick information on what ships are carrying from afar. The Unfettered also prefer to know more detailed information about their enemy, as they often test different ship designs and weapons on their victims in order to test their effectiveness."
 
 outfit "Hai Chasm Batteries"
 	plural "Hai Chasm Batteries"

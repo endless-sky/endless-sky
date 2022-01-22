@@ -190,14 +190,14 @@ mission "Proud Unfettered Boarded"
 		category "Heavy Warship"
 	on offer
 		conversation
-			`As you board the <origin> you immediately notice something is wrong, the ship is starting to explode! The captain sends you a message. "This is not a fair fight. Better to die with my crew, standing, than risk being slaughtered by false, inferior, fettered humans! You will not be allowed to us this ship against our brothers and sisters, I will take you down with us!"`
+			`As you board the <origin> you immediately notice something is wrong: the ship is starting to explode! The captain sends you a message. "This is not a fair fight. Better to die with my crew standing, than risk being slaughtered by inferior humans! You will not be allowed to capture this ship and use it against our brothers and sisters. I will take you down with us!"`
 				flee
 	destination "Darkcloak"
 
 
 mission "Unfettered Silicon Asteroid Mining"
 	name `Gather silicon from asteroids`
-	description `Mine and then collect 50 tons of Silicon from the asteroid field in Wah Yoot and then bring them back to <destination> for <payment>.`
+	description `Mine and then collect 50 tons of silicon from the asteroid field in Wah Yoot and then bring them back to <destination> for <payment>.`
 	job
 	repeat
 	source "Darkcloak"
@@ -206,7 +206,7 @@ mission "Unfettered Silicon Asteroid Mining"
 		random < 60
 	on complete
 		payment 250000
-		dialog `The Unfettered unloading the materials you mined seem enthused.	"This will allow us to repair our ships!" they tell you and hand over your payment of <payment> credits.`
+		dialog `The Unfettered unloading the materials you mined seem enthused. "This will allow us to repair our ships!" they tell you as they hand over your payment of <payment> credits.`
 		outfit "Silicon" -50
 
 mission "Unfettered Silver Asteroid Mining"
@@ -222,7 +222,7 @@ mission "Unfettered Silver Asteroid Mining"
 		random < 60
 	on complete
 		payment 400000
-		dialog `The Unfettered unloading the materials you mined seem satisfied.	"This will allow us to repair our ships!" they tell you and hand over your payment of <payment> credits.`
+		dialog `The Unfettered unloading the materials you mined seem satisfied. "This will allow us to repair our ships!" they tell you as they hand over your payment of <payment> credits.`
 		outfit "Silver" -15
 
 
@@ -256,7 +256,7 @@ mission "Unfettered Medicals"
 
 mission "Unfettered Challenge[0]"
 	name `Defeat the young captain`
-	description `A young Unfettered captain has provoked you in a duel, disable his ship for <payment>.`
+	description `A young Unfettered captain has provoked you in a duel. Disable his ship for <payment>.`
 	job
 	repeat
 	source
@@ -281,7 +281,7 @@ mission "Unfettered Challenge[0]"
 
 mission "Unfettered Challenge[1]"
 	name `Defeat the captain`
-	description `An Unfettered captain has provoked you in a duel, disable his ship for <payment>.`
+	description `An Unfettered captain has provoked you in a duel. Disable his ship for <payment>.`
 	job
 	repeat
 	source
@@ -307,7 +307,7 @@ mission "Unfettered Challenge[1]"
 
 mission "Unfettered Challenge[2]"
 	name `Defeat the experienced captain`
-	description `An experienced Unfettered captain has provoked you in a duel, disable his ship for <payment>.`
+	description `An experienced Unfettered captain has provoked you into a duel. Disable his ship for <payment>.`
 	job
 	repeat
 	source
@@ -425,17 +425,17 @@ mission "Bring True Hai"
 		government "Hai"
 		attributes "spaceport"
 	on stopover
-		dialog `You have picked up all <bunks> Hai, now all that is left is to bring them to <destination>.`
+		dialog `You have picked up all <bunks> Hai. Now all that is left is to bring them to <destination>.`
 	on complete
 		payment
 		payment 150000
-		dialog `You feel good that you managed to bring these Hai to their True home. The Unfettered hand you the agree payment of <payment>.`
+		dialog `You feel good that you managed to bring these Hai to their True home. The Unfettered hand you the agreed payment of <payment>.`
 
 
 
 mission "Darkcloak Ship Materials"
 	name `Ship materials from <stopovers>`
-	description `The Shipyards of <origin> are in grave need of raw materials. Go to the pirate world of <destination> to get the materials for building new ships, and bring them back by <date> for <payment>.`
+	description `The shipyards of <origin> are in grave need of raw materials. Go to the Unfettered world of <destination> to get the materials for building new ships, and bring them back by <date> for <payment>.`
 	job
 	repeat
 	deadline 15 1
@@ -449,9 +449,9 @@ mission "Darkcloak Ship Materials"
 		distance 12 18
 		government "Pirate"
 	on stopover
-		dialog `After some searching you manage to find your contacts, a few shady individuals who seem especially anxious not to be noticed dealing with you. Together you find a quieter place to proceed with the exchange, and later find the materials at the agreed location. Now head back to <origin> to deliver them.`
+		dialog `After some searching you manage to find your contacts: a few shady individuals who seem especially anxious not to be noticed dealing with you. Together you find a quieter place to proceed with the exchange, and later find the materials at the agreed location. Now head back to <origin> to deliver them.`
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 50000 7000
-		dialog `The Unfettered promise you many new ships will be built with these <cargo>, grandiose ships. As long as you get your <payment>, that seems good to you.`
+		dialog `The Unfettered promise you many new, grandiose ships will be built with this new material. As long as you get your <payment>, that seems good to you.`
