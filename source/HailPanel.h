@@ -38,19 +38,19 @@ class HailPanel : public Panel {
 public:
 	HailPanel(PlayerInfo &player, const std::shared_ptr<Ship> &ship, std::function<void(const Government *)> bribeCallback);
 	HailPanel(PlayerInfo &player, const StellarObject *object);
-	
+
 	virtual void Draw() override;
-	
-	
+
+
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	
-	
+
+
 private:
 	void SetBribe(double scale);
-	
-	
+
+
 private:
 	PlayerInfo &player;
 	std::shared_ptr<Ship> ship = nullptr;
@@ -58,10 +58,10 @@ private:
 	const Planet *planet = nullptr;
 	const Sprite *sprite = nullptr;
 	Angle facing;
-	
+
 	std::string header;
 	std::string message;
-	
+
 	int64_t bribe = 0;
 	const Government *bribed = nullptr;
 	bool playerNeedsHelp = false;

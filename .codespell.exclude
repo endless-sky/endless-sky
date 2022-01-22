@@ -1,0 +1,19 @@
+		"Woh"
+		"mor"
+		"Grey"
+		"Mitre"
+		"Alph"
+		"Gord"
+		"gard"
+		"Diamond Grey"
+		"Grey Wolf"
+				`	"The Grey Goose."`
+			`	He stops and frowns. "Look at me, rambling like an ol' man. Ser, Captain, I'd like to pay you <payment> to take me home, to <destination>."`
+			`	He smiles sadly. "Skaldgar always had a nose for good folks. Anyways, he told me he had a nephew named Helm who worked at the Norn spaceport. Find 'im and he can get'cha and this stone where it needs to go." The young man than looks you in the eye and gives a slow respectful nod, "For Ol' Skaldgar, may he be findin' ore in hel."`
+			`	Cygnet strokes his mustache. "Tod Copper. Tod Copper. Tell you what, that name doesn' ring a bell. Heck, I don' even keep track of names 'less I get someone impor'ant. If ya lookin' for someone in particular to buy, can I get a description?"`
+					goto shotdown
+			label shotdown
+		"ser"
+		"cach"
+		"oder"
+		" Grat"
