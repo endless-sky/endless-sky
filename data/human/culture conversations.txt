@@ -115,7 +115,7 @@ mission "Worker's Occasion"
 		conversation
 			`Pausing to consider a restaurant for your dinner, you notice a local worker staring at the menu, hand shaking as he proceeds to walk in. His clothes are neatly worn, and look freshly brushed, but it's impossible not to notice the dirty marks and stains that just haven't washed out. The man is undeniably nervous and twitchy, yet no one kicks him out. Looking at the menu yourself, you realize the prices are very affordable for you but you recall how unreachable they would've been for you before your career change.`
 			choice
-				`	(Offer to buy the man's diner.)`
+				`	(Offer to buy the man's dinner.)`
 					goto aid
 				`	(Pity the man.)`
 					goto pity
