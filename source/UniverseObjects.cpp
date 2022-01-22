@@ -164,7 +164,7 @@ void UniverseObjects::Change(const DataNode &node)
 	else if(node.Token(0) == "substitutions" && node.HasChildren())
 		substitutions.Load(node);
 	else
-		node.PrintTrace("Invalid \"event\" data:");
+		node.PrintTrace("Error: Invalid \"event\" data:");
 }
 
 
@@ -374,7 +374,7 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 				else if(child.Token(0) == "wind" && child.Size() >= 2)
 					solarWind[sprite] = child.Value(1);
 				else
-					child.PrintTrace("Unrecognized star attribute:");
+					child.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
 		else if(key == "news" && node.Size() >= 2)

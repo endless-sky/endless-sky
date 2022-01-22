@@ -102,7 +102,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 				else if((grand.Size() >= 3) && (grand.Token(0) == "offset"))
 					submunitions.back().offset = Point(grand.Value(1), grand.Value(2));
 				else
-					child.PrintTrace("Skipping unknown or incomplete sub-munition attribute:");
+					child.PrintTrace("Skipping unknown or incomplete submunition attribute:");
 			}
 		}
 		else

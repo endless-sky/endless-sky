@@ -1,0 +1,222 @@
+# Copyright (c) 2017 by Michael Zahniser
+# Copyright (c) 2018 by Zitchas
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Remnant: Bounty"
+	job
+	repeat
+	name "Crippled Raider Bounty"
+	description "A crippled Korath ship is lurking in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
+	source
+		government "Remnant"
+	to offer
+		has "Remnant: Defense 2: done"
+		or
+			not "Remnant: Ssil Vida Active"
+			not "flagship planet: Ssil Vida"
+		random < 60
+	npc kill
+		government "Korath"
+		personality coward target uninterested marked waiting
+		system
+			distance 1 2
+		fleet
+			names "korath"
+			cargo 3
+			variant
+				"Korath Raider (Crippled)"
+		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 300000
+		dialog "A Remnant military leader thanks you for hunting down the <npc>, and gives you the agreed-upon payment of <payment>."
+
+
+
+mission "Remnant: Bounty 2"
+	job
+	repeat
+	name "Troublesome Raider Bounty"
+	description "A Korath ship is proving troublesome in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
+	source
+		government "Remnant"
+	to offer
+		has "Remnant: Salvage 4: offered"
+		or
+			not "Remnant: Ssil Vida Active"
+			not "flagship planet: Ssil Vida"
+		random < 50
+	npc kill
+		government "Korath"
+		personality heroic vindictive target uninterested waiting marked
+		system
+			distance 1 2
+		fleet
+			names "korath"
+			cargo 3
+			variant
+				"Korath Raider (Hyperdrive)"
+		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 400000
+		dialog "A Remnant military leader thanks you for hunting down the Korath ship <npc>, and gives you the agreed-upon payment of <payment>."
+
+
+
+mission "Remnant: Broken Jump Drive job"
+	name "Broken Jump Drive Delivery"
+	description "The researchers on <planet> need another broken jump drive to continue their project."
+	job
+	repeat 4
+	to offer
+		has "Remnant: Broken Jump Drive 5: done"
+		or
+			not "Remnant: Ssil Vida Active"
+			not "flagship planet: Ssil Vida"
+			
+	source
+		government "Remnant"
+	destination
+		government "Remnant"
+		attributes outfitter
+		not distance 0
+	on visit
+		dialog phrase "broken jump drive on visit"
+	on complete
+		outfit "Jump Drive (Broken)" -1
+		"remnant: broken jump drive count" ++
+		payment 300000
+		"reputation: Remnant" ++
+		"Remnant: Broken Jump Drive job: offered" --
+		dialog "The research team quickly offloads the broken jump drive and pays you <payment> before hurrying back to their lab."
+
+
+
+mission "Remnant: Expanded Horizons Astral job"
+	job
+	repeat
+	name "Research Expedition to <waypoints>"
+	description "Travel to <waypoints> with a research laboratory to collect data, then return to <destination>."
+	source
+		government "Remnant"
+	waypoint
+		not attributes "pleiades"
+		not attributes "inaccessible"
+	to offer
+		has "Remnant: Expanded Horizons Astral 2: done"
+		random < 50
+	on offer
+		require "Research Laboratory"
+	on waypoint
+		dialog "Your scientist unpacks the laboratory and takes the requested observations. A short while later, they have the data compiled on a set of data crystals and inform you that everything is ready for departure."
+	on complete
+		payment 500000
+		"reputation: Remnant" ++
+		dialog "When you land, a researcher quickly retrieves the data crystals with the information about the surveyed system and hands you the logistics allotment of <payment>."
+
+
+
+mission "Remnant: Bounty 3"
+	job
+	repeat
+	name "Damaged Dredger Bounty"
+	description "A damaged Korath ship is lurking in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
+	source
+		government "Remnant"
+	to offer
+		# 0.9.13 Compatibility patch
+		or
+			has "Remnant: Cognizance 4: done"
+			has "Remnant: Cognizance 4: failed"
+		not "Remnant: Cognizance 4: aborted"
+		random < 40
+	npc kill
+		government "Korath"
+		personality heroic vindictive target uninterested waiting marked
+		system
+			distance 1 2
+		fleet
+			names "korath"
+			cargo 3
+			variant
+				"Korath Dredger (Crippled)"
+		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 400000
+		dialog "A Remnant military leader thanks you for hunting down the Korath ship <npc>, and gives you the agreed-upon payment of <payment>."
+
+
+
+mission "Remnant: Bounty 4"
+	job
+	repeat
+	name "Marauding Dredger Bounty"
+	description "A Korath ship is marauding through Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
+	source
+		government "Remnant"
+	to offer
+		has "Remnant: Cognizance 14: done"
+		random < 30
+	npc kill
+		government "Korath"
+		personality heroic vindictive target uninterested waiting marked
+		system
+			distance 1 2
+		fleet
+			names "korath"
+			cargo 3
+			variant
+				"Korath Dredger (Hyperdrive)"
+		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 500000
+		dialog "A Remnant military leader thanks you for hunting down the Korath ship <npc>, and gives you the agreed-upon payment of <payment>."
+
+
+
+mission "Remnant: Bounty 5"
+	job
+	repeat
+	name "Destroy Ground Assault Bounty"
+	description "A Korath ship is hunting for our outposts in the Ember Wastes. Track it down, eliminate it, and then return to <planet> to receive your payment of <payment>."
+	source
+		government "Remnant"
+	to offer
+		has "Remnant: Cognizance 29: done"
+		or
+			not "Remnant: Ssil Vida Active"
+			not "flagship planet: Ssil Vida"
+		random < 5
+	npc kill
+		government "Korath"
+		personality heroic vindictive uninterested target marked
+		system
+			attributes "ember waste"
+			not attributes "graveyard"
+			not attributes "inaccessible"
+		fleet
+			names "korath"
+			cargo 3
+			variant
+				"Korath Dredger (Ground Assault)"
+				"Korath Chaser" 4
+		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 400000
+		dialog "A Remnant military leader thanks you for hunting down the Korath ship <npc>, and gives you the agreed-upon payment of <payment>."

@@ -58,7 +58,7 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 }
 
 SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
-	const std::string validationWarning = "\nAn expression must either perform a comparison or assign a value:\n";
+	const std::string validationWarning = "\nError: An expression must either perform a comparison or assign a value:\n";
 	OutputSink warnings(std::cerr);
 
 	GIVEN( "an empty ConditionSet" ) {
