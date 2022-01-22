@@ -31,6 +31,7 @@ on:
     - keys.txt
     - SConstruct
     - .winmake
+    - .codespell.exclude
   pull_request:
     # Run for any push to any pull request, if it modifies source code or game text.
     types: [opened, synchronize]
@@ -44,29 +45,13 @@ on:
     - keys.txt
     - SConstruct
     - .winmake
+    - .codespell.exclude
 
 
 jobs:
   # Figure out what changed, so other jobs in this file can conditionally execute.
   changed:
-    runs-on: ubuntu-latest
-    outputs:
-      data: ${{ steps.filter.outputs.data }}
-      game_code: ${{ steps.filter.outputs.game_code }}
-      macos: ${{ steps.filter.outputs.macos }}
-      windows: ${{ steps.filter.outputs.windows }}
-      linux: ${{ steps.filter.outputs.linux }}
-      unit_tests: ${{ steps.filter.outputs.unit_tests }}
-      integration_tests: ${{ steps.filter.outputs.integration_tests }}
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 2
-    - uses: dorny/paths-filter@v2
-      id: filter
-      with:
-        filters: .github/path-filters.yml
-        token: ${{ github.token }}
+    uses: endless-sky/endless-sky/.github/workflows/compute-changes.yml@master
 
   build_ubuntu:
     needs: changed
@@ -94,13 +79,16 @@ jobs:
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev uuid-dev scons ccache libgles2-mesa
+        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev uuid-dev ccache libgles2-mesa
+        python3 -m pip install --user scons
     - name: Print toolchain versions
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: |
         g++ -v
         gcc-ar --version
         ld -v
+        scons --version
+        python --version
     - name: Cache ccache results
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       uses: actions/cache@v2
@@ -140,11 +128,12 @@ jobs:
         path: ${{ env.TEST_BINARY }}
         # Rebuild the test binary if source code changed, test code changed, or if instructions on building the game changed.
         key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/src/**', 'tests/include/**') }}-${{ hashFiles('SConstruct', '.github/workflows/ci.yml') }}
-    - name: 'Install dependencies'
+    - name: Install dependencies
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev uuid-dev scons ccache libgles2-mesa
+        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev uuid-dev ccache libgles2-mesa
+        python3 -m pip install --user scons
     - name: Cache ccache results
       if: steps.cache-tests.outputs.cache-hit != 'true'
       uses: actions/cache@v2
@@ -186,7 +175,7 @@ jobs:
       with:
         path: ${{ env.ARTIFACT }}
         # Rebuild the game binary if source code changed, or if instructions on building the game changed.
-        key: ${{ matrix.os }}-artifact-${{ hashFiles('source/**') }}-${{ hashFiles('.winmake', '.github/workflows/ci.yml') }}
+        key: ${{ matrix.os }}-artifact-${{ hashFiles('source/**') }}-${{ hashFiles('.winmake', '.github/workflows/ci.yml', 'SConstruct') }}
     - name: Install sccache
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: choco install sccache
@@ -246,7 +235,7 @@ jobs:
       with:
         path: ${{ env.TEST_BINARY }}
         # Rebuild the test binary if source code changed, test code changed, or if instructions on building the game changed.
-        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/src/**', 'tests/include/**') }}-${{ hashFiles('.winmake', '.github/workflows/ci.yml') }}
+        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/src/**', 'tests/include/**') }}-${{ hashFiles('.winmake', '.github/workflows/ci.yml', 'SConstruct') }}
     - name: Install development dependencies
       if: steps.cache-tests.outputs.cache-hit != 'true'
       run: choco install sccache
@@ -501,3 +490,19 @@ jobs:
       # In a perfect world we would run a debug build, but since this will run on PRs, we can limit our search of "what caused the bug" to only the code
       # added by that PR, which means debugging symbols aren't as necessary. (We can ignore the still-reachable cin, cout, cerr inherited file descriptors.)
       run: valgrind --tool=memcheck --leak-check=full --track-origins=yes --track-fds=yes --error-exitcode=1 ./endless-sky -p
+
+
+
+  spellcheck:
+    needs: [changed]
+    if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.codespell == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
+    - uses: codespell-project/actions-codespell@master
+      with:
+        builtin: clear,en-GB_to_en-US
+        path: data/
+        exclude_file: .codespell.exclude

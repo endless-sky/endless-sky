@@ -1,4 +1,4 @@
-/* GameData.cpp
+/* UniverseObjects.cpp
 Copyright (c) 2021 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -166,7 +166,7 @@ void UniverseObjects::Change(const DataNode &node)
 	else if(node.Token(0) == "gamerules" && node.HasChildren())
 		gamerules.Load(node);
 	else
-		node.PrintTrace("Invalid \"event\" data:");
+		node.PrintTrace("Error: Invalid \"event\" data:");
 }
 
 
@@ -376,7 +376,7 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 				else if(child.Token(0) == "wind" && child.Size() >= 2)
 					solarWind[sprite] = child.Value(1);
 				else
-					child.PrintTrace("Unrecognized star attribute:");
+					child.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
 		else if(key == "news" && node.Size() >= 2)
