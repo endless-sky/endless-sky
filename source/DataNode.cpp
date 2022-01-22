@@ -104,12 +104,12 @@ double DataNode::Value(int index) const
 {
 	// Check for empty strings and out-of-bounds indices.
 	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
-		PrintTrace("Requested token index (" + to_string(index) + ") is out of bounds:");
+		PrintTrace("Error: Requested token index (" + to_string(index) + ") is out of bounds:");
 	else if(!IsNumber(tokens[index]))
-		PrintTrace("Cannot convert value \"" + tokens[index] + "\" to a number:");
+		PrintTrace("Error: Cannot convert value \"" + tokens[index] + "\" to a number:");
 	else
 		return Value(tokens[index]);
-	
+
 	return 0.;
 }
 
@@ -125,16 +125,16 @@ double DataNode::Value(const string &token)
 		return 0.;
 	}
 	const char *it = token.c_str();
-	
+
 	// Check for leading sign.
 	double sign = (*it == '-') ? -1. : 1.;
 	it += (*it == '-' || *it == '+');
-	
+
 	// Digits before the decimal point.
 	int64_t value = 0;
 	while(*it >= '0' && *it <= '9')
 		value = (value * 10) + (*it++ - '0');
-	
+
 	// Digits after the decimal point (if any).
 	int64_t power = 0;
 	if(*it == '.')
@@ -146,21 +146,21 @@ double DataNode::Value(const string &token)
 			--power;
 		}
 	}
-	
+
 	// Exponent.
 	if(*it == 'e' || *it == 'E')
 	{
 		++it;
 		int64_t sign = (*it == '-') ? -1 : 1;
 		it += (*it == '-' || *it == '+');
-		
+
 		int64_t exponent = 0;
 		while(*it >= '0' && *it <= '9')
 			exponent = (exponent * 10) + (*it++ - '0');
-		
+
 		power += sign * exponent;
 	}
-	
+
 	// Compose the return value.
 	return copysign(value * pow(10., power), sign);
 }
@@ -174,7 +174,7 @@ bool DataNode::IsNumber(int index) const
 	// Make sure this token exists and is not empty.
 	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
 		return false;
-	
+
 	return IsNumber(tokens[index]);
 }
 
@@ -251,7 +251,7 @@ int DataNode::PrintTrace(const string &message) const
 		Files::LogError("");
 		Files::LogError(message);
 	}
-	
+
 	// Recursively print all the parents of this node, so that the user can
 	// trace it back to the right point in the file.
 	size_t indent = 0;
@@ -259,7 +259,7 @@ int DataNode::PrintTrace(const string &message) const
 		indent = parent->PrintTrace() + 2;
 	if(tokens.empty())
 		return indent;
-	
+
 	// Convert this node back to tokenized text, with quotes used as necessary.
 	string line = !parent ? "" : "L" + to_string(lineNumber) + ": ";
 	line.append(string(indent, ' '));
@@ -276,7 +276,7 @@ int DataNode::PrintTrace(const string &message) const
 			line += hasQuote ? '`' : '"';
 	}
 	Files::LogError(line);
-	
+
 	// Tell the caller what indentation level we're at now.
 	return indent;
 }

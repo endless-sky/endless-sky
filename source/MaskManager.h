@@ -29,18 +29,18 @@ class MaskManager {
 public:
 	// Move the given masks at 1x scale into the manager's storage.
 	void SetMasks(const Sprite *sprite, std::vector<Mask> &&masks);
-	
+
 	// Add a scale that the given sprite needs to have a mask for.
 	void RegisterScale(const Sprite *sprite, double scale);
-	
+
 	// Create the scaled versions of all masks from the 1x versions.
 	void ScaleMasks();
-	
+
 	// Get the masks for the given sprite at the given scale. If a
 	// sprite has no masks, an empty mask is returned.
 	const std::vector<Mask> &GetMasks(const Sprite *sprite, double scale) const;
-	
-	
+
+
 private:
 	std::map<const Sprite *, std::map<double, std::vector<Mask>>> spriteMasks;
 };

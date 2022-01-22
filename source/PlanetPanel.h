@@ -34,36 +34,36 @@ class System;
 class PlanetPanel : public Panel {
 public:
 	PlanetPanel(PlayerInfo &player, std::function<void()> callback);
-	
+
 	virtual void Step() override;
 	virtual void Draw() override;
-	
-	
+
+
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	
-	
+
+
 private:
 	void TakeOffIfReady();
 	void TakeOff();
-	
-	
+
+
 private:
 	PlayerInfo &player;
 	std::function<void()> callback = nullptr;
 	bool requestedLaunch = false;
-	
+
 	const Planet &planet;
 	const System &system;
 	const Interface &ui;
-	
+
 	std::shared_ptr<Panel> trading;
 	std::shared_ptr<Panel> bank;
 	std::shared_ptr<SpaceportPanel> spaceport;
 	std::shared_ptr<Panel> hiring;
 	Panel *selectedPanel = nullptr;
-	
+
 	WrappedText text;
 };
 
