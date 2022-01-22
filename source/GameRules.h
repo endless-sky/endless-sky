@@ -27,14 +27,14 @@ class GameRules {
 public:
 	// Load a gamerules node.
 	void Load(const DataNode &node);
-	
+
 	// Revert the rules of this GameRule to the rules of other.
 	void Revert(const GameRules &other);
-	
+
 	// Get a gamerule constant.
 	double Get(const std::string &key) const;
-	
-	
+
+
 private:
 	Dictionary rules;
 };

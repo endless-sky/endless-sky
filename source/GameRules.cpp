@@ -26,21 +26,21 @@ namespace {
 		"depreciation: daily",
 		"depreciation: grace period",
 		"depreciation: max age",
-		
+
 		"flotsam: drag",
 		"flotsam: commodity: base lifetime",
 		"flotsam: commodity: random lifetime",
 		"flotsam: outfit: base lifetime",
 		"flotsam: outfit: cost scale",
 		"flotsam: outfit: base cost",
-		
+
 		"hit force scaling",
 		"hit force: base mass",
 		"hit force: base scale",
-		
+
 		"person spawnrate",
 	};
-	
+
 	// A mapping of gamerule constant names to specifically-allowed minimum values.
 	// Based on the specific usage of the constant, the allowed minimum value is
 	// chosen to avoid disallowed or undesirable behaviors (such as dividing by zero).
@@ -51,12 +51,12 @@ namespace {
 		{"depreciation: max age", 1.},
 		{"flotsam: outfit: base cost", 1.},
 		{"hit force: base mass", 1.},
-		
+
 		// The following constants are used in Random::Int, which disallows 0.
 		{"flotsam: commodity: random lifetime", 1.},
 		{"person spawnrate", 1.},
 	};
-	
+
 	// A mapping of gamerule constant names to specifically-allowed minimum values.
 	// The default behavior (for those constant names not in this map) is an unbounded
 	// maximum.
@@ -81,28 +81,28 @@ void GameRules::Load(const DataNode &node)
 			child.PrintTrace("Skipping gamerule with no value:");
 			continue;
 		}
-		
+
 		const string &key = child.Token(0);
-		
+
 		if(!RULE_NAMES.count(key))
 		{
 			child.PrintTrace("Skipping unrecognized gamerule:");
 			continue;
 		}
-		
+
 		const string &token = child.Token(1);
 		double value = (token == "true") ? 1. : ((token == "false") ? 0. : child.Value(1));
-		
+
 		auto it = MINIMUM_ALLOWED.find(key);
 		if(it != MINIMUM_ALLOWED.end())
 			value = max(it->second, value);
 		else
 			value = max(0., value);
-		
+
 		it = MAXIMUM_ALLOWED.find(key);
 		if(it != MAXIMUM_ALLOWED.end())
 			value = min(value, it->second);
-		
+
 		rules[key] = value;
 	}
 }
