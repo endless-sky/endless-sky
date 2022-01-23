@@ -552,7 +552,9 @@ void Ship::FinishLoading(bool isNewInstance)
 	auto equipped = armament.GetEquipped();
 	for(auto &it : equipped)
 	{
-		int excess = it.second - outfits[it.first];
+		auto outfitIt = outfits.find(it.first);
+		int nrOutfits = (outfitIt != outfits.end() ? outfitIt->second : 0);
+		int excess = it.second - nrOutfits;
 		if(excess > 0)
 		{
 			// If there are more hardpoints specifying this outfit than there
