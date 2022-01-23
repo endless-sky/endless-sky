@@ -143,6 +143,14 @@ test-data "Three Earthly Barges"
 		visited "Menkent"
 
 
+test "Open Menu"
+	status partial
+	description "Helper function to open the in-game menu."
+	sequence
+		input
+			key "escape"
+
+
 test "Load First Savegame"
 	status partial
 	description "Helper function to load the first savegame. Typically used directly after save-game inject."
@@ -151,8 +159,33 @@ test "Load First Savegame"
 			key l
 		input
 			key l
-			
-			
+
+
+test "Save To Default Snapshot"
+	status active
+	description "Helper function to save the game to the first snapshot. Typically used directly after opening the menu."
+	sequence
+		# Open the menu.
+		# Future versions should detect if the menu is active and only open the menu when required.
+		# But the derived test-conditions that are required for such detection are not yet available.
+		input
+			key "escape"
+		# Go to Load/Save.
+		input
+			key l
+		# Add snapshot.
+		input
+			key a
+		# Confirm usage of the default snapshot name.
+		input
+			key "enter"
+		# Exit the menu that we are in (and return to the game)
+		input
+			key b
+		input
+			key e
+
+
 test "Depart"
 	status partial
 	description "Helper function to depart from a planet."
@@ -163,3 +196,12 @@ test "Depart"
 		# Using empty inputs to trigger those game loops.
 		input
 		input
+		# The ships zoom gets restored at a rate of .02 per step, so wait for a bit more than 50 steps to get to full zoom/full control.
+		apply
+			"test: Depart: zoom_restore_counter" = 55
+		label zoom_restore_loop
+		apply
+			"test: Depart: zoom_restore_counter" -= 1
+		input
+		branch zoom_restore_loop
+			"test: Depart: zoom_restore_counter" > 0
