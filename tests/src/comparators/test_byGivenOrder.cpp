@@ -29,8 +29,8 @@ SCENARIO( "Test basic ByGivenOrder functionality." , "[ByGivenOrder]" ) {
 		const std::vector<int> unknownElements = { 1, 3, 5 };
 
 		THEN( "Known elements are sorted by the given order" ) {
-			for(int i = 0; i < givenOrder.size(); ++i)
-				for(int j = 0; j < givenOrder.size(); ++j)
+			for(unsigned int i = 0; i < givenOrder.size(); ++i)
+				for(unsigned int j = 0; j < givenOrder.size(); ++j)
 					CHECK( c(givenOrder[i], givenOrder[j]) == (i < j) );
 		}
 
