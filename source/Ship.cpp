@@ -618,7 +618,15 @@ void Ship::FinishLoading(bool isNewInstance)
 				count -= eit->second;
 
 			if(count)
-				armament.Add(it.first, count);
+				count -= armament.Add(it.first, count);
+			if(count)
+			{
+				string warning = modelName;
+				if(!name.empty())
+					warning += " \"" + name + "\"";
+				warning += ": weapon \"" + it.first->Name() + "\" installed, but insufficient slots to use it.";
+				Files::LogError(warning);
+			}
 		}
 	}
 	if(!undefinedOutfits.empty())

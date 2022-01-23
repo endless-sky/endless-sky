@@ -45,7 +45,7 @@ public:
 	// of a given weapon than there are slots for it, the extras will not fire.
 	// But, the "gun ports" attribute should keep that from happening. To
 	// remove a weapon, just pass a negative value here.
-	void Add(const Outfit *outfit, int count = 1);
+	int Add(const Outfit *outfit, int count = 1);
 	// Call this once all the outfits have been loaded to make sure they are all
 	// set up properly (even the ones that were pre-assigned to a hardpoint).
 	void FinishLoading();
