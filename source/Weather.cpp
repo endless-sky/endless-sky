@@ -21,8 +21,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-Weather::Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining, double strength)
-	: hazard(hazard), totalLifetime(totalLifetime), lifetimeRemaining(lifetimeRemaining), strength(strength)
+Weather::Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining, double strength, Point origin)
+	: hazard(hazard), totalLifetime(totalLifetime), lifetimeRemaining(lifetimeRemaining), strength(strength), origin(origin)
 {
 	// Using a deviation of totalLifetime / 4.3 causes the strength of the
 	// weather to start and end at about 10% the maximum. Store the entire
@@ -87,14 +87,21 @@ double Weather::DamageMultiplier() const
 
 
 
+const Point &Weather::Origin() const
+{
+	return origin;
+}
+
+
+
 // Create any environmental effects and decrease the lifetime of this weather.
 void Weather::Step(vector<Visual> &visuals)
 {
 	// Environmental effects are created by choosing a random angle and distance from
-	// the system center, then creating the effect there.
+	// their origin, then creating the effect there.
 	double minRange = hazard->MinRange();
 	double maxRange = hazard->MaxRange();
-	
+
 	// Estimate the number of visuals to be generated this frame.
 	// MAYBE: create only a subset of possible effects per frame.
 	int totalAmount = 0;
@@ -102,16 +109,16 @@ void Weather::Step(vector<Visual> &visuals)
 		totalAmount += effect.second;
 	totalAmount *= currentStrength;
 	visuals.reserve(visuals.size() + totalAmount);
-	
+
 	for(auto &&effect : hazard->EnvironmentalEffects())
 		for(int i = 0; i < effect.second * currentStrength; ++i)
 		{
 			Point angle = Angle::Random().Unit();
 			double magnitude = (maxRange - minRange) * sqrt(Random::Real());
-			Point pos = (minRange + magnitude) * angle;
+			Point pos = origin + (minRange + magnitude) * angle;
 			visuals.emplace_back(*effect.first, std::move(pos), Point(), Angle::Random());
 		}
-	
+
 	if(--lifetimeRemaining <= 0)
 		shouldBeRemoved = true;
 }
