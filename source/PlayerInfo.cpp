@@ -1875,8 +1875,9 @@ void PlayerInfo::CheckReputationConditions()
 
 
 
-void PlayerInfo::FillHailSubs(map<string, string> &subs)
+map<string, string> PlayerInfo::GetSubstitutions()
 {
+	map<string, string> subs;
 	GameData::GetTextReplacements().Substitutions(subs, Conditions());
 
 	subs["<first>"] = FirstName();
@@ -1887,6 +1888,7 @@ void PlayerInfo::FillHailSubs(map<string, string> &subs)
 	subs["<system>"] = GetSystem()->Name();
 	subs["<date>"] = GetDate().ToString();
 	subs["<day>"] = GetDate().LongString();
+	return subs;
 }
 
 

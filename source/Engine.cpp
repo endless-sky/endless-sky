@@ -1776,9 +1776,7 @@ void Engine::SendHails()
 		return;
 
 	// Generate a random hail message.
-	map<string, string> stubs;
-	player.FillHailSubs(stubs);
-	SendMessage(source, source->GetHail(stubs));
+	SendMessage(source, source->GetHail(player.GetSubstitutions()));
 }
 
 
