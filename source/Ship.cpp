@@ -1321,7 +1321,7 @@ void Ship::SetHail(const Phrase &phrase)
 
 
 
-string Ship::GetHail(map<string, string> subs) const
+string Ship::GetHail(map<string, string> &&subs) const
 {
 	string hailStr = hail ? hail->Get() : government ? government->GetHail(isDisabled) : "";
 

@@ -1875,7 +1875,7 @@ void PlayerInfo::CheckReputationConditions()
 
 
 
-map<string, string> PlayerInfo::GetSubstitutions()
+map<string, string> PlayerInfo::GetSubstitutions() const
 {
 	map<string, string> subs;
 	GameData::GetTextReplacements().Substitutions(subs, Conditions());
