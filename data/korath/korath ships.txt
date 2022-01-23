@@ -80,7 +80,6 @@ ship "Korath Dredger"
 	description "After the Korath were exiled from their homelands, efficient resource collection became a priority. World-ships were too precious to risk on dangerous forays, and Raiders lacked the cargo capacity. The Dredger was born as an answer to this problem, featuring an abundance of cargo and passenger space, with formidable defensive armament. With such a complement, these bulky ships can also offer potent support for frontline Raiders."
 
 
-
 ship "Korath Dredger" "Korath Dredger (Crippled)"
 	sprite "ship/dredger"
 	outfits
@@ -128,6 +127,29 @@ ship "Korath Dredger" "Korath Dredger (Hyperdrive)"
 		"Thruster (Asteroid Class)"
 		"Hyperdrive"
 		"Jump Drive (Broken)"
+
+
+ship "Korath Dredger" "Korath Dredger (Ground Assault)"
+	"crew" 470
+	outfits
+		"Korath Banisher" 2
+		"Korath Warder" 2
+		
+		"Outfits Expansion" 6
+		"Systems Core (Large)"
+		"Double Plasma Core"
+		"Bunk Room" 19
+		"Large Heat Shunt" 2
+		"Small Bunk Room"
+		"Small Heat Shunt"
+		"Fuel Processor"
+		"Korath Repeater Rifle" 475
+		
+		"Steering (Planetary Class)"
+		"Thruster (Lunar Class)"
+		"Hyperdrive"
+		"Jump Drive"
+
 
 
 ship "Korath Raider"
@@ -191,6 +213,7 @@ ship "Korath Raider"
 	"final explode" "final explosion large"
 	description "The Korath Raider is their warship of choice for plundering neighboring species."
 
+
 ship "Korath Raider" "Korath Raider (Ember)"
 	sprite "ship/raider"
 	outfits
@@ -217,6 +240,7 @@ ship "Korath Raider" "Korath Raider (Ember)"
 	turret "Korath Grab-Strike"
 	turret "Korath Banisher"
 	turret "Korath Warder"
+
 
 ship "Korath Raider" "Korath Raider (Hyperdrive)"
 	sprite "ship/raider"
@@ -245,6 +269,7 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 	turret "Korath Banisher"
 	turret "Korath Warder"
 
+
 ship "Korath Raider" "Korath Raider (Crippled)"
 	sprite "ship/raider"
 	outfits
@@ -269,6 +294,8 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 	turret "Korath Grab-Strike"
 	turret "Korath Banisher"
 	turret "Korath Warder"
+
+
 
 ship "Korath Chaser"
 	sprite "ship/chaser"
@@ -366,6 +393,7 @@ ship "Korath World-Ship"
 	"final explode" "final explosion large"
 	description "Korath World-Ships are massive nomadic habitats that hold all that is left of their people."
 
+
 ship "Korath World-Ship" "Korath World-Ship B"
 	sprite "ship/world-ship b"
 	thumbnail "thumbnail/world-ship b"
@@ -378,6 +406,7 @@ ship "Korath World-Ship" "Korath World-Ship B"
 	turret 83 165 "Korath Warder"
 	turret 0 277 "Korath Banisher"
 
+
 ship "Korath World-Ship" "Korath World-Ship C"
 	sprite "ship/world-ship c"
 	thumbnail "thumbnail/world-ship c"
@@ -389,6 +418,7 @@ ship "Korath World-Ship" "Korath World-Ship C"
 	turret 70 57 "Korath Banisher"
 	turret -91 290 "Korath Banisher"
 	turret 91 290 "Korath Warder"
+
 
 ship "Korath World-Ship" "Korath World-Ship A (Jump)"
 	outfits
@@ -414,6 +444,7 @@ ship "Korath World-Ship" "Korath World-Ship A (Jump)"
 	turret 61 -6 "Korath Warder"
 	turret -66 210 "Korath Warder"
 	turret 66 210 "Korath Banisher"
+
 
 ship "Korath World-Ship" "Korath World-Ship B (Jump)"
 	sprite "ship/world-ship b"
@@ -441,6 +472,7 @@ ship "Korath World-Ship" "Korath World-Ship B (Jump)"
 	turret 83 165 "Korath Warder"
 	turret 0 277 "Korath Banisher"
 
+
 ship "Korath World-Ship" "Korath World-Ship C (Jump)"
 	sprite "ship/world-ship c"
 	outfits
@@ -466,6 +498,7 @@ ship "Korath World-Ship" "Korath World-Ship C (Jump)"
 	turret 70 53 "Korath Banisher"
 	turret -91 286 "Korath Banisher"
 	turret 91 286 "Korath Warder"
+
 
 ship "Korath World-Ship" "Korath World-Ship B (Ember)"
 	sprite "ship/world-ship b"
@@ -494,6 +527,7 @@ ship "Korath World-Ship" "Korath World-Ship B (Ember)"
 	turret -83 165 "Korath Warder"
 	turret 83 165 "Korath Warder"
 	turret 0 277 "Korath Banisher"
+
 
 ship "Korath World-Ship" "Korath World-Ship B (Crippled)"
 	sprite "ship/world-ship b"
@@ -587,6 +621,7 @@ ship "Kar Ik Vot 349"
 	"final explode" "final explosion large"
 	description "The largest and deadliest of the Kor Sestor robotic warships, a single one of these battlecruisers can hold its own against an entire fleet of lesser ships."
 
+
 ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 	outfits
 		"Korath Piercer Launcher" 4
@@ -615,6 +650,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 	turret "Korath Repeater Turret"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
+
 
 ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Defense)"
 	outfits
@@ -645,6 +681,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Defense)"
 	turret "Korath Banisher"
 	turret "Korath Warder"
 	turret "Korath Warder"
+
 
 ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Trapper)"
 	outfits
@@ -677,6 +714,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Trapper)"
 	turret "Korath Banisher"
 	turret
 	turret
+
 
 
 ship "Tek Far 71 - Lek"
@@ -747,6 +785,7 @@ ship "Tek Far 71 - Lek"
 	"final explode" "final explosion large"
 	description "The Kor Sestor war fleets rely heavily on small, powerful fighters and drones. This ship can carry up to ten of their drones, clamped to the exterior of its hull."
 
+
 ship "Tek Far 71 - Lek" "Tek Far 71 - Lek (Close Quarters)"
 	outfits
 		"Korath Detainer"
@@ -770,6 +809,7 @@ ship "Tek Far 71 - Lek" "Tek Far 71 - Lek (Close Quarters)"
 	turret "Korath Repeater Turret"
 	turret "Korath Warder"
 	turret "Korath Repeater Turret"
+
 
 
 ship "Tek Far 78 - Osk"
@@ -841,6 +881,7 @@ ship "Tek Far 78 - Osk"
 	"final explode" "final explosion large"
 	description "This carrier is equipped with docking clamps for up to nine fighters. When loaded with a full complement of the powerful Kor Sestor robotic fighters, it is a formidable opponent."
 
+
 ship "Tek Far 78 - Osk" "Tek Far 78 - Osk (Close Quarters)"
 	outfits
 		"Korath Detainer"
@@ -862,6 +903,7 @@ ship "Tek Far 78 - Osk" "Tek Far 78 - Osk (Close Quarters)"
 	turret "Korath Repeater Turret"
 	turret "Korath Repeater Turret"
 	turret "Korath Warder"
+
 
 
 ship "Tek Far 109"
@@ -935,6 +977,7 @@ ship "Tek Far 109"
 	description "The TF109 is designed almost solely for the purpose of carrying a fleet of Kor Sestor fighters and drones. Without them to serve as a protective screen, the ship itself is relatively helpless."
 
 
+
 ship "Met Par Tek 53"
 	sprite "ship/met par tek 53"
 	thumbnail "thumbnail/met par tek 53"
@@ -993,6 +1036,7 @@ ship "Met Par Tek 53"
 	"final explode" "final explosion medium"
 	description "Although this is the smallest Kor Sestor ship other than their fighters, it is larger than most human capital ships and considerably more powerful."
 
+
 ship "Met Par Tek 53" "Met Par Tek 53 (Sniper)"
 	outfits
 		"Korath Detainer"
@@ -1022,6 +1066,7 @@ ship "Met Par Tek 53" "Met Par Tek 53 (Sniper)"
 	turret
 	turret
 	turret
+
 
 
 ship "Far Lek 14"
@@ -1060,6 +1105,7 @@ ship "Far Lek 14"
 	explode "tiny explosion" 20
 	explode "small explosion" 10
 	description "At the peak of their recent civil war, the Kor Sestor faction developed these automated attack drones, easy to manufacture and encased in an ultra-dense hull that can absorb a significant amount of damage."
+
 
 
 ship "Far Osk 27"
@@ -1148,6 +1194,7 @@ ship "Model 8"
 	description "The primary role of the smallest Kor Mereti drones is asteroid mining, but their lasers can also be employed as offensive weapons when necessary."
 
 
+
 ship "Model 16"
 	sprite "ship/model 16"
 	thumbnail "thumbnail/model 16"
@@ -1199,6 +1246,7 @@ ship "Model 16"
 	explode "large explosion" 10
 	"final explode" "final explosion small"
 	description "The Kor Mereti war drones are constructed in a modular fashion, which allows them to grow over time as more materials become available. This one is recently built, and relatively small."
+
 
 
 ship "Model 32"
@@ -1255,6 +1303,7 @@ ship "Model 32"
 	description "The Kor Mereti built their drones to mimic life: capable of growth and development throughout their life cycles. Their automated factories can convert the drones from one configuration to another by adding or removing modules."
 
 
+
 ship "Model 64"
 	sprite "ship/model 64"
 	thumbnail "thumbnail/model 64"
@@ -1309,6 +1358,7 @@ ship "Model 64"
 	explode "large explosion" 20
 	"final explode" "final explosion medium"
 	description "This medium-sized drone serves the Kor Mereti fleets in much the same way as a human Frigate, but in terms of total firepower it is far beyond anything humans have constructed."
+
 
 
 ship "Model 128"
@@ -1368,6 +1418,7 @@ ship "Model 128"
 	description "As Kor Mereti drones continue to grow and develop into their final form, they split down the middle. At the same time, their shielding and weaponry continue to become stronger."
 
 
+
 ship "Model 256"
 	sprite "ship/model 256"
 	thumbnail "thumbnail/model 256"
@@ -1425,6 +1476,7 @@ ship "Model 256"
 	explode "large explosion" 30
 	"final explode" "final explosion large"
 	description "There is a saying among the Quarg that every species which insists on studying war will eventually construct a weapon that outlives its creators. For the Korath, their war drones have very nearly done so."
+
 
 
 ship "Model 512"
