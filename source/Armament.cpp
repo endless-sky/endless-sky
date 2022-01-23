@@ -176,6 +176,18 @@ const vector<Hardpoint> &Armament::Get() const
 
 
 
+// Get an overview of how many weapon-outfits are equipped.
+std::map<const Outfit *, int> Armament::GetEquipped() const
+{
+	map<const Outfit *, int> equipped;
+	for(const Hardpoint &hardpoint : hardpoints)
+		if(hardpoint.GetOutfit())
+			++equipped[hardpoint.GetOutfit()];
+	return equipped;
+}
+
+
+
 // Determine how many fixed gun hardpoints are on this ship.
 int Armament::GunCount() const
 {

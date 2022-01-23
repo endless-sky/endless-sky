@@ -243,7 +243,6 @@ void Ship::Load(const DataNode &node)
 		{
 			if(!hasArmament)
 			{
-				equipped.clear();
 				armament = Armament();
 				hasArmament = true;
 			}
@@ -279,8 +278,6 @@ void Ship::Load(const DataNode &node)
 						grand.PrintTrace("Skipping unrecognized attribute:");
 				}
 			}
-			if(outfit)
-				++equipped[outfit];
 			if(key == "gun")
 				armament.AddGunPort(hardpoint, gunPortAngle, gunPortParallel, drawUnder, outfit);
 			else
@@ -411,13 +408,12 @@ void Ship::Load(const DataNode &node)
 			// Verify we have at least as many installed outfits as were identified as "equipped."
 			// If not (e.g. a variant definition), ensure FinishLoading equips into a blank slate.
 			if(!hasArmament)
-				for(const auto &pair : equipped)
+				for(const auto &pair : armament.GetEquipped())
 				{
 					auto it = outfits.find(pair.first);
 					if(it == outfits.end() || it->second < pair.second)
 					{
 						armament.UninstallAll();
-						equipped.clear();
 						break;
 					}
 				}
@@ -526,9 +522,6 @@ void Ship::FinishLoading(bool isNewInstance)
 			auto nextTurret = armament.Get().begin();
 			auto end = armament.Get().end();
 			Armament merged;
-			// Reset the "equipped" map to match exactly what the code below
-			// places in the weapon hardpoints.
-			equipped.clear();
 			for( ; bit != bend; ++bit)
 			{
 				if(!bit->IsTurret())
@@ -538,11 +531,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					const Outfit *outfit = (nextGun == end) ? nullptr : nextGun->GetOutfit();
 					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAngle(), bit->IsParallel(), bit->IsUnder(), outfit);
 					if(nextGun != end)
-					{
-						if(outfit)
-							++equipped[outfit];
 						++nextGun;
-					}
 				}
 				else
 				{
@@ -551,11 +540,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					const Outfit *outfit = (nextTurret == end) ? nullptr : nextTurret->GetOutfit();
 					merged.AddTurret(bit->GetPoint() * 2., bit->IsUnder(), outfit);
 					if(nextTurret != end)
-					{
-						if(outfit)
-							++equipped[outfit];
 						++nextTurret;
-					}
 				}
 			}
 			armament = merged;
@@ -564,6 +549,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	// Check that all the "equipped" weapons actually match what your ship
 	// has, and that they are truly weapons. Remove any excess weapons and
 	// warn if any non-weapon outfits are "installed" in a hardpoint.
+	auto equipped = armament.GetEquipped();
 	for(auto &it : equipped)
 	{
 		int excess = it.second - outfits[it.first];
@@ -676,7 +662,6 @@ void Ship::FinishLoading(bool isNewInstance)
 		}
 	}
 	cargo.SetSize(attributes.Get("cargo space"));
-	equipped.clear();
 	armament.FinishLoading();
 
 	// Figure out how far from center the farthest hardpoint is.
