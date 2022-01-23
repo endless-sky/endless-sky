@@ -46,6 +46,14 @@ SCENARIO( "Test basic ByGivenOrder functionality." , "[ByGivenOrder]" ) {
 			CHECK( toSort == expectedOrder );
 		}
 
+		THEN( "Known elements are equal to themselves" ) {
+			CHECK( !comparator(4, 4) );
+		}
+
+		THEN( "Unknown elements are equal to themselves" ) {
+			CHECK( !comparator(5, 5) );
+		}
+
 		THEN( "Overall test" ) {
 			std::vector<int> toSort = { 2, 4, 6, 8, 5, 1, 3 };
 			const std::vector<int> expectedOrder = { 4, 2, 8, 6, 1, 3, 5 };
