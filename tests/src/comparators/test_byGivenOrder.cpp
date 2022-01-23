@@ -23,41 +23,41 @@ namespace { // test namespace
 SCENARIO( "Test basic ByGivenOrder functionality." , "[ByGivenOrder]" ) {
 	GIVEN("An order") {
 		const std::vector<int> givenOrder = { 4, 2, 8, 6 };
-		ByGivenOrder<int> comparator(givenOrder);
+		ByGivenOrder<int> c(givenOrder);
 
 		THEN( "Known elements are sorted by the given order" ) {
 			std::vector<int> toSort = { 2, 4, 6 };
 			const std::vector<int> expectedOrder = { 4, 2, 6 };
-			std::sort(toSort.begin(), toSort.end(), comparator);
+			std::sort(toSort.begin(), toSort.end(), c);
 			CHECK( toSort == expectedOrder );
 		}
 
 		THEN( "Unknown elements are sorted by their native order" ) {
 			std::vector<int> toSort = { 5, 1, 3 };
 			const std::vector<int> expectedOrder = { 1, 3, 5 };
-			std::sort(toSort.begin(), toSort.end(), comparator);
+			std::sort(toSort.begin(), toSort.end(), c);
 			CHECK( toSort == expectedOrder );
 		}
 
 		THEN( "Unknown elements are sorted after known elements" ) {
 			std::vector<int> toSort = { 8, 1 };
 			const std::vector<int> expectedOrder = { 8, 1 };
-			std::sort(toSort.begin(), toSort.end(), comparator);
+			std::sort(toSort.begin(), toSort.end(), c);
 			CHECK( toSort == expectedOrder );
 		}
 
 		THEN( "Known elements are equal to themselves" ) {
-			CHECK( !comparator(4, 4) );
+			CHECK( !c(4, 4) );
 		}
 
 		THEN( "Unknown elements are equal to themselves" ) {
-			CHECK( !comparator(5, 5) );
+			CHECK( !c(5, 5) );
 		}
 
 		THEN( "Overall test" ) {
 			std::vector<int> toSort = { 2, 4, 6, 8, 5, 1, 3 };
 			const std::vector<int> expectedOrder = { 4, 2, 8, 6, 1, 3, 5 };
-			std::sort(toSort.begin(), toSort.end(), comparator);
+			std::sort(toSort.begin(), toSort.end(), c);
 			CHECK( toSort == expectedOrder );
 		}
 	}
