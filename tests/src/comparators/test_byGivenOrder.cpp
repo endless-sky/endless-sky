@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "../../source/comparators/ByGivenOrder.h"
 
 // ... and any system includes needed for the test file.
+#include <algorithm>
 
 namespace { // test namespace
 
@@ -25,38 +26,43 @@ SCENARIO( "Test basic ByGivenOrder functionality." , "[ByGivenOrder]" ) {
 		const std::vector<int> givenOrder = { 4, 2, 8, 6 };
 		ByGivenOrder<int> c(givenOrder);
 
+		const std::vector<int> unknownElements = { 1, 3, 5 };
+
 		THEN( "Known elements are sorted by the given order" ) {
-			std::vector<int> toSort = { 2, 4, 6 };
-			const std::vector<int> expectedOrder = { 4, 2, 6 };
-			std::sort(toSort.begin(), toSort.end(), c);
-			CHECK( toSort == expectedOrder );
+			for(int i = 0; i < givenOrder.size(); ++i)
+				for(int j = 0; j < givenOrder.size(); ++j)
+					CHECK( c(givenOrder[i], givenOrder[j]) == (i < j) );
 		}
 
 		THEN( "Unknown elements are sorted by their native order" ) {
-			std::vector<int> toSort = { 5, 1, 3 };
-			const std::vector<int> expectedOrder = { 1, 3, 5 };
-			std::sort(toSort.begin(), toSort.end(), c);
-			CHECK( toSort == expectedOrder );
+			for(int elt : unknownElements)
+				for(int elt2 : unknownElements)
+					CHECK( c(elt, elt2) == (elt < elt2) );
 		}
 
 		THEN( "Unknown elements are sorted after known elements" ) {
-			std::vector<int> toSort = { 8, 1 };
-			const std::vector<int> expectedOrder = { 8, 1 };
-			std::sort(toSort.begin(), toSort.end(), c);
-			CHECK( toSort == expectedOrder );
+			for(int elt : givenOrder)
+				for(int elt2 : unknownElements) {
+					CHECK( c(elt, elt2) );
+					CHECK( !c(elt2, elt) );
+				}
 		}
 
 		THEN( "Known elements are equal to themselves" ) {
-			CHECK( !c(4, 4) );
+			for(int elt : givenOrder)
+				CHECK( !c(elt, elt) );
 		}
 
 		THEN( "Unknown elements are equal to themselves" ) {
-			CHECK( !c(5, 5) );
+			for(int elt : unknownElements)
+				CHECK( !c(elt, elt) );
 		}
 
 		THEN( "Overall test" ) {
 			std::vector<int> toSort = { 2, 4, 6, 8, 5, 1, 3 };
 			const std::vector<int> expectedOrder = { 4, 2, 8, 6, 1, 3, 5 };
+
+			std::random_shuffle(toSort.begin(), toSort.end());
 			std::sort(toSort.begin(), toSort.end(), c);
 			CHECK( toSort == expectedOrder );
 		}
