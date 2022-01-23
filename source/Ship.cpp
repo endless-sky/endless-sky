@@ -553,8 +553,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	for(auto &it : equipped)
 	{
 		auto outfitIt = outfits.find(it.first);
-		int nrOutfits = (outfitIt != outfits.end() ? outfitIt->second : 0);
-		int excess = it.second - nrOutfits;
+		int amount = (outfitIt != outfits.end() ? outfitIt->second : 0);
+		int excess = it.second - amount;
 		if(excess > 0)
 		{
 			// If there are more hardpoints specifying this outfit than there
