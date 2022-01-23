@@ -1353,7 +1353,7 @@ mission "Remnant Rescue 4"
 		payment 500000
 		dialog
 			`Upon landing, the captain of the <npc> meets you at your ship to thank you personally for rescuing them from the Graveyard, leaving you with a heartfelt sentence: "May the Embers burn bright for you." `
-			`Soon after, your communicator notifies you of a resource allocation of <payment>.`
+			`	Soon after, your communicator notifies you of a resource allocation of <payment>.`
 	on visit
 		dialog
 			`You have returned, yet the <npc> has not.`
