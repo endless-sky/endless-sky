@@ -1238,7 +1238,7 @@ mission "Remnant Rescue 2B"
 		"rescue missions" ++
 		payment 300000
 		dialog
-			`You land, and with heavy heart, report that the <npc> was lost with all hands.`
+			`You land, and with a heavy heart, report that the <npc> was lost with all hands. The Remnant are saddened at the news, but thank you regardless and hand off your resource allocation of <payment>.`
 	on visit
 		dialog
 			`You have returned, yet the <npc> is still missing.`
