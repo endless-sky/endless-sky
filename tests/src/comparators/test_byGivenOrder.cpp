@@ -40,6 +40,13 @@ SCENARIO( "Test basic ByGivenOrder functionality." , "[ByGivenOrder]" ) {
 		}
 
 		THEN( "Unknown elements are sorted after known elements" ) {
+			std::vector<int> toSort = { 8, 1 };
+			const std::vector<int> expectedOrder = { 8, 1 };
+			std::sort(toSort.begin(), toSort.end(), comparator);
+			CHECK( toSort == expectedOrder );
+		}
+
+		THEN( "Overall test" ) {
 			std::vector<int> toSort = { 2, 4, 6, 8, 5, 1, 3 };
 			const std::vector<int> expectedOrder = { 4, 2, 8, 6, 1, 3, 5 };
 			std::sort(toSort.begin(), toSort.end(), comparator);
