@@ -29,21 +29,21 @@ SCENARIO( "Test basic ByGivenOrder functionality." , "[ByGivenOrder]" ) {
 			std::vector<int> toSort = { 2, 4, 6 };
 			const std::vector<int> expectedOrder = { 4, 2, 6 };
 			std::sort(toSort.begin(), toSort.end(), comparator);
-			REQUIRE( toSort == expectedOrder );
+			CHECK( toSort == expectedOrder );
 		}
 
 		THEN( "Unknown elements are sorted by their native order" ) {
 			std::vector<int> toSort = { 5, 1, 3 };
 			const std::vector<int> expectedOrder = { 1, 3, 5 };
 			std::sort(toSort.begin(), toSort.end(), comparator);
-			REQUIRE( toSort == expectedOrder );
+			CHECK( toSort == expectedOrder );
 		}
 
 		THEN( "Unknown elements are sorted after known elements" ) {
 			std::vector<int> toSort = { 2, 4, 6, 8, 5, 1, 3 };
 			const std::vector<int> expectedOrder = { 4, 2, 8, 6, 1, 3, 5 };
 			std::sort(toSort.begin(), toSort.end(), comparator);
-			REQUIRE( toSort == expectedOrder );
+			CHECK( toSort == expectedOrder );
 		}
 	}
 }

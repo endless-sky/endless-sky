@@ -35,17 +35,17 @@ SCENARIO( "Test basic ByName functionality." , "[ByName]" ) {
 	NamedObject values[3] = { 10, 20, 30 };
 	ByName<NamedObject> c;
 
-	REQUIRE( c(&values[0], &values[0]) == false );
-	REQUIRE( c(&values[0], &values[1]) == true );
-	REQUIRE( c(&values[0], &values[2]) == true );
+	CHECK( c(&values[0], &values[0]) == false );
+	CHECK( c(&values[0], &values[1]) == true );
+	CHECK( c(&values[0], &values[2]) == true );
 
-	REQUIRE( c(&values[1], &values[0]) == false );
-	REQUIRE( c(&values[1], &values[1]) == false );
-	REQUIRE( c(&values[1], &values[2]) == true );
+	CHECK( c(&values[1], &values[0]) == false );
+	CHECK( c(&values[1], &values[1]) == false );
+	CHECK( c(&values[1], &values[2]) == true );
 
-	REQUIRE( c(&values[2], &values[0]) == false );
-	REQUIRE( c(&values[2], &values[1]) == false );
-	REQUIRE( c(&values[2], &values[2]) == false );
+	CHECK( c(&values[2], &values[0]) == false );
+	CHECK( c(&values[2], &values[1]) == false );
+	CHECK( c(&values[2], &values[2]) == false );
 
 }
 // #endregion unit tests
