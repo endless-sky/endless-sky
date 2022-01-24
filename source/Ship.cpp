@@ -580,13 +580,13 @@ void Ship::FinishLoading(bool isNewInstance)
 			armament.Add(it.first, -excess);
 			it.second -= excess;
 
-			LogWarning(ModelName(), Name(), std::move("outfit \"" + it.first->Name() + "\" equipped but not included in outfit list."));
+			LogWarning(VariantName(), Name(), std::move("outfit \"" + it.first->Name() + "\" equipped but not included in outfit list."));
 		}
 		else if(!it.first->IsWeapon())
 			// This ship was specified with a non-weapon outfit in a
 			// hardpoint. Hardpoint::Install removes it, but issue a
 			// warning so the definition can be fixed.
-			LogWarning(ModelName(), Name(), std::move("outfit \"" + it.first->Name() + "\" is not a weapon, but is installed as one."));
+			LogWarning(VariantName(), Name(), std::move("outfit \"" + it.first->Name() + "\" is not a weapon, but is installed as one."));
 	}
 
 	// Mark any drone that has no "automaton" value as an automaton, to
@@ -629,7 +629,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			{
 				count -= armament.Add(it.first, count);
 				if(count)
-					LogWarning(ModelName(), Name(), std::move("weapon \"" + it.first->Name() + "\" installed, but insufficient slots to use it."));
+					LogWarning(VariantName(), Name(), std::move("weapon \"" + it.first->Name() + "\" installed, but insufficient slots to use it."));
 			}
 		}
 	}
