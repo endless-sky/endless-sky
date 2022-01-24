@@ -26505,7 +26505,7 @@ planet "Brass Second"
 
 planet "Bright Echo"
 	attributes folklore saryd tourism urban
-	landscape land/dmottl1
+	landscape land/snow20
 	description `This is the first world that the Saryds colonized outside of their own solar system. Although somewhat colder than their native planet, it developed into a thriving metropolitan world. The original settlers planned out in exacting detail how every part of the planet's land mass should be used, in order to satisfy their aesthetic ideal of blending residential areas with parks and farms. Large areas have also been set aside as undeveloped wilderness.`
 	spaceport `The spaceport is in what, by Saryd standards, is a major city, with scattered skyscrapers surrounded by forests and grassy park land along with smaller dwellings and occasional factories or power plants. The city is built on either side of one of this continent's largest rivers, a few kilometers downstream from a dam and hydroelectric plant. Here, the river cuts through a deep gorge, and the graceful bridges that cross the gorge are often shrouded in mist.`
 	shipyard "Coalition Basics"
@@ -27528,7 +27528,7 @@ planet "Gresku Fodar"
 
 planet Greymoon
 	attributes hai station
-	landscape land/station46
+	landscape land/station13
 	description `This station is owned and operated by the Far Loo Bah fuel collection corporation. Their logo is emblazoned on nearly every possible surface and sign, indicating their sponsorship of all manner of services and features on the station. Interestingly, this includes a "History of Spaceflight" museum which takes up an entire wing of the facility. Naturally, the museum focuses very heavily on the Far Loo Bah corporation's role in that history.`
 	spaceport `The spaceport consists of a wide, two-level promenade encircling the interior of the station, with the docking access opening directly onto the mezzanine. The upper level is mostly devoted to amenities, light commercial businesses, a medical center, and a bank. The lower level has all of the real businesses: multiple manufacturers, which are supplied by the heavier elements filtered out from the supply of fuel stock from the planet below, have store frontage here. A virtual outfitter provides sale options for locally-manufactured outfits that can be installed on your ship without you ever leaving the comfort of the promenade.`
 	outfitter "Hai Basics"
@@ -27831,7 +27831,7 @@ planet Janiculum
 
 planet Kaeyin
 	attributes uninhabited
-	landscape land/station13
+	landscape land/city19
 	description `The world of Kaeyin now seems to be completely uninhabited, but it hasn't always been like that. Large, empty cities with towers of indescribable design encompass a portion of one single continent. The rest of the land remains almost untouched by anything not native to this planet, as if the buildings were simply lowered down onto the land rather than built up over time.`
 	spaceport `The only word you can think of to describe the spaceport is "impressive." It is on the top of the largest tower, placed in the exact center of a gargantuan city. With a base almost as big as a sizable village, very quickly getting thinner as it raises into the city's skyline.`
 	spaceport `	Tiny, four-legged robots walk on the walls of every room, cleaning them in a matter of seconds. You can see more on the road below, and you presume they are everywhere in this city; this makes it impossible to estimate how long the planet has been abandoned, since everything here is perfect and clean.`
@@ -29656,7 +29656,7 @@ planet Trove
 
 planet Tundra
 	attributes "dirt belt" oil textiles
-	landscape land/snow20
+	landscape land/dmottl1
 	description `Millions of years ago, this was a warm world, perhaps even tropical. But some cataclysmic event, perhaps a meteor strike or a massive volcanic eruption, altered the planet's atmosphere enough to turn it into the nearly lifeless, frozen planet it is today.`
 	description `	The first settlers came here to drill for the oil trapped deep under the surface, a relic of Tundra's former, more lively days. Instead of refining the oil into plastic, which sells relatively cheap in this region, they have developed an industry in synthetic fabrics and clothing.`
 	spaceport `The spaceport village consists of several large domes which keep out the wind and driving snow. Ships enter and exit the largest of the domes through a hatch that closes as soon as they have come through.`
