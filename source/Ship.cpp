@@ -26,7 +26,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Messages.h"
 #include "Phrase.h"
 #include "Planet.h"
-#include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Projectile.h"
 #include "Random.h"
@@ -1322,26 +1321,14 @@ void Ship::SetHail(const Phrase &phrase)
 
 
 
-string Ship::GetHail(const PlayerInfo &player) const
+string Ship::GetHail(map<string, string> &&subs) const
 {
 	string hailStr = hail ? hail->Get() : government ? government->GetHail(isDisabled) : "";
 
 	if(hailStr.empty())
 		return hailStr;
 
-	map<string, string> subs;
-	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
-
-	subs["<first>"] = player.FirstName();
-	subs["<last>"] = player.LastName();
-	if(player.Flagship())
-		subs["<ship>"] = player.Flagship()->Name();
-
 	subs["<npc>"] = Name();
-	subs["<system>"] = player.GetSystem()->Name();
-	subs["<date>"] = player.GetDate().ToString();
-	subs["<day>"] = player.GetDate().LongString();
-
 	return Format::Replace(hailStr, subs);
 }
 
