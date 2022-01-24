@@ -198,7 +198,6 @@ outfit "Lasher Pistol"
 
 
 
-# Chiisana/Chīsana (小さな) = small
 outfit "Chiisana Rift Thruster"
 	category "Engines"
 	cost 130000
@@ -211,7 +210,6 @@ outfit "Chiisana Rift Thruster"
 	"thrusting heat" 0.61
 	description "While the Korath favor raw power in their engines, the Bunrodea favor efficiency, opting to make use of engines that produce less thrust for significantly less heat produced."
 
-# Nami (並) = average/middling
 outfit "Nami Rift Thruster"
 	category "Engines"
 	cost 262000
@@ -224,7 +222,6 @@ outfit "Nami Rift Thruster"
 	"thrusting heat" 1.2
 	description "Although Rift engines are extremely heat efficient, their energy requirement is rather high compared to the thrust they produce, even when compared to terribly inefficient Korath engines."
 
-# Ōkī/Ookii (大きい) = large
 outfit "Ookii Rift Thruster"
 	category "Engines"
 	cost 512000
@@ -237,7 +234,6 @@ outfit "Ookii Rift Thruster"
 	"thrusting heat" 2.2
 	description "Even though the energy drawn per unit thrust of Rift engines is poorer than that of Korath engines, the overall energy requirement of Rift engines is still far lesser by comparison."
 
-# Subarashī/Subarashii (素晴らしい) = great/wonderful?
 outfit "Subarashii Rift Thruster"
 	category "Engines"
 	cost 1004000
