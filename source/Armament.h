@@ -59,7 +59,6 @@ public:
 
 	// Access the array of weapon hardpoints.
 	const std::vector<Hardpoint> &Get() const;
-	std::map<const Outfit *, int> GetEquipped() const;
 	int GunCount() const;
 	int TurretCount() const;
 

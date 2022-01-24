@@ -129,6 +129,24 @@ namespace {
 		else
 			stat = max(0., .99 * stat);
 	}
+
+	// Get an overview of how many weapon-outfits are equipped.
+	map<const Outfit *, int> GetEquipped(const vector<Hardpoint> &weapons)
+	{
+		map<const Outfit *, int> equipped;
+		for(const Hardpoint &hardpoint : weapons)
+			if(hardpoint.GetOutfit())
+				++equipped[hardpoint.GetOutfit()];
+		return equipped;
+	}
+
+	void LogWarning(const string &modelName, const string &name, const string &warning)
+	{
+		string shipID = modelName;
+		if(!name.empty())
+			shipID += " \"" + name + "\"";
+		Files::LogError(shipID + ": " + warning);
+	}
 }
 
 
@@ -408,7 +426,7 @@ void Ship::Load(const DataNode &node)
 			// Verify we have at least as many installed outfits as were identified as "equipped."
 			// If not (e.g. a variant definition), ensure FinishLoading equips into a blank slate.
 			if(!hasArmament)
-				for(const auto &pair : armament.GetEquipped())
+				for(const auto &pair : GetEquipped(Weapons()))
 				{
 					auto it = outfits.find(pair.first);
 					if(it == outfits.end() || it->second < pair.second)
@@ -549,7 +567,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	// Check that all the "equipped" weapons actually match what your ship
 	// has, and that they are truly weapons. Remove any excess weapons and
 	// warn if any non-weapon outfits are "installed" in a hardpoint.
-	auto equipped = armament.GetEquipped();
+	auto equipped = GetEquipped(Weapons());
 	for(auto &it : equipped)
 	{
 		auto outfitIt = outfits.find(it.first);
@@ -562,23 +580,13 @@ void Ship::FinishLoading(bool isNewInstance)
 			armament.Add(it.first, -excess);
 			it.second -= excess;
 
-			string warning = modelName;
-			if(!name.empty())
-				warning += " \"" + name + "\"";
-			warning += ": outfit \"" + it.first->Name() + "\" equipped but not included in outfit list.";
-			Files::LogError(warning);
+			LogWarning(modelName, name, "outfit \"" + it.first->Name() + "\" equipped but not included in outfit list.");
 		}
 		else if(!it.first->IsWeapon())
-		{
 			// This ship was specified with a non-weapon outfit in a
 			// hardpoint. Hardpoint::Install removes it, but issue a
 			// warning so the definition can be fixed.
-			string warning = modelName;
-			if(!name.empty())
-				warning += " \"" + name + "\"";
-			warning += ": outfit \"" + it.first->Name() + "\" is not a weapon, but is installed as one.";
-			Files::LogError(warning);
-		}
+			LogWarning(modelName, name, ": outfit \"" + it.first->Name() + "\" is not a weapon, but is installed as one.");
 	}
 
 	// Mark any drone that has no "automaton" value as an automaton, to
@@ -618,14 +626,10 @@ void Ship::FinishLoading(bool isNewInstance)
 				count -= eit->second;
 
 			if(count)
-				count -= armament.Add(it.first, count);
-			if(count)
 			{
-				string warning = modelName;
-				if(!name.empty())
-					warning += " \"" + name + "\"";
-				warning += ": weapon \"" + it.first->Name() + "\" installed, but insufficient slots to use it.";
-				Files::LogError(warning);
+				count -= armament.Add(it.first, count);
+				if(count)
+					LogWarning(modelName, name, "weapon \"" + it.first->Name() + "\" installed, but insufficient slots to use it.");
 			}
 		}
 	}
