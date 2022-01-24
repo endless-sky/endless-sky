@@ -27,11 +27,11 @@ class SpriteSet {
 public:
 	// Get a pointer to the sprite data with the given name.
 	static const Sprite *Get(const std::string &name);
-	
+
 	// Inspect the sprite map and warn if some images contain no data.
 	static void CheckReferences();
-	
-	
+
+
 private:
 	// Only SpriteQueue is allowed to modify the sprites.
 	friend class SpriteQueue;
