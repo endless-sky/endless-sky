@@ -274,6 +274,11 @@ Files: images/land/lava11*
 Copyright: National Archives and Records Administration
 License: public-domain
 
+Files:
+ images/land/station12.jpg
+Copyright: Office of War Information
+License: public-domain
+
 Files: images/land/*-spfld*
 Copyright: Eric Denni (spfldsatellite@gmail.com)
 License: CC-BY-SA-4.0
@@ -604,6 +609,7 @@ Files:
  images/land/sky8*
  images/land/sky9*
  images/land/sky10*
+ images/land/sky11*
  images/land/snow0*
  images/land/snow1*
  images/land/snow2*
@@ -620,10 +626,10 @@ Files:
  images/land/snow18*
  images/land/snow19*
  images/land/snow20*
+ images/land/snow21*
  images/land/space2*
  images/land/station6*
  images/land/station7*
- images/land/station8*
  images/land/station9*
  images/land/station10*
  images/land/station11*
@@ -687,11 +693,16 @@ Files:
  images/land/station1*
  images/land/station2*
  images/land/station3*
- images/land/station4*
 Copyright: NASA
 License: public-domain
  From NASA, and therefore in the public domain because they were created by
  government employees while doing work for the government.
+
+Files:
+ images/land/station8.jpg
+Copyright: Thomas Hawk
+Licence: CC BY-NC 2.0
+Comment: Taken from https://www.flickr.com/photos/thomashawk/49037799721/ and cropped.
 
 Files:
  images/land/station5.jpg
