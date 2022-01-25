@@ -313,15 +313,14 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 			hazards.Get(node.Token(1))->Load(node);
 		else if(key == "interface" && node.Size() >= 2)
 		{
-			Interface *interface = interfaces.Get(node.Token(1));
-			interface->Load(node);
+			interfaces.Get(node.Token(1))->Load(node);
 
 			// If we modified the "menu background" interface, then
 			// we also update our cache of it.
 			if(node.Token(1) == "menu background")
 			{
 				lock_guard<mutex> lock(menuBackgroundMutex);
-				menuBackgroundCache = *interface;
+				menuBackgroundCache = *interfaces.Get(node.Token(1));
 			}
 		}
 		else if(key == "minable" && node.Size() >= 2)
