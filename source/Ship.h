@@ -508,9 +508,6 @@ private:
 	std::vector<EnginePoint> reverseEnginePoints;
 	std::vector<EnginePoint> steeringEnginePoints;
 	Armament armament;
-	// While loading, keep track of which outfits already have been equipped.
-	// (That is, they were specified as linked to a given gun or turret point.)
-	std::map<const Outfit *, int> equipped;
 
 	// Various energy levels:
 	double shields = 0.;
