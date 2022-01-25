@@ -696,101 +696,10 @@ const string &Ship::Name() const
 
 
 
-void Ship::SetIsDefined(bool value)
-{
-	this->isDefined = value;
-}
-
-
-
-void Ship::SetNeverDisabled(bool value)
-{
-	this->neverDisabled = value;
-}
-
-
-
-void Ship::SetCapturable(bool value)
-{
-	this->isCapturable = value;
-}
-
-
-
-void Ship::SetCanBeCarried(bool value)
-{
-	this->canBeCarried = value;
-}
-
-
-
-void Ship::SetBaseModel(const Ship* base)
-{
-	this->base = base;
-}
-
-
-
-void Ship::SetNoun(const string &value)
-{
-	this->noun = value;
-}
-
-
-
-void Ship::SetCustomSwizzle(int swizzle)
-{
-	this->customSwizzle = swizzle;
-}
-
-
-
-void Ship::SetThumbnail(const Sprite *thumb)
-{
-	this->thumbnail = thumb;
-}
-
-
-
-void Ship::SetHull(double value)
-{
-	hull = value;
-}
-
-
-
-void Ship::SetShields(double value)
-{
-	shields = value;
-}
-
-
-
-void Ship::SetFuel(double value)
-{
-	fuel = value;
-}
-
-
-
 // Set / Get the name of this class of ships, e.g. "Marauder Raven."
 void Ship::SetModelName(const string &model)
 {
 	this->modelName = model;
-}
-
-
-
-void Ship::SetPluralModelName(const string &model)
-{
-	this->pluralModelName = model;
-}
-
-
-
-void Ship::SetVariantName(const string &vName)
-{
-	this->variantName = vName;
 }
 
 
@@ -828,13 +737,6 @@ const string &Ship::Noun() const
 
 // Get this ship's description.
 const string &Ship::Description() const
-{
-	return description;
-}
-
-
-
-string &Ship::Description()
 {
 	return description;
 }
@@ -2460,13 +2362,6 @@ const vector<Ship::EnginePoint> &Ship::EnginePoints() const
 
 
 
-vector<Ship::EnginePoint> &Ship::EnginePoints()
-{
-	return enginePoints;
-}
-
-
-
 const vector<Ship::EnginePoint> &Ship::ReverseEnginePoints() const
 {
 	return reverseEnginePoints;
@@ -2474,21 +2369,7 @@ const vector<Ship::EnginePoint> &Ship::ReverseEnginePoints() const
 
 
 
-vector<Ship::EnginePoint> &Ship::ReverseEnginePoints()
-{
-	return reverseEnginePoints;
-}
-
-
-
 const vector<Ship::EnginePoint> &Ship::SteeringEnginePoints() const
-{
-	return steeringEnginePoints;
-}
-
-
-
-vector<Ship::EnginePoint> &Ship::SteeringEnginePoints()
 {
 	return steeringEnginePoints;
 }
@@ -2897,12 +2778,6 @@ int Ship::Crew() const
 }
 
 
-void Ship::SetCrew(int count)
-{
-	crew = count;
-}
-
-
 
 int Ship::RequiredCrew() const
 {
@@ -3275,13 +3150,6 @@ const vector<Ship::Bay> &Ship::Bays() const
 
 
 
-vector<Ship::Bay> &Ship::Bays()
-{
-	return bays;
-}
-
-
-
 // Adjust the positions and velocities of any visible carried fighters or
 // drones. If any are visible, return true.
 bool Ship::PositionFighters() const
@@ -3363,27 +3231,7 @@ const Outfit &Ship::Attributes() const
 
 
 
-Outfit &Ship::Attributes()
-{
-	return attributes;
-}
-
-
-void Ship::SetAddAttributes(bool value)
-{
-	addAttributes = value;
-}
-
-
-
 const Outfit &Ship::BaseAttributes() const
-{
-	return baseAttributes;
-}
-
-
-
-Outfit &Ship::BaseAttributes()
 {
 	return baseAttributes;
 }
@@ -3392,13 +3240,6 @@ Outfit &Ship::BaseAttributes()
 
 // Get outfit information.
 const map<const Outfit *, int> &Ship::Outfits() const
-{
-	return outfits;
-}
-
-
-
-map<const Outfit *, int> &Ship::Outfits()
 {
 	return outfits;
 }
@@ -3444,13 +3285,6 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 
 
 
-vector<Ship::Leak> &Ship::Leaks()
-{
-	return leaks;
-}
-
-
-
 void Ship::ClearExplosionEffects()
 {
 	explosionEffects.clear();
@@ -3477,69 +3311,6 @@ void Ship::AddExplosionEffect(const Effect *effect, int count)
 void Ship::AddFinalExplosion(const Effect *effect, int count)
 {
 	finalExplosions[effect] += count;
-}
-
-
-
-void Ship::SetEffectIonSpark(const Effect *effect)
-{
-	effectIonSpark = effect;
-}
-
-
-
-void Ship::SetEffectDisruptionSpark(const Effect *effect)
-{
-	effectDisruptionSpark = effect;
-}
-
-
-
-void Ship::SetEffectSlowingSpark(const Effect *effect)
-{
-	effectSlowingSpark = effect;
-}
-
-
-
-void Ship::SetEffectDischargeSpark(const Effect *effect)
-{
-	effectDischargeSpark = effect;
-}
-
-
-
-void Ship::SetEffectCorrosionSpark(const Effect *effect)
-{
-	effectCorrosionSpark = effect;
-}
-
-
-
-void Ship::SetEffectLeakageSpark(const Effect *effect)
-{
-	effectLeakageSpark = effect;
-}
-
-
-
-void Ship::SetEffectBurningSpark(const Effect *effect)
-{
-	effectBurningSpark = effect;
-}
-
-
-
-void Ship::SetEffectSmoke(const Effect *effect)
-{
-	effectSmoke = effect;
-}
-
-
-
-void Ship::SetEffectJumpDrive(const Effect *effect)
-{
-	effectJumpDrive = effect;
 }
 
 

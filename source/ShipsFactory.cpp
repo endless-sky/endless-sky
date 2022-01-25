@@ -53,14 +53,14 @@ void ShipsFactory::LoadShip(Ship &ship, const DataNode &node) const
 	if(node.Size() >= 2)
 	{
 		ship.SetModelName(node.Token(1));
-		ship.SetPluralModelName(node.Token(1) + 's');
+		ship.pluralModelName = node.Token(1) + 's';
 	}
 	if(node.Size() >= 3)
 	{
-		ship.SetBaseModel(GameData::Ships().Get(ship.ModelName()));
-		ship.SetVariantName(node.Token(2));
+		ship.base = GameData::Ships().Get(ship.ModelName());
+		ship.variantName = node.Token(2);
 	}
-	ship.SetIsDefined(true);
+	ship.isDefined = true;
 
 	ship.SetGovernment(GameData::PlayerGovernment());
 
@@ -87,15 +87,15 @@ void ShipsFactory::LoadShip(Ship &ship, const DataNode &node) const
 		if(key == "sprite")
 			ship.LoadSprite(child);
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
-			ship.SetThumbnail(SpriteSet::Get(child.Token(1)));
+			ship.thumbnail = SpriteSet::Get(child.Token(1));
 		else if(key == "name" && child.Size() >= 2)
 			ship.SetName(child.Token(1));
 		else if(key == "plural" && child.Size() >= 2)
-			ship.SetPluralModelName(child.Token(1));
+			ship.pluralModelName = child.Token(1);
 		else if(key == "noun" && child.Size() >= 2)
-			ship.SetNoun(child.Token(1));
+			ship.noun = child.Token(1);
 		else if(key == "swizzle" && child.Size() >= 2)
-			ship.SetCustomSwizzle(child.Value(1));
+			ship.customSwizzle = child.Value(1);
 		else if(key == "uuid" && child.Size() >= 2)
 		{
 			auto uuid = EsUuid::FromString(child.Token(1));
@@ -104,27 +104,27 @@ void ShipsFactory::LoadShip(Ship &ship, const DataNode &node) const
 		else if(key == "attributes" || add)
 		{
 			if(!add)
-				ship.BaseAttributes().Load(child);
+				ship.baseAttributes.Load(child);
 			else
 			{
-				ship.SetAddAttributes(true);
-				ship.Attributes().Load(child);
+				ship.addAttributes = true;
+				ship.attributes.Load(child);
 			}
 		}
 		else if((key == "engine" || key == "reverse engine" || key == "steering engine") && child.Size() >= 3)
 		{
 			if(!hasEngine)
 			{
-				ship.EnginePoints().clear();
-				ship.ReverseEnginePoints().clear();
-				ship.SteeringEnginePoints().clear();
+				ship.enginePoints.clear();
+				ship.reverseEnginePoints.clear();
+				ship.steeringEnginePoints.clear();
 				hasEngine = true;
 			}
 			bool reverse = (key == "reverse engine");
 			bool steering = (key == "steering engine");
 
-			vector<Ship::EnginePoint> &editPoints = (!steering && !reverse) ? ship.EnginePoints() :
-				(reverse ? ship.ReverseEnginePoints() : ship.SteeringEnginePoints());
+			vector<Ship::EnginePoint> &editPoints = (!steering && !reverse) ? ship.enginePoints :
+				(reverse ? ship.reverseEnginePoints : ship.steeringEnginePoints);
 			editPoints.emplace_back(0.5 * child.Value(1), 0.5 * child.Value(2),
 				(child.Size() > 3 ? child.Value(3) : 1.));
 			Ship::EnginePoint &engine = editPoints.back();
@@ -189,9 +189,9 @@ void ShipsFactory::LoadShip(Ship &ship, const DataNode &node) const
 				child.PrintTrace("Warning: ship has more than 32 weapon hardpoints. Some weapons may not fire:");
 		}
 		else if(key == "never disabled")
-			ship.SetNeverDisabled(true);
+			ship.neverDisabled = true;
 		else if(key == "uncapturable")
-			ship.SetCapturable(false);
+			ship.isCapturable = false;
 		else if(((key == "fighter" || key == "drone") && child.Size() >= 3) ||
 			(key == "bay" && child.Size() >= 4))
 		{
@@ -209,11 +209,11 @@ void ShipsFactory::LoadShip(Ship &ship, const DataNode &node) const
 
 			if(!hasBays)
 			{
-				ship.Bays().clear();
+				ship.bays.clear();
 				hasBays = true;
 			}
-			ship.Bays().emplace_back(child.Value(1 + childOffset), child.Value(2 + childOffset), category);
-			Ship::Bay &bay = ship.Bays().back();
+			ship.bays.emplace_back(child.Value(1 + childOffset), child.Value(2 + childOffset), category);
+			Ship::Bay &bay = ship.bays.back();
 			for(int i = 3 + childOffset; i < child.Size(); ++i)
 				Ship::HandleBayToken(bay, child.Token(i));
 			if(child.HasChildren())
@@ -240,7 +240,7 @@ void ShipsFactory::LoadShip(Ship &ship, const DataNode &node) const
 		{
 			if(!hasLeak)
 			{
-				ship.Leaks().clear();
+				ship.leaks.clear();
 				hasLeak = true;
 			}
 			Ship::Leak leak(GameData::Effects().Get(child.Token(1)));
@@ -248,7 +248,7 @@ void ShipsFactory::LoadShip(Ship &ship, const DataNode &node) const
 				leak.openPeriod = child.Value(2);
 			if(child.Size() >= 4)
 				leak.closePeriod = child.Value(3);
-			ship.Leaks().push_back(leak);
+			ship.leaks.push_back(leak);
 		}
 		else if(key == "explode" && child.Size() >= 2)
 		{
@@ -274,14 +274,14 @@ void ShipsFactory::LoadShip(Ship &ship, const DataNode &node) const
 		{
 			if(!hasOutfits)
 			{
-				ship.Outfits().clear();
+				ship.outfits.clear();
 				hasOutfits = true;
 			}
 			for(const DataNode &grand : child)
 			{
 				int count = (grand.Size() >= 2) ? grand.Value(1) : 1;
 				if(count > 0)
-					ship.Outfits()[GameData::Outfits().Get(grand.Token(0))] += count;
+					ship.outfits[GameData::Outfits().Get(grand.Token(0))] += count;
 				else
 					grand.PrintTrace("Skipping invalid outfit count:");
 			}
@@ -302,13 +302,13 @@ void ShipsFactory::LoadShip(Ship &ship, const DataNode &node) const
 		else if(key == "cargo")
 			ship.Cargo().Load(child);
 		else if(key == "crew" && child.Size() >= 2)
-			ship.SetCrew(static_cast<int>(child.Value(1)));
+			ship.crew = static_cast<int>(child.Value(1));
 		else if(key == "fuel" && child.Size() >= 2)
-			ship.SetFuel(child.Value(1));
+			ship.fuel = child.Value(1);
 		else if(key == "shields" && child.Size() >= 2)
-			ship.SetShields(child.Value(1));
+			ship.shields = child.Value(1);
 		else if(key == "hull" && child.Size() >= 2)
-			ship.SetHull(child.Value(1));
+			ship.hull = child.Value(1);
 		else if(key == "position" && child.Size() >= 3)
 			ship.SetPosition(Point(child.Value(1), child.Value(2)));
 		else if(key == "system" && child.Size() >= 2)
@@ -323,10 +323,10 @@ void ShipsFactory::LoadShip(Ship &ship, const DataNode &node) const
 		{
 			if(!hasDescription)
 			{
-				ship.Description().clear();
+				ship.description.clear();
 				hasDescription = true;
 			}
-			ship.Description() += child.Token(1) + '\n';
+			ship.description += child.Token(1) + '\n';
 		}
 		else if(key != "actions")
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -349,13 +349,13 @@ void ShipsFactory::FinishLoading(Ship &ship, bool isNewInstance) const
 	// this ship is crewed (i.e. pressurized).
 	string warning;
 	const auto &bayCategories = GameData::Category(CategoryType::BAY);
-	for(auto it = ship.Bays().begin(); it != ship.Bays().end(); )
+	for(auto it = ship.bays.begin(); it != ship.bays.end(); )
 	{
 		Ship::Bay &bay = *it;
 		if(find(bayCategories.begin(), bayCategories.end(), bay.category) == bayCategories.end())
 		{
 			warning += "Invalid bay category: " + bay.category + "\n";
-			it = ship.Bays().erase(it);
+			it = ship.bays.erase(it);
 			continue;
 		}
 		else
@@ -363,7 +363,7 @@ void ShipsFactory::FinishLoading(Ship &ship, bool isNewInstance) const
 		if(bay.side == Ship::Bay::INSIDE && bay.launchEffects.empty() && ship.Crew())
 			bay.launchEffects.emplace_back(GameData::Effects().Get("basic launch"));
 	}
-	ship.SetCanBeCarried(find(bayCategories.begin(), bayCategories.end(), ship.Attributes().Category()) != bayCategories.end());
+	ship.canBeCarried = find(bayCategories.begin(), bayCategories.end(), ship.Attributes().Category()) != bayCategories.end();
 
 	if(!warning.empty())
 	{
@@ -373,13 +373,13 @@ void ShipsFactory::FinishLoading(Ship &ship, bool isNewInstance) const
 	}
 
 	// Load the default effects for this ship.
-	ship.SetEffectIonSpark(GameData::Effects().Get("ion spark"));
-	ship.SetEffectDisruptionSpark(GameData::Effects().Get("disruption spark"));
-	ship.SetEffectSlowingSpark(GameData::Effects().Get("slowing spark"));
-	ship.SetEffectDischargeSpark(GameData::Effects().Get("discharge spark"));
-	ship.SetEffectCorrosionSpark(GameData::Effects().Get("corrosion spark"));
-	ship.SetEffectLeakageSpark(GameData::Effects().Get("leakage spark"));
-	ship.SetEffectBurningSpark(GameData::Effects().Get("burning spark"));
-	ship.SetEffectSmoke(GameData::Effects().Get("smoke"));
-	ship.SetEffectJumpDrive(GameData::Effects().Get("jump drive"));	
+	ship.effectIonSpark = GameData::Effects().Get("ion spark");
+	ship.effectDisruptionSpark = GameData::Effects().Get("disruption spark");
+	ship.effectSlowingSpark = GameData::Effects().Get("slowing spark");
+	ship.effectDischargeSpark = GameData::Effects().Get("discharge spark");
+	ship.effectCorrosionSpark = GameData::Effects().Get("corrosion spark");
+	ship.effectLeakageSpark = GameData::Effects().Get("leakage spark");
+	ship.effectBurningSpark = GameData::Effects().Get("burning spark");
+	ship.effectSmoke = GameData::Effects().Get("smoke");
+	ship.effectJumpDrive = GameData::Effects().Get("jump drive");
 }

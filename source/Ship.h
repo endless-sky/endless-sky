@@ -53,6 +53,10 @@ class Visual;
 // limits of what the AI knows how to command them to do.
 class Ship : public Body, public std::enable_shared_from_this<Ship> {
 public:
+	friend class ShipsFactory;
+
+
+public:
 	class Bay {
 	public:
 		Bay(double x, double y, std::string category) : point(x * .5, y * .5), category(category) {}
@@ -151,23 +155,8 @@ public:
 	// Get the name of this particular ship.
 	const std::string &Name() const;
 
-	// Set the basic data for the ship.
-	void SetIsDefined(bool value);
-	void SetNeverDisabled(bool value);
-	void SetCapturable(bool value);
-	void SetCanBeCarried(bool value);
-	void SetBaseModel(const Ship* base);
-	void SetNoun(const std::string &value);
-	void SetCustomSwizzle(int swizzle);
-	void SetThumbnail(const Sprite *thumb);
-	void SetHull(double value);
-	void SetShields(double value);
-	void SetFuel(double value);
-
 	// Set / Get the name of this model of ship.
 	void SetModelName(const std::string &model);
-	void SetPluralModelName(const std::string &model);
-	void SetVariantName(const std::string &vName);
 	const std::string &ModelName() const;
 	const std::string &PluralModelName() const;
 	// Get the name of this ship as a variant.
@@ -176,7 +165,6 @@ public:
 	const std::string &Noun() const;
 	// Get this ship's description.
 	const std::string &Description() const;
-	std::string &Description();
 	// Get the shipyard thumbnail for this ship.
 	const Sprite *Thumbnail() const;
 	// Get this ship's cost.
@@ -283,11 +271,8 @@ public:
 	double SteeringDirection() const;
 	// Get the points from which engine flares should be drawn.
 	const std::vector<EnginePoint> &EnginePoints() const;
-	std::vector<EnginePoint> &EnginePoints();
 	const std::vector<EnginePoint> &ReverseEnginePoints() const;
-	std::vector<EnginePoint> &ReverseEnginePoints();
 	const std::vector<EnginePoint> &SteeringEnginePoints() const;
-	std::vector<EnginePoint> &SteeringEnginePoints();
 
 	// Make a ship disabled or destroyed, or bring back a destroyed ship.
 	void Disable();
@@ -341,7 +326,6 @@ public:
 
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
-	void SetCrew(int count);
 	int RequiredCrew() const;
 	// Get the reputational value of this ship's crew, which depends
 	// on its crew size and "crew equivalent" attribute.
@@ -393,7 +377,6 @@ public:
 	void UnloadBays();
 	// Get a list of any ships this ship is carrying.
 	const std::vector<Bay> &Bays() const;
-	std::vector<Bay> &Bays();
 	// Adjust the positions and velocities of any visible carried fighters or
 	// drones. If any are visible, return true.
 	bool PositionFighters() const;
@@ -407,34 +390,20 @@ public:
 
 	// Get the current attributes of this ship.
 	const Outfit &Attributes() const;
-	Outfit &Attributes();
-	void SetAddAttributes(bool value);
 	// Get the attributes of this ship chassis before any outfits were added.
 	const Outfit &BaseAttributes() const;
-	Outfit &BaseAttributes();
 	// Get the list of all outfits installed in this ship.
 	const std::map<const Outfit *, int> &Outfits() const;
-	std::map<const Outfit *, int> &Outfits();
 	// Find out how many outfits of the given type this ship contains.
 	int OutfitCount(const Outfit *outfit) const;
 	// Add or remove outfits. (To remove, pass a negative number.)
 	void AddOutfit(const Outfit *outfit, int count);
 
 	// Effects that show damage and (temporary) reduced functionality.
-	std::vector<Leak> &Leaks();
 	void ClearExplosionEffects();
 	void ClearFinalExplosions();
 	void AddExplosionEffect(const Effect *effect, int count);
 	void AddFinalExplosion(const Effect *effect, int count);
-	void SetEffectIonSpark(const Effect *effect);
-	void SetEffectDisruptionSpark(const Effect *effect);
-	void SetEffectSlowingSpark(const Effect *effect);
-	void SetEffectDischargeSpark(const Effect *effect);
-	void SetEffectCorrosionSpark(const Effect *effect);
-	void SetEffectLeakageSpark(const Effect *effect);
-	void SetEffectBurningSpark(const Effect *effect);
-	void SetEffectSmoke(const Effect *effect);
-	void SetEffectJumpDrive(const Effect *effect);	
 
 	// Get the list of weapons.
 	Armament &GetArmament();
@@ -514,6 +483,7 @@ private:
 	bool canBeCarried = false;
 	// Does anything prevent this ship from being carried (for example it being used as a flagship)?
 	bool preventCarry = false;
+
 	int forget = 0;
 	bool isInSystem = true;
 	// "Special" ships cannot be forgotten, and if they land on a planet, they
