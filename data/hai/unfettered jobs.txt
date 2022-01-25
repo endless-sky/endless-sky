@@ -212,7 +212,7 @@ mission "Unfettered Silicon Asteroid Mining"
 
 mission "Unfettered Silver Asteroid Mining"
 	name `Gather silver from asteroids`
-	description `Mine and then collect 15 tons of Silver from the asteroid field in Ehma Ti and then bring them back to <destination> for <payment>.`
+	description `Mine and then collect 15 tons of silver from the asteroid field in Ehma Ti and then bring them back to <destination> for <payment>.`
 	job
 	repeat
 	source "Firelode"
