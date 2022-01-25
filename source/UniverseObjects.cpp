@@ -320,7 +320,7 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 			if(node.Token(1) == "menu background")
 			{
 				lock_guard<mutex> lock(menuBackgroundMutex);
-				menuBackgroundCache = *interfaces.Get(node.Token(1));
+				menuBackgroundCache.Load(node);
 			}
 		}
 		else if(key == "minable" && node.Size() >= 2)
