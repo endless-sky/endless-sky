@@ -41,6 +41,7 @@ class Minable;
 class Mission;
 class News;
 class Outfit;
+class Panel;
 class Person;
 class Phrase;
 class Planet;
@@ -159,6 +160,9 @@ public:
 	static MaskManager &GetMaskManager();
 
 	static const TextReplacements &GetTextReplacements();
+
+	// Thread-safe way to draw the menu background.
+	static void DrawMenuBackground(Panel *panel);
 
 
 private:
