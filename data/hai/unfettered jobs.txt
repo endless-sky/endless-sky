@@ -195,6 +195,7 @@ mission "Proud Unfettered Boarded"
 	destination "Darkcloak"
 
 
+
 mission "Unfettered Silicon Asteroid Mining"
 	name `Gather silicon from asteroids`
 	description `Mine and then collect 50 tons of silicon from the asteroid field in Wah Yoot and then bring them back to <destination> for <payment>.`
@@ -276,7 +277,7 @@ mission "Unfettered Challenge[0]"
 				payment 200000
 				"reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)" + 15
 				fail "Unfettered Challenge[0]"
-			`You receive a message from the <npc> : "Raaaah... Well you have beaten me alright, so I'll pay up... Here are the <payment> credits, captain."`
+			`You receive a message from the <npc> : "Did you cheat? If I learn you cheated, I will be the end of you, little monkey! Here are the <payment> but I will want my money back if this was not a fair fight. Otherwise, you may have gained my respect."`
 				decline
 
 mission "Unfettered Challenge[1]"
@@ -302,7 +303,7 @@ mission "Unfettered Challenge[1]"
 				payment 400000
 				"reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)" + 30
 				fail "Unfettered Challenge[1]"
-			`You receive a message from the <npc> : "Well done captain! But, I will not be so easy to beat next time! Here is the agreed <payment> credits. You earned it."`
+			`You receive a message from the <npc> : "Raaaah... Well you have beaten me alright, so I'll pay up... Here are the <payment> credits, captain. Next time I will not underestimate you anymore!"`
 				decline
 
 mission "Unfettered Challenge[2]"
@@ -330,21 +331,21 @@ mission "Unfettered Challenge[2]"
 				payment 600000
 				"reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)" + 60
 				fail "Unfettered Challenge[2]"
-			`You receive a message from the <npc> : "You seem to learn from our encounters as well! Well, next time it will be different. Here are the agreed <payment> credits, captain. Hopefully it allows you to improve the <ship> before our next battle..."`
+			`You receive a message from the <npc> : "Nicely done! You seem to learn from our encounters as well... But next time will be different, I assure you. For now, here are the agreed <payment> credits, captain. Hopefully it allows you to improve the <ship> before our next battle..."`
 				decline
 
 
 
 mission "Get Jump Drives(1)"
 	name `Collect a jump drive`
-	description `Go to the pirate world of <destination> and recover a jump drive from a vault for <payment>.`
+	description `Go to the pirate world of <stopovers> and recover a jump drive from a vault, then bring to <destination> for <payment>.`
 	job
 	repeat
 	source
 		attributes "unfettered"
 	destination "Darkcloak"
 	to offer
-		random < 75
+		random < 30
 		has "Unfettered: Prove your strength 2: done"
 	stopover
 		distance 12 18
@@ -361,14 +362,14 @@ mission "Get Jump Drives(1)"
 
 mission "Get Jump Drives(2)"
 	name `Collect 2 jump drives`
-	description `Go to the pirate world of <destination> and recover 2 jump drives from a vault for <payment>.`
+	description `Go to the pirate world of <stopovers> and recover 2 jump drives from a vault, then bring to <destination> for <payment>.`
 	job
 	repeat
 	source
 		attributes "unfettered"
 	destination "Darkcloak"
 	to offer
-		random < 45
+		random < 15
 		has "Unfettered: Prove your strength 2: done"
 	stopover
 		distance 12 18
@@ -385,14 +386,14 @@ mission "Get Jump Drives(2)"
 
 mission "Get Jump Drives(3)"
 	name `Collect 3 jump drives`
-	description `Go to the pirate world of <destination> and recover 3 jump drives from a vault for <payment>.`
+	description `Go to the pirate world of <stopovers> and recover 3 jump drives from a vault, then bring to <destination> for <payment>.`
 	job
 	repeat
 	source
 		attributes "unfettered"
 	destination "Darkcloak"
 	to offer
-		random < 15
+		random < 5
 		has "Unfettered: Prove your strength 2: done"
 	stopover "Deadman's Cove"
 	on stopover
@@ -435,7 +436,7 @@ mission "Bring True Hai"
 
 mission "Darkcloak Ship Materials"
 	name `Ship materials from <stopovers>`
-	description `The shipyards of <origin> are in grave need of raw materials. Go to the Unfettered world of <destination> to get the materials for building new ships, and bring them back by <date> for <payment>.`
+	description `The shipyards of <origin> are in grave need of raw materials. Go to the pirate world of <stopovers> to get the materials for building new ships, and bring them back to <destination> by <date> for <payment>.`
 	job
 	repeat
 	deadline 15 1
