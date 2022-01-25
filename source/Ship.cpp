@@ -3170,7 +3170,7 @@ double Ship::MaxReverseVelocity() const
 // according to the weapon and the characteristics of how
 // it hit this ship, and add any visuals created as a result
 // of being hit.
-int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damageScaling, double distanceTraveled, const Point &damagePosition, const Government *sourceGovernment, bool isBlast)
+int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damageScaling, const Point &damagePosition, const Government *sourceGovernment, bool isBlast)
 {
 	if(isBlast && weapon.IsDamageScaled())
 	{
@@ -3187,8 +3187,6 @@ int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damag
 		double rSquared = d * d / (blastRadius * blastRadius);
 		damageScaling *= k / ((1. + rSquared * rSquared) * (1. + rSquared * rSquared));
 	}
-	if(weapon.HasDamageDropoff())
-		damageScaling *= weapon.DamageDropoff(distanceTraveled);
 
 	// Instantaneous damage types:
 	double shieldDamage = (weapon.ShieldDamage() + weapon.RelativeShieldDamage() * attributes.Get("shields"))

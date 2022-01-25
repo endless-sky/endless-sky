@@ -330,7 +330,7 @@ public:
 	// Blast damage is dependent on the distance to the damage source.
 	// Create any target effects as sparks.
 	int TakeDamage(std::vector<Visual> &visuals, const Weapon &weapon, double damageScaling,
-		double distanceTraveled, const Point &damagePosition, const Government *sourceGovernment, bool isBlast = false);
+		const Point &damagePosition, const Government *sourceGovernment, bool isBlast = false);
 	// Apply a force to this ship, accelerating it. This might be from a weapon
 	// impact, or from firing a weapon, for example.
 	void ApplyForce(const Point &force, bool gravitational = false);

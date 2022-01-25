@@ -2036,6 +2036,12 @@ void Engine::DoCollisions(Projectile &projectile)
 		// motion path for this step.
 		projectile.Explode(visuals, closestHit, hitVelocity);
 
+		// Apply any scaling that affects all targets that were hit.
+		const Weapon &weapon = projectile.GetWeapon();
+		double damageScaling = 1.;
+		if(weapon.HasDamageDropoff())
+			damageScaling *= weapon.DamageDropoff(projectile.DistanceTraveled());
+
 		// If this projectile has a blast radius, find all ships within its
 		// radius. Otherwise, only one is damaged.
 		double blastRadius = projectile.GetWeapon().BlastRadius();
@@ -2051,16 +2057,16 @@ void Engine::DoCollisions(Projectile &projectile)
 				if(isSafe && projectile.Target() != ship && !gov->IsEnemy(ship->GetGovernment()))
 					continue;
 
-				int eventType = ship->TakeDamage(visuals, projectile.GetWeapon(), 1.,
-					projectile.DistanceTraveled(), projectile.Position(), projectile.GetGovernment(), ship != hit.get());
+				int eventType = ship->TakeDamage(visuals, weapon, damageScaling,
+					projectile.Position(), projectile.GetGovernment(), ship != hit.get());
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
 		}
 		else if(hit)
 		{
-			int eventType = hit->TakeDamage(visuals, projectile.GetWeapon(), 1.,
-				projectile.DistanceTraveled(), projectile.Position(), projectile.GetGovernment());
+			int eventType = hit->TakeDamage(visuals, weapon, damageScaling,
+				projectile.Position(), projectile.GetGovernment());
 			if(eventType)
 				eventQueue.emplace_back(gov, hit, eventType);
 		}
@@ -2093,7 +2099,6 @@ void Engine::DoWeather(Weather &weather)
 	if(weather.HasWeapon() && !Random::Int(weather.Period()))
 	{
 		const Hazard *hazard = weather.GetHazard();
-		double multiplier = weather.DamageMultiplier();
 
 		// Get all ship bodies that are touching a ring defined by the hazard's min
 		// and max ranges at the hazard's origin. Any ship touching this ring takes
@@ -2101,8 +2106,14 @@ void Engine::DoWeather(Weather &weather)
 		for(Body *body : shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange()))
 		{
 			Ship *hit = reinterpret_cast<Ship *>(body);
-			double distanceTraveled = weather.Origin().Distance(hit->Position()) - hit->GetMask().Radius();
-			hit->TakeDamage(visuals, *hazard, multiplier, distanceTraveled, weather.Origin(), nullptr, hazard->BlastRadius() > 0.);
+			double multiplier = weather.DamageMultiplier();
+			// Apply distance-based multipliers if the hazard/weapon has those.
+			if(hazard->HasDamageDropoff())
+			{
+				double distanceTraveled = weather.Origin().Distance(hit->Position()) - hit->GetMask().Radius();
+				multiplier *= hazard->DamageDropoff(distanceTraveled);
+			}
+			hit->TakeDamage(visuals, *hazard, multiplier, weather.Origin(), nullptr, hazard->BlastRadius() > 0.);
 		}
 	}
 }
