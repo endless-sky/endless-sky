@@ -1747,9 +1747,6 @@ event "wanderers: kor sestor are aimless"
 		"required reputation" 1000
 	"reputation: Pirate" <?= -1
 	"unvisit planet" "Varu K'prai"
-	government "Navy (Oathkeeper)"
-		"attitude toward"
-			"Kor Sestor" -.1
 
 mission "Wanderers: Sestor Search"
 	landing
