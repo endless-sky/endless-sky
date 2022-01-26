@@ -1101,7 +1101,7 @@ person "Rais Iris XVIII"
 			"I'm basically a computer gynecologist."
 			"Your ship looks like it came out of a liquidizer!"
 			"Look at me. I am the Captain now."
-			"Pronounce 'Wrzlprnft'. You have 5 seconds."
+			`Pronounce "Wrzlprnft." You have 5 seconds.`
 			"Everything you see here has been created by volunteers. You can join us if you want!"
 
 			"To this day, I can still hear the Teeworlds title music."
@@ -1110,7 +1110,7 @@ person "Rais Iris XVIII"
 			"Meet me at the Prancing Pony." # LoTR
 			"This isn't my first ship. I fondly remember The Blin Machine and The Chernomobil." # Life of Boris
 			"Heard of solar panels? Now you can eat sunlight!" # bill wurtz
-			"So you want to be a pirate, m'lad? Well, let me tell ye: Being a pirate, be all about Branding." # CGP Grey
+			"So you want to be a pirate, m'lad? Well, let me tell ye: being a pirate, be all about Branding." # CGP Grey
 			"Do not greed for the Thrumbo horns." # RimWorld
 
 			# Walter Moers: The Mugg's Code of Conduct
@@ -1123,7 +1123,7 @@ person "Rais Iris XVIII"
 
 			# SovietWomble
 			"Get the doomsday rounds."
-			"I wouldn't recommend shooting at me, because your gun goes 'pew pew', but my gun goes BBBRRRRRRR!"
+			`I wouldn't recommend shooting at me, because your gun goes "pew pew," but my gun goes BBBRRRRRRR!`
 			"Ramming speed!"
 
 			# videogamedonkey
