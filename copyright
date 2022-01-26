@@ -25,7 +25,6 @@ Files:
  images/ship/mfury*
  images/ship/mmanta*
  images/ship/mquicksilver*
- images/ship/mraven*
  images/ship/msplinter*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
@@ -1212,6 +1211,8 @@ Files:
  images/hardpoint/nuke*
  images/ship/raven*
  images/thumbnail/raven*
+ images/ship/mraven*
+ images/thumbnail/mraven*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
 
