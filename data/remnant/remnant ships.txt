@@ -410,12 +410,14 @@ ship "Heron"
 		"ion resistance" 0.3
 		"slowing resistance" 3
 		"remnant node" 11
+		"spinal mount" 1
 		weapon
 			"blast radius" 140
 			"shield damage" 1400
 			"hull damage" 700
 			"hit force" 2100
 	outfits
+		"Ember Tear"
 		"Inhibitor Turret" 6
 		"Point Defense Turret" 3
 
@@ -441,7 +443,7 @@ ship "Heron"
 	engine -52 274 1.5
 	engine 52 274 1.5
 	engine 0 328 1.5
-	gun 0 -325
+	gun 0 -325 "Ember Tear"
 	gun -23.5 -302.5
 	gun 23.5 -302.5
 	turret -34.5 -134.5 "Inhibitor Turret"
