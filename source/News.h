@@ -31,24 +31,24 @@ class Sprite;
 class News {
 public:
 	void Load(const DataNode &node);
-	
+
 	// Check whether this news item has anything to say.
 	bool IsEmpty() const;
 	// Check if this news item is available given the player's planet and conditions.
 	bool Matches(const Planet *planet, const std::map<std::string, std::int64_t> &conditions) const;
-	
+
 	// Get the speaker's name.
 	std::string Name() const;
 	// Pick a portrait at random out of the possible options.
 	const Sprite *Portrait() const;
 	// Get the speaker's message, chosen randomly.
 	std::string Message() const;
-	
-	
+
+
 private:
 	LocationFilter location;
 	ConditionSet toShow;
-	
+
 	Phrase names;
 	std::vector<const Sprite *> portraits;
 	Phrase messages;
