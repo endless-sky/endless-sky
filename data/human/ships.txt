@@ -342,9 +342,13 @@ ship "Bactrian"
 		angle 0
 		under	
 	gun -67.5 65 "Sidewinder Missile Launcher"
+		angle 305
 	gun -62.5 56.5 "Sidewinder Missile Launcher"
+		angle 305
 	gun 67 -126 "Torpedo Launcher"
+		angle 40
 	gun 74 -120 "Torpedo Launcher"
+		angle 40
 	turret 40 -141 "Heavy Anti-Missile Turret"
 	turret 32.5 -28.5 "Heavy Lasder Turret"
 	turret -42.5 -42.5 "Heavy Lasder Turret"
