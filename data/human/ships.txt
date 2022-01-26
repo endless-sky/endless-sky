@@ -332,22 +332,28 @@ ship "Bactrian"
 		"X4700 Ion Thruster"
 		"X5200 Ion Steering"
 		"Hyperdrive"
-		
-	engine -18 230
-	engine 18 230
-	gun -15 -226 "Torpedo Launcher"
-	gun 15 -226 "Torpedo Launcher"
-	gun -40 -133 "Sidewinder Missile Launcher"
-	gun -45 -128 "Sidewinder Missile Launcher"
-	turret -22 -148 "Heavy Laser Turret"
-	turret 26 -80 "Heavy Anti-Missile Turret"
-	turret -41 -20 "Heavy Laser Turret"
-	turret 32 -7 "Heavy Laser Turret"
-	turret 53 82 "Heavy Laser Turret"
-	turret -37 186 "Heavy Anti-Missile Turret"
-	bay "Fighter" -38 -26
-	bay "Fighter" 35 36
-	bay "Fighter" -47 97
+
+	engine 19 246.5
+		zoom 1
+		angle 0
+		under
+	engine -19 246.5
+		zoom 1
+		angle 0
+		under	
+	gun -67.5 65 "Sidewinder Missile Launcher"
+	gun -62.5 56.5 "Sidewinder Missile Launcher"
+	gun 67 -126 "Torpedo Launcher"
+	gun 74 -120 "Torpedo Launcher"
+	turret 40 -141 "Heavy Anti-Missile Turret"
+	turret 32.5 -28.5 "Heavy Lasder Turret"
+	turret -42.5 -42.5 "Heavy Lasder Turret"
+	turret -45.5 79 "Heavy Lasder Turret"
+	turret 34.5 146 "Heavy Lasder Turret"
+	turret -36 201.5 "Heavy Anti-Missile Turret"
+	bay "Fighter" 53 -77.5
+	bay "Fighter" -36.5 188
+	bay "Fighter" -46 -130
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 50 30
