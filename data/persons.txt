@@ -1125,11 +1125,11 @@ person "Rais Iris XVIII"
 			"Meet me at the Prancing Pony." # LoTR
 			"This isn't my first ship. I fondly remember The Blin Machine and The Chernomobil." # Life of Boris
 			"Heard of solar panels? Now you can eat sunlight!" # bill wurtz
-			"So you want to be a pirate, m'lad? Well, let me tell ye: being a pirate, be all about Branding." # CGP Grey
+			"So you want to be a pirate, m'lad? Well, let me tell ye: being a pirate, be all about Branding." # CGPGrey
 			"Do not greed for the Thrumbo horns." # RimWorld
 
 			# Walter Moers: The Mugg's Code of Conduct
-			"Honour thy muggroom."
+			"Honor thy muggroom."
 			"If thou seest two sticks lying one on top of the other, thou shalt walk backwards over them with thy left foot first, not with thy right. Moreover, thou shalt not devour them."
 			"Should a vulture's shadow fall across a fire that has gone out, thou shalt rekindle it three times or a great misfortune will ensue."
 			"If thou cross the path of a white cockerel seated on two superimposed sticks, thou shalt not strike it, nor shalt thou address it by name nor partake of the said sticks."
