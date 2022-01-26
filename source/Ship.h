@@ -39,7 +39,6 @@ class Government;
 class Minable;
 class Phrase;
 class Planet;
-class PlayerInfo;
 class Projectile;
 class StellarObject;
 class System;
@@ -183,7 +182,7 @@ public:
 	// Get a random hail message, or set the object used to generate them. If no
 	// object is given the government's default will be used.
 	void SetHail(const Phrase &phrase);
-	std::string GetHail(const PlayerInfo &player) const;
+	std::string GetHail(std::map<std::string, std::string> &&subs) const;
 
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
@@ -509,9 +508,6 @@ private:
 	std::vector<EnginePoint> reverseEnginePoints;
 	std::vector<EnginePoint> steeringEnginePoints;
 	Armament armament;
-	// While loading, keep track of which outfits already have been equipped.
-	// (That is, they were specified as linked to a given gun or turret point.)
-	std::map<const Outfit *, int> equipped;
 
 	// Various energy levels:
 	double shields = 0.;
