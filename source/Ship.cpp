@@ -128,6 +128,22 @@ namespace {
 		else
 			stat = max(0., .99 * stat);
 	}
+
+	// Get an overview of how many weapon-outfits are equipped.
+	map<const Outfit *, int> GetEquipped(const vector<Hardpoint> &weapons)
+	{
+		map<const Outfit *, int> equipped;
+		for(const Hardpoint &hardpoint : weapons)
+			if(hardpoint.GetOutfit())
+				++equipped[hardpoint.GetOutfit()];
+		return equipped;
+	}
+
+	void LogWarning(const string &modelName, const string &name, string &&warning)
+	{
+		string shipID = modelName + (name.empty() ? ": " : " \"" + name + "\": ");
+		Files::LogError(shipID + std::move(warning));
+	}
 }
 
 
@@ -242,7 +258,6 @@ void Ship::Load(const DataNode &node)
 		{
 			if(!hasArmament)
 			{
-				equipped.clear();
 				armament = Armament();
 				hasArmament = true;
 			}
@@ -278,8 +293,6 @@ void Ship::Load(const DataNode &node)
 						grand.PrintTrace("Skipping unrecognized attribute:");
 				}
 			}
-			if(outfit)
-				++equipped[outfit];
 			if(key == "gun")
 				armament.AddGunPort(hardpoint, gunPortAngle, gunPortParallel, drawUnder, outfit);
 			else
@@ -410,13 +423,12 @@ void Ship::Load(const DataNode &node)
 			// Verify we have at least as many installed outfits as were identified as "equipped."
 			// If not (e.g. a variant definition), ensure FinishLoading equips into a blank slate.
 			if(!hasArmament)
-				for(const auto &pair : equipped)
+				for(const auto &pair : GetEquipped(Weapons()))
 				{
 					auto it = outfits.find(pair.first);
 					if(it == outfits.end() || it->second < pair.second)
 					{
 						armament.UninstallAll();
-						equipped.clear();
 						break;
 					}
 				}
@@ -525,9 +537,6 @@ void Ship::FinishLoading(bool isNewInstance)
 			auto nextTurret = armament.Get().begin();
 			auto end = armament.Get().end();
 			Armament merged;
-			// Reset the "equipped" map to match exactly what the code below
-			// places in the weapon hardpoints.
-			equipped.clear();
 			for( ; bit != bend; ++bit)
 			{
 				if(!bit->IsTurret())
@@ -537,11 +546,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					const Outfit *outfit = (nextGun == end) ? nullptr : nextGun->GetOutfit();
 					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAngle(), bit->IsParallel(), bit->IsUnder(), outfit);
 					if(nextGun != end)
-					{
-						if(outfit)
-							++equipped[outfit];
 						++nextGun;
-					}
 				}
 				else
 				{
@@ -550,11 +555,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					const Outfit *outfit = (nextTurret == end) ? nullptr : nextTurret->GetOutfit();
 					merged.AddTurret(bit->GetPoint() * 2., bit->IsUnder(), outfit);
 					if(nextTurret != end)
-					{
-						if(outfit)
-							++equipped[outfit];
 						++nextTurret;
-					}
 				}
 			}
 			armament = merged;
@@ -563,9 +564,12 @@ void Ship::FinishLoading(bool isNewInstance)
 	// Check that all the "equipped" weapons actually match what your ship
 	// has, and that they are truly weapons. Remove any excess weapons and
 	// warn if any non-weapon outfits are "installed" in a hardpoint.
+	auto equipped = GetEquipped(Weapons());
 	for(auto &it : equipped)
 	{
-		int excess = it.second - outfits[it.first];
+		auto outfitIt = outfits.find(it.first);
+		int amount = (outfitIt != outfits.end() ? outfitIt->second : 0);
+		int excess = it.second - amount;
 		if(excess > 0)
 		{
 			// If there are more hardpoints specifying this outfit than there
@@ -573,23 +577,13 @@ void Ship::FinishLoading(bool isNewInstance)
 			armament.Add(it.first, -excess);
 			it.second -= excess;
 
-			string warning = modelName;
-			if(!name.empty())
-				warning += " \"" + name + "\"";
-			warning += ": outfit \"" + it.first->Name() + "\" equipped but not included in outfit list.";
-			Files::LogError(warning);
+			LogWarning(VariantName(), Name(), "outfit \"" + it.first->Name() + "\" equipped but not included in outfit list.");
 		}
 		else if(!it.first->IsWeapon())
-		{
 			// This ship was specified with a non-weapon outfit in a
 			// hardpoint. Hardpoint::Install removes it, but issue a
 			// warning so the definition can be fixed.
-			string warning = modelName;
-			if(!name.empty())
-				warning += " \"" + name + "\"";
-			warning += ": outfit \"" + it.first->Name() + "\" is not a weapon, but is installed as one.";
-			Files::LogError(warning);
-		}
+			LogWarning(VariantName(), Name(), "outfit \"" + it.first->Name() + "\" is not a weapon, but is installed as one.");
 	}
 
 	// Mark any drone that has no "automaton" value as an automaton, to
@@ -629,7 +623,11 @@ void Ship::FinishLoading(bool isNewInstance)
 				count -= eit->second;
 
 			if(count)
-				armament.Add(it.first, count);
+			{
+				count -= armament.Add(it.first, count);
+				if(count)
+					LogWarning(VariantName(), Name(), "weapon \"" + it.first->Name() + "\" installed, but insufficient slots to use it.");
+			}
 		}
 	}
 	if(!undefinedOutfits.empty())
@@ -675,7 +673,6 @@ void Ship::FinishLoading(bool isNewInstance)
 		}
 	}
 	cargo.SetSize(attributes.Get("cargo space"));
-	equipped.clear();
 	armament.FinishLoading();
 
 	// Figure out how far from center the farthest hardpoint is.
