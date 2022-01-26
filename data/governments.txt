@@ -401,8 +401,8 @@ government "Navy (Oathkeeper)"
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3
-		"Kor Sestor" -.1
-		"Kor Mereti" -.1
+		"Kor Sestor" -.01
+		"Kor Mereti" -.01
 		"Navy Intelligence" 1
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"

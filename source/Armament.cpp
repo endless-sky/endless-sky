@@ -44,11 +44,11 @@ void Armament::AddTurret(const Point &point, bool isUnder, const Outfit *outfit)
 // This must be called after all the outfit data is loaded. If you add more
 // of a given weapon than there are slots for it, the extras will not fire.
 // But, the "gun ports" attribute should keep that from happening.
-void Armament::Add(const Outfit *outfit, int count)
+int Armament::Add(const Outfit *outfit, int count)
 {
 	// Make sure this really is a weapon.
 	if(!count || !outfit || !outfit->IsWeapon())
-		return;
+		return 0;
 
 	int existing = 0;
 	int added = 0;
@@ -57,7 +57,7 @@ void Armament::Add(const Outfit *outfit, int count)
 	if(!isTurret && !outfit->Get("gun ports"))
 	{
 		Files::LogError("Error: Skipping unmountable outfit \"" + outfit->Name() + "\". Weapon outfits must specify either \"gun ports\" or \"turret mounts\".");
-		return;
+		return 0;
 	}
 
 	// To start out with, check how many instances of this weapon are already
@@ -74,6 +74,7 @@ void Armament::Add(const Outfit *outfit, int count)
 			{
 				hardpoint.Uninstall();
 				++count;
+				--added;
 			}
 			else
 				++existing;
@@ -94,16 +95,17 @@ void Armament::Add(const Outfit *outfit, int count)
 
 	// If a stream counter already exists for this outfit (because we did not
 	// just add the first one or remove the last one), do nothing.
-	if(existing)
-		return;
-
-	// If this weapon is streamed, create a stream counter. If it is not
-	// streamed, or if the last of this weapon has been uninstalled, erase the
-	// stream counter (if there is one).
-	if(added && outfit->IsStreamed())
-		streamReload[outfit] = 0;
-	else
-		streamReload.erase(outfit);
+	if(!existing)
+	{
+		// If this weapon is streamed, create a stream counter. If it is not
+		// streamed, or if the last of this weapon has been uninstalled, erase the
+		// stream counter (if there is one).
+		if(added > 0 && outfit->IsStreamed())
+			streamReload[outfit] = 0;
+		else
+			streamReload.erase(outfit);
+	}
+	return added;
 }
 
 
