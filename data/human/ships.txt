@@ -350,10 +350,10 @@ ship "Bactrian"
 	gun 74 -120 "Torpedo Launcher"
 		angle 40
 	turret 40 -141 "Heavy Anti-Missile Turret"
-	turret 32.5 -28.5 "Heavy Lasder Turret"
-	turret -42.5 -42.5 "Heavy Lasder Turret"
-	turret -45.5 79 "Heavy Lasder Turret"
-	turret 34.5 146 "Heavy Lasder Turret"
+	turret 32.5 -28.5 "Heavy Laser Turret"
+	turret -42.5 -42.5 "Heavy Laser Turret"
+	turret -45.5 79 "Heavy Laser Turret"
+	turret 34.5 146 "Heavy Laser Turret"
 	turret -36 201.5 "Heavy Anti-Missile Turret"
 	bay "Fighter" 53 -77.5
 	bay "Fighter" -36.5 188
