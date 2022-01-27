@@ -187,7 +187,15 @@ void GameData::LoadShaders(bool useShaderSwizzle)
 
 double GameData::GetProgress()
 {
-	return min(min(spriteQueue.GetProgress(), Audio::GetProgress()), objects.GetProgress());
+	// Since the game defers loading of certain sprites we need to cache
+	// the progress so that when it reaches 1. (when the initial data has
+	// been loaded) it won't ever go back down.
+	static double progress;
+
+	double val = min(min(spriteQueue.GetProgress(), Audio::GetProgress()), objects.GetProgress());
+	if(val >= progress)
+		progress = val;
+	return progress;
 }
 
 
