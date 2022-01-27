@@ -334,13 +334,7 @@ ship "Bactrian"
 		"Hyperdrive"
 
 	engine 19 246.5
-		zoom 1
-		angle 0
-		under
 	engine -19 246.5
-		zoom 1
-		angle 0
-		under	
 	gun -67.5 65 "Sidewinder Missile Launcher"
 		angle 305
 	gun -62.5 56.5 "Sidewinder Missile Launcher"
