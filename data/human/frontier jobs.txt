@@ -1,4 +1,3 @@
-
 # Copyright (c) 2017 by Michael Zahniser
 # Copyright (c) 2018 by Nate Graham
 #
