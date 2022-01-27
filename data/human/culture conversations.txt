@@ -146,7 +146,7 @@ mission "Forest Fire"
 	on offer
 		conversation
 			`The sun had already set when you walked out of the spaceport, trying to find a nearby restaurant to sample their wares. Looking around, the only source of light came from the building you walked out of, a beacon within the sea of darkness.`
-			`	Choosing a random direction, you decide to walk down the quiet street, taking in the sights before two men rush from an alley, pushing past you as they go. Before you could reply with a profanity, you see a woman run out, clothes in disarray as she gives chase to the two men to no avail. Belatedly, you realize that they were holding a purse, yet before you could do anything they had already disappeared, melting into the blackness beyond.`
+			`	Choosing a random direction, you decide to walk down the quiet street, taking in the sights. You are interrupted as two men rush from an alley, pushing past you as they go. Before you could respond, you see a woman run out, clothes in disarray as she gives chase to the two men to no avail. Belatedly, you realize that they were holding a purse, yet before you could do anything they had already disappeared, melting into the blackness beyond.`
 				decline
 
 
