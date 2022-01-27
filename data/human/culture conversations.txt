@@ -129,7 +129,7 @@ mission "Class Trip to Port"
 		random < 1
 	on offer
 		conversation
-			`A group of children wave at you as you step off your ship, marveling at the ships on display as their teachers try and fail to hold their attention. You could see the fading of their uniform colors from afar as their group walked past, yet none of them looked one bit displeased. You wonder how many of them may eventually own their own spaceship and fly across the stars as you make your way into the spaceport itself.`
+			`A group of children wave at you as you step off your ship, marveling at the spacecraft on display as their teachers try and fail to hold their attention. You could see the fading of their uniform colors from afar as their group walked past, yet none of them looked one bit displeased. You wonder how many of them may eventually own their own spaceship and fly across the stars as you make your way into the spaceport itself.`
 				decline
 
 
