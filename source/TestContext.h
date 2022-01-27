@@ -28,13 +28,26 @@ public:
 
 
 private:
-	// Pointer to the test we are running.
-	std::vector<const Test *> testToRun;
+	// Class to describe a running test and running test-step within the test.
+	class ActiveTestStep {
+	public:
+		const Test *test;
+		unsigned int step;
+
+
+	public:
+		// Support operators for usage in containers like map and set.
+		bool operator==(const ActiveTestStep &rhs) const;
+		bool operator<(const ActiveTestStep &rhs) const;
+	};
+
+private:
+	// Reference to the currently running test and test-step within the test.
+	std::vector<ActiveTestStep> callstack;
 
 	// Teststep to run.
-	std::vector<unsigned int> stepToRun = { 0 };
 	unsigned int watchdog = 0;
-	std::set<std::vector<unsigned int>> branchesSinceGameStep;
+	std::set<ActiveTestStep> branchesSinceGameStep;
 };
 
 #endif
