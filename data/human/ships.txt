@@ -332,7 +332,7 @@ ship "Bactrian"
 		"X4700 Ion Thruster"
 		"X5200 Ion Steering"
 		"Hyperdrive"
-
+		
 	engine 19 246.5
 	engine -19 246.5
 	gun -67.5 65 "Sidewinder Missile Launcher"
