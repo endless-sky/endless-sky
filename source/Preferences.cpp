@@ -28,6 +28,7 @@ using namespace std;
 namespace {
 	map<string, bool> settings;
 	int scrollSpeed = 60;
+	int maxFramerate = -1;
 
 	// Strings for ammo expenditure:
 	const string EXPEND_AMMO = "Escorts expend ammo";
@@ -80,6 +81,8 @@ void Preferences::Load()
 			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
+		else if(node.Token(0) == "max framerate")
+			maxFramerate = node.Value(1);
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
@@ -217,4 +220,11 @@ Preferences::VSync Preferences::VSyncState()
 const string &Preferences::VSyncSetting()
 {
 	return VSYNC_SETTINGS[vsyncIndex];
+}
+
+
+
+int Preferences::Maxframerate()
+{
+	return maxFramerate;
 }

@@ -51,6 +51,9 @@ public:
 	static bool ToggleVSync();
 	static Preferences::VSync VSyncState();
 	static const std::string &VSyncSetting();
+
+	// Max framerate.
+	static int Maxframerate();
 };
 
 

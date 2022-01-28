@@ -270,6 +270,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	RenderState previous;
 
 	const auto &font = FontSet::Get(14);
+	const int maxFramerate = Preferences::Maxframerate();
 
 	// Used to smooth fps display.
 	int cpuLoadCount = 0;
@@ -282,7 +283,6 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	// When running tests, fast forward is on by default unless starting the game in debug mode.
 	if(!testToRunName.empty() && !debugMode)
 		motion = FastForward;
-
 	// IsDone becomes true when the game is quit.
 	while(!menuPanels.IsDone())
 	{
@@ -444,10 +444,6 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			}
 		}
 
-		// If the player ended this frame in-game, count the elapsed time as played time.
-		if(menuPanels.IsEmpty())
-			player.AddPlayTime(frameTime);
-
 		const double alpha = accumulator / updateFps;
 		// Interpolate the last two physics states. The interpolated state will
 		// be used by the drawing code.
@@ -484,6 +480,24 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		}
 
 		GameWindow::Step();
+
+		// If the player ended this frame in-game, count the elapsed time as played time.
+		if(menuPanels.IsEmpty())
+			player.AddPlayTime(frameTime);
+
+		// Limit the frame rate.
+		if(maxFramerate > 0)
+		{
+			auto now = CurrentTime();
+			double ms = 1000. / maxFramerate - (now - newTime);
+			double targetTime = now + ms;
+
+			if(ms > 1.)
+				this_thread::sleep_for(chrono::duration<double, milli>(ms - 1));
+			// To limit the frame rate accurately we busy wait for the last millisecond.
+			while(CurrentTime() < targetTime)
+				; // Do nothing.
+		}
 	}
 
 	// If player quit while landed on a planet, save the game if there are changes.
