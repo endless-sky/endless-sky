@@ -129,7 +129,7 @@ mission "Class Trip to Port"
 		random < 1
 	on offer
 		conversation
-			`A group of children wave at you as you step off your ship, marveling at the spacecraft on display as their teachers try and fail to hold their attention. You could see the fading of their uniform colors from afar as their group walked past, yet none of them looked one bit displeased. You wonder how many of them may eventually own their own spaceship and fly across the stars as you make your way into the spaceport itself.`
+			`A group of children wave at you as you step off your ship, marveling at the spacecraft on display as their teachers try and fail to hold their attention. You can see the fading of their uniform colors from afar as their group walks past, yet none of them look one bit displeased. While you make your way into the spaceport itself, you wonder how many of them may eventually own their own spaceship and fly across the stars.`
 				decline
 
 
@@ -144,7 +144,7 @@ mission "Sojourn Sunday Sales"
 		random < 1
 	on offer
 		conversation
-			`You blink in surprise as you enter the spaceport, watching throngs of people pushing their way through the human chains of queues wrapped around and around the commercial area. You look around and see advertisements upon advertisements of vacation locations, all at an absurdly high discount. Yet you couldn't help but notice that to the younger you, it'd still be a price you'd never have be willing to spend on such things.`
+			`You blink in surprise as you enter the spaceport, watching throngs of people pushing their way through the human chains of queues wrapped around the commercial area. You scan your surroundings and notice advertisements upon advertisements of vacation locations, all at an absurdly high discount. Yet you cannot help but notice that to the younger you, it'd still be a price you'd never be willing to spend on such things.`
 				decline
 
 
