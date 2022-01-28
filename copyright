@@ -275,9 +275,10 @@ Copyright: National Archives and Records Administration
 License: public-domain
 
 Files:
- images/land/station12.jpg
+ images/land/station12*
 Copyright: Office of War Information
 License: public-domain
+Comment: Taken from Wikimedia commons. Cropped and edited.
 
 Files: images/land/*-spfld*
 Copyright: Eric Denni (spfldsatellite@gmail.com)
@@ -633,7 +634,6 @@ Files:
  images/land/station9*
  images/land/station10*
  images/land/station11*
- images/land/station12*
  images/land/station13*
  images/land/station14*
  images/land/station15*
@@ -659,6 +659,7 @@ Files:
  images/land/station35*
  images/land/station36*
  images/land/station37*
+ images/land/station38*
  images/land/station39*
  images/land/station40*
  images/land/station41*
@@ -699,13 +700,25 @@ License: public-domain
  government employees while doing work for the government.
 
 Files:
- images/land/station8.jpg
+ images/land/station8*
 Copyright: Thomas Hawk
 Licence: CC BY-NC 2.0
 Comment: Taken from https://www.flickr.com/photos/thomashawk/49037799721/ and cropped.
 
 Files:
- images/land/station15.jpg
+ images/land/station27*
+Copyright: Thomas Hawk
+Licence: CC BY-NC 2.0
+Comment: Taken from https://www.flickr.com/photos/thomashawk/51198503318/in/album-72157603760635197/ and cropped.
+
+Files:
+ images/land/station28*
+Copyright: Thomas Hawk
+Licence: CC BY-NC 2.0
+Comment: Taken from https://www.flickr.com/photos/thomashawk/51731417282/in/album-72157603760635197/ and cropped.
+
+Files:
+ images/land/station15*
 CopyrightL Thomas Hawk
 Licence: CC BY-NC 2.0
 Comment: Taken from https://www.flickr.com/photos/thomashawk/51772186137/in/album-72157603760635197/ and cropped.
@@ -715,12 +728,6 @@ Files:
 Copyright: Damien Jemison
 License: CC-BY-SA-3.0
 Comment: Taken from https://commons.wikimedia.org/wiki/File:Preamplifier_at_the_National_Ignition_Facility.jpg
-
-Files:
- images/land/station38*
-Copyright: Hchc2009
-License: CC-BY-SA-4.0
-Comment: Taken from https://commons.wikimedia.org/wiki/File:Eden_Project_-_tropical_canopy.jpg and cropped.
 
 Files:
  images/land/lava5*
