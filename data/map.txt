@@ -26365,8 +26365,8 @@ planet Babiali
 
 planet Baianus
 	attributes uninhabited
-	landscape land/canyon12
-	description `This frozen water world is reminiscent of Titan back in Sol: The surface is little more than a shattered wasteland of ice and the occasional rock outcropping, but the unbreathably thin atmosphere contains countless tantalizing traces of chemicals that suggest that something more might exist below the surface.`
+	landscape land/snow20
+	description `This frozen water world is reminiscent of Titan back in Sol: the surface is little more than a shattered wasteland of ice and the occasional rock outcropping, but the unbreathably thin atmosphere contains countless tantalizing traces of chemicals that suggest that something more might exist below the surface.`
 	description `	Unlike Titan, however, Baianus is regularly wracked by both waves of heat and energy, and a stay of any length on the surface is likely to see waves of auroras accompanied by glows and sparks rippling across the terrain. Your environmental system strongly recommends remaining inside your ship whenever ion storms are active.`
 	government Uninhabited
 
@@ -27215,7 +27215,7 @@ planet "Fenrir Station"
 
 planet Fertriery
 	attributes "requires: gaslining"
-	landscape land/nasa8
+	landscape land/nasa10
 	description `Fertriery is a fairly typical world with a particularly dense atmosphere that includes significant levels of chlorine and fluorine. The only unusual factor is the above-average temperatures, likely due to the decreased energy loss into the surrounding space.`
 	government Uninhabited
 	bribe 0
