@@ -857,13 +857,13 @@ ship "Marauder Raven"
 		"Afterburner"
 		"Hyperdrive"
 	
-	engine -12 45
-	engine 12 45
-	gun -10 -33 "Heavy Laser"
-	gun 10 -33 "Heavy Laser"
-	gun -16 -28 "Heavy Laser"
-	gun 16 -28 "Heavy Laser"
-	turret 0 -19 "Heavy Laser Turret"
+	engine -9.5 63
+	engine 9.5 63
+	gun -13.5 -35.5 "Heavy Laser"
+	gun 13.5 -35.5 "Heavy Laser"
+	gun -21 -28 "Heavy Laser"
+	gun 21 -28 "Heavy Laser"
+	turret 0 7.5 "Heavy Laser Turret"
 	explode "medium explosion" 24
 	explode "large explosion" 16
 	explode "tiny explosion" 28
@@ -891,9 +891,10 @@ ship "Marauder Raven" "Marauder Raven (Engines)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -12 45 .7
-	engine 0 43
-	engine 12 45 .7
+	engine -10.5 63.5
+	engine 10.5 63.5
+	engine -4.5 62.5 .5
+	engine 4.5 62.5 .5
 	description "Lionheart's elegant Raven has gained popularity with pirates because of its agility. This one appears to have been modified for even more of the latter at the expense of the former, and the central hull can only be recognized as a Raven because of the wings. A third engine bay, more outfit space, additional shield emitters, and a turret make this already deadly warship appear even more frightening."
 
 
@@ -917,11 +918,11 @@ ship "Marauder Raven" "Marauder Raven (Weapons)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 	
-	gun -11 -33 "Plasma Cannon"
-	gun 11 -33 "Plasma Cannon"
-	gun -17 -28 "Pulse Cannon"
-	gun 17 -28 "Pulse Cannon"
-	turret 0 -19 "Heavy Laser Turret"
+	gun -13.5 -35.5 "Plasma Cannon"
+	gun 13.5 -35.5 "Plasma Cannon"
+	gun -21 -28 "Pulse Cannon"
+	gun 21 -28 "Pulse Cannon"
+	turret 0 7.5 "Heavy Laser Turret"
 	description "A former owner of this ship apparently didn't like the lithe Raven, and has added so much more to it - more weapons, more shields, and more outfit capacity - that the central hull can only be recognized because of the wings. Besides adding a turret, this ship has enormous gun ports, making you wonder how much more deadly you could possibly make a warship this small."
 
 
