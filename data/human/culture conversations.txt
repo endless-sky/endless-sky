@@ -113,21 +113,21 @@ mission "Worker's Occasion"
 		random < 1
 	on offer
 		conversation
-			`Pausing to consider a restaurant for your dinner, you notice a local worker staring at the menu, hand shaking as he proceeds to walk in. His clothes are neatly worn, and look freshly brushed, but it's impossible not to notice the dirty marks and stains that just haven't washed out. The man is undeniably nervous and twitchy, yet no one kicks him out. Looking at the menu yourself, you realize the prices are very affordable for you but you recall how unreachable they would've been for you before your career change.`
+			`Pausing to consider a restaurant for your dinner, you notice a local worker staring at the menu, hand shaking as he proceeds to walk in. His clothes are neatly worn and look freshly brushed, but it's impossible not to notice the dirty marks and stains that just haven't washed out. The man is undeniably nervous and twitchy, yet no one kicks him out. Looking at the menu yourself, you realize the prices are very affordable for you, but you recall how unreachable they would've been for you before your career change.`
 			choice
-				`	(Offer to buy the man's dinner.)`
+				`	(Offer to pay for the man's dinner.)`
 					goto aid
-				`	(Pity the man.)`
+				`	(Silently pity the man.)`
 					goto pity
 				`	(Smile at the man.)`
-			`	You smile at the man and reflect on the value of small achievements. He catches your smile out of the corner of his eye and gives you a hesitant but friendly wave back before you go back about your business.`
+			`	You smile at the man and reflect on the value of small achievements. He catches your smile out of the corner of his eye and gives you a hesitant but friendly wave back before you go about your business.`
 				decline
 			label aid
-			`	You enter the restaurant and catch the man's attention, offering to buy his meal.`
-			`	He looks at your pilot's attire and frowns immediately before telling you where you can stick that offer in colorful terms. On reflection you think that perhaps your pride would've been rather heavily wounded were you in his position too.`
+			`	You enter the restaurant and catch the man's attention, offering to pay for his meal.`
+			`	He recognizes you as a pilot and frowns, before telling you where you can stick that offer in colorful terms. On reflection, you think that perhaps your pride would've been rather heavily wounded were you in his position.`
 				decline
 			label pity
-			`	You pity the man who has to work a full month to afford this and continue on your business.`
+			`	You pity the man who has to work a full month to afford this and continue on your way.`
 				decline
 
 
@@ -159,7 +159,7 @@ mission "Forest Fire"
 		random < 1
 	on offer
 		conversation
-			`The smell of burning smoke permeates the air as you step off your craft, causing you to rush towards the nearest shelter, coughing along the way. Once there, you find people shouting, rushing about to get tape plastered onto the windows. No one seems to have noticed your arrival and none give an explanation.`
+			`The smell of burning smoke permeates the air as you step off your craft, causing you to rush towards the nearest shelter, coughing along the way. Once there, you find people shouting and rushing about to get tape plastered onto the windows. No one seems to have noticed your arrival and none give an explanation.`
 			choice
 				`	"Hey! What's happening? I can help!" (Shout.)`
 					goto help
