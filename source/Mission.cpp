@@ -296,7 +296,7 @@ void Mission::Load(const DataNode &node)
 
 	if(displayName.empty())
 		displayName = name;
-	if((hasPriority && location == LANDING)
+	if(hasPriority && location == LANDING)
 		node.PrintTrace("Warning: \"priority\" tag has no effect on \"landing\" missions:");
 }
 
