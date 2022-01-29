@@ -107,7 +107,7 @@ mission "Wanderers: Unfettered Diplomat"
 			label hai
 			choice
 				`	(Yes.)`
-				`	(No; the Fettered Hai are better suited for this.)`
+				`	(No; the Hai southern of here are better suited for this.)`
 					decline
 			label try
 			`	You search around the spaceport for any sign of a local government. Eventually, one of the Hai approaches you, and she says, "You are lost, monkey. What is it that you are looking for?"`
@@ -130,7 +130,7 @@ mission "Wanderers: Unfettered Diplomat"
 				`	"Can you still provide an interpreter, though?"`
 				`	"I understand."`
 					goto end
-			`	"You do not need an interpreter. All you need to know is that those aliens are not worth conversing with."`
+			`	"You do not need an interpreter. All you need is to know that those aliens are not worth conversing with."`
 			label end
 			`	The Hai walks away, leaving you to your own devices in the spaceport.`
 				decline
