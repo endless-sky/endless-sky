@@ -301,7 +301,7 @@ outfit "Drak Antimatter Fragment - Augmented"
 		"shield damage" 56100
 		"hull damage" 56100
 		"blast radius" 250
-		safe
+
 
 
 effect "antimatter spark"
@@ -329,7 +329,7 @@ effect "antimatter dust"
 outfit "Drak Ammunition"
 	plural "Drak Ammunition"
 	category "Ammunition"
-	cost 25000
+	cost 25
 	thumbnail "outfit/unknown"
 	"mass" 0
 	"Drak Ammunition capacity" -1
