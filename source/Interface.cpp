@@ -52,7 +52,7 @@ namespace {
 			else if(node.Token(i) == "bottom")
 				alignment.Y() = 1.;
 			else if(node.Token(i) != "center")
-				node.PrintTrace("Unrecognized interface element alignment:");
+				node.PrintTrace("Skipping unrecognized alignment:");
 		}
 		return alignment;
 	}
@@ -120,7 +120,7 @@ void Interface::Load(const DataNode &node)
 				elements.push_back(new LineElement(child, anchor));
 			else
 			{
-				child.PrintTrace("Unrecognized interface element:");
+				child.PrintTrace("Skipping unrecognized element:");
 				continue;
 			}
 
@@ -274,7 +274,7 @@ void Interface::Element::Load(const DataNode &node, const Point &globalAnchor)
 			padding = Point(child.Value(1), child.Value(2));
 		}
 		else if(!ParseLine(child))
-			child.PrintTrace("Unrecognized interface element attribute:");
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
 	// The "standard" way to specify a region is from + to. If it was specified
