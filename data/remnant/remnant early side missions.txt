@@ -1,0 +1,27 @@
+# Copyright (c) 2017 by Michael Zahniser
+# Copyright (c) 2018 by Zitchas
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+
+
+mission "Remnant: Visit to Paradise 1"
+	name "Take data to <planet>"
+	description "The rest of the Remnant need to know what is happening. Take this data to them on <destination>."
+	landing
+	source
+		government "Remnant"
+	stopover
+	"Viminal"
+	to offer
+		has "Remnant: Cognizance 38: done"
+		random > 30
+	on offer
+		event "remnant: cognizance salvage expansion"
+	on complete
