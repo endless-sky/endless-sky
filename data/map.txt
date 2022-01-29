@@ -28542,6 +28542,7 @@ planet "New Washington"
 	description `	The only villages are in the twilight region in between, and there the settlers make a living by mining for metal and for oil, a relic of a warmer period when more life flourished here and the planet spun more quickly on its axis.`
 	spaceport `In this narrow ring between the baking sun of New Washington's day side, and the endless night beyond, a few native plants and animals still flourish: weirdly colored trees and grasses, and a few insect-like creatures flying among them.`
 	spaceport `	Rats, accidentally introduced by the settlers, also flourish here. A small, nearly deserted cafeteria is selling stew and mashed potatoes. You are almost certain the stew is made with rat meat.`
+	spaceport `	The cafeteria is littered with Remebrance Day memorabilia: flags of corporations long since gone; recruitment posters for an ended war; banners for a victory still ongoing. You suspect that these decorations will stay up until next Remembrance Day.`
 	security 0.05
 	tribute 200
 		threshold 2000
