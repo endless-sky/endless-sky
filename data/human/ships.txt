@@ -333,25 +333,21 @@ ship "Bactrian"
 		"X5200 Ion Steering"
 		"Hyperdrive"
 		
-	engine 19 246.5
-	engine -19 246.5
-	gun -67.5 65 "Sidewinder Missile Launcher"
-		angle 305
-	gun -62.5 56.5 "Sidewinder Missile Launcher"
-		angle 305
-	gun 67 -126 "Torpedo Launcher"
-		angle 40
-	gun 74 -120 "Torpedo Launcher"
-		angle 40
-	turret 40 -141 "Heavy Anti-Missile Turret"
-	turret 32.5 -28.5 "Heavy Laser Turret"
-	turret -42.5 -42.5 "Heavy Laser Turret"
-	turret -45.5 79 "Heavy Laser Turret"
-	turret 34.5 146 "Heavy Laser Turret"
-	turret -36 201.5 "Heavy Anti-Missile Turret"
-	bay "Fighter" 53 -77.5
-	bay "Fighter" -36.5 188
-	bay "Fighter" -46 -130
+	engine 18.5 232
+	engine -15 232
+	turret 37 -132.5 "Heavy Anti-Missile Turret"
+	turret -39 -39 "Heavy Laser Turret"
+	turret 31.5 -26 "Heavy Laser Turret"
+	turret -42.5 75 "Heavy Laser Turret"
+	turret 32.5 132 "Heavy Laser Turret"
+	turret -33.5 192.5 "Heavy Anti-Missile Turret"
+	gun -9 -231.5 "Torpedo Launcher"
+	gun 13.5 -231.5 "Torpedo Launcher"
+	gun 36.5 -197 "Sidewinder Missile Launcher"
+	gun 42 -193 "Sidewinder Missile Launcher"
+	bay "Fighter" -43.5 -125
+	bay "Fighter" -50 103.5
+	bay "Fighter" 53 -72.5
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 50 30
@@ -2424,17 +2420,15 @@ ship "Mule"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -7.5 129
 	engine 11 128
-	turret 19.5 -40
-	turret -22.5 -54
-	turret 20 32
-	turret -20.5 103
-	gun -33.5 56.5
-		angle 305
-	gun -38.5 62
-		angle 305
-	bay "Fighter" -26.5 -21.5
+	engine -8 128
+	turret 19.5 -39 "Heavy Anti-Missile Turret"
+	turret -22 -53.5 "Heavy Laser Turret"
+	turret 20 33 "Heavy Laser Turret"
+	turret -20.5 103.5 "Heavy Anti-Missile Turret"
+	gun -10.5 -125 "Sidewinder Missile Launcher"
+	gun 11 -125 "Sidewinder Missile Launcher"
+	bay "Fighter" -25 -25
 	leak "leak" 50 50
 	leak "flame" 80 80
 	leak "big leak" 80 30
