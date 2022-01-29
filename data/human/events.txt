@@ -73,7 +73,7 @@ event "remembrance day starts"
 	planet "New Austria"
 		add spaceport `	The town is abuzz in preparation for Remembrance Day. Decorations have been set up on every building you can see, and you can hear songs coming from the town's tavern.`
 	planet "New Boston"
-		add spaceport `	A smaller tent has been set up beside the market. Inside are various pamphlets for Remembrance Day events occuring on New Boston.`
+		add spaceport `	A smaller tent has been set up beside the market. Inside are various pamphlets for Remembrance Day events occurring on New Boston.`
 	planet "New Britain"
 		add spaceport `	In celebration of the upcoming Remembrance Day, the night sky above the port is densely occupied by choreographed drone formations, starship stunt flying and firework showcases.`
 	planet "New Greenland"
@@ -83,7 +83,7 @@ event "remembrance day starts"
 	planet "New Iceland"
 		add spaceport `	The caustic climate makes it difficult for the local populace to celebrate Remembrance Day properly, though a small entourage has gathered in the cafeteria regardless.`
 	planet "New India"
-		add spaceport `	Despite the relative recency of settlement, Remembrance Day celebrations still appear to be occuring, with Alpha War shanties audible from one of the spaceport buildings.`
+		add spaceport `	Despite the relative recency of settlement, Remembrance Day celebrations still appear to be occurring, with Alpha War shanties audible from one of the spaceport buildings.`
 	planet "New Kansas"
 		add spaceport `	A group of locals are gathered in a tavern in the western part of the spaceport. The building is decorated with Remembrance Day memorabilia, and you can see several people showing off knitted patterns inside.`
 	planet "New Portland"
@@ -95,7 +95,7 @@ event "remembrance day starts"
 	planet "New Wales"
 		add spaceport `	Some of the workers are setting up Remembrance Day decorations in the cafeteria. One of them asks you how other planets celebrate the day.`
 	planet "Oblivion"
-		add spaceport `	Compared to the rest of the Dirt Belt, the people of Oblivion are not particularily keen on celebrating Remembrance Day. It appears that the younger population of the planet have little concern for events from several centuries ago.`
+		add spaceport `	Compared to the rest of the Dirt Belt, the people of Oblivion are not particularly keen on celebrating Remembrance Day. It appears that the younger population of the planet have little concern for events from several centuries ago.`
 	planet "Rand"
 		add spaceport `	The Remembrance Day preparations on Rand are unusually sparse compared to its population. It appears that most people have opted to return to their families on another planet to celebrate the day, though in one corner of the spaceport, you can hear a group of friends singing Alpha War shanties.`
 	planet "Sinter"
