@@ -269,6 +269,17 @@ Files: images/land/*-iridium*
 Copyright: @Iridium Ore (blueajp@gmail.com)
 License: CC-BY-SA-4.0
 
+Files: images/land/lava11*
+Copyright: National Archives and Records Administration
+License: public-domain
+Comment: Taken from Wikimedia Commons. Cropped and edited.
+
+Files:
+ images/land/station12*
+Copyright: Office of War Information
+License: public-domain
+Comment: Taken from Wikimedia Commons. Cropped and edited.
+
 Files: images/land/*-spfld*
 Copyright: Eric Denni (spfldsatellite@gmail.com)
 License: CC-BY-SA-4.0
@@ -506,15 +517,23 @@ Files:
  images/land/badlands6*
  images/land/badlands7*
  images/land/badlands8*
+ images/land/badlands10*
+ images/land/badlands11*
+ images/land/badlands12*
  images/land/beach0*
  images/land/beach2*
  images/land/beach3*
  images/land/beach5*
  images/land/beach6*
+ images/land/beach13*
+ images/land/beach14*
  images/land/canyon0*
  images/land/canyon1*
  images/land/canyon7*
  images/land/canyon8*
+ images/land/canyon13*
+ images/land/canyon14*
+ images/land/canyon15*
  images/land/city2*
  images/land/city4*
  images/land/city6*
@@ -526,6 +545,9 @@ Files:
  images/land/city12*
  images/land/desert1*
  images/land/desert2*
+ images/land/desert11*
+ images/land/desert12*
+ images/land/deser13*
  images/land/dune1*
  images/land/fields1*
  images/land/fields2*
@@ -534,21 +556,36 @@ Files:
  images/land/fields6*
  images/land/fields7*
  images/land/fields9*
+ images/land/fields13*
+ images/land/fields14*
+ images/land/fields15*
  images/land/fog0*
  images/land/fog1*
  images/land/fog2*
  images/land/fog4*
  images/land/fog6*
+ images/land/fog8*
+ images/land/fog9*
+ images/land/fog10*
+ images/land/fog11*
  images/land/forest1*
  images/land/forest2*
  images/land/forest3*
  images/land/forest4*
  images/land/forest5*
+ images/land/forest6*
+ images/land/forest7*
+ images/land/forest8*
+ images/land/forest9*
+ images/land/garden1*
  images/land/hills0*
  images/land/hills2*
+ images/land/hills8*
  images/land/lava1*
  images/land/lava2*
  images/land/lava6*
+ images/land/lava12*
+ images/land/lava13*
  images/land/loc3*
  images/land/mountain0*
  images/land/mountain1*
@@ -563,6 +600,8 @@ Files:
  images/land/sea5*
  images/land/sea7*
  images/land/sea8*
+ images/land/sea18*
+ images/land/sea19*
  images/land/sky0*
  images/land/sky3*
  images/land/sky4*
@@ -570,6 +609,8 @@ Files:
  images/land/sky7*
  images/land/sky8*
  images/land/sky9*
+ images/land/sky10*
+ images/land/sky11*
  images/land/snow0*
  images/land/snow1*
  images/land/snow2*
@@ -579,11 +620,61 @@ Files:
  images/land/snow6*
  images/land/snow7*
  images/land/snow10*
+ images/land/snow14*
+ images/land/snow15*
+ images/land/snow16*
+ images/land/snow17*
+ images/land/snow18*
+ images/land/snow19*
+ images/land/snow20*
+ images/land/snow21*
  images/land/space2*
+ images/land/station4*
+ images/land/station6*
+ images/land/station7*
+ images/land/station9*
+ images/land/station10*
+ images/land/station11*
+ images/land/station13*
+ images/land/station14*
+ images/land/station15*
+ images/land/station16*
+ images/land/station17*
+ images/land/station18*
+ images/land/station19*
+ images/land/station20*
+ images/land/station21*
+ images/land/station22*
+ images/land/station23*
+ images/land/station24*
+ images/land/station25*
+ images/land/station26*
+ images/land/station27*
+ images/land/station28*
+ images/land/station29*
+ images/land/station30*
+ images/land/station31*
+ images/land/station32*
+ images/land/station33*
+ images/land/station34*
+ images/land/station35*
+ images/land/station36*
+ images/land/station37*
+ images/land/station38*
+ images/land/station39*
+ images/land/station40*
+ images/land/station41*
+ images/land/station42*
+ images/land/station43*
+ images/land/station44*
+ images/land/station45*
+ images/land/station46*
  images/land/water0*
  images/land/water3*
  images/land/water4*
  images/land/water8*
+ images/land/water12*
+ images/land/water13*
 Copyright: Various
 License: public-domain
  Taken from unsplash.com, a collection of photographs that have been donated and
@@ -604,11 +695,34 @@ Files:
  images/land/station1*
  images/land/station2*
  images/land/station3*
- images/land/station4*
 Copyright: NASA
 License: public-domain
  From NASA, and therefore in the public domain because they were created by
  government employees while doing work for the government.
+
+Files:
+ images/land/station8*
+Copyright: Thomas Hawk
+Licence: CC BY-NC 2.0
+Comment: Taken from https://www.flickr.com/photos/thomashawk/49037799721/ and cropped.
+
+Files:
+ images/land/station27*
+Copyright: Thomas Hawk
+Licence: CC BY-NC 2.0
+Comment: Taken from https://www.flickr.com/photos/thomashawk/51198503318/in/album-72157603760635197/ and cropped.
+
+Files:
+ images/land/station28*
+Copyright: Thomas Hawk
+Licence: CC BY-NC 2.0
+Comment: Taken from https://www.flickr.com/photos/thomashawk/51731417282/in/album-72157603760635197/ and cropped.
+
+Files:
+ images/land/station15*
+CopyrightL Thomas Hawk
+Licence: CC BY-NC 2.0
+Comment: Taken from https://www.flickr.com/photos/thomashawk/51772186137/in/album-72157603760635197/ and cropped.
 
 Files:
  images/land/station5.jpg
