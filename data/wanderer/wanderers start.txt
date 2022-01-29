@@ -129,7 +129,7 @@ mission "Wanderers: Unfettered Diplomat"
 			choice
 				`	"Can you still provide an interpreter, though?"`
 				`	"I understand."`
-					label end
+					goto end
 			`	"You do not need an interpreter. All you need to know is that those aliens are not worth conversing with."`
 			label end
 			`	The Hai walks away, leaving you to your own devices in the spaceport.`

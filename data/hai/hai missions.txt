@@ -13,7 +13,6 @@ mission "First Contact: Hai"
 	source
 		government "Hai"
 	on offer
-		set "discovered hai"
 		conversation
 			branch unfettered
 				has "First Contact: Unfettered: offered"
@@ -110,6 +109,16 @@ mission "Discovered Wormhole Alpha"
 		set "wormhole alpha found"
 		fail
 
+# Allows setting of the "hai discovered" condition even if first contact has already occurred
+mission "Hai Discovered Patch"
+	landing
+	invisible
+	source
+		government "Hai" "Hai (Unfettered)"
+	on offer
+		set "discovered hai"
+		fail
+
 
 
 mission "Assisting Hai"
@@ -134,7 +143,6 @@ mission "First Contact: Unfettered"
 	source
 		attributes "unfettered"
 	on offer
-		set "discovered hai"
 		conversation
 			branch hai
 				has "First Contact: Hai: offered"
