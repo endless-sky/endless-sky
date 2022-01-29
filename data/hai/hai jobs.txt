@@ -263,7 +263,7 @@ mission "Unfettered Aid [0]"
 	cargo "food (aid)" 25 2 .05
 	to offer
 		random < 40
-		"cargo space" > 80
+		"cargo space" >= 50
 		has "Ask the Hai about the Unfettered: offered"
 	source
 		government "Hai"
@@ -287,7 +287,7 @@ mission "Unfettered Aid [1]"
 	cargo "food (aid)" 30 2 .05
 	to offer
 		random < 30
-		"cargo space" > 100
+		"cargo space" > 60
 		has "Ask the Hai about the Unfettered: offered"
 	source
 		government "Hai"
@@ -311,7 +311,7 @@ mission "Unfettered Aid [2]"
 	cargo "food (aid)" 35 2 .05
 	to offer
 		random < 20
-		"cargo space" > 120
+		"cargo space" > 65
 		has "Ask the Hai about the Unfettered: offered"
 	source
 		government "Hai"
@@ -782,7 +782,7 @@ mission "Hai Family [0]"
 	passengers 2 4 .5
 	to offer
 		random < 60
-		"passenger space" > 10
+		"passenger space" >= 5
 	source
 		government "Hai"
 	destination
@@ -803,7 +803,7 @@ mission "Hai Family [1]"
 	passengers 2 4 .5
 	to offer
 		random < 40
-		"passenger space" > 10
+		"passenger space" >= 5
 	source
 		government "Hai"
 	destination
@@ -1066,7 +1066,7 @@ mission "Hai Large Bulk Delivery [0]"
 	cargo random 50 3 .02
 	to offer
 		random < 60
-		"cargo space" > 160
+		"cargo space" > 100
 	source
 		government "Hai"
 	destination
@@ -1087,7 +1087,7 @@ mission "Hai Large Bulk Delivery [1]"
 	cargo random 50 3 .02
 	to offer
 		random < 50
-		"cargo space" > 160
+		"cargo space" > 100
 	source
 		government "Hai"
 	destination
@@ -1108,7 +1108,7 @@ mission "Hai Large Bulk Delivery [2]"
 	cargo random 50 3 .02
 	to offer
 		random < 40
-		"cargo space" > 160
+		"cargo space" > 100
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Hai"
@@ -1217,7 +1217,7 @@ mission "Hai Large Rush Delivery [0]"
 	cargo random 30 8 .1
 	to offer
 		random < 80
-		"cargo space" > 80
+		"cargo space" >= 50
 	source
 		government "Hai"
 	destination
@@ -1239,7 +1239,7 @@ mission "Hai Large Rush Delivery [1]"
 	cargo random 30 8 .1
 	to offer
 		random < 60
-		"cargo space" > 80
+		"cargo space" >= 50
 	source
 		government "Hai"
 	destination
@@ -1261,7 +1261,7 @@ mission "Hai Large Rush Delivery [2]"
 	cargo random 30 8 .1
 	to offer
 		random < 40
-		"cargo space" > 80
+		"cargo space" >= 50
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Hai"
@@ -1284,7 +1284,7 @@ mission "Hai Large Rush Delivery [3]"
 	cargo random 30 8 .1
 	to offer
 		random < 30
-		"cargo space" > 80
+		"cargo space" >= 50
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Hai"
