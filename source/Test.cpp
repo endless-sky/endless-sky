@@ -385,12 +385,11 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 	// If the step to run is beyond the end of the steps, then we finished
 	// the current test (and step to the step higher in the stack or we are
 	// done testing if we are at toplevel).
-	if(context.stepToRun.back() >= steps.size())
+	if(context.callstack.back().step >= steps.size())
 	{
-		context.testToRun.pop_back();
-		context.stepToRun.pop_back();
+		context.callstack.pop_back();
 
-		if(context.stepToRun.empty())
+		if(context.callstack.empty())
 		{
 			// Done, no failures, exit the game with exitcode success.
 			SendQuitEvent();
@@ -398,7 +397,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 		}
 		else
 			// Step beyond the call statement we just finished.
-			++(context.stepToRun.back());
+			++(context.callstack.back().step);
 
 		// We changed the active test or are quitting, so don't run the current one.
 		continueGameLoop = true;
@@ -407,7 +406,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 	// All processing was done just before this step started.
 	context.branchesSinceGameStep.clear();
 
-	while(context.stepToRun.back() < steps.size() && !continueGameLoop)
+	while(context.callstack.back().step < steps.size() && !continueGameLoop)
 	{
 		// Fail if we encounter a watchdog timeout
 		if(context.watchdog == 1)
@@ -415,34 +414,34 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 		else if(context.watchdog > 1)
 			--(context.watchdog);
 
-		const TestStep &stepToRun = steps[context.stepToRun.back()];
+		const TestStep &stepToRun = steps[context.callstack.back().step];
 		switch(stepToRun.stepType)
 		{
 			case TestStep::Type::APPLY:
 				stepToRun.conditions.Apply(player.Conditions());
-				++(context.stepToRun.back());
+				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::ASSERT:
 				if(!stepToRun.conditions.Test(player.Conditions()))
 					Fail(context, player, "asserted false");
-				++(context.stepToRun.back());
+				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::BRANCH:
 				// If we encounter a branch entry twice, then resume the gameloop before the second encounter.
 				// Encountering branch entries twice typically only happen in "wait loops" and we should give
 				// the game cycles to proceed if we are in a wait loop for something that happens over time.
-				if(context.branchesSinceGameStep.count(context.stepToRun))
+				if(context.branchesSinceGameStep.count(context.callstack.back()))
 				{
 					continueGameLoop = true;
 					break;
 				}
-				context.branchesSinceGameStep.emplace(context.stepToRun);
+				context.branchesSinceGameStep.emplace(context.callstack.back());
 				if(stepToRun.conditions.Test(player.Conditions()))
-					context.stepToRun.back() = jumpTable.find(stepToRun.jumpOnTrueTarget)->second;
+					context.callstack.back().step = jumpTable.find(stepToRun.jumpOnTrueTarget)->second;
 				else if(!stepToRun.jumpOnFalseTarget.empty())
-					context.stepToRun.back() = jumpTable.find(stepToRun.jumpOnFalseTarget)->second;
+					context.callstack.back().step = jumpTable.find(stepToRun.jumpOnFalseTarget)->second;
 				else
-					++(context.stepToRun.back());
+					++(context.callstack.back().step);
 				break;
 			case TestStep::Type::CALL:
 				{
@@ -450,8 +449,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 					if(nullptr == calledTest)
 						Fail(context, player, "Calling non-existing test \"" + stepToRun.nameOrLabel + "\"");
 					// Put the called test on the stack and start it from 0.
-					context.testToRun.push_back(calledTest);
-					context.stepToRun.push_back(0);
+					context.callstack.push_back({calledTest, 0});
 					// Break the loop to switch to the test just pushed.
 				}
 				continueGameLoop = true;
@@ -463,7 +461,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 					if(!testData->Inject())
 						Fail(context, player, "injecting data failed");
 				}
-				++(context.stepToRun.back());
+				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::INPUT:
 				if(stepToRun.command)
@@ -479,20 +477,20 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 				// TODO: handle mouse inputs
 				// Make sure that we run a gameloop to process the input.
 				continueGameLoop = true;
-				++(context.stepToRun.back());
+				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::LABEL:
-				++(context.stepToRun.back());
+				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::NAVIGATE:
 				player.TravelPlan().clear();
 				player.TravelPlan() = stepToRun.travelPlan;
 				player.SetTravelDestination(stepToRun.travelDestination);
-				++(context.stepToRun.back());
+				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::WATCHDOG:
 				context.watchdog = stepToRun.watchdog;
-				++(context.stepToRun.back());
+				++(context.callstack.back().step);
 				break;
 			default:
 				Fail(context, player, "Unknown step type");
@@ -521,25 +519,16 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	Files::LogError(message);
 
 	// Print the callstack if we have any.
-	auto stackDepth = context.stepToRun.size();
 	string stackMessage = "Call-stack:\n";
-	if(stackDepth == 0)
+	if(context.callstack.empty())
 		stackMessage += "  No callstack info at moment of failure.";
-	while(stackDepth > 0)
+
+	for(auto i = context.callstack.rbegin(); i != context.callstack.rend(); ++i )
 	{
-		if(context.testToRun.size() < stackDepth)
-			stackMessage += "At unknown test!\n";
-		else
-		{
-			// Indexing starts from 0, but the stack counter starts at 1.
-			auto testPrint = context.testToRun[stackDepth - 1];
-			auto testStepNr = context.stepToRun[stackDepth - 1];
-			stackMessage += "- \"" + testPrint->Name() + "\", step: " + to_string(1 + testStepNr);
-			if(testStepNr < testPrint->steps.size())
-				stackMessage += " (" + STEPTYPE_TO_TEXT.at((testPrint->steps[testStepNr]).stepType) + ")";
-			stackMessage += "\n";
-		}
-		--stackDepth;
+		stackMessage += "- \"" + i->test->Name() + "\", step: " + to_string(1 + i->step);
+		if(i->step < i->test->steps.size())
+			stackMessage += " (" + STEPTYPE_TO_TEXT.at(((i->test->steps)[i->step]).stepType) + ")";
+		stackMessage += "\n";
 	}
 	Files::LogError(stackMessage);
 
