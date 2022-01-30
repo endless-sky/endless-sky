@@ -71,7 +71,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			`	"You see," says Sayari, "in the light of the recent civil war your species has had, some of the Elders are less than keen on allowing a partisan observer to see the inner workings of a station in its earliest phases, especially when we haven't built one in so, so long."`
 			`	Now that she mentions it, you don't think you've seen a Hai station at all.`
 			`	"However, therein lies a problem," says Xilin.`
-			`	"The Republic will not allow the Hai to build a station this side of the wormhole without some oversight by someone we trust. This has now been a point of contention for some days, and multiple suggestions have been rejected."`
+			`	"The Republic will not allow the Hai to build a station on our side of the wormhole without some oversight by someone we trust. This has now been a point of contention for some days, and multiple suggestions have been rejected."`
 			`	Sayari chitters, "Honestly, it's all very silly. Lots of old men who are meant to be friends concerned that the other might have been lying to them."`
 			`	In an oddly comical gesture, they both shrug at the same time.`
 			`	"Anyway, thanks to a little Freedom of Information request to the Republic, I have been looking at things, and I think I have the solution."`
@@ -101,7 +101,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			choice
 				`	"Yes, actually I found proof."`
 				`	"Unfortunately, I did find something."`
-			`	You hand Sayari a data stick. "I have saved everything from my logs on there."`
+			`	You hand Sayari a data stick. "I saved everything from my logs on this."`
 			`	Sayari looks crestfallen and takes the data stick gingerly, looking at it as if it were some snake that might bite her at any moment.`
 			`	"I will have a look," is all she says.`
 			`	No sooner has she pocketed it than there is a knock at the door, and an aide looks in. "The Council will see you now."`
@@ -455,7 +455,7 @@ event "role-play station active"
 		government "Neutral"
 		attributes station tourism
 		landscape land/station5
-		description `This brand new station is built with wide spacious interiors for later expansion, a staple of the Hai's geometric building designs. At the moment, there is a number of Hai pretending to be humans in costume and volunteer humans from Hai space helping to make up the act. A powerful holoprojection system is projecting an 'anomaly' into space nearby as a novelty. It seems to reasonably entertain some 'investigators' following rumors of the Hai.`
+		description `This brand new station is built with wide spacious interiors for later expansion, a staple of the Hai's geometric building designs. At the moment, there is a number of Hai pretending to be humans in costume and volunteer humans from Hai space helping to bolster the act. A powerful holoprojection system is projecting an 'anomaly' into space nearby as a novelty. It seems to reasonably entertain some 'investigators' following rumors of the Hai.`
 		spaceport `The spaceport is a spacious docking assembly sheltered under broad, carapace-like structures which are arrayed around the lower decks like petals. It is designed to look impressive and still has that shiny look and freshly oiled smell of a newly minted construction, though it has only basic facilities and services.`
 		security 0.7
 		"required reputation" -10

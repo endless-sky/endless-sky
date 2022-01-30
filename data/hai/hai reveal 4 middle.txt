@@ -42,9 +42,9 @@ mission "Hai Rescue [A02] Microtransceiver Identification"
 		has "Hai Rescue [A01] Visit Darkwaste: done"
 	on offer
 		log "People" "Teeneep Goot'r" `Teeneep is a civil rights leader among the Hai who heads an organization with hundreds of employees and many sponsors. She's used her extensive resources to search for answers about kidnapped scientists.`
-		log `Many Hai and humans have gone missing over the past few decades. They all have microtransceivers that are not of human or Hai origin. Teeneep, a Hai civil rights leader, is using her network of information-gatherers to find out what's going on. Heading to the Quarg south of Hai space to begin the search.`
+		log `Many Hai and humans have gone missing over the past few decades. The ones who have subsequently been rescued all have microtransceivers that are not of human or Hai origin. Teeneep, a Hai civil rights leader, is using her network of information-gatherers to find out what's going on. Heading to the Quarg south of Hai space to begin the search.`
 		conversation
-			`You follow the landing coordinates to a flat area of hardened dirt near a cave. A Hai Centipede is parked next to you; you notice it has non-standard outfits. You can see the emission components of a Scram Drive sticking out the back, and the collection prongs of a Catalytic Ramscoop. The steering is Hai, but the thrusters are human. The ship is outfitted to fly rapidly through unfriendly territory without stopping.`
+			`You follow the landing coordinates to a flat area of hardened dirt near a cave. A Hai Centipede is parked next to you; you notice it has non-standard outfits. You can see the emission components of a Scram Drive sticking out the back, and the collection prongs of a Catalytic Ramscoop. The steering is Hai, but the thrusters are human. The ship appears ready to fly rapidly through unfriendly territory without stopping.`
 			choice
 				`	(Walk into the cave.)`
 				`	(Come back later.)`
@@ -132,7 +132,7 @@ mission "ZZ Hai Rescue [A03] Microtransceiver Identification"
 		conversation
 			`After you land, a hovering gray platform lowers to the entrance of your ship. You step on, and it raises you to a higher level of the ringworld where many Quarg and a few Korath are present. You find the first Quarg who will talk to you and show it the vial of microtransceivers.`
 			`	The Quarg makes a series of wheezing sounds which approximate a laugh. "I am merely a pilot. I know nothing of microtransceivers. That is the technology of the Korath, and I will take you to one who is knowledgeable."`
-			`	You pass through another two grey platform transports and reach a warm cave-like structure with a group of Korath and Quarg. From the holograms and equipment, it appears they're discussing science. One hologram looks like a blood cells attached to a tiny machine; this may be a microscale medicine laboratory.`
+			`	You pass through another two gray platform transports and reach a warm cave-like structure with a group of Korath and Quarg. From the holograms and equipment, it appears they're discussing science. One hologram looks like a blood cells attached to a tiny machine; this may be a microscale medicine laboratory.`
 			`	The Quarg and Korath discuss your microtransceivers for a few minutes, placing them in various instruments.`
 			`	Finally, you have your answer. A Quarg scientist tells you, "These appear to be Korath in origin, but makeshift and primitive. Even the Korath Exiles are more advanced. Those who made these have little resources and simple machinery. This will tell you how to detect these microtransceivers," it explains, handing you a standard data card compatible with human computers. "Take this to Tarazed Shipyards."`
 			`	You recall Teeneep gave you a contact at Tarazed Shipyards.`
@@ -428,7 +428,7 @@ mission "Hai Rescue [A09] Slaver Ships"
 		conversation
 			`The Earth authorities give you an unusual landing vector that leads to a secret docking bay below ground in Argentina. You land, and a Navy cadet meets you at your ship with an urgent message: "Republic Intelligence and a Navy Marshal want to see you as soon as possible. They have news about your microtransceiver transmissions. Please follow me."`
 			`	Giti adds, "I'll take the scanners and data to some researchers and let you know when I have more information. Please go with the cadet. It sounds like you'll finally get some answers."`
-			`	The cadet takes you to an elevator just outside your ship, down more than three hundred floors to a large meeting room. Within, you see two men and a woman in formal dress. One man has a Republic Intelligence uniform with the name "Agent Kopkow". Another wears a Navy full dress uniform that you don't immediately recognize. After a moment of thought, you realize he is a Marshal, the second-highest rank in the Navy, answering only to the Grand Marshal. His uniform is is labeled "Adurath Kaine". The woman is a Navy captain wearing the prominent Parliamentary Medal of Valor. Her name label says "Captain Anna Wallace."`
+			`	The cadet takes you to an elevator just outside your ship, down more than three hundred floors to a large meeting room. Within, you see two men and a woman in formal dress. One man has a Republic Intelligence uniform with the name "Agent Kopkow". Another wears a Navy full dress uniform that you don't immediately recognize. After a moment of thought, you realize he is a Marshal, the second-highest rank in the Navy, answering only to the Grand Marshal. His uniform is labeled "Adurath Kaine". The woman is a Navy captain wearing the prominent Parliamentary Medal of Valor. Her name label says "Captain Anna Wallace."`
 			choice
 				`	(Speak to the agent and Marshal.)`
 					goto join

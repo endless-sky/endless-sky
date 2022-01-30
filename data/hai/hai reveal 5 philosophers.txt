@@ -22,7 +22,7 @@ mission "Hai Rescue [B01] Election"
 	on offer
 		event "hai and human ships at wormhole"
 		conversation
-			`You land outside the hidden base and you notice the strangely-outfitted Centipede is gone. It has been replaced with a pair of Lightning Bugs which appear to have standard outfits. You walk into the base and see some researchers you saw before, but Teeneep is absent.`
+			`You land outside the hidden base and you notice the strangely-outfitted Centipede is gone. It has been replaced with a pair of Lightning Bugs which appear to have standard outfits. You walk into the base and recognize some of the researchers you've seen before, but Teeneep is absent.`
 			`	You explain your discoveries and the Hai look increasingly concerned with each sentence you speak.`
 			`	After paying you, they explain, "Not long after you left, we went public with our story. We told everyone who would listen. Then the government received your findings through Earth authorities. There's been a big outpouring of support, and a lot of anger at the Elders for letting this go on for so long."`
 			`	"Two days ago, there was an election. A third of the Elders have been replaced, which is the fastest change we've had since the Korath invasion began. Teeneep is being inaugurated today, as the youngest 'elder' since the Elder Council was formed. I fear a time of chaos has begun."`
@@ -310,11 +310,10 @@ mission "Hai Rescue [B02] Diplomacy: Syndicate"
 	on offer
 		log `The Hai and humans have huge fleets on either side of the wormhole, with more ships pouring in all the time. Teeneep wants to visit the human authorities to prevent a war.`
 		conversation
-			`When you arrive at <origin>, Teeneep meets you at your ship as soon as you touch down. She's wearing the robes of a Hai Elder and has four bodyguards. They're wearing full body armor with personal energy shields. Their pulse rifles are the lethal variety built during the Korath war, rather than the non-lethal ones made today. You notice Teeneep is wearing a backpack with a personal shield.`
-			`	She greets you, "Times are changing quickly, <first>. The Navy sent a message ahead of you. Your information is considerably more detailed, but theirs was enough to anger the entire Elder Council. I advised against rash action, but my words went unheeded."`
-			`	"The Hai Elders are so angered at the killing of our people that we have officially closed our borders. A large armada guards the wormhole at Waypoint. The human authorities have responded by putting a fleet at Ultima Thule. This situation is explosive and may soon lead to war."`
-			`	"Hai are all banned from entering human space now, and humans are not allowed in and out except for critical travel. My new position as an Elder grants me special privileges."`
-			`	"Please, in the name of peace, escort my ship to meet your authorities. I must also see Waypoint and Ultima Thule for myself. I dare not try this without your escort. You will be well-paid."`
+			`When you arrive at <origin>, Teeneep meets you at your ship as soon as you touch down. She's wearing the robes of a Hai Elder and has four bodyguards - each with full body armor with personal energy shields. Their pulse rifles are the lethal variety built during the Korath war, rather than the non-lethal ones made today. You notice Teeneep is wearing a backpack with a personal shield.``
+			`	She greets you. "Times are changing quickly, <first>. The Navy sent a message ahead of you. Your information is considerably more detailed, but theirs was enough to anger the entire Elder Council. I advised against rash action, but my words went unheeded.`
+			`	"The Hai Elders are so angered at the killing of our people that we have officially closed our borders. A large armada guards the wormhole at Waypoint. The human authorities have responded by putting a fleet at Ultima Thule. This situation is explosive and may soon lead to war.`
+			`	"Hai are all banned from entering human space now, and humans are not allowed in and out except for critical travel. My new position as an Elder grants me special privileges. Please, in the name of peace, escort my ship to meet your authorities. I must also see Waypoint and Ultima Thule for myself. I dare not try this without your escort. You will be well-paid."`
 			choice
 				`	"Of course. Let's go."`
 					accept
@@ -388,7 +387,7 @@ mission "Hai Rescue [B03] Diplomacy: Syndicate Internal Affairs"
 			`	After everyone sits, Stephen Moray turns on a device. "Communications jammer," he explains, "so we're not heard.`
 			`	"In my time as a Syndicate executive, I have smuggled over 80,000 slaves from pirate planets to freedom in Syndicate space. I have extensive contacts within the slaver community. If I smuggle any of your people back here, I will tell you immediately.`
 			`	"I have some leads on the organization behind this. There is a pirate gang with an extensive array of contacts in organized crime both up in the Far North and closer to home within the Syndicate - possibly even Syndicate executives. I can say for sure though that they're definitely doing this without the permission of the Syndicate proper. I swear to you that I will do everything in my power to track down whoever is responsible for this reprehensible act. They will be brought to justice.`
-			`	"I know there are two holding facilities human space where the kidnapped researchers are brought for processing before passing through the wormhole at Devil-Run. They're on the pirate planets of Stormhold and Deadman's Cove, but I don't know the exact locations yet. Please, leave at once to talk to humanity's government. Perhaps you can stall this conflict long enough for us to get some answers."`
+			`	"I know there are two holding facilities in human space where the kidnapped researchers are brought for processing before passing through the wormhole at Devil-Run. They're on the pirate planets of Stormhold and Deadman's Cove, but I don't know the exact locations yet. Please, leave at once to talk to humanity's government. Perhaps you can stall this conflict long enough for us to get some answers."`
 			`	Teeneep bids him farewell, and the two of you return to your ships. Teeneep hands you <payment> and is eager to go to <destination>.`
 				accept
 	on complete
@@ -416,7 +415,7 @@ mission "Hai Rescue [B04] Diplomacy: Treaty Negotiation"
 		log `The President of the Republic and Chancellor of the Free Worlds met Teeneep, who claims to speak with the authority of the entire Hai government. They came to a tentative agreement about carefully tracking Hai movements in human space, but Teeneep won't agree until her people are returned. The human leaders asked us to talk to Stephen Moray again.`
 		conversation
 			`Earth authorities ask you to land in the Republic Capital Building, a vast skyscraper over a kilometer high which has its own spaceport. You land in one of several hangars built for ships significantly larger than a Carrier. In the distance, you spy an unfamiliar ship design which looks like a massive gunship. You've heard rumors that the Navy is working on advanced ships built to fight alien races. They may have left one here for Teeneep to see, as a warning to the Hai Elders.`
-			`	A formal delegation meets Teeneep at her ship, but she awaits you before continuing into the building. It takes about a ten minutes of elevators and hallways to get to the top of the building: the Parliament Chamber. The chamber is empty; your delegation walks through it to a room on the far end of the chamber.`
+			`	A formal delegation meets Teeneep at her ship, but she awaits you before continuing into the building. It takes about ten minutes of elevators and hallways to get to the top of the building: the Parliament Chamber. The chamber is empty; your delegation walks through it to a room on the far end of the chamber.`
 			choice
 				`	(Enter the room.)`
 					goto room
@@ -431,7 +430,7 @@ mission "Hai Rescue [B04] Diplomacy: Treaty Negotiation"
 			`	Teeneep begins, "I speak as the voice of the Hai and with the full authority of the Elder Council. Many of our people have been kidnapped over the past few decades, and some still reside beyond the wormhole at Devil-Run. Worst of all, your authorities have killed numerous Hai on slaver ships, without attempting rescue or even offering surrender. We demand the return of our people and an immediate end to the killing of slaves."`
 			`	The President is the first to respond. "The problem of piracy in human space is a difficult one and cannot be solved overnight. The pirates are well-entrenched in their planets, and fighting them is a long and brutal struggle. With our navies distracted fighting one another, our recent war has left them stronger than ever."`
 			`	The Chancellor continues, "The Free Worlds has made great strides reducing piracy by befriending the peoples of the anarchist worlds. We're discussing similar approaches with the Republic. Perhaps in another few years, piracy will be entirely eliminated."`
-			`	"We have a counter-proposal," the President says. "The Free Worlds and Republic will establish a customs service on Mountaintop. Hai visiting human space will check in with us. Our intelligence agencies will track their movements and see to their safety as best we can; they'll be given contacts on every planet to go to for help. In the meantime, we will place extensive surveillance fleets at Ultima Thule to detect any unapproved Hai travel. We will do our best to disable and capture ships with kidnapped Hai, no matter the risk of Navy lives."`
+			`	"We have a counter-proposal," the President says. "The Free Worlds and Republic will establish a customs service on Mountaintop. Hai visiting human space will check in with us there. Our intelligence agencies will then track their movements in order to see to their safety as best we can. They'll also be given contacts on every human planet that they can go to for help. In the meantime, we will place extensive surveillance fleets at Ultima Thule to detect any unapproved Hai travel. We will do our best to disable and capture ships with kidnapped Hai, no matter the risk to Navy lives."`
 			`	"The Free Worlds will also extend our protection, of course," the Chancellor adds.`
 			`	Teeneep responds, "I cannot sign that treaty yet. My people won't be satisfied until the kidnapped Hai are returned."`
 			`	The President replies, "We heard back from Syndicate Internal Affairs that they know the exact location of three staging facilities for a group called the 'Devil-Run Gang.' That group is behind the kidnappings." Turning to you, the President continues, "Please return to <destination>, and speak with Deputy Director Moray again. He may have a solution."`
@@ -510,7 +509,7 @@ mission "Hai Rescue [B05] Plant a Spy"
 		conversation
 			`You reach the spaceport with Teeneep and head to the room you were told to visit. A Hai stands before you, nervously eyeing the strange orb you're holding. "You must be Tutitot," Teeneep says. The Hai nods. "This is Captain <first> <last>. While you two work together, I will stay behind to prepare for our next steps."`
 			`	Tutitot addresses you. "The Quarg told me I'm supposed to put the worm in my ear. It's just so... weird and gross." You give him the orb, and he lifts it up and brings it near his head. The worm immediately jumps out and vanishes into his ear. The Hai stiffens for a few seconds, and then returns to normal. "I can... feel your mind. I can see the orb in my mind. It's like the whole world is in my mind! This is amazing!`
-			`	"I'm ready to go. Please deliver the orb to <stopovers> and then take me to <destination>. When I'm at the Philosopher's Paradise, the orb will... touch your mind? It will probably be two or three weeks after you place the it. Then you will return to Devil-Eye to contact me."`
+			`	"I'm ready to go. Please deliver the orb to <stopovers> and then take me to <destination>. When I'm at the Philosopher's Paradise, the orb will... touch your mind? It will probably be two or three weeks after you place it. Then you will return to Devil-Eye to contact me."`
 			`	Tutitot walks toward your ship as if in a trance. Teeneep follows from a distance, watching the Hai's odd behavior. After a moment, she turns to you. "You will be paid well upon your return," says Teeneep. "Please hurry."`
 				accept
 	on complete
@@ -551,7 +550,7 @@ mission "Hai Rescue [B07] Return"
 		has "Hai Rescue [B06] Tutitot Reports: done"
 	on offer
 		conversation
-			`You land, and the mysterious orb appears in your cockpit, right in front of your face. You don't know how it entered your ship, but this is alien technology. If Quarg do not understand it, it is probably far beyond human understanding.`
+			`You land, and the mysterious orb appears in your cockpit, right in front of your face. You don't know how it entered your ship, but this is alien technology. If the Quarg do not understand it, it is probably far beyond your understanding as well.`
 			`	Tutitot's visage appears in the orb. "I am in the Philosopher's Paradise. The city is older and larger than we thought, and there are many researchers - some were kidnapped recently. An alliance of pirate groups rules here, but the other denizens are friendly. I've seen enough to know there are at least thousands of well-armed troops and dozens of capital ships."`
 			label questions
 			`	"Is there anything specific you wish to know?"`
@@ -603,7 +602,7 @@ mission "Hai Rescue [B08] Re-Plan"
 			`You approach the coordinates the authorities provided and a hidden hangar, covered by a hologram of trees, opens. Once within, Teeneep and Stephen Moray meet you at your ship.`
 			`	Teeneep tells you, "We've made progress. I have been working with the Free Worlds, Syndicate, Republic, and the Deep. They are all eager to help the Hai rescue our people. You've sparked a long-needed discussion between diplomats in our governments. This will go a long way towards establishing peace."`
 			`	She continues, "We've outfitted a Dreadnought and a Carrier with the best technology in Hai and human space. We've destroyed the two staging facilities, and we're ready to attack Philosopher's Paradise."`
-			`	You tell her about Tutitot's findings on Philosopher's Paradise, and Stephen Moray frowns, saying, "There aren't enough Jump Drives in all of human space for a fleet that could defeat that many pirates. If the Quarg and Drak won't help us, I don't know what we'll do."`
+			`	You tell her about Tutitot's findings on Philosopher's Paradise, and Stephen Moray frowns, saying, "There aren't enough Jump Drives in all of human space for a fleet that could defeat that many pirates. If the Quarg won't help us, I don't know what we'll do."`
 			`	Teeneep sighs. "There is another group we could turn to. Captain <last>, I need you to escort me to <destination>." Stephen looks at her concerningly. "The Unfettered Hai have plenty of Jump Drives and troops. They could liberate our people. I know their ways, and I can convince them to help if my ship survives the journey. I'll pay you double this time: <payment>."`
 				accept
 	npc save accompany
@@ -633,7 +632,7 @@ mission "Hai Rescue [C01] Bloody Love Blooms"
 				`	"What's your plan?"`
 				`	(Follow her.)`
 					goto follow
-			`	"To Unfettered Hai leadership, this meeting is all a political ploy. They know it's in their best interest to help us. It will raise public opinion towards them among the Fettered and likely lure more recruits to their side. But before they agree, I have to prove myself in front of their troops. If I don't, the public's perception will be that the Unfettered leaders helped a weak coward.`
+			`	"To Unfettered Hai leadership, this meeting is all a political ploy. They know it's in their best interest to help us. It will raise public opinion towards them among the "Fettered" and likely lure more recruits to their side. But before they agree, I have to prove myself in front of their troops. If I don't, the public's perception will be that the Unfettered leaders helped a weak coward.`
 			`	"Why else do you think the Hai Elders would pick the one fencing champion among their number for this trip?"`
 			label follow
 			`	Teeneep takes a step forward, pauses, then turns back to you. "Actually, there was something I wanted to make sure I explained before we meet the Unfettered leadership: I'm carrying real weapons for a reason. This meeting will probably seem violent, and that will probably make you think the Unfettered are a barbaric people. They're not; they 'play up' their violent nature. It's a hard concept to explain - we have Hai words for this that don't translate well into your language. That's the simplest way I can think to explain it without spending twenty minutes here, so it'll have to suffice."`
@@ -646,9 +645,9 @@ mission "Hai Rescue [C01] Bloody Love Blooms"
 					goto watch
 			`	As you enter the room, a pair of Unfettered grab you. Teeneep draws a throwing knife, saying with intensity, "Let Captain <last> go. Now." The Unfettered let go immediately, and she nods for you to stay where you are, sheathing the knife.`
 			label watch
-			`	Teeneep explains to the leader, "Twenty thousand Hai have been enslaved by human pirates. They're concealed in a subterranean base that can only be reached with a Jump Drive and a Quantum Keystone. Dozens of human capital ships and thousands of human pirates guard the Hai. We haven't enough Jump Drives to rescue them.`
+			`	Teeneep explains to the leader, "Twenty thousand Hai have been enslaved by human pirates. They're concealed in a subterranean base that can only be reached with both a Jump Drive and a Quantum Keystone. Dozens of human capital ships and thousands of human pirates guard the Hai. We haven't enough Jump Drives to rescue them.`
 			# Note: Teeneep is using hyperbole; she knows most of the 20,000 Hai at Philosopher's Paradise were probably born there.
-			`	"You were once the protectors of all Hai. I ask you be so again. Free our people from slavery, and kill their human slavers."`
+			`	"You were once the protectors of all Hai. I ask you be so again. Free our people from slavery and kill their human slavers."`
 			`	The Unfettered leader responds, "Your people have outlawed and abandoned us. You give us insulting food donations with propaganda on them. You block our ships from returning to Hai-home. Why should we help you, a race of slothful cowards? Your people are an insult to all Hai."`
 			`	Teeneep suddenly takes three strides forward, closing the distance between her and the Unfettered leader in less than a second. You had forgotten how quick Hai are; few humans could do what she just did. "I challenge you for rule of the Unfettered military!"`
 			`	"You haven't the authority to do that," he responds, laughing.`
@@ -675,7 +674,7 @@ mission "Hai Rescue [C01] Bloody Love Blooms"
 			`	You explain the plan to rescue the Hai and end the standoff before anyone does anything stupid, as well as the upgrades the Unfettered need to their ships in order to join the battle.`
 			`	"And of course," he says, "you're not an official representative of the Republic, so you need someone to authorize and organize things if it's to happen quickly. Well, have no fear! I can definitely do that." Within a few short minutes, you seem to have lifted a handful of years off of Xilin's worn features.`
 			`	"I'll sort out the approvals, and I'm sure the Marshal can figure out the logistics. Give me the details, and we'll have it all waiting for you on Prime by the time you arrive."`
-			`	You thank him, and as he seems eager to get that ball rolling, you leave him to return to your ship.`
+			`	You thank him, and, as he seems eager to get that ball rolling, you leave him to return to your ship.`
 
 mission "Hai Rescue [C02] Escort to Arms Purchase"
 	landing
@@ -780,7 +779,7 @@ mission "Hai Rescue [C05] Operatives"
 		has "Hai Rescue [C04] Foundry: done"
 	on offer
 		conversation
-			`Deputy Director Stephen Moray greets you as you exit your ship. "I have no doubt the Unfettered and yourself will handle the space battle, but we need some special operatives to storm the city. The Republic has rounded up the best troops in human space and has armed them with some special equipment. They're being very hush-hush about it, but I understand it is advanced gear Deep Sky has been developing.`
+			`Deputy Director Stephen Moray greets you as you exit your ship. "I have no doubt you and the Unfettered will handle the space battle, but we need some special operatives to storm the city. The Republic has rounded up the best troops in human space and has armed them with some special equipment. They're being very hush-hush about it, but I understand it is advanced gear Deep Sky has been developing.`
 			`	"They're waiting on <destination> for you to pick them up. In total, there are 200 operatives and 70 tons of gear that you'll be responsible for transporting. The Republic will give you your usual payment of <payment>. I'll keep the Unfettered distracted - and secret - until you return."`
 				accept
 	on complete
@@ -798,11 +797,11 @@ mission "Hai Rescue [C06] Meet the Fleet"
 	to offer
 		has "Hai Rescue [C05] Operatives: done"
 	on visit
-		dialog `You've fogotten some of the operatives or their equipment; they're probably in your escorts. Wait for the escorts to arrive, and land again to finish this mission.`
+		dialog `You've forgotten some of the operatives or their equipment; they're probably in your escorts. Wait for the escorts to arrive, and land again to finish this mission.`
 	on offer
 		conversation
 			`Soon after landing, you are met by Agent Kopkow, the Republic Intelligence agent you met on Earth. He seems very stressed. "It's becoming increasingly difficult to cover up the existence of the Hai," he explains. "The captains at Ultima Thule already know about the Hai, but we had to tell the crews that we were dealing with a major pirate threat. We hired a few pirate gangs to fly through the area to back our story. The Shield Beetles at Prime were explained away as experimental ship designs. Our cover stories have passed the point of plausibility into the realm of barefaced lying. I hope you can finish this without too many more public displays, otherwise we won't be able to hide the Hai anymore.`
-			`	"I've brought 200 intelligence operatives, specially trained for attacking pirate strongholds, and equipped with advanced weapons that... are on a need-to-know basis. Unfortunately, we possess no ships that can transport that many people safely to the surface. Even a Bactrian would be torn to pieces. You will have to transport the operatives. We can, however, transport them back afterwards. Once you're ready for the battle at Philosopher's Paradise, meet our operatives in the spaceport. You will need 200 bunks and 70 tons of cargo space to fit all the operatives and their gear. Please don't take long. We're running out of cover stories. Now, if you'll excuse me, I have a meeting to be at in three minutes." Agent Kopkow quickly walks off before you have a chance to respond.`
+			`	"I've brought 200 intelligence operatives, specially trained for attacking pirate strongholds and equipped with advanced weapons that... are on a need-to-know basis. Unfortunately, we possess no ships that can transport that many people safely to the surface. Even a Bactrian would be torn to pieces. You will have to transport the operatives. We can, however, transport them back afterwards. Once you're ready for the battle at Philosopher's Paradise, meet our operatives in the spaceport. You will need 200 bunks and 70 tons of cargo space to fit all the operatives and their gear. Please don't take long. We're running out of cover stories. Now, if you'll excuse me, I have a meeting to be at in three minutes." Agent Kopkow quickly walks off before you have a chance to respond.`
 				accept
 	on complete
 		payment 600000
@@ -992,7 +991,7 @@ mission "Hai Rescue [C08] Freedom"
 				goto questions
 			label leave
 			`	As you return to your ship, Teeneep interrupts you. "I need you to escort me one last time, Captain <last>. I must return to <destination> to resolve things now that the threat is ended. You will be well-paid, of course."`
-			`	Anticipating your next question, she says, "The ships of the Unfettered Hai will be escorted back with us since the Philosophers are convinced they are at no risk and still have a ship at their disposal. Some of them have chosen to remain here and join the philosophers. More than enough bunks have subsequently been freed to return those who have chosen to come home with us. The surviving operatives are planning how to back to Foundry themselves."`
+			`	Anticipating your next question, she says, "The ships of the Unfettered Hai will be escorted back with us since the Philosophers are convinced they are at no risk and still have a ship at their disposal. Some of them have chosen to remain here and join the philosophers. More than enough bunks have subsequently been freed to return those who have chosen to come home with us. The surviving operatives are planning how to return to Foundry themselves."`
 			`	Teeneep follows you back to your ship as you prepare to leave the Philosopher's Paradise.`
 				accept
 	on complete
