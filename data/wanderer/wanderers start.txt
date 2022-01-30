@@ -107,7 +107,7 @@ mission "Wanderers: Unfettered Diplomat"
 			label hai
 			choice
 				`	(Yes.)`
-				`	(No; the Hai southern of here are better suited for this.)`
+				`	(No; the other Hai south of here are better suited for this.)`
 					decline
 			label try
 			`	You search around the spaceport for any sign of a local government. Eventually, one of the Hai approaches you, and she says, "You are lost, monkey. What is it that you are looking for?"`
