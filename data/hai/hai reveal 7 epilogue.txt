@@ -305,7 +305,7 @@ mission "HRF 04 Escort Republic Outfitters"
 		event "mooncreek operational"
 		payment 10000000
 		conversation
-			`With a strong force ensuring that no one can interrupt the final construction stage, space-based cranes set about removing the three outer sections of the Geocoris and moving them to the steel ring deployed around the original station core. Within a few hours, all seven of the new Geocorises have been dismantled and integrated to the station structure, using lessons learnt from the construction of Mountaintop to rapidly finish a station that is fully battle-ready, if lacking in some of the amenities of life. In a reversal of the Mountaintop priorities, the construction workers unpack and assemble a massive holoprojector while wearing environmental suits before they begin unpacking the contents of the Geocoris storage pods and engaging principle life support systems.`
+			`With a strong force ensuring that no one can interrupt the final construction stage, space-based cranes set about removing the three outer sections of the Geocoris and moving them to the steel ring deployed around the original station core. Within a few hours, all seven of the new Geocoris have been dismantled and integrated to the station structure, using lessons learnt from the construction of Mountaintop to rapidly finish a station that is fully battle-ready, if lacking in some of the amenities of life. In an unexpected reversal of the Mountaintop priorities, the construction workers unpack and assemble a massive holoprojector while wearing environmental suits before they begin unpacking the contents of the Geocoris storage pods and engaging principle life support systems.`
 			`	As soon as the life support systems around the docking section are engaged, the security ships begin landing those damaged by the hastily assembled pirate response for critical repairs.`
 			`	As you're attending to your own ships after their extended guard duty, you get pinged by a hail from Mountaintop. When you answer it, you are greeted by Xilin and Hiyamaharu, who look very pleased. "We hear that the operation to establish Mooncreek has been successful, Captain <last>! How'd things go with you?"`
 			choice
@@ -316,7 +316,7 @@ mission "HRF 04 Escort Republic Outfitters"
 			`	"Still," says Hiyamaharu, turning to Xilin.`
 			label fantastic
 			`	"A great success all round," replies Xilin. "The Republic and Hai governments have approved a reward of <payment> by the way, as thanks for your considerable assistance here.`
-			`	"If you have a moment though, we'd appreciate your continued help with a bit of PR now. To finalize the station, the plan is to facilitate some of the major outfitters to set up on the new station, both from Hai space and from ours. Predominantly, this would be so that we can ensure a ready supply of munitions on the station at all times. As well, the long-term garrison to act as security needs to be established. We'd like you to escort each of them on the last leg of their journeys, mostly for the photo ops.`
+			`	"If you have a moment though, we'd appreciate your continued help with a bit of PR now. To finalize the new station, the plan is to facilitate the set up of some of the major outfitters, both from Hai space and from ours. Predominantly, this would be so that we can ensure a ready supply of munitions on the station at all times. As well, a long-term garrison to act as security needs to be established. We'd like you to escort each of them on the last leg of their journeys, mostly for the photo ops.`
 			`	"Of course," Xilin adds, "we'll understand if you're too busy now."`
 			choice
 				`	"Sure, why not?"`
@@ -421,7 +421,7 @@ mission "HRF 06 Escort Syndicate Outfitters"
 	on offer
 		event "mooncreek republic garrison"
 		conversation
-			`The Republic garrison and Lovelace transports arrive to suitable fanfare and media pomp. Xilin and Hiyamaharu appear to have hitched a ride to Mooncreek in your absence, and they greet you in what passes for a spaceport that is not yet serving drinks.`
+			`The Republic garrison and Lovelace transports arrive to suitable fanfare and media pomp. Xilin and Hiyamaharu appear to have hitched a ride to Mooncreek in your absence, and they greet you in what passes for a spaceport that is not yet even serving drinks.`
 			`	"Good job out there, <last>," says Xilin.`
 			`	"I know it's trivial, but don't underestimate the impact of a stately arrival. After the crisis last time, it's really very important to penetrate the public consciousness and get people to appreciate the magnitude of these steps."`
 			choice
@@ -476,7 +476,7 @@ mission "HRF 07 Escort Syndicate Outfitters"
 event "mooncreek spaceport"
 	planet Mooncreek
 		attributes hai military north frontier
-		spaceport `The spaceport is essentially a military facility. Uniformed crew members of various stripes hurry back and forth without giving you a second glance. The food options are diverse, but all have that certain trend of solidity and mass over taste that is typically of military fare. There are few shops or other services catering to civilians.`
+		spaceport `The spaceport is essentially a military facility. Uniformed crew members of various stripes hurry back and forth without giving you a second glance. The food options are diverse, but all have that certain trend of solidity and mass over taste that is typical of military fare. There are few shops or other services catering to civilians.`
 		security 0.6
 
 
@@ -550,7 +550,7 @@ mission "HRF 10 Escort Free World Outfitters"
 				`	"Fine, I guess?"`
 				`	"It's going well."`
 			`	"Good, good," he says. "Now, I know that the last thing you probably want to do right now is traipse from one end of space to the other, but I need to ask you a favor."`
-			`	He finds somewhere to sit down with you and begins. You may recall that I was helping the Free Worlds set up their diplomatic corps. Obviously, I wanted no part of the ambassadorial business to the Republic, but when all this Hai business started up well, let's just say they struggled to find anyone qualified. As it turns out, someone in the senate doesn't particularly like me, and they've been using my extended time away up here to try and influence the diplomatic corps. Meanwhile, the Hai want the Free Worlds to have some involvement with this station we're on so that everyone is tied in, but obviously the Free Worlds don't particularly care when they could hardly be further from it.`
+			`	He finds somewhere to sit down with you and begins. "You may recall that I was helping the Free Worlds set up their diplomatic corps. Obviously, I wanted no part of the ambassadorial business to the Republic, but when all this Hai business started up well, let's just say they struggled to find anyone qualified. As it turns out, someone in the senate doesn't particularly like me, and they've been using my extended time away up here to try and influence the diplomatic corps. Meanwhile, the Hai want the Free Worlds to have some involvement with this station we're on so that everyone is tied in, but obviously the Free Worlds don't particularly care when they could hardly be further from it.`
 			`	"I have devised a compromise: the Free Worlds will not supply ships to the garrison, but they will instead sponsor both Kraz and Delta V, primarily based in the south, to set up outfitters here, with full upfront costs paid by the Free Worlds government. A defining success will allow me to return to the corps with the influence I need to counter this senator's influence. Otherwise, I fear I shall be stuck here, on the other side of space, for the rest of my career."`
 			`	You look at your friend, and you can tell he's waiting for you to accept his premise first, holding something back...`
 			choice
@@ -564,7 +564,7 @@ mission "HRF 10 Escort Free World Outfitters"
 				`	"Of course I'll do it, but how much is that exactly?"`
 			`	He winks. "A hundred thousand credits per day, for a fifty-two day route with eight stops."`
 			`	"Of course, if you really don't want to do it, I'll understand. I don't imagine you're keen to deal with the politics."`
-			`	You have a think about helping a friend... for six million credits.`
+			`	You take a moment to consider helping a good friend... for six million credits.`
 			choice
 				`	"Don't be silly! Of course I'll do it, friend."`
 					accept
@@ -576,7 +576,7 @@ mission "HRF 10 Escort Free World Outfitters"
 mission "HRF 11 Escort Free World Outfitters"
 	landing
 	name "Mooncreek Construction"
-	description "Escort outfitters to build up Mooncreek station."
+	description "Meet up with more outfitters for Mooncreek on <destination>."
 	source "Solace"
 	destination "Rust"
 	passengers 1
@@ -611,7 +611,7 @@ mission "HRF 12 Escort Free World Outfitters"
 	on offer
 		conversation
 			`On <origin>, it is tempting to take the time to go and catch up with Barmy Edward, but the Kraz convoy were already prepared a day early and near enough to meeting you in orbit.`
-			`	While you are briefly touched down though, you are greeted by a message from Alondo. "<first>! Navy intelligence has, in their infinite wisdom, deigned to let us know about a suggested pirate threat. The marauders were outmaneuvered when <planet> went up so quickly, so it seems they might attempt to intercept the convoy. Please be safe out there!"`
+			`	While you are briefly touched down though, you are greeted by a message from Alondo. "<first>! Navy intelligence has, in their infinite wisdom, deigned to let us know about a potential pirate threat. The marauders were outmaneuvered when <planet> went up so quickly, so it seems they might attempt to intercept the convoy. Please be safe out there!"`
 			`	It seems you'll have to keep your eyes peeled on your way back.`
 				accept
 	on fail
@@ -790,7 +790,7 @@ event "mooncreek realized"
 	system Cardax
 		add fleet "Cardax Miners" 1800
 	planet Mooncreek
-		spaceport `The spaceport is essentially a military facility. Uniformed crew members of various stripes hurry back and forth without giving you a second glance. The food options are diverse, but all have that certain trend of solidity and mass over taste that is typically of military fare. Outside of outfitters, there are few shops or other services catering to civilians, and a very busy section devoted to the fighter groups that mine the asteroids here to keep the outfitters supplied with basic resources for manufacture.`
+		spaceport `The spaceport is essentially a military facility. Uniformed crew members of various stripes hurry back and forth without giving you a second glance. The food options are diverse, but all have that certain trend of solidity and mass over taste that is typical of military fare. Outside of outfitters, there are few shops or other services catering to civilians, and a very busy section devoted to the fighter groups that mine the asteroids here to keep the outfitters supplied with basic resources for manufacture.`
 		add shipyard "Cardax Miners"
 		security 0.9
 	system Moktar
