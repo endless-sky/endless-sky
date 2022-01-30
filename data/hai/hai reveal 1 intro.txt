@@ -159,7 +159,7 @@ conversation "What is going on in Hai space? (Met the Unfettered.)"
 		`	"Why are you all wearing pink?"`
 			goto pink
 	`	She shakes her head and wrinkles her nose with a look of distaste. "Some marauder came here just yesterday, posing as a trader to investigate the rumors. We thought the Hai had means of keeping them out, but this one snuck in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils."`
-	`	She sighs deeply ans says, "Everyone is just a bit shaken and distrustful at the moment."`
+	`	She sighs deeply and says, "Everyone is just a bit shaken and distrustful at the moment."`
 	`	"Oh that's awful!" you say.`
 	`	She nods and forces a little bit of false cheer into her voice, "This is why we're all wearing pink, just a little show of local solidarity."`
 		goto main
@@ -366,10 +366,10 @@ mission "Hai Tour [2] Alta Hai"
 		has "ZZ Hai Tour [1] Stonebreak: done"
 	on offer
 		conversation
-			`Stonebreak is home to incredibly large cities: massive planned communities built in concentric rings, where housing space and community buildings alternate with zones of factories and shipyards. This star system has an unusual number of metallic asteroids, which you noticed the Hai harvesting for the raw materials before you landed.`
-			`	From above, this city has almost perfect radial symmetry, a sure sign that it was planned and built as a single unit rather than expanding at random over time. Every single building in the city is made from the same metal alloy, a dull and slightly irregular grey color. The corners of each building are slightly beveled instead of meeting at right angles.`
+			`This star system has an unusual number of metallic asteroids, which you noticed the Hai harvesting for the raw materials before you landed. Stonebreak itself is home to incredibly large cities: massive, clearly planned communities built in concentric rings, where housing space and community buildings alternate with zones of factories and shipyards.`
+			`	From above, this city has almost perfect radial symmetry, a sure sign that it was planned and built as a single unit rather than expanding at random over time. Every single building in the city is a dull and slightly irregular grey color, all made from the same material which seems to be some metallic alloy, and the corners of each building are slightly beveled instead of meeting at right angles.`
 			`	Even the spaceport is symmetrical: a ring of hangars face outwards at evenly spaced intervals, and warehouses and living quarters dot the inside of the ring.`
-			`	While the layout is utilitarian, it is an incredibly comfortable place to live, and the Hai have given their individual community spaces quite a lot of character and life.`
+			`	While the layout is utilitarian, it looks to be an incredibly comfortable place to live; the Hai have clearly given their individual community spaces quite a lot of character and life.`
 			`	As you are wandering around and getting a feel for the place, you overhear someone talking about an apparently complete ringworld in Alta Hai. It definitely sounds like something you should check out.`
 				accept
 
@@ -410,7 +410,7 @@ mission "00 Hai Tour [4] Cloudfire"
 				accept
 	on complete
 		conversation
-			`You dodge the conflict in space and come in to land. Cloudfire's atmosphere is unusually hazy, with almost constant cloud cover, making agriculture unproductive here even though it is a warm and damp environment. There are several major cities here that were abandoned centuries ago, due to conflict with the Unfettered. The one major city that remains is the closest thing the Hai have to a military base, with new supplies of weapons and ammunition constantly pouring in from the rest of Hai space.`
+			`You dodge the conflict in space and come in to land. Cloudfire's atmosphere is unusually hazy, with almost constant cloud cover, making agriculture unproductive even though it is a warm and damp environment. There are several major cities here that were abandoned centuries ago, likely due to the conflict with the Unfettered, and the one major city that remains is the closest thing the Hai have to a military base, with new supplies of weapons and ammunition constantly pouring in from the rest of Hai space.`
 			`	The spaceport has massive hangars and advanced repair facilities designed to accommodate the largest Hai warships. Where a fleet has just returned from a recent battle, the hangars are lit with flashes from robotic welders as damaged hull plates are swapped out for fresh ones and weakened joints are reinforced. The actual process of building these warships, however, takes place on the Hai homeworld, where the facilities will not be vulnerable to attack.`
 			`	It does not take long to realize that this conflict really is constant, even if the friendlier Hai on this side seem to be maintaining their defense without apparently taxing their civilization to any great extent.`
 
@@ -433,11 +433,10 @@ mission "Hai Tour [5] Tour Ends"
 				goto "that's awful"
 			label "skipped tours"
 			`Soon after you land on <planet>, you notice a news broadcast on a nearby wall. "Yesterday, a marauder terrorized the inhabitants of Allhome. They arrived by posing as a trader to investigate rumors currently circulating in human space about our existence. Hai security failed to identify the danger, and the individual snuck his ship in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils."`
-				goto "that's awful"
 			label "that's awful"
 			`	At a table nearby you hear a Hai staff member exclaim, "Oh, that's awful!"`
 			`	The rumors must be spreading further by the day. There's no doubt even more problems than this marauder will follow.`
-			`	This thought has no sooner crossed your mind when your solitude is interrupted by a small group of somewhat official-looking Hai.`
+			`	No sooner has this thought crossed your mind than your solitude is interrupted by a small group of somewhat official-looking Hai.`
 			`	"Are you Captain <last>?" one of them asks you. "Don't worry, you're not in trouble or anything."`
 			`	You nod your affirmation.`
 			`	"Your reputation precedes you Captain. As a person of note among humanity who we hear has now been traveling around Hai space, you are presently being treated as an Envoy."`
@@ -526,7 +525,7 @@ mission "Hai Leaks Response 2"
 				goto sit
 			label humble
 			`	You shrug, palms up, and explain, "You should listen to the xenoanthropologists. The Pug were just here to test us, to make us really consider what mattered and come together."`
-			`	For a moment his expression falters, and then he seems almost relieved. "You may be a better man than I expected to meet."`
+			`	For a moment his expression falters, and then he seems almost relieved. "You may be a better person than I expected to meet."`
 			`	He offers you a genuine smile as he takes his seat.`
 			label sit
 			`	You sit down opposite him and explain how the Hai have proposed that you be their official contact point for humanity on account of your fame from the war.`
@@ -895,6 +894,7 @@ mission "Hai Leaks Response 6"
 			choice
 				`	"What? That could've been entertaining."`
 				`	"Hmm. No, I probably didn't miss much."`
+				`	"Oh, I could have told her all about it..."`
 			`	He chuckles. "Anyway, I have a hunch that we'll need you before too long, but for now they're putting some Hai patrols out on the other side of the wormhole with a couple of Navy observers on board to 'play the part', as it were, of an exclusive role-play community, just chilling out here and having fun."`
 			`	"I hear you've been instrumental in driving off some opportunistic pirates and helping stem the information leak. Come on, I'll buy you a drink on the others' behalf."`
 			`	Some hours later, you leave the fancy cocktail bar Alondo took you to and begin making your way back to your ship to sleep. Your cabin by far seems to be the best place to not be bothered.`
@@ -912,7 +912,7 @@ mission "Hai Leaks Response 6"
 			`	"Well, you see we cannot investigate your space openly or easily. I have paid it little mind, written it off as one of her eccentricities, but things are very tense right now. The Council of Elders wants to maintain our secrecy, the human diplomats are willing to accommodate us, but we sense their governments grow tired of maintaining the fiction. We are well aware that human intelligence services are highly competent, and motivated by many different factors. It worries me that one of your factions may not be wholly honest, and may have knowledge they intend to use as ammunition if things don't work out well for them."`
 			`	You have not had much exposure to this elected "Council of Elders", but it seems they must hold some kind of final authority over decisions.`
 			choice
-				`	"But what may I do about it?"`
+				`	"But what should I do about it?"`
 			`	"You are well-known, and must be canny to have got where you are. A Hai in trouble might recognize you, or you might perceive them when others would not. It would be in the interests of both our people to be sure that there is no such issue. Would you look for me? For both our sakes?"`
 			branch "about that"
 				"hai slave prereq" >= 1
@@ -922,7 +922,7 @@ mission "Hai Leaks Response 6"
 			label "about that"
 			`	"Well, about that," you say, "I think I might have already come across some evidence of this before."`
 			`	Sayari's hood nearly slips off as she looks up at you with a horrified expression. "Surely not?!"`
-			`	You rush to reassure her. "Nothing concrete, of course. I shall go and have a look to be sure."`
+			`	You rush to reassure her. "Nothing concrete, of course. I can go and look to be sure."`
 				accept
 	to complete
 		"hai slave prereq" >= 3

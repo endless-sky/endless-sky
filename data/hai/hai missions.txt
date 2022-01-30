@@ -952,7 +952,7 @@ mission "Expanding Business [6]"
 				`	"You need me to help you escort freighters again?"`
 				`	"Do you want to build a shipyard selling human ships?"`
 			
-			`	"Yes, Captain. Right now, the only realistic way that a human born here can get a ship is if they know a captain willing to retire. Even then, prices for a human ship can be more than twice what they are across the wormhole. You'd think they could just get passage and buy a human ship over there, but the banks over there don't recognize credit histories from over here for loans. It's preposterous, Captain <last>!`
+			`	"Yes, Captain. Right now, the only realistic way that a human born here can get a ship is if they know a captain willing to retire. Even then, prices for a human ship can be more than twice what they are across the wormhole. You'd think they could just get passage and buy a human ship over there, but those banks just don't recognize credit histories from this side. It's preposterous, Captain <last>!`
 			`	"I've already made arrangements with the local Hai government. The rest of the park next to the outfitter is now my property, and I intend to use it to build the shipyard. I've also contacted Megaparsec and bought a license to build their ships and some of the outfits they sell on <planet>. My freighters are at the ready in the spaceport right now. All I need you to do is escort them to <destination> and back, and in six to seven months' time when the shipyard is done, you'll reap the rewards. What do you say, Captain <last>? Do you want to be a hero to millions once again?"`
 			choice
 				`	"Sure, this sounds like a great idea."`

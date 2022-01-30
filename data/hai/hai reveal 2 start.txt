@@ -17,7 +17,7 @@
 mission "Hai Rescue: Yeertle Hint"
 	landing
 	name "Investigate a Were-Squirrel"
-	description "A truly outlandish rumor has been floating around that might be a Hai hiding out on <destination>."
+	description "A truly outlandish rumor has been floating around that there might be a Hai hiding out on <destination>."
 	source
 		near "Betelgeuse" 4
 		government "Republic" "Syndicate"
@@ -438,7 +438,7 @@ mission "Hai Rescue: Gipeep"
 				`	(Leave.)`
 					decline
 			`	You put the key in the lock, turn, and the next thump you hear pushes the crate open so hard it falls over. An angry-looking Hai jumps out and starts yelling at you in its own language.`
-			`	After a few seconds, the Hai calms down and speaks in your own tongue. "They locked me in a box! I was walking home from a store on <planet>, and some humans pulled me into an alley. They shoved me in a box and now I'm..." the Hai pauses and looks around, "not in Hai space?`
+			`	After a few seconds, the Hai calms down and speaks in your tongue. "They locked me in a box! I was walking home from a store on <planet>, and some humans pulled me into an alley. They shoved me in a box and now I'm..." the Hai pauses and looks around, "not in Hai space?`
 			`	"Please take me home. I'm a ship architect from <destination>. We should hurry before they come back."`
 			choice
 				`	"Of course. Just hop in my ship."`
