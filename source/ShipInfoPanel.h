@@ -38,11 +38,11 @@ class Rectangle;
 class ShipInfoPanel : public Panel {
 public:
 	explicit ShipInfoPanel(PlayerInfo &player, int index = -1);
-	
+
 	virtual void Step() override;
 	virtual void Draw() override;
-	
-	
+
+
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
@@ -50,19 +50,19 @@ protected:
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Release(int x, int y) override;
-	
-	
+
+
 private:
 	// Handle a change to what ship is shown.
 	void UpdateInfo();
 	void ClearZones();
-	
+
 	// Draw the ship tab (and its subsections).
 	void DrawShipStats(const Rectangle &bounds);
 	void DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds);
 	void DrawWeapons(const Rectangle &bounds);
 	void DrawCargo(const Rectangle &bounds);
-	
+
 	// Helper functions.
 	void DrawLine(const Point &from, const Point &to, const Color &color) const;
 	bool Hover(const Point &point);
@@ -72,17 +72,17 @@ private:
 	void DumpPlunder(int count);
 	void DumpCommodities(int count);
 	void Disown();
-	
-	
+
+
 private:
 	PlayerInfo &player;
 	// This is the currently selected ship.
 	std::vector<std::shared_ptr<Ship>>::const_iterator shipIt;
-	
+
 	// Information about the currently selected ship.
 	ShipInfoDisplay info;
 	std::map<std::string, std::vector<const Outfit *>> outfits;
-	
+
 	// Track all the clickable parts of the UI (other than the buttons).
 	std::vector<ClickZone<int>> zones;
 	std::vector<ClickZone<std::string>> commodityZones;
