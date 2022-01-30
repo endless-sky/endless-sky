@@ -730,7 +730,7 @@ mission "HRF 14 Hai-Human Treaty"
 			has "HRF 0XC Skipped Mooncreek Escorts: done"
 	on offer
 		event "hai-human treaty signed"
-		event "mooncreek realised" 15
+		event "mooncreek realized" 15
 		payment 12000000
 		conversation
 			`Arriving on <origin> once again brings with it full diplomatic regalia. The gallery "Where Mountains Touch The Sky" is filled to the brim with a great many representatives from the Core and Paradise worlds, and some of the more notable representatives from the Syndicate and Free Worlds. The entire Hai Elder Council is in attendance, and the Chancellor of the Free Worlds and President of the Republic are again schmoozing about in their most respectable suits. Alondo, Xilin, and Hiyamaharu have their symbols of office, and it looks like the Free Worlds have now finalized their design for Alondo's.`
@@ -786,7 +786,7 @@ shipyard "Cardax Miners"
 	"Dagger (Miner)"
 
 
-event "mooncreek realised"
+event "mooncreek realized"
 	system Cardax
 		add fleet "Cardax Miners" 1800
 	planet Mooncreek

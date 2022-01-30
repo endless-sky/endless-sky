@@ -367,7 +367,7 @@ mission "Hai Tour [2] Alta Hai"
 	on offer
 		conversation
 			`This star system has an unusual number of metallic asteroids, which you noticed the Hai harvesting for the raw materials before you landed. Stonebreak itself is home to incredibly large cities: massive, clearly planned communities built in concentric rings, where housing space and community buildings alternate with zones of factories and shipyards.`
-			`	From above, this city has almost perfect radial symmetry, a sure sign that it was planned and built as a single unit rather than expanding at random over time. Every single building in the city is a dull and slightly irregular grey color, all made from the same material which seems to be some metallic alloy, and the corners of each building are slightly beveled instead of meeting at right angles.`
+			`	From above, this city has almost perfect radial symmetry, a sure sign that it was planned and built as a single unit rather than expanding at random over time. Every single building in the city is a dull and slightly irregular gray color, all made from the same material which seems to be some metallic alloy, and the corners of each building are slightly beveled instead of meeting at right angles.`
 			`	Even the spaceport is symmetrical: a ring of hangars face outwards at evenly spaced intervals, and warehouses and living quarters dot the inside of the ring.`
 			`	While the layout is utilitarian, it looks to be an incredibly comfortable place to live; the Hai have clearly given their individual community spaces quite a lot of character and life.`
 			`	As you are wandering around and getting a feel for the place, you overhear someone talking about an apparently complete ringworld in Alta Hai. It definitely sounds like something you should check out.`
@@ -557,7 +557,7 @@ mission "Hai Leaks Response 2"
 			`	"Extra security forces are being called in, but we've been busier than usual in Wah Ki with our northern brethren."`
 			`	Mr. Yang pulls out a datapad. "Well then, I'm afraid I may have some bad news. May I?"`
 			`	He gestures to a display and then takes control when indicated. "One of the things I brought with me was Republic Intelligence's estimate of the effectiveness of various information containment measures."`
-			`	A series of charts are thrown up on the screen. You're not an expert at data analysis, but highlighted percentages ranging from 4% to 39% do not look promising. The final graphic is a map of stages of what is labelled as 'artifact penetration'. "Artifact penetration is the point at which a government cannot reasonably attempt to pretend something is other than the truth, at least not while still holding to the claim of being a representative government," explains Mr. Yang.`
+			`	A series of charts are thrown up on the screen. You're not an expert at data analysis, but highlighted percentages ranging from 4% to 39% do not look promising. The final graphic is a map of stages of what is labeled as 'artifact penetration'. "Artifact penetration is the point at which a government cannot reasonably attempt to pretend something is other than the truth, at least not while still holding to the claim of being a representative government," explains Mr. Yang.`
 			`	He checks the date. "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months, or we would lose so much credibility as to compromise electoral stability. The actual time limit is probably sooner."`
 			choice
 				`	"Would that be so bad?"`

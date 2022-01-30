@@ -147,7 +147,7 @@ mission "Wanderers: Diplomacy"
 		conversation
 			`As you are approaching Hai-home, you contact the Hai government and inform them that you have found new aliens to the north. You submit a request for ambassadorial assistance to help you communicate with the aliens to the north, who seem to speak the Hai language. They immediately direct you to a now familiar private government hangar, where a familiar diplomat meets you.`
 			`	"Good to see you again Captain <last>, I have arranged for some refreshments so please, come and tell me all about these new aliens you have discovered!"`
-			`	Her exuberance is catching and after recent stressful events you see a new side to her as you relay your experience with the bird-like aliens. You realise that opportunities like this are why she became a diplomat in the first place and that this is, to some degree, a dream come true.`
+			`	Her exuberance is catching and after recent stressful events you see a new side to her as you relay your experience with the bird-like aliens. You realize that opportunities like this are why she became a diplomat in the first place and that this is, to some degree, a dream come true.`
 			`	"So in conclusion, it seems you need a translator," she says with a wry smile.`
 			choice
 				`	"Indeed, I'm hoping you have someone in mind."`
@@ -161,7 +161,7 @@ mission "Wanderers: Diplomacy"
 				`	"Can a distinguished ambassador such as yourself just leave like that?"`
 				`	"What if the humans want our own envoy to these aliens?"`
 					goto envoy
-			`	"Yes," she says. "If these aliens will provide a place for me, I mean to live with them permanently, an ambassador between their people and ours. I am old, and in need of a great novelty like this to make my life interesting once more." You note that the fur on her face, especially on the snout, has turned from brown to silvery grey - a sign of age in terrestrial creatures, and perhaps in the Hai as well.`
+			`	"Yes," she says. "If these aliens will provide a place for me, I mean to live with them permanently, an ambassador between their people and ours. I am old, and in need of a great novelty like this to make my life interesting once more." You note that the fur on her face, especially on the snout, has turned from brown to silvery gray - a sign of age in terrestrial creatures, and perhaps in the Hai as well.`
 			`	"Besides," she says, "after recent events they can hardly say no to me."`
 			choice
 				`	"Let's go visit these aliens immediately!"`
