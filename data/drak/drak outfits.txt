@@ -228,7 +228,6 @@ outfit "Drak Antimatter Cannon"
 		"firing heat" 1870
 		"blast radius" 100
 		"hit force" 1000
-		safe
 	description "This is the most powerful weapon that the Archons deign to utilize in the presence of the younger races."
 
 
@@ -257,7 +256,6 @@ outfit "Drak Antimatter Cannon - Augmented"
 		"firing heat" 1870
 		"blast radius" 250
 		"hit force" 1000
-		safe
 	description "This is the most powerful weapon that the Archons deign to utilize in the presence of the younger races. Hitherto unknown as Archons are rarely pushed to the point of needing to use more than their minimum abilities, the Antimatter Cannon is capable of far more damage than originally thought."
 
 
