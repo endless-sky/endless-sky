@@ -15,7 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Date.h"
-#include "Format.h"
+#include "text/Format.h"
 #include "SpriteSet.h"
 
 using namespace std;
@@ -35,7 +35,7 @@ void SavedGame::Load(const string &path)
 	DataFile file(path);
 	if(file.begin() != file.end())
 		this->path = path;
-	
+
 	for(const DataNode &node : file)
 	{
 		if(node.Token(0) == "pilot" && node.Size() >= 3)
@@ -46,6 +46,8 @@ void SavedGame::Load(const string &path)
 			system = node.Token(1);
 		else if(node.Token(0) == "planet" && node.Size() >= 2)
 			planet = node.Token(1);
+		else if(node.Token(0) == "playtime" && node.Size() >= 2)
+			playTime = Format::PlayTime(node.Value(1));
 		else if(node.Token(0) == "account")
 		{
 			for(const DataNode &child : node)
@@ -87,14 +89,15 @@ bool SavedGame::IsLoaded() const
 void SavedGame::Clear()
 {
 	path.clear();
-	
+
 	name.clear();
 	credits.clear();
 	date.clear();
-	
+
 	system.clear();
 	planet.clear();
-	
+	playTime = "0s";
+
 	shipSprite = nullptr;
 	shipName.clear();
 }
@@ -132,6 +135,13 @@ const string &SavedGame::GetSystem() const
 const string &SavedGame::GetPlanet() const
 {
 	return planet;
+}
+
+
+
+const string &SavedGame::GetPlayTime() const
+{
+	return playTime;
 }
 
 
