@@ -356,7 +356,7 @@ fleet "Scin Warfleet"
 		Coesite
 	variant 2
 		"Coesite P"
-	variant 3
+	variant 2
 		Feldspar
 		Halite 6
 	variant 2

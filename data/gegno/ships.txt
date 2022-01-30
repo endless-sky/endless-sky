@@ -120,7 +120,7 @@ ship Slate
 	leak leak 60 50
 	explode "small explosion" 5
 	explode "tiny explosion" 10
-	description "The Slate is the Gegno Vi's variation of the Shale, taking the original design, adding bulkier systems and space more trademarked to the Vi. Slightly larger than a normal shuttleship to suit the Vi's stature, it's able to carry more than a few Gegno cadets along with a small cargo load."
+	description "The Slate is the Gegno Vi's variation of the Shale, taking the original design, adding bulkier systems and more space characteristics of Vi vessels. Slightly larger than a normal shuttleship to suit the Vi's stature, it's able to carry more than a few Gegno cadets along with a small cargo load."
 
 ship Schist
 	sprite ship/schist
@@ -315,7 +315,7 @@ ship Hornfel "Hornfel Heavy"
 		mass 80
 		"cargo space" 80
 		drag 1.1
-		"weapon space" 30
+		"weapon space" 80
 	outfits
 		"Ballistic Cannon"
 		"C17 Warzone Core"
@@ -341,7 +341,7 @@ ship Gneiss
 		"fuel capacity" 500
 		"heat dissipation" 0.4
 		hull 22275
-		"outfit space" 780
+		"outfit space" 805
 		"required crew" 142
 		shields 0
 		"weapon capacity" 412
@@ -374,7 +374,7 @@ ship Gneiss
 	explode "small explosion" 40
 	explode "tiny explosion" 80
 	"final explode" "final explosion large"
-	description "Gneiss Battleships are the Gegno Vi's true sword & shield in war. They are slightly older than the Hornfels and Schists, but carry the heaviest armament, bolstering 3 mounts dedicated to Ballisic Cannons. Gniesses also have extremely strong armor plating, and can take a hefty beating while firing dangerously threatening broadsides at the opposing force. Unfortunately, for exchange of huge firepower and defensive armor, they lack speed and maneuverability, even when fitted with the largest engine systems the Vi have to offer."
+	description "Gneiss Battleships are the Gegno Vi's true sword & shield in war. They are slightly older than the Hornfels and Schists, but carry the heaviest armament, bolstering 3 mounts dedicated to Ballisic Cannons. Gniesses also have extremely strong armor plating, and can take a hefty beating while firing dangerously threatening broadsides at the opposing force. Unfortunately, in exchange for huge firepower and defensive armor, they lack speed and maneuverability, even when fitted with the largest engine systems the Vi have to offer."
 
 ship Protolith
 	sprite ship/protolith
@@ -550,7 +550,7 @@ ship Coesite
 	explode "small explosion" 24
 	explode "tiny explosion" 18
 	"final explode" "final explosion small"
-	description "Coesites are pocket-warships that the Scin use as screening vessels during a battle with the Vi. They are speedy and carry 3 turret mounts which allows them to always be orbiting and firing on the move. Coesites are the designated platform for the Scin's anti-shell turrets, allowing them to take out shells ahead of their larger ships to reduce incoming fire and turn the tide of war."
+	description "Coesites are smaller warships that the Scin use as screening vessels during battle with the Vi. They are speedy and carry 3 turret mounts which allows them to always be orbiting and firing on the move. Coesites are the designated platform for the Scin's anti-shell turrets, allowing them to take out shells ahead of their larger ships to reduce incoming fire and turn the tide of war."
 
 ship Coesite "Coesite P"
 	sprite ship/coesitep
@@ -694,7 +694,7 @@ ship Feldspar
 	explode "small explosion" 50
 	explode "tiny explosion" 40
 	"final explode" "final explosion large"
-	description "The mighty Felspar is a Scin creation to behold. As a testbed for the new Halite Fighters, Feldspars bring their own small fleets with them and overwhelm their enemy. They also double as a semi-experimental platform, carrying a brand new multi-engine system and the latest in Gegno plasma technology. Able to keep a decent stance away from a battle while still putting down fire, Feldspars are quite a dangerous well-rounded ship for their sizem but are susceptible to hull damage as any other Scin ship."
+	description "The mighty Feldspar is a Scin creation to behold. As a testbed for the new Halite Fighters, Feldspars bring their own small fleets with them and overwhelm their enemy. They also double as a semi-experimental platform, carrying a brand new multi-engine system and the latest in Gegno plasma technology. Able to keep a decent stance away from a battle while still putting down fire, Feldspars are quite a dangerously well-rounded ship for their size, but are susceptible to hull damage as much as any other Scin ship."
 
 ship Muscovite
 	sprite ship/muscovite

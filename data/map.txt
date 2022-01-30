@@ -30307,10 +30307,10 @@ system Ptetubo
 	asteroids "medium metal" 11 1.264
 	asteroids "large metal" 3 1.168
 	haze _menu/haze-67
-	fleet "Small Vi" 1200
-	fleet "Large Vi" 2100
-	fleet "Vi Transport" 1500
-	fleet "Vi Cargo" 1300
+	fleet "Small Vi" 1000
+	fleet "Large Vi" 1900
+	fleet "Vi Transport" 1300
+	fleet "Vi Cargo" 1100
 	habitable 2000
 	belt 1478
 	trade Clothing 269
@@ -30395,10 +30395,10 @@ system Nnaug
 	link Wreoul
 	asteroids "large metal" 1 1.9383
 	haze _menu/haze-133
-	fleet "Small Vi" 1300
-	fleet "Large Vi" 2300
-	fleet "Vi Transport" 1000
-	fleet "Vi Cargo" 1200
+	fleet "Small Vi" 1100
+	fleet "Large Vi" 2100
+	fleet "Vi Transport" 800
+	fleet "Vi Cargo" 1000
 	habitable 1232.2
 	belt 1901
 	trade Clothing 281
@@ -30454,7 +30454,7 @@ system Heutesl
 	asteroids "large metal" 18 4.508
 	minables copper 2 5.3701284
 	minables lead 14 4.7812985
-	fleet "Gegno Basic" 300
+	fleet "Gegno Basic" 200
 	habitable 361.25
 	belt 1942
 	trade Clothing 388
@@ -30557,11 +30557,11 @@ system Scija
 	asteroids "large metal" 10 2.736
 	minables iron 5 5.2146916
 	minables aluminum 5 3.5913491
-	fleet "Small Vi" 1000
-	fleet "Large Vi" 2200
-	fleet "Vi Transport" 1100
-	fleet "Vi Cargo" 1600
-	fleet "Gegno Basic" 3000
+	fleet "Small Vi" 800
+	fleet "Large Vi" 2000
+	fleet "Vi Transport" 900
+	fleet "Vi Cargo" 1400
+	fleet "Gegno Basic" 2800
 	habitable 2439.2
 	belt 1431
 	trade Clothing 286
@@ -30662,7 +30662,7 @@ system Vesvii
 	minables lead 15 4.1961328
 	minables tungsten 24 2.9650974
 	haze _menu/haze-133
-	fleet "Vi Warfleet" 700
+	fleet "Vi Warfleet" 640
 	fleet "Scin Warfleet" 700
 	habitable 2560
 	belt 1576
@@ -30756,11 +30756,11 @@ system Zeinar
 	asteroids "large metal" 9 4.1975
 	minables aluminum 2 8.522758
 	minables tungsten 3 8.3192847
-	fleet "Small Scin" 900
-	fleet "Large Scin" 2500
-	fleet "Scin Transport" 1000
-	fleet "Scin Cargo" 1700
-	fleet "Gegno Basic" 2900
+	fleet "Small Scin" 700
+	fleet "Large Scin" 2300
+	fleet "Scin Transport" 800
+	fleet "Scin Cargo" 1500
+	fleet "Gegno Basic" 2700
 	belt 1960
 	trade Clothing 261
 	trade Electronics 787
@@ -30911,7 +30911,7 @@ system Oosuoro
 	asteroids "large metal" 2 2.772
 	minables lead 3 5.9955446
 	haze _menu/haze-133
-	fleet "Gegno Basic" 700
+	fleet "Gegno Basic" 500
 	habitable 10525
 	belt 1068
 	trade Clothing 367
@@ -30937,7 +30937,7 @@ system Oosuoro
 		period 2000
 		object Tschyss
 			sprite planet/tschyss
-			distance 224.01485
+			distance 225.00327
 			period 120
 	object
 		sprite planet/ice7
@@ -31296,14 +31296,6 @@ planet Graede
 	spaceport test
 	government "Gegno Vi"
 
-planet QuargStationName
-	attributes "gegno quarg" quarg station tourism
-	landscape land/station5
-	description "The Quarg built this station centuries ago, before they began construction on the ringworld. From the dark side of the station, the ring is visible as a thin bright filament stretching out to either side of the system's sun. The ring itself is closed to human visitors, but tour shuttles depart from here on a regular basis, giving human tourists a closer view of this engineering feat that is so far beyond anything human beings have ever attempted to build."
-	spaceport "In the docking section are flexible, oddly organic-looking tubes that snaked out to connect to your ship as it approached. Walking through the tube and into the station was a somewhat disconcerting experience. Inside, crowds of human tourists gawk at the tall, thin Quarg, who for the most part seem unfazed by the attention. The station is perfectly clean; every surface shines."
-	government Quarg
-	security 0.9
-
 system Ptobeh
 	pos 600.89288 -175.77767
 	government Uninhabited
@@ -31346,10 +31338,10 @@ system Auhru
 	minables silicon 34 9.7565798
 	minables copper 29 9.9999284
 	haze _menu/haze-33
-	fleet "Small Scin" 1300
-	fleet "Large Scin" 2700
-	fleet "Scin Transport" 1000
-	fleet "Scin Cargo" 1200
+	fleet "Small Scin" 1100
+	fleet "Large Scin" 2500
+	fleet "Scin Transport" 800
+	fleet "Scin Cargo" 1000
 	habitable 1411.2
 	belt 1633
 	trade Clothing 239
@@ -31397,10 +31389,10 @@ system Pbelnep
 	minables titanium 3 5.7505279
 	minables uranium 28 5.0946569
 	haze _menu/haze-33
-	fleet "Small Scin" 1300
-	fleet "Large Scin" 2300
-	fleet "Scin Transport" 1700
-	fleet "Scin Cargo" 1500
+	fleet "Small Scin" 1100
+	fleet "Large Scin" 2100
+	fleet "Scin Transport" 1500
+	fleet "Scin Cargo" 1300
 	habitable 413.65
 	belt 1803
 	trade Clothing 268
@@ -31426,7 +31418,7 @@ system Pbelnep
 		sprite planet/rock8
 		distance 314.56297
 		period 187.56945
-	object "Ef Osch "
+	object "Ef Osch"
 		sprite planet/ocean3-b
 		distance 601
 		period 647.94805
@@ -31491,10 +31483,10 @@ system Ookmya
 	asteroids "large metal" 4 7.695
 	minables neodymium 11 6.2400383
 	haze _menu/haze-fullbright
-	fleet "Small Vi" 1100
-	fleet "Large Vi" 2200
-	fleet "Vi Transport" 900
-	fleet "Vi Cargo" 1200
+	fleet "Small Vi" 900
+	fleet "Large Vi" 2000
+	fleet "Vi Transport" 700
+	fleet "Vi Cargo" 1000
 	habitable 3699.2
 	belt 1144
 	trade Clothing 265
@@ -31553,9 +31545,9 @@ system "Erba Yle"
 	minables titanium 21 8.0109778
 	minables tungsten 20 4.6133087
 	haze _menu/haze-fullbright
-	fleet "Small Scin" 1500
-	fleet "Scin Cargo" 1000
-	fleet "Scin Transport" 1300
+	fleet "Small Scin" 1300
+	fleet "Scin Cargo" 800
+	fleet "Scin Transport" 1100
 	habitable 296.45
 	belt 1306
 	trade Clothing 265
@@ -31697,10 +31689,10 @@ system Iliniza
 	asteroids "medium metal" 37 0.858
 	asteroids "large metal" 106 1.131
 	minables aluminum 46 1.1668871
-	fleet "Small Scin" 1200
-	fleet "Large Scin" 2700
-	fleet "Scin Transport" 800
-	fleet "Scin Cargo" 1400
+	fleet "Small Scin" 1000
+	fleet "Large Scin" 2500
+	fleet "Scin Transport" 600
+	fleet "Scin Cargo" 1200
 	habitable 538.45
 	belt 1624
 	trade Clothing 265
@@ -31903,9 +31895,9 @@ system Kiluit
 	asteroids "large metal" 1 0.65
 	minables neodymium 9 0.76902448
 	minables lead 35 1.0955883
-	fleet "Small Vi" 1500
-	fleet "Scin Cargo" 1000
-	fleet "Scin Transport" 1300
+	fleet "Small Vi" 1300
+	fleet "Vi Cargo" 800
+	fleet "Vi Transport" 1100
 	habitable 13107.2
 	belt 1154
 	trade Clothing 277
@@ -32456,7 +32448,7 @@ planet "Giaru Gegno"
 	attributes "gegno quarg" quarg station
 	landscape land/station2
 	description "This Quarg Ringworld seems to be under construction, yet none of the Quarg here seem to be in any sort of busy rush. It doesn't look like construction was halted, but more slowed down and paced. Some of the hangers and docks on the outer part of the ring are oddly larger than others, and the inner quarters are wider and taller than normal."
-	spaceport "Even if it's under construction, there has to be at least billions of Quarg on this ring. They shift past you at a normal walking pace for a Quarg, and don't mind you much attention except from the occasional uninterested glare or two. There seems to be little conversation, and the silence is slightly unnerving to you as the only non-Quarg in sight."
+	spaceport "Even if it's under construction, there has to be at least billions of Quarg on this ring. They shift past you at a normal walking pace for a Quarg, and don't mind you much attention except from the occasional uninterested glance or two. There seems to be little conversation, and the silence is slightly unnerving to you as the only non-Quarg in sight."
 	government Quarg
 	bribe 0
 	security 1
@@ -32490,26 +32482,34 @@ planet Enbi
 	government "Gegno Vi"
 
 planet "Oup Je"
+	description aergaerg
+	spaceport aergerag
 	landscape land/canyon4
 	government "Gegno Scin"
 
 planet "Enn Bue"
 	landscape land/canyon01
+	description aergaergge
+	spaceport aergergerg
 	government "Gegno Scin"
 
 planet Cipi
 	landscape land/mountain5
+	description aergeag
+	spaceport aergreag
 	government "Gegno Scin"
 
-planet "Ef Osch "
+planet "Ef Osch"
 	landscape land/beach11-harro
+	description eargearg
+	spaceport aewrgearg
 	government "Gegno Scin"
 
 planet "Var Oti"
 	government Uninhabited
 
 planet "Long Gone"
-	description "Although frozen worlds such as this one are barely able to sustain life, there are signs across the surface seem to suggest some sort of civilization was here once long ago. Once in a few hundred miles there are strange glass-like obelisks sticking out of the ground, but visually they seem as though they have no purpose. Very few bird-like species circle these protrusions, but other than that, the planet is long gone. "
+	description "Although frozen worlds such as this one are barely able to sustain life, there are signs across the surface seem to suggest some sort of civilization was here once long ago. Once in a few hundred miles there are strange glass-like obelisks sticking out of the ground, but visually they seem as though they have no purpose. Very few bird-like species circle these protrusions, but other than that, whatever life this planet once sustained is now long gone."
 	government Uninhabited
 
 planet Vesii
@@ -32697,5 +32697,3 @@ planet Tschyss
 	description rsgbd
 	spaceport ergeag
 	government Gegno
-
-

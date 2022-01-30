@@ -89,4 +89,3 @@ outfitter "Gegno Scin Outfits"
 	"SC-14 Plasma Thruster"
 	"SC-15 Plasma Engines"
 	"Talc Laser"
-

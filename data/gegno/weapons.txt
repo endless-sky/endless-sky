@@ -113,7 +113,7 @@ outfit "Ballistic Cannon"
 		"shield damage" 145
 		"hull damage" 777
 		"hit force" 120
-	description "The Gegno Ballistic Cannon is one of the largest cannons you've ever seen. It even requires its own vented system on the gun itself, and the huge turret mount is necessary for one of these cannons to even be fitted on a ship. The shells a Ballistic Cannon fire can almost be equated to that of explosive rockets. They deal tremendous hull damage, however they are lethargic, and are still much less effective against anything shielded."
+	description "The Gegno Ballistic Cannon is one of the largest cannons you've ever seen. It even requires its own vented system on the gun itself, and the huge turret mount is necessary for one of these cannons to even be fitted on a ship. The shells a Ballistic Cannon fire can almost be equated to that of explosive rockets. They deal tremendous hull damage; however, they are lethargic and are still much less effective against anything shielded."
 
 effect "ballistic fire"
 	sprite effect/balfire
@@ -168,7 +168,7 @@ outfit "Astuit Battery"
 		"firing heat" 46
 		"shield damage" 8
 		"hull damage" 18
-	description "The Gegno Scin are the first Gegno to advance pure plasma technology far enough to use it in combat. Asuit Batteries are very similar to how human Energy Blasters work- they fire small condensed plasma projectles at high rates of fire. With 4 on a turreted mount, it is a constant stream of damage being laid upon a target, and although each shot does not do very much, consistent fire on the same target adds up. However, energy usage adds up just as much."
+	description "The Gegno Scin are the first Gegno to advance pure plasma technology far enough to use it in combat. Asuit Batteries are very similar to how human Energy Blasters work  - they fire small condensed plasma projectles at high rates of fire. With 4 on a turreted mount, it is a constant stream of damage being laid upon a target, and although each shot does not do very much, consistent fire on the same target adds up. However, energy usage adds up just as much."
 
 outfit "Talc Laser"
 	category Guns
@@ -189,8 +189,8 @@ outfit "Talc Laser"
 		"firing energy" 0.7
 		"firing heat" 1.2
 		"shield damage" 1.3
-		"hull damage" 1.6
-	description "Unlike the humans, the Gegno Scin were able to progress beam technology much earlier in their timeline, with experiment after experiment leading up to the Talc Laser. Although the damage is no where near as impressive as humanity's beam lasers, a consistent source of damage is notably effecting against the slow moving ships of the Gegno Vi."
+		"hull damage" 1.7
+	description "Unlike the humans, the Gegno Scin were able to progress beam technology much earlier in their timeline, with experiment after experiment leading up to the Talc Laser. Although the damage is nowhere near as impressive as humanity's beam lasers, a consistent source of damage is notably effecting against the slow moving ships of the Gegno Vi."
 
 outfit "Acuit Artillery"
 	category Turrets
@@ -207,16 +207,16 @@ outfit "Acuit Artillery"
 		"hardpoint sprite" hardpoint/scinturret
 		sound scinshot
 		lifetime 65
-		reload 55
+		reload 34
 		"burst reload" 10
 		velocity 18
 		"hardpoint offset" 26
 		inaccuracy 3
 		"turret turn" 1.3
-		"firing energy" 260
-		"firing heat" 400
-		"shield damage" 255
-		"hull damage" 175
+		"firing energy" 130
+		"firing heat" 200
+		"shield damage" 140
+		"hull damage" 80
 	description "With a better grasp on plasma and energy weaponry, the Gegno Scin developed a larger blaster weapon to mount on the Feldspar Carrier as a counter to the Gegno's huge cannon weaponry. The Acuit Artillery Cannon outranges most weapons in Gegno space, and has a rate of fire higher than most other weapons, making it a very efficient bombardment weapon."
 
 outfit "Guile Anti-Missile"
@@ -231,7 +231,7 @@ outfit "Guile Anti-Missile"
 		"hardpoint sprite" hardpoint/guile
 		"hit effect" "scin anti-missile"
 		lifetime 1
-		reload 10
+		reload 17
 		anti-missile 14
 		velocity 170
 		"hardpoint offset" 10

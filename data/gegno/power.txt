@@ -42,7 +42,7 @@ outfit "R04 Crusade Battery"
 	thumbnail outfit/gbatterylarge
 	"energy capacity" 8885
 	"outfit space" -83
-	description "As the largest battery mounted on Gegno ships, the Crusade Battery supplies almost enough power as a mini generator. They are enough to support the massive warships of both the Scin and the Vi, however are slightly under the capacity of similar human batteries due to inefficient handling of their scale."
+	description "As the largest battery mounted on Gegno ships, the Crusade Battery supplies almost enough power as a mini generator. They are enough to support the massive warships of both the Scin and the Vi. However, they are slightly under the capacity of similar human batteries due to inefficient handling of their scale."
 
 outfit "C3 Scrap Cell"
 	category Power
@@ -51,7 +51,7 @@ outfit "C3 Scrap Cell"
 	"energy generation" 1.4
 	"heat generation" 2.2
 	"outfit space" -25
-	description "The Scrap Cell is a small radiothermal generator that produces energy generation in a pinch, making use of the Gegno's slightly hotter running tech. It's output is very limited, and is only used in tandem with the Gegno's smaller-sized systems."
+	description "The Scrap Cell is a small radiothermal generator that produces energy generation in a pinch, making use of the Gegno's slightly hotter running tech. Its output is very limited, and is only used in tandem with the Gegno's smaller-sized systems."
 
 outfit "C7 Brawl Core"
 	category Power
@@ -60,7 +60,7 @@ outfit "C7 Brawl Core"
 	"energy generation" 2.5
 	"heat generation" 3.9
 	"outfit space" -39
-	description "C7 Brawl Cores are a slight deviation from the other C class cores as it is set upright-forward. It is a more rudimentary type of radiothermal reactor than the C3, but nevertheless produces the necessary power for the ships that carry typically carry one."
+	description "C7 Brawl Cores are a slight deviation from the other C class cores as it is set upright-forward. It is a more rudimentary type of radiothermal reactor than the C3, but nevertheless produces the necessary power for the ships that typically carry one."
 
 outfit "C17 Warzone Core"
 	category Power
@@ -80,7 +80,7 @@ outfit "C27 Campaign Core"
 	"energy generation" 22.3
 	"heat generation" 62.9
 	"outfit space" -145
-	description "In order to power the largest of vessels along with their power-guzzling systems and engines, the Gegno designed the Campaign Fusion Reactor from earlier prototypes during the colony ship era. It's still used to this day and is as efficient as one warship needs it to be, but just looking at it still raises concerns.."
+	description "In order to power the largest of vessels along with their power-guzzling systems and engines, the Gegno designed the Campaign Fusion Reactor from earlier prototypes during the colony ship era. It's still used to this day and is as efficient as one warship needs it to be, but just looking at it still raises concerns."
 
 outfit "I70 Ameliorate Cell"
 	category Power
@@ -91,4 +91,4 @@ outfit "I70 Ameliorate Cell"
 	"energy capacity" 100
 	"heat generation" 2.2
 	"outfit space" -20
-	description "Due to the needs of a smaller, more compact power system for a fighter design, the I70 Cell was designed by the Scin to be fitted on their Halite fighters. It has a small energy capacity to fuel the small but quick thrusters of one, and is able to power their weapons with a small but notable energy generation. Unfortunately, as a side effect, a bit more unwanted heat is also generated."
+	description "Due to the needs of a smaller, more compact power system for a fighter design, the I70 Cell was designed by the Scin to be fitted on their Halite fighters. It has a small energy capacity to fuel the sits diminutive thrusters, and is able to power their weapons with a minor but notable energy generation. Unfortunately, as a side effect, a bit more unwanted heat is also generated."

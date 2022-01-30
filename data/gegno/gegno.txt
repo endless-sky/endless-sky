@@ -101,6 +101,7 @@ phrase "gegno scin"
 phrase "gegno uncontacted"
 	word
 		"(A deep disgruntled voice says something in a language you cannot understand.)"
+		"(A low ominous voice speaks in a manner you have not heard before.)"
 
 phrase "gegno uncontacted leave"
 	word
@@ -124,7 +125,7 @@ phrase "friendly gegno"
 		"Dei Ynit Eeb Piebm"
 		"Gou Iisef"
 		"Tsiefl
-		"Dei Gno Echmn." 
+		"Dei Gno Echmn" 
 	word
 		"."
 
