@@ -117,7 +117,7 @@ mission "Hai Reveal [D02] Cleanup"
 		has "Hai Reveal [D01] Cleanup: done"
 	on stopover
 		conversation
-			``Arriving on Sunracer, you follow the coded coordinates you were given to avoid drawing unnecessary attention. With the Hai's first public appearance only just days past and still dominating the news cycle, you've been instructed to keep this as low-profile as possible. Fortunately, a glance at the feeds your ship picks up seems to indicate that the government response has taken the wind out of the more sensationalist talking heads - or at least the ones with notable followings.`
+			`Arriving on Sunracer, you follow the coded coordinates you were given to avoid drawing unnecessary attention. With the Hai's first public appearance only just days past and still dominating the news cycle, you've been instructed to keep this as low-profile as possible. Fortunately, a glance at the feeds your ship picks up seems to indicate that the government response has taken the wind out of the more sensationalist talking heads - or at least the ones with notable followings.`
 			`	The coordinates turn out to lead to a lean-to town built around a Star Barge. The Hai here were unable to all fit on the ship and appear to have built shelters out of local flora to keep out the weather. The communicator on the barge must be what was used to send a message. You find a clear space to land not too far away and make your way over.`
 			`	One of the Hai approaches you. "Are you Captain <last>?"`
 			choice
@@ -173,7 +173,7 @@ mission "Hai Reveal [D03] Cleanup"
 			`	When you return to Mountaintop, an all-Hai greeting party is waiting to provide aid and coordinate the safe return of those you've rescued from Sunracer. It appears to have avoided media attention, and the summit is progressing toward a resolution at an acceptable rate. It's been slow going: the Hai and human legal systems are so different that establishing common legal terms of reference has been a long-winded exercise.`
 			`	You've had a couple of days to contemplate the turn of events that led to you hauling a group of spontaneously abandoned Hai out of Syndicate space. The timing seems suspect, the individual seems familiar, and there's just something about what the Philosophers said that you just can't shake.`
 			`	While your passengers are quietly loaded onto a handful of transports to be taken home, Sayari and Xilin find you somewhere quiet. "Thank you, <last>. You had all the necessary discretion at this sensitive time," says Sayari.`
-			`	Xilin is more direct, "I'll certainly thank you for saving me from another headache. Was there anything else you found? It seems so odd."``
+			`	Xilin is more direct, "I'll certainly thank you for saving me from another headache. Was there anything else you found? It seems so odd."`
 			choice
 				`	"There is something, but I'm not totally sure."`
 			`	They both frown and huddle in closer. "Do you think some of the kidnappers escaped? Do you think they'll continue?" asks Sayari.`
