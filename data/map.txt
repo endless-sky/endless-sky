@@ -3190,7 +3190,7 @@ system Almaaz
 	pos -349 -538
 	government Pirate
 	attributes "north"
-	arrival 7100.00
+	arrival 5480.00
 	habitable 6950
 	belt 2873
 	haze _menu/haze-33
@@ -4853,7 +4853,7 @@ system Aspidiske
 	pos -690 -282
 	government Republic
 	attributes "deep"
-	arrival 24150.00
+	arrival 2535.00
 	habitable 24000
 	belt 2385
 	link Avior
@@ -5502,7 +5502,7 @@ system Betelgeuse
 	pos -384 -322
 	government Republic
 	attributes "north"
-	arrival 4750.00
+	arrival 4231.00
 	habitable 4600
 	belt 2141
 	haze _menu/haze-67
@@ -11243,7 +11243,7 @@ system "Gamma Cassiopeiae"
 	pos -116 293
 	government Syndicate
 	attributes "core"
-	arrival 11650.00
+	arrival 1929.00
 	habitable 11500
 	belt 1779
 	haze _menu/haze-133
@@ -15310,7 +15310,7 @@ system Levana
 	pos 203.504 247.389
 	government Uninhabited
 	attributes "ember waste"
-	arrival 12575.00
+	arrival 3509.00
 	habitable 12425
 	belt 1202
 	haze _menu/haze-red
@@ -16222,7 +16222,7 @@ system Mebsuta
 	pos -482 -394
 	government Republic
 	attributes "north"
-	arrival 8825.00
+	arrival 6305.00
 	habitable 8675
 	belt 2340
 	haze _menu/haze-33
@@ -16559,7 +16559,7 @@ system Menkalinan
 	pos -400 -61
 	government Republic
 	attributes "paradise"
-	arrival 5295.00
+	arrival 2080.00
 	habitable 5145
 	belt 1424
 	haze _menu/haze-67
@@ -17861,7 +17861,7 @@ system Nenia
 	pos -39.1297 467.242
 	government Uninhabited
 	attributes "archon" "ember waste" "void sprites"
-	arrival 4830.00
+	arrival 3550.00
 	habitable 4680
 	belt 1393
 	haze _menu/haze-red
@@ -18270,7 +18270,7 @@ system Orbona
 	pos -735.99 -97.2491
 	government Republic
 	attributes "dirt belt"
-	arrival 23640.00
+	arrival 2450.00
 	habitable 23490
 	belt 1507
 	haze _menu/haze-67
@@ -18771,7 +18771,7 @@ system Pelubta
 	pos -757.587 575.051
 	government Coalition
 	attributes "arachi"
-	arrival 10900.00
+	arrival 2750.00
 	habitable 10750
 	belt 1709
 	link Ablodab
@@ -19907,7 +19907,7 @@ system Prosa
 	pos 303 194
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
-	arrival 41110.00
+	arrival 1950.00
 	habitable 40960
 	belt 1500
 	haze _menu/haze-red
@@ -20647,7 +20647,7 @@ system Regulus
 	pos -544 25
 	government Republic
 	attributes "near earth"
-	arrival 11650.00
+	arrival 2850.00
 	habitable 11500
 	belt 1605
 	haze _menu/haze-67
@@ -20856,7 +20856,7 @@ system Rigel
 	pos -324 -363
 	government Republic
 	attributes "north"
-	arrival 46150.00
+	arrival 3450.00
 	habitable 46000
 	belt 1882
 	link Alnitak
@@ -21443,7 +21443,7 @@ system Sadr
 system "Sagittarius A*"
 	pos 112 22
 	government Uninhabited
-	arrival 10150.00
+	arrival 5000.00
 	habitable 10000
 	belt 1500
 	haze _menu/haze-full
@@ -21721,7 +21721,7 @@ system Sayaiban
 	government Drak
 	attributes "archon" "korath"
 	habitable 3750
-	arrival 3900.00
+	arrival 2040.00
 	belt 1803
 	asteroids "small rock" 13 2.106
 	asteroids "medium rock" 61 1.836
@@ -25390,7 +25390,7 @@ system "Wah Oh"
 	pos -205.344 -381.381
 	government Hai
 	habitable 5000
-	arrival 5150.00
+	arrival 4171.00
 	belt 1194
 	haze _menu/haze-67
 	link "Due Yoot"
