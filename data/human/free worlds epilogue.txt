@@ -63,7 +63,7 @@ mission "FW Epilogue: Alondo"
 	
 	on offer
 		conversation
-			`As you're coming in for a landing on Bourne, you receive a message from Alondo. "<first>!" he says. "I just heard that you were in system. Want to meet up for a drink and talk about old times?"`
+			`As you're coming in for a landing on Bourne, you receive a message from Alondo. "<first>!" he says. "I just heard that you were in the system. Want to meet up for a drink and talk about old times?"`
 			choice
 				`	"Sure, I'd be glad to."`
 				`	"Sorry, I'm busy right now."`
