@@ -646,7 +646,7 @@ mission "FW Katya 1C"
 				goto search
 			
 			label denial
-			`	He frowns. "We're going to have to frisk you," he says. One of the guards pats you down and takes your gun and your pocketknife. "Have a seat," says the officer. They force you to sit on the ground, and one of the guards points a very large gun at you.`
+			`	He frowns. "We're going to have to frisk you," he says. One of the guards pats you down and takes your gun and your pocket knife. "Have a seat," says the officer. They force you to sit on the ground, and one of the guards points a very large gun at you.`
 				goto search
 			
 			label search
@@ -1327,7 +1327,7 @@ mission "FW Escort 1"
 				accept
 	
 	on accept
-		log "Serving as an escort for a Free Worlds supply convoy to Tarazed. It sounds like pirates have been specifically targeting their convoys, recently."
+		log "Serving as an escort for a Free Worlds supply convoy to Tarazed. It sounds like pirates have been blatantly targeting their convoys recently."
 	
 	on abort
 		# No action, the player just silently walks away from this mission(chain)
