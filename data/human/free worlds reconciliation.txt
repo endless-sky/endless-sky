@@ -1383,7 +1383,7 @@ mission "FW Pug 2C: Side"
 			label end
 			`	"Where did they come from originally?" asks Alondo.`
 			`	"From a star system that was always a neighbor of ours, but wasn't linked to us or to any other part of human space. We always just assumed it was an uninhabited system, but it turns out they were there all along, biding their time, waiting for a good opportunity to attack us."`
-			`	"Well," says Alondo, "they didn't attack us when we jumped in to this system. Perhaps we should go to their home system and see what they have to say for themselves."`
+			`	"Well," says Alondo, "they didn't attack us when we jumped into this system. Perhaps we should go to their home system and see what they have to say for themselves."`
 				decline
 
 
@@ -2412,7 +2412,7 @@ mission "FW Syndicate Extremists 1A"
 			
 			`	"I don't see why not," says Danforth, fixing Alastair with a piercing gaze. "It's certainly better than leaving it in Syndicate hands."`
 			label end
-			`	Alastair tells you that the device is being kept on Hephaestus, and the engineers there can install it in your ship. Meanwhile, Danforth will call in the rest of his Oathkeeper fleet. "The Alphas are holed up on Buccaneer Bay," says Alastair, "an old pirate world. Good luck in defeating them."`
+			`	Alastair tells you that the device is being kept on Hephaestus, and the engineers there can install it on your ship. Meanwhile, Danforth will call in the rest of his Oathkeeper fleet. "The Alphas are holed up on Buccaneer Bay," says Alastair, "an old pirate world. Good luck in defeating them."`
 				accept
 	
 	npc accompany save
