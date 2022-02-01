@@ -86,6 +86,7 @@ phrase "adjectives"
 		"Lilac"
 		"Azure"
 		"Grey"
+		"Gray"
 		"Golden"
 		"Marigold"
 		"Lavender"
@@ -1553,7 +1554,7 @@ phrase "civilian subphrase 1"
 # Cobalt Winds
 phrase "civilian subphrase 2"
 	phrase
-		"adjectives" 151
+		"adjectives" 152
 		"singular nouns" 201
 		"nouns of indeterminate quantity" 101
 	word
@@ -1657,7 +1658,7 @@ phrase "civilian subphrase 8"
 phrase "civilian subphrase 9"
 	phrase
 		"singular nouns" 201
-		"adjectives" 151
+		"adjectives" 152
 	word
 		" "
 	phrase
@@ -1697,7 +1698,7 @@ phrase "civilian subphrase 11"
 
 phrase "civilian subphrase 12"
 	phrase
-		"adjectives" 151
+		"adjectives" 152
 		"nouns of indeterminate quantity" 101
 		"singular nouns" 201
 		"all titles" 25
@@ -2852,6 +2853,7 @@ phrase "pirate adjectives that work as titles"
 		"Red"
 		"Crimson"
 		"Grey"
+		"Gray"
 		"Black"
 		"Dark"
 		"Dead"
@@ -3466,7 +3468,7 @@ phrase "pirate subphrase 1"
 phrase "pirate subphrase 2"
 	phrase
 		"pirate adjectives that don't work as titles" 67
-		"pirate adjectives that work as titles" 64
+		"pirate adjectives that work as titles" 65
 	word
 		" "
 	phrase
@@ -3478,7 +3480,7 @@ phrase "pirate subphrase 3"
 	phrase
 		"pirate adjectives that don't work before singular nouns" 15
 		"pirate adjectives that don't work as titles" 67
-		"pirate adjectives that work as titles" 64
+		"pirate adjectives that work as titles" 65
 	word
 		" "
 	phrase
@@ -3519,7 +3521,7 @@ phrase "pirate subphrase 6"
 phrase "pirate subphrase 7"
 	phrase
 		"bad outcomes" 53
-		"pirate adjectives that work as titles" 64
+		"pirate adjectives that work as titles" 65
 		"pirate adjectives that don't work as titles" 67
 	word
 		" "
@@ -3730,6 +3732,7 @@ phrase "bounty hunter subphrase 1"
 		"Sharpened"
 		"Green"
 		"Grey"
+		"Gray"
 		"Black"
 		"Dark"
 		"Obsidian"

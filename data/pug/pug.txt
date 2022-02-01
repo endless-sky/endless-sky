@@ -154,7 +154,7 @@ phrase "hostile pug"
 	word
 		"mistake"
 		"error"
-		"lapse in judgement"
+		"lapse in judgment"
 		"choice"
 		"decision"
 		"blunder"

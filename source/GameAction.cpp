@@ -39,15 +39,25 @@ namespace {
 		Messages::Add("The " + model->ModelName() + " \"" + name + "\" was added to your fleet."
 			, Messages::Importance::High);
 	}
-	
+
 	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
 	{
+		// Maps are not transferrable; they represent the player's spatial awareness.
+		int mapSize = outfit->Get("map");
+		if(mapSize > 0)
+		{
+			if(!player.HasMapped(mapSize))
+				player.Map(mapSize);
+			Messages::Add("You received a map of nearby systems", Messages::Importance::High);
+			return;
+		}
+
 		Ship *flagship = player.Flagship();
 		bool isSingle = (abs(count) == 1);
 		string nameWas = (isSingle ? outfit->Name() : outfit->PluralName());
 		if(!flagship || !count || nameWas.empty())
 			return;
-		
+
 		nameWas += (isSingle ? " was" : " were");
 		string message;
 		if(isSingle)
@@ -58,13 +68,13 @@ namespace {
 		}
 		else
 			message = to_string(abs(count)) + " ";
-		
+
 		message += nameWas;
 		if(count > 0)
 			message += " added to your ";
 		else
 			message += " removed from your ";
-		
+
 		bool didCargo = false;
 		bool didShip = false;
 		// If not landed, transfers must be done into the flagship's CargoHold.
@@ -138,10 +148,10 @@ void GameAction::Load(const DataNode &node, const string &missionName)
 void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 {
 	isEmpty = false;
-	
+
 	const string &key = child.Token(0);
 	bool hasValue = (child.Size() >= 2);
-	
+
 	if(key == "log")
 	{
 		bool isSpecial = (child.Size() >= 3);
@@ -154,7 +164,7 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 		if(child.Token(1) == "ship" && child.Size() >= 3)
 			giftShips.emplace_back(GameData::Ships().Get(child.Token(2)), child.Size() >= 4 ? child.Token(3) : "");
 		else
-			child.PrintTrace("Skipping unsupported \"give\" syntax:");
+			child.PrintTrace("Error: Skipping unsupported \"give\" syntax:");
 	}
 	else if(key == "outfit" && hasValue)
 	{
@@ -162,7 +172,7 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 		if(count)
 			giftOutfits[GameData::Outfits().Get(child.Token(1))] = count;
 		else
-			child.PrintTrace("Skipping invalid outfit quantity:");
+			child.PrintTrace("Error: Skipping invalid outfit quantity:");
 	}
 	else if(key == "payment")
 	{
@@ -179,7 +189,7 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 		if(value > 0)
 			fine += value;
 		else
-			child.PrintTrace("Skipping invalid \"fine\" with non-positive value:");
+			child.PrintTrace("Error: Skipping invalid \"fine\" with non-positive value:");
 	}
 	else if(key == "event" && hasValue)
 	{
@@ -193,7 +203,7 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 	{
 		string toFail = child.Size() >= 2 ? child.Token(1) : missionName;
 		if(toFail.empty())
-			child.PrintTrace("Skipping invalid \"fail\" with no mission:");
+			child.PrintTrace("Error: Skipping invalid \"fail\" with no mission:");
 		else
 		{
 			fail.insert(toFail);
@@ -258,7 +268,7 @@ string GameAction::Validate() const
 	for(auto &&event : events)
 		if(!event.first->IsValid())
 			return "event \"" + event.first->Name() + "\"";
-	
+
 	// Transferred content must be defined & valid.
 	for(auto &&it : giftShips)
 		if(!it.first->IsValid())
@@ -266,10 +276,10 @@ string GameAction::Validate() const
 	for(auto &&outfit : giftOutfits)
 		if(!outfit.first->IsDefined())
 			return "gift outfit \"" + outfit.first->Name() + "\"";
-	
+
 	// It is OK for this action to try to fail a mission that does not exist.
 	// (E.g. a plugin may be designed for interoperability with other plugins.)
-	
+
 	return "";
 }
 
@@ -310,7 +320,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 	for(auto &&it : specialLogText)
 		for(auto &&eit : it.second)
 			player.AddSpecialLog(it.first, eit.first, eit.second);
-	
+
 	for(auto &&it : giftShips)
 		DoGift(player, it.first, it.second);
 	// If multiple outfits are being transferred, first remove them before
@@ -321,7 +331,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 	for(auto &&it : giftOutfits)
 		if(it.second > 0)
 			DoGift(player, it.first, it.second, ui);
-	
+
 	if(payment)
 	{
 		// Conversation actions don't block a mission from offering if a
@@ -340,10 +350,10 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 	}
 	if(fine)
 		player.Accounts().AddFine(fine);
-	
+
 	for(const auto &it : events)
 		player.AddEvent(*it.first, player.GetDate() + it.second.first);
-	
+
 	if(!fail.empty())
 	{
 		// If this action causes this or any other mission to fail, mark that
@@ -353,7 +363,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 			if(fail.count(mission.Identifier()))
 				player.FailMission(mission);
 	}
-	
+
 	// Check if applying the conditions changes the player's reputations.
 	player.SetReputationConditions();
 	conditions.Apply(player.Conditions());
@@ -366,7 +376,7 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 {
 	GameAction result;
 	result.isEmpty = isEmpty;
-	
+
 	for(auto &&it : events)
 	{
 		// Allow randomization of event times. The second value in the pair is
@@ -375,30 +385,30 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 		int day = it.second.first + Random::Int(it.second.second - it.second.first + 1);
 		result.events[it.first] = make_pair(day, day);
 	}
-	
+
 	for(auto &&it : giftShips)
 		result.giftShips.emplace_back(it.first, !it.second.empty() ? it.second : GameData::Phrases().Get("civilian")->Get());
 	result.giftOutfits = giftOutfits;
-	
+
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
 	if(result.payment)
 		subs["<payment>"] = Format::Credits(abs(result.payment))
 			+ (result.payment == 1 ? " credit" : " credits");
-	
+
 	result.fine = fine;
 	if(result.fine)
 		subs["<fine>"] = Format::Credits(result.fine)
 			+ (result.fine == 1 ? " credit" : " credits");
-	
+
 	if(!logText.empty())
 		result.logText = Format::Replace(logText, subs);
 	for(auto &&it : specialLogText)
 		for(auto &&eit : it.second)
 			result.specialLogText[it.first][eit.first] = Format::Replace(eit.second, subs);
-	
+
 	result.fail = fail;
-	
+
 	result.conditions = conditions;
-	
+
 	return result;
 }

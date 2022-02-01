@@ -25,7 +25,6 @@ Files:
  images/ship/mfury*
  images/ship/mmanta*
  images/ship/mquicksilver*
- images/ship/mraven*
  images/ship/msplinter*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
@@ -453,12 +452,14 @@ Files:
  images/ship/dredger*
  images/ship/ibis*
  images/ship/mbactriane*
+ images/ship/merganser*
  images/ship/penguin/*
  images/ship/petrel*
  images/ship/tern*
  images/ship/shooting?star/shooting?star*
  images/thumbnail/dredger*
  images/thumbnail/ibis*
+ images/thumbnails/merganser*
  images/thumbnail/penguin*
  images/thumbnail/petrel*
  images/thumbnail/tern*
@@ -467,6 +468,14 @@ Files:
  images/planet/station3c*
  images/ship/archon?b*
  images/ship/archon?c*
+ images/asteroid/plant*
+ images/asteroid/plant2*
+ images/asteroid/plant?cluster*
+ images/asteroid/space?flora*
+ images/asteroid/large?plant*
+ images/asteroid/large?plant2*
+ images/asteroid/large?plant?cluster*
+ images/asteroid/large?space?flora*
  images/asteroid/yottrite*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
@@ -610,6 +619,11 @@ Comment: Taken from https://commons.wikimedia.org/wiki/File:Preamplifier_at_the_
 Files:
  images/land/lava5*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
+License: CC-BY-SA-4.0
+
+Files:
+ images/planet/nebula1*
+Copyright: Azure
 License: CC-BY-SA-4.0
 
 Files: sounds/*
@@ -1028,6 +1042,7 @@ Files:
  images/effect/ka'het?flare/*
  images/effect/fissionflare*
  images/effect/pwtflare*
+ images/effect/nuke*
  images/icon/dragonflame*
  images/icon/shard*
  images/outfit/dragonflame*
@@ -1183,13 +1198,22 @@ Files:
  images/star/o3*
  images/star/o5*
  images/star/o8*
- images/star/wr*
+ images/star/wr1*
 Copyright: Matteo "Lead" M.
 License: CC-BY-SA-4.0
 
 Files:
+ images/asteroid/livecrystal/livecrystal*
  images/star/neutron*
-Copyright: Gefüllte Taubenbrust
+ images/outfit/nuke*
+ images/projectile/missile-0*
+ images/projectile/missile-1*
+ images/hardpoint/nuke*
+ images/ship/raven*
+ images/thumbnail/raven*
+ images/ship/mraven*
+ images/thumbnail/mraven*
+Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
 
 Files: sounds/ionball*
@@ -1204,6 +1228,49 @@ Files:
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-3.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/scene/ssil?vida?alert?hologram*
+Copyright: J Everett Nichol (jeverett on Discord)
+License: CC-BY-SA-3.0
+Comment: Derived from works by Becca Tommaso (under the same license).
+
+Files:
+ images/ship/auxiliary*
+ images/ship/carrier*
+ images/ship/combat?drone*
+ images/ship/cruiser*
+ images/ship/frigate*
+ images/ship/gunboat*
+ images/ship/lance*
+ images/ship/rainmaker*
+ images/thumbnail/auxiliary*
+ images/thumbnail/carrier*
+ images/thumbnail/combat?drone*
+ images/thumbnail/cruiser*
+ images/thumbnail/frigate*
+ images/thumbnail/gunboat*
+ images/thumbnail/lance*
+ images/thumbnail/rainmaker*
+Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/effect/ember?tear/ember?tear?fire*
+ images/effect/ember?tear/ember?tear?impact*
+ images/effect/ember?tear/ember?tear?vortex*
+ images/outfit/ember?tear*
+Copyright: X-27 (youtube.com/x-27yt)
+License: CC-BY-SA-3.0
+
+Files:
+ images/effect/ember?tear/ember?tear?spark*
+Copyright: X-27 (youtube.com/x-27yt)
+License: CC-BY-SA-3.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
