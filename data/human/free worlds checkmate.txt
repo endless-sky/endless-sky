@@ -1955,7 +1955,7 @@ mission "FWC Pug 4C"
 	on offer
 		event "fwc reconnect ascella"
 		conversation
-			`You help Freya to unload and set up the reflector equipment, then contact the Navy on Oblivion and instruct them to point the transmitter in your direction. A few minutes later Admiral Danforth contacts you. "This link appears to be returning too," he says. "So, let's move on. We're going to make an attack on the <system> system now, and we would welcome your assistance in this battle." You leave the equipment on <origin> and return to your ship with Freya.`
+			`You help Freya to unload and set up the reflector equipment, then contact the Navy on Oblivion and instruct them to point the transmitter in your direction. A few minutes later Admiral Danforth contacts you. "This link appears to be returning too," he says. "So, let's move on. We're going to make an attack on the <system> system, now, and we would welcome your assistance in this battle." You leave the equipment on <origin> and return to your ship with Freya.`
 				accept
 	
 	on visit
