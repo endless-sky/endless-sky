@@ -1027,7 +1027,7 @@ mission "FWC Pug 1"
 				goto end
 			
 			label reinforcements
-			`	"Yes," he says, "and a second after they arrived in the system, this other fleet of ships appeared, unlike any ships I've ever seen before. They're tearing the Wolf Pack fleet to ribbons. If you don't get up there immediately, none of them will be left alive."`
+			`	"Yes," he says, "and a second after they arrived, this other fleet of ships appeared, unlike any ships I've ever seen before. They're tearing the Wolf Pack fleet to ribbons. If you don't get up there immediately, none of them will be left alive."`
 			label end
 			`	You hurry to your ship and fire it up for a hasty launch...`
 				launch
