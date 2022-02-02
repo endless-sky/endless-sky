@@ -119,7 +119,7 @@ mission "Smuggler's Den, Part 1"
 	passengers 2
 	on offer
 		conversation
-			`You wander into one of several dimly lit, smoke-filled bars near your docking bay. Soon after you sit down, a pair of hooded figures stand up and begin moving toward you. They aren't carrying any visible weapons, but on a station like this one, there's a good chance that everyone you meet has a concealed gun. One of them is carrying a bundle wrapped in cloth. You can't see their faces.`
+			`You wander into one of several dimly lit, smoke-filled bars near your docking bay. Soon after you sit down, a pair of hooded figures stand up and begin moving toward you. They aren't carrying any visible weapons, but on a station like this one there's a good chance that everyone you meet has a concealed gun. One of them is carrying a bundle wrapped in cloth. You can't see their faces.`
 			choice
 				`	(Get out of here.)`
 				`	(Wait and see what they want.)`
@@ -510,7 +510,7 @@ mission "There Might Be Riots 1"
 					decline
 			`	The band is even louder in concert than they were when practicing in the confines of your ship. About thirty minutes into the concert, the energy of the crowd and the surreal lyrics finally begin to soak in, and rather than seeming meaningless their music feels fraught with meaning that hovers just beyond your grasp.`
 			`	Finally the band announces that their last song will be "Sad Archie." You've never heard of it, but the fans scream in approval. It's a slow, ballad-like song about a man named Archie who lives forever and is sad because the friends he makes all grow old and die. Archie has a pet dragon, and he builds a beautiful house for the dragon, but the dragon dies young. Archie is so sad seeing the dragon's house empty and gathering dust that he rents it out to some friends, but they fight with each other and trash the place. The story makes no sense, but some of the fans are wiping away tears as the song ends.`
-			`	Becca, who is sitting next to you in the VIP section, says, "We learned years ago that we need to end every concert with a sad song. Otherwise, the fans leave with way too much energy and start destroying public property."`
+			`	Becca, who is sitting next to you in the VIP section, says, "We learned years ago that we need to end every concert with a sad song. Otherwise the fans leave with way too much energy and start destroying public property."`
 			`	The concert ends, and you say goodbye to the band. They say they'll be in touch if they ever need a ride again.`
 
 
