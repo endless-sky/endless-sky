@@ -53,11 +53,11 @@ ship "Aerie"
 	engine 15 96.5
 	engine 30 70
 	engine -30 70
+	gun -12 -79 "Heavy Laser Turret"
+	gun 12 -79 "Heavy Laser Turret"
 	turret -26.5 26.5
 	turret 26.5 26.5
-	turret 0 1.5
-	gun -12 -79
-	gun 12 -79
+	turret 0 1.5 "Heavy Anti-Missile Turret"
 	bay "Fighter" -44 2
 	bay "Fighter" 44 2
 	leak "leak" 50 50
