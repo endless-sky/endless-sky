@@ -55,8 +55,8 @@ ship "Aerie"
 	engine -30 70
 	gun -12 -79 "Sidewinder Missile Launcher"
 	gun 12 -79 "Sidewinder Missile Launcher"
-	turret -26.5 26.5 "Heavy Laser Turret"
-	turret 26.5 26.5 "Heavy Laser Turret"
+	turret -28.5 22 "Heavy Laser Turret"
+	turret 28.5 22 "Heavy Laser Turret"
 	turret 0 1.5 "Heavy Anti-Missile Turret"
 	bay "Fighter" -44 2
 	bay "Fighter" 44 2
