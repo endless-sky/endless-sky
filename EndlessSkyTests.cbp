@@ -78,6 +78,8 @@
 		<Unit filename="tests/src/test_set.cpp" />
 		<Unit filename="tests/src/test_ship.cpp" />
 		<Unit filename="tests/src/test_weightedList.cpp" />
+		<Unit filename="tests/src/comparators/test_byGivenOrder.cpp" />
+		<Unit filename="tests/src/comparators/test_byName.cpp" />
 		<Unit filename="tests/src/text/test_alignment.cpp" />
 		<Unit filename="tests/src/text/test_displaytext.cpp" />
 		<Unit filename="tests/src/text/test_format.cpp" />

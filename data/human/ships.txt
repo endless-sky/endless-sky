@@ -2766,12 +2766,12 @@ ship "Raven"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -12 43
-	engine 12 43
-	gun -10 -33 "Heavy Laser"
-	gun 10 -33 "Heavy Laser"
-	gun -16 -28 "Torpedo Launcher"
-	gun 16 -28 "Torpedo Launcher"
+	engine -9.5 63
+	engine 9.5 63
+	gun -13.5 -35.5 "Heavy Laser"
+	gun 13.5 -35.5 "Heavy Laser"
+	gun -21 -28 "Torpedo Launcher"
+	gun 21 -28 "Torpedo Launcher"
 	leak "leak" 60 50
 	leak "flame" 50 80
 	explode "medium explosion" 24
