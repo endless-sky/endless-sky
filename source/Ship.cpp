@@ -3895,30 +3895,26 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 		double mass = Mass();
 		double driveMassExp = 0;
 		double driveMassRef = 400;
-		double driveDistanceExp = 0;
-		double driveDistanceRef = 100;
+		double driveDistExp = 0;
+		double driveDistRef = 100;
 		
-		if(baseAttributes.Get("drive mass exponent") || baseAttributes.Get("drive distance exponent"))
+		if(baseAttributes.Get("drive mass exponent") || baseAttributes.Get("drive distance exponent") && mass > 0)
 		{
-			 driveMassExp = baseAttributes.Get("drive mass exponent");
-			 driveDistanceExp = baseAttributes.Get("drive distance exponent");
+			driveMassRef = max(baseAttributes.Get("drive mass reference"), .01);
+			driveMassExp = max(baseAttributes.Get("drive mass exponent"), 0.);
+			fuel *= pow((mass / driveMassRef), driveMassExp);
 		}
-		if(baseAttributes.Get("drive mass reference") || baseAttributes.Get("drive distance reference"))
+		if(baseAttributes.Get("drive mass reference") || baseAttributes.Get("drive distance reference") && jumpDistance > 0)
 		{
-			 driveMassRef = baseAttributes.Get("drive mass reference");
-			 driveDistanceRef = baseAttributes.Get("drive distance reference");
+			driveDistRef = max(baseAttributes.Get("drive distance reference"), .01);
+			driveDistExp = max(baseAttributes.Get("drive distance exponent"), 0.);
+			fuel *= pow((jumpDistance / driveDistRef), driveDistExp);
 		}
-		driveMassExp = max(driveMassExp, 0.);
-		driveDistanceExp = max(driveDistanceExp, 0.);
-		driveMassRef = max(driveMassRef, .01);
-		driveDistanceRef = max(driveDistanceRef, .01);
-		
-		fuel = fuel * (pow((mass/driveMassRef),driveMassExp)) * (pow((jumpDistance/driveDistanceRef),driveDistanceExp));
 		
 		// if a "startup" fuel is provided, add that to the above formula.
 		// It's a constant fuel consumption regardless of mass or distance of jump.
 		if(baseAttributes.Get("jump startup fuel") > 0)
-			fuel = fuel + baseAttributes.Get("jump startup fuel");
+			fuel += baseAttributes.Get("jump startup fuel");
 		
 		// If no distance was given then we're either using a hyperdrive
 		// or refueling this ship, in which case this if statement will
