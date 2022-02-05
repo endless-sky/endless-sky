@@ -84,20 +84,15 @@ void News::Load(const DataNode &node)
 			else
 				messages.Load(child);
 		}
-		else if(tag == "to" && hasValue)
+		else if(tag == "to" && hasValue && child.Token(valueIndex) == "show")
 		{
-			if(child.Token(valueIndex) == "show")
-			{
-				if(remove)
-					toShow = ConditionSet{};
-				else
-					toShow.Load(child);
-			}
+			if(remove)
+				toShow = ConditionSet{};
 			else
-				child.PrintTrace("Unrecognized news attribute:");
+				toShow.Load(child);
 		}
 		else
-			child.PrintTrace("Unrecognized news attribute:");
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
 
