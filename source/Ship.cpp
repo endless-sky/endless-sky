@@ -3020,9 +3020,9 @@ double Ship::HyperdriveFuel() const
 		return JumpDriveFuel();
 
 	if(attributes.Get("scram drive"))
-		return BestFuel("hyperdrive", "scram drive", 150.);
+		return BestFuel("hyperdrive", "scram drive", 150., -1.);
 
-	return BestFuel("hyperdrive", "", 100.);
+	return BestFuel("hyperdrive", "", 100., -1.);
 }
 
 
@@ -3889,33 +3889,33 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 		double jumpRange = baseAttributes.Get("jump range");
 		if(!jumpRange)
 			jumpRange = System::DEFAULT_NEIGHBOR_DISTANCE;
-		
+
 		double fuel = baseAttributes.Get("jump fuel");
-		
+
 		double mass = Mass();
 		double driveMassExp = 0;
 		double driveMassRef = 400;
 		double driveDistExp = 0;
 		double driveDistRef = 100;
-		
-		if(baseAttributes.Get("drive mass exponent") || baseAttributes.Get("drive distance exponent") && mass > 0)
+
+		if((baseAttributes.Get("drive mass reference") || baseAttributes.Get("drive mass exponent")) && mass > 0)
 		{
 			driveMassRef = max(baseAttributes.Get("drive mass reference"), .01);
 			driveMassExp = max(baseAttributes.Get("drive mass exponent"), 0.);
 			fuel *= pow((mass / driveMassRef), driveMassExp);
 		}
-		if(baseAttributes.Get("drive mass reference") || baseAttributes.Get("drive distance reference") && jumpDistance > 0)
+		if((baseAttributes.Get("drive distance reference") || baseAttributes.Get("drive distance exponent")) && jumpDistance > 0)
 		{
 			driveDistRef = max(baseAttributes.Get("drive distance reference"), .01);
 			driveDistExp = max(baseAttributes.Get("drive distance exponent"), 0.);
 			fuel *= pow((jumpDistance / driveDistRef), driveDistExp);
 		}
-		
+
 		// if a "startup" fuel is provided, add that to the above formula.
 		// It's a constant fuel consumption regardless of mass or distance of jump.
 		if(baseAttributes.Get("jump startup fuel") > 0)
 			fuel += baseAttributes.Get("jump startup fuel");
-		
+
 		// If no distance was given then we're either using a hyperdrive
 		// or refueling this ship, in which case this if statement will
 		// always pass.
@@ -3942,30 +3942,27 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 				double mass = Mass();
 				double driveMassExp = 0;
 				double driveMassRef = 400;
-				double driveDistanceExp = 0;
-				double driveDistanceRef = 100;
-				if(it.first->Get("drive mass exponent") || it.first->Get("drive distance exponent"))
+				double driveDistExp = 0;
+				double driveDistRef = 100;
+
+				if((it.first->Get("drive mass exponent") || it.first->Get("drive distance exponent")) && mass > 0.)
 				{
-					 driveMassExp = it.first->Get("drive mass exponent");
-					 driveDistanceExp = it.first->Get("drive distance exponent");
+					driveMassRef = max(it.first->Get("drive mass reference"), .01);
+					driveMassExp = max(it.first->Get("drive mass exponent"), 0.);
+					fuel *= pow((mass / driveMassRef), driveMassExp);
 				}
-				if(it.first->Get("drive mass reference") || it.first->Get("drive distance reference"))
+				if((it.first->Get("drive mass reference") || it.first->Get("drive distance reference")) && jumpDistance > 0.)
 				{
-					 driveMassRef = it.first->Get("drive mass reference");
-					 driveDistanceRef = it.first->Get("drive distance reference");
+					driveDistRef = max(it.first->Get("drive distance reference"), .01);
+					driveDistExp = max(it.first->Get("drive distance exponent"), 0.);
+					fuel *= pow((jumpDistance / driveDistRef), driveDistExp);
 				}
-				driveMassExp = max(driveMassExp, 0.);
-				driveDistanceExp = max(driveDistanceExp, 0.);
-				driveMassRef = max(driveMassRef, .01);
-				driveDistanceRef = max(driveDistanceRef, .01);
-				
-				fuel = fuel * (pow((mass/driveMassRef),driveMassExp)) * (pow((jumpDistance/driveDistanceRef),driveDistanceExp));
-				
+
 				// if a "startup" fuel is provided, add that to the above formula.
 				// It's a constant fuel consumption regardless of mass or distance of jump.
 				if(it.first->Get("jump startup fuel") > 0)
-					fuel = fuel + it.first->Get("jump startup fuel");
-				
+					fuel += it.first->Get("jump startup fuel");
+
 				// finally, use that here to test if it's better than any previous fuel usages.
 				if(!fuel)
 					fuel = defaultFuel;
