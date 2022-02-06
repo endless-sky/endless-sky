@@ -485,8 +485,8 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		if(menuPanels.IsEmpty())
 			player.AddPlayTime(frameTime);
 
-		// Limit the frame rate.
-		if(maxFramerate > 0)
+		// Limit the frame rate only if vsync is disabled.
+		if(maxFramerate > 0 && Preferences::VSyncState() == Preferences::VSync::off)
 		{
 			auto now = CurrentTime();
 			double ms = 1000. / maxFramerate - (now - newTime);
