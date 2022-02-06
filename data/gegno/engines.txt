@@ -81,7 +81,7 @@ outfit "RG3 Torch Thruster"
 	"flare sprite" "effect/ion torch/large"
 		"frame rate" 2.3
 	"flare sound" "ion torch large"
-	description "RG3 Ion Torch Thrusters are the Gegno's largest thrusters, and the oldest in the running. Based off of the massive thrusters that powered early Gegno generation ships, these are only found on the largest of Gegno spacecraft, weighing and overheating anything smaller out of a choice."
+	description "RG3 Ion Torch Thrusters are the Gegno's largest thrusters, and the oldest still used. Based off of the massive thrusters that powered early Gegno generation ships, these are only found on the largest of Gegno spacecraft, weighing and overheating anything smaller out of a choice."
 
 outfit "RG3 Torch Steering"
 	category Engines
