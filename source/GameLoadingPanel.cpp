@@ -73,7 +73,7 @@ void GameLoadingPanel::Draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
 
-	GameData::Interfaces().Get("menu background")->Draw(Information(), this);
+	GameData::DrawMenuBackground(this);
 
 	// Draw the loading circle.
 	Angle da(ANGLE_OFFSET);

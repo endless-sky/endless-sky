@@ -768,14 +768,14 @@ mission "Remnant: Cognizance 21"
 		conversation
 			branch duskknown
 				has "remnant met dusk"
-			`	In the cafeteria the scene hasn't changed much: There is still a large group of Remnant gathered around a cluster of projectors, with a constant stream of gestures discussing various points of the data. You understand enough to figure out that most of the conversation is deep into technical discussions of how the lifesign sensors might give the readings they do without having anything visible. The principle differences from before is that there is a stack of small bags and helmets next to the door and five of the Remnant present are wearing pressure suits. One of them notices you and waves you over. "Captain <first>! My name is Dusk, and I am one of the researchers that you volunteered to transport to Ssil Vida."`
+			`	In the cafeteria the scene hasn't changed much: There is still a large group of Remnant gathered around a cluster of projectors, with a constant stream of gestures discussing various points of the data. You understand enough to figure out that most of the conversation is deep into technical discussions of how the lifesign sensors might give the readings they do without having anything visible. The principal difference from before is the presence of five pressure-suited Remnant with a neat stack of equipment topped with helmets. One of them notices you and waves you over. "Captain <first>! My name is Dusk, and I am one of the researchers that you volunteered to transport to Ssil Vida."`
 			choice
 				`	"Pleased to meet you, Dusk."`
 					goto missiondescription
 				`	"Dusk? Are names like that common?"`
 					goto duskname
 			label duskknown
-			`	In the cafeteria the scene hasn't changed much: There is still a large group of Remnant gathered around a cluster of projectors, with a constant stream of gestures discussing various points of the data. You understand enough to figure out that most of the conversation is deep into technical discussions of how the lifesign sensors might give the readings they do without having anything visible. The principle differences from before is that there is a stack of small bags and helmets next to the door and five of the Remnant present are wearing pressure suits. You recognize one of them as Dusk as he waves you over. "Captain <first>! The Embers crossed our paths once again. I am one of the researchers that you have volunteered to transport to Ssil Vida."`
+			`	In the cafeteria the scene hasn't changed much: There is still a large group of Remnant gathered around a cluster of projectors, with a constant stream of gestures discussing various points of the data. You understand enough to figure out that most of the conversation is deep into technical discussions of how the lifesign sensors might give the readings they do without having anything visible. The principal difference from before is the presence of five pressure-suited Remnant with a neat stack of equipment topped with helmets. You recognize one of them as Dusk as he waves you over. "Captain <first>! The Embers crossed our paths once again. I am one of the researchers that you have volunteered to transport to Ssil Vida."`
 			choice
 				`	"Good to see you again, Dusk."`
 					goto missiondescription
