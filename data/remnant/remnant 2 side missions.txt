@@ -10,6 +10,7 @@
 
 
 
+
 mission "Remnant: Visit to Paradise 1"
 	name "Take Taely to visit <stopovers>"
 	description "Taely has heard about the city platforms of <stopovers> and would like to see them."
@@ -17,9 +18,9 @@ mission "Remnant: Visit to Paradise 1"
 		government "Remnant"
 	stopover "Mainsail"
 	to offer
-		has "Remnant: Cognizance 38: done"
+		has event "remnant: cognizance calm"
 		random > 30
 	on offer
 		conversation
-		`	`
+		`	You are just settling down at a table in the cafeteria when Taely slides onto the bench opposite you. "Greetings, <first>`
 	on complete
