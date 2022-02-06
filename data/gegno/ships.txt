@@ -241,7 +241,7 @@ ship Eclogite
 	explode "small explosion" 20
 	explode "tiny explosion" 15
 	"final explode" "final explosion small"
-	description "The Eclogite is a newer Gegno ship- a gunboat armed to the teeth with cannons, and maneuverability that the Gegno Vi's larger ships lack. It plays the role of a hit-and-run vessel, unloading volleys of shells against a target's armor in a pass before swinging around for another run."
+	description "The Eclogite is a newer Gegno ship - a gunboat armed to the teeth with cannons, and maneuverability that the Gegno Vi's larger ships lack. It plays the role of a hit-and-run vessel, unloading volleys of shells against a target's armor in a pass before swinging around for another run."
 
 ship Hornfel
 	sprite ship/hornfel
