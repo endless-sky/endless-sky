@@ -96,7 +96,7 @@ outfit "RG3 Torch Steering"
 	"steering flare sprite" "effect/ion torch/large"
 		"frame rate" 2.3
 	"steering flare sound" "ion torch large"
-	description "As the largest and oldest steering system seen around Gegno space, only few ships are equipped with RG3 Torch Thrusters, as most are nowhere near massive enough to be able to run them."
+	description "As the largest and oldest steering system seen around Gegno space, only a few ships are equipped with RG3 Torch Thrusters, as most are nowhere near massive enough to be able to run them."
 
 outfit "SC-1 Plasma Engines"
 	category Engines
