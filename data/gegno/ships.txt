@@ -120,7 +120,7 @@ ship Slate
 	leak leak 60 50
 	explode "small explosion" 5
 	explode "tiny explosion" 10
-	description "The Slate is the Gegno Vi's variation of the Shale, taking the original design, adding bulkier systems and more space characteristics of Vi vessels. Slightly larger than a normal shuttleship to suit the Vi's stature, it's able to carry more than a few Gegno cadets along with a small cargo load."
+	description "The Slate is the Gegno Vi's variation of the Shale. It appears they took the original design and added bulkier systems and more space, characteristic of Vi vessels. Slightly larger than a normal shuttleship to suit the Vi's stature, it's able to carry more than a few Gegno cadets along with a small cargo load."
 
 ship Schist
 	sprite ship/schist
