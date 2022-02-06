@@ -110,7 +110,7 @@ mission "Wanderers: Unfettered Diplomat"
 				`	(No; the other Hai south of here are better suited for this.)`
 					decline
 			label try
-			`	You search around the spaceport for any sign of a local government. Eventually, one of the Hai approaches you, and she says, "You are lost, monkey. What is it that you are looking for?"`
+			`	You search around the spaceport for any sign of a local government. Eventually, one of the Hai approaches you. "You are lost, monkey. What is it that you are looking for?"`
 			choice
 				`	"Do you know where I can talk to an official?"`
 				`	"Do you know where I could find an interpreter?"`
@@ -120,7 +120,7 @@ mission "Wanderers: Unfettered Diplomat"
 			`	The Hai says, "If your reason for talking to our chiefs is worthwhile, then I will take you to them."`
 			`	"I'm looking for a Hai interpreter," you say.`
 			label interpreter
-			`	She looks back at you quizically. "What purpose would an interpreter serve? You can understand my words, can you not?"`
+			`	She looks back at you quizzically. "What purpose would an interpreter serve? You can understand my words, can you not?"`
 			choice
 				`	"I need one to talk to the aliens up north from here."`
 				`	"I think that I'll be better off finding one of the chiefs on my own."`
