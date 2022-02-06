@@ -22,5 +22,31 @@ mission "Remnant: Visit to Paradise 1"
 		random > 30
 	on offer
 		conversation
-		`	You are just settling down at a table in the cafeteria when Taely slides onto the bench opposite you. "Greetings, <first>`
+		`	You are just settling down at a table in the cafeteria when Taely slides onto the bench opposite you. "Greetings, <first>. How is life as an adventurer?"`
+		choice
+			`	"Exciting as always."`
+				goto paradiseexciting
+			`	"Taking a break to relax a bit."`
+		`	She nods sympathetically. "Things have been a bit hectic lately, what with dimensional pockets and mysterious new aliens. I can understand wanting to slow down a bit. With the launch of two new ships in such a short time, I know I feel like I need to just relax a bit." She sighs "It makes me feel guilty, honestly. I have accomplished so much, and there are so many things to be grateful for. I even have more projects in development to focus on." She looks lost in thought for a moment.`
+		goto paradisechoice
+		label paradiseexciting
+		`	"I can only imagine what it must be like, constantly meeting new people and traveling to new places." She eats mechanically, lost in thought for a moment.`
+		label paradisechoice
+		`	"Could I ask you something about life back in ancestral space?"`
+		choice
+			`	"Sure."`
+				goto askquestion
+			`	"Not right now."`
+		label vaillater
+		`	"Oh, maybe some other time, then." She looks disappointed, and settles in to eat."`
+			defer
+		label askquestion
+		`	"I have been reading through the history archive you brought back, and I was interested in going to visit Vail." She shakes her head in amusement. "The idea of an entire planet devoted to leisure activities seems so extravagant... Well, I am just really curious to see it. Now, this is not a mission we are asking you to do, so I cannot offer any logistics compensation. I could, however, show you some of our history in exchange. Are you interested?"`
+		choice
+			`	"That sounds fun."`
+				goto vailfun
+			`	"I have done a bit of hoverboarding myself."`
+			`	"Maybe later."`
+				goto vaillater
+		
 	on complete
