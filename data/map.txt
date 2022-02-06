@@ -32525,7 +32525,7 @@ planet "Var Oti"
 	government Uninhabited
 
 planet "Long Gone"
-	description "Although frozen worlds such as this one are barely able to sustain life, there are signs across the surface seem to suggest some sort of civilization was here once long ago. Once in a few hundred miles there are strange glass-like obelisks sticking out of the ground, but visually they seem as though they have no purpose. Very few bird-like species circle these protrusions, but other than that, whatever life this planet once sustained is now long gone."
+	description "Although frozen worlds such as this one are barely able to sustain life, there are signs across the surface seem to suggest some sort of civilization was here once long ago. Once in a few hundred miles there are strange glass-like obelisks sticking out of the ground, but they seem as though they now have no purpose. Very few bird-like species circle these protrusions, but other than that, whatever life this planet once sustained is now long gone."
 	government Uninhabited
 
 planet Vesii
