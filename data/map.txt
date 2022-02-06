@@ -32463,7 +32463,7 @@ system 34b
 planet "Giaru Gegno"
 	attributes "gegno quarg" quarg station
 	landscape land/station2
-	description "This Quarg Ringworld seems to be under construction, yet none of the Quarg here seem to be in any sort of busy rush. It doesn't look like construction was halted, but more slowed down and paced. Some of the hangers and docks on the outer part of the ring are oddly larger than others, and the inner quarters are wider and taller than normal."
+	description "This Quarg Ringworld seems to be under construction, yet none of the Quarg here seem to be in any sort of rush. It doesn't look like construction was halted, but more slowed down and paced. Some of the hangers and docks on the outer part of the ring are oddly larger than others, and the inner quarters are wider and taller than normal."
 	spaceport "Even if it's under construction, there has to be at least billions of Quarg on this ring. They shift past you at a normal walking pace for a Quarg, and don't mind you much attention except from the occasional uninterested glance or two. There seems to be little conversation, and the silence is slightly unnerving to you as the only non-Quarg in sight."
 	government Quarg
 	bribe 0
