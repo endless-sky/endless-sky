@@ -290,7 +290,7 @@ ship Hornfel
 	explode "small explosion" 25
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
-	description "Hornfels are the powerhorse of the Gegno Vi's military. They're decently sized, decently fast, and armed more than decently to be able to fight on their own. Because the Gegno Vi are always requiring more replacement supplies in war, they double as a secondary cargo transport as well, and are seen occasionally with cargo pods attached to the several racks lining the sides of the ship."
+	description "Hornfels are the workhorse of the Gegno Vi's military. They're decently sized, decently fast, and more than decently armed in order to be able to fight on their own. Because the Gegno Vi always require more replacement supplies in war, they double as a secondary cargo transport as well, and are seen occasionally with cargo pods attached to the several racks lining the sides of the ship."
 
 ship Hornfel "Hornfel Light"
 	sprite ship/hornfellight
