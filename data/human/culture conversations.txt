@@ -113,7 +113,7 @@ mission "Worker's Occasion"
 		random < 1
 	on offer
 		conversation
-			`Pausing to consider a restaurant for your dinner, you notice a local worker staring at the menu, hand shaking as he proceeds to walk in. His clothes are neatly worn and look freshly brushed, but it's impossible not to notice the dirty marks and stains that just haven't washed out. The man is undeniably nervous and twitchy, yet no one kicks him out. Looking at the menu yourself, you realize the prices are very affordable for you, but you recall how unreachable they would've been for you before your career change.`
+			`Pausing to consider a restaurant for your dinner, you notice a local worker with a small handful of credits eagerly eyeing the menu. His clothes are neatly worn and look freshly brushed, but it's impossible not to notice the dirty marks and stains that haven't washed out. The man undeniably seems nervous, and he looks at the formal dining layout with an obvious lack of familiarity. Looking at the menu yourself, you realize that while the prices are very affordable for you, they would've been unreachable before your career change.`
 			choice
 				`	(Offer to pay for the man's dinner.)`
 					goto aid
@@ -124,7 +124,7 @@ mission "Worker's Occasion"
 				decline
 			label aid
 			`	You enter the restaurant and catch the man's attention, offering to pay for his meal.`
-			`	He recognizes you as a pilot and frowns, before telling you where you can stick that offer in colorful terms. On reflection, you think that perhaps your pride would've been rather heavily wounded were you in his position.`
+			`	He recognizes you as a pilot and frowns, before telling you where you can stick that offer in colorful terms. As you walk away, you think about what your reaction would be if a much wealthier individual pitied you by paying for your dinner.`
 				decline
 			label pity
 			`	You pity the man who has to work a full month to afford this and continue on your way.`
@@ -161,10 +161,10 @@ mission "Forest Fire"
 		conversation
 			`The smell of burning smoke permeates the air as you step off your craft, causing you to rush towards the nearest shelter, coughing along the way. Once there, you find people shouting and rushing about to get tape plastered onto the windows. No one seems to have noticed your arrival and none give an explanation.`
 			choice
-				`	"Hey! What's happening? I can help!" (Shout.)`
+				`	"Hey! What's happening? I can help!"`
 					goto help
 				`	(Look for someone not in motion.)`
-			`	You seek out a pregnant lady sitting on a chair, a mask worn as she explains: "A large fire has sprung up nearby, and the wind is fanning it towards the spaceport. Might have been some fool playing with fire, or some pirate sending a message to a local. We don't know, could be anything around here really. We're hunkering down and hoping it'll blow over us."`
+			`	You seek out a pregnant lady sitting on a chair, a mask worn as she explains: "A large fire has sprung up nearby, and the wind is fanning it towards the spaceport. Might have been some fool playing with fire, or some pirate sending a message to a local. We don't know, could be anything around here really. We're hunkering down and hoping it'll burn out before it does too much damage."`
 			choice
 				`	"I have a ship out there. Let me help."`
 			`	Her eyes widen and she looks around, sharply catching the attention of one of the many people hurrying about.`
