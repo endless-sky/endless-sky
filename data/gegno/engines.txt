@@ -193,4 +193,4 @@ outfit "SC-15 Plasma Engines"
 	"reverse flare sprite" effect/scplasma/large
 	"flare sound" "scplasma large"
 	"reverse flare sound" "scplasma medium"
-	description "The Gegno Scin have taken a second step forward with the SC9-class Engine System, incorporating both reverse and forward thrust. In order to field the SC9, the Scin had to design their largest ships around the system, rather than fit it on later. The reverse thrust is especially important in engagements with the Gegno Vi's forward-heavy combat vessels, and is able to maneuver ships of almost the same size, almost twice as fast."
+	description "The Gegno Scin have taken a second step forward with the SC9-class Engine System, incorporating both reverse and forward thrust. In order to field the SC9, the Scin had to design their largest ships around the system, rather than fit it on later. The reverse thrust is especially important in engagements with the Gegno Vi's forward-heavy combat vessels, and is able to maneuver ships of almost the same size almost twice as fast."
