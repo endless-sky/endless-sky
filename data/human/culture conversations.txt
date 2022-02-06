@@ -130,13 +130,13 @@ mission "Local Politics"
 		random < 1
 	on offer
 		conversation
-			`As you land on the pad, you note a general lack of presence around the spaceport. No one scrambled to hook up your ship nor were there a full contingent waiting to receive you. Instead, when you leave your ship, all you find is a note within the spaceport detailing where their overlords can find their yearly tribute.`
+			`As you land on the pad, you note a general lack of presence around the spaceport. No one has scrambled to hook up your ship, nor has anybody else acknowledged your arrival. Instead, when you leave your ship, all you find is a note within the spaceport detailing where their "overlords" can find their yearly tribute.`
 			`	You decide against finding out where the inhabitants went.`
 				decline
 
 
 
-mission "Forest Fire"
+mission "Missed Mugging"
 	minor
 	source
 		government "Free Worlds"
@@ -146,7 +146,7 @@ mission "Forest Fire"
 	on offer
 		conversation
 			`The sun has already set when you walk out of the spaceport, trying to find a nearby restaurant to sample their wares. Looking around, the only source of light comes from the building you just exited, a beacon within the sea of darkness.`
-			`	Choosing a random direction, you decide to walk down the quiet street, taking in the sights. You are interrupted as two men rush from an alley, pushing past you as they go. Before you can respond, you see a woman run out, clothes in disarray as she gives chase to the two men to no avail. Belatedly, you realize that they were holding a purse, yet before you could do anything they had already disappeared, melting into the blackness beyond.`
+			`	Choosing a random direction, you decide to walk down the quiet street, taking in the sights. You are interrupted as two men rush from an alley, pushing past you as they go. Before you can respond, you see a woman run out, clothes in disarray as she gives chase to the two men to no avail. Belatedly, you realize that they were holding a purse, long after all three people had already disappeared, melting into the blackness beyond.`
 				decline
 
 
