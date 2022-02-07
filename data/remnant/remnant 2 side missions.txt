@@ -13,13 +13,20 @@
 
 mission "Remnant: Visit to Paradise 1"
 	name "Take Taely to visit <stopovers>"
-	description "Taely has heard about the city platforms of <stopovers> and would like to see them."
+	description "Taely has heard about the mountain sports of <stopovers> and would like to see them."
+	minor
 	source
 		government "Remnant"
-	stopover "Mainsail"
+	stopover "Vail"
 	to offer
 		has event "remnant: cognizance calm"
-		random > 30
+		or
+			and
+				random > 30
+				not "Remnant: Visit to Paradise 1: defer"
+			and
+				random > 10
+				has "Remnant: Visit to Paradise 1: defer"
 	on offer
 		conversation
 		`	You are just settling down at a table in the cafeteria when Taely slides onto the bench opposite you. "Greetings, <first>. How is life as an adventurer?"`
@@ -48,5 +55,14 @@ mission "Remnant: Visit to Paradise 1"
 			`	"I have done a bit of hoverboarding myself."`
 			`	"Maybe later."`
 				goto vaillater
-		
+		`	"Really? I noted a mention of that in the descriptions, and it looked challenging." Her commlink shifts to display a hologram of a hoverboarder executing a jump with an artistic poof of snow around them. "Anyway, I think this trip should be a good diversion for us both. I will meet you onboard the <ship> shortly."`
+			accept
+		label vailfun
+		`	"Excellent. I will meet you onboard the <ship> shortly."`
+			accept
+	on stopover
+		conversation
+			``
 	on complete
+		conversation
+			``
