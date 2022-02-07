@@ -574,7 +574,7 @@ mission "Deep Security Package Reveal"
 				`	(Keep walking.)`
 			`	When you go to ignore him he gives a quick, sharp, whistle and briefly flashes a deep security badge at you. He immediately covers this with a friendly wave for any nearby eyes, but it is clear that he won't be ignored.`
 			label bench
-			`	When you approach the bench he says, "Hello Captain. Please, have a seat and allow me to take a moment of your time."`
+			`	When you approach the bench he says, "Hello captain. Please, have a seat and allow me to take a moment of your time."`
 			`	His manner is very rehearsed, but he seems quite intent and assured in his request.`
 			choice
 				`	"Sure. Who are you?" (Sit down.)`
@@ -588,7 +588,7 @@ mission "Deep Security Package Reveal"
 			label who
 			`	He smiles at you before directing his attention back to those passing by as he speaks. "My name is Wayde, Agent Wayde if you will. Don't mind the title though, I... well I work in the logistics division for Deep Security. You've transported a large number of secure packages recently and several of them were mine."`
 			choice
-				`	"Work is work."`
+				`	"If it pays, it pays."`
 					goto blindacceptance
 				`	"Ah, yes."`
 					goto blindacceptance
@@ -597,24 +597,24 @@ mission "Deep Security Package Reveal"
 			label blindacceptance
 			`	"Well, I looked at your record and it seems you've done quite a lot for the Deep, and you're well-regarded. We like to keep a list of pilots that we can call on if we need something delivered with either urgency or discretion, and it seems like you qualified. You passed the background check at any rate.`
 			`	"So at any rate, I'm authorized to give you a one-time offer to join that list. Don't worry, I'm not asking anything of you right now."`
-			`	He stops keeping an eye on passers-by for a moment to look directly at you. "So, you interested?"`
+			`	He stops keeping an eye on passers-by for a moment to look directly at you. "So, are you interested?"`
 			choice
-				`	"Oh sure, I'm willing to help."`
+				`	"I'm willing to help."`
 					goto agree
 				`	"Sorry, but I don't think I want to get that involved."`
 					decline
 				`	"You said 'at any rate' twice."`
 			`	His expression twitches slightly but he carries on with a chuckle. "Er, good catch. The question stands though."`
 			choice
-				`	"Oh sure, I'm willing to help."`
+				`	"I'm willing to help."`
 					goto agree
 				`	"Sorry, but I don't think I want to get that involved."`
 					decline
 			label agree
-			`	"Excellent," he says, standing up and stretching as if concluding a friendly conversation. He turns back to you with a smile, "I'll add you to the list as soon as I get back to the office then. Your ID will also let you see which packages are ours specifically after that too. Oh and again, thank you!"`
+			`	"Excellent," he says, standing up and stretching as if concluding a friendly conversation. He turns back to you with a smile, "I'll add you to the list as soon as I get back to the office then. Your ID will also let you see which packages are ours specifically too. Oh, and again, thank you!"`
 			apply
 				set "deep security reveal"
-			`	Agent Wayde appears to flick a subtle salute your direction, or perhaps merely tips an imaginary cap. "Good day Captain, I look forward to working with you in the future."`
+			`	Agent Wayde appears to flick a subtle salute your direction, or perhaps merely tips an imaginary cap. "Good day, captain. I look forward to working with you in the future."`
 			`	With a quick motion he flicks his hair back out his eyes and jogs away, sending one last wave your direction just before he turns a corner and disappears.`
 
 
@@ -781,7 +781,7 @@ mission "Deep Consultants"
 				`	"I'm sorry, but I really can't help you right now."`
 					decline
 			label sure
-			`	"Lead right on then," says Julie.`
+			`	"Lead right on then," says Julie. You point towards your ship, and the women move to board it.`
 				accept
 	on complete
 		log "Minor People" "Julie Gillar" `A consultant who worked with Deep Security. She requested emergency transport from you and showed you how to make yourself available to future consultants.`
