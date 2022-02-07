@@ -1248,6 +1248,7 @@ mission "Longcow Antibiotics 1"
 		random < 35
 	source
 		attributes arach
+		not attributes "coalition station"
 	stopover "New Finding"
 	destination "Corral of Meblumem"
 	on offer
@@ -1310,6 +1311,7 @@ mission "Arachi Orphans"
 		random < 45
 	source
 		attributes arach
+		not attributes "coalition station"
 	destination "Chosen Nexus"
 	on offer
 		conversation
