@@ -200,9 +200,6 @@ Engine::Engine(PlayerInfo &player)
 {
 	zoom = Preferences::ViewZoom();
 
-	// Start the thread for doing calculations.
-	calcThread = thread(&Engine::ThreadEntryPoint, this);
-
 	if(!player.IsLoaded() || !player.GetSystem())
 		return;
 
@@ -245,14 +242,10 @@ Engine::Engine(PlayerInfo &player)
 
 
 
-Engine::~Engine()
+Engine::~Engine() noexcept
 {
-	{
-		unique_lock<mutex> lock(swapMutex);
-		terminate = true;
-	}
-	condition.notify_all();
-	calcThread.join();
+	calcTask.cancel();
+	calcTask.wait();
 }
 
 
@@ -427,9 +420,8 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 // Wait for the previous calculations (if any) to be done.
 void Engine::Wait()
 {
-	unique_lock<mutex> lock(swapMutex);
-	while(calcTickTock != drawTickTock)
-		condition.wait(lock);
+	calcTask.wait();
+	drawTickTock = calcTickTock;
 }
 
 
@@ -875,12 +867,13 @@ void Engine::Step(bool isActive)
 // Begin the next step of calculations.
 void Engine::Go()
 {
-	{
-		unique_lock<mutex> lock(swapMutex);
-		++step;
-		drawTickTock = !drawTickTock;
-	}
-	condition.notify_all();
+	++step;
+	calcTickTock = !calcTickTock;
+	calcTask.run([this]
+		{
+			// Do all the calculations.
+			CalculateStep();
+		});
 }
 
 
@@ -1295,33 +1288,6 @@ void Engine::EnterSystem()
 	{
 		Messages::Add(GameData::HelpMessage("basics 1"), Messages::Importance::High);
 		Messages::Add(GameData::HelpMessage("basics 2"), Messages::Importance::High);
-	}
-}
-
-
-
-// Thread entry point.
-void Engine::ThreadEntryPoint()
-{
-	while(true)
-	{
-		{
-			unique_lock<mutex> lock(swapMutex);
-			while(calcTickTock == drawTickTock && !terminate)
-				condition.wait(lock);
-
-			if(terminate)
-				break;
-		}
-
-		// Do all the calculations.
-		CalculateStep();
-
-		{
-			unique_lock<mutex> lock(swapMutex);
-			calcTickTock = drawTickTock;
-		}
-		condition.notify_one();
 	}
 }
 

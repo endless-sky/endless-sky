@@ -13,19 +13,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef SPRITE_QUEUE_H_
 #define SPRITE_QUEUE_H_
 
-#include <condition_variable>
-#include <map>
-#include <memory>
-#include <mutex>
-#include <queue>
-#include <string>
-#include <thread>
-#include <vector>
+#include <tbb/concurrent_queue.h>
+#include <tbb/task_group.h>
 
-class ImageBuffer;
+#include <atomic>
+#include <memory>
+#include <string>
+
 class ImageSet;
-class Mask;
-class Sprite;
 
 
 
@@ -33,7 +28,7 @@ class Sprite;
 // worker threads that begins loading them as soon as they are added.
 class SpriteQueue {
 public:
-	SpriteQueue();
+	SpriteQueue() noexcept = default;
 	~SpriteQueue();
 
 	// No moving or copying this class.
@@ -53,32 +48,19 @@ public:
 	// Finish loading.
 	void Finish();
 
-	// Thread entry point.
-	void operator()();
-
 
 private:
-	void DoLoad(std::unique_lock<std::mutex> &lock);
+	tbb::task_group tasks;
 
-
-private:
-	// These are the image sets that need to be loaded from disk.
-	std::queue<std::shared_ptr<ImageSet>> toRead;
-	mutable std::mutex readMutex;
-	std::condition_variable readCondition;
-	int added = 0;
-
-	// These image sets have been loaded from disk but have not been uploaded.
-	std::queue<std::shared_ptr<ImageSet>> toLoad;
-	std::mutex loadMutex;
-	std::condition_variable loadCondition;
+	// The total amount of images that have been added.
+	std::atomic<int> added;
+	// The total amount of images that have finished loading.
 	int completed = 0;
 
+	// These image sets have been loaded from disk but have not been uploaded.
+	tbb::concurrent_queue<std::shared_ptr<ImageSet>> toLoad;
 	// These sprites must be unloaded to reclaim GPU memory.
-	std::queue<std::string> toUnload;
-
-	// Worker threads for loading sprites from disk.
-	std::vector<std::thread> threads;
+	tbb::concurrent_queue<std::string> toUnload;
 };
 
 #endif

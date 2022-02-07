@@ -18,6 +18,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Set.h"
 #include "Trade.h"
 
+#include <tbb/task_group.h>
+
 #include <map>
 #include <memory>
 #include <string>
@@ -65,7 +67,7 @@ class TextReplacements;
 // universe.
 class GameData {
 public:
-	static void BeginLoad(bool onlyLoadData, bool debugMode);
+	static void BeginLoad(tbb::task_group &group, bool onlyLoadData, bool debugMode);
 	static void FinishLoading();
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();

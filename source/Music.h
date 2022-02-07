@@ -13,12 +13,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef MUSIC_H_
 #define MUSIC_H_
 
-#include <condition_variable>
+#include <mad.h>
+#include <tbb/task_group.h>
+
+#include <atomic>
 #include <cstdint>
 #include <cstdio>
-#include <mutex>
 #include <string>
-#include <thread>
 #include <vector>
 
 
@@ -30,40 +31,49 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // so the game won't freeze if the music stops for some reason.
 class Music {
 public:
+	// How many bytes to read from the file at a time:
+	static constexpr size_t INPUT_CHUNK = 65536;
+	// How many samples to put in each output block. Because the output is in
+	// stereo, the duration of the sample is half this amount:
+	static constexpr size_t OUTPUT_CHUNK = INPUT_CHUNK / 2;
+
+	using Buffer = std::vector<int16_t>;
+
+
+public:
 	static void Init(const std::vector<std::string> &sources);
 
 
 public:
-	Music();
 	~Music();
 
 	void SetSource(const std::string &name = "");
-	const std::vector<int16_t> &NextChunk();
+	const Buffer &NextChunk();
 
 
 private:
-	// This is the entry point for the decoding thread.
-	void Decode();
+	// Starts a task that decodes a single frame from the currently loaded file.
+	void StartDecodingFrame();
 
 
 private:
+
 	// Buffers for storing the decoded audio sample. The "silence" buffer holds
 	// a block of silence to be returned if nothing was read from the file.
-	std::vector<int16_t> silence;
-	std::vector<int16_t> next;
-	std::vector<int16_t> current;
+	Buffer silence = Buffer(OUTPUT_CHUNK, 0);
+	Buffer next;
+	Buffer current;
 
 	std::string previousPath;
-	// This pointer holds the file for as long as it is owned by the main
-	// thread. When the decode thread takes possession of it, it sets this
-	// pointer to null.
-	FILE *nextFile = nullptr;
-	bool hasNewFile = false;
-	bool done = false;
+	// This pointer holds the file that is currently decoded.
+	FILE *file = nullptr;
+	std::atomic<bool> finishedDecodingFrame;
 
-	std::thread thread;
-	std::mutex decodeMutex;
-	std::condition_variable condition;
+	mad_stream stream;
+	mad_frame frame;
+	mad_synth synth;
+
+	tbb::task_group group;
 };
 
 

@@ -39,6 +39,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "TestContext.h"
 #include "UI.h"
 
+#include <tbb/task_group.h>
+
 #include <chrono>
 #include <iostream>
 #include <map>
@@ -116,16 +118,16 @@ int main(int argc, char *argv[])
 	}
 	Files::Init(argv);
 
+	tbb::task_group group;
 	try {
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printShips || printTests || printWeapons;
-		GameData::BeginLoad(isConsoleOnly, debugMode);
+		GameData::BeginLoad(group, isConsoleOnly, debugMode);
 
 		// If we are not using the UI, or performing some automated task, we should load
 		// all data now. (Sprites and sounds can safely be deferred.)
 		if(isConsoleOnly || !testToRunName.empty())
-			while(!GameData::IsDataLoaded())
-				this_thread::yield();
+			group.wait();
 
 		if(!testToRunName.empty() && !GameData::Tests().Has(testToRunName))
 		{
@@ -175,14 +177,17 @@ int main(int argc, char *argv[])
 		// Show something other than a blank window.
 		GameWindow::Step();
 
-		Audio::Init(GameData::Sources());
+		Audio::Init(group, GameData::Sources());
 
 		// This is the main loop where all the action begins.
 		GameLoop(player, conversation, testToRunName, debugMode);
 	}
 	catch(const runtime_error &error)
 	{
+		group.cancel();
+		group.wait();
 		Audio::Quit();
+
 		bool doPopUp = testToRunName.empty();
 		GameWindow::ExitWithError(error.what(), doPopUp);
 		return 1;
@@ -194,6 +199,8 @@ int main(int argc, char *argv[])
 	Screen::SetRaw(GameWindow::Width(), GameWindow::Height());
 	Preferences::Save();
 
+	group.cancel();
+	group.wait();
 	Audio::Quit();
 	GameWindow::Quit();
 

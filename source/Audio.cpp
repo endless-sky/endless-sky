@@ -18,6 +18,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "Sound.h"
 
+#include <tbb/concurrent_map.h>
+#include <tbb/parallel_for_each.h>
+
 #ifndef __APPLE__
 #include <AL/al.h>
 #include <AL/alc.h>
@@ -27,9 +30,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #endif
 
 #include <algorithm>
+#include <atomic>
 #include <cmath>
 #include <map>
-#include <mutex>
 #include <set>
 #include <stdexcept>
 #include <thread>
@@ -67,12 +70,12 @@ namespace {
 		unsigned source = 0;
 	};
 
-	// Thread entry point for loading the sound files.
-	void Load();
-
 
 	// Mutex to make sure different threads don't modify the audio at the same time.
 	mutex audioMutex;
+
+	// Atomic to keep track of the percentage of sounds that have been loaded.
+	atomic<double> progress;
 
 	// OpenAL settings.
 	ALCdevice *device = nullptr;
@@ -88,17 +91,13 @@ namespace {
 	thread::id mainThreadID;
 
 	// Sound resources that have been loaded from files.
-	map<string, Sound> sounds;
+	tbb::concurrent_map<string, Sound> sounds;
 	// OpenAL "sources" available for playing sounds. There are a limited number
 	// of these, so they must be reused.
 	vector<Source> sources;
 	vector<unsigned> recycledSources;
 	vector<unsigned> endingSources;
 	unsigned maxSources = 255;
-
-	// Queue and thread for loading sound files in the background.
-	map<string, string> loadQueue;
-	thread loadThread;
 
 	// The current position of the "listener," i.e. the center of the screen.
 	Point listener;
@@ -116,7 +115,7 @@ namespace {
 
 
 // Begin loading sounds (in a separate thread).
-void Audio::Init(const vector<string> &sources)
+void Audio::Init(tbb::task_group &group, const vector<string> &sources)
 {
 	device = alcOpenDevice(nullptr);
 	if(!device)
@@ -142,27 +141,44 @@ void Audio::Init(const vector<string> &sources)
 	alDistanceModel(AL_INVERSE_DISTANCE_CLAMPED);
 	alDopplerFactor(0.);
 
-	// Get all the sound files in the game data and all plugins.
-	for(const string &source : sources)
-	{
-		string root = source + "sounds/";
-		vector<string> files = Files::RecursiveList(root);
-		for(const string &path : files)
+	// Get all the sound files in the game data and all plugins,
+	// and load them in parallel.
+	group.run([sources]
 		{
-			if(!path.compare(path.length() - 4, 4, ".wav"))
+			// Stores the location of each sound. Existing sounds may be overwritten
+			// by plugins.
+			map<string, string> data;
+
+			for(const string &source : sources)
 			{
-				// The "name" of the sound is its full path within the "sounds/"
-				// folder, without the ".wav" or "~.wav" suffix.
-				size_t end = path.length() - 4;
-				if(path[end - 1] == '~')
-					--end;
-				loadQueue[path.substr(root.length(), end - root.length())] = path;
+				string root = source + "sounds/";
+				vector<string> files = Files::RecursiveList(root);
+				for(const string &path : files)
+				{
+					if(!path.compare(path.length() - 4, 4, ".wav"))
+					{
+						// The "name" of the sound is its full path within the "sounds/"
+						// folder, without the ".wav" or "~.wav" suffix.
+						size_t end = path.length() - 4;
+						if(path[end - 1] == '~')
+							--end;
+						data[path.substr(root.length(), end - root.length())] = path;
+					}
+				}
 			}
-		}
-	}
-	// Begin loading the files.
-	if(!loadQueue.empty())
-		loadThread = thread(&Load);
+
+			const auto increment = 1. / data.size();
+			tbb::parallel_for_each(data, [&increment](const pair<string, string> &it)
+				{
+					const auto &name = it.first;
+					const auto &path = it.second;
+					if(!sounds[name].Load(path, name))
+						Files::LogError("Unable to load sound \"" + name + "\" from path: " + path);
+
+					auto val = progress.load(memory_order_acquire);
+					progress.store(val + increment, memory_order_release);
+				});
+		});
 
 	// Create the music-streaming threads.
 	currentTrack.reset(new Music());
@@ -199,14 +215,7 @@ void Audio::CheckReferences()
 // Report the progress of loading sounds.
 double Audio::GetProgress()
 {
-	unique_lock<mutex> lock(audioMutex);
-
-	if(loadQueue.empty())
-		return 1.;
-
-	double done = sounds.size();
-	double total = done + loadQueue.size();
-	return done / total;
+	return progress.load(memory_order_acquire);
 }
 
 
@@ -233,7 +242,6 @@ void Audio::SetVolume(double level)
 // "sound/" folder, and without ~ if it's on the end, or the extension.
 const Sound *Audio::Get(const string &name)
 {
-	unique_lock<mutex> lock(audioMutex);
 	return &sounds[name];
 }
 
@@ -438,18 +446,6 @@ void Audio::Step()
 // Shut down the audio system (because we're about to quit).
 void Audio::Quit()
 {
-	// First, check if sounds are still being loaded in a separate thread, and
-	// if so interrupt that thread and wait for it to quit.
-	unique_lock<mutex> lock(audioMutex);
-	if(!loadQueue.empty())
-		loadQueue.clear();
-	if(loadThread.joinable())
-	{
-		lock.unlock();
-		loadThread.join();
-		lock.lock();
-	}
-
 	// Now, stop and delete any OpenAL sources that are playing.
 	for(const Source &source : sources)
 	{
@@ -569,38 +565,5 @@ namespace {
 	const Sound *Source::GetSound() const
 	{
 		return sound;
-	}
-
-
-
-	// Thread entry point for loading sounds.
-	void Load()
-	{
-		string name;
-		string path;
-		Sound *sound;
-		while(true)
-		{
-			{
-				unique_lock<mutex> lock(audioMutex);
-				// If this is not the first time through, remove the previous item
-				// in the queue. This is a signal that it has been loaded, so we
-				// must not remove it until after loading the file.
-				if(!path.empty() && !loadQueue.empty())
-					loadQueue.erase(loadQueue.begin());
-				if(loadQueue.empty())
-					return;
-				name = loadQueue.begin()->first;
-				path = loadQueue.begin()->second;
-
-				// Since we need to unlock the mutex below, create the map entry to
-				// avoid a race condition when accessing sounds' size.
-				sound = &sounds[name];
-			}
-
-			// Unlock the mutex for the time-intensive part of the loop.
-			if(!sound->Load(path, name))
-				Files::LogError("Unable to load sound \"" + name + "\" from path: " + path);
-		}
 	}
 }

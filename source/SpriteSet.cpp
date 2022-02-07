@@ -15,15 +15,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Files.h"
 #include "Sprite.h"
 
-#include <map>
-#include <mutex>
+#include <tbb/concurrent_map.h>
 
 using namespace std;
 
 namespace {
-	map<string, Sprite> sprites;
-
-	mutex modifyMutex;
+	tbb::concurrent_map<string, Sprite> sprites;
 }
 
 
@@ -51,8 +48,6 @@ void SpriteSet::CheckReferences()
 
 Sprite *SpriteSet::Modify(const string &name)
 {
-	lock_guard<mutex> guard(modifyMutex);
-
 	auto it = sprites.find(name);
 	if(it == sprites.end())
 		it = sprites.emplace(name, Sprite(name)).first;

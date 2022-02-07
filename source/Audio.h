@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef AUDIO_H_
 #define AUDIO_H_
 
+#include <tbb/task_group.h>
+
 #include <string>
 #include <vector>
 
@@ -30,8 +32,8 @@ class Sound;
 // their source stops calling the "play" function for them.
 class Audio {
 public:
-	// Begin loading sounds (in a separate thread).
-	static void Init(const std::vector<std::string> &sources);
+	// Begin loading sounds.
+	static void Init(tbb::task_group &group, const std::vector<std::string> &sources);
 	static void CheckReferences();
 
 	// Report the progress of loading sounds.

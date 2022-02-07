@@ -59,8 +59,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "TestData.h"
 #include "UniverseObjects.h"
 
+#include <tbb/concurrent_map.h>
+#include <tbb/parallel_for_each.h>
+
 #include <algorithm>
-#include <future>
 #include <iostream>
 #include <map>
 #include <set>
@@ -86,10 +88,9 @@ namespace {
 
 	map<string, string> plugins;
 	SpriteQueue spriteQueue;
-	future<void> dataLoading;
 
 	vector<string> sources;
-	map<const Sprite *, shared_ptr<ImageSet>> deferred;
+	tbb::concurrent_map<const Sprite *, shared_ptr<ImageSet>> deferred;
 	map<const Sprite *, int> preloaded;
 
 	MaskManager maskManager;
@@ -100,39 +101,43 @@ namespace {
 
 
 
-void GameData::BeginLoad(bool onlyLoadData, bool debugMode)
+void GameData::BeginLoad(tbb::task_group &group, bool onlyLoadData, bool debugMode)
 {
 	// Initialize the list of "source" folders based on any active plugins.
 	LoadSources();
 
 	if(!onlyLoadData)
 	{
-		// Now, read all the images in all the path directories. For each unique
-		// name, only remember one instance, letting things on the higher priority
-		// paths override the default images.
-		map<string, shared_ptr<ImageSet>> images = FindImages();
+		group.run([]
+			{
+				// Now, read all the images in all the path directories. For each unique
+				// name, only remember one instance, letting things on the higher priority
+				// paths override the default images.
+				const auto images = FindImages();
 
-		// From the name, strip out any frame number, plus the extension.
-		for(const auto &it : images)
-		{
-			// This should never happen, but just in case:
-			if(!it.second)
-				continue;
+				tbb::parallel_for_each(images, [](const decltype(images)::value_type &it)
+				{
+					// From the name, strip out any frame number, plus the extension.
 
-			// Reduce the set of images to those that are valid.
-			it.second->ValidateFrames();
-			// For landscapes, remember all the source files but don't load them yet.
-			if(ImageSet::IsDeferred(it.first))
-				deferred[SpriteSet::Get(it.first)] = it.second;
-			else
-				spriteQueue.Add(it.second);
-		}
+					// This should never happen, but just in case:
+					if(!it.second)
+						return;
+
+					// Reduce the set of images to those that are valid.
+					it.second->ValidateFrames();
+					// For landscapes, remember all the source files but don't load them yet.
+					if(ImageSet::IsDeferred(it.first))
+						deferred[SpriteSet::Get(it.first)] = it.second;
+					else
+						spriteQueue.Add(it.second);
+				});
+			});
 
 		// Generate a catalog of music files.
 		Music::Init(sources);
 	}
 
-	dataLoading = objects.Load(sources, debugMode);
+	objects.Load(group, sources, debugMode);
 }
 
 

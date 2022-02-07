@@ -92,12 +92,14 @@ game_libs = [
 	"turbojpeg.dll",
 	"jpeg.dll",
 	"openal32.dll",
+    "tbb.dll",
 ] if is_windows_host else [
 	"SDL2",
 	"png",
 	"jpeg",
 	"openal",
 	"pthread",
+    "tbb",
 ]
 env.Append(LIBS = game_libs)
 

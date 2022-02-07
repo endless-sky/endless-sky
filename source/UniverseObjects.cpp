@@ -68,14 +68,14 @@ namespace {
 
 
 
-future<void> UniverseObjects::Load(const vector<string> &sources, bool debugMode)
+void UniverseObjects::Load(tbb::task_group &group, const vector<string> &sources, bool debugMode)
 {
 	progress = 0.;
 
 	// We need to copy any variables used for loading to avoid a race condition.
 	// 'this' is not copied, so 'this' shouldn't be accessed after calling this
 	// function (except for calling GetProgress which is safe due to the atomic).
-	return async(launch::async, [this, sources, debugMode]() noexcept -> void
+	group.run([this, sources, debugMode]() noexcept -> void
 		{
 			vector<string> files;
 			for(const string &source : sources)

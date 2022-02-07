@@ -41,7 +41,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "TextReplacements.h"
 #include "Trade.h"
 
-#include <future>
+#include <tbb/task_group.h>
+
 #include <map>
 #include <string>
 #include <vector>
@@ -59,7 +60,7 @@ class UniverseObjects {
 	friend class GameData;
 public:
 	// Load game objects from the given directories of definitions.
-	std::future<void> Load(const std::vector<std::string> &sources, bool debugMode = false);
+	void Load(tbb::task_group &group, const std::vector<std::string> &sources, bool debugMode = false);
 	// Determine the fraction of data files read from disk.
 	double GetProgress() const;
 	// Resolve every game object dependency.

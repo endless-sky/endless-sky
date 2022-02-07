@@ -25,11 +25,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Radar.h"
 #include "Rectangle.h"
 
-#include <condition_variable>
+#include <tbb/task_group.h>
+
 #include <list>
 #include <map>
 #include <memory>
-#include <thread>
 #include <utility>
 #include <vector>
 
@@ -59,7 +59,7 @@ class Weather;
 class Engine {
 public:
 	explicit Engine(PlayerInfo &player);
-	~Engine();
+	~Engine() noexcept;
 
 	// Place all the player's ships, and "enter" the system the player is in.
 	void Place();
@@ -98,7 +98,6 @@ public:
 private:
 	void EnterSystem();
 
-	void ThreadEntryPoint();
 	void CalculateStep();
 
 	void MoveShip(const std::shared_ptr<Ship> &ship);
@@ -169,13 +168,10 @@ private:
 
 	AI ai;
 
-	std::thread calcThread;
-	std::condition_variable condition;
-	std::mutex swapMutex;
+	tbb::task_group calcTask;
 
 	bool calcTickTock = false;
 	bool drawTickTock = false;
-	bool terminate = false;
 	bool wasActive = false;
 	DrawList draw[2];
 	BatchDrawList batchDraw[2];
