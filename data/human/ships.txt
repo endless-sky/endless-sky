@@ -48,7 +48,7 @@ ship "Aerie"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
-
+		
 	engine 15 97
 	engine -15 97
 	engine 34.5 64
