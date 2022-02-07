@@ -26,29 +26,32 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // to keep repeated messages from filling up the whole screen.
 class Messages {
 public:
+	enum class Importance : uint_least8_t {
+		Highest,
+		High,
+		Low
+	};
+
 	class Entry {
 	public:
 		Entry() = default;
-		Entry(int step, const std::string &message) : step(step), message(message) {}
-		
+		Entry(int step, const std::string &message, Importance importance)
+			: step(step), message(message), importance(importance) {}
+
 		int step;
 		std::string message;
+		Importance importance;
 	};
-    
-    enum class Importance : uint_least8_t {
-        High,
-        Low
-    };
-	
+
 public:
 	// Add a message to the list along with its level of importance
 	static void Add(const std::string &message, Importance importance);
-	
+
 	// Get the messages for the given game step. Any messages that are too old
 	// will be culled out, and new ones that have just been added will have
 	// their "step" set to the given value.
 	static const std::vector<Entry> &Get(int step);
-	
+
 	// Reset the messages (i.e. because a new game was loaded).
 	static void Reset();
 };

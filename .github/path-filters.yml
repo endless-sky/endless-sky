@@ -16,6 +16,8 @@ macos:
  - 'XCode/**'
  - '**/*.xcodeproj'
  - 'icons/endless-sky.iconset/**'
+ - 'utils/fetch_sdl2_framework.sh'
+ - 'utils/set_dylibs_rpath.sh'
  - *build
 
 windows:
@@ -38,3 +40,6 @@ integration_tests:
  - 'tests/test_parse.*'
  - 'tests/run_tests*'
  - 'data/tests/**'
+
+codespell:
+ - .codespell.exclude
