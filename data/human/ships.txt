@@ -51,8 +51,6 @@ ship "Aerie"
 		
 	engine 15 97
 	engine -15 97
-	engine 34.5 64
-	engine -34.5 64
 	gun -12 -78 "Sidewinder Missile Launcher"
 	gun 12 -78 "Sidewinder Missile Launcher"
 	turret 0 1.5 "Heavy Anti-Missile Turret"
