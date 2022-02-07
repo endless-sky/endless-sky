@@ -917,7 +917,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 		}
 		// Store named, unamed ships under their name or a generic name of their model so they can be checked later.
 		else
-			giftedShips[!name.empty() ? name : ships.back()->VariantName()].clone(ships.back()->UUID());
+			giftedShips[ships.back()->VariantName() + " " + name].clone(ships.back()->UUID());
 	}
 }
 
@@ -1862,7 +1862,7 @@ const map<string, int64_t> &PlayerInfo::Conditions() const
 
 
 
-// Uuid for the gifted ships, with the names they had when they were gifted to the player.
+// Uuid for the gifted ships, with the ship class follow by the names they had when they were gifted to the player.
 const std::map<std::string, EsUuid> &PlayerInfo::GiftedShips() const
 {
 	return giftedShips;
@@ -2992,7 +2992,7 @@ void PlayerInfo::Save(const string &path) const
 		out.EndChild();
 	}
 
-	// Save the UUID of any ships given to the player with a specified name.
+	// Save the UUID of any ships given to the player with a specified name, and ship class.
 	if(!giftedShips.empty())
 	{
 		out.Write("gifted ships");

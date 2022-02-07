@@ -1542,13 +1542,13 @@ mission "Sheragi Archaeology: Epilogue"
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 3: done"
 	on offer
-		give ship "Emerald Sword (Fixed)" "Emerald Sword"
-		give ship "Black Diamond" "Stormheart"
-		give ship "Black Diamond" "Onyx Chariot"
-		give ship "Black Diamond" "Firebrand"
-		give ship "Black Diamond" "Frostherald"
-		give ship "Black Diamond" "Ivory Talon"
-		give ship "Black Diamond" "Skeleton Key"
+		ship "Emerald Sword (Fixed)" "Emerald Sword"
+		ship "Black Diamond" "Stormheart"
+		ship "Black Diamond" "Onyx Chariot"
+		ship "Black Diamond" "Firebrand"
+		ship "Black Diamond" "Frostherald"
+		ship "Black Diamond" "Ivory Talon"
+		ship "Black Diamond" "Skeleton Key"
 		conversation
 			`As you enter the atmosphere of the alien world, you begin running scans of the air quality to determine if it is safe to breathe. You quickly learn why it is that the Sheragi perished in space; the atmosphere has a high concentration of chlorine gas, fatal to all living creatures aside from those that seem to have miraculously evolved here. The environmental suits brought along "just in case" turn out to be very useful here. The atmosphere would be unhealthy to breathe for long periods of time, and very uncomfortable in the short term, if you didn't bring them.`
 			`	You spend some time searching for a suitable landing spot - one that is high enough to escape the highest concentrations of chlorine gas in the atmosphere, but flat enough to land on. Your scanners eventually spot a flat mesa high above the ground. It turns out the Sheragi found this exact same spot; as you come in for a landing it becomes apparent that there are the ruins of a large settlement on the mesa.`

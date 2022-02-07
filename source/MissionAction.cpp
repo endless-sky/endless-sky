@@ -51,24 +51,20 @@ namespace {
 		return available;
 	}
 
-	bool hasShip(const Ship *model, const std::string &name, const PlayerInfo &player)
+	bool hasShip(const Ship *model, const std::string &name, int amount, bool unconstrained, const PlayerInfo &player)
 	{
-		if(name.empty())
-		{
-			const System *here = player.GetSystem();
-			for(const auto &ship : player.Ships())
-				if((ship->VariantName() == model->VariantName() || ship->ModelName() == model->VariantName())
-						&& ship->GetSystem() == here && !ship->IsDisabled() && !ship->IsParked())
-					return true;
-		}
-		else
-		{
-			const EsUuid &id = player.GiftedShips().find(name)->second;
-			for(const auto &ship : player.Ships())
-				if(ship->UUID() == id)
-					return true;
-		}
-		return false;
+		const System *here = player.GetSystem();
+		const EsUuid &id = player.GiftedShips().find(model->VariantName() + " " + name)->second;
+		bool hasName = !name.empty();
+		int count = amount;
+		for(const auto &ship : player.Ships())
+			if(count && (ship->VariantName() == model->VariantName() || ship->ModelName() == model->VariantName())
+				&& (unconstrained || (ship->GetSystem() == here && !ship->IsDisabled() && !ship->IsParked()))
+				&& (!hasName || ship->UUID() == id))
+					--count;
+		// If amount is equal to 0 it means we most not have a single ship corresponding to the criterias.
+		// Otherwise we most have at least the amount of ship asked.
+		return (!amount && !count) || count <= 0;
 	}
 }
 
@@ -119,7 +115,17 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		else if(key == "conversation" && hasValue)
 			stockConversation = GameData::Conversations().Get(child.Token(1));
 		else if(key == "owns" && hasValue)
-			requiredShips[GameData::Ships().Get(child.Token(1))] = child.Size() >= 3 ? child.Token(2) : "";
+		{
+			int count = (child.Size() < 4 ? 1 : static_cast<int>(child.Value(3)));
+			if(count >= 0)
+				requiredShips[GameData::Ships().Get(child.Token(1))] = tuple<string, int, bool>(
+					child.Size() >= 3 ? child.Token(2) : "",
+					count,
+					child.Size() >= 5 ? child.Token(4) == "unconstrained" : false
+					);
+			else
+				child.PrintTrace("Error: Skipping invalid \"owns\" amount:");
+		}
 		else if(key == "require" && hasValue)
 		{
 			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
@@ -180,7 +186,7 @@ void MissionAction::Save(DataWriter &out) const
 		for(const auto &it : requiredOutfits)
 			out.Write("require", it.first->Name(), it.second);
 		for(const auto &it : requiredShips)
-			out.Write("owns", it.first->VariantName(), it.second);
+			out.Write("owns", it.first->VariantName(), get<0>(it.second), get<1>(it.second), get<2>(it.second));
 
 		action.Save(out);
 	}
@@ -216,7 +222,7 @@ string MissionAction::Validate() const
 			return "required outfit \"" + outfit.first->Name() + "\"";
 	for(auto &&ship : requiredShips)
 		if(!ship.first->IsValid())
-			return "ship \"" + ship.first->ModelName() + "\"" + " \"" + ship.second + "\"";
+			return "ship \"" + ship.first->ModelName() + "\"" + " \"" + get<0>(ship.second) + "\"";
 
 	return action.Validate();
 }
@@ -259,10 +265,10 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 	for(auto &&it : action.Ships())
 	{
 		// If this ship is being given, the player doesn't need to have it.
-		if(it.second.second)
+		if(get<1>(it.second) > 0)
 			continue;
 
-		if(!hasShip(it.first, it.second.first, player))
+		if(!hasShip(it.first, get<0>(it.second), -get<1>(it.second), !get<2>(it.second), player))
 			return false;
 	}
 
@@ -311,7 +317,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 	}
 
 	for(auto &&it : requiredShips)
-		if(!hasShip(it.first, it.second, player))
+		if(!hasShip(it.first, get<0>(it.second), get<1>(it.second), !get<2>(it.second), player))
 			return false;
 	
 	// An `on enter` MissionAction may have defined a LocationFilter that

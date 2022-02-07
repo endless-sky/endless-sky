@@ -78,8 +78,8 @@ private:
 
 	// Outfits that are required to be owned (or not) for this action to be performable.
 	std::map<const Outfit *, int> requiredOutfits;
-	// Same for ships.
-	std::map<const Ship *, std::string> requiredShips;
+	// Same for ships, with an added attribute of if the requirement is constrained to this system.
+	std::map<const Ship *, std::tuple<std::string, int, bool>> requiredShips;
 
 	// Tasks this mission action performs, such as modifying accounts, inventory, or conditions.
 	GameAction action;

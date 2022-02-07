@@ -31,45 +31,40 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	void DoGift(PlayerInfo &player, const Ship *model, const string &name, bool isGift)
+	void DoGift(PlayerInfo &player, const Ship *model, const string &name, int amount, bool unconstrained)
 	{
 		if(model->ModelName().empty())
 			return;
 
 		string shipName;
-		if(isGift)
+		if(amount > 0)
 		{
-			player.BuyShip(model, name, true);
-			shipName = player.Ships().back()->Name();
+			for(int number = 0; number < amount; ++number)
+				player.BuyShip(model, name, true);
+			if(amount == 1)
+				shipName = player.Ships().back()->Name();
 		}
 		else
 		{
-			if(name.empty())
-			{
-				const System *here = player.GetSystem();
+			const System *here = player.GetSystem();
+			const EsUuid &id = player.GiftedShips().find(model->VariantName() + " " + name)->second;
+			bool hasName = !name.empty();
+			// We have to start looping again each time a ship is removed because the vector may change as ships are sold.
+			for(int count = -amount; count > 0; --count)
 				for(const auto &ship : player.Ships())
 					if((ship->VariantName() == model->VariantName() || ship->ModelName() == model->VariantName())
-						&& ship->GetSystem() == here && !ship->IsDisabled() && !ship->IsParked())
+						&& (unconstrained || (ship->GetSystem() == here && !ship->IsDisabled() && !ship->IsParked()))
+						&& (!hasName || ship->UUID() == id))
 					{
-						shipName = ship->Name();
+						if(amount == -1)
+							shipName = ship->Name();
 						player.SellShip(ship.get(), true);
 						break;
 					}
-			}
-			else
-			{
-				const EsUuid &id = player.GiftedShips().find(name)->second;
-				for(const auto &ship : player.Ships())
-					if(ship->UUID() == id)
-					{
-						shipName = ship->Name();
-						player.SellShip(ship.get(), true);
-						break;
-					}
-			}
 		}
-		Messages::Add("The " + model->ModelName() + " \"" + shipName + "\" was " + 
-			(isGift ? "added to" : "removed from") + " your fleet.", Messages::Importance::High);
+		Messages::Add((abs(amount) == 1 ? "The " + model->VariantName() + " \"" + shipName + "\" was " : 
+			to_string(abs(amount)) + " ships corresponding to the model " + model->VariantName() + " were ") +
+			(amount > 0 ? "added to" : "removed from") + " your fleet.", Messages::Importance::High);
 	}
 
 	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
@@ -191,10 +186,27 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 			specialLogText[child.Token(1)][child.Token(2)] : logText);
 		Dialog::ParseTextNode(child, isSpecial ? 3 : 1, text);
 	}
-	else if((key == "give" || key == "take") && hasValue)
+	else if(key == "give" && child.Size() >= 3 && child.Token(1) == "ship")
 	{
-		if(child.Token(1) == "ship" && child.Size() >= 3)
-			giftShips[GameData::Ships().Get(child.Token(2))] = pair<string, bool>(child.Size() >= 4 ? child.Token(3) : "", key == "give");
+		child.PrintTrace("Warning: Deprecated use of \"give ship\". "
+			"Use \"ship <ship model> (<ship name>) (<amount>) (unconstrained)\" instead:");
+		giftShips[GameData::Ships().Get(child.Token(2))] = 
+			tuple<string, int, bool>(child.Size() >= 4 ? child.Token(3) : "", 1, false);
+	}
+	else if(key == "ship" && hasValue)
+	{
+		int count = (child.Size() < 4 ? 1 : static_cast<int>(child.Value(3)));
+		string name = (child.Size() >= 3 ? child.Token(2) : "");
+		if(!count)
+			child.PrintTrace("Error: Skipping invalid ship quantity:");
+		else if(!name.empty() && abs(count) > 1)
+			child.PrintTrace("Error: Skipping invalid ship quantity with a specified name:");
+		else if(child.Size() >= 2)
+			giftShips[GameData::Ships().Get(child.Token(1))] = tuple<string, int, bool>(
+				name,
+				count,
+				child.Size() >= 5 ? child.Token(4) == "unconstrained" : false
+				);
 		else
 			child.PrintTrace("Error: Skipping unsupported \"" + key + "\" syntax:");
 	}
@@ -275,7 +287,7 @@ void GameAction::Save(DataWriter &out) const
 			out.EndChild();
 		}
 	for(auto &&it : giftShips)
-		out.Write(it.second.second ? "give" : "take", "ship", it.first->VariantName(), it.second.first);
+		out.Write("ship", it.first->VariantName(), get<0>(it.second), get<1>(it.second), get<2>(it.second) ? "unconstrained" : "constrained");
 	for(auto &&it : giftOutfits)
 		out.Write("outfit", it.first->Name(), it.second);
 	if(payment)
@@ -344,7 +356,7 @@ const map<const Outfit *, int> &GameAction::Outfits() const noexcept
 
 
 
-const map<const Ship *, pair<std::string, bool>> &GameAction::Ships() const noexcept
+const map<const Ship *, tuple<std::string, int, bool>> &GameAction::Ships() const noexcept
 {
 	return giftShips;
 }
@@ -369,7 +381,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 		if(it.second > 0)
 			DoGift(player, it.first, it.second, ui);
 	for(auto &&it : giftShips)
-		DoGift(player, it.first, it.second.first, it.second.second);
+		DoGift(player, it.first, get<0>(it.second), get<1>(it.second), get<2>(it.second));
 
 	if(payment)
 	{

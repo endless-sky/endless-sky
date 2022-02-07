@@ -208,7 +208,7 @@ public:
 	int64_t GetCondition(const std::string &name) const;
 	std::map<std::string, int64_t> &Conditions();
 	const std::map<std::string, int64_t> &Conditions() const;
-	// Uuid for the gifted ships, with the names they had when they were gifted to the player.
+	// Uuid for the gifted ships, with the ship class follow by the names they had when they were gifted to the player.
 	const std::map<std::string, EsUuid> &GiftedShips() const;
 	// Set and check the reputation conditions, which missions and events
 	// can use to modify the player's reputation with other governments.

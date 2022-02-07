@@ -59,7 +59,7 @@ public:
 	int64_t Payment() const noexcept;
 	int64_t Fine() const noexcept;
 	const std::map<const Outfit *, int> &Outfits() const noexcept;
-	const std::map<const Ship *, std::pair<std::string, bool>> &Ships() const noexcept;
+	const std::map<const Ship *, std::tuple<std::string, int, bool>> &Ships() const noexcept;
 
 	// Perform this action.
 	void Do(PlayerInfo &player, UI *ui) const;
@@ -75,7 +75,7 @@ private:
 	std::map<std::string, std::map<std::string, std::string>> specialLogText;
 
 	std::map<const GameEvent *, std::pair<int, int>> events;
-	std::map<const Ship *, std::pair<std::string, bool>> giftShips;
+	std::map<const Ship *, std::tuple<std::string, int, bool>> giftShips;
 	std::map<const Outfit *, int> giftOutfits;
 
 	int64_t payment = 0;
