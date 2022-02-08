@@ -2289,9 +2289,9 @@ phrase "syndicate capital"
 	word
 		"S.S. "
 	phrase
-		"roman emperors"
+		"greek and roman figures"
 
-phrase "roman emperors"
+phrase "greek and roman figures"
 	word
 		"Africanus"
 		"Agrippa"
@@ -2363,9 +2363,7 @@ phrase "roman emperors"
 		"Tarquin"
 		"Tiberius"
 		"Trajan"
-		"Trajan"
 		"Valerian"
-		"Varus"
 		"Varus"
 		"Vespasian"
 		"Virgil"
