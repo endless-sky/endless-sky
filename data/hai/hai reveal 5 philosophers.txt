@@ -469,7 +469,7 @@ mission "Hai Rescue [B04] Diplomacy: Treaty Negotiation"
 			`	As you answer, Stephen enters the room. "Tutitot has agreed to help. We have our spy."`
 			`	The Quarg nods and rises, handing you the orb. "I wish you success, wise humans and Hai. Your people are led well under your guidance." With a bow, Quarg leaves the room.`
 			`	Stephen Moray rises as well and tells you, "When you're ready, come to the spaceport." He hands you an access card with a room number. "You'll need room for one passenger," he explains, and then he follows the Quarg out.`
-			`	Teeneep thanks you with <payment>. "I cannot understate how much you've helped us. On behalf of the Hai, thank you. Now, let us put this plan into action."`
+			`	Teeneep thanks you with <payment>. "I cannot overstate how much you've helped us. On behalf of the Hai, thank you. Now, let us put this plan into action."`
 				decline
 	npc save accompany
 		government "Hai (Wormhole Access)"
