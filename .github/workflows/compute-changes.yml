@@ -1,0 +1,41 @@
+on:
+  workflow_call:
+    outputs:
+      data:
+        value: ${{ jobs.changed.outputs.data }}
+      game_code:
+        value: ${{ jobs.changed.outputs.game_code }}
+      macos:
+        value: ${{ jobs.changed.outputs.macos }}
+      windows:
+        value: ${{ jobs.changed.outputs.windows }}
+      linux:
+        value: ${{ jobs.changed.outputs.linux }}
+      unit_tests:
+        value: ${{ jobs.changed.outputs.unit_tests }}
+      integration_tests:
+        value: ${{ jobs.changed.outputs.integration_tests }}
+      codespell:
+        value: ${{ jobs.changed.outputs.codespell }}
+
+jobs:
+  changed:
+    runs-on: ubuntu-latest
+    outputs:
+      data: ${{ steps.filter.outputs.data }}
+      game_code: ${{ steps.filter.outputs.game_code }}
+      macos: ${{ steps.filter.outputs.macos }}
+      windows: ${{ steps.filter.outputs.windows }}
+      linux: ${{ steps.filter.outputs.linux }}
+      unit_tests: ${{ steps.filter.outputs.unit_tests }}
+      integration_tests: ${{ steps.filter.outputs.integration_tests }}
+      codespell: ${{ steps.filter.outputs.codespell }}
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 2
+    - uses: dorny/paths-filter@v2
+      id: filter
+      with:
+        filters: .github/path-filters.yml
+        token: ${{ github.token }}
