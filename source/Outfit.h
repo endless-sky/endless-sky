@@ -14,7 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define OUTFIT_H_
 
 #include "Weapon.h"
-
+#include "Permissions.h"
 #include "Dictionary.h"
 
 #include <map>
@@ -94,6 +94,7 @@ public:
 	// Get the sprite this outfit uses when dumped into space.
 	const Sprite *FlotsamSprite() const;
 
+	const bool CanSell() const;
 
 private:
 	bool isDefined = false;
@@ -108,6 +109,7 @@ private:
 	std::vector<std::string> licenses;
 
 	Dictionary attributes;
+	Permissions permissions;
 
 	// The integers in these pairs/maps indicate the number of
 	// sprites/effects/sounds to be placed/played.

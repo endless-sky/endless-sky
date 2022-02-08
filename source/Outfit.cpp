@@ -196,6 +196,10 @@ void Outfit::Load(const DataNode &node)
 				if(isNewLicense(licenses, grand.Token(0)))
 					licenses.push_back(grand.Token(0));
 		}
+		else if(child.Token(0) == "inability" && (child.HasChildren() || child.Size() >= 2))
+		{
+			permissions.Load(child);
+		}
 		else if(child.Token(0) == "jump range" && child.Size() >= 2)
 		{
 			// Jump range must be positive.
@@ -504,4 +508,11 @@ const map<const Sound *, int> &Outfit::JumpOutSounds() const
 const Sprite *Outfit::FlotsamSprite() const
 {
 	return flotsamSprite;
+}
+
+
+
+const bool Outfit::CanSell() const
+{
+	return permissions.CanSell();
 }
