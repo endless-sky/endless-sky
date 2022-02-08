@@ -1027,9 +1027,9 @@ mission "FWC Pug 1"
 				goto end
 			
 			label reinforcements
-			`	"Yes," he says, "and a second after they arrived in system, this other fleet of ships appeared, unlike any ships I've ever seen before. They're tearing the Wolf Pack fleet to ribbons. If you don't get up there immediately, none of them will be left alive."`
+			`	"Yes," he says, "and a second after they arrived, this other fleet of ships appeared, unlike any ships I've ever seen before. They're tearing the Wolf Pack fleet to ribbons. If you don't get up there immediately, none of them will be left alive."`
 			label end
-			`	You and hurry to your ship and fire it up for a hasty launch...`
+			`	You hurry to your ship and fire it up for a hasty launch...`
 				launch
 	on visit
 		dialog `You've landed on <planet>, but there are still alien ships circling overhead. You should take off and help finish them off.`
@@ -1396,7 +1396,7 @@ mission "FWC Pug 3"
 					goto links
 			
 			label navy
-			`	Alondo says, "If they believe your story about an alien invasion, that might work. After all, if humanity is threatened by aliens, surely that take precedence over fighting us. Only trouble is, most of the Republic seems to think that when those systems disappeared, it was some new weapon the Free Worlds had discovered. They're blaming us for it. They just captured Cebalrai and Menkent back from us, and captured Freya in the process."`
+			`	Alondo says, "If they believe your story about an alien invasion, that might work. After all, if humanity is threatened by aliens, surely that takes precedence over fighting us. Only trouble is, most of the Republic seems to think that when those systems disappeared, it was some new weapon the Free Worlds had discovered. They're blaming us for it. They just captured Cebalrai and Menkent back from us, and captured Freya in the process."`
 			`	"Freya?" asks Katya. "How did they manage to capture her?"`
 			`	"She was on <planet>," he says, "setting up something she called a 'graviton detector' to analyze the collapsed hyperspace link. When the Navy arrived, we told her to get out of there, but she had just had a breakthrough in her research, and all she said was, 'To hell with your war, this is more important.'" If she's still there, she may be our best hope for figuring this out.`
 				goto next
@@ -1465,7 +1465,7 @@ mission "FWC Pug 3A"
 			`	"She's a Questioner, <first>," says Katya, quietly. "One of the ones who interrogated me when I was their prisoner. Just take her hands, and tell her nothing but the truth."`
 			label hands
 			`	Reluctantly, you take her hands, and she begins asking you questions about the aliens. You answer as truthfully as you can. Holding hands with a total stranger while she stares unblinkingly into your eyes and questions you is an uncomfortably invasive and intimate experience, heightened by your suspicion that if you tell a lie, she will somehow know. By the time she is done questioning you, you are soaked in sweat and your hands are shaking. Raven turns to Danforth and says, "They're telling the truth."`
-			`	You and Katya both breath a sign of relief, and Danforth says, "Very well. Let's take them to see Miss Winters."`
+			`	You and Katya both breathe a sigh of relief, and Danforth says, "Very well. Let's take them to see Miss Winters."`
 			`	He leads you back out of his ship and to a warehouse where people in overalls and lab coats are busy working on one of the strangest machines you have ever seen. Freya is one of them. "Katya!" she says. "<first>! Glad you could join us."`
 			choice
 				`	"Are you working for the Navy now?"`
