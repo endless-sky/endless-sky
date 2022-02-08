@@ -579,6 +579,9 @@ bool OutfitterPanel::CanSell(bool toStorage) const
 	if(!planet || !selectedOutfit)
 		return false;
 
+	if(selectedOutfit->Get("unsellable") && !toStorage)
+		return false;
+
 	if(player.Cargo().Get(selectedOutfit))
 		return true;
 
@@ -694,6 +697,8 @@ void OutfitterPanel::FailSell(bool toStorage) const
 	const string &verb = toStorage ? "uninstall" : "sell";
 	if(!planet || !selectedOutfit)
 		return;
+	else if(selectedOutfit->Get("unsellable") && !toStorage)
+		GetUI()->Push(new Dialog("You cannot " + verb + " this outfit."));
 	else if(selectedOutfit->Get("map"))
 		GetUI()->Push(new Dialog("You cannot " + verb + " maps. Once you buy one, it is yours permanently."));
 	else if(HasLicense(selectedOutfit->Name()))
