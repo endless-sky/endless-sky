@@ -1327,7 +1327,7 @@ mission "FW Escort 1"
 				accept
 	
 	on accept
-		log "Serving as an escort for a Free Worlds supply convoy to Tarazed. It sounds like pirates have been blatantly targeting their convoys recently."
+		log "Serving as an escort for a Free Worlds supply convoy to Tarazed. It sounds like pirates have been specifically targeting their convoys recently."
 	
 	on abort
 		# No action, the player just silently walks away from this mission(chain)
