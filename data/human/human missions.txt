@@ -3601,3 +3601,251 @@ mission "Mafia Extortion"
 			label payup
 			`	The man takes your credits, responds with a brief "Thank you," and walks away.`
 				accept
+
+
+
+mission "Street Swindle"
+	minor
+	source
+		government "Free Worlds" "Republic" "Syndicate"
+		attributes "urban"
+	on accept
+		payment -6000
+		fail
+	to offer
+		random < 4
+		credits >= 10000
+	on offer
+		conversation
+			`You see a small crowd beginning to gather on a street corner. A man in a flamboyant striped suit and matching hat calls, "Come here! Come here! Come see the marvelous magician Mistress Marionette corral the crowded crossroads with her extravagant schemes!"`
+			choice
+				`	(Check it out.)`
+					goto observe
+				`	(Ignore it.)`
+					decline
+			label observe
+			`	You join them. A woman in similarly fancy garb sits behind a table, swiftly shuffling three cups before a hulking man. The announcer continues, "For our new guests, the chosen challenger's chance approaches! The current buy-in bet was 7000 credits; yes, we play with the big money here! Double or nothing, bet your bet: are you a player or a puppet?"`
+			`	The cups stop. After a brief pause, the man points to the cup on the right.`
+			choice
+				`	(Watch what happens.)`
+						goto continue
+				`	"You know these things are scams, right?"`
+			`	You try to warn him, but someone in the crowd shushes you. He doesn't hear.`
+				goto continue
+			label continue
+			`	"Are you certain in your choice?" the magician asks. "Once you-"`
+			`	"Yes, I'm certain," the man interrupts. He draws 7000 credits and tosses them on the table. The magician lifts the cup, and a small red ball rolls from beneath. "And the first challenger proves to be a player!" the announcer says, mustering enthusiasm as the magician counts 14,000 credits to pay the man. "Let us find a new challenger! The next buy-in is a mere 400 credits; if you haven't played before, now's the time to test your skill!"`
+			choice
+				`	"I'd like to give it a try." (Bet 400 credits).`
+					goto firstgameplay
+				`	(Wait and watch.)`
+					goto firstgamewatch
+				`	(Walk away.)`
+					decline
+			label firstgamewatch
+			`	A short woman volunteers. The game progresses in a similar manner; by the end, you are certain the ball is underneath the center cup. Sure enough, the woman chooses that cup, and she walks away 400 credits richer.`
+			`	"The next buy-in is a larger prize!" the announcer calls after her before turing to address the crowd. "Six thousand credits, only for the proudest of players." The magician shakes her head softly, frowning at the cups.` 
+			choice
+				`	"I'll do it!" (Bet 6000 credits).`
+					goto secondgameplay
+				`	(Continue watching.)`
+					goto secondgamewatch
+				`	(Walk away.)`
+					decline
+			label firstgameplay
+			`	You pay 400 credits and sit across from the magician. "Double or nothing, bet your bet!" the announcer repeats. "Are you a player or a puppet?"`
+			`	The magician places the ball beneath the center and begins moving the cups. This one seems faster, but that might just be from the pressure. You keep your eyes trained on the cup as it shifts back and forth, around in circles, and occasionally remains untouched. By the end, you're pretty sure it's in the center cup.`
+			`	"What's your choice?" the magician asks, smirking.`
+			choice
+				`	"Left."`
+					goto wrong
+				`	"Center."`
+					goto correct
+				`	"Right."`
+					goto wrong
+			label wrong
+			`	"Better luck next time," she says as she reveals your incorrect choice. The ball was in the center; you feel silly for not going with your gut.`
+			`	"The next buy-in is a larger prize!" the announcer calls. "Six thousand credits, reserved for the most daring. As the previous player, you have first priority."`
+			action
+				payment -400
+			choice
+				`	"Let's go again."`
+					goto secondgameplay
+				`	"I think I'm done."`
+					goto secondgamewatch
+			label correct
+			`	She asks if you're sure, and you stick with your gut. With a grimace, she lifts the cup to reveal the ball and counts out your winnings. "And the player prevails!" the announcer says. "Earning a small bounty. But wait: the next buy-in is bigger yet! Six thousand credits, reserved for the most daring. As the previous player, you have first priority."`
+			action
+				payment 400
+			choice
+				`	"Let's go again."`
+					goto secondgameplay
+				`	"I think I'm done."`
+					goto secondgamewatch
+			label secondgameplay
+			`	You place your 6000 credit bet on the table, and the game begins. The pattern is slightly longer, but once the magician's hands stop, you feel like the ball lies beneath the left cup.`
+			choice
+				`	"Left."`
+					goto left
+				`	"Center."`
+					goto center
+				`	"Right."`
+					goto right
+			label left
+			`	With a grin, she reveals the left cup, and it's... wrong! "Nice try," she says, pocketing your money. "It is a bit tricky."`
+			`	"Well, that's all for today, folks!" the announcer says as you realize you've been conned. Worse still, after they pack up and leave, you notice that the first winner walks away beside them.`
+				accept
+			label center
+			`	With a raised eyebrow, she reveals the center cup. It's... wrong! "Nice try," she says, pocketing your money. "That one was a bit tricky."`
+			`	"Well, that's all for today, folks!" the announcer says. As they pack up and leave, you notice that the first winner walks away beside them.`
+				accept
+			label right
+			`	With a raised eyebrow, she reveals the right cup. It's... wrong! "Nice try," she says, pocketing your money. "That one was a bit tricky."`
+			`	"Well, that's all for today, folks!" the announcer says. As they pack up and leave, you notice that the first winner walks away beside them.`
+				accept
+			label secondgamewatch
+			`	Sensing that something's up, you decide to watch the next game. A sprightly young fellow confidently hands over 6000 credits; when the cups stop, you feel like the ball is under the left one. The boy points to it; with a grin, the magician reveals the left cup, and it's... wrong! "Nice try," she says, pocketing the shocked boy's money. "It is a bit tricky."`
+			`	"Well, that's all for today, folks!" the announcer says. You're glad you avoided the con. As they pack up and leave, you notice that the first winner walks away beside them.`
+				decline
+
+
+
+mission "Thrall Emigration"
+	name "<origin> Emigration"
+	description "Transport a family from <origin> to <destination>, where they hope to find better employment. They cannot pay you."
+	minor
+	source "Thrall"
+	destination "Delve"
+	to offer
+		random < 50
+	passengers 2
+	on offer
+		conversation
+			`By the edge of the spaceport at night, you see a thin, sweaty man turn away from a pilot, disheartened. You make eye contact, and he begins hurrying over to you.`
+			choice
+				`	(Wait for him.)`
+				`	(Walk away quickly.)`
+					decline
+			`	"Excuse me! Are you a pilot?" Without waiting for a response, he continues, "I need to go to the Syndicate. I work all day picking cotton with these hands, but my family's still starving. We can't afford transport..."`
+			`	You can barely understand him through his accent. The man's teeth look worse than his clothes, and his breath makes you step back. His eyes implore you.`
+			choice
+				`	"I might be able to help you. What planet do you need to reach?"`
+				`	"I'm sorry, I only transport for pay."`
+					goto disappointment
+			`	His eyes brighten with hope. "Oh! I, I heard some people are going to <planet> to be miners. They hire folk like us. I, if you could get me, and my wife and our two sons there, I'd praise you to the high stars. You'd save our lives."`
+			choice
+				`	"I can take you, but no more."`
+					goto separation
+				`	"I'd be happy to offer you four transport."`
+					goto offer
+				`	"Sorry, I think this won't work out."`
+					goto disappointment
+			label separation
+			`	"The two little ones are really small," he persists. "We can cramp together. You'll just notice two of us. I mean, some go themselves and send money back, but..."`
+			`	He shakes his head. "My wife's already told me we need to stay together, and I agree. I can't leave. Please, nobody else has said yes."`
+			choice
+				`	"I guess I can find room."`
+					goto offer
+				`	"Sorry, but that's still too many. Have a nice day."`
+					goto disappointment
+			label offer
+			`	"Oh, thank you, thank you!" he says, vigorously shaking your hand. "I'll get them fast, we can leave tonight! I'm Gaint, by the way." He quickly leaves to get them, turning back at least three times to tip his hat to you and make sure you haven't left.`
+			`	Gaint's family arrives quickly. His wife, Mell, is carrying their infant child, and a toddler clutches her leg. His fingers look like a skeleton, and his eyes look like his dad's. "Thank you so much," Mell says as they enter your ship.`
+				accept
+			label disappointment
+			`	You fend off a few more pleas before he understands it's hopeless and begins looking for someone else.`
+				decline
+	
+	on visit
+		dialog phrase "generic passenger on visit"
+	
+	on complete
+		conversation
+			`	As your ship enters <planet>'s cavernous spaceport, you can sense a mixture of hope and apprehension in Gaint and Mell. "Andrin talks too much," you overhear Gaint saying. "I didn't know it's all underground."`
+			`	"We'll figure it out," Mell assures him. When they notice you're listening in, the conversation stops. Your ship lands, and the family collects their things to leave. They thank you again on their way out.`
+
+
+
+mission "Repulsor failure"
+	landing
+	# Don't require the player to pay credits again if the player was already allowed to land when this mission triggered.
+	clearance
+	source
+		not attributes "station"
+		not attributes "gas giant"
+		not attributes "uninhabited"
+		not attributes "korath"
+	to offer
+		random < 8
+		credits >= 2000000
+	on offer
+		conversation
+			`When you start de-orbiting, you see a warning that one of the repulsors on your ship is not working.`
+			choice
+				`(Return to orbit to fix the issue in space.)`
+					launch
+				`(Attempt to land anyway.)`
+			`Orbital entry is a bit more steep than normal, and your ship is starting to lean a bit.`
+			choice
+				`(Try to return to orbit to fix the issue in space.)`
+					goto reorbit
+				`(Continue the attempt to land.)`
+			`You're reaching the point where your ship will not be able to re-orbit on its own power. The cockpit is filled with warnings about the descent angle and attitude control.`
+			choice
+				`(Attempt to re-orbit and hope that the ship still makes it.)`
+					goto reorbit
+				`(Proceed with landing, crashing, or dying - whichever one it's gonna be.)`
+			`Your decent is still far more steep than normal, and the ship is starting to roll. It is no longer possible to correct both your descend angle and maintain attitude control.`
+			choice
+				`(Prioritize roll stabilization.)`
+					goto rolling
+				`(Prioritize lowering the descent angle.)`
+				`(Switch to full auto-pilot control.)`
+			`Your ship begins to roll faster and faster, but the autopilot somehow manages to soften the descent angle.`
+			choice
+				`(Prioritize roll stabilization now.)`
+					goto rolling
+				`(Continue prioritizing lowering the descent angle.)`
+				`(Let the autopilot handle the landing.)`
+			branch miracle
+				random < 80
+			`It's not enough! The ship starts rolling even faster, your vision blurs, and consciousness starts to slip from you. The last thing you remember is your ship falling apart...`
+			`	By the time your ship fully disintegrates, you've already died.`
+				die
+			label rolling
+			`Your ships roll stabilizes, but your descent vector is now almost perpendicular to the surface, and the acceleration straight towards the surface pushes you firmly into your chair.`
+			choice
+				`(Pray for a miracle.)`
+				`(Scream your lungs out.)`
+				`(Silently accept the situation as it is.)`
+			branch miracle
+				random < 70
+			`There is nothing more you can do to save your ship or yourself. The <ship> crashes straight into the ground. Whoever will have to clean this mess up will have a hard time finding your remains.`
+				die
+			label miracle
+			`Suddenly, all repulsors come back online at full strength! You feel the seatbelt dig into your skin over the sudden deceleration.`
+			choice
+				`(Let the autopilot handle the landing.)`
+				`(Attempt to perform a manual landing.)`
+				`(Try to return to orbit to fix the issue in space.)`
+					goto reorbit
+			branch miraclelanding
+				random < 98
+			`Your ship's trajectory and attitude stabilize, but it was too late. All warning lights in the cockpit are lit and sirens are blaring, but the view out your window of the fast approaching planet surface makes the impending crash more clear than any light or siren does. You experience a few seconds of fear, after which you life ends in a short, big flash.`
+				die
+			label miraclelanding
+			`Your ship's trajectory and attitude stabilize, and somehow the ship crash-lands on the surface.`
+			`	You aren't sure what is more miraculous: that you landed near the spaceport or that you're still alive.`
+			`	The authorities are not very impressed and fine you 200,000 credits for reckless flying.`
+			`	Your ship took extensive damage, you pay 86,100 credits for repairs.`
+				decline
+			label reorbit
+			`The climb back into orbit is turbulent, slow, and difficult, but you make it there safely.`
+				launch
+	on enter
+		dialog
+			`You manage to fix the repulsor while in orbit. After a few quick tests, you confirm that it will work fine on next landing.`
+	on decline
+		fine 200000
+		payment -86100
+
