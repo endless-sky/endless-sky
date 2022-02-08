@@ -516,3 +516,10 @@ const bool Outfit::CanSell() const
 {
 	return permissions.CanSell();
 }
+
+
+
+const bool Outfit::CanUninstall() const
+{
+	return permissions.CanUninstall();
+}

@@ -22,6 +22,8 @@ void Permissions::Load (const DataNode &node)
 	{
 		if(child.Token(0) == "sell")
 			canSell = false;
+		else if(child.Token(0) == "uninstall")
+			canUninstall = false;
 		else {
 			child.PrintTrace("Unrecognized permission");
 		}

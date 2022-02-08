@@ -95,6 +95,7 @@ public:
 	const Sprite *FlotsamSprite() const;
 
 	const bool CanSell() const;
+	const bool CanUninstall() const;
 
 private:
 	bool isDefined = false;
