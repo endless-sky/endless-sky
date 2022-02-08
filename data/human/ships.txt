@@ -49,15 +49,15 @@ ship "Aerie"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -10 91
-	engine 10 91
-	gun -13 -79 "Sidewinder Missile Launcher"
-	gun 13 -79 "Sidewinder Missile Launcher"
-	turret 0 0 "Heavy Anti-Missile Turret"
-	turret -17 14 "Heavy Laser Turret"
-	turret 17 14 "Heavy Laser Turret"
-	bay "Fighter" -42 -2
-	bay "Fighter" 42 2
+	engine 15 97
+	engine -15 97
+	gun -12 -78 "Sidewinder Missile Launcher"
+	gun 12 -78 "Sidewinder Missile Launcher"
+	turret 0 1.5 "Heavy Anti-Missile Turret"
+	turret -31 15.5 "Heavy Laser Turret"
+	turret 31 15.5 "Heavy Laser Turret"
+	bay "Fighter" -43.5 2
+	bay "Fighter" 43.5 2
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -333,21 +333,21 @@ ship "Bactrian"
 		"X5200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -18 230
-	engine 18 230
-	gun -15 -226 "Torpedo Launcher"
-	gun 15 -226 "Torpedo Launcher"
-	gun -40 -133 "Sidewinder Missile Launcher"
-	gun -45 -128 "Sidewinder Missile Launcher"
-	turret -22 -148 "Heavy Laser Turret"
-	turret 26 -80 "Heavy Anti-Missile Turret"
-	turret -41 -20 "Heavy Laser Turret"
-	turret 32 -7 "Heavy Laser Turret"
-	turret 53 82 "Heavy Laser Turret"
-	turret -37 186 "Heavy Anti-Missile Turret"
-	bay "Fighter" -38 -26
-	bay "Fighter" 35 36
-	bay "Fighter" -47 97
+	engine 18.5 232
+	engine -15 232
+	gun -9 -231.5 "Torpedo Launcher"
+	gun 13.5 -231.5 "Torpedo Launcher"
+	gun 36.5 -197 "Sidewinder Missile Launcher"
+	gun 42 -193 "Sidewinder Missile Launcher"
+	turret 37 -132.5 "Heavy Anti-Missile Turret"
+	turret -39 -39 "Heavy Laser Turret"
+	turret 31.5 -26 "Heavy Laser Turret"
+	turret -42.5 75 "Heavy Laser Turret"
+	turret 32.5 132 "Heavy Laser Turret"
+	turret -33.5 192.5 "Heavy Anti-Missile Turret"
+	bay "Fighter" -43.5 -125
+	bay "Fighter" 53 -72.5
+	bay "Fighter" -50 103.5
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 50 30
@@ -2420,15 +2420,15 @@ ship "Mule"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -12 123
-	engine 12 123
-	gun -9 -119 "Sidewinder Missile Launcher"
-	gun 9 -119 "Sidewinder Missile Launcher"
-	turret 22 -65 "Heavy Anti-Missile Turret"
-	turret -37 -21 "Heavy Laser Turret"
-	turret 39 35 "Heavy Laser Turret"
-	turret -9 59 "Heavy Anti-Missile Turret"
-	bay "Fighter" -16 -9
+	engine 11 128
+	engine -8 128
+	gun -11 -125 "Sidewinder Missile Launcher"
+	gun 11 -125 "Sidewinder Missile Launcher"
+	turret -22 -53.5 "Heavy Laser Turret"
+	turret 19.5 -39 "Heavy Anti-Missile Turret"
+	turret 20 33 "Heavy Laser Turret"
+	turret -20.5 103.5 "Heavy Anti-Missile Turret"
+	bay "Fighter" -25 -25
 	leak "leak" 50 50
 	leak "flame" 80 80
 	leak "big leak" 80 30
