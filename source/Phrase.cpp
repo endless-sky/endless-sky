@@ -28,15 +28,15 @@ void Phrase::Load(const DataNode &node)
 	// may not be used in a Phrase's name.
 	if(name.find("${") != string::npos || name.find('}') != string::npos)
 	{
-		node.PrintTrace("Phrase names may not contain '${' or '}':");
+		node.PrintTrace("Error: Phrase names may not contain '${' or '}':");
 		return;
 	}
-	
+
 	sentences.emplace_back(node, this);
 	if(sentences.back().empty())
 	{
 		sentences.pop_back();
-		node.PrintTrace("Skipping unparsable node:");
+		node.PrintTrace("Error: Unable to parse node:");
 	}
 }
 
@@ -64,7 +64,7 @@ string Phrase::Get() const
 	string result;
 	if(sentences.empty())
 		return result;
-	
+
 	for(const auto &part : sentences[Random::Int(sentences.size())])
 	{
 		if(!part.choices.empty())
@@ -77,7 +77,7 @@ string Phrase::Get() const
 			for(const auto &pair : part.replacements)
 				Format::ReplaceAll(result, pair.first, pair.second);
 	}
-	
+
 	return result;
 }
 
@@ -89,14 +89,14 @@ bool Phrase::ReferencesPhrase(const Phrase *other) const
 {
 	if(other == this)
 		return true;
-	
+
 	for(const auto &sentence : sentences)
 		for(const auto &part : sentence)
 			for(const auto &choice : part.choices)
 				for(const auto &element : choice)
 					if(element.second && element.second->ReferencesPhrase(other))
 						return true;
-	
+
 	return false;
 }
 
@@ -107,15 +107,15 @@ Phrase::Choice::Choice(const DataNode &node, bool isPhraseName)
 	// The given datanode should not have any children.
 	if(node.HasChildren())
 		node.begin()->PrintTrace("Skipping unrecognized child node:");
-	
+
 	weight = max<int>(1, node.Size() >= 2 ? node.Value(1) : 1);
-	
+
 	if(isPhraseName)
 	{
 		emplace_back(string{}, GameData::Phrases().Get(node.Token(0)));
 		return;
 	}
-	
+
 	// This node is a text string that may contain an interpolation request.
 	const string &entry = node.Token(0);
 	if(entry.empty())
@@ -124,7 +124,7 @@ Phrase::Choice::Choice(const DataNode &node, bool isPhraseName)
 		emplace_back();
 		return;
 	}
-	
+
 	size_t start = 0;
 	while(start < entry.length())
 	{
@@ -135,7 +135,7 @@ Phrase::Choice::Choice(const DataNode &node, bool isPhraseName)
 		size_t right = entry.find('}', left);
 		if(right == string::npos)
 			break;
-		
+
 		// Add the text up to the ${, and then add the contained phrase name.
 		++right;
 		size_t length = right - left;
@@ -170,10 +170,10 @@ void Phrase::Sentence::Load(const DataNode &node, const Phrase *parent)
 			child.PrintTrace("Skipping node with no children:");
 			continue;
 		}
-		
+
 		emplace_back();
 		auto &part = back();
-		
+
 		if(child.Token(0) == "word")
 			for(const DataNode &grand : child)
 				part.choices.emplace_back(grand);
@@ -185,17 +185,17 @@ void Phrase::Sentence::Load(const DataNode &node, const Phrase *parent)
 				part.replacements.emplace_back(grand.Token(0), grand.Size() >= 2 ? grand.Token(1) : string{});
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
-		
+
 		// Require any newly added phrases have no recursive references. Any recursions
 		// will instead yield an empty string, rather than possibly infinite text.
 		for(auto &choice : part.choices)
 			for(auto &element : choice)
 				if(element.second && element.second->ReferencesPhrase(parent))
 				{
-					child.PrintTrace("Replaced recursive '" + element.second->Name() + "' phrase reference with \"\":");
+					child.PrintTrace("Warning: Replaced recursive '" + element.second->Name() + "' phrase reference with \"\":");
 					element.second = nullptr;
 				}
-		
+
 		// If no words, phrases, or replaces were given, discard this part of the phrase.
 		if(part.choices.empty() && part.replacements.empty())
 			pop_back();
