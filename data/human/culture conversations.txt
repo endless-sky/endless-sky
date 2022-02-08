@@ -144,7 +144,7 @@ mission "Sojourn Sunday Sales"
 		random < 1
 	on offer
 		conversation
-			`You blink in surprise as you enter the spaceport, watching throngs of people pushing their way through the human chains of queues wrapped around the commercial area. You scan your surroundings and notice advertisements upon advertisements of vacation locations, all at an absurdly high discount. Yet you cannot help but notice that to the younger you, it'd still be a price you'd never be willing to spend on such things.`
+			`You blink in surprise as you enter the spaceport, watching throngs of people pushing their way through the human chains of queues wrapped around the commercial area. You scan your surroundings and notice advertisements upon advertisements of vacation locations, all at an absurdly high discount. Yet despite their vastly reduced prices, the advertised holidays still cost such large sums that a younger you could never have justified such expense.`
 				decline
 
 
