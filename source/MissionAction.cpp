@@ -58,13 +58,14 @@ namespace {
 		bool hasName = !name.empty();
 		int count = amount;
 		for(const auto &ship : player.Ships())
+			// If a variant is requested we most have it, a ship that is a variant of the model asked is accepted too.
 			if(count && (ship->VariantName() == model->VariantName() || ship->ModelName() == model->VariantName())
 				&& (unconstrained || (ship->GetSystem() == here && !ship->IsDisabled() && !ship->IsParked()))
 				&& (!hasName || ship->UUID() == id))
 					--count;
 		// If amount is equal to 0 it means we most not have a single ship corresponding to the criterias.
 		// Otherwise we most have at least the amount of ship asked.
-		return (!amount && !count) || count <= 0;
+		return (!amount && !count) || (amount && count <= 0);
 	}
 }
 
@@ -186,7 +187,7 @@ void MissionAction::Save(DataWriter &out) const
 		for(const auto &it : requiredOutfits)
 			out.Write("require", it.first->Name(), it.second);
 		for(const auto &it : requiredShips)
-			out.Write("owns", it.first->VariantName(), get<0>(it.second), get<1>(it.second), get<2>(it.second));
+			out.Write("owns", it.first->VariantName(), get<0>(it.second), get<1>(it.second), get<2>(it.second) ? "unconstrained" : "contrained");
 
 		action.Save(out);
 	}
@@ -268,7 +269,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		if(get<1>(it.second) > 0)
 			continue;
 
-		if(!hasShip(it.first, get<0>(it.second), -get<1>(it.second), !get<2>(it.second), player))
+		if(!hasShip(it.first, get<0>(it.second), -get<1>(it.second), get<2>(it.second), player))
 			return false;
 	}
 
@@ -317,7 +318,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 	}
 
 	for(auto &&it : requiredShips)
-		if(!hasShip(it.first, get<0>(it.second), get<1>(it.second), !get<2>(it.second), player))
+		if(!hasShip(it.first, get<0>(it.second), get<1>(it.second), get<2>(it.second), player))
 			return false;
 	
 	// An `on enter` MissionAction may have defined a LocationFilter that
