@@ -41,7 +41,7 @@ public:
 		Submunition() noexcept = default;
 		explicit Submunition(const Weapon *weapon, std::size_t count) noexcept
 			: weapon(weapon), count(count) {};
-		
+
 		const Weapon *weapon = nullptr;
 		std::size_t count = 0;
 		// The angular offset from the source projectile, relative to its current facing.
@@ -49,20 +49,20 @@ public:
 		// The base offset from the source projectile's position, relative to its current facing.
 		Point offset;
 	};
-	
-	
+
+
 public:
 	// Load from a "weapon" node, either in an outfit, a ship (explosion), or a hazard.
 	void LoadWeapon(const DataNode &node);
 	bool IsWeapon() const;
-	
+
 	// Get assets used by this weapon.
 	const Body &WeaponSprite() const;
 	const Body &HardpointSprite() const;
 	const Sound *WeaponSound() const;
 	const Outfit *Ammo() const;
 	const Sprite *Icon() const;
-	
+
 	// Effects to be created at the start or end of the weapon's lifetime.
 	const std::map<const Effect *, int> &FireEffects() const;
 	const std::map<const Effect *, int> &LiveEffects() const;
@@ -70,7 +70,7 @@ public:
 	const std::map<const Effect *, int> &TargetEffects() const;
 	const std::map<const Effect *, int> &DieEffects() const;
 	const std::vector<Submunition> &Submunitions() const;
-	
+
 	// Accessor functions for various attributes.
 	int Lifetime() const;
 	int RandomLifetime() const;
@@ -78,9 +78,9 @@ public:
 	double BurstReload() const;
 	int BurstCount() const;
 	int Homing() const;
-	
+
 	int AmmoUsage() const;
-	
+
 	int MissileStrength() const;
 	int AntiMissile() const;
 	// Weapons of the same type will alternate firing (streaming) rather than
@@ -88,23 +88,23 @@ public:
 	// is not vulnerable to anti-missile, or has the "stream" attribute.
 	bool IsStreamed() const;
 	bool IsParallel() const;
-	
+
 	double Velocity() const;
 	double RandomVelocity() const;
 	double WeightedVelocity() const;
 	double Acceleration() const;
 	double Drag() const;
 	const Point &HardpointOffset() const;
-	
+
 	double Turn() const;
 	double Inaccuracy() const;
 	double TurretTurn() const;
-	
+
 	double Tracking() const;
 	double OpticalTracking() const;
 	double InfraredTracking() const;
 	double RadarTracking() const;
-	
+
 	// Normal damage sustained on firing ship when weapon fired.
 	double FiringEnergy() const;
 	double FiringForce() const;
@@ -119,19 +119,19 @@ public:
 	double FiringCorrosion() const;
 	double FiringLeak() const;
 	double FiringBurn() const;
-	
+
 	// Relative damage sustained on firing ship when weapon fired.
 	double RelativeFiringEnergy() const;
 	double RelativeFiringHeat() const;
 	double RelativeFiringFuel() const;
 	double RelativeFiringHull() const;
 	double RelativeFiringShields() const;
-	
+
 	double SplitRange() const;
 	double TriggerRadius() const;
 	double BlastRadius() const;
 	double HitForce() const;
-	
+
 	// A "safe" weapon hits only hostile ships (even if it has a blast radius).
 	// A "phasing" weapon hits only its intended target; it passes through
 	// everything else, including asteroids.
@@ -143,7 +143,7 @@ public:
 	// Gravitational weapons deal the same amount of hit force to a ship regardless
 	// of its mass.
 	bool IsGravitational() const;
-	
+
 	// These values include all submunitions:
 	// Normal damage types:
 	double ShieldDamage() const;
@@ -168,40 +168,40 @@ public:
 	// Check if this weapon does damage. If not, attacking a ship with this
 	// weapon is not a provocation (even if you push or pull it).
 	bool DoesDamage() const;
-	
+
 	double Piercing() const;
-	
+
 	double TotalLifetime() const;
 	double Range() const;
-	
+
 	// Check if this weapon has a damage dropoff range.
 	bool HasDamageDropoff() const;
 	// Calculate the percent damage that this weapon deals given the distance
 	// that the projectile traveled if it has a damage dropoff range.
 	double DamageDropoff(double distance) const;
-	
-	
+
+
 protected:
 	// Legacy support: allow turret outfits with no turn rate to specify a
 	// default turnrate.
 	void SetTurretTurn(double rate);
-	
+
 	// A pair representing the outfit that is consumed as ammo and the number
 	// of that outfit consumed upon fire.
 	std::pair<const Outfit*, int> ammo;
-	
-	
+
+
 private:
 	double TotalDamage(int index) const;
-	
-	
+
+
 private:
 	// Sprites and sounds.
 	Body sprite;
 	Body hardpointSprite;
 	const Sound *sound = nullptr;
 	const Sprite *icon = nullptr;
-	
+
 	// Fire, die and hit effects.
 	std::map<const Effect *, int> fireEffects;
 	std::map<const Effect *, int> liveEffects;
@@ -209,7 +209,7 @@ private:
 	std::map<const Effect *, int> targetEffects;
 	std::map<const Effect *, int> dieEffects;
 	std::vector<Submunition> submunitions;
-	
+
 	// This stores whether or not the weapon has been loaded.
 	bool isWeapon = false;
 	bool isStreamed = false;
@@ -223,7 +223,7 @@ private:
 	// to true, then this convergence will not be used and the weapon will
 	// be aimed directly in the gunport angle/direction.
 	bool isParallel = false;
-	
+
 	// Attributes.
 	int lifetime = 0;
 	int randomLifetime = 0;
@@ -231,25 +231,25 @@ private:
 	double burstReload = 1.;
 	int burstCount = 1;
 	int homing = 0;
-	
+
 	int missileStrength = 0;
 	int antiMissile = 0;
-	
+
 	double velocity = 0.;
 	double randomVelocity = 0.;
 	double acceleration = 0.;
 	double drag = 0.;
 	Point hardpointOffset = {0., 0.};
-	
+
 	double turn = 0.;
 	double inaccuracy = 0.;
 	double turretTurn = 0.;
-	
+
 	double tracking = 0.;
 	double opticalTracking = 0.;
 	double infraredTracking = 0.;
 	double radarTracking = 0.;
-	
+
 	double firingEnergy = 0.;
 	double firingForce = 0.;
 	double firingFuel = 0.;
@@ -263,17 +263,17 @@ private:
 	double firingCorrosion = 0.;
 	double firingLeak = 0.;
 	double firingBurn = 0.;
-	
+
 	double relativeFiringEnergy = 0.;
 	double relativeFiringHeat = 0.;
 	double relativeFiringFuel = 0.;
 	double relativeFiringHull = 0.;
 	double relativeFiringShields = 0.;
-	
+
 	double splitRange = 0.;
 	double triggerRadius = 0.;
 	double blastRadius = 0.;
-	
+
 	static const int DAMAGE_TYPES = 18;
 	static const int HIT_FORCE = 0;
 	// Normal damage types:
@@ -297,16 +297,16 @@ private:
 	static const int RELATIVE_HEAT_DAMAGE = 16;
 	static const int RELATIVE_ENERGY_DAMAGE = 17;
 	mutable double damage[DAMAGE_TYPES] = {};
-	
+
 	double piercing = 0.;
-	
+
 	double rangeOverride = 0.;
 	double velocityOverride = 0.;
 
 	bool hasDamageDropoff = false;
 	std::pair<double, double> damageDropoffRange;
 	double damageDropoffModifier;
-	
+
 	// Cache the calculation of these values, for faster access.
 	mutable bool calculatedDamage = true;
 	mutable bool doesDamage = false;

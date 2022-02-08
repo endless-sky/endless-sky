@@ -49,7 +49,7 @@ void DataWriter::Write(const DataNode &node)
 	for(int i = 0; i < node.Size(); ++i)
 		WriteToken(node.Token(i).c_str());
 	Write();
-	
+
 	// If this node has any children, call this function recursively on them.
 	if(node.HasChildren())
 	{
@@ -108,7 +108,7 @@ void DataWriter::WriteToken(const char *a)
 		hasSpace |= (*it <= ' ' && *it >= 0);
 		hasQuote |= (*it == '"');
 	}
-	
+
 	// Write the token, enclosed in quotes if necessary.
 	out << *before;
 	if(hasSpace && hasQuote)
@@ -117,7 +117,7 @@ void DataWriter::WriteToken(const char *a)
 		out << '"' << a << '"';
 	else
 		out << a;
-	
+
 	// The next token written will not be the first one on this line, so it only
 	// needs to have a single space before it.
 	before = &space;

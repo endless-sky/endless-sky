@@ -25,6 +25,7 @@
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
 				<Compiler>
+					<Add option="-Werror" />
 					<Add option="-flto" />
 					<Add option="-O3" />
 					<Add option="-msse3" />
@@ -56,7 +57,6 @@
 			<Add option="-Wnon-virtual-dtor" />
 			<Add option="-Wall" />
 			<Add option="-std=c++11" />
-			<Add option="-Werror" />
 			<Add option="-Wold-style-cast" />
 			<Add option="-fno-rtti" />
 			<Add directory="C:/dev64/include" />
@@ -151,6 +151,8 @@
 		<Unit filename="source/GameData.h" />
 		<Unit filename="source/GameEvent.cpp" />
 		<Unit filename="source/GameEvent.h" />
+		<Unit filename="source/GameLoadingPanel.cpp" />
+		<Unit filename="source/GameLoadingPanel.h" />
 		<Unit filename="source/GameWindow.cpp" />
 		<Unit filename="source/GameWindow.h" />
 		<Unit filename="source/Government.cpp" />
@@ -319,6 +321,8 @@
 		<Unit filename="source/TradingPanel.h" />
 		<Unit filename="source/UI.cpp" />
 		<Unit filename="source/UI.h" />
+		<Unit filename="source/UniverseObjects.cpp" />
+		<Unit filename="source/UniverseObjects.h" />
 		<Unit filename="source/Visual.cpp" />
 		<Unit filename="source/Visual.h" />
 		<Unit filename="source/Weapon.cpp" />
@@ -326,9 +330,12 @@
 		<Unit filename="source/Weather.cpp" />
 		<Unit filename="source/Weather.h" />
 		<Unit filename="source/WeightedList.h" />
-		<Unit filename="source/gl_header.h" />
+		<Unit filename="source/opengl.cpp" />
+		<Unit filename="source/opengl.h" />
 		<Unit filename="source/pi.h" />
 		<Unit filename="source/shift.h" />
+		<Unit filename="source/comparators/ByGivenOrder.h" />
+		<Unit filename="source/comparators/ByName.h" />
 		<Unit filename="source/text/DisplayText.cpp" />
 		<Unit filename="source/text/DisplayText.h" />
 		<Unit filename="source/text/Font.cpp" />
