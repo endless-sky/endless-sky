@@ -392,7 +392,7 @@ event "battle for Rastaban"
 
 mission "FW Southern Battle 2"
 	name "Attack Rastaban"
-	description "Travel directly to the <system> system, so that you will arrive on <day> and join the battle against the Navy. Disable or destroy all Navy ships in system."
+	description "Travel directly to the <system> system, so that you will arrive on <day> and join the battle against the Navy. Disable or destroy all Navy ships in the system."
 	source Trinket
 	destination Dancer
 	clearance
