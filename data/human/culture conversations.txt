@@ -149,6 +149,22 @@ mission "Paradise Cleaner Incident"
 
 
 
+mission "Local Politics"
+	minor
+	source
+		government "Free Worlds"
+		attributes "frontier"
+		not attributes "station"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`As you land on the pad, you note a general lack of presence around the spaceport. No one has scrambled to hook up your ship, nor has anybody else acknowledged your arrival. Instead, when you leave your ship, all you find is a note within the spaceport detailing where their "overlords" can find their yearly tribute.`
+			`	You decide against finding out where the inhabitants went.`
+				decline
+
+
+
 mission "Forest Fire"
 	minor
 	source
@@ -177,6 +193,21 @@ mission "Forest Fire"
 			`	The dock-hands scramble to get the firefighting equipment onto your ship after your proclamation, instructing you to drop the retardants onto the perimeter of the fire. You barely manage to remember what every button does before the Air Traffic Controller clears you to depart, navigating your craft towards the fire.`
 			`	The raging fire flares like an inferno, throwing up black smoke in deep billowing waves as you approach. As you drop the retardants, making sure to keep your speed low, animals scramble towards safer grounds. You try to make sure you've not emptied right on top of them each time as you go back for another batch.`
 			`	Hours later, you look at your handiwork, a long line of red keeping back the flames as the fire starts to smother out. You radio your progress and receive a cheery response, thanking you for your help.`
+				decline
+
+
+
+mission "Missed Mugging"
+	minor
+	source
+		government "Free Worlds"
+		not attributes "station" "frontier"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`The sun has already set when you walk out of the spaceport, trying to find a nearby restaurant to sample their wares. Looking around, the only source of light comes from the building you just exited, a beacon within the sea of darkness.`
+			`	Choosing a random direction, you decide to walk down the quiet street, taking in the sights. You are interrupted as two men rush from an alley, pushing past you as they go. Before you can respond, you see a woman run out, clothes in disarray as she gives chase to the two men to no avail. Belatedly, you realize that they were holding a purse, long after they've disappeared, melting into the blackness beyond.`
 				decline
 
 
