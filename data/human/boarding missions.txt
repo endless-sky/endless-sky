@@ -480,7 +480,7 @@ mission "Slave Crew Rescue (No Brig Variant)"
 					goto "attack but tarquin is prepared"
 
 			label coward
-			`	"Yes, let's do that," replies Tarquin. However, his friendly attitude is gone and he remains as tense as a steel cable. You work in stony silence and awkwardly collect your payment once the <origin> is up and running again.`
+			`	"Yes, let's do that," replies Tarquin. However his friendly attitude is gone and he remains as tense as a steel cable. You work in stony silence and awkwardly collect your payment once the <origin> is up and running again.`
 			apply
 				set "tarquin hates you"
 			`	You feel relieved that the whole situation is over once you're safely back on board your own ship.`
@@ -563,7 +563,7 @@ mission "Slave Crew Rescue (No Brig Variant)"
 				goto "rescue the crew"
 
 			label "rescue the crew"
-			`	The ship's crew quarters have been fashioned into a brig with stout cell doors. Fortunately, the unlocking device opens them all, and close to a dozen malnourished wretches stumble out, telling you the whole story: captain Tarquin has been keeping them as slaves for the past several months, locking them in their quarters when the ship makes berth, and with no food as a punishment when they complain. They are quite happy to see his lifeless body sprawled out on the deck plating.`
+			`	The ship's crew quarters have been fashioned into a brig with stout cell doors. Fortunately the unlocking device opens them all, and close to a dozen malnourished wretches stumble out, telling you the whole story: captain Tarquin has been keeping them as slaves for the past several months, locking them in their quarters when the ship makes berth, and with no food as a punishment when they complain. They are quite happy to see his lifeless body sprawled out on the deck plating.`
 			`	You turn the <origin> over to them and return to your ship.`
 				accept
 
@@ -646,7 +646,7 @@ mission "Slave Crew Rescue (Brig Variant)"
 					goto "attack but tarquin is prepared"
 
 			label coward
-			`	"Yes, let's do that," replies Tarquin. However, his friendly attitude is gone and he remains as tense as a steel cable. You work in stony silence and awkwardly collect your payment once the <origin> is up and running again.`
+			`	"Yes, let's do that," replies Tarquin. However his friendly attitude is gone and he remains as tense as a steel cable. You work in stony silence and awkwardly collect your payment once the <origin> is up and running again.`
 			apply
 				set "tarquin hates you"
 			`	You feel relieved that the whole situation is over once you're safely back on board your own ship.`
@@ -728,7 +728,7 @@ mission "Slave Crew Rescue (Brig Variant)"
 				accept
 
 			label "rescue the crew with tarquin captured"
-			`	The ship's crew quarters have been fashioned into a brig with stout cell doors. Fortunately, the unlocking device opens them all, and close to a dozen malnourished wretches stumble out, telling you the whole story: captain Tarquin has been keeping them as slaves for the past several months, locking them in their quarters when the ship makes berth, and with no food as a punishment when they complain. They are quite happy to hear that he has been taken into captivity.`
+			`	The ship's crew quarters have been fashioned into a brig with stout cell doors. Fortunately the unlocking device opens them all, and close to a dozen malnourished wretches stumble out, telling you the whole story: captain Tarquin has been keeping them as slaves for the past several months, locking them in their quarters when the ship makes berth, and with no food as a punishment when they complain. They are quite happy to hear that he has been taken into captivity.`
 			apply
 				set "captured tarquin"
 			`	You turn the <origin> over to them and return to your ship to figure out what to do with Tarquin.`
