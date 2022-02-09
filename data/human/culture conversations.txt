@@ -207,7 +207,7 @@ mission "Missed Mugging"
 	on offer
 		conversation
 			`The sun has already set when you walk out of the spaceport, trying to find a nearby restaurant to sample their wares. Looking around, the only source of light comes from the building you just exited, a beacon within the sea of darkness.`
-			`	Choosing a random direction, you decide to walk down the quiet street, taking in the sights. You are interrupted as two men rush from an alley, pushing past you as they go. Before you can respond, you see a woman run out, clothes in disarray as she gives chase to the two men to no avail. Belatedly, you realize that they were holding a purse, long after all three people had already disappeared, melting into the blackness beyond.`
+			`	Choosing a random direction, you decide to walk down the quiet street, taking in the sights. You are interrupted as two men rush from an alley, pushing past you as they go. Before you can respond, you see a woman run out, clothes in disarray as she gives chase to the two men to no avail. Belatedly, you realize that they were holding a purse, long after they've disappeared, melting into the blackness beyond.`
 				decline
 
 
