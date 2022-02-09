@@ -233,7 +233,7 @@ void PlayerInfo::Load(const string &path)
 			for(const DataNode &grand : child)
 				conditions[grand.Token(0)] = (grand.Size() >= 2) ? grand.Value(1) : 1;
 		}
-		else if(child.Token(0) == "gifted ships")
+		else if(child.Token(0) == "gifted ships" && child.HasChildren())
 		{
 			for(const DataNode &grand : child)
 				giftedShips[grand.Token(0)] = EsUuid::FromString(grand.Token(1));
@@ -3198,7 +3198,7 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 
 
 
-// When we remove a ship, forget it's stored Uuid.
+// When we remove a ship, forget its stored ID.
 void PlayerInfo::ForgetShip(const EsUuid &uuid)
 {
 	string name = "";
