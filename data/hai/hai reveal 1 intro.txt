@@ -561,7 +561,7 @@ mission "Hai Leaks Response 2"
 			`	He checks the date. "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months, or we would lose so much credibility as to compromise electoral stability. The actual time limit is probably sooner."`
 			choice
 				`	"Would that be so bad?"`
-			`	"It is always bad to be forced into acknowledging a secret. If we act sooner, we may control the manner of that secret's release," says Yang.`
+			`	"It is always bad to be forced into acknowledging a secret. If we act sooner, we may control the manner of that secret's release," says Yang. "Plus, while the Hai have let the trickle of humans that find the wormhole settle here peacefully, a massive influx of humans is a problem nobody really wants to have to deal with."`
 			`	Sayari looks at you. "We will have to come up with a plan, and quickly, but for the moment may I ask a favor of the war hero in the room? Please meet up with the security forces converging on Allhome and help them route the pirates back to the other side of the wormhole. It will buy us some breathing room and options."`
 			`	It is so hard to say "no" to a Hai and their cute squirrelly features.`
 			choice
