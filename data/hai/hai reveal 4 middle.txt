@@ -77,7 +77,7 @@ mission "Hai Rescue [A02] Microtransceiver Identification"
 				`	"How can I help you?"`
 					goto help
 			label uninhabited
-			`	Teeneep looks at you as if you were daft. "The kidnappings happen on Hai and human worlds. The kidnappers have no reason to search an uninhabited planet for kidnapping victims. This gives us a safe place to hide any critical people or information."`
+			`	Teeneep looks at you as if you were daft. "The kidnappings happen on Hai and human worlds. The kidnappers have no reason to search an uninhabited planet for potential victims. This gives us a safe place to hide any critical people or information. Plus once we've removed enough of the microtransceivers they no longer function effectively. This place gives us plenty of space to keep samples and people far enough apart for safety without the obvious precautions that would be necessary somewhere more populated."`
 				goto questions
 			label microtransceivers
 			`	A Hai in a medical uniform explains, "The victims each have have thousands of microscale transmitter-receivers in their body, each the size of a single blood cell. We call them microtransceivers. They act together as one big transmitter and receiver, sending and receiving directional messages over great distances."`
