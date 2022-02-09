@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define MISSION_ACTION_H_
 
 #include "Conversation.h"
-#include "EsUuid.h"
 #include "GameAction.h"
 #include "LocationFilter.h"
 #include "Phrase.h"
