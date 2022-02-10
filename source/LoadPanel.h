@@ -57,7 +57,7 @@ private:
 	// Load snapshot callback.
 	void LoadCallback();
 	// Delete callbacks.
-	void DeletePilot(const std::string &pilot);
+	void DeletePilot(const std::string &);
 	void DeleteSave();
 
 

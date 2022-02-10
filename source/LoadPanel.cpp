@@ -509,7 +509,7 @@ void LoadPanel::LoadCallback()
 
 
 
-void LoadPanel::DeletePilot(const string &pilot)
+void LoadPanel::DeletePilot(const string &)
 {
 	loadedInfo.Clear();
 	if(selectedPilot == player.Identifier())
