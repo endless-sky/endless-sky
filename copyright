@@ -1371,8 +1371,10 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/ship/aerie*
  images/ship/bactrian*
  images/ship/mule*
+ images/thumbnail/aerie*
  images/thumbnail/bactrian*
  images/thumbnail/mule*
 Copyright: Saugia <https://github.com/Saugia>

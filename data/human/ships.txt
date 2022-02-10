@@ -49,15 +49,15 @@ ship "Aerie"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -10 91
-	engine 10 91
-	gun -13 -79 "Sidewinder Missile Launcher"
-	gun 13 -79 "Sidewinder Missile Launcher"
-	turret 0 0 "Heavy Anti-Missile Turret"
-	turret -17 14 "Heavy Laser Turret"
-	turret 17 14 "Heavy Laser Turret"
-	bay "Fighter" -42 -2
-	bay "Fighter" 42 2
+	engine 15 97
+	engine -15 97
+	gun -12 -78 "Sidewinder Missile Launcher"
+	gun 12 -78 "Sidewinder Missile Launcher"
+	turret 0 1.5 "Heavy Anti-Missile Turret"
+	turret -31 15.5 "Heavy Laser Turret"
+	turret 31 15.5 "Heavy Laser Turret"
+	bay "Fighter" -43.5 2
+	bay "Fighter" 43.5 2
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
