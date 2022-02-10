@@ -217,7 +217,9 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	{
 		GetUI()->Push(new Dialog(this, &LoadPanel::DeletePilot,
 			"Are you sure you want to delete the selected pilot, \"" + selectedPilot
-				+ "\", and all their saved games?\n\n(This will permanently delete the pilot data.)"));
+				+ "\", and all their saved games?\n\n(This will permanently delete the pilot data.)\n"
+				+ "Confirm the name of the pilot you want to delete.",
+				[this](const string &pilot) { return pilot == selectedPilot; }));
 	}
 	else if(key == 'a' && !player.IsDead() && player.IsLoaded())
 	{
@@ -507,7 +509,7 @@ void LoadPanel::LoadCallback()
 
 
 
-void LoadPanel::DeletePilot()
+void LoadPanel::DeletePilot(const string &)
 {
 	loadedInfo.Clear();
 	if(selectedPilot == player.Identifier())
