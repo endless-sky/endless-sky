@@ -1371,6 +1371,17 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/ship/aerie*
+ images/ship/bactrian*
+ images/ship/mule*
+ images/thumbnail/aerie*
+ images/thumbnail/bactrian*
+ images/thumbnail/mule*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
  images/effect/ember?tear/ember?tear?fire*
  images/effect/ember?tear/ember?tear?impact*
  images/effect/ember?tear/ember?tear?vortex*
@@ -1383,8 +1394,6 @@ Files:
 Copyright: X-27 (youtube.com/x-27yt)
 License: CC-BY-SA-3.0
 Comment: Derived from works by Michael Zahniser (under the same license).
-
-
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
