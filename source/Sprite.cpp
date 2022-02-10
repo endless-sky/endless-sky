@@ -16,7 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Preferences.h"
 #include "Screen.h"
 
-#include "gl_header.h"
+#include "opengl.h"
 #include <SDL2/SDL.h>
 
 #include <algorithm>
@@ -45,7 +45,7 @@ void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 	// Do nothing if the buffer is empty.
 	if(!buffer.Pixels())
 		return;
-	
+
 	// If this is the 1x image, its dimensions determine the sprite's size.
 	if(!is2x)
 	{
@@ -53,41 +53,31 @@ void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 		height = buffer.Height();
 		frames = buffer.Frames();
 	}
-	
+
 	// Check whether this sprite is large enough to require size reduction.
 	if(Preferences::Has("Reduce large graphics") && buffer.Width() * buffer.Height() >= 1000000)
 		buffer.ShrinkToHalfSize();
-	
+
 	// Upload the images as a single array texture.
 	glGenTextures(1, &texture[is2x]);
 	glBindTexture(GL_TEXTURE_2D_ARRAY, texture[is2x]);
-	
+
 	// Use linear interpolation and no wrapping.
 	glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	
+
 	// Upload the image data.
 	glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_RGBA8, // target, mipmap level, internal format,
 		buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
 		0, GL_RGBA, GL_UNSIGNED_BYTE, buffer.Pixels()); // border, input format, data type, data.
-	
+
 	// Unbind the texture.
 	glBindTexture(GL_TEXTURE_2D_ARRAY, 0);
-	
+
 	// Free the ImageBuffer memory.
 	buffer.Clear();
-}
-
-
-
-// Move the given masks into this sprite's internal storage. The given
-// vector will be cleared.
-void Sprite::AddMasks(vector<Mask> &masks)
-{
-	this->masks.swap(masks);
-	masks.clear();
 }
 
 
@@ -97,8 +87,7 @@ void Sprite::Unload()
 {
 	glDeleteTextures(2, texture);
 	texture[0] = texture[1] = 0;
-	
-	masks.clear();
+
 	width = 0.f;
 	height = 0.f;
 	frames = 0;
@@ -151,17 +140,4 @@ uint32_t Sprite::Texture() const
 uint32_t Sprite::Texture(bool isHighDPI) const
 {
 	return (isHighDPI && texture[1]) ? texture[1] : texture[0];
-}
-
-
-
-// Get the collision mask for the given frame of the animation.
-const Mask &Sprite::GetMask(int frame) const
-{
-	static const Mask EMPTY;
-	if(frame < 0 || masks.empty())
-		return EMPTY;
-	
-	// Assume that if a masks array exists, it has the right number of frames.
-	return masks[frame % masks.size()];
 }

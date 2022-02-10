@@ -83,7 +83,7 @@ news "Wanderer Linguistics 2"
 			`"`
 		word
 			"The Hai language is [complicated, convoluted], but learning it has yielded much [insight, knowledge] about the Hai in general."
-			"It is difficult to [pronounce, speak] Hai words, because their [physiology, structure] is so much different than ours." 
+			"It is difficult to [pronounce, speak] Hai words, because their [physiology, structure] is so much different than ours."
 			"I went to a [prison, jail] where some Unfettered Hai were being held, in order to [study, apprehend] their language on a more [in-depth, detailed] level. It was hard to get [information, data] out of them, to say the least."
 		word
 			`"`
@@ -104,7 +104,7 @@ news "Wanderer civilians, dialog"
 		word
 			`"`
 		word
-			"Whenever I go on a [journey, trip] through space I always bring some of my [favorite, most cherished] potted plants. It gets [lonely, barren] when you are far from nature." 
+			"Whenever I go on a [journey, trip] through space I always bring some of my [favorite, most cherished] potted plants. It gets [lonely, barren] when you are far from nature."
 			"I have [heard of, known of] a human captain in Wanderer space, but seeing you is still quite [strange, odd]."
 			"I cannot [imagine, fathom] being unable to fly. How do you manage to get anywhere?"
 			"I wonder what kinds of [creatures, beings] live on your home planet."
@@ -153,7 +153,7 @@ news "Wanderer oil safety"
 			`"`
 		word
 			"My job is to prevent the [destruction, death] of that which we have sought to [renew, nurture]."
-			"The oil drillers have no [respect, regard] for the [life, existence] of this planet. Just yesterday I caught one [covering up, hiding] a spill that [affected, impacted] an estimated 328 blades of grass!" 
+			"The oil drillers have no [respect, regard] for the [life, existence] of this planet. Just yesterday I caught one [covering up, hiding] a spill that [affected, impacted] an estimated 328 blades of grass!"
 		word
 			`"`
 
@@ -180,7 +180,7 @@ news "wanderer farmer"
 	to show
 		has "language: Wanderer"
 	location
-		government "Wanderer" 
+		government "Wanderer"
 		attributes "farming"
 	name
 		word
@@ -279,7 +279,7 @@ news "Wanderers and Korath"
 	location
 			government "Wanderer"
 			not attributes "evacuation"
-	name 
+	name
 		word
 			"Wanderer merchant captain"
 			"Wanderer captain"
