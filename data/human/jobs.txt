@@ -8,6 +8,39 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+mission "Hire Interceptor Escort(human space interceptor)"
+    name "Hire an Interceptor to accompany you until <date>."
+    description "The capatin of <npc> is offering to accompany you until <date> for <payment>, they are flying an interceptor"
+    repeat
+    job
+    deadline 30
+    to offer
+        random < 90
+    on offer
+        payment -30000
+    source
+        government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+    destination 9 13
+    npc accompany
+        government "Escort"
+        personality escort
+        fleet
+            names "civilian"
+            variant 1
+                "Hawk"
+            variant 2
+                "Sparrow"
+            variant 3
+                "Hawk (Bomber)"
+            variant 4
+                "Fury (Bomber)"
+            variant 4
+                "Fury"
+    to complete
+        never
+    on complete
+        payment 30000
+
 mission "Escort (Tiny, Northern, Dangerous Destination)"
 	name "Escort to <planet>"
 	description "Despite your relative inexperience, the captain of the <npc> is willing to pay you <payment> for an escort into a dangerous region of space to reach <destination> by <date>."
