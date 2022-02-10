@@ -294,7 +294,7 @@ bool Dialog::Click(int x, int y, int clicks)
 // Common code from all three constructors:
 void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool isMission)
 {
-	SetInterruptible(false);
+	SetInterruptible(isMission);
 
 	this->isMission = isMission;
 	this->canCancel = canCancel;
