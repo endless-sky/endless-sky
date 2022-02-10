@@ -1564,7 +1564,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	bool wasHyperspacing = ship->IsHyperspacing();
 	// Give the ship the list of visuals so that it can draw explosions,
 	// ion sparks, jump drive flashes, etc.
-	ship->Move(newVisuals, newFlotsam);
+	ship->Move(newVisuals, newFlotsam, step);
 	// Bail out if the ship just died.
 	if(ship->ShouldBeRemoved())
 	{

@@ -201,6 +201,34 @@ void Outfit::Load(const DataNode &node)
 			// Jump range must be positive.
 			attributes[child.Token(0)] = max(0., child.Value(1));
 		}
+		else if(child.Token(0) == "production")
+		{
+			productions.emplace_back();
+			auto &production = productions.back();
+
+			auto ParseChild = [] (const DataNode &grand, std::map<const Outfit *, int> &map, bool &location)
+			{
+				if(grand.Token(1) == "outfit")
+					location = false;
+				else if(grand.Token(1) != "cargo")
+					grand.PrintTrace("Unrecognized location \"" + grand.Token(1) + "\". Defaulting to \"cargo\":");
+
+				for(const auto &outfit : grand)
+					map[GameData::Outfits().Get(outfit.Token(0))] += (outfit.Size() >= 2 ? outfit.Value(1) : 1.);
+			};
+
+			for(const auto &grand : child)
+			{
+				if(grand.Token(0) == "input" && grand.Size() >= 2)
+					ParseChild(grand, production.input, production.inputFromCargo);
+				else if(grand.Token(0) == "output" && grand.Size() >= 2)
+					ParseChild(grand, production.output, production.outputInCargo);
+				else if(grand.Token(0) == "speed" && grand.Size() >= 2)
+					production.speed = static_cast<int>(grand.Value(1));
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
+		}
 		else if(child.Size() >= 2)
 			attributes[child.Token(0)] = child.Value(1);
 		else
@@ -327,6 +355,13 @@ const Dictionary &Outfit::Attributes() const
 
 
 
+const vector<Outfit::Production> &Outfit::Productions() const
+{
+	return productions;
+}
+
+
+
 // Determine whether the given number of instances of the given outfit can
 // be added to a ship with the attributes represented by this instance. If
 // not, return the maximum number that can be added.
@@ -369,6 +404,9 @@ void Outfit::Add(const Outfit &other, int count)
 		if(fabs(attributes[at.first]) < EPS)
 			attributes[at.first] = 0.;
 	}
+	productions.reserve(productions.size() + other.productions.size() * count);
+	for(int i = 0; i < count; ++i)
+		productions.insert(productions.end(), other.productions.begin(), other.productions.end());
 
 	for(const auto &it : other.flareSprites)
 		AddFlareSprites(flareSprites, it, count);

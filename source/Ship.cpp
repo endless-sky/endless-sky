@@ -849,6 +849,31 @@ void Ship::Save(DataWriter &out) const
 			for(const auto &it : baseAttributes.Attributes())
 				if(it.second)
 					out.Write(it.first, it.second);
+			for(const auto &it : baseAttributes.Productions())
+			{
+				out.Write("production");
+				out.BeginChild();
+				{
+					out.Write("input", it.inputFromCargo ? "cargo" : "outfit");
+					out.BeginChild();
+					for(const auto &input : it.input)
+						if(input.second == 1)
+							out.Write(input.first->Name());
+						else if(input.second > 1)
+							out.Write(input.first->Name(), input.second);
+					out.EndChild();
+
+					out.Write("output", it.outputInCargo ? "cargo" : "outfit");
+					out.BeginChild();
+					for(const auto &output : it.output)
+						if(output.second == 1)
+							out.Write(output.first->Name());
+						else if(output.second > 1)
+							out.Write(output.first->Name(), output.second);
+					out.EndChild();
+				}
+				out.EndChild();
+			}
 		}
 		out.EndChild();
 
@@ -1349,7 +1374,7 @@ const Command &Ship::Commands() const
 // Move this ship. A ship may create effects as it moves, in particular if
 // it is in the process of blowing up. If this returns false, the ship
 // should be deleted.
-void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
+void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int step)
 {
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten." Also eliminate ships that have no
@@ -1925,6 +1950,74 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	target = GetTargetShip();
 	if(target && target->IsDestroyed() && target->explosionCount >= target->explosionTotal)
 		targetShip.reset();
+
+	// If this ship isn't disable then it can potentially produce outfits.
+	if(!isDisabled)
+	{
+		// Make sure there is enough space for every factory this ship has.
+		productionSteps.resize(attributes.Productions().size());
+		for(size_t i = 0; i < attributes.Productions().size(); ++i)
+		{
+			const auto &production = attributes.Productions()[i];
+
+			// First check if the factory is ready to produce.
+			if(step - productionSteps[i] < production.speed)
+				continue;
+
+			// Next check if this ship has the required input outfits.
+			const auto &outfitsToCheck
+				= (production.inputFromCargo ? cargo.Outfits() : outfits);
+			bool satisfiesInputRequirement = true;
+
+			for(const auto &input : production.input)
+			{
+				auto it = outfitsToCheck.find(input.first);
+				// If the cargo hold either doesn't have or doesn't have
+				// enough of the given outfit requirement then abort.
+				if(it == outfitsToCheck.end()
+						|| it->second < input.second)
+				{
+					satisfiesInputRequirement = false;
+					break;
+				}
+			}
+			// Continue on to the next factory.
+			if(!satisfiesInputRequirement)
+				continue;
+
+			// Check if there is even enough space for the output.
+			bool satisfiesOutputRequirement = true;
+			for(const auto &output : production.output)
+				if(production.outputInCargo
+						&& (cargo.Free() < output.first->Mass() * output.second))
+				{
+					satisfiesOutputRequirement = false;
+					break;
+				}
+				else if(!production.outputInCargo
+						&& !attributes.CanAdd(*output.first, output.second))
+				{
+					satisfiesOutputRequirement = false;
+					break;
+				}
+			// Continue on to the next factory.
+			if(!satisfiesOutputRequirement)
+				continue;
+
+			// Next remove the input from the ship and add the output.
+			for(const auto &it : production.input)
+				production.inputFromCargo
+					? static_cast<void>(cargo.Remove(it.first, it.second))
+					: AddOutfit(it.first, -it.second);
+
+			for(const auto &it : production.output)
+				production.outputInCargo
+					? static_cast<void>(cargo.Add(it.first, it.second))
+					: AddOutfit(it.first, it.second);
+
+			productionSteps[i] = step;
+		}
+	}
 
 	// Finally, move the ship and create any movement visuals.
 	position += velocity;
