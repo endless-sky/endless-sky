@@ -149,18 +149,16 @@ mission "Paradise Cleaner Incident"
 
 
 
-mission "Local Politics"
+mission "Class Trip to Port"
 	minor
 	source
-		government "Free Worlds"
-		attributes "frontier"
+		attributes "south"
 		not attributes "station"
 	to offer
 		random < 1
 	on offer
 		conversation
-			`As you land on the pad, you note a general lack of presence around the spaceport. No one has scrambled to hook up your ship, nor has anybody else acknowledged your arrival. Instead, when you leave your ship, all you find is a note within the spaceport detailing where their "overlords" can find their yearly tribute.`
-			`	You decide against finding out where the inhabitants went.`
+			`A group of children waves at you as you step off your ship, marveling at the spacecraft on display as their teachers try and fail to hold their attention. You can see the fading of their uniform colors from afar as their group walks past, yet none of them look one bit displeased. While you make your way into the spaceport itself, you wonder how many of them may eventually own their own spaceship and fly across the stars.`
 				decline
 
 
@@ -197,6 +195,22 @@ mission "Forest Fire"
 
 
 
+mission "Local Politics"
+	minor
+	source
+		government "Free Worlds"
+		attributes "frontier"
+		not attributes "station"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`As you land on the pad, you note a general lack of presence around the spaceport. No one has scrambled to hook up your ship, nor has anybody else acknowledged your arrival. Instead, when you leave your ship, all you find is a note within the spaceport detailing where their "overlords" can find their yearly tribute.`
+			`	You decide against finding out where the inhabitants went.`
+				decline
+
+
+
 mission "Missed Mugging"
 	minor
 	source
@@ -208,6 +222,21 @@ mission "Missed Mugging"
 		conversation
 			`The sun has already set when you walk out of the spaceport, trying to find a nearby restaurant to sample their wares. Looking around, the only source of light comes from the building you just exited, a beacon within the sea of darkness.`
 			`	Choosing a random direction, you decide to walk down the quiet street, taking in the sights. You are interrupted as two men rush from an alley, pushing past you as they go. Before you can respond, you see a woman run out, clothes in disarray as she gives chase to the two men to no avail. Belatedly, you realize that they were holding a purse, long after they've disappeared, melting into the blackness beyond.`
+				decline
+
+
+
+mission "Sojourn Sunday Sales"
+	minor
+	source
+		government "Free Worlds"
+		attributes "urban"
+		not attributes "station"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`You blink in surprise as you enter the spaceport, watching throngs of people pushing their way through the human chains of queues wrapped around the commercial area. You scan your surroundings and notice advertisements upon advertisements of vacation locations, all at an absurdly high discount. Yet despite their vastly reduced prices, the advertised holidays still cost such large sums that a younger you could never have justified such expense.`
 				decline
 
 
