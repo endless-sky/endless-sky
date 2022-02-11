@@ -1587,7 +1587,7 @@ mission "FWC Pug 3C"
 				`	"Okay, let's give it a try!"`
 					accept
 				`	"Do you actually have any idea what you're doing?"`
-			`	"None whatsoever," she says. "I'm just making this up as I go along, based on what I know of hyperspace physics. And for all I know the Pug ships carry the same hyperspace disruption capabilities as this facility, and this is all for nought. But let's give it a try, okay?"`
+			`	"None whatsoever," she says. "I'm just making this up as I go along, based on what I know of hyperspace physics. And for all I know the Pug ships carry the same hyperspace disruption capabilities as this facility, and this is all for naught. But let's give it a try, okay?"`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Freya and the graviton reflector hasn't entered the system yet. Better depart and wait for it to arrive.`
