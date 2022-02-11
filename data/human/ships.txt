@@ -3100,8 +3100,8 @@ ship "Splinter"
 		
 	engine -15.5 115
 	engine 15.5 115
-	gun -11 -89 "Proton Gun"
-	gun 11 -89 "Proton Gun"
+	gun -12 -93 "Proton Gun"
+	gun 12 -93 "Proton Gun"
 	turret -13 42 "Blaster Turret"
 	turret 0 9 "Anti-Missile Turret"
 	turret 13 42 "Blaster Turret"
