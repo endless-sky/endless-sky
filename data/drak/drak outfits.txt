@@ -76,7 +76,7 @@ outfit "Drak Draining Field - Augmented"
 	"turret mounts" -1
 	"Drak Ammunition capacity" 10000000
 	weapon
-		ammo "Drak Ammunition"
+		ammo "Jump Drive" 0
 		"turret turn" 180
 		"velocity" 1
 		"lifetime" 1
@@ -127,7 +127,7 @@ outfit "Drak Anti-Missile Field - Augmented"
 	"turret mounts" -1
 	"Drak Ammunition capacity" 10000000
 	weapon
-		ammo "Drak Ammunition"
+		ammo "Jump Drive" 0
 		"velocity" 400
 		"lifetime" 1
 		"reload" 1
@@ -176,7 +176,7 @@ outfit "Drak Turret - Augmented"
 	"turret mounts" -1
 	"Drak Ammunition capacity" 10000000
 	weapon
-		ammo "Drak Ammunition"
+		ammo "Jump Drive" 0
 		sprite "projectile/drak bolt"
 			"frame rate" 13.318
 			"random start frame"
@@ -243,7 +243,7 @@ outfit "Drak Antimatter Cannon - Augmented"
 	"inscrutable" 1
 	"Drak Ammunition capacity" 10000000
 	weapon
-		ammo "Drak Ammunition"
+		ammo "Jump Drive" 0
 		"inaccuracy" 0
 		"velocity" 20
 		"lifetime" 1
@@ -322,13 +322,3 @@ effect "antimatter dust"
 	"random velocity" 12
 	"velocity scale" .1
 
-
-
-outfit "Drak Ammunition"
-	plural "Drak Ammunition"
-	category "Ammunition"
-	cost 25
-	thumbnail "outfit/unknown"
-	"mass" 0
-	"Drak Ammunition capacity" -1
-	description "All that you can tell about this lump of material is that it is used to power the augmented forms of an Archon's standard weaponry."
