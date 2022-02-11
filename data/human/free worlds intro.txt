@@ -491,7 +491,7 @@ mission "FW Katya 1"
 					goto `karate`
 				`	(Turn around slowly.)`
 	
-			`	You turn around and find yourself facing a woman in a Free Worlds uniform. The chevrons on her collar mark her as some sort of officer. She is grinning at you. "Beautifully done, Captain," she says. "Such restraint. Such remarkable levelheadedness. Not something I often see around here. If this thing were loaded, quite a few back country rubes in the last few months would've had their brains blown open before I could even get around to recruiting them." She lowers the gun.`
+			`	You turn around and find yourself facing a woman in a Free Worlds uniform. The chevrons on her collar mark her as some sort of officer. She is grinning at you. "Beautifully done, Captain," she says. "Such restraint. Such remarkable levelheadedness. Not something I often see around here. If this thing were loaded, quite a few backcountry rubes in the last few months would've had their brains blown open before I could even get around to recruiting them." She lowers the gun.`
 			choice
 				`	"You mean this was some sort of test? You're not trying to mug me?"`
 					goto `explanation`

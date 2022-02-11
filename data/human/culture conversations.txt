@@ -144,7 +144,7 @@ mission "Paradise Cleaner Incident"
 		conversation
 			`Visiting the Paradise spaceports is always an interesting experience for someone from abroad. Nowhere else is class such an ingrained component of daily life. You find yourself noticing people who seem to be invisible to most of those going about their business, but they never catch your eye. They always appear to be doing their utmost to avoid notice.`
 			`	You haven't noticed children that look poor here in the past, but on this occasion you spot one as he knocks over a mop and bucket... right in front of a businessman and his family rolling their bags through the spaceport. You've never seen someone go so deathly pale as the cleaner, the boy's mother, who scurries to fix things before the man even draws a breath.`
-			`	A pair of security officers appear almost immediately, before you could intercede one way or the other, as the man and his family begin to complain. One officer provides assurances as the other supervises the cleaner, who quickly hurries her child out of harms way.`
+			`	A pair of security officers appear almost immediately, before you could intercede one way or the other, as the man and his family begin to complain. One officer provides assurances as the other supervises the cleaner, who quickly hurries her child out of harm's way.`
 				decline
 
 
