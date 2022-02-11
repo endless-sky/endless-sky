@@ -1227,7 +1227,7 @@ mission "FW Alphas 1.1"
 			`	While Nguyen holds the creature still, one of the Navy troops puts a gun to its head and pulls the trigger. Not even an Alpha can survive that; the creature goes limp. Now that you can get a good look at it, you can see that it does indeed have green skin.`
 				goto end
 			label end
-			`	Nguyen gets shakily to his feet; he looks stunned and very pale. "Thank you," he says. The sounds of gunfire within the factory eventually dies down. "We'll continue to patrol the city," says Nguyen, "in case there are more of them. Then I'll meet you in the spaceport." He heads off back into the city.`
+			`	Nguyen gets shakily to his feet; he looks stunned and very pale. "Thank you," he says. The sounds of gunfire within the factory eventually die down. "We'll continue to patrol the city," says Nguyen, "in case there are more of them. Then I'll meet you in the spaceport." He heads off back into the city.`
 
 
 
@@ -1327,7 +1327,7 @@ mission "FW Alphas 1.1A"
 			`	"Yes," he says. "Silly, isn't it? Anyway, this is my job to deal with; you need to go find Danforth."`
 				goto end
 			label kill
-			`	"Well," he says, "I envy you for living in a universe where decision like this are easy. But to me it's still a painful choice to make. Anyway, that's my problem to deal with, not yours; you need to go find Danforth."`
+			`	"Well," he says, "I envy you for living in a universe where decisions like this are easy. But to me it's still a painful choice to make. Anyway, that's my problem to deal with, not yours; you need to go find Danforth."`
 				goto end
 			label live
 			`	"The Alphas were originally bred to be super-soldiers," he says, "a weapon in the hands of a despotic government. As much as I hate to admit it, there are certain branches of the Republic who would love to get their hands on a small army of impressionable Alpha children. Far better for them to die than for that to happen. Anyway, that's my job to deal with; you need to go find Danforth."`
