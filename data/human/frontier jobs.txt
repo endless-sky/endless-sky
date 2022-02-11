@@ -282,7 +282,7 @@ mission "Small Pirate gambling"
 					goto shoot
 				`	(Grab the pot and run!)`
 					goto run
-				`	(Let them fleece you.)`
+				`	(Let them fleece me.)`
 					goto lose
 
 			label shoot
