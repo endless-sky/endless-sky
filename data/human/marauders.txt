@@ -968,8 +968,8 @@ ship "Marauder Splinter"
 	
 	engine -15.5 115
 	engine 15.5 115
-	gun -12 -93 "Proton Gun"
-	gun 12 -93 "Proton Gun"
+	gun -12 -93 "Plasma Cannon"
+	gun 12 -93 "Plasma Cannon"
 	turret -13 42 "Heavy Laser Turret"
 	turret 0 9 "Heavy Anti-Missile Turret"
 	turret 13 42 "Heavy Laser Turret"
