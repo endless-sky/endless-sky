@@ -301,7 +301,7 @@ interface "load menu"
 		center -420 155
 		dimensions 120 30
 	active if "pilot selected"
-	button D "Delete"
+	button d "_Delete"
 		center -285 155
 		dimensions 90 30
 	
