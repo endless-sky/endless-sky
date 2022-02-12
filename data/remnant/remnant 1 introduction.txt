@@ -2103,7 +2103,7 @@ mission "Remnant: Return the Samples 2"
 	npc
 		government "Drak"
 		system "Nenia"
-		personality staying heroic nemesis uninterested
+		personality staying heroic nemesis uninterested frugal
 		ship "Archon" "Lifted Lorax"
 	on stopover
 		conversation
