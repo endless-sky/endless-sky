@@ -3098,13 +3098,13 @@ ship "Splinter"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -15 115
-	engine 15 115
-	gun -15 -80 "Proton Gun"
-	gun 15 -80 "Proton Gun"
-	turret -17 -28 "Blaster Turret"
-	turret 0 -28 "Anti-Missile Turret"
-	turret 17 -28 "Blaster Turret"
+	engine -15.5 115
+	engine 15.5 115
+	gun -12 -93 "Proton Gun"
+	gun 12 -93 "Proton Gun"
+	turret -13 42 "Blaster Turret"
+	turret 0 9 "Anti-Missile Turret"
+	turret 13 42 "Blaster Turret"
 	leak "leak" 60 50
 	leak "flame" 40 80
 	leak "big leak" 90 30
