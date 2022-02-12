@@ -1406,13 +1406,9 @@ Files:
  images/land/fields25*
  images/land/fields26*
  images/land/fields27*
- images/land/forest11*
  images/land/hills10*
- images/land/hills11*
- images/land/hills12*
  images/land/sea20*
  images/land/sea21*
- images/land/sea22*
  images/land/water14*
  images/land/water15*
  images/land/water16*
@@ -1420,8 +1416,6 @@ Files:
  images/land/water18*
  images/land/water19*
  images/land/water20*
- images/land/water21*
- images/land/water22*
 Copyright: Peter van der Meer (peter.vd.meer@gmail.com)
 License: CC-BY-SA-4.0
 
