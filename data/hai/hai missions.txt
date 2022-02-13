@@ -91,7 +91,7 @@ mission "Discovered Hai Space"
 	landing
 	invisible
 	source
-		government "Hai"
+		government "Hai" "Hai (Unfettered)"
 	on offer
 		event "label hai space"
 		fail
@@ -107,16 +107,6 @@ mission "Discovered Wormhole Alpha"
 		never
 	on enter "Ultima Thule"
 		set "wormhole alpha found"
-		fail
-
-# Allows setting of the "hai discovered" condition even if first contact has already occurred
-mission "Hai Discovered Patch"
-	landing
-	invisible
-	source
-		government "Hai" "Hai (Unfettered)"
-	on offer
-		set "discovered hai"
 		fail
 
 

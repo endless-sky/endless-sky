@@ -36,7 +36,9 @@ mission "First Contact: Wanderer"
 	source
 		attributes "wanderer"
 	to offer
-		has "discovered hai"
+		or
+			has "First Contact: Hai: offered"
+			has "First Contact: Unfettered: offered"
 	to complete
 		has "Wanderers: Diplomacy: offered"
 	on offer
