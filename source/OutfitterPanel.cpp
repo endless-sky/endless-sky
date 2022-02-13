@@ -579,7 +579,7 @@ bool OutfitterPanel::CanSell(bool toStorage) const
 	if(!planet || !selectedOutfit)
 		return false;
 
-	if(selectedOutfit->Get("unsellable") && !toStorage)
+	if(selectedOutfit->CanSell() && !toStorage)
 		return false;
 
 	if(player.Cargo().Get(selectedOutfit))
