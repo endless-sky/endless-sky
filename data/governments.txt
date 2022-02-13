@@ -86,7 +86,6 @@ government "Deep Security"
 	swizzle 0
 	"player reputation" 1
 	"attitude toward"
-		"Devil's Legion" -.2
 		"Merchant" .5
 		"Pirate" -.2
 	"friendly hail" "friendly deep"
@@ -364,7 +363,6 @@ government "Merchant"
 	
 	"player reputation" 10
 	"attitude toward"
-		"Devil's Legion" -.2
 		"Pirate" -.2
 		"Korath" -.2
 	"bribe" .05
@@ -435,7 +433,6 @@ government "Pirate"
 	"player reputation" -10
 	"attitude toward"
 		"Author" -.01
-		"Devil's Legion"
 		"Hai" -.01
 		"Hai (Wormhole Access)" -.01
 		"Korath" -.01
@@ -565,7 +562,6 @@ government "Republic"
 	"player reputation" 2
 	"attitude toward"
 		"Alpha" -.3
-		"Devil's Legion" -.3
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3
