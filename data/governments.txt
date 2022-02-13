@@ -86,6 +86,7 @@ government "Deep Security"
 	swizzle 0
 	"player reputation" 1
 	"attitude toward"
+		"Devil's Legion" -.2
 		"Merchant" .5
 		"Pirate" -.2
 	"friendly hail" "friendly deep"
@@ -93,6 +94,19 @@ government "Deep Security"
 
 government "Derelict"
 	"fine" 0
+
+government "Devil's Legion"
+	color .78 0 0
+	
+	"player reputation" -1000
+	"attitude toward"
+		"Deep Security" -.01
+		"Merchant" -.01
+		"Pirate" -.01
+		"Republic" -.01
+	"bribe" 0
+	"fine" 0
+	"hostile hail" "hostile pirate"
 
 government "Drak"
 	swizzle 5
@@ -121,6 +135,7 @@ government "Free Worlds"
 	
 	"player reputation" 1
 	"attitude toward"
+		"Alpha" -.4
 		"Merchant" .3
 		"Militia" .3
 		"Pirate" -.4
@@ -362,6 +377,7 @@ government "Merchant"
 	
 	"player reputation" 10
 	"attitude toward"
+		"Devil's Legion" -.2
 		"Pirate" -.2
 		"Korath" -.2
 	"bribe" .05
@@ -432,10 +448,31 @@ government "Pirate"
 	"player reputation" -10
 	"attitude toward"
 		"Author" -.01
+		"Devil's Legion"
 		"Hai" -.01
 		"Hai (Wormhole Access)" -.01
 		"Korath" -.01
 		"Merchant" -.1
+		"Pirate (Rival)" -.01
+		"Syndicate" -.01
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly pirate"
+	"hostile hail" "hostile pirate"
+	raid "pirate raid"
+
+government "Pirate (Rival)"
+	swizzle 6
+	color .78 0 0
+	
+	"player reputation" -10
+	"attitude toward"
+		"Author" -.01
+		"Hai" -.01
+		"Hai (Wormhole Access)" -.01
+		"Korath" -.01
+		"Merchant" -.1
+		"Pirate" -.01
 		"Syndicate" -.01
 	"bribe" .05
 	"fine" 0
@@ -541,6 +578,7 @@ government "Republic"
 	"player reputation" 2
 	"attitude toward"
 		"Alpha" -.3
+		"Devil's Legion" -.3
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3

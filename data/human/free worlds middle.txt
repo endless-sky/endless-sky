@@ -1184,7 +1184,7 @@ mission "FW Alphas 1.1"
 		ship "Falcon (Plasma)" "F.S. Alder"
 		ship "Falcon" "F.S. Starry Warrior"
 	npc kill
-		government "Pirate"
+		government "Alpha"
 		personality heroic staying target
 		system Graffias
 		ship "Leviathan (Heavy)" "Dread Lord"
@@ -1275,7 +1275,7 @@ mission "FW Alphas 1.2"
 		ship "Falcon (Plasma)" "F.S. Alder"
 		ship "Falcon" "F.S. Starry Warrior"
 	npc kill
-		government "Pirate"
+		government "Alpha"
 		personality heroic staying target
 		system Graffias
 		ship "Leviathan (Heavy)" "Dread Lord"
@@ -1794,14 +1794,14 @@ mission "FW Albatross 2A"
 	npc kill
 		personality staying plunders disables heroic nemesis target
 		system Orvala
-		government Pirate
+		government Bounty
 		ship "Bastion (Heavy)" "Dread"
 		dialog "You have destroyed Ryk Bartlett's ship. Hopefully now the elders on Albatross will be more inclined to bargain with the Free Worlds."
 	
 	npc
 		personality staying plunders disables
 		system Orvala
-		government Pirate
+		government Bounty
 		fleet "Small Southern Pirates" 3
 
 

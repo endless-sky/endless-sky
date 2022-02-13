@@ -328,19 +328,19 @@ mission "Deep: Mystery Cubes 0"
 					decline
 	
 	npc
-		government "Pirate"
+		government "Devil's Legion"
 		personality disables plunders harvests
 		system
 			distance 5 10
 		fleet "Large Northern Pirates"
 	npc
-		government "Pirate"
+		government "Devil's Legion"
 		personality disables plunders harvests
 		system
 			distance 10 15
 		fleet "Large Northern Pirates"
 	npc
-		government "Pirate"
+		government "Devil's Legion"
 		personality disables plunders harvests
 		system
 			distance 15 20
@@ -526,7 +526,7 @@ mission "Deep: Mystery Cubes 3"
 				launch
 	
 	npc kill
-		government "Pirate"
+		government "Devil's Legion"
 		personality staying heroic unconstrained target harvests plunders
 		fleet
 			names "pirate"
@@ -608,7 +608,7 @@ mission "Deep: Mystery Cubes 4"
 				"Lance" 4
 				"Frigate" 2
 	npc evade
-		government "Pirate"
+		government "Devil's Legion"
 		personality staying heroic unconstrained target plunders harvests
 		system destination
 		fleet
@@ -1058,14 +1058,18 @@ mission "Deep: Project Hawking"
 		dialog `You have arrived on <planet>, but you do not have all the supplies needed for "Project Hawking." Return to <stopovers> to collect all of the required cargo.`
 	
 	npc
-		government "Independent"
+		government "Independent (Killable)"
 		personality staying
 		system "Naos"
 		ship "Marauder Quicksilver (Engines)" "Gusoyn"
 	
+	on accept
+		"reputation: Independent (Killable)" = 10
+	
 	on visit
 		dialog `You arrive on <planet>, but realize that your escort carrying the scientists and their supplies has not arrived yet. Better depart and wait for your escorts to enter the system.`
 	on complete
+		"reputation: Independent (Killable)" = 10
 		payment 1500000
 		log `Helped gather materials for "Project Hawking," an energy and weapons research project being conducted by scientists of the Deep. A pirate Quicksilver attacked the building where the supplies were being placed and crashlanded into the ground, triggering an earthquake.`
 		conversation
@@ -1123,7 +1127,7 @@ mission "Deep: Project Hawking: Carbuncle"
 	to fail
 		has "Deep: Project Hawking: done"
 	npc kill
-		government "Independent"
+		government "Independent (Killable)"
 		personality waiting
 		ship "Marauder Splinter (Engines)" "Abaddon"
 	on offer
@@ -1198,7 +1202,7 @@ mission "Deep: Project Hawking: Prime"
 	to fail
 		has "Deep: Project Hawking: done"
 	npc kill
-		government "Independent"
+		government "Independent (Killable)"
 		personality waiting
 		ship "Marauder Raven (Engines)" "Krampus"
 	on offer
@@ -1238,7 +1242,7 @@ mission "Deep: Project Hawking: Vinci"
 	to fail
 		has "Deep: Project Hawking: done"
 	npc kill
-		government "Independent"
+		government "Independent (Killable)"
 		personality waiting
 		ship "Marauder Manta (Engines)" "Valac"
 	on offer
@@ -2029,7 +2033,7 @@ mission "Deep: Scientist Rescue 0: Pirates"
 			has "Deep: Scientist Rescue 3A: done"
 			has "Deep: Scientist Rescue 3B: offered"
 	npc kill
-		government "Pirate"
+		government "Devil's Legion"
 		personality nemesis staying
 		system Arneb
 		ship "Leviathan (Hai Engines)" "Barbas"
@@ -2060,7 +2064,7 @@ mission "Deep: Scientist Rescue 0: Haven Pirates Backup"
 		has "Deep: Scientist Rescue 0: Pirates: done"
 		has "Deep: Scientist Rescue 0: active"
 	npc evade
-		government "Pirate"
+		government "Devil's Legion"
 		personality staying harvests plunders
 			confusion 20
 		system "Arneb"
@@ -2141,7 +2145,7 @@ mission "Deep: Scientist Rescue 1: Pirates"
 			has "Deep: Scientist Rescue 3A: done"
 			has "Deep: Scientist Rescue 3B: offered"
 	npc kill
-		government "Pirate"
+		government "Devil's Legion"
 		personality nemesis staying
 		system "Arneb"
 		ship "Firebird (Hai Shields)" "Murmur"
@@ -2322,7 +2326,7 @@ mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 	to fail
 		has "Deep: Scientist Rescue 2: done"
 	npc kill
-		government "Pirate"
+		government "Devil's Legion"
 		personality staying nemesis
 		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
 		dialog
@@ -2342,7 +2346,7 @@ mission "Deep: Scientist Rescue 2: More Pirates"
 			has "Deep: Scientist Rescue 3A: done"
 			has "Deep: Scientist Rescue 3B: offered"
 	npc kill
-		government "Pirate"
+		government "Devil's Legion"
 		personality staying nemesis
 		ship "Leviathan (Hai Weapons)" "Furfur"
 		ship "Leviathan (Hai Weapons)" "Pithius"
@@ -2382,7 +2386,7 @@ mission "Deep: Scientist Rescue 3A"
 				accept
 	
 	npc kill
-		government "Pirate"
+		government "Devil's Legion"
 		personality staying nemesis
 		system "Arneb"
 		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
