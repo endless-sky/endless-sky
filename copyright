@@ -25,7 +25,6 @@ Files:
  images/ship/mfury*
  images/ship/mmanta*
  images/ship/mquicksilver*
- images/ship/msplinter*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
@@ -1327,6 +1326,10 @@ Files:
  images/thumbnail/raven*
  images/ship/mraven*
  images/thumbnail/mraven*
+ images/ship/msplinter*
+ images/ship/splinter*
+ images/thumbnail/msplinter*
+ images/thumbnail/splinter*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
 
@@ -1371,6 +1374,17 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/ship/aerie*
+ images/ship/bactrian*
+ images/ship/mule*
+ images/thumbnail/aerie*
+ images/thumbnail/bactrian*
+ images/thumbnail/mule*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
  images/effect/ember?tear/ember?tear?fire*
  images/effect/ember?tear/ember?tear?impact*
  images/effect/ember?tear/ember?tear?vortex*
@@ -1384,7 +1398,37 @@ Copyright: X-27 (youtube.com/x-27yt)
 License: CC-BY-SA-3.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
+Files:
+ images/land/fields16*
+ images/land/fields17*
+ images/land/fields18*
+ images/land/fields19*
+ images/land/fields20*
+ images/land/fields21*
+ images/land/fields22*
+ images/land/fields23*
+ images/land/fields24*
+ images/land/fields25*
+ images/land/fields26*
+ images/land/fields27*
+ images/land/hills10*
+ images/land/sea20*
+ images/land/sea21*
+ images/land/water14*
+ images/land/water15*
+ images/land/water16*
+ images/land/water17*
+ images/land/water18*
+ images/land/water19*
+ images/land/water20*
+Copyright: Peter van der Meer (peter.vd.meer@gmail.com)
+License: CC-BY-SA-4.0
 
+Files:
+ images/outfit/jump?drive*
+ images/outfit/jump?drive?(broken)*
+Copyright: Scrinarii1337#0001
+License: CC-BY-SA-4.0
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify

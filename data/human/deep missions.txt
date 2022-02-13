@@ -759,7 +759,7 @@ mission "Deep: TMBR 1"
 			`	"Captain <last>, it's been a while! We've been having a great time with the peaceful squirrels ever since you dropped us off. It's the craziest experience we've ever had." He regales you with a number of adventures the band has been on since they came to Hai space, and how they were all surprised that even in such an idyllic place war was still a reality. "Say, what brings you here?"`
 			`	He listens intently to your story of the scientists on <planet>, but his brow furrows when you mention the rumor of imprisonment by the Republic.`
 			`	"Maybe we've been away long enough. I thought there would be some rumors or recordings that made it back to the Republic from here, but this place is a pretty well-kept secret, so perhaps not. Maybe it's time to go back to the land of the humans."`
-			`	Ulrich gathers up the rest of the band and they pack up their supplies. You chart a course for <destination> as the band load their musical equipment on your ship and get ready for the long ride back to human space.`
+			`	Ulrich gathers up the rest of the band and they pack up their supplies. You chart a course for <destination> as they load their musical equipment on your ship and get ready for the long ride back to human space.`
 				accept
 	
 	on visit
