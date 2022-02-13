@@ -91,7 +91,7 @@ mission "Discovered Hai Space"
 	landing
 	invisible
 	source
-		government "Hai"
+		government "Hai" "Hai (Unfettered)"
 	on offer
 		event "label hai space"
 		fail
@@ -186,7 +186,7 @@ mission "First Contact: Unfettered"
 			
 			label everyone
 			`	"We fight to defend ourselves from extinction," it says.`
-			`	"Extinction'" you ask. "Do you mean that you are not the same species as the other Hai?"`
+			`	"Extinction?" you ask. "Do you mean that you are not the same species as the other Hai?"`
 			`	"Indeed," it says. "We are all that is left of the original Hai. Unaltered. The conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
 				goto masters
 			
@@ -425,6 +425,8 @@ mission "Unfettered Jump Drive 3"
 				`	"Can you tell me what you are using the jump drives for?"`
 				`	"Thank you, I will certainly bring more of them when I am able."`
 					accept
+			apply
+				set "unfettered know of wanderers"
 			`	After a brief and hushed discussion in their own language, one of the leaders says, "You have proven your worth, so we will share our secret. The Hai once owned many worlds on the galactic fringe, a territory we can only visit using the jump drive. Those worlds are fruitful and nearly uninhabited. We will reclaim them as our own, and there will be food there to feed the Unfettered for many thousands of years to come."`
 			branch know
 				has "First Contact: Wanderer: offered"
