@@ -241,6 +241,44 @@ mission "Sojourn Sunday Sales"
 
 
 
+
+
+
+Marksman Dump
+
+
+
+
+
+Pulling the rental car into a parking lot, you watch as a massive turret turned towards the sky, its single cannon poised to fire at seemingly nothing. You find a plaque placed conveniently nearby dedicating the tower and five others like it, offering protection and deterance against piracy until the recent years.
+
+You wonder how well the towers would do if they were to be used again.
+
+
+
+
+
+
+A roadblock stops your path as you make your way towards the city, slowing down to see what the commotion was about. Police wave past car after car, looking into the vehicles until a sedan gets pulled over to the side. The driver seemed distressed, refusing to open the boot even when he is being detained, his face pale when a little girl is found inside.
+
+You're not sure how to feel about this when the police waves you off, blocking your view from the scene.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 mission "Tarazed Ship Christening"
 	minor
 	source "Wayfarer"
