@@ -10,8 +10,8 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef PERMISSIONS_H_
-#define PERMISSIONS_H_
+#ifndef ESKY_PERMISSIONS_H_
+#define ESKY_PERMISSIONS_H_
 
 #include "DataNode.h"
 
