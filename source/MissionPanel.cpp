@@ -686,7 +686,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos,
 				Point(SIDE_WIDTH - 10., 20.),
 				highlight);
 
-		bool canAccept = (&list == &available ? it->HasSpace(player) : IsSatisfied(*it));
+		bool canAccept = (&list == &available ? it->CanAccept(player) : IsSatisfied(*it));
 		font.Draw({it->Name(), {SIDE_WIDTH - 11, Truncate::BACK}},
 			pos, (!canAccept ? dim : isSelected ? selected : unselected));
 	}
@@ -731,7 +731,7 @@ bool MissionPanel::CanAccept() const
 	if(availableIt == available.end())
 		return false;
 
-	return availableIt->HasSpace(player);
+	return availableIt->CanAccept(player);
 }
 
 

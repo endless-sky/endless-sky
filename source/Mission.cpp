@@ -703,6 +703,20 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 
 
 
+bool Mission::CanAccept(const PlayerInfo &player) const
+{
+	auto it = actions.find(OFFER);
+	if(it != actions.end() && !it->second.CanBeDone(player))
+		return false;
+
+	it = actions.find(ACCEPT);
+	if(it != actions.end() && !it->second.CanBeDone(player))
+		return false;
+	return HasSpace(player);
+}
+
+
+
 bool Mission::HasSpace(const PlayerInfo &player) const
 {
 	int extraCrew = 0;
