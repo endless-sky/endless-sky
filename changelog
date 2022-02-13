@@ -26,7 +26,7 @@ Version 0.9.15:
       * The hidden tag on systems can now be properly removed by events. (@Amazinite)
       * Ships with fuel generation now regenerate their fuel when landing on an uninhabited planet. (@quyykk)
       * Outfits with the "atrocity" attribute are now correctly scanned by planets. (@quyykk)
-      * A ship variant's hardpoint now get cleared when the ship's outfits are redefined. (@quyykk)
+      * A ship variant's hardpoints now get cleared when the ship's outfits are redefined. (@quyykk)
       * Fixed an out-of-bounds access when generating random angles from large inputs. (@quyykk)
       * Fixed commodities being over-sold when making space for a newly accepted mission with cargo. (@DownsB)
       * The game should now properly detect if the computer is compatible with adaptive vsync. (@quyykk)
@@ -66,7 +66,7 @@ Version 0.9.15:
       * Added new author hails. (@pilover100)
       * Added new hails to MCO's person ship. (@MCOfficer)
       * Added a new "Ember Tear" spinal weapon to the Heron person ship. (@Zitchas, X-27#8884)
-      * Added over 80 new landscape images, replacing all landscape images there were previously duplicated across multiple planets. (@roadrunner56)
+      * Added over 80 new landscape images, replacing all landscape images that were previously duplicated across multiple planets. (@roadrunner56)
       * Added 25 spare landscape images. (@petervdmeer)
       * The player can now attempt to ask the Unfettered for help with communicating with the Wanderers. (@Anarchist2)
     * Mission changes:
@@ -116,7 +116,7 @@ Version 0.9.15:
       * The Remnant now become hostile when scanned and lose reputation on a completed scan or when a drone is destroyed. (@Zitchas)
       * Standardized the habitable range of all systems given the star of each system. Some systems have had their planets moved around to compensate for this. (@Amazinite)
       * Readded the disables personality to Remnant fleets. (@Zitchas)
-      * The Mereti will now become lose reputation if the player attacks them after they've been made friendly. (@Hurleveur)
+      * The Mereti will no longer remain neutral if the player attacks them after they've been made friendly. (@Hurleveur)
   * Game mechanics:
     * New mechanics:
       * Expanded the total number of swizzles from 7 to 27. (@Amazinite)
@@ -233,7 +233,7 @@ Version 0.9.15:
     * Removed Panel dependencies from Test.cpp / Test.h. (@petervdmeer)
     * Added a spellchecking CI with codespell. (@quyykk)
     * Adjusted the test dates on certain test data to avoid test failure. (@Terin)
-    * Warnings compile errors only for release builds. (@quyykk)
+    * Warnings compile to errors only for release builds. (@quyykk)
     * Deduplicated parts of the CICD pipeline. (@tehhowch)
     * Builds now use SCons 4.2.0 or newer on all Linux platforms. (@tehhowch)
     * Integration Tests now print out a call-stack for failing. (@petervdmeer)
