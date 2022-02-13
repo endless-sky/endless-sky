@@ -297,9 +297,10 @@ mission "Ask the Hai about the Unfettered"
 
 
 mission "Unfettered Jump Drive 1"
+	minor
+	landing
 	name "More Jump Drives"
 	description "The Unfettered Hai have promised you rich rewards if you bring them more jump drives."
-	landing
 	to offer
 		has "First Contact: Unfettered: offered"
 		not "Wanderers: Jump Drive Source: active"
@@ -356,9 +357,10 @@ mission "Unfettered Jump Drive 1"
 
 
 mission "Unfettered Jump Drive 2"
+	minor
+	landing
 	name "More Jump Drives"
 	description "The Unfettered Hai have promised you rich rewards, and more information about their plans, if you bring them more jump drives."
-	landing
 	to offer
 		has "Unfettered Jump Drive 1: offered"
 		not "Wanderers: Jump Drive Source: active"
@@ -398,9 +400,10 @@ mission "Unfettered Jump Drive 2"
 
 
 mission "Unfettered Jump Drive 3"
+	minor
+	landing
 	name "More Jump Drives"
 	description "If you find more jump drives, you can sell them to the Unfettered Hai for considerably more money than they are worth elsewhere."
-	landing
 	to offer
 		has "Unfettered Jump Drive 2: offered"
 		not "Wanderers: Jump Drive Source: active"
