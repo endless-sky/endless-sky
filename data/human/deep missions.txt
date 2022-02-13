@@ -328,19 +328,19 @@ mission "Deep: Mystery Cubes 0"
 					decline
 	
 	npc
-		government "Devil's Legion"
+		government "Pirate"
 		personality disables plunders harvests
 		system
 			distance 5 10
 		fleet "Large Northern Pirates"
 	npc
-		government "Devil's Legion"
+		government "Pirate"
 		personality disables plunders harvests
 		system
 			distance 10 15
 		fleet "Large Northern Pirates"
 	npc
-		government "Devil's Legion"
+		government "Pirate"
 		personality disables plunders harvests
 		system
 			distance 15 20
@@ -526,7 +526,7 @@ mission "Deep: Mystery Cubes 3"
 				launch
 	
 	npc kill
-		government "Devil's Legion"
+		government "Pirate"
 		personality staying heroic unconstrained target harvests plunders
 		fleet
 			names "pirate"
@@ -608,7 +608,7 @@ mission "Deep: Mystery Cubes 4"
 				"Lance" 4
 				"Frigate" 2
 	npc evade
-		government "Devil's Legion"
+		government "Pirate"
 		personality staying heroic unconstrained target plunders harvests
 		system destination
 		fleet
@@ -2033,7 +2033,7 @@ mission "Deep: Scientist Rescue 0: Pirates"
 			has "Deep: Scientist Rescue 3A: done"
 			has "Deep: Scientist Rescue 3B: offered"
 	npc kill
-		government "Devil's Legion"
+		government "Pirate"
 		personality nemesis staying
 		system Arneb
 		ship "Leviathan (Hai Engines)" "Barbas"
@@ -2064,7 +2064,7 @@ mission "Deep: Scientist Rescue 0: Haven Pirates Backup"
 		has "Deep: Scientist Rescue 0: Pirates: done"
 		has "Deep: Scientist Rescue 0: active"
 	npc evade
-		government "Devil's Legion"
+		government "Pirate"
 		personality staying harvests plunders
 			confusion 20
 		system "Arneb"
@@ -2145,7 +2145,7 @@ mission "Deep: Scientist Rescue 1: Pirates"
 			has "Deep: Scientist Rescue 3A: done"
 			has "Deep: Scientist Rescue 3B: offered"
 	npc kill
-		government "Devil's Legion"
+		government "Pirate"
 		personality nemesis staying
 		system "Arneb"
 		ship "Firebird (Hai Shields)" "Murmur"
@@ -2326,7 +2326,7 @@ mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 	to fail
 		has "Deep: Scientist Rescue 2: done"
 	npc kill
-		government "Devil's Legion"
+		government "Pirate"
 		personality staying nemesis
 		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
 		dialog
@@ -2346,7 +2346,7 @@ mission "Deep: Scientist Rescue 2: More Pirates"
 			has "Deep: Scientist Rescue 3A: done"
 			has "Deep: Scientist Rescue 3B: offered"
 	npc kill
-		government "Devil's Legion"
+		government "Pirate"
 		personality staying nemesis
 		ship "Leviathan (Hai Weapons)" "Furfur"
 		ship "Leviathan (Hai Weapons)" "Pithius"
@@ -2386,7 +2386,7 @@ mission "Deep: Scientist Rescue 3A"
 				accept
 	
 	npc kill
-		government "Devil's Legion"
+		government "Pirate"
 		personality staying nemesis
 		system "Arneb"
 		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
