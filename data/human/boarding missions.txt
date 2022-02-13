@@ -318,7 +318,7 @@ mission "Boarding Hostile Ship (Small)"
 	to offer
 		random < 7
 	source
-		government "Pirate" "Pirate (Rival)" "Devil's Legion" "Merchant"
+		government "Pirate" "Pirate (Rival)" "Merchant"
 		category "Interceptor" "Light Warship" "Transport" "Light Freighter"
 	on offer
 		payment 50000
@@ -332,7 +332,7 @@ mission "Boarding Hostile Ship (Medium)"
 	to offer
 		random < 5
 	source
-		government "Pirate" "Pirate (Rival)" "Devil's Legion" "Merchant"
+		government "Pirate" "Pirate (Rival)" "Merchant"
 		category "Medium Warship" "Heavy Freighter"
 	on offer
 		payment 100000
@@ -346,7 +346,7 @@ mission "Boarding Hostile Ship (Large)"
 	to offer
 		random < 3
 	source
-		government "Pirate" "Pirate (Rival)" "Devil's Legion" "Merchant"
+		government "Pirate" "Pirate (Rival)" "Merchant"
 		category "Heavy Warship"
 	on offer
 		payment 150000
