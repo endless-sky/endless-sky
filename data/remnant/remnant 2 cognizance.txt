@@ -1058,7 +1058,7 @@ mission "Remnant: Cognizance 23"
 
 mission "Remnant: Cognizance 24"
 	name "Equipment to Ssil Vida"
-	description "Dusk needs a load of <cargo> taken to Ssil Vida."
+	description "Dusk needs a load of <cargo> picked up from Esquiline, then taken to Ssil Vida."
 	cargo "Outpost Equipment" 11
 	passengers 1
 	source
