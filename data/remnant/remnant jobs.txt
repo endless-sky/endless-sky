@@ -493,7 +493,7 @@ mission "Remnant: Rescue 4"
 	job
 	repeat
 	name "Distress Signal: Graveyard"
-	description "A distress signal has been received from the <npc> in the Graveyard. Hurry there, and help return them safely to <destination>."
+	description "A distress signal has been received from the <npc> in the Graveyard. Follow the telemetry data to find them, and help return them safely to <destination>."
 	source
 		government "Remnant"
 	to offer
