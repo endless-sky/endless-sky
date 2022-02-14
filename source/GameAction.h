@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define GAME_ACTION_H_
 
 #include "ConditionSet.h"
+#include "ShipManager.h"
 
 #include <cstdint>
 #include <map>
@@ -59,7 +60,7 @@ public:
 	int64_t Payment() const noexcept;
 	int64_t Fine() const noexcept;
 	const std::map<const Outfit *, int> &Outfits() const noexcept;
-	const std::map<const Ship *, std::tuple<std::string, int, bool>> &Ships() const noexcept;
+	const std::map<const Ship *, ShipManager> &Ships() const noexcept;
 
 	// Perform this action.
 	void Do(PlayerInfo &player, UI *ui) const;
@@ -75,7 +76,7 @@ private:
 	std::map<std::string, std::map<std::string, std::string>> specialLogText;
 
 	std::map<const GameEvent *, std::pair<int, int>> events;
-	std::map<const Ship *, std::tuple<std::string, int, bool>> giftShips;
+	std::map<const Ship *, ShipManager> giftShips;
 	std::map<const Outfit *, int> giftOutfits;
 
 	int64_t payment = 0;

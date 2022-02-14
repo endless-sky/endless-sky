@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameAction.h"
 #include "LocationFilter.h"
 #include "Phrase.h"
+#include "ShipManager.h"
 
 #include <map>
 #include <memory>
@@ -78,7 +79,7 @@ private:
 	// Outfits that are required to be owned (or not) for this action to be performable.
 	std::map<const Outfit *, int> requiredOutfits;
 	// Same for ships, with an added attribute of if the requirement is constrained to this system.
-	std::map<const Ship *, std::tuple<std::string, int, bool>> requiredShips;
+	std::map<const Ship *, ShipManager> requiredShips;
 
 	// Tasks this mission action performs, such as modifying accounts, inventory, or conditions.
 	GameAction action;

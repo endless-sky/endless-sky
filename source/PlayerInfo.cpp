@@ -948,25 +948,28 @@ void PlayerInfo::SellShip(const Ship *selected)
 
 
 
-// Take the ship from the player.
+// Take the ship from the player, if a model is specified this will permanently remove outfits in said model,
+// instead of allowing the player to buy them back.
 void PlayerInfo::TakeShip(const Ship *ship, const Ship *model)
 {
 	for(auto it = ships.begin(); it != ships.end(); ++it)
 		if(it->get() == ship)
 		{
-			if(model)
+			// Record the transfer of this ship in the depreciation and stock info.
+			stockDepreciation.Buy(*ship, date.DaysSinceEpoch(), &depreciation);
+			for(const auto &it : ship->Outfits())
 			{
-				// Record the transfer of this ship in the depreciation and stock info.
-				stockDepreciation.Buy(*ship, date.DaysSinceEpoch(), &depreciation);
-				for(const auto &it : ship->Outfits())
+				// We only take all of the outfits specified in the model without putting them in the stock.
+				// The extra outfits of this ship are transfered into the stock.
+				if(model)
 				{
-					// We only take all of the outfits specified in the model without putting them in the stock.
-					// The extra outfits of this ship are transfered into the stock.
 					auto outfit = model->Outfits().find(it.first);
 					int amount = (outfit != model->Outfits().end() ? outfit->second : 0);
 					if(amount > it.second)
 						stock[it.first] += it.second - amount;
 				}
+				else
+					stock[it.first] += it.second;
 			}
 			ForgetShip(*it->get());
 			ships.erase(it);
