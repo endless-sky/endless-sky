@@ -21,12 +21,12 @@ event "remnant change hail"
 
 
 
-event "lost in ember waste"
+event "remnant: lost in ember waste"
 
 
 
-event "remnant defense timer"
-	clear "Remnant defense delay"
+event "remnant: defense timer"
+	clear "Remnant: defense delay"
 
 
 

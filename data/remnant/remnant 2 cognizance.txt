@@ -263,7 +263,7 @@ mission "Remnant: Cognizance 5"
 
 mission "Remnant: Cognizance 6"
 	name "Transport Plume"
-	description "Pick up Plume on <stopovers> and bring him to <source> by <day>. Prefect Chilia wants to consult him about the void sprites."
+	description "Pick up Plume on <stopovers> and bring him to <origin> by <day>. Prefect Chilia wants to consult him about the void sprites."
 	passengers 1
 	deadline 5
 	source "Caelian"

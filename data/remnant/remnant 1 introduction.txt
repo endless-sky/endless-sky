@@ -150,7 +150,7 @@ mission "Remnant Hails Change"
 
 
 
-mission "lost in ember waste"
+mission "Remnant: lost in ember waste"
 	landing
 	invisible
 	source
@@ -162,7 +162,7 @@ mission "lost in ember waste"
 		require "Quantum Keystone" 0
 		require "Quantum Key Stone" 0
 		require "Jump Drive" 0
-		event "lost in ember waste" 14
+		event "remnant: lost in ember waste" 14
 		fail
 
 
@@ -173,8 +173,12 @@ mission "Remnant: Lost in Ember Waste"
 	source
 		government "Remnant"
 	to offer
-		has "event: lost in ember waste"
+		has "event: remnant: lost in ember waste"
+		not "license: Remnant"
 	on offer
+		require "Quantum Keystone" 0
+		require "Quantum Key Stone" 0
+		require "Jump Drive" 0
 		outfit "Quantum Key Stone" 1
 		log `Became stuck in the Ember Waste, but was given a Quantum Key Stone by an old woman who claims to have once been stuck in Republic space under similar circumstances.`
 		conversation
@@ -193,7 +197,7 @@ mission "Remnant: Lost in Ember Waste"
 				goto keystone
 			
 			label know
-			`	"Get scammed out of your Key Stone?" she asks with another chuckle. "Or maybe your jump drive, and now you're stuck here? No problem."`
+			`	"Lost your Key Stone?" she asks with another chuckle. "Or maybe your jump drive, and now you're stuck here? No problem."`
 			
 			label keystone
 			`	The woman reaches into a bag that she has with her and hands you a Quantum Key Stone. "Just put this on your ship and you can be on your way out of here."`
@@ -254,7 +258,7 @@ mission "Remnant: Defense 1"
 	source "Caelian"
 	to offer
 		has "remnant blood test pure"
-		not "Remnant defense delay"
+		not "Remnant: defense delay"
 	on offer
 		conversation
 			`In the relative quiet of this Remnant spaceport, it's unusually jarring when an alarm siren begins howling. All around you, people are rushing to get their ships into the air. Even though no one stops to explain to you what is happening, it's pretty clear that this is a planetary defense operation.`
@@ -265,8 +269,8 @@ mission "Remnant: Defense 1"
 			`	You remain behind on the planet. You probably just missed out on a great opportunity to earn the gratitude of the Remnant.`
 				defer
 	on defer
-		set "Remnant defense delay"
-		event "remnant defense timer" 20
+		set "Remnant: defense delay"
+		event "remnant: defense timer" 20
 	npc
 		government "Remnant"
 		personality staying uninterested disables plunders
