@@ -2548,10 +2548,11 @@ phrase "broken jump drive on visit"
 		`You've landed on <planet>, but you don't have a broken jump drive to give to the Remnant. You may need to steal one from Korath Raiders found through Remnant jobs, or depart and wait for an escort carrying one to enter the system.`
 
 mission "Remnant: Broken Jump Drive 1"
+	repeat
+	minor
+	landing
 	name "Broken Jump Drive Delivery"
 	description "You have been asked to deliver a broken jump drive to the researchers on <planet>."
-	landing
-	repeat
 	to offer
 		has "remnant blood test pure"
 		not "Remnant: Broken Jump Drive 1: active"
@@ -2783,9 +2784,10 @@ mission "Remnant: Broken Jump Drive 5"
 
 
 mission "Remnant: Face to Maw 1"
+	minor
+	landing
 	name "Talk to Plume about the void sprites"
 	description "Plume would be very interested in a report on what happened with the void sprites."
-	landing
 	to offer
 		has "event: remnant: return the samples timer"
 		or
