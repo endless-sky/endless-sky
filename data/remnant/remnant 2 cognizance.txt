@@ -1026,7 +1026,7 @@ mission "Remnant: Cognizance 23"
 	on accept
 		dialog
 			`	Taely smiles. "Take good care of it. Fly far, <first>!"`
-		ship Merganser
+		give ship "Merganser"
 	npc kill
 		government "Korath"
 		personality coward target uninterested waiting
@@ -1403,7 +1403,7 @@ mission "Remnant: Cognizance 32"
 	on accept
 		dialog
 			`	As the trio move clear of the landing pad Chilia signs one last message to you. "You may want to cloak as soon as you take off. Our ships will be scanning for you too: Better to practice avoiding them before you reach ancestral space. Embers guide you, <first>!"`
-		ship Peregrine "Shadow Flight"
+		give ship "Peregrine" "Shadow Flight"
 		event "remnant: cognizance peregrine"
 	on decline
 		dialog

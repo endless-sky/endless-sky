@@ -887,10 +887,10 @@ void PlayerInfo::AddShip(const shared_ptr<Ship> &ship)
 
 // Adds a ship of the given model with the given name to the player's fleet.
 // If this ship is being gifted, it costs nothing and starts fully depreciated.
-void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
+Ship *PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 {
 	if(!model)
-		return;
+		return nullptr;
 
 	int day = date.DaysSinceEpoch();
 	int64_t cost = isGift ? 0 : stockDepreciation.Value(*model, day);
@@ -919,29 +919,56 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 				stock[it.first] -= it.second;
 		}
 	}
+	return ships.back().get();
 }
 
 
 
 // Sell the given ship (if it belongs to the player).
-void PlayerInfo::SellShip(const Ship *selected, bool isTaking)
+void PlayerInfo::SellShip(const Ship *selected)
 {
 	for(auto it = ships.begin(); it != ships.end(); ++it)
 		if(it->get() == selected)
 		{
-			if(!isTaking)
+			int day = date.DaysSinceEpoch();
+			int64_t cost = depreciation.Value(*selected, day);
+
+			// Record the transfer of this ship in the depreciation and stock info.
+			stockDepreciation.Buy(*selected, day, &depreciation);
+			for(const auto &it : selected->Outfits())
+				stock[it.first] += it.second;
+
+			accounts.AddCredits(cost);
+			ForgetShip(*it->get());
+			ships.erase(it);
+			flagship.reset();
+			return;
+		}
+}
+
+
+
+// Take the ship from the player.
+void PlayerInfo::TakeShip(const Ship *ship, const Ship *model)
+{
+	for(auto it = ships.begin(); it != ships.end(); ++it)
+		if(it->get() == ship)
+		{
+			if(model)
 			{
-				int day = date.DaysSinceEpoch();
-				int64_t cost = depreciation.Value(*selected, day);
-
 				// Record the transfer of this ship in the depreciation and stock info.
-				stockDepreciation.Buy(*selected, day, &depreciation);
-				for(const auto &it : selected->Outfits())
-					stock[it.first] += it.second;
-
-				accounts.AddCredits(cost);
+				stockDepreciation.Buy(*ship, date.DaysSinceEpoch(), &depreciation);
+				for(const auto &it : ship->Outfits())
+				{
+					// We only take all of the outfits specified in the model without putting them in the stock.
+					// The extra outfits of this ship are transfered into the stock.
+					auto outfit = model->Outfits().find(it.first);
+					int amount = (outfit != model->Outfits().end() ? outfit->second : 0);
+					if(amount > it.second)
+						stock[it.first] += it.second - amount;
+				}
 			}
-			ForgetShip(it->get()->UUID());
+			ForgetShip(*it->get());
 			ships.erase(it);
 			flagship.reset();
 			return;
@@ -956,7 +983,7 @@ vector<shared_ptr<Ship>>::iterator PlayerInfo::DisownShip(const Ship *selected)
 		if(it->get() == selected)
 		{
 			flagship.reset();
-			ForgetShip(it->get()->UUID());
+			ForgetShip(*it->get());
 			it = ships.erase(it);
 			return (it == ships.begin()) ? it : --it;
 		}
@@ -3199,17 +3226,13 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 
 
 // When we remove a ship, forget its stored ID.
-void PlayerInfo::ForgetShip(const EsUuid &uuid)
+void PlayerInfo::ForgetShip(const Ship &oldShip)
 {
-	string name = "";
-	for(const auto &ship : giftedShips)
-		if(ship.second == uuid)
-		{
-			name = ship.first;
-			break;
-		}
-	if(!name.empty())
-		giftedShips.erase(name);
+	const EsUuid &id = oldShip.UUID();
+	auto ship = find_if(giftedShips.begin(), giftedShips.end(),
+						[id](std::pair<const string, EsUuid> shipId) { return id == shipId.second; });
+	if(ship != giftedShips.end())
+		giftedShips.erase(ship->first);
 }
 
 

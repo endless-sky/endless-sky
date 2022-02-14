@@ -140,8 +140,9 @@ public:
 	// Add a captured ship to your fleet.
 	void AddShip(const std::shared_ptr<Ship> &ship);
 	// Buy or sell a ship.
-	void BuyShip(const Ship *model, const std::string &name, bool isGift = false);
-	void SellShip(const Ship *selected, bool isTaking = false);
+	Ship *BuyShip(const Ship *model, const std::string &name, bool isGift = false);
+	void SellShip(const Ship *selected);
+	void TakeShip(const Ship *ship, const Ship *model = nullptr);
 	std::vector<std::shared_ptr<Ship>>::iterator DisownShip(const Ship *selected);
 	void ParkShip(const Ship *selected, bool isParked);
 	void RenameShip(const Ship *selected, const std::string &name);
@@ -305,7 +306,7 @@ private:
 	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);
 
 	// When we remove a ship, forget it's stored Uuid.
-	void ForgetShip(const EsUuid &uuid);
+	void ForgetShip(const Ship &oldShip);
 
 	// Check that this player's current state can be saved.
 	bool CanBeSaved() const;

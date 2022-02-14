@@ -751,7 +751,7 @@ mission "Remnant: Void Sprites 3"
 				accept
 	on accept
 		event "remnant: puffin"
-		ship "Puffin" "Shadow in the Depths"
+		give ship "Puffin" "Shadow in the Depths"
 	npc
 		government "Drak (Hostile)"
 		system "Nenia"
@@ -2871,7 +2871,7 @@ mission "Remnant: Face to Maw 2"
 	on complete
 		log "People" "Taely" `One of Taely's main priorities is improving the maneuverability characteristics of Remnant Ships. To this end she has been working on building a new prototype ship based on the void sprites.`
 		"remnant met taely" ++
-		ship "Penguin" "Shadow Hope"
+		give ship "Penguin" "Shadow Hope"
 		conversation
 			branch taely
 				has "remnant met taely"
