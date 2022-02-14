@@ -42,8 +42,8 @@ vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player, 
 				for(const auto &it : model->Outfits())
 				{
 					const auto &outfit = ship->Outfits().find(it.first);
-					int amount = (outfit != ship->Outfits().end() ? outfit->second : 0);
-					if(it.second > amount)
+					int amountEquipped = (outfit != ship->Outfits().end() ? outfit->second : 0);
+					if(it.second > amountEquipped)
 						continue;
 				}
 
