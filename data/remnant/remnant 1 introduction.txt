@@ -167,6 +167,21 @@ mission "Remnant: lost in ember waste"
 
 
 
+mission "Remnant: lost in ember waste compatibility"
+	landing
+	invisible
+	source
+		government "Remnant"
+	to offer
+		has "lost in ember waste: declined"
+	on offer
+		set "Remnant: Lost in Ember Waste: offered"
+		set "Remnant: Lost in Ember Waste: declined"
+		set "event: remnant: lost in ember waste"
+		fail
+
+
+
 mission "Remnant: Lost in Ember Waste"
 	landing
 	invisible
@@ -258,6 +273,7 @@ mission "Remnant: Defense 1"
 	source "Caelian"
 	to offer
 		has "remnant blood test pure"
+		not "Remnant defense delay"
 		not "Remnant: defense delay"
 	on offer
 		conversation
