@@ -31,14 +31,14 @@ void Permissions::Load (const DataNode &node)
 
 
 
-const bool Permissions::CanSell() const
+bool Permissions::CanSell()
 {
 	return canSell;
 }
 
 
 
-const bool Permissions::CanUninstall() const
+bool Permissions::CanUninstall()
 {
 	return canUninstall;
 }

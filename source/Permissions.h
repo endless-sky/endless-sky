@@ -17,8 +17,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class Permissions {
 public:
-	const bool CanSell() const;
-	const bool CanUninstall() const;
+	bool CanSell();
+	bool CanUninstall();
 
 public:
 	void Load (const DataNode &node);
