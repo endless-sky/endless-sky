@@ -3862,7 +3862,7 @@ event "fumbling mugger timer"
 
 mission "Fumbling Mugger"
 	name "Transport to <planet>"
-	description "Bring a young woman who threatened you on <source>, to <destination>."
+	description "Bring a young woman who threatened you on <origin>, to <destination>."
 	minor
 	source
 		attributes "dirt belt" "urban"
@@ -3951,7 +3951,7 @@ mission "Fumbling Mugger"
 				decline
 
 			label why2
-			`	She sighs. "A few months ago, back when I lived on another Dirt planet, I proposed to my boyfriend. He said yes, and everything was falling into place." Her eyes glance away. "At least, until my dad got involved. He said that my boyfriend needed to get a stable job before he could marry me. He tried to get a job, but..." She sighs. "The Dirt Belt isn't exactly overflowing with employment. So he decided to move to <planet>. As soon as he was offworld, though, my father started to move us to move to another planet. So I decided to go off on my own. Snuck off to the spaceport and got a captain to transport me. But she forced me to pay upfront, and as soon as we landed on <source>, she kicked me out to make space for another set of passengers."`
+			`	She sighs. "A few months ago, back when I lived on another Dirt planet, I proposed to my boyfriend. He said yes, and everything was falling into place." Her eyes glance away. "At least, until my dad got involved. He said that my boyfriend needed to get a stable job before he could marry me. He tried to get a job, but..." She sighs. "The Dirt Belt isn't exactly overflowing with employment. So he decided to move to <planet>. As soon as he was offworld, though, my father started to move us to move to another planet. So I decided to go off on my own. Snuck off to the spaceport and got a captain to transport me. But she forced me to pay upfront, and as soon as we landed on <origin>, she kicked me out to make space for another set of passengers."`
 			`	Her eyebrows furrow. "Wait, you're not planning to transport me to <planet> after what happened, right?"`
 			choice
 				`	"I can take you there."`
@@ -4007,7 +4007,7 @@ mission "Fumbling Mugger"
 	on complete
 		event "fumbling mugger followup timer" 365
 		log `Was held up by a girl in her late teens who wanted transport to Maker. Managed to gain the upper hand in the engagment, but decided to take her there anyway.`
-		dialog `The woman who attacked you on <source> prepares to disembark your ship. She takes off her bandanna and puts down her hoodie, letting her blond hair free. With her bandanna gone, you also notice that she's only in her late teens. Just before she steps off, she turns to look at you. "I'll try to pay you back someday, Captain." She walks off into the bustling spaceport to find her lover.`
+		dialog `The woman who attacked you on <origin> prepares to disembark your ship. She takes off her bandanna and puts down her hoodie, letting her blond hair free. With her bandanna gone, you also notice that she's only in her late teens. Just before she steps off, she turns to look at you. "I'll try to pay you back someday, Captain." She walks off into the bustling spaceport to find her lover.`
 
 event "fumbling mugger followup timer"
 
