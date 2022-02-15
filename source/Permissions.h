@@ -24,8 +24,8 @@ public:
 	void Load (const DataNode &node);
 
 private:
-	bool canSell;
-	bool canUninstall;
+	bool canSell = true;
+	bool canUninstall = true;
 };
 
 #endif
