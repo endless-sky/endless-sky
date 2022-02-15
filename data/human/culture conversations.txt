@@ -117,6 +117,7 @@ mission "Trash Fire Crops"
 	to offer
 		random < 1
 	on offer
+		"bumper crop year" = "year"
 		conversation
 			`As you move about the spaceport, you can't avoid the terrible smell. It's like a trash fire, but you can't see any sort of smoke.`
 			choice
@@ -199,6 +200,7 @@ mission "Blind Landing"
 		attributes "farming"
 		not attributes "station" "frontier"
 	to offer
+		"year" > "bumper crop year" + 2
 		random < 1
 		has "Trash Fire Crops: declined"
 	on offer
