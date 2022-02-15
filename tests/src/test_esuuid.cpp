@@ -238,17 +238,21 @@ SCENARIO( "Mapping identifiable collections", "[uuid][comparison][collections]" 
 		}
 	}
 	GIVEN( "a collection of strings as ID comparator, with UUIDs, identifying items" ) {
-		auto collection = std::map<std::string, UUIDComparator<T>>{};
+		auto collection = std::map<std::string, EsUuid, UUIDComparator<T>>{};
 		auto first = std::make_shared<T>();
 		auto second = std::make_shared<T>();
 		std::vector<std::shared_ptr<T>> items{ first, second };
 		EsUuid firstId;
+		firstId.clone(first->UUID());
 		EsUuid secondId;
+		secondId.clone(second->UUID());
 		EsUuid otherId;
-		collection.insert({"one", firstId.clone(first->UUID())}, {"two", secondId.clone(second->UUID())});
+		std::string name = "one";
+		std::string secondName = "two";
+		collection.insert({ {name, firstId}, {secondName, secondId} });
 		WHEN( "we use strings to find the corresponding UUID in the collection" ) {
-			CHECK( collection.at("one") == first->id );
-			CHECK( collection.at("two") == second->id );
+			CHECK( collection.at(name) == first->id );
+			CHECK( collection.at(secondName) == second->id );
 			THEN( "we can use them to identify the items in a unique way" ) {
 				CHECK( items[0]->id == first->id );
 				CHECK_FALSE( items[1]->id == first->id );
