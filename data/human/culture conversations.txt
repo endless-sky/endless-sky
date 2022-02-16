@@ -37,6 +37,21 @@ mission "Sad Gamblers - Syndicate"
 
 
 
+mission "Foiled Kidnapping Witnessed"
+	minor
+	source
+		government "Syndicate"
+		not attributes "station" "frontier" "urban"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`A roadblock interrupts your path as you make your way towards the city, forcing you to slow down as you pass by, able to see what the commotion is about. Police wave past car after car coming from the other direction, looking into the vehicles until a sedan gets pulled over to the side causing police to briefly halt all traffic movements. The driver seemed distressed, refusing to open the boot even when he is being detained; his face goes pale when a little girl is found inside.`
+			`	You're not sure how to feel about this when the police wave you off, blocking your view from the scene.`
+				decline
+
+
+
 mission "Gift Store Interaction"
 	minor
 	source
@@ -163,6 +178,21 @@ mission "Class Trip to Port"
 
 
 
+mission "Old Defense Turrets"
+	minor
+	source
+		attributes "south"
+		not attributes "station" "frontier"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`With an annoyingly long stopover having cnouraged you to do a little mediocre exploring, you pull the rental car into the designated return parking lot. The unepected sound of large hydraulic motors draws your attention and you watch as a massive turret lifts up from behind a nearby barricade and turns towards the sky, its single cannon poised to fire at seemingly nothing.`
+			`	Looking around for some form of explanation you find a plaque placed conveniently nearby dedicating the turret, and five others like it, offering protection and deterance against piracy until relatively recent years. You can't help but wonder though, how well the turrets would do if they were to be actually used again.`
+				decline
+
+
+
 mission "Forest Fire"
 	minor
 	source
@@ -211,6 +241,22 @@ mission "Local Politics"
 
 
 
+mission "Military Response Test"
+	minor
+	source
+		government "Free Worlds"
+		not attributes "station" "urban" "frontier"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`In a strange set of directions, the Air Traffic Controller had you punch in a set of coordinates taking you close to a massive military base on the way to the landing zone. You let the autopilot take over as you watch the view off the cockpit window, hoping the turrets in the base wouldn't have you shot out of the sky.`
+			`	From where you are watching, you see a single lady standing within the parade square, a hand raised like she's looking at her watch. Seconds pass before she raises her other hand and gives a thumbs up to whoever's looking at her. Suddenly, a loud siren sounds out across the base that is audible even in your ship as it passes by at reasonable height. You watch as soldiers drop everything they're doing, some rushing into buildings while others ran towards armoured vehicles. Within minutes, the vehicles are rolling towards the parade square whilst soldiers in full gear run to assemble within the square in neat rows.`
+			`	You aren't sure whether what they were doing was scheduled, or if it was in response to your flight.`
+				decline
+
+
+
 mission "Missed Mugging"
 	minor
 	source
@@ -238,44 +284,6 @@ mission "Sojourn Sunday Sales"
 		conversation
 			`You blink in surprise as you enter the spaceport, watching throngs of people pushing their way through the human chains of queues wrapped around the commercial area. You scan your surroundings and notice advertisements upon advertisements of vacation locations, all at an absurdly high discount. Yet despite their vastly reduced prices, the advertised holidays still cost such large sums that a younger you could never have justified such expense.`
 				decline
-
-
-
-
-
-
-Marksman Dump
-
-
-
-
-
-Pulling the rental car into a parking lot, you watch as a massive turret turned towards the sky, its single cannon poised to fire at seemingly nothing. You find a plaque placed conveniently nearby dedicating the tower and five others like it, offering protection and deterance against piracy until the recent years.
-
-You wonder how well the towers would do if they were to be used again.
-
-
-
-
-
-
-A roadblock stops your path as you make your way towards the city, slowing down to see what the commotion was about. Police wave past car after car, looking into the vehicles until a sedan gets pulled over to the side. The driver seemed distressed, refusing to open the boot even when he is being detained, his face pale when a little girl is found inside.
-
-You're not sure how to feel about this when the police waves you off, blocking your view from the scene.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
