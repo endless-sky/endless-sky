@@ -187,7 +187,7 @@ mission "Old Defense Turrets"
 		random < 1
 	on offer
 		conversation
-			`With an annoyingly long stopover having cnouraged you to do a little mediocre exploring, you pull the rental car into the designated return parking lot. The unepected sound of large hydraulic motors draws your attention and you watch as a massive turret lifts up from behind a nearby barricade and turns towards the sky, its single cannon poised to fire at seemingly nothing.`
+			`With an annoyingly long stopover having cnouraged you to do a little mediocre exploring, you pull the rental car into the designated return parking lot. The unexpected sound of large hydraulic motors draws your attention and you watch as a massive turret lifts up from behind a nearby barricade and turns towards the sky, its single cannon poised to fire at seemingly nothing.`
 			`	Looking around for some form of explanation you find a plaque placed conveniently nearby dedicating the turret, and five others like it, offering protection and deterance against piracy until relatively recent years. You can't help but wonder though, how well the turrets would do if they were to be actually used again.`
 				decline
 
