@@ -138,19 +138,20 @@ public:
 
 
 private:
-	explicit Command(uint64_t state);
-	Command(uint64_t state, const std::string &text);
+	explicit Command(uint64_t keyCommands, uint64_t weapons);
+	Command(uint64_t keyCommands, const std::string &text);
 
 
 private:
-	// The key commands and weapons to fire are stored in a single bitmask, with
-	// 32 bits for key commands and 32 bits for individual weapons.
+	// The key commands stored in a bitmask
+	uint64_t keyCommands = 0;
+	// The weapons to fire stored in a bitmask
 	// Ship::Load gives a soft warning for ships with more than 32 weapons.
-	uint64_t state = 0;
+	uint64_t weapons = 0;
 	// Turning amount is stored as a separate double to allow fractional values.
 	double turn = 0.;
 	// Turret turn rates, reduced to 8 bits to save space.
-	signed char aim[32] = {};
+	signed char aim[64] = {};
 };
 
 
