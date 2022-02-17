@@ -48,6 +48,7 @@ DamageProfile::DamageProfile(const Ship &ship, const Weapon &weapon, double dama
 // Calculate the damage dealt to the ship given its current shield and disruption levels.
 void DamageProfile::CalculateDamage(double shields, double disrupted)
 {
+	shieldFraction = 1.;
 	if(shields <= 0.)
 		shieldFraction = 0.;
 	else
