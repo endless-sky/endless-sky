@@ -94,8 +94,8 @@ public:
 	// Get the sprite this outfit uses when dumped into space.
 	const Sprite *FlotsamSprite() const;
 
-	const bool CanSell() const;
-	const bool CanUninstall() const;
+	bool CanSell() const;
+	bool CanUninstall() const;
 
 private:
 	bool isDefined = false;
