@@ -48,10 +48,8 @@ DamageProfile::DamageProfile(const Ship &ship, const Weapon &weapon, double dama
 // Calculate the damage dealt to the ship given its current shield and disruption levels.
 void DamageProfile::CalculateDamage(double shields, double disrupted)
 {
-	shieldFraction = 1.;
-	if(shields <= 0.)
-		shieldFraction = 0.;
-	else
+	shieldFraction = 0.;
+	if(shields > 0.)
 	{
 		double piercing = max(0., min(1., weapon.Piercing() / (1. + attributes.Get("piercing protection")) - attributes.Get("piercing resistance")));
 		shieldFraction = (1. - piercing) / (1. + disrupted * .01);
