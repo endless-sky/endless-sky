@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Audio.h"
 #include "CategoryTypes.h"
+#include "DamageProfile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Effect.h"
@@ -3187,78 +3188,40 @@ int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damag
 	if(weapon.HasDamageDropoff())
 		damageScaling *= weapon.DamageDropoff(distanceTraveled);
 
-	// Instantaneous damage types:
-	double shieldDamage = (weapon.ShieldDamage() + weapon.RelativeShieldDamage() * attributes.Get("shields"))
-		* damageScaling / (1. + attributes.Get("shield protection"));
-	double hullDamage = (weapon.HullDamage() + weapon.RelativeHullDamage() * attributes.Get("hull"))
-		* damageScaling / (1. + attributes.Get("hull protection"));
-	double energyDamage = (weapon.EnergyDamage() + weapon.RelativeEnergyDamage() * attributes.Get("energy capacity"))
-		* damageScaling / (1. + attributes.Get("energy protection"));
-	double fuelDamage = (weapon.FuelDamage() + weapon.RelativeFuelDamage() * attributes.Get("fuel capacity"))
-		* damageScaling / (1. + attributes.Get("fuel protection"));
-	double heatDamage = (weapon.HeatDamage() + weapon.RelativeHeatDamage() * MaximumHeat())
-		* damageScaling / (1. + attributes.Get("heat protection"));
-
-	// DoT damage types:
-	double ionDamage = weapon.IonDamage() * damageScaling / (1. + attributes.Get("ion protection"));
-	double disruptionDamage = weapon.DisruptionDamage() * damageScaling / (1. + attributes.Get("disruption protection"));
-	double slowingDamage = weapon.SlowingDamage() * damageScaling / (1. + attributes.Get("slowing protection"));
-	double dischargeDamage = weapon.DischargeDamage() * damageScaling / (1. + attributes.Get("discharge protection"));
-	double corrosionDamage = weapon.CorrosionDamage() * damageScaling / (1. + attributes.Get("corrosion protection"));
-	double leakDamage = weapon.LeakDamage() * damageScaling / (1. + attributes.Get("leak protection"));
-	double burnDamage = weapon.BurnDamage() * damageScaling / (1. + attributes.Get("burn protection"));
-
-	double hitForce = weapon.HitForce() * damageScaling / (1. + attributes.Get("force protection"));
-	double piercing = max(0., min(1., weapon.Piercing() / (1. + attributes.Get("piercing protection")) - attributes.Get("piercing resistance")));
+	DamageProfile damage = DamageProfile(*this, weapon, damageScaling, shields, disruption);
 
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 
-	double shieldFraction = 1. - piercing;
-	shieldFraction *= 1. / (1. + disruption * .01);
-	if(shields <= 0.)
-		shieldFraction = 0.;
-	else if(shieldDamage > shields)
-		shieldFraction = min(shieldFraction, shields / shieldDamage);
-
-	shields -= shieldDamage * shieldFraction;
-	if(shieldDamage && !isDisabled)
+	shields -= damage.Shield();
+	if(damage.Shield() && !isDisabled)
 	{
 		int disabledDelay = attributes.Get("depleted shield delay");
 		shieldDelay = max<int>(shieldDelay, (shields <= 0. && disabledDelay) ? disabledDelay : attributes.Get("shield delay"));
 	}
-	hull -= hullDamage * (1. - shieldFraction);
-	if(hullDamage && !isDisabled)
+	hull -= damage.Hull();
+	if(damage.Hull() && !isDisabled)
 		hullDelay = max(hullDelay, static_cast<int>(attributes.Get("repair delay")));
 
-	// Most special damage types (i.e. not hull or shield damage) only have 50% effectiveness
-	// against ships with active shields. Disruption or piercing weapons can increase this
-	// effectiveness.
-	double shieldDegradation = (1. - .5 * shieldFraction);
-	energy -= energyDamage * shieldDegradation;
-	fuel -= fuelDamage * shieldDegradation;
-	heat += heatDamage * shieldDegradation;
-	ionization += ionDamage * shieldDegradation;
-	disruption += disruptionDamage * shieldDegradation;
-	slowness += slowingDamage * shieldDegradation;
-	burning += burnDamage * shieldDegradation;
+	energy -= damage.Energy();
+	heat += damage.Heat();
+	fuel -= damage.Fuel();
 
-	// The following special damage types have 0% effectiveness against ships with
-	// active shields. Disruption or piercing weapons still increase this effectiveness.
-	shieldDegradation = (1. - shieldFraction);
-	corrosion += corrosionDamage * shieldDegradation;
-	leakage += leakDamage * shieldDegradation;
+	discharge += damage.Discharge();
+	corrosion += damage.Corrosion();
+	ionization += damage.Ion();
+	burning += damage.Burn();
+	leakage += damage.Leak();
 
-	// The following special damage types have 100% effectiveness against ships
-	// regardless of shield level.
-	discharge += dischargeDamage;
+	disruption += damage.Disruption();
+	slowness += damage.Slowing();
 
-	if(hitForce)
+	if(damage.HitForce())
 	{
 		Point d = position - damagePosition;
 		double distance = d.Length();
 		if(distance)
-			ApplyForce((hitForce / distance) * d, weapon.IsGravitational());
+			ApplyForce((damage.HitForce() / distance) * d, weapon.IsGravitational());
 	}
 
 	// Prevent various stats from reaching unallowable values.
