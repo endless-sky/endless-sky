@@ -54,7 +54,7 @@ void DamageProfile::CalculateDamage(double shields, double disrupted)
 	{
 		double piercing = max(0., min(1., weapon.Piercing() / (1. + attributes.Get("piercing protection")) - attributes.Get("piercing resistance")));
 		shieldFraction = (1. - piercing) / (1. + disrupted * .01);
-		
+
 		shieldDamage = (weapon.ShieldDamage()
 			+ weapon.RelativeShieldDamage() * attributes.Get("shields"))
 			* ScaleType(0., "shield");

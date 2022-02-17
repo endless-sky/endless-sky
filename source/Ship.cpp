@@ -3174,7 +3174,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, DamageProfile damage, const Govern
 	bool wasDestroyed = IsDestroyed();
 
 	damage.CalculateDamage(shields, disruption);
-	
+
 	shields -= damage.Shield();
 	if(damage.Shield() && !isDisabled)
 	{

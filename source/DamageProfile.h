@@ -26,10 +26,10 @@ class Weapon;
 class DamageProfile {
 public:
 	DamageProfile(const Ship &ship, const Weapon &weapon, double damageScaling, double distanceTraveled, const Point &damagePosition, bool isBlast = false);
-	
+
 	// Calculate the damage dealt to the ship given its current shield and disruption levels.
 	void CalculateDamage(double shields, double disrupted);
-	
+
 	const Weapon &GetWeapon() const;
 	double Scaling() const;
 	const Point &Position() const;
