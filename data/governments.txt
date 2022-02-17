@@ -446,6 +446,7 @@ government "Pirate"
 	raid "pirate raid"
 
 government "Pirate (Rival)"
+	"display name" "Pirate"
 	swizzle 6
 	color .78 0 0
 	

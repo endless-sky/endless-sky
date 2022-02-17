@@ -12,7 +12,8 @@ conversation "assisting friendly ship"
 	`When you repair the <origin>, the captain thanks you for your assistance and pays you <payment>.`
 		decline
 
-mission "Assisting Friendly Ship (Small)"
+#Listed as merchant for compatibility purposes
+mission "Assisting Merchant (Small)"
 	assisting
 	repeat
 	minor
@@ -29,7 +30,7 @@ mission "Assisting Friendly Ship (Small)"
 	# What the destination is doesn't matter, because you always 'decline' this.
 	destination "Earth"
 
-mission "Assisting Friendly Ship (Medium)"
+mission "Assisting Merchant (Medium)"
 	assisting
 	repeat
 	minor
@@ -311,7 +312,8 @@ conversation "boarding hostile ship"
 	`You make short-range scans of the <origin>'s outfits and cargo. Among the cargo, you find a crate full of credit chips worth <payment>. You drag the crate onto your ship before considering your next move.`
 		decline
 
-mission "Boarding Hostile Ship (Small)"
+#Listed as pirate for compatibility purposes
+mission "Boarding Pirate (Small)"
 	boarding
 	repeat
 	minor
@@ -325,7 +327,7 @@ mission "Boarding Hostile Ship (Small)"
 		conversation "boarding hostile ship"
 	destination "Earth"
 
-mission "Boarding Hostile Ship (Medium)"
+mission "Boarding Pirate (Medium)"
 	boarding
 	repeat
 	minor
@@ -339,7 +341,7 @@ mission "Boarding Hostile Ship (Medium)"
 		conversation "boarding hostile ship"
 	destination "Earth"
 
-mission "Boarding Hostile Ship (Large)"
+mission "Boarding Pirate (Large)"
 	boarding
 	repeat
 	minor
@@ -380,26 +382,6 @@ mission "Pirate Ambush"
 		personality nemesis harvests plunders entering
 		fleet "pirate raid" 2
 
-mission "Rival Pirate Ambush"
-	invisible
-	boarding
-	repeat
-	minor
-	deadline 1
-	to offer
-		"combat rating" > 100
-		random < 5
-	source
-		government "Pirate (Rival)"
-		category "Interceptor" "Light Warship" "Transport" "Light Freighter"
-		not attributes "automaton"
-	on offer
-		conversation "ambushed by pirates"
-	destination "Earth"
-	npc kill
-		government "Pirate (Rival)"
-		personality nemesis harvests plunders entering
-		fleet "pirate raid" 2
 
 mission "Pirate Mutiny"
 	boarding
