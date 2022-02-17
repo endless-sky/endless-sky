@@ -3168,31 +3168,13 @@ double Ship::MaxReverseVelocity() const
 // according to the weapon and the characteristics of how
 // it hit this ship, and add any visuals created as a result
 // of being hit.
-int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damageScaling, double distanceTraveled, const Point &damagePosition, const Government *sourceGovernment, bool isBlast)
+int Ship::TakeDamage(vector<Visual> &visuals, DamageProfile damage, const Government *sourceGovernment)
 {
-	if(isBlast && weapon.IsDamageScaled())
-	{
-		// Scale blast damage based on the distance from the blast
-		// origin and if the projectile uses a trigger radius. The
-		// point of contact must be measured on the sprite outline.
-		// scale = (1 + (tr / (2 * br))^2) / (1 + r^4)^2
-		double blastRadius = max(1., weapon.BlastRadius());
-		double radiusRatio = weapon.TriggerRadius() / blastRadius;
-		double k = !radiusRatio ? 1. : (1. + .25 * radiusRatio * radiusRatio);
-		// Rather than exactly compute the distance between the explosion and
-		// the closest point on the ship, estimate it using the mask's Radius.
-		double d = max(0., (damagePosition - position).Length() - GetMask().Radius());
-		double rSquared = d * d / (blastRadius * blastRadius);
-		damageScaling *= k / ((1. + rSquared * rSquared) * (1. + rSquared * rSquared));
-	}
-	if(weapon.HasDamageDropoff())
-		damageScaling *= weapon.DamageDropoff(distanceTraveled);
-
-	DamageProfile damage = DamageProfile(*this, weapon, damageScaling, shields, disruption);
-
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 
+	damage.CalculateDamage(shields, disruption);
+	
 	shields -= damage.Shield();
 	if(damage.Shield() && !isDisabled)
 	{
@@ -3218,10 +3200,10 @@ int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damag
 
 	if(damage.HitForce())
 	{
-		Point d = position - damagePosition;
+		Point d = position - damage.Position();
 		double distance = d.Length();
 		if(distance)
-			ApplyForce((damage.HitForce() / distance) * d, weapon.IsGravitational());
+			ApplyForce((damage.HitForce() / distance) * d, damage.GetWeapon().IsGravitational());
 	}
 
 	// Prevent various stats from reaching unallowable values.
@@ -3258,14 +3240,14 @@ int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damag
 
 	// If this ship was hit directly and did not consider itself an enemy of the
 	// ship that hit it, it is now "provoked" against that government.
-	if(!isBlast && sourceGovernment && !sourceGovernment->IsEnemy(government)
+	if(!damage.IsBlast() && sourceGovernment && !sourceGovernment->IsEnemy(government)
 			&& (Shields() < .9 || Hull() < .9 || !personality.IsForbearing())
-			&& !personality.IsPacifist() && weapon.DoesDamage())
+			&& !personality.IsPacifist() && damage.GetWeapon().DoesDamage())
 		type |= ShipEvent::PROVOKE;
 
 	// Create target effect visuals, if there are any.
-	for(const auto &effect : weapon.TargetEffects())
-		CreateSparks(visuals, effect.first, effect.second * damageScaling);
+	for(const auto &effect : damage.GetWeapon().TargetEffects())
+		CreateSparks(visuals, effect.first, effect.second * damage.Scaling());
 
 	return type;
 }

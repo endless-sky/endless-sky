@@ -31,6 +31,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+class DamageProfile;
 class DataNode;
 class DataWriter;
 class Effect;
@@ -329,8 +330,7 @@ public:
 	// not necessarily its primary target.
 	// Blast damage is dependent on the distance to the damage source.
 	// Create any target effects as sparks.
-	int TakeDamage(std::vector<Visual> &visuals, const Weapon &weapon, double damageScaling,
-		double distanceTraveled, const Point &damagePosition, const Government *sourceGovernment, bool isBlast = false);
+	int TakeDamage(std::vector<Visual> &visuals, DamageProfile damage, const Government *sourceGovernment);
 	// Apply a force to this ship, accelerating it. This might be from a weapon
 	// impact, or from firing a weapon, for example.
 	void ApplyForce(const Point &force, bool gravitational = false);

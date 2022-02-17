@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 class Outfit;
+class Point;
 class Ship;
 class Weapon;
 
@@ -24,7 +25,15 @@ class Weapon;
 // attributes and the weapon it was hit by for each damage type.
 class DamageProfile {
 public:
-	DamageProfile(const Ship &ship, const Weapon &weapon, double scaling, double shields, double disrupted);
+	DamageProfile(const Ship &ship, const Weapon &weapon, double damageScaling, double distanceTraveled, const Point &damagePosition, bool isBlast = false);
+	
+	// Calculate the damage dealt to the ship given its current shield and disruption levels.
+	void CalculateDamage(double shields, double disrupted);
+	
+	const Weapon &GetWeapon() const;
+	double Scaling() const;
+	const Point &Position() const;
+	bool IsBlast() const;
 
 	// Instantaneous damage types.
 	double Shield() const;
@@ -50,12 +59,18 @@ private:
 	// Return the damage scale that a damage type should use given the
 	// default percentage that is blocked by shields and the name of
 	// its protection attribute.
-	double Scale(double degredation, const std::string &attr) const;
+	double ScaleType(double degredation, const std::string &attr) const;
 
 
 private:
+	const Ship &ship;
 	const Outfit &attributes;
+	const Weapon &weapon;
 	double scaling;
+	double distanceTraveled;
+	const Point &position;
+	bool isBlast;
+	
 	double shieldFraction;
 
 	double hullDamage = 0.;

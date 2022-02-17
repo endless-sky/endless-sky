@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Audio.h"
 #include "CategoryTypes.h"
 #include "CoreStartData.h"
+#include "DamageProfile.h"
 #include "Effect.h"
 #include "Files.h"
 #include "FillShader.h"
@@ -2051,16 +2052,18 @@ void Engine::DoCollisions(Projectile &projectile)
 				if(isSafe && projectile.Target() != ship && !gov->IsEnemy(ship->GetGovernment()))
 					continue;
 
-				int eventType = ship->TakeDamage(visuals, projectile.GetWeapon(), 1.,
-					projectile.DistanceTraveled(), projectile.Position(), projectile.GetGovernment(), ship != hit.get());
+				int eventType = ship->TakeDamage(visuals, DamageProfile(*ship,
+					projectile.GetWeapon(), 1., projectile.DistanceTraveled(),
+					projectile.Position(), ship != hit.get()), projectile.GetGovernment());
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
 		}
 		else if(hit)
 		{
-			int eventType = hit->TakeDamage(visuals, projectile.GetWeapon(), 1.,
-				projectile.DistanceTraveled(), projectile.Position(), projectile.GetGovernment());
+			int eventType = hit->TakeDamage(visuals, DamageProfile(*hit,
+				projectile.GetWeapon(), 1., projectile.DistanceTraveled(),
+				projectile.Position()), projectile.GetGovernment());
 			if(eventType)
 				eventQueue.emplace_back(gov, hit, eventType);
 		}
@@ -2102,7 +2105,8 @@ void Engine::DoWeather(Weather &weather)
 		{
 			Ship *hit = reinterpret_cast<Ship *>(body);
 			double distanceTraveled = weather.Origin().Distance(hit->Position()) - hit->GetMask().Radius();
-			hit->TakeDamage(visuals, *hazard, multiplier, distanceTraveled, weather.Origin(), nullptr, hazard->BlastRadius() > 0.);
+			hit->TakeDamage(visuals, DamageProfile(*hit, *hazard, multiplier,
+				distanceTraveled, weather.Origin(), hazard->BlastRadius() > 0.), nullptr);
 		}
 	}
 }
