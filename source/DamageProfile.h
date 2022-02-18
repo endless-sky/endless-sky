@@ -103,7 +103,7 @@ public:
 
 private:
 	// Finish any calculations that were started in the constructor.
-	void FinishPrecalculations(const Ship &ship, DamageDealt &damage) const
+	void FinishPrecalculations(const Ship &ship, DamageDealt &damage) const;
 
 
 private:
