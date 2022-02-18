@@ -439,12 +439,12 @@ outfit "Quantum Keystone"
 outfit "Value Detector"
 	category "Systems"
 	cost 260000
-	thumbnail "outfit/surveillance pod"
+	thumbnail "outfit/value detector"
 	"mass" 3
 	"outfit space" -3
-	"cargo scan power" 30
+	"cargo scan power" 33
 	"cargo scan speed" 4
-	"tactical scan power" 12
+	"tactical scan power" 15
 	description "In order to know which ship is worth plundering, or presents less risks to do so, the Unfettered use this scanner. It is quite rudimentary compared to normal Hai technology, but it still does what it's supposed to do: get quick information on what ships are carrying from afar. The Unfettered also prefer to know more detailed information about their enemy, as they often try new technologies on their victims in order to test their effectiveness."
 
 outfit "Hai Chasm Batteries"
