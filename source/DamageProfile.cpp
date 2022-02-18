@@ -19,9 +19,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-DamageProfile::DamageProfile(const Ship &ship, const Weapon &weapon, double damageScaling, double distanceTraveled, const Point &damagePosition, bool isBlast)
-	: ship(ship), attributes(ship.Attributes()), weapon(weapon), scaling(damageScaling), 
-	distanceTraveled(distanceTraveled), position(damagePosition), isBlast(isBlast)
+DamageProfile::DamageProfile(const Ship &ship, const Projectile::ImpactInfo &info, double damageScaling, bool isBlast)
+	: ship(ship), attributes(ship.Attributes()),
+	weapon(info.weapon), position(info.position), distanceTraveled(info.distanceTraveled),
+	scaling(damageScaling), isBlast(isBlast)
 {
 	// Determine if the damage scaling needs changed any further
 	// beyond what was already given.

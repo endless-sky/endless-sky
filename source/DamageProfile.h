@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define DAMAGE_PROFILE_H_
 
 #include "Point.h"
+#include "Projectile.h"
 
 #include <string>
 
@@ -26,7 +27,7 @@ class Weapon;
 // attributes and the weapon it was hit by for each damage type.
 class DamageProfile {
 public:
-	DamageProfile(const Ship &ship, const Weapon &weapon, double damageScaling, double distanceTraveled, const Point &damagePosition, bool isBlast = false);
+	DamageProfile(const Ship &ship, const Projectile::ImpactInfo &info, double damageScaling, bool isBlast = false);
 
 	// Calculate the damage dealt to the ship given its current shield and disruption levels.
 	void CalculateDamage(double shields, double disrupted);
@@ -69,9 +70,9 @@ private:
 	const Ship &ship;
 	const Outfit &attributes;
 	const Weapon &weapon;
-	double scaling;
-	double distanceTraveled;
 	const Point &position;
+	double distanceTraveled;
+	double scaling;
 	bool isBlast;
 	
 	double shieldFraction;

@@ -2052,18 +2052,18 @@ void Engine::DoCollisions(Projectile &projectile)
 				if(isSafe && projectile.Target() != ship && !gov->IsEnemy(ship->GetGovernment()))
 					continue;
 
-				int eventType = ship->TakeDamage(visuals, DamageProfile(*ship,
-					projectile.GetWeapon(), 1., projectile.DistanceTraveled(),
-					projectile.Position(), ship != hit.get()), projectile.GetGovernment());
+				int eventType = ship->TakeDamage(visuals,
+					DamageProfile(*ship, projectile.GetInfo(), 1., ship != hit.get()),
+					projectile.GetGovernment());
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
 		}
 		else if(hit)
 		{
-			int eventType = hit->TakeDamage(visuals, DamageProfile(*hit,
-				projectile.GetWeapon(), 1., projectile.DistanceTraveled(),
-				projectile.Position()), projectile.GetGovernment());
+			int eventType = hit->TakeDamage(visuals,
+				DamageProfile(*hit, projectile.GetInfo(), 1.),
+				projectile.GetGovernment());
 			if(eventType)
 				eventQueue.emplace_back(gov, hit, eventType);
 		}
@@ -2105,8 +2105,8 @@ void Engine::DoWeather(Weather &weather)
 		{
 			Ship *hit = reinterpret_cast<Ship *>(body);
 			double distanceTraveled = weather.Origin().Distance(hit->Position()) - hit->GetMask().Radius();
-			hit->TakeDamage(visuals, DamageProfile(*hit, *hazard, multiplier,
-				distanceTraveled, weather.Origin(), hazard->BlastRadius() > 0.), nullptr);
+			hit->TakeDamage(visuals, DamageProfile(*hit, Projectile::ImpactInfo(*hazard,
+				weather.Origin(), distanceTraveled), multiplier, hazard->BlastRadius() > 0.), nullptr);
 		}
 	}
 }
