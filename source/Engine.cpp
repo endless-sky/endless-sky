@@ -2107,7 +2107,8 @@ void Engine::DoWeather(Weather &weather)
 		for(Body *body : shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange()))
 		{
 			Ship *hit = reinterpret_cast<Ship *>(body);
-			damage.SetDistance(weather.Origin().Distance(hit->Position()) - hit->GetMask().Radius());
+			if(hazard->HasDamageDropoff())
+				damage.SetDistance(weather.Origin().Distance(hit->Position()) - hit->GetMask().Radius());
 			hit->TakeDamage(visuals, damage.CalculateDamage(*hit), nullptr);
 		}
 	}

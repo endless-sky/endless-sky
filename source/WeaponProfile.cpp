@@ -12,9 +12,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "WeaponProfile.h"
 
+#include "Mask.h"
+#include "Ship.h"
+#include "Weapon.h"
+
 using namespace std;
 
-WeaponProfile::WeaponProfile(const Projectile::ImpactInfo &info, double damageScaling, bool isBlast)
+WeaponProfile::WeaponProfile(const Projectile::ImpactInfo &info, bool isBlast)
 	: weapon(info.weapon), position(info.position), distanceTraveled(info.distanceTraveled),
 	isBlast(isBlast)
 {

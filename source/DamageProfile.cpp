@@ -12,7 +12,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DamageProfile.h"
 
-#include "Mask.h"
 #include "Outfit.h"
 #include "Ship.h"
 #include "Weapon.h"

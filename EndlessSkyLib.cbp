@@ -165,6 +165,8 @@
 		<Unit filename="source/Hardpoint.h" />
 		<Unit filename="source/Hazard.cpp" />
 		<Unit filename="source/Hazard.h" />
+		<Unit filename="source/HazardProfile.cpp" />
+		<Unit filename="source/HazardProfile.h" />
 		<Unit filename="source/HiringPanel.cpp" />
 		<Unit filename="source/HiringPanel.h" />
 		<Unit filename="source/ImageBuffer.cpp" />
@@ -329,6 +331,8 @@
 		<Unit filename="source/Visual.h" />
 		<Unit filename="source/Weapon.cpp" />
 		<Unit filename="source/Weapon.h" />
+		<Unit filename="source/WeaponProfile.cpp" />
+		<Unit filename="source/WeaponProfile.h" />
 		<Unit filename="source/Weather.cpp" />
 		<Unit filename="source/Weather.h" />
 		<Unit filename="source/WeightedList.h" />

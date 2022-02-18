@@ -16,8 +16,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Projectile.h"
 
+class HazardProfile;
 class Ship;
 class Weapon;
+class WeaponProfile;
 
 
 // A class that calculates how much damage a ship should take given the ship's
@@ -60,6 +62,8 @@ public:
 
 	private:
 		friend class DamageProfile;
+		friend class HazardProfile;
+		friend class WeaponProfile;
 
 		const Weapon &weapon;
 		// The final scaling that gets applied to a ship, influenced by
@@ -93,10 +97,13 @@ public:
 	virtual DamageDealt CalculateDamage(const Ship &ship) const = 0;
 
 
+protected:
+	void PopulateDamage(DamageDealt &damage, const Ship &ship, const Point &position) const;
+
+
 private:
 	// Finish any calculations that were started in the constructor.
 	virtual void FinishPrecalculations(DamageDealt &damage, const Ship &ship) const = 0;
-	void PopulateDamage(DamageDealt &damage, const Ship &ship, const Point &position) const;
 };
 
 #endif

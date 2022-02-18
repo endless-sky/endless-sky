@@ -12,6 +12,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "HazardProfile.h"
 
+#include "Mask.h"
+#include "Ship.h"
+#include "Weapon.h"
+
 using namespace std;
 
 HazardProfile::HazardProfile(const Projectile::ImpactInfo &info, double damageScaling, bool isBlast)
