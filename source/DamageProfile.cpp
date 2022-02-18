@@ -19,53 +19,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-DamageProfile::DamageProfile(const Projectile::ImpactInfo &info, double damageScaling, bool isBlast, bool skipFalloff)
-	: weapon(info.weapon), position(info.position), distanceTraveled(info.distanceTraveled),
-	inputScaling(damageScaling), isBlast(isBlast), skipFalloff(skipFalloff)
+void DamageProfile::PopulateDamage(DamageProfile::DamageDealt &damage, const Ship &ship, const Point &position) const
 {
-	// Precompute blast damage scaling.
-	if(isBlast && weapon.IsDamageScaled())
-	{
-		// Scale blast damage based on the distance from the blast
-		// origin and if the projectile uses a trigger radius. The
-		// point of contact must be measured on the sprite outline.
-		// scale = (1 + (tr / (2 * br))^2) / (1 + r^4)^2
-		double blastRadius = max(1., weapon.BlastRadius());
-		double radiusRatio = weapon.TriggerRadius() / blastRadius;
-		k = !radiusRatio ? 1. : (1. + .25 * radiusRatio * radiusRatio);
-		rSquared = 1. / (blastRadius * blastRadius);
-	}
-	if(!skipFalloff && weapon.HasDamageDropoff())
-		inputScaling *= weapon.DamageDropoff(distanceTraveled);
-}
-
-
-
-// Set a distance traveled to be used on the next CalculateDamage call,
-// assuming skipFalloff is true.
-void DamageProfile::SetDistance(double distance)
-{
-	distanceTraveled = distance;
-}
-
-
-
-// Set whether blast damage is applied on the next CalculateDamage call.
-void DamageProfile::SetBlast(bool blast)
-{
-	isBlast = blast;
-}
-
-
-
-// Calculate the damage dealt to the given ship.
-DamageProfile::DamageDealt DamageProfile::CalculateDamage(const Ship &ship, double shields, double disrupted) const
-{
-	// Calculate the final damage scale specific to this ship.
-	DamageDealt damage(weapon, inputScaling, isBlast);
-	FinishPrecalculations(ship, damage);
-
 	const Outfit &attributes = ship.Attributes();
+	const Weapon &weapon = damage.GetWeapon();
 	double shieldFraction = 0.;
 
 	// Lambda for returning the damage scale that a damage type should
@@ -77,10 +34,11 @@ DamageProfile::DamageDealt DamageProfile::CalculateDamage(const Ship &ship, doub
 	};
 
 	// Determine the shieldFraction.
+	double shields = ship.ShieldLevel();
 	if(shields > 0.)
 	{
 		double piercing = max(0., min(1., weapon.Piercing() / (1. + attributes.Get("piercing protection")) - attributes.Get("piercing resistance")));
-		shieldFraction = (1. - piercing) / (1. + disrupted * .01);
+		shieldFraction = (1. - piercing) / (1. + ship.DisruptionLevel() * .01);
 
 		damage.shieldDamage = (weapon.ShieldDamage()
 			+ weapon.RelativeShieldDamage() * attributes.Get("shields"))
@@ -131,25 +89,4 @@ DamageProfile::DamageDealt DamageProfile::CalculateDamage(const Ship &ship, doub
 		if(distance)
 			damage.forcePoint = (hitForce / distance) * d;
 	}
-
-	return damage;
-}
-
-
-
-// Finish any calculations that were started in the constructor.
-void DamageProfile::FinishPrecalculations(const Ship &ship, DamageProfile::DamageDealt &damage) const
-{
-	// Finish the blast radius calculations.
-	if(isBlast && weapon.IsDamageScaled())
-	{
-		// Rather than exactly compute the distance between the explosion and
-		// the closest point on the ship, estimate it using the mask's Radius.
-		double d = max(0., (position - ship.Position()).Length() - ship.GetMask().Radius());
-		double finalR = d * d * rSquared;
-		damage.scaling *= k / ((1. + finalR * finalR) * (1. + finalR * finalR));
-	}
-	// If damage falloff scaling was skipped before, compute it now.
-	if(skipFalloff && weapon.HasDamageDropoff())
-		damage.scaling *= weapon.DamageDropoff(distanceTraveled);
 }

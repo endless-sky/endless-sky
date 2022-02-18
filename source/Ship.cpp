@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Audio.h"
 #include "CategoryTypes.h"
-#include "DamageProfile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Effect.h"
@@ -2920,6 +2919,22 @@ double Ship::DisabledHull() const
 
 
 
+// Get the actual shield level of the ship.
+double Ship::ShieldLevel() const
+{
+	return shields;
+}
+
+
+
+// Get how disrupted this ship's shields are.
+double Ship::DisruptionLevel() const
+{
+	return disruption;
+}
+
+
+
 int Ship::JumpsRemaining(bool followParent) const
 {
 	// Make sure this ship has some sort of hyperdrive, and if so return how
@@ -3168,12 +3183,10 @@ double Ship::MaxReverseVelocity() const
 // according to the weapon and the characteristics of how
 // it hit this ship, and add any visuals created as a result
 // of being hit.
-int Ship::TakeDamage(vector<Visual> &visuals, const DamageProfile &profile, const Government *sourceGovernment)
+int Ship::TakeDamage(vector<Visual> &visuals, const DamageProfile::DamageDealt &damage, const Government *sourceGovernment)
 {
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
-
-	DamageProfile::DamageDealt damage = profile.CalculateDamage(*this, shields, disruption);
 
 	shields -= damage.Shield();
 	if(damage.Shield() && !isDisabled)

@@ -16,8 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Projectile.h"
 
-#include <string>
-
 class Ship;
 class Weapon;
 
@@ -89,46 +87,16 @@ public:
 	};
 
 public:
-	DamageProfile(const Projectile::ImpactInfo &info, double damageScaling, bool isBlast = false, bool skipFalloff = false);
-
-	// Set a distance traveled to be used on the next CalculateDamage call,
-	// assuming skipFalloff is true.
-	void SetDistance(double distance);
-	// Set whether blast damage is applied on the next CalculateDamage call.
-	void SetBlast(bool blast);
+	virtual ~DamageProfile() = default;
 
 	// Calculate the damage dealt to the given ship.
-	DamageDealt CalculateDamage(const Ship &ship, double shields, double disrupted) const;
+	virtual DamageDealt CalculateDamage(const Ship &ship) const = 0;
 
 
 private:
 	// Finish any calculations that were started in the constructor.
-	void FinishPrecalculations(const Ship &ship, DamageDealt &damage) const;
-
-
-private:
-	// The weapon that the projectile or hazard deals damage with.
-	const Weapon &weapon;
-	// The position of the projectile or origin of the hazard.
-	const Point &position;
-	// The distance that the projectile traveled or the distance from
-	// the hazard origin.
-	double distanceTraveled;
-	// The scaling as recieved before calculating damage.
-	double inputScaling;
-	// Whether damage is applied as a blast. This can be true in the constructor
-	// but false when CalculateDamage is called if the ship that is calling
-	// CalculateDamage was directly impacted by a blast radius weapon.
-	bool isBlast;
-	// Whether calculating falloff damage scaling should be deferred
-	// to CalculateDamage. This will be the case if this DamageProfile
-	// is created by a hazard, as the distanceTraveled value is different
-	// for each ship impacted.
-	bool skipFalloff;
-
-	// Precomputed blast damage values.
-	double k;
-	double rSquared;
+	virtual void FinishPrecalculations(DamageDealt &damage, const Ship &ship) const = 0;
+	void PopulateDamage(DamageDealt &damage, const Ship &ship, const Point &position) const;
 };
 
 #endif
