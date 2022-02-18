@@ -72,6 +72,6 @@ void WeaponProfile::FinishPrecalculations(DamageProfile::DamageDealt &damage, co
 		// the closest point on the ship, estimate it using the mask's Radius.
 		double d = max(0., (position - ship.Position()).Length() - ship.GetMask().Radius());
 		double finalR = d * d * rSquared;
-		damage.scaling *= k / ((1. + finalR * finalR) * (1. + finalR * finalR));
+		damage.MultiplyScale(k / ((1. + finalR * finalR) * (1. + finalR * finalR)));
 	}
 }

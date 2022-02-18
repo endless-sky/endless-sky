@@ -16,10 +16,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Projectile.h"
 
-class HazardProfile;
 class Ship;
 class Weapon;
-class WeaponProfile;
 
 
 // A class that calculates how much damage a ship should take given the ship's
@@ -31,12 +29,14 @@ public:
 		DamageDealt(const Weapon &weapon, double scaling, bool isBlast)
 			: weapon(weapon), scaling(scaling), isBlast(isBlast) {}
 
+		void MultiplyScale(double scale) { scaling *= scale; }
+
 		// The weapon that dealt damage.
-		const Weapon &GetWeapon() const { return weapon; };
+		const Weapon &GetWeapon() const { return weapon; }
 		// The scaling that was used for this damage.
-		double Scaling() const { return scaling; };
+		double Scaling() const { return scaling; }
 		// Whether damage was dealt as a blast.
-		bool IsBlast() const { return isBlast; };
+		bool IsBlast() const { return isBlast; }
 
 		// Instantaneous damage types.
 		double Shield() const noexcept { return shieldDamage; }
@@ -62,8 +62,6 @@ public:
 
 	private:
 		friend class DamageProfile;
-		friend class HazardProfile;
-		friend class WeaponProfile;
 
 		const Weapon &weapon;
 		// The final scaling that gets applied to a ship, influenced by
