@@ -102,15 +102,14 @@ SCENARIO( "a Set can be interacted with by consuming classes even when const", "
 
 		WHEN( "find(key) is called" ) {
 			const auto cIt = s.find(key);
+			REQUIRE( cIt != s.end() );
 			THEN( "the Set does not increase in size" ) {
 				CHECK( s.size() == 1 );
 			}
-			THEN( "the iterator does point to the begin position" ) {
-				CHECK( cIt == s.begin() );
-			}			
-			THEN( "the iterator doesn't point to the end position" ) {
-				CHECK( cIt != s.end() );
-			}			
+			THEN( "the iterator points to the correct element" ) {
+				CHECK( cIt->first == key );
+				CHECK( cIt->second.a == 1 );
+			}
 		}
 	}
 }

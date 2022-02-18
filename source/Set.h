@@ -34,15 +34,11 @@ public:
 
 	bool Has(const std::string &name) const { return data.count(name); }
 
-	using setIt = typename std::map<std::string, Type>::iterator;
-	using setCIt = typename std::map<std::string, Type>::const_iterator;
-
-	setIt begin() { return data.begin(); }
-	setCIt begin() const { return data.begin(); }
-	setIt find(const std::string &key) { return data.find(key); }
-	setCIt find(const std::string &key) const { return data.find(key); }
-	setIt end() { return data.end(); }
-	setCIt end() const { return data.end(); }
+	typename std::map<std::string, Type>::iterator begin() { return data.begin(); }
+	typename std::map<std::string, Type>::const_iterator begin() const { return data.begin(); }
+	typename std::map<std::string, Type>::const_iterator find(const std::string &key) const { return data.find(key); }
+	typename std::map<std::string, Type>::iterator end() { return data.end(); }
+	typename std::map<std::string, Type>::const_iterator end() const { return data.end(); }
 
 	int size() const { return data.size(); }
 	bool empty() const { return data.empty(); }
