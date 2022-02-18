@@ -61,23 +61,11 @@ void DamageProfile::SetBlast(bool blast)
 // Calculate the damage dealt to the given ship.
 DamageProfile::DamageDealt DamageProfile::CalculateDamage(const Ship &ship, double shields, double disrupted) const
 {
-	const Outfit &attributes = ship.Attributes();
-
 	// Calculate the final damage scale specific to this ship.
 	DamageDealt damage(weapon, inputScaling, isBlast);
-	// Finish the blast radius calculations.
-	if(isBlast && weapon.IsDamageScaled())
-	{
-		// Rather than exactly compute the distance between the explosion and
-		// the closest point on the ship, estimate it using the mask's Radius.
-		double d = max(0., (position - ship.Position()).Length() - ship.GetMask().Radius());
-		double finalR = d * d * rSquared;
-		damage.scaling *= k / ((1. + finalR * finalR) * (1. + finalR * finalR));
-	}
-	// If damage falloff scaling was skipped before, compute it now.
-	if(skipFalloff && weapon.HasDamageDropoff())
-		damage.scaling *= weapon.DamageDropoff(distanceTraveled);
+	FinishPrecalculations(ship, damage);
 
+	const Outfit &attributes = ship.Attributes();
 	double shieldFraction = 0.;
 
 	// Lambda for returning the damage scale that a damage type should
@@ -145,4 +133,23 @@ DamageProfile::DamageDealt DamageProfile::CalculateDamage(const Ship &ship, doub
 	}
 
 	return damage;
+}
+
+
+
+// Finish any calculations that were started in the constructor.
+void DamageProfile::FinishPrecalculations(const Ship &ship, DamageProfile::DamageDealt &damage) const
+{
+	// Finish the blast radius calculations.
+	if(isBlast && weapon.IsDamageScaled())
+	{
+		// Rather than exactly compute the distance between the explosion and
+		// the closest point on the ship, estimate it using the mask's Radius.
+		double d = max(0., (position - ship.Position()).Length() - ship.GetMask().Radius());
+		double finalR = d * d * rSquared;
+		damage.scaling *= k / ((1. + finalR * finalR) * (1. + finalR * finalR));
+	}
+	// If damage falloff scaling was skipped before, compute it now.
+	if(skipFalloff && weapon.HasDamageDropoff())
+		damage.scaling *= weapon.DamageDropoff(distanceTraveled);
 }

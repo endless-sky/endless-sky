@@ -102,6 +102,11 @@ public:
 
 
 private:
+	// Finish any calculations that were started in the constructor.
+	void FinishPrecalculations(const Ship &ship, DamageDealt &damage) const
+
+
+private:
 	// The weapon that the projectile or hazard deals damage with.
 	const Weapon &weapon;
 	// The position of the projectile or origin of the hazard.
