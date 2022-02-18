@@ -14,7 +14,7 @@ event "ember waste label"
 
 
 
-event "remnant change hail"
+event "remnant: change hail"
 	government "Remnant"
 		"friendly hail" "friendly remnant"
 		"hostile hail" "hostile remnant"
