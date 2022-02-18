@@ -3871,7 +3871,7 @@ mission "Fumbling Mugger"
 		has "event: fumbling mugger timer"
 	on offer
 		conversation
-			`Your exploration of the spaceport leads you to a dark alley, where the number of working lights are far outnumbered by the number of broken ones. The contents of the steel bins that line the walls overflow onto the pavement, giving off a putrid smell. You spot small, black dots darting around the split garbage bags, the buzzing of their wings filling the otherwise lifeless air. On the surfaces that are lit up, you can see a mess of black scrawlings upon bare, cracked concrete, and the few windows present on the towering walls surrounding you are either boarded up or shattered. A deep red stains the bottom portion of one of the broken windows. Ahead, you see the topaz eyes of a black cat lying on top of a large bin, carefully observing you.`
+			`Your exploration of the spaceport leads you to a dark alley, where the number of working lights are far outnumbered by the number of broken ones. The contents of the steel bins that line the walls overflow onto the pavement, giving off a putrid smell. You spot small, black dots darting around splits in the garbage bags, the buzzing of their wings filling the otherwise lifeless air. On the surfaces that are lit up, you can see a mess of black scrawlings upon bare, cracked concrete, and the few windows present on the towering walls surrounding you are either boarded up or shattered. A deep red stains the bottom portion of one of the broken windows. Ahead, you see the topaz eyes of a black cat lying on top of a large bin, carefully observing you.`
 			`	Suddenly, you feel a metal object pushed against your back as you hear a woman's voice speaking softly. "Hands where I can see them, Captain."`
 			choice
 				`	(Lift your hands up and slowly turn.)`
@@ -3880,18 +3880,18 @@ mission "Fumbling Mugger"
 				`	(Backwards somersault over your attacker and disarm her.)`
 					goto flip
 
-			`	You turn around as swiftly as you can as your hand grasps for your pistol. However, it's not enough; a bright flash fills the alleyway as your ears are destroyed by the roar of a shotgun. As your body collapses on the ground, and your vision blackens, you hear the fading sound of running footsteps as the flies begin to crowd your body.`
+			`	You turn around as swiftly as you can as your hand grasps for your pistol. Unfortunately, it's not enough; a bright flash fills the alleyway as your ears are destroyed by the roar of a shotgun. As your body collapses on the ground, and your vision darkens, you hear the fading sound of running footsteps as the flies begin to crowd your body.`
 				die
 
 			label flip
-			`	You push down as hard as you can with your legs while leaning backwards. As you begin to fall back-first uncontrollably, you feel the metal object dig into your spine as a gasp escapes from your attacker as she joins your fall. You land with a thud on a soft body.`
+			`	You push down as hard as you can with your legs while leaning backwards, rising to the lofty height of two feet above the ground. As you begin to fall back-first uncontrollably, you feel metal dig into your spine as a gasp escapes from your attacker. You land with a thud on a soft body.`
 			choice
 				`	(Get up as quickly as possible.)`
 					goto stand
 				`	(Stay still.)`
 			`	As you lie motionless, you feel something pushing you on the back, forcing you to stand up.`
 			label stand
-			`	When you right yourself, you find yourself face to face with the woman. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and her feet placed apart. As you look down, you spot a sawed-off shotgun held single-handed, the end of which is pointed at your abdomen. Her other hand lays by her side. "Hands up now, Captain."`
+			`	When you right yourself, you find yourself face to face with the woman. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and her feet placed apart. As you look down, you spot a sawed-off shotgun held single-handed, the end of which is pointed at your abdomen. Her other hand is slightly raised in the air behind her. "Hands up now, Captain."`
 			choice
 			`	(Put your hands up.)`
 				goto handsup
@@ -3900,7 +3900,7 @@ mission "Fumbling Mugger"
 				die
 
 			label peaceful
-			`	You raise your arms and turn to face the woman. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and her feet placed apart. As you look down, you spot a sawed-off shotgun held single-handed, the end of which is pointed at your abdomen. Her other hand lays by her side.`
+			`	You raise your arms and turn to face the woman. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and her feet placed apart. As you look down, you spot a sawed-off shotgun held single-handed, the end of which is pointed at your abdomen. Her other hand is poised behind her.`
 			label handsup
 			`	The woman continues to speak softly. "Very good, Captain. Now, I have a proposal for you. I need transport to <destination>. Take me there, and the both of us can forget this ever happened.`
 			choice
@@ -3919,7 +3919,7 @@ mission "Fumbling Mugger"
 			`	She scoffs. "All you need to know is that I've got a gun pointed-"`
 
 			label fail
-			`	The attacker's speech is interrupted by a click as her shotgun swings open, leaving her defenseless. She takes a step back as her eyes fill with panic.`
+			`	The attacker's speech is interrupted by a click as her shotgun swings open, leaving her defenseless. She takes a step back as her eyes widen with panic.`
 			label choice
 			choice
 				`	(Shoot her.)`
@@ -3928,7 +3928,7 @@ mission "Fumbling Mugger"
 
 			action
 				log `Was held up by a woman in the Dirt Belt who wanted to go to Maker, but managed to turn the tables and kill her.`
-			`	Before she can even move her other hand, you whip out your pistol and fire. The gunshot echoes throughout the alleyway as you hear the cat behind you yelp in terror and run off, leaving you alone with your quarry. As you walk away, her corpse begins to meld with the darkness, leaving it barely discernible from the garbage bags around it.`
+			`	Before she can even move her other hand, you whip out your pistol and fire. The gunshot echoes throughout the alleyway as you hear the cat behind you yelp in terror and run off, leaving you alone with your quarry. As you walk away, her corpse begins to fade into the darkness, leaving it barely discernible from the garbage bags around it.`
 				decline
 
 			label threaten
@@ -3941,18 +3941,18 @@ mission "Fumbling Mugger"
 					goto freedom
 				`	(Shoot her.)`
 
-			`	The gunshot echoes throughout the alleyway as you hear the cat behind you yelp in terror and run off, leaving you alone with your quarry. As you walk away, her corpse begins to meld with the darkness, leaving it barely discernible from the garbage bags around it.`
+			`	The gunshot echoes throughout the alleyway as you hear the cat behind you yelp in terror and run off, leaving you alone with your quarry. As you walk away, her corpse begins to fade into the darkness, leaving it barely discernible from the garbage bags around it.`
 				decline
 
 			label freedom
 			action
 				log `Was held up by a woman in the Dirt Belt who wanted to go to Maker, but managed to turn the tables and end the situation without anyone dying.`
-			`	She slowly nods her head as she backs away from you, hands still held up. When she disappears around a corner, you holster your gun and begin walking in the other direction, passing by the black cat as you head back to a safer portion of the spaceport.`
+			`	She slowly nods her head as she backs away from you, hands still held up. When she disappears around a corner, you holster your gun and begin walking in the other direction, passing by the topaz-eyed cat as you head back to a safer portion of the spaceport.`
 				decline
 
 			label why2
-			`	She sighs. "A few months ago, back when I lived on another Dirt planet, I proposed to my boyfriend. He said yes, and everything was falling into place." Her eyes glance away. "At least, until my dad got involved. He said that my boyfriend needed to get a stable job before he could marry me. He tried to get a job, but..." She sighs. "The Dirt Belt isn't exactly overflowing with employment. So he decided to move to <planet>. As soon as he was offworld, though, my father started to move us to move to another planet. So I decided to go off on my own. Snuck off to the spaceport and got a captain to transport me. But she forced me to pay upfront, and as soon as we landed on <origin>, she kicked me out to make space for another set of passengers."`
-			`	Her eyebrows furrow. "Wait, you're not planning to transport me to <planet> after what happened, right?"`
+			`	She sighs. "A few months ago, back when I lived on another Dirt Belt planet, I proposed to my boyfriend. He said yes, and everything was falling into place." Her eyes glance away. "At least, until my dad got involved. He said that my boyfriend needed to get a stable job before he could marry me. He tried to get a job, but..." She sighs. "The Dirt Belt isn't exactly overflowing with employment. So he decided to move to <planet>. As soon as he was offworld, though, my father started to move us to another planet. I managed to sneak off to the spaceport and got a captain to transport me. But she forced me to pay upfront, and as soon as we landed on <origin>, she kicked me out to make space for another set of passengers."`
+			`	Her eyebrows furrow. "Wait, you're not planning to transport me to <planet> after all that's happened, right?"`
 			choice
 				`	"I can take you there."`
 				`	"I can't transport you."`
