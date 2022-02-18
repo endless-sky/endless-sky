@@ -27,7 +27,7 @@ class Weapon;
 class DamageProfile {
 public:
 	DamageProfile(const Projectile::ImpactInfo &info, double damageScaling, bool isBlast = false, bool skipFalloff = false);
-	
+
 	// Set a distance traveled to be used on the next CalculateDamage call,
 	// assuming skipFalloff is true.
 	void SetDistance(double distance);
@@ -94,7 +94,7 @@ private:
 	// is created by a hazard, as the distanceTraveled value is different
 	// for each ship impacted.
 	bool skipFalloff;
-	
+
 	// Precomputed blast damage values.
 	double k;
 	double rSquared;

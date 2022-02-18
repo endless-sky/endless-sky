@@ -49,6 +49,7 @@ void DamageProfile::SetDistance(double distance)
 }
 
 
+
 // Set whether blast damage is applied on the next CalculateDamage call.
 void DamageProfile::SetBlast(bool blast)
 {
@@ -61,7 +62,7 @@ void DamageProfile::SetBlast(bool blast)
 void DamageProfile::CalculateDamage(const Ship &ship, double shields, double disrupted)
 {
 	const Outfit &attributes = ship.Attributes();
-	
+
 	// Calculate the final damage scale specific to this ship.
 	scaling = inputScaling;
 	// Finish the blast radius calculations.
