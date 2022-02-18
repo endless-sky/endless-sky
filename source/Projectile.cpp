@@ -307,7 +307,7 @@ const Weapon &Projectile::GetWeapon() const
 
 
 // Get information on how this projectile impacted a ship.
-const Projectile::ImpactInfo Projectile::GetInfo() const
+Projectile::ImpactInfo Projectile::GetInfo() const
 {
 	return ImpactInfo(*weapon, position, distanceTraveled);
 }

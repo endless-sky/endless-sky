@@ -38,11 +38,11 @@ class Projectile : public Body {
 public:
 	class ImpactInfo {
 	public:
-		ImpactInfo(const Weapon &weapon, const Point &position, double distanceTraveled)
+		ImpactInfo(const Weapon &weapon, Point position, double distanceTraveled)
 			: weapon(weapon), position(position), distanceTraveled(distanceTraveled) {}
 
 		const Weapon &weapon;
-		const Point &position;
+		Point position;
 		double distanceTraveled;
 	};
 
@@ -77,7 +77,7 @@ public:
 	// Get information on the weapon that fired this projectile.
 	const Weapon &GetWeapon() const;
 	// Get information on how this projectile impacted a ship.
-	const ImpactInfo GetInfo() const;
+	ImpactInfo GetInfo() const;
 
 	// Find out which ship or government this projectile is targeting. Note:
 	// this pointer is not guaranteed to be dereferenceable, so only use it

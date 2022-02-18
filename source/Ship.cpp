@@ -3168,12 +3168,12 @@ double Ship::MaxReverseVelocity() const
 // according to the weapon and the characteristics of how
 // it hit this ship, and add any visuals created as a result
 // of being hit.
-int Ship::TakeDamage(vector<Visual> &visuals, DamageProfile &damage, const Government *sourceGovernment)
+int Ship::TakeDamage(vector<Visual> &visuals, const DamageProfile &profile, const Government *sourceGovernment)
 {
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 
-	damage.CalculateDamage(*this, shields, disruption);
+	DamageProfile::DamageDealt damage = profile.CalculateDamage(*this, shields, disruption);
 
 	shields -= damage.Shield();
 	if(damage.Shield() && !isDisabled)
