@@ -2045,6 +2045,7 @@ void Engine::DoCollisions(Projectile &projectile)
 		{
 			// Even friendly ships can be hit by the blast, unless it is a
 			// "safe" weapon.
+			DamageProfile damage(projectile.GetInfo(), 1., true);
 			Point hitPos = projectile.Position() + closestHit * projectile.Velocity();
 			for(Body *body : shipCollisions.Circle(hitPos, blastRadius))
 			{
@@ -2052,18 +2053,16 @@ void Engine::DoCollisions(Projectile &projectile)
 				if(isSafe && projectile.Target() != ship && !gov->IsEnemy(ship->GetGovernment()))
 					continue;
 
-				int eventType = ship->TakeDamage(visuals,
-					DamageProfile(*ship, projectile.GetInfo(), 1., ship != hit.get()),
-					projectile.GetGovernment());
+				damage.SetBlast(ship != hit.get());
+				int eventType = ship->TakeDamage(visuals, damage, projectile.GetGovernment());
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
 		}
 		else if(hit)
 		{
-			int eventType = hit->TakeDamage(visuals,
-				DamageProfile(*hit, projectile.GetInfo(), 1.),
-				projectile.GetGovernment());
+			DamageProfile damage(projectile.GetInfo(), 1.);
+			int eventType = hit->TakeDamage(visuals, damage, projectile.GetGovernment());
 			if(eventType)
 				eventQueue.emplace_back(gov, hit, eventType);
 		}
@@ -2097,6 +2096,8 @@ void Engine::DoWeather(Weather &weather)
 	{
 		const Hazard *hazard = weather.GetHazard();
 		double multiplier = weather.DamageMultiplier();
+		DamageProfile damage(Projectile::ImpactInfo(*hazard, weather.Origin(), 0.),
+			multiplier, hazard->BlastRadius() > 0., true);
 
 		// Get all ship bodies that are touching a ring defined by the hazard's min
 		// and max ranges at the hazard's origin. Any ship touching this ring takes
@@ -2104,9 +2105,8 @@ void Engine::DoWeather(Weather &weather)
 		for(Body *body : shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange()))
 		{
 			Ship *hit = reinterpret_cast<Ship *>(body);
-			double distanceTraveled = weather.Origin().Distance(hit->Position()) - hit->GetMask().Radius();
-			hit->TakeDamage(visuals, DamageProfile(*hit, Projectile::ImpactInfo(*hazard,
-				weather.Origin(), distanceTraveled), multiplier, hazard->BlastRadius() > 0.), nullptr);
+			damage.SetDistance(weather.Origin().Distance(hit->Position()) - hit->GetMask().Radius());
+			hit->TakeDamage(visuals, damage, nullptr);
 		}
 	}
 }

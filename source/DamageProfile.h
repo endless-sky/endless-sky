@@ -18,7 +18,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <string>
 
-class Outfit;
 class Ship;
 class Weapon;
 
@@ -27,10 +26,16 @@ class Weapon;
 // attributes and the weapon it was hit by for each damage type.
 class DamageProfile {
 public:
-	DamageProfile(const Ship &ship, const Projectile::ImpactInfo &info, double damageScaling, bool isBlast = false);
+	DamageProfile(const Projectile::ImpactInfo &info, double damageScaling, bool isBlast = false, bool skipFalloff = false);
+	
+	// Set a distance traveled to be used on the next CalculateDamage call,
+	// assuming skipFalloff is true.
+	void SetDistance(double distance);
+	// Set whether blast damage is applied on the next CalculateDamage call.
+	void SetBlast(bool blast);
 
-	// Calculate the damage dealt to the ship given its current shield and disruption levels.
-	void CalculateDamage(double shields, double disrupted);
+	// Calculate the damage dealt to the given ship.
+	void CalculateDamage(const Ship &ship, double shields, double disrupted);
 
 	const Weapon &GetWeapon() const;
 	double Scaling() const;
@@ -61,19 +66,38 @@ public:
 
 private:
 	// Return the damage scale that a damage type should use given the
-	// default percentage that is blocked by shields and the name of
+	// default percentage that is blocked by shields and the value of
 	// its protection attribute.
-	double ScaleType(double blocked, const char *protectionAttribute) const;
+	double ScaleType(double blocked, double protection) const;
 
 
 private:
-	const Ship &ship;
-	const Outfit &attributes;
+	// The weapon that the projectile or hazard deals damage with.
 	const Weapon &weapon;
+	// The position of the projectile or origin of the hazard.
 	const Point &position;
+	// The distance that the projectile traveled or the distance from
+	// the hazard origin.
 	double distanceTraveled;
+	// The scaling as recieved before calculating damage.
+	double inputScaling;
+	// The final scaling that gets applied to a ship, influenced by
+	// the ship's attributes and whether this ship is treated differently
+	// from other ships impacted by this DamageProfile.
 	double scaling;
+	// Whether damage is applied as a blast. This can be true in the constructor
+	// but false when CalculateDamage is called if the ship that is calling
+	// CalculateDamage was directly impacted by a blast radius weapon.
 	bool isBlast;
+	// Whether calculating falloff damage scaling should be deferred
+	// to CalculateDamage. This will be the case if this DamageProfile
+	// is created by a hazard, as the distanceTraveled value is different
+	// for each ship impacted.
+	bool skipFalloff;
+	
+	// Precomputed blast damage values.
+	double k;
+	double rSquared;
 	
 	double shieldFraction;
 
