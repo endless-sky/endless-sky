@@ -3199,12 +3199,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, DamageProfile damage, const Govern
 	slowness += damage.Slowing();
 
 	if(damage.HitForce())
-	{
-		Point d = position - damage.Position();
-		double distance = d.Length();
-		if(distance)
-			ApplyForce((damage.HitForce() / distance) * d, damage.GetWeapon().IsGravitational());
-	}
+		ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
 
 	// Prevent various stats from reaching unallowable values.
 	hull = min(hull, attributes.Get("hull"));

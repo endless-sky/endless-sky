@@ -13,10 +13,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef DAMAGE_PROFILE_H_
 #define DAMAGE_PROFILE_H_
 
+#include "Point.h"
+
 #include <string>
 
 class Outfit;
-class Point;
 class Ship;
 class Weapon;
 
@@ -52,14 +53,16 @@ public:
 	// Unique special damage types.
 	double Disruption() const;
 	double Slowing() const;
-	double HitForce() const;
+
+	// Hit force applied as a point vector.
+	const Point &HitForce() const;
 
 
 private:
 	// Return the damage scale that a damage type should use given the
 	// default percentage that is blocked by shields and the name of
 	// its protection attribute.
-	double ScaleType(double degredation, const std::string &attr) const;
+	double ScaleType(double blocked, const char *protectionAttribute) const;
 
 
 private:
@@ -87,7 +90,9 @@ private:
 
 	double disruptionDamage = 0.;
 	double slowingDamage = 0.;
+
 	double hitForce = 0.;
+	Point forcePoint;
 };
 
 inline double DamageProfile::Shield() const { return shieldDamage; }
@@ -104,6 +109,7 @@ inline double DamageProfile::Leak() const { return leakDamage; }
 
 inline double DamageProfile::Disruption() const { return disruptionDamage; }
 inline double DamageProfile::Slowing() const { return slowingDamage; }
-inline double DamageProfile::HitForce() const { return hitForce; }
+
+inline const Point &DamageProfile::HitForce() const { return forcePoint; }
 
 #endif

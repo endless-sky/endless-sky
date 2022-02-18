@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Mask.h"
 #include "Outfit.h"
-#include "Point.h"
 #include "Ship.h"
 #include "Weapon.h"
 
@@ -56,7 +55,7 @@ void DamageProfile::CalculateDamage(double shields, double disrupted)
 
 		shieldDamage = (weapon.ShieldDamage()
 			+ weapon.RelativeShieldDamage() * attributes.Get("shields"))
-			* ScaleType(0., "shield");
+			* ScaleType(0., "shield protection");
 		if(shieldDamage > shields)
 			shieldFraction = min(shieldFraction, shields / shieldDamage);
 	}
@@ -68,33 +67,41 @@ void DamageProfile::CalculateDamage(double shields, double disrupted)
 	shieldDamage *= shieldFraction;
 	hullDamage = (weapon.HullDamage()
 		+ weapon.RelativeHullDamage() * attributes.Get("hull"))
-		* ScaleType(1., "hull");
+		* ScaleType(1., "hull protection");
 	energyDamage = (weapon.EnergyDamage()
 		+ weapon.RelativeEnergyDamage() * attributes.Get("energy capacity"))
-		* ScaleType(.5, "energy");
+		* ScaleType(.5, "energy protection");
 	heatDamage = (weapon.HeatDamage()
 		+ weapon.RelativeHeatDamage() * ship.MaximumHeat())
-		* ScaleType(.5, "heat");
+		* ScaleType(.5, "heat protection");
 	fuelDamage = (weapon.FuelDamage()
 		+ weapon.RelativeFuelDamage() * attributes.Get("fuel capacity"))
-		* ScaleType(.5, "fuel");
+		* ScaleType(.5, "fuel protection");
 
 	// DoT damage types with an instantaneous analog.
 	// Ion and burn damage are blocked 50% by shields.
 	// Corrosion and leak damage are blocked 100%.
 	// Discharge damage is blocked 0%.
-	dischargeDamage = weapon.DischargeDamage() * ScaleType(0., "discharge");
-	corrosionDamage = weapon.CorrosionDamage() * ScaleType(1., "corrosion");
-	ionDamage = weapon.IonDamage() * ScaleType(.5, "ion");
-	burnDamage = weapon.BurnDamage() * ScaleType(.5, "burn");
-	leakDamage = weapon.LeakDamage() * ScaleType(1., "leak");
+	dischargeDamage = weapon.DischargeDamage() * ScaleType(0., "discharge protection");
+	corrosionDamage = weapon.CorrosionDamage() * ScaleType(1., "corrosion protection");
+	ionDamage = weapon.IonDamage() * ScaleType(.5, "ion protection");
+	burnDamage = weapon.BurnDamage() * ScaleType(.5, "burn protection");
+	leakDamage = weapon.LeakDamage() * ScaleType(1., "leak protection");
 
 	// Unique special damage types.
 	// Disruption and slowing are blocked 50% by shields.
-	// Hit force is blocked 0%.
-	disruptionDamage = weapon.DisruptionDamage() * ScaleType(.5, "disruption");
-	slowingDamage = weapon.SlowingDamage() * ScaleType(.5, "slowing");
-	hitForce = weapon.HitForce() * ScaleType(0., "force");
+	disruptionDamage = weapon.DisruptionDamage() * ScaleType(.5, "disruption protection");
+	slowingDamage = weapon.SlowingDamage() * ScaleType(.5, "slowing protection");
+
+	// Hit force is blocked 0% by shields.
+	hitForce = weapon.HitForce() * ScaleType(0., "force protection");
+	if(hitForce)
+	{
+		Point d = ship.Position() - position;
+		double distance = d.Length();
+		if(distance)
+			forcePoint = (hitForce / distance) * d;
+	}
 }
 
 
@@ -130,7 +137,7 @@ bool DamageProfile::IsBlast() const
 // Return the damage scale that a damage type should use given the
 // default percentage that is blocked by shields and the name of
 // its protection attribute.
-double DamageProfile::ScaleType(double blocked, const string &attr) const
+double DamageProfile::ScaleType(double blocked, const char *protectionAttribute) const
 {
-	return scaling * (1. - blocked * shieldFraction) / (1. + attributes.Get(attr + " protection"));
+	return scaling * (1. - blocked * shieldFraction) / (1. + attributes.Get(protectionAttribute));
 }
