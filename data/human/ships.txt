@@ -1147,8 +1147,8 @@ ship "Corvette"
 	gun 10.5 -75 "Heavy Laser"
 	gun -26 -8 "Sidewinder Missile Launcher"
 	gun 26 -8 "Sidewinder Missile Launcher"
-	turret 0 -14.5 "Heavy Laser Turret"
-	turret 0 16 "Anti-Missile Turret"
+	turret 0 -10 "Heavy Laser Turret"
+	turret 0 76 "Anti-Missile Turret"
 	leak "leak" 40 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
