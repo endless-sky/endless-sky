@@ -39,7 +39,6 @@ public:
 
 	const Weapon &GetWeapon() const;
 	double Scaling() const;
-	const Point &Position() const;
 	bool IsBlast() const;
 
 	// Instantaneous damage types.

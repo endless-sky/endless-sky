@@ -151,13 +151,6 @@ double DamageProfile::Scaling() const
 
 
 
-const Point &DamageProfile::Position() const
-{
-	return position;
-}
-
-
-
 bool DamageProfile::IsBlast() const
 {
 	return isBlast;
