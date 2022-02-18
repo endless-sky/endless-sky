@@ -30,13 +30,13 @@ public:
 
 	// Set whether blast damage is applied on the next CalculateDamage call.
 	void SetBlast(bool blast);
-	
+
 	virtual DamageDealt CalculateDamage(const Ship &ship) const override;
 
 
 private:
-	// Finish any calculations that were started in the constructor.
-	virtual void FinishPrecalculations(DamageDealt &damage, const Ship &ship) const override;
+	// Determine the damage scale for the given ship.
+	virtual double Scale(double scale, const Ship &ship) const override;
 
 
 private:
@@ -44,9 +44,6 @@ private:
 	const Weapon &weapon;
 	// The position of the projectile.
 	const Point &position;
-	// The distance that the projectile traveled or the distance from
-	// the hazard origin.
-	double distanceTraveled;
 	// The scaling as recieved before calculating damage.
 	double inputScaling;
 	// Whether damage is applied as a blast.

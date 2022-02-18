@@ -19,8 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 HazardProfile::HazardProfile(const Projectile::ImpactInfo &info, double damageScaling, bool isBlast)
-	: weapon(info.weapon), position(info.position), distanceTraveled(info.distanceTraveled),
-	inputScaling(damageScaling), isBlast(isBlast)
+	: weapon(info.weapon), position(info.position), inputScaling(damageScaling), isBlast(isBlast)
 {
 	// Precompute blast damage scaling.
 	if(isBlast && weapon.IsDamageScaled())
@@ -38,20 +37,11 @@ HazardProfile::HazardProfile(const Projectile::ImpactInfo &info, double damageSc
 
 
 
-// Set a distance traveled to be used on the next CalculateDamage call.
-void HazardProfile::SetDistance(double distance)
-{
-	distanceTraveled = distance;
-}
-
-
-
 // Calculate the damage dealt to the given ship.
 DamageProfile::DamageDealt HazardProfile::CalculateDamage(const Ship &ship) const
 {
 	// Calculate the final damage scale specific to this ship.
-	DamageDealt damage(weapon, inputScaling, isBlast);
-	FinishPrecalculations(damage, ship);
+	DamageDealt damage(weapon, Scale(inputScaling, ship), isBlast);
 	PopulateDamage(damage, ship, position);
 
 	return damage;
@@ -59,18 +49,26 @@ DamageProfile::DamageDealt HazardProfile::CalculateDamage(const Ship &ship) cons
 
 
 
-// Finish any calculations that were started in the constructor.
-void HazardProfile::FinishPrecalculations(DamageProfile::DamageDealt &damage, const Ship &ship) const
+// Determine the damage scale for the given ship.
+double HazardProfile::Scale(double scale, const Ship &ship) const
 {
 	// Finish the blast radius calculations.
+	double distance = -1.;
 	if(isBlast && weapon.IsDamageScaled())
 	{
 		// Rather than exactly compute the distance between the explosion and
 		// the closest point on the ship, estimate it using the mask's Radius.
-		double d = max(0., (position - ship.Position()).Length() - ship.GetMask().Radius());
-		double finalR = d * d * rSquared;
-		damage.MultiplyScale(k / ((1. + finalR * finalR) * (1. + finalR * finalR)));
+		if(distance < 0.)
+			distance = max(0., position.Distance(ship.Position()) - ship.GetMask().Radius());
+		double finalR = distance * distance * rSquared;
+		scale *= k / ((1. + finalR * finalR) * (1. + finalR * finalR));
 	}
 	if(weapon.HasDamageDropoff())
-		damage.MultiplyScale(weapon.DamageDropoff(distanceTraveled));
+	{
+		if(distance < 0.)
+			distance = max(0., position.Distance(ship.Position()) - ship.GetMask().Radius());
+		scale *= weapon.DamageDropoff(distance);
+	}
+	
+	return scale;
 }

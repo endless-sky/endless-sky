@@ -29,8 +29,6 @@ public:
 		DamageDealt(const Weapon &weapon, double scaling, bool isBlast)
 			: weapon(weapon), scaling(scaling), isBlast(isBlast) {}
 
-		void MultiplyScale(double scale) { scaling *= scale; }
-
 		// The weapon that dealt damage.
 		const Weapon &GetWeapon() const { return weapon; }
 		// The scaling that was used for this damage.
@@ -100,8 +98,8 @@ protected:
 
 
 private:
-	// Finish any calculations that were started in the constructor.
-	virtual void FinishPrecalculations(DamageDealt &damage, const Ship &ship) const = 0;
+	// Determine the damage scale for the given ship.
+	virtual double Scale(double scale, const Ship &ship) const = 0;
 };
 
 #endif

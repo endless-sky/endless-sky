@@ -19,8 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 WeaponProfile::WeaponProfile(const Projectile::ImpactInfo &info, bool isBlast)
-	: weapon(info.weapon), position(info.position), distanceTraveled(info.distanceTraveled),
-	isBlast(isBlast)
+	: weapon(info.weapon), position(info.position), isBlast(isBlast)
 {
 	inputScaling = 1.;
 	// Precompute blast damage scaling.
@@ -36,7 +35,7 @@ WeaponProfile::WeaponProfile(const Projectile::ImpactInfo &info, bool isBlast)
 		rSquared = 1. / (blastRadius * blastRadius);
 	}
 	if(weapon.HasDamageDropoff())
-		inputScaling *= weapon.DamageDropoff(distanceTraveled);
+		inputScaling *= weapon.DamageDropoff(info.distanceTraveled);
 }
 
 
@@ -53,8 +52,7 @@ void WeaponProfile::SetBlast(bool blast)
 DamageProfile::DamageDealt WeaponProfile::CalculateDamage(const Ship &ship) const
 {
 	// Calculate the final damage scale specific to this ship.
-	DamageDealt damage(weapon, inputScaling, isBlast);
-	FinishPrecalculations(damage, ship);
+	DamageDealt damage(weapon, Scale(inputScaling, ship), isBlast);
 	PopulateDamage(damage, ship, position);
 
 	return damage;
@@ -62,16 +60,18 @@ DamageProfile::DamageDealt WeaponProfile::CalculateDamage(const Ship &ship) cons
 
 
 
-// Finish any calculations that were started in the constructor.
-void WeaponProfile::FinishPrecalculations(DamageProfile::DamageDealt &damage, const Ship &ship) const
+// Determine the damage scale for the given ship.
+double WeaponProfile::Scale(double scale, const Ship &ship) const
 {
 	// Finish the blast radius calculations.
 	if(isBlast && weapon.IsDamageScaled())
 	{
 		// Rather than exactly compute the distance between the explosion and
 		// the closest point on the ship, estimate it using the mask's Radius.
-		double d = max(0., (position - ship.Position()).Length() - ship.GetMask().Radius());
-		double finalR = d * d * rSquared;
-		damage.MultiplyScale(k / ((1. + finalR * finalR) * (1. + finalR * finalR)));
+		double distance = max(0., position.Distance(ship.Position()) - ship.GetMask().Radius());
+		double finalR = distance * distance * rSquared;
+		scale *= k / ((1. + finalR * finalR) * (1. + finalR * finalR));
 	}
+	
+	return scale;
 }
