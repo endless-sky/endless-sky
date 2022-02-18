@@ -62,7 +62,11 @@ mission "Remnant: Visit to Paradise 1"
 			accept
 	on stopover
 		conversation
-			``
+			branch science
+				has "Research Laboratory"
+			`As you approach your nav system easily picks up the beacons designating the approach path, and before too long you connect to the automated approach control
+			label science
+			`As you approach Vail your sensors light up with energy traces`
 	on complete
 		conversation
 			``
