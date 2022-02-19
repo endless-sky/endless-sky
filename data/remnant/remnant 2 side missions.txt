@@ -48,7 +48,7 @@ mission "Remnant: Visit to Paradise 1"
 		`	"Oh, maybe some other time, then." She looks disappointed, and settles in to eat."`
 			defer
 		label askquestion
-		`	"I have been reading through the history archive you brought back, and I was interested in going to visit Vail." She shakes her head in amusement. "The idea of an entire planet devoted to leisure activities seems so extravagant... Well, I am just really curious to see it. Now, this is not a mission we are asking you to do, so I cannot offer any logistics compensation. I could, however, show you some of our history in exchange. Are you interested?"`
+		`	"I have been reading through the history archive you brought back, and I came across a mention of Vail." She shakes her head in amusement. "The idea of an entire planet devoted to leisure activities seems so extravagant... Well, I am just really curious to see it. "Now, this is not a mission we are asking you to do, so I cannot offer any logistics compensation. I could, however, show you some of our history in exchange. Are you interested?"`
 		choice
 			`	"That sounds fun."`
 				goto vailfun
@@ -64,9 +64,15 @@ mission "Remnant: Visit to Paradise 1"
 		conversation
 			branch science
 				has "Research Laboratory"
-			`As you approach your nav system easily picks up the beacons designating the approach path, and before too long you connect to the automated approach control
+			`As you approach your nav system easily picks up the beacons designating the approach path, and before too long you connect to the automated approach control that shunts you into the appropriate route down to a landing pad on the outskirts of the main spaceport.`
+				goto vaillanding
 			label science
-			`As you approach Vail your sensors light up with energy traces`
+			`As you approach Vail your sensors light up with energy traces that it quickly identifies as part of the weather control network. From what you recall, many areas of the planet have been adjusted to have greater than usual snowfall. As you approach closer your nav system easily picks up the beacons designating the approach path, and before too long you connect to the automated approach control that shunts you into the appropriate route down to a landing pad on the outskirts of the main spaceport.`
+			label vaillanding
+			`	Looking outside the ship, you can see a multitude of tourist-oriented facilities overwhelming the normal spaceport functions. You can pick out a small sign off to the side that indicates professional commodity and banking facilities, but otherwise the area is dominated by businesses offering mountain touring, sports classes, and vehicle rentals. Next to you, Taely alternates between peering out at the signs and reading brochures on her commlink. "Here, <first>. This one sounds more interested in the challenge and less pampering. What do you think?"`
+			choice
+				`	"Looks good to me."`
+				`	"Alright, 
 	on complete
 		conversation
 			``
