@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Files.h"
 #include "text/FontSet.h"
 #include "ImageSet.h"
+#include "Information.h"
 #include "MaskManager.h"
 #include "Music.h"
 #include "PlayerInfo.h"
@@ -164,7 +165,7 @@ void UniverseObjects::Change(const DataNode &node)
 	else if(node.Token(0) == "substitutions" && node.HasChildren())
 		substitutions.Load(node);
 	else
-		node.PrintTrace("Invalid \"event\" data:");
+		node.PrintTrace("Error: Invalid \"event\" data:");
 }
 
 
@@ -311,7 +312,17 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 		else if(key == "hazard" && node.Size() >= 2)
 			hazards.Get(node.Token(1))->Load(node);
 		else if(key == "interface" && node.Size() >= 2)
+		{
 			interfaces.Get(node.Token(1))->Load(node);
+
+			// If we modified the "menu background" interface, then
+			// we also update our cache of it.
+			if(node.Token(1) == "menu background")
+			{
+				lock_guard<mutex> lock(menuBackgroundMutex);
+				menuBackgroundCache.Load(node);
+			}
+		}
 		else if(key == "minable" && node.Size() >= 2)
 			minables.Get(node.Token(1))->Load(node);
 		else if(key == "mission" && node.Size() >= 2)
@@ -374,7 +385,7 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 				else if(child.Token(0) == "wind" && child.Size() >= 2)
 					solarWind[sprite] = child.Value(1);
 				else
-					child.PrintTrace("Unrecognized star attribute:");
+					child.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
 		else if(key == "news" && node.Size() >= 2)
@@ -431,4 +442,12 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
 	}
+}
+
+
+
+void UniverseObjects::DrawMenuBackground(Panel *panel) const
+{
+	lock_guard<mutex> lock(menuBackgroundMutex);
+	menuBackgroundCache.Draw(Information(), panel);
 }

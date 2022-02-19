@@ -212,6 +212,7 @@
 		2E644A108BCD762A2A1A899C /* Hazard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hazard.h; path = source/Hazard.h; sourceTree = "<group>"; };
 		2E8047A8987DD8EC99FF8E2E /* Test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Test.cpp; path = source/Test.cpp; sourceTree = "<group>"; };
 		389245138CF297EB417DF730 /* UniverseObjects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UniverseObjects.cpp; path = source/UniverseObjects.cpp; sourceTree = "<group>"; };
+		46B444A6B2A67F93BB272686 /* ByGivenOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ByGivenOrder.h; path = source/comparators/ByGivenOrder.h; sourceTree = "<group>"; };
 		499B4DA7A9C7351120660643 /* MaskManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MaskManager.cpp; path = source/MaskManager.cpp; sourceTree = "<group>"; };
 		5155CD711DBB9FF900EF090B /* Depreciation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Depreciation.cpp; path = source/Depreciation.cpp; sourceTree = "<group>"; };
 		5155CD721DBB9FF900EF090B /* Depreciation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Depreciation.h; path = source/Depreciation.h; sourceTree = "<group>"; };
@@ -242,8 +243,8 @@
 		A00D4207B8915B5E7E9B4619 /* RandomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RandomEvent.h; path = source/RandomEvent.h; sourceTree = "<group>"; };
 		A2A948EE929342C8F84C65D1 /* TestContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestContext.h; path = source/TestContext.h; sourceTree = "<group>"; };
 		A3134EC4B1CCA5546A10C3EF /* TestContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestContext.cpp; path = source/TestContext.cpp; sourceTree = "<group>"; };
-		A7E640C7A366679B27CCADAC /* GameLoadingPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameLoadingPanel.cpp; path = source/GameLoadingPanel.cpp; sourceTree = "<group>"; };
 		A3754152958FBC924E9F76A9 /* opengl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opengl.cpp; path = source/opengl.cpp; sourceTree = "<group>"; };
+		A7E640C7A366679B27CCADAC /* GameLoadingPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameLoadingPanel.cpp; path = source/GameLoadingPanel.cpp; sourceTree = "<group>"; };
 		A90633FD1EE602FD000DA6C0 /* LogbookPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LogbookPanel.cpp; path = source/LogbookPanel.cpp; sourceTree = "<group>"; };
 		A90633FE1EE602FD000DA6C0 /* LogbookPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogbookPanel.h; path = source/LogbookPanel.h; sourceTree = "<group>"; };
 		A90C15D71D5BD55700708F3A /* Minable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Minable.cpp; path = source/Minable.cpp; sourceTree = "<group>"; };
@@ -499,6 +500,7 @@
 		C49D4EA08DF168A83B1C7B07 /* Hazard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Hazard.cpp; path = source/Hazard.cpp; sourceTree = "<group>"; };
 		DB9A43BA91B3BC47186BF05E /* UniverseObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UniverseObjects.h; path = source/UniverseObjects.h; sourceTree = "<group>"; };
 		DC8146D5A145C2DA87D98F1F /* GameLoadingPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameLoadingPanel.h; path = source/GameLoadingPanel.h; sourceTree = "<group>"; };
+		DE844E2BBF82C39B568527CB /* ByName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ByName.h; path = source/comparators/ByName.h; sourceTree = "<group>"; };
 		DF8D57DF1FC25842001525DA /* Dictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Dictionary.cpp; path = source/Dictionary.cpp; sourceTree = "<group>"; };
 		DF8D57E01FC25842001525DA /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dictionary.h; path = source/Dictionary.h; sourceTree = "<group>"; };
 		DF8D57E21FC25889001525DA /* Visual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Visual.cpp; path = source/Visual.cpp; sourceTree = "<group>"; };
@@ -827,6 +829,8 @@
 				86D9414E818561143BD298BC /* TextReplacements.h */,
 				A3754152958FBC924E9F76A9 /* opengl.cpp */,
 				EB634E95A88454ADDB8644B1 /* opengl.h */,
+				46B444A6B2A67F93BB272686 /* ByGivenOrder.h */,
+				DE844E2BBF82C39B568527CB /* ByName.h */,
 			);
 			name = source;
 			sourceTree = "<group>";
