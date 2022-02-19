@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Fleet.h"
 #include "FogShader.h"
 #include "text/FontSet.h"
+#include "FormationPattern.h"
 #include "Galaxy.h"
 #include "GameEvent.h"
 #include "Government.h"
@@ -498,6 +499,13 @@ const Set<Effect> &GameData::Effects()
 const Set<GameEvent> &GameData::Events()
 {
 	return objects.events;
+}
+
+
+
+const Set<FormationPattern> &GameData::Formations()
+{
+	return objects.formations;
 }
 
 
