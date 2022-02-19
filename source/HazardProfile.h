@@ -15,19 +15,24 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DamageProfile.h"
 
-#include "Projectile.h"
+#include "Weather.h"
 
 class Point;
 class Ship;
 class Weapon;
 
 
-// A class that calculates how much damage a ship should take given the ship's
-// attributes and the weapon it was hit by for each damage type.
+
+// A class representing damage created from a hazard that gets applied
+// to a ship. Hazard damage differs from other damage in that any damage
+// dropoff cannot be precomputed for all impacted ships, as the distance
+// that each ship is from the hazard's origin is what is used for the
+// damage dropoff distance.
 class HazardProfile : public DamageProfile {
 public:
-	HazardProfile(const Projectile::ImpactInfo &info, double damageScaling, bool isBlast = false);
-	
+	HazardProfile(const Weather::ImpactInfo &info, double damageScaling, bool isBlast = false);
+
+	// Calculate the damage dealt to the given ship.
 	virtual DamageDealt CalculateDamage(const Ship &ship) const override;
 
 
@@ -46,7 +51,9 @@ private:
 	// Whether damage is applied as a blast.
 	bool isBlast;
 
-	// Precomputed blast damage values.
+	// Fields for caching blast radius calculation values
+	// that are shared by all ships that this profile could
+	// impact.
 	double k;
 	double rSquared;
 };

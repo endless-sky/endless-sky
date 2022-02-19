@@ -142,6 +142,14 @@ void Weather::CalculateStrength()
 
 
 
+// Get information on how this hazard impacted a ship.
+Weather::ImpactInfo Weather::GetInfo() const
+{
+	return ImpactInfo(*hazard, origin);
+}
+
+
+
 // Check if this object is marked for removal from the game.
 bool Weather::ShouldBeRemoved() const
 {

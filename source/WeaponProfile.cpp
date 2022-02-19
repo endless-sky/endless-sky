@@ -21,8 +21,9 @@ using namespace std;
 WeaponProfile::WeaponProfile(const Projectile::ImpactInfo &info, bool isBlast)
 	: weapon(info.weapon), position(info.position), isBlast(isBlast)
 {
-	inputScaling = 1.;
-	// Precompute blast damage scaling.
+	// Calculate the value of certain variables necessary for determining
+	// the impact of an explosion that are shared across all ships that
+	// this hazard could impact.
 	if(isBlast && weapon.IsDamageScaled())
 	{
 		// Scale blast damage based on the distance from the blast
@@ -34,6 +35,9 @@ WeaponProfile::WeaponProfile(const Projectile::ImpactInfo &info, bool isBlast)
 		k = !radiusRatio ? 1. : (1. + .25 * radiusRatio * radiusRatio);
 		rSquared = 1. / (blastRadius * blastRadius);
 	}
+	// For weapon projectiles, the distance traveled for the projectile
+	// is the same regardless of the ship being impacted, so calculate
+	// its effect on the damage scale here.
 	if(weapon.HasDamageDropoff())
 		inputScaling *= weapon.DamageDropoff(info.distanceTraveled);
 }
@@ -41,6 +45,9 @@ WeaponProfile::WeaponProfile(const Projectile::ImpactInfo &info, bool isBlast)
 
 
 // Set whether blast damage is applied on the next CalculateDamage call.
+// When a projectile explodes, if it was caused to explode because it
+// directly impacted a ship then the ship that was directly impacted does
+// not run the blast radius calculations.
 void WeaponProfile::SetBlast(bool blast)
 {
 	isBlast = blast;
@@ -51,7 +58,6 @@ void WeaponProfile::SetBlast(bool blast)
 // Calculate the damage dealt to the given ship.
 DamageProfile::DamageDealt WeaponProfile::CalculateDamage(const Ship &ship) const
 {
-	// Calculate the final damage scale specific to this ship.
 	DamageDealt damage(weapon, Scale(inputScaling, ship), isBlast);
 	PopulateDamage(damage, ship, position);
 
@@ -63,7 +69,8 @@ DamageProfile::DamageDealt WeaponProfile::CalculateDamage(const Ship &ship) cons
 // Determine the damage scale for the given ship.
 double WeaponProfile::Scale(double scale, const Ship &ship) const
 {
-	// Finish the blast radius calculations.
+	// Now that we have a specific ship, we can finish the blast damage
+	// calculations.
 	if(isBlast && weapon.IsDamageScaled())
 	{
 		// Rather than exactly compute the distance between the explosion and
@@ -72,6 +79,6 @@ double WeaponProfile::Scale(double scale, const Ship &ship) const
 		double finalR = distance * distance * rSquared;
 		scale *= k / ((1. + finalR * finalR) * (1. + finalR * finalR));
 	}
-	
+
 	return scale;
 }

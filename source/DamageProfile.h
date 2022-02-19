@@ -14,16 +14,21 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define DAMAGE_PROFILE_H_
 
 #include "Point.h"
-#include "Projectile.h"
 
 class Ship;
 class Weapon;
 
 
-// A class that calculates how much damage a ship should take given the ship's
-// attributes and the weapon it was hit by for each damage type.
+
+// An abstract class representing damage created from a certain source.
+// Classes that implement this define what the source is and how the
+// source influences the damage values.
 class DamageProfile {
 public:
+	// A class representing the exact damage dealt to a ship for all
+	// damage types, passed to Ship so that it can be applied. Includes
+	// the weapon used, damage scale, and whether the damage was from a
+	// blast for Ship::TakeDamage to access.
 	class DamageDealt {
 	public:
 		DamageDealt(const Weapon &weapon, double scaling, bool isBlast)
@@ -59,6 +64,8 @@ public:
 
 
 	private:
+		// Friend of DamageProfile so that it can easy set all the damage
+		// values.
 		friend class DamageProfile;
 
 		const Weapon &weapon;
@@ -94,6 +101,7 @@ public:
 
 
 protected:
+	// Populate the given DamageDealt object with values.
 	void PopulateDamage(DamageDealt &damage, const Ship &ship, const Point &position) const;
 
 

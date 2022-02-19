@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+// Populate the given DamageDealt object with values.
 void DamageProfile::PopulateDamage(DamageProfile::DamageDealt &damage, const Ship &ship, const Point &position) const
 {
 	const Outfit &attributes = ship.Attributes();
@@ -32,7 +33,8 @@ void DamageProfile::PopulateDamage(DamageProfile::DamageDealt &damage, const Shi
 		return damage.scaling * (1. - blocked * shieldFraction) / (1. + protection);
 	};
 
-	// Determine the shieldFraction.
+	// Determine the shieldFraction, which dictates how much damage
+	// bleeds through the shields that would normally be blocked.
 	double shields = ship.ShieldLevel();
 	if(shields > 0.)
 	{

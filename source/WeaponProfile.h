@@ -22,8 +22,11 @@ class Ship;
 class Weapon;
 
 
-// A class that calculates how much damage a ship should take given the ship's
-// attributes and the weapon it was hit by for each damage type.
+
+// A class representing damage created from a projectile that gets applied
+// to a ship. Weapon damage differs from other damage in that whether
+// the damage gets applied as a blast depends on whether the weapon
+// is a blast radius weapon and the ship impacted was not directly hit.
 class WeaponProfile : public DamageProfile {
 public:
 	WeaponProfile(const Projectile::ImpactInfo &info, bool isBlast = false);
@@ -31,6 +34,7 @@ public:
 	// Set whether blast damage is applied on the next CalculateDamage call.
 	void SetBlast(bool blast);
 
+	// Calculate the damage dealt to the given ship.
 	virtual DamageDealt CalculateDamage(const Ship &ship) const override;
 
 
@@ -45,11 +49,13 @@ private:
 	// The position of the projectile.
 	const Point &position;
 	// The scaling as recieved before calculating damage.
-	double inputScaling;
+	double inputScaling = 1.;
 	// Whether damage is applied as a blast.
 	bool isBlast;
 
-	// Precomputed blast damage values.
+	// Fields for caching blast radius calculation values
+	// that are shared by all ships that this profile could
+	// impact.
 	double k;
 	double rSquared;
 };
