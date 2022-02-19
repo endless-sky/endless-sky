@@ -92,9 +92,12 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 		FormationPattern emptyFormation;
 		emptyFormation.Load(emptyNode);
 		REQUIRE( emptyFormation.Name() == "Empty");
+		double diameterToPx = 0.;
+		double widthToPx = 0.;
+		double heightToPx = 0.;
+		double centerBodyRadius = 0.;
 		WHEN( "positions are requested") {
-			FormationPattern::ActiveFormation af;
-			auto it = emptyFormation.begin(af);
+			auto it = emptyFormation.begin(diameterToPx, widthToPx, heightToPx, centerBodyRadius);
 			THEN ( "all returned positions are near Point(0,0) and on Ring 0" ) {
 				CHECK( Near(*it, Point(0, 0)) );
 				CHECK( it.Ring() == 0 );
@@ -113,9 +116,12 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 		FormationPattern emptyFormation;
 		emptyFormation.Load(emptyNode);
 		REQUIRE( emptyFormation.Name() == "Empty By Skips");
+		double diameterToPx = 0.;
+		double widthToPx = 0.;
+		double heightToPx = 0.;
+		double centerBodyRadius = 0.;
 		WHEN( "positions are requested") {
-			FormationPattern::ActiveFormation af;
-			auto it = emptyFormation.begin(af);
+			auto it = emptyFormation.begin(diameterToPx, widthToPx, heightToPx, centerBodyRadius);
 			THEN ( "all returned positions are near Point(0,0) and on Ring 0" ) {
 				CHECK( Near(*it, Point(0, 0)) );
 				CHECK( it.Ring() == 0 );
@@ -134,9 +140,12 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 		FormationPattern tailFormation;
 		tailFormation.Load(tailNode);
 		REQUIRE( tailFormation.Name() == "Tail (px point)");
+		double diameterToPx = 0.;
+		double widthToPx = 0.;
+		double heightToPx = 0.;
+		double centerBodyRadius = 0.;
 		WHEN( "positions are requested") {
-			FormationPattern::ActiveFormation af;
-			auto it = tailFormation.begin(af);
+			auto it = tailFormation.begin(diameterToPx, widthToPx, heightToPx, centerBodyRadius);
 			THEN ( "all returned positions are as expected" ) {
 				CHECK( Near(*it, Point(-100, 0)) );
 				++it;
@@ -161,12 +170,15 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 		FormationPattern delta_px;
 		delta_px.Load(delta_pxNode);
 		REQUIRE( delta_px.Name() == "Delta Tail (px)" );
+		double diameterToPx = 0.;
+		double widthToPx = 0.;
+		double heightToPx = 0.;
+		double centerBodyRadius = 0.;
 		WHEN( "positions are requested") {
-			FormationPattern::ActiveFormation af;
 			THEN ( "the correct positions are calculated when nr of ships is unknown" ) {
 				// No exact comparisons due to doubles, but we check if
 				// the given points are very close to what they should be.
-				auto it = delta_px.begin(af);
+				auto it = delta_px.begin(diameterToPx, widthToPx, heightToPx, centerBodyRadius);
 				REQUIRE( Near(*it, Point(-100, 200)) );
 				CHECK( it.Ring() == 0 );
 				++it;
@@ -197,7 +209,7 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 			THEN ( "the correct positions are calculated when nr of ships is known" ) {
 				unsigned int startingRing = 0;
 				unsigned int shipsToPlace = 9;
-				auto it = delta_px.begin(af, startingRing, shipsToPlace);
+				auto it = delta_px.begin(diameterToPx, widthToPx, heightToPx, centerBodyRadius, startingRing, shipsToPlace);
 				REQUIRE( Near(*it, Point(-100, 200)) );
 				CHECK( it.Ring() == 0 );
 				++it;
@@ -227,17 +239,16 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 			}
 		}
 		WHEN( "there is one ship on a centered line" ) {
-			FormationPattern::ActiveFormation af;
 			unsigned int shipsToPlace = 1;
 			THEN ( "it is in the center spot on odd lines" ) {
 				unsigned int startingRing = 3;
-				auto it = delta_px.begin(af, startingRing, shipsToPlace);
+				auto it = delta_px.begin(diameterToPx, widthToPx, heightToPx, centerBodyRadius, startingRing, shipsToPlace);
 				REQUIRE ( it.Ring() == 3 );
 				CHECK( Near(*it, Point(0, 800)) );
 			}
 			THEN ( "it is near the center on even lines" ) {
 				unsigned int startingRing = 4;
-				auto it = delta_px.begin(af, startingRing, shipsToPlace);
+				auto it = delta_px.begin(diameterToPx, widthToPx, heightToPx, centerBodyRadius, startingRing, shipsToPlace);
 				REQUIRE ( it.Ring() == 4 );
 				// X can be left of center or right of center at a distance of
 				// 100 pixels, or can be in the exact center (depending on
@@ -248,33 +259,17 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 			}
 		}
 		WHEN( "there are two ships on a centered line" ) {
-			FormationPattern::ActiveFormation af;
+			double diameterToPx = 0.;
+			double widthToPx = 0.;
+			double heightToPx = 0.;
+			double centerBodyRadius = 0.;
 			unsigned int startingRing = 2;
 			unsigned int numberOfShips = 2;
 			THEN ( "they are on the left and right spots near the center on even lines" ) {
-				auto it = delta_px.begin(af, startingRing, numberOfShips);
+				auto it = delta_px.begin(diameterToPx, widthToPx, heightToPx, centerBodyRadius, startingRing, numberOfShips);
 				CHECK( Near(*it, Point(-100, 600)) );
 				++it;
 				CHECK( Near(*it, Point(100, 600)) );
-			}
-		}
-	}
-	GIVEN( "an active-formation" )
-	{
-		FormationPattern::ActiveFormation af;
-		af.centerBodyRadius = 2200;
-		af.maxDiameter = 380;
-		af.maxWidth = 340;
-		af.maxHeight = 310;
-		WHEN( "assigned to another active-formation" )
-		{
-			auto af2 = af;
-			THEN( "all values are copied over" )
-			{
-				CHECK( af2.centerBodyRadius == 2200 );
-				CHECK( af2.maxDiameter == 380 );
-				CHECK( af2.maxWidth == 340 );
-				CHECK( af2.maxHeight == 310 );
 			}
 		}
 	}

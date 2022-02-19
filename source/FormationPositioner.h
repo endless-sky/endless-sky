@@ -1,5 +1,5 @@
 /* FormationPositioner.h
-Copyright (c) 2019-2021 by Peter van der Meer
+Copyright (c) 2019-2022 by Peter van der Meer
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -46,6 +46,9 @@ private:
 	// Re-generate the list of (relative) positions for the ships in the formation.
 	void CalculatePositions();
 
+	// Consider ship for the formation maximum dimensions.
+	void Tally(const Body &body);
+
 	// Calculate the direction the formation is facing.
 	void CalculateDirection();
 
@@ -69,11 +72,13 @@ private:
 	// Timer that controls the (re)generation of ship positions.
 	int positionsTimer = 0;
 
-	// The scaling factors as we currently have for this formation and
-	// the scaling factors that we are preparing in the currently running
-	// iteration for the next iteration.
-	FormationPattern::ActiveFormation activeData;
-	FormationPattern::ActiveFormation nextActiveData;
+	// The scaling factors as we currently have for this formation, based
+	// on the ships in the formation. (Initialized with some defaults for
+	// small ships.)
+	double centerBodyRadius = 150;
+	double maxDiameter = 80;
+	double maxWidth = 80;
+	double maxHeight = 80;
 
 	// The body around which the formation will be formed and the pattern to follow.
 	const Body *formationLead;

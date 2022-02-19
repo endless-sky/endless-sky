@@ -1,5 +1,5 @@
 /* FormationPattern.h
-Copyright (c) 2019-2021 by Peter van der Meer
+Copyright (c) 2019-2022 by Peter van der Meer
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -29,37 +29,14 @@ class Body;
 // pattern, the actual assignment of ships to positions is handled outside this class.
 class FormationPattern {
 public:
-	// Class that describes the properties of an active formation, like the maximum
-	// sizes of the ships participating in the formation and some data on the Body
-	// around which the formation is formed.
-	class ActiveFormation
-	{
-	public:
-		// Center radius of the formation that is to be kept clear. This
-		// is typically used to avoid positions of ships overlapping with
-		// the body around which the formation is formed. The actual radius
-		// that will be kept clear is this centerBodyRadius plus half of the
-		// maxDiameter.
-		double centerBodyRadius = 100;
-		// Information on ships participating in the formation. Initialized
-		// with some defaults for smaller ships.
-		double maxDiameter = 80;
-		double maxWidth = 80;
-		double maxHeight = 80;
-
-
-	public:
-		// Helper function to clear meta-data from formation participants;
-		void ClearParticipants();
-	};
-
-
 	// Iterator that provides sequential access to all formation positions.
 	class PositionIterator
 	{
 	public:
-		PositionIterator(const FormationPattern &pattern, const ActiveFormation &af,
-			unsigned int startRing = 0, unsigned int shipsToPlace = 0);
+		PositionIterator(const FormationPattern &pattern,
+			double diameterToPx, double widthToPx, double heightToPx,
+			double centerBodyRadius, unsigned int startRing, unsigned int shipsToPlace);
+		PositionIterator() = delete;
 
 		// Iterator traits
 		using iterator_category = std::input_iterator_tag;
@@ -81,24 +58,28 @@ public:
 		void MoveToValidPosition();
 
 	private:
-		// Data from the active formation for which we are calculating
-		// positions.
-		const ActiveFormation &activeFormation;
 		// The pattern for which we are calculating positions.
 		const FormationPattern &pattern;
 		// The location in the pattern.
-		unsigned int ring = 0;
+		unsigned int ring;
 		unsigned int line = 0;
 		unsigned int repeat = 0;
 		unsigned int slot = 0;
 		// Number of ships that we expect to place using this iterator.
-		// The number of ships mostly affects the last line that is placed
-		// in case the last line is centered.
-		// When zero is given then every line is treated as if many more
-		// ships need to be placed.
-		// The shipsToPlace can be a subset of the total ships in a formation
-		// if the formation is constructed in parts (as sections of rings).
-		unsigned int shipsToPlace = 0;
+		// The number of ships affects the last line that is placed in
+		// case the last line is centered. When zero is given then every
+		// line is treated as if many more ships need to be placed.
+		unsigned int shipsToPlace;
+		// Center radius that is to be kept clear. This is used to avoid
+		// positions of ships overlapping with the body around which the
+		// formation is formed.
+		double centerBodyRadius;
+		// Factors to convert coordinates based on ship sizes/dimensions to
+		// coordinates in pixels. Typically initialized with the maximum
+		// sizes/dimensions of the ships participating in the formation.
+		double diameterToPx;
+		double widthToPx;
+		double heightToPx;
 		// Currently calculated Point.
 		Point currentPoint;
 		// Internal status variable;
@@ -114,7 +95,8 @@ public:
 	void Load(const DataNode &node);
 
 	// Get an iterator to iterate over the formation positions in this pattern.
-	PositionIterator begin(const ActiveFormation &af, unsigned int startRing = 0, unsigned int shipsToPlace = 0) const;
+	PositionIterator begin(double diameterToPx, double widthToPx, double heightToPx,
+		double centerBodyRadius, unsigned int startRing = 0, unsigned int shipsToPlace = 0) const;
 
 	// Retrieve properties like number of lines and arcs, number of repeat sections and number of positions.
 	// TODO: Should we hide those properties and just provide a position iterator instead?
@@ -124,7 +106,8 @@ public:
 	bool IsCentered(unsigned int lineNr) const;
 
 	// Calculate a position based on the current ring, line/arc and slot on the line.
-	Point Position(unsigned int ring, unsigned int lineNr, unsigned int repeatNr, unsigned int lineSlot, double diameterToPx, double widthToPx, double heightToPx) const;
+	Point Position(unsigned int ring, unsigned int lineNr, unsigned int repeatNr,
+		unsigned int lineSlot, double diameterToPx, double widthToPx, double heightToPx) const;
 
 	// Information about allowed rotating and mirroring that still results in the same formation.
 	int Rotatable() const;
@@ -135,7 +118,8 @@ public:
 private:
 	class MultiAxisPoint {
 	public:
-		// Coordinate axises for formations; Pixels (default) and heights, widths and diameters of the biggest ship in a formation.
+		// Coordinate axises for formations; in pixels (default) and heights, widths and diameters
+		// of ships.
 		enum Axis { PIXELS, DIAMETERS, WIDTHS, HEIGHTS };
 
 		// Add position information to one of the internal tracked points.

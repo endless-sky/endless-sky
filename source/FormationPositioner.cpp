@@ -1,5 +1,5 @@
 /* FormationPositioner.cpp
-Copyright (c) 2019-2021 by Peter van der Meer
+Copyright (c) 2019-2022 by Peter van der Meer
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -21,17 +21,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cmath>
 
 using namespace std;
-
-
-namespace {
-	void Tally(FormationPattern::ActiveFormation &af, const Body &body)
-	{
-		af.maxDiameter = max(af.maxDiameter, body.Radius() * 2.);
-		af.maxHeight = max(af.maxHeight, body.Height());
-		af.maxWidth = max(af.maxWidth, body.Width());
-	}
-}
-
 
 
 // Initializer based on the formation pattern to follow.
@@ -107,8 +96,12 @@ Point FormationPositioner::Position(const Ship *ship)
 void FormationPositioner::CalculatePositions()
 {
 	// Set scaling based on results from previous run.
-	activeData = nextActiveData;
-	nextActiveData.ClearParticipants();
+	double diameterToPx = maxDiameter;
+	double widthToPx = maxWidth;
+	double heightToPx = maxHeight;
+	maxDiameter = 0;
+	maxWidth = 0;
+	maxHeight = 0;
 
 	// Run the iterators for the ring sections.
 	unsigned int startRing = 0;
@@ -125,7 +118,8 @@ void FormationPositioner::CalculatePositions()
 		startRing = max(startRing, desiredRing);
 
 		// Initialize the new iterator for use for the current ring-section.
-		auto itPos = pattern->begin(activeData, startRing, shipsInRing.size());
+		auto itPos = pattern->begin(diameterToPx, widthToPx, heightToPx,
+			centerBodyRadius, startRing, shipsInRing.size());
 
 		// Run the iterator.
 		size_t shipIndex = 0;
@@ -159,7 +153,7 @@ void FormationPositioner::CalculatePositions()
 			{
 				// Set scaling for next round based on the sizes of the
 				// participating ships.
-				Tally(nextActiveData, *ship);
+				Tally(*ship);
 
 				// Calculate the new coordinate for the current ship.
 				Point &shipRelPos = itCoor->second.first;
@@ -177,6 +171,15 @@ void FormationPositioner::CalculatePositions()
 	}
 	// Switch marker to detect stale/missing ships in the next iteration.
 	tickTock = !tickTock;
+}
+
+
+
+void FormationPositioner::Tally(const Body &body)
+{
+	maxDiameter = max(maxDiameter, body.Radius() * 2.);
+	maxHeight = max(maxHeight, body.Height());
+	maxWidth = max(maxWidth, body.Width());
 }
 
 

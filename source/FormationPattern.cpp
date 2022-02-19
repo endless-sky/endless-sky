@@ -1,5 +1,5 @@
 /* FormationPattern.cpp
-Copyright (c) 2019-2021 by Peter van der Meer
+Copyright (c) 2019-2022 by Peter van der Meer
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -19,18 +19,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 
-void FormationPattern::ActiveFormation::ClearParticipants()
-{
-	maxDiameter = 0.;
-	maxHeight = 0.;
-	maxWidth = 0.;
-}
-
-
-
 FormationPattern::PositionIterator::PositionIterator(const FormationPattern &pattern,
-	const FormationPattern::ActiveFormation &af, unsigned int startRing, unsigned int shipsToPlace)
-	: activeFormation(af), pattern(pattern), ring(startRing), shipsToPlace(shipsToPlace)
+		double diameterToPx, double widthToPx, double heightToPx, double centerBodyRadius,
+		unsigned int startRing, unsigned int shipsToPlace)
+	: pattern(pattern), ring(startRing), shipsToPlace(shipsToPlace), centerBodyRadius(centerBodyRadius),
+		diameterToPx(diameterToPx), widthToPx(widthToPx), heightToPx(heightToPx)
 {
 	MoveToValidPosition();
 }
@@ -140,7 +133,7 @@ void FormationPattern::PositionIterator::MoveToValidPosition()
 		currentPoint = Point();
 	else
 		currentPoint = pattern.Position(ring, line, repeat, slot,
-			activeFormation.maxDiameter, activeFormation.maxWidth, activeFormation.maxHeight);
+			diameterToPx, widthToPx, heightToPx);
 }
 
 
@@ -262,9 +255,11 @@ void FormationPattern::Load(const DataNode &node)
 
 // Get an iterator to iterate over the formation positions in this pattern.
 FormationPattern::PositionIterator FormationPattern::begin(
-	const FormationPattern::ActiveFormation &af, unsigned int startRing, unsigned int shipsToPlace) const
+	double diameterToPx, double widthToPx, double heightToPx,
+	double centerBodyRadius, unsigned int startRing, unsigned int shipsToPlace) const
 {
-	return FormationPattern::PositionIterator(*this, af, startRing, shipsToPlace);
+	return FormationPattern::PositionIterator(*this, diameterToPx, widthToPx,
+		heightToPx, centerBodyRadius, startRing, shipsToPlace);
 }
 
 
