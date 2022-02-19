@@ -869,3 +869,11 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 	}
 	return images;
 }
+
+
+
+// Thread-safe way to draw the menu background.
+void GameData::DrawMenuBackground(Panel *panel)
+{
+	objects.DrawMenuBackground(panel);
+}
