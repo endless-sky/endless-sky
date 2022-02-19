@@ -442,12 +442,11 @@ mission "Hai Rescue [B04] Diplomacy: Treaty Negotiation"
 				accept
 	on complete
 		payment 400000
-		log `You need to visit the Sunracer spaceport to pick up a man named Tutitot, a worm, and an orb. Tutitot and the worm will act as spies, getting caught by the kidnappers. The orb, placed at Devil-Run, will detect his presence. A week or two after you deposit the orb, the Drak will contact you to let you know Tutitot is ready to report.`
 		conversation
 			`You arrive at an office building with unusually high ceilings. When you enter, you notice one of the Quarg scientists you spoke to before is present, their height explaining the chosen meeting location. This must be the "other group" Teeneep said would help. You and Teeneep join the Quarg and Stephen Moray at a tall table.`
 			`	Teeneep explains her "intentional kidnapping" plan to the others, and Stephen says, "Believe it or not, I met a Hai recently that might be able to help. His name is Tutitot Eeegin, and he's expressed interest in helping us solve this problem. He's clever, and he has some experience acting." Stephen excuses himself to contact Tutitot while the Quarg turns to you and Teeneep.`
-			`	"Teeneep asked if the Quarg have something you could use that would let Tutitot send telepathic signals millions of your kilometers. Alas, the Quarg have been unable to create such technology, nor have the Korath." He smiles. "But the Quarg have been here for eons. In our time, we have discovered... 'devices,' beyond our ability to scientifically explain. One of these would be of use to you." He pulls out a glass orb, and it floats to the table; there seems to be a black worm with purple hairs inside. The orb has a blinking blue light on top.`
-			`	"This worm will let Tutitot talk to the holder of this orb regardless of distance. Bring Tutitot to the kidnappers. Go then to Devil-Eye to place the orb. When Tutitot has reached the Philosopher's Paradise, it will send you a... feeling. You will know it's time."`
+			`	The Quarg in question begins in a low voice. "Teeneep here has asked if the Quarg have something you could use that would let Tutitot send telepathic signals millions of your kilometers. Alas, the Quarg have been unable to create such technology, and neither have the Korath." He smiles. "But the Quarg have been here for eons. In our time, we have discovered... 'devices,' beyond our ability to scientifically explain. One of these would be of use to you." He pulls out a glass orb, and it floats to the table; there seems to be a black worm with purple hairs inside. The orb has a blinking blue light on top.`
+			`	"This worm will let Tutitot talk to the one linked to this orb regardless of distance. Bring Tutitot to the kidnappers. Go then to Devil-Eye to place the orb. When Tutitot has reached the Philosopher's Paradise, it will send you a... feeling. You will know it's time."`
 				goto "actual questions"
 			label questions
 			`	"Have you more questions?"`
@@ -463,11 +462,11 @@ mission "Hai Rescue [B04] Diplomacy: Treaty Negotiation"
 			`	"The Quarg do not venture near that region of space. It is filled with... uncomfortable history. We do not discuss that matter with outsiders."`
 				goto questions
 			label work
-			`	"The Quarg do not know all things. Some secrets of the universe are far beyond us. Only the creators of the orb know all its secrets."`
+			`	"The Quarg do not know all things; some secrets of the universe are beyond us. Only the creators of the orb know all its secrets. We can only tell you how to use it."`
 				goto questions
 			label accept
 			`	As you answer, Stephen enters the room. "Tutitot has agreed to help. We have our spy."`
-			`	The Quarg nods and rises, handing you the orb. "I wish you success, wise humans and Hai. Your people are led well under your guidance." With a bow, Quarg leaves the room.`
+			`	The Quarg nods and rises, handing you the orb and a card bearing pictographic instructions. "I wish you success, wise humans and Hai. Your people are led well under your guidance. Please return the orb when you have finished." With a bow, Quarg leaves the room.`
 			`	Stephen Moray rises as well and tells you, "When you're ready, come to the spaceport." He hands you an access card with a room number. "You'll need room for one passenger," he explains, and then he follows the Quarg out.`
 			`	Teeneep thanks you with <payment>. "I cannot overstate how much you've helped us. On behalf of the Hai, thank you. Now, let us put this plan into action."`
 				decline
@@ -508,9 +507,9 @@ mission "Hai Rescue [B05] Plant a Spy"
 	on offer
 		conversation
 			`You reach the spaceport with Teeneep and head to the room you were told to visit. A Hai stands before you, nervously eyeing the strange orb you're holding. "You must be Tutitot," Teeneep says. The Hai nods. "This is Captain <first> <last>. While you two work together, I will stay behind to prepare for our next steps."`
-			`	Tutitot addresses you. "The Quarg told me I'm supposed to put the worm in my ear. It's just so... weird and gross." You give him the orb, and he lifts it up and brings it near his head. The worm immediately jumps out and vanishes into his ear. The Hai stiffens for a few seconds, and then returns to normal. "I can... feel your mind. I can see the orb in my mind. It's like the whole world is in my mind! This is amazing!`
-			`	"I'm ready to go. Please deliver the orb to <stopovers> and then take me to <destination>. When I'm at the Philosopher's Paradise, the orb will... touch your mind? It will probably be two or three weeks after you place it. Then you will return to Devil-Eye to contact me."`
-			`	Tutitot walks toward your ship as if in a trance. Teeneep follows from a distance, watching the Hai's odd behavior. After a moment, she turns to you. "You will be paid well upon your return," says Teeneep. "Please hurry."`
+			`	Tutitot addresses you. "The Quarg told me I'm supposed to put the worm in my ear. It's just so... weird and gross." You consult the instruction card and only now realize exactly what that step was. The pair of you look at that step and share a look before you give him the orb. Cautiously he lifts it up and brings it near his head. The worm immediately jumps out and vanishes into his ear. The Hai stiffens for a few seconds, and then returns to normal. "I can... feel the orb in my mind. It's as if it is expectant, waiting, but it seems to see the world around it; in fact it's like the whole world is in my mind! This is amazing!"`
+			`	After a moment he shakes himself and his eyes refocus back in the moment. "I'm ready to go. Please deliver the orb to <stopovers> and then take me to <destination>. When I'm at the Philosopher's Paradise, the orb will... touch your mind? It will probably be two or three weeks after you place it. Then you will return to Devil-Eye to contact me."`
+			`	Tutitot turns and walks toward your ship as if in a trance. Teeneep follows from a distance, watching the Hai's odd behavior. After a moment, she turns to you. "You will be paid well upon your return," says Teeneep. "Please hurry."`
 				accept
 	on complete
 		event "tutitot is ready" 18
@@ -519,7 +518,7 @@ mission "Hai Rescue [B05] Plant a Spy"
 			`	Now you need to wait for the orb to "send you a feeling" so you know to return here. Tutitot said it would be two or three weeks.`
 		log `Dropped Tutitot off to be "kidnapped" and taken to Philosopher's Paradise.`
 	on stopover
-		dialog `You don a protective space suit and leave your ship with the strange orb. When it reaches the atmosphere, it flies out of your hand about fifty meters, hovering there for a few seconds and then disappearing. It must have some sort of cloaking device. With the orb delivered, it's time to take Tutitot to <destination> to be "kidnapped."`
+		dialog `You don a protective space suit and leave your ship with the strange orb. As your suit starts to give warnings that it is beginning to register atmospheric drag, the orb flashes and the blinking blue light swirls through it and into your gloved hand causing a tingling sensation to run from your palm to up between your eyes. The now dark orb flies out of your hand to a distance of about fifty meters, hovers there for a few seconds and then disappears. You can only surmise that it must have some sort of cloaking device. With the orb delivered you jet quickly back to your ship before the gravity well can drag you down, it's time to take Tutitot to <destination> to be "kidnapped."`
 
 event "tutitot is ready"
 
@@ -550,7 +549,7 @@ mission "Hai Rescue [B07] Return"
 		has "Hai Rescue [B06] Tutitot Reports: done"
 	on offer
 		conversation
-			`You land, and the mysterious orb appears in your cockpit, right in front of your face. You don't know how it entered your ship, but this is alien technology. If the Quarg do not understand it, it is probably far beyond your understanding as well.`
+			`You land, and the mysterious orb appears in your cockpit, right in front of your face. You don't know how it entered your ship, but this is alien technology. If the Quarg do not understand it, you do not expect to understand it either.`
 			`	Tutitot's visage appears in the orb. "I am in the Philosopher's Paradise. The city is older and larger than we thought, and there are many researchers - some were kidnapped recently. An alliance of pirate groups rules here, but the other denizens are friendly. I've seen enough to know there are at least thousands of well-armed troops and dozens of capital ships."`
 			label questions
 			`	"Is there anything specific you wish to know?"`
@@ -569,11 +568,11 @@ mission "Hai Rescue [B07] Return"
 			`	"The people have an intense dislike of Alphas, so they've definitely shown up at some point. The pirates say Alphas will take over any organization they join. They think that aliens would do the same, so Devil-Run pirates are only humans."`
 				goto questions
 			label old
-			`	"Our intel believed the city was established fifty years ago when Base Principles and their partners were supposed to have been scoured from Syndicate space, but the locals claim they're descendants of anarchists from Freedom. There's also no way a city this size could have been built in only fifty years; it must be at least a hundred years old.`
+			`	"Our intel believed the city was established fifty years ago when Base Principles and their partners were supposed to have been scoured from Syndicate space, but I'm free to access large parts of this place so I've had a good chance to talk to some of the locals. They claim that for the most part they're descendants of anarchists from Freedom. There's also no way a city this size could have been built in only fifty years; it must be well over that.`
 			`	goto questions`
 			label large
-			`	"I've only seen small parts of it. The top few levels are docking bays and cargo storage, and the next several house people, laboratories, factories, shipyards, and communal areas. Below that, there are several levels of industrial machinery, generators, and life support systems.`
-			`	"As for population, there's least a hundred thousand. Most are human, but one out of every four or five is Hai. I've seen a couple Korath too, but not many. There are also several thousand pirates, all human."`
+			`	"I've only seen small parts of it so far but I have seen a map. The top few levels are docking bays and cargo storage, and I can access the next several which house people, laboratories, and communal areas. In parallel with those are factories and shipyards which are closely supervised and lastly, below all of that, there are several levels of industrial machinery, generators, and life support systems.`
+			`	"As for population, I'm told there's least a hundred thousand. Most are human, but one out of every four or five is Hai. I've seen a couple Korath too, but not many. There are also several thousand pirates, all human."`
 				goto questions
 			label defenses
 			`	"The pirates regularly capture or buy capital ships and bring them here. I think they may have even built some themselves too. Like I said, it's at least several dozen.`
