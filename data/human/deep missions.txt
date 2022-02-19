@@ -765,7 +765,7 @@ mission "Deep: TMBR 1"
 			label public
 			`	"Maybe we've been away long enough. With recent events I suppose it's only a matter of time until our presence here becomes known more widely to the Republic anyway so we don't exactly gain much by staying. Maybe it's time to go back to the land of the humans."`
 			label return
-			`	Ulrich gathers up the rest of the band and they pack up their supplies. You chart a course for <destination> as the band load their musical equipment on your ship and get ready for the long ride back to human space.`
+			`	Ulrich gathers up the rest of the band and they pack up their supplies. You chart a course for <destination> as they load their musical equipment on your ship and get ready for the long ride back to human space.`
 				accept
 	on visit
 		dialog `You arrive on <planet>, but realize that your escort carrying the band and their supplies has not arrived yet. Better depart and wait for your escorts to enter the system.`
