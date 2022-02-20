@@ -359,7 +359,7 @@ mission "Trader Directions to Hai Space"
 			`	She pulls out her data pad and flicks some coordinates over to you. "Follow those and you'll get there. Keep an eye out for the wormhole."`
 			choice
 				`	"Thank you."`
-					go to wrap
+					goto wrap
 				`	"The wormhole?"`
 			`	She shakes her head, "See for yourself."`
 			label wrap
