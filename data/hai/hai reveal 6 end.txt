@@ -45,7 +45,7 @@ mission "Hai Reveal [D01] Cleanup"
 		#The actual treaty, post certain Hai missions, will be the one to result in a station in Cardax.
 	on complete
 		log `The Free Worlds, Republic, and Hai Elders have signed a resolution to ensure safe passage for Hai in human space, on the condition that they register with a customs authority on Mountaintop. Any Hai sent against their will into human space will be recovered alive if possible, regardless of the risk to human soldiers. However, human authorities will not change their approach towards regular human pirates and slavery, citing "unsustainable loss of life."`
-		log `Unfortunately it seems that in the midst of the crisis a single ship loaded with kidnapped Hai was misplaced by the pirate faction. Now they're in need of rescue from where they've been dumped, and someone has to check for loose ends...`
+		log `Have learned that during the crisis a single ship loaded with kidnapped Hai was misplaced and abandoned. They require rescue and may indicate the presence of a loose end.`
 		conversation
 			`Arriving on Mountaintop brings with it full diplomatic regalia. The Chancellor of the Free Worlds and President of the Republic are in their most respectable suits, Alondo and Xilin have the traditional symbols of office (though Alondo's looks like the Free Worlds have perhaps not finalized their design just yet), and dress uniforms laden with medals abound on both sides.`
 			`	When you ask around, you find out that Terry is not invited to such an event, as the Syndicate is technically part of the Republic and awarded no special diplomatic status. "Besides," Xilin mentions, "Terry left the station as soon as she was released at the end of the crisis."`
@@ -199,7 +199,7 @@ mission "Hai Reveal [D04] Cleanup"
 		dialog `As you depart the planet, you notice a new system has appeared on your scanners to the southwest. You should adjust your destination accordingly.`
 	on offer
 		event "lofty goals"
-		log `You have confirmed that the loose end is Terry, her grandmother ultimately pleaded with you for her life, but also told you where to find her. It turns out there was a whole other world out here in the north only accessible by jump drive. Someone lives there and apparently Terry has something to do with it.`
+		log `Confirmed the loose end is Terry. Discovered the existence of another system in the Far North only accessible via jump drive.`
 		conversation
 			`	When you land on Freedom, the spaceport is busy as ever, but as you go around asking if anyone has seen a woman matching Terry's description, people start acting unusually toward you. You wouldn't describe it as frosty: no one actually seems to know anything, and they remain as friendly and helpful as you'd expect a bunch of anarchists to be. Yet, the more you ask around, the more it seems that people are following you around and whispering to each other. You wonder just who Terry really is, and just how deeply involved she was. She seems to have been one step ahead all the way.`
 			`	As you go down a short, wide alley flanked by tall buildings, you hear the creek of hinges behind you and turn around to see a great wooden gate being closed. The same happens in front of you at the other end of the alley, and the people in the alley suddenly disappear through doorways. As you're looking around, you realize nearly a dozen plasma rifles are pointing at you from windows in upper floors.`
