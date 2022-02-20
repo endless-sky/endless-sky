@@ -69,7 +69,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			`When you return to Hai-home, you are directed to a government hangar where you are met by Xilin and Sayari, both looking very relieved.`
 			`	"I am very glad to see you returned, Captain <last>. Sayari said you were away on an important errand, but I've been hoping for a day now you would appear. I think you might be the solution to the current impasse."`
 			`	"You see," says Sayari, "in the light of the recent civil war your species has had, some of the Elders are less than keen on allowing a partisan observer to see the inner workings of a station in its earliest phases, especially when we haven't built one in so, so long."`
-			`	Now that she mentions it, you don't think you've seen a Hai station at all.`
+			`	Now that she mentions it, all of the stations in Hai space do seem to be very, very old.`
 			`	"However, therein lies a problem," says Xilin.`
 			`	"The Republic will not allow the Hai to build a station on our side of the wormhole without some oversight by someone we trust. This has now been a point of contention for some days, and multiple suggestions have been rejected."`
 			`	Sayari chitters, "Honestly, it's all very silly. Lots of old men who are meant to be friends concerned that the other might have been lying to them."`
@@ -185,8 +185,8 @@ mission "Hai Building Mountaintop [1b] Return"
 		has "Hai Building Mountaintop [1a] Construction Escorts: done"
 	on offer
 		conversation
-			`On arrival, you see one of the Geocoris deploy a steel ring around itself. Space-based cranes set about removing the three outer sections of the Geocoris and moving them to the ring. After they finish with the first, they progressively dismantle the other seven Geocoris you escorted. Within a few hours, there is a makeshift station with eight Geocoris power generators and a sizable amount of storage and habitat space. The construction workers begin unpacking the contents of the Geocoris storage pods, checking construction seals, engaging principle life support systems, and erecting a massive holoprojector.`
-			`	The Geocoris captains explain that the Hai had conceived this space station option when the Geocoris was first designed, with some station construction principles used to support its massive cargo capacity. With minor modifications, it was made a trivial effort to dismantle eight Geocoris and rapidly assemble a station. They thank you for your service and inform you that the Hai government needs your help again.`
+			`On arrival, you see one of the Geocoris deploy a steel ring around itself. Space-based cranes set about removing the three outer sections of the Geocoris and moving them to the ring. After they finish with the first, they progressively dismantle the other seven Geocoris you escorted. Within a few hours, there is a makeshift station with eight Geocoris' power generators and a sizable amount of storage and habitat space. The construction workers begin unpacking the contents of the Geocoris' storage pods, checking construction seals, engaging principle life support systems, and erecting a massive holoprojector.`
+			`	The Geocoris' captains explain that the Hai had conceived this space station option when the Geocoris was first designed, with some station construction principles used to support its massive cargo capacity. With minor modifications, it was made a trivial effort to dismantle eight Geocoris and rapidly assemble a station. They thank you for your service and inform you that the Hai government needs your help again.`
 			`	Content that the station is built satisfactorily, you prepare to return to <destination>.`
 				accept
 
@@ -228,7 +228,7 @@ event "role-play station before construction"
 		government "Hai"
 		attributes uninhabited
 		landscape land/station0
-		description `There's a construction site rapidly assembling a station from Hai Geocoris' orbiting this wormhole.`
+		description `There's a construction site rapidly assembling a station from Hai Geocoris orbiting this wormhole.`
 		"required reputation" -10
 		security 0.2
 

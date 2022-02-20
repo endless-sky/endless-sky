@@ -235,6 +235,8 @@ mission "Hai Rescue [A04] Tarazed Analysis"
 		has "ZZ Hai Rescue [A03] Microtransceiver Identification: done"
 	to complete
 		has "Hai Rescue [A05] Boarded Smuggler: offered"
+	on visit
+		dialog `You have not yet boarded a ship to learn anything about the smugglers. You will need to do this to continue.`
 	on offer
 		event "devil-run smugglers visible"
 		log "People" "Goraz Zoltof" `Goraz is a communications researcher from Tarazed Shipyards. His wife went missing some time ago, and he hopes his research will lead to her rescue.`
