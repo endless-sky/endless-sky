@@ -20,7 +20,7 @@ government "Gegno Vi"
 		"Gegno Scin" -0.05
 		"Gegno" 1
 	"friendly hail" "gegno uncontacted"
-	"hosstile hail" "hostile gegno uncontacted"
+	"hostile hail" "hostile gegno uncontacted"
 
 government "Gegno Scin"
 	swizzle 28

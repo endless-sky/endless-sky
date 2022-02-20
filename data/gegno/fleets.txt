@@ -119,7 +119,7 @@ fleet "Vi Transport"
 		Schist
 	variant 4
 		Slate
-		"Schist Med"
+		"Schist Med A"
 	variant
 		Slate 4
 	variant

@@ -124,7 +124,7 @@ phrase "friendly gegno"
 		"Schuyua Oo"
 		"Dei Ynit Eeb Piebm"
 		"Gou Iisef"
-		"Tsiefl
+		"Tsiefl"
 		"Dei Gno Echmn" 
 	word
 		"."

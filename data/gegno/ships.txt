@@ -315,7 +315,7 @@ ship Hornfel "Hornfel Heavy"
 		mass 80
 		"cargo space" 80
 		drag 1.1
-		"weapon space" 80
+		"weapon space" 130
 	outfits
 		"Ballistic Cannon"
 		"C17 Warzone Core"

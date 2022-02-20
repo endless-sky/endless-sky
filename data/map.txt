@@ -32447,7 +32447,7 @@ planet Essime
 planet "Sies Upi"
 	landscape land/hills1
 	description "Sies Upi is one of the most recently colonized planets of the Gegno Vi. This hot, dry world with harsh living environments serves as more of an outpost than it does a colony, but nevertheless the Vi found ways to make manageable living conditions."
-	description "Being the farthest away from the rest of Gegno territory, this planet is also the first line of defense between the Gegno and the Quarg. Alhough there are no active hostilities between the two, the Vi remain alert and ready at all times."
+	description "Being the farthest away from the rest of Gegno territory, this planet is also the first line of defense between the Gegno and the Quarg. Although there are no active hostilities between the two, the Vi remain alert and ready at all times."
 	spaceport cxfbdf
 	government "Gegno Vi"
 
@@ -32466,8 +32466,7 @@ planet Enbi
 
 planet "Oup Je"
 	landscape land/canyon4
-	description "The many beveling formations here provide the Gegno Scin with a rich amount of materials for their cities and ships. Lower down below are small woodlands that seem to be stripped down one way or another, with few living areas scattered about. It is apparent that this planet has been worn down over time, both to natural and unnatural causes. 
-"
+	description "The many beveling formations here provide the Gegno Scin with a rich amount of materials for their cities and ships. Lower down below are small woodlands that seem to be stripped down one way or another, with few living areas scattered about. It is apparent that this planet has been worn down over time, both to natural and unnatural causes."
 	spaceport aergerag
 	government "Gegno Scin"
 
@@ -32485,7 +32484,7 @@ planet Cipi
 
 planet "Ef Osch"
 	landscape land/beach11-harro
-	description "Ef Osch is the first world found by the Gegno to have a substantial part of the surface covered in water. Pristine beaches surround tropical land masses, and many strange creatures occupy the depths. Despite being approprated by the Gegno Scin, there is relatively low amount of construction work done on the mainland. Most industrial work takes place on large, vessel-like complexes that travel the oceans."
+	description "Ef Osch is the first world found by the Gegno to have a substantial part of the surface covered in water. Pristine beaches surround tropical land masses, and many strange creatures occupy the depths. Despite being appropriated by the Gegno Scin, there is relatively low amount of construction work done on the mainland. Most industrial work takes place on large, vessel-like complexes that travel the oceans."
 	spaceport aewrgearg
 	government "Gegno Scin"
 
@@ -32672,13 +32671,13 @@ planet Cyife
 
 planet "Gue Faur"
 	landscape land/forest3
-	description "Like most Gegno Scin planets, Gue Faur is a steep jungle planet full of all sorts of life. Suprisingly, a majority of the Scin's population resides on this planet rather than their capital. A great percentage of inhabitants consists of researchers and scientists, and all sorts of greenhouses and biodomes are visible everywhere."
+	description "Like most Gegno Scin planets, Gue Faur is a steep jungle planet full of all sorts of life. Surprisingly, a majority of the Scin's population resides on this planet rather than their capital. A great percentage of inhabitants consists of researchers and scientists, and all sorts of greenhouses and biodomes are visible everywhere."
 	spaceport awefw
 	government "Gegno Scin"
 
 planet Tschyss
 	landscape land/sivael6
-	description "This massive station is the only orbital structure that can be found in Gegno space, and is still under heavy construction. Although a majority of the exterior seems complete, the interior is noticably lacking in comparison, and it seems that the progress has slowed down significantly in recent times. A large portion of the station is filled with crew quarters and living sections, all larger than any normal bunker in human space, and the outside is enveloped in many docking bays of numerous sizes."
+	description "This massive station is the only orbital structure that can be found in Gegno space, and is still under heavy construction. Although a majority of the exterior seems complete, the interior is noticeably lacking in comparison, and it seems that the progress has slowed down significantly in recent times. A large portion of the station is filled with crew quarters and living sections, all larger than any normal bunker in human space, and the outside is enveloped in many docking bays of numerous sizes."
 	description "Despite the scale and numbers of onboard structures, there is only a small percentage of Gegno making use of them."
 	spaceport x
 	government Gegno
