@@ -115,6 +115,7 @@ public:
 	// into account, so before actually offering a mission you should also check
 	// if the player has enough space.
 	bool CanOffer(const PlayerInfo &player, const std::shared_ptr<Ship> &boardingShip = nullptr) const;
+	bool CanAccept(const PlayerInfo &player) const;
 	bool HasSpace(const PlayerInfo &player) const;
 	bool HasSpace(const Ship &ship) const;
 	bool CanComplete(const PlayerInfo &player) const;

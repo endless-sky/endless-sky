@@ -966,13 +966,13 @@ ship "Marauder Splinter"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -14 112
-	engine 14 112
-	gun -15 -82 "Plasma Cannon"
-	gun 15 -82 "Plasma Cannon"
-	turret -17 -28 "Heavy Laser Turret"
-	turret 0 -28 "Heavy Anti-Missile Turret"
-	turret 17 -28 "Heavy Laser Turret"
+	engine -15.5 115
+	engine 15.5 115
+	gun -12 -93 "Plasma Cannon"
+	gun 12 -93 "Plasma Cannon"
+	turret -13 42 "Heavy Laser Turret"
+	turret 0 9 "Heavy Anti-Missile Turret"
+	turret 13 42 "Heavy Laser Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -1003,9 +1003,9 @@ ship "Marauder Splinter" "Marauder Splinter (Engines)"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -15 114 .7
-	engine 0 118
-	engine 15 114 .7
+	engine -15.5 115 .7
+	engine 0 117
+	engine 15.5 115 .7
 	turret "Quad Blaster Turret"
 	turret "Heavy Anti-Missile Turret"
 	turret "Quad Blaster Turret"
@@ -1033,11 +1033,11 @@ ship "Marauder Splinter" "Marauder Splinter (Weapons)"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
-	gun -7.5 -98 "Plasma Cannon"
-	gun 7.5 -98 "Plasma Cannon"
-	gun -15 -82 "Plasma Cannon"
-	gun 15 -82 "Plasma Cannon"
-	turret -17 -28 "Quad Blaster Turret"
-	turret 0 -28 "Heavy Anti-Missile Turret"
-	turret 17 -28 "Quad Blaster Turret"
+	gun -11.5 -98 "Plasma Cannon"
+	gun 11.5 -98 "Plasma Cannon"
+	gun -23.5 -28 "Plasma Cannon"
+	gun 23.5 -28 "Plasma Cannon"
+	turret -13.5 42.5 "Quad Blaster Turret"
+	turret 0 9 "Heavy Anti-Missile Turret"
+	turret 13.5 42.5 "Quad Blaster Turret"
 	description "This Splinter has had extensive modification to its weapons space, with two new forward hard points on either side of the bridge. Large sections of the hull are covered with extra shield emitters and hull plating. Much of the stock cargo space has been converted to space for outfits, weapons, and engines; coupled with a streamlining of existing internal systems, it makes the prospect of meeting this flexible war machine in an uninhabited system seem pretty unappealing."
