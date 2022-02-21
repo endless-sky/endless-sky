@@ -1,4 +1,4 @@
-# Copyright (c) 2016 by Michael Zahniser
+# Copyright (c) 2022 by Michael Zahniser
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -33,6 +33,7 @@ effect "distancer flare"
 	"lifetime" 0
 	"velocity scale" 1
 
+
 outfit "Drak Draining Field"
 	category "Turrets"
 	cost 10000000
@@ -60,6 +61,37 @@ outfit "Drak Draining Field"
 		"safe"
 	description "This device is the Archon's primary defensive tool: Not only does it disrupt the shields and energy supplies of all hostile ships within it, it also exerts a powerful repelling force that keeps ships from closing in with the Archon."
 
+
+outfit "Drak Draining Field (Augmented)"
+	category "Turrets"
+	cost 100000000
+	thumbnail "outfit/unknown"
+	"mass" 84
+	"outfit space" -84
+	"weapon capacity" -84
+	"turret mounts" -1
+	weapon
+		ammo "Jump Drive" 0
+		"turret turn" 180
+		"velocity" 1
+		"lifetime" 1
+		"range override" 1100
+		"velocity override" 1100
+		"blast radius" 1100
+		"trigger radius" 1100
+		"reload" 1
+		"firing energy" 20
+		"firing heat" 5
+		"firing force" 30
+		"hit force" 1000
+		"shield damage" 500
+		"ion damage" 1
+		"disruption damage" 2
+		"safe"
+	description "This device is the Archon's primary defensive tool: Not only does it disrupt the shields and energy supplies of all hostile ships within it, it also exerts a powerful repelling force that keeps ships from closing in with the Archon."
+	description "	While normally kept at minimal strength, the Archons have demonstrated the ability to ramp up the field to be vastly stronger when faced with a serious threat."
+
+
 outfit "Drak Anti-Missile Field"
 	category "Turrets"
 	cost 1000000
@@ -76,6 +108,27 @@ outfit "Drak Anti-Missile Field"
 		"firing heat" 1
 		"anti-missile" 100
 	description "This device produces a field that destroys any missiles that come within it."
+
+
+outfit "Drak Anti-Missile Field (Augmented)"
+	category "Turrets"
+	cost 10000000
+	thumbnail "outfit/unknown"
+	"mass" 66
+	"outfit space" -66
+	"weapon capacity" -66
+	"turret mounts" -1
+	weapon
+		ammo "Jump Drive" 0
+		"velocity" 400
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 10
+		"firing heat" 1
+		"anti-missile" 500
+	description "This device produces a field that destroys any missiles that come within it."
+	description "	This level of anti-missile effectiveness is required only when dealing with the most powerful of threats."
+
 
 outfit "Drak Turret"
 	category "Turrets"
@@ -102,6 +155,34 @@ outfit "Drak Turret"
 		"hit force" 120
 	description "This is a turret based cannon with significant range and accuracy."
 
+
+outfit "Drak Turret (Augmented)"
+	category "Turrets"
+	cost 10000000
+	thumbnail "outfit/unknown"
+	"mass" 48
+	"outfit space" -48
+	"weapon capacity" -48
+	"turret mounts" -1
+	weapon
+		ammo "Jump Drive" 0
+		sprite "projectile/drak bolt"
+			"frame rate" 13.318
+			"random start frame"
+		"hit effect" "drak bolt impact"
+		"inaccuracy" 1
+		"turret turn" 8.
+		"velocity" 30
+		"lifetime" 36
+		"reload" 16
+		"firing energy" 160
+		"firing heat" 160
+		"shield damage" 2560
+		"hull damage" 2560
+		"hit force" 120
+	description "This is a turret based cannon with significant range and accuracy."
+	description "	Against most threats, Archons respond with their weapons set to very low levels. They are, however, more than capable of dealing much more damage when the situation requires it."
+
 effect "drak bolt impact"
 	sprite "effect/drak bolt impact"
 		"no repeat"
@@ -111,6 +192,7 @@ effect "drak bolt impact"
 	"random angle" 20
 	"random spin" 10
 	"velocity scale" -.05
+
 
 outfit "Drak Antimatter Cannon"
 	category "Guns"
@@ -134,7 +216,34 @@ outfit "Drak Antimatter Cannon"
 		"firing heat" 1870
 		"blast radius" 100
 		"hit force" 1000
-	description "This is the Drak's ultimate weapon."
+	description "This is the most powerful weapon that the Archons deign to utilize in the presence of the younger races."
+
+
+outfit "Drak Antimatter Cannon (Augmented)"
+	category "Guns"
+	cost 100000000
+	thumbnail "outfit/unknown"
+	"mass" 96
+	"outfit space" -96
+	"weapon capacity" -96
+	"gun ports" -1
+	"inscrutable" 1
+	weapon
+		ammo "Jump Drive" 0
+		"inaccuracy" 0
+		"velocity" 20
+		"lifetime" 1
+		"submunition" "Drak Antimatter Fragment (Augmented)" 5
+		"hit effect" "antimatter dust" 10
+		"hit effect" "nuke explosion"
+		"safe"
+		"reload" 187
+		"firing energy" 5610
+		"firing heat" 1870
+		"blast radius" 250
+		"hit force" 1000
+	description "This is the most powerful weapon that the Archons deign to utilize in the presence of the younger races. Hitherto unknown as Archons are rarely pushed to the point of needing to use more than their minimum abilities, the Antimatter Cannon is capable of far more damage than originally thought."
+
 
 outfit "Drak Antimatter Fragment"
 	weapon
@@ -155,6 +264,26 @@ outfit "Drak Antimatter Fragment"
 		"hull damage" 5610
 		"blast radius" 100
 
+
+outfit "Drak Antimatter Fragment (Augmented)"
+	weapon
+		sprite "projectile/drak bolt"
+			"frame rate" 9.835
+			"random start frame"
+		"live effect" "antimatter spark" 249
+		"live effect" "antimatter dust" 249
+		"hit effect" "antimatter dust" 10
+		"hit effect" "nuke explosion"
+		"safe"
+		"inaccuracy" 1
+		"lifetime" 1000
+		"hit force" 1000
+		"disruption damage" 1000
+		"heat damage" 2500
+		"shield damage" 56100
+		"hull damage" 56100
+		"blast radius" 250
+
 effect "antimatter spark"
 	sprite "effect/antimatter spark"
 		"frame rate" 3
@@ -174,92 +303,3 @@ effect "antimatter dust"
 	"random velocity" 12
 	"velocity scale" .1
 
-
-
-ship "Archon"
-	noun "entity"
-	sprite "ship/archon"
-		"frame rate" 0.87
-	thumbnail "thumbnail/archon"
-	"never disabled"
-	attributes
-		category "Heavy Warship"
-		"cost" 1000000000
-		"shields" 4000000
-		"hull" 1000000
-		"required crew" 1
-		"bunks" 1
-		"mass" 1000
-		"drag" 27
-		"heat dissipation" 40
-		"fuel capacity" 800
-		"cargo space" 0
-		"outfit space" 800
-		"weapon capacity" 600
-		"engine capacity" 200
-		"energy capacity" 10000
-		"energy generation" 500
-		"heat generation" 17
-		"shield generation" 100
-		"shield energy" 100
-		"hull repair rate" 100
-		"hull energy" 100
-		"ion protection" 3
-		"ion resistance" 1
-		"ramscoop" 100
-		weapon
-			"blast radius" 200
-			"shield damage" 20000
-			"hull damage" 10000
-			"hit force" 30000
-	outfits
-		"Drak Antimatter Cannon"
-		"Drak Anti-Missile Field" 2
-		"Drak Draining Field"
-		"Drak Distancer" 2
-		"Drak Turret" 3
-		
-		"Medium Graviton Thruster"
-		"Medium Graviton Steering"
-		"Hyperdrive"
-		"Jump Drive"
-	
-	engine -17 92
-	engine 17 92
-	gun 0 -74 "Drak Antimatter Cannon"
-	turret 0 -10 "Drak Anti-Missile Field"
-	turret 0 -10 "Drak Anti-Missile Field"
-	turret 0 -10 "Drak Draining Field"
-	turret -40 -13 "Drak Turret"
-	turret 40 -13 "Drak Turret"
-	turret 0 81 "Drak Turret"
-	turret -55 16 "Drak Distancer"
-	turret 55 16 "Drak Distancer"
-	explode "nuke explosion" 3
-	"final explode" "final explosion large"
-	description `The Archon's presence is chilling. The "ship" has an almost organic appearance, but your ship's scanners give you no discernible information on its construction. What exactly it is you do not know, but you can feel that it is powerful.`
-
-ship "Archon" "Archon B"
-	"never disabled"
-	sprite "ship/archon b"
-		"frame rate" 0.87
-
-ship "Archon" "Archon C"
-	"never disabled"
-	sprite "ship/archon c"
-		"frame rate" 0.87
-
-ship "Archon" "Archon (Cloaked)"
-	sprite "ship/archon c"
-		"frame rate" 0.87
-	"never disabled"
-	add attributes
-		"cloak" .04
-	turret "Drak Anti-Missile Field"
-	turret "Drak Anti-Missile Field"
-	turret "Drak Draining Field"
-	turret "Drak Turret"
-	turret "Drak Turret"
-	turret "Drak Turret"
-	turret "Drak Distancer"
-	turret "Drak Distancer"

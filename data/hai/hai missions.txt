@@ -91,7 +91,7 @@ mission "Discovered Hai Space"
 	landing
 	invisible
 	source
-		government "Hai"
+		government "Hai" "Hai (Unfettered)"
 	on offer
 		event "label hai space"
 		fail
