@@ -211,6 +211,9 @@ outfitter "Ammo North"
 	"Sidewinder Missile"
 	"Local Map"
 
+outfitter "Northern Explorers"
+	"Ramscoop"
+
 outfitter "Ammo South"
 	"Meteor Missile"
 	"Javelin"
