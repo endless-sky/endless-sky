@@ -64,7 +64,7 @@ public:
 
 
 	private:
-		// Friend of DamageProfile so that it can easy set all the damage
+		// Friend of DamageProfile so that it can easily set all the damage
 		// values.
 		friend class DamageProfile;
 
