@@ -72,7 +72,8 @@ mission "Remnant: Visit to Paradise 1"
 			`	Looking outside the ship, you can see a multitude of tourist-oriented facilities overwhelming the normal spaceport functions. You can pick out a small sign off to the side that indicates professional commodity and banking facilities, but otherwise the area is dominated by businesses offering mountain touring, sports classes, and vehicle rentals. Next to you, Taely alternates between peering out at the signs and reading brochures on her commlink. "Here, <first>. This one sounds more interested in the challenge and less pampering. What do you think?"`
 			choice
 				`	"Looks good to me."`
-				`	"Alright, 
+				`	"Alright, should be good."`
+			`	The resort in question is a more exclusive facility, and thus is located away from the main train lines. You rent a hovercar from one of the rental companies `
 	on complete
 		conversation
 			``
