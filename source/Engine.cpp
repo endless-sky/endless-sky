@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Audio.h"
 #include "CategoryTypes.h"
 #include "CoreStartData.h"
+#include "DamageDealt.h"
 #include "DamageProfile.h"
 #include "Effect.h"
 #include "Files.h"
@@ -28,7 +29,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Hazard.h"
-#include "HazardProfile.h"
 #include "Interface.h"
 #include "MapPanel.h"
 #include "Mask.h"
@@ -59,7 +59,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Test.h"
 #include "TestContext.h"
 #include "Visual.h"
-#include "WeaponProfile.h"
 #include "Weather.h"
 #include "text/WrappedText.h"
 
@@ -2047,7 +2046,7 @@ void Engine::DoCollisions(Projectile &projectile)
 		{
 			// Even friendly ships can be hit by the blast, unless it is a
 			// "safe" weapon.
-			WeaponProfile damage(projectile.GetInfo(), true);
+			const DamageProfile damage(projectile.GetInfo(), true);
 			Point hitPos = projectile.Position() + closestHit * projectile.Velocity();
 			for(Body *body : shipCollisions.Circle(hitPos, blastRadius))
 			{
@@ -2055,15 +2054,14 @@ void Engine::DoCollisions(Projectile &projectile)
 				if(isSafe && projectile.Target() != ship && !gov->IsEnemy(ship->GetGovernment()))
 					continue;
 
-				damage.SetBlast(ship != hit.get());
-				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship), projectile.GetGovernment());
+				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship != hit.get()), projectile.GetGovernment());
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
 		}
 		else if(hit)
 		{
-			WeaponProfile damage(projectile.GetInfo());
+			const DamageProfile damage(projectile.GetInfo());
 			int eventType = hit->TakeDamage(visuals, damage.CalculateDamage(*hit), projectile.GetGovernment());
 			if(eventType)
 				eventQueue.emplace_back(gov, hit, eventType);
@@ -2098,7 +2096,7 @@ void Engine::DoWeather(Weather &weather)
 	{
 		const Hazard *hazard = weather.GetHazard();
 		double multiplier = weather.DamageMultiplier();
-		HazardProfile damage(weather.GetInfo(), multiplier, hazard->BlastRadius() > 0.);
+		const DamageProfile damage(weather.GetInfo(), multiplier, hazard->BlastRadius() > 0.);
 
 		// Get all ship bodies that are touching a ring defined by the hazard's min
 		// and max ranges at the hazard's origin. Any ship touching this ring takes

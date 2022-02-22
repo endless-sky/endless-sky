@@ -14,100 +14,56 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define DAMAGE_PROFILE_H_
 
 #include "Point.h"
+#include "Projectile.h"
+#include "Weather.h"
 
+class DamageDealt;
 class Ship;
 class Weapon;
 
 
 
-// An abstract class representing damage created from a certain source.
-// Classes that implement this define what the source is and how the
-// source influences the damage values.
+// A class that calculates how much damage a ship should take given the ship's
+// attributes and the weapon it was hit by for each damage type. Bundles the
+// results of these calculations into a DamageDealt object.
 class DamageProfile {
 public:
-	// A class representing the exact damage dealt to a ship for all
-	// damage types, passed to Ship so that it can be applied. Includes
-	// the weapon used, damage scale, and whether the damage was from a
-	// blast for Ship::TakeDamage to access.
-	class DamageDealt {
-	public:
-		DamageDealt(const Weapon &weapon, double scaling, bool isBlast)
-			: weapon(weapon), scaling(scaling), isBlast(isBlast) {}
-
-		// The weapon that dealt damage.
-		const Weapon &GetWeapon() const { return weapon; }
-		// The scaling that was used for this damage.
-		double Scaling() const { return scaling; }
-		// Whether damage was dealt as a blast.
-		bool IsBlast() const { return isBlast; }
-
-		// Instantaneous damage types.
-		double Shield() const noexcept { return shieldDamage; }
-		double Hull() const noexcept { return hullDamage; }
-		double Energy() const noexcept { return energyDamage; }
-		double Heat() const noexcept { return heatDamage; }
-		double Fuel() const noexcept { return fuelDamage; }
-
-		// DoT damage types with an instantaneous analog.
-		double Discharge() const noexcept { return dischargeDamage; }
-		double Corrosion() const noexcept { return corrosionDamage; }
-		double Ion() const noexcept { return ionDamage; }
-		double Burn() const noexcept { return burnDamage; }
-		double Leak() const noexcept { return leakDamage; }
-
-		// Unique special damage types.
-		double Disruption() const noexcept { return disruptionDamage; }
-		double Slowing() const noexcept { return slowingDamage; }
-
-		// Hit force applied as a point vector.
-		const Point &HitForce() const noexcept { return forcePoint; }
-
-
-	private:
-		// Friend of DamageProfile so that it can easily set all the damage
-		// values.
-		friend class DamageProfile;
-
-		const Weapon &weapon;
-		// The final scaling that gets applied to a ship, influenced by
-		// the ship's attributes and whether this ship is treated differently
-		// from other ships impacted by this DamageProfile.
-		double scaling;
-		bool isBlast;
-
-		double hullDamage = 0.;
-		double shieldDamage = 0.;
-		double energyDamage = 0.;
-		double heatDamage = 0.;
-		double fuelDamage = 0.;
-
-		double corrosionDamage = 0.;
-		double dischargeDamage = 0.;
-		double ionDamage = 0.;
-		double burnDamage = 0.;
-		double leakDamage = 0.;
-
-		double disruptionDamage = 0.;
-		double slowingDamage = 0.;
-
-		Point forcePoint;
-	};
-
-public:
-	virtual ~DamageProfile() = default;
+	// Constructor for damage taken from a weapon projectile.
+	DamageProfile(const Projectile::ImpactInfo &info, bool isBlast = false);
+	// Constructor for damage taken from a hazard.
+	DamageProfile(const Weather::ImpactInfo &info, double damageScaling, bool isBlast);
 
 	// Calculate the damage dealt to the given ship.
-	virtual DamageDealt CalculateDamage(const Ship &ship) const = 0;
+	DamageDealt CalculateDamage(const Ship &ship, bool ignoreBlast = false) const;
 
 
-protected:
+private:
+	// Calculate the shared k and rSquared variables for
+	// any ship hit by a blast.
+	void CalculateBlast();
+	// Determine the damage scale for the given ship.
+	double Scale(double scale, const Ship &ship, bool blast) const;
 	// Populate the given DamageDealt object with values.
 	void PopulateDamage(DamageDealt &damage, const Ship &ship, const Point &position) const;
 
 
 private:
-	// Determine the damage scale for the given ship.
-	virtual double Scale(double scale, const Ship &ship) const = 0;
+	// The weapon that the dealt damage.
+	const Weapon &weapon;
+	// The position of the projectile or hazard.
+	const Point &position;
+	// The scaling as recieved before calculating damage.
+	double inputScaling = 1.;
+	// Whether damage is applied as a blast.
+	bool isBlast;
+	// Whether damage is applied from a hazard.
+	bool isHazard = false;
+
+	// Fields for caching blast radius calculation values
+	// that are shared by all ships that this profile could
+	// impact.
+	double k;
+	double rSquared;
 };
 
 #endif

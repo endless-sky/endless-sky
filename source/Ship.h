@@ -19,7 +19,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Armament.h"
 #include "CargoHold.h"
 #include "Command.h"
-#include "DamageProfile.h"
 #include "EsUuid.h"
 #include "Outfit.h"
 #include "Personality.h"
@@ -32,6 +31,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+class DamageDealt;
 class DataNode;
 class DataWriter;
 class Effect;
@@ -334,7 +334,7 @@ public:
 	// not necessarily its primary target.
 	// Blast damage is dependent on the distance to the damage source.
 	// Create any target effects as sparks.
-	int TakeDamage(std::vector<Visual> &visuals, const DamageProfile::DamageDealt &damage, const Government *sourceGovernment);
+	int TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment);
 	// Apply a force to this ship, accelerating it. This might be from a weapon
 	// impact, or from firing a weapon, for example.
 	void ApplyForce(const Point &force, bool gravitational = false);
