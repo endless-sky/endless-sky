@@ -31,7 +31,7 @@ public:
 	// Constructor for damage taken from a weapon projectile.
 	DamageProfile(const Projectile::ImpactInfo &info);
 	// Constructor for damage taken from a hazard.
-	DamageProfile(const Weather::ImpactInfo &info, double damageScaling);
+	DamageProfile(const Weather::ImpactInfo &info);
 
 	// Calculate the damage dealt to the given ship.
 	DamageDealt CalculateDamage(const Ship &ship, bool ignoreBlast = false) const;

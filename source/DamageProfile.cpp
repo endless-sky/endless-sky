@@ -33,8 +33,8 @@ DamageProfile::DamageProfile(const Projectile::ImpactInfo &info)
 
 
 
-DamageProfile::DamageProfile(const Weather::ImpactInfo &info, double damageScaling)
-	: weapon(info.weapon), position(info.position), inputScaling(damageScaling), isBlast(weapon.BlastRadius() > 0.)
+DamageProfile::DamageProfile(const Weather::ImpactInfo &info)
+	: weapon(info.weapon), position(info.position), inputScaling(info.scale), isBlast(weapon.BlastRadius() > 0.)
 {
 	CalculateBlast();
 	isHazard = true;

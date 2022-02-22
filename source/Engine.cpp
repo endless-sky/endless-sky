@@ -2095,8 +2095,7 @@ void Engine::DoWeather(Weather &weather)
 	if(weather.HasWeapon() && !Random::Int(weather.Period()))
 	{
 		const Hazard *hazard = weather.GetHazard();
-		double multiplier = weather.DamageMultiplier();
-		const DamageProfile damage(weather.GetInfo(), multiplier);
+		const DamageProfile damage(weather.GetInfo());
 
 		// Get all ship bodies that are touching a ring defined by the hazard's min
 		// and max ranges at the hazard's origin. Any ship touching this ring takes

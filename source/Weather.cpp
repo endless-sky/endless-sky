@@ -145,7 +145,7 @@ void Weather::CalculateStrength()
 // Get information on how this hazard impacted a ship.
 Weather::ImpactInfo Weather::GetInfo() const
 {
-	return ImpactInfo(*hazard, origin);
+	return ImpactInfo(*hazard, origin, DamageMultiplier());
 }
 
 
