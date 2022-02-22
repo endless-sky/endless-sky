@@ -2038,6 +2038,8 @@ void Engine::DoCollisions(Projectile &projectile)
 		// motion path for this step.
 		projectile.Explode(visuals, closestHit, hitVelocity);
 
+		const DamageProfile damage(projectile.GetInfo());
+
 		// If this projectile has a blast radius, find all ships within its
 		// radius. Otherwise, only one is damaged.
 		double blastRadius = projectile.GetWeapon().BlastRadius();
@@ -2046,7 +2048,6 @@ void Engine::DoCollisions(Projectile &projectile)
 		{
 			// Even friendly ships can be hit by the blast, unless it is a
 			// "safe" weapon.
-			const DamageProfile damage(projectile.GetInfo(), true);
 			Point hitPos = projectile.Position() + closestHit * projectile.Velocity();
 			for(Body *body : shipCollisions.Circle(hitPos, blastRadius))
 			{
@@ -2061,7 +2062,6 @@ void Engine::DoCollisions(Projectile &projectile)
 		}
 		else if(hit)
 		{
-			const DamageProfile damage(projectile.GetInfo());
 			int eventType = hit->TakeDamage(visuals, damage.CalculateDamage(*hit), projectile.GetGovernment());
 			if(eventType)
 				eventQueue.emplace_back(gov, hit, eventType);
@@ -2096,7 +2096,7 @@ void Engine::DoWeather(Weather &weather)
 	{
 		const Hazard *hazard = weather.GetHazard();
 		double multiplier = weather.DamageMultiplier();
-		const DamageProfile damage(weather.GetInfo(), multiplier, hazard->BlastRadius() > 0.);
+		const DamageProfile damage(weather.GetInfo(), multiplier);
 
 		// Get all ship bodies that are touching a ring defined by the hazard's min
 		// and max ranges at the hazard's origin. Any ship touching this ring takes

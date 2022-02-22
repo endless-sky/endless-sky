@@ -20,8 +20,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-DamageProfile::DamageProfile(const Projectile::ImpactInfo &info, bool isBlast)
-	: weapon(info.weapon), position(info.position), isBlast(isBlast)
+DamageProfile::DamageProfile(const Projectile::ImpactInfo &info)
+	: weapon(info.weapon), position(info.position), isBlast(weapon.BlastRadius() > 0.)
 {
 	CalculateBlast();
 	// For weapon projectiles, the distance traveled for the projectile
@@ -33,8 +33,8 @@ DamageProfile::DamageProfile(const Projectile::ImpactInfo &info, bool isBlast)
 
 
 
-DamageProfile::DamageProfile(const Weather::ImpactInfo &info, double damageScaling, bool isBlast)
-	: weapon(info.weapon), position(info.position), inputScaling(damageScaling), isBlast(isBlast)
+DamageProfile::DamageProfile(const Weather::ImpactInfo &info, double damageScaling)
+	: weapon(info.weapon), position(info.position), inputScaling(damageScaling), isBlast(weapon.BlastRadius() > 0.)
 {
 	CalculateBlast();
 	isHazard = true;
