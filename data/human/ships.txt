@@ -2539,6 +2539,7 @@ ship "Osprey"
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
+
 	engine -42.5 62.5 .8
 	engine 42.5 62.5 .8
 	engine -16.5 105 .6
