@@ -98,7 +98,7 @@ mission "New Holland Foibles"
 			choice
 				`	(Challenge the claim.)`
 				`	(Leave them be.)`
-					go to leave
+					goto leave
 			`	You point out that what you were seeing did not look at all safe, supervised or not, and the man glances around briefly before huffily making his way over to stand opposite you behind the fence. "Look stranger," he says, "work here is hard to find. For those working here, we don't have the time to spare. But the pay is good and we can at least feed our kids. Sure, some people get a few scrapes and bruises, but no one has died on my watch, and Rik only lost his smallest finger. If you feel the need to watch then fine, stand around, but leave us be, okay? There ain't no one around here that'll care what you have to say anyway."`
 			`	He looks you dead in the eyes, and once he is sure you understand his message he stomps back over to his crew, who continue their work. You watch them cut the dead ship apart until its pieces completely fill the trailer they have with them, before they proceed to haul the parts away to a factory in the distance.`
 				decline
@@ -353,7 +353,7 @@ mission "Tarazed Ship Christening"
 
 
 
-mission "Sojourn Sunday Sales"
+mission "Masquerade Hanging"
 	minor
 	source
 		government "Pirate"
