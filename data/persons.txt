@@ -16,6 +16,8 @@ person "Michael Zahniser"
 		word
 			"I hope you're enjoying the game!"
 	ship Kestrel Kestrel
+		sprite "ship/kestreloriginal"
+		thumbnail "thumbnail/kestreloriginal"
 		"never disabled"
 		attributes
 			category "Heavy Warship"

@@ -306,6 +306,7 @@ ship "Kestrel"
 		"Orca Plasma Thruster"
 		"Orca Plasma Steering"
 		"Hyperdrive"
+
 	engine 13 170
 	engine -13 170
 	gun -73.5 46 "Torpedo Launcher"
@@ -318,6 +319,8 @@ ship "Kestrel"
 	turret 8 -10.5 "Heavy Laser Turret"
 	turret -20.5 9 "Heavy Laser Turret"
 	turret 20.5 9 "Heavy Laser Turret"
+	bay "Fighter" -46 106 under
+	bay "Fighter" 46 106 under
 	explode "small explosion" 25
 	explode "medium explosion" 35
 	explode "large explosion" 45
@@ -327,8 +330,8 @@ ship "Kestrel"
 
 
 ship "Kestrel" "Kestrel (More Engines)"
-	sprite "ship/kestrelE"
-	thumbnail "thumbnail/kestrelE"
+	sprite "ship/kestrele"
+	thumbnail "thumbnail/kestrele"
 	add attributes
 		"drag" -1.0
 		"fuel capacity" 100
@@ -339,16 +342,16 @@ ship "Kestrel" "Kestrel (More Engines)"
 	engine -24.5 160 0.4
 
 ship "Kestrel" "Kestrel (More Shields)"
-	sprite "ship/kestrelS"
-	thumbnail "thumbnail/kestrelS"
+	sprite "ship/kestrels"
+	thumbnail "thumbnail/kestrels"
 	add attributes
 		"shields" 3000
 		"hull" 1500
 		"heat dissipation" .06
 
 ship "Kestrel" "Kestrel (More Weapons)"
-	sprite "ship/kestrelW"
-	thumbnail "thumbnail/kestrelW"
+	sprite "ship/kestrelw"
+	thumbnail "thumbnail/kestrelw"
 	add attributes
 		"weapon capacity" 40
 	gun -73.5 46 "Torpedo Launcher"
