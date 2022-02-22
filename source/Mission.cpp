@@ -296,8 +296,8 @@ void Mission::Load(const DataNode &node)
 
 	if(displayName.empty())
 		displayName = name;
-	if((isMinor || hasPriority) && location == LANDING)
-		node.PrintTrace("Warning: \"minor\" or \"priority\" tags have no effect on \"landing\" missions:");
+	if(hasPriority && location == LANDING)
+		node.PrintTrace("Warning: \"priority\" tag has no effect on \"landing\" missions:");
 }
 
 
@@ -699,6 +699,20 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 		return false;
 
 	return true;
+}
+
+
+
+bool Mission::CanAccept(const PlayerInfo &player) const
+{
+	auto it = actions.find(OFFER);
+	if(it != actions.end() && !it->second.CanBeDone(player))
+		return false;
+
+	it = actions.find(ACCEPT);
+	if(it != actions.end() && !it->second.CanBeDone(player))
+		return false;
+	return HasSpace(player);
 }
 
 
