@@ -199,11 +199,11 @@ outfit "Buzzer Anti-Missile"
 		"hardpoint sprite" "hardpoint/warder"
 		"hardpoint offset" 3.
 		"hit effect" "buzzer"
-		"anti-missile" 9
+		"anti-missile" 4
 		"velocity" 300
 		"lifetime" 1
-		"reload" 2
-		"firing energy" 13
+		"reload" 2.5
+		"firing energy" 15
 		"firing heat" 1
 	description "As the Korath began to saturate systems with mines, the effectiveness of Bunrodean fighters dropped substantially. In response, the Bunrodea developed this rapid-fire anti-missile turret, able to clear sections of a system of Korath mines at blinding speed."
 
