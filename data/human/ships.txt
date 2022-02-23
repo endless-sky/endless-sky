@@ -1143,8 +1143,8 @@ ship "Corvette"
 		
 	engine -11.5 119
 	engine 11.5 119
-	gun -10.5 -75 "Heavy Laser"
-	gun 10.5 -75 "Heavy Laser"
+	gun -11.5 -68.5 "Heavy Laser"
+	gun 11.5 -68.5 "Heavy Laser"
 	gun -26 -8 "Sidewinder Missile Launcher"
 	gun 26 -8 "Sidewinder Missile Launcher"
 	turret 0 -10 "Heavy Laser Turret"
