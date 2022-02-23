@@ -306,7 +306,6 @@ ship "Kestrel"
 		"Orca Plasma Thruster"
 		"Orca Plasma Steering"
 		"Hyperdrive"
-
 	engine 13 170
 	engine -13 170
 	gun -73.5 46 "Torpedo Launcher"
