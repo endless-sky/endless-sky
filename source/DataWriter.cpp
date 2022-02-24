@@ -101,7 +101,7 @@ void DataWriter::WriteComment(const string &str)
 void DataWriter::WriteToken(const char *a)
 {
 	// Figure out what kind of quotation marks need to be used for this string.
-	bool hasSpace = !*a;
+	bool hasSpace = !*a || *a == '#';
 	bool hasQuote = false;
 	for(const char *it = a; *it; ++it)
 	{
