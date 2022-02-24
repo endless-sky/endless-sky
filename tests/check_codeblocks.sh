@@ -17,9 +17,9 @@ for FILE in $(find source -type f -not -name WinApp.rc -not -name main.cpp | sed
 do
   # Check if the file is already in the general Code::Blocks project.
   if ! fgrep -q "${FILE}" ${CDPROJECT}; then
-	if [ $RESULT -ne 1 ]; then
-		echo -e "\033[1mMissing files in EndlessSkyLib.cbp:\033[0m"
-	fi
+    if [ $RESULT -ne 1 ]; then
+      echo -e "\033[1mMissing files in EndlessSkyLib.cbp:\033[0m"
+    fi
     echo -e "${FILE}"
     RESULT=1
   fi
@@ -29,9 +29,9 @@ for FILE in $(find tests/src/ -type f -name "*.h" -o -name "*.cpp" | sed s,^test
 do
   # Check if the file is already in the test Code::Blocks project.
   if ! fgrep -q "${FILE}" ${CDTPROJECT}; then
-	if [ $RESULT -ne 2 ]; then
-		echo -e "\033[1mMissing files in EndlessSkyTests.cbp:\033[0m"
-	fi
+    if [ $RESULT -ne 2 ]; then
+      echo -e "\033[1mMissing files in EndlessSkyTests.cbp:\033[0m"
+      fi
     echo -e "${FILE}"
     RESULT=2
   fi
