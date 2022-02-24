@@ -1,0 +1,33 @@
+name: Validate Code::Blocks Project
+
+on:
+  push:
+    branches:
+      - master
+      - v[0-9]+.[0-9]+.[0-9]+
+    paths:
+    - '.github/workflows/codeblocks_check.yml'
+    - 'EndlessSkyLib.cbp'
+    - 'EndlessSkyTests.cbp'
+    - 'source/**'
+    - 'tests/src/**'
+    - 'tests/check_codeblocks.sh'
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+    - '.github/workflows/codeblocks_check.yml'
+    - 'EndlessSkyLib.cbp'
+    - 'EndlessSkyTests.cbp'
+    - 'source/**'
+    - 'tests/src/**'
+    - 'tests/check_codeblocks.sh'
+
+jobs:
+  check-codeblocks-project:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+    - name: Validate Code::Blocks project files
+      run: ./tests/check_codeblocks.sh
