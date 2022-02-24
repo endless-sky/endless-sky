@@ -31,7 +31,7 @@ do
   if ! fgrep -q "${FILE}" ${CDTPROJECT}; then
     if [ $RESULT -ne 2 ]; then
       echo -e "\033[1mMissing files in EndlessSkyTests.cbp:\033[0m"
-      fi
+    fi
     echo -e "${FILE}"
     RESULT=2
   fi
