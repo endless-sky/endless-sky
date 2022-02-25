@@ -31259,7 +31259,7 @@ planet "Dueyu Eitch"
 	landscape land/desert4
 	description "The historic homeworld of all Gegno, Dueyu Eitch is a rugged, rocky world with covered with enormous metropolises and structures. Each city is based on an elevated structure, and starting from the bottom up the buildings are more advanced the farther they reach into the sky. Larger cities are lit by the varying reds and oranges of industrial forgery, and more urban areas are speckled with yellow and green. Beneath the heavily populated surface are traces of enormous cavities, suggesting the Gegno began a majority of their ancestry in the ground."
 	description "Three distinct subspecies can be seen walking about the architecture: One that is very bulky and scaly in appearance, another slimmer and more bone-like, and the third a combination of the first two; all standing several feet taller than a human being."
-	spaceport x
+	spaceport "x"
 	government Gegno
 	security 0
 
@@ -31269,7 +31269,7 @@ planet "Dueitch Ae"
 	landscape land/mountain1
 	description "In order to pursue biology and other important scienctifical research, this green, lush world was designated as the Gegno Scin's capital. Much unlike the heavy industry of the core Gegno worlds, Dueitch Ae's surface still supports many natural ecosystems, and most importantly, is home to a notable amount of water bodies. The Scin effectively limit their expansion on the planet, even at the cost of their population's growth, to preserve the flourshing life on it as long as possible."
 	description "Although preservation is a primary goal, the Scin still manipulate the planet for the sake of research. Even if it's not harming the environment directly, patches of the planet have been converted into large experimentation grounds, some a bit less humane than others."
-	spaceport Test
+	spaceport "The spaceport you are staying at is one huge circular construction hundreds of yards in diameter outfitted with strange looking devices and technology, very much in contrast to the surrounding natural environment. In an open section located at the center is a small forest being observed by the nearby Scin. Some of them, however, seem to be more intersested in observing your observation."
 	government "Gegno Scin"
 
 planet Graede
@@ -31277,7 +31277,8 @@ planet Graede
 	outfitter "Gegno Vi Outfits"
 	landscape land/forest2
 	description "Unlike the homeworld of the Gegno, the Capital planet of the Vi is covered in astounding natural beauty where the land is untouched. Acres of forestry spread across realtively low mountain ranges, and a variety of small and large marsupials can be seen running to and fro. Despite all of this, there are many plowed fields that have been converted to industrial ranges and shipyards, and several large cities have begun to grow towards the sky. "
-	spaceport x
+	spaceport "The structure you're parked at seems to be just a section of a much larger rectilinear building with many other sections and rods projecting out from it. From the height you are at, you can see the wilderness strech for miles, occasionally interrupted with another tall-reaching spaceport or factory."
+	spaceport "You often find yourself lost in the beauty of a world still untouched by the rest of its industry, occasionally distracting you from the many distasteful looks given to you from the Vi here. It's clear that they are not on the same page, and would likely blast your brains out if they cared enough to do so."
 	government "Gegno Vi"
 
 system Ptobeh
@@ -32437,58 +32438,61 @@ planet Ternituul
 	landscape land/fog1
 	description "Ternituul is a dull world covered in a thick layer of fog hiding a dry desolate surface; an ideal world for the hardened Gegno Vi. A large portion of the Vi's military branch is based here, where new recruits are thrown into the first bottleneck of their lives. It is not uncommon for inhabitants to be lost to the bleak ecosystem of this planet."
 	description "The fog also hides a more grim aspect of this world- numerous graveyards cover the terrain, serving as a final resting place for most Vi. Large ceremonies are constantly held for the fallen, though instead of grievance, the Vi celebrate the commitment and dignity of their fellow brethren."
-	spaceport x
+	spaceport "Here, the spaceport is built very close to and partly in the ground, nearly a danger to any craft landing. Undeterred by the gloomy appearance of this graveyard world, the nearby Vi are occasionally chanting or lighting fires for the deceased, even while exiting their ships."   
 	government "Gegno Vi"
 
 planet Essime
 	landscape land/mountain4
 	description "Starting from an early age, most Vi give their lives to their endless trials of survival, finding themselves either on the frontlines of conflict or in the backlines of industry. As they grow old, they retire and spend the rest of their lives on green planets such as this one, where they hunt animals for food and till acres of land. "
-	spaceport "The spaceport here is a very large circular shape with tall pylons reaching up into a dome roofing. The empty space between each pylon is occasionally interrupted by a freighter or two, and in the center of it is a main center shaft where most pilots are gathered."
-	spaceport "Several Vi chuckle deeply, gesturing outward while talking to others, likely telling stories of the hunts they've had on the planet. Strangely, the Vi pay you no attention; not even of distrust, and carry on about their day as if you aren't even present."
+	spaceport "The spaceport here is a very large circular shape with tall pylons reaching up into a dome roofing. The empty space between each pylon is occasionally interrupted by a freighter or two, and in the center of it is a main center shaft where most pilots are gathered. Surrounding the pilots are what appear to be older members of the Vi deep in conversation."
+	spaceport "Several Vi are chuckling deeply, likely telling stories of hunts they've had on the planet. Strangely, they pay you no attention; not even of distrust, and carry on about their day as if you aren't even present."
 	government "Gegno Vi"
 
 planet "Sies Upi"
 	landscape land/hills1
 	description "Sies Upi is one of the most recently colonized planets of the Gegno Vi. This hot, dry world with harsh living environments serves as more of an outpost than it does a colony, but nevertheless the Vi found ways to make manageable living conditions."
-	description "Being the farthest away from the rest of Gegno territory, this planet is also the first line of defense between the Gegno and the Quarg. Although there are no active hostilities between the two, the Vi remain alert and ready at all times."
-	spaceport cxfbdf
+	description "Being the farthest away from the rest of Gegno territory, this planet is also the first line of defense between the Gegno and the Quarg. Alhough there are no active hostilities between the two, the Vi remain alert and ready at all times."
+	spaceport "This spaceport seems a lot more militarized than other Gegno planet spaceports, full of geared up Vi with their ships parked close by. The roar of an enormous cruiser's engines can be heard just as often as another's shutting down. There doesn't look to be very many non-personnel civilians here, and it feels somewhat clausterphobic with all of the guards standing around."
 	government "Gegno Vi"
 
 planet Siedi
 	landscape land/forest5
-	description "The gravitational pull of the nearby gas giant resulted in the large, bulky, mountainous surface of this planet. Tectonic shifts are very common, and the surface is marked with the wear and tear of massive tremors. Beneath the cracks, however, lies a rich source of materials that the Vi quickly capatilized on for their nearby worlds. "
-	spaceport x
+	description "The gravitational pull of the nearby gas giant resulted in the large, bulky, mountainous surface of this planet. Tectonic shifts are very common, and the surface is marked with the wear and tear of massive tremors. Beneath the cracks, however, lies a rich source of materials that the Vi quickly capatilized on for their nearby worlds."
+	spaceport "The spaceport is haphazardly build inside the side of a smaller mountain, and every now and then you can feel a very faint rumbling from below, not sure if it is beneath you or somewhere off in the distance. Even the area around the spaceport continues to be constructed on, but it is more likely mining for materials than improvements to the structure itself."
 	government "Gegno Vi"
 
 planet Enbi
 	landscape land/fog0
-	description "A cold, mountainous world on the very edge of the binary system's habitable area, Enbi maintains the massive shipyards of the Gegno Vi, using raw resources gathered from the nearby volcanic planet to churn out hull after hull for warships. Many large canyons decorate the surface and are used as weapon test sites, and in one of the largest canyons lies a shipyard several times larger and older-looking than the rest. "
+	description "A cold, mountainous world on the very edge of the binary system's habitable area, Enbi maintains the massive shipyards of the Gegno Vi, using raw resources gathered from the nearby volcanic planet to churn out hull after hull for warships. Many large canyons decorate the surface and are used as weapon test sites, and in one of the largest canyons lies a shipyard several times larger and older-looking than the rest."
 	description "On closer inspection, the method that created the canyons does not seem entirely natural, and there are slight glints of light shimmering down in the deepest regions. How these crevices appeared is a mystery, but it is clear that the Vi had no hand in creating them."
-	spaceport x
+	spaceport "Rows of alternating towers stretch far ahead and behind the one your spacecraft is stationed at, and a thick layer of fog acts as a sort of floor connecting them. Every now and then, the fog breaks, revealing the large shipyards down below either side of you, followed by a new row of towers."
+	spaceport "Off in the distance of the breaking fog is one vast gray structure, almost taking up your field of view. The closer towards the mass, the more buildings there seems to be, and it's unlikely you could get anywhere near there without becoming a threat."
+	spaceport "If you stare too long, the nearby guards gesture more aggressively towards you, suggesting you keep your attention to yourself."
 	government "Gegno Vi"
 
 planet "Oup Je"
 	landscape land/canyon4
 	description "The many beveling formations here provide the Gegno Scin with a rich amount of materials for their cities and ships. Lower down below are small woodlands that seem to be stripped down one way or another, with few living areas scattered about. It is apparent that this planet has been worn down over time, both to natural and unnatural causes."
-	spaceport aergerag
+	spaceport "The Scin here have different gear than those leaving and entering the spaceport, suggesting they have a particular place on the surface rather than outside of the planet, probably some of the miners. They seem quite interested in you compared to other Gegno being that a majority of their days involve seeing mostly materials and machinery."
 	government "Gegno Scin"
 
 planet "Enn Bue"
 	landscape land/canyon01
-	description "Large, lengthy shipyards cover the surface of this otherwise inhospiable desert planet, home to most of the Gegno Scin's ship production. A majority of wealthy materials come from the neighboring gas giant's moons, however the strong gravitational pull occasionally generates natural disasters that ravage the surface. Despite all of this, the Scin remain viligant and efficient in their craftworks."
-	spaceport aergergerg
+	description "Lengthy oval-like shipyards speckle the surface of this otherwise inhospiable desert planet, home to most of the Gegno Scin's ship production. A majority of wealthy materials come from the neighboring gas giant's moons, however the strong gravitational pull occasionally generates natural disasters that ravage the surface. Despite all of this, the Scin remain viligant and efficient in their craftworks."
+	spaceport "Enveloped in a large black dome cap, this spaceport is a lot quieter inside than the loud winds and storms often found outside. It has definitely seen a severe duststorm or two, but still holds tight together. The Gegno Scin here give you lengthy stares, oddly enough taking turns to observe you. One will look up then look back down to themselves followed by another's attention."
 	government "Gegno Scin"
 
 planet Cipi
 	landscape land/mountain5
 	description "Cipi's forestries and mountains are a suitable place for the Gegno Scin's less active population, home to the more quiet-working. The population of this planet is limited, and architecture is built on the alpines to avoid hurting the natural landscapes of the planet. This provides the Scin with healthy crop and hunting seasons to supply their main population without the interference of pollutive industry."
-	spaceport aergreag
+	spaceport "Rather than inside the mountain, the spaceport is built at the very edge supported underneath by several pylons in a half-oval formation. The valley down below, between you and the mountain range just a bit further away, seems almost cramped between the formations. Occasionally, a few Halite fighters buzz by at low altitudes and then sharply turn off into the distance, though you expect them to be louder than they really are."
 	government "Gegno Scin"
 
 planet "Ef Osch"
 	landscape land/beach11-harro
-	description "Ef Osch is the first world found by the Gegno to have a substantial part of the surface covered in water. Pristine beaches surround tropical land masses, and many strange creatures occupy the depths. Despite being appropriated by the Gegno Scin, there is relatively low amount of construction work done on the mainland. Most industrial work takes place on large, vessel-like complexes that travel the oceans."
-	spaceport aewrgearg
+	description "Ef Osch is the first world found by the Gegno to have a substantial part of the surface covered in water. Pristine beaches surround tropical land masses, and many strange creatures occupy the depths. Despite being approprated by the Gegno Scin, there is relatively low amount of construction work done on the mainland. Most industrial work takes place on large, vessel-like complexes that travel the oceans."
+	spaceport "Each island vessel also serves as a makeshift yet decent spaceport with all of the basic facilitices. From as far as you can see, there are two lines of vessels in your area, and although they are miles apart, they form a runway-like pattern."
+	spaceport "The island ports also are built in a variety of sizes. The Scin fly their ships down the pattern as if it's a highway, staying neatly in the center until they find a port that accommadates the ship they are piloting." 
 	government "Gegno Scin"
 
 planet "Var Oti"
@@ -32662,11 +32666,6 @@ system Acnanjo
 		distance 2757
 		period 1645.0249
 
-planet Eiaf
-	description rtdehrth
-	spaceport rsghdhg
-	government "Gegno Scin"
-
 planet Cyife
 	landscape land/snow13
 	description "This lonely, icy moon is the only non-gaseous celestial body within this rather quiet star system. Although there are no readings of life here due to the extremely low temperatures, certain parts of the surface glimmer oddly compared to others, as if to imply something may once have been here before."
@@ -32674,13 +32673,13 @@ planet Cyife
 
 planet "Gue Faur"
 	landscape land/forest3
-	description "Like most Gegno Scin planets, Gue Faur is a steep jungle planet full of all sorts of life. Surprisingly, a majority of the Scin's population resides on this planet rather than their capital. A great percentage of inhabitants consists of researchers and scientists, and all sorts of greenhouses and biodomes are visible everywhere."
-	spaceport awefw
+	description "Like most Gegno Scin planets, Gue Faur is a steep jungle planet full of all sorts of life. Suprisingly, a majority of the Scin's population resides on this planet rather than their capital. A great percentage of inhabitants consists of researchers and scientists, and all sorts of greenhouses and biodomes are visible everywhere."
+	spaceport "The spaceport seems very busy with all sorts of Gegno Scin walking around in a hurried fashion. Some of them are wearing long, sleek jackets while others wear more feather-like plating. Once in a while, a female Scin will stop nearby to observe and record you then carry on as if nothing happened."
 	government "Gegno Scin"
 
 planet Tschyss
 	landscape land/sivael6
-	description "This massive station is the only orbital structure that can be found in Gegno space, and is still under heavy construction. Although a majority of the exterior seems complete, the interior is noticeably lacking in comparison, and it seems that the progress has slowed down significantly in recent times. A large portion of the station is filled with crew quarters and living sections, all larger than any normal bunker in human space, and the outside is enveloped in many docking bays of numerous sizes."
-	description "Despite the scale and numbers of onboard structures, there is only a small percentage of Gegno making use of them."
-	spaceport x
+	description "This massive station is the only orbital structure that can be found in Gegno space, and is still under heavy construction. Although a majority of the exterior seems complete, the interior is noticably lacking in comparison, and it seems that the progress has slowed down significantly in recent times. A large portion of the station is filled with crew quarters and living sections, all larger than any normal bunker in human space, and the outside is enveloped in many docking bays of numerous sizes."
+	description "Despite the scale and numbers of onboard facilities, there is only a small percentage of Gegno making use of them."
+	spaceport "Gegno of all kinds are walking to and fro, though they seem very tired and overworked. Not a lot of them seem happy with their current working conditions, but all you can do is watch from a distance in a small half-built area nearby your ship's designated lock."
 	government Gegno

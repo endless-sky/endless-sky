@@ -1,0 +1,9 @@
+mission "Stationed Vi Augen"
+	invisible
+	landing
+	npc kill
+		government "Gegno Vi"
+		personality heroic vindictive staying
+		system Kiluit
+		ship Augen "Vytii Yrrlausei"
+
