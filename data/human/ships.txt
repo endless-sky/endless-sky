@@ -1141,14 +1141,14 @@ ship "Corvette"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -11 118
-	engine 11 118
-	gun -12 -68 "Heavy Laser"
-	gun 12 -68 "Heavy Laser"
-	gun -14 -60 "Sidewinder Missile Launcher"
-	gun 14 -60 "Sidewinder Missile Launcher"
-	turret 0 -11 "Heavy Laser Turret"
-	turret 0 74 "Anti-Missile Turret"
+	engine -11.5 119
+	engine 11.5 119
+	gun -11.5 -68.5 "Heavy Laser"
+	gun 11.5 -68.5 "Heavy Laser"
+	gun -26 -8 "Sidewinder Missile Launcher"
+	gun 26 -8 "Sidewinder Missile Launcher"
+	turret 0 -10 "Heavy Laser Turret"
+	turret 0 76 "Anti-Missile Turret"
 	leak "leak" 40 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
