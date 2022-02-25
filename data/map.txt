@@ -27593,6 +27593,7 @@ planet Haven
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
+	outfitter "Northern Explorers"
 	bribe 0.03
 	security 0
 	tribute 700
@@ -28785,6 +28786,7 @@ planet Prime
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	outfitter "Lovelace Basics"
+	outfitter "Northern Explorers"
 	"required reputation" 2
 	bribe 0.05
 	security 0.6
@@ -29498,6 +29500,7 @@ planet Sunracer
 	outfitter "Syndicate Advanced"
 	outfitter "Lovelace Basics"
 	outfitter "Ammo North"
+	outfitter "Northern Explorers"
 	bribe 0.06
 	security 0.7
 	tribute 1700

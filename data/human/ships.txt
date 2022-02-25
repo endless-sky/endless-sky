@@ -1141,14 +1141,14 @@ ship "Corvette"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -11 118
-	engine 11 118
-	gun -12 -68 "Heavy Laser"
-	gun 12 -68 "Heavy Laser"
-	gun -14 -60 "Sidewinder Missile Launcher"
-	gun 14 -60 "Sidewinder Missile Launcher"
-	turret 0 -11 "Heavy Laser Turret"
-	turret 0 74 "Anti-Missile Turret"
+	engine -11.5 119
+	engine 11.5 119
+	gun -11.5 -68.5 "Heavy Laser"
+	gun 11.5 -68.5 "Heavy Laser"
+	gun -26 -8 "Sidewinder Missile Launcher"
+	gun 26 -8 "Sidewinder Missile Launcher"
+	turret 0 -10 "Heavy Laser Turret"
+	turret 0 76 "Anti-Missile Turret"
 	leak "leak" 40 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -2540,16 +2540,16 @@ ship "Osprey"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -45.5 62.5 .8
-	engine 45.5 62.5 .8
+	engine -42.5 62.5 .8
+	engine 42.5 62.5 .8
 	engine -16.5 105 .6
 	engine 16.5 105 .6
-	gun -6.5 -100 "Plasma Cannon"
-	gun 6.5 -100 "Plasma Cannon"
-	gun -26.5 -54 "Plasma Cannon"
-	gun 26.5 -54 "Plasma Cannon"
-	turret -13 -17 "Quad Blaster Turret"
-	turret 13 -17 "Heavy Anti-Missile Turret"
+	gun -25 -49.5 "Plasma Cannon"
+	gun 25 -49.5 "Plasma Cannon"
+	gun -9.5 -95.5 "Plasma Cannon"
+	gun 9.5 -95.5 "Plasma Cannon"
+	turret -15.5 -12 "Quad Blaster Turret"
+	turret 15.5 -12 "Heavy Anti-Missile Turret"
 	leak "leak" 40 50
 	leak "flame" 80 80
 	leak "big leak" 80 30
