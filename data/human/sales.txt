@@ -211,14 +211,14 @@ outfitter "Ammo North"
 	"Sidewinder Missile"
 	"Local Map"
 
-outfitter "Northern Explorers"
-	"Ramscoop"
-
 outfitter "Ammo South"
 	"Meteor Missile"
 	"Javelin"
 	"Heavy Rocket"
 	"Local Map"
+
+outfitter "Northern Explorers"
+	"Ramscoop"
 
 outfitter "Deep Sky Basics"
 	"Ramscoop"
