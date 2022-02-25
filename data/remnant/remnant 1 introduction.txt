@@ -152,7 +152,7 @@ mission "Remnant: Hails Change"
 
 
 
-mission "Remnant: lost in ember waste"
+mission "Remnant: Lost in Ember Waste"
 	landing
 	invisible
 	source
@@ -169,7 +169,7 @@ mission "Remnant: lost in ember waste"
 
 
 
-mission "Remnant: lost in ember waste compatibility"
+mission "Remnant: Lost in Ember Waste Compatibility"
 	landing
 	invisible
 	source
