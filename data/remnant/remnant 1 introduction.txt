@@ -152,7 +152,7 @@ mission "Remnant: Hails Change"
 
 
 
-mission "Remnant: Lost in Ember Waste"
+mission "Remnant: Lost in Ember Waste 1"
 	landing
 	invisible
 	source
@@ -176,6 +176,7 @@ mission "Remnant: Lost in Ember Waste Compatibility"
 		government "Remnant"
 	to offer
 		has "lost in ember waste: declined"
+		not "Remnant: Lost in Ember Waste: declined"
 	on offer
 		set "Remnant: Lost in Ember Waste: offered"
 		set "Remnant: Lost in Ember Waste: declined"
@@ -184,7 +185,25 @@ mission "Remnant: Lost in Ember Waste Compatibility"
 
 
 
-mission "Remnant: Lost in Ember Waste"
+mission "Remnant: Lost in Ember Waste 2 Compatibility"
+	landing
+	invisible
+	source
+		government "Remnant"
+	to offer
+		has "lost in ember waste: declined"
+		has "Remnant: Lost in Ember Waste: declined"
+	on offer
+		set "Remnant: Lost in Ember Waste: offered"
+		set "Remnant: Lost in Ember Waste: declined"
+		set "Remnant: Lost in Ember Waste 2: offered"
+		set "Remnant: Lost in Ember Waste 2: declined"
+		set "event: remnant: lost in ember waste"
+		fail
+
+
+
+mission "Remnant: Lost in Ember Waste 2"
 	landing
 	invisible
 	source
