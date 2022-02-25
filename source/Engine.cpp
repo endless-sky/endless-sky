@@ -2055,7 +2055,7 @@ void Engine::DoCollisions(Projectile &projectile)
 				if(isSafe && projectile.Target() != ship && !gov->IsEnemy(ship->GetGovernment()))
 					continue;
 
-				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship != hit.get()), projectile.GetGovernment());
+				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit.get()), projectile.GetGovernment());
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
