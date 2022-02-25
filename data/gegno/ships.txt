@@ -8,6 +8,77 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+ship Augen
+	sprite ship/augen
+	thumbnail thumbnail/augen
+	swizzle 0
+	attributes
+		category "Heavy Warship"
+		cost 3700000
+		mass 3600
+		bunks 360
+		"cargo space" 84
+		drag 40
+		"engine capacity" 2000
+		"fuel capacity" 500
+		"heat dissipation" 0.4
+		hull 66600
+		"outfit space" 2000
+		"required crew" 280
+		shields 0
+		"weapon capacity" 402
+		weapon
+			"blast radius" 450
+			"shield damage" 2000
+			"hull damage" 2700
+			"hit force" 2100
+	outfits
+		"Ballistic Cannon" 6
+		"C17 Warzone Core"
+		"C27 Campaign Core"
+		"Chloeric Cannon" 2
+		Hyperdrive
+		"Irate Cannon" 3
+		"R04 Crusade Battery"
+		"RG18 Torch Steering" 2
+		"RG3 Torch Thruster"
+	engine 94 297
+	engine 55.5 373.5
+	engine -22.5 373.5
+	engine -52 297
+	"steering engine" 131 54.5
+		angle -60.001831
+		left
+	"steering engine" 128.5 116
+		angle -53.997803
+		left
+	"steering engine" -107 161.5
+		angle 60.001831
+		right
+	"steering engine" -121 97
+		angle 60.001831
+		right
+	turret 14 -304.5 "Ballistic Cannon"
+	turret 13.5 -219 "Ballistic Cannon"
+	turret 27.5 -129 "Ballistic Cannon"
+	turret 27 134 "Ballistic Cannon"
+	turret 17.5 221.5 "Ballistic Cannon"
+	turret 18.5 301.5 "Ballistic Cannon"
+	gun 57.5 -385 "Chloeric Cannon"
+	gun 57.5 -385 "Chloeric Cannon"
+	gun -37 -372.5 "Irate Cannon"
+	gun -41 -368 "Irate Cannon"
+	gun -45 -362 "Irate Cannon"
+	leak leak 50 50
+	leak flame 80 140
+	explode "huge explosion" 36
+	explode "large explosion" 40
+	explode "medium explosion" 60
+	explode "small explosion" 20
+	explode "tiny explosion" 60
+	"final explode" "final explosion large"
+	description "x"
+
 ship Shale
 	sprite ship/shale
 	thumbnail thumbnail/shale
