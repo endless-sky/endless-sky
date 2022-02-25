@@ -1322,16 +1322,16 @@ Files:
  images/projectile/missile-0*
  images/projectile/missile-1*
  images/hardpoint/nuke*
- images/ship/raven*
- images/thumbnail/raven*
- images/ship/mraven*
- images/thumbnail/mraven*
- images/ship/msplinter*
- images/ship/splinter*
- images/thumbnail/msplinter*
- images/thumbnail/splinter*
  images/ship/corvette*
+ images/ship/mraven*
+ images/ship/msplinter*
+ images/ship/raven*
+ images/ship/splinter*
  images/thumbnail/corvette*
+ images/thumbnail/msplinter*
+ images/thumbnail/mraven*
+ images/thumbnail/raven*
+ images/thumbnail/splinter*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
 
@@ -1391,10 +1391,12 @@ Files:
  images/ship/kestrele*
  images/ship/kestrels*
  images/ship/kestrelw*
+ images/ship/osprey*
  images/thumbnail/kestrel*
  images/thumbnail/kestrele*
  images/thumbnail/kestrels*
  images/thumbnail/kestrelw*
+ images/thumbnail/osprey*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Anarchist2.
