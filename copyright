@@ -1387,6 +1387,19 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/ship/kestrel*
+ images/ship/kestrele*
+ images/ship/kestrels*
+ images/ship/kestrelw*
+ images/thumbnail/kestrel*
+ images/thumbnail/kestrele*
+ images/thumbnail/kestrels*
+ images/thumbnail/kestrelw*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Anarchist2.
+
+Files:
  images/effect/ember?tear/ember?tear?fire*
  images/effect/ember?tear/ember?tear?impact*
  images/effect/ember?tear/ember?tear?vortex*
