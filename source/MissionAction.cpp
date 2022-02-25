@@ -249,6 +249,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		bool checkAll = !it.second;
 		if(checkAll)
 		{
+			available += player.Cargo().Get(it.first);
 			for(const auto &ship : player.Ships())
 				if(!ship->IsDestroyed())
 				{
