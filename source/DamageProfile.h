@@ -52,7 +52,7 @@ private:
 	const Weapon &weapon;
 	// The position of the projectile or hazard.
 	const Point &position;
-	// The scaling as recieved before calculating damage.
+	// The scaling as received before calculating damage.
 	double inputScaling = 1.;
 	// Whether damage is applied as a blast.
 	bool isBlast;
@@ -62,8 +62,8 @@ private:
 	// Fields for caching blast radius calculation values
 	// that are shared by all ships that this profile could
 	// impact.
-	double k;
-	double rSquared;
+	double k = 0.;
+	double rSquared = 0.;
 };
 
 #endif
