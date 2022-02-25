@@ -9,6 +9,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 ship Augen
+# modified gneiss stats, needs adjusting
 	sprite ship/augen
 	thumbnail thumbnail/augen
 	swizzle 0
@@ -26,7 +27,7 @@ ship Augen
 		"outfit space" 2000
 		"required crew" 280
 		shields 0
-		"weapon capacity" 402
+		"weapon capacity" 1000
 		weapon
 			"blast radius" 450
 			"shield damage" 2000
