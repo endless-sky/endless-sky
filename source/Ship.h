@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "CargoHold.h"
 #include "Command.h"
 #include "EsUuid.h"
+#include "FireCommand.h"
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
@@ -187,7 +188,9 @@ public:
 
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
+	void SetCommands(const FireCommand &firingCommand);
 	const Command &Commands() const;
+	const FireCommand &FiringCommands() const noexcept;
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up.
 	void Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
@@ -491,6 +494,7 @@ private:
 	double outfitScan = 0.;
 
 	Command commands;
+	FireCommand firingCommands;
 
 	Personality personality;
 	const Phrase *hail = nullptr;

@@ -298,9 +298,6 @@ void Ship::Load(const DataNode &node)
 				armament.AddGunPort(hardpoint, gunPortAngle, gunPortParallel, drawUnder, outfit);
 			else
 				armament.AddTurret(hardpoint, drawUnder, outfit);
-			// Print a warning for the first hardpoint after 32, i.e. only 1 warning per ship.
-			if(armament.Get().size() == 33)
-				child.PrintTrace("Warning: ship has more than 32 weapon hardpoints. Some weapons may not fire:");
 		}
 		else if(key == "never disabled")
 			neverDisabled = true;
@@ -680,6 +677,9 @@ void Ship::FinishLoading(bool isNewInstance)
 	weaponRadius = 0.;
 	for(const Hardpoint &hardpoint : armament.Get())
 		weaponRadius = max(weaponRadius, hardpoint.GetPoint().Length());
+
+	// Allocate enough firing bits for this ship.
+	firingCommands.SetHardpoints(armament.Get().size());
 
 	// If this ship is being instantiated for the first time, make sure its
 	// crew, fuel, etc. are all refilled.
@@ -1340,9 +1340,23 @@ void Ship::SetCommands(const Command &command)
 
 
 
+void Ship::SetCommands(const FireCommand &firingCommand)
+{
+	firingCommands.UpdateWith(firingCommand);
+}
+
+
+
 const Command &Ship::Commands() const
 {
 	return commands;
+}
+
+
+
+const FireCommand &Ship::FiringCommands() const noexcept
+{
+	return firingCommands;
 }
 
 
@@ -1370,7 +1384,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		hyperspaceSystem = nullptr;
 
 	// Adjust the error in the pilot's targeting.
-	personality.UpdateConfusion(commands.IsFiring());
+	personality.UpdateConfusion(firingCommands.IsFiring());
 
 	// Generate energy, heat, etc.
 	DoGeneration();
@@ -1401,7 +1415,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 	// Move the turrets.
 	if(!isDisabled)
-		armament.Aim(commands);
+		armament.Aim(firingCommands);
 
 	if(!isInvisible)
 	{
@@ -2437,7 +2451,7 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 		{
 			if(weapon->AntiMissile())
 				antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
-			else if(commands.HasFire(i))
+			else if(firingCommands.HasFire(i))
 				armament.Fire(i, *this, projectiles, visuals);
 		}
 	}
