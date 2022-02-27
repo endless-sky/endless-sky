@@ -79,6 +79,8 @@
 		<Unit filename="source/BatchDrawList.h" />
 		<Unit filename="source/BatchShader.cpp" />
 		<Unit filename="source/BatchShader.h" />
+		<Unit filename="source/Bitset.cpp" />
+		<Unit filename="source/Bitset.h" />
 		<Unit filename="source/BoardingPanel.cpp" />
 		<Unit filename="source/BoardingPanel.h" />
 		<Unit filename="source/Body.cpp" />
@@ -135,6 +137,8 @@
 		<Unit filename="source/Files.h" />
 		<Unit filename="source/FillShader.cpp" />
 		<Unit filename="source/FillShader.h" />
+		<Unit filename="source/FireCommand.cpp" />
+		<Unit filename="source/FireCommand.h" />
 		<Unit filename="source/Fleet.cpp" />
 		<Unit filename="source/Fleet.h" />
 		<Unit filename="source/Flotsam.cpp" />
