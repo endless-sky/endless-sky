@@ -1,49 +1,33 @@
-# Copyright (c) 2021 by Saugia
-#
-# Endless Sky is free software: you can redistribute it and/or modify it under the
-# terms of the GNU General Public License as published by the Free Software
-# Foundation, either version 3 of the License, or (at your option) any later version.
-#
-# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
-
 government "Gegno Vi"
 	swizzle 28
 	color 0.68137252 0.39746734 0.39746734
+	"player reputation" 1
 	"crew attack" 3
 	"crew defense" 1.9
-
-	"player reputation" 1
-	"bribe" 0
 	"attitude toward"
+		Gegno 1
 		"Gegno Scin" -0.05
-		"Gegno" 1
 	"friendly hail" "gegno uncontacted"
 	"hostile hail" "hostile gegno uncontacted"
 
 government "Gegno Scin"
 	swizzle 28
 	color 0.49498352 0.55392158 0.33126682
+	"player reputation" 1
 	"crew attack" 2.1
 	"crew defense" 2.7
-
-	"player reputation" 1
-	"bribe" 0
 	"attitude toward"
+		Gegno 1
 		"Gegno Vi" -0.05
-		"Gegno" 1
 	"friendly hail" "gegno uncontacted"
 	"hostile hail" "hostile gegno uncontacted"
 
-government "Gegno"
+government Gegno
 	swizzle 28
 	color 0.56862748 0.44270304 0.2118416
+	"player reputation" 1
 	"crew attack" 1.7
 	"crew defense" 2.2
-
-	"player reputation" 1
-	"bribe" 0
 	"attitude toward"
 		"Gegno Scin" 1
 		"Gegno Vi" 1

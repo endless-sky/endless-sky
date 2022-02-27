@@ -1,13 +1,3 @@
-# Copyright (c) 2021 by Saugia
-#
-# Endless Sky is free software: you can redistribute it and/or modify it under the
-# terms of the GNU General Public License as published by the Free Software
-# Foundation, either version 3 of the License, or (at your option) any later version.
-#
-# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
-
 phrase "gegno vi"
 	word
 		""
@@ -60,7 +50,7 @@ phrase "gegno scin"
 	word
 		""
 		""
-		"Kuuay"
+		Kuuay
 		Jiee
 		Tyuoe
 		Aur
@@ -107,31 +97,32 @@ phrase "gegno uncontacted leave"
 	word
 		"L Eif"
 		"Dy Purit"
-		"Gou"
+		Gou
 		"Eeb Goumn"
 	word
-		"..."
-		"."
-		"!"
+		...
+		.
+		!
 
 phrase "hostile gegno uncontacted" .
 	word
 		"(A loud enraged voice says something in a language you cannot decifer.)"
-		"(You hear loud chants and yells in a language you do not know.)"
+		"(You hear loud chants and shouts in a language you do not know.)"
 
 phrase "friendly gegno"
 	word
 		"Schuyua Oo"
 		"Dei Ynit Eeb Piebm"
 		"Gou Iisef"
-		"Tsiefl"
-		"Dei Gno Echmn" 
+		Tsiefl
+		"Dei Gno Echmn"
 	word
-		"."
+		.
 
 phrase "hostile gegno"
 	word
 		"Eysyp Ttheid"
-		"Tthei"
-	word	
-		"!"
+		Tthei
+	word
+		!
+

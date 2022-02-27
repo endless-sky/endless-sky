@@ -1,16 +1,7 @@
-# Copyright (c) 2021 by Saugia
-#
-# Endless Sky is free software: you can redistribute it and/or modify it under the
-# terms of the GNU General Public License as published by the Free Software
-# Foundation, either version 3 of the License, or (at your option) any later version.
-#
-# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
-
 outfit "R01 Skirmish Battery"
 	category Power
 	plural "R01 Skirmish Batteries"
+	cost 17500
 	mass 12
 	thumbnail outfit/gbatterytiny
 	"energy capacity" 1121
@@ -20,6 +11,7 @@ outfit "R01 Skirmish Battery"
 outfit "R02 Battlezone Battery"
 	category Power
 	plural "R02 Battlezone Batteries"
+	cost 32000
 	mass 23
 	thumbnail outfit/gbatterysmall
 	"energy capacity" 2237
@@ -29,6 +21,7 @@ outfit "R02 Battlezone Battery"
 outfit "R03 Warforge Battery"
 	category Power
 	plural "R03 Warforge Batteries"
+	cost 61700
 	mass 41
 	thumbnail outfit/gbatterymed
 	"energy capacity" 4469
@@ -38,6 +31,7 @@ outfit "R03 Warforge Battery"
 outfit "R04 Crusade Battery"
 	category Power
 	plural "R04 Crusade Batteries"
+	cost 136000
 	mass 83
 	thumbnail outfit/gbatterylarge
 	"energy capacity" 8885
@@ -46,6 +40,7 @@ outfit "R04 Crusade Battery"
 
 outfit "C3 Scrap Cell"
 	category Power
+	cost 54000
 	mass 25
 	thumbnail outfit/vicoretiny
 	"energy generation" 1.4
@@ -55,6 +50,7 @@ outfit "C3 Scrap Cell"
 
 outfit "C7 Brawl Core"
 	category Power
+	cost 68100
 	mass 39
 	thumbnail outfit/vicoresmall
 	"energy generation" 2.5
@@ -65,6 +61,7 @@ outfit "C7 Brawl Core"
 outfit "C17 Warzone Core"
 	category Power
 	plural "C7 Warzone Cores"
+	cost 2472000
 	mass 87
 	thumbnail outfit/vicoremed
 	"energy generation" 14.1
@@ -75,6 +72,7 @@ outfit "C17 Warzone Core"
 outfit "C27 Campaign Core"
 	category Power
 	plural "C7 Campaign Cores"
+	cost 8145000
 	mass 145
 	thumbnail outfit/vicorelarge
 	"energy generation" 22.3
@@ -84,11 +82,12 @@ outfit "C27 Campaign Core"
 
 outfit "I70 Ameliorate Cell"
 	category Power
-	plural "I70 Ameliorate Cells"
+	cost 166000
 	mass 20
 	thumbnail outfit/scincoretiny
-	"energy generation" 1.4
 	"energy capacity" 100
+	"energy generation" 1.4
 	"heat generation" 2.2
 	"outfit space" -20
 	description "Due to the needs of a smaller, more compact power system for a fighter design, the I70 Cell was designed by the Scin to be fitted on their Halite fighters. It has a small energy capacity to fuel the Scin's diminutive thrusters, and is able to power their weapons with a minor but notable energy generation. Unfortunately, as a side effect, a bit more unwanted heat is also generated."
+

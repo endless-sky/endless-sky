@@ -1,16 +1,6 @@
-# Copyright (c) 2021 by Saugia
-#
-# Endless Sky is free software: you can redistribute it and/or modify it under the
-# terms of the GNU General Public License as published by the Free Software
-# Foundation, either version 3 of the License, or (at your option) any later version.
-#
-# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
-
 outfit "Irate Cannon"
 	category Guns
-	cost 5500000
+	cost 475000
 	mass 2
 	thumbnail "outfit/irate cannon"
 	"gun ports" -1
@@ -36,7 +26,7 @@ outfit "Irate Cannon"
 
 outfit "Chloeric Cannon"
 	category Guns
-	cost 5500000
+	cost 610000
 	mass 13
 	thumbnail "outfit/chloeric cannon"
 	"gun ports" -1
@@ -60,7 +50,7 @@ outfit "Chloeric Cannon"
 
 outfit "Chloeric Turret"
 	category Turrets
-	cost 5500000
+	cost 816000
 	mass 42
 	thumbnail "outfit/chloeric turret"
 	"outfit space" -42
@@ -88,7 +78,7 @@ outfit "Chloeric Turret"
 
 outfit "Ballistic Cannon"
 	category Turrets
-	cost 5500000
+	cost 1370000
 	mass 120
 	thumbnail "outfit/ballistic cannon"
 	"outfit space" -120
@@ -147,7 +137,7 @@ effect "ballistic hit"
 
 outfit "Astuit Battery"
 	category Turrets
-	cost 230000
+	cost 764000
 	mass 28
 	thumbnail outfit/astuit
 	"outfit space" -28
@@ -172,7 +162,7 @@ outfit "Astuit Battery"
 
 outfit "Talc Laser"
 	category Guns
-	cost 29000
+	cost 109000
 	mass 15
 	thumbnail outfit/talc
 	"gun ports" -1
@@ -194,7 +184,7 @@ outfit "Talc Laser"
 
 outfit "Acuit Artillery"
 	category Turrets
-	cost 3500000
+	cost 1406000
 	mass 81
 	thumbnail outfit/acuit
 	"outfit space" -81
@@ -221,7 +211,7 @@ outfit "Acuit Artillery"
 
 outfit "Guile Anti-Missile"
 	category Turrets
-	cost 60000
+	cost 690000
 	mass 24
 	thumbnail outfit/guile
 	"outfit space" -24
@@ -245,3 +235,4 @@ effect "scin anti-missile"
 		"no repeat"
 	sound scinAM
 	lifetime 16
+

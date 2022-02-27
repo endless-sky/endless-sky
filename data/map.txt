@@ -30111,6 +30111,9 @@ planet Zug
 system 17b
 	pos 487.44277 -87.480447
 	government Uninhabited
+	habitable 1125
+	belt 1130
+	haze _menu/haze-blackbody
 	link 19b
 	asteroids "medium rock" 10 4.785
 	asteroids "large rock" 2 3.685
@@ -30120,9 +30123,6 @@ system 17b
 	minables lead 1 7.702475
 	minables silicon 3 7.275125
 	minables titanium 1 9.4271375
-	haze _menu/haze-blackbody
-	habitable 1125
-	belt 1130
 	object
 		sprite star/g0
 		period 10
@@ -30142,6 +30142,9 @@ system 17b
 system Evrae
 	pos 758.38721 34.019548
 	government Uninhabited
+	habitable 4420
+	belt 1985
+	haze _menu/haze-67
 	link Gualetri
 	link Kneirc
 	link Pbelnep
@@ -30152,14 +30155,11 @@ system Evrae
 	asteroids "medium metal" 12 5.2164
 	asteroids "large metal" 2 5.4432
 	minables platinum 1 6.8625621
-	haze _menu/haze-67
 	fleet "Small Scin" 800
 	fleet "Large Scin" 1600
 	fleet "Scin Cargo" 2200
 	fleet "Small Vi" 1900
 	fleet "Large Vi" 3000
-	habitable 4420
-	belt 1985
 	object
 		sprite star/a5
 		distance 1.2392042
@@ -30205,6 +30205,9 @@ system Evrae
 system 23b
 	pos 292.99833 13.797332
 	government Uninhabited
+	habitable 2725
+	belt 1920
+	haze _menu/haze-yellow
 	link 31b
 	asteroids "small rock" 28 1.904
 	asteroids "medium rock" 23 2.016
@@ -30215,9 +30218,6 @@ system 23b
 	minables lead 20 2.1196641
 	minables iron 34 2.5214305
 	minables copper 32 3.061737
-	haze _menu/haze-yellow
-	habitable 2725
-	belt 1920
 	object
 		sprite star/nova
 		period 10
@@ -30251,6 +30251,9 @@ system 23b
 system Cshudlye
 	pos 532.22056 -34.424882
 	government Uninhabited
+	habitable 819.2
+	belt 1675
+	haze _menu/haze-fullbright
 	link Karhio
 	link Nnaug
 	link Wreoul
@@ -30262,11 +30265,8 @@ system Cshudlye
 	minables titanium 10 9.7812425
 	minables lead 20 6.6434772
 	minables tungsten 16 9.2599851
-	haze _menu/haze-fullbright
 	fleet "Small Vi" 4500
 	fleet "Vi Transport" 2800
-	habitable 819.2
-	belt 1675
 	object
 		sprite star/b5
 		period 10
@@ -30314,6 +30314,9 @@ system Cshudlye
 system Ptetubo
 	pos 600.38721 -58.202662
 	government "Gegno Vi"
+	habitable 2000
+	belt 1478
+	haze _menu/haze-67
 	link Nnaug
 	asteroids "small rock" 1 1.136
 	asteroids "medium rock" 5 1.36
@@ -30321,23 +30324,20 @@ system Ptetubo
 	asteroids "small metal" 4 1.408
 	asteroids "medium metal" 11 1.264
 	asteroids "large metal" 3 1.168
-	haze _menu/haze-67
+	trade Clothing 415
+	trade Electronics 415
+	trade Equipment 580
+	trade Food 366
+	trade "Heavy Metals" 612
+	trade Industrial 478
+	trade "Luxury Goods" 944
+	trade Medical 625
+	trade Metal 330
+	trade Plastic 415
 	fleet "Small Vi" 1000
 	fleet "Large Vi" 1900
 	fleet "Vi Transport" 1300
 	fleet "Vi Cargo" 1100
-	habitable 2000
-	belt 1478
-	trade Clothing 269
-	trade Electronics 797
-	trade Equipment 580
-	trade Food 364
-	trade "Heavy Metals" 710
-	trade Industrial 795
-	trade "Luxury Goods" 1357
-	trade Medical 625
-	trade Metal 194
-	trade Plastic 415
 	object
 		sprite star/g5-old
 		period 10
@@ -30369,6 +30369,8 @@ system Ptetubo
 system Tscera
 	pos 531.99832 31.686217
 	government Uninhabited
+	habitable 1220
+	haze _menu/haze-133
 	link Acnanjo
 	link Wreoul
 	asteroids "small rock" 4 2.604
@@ -30378,9 +30380,7 @@ system Tscera
 	asteroids "large metal" 2 4.278
 	minables aluminum 1 5.7519675
 	minables lead 7 6.190245
-	haze _menu/haze-133
 	fleet "Large Quarg" 4200
-	habitable 1220
 	object
 		sprite star/f0
 		period 10
@@ -30404,28 +30404,28 @@ system Tscera
 system Nnaug
 	pos 609.97056 -32.480446
 	government "Gegno Vi"
+	habitable 1232.2
+	belt 1901
+	haze _menu/haze-133
 	link Cshudlye
 	link Ptetubo
 	link Scija
 	link Wreoul
 	asteroids "large metal" 1 1.9383
-	haze _menu/haze-133
+	trade Clothing 281
+	trade Electronics 677
+	trade Equipment 629
+	trade Food 367
+	trade "Heavy Metals" 1015
+	trade Industrial 761
+	trade "Luxury Goods" 860
+	trade Medical 636
+	trade Metal 204
+	trade Plastic 427
 	fleet "Small Vi" 1100
 	fleet "Large Vi" 2100
 	fleet "Vi Transport" 800
 	fleet "Vi Cargo" 1000
-	habitable 1232.2
-	belt 1901
-	trade Clothing 281
-	trade Electronics 766
-	trade Equipment 629
-	trade Food 367
-	trade "Heavy Metals" 748
-	trade Industrial 761
-	trade "Luxury Goods" 1334
-	trade Medical 636
-	trade Metal 204
-	trade Plastic 427
 	object
 		sprite star/a0
 		period 10
@@ -30458,6 +30458,8 @@ system Nnaug
 system Heutesl
 	pos 814.38721 -63.758226
 	government Gegno
+	habitable 351.25
+	belt 1942
 	link Iigen
 	link Oosuoro
 	asteroids "small rock" 2 3.22
@@ -30468,19 +30470,17 @@ system Heutesl
 	asteroids "large metal" 18 4.508
 	minables copper 2 5.3701284
 	minables lead 14 4.7812985
-	fleet "Gegno Basic" 200
-	habitable 361.25
-	belt 1942
-	trade Clothing 388
+	trade Clothing 262
 	trade Electronics 814
-	trade Equipment 410
+	trade Equipment 693
 	trade Food 536
 	trade "Heavy Metals" 944
-	trade Industrial 749
-	trade "Luxury Goods" 1205
-	trade Medical 621
-	trade Metal 361
-	trade Plastic 368
+	trade Industrial 896
+	trade "Luxury Goods" 1002
+	trade Medical 441
+	trade Metal 571
+	trade Plastic 196
+	fleet "Gegno Basic" 200
 	object
 		sprite star/k5
 		period 10
@@ -30508,19 +30508,19 @@ system Heutesl
 system Mohuwo
 	pos 857.72053 20.408438
 	government Uninhabited
+	habitable 1907.2
+	belt 1213
+	haze _menu/haze-67
 	link Auhru
 	link Pbelnep
 	link Uelawan
 	asteroids "small metal" 1 6.786
 	asteroids "medium metal" 1 5.538
 	asteroids "large metal" 2 5.538
-	haze _menu/haze-67
 	fleet "Small Scin" 1400
 	fleet "Large Scin" 1800
 	fleet "Scin Transport" 2000
 	fleet "Scin Cargo" 1900
-	habitable 1907.2
-	belt 1213
 	object
 		sprite star/a0
 		distance 85.690716
@@ -30558,6 +30558,8 @@ system Mohuwo
 system Scija
 	pos 642.55389 -19.535996
 	government "Gegno Vi"
+	habitable 2439.2
+	belt 1431
 	link Nisyros
 	link Nnaug
 	link Ptobeh
@@ -30570,23 +30572,21 @@ system Scija
 	asteroids "large metal" 10 2.736
 	minables iron 5 5.2146916
 	minables aluminum 5 3.5913491
+	trade Clothing 224
+	trade Electronics 769
+	trade Equipment 781
+	trade Food 444
+	trade "Heavy Metals" 1230
+	trade Industrial 782
+	trade "Luxury Goods" 913
+	trade Medical 609
+	trade Metal 489
+	trade Plastic 311
 	fleet "Small Vi" 800
 	fleet "Large Vi" 2000
 	fleet "Vi Transport" 900
 	fleet "Vi Cargo" 1400
 	fleet "Gegno Basic" 2800
-	habitable 2439.2
-	belt 1431
-	trade Clothing 286
-	trade Electronics 783
-	trade Equipment 635
-	trade Food 420
-	trade "Heavy Metals" 661
-	trade Industrial 800
-	trade "Luxury Goods" 1365
-	trade Medical 609
-	trade Metal 245
-	trade Plastic 390
 	object
 		sprite star/b5
 		period 10
@@ -30629,6 +30629,8 @@ system Scija
 system Vanguwo
 	pos 894.99832 131.74178
 	government Uninhabited
+	habitable 11530
+	belt 1964
 	link Iinjma
 	link Zeinar
 	asteroids "small rock" 6 1.4274
@@ -30642,8 +30644,6 @@ system Vanguwo
 	minables silver 13 2.6263567
 	fleet "Small Scin" 3400
 	fleet "Scin Transport" 4300
-	habitable 11530
-	belt 1964
 	object
 		sprite star/giant
 		period 10
@@ -30663,6 +30663,9 @@ system Vanguwo
 system Vesvii
 	pos 702.77609 58.519544
 	government Uninhabited
+	habitable 2560
+	belt 1576
+	haze _menu/haze-133
 	link Eebu
 	link Evrae
 	link Yli
@@ -30674,11 +30677,8 @@ system Vesvii
 	asteroids "large metal" 4 2.9376
 	minables lead 15 4.1961328
 	minables tungsten 24 2.9650974
-	haze _menu/haze-133
 	fleet "Vi Warfleet" 640
 	fleet "Scin Warfleet" 700
-	habitable 2560
-	belt 1576
 	object
 		sprite star/k5-old
 		distance 139.45132
@@ -30717,6 +30717,9 @@ system Vesvii
 system Anbrim
 	pos 827.8316 164.0751
 	government Uninhabited
+	habitable 450180
+	belt 1101
+	haze _menu/haze-red
 	link Iinjma
 	asteroids "small rock" 2 3.52
 	asteroids "medium rock" 67 2.684
@@ -30726,10 +30729,7 @@ system Anbrim
 	asteroids "large metal" 9 2.684
 	minables lead 20 3.3659308
 	minables aluminum 22 5.2776792
-	haze _menu/haze-red
 	fleet "Scin Transport" 4000
-	habitable 450180
-	belt 1101
 	object
 		sprite star/nova
 		period 10
@@ -30755,6 +30755,7 @@ system Anbrim
 system Zeinar
 	pos 838.44278 94.575112
 	government "Gegno Scin"
+	belt 1960
 	link Auhru
 	link "Erba Yle"
 	link Iinjma
@@ -30769,22 +30770,21 @@ system Zeinar
 	asteroids "large metal" 9 4.1975
 	minables aluminum 2 8.522758
 	minables tungsten 3 8.3192847
+	trade Clothing 281
+	trade Electronics 812
+	trade Equipment 373
+	trade Food 315
+	trade "Heavy Metals" 709
+	trade Industrial 589
+	trade "Luxury Goods" 1386
+	trade Medical 873
+	trade Metal 275
+	trade Plastic 262
 	fleet "Small Scin" 700
 	fleet "Large Scin" 2300
 	fleet "Scin Transport" 800
 	fleet "Scin Cargo" 1500
 	fleet "Gegno Basic" 2700
-	belt 1960
-	trade Clothing 261
-	trade Electronics 787
-	trade Equipment 373
-	trade Food 412
-	trade "Heavy Metals" 709
-	trade Industrial 699
-	trade "Luxury Goods" 1386
-	trade Medical 873
-	trade Metal 275
-	trade Plastic 262
 	object
 		sprite star/k5-old
 		period 10
@@ -30808,6 +30808,9 @@ system Zeinar
 system Karhio
 	pos 488.33166 4.8528873
 	government Uninhabited
+	habitable 2560
+	belt 1163
+	haze _menu/haze-133
 	link Cshudlye
 	asteroids "small rock" 6 5.082
 	asteroids "medium rock" 8 6.6
@@ -30818,11 +30821,8 @@ system Karhio
 	minables aluminum 1 7.0420918
 	minables tungsten 12 6.825799
 	minables uranium 1 9.7583272
-	haze _menu/haze-133
 	fleet "Small Vi" 5100
 	fleet "Vi Transport" 4300
-	habitable 2560
-	belt 1163
 	object
 		sprite star/k5-old
 		distance 9.482968
@@ -30843,6 +30843,9 @@ system Karhio
 system Rouseu
 	pos 525.55388 82.352882
 	government Uninhabited
+	habitable 1780
+	belt 1648
+	haze _menu/haze-red
 	link Acnanjo
 	asteroids "small rock" 232 1.344
 	asteroids "medium rock" 42 2.328
@@ -30851,10 +30854,7 @@ system Rouseu
 	minables silicon 22 1.8060883
 	minables tungsten 65 2.6237622
 	minables uranium 55 2.9495786
-	haze _menu/haze-red
 	fleet Quarg 3600
-	habitable 1780
-	belt 1648
 	object
 		sprite star/a5
 		distance 149.73936
@@ -30876,6 +30876,9 @@ system Rouseu
 system 22b
 	pos 345.10944 -36.980441
 	government Uninhabited
+	habitable 1539.2
+	belt 1478
+	haze _menu/haze-fullbright
 	link 31b
 	asteroids "small rock" 4 2.604
 	asteroids "large rock" 7 3.069
@@ -30884,9 +30887,6 @@ system 22b
 	asteroids "large metal" 2 4.278
 	minables aluminum 1 5.7519675
 	minables lead 7 6.190245
-	haze _menu/haze-fullbright
-	habitable 1539.2
-	belt 1478
 	object
 		sprite star/b5
 		period 10
@@ -30912,8 +30912,11 @@ system 22b
 			period 201.34942
 
 system Oosuoro
-	pos 801.85943 -32.063781
+	pos 802.74832 -31.174892
 	government Gegno
+	habitable 10525
+	belt 1068
+	haze _menu/haze-133
 	link Asio
 	link Gualetri
 	link Heutesl
@@ -30923,20 +30926,17 @@ system Oosuoro
 	asteroids "medium metal" 13 3.444
 	asteroids "large metal" 2 2.772
 	minables lead 3 5.9955446
-	haze _menu/haze-133
-	fleet "Gegno Basic" 500
-	habitable 10525
-	belt 1068
 	trade Clothing 367
-	trade Electronics 832
-	trade Equipment 405
+	trade Electronics 789
+	trade Equipment 470
 	trade Food 495
-	trade "Heavy Metals" 954
-	trade Industrial 701
-	trade "Luxury Goods" 1218
-	trade Medical 576
-	trade Metal 353
-	trade Plastic 360
+	trade "Heavy Metals" 1120
+	trade Industrial 832
+	trade "Luxury Goods" 916
+	trade Medical 664
+	trade Metal 496
+	trade Plastic 274
+	fleet "Gegno Basic" 500
 	object
 		sprite star/nova-core
 		period 10
@@ -30970,6 +30970,9 @@ system Oosuoro
 system Eebu
 	pos 721.63722 96.8251
 	government Uninhabited
+	habitable 2405
+	belt 1384
+	haze _menu/haze-red
 	link Vesvii
 	asteroids "small rock" 4 1.422
 	asteroids "medium rock" 1 1.458
@@ -30979,9 +30982,6 @@ system Eebu
 	asteroids "large metal" 12 0.954
 	minables iron 1 1.523952
 	minables copper 4 1.773488
-	haze _menu/haze-red
-	habitable 2405
-	belt 1384
 	object
 		sprite star/g5-old
 		period 10
@@ -31005,6 +31005,9 @@ system Eebu
 system Jied
 	pos 714.85944 -23.730439
 	government Uninhabited
+	habitable 1486.25
+	belt 1377
+	haze _menu/haze-67
 	link Gualetri
 	link Kneirc
 	link Nisyros
@@ -31018,14 +31021,11 @@ system Jied
 	minables lead 1 2.6233068
 	minables tungsten 18 2.0906113
 	minables copper 2 2.1622196
-	haze _menu/haze-67
 	fleet "Small Vi" 800
 	fleet "Large Vi" 1400
 	fleet "Vi Cargo" 2300
 	fleet "Small Scin" 2100
 	fleet "Large Scin" 2800
-	habitable 1486.25
-	belt 1377
 	object
 		sprite star/k5
 		period 10
@@ -31041,6 +31041,9 @@ system Jied
 system Yranjiu
 	pos 1004.3317 111.51956
 	government Uninhabited
+	habitable 3276.8
+	belt 1478
+	haze _menu/haze-blackbody
 	asteroids "small rock" 4 2.604
 	asteroids "large rock" 7 3.069
 	asteroids "small metal" 9 3.069
@@ -31048,9 +31051,6 @@ system Yranjiu
 	asteroids "large metal" 2 4.278
 	minables aluminum 1 5.7519675
 	minables lead 7 6.190245
-	haze _menu/haze-blackbody
-	habitable 3276.8
-	belt 1478
 	object
 		sprite star/o0
 		period 10
@@ -31074,26 +31074,26 @@ system Yranjiu
 system Aleit
 	pos 588.52611 64.213991
 	government Quarg
+	habitable 7405
+	belt 1864
 	link Acnanjo
 	asteroids "small metal" 8 1.7028
 	asteroids "medium metal" 108 1.2078
 	asteroids "large metal" 77 1.7226
 	minables tungsten 6 2.8114948
 	minables titanium 6 2.8286993
+	trade Clothing 216
+	trade Electronics 817
+	trade Equipment 729
+	trade Food 212
+	trade "Heavy Metals" 1314
+	trade Industrial 916
+	trade "Luxury Goods" 1239
+	trade Medical 605
+	trade Metal 539
+	trade Plastic 378
 	fleet Quarg 700
 	fleet "Large Quarg" 900
-	habitable 7405
-	belt 1864
-	trade Clothing 275
-	trade Electronics 823
-	trade Equipment 729
-	trade Food 409
-	trade "Heavy Metals" 713
-	trade Industrial 650
-	trade "Luxury Goods" 1239
-	trade Medical 534
-	trade Metal 221
-	trade Plastic 503
 	object
 		sprite star/g5
 		distance 1.9670853
@@ -31176,6 +31176,8 @@ system Aleit
 system 44b
 	pos 322.19277 -2.980436
 	government Uninhabited
+	habitable 1907.2
+	belt 1222
 	link 31b
 	asteroids "small rock" 85 2.0097
 	asteroids "medium rock" 8 2.3606
@@ -31184,8 +31186,6 @@ system 44b
 	asteroids "medium metal" 9 2.6477
 	asteroids "large metal" 39 1.6269
 	minables tungsten 18 2.9953876
-	habitable 1907.2
-	belt 1222
 	object
 		sprite star/k0-old
 		distance 202.65363
@@ -31215,6 +31215,9 @@ system 44b
 system Wreoul
 	pos 575.13721 10.602896
 	government Uninhabited
+	habitable 28.8
+	belt 1409
+	haze _menu/haze-133
 	link Cshudlye
 	link Nnaug
 	link Tscera
@@ -31222,13 +31225,10 @@ system Wreoul
 	asteroids "medium rock" 1 2.464
 	asteroids "large rock" 4 2.24
 	asteroids "large metal" 2 3.7184
-	haze _menu/haze-133
 	fleet "Small Vi" 3600
 	fleet "Large Vi" 5400
 	fleet "Vi Transport" 3400
 	fleet "Vi Cargo" 5000
-	habitable 28.8
-	belt 1409
 	object
 		sprite star/g-dwarf
 		period 10
@@ -31254,50 +31254,50 @@ system Wreoul
 		period 95069.674
 
 planet "Dueyu Eitch"
-	shipyard "Gegno Ships"
-	outfitter "Gegno Outfits"
 	landscape land/desert4
 	description "The historic homeworld of all Gegno, Dueyu Eitch is a rugged, rocky world with covered with enormous metropolises and structures. Each city is based on an elevated structure, and starting from the bottom up the buildings are more advanced the farther they reach into the sky. Larger cities are lit by the varying reds and oranges of industrial forgery, and more urban areas are speckled with yellow and green. Beneath the heavily populated surface are traces of enormous cavities, suggesting the Gegno began a majority of their ancestry in the ground."
 	description "Three distinct subspecies can be seen walking about the architecture: One that is very bulky and scaly in appearance, another slimmer and more bone-like, and the third a combination of the first two; all standing several feet taller than a human being."
-	spaceport "x"
+	spaceport x
 	government Gegno
+	shipyard "Gegno Ships"
+	outfitter "Gegno Outfits"
 	security 0
 
 planet "Dueitch Ae"
-	shipyard "Gegno Scin Ships"
-	outfitter "Gegno Scin Outfits"
 	landscape land/mountain1
 	description "In order to pursue biology and other important scienctifical research, this green, lush world was designated as the Gegno Scin's capital. Much unlike the heavy industry of the core Gegno worlds, Dueitch Ae's surface still supports many natural ecosystems, and most importantly, is home to a notable amount of water bodies. The Scin effectively limit their expansion on the planet, even at the cost of their population's growth, to preserve the flourshing life on it as long as possible."
 	description "Although preservation is a primary goal, the Scin still manipulate the planet for the sake of research. Even if it's not harming the environment directly, patches of the planet have been converted into large experimentation grounds, some a bit less humane than others."
 	spaceport "The spaceport you are staying at is one huge circular construction hundreds of yards in diameter outfitted with strange looking devices and technology, very much in contrast to the surrounding natural environment. In an open section located at the center is a small forest being observed by the nearby Scin. Some of them, however, seem to be more intersested in observing your observation."
 	government "Gegno Scin"
+	shipyard "Gegno Scin Ships"
+	outfitter "Gegno Scin Outfits"
 
 planet Graede
-	shipyard "Gegno Vi Ships"
-	outfitter "Gegno Vi Outfits"
 	landscape land/forest2
 	description "Unlike the homeworld of the Gegno, the Capital planet of the Vi is covered in astounding natural beauty where the land is untouched. Acres of forestry spread across realtively low mountain ranges, and a variety of small and large marsupials can be seen running to and fro. Despite all of this, there are many plowed fields that have been converted to industrial ranges and shipyards, and several large cities have begun to grow towards the sky. "
-	spaceport "The structure you're parked at seems to be just a section of a much larger rectilinear building with many other sections and rods projecting out from it. From the height you are at, you can see the wilderness stretch for miles, occasionally interrupted with another tall-reaching spaceport or factory."
+	spaceport "The structure you're parked at seems to be just a section of a much larger rectilinear building with many other sections and rods projecting out from it. From the height you are at, you can see the wilderness strech for miles, occasionally interrupted with another tall-reaching spaceport or factory."
 	spaceport "You often find yourself lost in the beauty of a world still untouched by the rest of its industry, occasionally distracting you from the many distasteful looks given to you from the Vi here. It's clear that they are not on the same page, and would likely blast your brains out if they cared enough to do so."
 	government "Gegno Vi"
+	shipyard "Gegno Vi Ships"
+	outfitter "Gegno Vi Outfits"
 
 system Ptobeh
 	pos 672.22621 -53.111004
 	government Uninhabited
+	habitable 3276.8
+	belt 1440
+	haze _menu/haze-fullbright
 	link Asio
 	link Jied
 	link Kiluit
 	link Ookmya
 	link Scija
 	asteroids "large metal" 1 1.729
-	haze _menu/haze-fullbright
 	fleet "Gegno Basic" 2000
 	fleet "Small Vi" 1400
 	fleet "Large Vi" 2400
 	fleet "Vi Transport" 1300
 	fleet "Vi Cargo" 2000
-	habitable 3276.8
-	belt 1440
 	object
 		sprite star/o0
 		period 10
@@ -31313,6 +31313,9 @@ system Ptobeh
 system Auhru
 	pos 874.89288 63.777899
 	government "Gegno Scin"
+	habitable 1411.2
+	belt 1633
+	haze _menu/haze-33
 	link Mohuwo
 	link Yllke
 	link Zeinar
@@ -31323,23 +31326,20 @@ system Auhru
 	asteroids "large metal" 1 8.12
 	minables silicon 34 9.7565798
 	minables copper 29 9.9999284
-	haze _menu/haze-33
+	trade Clothing 306
+	trade Electronics 812
+	trade Equipment 380
+	trade Food 336
+	trade "Heavy Metals" 679
+	trade Industrial 569
+	trade "Luxury Goods" 1325
+	trade Medical 811
+	trade Metal 310
+	trade Plastic 248
 	fleet "Small Scin" 1100
 	fleet "Large Scin" 2500
 	fleet "Scin Transport" 800
 	fleet "Scin Cargo" 1000
-	habitable 1411.2
-	belt 1633
-	trade Clothing 239
-	trade Electronics 814
-	trade Equipment 395
-	trade Food 427
-	trade "Heavy Metals" 739
-	trade Industrial 730
-	trade "Luxury Goods" 1393
-	trade Medical 879
-	trade Metal 280
-	trade Plastic 272
 	object
 		sprite star/o8
 		period 10
@@ -31363,6 +31363,9 @@ system Auhru
 system Pbelnep
 	pos 813.72622 64.500112
 	government "Gegno Scin"
+	habitable 413.65
+	belt 1803
+	haze _menu/haze-33
 	link Evrae
 	link Mohuwo
 	link Zeinar
@@ -31374,23 +31377,20 @@ system Pbelnep
 	asteroids "large metal" 31 3.6432
 	minables titanium 3 5.7505279
 	minables uranium 28 5.0946569
-	haze _menu/haze-33
+	trade Clothing 269
+	trade Electronics 843
+	trade Equipment 331
+	trade Food 312
+	trade "Heavy Metals" 671
+	trade Industrial 623
+	trade "Luxury Goods" 1409
+	trade Medical 860
+	trade Metal 231
+	trade Plastic 260
 	fleet "Small Scin" 1100
 	fleet "Large Scin" 2100
 	fleet "Scin Transport" 1500
 	fleet "Scin Cargo" 1300
-	habitable 413.65
-	belt 1803
-	trade Clothing 268
-	trade Electronics 807
-	trade Equipment 335
-	trade Food 446
-	trade "Heavy Metals" 718
-	trade Industrial 699
-	trade "Luxury Goods" 1388
-	trade Medical 852
-	trade Metal 238
-	trade Plastic 250
 	object
 		sprite star/k-dwarf
 		distance 50.711444
@@ -31420,6 +31420,9 @@ system Pbelnep
 system Iigen
 	pos 846.61511 -37.94433
 	government Uninhabited
+	habitable 259.2
+	belt 1699
+	haze _menu/haze-33
 	link Heutesl
 	link Oosuoro
 	link Uttna
@@ -31431,10 +31434,7 @@ system Iigen
 	asteroids "large metal" 45 3.8454
 	minables uranium 4 5.8891368
 	minables iron 22 7.4713644
-	haze _menu/haze-33
 	fleet "Gegno Basic" 1600
-	habitable 259.2
-	belt 1699
 	object
 		sprite star/m3
 		period 10
@@ -31462,6 +31462,9 @@ system Iigen
 system Ookmya
 	pos 660.44845 -88.277673
 	government "Gegno Vi"
+	habitable 3699.2
+	belt 1144
+	haze _menu/haze-fullbright
 	link Kiluit
 	link Ptobeh
 	asteroids "large rock" 17 5.751
@@ -31469,23 +31472,20 @@ system Ookmya
 	asteroids "medium metal" 55 4.05
 	asteroids "large metal" 4 7.695
 	minables neodymium 11 6.2400383
-	haze _menu/haze-fullbright
+	trade Clothing 294
+	trade Electronics 858
+	trade Equipment 418
+	trade Food 345
+	trade "Heavy Metals" 440
+	trade Industrial 913
+	trade "Luxury Goods" 1464
+	trade Medical 585
+	trade Metal 482
+	trade Plastic 437
 	fleet "Small Vi" 900
 	fleet "Large Vi" 2000
 	fleet "Vi Transport" 700
 	fleet "Vi Cargo" 1000
-	habitable 3699.2
-	belt 1144
-	trade Clothing 265
-	trade Electronics 749
-	trade Equipment 639
-	trade Food 370
-	trade "Heavy Metals" 858
-	trade Industrial 759
-	trade "Luxury Goods" 1433
-	trade Medical 696
-	trade Metal 240
-	trade Plastic 419
 	object
 		sprite star/a-giant
 		period 10
@@ -31521,6 +31521,9 @@ system Ookmya
 system "Erba Yle"
 	pos 872.67061 104.66677
 	government "Gegno Scin"
+	habitable 296.45
+	belt 1306
+	haze _menu/haze-fullbright
 	link Zeinar
 	asteroids "small rock" 5 5.0778
 	asteroids "medium rock" 1 2.8458
@@ -31531,22 +31534,19 @@ system "Erba Yle"
 	minables aluminum 17 4.7925937
 	minables titanium 21 8.0109778
 	minables tungsten 20 4.6133087
-	haze _menu/haze-fullbright
+	trade Clothing 361
+	trade Electronics 828
+	trade Equipment 353
+	trade Food 680
+	trade "Heavy Metals" 793
+	trade Industrial 587
+	trade "Luxury Goods" 1105
+	trade Medical 915
+	trade Metal 259
+	trade Plastic 4717
 	fleet "Small Scin" 1300
 	fleet "Scin Cargo" 800
 	fleet "Scin Transport" 1100
-	habitable 296.45
-	belt 1306
-	trade Clothing 265
-	trade Electronics 792
-	trade Equipment 352
-	trade Food 418
-	trade "Heavy Metals" 819
-	trade Industrial 693
-	trade "Luxury Goods" 1387
-	trade Medical 904
-	trade Metal 272
-	trade Plastic 265
 	object
 		sprite star/m0
 		period 10
@@ -31578,6 +31578,9 @@ system "Erba Yle"
 system 3b
 	pos 255.28177 -18.666556
 	government Uninhabited
+	habitable 3276.8
+	belt 1184
+	haze _menu/haze-full
 	link 33b
 	asteroids "small rock" 19 5.985
 	asteroids "medium rock" 90 4.725
@@ -31586,9 +31589,6 @@ system 3b
 	asteroids "medium metal" 51 3.465
 	asteroids "large metal" 10 5.607
 	minables gold 8 8.5632483
-	haze _menu/haze-full
-	habitable 3276.8
-	belt 1184
 	object
 		sprite star/o0
 		period 10
@@ -31620,6 +31620,9 @@ system 3b
 system Iinjma
 	pos 851.86511 141.16678
 	government Uninhabited
+	habitable 614.45
+	belt 1861
+	haze _menu/haze-67
 	link Anbrim
 	link Vanguwo
 	link Zeinar
@@ -31630,11 +31633,8 @@ system Iinjma
 	asteroids "large metal" 55 4.8594
 	minables iron 1 8.9101606
 	minables neodymium 4 9.3939255
-	haze _menu/haze-67
 	fleet "Small Scin" 3500
 	fleet "Scin Transport" 4500
-	habitable 614.45
-	belt 1861
 	object
 		sprite star/f-dwarf
 		distance 100.13443
@@ -31668,6 +31668,8 @@ system Iinjma
 system Iliniza
 	pos 789.42066 99.611222
 	government "Gegno Scin"
+	habitable 538.45
+	belt 1624
 	link Zeinar
 	asteroids "small rock" 4 0.806
 	asteroids "medium rock" 70 0.819
@@ -31676,22 +31678,20 @@ system Iliniza
 	asteroids "medium metal" 37 0.858
 	asteroids "large metal" 106 1.131
 	minables aluminum 46 1.1668871
+	trade Clothing 286
+	trade Electronics 991
+	trade Equipment 611
+	trade Food 368
+	trade "Heavy Metals" 891
+	trade Industrial 728
+	trade "Luxury Goods" 1417
+	trade Medical 725
+	trade Metal 310
+	trade Plastic 240
 	fleet "Small Scin" 1000
 	fleet "Large Scin" 2500
 	fleet "Scin Transport" 600
 	fleet "Scin Cargo" 1200
-	habitable 538.45
-	belt 1624
-	trade Clothing 265
-	trade Electronics 775
-	trade Equipment 373
-	trade Food 438
-	trade "Heavy Metals" 794
-	trade Industrial 683
-	trade "Luxury Goods" 1455
-	trade Medical 898
-	trade Metal 245
-	trade Plastic 292
 	object
 		sprite star/m8
 		distance 77.303371
@@ -31733,6 +31733,9 @@ system Iliniza
 system Yllke
 	pos 921.53177 61.388997
 	government Uninhabited
+	habitable 924.8
+	belt 1925
+	haze _menu/haze-133
 	link Auhru
 	link Kilema
 	asteroids "small rock" 3 1.7444
@@ -31743,12 +31746,9 @@ system Yllke
 	asteroids "large metal" 36 0.9996
 	minables iron 27 2.3234016
 	minables aluminum 42 1.9433605
-	haze _menu/haze-133
 	fleet "Small Scin" 4600
 	fleet "Scin Cargo" 3300
 	fleet "Scin Transport" 3300
-	habitable 924.8
-	belt 1925
 	object
 		sprite star/m5
 		distance 109.77509
@@ -31786,16 +31786,16 @@ system Yllke
 system Uttna
 	pos 868.55556 -49.111122
 	government Uninhabited
+	habitable 500
+	belt 1748
+	haze _menu/haze-fullbright
 	link Iigen
 	asteroids "medium rock" 3 4.83
 	asteroids "large rock" 2 3.9606
 	asteroids "small metal" 4 2.8497
 	asteroids "large metal" 16 3.4293
 	minables iron 4 6.1294787
-	haze _menu/haze-fullbright
 	fleet "Gegno Basic" 1900
-	habitable 500
-	belt 1748
 	object
 		sprite star/a8
 		period 10
@@ -31835,6 +31835,9 @@ system Uttna
 system Kilema
 	pos 914.02778 29.666665
 	government Uninhabited
+	habitable 28.8
+	belt 1612
+	haze _menu/haze-67
 	link Yllke
 	asteroids "small rock" 4 1.995
 	asteroids "medium rock" 4 2.223
@@ -31842,11 +31845,8 @@ system Kilema
 	asteroids "small metal" 8 1.824
 	asteroids "medium metal" 7 2.7075
 	asteroids "large metal" 3 2.394
-	haze _menu/haze-67
 	fleet "Small Scin" 4600
 	fleet "Scin Transport" 3500
-	habitable 28.8
-	belt 1612
 	object
 		sprite star/g-dwarf
 		period 10
@@ -31870,6 +31870,8 @@ system Kilema
 system Kiluit
 	pos 645.16667 -62.861107
 	government "Gegno Vi"
+	habitable 668.2
+	belt 1258
 	link Ookmya
 	link Ptobeh
 	asteroids "medium rock" 8 2.6325
@@ -31879,21 +31881,19 @@ system Kiluit
 	asteroids "large metal" 9 2.457
 	minables tungsten 1 5.461967
 	minables lead 9 3.1335707
+	trade Clothing 277
+	trade Electronics 860
+	trade Equipment 468
+	trade Food 337
+	trade "Heavy Metals" 1416
+	trade Industrial 916
+	trade "Luxury Goods" 1392
+	trade Medical 573
+	trade Metal 497
+	trade Plastic 406
 	fleet "Small Vi" 1300
 	fleet "Vi Cargo" 800
 	fleet "Vi Transport" 1100
-	habitable 668.2
-	belt 1258
-	trade Clothing 277
-	trade Electronics 782
-	trade Equipment 673
-	trade Food 337
-	trade "Heavy Metals" 832
-	trade Industrial 759
-	trade "Luxury Goods" 1392
-	trade Medical 683
-	trade Metal 211
-	trade Plastic 406
 	object
 		sprite star/m4
 		distance 96.901526
@@ -31923,15 +31923,15 @@ system Kiluit
 system 19b
 	pos 447.63891 -42.38889
 	government Uninhabited
+	habitable 3276.8
+	belt 1068
+	haze _menu/haze-fullbright
 	link 17b
 	link 20b
 	asteroids "small metal" 1 4.158
 	asteroids "medium metal" 13 3.444
 	asteroids "large metal" 2 2.772
 	minables lead 3 5.9955446
-	haze _menu/haze-fullbright
-	habitable 3276.8
-	belt 1068
 	object
 		sprite star/o0
 		period 10
@@ -31967,6 +31967,9 @@ system 19b
 system Vorsuke
 	pos 599.55556 -118.52778
 	government Uninhabited
+	habitable 1316.45
+	belt 1177
+	haze _menu/haze-blackbody
 	asteroids "small rock" 13 4.2336
 	asteroids "medium rock" 1 2.8728
 	asteroids "large rock" 7 3.78
@@ -31976,9 +31979,6 @@ system Vorsuke
 	minables silver 1 8.3753257
 	minables tungsten 1 8.4387112
 	minables lead 1 8.0964299
-	haze _menu/haze-blackbody
-	habitable 1316.45
-	belt 1177
 	object
 		sprite star/g5-old
 		distance 2.2578277
@@ -31995,6 +31995,9 @@ system Vorsuke
 system Asio
 	pos 742.63889 -65.194452
 	government Uninhabited
+	habitable 3276.8
+	belt 1478
+	haze _menu/haze-33
 	link Oosuoro
 	link Ptobeh
 	asteroids "small rock" 4 2.604
@@ -32004,11 +32007,8 @@ system Asio
 	asteroids "large metal" 2 4.278
 	minables aluminum 1 5.7519675
 	minables lead 7 6.190245
-	haze _menu/haze-33
 	fleet "Gegno Basic" 1200
 	fleet "Small Vi" 1700
-	habitable 3276.8
-	belt 1478
 	object
 		sprite star/o0
 		period 10
@@ -32032,6 +32032,9 @@ system Asio
 system 24b
 	pos 419.08333 22.277778
 	government Uninhabited
+	habitable 26.45
+	belt 1734
+	haze _menu/haze-blackbody
 	link 19c
 	asteroids "small rock" 1 1.914
 	asteroids "medium rock" 8 1.782
@@ -32040,9 +32043,6 @@ system 24b
 	asteroids "medium metal" 58 1.716
 	asteroids "large metal" 33 2.376
 	minables copper 14 3.2280789
-	haze _menu/haze-blackbody
-	habitable 26.45
-	belt 1734
 	object
 		sprite star/k-dwarf
 		period 10
@@ -32070,6 +32070,9 @@ system 24b
 system 19c
 	pos 371.75001 -15.777779
 	government Uninhabited
+	habitable 2560
+	belt 1607
+	haze _menu/haze-blackbody
 	link 21b
 	link 24b
 	asteroids "small rock" 9 3.4362
@@ -32080,9 +32083,6 @@ system 19c
 	asteroids "large metal" 3 2.1114
 	minables silver 7 4.3545762
 	minables copper 8 5.7354391
-	haze _menu/haze-blackbody
-	habitable 2560
-	belt 1607
 	object
 		sprite star/a-supergiant
 		distance 378
@@ -32124,6 +32124,9 @@ system 19c
 system 21b
 	pos 427.63889 -20.166666
 	government Uninhabited
+	habitable 1616.2
+	belt 1163
+	haze _menu/haze-full
 	link 19c
 	link 20b
 	link 34b
@@ -32136,9 +32139,6 @@ system 21b
 	minables aluminum 1 7.0420918
 	minables tungsten 12 6.825799
 	minables uranium 1 9.7583272
-	haze _menu/haze-full
-	habitable 1616.2
-	belt 1163
 	object
 		sprite star/k3
 		distance 170.27596
@@ -32184,6 +32184,9 @@ system 21b
 system 20b
 	pos 458.52777 -9.2777773
 	government Uninhabited
+	habitable 44556.8
+	belt 1426
+	haze _menu/haze-blackbody
 	link 19b
 	link 21b
 	asteroids "small rock" 4 1.428
@@ -32195,9 +32198,6 @@ system 20b
 	minables silver 4 2.1249304
 	minables titanium 10 2.1866832
 	minables copper 7 3.0575563
-	haze _menu/haze-blackbody
-	habitable 44556.8
-	belt 1426
 	object
 		sprite star/g-supergiant
 		period 10
@@ -32229,6 +32229,8 @@ system 20b
 system Kneirc
 	pos 712.52778 19.749996
 	government Uninhabited
+	habitable 1616.2
+	belt 1163
 	link Evrae
 	link Jied
 	asteroids "small rock" 6 5.082
@@ -32242,8 +32244,6 @@ system Kneirc
 	minables uranium 1 9.7583272
 	fleet "Vi Warfleet" 1600
 	fleet "Scin Warfleet" 1600
-	habitable 1616.2
-	belt 1163
 	object
 		sprite star/k3
 		distance 170.27596
@@ -32289,6 +32289,8 @@ system Kneirc
 system Nisyros
 	pos 680.52779 -12.91666
 	government Uninhabited
+	habitable 3699.2
+	belt 1175
 	link Jied
 	link Scija
 	asteroids "small rock" 26 3.915
@@ -32303,8 +32305,6 @@ system Nisyros
 	fleet "Large Vi" 2000
 	fleet "Vi Transport" 1300
 	fleet "Vi Cargo" 1400
-	habitable 3699.2
-	belt 1175
 	object
 		sprite star/f-giant
 		period 10
@@ -32340,6 +32340,9 @@ system Nisyros
 system 33b
 	pos 153.8569 37.481143
 	government Uninhabited
+	habitable 423.2
+	belt 1451
+	haze _menu/haze-full
 	link 3b
 	asteroids "small rock" 47 1.9095
 	asteroids "medium rock" 3 1.9095
@@ -32349,9 +32352,6 @@ system 33b
 	asteroids "large metal" 6 2.565
 	minables tungsten 1 2.9962067
 	minables iron 31 3.5216762
-	haze _menu/haze-full
-	habitable 423.2
-	belt 1451
 	object
 		sprite star/f3
 		period 10
@@ -32375,6 +32375,9 @@ system 33b
 system 31b
 	pos 296.30134 -16.518856
 	government Uninhabited
+	habitable 28275.2
+	belt 1795
+	haze _menu/haze-full
 	link 22b
 	link 23b
 	link 44b
@@ -32385,9 +32388,6 @@ system 31b
 	asteroids "medium metal" 3 1.045
 	asteroids "large metal" 4 0.99
 	minables aluminum 25 0.95568643
-	haze _menu/haze-full
-	habitable 28275.2
-	belt 1795
 	object
 		sprite star/m-giant
 		distance 1.4868643
@@ -32400,11 +32400,11 @@ system 31b
 system 34b
 	pos 402.74578 -46.296635
 	government Uninhabited
-	link 21b
-	asteroids "large metal" 1 2.2344
-	haze _menu/haze-fullbright
 	habitable 6195.2
 	belt 1944
+	haze _menu/haze-fullbright
+	link 21b
+	asteroids "large metal" 1 2.2344
 	object
 		sprite star/g-giant
 		period 10
@@ -32438,7 +32438,7 @@ planet Ternituul
 	landscape land/fog1
 	description "Ternituul is a dull world covered in a thick layer of fog hiding a dry desolate surface; an ideal world for the hardened Gegno Vi. A large portion of the Vi's military branch is based here, where new recruits are thrown into the first bottleneck of their lives. It is not uncommon for inhabitants to be lost to the bleak ecosystem of this planet."
 	description "The fog also hides a more grim aspect of this world- numerous graveyards cover the terrain, serving as a final resting place for most Vi. Large ceremonies are constantly held for the fallen, though instead of grievance, the Vi celebrate the commitment and dignity of their fellow brethren."
-	spaceport "Here, the spaceport is built very close to and partly in the ground, nearly a danger to any craft landing. Undeterred by the gloomy appearance of this graveyard world, the nearby Vi are occasionally chanting or lighting fires for the deceased, even while exiting their ships."   
+	spaceport "Here, the spaceport is built very close to and partly in the ground, nearly a danger to any craft landing. Undeterred by the gloomy appearance of this graveyard world, the nearby Vi are occasionally chanting or lighting fires for the deceased, even while exiting their ships."
 	government "Gegno Vi"
 
 planet Essime
@@ -32451,7 +32451,7 @@ planet Essime
 planet "Sies Upi"
 	landscape land/hills1
 	description "Sies Upi is one of the most recently colonized planets of the Gegno Vi. This hot, dry world with harsh living environments serves as more of an outpost than it does a colony, but nevertheless the Vi found ways to make manageable living conditions."
-	description "Being the farthest away from the rest of Gegno territory, this planet is also the first line of defense between the Gegno and the Quarg. Although there are no active hostilities between the two, the Vi remain alert and ready at all times."
+	description "Being the farthest away from the rest of Gegno territory, this planet is also the first line of defense between the Gegno and the Quarg. Alhough there are no active hostilities between the two, the Vi remain alert and ready at all times."
 	spaceport "This spaceport seems a lot more militarized than other Gegno planet spaceports, full of geared up Vi with their ships parked close by. The roar of an enormous cruiser's engines can be heard just as often as another's shutting down. There doesn't look to be very many non-personnel civilians here, and it feels somewhat clausterphobic with all of the guards standing around."
 	government "Gegno Vi"
 
@@ -32490,9 +32490,9 @@ planet Cipi
 
 planet "Ef Osch"
 	landscape land/beach11-harro
-	description "Ef Osch is the first world found by the Gegno to have a substantial part of the surface covered in water. Pristine beaches surround tropical land masses, and many strange creatures occupy the depths. Despite being appropriated by the Gegno Scin, there is relatively low amount of construction work done on the mainland. Most industrial work takes place on large, vessel-like complexes that travel the oceans."
+	description "Ef Osch is the first world found by the Gegno to have a substantial part of the surface covered in water. Pristine beaches surround tropical land masses, and many strange creatures occupy the depths. Despite being approprated by the Gegno Scin, there is relatively low amount of construction work done on the mainland. Most industrial work takes place on large, vessel-like complexes that travel the oceans."
 	spaceport "Each island vessel also serves as a makeshift yet decent spaceport with all of the basic facilitices. From as far as you can see, there are two lines of vessels in your area, and although they are miles apart, they form a runway-like pattern."
-	spaceport "The island ports also are built in a variety of sizes. The Scin fly their ships down the pattern as if it's a highway, staying neatly in the center until they find a port that accommodates the ship they are piloting." 
+	spaceport "The island ports also are built in a variety of sizes. The Scin fly their ships down the pattern as if it's a highway, staying neatly in the center until they find a port that accommadates the ship they are piloting."
 	government "Gegno Scin"
 
 planet "Var Oti"
@@ -32505,16 +32505,16 @@ planet "Long Gone"
 system Gualetri
 	pos 773.1389 -8.3055567
 	government Uninhabited
+	habitable 26.45
+	belt 1734
+	haze _menu/haze-33
 	link Evrae
 	link Jied
 	link Oosuoro
 	link Uelawan
 	asteroids "large metal" 1 2.832
 	minables copper 14 3.2280789
-	haze _menu/haze-33
 	fleet "Gegno Basic" 1300
-	habitable 26.45
-	belt 1734
 	object
 		sprite star/k-dwarf
 		period 10
@@ -32534,6 +32534,9 @@ system Gualetri
 system Uelawan
 	pos 810.08335 14.805559
 	government Uninhabited
+	habitable 500
+	belt 1368
+	haze _menu/haze-67
 	link Gualetri
 	link Mohuwo
 	link Oosuoro
@@ -32546,11 +32549,8 @@ system Uelawan
 	minables iron 1 3.3418752
 	minables silver 1 3.5820905
 	minables uranium 1 3.5225171
-	haze _menu/haze-67
 	fleet "Gegno Basic" 1200
 	fleet "Small Scin" 1800
-	habitable 500
-	belt 1368
 	object
 		sprite star/a5
 		period 10
@@ -32595,6 +32595,8 @@ system Uelawan
 system Yli
 	pos 647.97224 37.027775
 	government Uninhabited
+	habitable 423.2
+	belt 1404
 	link Scija
 	link Vesvii
 	asteroids "large metal" 1 4.3008
@@ -32603,8 +32605,6 @@ system Yli
 	fleet "Vi Transport" 2300
 	fleet "Vi Cargo" 1700
 	fleet "Small Scin" 2400
-	habitable 423.2
-	belt 1404
 	object
 		sprite star/f3
 		period 10
@@ -32636,16 +32636,16 @@ system Yli
 system Acnanjo
 	pos 564.69446 85.75
 	government Uninhabited
+	habitable 6195.2
+	belt 1944
+	haze _menu/haze-red
 	link Aleit
 	link Rouseu
 	link Tscera
 	asteroids "medium rock" 6 1.488
 	asteroids "large rock" 4 1.184
 	asteroids "large metal" 3 0.96
-	haze _menu/haze-red
 	fleet Quarg 2800
-	habitable 6195.2
-	belt 1944
 	object
 		sprite star/g-giant
 		period 10
@@ -32673,13 +32673,13 @@ planet Cyife
 
 planet "Gue Faur"
 	landscape land/forest3
-	description "Like most Gegno Scin planets, Gue Faur is a steep jungle planet full of all sorts of life. Surprisingly, a majority of the Scin's population resides on this planet rather than their capital. A great percentage of inhabitants consists of researchers and scientists, and all sorts of greenhouses and biodomes are visible everywhere."
+	description "Like most Gegno Scin planets, Gue Faur is a steep jungle planet full of all sorts of life. Suprisingly, a majority of the Scin's population resides on this planet rather than their capital. A great percentage of inhabitants consists of researchers and scientists, and all sorts of greenhouses and biodomes are visible everywhere."
 	spaceport "The spaceport seems very busy with all sorts of Gegno Scin walking around in a hurried fashion. Some of them are wearing long, sleek jackets while others wear more feather-like plating. Once in a while, a female Scin will stop nearby to observe and record you then carry on as if nothing happened."
 	government "Gegno Scin"
 
 planet Tschyss
 	landscape land/sivael6
-	description "This massive station is the only orbital structure that can be found in Gegno space, and is still under heavy construction. Although a majority of the exterior seems complete, the interior is noticeably lacking in comparison, and it seems that the progress has slowed down significantly in recent times. A large portion of the station is filled with crew quarters and living sections, all larger than any normal bunker in human space, and the outside is enveloped in many docking bays of numerous sizes."
+	description "This massive station is the only orbital structure that can be found in Gegno space, and is still under heavy construction. Although a majority of the exterior seems complete, the interior is noticably lacking in comparison, and it seems that the progress has slowed down significantly in recent times. A large portion of the station is filled with crew quarters and living sections, all larger than any normal bunker in human space, and the outside is enveloped in many docking bays of numerous sizes."
 	description "Despite the scale and numbers of onboard facilities, there is only a small percentage of Gegno making use of them."
 	spaceport "Gegno of all kinds are walking to and fro, though they seem very tired and overworked. Not a lot of them seem happy with their current working conditions, but all you can do is watch from a distance in a small half-built area nearby your ship's designated lock."
 	government Gegno

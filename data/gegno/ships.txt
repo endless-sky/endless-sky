@@ -1,15 +1,4 @@
-# Copyright (c) 2021 by Saugia
-#
-# Endless Sky is free software: you can redistribute it and/or modify it under the
-# terms of the GNU General Public License as published by the Free Software
-# Foundation, either version 3 of the License, or (at your option) any later version.
-#
-# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
-
 ship Augen
-# modified gneiss stats, needs adjusting
 	sprite ship/augen
 	thumbnail thumbnail/augen
 	swizzle 0
@@ -78,7 +67,7 @@ ship Augen
 	explode "small explosion" 20
 	explode "tiny explosion" 60
 	"final explode" "final explosion large"
-	description "x"
+	description x
 
 ship Shale
 	sprite ship/shale
@@ -86,7 +75,7 @@ ship Shale
 	swizzle 0
 	attributes
 		category Transport
-		cost 180000
+		cost 265000
 		mass 121
 		bunks 7
 		"cargo space" 36
@@ -122,7 +111,7 @@ ship Dolomite
 	swizzle 0
 	attributes
 		category "Light Freighter"
-		cost 1960000
+		cost 1692000
 		mass 570
 		bunks 80
 		"cargo space" 140
@@ -164,7 +153,7 @@ ship Slate
 	swizzle 0
 	attributes
 		category Transport
-		cost 180000
+		cost 336000
 		mass 121
 		bunks 7
 		"cargo space" 36
@@ -200,7 +189,7 @@ ship Schist
 	swizzle 0
 	attributes
 		category "Light Freighter"
-		cost 1960000
+		cost 1932000
 		mass 560
 		bunks 86
 		"cargo space" 122
@@ -275,7 +264,7 @@ ship Eclogite
 	swizzle 0
 	attributes
 		category "Light Warship"
-		cost 900000
+		cost 2500000
 		mass 275
 		bunks 20
 		"cargo space" 70
@@ -321,7 +310,7 @@ ship Hornfel
 	swizzle 0
 	attributes
 		category "Medium Warship"
-		cost 1960000
+		cost 7630000
 		mass 740
 		bunks 74
 		"cargo space" 120
@@ -392,8 +381,8 @@ ship Hornfel "Hornfel Heavy"
 		"Ballistic Cannon"
 		"C17 Warzone Core"
 		"Chloeric Turret"
-		"Irate Cannon" 2
 		Hyperdrive
+		"Irate Cannon" 2
 		"R03 Warforge Battery"
 		"RG18 Torch Steering"
 		"RG18 Torch Thruster"
@@ -404,7 +393,7 @@ ship Gneiss
 	swizzle 0
 	attributes
 		category "Heavy Warship"
-		cost 3700000
+		cost 15690000
 		mass 1245
 		bunks 162
 		"cargo space" 84
@@ -522,10 +511,9 @@ ship Halite
 			"hull damage" 85
 			"hit force" 160
 	outfits
-		"SC-1 Plasma Engines"
 		"I70 Ameliorate Cell"
+		"SC-1 Plasma Engines"
 		"Talc Laser" 2
-		
 	engine -9 42
 	engine 9 42
 	gun -18.5 -44.5 "Talc Laser"
@@ -541,7 +529,7 @@ ship Mica
 	swizzle 0
 	attributes
 		category Transport
-		cost 180000
+		cost 358000
 		mass 115
 		bunks 9
 		"cargo space" 36
@@ -585,7 +573,7 @@ ship Coesite
 	swizzle 0
 	attributes
 		category "Light Warship"
-		cost 900000
+		cost 3120000
 		mass 245
 		bunks 26
 		"cargo space" 60
@@ -604,9 +592,9 @@ ship Coesite
 			"hull damage" 460
 			"hit force" 440
 	outfits
-		"Astuit Battery"
+		"Astuit Battery" 2
 		"C7 Brawl Core"
-		"Guile Anti-Missile" 2
+		"Guile Anti-Missile"
 		Hyperdrive
 		"R02 Battlezone Battery"
 		"SC-12 Plasma Thruster"
@@ -614,7 +602,7 @@ ship Coesite
 	engine -31 85
 	engine 31 85
 	turret 0 -46.5 "Astuit Battery"
-	turret -34 18 "Guile Anti-Missile"
+	turret -34 18 "Astuit Battery"
 	turret 34 18 "Guile Anti-Missile"
 	leak leak 60 50
 	leak flame 50 80
@@ -632,9 +620,9 @@ ship Coesite "Coesite P"
 		drag 0.9
 		"solar collection" 0.86
 	outfits
-		"Astuit Battery" 2
+		"Astuit Battery"
 		"C7 Brawl Core"
-		"Guile Anti-Missile"
+		"Guile Anti-Missile" 2
 		Hyperdrive
 		"R02 Battlezone Battery"
 		"SC-12 Plasma Thruster"
@@ -646,7 +634,7 @@ ship Felsic
 	swizzle 0
 	attributes
 		category "Light Freighter"
-		cost 1960000
+		cost 2342000
 		mass 565
 		bunks 78
 		"cargo space" 160
@@ -665,15 +653,14 @@ ship Felsic
 			"hull damage" 650
 			"hit force" 690
 	outfits
-		"Astuit Battery"
+		"Astuit Battery" 2
 		"C7 Brawl Core"
-		"Guile Anti-Missile"
 		Hyperdrive
 		"R02 Battlezone Battery"
 		"SC-14 Plasma Steering"
 		"SC-14 Plasma Thruster"
 	engine 0 135
-	turret 0 63 "Guile Anti-Missile"
+	turret 0 63 "Astuit Battery"
 	turret 0 -79.5 "Astuit Battery"
 	leak leak 60 50
 	leak flame 60 80
@@ -692,8 +679,9 @@ ship Felsic "Felsic P"
 		drag 0.9
 		"solar collection" 0.86
 	outfits
-		"Astuit Battery" 2
+		"Astuit Battery"
 		"C7 Brawl Core"
+		"Guile Anti-Missile"
 		Hyperdrive
 		"R02 Battlezone Battery"
 		"SC-14 Plasma Steering"
@@ -705,7 +693,7 @@ ship Feldspar
 	swizzle 0
 	attributes
 		category "Heavy Warship"
-		cost 3700000
+		cost 14760000
 		mass 1146
 		bunks 192
 		"cargo space" 82
@@ -774,7 +762,7 @@ ship Muscovite
 	swizzle 0
 	attributes
 		category "Heavy Freighter"
-		cost 17600000
+		cost 16460000
 		mass 1090
 		bunks 166
 		"cargo space" 700
@@ -826,10 +814,10 @@ ship Muscovite "Muscovite P"
 	thumbnail thumbnail/muscovitep
 	add attributes
 		mass 41
-		drag 2.1
-		"solar collection" 1.72
-		"outfit space" 50
 		"cargo space" 60
+		drag 2.1
+		"outfit space" 50
+		"solar collection" 1.72
 	outfits
 		"Acuit Artillery"
 		"C27 Campaign Core"
