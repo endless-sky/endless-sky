@@ -16,7 +16,7 @@ test "Sell 1 ship"
 
 test "Sell 2 ships"
 	status active
-	description "Test selling a single ship."
+	description "Test selling two ships."
 	sequence
 		# Create/inject the savegame and load it.
 		inject "Fighters and Carriers and Escorts"
@@ -33,7 +33,7 @@ test "Sell 2 ships"
 
 test "Sell 3 ships"
 	status active
-	description "Test selling a single ship."
+	description "Test selling three ships."
 	sequence
 		# Create/inject the savegame and load it.
 		inject "Fighters and Carriers and Escorts"
