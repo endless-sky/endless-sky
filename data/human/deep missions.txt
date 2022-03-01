@@ -1189,7 +1189,7 @@ mission "Deep: Project Hawking: Carbuncle"
 
 
 
-mission "Deep: Project Hawking: fe"
+mission "Deep: Project Hawking: Prime"
 	landing
 	invisible
 	source "Prime"
@@ -3367,16 +3367,18 @@ mission "Mani Refit"
 mission "Home for Skadenga 6"
 	landing
 	name "Transport the Skadenga"
-	description `Escort a fleet of freighters, refitted for carrying primitives, to <destination>.`
+	description `Escort a fleet of freighters, refitted for carrying the Skadenga, to <destination>.`
 	source "Mani"
 	destination "Nifel"
 	to offer
 		has	"Asgard2"
 	on offer
 		conversation
-			`You arrive at the sapceport to see a Union Executive overseeing the final preparations of his fleet. After a moment, the last crewmembers leave his side and board their ships. He walks over to you. "The fleet is ready to launch. Please, try to bring them back to me in one piece."`
+			`You arrive at the spaceport to see a Union Executive overseeing the final preparations of his fleet. After a moment, the last crewmembers leave his side and board their ships. He walks over to you. "The fleet is ready to launch. Please, try to bring them back to me in one piece."`
 			choice
 				`	"Let's get this over with."`
+				`	"Don't worry, your ships are in good hands."
+				`	"It's time to take the Skadenga home."`
 			`	The ground you are standing on shakes as the ships begin to launch.`
 				accept
 	npc accompany save
