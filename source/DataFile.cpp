@@ -100,7 +100,7 @@ void DataFile::LoadData(const string &data)
 	// node at each level - that is, the node that will be the "parent" of any
 	// new node added at the next deeper indentation level.
 	vector<DataNode *> stack(1, &root);
-	vector<int> whiteStack(1, -1);
+	vector<int> separatorStack(1, -1);
 	bool fileIsTabs = false;
 	bool fileIsSpaces = false;
 	size_t lineNumber = 0;
@@ -113,8 +113,8 @@ void DataFile::LoadData(const string &data)
 		char32_t c = Utf8::DecodeCodePoint(data, pos);
 
 		bool mixedIndentation = false;
-		int white = 0;
-		// Find the first non-white character in this line.
+		int separators = 0;
+		// Find the first tokenizable character in this line (i.e. neither space nor tab).
 		while(c <= ' ' && c != '\n')
 		{
 			// Determine what type of indentation this file is using.
@@ -129,7 +129,7 @@ void DataFile::LoadData(const string &data)
 			else if((fileIsTabs && c != '\t') || (fileIsSpaces && c != ' '))
 				mixedIndentation = true;
 
-			++white;
+			++separators;
 			tokenPos = pos;
 			c = Utf8::DecodeCodePoint(data, pos);
 		}
@@ -148,9 +148,9 @@ void DataFile::LoadData(const string &data)
 
 		// Determine where in the node tree we are inserting this node, based on
 		// whether it has more indentation that the previous node, less, or the same.
-		while(whiteStack.back() >= white)
+		while(separatorStack.back() >= separators)
 		{
-			whiteStack.pop_back();
+			separatorStack.pop_back();
 			stack.pop_back();
 		}
 
@@ -162,7 +162,7 @@ void DataFile::LoadData(const string &data)
 
 		// Remember where in the tree we are.
 		stack.push_back(&node);
-		whiteStack.push_back(white);
+		separatorStack.push_back(separators);
 
 		// Tokenize the line. Skip comments and empty lines.
 		while(c != '\n')
