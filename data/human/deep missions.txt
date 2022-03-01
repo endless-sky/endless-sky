@@ -3581,7 +3581,7 @@ mission "Skadenga Call 4"
 		conversation
 			`A familiar woman is waiting for you outside your ship. Although it's been more than seven years since you've last seen her, you recognize Hjlod instantly. Her eyes are brighter than when last you parted, and she has the same lopsided grin that you remember. "<first>, I saw your ship landing, and thought I vould say hello."`
 			`	You ask her how she has been, and she tells you that the small community of Skadenga have rebuilt and thrived here. That there has even been a small amount of immigration to their tiny town. That word had gotten out about their desperate escape from Asgard.`
-			`	She tells you that she forgives your past actions, and hopes you find whatever it is you are looking for among the stars. She even hugs you before she leaves. Although she might forgive you, you wonder if you can ever forgive yourself...`
+			`	She tells you that she forgives your past actions, and hopes you find whatever it is you are looking for among the stars. She even hugs you before she leaves.`
 
 
 
