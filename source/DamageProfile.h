@@ -44,7 +44,7 @@ private:
 	// Determine the damage scale for the given ship.
 	double Scale(double scale, const Ship &ship, bool blast) const;
 	// Populate the given DamageDealt object with values.
-	void PopulateDamage(DamageDealt &damage, const Ship &ship, const Point &position) const;
+	void PopulateDamage(DamageDealt &damage, const Ship &ship) const;
 
 
 private:

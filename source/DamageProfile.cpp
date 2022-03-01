@@ -47,7 +47,7 @@ DamageDealt DamageProfile::CalculateDamage(const Ship &ship, bool ignoreBlast) c
 {
 	bool blast = (isBlast && !ignoreBlast);
 	DamageDealt damage(weapon, Scale(inputScaling, ship, blast), blast);
-	PopulateDamage(damage, ship, position);
+	PopulateDamage(damage, ship);
 
 	return damage;
 }
@@ -101,7 +101,7 @@ double DamageProfile::Scale(double scale, const Ship &ship, bool blast) const
 
 
 // Populate the given DamageDealt object with values.
-void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship, const Point &position) const
+void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 {
 	const Outfit &attributes = ship.Attributes();
 	const Weapon &weapon = damage.GetWeapon();
