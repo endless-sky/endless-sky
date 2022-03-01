@@ -2586,7 +2586,7 @@ mission "Unfettered: Special Cargo 2"
 
 mission "Unfettered: Close Quarter"
 	name `Close Quarter Fighting`
-	description `Hi Ye wants you to bring 10 less deadly weapons for him to train with the other Unfettered without any danger, on <destination>.`
+	description `Hi Ye wants you to bring 10 non lethal weapons, stronger than the pulse rifle, for him to train with the other Unfettered without any danger, on <destination>.`
 	source "Warfeed"
 	to offer
 		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
@@ -2668,7 +2668,7 @@ mission "Unfettered: Close Quarter"
 				`	"Well, I lost."`
 					goto lost
 				`	"It was quite some fun, do you do this often?"`
-			`	"Fun that it is! Some of us decide to do it yes, we must be ready to repel a ground assault."`
+			`	"Fun that it is! This practise is part of the life of most Unfettered, we must always be ready to repel a ground assault, as we always were. To that end we need to try most weapons, and ways of fighting, which we do here."`
 				goto speak
 			
 			label lost
@@ -2687,7 +2687,7 @@ mission "Unfettered: Close Quarter"
 			`	You look at them battling for so long you do not see the time pass, then you realize you are being watched. It is Hi Ye, he looks satisfied of your interest in this fight. "You should try it someday," he says.`
 			
 			label speak
-			`	"As you have noticed, we do this training quite often. Because our rifles are not deadly on the first shots, we almost never have anyone get killed. But it still happens too often, especially with some of the older ones who are more fragile... Or with the young ones who are too, enthusiastic. Do you happen to know any weapons that would not have such weakness?"`
+			`	"As you may have noticed, we do this training quite often. Because our rifles are not deadly on the first shots, we almost never have anyone get killed. But it still happens sometimes, between some of the older, more fragile ones, and some young ones who can be too enthusiastic... They shoot one too many times to make sure to hit. We have experienced with some less powerful versions of our rifles but those do not reflect war at all anymore, they become just a joke, one meant for the weak ones. Do you happen to know any weapons that would not have such weakness, that would be non lethal but still not meant for child's play? I expect said weapons to be even stronger that ours, which are not very effective to be honest, they often let the target able to shoot still after the first shot."`
 			choice
 				`	"Yes I think I do."`
 					goto idea
@@ -2695,7 +2695,7 @@ mission "Unfettered: Close Quarter"
 			`	"I have heard stories of weapons that could not ever kill anyone, no matter how much you shoot him."`
 			
 			label idea
-			`	"If you ever do see any weapon that is less risky that our, please bring it to me. I would be interested to use them in training fights."`
+			`	"If you ever do see any weapon that is less risky that our, please bring it to me. I would be interested to use them in training fights. I have heard tales of some who journeyed too far, excited by their newly acquired jump drives, and who came into contact with such weapons, said to act like drugs, far into bird territory. I would not have expected them to use weapons at all, but maybe they too have Unfettered people, that want to change? Those would make for great allies. Anyway I'm getting carried of, can you bring me say 10 non lethal weapon? If you happen to find one that surpasses my expectation, one will probably do."`
 			choice
 				`	"I will see what I can do."`
 					accept
@@ -2705,7 +2705,7 @@ mission "Unfettered: Close Quarter"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
-		dialog `You have not yet brought any kinds of less deadly weapons to Ya Hi, look harder!`
+		dialog `You have not yet brought any kinds of non lethal weapons to Ya Hi, look harder!`
 	to complete
 		or
 			has "Bring Pug Staffs: done"
