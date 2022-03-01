@@ -2668,7 +2668,7 @@ mission "Unfettered: Close Quarter"
 				`	"Well, I lost."`
 					goto lost
 				`	"It was quite some fun, do you do this often?"`
-			`	"Fun that it is! This practise is part of the life of most Unfettered, we must always be ready to repel a ground assault, as we always were. To that end we need to try most weapons, and ways of fighting, which we do here."`
+			`	"Fun that it is! This practice is part of the life of most Unfettered, we must always be ready to repel a ground assault, as we always were. To that end we need to try most weapons, and ways of fighting, which we do here."`
 				goto speak
 			
 			label lost
