@@ -3317,7 +3317,7 @@ mission "Home for Skadenga 4"
 			choice
 				`	"That's fantastic news! The Skakenga will need transport to Asgard."`
 				`	"They need to go to Asgard."`
-			`	Kaiden beams. "Brilliant. Just brilliant. I was just telling my colleagues here about what a great place Asgard would be for a gaggle of misfit primitives. The publicity will be huge. The universities will probably want to run various studies. There will be all sorts of government programs and initiatives there to help them accept the proper Deep culture and become productive citizens like the rest of us."`
+			`	Kaiden beams. "Brilliant. Just brilliant. I was just telling my colleagues here about what a great place Asgard would be for a gaggle of prehistoric luddites. The publicity will be huge. The universities will probably want to run various studies. There will be all sorts of government programs and initiatives there to help them accept the proper Deep culture and become productive citizens like the rest of us."`
 			`	Grayden, Braiden and Kaiden all start shaking each others' hands and congratulating each other on being part of something so inspirational. After their celebration is over, Kaiden turns back to you. "Our transport fleet is at your disposal. They are being refitted at Mani in the Avior system."`
 			`	The three stand up in unison. Grayden and Braiden leave, and Kaiden turns from the door. "We are so happy you stopped by today and gave us this opportunity to really give back to the needy communities out in our neighborhood." With that, they are all gone, and your escort returns to lead you out.`
 
