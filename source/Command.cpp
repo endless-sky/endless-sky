@@ -335,58 +335,6 @@ double Command::Turn() const
 
 
 
-// Check if this command includes a command to fire the given weapon.
-bool Command::HasFire(int index) const
-{
-	if(index < 0 || index >= 32)
-		return false;
-
-	return state & ((1ull << 32) << index);
-}
-
-
-
-// Add to this set of commands a command to fire the given weapon.
-void Command::SetFire(int index)
-{
-	if(index < 0 || index >= 32)
-		return;
-
-	state |= ((1ull << 32) << index);
-}
-
-
-
-// Check if any weapons are firing.
-bool Command::IsFiring() const
-{
-	return (state & 0xFFFFFFFF00000000ull);
-}
-
-
-
-// Set the turn rate of the turret with the given weapon index. A value of
-// -1 or 1 means to turn at the full speed the turret is capable of.
-double Command::Aim(int index) const
-{
-	if(index < 0 || index >= 32)
-		return 0;
-
-	return aim[index] / 127.;
-}
-
-
-
-void Command::SetAim(int index, double amount)
-{
-	if(index < 0 || index >= 32)
-		return;
-
-	aim[index] = round(127. * max(-1., min(1., amount)));
-}
-
-
-
 // Check if any bits are set in this command (including a nonzero turn).
 Command::operator bool() const
 {
@@ -434,7 +382,7 @@ Command &Command::operator|=(const Command &command)
 
 
 // Private constructor.
-Command::Command(uint64_t state)
+Command::Command(uint32_t state)
 	: state(state)
 {
 }
@@ -443,7 +391,7 @@ Command::Command(uint64_t state)
 
 // Private constructor that also stores the given description in the lookup
 // table. (This is used for the enumeration at the top of this file.)
-Command::Command(uint64_t state, const string &text)
+Command::Command(uint32_t state, const string &text)
 	: state(state)
 {
 	if(!text.empty())

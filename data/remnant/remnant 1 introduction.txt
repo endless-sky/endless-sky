@@ -2103,7 +2103,7 @@ mission "Remnant: Return the Samples 2"
 	npc
 		government "Drak"
 		system "Nenia"
-		personality staying heroic nemesis uninterested
+		personality staying heroic nemesis uninterested frugal
 		ship "Archon" "Lifted Lorax"
 	on stopover
 		conversation
@@ -2548,10 +2548,11 @@ phrase "broken jump drive on visit"
 		`You've landed on <planet>, but you don't have a broken jump drive to give to the Remnant. You may need to steal one from Korath Raiders found through Remnant jobs, or depart and wait for an escort carrying one to enter the system.`
 
 mission "Remnant: Broken Jump Drive 1"
+	repeat
+	minor
+	landing
 	name "Broken Jump Drive Delivery"
 	description "You have been asked to deliver a broken jump drive to the researchers on <planet>."
-	landing
-	repeat
 	to offer
 		has "remnant blood test pure"
 		not "Remnant: Broken Jump Drive 1: active"
@@ -2783,9 +2784,10 @@ mission "Remnant: Broken Jump Drive 5"
 
 
 mission "Remnant: Face to Maw 1"
+	minor
+	landing
 	name "Talk to Plume about the void sprites"
 	description "Plume would be very interested in a report on what happened with the void sprites."
-	landing
 	to offer
 		has "event: remnant: return the samples timer"
 		or
@@ -3746,3 +3748,4 @@ mission "Remnant: Expanded Horizons Storms 1"
 			`	She looks at you quizzically for a moment, and then her display shifts to a mass of symbols. She skims briefly. "I have never even heard of such a unit. Apparently it is a very old one, though. Our records say that it had largely stopped being used by early in the 21st century. Well, I learned something new today." The display and its field of symbols vanishes as she slings her backpack over her shoulder.`
 			label stormend
 			`	"Thanks for the ride, Captain. I have to get working on this data, but if you are interested in helping some more, I hope to have more research expeditions planned soon."`
+			

@@ -229,9 +229,10 @@ mission "Coalition: Lost: Offer"
 
 
 mission "Coalition Yottrite 1"
+	minor
+	landing
 	name "More Yottrite"
 	description "You were offered great payment for bringing three more samples of the rare mineral yottrite to <destination>."
-	landing
 	to offer
 		has "Coalition: Contributor: done"
 	to complete
@@ -1248,6 +1249,7 @@ mission "Longcow Antibiotics 1"
 		random < 35
 	source
 		attributes arach
+		not attributes "coalition station"
 	stopover "New Finding"
 	destination "Corral of Meblumem"
 	on offer
@@ -1310,6 +1312,7 @@ mission "Arachi Orphans"
 		random < 45
 	source
 		attributes arach
+		not attributes "coalition station"
 	destination "Chosen Nexus"
 	on offer
 		conversation
