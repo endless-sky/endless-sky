@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Audio.h"
 #include "CategoryTypes.h"
+#include "DamageDealt.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Effect.h"
@@ -26,7 +27,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Messages.h"
 #include "Phrase.h"
 #include "Planet.h"
-#include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Projectile.h"
 #include "Random.h"
@@ -129,6 +129,22 @@ namespace {
 		}
 		else
 			stat = max(0., .99 * stat);
+	}
+
+	// Get an overview of how many weapon-outfits are equipped.
+	map<const Outfit *, int> GetEquipped(const vector<Hardpoint> &weapons)
+	{
+		map<const Outfit *, int> equipped;
+		for(const Hardpoint &hardpoint : weapons)
+			if(hardpoint.GetOutfit())
+				++equipped[hardpoint.GetOutfit()];
+		return equipped;
+	}
+
+	void LogWarning(const string &modelName, const string &name, string &&warning)
+	{
+		string shipID = modelName + (name.empty() ? ": " : " \"" + name + "\": ");
+		Files::LogError(shipID + std::move(warning));
 	}
 }
 
@@ -244,7 +260,6 @@ void Ship::Load(const DataNode &node)
 		{
 			if(!hasArmament)
 			{
-				equipped.clear();
 				armament = Armament();
 				hasArmament = true;
 			}
@@ -280,15 +295,10 @@ void Ship::Load(const DataNode &node)
 						grand.PrintTrace("Skipping unrecognized attribute:");
 				}
 			}
-			if(outfit)
-				++equipped[outfit];
 			if(key == "gun")
 				armament.AddGunPort(hardpoint, gunPortAngle, gunPortParallel, drawUnder, outfit);
 			else
 				armament.AddTurret(hardpoint, drawUnder, outfit);
-			// Print a warning for the first hardpoint after 32, i.e. only 1 warning per ship.
-			if(armament.Get().size() == 33)
-				child.PrintTrace("Warning: ship has more than 32 weapon hardpoints. Some weapons may not fire:");
 		}
 		else if(key == "never disabled")
 			neverDisabled = true;
@@ -412,13 +422,12 @@ void Ship::Load(const DataNode &node)
 			// Verify we have at least as many installed outfits as were identified as "equipped."
 			// If not (e.g. a variant definition), ensure FinishLoading equips into a blank slate.
 			if(!hasArmament)
-				for(const auto &pair : equipped)
+				for(const auto &pair : GetEquipped(Weapons()))
 				{
 					auto it = outfits.find(pair.first);
 					if(it == outfits.end() || it->second < pair.second)
 					{
 						armament.UninstallAll();
-						equipped.clear();
 						break;
 					}
 				}
@@ -527,9 +536,6 @@ void Ship::FinishLoading(bool isNewInstance)
 			auto nextTurret = armament.Get().begin();
 			auto end = armament.Get().end();
 			Armament merged;
-			// Reset the "equipped" map to match exactly what the code below
-			// places in the weapon hardpoints.
-			equipped.clear();
 			for( ; bit != bend; ++bit)
 			{
 				if(!bit->IsTurret())
@@ -539,11 +545,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					const Outfit *outfit = (nextGun == end) ? nullptr : nextGun->GetOutfit();
 					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAngle(), bit->IsParallel(), bit->IsUnder(), outfit);
 					if(nextGun != end)
-					{
-						if(outfit)
-							++equipped[outfit];
 						++nextGun;
-					}
 				}
 				else
 				{
@@ -552,11 +554,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					const Outfit *outfit = (nextTurret == end) ? nullptr : nextTurret->GetOutfit();
 					merged.AddTurret(bit->GetPoint() * 2., bit->IsUnder(), outfit);
 					if(nextTurret != end)
-					{
-						if(outfit)
-							++equipped[outfit];
 						++nextTurret;
-					}
 				}
 			}
 			armament = merged;
@@ -565,9 +563,12 @@ void Ship::FinishLoading(bool isNewInstance)
 	// Check that all the "equipped" weapons actually match what your ship
 	// has, and that they are truly weapons. Remove any excess weapons and
 	// warn if any non-weapon outfits are "installed" in a hardpoint.
+	auto equipped = GetEquipped(Weapons());
 	for(auto &it : equipped)
 	{
-		int excess = it.second - outfits[it.first];
+		auto outfitIt = outfits.find(it.first);
+		int amount = (outfitIt != outfits.end() ? outfitIt->second : 0);
+		int excess = it.second - amount;
 		if(excess > 0)
 		{
 			// If there are more hardpoints specifying this outfit than there
@@ -575,23 +576,13 @@ void Ship::FinishLoading(bool isNewInstance)
 			armament.Add(it.first, -excess);
 			it.second -= excess;
 
-			string warning = modelName;
-			if(!name.empty())
-				warning += " \"" + name + "\"";
-			warning += ": outfit \"" + it.first->Name() + "\" equipped but not included in outfit list.";
-			Files::LogError(warning);
+			LogWarning(VariantName(), Name(), "outfit \"" + it.first->Name() + "\" equipped but not included in outfit list.");
 		}
 		else if(!it.first->IsWeapon())
-		{
 			// This ship was specified with a non-weapon outfit in a
 			// hardpoint. Hardpoint::Install removes it, but issue a
 			// warning so the definition can be fixed.
-			string warning = modelName;
-			if(!name.empty())
-				warning += " \"" + name + "\"";
-			warning += ": outfit \"" + it.first->Name() + "\" is not a weapon, but is installed as one.";
-			Files::LogError(warning);
-		}
+			LogWarning(VariantName(), Name(), "outfit \"" + it.first->Name() + "\" is not a weapon, but is installed as one.");
 	}
 
 	// Mark any drone that has no "automaton" value as an automaton, to
@@ -631,7 +622,11 @@ void Ship::FinishLoading(bool isNewInstance)
 				count -= eit->second;
 
 			if(count)
-				armament.Add(it.first, count);
+			{
+				count -= armament.Add(it.first, count);
+				if(count)
+					LogWarning(VariantName(), Name(), "weapon \"" + it.first->Name() + "\" installed, but insufficient slots to use it.");
+			}
 		}
 	}
 	if(!undefinedOutfits.empty())
@@ -677,13 +672,15 @@ void Ship::FinishLoading(bool isNewInstance)
 		}
 	}
 	cargo.SetSize(attributes.Get("cargo space"));
-	equipped.clear();
 	armament.FinishLoading();
 
 	// Figure out how far from center the farthest hardpoint is.
 	weaponRadius = 0.;
 	for(const Hardpoint &hardpoint : armament.Get())
 		weaponRadius = max(weaponRadius, hardpoint.GetPoint().Length());
+
+	// Allocate enough firing bits for this ship.
+	firingCommands.SetHardpoints(armament.Get().size());
 
 	// If this ship is being instantiated for the first time, make sure its
 	// crew, fuel, etc. are all refilled.
@@ -1323,26 +1320,14 @@ void Ship::SetHail(const Phrase &phrase)
 
 
 
-string Ship::GetHail(const PlayerInfo &player) const
+string Ship::GetHail(map<string, string> &&subs) const
 {
 	string hailStr = hail ? hail->Get() : government ? government->GetHail(isDisabled) : "";
 
 	if(hailStr.empty())
 		return hailStr;
 
-	map<string, string> subs;
-	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
-
-	subs["<first>"] = player.FirstName();
-	subs["<last>"] = player.LastName();
-	if(player.Flagship())
-		subs["<ship>"] = player.Flagship()->Name();
-
 	subs["<npc>"] = Name();
-	subs["<system>"] = player.GetSystem()->Name();
-	subs["<date>"] = player.GetDate().ToString();
-	subs["<day>"] = player.GetDate().LongString();
-
 	return Format::Replace(hailStr, subs);
 }
 
@@ -1356,9 +1341,23 @@ void Ship::SetCommands(const Command &command)
 
 
 
+void Ship::SetCommands(const FireCommand &firingCommand)
+{
+	firingCommands.UpdateWith(firingCommand);
+}
+
+
+
 const Command &Ship::Commands() const
 {
 	return commands;
+}
+
+
+
+const FireCommand &Ship::FiringCommands() const noexcept
+{
+	return firingCommands;
 }
 
 
@@ -1386,7 +1385,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		hyperspaceSystem = nullptr;
 
 	// Adjust the error in the pilot's targeting.
-	personality.UpdateConfusion(commands.IsFiring());
+	personality.UpdateConfusion(firingCommands.IsFiring());
 
 	// Generate energy, heat, etc.
 	DoGeneration();
@@ -1417,7 +1416,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 	// Move the turrets.
 	if(!isDisabled)
-		armament.Aim(commands);
+		armament.Aim(firingCommands);
 
 	if(!isInvisible)
 	{
@@ -2453,7 +2452,7 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 		{
 			if(weapon->AntiMissile())
 				antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
-			else if(commands.HasFire(i))
+			else if(firingCommands.HasFire(i))
 				armament.Fire(i, *this, projectiles, visuals);
 		}
 	}
@@ -2936,6 +2935,22 @@ double Ship::DisabledHull() const
 
 
 
+// Get the actual shield level of the ship.
+double Ship::ShieldLevel() const
+{
+	return shields;
+}
+
+
+
+// Get how disrupted this ship's shields are.
+double Ship::DisruptionLevel() const
+{
+	return disruption;
+}
+
+
+
 int Ship::JumpsRemaining(bool followParent) const
 {
 	// Make sure this ship has some sort of hyperdrive, and if so return how
@@ -3184,99 +3199,36 @@ double Ship::MaxReverseVelocity() const
 // according to the weapon and the characteristics of how
 // it hit this ship, and add any visuals created as a result
 // of being hit.
-int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damageScaling, double distanceTraveled, const Point &damagePosition, const Government *sourceGovernment, bool isBlast)
+int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment)
 {
-	if(isBlast && weapon.IsDamageScaled())
-	{
-		// Scale blast damage based on the distance from the blast
-		// origin and if the projectile uses a trigger radius. The
-		// point of contact must be measured on the sprite outline.
-		// scale = (1 + (tr / (2 * br))^2) / (1 + r^4)^2
-		double blastRadius = max(1., weapon.BlastRadius());
-		double radiusRatio = weapon.TriggerRadius() / blastRadius;
-		double k = !radiusRatio ? 1. : (1. + .25 * radiusRatio * radiusRatio);
-		// Rather than exactly compute the distance between the explosion and
-		// the closest point on the ship, estimate it using the mask's Radius.
-		double d = max(0., (damagePosition - position).Length() - GetMask().Radius());
-		double rSquared = d * d / (blastRadius * blastRadius);
-		damageScaling *= k / ((1. + rSquared * rSquared) * (1. + rSquared * rSquared));
-	}
-	if(weapon.HasDamageDropoff())
-		damageScaling *= weapon.DamageDropoff(distanceTraveled);
-
-	// Instantaneous damage types:
-	double shieldDamage = (weapon.ShieldDamage() + weapon.RelativeShieldDamage() * attributes.Get("shields"))
-		* damageScaling / (1. + attributes.Get("shield protection"));
-	double hullDamage = (weapon.HullDamage() + weapon.RelativeHullDamage() * attributes.Get("hull"))
-		* damageScaling / (1. + attributes.Get("hull protection"));
-	double energyDamage = (weapon.EnergyDamage() + weapon.RelativeEnergyDamage() * attributes.Get("energy capacity"))
-		* damageScaling / (1. + attributes.Get("energy protection"));
-	double fuelDamage = (weapon.FuelDamage() + weapon.RelativeFuelDamage() * attributes.Get("fuel capacity"))
-		* damageScaling / (1. + attributes.Get("fuel protection"));
-	double heatDamage = (weapon.HeatDamage() + weapon.RelativeHeatDamage() * MaximumHeat())
-		* damageScaling / (1. + attributes.Get("heat protection"));
-
-	// DoT damage types:
-	double ionDamage = weapon.IonDamage() * damageScaling / (1. + attributes.Get("ion protection"));
-	double disruptionDamage = weapon.DisruptionDamage() * damageScaling / (1. + attributes.Get("disruption protection"));
-	double slowingDamage = weapon.SlowingDamage() * damageScaling / (1. + attributes.Get("slowing protection"));
-	double dischargeDamage = weapon.DischargeDamage() * damageScaling / (1. + attributes.Get("discharge protection"));
-	double corrosionDamage = weapon.CorrosionDamage() * damageScaling / (1. + attributes.Get("corrosion protection"));
-	double leakDamage = weapon.LeakDamage() * damageScaling / (1. + attributes.Get("leak protection"));
-	double burnDamage = weapon.BurnDamage() * damageScaling / (1. + attributes.Get("burn protection"));
-
-	double hitForce = weapon.HitForce() * damageScaling / (1. + attributes.Get("force protection"));
-	double piercing = max(0., min(1., weapon.Piercing() / (1. + attributes.Get("piercing protection")) - attributes.Get("piercing resistance")));
-
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 
-	double shieldFraction = 1. - piercing;
-	shieldFraction *= 1. / (1. + disruption * .01);
-	if(shields <= 0.)
-		shieldFraction = 0.;
-	else if(shieldDamage > shields)
-		shieldFraction = min(shieldFraction, shields / shieldDamage);
-
-	shields -= shieldDamage * shieldFraction;
-	if(shieldDamage && !isDisabled)
+	shields -= damage.Shield();
+	if(damage.Shield() && !isDisabled)
 	{
 		int disabledDelay = attributes.Get("depleted shield delay");
 		shieldDelay = max<int>(shieldDelay, (shields <= 0. && disabledDelay) ? disabledDelay : attributes.Get("shield delay"));
 	}
-	hull -= hullDamage * (1. - shieldFraction);
-	if(hullDamage && !isDisabled)
+	hull -= damage.Hull();
+	if(damage.Hull() && !isDisabled)
 		hullDelay = max(hullDelay, static_cast<int>(attributes.Get("repair delay")));
 
-	// Most special damage types (i.e. not hull or shield damage) only have 50% effectiveness
-	// against ships with active shields. Disruption or piercing weapons can increase this
-	// effectiveness.
-	double shieldDegradation = (1. - .5 * shieldFraction);
-	energy -= energyDamage * shieldDegradation;
-	fuel -= fuelDamage * shieldDegradation;
-	heat += heatDamage * shieldDegradation;
-	ionization += ionDamage * shieldDegradation;
-	disruption += disruptionDamage * shieldDegradation;
-	slowness += slowingDamage * shieldDegradation;
-	burning += burnDamage * shieldDegradation;
+	energy -= damage.Energy();
+	heat += damage.Heat();
+	fuel -= damage.Fuel();
 
-	// The following special damage types have 0% effectiveness against ships with
-	// active shields. Disruption or piercing weapons still increase this effectiveness.
-	shieldDegradation = (1. - shieldFraction);
-	corrosion += corrosionDamage * shieldDegradation;
-	leakage += leakDamage * shieldDegradation;
+	discharge += damage.Discharge();
+	corrosion += damage.Corrosion();
+	ionization += damage.Ion();
+	burning += damage.Burn();
+	leakage += damage.Leak();
 
-	// The following special damage types have 100% effectiveness against ships
-	// regardless of shield level.
-	discharge += dischargeDamage;
+	disruption += damage.Disruption();
+	slowness += damage.Slowing();
 
-	if(hitForce)
-	{
-		Point d = position - damagePosition;
-		double distance = d.Length();
-		if(distance)
-			ApplyForce((hitForce / distance) * d, weapon.IsGravitational());
-	}
+	if(damage.HitForce())
+		ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
 
 	// Prevent various stats from reaching unallowable values.
 	hull = min(hull, attributes.Get("hull"));
@@ -3312,14 +3264,14 @@ int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damag
 
 	// If this ship was hit directly and did not consider itself an enemy of the
 	// ship that hit it, it is now "provoked" against that government.
-	if(!isBlast && sourceGovernment && !sourceGovernment->IsEnemy(government)
+	if(!damage.IsBlast() && sourceGovernment && !sourceGovernment->IsEnemy(government)
 			&& (Shields() < .9 || Hull() < .9 || !personality.IsForbearing())
-			&& !personality.IsPacifist() && weapon.DoesDamage())
+			&& !personality.IsPacifist() && damage.GetWeapon().DoesDamage())
 		type |= ShipEvent::PROVOKE;
 
 	// Create target effect visuals, if there are any.
-	for(const auto &effect : weapon.TargetEffects())
-		CreateSparks(visuals, effect.first, effect.second * damageScaling);
+	for(const auto &effect : damage.GetWeapon().TargetEffects())
+		CreateSparks(visuals, effect.first, effect.second * damage.Scaling());
 
 	return type;
 }

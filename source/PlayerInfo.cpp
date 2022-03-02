@@ -1875,6 +1875,24 @@ void PlayerInfo::CheckReputationConditions()
 
 
 
+map<string, string> PlayerInfo::GetSubstitutions() const
+{
+	map<string, string> subs;
+	GameData::GetTextReplacements().Substitutions(subs, Conditions());
+
+	subs["<first>"] = FirstName();
+	subs["<last>"] = LastName();
+	if(Flagship())
+		subs["<ship>"] = Flagship()->Name();
+
+	subs["<system>"] = GetSystem()->Name();
+	subs["<date>"] = GetDate().ToString();
+	subs["<day>"] = GetDate().LongString();
+	return subs;
+}
+
+
+
 // Check if the player knows the location of the given system (whether or not
 // they have actually visited it).
 bool PlayerInfo::HasSeen(const System &system) const

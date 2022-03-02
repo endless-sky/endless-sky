@@ -306,6 +306,8 @@ namespace {
 AI::AI(const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam)
 	: ships(ships), minables(minables), flotsam(flotsam)
 {
+	// Allocate a starting amount of hardpoints for ships.
+	firingCommands.SetHardpoints(12);
 }
 
 
@@ -587,6 +589,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			&& autoPilot.Has(Command::BOARD));
 
 		Command command;
+		firingCommands.SetHardpoints(it->Weapons().size());
 		if(it->IsYours())
 		{
 			if(it->HasBays() && thisIsLaunching)
@@ -631,8 +634,8 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		}
 		if(isPresent)
 		{
-			AimTurrets(*it, command, it->IsYours() ? opportunisticEscorts : personality.IsOpportunistic());
-			AutoFire(*it, command);
+			AimTurrets(*it, firingCommands, it->IsYours() ? opportunisticEscorts : personality.IsOpportunistic());
+			AutoFire(*it, firingCommands);
 		}
 
 		// If this ship is hyperspacing, or in the act of
@@ -640,6 +643,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		if(it->IsHyperspacing() || it->Zoom() < 1.)
 		{
 			it->SetCommands(command);
+			it->SetCommands(firingCommands);
 			continue;
 		}
 
@@ -697,6 +701,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			{
 				it->SetTargetShip(shipToAssist);
 				it->SetCommands(command);
+				it->SetCommands(firingCommands);
 				continue;
 			}
 		}
@@ -719,6 +724,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			// Flock between allied, in-system ships.
 			DoSwarming(*it, command, target);
 			it->SetCommands(command);
+			it->SetCommands(firingCommands);
 			continue;
 		}
 
@@ -729,6 +735,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		{
 			DoSurveillance(*it, command, target);
 			it->SetCommands(command);
+			it->SetCommands(firingCommands);
 			continue;
 		}
 
@@ -736,6 +743,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		if(isPresent && personality.Harvests() && DoHarvesting(*it, command))
 		{
 			it->SetCommands(command);
+			it->SetCommands(firingCommands);
 			continue;
 		}
 
@@ -754,6 +762,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				}
 				DoMining(*it, command);
 				it->SetCommands(command);
+				it->SetCommands(firingCommands);
 				continue;
 			}
 			// Fighters and drones should assist their parent's mining operation if they cannot
@@ -764,8 +773,9 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			{
 				it->SetTargetAsteroid(minable);
 				MoveToAttack(*it, command, *minable);
-				AutoFire(*it, command, *minable);
+				AutoFire(*it, firingCommands, *minable);
 				it->SetCommands(command);
+				it->SetCommands(firingCommands);
 				continue;
 			}
 			else
@@ -847,6 +857,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				MoveTo(*it, command, parent->Position(), parent->Velocity(), 40., .8);
 				command |= Command::BOARD;
 				it->SetCommands(command);
+				it->SetCommands(firingCommands);
 				continue;
 			}
 			// If we get here, it means that the ship has not decided to return
@@ -947,6 +958,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		DoScatter(*it, command);
 
 		it->SetCommands(command);
+		it->SetCommands(firingCommands);
 	}
 }
 
@@ -2428,7 +2440,7 @@ void AI::DoMining(Ship &ship, Command &command)
 		else
 		{
 			MoveToAttack(ship, command, *target);
-			AutoFire(ship, command, *target);
+			AutoFire(ship, firingCommands, *target);
 			return;
 		}
 	}
@@ -2718,7 +2730,7 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 
 
 // Aim the given ship's turrets.
-void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) const
+void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) const
 {
 	// First, get the set of potential hostile ships.
 	auto targets = vector<const Body *>();
@@ -2779,7 +2791,7 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 				int index = &hardpoint - &ship.Weapons().front();
 				// First, check if this turret is currently in motion. If not,
 				// it only has a small chance of beginning to move.
-				double previous = ship.Commands().Aim(index);
+				double previous = ship.FiringCommands().Aim(index);
 				if(!previous && (Random::Int(60)))
 					continue;
 
@@ -2856,7 +2868,7 @@ void AI::AimTurrets(const Ship &ship, Command &command, bool opportunistic) cons
 
 
 // Fire whichever of the given ship's weapons can hit a hostile target.
-void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
+void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
 {
 	const Personality &person = ship.GetPersonality();
 	if(person.IsPacifist() || ship.CannotAct())
@@ -3041,7 +3053,7 @@ void AI::AutoFire(const Ship &ship, Command &command, bool secondary) const
 
 
 
-void AI::AutoFire(const Ship &ship, Command &command, const Body &target) const
+void AI::AutoFire(const Ship &ship, FireCommand &command, const Body &target) const
 {
 	int index = -1;
 	for(const Hardpoint &hardpoint : ship.Weapons())
@@ -3124,6 +3136,8 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands)
 {
 	Command command;
+	firingCommands.SetHardpoints(ship.Weapons().size());
+
 	bool shift = activeCommands.Has(Command::SHIFT);
 
 	bool isWormhole = false;
@@ -3478,11 +3492,11 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		command |= Command::SCAN;
 
 	const shared_ptr<const Ship> target = ship.GetTargetShip();
-	AimTurrets(ship, command, !Preferences::Has("Turrets focus fire"));
+	AimTurrets(ship, firingCommands, !Preferences::Has("Turrets focus fire"));
 	if(Preferences::Has("Automatic firing") && !ship.IsBoarding()
 			&& !(autoPilot | activeCommands).Has(Command::LAND | Command::JUMP | Command::BOARD)
 			&& (!target || target->GetGovernment()->IsEnemy()))
-		AutoFire(ship, command, false);
+		AutoFire(ship, firingCommands, false);
 	if(activeCommands)
 	{
 		if(activeCommands.Has(Command::FORWARD))
@@ -3503,7 +3517,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			for(const Hardpoint &hardpoint : ship.Weapons())
 			{
 				if(hardpoint.IsReady() && !hardpoint.GetOutfit()->Icon())
-					command.SetFire(index);
+					firingCommands.SetFire(index);
 				++index;
 			}
 		}
@@ -3514,7 +3528,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			for(const Hardpoint &hardpoint : ship.Weapons())
 			{
 				if(hardpoint.IsReady() && (playerSelectedWeapons.find(hardpoint.GetOutfit()) != playerSelectedWeapons.end()))
-					command.SetFire(index);
+					firingCommands.SetFire(index);
 				++index;
 			}
 		}
@@ -3631,6 +3645,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		command |= Command::CLOAK;
 
 	ship.SetCommands(command);
+	ship.SetCommands(firingCommands);
 }
 
 

@@ -48,6 +48,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 
+class Panel;
 class Sprite;
 
 
@@ -73,6 +74,10 @@ public:
 
 	// Check for objects that are referred to but never defined.
 	void CheckReferences();
+
+	// Draws the current menu background. Unlike accessing the menu background
+	// through GameData, this function is thread-safe.
+	void DrawMenuBackground(Panel *panel) const;
 
 
 private:
@@ -122,7 +127,9 @@ private:
 	std::map<std::string, std::string> tooltips;
 	std::map<std::string, std::string> helpMessages;
 
-
+	// A local cache of the menu background interface for thread-safe access.
+	mutable std::mutex menuBackgroundMutex;
+	Interface menuBackgroundCache;
 };
 
 
