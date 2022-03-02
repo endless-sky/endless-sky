@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "CargoHold.h"
 #include "Command.h"
 #include "EsUuid.h"
+#include "FireCommand.h"
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
@@ -31,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+class DamageDealt;
 class DataNode;
 class DataWriter;
 class Effect;
@@ -186,7 +188,9 @@ public:
 
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
+	void SetCommands(const FireCommand &firingCommand);
 	const Command &Commands() const;
+	const FireCommand &FiringCommands() const noexcept;
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up.
 	void Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
@@ -283,6 +287,10 @@ public:
 	double Health() const;
 	// Get the hull fraction at which this ship is disabled.
 	double DisabledHull() const;
+	// Get the actual shield level of the ship.
+	double ShieldLevel() const;
+	// Get how disrupted this ship's shields are.
+	double DisruptionLevel() const;
 	// Get the number of jumps this ship can make before running out of fuel.
 	// This depends on how much fuel it has and what sort of hyperdrive it uses.
 	// If followParent is false, this ship will not follow the parent.
@@ -329,8 +337,7 @@ public:
 	// not necessarily its primary target.
 	// Blast damage is dependent on the distance to the damage source.
 	// Create any target effects as sparks.
-	int TakeDamage(std::vector<Visual> &visuals, const Weapon &weapon, double damageScaling,
-		double distanceTraveled, const Point &damagePosition, const Government *sourceGovernment, bool isBlast = false);
+	int TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment);
 	// Apply a force to this ship, accelerating it. This might be from a weapon
 	// impact, or from firing a weapon, for example.
 	void ApplyForce(const Point &force, bool gravitational = false);
@@ -487,6 +494,7 @@ private:
 	double outfitScan = 0.;
 
 	Command commands;
+	FireCommand firingCommands;
 
 	Personality personality;
 	const Phrase *hail = nullptr;
