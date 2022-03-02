@@ -189,7 +189,7 @@ double GameData::GetProgress()
 {
 	// Cache progress completion seen, so clients are
 	// isolated from the loading implementation details.
-	static bool initiallyLoaded;
+	static bool initiallyLoaded = false;
 	if(initiallyLoaded)
 		return 1.;
 
