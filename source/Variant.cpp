@@ -1,5 +1,5 @@
 /* Variant.cpp
-Copyright (c) 2019 by Jonathan Steck
+Copyright (c) 2019 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -48,22 +48,22 @@ void Variant::Load(const DataNode &node, bool removing)
 		if(removing)
 			return;
 	}
-	
+
 	// If Load() has already been called once on this variant, any subsequent
 	// calls will replace the contents instead of adding to them.
 	bool reset = !variants.empty() || !ships.empty();
-	
+
 	for(const DataNode &child : node)
 	{
 		bool add = (child.Token(0) == "add");
 		bool remove = (child.Token(0) == "remove");
 		if((add || remove) && child.Size() == 1)
-		{	
+		{
 			child.PrintTrace("Skipping invalid \"" + child.Token(0) + "\" tag:");
 			continue;
 		}
 		bool variant = (child.Token(add || remove) == "variant");
-		
+
 		if(remove)
 		{
 			if(variant)
@@ -74,7 +74,7 @@ void Variant::Load(const DataNode &node, bool removing)
 				{
 					return v.Get() == toRemove;
 				};
-				
+
 				auto removeIt = remove_if(variants.begin(), variants.end(), VariantToRemove);
 				if(removeIt != variants.end())
 					variants.erase(removeIt, variants.end());
@@ -89,7 +89,7 @@ void Variant::Load(const DataNode &node, bool removing)
 				{
 					return s->VariantName() == shipName;
 				};
-				
+
 				auto removeIt = remove_if(ships.begin(), ships.end(), ShipToRemove);
 				if(removeIt != ships.end())
 					ships.erase(removeIt, ships.end());
@@ -107,7 +107,7 @@ void Variant::Load(const DataNode &node, bool removing)
 				variants.clear();
 				ships.clear();
 			}
-			
+
 			int n = 1;
 			int index = 1 + add;
 			if(variant)
@@ -122,10 +122,10 @@ void Variant::Load(const DataNode &node, bool removing)
 						continue;
 					}
 				}
-				
+
 				if(child.Size() >= index + 1 && child.Value(index) >= 1.)
 					n = child.Value(index);
-				
+
 				// If this variant is named, then look for it in GameData.
 				// Otherwise this is a new variant definition only for this variant.
 				if(!variantName.empty())
@@ -174,7 +174,7 @@ bool Variant::IsValid() const
 			[](const Ship *const s) noexcept -> bool { return s->IsValid(); });
 	bool validVariants = any_of(variants.begin(), variants.end(),
 			[](const WeightedVariant &v) noexcept -> bool { return v.Get().IsValid(); });
-	
+
 	return (validShips || validVariants);
 }
 
@@ -214,7 +214,7 @@ bool Variant::operator==(const Variant &other) const
 	// Is either variant named? Do they share the same name?
 	if(!other.name.empty() || !name.empty())
 		return other.name == name;
-	
+
 	// Are the ships of other a permutation of this variant's?
 	if(other.ships.size() != ships.size()
 		|| !is_permutation(ships.begin(), ships.end(), other.ships.begin()))
@@ -223,7 +223,7 @@ bool Variant::operator==(const Variant &other) const
 	if(other.variants.size() != variants.size()
 		|| !is_permutation(variants.begin(), variants.end(), other.variants.begin()))
 		return false;
-	
+
 	// If all checks have passed, these variants are equal.
 	return true;
 }
@@ -243,11 +243,11 @@ bool Variant::NestedInSelf(const string &check) const
 {
 	if(!name.empty() && name == check)
 		return true;
-	
+
 	for(const auto &it : variants)
 		if(it.Get().NestedInSelf(check))
 			return true;
-	
+
 	return false;
 }
 
@@ -262,7 +262,7 @@ const Ship *Variant::NestedChooseShip() const
 	// Randomly choose between the ships and the variants.
 	if(static_cast<int>(Random::Int(total)) < static_cast<int>(variants.TotalWeight()))
 		return variants.Get().Get().NestedChooseShip();
-	
+
 	return ships[Random::Int(ships.size())];
 }
 

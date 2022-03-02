@@ -1,5 +1,5 @@
 /* WeightedVariant.h
-Copyright (c) 2021 by Jonathan Steck
+Copyright (c) 2021 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -21,17 +21,17 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class WeightedVariant {
 public:
 	WeightedVariant() = default;
-	
+
 	WeightedVariant(Variant variant, int weight);
 	WeightedVariant(const Variant *stockVariant, int weight);
-	
+
 	int Weight() const;
 	const Variant &Get() const;
-	
+
 	bool operator==(const WeightedVariant &other) const;
 	bool operator!=(const WeightedVariant &other) const;
-	
-	
+
+
 private:
 	int weight;
 	Variant variant;

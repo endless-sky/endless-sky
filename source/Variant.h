@@ -1,5 +1,5 @@
 /* Variant.h
-Copyright (c) 2019 by Jonathan Steck
+Copyright (c) 2019 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -30,25 +30,25 @@ public:
 	Variant() = default;
 	// Construct and Load() at the same time.
 	Variant(const DataNode &node, bool removing = false);
-	
+
 	void Load(const DataNode &node, bool removing = false);
 	void FinishLoading();
-	
+
 	// Determine if this variant template uses well-defined data.
 	bool IsValid() const;
-	
+
 	// Choose a list of ships from this variant. All ships from the ships
 	// vector are chosen, as well as a random selection of ships from any
 	// nested variants in the stockVariants or variants vectors.
 	std::vector<const Ship *> ChooseShips() const;
-	
+
 	// The average credit worth of this variant.
 	int64_t Strength() const;
-	
+
 	bool operator==(const Variant &other) const;
 	bool operator!=(const Variant &other) const;
-	
-	
+
+
 private:
 	// Check whether a variant is contained within itself.
 	bool NestedInSelf(const std::string &check) const;
@@ -59,8 +59,8 @@ private:
 	// The average credit worth of this variant if it is nested within
 	// another variant.
 	int64_t NestedStrength() const;
-	
-	
+
+
 private:
 	std::string name;
 	std::vector<const Ship *> ships;
