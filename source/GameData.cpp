@@ -187,8 +187,8 @@ void GameData::LoadShaders(bool useShaderSwizzle)
 
 double GameData::GetProgress()
 {
-	// Since the game defers loading of certain sprites we need to cache
-	// whether the game was loaded at the start.
+	// Cache progress completion seen, so clients are
+	// isolated from the loading implementation details.
 	static bool initiallyLoaded;
 	if(initiallyLoaded)
 		return 1.;
