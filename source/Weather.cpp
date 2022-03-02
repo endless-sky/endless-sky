@@ -62,31 +62,6 @@ int Weather::Period() const
 
 
 
-// What the hazard's damage is multiplied by given the current weather strength.
-double Weather::DamageMultiplier() const
-{
-	// If a hazard deviates, then the damage is multiplied by the square root of the
-	// strength. This is so that as the strength of a hazard increases, it gets both
-	// more likely to impact the ships in the system and each impact hits harder.
-	if(hazard->Deviates())
-	{
-		// If the square root of the strength is greater than the period, then Period()
-		// will return 1. Given this, we need to multiply the amount of strength
-		// going toward the damage by some corrective factor. Figure out what the "true
-		// period" is (without it bottoming out at 1) and divide that with the current
-		// period in order to correctly scale the damage so that the DPS of the hazard
-		// will always scale properly with the strength.
-		// This also fixes some precision lost by the fact that the period is an integer.
-		double truePeriod = hazard->Period() / sqrtStrength;
-		double multiplier = max(1, static_cast<int>(truePeriod)) / truePeriod;
-		return sqrtStrength * multiplier;
-	}
-	else
-		return currentStrength;
-}
-
-
-
 const Point &Weather::Origin() const
 {
 	return origin;
@@ -154,4 +129,29 @@ Weather::ImpactInfo Weather::GetInfo() const
 bool Weather::ShouldBeRemoved() const
 {
 	return shouldBeRemoved;
+}
+
+
+
+// What the hazard's damage is multiplied by given the current weather strength.
+double Weather::DamageMultiplier() const
+{
+	// If a hazard deviates, then the damage is multiplied by the square root of the
+	// strength. This is so that as the strength of a hazard increases, it gets both
+	// more likely to impact the ships in the system and each impact hits harder.
+	if(hazard->Deviates())
+	{
+		// If the square root of the strength is greater than the period, then Period()
+		// will return 1. Given this, we need to multiply the amount of strength
+		// going toward the damage by some corrective factor. Figure out what the "true
+		// period" is (without it bottoming out at 1) and divide that with the current
+		// period in order to correctly scale the damage so that the DPS of the hazard
+		// will always scale properly with the strength.
+		// This also fixes some precision lost by the fact that the period is an integer.
+		double truePeriod = hazard->Period() / sqrtStrength;
+		double multiplier = max(1, static_cast<int>(truePeriod)) / truePeriod;
+		return sqrtStrength * multiplier;
+	}
+	else
+		return currentStrength;
 }

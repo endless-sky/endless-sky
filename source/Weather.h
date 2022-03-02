@@ -47,8 +47,6 @@ public:
 	bool HasWeapon() const;
 	// The period of this weather, dictating how often it deals damage while active.
 	int Period() const;
-	// What the hazard's damage is multiplied by given the current weather strength.
-	double DamageMultiplier() const;
 	// The origin of the hazard.
 	const Point &Origin() const;
 	// Create any environmental effects and decrease the lifetime of this weather.
@@ -62,6 +60,11 @@ public:
 
 	// Check if this object is marked for removal from the game.
 	bool ShouldBeRemoved() const;
+
+
+private:
+	// What the hazard's damage is multiplied by given the current weather strength.
+	double DamageMultiplier() const;
 
 
 private:

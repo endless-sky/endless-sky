@@ -51,11 +51,11 @@ private:
 	// The weapon that the dealt damage.
 	const Weapon &weapon;
 	// The position of the projectile or hazard.
-	const Point &position;
-	// The scaling as received before calculating damage.
-	double inputScaling = 1.;
+	Point position;
 	// Whether damage is applied as a blast.
 	bool isBlast;
+	// The scaling as received before calculating damage.
+	double inputScaling = 1.;
 	// Whether damage is applied from a hazard.
 	bool isHazard = false;
 
