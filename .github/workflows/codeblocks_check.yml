@@ -23,11 +23,3 @@ on:
     - 'tests/check_codeblocks.sh'
 
 jobs:
-  check-codeblocks-project:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 1
-    - name: Validate Code::Blocks project files
-      run: ./tests/check_codeblocks.sh

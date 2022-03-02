@@ -1,4 +1,4 @@
-name: Validate XCode Project
+name: Validate Project files
 
 on:
   push:
@@ -8,18 +8,24 @@ on:
     paths:
     - '.github/workflows/xcode_check.yml'
     - 'EndlessSky.xcodeproj/**'
+    - 'EndlessSkyLib.cbp'
+    - 'EndlessSkyTests.cbp'
     - 'source/**'
     - 'tests/check_xcode.sh'
+    - 'tests/check_codeblocks.sh'
   pull_request:
     types: [opened, synchronize]
     paths:
     - '.github/workflows/xcode_check.yml'
     - 'EndlessSky.xcodeproj/**'
+    - 'EndlessSkyLib.cbp'
+    - 'EndlessSkyTests.cbp'
     - 'source/**'
     - 'tests/check_xcode.sh'
+    - 'tests/check_codeblocks.sh'
 
 jobs:
-  update-xcode-project:
+  check-xcode:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -35,3 +41,12 @@ jobs:
       with:
         name: xcode-project.patch
         path: xcode-project.patch
+
+  check-codeblocks:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+    - name: Validate Code::Blocks project files
+      run: ./tests/check_codeblocks.sh
