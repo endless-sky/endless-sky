@@ -248,8 +248,42 @@ fleet "Subsidurial"
 
 
 
+fleet "Subsidurial (Ember Waste)"
+	government "Ember Waste"
+	cargo 0
+	personality
+		timid mining harvests mute unconstrained
+	variant 100
+		"Subsidurial"
+	variant 1
+		"Subsidurial" 2
+
+
+
 fleet "Void Sprites"
 	government "Indigenous Lifeform"
+	cargo 0
+	personality
+		timid mining harvests mute
+	variant
+		"Void Sprite"
+	variant
+		"Void Sprite"
+		"Void Sprite (Infant)"
+	variant
+		"Void Sprite"
+		"Void Sprite (Infant)" 2
+	variant
+		"Void Sprite"
+		"Void Sprite (Infant)" 3
+	variant
+		"Void Sprite" 2
+		"Void Sprite (Infant)" 4
+
+
+
+fleet "Void Sprites (Ember Waste)"
+	government "Ember Waste"
 	cargo 0
 	personality
 		timid mining harvests mute

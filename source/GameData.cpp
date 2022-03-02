@@ -187,7 +187,16 @@ void GameData::LoadShaders(bool useShaderSwizzle)
 
 double GameData::GetProgress()
 {
-	return min(min(spriteQueue.GetProgress(), Audio::GetProgress()), objects.GetProgress());
+	// Cache progress completion seen, so clients are
+	// isolated from the loading implementation details.
+	static bool initiallyLoaded = false;
+	if(initiallyLoaded)
+		return 1.;
+
+	double val = min(min(spriteQueue.GetProgress(), Audio::GetProgress()), objects.GetProgress());
+	if(val >= 1.)
+		initiallyLoaded = true;
+	return val;
 }
 
 
@@ -860,4 +869,12 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 			}
 	}
 	return images;
+}
+
+
+
+// Thread-safe way to draw the menu background.
+void GameData::DrawMenuBackground(Panel *panel)
+{
+	objects.DrawMenuBackground(panel);
 }
