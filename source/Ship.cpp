@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Audio.h"
 #include "CategoryTypes.h"
+#include "DamageDealt.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Effect.h"
@@ -2933,6 +2934,22 @@ double Ship::DisabledHull() const
 
 
 
+// Get the actual shield level of the ship.
+double Ship::ShieldLevel() const
+{
+	return shields;
+}
+
+
+
+// Get how disrupted this ship's shields are.
+double Ship::DisruptionLevel() const
+{
+	return disruption;
+}
+
+
+
 int Ship::JumpsRemaining(bool followParent) const
 {
 	// Make sure this ship has some sort of hyperdrive, and if so return how
@@ -3181,99 +3198,36 @@ double Ship::MaxReverseVelocity() const
 // according to the weapon and the characteristics of how
 // it hit this ship, and add any visuals created as a result
 // of being hit.
-int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damageScaling, double distanceTraveled, const Point &damagePosition, const Government *sourceGovernment, bool isBlast)
+int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment)
 {
-	if(isBlast && weapon.IsDamageScaled())
-	{
-		// Scale blast damage based on the distance from the blast
-		// origin and if the projectile uses a trigger radius. The
-		// point of contact must be measured on the sprite outline.
-		// scale = (1 + (tr / (2 * br))^2) / (1 + r^4)^2
-		double blastRadius = max(1., weapon.BlastRadius());
-		double radiusRatio = weapon.TriggerRadius() / blastRadius;
-		double k = !radiusRatio ? 1. : (1. + .25 * radiusRatio * radiusRatio);
-		// Rather than exactly compute the distance between the explosion and
-		// the closest point on the ship, estimate it using the mask's Radius.
-		double d = max(0., (damagePosition - position).Length() - GetMask().Radius());
-		double rSquared = d * d / (blastRadius * blastRadius);
-		damageScaling *= k / ((1. + rSquared * rSquared) * (1. + rSquared * rSquared));
-	}
-	if(weapon.HasDamageDropoff())
-		damageScaling *= weapon.DamageDropoff(distanceTraveled);
-
-	// Instantaneous damage types:
-	double shieldDamage = (weapon.ShieldDamage() + weapon.RelativeShieldDamage() * attributes.Get("shields"))
-		* damageScaling / (1. + attributes.Get("shield protection"));
-	double hullDamage = (weapon.HullDamage() + weapon.RelativeHullDamage() * attributes.Get("hull"))
-		* damageScaling / (1. + attributes.Get("hull protection"));
-	double energyDamage = (weapon.EnergyDamage() + weapon.RelativeEnergyDamage() * attributes.Get("energy capacity"))
-		* damageScaling / (1. + attributes.Get("energy protection"));
-	double fuelDamage = (weapon.FuelDamage() + weapon.RelativeFuelDamage() * attributes.Get("fuel capacity"))
-		* damageScaling / (1. + attributes.Get("fuel protection"));
-	double heatDamage = (weapon.HeatDamage() + weapon.RelativeHeatDamage() * MaximumHeat())
-		* damageScaling / (1. + attributes.Get("heat protection"));
-
-	// DoT damage types:
-	double ionDamage = weapon.IonDamage() * damageScaling / (1. + attributes.Get("ion protection"));
-	double disruptionDamage = weapon.DisruptionDamage() * damageScaling / (1. + attributes.Get("disruption protection"));
-	double slowingDamage = weapon.SlowingDamage() * damageScaling / (1. + attributes.Get("slowing protection"));
-	double dischargeDamage = weapon.DischargeDamage() * damageScaling / (1. + attributes.Get("discharge protection"));
-	double corrosionDamage = weapon.CorrosionDamage() * damageScaling / (1. + attributes.Get("corrosion protection"));
-	double leakDamage = weapon.LeakDamage() * damageScaling / (1. + attributes.Get("leak protection"));
-	double burnDamage = weapon.BurnDamage() * damageScaling / (1. + attributes.Get("burn protection"));
-
-	double hitForce = weapon.HitForce() * damageScaling / (1. + attributes.Get("force protection"));
-	double piercing = max(0., min(1., weapon.Piercing() / (1. + attributes.Get("piercing protection")) - attributes.Get("piercing resistance")));
-
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 
-	double shieldFraction = 1. - piercing;
-	shieldFraction *= 1. / (1. + disruption * .01);
-	if(shields <= 0.)
-		shieldFraction = 0.;
-	else if(shieldDamage > shields)
-		shieldFraction = min(shieldFraction, shields / shieldDamage);
-
-	shields -= shieldDamage * shieldFraction;
-	if(shieldDamage && !isDisabled)
+	shields -= damage.Shield();
+	if(damage.Shield() && !isDisabled)
 	{
 		int disabledDelay = attributes.Get("depleted shield delay");
 		shieldDelay = max<int>(shieldDelay, (shields <= 0. && disabledDelay) ? disabledDelay : attributes.Get("shield delay"));
 	}
-	hull -= hullDamage * (1. - shieldFraction);
-	if(hullDamage && !isDisabled)
+	hull -= damage.Hull();
+	if(damage.Hull() && !isDisabled)
 		hullDelay = max(hullDelay, static_cast<int>(attributes.Get("repair delay")));
 
-	// Most special damage types (i.e. not hull or shield damage) only have 50% effectiveness
-	// against ships with active shields. Disruption or piercing weapons can increase this
-	// effectiveness.
-	double shieldDegradation = (1. - .5 * shieldFraction);
-	energy -= energyDamage * shieldDegradation;
-	fuel -= fuelDamage * shieldDegradation;
-	heat += heatDamage * shieldDegradation;
-	ionization += ionDamage * shieldDegradation;
-	disruption += disruptionDamage * shieldDegradation;
-	slowness += slowingDamage * shieldDegradation;
-	burning += burnDamage * shieldDegradation;
+	energy -= damage.Energy();
+	heat += damage.Heat();
+	fuel -= damage.Fuel();
 
-	// The following special damage types have 0% effectiveness against ships with
-	// active shields. Disruption or piercing weapons still increase this effectiveness.
-	shieldDegradation = (1. - shieldFraction);
-	corrosion += corrosionDamage * shieldDegradation;
-	leakage += leakDamage * shieldDegradation;
+	discharge += damage.Discharge();
+	corrosion += damage.Corrosion();
+	ionization += damage.Ion();
+	burning += damage.Burn();
+	leakage += damage.Leak();
 
-	// The following special damage types have 100% effectiveness against ships
-	// regardless of shield level.
-	discharge += dischargeDamage;
+	disruption += damage.Disruption();
+	slowness += damage.Slowing();
 
-	if(hitForce)
-	{
-		Point d = position - damagePosition;
-		double distance = d.Length();
-		if(distance)
-			ApplyForce((hitForce / distance) * d, weapon.IsGravitational());
-	}
+	if(damage.HitForce())
+		ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
 
 	// Prevent various stats from reaching unallowable values.
 	hull = min(hull, attributes.Get("hull"));
@@ -3309,14 +3263,14 @@ int Ship::TakeDamage(vector<Visual> &visuals, const Weapon &weapon, double damag
 
 	// If this ship was hit directly and did not consider itself an enemy of the
 	// ship that hit it, it is now "provoked" against that government.
-	if(!isBlast && sourceGovernment && !sourceGovernment->IsEnemy(government)
+	if(!damage.IsBlast() && sourceGovernment && !sourceGovernment->IsEnemy(government)
 			&& (Shields() < .9 || Hull() < .9 || !personality.IsForbearing())
-			&& !personality.IsPacifist() && weapon.DoesDamage())
+			&& !personality.IsPacifist() && damage.GetWeapon().DoesDamage())
 		type |= ShipEvent::PROVOKE;
 
 	// Create target effect visuals, if there are any.
-	for(const auto &effect : weapon.TargetEffects())
-		CreateSparks(visuals, effect.first, effect.second * damageScaling);
+	for(const auto &effect : damage.GetWeapon().TargetEffects())
+		CreateSparks(visuals, effect.first, effect.second * damage.Scaling());
 
 	return type;
 }
