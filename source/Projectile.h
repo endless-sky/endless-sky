@@ -39,7 +39,7 @@ public:
 	class ImpactInfo {
 	public:
 		ImpactInfo(const Weapon &weapon, Point position, double distanceTraveled)
-			: weapon(weapon), position(position), distanceTraveled(distanceTraveled) {}
+			: weapon(weapon), position(std::move(position)), distanceTraveled(distanceTraveled) {}
 
 		const Weapon &weapon;
 		Point position;
