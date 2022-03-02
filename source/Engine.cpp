@@ -2052,10 +2052,11 @@ void Engine::DoCollisions(Projectile &projectile)
 			for(Body *body : shipCollisions.Circle(hitPos, blastRadius))
 			{
 				Ship *ship = reinterpret_cast<Ship *>(body);
-				if(isSafe && projectile.Target() != ship && !gov->IsEnemy(ship->GetGovernment()))
+				bool targeted = (projectile.Target() == ship);
+				if(isSafe && !targeted && !gov->IsEnemy(ship->GetGovernment()))
 					continue;
 
-				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit.get()), projectile.GetGovernment());
+				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit.get()), projectile.GetGovernment(), targeted);
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
