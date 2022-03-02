@@ -216,7 +216,11 @@ void Fleet::Load(const DataNode &node)
 				weight = child.Value(index);
 
 			if(!variantName.empty())
+			{
 				variants.emplace_back(GameData::Variants().Get(variantName), weight);
+				if(child.HasChildren())
+					child.PrintTrace("Warning: Skipping children of named variant in fleet definition:");
+			}
 			else
 				variants.emplace_back(child, weight);
 		}

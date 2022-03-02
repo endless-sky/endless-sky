@@ -42,7 +42,8 @@ public:
 	// nested variants in the stockVariants or variants vectors.
 	std::vector<const Ship *> ChooseShips() const;
 
-	// The average credit worth of this variant.
+	// The strength of a variant is the sum of the cost of its ships and
+	// the strength of any nested variants.
 	int64_t Strength() const;
 
 	bool operator==(const Variant &other) const;
@@ -56,8 +57,8 @@ private:
 	// Nested variants only choose a single ship from among their list
 	// of ships and variants.
 	const Ship *NestedChooseShip() const;
-	// The average credit worth of this variant if it is nested within
-	// another variant.
+	// The strength of a nested variant is its normal strength divided by
+	// the total weight of its contents.
 	int64_t NestedStrength() const;
 
 

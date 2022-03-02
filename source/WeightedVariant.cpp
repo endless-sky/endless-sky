@@ -16,23 +16,16 @@ using namespace std;
 
 
 
-WeightedVariant::WeightedVariant(const Variant *stockVariant, int weight)
-	: weight(weight), stockVariant(stockVariant)
-{
-}
-
-
-
 WeightedVariant::WeightedVariant(Variant variant, int weight)
-	: weight(weight), variant(variant)
+	: variant(variant), weight(weight)
 {
 }
 
 
 
-int WeightedVariant::Weight() const
+WeightedVariant::WeightedVariant(const Variant *stockVariant, int weight)
+	: stockVariant(stockVariant), weight(weight)
 {
-	return weight;
 }
 
 
@@ -40,6 +33,13 @@ int WeightedVariant::Weight() const
 const Variant &WeightedVariant::Get() const
 {
 	return stockVariant ? *stockVariant : variant;
+}
+
+
+
+int WeightedVariant::Weight() const
+{
+	return weight;
 }
 
 

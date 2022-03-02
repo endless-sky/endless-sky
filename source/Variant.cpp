@@ -39,7 +39,7 @@ void Variant::Load(const DataNode &node, bool removing)
 	// If this variant is being loaded with a second token that is not a number,
 	// then it's a name that must be saved. This can either be because we're
 	// loading from GameData or from a fleet or variant that is removing a variant,
-	// in which case there is a `remove` token that must be accounted for.
+	// in which case there is a "remove" token that must be accounted for.
 	if(node.Size() >= 2 + removing && !node.IsNumber(1 + removing))
 	{
 		name = node.Token(1 + removing);
@@ -79,7 +79,7 @@ void Variant::Load(const DataNode &node, bool removing)
 				if(removeIt != variants.end())
 					variants.erase(removeIt, variants.end());
 				else
-					child.PrintTrace("Did not find matching variant for specified operation:");
+					child.PrintTrace("Warning: Did not find matching variant for specified operation:");
 			}
 			else
 			{
@@ -94,7 +94,7 @@ void Variant::Load(const DataNode &node, bool removing)
 				if(removeIt != ships.end())
 					ships.erase(removeIt, ships.end());
 				else
-					child.PrintTrace("Did not find matching ship for specified operation:");
+					child.PrintTrace("Warning: Did not find matching ship for specified operation:");
 			}
 		}
 		else
@@ -118,7 +118,7 @@ void Variant::Load(const DataNode &node, bool removing)
 					variantName = child.Token(index++);
 					if(variantName == name)
 					{
-						node.PrintTrace("A variant cannot reference itself:");
+						node.PrintTrace("Warning: A variant cannot reference itself:");
 						continue;
 					}
 				}
@@ -132,7 +132,7 @@ void Variant::Load(const DataNode &node, bool removing)
 				{
 					variants.emplace_back(GameData::Variants().Get(variantName), n);
 					if(child.HasChildren())
-						child.PrintTrace("Skipping children of named variant in fleet definition:");
+						child.PrintTrace("Warning: Skipping children of named variant in fleet definition:");
 				}
 				else
 					variants.emplace_back(child, n);
@@ -158,7 +158,7 @@ void Variant::FinishLoading()
 			if(it->Get().NestedInSelf(name))
 			{
 				it = variants.eraseAt(it);
-				Files::LogError("Infinite loop detected and removed in variant \"" + name + "\".");
+				Files::LogError("Error: Infinite loop detected and removed in variant \"" + name + "\".");
 			}
 			else
 				++it;

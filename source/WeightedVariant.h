@@ -17,7 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 // A weighted variant consists of a variant and a weight to be used by Fleet
-// in a WeightedList.
+// or Variant in a WeightedList.
 class WeightedVariant {
 public:
 	WeightedVariant() = default;
@@ -25,17 +25,17 @@ public:
 	WeightedVariant(Variant variant, int weight);
 	WeightedVariant(const Variant *stockVariant, int weight);
 
-	int Weight() const;
 	const Variant &Get() const;
+	int Weight() const;
 
 	bool operator==(const WeightedVariant &other) const;
 	bool operator!=(const WeightedVariant &other) const;
 
 
 private:
-	int weight;
 	Variant variant;
 	const Variant *stockVariant = nullptr;
+	int weight;
 };
 
 
