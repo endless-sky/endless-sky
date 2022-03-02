@@ -57,7 +57,7 @@ void SpriteQueue::Add(const shared_ptr<ImageSet> &images)
 		// Do nothing if we are destroying the queue already.
 		if(added < 0)
 			return;
-		
+
 		toRead.push(images);
 		++added;
 	}
@@ -104,12 +104,12 @@ void SpriteQueue::Finish()
 	while(true)
 	{
 		unique_lock<mutex> lock(loadMutex);
-		
+
 		// Load whatever is already queued up for loading.
 		DoLoad(lock);
 		if(GetProgress() == 1.)
 			break;
-		
+
 		// We still have sprites to upload, but none of them have been read from
 		// disk yet. Wait until one arrives.
 		loadCondition.wait(lock);
@@ -132,29 +132,29 @@ void SpriteQueue::operator()()
 				return;
 			if(toRead.empty())
 				break;
-			
+
 			// Extract the one item we should work on reading right now.
 			shared_ptr<ImageSet> imageSet = toRead.front();
 			toRead.pop();
-			
+
 			// It's now safe to add to the lists.
 			lock.unlock();
-			
+
 			// Load the sprite.
 			// TODO: investigate catching exceptions from Load() (e.g. bad_alloc), to enable
 			// the UI thread to display a message prior to terminating the process.
 			imageSet->Load();
-			
+
 			{
 				// The texture must be uploaded to OpenGL in the main thread.
 				unique_lock<mutex> lock(loadMutex);
 				toLoad.push(imageSet);
 			}
 			loadCondition.notify_one();
-			
+
 			lock.lock();
 		}
-		
+
 		readCondition.wait(lock);
 	}
 }
@@ -167,23 +167,23 @@ void SpriteQueue::DoLoad(unique_lock<mutex> &lock)
 	{
 		Sprite *sprite = SpriteSet::Modify(toUnload.front());
 		toUnload.pop();
-		
+
 		lock.unlock();
 		sprite->Unload();
 		lock.lock();
 	}
-	
+
 	for(int i = 0; !toLoad.empty() && i < 100; ++i)
 	{
 		// Extract the one item we should work on uploading right now.
 		shared_ptr<ImageSet> imageSet = toLoad.front();
 		toLoad.pop();
-		
+
 		// It's now safe to modify the lists.
 		lock.unlock();
-		
+
 		imageSet->Upload(SpriteSet::Modify(imageSet->Name()));
-		
+
 		lock.lock();
 		++completed;
 	}

@@ -26,7 +26,7 @@ using namespace std;
 
 namespace {
 	const double EPS = 0.0000000001;
-	
+
 	// A mapping of attribute names to specifically-allowed minimum values. Based on the
 	// specific usage of the attribute, the allowed minimum value is chosen to avoid
 	// disallowed or undesirable behaviors (such as dividing by zero).
@@ -50,9 +50,7 @@ namespace {
 		{"slowing resistance fuel", 0.},
 		{"slowing resistance heat", 0.},
 		{"crew equivalent", 0.},
-		{"maintenance costs", 0.},
-		{"operating costs", 0.},
-		
+
 		// "Protection" attributes appear in denominators and are incremented by 1.
 		{"disruption protection", -0.99},
 		{"energy protection", -0.99},
@@ -64,7 +62,7 @@ namespace {
 		{"piercing protection", -0.99},
 		{"shield protection", -0.99},
 		{"slowing protection", -0.99},
-		
+
 		// "Multiplier" attributes appear in numerators and are incremented by 1.
 		{"hull repair multiplier", -1.},
 		{"hull energy multiplier", -1.},
@@ -75,7 +73,7 @@ namespace {
 		{"shield fuel multiplier", -1.},
 		{"shield heat multiplier", -1.}
 	};
-	
+
 	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body, int> &it, int count)
 	{
 		auto oit = find_if(thisFlares.begin(), thisFlares.end(),
@@ -84,13 +82,13 @@ namespace {
 				return it.first.GetSprite() == flare.first.GetSprite();
 			}
 		);
-		
+
 		if(oit == thisFlares.end())
 			thisFlares.emplace_back(it.first, count * it.second);
 		else
 			oit->second += count * it.second;
 	}
-	
+
 	// Used to add the contents of one outfit's map to another, while also
 	// erasing any key with a value of zero.
 	template <class T>
@@ -115,7 +113,7 @@ void Outfit::Load(const DataNode &node)
 		pluralName = name + 's';
 	}
 	isDefined = true;
-	
+
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "category" && child.Size() >= 2)
@@ -208,13 +206,13 @@ void Outfit::Load(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-	
+
 	// Only outfits with the jump drive and jump range attributes can
 	// use the jump range, so only keep track of the jump range on
 	// viable outfits.
 	if(attributes.Get("jump drive") && attributes.Get("jump range"))
 		GameData::AddJumpRange(attributes.Get("jump range"));
-	
+
 	// Legacy support for turrets that don't specify a turn rate:
 	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn() && !AntiMissile())
 	{
@@ -232,7 +230,7 @@ void Outfit::Load(const DataNode &node)
 			attributes[label] = 0.;
 			node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
 					+ label + " power\" and \"" + label + " speed\":");
-			
+
 			// A scan value of 300 is equivalent to a scan power of 9.
 			attributes[label + " power"] += initial * initial * .0001;
 			// The default scan speed of 1 is unrelated to the magnitude of the scan value.
@@ -353,7 +351,7 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 		if(value + at.second * count < minimum - EPS)
 			count = (value - minimum) / -at.second + EPS;
 	}
-	
+
 	return count;
 }
 
@@ -371,7 +369,7 @@ void Outfit::Add(const Outfit &other, int count)
 		if(fabs(attributes[at.first]) < EPS)
 			attributes[at.first] = 0.;
 	}
-	
+
 	for(const auto &it : other.flareSprites)
 		AddFlareSprites(flareSprites, it, count);
 	for(const auto &it : other.reverseFlareSprites)
@@ -400,7 +398,7 @@ void Outfit::Set(const char *attribute, double value)
 }
 
 
-	
+
 // Get this outfit's engine flare sprite, if any.
 const vector<pair<Body, int>> &Outfit::FlareSprites() const
 {
