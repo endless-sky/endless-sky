@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Set.h"
 #include "Trade.h"
 
+#include <future>
 #include <map>
 #include <memory>
 #include <string>
@@ -65,7 +66,7 @@ class TextReplacements;
 // universe.
 class GameData {
 public:
-	static void BeginLoad(bool onlyLoadData, bool debugMode);
+	static std::future<void> BeginLoad(bool onlyLoadData, bool debugMode);
 	static void FinishLoading();
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();
