@@ -25,7 +25,12 @@ on:
     - 'tests/check_codeblocks.sh'
 
 jobs:
+  changed:
+    uses: ./.github/workflows/compute-changes.yml
+
   check-xcode:
+    needs: changed
+    if: ${{ needs.changed.outputs.xcode_files }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -43,6 +48,8 @@ jobs:
         path: xcode-project.patch
 
   check-codeblocks:
+    needs: changed
+    if: ${{ needs.changed.outputs.codeblocks_files }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
