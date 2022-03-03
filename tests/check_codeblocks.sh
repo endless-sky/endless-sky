@@ -3,6 +3,7 @@
 # Script that checks if the Code::Blocks project is complete.
 # TODO: If the project is incomplete generate a patch file to make it complete.
 
+set -u pipefail -e
 # Determine path of the current script, and go to the ES project root.
 HERE=$(cd `dirname $0` && pwd)
 cd ${HERE}/..
