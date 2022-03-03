@@ -1,0 +1,45 @@
+name: Validate Project files
+
+on:
+  push:
+    paths:
+      - '.github/workflows/projects_check.yml'
+      - 'EndlessSky.xcodeproj/**'
+      - 'EndlessSkyLib.cbp'
+      - 'EndlessSkyTests.cbp'
+      - 'source/**'
+      - 'tests/check_*.sh'
+
+jobs:
+  changed:
+    uses: ./.github/workflows/compute-changes.yml
+
+  check-xcode:
+    needs: changed
+    if: ${{ needs.changed.outputs.xcode_files || needs.changed.outputs.game_code }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+    - name: Install dependencies
+      run: python3 -m pip install --user docopt openstep_parser pbxproj
+    - name: Validate XCode .pbxproj file
+      run: ./tests/check_xcode.sh
+    - name: Upload XCode patch
+      if: failure()
+      uses: actions/upload-artifact@v2
+      with:
+        name: xcode-project.patch
+        path: xcode-project.patch
+
+  check-codeblocks:
+    needs: changed
+    if: ${{ needs.changed.outputs.codeblocks_files || needs.changed.outputs.game_code || needs.changed.outputs.unit_tests }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+    - name: Validate Code::Blocks project files
+      run: ./tests/check_codeblocks.sh
