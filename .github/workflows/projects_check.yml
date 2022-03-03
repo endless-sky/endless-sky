@@ -3,12 +3,12 @@ name: Validate Project files
 on:
   push:
     paths:
-    - '.github/workflows/projects_check.yml'
-    - 'EndlessSky.xcodeproj/**'
-    - 'EndlessSkyLib.cbp'
-    - 'EndlessSkyTests.cbp'
-    - 'source/**'
-     - 'tests/check_*.sh'
+      - '.github/workflows/projects_check.yml'
+      - 'EndlessSky.xcodeproj/**'
+      - 'EndlessSkyLib.cbp'
+      - 'EndlessSkyTests.cbp'
+      - 'source/**'
+      - 'tests/check_*.sh'
 
 jobs:
   changed:
