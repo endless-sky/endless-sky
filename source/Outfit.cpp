@@ -71,9 +71,7 @@ namespace {
 		{"shield generation multiplier", -1.},
 		{"shield energy multiplier", -1.},
 		{"shield fuel multiplier", -1.},
-		{"shield heat multiplier", -1.},
-
-		{"required crew", 1},
+		{"shield heat multiplier", -1.}
 	};
 
 	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body, int> &it, int count)
@@ -348,6 +346,11 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 			if(!minimum)
 				continue;
 		}
+
+		// If this is a automaton then "required crew" can be 0, but not otherwise.
+		if(!strcmp(at.first, "required crew"))
+			minimum = !attributes.Get("automaton");
+
 		double value = Get(at.first);
 		// Allow for rounding errors:
 		if(value + at.second * count < minimum - EPS)
