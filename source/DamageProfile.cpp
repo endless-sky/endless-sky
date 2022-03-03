@@ -46,7 +46,7 @@ DamageProfile::DamageProfile(Weather::ImpactInfo info)
 DamageDealt DamageProfile::CalculateDamage(const Ship &ship, bool ignoreBlast) const
 {
 	bool blast = (isBlast && !ignoreBlast);
-	DamageDealt damage(weapon, Scale(inputScaling, ship, blast), blast);
+	DamageDealt damage(weapon, Scale(inputScaling, ship, blast));
 	PopulateDamage(damage, ship);
 
 	return damage;

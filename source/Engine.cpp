@@ -2056,16 +2056,16 @@ void Engine::DoCollisions(Projectile &projectile)
 				if(isSafe && !targeted && !gov->IsEnemy(ship->GetGovernment()))
 					continue;
 
+				// Only directly targeted ships get provoked by blast weapons.
 				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit.get()),
-					gov, targeted);
+					targeted ? gov : nullptr);
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
 		}
 		else if(hit)
 		{
-			int eventType = hit->TakeDamage(visuals, damage.CalculateDamage(*hit),
-				gov, projectile.Target() == hit.get());
+			int eventType = hit->TakeDamage(visuals, damage.CalculateDamage(*hit), gov);
 			if(eventType)
 				eventQueue.emplace_back(gov, hit, eventType);
 		}
@@ -2106,7 +2106,7 @@ void Engine::DoWeather(Weather &weather)
 		for(Body *body : shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange()))
 		{
 			Ship *hit = reinterpret_cast<Ship *>(body);
-			hit->TakeDamage(visuals, damage.CalculateDamage(*hit), nullptr, false);
+			hit->TakeDamage(visuals, damage.CalculateDamage(*hit), nullptr);
 		}
 	}
 }

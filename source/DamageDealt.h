@@ -25,15 +25,13 @@ class Weapon;
 // blast for Ship::TakeDamage to access.
 class DamageDealt {
 public:
-	DamageDealt(const Weapon &weapon, double scaling, bool isBlast)
-		: weapon(weapon), scaling(scaling), isBlast(isBlast) {}
+	DamageDealt(const Weapon &weapon, double scaling)
+		: weapon(weapon), scaling(scaling) {}
 
 	// The weapon that dealt damage.
 	const Weapon &GetWeapon() const;
 	// The damage scaling that was used for this damage.
 	double Scaling() const;
-	// Whether damage was dealt as a blast.
-	bool IsBlast() const;
 
 	// Instantaneous damage types.
 	double Shield() const noexcept;
@@ -64,7 +62,6 @@ private:
 
 	const Weapon &weapon;
 	double scaling;
-	bool isBlast;
 
 	double hullDamage = 0.;
 	double shieldDamage = 0.;
@@ -86,7 +83,6 @@ private:
 
 inline const Weapon &DamageDealt::GetWeapon() const { return weapon; }
 inline double DamageDealt::Scaling() const { return scaling; }
-inline bool DamageDealt::IsBlast() const { return isBlast; }
 
 inline double DamageDealt::Shield() const noexcept { return shieldDamage; }
 inline double DamageDealt::Hull() const noexcept { return hullDamage; }
