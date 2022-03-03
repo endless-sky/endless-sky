@@ -60,7 +60,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UniverseObjects.h"
 
 #include <algorithm>
-#include <future>
 #include <iostream>
 #include <map>
 #include <set>
@@ -86,7 +85,6 @@ namespace {
 
 	map<string, string> plugins;
 	SpriteQueue spriteQueue;
-	future<void> dataLoading;
 
 	vector<string> sources;
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
@@ -100,7 +98,7 @@ namespace {
 
 
 
-void GameData::BeginLoad(bool onlyLoadData, bool debugMode)
+future<void> GameData::BeginLoad(bool onlyLoadData, bool debugMode)
 {
 	// Initialize the list of "source" folders based on any active plugins.
 	LoadSources();
@@ -132,7 +130,7 @@ void GameData::BeginLoad(bool onlyLoadData, bool debugMode)
 		Music::Init(sources);
 	}
 
-	dataLoading = objects.Load(sources, debugMode);
+	return objects.Load(sources, debugMode);
 }
 
 
@@ -204,13 +202,6 @@ double GameData::GetProgress()
 bool GameData::IsLoaded()
 {
 	return GetProgress() == 1.;
-}
-
-
-
-bool GameData::IsDataLoaded()
-{
-	return objects.GetProgress() == 1.;
 }
 
 
