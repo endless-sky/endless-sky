@@ -2,11 +2,21 @@ name: Validate Project files
 
 on:
   push:
+    branches:
+      - master
+      - v[0-9]+.[0-9]+.[0-9]+
     paths:
       - '.github/workflows/projects_check.yml'
       - 'EndlessSky.xcodeproj/**'
-      - 'EndlessSkyLib.cbp'
-      - 'EndlessSkyTests.cbp'
+      - '*.cbp'
+      - 'source/**'
+      - 'tests/check_*.sh'
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - '.github/workflows/projects_check.yml'
+      - 'EndlessSky.xcodeproj/**'
+      - '*.cbp'
       - 'source/**'
       - 'tests/check_*.sh'
 
