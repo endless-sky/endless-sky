@@ -38,4 +38,4 @@ do
   fi
 done
 
-exit $((!!RESULT))
+exit ${RESULT}
