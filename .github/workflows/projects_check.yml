@@ -11,18 +11,7 @@ on:
     - 'EndlessSkyLib.cbp'
     - 'EndlessSkyTests.cbp'
     - 'source/**'
-    - 'tests/check_xcode.sh'
-    - 'tests/check_codeblocks.sh'
-  pull_request:
-    types: [opened, synchronize]
-    paths:
-    - '.github/workflows/xcode_check.yml'
-    - 'EndlessSky.xcodeproj/**'
-    - 'EndlessSkyLib.cbp'
-    - 'EndlessSkyTests.cbp'
-    - 'source/**'
-    - 'tests/check_xcode.sh'
-    - 'tests/check_codeblocks.sh'
+     - 'tests/check_*.sh'
 
 jobs:
   changed:
