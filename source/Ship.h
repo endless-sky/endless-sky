@@ -330,12 +330,9 @@ public:
 	double MaxVelocity() const;
 	double MaxReverseVelocity() const;
 
-	// This ship just got hit by a projectile or hazard. Take damage according to
-	// what sort of weapon the projectile or hazard has. The return value is a ShipEvent
-	// type, which may be a combination of PROVOKED, DISABLED, and DESTROYED.
-	// If isBlast, this ship was caught in the blast radius of a weapon but was
-	// not necessarily its primary target.
-	// Blast damage is dependent on the distance to the damage source.
+	// This ship just got hit by a weapon. Take damage according to the
+	// DamageDealt from that weapon. The return value is a ShipEvent type,
+	// which may be a combination of PROVOKED, DISABLED, and DESTROYED.
 	// Create any target effects as sparks.
 	int TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment);
 	// Apply a force to this ship, accelerating it. This might be from a weapon
