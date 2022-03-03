@@ -55,6 +55,7 @@ mission "Remnant: Visit to Paradise 1"
 				`	"I have done a bit of hoverboarding myself."`
 				`	"Maybe later."`
 					goto vaillater
+			set "remnant: hoverboarding"
 			`	"Really? I noted a mention of that in the descriptions, and it looked challenging." Her commlink shifts to display a hologram of a hoverboarder executing a jump with an artistic poof of snow around them. "Anyway, I think this trip should be a good diversion for us both. I will meet you onboard the <ship> shortly."`
 				accept
 			label vailfun
@@ -69,11 +70,18 @@ mission "Remnant: Visit to Paradise 1"
 			label science
 			`As you approach Vail your sensors light up with energy traces that it quickly identifies as part of the weather control network. From what you recall, many areas of the planet have been adjusted to have greater than usual snowfall. As you approach closer your nav system easily picks up the beacons designating the approach path, and before too long you connect to the automated approach control that shunts you into the appropriate route down to a landing pad on the outskirts of the main spaceport.`
 			label vaillanding
-			`	Looking outside the ship, you can see a multitude of tourist-oriented facilities overwhelming the normal spaceport functions. You can pick out a small sign off to the side that indicates professional commodity and banking facilities, but otherwise the area is dominated by businesses offering mountain touring, sports classes, and vehicle rentals. Next to you, Taely alternates between peering out at the signs and reading brochures on her commlink. "Here, <first>. This one sounds more interested in the challenge and less pampering. What do you think?"`
+			`	Looking outside the ship, you can see a multitude of tourist-oriented facilities overwhelming the normal spaceport functions. You can pick out a small sign off to the side that indicates professional commodity and banking facilities, but otherwise the area is dominated by businesses offering mountain touring, sports classes, and vehicle rentals. Next to you, Taely alternates between peering out at the signs and reading brochures on a new commlink. "Here, <first>. This one sounds more interested in providing a challenge and less pampering. What do you think?"`
 			choice
 				`	"Looks good to me."`
 				`	"Alright, should be good."`
-			`	The resort in question is a more exclusive facility, and thus is located away from the main train lines. You rent a hovercar from one of the rental companies `
+			branch "havehoverboarded"
+				has "remnant: hoverboarding"
+			`	The resort in question is a more exclusive facility, and thus is located away from the main train lines. You rent a hovercar from one of the rental companies and make the short trek out to the resort. The rest of the day is spent out on the slopes, where both you and Taely eventually develope sufficient skill to graduate from the easy runs up to the medium difficulty. You both fall repeatedly, but Taely's good humor is contagious as she takes the inevitable facefulls of snow good naturedly.`
+			goto vailheadhome
+			label havehoverboarded
+			`	The resort in question is a more exclusive facility, and thus is located away from the main train lines. You rent a hovercar from one of the rental companies and make the short trek out to the resort. The rest of the day is spent out on the slopes, where you teach Taely the basics of hoverboarding. By the end of the day Taely has impressed you with her quick learning and you finish off with a few runs down some of the more challenging slopes. Taely spills a few times, but she takes her failures in good humor, and never seems to make the same mistake twice.`
+			label vailheadhome
+			
 	on complete
 		conversation
 			``
