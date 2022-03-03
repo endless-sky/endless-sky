@@ -30,7 +30,7 @@ jobs:
 
   check-xcode:
     needs: changed
-    if: ${{ needs.changed.outputs.xcode_files }}
+    if: ${{ needs.changed.outputs.xcode_files || needs.changed.outputs.game_code }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -49,7 +49,7 @@ jobs:
 
   check-codeblocks:
     needs: changed
-    if: ${{ needs.changed.outputs.codeblocks_files }}
+    if: ${{ needs.changed.outputs.codeblocks_files || needs.changed.outputs.game_code }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
