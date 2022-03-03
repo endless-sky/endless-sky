@@ -71,6 +71,7 @@
 		<Unit filename="tests/src/test_account.cpp" />
 		<Unit filename="tests/src/test_bitset.cpp" />
 		<Unit filename="tests/src/test_conditionSet.cpp" />
+		<Unit filename="tests/src/test_datafile.cpp" />
 		<Unit filename="tests/src/test_datanode.cpp" />
 		<Unit filename="tests/src/test_esuuid.cpp" />
 		<Unit filename="tests/src/test_firecommand.cpp" />
