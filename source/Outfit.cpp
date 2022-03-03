@@ -71,7 +71,9 @@ namespace {
 		{"shield generation multiplier", -1.},
 		{"shield energy multiplier", -1.},
 		{"shield fuel multiplier", -1.},
-		{"shield heat multiplier", -1.}
+		{"shield heat multiplier", -1.},
+
+		{"required crew", 1},
 	};
 
 	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body, int> &it, int count)
