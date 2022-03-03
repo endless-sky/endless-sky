@@ -2057,7 +2057,7 @@ void Engine::DoCollisions(Projectile &projectile)
 					continue;
 
 				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit.get()),
-					projectile.GetGovernment(), targeted);
+					gov, targeted);
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
@@ -2065,7 +2065,7 @@ void Engine::DoCollisions(Projectile &projectile)
 		else if(hit)
 		{
 			int eventType = hit->TakeDamage(visuals, damage.CalculateDamage(*hit),
-				projectile.GetGovernment(), projectile.Target() == hit.get());
+				gov, projectile.Target() == hit.get());
 			if(eventType)
 				eventQueue.emplace_back(gov, hit, eventType);
 		}
