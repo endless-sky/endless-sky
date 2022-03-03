@@ -38,7 +38,7 @@ jobs:
 
   check-codeblocks:
     needs: changed
-    if: ${{ needs.changed.outputs.codeblocks_files || needs.changed.outputs.game_code }}
+    if: ${{ needs.changed.outputs.codeblocks_files || needs.changed.outputs.game_code || needs.changed.outputs.unit_tests }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
