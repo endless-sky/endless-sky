@@ -116,11 +116,10 @@ int main(int argc, char *argv[])
 	}
 	Files::Init(argv);
 
-	future<void> dataLoading;
 	try {
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printShips || printTests || printWeapons;
-		dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode);
+		future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode);
 
 		// If we are not using the UI, or performing some automated task, we should load
 		// all data now. (Sprites and sounds can safely be deferred.)
