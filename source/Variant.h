@@ -23,15 +23,16 @@ class Ship;
 class WeightedVariant;
 
 
+
 // A variant represents a collection of ships that may be spawned by a fleet.
 // Each variant contains one or more ships or variants.
 class Variant {
 public:
 	Variant() = default;
 	// Construct and Load() at the same time.
-	Variant(const DataNode &node, bool removing = false);
+	Variant(const DataNode &node, bool modifying = false);
 
-	void Load(const DataNode &node, bool removing = false);
+	void Load(const DataNode &node, bool modifying = false);
 	void FinishLoading();
 
 	// Determine if this variant template uses well-defined data.

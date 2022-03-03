@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Variant.h"
 
 
+
 // A weighted variant consists of a variant and a weight to be used by Fleet
 // or Variant in a WeightedList.
 class WeightedVariant {

@@ -222,7 +222,7 @@ void Fleet::Load(const DataNode &node)
 					child.PrintTrace("Warning: Skipping children of named variant in fleet definition:");
 			}
 			else
-				variants.emplace_back(child, weight);
+				variants.emplace_back(Variant(child, add), weight);
 		}
 		else if(key == "variant")
 		{

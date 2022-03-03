@@ -27,26 +27,29 @@ using namespace std;
 
 
 // Construct and Load() at the same time.
-Variant::Variant(const DataNode &node, bool removing)
+Variant::Variant(const DataNode &node, bool modifying)
 {
-	Load(node, removing);
+	Load(node, modifying);
 }
 
 
 
-void Variant::Load(const DataNode &node, bool removing)
+void Variant::Load(const DataNode &node, bool modifying)
 {
 	// If this variant is being loaded with a second token that is not a number,
 	// then it's a name that must be saved. This can either be because we're
-	// loading from GameData or from a fleet or variant that is removing a variant,
-	// in which case there is a "remove" token that must be accounted for.
-	if(node.Size() >= 2 + removing && !node.IsNumber(1 + removing))
+	// loading from GameData or from a fleet or variant, in which case there
+	// may be an additional "add" or "remove" token that must be accounted for.
+	if(node.Size() >= 2 + modifying && !node.IsNumber(1 + modifying))
 	{
-		name = node.Token(1 + removing);
+		name = node.Token(1 + modifying);
 		// If this named variant is being loaded for removal purposes then
 		// all that is necessary is that the variant has its name.
-		if(removing)
+		if(modifying)
 			return;
+		// If modifying is true because this variant is being added then
+		// it shouldn't reach this point as the calling class (either Fleet
+		// or Variant) will have handled a named variant separately.
 	}
 
 	// If Load() has already been called once on this variant, any subsequent
@@ -135,7 +138,7 @@ void Variant::Load(const DataNode &node, bool removing)
 						child.PrintTrace("Warning: Skipping children of named variant in fleet definition:");
 				}
 				else
-					variants.emplace_back(child, n);
+					variants.emplace_back(Variant(child, add), n);
 			}
 			else
 			{
