@@ -2056,14 +2056,16 @@ void Engine::DoCollisions(Projectile &projectile)
 				if(isSafe && !targeted && !gov->IsEnemy(ship->GetGovernment()))
 					continue;
 
-				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit.get()), projectile.GetGovernment(), targeted);
+				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit.get()),
+					projectile.GetGovernment(), targeted);
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
 		}
 		else if(hit)
 		{
-			int eventType = hit->TakeDamage(visuals, damage.CalculateDamage(*hit), projectile.GetGovernment());
+			int eventType = hit->TakeDamage(visuals, damage.CalculateDamage(*hit),
+				projectile.GetGovernment(), projectile.Target() == hit.get());
 			if(eventType)
 				eventQueue.emplace_back(gov, hit, eventType);
 		}
@@ -2104,7 +2106,7 @@ void Engine::DoWeather(Weather &weather)
 		for(Body *body : shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange()))
 		{
 			Ship *hit = reinterpret_cast<Ship *>(body);
-			hit->TakeDamage(visuals, damage.CalculateDamage(*hit), nullptr);
+			hit->TakeDamage(visuals, damage.CalculateDamage(*hit), nullptr, false);
 		}
 	}
 }
