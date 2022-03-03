@@ -2658,10 +2658,10 @@ ship "Quicksilver"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
 		
-	engine -17 54
-	engine 17 54
-	gun -6 -38 "Particle Cannon"
-	gun 6 -38 "Particle Cannon"
+	engine -15.5 54
+	engine 15.5 54
+	gun -6 -39.5 "Particle Cannon"
+	gun 6 -39.5 "Particle Cannon"
 	leak "leak" 50 50
 	explode "tiny explosion" 12
 	explode "small explosion" 16
