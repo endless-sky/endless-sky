@@ -17,7 +17,7 @@ class Test;
 
 
 // Constructor to be used when running an actual test.
-TestContext::TestContext(const Test *toRun) : testToRun(1, toRun)
+TestContext::TestContext(const Test *toRun) : callstack({{toRun, 0}})
 {
 }
 
@@ -25,5 +25,19 @@ TestContext::TestContext(const Test *toRun) : testToRun(1, toRun)
 
 const Test *TestContext::CurrentTest() const noexcept
 {
-	return testToRun.empty() ? nullptr : testToRun.back();
+	return callstack.empty() ? nullptr : callstack.back().test;
+}
+
+
+
+bool TestContext::ActiveTestStep::operator==(const ActiveTestStep &rhs) const
+{
+	return test == rhs.test && step == rhs.step;
+}
+
+
+
+bool TestContext::ActiveTestStep::operator<(const ActiveTestStep &rhs) const
+{
+	return test < rhs.test || (test == rhs.test && step < rhs.step);
 }
