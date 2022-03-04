@@ -12,8 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Armament.h"
 
-#include "Command.h"
 #include "Files.h"
+#include "FireCommand.h"
 #include "Outfit.h"
 #include "Ship.h"
 
@@ -198,7 +198,7 @@ int Armament::TurretCount() const
 
 
 // Adjust the aim of the turrets.
-void Armament::Aim(const Command &command)
+void Armament::Aim(const FireCommand &command)
 {
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 		hardpoints[i].Aim(command.Aim(i));
