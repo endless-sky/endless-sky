@@ -19,18 +19,6 @@ cd "${HERE}"
 EXECUTABLE="../endless-sky"
 RESOURCES="../"
 
-if [ -z "$XDG_RUNTIME_DIR" ];
-then
-    export XDG_RUNTIME_DIR=/run/user/$(id -u)
-fi
-
-if ! touch $XDG_RUNTIME_DIR/.can_i_write 2>/dev/null;
-then
-    export XDG_RUNTIME_DIR=~/.run/user/$(id -u)
-    mkdir -p $XDG_RUNTIME_DIR
-    chmod 700 $XDG_RUNTIME_DIR
-fi
-
 if ! command -v xvfb-run &> /dev/null; then
   echo "You must install Xvfb to run headless tests"
   exit 127
