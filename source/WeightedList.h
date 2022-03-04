@@ -102,6 +102,9 @@ typename std::vector<Type>::iterator WeightedList<Type>::eraseAt(typename std::v
 
 
 
+// Since WeightedList needs to be able to access the weights
+// of objects in the range being erased, under no circumstances
+// should std::remove_if be used on a WeightedList.
 template <class Type>
 typename std::vector<Type>::iterator WeightedList<Type>::erase(typename std::vector<Type>::iterator first, typename std::vector<Type>::iterator last) noexcept
 {
