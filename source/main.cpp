@@ -126,9 +126,9 @@ int main(int argc, char *argv[])
 		// all data now. (Sprites and sounds can safely be deferred.)
 		if(isConsoleOnly || !testToRunName.empty())
 		{
-			//dataLoading.wait();
 			while(!GameData::IsDataLoaded())
 				this_thread::yield();
+			dataLoading.wait();
 		}
 
 		if(!testToRunName.empty() && !GameData::Tests().Has(testToRunName))
