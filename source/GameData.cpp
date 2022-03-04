@@ -60,6 +60,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UniverseObjects.h"
 
 #include <algorithm>
+#include <future>
 #include <iostream>
 #include <map>
 #include <set>
@@ -202,6 +203,13 @@ double GameData::GetProgress()
 bool GameData::IsLoaded()
 {
 	return GetProgress() == 1.;
+}
+
+
+
+bool GameData::IsDataLoaded()
+{
+	return objects.GetProgress() == 1.;
 }
 
 
