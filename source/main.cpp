@@ -45,6 +45,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <thread>
 
 #include <cassert>
+#include <future>
 #include <stdexcept>
 #include <string>
 
@@ -124,7 +125,7 @@ int main(int argc, char *argv[])
 		// If we are not using the UI, or performing some automated task, we should load
 		// all data now. (Sprites and sounds can safely be deferred.)
 		if(isConsoleOnly || !testToRunName.empty())
-			dataLoading.wait();
+			dataLoading.get();
 
 		if(!testToRunName.empty() && !GameData::Tests().Has(testToRunName))
 		{
