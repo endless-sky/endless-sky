@@ -117,16 +117,16 @@ int main(int argc, char *argv[])
 	}
 	Files::Init(argv);
 
+	future<void> dataLoading;
 	try {
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printShips || printTests || printWeapons;
-		future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode);
+		dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode);
 
 		// If we are not using the UI, or performing some automated task, we should load
 		// all data now. (Sprites and sounds can safely be deferred.)
 		if(isConsoleOnly || !testToRunName.empty())
-			while(!GameData::IsDataLoaded())
-				std::this_thread::yield();
+			dataLoading.wait();
 
 		if(!testToRunName.empty() && !GameData::Tests().Has(testToRunName))
 		{
