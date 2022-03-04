@@ -348,7 +348,7 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 				continue;
 		}
 
-		// If this is a automaton then "required crew" can be 0, but not otherwise.
+		// Only automatons may have a "required crew" of 0.
 		if(!strcmp(at.first, "required crew"))
 			minimum = !attributes.Get("automaton");
 
