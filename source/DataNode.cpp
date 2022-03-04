@@ -104,9 +104,9 @@ double DataNode::Value(int index) const
 {
 	// Check for empty strings and out-of-bounds indices.
 	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
-		PrintTrace("Requested token index (" + to_string(index) + ") is out of bounds:");
+		PrintTrace("Error: Requested token index (" + to_string(index) + ") is out of bounds:");
 	else if(!IsNumber(tokens[index]))
-		PrintTrace("Cannot convert value \"" + tokens[index] + "\" to a number:");
+		PrintTrace("Error: Cannot convert value \"" + tokens[index] + "\" to a number:");
 	else
 		return Value(tokens[index]);
 
@@ -246,11 +246,7 @@ list<DataNode>::const_iterator DataNode::end() const noexcept
 int DataNode::PrintTrace(const string &message) const
 {
 	if(!message.empty())
-	{
-		// Put an empty line in the log between each error message.
-		Files::LogError("");
 		Files::LogError(message);
-	}
 
 	// Recursively print all the parents of this node, so that the user can
 	// trace it back to the right point in the file.
@@ -276,6 +272,10 @@ int DataNode::PrintTrace(const string &message) const
 			line += hasQuote ? '`' : '"';
 	}
 	Files::LogError(line);
+
+	// Put an empty line in the log between each error message.
+	if(!message.empty())
+		Files::LogError("");
 
 	// Tell the caller what indentation level we're at now.
 	return indent;

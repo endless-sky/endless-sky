@@ -125,7 +125,7 @@ void Planet::Load(const DataNode &node)
 		// Handle the attributes which can be "removed."
 		if(!hasValue)
 		{
-			child.PrintTrace("Expected key to have a value:");
+			child.PrintTrace("Error: Expected key to have a value:");
 			continue;
 		}
 		else if(key == "attributes")
@@ -154,7 +154,7 @@ void Planet::Load(const DataNode &node)
 		// Handle the attributes which cannot be "removed."
 		else if(remove)
 		{
-			child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
+			child.PrintTrace("Error: Cannot \"remove\" a specific value from the given key:");
 			continue;
 		}
 		else if(key == "landscape")
