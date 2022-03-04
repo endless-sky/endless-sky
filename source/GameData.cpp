@@ -206,13 +206,6 @@ bool GameData::IsLoaded()
 
 
 
-bool GameData::IsDataLoaded()
-{
-	return objects.GetProgress() == 1.;
-}
-
-
-
 // Begin loading a sprite that was previously deferred. Currently this is
 // done with all landscapes to speed up the program's startup.
 void GameData::Preload(const Sprite *sprite)
