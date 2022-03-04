@@ -125,7 +125,7 @@ int main(int argc, char *argv[])
 		// If we are not using the UI, or performing some automated task, we should load
 		// all data now. (Sprites and sounds can safely be deferred.)
 		if(isConsoleOnly || !testToRunName.empty())
-			while(dataLoading.wait_for(chrono::seconds(0)) != future_status::ready)
+			while(!GameData::IsDataLoaded())
 				std::this_thread::yield();
 
 		if(!testToRunName.empty() && !GameData::Tests().Has(testToRunName))
