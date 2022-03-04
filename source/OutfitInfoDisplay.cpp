@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Depreciation.h"
 #include "text/Format.h"
+#include "GameData.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
@@ -173,7 +174,7 @@ void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, b
 
 void OutfitInfoDisplay::UpdateShipStats(const Ship &ship)
 {
-	UpdateDescription("", {}, false);
+	UpdateDescription(GameData::Ships().Get(ship.ModelName())->Description(), {}, false);
 
 	requirementLabels.clear();
 	requirementValues.clear();
