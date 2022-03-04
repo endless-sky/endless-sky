@@ -20,7 +20,7 @@ EXECUTABLE="../endless-sky"
 RESOURCES="../"
 
 
-if ! command -v xvfb-run &> /dev/null
+if ! command -v xvfb-run &> /dev/null; then
   echo "You must install Xvfb to run headless tests"
   exit 127
 fi
