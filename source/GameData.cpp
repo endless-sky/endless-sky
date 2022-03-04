@@ -60,7 +60,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UniverseObjects.h"
 
 #include <algorithm>
-#include <future>
 #include <iostream>
 #include <map>
 #include <set>
