@@ -20,9 +20,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Government.h"
 #include "Hardpoint.h"
 #include "text/layout.hpp"
 #include "Outfit.h"
+#include "OutlineShader.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -232,12 +234,23 @@ int OutfitterPanel::DrawDetails(const Point &center)
 
 	int heightOffset = 20;
 
-	if(selectedOutfit)
+	if(selectedOutfit || selectedShip)
 	{
-		outfitInfo.Update(*selectedOutfit, player, CanSell());
-		selectedItem = selectedOutfit->Name();
+		const Sprite *thumbnail;
+		// Check if we have a ship selected, in which case we show its stats.
+		if(selectedShip)
+		{
+			outfitInfo.UpdateShipStats(*selectedShip);
+			selectedItem = selectedShip->Name();
+			thumbnail = selectedShip->Thumbnail();
+		}
+		else
+		{
+			outfitInfo.Update(*selectedOutfit, player, CanSell());
+			selectedItem = selectedOutfit->Name();
+			thumbnail = selectedOutfit->Thumbnail();
+		}
 
-		const Sprite *thumbnail = selectedOutfit->Thumbnail();
 		const Sprite *background = SpriteSet::Get("ui/outfitter selected");
 
 		float tileSize = thumbnail
@@ -283,7 +296,11 @@ int OutfitterPanel::DrawDetails(const Point &center)
 		Point reqsPoint(startPoint.X(), attrPoint.Y() + outfitInfo.AttributesHeight());
 
 		SpriteShader::Draw(background, thumbnailCenter);
-		if(thumbnail)
+
+		// If this is a ship's stats then draw the outline of the thumbnail.
+		if(thumbnail && selectedShip)
+			OutlineShader::Draw(thumbnail, thumbnailCenter, Point(thumbnail->Width(), thumbnail->Height()), Color(.8f, 1.f));
+		else if(thumbnail)
 			SpriteShader::Draw(thumbnail, thumbnailCenter);
 
 		outfitInfo.DrawAttributes(attrPoint);

@@ -18,9 +18,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+class Outfit;
 class PlayerInfo;
 class Point;
-class Outfit;
+class Ship;
 
 
 
@@ -32,8 +33,9 @@ public:
 	OutfitInfoDisplay() = default;
 	OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player, bool canSell = false);
 
-	// Call this every time the ship changes.
+	// Call this every time the outfit changes.
 	void Update(const Outfit &outfit, const PlayerInfo &player, bool canSell = false);
+	void UpdateShipStats(const Ship &ship);
 
 	// Provided by ItemInfoDisplay:
 	// int PanelWidth();

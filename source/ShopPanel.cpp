@@ -264,12 +264,13 @@ void ShopPanel::DrawShipsSidebar()
 		point.X() += ICON_TILE;
 	}
 	point.Y() += ICON_TILE;
+	shipTilesEndY = point.Y();
 
 	if(playerShip)
 	{
 		point.Y() += SHIP_SIZE / 2;
 		point.X() = Screen::Right() - SIDEBAR_WIDTH / 2;
-		DrawShip(*playerShip, point, true);
+		DrawShip(*playerShip, point, true, true);
 
 		Point offset(SIDEBAR_WIDTH / -2, SHIP_SIZE / 2);
 		sideDetailHeight = DrawPlayerShipInfo(point + offset);
@@ -493,7 +494,7 @@ void ShopPanel::DrawMain()
 
 
 
-void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
+void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected, bool clickSelectShipAttributes)
 {
 	const Sprite *back = SpriteSet::Get(
 		isSelected ? "ui/shipyard selected" : "ui/shipyard unselected");
@@ -510,13 +511,18 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	const Sprite *sprite = ship.GetSprite();
 	int swizzle = ship.CustomSwizzle() >= 0 ? ship.CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
 	if(thumbnail)
-		SpriteShader::Draw(thumbnail, center + Point(0., 10.), 1., swizzle);
+	{
+		auto pos = center + Point(0., 10.);
+		SpriteShader::Draw(thumbnail, pos, 1., swizzle);
+		zones.emplace_back(pos, Point(thumbnail->Width(), thumbnail->Height()), &ship);
+	}
 	else if(sprite)
 	{
 		// Make sure the ship sprite leaves 10 pixels padding all around.
 		const float zoomSize = SHIP_SIZE - 60.f;
 		float zoom = min(1.f, zoomSize / max(sprite->Width(), sprite->Height()));
 		SpriteShader::Draw(sprite, center, zoom, swizzle);
+		zones.emplace_back(center, Point(sprite->Width(), sprite->Height()), &ship);
 	}
 }
 
@@ -764,19 +770,24 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 			if(zone.GetShip())
 			{
 				// Is the ship that was clicked one of the player's?
-				for(const shared_ptr<Ship> &ship : player.Ships())
-					if(ship.get() == zone.GetShip())
-					{
-						dragShip = ship.get();
-						dragPoint.Set(x, y);
-						SideSelect(dragShip);
-						return true;
-					}
+				if(clickPoint.Y() < shipTilesEndY)
+					for(const shared_ptr<Ship> &ship : player.Ships())
+						if(ship.get() == zone.GetShip())
+						{
+							dragShip = ship.get();
+							dragPoint.Set(x, y);
+							SideSelect(dragShip);
+							return true;
+						}
 
 				selectedShip = zone.GetShip();
+				selectedOutfit = nullptr;
 			}
 			else
+			{
 				selectedOutfit = zone.GetOutfit();
+				selectedShip = nullptr;
+			}
 
 			// Scroll details into view in Step() when the height is known.
 			scrollDetailsIntoView = true;

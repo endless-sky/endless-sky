@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Format.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
+#include "Ship.h"
 
 #include <algorithm>
 #include <cmath>
@@ -158,12 +159,57 @@ OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &pla
 
 
 
-// Call this every time the ship changes.
+// Call this every time the outfit changes.
 void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, bool canSell)
 {
 	UpdateDescription(outfit.Description(), outfit.Licenses(), false);
 	UpdateRequirements(outfit, player, canSell);
 	UpdateAttributes(outfit);
+
+	maximumHeight = max(descriptionHeight, max(requirementsHeight, attributesHeight));
+}
+
+
+
+void OutfitInfoDisplay::UpdateShipStats(const Ship &ship)
+{
+	UpdateDescription("", {}, false);
+
+	requirementLabels.clear();
+	requirementValues.clear();
+
+	attributeLabels.clear();
+	attributeValues.clear();
+	attributesHeight = 20;
+	for(const auto &it : ship.Attributes().Attributes())
+	{
+		static const set<string> SKIP = {
+			"outfit space", "weapon capacity", "engine capacity", "gun ports", "turret mounts",
+			"drag", "unplunderable", "installable", "minable", "atrocity", "bunks", "cargo space",
+			"energy capacity", "energy generation", "fuel capacity", "hull",  "heat generation",
+			"hull repair rate", "required crew", "shield generation", "shields", 
+		};
+		if(SKIP.count(it.first))
+			continue;
+
+		auto sit = SCALE.find(it.first);
+		double scale = (sit == SCALE.end() ? 1. : SCALE_LABELS[sit->second].first);
+		string units = (sit == SCALE.end() ? "" : SCALE_LABELS[sit->second].second);
+
+		auto bit = BOOLEAN_ATTRIBUTES.find(it.first);
+		if(bit != BOOLEAN_ATTRIBUTES.end())
+		{
+			attributeLabels.emplace_back(bit->second);
+			attributeValues.emplace_back(" ");
+			attributesHeight += 20;
+		}
+		else
+		{
+			attributeLabels.emplace_back(static_cast<string>(it.first) + ":");
+			attributeValues.emplace_back(Format::Number(it.second * scale) + units);
+			attributesHeight += 20;
+		}
+	}
 
 	maximumHeight = max(descriptionHeight, max(requirementsHeight, attributesHeight));
 }

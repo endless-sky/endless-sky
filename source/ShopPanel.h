@@ -47,7 +47,7 @@ protected:
 	void DrawButtons();
 	void DrawMain();
 
-	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
+	void DrawShip(const Ship &ship, const Point &center, bool isSelected, bool clickSelectShipAttributes = false);
 
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
@@ -175,6 +175,11 @@ private:
 	// Check if the given point is within the button zone, and if so return the
 	// letter of the button (or ' ' if it's not on a button).
 	char CheckButton(int x, int y);
+
+
+private:
+	// The Y coordinate where the last tile of the player's ships ends.
+	double shipTilesEndY = 0.;
 };
 
 
