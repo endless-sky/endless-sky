@@ -330,15 +330,15 @@ jobs:
           - os: ubuntu-20.04
             opengl: desktop
             glew: libglew2.1
-          - os: ubuntu-18.04
-            opengl: desktop
-            glew: libglew2.0
+          # - os: ubuntu-18.04
+          #   opengl: desktop
+          #   glew: libglew2.0
           - os: ubuntu-20.04
             opengl: gles
             glew: libgles2-mesa
-          - os: ubuntu-18.04
-            opengl: gles
-            glew: libgles2-mesa
+          # - os: ubuntu-18.04
+          #   opengl: gles
+          #   glew: libgles2-mesa
     steps:
     - uses: actions/checkout@v2
     - name: Install runtime dependencies
