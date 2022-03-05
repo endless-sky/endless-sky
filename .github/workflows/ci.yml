@@ -347,7 +347,7 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 uuid-runtime
     - name: Install xvfb runtime dependencies
-      run: sudo apt-get install -y --no-install-recommends libosmesa6 mesa-utils libglx-mesa0 # TODO: ALSA mocking?
+      run: sudo apt-get install -y --no-install-recommends libosmesa6 mesa-utils # TODO: ALSA mocking?
     - name: Download artifact
       uses: actions/download-artifact@v1.0.0
       with:
