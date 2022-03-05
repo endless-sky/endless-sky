@@ -19,7 +19,7 @@ cd "${HERE}"
 EXECUTABLE="../endless-sky"
 RESOURCES="../"
 
-if ! command -v xvfb-run &> /dev/null; then
+if ! command -v xvfb-run > /dev/null 2>&1; then
   echo "You must install Xvfb to run headless tests"
   exit 127
 fi
@@ -27,5 +27,4 @@ fi
 # Force OpenGL software mode
 export LIBGL_ALWAYS_SOFTWARE=1
 
-xvfb-run --auto-servernum --server-args="+extension GLX +render -noreset" ./run_tests.sh "${EXECUTABLE}" "${RESOURCES}"
-exit $?
+exec xvfb-run --auto-servernum --server-args="+extension GLX +render -noreset" ./run_tests.sh "${EXECUTABLE}" "${RESOURCES}"
