@@ -3968,9 +3968,6 @@ mission "Stones of Skadenga 1"
 			choice
 				`	(Return the mourning Skadenga to Windblain.)`
 					goto home
-				`	(Leave them here.)`
-			`	You let them know that you only agreed to take them here, not bring them back. You shut your hatch and leave them to fend for themselves.`
-				decline
 			label home
 			`	They thank you and board your ship.`
 				accept
