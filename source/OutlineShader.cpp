@@ -67,7 +67,6 @@ void OutlineShader::Init()
 	static const char *fragmentCode =
 		"// fragment outline shader\n"
 		"precision mediump float;\n"
-		"precision mediump sampler2DArray;\n"
 		"uniform sampler2DArray tex;\n"
 		"uniform float frame;\n"
 		"uniform float frameCount;\n"
