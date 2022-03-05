@@ -72,6 +72,7 @@
 		<Unit filename="tests/src/test_conditionSet.cpp" />
 		<Unit filename="tests/src/test_datanode.cpp" />
 		<Unit filename="tests/src/test_esuuid.cpp" />
+		<Unit filename="tests/src/test_formationPattern.cpp" />
 		<Unit filename="tests/src/test_main.cpp" />
 		<Unit filename="tests/src/test_point.cpp" />
 		<Unit filename="tests/src/test_random.cpp" />
