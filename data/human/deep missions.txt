@@ -3163,7 +3163,7 @@ mission "Home for Skadenga 2"
 			choice
 				`	"But they're leaving. So what's the problem?"`
 			`	Henrik clears his throat. "Leaving, yes, but to where? These poor people are in grave need of our help, our public services. Their primitive, superstitious existence is both an embarrassment to The Deep, and a humanitarian crisis that we need to solve."`
-			`	"The Deep would never forcibly resettle a population. But with your help, we have an opportunity to guide them to a place where they could receive the help they need. We know you recently visited Windblain and Asgard. Sending them to Windblain, a barely inhabited world with no useful public services, would be a huge mistake. These poor wretches disappear into the wild cracks there. Asgard, however, has a robust civil service and safety net that would be perfect to help them adapt to our modern culture."`
+			`	"The Deep would never forcibly resettle a population. But with your help, we have an opportunity to guide them to a place where they could receive the help they need. We know you recently visited Windblain and Asgard. Sending them to Windblain, a barely inhabited world with no useful public services, would be a huge mistake. These poor wretches would disappear into the uncharted wilds. Asgard, however, has a robust civil service and safety net that would be perfect to help them adapt to our modern culture."`
 			`	"This is why I asked the Vice Planetary-Governor to hold this meeting. The Deep needs you to convince these poor, backwards people that they should live on Asgard." Henrik shrugs. "For all we know, you've already decided to tell them Asgard is the best choice, in which case we're really not asking you to do anything you weren't already planning on doing. We will also help facilitate the move by providing transportation. Furthermore, for your support in this delicate matter, we will transfer 850,000 credits to your account upon their arrival in Asgard. Really, everyone wins this way."`
 			choice
 				`	"But the Skadenga-"`
@@ -3276,7 +3276,7 @@ mission "Home for Skadenga 4"
 				set "Nifel"
 			`	You answer, "There is a nearly abandoned village called Hrithfjall next to a coastal God-Stone. Something about that place felt right. I believe that is where the Skadenga should migrate."`
 			`	Hjlod nods. "Hrithfjall sounds like good place. I vill tell Ondurdis.`
-			goto end
+					goto end
 			label asgard
 			apply
 				set "Asgard"
@@ -3377,7 +3377,7 @@ mission "Home for Skadenga 6"
 			`You arrive at the spaceport to see a Union Executive overseeing the final preparations of his fleet. After a moment, the last crewmembers leave his side and board their ships. He walks over to you. "The fleet is ready to launch. Please, try to bring them back to me in one piece."`
 			choice
 				`	"Let's get this over with."`
-				`	"Don't worry, your ships are in good hands."
+				`	"Don't worry, your ships are in good hands."`
 				`	"It's time to take the Skadenga home."`
 			`	The ground you are standing on shakes as the ships begin to launch.`
 				accept
@@ -3624,7 +3624,7 @@ mission "Home for Skadenga 8"
 			`The Transport Union employee is waiting for you near the entrance. He's wearing a wide-brimmed hat, a bulky scarf, a long coat with an up-turned collar, and sunglasses. You worry his over-the-top efforts to look nondescript will only draw more attention.`
 			`	"Can't speak long," he says. "It's too dangerous. I can't afford to be seen with you."`
 			`	You ask him what this is all about.`
-			`	"I don't agree with what the Union or The Deep are doing. I was raised in a small town where we still respected our past, and I couldn't just sit around and do nothing. So listen: with the Union against you, there's no transport company that will pick up your contract, with one exception. There's an old renegade mineral baron on <planet>. He hates the Union, and may be willing to do what you ask."`
+			`	"I don't agree with what the Union or The Deep are doing. I was raised in a small town where we still respected our past, and I couldn't just sit around and do nothing. So listen: with the Union against you, there's no transport company that will pick up your contract, with one exception. There's a bold renegade mineral baron on <planet>. He hates the Union, and may be willing to do what you ask."`
 			choice
 				`	"How do I find him?"`
 			`	The Union employee begins moving away from you. "Name's Hroar. You can usually find him in the Red Rock Saloon, inside the Muspel Spaceport."`
@@ -3658,7 +3658,7 @@ mission "Home for Skadenga 9"
 				`	"I'm looking for Hroar."`
 			`	For a moment nothing happens, and then a gruff voice spirals out from a dark corner. "Back here."`
 			scene "scene/hroar"
-			`	You walk to the back of the saloon and find a older man with long grey handlebar mustache seated with his back against the wall, and a bottle of whiskey on his otherwise empty table. "Have a seat," he says.`
+			`	You walk to the back of the saloon and find a gruff man in a long reddish-brown jacket seated with his back against the wall, and a bottle of whiskey on his otherwise empty table. "Have a seat," he says.`
 			`	After you sit, he places a gun on the table. "So the Allen boys think they can send some greenhorn killer to take me out?" Hroar barks a laugh. "Not likely." With his free hand, he takes a swig of his whiskey. "Here's what's going to happen. I am not going to kill you. Only maim you, a bit. And you tell the Allen boys that the next person they send will come back even worse. We had a deal, and I expect them to keep it."`
 			choice
 				`	"You got the wrong person. I don't even know who the Allen boys are.`
@@ -3968,9 +3968,6 @@ mission "Stones of Skadenga 1"
 			choice
 				`	(Return the mourning Skadenga to Windblain.)`
 					goto home
-				`	(Leave them here.)`
-			`	You let them know that you only agreed to take them here, not bring them back. You shut your hatch and leave them to fend for themselves.`
-				decline
 			label home
 			`	They thank you and board your ship.`
 				accept
@@ -3993,7 +3990,8 @@ mission "Stones of Skadenga 2"
 	name "Stones of Skadenga"
 	description "Take the mourning Skadenga to <destination>, so that they can enact the rites of their dead."
 	source "Windblain"
-	destination "Nifel"
+	destination "Windblain"
+	stopover "Nifel"
 	passengers 8
 	landing
 	to offer
@@ -4001,44 +3999,24 @@ mission "Stones of Skadenga 2"
 		has "Stones of Skadenga 1: done"
 	on offer
 		dialog
-			`A group of eight Skadenga approach you. They ask if you'd be willing to take them to <destination> so that they can return their loved-one's stones to their Family-Cairns, offering <payment> for their transportation to.`
+			`A group of eight Skadenga approach you. They ask if you'd be willing to take them to <destination> so that they can return their loved-one's stones to their Family-Cairns, offering <payment> for their transportation.`
+	on stopover
+		dialog
+			`The eight Skadenga solmenly make their way off your ship and into the icy lands of Nifel. After a few hours they return, cold, and eager to return home to Windblaine.`
 	on complete
+		dialog
+			`The Skadenga are happy to be home. The churning seas of <planet> lift their spirits, and they head out into the sea-sweet air.`
 		payment 80000
 
 
 
+
+
 mission "Stones of Skadenga 3"
-	name "Stones of Skadenga"
-	description "Return the Skadenga mourners to <destination>."
-	source "Nifel"
-	destination "Windblain"
-	passengers 8
-	to offer
-		has "Stones of Skadenga 2: done"
-	on offer
-		conversation
-			`The Skadenga wander past the ruins of Udainsakr and make their way to the Family-Cairns before the ice-covered Goddess-Stone of Skade. They say their words, shed their tears, and leave their stones.`
-			`	The mourners ask if you can take them back to <planet>. They have already paid you all their money, and cannot afford any  more for a ride home.`
-			choice
-				`	(Return the mourning Skadenga to <planet>.)`
-					goto home
-				`	(Leave them here.)`
-			`	You let them know that you only agreed to take them here, not bring them back. You shut your hatch and leave them to fend for themselves.`
-				decline
-			label home
-			`	They thank you and board your ship.`
-				accept
-	on complete
-		dialog
-			`The Skadenga are happy to be home. The churning seas of <planet> lift their spirits, and they head out into the sea-sweet air.`
-
-
-
-mission "Stones of Skadenga 4"
 	invisible
 	source "Windblain"
 	to offer
-		has "Stones of Skadenga 3: done"
+		has "Stones of Skadenga 2: done"
 	on offer
 		conversation
 			`You're surprised to see the Ondurdis walking toward you.`
@@ -4050,44 +4028,26 @@ mission "Stones of Skadenga 4"
 mission "Stone-Bearers to Nifel"
 	description "Take the mourning Skadenga to <destination> so that they can enact the rites of their dead."
 	source "Windblain"
-	destination "Nifel"
+	stopover "Nifel"
+	destination "Windblain"
 	passengers 1 10 .9
 	job
 	repeat
 	to offer
-		has "Stones of Skadenga 4: offered"
+		has "Stones of Skadenga 3: offered"
 		random < 30
 	on accept
 		dialog
 			`The mourning Skadenga board your ship.`
 	on visit
 		dialog phrase "generic passenger on visit"
+	on stopover
+		dialog
+			`The mourners take their small stones and head off to visit the cairns of their ancestors. After some time they return to your ship, happy to see the frozen-wastes of Nifel left behind.`
 	on complete
 		payment
 		dialog
-			`The mourners take their small stones and head off to visit the cairns of their ancestors.`
-
-
-
-mission "Stone-Bearers to <planet>"
-	job
-	repeat
-	source "Nifel"
-	destination "Windblain"
-	passengers 1 10 .9
-	description "Return the Skadenga Stone-Bearers to <destination>."
-	to offer
-		has "Stone-Bearers to Nifel: done"
-		random < 30
-	on offer
-		dialog
-			`The Skadenga mourners embark on your ship, happy to see the ice-ball of Nifel left behind.`
-	on visit
-		dialog phrase "generic passenger on visit"
-	on complete
-		payment
-		dialog
-			`The Skadenga disembark and return to their lives on Windblain.`
+			`The Skadenga disembark and return to their lives on Windblain..`
 
 
 
