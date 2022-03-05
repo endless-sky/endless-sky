@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 
 # Run headless "acceptance tests" using Xvfb
@@ -6,7 +6,7 @@ set -e
 # about the state of the game universe. Some tests will involve issuing basic commands.
 
 # TODO: When this script is made cross-platform, replace this OS check with a check for Xvfb and other required resources.
-if [[ $OSTYPE == 'msys' ]] || [[ $OS == 'Windows_NT' ]] || [[ $(uname) == 'Darwin' ]]; then
+if [ "$OSTYPE" == 'msys' ] || [ "$OS" == 'Windows_NT' ] || [ "$(uname)" == 'Darwin' ]; then
   echo "Headless testing is not supported on this platform"
   exit 126
 fi
