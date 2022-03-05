@@ -1200,7 +1200,6 @@ Comment: Taken from https://freesound.org/people/pluralz/sounds/475806/
 Files: images/scene/citydark
 images/scene/buildings
 images/scene/busysteet
-images/scene/hroar
 images/scene/iceplains
 images/scene/iceplains2
 images/scene/iceplains3
@@ -1213,18 +1212,13 @@ images/scene/snowfield
 images/scene/snowvillage
 images/scene/sunet
 images/scene/tower
-Copyright: Smithsonian
-License: CC0 (Creative Commons Zero)/Public-Domain
-Comment: These are part of the Smithsonian's Open Access Library which has been made public-domain https://www.si.edu/openaccess/faq
-
-Files: images/scene/icepicture
+images/scene/icepicture
 images/scene/snowplains
-Copyright: NASA
-License: public-domain
-From NASA, and therefore in the public domain because they were created by
-government employees while doing work for the government.
+Copyright: unsplash.com/
+License: CC0 (Creative Commons Zero)/Public-Domain
 
 Files: images/outfits/skadetear
+images/scenes/hroar
 Copyright: Dane Crowton
 License: CC-BY-SA-4.0
 
