@@ -3658,7 +3658,7 @@ mission "Home for Skadenga 9"
 				`	"I'm looking for Hroar."`
 			`	For a moment nothing happens, and then a gruff voice spirals out from a dark corner. "Back here."`
 			scene "scene/hroar"
-			`	You walk to the back of the saloon and find a older man with long grey handlebar mustache seated with his back against the wall, and a bottle of whiskey on his otherwise empty table. "Have a seat," he says.`
+			`	You walk to the back of the saloon and find a gruff man in a long reddish-brown jacket seated with his back against the wall, and a bottle of whiskey on his otherwise empty table. "Have a seat," he says.`
 			`	After you sit, he places a gun on the table. "So the Allen boys think they can send some greenhorn killer to take me out?" Hroar barks a laugh. "Not likely." With his free hand, he takes a swig of his whiskey. "Here's what's going to happen. I am not going to kill you. Only maim you, a bit. And you tell the Allen boys that the next person they send will come back even worse. We had a deal, and I expect them to keep it."`
 			choice
 				`	"You got the wrong person. I don't even know who the Allen boys are.`
