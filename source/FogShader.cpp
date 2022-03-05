@@ -76,7 +76,6 @@ void FogShader::Init()
 
 	static const char *fragmentCode =
 		"// fragment fog shader\n"
-		"precision mediump sampler2D;\n"
 		"precision mediump float;\n"
 		"uniform sampler2D tex;\n"
 
