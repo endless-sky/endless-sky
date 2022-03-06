@@ -3344,7 +3344,7 @@ mission "Home for Skadenga 5"
 	landing
 	description "Travel to <destination> to prepare the Transport Union Fleet."
 	to offer
-		has	"asgard"
+		has "Asgard"
 	source "Valhalla"
 	destination "Mani"
 	on complete
