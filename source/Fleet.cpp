@@ -273,28 +273,19 @@ bool Fleet::IsValid(bool requireGovernment) const
 
 void Fleet::RemoveInvalidVariants()
 {
-	auto IsInvalidVariant = [](const WeightedVariant &v) noexcept -> bool
-	{
-		return !v.Get().IsValid();
-	};
-	auto firstInvalid = find_if(variants.begin(), variants.end(), IsInvalidVariant);
-	if(firstInvalid == variants.end())
-		return;
-
 	// Ensure the class invariant can be maintained.
-	// (This must be done first as we cannot do anything but `erase` elements filtered by `remove_if`.)
-	int removedWeight = 0;
-	for(auto it = firstInvalid; it != variants.end(); ++it)
-		if(IsInvalidVariant(*it))
-			removedWeight += it->Weight();
+	int count = 0;
+	int total = variants.TotalWeight();
+	for(auto it = variants.begin(); it != variants.end(); ++it)
+		if(!it->Get().IsValid())
+		{
+			it = variants.eraseAt(it);
+			++count;
+		}
 
-	auto removeIt = remove_if(firstInvalid, variants.end(), IsInvalidVariant);
-	int count = distance(removeIt, variants.end());
 	Files::LogError("Warning: " + (fleetName.empty() ? "unnamed fleet" : "fleet \"" + fleetName + "\"")
 		+ ": Removing " + to_string(count) + " invalid " + (count > 1 ? "variants" : "variant")
-		+ " (" + to_string(removedWeight) + " of " + to_string(variants.TotalWeight()) + " weight)");
-
-	variants.erase(removeIt, variants.end());
+		+ " (" + to_string(total - variants.TotalWeight()) + " of " + to_string(total) + " weight)");
 }
 
 
