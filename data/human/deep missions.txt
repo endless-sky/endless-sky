@@ -3077,7 +3077,7 @@ mission "Home for Skadenga 1"
 				has "put on jacket"
 			`	A lone figure stands next to the idling shuttle. As you draw closer you recognize Hjlod.` 
 			`	"I just vant to thank you." Hjlod's grey-blue eyes glitter in the morning light. "I alvays say Hjlod keep tourist safe. But yesterday you save Hjlod. I vill not forgot, know this."`
-			goto lopsided
+				goto lopsided
 			label threefingers
 			`	A lone figure stands next to the idling shuttle. As you draw closer, you recognize Hjlod. "You see," she says, "Stick with Hjlod, and you live, probably." She holds up a bandaged, three-fingered hand and shrugs. "Mostly."`
 			label lopsided
