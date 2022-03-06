@@ -36,6 +36,17 @@ class Weapon;
 // projectiles that may look different or travel in a new direction.
 class Projectile : public Body {
 public:
+	class ImpactInfo {
+	public:
+		ImpactInfo(const Weapon &weapon, Point position, double distanceTraveled)
+			: weapon(weapon), position(std::move(position)), distanceTraveled(distanceTraveled) {}
+
+		const Weapon &weapon;
+		Point position;
+		double distanceTraveled;
+	};
+
+public:
 	Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon);
 	Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon);
 	// Ship explosion.
@@ -65,6 +76,8 @@ public:
 	int MissileStrength() const;
 	// Get information on the weapon that fired this projectile.
 	const Weapon &GetWeapon() const;
+	// Get information on how this projectile impacted a ship.
+	ImpactInfo GetInfo() const;
 
 	// Find out which ship or government this projectile is targeting. Note:
 	// this pointer is not guaranteed to be dereferenceable, so only use it

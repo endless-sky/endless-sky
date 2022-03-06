@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define ES_AI_H_
 
 #include "Command.h"
+#include "FireCommand.h"
 #include "Point.h"
 
 #include <cstdint>
@@ -122,11 +123,11 @@ private:
 	static Point TargetAim(const Ship &ship);
 	static Point TargetAim(const Ship &ship, const Body &target);
 	// Aim the given ship's turrets.
-	void AimTurrets(const Ship &ship, Command &command, bool opportunistic = false) const;
+	void AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic = false) const;
 	// Fire whichever of the given ship's weapons can hit a hostile target.
 	// Return a bitmask giving the weapons to fire.
-	void AutoFire(const Ship &ship, Command &command, bool secondary = true) const;
-	void AutoFire(const Ship &ship, Command &command, const Body &target) const;
+	void AutoFire(const Ship &ship, FireCommand &command, bool secondary = true) const;
+	void AutoFire(const Ship &ship, FireCommand &command, const Body &target) const;
 
 	// Calculate how long it will take a projectile to reach a target given the
 	// target's relative position and velocity and the velocity of the
@@ -188,6 +189,10 @@ private:
 
 	// Command applied by the player's "autopilot."
 	Command autoPilot;
+	// General firing command for ships. This is a data member to avoid
+	// thrashing the heap, since we can reuse the the storage for
+	// each ship.
+	FireCommand firingCommands;
 
 	bool isCloaking = false;
 

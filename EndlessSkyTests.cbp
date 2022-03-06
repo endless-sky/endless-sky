@@ -69,15 +69,21 @@
 		</Linker>
 		<Unit filename="tests/src/helpers/datanode-factory.cpp" />
 		<Unit filename="tests/src/test_account.cpp" />
+		<Unit filename="tests/src/test_angle.cpp" />
+		<Unit filename="tests/src/test_bitset.cpp" />
 		<Unit filename="tests/src/test_conditionSet.cpp" />
+		<Unit filename="tests/src/test_datafile.cpp" />
 		<Unit filename="tests/src/test_datanode.cpp" />
 		<Unit filename="tests/src/test_esuuid.cpp" />
+		<Unit filename="tests/src/test_firecommand.cpp" />
 		<Unit filename="tests/src/test_main.cpp" />
 		<Unit filename="tests/src/test_point.cpp" />
 		<Unit filename="tests/src/test_random.cpp" />
 		<Unit filename="tests/src/test_set.cpp" />
 		<Unit filename="tests/src/test_ship.cpp" />
 		<Unit filename="tests/src/test_weightedList.cpp" />
+		<Unit filename="tests/src/comparators/test_byGivenOrder.cpp" />
+		<Unit filename="tests/src/comparators/test_byName.cpp" />
 		<Unit filename="tests/src/text/test_alignment.cpp" />
 		<Unit filename="tests/src/text/test_displaytext.cpp" />
 		<Unit filename="tests/src/text/test_format.cpp" />
