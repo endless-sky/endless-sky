@@ -3007,7 +3007,7 @@ mission "Home for Skadenga 1"
 			branch "bodyaches"
 				has "put on jacket"
 			`	The pale morning light of the first sun filters in through a synthetic window and onto your face. You try to escape back into sleep, but something feels off and groggily you peer out at your surroundings.`
-			goto barracks
+				goto barracks
 			label bodyaches
 			`	The pale morning light of the first sun filters in through a synthetic window and onto your face. Your body aches and you try to sink back into sleep, but something feels off and you focus on your surroundings.`
 			label barracks
