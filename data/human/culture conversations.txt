@@ -211,7 +211,7 @@ mission "Blind Landing"
 				`	(Return to orbit.)`
 					goto orbit
 			`	You let the craft perform the landing, staring blankly at the haze until it clears.`
-			`	On the ground, you see the cause, fields upon fields of plantations burning. You see people arguing with firefighters, trying to stop them from putting out the flames as planes fly overhead, dropping water and retardants wherever necessary.`
+			`	On the ground, you see the cause, fields upon fields of plantations burning. You see a crowd of mostly farmers blocking off a smaller group of firefighters, arguing and trying to stop them from putting out the flames as planes fly overhead, dropping water and retardants wherever necessary.`
 			`	You recall seeing something like this years ago, of farmers burning their crops to make the land fertile, and how bad the air was for months.`
 				decline
 			label orbit
