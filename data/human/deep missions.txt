@@ -3303,7 +3303,7 @@ mission "Home for Skadenga 4"
 				`	"That's fantastic news! The Skakenga will need transport to Windblain."`
 				`	"They need to go to Windblain."`
 			`	A hush falls over the room, and both Braiden and Grayden look to Kaiden with confused expressions on their faces.`
-			`	"Wind. Blain." Kaiden says slowly. "Wiiiindblaaain. Are you sure that is the world these sad, simple, civilians wish to travel to? Maybe you got an invoice mixed up? Perhaps wrote the wrong name down?" Braiden and Grayden both silently nod.`
+			`	"Wind. Blain." Kaiden says slowly. "Wiiiindblaaain. Are you sure that is the world these simple people wish to travel to? Maybe you got an invoice mixed up? Perhaps wrote the wrong name down?" Braiden and Grayden both silently nod.`
 			choice
 				`	"Windblain. Yes. I am sure."`
 				`	"Did I stutter?"`
