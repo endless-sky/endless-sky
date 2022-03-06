@@ -587,6 +587,30 @@ mission "Unfettered: Bring Medical Supplies"
 
 
 
+outfit "Gold Bars"
+	category "Special"
+	cost 64000
+	thumbnail "outfit/gold bars"
+	mass 2.1
+	description "It shines, you can feel its value. For some reason, the text 'nemo me impune lacessit' is written on them, you wonder what that could mean... Surely nothing to worry about. Most outfitters are not real 'connaisseurs' of the value these hold though, and would not give you any more than the price of brute gold for it."
+
+ship "Sea Scorpion" "Sari'Sea Scorpion (Pulse)"
+	outfits
+		"Pulse Cannon" 5
+		"Pulse Turret" 2
+		"Boulder Reactor"
+		"Hai Williwaw Cooling" 2
+		"Hai Ravine Batteries"
+		"Supercapacitor" 5
+		"Hai Diamond Regenerator" 2
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Hyperdrive"
+		"Pulse Rifle" 15
+	cargo
+		outfits
+			"Gold Bars" 15	
+
 mission "Unfettered: Prove Your Strength"
 	name `Defeat the captain`
 	description `A young Unfettered captain has provoked you in a duel, disable his ship.`
@@ -628,7 +652,7 @@ mission "Unfettered: Prove Your Strength"
 			`	As you move away you hear laughter, but nobody tries to stop you. You have just shown to the Unfettered how much of a coward you are, and will probably never be offered any missions from them anymore.`
 				decline
 			label rules
-			`	"I guess you ought to know... You are supposed to bring only your flagship but if it is too weak then more ships can be accepted, so long as it is a fair battle. It will last until either one of our ship is disabled, or one of us gives up. You can call it to later at any given time for a symbolic bribe of 1000. Also it is tolerated that the victor plunders the ashamed, but not boards or kills. So, are you ready to fight?"`
+			`	"I guess you ought to know... You are supposed to bring only your flagship but if it is too weak then more ships can be accepted, so long as it is a fair battle. It will last until either one of our ship is disabled, or one of us gives up. You can call it to later at any given time for a symbolic bribe of 1000. Also it is sometimes tolerated that the victor plunders the ashamed, but absolutely not that he tries to capture his ship. So, are you ready to fight?"`
 			choice
 				`	"Let me show you my worth in battle. Right now."`
 					accept
@@ -637,7 +661,7 @@ mission "Unfettered: Prove Your Strength"
 	npc save disable
 		government "Hai (Unfettered Challenge)"
 		personality disables staying heroic target
-		ship "Sea Scorpion (Pulse)" "Intrepid"
+		ship "Sari'Sea Scorpion (Pulse)" "Intrepid"
 		conversation
 			`Now that you have disabled the <npc> its captain hails you, "It seems you fight well, you have earned my respect today," he says with a voice so calm you are surprised it came from the same captain who minutes ago was provoking you for no apparent reason. In the background you can hear a fire roaring, it looks like the damage to his ship was serious.`
 			choice
@@ -728,7 +752,7 @@ mission "Unfettered: Prove Your Strength 2"
 				accept
 	
 	on visit
-		dialog `You left your escort allocated to carrying the jump drives behind, better launch and wait for it. Either that or you have not went to <destination> to get the jump drives.`
+		dialog `You do not have the jump drives. You either did not go to <destination> to get the jump drives yet, or left your escort allocated to carrying the jump drives behind, in which case better launch and wait for it.`
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	to complete
@@ -844,6 +868,141 @@ mission "Unfettered: Jump Drive Retrieval"
 		system "Almaaz"
 		fleet "Large Northern Pirates"
 		fleet "Small Northern Pirates" 2
+
+
+
+mission "Unfettered: Nemo Me Impune Lacessit"
+	invisible
+	repeat
+	landing
+	to offer
+		has "Unfettered: Jump Drive Retrieval: done"
+		random < 5
+	on offer
+		require "Gold Bars"
+	npc kill
+		government "Mercenaries"
+		system
+			distance 2 5
+		fleet "Large Northern Pirates"
+		fleet "Small Northern Pirates" 4
+		dialog `After killing of the last of the pirate ships, you wonder what could have motivated such an attack. Maybe you possess something valuable to them? When they entered the system they only sent one message: "nemo me impune lacessit". Whatever it is they were up against, probably best to store it on a planet (using U) or get rid of it.`
+
+mission "Unfettered: I Shall Go Unpunished"
+	landing
+	source
+		government "Pirate"
+	to offer
+		random < 40
+		has "Unfettered: Jump Drive Retrieval: done"
+		has "flagship crew" > 4
+	on offer
+		require "Gold Bars" 5
+		conversation
+			`As you land on the pirate world, you head for the hatch, preparing to get on the surface, but passing by the cargo bay you think you hear a sound. Odd... There should not be anyone there right now, knowing your crew's habits.`
+			choice
+				`(Its nothing, probably just a rat).`
+					goto lostbars
+				`(Go investigate).`
+			`Arming yourself of your side weapon, you approach the bay as discretely as you can. Worst case scenario is you find one of your own crew, in which case you better not overeact, or someone could get hurt.`
+			choice
+				`(Ask if someone is there).`
+					goto hello
+				`(Never too careful).`
+			`You go into the cargo bay, on your guards. As you enter you think you saw something move, on your left. There is not much time to think.`
+			choice
+				`(Call my crew to help).`
+				`(Run in that direction).`
+					goto run
+
+			label help
+			`You call your crew to help and try to barricade the ship to prevent escape, but they cannot find anyone. You wonder how they could get away. Just to be sure, you check around the cargo bay. It seems like nothing is missing, but a few bars of golds are out of place. Maybe it was just a malfunction with the ship's gravitational systems.`
+				defer
+
+			label run
+			`As you run you see a silouette running too. It is armed and you think you recognize the uniform of a member of your crew. Could he be running after the intruder too? Is this just a big misunderstanding?`
+			choice
+				`(Order him to stand down).`
+				`(Follow him to see where he is going).`
+					goto follow
+				`(Shoot).`
+					goto shoot
+			label shout
+			`There is no doubt that you were heard, but the only reaction from the silouette is to run faster, and by another, more direct path. You cannot catch them and they evade your ship. Thankfully they did not manage to steal anything, only to move a few gold bars.`
+				defer
+
+			label follow
+			`You can now clearly see it is a human women, and you indeed know her. She is clearly heading to the exit, by another path than the one you came in by. You know your ship like your pocket and now it will take her a while. She did not notice you after her, yet.`
+			choice
+				`(Wait for her near the exit to stun her).`
+					goto wait
+				`(Order her to stand down).`
+					goto shout
+				`(Shoot).`
+
+			label shoot
+			`You hit the crew member in the shoulder and he falls. You go remove his weapon, to be sure, and want to ask for an explanation but the only answer you get is "nemo me impune lacessit", before the crew member loses consciousness. Looking eye in the eye, you could see terror. You put him at a nearby hospital, but when you come back later, he is gone, and no one has seen or heard anything.`
+				defer
+
+			label hello
+			`In order to be sure to avoid any misunderstanding, you shout "Hello?" to see if someone answers. Nobody does. You still head into the cargo bay, a bit more alert than before. As you enter you see a few gold bars have fallen off the pile. That was probably the sound you heard.`
+			choice
+				`(Head in that direction).`
+				`(Call for help).`
+					goto help
+			`You move that way, but soon you feel a pressure on the back of your neck. "Good dreams, captain.", you recognize the voice of one of your crew, before you are incapacitated by a quick hit to your head. When you wake up, some of the bars are missing.`
+			
+			label lostbars
+			action
+				outfit "Gold Bars" -5
+			defer
+
+			label wait
+			`You patiently wait for her to come, and hit her in the back with your pistol. Then you proceed to attach her, and, after reuniting with a marine you hired a long time ago, and trust, wait for answers. He proceeds to search her first, and for a second you wonder if you really want to know about this.`
+			choice
+				`(Ignorance is bliss).`
+				`(I prefer not to stay in the dark).`
+					goto light
+			label bliss
+			`You leave her here on this world after awakening her, and she seems thankful, but deeply troubled by what happened. You wonder what you should do with the gold bars that seem to cause so much trouble. They should probably be stashed, or maybe you should get rid of them.`
+			defer
+
+			label light
+			`After doing his torough search, the marine shows you her distinct marking on her leg, which is only visible by a special light. He adresses you, with a serious look you never expected from him, "Sir, if you will pardon my language, I do know about it, but this is the deepest shit I could think of. This sign, here, means she holds her life to someone, and has to do one task, any task, to repay them. I guess there is something here of the highest importance to some men... Best not to keep it on board in that case? Whatever you choose, sir, with respect, I am retiring. This is too dangerous, even for me."`
+			choice
+				`(I am involved, may as well know all about it. Wake her).`
+				`(Ignorance is bliss).`
+					goto bliss
+			`You were readying to slap her a bit to bring her back, but he stops you, "I will do this, but then nothing else." He goes to take a bucket of water to wake her up. She seems to recognize the hopelessness of her situation, and is willing to bargain, "I will tell you the truth, but then you will let me go and we will never see each others again. But let me be clear, I will not speak, under any circumstances other than those. I also seriously doubt your competences as a torturer so spare me any threats."`
+			choice
+				`(This is it. I want to know all).`
+				`(Ignorance is bliss).`
+					goto bliss
+			`She takes a deep breath, "An important organization wants these gold bars you have on boards. They are not just normal gold. If you were to sell them to me I could give you a good price, and you would not be bothered by this again. 1 million per bar. You see, something is within these bars, something of the highest importance, and they want all of them. They will not stop until they have all of them."`
+			choice
+				`(Sell the bars).`
+				`(Keep them, and drop her on the planet).`
+					goto bliss
+				`(Keep her for further interrogating).`
+					goto escape
+			`She nods, "this is the right choice you are making, captain <last>. You will never be bothered by any of this again, that I promise. I will take these 5 piles, and any more will be sold little by little as you go on any world. If you sell them to any normal outfitters we will easily get our hands on it, so it is no problem to us but you would only be payed the price of brute gold for it."`
+			action
+				outfit "Gold Bars" -5
+				payment 5000000
+				set "sold bars"
+
+			label escape
+			`You tighten her hold, and tell your marine to keep a watch on her until you can find someone else of trust, but when you come back later, they are both gone. There is a little word on the spot where some gold bars where. It is written by your marine, and says, "<first>. I am very sorry to break your trust, but trust me, this is for your own good. She would have been killed if he returned without the gold bars, so I let her take a few. You should quit this whilst you still can."`
+
+mission "Unfettered: Bar Selling"
+	invisible
+	landing
+	repeat
+	to offer
+		has "sold bars"
+	on offer
+		outfit "Gold Bars" -1
+		payment 1000000
 
 
 
@@ -1381,7 +1540,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 	on enter "Ferukistek"
 		dialog `You spot one system not connected by hyperdrive North-East of here, it seems like a logical place for the Alphas to go, considering the drones do not appear to have jump drives.`
 	on enter "Host"
-		dialog `You arrive in the system, expecting to find a vault, but it looks like you may have have fallen into a trap. Either that or the same auxiliary as earlier has just come back to resupply. Whatever the case it has probably the jump drives on board. You should capture the ship, as asked by the Unfettered. You notice a lot of drones flying around. This may indeed be a trap.`
+		dialog `You arrive in the system, expecting to find a vault, but it looks like it's a trap! Either that or the same auxiliary as earlier has just come back to resupply. Whatever the case it probably has the jump drives on board. You should capture the ship, as asked by the Unfettered. You notice a lot of drones flying around. This may indeed be a trap.`
 	
 	npc capture
 		government "Alpha"

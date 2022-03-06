@@ -381,6 +381,13 @@ government "Mari's Legion"
 	fine 0
 	"hostile hail" "hostile pirate"
 
+government "Mercenaries"
+	swizzle 9
+	"player reputation" -1000
+	bribe .25
+	fine 0
+	"hostile hail" "hostile pirate"
+
 government "Merchant"
 	swizzle 5
 	
