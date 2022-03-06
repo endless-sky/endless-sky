@@ -176,13 +176,17 @@ void Variant::FinishLoading()
 // Determine if this variant template uses well-defined data.
 bool Variant::IsValid() const
 {
-	// A variant should have at least one valid ship or nested variant.
-	bool validShips = any_of(ships.begin(), ships.end(),
-			[](const Ship *const s) noexcept -> bool { return s->IsValid(); });
-	bool validVariants = any_of(variants.begin(), variants.end(),
-			[](const WeightedVariant &v) noexcept -> bool { return v.Get().IsNestedValid(); });
+	// At least one valid ship is enough to make the variant valid.
+	if(any_of(ships.begin(), ships.end(),
+			[](const Ship *const s) noexcept -> bool { return s->IsValid(); }))
+		return true;
 
-	return (validShips || validVariants);
+	// At least one nested variant is enough to make the variant valid.
+	if(any_of(variants.begin(), variants.end(),
+			[](const WeightedVariant &v) noexcept -> bool { return v.Get().IsNestedValid(); }))
+		return true;
+
+	return false;
 }
 
 
@@ -264,13 +268,17 @@ bool Variant::NestedInSelf(const string &check) const
 // nested variant.
 bool Variant::IsNestedValid() const
 {
-	// Anything a nested variant can choose should be valid.
-	bool validShips = all_of(ships.begin(), ships.end(),
-			[](const Ship *const s) noexcept -> bool { return s->IsValid(); });
-	bool validVariants = all_of(variants.begin(), variants.end(),
-			[](const WeightedVariant &v) noexcept -> bool { return v.Get().IsNestedValid(); });
+	// All possible ships must be valid.
+	if(any_of(ships.begin(), ships.end(),
+			[](const Ship *const s) noexcept -> bool { return !s->IsValid(); }))
+		return false;
 
-	return (validShips && validVariants);
+	// All possible nested variants must be valid.
+	if(any_of(variants.begin(), variants.end(),
+			[](const WeightedVariant &v) noexcept -> bool { return !v.Get().IsNestedValid(); }))
+		return false;
+
+	return true;
 }
 
 
