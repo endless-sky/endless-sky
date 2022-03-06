@@ -72,7 +72,7 @@ news "kor efret scientist"
 			"A Kor Efret pushes a cart filled with strange chemicals and bits of technology past you."
 			"A Korath walks through the spaceport reading numbers off a device and inputting them onto another one. It looks like it's taking samples of the air quality."
 			
-news "kor efret station friendly"		
+news "kor efret station friendly"
 	location
 		government "Kor Efret"
 	name

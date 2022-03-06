@@ -37,6 +37,8 @@ namespace {
 	map<int, int> keycodeCount;
 }
 
+
+
 // Command enumeration, including the descriptive strings that are used for the
 // commands both in the preferences panel and in the saved key settings.
 const Command Command::NONE(0, "");
@@ -79,7 +81,7 @@ string Command::ReplaceNamesWithKeys(const string &text)
 	map<string, string> subs;
 	for(const auto &it : description)
 		subs['<' + it.second + '>'] = '"' + keyName[it.first] + '"';
-	
+
 	return Format::Replace(text, subs);
 }
 
@@ -100,14 +102,14 @@ void Command::ReadKeyboard()
 {
 	Clear();
 	const Uint8 *keyDown = SDL_GetKeyboardState(nullptr);
-	
+
 	// Each command can only have one keycode, but misconfigured settings can
 	// temporarily cause one keycode to be used for two commands. Also, more
 	// than one key can be held down at once.
 	for(const auto &it : keycodeForCommand)
 		if(keyDown[SDL_GetScancodeFromKey(it.second)])
 			*this |= it.first;
-	
+
 	// Check whether the `Shift` modifier key was pressed for this step.
 	if(SDL_GetModState() & KMOD_SHIFT)
 		*this |= SHIFT;
@@ -119,12 +121,12 @@ void Command::ReadKeyboard()
 void Command::LoadSettings(const string &path)
 {
 	DataFile file(path);
-	
+
 	// Create a map of command names to Command objects in the enumeration above.
 	map<string, Command> commands;
 	for(const auto &it : description)
 		commands[it.second] = it.first;
-	
+
 	// Each command can only have one keycode, one keycode can be assigned
 	// to multiple commands.
 	for(const DataNode &node : file)
@@ -138,7 +140,7 @@ void Command::LoadSettings(const string &path)
 			keyName[command] = SDL_GetKeyName(keycode);
 		}
 	}
-	
+
 	// Regenerate the lookup tables.
 	commandForKeycode.clear();
 	keycodeCount.clear();
@@ -155,7 +157,7 @@ void Command::LoadSettings(const string &path)
 void Command::SaveSettings(const string &path)
 {
 	DataWriter out(path);
-	
+
 	for(const auto &it : keycodeForCommand)
 	{
 		auto dit = description.find(it.first);
@@ -173,10 +175,10 @@ void Command::SetKey(Command command, int keycode)
 	// are mapped to the same key and you change one of them, the other stays mapped.
 	keycodeForCommand[command] = keycode;
 	keyName[command] = SDL_GetKeyName(keycode);
-	
+
 	commandForKeycode.clear();
 	keycodeCount.clear();
-	
+
 	for(const auto &it : keycodeForCommand)
 	{
 		commandForKeycode[it.second] = it.first;
@@ -214,7 +216,7 @@ bool Command::HasConflict() const
 	auto it = keycodeForCommand.find(*this);
 	if(it == keycodeForCommand.end())
 		return false;
-	
+
 	auto cit = keycodeCount.find(it->second);
 	return (cit != keycodeCount.end() && cit->second > 1);
 }
@@ -227,6 +229,7 @@ void Command::Load(const DataNode &node)
 	for(int i = 1; i < node.Size(); ++i)
 	{
 		static const map<string, Command> lookup = {
+			{"none", Command::NONE},
 			{"menu", Command::MENU},
 			{"forward", Command::FORWARD},
 			{"left", Command::LEFT},
@@ -247,17 +250,22 @@ void Command::Load(const DataNode &node)
 			{"cloak", Command::CLOAK},
 			{"map", Command::MAP},
 			{"info", Command::INFO},
+			{"fullscreen", Command::FULLSCREEN},
+			{"fastforward", Command::FASTFORWARD},
 			{"fight", Command::FIGHT},
 			{"gather", Command::GATHER},
 			{"hold", Command::HOLD},
-			{"ammo", Command::AMMO}
+			{"ammo", Command::AMMO},
+			{"wait", Command::WAIT},
+			{"stop", Command::STOP},
+			{"shift", Command::SHIFT}
 		};
-		
+
 		auto it = lookup.find(node.Token(i));
 		if(it != lookup.end())
 			Set(it->second);
 		else
-			node.PrintTrace("Skipping unrecognized command \"" + node.Token(i) + "\":");
+			node.PrintTrace("Warning: Skipping unrecognized command \"" + node.Token(i) + "\":");
 	}
 }
 
@@ -327,58 +335,6 @@ double Command::Turn() const
 
 
 
-// Check if this command includes a command to fire the given weapon.
-bool Command::HasFire(int index) const
-{
-	if(index < 0 || index >= 32)
-		return false;
-	
-	return state & ((1ull << 32) << index);
-}
-
-
-
-// Add to this set of commands a command to fire the given weapon.
-void Command::SetFire(int index)
-{
-	if(index < 0 || index >= 32)
-		return;
-	
-	state |= ((1ull << 32) << index);
-}
-
-
-
-// Check if any weapons are firing.
-bool Command::IsFiring() const
-{
-	return (state & 0xFFFFFFFF00000000ull);
-}
-
-
-
-// Set the turn rate of the turret with the given weapon index. A value of
-// -1 or 1 means to turn at the full speed the turret is capable of.
-double Command::Aim(int index) const
-{
-	if(index < 0 || index >= 32)
-		return 0;
-	
-	return aim[index] / 127.;
-}
-
-
-
-void Command::SetAim(int index, double amount)
-{
-	if(index < 0 || index >= 32)
-		return;
-	
-	aim[index] = round(127. * max(-1., min(1., amount)));
-}
-
-
-
 // Check if any bits are set in this command (including a nonzero turn).
 Command::operator bool() const
 {
@@ -426,7 +382,7 @@ Command &Command::operator|=(const Command &command)
 
 
 // Private constructor.
-Command::Command(uint64_t state)
+Command::Command(uint32_t state)
 	: state(state)
 {
 }
@@ -435,7 +391,7 @@ Command::Command(uint64_t state)
 
 // Private constructor that also stores the given description in the lookup
 // table. (This is used for the enumeration at the top of this file.)
-Command::Command(uint64_t state, const string &text)
+Command::Command(uint32_t state, const string &text)
 	: state(state)
 {
 	if(!text.empty())

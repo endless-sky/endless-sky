@@ -321,6 +321,7 @@ outfit "Brig"
 	description "With the addition of some reinforced doors, locks, and security systems, any ship's passenger compartment can be turned into a brig. This makes it suitable for transporting criminals and prisoners, or participating in the highly illegal galactic slave trade. These cells are often found on ships owned by bounty hunters, pirates, and of course, the Republic's interstellar law enforcement."
 
 outfit "Luxury Accommodations"
+	plural "Luxury Accommodations"
 	category "Systems"
 	cost 250000
 	thumbnail "outfit/luxury accommodations"

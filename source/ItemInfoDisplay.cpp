@@ -38,7 +38,7 @@ ItemInfoDisplay::ItemInfoDisplay()
 	description.SetAlignment(Alignment::JUSTIFIED);
 	description.SetWrapWidth(WIDTH - 20);
 	description.SetFont(FontSet::Get(14));
-	
+
 	hoverText.SetAlignment(Alignment::JUSTIFIED);
 	hoverText.SetWrapWidth(WIDTH - 20);
 	hoverText.SetFont(FontSet::Get(14));
@@ -97,16 +97,16 @@ void ItemInfoDisplay::DrawTooltips() const
 {
 	if(!hoverCount || hoverCount-- < HOVER_TIME || !hoverText.Height())
 		return;
-	
+
 	Point textSize(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
 	Point boxSize = textSize + Point(20., 20.);
-	
+
 	Point topLeft = hoverPoint;
 	if(topLeft.X() + boxSize.X() > Screen::Right())
 		topLeft.X() -= boxSize.X();
 	if(topLeft.Y() + boxSize.Y() > Screen::Bottom())
 		topLeft.Y() -= boxSize.Y();
-	
+
 	FillShader::Fill(topLeft + .5 * boxSize, boxSize, *GameData::Colors().Get("tooltip background"));
 	hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
 }
@@ -157,7 +157,7 @@ void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string>
 		fullText += ".\n";
 		description.Wrap(fullText);
 	}
-	
+
 	// Pad by 10 pixels on the top and bottom.
 	descriptionHeight = description.Height() + 20;
 }
@@ -168,18 +168,18 @@ Point ItemInfoDisplay::Draw(Point point, const vector<string> &labels, const vec
 {
 	// Add ten pixels of padding at the top.
 	point.Y() += 10.;
-	
+
 	// Get standard colors to draw with.
 	const Color &labelColor = *GameData::Colors().Get("medium");
 	const Color &valueColor = *GameData::Colors().Get("bright");
-	
+
 	Table table;
 	// Use 10-pixel margins on both sides.
 	table.AddColumn(10, {WIDTH - 20});
 	table.AddColumn(WIDTH - 10, {WIDTH - 20, Alignment::RIGHT});
 	table.SetHighlight(0, WIDTH);
 	table.DrawAt(point);
-	
+
 	for(unsigned i = 0; i < labels.size() && i < values.size(); ++i)
 	{
 		if(labels[i].empty())
@@ -187,7 +187,7 @@ Point ItemInfoDisplay::Draw(Point point, const vector<string> &labels, const vec
 			table.DrawGap(10);
 			continue;
 		}
-		
+
 		CheckHover(table, labels[i]);
 		table.Draw(labels[i], values[i].empty() ? valueColor : labelColor);
 		table.Draw(values[i], valueColor);
@@ -201,7 +201,7 @@ void ItemInfoDisplay::CheckHover(const Table &table, const string &label) const
 {
 	if(!hasHover)
 		return;
-	
+
 	Point distance = hoverPoint - table.GetCenterPoint();
 	Point radius = .5 * table.GetRowSize();
 	if(abs(distance.X()) < radius.X() && abs(distance.Y()) < radius.Y())
