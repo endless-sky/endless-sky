@@ -965,10 +965,10 @@ mission "Unfettered: I Shall Go Unpunished"
 					goto light
 			label bliss
 			`You leave her here on this world after awakening her, and she seems thankful, but deeply troubled by what happened. You wonder what you should do with the gold bars that seem to cause so much trouble. They should probably be stashed, or maybe you should get rid of them.`
-			defer
+				defer
 
 			label light
-			`After doing his torough search, the marine shows you her distinct marking on her leg, which is only visible by a special light. He adresses you, with a serious look you never expected from him, "Sir, if you will pardon my language, I do know about it, but this is the deepest shit I could think of. This sign, here, means she holds her life to someone, and has to do one task, any task, to repay them. I guess there is something here of the highest importance to some men... Best not to keep it on board in that case? Whatever you choose, sir, with respect, I am retiring. This is too dangerous, even for me."`
+			`After doing his torough search, the marine shows you her distinct marking on her leg, which is only visible by a special light. He addresses you, with a serious look you never expected from him, "Sir, if you will pardon my language, I do know about it, but this is the deepest shit I could think of. This sign, here, means she holds her life to someone, and has to do one task, any task, to repay them. I guess there is something here of the highest importance to some men... Best not to keep it on board in that case? Whatever you choose, sir, with respect, I am retiring. This is too dangerous, even for me."`
 			choice
 				`(I am involved, may as well know all about it. Wake her).`
 				`(Ignorance is bliss).`
@@ -990,6 +990,7 @@ mission "Unfettered: I Shall Go Unpunished"
 				outfit "Gold Bars" -5
 				payment 5000000
 				set "sold bars"
+			decline
 
 			label escape
 			`You tighten her hold, and tell your marine to keep a watch on her until you can find someone else of trust, but when you come back later, they are both gone. There is a little word on the spot where some gold bars where. It is written by your marine, and says, "<first>. I am very sorry to break your trust, but trust me, this is for your own good. She would have been killed if he returned without the gold bars, so I let her take a few. You should quit this whilst you still can."`
