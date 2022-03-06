@@ -87,7 +87,7 @@ mission "Event: Pug Media Coverage"
 		event "hai secret leaks" 10 15
 		conversation
 			`As you walk through the spaceport, you can't help but notice that coverage on the events of the Pug invasion still continues to dominate headlines, even though it's been weeks now.`
-			`	As you look around you see that experts and officials have given way to talking heads and theorists. Some of them are saying what you yourself suspect: that the Pug invasion was a ploy to cause humanity to band together, learn to resolve differences without conflict, and ensure the sorts of extremism that lead to the events precipitating the war would not be tolerated.`
+			`	Looking around, you see that experts and officials have given way to talking heads and theorists. Some of them are saying what you yourself suspect: that the Pug invasion was a ploy to cause humanity to band together, learn to resolve differences without conflict, and ensure the sorts of extremism that lead to the events precipitating the war would not be tolerated.`
 			`	Others...`
 			`	You sigh deeply as you watch some paranoid fringe world politician demand that the edges of human space be better understood, that threats and even potential threats must clearly exist beyond what is already known, and that it is the responsibility of the government to find out and inform the people.`
 			`	Your thoughts, you keep to yourself.`
@@ -170,7 +170,7 @@ conversation "What is going on in Hai space? (Met the Unfettered.)"
 	`	Your conversation is interrupted suddenly by a small group of somewhat official-looking Hai.`
 	`	"Are you Captain <last>?" one of them asks you. "Don't worry, you're not in trouble or anything."`
 	`	You nod your affirmation.`
-	`	"Your reputation precedes you, Captain. If you have any stake in the current information crisis, please head directly to Hai-home. Someone would very much like to talk to you. As a person of note, you are presently being treated as an Envoy." They leave without waiting for your agreement, but then, you did come here to see what was going on.`
+	`	"Your reputation precedes you, Captain. If you have any stake in the current information crisis, please head directly to Hai-home. Someone would very much like to talk to you. As a person of note, you are presently being treated as an Envoy." They leave without waiting for your agreement. Then again, you did come here to see what was going on.`
 		decline
 
 
@@ -329,8 +329,8 @@ mission "Trader Directions to Hai Space"
 			has "ZZ Event Hai Secret Leaks: FW offered"
 	on offer
 		conversation
-			`Arriving at the only place you can think of where you feel sure you can find out more information, you find that here, like most places, is abuzz with the recent news. Avoiding the many large, cheap, and boisterous establishments that service the many crews and workers of the Syndicate corporate machinery here on Sunracer, you make your way to one of the marginally more up-market places, cunningly marketed as a merchant-only dive.`
-			`	The endless cycle of both the news and government propaganda being displayed on most screens in major thoroughfares is remarkably absent here, with only one of the screens on display covering the "violent alien race" at all - running stats on how many different versions of the story are now being told.`
+			`Arriving at the only place you can think of where you feel sure you can find out more information, you find that <origin>, like most places, is abuzz with the recent news. Avoiding the many large, cheap, and boisterous establishments that service the many crews and workers of the Syndicate corporate machinery here, you make your way to one of the marginally more up-market places, cunningly marketed as a merchant-only dive.`
+			`	The endless cycle of both news and government propaganda displayed on most screens in major thoroughfares is remarkably absent here, with only one of the screens on display covering the "violent alien race" at all - running stats on how many different versions of the story are now being told.`
 			`	Casting around the room you pick out a merchant who looks like they've been around the block a few times. In addition to being a woman who looks like she could pick up most people and break them over her knee, she's conspicuous by the threatening glare you watch her give a younger captain who left a table talking about the Hai to approach her... briefly. As you make your way over though you see her glare falter in a flash of recognition, before subsiding to a reserved scowl.`
 			`	She waits until you're directly next to her table. "The famous Captain <last>. Which ancient Sumerian deity did I offend to be granted the gift of your attention hey?"`
 			`	The emphasis she places on the word "gift" is dripping in sarcasm, but her overall tone is wary rather than hostile, and she gestures without comment to the seat opposite for you to sit.`
@@ -339,31 +339,31 @@ mission "Trader Directions to Hai Space"
 					goto innocent
 				`	"You looked to be the most experienced person in the room."`
 					goto practical
-				`	"Why ask a rookie, when there's a professional available?"`
-			`	"Pff," she scoffs, but despite rolling her eyes a slight smirk undermines her otherwise wary expression. "Flattery from a hero. You've been hanging out with too many politicians <last>."`
-			`	The deliberate omission of your title does not go unnoticed, but she continues. "Still, can't fault your logic, and I suppose I probably owe you one on account of me having got myself stuck on one of those Pug occupied worlds while it was all going on. You're going to ask me about the Hai aren't ya?"`
+				`	"Why ask a rookie when there's a professional available?"`
+			`	She scoffs, but despite her rolling eyes, a slight smirk undermines her otherwise wary expression. "Flattery from a hero. You've been hanging out with too many politicians, <last>."`
+			`	The deliberate omission of your title does not go unnoticed, but she continues. "Still, can't fault your logic, and I suppose I probably owe you one on account of me having got myself stuck on one of those Pug occupied worlds while it was all going on. You're going to ask me about the Hai, aren't you?"`
 			choice
 				`	"Yes."`
 					goto continue
 			label innocent
-			`	"Hah!" she booms, one deep short bark of a laugh. "You and everyone else <last>, and don't go trying to sell me the innocent question line. You didn't single me out cause I was pretty."`
-			`	She squints at you and leans back in her seat slightly. "That said, if you're asking me and not any of your new "friends" in the government... maybe you're alright in my books after all."`
+			`	"Hah!" she booms, one deep short bark of a laugh. "You and everyone else, <last>, and don't go trying to sell me the innocent question line. You didn't single me out cause I was pretty."`
+			`	She squints at you and leans back in her seat slightly. "That said, if you're asking me and not any of your new 'friends' in the government... maybe you're alright in my books after all."`
 				goto continue
 			label practical
-			`	Her eyes narrow, but she dips her head in a very small motion of assent, "Well, you're not stupid, I'll give you that. You're trying to find out what most other people are aren't you? You want to know about the Hai."`
+			`	Her eyes narrow, but she dips her head in a very small motion of assent. "Well, you're not stupid, I'll give you that. You're trying to find out what most other people are, aren't you? You want to know about the Hai."`
 			choice
 				`	"Yes."`
 			label continue
-			`	She heaves a sigh and lowers her voice until you're forced to lean in. "You can call me Captain Casey, and I will tell you what you want, but then you can leave alright? I like my solitude.`
-			`	"Firstly, I shouldn't be telling you this. Generally speaking they don't like to draw attention to themselves. Secondly though, forget the fearmongering. I make trips up to their space every so often and there aren't a nicer bunch of people anywhere, even if they are a bit furry. The Hai are peaceful, and welcoming of outsiders. They've got themselves a bit of an anarchist faction, that's the footage you've seen, but they ain't no danger to humanity. You should see them for yourself."`
+			`	She heaves a sigh and lowers her voice until you're forced to lean in. "You can call me Captain Casey, and I will tell you what you want, but then you can leave, alright? I like my solitude.`
+			`	"First, I shouldn't be telling you this. Generally speaking they don't like to draw attention to themselves. Second though, forget the fearmongering. I make trips up to their space every so often, and there aren't a nicer bunch of people anywhere, even if they are a bit furry. The Hai are peaceful and welcoming of outsiders. They've got themselves a bit of an anarchist faction, that's the footage you've seen, but they ain't no danger to humanity. You should see them for yourself."`
 			`	She pulls out her data pad and flicks some coordinates over to you. "Follow those and you'll get there. Keep an eye out for the wormhole."`
 			choice
 				`	"Thank you."`
 					goto wrap
 				`	"The wormhole?"`
-			`	She shakes her head, "See for yourself."`
+			`	She shakes her head. "See for yourself."`
 			label wrap
-			`	Taking a sip from her mug she nods slightly, once, in your direction. "Intentionally or not, you did me and a lot of other merchants a solid in that war Captain. I respect that, but I'll thank you to leave me in peace if you see me again."`
+			`	Taking a sip from her mug she nods slightly, once, in your direction. "Intentionally or not, you did me and a lot of other merchants a solid in that war, Captain. I respect that, but I'll thank you to leave me in peace if you see me again."`
 			`	Only now, as you move to depart, do you spot the wrist-triggered needlegun strapped to the arm of her drinking hand that would've been trained on you the entire conversation.`
 				accept
 			
