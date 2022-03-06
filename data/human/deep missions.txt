@@ -3296,7 +3296,7 @@ mission "Home for Skadenga 4"
 			`	"Really inspirational," Braiden chimes in.`
 			`	"So inspiring," Grayden adds with an opaque hand gesture you think you've seen done by celebrities.`
 			`	"At the Transport Union, we say that 'it's about the people in the transports,' which is why we're humbled and excited to offer you our support in this beautiful and inspiring humanitarian adventure of yours," Kaiden finishes. Braiden and Grayden both clap enthusiastically.`
-			`	Kaiden waits for the ovation to subside then continues with a knowing smile. "So, tell us humble servants of the people: where to transport these poor doomed souls?"`
+			`	Kaiden waits for the ovation to subside then continues with a knowing smile. "So, tell us humble servants of the people: where to transport these poor souls?"`
 			branch Asgard
 					has "asgard"
 			choice
