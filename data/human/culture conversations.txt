@@ -173,7 +173,7 @@ mission "Curious Waiter"
 		random < 1
 	on offer
 		conversation
-			`On a whim, you decide to dine in at a restaurant well clear of the busy spaceport. You swiftly find yourself searching up a list of delicacies on a physical menu as people stream past the window by your booth, each looking drained from the long work day. Meal soon ordered, you continue watching the crowd until it arrives, a local version of a katsu Don and dig in.`
+			`On a whim, you decide to dine in at a restaurant well clear of the busy spaceport. You swiftly find yourself searching up a list of delicacies on a physical menu as people stream past the window by your booth, each looking drained from the long work day. Meal soon ordered, you continue watching the crowd until it arrives, a local version of a katsu don and dig in.`
 			`	The place is quiet, perhaps a little early for the dinner rush yet, and you are halfway through your meal when a waiter stops beside you, coughing to catch your attention.`
 			choice
 				`	"May I help you?"`
