@@ -4138,12 +4138,12 @@ mission "The Book of Skadenga"
 				has "event: the book"
 	on offer
 		conversation
-		`As you wander through the spaceport, something catches your eye at a kiosk selling gifts, trinkets, and other odds and ends.`
-		`	There's an old-style book there, bound up in a ice-blue cover, titled: "The Skakdenga Saga: Against All Odds, by Hjlod Hrimnirsdottir."`
-		choice
-			`	(Ignore the book and move on.)`
-				goto ignore
-			`	(Pick the book up.)`
+			`As you wander through the spaceport, something catches your eye at a kiosk selling gifts, trinkets, and other odds and ends.`
+			`	There's an old-style book there, bound up in a ice-blue cover, titled: "The Skakdenga Saga: Against All Odds, by Hjlod Hrimnirsdottir."`
+			choice
+				`	(Ignore the book and move on.)`
+					goto ignore
+				`	(Pick the book up.)`
 			branch "windblain"
 				has "Stones of Skadenga 4: done"
 			`	The book feels solid in your hands, and you scan through it. There are chapters about near death survival on Nifel, the subtle hostility of Asgard, the sudden death of the old Ondurdis, who you learn was named Eymani, and the triumph of Hjlod and the survivors on Nifel.`
