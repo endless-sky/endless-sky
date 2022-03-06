@@ -183,7 +183,7 @@ bool Variant::IsValid() const
 
 	// At least one nested variant is enough to make the variant valid.
 	if(any_of(variants.begin(), variants.end(),
-			[](const WeightedVariant &v) noexcept -> bool { return v.Get().IsNestedValid(); }))
+			[](const WeightedVariant &v) noexcept -> bool { return v.Get().NestedIsValid(); }))
 		return true;
 
 	return false;
@@ -266,7 +266,7 @@ bool Variant::NestedInSelf(const string &check) const
 
 // Determine if this variant template uses well-defined data as a
 // nested variant.
-bool Variant::IsNestedValid() const
+bool Variant::NestedIsValid() const
 {
 	// All possible ships must be valid.
 	if(any_of(ships.begin(), ships.end(),
@@ -275,7 +275,7 @@ bool Variant::IsNestedValid() const
 
 	// All possible nested variants must be valid.
 	if(any_of(variants.begin(), variants.end(),
-			[](const WeightedVariant &v) noexcept -> bool { return !v.Get().IsNestedValid(); }))
+			[](const WeightedVariant &v) noexcept -> bool { return !v.Get().NestedIsValid(); }))
 		return false;
 
 	return true;

@@ -56,7 +56,7 @@ private:
 	bool NestedInSelf(const std::string &check) const;
 	// Determine if this variant template uses well-defined data as a
 	// nested variant.
-	bool IsNestedValid() const;
+	bool NestedIsValid() const;
 	// Choose a ship from this variant given that it is a nested variant.
 	// Nested variants only choose a single ship from among their list
 	// of ships and variants.
