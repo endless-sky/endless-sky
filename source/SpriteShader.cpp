@@ -106,6 +106,9 @@ void SpriteShader::Init(bool useShaderSwizzle)
 	fragmentCodeStream <<
 		"// fragment sprite shader\n"
 		"precision mediump float;\n"
+#ifdef ES_GLES
+		"precision mediump sampler2DArray;\n"
+#endif
 		"uniform sampler2DArray tex;\n"
 		"uniform float frame;\n"
 		"uniform float frameCount;\n"
