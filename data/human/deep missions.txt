@@ -2978,13 +2978,13 @@ mission "Home for Skadenga 1"
 				`	(Continue to meander because you are sick of Hjlod telling you what to do.)`
 			`	You walk in your looping meandering pattern, stepping where you want, and not paying any attention to the path Hjlod is taking.`
 			`	You feel righteous vindication as the hours pass and nothing bad happens; proof that Hjlod was just being bossy. She should have no say over what you are doing; it's her fault you're stuck out here stranded on some trash-planet in the blinding cold in the first place.`
-			`	At that thought you do some anger-stomping, really letting her know that you could care less about her worthless warnings. Which is, of course, when you hear a weird gurgling sizzle. You look down at your feet and see there is not packed snow beneath them, but that a grey-purple blob that has wrapped itself around your leg.`
+			`	At that thought you do some anger-stomping, really letting her know that you could care less about her worthless warnings. Which is, of course, when you hear a weird gurgling sizzle. You look down at your feet and see there is not packed snow beneath them, but that a gray-purple blob that has wrapped itself around your leg.`
 			choice
 				`	(Try and shake your leg free.)`
 					goto free
 				`	(Call out to Hjlod for help.)`
 			`	Damn your pride. "Hjlod, help! Something's got my foot!" you cry.`
-			`	Hjlod looks back at you with a dull expression on her face. "Is it purple-grey in color?"`
+			`	Hjlod looks back at you with a dull expression on her face. "Is it purple-gray in color?"`
 			`	"Yes, yes! Quick, help. I don't know what to do."`
 			`	"Vhat you do, is listen to Hjlod, and not make stompy circles in snow like spoilt child."`
 			`	"Please, Hjlod!" You cry as the last of your boot dissolves away and you feel the slimy slug on your exposed foot.`
@@ -2993,9 +2993,9 @@ mission "Home for Skadenga 1"
 				`	(Try and pull your leg free.)`
 			label free
 			`	Despite using all your strength, your leg won't budge. The sizzling noise continues and you are overwhelmed with a sharp horrific burning sensation. Your eyes water and you scream out in pain for help and mercy.`
-			`	You keep pulling, trying to break free. The air thickens with the scent of your liquified foot, and something gives as you fall forward. You look down to see your leg missing from the knee down. You try to push it out of your mind as you desperately claw forward, trying to escape the grey-purple blob that is forming up behind you.`			
+			`	You keep pulling, trying to break free. The air thickens with the scent of your liquified foot, and something gives as you fall forward. You look down to see your leg missing from the knee down. You try to push it out of your mind as you desperately claw forward, trying to escape the gray-purple blob that is forming up behind you.`			
 			`	Try as you might, you can't cry out Hjlod's name, instead your screams are savage, hollow noises. You reach for her, you reach for anyone, and it's too late. The Ice-Slug has caught up to you, you feel acidic tendrils wrapping around your remaining leg and lower torso. The pain is agonizing as your lower body begins to dissolve.`
-			`	You look up one last desperate time, hoping to see Hjlod coming to rescue you. But instead you see a grey smudge on the horizon. A distant person who has long left you for dead. You are alone now with the Ice-Slug and the pain. You consider briefly your mistakes before you are dissolved and eaten.`
+			`	You look up one last desperate time, hoping to see Hjlod coming to rescue you. But instead you see a gray smudge on the horizon. A distant person who has long left you for dead. You are alone now with the Ice-Slug and the pain. You consider briefly your mistakes before you are dissolved and eaten.`
 				die
 			label travel
 			`	The cold, monotonous trudging weighs on you as the hours pass. You're dimly aware of Nifel's two suns as they make their journey across the wide open sky.`
@@ -3014,7 +3014,7 @@ mission "Home for Skadenga 1"
 			`	You're in a half-wooden, half-synthetic barracks, a strange mix of primitive earth-tech and old colonial architecture. That, in and of itself, isn't that alarming. What is, however, is the group of people gathered around your bed quietly staring and pointing at you.`
 			choice
 				`	"Excuse me?"`
-			`	The crowd steps back, and an elderly woman steps forward. Her grey hair is rolled up into tight, elegant braids, and her face and hands are covered in faded, blue tattoos.`
+			`	The crowd steps back, and an elderly woman steps forward. Her gray hair is rolled up into tight, elegant braids, and her face and hands are covered in faded, blue tattoos.`
 			`	"We are pleased to call you guest. You have saved our daughter, and more; you will save us all." The elderly woman and everyone behind her kneels before you.`
 			branch "withhjlod"
 				has "put on jacket"
@@ -3076,7 +3076,7 @@ mission "Home for Skadenga 1"
 			branch "threefingers"
 				has "put on jacket"
 			`	A lone figure stands next to the idling shuttle. As you draw closer you recognize Hjlod.` 
-			`	"I just vant to thank you." Hjlod's grey-blue eyes glitter in the morning light. "I alvays say Hjlod keep tourist safe. But yesterday you save Hjlod. I vill not forgot, know this."`
+			`	"I just vant to thank you." Hjlod's gray-blue eyes glitter in the morning light. "I alvays say Hjlod keep tourist safe. But yesterday you save Hjlod. I vill not forgot, know this."`
 				goto lopsided
 			label threefingers
 			`	A lone figure stands next to the idling shuttle. As you draw closer, you recognize Hjlod. "You see," she says, "Stick with Hjlod, and you live, probably." She holds up a bandaged, three-fingered hand and shrugs. "Mostly."`
@@ -3111,7 +3111,7 @@ mission "Home for Skadenga 2"
 			`In the high-atmosphere of <origin>, your ship's sensors pick up traces of the exotic Setstokkr matter. They pinpoint the material to the southern rim of a sparsely-populated island-continent, in the small coastal settlement of Hrithfjall.`
 			`	Your ship lands just outside the settlement, and you leave with your handheld tracker keyed to the Setstokkr material. The trail goes cold once you enter the settlement. The hamlet Hrithfjall is little more than a few dozen wooden structures along a single overgrown road. The buildings themselves are well-crafted and finely designed, but many of them appear to be abandoned. There are no townsfolk about, but you notice recent footprints headed toward the shore, which you follow.` 
 			scene "scene/seascape"
-			`	The great seas of Windblain churn beneath the chalk-white cliffs and blue-green sky. As you scan the horizon, your eyes catch the glare of reflected light beyond a distant precipice. You head in that direction and find a figure seated at the precipice's edge. An aged man sits cross-legged, looking out into the sea and at a gleaming metal wall towering over the grey waves about a mile out from shore.`
+			`	The great seas of Windblain churn beneath the chalk-white cliffs and blue-green sky. As you scan the horizon, your eyes catch the glare of reflected light beyond a distant precipice. You head in that direction and find a figure seated at the precipice's edge. An aged man sits cross-legged, looking out into the sea and at a gleaming metal wall towering over the gray waves about a mile out from shore.`
 			`	The old man speaks without turning and says in a raspy voice, "Hail Stranger, have you come to pay your respects?"`
 			choice
 				`	"Pay my respects to what?"`
@@ -3173,7 +3173,7 @@ mission "Home for Skadenga 2"
 			`	"Since then we've been shutting things down, laying people off, and sending the rest offworld. Various services, including emergency ones, are only barely functional. It's much cheaper to shut this world down rather than try and keep managing it. That's why it will be completely uninhabited within 50 years."` 
 			choice
 				`	"You're abandoning an entire planet to make a profit?"`
-			`	He leans forward with a sly look on his face. "Think about it. Instead of employing a worldwide workforce of 500,000 in the hope that we discover new pharmaceutical products, we instead employ 100 patent lawyers, and the rest of the profits go directly to the shareholders. We then raise the prices on our vast back catalogue of patented medicine, and everyone wins.`
+			`	He leans forward with a sly look on his face. "Think about it. Instead of employing a worldwide workforce of 500,000 in the hope that we discover new pharmaceutical products, we instead employ 100 patent lawyers, and the rest of the profits go directly to the shareholders. We then raise the prices on our vast back catalog of patented medicine, and everyone wins.`
 			`	"There is, however, one hiccup." Jakob leans back. "A thorn that has been in our side since our research firm first colonized this world over 400 years ago. Those crazy hill-witches. Sure, early on they had their uses as guides and whatnot. But, they are a cultural dead end, an atavistic blight on our corporate world. You know," he continues with a humorous glint in his eye, "They actually believe that they were brought here during Earth's stone-age by magical space-fairies."`
 			`	"Now, now." Henrik finally cuts in. "We here in The Deep do value all our resident people and cultures. We are not here to denigrate our citizens, no matter how unusual."`
 			choice
@@ -3247,7 +3247,7 @@ mission "Home for Skadenga 3"
 			``
 			`	Here at the Helsingor Family-Fun-Shopping-Center, we are committed to celebrating our past! This is why we, in the spirit of graffiti being the cultural touchstone of the day, have renovated this colonial structure into a central communication piece and made it a vital part of our vibrant community!'`
 			``
-			`	You finish reading the plaque, and look at the dull grey metal wall and the inhuman things carved upon it. It looks nothing like a ship's hull.`
+			`	You finish reading the plaque, and look at the dull gray metal wall and the inhuman things carved upon it. It looks nothing like a ship's hull.`
 			label ship
 			`	These people seem disconnected from their past. You wonder if the Skadenga could help them reconnect with it, but worry that the place would change the Skadenga more than they could change it. There is nothing more you can do here. You head back to your ship.`
 				accept
