@@ -49,7 +49,7 @@ void DataWriter::Write(const DataNode &node)
 	for(int i = 0; i < node.Size(); ++i)
 		WriteToken(node.Token(i).c_str());
 	Write();
-	
+
 	// If this node has any children, call this function recursively on them.
 	if(node.HasChildren())
 	{
@@ -101,23 +101,23 @@ void DataWriter::WriteComment(const string &str)
 void DataWriter::WriteToken(const char *a)
 {
 	// Figure out what kind of quotation marks need to be used for this string.
-	bool hasSpace = !*a;
+	bool needsQuoting = !*a || *a == '#';
 	bool hasQuote = false;
 	for(const char *it = a; *it; ++it)
 	{
-		hasSpace |= (*it <= ' ' && *it >= 0);
+		needsQuoting |= (*it <= ' ' && *it >= 0);
 		hasQuote |= (*it == '"');
 	}
-	
+
 	// Write the token, enclosed in quotes if necessary.
 	out << *before;
-	if(hasSpace && hasQuote)
+	if(needsQuoting && hasQuote)
 		out << '`' << a << '`';
-	else if(hasSpace)
+	else if(needsQuoting)
 		out << '"' << a << '"';
 	else
 		out << a;
-	
+
 	// The next token written will not be the first one on this line, so it only
 	// needs to have a single space before it.
 	before = &space;
