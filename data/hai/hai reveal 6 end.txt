@@ -25,7 +25,7 @@ mission "Hai Reveal [D01] Cleanup"
 		fail "Hai Rescue [C07A] Devil-Hide Fleet"
 		log `Returned the Hai to their own space to bring an end to the missing Hai saga. All that remains is to work out what to do about the leak and the cover story, so thin as to provide no modesty to its wearers.`
 		
-		log `Teeneep and General Choot'k together, prominent leaders of the Hai and Unfettered, kissed in a romantic goodbye. They spoke of a future peaceful unification of the Hai.`
+		log `Teeneep and General Choot'k, prominent leaders of the Hai and Unfettered, kissed in a romantic goodbye. They spoke of a future peaceful unification of the Hai.`
 		conversation
 			`When you land, you, Teeneep, and the Unfettered Hai are greeted as heroes. Word has traveled ahead of you through the new message links, and you are greeted by a hastily planned celebration in the capitol. After a few hours involving a brief formal parade, a great deal of cheering, some minor speeches with Xilin and Alondo trotted out to reassure everyone that there would be no conflict, and finally some more discrete parties outside the public eye, General Choot'k comes to you and Teeneep to bid his farewell.`
 			`	He shakes your hand and says, "You're a fine warrior, Captain <last>. You are as much a True Hai as any human can be, and it was an honor to fight alongside you in battle."`
@@ -100,7 +100,7 @@ event "mountaintop ascendant"
 		government "Hai"
 		attributes hai "hai tourism"
 		landscape land/station0
-		description `This brand new station is built with wide, spacious interiors to accommodate the Hai's preferred geometric development pattern and long-term perspectives. The powerful holoprojection system, which once projected an 'anomaly' into space to cover the wormhole, is now inactive. Now that the Hai are entering public relations with human governments, this station has come into its own. A wide concourse facilitates social and business exchanges, as well as parades and demonstrations. The two uppermost decks handle state functions and diplomatic services, including the now famed Borealis Chamber, formally referred to as "Where Mountains Touch The Sky," where the public acknowledgment of the Hai was first given, and where the two species committed a formal resolution to define a treaty of cooperation.`
+		description `This brand new station is built with wide, spacious interiors to accommodate the Hai's preferred geometric development pattern and long-term perspectives. The powerful holoprojection system, which once projected an "anomaly" into space to cover the wormhole, is now inactive. Now that the Hai are entering public relations with human governments, this station has come into its own. A wide concourse facilitates social and business exchanges, as well as parades and demonstrations. The two uppermost decks handle state functions and diplomatic services, including the now famed Borealis Chamber, formally referred to as "Where Mountains Touch The Sky," where the public acknowledgment of the Hai was first given, and where the two species committed a formal resolution to define a treaty of cooperation.`
 		spaceport `The spaceport is a spacious docking assembly sheltered under broad, carapace-like structures which are arrayed around the lower decks like petals. It is designed to look impressive, and still has that shiny look and freshly oiled smell of a newly minted construction, though it has only basic facilities and services.`
 		security 1
 	
@@ -225,7 +225,7 @@ mission "Hai Reveal [D04] Cleanup"
 			`	The people in the windows open fire.`
 				die
 			label question
-			`	She stares into your eyes for a long few seconds, and then she bows her head. You think you catch sight of a tear glistening as she turns away. "If you have the means, point your scanners towards Mebsuta from here. Seek out Aspiration."`
+			`	She stares into your eyes for a few long seconds, and then she bows her head. You think you catch sight of a tear glistening as she turns away. "If you have the means, point your scanners towards Mebsuta from here. Seek out Aspiration."`
 			`	Her voice catches at the end, and she looks back at you from the corner of her eye. "If you have it in your heart to do so, please, do not harm my great-grandaughter."`
 			`	She steps to a doorway and vanishes inside. Within seconds, the windows are closed, the gates are open, and you are left alone in the alley with the bustle of the spaceport beyond.`
 				accept

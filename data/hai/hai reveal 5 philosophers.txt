@@ -518,7 +518,7 @@ mission "Hai Rescue [B05] Plant a Spy"
 			`	Now you need to wait for the orb to "send you a feeling" so you know to return here. Tutitot said it would be two or three weeks.`
 		log `Dropped Tutitot off to be "kidnapped" and taken to Philosopher's Paradise.`
 	on stopover
-		dialog `You don a protective space suit and leave your ship with the strange orb. As your suit starts to give warnings that it is beginning to register atmospheric drag, the orb flashes and the blinking blue light swirls through it and into your gloved hand causing a tingling sensation to run from your palm to up between your eyes. The now dark orb flies out of your hand to a distance of about fifty meters, hovers there for a few seconds and then disappears. You can only surmise that it must have some sort of cloaking device. With the orb delivered you jet quickly back to your ship before the gravity well can drag you down, it's time to take Tutitot to <destination> to be "kidnapped."`
+		dialog `You don a protective space suit and leave your ship with the strange orb. As your suit starts to give warnings that it is beginning to register atmospheric drag, the orb flashes, and the blinking blue light swirls through it and into your gloved hand, causing a tingling sensation to run from your palm to up between your eyes. The now dark orb flies out of your hand to a distance of about fifty meters, hovers there for a few seconds, and then disappears. You can only surmise that it must have some sort of cloaking device. With the orb delivered, you jet quickly back to your ship before the gravity well can drag you down. It's time to take Tutitot to <destination> to be "kidnapped."`
 
 event "tutitot is ready"
 
@@ -571,7 +571,7 @@ mission "Hai Rescue [B07] Return"
 			`	"Our intel believed the city was established fifty years ago when Base Principles and their partners were supposed to have been scoured from Syndicate space, but I'm free to access large parts of this place so I've had a good chance to talk to some of the locals. They claim that for the most part they're descendants of anarchists from Freedom. There's also no way a city this size could have been built in only fifty years; it must be well over that.`
 			`	goto questions`
 			label large
-			`	"I've only seen small parts of it so far but I have seen a map. The top few levels are docking bays and cargo storage, and I can access the next several which house people, laboratories, and communal areas. In parallel with those are factories and shipyards which are closely supervised and lastly, below all of that, there are several levels of industrial machinery, generators, and life support systems.`
+			`	"I've only seen small parts of it so far, but I have seen a map. The top few levels are docking bays and cargo storage, and I can access the next several which house people, laboratories, and communal areas. In parallel with those are factories and shipyards which are closely supervised. Lastly, below all of that, there are several levels of industrial machinery, generators, and life support systems.`
 			`	"As for population, I'm told there's least a hundred thousand. Most are human, but one out of every four or five is Hai. I've seen a couple Korath too, but not many. There are also several thousand pirates, all human."`
 				goto questions
 			label defenses
@@ -673,7 +673,7 @@ mission "Hai Rescue [C01] Bloody Love Blooms"
 			`	You explain the plan to rescue the Hai and end the standoff before anyone does anything stupid, as well as the upgrades the Unfettered need to their ships in order to join the battle.`
 			`	"And of course," he says, "you're not an official representative of the Republic, so you need someone to authorize and organize things if it's to happen quickly. Well, have no fear! I can definitely do that." Within a few short minutes, you seem to have lifted a handful of years off of Xilin's worn features.`
 			`	"I'll sort out the approvals, and I'm sure the Marshal can figure out the logistics. Give me the details, and we'll have it all waiting for you on Prime by the time you arrive."`
-			`	You thank him, and, as he seems eager to get that ball rolling, you leave him to return to your ship.`
+			`	As he seems eager to get that ball rolling, you thank him and leave to return to your ship.`
 
 mission "Hai Rescue [C02] Escort to Arms Purchase"
 	landing
