@@ -3050,7 +3050,7 @@ mission "Home for Skadenga 1"
 				has "put on jacket"
 			`	You climb out of your bunk and head to the Ice-Crawler. From there, you head straight back to the spaceport. The trip takes a few hours and you spend some of it pondering the strange course of events - how you went from a life or death struggle against the elements to being some rustic community's savior.`
 			`	"Oh, well." You say to yourself, "I can't save everyone."`
-			goto onboard
+				goto onboard
 			label useshuttle
 			`	You hear the familiar rumble of a shuttle overhead, you climb out of your bunk to go to meet it. From there, you head straight back to the spaceport. The trip is brief, and you have little time to consider all that has transpired since you decided to take the excursion. You worry you may need therapy.`
 			label onboard
