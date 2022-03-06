@@ -222,13 +222,13 @@ void Fleet::Load(const DataNode &node)
 					child.PrintTrace("Warning: Skipping children of named variant in fleet definition:");
 			}
 			else
-				variants.emplace_back(Variant(child, add), weight);
+				variants.emplace_back(child, weight);
 		}
 		else if(key == "variant")
 		{
 			// If given a full definition of one of this fleet's variant members, remove the variant.
 			bool didRemove = false;
-			Variant toRemove(child, true);
+			Variant toRemove(child);
 			for(auto it = variants.begin(); it != variants.end(); ++it)
 				if(it->Get() == toRemove)
 				{

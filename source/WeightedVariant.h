@@ -22,7 +22,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class WeightedVariant {
 public:
 	WeightedVariant() = default;
-
 	WeightedVariant(Variant variant, int weight);
 	WeightedVariant(const Variant *stockVariant, int weight);
 

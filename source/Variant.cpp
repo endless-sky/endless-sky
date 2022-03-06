@@ -27,29 +27,30 @@ using namespace std;
 
 
 // Construct and Load() at the same time.
-Variant::Variant(const DataNode &node, bool modifying)
+Variant::Variant(const DataNode &node)
 {
-	Load(node, modifying);
+	Load(node);
 }
 
 
 
-void Variant::Load(const DataNode &node, bool modifying)
+void Variant::Load(const DataNode &node)
 {
+	// If this variant is being loaded from a fleet or another variant, it may
+	// include an additional token that shifts where the name must be searched for.
+	bool addNode = (node.Token(0) == "add");
+	bool removeNode = (node.Token(0) == "remove");
 	// If this variant is being loaded with a second token that is not a number,
-	// then it's a name that must be saved. This can either be because we're
-	// loading from GameData or from a fleet or variant, in which case there
-	// may be an additional "add" or "remove" token that must be accounted for.
-	if(node.Size() >= 2 + modifying && !node.IsNumber(1 + modifying))
+	// then it's a name that must be saved. Account for the shift in index of the
+	// name caused by a possible "remove" token. If a variant is being added and
+	// loaded then it shouldn't be named.
+	if(!addNode && node.Size() >= 2 + removeNode && !node.IsNumber(1 + removeNode))
 	{
-		name = node.Token(1 + modifying);
+		name = node.Token(1 + removeNode);
 		// If this named variant is being loaded for removal purposes then
 		// all that is necessary is that the variant has its name.
-		if(modifying)
+		if(removeNode)
 			return;
-		// If modifying is true because this variant is being added then
-		// it shouldn't reach this point as the calling class (either Fleet
-		// or Variant) will have handled a named variant separately.
 	}
 
 	// If Load() has already been called once on this variant, any subsequent
@@ -73,7 +74,7 @@ void Variant::Load(const DataNode &node, bool modifying)
 			{
 				// If given a full definition of one of this variant's variant members, remove the variant.
 				bool didRemove = false;
-				Variant toRemove(child, true);
+				Variant toRemove(child);
 				for(auto it = variants.begin(); it != variants.end(); ++it)
 					if(it->Get() == toRemove)
 					{
@@ -138,7 +139,7 @@ void Variant::Load(const DataNode &node, bool modifying)
 						child.PrintTrace("Warning: Skipping children of named variant in variant definition:");
 				}
 				else
-					variants.emplace_back(Variant(child, add), n);
+					variants.emplace_back(child, n);
 			}
 			else
 			{

@@ -30,9 +30,9 @@ class Variant {
 public:
 	Variant() = default;
 	// Construct and Load() at the same time.
-	Variant(const DataNode &node, bool modifying = false);
+	Variant(const DataNode &node);
 
-	void Load(const DataNode &node, bool modifying = false);
+	void Load(const DataNode &node);
 	void FinishLoading();
 
 	// Determine if this variant template uses well-defined data.
