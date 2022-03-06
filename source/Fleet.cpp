@@ -229,12 +229,14 @@ void Fleet::Load(const DataNode &node)
 			// If given a full definition of one of this fleet's variant members, remove the variant.
 			bool didRemove = false;
 			Variant toRemove(child);
-			for(auto it = variants.begin(); it != variants.end(); ++it)
+			for(auto it = variants.begin(); it != variants.end(); )
 				if(it->Get() == toRemove)
 				{
 					it = variants.eraseAt(it);
 					didRemove = true;
 				}
+				else
+					++it;
 
 			if(!didRemove)
 				child.PrintTrace("Warning: Did not find matching variant for specified operation:");
@@ -276,12 +278,14 @@ void Fleet::RemoveInvalidVariants()
 	// Ensure the class invariant can be maintained.
 	int count = 0;
 	int total = variants.TotalWeight();
-	for(auto it = variants.begin(); it != variants.end(); ++it)
+	for(auto it = variants.begin(); it != variants.end(); )
 		if(!it->Get().IsValid())
 		{
 			it = variants.eraseAt(it);
 			++count;
 		}
+		else
+			++it;
 
 	Files::LogError("Warning: " + (fleetName.empty() ? "unnamed fleet" : "fleet \"" + fleetName + "\"")
 		+ ": Removing " + to_string(count) + " invalid " + (count > 1 ? "variants" : "variant")

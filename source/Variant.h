@@ -40,7 +40,7 @@ public:
 
 	// Choose a list of ships from this variant. All ships from the ships
 	// vector are chosen, as well as a random selection of ships from any
-	// nested variants in the stockVariants or variants vectors.
+	// nested variants.
 	std::vector<const Ship *> ChooseShips() const;
 
 	// The strength of a variant is the sum of the cost of its ships and

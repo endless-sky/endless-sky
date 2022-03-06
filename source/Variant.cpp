@@ -75,12 +75,14 @@ void Variant::Load(const DataNode &node)
 				// If given a full definition of one of this variant's variant members, remove the variant.
 				bool didRemove = false;
 				Variant toRemove(child);
-				for(auto it = variants.begin(); it != variants.end(); ++it)
+				for(auto it = variants.begin(); it != variants.end(); )
 					if(it->Get() == toRemove)
 					{
 						it = variants.eraseAt(it);
 						didRemove = true;
 					}
+					else
+						++it;
 
 				if(!didRemove)
 					child.PrintTrace("Warning: Did not find matching variant for specified operation:");
