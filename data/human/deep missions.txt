@@ -4047,7 +4047,7 @@ mission "Stone-Bearers to Nifel"
 	on complete
 		payment
 		dialog
-			`The Skadenga disembark and return to their lives on Windblain..`
+			`The Skadenga disembark and return to their lives on Windblain.`
 
 
 
