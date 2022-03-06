@@ -45,6 +45,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <thread>
 
 #include <cassert>
+#include <future>
 #include <stdexcept>
 #include <string>
 
