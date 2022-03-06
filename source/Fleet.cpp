@@ -287,9 +287,10 @@ void Fleet::RemoveInvalidVariants()
 		else
 			++it;
 
-	Files::LogError("Warning: " + (fleetName.empty() ? "unnamed fleet" : "fleet \"" + fleetName + "\"")
-		+ ": Removing " + to_string(count) + " invalid " + (count > 1 ? "variants" : "variant")
-		+ " (" + to_string(total - variants.TotalWeight()) + " of " + to_string(total) + " weight)");
+	if(count)
+		Files::LogError("Warning: " + (fleetName.empty() ? "unnamed fleet" : "fleet \"" + fleetName + "\"")
+			+ ": Removing " + to_string(count) + " invalid " + (count > 1 ? "variants" : "variant")
+			+ " (" + to_string(total - variants.TotalWeight()) + " of " + to_string(total) + " weight)");
 }
 
 
