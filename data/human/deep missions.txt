@@ -3353,8 +3353,8 @@ mission "Home for Skadenga 5"
 			apply
 				set "Asgard2"
 			scene "scene/citydark"
-			`Mani is a quiet, empty moon with only a few hubs of human activity. The Deep Secruity forces, Transport Union, and other semi-governmental fleets are all serviced here.`
-			`	A Transport Union executive meets you when you touch down. "It'll take a while for the ships to be ready, Captain <last>. We're primitive-proofing them so that those ice-savages from Nifel don't accidently kill themselves. I'll send you a message when the ships are ready. It should take about three weeks," the executive explains as he skims through a time table displayed on his tablet.` 
+			`Mani is a quiet, empty moon with only a few hubs of human activity. The Deep Security forces, Transport Union, and other semi-governmental fleets are all serviced here.`
+			`	A Transport Union executive meets you when you touch down. "It'll take a while for the ships to be ready, Captain <last>. We're primitive-proofing them so that those ice-savages from Nifel don't accidentally kill themselves. I'll send you a message when the ships are ready. It should take about three weeks," the executive explains as he skims through a time table displayed on his tablet.` 
 			`	"When the ships return covered in hay, feces, and other low-tech trash, it'll take us weeks to get them in a usable state again," he mutters before promptly turning and leaving.`
 
 
