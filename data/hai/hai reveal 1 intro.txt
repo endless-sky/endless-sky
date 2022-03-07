@@ -97,7 +97,7 @@ event "hai secret leaks"
 
 
 conversation "hai reveal free worlds news"
-	`You are relaxing at the spaceport while your ship refuels after conducting a spot of business. On the view-screen is some talk show - not something you specifically pay attention to, but apparently a quite popular one out of Tarazed.`
+	`You are relaxing within the spaceport while your ship refuels after conducting a spot of business. On the view-screen is some talk show - not something you specifically pay attention to, but apparently quite a popular one out of Tarazed.`
 	`	A young and fresh-faced man who looks incredibly ill at ease has just been brought out as a surprise guest by the host Jonathon Camembert.`
 	`	"So now in our surprise segment, let me introduce you to Ronald. He once crewed on one of these big trade ships, but after seeing what he saw, he just had to come forward!"`
 	`	The host stresses the word 'had' so much his voice squeaks, but the audience's attention has certainly been gained.`
@@ -331,7 +331,7 @@ mission "Trader Directions to Hai Space"
 		conversation
 			`Arriving at the only place you can think of where you feel sure you can find out more information, you find that <origin>, like most places, is abuzz with the recent news. Avoiding the many large, cheap, and boisterous establishments that service the many crews and workers of the Syndicate corporate machinery here, you make your way to one of the marginally more up-market places, cunningly marketed as a merchant-only dive.`
 			`	The endless cycle of both news and government propaganda displayed on most screens in major thoroughfares is remarkably absent here, with only one of the screens on display covering the "violent alien race" at all - running stats on how many different versions of the story are now being told.`
-			`	Casting around the room you pick out a merchant who looks like they've been around the block a few times. In addition to being a woman who looks like she could pick up most people and break them over her knee, she's conspicuous by the threatening glare you watch her give a younger captain who left a table talking about the Hai to approach her... briefly. As you make your way over though you see her glare falter in a flash of recognition, before subsiding to a reserved scowl.`
+			`	Casting around the room, you pick out a merchant who looks like they've been around the block a few times. In addition to looking like she could pick up most people and break them over her knee, she's conspicuous by the threatening glare you watch her give a younger captain who left a table talking about the Hai to approach her... briefly. After the captain is briskly sent away, you make your way over. Her glare falters in a flash of recognition before subsiding to a reserved scowl.`
 			`	She waits until you're directly next to her table. "The famous Captain <last>. Which ancient Sumerian deity did I offend to be granted the gift of your attention hey?"`
 			`	The emphasis she places on the word "gift" is dripping in sarcasm, but her overall tone is wary rather than hostile, and she gestures without comment to the seat opposite for you to sit.`
 			choice
@@ -610,7 +610,7 @@ mission "Hai Leaks Response 2"
 			`	He checks the date. "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months, or we would lose so much credibility as to compromise electoral stability. The actual time limit is probably sooner."`
 			choice
 				`	"Would that be so bad?"`
-			`	"It is always bad to be forced into acknowledging a secret. If we act sooner, we may control the manner of that secret's release," says Yang. "Plus, while the Hai have let the trickle of humans that find the wormhole settle here peacefully, a massive influx of humans is a problem nobody really wants to have to deal with."`
+			`	"It is always bad to be forced into acknowledging a secret. If we act sooner, we may control the manner of that secret's release," says Yang. "Plus, while the Hai have let the trickle of humans that find the wormhole settle here peacefully, a massive influx is a problem nobody really wants to have to deal with."`
 			`	Sayari looks at you. "We will have to come up with a plan, and quickly, but for the moment may I ask a favor of the war hero in the room? Please meet up with the security forces converging on Allhome and help them route the pirates back to the other side of the wormhole. It will buy us some breathing room and options."`
 			`	It is so hard to say "no" to a Hai and their cute squirrelly features.`
 			choice
