@@ -155,18 +155,20 @@ void Variant::Load(const DataNode &node)
 
 void Variant::FinishLoading()
 {
-	// Prevent a variant from containing itself.
-	if(!name.empty())
-		for(auto it = variants.begin(); it != variants.end(); )
+	if(name.empty())
+		return;
+	
+	// Prevent a named variant from containing itself.
+	for(auto it = variants.begin(); it != variants.end(); )
+	{
+		if(it->Get().NestedInSelf(name))
 		{
-			if(it->Get().NestedInSelf(name))
-			{
-				it = variants.eraseAt(it);
-				Files::LogError("Error: Infinite loop detected and removed in variant \"" + name + "\".");
-			}
-			else
-				++it;
+			it = variants.eraseAt(it);
+			Files::LogError("Error: Infinite loop detected and removed in variant \"" + name + "\".");
 		}
+		else
+			++it;
+	}
 }
 
 
