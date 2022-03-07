@@ -152,8 +152,7 @@ void Armament::UninstallAll()
 
 void Armament::Clear()
 {
-	streamReload.clear();
-	hardpoints.clear();
+	*this = Armament();
 }
 
 
