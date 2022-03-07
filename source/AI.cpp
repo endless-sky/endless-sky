@@ -1829,7 +1829,7 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition, const
 		// delta to get to the preferred velocity.
 		tv = (dp.Unit() * cruiseSpeed) - velocity;
 		// If we are moving close to our preferred velocity, then face towards the target.
-		if(tv.Length() < .1)
+		if(tv.LengthSquared() < .01)
 			tv = dp;
 	}
 

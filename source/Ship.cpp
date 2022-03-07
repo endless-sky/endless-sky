@@ -3203,7 +3203,7 @@ double Ship::MaxReverseVelocity() const
 // non-carried escorts to catch up with this ship.
 double Ship::CruiseVelocity() const
 {
-	return escortsVelocity >= 0. ? min(MaxVelocity(), escortsVelocity) : MaxVelocity();
+	return escortsVelocity > 0. ? min(MaxVelocity(), escortsVelocity) : MaxVelocity();
 }
 
 
@@ -3805,9 +3805,9 @@ const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 // cues and try to stay with it when it lands or goes into hyperspace.
 void Ship::AddEscort(Ship &ship)
 {
-	auto ship_shared = ship.shared_from_this();
-	escorts.push_back(ship_shared);
-	TuneForEscort(ship_shared);
+	auto sp = ship.shared_from_this();
+	TuneForEscort(sp);
+	escorts.push_back(std::move(sp));
 }
 
 
@@ -3872,7 +3872,7 @@ void Ship::TuneForEscorts()
 
 
 // Store relevant cached data for the given escort.
-void Ship::TuneForEscort(std::shared_ptr<Ship> &ship)
+void Ship::TuneForEscort(const std::shared_ptr<Ship> &ship)
 {
 	// Cache the maximum speed that the parent should stay below to keep
 	// all escorts together.
