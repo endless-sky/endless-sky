@@ -429,6 +429,8 @@ private:
 	// Cache relevant data for all escorts or the given escort.
 	void TuneForEscorts();
 	void TuneForEscort(const std::shared_ptr<Ship> &ship);
+	// Let the parent re-check if all cached data for its escorts still is valid.
+	void TuneParent();
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
 	// Find out how much fuel is consumed by the hyperdrive of the given type.

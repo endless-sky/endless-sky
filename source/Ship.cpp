@@ -2717,10 +2717,7 @@ void Ship::Disable()
 void Ship::Destroy()
 {
 	hull = -1.;
-
-	shared_ptr<Ship> oldParent = parent.lock();
-	if(oldParent)
-		oldParent->TuneForEscorts();
+	TuneParent();
 }
 
 
@@ -2863,6 +2860,8 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	}
 	// This ship should not care about its now-unallied escorts.
 	escorts.clear();
+	slowestEscort.reset();
+	escortsVelocity = -1.;
 }
 
 
@@ -3266,7 +3265,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	if(!wasDestroyed && IsDestroyed())
 	{
 		type |= ShipEvent::DESTROY;
-		Destroy();
+		TuneParent();
 	}
 
 	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
@@ -3881,7 +3880,7 @@ void Ship::TuneForEscort(const std::shared_ptr<Ship> &ship)
 	// regular thrust.
 	// We also don't cache the speeds of carried ships, since they are often
 	// docked and the carrier waits for them during docking already.
-	if(ship && !ship->CanBeCarried() && !ship->IsDestroyed() && government == ship->GetGovernment())
+	if(!ship->CanBeCarried() && !ship->IsDestroyed() && government == ship->GetGovernment())
 	{
 		double eV = ship->MaxVelocity() * 0.9;
 		if(eV > 0. && (escortsVelocity <= 0. || (eV < escortsVelocity)))
@@ -3890,6 +3889,16 @@ void Ship::TuneForEscort(const std::shared_ptr<Ship> &ship)
 			slowestEscort = ship;
 		}
 	}
+}
+
+
+
+// Let the parent re-check if all cached data for its escorts still is valid.
+void Ship::TuneParent()
+{
+	shared_ptr<Ship> oldParent = parent.lock();
+	if(oldParent)
+		oldParent->TuneForEscorts();
 }
 
 
