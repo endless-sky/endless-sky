@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 
 #include <cstddef>
+#include <numeric>
 #include <stdexcept>
 #include <vector>
 
@@ -51,6 +52,10 @@ public:
 
 	iterator eraseAt(iterator position) noexcept;
 	iterator erase(iterator first, iterator last) noexcept;
+
+
+private:
+	void RecalculateWeight();
 
 
 private:
@@ -105,10 +110,18 @@ typename std::vector<Type>::iterator WeightedList<Type>::eraseAt(typename std::v
 template <class Type>
 typename std::vector<Type>::iterator WeightedList<Type>::erase(typename std::vector<Type>::iterator first, typename std::vector<Type>::iterator last) noexcept
 {
-	for(auto it = first; it != last; ++it)
-		total -= it->Weight();
+	auto it = choices.erase(first, last);
+	RecalculateWeight();
+	return it;
+}
 
-	return choices.erase(first, last);
+
+
+template <class Type>
+void WeightedList<Type>::RecalculateWeight()
+{
+	total = std::accumulate(choices.begin(), choices.end(), 0,
+		[](std::size_t x, const Type &t) -> std::size_t { return x + t.Weight(); });
 }
 
 
