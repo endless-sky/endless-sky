@@ -54,6 +54,10 @@ public:
 
 
 private:
+	void RecalculateWeight();
+
+
+private:
 	std::vector<Type> choices;
 	std::size_t total = 0;
 };
@@ -102,16 +106,22 @@ typename std::vector<Type>::iterator WeightedList<Type>::eraseAt(typename std::v
 
 
 
-// Since WeightedList needs to be able to access the weights
-// of objects in the range being erased, under no circumstances
-// should std::remove_if be used on a WeightedList.
 template <class Type>
 typename std::vector<Type>::iterator WeightedList<Type>::erase(typename std::vector<Type>::iterator first, typename std::vector<Type>::iterator last) noexcept
 {
-	for(auto it = first; it != last; ++it)
-		total -= it->Weight();
+	auto it = choices.erase(first, last);
+	RecalculateWeight();
+	return it;
+}
 
-	return choices.erase(first, last);
+
+
+template <class Type>
+void WeightedList<Type>::RecalculateWeight()
+{
+	total = 0;
+	for(auto it = choices.begin(); it != choices.end(); ++it)
+		total += it->Weight();
 }
 
 

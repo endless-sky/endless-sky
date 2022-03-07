@@ -73,18 +73,16 @@ void Variant::Load(const DataNode &node)
 			if(variant)
 			{
 				// If given a full definition of one of this variant's variant members, remove the variant.
-				bool didRemove = false;
 				Variant toRemove(child);
-				for(auto it = variants.begin(); it != variants.end(); )
-					if(it->Get() == toRemove)
-					{
-						it = variants.eraseAt(it);
-						didRemove = true;
-					}
-					else
-						++it;
+				auto VariantToRemove = [&](const WeightedVariant &v) noexcept -> bool
+				{
+					return v.Get() == toRemove;
+				};
 
-				if(!didRemove)
+				auto removeIt = remove_if(variants.begin(), variants.end(), VariantToRemove);
+				if(removeIt != variants.end())
+					variants.erase(removeIt, variants.end());
+				else
 					child.PrintTrace("Warning: Did not find matching variant for specified operation:");
 			}
 			else

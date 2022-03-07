@@ -227,18 +227,16 @@ void Fleet::Load(const DataNode &node)
 		else if(key == "variant")
 		{
 			// If given a full definition of one of this fleet's variant members, remove the variant.
-			bool didRemove = false;
 			Variant toRemove(child);
-			for(auto it = variants.begin(); it != variants.end(); )
-				if(it->Get() == toRemove)
-				{
-					it = variants.eraseAt(it);
-					didRemove = true;
-				}
-				else
-					++it;
+			auto VariantToRemove = [&](const WeightedVariant &v) noexcept -> bool
+			{
+				return v.Get() == toRemove;
+			};
 
-			if(!didRemove)
+			auto removeIt = remove_if(variants.begin(), variants.end(), VariantToRemove);
+			if(removeIt != variants.end())
+				variants.erase(removeIt, variants.end());
+			else
 				child.PrintTrace("Warning: Did not find matching variant for specified operation:");
 		}
 		else
@@ -275,22 +273,23 @@ bool Fleet::IsValid(bool requireGovernment) const
 
 void Fleet::RemoveInvalidVariants()
 {
-	// Ensure the class invariant can be maintained.
-	int count = 0;
-	int total = variants.TotalWeight();
-	for(auto it = variants.begin(); it != variants.end(); )
-		if(!it->Get().IsValid())
-		{
-			it = variants.eraseAt(it);
-			++count;
-		}
-		else
-			++it;
+	auto IsInvalidVariant = [](const WeightedVariant &v) noexcept -> bool
+	{
+		return !v.Get().IsValid();
+	};
+	auto firstInvalid = find_if(variants.begin(), variants.end(), IsInvalidVariant);
+	if(firstInvalid == variants.end())
+		return;
 
-	if(count)
-		Files::LogError("Warning: " + (fleetName.empty() ? "unnamed fleet" : "fleet \"" + fleetName + "\"")
-			+ ": Removing " + to_string(count) + " invalid " + (count > 1 ? "variants" : "variant")
-			+ " (" + to_string(total - variants.TotalWeight()) + " of " + to_string(total) + " weight)");
+	// Ensure the class invariant can be maintained.
+	auto removeIt = remove_if(firstInvalid, variants.end(), IsInvalidVariant);
+	int total = variants.TotalWeight();
+	int count = distance(removeIt, variants.end());
+	variants.erase(removeIt, variants.end());
+
+	Files::LogError("Warning: " + (fleetName.empty() ? "unnamed fleet" : "fleet \"" + fleetName + "\"")
+		+ ": Removing " + to_string(count) + " invalid " + (count > 1 ? "variants" : "variant")
+		+ " (" + to_string(total - variants.TotalWeight()) + " of " + to_string(total) + " weight)");
 }
 
 
