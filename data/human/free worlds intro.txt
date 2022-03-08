@@ -1766,6 +1766,7 @@ mission "FW Bounty 3"
 
 
 mission "FW Commitment"
+	minor
 	landing
 	name "Join the Free Worlds"
 	description "If you want to join the Free Worlds, report to their headquarters on <destination>."
