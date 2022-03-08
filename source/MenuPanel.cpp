@@ -33,12 +33,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteShader.h"
 #include "StarField.h"
+#include "StartConditionsPanel.h"
 #include "System.h"
 #include "UI.h"
 
-#include "gl_header.h"
+#include "opengl.h"
 
 #include <algorithm>
+#include <cassert>
 #include <stdexcept>
 
 using namespace std;
@@ -53,9 +55,18 @@ namespace {
 MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 	: player(player), gamePanels(gamePanels), scroll(0)
 {
+	assert(GameData::IsLoaded() && "MenuPanel should only be created after all data is fully loaded");
 	SetIsFullScreen(true);
-	
+
 	credits = Format::Split(Files::Read(Files::Resources() + "credits.txt"), "\n");
+	if(gamePanels.IsEmpty())
+	{
+		gamePanels.Push(new MainPanel(player));
+		// It takes one step to figure out the planet panel should be created, and
+		// another step to actually place it. So, take two steps to avoid a flicker.
+		gamePanels.StepAll();
+		gamePanels.StepAll();
+	}
 }
 
 
@@ -68,15 +79,6 @@ void MenuPanel::Step()
 		if(scroll >= (20 * credits.size() + 300) * scrollSpeed)
 			scroll = 0;
 	}
-	progress = static_cast<int>(GameData::Progress() * 60.);
-	if(GameData::IsLoaded() && gamePanels.IsEmpty())
-	{
-		gamePanels.Push(new MainPanel(player));
-		// It takes one step to figure out the planet panel should be created, and
-		// another step to actually place it. So, take two steps to avoid a flicker.
-		gamePanels.StepAll();
-		gamePanels.StepAll();
-	}
 }
 
 
@@ -86,7 +88,7 @@ void MenuPanel::Draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
 	const Font &font = FontSet::Get(14);
-	
+
 	Information info;
 	if(player.IsLoaded() && !player.IsDead())
 	{
@@ -117,25 +119,27 @@ void MenuPanel::Draw()
 		info.SetCondition("no pilot loaded");
 		info.SetString("pilot", "No Pilot Loaded");
 	}
-	
+
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	GameData::Interfaces().Get("main menu")->Draw(info, this);
 	GameData::Interfaces().Get("menu player info")->Draw(info, this);
-	
-	if(progress == 60)
-		alpha -= .02f;
+
+	// TODO: move this animation (e.g. to a non-fullscreen panel).
+	alpha -= .02f;
 	if(alpha > 0.f)
 	{
 		Angle da(6.);
 		Angle a(0.);
-		for(int i = 0; i < progress; ++i)
+		for(int i = 0; i < 60; ++i)
 		{
 			Color color(.5f * alpha, 0.f);
 			PointerShader::Draw(Point(), a.Unit(), 8.f, 20.f, 140.f * alpha, color);
 			a += da;
 		}
 	}
-	
+	// END animation TODO
+
+	// TODO: allow pausing the credits scroll
 	int y = 120 - scroll / scrollSpeed;
 	for(const string &line : credits)
 	{
@@ -155,30 +159,8 @@ void MenuPanel::Draw()
 
 
 
-// New player "conversation" callback.
-void MenuPanel::OnCallback(int)
-{
-	GetUI()->Pop(this);
-	gamePanels.Reset();
-	gamePanels.Push(new MainPanel(player));
-	gamePanels.CanSave(true);
-	// Tell the main panel to re-draw itself (and pop up the planet panel).
-	gamePanels.StepAll();
-	// If the starting conditions don't specify any ships, let the player buy one.
-	if(player.Ships().empty())
-	{
-		gamePanels.Push(new ShipyardPanel(player));
-		gamePanels.StepAll();
-	}
-}
-
-
-
 bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(!GameData::IsLoaded())
-		return false;
-	
 	if(player.IsLoaded() && (key == 'e' || command.Has(Command::MENU)))
 	{
 		gamePanels.CanSave(true);
@@ -191,19 +173,14 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == 'n' && (!player.IsLoaded() || player.IsDead()))
 	{
 		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
-		player.New();
-		
-		const auto &intro = *GameData::Conversations().Get("intro");
-		if(!intro.IsValidIntro())
-			throw runtime_error("The \"intro\" conversation must contain a \"name\" node");
-		ConversationPanel *panel = new ConversationPanel(player, intro);
-		GetUI()->Push(panel);
-		panel->SetCallback(this, &MenuPanel::OnCallback);
+		// Request that the player chooses a start scenario.
+		// StartConditionsPanel also handles the case where there's no scenarios.
+		GetUI()->Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), nullptr));
 	}
 	else if(key == 'q')
 		GetUI()->Quit();
 	else
 		return false;
-	
+
 	return true;
 }
