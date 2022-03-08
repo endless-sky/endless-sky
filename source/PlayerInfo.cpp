@@ -2864,15 +2864,14 @@ void PlayerInfo::Save(const string &path) const
 	if(flagship)
 	{
 		for(auto it = ships.begin(); it != ships.end(); ++it)
-		{
 			if(*it == flagship)
+			{
 				out.Write("flagship index", distance(ships.begin(), it));
-		}
+				break;
+			}
 	}
 	else
-	{
 		out.Write("flagship index", -1);
-	}
 
 	// Save the current setting for the map coloring;
 	out.Write("map coloring", mapColoring);
