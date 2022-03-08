@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Set.h"
 #include "Trade.h"
 
+#include <future>
 #include <map>
 #include <memory>
 #include <string>
@@ -41,6 +42,7 @@ class Minable;
 class Mission;
 class News;
 class Outfit;
+class Panel;
 class Person;
 class Phrase;
 class Planet;
@@ -64,7 +66,7 @@ class TextReplacements;
 // universe.
 class GameData {
 public:
-	static void BeginLoad(bool onlyLoadData, bool debugMode);
+	static std::future<void> BeginLoad(bool onlyLoadData, bool debugMode);
 	static void FinishLoading();
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();
@@ -72,8 +74,6 @@ public:
 	static double GetProgress();
 	// Whether initial game loading is complete (data, sprites and audio are loaded).
 	static bool IsLoaded();
-	// Whether all text data has been read from disk.
-	static bool IsDataLoaded();
 	// Begin loading a sprite that was previously deferred. Currently this is
 	// done with all landscapes to speed up the program's startup.
 	static void Preload(const Sprite *sprite);
@@ -159,6 +159,9 @@ public:
 	static MaskManager &GetMaskManager();
 
 	static const TextReplacements &GetTextReplacements();
+
+	// Thread-safe way to draw the menu background.
+	static void DrawMenuBackground(Panel *panel);
 
 
 private:

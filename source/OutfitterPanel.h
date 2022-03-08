@@ -67,7 +67,6 @@ private:
 	static bool ShipCanBuy(const Ship *ship, const Outfit *outfit);
 	static bool ShipCanSell(const Ship *ship, const Outfit *outfit);
 	static void DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned);
-	bool HasMapped(int mapSize) const;
 	bool IsLicense(const std::string &name) const;
 	bool HasLicense(const std::string &name) const;
 	std::string LicenseName(const std::string &name) const;

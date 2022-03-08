@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapOutfitterPanel.h"
 
+#include "comparators/ByName.h"
 #include "CoreStartData.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -83,7 +84,7 @@ const ItemInfoDisplay &MapOutfitterPanel::CompareInfo() const
 const string &MapOutfitterPanel::KeyLabel(int index) const
 {
 	static const string MINE = "Mine this here";
-	if(index == 2 && selected && selected->Get("installable") < 0)
+	if(index == 2 && selected && selected->Get("minable") > 0.)
 		return MINE;
 
 	static const string LABEL[3] = {
@@ -193,8 +194,13 @@ void MapOutfitterPanel::DrawItems()
 			string price = Format::Credits(outfit->Cost()) + " credits";
 
 			string info;
-			if(outfit->Get("installable") < 0.)
+			if(outfit->Get("minable") > 0.)
 				info = "(Mined from asteroids)";
+			else if(outfit->Get("installable") < 0.)
+			{
+				double space = outfit->Mass();
+				info = Format::Number(space) + (abs(space) == 1. ? " ton" : " tons") + " of space";
+			}
 			else
 			{
 				double space = -outfit->Get("outfit space");
@@ -239,7 +245,7 @@ void MapOutfitterPanel::DrawItems()
 				: storedInSystem == 1
 				? "One unit in storage"
 				: Format::Number(storedInSystem) + " units in storage";
-			Draw(corner, outfit->Thumbnail(), isForSale, outfit == selected,
+			Draw(corner, outfit->Thumbnail(), 0, isForSale, outfit == selected,
 				outfit->Name(), price, info, storage_details);
 			list.push_back(outfit);
 		}
@@ -283,6 +289,5 @@ void MapOutfitterPanel::Init()
 
 	// Sort the vectors.
 	for(auto &it : catalog)
-		sort(it.second.begin(), it.second.end(),
-			[](const Outfit *a, const Outfit *b) { return a->Name() < b->Name(); });
+		sort(it.second.begin(), it.second.end(), ByName<Outfit>());
 }
