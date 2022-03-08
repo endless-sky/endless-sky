@@ -2860,7 +2860,7 @@ void PlayerInfo::Save(const string &path) const
 		out.Write("travel", system->Name());
 	if(travelDestination)
 		out.Write("travel destination", travelDestination->TrueName());
-	// Detect which ship number is the current flagship, for showing on LoadPanel
+	// Detect which ship number is the current flagship, for showing on LoadPanel.
 	if(flagship)
 	{
 		for(auto it = ships.begin(); it != ships.end(); ++it)
