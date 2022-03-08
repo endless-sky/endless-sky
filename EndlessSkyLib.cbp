@@ -268,6 +268,7 @@
 		<Unit filename="source/Radar.h" />
 		<Unit filename="source/Random.cpp" />
 		<Unit filename="source/Random.h" />
+		<Unit filename="source/RandomEvent.h" />
 		<Unit filename="source/Rectangle.cpp" />
 		<Unit filename="source/Rectangle.h" />
 		<Unit filename="source/RingShader.cpp" />

@@ -3194,10 +3194,10 @@ double Ship::MaxReverseVelocity() const
 
 
 
-// This ship just got hit by the given weapon. Take damage
-// according to the weapon and the characteristics of how
-// it hit this ship, and add any visuals created as a result
-// of being hit.
+// This ship just got hit by a weapon. Take damage according to the
+// DamageDealt from that weapon. The return value is a ShipEvent type,
+// which may be a combination of PROVOKED, DISABLED, and DESTROYED.
+// Create any target effects as sparks.
 int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment)
 {
 	bool wasDisabled = IsDisabled();
@@ -3261,9 +3261,9 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	else if(heat < .9 * MaximumHeat())
 		isOverheated = false;
 
-	// If this ship was hit directly and did not consider itself an enemy of the
-	// ship that hit it, it is now "provoked" against that government.
-	if(!damage.IsBlast() && sourceGovernment && !sourceGovernment->IsEnemy(government)
+	// If this ship did not consider itself an enemy of the ship that hit it,
+	// it is now "provoked" against that government.
+	if(sourceGovernment && !sourceGovernment->IsEnemy(government)
 			&& (Shields() < .9 || Hull() < .9 || !personality.IsForbearing())
 			&& !personality.IsPacifist() && damage.GetWeapon().DoesDamage())
 		type |= ShipEvent::PROVOKE;
