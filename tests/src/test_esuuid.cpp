@@ -251,12 +251,12 @@ SCENARIO( "Mapping identifiable collections", "[uuid][comparison][collections]" 
 		std::string secondName = "two";
 		collection.insert({ {name, firstId}, {secondName, secondId} });
 		WHEN( "we use strings to find the corresponding UUID in the collection" ) {
-			CHECK( collection.at(name) == first->id );
-			CHECK( collection.at(secondName) == second->id );
+			CHECK( collection.at(name) == first->UUID() );
+			CHECK( collection.at(secondName) == second->UUID() );
 			THEN( "we can use them to identify the items in a unique way" ) {
-				CHECK( items[0]->id == first->id );
-				CHECK_FALSE( items[1]->id == first->id );
-				CHECK_FALSE( otherId == first->id );
+				CHECK( items[0]->id == first->UUID() );
+				CHECK_FALSE( items[1]->id == first->UUID() );
+				CHECK_FALSE( otherId == first->UUID() );
 			}
 		}
 	}
