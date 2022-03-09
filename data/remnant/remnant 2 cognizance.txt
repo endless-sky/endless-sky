@@ -263,7 +263,7 @@ mission "Remnant: Cognizance 5"
 
 mission "Remnant: Cognizance 6"
 	name "Transport Plume"
-	description "Pick up Plume on <stopovers> and bring him to <source> by <day>. Prefect Chilia wants to consult him about the void sprites."
+	description "Pick up Plume on <stopovers> and bring him to <origin> by <day>. Prefect Chilia wants to consult him about the void sprites."
 	passengers 1
 	deadline 5
 	source "Caelian"
@@ -762,7 +762,7 @@ mission "Remnant: Cognizance 21"
 		planet "Ssil Vida"
 	to offer
 		has "Remnant: Cognizance 20: done"
-		not "Remnant: Dusk Busy"
+		not "remnant: dusk busy"
 	on offer
 		require "Research Laboratory"
 		conversation
@@ -813,7 +813,7 @@ mission "Remnant: Cognizance 21"
 			`	Dusk leans over the holo, peering at the details. "The mission is a very standard arc: We go to the station, set up our equipment to get some detailed readings, and return here once we are done. For these initial readings we should need about a day onsite, and we will leave some of our equipment to take ongoing recordings for retrieval later. After that... Well, we will see what the data says and decide from there."`
 				accept
 	on accept
-		set "Remnant: Dusk Busy"
+		set "remnant: dusk busy"
 		"remnant met dusk" ++
 	on stopover
 		require "Research Laboratory"
@@ -850,7 +850,7 @@ mission "Remnant: Cognizance 21"
 	on complete
 		require "Research Laboratory"
 		payment 350000
-		clear "Remnant: Dusk Busy"
+		clear "remnant: dusk busy"
 		conversation
 			`The trip back to <destination> goes quickly but quietly, as all the Remnant seem to be focused on writing reports of their observations. From what you can tell, each member of the team writes up their own observations and experiences, and then Dusk assembles all the reports into an expedition report that includes each researcher's verbatim report as well as his own.`
 			`	The <ship> settles into the current landing pattern for the main spaceport on <destination> as you flip through the exterior camera feeds. In the distance, you notice that one of the research hangars has some activity going on around it, but otherwise, the spaceport seems to be humming along as usual. Dusk stops by the cockpit as you settle the <ship> into its berth. "Thank you for helping us, <first>. It will take us some time to analyze this data, but we will likely be mounting another expedition to Ssil Vida in the near future." He pauses, then adds, "I do not think we ever mentioned it, but, as is appropriate for your assistance, a logistics adjustment of <payment> has been applied to your account to cover your costs and provide resources to prepare for future endeavors." Dusk gives you a polite nod before heading off to help the other researchers unload the equipment.`
@@ -929,7 +929,7 @@ mission "Remnant: Cognizance 22"
 			`	He then walks briskly across the hall, gesturing for you to follow. Shields flare in and out of existence around the two of you, forming a series of openings that allow you to approach the vault door, which opens when you reach it. Inside is a disappointingly small room with a small tray on a pedestal.`
 			`	"If you would place the data crystal here, we will record the surface metadata, and those who need it will be able to retrieve it when necessary." He gestures to the tray, and once you place the data crystal on it, a shield springs into existence surrounding the tray, and the whole assembly sinks into the floor.`
 			action
-				set "Remnant: visited the vault"
+				set "remnant: visited the vault"
 			choice
 				`	"Well, that is done. Taely is waiting for me."`
 					goto departure
@@ -1058,7 +1058,7 @@ mission "Remnant: Cognizance 23"
 
 mission "Remnant: Cognizance 24"
 	name "Equipment to Ssil Vida"
-	description "Dusk needs a load of <cargo> taken to Ssil Vida."
+	description "Dusk needs a load of <cargo> picked up from Esquiline, then taken to Ssil Vida."
 	cargo "Outpost Equipment" 11
 	passengers 1
 	source
@@ -1211,7 +1211,7 @@ mission "Remnant: Cognizance 27"
 	to offer
 		has "Remnant: Cognizance 26: done"
 	to complete
-		not "Remnant: Dusk Busy"
+		not "remnant: dusk busy"
 
 
 
@@ -1227,9 +1227,9 @@ mission "Remnant: Cognizance 28"
 	destination "Baianus"
 	to offer
 		has "Remnant: Cognizance 27: done"
-		not "Remnant: Dusk Busy"
+		not "remnant: dusk busy"
 	on offer
-		set "Remnant: Dusk Busy"
+		set "remnant: dusk busy"
 		conversation
 			`Your commlink springs to life as you enter final approach to Caelian, revealing Torza in a flurry of motion. He focuses momentarily on the camera. "Captain <first>, and flying a ship with a substantial lifting capacity, excellent! The Korath have discovered one of our forward operating bases, and we need help evacuating it now. It is located on Baianus in the Parca system. There are 20 people and 280 cubic meters of equipment to retrieve. The Korath have setup a blockade, so you will need something reasonably fast to get through it. You can fight them or not, as you wish, but the primary task is evacuating the outpost. Embers speed your flight, Captain."`
 				accept
@@ -1579,7 +1579,7 @@ mission "Remnant: Cognizance 38"
 	on offer
 		event "remnant: cognizance salvage expansion"
 	on complete
-		clear "Remnant: Dusk Busy"
+		clear "remnant: dusk busy"
 		conversation
 			`A crowd of Remnant cluster around your ship as you land, but it is just one who gestures quickly, asking if the rest of the team who went with you are safe. You nod, and a ripple of relief goes through the crowd. "So, what happened?" asks another.`
 			choice
@@ -1605,7 +1605,7 @@ mission "Remnant: Cognizance 38"
 			`	His gestures take on a cautionary tone. "Of course, accelerating to that level takes effort, and it is a long process to learn to manage our thoughts in such a way as to have productive conversations. But the results speak for themselves." He gestures broadly at the group.`
 			`	"One such benefit is that in a policy debate, each person can be heard in depth, including checking the veracity of data and sources. This has significant benefits for minimizing the numbers of decisions made with incomplete or erroneous data, and maximizes the amount of information available to any one of us."`
 			action
-				set "Remnant: Cognizance Neural Communication Explanation"
+				set "remnant: cognizance neural communication explanation"
 			`	A third Remnant steps up. "As to the matter at hand, this means that the sooner any of us hear your report, the sooner everyone will have heard it." They look at you expectantly.`
 				goto cognizanceexplanation
 			label cognizanceuntrusted

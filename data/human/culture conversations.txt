@@ -80,6 +80,20 @@ outfit "Mug"
 
 
 
+
+mission "New China Mourners"
+	minor
+	source "New China"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`The skies pour down onto the world below, weeping together with the crowds as a plain but stately coffin is carried slowly from a void deck. Rhythmic wailing blends with the susurrant rain, filling the air as the coffin is followed closely by procession of mourners that look to be an extensive gathering of family. Even as it is placed into the van they do not leave the departed, a number of their hands placed on it as if pushing the person toward their final resting place. The two foremost mourners, a woman and a young man, climb in and take their seats next to it. Somewhere nearby, music begins to play as the vehicle slowly moves off.`
+			`	You wonder how well known the person was before they died as those remaining finally turn away from the van receding into the distance and begin to file past some discreet attendants you hadn't noticed at first, accepting slippers for their bare feet before boarding the buses waiting to take them after the van.`
+				decline
+
+
+
 mission "Trash Fire Crops"
 	minor
 	source
@@ -146,6 +160,49 @@ mission "Paradise Cleaner Incident"
 			`	You haven't noticed children that look poor here in the past, but on this occasion you spot one as he knocks over a mop and bucket... right in front of a businessman and his family rolling their bags through the spaceport. You've never seen someone go so deathly pale as the cleaner, the boy's mother, who scurries to fix things before the man even draws a breath.`
 			`	A pair of security officers appear almost immediately, before you could intercede one way or the other, as the man and his family begin to complain. One officer provides assurances as the other supervises the cleaner, who quickly hurries her child out of harm's way.`
 				decline
+
+
+
+mission "Curious Waiter"
+	minor
+	source
+		government "Syndicate"
+		attributes "fatory"
+		not attributes "station"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`On a whim, you decide to dine in at a restaurant well clear of the busy spaceport. You swiftly find yourself searching up a list of delicacies on a physical menu as people stream past the window by your booth, each looking drained from the long work day. Meal soon ordered, you continue watching the crowd until it arrives, a local version of a katsu don and dig in.`
+			`	The place is quiet, perhaps a little early for the dinner rush yet, and you are halfway through your meal when a waiter stops beside you, coughing to catch your attention.`
+			choice
+				`	"May I help you?"`
+				`	"Yes?"`
+				`	"What do you want?"`
+			`	"Sorry," he says, grabbing the edges of his shirt. "But... may I ask... what's it like to see the stars? To visit other worlds?"`
+			choice
+				`	"Most worlds are the same or worse than here."`
+				`	"The stars are prettier under an atmosphere."`
+				`	"It's an adventure, but not for the faint of heart."`
+			`	"Oh... I've never seen any pilots, so I never got to ask," he says, slightly dejected. "Thank you very much for telling me though!"`
+			`	He goes back to his work, with a thoughtful expression of neutral satisfaction on his face.`
+				decline
+
+
+
+mission "Syndicate Security Troops"
+	minor
+	source
+		government "Syndicate"
+		attributes "urban"
+		not attributes "station"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`The low rumble of "Tonners," heavy trucks for moving troops and supplies, rolling down the street causes heads to turn and look at the blocky yet imposing vehicles slowing to a stop. The driver and the commander of the foremost vehicle have their eyes on the road, watching out for any traffic hazards that might pose a risk to either the vehicle or their support.`
+			`	The troops within the back of each tonner, on the other hand, are making small talk, the camo on their face smearing off in the heat. One of them points at you, saying something that garners him a groan from his peers, and you decided that you probably don't want to know what he said.`
+			decline
 
 
 

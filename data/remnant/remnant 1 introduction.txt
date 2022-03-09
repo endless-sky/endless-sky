@@ -126,43 +126,32 @@ mission "First Contact: Remnant"
 
 
 
-# Compatibility patch for those who made contact with the Remnant prior to v0.9.9
-mission "Remnant Blood Test Patch"
+# Compatibility patch for those who made contact with the Remnant prior to v0.9.15:
+mission "Remnant: Blood Test Patch"
 	landing
 	invisible
 	to offer
 		has "event: ember waste label"
 	on offer
-		set "remnant blood test pure"
+		set "remnant: blood test pure"
+		event "remnant: change hail"
 		fail
 
 
 
-# Changes Remnant hails once contacted and submitted to blood test
-mission "Remnant Hails Change"
-	landing
-	invisible
-	to offer
-		has "remnant blood test pure"
-	on offer
-		event "remnant change hail"
-		fail
-
-
-
-mission "lost in ember waste"
+mission "Remnant: Lost in Ember Waste: Trigger"
 	landing
 	invisible
 	source
 		government "Remnant"
 	to offer
-		has "remnant blood test pure"
+		has "remnant: blood test pure"
 		not "license: Remnant"
 	on offer
 		require "Quantum Keystone" 0
 		require "Quantum Key Stone" 0
 		require "Jump Drive" 0
-		event "lost in ember waste" 14
+		event "remnant: lost in ember waste" 14
 		fail
 
 
@@ -173,8 +162,12 @@ mission "Remnant: Lost in Ember Waste"
 	source
 		government "Remnant"
 	to offer
-		has "event: lost in ember waste"
+		has "event: remnant: lost in ember waste"
+		not "license: Remnant"
 	on offer
+		require "Quantum Keystone" 0
+		require "Quantum Key Stone" 0
+		require "Jump Drive" 0
 		outfit "Quantum Key Stone" 1
 		log `Became stuck in the Ember Waste, but was given a Quantum Key Stone by an old woman who claims to have once been stuck in Republic space under similar circumstances.`
 		conversation
@@ -193,7 +186,7 @@ mission "Remnant: Lost in Ember Waste"
 				goto keystone
 			
 			label know
-			`	"Get scammed out of your Key Stone?" she asks with another chuckle. "Or maybe your jump drive, and now you're stuck here? No problem."`
+			`	"Lost your Key Stone?" she asks with another chuckle. "Or maybe your jump drive, and now you're stuck here? No problem."`
 			
 			label keystone
 			`	The woman reaches into a bag that she has with her and hands you a Quantum Key Stone. "Just put this on your ship and you can be on your way out of here."`
@@ -253,8 +246,8 @@ mission "Remnant: Defense 1"
 	description "Assist in defending <planet> from a Korath raid, then return to the planet."
 	source "Caelian"
 	to offer
-		has "remnant blood test pure"
-		not "Remnant defense delay"
+		has "remnant: blood test pure"
+		not "remnant: defense delay"
 	on offer
 		conversation
 			`In the relative quiet of this Remnant spaceport, it's unusually jarring when an alarm siren begins howling. All around you, people are rushing to get their ships into the air. Even though no one stops to explain to you what is happening, it's pretty clear that this is a planetary defense operation.`
@@ -265,8 +258,8 @@ mission "Remnant: Defense 1"
 			`	You remain behind on the planet. You probably just missed out on a great opportunity to earn the gratitude of the Remnant.`
 				defer
 	on defer
-		set "Remnant defense delay"
-		event "remnant defense timer" 20
+		set "remnant: defense delay"
+		event "remnant: defense timer" 20
 	npc
 		government "Remnant"
 		personality staying uninterested disables plunders
@@ -552,7 +545,7 @@ mission "Remnant: Key Stones"
 	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty quantum keystones (which you will have to purchase from the Hai)."
 	source "Viminal"
 	to offer
-		has "remnant blood test pure"
+		has "remnant: blood test pure"
 		not "Remnant: Key Stones (Pre-Hai) 1: offered"
 		not "Remnant: Key Stones (Hai): offered"
 	on offer
@@ -612,7 +605,7 @@ mission "Remnant: Void Sprites 1"
 	waypoint "Nenia"
 	cargo "scanning equipment" 8
 	to offer
-		has "remnant blood test pure"
+		has "remnant: blood test pure"
 	on offer
 		conversation
 			`As you explore the spaceport, you meet a Remnant man wearing some sort of optical prosthesis over his eyes, a visor with several tiny cameras mounted on it. "Ah," he sings, "the outsider. Human yet not of our culture, distinct from our mindset. That is useful. Would you be willing to invest in a research project?"`
@@ -1990,7 +1983,7 @@ mission "Remnant: S-970 Regenerator"
 
 
 
-mission "Remnant: taely intro log"
+mission "Remnant: Taely Intro Log"
 	invisible
 	source
 		government "Remnant"
@@ -2123,7 +2116,7 @@ mission "Remnant: Return the Samples 2"
 
 
 # Compatibility patch for those who completed Return the Samples 2 before 0.9.11, where it did not have the timer.
-mission "Remnant Return the Samples Compatibility Patch"
+mission "Remnant: Return the Samples Compatibility Patch"
 	landing
 	invisible
 	to offer
@@ -2554,7 +2547,7 @@ mission "Remnant: Broken Jump Drive 1"
 	name "Broken Jump Drive Delivery"
 	description "You have been asked to deliver a broken jump drive to the researchers on <planet>."
 	to offer
-		has "remnant blood test pure"
+		has "remnant: blood test pure"
 		not "Remnant: Broken Jump Drive 1: active"
 		not "Remnant: Broken Jump Drive 1: done"
 	source
