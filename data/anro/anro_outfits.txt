@@ -35,5 +35,5 @@ outfit "Black Hole Cannon"
 
 outfit "Anro Key Pass"
 	category "Special"
-	cost 218000
 	description "Anro"
+	"Anro Key Pass" 1

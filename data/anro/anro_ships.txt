@@ -7,7 +7,7 @@ ship "Saihiri"
 		"cost" 200000000
 		"shields" 400000
 		"shield generation" 100
-		"hull repair rate" 100
+		"hull repair rate" 10
 		"hull" 300000
 		"required crew" 100
 		"bunks" 200

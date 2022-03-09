@@ -97,6 +97,6 @@ mission "Observe the Anro"
 		payment 44000
 		"reputation: Anro" --
 	source Ofuk
-	waypoint system "Punub"
+	waypoint "Punub"
 
 

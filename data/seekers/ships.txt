@@ -79,7 +79,7 @@ ship "Targeter"
 			"hit force" 240
 	outfits
 		"Seekers Follower" 4
-		"Seekers Gun" 1
+		"Seekers Turret" 1
 		"Follower" 1000
 		"Seekers Power Device"
 		

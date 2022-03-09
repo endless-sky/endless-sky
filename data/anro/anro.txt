@@ -7,4 +7,4 @@ government "Anro"
 	"player reputation" 40
 	"attitude toward"
 		"Seekers" -1
-        "Seekers (Hidden)" -1
+		"Seekers (Hidden)" -1

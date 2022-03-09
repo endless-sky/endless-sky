@@ -9,4 +9,4 @@ planet Arun
 	spaceport `	long time. `
 
 planet "Anro Wormhole"
-	attributes "requires: quantum keystone"
+	attributes "requires: Anro Key Pass"
