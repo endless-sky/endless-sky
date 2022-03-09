@@ -908,8 +908,8 @@ Ship *PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 		accounts.AddCredits(-cost);
 		flagship.reset();
 
-		// Store named, unnamed ships under their name or a generic name of their model so they can be checked later.
-		if(isGift)
+		// Store named ships with their model so they can be checked later.
+		if(isGift && !name.empty())
 			giftedShips[ships.back()->VariantName() + " " + name].clone(ships.back()->UUID());
 		// Record the transfer of this ship in the depreciation and stock info.
 		else
