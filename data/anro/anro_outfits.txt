@@ -7,7 +7,7 @@ outfit "Black Hole Cannon"
 	"weapon capacity" -35
 	"gun ports" -1
 	weapon
-		sprite "projectile/black_hole_r"
+		sprite "projectile/black_hole/black_hole_r"
 			"frame rate" 30
 			rewind
 		sound "final explosion small"
