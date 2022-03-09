@@ -1,0 +1,1599 @@
+
+galaxy "Black Eye"
+	pos -7908.93 -7327.48
+	sprite ui/black_eye_r
+
+system Akium
+	pos -7853.91 -7507.16
+	government Anro
+	habitable 560.92
+	belt 1841
+	link Anrukium
+	link Okna
+	link Waru
+	asteroids "small rock" 1 4.6552
+	asteroids "medium rock" 8 3.5926
+	asteroids "large rock" 4 4.807
+	asteroids "small metal" 18 6.6286
+	asteroids "medium metal" 32 7.4888
+	asteroids "large metal" 8 6.6286
+	minables copper 3 6.81863
+	minables lead 2 8.17974
+	minables uranium 10 12.708
+	object
+		sprite star/k5
+		distance 22.8642
+		period 15.6385
+		offset 180
+	object
+		sprite star/m8
+		distance 72.1358
+		period 15.6385
+	object
+		sprite planet/cloud3
+		distance 225.386
+		period 57.1478
+	object
+		sprite planet/desert1
+		distance 472.746
+		period 173.601
+	object
+		sprite planet/gas12
+		distance 1195.99
+		period 698.552
+		object
+			sprite planet/luna
+			distance 275
+			period 11.978
+		object
+			sprite planet/io
+			distance 369
+			period 18.6176
+		object
+			sprite planet/dust5
+			distance 463
+			period 26.1672
+	object
+		sprite planet/gas9
+		distance 3102.68
+		period 2918.87
+		object
+			sprite planet/rock3
+			distance 257
+			period 15.4486
+		object
+			sprite planet/rhea
+			distance 362
+			period 25.8258
+		object
+			sprite planet/dust3
+			distance 486
+			period 40.174
+
+system Akmun'ro
+	pos -819.803 -668.852
+	government Seekers
+	habitable 1111.68
+	belt 1326
+	link Foras'adro
+	link Nous'de
+	link Uhan'od
+	asteroids "small rock" 3 4.032
+	asteroids "medium rock" 2 2.7776
+	asteroids "large rock" 2 4.704
+	asteroids "small metal" 1 4.48
+	asteroids "medium metal" 83 2.7776
+	asteroids "large metal" 6 4.7936
+	minables iron 2 5.3281
+	minables lead 4 5.70289
+	minables titanium 3 5.47802
+	trade Clothing 310
+	trade Electronics 700
+	trade Equipment 398
+	trade Food 414
+	trade "Heavy Metals" 921
+	trade Industrial 710
+	trade "Luxury Goods" 1033
+	trade Medical 796
+	trade Metal 365
+	trade Plastic 306
+	object
+		sprite star/g5
+		distance 42.9032
+		period 11.6388
+		offset 180
+	object
+		sprite star/k0
+		distance 55.0968
+		period 11.6388
+	object
+		sprite planet/venus
+		distance 367.257
+		period 84.4355
+		object "Ceru'ka"
+			sprite planet/callisto
+			distance 163
+			period 23.7466
+	object
+		sprite planet/jupiter
+		distance 1097.3
+		period 436.07
+		object
+			sprite planet/rock3
+			distance 282
+			period 14.8811
+		object
+			sprite planet/ice7
+			distance 396
+			period 24.7631
+	object
+		sprite planet/gas6
+		distance 2215.34
+		period 1250.92
+
+system Alno
+	pos -7864.08 -7419.45
+	government Anro
+	habitable 233.28
+	belt 1522
+	asteroids "large metal" 1 9.0132
+	object
+		sprite star/m4
+		period 10
+	object
+		sprite planet/rock11
+		distance 130.29
+		period 38.9482
+	object
+		sprite planet/rock3
+		distance 485.45
+		period 280.116
+	object
+		sprite planet/tethys
+		distance 906.7
+		period 715.017
+	object
+		sprite planet/rock10
+		distance 1140.46
+		period 1008.65
+	object
+		sprite planet/uranus
+		distance 1667.47
+		period 1783.23
+		object
+			sprite planet/dust4
+			distance 220
+			period 13.9414
+		object
+			sprite planet/dust7
+			distance 318
+			period 24.2278
+
+system Andor'io
+	pos -865.17 -697.652
+	government Seekers
+	habitable 625
+	belt 1504
+	link Dorum'af
+	link Uman'kai
+	asteroids "medium rock" 13 1.794
+	asteroids "large rock" 1 3.2591
+	asteroids "medium metal" 12 3.4684
+	asteroids "large metal" 2 1.9734
+	minables titanium 1 4.49126
+	trade Clothing 310
+	trade Electronics 700
+	trade Equipment 398
+	trade Food 414
+	trade "Heavy Metals" 921
+	trade Industrial 710
+	trade "Luxury Goods" 1033
+	trade Medical 796
+	trade Metal 365
+	trade Plastic 306
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite planet/lava5
+		distance 162.16
+		period 33.0397
+	object
+		sprite planet/rock8
+		distance 348.45
+		period 104.071
+	object
+		sprite planet/ice1
+		distance 561.66
+		period 212.976
+	object
+		sprite planet/gas4
+		distance 1688.35
+		period 1109.98
+		object
+			sprite planet/oberon
+			distance 242
+			period 13.2776
+		object
+			sprite planet/ice0
+			distance 381
+			period 26.2292
+
+system Anko
+	pos -7908.57 -7653.36
+	government Anro
+	habitable 320
+	belt 1036
+	link "Endless Horizons"
+	link Okna
+	link Urak
+	asteroids "large metal" 1 6.175
+	object
+		sprite star/m0
+		period 10
+	object
+		sprite planet/desert6
+		distance 158.61
+		period 44.6664
+	object
+		sprite planet/forest3
+		distance 373.02
+		period 161.095
+	object
+		sprite planet/ice4
+		distance 675.02
+		period 392.157
+		object
+			sprite planet/dust7
+			distance 143
+			period 21.4964
+	object
+		sprite planet/rock5
+		distance 1788.71
+		period 1691.59
+	object
+		sprite planet/gas10
+		distance 2867.92
+		period 3434.28
+
+system Anrukium
+	pos -7862.8 -7610.13
+	government Anro
+	habitable 3645
+	belt 1918
+	link Akium
+	link Okna
+	asteroids "small rock" 2 8.64
+	asteroids "medium rock" 13 7.02
+	asteroids "large rock" 1 9.72
+	asteroids "small metal" 1 5.0625
+	asteroids "large metal" 2 8.9775
+	object
+		sprite star/a5
+		period 10
+	object
+		sprite planet/desert0
+		distance 179.61
+		period 15.948
+	object
+		sprite planet/rock2
+		distance 390.85
+		period 51.1949
+	object
+		sprite planet/lava1
+		distance 890.14
+		period 175.954
+	object
+		sprite planet/gas2
+		distance 1240.58
+		period 289.5
+	object
+		sprite planet/rock17
+		distance 2751.02
+		period 955.987
+
+system Aran'da
+	pos -1184.8 -777.918
+	government Uninhabitated
+	habitable 425.92
+	belt 1664
+	link Ynam'ki
+	asteroids "small rock" 3 9.24
+	asteroids "medium rock" 36 6.776
+	asteroids "large rock" 6 3.5728
+	asteroids "medium metal" 227 4.4968
+	asteroids "large metal" 1 5.4208
+	minables copper 7 6.45629
+	minables neodymium 7 6.69792
+	minables silver 7 8.37482
+	trade Clothing 310
+	trade Electronics 700
+	trade Equipment 398
+	trade Food 414
+	trade "Heavy Metals" 921
+	trade Industrial 710
+	trade "Luxury Goods" 1033
+	trade Medical 796
+	trade Metal 365
+	trade Plastic 306
+	fleet "Seekers Defend Fleet" 300
+	fleet "Anro Attack" 300
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/callisto
+		distance 124.29
+		period 26.8566
+	object
+		sprite planet/lava4
+		distance 344.29
+		period 123.818
+	object
+		sprite planet/ice1
+		distance 752.85
+		period 400.367
+		object
+			sprite planet/ice8
+			distance 177
+			period 20.126
+	object
+		sprite planet/gas6
+		distance 1522.06
+		period 1150.92
+		object
+			sprite planet/tethys
+			distance 265
+			period 11.0188
+		object
+			sprite planet/desert4
+			distance 393
+			period 19.9
+	object
+		sprite planet/dust3
+		distance 2048.02
+		period 1796.38
+
+system Aran'fe
+	pos -716.103 -779.352
+	government Seekers
+	habitable 625
+	belt 1215
+	link Foras'adro
+	link Orno'um
+	link Uman'kai
+	asteroids "medium rock" 11 2.8672
+	asteroids "large rock" 2 1.8144
+	asteroids "medium metal" 7 3.3376
+	asteroids "large metal" 21 1.568
+	minables silicon 3 2.90216
+	minables tungsten 3 4.03982
+	trade Clothing 310
+	trade Electronics 700
+	trade Equipment 398
+	trade Food 414
+	trade "Heavy Metals" 921
+	trade Industrial 710
+	trade "Luxury Goods" 1033
+	trade Medical 796
+	trade Metal 365
+	trade Plastic 306
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite planet/mars
+		distance 179.49
+		period 38.4752
+	object
+		sprite planet/ice7
+		distance 365.3
+		period 111.711
+	object
+		sprite planet/jupiter
+		distance 1095.86
+		period 580.434
+		object
+			sprite planet/oberon
+			distance 254
+			period 12.7207
+		object
+			sprite planet/rock7
+			distance 326
+			period 18.4964
+	object
+		sprite planet/gas3
+		distance 2576.62
+		period 2092.64
+		object
+			sprite planet/desert4
+			distance 278
+			period 11.8395
+
+system Aras'ik
+	pos -1012.8 -875.385
+	government Uninhabitated
+	habitable 233.28
+	belt 1761
+	link Ion'auk'roh
+	asteroids "small rock" 2 4.374
+	asteroids "medium rock" 5 5.6295
+	asteroids "large rock" 4 2.7135
+	asteroids "small metal" 1 4.4145
+	asteroids "medium metal" 89 4.293
+	asteroids "large metal" 65 4.0095
+	minables iron 20 8.18761
+	minables titanium 25 4.391
+	trade Clothing 310
+	trade Electronics 700
+	trade Equipment 398
+	trade Food 414
+	trade "Heavy Metals" 921
+	trade Industrial 710
+	trade "Luxury Goods" 1033
+	trade Medical 796
+	trade Metal 365
+	trade Plastic 306
+	object
+		sprite star/m4
+		period 10
+	object
+		sprite planet/cloud2
+		distance 178.61
+		period 62.5144
+	object
+		sprite planet/forest1
+		distance 533.5
+		period 322.718
+		object
+			sprite planet/io
+			distance 165
+			period 23.7385
+	object
+		sprite planet/cloud6
+		distance 923.79
+		period 735.328
+	object
+		sprite planet/gas1
+		distance 1230.4
+		period 1130.29
+	object
+		sprite planet/gas16
+		distance 2288.29
+		period 2866.74
+
+system "Dead End"
+	pos -850.836 -287.72
+	government Seekers
+	habitable 3645
+	belt 1023
+	asteroids "small rock" 61 8.5904
+	asteroids "large rock" 9 10.92
+	asteroids "small metal" 5 6.6248
+	asteroids "medium metal" 83 3.8584
+	asteroids "large metal" 11 8.0808
+	minables uranium 30 8.61092
+	trade Clothing 234
+	trade Electronics 755
+	trade Equipment 442
+	trade Food 413
+	trade "Heavy Metals" 1056
+	trade Industrial 819
+	trade "Luxury Goods" 986
+	trade Medical 774
+	trade Metal 259
+	trade Plastic 277
+	object
+		sprite star/a5
+		period 10
+	object
+		sprite planet/desert10
+		distance 188.84
+		period 17.193
+	object
+		sprite planet/desert5
+		distance 525.65
+		period 79.8466
+	object "Seekers Wormhole"
+		sprite planet/wormhole-red
+		distance 1238.9
+		period 288.912
+	object
+		sprite planet/gas12
+		distance 2703.79
+		period 931.474
+		object
+			sprite planet/ice0
+			distance 309
+			period 14.2667
+		object
+			sprite planet/dust3
+			distance 430
+			period 23.42
+		object
+			sprite planet/ice8
+			distance 526
+			period 31.6857
+
+system Deros'de
+	pos -747.637 -638.885
+	government Seekers
+	habitable 625
+	belt 1466
+	link Foras'adro
+	link Uhan'od
+	asteroids "small rock" 3 4.002
+	asteroids "medium rock" 1 9.522
+	asteroids "large rock" 3 4.692
+	asteroids "medium metal" 1 4.761
+	asteroids "large metal" 2 4.485
+	minables silver 1 5.47125
+	trade Clothing 310
+	trade Electronics 700
+	trade Equipment 398
+	trade Food 414
+	trade "Heavy Metals" 921
+	trade Industrial 710
+	trade "Luxury Goods" 1033
+	trade Medical 796
+	trade Metal 365
+	trade Plastic 306
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite planet/rock14
+		distance 153.49
+		period 30.4257
+	object
+		sprite planet/gas10
+		distance 645.45
+		period 262.37
+		object
+			sprite planet/dust3
+			distance 223
+			period 17.5289
+		object
+			sprite planet/io
+			distance 319
+			period 29.9905
+	object
+		sprite planet/jupiter
+		distance 1714.69
+		period 1136.05
+	object
+		sprite planet/neptune
+		distance 2381.38
+		period 1859.36
+		object
+			sprite planet/desert4
+			distance 207
+			period 14.8384
+
+system Dorum'af
+	pos -873.77 -763.585
+	government Seekers
+	habitable 560.92
+	belt 1634
+	link Andor'io
+	link Uman'kai
+	asteroids "small rock" 126 2.166
+	asteroids "medium rock" 28 2.8785
+	asteroids "large rock" 24 2.907
+	asteroids "small metal" 12 3.648
+	asteroids "medium metal" 34 2.3655
+	asteroids "large metal" 15 3.42
+	minables lead 14 3.08161
+	minables silver 3 4.72013
+	trade Clothing 310
+	trade Electronics 700
+	trade Equipment 398
+	trade Food 414
+	trade "Heavy Metals" 921
+	trade Industrial 710
+	trade "Luxury Goods" 1033
+	trade Medical 796
+	trade Metal 365
+	trade Plastic 306
+	object
+		sprite star/k5
+		distance 22.1422
+		period 14.9036
+		offset 180
+	object
+		sprite star/m8
+		distance 69.8578
+		period 14.9036
+	object
+		sprite planet/desert8
+		distance 221.818
+		period 55.7961
+	object
+		sprite planet/rock18
+		distance 550.778
+		period 218.31
+	object
+		sprite planet/ice5
+		distance 832.668
+		period 405.805
+	object
+		sprite planet/gas10
+		distance 1473.67
+		period 955.452
+		object
+			sprite planet/rock7
+			distance 204
+			period 15.3371
+		object
+			sprite planet/dust3
+			distance 299
+			period 27.2147
+		object
+			sprite planet/rock14
+			distance 408
+			period 43.3798
+	object
+		sprite planet/gas2
+		distance 2222.88
+		period 1770.04
+
+system "Endless Horizons"
+	pos -8252.81 -7670.36
+	government Anro
+	habitable 2160
+	belt 1205
+	link Anko
+	asteroids "small rock" 1 4.65
+	asteroids "large rock" 1 4.2375
+	asteroids "large metal" 1 2.55
+	trade Clothing 290
+	trade Electronics 740
+	trade Equipment 530
+	trade Food 350
+	trade "Heavy Metals" 960
+	trade Industrial 720
+	trade "Luxury Goods" 1220
+	trade Medical 680
+	trade Metal 390
+	trade Plastic 390
+	object
+		sprite star/g0
+		distance 64.5
+		period 12.6101
+		offset 180
+	object
+		sprite star/g0
+		distance 64.5
+		period 12.6101
+	object
+		sprite planet/lava6
+		distance 292.66
+		period 43.0902
+	object
+		sprite planet/desert4
+		distance 580.5
+		period 120.375
+	object
+		sprite planet/dust0
+		distance 845.26
+		period 211.504
+	object
+		sprite planet/io
+		distance 995.26
+		period 270.233
+	object "Anro Wormhole"
+		sprite planet/wormhole-red
+		distance 2254.82
+		period 921.512
+
+system Foras'adro
+	pos -760.536 -724.885
+	government Seekers
+	habitable 270
+	belt 1916
+	link Akmun'ro
+	link Aran'fe
+	link Deros'de
+	link Orno'um
+	link Uman'kai
+	asteroids "small rock" 4 6.7716
+	asteroids "medium rock" 27 4.3362
+	asteroids "large rock" 13 4.455
+	asteroids "small metal" 2 8.7912
+	asteroids "medium metal" 2 8.1378
+	asteroids "large metal" 1 5.4054
+	trade Clothing 310
+	trade Electronics 700
+	trade Equipment 398
+	trade Food 414
+	trade "Heavy Metals" 921
+	trade Industrial 710
+	trade "Luxury Goods" 1033
+	trade Medical 796
+	trade Metal 365
+	trade Plastic 306
+	fleet "Seekers Small Transport" 250
+	fleet "Seekers Defend Fleet" 350
+	object
+		sprite star/m8
+		distance 50.5
+		period 24.7093
+		offset 180
+	object
+		sprite star/m8
+		distance 50.5
+		period 24.7093
+	object
+		sprite planet/mercury
+		distance 169.14
+		period 53.5485
+	object
+		sprite planet/lava1
+		distance 350.14
+		period 159.493
+	object
+		sprite planet/uranus
+		distance 1060.7
+		period 840.944
+		object
+			sprite planet/rhea
+			distance 245
+			period 16.3841
+		object
+			sprite planet/ice7
+			distance 354
+			period 28.4563
+		object Ofuk
+			sprite planet/tethys
+			distance 509
+			period 49.0625
+	object
+		sprite planet/gas16
+		distance 2029.51
+		period 2225.69
+		object
+			sprite planet/oberon
+			distance 187
+			period 13.4605
+		object
+			sprite planet/desert4
+			distance 314
+			period 29.2881
+
+system Ion'auk'roh
+	pos -955 -803
+	government Uninhabitated
+	habitable 625
+	belt 1753
+	haze _menu/haze-67
+	link Aras'ik
+	asteroids "small rock" 27 4.785
+	asteroids "medium rock" 67 3.9237
+	asteroids "large rock" 4 2.233
+	asteroids "large metal" 20 3.2219
+	asteroids "small rock" 34 6.935
+	asteroids "medium rock" 1 4.6075
+	asteroids "large rock" 23 5.985
+	asteroids "small metal" 46 6.6025
+	asteroids "large metal" 5 3.61
+	minables gold 10 5.65644
+	minables silver 26 4.59536
+	minables aluminum 11 9.8728
+	minables titanium 3 11.7992
+	minables uranium 9 6.96883
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite planet/lava2
+		distance 179.76
+		period 38.562
+	object
+		sprite planet/ice5
+		distance 495.45
+		period 176.449
+	object
+		sprite planet/uranus
+		distance 1541.69
+		period 968.536
+		object
+			sprite planet/rock7
+			distance 241
+			period 15.9845
+		object
+			sprite planet/rock3
+			distance 387
+			period 32.5267
+		object
+			sprite planet/dust0
+			distance 549
+			period 54.9581
+
+system Rano
+	pos -7909.84 -7340.63
+	government Anro
+	habitable 10000
+	haze _menu/haze-full
+	link Itium
+	link Oran
+	arrival 2000
+	hazard "Black Hole Gravity" 1
+	hazard "Black Hole Event Horizon" 1
+	hazard "Black Hole Accretion Disk" 1
+	object
+		sprite "star/black-hole-core"
+		period 1
+	object
+		sprite "star/black-hole"
+		period 1
+	object
+		sprite star/a-giant
+		distance 1000
+		period 40
+	object
+		sprite star/b-supergiant
+		distance 10000
+		period 30
+	object
+		sprite star/g-giant
+		distance 12500
+		period 5
+	object
+		sprite star/m-supergiant
+		distance 15000
+		period 17.7965
+
+system Itium
+	pos -7968.32 -7308.85
+	government Anro
+	habitable 368.28
+	belt 1984
+	link Rano
+	asteroids "small rock" 5 1.7355
+	asteroids "medium rock" 16 1.053
+	asteroids "large rock" 4 2.067
+	asteroids "small metal" 5 2.691
+	asteroids "medium metal" 4 2.1255
+	asteroids "large metal" 5 2.145
+	minables aluminum 8 2.19028
+	minables tungsten 7 2.85163
+	object
+		sprite star/m4
+		distance 32.9912
+		period 17.7965
+	object
+		sprite star/m8
+		distance 57.0088
+		period 17.7965
+		offset 180
+	object
+		sprite planet/ice3
+		distance 220.419
+		period 68.2093
+	object
+		sprite planet/forest5
+		distance 452.419
+		period 200.577
+	object
+		sprite planet/callisto
+		distance 1112.03
+		period 772.939
+	object
+		sprite planet/gas1
+		distance 1624.32
+		period 1364.51
+		object
+			sprite planet/dust1
+			distance 223
+			period 13.3098
+		object
+			sprite planet/miranda
+			distance 329
+			period 23.8512
+	object
+		sprite planet/gas4
+		distance 3279.96
+		period 3915.38
+		object
+			sprite planet/ice8
+			distance 258
+			period 14.6159
+
+system Nous'de
+	pos -827.903 -593.019
+	government Seekers
+	habitable 2201.68
+	belt 1147
+	link Akmun'ro
+	link Onun'ak
+	link Uhan'od
+	asteroids "small rock" 21 1.782
+	asteroids "medium rock" 43 1.314
+	asteroids "large rock" 6 2.484
+	asteroids "small metal" 4 2.61
+	asteroids "medium metal" 31 2.448
+	asteroids "large metal" 4 2.124
+	minables copper 4 3.37427
+	minables lead 6 2.569
+	trade Clothing 310
+	trade Electronics 700
+	trade Equipment 398
+	trade Food 414
+	trade "Heavy Metals" 921
+	trade Industrial 710
+	trade "Luxury Goods" 1033
+	trade Medical 796
+	trade Metal 365
+	trade Plastic 306
+	object
+		sprite star/f5
+		distance 29.6206
+		period 13.2233
+		offset 180
+	object
+		sprite star/k0
+		distance 104.379
+		period 13.2233
+	object
+		sprite planet/lava4
+		distance 330.589
+		period 51.2408
+	object
+		sprite planet/cloud2
+		distance 588.079
+		period 121.573
+	object
+		sprite planet/rock10
+		distance 967.039
+		period 256.359
+	object
+		sprite planet/desert6
+		distance 1204.88
+		period 356.532
+	object
+		sprite planet/gas9
+		distance 3651.57
+		period 1881.06
+
+system Okna
+	pos -7917.47 -7579.62
+	government Anro
+	habitable 486.68
+	belt 1428
+	link Akium
+	link Anko
+	link Anrukium
+	link Urak
+	link Waru
+	asteroids "large rock" 1 12.093
+	asteroids "small metal" 14 6.264
+	asteroids "medium metal" 17 4.785
+	asteroids "large metal" 9 5.568
+	minables aluminum 9 6.53693
+	minables lead 1 6.49181
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/mars
+		distance 226
+		period 61.6029
+	object
+		sprite planet/ocean1
+		distance 460
+		period 178.885
+	object
+		sprite planet/ocean7
+		distance 686.84
+		period 326.379
+	object
+		sprite planet/cloud0
+		distance 1868.28
+		period 1464.2
+	object
+		sprite planet/gas9
+		distance 2328.69
+		period 2037.54
+
+system Onun'ak
+	pos -787.77 -547.152
+	government Seekers
+	habitable 320
+	belt 1740
+	link Nous'de
+	link Uhan'od
+	asteroids "small rock" 9 2.5704
+	asteroids "medium rock" 3 4.9572
+	asteroids "large rock" 4 3.5343
+	asteroids "small metal" 3 5.0949
+	asteroids "medium metal" 4 5.0949
+	asteroids "large metal" 8 5.7375
+	minables iron 3 7.73342
+	minables silver 3 6.20658
+	trade Clothing 310
+	trade Electronics 700
+	trade Equipment 398
+	trade Food 414
+	trade "Heavy Metals" 921
+	trade Industrial 710
+	trade "Luxury Goods" 1033
+	trade Medical 796
+	trade Metal 365
+	trade Plastic 306
+	fleet "Seekers Defend Fleet" 200
+	fleet "Seekers Small Transport" 250
+	object
+		sprite star/m0
+		period 10
+	object
+		sprite planet/rock7
+		distance 102.04
+		period 23.0484
+	object
+		sprite planet/desert7
+		distance 308.88
+		period 121.386
+	object
+		sprite planet/ocean3
+		distance 507.12
+		period 255.359
+	object "Seekers Wormhole"
+		sprite planet/wormhole-red
+		distance 1110.33
+		period 827.3
+	object
+		sprite planet/gas8
+		distance 3155.62
+		period 3963.8
+	object Doradda
+		sprite planet/gas11
+		distance 3852.86
+		period 5347.61
+
+system Oran
+	pos -7942.89 -7374.95
+	government Anro
+	habitable 320
+	belt 1196
+	link Itium
+	link Rano
+	asteroids "small rock" 43 3.825
+	asteroids "medium rock" 85 5.76
+	asteroids "large rock" 69 3.015
+	asteroids "small metal" 20 3.915
+	asteroids "medium metal" 80 6.21
+	asteroids "large metal" 10 2.61
+	minables aluminum 1 5.2336
+	object
+		sprite star/m0
+		period 10
+	object
+		sprite planet/lava1
+		distance 124.69
+		period 31.1338
+	object
+		sprite planet/forest6
+		distance 302.45
+		period 117.616
+	object
+		sprite planet/gas0
+		distance 691.7
+		period 406.782
+	object
+		sprite planet/gas7
+		distance 1406.11
+		period 1179
+	object
+		sprite planet/gas10
+		distance 2348.6
+		period 2545.06
+		object
+			sprite planet/ice8
+			distance 181
+			period 12.8178
+		object
+			sprite planet/oberon
+			distance 318
+			period 29.8496
+
+system Orno'um
+	pos -700.337 -704.818
+	government Seekers
+	habitable 659.2
+	belt 1016
+	link Aran'fe
+	link Foras'adro
+	asteroids "small rock" 37 2.7027
+	asteroids "medium rock" 25 1.7787
+	asteroids "large rock" 2 2.7489
+	asteroids "small metal" 20 2.31
+	asteroids "medium metal" 54 1.8249
+	asteroids "large metal" 3 2.1714
+	minables iron 3 2.29229
+	minables silver 6 3.88387
+	minables titanium 5 3.47369
+	trade Clothing 310
+	trade Electronics 700
+	trade Equipment 398
+	trade Food 414
+	trade "Heavy Metals" 921
+	trade Industrial 710
+	trade "Luxury Goods" 1033
+	trade Medical 796
+	trade Metal 365
+	trade Plastic 306
+	object
+		sprite star/k5
+		distance 30.7879
+		period 12.6424
+		offset 180
+	object
+		sprite star/m4
+		distance 56.2121
+		period 12.6424
+	object
+		sprite planet/lava7
+		distance 278.302
+		period 72.3313
+	object
+		sprite planet/rock19
+		distance 532.552
+		period 191.467
+	object
+		sprite planet/rock3
+		distance 740.552
+		period 313.968
+	object
+		sprite planet/gas17
+		distance 1661.8
+		period 1055.41
+		object
+			sprite planet/dust1
+			distance 209
+			period 12.909
+		object
+			sprite planet/rock17
+			distance 344
+			period 27.2591
+
+system Punub
+	pos -1184.8 -720.585
+	government Anro
+	habitable 1566.68
+	belt 1616
+	asteroids "small rock" 49 1.89
+	asteroids "medium rock" 2 2.016
+	asteroids "large rock" 4 1.674
+	asteroids "small metal" 1 1.818
+	asteroids "large metal" 1 2.07
+	minables iron 12 2.15581
+	minables titanium 9 2.78976
+	trade Clothing 310
+	trade Electronics 700
+	trade Equipment 398
+	trade Food 414
+	trade "Heavy Metals" 921
+	trade Industrial 710
+	trade "Luxury Goods" 1033
+	trade Medical 796
+	trade Metal 365
+	trade Plastic 306
+	fleet "Anro Attack" 100
+	object
+		sprite star/g0
+		distance 36.656
+		period 12.9537
+		offset 180
+	object
+		sprite star/k0
+		distance 81.344
+		period 12.9537
+	object Arun
+		sprite planet/lava6
+		distance 296.834
+		period 51.6821
+	object
+		sprite planet/rock15
+		distance 502.394
+		period 113.798
+	object
+		sprite planet/ice2
+		distance 1075.43
+		period 356.406
+		object
+			sprite planet/miranda
+			distance 285
+			period 14.1002
+		object
+			sprite planet/ice8
+			distance 407
+			period 24.0629
+		object
+			sprite planet/io
+			distance 522.885
+			period 35.0402
+			offset 297.383
+	object "Anro Wormhole"
+		sprite planet/wormhole-red
+		distance 2710.07
+		period 1425.74
+
+system Roh'ak
+	pos -1035.74 -786.518
+	government Uninhabitated
+	habitable 945
+	belt 1049
+	asteroids "small rock" 24 3.3
+	asteroids "medium rock" 161 2.31
+	asteroids "large rock" 10 3.33
+	asteroids "small metal" 6 3.09
+	asteroids "medium metal" 59 1.62
+	asteroids "large metal" 1 4.23
+	minables aluminum 9 3.03458
+	minables lead 38 3.67661
+	trade Clothing 310
+	trade Electronics 700
+	trade Equipment 398
+	trade Food 414
+	trade "Heavy Metals" 921
+	trade Industrial 710
+	trade "Luxury Goods" 1033
+	trade Medical 796
+	trade Metal 365
+	trade Plastic 306
+	object
+		sprite star/g5
+		distance 40.9735
+		period 17.319
+	object
+		sprite star/m0
+		distance 80.0265
+		period 17.319
+		offset 180
+	object
+		sprite planet/ice3
+		distance 241.026
+		period 48.6902
+	object
+		sprite planet/ice1
+		distance 532.786
+		period 160.02
+	object
+		sprite planet/rock4
+		distance 1111.35
+		period 482.079
+	object
+		sprite planet/uranus
+		distance 1605.51
+		period 837.071
+		object
+			sprite planet/rock3
+			distance 206
+			period 12.6321
+	object
+		sprite planet/gas13
+		distance 2497.52
+		period 1624.08
+
+system Uhan'od
+	pos -767.703 -603.052
+	government Seekers
+	habitable 3645
+	belt 1228
+	link Akmun'ro
+	link Deros'de
+	link Nous'de
+	link Onun'ak
+	asteroids "small rock" 2 3.132
+	asteroids "medium rock" 4 3.105
+	asteroids "large rock" 19 3.483
+	asteroids "small metal" 2 3.753
+	asteroids "medium metal" 52 3.456
+	asteroids "large metal" 18 2.673
+	minables lead 1 5.36994
+	minables neodymium 6 5.88105
+	trade Clothing 310
+	trade Electronics 700
+	trade Equipment 398
+	trade Food 414
+	trade "Heavy Metals" 921
+	trade Industrial 710
+	trade "Luxury Goods" 1033
+	trade Medical 796
+	trade Metal 365
+	trade Plastic 306
+	object
+		sprite star/a5
+		period 10
+	object
+		sprite planet/mars
+		distance 199.49
+		period 18.6678
+	object
+		sprite planet/lava6
+		distance 401.5
+		period 53.3015
+	object
+		sprite planet/desert8
+		distance 582.31
+		period 93.0985
+	object Bunodda
+		sprite planet/cloud8
+		distance 783.35
+		period 145.26
+	object
+		sprite planet/gas9
+		distance 2992.64
+		period 1084.66
+		object
+			sprite planet/lava0
+			distance 245
+			period 14.3794
+
+system Uman'kai
+	pos -813.57 -750.685
+	government Seekers
+	habitable 425.92
+	belt 1019
+	link Andor'io
+	link Aran'fe
+	link Dorum'af
+	link Foras'adro
+	asteroids "small metal" 3 2.88
+	asteroids "medium metal" 20 3.104
+	asteroids "large metal" 41 4.256
+	minables iron 3 7.3948
+	minables neodymium 5 4.16484
+	trade Clothing 310
+	trade Electronics 700
+	trade Equipment 398
+	trade Food 414
+	trade "Heavy Metals" 921
+	trade Industrial 710
+	trade "Luxury Goods" 1033
+	trade Medical 796
+	trade Metal 365
+	trade Plastic 306
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/desert0
+		distance 147.49
+		period 34.7168
+		offset 101.999
+	object
+		sprite planet/gas0
+		distance 748.98
+		period 397.284
+		offset 27.9004
+		object
+			sprite planet/rock17
+			distance 244
+			period 11.1697
+	object
+		sprite planet/fog0
+		distance 1186.98
+		period 792.613
+		offset 220.261
+	object Uquo
+		sprite planet/rock12
+		distance 2020.71
+		period 1760.56
+		offset 191.508
+	object
+		sprite planet/gas17
+		distance 6476.67
+		period 10102.4
+		offset 80.8062
+		object
+			sprite planet/dust0
+			distance 193
+			period 11.4554
+		object
+			sprite planet/rhea
+			distance 311
+			period 23.4322
+		object
+			sprite planet/dust3
+			distance 430
+			period 38.0957
+		object
+			sprite planet/europa
+			distance 559
+			period 56.4665
+		object
+			sprite planet/rock7
+			distance 679
+			period 75.5924
+		object
+			sprite planet/rock0
+			distance 799
+			period 96.4925
+		object
+			sprite planet/desert4
+			distance 951
+			period 125.298
+		object
+			sprite planet/dust4
+			distance 1127
+			period 161.644
+		object
+			sprite planet/ice8
+			distance 1343
+			period 210.275
+		object O'ak
+			sprite planet/station3
+			distance 1578
+			period 267.814
+
+system Urak
+	pos -7973.4 -7593.61
+	government Anro
+	habitable 760
+	belt 1701
+	link Anko
+	link Okna
+	asteroids "small rock" 21 3.7758
+	asteroids "medium rock" 12 7.1862
+	asteroids "large rock" 1 5.5419
+	asteroids "small metal" 25 3.045
+	asteroids "medium metal" 6 3.8976
+	asteroids "large metal" 48 5.7855
+	minables aluminum 2 8.38436
+	minables platinum 2 8.76282
+	object
+		sprite star/g5
+		distance 17.5855
+		period 14.2924
+	object
+		sprite star/m8
+		distance 81.4145
+		period 14.2924
+		offset 180
+	object
+		sprite planet/europa
+		distance 181.824
+		period 35.5739
+	object
+		sprite planet/dust1
+		distance 375.384
+		period 105.528
+	object
+		sprite planet/gas11
+		distance 924.634
+		period 407.951
+		object
+			sprite planet/rock14
+			distance 253
+			period 13.2727
+		object
+			sprite planet/miranda
+			distance 394
+			period 25.7942
+	object
+		sprite planet/lava4
+		distance 1475.64
+		period 822.481
+	object
+		sprite planet/gas9
+		distance 2108.73
+		period 1405.03
+		object
+			sprite planet/dust5
+			distance 237
+			period 13.6808
+		object
+			sprite planet/rhea
+			distance 360
+			period 25.612
+
+system Waru
+	pos -7963.23 -7544.03
+	government Anro
+	habitable 3645
+	belt 1921
+	link Akium
+	link Okna
+	asteroids "small rock" 1 2.9325
+	asteroids "medium rock" 13 6.9
+	asteroids "large rock" 4 4.5425
+	asteroids "small metal" 7 4.6575
+	asteroids "medium metal" 258 5.2325
+	asteroids "large metal" 3 8.2225
+	minables iron 18 7.62744
+	minables uranium 68 10.2602
+	object
+		sprite star/a5
+		period 10
+	object
+		sprite planet/gas7
+		distance 282.69
+		period 31.4903
+	object
+		sprite planet/gas10
+		distance 1149.85
+		period 258.329
+		object
+			sprite planet/dust4
+			distance 228
+			period 18.1217
+		object
+			sprite planet/lava0
+			distance 380
+			period 38.9917
+		object
+			sprite planet/ice8
+			distance 498
+			period 58.498
+	object
+		sprite planet/gas14
+		distance 2239.81
+		period 702.309
+
+system Ynam'ki
+	pos -1083.04 -851.018
+	government Uninhabitated
+	habitable 233.28
+	belt 1387
+	link Aran'da
+	asteroids "small rock" 6 1.5456
+	asteroids "medium rock" 19 2.07
+	asteroids "large rock" 5 3.9744
+	asteroids "medium metal" 2 2.2356
+	asteroids "large metal" 5 2.8704
+	minables titanium 7 3.28196
+	trade Clothing 310
+	trade Electronics 700
+	trade Equipment 398
+	trade Food 414
+	trade "Heavy Metals" 921
+	trade Industrial 710
+	trade "Luxury Goods" 1033
+	trade Medical 796
+	trade Metal 365
+	trade Plastic 306
+	object
+		sprite star/m4
+		period 10
+	object
+		sprite planet/lava7
+		distance 128.49
+		period 38.1439
+	object
+		sprite planet/ice1
+		distance 498.78
+		period 291.732
+		object
+			sprite planet/rock3
+			distance 170
+			period 18.9439
+	object
+		sprite planet/rock19
+		distance 1148.79
+		period 1019.72
+		object
+			sprite planet/rhea
+			distance 128
+			period 19.354
+	object
+		sprite planet/cloud0
+		distance 1494.79
+		period 1513.53
+	object
+		sprite planet/gas11
+		distance 4400.55
+		period 7645.07
+		object
+			sprite planet/ice7
+			distance 273
+			period 14.8772
+		object
+			sprite planet/rock17
+			distance 360
+			period 22.5285
+		object
+			sprite planet/dust3
+			distance 496
+			period 36.4334
+

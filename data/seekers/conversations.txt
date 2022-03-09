@@ -1,0 +1,47 @@
+conversation "Seekers First Contact"
+    `When you landed on the planet you look around curiosly. The inhabitants are strange people that somehow look like ants but then they do not. You hear no talking between them but some of them are standing in groups and look like they are communicating. After you have observed everything, you get the feeling of being ignored.`
+    `    After you waited some time one of them approachs to you. With him he cares an object that has some similarities with a headset. His gestures make it clear that you should wear it on.`
+    `    Although you do not know if you can trust them you take it on. As soon as you are fully wearing it there is comming some kind of broken human language out of it.`
+    `    "Welcome human, it is not often that someone of your kind reaches my space. I did not know that your technology has growen so far."`
+    choice
+        `"Wait, You know humans?"`
+            goto "Know Humans?"
+        `"Humans are not that far evolved yet I am an exception."`
+            goto "No question"
+        `"Nice to meet you too. Could you tell me who you are?"`
+            goto "Who are you?"
+        `"Why are you talking of your kind in first person?"`
+            goto "Strange Speach"
+    label "Know Humans?"
+    `"Some time in the past I traveled through the galaxy and encountered all kind of species. I learned much about them and kept this knowledge archived."`
+    `    "Do you have more questions?"`
+    choice
+        `"No"`
+            goto "No question"
+        `"Could you tell something about your species?"`
+            goto "Who are you?"
+        `"Why are you talking of your kind in first person?"`
+            goto "Strange Speach"
+    label "No question"
+    `"Well if this is all, you will be welcome here. You may trade with us but we will not sell any of our technology to you. Oh and do not make any trouble."`
+        accept
+    label "Who are you?"
+    `"I am the Seekers in your language, the one who seeks knowledge and wisdom. I lived in this universe a long time. In the beginning of me, I lived in a galaxy that you call the Black Eye Galaxy. But I was expelled from there. I flew to this galaxy and since then I was living here."`
+    `    "Do you have more questions?"`
+    choice
+        `"How do you know humans?"`
+            goto "Know Humans?"
+        `"No"`
+            goto "No question"
+        `"Why are you talking of your kind in first person?"`
+            goto "Strange Speach"
+    label "Strange Speach"
+    `"Ah yes that has to be confusing for your kind. How sould I explain..." He pauses. "You know what a swarm intelligence is?" You nod. "I am soe kind of a swarm intelligence but much more evolved. Each part of me has its own personality and abilities but I am also I. I hope this it explains it somehow."`
+    `    "Do you have more questions?"`
+    choice
+        `"How do you know humans?"`
+            goto "Know Humans?"
+        `"No"`
+            goto "No question"
+        `"Could you tell something about your species?"`
+            goto "Who are you?"

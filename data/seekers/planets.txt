@@ -1,0 +1,44 @@
+planet Doradda
+	attributes seekers
+	government "Seekers"
+	landscape land/badlands1
+	description `As you open the shunt the hot and dry air beats against your face. There are a lot of small citys around. The buildings are not build for human like creatures they have no stairs and go deep underground. Nobody seems to notice you altough a lot of them are "walking" around you. Nobody seems to take a break and all are working. You get the feeling of not fitting in.`
+	spaceport `The Spaceport is large and on a high standart. A lot of ships are standing next to you and new ones are coming and going the whole time.`
+
+planet Ofuk
+	attributes seekers
+	government "Seekers"
+	landscape land/badlands1
+	description `On the main planet of the seekers you first see nothing as all cities are under earth. The air is dry and smells like sand. A lot of mountains are around here.`
+	spaceport `The Spaceport is one of the largest you have ever seen. Thousands of ships are standing there. There is a lot of traffic not only incoming ships but also transporters for bringing the people all over the planet are driving around everywhere.`
+	outfitter "Seekers Weapon"
+	shipyard "Seeker"
+
+planet Bunodda
+	attributes seekers
+	government "Seekers"
+	landscape land/snow8
+	description `This planet is extremly cold so all of the inhabitants are living underground. A beautifull view on white mountains and deep valleys is extending from where you stand. Although you want to look around longer you have to go inside because of the low temperatures.`
+	spaceport `The design of the spaceport is only functional there is no sign of stylishness or artistic freedom. The few workers that are out here are all busy and you are not sure if they are even noticing you.`
+
+planet Uquo
+	government "Seekers"
+	landscape land/sea10-sfiera
+	description `Water is everywhere. The inhabitants are living on floating islands that are connected by filigrane bridges which do not look very stable. As you step out you notice a strong wind that constantly waves around. Although you do not think that these are good conditions the whole planet is populated.`
+	spaceport `The spaceport is an unbeliefable construction standing out of all other buildings. The organic forms make it look like an living organism.`
+
+planet Ceru'ka
+	government "Seekers"
+	landscape land/bwerner4
+	description `This planet has a rough surface and all cities are build in valleys between the mountains. There is not much light anywhere around and there are not that many people outside. You notice a loud sound that seems to come from all directions but you can see no source of it.`
+	spaceport `The Spaceport is build on a plateu of an outstanding mountain. Because there is only enough space to land all ships are kept inside large halls inside the mountain.`
+
+planet O'ak
+	government "Seekers (Hidden)"
+	landscape land/station5
+	description `This station is really strange`
+	"required reputation" 1000
+
+planet "Seekers Wormhole"
+	attributes "requires: quantum keystone"
+	description ""

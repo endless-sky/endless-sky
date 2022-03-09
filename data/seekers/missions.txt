@@ -1,0 +1,102 @@
+################################
+####STORY
+################################
+
+mission "The Mother Ship"
+	invisible
+	landing
+	npc kill
+		government "Seekers (Hidden)"
+		personality heroic vindictive uninterested
+		system "Foras'adro"
+		ship "Mother" "Sun of the Void"
+
+mission "First Contact: Seekers"
+	landing
+	invisible
+	source
+		government "Seekers"
+	on offer
+		conversation "Seekers First Contact"
+
+################################
+####JOBS
+################################
+
+mission "System scan"
+	landing
+	deadline 50 
+	passengers 4 
+	job
+	repeat
+	description "Take four scientists to the <waypoints> system to retrieve some scientific data. You do not have to land but you have to bring them back. They will pay you <payment>. You have time to <date> to do this."
+	to offer
+		has "passenger space" >= 4
+		has "random" <= 40
+	source 
+		government "Seekers"
+	waypoint
+		not government "Seekers"
+		not	government "Uninhabitated"
+		not government "Pug (Seekers)"
+	on waypoint
+		dialog "The scientists take out their messuring devices. After a short time they tell you that they are finished."
+	on complete
+		dialog "The scientist thank you and pay you <payment>."
+		payment 100000
+	on fail
+		dialog "The scientist get angry and fine you with <payment>."
+		fine 100000
+
+mission "Soldier Transport"
+	landing
+	passengers 10
+	job
+	repeat
+	description "Transport 10 soldiers from <origin> to <destination>."
+	to offer
+		has "passenger space" >= 10
+		has "random" <= 50
+	on complete
+		dialog "The soldiers pay you <payment> and go away."
+		payment 20000
+	source 
+		government "Seekers"
+		not system "Foras'adro"
+	destination Ofuk
+
+mission "Scientist Transport"
+	landing
+	passengers 8
+	job
+	repeat
+	description "Transport 8 seekers scientists from <origin> to <destination>."
+	to offer
+		has "passenger space" >= 8
+		has "random" <= 50
+	on complete
+		dialog "The soldiers pay you <payment> and go away."
+		payment 12000
+	source 
+		government "Seekers"
+	destination
+		government "Seekers"
+		distance 2
+
+mission "Observe the Anro"
+	landing
+	passengers 1
+	job
+	repeat
+	description "Go to the Punub system with a militia officer of the seekers, observe and come back. (This will decrease your reputation with the Anro)"
+	to offer
+		has "passenger space" >= 1
+		has "random" <= 60
+	on complete
+		dialog "The officer pays you <payment> and goes away."
+		payment 44000
+		"reputation: Anro" --
+	source Ofuk
+	waypoint system "Punub"
+
+

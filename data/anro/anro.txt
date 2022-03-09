@@ -1,0 +1,10 @@
+government "Anro"
+	swizzle 0
+	color 1 0.5 0.5
+	"crew attack" 20
+	"crew defense" 20
+	language "An"
+	"player reputation" 40
+	"attitude toward"
+		"Seekers" -1
+        "Seekers (Hidden)" -1

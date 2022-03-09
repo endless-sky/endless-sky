@@ -1,0 +1,46 @@
+ship "Saihiri"
+	sprite "ship/Saihiri"
+	thumbnail "ship/Saihiri"
+	attributes
+		category "Large Warship"
+
+		"cost" 200000000
+		"shields" 400000
+		"shield generation" 100
+		"hull repair rate" 100
+		"hull" 300000
+		"required crew" 100
+		"bunks" 200
+		"mass" 500
+		"drag" 2.5
+		"heat dissipation" .5
+		"fuel capacity" 800
+		"cargo space" 200
+		"outfit space" 530
+		"weapon capacity" 400
+		"engine capacity" 130
+		weapon
+			"blast radius" 16
+			"shield damage" 160
+			"hull damage" 80
+			"hit force" 240
+	outfits
+		"Black Hole Cannon" 4
+		
+		"Seekers Power Device"
+		
+		"Graviton Mover"
+		"Jump Drive"
+		
+	gun -45 -53.5
+	gun 45.5 -51.5
+	gun -59.5 75
+	gun 60.5 76
+	engine -1 139
+
+	leak "flame" 60 80
+	explode "tiny explosion" 120
+	explode "small explosion" 150
+	explode "huge explosion" 100
+	"final explode" "final explosion large" 1
+	description "The Saihiri"

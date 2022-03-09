@@ -1,0 +1,17 @@
+phrase "anro"
+	word
+		"Storm "
+		"Wind "
+		"Wave "
+		"Mountain "
+		"Blizzard "
+	word
+		"of "
+	word
+		"Destruction"
+		"Despair"
+		"Knowledge"
+		"Wisdom"
+		"Disaster"
+		"Death"
+		"Hope"

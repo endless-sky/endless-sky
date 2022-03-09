@@ -1,0 +1,12 @@
+planet Arun
+	landscape land/water5
+	government "Anro"
+	description `This is a stormy world with a lot of water. The air is cool and smells like sea.`
+	description `The few Anro that are living here are concentrated to one spot. A giant city`
+	description `on an island. The planet looks old and you get the feeling that you shall get away from here as soon as possible.`
+	spaceport `The Spaceport is small but it has all it needs.`
+	spaceport `	Few People are around here and it looks like it wasnt used for a`
+	spaceport `	long time. `
+
+planet "Anro Wormhole"
+	attributes "requires: quantum keystone"

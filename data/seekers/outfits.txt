@@ -1,0 +1,262 @@
+outfit "Seekers Gun"
+	category "Guns"
+	licenses
+		"Seeker War"
+	cost 218000
+	thumbnail "outfit/seekers_gun"
+	"mass" 30
+	"outfit space" -30
+	"weapon capacity" -30
+	"gun ports" -1
+	weapon
+		sprite "projectile/seeker_point"
+			"frame rate" 1
+		sound "thrasher"
+		"hit effect" "seeker impact"
+		"inaccuracy" 0
+		"velocity" 30
+		"lifetime" 50
+		"reload" 5
+		"firing energy" 50
+		"firing heat" 10
+		"shield damage" 50
+		"hull damage" 55
+		"piercing" 0.05
+	description "A bloody creation of the Seekers. They themself dont call it bloody they say it optimized for the purpose related to. Because of its high range and imense destruction power it is a feared weapon."
+
+outfit "Seekers Follower"
+	category "Secondary Weapons"
+	licenses
+		"Seeker War"
+	cost 218000
+	thumbnail "outfit/seekers_gun"
+	"mass" 35
+	"outfit space" -35
+	"weapon capacity" -35
+	"gun ports" -1
+	weapon
+		sprite "projectile/follower"
+			"frame rate" 1
+		ammo "Follower"
+		icon "projectile/follower"
+		sound "thrasher"
+		"hit effect" "ion impact"
+		phasing
+		turn 40
+		"radar tracking" 100
+		"infrared tracking" 100
+		"optical tracking" 100
+		"inaccuracy" 0
+		"velocity" 20
+		"lifetime" 500
+		"reload" 40
+		"firing energy" 50
+		"firing heat" 10
+		"shield damage" 1000
+		"hull damage" 600
+		"parallel"
+		"acceleration" 2
+		"drag" .1
+		"hit force" 220
+		homing 4
+		"missile strength" 500
+	description "This is a high-end ranged weapons. It is primary used by the ship Targeter because of its huge range and good aim they can fly around the enemy ship outside the shooting range and slowly destroy it."
+
+outfit "Follower"
+	category "Ammunition"
+	licenses
+		"Seeker War"
+	cost 1000
+	thumbnail "outfit/follower"
+	"mass" 0.1
+	"outfit space" -0.1
+	description "The ammuniation for the gun."
+
+outfit "Seekers Turret"
+	category "Turrets"
+	licenses
+		"Seeker War"
+	cost 980000
+	thumbnail "outfit/thrasher turret"
+	"mass" 49
+	"outfit space" -49
+	"weapon capacity" -49
+	"required crew" 1
+	"turret mounts" -1
+	weapon
+		sprite "projectile/seeker_point"
+			"frame rate" 1
+		"hardpoint sprite" "hardpoint/thrasher turret"
+		"hardpoint offset" 6.
+		sound "thrasher"
+		"hit effect" "seeker impact"
+		"inaccuracy" 2
+		"turret turn" 5
+		"velocity" 30
+		"lifetime" 50
+		"reload" 5
+		"firing energy" 50
+		"firing heat" 15
+		"shield damage" 50
+		"hull damage" 55
+		"piercing" 0.05
+	description "Just more bloody than the Gun."
+
+outfit "Seekers Power Device"
+	category "Power"
+	licenses
+		Seeker
+	cost 113000
+	thumbnail "outfit/power_r"
+	"mass" 40
+	"outfit space" -40
+	"energy capacity" 100000
+	"energy generation" 10000
+	"heat generation" 0
+	"ion resistance" 0.7
+	"cooling" 1000
+	description "This device is a miracle. There are many speculations where the power is comming from some say it is a black hole inside. However it is highly effective and the seekers wont give out any information about it."
+
+outfit "Seekers Power Device (Small)"
+	category "Power"
+	licenses
+		Seeker
+	cost 11300
+	thumbnail "outfit/crystal capacitor"
+	"mass" 6
+	"outfit space" -6
+	"energy capacity" 1000
+	"energy generation" 100
+	"heat generation" 0
+	"ion resistance" 0.7
+	"cooling" 10
+	description "This little Engine creates energy more efficient than any human like engine."
+
+outfit "Graviton Mover"
+	category "Engines"
+	licenses
+		Seeker
+	"cost" 290000
+	thumbnail "outfit/graviton_mover_r"
+	"mass" 26
+	"outfit space" -26
+	"engine capacity" -26
+	"thrust" 100
+	"thrusting energy" 2
+	"thrusting heat" 1
+	"turn" 1000
+	"turning energy" 1
+	"turning heat" 1
+	"reverse thrust" 50
+	"reverse thrusting energy" 1.23
+	"reverse thrusting heat" 1.17
+	"slowing resistance" 0.02
+	description "Super fast and super efficient. The graviton mover is an engine that is not bursting out anything. It moves the ship through creating a gravitational field in front of it."
+
+outfit "Graviton Mover (Small)"
+	category "Engines"
+	licenses
+		Seeker
+	"cost" 29000
+	thumbnail "outfit/graviton_mover_r"
+	"mass" 26
+	"outfit space" -13
+	"engine capacity" -13
+	"thrust" 30
+	"thrusting energy" 2
+	"thrusting heat" 8
+	"turn" 100
+	"turning energy" 1
+	"turning heat" 2
+	"reverse thrust" 10
+	"reverse thrusting energy" 1.23
+	"reverse thrusting heat" 1.17
+	"slowing resistance" 0.02
+	description "An Engine build for small ships."
+
+outfitter "Seekers Weapon"
+	"Seekers Gun"
+	"Seekers Follower"
+	"Follower"
+
+outfit "Mothers Gun"
+	category "Guns"
+	cost 218000
+	thumbnail "weapons/gun_1_r"
+	"mass" 10
+	"outfit space" -10
+	"weapon capacity" -10
+	"gun ports" -1
+	weapon
+		sprite "projectile/mother_point"
+			"frame rate" 1
+		sound "thrasher"
+		"hit effect" "thrasher impact"
+		"inaccuracy" 0
+		"velocity" 40
+		"lifetime" 60
+		"reload" 5
+		"firing energy" 50
+		"firing heat" 10
+		"shield damage" 100
+		"hull damage" 100
+		"piercing" 0.1
+	description "A bloody creation of the Hidden Seekers. They themself dont call it bloody they say it optimized for the purpose related to."
+
+outfit "Mothers Turret"
+	category "Turrets"
+
+	cost 980000
+	thumbnail "outfit/thrasher turret"
+	"mass" 49
+	"outfit space" -20
+	"weapon capacity" -20
+	"required crew" 1
+	"turret mounts" -1
+	weapon
+		sprite "projectile/mother_point"
+			"frame rate" 1
+		"hardpoint sprite" "hardpoint/thrasher turret"
+		"hardpoint offset" 6.
+		sound "thrasher"
+		"hit effect" "thrasher impact"
+		"inaccuracy" 1
+		"turret turn" 5
+		"velocity" 40
+		"lifetime" 60
+		"reload" 5
+		"firing energy" 50
+		"firing heat" 15
+		"shield damage" 100
+		"hull damage" 100
+		"piercing" 0.1
+	description "Just more bloody than the Gun"
+
+outfit "Mothers Graviton Mover"
+	category "Engines"
+	"cost" 290000
+	thumbnail "outfit/tiny remnant engine"
+	"mass" 26
+	"outfit space" -26
+	"engine capacity" -26
+	"thrust" 500
+	"thrusting energy" 2
+	"thrusting heat" 1
+	"turn" 2000
+	"turning energy" 1
+	"turning heat" 1
+	"reverse thrust" 500
+	"reverse thrusting energy" 1.23
+	"reverse thrusting heat" 1.17
+	"slowing resistance" 0.02
+	description "Super fast and super efficient."
+
+outfit "Seeker License"
+	category "Special"
+	thumbnail "outfit/remnant license"
+	description "The Seeker trusts you."
+
+outfit "Seeker War License"
+	category "Special"
+	thumbnail "outfit/remnant capital license"
+	description "The Seeker allows you to fight."

@@ -1,0 +1,39 @@
+outfit "Black Hole Cannon"
+	category "Primary Weapons"
+	cost 218000
+	thumbnail "weapons/gun_2_r"
+	"mass" 35
+	"outfit space" -35
+	"weapon capacity" -35
+	"gun ports" -1
+	weapon
+		sprite "projectile/black_hole_r"
+			"frame rate" 30
+			rewind
+		sound "final explosion small"
+		"hit effect" "finisher impact"
+		phasing
+		turn 40
+		"radar tracking" 100
+		"infrared tracking" 100
+		"optical tracking" 100
+		"inaccuracy" 0
+		"velocity" 5
+		"lifetime" 600
+		"reload" 40
+		"firing energy" 50
+		"firing heat" 10
+		"shield damage" 3000
+		"hull damage" 1200
+		"parallel"
+		"acceleration" 1
+		"drag" .1
+		"hit force" 220
+		homing 2
+		"missile strength" 1000
+	description "The Anro needed a long time for this weapon but in the end they created an electromagnetic gun that denses the projectile until it gets to a black hole."
+
+outfit "Anro Key Pass"
+	category "Special"
+	cost 218000
+	description "Anro"

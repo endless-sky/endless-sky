@@ -1,0 +1,26 @@
+fleet "Seekers Defend Fleet"
+	government "Seekers"
+	names "Defend Fleet Names"
+	personality
+		vindictive heroic
+	variant 1
+		"Guarder" 1
+		"Targeter" 2
+
+
+fleet "Seekers Small Transport"
+	government "Seekers"
+	names "Defend Fleet Names"
+	variant 1
+		"Needel" 2
+	variant 2
+		"Needel" 3
+	variant 2
+		"Needel" 3
+		"Gryphon" 1
+	variant 1
+		"Needel" 2
+		"Gryphon" 2
+	variant 1
+		"Needel"
+		"Gryphon" 2

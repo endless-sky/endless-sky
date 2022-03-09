@@ -1,0 +1,244 @@
+ship "Guarder"
+	sprite "ship/Guarder"
+	thumbnail "ship/Guarder"
+	attributes
+		category "Large Warship"
+		licenses
+			"Seeker War"
+		"cost" 200000000
+		"shields" 500000
+		"shield generation" 50
+		"hull repair rate" 10
+		"hull" 200000
+		"required crew" 20
+		"bunks" 40
+		"mass" 500
+		"drag" 2.5
+		"heat dissipation" .5
+		"fuel capacity" 600
+		"cargo space" 100
+		"outfit space" 530
+		"weapon capacity" 400
+		"engine capacity" 130
+		weapon
+			"blast radius" 16
+			"shield damage" 160
+			"hull damage" 80
+			"hit force" 240
+	outfits
+		"Seekers Gun" 4
+		"Seekers Turret" 4
+		
+		"Seekers Power Device"
+		
+		"Graviton Mover"
+		"Jump Drive"
+		
+	gun -62.5 -73
+	gun 62.5 -72.5
+	turret -32.5 -0.5
+	turret 31.5 0
+	turret -7 -11.5
+	turret 6.5 -11.5
+	gun -67.5 -73
+	gun 66.5 -73
+	engine 0 0
+	leak "flame" 60 80
+	explode "tiny explosion" 20
+	explode "small explosion" 50
+	explode "huge explosion" 50
+	"final explode" "final explosion large" 1
+	description "The strongest ship of the Seekers. Build for guarding planets."
+
+ship "Targeter"
+	sprite "ship/Targeter"
+	thumbnail "ship/Targeter"
+	attributes
+		category "Medium Warship"
+		licenses
+			"Seeker War"
+		"cost" 10000000
+		"shields" 100000
+		"shield generation" 10
+		"hull repair rate" 5
+		"hull" 20000
+		"required crew" 15
+		"bunks" 40
+		"mass" 500
+		"drag" 2.5
+		"heat dissipation" .5
+		"fuel capacity" 600
+		"cargo space" 20
+		"outfit space" 600
+		"weapon capacity" 400
+		"engine capacity" 200
+		weapon
+			"blast radius" 16
+			"shield damage" 160
+			"hull damage" 80
+			"hit force" 240
+	outfits
+		"Seekers Follower" 4
+		"Seekers Gun" 1
+		"Follower" 1000
+		"Seekers Power Device"
+		
+		"Graviton Mover"
+		"Jump Drive"
+		
+	gun -67.5 -85
+	gun 70.5 -85
+	turret -0.5 -9
+	gun -104 -48.5
+	gun 104 -48.5
+
+	engine 0 0
+	leak "flame" 60 80
+	explode "tiny explosion" 20
+	explode "small explosion" 50
+	explode "huge explosion" 50
+	"final explode" "final explosion large" 1
+	description "The bomber ship of the Seekers. Able to track down its target from far away."
+
+ship "Needel"
+	sprite "ship/Needel"
+	thumbnail "ship/Needel"
+	attributes
+		category "Transport"
+		licenses
+			"Seeker"
+		"cost" 200000000
+		"shields" 1500
+		"shield generation" 5
+		"hull repair rate" 1
+		"hull" 200
+		"required crew" 2
+		"bunks" 10
+		"mass" 100
+		"drag" 2
+		"heat dissipation" .5
+		"fuel capacity" 400
+		"cargo space" 100
+		"outfit space" 100
+		"weapon capacity" 0
+		"engine capacity" 120
+		weapon
+			"blast radius" 16
+			"shield damage" 160
+			"hull damage" 80
+			"hit force" 240
+	outfits
+		"Seekers Power Device (Small)"
+		"Graviton Mover (Small)"
+		"Hyperdrive"
+
+	engine 0 0
+	turret -22 0
+	turret 22 0
+	leak "flame" 60 80
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	description "A small ship build for fast travelling between near systems."
+
+ship "Gryphon"
+	sprite "ship/Gryphon"
+	thumbnail "ship/Gryphon"
+	attributes
+		category "Interceptor"
+		licenses
+			"Seeker War"
+		"cost" 200000000
+		"shields" 15000
+		"shield generation" 5
+		"hull repair rate" 1
+		"hull" 2000
+		"required crew" 5
+		"bunks" 20
+		"mass" 200
+		"drag" 3
+		"heat dissipation" .5
+		"fuel capacity" 500
+		"cargo space" 100
+		"outfit space" 110
+		"weapon capacity" 60
+		"engine capacity" 50
+		weapon
+			"blast radius" 16
+			"shield damage" 160
+			"hull damage" 80
+			"hit force" 240
+	outfits
+		"Seekers Gun" 2
+		"Seekers Power Device (Small)"
+		"Graviton Mover (Small)"
+		"Hyperdrive"
+
+	engine 0 0
+	gun -30 -41
+	gun 28.5 -41
+	turret -0.5 0.5
+	leak "flame" 60 80
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	description "A small ship for escorting small fleets."
+
+ship "Mother"
+	sprite "ship/Mother"
+	thumbnail "ship/Mother"
+	attributes
+		category "Ultra Large Warship"
+		"cost" 20000000000
+		"shields" 50000000
+		"shield generation" 5000
+		"hull repair rate" 1000
+		"hull" 20000000
+		"required crew" 200
+		"bunks" 400
+		"mass" 5000
+		"drag" 2.5
+		"heat dissipation" .5
+		"fuel capacity" 1000
+		"cargo space" 1000
+		"outfit space" 10000
+		"weapon capacity" 5000
+		"engine capacity" 5000
+		weapon
+			"blast radius" 16
+			"shield damage" 160
+			"hull damage" 80
+			"hit force" 240
+	outfits
+		"Mothers Gun" 6
+		"Mothers Turret" 8
+		
+		"Seekers Power Device" 6
+		
+		"Mothers Graviton Mover" 4
+		"Jump Drive"
+		
+	gun -77.5 -132.5
+	gun -66 -133.5
+	gun 65 -133.5
+	gun 77.5 -132.5
+
+	turret -72 -52
+	turret 72 -42
+	turret 121 -11
+	turret -121 -11
+	turret -11 29
+	turret 11 29
+	turret -74 100
+	turret 74 100
+	gun 114.5 -76.5
+	gun -114.5 -76.5
+
+	engine 0 0
+
+	leak "flame" 60 80
+	explode "tiny explosion" 15
+	explode "small explosion" 25
+	description "A ship of unknow strength build for revenge against the strongest."
+
+shipyard "Seeker"
+	"Gryphon"
+	"Needel"
