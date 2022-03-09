@@ -79,7 +79,7 @@ if 'steamrt_scout' in chroot_name:
 sys_libs = [
 	"rpcrt4",
 ] if is_windows_host else [
-	"uuid"
+	"uuid", "atomic"
 ]
 env.Append(LIBS = sys_libs)
 
