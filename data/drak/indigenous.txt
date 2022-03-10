@@ -219,27 +219,26 @@ ship "Embershade"
 		"drag" 4.2
 		"heat dissipation" .8
 		"cargo space" 40
+		"fuel capacity" 100
 		"thrust" 20
 		"turn" 900
+		"energy capacity" 500
+		"energy generation" 6
 		"hull repair rate" 3
-		"energy capacity" 1000
-		"fuel capacity" 2
-		"inscrutable" 1
 		"cloak" .02
 		"cloaking energy" 5
-		"energy generation" 6
-		"shield generation" 1.8
-		"shield heat" -1
 		"hyperdrive" 1
-		"jump fuel" 1
-		"ramscoop" 1
+		"jump speed" .1
+		"ramscoop" .05
+		"gaslining" 1
+		"inscrutable" 1
+		"atmosphere scan" 1000
 	outfits
 		Mouthparts? 2
-	gun -4 -111
-	gun 6 -111
+	gun -5 -111
+	gun 5 -111
 	leak "blood" 40 40
 	explode "blood" 40
-	"final explode" "void sprite adult death"
 	description "Long regarded as mere ghost stories, the ray-like Embershades have finally been proven to exist thanks to recent generations of ion storm resistant sensor suites. Shy by nature, these creatures generate a natural cloaking field and prefer to move unseen."
 
 
@@ -357,7 +356,7 @@ fleet "Embershades"
 	government "Indigenous Lifeform"
 	cargo 0
 	personality
-		timid mute
+		timid mute surveillance
 	variant 3
 		"Embershade" 1
 	variant 5
