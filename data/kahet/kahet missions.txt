@@ -332,10 +332,10 @@ mission "Ka'het: Patir Mystery 1"
 	cargo "Ka'het tracking equipment" 5
 	to offer
 		has "Ka'het: Patir Mystery 0: failed"
-		not "Remnant: Dusk Busy"
+		not "remnant: dusk busy"
 		random < 50
 	on offer
-		set "Remnant: Dusk Busy"
+		set "remnant: dusk busy"
 		conversation
 			`You start looking for Taely right after finishing the post-landing procedures. You aren't surprised to find her in the local shipyard, overseeing the welding of some kind of unmanned satellite. Though not familiar enough with Remnant technology to understand its function, you identify a large crystal placed near what you presume to be the front of the probe as a Quantum Key Stone, or at least a derivative of it.`
 			`	When Taely notices you walking towards her, she waves at you. "<first>! It has been a while. Were you looking for me?"`
@@ -673,7 +673,7 @@ mission "Ka'het: Patir Mystery 5"
 	on visit
 		dialog "You've returned to <planet>, but you realize your escort carrying Dusk has not yet entered the system! Better depart and wait for it."
 	on complete
-		clear "Remnant: Dusk Busy"
+		clear "remnant: dusk busy"
 		event "patir mystery timer" 10
 		"reputation: Ka'sei" = 1
 		conversation
