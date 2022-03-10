@@ -32,9 +32,9 @@ Variant::Variant(const DataNode &node)
 void Variant::Load(const DataNode &node)
 {
 	if(node.Token(0) == "variant" && node.Size() >= 2)
-		weight = node.Value(1);
+		weight = max<int>(1, node.Value(1));
 	else if(node.Token(0) == "add" && node.Size() >= 3)
-		weight = node.Value(2);
+		weight = max<int>(1, node.Value(2));
 
 	for(const DataNode &child : node)
 	{
