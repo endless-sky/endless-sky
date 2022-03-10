@@ -88,7 +88,7 @@ mission "New Holland Foibles"
 	on offer
 		conversation
 			`The smell of burning metal fills the air as you walk down the uncrowded streets of the factory town near the spaceport, keeping away from the arterial supply route directly feeding the port and its hangars.`
-			`	Despite the distance and absent traffic though, it is far from quiet. Several factory buildings make discernible thrumming noises, and grinders echo amidst the silence as you investigate. Turning a corner, you come across an alley running along a lengthy chain link fence line which obstructs your path to anything interesting. Beyond it, you can see a throng of men cutting away at a rather well kept spaceship. Parts regularly fall to the floor below, apparently heedless of those working below.`
+			`	Despite the distance and absent traffic though, it is far from quiet. Several factory buildings make discernible thrumming noises, and grinders echo amidst the silence as you investigate. Turning a corner, you come across an alley running along a lengthy chain link fence line. Beyond it, you can see a throng of men cutting away at a spaceship. Parts regularly fall to the floor, the workers apparently heedless of those below.`
 			`	Even as you watch you see a hull plate swinging dangerously above a workers head.`
 			choice
 				`	(Call out a warning.)`
