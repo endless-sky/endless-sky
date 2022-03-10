@@ -2860,6 +2860,18 @@ void PlayerInfo::Save(const string &path) const
 		out.Write("travel", system->Name());
 	if(travelDestination)
 		out.Write("travel destination", travelDestination->TrueName());
+	// Detect which ship number is the current flagship, for showing on LoadPanel.
+	if(flagship)
+	{
+		for(auto it = ships.begin(); it != ships.end(); ++it)
+			if(*it == flagship)
+			{
+				out.Write("flagship index", distance(ships.begin(), it));
+				break;
+			}
+	}
+	else
+		out.Write("flagship index", -1);
 
 	// Save the current setting for the map coloring;
 	out.Write("map coloring", mapColoring);

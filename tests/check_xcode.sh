@@ -53,7 +53,7 @@ HERE=$(cd `dirname $0` && pwd)
 cd ${HERE}/..
 
 ESTOP=$(pwd)
-XPROJECT=${ESTOP}/EndlessSky.xcodeproj
+XPROJECT="${ESTOP}/EndlessSky.xcodeproj"
 
 ADDED=()
 RESULT=0

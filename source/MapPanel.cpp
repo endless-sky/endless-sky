@@ -1130,7 +1130,7 @@ void MapPanel::DrawMissions()
 	for(const Mission &mission : player.AvailableJobs())
 	{
 		const System *system = mission.Destination()->GetSystem();
-		DrawPointer(system, angle[system], mission.HasSpace(player) ? availableColor : unavailableColor);
+		DrawPointer(system, angle[system], mission.CanAccept(player) ? availableColor : unavailableColor);
 	}
 	for(const Mission &mission : player.Missions())
 	{

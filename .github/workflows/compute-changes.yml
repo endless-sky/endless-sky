@@ -17,6 +17,10 @@ on:
         value: ${{ jobs.changed.outputs.integration_tests }}
       codespell:
         value: ${{ jobs.changed.outputs.codespell }}
+      xcode_files:
+        value: ${{ jobs.changed.outputs.xcode_files }}
+      codeblocks_files:
+        value: ${{ jobs.changed.outputs.codeblocks_files }}
 
 jobs:
   changed:
@@ -30,6 +34,8 @@ jobs:
       unit_tests: ${{ steps.filter.outputs.unit_tests }}
       integration_tests: ${{ steps.filter.outputs.integration_tests }}
       codespell: ${{ steps.filter.outputs.codespell }}
+      xcode_files: ${{ steps.filter.outputs.xcode_files }}
+      codeblocks_files: ${{ steps.filter.outputs.codeblocks_files }}
     steps:
     - uses: actions/checkout@v2
       with:
