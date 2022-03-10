@@ -20,11 +20,9 @@ Files:
  images/outfit/fission?hai*
  images/outfit/fusion?hai*
  images/outfit/heavy?anti-missile?hai*
- images/ship/marrow*
  images/ship/mbounder*
  images/ship/mfury*
  images/ship/mmanta*
- images/ship/mquicksilver*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
@@ -918,11 +916,13 @@ Files:
  images/ship/falcon*
  images/ship/hawk*
  images/ship/osprey*
+ images/ship/quicksilver*
  images/ship/sparrow*
  images/thumbnail/blackbird*
  images/thumbnail/falcon*
  images/thumbnail/hawk*
  images/thumbnail/osprey*
+ images/thumbnail/quicksilver*
  images/thumbnail/sparrow*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
@@ -930,7 +930,9 @@ Comment: Detailed by Anarchist2.
 
 Files:
  images/ship/mfalcon*
+ images/ship/mquicksilver*
  images/thumbnail/mfalcon*
+ images/thumbnail/mquicksilver*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Anarchist2.

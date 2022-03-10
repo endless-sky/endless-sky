@@ -755,11 +755,11 @@ ship "Marauder Quicksilver"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -16 52
-	engine 16 52
-	gun -7 -39 "Heavy Laser"
-	gun 7 -39 "Heavy Laser"
-	turret 0 15 "Heavy Anti-Missile Turret"
+	engine -15.5 54
+	engine 15.5 54
+	gun -6 -39.5 "Heavy Laser"
+	gun 6 -39.5 "Heavy Laser"
+	turret 0 26 "Heavy Anti-Missile Turret"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	"final explode" "final explosion small"
@@ -786,9 +786,9 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -16 52
-	engine 0 52
-	engine 16 52
+	engine -15.5 54
+	engine 0 57
+	engine 15.5 54
 	description "This Quicksilver has even more space available for engine use - and even another thruster port! It's also got a few extra shield projectors, more hull plating, and another bunk. This aftermarket model also features a turret mount, perhaps in response to Lionheart's Headhunter. Whoever modified this ship wanted to chase their prey down with vicious speed."
 
 
@@ -812,8 +812,9 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons)"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -17 54
-	engine 17 54
+	gun -6 -52.5 "Heavy Laser"
+	gun 6 -52.5 "Heavy Laser"
+	turret 0 26 "Heavy Laser Turret"
 	description "This Quicksilver has even bigger gun ports. It's also got a few extra shield emitters, more hull plating, and an extra bunk. Outfitted right, this aftermarket model could be even faster than a stock model, bringing a couple of extra cannons and a turret to a fight in more menacing mimicry of Lionheart's Headhunter."
 
 
