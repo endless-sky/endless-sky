@@ -1947,3 +1947,208 @@ mission "Coalition: Pilgrimage 6"
 		conversation
 			`Once she leaves your ship, Vellorae gives you your payment of <payment>, and takes your hands in hers. "Deeply grateful I am, for having accompanied me in this journey, Captain <last>. Sure that grateful for your help, Adfices also is."`
 			`	She lets go of your hands, wishes you the best in your travels, and then turns and leaves for her home.`
+
+
+
+mission "Coalition: Council of Ahr"
+	minor
+	name "Council of Ahr"
+	description "Bring the representatives of houses Ablomab, Bebliss, and Chamgar to <destination> by <date>, so that they may participate in the Council of Ahr."
+	deadline 30
+	to offer
+		has "Coalition: Contributor: done"
+		random < 50
+		"month" < 3
+	source
+		near "Sol Arach" 0 1
+	stopover "Delve of Bloptab"
+	stopover "Hammer of Debrugt"
+	stopover "Stronghold of Flugbu"
+	destination "Ahr"
+	on offer
+		conversation
+			`Shortly after you enter the spaceport, an Arach in a sturdy, red uniform, with golden "pauldrons" on each of his legs' joints, approaches you. "Greetings, Captain <last>," he says. "Interested in taking up some transport jobs, are you? Very well paid, you would be."`
+			choice
+				`	"What are the jobs about?"`
+				`	"Paid how well, exactly?"`
+				`	"Sorry, I'm not looking for that type of job right now."`
+					decline
+			`	"Happening soon, the Council of Ahr is. Gather on the capital, all Arach houses do. Discuss matters related to Arach space, they will, alongside my lieges of the royal family. Paid <payment>, you would be, if to <destination> by <date>, the remaining representatives of the houses, you brought."`
+			choice
+				`	"Sounds simple enough. Who are these representatives?"`
+					goto representatives
+				`	"Can you tell me more about the Council?"`
+				`	"That sounds like it might take a while, and I'm rather busy, so I'll pass."`
+					decline
+			`	"Of course. A few centuries after leaving our home planet, entangled in petty wars, the more prominent houses were. Fearing for the fate of their subjects, called for the first Council, the royal family at the time did. A more civil way to solve disputes, it became, and though war still, many of the houses did, far less frequent, the conflicts were. Now that at peace we are, merely a traditional meeting, it is, taking place every few years, so that discuss how to improve the conditions of Arach space, the houses may."`
+			label representatives
+			scene "scene/councilofahr1"
+			`	He shows you a data pad, pointing to three symbols on the screen as he names the houses from left to right. "Issues with her other transport, the representative of House Bebliss had, so waiting on Stronghold of Flugbu, she still is. Word that House Chamgar is ready for the Council, I just received, and on Hammer of Debrugt, their member is. Spare some time for the Council, House Ablomab finally can, and waiting for you on Delve of Bloptab, their envoy is.`
+			`	"Receive your payment, you will, once on <planet>, the three representatives are. I shall inform the houses that expect you, they should. Thankful for your assistance, the royal family is."`
+			`	He briefly bows his head while stretching his legs in some sort of salute, then disappears into the spaceport. Once you're at your ship, you place markers on <stopovers>, where the representatives are waiting.`
+				accept
+	to complete
+		has "Coalition: Council of Ahr: Ablomab: done"
+		has "Coalition: Council of Ahr: Bebliss: done"
+		has "Coalition: Council of Ahr: Chamgar: done"
+	on abort
+		fail "Coalition: Council of Ahr: Ablomab"
+		fail "Coalition: Council of Ahr: Bebliss"
+		fail "Coalition: Council of Ahr: Chamgar"
+		fail "Coalition: Council of Ahr: Drama"
+	on complete
+		"coalition jobs" += 5
+		payment 4500000
+
+mission "Coalition: Council of Ahr: Ablomab"
+	invisible
+	landing
+	passengers 1
+	blocked "You have reached <origin>, but you need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	to offer
+		has "Coalition: Council of Ahr: active"
+	source "Delve of Bloptab"
+	destination "Ahr"
+	on offer
+		conversation
+			`You land on <source> to find that House Ablomab's representative had to oversee an "emergency meltdown drill" on the neighboring planet, Bloptab's Furnace. His interplanetary shuttle still hasn't arrived, so you're left to wait for him on the spaceport.`
+			`	He finally arrives some hours after sunset, dragging along a heavy suitcase and barely holding on to what must be the Arach equivalent of coffee. As you help him with the heavy luggage, he introduces himself as Dubug. "Sorry about the wait, I am. Replace a coworker on the meltdown drill, I had to. A routine task, it is, but also routine, the Council is, so care much for the delay, the house did not. Show me to my room, could you?"`
+			`	While you're both walking to your ship, he finishes his drink, but it doesn't seem to help him keep his eyes open; you have to help him avoid bumping into either the other Arachi here or the spaceport decorations. Although he doesn't seem very talkative, it might help his focus to get a conversation going.`
+			choice
+				`	"So, what can you tell me about house Ablomab?"`
+					goto house
+				`	"Is it difficult having to deal with all the other houses in the Council?"`
+					goto council
+				`	"This Council is hosted by a royal family, right? What can you tell me about them?"`
+			`	"The ninth house? Not much to say, there is. Agreed as the 'royals' they were, in ancient times. Never much power, they had, merely a figure of stability, made to assure peace on Ahr. Host the Council, they do, but a tradition it is. Otherwise, mostly to themselves, they keep."`
+				goto end
+			label house
+			`	He grunts lightly. "The deepest mines and biggest smelters in all the Coalition, we have. Overseeing construction, assuring ore purity, testing the quality of alloys, our most common responsibilities are. In order, everything must be, so that met, the quotas for house Mallob's and the Heliarchs' ships are."`
+				goto end
+			label council
+			`	"Started out as noble families from Ahr, most of the houses did. When first mapped out, Arach space was, carved their own portions, the houses did, and naturally for more systems, many fought. Now at ease with each other, the houses are, and ceased, the territorial disputes have." He sighs. "For the most part."`
+			label end
+			`	Dubug makes it to your ship still awake, but doesn't care to answer when you ask if he needs help unpacking his luggage. Instead, he lays on the bed and asks that you wake him up once you arrive on <planet>.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Dubug hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		conversation
+			`Having rested during the trip here, Dubug stretches his legs once he steps off your ship. "All the reports from my house, I've brought, so prepared for the Council, I am," he says, checking his suitcase one more time. "Well then, go I must. Goodbye, Captain <last>. Thankful for the calm trip, I am. A good break from routine, it was."`
+
+mission "Coalition: Council of Ahr: Bebliss"
+	invisible
+	landing
+	passengers 1
+	blocked "You have reached <origin>, but you need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	to offer
+		has "Coalition: Council of Ahr: active"
+	source "Stronghold of Flugbu"
+	destination "Ahr"
+	on offer
+		conversation
+			`Once your ship has landed, you receive a message from House Bebliss, directing you to a large hotel in the spaceport city. The security guards don't let you in, so you wait for the representative to come out. About half an hour of waiting later, an elevator nearby opens and many Arachi come out, most of them in formal uniforms and carrying various bags of luggage. An older Arach stands out from the rest on account of being even more formally dressed.`
+			`	"My transport to the Council you are, correct?" She asks, and you confirm. "Splendid. Lady Plubat, I am, Captain. Pleased that transport the will of House Bebliss, such an exquisite captain shall. Finally right, those arranging the transport to the Council have gotten it."`
+			`	She asks you to lead the way to your ship as the other uniformed Arachi follow the two of you, carrying her luggage. "Told, I was, about which representatives tasked with transporting, you were. Bebliss excepted, not the most... intriguing company, they are, so grateful that you're transporting at least one proper guest, you should be."`
+			choice
+				`	"Looks like you hold your house in very high regards."`
+					goto house
+				`	"You don't seem very excited for the Council. Is there something wrong with the other houses?"`
+					goto council
+				`	"Is there anything I should know about the hosts of the Council? I heard they were royalty."`
+			`	"The Oberegts? Well, for one, one of the few houses to honor their noble lineage, they are. Elected as a figurehead, in ancient times they were. Never more than that, they have been, lacking real power and focusing only on Ahr, though contributed much to our understanding of medicine, they have. A figurehead, they are, but a good one, and as such some degree of respect, I must grant them."`
+				goto end
+			label house
+			`	"Keep the Coalition together, House Bebliss does. What makes communication from one system to another possible, our efforts are. Other than the obvious importance of our work, one of the few houses that kept their noble bloodline pure, and who kept their original emblems, we are. Prejudice against those the other houses mixed with, I have not, but greatly value tradition, we do, and broken tradition, they have, in marrying commoners or... those of other species."`
+				goto end
+			label council
+			`	"Drifted away from our old ways, most of them have. Take Mallob and Garbarag: barely houses anymore, they are. Fully transitioned into corporations, they have. Claim noble heritage, Debdo does, but in fact a splinter group of our own house, they are, the traitorous offshoots. The worst of them all, however, House Chamgar is. Lunatics clinging on to an ancient rivalry, they are, liars and revisionists who to tarnish our image, wish. Declare war on us, they would, if subjected to the Heliarch government, our houses were not."`
+			label end
+			`	Once you make it to your ship, she has the Arach butlers tidy up her room, then dismisses them. She tells you she will call for you should she need anything then closes the door to her room.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Lady Plubat hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		conversation
+			branch drama
+				has "Coalition: Council of Ahr: Drama: offered"
+			`You land to find a group of Arachi in uniform waiting nearby, ready to carry Plubat's baggage from your ship. "A delightful flight it was, Captain. Hope that you are picked again to transport me in the future, I do," she says, bidding you farewell and leaving for a nearby transport shuttle.`
+				accept
+			label drama
+			`Lady Plubat rushes out of your ship to meet a group of Arachi in uniform, some of which carry her baggage from your ship, while others surround her as if expecting House Chamgar's Plubat to try and stir up a discussion. Once all her bags are out, they escort her to a nearby transport shuttle.`
+
+mission "Coalition: Council of Ahr: Chamgar"
+	invisible
+	landing
+	passengers 1
+	blocked "You have reached <origin>, but you need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	to offer
+		has "Coalition: Council of Ahr: active"
+	source "Hammer of Debrugt"
+	destination "Ahr"
+	on offer
+		conversation
+			`You can barely step off your ship before House Chamgar's representative greets you. "Honored that transporting me, such an esteemed pilot is, Captain <last>. Certain, I am, that honored you also are. An important task it is, to transport one from the great House Chamgar. Plubat, my name is, and as time we still have, show you our installations I must."`
+			`	He drags you around the eccentric spaceport, bringing you to odd exhibits where some pieces of technology are being constructed or repaired, going on about House Chamgar's advances. The tour goes on for some hours as you pretend to be impressed by what he calls "the newest prototypes" (most of which look like standard Coalition technology). Only after he drags you around again, stopping at a nearby hotel where he picks up his luggage, do you finally get him to follow you to your ship.`
+			`	It doesn't take long for him to get started again. "Now, Captain <last>, time for a full tour of our spaceport facilities, today we don't have; to the Council, we must go, but happy to answer your many questions about our great house, I am. Wondering how we invented our repair modules, are you? Or maybe by our special alloys, intrigued you are?"`
+			choice
+				`	"Well, why don't you tell me a bit about your house?"`
+					goto house
+				`	"How about you tell me about the other houses that are going to the Council?"`
+					goto council
+				`	"Actually, I'm curious about the hosts of the Council."`
+			`	He stops dead in his tracks. "The royals? Well, not much to say, there is. Chosen as such on a primitive Ahr, only symbolic, their role is. Never held any ambition, they have, remaining the weakest house since formed. Assured stability on the capital, they have, and in good relations with us, they are, for recognize our value, they do, so bad, they are not, only uninteresting."`
+				goto end
+			label house
+			`	You can barely finish your question, as he begins what is undoubtedly a rehearsed speech. "The greatest Arach warriors of old, we were, and always at the forefront of scientific progress and creative inventions. For the brilliant breakthrough that were our repair modules, persecuted by the Quarg, we were, but here, in this system, on this planet, held a chokepoint, we did. Guarded Arach space from them, for centuries we had to, until banished with the help of our Saryd and Kimek friends, they were."`
+				goto end
+			label council
+			`	"Alright, most of them are. Amicable relations with nearly all houses, we maintain. Except with the scum from Bebliss, lying, treacherous snakes they are. Conspiring against the government, helping rebels they are! 'Their' world, Stronghold of Flugbu is not, stolen from us, it was. Heed my warning, Captain: trust them, you should not, preferable to trust a Quarg, it is."`
+			label end
+			`	He seems ready to have you ask another question, but as you reach your ship, he picks up a call on a communication device and signals for you to show him to his room. He then says that he must handle some business, and that he'll talk to you again later.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Plubat hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		conversation
+			branch drama
+				has "Coalition: Council of Ahr: Drama: offered"
+			`"Captain <last>! A pleasurable experience for the both of us, this has been, but sadly short, the trip from my home to <planet> is, so part ways, we must," Plubat says as he prepares to leave your ship. "To finish the tour of our facilities, I'm sure you want, so once over, the Council is, ask for me there, and guide you again, I shall."`
+				accept
+			label drama
+			`House Chamgar's representative, Plubat, stays close to you while firmly clinging to his luggage, as his colleague from house Bebliss, Lady Plubat, has her bags brought out of your ship by some nearby Arachi in uniform. "Telling you I am, Captain, trusted, she should not be. Checked your ship, have you? All in place, your belongings are? Careful with her types, you must be," he says. After the Bebliss butlers are done, Plubat scoffs something at Lady Plubat one last time, then leaves your ship.`
+
+mission "Coalition: Council of Ahr: Drama"
+	invisible
+	landing
+	to offer
+		or
+			has "Coalition: Council of Ahr: Bebliss: active"
+			has "Coalition: Council of Ahr: Chamgar: active"
+		has "Coalition: Council of Ahr: active"
+		not "Coalition: Council of Ahr: Bebliss: done"
+		not "Coalition: Council of Ahr: Chamgar: done"
+	source
+		planet "Hammer of Debrugt" "Stronghold of Flugbu"
+	destination "Ahr"
+	on enter
+		conversation
+			`After departing from <origin>, you start hearing some shouting from outside your cockpit, so you leave to check up on your passengers. Plubat, from House Chamgar, is banging one leg against the door to the room of Plubat, from House Bebliss. "Captain! Good thing that here, you are," he says. "Sent an envoy to mock me, that damned house Bebliss has! Copying my name, she is!"`
+			`	Plubat, from House Bebliss, opens the door to her room to respond. "Nonsense that is, Captain. Look at us, several decades older, I am, so copying you, how could I be? The offending party here, house Chamgar is."`
+			`	"Changed your name for this mockery, you could have. Know of your house's grudge against us, I do," he replies.`
+			`	"Absurd, childish, that is. The one to start mocking me, you were," she says. "Captain <last>, urge you to make haste for Ahr, I must. Put up with this buffoon for much longer, I cannot."`
+			`	Lady Plubat closes the door to her room again, and you convince house Chamgar's representative to also go back to his room. You return to your cockpit, hoping that's the last of that.`
+	on enter "Sol Arach"
+		dialog `In spite of your best attempts to keep them away from each other, Plubat and Plubat have been brief on their breaks from insulting one another. However, once you enter this system, they head back to their rooms on their own without you needing to leave the cockpit to interfere. Being so close to their destination, you hope they won't give you any more headaches.`
+
+mission "Coalition: Council of Ahr: On Complete"
+	invisible
+	landing
+	to offer
+		has "Coalition: Council of Ahr: done"
+	source "Ahr"
+	on offer
+		conversation
+			`A few minutes after the final representative leaves your ship, you receive your payment of 4,500,000 credits. It comes with a message from the royal family, with the symbols of all Arach houses on it. You recognize most from advertisements or offices on some planets, but it's your first time seeing the center one. You imagine it's the emblem of the royal family.`
+			scene "scene/councilofahr2"
+			`	"Greetings, Captain <last>. As the hosts of the Council of Ahr, we thank you for your assistance. Although certain that, to you, such kinds of jobs can appear mundane, it can be difficult, at times, to arrange for appropriate transportation for our compatriots from all great houses, so know that House Oberegt is deeply grateful for your cooperation."`
