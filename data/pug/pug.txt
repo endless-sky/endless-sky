@@ -101,7 +101,7 @@ phrase "friendly pug"
 	word
 		"."
 		" in the galaxy."
-		" through-out the universe."
+		" throughout the universe."
 		" among all sentient beings."
 
 phrase "friendly disabled pug"
@@ -154,7 +154,7 @@ phrase "hostile pug"
 	word
 		"mistake"
 		"error"
-		"lapse in judgement"
+		"lapse in judgment"
 		"choice"
 		"decision"
 		"blunder"

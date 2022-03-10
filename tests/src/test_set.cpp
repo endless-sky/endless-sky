@@ -30,16 +30,18 @@ public:
 // #region unit tests
 SCENARIO( "a Set can be interacted with by consuming classes even when const", "[Set]" ) {
 	auto key = std::string{"a value"};
-	
+
 	GIVEN( "data for the key does not exist" ) {
 		const auto s = Set<T>{};
 		REQUIRE( s.size() == 0 );
+		REQUIRE( s.empty() );
 		REQUIRE_FALSE( s.Has(key) );
-		
+
 		WHEN( "Get(key) is called" ) {
 			const auto &dataPtr = s.Get(key);
 			THEN( "the Set increases in size" ) {
 				CHECK( s.size() == 1 );
+				CHECK_FALSE( s.empty() );
 			}
 			THEN( "a valid pointer is returned" ) {
 				CHECK( dataPtr != nullptr );
@@ -49,23 +51,35 @@ SCENARIO( "a Set can be interacted with by consuming classes even when const", "
 				CHECK( value.a == 1 );
 			}
 		}
-		
+
 		WHEN( "Find(key) is called" ) {
 			const auto &dataPtr = s.Find(key);
 			THEN( "the Set does not increase in size" ) {
 				CHECK( s.size() == 0 );
+				CHECK( s.empty() );
 			}
 			THEN( "nullptr is returned" ) {
 				CHECK( dataPtr == nullptr );
 			}
 		}
+		
+		WHEN( "find(key) is called" ) {
+			const auto cIt = s.find(key);
+			THEN( "the Set does not increase in size" ) {
+				CHECK( s.size() == 0 );
+				CHECK( s.empty() );
+			}
+			THEN( "the returned iterator equals end" ) {
+				CHECK( cIt == s.end() );
+			}
+		}
 	}
-	
+
 	GIVEN( "data for the key exists" ) {
 		const auto s = Set<T>{};
 		const auto &firstPtr = s.Get(key);
 		REQUIRE( s.Has(key) );
-		
+
 		WHEN( "Get(key) is called" ) {
 			const auto &secondPtr = s.Get(key);
 			THEN( "the Set does not increase in size" ) {
@@ -75,7 +89,7 @@ SCENARIO( "a Set can be interacted with by consuming classes even when const", "
 				CHECK( firstPtr == secondPtr );
 			}
 		}
-		
+
 		WHEN( "Find(key) is called" ) {
 			const auto &secondPtr = s.Find(key);
 			THEN( "the Set does not increase in size" ) {
@@ -83,6 +97,18 @@ SCENARIO( "a Set can be interacted with by consuming classes even when const", "
 			}
 			THEN( "the same, valid pointer is returned" ) {
 				CHECK( secondPtr == firstPtr );
+			}
+		}
+
+		WHEN( "find(key) is called" ) {
+			const auto cIt = s.find(key);
+			REQUIRE( cIt != s.end() );
+			THEN( "the Set does not increase in size" ) {
+				CHECK( s.size() == 1 );
+			}
+			THEN( "the iterator points to the correct element" ) {
+				CHECK( cIt->first == key );
+				CHECK( cIt->second.a == 1 );
 			}
 		}
 	}
@@ -96,14 +122,14 @@ SCENARIO( "A Set can be reverted to an earlier state", "[Set]" ) {
 		container.Get("C")->a = val;
 	};
 	auto original = Set<T>{};
-	
+
 	GIVEN( "a Set<T> exists with data" ) {
 		init(original, 0);
-		
+
 		AND_GIVEN( "another Set<T> exists with the same keys" ) {
 			auto instance = original;
 			init(instance, 2);
-			
+
 			WHEN( "Revert is called on the instance with the original" ) {
 				instance.Revert(original);
 				THEN( "the instance's data is copied from the original" ) {
@@ -120,11 +146,11 @@ SCENARIO( "A Set can be reverted to an earlier state", "[Set]" ) {
 				}
 			}
 		}
-		
+
 		AND_GIVEN( "another Set<T> exists with a subset of keys" ) {
 			auto instance = original;
 			instance.Get("D")->a = 3;
-			
+
 			WHEN( "Revert is called on the instance with the original" ) {
 				instance.Revert(original);
 				THEN( "the instance's keys are that of the original" ) {
