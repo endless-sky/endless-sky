@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 
 #include <cstddef>
+#include <numeric>
 #include <stdexcept>
 #include <vector>
 
@@ -119,10 +120,8 @@ typename std::vector<Type>::iterator WeightedList<Type>::erase(typename std::vec
 template <class Type>
 void WeightedList<Type>::RecalculateWeight()
 {
-	total = 0;
-	// TODO: Use std::accumulate.
-	for(auto it = choices.begin(); it != choices.end(); ++it)
-		total += it->Weight();
+	total = std::accumulate(choices.begin(), choices.end(), 0,
+		[](std::size_t x, const Type &t) -> std::size_t { return x + t.Weight(); });
 }
 
 
