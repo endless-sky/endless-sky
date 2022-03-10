@@ -55,7 +55,7 @@ bool Variant::IsValid() const
 	if(any_of(ships.begin(), ships.end(),
 			[](const Ship *const s) noexcept -> bool { return s->IsValid(); }))
 		return true;
-	
+
 	return false;
 }
 
