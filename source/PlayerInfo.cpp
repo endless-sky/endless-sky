@@ -1875,6 +1875,24 @@ void PlayerInfo::CheckReputationConditions()
 
 
 
+map<string, string> PlayerInfo::GetSubstitutions() const
+{
+	map<string, string> subs;
+	GameData::GetTextReplacements().Substitutions(subs, Conditions());
+
+	subs["<first>"] = FirstName();
+	subs["<last>"] = LastName();
+	if(Flagship())
+		subs["<ship>"] = Flagship()->Name();
+
+	subs["<system>"] = GetSystem()->Name();
+	subs["<date>"] = GetDate().ToString();
+	subs["<day>"] = GetDate().LongString();
+	return subs;
+}
+
+
+
 // Check if the player knows the location of the given system (whether or not
 // they have actually visited it).
 bool PlayerInfo::HasSeen(const System &system) const
@@ -2842,6 +2860,18 @@ void PlayerInfo::Save(const string &path) const
 		out.Write("travel", system->Name());
 	if(travelDestination)
 		out.Write("travel destination", travelDestination->TrueName());
+	// Detect which ship number is the current flagship, for showing on LoadPanel.
+	if(flagship)
+	{
+		for(auto it = ships.begin(); it != ships.end(); ++it)
+			if(*it == flagship)
+			{
+				out.Write("flagship index", distance(ships.begin(), it));
+				break;
+			}
+	}
+	else
+		out.Write("flagship index", -1);
 
 	// Save the current setting for the map coloring;
 	out.Write("map coloring", mapColoring);
