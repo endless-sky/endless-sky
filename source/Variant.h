@@ -44,7 +44,7 @@ public:
 
 
 private:
-	int weight;
+	int weight = 1;
 	std::vector<const Ship *> ships;
 };
 
