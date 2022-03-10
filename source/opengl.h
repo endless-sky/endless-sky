@@ -32,4 +32,6 @@ public:
 	static bool HasSwizzleSupport();
 };
 
+
+
 #endif
