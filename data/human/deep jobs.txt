@@ -572,21 +572,21 @@ mission "Deep Security Package Reveal"
 				`	(Go over to him.)`
 					goto bench
 				`	(Keep walking.)`
-			`	When you go to ignore him he gives a quick, sharp, whistle and briefly flashes a deep security badge at you. He immediately covers this with a friendly wave for any nearby eyes, but it is clear that he won't be ignored.`
+			`	When you go to ignore him he gives a quick, sharp, whistle and briefly flashes a Deep Security badge at you. He immediately covers this with a friendly wave for any nearby eyes, but it is clear that he won't be ignored.`
 			label bench
 			`	When you approach the bench he says, "Hello captain. Please, have a seat and allow me to take a moment of your time."`
 			`	His manner is very rehearsed, but he seems quite intent and assured in his request.`
 			choice
-				`	"Sure. Who are you?" (Sit down.)`
+				`	"Sure. Who are you?"`
 					goto who
 				`	"Sorry, but I'm busy right now."`
-			`	"To be clear, I was here thank you if that helps?" he says.`
+			`	"To be clear, I'm here to thank you, if that helps." he says.`
 			choice
 				`	"Oh. What is it?" (Sit down.)`
 				`	"Sorry, maybe next time."`
 					decline
 			label who
-			`	He smiles at you before directing his attention back to those passing by as he speaks. "My name is Wayde, Agent Wayde if you will. Don't mind the title though, I... well I work in the logistics division for Deep Security. You've transported a large number of secure packages recently and several of them were mine."`
+			`	As you sit down, the man smiles at you before directing his attention back to those passing by as he speaks. "My name is Wayde, Agent Wayde if you will. Don't mind the title though, I... well I work in the logistics division for Deep Security. You've transported a large number of secure packages recently, and several of them were mine."`
 			choice
 				`	"If it pays, it pays."`
 					goto blindacceptance
