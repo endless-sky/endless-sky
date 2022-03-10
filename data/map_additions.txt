@@ -1178,7 +1178,8 @@ system Punub
 	trade Medical 796
 	trade Metal 365
 	trade Plastic 306
-	fleet "Anro Attack" 100
+	fleet "Anro Attack" 300
+	fleet "Anro Transport" 200
 	object
 		sprite star/g0
 		distance 36.656

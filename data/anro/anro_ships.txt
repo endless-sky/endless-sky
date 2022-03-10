@@ -28,7 +28,7 @@ ship "Saihiri"
 		"Black Hole Cannon" 4
 		
 		"Seekers Power Device"
-		
+		"Anro Key Pass"
 		"Graviton Mover"
 		"Jump Drive"
 		
@@ -44,3 +44,45 @@ ship "Saihiri"
 	explode "huge explosion" 100
 	"final explode" "final explosion large" 1
 	description "The Saihiri"
+
+ship "Oriso"
+	sprite "ship/Oriso"
+	thumbnail "ship/Oriso"
+	attributes
+		category "Large Transport"
+
+		"cost" 200000000
+		"shields" 4000
+		"shield generation" 5
+		"hull repair rate" 1
+		"hull" 3000
+		"required crew" 100
+		"bunks" 200
+		"mass" 400
+		"drag" 2.5
+		"heat dissipation" .5
+		"fuel capacity" 800
+		"cargo space" 500
+		"outfit space" 130
+		"weapon capacity" 0
+		"engine capacity" 130
+		weapon
+			"blast radius" 16
+			"shield damage" 160
+			"hull damage" 80
+			"hit force" 240
+	outfits
+		"Seekers Power Device"
+		"Anro Key Pass"
+		"Graviton Mover"
+		"Hyperdrive"
+		
+
+	engine -1 139
+
+	leak "flame" 60 80
+	explode "tiny explosion" 40
+	explode "small explosion" 30
+	explode "huge explosion" 20
+	"final explode" "final explosion large" 1
+	description "The Oriso"

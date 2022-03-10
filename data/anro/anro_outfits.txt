@@ -23,7 +23,7 @@ outfit "Black Hole Cannon"
 		"reload" 40
 		"firing energy" 50
 		"firing heat" 10
-		"shield damage" 3000
+		"shield damage" 2000
 		"hull damage" 1200
 		"parallel"
 		"acceleration" 1

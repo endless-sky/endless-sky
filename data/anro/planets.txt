@@ -10,3 +10,4 @@ planet Arun
 
 planet "Anro Wormhole"
 	attributes "requires: Anro Key Pass"
+	spaceport ""

@@ -5,4 +5,15 @@ fleet "Anro Attack"
 	personality
 		heroic vindictive
 	variant 1
-		"Saihiri" 2
+		"Saihiri" 1
+
+fleet "Anro Transport"
+	government "Anro"
+	names "anro"
+	cargo 1
+	personality
+		vindictive
+	variant 1
+		"Oriso" 2
+	variant 1
+		"Oriso" 3
