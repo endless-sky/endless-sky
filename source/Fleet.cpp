@@ -209,9 +209,10 @@ void Fleet::Load(const DataNode &node)
 		}
 		else if(key == "variant")
 		{	
+			// If given a full definition of one of this fleet's variant members, remove the variant.
 			Variant toRemove(child);
 			auto removeIt = remove_if(variants.begin(), variants.end(),
-				[&](const Variant &v) noexcept -> bool { return v == toRemove; });
+				[&toRemove](const Variant &v) noexcept -> bool { return v == toRemove; });
 			if(removeIt != variants.end())
 				variants.erase(removeIt, variants.end());
 			else
