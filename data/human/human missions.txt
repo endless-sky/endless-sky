@@ -3773,6 +3773,7 @@ mission "z Spaceport Reminder Resetter"
 	repeat
 	to offer
 		not "chosen sides"
+		not "Spaceport Reminder: offered"
 	on offer
 		"spaceport reminder year" = "year"
 		"spaceport reminder month" = "month"
@@ -3785,7 +3786,7 @@ mission "Spaceport Reminder"
 		not attributes "uninhabited"
 	to offer
 		not "chosen sides"
-		"year" * 100 + "month" > 301401
+		"spaceport reminder year" + "spaceport reminder month" != 0
 		"spaceport reminder year" * 100 + "spaceport reminder month" < "year" * 100 + "month" - 3
 	on offer
 		conversation
@@ -3807,7 +3808,7 @@ mission "Spaceport Reminder"
 					goto thanks
 				`	"And why should I believe you over my own experiences?"`
 			label rebuff
-			`	He raises her hand and holds it open on his chest. "I know that it's only my word against yours, but I promise that you won't regret checking the spaceport every time you're in town."`
+			`	He raises his hand and holds it open on his chest. "I know that it's only my word against yours, but I promise that you won't regret checking the spaceport every time you're in town."`
 			choice
 				`	"Fine, I'll follow your advice."`
 					goto thanks
@@ -3815,6 +3816,6 @@ mission "Spaceport Reminder"
 			`	A frown creeps onto the captain's face as he earnestly says, "Well, I'm sorry that my advice wasn't helpful. Good luck, Captain." He walks off, leaving you alone at the job board.`
 				decline
 			label thanks
-			`	He pleasantly smiles and nods. "Well, I wish you the best in your travels." He walks away, leaving you free to explore the rest of <planet>'s facilities.`
+			`	He pleasantly smiles and nods. "Well, I wish you the best in your travels." He walks away, leaving you free to explore the rest of <origin>'s facilities.`
 				decline
 
