@@ -3766,6 +3766,14 @@ mission "Thrall Emigration"
 
 
 
+mission "Spaceport Reminder Setter"
+	landing
+	invisible
+	on offer
+		"spaceport reminder year" = "year"
+		"spaceport reminder month" = "month"
+		fail
+
 # Use of "z" at the start of the mission name is to make it offer only if no other missions have.
 mission "z Spaceport Reminder Resetter"
 	minor
