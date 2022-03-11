@@ -80,7 +80,6 @@ outfit "Mug"
 
 
 
-
 mission "New China Mourners"
 	minor
 	source "New China"
@@ -94,15 +93,44 @@ mission "New China Mourners"
 
 
 
+mission "New Holland Foibles"
+	minor
+	source "New Holland"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`The smell of burning metal fills the air as you walk down the uncrowded streets of the factory town near the spaceport, keeping away from the arterial supply route directly feeding the port and its hangars.`
+			`	Despite the distance and absent traffic though, it is far from quiet. Several factory buildings make discernible thrumming noises, and grinders echo amidst the silence as you investigate. Turning a corner, you come across an alley running along a lengthy chain link fence line. Beyond it, you can see a throng of men cutting away at a spaceship. Parts regularly fall to the floor, the workers apparently heedless of those below.`
+			`	Even as you watch you see a hull plate swinging dangerously above a workers head.`
+			choice
+				`	(Call out a warning.)`
+				`	(Leave them be.)`
+					goto leave
+			`	You call out a warning and most of the men pause to look at you, the hull plate swinging gently as the holder of the offending grinder squints in your direction. One of the older men, who you now realize was at least somewhat overseeing the activity, steps forward and flicks his hands at you in a shooing motion. "Oi you, piss off. We've got our safety supervisor, we don't need your nose in our business."`
+			choice
+				`	(Challenge the claim.)`
+				`	(Leave them be.)`
+					goto leave
+			`	You point out that what you were seeing did not look at all safe, supervised or not, and the man glances around briefly before huffily making his way over to stand opposite you behind the fence. "Look stranger," he says, "work here is hard to find. For those working here, we don't have the time to spare. But the pay is good and we can at least feed our kids. Sure, some people get a few scrapes and bruises, but no one has died on my watch, and Rik only lost his smallest finger. If you feel the need to watch then fine, stand around, but leave us be, okay? There ain't no one around here that'll care what you have to say anyway."`
+			`	He looks you dead in the eyes, and once he is sure you understand his message he stomps back over to his crew, who continue their work. You watch them cut the dead ship apart until its pieces completely fill the trailer they have with them, before they proceed to haul the parts away to a factory in the distance.`
+				decline
+			label leave
+			`	You turn and depart. A moment later you hear a clatter and a shout, but when you look back no one appears to have been injured.`
+				decline
+
+
+
 mission "Trash Fire Crops"
 	minor
 	source
 		government "Republic"
-		attributes "dirt belt"
+		attributes "dirt belt" "farming"
 		not attributes "station"
 	to offer
 		random < 1
 	on offer
+		"bumper crop year" = "year"
 		conversation
 			`As you move about the spaceport, you can't avoid the terrible smell. It's like a trash fire, but you can't see any sort of smoke.`
 			choice
@@ -217,6 +245,34 @@ mission "Class Trip to Port"
 		conversation
 			`A group of children waves at you as you step off your ship, marveling at the spacecraft on display as their teachers try and fail to hold their attention. You can see the fading of their uniform colors from afar as their group walks past, yet none of them look one bit displeased. While you make your way into the spaceport itself, you wonder how many of them may eventually own their own spaceship and fly across the stars.`
 				decline
+
+
+
+mission "Blind Landing"
+	minor
+	landing
+	source
+		government "Free Worlds"
+		attributes "farming"
+		not attributes "station" "frontier"
+	to offer
+		"year" > "bumper crop year" + 2
+		random < 1
+		has "Trash Fire Crops: declined"
+	on offer
+		conversation
+			`Smog fills your windscreen as you make your descent, trying and failing to see anything more than a few meters in front of you. The autopilot systems show solid green across the full range of indicators though, and traffic control has confirmed a lock.`
+			choice
+				`	(Land on autopilot.)`
+				`	(Return to orbit.)`
+					goto orbit
+			`	You let the craft perform the landing, staring blankly at the haze until it clears.`
+			`	On the ground, you see the cause, fields upon fields of plantations burning. You see a crowd of mostly farmers blocking off a smaller group of firefighters, arguing and trying to stop them from putting out the flames as planes fly overhead, dropping water and retardants wherever necessary.`
+			`	You recall seeing something like this years ago, of farmers burning their crops to make the land fertile, and how bad the air was for months.`
+				decline
+			label orbit
+			`	Unwilling to trust landing blind into an unknown situation, you return to orbit and rejoin the spaceport processing queue. One day of delay is a worthwhile price to pay for surety.`
+				flee
 
 
 
@@ -350,3 +406,19 @@ mission "Tarazed Ship Christening"
 			`	"Before you go," the man says, "we weren't very sure about this whole 'pilot' thing at first, but it's good to hear that my little girl has made the right decision. Thank you for that."`
 			`	"It's the least I could do," you say before walking away.`
 				decline
+
+
+
+mission "Masquerade Hanging"
+	minor
+	source
+		government "Pirate"
+		not attributes "station"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`The smell of burning gunpowder wafts about in the air as you enter a town square, watching as a body is rolled off of a raised platform. Cries and screams fill the air as a masked man drags a lady across the platform and onto the central dias, an old fashioned pistol to her head as he asks her something you can't make out. Thankfully, the man doesn't shoot, taking his gun off her temple before subsequently knocking her out with his weapon.`
+			`	Moments later the small crowd allows him to depart opposite your viewpoint, without incident and without explanation. You aren't quite sure what to make of this scene as the bodies are swiftly dragged away.`
+				decline
+
