@@ -37,6 +37,21 @@ mission "Sad Gamblers - Syndicate"
 
 
 
+mission "Foiled Kidnapping Witnessed"
+	minor
+	source
+		government "Syndicate"
+		not attributes "station" "frontier" "urban"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`A roadblock interrupts your path as you make your way towards the city, forcing you to slow down as you pass by, able to see what the commotion is about. Police wave past car after car coming from the other direction, looking into the vehicles until one gets pulled over to the side, causing police to briefly halt all traffic movements. The driver seems distressed, refusing to open the back even when he is being detained; his face goes pale when a little girl is found inside.`
+			`	You're not sure how to feel about this when the police wave you off, blocking your view from the scene.`
+				decline
+
+
+
 mission "Gift Store Interaction"
 	minor
 	source
@@ -248,6 +263,21 @@ mission "Class Trip to Port"
 
 
 
+mission "Old Defense Turrets"
+	minor
+	source
+		attributes "south"
+		not attributes "station" "frontier"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`With an annoyingly long stopover having encouraged you to do a little exploring, you rent a car for a short drive around the immediate area. Later, as you pull the car into the designated return parking lot, the unexpected sound of large hydraulic motors draws your attention. You watch as a massive turret lifts up from behind a nearby barricade and turns toward the sky, its single cannon poised to fire at seemingly nothing.`
+			`	Looking around for some form of explanation you find a plaque placed conveniently nearby dedicating the turret, and five others like it, offering protection and discouraging piracy until relatively recent years. You can't help but wonder how well the turrets would do if they were to be actually used again.`
+				decline
+
+
+
 mission "Blind Landing"
 	minor
 	landing
@@ -320,6 +350,22 @@ mission "Local Politics"
 		conversation
 			`As you land on the pad, you note a general lack of presence around the spaceport. No one has scrambled to hook up your ship, nor has anybody else acknowledged your arrival. Instead, when you leave your ship, all you find is a note within the spaceport detailing where their "overlords" can find their yearly tribute.`
 			`	You decide against finding out where the inhabitants went.`
+				decline
+
+
+
+mission "Military Response Test"
+	minor
+	source
+		government "Free Worlds"
+		not attributes "station" "urban" "frontier"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`In a strange set of instructions, the Air Traffic Controller has you punch in a set of coordinates, taking you close to a massive military base on the way to the landing zone. You let the autopilot take over as you watch the view off the cockpit window, hoping the turrets in the base won't shoot you out of the sky.`
+			`	From where you are watching, you see a single woman standing within the parade square, a hand raised like she's looking at her watch. Seconds pass before she raises her other hand and gives a thumbs up to whoever's looking at her. Suddenly, a loud siren sounds out across the base that is audible even in your ship as it passes by at reasonable height. You watch as soldiers drop everything they're doing, some rushing into buildings while others run toward armored vehicles. Within minutes, the base's vehicles are rolling towards the parade square whilst soldiers in full gear run to assemble within the square in neat rows.`
+			`	You aren't sure whether what they were doing was scheduled, or if it was in response to your flight.`
 				decline
 
 
