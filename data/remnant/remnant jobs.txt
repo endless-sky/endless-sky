@@ -19,7 +19,7 @@ mission "Remnant: Bounty"
 	to offer
 		has "Remnant: Defense 2: done"
 		or
-			not "Remnant: Ssil Vida Active"
+			not "remnant: ssil vida active"
 			not "flagship planet: Ssil Vida"
 		random < 60
 	npc kill
@@ -51,7 +51,7 @@ mission "Remnant: Bounty 2"
 	to offer
 		has "Remnant: Salvage 4: offered"
 		or
-			not "Remnant: Ssil Vida Active"
+			not "remnant: ssil vida active"
 			not "flagship planet: Ssil Vida"
 		random < 50
 	npc kill
@@ -81,7 +81,7 @@ mission "Remnant: Broken Jump Drive job"
 	to offer
 		has "Remnant: Broken Jump Drive 5: done"
 		or
-			not "Remnant: Ssil Vida Active"
+			not "remnant: ssil vida active"
 			not "flagship planet: Ssil Vida"
 			
 	source
@@ -198,7 +198,7 @@ mission "Remnant: Bounty 5"
 	to offer
 		has "Remnant: Cognizance 29: done"
 		or
-			not "Remnant: Ssil Vida Active"
+			not "remnant: ssil vida active"
 			not "flagship planet: Ssil Vida"
 		random < 5
 	npc kill
