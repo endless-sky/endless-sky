@@ -245,7 +245,7 @@ mission "Syndicate Security Troops"
 		conversation
 			`The low rumble of "Tonners," heavy trucks for moving troops and supplies, rolling down the street causes heads to turn and look at the blocky yet imposing vehicles slowing to a stop. The driver and the commander of the foremost vehicle have their eyes on the road, watching out for any traffic hazards that might pose a risk to either the vehicle or their support.`
 			`	The troops within the back of each tonner, on the other hand, are making small talk, the camo on their face smearing off in the heat. One of them points at you, saying something that garners him a groan from his peers, and you decided that you probably don't want to know what he said.`
-			decline
+				decline
 
 
 
