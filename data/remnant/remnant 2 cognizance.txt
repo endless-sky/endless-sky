@@ -1540,7 +1540,7 @@ mission "Remnant: Cognizance 36"
 	source "Ssil Vida"
 	to offer
 		has "Remnant: Cognizance 35: done"
-		has "Remnant: Ssil Vida Active"
+		has "remnant: ssil vida active"
 	on accept
 		event "remnant: ssil vida deactivation"
 		conversation
@@ -1558,7 +1558,7 @@ mission "Remnant: Cognizance 37"
 	source "Ssil Vida"
 	to offer
 		has "Remnant: Cognizance 35: done"
-		not "Remnant: Ssil Vida Active"
+		not "remnant: ssil vida active"
 	on accept
 		event "remnant: ssil vida activation"
 		conversation
