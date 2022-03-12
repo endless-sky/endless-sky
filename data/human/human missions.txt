@@ -3764,3 +3764,66 @@ mission "Thrall Emigration"
 			`	As your ship enters <planet>'s cavernous spaceport, you can sense a mixture of hope and apprehension in Gaint and Mell. "Andrin talks too much," you overhear Gaint saying. "I didn't know it's all underground."`
 			`	"We'll figure it out," Mell assures him. When they notice you're listening in, the conversation stops. Your ship lands, and the family collects their things to leave. They thank you again on their way out.`
 
+
+
+mission "Spaceport Reminder Setter"
+	landing
+	invisible
+	on offer
+		"spaceport reminder year" = "year"
+		"spaceport reminder month" = "month"
+		fail
+
+# Use of "z" at the start of the mission name is to make it offer only if no other missions have.
+mission "z Spaceport Reminder Resetter"
+	minor
+	invisible
+	repeat
+	to offer
+		not "chosen sides"
+		not "Spaceport Reminder: offered"
+	on offer
+		"spaceport reminder year" = "year"
+		"spaceport reminder month" = "month"
+		fail
+
+mission "Spaceport Reminder"
+	landing
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes "uninhabited"
+	to offer
+		not "chosen sides"
+		"spaceport reminder year" + "spaceport reminder month" != 0
+		"spaceport reminder year" * 100 + "spaceport reminder month" < "year" * 100 + "month" - 3
+	on offer
+		conversation
+			`As soon as you touch down on <origin>, you step off your ship and head directly for the job board and trade hub, brushing past several locals on the way. The constant routine of interstellar commerce has been firmly drilled into your brain; you near unconsciously peruse the boards, trying to suss out the most profitable route.`
+			`	You're caught off guard when you hear a voice behind you. "Hey, what's with all the rush, Captain?" You turn and see a dark-haired man in a faded green longcoat approaching you. "You seem awfully focused on getting off-world as soon as possible. Why not take a moment to look around? Admire the sights, try the local cuisine, maybe even talk to some of the people."`
+			choice
+				`	"Why should I do that?"`
+				`	"I'm a spaceship captain; I don't have time to waste."`
+			`	He tilts his head to the side. "You know, I'm a captain too. I know how quickly the luster of the galaxy can fade into the weekly grind if you wait for opportunity to come knocking. So why keep waiting? I'm sure you'll find something new to do in the spaceport."`
+			choice
+				`	"I'll be sure to check more spaceports in the future."`
+					goto thanks
+				`	"Nothing interesting happened the last time I checked a spaceport."`
+				`	"Why should I listen to you? I can handle myself, thank you very much."`
+					goto rebuff
+			`	The captain sighs. "Yeah, it can feel a little pointless running up against the same loud-mouthed people all the time. But just because a spaceport doesn't have anything to offer one day doesn't mean that it'll never have anything worthwhile. Wait a while, and there might be something new."`
+			choice
+				`	"Alright, I'll try to check more spaceports."`
+					goto thanks
+				`	"And why should I believe you over my own experiences?"`
+			label rebuff
+			`	He raises his hand and holds it open on his chest. "I know that it's only my word against yours, but I promise that you won't regret checking the spaceport every time you're in town."`
+			choice
+				`	"Fine, I'll follow your advice."`
+					goto thanks
+				`	"I don't need your help."`
+			`	A frown creeps onto the captain's face as he earnestly says, "Well, I'm sorry that my advice wasn't helpful. Good luck, Captain." He walks off, leaving you alone at the job board.`
+				decline
+			label thanks
+			`	He pleasantly smiles and nods. "Well, I wish you the best in your travels." He walks away, leaving you free to explore the rest of <origin>'s facilities.`
+				decline
+
