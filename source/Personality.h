@@ -28,17 +28,17 @@ class DataWriter;
 class Personality {
 public:
 	Personality() noexcept;
-	
+
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
-	
+
 	// Who a ship decides to attack:
 	bool IsPacifist() const;
 	bool IsForbearing() const;
 	bool IsTimid() const;
 	bool IsHeroic() const;
 	bool IsNemesis() const;
-	
+
 	// How they fight:
 	bool IsFrugal() const;
 	bool Disables() const;
@@ -49,7 +49,6 @@ public:
 	bool IsAppeasing() const;
 	bool IsOpportunistic() const;
 	bool IsEvasive() const;
-	
 	// Mission NPC states:
 	bool IsStaying() const;
 	bool IsEntering() const;
@@ -58,7 +57,7 @@ public:
 	bool IsFleeing() const;
 	bool IsDerelict() const;
 	bool IsUninterested() const;
-	
+
 	// Non-combat goals:
 	bool IsSurveillance() const;
 	bool IsMining() const;
@@ -73,19 +72,19 @@ public:
 	bool IsTarget() const;
 	bool IsMarked() const;
 	bool IsMute() const;
-	
+
 	// Current inaccuracy in this ship's targeting:
 	const Point &Confusion() const;
 	void UpdateConfusion(bool isFiring);
-	
+
 	// Personality to use for ships defending a planet from domination:
 	static Personality Defender();
-	
-	
+
+
 private:
 	void Parse(const DataNode &node, int index, bool remove);
-	
-	
+
+
 private:
 	int flags;
 	double confusionMultiplier;
