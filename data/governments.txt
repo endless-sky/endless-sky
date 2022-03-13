@@ -437,7 +437,7 @@ government "Pirate"
 		"Hai (Wormhole Access)" -.01
 		"Korath" -.01
 		"Merchant" -.1
-		"Pirate (Rival)" -.01
+		"Pirate (Rival)" 0
 		"Syndicate" -.01
 	"bribe" .05
 	"fine" 0
@@ -446,6 +446,7 @@ government "Pirate"
 	raid "pirate raid"
 
 government "Pirate (Rival)"
+	bribe 0
 	"display name" "Pirate"
 	swizzle 6
 	color .78 0 0
@@ -457,7 +458,7 @@ government "Pirate (Rival)"
 		"Hai (Wormhole Access)" -.01
 		"Korath" -.01
 		"Merchant" -.1
-		"Pirate" -.01
+		"Pirate" 0
 		"Syndicate" -.01
 	"bribe" .05
 	"fine" 0
