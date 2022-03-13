@@ -238,8 +238,8 @@ ship "Embershade"
 		"atmosphere scan" 1000
 	outfits
 		Mouthparts? 2
-	gun -5 -111
-	gun 5 -111
+	gun -6 -107
+	gun 6 -107
 	leak "blood" 40 40
 	explode "blood" 40
 	description "Long regarded as mere ghost stories, the ray-like Embershades have finally been proven to exist thanks to recent generations of ion storm resistant sensor suites. Shy by nature, these creatures generate a natural cloaking field and prefer to move unseen."
