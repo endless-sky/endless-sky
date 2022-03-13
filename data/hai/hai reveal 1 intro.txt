@@ -119,7 +119,7 @@ conversation "hai reveal free worlds news"
 conversation "hai reveal republic or syndicate news"
 	`You are relaxing at the spaceport while your ship refuels when a breaking news broadcast comes on; it's not urgent enough to actually interrupt scheduled content, but urgent enough to fill the first ad break.`
 	`	The severe-looking anchorwoman bores down the camera with an expression that demands attention.`
-	`	"An ex-crewman employed by an itinerant trader has come forward to media in the Free Worlds about hostile aliens just beyond our borders. He claims to have brought video proof of an ongoing conflict that threatens to spill over and drag all of humanity back to war. Stay tuned for our full segment at 6."`
+	`	"An ex-crewman employed by an itinerant trader has come forward to media in the Free Worlds about hostile aliens just beyond our borders. He claims to have brought video proof of an ongoing conflict that threatens to spill over and drag all of humanity back to war. Stay tuned for our full segment at six."`
 	`	You raise your eyebrows with surprise.`
 	`	That such news should come out so soon after the Pug smacks of a hoax. A quick glance at the clock shows you only have ten minutes to wait, so you stick around for the full segment out of curiosity.`
 	`	Right on schedule the news returns with the severe anchorwoman. It turns out that the crewman in question had been picked up by a minor media outlet on Tarazed. He had apparently traveled many weeks before deciding to seek the media in order to avoid being shut down by Republic Intelligence if he contacted them elsewhere. The man is fairly young, and very well presented, though he has a bit of the paranoid about him that is plain to see even through a screen.`
@@ -148,7 +148,6 @@ conversation "What is going on in Hai space? (Have not met Unfettered.)"
 		# Rewrote question so it makes sense whether you met them or not
 		`	"Who are the Unfettered?"`
 	`	She seems surprised that you asked and responds, "Oh, they're a sort of rebel Hai group. If you don't know you should go visit Cloudfire in the Wah Ki system up north, or maybe even Darkcloak if you dare. A short visit will explain it far better than I ever could."`
-		decline
 
 
 conversation "What is going on in Hai space? (Met the Unfettered.)"
@@ -325,14 +324,14 @@ mission "Trader Directions to Hai Space"
 	destination "Allhome"
 	to offer
 		or
-			has "ZZ Event Hai Secret Leaks: RS: offered"
-			has "ZZ Event Hai Secret Leaks: FW offered"
+			has "ZZ Event Hai Secret Leaks: RS: done"
+			has "ZZ Event Hai Secret Leaks: FW: done"
 	on offer
 		conversation
 			`Arriving at the only place you can think of where you feel sure you can find out more information, you find that <origin>, like most places, is abuzz with the recent news. Avoiding the many large, cheap, and boisterous establishments that service the many crews and workers of the Syndicate corporate machinery here, you make your way to one of the marginally more up-market places, cunningly marketed as a merchant-only dive.`
 			`	The endless cycle of both news and government propaganda displayed on most screens in major thoroughfares is remarkably absent here, with only one of the screens on display covering the "violent alien race" at all - running stats on how many different versions of the story are now being told.`
-			`	Casting around the room, you pick out a merchant who looks like they've been around the block a few times. In addition to looking like she could pick up most people and break them over her knee, she's conspicuous by the threatening glare you watch her give a younger captain who left a table talking about the Hai to approach her... briefly. After the captain is briskly sent away, you make your way over. Her glare falters in a flash of recognition before subsiding to a reserved scowl.`
-			`	She waits until you're directly next to her table. "The famous Captain <last>. Which ancient Sumerian deity did I offend to be granted the gift of your attention hey?"`
+			`	Casting around the room, you pick out a merchant who looks like she's been around the block a few times. In addition to looking like she could pick up most people and break them over her knee, she's conspicuous by the threatening glare you watch her give a younger captain who left a table talking about the Hai to approach her... briefly. After the captain is briskly sent away, you make your way over. Her glare falters in a flash of recognition before subsiding to a reserved scowl.`
+			`	She waits until you're directly next to her table. "The famous Captain <last>. Which ancient Sumerian deity did I offend to be granted the gift of your attention, hey?"`
 			`	The emphasis she places on the word "gift" is dripping in sarcasm, but her overall tone is wary rather than hostile, and she gestures without comment to the seat opposite for you to sit.`
 			choice
 				`	"I'm just here to find out more about the Hai."`
@@ -361,9 +360,9 @@ mission "Trader Directions to Hai Space"
 				`	"Thank you."`
 					goto wrap
 				`	"The wormhole?"`
-			`	She shakes her head. "See for yourself."`
+			`	She shakes her head while chuckling. "See for yourself."`
 			label wrap
-			`	Taking a sip from her mug she nods slightly, once, in your direction. "Intentionally or not, you did me and a lot of other merchants a solid in that war, Captain. I respect that, but I'll thank you to leave me in peace if you see me again."`
+			`	Taking a sip from her mug she gives a slight nod in your direction. "Intentionally or not, you did me and a lot of other merchants a solid in that war, Captain. I respect that, but I'll thank you to leave me in peace if you see me again."`
 			`	Only now, as you move to depart, do you spot the wrist-triggered needlegun strapped to the arm of her drinking hand that would've been trained on you the entire conversation.`
 				accept
 			
@@ -394,9 +393,7 @@ mission "ZZ Hai Tour [1] Stonebreak"
 	source "Allhome"
 	destination "Stonebreak"
 	to offer
-		or
-			has "ZZ Event Hai Secret Leaks: RS: done"
-			has "ZZ Event Hai Secret Leaks: FW: done"
+		has "Trader Directions to Hai Space: done"
 	on offer
 		conversation
 			`As you are leaving the merchant and the Hai, the Hai calls out as an afterthought, "By the way Captain, if you really want to see what the Hai are like, you should go visit Stonebreak."`
@@ -599,7 +596,7 @@ mission "Hai Leaks Response 2"
 			`You are directed to an official landing pad on your return to Hai-home, and it is not long before you are introducing your entourage to Sayari. Alondo in particular seems excited to be here and seems to have a knack for charming Sayari with polite and insightful, if rather simple, questions throughout the diplomatic niceties.`
 			`	You get down to business when Sayari inquires how your journey went.`
 			choice
-				`	"I don't recall there being nearly so many pirates."`
+				`	"I don't recall there being nearly so many pirates before."`
 			`	Sayari frowns and exhales a long breath through her nose, "Yes. Well, it seems that the rumors making their way through your media have attracted every opportunist this side of the Deep."`
 			`	"Of course," she says, "some of the pirates were aware of us, and we were aware of them being aware of us. We had a quiet arrangement with a select few where we rewarded them for keeping the secret well contained within their own circles."`
 			`	Alondo looks surprised, but Mr. Yang and Ms. Adrianopolous both merely nod.`
@@ -729,7 +726,7 @@ mission "Hai Leaks Response 4"
 			`	"What do you say?"`
 			`	The poor Captain seems desperate.`
 			choice
-				`	"We'll capture the geocoris and bring them safely home."`
+				`	"We'll capture the Geocoris and bring them safely home."`
 					accept
 	npc
 		government "Hai"
@@ -923,7 +920,7 @@ mission "Hai Leaks Response 5"
 		has "Hai Leaks Response 4: done"
 
 mission "Hai Leaks Response 6"
-	name "Investigate rumours of kidnapped Hai"
+	name "Investigate rumors of kidnapped Hai"
 	description "It's a statistical oddity, but Sayari's friend thinks someone is kidnapping Hai. Check spaceports in nearby parts of Hai and human space for evidence of a Hai trafficking operation."
 	autosave
 	landing
@@ -951,7 +948,7 @@ mission "Hai Leaks Response 6"
 			choice
 				`	(Keep walking.)`
 				`	(Ask them who they are.)`
-			`	"Sssshhhh!" says the voice at your elbow, "do not react, and do not be alarmed, it is merely I."`
+			`	"Sssshhhh!" says the voice at your elbow. "Do not react, and do not be alarmed, it is merely I."`
 			`	You look at the figure out of the corner of your eye and connect the whispered voice to the squirrelly muzzle poking out. To your surprise, it is Sayari.`
 			`	"I should not be coming to you with this, so you must promise to say nothing of it to anyone just yet," she says.`
 			choice
