@@ -2510,7 +2510,7 @@ mission "Paradise Fortune 4"
 				decline
 	
 	on accept
-		"reputation: Republic" = "stored reputation: Republic"
+		"reputation: Republic" >?= "stored reputation: Republic"
 	on decline
 		payment 525894400
 		"reputation: Republic" <?= -1000
