@@ -2711,14 +2711,14 @@ ship "Rainmaker"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -8.5 45.5 0.4
-	engine 8.5 45.5 0.4
-	gun -11 -30.5 "Energy Blaster"
-	gun 11 -30.5 "Energy Blaster"
-	gun -28.5 3.5 "Meteor Missile Launcher"
-	gun 28.5 3.5 "Meteor Missile Launcher"
-	gun -21.5 3.5 "Meteor Missile Launcher"
-	gun 21.5 3.5 "Meteor Missile Launcher"
+	engine -11.5 44.5 0.4
+	engine 11.5 44.5 0.4
+	gun -7.5 -36.5 "Energy Blaster"
+	gun 7.5 -36.5 "Energy Blaster"
+	gun -27 6 "Meteor Missile Launcher"
+	gun 27 6 "Meteor Missile Launcher"
+	gun -22 6 "Meteor Missile Launcher"
+	gun 22 6 "Meteor Missile Launcher"
 	leak "leak" 50 50
 	explode "tiny explosion" 10
 	explode "small explosion" 20
