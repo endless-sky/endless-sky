@@ -210,6 +210,8 @@ ship "Embershade"
 	noun "creature"
 	sprite "ship/embershade/embershade"
 		"frame rate" 3
+		"random start frame"
+		rewind
 	"never disabled"
 	attributes
 		category "Light Warship"
