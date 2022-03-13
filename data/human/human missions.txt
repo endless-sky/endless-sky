@@ -2385,7 +2385,7 @@ mission "Paradise Fortune 3"
 				`	(Launch immediately.)`
 					launch
 			
-			`	"Look outside," Diana says with a ghastly look on her face. You check your ship's external cameras, and roaming around your ship is a group of men in Navy uniforms. One of them raises a megaphone to their mouth.`
+			`	"Look outside," Diana says with a ghastly look on her face. You check your ship's external cameras, and roaming around your ship is a group of men in Navy uniforms. One of them raises a megaphone to his mouth.`
 			`	"Hand over the girl and her credits and we can all walk away from this peacefully, Captain."`
 			choice
 				`	"Why do you need her?"`
@@ -2416,6 +2416,7 @@ mission "Paradise Fortune 3"
 				launch
 			
 	on accept
+		"stored reputation: Republic" = "reputation: Republic"
 		"reputation: Republic" <?= -10
 	
 	on decline
@@ -2509,7 +2510,7 @@ mission "Paradise Fortune 4"
 				decline
 	
 	on accept
-		"reputation: Republic" >?= 10
+		"reputation: Republic" >?= "stored reputation: Republic"
 	on decline
 		payment 525894400
 		"reputation: Republic" <?= -1000
