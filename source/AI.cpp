@@ -2665,9 +2665,9 @@ bool AI::DoEvasive(Ship &ship, Command &command)
 	
 	// First, figure out which ships are not of the same government. Ignore disabled/destroyed ships.
 	vector<shared_ptr<Ship>> enemies;
-	for(const auto &otherShip : GetShipsList(ship, false))
+	for(auto otherShip : GetShipsList(ship, false))
 		if(otherShip->GetGovernment() != ship.GetGovernment())
-			enemies.push_back(otherShip);
+			enemies.push_back(make_shared<Ship>(*otherShip));
 	
 	// Loop through enemies and figure out their range and how to evade them.
 	vector<Point> paths;
