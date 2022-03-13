@@ -208,7 +208,7 @@ ship "Ember Waste Node"
 
 ship "Embershade"
 	noun "creature"
-	sprite "ship/embershade"
+	sprite "ship/embershade/embershade"
 	"never disabled"
 	attributes
 		category "Light Warship"
