@@ -1171,7 +1171,7 @@ mission "FW Alphas 1.1"
 			`	Alondo explains, "It's only one Cruiser, an 'Oathkeeper' ship, sworn to take no part in our war. The Free Worlds have almost no troops trained for ground combat, so without the Navy's help we would be unlikely to be able to eliminate the Alphas."`
 			`	The Navy ship lands, and a man steps off who you recognize immediately: Admiral William Danforth, who is something of a folk hero throughout human space, and who you have heard is the commander of the entire Oathkeepers regiment. With him is a man who he introduces as Commander Aaron Nguyen of the Navy Humanitarian Corps. As Nguyen shakes your hand, you are struck by the fact that although he is your enemy, you see no trace of hostility in his eyes - in fact, his expression is surprisingly warm and affectionate.`
 			`	"We have no room for error," says Danforth. "These Alphas must be eliminated, and they must not be allowed to escape. On that, at least, we can all agree."`
-			`	Freya says, "Captain <last> will lead the attack." She beckons to two of the Free Worlds captains. "Marco, Emily, you will join them with your Falcons. Destroy any pirate ships in orbit, then land and secure the facility. Understood?" You nod, and prepare to take off for the <system> system.`
+			`	Alondo says, "Captain <last> will lead the attack." He beckons to two of the Free Worlds captains. "Marco, Emily, you will join them with your Falcons. Destroy any pirate ships in orbit, then land and secure the facility. Understood?" You nod, and prepare to take off for the <system> system.`
 				accept
 	
 	npc accompany save
