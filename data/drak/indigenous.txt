@@ -209,6 +209,7 @@ ship "Ember Waste Node"
 ship "Embershade"
 	noun "creature"
 	sprite "ship/embershade/embershade"
+		"frame rate" 3
 	"never disabled"
 	attributes
 		category "Light Warship"
