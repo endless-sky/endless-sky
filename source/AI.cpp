@@ -1245,8 +1245,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	// Player ships never stop targeting hostiles, while hostile mission NPCs will
 	// do so only if they are allowed to leave.
 	if(!isYours && target && target->GetGovernment()->IsEnemy(gov) && !isDisabled
-			&& (person.IsFleeing() || (ship.Health() < RETREAT_HEALTH && !person.IsHeroic()
-				&& !person.IsStaying() && !parentIsEnemy)))
+			&& (person.IsFleeing() || (ship.Health() < (RETREAT_HEALTH + .25 * person.IsCoward()) 
+			&& !person.IsHeroic() && !person.IsStaying() && !parentIsEnemy)))
 	{
 		// Make sure the ship has somewhere to flee to.
 		const System *system = ship.GetSystem();
