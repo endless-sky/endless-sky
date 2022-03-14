@@ -187,6 +187,7 @@ namespace {
 	}
 	
 	const double RADAR_SCALE = .025;
+	const double MAX_FUEL_DISPLAY = 5000.;
 }
 
 
@@ -634,7 +635,6 @@ void Engine::Step(bool isActive)
 	info.SetString("date", player.GetDate().ToString());
 	if(flagship)
 	{
-		const double MAX_FUEL_DISPLAY = 5000.;
 		double fuelCap = flagship->Attributes().Get("fuel capacity");
 		// If there is a lot of fuel, display a solid homogenous bar,
 		// instead of many notches in the bar.
