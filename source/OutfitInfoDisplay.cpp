@@ -1,8 +1,10 @@
 /* OutfitInfoDisplay.cpp
 Copyright (c) 2014 by Michael Zahniser
+
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option) any later version.
+
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
@@ -107,7 +109,7 @@ namespace {
 		{"thrust", 1},
 		{"reverse thrust", 1},
 		{"afterburner thrust", 1},
-		
+
 		{"afterburner discharge", 2},
 		{"afterburner corrosion", 2},
 		{"afterburner ion", 2},
@@ -115,7 +117,7 @@ namespace {
 		{"afterburner burn", 2},
 		{"afterburner slowing", 2},
 		{"afterburner disruption", 2},
-		
+
 		{"reverse thrusting discharge", 2},
 		{"reverse thrusting corrosion", 2},
 		{"reverse thrusting ion", 2},
@@ -123,7 +125,7 @@ namespace {
 		{"reverse thrusting burn", 2},
 		{"reverse thrusting slowing", 2},
 		{"reverse thrusting disruption", 2},
-		
+
 		{"thrusting discharge", 2},
 		{"thrusting corrosion", 2},
 		{"thrusting ion", 2},
@@ -131,7 +133,7 @@ namespace {
 		{"thrusting burn", 2},
 		{"thrusting slowing", 2},
 		{"thrusting disruption", 2},
-		
+
 		{"turning discharge", 2},
 		{"turning corrosion", 2},
 		{"turning ion", 2},
@@ -139,7 +141,7 @@ namespace {
 		{"turning burn", 2},
 		{"turning slowing", 2},
 		{"turning disruption", 2},
-		
+
 		{"ion resistance", 2},
 		{"disruption resistance", 2},
 		{"slowing resistance", 2},
