@@ -1900,12 +1900,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			double slownessCost = attributes.Get("afterburner slowing");
 			double disruptionCost = attributes.Get("afterburner disruption");
 
-			if(thrust
-				&& shields >= shieldCost
-				&& hull >= hullCost
-				&& energy >= energyCost
-				&& fuel >= fuelCost
-				&& heat >= heatCost)
+			if(thrust && shields >= shieldCost && hull >= hullCost
+				&& energy >= energyCost && fuel >= fuelCost && heat >= heatCost)
 			{
 				shields -= shieldCost;
 				hull -= hullCost;
