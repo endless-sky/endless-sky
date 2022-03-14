@@ -2217,6 +2217,8 @@ mission "Escort Stolen Vessel (Extra Large, South, Dangerous Path)"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
 
+
+
 mission "Eliminating Law Enforcement (North, Small)"
 	name "Navy near <system>"
 	repeat
@@ -2381,7 +2383,6 @@ mission "Eliminating Competition (North, Small)"
 	on accept
 		"reputation: Pirate (Rival)" = "reputation: Pirate"
 	on complete
-		"repuration: Pirate" += 5
 		payment 500000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
@@ -2407,7 +2408,6 @@ mission "Eliminating Competition (North, Large)"
 	on accept
 		"reputation: Pirate (Rival)" = "reputation: Pirate"
 	on complete
-		"reputation: Pirate" += 10
 		payment 750000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
@@ -2432,7 +2432,6 @@ mission "Eliminating Competition (Core, Small)"
 	on accept
 		"reputation: Pirate (Rival)" = "reputation: Pirate"
 	on complete
-		"reputation: Pirate" += 5
 		payment 500000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
@@ -2458,7 +2457,6 @@ mission "Eliminating Competition (Core, Large)"
 	on accept
 		"reputation: Pirate (Rival)" = "reputation: Pirate"
 	on complete
-		"reputation: Pirate" += 10
 		payment 750000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
@@ -2483,7 +2481,6 @@ mission "Eliminating Competition (South, Small)"
 	on accept
 		"reputation: Pirate (Rival)" = "reputation: Pirate"
 	on complete
-		"reputation: Pirate" += 5
 		payment 500000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
@@ -2509,7 +2506,6 @@ mission "Eliminating Competition (South, Large)"
 	on accept
 		"reputation: Pirate (Rival)" = "reputation: Pirate"
 	on complete
-		"reputation: Pirate" += 10
 		payment 750000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
