@@ -641,16 +641,13 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		}
 		
 		// Special actions when a ship is heavily damaged:
-		if(healthRemaining < RETREAT_HEALTH + .1)
+		if(healthRemaining < RETREAT_HEALTH + .25)
 		{
 			// Cowards abandon their fleets.
-			if(personality.IsCoward())
+			if(parent && personality.IsCoward())
 			{
-				if(parent) {
-					parent.reset();
-					it->SetParent(parent);
-				}
-				it->SetTargetShip(parent);
+				parent.reset();
+				it->SetParent(parent);
 			}
 			// Appeasing ships jettison cargo to distract their pursuers.
 			if(personality.IsAppeasing() && it->Cargo().Used())
