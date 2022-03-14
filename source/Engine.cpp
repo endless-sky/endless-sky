@@ -638,7 +638,7 @@ void Engine::Step(bool isActive)
 		double fuelCap = flagship->Attributes().Get("fuel capacity");
 		// If there is a lot of fuel, display a solid homogenous bar,
 		// instead of many notches in the bar.
-		if(fuelCap <= MAX_FUEL_DISPLAY )
+		if(fuelCap <= MAX_FUEL_DISPLAY)
 			info.SetBar("fuel", flagship->Fuel(), fuelCap* .01);
 		else
 			info.SetBar("fuel", flagship->Fuel());
