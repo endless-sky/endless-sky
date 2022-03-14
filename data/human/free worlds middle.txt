@@ -1184,7 +1184,7 @@ mission "FW Alphas 1.1"
 		ship "Falcon (Plasma)" "F.S. Alder"
 		ship "Falcon" "F.S. Starry Warrior"
 	npc kill
-		government "Pirate"
+		government "Alpha"
 		personality heroic staying target
 		system Graffias
 		ship "Leviathan (Heavy)" "Dread Lord"
@@ -1275,7 +1275,7 @@ mission "FW Alphas 1.2"
 		ship "Falcon (Plasma)" "F.S. Alder"
 		ship "Falcon" "F.S. Starry Warrior"
 	npc kill
-		government "Pirate"
+		government "Alpha"
 		personality heroic staying target
 		system Graffias
 		ship "Leviathan (Heavy)" "Dread Lord"
