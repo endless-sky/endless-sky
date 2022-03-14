@@ -26,7 +26,7 @@ tip "afterburner ion:"
 tip "afterburner leakage:"
 	`Accumulated leaking fuel per second when firing this afterburner.`
 
-tip "afterburner burning:"
+tip "afterburner burn:"
 	`Accumulated exothermic interactions per second when firing this afterburner.`
 
 tip "afterburner slowing:"
@@ -392,7 +392,7 @@ tip "reverse thrusting ion:"
 tip "reverse thrusting leakage:"
 	`Accumulated leaking fuel per second when firing reverse thrusters.`
 
-tip "reverse thrusting burning:"
+tip "reverse thrusting burn:"
 	`Accumulated exothermic interactions per second when firing reverse thrusters.`
 
 tip "reverse thrusting slowing:"
@@ -518,7 +518,7 @@ tip "thrusting ion:"
 tip "thrusting leakage:"
 	`Accumulated leaking fuel per second when firing thrusters.`
 
-tip "thrusting burning:"
+tip "thrusting burn:"
 	`Accumulated exothermic interactions per second when firing thrusters.`
 
 tip "thrusting slowing:"
@@ -560,7 +560,7 @@ tip "turning ion:"
 tip "turning leakage:"
 	`Accumulated leaking fuel per second when turning.`
 
-tip "turning burning:"
+tip "turning burn:"
 	`Accumulated exothermic interactions per second when turning.`
 
 tip "turning slowing:"
