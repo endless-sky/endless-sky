@@ -121,6 +121,7 @@ government "Free Worlds"
 	
 	"player reputation" 1
 	"attitude toward"
+		"Alpha" -.4
 		"Merchant" .3
 		"Militia" .3
 		"Pirate" -.4
@@ -438,6 +439,25 @@ government "Pirate"
 		"Merchant" -.1
 		"Syndicate" -.01
 	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly pirate"
+	"hostile hail" "hostile pirate"
+	raid "pirate raid"
+
+government "Pirate (Rival)"
+	"display name" "Pirate"
+	swizzle 6
+	color .78 0 0
+	
+	"player reputation" -10
+	"attitude toward"
+		"Author" -.01
+		"Hai" -.01
+		"Hai (Wormhole Access)" -.01
+		"Korath" -.01
+		"Merchant" -.1
+		"Syndicate" -.01
+	"bribe" 0
 	"fine" 0
 	"friendly hail" "friendly pirate"
 	"hostile hail" "hostile pirate"
