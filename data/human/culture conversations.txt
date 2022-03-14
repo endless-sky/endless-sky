@@ -468,3 +468,55 @@ mission "Masquerade Hanging"
 			`	Moments later the small crowd allows him to depart opposite your viewpoint, without incident and without explanation. You aren't quite sure what to make of this scene as the bodies are swiftly dragged away.`
 				decline
 
+mission "News Reporter - Paradise"
+	minor
+	source
+		government "Republic"
+		attributes "paradise"
+		not attributes "station"
+	to offer
+		random < 8
+		has "event: war begins"
+		not "event: joined the free worlds"
+	on offer
+		conversation
+			`You are passing through the spaceport when you see a young woman that is walking in your direction. You realize she is a news reporter based on th multitude of camera drones trailing behind her.`
+			choice
+				`	(Hope she doesn't notice you.)`
+					goto walk
+				`	(Try to avoid her.)`
+			`	You take a hallway off to the side to evade her. Just as you think you have gotten out of sight you hear a voice. "Excuse me!" You turn to see the reporter following you.`
+			label walk
+			`	As she gets closer to you, she smiles. "Hello captain! Would you be willing to answer a few questions for our viewers?"`
+			choice
+				`	"Sure, I don't mind answering some questions."`
+					goto questions
+				`	"No, I would rather not."`
+					decline
+			label questions
+			`	The camera drones circle around you as she prepares for the interview. In a few seconds, she smiles at one of the drones and begins.`
+			`	"Welcome back, I'm here on <origin> reporting on the situation with the Free Worlds coalition. I'm joined by a merchant captain that is between trips. Captain, what do you think of the ultimatum sent to Parliament?"`
+			choice
+				`	"I think Parliament should reconsider and give the situation some thought."`
+					goto reconsider
+				`	"Parliament made the right decision by refusing the demands."`
+					goto right
+			label reconsider
+			`	"Can you explain your answer for our viewers?" she asks.`
+			choice
+				`	"The interests of every world should be considered whether they agree or not."`
+				`	"The coalition worlds aren't represented well enough to gain traction normal channels."`
+				`	"The Navy is hardly defending that territory, so taxes shouldn't be as much."`
+				`	"I would prefer to not answer."`
+			`	"Thank you for your answers, and for taking the time to do this interview!" she says.`
+			`	The drones dart back to follow her as she continues through the spaceport.`
+				decline
+			label right
+			`	"Can you explain that answer for our viewers?" she asks.`
+			choice
+				`	"There are proper channels for presenting grievances, and that isn't one of them."`
+				`	"It's a very ungrateful thing to do when Parliament is the one protecting them."`
+				`	"I would prefer to not answer."`
+			`	"Thank you for your answers, and for taking the time to do this interview!" she says.`
+			`	The drones dart back to follow her as she continues through the spaceport.`
+				decline
