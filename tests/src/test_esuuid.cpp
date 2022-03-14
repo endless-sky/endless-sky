@@ -238,7 +238,7 @@ SCENARIO( "Mapping identifiable collections", "[uuid][comparison][collections]" 
 		}
 	}
 	GIVEN( "a collection of strings as ID comparator, with UUIDs, identifying items" ) {
-		auto collection = std::map<std::string, EsUuid, UUIDComparator<T>>{};
+		auto collection = std::map<std::string, EsUuid>{};
 		Identifiable first;
 		Identifiable second;
 		std::vector<Identifiable> items{ first, second };
