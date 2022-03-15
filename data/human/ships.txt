@@ -49,15 +49,15 @@ ship "Aerie"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -10 91
-	engine 10 91
-	gun -13 -79 "Sidewinder Missile Launcher"
-	gun 13 -79 "Sidewinder Missile Launcher"
-	turret 0 0 "Heavy Anti-Missile Turret"
-	turret -17 14 "Heavy Laser Turret"
-	turret 17 14 "Heavy Laser Turret"
-	bay "Fighter" -42 -2
-	bay "Fighter" 42 2
+	engine 15 97
+	engine -15 97
+	gun -12 -78 "Sidewinder Missile Launcher"
+	gun 12 -78 "Sidewinder Missile Launcher"
+	turret 0 1.5 "Heavy Anti-Missile Turret"
+	turret -31 15.5 "Heavy Laser Turret"
+	turret 31 15.5 "Heavy Laser Turret"
+	bay "Fighter" -43.5 2
+	bay "Fighter" 43.5 2
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -227,18 +227,18 @@ ship "Auxiliary"
 		"X1700 Ion Thruster"
 		"X5200 Ion Steering"
 		"Scram Drive"
-	engine -41 181
-	engine 41 181
-	gun -12 -180
-	gun 12 -180
-	turret 0 -75 "Heavy Anti-Missile Turret"
-	turret 0 -18
-	turret 0 22.5
-	turret 0 73.5 "Heavy Anti-Missile Turret"
-	bay "Fighter" 0 -75
-	bay "Fighter" 0 -18
-	bay "Fighter" 0 22.5
-	bay "Fighter" 0 73.5
+	engine -40.5 175 0.45
+	engine 40.5 175 0.45
+	gun -12 -186
+	gun 12.5 -186
+	turret 0 -77.5 "Heavy Anti-Missile Turret"
+	turret 0 -22
+	turret 0 28
+	turret 0 79 "Heavy Anti-Missile Turret"
+	bay "Fighter" 0 -77.5
+	bay "Fighter" 0 -22
+	bay "Fighter" 0 28
+	bay "Fighter" 0 79
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 30 30
@@ -258,16 +258,16 @@ ship "Auxiliary" "Auxiliary (Cargo)"
 	add attributes
 		"bunks" -112
 		"cargo space" 200
-	gun -12 -180
-	gun 12 -180
-	turret 0 -72 "Heavy Anti-Missile Turret"
-	turret 0 -21
-	turret 0 31
-	turret 0 83 "Heavy Anti-Missile Turret"
-	bay "Fighter" 0 -72
-	bay "Fighter" 0 -21
-	bay "Fighter" 0 31
-	bay "Fighter" 0 83
+	gun -12 -186
+	gun 12.5 -186
+	turret 0 -76.5 "Heavy Anti-Missile Turret"
+	turret 0 -24
+	turret 0 28
+	turret 0 79 "Heavy Anti-Missile Turret"
+	bay "Fighter" 0 -76.5
+	bay "Fighter" 0 -24
+	bay "Fighter" 0 28
+	bay "Fighter" 0 79
 
 ship "Auxiliary" "Auxiliary (Transport)"
 	plural "Auxiliaries"
@@ -276,16 +276,16 @@ ship "Auxiliary" "Auxiliary (Transport)"
 	add attributes
 		"bunks" 112
 		"cargo space" -200
-	gun -12 -180
-	gun 12 -180
-	turret 0 -73.5 "Heavy Anti-Missile Turret"
-	turret 0 -17
-	turret 0 20
-	turret 0 79 "Heavy Anti-Missile Turret"
-	bay "Fighter" 0 -73.5
-	bay "Fighter" 0 -17
-	bay "Fighter" 0 20
-	bay "Fighter" 0 79
+	gun -12 -186
+	gun 12.5 -186
+	turret 0 -77.5 "Heavy Anti-Missile Turret"
+	turret 0 -22
+	turret 0 16.5
+	turret 0 73 "Heavy Anti-Missile Turret"
+	bay "Fighter" 0 -77.5
+	bay "Fighter" 0 -22
+	bay "Fighter" 0 16.5
+	bay "Fighter" 0 73
 
 
 
@@ -333,21 +333,21 @@ ship "Bactrian"
 		"X5200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -18 230
-	engine 18 230
-	gun -15 -226 "Torpedo Launcher"
-	gun 15 -226 "Torpedo Launcher"
-	gun -40 -133 "Sidewinder Missile Launcher"
-	gun -45 -128 "Sidewinder Missile Launcher"
-	turret -22 -148 "Heavy Laser Turret"
-	turret 26 -80 "Heavy Anti-Missile Turret"
-	turret -41 -20 "Heavy Laser Turret"
-	turret 32 -7 "Heavy Laser Turret"
-	turret 53 82 "Heavy Laser Turret"
-	turret -37 186 "Heavy Anti-Missile Turret"
-	bay "Fighter" -38 -26
-	bay "Fighter" 35 36
-	bay "Fighter" -47 97
+	engine 18.5 232
+	engine -15 232
+	gun -9 -231.5 "Torpedo Launcher"
+	gun 13.5 -231.5 "Torpedo Launcher"
+	gun 36.5 -197 "Sidewinder Missile Launcher"
+	gun 42 -193 "Sidewinder Missile Launcher"
+	turret 37 -132.5 "Heavy Anti-Missile Turret"
+	turret -39 -39 "Heavy Laser Turret"
+	turret 31.5 -26 "Heavy Laser Turret"
+	turret -42.5 75 "Heavy Laser Turret"
+	turret 32.5 132 "Heavy Laser Turret"
+	turret -33.5 192.5 "Heavy Anti-Missile Turret"
+	bay "Fighter" -43.5 -125
+	bay "Fighter" 53 -72.5
+	bay "Fighter" -50 103.5
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 50 30
@@ -846,30 +846,30 @@ ship "Carrier"
 		"X4200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -35 200
-	engine 35 200
-	gun -16 -176 "Particle Cannon"
-	gun 16 -176 "Particle Cannon"
-	gun -16 -176 "Meteor Missile Launcher"
-	gun 16 -176 "Meteor Missile Launcher"
-	gun -25 -166 "Particle Cannon"
-	gun 25 -166 "Particle Cannon"
-	gun -25 -166 "Meteor Missile Launcher"
-	gun 25 -166 "Meteor Missile Launcher"
-	turret 0 -114 "Heavy Anti-Missile Turret"
-	turret 0 15 "Heavy Laser Turret"
-	turret 0 103 "Heavy Anti-Missile Turret"
-	turret 0 157 "Heavy Laser Turret"
-	bay "Fighter" -37 -65
-	bay "Fighter" 37 -65
-	bay "Fighter" -46 40
-	bay "Fighter" 46 40
-	bay "Drone" -72 -46
-	bay "Drone" 72 -46
-	bay "Drone" -101 57
-	bay "Drone" 101 57
-	bay "Drone" -74 57
-	bay "Drone" 74 57
+	engine -36.5 200 0.65
+	engine 36.5 200 0.65
+	gun -17.5 -176.5 "Particle Cannon"
+	gun 17.5 -176.5 "Particle Cannon"
+	gun -17.5 -176.5 "Meteor Missile Launcher"
+	gun 17.5 -176.5 "Meteor Missile Launcher"
+	gun -26 -167.5 "Particle Cannon"
+	gun 26 -167.5 "Particle Cannon"
+	gun -26 -167.5 "Meteor Missile Launcher"
+	gun 26 -167.5 "Meteor Missile Launcher"
+	turret 0 -49 "Heavy Laser Turret"
+	turret 0 14 "Heavy Laser Turret"
+	turret -22 22 "Heavy Anti-Missile Turret"
+	turret 22 22 "Heavy Anti-Missile Turret"
+	bay "Fighter" -38.5 -64.5
+	bay "Fighter" 38.5 -64.5
+	bay "Fighter" -50 40.5
+	bay "Fighter" 50 40.5
+	bay "Drone" -71.5 -49.5
+	bay "Drone" 71.5 -49.5
+	bay "Drone" -115 55
+	bay "Drone" 115 55
+	bay "Drone" -85 55
+	bay "Drone" 85 55
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 30 30
@@ -1031,9 +1031,9 @@ ship "Combat Drone"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		
-	engine -9 29
-	engine 9 29
-	gun 0 -29 "Beam Laser"
+	engine -8.5 28 0.9
+	engine 8.5 28 0.9
+	gun 0 -25.5 "Beam Laser"
 	explode "tiny explosion" 15
 	description "Combat drones are pilotless attack ships used primarily by the Republic Navy. Although very weak and easy to destroy, they can be very effective in large numbers. Because drones do not need a cockpit, they can be filled entirely with equipment and solid metal, which makes their hulls stronger than other small ships."
 
@@ -1141,14 +1141,14 @@ ship "Corvette"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -11 118
-	engine 11 118
-	gun -12 -68 "Heavy Laser"
-	gun 12 -68 "Heavy Laser"
-	gun -14 -60 "Sidewinder Missile Launcher"
-	gun 14 -60 "Sidewinder Missile Launcher"
-	turret 0 -11 "Heavy Laser Turret"
-	turret 0 74 "Anti-Missile Turret"
+	engine -11.5 119
+	engine 11.5 119
+	gun -11.5 -68.5 "Heavy Laser"
+	gun 11.5 -68.5 "Heavy Laser"
+	gun -26 -8 "Sidewinder Missile Launcher"
+	gun 26 -8 "Sidewinder Missile Launcher"
+	turret 0 -10 "Heavy Laser Turret"
+	turret 0 76 "Anti-Missile Turret"
 	leak "leak" 40 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -1207,22 +1207,24 @@ ship "Cruiser"
 		"X4200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -29 156
-	engine 29 156
-	gun -31 -63 "Particle Cannon"
-	gun 31 -63 "Particle Cannon"
-	gun -41 -52 "Particle Cannon"
-	gun 41 -52 "Particle Cannon"
-	gun -20 -44 "Sidewinder Missile Launcher"
-	gun 20 -44 "Sidewinder Missile Launcher"
-	turret 0 -40 "Heavy Anti-Missile Turret"
-	turret -33 -19 "Heavy Laser Turret"
-	turret 33 -19 "Heavy Laser Turret"
+	engine -28 154 0.95
+	engine 28 154 0.95
+	engine -52 151 0.75
+	engine 52 151 0.75
+	gun -30 -55 "Particle Cannon"
+	gun 30 -55 "Particle Cannon"
+	gun -40.5 -52 "Particle Cannon"
+	gun 40.5 -52 "Particle Cannon"
+	gun -30 -30 "Sidewinder Missile Launcher"
+	gun 30 -30 "Sidewinder Missile Launcher"
+	turret 0 -39.5 "Heavy Anti-Missile Turret"
+	turret -32 -23 "Heavy Laser Turret"
+	turret 32 -23 "Heavy Laser Turret"
 	turret 0 0 "Heavy Anti-Missile Turret"
-	bay "Drone" -25 18
-	bay "Drone" 25 18
-	bay "Drone" -25 49
-	bay "Drone" 25 49
+	bay "Drone" -25 19.5
+	bay "Drone" 25 19.5
+	bay "Drone" -25 49.5
+	bay "Drone" 25 49.5
 	leak "leak" 30 50
 	leak "flame" 50 80
 	leak "big leak" 40 30
@@ -1704,15 +1706,15 @@ ship "Frigate"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -26 92
-	engine 26 92
-	gun -10 -83 "Particle Cannon"
-	gun 10 -83 "Particle Cannon"
-	gun -10 -83 "Torpedo Launcher"
-	gun 10 -83 "Torpedo Launcher"
-	turret 0 -37 "Anti-Missile Turret"
-	turret -12 -12 "Blaster Turret"
-	turret 12 -12 "Blaster Turret"
+	engine -26 96.5
+	engine 26 96.5
+	gun -11 -84.5 "Particle Cannon"
+	gun 11 -84.5 "Particle Cannon"
+	gun -11 -84.5 "Torpedo Launcher"
+	gun 11 -84.5 "Torpedo Launcher"
+	turret 0 -37.5 "Anti-Missile Turret"
+	turret -15.5 -12.5 "Blaster Turret"
+	turret 15.5 -12.5 "Blaster Turret"
 	leak "leak" 40 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -1818,11 +1820,11 @@ ship "Gunboat"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -12 57
-	engine 12 57
-	gun -28 -28 "Heavy Laser"
-	gun 28 -28 "Heavy Laser"
-	turret 0 -8 "Heavy Laser Turret"
+	engine -12 57.5 0.7
+	engine 12 57.5 0.7
+	gun -28.5 -27.5 "Heavy Laser"
+	gun 28.5 -27.5 "Heavy Laser"
+	turret 0 -1 "Heavy Laser Turret"
 	leak "leak" 50 50
 	leak "flame" 80 80
 	explode "tiny explosion" 10
@@ -2187,10 +2189,10 @@ ship "Lance"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		
-	engine -15 30
-	engine 15 30
-	gun -14 -10 "Energy Blaster"
-	gun 14 -10 "Sidewinder Missile Pod"
+	engine -14.5 30.5 0.5
+	engine 14.5 30.5 0.5
+	gun -13.5 -6.5 "Energy Blaster"
+	gun 13.5 -6.5 "Sidewinder Missile Pod"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "The Lance is the primary fighter used by the Republic Navy. As with all fighters, it is weak by itself but very effective as part of a larger squadron."
@@ -2418,15 +2420,15 @@ ship "Mule"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -12 123
-	engine 12 123
-	gun -9 -119 "Sidewinder Missile Launcher"
-	gun 9 -119 "Sidewinder Missile Launcher"
-	turret 22 -65 "Heavy Anti-Missile Turret"
-	turret -37 -21 "Heavy Laser Turret"
-	turret 39 35 "Heavy Laser Turret"
-	turret -9 59 "Heavy Anti-Missile Turret"
-	bay "Fighter" -16 -9
+	engine 11 128
+	engine -8 128
+	gun -11 -125 "Sidewinder Missile Launcher"
+	gun 11 -125 "Sidewinder Missile Launcher"
+	turret -22 -53.5 "Heavy Laser Turret"
+	turret 19.5 -39 "Heavy Anti-Missile Turret"
+	turret 20 33 "Heavy Laser Turret"
+	turret -20.5 103.5 "Heavy Anti-Missile Turret"
+	bay "Fighter" -25 -25
 	leak "leak" 50 50
 	leak "flame" 80 80
 	leak "big leak" 80 30
@@ -2538,16 +2540,16 @@ ship "Osprey"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -45.5 62.5 .8
-	engine 45.5 62.5 .8
+	engine -42.5 62.5 .8
+	engine 42.5 62.5 .8
 	engine -16.5 105 .6
 	engine 16.5 105 .6
-	gun -6.5 -100 "Plasma Cannon"
-	gun 6.5 -100 "Plasma Cannon"
-	gun -26.5 -54 "Plasma Cannon"
-	gun 26.5 -54 "Plasma Cannon"
-	turret -13 -17 "Quad Blaster Turret"
-	turret 13 -17 "Heavy Anti-Missile Turret"
+	gun -25 -49.5 "Plasma Cannon"
+	gun 25 -49.5 "Plasma Cannon"
+	gun -9.5 -95.5 "Plasma Cannon"
+	gun 9.5 -95.5 "Plasma Cannon"
+	turret -15.5 -12 "Quad Blaster Turret"
+	turret 15.5 -12 "Heavy Anti-Missile Turret"
 	leak "leak" 40 50
 	leak "flame" 80 80
 	leak "big leak" 80 30
@@ -2656,10 +2658,10 @@ ship "Quicksilver"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
 		
-	engine -17 54
-	engine 17 54
-	gun -6 -38 "Particle Cannon"
-	gun 6 -38 "Particle Cannon"
+	engine -15.5 54
+	engine 15.5 54
+	gun -6 -39.5 "Particle Cannon"
+	gun 6 -39.5 "Particle Cannon"
 	leak "leak" 50 50
 	explode "tiny explosion" 12
 	explode "small explosion" 16
@@ -2709,14 +2711,14 @@ ship "Rainmaker"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -8 46
-	engine 8 46
-	gun -10 -30 "Energy Blaster"
-	gun 10 -30 "Energy Blaster"
-	gun -27 -5 "Meteor Missile Launcher"
-	gun 27 -5 "Meteor Missile Launcher"
-	gun -17 -5 "Meteor Missile Launcher"
-	gun 17 -5 "Meteor Missile Launcher"
+	engine -8.5 45.5 0.4
+	engine 8.5 45.5 0.4
+	gun -11 -30.5 "Energy Blaster"
+	gun 11 -30.5 "Energy Blaster"
+	gun -28.5 3.5 "Meteor Missile Launcher"
+	gun 28.5 3.5 "Meteor Missile Launcher"
+	gun -21.5 3.5 "Meteor Missile Launcher"
+	gun 21.5 3.5 "Meteor Missile Launcher"
 	leak "leak" 50 50
 	explode "tiny explosion" 10
 	explode "small explosion" 20
@@ -2764,12 +2766,12 @@ ship "Raven"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -12 43
-	engine 12 43
-	gun -10 -33 "Heavy Laser"
-	gun 10 -33 "Heavy Laser"
-	gun -16 -28 "Torpedo Launcher"
-	gun 16 -28 "Torpedo Launcher"
+	engine -9.5 63
+	engine 9.5 63
+	gun -13.5 -35.5 "Heavy Laser"
+	gun 13.5 -35.5 "Heavy Laser"
+	gun -21 -28 "Torpedo Launcher"
+	gun 21 -28 "Torpedo Launcher"
 	leak "leak" 60 50
 	leak "flame" 50 80
 	explode "medium explosion" 24
@@ -3096,13 +3098,13 @@ ship "Splinter"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -15 115
-	engine 15 115
-	gun -15 -80 "Proton Gun"
-	gun 15 -80 "Proton Gun"
-	turret -17 -28 "Blaster Turret"
-	turret 0 -28 "Anti-Missile Turret"
-	turret 17 -28 "Blaster Turret"
+	engine -15.5 115
+	engine 15.5 115
+	gun -12 -93 "Proton Gun"
+	gun 12 -93 "Proton Gun"
+	turret -13 42 "Blaster Turret"
+	turret 0 9 "Anti-Missile Turret"
+	turret 13 42 "Blaster Turret"
 	leak "leak" 60 50
 	leak "flame" 40 80
 	leak "big leak" 90 30

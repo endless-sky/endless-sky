@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Set.h"
 #include "Trade.h"
 
+#include <future>
 #include <map>
 #include <memory>
 #include <string>
@@ -41,6 +42,7 @@ class Minable;
 class Mission;
 class News;
 class Outfit;
+class Panel;
 class Person;
 class Phrase;
 class Planet;
@@ -64,22 +66,24 @@ class TextReplacements;
 // universe.
 class GameData {
 public:
-	static bool BeginLoad(const char * const *argv);
+	static std::future<void> BeginLoad(bool onlyLoadData, bool debugMode);
+	static void FinishLoading();
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();
 	static void LoadShaders(bool useShaderSwizzle);
-	// TODO: make Progress() a simple accessor.
-	static double Progress();
-	// Whether initial game loading is complete (sprites and audio are loaded).
+	static double GetProgress();
+	// Whether initial game loading is complete (data, sprites and audio are loaded).
 	static bool IsLoaded();
 	// Begin loading a sprite that was previously deferred. Currently this is
 	// done with all landscapes to speed up the program's startup.
 	static void Preload(const Sprite *sprite);
-	static void FinishLoading();
-	
+	static void ProcessSprites();
+	// Wait until all pending sprite uploads are completed.
+	static void FinishLoadingSprites();
+
 	// Get the list of resource sources (i.e. plugin folders).
 	static const std::vector<std::string> &Sources();
-	
+
 	// Revert any changes that have been made to the universe.
 	static void Revert();
 	static void SetDate(const Date &date);
@@ -94,13 +98,13 @@ public:
 	// This must be done any time that a change creates or moves a system.
 	static void UpdateSystems();
 	static void AddJumpRange(double neighborDistance);
-	
+
 	// Re-activate any special persons that were created previously but that are
 	// still alive.
 	static void ResetPersons();
 	// Mark all persons in the given list as dead.
 	static void DestroyPersons(std::vector<std::string> &names);
-	
+
 	static const Set<Color> &Colors();
 	static const Set<Conversation> &Conversations();
 	static const Set<Effect> &Effects();
@@ -123,48 +127,46 @@ public:
 	static const Set<System> &Systems();
 	static const Set<Test> &Tests();
 	static const Set<TestData> &TestDataSets();
-	
+
 	static const Government *PlayerGovernment();
 	static Politics &GetPolitics();
 	static const std::vector<StartConditions> &StartOptions();
-	
+
 	static const std::vector<Trade::Commodity> &Commodities();
 	static const std::vector<Trade::Commodity> &SpecialCommodities();
-	
+
 	// Custom messages to be shown when trying to land on certain stellar objects.
 	static bool HasLandingMessage(const Sprite *sprite);
 	static const std::string &LandingMessage(const Sprite *sprite);
 	// Get the solar power and wind output of the given stellar object sprite.
 	static double SolarPower(const Sprite *sprite);
 	static double SolarWind(const Sprite *sprite);
-	
+
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);
 	// Strings for ship, bay type, and outfit categories.
 	static const std::vector<std::string> &Category(const CategoryType type);
-	
+
 	static const StarField &Background();
 	static void SetHaze(const Sprite *sprite, bool allowAnimation);
-	
+
 	static const std::string &Tooltip(const std::string &label);
 	static std::string HelpMessage(const std::string &name);
 	static const std::map<std::string, std::string> &HelpTemplates();
-	
+
 	static const std::map<std::string, std::string> &PluginAboutText();
-	
+
 	static MaskManager &GetMaskManager();
-	
+
 	static const TextReplacements &GetTextReplacements();
-	
-	
+
+	// Thread-safe way to draw the menu background.
+	static void DrawMenuBackground(Panel *panel);
+
+
 private:
 	static void LoadSources();
-	static void LoadFile(const std::string &path, bool debugMode);
 	static std::map<std::string, std::shared_ptr<ImageSet>> FindImages();
-	
-	static void PrintShipTable();
-	static void PrintTestsTable();
-	static void PrintWeaponTable();
 };
 
 
