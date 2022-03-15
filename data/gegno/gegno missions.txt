@@ -1,0 +1,36 @@
+mission "Stationed Vi Augen"
+	invisible
+	landing
+	npc save
+		government "Gegno Vi"
+		personality heroic vindictive staying
+		system Kiluit
+		ship Augen "Vytii Yrrlausei"
+	to fail
+		has "Intermediate: done"
+
+mission "Augen Destruction"
+	landing
+	invisible
+	to offer
+		has "Stationed Augen: failed"
+		not "Intermediate: done"
+	on offer
+		set "dead augen"
+		fail
+
+mission Intermediary
+	on complete
+		event "Vesvii War"
+
+mission "Active Augen"
+	to offer
+		has "Intermediary: done"
+		has "Stationed Augen: failed"
+		not "dead augen"
+	npc save
+		government "Gegno Vi"
+		personality heroic vindictive staying
+		system Vesvii
+		ship Augen "Vytii Yrrlausei"
+

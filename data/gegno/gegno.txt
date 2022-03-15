@@ -1,0 +1,128 @@
+phrase "gegno vi"
+	word
+		""
+		""
+		Beuci
+		Dueyu
+		Tie
+		Efta
+		Gye
+		Kyhe
+		Efe
+		Eys
+		Imnn
+		Yx
+		Isyp
+		Tyyn
+		Hy
+		Eysyp
+		Iidt
+		Ych
+	word
+		" "
+	word
+		Oorevyt
+		Ufftye
+		IiL
+		Tyebbui
+		Yuduue
+		Uhmtyeph
+		Qesscit
+		Cscayim
+		Eisc
+		Iilsc
+		Eitch
+		Ooayvyt
+		Echtyya
+		Tyyasca
+		Iefsct
+		Ieftye
+		Iusta
+		Uffduyeu
+		Bbutye
+		Scbiye
+		Aehietch
+		Dueyoh
+		Uuftei
+		Ootyff
+
+phrase "gegno scin"
+	word
+		""
+		""
+		Kuuay
+		Jiee
+		Tyuoe
+		Aur
+		Yss
+		Zueyt
+		Zo
+		Tschzer
+		Lleiesid
+		Inyseiet
+		Dy
+		Ispue
+		Jeiys
+		Iepy
+	word
+		" "
+	word
+		Oorevyt
+		IiL
+		Iievae
+		Gyteienl
+		Piaxenni
+		Ufftye
+		Echtyya
+		Duyeitch
+		Ziurteil
+		Ymiffeft
+		Tchynd
+		Tscael
+		Ymipiae
+		Eisc
+		Pixeni
+		Tiyesca
+		Vduscae
+		Duefyu
+		Llteiurv
+		Enncyurtte
+
+phrase "gegno uncontacted"
+	word
+		"(A deep disgruntled voice says something in a language you cannot understand.)"
+		"(A low ominous voice speaks in a manner you have not heard before.)"
+
+phrase "gegno uncontacted leave"
+	word
+		"L Eif"
+		"Dy Purit"
+		Gou
+		"Eeb Goumn"
+	word
+		...
+		.
+		!
+
+phrase "hostile gegno uncontacted" .
+	word
+		"(A loud enraged voice says something in a language you cannot decifer.)"
+		"(You hear loud chants and shouts in a language you do not know.)"
+
+phrase "friendly gegno"
+	word
+		"Schuyua Oo"
+		"Dei Ynit Eeb Piebm"
+		"Gou Iisef"
+		Tsiefl
+		"Dei Gno Echmn"
+	word
+		.
+
+phrase "hostile gegno"
+	word
+		"Eysyp Ttheid"
+		Tthei
+	word
+		!
+

@@ -1,0 +1,83 @@
+shipyard "Gegno Ships"
+	Dolomite
+	Shale
+	Conglomerate
+
+outfitter "Gegno Outfits"
+	"C3 Scrap Cell"
+	"C7 Brawl Core"
+	Hyperdrive
+	"Irate Cannon"
+	"Local Map"
+	"R01 Skirmish Battery"
+	"RG15 Torch Steering"
+	"RG15 Torch Thruster"
+
+shipyard "Gegno Vi Ships"
+	Eclogite
+	Gneiss
+	Hornfel
+	"Hornfel Heavy"
+	"Hornfel Light"
+	"Hornfel Med"
+	Protolith
+	Schist
+	"Schist Heavy"
+	"Schist Light"
+	"Schist Med A"
+	"Schist Med B"
+	Slate
+
+outfitter "Gegno Vi Outfits"
+	"Ballistic Cannon"
+	"C17 Warzone Core"
+	"C27 Campaign Core"
+	"C3 Scrap Cell"
+	"C7 Brawl Core"
+	"Chloeric Cannon"
+	"Chloeric Turret"
+	Hyperdrive
+	"Irate Cannon"
+	"Local Map"
+	"R01 Skirmish Battery"
+	"R02 Battlezone Battery"
+	"R03 Warforge Battery"
+	"R04 Crusade Battery"
+	"RG15 Torch Steering"
+	"RG15 Torch Thruster"
+	"RG18 Torch Steering"
+	"RG18 Torch Thruster"
+	"RG3 Torch Steering"
+	"RG3 Torch Thruster"
+
+shipyard "Gegno Scin Ships"
+	Coesite
+	"Coesite P"
+	Feldspar
+	Felsic
+	"Felsic P"
+	Halite
+	Mica
+	"Mica P"
+	Muscovite
+	"Muscovite P"
+
+outfitter "Gegno Scin Outfits"
+	"Acuit Artillery"
+	"Astuit Battery"
+	"Guile Anti-Missile"
+	Hyperdrive
+	"I70 Ameliorate Cell"
+	"Local Map"
+	"R01 Skirmish Battery"
+	"R02 Battlezone Battery"
+	"R03 Warforge Battery"
+	"R04 Crusade Battery"
+	"SC-1 Plasma Engines"
+	"SC-12 Plasma Steering"
+	"SC-12 Plasma Thruster"
+	"SC-14 Plasma Steering"
+	"SC-14 Plasma Thruster"
+	"SC-15 Plasma Engines"
+	"Talc Laser"
+
