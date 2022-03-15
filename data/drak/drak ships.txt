@@ -39,7 +39,6 @@ ship "Archon"
 		"ion protection" 3
 		"ion resistance" 1
 		"ramscoop" 100
-		"Drak Ammunition capacity" 120000000
 		weapon
 			"blast radius" 200
 			"shield damage" 20000
