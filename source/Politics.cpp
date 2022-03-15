@@ -224,12 +224,12 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		if(!scan || (scan & ShipEvent::SCAN_CARGO))
 		{
 			// Illegal goods can be hidden inside legal goods to avoid detection.
-			const auto contraband = ship->Cargo().IllegalCargoAmount();
-			const auto concealment = ship->Attributes().Get("concealment");
-			const auto legalGoods = ship->Cargo().Used() - contraband;
+			const int contraband = ship->Cargo().IllegalCargoAmount();
+			const int concealment = ship->Attributes().Get("concealment");
+			const int legalGoods = ship->Cargo().Used() - contraband;
 
-			const auto netIllegalCargo = contraband - concealment;
-			const auto scaledLegalGoods = legalGoods * (1. + ship->Attributes().Get("scan interference"));
+			const int netIllegalCargo = contraband - concealment;
+			const double scaledLegalGoods = legalGoods * (1. + ship->Attributes().Get("scan interference"));
 			if(scaledLegalGoods && Random::Real() > 2. * netIllegalCargo / scaledLegalGoods)
 				continue;
 
