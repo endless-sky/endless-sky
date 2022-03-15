@@ -5,10 +5,10 @@ ship "Saihiri"
 		category "Large Warship"
 
 		"cost" 200000000
-		"shields" 400000
-		"shield generation" 100
+		"shields" 50000
+		"shield generation" 10
 		"hull repair rate" 10
-		"hull" 300000
+		"hull" 20000
 		"required crew" 100
 		"bunks" 200
 		"mass" 500
@@ -75,7 +75,7 @@ ship "Oriso"
 		"Seekers Power Device"
 		"Anro Key Pass"
 		"Graviton Mover"
-		"Hyperdrive"
+		"Jump Drive"
 		
 
 	engine -1 139
@@ -86,3 +86,49 @@ ship "Oriso"
 	explode "huge explosion" 20
 	"final explode" "final explosion large" 1
 	description "The Oriso"
+
+ship "Avengu"
+	sprite "ship/avengu"
+	thumbnail "ship/avengu"
+	"never disabled"
+	attributes
+		category "Medium Warship"
+		
+		"cost" 200000000
+		"shields" 16000
+		"shield generation" 5
+		"hull repair rate" 1
+		"hull" 8000
+		"required crew" 1
+		"bunks" 1
+		"mass" 500
+		"drag" 2.5
+		"heat dissipation" .5
+		"fuel capacity" 800
+		"cargo space" 500
+		"outfit space" 340
+		"weapon capacity" 210
+		"engine capacity" 130
+		weapon
+			"blast radius" 16
+			"shield damage" 160
+			"hull damage" 80
+			"hit force" 240
+	outfits
+		"Eden" 4
+		"Seekers Power Device"
+		"Anro Key Pass"
+		"Graviton Mover"
+		"Hyperdrive"
+		
+
+	gun -53 -5
+	gun 53 -5
+	gun -26 -50
+	gun 25.5 -50
+	engine 0 38.5
+
+	leak "flame" 60 80
+	explode "huge explosion" 10
+	"final explode" "final explosion large" 1
+	description "The Avengu"

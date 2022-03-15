@@ -8,3 +8,17 @@ government "Anro"
 	"attitude toward"
 		"Seekers" -1
 		"Seekers (Hidden)" -1
+
+government "Anro Drones"
+	swizzle 0
+	color 1 0.5 0.5
+	"crew attack" 20
+	"crew defense" 20
+	language "digits"
+	"player reputation" -1
+	"attitude toward"
+		"Anro" 100
+		"Seekers" -1
+		"Seekers (Hidden)" -1
+
+

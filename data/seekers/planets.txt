@@ -27,6 +27,33 @@ planet Uquo
 	description `Water is everywhere. The inhabitants are living on floating islands that are connected by filigrane bridges which do not look very stable. As you step out you notice a strong wind that constantly waves around. Although you do not think that these are good conditions the whole planet is populated.`
 	spaceport `The spaceport is an unbeliefable construction standing out of all other buildings. The organic forms make it look like an living organism.`
 
+planet Divaina'pa
+	government "Seekers"
+	landscape land/nasa29
+	description `This world is one of the most mysterious things you have ever seen. Somehow the seekers managed to build floating cities in the upper atmosphere of this gas giant. You can breath the air here and a warm wind is comming from the lower layers of the atmosphere. As you look down you see some large lifeforms half bird half fish swimming or flying between the clouds of gas.`
+	spaceport `The spaceport is a large floating platform above all other platforms. They use some kind of elevator to move between the spaceport and the other platforms. You wonder how it can hold so many ships but then you remeber that the seekers can manipulate gravity itself.`
+
+planet Anian
+	government "Seekers"
+	landscape land/clouds_06
+	description `Anian is a stormy planet with a great atmosphere but he real planet is relative small. The local fauna is strong but not really intelligent. Because of the storms there are no high buildings but only flat and aerodynamic houses.`
+	spaceport `Because it would be too hard to land on this planet there is no spaceport but a spacelift. From a small spacestation surrounding the planet incomers can fly down with a special shuttle that can withstand the strond winds.`
+	outfitter "Seekers Weapon"
+
+planet Isa
+	government "Seekers"
+	landscape land/dune1
+	description `This planet is the last outpost of the Seekers. A lot of warships are standing around ready to defense against an attack. Where ever you look there are no civilians but you can see some merchants bringing in supplies.`
+	spaceport `The spaceport is gigantic as it has to hold a lot of ships. It is divided into two parts, the larger one for the army and the smaller one for merchants. Most of the merchants are starting directly after they landed and you also dont want to stay here longer than needed.`
+	outfitter "Seekers Weapon"
+	shipyard "Seeker"
+
+planet Anta
+	government "Seekers"
+	landscape land/dune4
+	description `This planet is one large mine. In what direction you look you see large machines digging for ores or other worthfull mineralls. The loud sound of the machines is hurting your ears and think that if there were a local flora or fauna it was killed by the seekers long ago. `
+	spaceport `The spaceport is dirty because of the dust that is produced when digging for ores. The most ships are huge freighters ready to delliver the ores to the fabrics on other planets. But there are also some smaller warships standing around here throwing up the question what they are doing here.`
+
 planet Ceru'ka
 	government "Seekers"
 	landscape land/bwerner4
@@ -36,7 +63,7 @@ planet Ceru'ka
 planet O'ak
 	government "Seekers (Hidden)"
 	landscape land/station5
-	description `This station is really strange`
+	description `This station is really strange, the organic form can not be described and an ambient light is comming from everywhere.`
 	"required reputation" 1000
 
 planet "Seekers Wormhole"

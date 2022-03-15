@@ -20,6 +20,7 @@ system Akium
 	minables copper 3 6.81863
 	minables lead 2 8.17974
 	minables uranium 10 12.708
+	fleet "Lost Combat Drones" 1000
 	object
 		sprite star/k5
 		distance 22.8642
@@ -228,6 +229,7 @@ system Anko
 	link Okna
 	link Urak
 	asteroids "large metal" 1 6.175
+	fleet "Lost Combat Drones" 1000
 	object
 		sprite star/m0
 		period 10
@@ -268,6 +270,7 @@ system Anrukium
 	asteroids "large rock" 1 9.72
 	asteroids "small metal" 1 5.0625
 	asteroids "large metal" 2 8.9775
+	fleet "Lost Combat Drones" 1000
 	object
 		sprite star/a5
 		period 10
@@ -557,7 +560,7 @@ system Deros'de
 			sprite planet/io
 			distance 319
 			period 29.9905
-	object
+	object "Divaina'pa"
 		sprite planet/jupiter
 		distance 1714.69
 		period 1136.05
@@ -604,7 +607,7 @@ system Dorum'af
 		sprite star/m8
 		distance 69.8578
 		period 14.9036
-	object
+	object Isa
 		sprite planet/desert8
 		distance 221.818
 		period 55.7961
@@ -816,13 +819,53 @@ system Rano
 	haze _menu/haze-full
 	link Itium
 	link Oran
-	arrival 2000
-	hazard "Black Hole Gravity" 1
-	hazard "Black Hole Event Horizon" 1
-	hazard "Black Hole Accretion Disk" 1
+	arrival 1000
+	trade Clothing 300
+	trade Electronics 400
+	trade Equipment 600
+	trade Food 200
+	trade "Heavy Metals" 1000
+	trade Industrial 400
+	trade "Luxury Goods" 1033
+	trade Medical 500
+	trade Metal 800
+	trade Plastic 200
+	fleet "Anro Home Fleet" 200
 	object
 		sprite "star/black-hole-core"
 		period 1
+	object
+		sprite "planet/anro-black-hole-seal"
+		period 1
+		object "Blackhole Seal"
+			sprite "planet/null"
+			period 1
+			distance 700
+		object "Blackhole Seal"
+			sprite "planet/null"
+			period 1
+			distance 700
+			offset 60
+		object "Blackhole Seal"
+			sprite "planet/null"
+			period 1
+			distance 700
+			offset 120
+		object "Blackhole Seal"
+			sprite "planet/null"
+			period 1
+			distance 700
+			offset 180
+		object "Blackhole Seal"
+			sprite "planet/null"
+			period 1
+			distance 700
+			offset 240
+		object "Blackhole Seal"
+			sprite "planet/null"
+			period 1
+			distance 700
+			offset 300
 	object
 		sprite "star/black-hole"
 		period 1
@@ -834,14 +877,66 @@ system Rano
 		sprite star/b-supergiant
 		distance 10000
 		period 30
+		object "Airum"
+			sprite planet/callisto-b
+			distance 500
+			period 20
+		object
+			sprite planet/rock10
+			distance 967.039
+			period 256.359
+		object
+			sprite planet/desert6
+			distance 1204.88
+			period 356.532
+		object
+			sprite planet/gas9
+			distance 1500.57
+			period 1881.06
 	object
 		sprite star/g-giant
-		distance 12500
+		distance 15000
 		period 5
+		object "Arak"
+			sprite planet/cloud3
+			distance 500
+			period 20
+		object
+			sprite planet/ice3
+			distance 700
+			period 68.2093
+		object
+			sprite planet/forest5
+			distance 660
+			period 200.577
 	object
 		sprite star/m-supergiant
-		distance 15000
+		distance 20000
 		period 17.7965
+		object "Roak"
+			sprite planet/desert0
+			distance 1000
+			period 20
+		object
+			sprite planet/gas1
+			distance 1624.32
+			period 1364.51
+		object
+			sprite planet/dust1
+			distance 1200
+			period 13.3098
+		object
+			sprite planet/miranda
+			distance 2000
+			period 23.8512
+		object
+			sprite planet/gas4
+			distance 3279.96
+			period 3915.38
+			object
+				sprite planet/ice8
+				distance 258
+				period 14.6159
 
 system Itium
 	pos -7968.32 -7308.85
@@ -938,7 +1033,7 @@ system Nous'de
 		sprite planet/lava4
 		distance 330.589
 		period 51.2408
-	object
+	object Anian
 		sprite planet/cloud2
 		distance 588.079
 		period 121.573
@@ -971,6 +1066,7 @@ system Okna
 	asteroids "large metal" 9 5.568
 	minables aluminum 9 6.53693
 	minables lead 1 6.49181
+	fleet "Lost Combat Drones" 1000
 	object
 		sprite star/k0
 		period 10
@@ -1135,7 +1231,7 @@ system Orno'um
 		sprite planet/lava7
 		distance 278.302
 		period 72.3313
-	object
+	object Anta
 		sprite planet/rock19
 		distance 532.552
 		period 191.467
@@ -1443,6 +1539,7 @@ system Urak
 	asteroids "large metal" 48 5.7855
 	minables aluminum 2 8.38436
 	minables platinum 2 8.76282
+	fleet "Lost Combat Drones" 1000
 	object
 		sprite star/g5
 		distance 17.5855
@@ -1504,6 +1601,7 @@ system Waru
 	asteroids "large metal" 3 8.2225
 	minables iron 18 7.62744
 	minables uranium 68 10.2602
+	fleet "Lost Combat Drones" 1000
 	object
 		sprite star/a5
 		period 10

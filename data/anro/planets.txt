@@ -2,11 +2,31 @@ planet Arun
 	landscape land/water5
 	government "Anro"
 	description `This is a stormy world with a lot of water. The air is cool and smells like sea.`
-	description `The few Anro that are living here are concentrated to one spot. A giant city`
-	description `on an island. The planet looks old and you get the feeling that you shall get away from here as soon as possible.`
 	spaceport `The Spaceport is small but it has all it needs.`
-	spaceport `	Few People are around here and it looks like it wasnt used for a`
-	spaceport `	long time. `
+
+planet Airum
+	landscape land/desert0
+	government "Anro"
+	description `This is the world where the Anro originally came from. There are large flat deserts and there is as good as no water around here. Big cities are standing out everywhere and a peacefull feeling lays in the air.`
+	spaceport `The spaceport looks it has been renovated a lot of times everywhere are extensions to the old core and you could think off getting lost here. Spaceships are staying everywhere and you can here the steady sound of roaring engines.`
+
+planet Arak
+	landscape land/desert8-sfiera
+	government "Anro"
+	description `Arak is a world full of universities and scientific facilities. You can see machines that you have never seen before showing you how advanced this species is in opposite to the humans.`
+	spaceport `Because there are a lot of scientist here the spaceport is built after highest standart the Anro can build for now. It is perfectly planned and you see your spaceship in the best hands.`
+
+planet Roak
+	landscape land/dmottl2
+	government "Anro"
+	description `Roak is obviously a military outpost of the Anro. Between the high mountains hundreds of ships are waiting to depart at any time and defend the rano system.`
+	spaceport `The Spaceport you landed on is not for the militar it is very small but it has all what it needs.`
+
+planet "Blackhole Seal"
+	landscape land/station45
+	government "Anro"
+	description `The Black Hole Seal is a scientific wonder. It creates a strong gravitational field inside reverse to the one of the blackhole. Therefore both fields nullify themself and the blackhole is no danger for ships anymore.`
+	description `    Inside are only workers there is no spaceport, because it is not needed.`
 
 planet "Anro Wormhole"
 	attributes "requires: Anro Key Pass"

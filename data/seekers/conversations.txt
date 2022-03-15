@@ -45,3 +45,21 @@ conversation "Seekers First Contact"
             goto "No question"
         `"Could you tell something about your species?"`
             goto "Who are you?"
+
+conversation "Seekers Learn more!"
+    `When you land on the main planet of the Seekers you decide to find out more about them. You approach to someone close to you. "Could you tell me where i can gather some informations about you? I am curios about your past." He looks at you. Then he says "You have to go to the main office there i will gratefully answer your questions.`
+    `    After he gave you a path description, you walk to the main office. There you approach to one of the Seekers. When he noticed you he says "Ah, You made it here now I will answer all of your questions. What do you have in mind?" "I would like to know more about your history." You answer.`
+    `    "My history is complex do you want to hear the short or the full version?"`
+    choice
+        `"I would like to hear everything."`
+            goto "all"
+        `"Just give me a short summary"`
+            goto "short"
+    label "all"
+    `"Then i will start from the beginning. First my kind was a species living near the core of the galaxy that you call the black eye. I was living there in peace and war had no meaning for me as I were the 'only' one there. I prospered and grew and finally I was able to travel through space. But then I noticed that peace is not everywhere in the galaxy. Other species are not like me and they are fighting wars against themselfs. I also realised that i would be total helpless if such a species attacked me. So I started to craft weapons. With my scientific superiority i was able to force all neighbouring species to peace and I took away all their weapons."`
+    `    "After several decades the whole galaxy was under my command. But do not understand me wrong i was no oppressor, i was just ensuring that peace was everywhere. This was a time of peace and knowledge. But then they came. Out of sudden they emerged out of the center of the universe where no live should be able to exist. They had high engineered weapons and they were able to cut off hyperspace links. They called themself the Anro. Soon the complete core was under their command. They isolated the species that i allowed to trade and live with each other. I saw no other way then war."`
+    `    "But i had no expierence in war. The whole time i only had to fight weaker species than me. So while time passed i lost more and more of my territory. My only chance was to retreat to another galaxy that i have encountered some time in the past through a wormhole. Thats why i am here. Here i was able to fight them back because of their long supply lines. Thats my history i hope it gained you some more knowledge about the universe."`
+        accept
+    label "short"
+    `"Than i will make it short. I came from another galaxy because i flew from another species called the Anro."`
+        accept

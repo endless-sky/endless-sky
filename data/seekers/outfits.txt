@@ -52,8 +52,8 @@ outfit "Seekers Follower"
 		"reload" 40
 		"firing energy" 50
 		"firing heat" 10
-		"shield damage" 1000
-		"hull damage" 600
+		"shield damage" 200
+		"hull damage" 150
 		"parallel"
 		"acceleration" 2
 		"drag" .1
@@ -77,7 +77,7 @@ outfit "Seekers Turret"
 	licenses
 		"Seeker War"
 	cost 980000
-	thumbnail "outfit/thrasher turret"
+	thumbnail "outfit/Seekers_Turret"
 	"mass" 49
 	"outfit space" -49
 	"weapon capacity" -49
@@ -86,7 +86,7 @@ outfit "Seekers Turret"
 	weapon
 		sprite "projectile/seeker_point"
 			"frame rate" 1
-		"hardpoint sprite" "hardpoint/thrasher turret"
+		"hardpoint sprite" "hardpoint/seekers_turret"
 		"hardpoint offset" 6.
 		sound "thrasher"
 		"hit effect" "seeker impact"
@@ -216,7 +216,7 @@ outfit "Mothers Turret"
 	weapon
 		sprite "projectile/mother_point"
 			"frame rate" 1
-		"hardpoint sprite" "hardpoint/thrasher turret"
+		"hardpoint sprite" "hardpoint/seekers_turret"
 		"hardpoint offset" 6.
 		sound "thrasher"
 		"hit effect" "thrasher impact"
@@ -253,10 +253,10 @@ outfit "Mothers Graviton Mover"
 
 outfit "Seeker License"
 	category "Special"
-	thumbnail "outfit/remnant license"
+	thumbnail "outfit/Seeker_License"
 	description "The Seeker trusts you."
 
 outfit "Seeker War License"
 	category "Special"
-	thumbnail "outfit/remnant capital license"
+	thumbnail "outfit/Seeker_War_License"
 	description "The Seeker allows you to fight."

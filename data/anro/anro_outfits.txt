@@ -23,15 +23,41 @@ outfit "Black Hole Cannon"
 		"reload" 40
 		"firing energy" 50
 		"firing heat" 10
-		"shield damage" 2000
-		"hull damage" 1200
+		"shield damage" 300
+		"hull damage" 200
 		"parallel"
 		"acceleration" 1
 		"drag" .1
 		"hit force" 220
 		homing 2
 		"missile strength" 1000
-	description "The Anro needed a long time for this weapon but in the end they created an electromagnetic gun that denses the projectile until it gets to a black hole."
+	description "The Anro needed a long time for this weapon but in the end they created an electromagnetic gun that denses the projectile until it gets to a black hole. When the blackhole is fired away it is guided by a very precise system of electromagnetic fields and it will follow its target until it either hit it or the blackhole dies."
+
+outfit "Eden"
+	category "Guns"
+	cost 1390000
+	thumbnail "outfit/"
+	"mass" 34
+	"outfit space" -34
+	"weapon capacity" -34
+	"gun ports" -1
+	weapon
+		sprite "projectile/eden"
+			"frame rate" 1.3
+			"random start frame"
+		sound "sunbeam"
+		"hit effect" "sunbeam impact"
+		"inaccuracy" .2
+		"velocity" 540
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 9.5
+		"firing heat" 3.5
+		"shield damage" 20.5
+		"hull damage" 12.4
+		"heat damage" 12.1
+	description ""
+
 
 outfit "Anro Key Pass"
 	category "Special"

@@ -6,7 +6,6 @@ government "Seekers"
 	language "Seek"
 	"player reputation" 1
 	"attitude toward"
-		"Pug" -1
 		"Anro" -1
 
 government "Seekers (Hidden)"
@@ -17,21 +16,4 @@ government "Seekers (Hidden)"
 	language "Seek"
 	"player reputation" 1
 	"attitude toward"
-		"Pug" -1
 		"Anro" -1
-
-government "Pug (Seekers)"
-	"display name" "Pug"
-	swizzle 0
-	color .99 .89 .70
-	
-	"player reputation" 1
-	"attitude toward"
-		"Drak" -.01
-		"Quarg" -.01
-		"Seekers" -1
-	"friendly hail" "friendly pug"
-	"friendly disabled hail" "friendly disabled pug"
-	"hostile hail" "hostile pug"
-	"hostile disabled hail" "hostile pug"
-

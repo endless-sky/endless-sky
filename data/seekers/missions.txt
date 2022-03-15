@@ -19,6 +19,15 @@ mission "First Contact: Seekers"
 	on offer
 		conversation "Seekers First Contact"
 
+mission "Learn more about the Seekers"
+	landing
+	invisible
+	source "Ofuk"
+	to offer
+		has "First Contact: Seekers: done"
+	on offer
+		conversation "Seekers Learn more!"
+
 ################################
 ####JOBS
 ################################
