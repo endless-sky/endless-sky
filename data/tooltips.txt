@@ -221,8 +221,8 @@ tip "heat generation:"
 tip "heat protection:"
 	`Protection against weapons that do heat damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in heat damage, while a total value of 11 only results in a 10 percent reduction.`
 
-tip "hull repair / max:"
-	`Hull repair rate (per second) and total hull strength. The smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
+tip "hull (repair):"
+	`Total hull strength and repair rate (per second). The smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
 
 tip "hull:"
 	`Total hull strength. Ships with a higher hull strength are able to take more damage as a proportion of their total strength before being disabled; the smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
@@ -437,8 +437,8 @@ tip "shield generation:"
 tip "shield generation multiplier:"
 	`Modifies the amount of shield points recharged per second by the given factor.`
 
-tip "shields charge / max:"
-	`Shield regeneration rate (per second) and total shields.`
+tip "shields (charge):"
+	`Total shield strength and regeneration rate (per second).`
 
 tip "shields:"
 	`Total shield strength. Most weapons cannot damage your hull until your shields are depleted. Some weapon effects, such as heat damage, become more severe once shields are down.`
@@ -477,7 +477,7 @@ tip "tactical scan power:"
 	`Tactical scanners allow you to view your current target's crew complement, fuel, heat, and energy levels when it is within range. The range is proportional to the square root of this value.`
 
 tip "max speed:"
-	`The fastest this ship can travel when using ordinary thrusters (as opposed to an afterburner).`
+	`The fastest this ship can travel when using ordinary thrusters (that is, without afterburner).`
 
 tip "acceleration:"
 	`How quickly this ship gains speed. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it accelerates.`
@@ -485,7 +485,7 @@ tip "acceleration:"
 tip "movement:"
 	`How quickly this ship can accelerate and turn.`
 
-tip "movement, full / no cargo:"
+tip "movement (full - no cargo):"
 	`How quickly this ship can accelerate and turn when its cargo hold is full versus when it is empty.`
 
 tip "thrust:"
