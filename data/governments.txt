@@ -182,7 +182,7 @@ government "Gegno Vi"
 
 	"attitude toward"
 		Gegno 1
-		Gegno Scin -0.05
+		"Gegno Scin" -0.05
 	"penalty for"
 		assist 0
 		board 0

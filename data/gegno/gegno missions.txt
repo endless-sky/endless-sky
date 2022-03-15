@@ -19,18 +19,18 @@ mission "Augen Destruction"
 		set "dead augen"
 		fail
 
-mission Intermediary
-	on complete
-		event "Vesvii War"
+#mission Intermediary
+	#on complete
+		#event "Vesvii War"
 
-mission "Active Augen"
-	to offer
-		has "Intermediary: done"
-		has "Stationed Augen: failed"
-		not "dead augen"
-	npc save
-		government "Gegno Vi"
-		personality heroic vindictive staying
-		system Vesvii
-		ship Augen "Vytii Yrrlausei"
+#mission "Active Augen"
+	#to offer
+	#	has "Intermediary: done"
+	#	has "Stationed Augen: failed"
+	#	not "dead augen"
+	#npc save
+		#government "Gegno Vi"
+		#personality heroic vindictive staying
+		#system Vesvii
+		#ship Augen "Vytii Yrrlausei"
 

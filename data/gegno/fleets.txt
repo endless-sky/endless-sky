@@ -292,7 +292,7 @@ fleet "Vi Warfleet"
 		Gneiss
 		"Hornfel Med"
 		Eclogite 2
-	variant 4
+	variant 2
 		Gneiss
 		"Hornfel Light"
 		"Hornfel Med"
@@ -353,7 +353,7 @@ fleet "Scin Warfleet"
 		Felsic
 		Coesite 2
 	variant 3
-		"Feldspar 2"
+		"Feldspar" 2
 		Halite 12
 		Coesite 2
 	variant 3
