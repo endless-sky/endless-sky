@@ -6073,6 +6073,7 @@ system Caeculus
 	fleet "Korath Ember Waste Raid" 20000
 	fleet "Small Remnant" 30000
 	fleet "Large Remnant" 30000
+	fleet "Embershades" 12000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -18589,6 +18590,7 @@ system Peragenor
 	fleet "Small Remnant" 7000
 	fleet "Remnant Transport" 7000
 	fleet "Korath Ember Waste Raid" 40000
+	fleet "Embershades" 8000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -21601,6 +21603,7 @@ system Segesta
 	fleet "Small Remnant" 40000
 	fleet "Large Remnant" 40000
 	fleet "Korath Ember Waste Raid" 40000
+	fleet "Embershades" 15000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -23396,6 +23399,7 @@ system Stercutus
 	fleet "Small Remnant" 20000
 	fleet "Large Remnant" 20000
 	fleet "Remnant Transport" 40000
+	fleet "Embershades" 8000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -26365,8 +26369,8 @@ planet Babiali
 
 planet Baianus
 	attributes uninhabited
-	landscape land/canyon12
-	description `This frozen water world is reminiscent of Titan back in Sol: The surface is little more than a shattered wasteland of ice and the occasional rock outcropping, but the unbreathably thin atmosphere contains countless tantalizing traces of chemicals that suggest that something more might exist below the surface.`
+	landscape land/snow20
+	description `This frozen water world is reminiscent of Titan back in Sol: the surface is little more than a shattered wasteland of ice and the occasional rock outcropping, but the unbreathably thin atmosphere contains countless tantalizing traces of chemicals that suggest that something more might exist below the surface.`
 	description `	Unlike Titan, however, Baianus is regularly wracked by both waves of heat and energy, and a stay of any length on the surface is likely to see waves of auroras accompanied by glows and sparks rippling across the terrain. Your environmental system strongly recommends remaining inside your ship whenever ion storms are active.`
 	government Uninhabited
 
@@ -26862,7 +26866,7 @@ planet Deep
 	landscape land/sea3
 	description `Deep is a sparsely populated world of small island archipelagos surrounded by vast expanses of empty ocean. There is not enough land for any large cities or serious industry to emerge, so most of the inhabitants live in small fishing villages. The climate is temperate and Earth-like, but the sunlight is somewhat dimmer than you are used to.`
 	description `	The fishing settlements are actually the second colonization attempt on this planet. In the early days of hyperdrive the Kingsburg Corporation sent out what was then one of the largest and most technologically advanced colonization fleets, penetrating deep into the then-unexplored southern galactic rim. After two centuries of sporadic and guarded contact, the colony fell silent, and when human expansion finally reached this area again, no trace of the original colony was found.`
-	spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, who also built and maintain the spaceport. Steep winding roads and sturdy cement homes and warehouses line the mountain slopes, and below you in the harbor several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
+	spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, which also built and maintains the spaceport. Steep winding roads and sturdy cement homes and warehouses line the mountain slopes, and below you in the harbor several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
 	security 0.1
 	tribute 500
 		threshold 3000
@@ -27215,7 +27219,7 @@ planet "Fenrir Station"
 
 planet Fertriery
 	attributes "requires: gaslining"
-	landscape land/nasa8
+	landscape land/nasa10
 	description `Fertriery is a fairly typical world with a particularly dense atmosphere that includes significant levels of chlorine and fluorine. The only unusual factor is the above-average temperatures, likely due to the decreased energy loss into the surrounding space.`
 	government Uninhabited
 	bribe 0
@@ -27593,6 +27597,7 @@ planet Haven
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
+	outfitter "Northern Explorers"
 	bribe 0.03
 	security 0
 	tribute 700
@@ -28785,6 +28790,7 @@ planet Prime
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	outfitter "Lovelace Basics"
+	outfitter "Northern Explorers"
 	"required reputation" 2
 	bribe 0.05
 	security 0.6
@@ -29498,6 +29504,7 @@ planet Sunracer
 	outfitter "Syndicate Advanced"
 	outfitter "Lovelace Basics"
 	outfitter "Ammo North"
+	outfitter "Northern Explorers"
 	bribe 0.06
 	security 0.7
 	tribute 1700
