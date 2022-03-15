@@ -131,7 +131,7 @@ void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &depreciation, int day)
 {
 	bool isGeneric = ship.Name().empty() || ship.GetPlanet();
-	
+
 	attributeHeaderLabels.clear();
 	attributeHeaderValues.clear();
 
@@ -167,7 +167,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	{
 		attributeLabels.push_back("shields (charge):");
 		attributeValues.push_back(Format::Number(attributes.Get("shields"))
-				+ " (" + Format::Number(60. * shieldRegen) + "/s)");
+			+ " (" + Format::Number(60. * shieldRegen) + "/s)");
 	}
 	else
 	{
