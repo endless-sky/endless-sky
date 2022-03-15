@@ -408,6 +408,7 @@ mission "Secure Transport Job (Secret) [0]"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
+		distance 1
 		attributes "deep"
 		not planet "Valhalla"
 		not attributes "station" "moon"
@@ -439,6 +440,7 @@ mission "Secure Transport Job (Secret) [1]"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
+		distance 1
 		attributes "deep"
 		not planet "Valhalla"
 		not attributes "station" "moon"
@@ -470,6 +472,7 @@ mission "Secure Transport Job (Secret) [2]"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
+		distance 1
 		attributes "deep"
 		not planet "Valhalla"
 		not attributes "station" "moon"
@@ -501,6 +504,7 @@ mission "Secure Transport Job (Secret) [3]"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
+		distance 1
 		attributes "deep"
 		not planet "Valhalla"
 		not attributes "station" "moon"
@@ -532,6 +536,7 @@ mission "Secure Transport Job (Secret) [4]"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
+		distance 1
 		attributes "deep"
 		not planet "Valhalla"
 		not attributes "station" "moon"
@@ -632,6 +637,7 @@ mission "Secure Transport Job (Basic) [0]"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
+		distance 1
 		attributes "deep"
 		not planet "Valhalla"
 		not attributes "station" "moon"
@@ -662,6 +668,7 @@ mission "Secure Transport Job (Basic) [1]"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
+		distance 1
 		attributes "deep"
 		not planet "Valhalla"
 		not attributes "station" "moon"
@@ -692,6 +699,7 @@ mission "Secure Transport Job (Deep Security) [0]"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
+		distance 1
 		attributes "deep"
 		not planet "Valhalla"
 		not attributes "station" "moon"
@@ -722,6 +730,7 @@ mission "Secure Transport Job (Deep Security) [1]"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
+		distance 1
 		attributes "deep"
 		not planet "Valhalla"
 		not attributes "station" "moon"
@@ -799,10 +808,10 @@ phrase "stranded consultant pickup"
 	word
 		` `
 	word
-		`meet the consultants at their hotel accommodation`
-		`collect the consultants from the security station`
-		`fish the consultants out of a seedy bar`
-		`rescue the consultants from some overbearing companions`
+		`meet the <passengers> at their hotel accommodation`
+		`collect the <passengers> from the security station`
+		`fish the <passengers> out of a seedy bar`
+		`rescue the <passengers> from some overbearing companions`
 	word
 		` `
 	word
@@ -820,9 +829,9 @@ phrase "stranded consultant dropoff payment"
 	word
 		` `
 	word
-		`You find out only afterward that they left behind a soiled pair of boots.`
-		`Afterward, you find a tie left hanging on a door handle.`
-		`Later, you find some crumpled documents left behind and wisely tip them into the ship's incinerator without looking at them.`
+		`You find out only afterward that they left behind a soiled pair of boots in one of your cabins.`
+		`Afterward, you find a tie left hanging on one of your ship's door handles.`
+		`Later, you find some crumpled documents left onboard and wisely tip them into the ship's incinerator without looking at them.`
 	word
 		` `
 	word
@@ -833,7 +842,7 @@ mission "Transport Consultants (Deep Security) [0]"
 	name "Transport Deep Security consultants to <planet>"
 	job
 	repeat
-	description "Transport consultants whose schedules have been ruined by Deep Security to <destination>. Payment is <payment>."
+	description "Transport <fare> whose schedules have been ruined by Deep Security to <destination>. Payment is <payment>."
 	passengers 1 8
 	to offer
 		random < 20
@@ -843,6 +852,7 @@ mission "Transport Consultants (Deep Security) [0]"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
+		distance 1
 		attributes "deep"
 		attributes "urban"
 		not attributes "station" "moon"
@@ -863,7 +873,7 @@ mission "Transport Consultants (Deep Security) [1]"
 	name "Transport Deep Security consultants to <planet>"
 	job
 	repeat
-	description "Transport consultants whose schedules have been ruined by Deep Security to <destination>. Payment is <payment>."
+	description "Transport <fare> whose schedules have been ruined by Deep Security to <destination>. Payment is <payment>."
 	passengers 1 8
 	to offer
 		random < 20
@@ -873,6 +883,7 @@ mission "Transport Consultants (Deep Security) [1]"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
+		distance 1
 		attributes "deep"
 		attributes "urban"
 		not attributes "station" "moon"
@@ -894,7 +905,7 @@ mission "Urgent Deep Sec Package"
 	name "Rush Deep Security Delivery to <planet>"
 	repeat
 	deadline 1 1
-	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	description "Deliver a Deep Security package to <destination> by <date>. Payment is <payment>."
 	minor
 	cargo "deep security package" 1
 	to offer
@@ -903,11 +914,12 @@ mission "Urgent Deep Sec Package"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
+		distance 1
 		attributes "deep"
 		not planet "Valhalla"
 		not attributes "station" "moon"
 	on offer
-		dialog `As you are walking through the spaceport, a man approaches you and flashes a Deep Security ID. "Greetings Captain <last>. We need someone to deliver this to <destination> as soon as possible."`
+		dialog `As you are walking through the spaceport, a man approaches you and flashes a Deep Security ID. "Greetings Captain <last>. We need someone to deliver this to <destination> by <date>, taking the most direct route possible."`
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -923,7 +935,7 @@ mission "Urgent Deep Sec Consultants [0]"
 	name "Rush Deep Security Consultants to <planet>"
 	repeat
 	deadline 1 1
-	description "Deliver <passengers> to <destination> by <date>. Payment is <payment>."
+	description "Deliver <bunks> Deep Security consultants to <destination> by <date>. Payment is <payment>."
 	minor
 	passengers 2 6
 	to offer
@@ -931,12 +943,13 @@ mission "Urgent Deep Sec Consultants [0]"
 	source
 		attributes "deep"
 		not attributes "station" "moon"
-	destination 
+	destination
+		distance 1
 		attributes "deep"
 		attributes "urban"
 		not attributes "station" "moon"
 	on offer
-		dialog `As you are walking through the spaceport, a harried man approaches you. He is a consultant for Deep Security in need of urgent transport.`
+		dialog `As you are walking through the spaceport, a harried man approaches you, informing you that <bunks> Deep Security consultants, including himself, are in need of urgent transport to <destination> by <date>, leaving no time for stopovers.`
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -952,17 +965,18 @@ mission "Urgent Deep Sec Consultants [1]"
 	name "Rush Deep Security Consultants to <planet>"
 	repeat
 	deadline 1 1
-	description "Deliver <passengers> to <destination> by <date>. Payment is <payment>."
+	description "Deliver <bunks> Deep Security consultants to <destination> by <date>. Payment is <payment>."
 	minor
 	passengers 2 6
 	to offer
 		random < 5
 	source
+		near "Epsilon Leonis" 1
 		attributes "deep"
 		not attributes "station" "moon"
 	destination "Valhalla"
 	on offer
-		dialog `As you are walking through the spaceport, a harried man approaches you. He is a consultant for Deep Security in need of urgent transport.`
+		dialog `As you are walking through the spaceport, a harried man approaches you, informing you that <bunks> Deep Security consultants, including himself, are in need of urgent transport to <destination> by <date>, leaving no time for stopovers.`
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
