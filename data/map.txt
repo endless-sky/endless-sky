@@ -6073,6 +6073,7 @@ system Caeculus
 	fleet "Korath Ember Waste Raid" 20000
 	fleet "Small Remnant" 30000
 	fleet "Large Remnant" 30000
+	fleet "Embershades" 12000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -18589,6 +18590,7 @@ system Peragenor
 	fleet "Small Remnant" 7000
 	fleet "Remnant Transport" 7000
 	fleet "Korath Ember Waste Raid" 40000
+	fleet "Embershades" 8000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -21601,6 +21603,7 @@ system Segesta
 	fleet "Small Remnant" 40000
 	fleet "Large Remnant" 40000
 	fleet "Korath Ember Waste Raid" 40000
+	fleet "Embershades" 15000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -23396,6 +23399,7 @@ system Stercutus
 	fleet "Small Remnant" 20000
 	fleet "Large Remnant" 20000
 	fleet "Remnant Transport" 40000
+	fleet "Embershades" 8000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -27593,6 +27597,7 @@ planet Haven
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
+	outfitter "Northern Explorers"
 	bribe 0.03
 	security 0
 	tribute 700
@@ -28785,6 +28790,7 @@ planet Prime
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	outfitter "Lovelace Basics"
+	outfitter "Northern Explorers"
 	"required reputation" 2
 	bribe 0.05
 	security 0.6
@@ -29498,6 +29504,7 @@ planet Sunracer
 	outfitter "Syndicate Advanced"
 	outfitter "Lovelace Basics"
 	outfitter "Ammo North"
+	outfitter "Northern Explorers"
 	bribe 0.06
 	security 0.7
 	tribute 1700
