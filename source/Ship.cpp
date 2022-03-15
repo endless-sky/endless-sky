@@ -2129,9 +2129,8 @@ void Ship::DoGeneration()
 
 	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
 
-	// Whenever not actively scanning, the amount of scan information the ship
-	// has "decays" over time. For a scanner with a speed of 1, one second of
-	// uninterrupted scanning is required to successfully scan its target.
+	// Whenever not actively scanning, the amount of
+	// scan information the ship has "decays" over time.
 	// Only apply the decay if not already done scanning the target.
 	if(cargoScan < SCAN_TIME)
 		cargoScan = max(0., cargoScan - 1.);
@@ -2334,7 +2333,7 @@ int Ship::Scan()
 		return 0;
 
 	// The range of a scanner is proportional to the square root of its power.
-	// Because we fetch the square-distance, a square root here is unnecessary.
+	// Because of Pythagoras, if we use square-distance, we can skip this square root.
 	double cargoDistance = attributes.Get("cargo scan power");
 	double outfitDistance = attributes.Get("outfit scan power");
 
@@ -2353,12 +2352,11 @@ int Ship::Scan()
 		outfitSpeed = 1.;
 
 	// Check how close this ship is to the target it is trying to scan.
-	// To normalize 1 "scan power" to reach 100 pixels, divide this square distance by 100^2, or 10000.
-	// Because we use distance squared, to reach 200 pixels you need 4 "scan power".
+	// To normalize 1 "scan power" to reach 100 pixels, divide this square distance by 100^2, or multiply by 0.0001.
+	// Because we use distance squared, to reach 200 pixels away you need 4 "scan power".
 	double distance = (target->position - position).LengthSquared() * .0001;
-	double blur = 5. / (5. + (Velocity() - target->Velocity()).LengthSquared());
 
-	// Check the target's outfit and cargo space, a larger ship takes longer to scan.
+	// Check the target's outfit and cargo space. A larger ship takes longer to scan.
 	// Normalized around 200 tons of cargo/outfit space.
 	double outfits = target->baseAttributes.Get("outfit space") * .005;
 	double cargo = target->attributes.Get("cargo space") * .005;
@@ -2367,24 +2365,36 @@ int Ship::Scan()
 	bool startedScanning = false;
 	bool activeScanning = false;
 	int result = 0;
-	auto doScan = [&](double &elapsed, const double speed, const double scannerRange, double depth, const int event) -> void
+	auto doScan = [&](double &elapsed, const double speed, const double scannerRange, const double depth, const int event) -> void
 	{
 		if(elapsed < SCAN_TIME && distance < scannerRange)
 		{
 			startedScanning |= !elapsed;
 			activeScanning = true;
-			// (a/b) * (c/d) * (e/f) is more expensive than the equivalent (a*c*e) / (b*d*f)
-			elapsed += (scannerRange - distance) * speed * blur
-				/ ((sqrt(speed) + distance) * scannerRange * depth);
-			// To make up for the scan decay above:
-			elapsed ++;
+
+			/* Division is more expensive to calculate than multiplication,
+			so rearrange the formula to minimize divisions.
+
+			"(scannerRange - distance) / scannerRange"
+			This scales linearly from 1 at 0px distance to 0 at "scannerRage" distance.
+
+			"speed / (sqrt(speed) + distance)"
+			This doubles scan time over the square root of "speed" in distance,
+			while also boosting base scan speed by the square root of "speed".
+			The bonus to scan speed is reduced to 1 at ("speed" - sqrt("speed)) distance.
+
+			"1 / depth"
+			This doubles scan time for cargo holds or outfit sections that are twice as large. */
+			elapsed += ((scannerRange - distance) * speed) / (scannerRange * (sqrt(speed) + distance) * depth);
+			// To make up for the scan decay:
+			++elapsed;
 			if(elapsed >= SCAN_TIME)
 				result |= event;
 		}
 	};
 	doScan(cargoScan, cargoSpeed, cargoDistance, cargo, ShipEvent::SCAN_CARGO);
 	doScan(outfitScan, outfitSpeed, outfitDistance, outfits, ShipEvent::SCAN_OUTFITS);
-	
+
 	// Play the scanning sound if the actor or the target is the player's ship.
 	if(isYours || (target->isYours && activeScanning))
 		Audio::Play(Audio::Get("scan"), Position());
