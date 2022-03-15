@@ -45,13 +45,8 @@ mission "Remnant: Logistics 1"
 			`	"Cousin!" he sings with excitement, when you walk up to him. "It is good to meet you and to see your wonderful ship. I've only seen such designs in our historical entertainments." He holds up the data pad facing you and says, I'm making a video for my companion. He won't believe me if I don't, and maybe not even then!" he laughs. You wave awkwardly at the camera and are relieved when he stops recording.`  
 			`	"I hope I haven't offended you," he sings. "I get carried away looking at ships." You worry briefly that he is going to interrogate you about the <ship> when he adds, I'm Eon. Would you have time to talk about logistics support?"`
 			choice
-				`	"Yes, I'm always open to new opportunities."`
+				`	"Yes, I've been looking for more work with the Remnant."`
 					goto opportunities
-				`	"No, I'm not interested in cargo work at the moment."`
-					goto disappointed
-			label disappointed
-			`	Eon makes no attempt to hide his disappointment at your reply. "I'm sorry to hear that," he recites. "There was much good we could have done with your help." He stands and makes a short sign that seems to mark the end of the conversation. "Fortunately," he sings, "we deliver projects as a team, so the work will still be done." They way he sings it makes you think it's a slogan of some sort. Eon puts away his datapad and follows the crates to the loading dock.`
-				decline
 			label opportunities
 			`Eon leads you to the cafeteria, chattering about ship design since the Alpha Wars. He buys a couple of hot drinks and leads you to a table overlooking the docks which is a little less noisy. You try your drink. It's strongly flavored but a bit odd. It's probably someone's memory of what coffee should taste like, reconstituted from local foods.`
 			`	The man leaves his untouched as he launches into song, "Those of us in logistics have noticed that you are spending time in our systems, and we wanted to see if you would be available to pick up work for us. It would be delivery work like the reactors your brought for the housing project."` 
@@ -77,7 +72,7 @@ mission "Remnant: Logistics 1"
 				goto thanks
 			label thanks
 			`	Before you can ask more about transport jobs, Eon takes out his commlink and taps on it for a few minutes. "I've added you to the job board. You should be able to see our current job list for each system when you check."`
-			`	You chat with Eon about how you've outfitted the <ship> as you finish your...coffee. Then, his commlink chirps. As he stands, he signs what you think means 'Goodbye' as he sings that he has to leave for another meeting. He walks off quickly with his head down looking at the datapad. Your commlink notifies you that <payment> credits has been added to your account.`
+			`	You chat with Eon about how you've outfitted the <ship> as you finish your...coffee. Then, his commlink chirps. As he stands, he signs what you think means 'Goodbye' as he sings that he has to leave for another meeting. He walks off quickly with his head down looking at the datapad. Your commlink notifies you that <payment> has been added to your account.`
 
 trade
 	commodity "remnant civil"
