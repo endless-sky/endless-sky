@@ -2113,7 +2113,7 @@ void Engine::DoWeather(Weather &weather)
 			const System *system = player.GetSystem();
 			for(shared_ptr<Ship> ship: ships)
 				if(ship->GetSystem() == system)
-					ship->TakeDamage(visuals, *hazard, multiplier, 0., weather.Origin(), nullptr);
+					ship->TakeDamage(visuals, damage.CalculateDamage(*ship.get(), true), nullptr);
 		}
 		else
 			// Get all ship bodies that are touching a ring defined by the hazard's min
@@ -2122,12 +2122,10 @@ void Engine::DoWeather(Weather &weather)
 			for(Body *body : shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange()))
 			{
 				Ship *hit = reinterpret_cast<Ship *>(body);
-				double distanceTraveled = weather.Origin().Distance(hit->Position()) - hit->GetMask().Radius();
-				hit->TakeDamage(visuals, *hazard, multiplier, distanceTraveled, weather.Origin(), nullptr, hazard->BlastRadius() > 0.);
+				hit->TakeDamage(visuals, damage.CalculateDamage(*hit), nullptr);
 			}
 	}
 }
-
 
 
 // Check if any ship collected the given flotsam.
