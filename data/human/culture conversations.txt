@@ -494,7 +494,7 @@ mission "News Reporter - Paradise"
 				`	"No, I would rather not."`
 					decline
 			label questions
-			`	The camera drones circle around you as she prepares for the interview. In a few seconds, she smiles at one of the drones and begins.`
+			`	The camera drones circle around you as she prepares for the interview. After a few seconds, she smiles at one of the drones and begins.`
 			`	"Welcome back, I'm here on <origin> reporting on the situation with the Free Worlds coalition. I'm joined by a merchant captain that is between trips. Captain, what do you think of the ultimatum sent to Parliament?"`
 			choice
 				`	"I think Parliament should reconsider and give the situation some thought."`
