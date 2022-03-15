@@ -489,7 +489,7 @@ mission "News Reporter - Paradise"
 			label walk
 			`	As she gets closer to you, she smiles. "Hello Captain! Would you be willing to answer a few questions for our viewers?"`
 			choice
-				`	"Sure, I don't mind answering some questions."`
+				`	"Sure, I wouldn't mind."`
 					goto questions
 				`	"No, I would rather not."`
 					decline
