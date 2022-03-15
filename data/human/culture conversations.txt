@@ -480,7 +480,7 @@ mission "News Reporter - Paradise"
 		not "event: joined the free worlds"
 	on offer
 		conversation
-			`You are passing through the spaceport when you see a young woman that is walking in your direction. You realize she is a news reporter based on th multitude of camera drones trailing behind her.`
+			`You are passing through the spaceport when you see a young woman walking in your direction. Trailing behind her is a multitude of camera drones, each one marked with a logo consisting of two curves pointing inwards.`
 			choice
 				`	(Hope she doesn't notice you.)`
 					goto walk
