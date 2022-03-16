@@ -57,6 +57,8 @@ namespace {
 	const string SCROLL_SPEED = "Scroll speed";
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
+	const string FLIP_MOUSE_CONTROLS = ".: [LMB/RMB]";
+	const string ALT_MOUSE_BEHAVIOUR = ".: Alt + Mouse";
 }
 
 
@@ -340,6 +342,7 @@ void PreferencesPanel::DrawControls()
 		Command::INFO,
 		Command::FULLSCREEN,
 		Command::FASTFORWARD,
+		Command::MOUSEMOVEMENT,
 		Command::NONE,
 		Command::DEPLOY,
 		Command::FIGHT,
@@ -445,6 +448,9 @@ void PreferencesPanel::DrawSettings()
 		EXPEND_AMMO,
 		FIGHTER_REPAIR,
 		TURRET_TRACKING,
+		"Mouse movement",
+		FLIP_MOUSE_CONTROLS,
+		ALT_MOUSE_BEHAVIOUR,
 		"\n",
 		"Performance",
 		"Show CPU / GPU load",
@@ -564,6 +570,18 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = to_string(Preferences::ScrollSpeed());
+		}
+		else if(setting == FLIP_MOUSE_CONTROLS)
+		{
+			if (Preferences::Has("Mouse movement")){isOn = true;}
+				else{isOn = false;}
+			text = Preferences::Has(FLIP_MOUSE_CONTROLS) ? "[Fire/Move]" : "[Move/Fire]";
+		}
+		else if(setting == ALT_MOUSE_BEHAVIOUR)
+		{
+			if (Preferences::Has("Mouse movement")){isOn = true;}
+				else{isOn = false;}
+			text = Preferences::Has(ALT_MOUSE_BEHAVIOUR) ? "is used to select" : "is used to move";
 		}
 		else
 			text = isOn ? "on" : "off";
