@@ -7,7 +7,7 @@ planet Arun
 planet Airum
 	landscape land/desert0
 	government "Anro"
-	description `This is the world where the Anro originally came from. There are large flat deserts and there is as good as no water around here. Big cities are standing out everywhere and a peacefull feeling lays in the air.`
+	description `This is the world where the Anro originally came from. There are large flat deserts as far as the eye can see, and not a drop of water save the occasional mirage. Only the massive cities stand out within the ocean of sand, standing tall in defiance of the great pale sea.`
 	spaceport `The spaceport looks it has been renovated a lot of times everywhere are extensions to the old core and you could think off getting lost here. Spaceships are staying everywhere and you can here the steady sound of roaring engines.`
 
 planet Arak
