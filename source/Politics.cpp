@@ -99,7 +99,7 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 				provoked.insert(other);
 			}
 		}
-		else if(count && abs(weight) >= .05)
+		if(count && abs(weight) >= .05)
 		{
 			// Weights less than 5% should never cause permanent reputation
 			// changes. This is to allow two governments to be hostile or

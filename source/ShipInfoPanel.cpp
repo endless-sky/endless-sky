@@ -313,7 +313,6 @@ void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 
 	table.DrawTruncatedPair("ship:", dim, ship.Name(), bright, Truncate::MIDDLE, true);
-	table.DrawTruncatedPair("model:", dim, ship.ModelName(), bright, Truncate::MIDDLE, true);
 
 	info.DrawAttributes(table.GetRowBounds().TopLeft() - Point(10., 10.));
 }
