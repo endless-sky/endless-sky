@@ -1821,7 +1821,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				angle += commands.Turn() * TurnRate() * slowMultiplier;
 			}
 		}
-		else if (Ship::IsSpecial() && Ship::IsYours() && Preferences::Get("Mouse movement"))
+		else if (Ship::IsSpecial() && Ship::IsYours() && Preferences::Has("Mouse movement"))
 			{
 				double tempAngle = (Rad2Deg*(atan(-UI::GetMouse().Y()/UI::GetMouse().X())));
 					if (UI::GetMouse.().X() < 0){
