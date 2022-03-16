@@ -41,6 +41,7 @@ Government::Government()
 	penaltyFor[ShipEvent::DESTROY] = 1.;
 	penaltyFor[ShipEvent::SCAN_OUTFITS] = 0.;
 	penaltyFor[ShipEvent::SCAN_CARGO] = 0.;
+	penaltyFor[ShipEvent::PROVOKE] = 0.;
 	penaltyFor[ShipEvent::ATROCITY] = 10.;
 
 	id = nextID++;
@@ -106,6 +107,8 @@ void Government::Load(const DataNode &node)
 						penaltyFor[ShipEvent::SCAN_OUTFITS] = grand.Value(1);
 						penaltyFor[ShipEvent::SCAN_CARGO] = grand.Value(1);
 					}
+					else if(grand.Token(0) == "provoke")
+						penaltyFor[ShipEvent::PROVOKE] = grand.Value(1);
 					else if(grand.Token(0) == "atrocity")
 						penaltyFor[ShipEvent::ATROCITY] = grand.Value(1);
 					else
