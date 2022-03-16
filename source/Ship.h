@@ -191,6 +191,9 @@ public:
 	void SetCommands(const FireCommand &firingCommand);
 	const Command &Commands() const;
 	const FireCommand &FiringCommands() const noexcept;
+	
+	void SetMouseThrusting(bool on);
+	void SetMouseFiring(bool on);
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up.
 	void Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
@@ -251,6 +254,8 @@ public:
 	bool IsThrusting() const;
 	bool IsReversing() const;
 	bool IsSteering() const;
+	bool IsMouseThrusting() const;
+	bool IsMouseFiring() const;
 	// The direction that the ship is steering. If positive, the ship is steering right.
 	// If negative, the ship is steering left.
 	double SteeringDirection() const;
