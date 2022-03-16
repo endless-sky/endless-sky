@@ -33,15 +33,12 @@ public:
 	bool Deviates() const;
 	// How often this hazard deals its damage while active.
 	int Period() const;
-	// If this hazard is to be initially spawned on the flagship.
 	bool AroundFlagship() const;
 	// Generates a random integer between the minimum and maximum duration of this hazard.
 	int RandomDuration() const;
 	// Generates a random double between the minimum and maximum strength of this hazard.
 	double RandomStrength() const;
-	// Check if this hazard is an explosion or affects the whole range in the same way.
-	bool IsBlast() const;
-	// Checks if this applies on the entire system.
+	// Checks if this applies in the same way on the entire system.
 	bool SystemWide() const;
 	// The minimum and maximum distances from the origin in which this hazard has an effect.
 	double MinRange() const;
@@ -60,7 +57,6 @@ private:
 	double maxStrength = 1.;
 	double minRange = 0.;
 	bool aroundFlagship = false;
-	bool isBlast = true;
 	// Hazards without a given range have an effect on the entire system.
 	double maxRange = -1.;
 	bool deviates = true;
