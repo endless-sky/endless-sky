@@ -839,7 +839,7 @@ phrase "stranded consultant dropoff payment"
 
 
 mission "Transport Consultants (Deep Security) [0]"
-	name "Transport Deep Security consultants to <planet>"
+	name "Transport Deep Security consultants"
 	job
 	repeat
 	description "Transport <fare> whose schedules have been ruined by Deep Security to <destination>. Payment is <payment>."
@@ -870,7 +870,7 @@ mission "Transport Consultants (Deep Security) [0]"
 		"reputation: Deep Security" -= 10
 
 mission "Transport Consultants (Deep Security) [1]"
-	name "Transport Deep Security consultants to <planet>"
+	name "Transport Deep Security consultants"
 	job
 	repeat
 	description "Transport <fare> whose schedules have been ruined by Deep Security to <destination>. Payment is <payment>."
@@ -902,7 +902,7 @@ mission "Transport Consultants (Deep Security) [1]"
 
 
 mission "Urgent Deep Sec Package"
-	name "Rush Deep Security Delivery to <planet>"
+	name "Rush Deep Security Delivery"
 	repeat
 	deadline 1 1
 	description "Deliver a Deep Security package to <destination> by <date>. Payment is <payment>."
@@ -934,7 +934,7 @@ mission "Urgent Deep Sec Package"
 		"reputation: Deep Security" -= 5
 
 mission "Urgent Deep Sec Consultants [0]"
-	name "Rush Deep Security Consultants to <planet>"
+	name "Rush Deep Security Consultants"
 	repeat
 	deadline 1 1
 	description "Deliver <bunks> Deep Security consultants to <destination> by <date>. Payment is <payment>."
@@ -966,7 +966,7 @@ mission "Urgent Deep Sec Consultants [0]"
 		"reputation: Deep Security" -= 10
 
 mission "Urgent Deep Sec Consultants [1]"
-	name "Rush Deep Security Consultants to <planet>"
+	name "Rush Deep Security Consultants"
 	repeat
 	deadline 1 1
 	description "Deliver <bunks> Deep Security consultants to <destination> by <date>. Payment is <payment>."
