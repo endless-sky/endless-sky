@@ -240,11 +240,9 @@ SCENARIO( "Mapping identifiable collections", "[uuid][comparison][collections]" 
 	GIVEN( "a collection of strings as ID comparator, with UUIDs, identifying items" ) {
 		auto collection = std::map<std::string, EsUuid>{};
 		Identifiable first;
-		EsUuid firstId;
-		firstId.FromString(first.UUID().ToString());
+		EsUuid firstId = EsUuid::FromString(first.UUID().ToString());
 		Identifiable second;
-		EsUuid secondId;
-		secondId.FromString(second.UUID().ToString());
+		EsUuid secondId = EsUuid::FromString(second.UUID().ToString());
 		EsUuid otherId;
 		std::vector<Identifiable> items{ first, second };
 		std::string firstName = "one";
