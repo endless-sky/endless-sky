@@ -568,8 +568,8 @@ mission "Deep Security Package Reveal"
 		attributes "deep"
 		not attributes "station" "moon"
 	to offer
-		"reputation: Deep Security" >= 100
-		"secure deep package" >= 30
+		"reputation: Deep Security" >= 20
+		"secure deep package" >= 15
 		"mystery cube" >= 5
 		not "deep security reveal"
 		or
@@ -700,7 +700,7 @@ mission "Secure Transport Job (Deep Security) [0]"
 	to offer
 		random < 20
 		has "deep security reveal"
-		"reputation: Deep Security" >= 100
+		"reputation: Deep Security" >= 20
 	source
 		attributes "deep"
 		not attributes "station" "moon"
@@ -731,7 +731,7 @@ mission "Secure Transport Job (Deep Security) [1]"
 	to offer
 		random < 20
 		has "deep security reveal"
-		"reputation: Deep Security" >= 100
+		"reputation: Deep Security" >= 20
 	source
 		attributes "deep"
 		not attributes "station" "moon"
@@ -763,8 +763,8 @@ mission "Deep Consultants"
 		not planet "Valhalla"
 	destination "Valhalla"
 	to offer
-		"reputation: Deep Security" >= 100
-		"secure deep package" >= 30
+		"reputation: Deep Security" >= 30
+		"secure deep package" >= 15
 		"mystery cube" >= 5
 		has "deep security reveal"
 		or
@@ -853,7 +853,7 @@ mission "Transport Consultants (Deep Security) [0]"
 	to offer
 		random < 20
 		has "deep security consultants"
-		"reputation: Deep Security" >= 100
+		"reputation: Deep Security" >= 30
 	source
 		attributes "deep"
 		not attributes "station" "moon"
@@ -884,7 +884,7 @@ mission "Transport Consultants (Deep Security) [1]"
 	to offer
 		random < 20
 		has "deep security consultants"
-		"reputation: Deep Security" >= 100
+		"reputation: Deep Security" >= 30
 	source
 		attributes "deep"
 		not attributes "station" "moon"
@@ -917,7 +917,7 @@ mission "Urgent Deep Sec Package"
 	to offer
 		random < 2
 		has "deep security reveal"
-		"reputation: Deep Security" >= 100
+		"reputation: Deep Security" >= 20
 	source
 		attributes "deep"
 		not attributes "station" "moon"
@@ -949,7 +949,7 @@ mission "Urgent Deep Sec Consultants [0]"
 	to offer
 		random < 1
 		has "deep security consultants"
-		"reputation: Deep Security" >= 100
+		"reputation: Deep Security" >= 30
 	source
 		attributes "deep"
 		not attributes "station" "moon"
@@ -981,7 +981,7 @@ mission "Urgent Deep Sec Consultants [1]"
 	to offer
 		random < 1
 		has "deep security consultants"
-		"reputation: Deep Security" >= 100
+		"reputation: Deep Security" >= 30
 	source
 		near "Epsilon Leonis" 2 7
 		attributes "deep"
