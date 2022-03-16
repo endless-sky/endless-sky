@@ -502,21 +502,21 @@ mission "News Reporter - Paradise"
 				`	"Parliament made the right decision by refusing the demands."`
 					goto right
 			label reconsider
-			`	"Can you explain your answer for our viewers?" she asks.`
+			`	The reporter frowns. "Can you explain your answer for our viewers?"`
 			choice
 				`	"The interests of every world should be considered whether they agree or not."`
-				`	"The coalition worlds aren't represented well enough to gain traction normal channels."`
+				`	"The coalition worlds aren't represented well enough to gain traction through normal channels."`
 				`	"The Navy is hardly defending that territory, so taxes shouldn't be as much."`
 				`	"I would prefer to not answer."`
-			`	"Thank you for your answers, and for taking the time to do this interview!" she says.`
+			`	"I'm not sure that Parliament would agree with you, but I want to thank you for your answers, and for taking the time to do this interview!" she says.`
 			`	The drones dart back to follow her as she continues through the spaceport.`
 				decline
 			label right
-			`	"Can you explain that answer for our viewers?" she asks.`
+			`	The reporter smiles. "Can you explain that answer for our viewers?"`
 			choice
 				`	"There are proper channels for presenting grievances, and that isn't one of them."`
 				`	"It's a very ungrateful thing to do when Parliament is the one protecting them."`
 				`	"I would prefer to not answer."`
-			`	"Thank you for your answers, and for taking the time to do this interview!" she says.`
+			`	"We are fortunate that many people feel this way! Thank you for your answers, and for taking the time to do this interview!" she says.`
 			`	The drones dart back to follow her as she continues through the spaceport.`
 				decline
