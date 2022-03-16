@@ -95,6 +95,7 @@ mission "Mystery Cube Delivery Job [0]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
+		"reputation: Deep Security" += 1
 		"mystery cube" ++
 		payment 5000 1000
 		dialog phrase "deep mystery cube dropoff payment"
@@ -126,6 +127,7 @@ mission "Mystery Cube Delivery Job [1]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
+		"reputation: Deep Security" += 1
 		"mystery cube" ++
 		payment 5000 1000
 		dialog phrase "deep mystery cube dropoff payment"
@@ -157,6 +159,7 @@ mission "Mystery Cube Delivery Job [2]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
+		"reputation: Deep Security" += 1
 		"mystery cube" ++
 		payment 5000 1000
 		dialog phrase "deep mystery cube dropoff payment"
@@ -188,6 +191,7 @@ mission "Mystery Cube Delivery Job [3]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
+		"reputation: Deep Security" += 1
 		"mystery cube" ++
 		payment 5000 1000
 		dialog phrase "deep mystery cube dropoff payment"
@@ -219,6 +223,7 @@ mission "Mystery Cube Delivery Job Station"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
+		"reputation: Deep Security" += 1
 		"mystery cube" ++
 		payment 5000 1000
 		dialog phrase "deep mystery cube dropoff station payment"
@@ -251,6 +256,7 @@ mission "Mystery Cube Retrieval Job"
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on complete
+		"reputation: Deep Security" += 1
 		"mystery cube" ++
 		payment 5000 1000
 		dialog phrase "deep mystery cube dropoff payment"
