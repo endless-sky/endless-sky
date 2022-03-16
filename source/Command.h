@@ -53,6 +53,7 @@ public:
 	static const Command INFO;
 	static const Command FULLSCREEN;
 	static const Command FASTFORWARD;
+	static const Command MOUSEMOVEMENT;
 	// Escort commands:
 	static const Command FIGHT;
 	static const Command GATHER;
