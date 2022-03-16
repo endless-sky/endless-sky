@@ -40,6 +40,10 @@ public:
 	// The minimum and maximum distances from the origin in which this hazard has an effect.
 	double MinRange() const;
 	double MaxRange() const;
+	// Whether this hazard affects every ship in the system irrespective of its distance
+	// from the hazard origin. MinRange and MaxRange still get used for the generation of
+	// environmental effects.
+	bool SystemWide() const;
 
 	// Visuals to be created while this hazard is active.
 	const std::map<const Effect *, int> &EnvironmentalEffects() const;
@@ -55,6 +59,7 @@ private:
 	double minRange = 0.;
 	// Hazards given no range only extend out to the invisible fence defined in AI.cpp.
 	double maxRange = 10000.;
+	bool systemWide = false;
 	bool deviates = true;
 
 	std::map<const Effect *, int> environmentalEffects;

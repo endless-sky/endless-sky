@@ -70,7 +70,7 @@ const Point &Weather::Origin() const
 
 
 // Create any environmental effects and decrease the lifetime of this weather.
-void Weather::Step(vector<Visual> &visuals)
+void Weather::Step(vector<Visual> &visuals, Point flagship)
 {
 	// Environmental effects are created by choosing a random angle and distance from
 	// their origin, then creating the effect there.
@@ -85,12 +85,15 @@ void Weather::Step(vector<Visual> &visuals)
 	totalAmount *= currentStrength;
 	visuals.reserve(visuals.size() + totalAmount);
 
+	// If a hazard is system wide then use the flagship as the origin position
+	// for new effects. Damage is still dealt from the weather's origin.
+	Point effectOrigin = hazard->SystemWide() ? flagship : origin;
 	for(auto &&effect : hazard->EnvironmentalEffects())
 		for(int i = 0; i < effect.second * currentStrength; ++i)
 		{
 			Point angle = Angle::Random().Unit();
 			double magnitude = (maxRange - minRange) * sqrt(Random::Real());
-			Point pos = origin + (minRange + magnitude) * angle;
+			Point pos = effectOrigin + (minRange + magnitude) * angle;
 			visuals.emplace_back(*effect.first, std::move(pos), Point(), Angle::Random());
 		}
 
