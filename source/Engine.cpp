@@ -1040,11 +1040,13 @@ void Engine::Draw() const
 	double ammoPad = .5 * (ammoBox.Width() - AMMO_WIDTH);
 	const Sprite *selectedSprite = SpriteSet::Get("ui/ammo selected");
 	const Sprite *unselectedSprite = SpriteSet::Get("ui/ammo unselected");
+	const Sprite *mouseMovement = SpriteSet::Get("icon/mousecontrols");
+	const Sprite *mouseMovementLight = SpriteSet::Get("icon/mousecontrolslight");
 	Color selectedColor = *colors.Get("bright");
 	Color unselectedColor = *colors.Get("dim");
 
 	// This is the top left corner of the ammo display.
-	Point pos(ammoBox.Left() + ammoPad, ammoBox.Bottom() - ammoPad);
+	Point pos(ammoBox.Left() + ammoPad - 20, ammoBox.Bottom() - ammoPad);
 	// These offsets are relative to that corner.
 	Point boxOff(AMMO_WIDTH - .5 * selectedSprite->Width(), .5 * ICON_SIZE);
 	Point textOff(AMMO_WIDTH - .5 * ICON_SIZE, .5 * (ICON_SIZE - font.Height()));
@@ -1069,6 +1071,18 @@ void Engine::Draw() const
 		string amount = to_string(it.second);
 		Point textPos = pos + textOff + Point(-font.Width(amount), 0.);
 		font.Draw(amount, textPos, isSelected ? selectedColor : unselectedColor);
+	}
+	//If the offset has not changed
+	if(pos.Y() == ammoBox.Bottom()-ammoPad){
+		pos.Y() -= ICON_SIZE;
+	}
+	
+	//Add an icon to indicate mouse controls
+	if (Preferences::Get("Mouse movement")){
+		SpriteShader::Draw(mouseMovementLight, pos + otherIconOFF);
+	}
+	else {
+		SpriteShader::Draw(mouseMovement, pos + otherIconOFF);
 	}
 
 	// Draw escort status.
