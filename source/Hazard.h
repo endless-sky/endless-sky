@@ -33,6 +33,7 @@ public:
 	bool Deviates() const;
 	// How often this hazard deals its damage while active.
 	int Period() const;
+	// If this hazard is to be initially spawned on the flagship.
 	bool AroundFlagship() const;
 	// Generates a random integer between the minimum and maximum duration of this hazard.
 	int RandomDuration() const;
