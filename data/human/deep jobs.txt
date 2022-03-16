@@ -427,10 +427,6 @@ mission "Secure Transport Job (Secret) [0]"
 		"reputation: Deep Security" += 0.5
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 2
-	on abort
-		"reputation: Deep Security" -= 5
 
 mission "Secure Transport Job (Secret) [1]"
 	name "Secure delivery to <planet>"
@@ -459,10 +455,6 @@ mission "Secure Transport Job (Secret) [1]"
 		"reputation: Deep Security" += 0.5
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 2
-	on abort
-		"reputation: Deep Security" -= 5
 
 mission "Secure Transport Job (Secret) [2]"
 	name "Secure delivery to <planet>"
@@ -491,10 +483,6 @@ mission "Secure Transport Job (Secret) [2]"
 		"reputation: Deep Security" += 0.5
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 2
-	on abort
-		"reputation: Deep Security" -= 5
 
 mission "Secure Transport Job (Secret) [3]"
 	name "Secure delivery to <planet>"
@@ -523,10 +511,6 @@ mission "Secure Transport Job (Secret) [3]"
 		"reputation: Deep Security" += 0.5
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 2
-	on abort
-		"reputation: Deep Security" -= 5
 
 mission "Secure Transport Job (Secret) [4]"
 	name "Secure delivery to <planet>"
@@ -555,10 +539,6 @@ mission "Secure Transport Job (Secret) [4]"
 		"reputation: Deep Security" += 0.5
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 2
-	on abort
-		"reputation: Deep Security" -= 5
 
 
 mission "Deep Security Package Reveal"
@@ -655,10 +635,6 @@ mission "Secure Transport Job (Basic) [0]"
 		payment 3000 900
 		"reputation: Deep Security" += 0.5
 		dialog phrase "secure package dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 2
-	on abort
-		"reputation: Deep Security" -= 5
 
 mission "Secure Transport Job (Basic) [1]"
 	name "Secure delivery to <planet>"
@@ -686,10 +662,6 @@ mission "Secure Transport Job (Basic) [1]"
 		payment 3000 900
 		"reputation: Deep Security" += 0.5
 		dialog phrase "secure package dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 2
-	on abort
-		"reputation: Deep Security" -= 5
 
 mission "Secure Transport Job (Deep Security) [0]"
 	name "Deep Security delivery to <planet>"
@@ -717,10 +689,6 @@ mission "Secure Transport Job (Deep Security) [0]"
 		payment 5000 1500
 		"reputation: Deep Security" += 0.5
 		dialog phrase "secure package dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 2
-	on abort
-		"reputation: Deep Security" -= 5
 
 mission "Secure Transport Job (Deep Security) [1]"
 	name "Deep Security delivery to <planet>"
@@ -748,10 +716,6 @@ mission "Secure Transport Job (Deep Security) [1]"
 		payment 5000 1500
 		"reputation: Deep Security" += 0.5
 		dialog phrase "secure package dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 2
-	on abort
-		"reputation: Deep Security" -= 5
 
 
 mission "Deep Consultants"
@@ -870,10 +834,6 @@ mission "Transport Consultants (Deep Security) [0]"
 		payment 10000 600
 		"reputation: Deep Security" += 0.5
 		dialog phrase "stranded consultant dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 4
-	on abort
-		"reputation: Deep Security" -= 10
 
 mission "Transport Consultants (Deep Security) [1]"
 	name "Transport Deep Security consultants"
@@ -901,10 +861,6 @@ mission "Transport Consultants (Deep Security) [1]"
 		payment 10000 600
 		"reputation: Deep Security" += 0.5
 		dialog phrase "stranded consultant dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 4
-	on abort
-		"reputation: Deep Security" -= 10
 
 
 mission "Urgent Deep Sec Package"
@@ -934,10 +890,6 @@ mission "Urgent Deep Sec Package"
 		payment 0 30000
 		"reputation: Deep Security" += 0.5
 		dialog phrase "secure package dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 2
-	on abort
-		"reputation: Deep Security" -= 5
 
 mission "Urgent Deep Sec Consultants [0]"
 	name "Rush Deep Security Consultants"
@@ -966,10 +918,6 @@ mission "Urgent Deep Sec Consultants [0]"
 		payment 150000 1500
 		"reputation: Deep Security" += 0.5
 		dialog phrase "stranded consultant dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 4
-	on abort
-		"reputation: Deep Security" -= 10
 
 mission "Urgent Deep Sec Consultants [1]"
 	name "Rush Deep Security Consultants"
@@ -995,7 +943,3 @@ mission "Urgent Deep Sec Consultants [1]"
 		payment 150000 1500
 		"reputation: Deep Security" += 0.5
 		dialog phrase "stranded consultant dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 4
-	on abort
-		"reputation: Deep Security" -= 10
