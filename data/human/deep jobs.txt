@@ -408,7 +408,7 @@ mission "Secure Transport Job (Secret) [0]"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
-		distance 1
+		distance 2 7
 		attributes "deep"
 		not planet "Valhalla"
 		not attributes "station" "moon"
@@ -440,7 +440,7 @@ mission "Secure Transport Job (Secret) [1]"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
-		distance 1
+		distance 2 7
 		attributes "deep"
 		not planet "Valhalla"
 		not attributes "station" "moon"
@@ -472,7 +472,7 @@ mission "Secure Transport Job (Secret) [2]"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
-		distance 1
+		distance 2 7
 		attributes "deep"
 		not planet "Valhalla"
 		not attributes "station" "moon"
@@ -504,7 +504,7 @@ mission "Secure Transport Job (Secret) [3]"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
-		distance 1
+		distance 2 7
 		attributes "deep"
 		not planet "Valhalla"
 		not attributes "station" "moon"
@@ -536,7 +536,7 @@ mission "Secure Transport Job (Secret) [4]"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
-		distance 1
+		distance 2 7
 		attributes "deep"
 		not planet "Valhalla"
 		not attributes "station" "moon"
@@ -637,7 +637,7 @@ mission "Secure Transport Job (Basic) [0]"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
-		distance 1
+		distance 2 7
 		attributes "deep"
 		not planet "Valhalla"
 		not attributes "station" "moon"
@@ -668,7 +668,7 @@ mission "Secure Transport Job (Basic) [1]"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
-		distance 1
+		distance 2 7
 		attributes "deep"
 		not planet "Valhalla"
 		not attributes "station" "moon"
@@ -699,7 +699,7 @@ mission "Secure Transport Job (Deep Security) [0]"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
-		distance 1
+		distance 2 7
 		attributes "deep"
 		not planet "Valhalla"
 		not attributes "station" "moon"
@@ -730,7 +730,7 @@ mission "Secure Transport Job (Deep Security) [1]"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
-		distance 1
+		distance 2 7
 		attributes "deep"
 		not planet "Valhalla"
 		not attributes "station" "moon"
@@ -852,7 +852,7 @@ mission "Transport Consultants (Deep Security) [0]"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
-		distance 1
+		distance 2 7
 		attributes "deep"
 		attributes "urban"
 		not attributes "station" "moon"
@@ -883,7 +883,7 @@ mission "Transport Consultants (Deep Security) [1]"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
-		distance 1
+		distance 2 7
 		attributes "deep"
 		attributes "urban"
 		not attributes "station" "moon"
@@ -914,7 +914,7 @@ mission "Urgent Deep Sec Package"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
-		distance 1
+		distance 2 7
 		attributes "deep"
 		not planet "Valhalla"
 		not attributes "station" "moon"
@@ -944,7 +944,7 @@ mission "Urgent Deep Sec Consultants [0]"
 		attributes "deep"
 		not attributes "station" "moon"
 	destination
-		distance 1
+		distance 2 7
 		attributes "deep"
 		attributes "urban"
 		not attributes "station" "moon"
@@ -971,7 +971,7 @@ mission "Urgent Deep Sec Consultants [1]"
 	to offer
 		random < 5
 	source
-		near "Epsilon Leonis" 1
+		near "Epsilon Leonis" 2 7
 		attributes "deep"
 		not attributes "station" "moon"
 	destination "Valhalla"
