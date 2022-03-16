@@ -9,12 +9,14 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 hazard "Ember Waste Base Heat"
+	"not blast"
 	"duration" 1 200
 	"strength" 0.25 1.75
 	weapon
 		"relative heat damage" 0.00035
 
 hazard "Ember Waste Base Storm"
+	"not blast"
 	"duration" 300 1500
 	"strength" 1 3
 	"environmental effect" "ion hazard" 10

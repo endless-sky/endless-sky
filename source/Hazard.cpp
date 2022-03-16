@@ -34,6 +34,10 @@ void Hazard::Load(const DataNode &node)
 			LoadWeapon(child);
 		else if(key == "constant strength")
 			deviates = false;
+		else if(key == "around flagship")
+			aroundFlagship = true;
+		else if(key == "not blast")
+			isBlast = false;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping hazard attribute with no value specified:");
 		else if(key == "period")
@@ -58,8 +62,6 @@ void Hazard::Load(const DataNode &node)
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			environmentalEffects[GameData::Effects().Get(child.Token(1))] += count;
 		}
-		else if(key == "around flagship")
-			aroundFlagship = true;
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -121,6 +123,12 @@ double Hazard::RandomStrength() const
 	return minStrength + (maxStrength <= minStrength ? 0. : (maxStrength - minStrength) * Random::Real());
 }
 
+
+
+bool Hazard::IsBlast() const
+{
+	return isBlast;
+}
 
 
 // Checks if this applies in the same way on the entire system.
