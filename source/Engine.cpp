@@ -1112,11 +1112,12 @@ void Engine::SetTestContext(TestContext &newTestContext)
 
 
 // Select the object the player clicked on.
-void Engine::Click(const Point &from, const Point &to, bool hasShift)
+void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasControl, bool hasLAlt)
 {
 	// First, see if this is a click on an escort icon.
-	doClickNextStep = true;
 	this->hasShift = hasShift;
+	this->hasControl = hasControl;
+	this->hasLAlt = hasLAlt;
 	isRightClick = false;
 
 	// Determine if the left-click was within the radar display.
@@ -1127,6 +1128,13 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift)
 		isRadarClick = true;
 	else
 		isRadarClick = false;
+	
+	if(Preferences::Get("Mouse movement") && (Preferences::Get(".: Alt") ? !hasLAlt : hasLAlt)){
+		if (Preferences::Get(".: [LMB/RMB]")){player.FlagshipPtr()->SetMouseFiring(true);}
+		else {player.FlagshipPtr()->SetMouseThrusting(true);}
+	}
+	else
+		doClickNextStep = true;
 
 	clickPoint = isRadarClick ? from - radarCenter : from;
 	if(isRadarClick)
@@ -1139,11 +1147,19 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift)
 
 
 
-void Engine::RClick(const Point &point)
+void Engine::RClick(const Point &point, bool hasControl, bool HasLAlt)
 {
-	doClickNextStep = true;
 	hasShift = false;
+	this->hasControl = hasControl;
+	this->hasLAlt = hasLAlt;
 	isRightClick = true;
+	
+	if(Preferences::Get("Mouse movement") && (Preferences::Get(".: Alt") ? !hasLAlt : hasLAlt)){
+		if (!Preferences::Get(".: [LMB/RMB]")){player.FlagshipPtr()->SetMouseFiring(true);}
+		else {player.FlagshipPtr()->SetMouseThrusting(true);}
+	}
+	else
+		doClickNextStep = true;
 
 	// Determine if the right-click was within the radar display, and if so, rescale.
 	const Interface *hud = GameData::Interfaces().Get("hud");
