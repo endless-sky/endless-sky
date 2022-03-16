@@ -1821,7 +1821,69 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				angle += commands.Turn() * TurnRate() * slowMultiplier;
 			}
 		}
-		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
+		else if (Ship::IsSpecial() && Ship::IsYours() && Preferences::Get("Mouse movement"))
+			{
+				double tempAngle = (Rad2Deg*(atan(-UI::GetMouse().Y()/UI::GetMouse().X())));
+					if (UI::GetMouse.().X() < 0){
+						tempAngle = -90 - tempAngle;
+					}
+					else {
+						tempAngle = 90 - tempAngle;
+					}
+				double HelpMePlease = fabs((angle.Degrees() + 180)-(tempAngle + 180));
+				double PleaseHelpMe = (HelpMePlease < 360 - HelpMePlease) ? (HelpMePlease) : (360 - HelpMePlease);
+				double mouseMultiplier = pow((1 + (PleaseHelpMe/180)),6);
+				// Check if we are able to turn.
+				double cost = attributes.Get("turning energy");
+				if(energy < cost * mouseMultiplier)
+					mouseMultiplier = (mouseMultiplier * energy / (cost * mouseMultiplier));
+
+				cost = attributes.Get("turning shields");
+				if(shields < cost * mouseMultiplier)
+					mouseMultiplier = (mouseMultiplier * energy / (cost * mouseMultiplier));
+
+				cost = attributes.Get("turning hull");
+				if(hull < cost * mouseMultiplier)
+					mouseMultiplier = (mouseMultiplier * energy / (cost * mouseMultiplier));
+
+				cost = attributes.Get("turning fuel");
+				if(fuel < cost * mouseMultiplier)
+					mouseMultiplier = (mouseMultiplier * energy / (cost * mouseMultiplier));
+
+				cost = -attributes.Get("turning heat");
+				if(fuel < cost * mouseMultiplier)
+					mouseMultiplier = (mouseMultiplier * energy / (cost * mouseMultiplier));
+			
+				energy -= attributes.Get("turning energy") * mouseMultiplier;
+				heat += attributes.Get("turning heat") * mouseMultiplier;
+				shields -= attributes.Get("turning shields") * mouseMultiplier;
+				hull -= attributes.Get("turning hull") * mouseMultiplier;
+				fuel -= attributes.Get("turning fuel") * mouseMultiplier;
+				discharge += attributes.Get("turning discharge") * mouseMultiplier;
+				corrosion += attributes.Get("turning corrosion") * mouseMultiplier;
+				ionization += attributes.Get("turning ion") * mouseMultiplier;
+				leakage += attributes.Get("turning leakage") * mouseMultiplier;
+				burning += attributes.Get("turning burn") * mouseMultiplier;
+				slowness += attributes.Get("turning slowing") * mouseMultiplier;
+				disruption += attributes.Get("turning disruption") * mouseMultiplier;
+				if ( HelpMePlease < TurnRate() * slowMultiplier * mouseMultiplier){
+					angle = tempAngle;
+				}
+				else if (HelpMePlease > 180){
+					if (angle.Degrees() < tempAngle){
+						angle -= TurnRate() * slowMultiplier * mouseMultiplier;
+					}
+					else{
+						angle += TurnRate() * slowMultiplier * mouseMultiplier;
+					}
+				}
+				else
+				{
+					angle += ((angle.Degrees() < tempAngle) ? 1 : -1) * TurnRate() * slowMultiplier * mouseMultiplier;
+				}
+
+			}
+		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK) | Ship::isMouseThrusting;
 		double thrust = 0.;
 		if(thrustCommand)
 		{
@@ -2748,6 +2810,30 @@ bool Ship::IsThrusting() const
 bool Ship::IsReversing() const
 {
 	return isReversing;
+}
+
+
+bool Ship::IsMouseThrusting() const
+{
+	return isMouseThrusting;
+}
+
+
+bool Ship::IsMouseFiring() const
+{
+	return isMouseFiring;
+}
+
+
+void Ship::SetMouseThrusting(bool on)
+{
+	isMouseThrusting = on;
+}
+
+
+void Ship::SetMouseFiring(bool on)
+{
+	isMouseFiring = on;
 }
 
 
