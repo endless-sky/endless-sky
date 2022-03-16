@@ -85,8 +85,8 @@ public:
 	void SetTestContext(TestContext &newTestContext);
 
 	// Select the object the player clicked on.
-	void Click(const Point &from, const Point &to, bool hasShift);
-	void RClick(const Point &point);
+	void Click(const Point &from, const Point &to, bool hasShift, bool hasControl, bool hasLAlt);
+	void RClick(const Point &point, bool hasCtrl, bool hasLAlt);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
 
 	// Break targeting on all projectiles between the player and the given
