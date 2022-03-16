@@ -545,8 +545,7 @@ mission "Secure Transport Job (Secret) [4]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment
-		payment 9000
+		payment 3000 900
 		"reputation: Deep Security" += 0.5
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
