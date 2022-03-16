@@ -64,13 +64,14 @@ const Command Command::MAP(1uL << 18, "View star map");
 const Command Command::INFO(1uL << 19, "View player info");
 const Command Command::FULLSCREEN(1uL << 20, "Toggle fullscreen");
 const Command Command::FASTFORWARD(1uL << 21, "Toggle fast-forward");
-const Command Command::FIGHT(1uL << 22, "Fleet: Fight my target");
-const Command Command::GATHER(1uL << 23, "Fleet: Gather around me");
-const Command Command::HOLD(1uL << 24, "Fleet: Hold position");
-const Command Command::AMMO(1uL << 25, "Fleet: Toggle ammo usage");
-const Command Command::WAIT(1uL << 26, "");
-const Command Command::STOP(1ul << 27, "");
-const Command Command::SHIFT(1uL << 28, "");
+const Command Command::MOUSEMOVEMENT(1ul << 22, "Toggle mouse movement");
+const Command Command::FIGHT(1uL << 23, "Fleet: Fight my target");
+const Command Command::GATHER(1uL << 24, "Fleet: Gather around me");
+const Command Command::HOLD(1uL << 25, "Fleet: Hold position");
+const Command Command::AMMO(1uL << 26, "Fleet: Toggle ammo usage");
+const Command Command::WAIT(1uL << 27, "");
+const Command Command::STOP(1ul << 28, "");
+const Command Command::SHIFT(1uL << 29, "");
 
 
 
@@ -259,6 +260,7 @@ void Command::Load(const DataNode &node)
 			{"wait", Command::WAIT},
 			{"stop", Command::STOP},
 			{"shift", Command::SHIFT}
+			{"mouse", Command::MOUSEMOVEMENT}
 		};
 
 		auto it = lookup.find(node.Token(i));
