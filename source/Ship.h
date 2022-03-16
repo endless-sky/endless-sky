@@ -474,6 +474,8 @@ private:
 	bool isBoarding = false;
 	bool hasBoarded = false;
 	bool isThrusting = false;
+	bool isMouseThrusting = false;
+	bool isMouseFiring = false;
 	bool isReversing = false;
 	bool isSteering = false;
 	double steeringDirection = 0.;
