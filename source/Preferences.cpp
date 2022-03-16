@@ -32,6 +32,8 @@ namespace {
 	// Strings for ammo expenditure:
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
+	const string FLIP_MOUSE_CONTROLS = ".: [LMB/RMB]";
+	const string ALT_MOUSE_BEHAVIOUR = ".: Alt + Mouse";
 
 	const vector<double> ZOOMS = {.25, .35, .50, .70, 1.00, 1.40, 2.00};
 	int zoomIndex = 4;
@@ -64,6 +66,8 @@ void Preferences::Load()
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
+	settings[FLIP_MOUSE_CONTROLS] = true;
+	settings[ALT_MOUSE_BEHAVIOUR] = true;
 
 	DataFile prefs(Files::Config() + "preferences.txt");
 	for(const DataNode &node : prefs)
