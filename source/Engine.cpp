@@ -1414,7 +1414,7 @@ void Engine::CalculateStep()
 
 	// Step the weather.
 	for(Weather &weather : activeWeather)
-		weather.Step(newVisuals, flagship ? flagship->Position() : Point());
+		weather.Step(newVisuals, center);
 	Prune(activeWeather);
 
 	// Move the visuals.
