@@ -412,12 +412,11 @@ mission "Secure Transport Job (Secret) [0]"
 		"reputation: Deep Security" >= -50
 	source
 		attributes "deep"
-		not attributes "station" "moon"
 	destination
 		distance 2 7
 		attributes "deep"
 		not planet "Valhalla"
-		not attributes "station" "moon"
+		not attributes "station"
 	on accept
 		dialog phrase "secure package pickup"
 	on visit
@@ -440,12 +439,11 @@ mission "Secure Transport Job (Secret) [1]"
 		"reputation: Deep Security" >= -50
 	source
 		attributes "deep"
-		not attributes "station" "moon"
 	destination
 		distance 2 7
 		attributes "deep"
 		not planet "Valhalla"
-		not attributes "station" "moon"
+		not attributes "station"
 	on accept
 		dialog phrase "secure package pickup"
 	on visit
@@ -468,12 +466,11 @@ mission "Secure Transport Job (Secret) [2]"
 		"reputation: Deep Security" >= -50
 	source
 		attributes "deep"
-		not attributes "station" "moon"
 	destination
 		distance 2 7
 		attributes "deep"
 		not planet "Valhalla"
-		not attributes "station" "moon"
+		not attributes "station"
 	on accept
 		dialog phrase "secure package pickup"
 	on visit
@@ -496,12 +493,11 @@ mission "Secure Transport Job (Secret) [3]"
 		"reputation: Deep Security" >= -50
 	source
 		attributes "deep"
-		not attributes "station" "moon"
 	destination
 		distance 2 7
 		attributes "deep"
 		not planet "Valhalla"
-		not attributes "station" "moon"
+		not attributes "station"
 	on accept
 		dialog phrase "secure package pickup"
 	on visit
@@ -524,12 +520,11 @@ mission "Secure Transport Job (Secret) [4]"
 		"reputation: Deep Security" >= -50
 	source
 		attributes "deep"
-		not attributes "station" "moon"
 	destination
 		distance 2 7
 		attributes "deep"
 		not planet "Valhalla"
-		not attributes "station" "moon"
+		not attributes "station"
 	on accept
 		dialog phrase "secure package pickup"
 	on visit
@@ -546,10 +541,10 @@ mission "Deep Security Package Reveal"
 	invisible
 	source
 		attributes "deep"
-		not attributes "station" "moon"
+		not attributes "station"
 	to offer
-		"reputation: Deep Security" >= 20
-		"secure deep package" >= 15
+		"reputation: Deep Security" >= 40
+		"secure deep package" >= 20
 		"mystery cube" >= 5
 		not "deep security reveal"
 		or
@@ -621,12 +616,11 @@ mission "Secure Transport Job (Basic) [0]"
 		"reputation: Deep Security" >= -50
 	source
 		attributes "deep"
-		not attributes "station" "moon"
 	destination
 		distance 2 7
 		attributes "deep"
 		not planet "Valhalla"
-		not attributes "station" "moon"
+		not attributes "station"
 	on accept
 		dialog phrase "secure package pickup"
 	on visit
@@ -648,12 +642,11 @@ mission "Secure Transport Job (Basic) [1]"
 		"reputation: Deep Security" >= -50
 	source
 		attributes "deep"
-		not attributes "station" "moon"
 	destination
 		distance 2 7
 		attributes "deep"
 		not planet "Valhalla"
-		not attributes "station" "moon"
+		not attributes "station"
 	on accept
 		dialog phrase "secure package pickup"
 	on visit
@@ -672,15 +665,14 @@ mission "Secure Transport Job (Deep Security) [0]"
 	to offer
 		random < 20
 		has "deep security reveal"
-		"reputation: Deep Security" >= 20
+		"reputation: Deep Security" >= 40
 	source
 		attributes "deep"
-		not attributes "station" "moon"
 	destination
 		distance 2 7
 		attributes "deep"
 		not planet "Valhalla"
-		not attributes "station" "moon"
+		not attributes "station"
 	on accept
 		dialog phrase "secure package pickup"
 	on visit
@@ -699,15 +691,14 @@ mission "Secure Transport Job (Deep Security) [1]"
 	to offer
 		random < 20
 		has "deep security reveal"
-		"reputation: Deep Security" >= 20
+		"reputation: Deep Security" >= 40
 	source
 		attributes "deep"
-		not attributes "station" "moon"
 	destination
 		distance 2 7
 		attributes "deep"
 		not planet "Valhalla"
-		not attributes "station" "moon"
+		not attributes "station"
 	on accept
 		dialog phrase "secure package pickup"
 	on visit
@@ -727,9 +718,7 @@ mission "Deep Consultants"
 		not planet "Valhalla"
 	destination "Valhalla"
 	to offer
-		"reputation: Deep Security" >= 30
-		"secure deep package" >= 15
-		"mystery cube" >= 5
+		"reputation: Deep Security" >= 60
 		has "deep security reveal"
 		or
 			not "chosen sides"
@@ -817,15 +806,15 @@ mission "Transport Consultants (Deep Security) [0]"
 	to offer
 		random < 20
 		has "deep security consultants"
-		"reputation: Deep Security" >= 30
+		"reputation: Deep Security" >= 60
 	source
 		attributes "deep"
-		not attributes "station" "moon"
+		not attributes "station"
 	destination
 		distance 2 7
 		attributes "deep"
 		attributes "urban"
-		not attributes "station" "moon"
+		not attributes "station"
 	on accept
 		dialog phrase "stranded consultant pickup"
 	on visit
@@ -844,15 +833,15 @@ mission "Transport Consultants (Deep Security) [1]"
 	to offer
 		random < 20
 		has "deep security consultants"
-		"reputation: Deep Security" >= 30
+		"reputation: Deep Security" >= 60
 	source
 		attributes "deep"
-		not attributes "station" "moon"
+		not attributes "station"
 	destination
 		distance 2 7
 		attributes "deep"
 		attributes "urban"
-		not attributes "station" "moon"
+		not attributes "station"
 	on accept
 		dialog phrase "stranded consultant pickup"
 	on visit
@@ -873,15 +862,14 @@ mission "Urgent Deep Sec Package"
 	to offer
 		random < 2
 		has "deep security reveal"
-		"reputation: Deep Security" >= 20
+		"reputation: Deep Security" >= 40
 	source
 		attributes "deep"
-		not attributes "station" "moon"
 	destination
 		distance 2 7
 		attributes "deep"
 		not planet "Valhalla"
-		not attributes "station" "moon"
+		not attributes "station"
 	on offer
 		dialog `As you are walking through the spaceport, a man approaches you and flashes a Deep Security ID. "Greetings Captain <last>. We need someone to deliver this to <destination> by <date>, taking the most direct route possible."`
 	on visit
@@ -901,15 +889,14 @@ mission "Urgent Deep Sec Consultants [0]"
 	to offer
 		random < 1
 		has "deep security consultants"
-		"reputation: Deep Security" >= 30
+		"reputation: Deep Security" >= 60
 	source
 		attributes "deep"
-		not attributes "station" "moon"
 	destination
 		distance 2 7
 		attributes "deep"
 		attributes "urban"
-		not attributes "station" "moon"
+		not attributes "station"
 	on offer
 		dialog `As you are walking through the spaceport, a harried man approaches you, informing you that <bunks> Deep Security consultants, including himself, are in need of urgent transport to <destination> by <date>, leaving no time for stopovers.`
 	on visit
@@ -929,11 +916,11 @@ mission "Urgent Deep Sec Consultants [1]"
 	to offer
 		random < 1
 		has "deep security consultants"
-		"reputation: Deep Security" >= 30
+		"reputation: Deep Security" >= 60
 	source
 		near "Epsilon Leonis" 2 7
 		attributes "deep"
-		not attributes "station" "moon"
+		not attributes "station"
 	destination "Valhalla"
 	on offer
 		dialog `As you are walking through the spaceport, a harried man approaches you, informing you that <bunks> Deep Security consultants, including himself, are in need of urgent transport to <destination> by <date>, leaving no time for stopovers.`
