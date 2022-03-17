@@ -3244,7 +3244,7 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 void PlayerInfo::ForgetShip(const Ship &oldShip)
 {
 	const EsUuid &id = oldShip.UUID();
-	auto ship = find_if(giftedShips.begin(), giftedShips.end(),
+	auto shipToForget = find_if(giftedShips.begin(), giftedShips.end(),
 						[&id](const std::pair<const string, EsUuid> &shipId) { return id == shipId.second; });
 	if(ship != giftedShips.end())
 		giftedShips.erase(ship->first);
