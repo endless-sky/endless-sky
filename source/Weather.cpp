@@ -70,7 +70,7 @@ const Point &Weather::Origin() const
 
 
 // Create any environmental effects and decrease the lifetime of this weather.
-void Weather::Step(vector<Visual> &visuals, Point center)
+void Weather::Step(vector<Visual> &visuals, const Point &center)
 {
 	// Environmental effects are created by choosing a random angle and distance from
 	// their origin, then creating the effect there.
