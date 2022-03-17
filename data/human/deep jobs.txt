@@ -422,7 +422,7 @@ mission "Secure Transport Job (Secret) [0]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 3000 900
+		payment 3000 750
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
@@ -449,7 +449,7 @@ mission "Secure Transport Job (Secret) [1]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 3000 900
+		payment 3000 750
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
@@ -476,7 +476,7 @@ mission "Secure Transport Job (Secret) [2]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 3000 900
+		payment 3000 750
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
@@ -503,7 +503,7 @@ mission "Secure Transport Job (Secret) [3]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 3000 900
+		payment 3000 750
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
@@ -530,7 +530,7 @@ mission "Secure Transport Job (Secret) [4]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 3000 900
+		payment 3000 750
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
@@ -626,7 +626,7 @@ mission "Secure Transport Job (Basic) [0]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 3000 900
+		payment 3000 750
 		"reputation: Deep Security" += 1
 		dialog phrase "secure package dropoff payment"
 
@@ -652,7 +652,7 @@ mission "Secure Transport Job (Basic) [1]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 3000 900
+		payment 3000 750
 		"reputation: Deep Security" += 1
 		dialog phrase "secure package dropoff payment"
 
@@ -678,7 +678,7 @@ mission "Secure Transport Job (Deep Security) [0]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 5000 1500
+		payment 5000 1000
 		"reputation: Deep Security" += 1
 		dialog phrase "secure package dropoff payment"
 
@@ -704,7 +704,7 @@ mission "Secure Transport Job (Deep Security) [1]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 5000 1500
+		payment 5000 1000
 		"reputation: Deep Security" += 1
 		dialog phrase "secure package dropoff payment"
 
@@ -820,7 +820,7 @@ mission "Transport Consultants (Deep Security) [0]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 10000 600
+		payment 10000 300
 		"reputation: Deep Security" += 1
 		dialog phrase "stranded consultant dropoff payment"
 
@@ -847,7 +847,7 @@ mission "Transport Consultants (Deep Security) [1]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 10000 600
+		payment 10000 300
 		"reputation: Deep Security" += 1
 		dialog phrase "stranded consultant dropoff payment"
 
@@ -860,13 +860,13 @@ mission "Urgent Deep Sec Package"
 	minor
 	cargo "deep security package" 1
 	to offer
-		random < 2
+		random < 3
 		has "deep security reveal"
 		"reputation: Deep Security" >= 40
 	source
 		attributes "deep"
 	destination
-		distance 2 7
+		distance 6 7
 		attributes "deep"
 		not planet "Valhalla"
 		not attributes "station"
@@ -875,7 +875,7 @@ mission "Urgent Deep Sec Package"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 0 30000
+		payment 170000 10000
 		"reputation: Deep Security" += 1
 		dialog phrase "secure package dropoff payment"
 
@@ -893,7 +893,7 @@ mission "Urgent Deep Sec Consultants [0]"
 	source
 		attributes "deep"
 	destination
-		distance 2 7
+		distance 6 7
 		attributes "deep"
 		attributes "urban"
 		not attributes "station"
@@ -902,7 +902,7 @@ mission "Urgent Deep Sec Consultants [0]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 150000 1500
+		payment 450000 300
 		"reputation: Deep Security" += 1
 		dialog phrase "stranded consultant dropoff payment"
 
@@ -914,11 +914,11 @@ mission "Urgent Deep Sec Consultants [1]"
 	minor
 	passengers 2 6
 	to offer
-		random < 1
+		random < 3
 		has "deep security consultants"
 		"reputation: Deep Security" >= 60
 	source
-		near "Epsilon Leonis" 2 7
+		near "Epsilon Leonis" 3 4
 		attributes "deep"
 		not attributes "station"
 	destination "Valhalla"
@@ -927,6 +927,6 @@ mission "Urgent Deep Sec Consultants [1]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 150000 1500
+		payment 450000 300
 		"reputation: Deep Security" += 1
 		dialog phrase "stranded consultant dropoff payment"
