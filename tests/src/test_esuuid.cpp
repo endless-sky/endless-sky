@@ -241,18 +241,15 @@ SCENARIO( "Mapping identifiable collections", "[uuid][comparison][collections]" 
 		auto collection = std::map<std::string, EsUuid>{};
 		Identifiable first;
 		Identifiable second;
-		EsUuid otherId;
-		std::vector<Identifiable> items{ first, second };
 		std::string firstName = "one";
 		std::string secondName = "two";
-		collection.insert({ {firstName, first.id}, {secondName, second.id} });
+		collection.insert({ {firstName, EsUuid()}, {secondName, EsUuid()} });
 		WHEN( "we use strings to find the corresponding UUID in the collection" ) {
-			CHECK( collection.at(firstName) == first.id );
-			CHECK( collection.at(secondName) == second.id );
+			collection.at(firstName).clone(first.id);
+			collection.at(secondName).clone(second.id);
 			THEN( "we can use them to identify the items in a unique way" ) {
-				CHECK( items[0].id == first.id );
-				CHECK_FALSE( items[1].id == first.id );
-				CHECK_FALSE( otherId == first.id );
+				CHECK( collection.at(firstName) == first.id );
+				CHECK( collection.at(secondName) == second.id );
 			}
 		}
 	}
