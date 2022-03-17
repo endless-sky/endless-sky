@@ -207,7 +207,7 @@ private:
 	std::map<const Government *, std::weak_ptr<const Ship>> grudge;
 	int grudgeTime = 0;
 
-	CollisionSet shipCollisions;
+	CollisionSet<Ship> shipCollisions;
 
 	int alarmTime = 0;
 	double flash = 0.;

@@ -12,10 +12,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "CollisionSet.h"
 
+#include "AsteroidField.h"
 #include "Body.h"
 #include "Files.h"
 #include "Government.h"
 #include "Mask.h"
+#include "Minable.h"
 #include "Point.h"
 #include "Projectile.h"
 #include "Ship.h"
@@ -40,7 +42,8 @@ namespace {
 
 // Initialize a collision set. The cell size and cell count should both be
 // powers of two; otherwise, they are rounded down to a power of two.
-CollisionSet::CollisionSet(unsigned cellSize, unsigned cellCount)
+template <typename T>
+CollisionSet<T>::CollisionSet(unsigned cellSize, unsigned cellCount)
 {
 	// Right shift amount to convert from (x, y) location to grid (x, y).
 	SHIFT = 0u;
@@ -62,7 +65,8 @@ CollisionSet::CollisionSet(unsigned cellSize, unsigned cellCount)
 
 
 // Clear all objects in the set.
-void CollisionSet::Clear(int step)
+template <typename T>
+void CollisionSet<T>::Clear(int step)
 {
 	this->step = step;
 
@@ -77,7 +81,8 @@ void CollisionSet::Clear(int step)
 
 
 // Add an object to the set.
-void CollisionSet::Add(Body &body)
+template <typename T>
+void CollisionSet<T>::Add(T &body)
 {
 	// Calculate the range of (x, y) grid coordinates this object covers.
 	int minX = static_cast<int>(body.Position().X() - body.Radius()) >> SHIFT;
@@ -101,7 +106,8 @@ void CollisionSet::Add(Body &body)
 
 
 // Finish adding objects (and organize them into the final lookup table).
-void CollisionSet::Finish()
+template <typename T>
+void CollisionSet<T>::Finish()
 {
 	// Perform a partial sum to convert the counts of items in each bin into the
 	// index of the output element where that bin begins.
@@ -127,7 +133,8 @@ void CollisionSet::Finish()
 
 // Get the first object that collides with the given projectile. If a
 // "closest hit" value is given, update that value.
-Body *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
+template <typename T>
+T *CollisionSet<T>::Line(const Projectile &projectile, double *closestHit) const
 {
 	// What objects the projectile hits depends on its government.
 	const Government *pGov = projectile.GetGovernment();
@@ -142,7 +149,8 @@ Body *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
 
 // Check for collisions with a line, which may be a projectile's current
 // position or its entire expected trajectory (for the auto-firing AI).
-Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
+template <typename T>
+T *CollisionSet<T>::Line(const Point &from, const Point &to, double *closestHit,
 		const Government *pGov, const Body *target) const
 {
 	int x = from.X();
@@ -160,7 +168,7 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 	// hit" value was given, there is no need to check collisions farther out
 	// than that.
 	double closest = closestHit ? *closestHit : 1.;
-	Body *result = nullptr;
+	T *result = nullptr;
 
 	// Special case, very common: the projectile is contained in one grid cell.
 	// In this case, all the complicated code below can be skipped.
@@ -168,8 +176,8 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 	{
 		// Examine all objects in the current grid cell.
 		auto i = (gy & WRAP_MASK) * CELLS + (gx & WRAP_MASK);
-		vector<Entry>::const_iterator it = sorted.begin() + counts[i];
-		vector<Entry>::const_iterator end = sorted.begin() + counts[i + 1];
+		auto it = sorted.cbegin() + counts[i];
+		const auto end = sorted.cbegin() + counts[i + 1];
 		for( ; it != end; ++it)
 		{
 			// Skip objects that were put in this same grid cell only because
@@ -238,8 +246,8 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 	{
 		// Examine all objects in the current grid cell.
 		auto i = (gy & WRAP_MASK) * CELLS + (gx & WRAP_MASK);
-		vector<Entry>::const_iterator it = sorted.begin() + counts[i];
-		vector<Entry>::const_iterator end = sorted.begin() + counts[i + 1];
+		auto it = sorted.cbegin() + counts[i];
+		const auto end = sorted.cbegin() + counts[i + 1];
 		for( ; it != end; ++it)
 		{
 			// Skip objects that were put in this same grid cell only because
@@ -313,7 +321,8 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 
 
 // Get all objects within the given range of the given point.
-const vector<Body *> &CollisionSet::Circle(const Point &center, double radius) const
+template <typename T>
+const vector<T *> &CollisionSet<T>::Circle(const Point &center, double radius) const
 {
 	return Ring(center, 0., radius);
 }
@@ -322,7 +331,8 @@ const vector<Body *> &CollisionSet::Circle(const Point &center, double radius) c
 
 // Get all objects touching a ring with a given inner and outer range
 // centered at the given point.
-const vector<Body *> &CollisionSet::Ring(const Point &center, double inner, double outer) const
+template <typename T>
+const vector<T *> &CollisionSet<T>::Ring(const Point &center, double inner, double outer) const
 {
 	// Calculate the range of (x, y) grid coordinates this ring covers.
 	int minX = static_cast<int>(center.X() - outer) >> SHIFT;
@@ -331,7 +341,7 @@ const vector<Body *> &CollisionSet::Ring(const Point &center, double inner, doub
 	int maxY = static_cast<int>(center.Y() + outer) >> SHIFT;
 
 	// Keep track of which objects we've already considered.
-	set<const Body *> seen;
+	set<const T *> seen;
 	result.clear();
 	for(int y = minY; y <= maxY; ++y)
 	{
@@ -340,8 +350,8 @@ const vector<Body *> &CollisionSet::Ring(const Point &center, double inner, doub
 		{
 			auto gx = x & WRAP_MASK;
 			auto i = gy * CELLS + gx;
-			vector<Entry>::const_iterator it = sorted.begin() + counts[i];
-			vector<Entry>::const_iterator end = sorted.begin() + counts[i + 1];
+			auto it = sorted.cbegin() + counts[i];
+			const auto end = sorted.cbegin() + counts[i + 1];
 
 			for( ; it != end; ++it)
 			{
@@ -365,3 +375,10 @@ const vector<Body *> &CollisionSet::Ring(const Point &center, double inner, doub
 	}
 	return result;
 }
+
+
+
+// Instantiate the relevant CollisionSets that are used by the game.
+template class CollisionSet<AsteroidField::Asteroid>;
+template class CollisionSet<Minable>;
+template class CollisionSet<Ship>;

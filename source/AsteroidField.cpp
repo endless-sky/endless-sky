@@ -153,11 +153,11 @@ Body *AsteroidField::Collide(const Projectile &projectile, double *closestHit)
 	// very last collision check to be done, if a minable asteroid is the
 	// closest hit, it really is what the projectile struck - that is, we are
 	// not going to later find a ship or something else that is closer.
-	Body *body = minableCollisions.Line(projectile, closestHit);
-	if(body)
+	Minable *minable = minableCollisions.Line(projectile, closestHit);
+	if(minable)
 	{
-		hit = body;
-		reinterpret_cast<Minable *>(body)->TakeDamage(projectile);
+		hit = minable;
+		minable->TakeDamage(projectile);
 	}
 	return hit;
 }

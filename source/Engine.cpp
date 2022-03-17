@@ -2005,9 +2005,9 @@ void Engine::DoCollisions(Projectile &projectile)
 		// For weapons with a trigger radius, check if any detectable object will set it off.
 		double triggerRadius = projectile.GetWeapon().TriggerRadius();
 		if(triggerRadius)
-			for(const Body *body : shipCollisions.Circle(projectile.Position(), triggerRadius))
-				if(body == projectile.Target() || (gov->IsEnemy(body->GetGovernment())
-						&& reinterpret_cast<const Ship *>(body)->Cloaking() < 1.))
+			for(const Ship *ship : shipCollisions.Circle(projectile.Position(), triggerRadius))
+				if(ship == projectile.Target() || (gov->IsEnemy(ship->GetGovernment())
+						&& ship->Cloaking() < 1.))
 				{
 					closestHit = 0.;
 					break;
@@ -2016,7 +2016,7 @@ void Engine::DoCollisions(Projectile &projectile)
 		// If nothing triggered the projectile, check for collisions with ships.
 		if(closestHit > 0.)
 		{
-			Ship *ship = reinterpret_cast<Ship *>(shipCollisions.Line(projectile, &closestHit));
+			Ship *ship = shipCollisions.Line(projectile, &closestHit);
 			if(ship)
 			{
 				hit = ship->shared_from_this();
@@ -2055,9 +2055,8 @@ void Engine::DoCollisions(Projectile &projectile)
 			// Even friendly ships can be hit by the blast, unless it is a
 			// "safe" weapon.
 			Point hitPos = projectile.Position() + closestHit * projectile.Velocity();
-			for(Body *body : shipCollisions.Circle(hitPos, blastRadius))
+			for(Ship *ship : shipCollisions.Circle(hitPos, blastRadius))
 			{
-				Ship *ship = reinterpret_cast<Ship *>(body);
 				bool targeted = (projectile.Target() == ship);
 				if(isSafe && !targeted && !gov->IsEnemy(ship->GetGovernment()))
 					continue;
@@ -2109,11 +2108,8 @@ void Engine::DoWeather(Weather &weather)
 		// Get all ship bodies that are touching a ring defined by the hazard's min
 		// and max ranges at the hazard's origin. Any ship touching this ring takes
 		// hazard damage.
-		for(Body *body : shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange()))
-		{
-			Ship *hit = reinterpret_cast<Ship *>(body);
+		for(Ship *hit : shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange()))
 			hit->TakeDamage(visuals, damage.CalculateDamage(*hit), nullptr);
-		}
 	}
 }
 
@@ -2124,9 +2120,8 @@ void Engine::DoCollection(Flotsam &flotsam)
 {
 	// Check if any ship can pick up this flotsam. Cloaked ships cannot act.
 	Ship *collector = nullptr;
-	for(Body *body : shipCollisions.Circle(flotsam.Position(), 5.))
+	for(Ship *ship : shipCollisions.Circle(flotsam.Position(), 5.))
 	{
-		Ship *ship = reinterpret_cast<Ship *>(body);
 		if(!ship->CannotAct() && ship != flotsam.Source() && ship->GetGovernment() != flotsam.SourceGovernment()
 			&& ship->Cargo().Free() >= flotsam.UnitSize())
 		{
