@@ -95,7 +95,7 @@ mission "Mystery Cube Delivery Job [0]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"reputation: Deep Security" += 1
+		"reputation: Deep Security" += 2
 		"mystery cube" ++
 		payment 5000 1000
 		dialog phrase "deep mystery cube dropoff payment"
@@ -127,7 +127,7 @@ mission "Mystery Cube Delivery Job [1]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"reputation: Deep Security" += 1
+		"reputation: Deep Security" += 2
 		"mystery cube" ++
 		payment 5000 1000
 		dialog phrase "deep mystery cube dropoff payment"
@@ -159,7 +159,7 @@ mission "Mystery Cube Delivery Job [2]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"reputation: Deep Security" += 1
+		"reputation: Deep Security" += 2
 		"mystery cube" ++
 		payment 5000 1000
 		dialog phrase "deep mystery cube dropoff payment"
@@ -191,7 +191,7 @@ mission "Mystery Cube Delivery Job [3]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"reputation: Deep Security" += 1
+		"reputation: Deep Security" += 2
 		"mystery cube" ++
 		payment 5000 1000
 		dialog phrase "deep mystery cube dropoff payment"
@@ -223,7 +223,7 @@ mission "Mystery Cube Delivery Job Station"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		"reputation: Deep Security" += 1
+		"reputation: Deep Security" += 2
 		"mystery cube" ++
 		payment 5000 1000
 		dialog phrase "deep mystery cube dropoff station payment"
@@ -256,7 +256,7 @@ mission "Mystery Cube Retrieval Job"
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on complete
-		"reputation: Deep Security" += 1
+		"reputation: Deep Security" += 2
 		"mystery cube" ++
 		payment 5000 1000
 		dialog phrase "deep mystery cube dropoff payment"
@@ -424,7 +424,7 @@ mission "Secure Transport Job (Secret) [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 3000 900
-		"reputation: Deep Security" += 0.5
+		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
 
@@ -452,7 +452,7 @@ mission "Secure Transport Job (Secret) [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 3000 900
-		"reputation: Deep Security" += 0.5
+		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
 
@@ -480,7 +480,7 @@ mission "Secure Transport Job (Secret) [2]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 3000 900
-		"reputation: Deep Security" += 0.5
+		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
 
@@ -508,7 +508,7 @@ mission "Secure Transport Job (Secret) [3]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 3000 900
-		"reputation: Deep Security" += 0.5
+		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
 
@@ -536,7 +536,7 @@ mission "Secure Transport Job (Secret) [4]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 3000 900
-		"reputation: Deep Security" += 0.5
+		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
 
@@ -633,7 +633,7 @@ mission "Secure Transport Job (Basic) [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 3000 900
-		"reputation: Deep Security" += 0.5
+		"reputation: Deep Security" += 1
 		dialog phrase "secure package dropoff payment"
 
 mission "Secure Transport Job (Basic) [1]"
@@ -660,7 +660,7 @@ mission "Secure Transport Job (Basic) [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 3000 900
-		"reputation: Deep Security" += 0.5
+		"reputation: Deep Security" += 1
 		dialog phrase "secure package dropoff payment"
 
 mission "Secure Transport Job (Deep Security) [0]"
@@ -687,7 +687,7 @@ mission "Secure Transport Job (Deep Security) [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 1500
-		"reputation: Deep Security" += 0.5
+		"reputation: Deep Security" += 1
 		dialog phrase "secure package dropoff payment"
 
 mission "Secure Transport Job (Deep Security) [1]"
@@ -714,7 +714,7 @@ mission "Secure Transport Job (Deep Security) [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 1500
-		"reputation: Deep Security" += 0.5
+		"reputation: Deep Security" += 1
 		dialog phrase "secure package dropoff payment"
 
 
@@ -832,7 +832,7 @@ mission "Transport Consultants (Deep Security) [0]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 600
-		"reputation: Deep Security" += 0.5
+		"reputation: Deep Security" += 1
 		dialog phrase "stranded consultant dropoff payment"
 
 mission "Transport Consultants (Deep Security) [1]"
@@ -859,7 +859,7 @@ mission "Transport Consultants (Deep Security) [1]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 600
-		"reputation: Deep Security" += 0.5
+		"reputation: Deep Security" += 1
 		dialog phrase "stranded consultant dropoff payment"
 
 
@@ -888,7 +888,7 @@ mission "Urgent Deep Sec Package"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 0 30000
-		"reputation: Deep Security" += 0.5
+		"reputation: Deep Security" += 1
 		dialog phrase "secure package dropoff payment"
 
 mission "Urgent Deep Sec Consultants [0]"
@@ -916,7 +916,7 @@ mission "Urgent Deep Sec Consultants [0]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 150000 1500
-		"reputation: Deep Security" += 0.5
+		"reputation: Deep Security" += 1
 		dialog phrase "stranded consultant dropoff payment"
 
 mission "Urgent Deep Sec Consultants [1]"
@@ -941,5 +941,5 @@ mission "Urgent Deep Sec Consultants [1]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 150000 1500
-		"reputation: Deep Security" += 0.5
+		"reputation: Deep Security" += 1
 		dialog phrase "stranded consultant dropoff payment"
