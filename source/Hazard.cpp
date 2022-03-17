@@ -34,7 +34,7 @@ void Hazard::Load(const DataNode &node)
 			LoadWeapon(child);
 		else if(key == "constant strength")
 			deviates = false;
-		else if(key == "system wide")
+		else if(key == "system-wide")
 			systemWide = true;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping hazard attribute with no value specified:");

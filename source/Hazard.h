@@ -41,8 +41,8 @@ public:
 	double MinRange() const;
 	double MaxRange() const;
 	// Whether this hazard affects every ship in the system irrespective of its distance
-	// from the hazard origin. MinRange and MaxRange still get used for the generation of
-	// environmental effects.
+	// from the hazard origin. Environmental effects will be generated about the player's
+	// flagship. MinRange and MaxRange still get used for the generation of these effects.
 	bool SystemWide() const;
 
 	// Visuals to be created while this hazard is active.
