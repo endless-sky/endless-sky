@@ -71,13 +71,13 @@ const Point &Weather::Origin() const
 
 
 // Create any environmental effects and decrease the lifetime of this weather.
-void Weather::Step(vector<Visual> &visuals, const Ship *flagship)
+void Weather::Step(vector<Visual> &visuals, const Point *effectCenter)
 {
 	// Environmental effects are created by choosing a random angle and distance from
 	// their origin, then creating the effect there.
 	double minRange = hazard->MinRange();
 	// If it is systemwide, only draw around the flagship.
-	double maxRange = !hazard->SystemWide() ? hazard->MaxRange() : 5000.;
+	double maxRange = hazard->SystemWide() ? 5000. : hazard->MaxRange();
 
 	// Estimate the number of visuals to be generated this frame.
 	// MAYBE: create only a subset of possible effects per frame.
@@ -92,7 +92,7 @@ void Weather::Step(vector<Visual> &visuals, const Ship *flagship)
 		{
 			Point angle = Angle::Random().Unit();
 			double magnitude = (maxRange - minRange) * sqrt(Random::Real());
-			Point pos = ((hazard->SystemWide() && flagship) ? flagship->Position() : origin)
+			Point pos = ((hazard->SystemWide() && effectCenter) ? *effectCenter : origin)
 				+ (minRange + magnitude) * angle;
 			visuals.emplace_back(*effect.first, std::move(pos), Point(), Angle::Random());
 		}
