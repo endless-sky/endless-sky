@@ -29141,7 +29141,7 @@ planet "Second Cerulean"
 planet "Second Rose"
 	attributes kimek farming mining
 	landscape land/beach5
-	description `Second Rose is a warm planet, but a bit too conistently rainy for Kimek preferences. That, plus its relatively remote location, means that its population is low despite its fertile fields and fisheries: most Kimek prefer to live somewhere closer to their inner core of bustling metropolitan worlds.`
+	description `Second Rose is a warm planet, but a bit too consistently rainy for Kimek preferences. That, plus its relatively remote location, means that its population is low despite its fertile fields and fisheries: most Kimek prefer to live somewhere closer to their inner core of bustling metropolitan worlds.`
 	description `	The planet's crust is rich in metal, and in some areas mine shafts have been sunk two or three kilometers below the surface to tap the richest seams.`
 	spaceport `A surprising number of Saryds and Arachi are wandering through this spaceport, conversing with the locals and sampling the food that is served here while they wait either for transport off-world or for local flights to other parts of the planet's surface. Apparently this is something of a tourist destination.`
 	"required reputation" 15
