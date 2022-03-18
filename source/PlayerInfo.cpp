@@ -1410,14 +1410,14 @@ bool PlayerInfo::TakeOff(UI *ui)
 
 	// By now, all cargo should have been divvied up among your ships. So, any
 	// mission cargo or passengers left behind cannot be carried, and those
-	// missions have failed.
+	// missions have aborted.
 	vector<const Mission *> missionsToRemove;
 	for(const auto &it : cargo.MissionCargo())
 		if(it.second)
 		{
 			if(it.first->IsVisible())
 				Messages::Add("Mission \"" + it.first->Name()
-					+ "\" failed because you do not have space for the cargo."
+					+ "\" aborted because you do not have space for the cargo."
 						, Messages::Importance::Highest);
 			missionsToRemove.push_back(it.first);
 		}
@@ -1426,13 +1426,13 @@ bool PlayerInfo::TakeOff(UI *ui)
 		{
 			if(it.first->IsVisible())
 				Messages::Add("Mission \"" + it.first->Name()
-					+ "\" failed because you do not have enough passenger bunks free."
+					+ "\" aborted because you do not have enough passenger bunks free."
 						, Messages::Importance::Highest);
 			missionsToRemove.push_back(it.first);
 
 		}
 	for(const Mission *mission : missionsToRemove)
-		RemoveMission(Mission::FAIL, *mission, ui);
+		RemoveMission(Mission::ABORT, *mission, ui);
 
 	// Any ordinary cargo left behind can be sold.
 	int64_t income = 0;
