@@ -439,7 +439,7 @@ mission "Secure Transport Job (Secret) [1]"
 	cargo "secure package" 1
 	to offer
 		random < 20
-		not "deep security reveal""
+		not "deep security reveal"
 		"reputation: Deep Security" >= 0
 		"reputation: Deep Security" >= - "secure deep package" * 3
 	source
