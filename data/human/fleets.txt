@@ -61,6 +61,8 @@ fleet "Small Southern Merchants"
 		"Heavy Shuttle"
 	variant 2
 		"Heavy Shuttle (Armed)"
+	variant 4
+		"Heavy Shuttle (Reverse)"
 	variant 3
 		"Hauler III"
 	variant 5
@@ -213,6 +215,8 @@ fleet "Small Core Merchants"
 		"Heavy Shuttle"
 	variant 3
 		"Heavy Shuttle (Armed)"
+	variant 4
+		"Heavy Shuttle (Reverse)"
 	variant 1
 		"Flivver (Luxury)"
 	variant 1

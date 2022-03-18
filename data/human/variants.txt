@@ -1391,6 +1391,18 @@ ship "Heavy Shuttle" "Heavy Shuttle (Armed)"
 
 
 
+ship "Heavy Shuttle" "Heavy Shuttle (Reverse)"
+	outfits
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"X1100 Ion Reverse Thruster"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+
+
+
 ship "Lance" "Lance (Gatling)"
 	outfits
 		"Gatling Gun" 2
