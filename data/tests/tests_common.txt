@@ -597,7 +597,7 @@ test "Sell first ship"
 			key "s"
 		input
 			key "Return"
-		# Go back to main menu
+		# Go back to the planet menu.
 		input
 			key "l"
 
