@@ -409,9 +409,11 @@ mission "Secure Transport Job (Secret) [0]"
 	to offer
 		random < 25
 		not "deep security reveal"
-		"reputation: Deep Security" >= -50
+		"reputation: Deep Security" >= 0
+		"reputation: Deep Security" >= - "secure deep package" * 3
 	source
 		attributes "deep"
+		not attributes "station"
 	destination
 		distance 2 7
 		attributes "deep"
@@ -426,6 +428,8 @@ mission "Secure Transport Job (Secret) [0]"
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
+	on fail
+		"secure deep package" -= 3
 
 mission "Secure Transport Job (Secret) [1]"
 	name "Secure delivery to <planet>"
@@ -435,10 +439,12 @@ mission "Secure Transport Job (Secret) [1]"
 	cargo "secure package" 1
 	to offer
 		random < 20
-		not "deep security reveal"
-		"reputation: Deep Security" >= -50
+		not "deep security reveal""
+		"reputation: Deep Security" >= 0
+		"reputation: Deep Security" >= - "secure deep package" * 3
 	source
 		attributes "deep"
+		not attributes "station"
 	destination
 		distance 2 7
 		attributes "deep"
@@ -453,6 +459,8 @@ mission "Secure Transport Job (Secret) [1]"
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
+	on fail
+		"secure deep package" -= 3
 
 mission "Secure Transport Job (Secret) [2]"
 	name "Secure delivery to <planet>"
@@ -463,9 +471,11 @@ mission "Secure Transport Job (Secret) [2]"
 	to offer
 		random < 20
 		not "deep security reveal"
-		"reputation: Deep Security" >= -50
+		"reputation: Deep Security" >= 0
+		"reputation: Deep Security" >= - "secure deep package" * 3
 	source
 		attributes "deep"
+		not attributes "station"
 	destination
 		distance 2 7
 		attributes "deep"
@@ -480,6 +490,8 @@ mission "Secure Transport Job (Secret) [2]"
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
+	on fail
+		"secure deep package" -= 3
 
 mission "Secure Transport Job (Secret) [3]"
 	name "Secure delivery to <planet>"
@@ -490,9 +502,11 @@ mission "Secure Transport Job (Secret) [3]"
 	to offer
 		random < 20
 		not "deep security reveal"
-		"reputation: Deep Security" >= -50
+		"reputation: Deep Security" >= 0
+		"reputation: Deep Security" >= - "secure deep package" * 3
 	source
 		attributes "deep"
+		not attributes "station"
 	destination
 		distance 2 7
 		attributes "deep"
@@ -507,6 +521,8 @@ mission "Secure Transport Job (Secret) [3]"
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
+	on fail
+		"secure deep package" -= 3
 
 mission "Secure Transport Job (Secret) [4]"
 	name "Secure delivery to <planet>"
@@ -517,9 +533,11 @@ mission "Secure Transport Job (Secret) [4]"
 	to offer
 		random < 20
 		not "deep security reveal"
-		"reputation: Deep Security" >= -50
+		"reputation: Deep Security" >= 0
+		"reputation: Deep Security" >= - "secure deep package" * 3
 	source
 		attributes "deep"
+		not attributes "station"
 	destination
 		distance 2 7
 		attributes "deep"
@@ -534,6 +552,8 @@ mission "Secure Transport Job (Secret) [4]"
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
+	on fail
+		"secure deep package" -= 3
 
 
 mission "Deep Security Package Reveal"
@@ -613,9 +633,11 @@ mission "Secure Transport Job (Basic) [0]"
 	to offer
 		random < 50
 		has "deep security reveal"
-		"reputation: Deep Security" >= -50
+		"reputation: Deep Security" >= 0
+		"reputation: Deep Security" >= - "secure deep package" * 3
 	source
 		attributes "deep"
+		not attributes "station"
 	destination
 		distance 2 7
 		attributes "deep"
@@ -628,7 +650,10 @@ mission "Secure Transport Job (Basic) [0]"
 	on complete
 		payment 3000 750
 		"reputation: Deep Security" += 1
+		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
+	on fail
+		"secure deep package" -= 3
 
 mission "Secure Transport Job (Basic) [1]"
 	name "Secure delivery to <planet>"
@@ -639,9 +664,11 @@ mission "Secure Transport Job (Basic) [1]"
 	to offer
 		random < 50
 		has "deep security reveal"
-		"reputation: Deep Security" >= -50
+		"reputation: Deep Security" >= 0
+		"reputation: Deep Security" >= - "secure deep package" * 3
 	source
 		attributes "deep"
+		not attributes "station"
 	destination
 		distance 2 7
 		attributes "deep"
@@ -654,7 +681,10 @@ mission "Secure Transport Job (Basic) [1]"
 	on complete
 		payment 3000 750
 		"reputation: Deep Security" += 1
+		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
+	on fail
+		"secure deep package" -= 3
 
 mission "Secure Transport Job (Deep Security) [0]"
 	name "Deep Security delivery to <planet>"
@@ -666,8 +696,10 @@ mission "Secure Transport Job (Deep Security) [0]"
 		random < 20
 		has "deep security reveal"
 		"reputation: Deep Security" >= 40
+		"secure deep package" >= 20
 	source
 		attributes "deep"
+		not attributes "station"
 	destination
 		distance 2 7
 		attributes "deep"
@@ -680,7 +712,10 @@ mission "Secure Transport Job (Deep Security) [0]"
 	on complete
 		payment 5000 1000
 		"reputation: Deep Security" += 1
+		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
+	on fail
+		"secure deep package" -= 5
 
 mission "Secure Transport Job (Deep Security) [1]"
 	name "Deep Security delivery to <planet>"
@@ -692,8 +727,10 @@ mission "Secure Transport Job (Deep Security) [1]"
 		random < 20
 		has "deep security reveal"
 		"reputation: Deep Security" >= 40
+		"secure deep package" >= 20
 	source
 		attributes "deep"
+		not attributes "station"
 	destination
 		distance 2 7
 		attributes "deep"
@@ -706,7 +743,10 @@ mission "Secure Transport Job (Deep Security) [1]"
 	on complete
 		payment 5000 1000
 		"reputation: Deep Security" += 1
+		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
+	on fail
+		"secure deep package" -= 5
 
 
 mission "Deep Consultants"
@@ -719,6 +759,7 @@ mission "Deep Consultants"
 	destination "Valhalla"
 	to offer
 		"reputation: Deep Security" >= 60
+		"secure deep package" >= 30
 		has "deep security reveal"
 		or
 			not "chosen sides"
@@ -807,6 +848,7 @@ mission "Transport Consultants (Deep Security) [0]"
 		random < 20
 		has "deep security consultants"
 		"reputation: Deep Security" >= 60
+		"secure deep package" >= 30
 	source
 		attributes "deep"
 		not attributes "station"
@@ -822,7 +864,10 @@ mission "Transport Consultants (Deep Security) [0]"
 	on complete
 		payment 10000 300
 		"reputation: Deep Security" += 1
+		"secure deep package" ++
 		dialog phrase "stranded consultant dropoff payment"
+	on fail
+		"secure deep package" -= 7
 
 mission "Transport Consultants (Deep Security) [1]"
 	name "Transport Deep Security consultants"
@@ -834,6 +879,7 @@ mission "Transport Consultants (Deep Security) [1]"
 		random < 20
 		has "deep security consultants"
 		"reputation: Deep Security" >= 60
+		"secure deep package" >= 30
 	source
 		attributes "deep"
 		not attributes "station"
@@ -849,7 +895,10 @@ mission "Transport Consultants (Deep Security) [1]"
 	on complete
 		payment 10000 300
 		"reputation: Deep Security" += 1
+		"secure deep package" ++
 		dialog phrase "stranded consultant dropoff payment"
+	on fail
+		"secure deep package" -= 7
 
 
 mission "Urgent Deep Sec Package"
@@ -863,6 +912,7 @@ mission "Urgent Deep Sec Package"
 		random < 3
 		has "deep security reveal"
 		"reputation: Deep Security" >= 40
+		"secure deep package" >= 20
 	source
 		attributes "deep"
 	destination
@@ -877,7 +927,10 @@ mission "Urgent Deep Sec Package"
 	on complete
 		payment 30000 1000
 		"reputation: Deep Security" += 1
+		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
+	on fail
+		"secure deep package" -= 7
 
 mission "Urgent Deep Sec Consultants [0]"
 	name "Rush Deep Security Consultants"
@@ -890,6 +943,7 @@ mission "Urgent Deep Sec Consultants [0]"
 		random < 1
 		has "deep security consultants"
 		"reputation: Deep Security" >= 60
+		"secure deep package" >= 30
 	source
 		attributes "deep"
 	destination
@@ -904,7 +958,10 @@ mission "Urgent Deep Sec Consultants [0]"
 	on complete
 		payment 60000 300
 		"reputation: Deep Security" += 1
+		"secure deep package" ++
 		dialog phrase "stranded consultant dropoff payment"
+	on fail
+		"secure deep package" -= 9
 
 mission "Urgent Deep Sec Consultants [1]"
 	name "Rush Deep Security Consultants"
@@ -917,6 +974,7 @@ mission "Urgent Deep Sec Consultants [1]"
 		random < 3
 		has "deep security consultants"
 		"reputation: Deep Security" >= 60
+		"secure deep package" >= 30
 	source
 		near "Epsilon Leonis" 3 4
 		attributes "deep"
@@ -929,4 +987,7 @@ mission "Urgent Deep Sec Consultants [1]"
 	on complete
 		payment 60000 300
 		"reputation: Deep Security" += 1
+		"secure deep package" ++
 		dialog phrase "stranded consultant dropoff payment"
+	on fail
+		"secure deep package" -= 9
