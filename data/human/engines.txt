@@ -88,9 +88,9 @@ outfit "X1700 Ion Thruster"
 	category "Engines"
 	"cost" 12000
 	thumbnail "outfit/tiny ion thruster"
-	"mass" 16
-	"outfit space" -16
-	"engine capacity" -16
+	"mass" 15
+	"outfit space" -15
+	"engine capacity" -15
 	"thrust" 6.0
 	"thrusting energy" .6
 	"thrusting heat" .9
@@ -601,9 +601,9 @@ outfit "X1100 Ion Reverse Thruster"
 	category "Engines"
 	"cost" 12000
 	thumbnail "outfit/reverse thruster ion"
-	"mass" 16
-	"outfit space" -16
-	"weapon capacity" -16
+	"mass" 15
+	"outfit space" -15
+	"weapon capacity" -15
 	"reverse thrust" 6.0
 	"reverse thrusting energy" .6
 	"reverse thrusting heat" .9
