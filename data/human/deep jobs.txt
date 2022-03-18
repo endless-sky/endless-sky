@@ -428,6 +428,8 @@ mission "Secure Transport Job (Secret) [0]"
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
+	on abort
+		# Nothing
 	on fail
 		"secure deep package" -= 3
 
@@ -459,6 +461,8 @@ mission "Secure Transport Job (Secret) [1]"
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
+	on abort
+		# Nothing
 	on fail
 		"secure deep package" -= 3
 
@@ -490,6 +494,8 @@ mission "Secure Transport Job (Secret) [2]"
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
+	on abort
+		# Nothing
 	on fail
 		"secure deep package" -= 3
 
@@ -521,6 +527,8 @@ mission "Secure Transport Job (Secret) [3]"
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
+	on abort
+		# Nothing
 	on fail
 		"secure deep package" -= 3
 
@@ -552,6 +560,8 @@ mission "Secure Transport Job (Secret) [4]"
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
+	on abort
+		# Nothing
 	on fail
 		"secure deep package" -= 3
 
@@ -652,6 +662,8 @@ mission "Secure Transport Job (Basic) [0]"
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
+	on abort
+		# Nothing
 	on fail
 		"secure deep package" -= 3
 
@@ -683,6 +695,8 @@ mission "Secure Transport Job (Basic) [1]"
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
+	on abort
+		# Nothing
 	on fail
 		"secure deep package" -= 3
 
@@ -714,6 +728,8 @@ mission "Secure Transport Job (Deep Security) [0]"
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
+	on abort
+		# Nothing
 	on fail
 		"secure deep package" -= 5
 
@@ -745,6 +761,8 @@ mission "Secure Transport Job (Deep Security) [1]"
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
+	on abort
+		# Nothing
 	on fail
 		"secure deep package" -= 5
 
@@ -866,6 +884,8 @@ mission "Transport Consultants (Deep Security) [0]"
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "stranded consultant dropoff payment"
+	on abort
+		# Nothing
 	on fail
 		"secure deep package" -= 7
 
@@ -897,6 +917,8 @@ mission "Transport Consultants (Deep Security) [1]"
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "stranded consultant dropoff payment"
+	on abort
+		# Nothing
 	on fail
 		"secure deep package" -= 7
 
@@ -929,6 +951,8 @@ mission "Urgent Deep Sec Package"
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
+	on abort
+		# Nothing
 	on fail
 		"secure deep package" -= 7
 
@@ -960,6 +984,8 @@ mission "Urgent Deep Sec Consultants [0]"
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "stranded consultant dropoff payment"
+	on abort
+		# Nothing
 	on fail
 		"secure deep package" -= 9
 
@@ -989,5 +1015,7 @@ mission "Urgent Deep Sec Consultants [1]"
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "stranded consultant dropoff payment"
+	on abort
+		# Nothing
 	on fail
 		"secure deep package" -= 9
