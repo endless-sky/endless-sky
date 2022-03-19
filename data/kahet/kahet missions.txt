@@ -323,13 +323,13 @@ mission "Ka'het: Patir Mystery 1"
 	landing
 	name "Visit <waypoints>"
 	description "Bring Taely with you to visit the <waypoints> system before going to <destination>."
-	blocked "To investigate the new system in Ka'het space, you'll need <capacity> available. Return when you have the space free."
 	source
 		government "Remnant"
 	destination "Aventine"
 	waypoint "Patir"
 	passengers 1
 	cargo "Ka'het tracking equipment" 5
+	blocked "To investigate the new system in Ka'het space, you'll need <capacity> available. Return when you have the space free."
 	to offer
 		has "Ka'het: Patir Mystery 0: failed"
 		not "remnant: dusk busy"
@@ -367,10 +367,7 @@ mission "Ka'het: Patir Mystery 1"
 			label mount
 			`	Taely replies, "I will gather a team to install the scanning system. We should be done in around an hour." She leaves the warehouse carrying a scanner, leaving you to prepare your ship for the upcoming mission.`
 				accept
-
-	on visit
-		dialog "You've arrived at <planet>, but your mission is not complete! Make sure Taely and all the equipment passes through <waypoints>. If they are on an escort, you must wait for it to arrive at <waypoints> before you return to <planet>."
-
+	
 	on enter "Patir"
 		conversation
 			`When you enter the system, Taely is already sitting at the scanner's control console. She starts counting loudly. "External deployment in three... two... one... trackers out. Initiating startup sequence." She begins typing commands on a keyboard. "This is going to take a while, <first>," she says, without taking her eyes off the screen. "It is not normally a one-person job."`
@@ -432,7 +429,9 @@ mission "Ka'het: Patir Mystery 1"
 				`	"What's the difference between Ka'sei and Fetri'sei?"`
 			`	"Well, there is no difference," Taely responds, "not in this case at least. The naming scheme the Builders used is a bit odd: we know that 'Ka', in their language, has a meaning close to the one of 'group', 'team' and sometimes even 'ring', although it can never be used without a name next to it. So we have 'group mar', 'group het', and so on. These are not limited to spaceships: the Ka'het, for example, includes both the biological spacecrafts around the Graveyard and the stations that constructs them, while until now we thought that the Ka'sei included only a handful of large scale construction projects. We know 'Fetri' to be a sort of spaceship sub-classification, but we are not aware of its exact meaning. So the Fetri'sei, or 'ship sei' are a part of the Ka'sei, or 'group sei.' To put it simply, it is similar to how all squares are rectangles, but not all rectangles are squares. It just so happens that everything in this system is classified as a Fetri'sei, so we can use either interchangeably.`
 			`	"I know a few people who will want to see all this. I will contact ahead and arrange to meet them on Aventine."`
-
+	
+	on visit
+		dialog "You've arrived at <planet>, but your mission is not complete! Make sure Taely and all the equipment passes through <waypoints>. If they are on an escort, you must wait for it to arrive at <waypoints> before you return to <planet>."
 	on complete
 		"remnant met dusk" ++
 		conversation
@@ -467,14 +466,13 @@ mission "Ka'het: Patir Mystery 1"
 			label end
 			`	"My plan is to take a short range high power scanner, install it on your ship, and map the entire asteroid to analyze the site where the Ka'sei are bringing the iridium. Everything happened so fast that I was not able to get the scanner I was looking for yet, but if you meet me in the spaceport's cafeteria in a few hours I promise everything will be ready!" Dusk is so excited that he leaves before you can respond.`
 
-
 mission "Ka'het: Patir Mystery 2"
 	name "Scanners in <system>"
 	description "Make detailed scans of the asteroid Dusk indicated in the <system> system."
-	blocked "You'll need <capacity> available to carry Dusk's scanner. Return here when you have enough free space."
 	source "Aventine"
 	destination "Builder Settlement"
 	cargo "short range scanner" 15
+	blocked "You'll need <capacity> available to carry Dusk's scanner. Return here when you have enough free space."
 	to offer
 		has "Ka'het: Patir Mystery 1: done"
 	on offer
@@ -527,7 +525,7 @@ mission "Ka'het: Patir Mystery 3"
 				accept
 			label near
 			apply
-				"exploration interest" += 1
+				"exploration interest" ++
 			`	You carefully position your ship above the structure and activate the sensors. As the scan proceeds, you monitor the position of the Ka'sei fleet. Some of the Fetri'sei nearest to you have stopped their standard activities and are just standing by, perhaps observing your actions the same way you are observing theirs. Luckily, after a few minutes the sensors complete their analysis of the structure and you are ready to return to <planet> unmolested.`
 				accept
 	on visit
@@ -539,10 +537,10 @@ mission "Ka'het: Patir Mystery 3"
 mission "Ka'het: Patir Mystery 4"
 	name "Visit the asteroid"
 	description "Bring Dusk to <system> to visit the ancient Builder settlement."
-	blocked "You'll need <capacity> available so Dusk can join you on your mission. Return with the available space to continue."
 	source "Aventine"
 	destination "Builder Settlement"
 	passengers 1
+	blocked "You'll need <capacity> available so Dusk can join you on your mission. Return with the available space to continue."
 	to offer
 		has "Ka'het: Patir Mystery 3: done"
 	on offer
@@ -662,6 +660,17 @@ mission "Ka'het: Patir Mystery 5"
 				`	"What should I do then?"`
 			`	"Well, I can only suggest to depart from here and set a route straight back to Aventine, while avoiding the Ka'sei. Sorry <first>, but it is preferable that we leave them alone." After all the risk you had to take, you cannot help but nod if this means getting as far from here as possible.`
 				launch
+	
+	npc save
+		government "Ka'sei"
+		personality plunders mining harvests staying
+		fleet
+			names "ka'sei"
+			cargo 3
+			variant
+				"Fetri'sei" 18
+				"Fetri'sei (Disable-able)" 6
+	
 	on enter "Patir"
 		dialog
 			`Soon after departing, your ship warns you that a large number of ships are targeting you. It appears the other Ka'sei are also going to attack.`
@@ -678,15 +687,6 @@ mission "Ka'het: Patir Mystery 5"
 		"reputation: Ka'sei" = 1
 		conversation
 			`You disembark from your ship with Dusk, discussing the events that occurred in Patir. "Thank you for keeping the Ka'sei alive, <first>. They might be exactly what our Builder research needs, and I really hope I can continue exploring that place with you in the future. I will study what we have gathered in the last days trying to find anything that could give us more clues about them." He waves at you and starts walking towards the exit from the spaceport. "I will contact you again when I find something worth looking at. May the Embers burn bright for you, <first>."`
-	npc save
-		government "Ka'sei"
-		personality plunders mining harvests staying
-		fleet
-			names "ka'sei"
-			cargo 3
-			variant
-				"Fetri'sei" 18
-				"Fetri'sei (Disable-able)" 6
 
 event "pacified ka'sei"
 	"reputation: Ka'sei" = 1

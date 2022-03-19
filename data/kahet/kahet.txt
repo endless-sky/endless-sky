@@ -161,6 +161,8 @@ phrase "ka'sei"
 	word
 		"'sei"
 
+
+
 # Hails:
 phrase "friendly ka'het"
 	word
@@ -605,6 +607,8 @@ phrase "hostile disabled ka'het"
 	word
 		"."
 
+
+
 fleet "Ka'het"
 	government "Ka'het"
 	names "ka'het"
@@ -789,6 +793,8 @@ fleet "Ka'sei"
 		"Fetri'sei"
 	variant
 		"Fetri'sei (Disable-able)"
+
+
 
 outfitter "Ka'het"
 	"Ka'het Nullifier"

@@ -516,6 +516,7 @@ ship "Faes'mar" "Faes'mar (Strong)"
 		"Ka'het MHD Generator"
 		"Ka'het Reserve Accumulator" 4
 		"Ka'het Compact Engine"
+
 ship "Fetri'sei"
 	plural "Fetri'seia"
 	sprite "ship/fetri'sei"
