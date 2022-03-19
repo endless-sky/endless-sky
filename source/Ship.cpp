@@ -2852,16 +2852,16 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 		if(bay.ship)
 			bay.ship->WasCaptured(capturer);
 	// If a flagship is captured, its escorts become independent.
-	for(const auto &it : escorts)
+	for(const auto &it : escorts.list)
 	{
 		shared_ptr<Ship> escort = it.lock();
 		if(escort)
 			escort->parent.reset();
 	}
 	// This ship should not care about its now-unallied escorts.
-	escorts.clear();
-	slowestEscort.reset();
-	escortsVelocity = -1.;
+	escorts.list.clear();
+	escorts.slowest.reset();
+	escorts.cruiseVelocity = -1.;
 }
 
 
@@ -3202,7 +3202,7 @@ double Ship::MaxReverseVelocity() const
 // non-carried escorts to catch up with this ship.
 double Ship::CruiseVelocity() const
 {
-	return escortsVelocity > 0. ? min(MaxVelocity(), escortsVelocity) : MaxVelocity();
+	return escorts.cruiseVelocity > 0. ? min(MaxVelocity(), escorts.cruiseVelocity) : MaxVelocity();
 }
 
 
@@ -3361,7 +3361,7 @@ bool Ship::CanCarry(const Ship &ship) const
 	if(!free)
 		return false;
 
-	for(const auto &it : escorts)
+	for(const auto &it : escorts.list)
 	{
 		auto escort = it.lock();
 		if(escort && escort.get() != &ship && escort->attributes.Category() == category
@@ -3795,7 +3795,7 @@ shared_ptr<Ship> Ship::GetParent() const
 
 const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 {
-	return escorts;
+	return escorts.list;
 }
 
 
@@ -3806,7 +3806,7 @@ void Ship::AddEscort(Ship &ship)
 {
 	auto sp = ship.shared_from_this();
 	TuneForEscort(sp);
-	escorts.push_back(std::move(sp));
+	escorts.list.push_back(std::move(sp));
 }
 
 
@@ -3816,20 +3816,20 @@ void Ship::RemoveEscort(const Ship &ship)
 	// Reset the cached value if we are removing the slowest escort, we will
 	// re-scan the list of escorts to set the escorts velocity based on
 	// remaining active escorts.
-	shared_ptr<Ship> slowest = slowestEscort.lock();
+	shared_ptr<Ship> slowest = escorts.slowest.lock();
 	bool findSlowest = (!slowest || (&ship == slowest.get()));
 	if(findSlowest){
-		escortsVelocity = -1.;
-		slowestEscort.reset();
+		escorts.cruiseVelocity = -1.;
+		escorts.slowest.reset();
 	}
 
-	auto it = escorts.begin();
-	while(it != escorts.end())
+	auto it = escorts.list.begin();
+	while(it != escorts.list.end())
 	{
 		auto escort = it->lock();
 		if(escort.get() == &ship)
 		{
-			it = escorts.erase(it);
+			it = escorts.list.erase(it);
 			// If we are not removing the slowest escort, then we don't
 			// need to finish the loop to tune all other escorts.
 			if(!findSlowest)
@@ -3851,16 +3851,16 @@ void Ship::TuneForEscorts()
 {
 	// Check if we have a valid slowest escort. If we have one, then we don't
 	// need to rescan for the next slowest escort.
-	shared_ptr<Ship> slowest = slowestEscort.lock();
+	shared_ptr<Ship> slowest = escorts.slowest.lock();
 	if(slowest && !slowest->IsDestroyed() && government == slowest->GetGovernment())
 		return;
 
 	// Reset this value, we will re-scan the list of escorts to set the
 	// escorts velocity based on remaining active escorts.
-	escortsVelocity = -1.;
-	slowestEscort.reset();
+	escorts.cruiseVelocity = -1.;
+	escorts.slowest.reset();
 
-	for(const auto &it: escorts)
+	for(const auto &it: escorts.list)
 	{
 		auto escort = it.lock();
 		if(escort)
@@ -3883,10 +3883,10 @@ void Ship::TuneForEscort(const std::shared_ptr<Ship> &ship)
 	if(!ship->CanBeCarried() && !ship->IsDestroyed() && government == ship->GetGovernment())
 	{
 		double eV = ship->MaxVelocity() * 0.9;
-		if(eV > 0. && (escortsVelocity <= 0. || (eV < escortsVelocity)))
+		if(eV > 0. && (escorts.cruiseVelocity <= 0. || (eV < escorts.cruiseVelocity)))
 		{
-			escortsVelocity = eV;
-			slowestEscort = ship;
+			escorts.cruiseVelocity = eV;
+			escorts.slowest = ship;
 		}
 	}
 }

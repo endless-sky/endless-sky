@@ -595,12 +595,14 @@ private:
 	std::weak_ptr<Flotsam> targetFlotsam;
 
 	// Links between escorts and parents.
-	std::vector<std::weak_ptr<Ship>> escorts;
 	std::weak_ptr<Ship> parent;
-
-	// Cached data from escorts; like the minimum of all maximum speeds of all escorts.
-	std::weak_ptr<Ship> slowestEscort;
-	double escortsVelocity = -1.;
+	struct EscortsStruct {
+		// The actual list of escorts.
+		std::vector<std::weak_ptr<Ship>> list;
+		// Cached data from escorts to determine the cruisespeed for landing.
+		std::weak_ptr<Ship> slowest;
+		double cruiseVelocity = -1.;
+	} escorts;
 };
 
 
