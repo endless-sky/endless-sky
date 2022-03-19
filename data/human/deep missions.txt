@@ -2989,7 +2989,7 @@ mission "Home for Skadenga 1"
 			label free
 			`	Despite using all your strength, your leg won't budge. The sizzling noise continues and you are overwhelmed with a sharp horrific burning sensation. Your eyes water and you scream out in pain for help and mercy.`
 			`	You keep pulling, trying to break free. The air thickens with the scent of your liquified foot, and something gives as you fall forward. You look down to see your leg missing from the knee down. You try to push it out of your mind as you desperately claw forward, trying to escape the gray-purple blob that is forming up behind you.`			
-			`	Try as you might, you can't cry out Hjlod's name; instead your screams are savage, hollow noises. You reach for her, you reach for anyone, but it's too late. The Ice-Slug has caught up to you, and you feel itd acidic tendrils wrapping around your remaining leg and lower torso. The pain is agonizing as your lower body begins to dissolve.`
+			`	Try as you might, you can't cry out Hjlod's name; instead your screams are savage, hollow noises. You reach for her, you reach for anyone, but it's too late. The Ice-Slug has caught up to you, and you feel its acidic tendrils wrapping around your remaining leg and lower torso. The pain is agonizing as your lower body begins to dissolve.`
 			`	You look up one last desperate time, hoping to see Hjlod coming to rescue you, but all you see a gray smudge on the horizon. A distant person who has long left you for dead. You are alone now with the Ice-Slug and the pain. You consider briefly your mistakes before you are dissolved and eaten.`
 				die
 			label travel
@@ -3370,10 +3370,11 @@ mission "Mani Refit"
 		not planet "Mani"
 	destination "Mani"
 	on offer
-		dialog
+		conversation
 			`Your inbox blinks with a new message from the Transport Union:`
 			`	The fleet is ready for its inspirational journey. Please return to Mani.`
 			`		-Jayden, Mani Administrator, Transport Union`
+				accept
 
 
 
@@ -3634,7 +3635,6 @@ mission "Home for Skadenga 8"
 
 
 mission "Home for Skadenga 9"
-	invisible
 	to offer
 		has "Home for Skadenga 8: done"
 	source "Muspel"
@@ -4035,7 +4035,8 @@ mission "Stone-Bearers to Nifel"
 
 
 mission "Hjlod Remembers Windblain"
-	invisible
+	name "Hjlod Remembers"
+	description `Hjlod wishes to meet with you again on <planet>.`
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not planet "Windblain"
@@ -4064,7 +4065,8 @@ mission "Hjlod Remembers Windblain"
 
 
 mission "Hjlod Remembers Nifel"
-	invisible
+	name "Hjlod Remembers"
+	description `Hjlod wishes to meet with you again on <planet>.`
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not planet "Nifel"
@@ -4094,7 +4096,7 @@ mission "Hjlod Remembers Nifel"
 
 
 mission "The Book of Skadenga"
-	invisible
+	minor
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
