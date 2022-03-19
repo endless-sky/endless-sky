@@ -2871,12 +2871,12 @@ mission "Home for Skadenga 1"
 			scene "scene/snowfield"
 			`	The uneventful journey to the boiling ice river of Slidr is suddenly interrupted when a deep tremor followed by a thunderous boom shakes the Ice-Crawler to its core and causes it to slip on the disturbed ice and snow. Somewhere outside, subsequent rumble starts to build rapidly. After Hjlod regains control of the crawler, she immediately veers away from the noise. "That vas Nifel-quake, and loud noise was avalanche, or landslide, maybe both. This is not good."`
 			`	Despite her calm demeanor, she wields the Ice-Crawler with reckless abandon as she tries to avoid the rumbling snow. The machine protests with creaks and whirrs and pops as it strains to claw itself out of the way faster than it has probably gone for hundreds of years. The closer the rumbling gets, the more difficulty Hjlod seems to have retaining traction.`
-			`	"I think-" Hjlod starts to say when a mountain of snow crashes into the Ice-Crawler with deafening force. All sense of travelling distance is lost as the snow blots out the windows and the crawler is dragged bumping and twisting over uneven terrain. A flash of light momentarily blinds you as you see a wire in the crawler come loose and touch your arm. You and Hjlod hold tight as you're tossed around until, eventually, the crawler grinds up against something reasonably solid and comes suddenly to a rest, partially on its side.`
+			`	"I think-" Hjlod starts to say when a mountain of snow crashes into the Ice-Crawler with deafening force. All sense of travelling distance is lost as the snow blots out the windows and the crawler is dragged bumping and twisting over uneven terrain. You and Hjlod hold tight as you're tossed around until, eventually, the crawler grinds up against something reasonably solid and comes suddenly to a rest, partially on its side.`
 			`	A few moments later, the rumbling finishes passing you by.`
 			choice
 				`	(Unbuckle your seatbelt and get yourself up.)`
-			`	As you move to unbuckle your seatbelt, you notice that your arm is marked by an oddly elaborate electric burn. By the time you are on your feet, Hjlod has already gathered up numerous supplies and is preparing to open the hatch and dig her way to the surface. She looks at you. "Nothing to vorry about. Happens all time. Vell, not really. First time this happen, but Hjlod not let you die, probably. I can lead us to settlement not far from here."`
-			`	She tosses you an old, scruffy jacket. "Valking in cold, good for health. Maybe not as far as ve must go, but you laugh about later. Good story to tell back home."`
+			`	By the time you are on your feet, Hjlod has already gathered up numerous supplies and is preparing to open the hatch and dig her way to the surface. She looks at you. "Nothing to vorry about. Happens all time. Vell, not really. First time this happen, but Hjlod not let you die, probably. I can lead us to settlement not far from here."`
+			`	She tosses you an old, scruffy jacket with a tear along one of its arms. "Valking in cold, good for health. Maybe not as far as ve must go, but you laugh about later. Good story to tell back home."`
 			choice
 				`	(Put on the jacket and follow Hjlod out onto the ice.)`
 					goto jacket
@@ -2898,7 +2898,7 @@ mission "Home for Skadenga 1"
 			`	There is no memory of what happens next. But somehow you must have crawled out of that ice buried Ice-Crawler, through the snow, and into the hatch of your ship, because the next thing you do remember is laying in your ship, warming up, and being glad that the ordeal is over.`
 				decline
 			label fixme
-			`	After hours of tinkering with the guts of the machine, you've managed to repair most of it without injuring yourself further. Now it all comes down to a sequence of wires. If you can plug these in correctly, the Ice-Crawler should start back up.`
+			`	After hours of tinkering with the guts of the machine, you manage to repair most of it, and all it costs you is one bad burn on your arm. Now, what it comes down to is a sequence of wires. If you can plug these in correctly, the Ice-Crawler should start back up.`
 			choice
 				`	(White, green, blue.)`
 					goto boom
@@ -3016,17 +3016,22 @@ mission "Home for Skadenga 1"
 			apply
 				set "Hjlodsaved"
 			choice
-				`	"Woah! What do you mean 'save us all'?"`
+				`	"Woah, woah, woah! What do you mean 'save us all'?"`
 					goto woah
 				`	"Your daughter? Hjlod? Is she alright?"`
 			`	The elderly woman smiles warmly. "It is good of you to ask. Thanks to you, Hjlod will be fine. Had you been any later, she would have lost her hands, or worse. But she is recovering now and will join us later."`
-			label withhjlod
 			choice
-				`	"Woah! What do you mean 'save us all'?"`
-					goto woah
+				`	"Woah, woah, woah! What do you mean 'save us all'?"`
 			label woah
 			`	The elderly woman opens her palms and spreads them wide. "This is village of Udainsakr. I am Ondurdis, or leader, and we are Skadenga, daughters of Skade, the Troll-Goddess of ice, mountains, and cold."`
-			`	"For nearly century we have been waiting for person who bore mark of Skade." She points a tattooed hand at the burn on your arm you received while in the Ice-Crawler. "It seems we have been waiting for you."`
+			`	"For nearly century we have been waiting for person who bore mark of Skade." She points a tattooed hand at the electric burn on your arm you received while repairing the Ice-Crawler. "It seems we have been waiting for you."`
+				goto woahafter
+			label withhjlod
+			choice
+				`	"Woah, woah, woah! What do you mean 'save us all'?"`
+			`	The elderly woman opens her palms and spreads them wide. "This is village of Udainsakr. I am Ondurdis, or leader, and we are Skadenga, daughters of Skade, the Troll-Goddess of ice, mountains, and cold."`
+			`	"For nearly century we have been waiting for person who bore mark of Skade." She points a tattooed hand at the ice burn on your arm you received while traveling through the snow. "It seems we have been waiting for you."`
+			label woahafter
 			choice
 				`	"What do you expect me to do?"`
 					goto expect
@@ -3316,7 +3321,7 @@ mission "Home for Skadenga 4"
 				`	"That's fantastic news! The Skakenga will need transport to Windblain."`
 				`	"They need to go to Windblain."`
 			`	A hush falls over the room, and both Braiden and Grayden look to Kaiden with confused expressions on their faces.`
-			`	"Wind. Blain." Kaiden says slowly. "Windblain. Are you sure that is the world these simple people wish to travel to? Maybe you got an invoice mixed up? Perhaps wrote the wrong name down?" Braiden and Grayden both silently nod.`
+			`	"Wind. Blain." Kaiden says slowly. "Wiiiindblaaain. Are you sure that is the world these simple people wish to travel to? Maybe you got an invoice mixed up? Perhaps wrote the wrong name down?" Braiden and Grayden both silently nod.`
 			choice
 				`	"Windblain. Yes. I am sure."`
 				`	"Did I stutter?"`
@@ -3333,6 +3338,7 @@ mission "Home for Skadenga 4"
 			`	Kaiden beams. "Brilliant. Just brilliant. I was just telling my colleagues here about what a great place Asgard would be for this tribe. The publicity will be huge. The universities will probably want to run various studies. There will be all sorts of government programs and initiatives there to help them accept the proper Deep culture and become productive citizens like the rest of us."`
 			`	Grayden, Braiden and Kaiden all start shaking each others' hands and congratulating each other on being part of something so inspirational. After their celebration is over, Kaiden turns back to you. "Our transport fleet is at your disposal. They are being refitted at Mani in the Avior system."`
 			`	The three stand up in unison. Grayden and Braiden leave, and Kaiden turns from the door. "We are so happy you stopped by today and gave us this opportunity to really give back to the needy communities out in our neighborhood." With that, they are all gone, and your escort returns to lead you out.`
+				decline
 
 
 
@@ -3370,11 +3376,10 @@ mission "Mani Refit"
 		not planet "Mani"
 	destination "Mani"
 	on offer
-		conversation
+		dialog
 			`Your inbox blinks with a new message from the Transport Union:`
 			`	The fleet is ready for its inspirational journey. Please return to Mani.`
 			`		-Jayden, Mani Administrator, Transport Union`
-				accept
 
 
 
@@ -3419,7 +3424,7 @@ mission "Home for Skadenga 7"
 	on offer
 		dialog
 			`The fleet touches down just outside the over-crowded village of Udainsakr. The landscape is filled with the gathered Skadenga.`
-			`	The Ondurdis approaches you. "Leaving is difficult, but all winters must come to end." As a section of her people board the ships, she adds, "I will be going on the first trip to Asgard, but I must rejoin my folk. Thank you for this, and we shall speak again at our new home."`
+			`	The Ondurdis approaches you. "Leaving is difficult, but all winters must come to end." As a section of her people board the ships, she adds, "I will be going on first trip to Asgard, but I must rejoin my folk. Thank you for this, and we shall speak again at our new home."`
 	npc accompany save
 		government "Deep Security"
 		personality timid escort
@@ -3445,7 +3450,7 @@ mission "Home for Skadenga 7"
 				`	"Your superiors!?"`
 			`	Carla grins. "The Census and Culture Bureau. I am one of their field agents. They are most pleased with how you handled this. Helping the Skadenga reintegrate into our culture is a big win for both the Bureau and the Skadenga.`
 			`	"Anyways, I just wanted to pass that on. I have lots of work to do, thanks to you." She winks and wanders into the crowd.`
-			`	You return to your ship to count your credits as you hear the rumble of the Transport Union ships as they head back to Nifel to pick up another load of the Skandega.`
+			`	You return to your ship to count your money as you hear the Transport Union ships engage their engines to pick up another load of the Skandega.`
 
 
 
@@ -3599,17 +3604,14 @@ event "hjlod waits again"
 
 
 mission "Skadenga Call 5"
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	landing
 	to offer
-		has "Skadenga Call 3: declined"
 		has "event: asgard hjlod"
 	on offer
 		payment 27
 		conversation
 			`You receive a message from the Census and Culture Bureau of the Deep. The Deep Citizen known as Hjlod has died. The cause of death appeared to be related to heavy substance abuse. The Bureau has determined that you are her closest relation and has forwarded you her entire inheritance: <payment>.`
-				decline
-
+			decline
 
 
 mission "Home for Skadenga 8"
@@ -3719,13 +3721,12 @@ mission "Home for Skadenga 10"
 		not planet "Muspel"
 	destination "Muspel"
 	on offer
-		conversation
+		dialog
 			`Your inbox blinks with a new message from Hroar on <planet>.`
 			`	'Everything is ready. Get back here.`
 			`				-Hroar`
 			`			CEO of Hardy Hroar's Haulers`
 			`			"We're an unstoppable force that has never met an immovable object!"`
-				accept
 
 
 
@@ -3790,7 +3791,7 @@ mission "Home for Skadenga 12"
 	on offer
 		dialog
 			`The fleet touches down just outside the crowded village of Udainsakr. The landscape is filled with the gathered Skadenga.`
-			`	The Ondurdis approaches you. "Leaving is difficult, but all winters must come to end." She watches as a section her people climb aboard the fleet. "I will be taking the first trip to Windblain, but I must rejoin my folk. Thank you for this, and we shall speak again at our new home."`
+			`	The Ondurdis approaches you. "Leaving is difficult, but all winters must come to end." She watches as a section her people climb aboard the fleet. "I will be taking first trip to Windblain, but I must rejoin my folk. Thank you for this, and we shall speak again at our new home."`
 			`	She leaves you with a warm smile in the wintry village.`
 				accept
 	npc accompany save
@@ -4042,12 +4043,11 @@ mission "Hjlod Remembers Windblain"
 		has "event: hjlod waits"
 		has "Hjlodsaved"
 	on offer
-		conversation
+		dialog
 			`Your inbox hums with a new message from <planet>:`
 			`	Dear <first>,` 
 			`	I never properly thanked you for saving my life on Nifel all those years ago. If you're ever in the neighborhood, please stop by <planet>.`
 			`				Signed, Hjlod`
-				accept
 	on complete
 		outfit "Tear of Skade"
 		conversation
