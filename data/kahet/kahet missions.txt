@@ -304,21 +304,16 @@ mission "Ka'het: Patir Reveal"
 		has "Remnant: Cognizance 19: done"
 	on offer
 		event "patir appears" 3
-		fail
-
-event "patir appears"
-	system "Patir"
-		remove hidden
-
-mission "Ka'het: Patir Mystery 0"
-	invisible
-	landing
 	on enter "Patir"
 		dialog
 			`As the jumping sequence comes to an end, you find yourself orbiting a small black hole, surrounded by nothing but countless asteroids and debris. Even more interesting is the fact that the asteroid belt appears to be populated by small spaceships, similar in appearance to the Ka'het that infest the nearby systems but at the same time unlike any of the types you had seen before. Perhaps the Remnant can tell you more about this system and its sudden appearance.`
 		fail
 	to complete
 		never
+
+event "patir appears"
+	system "Patir"
+		remove hidden
 
 mission "Ka'het: Patir Mystery 1"
 	landing
