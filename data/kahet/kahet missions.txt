@@ -246,7 +246,6 @@ mission "Ringworld Debris: Quarg"
 		has "Graveyard Label: offered"
 		has "First Contact: Quarg: offered"
 	on offer
-		fail "Ringworld Debris"
 		conversation
 			`Do you want to show the Quarg the piece of debris you found in the abandoned, empty system, and ask them what they know about it?`
 			choice
@@ -288,10 +287,12 @@ mission "Ringworld Debris: Quarg"
 			`	It doesn't seem too inclined on answering any more questions, and swiftly walks away.`
 				accept
 	on decline
+		fail "Ringworld Debris"
 		log "Asked the Quarg about the history of the Graveyard, and have learned about the previous inhabitants of the region, the Builders."
 		log "Factions" "Builders" `The Builders inhabited the Graveyard millennia ago, but have since become extinct. They developed some sort of weapon, called the "Ka'het," which stopped obeying their orders and rebelled against them.`
 		log "Factions" "Ka'het" `According to the Quarg, the Ka'het were initially a weapon created by the Builders, which then rebelled and led them to extinction. Even in the millennia that passed, they are still being produced in the Graveyard.`
 	on accept
+		fail "Ringworld Debris"
 		log "Asked the Quarg about the history of the Graveyard. Was told that the ringworld the Quarg had there was lost in their war with the Pug, and have learned about the previous inhabitants of the region, the Builders."
 		log "Factions" "Builders" `The Builders inhabited the Graveyard millennia ago, but have since become extinct. They developed some sort of weapon, called the "Ka'het," which stopped obeying their orders and rebelled against them.`
 		log "Factions" "Ka'het" `According to the Quarg, the Ka'het were initially a weapon created by the Builders, which then rebelled and led them to extinction. Even in the millennia that passed, they are still being produced in the Graveyard.`
