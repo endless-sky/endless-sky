@@ -482,11 +482,16 @@ mission "There Might Be Riots 1"
 	
 	on offer
 		conversation
-			`A woman in a well-tailored suit approaches you. "Captain <last>?" she asks. You nod. "My name is Becca," she says. "I'm a stage manager for a band, and the transport we had under contract bailed out on us. Any chance you could take us to <destination>? Given the circumstances, we can pay quite well."`
+			`A woman in a well-tailored suit approaches you. "Captain <last>?" You nod. "Are you available for a transport job?" she asks.`
+			choice
+				`	"What is it?"`
+				`	"Not right now."`
+					defer
+			`	"My name is Becca," she says. "I'm a stage manager for a band, and the transport we had under contract bailed out on us. Any chance you could take us to <destination>? Given the circumstances, we can pay quite well."`
 			choice
 				`	"Sure!"`
 				`	"Sorry, I'm not headed in that direction right now."`
-					defer
+					decline
 			`	"Great," she says, "I'll tell the boys to start loading their gear into your ship." About a half an hour later the road crew begins carting instruments and amplifiers into your cargo hold. Soon after that, you hear the roar of a crowd in the distance and another group of men comes running into your ship. "We're with the band," they say. "Quick, shut the hatch." Half a minute later, a mob of people has surrounded your ship and a few of them are even climbing on top of it. It takes you a second to realize they're not angry or bent on destruction - they're just a group of crazy fans.`
 			`	"Happens everywhere we go," says one of the musicians, calmly, as he watches a video feed of the mob on one of your monitors. He tells you that he's Ulrich, the lead singer. Then he introduces the rest of the singers and musicians.`
 			choice
