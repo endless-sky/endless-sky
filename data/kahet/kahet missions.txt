@@ -539,22 +539,24 @@ mission "Ka'het: Patir Mystery 3"
 				`	(Continue my exploration of the asteroid.)`
 					goto explore
 				`	(Leave and return to Aventine.)`
-			`	As you are preparing to jump away, an artificial structure near the edge of the iridium storage catches your eye, and you decide to bring your ship in closer. The first thing you notice is an array of tall pylons arranged into two parallel lines. When you approach, you discover a large cupola towering over the area. Although understanding its scale without a reference point is hard, you estimate it must be at least a kilometer in diameter.`
+			`	As you are preparing to jump away, an artificial structure near the edge of the iridium storage catches your eye, and you decide to bring your ship in closer.`
 				goto image
 			label explore
-			`	While you are setting up a new route to pass above as much terrain as possible, your eye is caught by an artificial structure near the edge of the iridium storage. The first thing you notice is an array of extremely high pylons put into two parallel lines; then, when you are able to get a better angle of view, you discover a large cupola towering all over the area. Although understanding its scale without a reference point is hard, you estimate it must be at least half a kilometer in diameter. Approaching the settlement further could be risky, as its purpose and function isn't clear.`
+			`	While you are setting up a new route to pass above as much terrain as possible, your eye is caught by an artificial structure near the edge of the iridium storage.`
 			label image
 			scene "scene/asteroid scene"
+			`	The first thing you notice is an array of extremely tall pylons arranged into two parallel lines. When you approach to get a better angle, you discover a large cupola towering over the area. Although understanding its scale without a reference point is hard, you estimate it must be at least a kilometer in diameter.`
+			`	You wonder if you should get closer, but the Ka'sei may not take kindly to you approaching their structure.`
 			choice
+				`	(Collect measurements at a safe distance.)`
 				`	(Go near the structure, regardless of the risk.)`
 					goto near
-				`	(Collect measurements at a safe distance.)`
-			`	The data that Dusk's scanners will gather will not be perfect, but it is better than having to risk getting close to something you know so little about. After a few minutes, the scan completes, and you are ready to return to Aventine.`
+			`	The data that Dusk's scanners will gather will not be perfect, but it is better than having to risk getting close to something you know so little about. After a few minutes, the scan completes, and you are ready to return to <planet>.`
 				accept
 			label near
 			apply
 				"exploration interest" ++
-			`	You carefully position your ship above the structure and activate the sensors. As the scan proceeds, you monitor the position of the Ka'sei fleet. Some of the Fetri'sei nearest to you have stopped their standard activities and are just standing by, perhaps observing your actions the same way you are observing theirs. Luckily, after a few minutes the sensors complete their analysis of the structure and you are ready to return to <planet> unmolested.`
+			`	You carefully position your ship above the structure and activate the sensors. As the scan proceeds, you monitor the position of the Ka'sei fleet. Some of the Fetri'sei nearest to you have stopped their standard activities and are standing by, perhaps observing your actions the same way you are observing theirs. Luckily, after a few minutes the sensors complete their analysis of the structure and you are ready to return to <planet> unmolested.`
 				accept
 	on visit
 		dialog "You've returned to <planet>, but you realize your escort carrying the <commodity> has not yet entered the system! Better depart and wait for it."
