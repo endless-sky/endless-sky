@@ -455,9 +455,6 @@ mission "Ka'het: Patir Mystery 2"
 		has "Ka'het: Patir Mystery 1: done"
 		not "remnant: dusk busy"
 	on offer
-		"remnant met dusk" ++
-		set "remnant: dusk busy"
-		event "asteroid on patir"
 		conversation
 			branch busy
 				has "ka'het: dusk was busy"
@@ -510,6 +507,10 @@ mission "Ka'het: Patir Mystery 2"
 			label end
 			`	"The plan is to take a short range high power scanner and map the entire asteroid to analyze the site where the Ka'sei are bringing the iridium. After you have made extensive scans of the sites I indicate to you, reach me back here on <origin> so that I can analyze the data. If everything goes well, you should be back here in a couple weeks. Now I have already directed the spaceport engineers to install the scanners on your ship. I almost can't wait to see what you find there!" Dusk is so excited that he leaves before you can respond.`
 				accept
+	on accept
+		"remnant met dusk" ++
+		set "remnant: dusk busy"
+		event "asteroid on patir"
 	on enter "Patir"
 		dialog
 			`After a brief scan of the system, your ship's computers identify the asteroid that Dusk talked about. Compared to the asteroids you are used to, this one is orders of magnitude bigger, almost the size of a small moon. Land on <planet> in order to get close enough for the short range scanner to analyze it.`
