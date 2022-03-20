@@ -316,7 +316,7 @@ event "patir appears"
 		remove hidden
 
 mission "Ka'het: Patir Mystery 1"
-	landing
+	minor
 	name "Visit <waypoints>"
 	description "Bring Taely with you to visit the <waypoints> system before going to <destination>."
 	source
@@ -325,12 +325,17 @@ mission "Ka'het: Patir Mystery 1"
 	waypoint "Patir"
 	passengers 1
 	cargo "Ka'het tracking equipment" 5
-	blocked "To investigate the new system in Ka'het space, you'll need <capacity> available. Return when you have the space free."
 	to offer
 		has "Ka'het: Patir Reveal: failed"
 	on offer
 		conversation
-			`You start looking for Taely right after finishing the post-landing procedures. You aren't surprised to find her in the local shipyard, overseeing the welding of some kind of unmanned satellite. Though not familiar enough with Remnant technology to understand its function, you identify a large crystal placed near what you presume to be the front of the probe as a Quantum Key Stone, or at least a derivative of it.`
+			`Do you want to look for Taely to tell her about the new system that appeared in the Graveyard?`
+			choice
+				`	(Sure.)`
+				`	(Not right now.)`
+					defer
+			
+			`	You aren't surprised to find Taely in the local shipyard, overseeing the welding of some kind of unmanned satellite. Though not familiar enough with Remnant technology to understand its function, you identify a large crystal placed near what you presume to be the front of the probe as a Quantum Key Stone, or at least a derivative of it.`
 			`	When Taely notices you walking towards her, she waves at you. "<first>! It has been a while. Were you looking for me?"`
 			choice
 				`	"I have some news. A new black hole suddenly appeared near the Graveyard, the same way Ssil Vida did."`
@@ -437,7 +442,7 @@ mission "Ka'het: Patir Mystery 1"
 				set "ka'het: dusk was busy"
 			`	"I know someone who will want to see all this. You have met Dusk, correct?"`
 			`	You nod. "I have, but I believe he's busy at the moment."`
-			`	"That is unfortunate. You should show this to him as soon as he's available," Taely responds. "But I fear I now have to go back to my job now, Captain. I would love to continue the exploration with you, but there are more pressing issues I have to resolve at the moment. I will keep an eye on the activity in Patir, I promise."`
+			`	"That is unfortunate. You should show this to him as soon as he is available," Taely responds. "But I fear I now have to go back to my job now, Captain. I would love to continue the exploration with you, but there are more pressing issues I have to resolve at the moment. I will keep an eye on the activity in Patir, I promise."`
 
 mission "Ka'het: Patir Mystery 2"
 	name "Scanners in <system>"
@@ -454,14 +459,60 @@ mission "Ka'het: Patir Mystery 2"
 		set "remnant: dusk busy"
 		event "asteroid on patir"
 		conversation
-			`You arrive in the spaceport cafeteria to meet Dusk when he said he'd be there, but he's nowhere to be seen. You wait for him to arrive, but nearly an hour later he's still not here. Just as you're about to leave, you spot Dusk running into the cafeteria toward you. "Sorry if I was late, Captain," he says, "I was finishing up gathering the necessary technology for our mission. Everything is ready now."`
+			branch busy
+				has "ka'het: dusk was busy"
+			
+			branch known
+				has "remnant met dusk"
+			`You find Taely waiting for you in the spaceport alongside a young Remnant with a touchpad. They both wave as you approach.`
+			`	"Captain!" Taely says. "Let me introduce you to Dusk. He is a young researcher who specializes in xenoarchaeology and astrobiology. Dusk, this is <first>, the captain who I told you about earlier. Now I'll leave you two to your work, as I fear I have to go back to my job now. I would love to continue the exploration with you both, but there are more pressing issues I have to resolve at the moment. I will keep an eye on the activity in Patir, I promise. May the embers burn bright for you both."`
+			`	As Taely wanders off, you turn to Dusk. "Nice to meet you, Captain!" he says.`
 			choice
-				`	"What's the next step?"`
-			`	"Well, first we need to install the scanners on your ship. Luckily, they are as simple to use as a normal outfit scanner, so you should not have much trouble once you reach the asteroid. After you have made extensive scans of the sites I indicate to you, reach me back here on <origin> so that I can analyze the data. If everything goes well, you should be back here in a couple weeks. I have already gotten a team ready to install the scanners; all that needs to be done now is for you to head back to <system>."`
+				`	"Dusk? Are names like that common?"`
+				`	"Pleased to meet you too, Dusk."`
+					goto greet
+			`	"You mean names of the various phases of daylight? Mmm, I would not say they are common, but nor are they rare, either. Our ancestors devoted their lives, one way or another, to studying the stars and the everchanging light of the universe. It should not be surprising that their vocabulary should be so entwined in our culture.`
+				goto greet
+			
+			label known
+			`You find Taely waiting for you in the spaceport alongside Dusk. They both wave as you approach.`
+			`	"Captain!" Taely says. "I believe you already know Dusk. Dusk, I think you should find this to be right in your area of interest. Now I'll leave you two to your work, as I fear I have to go back to my job now. I would love to continue the exploration with you both, but there are more pressing issues I have to resolve at the moment. I will keep an eye on the activity in Patir, I promise. May the embers burn bright for you both."`
+			`	As Taely wonders off, you turn to Dusk. "Nice to meet you again, Captain!" he says.`
+				goto choice
+			
+			label busy
+			`Dusk is no longer busy. Do you want to contact him about Patir, the black hole system in the Graveyard that appeared out of nowhere?`
+			choice
+				`	(Sure.)`
+				`	(Not right now.)`
+					defer
+			
+			`	You contact Dusk, and he agrees to meet you in the cafeteria. When you spot him, he waves to you. "Nice to meet you again, Captain!" he says.`
+			label choice
+			choice
+				`	"Pleased to meet you too, Dusk."`
+					goto greet
+				`	"Has Taely told you about what we found?"`
+			`	"Yes, a new system has appeared in the Graveyard. How exciting! Taely sent me the data as soon as she could.`
+					goto greet
+			
+			label greet
+			`	"I have found something interesting in the data Taely sent me, Captain." Dusk shows you a map of the system Patir with various lines drawn all over it. "This image shows the route followed by every Ka'sei the scanner was able to track. At first sight they do not seem to have much in common, right? However, upon closer examination, there is something consistent about almost every path: once in a while, every ship spends a few minutes on a single asteroid - one of the biggest in the entire asteroid belt.`
+			`	"However, this could have easily been just a coincidence; it takes a lot of effort to extract resources from asteroids that size, so maybe they were just combining their forces to harvest it. So, at this point I had an idea." The screen on the touchpad changes, now showing raw numbers separated on a spreadsheet. "The sensors you carried to Patir had various functions, one of which was a high power asteroid scanner. The asteroid in particular was shown to be extremely rich in a particular metal, iridium. There is more iridium in it than the whole of half a dozen Ember Waste systems, planets included. However, here is the odd part: the concentration of iridium on the asteroid when you jumped away was not lower than when the scanning begun, it was higher! For whatever reason, the Fetri'sei are depositing iridium on the asteroid."`
+			choice
+				`	"Are you sure that it isn't just an error in the measurement?"`
+				`	"Why are they doing that?"`
+					goto why
+			`	"Well, it is a possibility; this instrumentation has not been tested in years. But if it is not, this could give us a lot of insight on the real purpose of these Ka'sei and why they are around that black hole. It is at least worth studying!`
+				goto end
+			label why
+			`	"That is what we are going to find out together! The only way we can find insights on their real purpose is to study this asteroid and what the Ka'sei are doing there.`
+			label end
+			`	"The plan is to take a short range high power scanner and map the entire asteroid to analyze the site where the Ka'sei are bringing the iridium. After you have made extensive scans of the sites I indicate to you, reach me back here on <origin> so that I can analyze the data. If everything goes well, you should be back here in a couple weeks. Now I have already directed the spaceport engineers to install the scanners on your ship. I almost can't wait to see what you find there!" Dusk is so excited that he leaves before you can respond.`
 				accept
 	on enter "Patir"
 		dialog
-			`After a brief scan of the system, your ship's computers identify the asteroid that Dusk talked about. Compared to the asteroids you are used to, this one is orders of magnitude bigger, almost the size of a small moon.`
+			`After a brief scan of the system, your ship's computers identify the asteroid that Dusk talked about. Compared to the asteroids you are used to, this one is orders of magnitude bigger, almost the size of a small moon. Land on <planet> in order to get close enough for the short range scanner to analyze it.`
 	on visit
 		dialog "You've arrived, but you realize your escort carrying the <commodity> has not yet entered the system! Better depart and wait for it."
 
