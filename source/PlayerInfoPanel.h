@@ -32,11 +32,14 @@ class Rectangle;
 class PlayerInfoPanel : public Panel {
 public:
 	explicit PlayerInfoPanel(PlayerInfo &player);
-	
+
 	virtual void Step() override;
 	virtual void Draw() override;
-	
-	
+
+	// The player info panel allow fast-forward to stay active.
+	bool AllowsFastForward() const noexcept final;
+
+
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
@@ -45,22 +48,22 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Release(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
-	
-	
+
+
 private:
 	// Draw the two subsections of this panel.
 	void DrawPlayer(const Rectangle &bounds);
 	void DrawFleet(const Rectangle &bounds);
-	
+
 	// Handle mouse hover (also including hover during drag actions):
 	bool Hover(const Point &point);
 	// Adjust the scroll by the given amount. Return true if it changed.
 	bool Scroll(int distance);
-	
-	
+
+
 private:
 	PlayerInfo &player;
-	
+
 	std::vector<ClickZone<int>> zones;
 	// Keep track of which ship the mouse is hovering over, which ship was most
 	// recently selected, which ship is currently being dragged, and all ships
@@ -71,7 +74,9 @@ private:
 	// This is the index of the ship at the top of the fleet listing.
 	int scroll = 0;
 	Point hoverPoint;
+	// When the player is landed, they are able to change their flagship and reorder their fleet.
 	bool canEdit = false;
+	// When reordering ships, the names of ships being moved are displayed alongside the cursor.
 	bool isDragging = false;
 };
 

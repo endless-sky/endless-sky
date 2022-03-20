@@ -58,12 +58,13 @@ uint32_t Random::Int()
 
 
 
-uint32_t Random::Int(uint32_t modulus)
+uint32_t Random::Int(uint32_t upper_bound)
 {
 #ifndef __linux__
 	lock_guard<mutex> lock(workaroundMutex);
 #endif
-	return uniform(gen) % modulus;
+	const uint32_t x = uniform(gen);
+	return (static_cast<uint64_t>(x) * static_cast<uint64_t>(upper_bound)) >> 32;
 }
 
 
@@ -78,7 +79,7 @@ double Random::Real()
 
 
 
-// Return the expected number of failures before k successes, when the 
+// Return the expected number of failures before k successes, when the
 // probability of success is p. The mean value will be k / (1 - p).
 uint32_t Random::Polya(uint32_t k, double p)
 {

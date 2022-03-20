@@ -1,16 +1,84 @@
 Welcome to Endless Sky!
-version 0.9.9
+version 0.9.14
 
 This game is open source.
 To report bugs, give feedback,
 or contribute to story writing,
 artwork, or programming, visit:
-https://endless-sky.github.io
-The game's Steam forums
-Discord (invite: ZeuASSx)
+- https://endless-sky.github.io
+- The game's Steam forums
+- Discord (invite: ZeuASSx)
 
-Programming
+Creator and Lead Programmer
   Michael Zahniser
+
+Developers
+  Amazinite
+  Benjamin Hauch
+  MCOfficer
+  Pointedstick
+  W1zrad
+
+Major Programming
+  AdamKauffman
+  Amazinite
+  Benjamin Hauch
+  CyberShadow
+  db47h
+  Elyssaen
+  EndrosG
+  flaviojs
+  Frederick Goy IV
+  guillochon
+  Hadron1776
+  kozbot
+  MarcelineVQ
+  NomadicVolcano
+  oo13
+  Peter van der Meer
+
+Storyline & Faction Authors
+  Amazinite
+  Arachi-Lover
+  beccabunny
+  LocalGod79
+  Peter van der Meer
+  Pointedstick
+  TheUnfetteredOne
+  Zitchas
+
+Editors & Proofreaders
+  Arrow2thekn33
+  Bladewood
+  Fzzr
+  jafdy
+  Janaszar
+  LocalGod79
+  MCOfficer
+  Moonbeam
+  RecursiveParadox
+  Tadrix
+  temtemy
+  W1zrad
+  Zearth Goh aka TheMarksman
+
+Artwork
+  Michael Zahniser (CC-BY-SA 4.0)
+  Maximilian Korber (CC-BY-SA 4.0)
+  Iaz Poolar (CC-BY-SA 4.0)
+  Matthew Smestad (CC-BY-SA 4.0)
+  Amazinite (CC-BY-SA 4.0)
+  Nate Graham (CC-BY-SA 4.0)
+  Evan Fluharty (CC-BY-SA 4.0)
+  Nick Barry (CC-BY-SA 3.0)
+  ESO / L. Calcada (CC-BY-4.0)
+  Becca Tommaso (CC-BY-SA 4.0)
+  Frederick Goy IV (CC-BY-SA 4.0)
+  Zachary Siple (CC-BY-SA 4.0)
+  Darcy Manoel (CC-BY-SA 4.0)
+  Lia Gerty (CC-BY-SA 4.0)
+  @Karirawri (CC-BY-SA-4.0)
+  Gefüllte Taubenbrust (CC-BY-SA-4.0)
 
 Photos from Wikimedia Commons
   Berthold Werner (CC-BY-SA 3.0)
@@ -31,21 +99,6 @@ and from public domain sources
   morguefile.com
   unsplash.com
 
-Other Artwork
-  Michael Zahniser (CC-BY-SA 4.0)
-  Maximilian Korber (CC-BY-SA 4.0)
-  Iaz Poolar (CC-BY-SA 4.0)
-  Matthew Smestad (CC-BY-SA 4.0)
-  Jonathan Steck (CC-BY-SA 4.0)
-  Nate Graham (CC-BY-SA 4.0)
-  Evan Fluharty (CC-BY-SA 4.0)
-  Nick Barry (CC-BY-SA 3.0)
-  ESO / L. Calcada (CC-BY-4.0)
-  Becca Tommaso (CC-BY-SA 4.0)
-  Frederick Goy IV (CC-BY-SA 4.0)
-  Zachary Siple (CC-BY-SA 4.0)
-  Darcy Manoel (CC-BY-SA 4.0)
-
 Sounds from public domain sources
   freesound.org
 
@@ -61,3 +114,208 @@ Beta Testers
   Sean Fahey
   Mauricio Gomes
   Iaz Poolar
+
+Thank you to all the following
+people on GitHub who have
+contributed to Endless Sky:
+  7even
+  abenkovskii
+  AdamKauffman
+  akien-mga
+  AlbertNewton
+  AlexBassett
+  alextd
+  Alkallid
+  Amazinite
+  AMDmi3
+  anarcat
+  Anarchist2
+  AraCaputDraco
+  Arachi-Lover
+  arkhne
+  ashdnazg
+  Aurelite
+  barthalion
+  beccabunny
+  BlackVegetable
+  Bladewood
+  bobrobbow
+  bojidar-bg
+  Brick63
+  ChamEV
+  colbygallup
+  comnom
+  corecontingency
+  Corraban2
+  CyberShadow
+  czartrak
+  Darcman99
+  davidarcher
+  davidwhitman
+  dazuma
+  db47h
+  DeBlister
+  DingusShingleton
+  Disiuze
+  dplepage
+  DrBlight
+  dreness
+  dufferzafar
+  dzhu
+  eflyon
+  EjoThims
+  elgeonmb
+  Eloraam
+  Elyssaen
+  endless-sky
+  EndrosG
+  fcfort
+  Ferociousfeind
+  Floppa-Priest
+  finite-galaxy
+  FixItYondu
+  flaviojs
+  FranchuFranchu
+  Fzzr
+  Galaucus
+  gecko-locator
+  Gods-Righthand
+  guillochon
+  gunqqer
+  Hacklin
+  Hadron1776
+  har9862
+  Hyugat
+  InfiniteDonuts
+  infinitewarp
+  ItsNickBarry
+  jafdy
+  Janaszar
+  janisozaur
+  jarekchr
+  jerith
+  jjhankins
+  jmathes
+  jmhorjus
+  jostephd
+  jozef-mitro
+  Jugosloven1612
+  Karirawri
+  kestrel1110
+  KevinKorzekwa
+  kilobyte
+  kkuchta
+  kozbot
+  Kryes-Omega
+  lheckemann
+  Lineth
+  LocalGod79
+  Lorantine
+  LordInsane
+  Luckz
+  luiges90
+  macfreek
+  MageKing17
+  Mailaender
+  MarcelineVQ
+  MasterOfGrey
+  mattsoulanille
+  maxrd2
+  McloughlinGuy
+  MCOfficer
+  MessyMix
+  michel-slm
+  MillerNerd
+  mimirzero
+  mootootwo
+  naehc
+  Naminson
+  Nescio0
+  nobodywasishere
+  NomadicVolcano
+  NRK4
+  oo13
+  Ornok
+  OverYrPaygrade
+  PaulBlay
+  pega3
+  perey
+  petervdmeer
+  ph2000
+  ph2000bis
+  PhaedrusES
+  pkubaj
+  plague006
+  Plip-Plop
+  Pointedstick
+  prophile
+  pscamman
+  Rakete1111
+  ravenshining
+  realityforge
+  Red-57
+  redschalken
+  reizbar
+  RestingImmortal
+  retrue
+  Ririshi
+  rlane
+  Rob59er
+  rugk
+  rzahniser
+  Sandwichs-del
+  schrauger
+  ScruffyKitty
+  sdennie
+  seanfahey
+  sfiera
+  solardawning
+  SolraBizna
+  starscollide5
+  StrawberryDelite
+  strollcata
+  SubstandardZeal
+  Tadrix
+  tatami4
+  tboby
+  tehhowch
+  temtemy
+  Terin
+  thebigh2014
+  TheMarksman-ES
+  thenerdfreak
+  TheUnfetteredOne
+  thomasballinger
+  ThrosturX
+  Thunderforge
+  tiennou
+  timbennett
+  TJesionowski
+  tmbutterworth
+  toilethinges
+  TurkeyMcMac
+  Turtleroku
+  tux2603
+  Unjown
+  Vilhelm16
+  W1zrad
+  Waffleship
+  Waladil
+  warp-core
+  waterhouse
+  whismerhill
+  willbeason
+  wjbotham
+  wjp
+  Wrzlprnft
+  YellowApple
+  yobbo2020
+  ZBok
+  Zitchas
+  zwparchman
+
+Special thanks to MCOfficer for
+creating, managing, and hosting
+the ESLauncher, nightly, &
+continuous builds that make so
+much of this work possible.
