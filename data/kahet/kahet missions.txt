@@ -588,8 +588,6 @@ mission "Ka'het: Patir Mystery 4"
 				accept
 	on visit
 		dialog "You've arrived, but you realize your escort carrying Dusk has not yet entered the system! Better depart and wait for it."
-	on complete
-		"reputation: Ka'sei" = -10
 
 mission "Ka'het: Patir Mystery 5"
 	landing
@@ -601,6 +599,7 @@ mission "Ka'het: Patir Mystery 5"
 	to offer
 		has "Ka'het: Patir Mystery 4: done"
 	on offer
+		"reputation: Ka'sei" = -10
 		conversation
 			`As you approach the structure, Dusk stops preparing the equipment to observe it from the window. "It is a fascinating structure. I've only seen a small number of Builder buildings, but this looks different from anything I have seen. Perhaps it is more structurally similar to their stations than their outposts given the almost negligible gravity, or they had other asteroid colonies that have been gradually lost over time. It would be worth doing a serious exploration of the asteroid belts in the Graveyard at some point.`
 			choice
@@ -608,14 +607,17 @@ mission "Ka'het: Patir Mystery 5"
 					goto planets
 				`	"How far have the Remnant explored the Graveyard?"`
 				`	"Do you have have all the equipment ready?"`
-					goto dontcare
+					goto skip
+			
 			`	"I presume Taely already told you about the troubled beginnings we had in exploring the area; as a consequence of that, we had to reevaluate the procedures for exploring the nearby systems and species, especially beyond the Ossipago wormhole. Every scout ship entering the area has to always remain cloaked to prevent attacks from the countless Ka'het patrolling the area; this means that the further we need to travel to reach the destination, the more fuel we have to spend to return home, which considerably impacts the time we can spend cloaked in the destination. Some of the systems at the other end of the Graveyard have seen very few Starlings, most of them staying for less than a day.`
 			`	"Still, even with these limitations we were able to make considerable progress. We can read some of the words in their language, and we were able to retrieve a countless number of partly intact Builder artifacts. Perhaps some day we will be able to understand how to control the Ka'het. Who knows?`
-				goto dontcare
+				goto skip
+			
 			label planets
 			`	"Oh I have, many times. I have never been on a Builder station, but on a few occasions I have participated to expeditions to newly discovered cities or semi-submersed bunkers. I presume Taely already told you about the troubled beginnings we had in exploring the area; as a consequence of that, we had to reevaluate the procedures for exploring the nearby systems and species, especially beyond the Ossipago wormhole. Every scout ship entering the area has to always remain cloaked for safety; this means that exploring planets is only possible for a limited time and that you cannot leave your ship if you do not have a means of hiding yourself from them.`
 			`	"Because of this, most of the planetary exploration is done with robotic probes. The Ka'het are able to detect and destroy devices that use faster than light communication, so only remote control with a Starling in the same system is possible. There are a lot of compromises that must be taken, but we can still make considerable progress even with these restrictions.`
-			label dontcare
+			
+			label skip
 			`	"I need to prepare a few more instruments before we land," Dusk says as he stops staring at the dome and returns to his equipment. As you reach the complex, you do a few flights around it in search for a good landing site. Dusk points out a spot right next to a set of small circular indentations on the structure. After touching down, you and Dusk don extravehicular suits and start walking towards the cupola. He stops in front of a ring on its surface and starts looking through his equipment.`
 			choice
 				`	"What is that?"`
@@ -632,7 +634,7 @@ mission "Ka'het: Patir Mystery 5"
 			label danger
 			`	"There is no way to be certain, but this is the only possible way to get in without destroying half of the complex.`
 			label open
-			`	"This," Dusk says as he presses a switch in the middle of the panel, "is what we were looking for." Soon after, the door in front of you opens, revealing a small room with another door at the opposite end. You follow Dusk inside, where he takes out the scanner again to look for another control panel. Once that is open, another switch allows him to close the door. Only the lights on your helmet keep you from being submerged in complete darkness. Looking around, you notice that the architecture is distinctly alien, with rounded angles on every side of the room and buttresses on either side of the doors . The ring itself is too small for you to pass through it standing upright, but the low gravity of the asteroid lets you almost fly though it without much trouble. "We now have to wait for the room to pressurize," he tells you.`
+			`	"This," Dusk says as he presses a switch in the middle of the panel, "is what we were looking for." Soon after, the door in front of you opens, revealing a small room with another door at the opposite end. You follow Dusk inside, where he takes out the scanner again to look for another control panel. Once that is open, another switch allows him to close the door. Only the lights on your helmet keep you from being submerged in complete darkness. Looking around, you notice that the architecture is distinctly alien, with rounded angles on every side of the room and buttresses on either side of the doors. The ring itself is too small for you to pass through it standing upright, but the low gravity of the asteroid lets you almost fly though it without much trouble. "We now have to wait for the room to pressurize," he tells you.`
 			choice
 				`	"How long do you think it will it take?"`
 				`	"Would it be safe to remove our helmets after that?"`
@@ -642,7 +644,7 @@ mission "Ka'het: Patir Mystery 5"
 			label dumb
 			`	Dusk gives you an odd look. "Of course not <first>; it would almost certainly kill you. Such an alien atmosphere is unlikely to be breathable for a human, and even if it was we could not be sure until we analyze it extensively." He begins to activate another scanner, "Speaking of which, I can start analyzing the atmosphere that is starting to fill this room. It should save us some time to do it here, as well as also safer, should it be dangerous to our suits."`
 			label scan
-			`	Dusk continues working on the atmospheric analyzer for about five minutes without anything happening. You try to connect to the scanner on your ship to check the position of the nearby Fetri'sei, but the dome seems to jam all the communications with the outside. Suddenly, you hear a loud "pop," and the door that leads inside the dome recesses a few centimeters. "Just in time," Dusk says. "My analysis of the atmosphere has finished. Let us go take a look inside." After a brief look at the writing on the door, he grabs a handle on it and slides it to the left. The hatch starts to slowly open inwards. When you come closer to the entrance you are instantly blinded by a strong light coming from the other side of the door. After lowering the sun shield on your helmet, your eyes start adapting to the new light level, and it takes you a few seconds to realize what is now in front of you. Landed inside the cupola, right in front of the airlock, is a Fetri'sei - a Ka'sei probe - pointed at you and Dusk.`
+			`	Dusk continues working on the atmospheric analyzer for about five minutes without anything happening. You try to connect to the scanner on your ship to check the position of the nearby Fetri'sei, but the dome seems to jam all communication with the outside. Suddenly, you hear a loud "pop," and the door that leads inside the dome recesses a few centimeters. "Just in time," Dusk says. "My analysis of the atmosphere has finished. Let us go take a look inside." After a brief look at the writing on the door, he grabs a handle on it and slides it to the left. The hatch starts to slowly open inwards. When you come closer to the entrance you are instantly blinded by a strong light coming from the other side of the door. After lowering the sun shield on your helmet, your eyes start adapting to the new light level, and it takes you a few seconds to realize what is now in front of you. Landed inside the cupola, right in front of the airlock, is a Fetri'sei - a Ka'sei probe - pointed at you and Dusk.`
 			`	Both you and Dusk stand still in front of it without saying a word. Out of the corner of your eye, you can see his hands shivering. All of a sudden, the Ka'sei starts emitting a very high pitched sound, very hard to hear, frequently changing in intensity. This lasts only for a few seconds, then abruptly stops.`
 			choice
 				`	(Run back in the airlock.)`
@@ -651,9 +653,14 @@ mission "Ka'het: Patir Mystery 5"
 			`	The whole cupola falls silent. What feels like hours pass before the Ka'sei swiftly lifts off in front of you, hovering a few meters above the terrain. Just like the previous time, it starts emitting the same sequence of sounds as the last time, followed by a clicking sound. Dusk turns towards you.`
 			choice
 				`	(Run back in the airlock.)`
+					goto still
 				`	(Keep staying still.)`
+					goto still
 				`	(Try shooting at the hover engines of the Ka'sei with your sidearm.)`
-					goto shoot
+			`	You take out your gun and start aiming for the Fetri'sei's side pods. Your first shot misses it completely, but after that you are able to make three full hits on the hover engines. Almost instantly, the Ka'sei starts emitting a loud siren. The ship fires a beam just to the left of you, letting out an ear-piercing wail. Both you and Dusk jump back to the airlock as fast as possible, but you are too far away to reach it in time before a Ravager beam tears through your suit. The last thing you see is Dusk closing the airlock.`
+				die
+			
+			label still
 			`	After another short silence, the Ka'sei starts emitting a loud siren. You hear the screech of Ravager fire as an angry energy beam sears through the air to your left, just barely missing you. Both you and Dusk jump back to the airlock, slamming the door closed. You can still feel the crackle of the Ravager cannons from the other side the the door, and after a second, the door begins to glow.`
 			choice
 				`	(Open the exit door, even with the airlock full of air.)`
@@ -661,29 +668,29 @@ mission "Ka'het: Patir Mystery 5"
 				`	(Wait for the airlock to empty.)`
 			`	After waiting a few seconds, Dusk hurries towards the control station. "Hold on to something, I ha-" Suddenly, he is interrupted by a burst of light coming from where the door of the airlock used to be. Your suit provides little protection from the full force of the Ravager beams.`
 				die
+			
 			label blast
 			`	You reach the control station as fast as you can and press the switch that Dusk had used when you first came in. The blast is not as strong as you imagined, but in a few seconds you are thrown out of the airlock by the sheer force of the air leaving from the breach. Both of you touch down after a few meters, crashing hard in the terrain that surrounds the cupola. Out of the corner of your eye, you see that there's still air coming out of the airlock, signifying that the interior door has been breached. It is very lucky that your suit has not been punctured.`
 			`	Looking around, you see Dusk laying face down next to you. Thankfully, he begins to stand up as you approach him. When he sees you, he silently pauses for a moment, before jerking his head to the airlock and signing. "We need to run. It could get out of the cupola, or others could arrive, and here in the open we are even easier targets." You nod and start going with him back to your ship.`
 			`	Running at full speed, it takes the two of you only a few minutes to reach the <ship>. Once safely in the cockpit, you sit down to catch your breath. After a moment, Dusk begins searching nervously for something on his suit. He takes out the atmospheric scanner he used earlier, but the screen is cracked and the external sensors are bent. "It must have been destroyed when we fell on the ground. I hope that at least its memory is still intact."`
 				goto attack
-			label shoot
-			`	You take out your gun and start aiming for the Fetri'sei's side pods. Your first shot misses it completely, but after that you are able to make three full hits on the hover engines. Almost instantly, the Ka'sei starts emitting a loud siren. The ship fires a beam just to the left of you, letting out an ear-piercing wail. Both you and Dusk jump back to the airlock as fast as possible, but you are too far away to reach it in time before a Ravager beam tears through your suit. The last thing you see is Dusk closing the airlock.`
-				die
+			
 			label run
 			`	You start running towards the airlock as fast as you can. Initially, Dusk tries to resist, but you drag him by force and lock the door behind you. Everything falls into silence again for half a minute while you are waiting for the room to depressurize, but suddenly the sound of a Ravager cannon cuts through the silence, and the inner airlock door begins to glow as it takes fire.`
 			choice
 				`	(Open the exit door, even with the airlock full of air.)`
-					goto blast2
+					goto rush
 				`	(Wait for the airlock to empty.)`
 			`	After a few seconds of waiting, Dusk hurries towards the control station. "I have an idea," he says as he presses a few switches on the panel. "I can open a vent to expel the air out of here into the void, and get us out of here in a few seconds.`
 				goto expel
-			label blast2
+			label rush
 			`	You reach the control station as fast as you can and tell Dusk to hold on to something, but he stops you. "I have a better idea," he says as he presses a few switches on the panel. "I can open a vent to expel the air out of here into the void, and get us out of here in a few seconds.`
 			label expel
 			`	Soon after, the frontal door recedes. You two run out of the airlock as fast as possible. Behind you, you hear the roar of metal melting as a rush of air passes you by. You start running back to your ship with Dusk, hoping that the Ka'sei will not get out of the building before you are safe.`
 			`	Running at full speed, it takes the two of you only a few minutes to reach the <ship>. Once safely in the cockpit, you sit down to catch your breath. After a moment, Dusk begins searching nervously for something on his suit. He takes out the atmospheric scanner he used earlier and turns it on. "Phew. I was afraid it had broken down when we had to run away, but maybe we can still get the data we need."`
 			apply
-				"atmospheric scan intact" += 1
+				set "atmospheric scan intact"
+			
 			label attack
 			`	Dusk is interrupted by the shrieking wail of your ship's proximity alert as a hostile object appears on the radar screen. As Dusk suspected, the Fetri'sei must have tracked your movements after leaving the cupola. You start to ready your ship for combat, but Dusk interrupts you. "You cannot kill them, <first>. Do you remember the high pitched sound it emitted before shooting? He was trying to speak with us, Captain. Only a few words, maybe even pre-programmed for this kind of interaction, but still a complete phrase or more in pure Builder language. In decades of xenoarchaeological research, this is the first time that it occurs. These ships are an incredible discovery. They may be the only thing still capable of speaking that language in the entire Graveyard. You cannot destroy it, and disabling one is more a matter of luck than skill."`
 			choice
@@ -704,19 +711,23 @@ mission "Ka'het: Patir Mystery 5"
 	on enter "Patir"
 		dialog
 			`Soon after departing, your ship warns you that a large number of ships are targeting you. It appears the other Ka'sei are also going to attack.`
-	to fail
-		"reputation: Ka'sei" < -10
-	on fail
-		dialog
-			`One or more Ka'sei were destroyed. You failed your mission.`
 	on visit
 		dialog "You've returned to <planet>, but you realize your escort carrying Dusk has not yet entered the system! Better depart and wait for it."
 	on complete
 		clear "remnant: dusk busy"
 		event "patir mystery timer" 10
-		"reputation: Ka'sei" = 1
 		conversation
+			branch attacked
+				"reputation: Ka'sei" < -10
+			action
+				"reputation: Ka'sei" = 1
 			`You disembark from your ship with Dusk, discussing the events that occurred in Patir. "Thank you for keeping the Ka'sei alive, <first>. They might be exactly what our Builder research needs, and I really hope I can continue exploring that place with you in the future. I will study what we have gathered in the last days trying to find anything that could give us more clues about them." He waves at you and starts walking towards the exit from the spaceport. "I will contact you again when I find something worth looking at. May the Embers burn bright for you, <first>."`
+				decline
+			
+			label attacked
+			apply
+				set "ka'het: attacked ka'sei"
+			`You disembark from your ship with Dusk, who is visible angry that you destroyed one of the Ka'sei. "I told you not to attack them! I told you of their importance!" he yells while pacing back and forth. "Oh my, oh my, we can only hope that this does not close any doors for us. Perhaps we can attempt to communicate with them? Tell them it was an accident?" He looks to you as if searching for some reassurance, but you have none to give. "Forget it. I will study what we have gathered, but I am afraid that it will be all that we will ever gather from that system." Dusk storms off without saying goodbye, typing away on his touchpad as he goes.`
 
 event "pacified ka'sei"
 	"reputation: Ka'sei" = 1
