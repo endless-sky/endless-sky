@@ -327,28 +327,26 @@ mission "Ka'het: Patir Mystery 1"
 	cargo "Ka'het tracking equipment" 5
 	blocked "To investigate the new system in Ka'het space, you'll need <capacity> available. Return when you have the space free."
 	to offer
-		has "Ka'het: Patir Mystery 0: failed"
-		not "remnant: dusk busy"
-		random < 50
+		has "Ka'het: Patir Reveal: failed"
 	on offer
-		set "remnant: dusk busy"
 		conversation
 			`You start looking for Taely right after finishing the post-landing procedures. You aren't surprised to find her in the local shipyard, overseeing the welding of some kind of unmanned satellite. Though not familiar enough with Remnant technology to understand its function, you identify a large crystal placed near what you presume to be the front of the probe as a Quantum Key Stone, or at least a derivative of it.`
 			`	When Taely notices you walking towards her, she waves at you. "<first>! It has been a while. Were you looking for me?"`
 			choice
 				`	"I have some news. A new black hole suddenly appeared near the Graveyard, the same way Ssil Vida did."`
 					goto talk
-				`	"What is the purpose of the satellite over there?"`
+				`	"What's the purpose of that satellite?"`
 			`	"She is a beauty, is she not? The discovery of the star systems beyond Postverta spurred a large request for exploration probes, more than we've had in decades. This one was my own proposal: she is going to make precise LIDAR scans of the four planets most similar to the worlds we found alien settlements on, searching for relics and ancient artifacts! It is unbelievably exciting to see an idea that you came up with become reality right in front of you."`
 			`	She pauses to stare at the probe with pride.`
-			`	"Funny you mention that. A new black hole has just appeared near the Graveyard, the same way Ssil Vida did."`
+			`	"Funny you mention Posverta," you say. "A new black hole has just appeared near the Graveyard, the same way Ssil Vida did."`
 			label talk
 			`	You try to explain the system and its inhabitants as best you can. Taely looks intrigued. "Can you show me what your ship recorded of that system?" she asks. After spending a few minutes checking your ship's registers, she appears even more astonished than before. "This is incredible! It opens so many questions. What if it was the Builders who built Ssil Vida? We thought they never left the Graveyard, but this could change everything. And look at the gravitational slipstreams: this system has no hyperlane connections, at least for the moment. We need to know more." She pauses for a second to think. "Come with me, <first>."`
 			`	You follow Taely into a large elevator at the other end of the building. After a short trip, you find yourself in a large underground hangar, full of oddly shaped dishes and complex pieces of machinery. "We use these old shelters to store the parts we do not need anymore. Sometimes they are still handy for replacing broken machinery, so instead of disassembling them we keep them here for a few years. And this," she says, pointing at an array of cylindrical objects, "is the reason we are here."`
 			choice
 				`	"What is that?"`
+				`	"A bunch of rods?"`
 			`	"It is an old tracking and surveillance device, developed specifically for the Graveyard," she says. "It was supposed to track all Ka'het it could find and make detailed imagery of their actions, in order to find the patterns that they follow or ways to exploit their controls. The mission was a long-term one, so when an urgent project came up, resources were diverted away from it, leaving some sensors unused.`
-			`	"My plan is to install it in the <ship> and go to <waypoints> to find out more about these ships. It needs to be calibrated precisely before use, but luckily for you, I was the person who developed the deployment procedures," she says with a smirk on her face. "Are you ready?"`
+			`	"My plan is to install some in the <ship> and go to <waypoints> to find out more about the ships in this new system. It needs to be calibrated precisely before use, but luckily for you, I was the person who developed the deployment procedures," she says with a smirk on her face. "Are you ready?"`
 			choice
 				`	"Let's go!"`
 					goto mount
@@ -386,19 +384,25 @@ mission "Ka'het: Patir Mystery 1"
 			choice
 				`	"Wait, are we in danger?"`
 				`	"How much will it take to finish processing the data?"`
-					goto dontcare
-			`	"Oh, I was just letting my imagination fly. There are thousands of other explanations that are as good as mine, none of which include such a tragic ending." Suddenly, the computer Taely was working on earlier starts beeping. "Let us see what it found," she says.`
-				goto beep
-			label dontcare
-			`	"Let me check." Soon after Taely starts walking toward the console, the computer she was working on earlier starts beeping. "Perfect, let us see what it found," she says.`
-			label beep
-			`	Taely starts browsing through several of images on her console. "Look at these, <first>. What do you see?" The first image shows a ship like the others you've seen in this system working on some kind of small structure. In the following pictures, presumably depicting different iterations of the same ship, the structure becomes gradually bigger and more complex until the last one, where a Ka'het-like slug is shown growing inside this shell. "The ships, the Fetri'sei, are Von Neumann probes," she says. "Self replicating spacecraft. Unlike the Ka'het, which we found to be unable to reproduce and can only be created in a factory, the Ka'sei can duplicate their own structure with the material harvested from the local asteroids. The process probably takes years, or more, but it is still an incredible achievement."`
+					goto data
+			`	"Oh, I was just letting my imagination fly. There are thousands of other explanations that are as good as mine, none of which include such a tragic ending. But we can ponder more on those explanations on the way back to <planet>."`
+				decline
+			label data
+			`	"It will take some time before the data is completely analyzed. We should return to <planet> before looking it over, as it should be done by then."`
+	
+	on visit
+		dialog "You've arrived at <planet>, but your mission is not complete! Make sure Taely and all the equipment passes through <waypoints>. If they are on an escort, you must wait for it to arrive at <waypoints> before you return to <planet>."
+	on complete
+		conversation
+			`Upon your return to <planet>, Taely immediately begins browsing through several images on her console that were compiled by the sensors.`
+			`	"Look at these, <first>. What do you see?" The first image shows a ship like the others you've seen in Patir working on some kind of small structure. In the following pictures, presumably depicting different iterations of the same ship, the structure becomes gradually bigger and more complex until the last one, where a Ka'het-like slug is shown growing inside this shell.`
+			`	"The ships, the Fetri'sei, are Von Neumann probes," she says. "Self replicating spacecraft. Unlike the Ka'het, which we found to be unable to reproduce and can only be created in a factory, the Ka'sei can duplicate their own structure with the material harvested from the local asteroids. The process probably takes years, or more, but it is still an incredible achievement."`
 			choice
-				`	"If they can duplicate themselves, why aren't there more Ka'sei here?"`
+				`	"If they can duplicate themselves, why aren't there more Ka'sei?"`
 					goto kasei
 				`	"If the Builders were able to make self replicating spacecrafts, why aren't the Ka'het like that as well?"`
 					goto kahet
-				`	"If they were able to get here, does this suggest they have Jump Drives?"`
+				`	"If they were able to get to Patir, does this suggest they have jump drives?"`
 					goto jumpdrive
 				`	"Why aren’t they in other systems?"`
 					goto jumpdrive
@@ -407,12 +411,12 @@ mission "Ka'het: Patir Mystery 1"
 			choice
 				`	"If the Builders were able to make self replicating spacecrafts, why aren't the Ka'het like that as well?"`
 					goto kahet
-				`	"If they were able to get here, does this suggest they have Jump Drives?"`
+				`	"If they were able to get to Patir, does this suggest they have jump drives?"`
 					goto jumpdrive
 				`	"Why aren’t they in other systems?"`
 					goto jumpdrive
 			label kahet
-			`	Taely walks towards the console again. On the screen a tactical view of the Fetri'sei appears. "Well, consider that the Ka'het are true battleships, heavily shielded and always with their weapons ready. These are more akin to reconnaissance and mining probes. Their structure is extremely weak, and they do not have any weapons except the equipment necessary to mine asteroids. I imagine it would take decades for even just a Maeri'het to replicate itself.`
+			`	Taely looks towards the console again. On the screen a tactical view of the Fetri'sei appears. "Well, consider that the Ka'het are true battleships, heavily shielded and always with their weapons ready. These are more akin to reconnaissance and mining probes. Their structure is extremely weak, and they do not have any weapons except the equipment necessary to mine asteroids. I imagine it would take decades for even just a Maeri'het to replicate itself.`
 			`	"There is also the tactical problem: forcing a Ka'het to spend such a long time building copies of itself makes them vulnerable to enemy attacks and unable to effectively fight back, making them ill-suited for the job."`
 			choice
 				`	"If they can duplicate themselves, why aren't there more Ka'sei here?"`
@@ -420,47 +424,20 @@ mission "Ka'het: Patir Mystery 1"
 				`	"If they were able to get here, does this suggest they have Jump Drives?"`
 				`	"Why aren’t they in other systems?"`
 			label jumpdrive
-			`	"They do not have any drive on board, not even a hyperdrive. Limited to sub-light velocity, they would need hundreds of years to pass from one system to another, which is a testament to the Builders' patience. Most species we have encountered abandon any form of sub-light transportation between star systems immediately after developing hyperdrive technology. For all we know, the Ember Waste could have been visited by these Fetri'sei or some other Ka'sei, but they had to leave for some reason we are not aware of. The last Builder died almost 100,000 years ago - so long that having a clear idea of what happened is impossible.`
+			`	"They do not have any drives on board, not even a hyperdrive. Limited to sub-light velocity, they would need hundreds of years to pass from one system to another, which is a testament to the Builders' patience. Most species we have encountered abandon any form of sub-light transportation between star systems immediately after developing hyperdrive technology. For all we know, the Ember Waste could have been visited by these Fetri'sei or some other Ka'sei, but they had to leave for some reason we are not aware of. The last Builder died almost 100,000 years ago - so long that having a clear idea of what happened is impossible.`
 			choice
 				`	"What's the difference between Ka'sei and Fetri'sei?"`
-			`	"Well, there is no difference," Taely responds, "not in this case at least. The naming scheme the Builders used is a bit odd: we know that 'Ka', in their language, has a meaning close to the one of 'group', 'team' and sometimes even 'ring', although it can never be used without a name next to it. So we have 'group mar', 'group het', and so on. These are not limited to spaceships: the Ka'het, for example, includes both the biological spacecrafts around the Graveyard and the stations that constructs them, while until now we thought that the Ka'sei included only a handful of large scale construction projects. We know 'Fetri' to be a sort of spaceship sub-classification, but we are not aware of its exact meaning. So the Fetri'sei, or 'ship sei' are a part of the Ka'sei, or 'group sei.' To put it simply, it is similar to how all squares are rectangles, but not all rectangles are squares. It just so happens that everything in this system is classified as a Fetri'sei, so we can use either interchangeably.`
-			`	"I know a few people who will want to see all this. I will contact ahead and arrange to meet them on Aventine."`
-	
-	on visit
-		dialog "You've arrived at <planet>, but your mission is not complete! Make sure Taely and all the equipment passes through <waypoints>. If they are on an escort, you must wait for it to arrive at <waypoints> before you return to <planet>."
-	on complete
-		"remnant met dusk" ++
-		conversation
-			`You complete the post-flight checks and disembark down the ship with Taely. "So, what do we do now?" you ask.`
-			`	"I fear I have to go back to my job now, Captain," she replies. "I would love to continue the exploration with you, but there are more pressing issues I have to resolve at the moment. I will keep an eye on the activity in Patir, I promise."`
-			branch duskknown
-				has "remnant met dusk"
-			`	As you speak to Taely, a young Remnant with a touchpad walks towards you and waves. Taely says, "Captain <first>, let me introduce you to Dusk. He is a young researcher who specializes in xenoarchaeology and astrobiology. Dusk, this is <first>, the captain who I told you about earlier."`
-			`	"Nice to meet you, Captain!" says Dusk.`
-				goto duskname
-			label duskknown
-			`	As you speak to Taely, you spot Dusk walking towards you. "Captain <first>, I believe you already know Dusk. If you were not already aware, he is a young researcher who specializes in xenoarchaeology and astrobiology. Dusk, I think you should find this to be right in your area of interest.`
-			`	"Nice to see you again, Captain!" says Dusk.`
-			label duskname
-			choice
-				`	"Dusk? Are names like that common?"`
-				`	"Pleased to meet you too, Dusk."`
-					goto greet
-			`	"You mean names of the various phases of daylight? Mmm, I would not say they are common, but nor are they rare, either. Our ancestors devoted their lives, one way or another, to studying the stars and the everchanging light of the universe. It should not be surprising that their vocabulary should be so entwined in our culture."`
-			label greet
-			`	"I will let you two discuss the next steps in exploring Patir. May the embers burn bright for you both," Taely says before leaving for the local shipyard.`
-			`	"I have found something interesting in the data Taely sent me, Captain." Dusk shows you a map of the system Patir with various lines drawn all over it. "This image shows the route followed by every Ka'sei the scanner was able to track. At first sight they do not seem to have much in common, right? However, upon closer examination, there is something consistent about almost every path: once in a while, every ship spends a few minutes on a single asteroid - one of the biggest in the entire asteroid belt.`
-			`	"However, this could have easily been just a coincidence; it takes a lot of effort to extract resources from asteroids that size, so maybe they were just combining their forces to harvest it. So, at this point I had an idea." The screen on the touchpad changes, now showing raw numbers separated on a spreadsheet. "The sensors you carried to Patir had various functions, one of which was a high power asteroid scanner. The asteroid in particular was shown to be extremely rich in a particular metal, iridium. There is more iridium in it than the whole of half a dozen Ember Waste systems, planets included. However, here is the odd part: the concentration of iridium on the asteroid when you jumped away was not lower than when the scanning begun, it was higher! For whatever reason, the Fetri'sei are depositing iridium on the asteroid."`
-			choice
-				`	"Are you sure that it isn't just an error in the measurement?"`
-				`	"Why are they doing that?"`
-					goto why
-			`	"Well, it is a possibility; this instrumentation has not been tested in years. But if it is not, this could give us a lot of insight on the real purpose of these Ka'sei and why they are around that black hole. It is at least worth studying!`
-				goto end
-			label why
-			`	"That is why I contacted you! The only way we can find insights on their real purpose is to study this asteroid and what the Ka'sei are doing there.`
-			label end
-			`	"My plan is to take a short range high power scanner, install it on your ship, and map the entire asteroid to analyze the site where the Ka'sei are bringing the iridium. Everything happened so fast that I was not able to get the scanner I was looking for yet, but if you meet me in the spaceport's cafeteria in a few hours I promise everything will be ready!" Dusk is so excited that he leaves before you can respond.`
+			`	"Well, there is no difference," Taely responds, "not in this case at least. The naming scheme the Builders used is a bit odd: we know that 'Ka,' in their language, has a meaning close to the one of 'group,' 'team,' and sometimes even 'ring,' although it can never be used without a name next to it. So we have 'group mar,' 'group het,' and so on. These are not limited to spaceships: the Ka'het, for example, includes both the biological spacecrafts around the Graveyard and the stations that constructs them, while until now we thought that the Ka'sei included only a handful of large scale construction projects. We know 'Fetri' to be a sort of spaceship sub-classification, but we are not aware of its exact meaning. So the Fetri'sei, or 'ship sei' are a part of the Ka'sei, or 'group sei.' To put it simply, it is similar to how all squares are rectangles, but not all rectangles are squares. It just so happens that everything in this system is classified as a Fetri'sei, so we can use either interchangeably.`
+			branch busy
+				has "remnant: dusk busy"
+			`	"I know someone who will want to see all this. Meet me in the spaceport when you have the chance."`
+				decline
+			label busy
+			apply
+				set "ka'het: dusk was busy"
+			`	"I know someone who will want to see all this. You have met Dusk, correct?"`
+			`	You nod. "I have, but I believe she's busy at the moment."`
+			`	"That is unfortunate. You should show this to her as soon as she's available," Taely responds. "But I fear I now have to go back to my job now, Captain. I would love to continue the exploration with you, but there are more pressing issues I have to resolve at the moment. I will keep an eye on the activity in Patir, I promise."`
 
 mission "Ka'het: Patir Mystery 2"
 	name "Scanners in <system>"
@@ -468,10 +445,13 @@ mission "Ka'het: Patir Mystery 2"
 	source "Aventine"
 	destination "Builder Settlement"
 	cargo "short range scanner" 15
-	blocked "You'll need <capacity> available to carry Dusk's scanner. Return here when you have enough free space."
+	blocked "You'll need <capacity> available to carry short range scanners. Return here when you have enough free space."
 	to offer
 		has "Ka'het: Patir Mystery 1: done"
+		not "remnant: dusk busy"
 	on offer
+		"remnant met dusk" ++
+		set "remnant: dusk busy"
 		event "asteroid on patir"
 		conversation
 			`You arrive in the spaceport cafeteria to meet Dusk when he said he'd be there, but he's nowhere to be seen. You wait for him to arrive, but nearly an hour later he's still not here. Just as you're about to leave, you spot Dusk running into the cafeteria toward you. "Sorry if I was late, Captain," he says, "I was finishing up gathering the necessary technology for our mission. Everything is ready now."`
@@ -479,11 +459,11 @@ mission "Ka'het: Patir Mystery 2"
 				`	"What's the next step?"`
 			`	"Well, first we need to install the scanners on your ship. Luckily, they are as simple to use as a normal outfit scanner, so you should not have much trouble once you reach the asteroid. After you have made extensive scans of the sites I indicate to you, reach me back here on <origin> so that I can analyze the data. If everything goes well, you should be back here in a couple weeks. I have already gotten a team ready to install the scanners; all that needs to be done now is for you to head back to <system>."`
 				accept
-	on visit
-		dialog "You've arrived, but you realize your escort carrying the <commodity> has not yet entered the system! Better depart and wait for it."
 	on enter "Patir"
 		dialog
 			`After a brief scan of the system, your ship's computers identify the asteroid that Dusk talked about. Compared to the asteroids you are used to, this one is orders of magnitude bigger, almost the size of a small moon.`
+	on visit
+		dialog "You've arrived, but you realize your escort carrying the <commodity> has not yet entered the system! Better depart and wait for it."
 
 event "asteroid on patir"
 	planet "Builder Settlement"
