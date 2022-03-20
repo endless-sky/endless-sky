@@ -482,7 +482,12 @@ mission "There Might Be Riots 1"
 	
 	on offer
 		conversation
-			`A woman in a well-tailored suit approaches you. "Captain <last>?" she asks. You nod. "My name is Becca," she says. "I'm a stage manager for a band, and the transport we had under contract bailed out on us. Any chance you could take us to <destination>? Given the circumstances, we can pay quite well."`
+			`A woman in a well-tailored suit approaches you. "Captain <last>?" she asks. You nod. She replies, "Are you available for a transport job?".`
+			choice
+				`	"What is it?"`
+				`	"Not right now."`
+					defer
+			`	"My name is Becca," she says. "I'm a stage manager for a band, and the transport we had under contract bailed out on us. Any chance you could take us to <destination>? Given the circumstances, we can pay quite well."`
 			choice
 				`	"Sure!"`
 				`	"Sorry, I'm not headed in that direction right now."`
