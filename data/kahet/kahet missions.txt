@@ -346,7 +346,7 @@ mission "Ka'het: Patir Mystery 1"
 				`	"What is that?"`
 				`	"A bunch of rods?"`
 			`	"It is an old tracking and surveillance device, developed specifically for the Graveyard," she says. "It was supposed to track all Ka'het it could find and make detailed imagery of their actions, in order to find the patterns that they follow or ways to exploit their controls. The mission was a long-term one, so when an urgent project came up, resources were diverted away from it, leaving some sensors unused.`
-			`	"My plan is to install some in the <ship> and go to <waypoints> to find out more about the ships in this new system. It needs to be calibrated precisely before use, but luckily for you, I was the person who developed the deployment procedures," she says with a smirk on her face. "Are you ready?"`
+			`	"My plan is to install some in the <ship> and go to <waypoints> to find out more about the ships there. It needs to be calibrated precisely before use, but luckily for you, I was the person who developed the deployment procedures," she says with a smirk on her face. "Are you ready?"`
 			choice
 				`	"Let's go!"`
 					goto mount
@@ -436,8 +436,8 @@ mission "Ka'het: Patir Mystery 1"
 			apply
 				set "ka'het: dusk was busy"
 			`	"I know someone who will want to see all this. You have met Dusk, correct?"`
-			`	You nod. "I have, but I believe she's busy at the moment."`
-			`	"That is unfortunate. You should show this to her as soon as she's available," Taely responds. "But I fear I now have to go back to my job now, Captain. I would love to continue the exploration with you, but there are more pressing issues I have to resolve at the moment. I will keep an eye on the activity in Patir, I promise."`
+			`	You nod. "I have, but I believe he's busy at the moment."`
+			`	"That is unfortunate. You should show this to him as soon as he's available," Taely responds. "But I fear I now have to go back to my job now, Captain. I would love to continue the exploration with you, but there are more pressing issues I have to resolve at the moment. I will keep an eye on the activity in Patir, I promise."`
 
 mission "Ka'het: Patir Mystery 2"
 	name "Scanners in <system>"
