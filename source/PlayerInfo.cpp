@@ -1929,7 +1929,7 @@ bool PlayerInfo::HasVisited(const System &system) const
 
 
 
-// Check if the player has visited the given system.
+// Check if the player has visited the given planet.
 bool PlayerInfo::HasVisited(const Planet &planet) const
 {
 	return visitedPlanets.count(&planet);
