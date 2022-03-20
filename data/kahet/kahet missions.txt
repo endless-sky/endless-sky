@@ -584,7 +584,7 @@ mission "Ka'het: Patir Mystery 4"
 				`	"I'm ready to go."`
 					accept
 				`	"Wait, are you saying that you can read the Builder language?"`
-			`	"Very approximately, but yes. We have been studying every piece of written language we could find from their cities, mostly inside sealed containers. It is very hard to understand full phrases or even what they mean at times, but we can reliably translate most of the common words and idioms, which will hopefully be enough for our mission."`
+			`	"Very approximately, but yes. We have been studying every piece of written language we could find from their cities, mostly inside sealed containers. It is very hard to understand full phrases or even what they mean at times, but we can reliably translate most of the common words and phrases, which will hopefully be enough for our mission."`
 				accept
 	on visit
 		dialog "You've arrived, but you realize your escort carrying Dusk has not yet entered the system! Better depart and wait for it."
