@@ -482,7 +482,7 @@ mission "There Might Be Riots 1"
 	
 	on offer
 		conversation
-			`A woman in a well-tailored suit approaches you. "Captain <last>?" she asks. You nod. She replies, "Are you available for a transport job?".`
+			`A woman in a well-tailored suit approaches you. "Captain <last>?" You nod. "Are you available for a transport job?" she asks.`
 			choice
 				`	"What is it?"`
 				`	"Not right now."`
