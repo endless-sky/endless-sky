@@ -135,50 +135,18 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	// Hull damage is blocked 100%.
 	// Shield damage is blocked 0%.
 	damage.shieldDamage *= shieldFraction;
-	double hull = ship.HullLevel();
-	double minHull = ship.MinimumHull();
-	if(hull < minHull)
+	damage.hullDamage = (weapon.HullDamage()
+		+ weapon.RelativeHullDamage() * attributes.Get("hull"))
+		* ScaleType(1., attributes.Get("hull protection"));
+	double hull = max(0., ship.HullLevel() - ship.MinimumHull());
+	if(damage.hullDamage > hull)
 	{
-		double healPart = minHull - hull - 0.25d;
-		damage.hullDamage = (weapon.DisabledDamage()
+		double hullFraction = hull / damage.hullDamage
+		damage.hullDamage *= hullFraction;
+		damage.hullDamage += (weapon.DisabledDamage()
 			+ weapon.RelativeDisabledDamage() * attributes.Get("hull"))
-			* ScaleType(1., attributes.Get("hull protection"));
-
-		// Test if the weapon is healing and if it will reach the disabled threshold.
-		if(-damage.hullDamage > healPart)
-		{
-			double hullFraction = (damage.hullDamage + healPart) / damage.hullDamage;
-
-			double hullDamage = (weapon.HullDamage()
-			+ weapon.RelativeHullDamage() * attributes.Get("hull"))
-			* ScaleType(1., attributes.Get("hull protection")) * hullFraction;
-
-			// hullDamage only applies here if it heals.
-			if(hullDamage < 0)
-				damage.hullDamage += hullDamage;
-		}
-	}
-	else
-	{
-		// The hull is above the disabled hull threshold.
-		double nonDisabledHull = hull - minHull + .25d;
-		damage.hullDamage = (weapon.HullDamage()
-			+ weapon.RelativeHullDamage() * attributes.Get("hull"))
-			* ScaleType(1., attributes.Get("hull protection"));
-
-		// Test if damage will pass disabled threshold.
-		if(damage.hullDamage > nonDisabledHull)
-		{
-			double disabledFraction = nonDisabledHull / damage.hullDamage;
-
-			double disabledDamage = (weapon.DisabledDamage()
-			+ weapon.RelativeDisabledDamage() * attributes.Get("hull"))
-			* ScaleType(1., attributes.Get("hull protection")) * disabledFraction;
-
-			// disabledDamage only applies here if it damages.
-			if(disabledDamage >= 0)
-				damage.hullDamage += disabledDamage;
-		}
+			* ScaleType(1., attributes.Get("hull protection"))
+			* (1. - hullFraction);
 	}
 	damage.energyDamage = (weapon.EnergyDamage()
 		+ weapon.RelativeEnergyDamage() * attributes.Get("energy capacity"))

@@ -267,7 +267,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 				child.PrintTrace("Unrecognized weapon attribute: \"" + key + "\":");
 		}
 	}
-	// Disabled Damage defaults to hull damage instead of 0.
+	// Disabled damage defaults to hull damage instead of 0.
 	if(!disabledDamageSet)
 		damage[DISABLED_DAMAGE] = damage[HULL_DAMAGE];
 	if(!relativeDisabledDamageSet)
