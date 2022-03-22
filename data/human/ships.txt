@@ -2715,10 +2715,10 @@ ship "Rainmaker"
 	engine 11.5 44.5 0.4
 	gun -7.5 -36.5 "Energy Blaster"
 	gun 7.5 -36.5 "Energy Blaster"
-	gun -27 6 "Meteor Missile Launcher"
-	gun 27 6 "Meteor Missile Launcher"
-	gun -22 6 "Meteor Missile Launcher"
-	gun 22 6 "Meteor Missile Launcher"
+	gun -27 8 "Meteor Missile Launcher"
+	gun 27 8 "Meteor Missile Launcher"
+	gun -22 8 "Meteor Missile Launcher"
+	gun 22 8 "Meteor Missile Launcher"
 	leak "leak" 50 50
 	explode "tiny explosion" 10
 	explode "small explosion" 20
