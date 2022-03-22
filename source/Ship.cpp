@@ -3020,10 +3020,14 @@ double Ship::DisabledHull() const
 
 
 
-// Get the actual hull level of the ship.
-double Ship::HullLevel() const
+// Get the (absolute) amount of hull that needs to be damaged until the
+// ship becomes disabled, returns 0 if the ships hull is already below the
+// disabled level.
+double Ship::HullUntilDisabled() const
 {
-	return hull;
+	// Need to overshoot a little bit, since a ship only gets disabled when
+	// we get _below_ the MinimumHull.
+	return max(0., hull + 0.25 - MinimumHull());
 }
 
 

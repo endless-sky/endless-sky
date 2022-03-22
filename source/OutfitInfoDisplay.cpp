@@ -367,7 +367,6 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	static const vector<pair<string, string>> VALUE_NAMES = {
 		{"shield damage", ""},
 		{"hull damage", ""},
-		{"disabled damage", ""},
 		{"fuel damage", ""},
 		{"heat damage", ""},
 		{"energy damage", ""},
@@ -380,7 +379,6 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		{"burn damage", ""},
 		{"% shield damage", "%"},
 		{"% hull damage", "%"},
-		{"% disabled damage", "%"},
 		{"% fuel damage", "%"},
 		{"% heat damage", "%"},
 		{"% energy damage", "%"},
@@ -406,7 +404,6 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	vector<double> values = {
 		outfit.ShieldDamage(),
 		outfit.HullDamage(),
-		outfit.DisabledDamage() == outfit.HullDamage() ? 0. : 1., // only show if different from hull damage, handled below
 		outfit.FuelDamage(),
 		outfit.HeatDamage(),
 		outfit.EnergyDamage(),
@@ -419,7 +416,6 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		outfit.BurnDamage() * 100.,
 		outfit.RelativeShieldDamage() * 100.,
 		outfit.RelativeHullDamage() * 100.,
-		outfit.RelativeDisabledDamage() == outfit.RelativeHullDamage() ? 0. : 1., // only show if different from hull damage, handled below
 		outfit.RelativeFuelDamage() * 100.,
 		outfit.RelativeHeatDamage() * 100.,
 		outfit.RelativeEnergyDamage() * 100.,
@@ -450,16 +446,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		for(unsigned i = 0; i < values.size(); ++i)
 			if(values[i])
 			{
-				if(VALUE_NAMES[i].first == "disabled damage" || VALUE_NAMES[i].first == "% disabled damage")
-				{
-					attributeLabels.emplace_back("   if disabled" + PER_SECOND);
-					attributeValues.emplace_back(Format::Number(60. * values[i] / reload)  + VALUE_NAMES[i].second);
-				}
-				else
-				{
-					attributeLabels.emplace_back(VALUE_NAMES[i].first + PER_SECOND);
-					attributeValues.emplace_back(Format::Number(60. * values[i] / reload) + VALUE_NAMES[i].second);
-				}
+				attributeLabels.emplace_back(VALUE_NAMES[i].first + PER_SECOND);
+				attributeValues.emplace_back(Format::Number(60. * values[i] / reload) + VALUE_NAMES[i].second);
 				attributesHeight += 20;
 			}
 	}
@@ -529,16 +517,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		for(unsigned i = 0; i < VALUE_NAMES.size(); ++i)
 			if(values[i])
 			{
-				if(VALUE_NAMES[i].first == "disabled damage" || VALUE_NAMES[i].first == "% disabled damage")
-				{
-					attributeLabels.emplace_back("   if disabled" + PER_SHOT);
-					attributeValues.emplace_back(Format::Number(values[i]) + VALUE_NAMES[i].second);
-				}
-				else
-				{
-					attributeLabels.emplace_back(VALUE_NAMES[i].first + PER_SHOT);
-					attributeValues.emplace_back(Format::Number(values[i]) + VALUE_NAMES[i].second);
-				}
+				attributeLabels.emplace_back(VALUE_NAMES[i].first + PER_SHOT);
+				attributeValues.emplace_back(Format::Number(values[i]) + VALUE_NAMES[i].second);
 				attributesHeight += 20;
 			}
 	}

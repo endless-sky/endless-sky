@@ -287,10 +287,10 @@ public:
 	double Health() const;
 	// Get the hull fraction at which this ship is disabled.
 	double DisabledHull() const;
-	// Get the actual hull level of the ship.
-	double HullLevel() const;
-	// Get the hull amount at which this ship is disabled.
-	double MinimumHull() const;
+	// Get the (absolute) amount of hull that needs to be damaged until the
+	// ship becomes disabled, returns 0 if the ships hull is already below the
+	// disabled level.
+	double HullUntilDisabled() const;
 	// Get the actual shield level of the ship.
 	double ShieldLevel() const;
 	// Get how disrupted this ship's shields are.
@@ -429,6 +429,8 @@ private:
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(Ship &ship);
 	void RemoveEscort(const Ship &ship);
+	// Get the hull amount at which this ship is disabled.
+	double MinimumHull() const;
 	// Find out how much fuel is consumed by the hyperdrive of the given type.
 	double BestFuel(const std::string &type, const std::string &subtype, double defaultFuel, double jumpDistance = 0.) const;
 	// Create one of this ship's explosions, within its mask. The explosions can

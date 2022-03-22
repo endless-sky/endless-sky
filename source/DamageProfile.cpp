@@ -138,10 +138,10 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	damage.hullDamage = (weapon.HullDamage()
 		+ weapon.RelativeHullDamage() * attributes.Get("hull"))
 		* ScaleType(1., attributes.Get("hull protection"));
-	double hull = max(0., ship.HullLevel() - ship.MinimumHull());
+	double hull = ship.HullUntilDisabled();
 	if(damage.hullDamage > hull)
 	{
-		double hullFraction = hull / damage.hullDamage
+		double hullFraction = hull / damage.hullDamage;
 		damage.hullDamage *= hullFraction;
 		damage.hullDamage += (weapon.DisabledDamage()
 			+ weapon.RelativeDisabledDamage() * attributes.Get("hull"))
