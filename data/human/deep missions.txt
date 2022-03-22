@@ -1054,11 +1054,11 @@ mission "Deep: Project Hawking"
 			`	You bring the scientists to your ship where they quickly make themselves comfy in the bunk rooms. As you walk to the bridge, you overhear Pierre quietly communicating with what you assume to be the spaceport authorities, "...<last> agreed. I expect Project Hawking to proceed on schedule. We will arrive before <day>." As you prepare for launch, you wonder what you've just signed up for.`
 				accept
 	
-	on visit
-		dialog `You have arrived on <planet>, but you do not have all the supplies needed for "Project Hawking." Return to <stopovers> to collect all of the required cargo.`
+	on accept
+		"reputation: Independent (Killable)" = 10
 	
 	npc
-		government "Independent"
+		government "Independent (Killable)"
 		personality staying
 		system "Naos"
 		ship "Marauder Quicksilver (Engines)" "Gusoyn"
@@ -1066,6 +1066,7 @@ mission "Deep: Project Hawking"
 	on visit
 		dialog `You arrive on <planet>, but realize that your escort carrying the scientists and their supplies has not arrived yet. Better depart and wait for your escorts to enter the system.`
 	on complete
+		"reputation: Independent (Killable)" = 10
 		payment 1500000
 		log `Helped gather materials for "Project Hawking," an energy and weapons research project being conducted by scientists of the Deep. A pirate Quicksilver attacked the building where the supplies were being placed and crashlanded into the ground, triggering an earthquake.`
 		conversation
@@ -1123,7 +1124,7 @@ mission "Deep: Project Hawking: Carbuncle"
 	to fail
 		has "Deep: Project Hawking: done"
 	npc kill
-		government "Independent"
+		government "Independent (Killable)"
 		personality waiting
 		ship "Marauder Splinter (Engines)" "Abaddon"
 	on offer
@@ -1198,7 +1199,7 @@ mission "Deep: Project Hawking: Prime"
 	to fail
 		has "Deep: Project Hawking: done"
 	npc kill
-		government "Independent"
+		government "Independent (Killable)"
 		personality waiting
 		ship "Marauder Raven (Engines)" "Krampus"
 	on offer
@@ -1238,7 +1239,7 @@ mission "Deep: Project Hawking: Vinci"
 	to fail
 		has "Deep: Project Hawking: done"
 	npc kill
-		government "Independent"
+		government "Independent (Killable)"
 		personality waiting
 		ship "Marauder Manta (Engines)" "Valac"
 	on offer
