@@ -1748,7 +1748,6 @@ mission "FW Albatross 2A"
 	description "Hunt down the pirate warlord Ryk Bartlett, who has been plundering merchant convoys in the vicinity of Zeta Aquilae. (Only his personal ship, the Dread, must be destroyed.) Then, return to Albatross."
 	autosave
 	source "Albatross"
-	destination "Albatross"
 	clearance
 	to offer
 		has "FW Albatross 2: done"
@@ -1789,7 +1788,7 @@ mission "FW Albatross 2A"
 			`	They explained that to the best of their knowledge, Bartlett is spending most of his time near the Zeta Aquilae system, plundering merchant convoys of heavy metals coming out of Rand and Oblivion. If you can destroy Bartlett and his flagship, the Dread, his followers will probably disperse.`
 				accept
 	on visit
-		dialog phrase "generic bounty hunting on visit"
+		dialog `You land on <planet>, but realize that you either haven't destroyed Ryk Bartlett's ship, the Dread, or your escort carrying JJ hasn't entered the system yet. Better depart and make sure that you've done everything you need to do to complete this mission.`
 	
 	npc kill
 		personality staying plunders disables heroic nemesis target
