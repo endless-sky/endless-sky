@@ -922,7 +922,7 @@ void OutfitterPanel::CheckRefill()
 		++count;
 		set<const Outfit *> toRefill;
 		for(const Hardpoint &it : ship->Weapons())
-			if(it.GetOutfit() && it.GetOutfit()->Ammo())
+			if(it.GetOutfit() && it.GetOutfit()->Ammo() && it.GetOutfit()->AmmoUsage() > 0)
 				toRefill.insert(it.GetOutfit()->Ammo());
 
 		for(const Outfit *outfit : toRefill)
@@ -963,7 +963,7 @@ void OutfitterPanel::Refill()
 
 		set<const Outfit *> toRefill;
 		for(const Hardpoint &it : ship->Weapons())
-			if(it.GetOutfit() && it.GetOutfit()->Ammo())
+			if(it.GetOutfit() && it.GetOutfit()->Ammo() && it.GetOutfit()->AmmoUsage() > 0)
 				toRefill.insert(it.GetOutfit()->Ammo());
 
 		for(const Outfit *outfit : toRefill)

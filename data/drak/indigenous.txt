@@ -206,6 +206,46 @@ ship "Ember Waste Node"
 
 
 
+ship "Embershade"
+	noun "creature"
+	sprite "ship/embershade/embershade"
+		"frame rate" 3
+		"random start frame"
+		rewind
+	"never disabled"
+	attributes
+		category "Light Warship"
+		"hull" 9600
+		"required crew" 1
+		"bunks" 1
+		"mass" 220
+		"drag" 4.2
+		"heat dissipation" .8
+		"cargo space" 40
+		"fuel capacity" 100
+		"thrust" 20
+		"turn" 900
+		"energy capacity" 500
+		"energy generation" 6
+		"hull repair rate" 3
+		"cloak" .02
+		"cloaking energy" 5
+		"hyperdrive" 1
+		"jump speed" .1
+		"ramscoop" .05
+		"gaslining" 1
+		"inscrutable" 1
+		"atmosphere scan" 1000
+	outfits
+		Mouthparts? 2
+	gun -6 -107
+	gun 6 -107
+	leak "blood" 40 40
+	explode "blood" 40
+	description "Long regarded as mere ghost stories, the ray-like Embershades have finally been proven to exist thanks to recent generations of ion storm resistant sensor suites. Shy by nature, these creatures generate a natural cloaking field and prefer to move unseen."
+
+
+
 outfit Mouthparts?
 	category "Guns"
 	thumbnail "outfit/mouthparts"
@@ -248,8 +288,42 @@ fleet "Subsidurial"
 
 
 
+fleet "Subsidurial (Ember Waste)"
+	government "Ember Waste"
+	cargo 0
+	personality
+		timid mining harvests mute unconstrained
+	variant 100
+		"Subsidurial"
+	variant 1
+		"Subsidurial" 2
+
+
+
 fleet "Void Sprites"
 	government "Indigenous Lifeform"
+	cargo 0
+	personality
+		timid mining harvests mute
+	variant
+		"Void Sprite"
+	variant
+		"Void Sprite"
+		"Void Sprite (Infant)"
+	variant
+		"Void Sprite"
+		"Void Sprite (Infant)" 2
+	variant
+		"Void Sprite"
+		"Void Sprite (Infant)" 3
+	variant
+		"Void Sprite" 2
+		"Void Sprite (Infant)" 4
+
+
+
+fleet "Void Sprites (Ember Waste)"
+	government "Ember Waste"
 	cargo 0
 	personality
 		timid mining harvests mute
@@ -278,6 +352,26 @@ fleet "Ember Waste Node"
 		timid mining harvests mute
 	variant
 		"Ember Waste Node"
+
+
+
+fleet "Embershades"
+	government "Indigenous Lifeform"
+	cargo 0
+	personality
+		timid mute surveillance
+	variant 3
+		"Embershade" 1
+	variant 5
+		"Embershade" 2
+	variant 5
+		"Embershade" 3
+	variant 3
+		"Embershade" 4
+	variant 2
+		"Embershade" 5
+	variant 1
+		"Embershade" 6
 
 
 

@@ -46,7 +46,7 @@ void GameLoadingPanel::Step()
 
 	// While the game is loading, upload sprites to the GPU.
 	GameData::ProcessSprites();
-	if(progress == MAX_TICKS)
+	if(GameData::IsLoaded())
 	{
 		// Now that we have finished loading all the basic sprites and sounds, we can look for invalid file paths,
 		// e.g. due to capitalization errors or other typos.
@@ -73,7 +73,7 @@ void GameLoadingPanel::Draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
 
-	GameData::Interfaces().Get("menu background")->Draw(Information(), this);
+	GameData::DrawMenuBackground(this);
 
 	// Draw the loading circle.
 	Angle da(ANGLE_OFFSET);

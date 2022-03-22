@@ -243,34 +243,30 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 			continue;
 		}
 
-		int available = 0;
 		// Requiring the player to have 0 of this outfit means all ships and all cargo holds
 		// must be checked, even if the ship is disabled, parked, or out-of-system.
-		bool checkAll = !it.second;
-		if(checkAll)
+		if(!it.second)
 		{
+			// When landed, ships pool their cargo into the player's cargo.
+			if(player.GetPlanet() && player.Cargo().Get(it.first))
+				return false;
+
 			for(const auto &ship : player.Ships())
 				if(!ship->IsDestroyed())
-				{
-					available += ship->Cargo().Get(it.first);
-					available += ship->OutfitCount(it.first);
-				}
+					if(ship->OutfitCount(it.first) || ship->Cargo().Get(it.first))
+						return false;
 		}
 		else
 		{
-			// Required outfits must be present on able ships in the
-			// player's location (or the respective cargo hold).
-			available += flagship ? flagship->OutfitCount(it.first) : 0;
+			// Required outfits must be present on the player's flagship or
+			// in the cargo holds of able ships at the player's location.
+			int available = flagship ? flagship->OutfitCount(it.first) : 0;
 			available += boardingShip ? flagship->Cargo().Get(it.first)
 					: CountInCargo(it.first, player);
+
+			if(available < it.second)
+				return false;
 		}
-
-		if(available < it.second)
-			return false;
-
-		// If the required count is 0, the player must not have any of the outfit.
-		if(checkAll && available)
-			return false;
 	}
 
 	// An `on enter` MissionAction may have defined a LocationFilter that

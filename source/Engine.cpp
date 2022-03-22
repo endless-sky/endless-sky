@@ -15,6 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Audio.h"
 #include "CategoryTypes.h"
 #include "CoreStartData.h"
+#include "DamageDealt.h"
+#include "DamageProfile.h"
 #include "Effect.h"
 #include "Files.h"
 #include "FillShader.h"
@@ -190,6 +192,7 @@ namespace {
 	}
 
 	const double RADAR_SCALE = .025;
+	const double MAX_FUEL_DISPLAY = 5000.;
 }
 
 
@@ -653,8 +656,13 @@ void Engine::Step(bool isActive)
 	info.SetString("date", player.GetDate().ToString());
 	if(flagship)
 	{
-		info.SetBar("fuel", flagship->Fuel(),
-			flagship->Attributes().Get("fuel capacity") * .01);
+		double fuelCap = flagship->Attributes().Get("fuel capacity");
+		// If the flagship has a large amount of fuel, display a solid bar.
+		// Otherwise, display a segment for every 100 fuel.
+		if(fuelCap <= MAX_FUEL_DISPLAY)
+			info.SetBar("fuel", flagship->Fuel(), fuelCap * .01);
+		else
+			info.SetBar("fuel", flagship->Fuel());
 		info.SetBar("energy", flagship->Energy());
 		double heat = flagship->Heat();
 		info.SetBar("heat", min(1., heat));
@@ -1776,7 +1784,7 @@ void Engine::SendHails()
 		return;
 
 	// Generate a random hail message.
-	SendMessage(source, source->GetHail(player));
+	SendMessage(source, source->GetHail(player.GetSubstitutions()));
 }
 
 
@@ -2036,6 +2044,8 @@ void Engine::DoCollisions(Projectile &projectile)
 		// motion path for this step.
 		projectile.Explode(visuals, closestHit, hitVelocity);
 
+		const DamageProfile damage(projectile.GetInfo());
+
 		// If this projectile has a blast radius, find all ships within its
 		// radius. Otherwise, only one is damaged.
 		double blastRadius = projectile.GetWeapon().BlastRadius();
@@ -2048,19 +2058,20 @@ void Engine::DoCollisions(Projectile &projectile)
 			for(Body *body : shipCollisions.Circle(hitPos, blastRadius))
 			{
 				Ship *ship = reinterpret_cast<Ship *>(body);
-				if(isSafe && projectile.Target() != ship && !gov->IsEnemy(ship->GetGovernment()))
+				bool targeted = (projectile.Target() == ship);
+				if(isSafe && !targeted && !gov->IsEnemy(ship->GetGovernment()))
 					continue;
 
-				int eventType = ship->TakeDamage(visuals, projectile.GetWeapon(), 1.,
-					projectile.DistanceTraveled(), projectile.Position(), projectile.GetGovernment(), ship != hit.get());
+				// Only directly targeted ships get provoked by blast weapons.
+				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit.get()),
+					targeted ? gov : nullptr);
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
 		}
 		else if(hit)
 		{
-			int eventType = hit->TakeDamage(visuals, projectile.GetWeapon(), 1.,
-				projectile.DistanceTraveled(), projectile.Position(), projectile.GetGovernment());
+			int eventType = hit->TakeDamage(visuals, damage.CalculateDamage(*hit), gov);
 			if(eventType)
 				eventQueue.emplace_back(gov, hit, eventType);
 		}
@@ -2093,7 +2104,7 @@ void Engine::DoWeather(Weather &weather)
 	if(weather.HasWeapon() && !Random::Int(weather.Period()))
 	{
 		const Hazard *hazard = weather.GetHazard();
-		double multiplier = weather.DamageMultiplier();
+		const DamageProfile damage(weather.GetInfo());
 
 		// Get all ship bodies that are touching a ring defined by the hazard's min
 		// and max ranges at the hazard's origin. Any ship touching this ring takes
@@ -2101,8 +2112,7 @@ void Engine::DoWeather(Weather &weather)
 		for(Body *body : shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange()))
 		{
 			Ship *hit = reinterpret_cast<Ship *>(body);
-			double distanceTraveled = weather.Origin().Distance(hit->Position()) - hit->GetMask().Radius();
-			hit->TakeDamage(visuals, *hazard, multiplier, distanceTraveled, weather.Origin(), nullptr, hazard->BlastRadius() > 0.);
+			hit->TakeDamage(visuals, damage.CalculateDamage(*hit), nullptr);
 		}
 	}
 }
