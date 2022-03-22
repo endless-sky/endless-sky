@@ -288,8 +288,8 @@ public:
 	// Get the hull fraction at which this ship is disabled.
 	double DisabledHull() const;
 	// Get the (absolute) amount of hull that needs to be damaged until the
-	// ship becomes disabled, returns 0 if the ships hull is already below the
-	// disabled level.
+	// ship becomes disabled. Returns 0 if the ships hull is already below the
+	// disabled threshold.
 	double HullUntilDisabled() const;
 	// Get the actual shield level of the ship.
 	double ShieldLevel() const;
