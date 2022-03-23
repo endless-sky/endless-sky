@@ -77,7 +77,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			`	"Anyway, thanks to a little Freedom of Information request to the Republic, I have been looking at things, and I think I have the solution."`
 			choice
 				`	"Is it me?"`
-			`Sayari winks at you, "Catch on quick, don't you?"`
+			`	Sayari winks at you, "Catch on quick, don't you?"`
 			`	"The actions you're recorded as having taken show a certain conscience for the good of your species as a whole, despite your affiliations. I have convinced the other diplomats and the Elders that you might be a viable solution to this impasse. The human diplomats have already agreed, but the Elders wish to speak with you first."`
 			choice
 				`	"Who are these Elders?"`
@@ -96,7 +96,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 				`	"Maybe in a bit. I should do something else first."`
 					defer
 			label council
-			`Following Sayari, you pass beyond a security checkpoint where Xilin is prevented from following you. Sayari speaks with another Hai doing administrative work for a moment before gesturing you towards a private antechamber.`
+			`	Following Sayari, you pass beyond a security checkpoint where Xilin is prevented from following you. Sayari speaks with another Hai doing administrative work for a moment before gesturing you towards a private antechamber.`
 			`	"We shouldn't have to wait very long, but while we're alone," she says, glancing at the door as if faintly nervous for a second, "did you find anything on your investigation?"`
 			choice
 				`	"Yes, actually I found proof."`
@@ -127,9 +127,9 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			choice
 				`	"The Pug."`
 				`	"The Alphas."`
-				`	"Unknown Jump-Capable Aliens."`
-				`	"Experimental Technologies."`
-				`	"Humanity's Hubris."`
+				`	"Unknown jump-capable aliens."`
+				`	"Experimental technologies."`
+				`	"Humanity's hubris."`
 					goto wise
 			`	There is a collection of chittering laughs from the various council members. You're not sure if there was something wrong with what you said, but you aren't left long to ponder.`
 			`	"It seems the human agent is an honest fool, but an honest fool can at least be trusted to be foolish honestly on all fronts."`
