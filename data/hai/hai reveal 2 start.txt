@@ -27,7 +27,7 @@ mission "Hai Rescue: Yeertle Hint"
 	destination Prime
 	to offer
 		"combat rating" > 50
-		has "Hai Leaks Response 6: offered"
+		has "Hai Leaks Response 6: active"
 		has "event: slightly lost"
 		not "Hai Rescue: Yeertle Family: offered"
 		not "event: hai-human treaty signed"
@@ -116,7 +116,7 @@ mission "Hai Rescue: Prison RP Hint"
 		not planet "Sunracer"
 	destination Sunracer
 	to offer
-		has "Hai Leaks Response 6: offered"
+		has "Hai Leaks Response 6: active"
 		has "event: slightly lost"
 		not "Hai Rescue: Prison Role-Players: offered"
 		not "event: hai-human treaty signed"
@@ -204,7 +204,7 @@ mission "Hai Rescue: Oonem Hint"
 		not planet "Stormhold"
 	destination Stormhold
 	to offer
-		has "Hai Leaks Response 6: offered"
+		has "Hai Leaks Response 6: active"
 		has "event: slightly lost"
 		not "Hai Rescue: Ooonem: offered"
 		not "event: hai-human treaty signed"
@@ -309,7 +309,7 @@ mission "Hai Rescue: Meroot and Lucy Hint"
 	to offer
 		"combat rating" > 50
 		has "Unwanted Cargo: done"
-		has "Hai Leaks Response 6: offered"
+		has "Hai Leaks Response 6: active"
 		has "event: slightly lost"
 		not "Hai Rescue: Meroot and Lucy: offered"
 		not "event: hai-human treaty signed"
@@ -401,7 +401,7 @@ mission "Hai Rescue: Gipeep Hint"
 	to offer
 		"combat rating" > 50
 		has "Unwanted Cargo: done"
-		has "Hai Leaks Response 6: offered"
+		has "Hai Leaks Response 6: active"
 		has "event: slightly lost"
 		not "Hai Rescue: Gipeep: offered"
 		not "event: hai-human treaty signed"

@@ -148,6 +148,8 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 		log `The diplomats have elected to double-down on the role-play community angle, citing its success; however, the Hai are unwilling to trust a human government to see the inner workings of a station under construction in the wake of the civil war, and the Republic will not allow a station to be built on their side unsupervised. You have been asked to fulfill the role of supervisor as a result. The Elders asked you some odd questions, but agreed that you were an acceptable individual for the task.`
 	on stopover
 		dialog `A fleet of seven Geocoris are waiting to accompany you when you arrive, with just the final items being loaded as you come into land. They will follow you to the site where the new station will be built.`
+	to complete
+		has "Hai Building Mountaintop [1a] Construction Escorts: done"
 	on complete
 		event "role-play station after construction"
 	
@@ -332,14 +334,13 @@ mission "Hai Building Mountaintop [2] Recruits"
 		log `Had to go on a lengthy promotional tour to rustle up volunteers for the new station. Terry took care of all the details and seemed especially keen. Presumably she has some marketing background, which may explain her success within the Syndicate.`
 		payment 10000000
 		conversation
-			`You land on the world of <planet> and do your part to sell the opportunity on Mountaintop. Shortly after, you receive a ping informing you that <payment> has been deposited into your account. Terry must've set it up to happen automatically.`
+			`You finally dock at <planet>, your tedious tour complete. Shortly after, you receive a ping informing you that <payment> has been deposited into your account. Terry must've set it up to happen automatically.`
 				decline
 
 
 mission "ZZ Hai Building Mountaintop [2a] Sales Job"
 	landing
 	invisible
-	repeat
 	source 
 		not planet "Hai-home"
 		not planet "Mountaintop"
@@ -363,22 +364,22 @@ mission "ZZ Hai Building Mountaintop [2a] Sales Job"
 			branch tedious
 				"hai dog and pony" >= 5
 			`You land on the world of <planet> and do your part to sell the opportunity on Mountaintop.`
-				decline
+				defer
 			label tedious
 			`You land on the world of <planet> and do your part to sell the opportunity on Mountaintop. Despite the enthusiasm of the Hai it's tediously repetitive by now.`
-				decline
+				defer
 			label tiresome
 			`You land on the world of <planet> and do your part to sell the opportunity on Mountaintop. The routine is well-practiced now, but starting to get a little tiresome.`
-				decline
+				defer
 			label ordeal
 			`You land on the world of <planet> and do your part to sell the opportunity on Mountaintop. You struggle to maintain a cheerful and enthusiastic facade as you count down the minutes until this ordeal is over.`
-				decline
+				defer
 			label interminable
 			`You land on the world of <planet> and do your part to sell the opportunity on Mountaintop. Why did you ever agree to this interminable dog and pony show? Is it really worth all this just to save one tiny little galaxy?`
-				decline
+				defer
 			label toomany
 			`You land on the world of <planet> and do your part to sell the opportunity on Mountaintop. You're pretty sure you've done this more times than there are habitable planets in Hai space. Did you lose track and repeat a world? Will this nightmare ever end?`
-				decline
+				defer
 			label overdone
 			`You land on the world of <planet> and do your part to sell the opportunity on Mountaintop. Terry makes good on her promise of forcing you to shuffle out and do some last-minute spruiking to offload the remaining promotional materials to those who missed it the first time.`
 				decline

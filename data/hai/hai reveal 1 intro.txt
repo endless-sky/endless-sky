@@ -20,34 +20,7 @@ mission "Hai Secret Leaker Begins"
 		fail
 
 event "pug media coverage"
-	# add attitudes for aliases of governments
-	government "Republic"
-		"attitude toward"
-			"Republic that won't enter wormhole" 1.0
-	government "Republic that won't enter wormhole"
-		"attitude toward"
-			"Republic" 1.0
 
-	government "Syndicate"
-		"attitude toward"
-			"Syndicate that won't enter wormhole" 1.0
-	government "Syndicate that won't enter wormhole"
-		"attitude toward"
-			"Syndicate" 1.0
-
-	government "Free Worlds"
-		"attitude toward"
-			"Free Worlds that won't enter wormhole" 1.0
-	government "Free Worlds that won't enter wormhole"
-		"attitude toward"
-			"Free Worlds" 1.0
-
-	government "Deep Security"
-		"attitude toward"
-			"Deep Security that won't enter wormhole" 1.0
-	government "Deep Security that won't enter wormhole"
-		"attitude toward"
-			"Deep Security" 1.0
 
 event "hai ladybug available"
 	shipyard "Hai Intermediate"

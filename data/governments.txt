@@ -112,6 +112,7 @@ government "Deep Security"
 	swizzle 0
 	"player reputation" 1
 	"attitude toward"
+		"Deep Security that won't enter wormhole" 1.0
 		"Merchant" .5
 		"Pirate" -.2
 		"Pirate (Devil-Run Gang)" -.2
@@ -210,6 +211,7 @@ government "Free Worlds"
 	"player reputation" 1
 	"attitude toward"
 		"Alpha" -.4
+		"Free Worlds that won't enter wormhole" 1
 		"Merchant" .3
 		"Militia" .3
 		"Pirate" -.4
@@ -810,6 +812,7 @@ government "Republic"
 		"Militia" .1
 		"Pirate" -.3
 		"Pirate (Devil-Run Gang)" -.3
+		"Republic that won't enter wormhole" 1
 		"Smuggler (Hai Trafficker)" -.3
 		"Navy Intelligence" 1
 		"Navy (Oathkeeper)" 1
@@ -899,6 +902,7 @@ government "Syndicate"
 		"Pirate" -.4
 		"Pirate (Devil-Run Gang)" -.4
 		"Smuggler (Hai Trafficker)" -.4
+		"Syndicate that won't enter wormhole" 1
 		"Korath" -.5
 	"bribe" .08
 	"friendly hail" "friendly syndicate"
