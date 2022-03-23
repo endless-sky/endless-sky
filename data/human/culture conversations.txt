@@ -488,6 +488,7 @@ mission "News Reporter - Paradise"
 					goto notice
 				`	(Try to avoid her.)`
 			`	You take a hallway off to the side to evade her. Just as you think you've gotten out of sight, you hear a voice. "Excuse me!" You turn to see the reporter following you.`
+				goto walk
 			label notice
 			`	As you continue walking, you hear her call out, "Excuse me!" Suppressing a sigh, you turn to face the reporter.`
 			label walk
