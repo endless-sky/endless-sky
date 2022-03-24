@@ -245,7 +245,7 @@ void MapOutfitterPanel::DrawItems()
 				: storedInSystem == 1
 				? "One unit in storage"
 				: Format::Number(storedInSystem) + " units in storage";
-			Draw(corner, outfit->Thumbnail(), isForSale, outfit == selected,
+			Draw(corner, outfit->Thumbnail(), 0, isForSale, outfit == selected,
 				outfit->Name(), price, info, storage_details);
 			list.push_back(outfit);
 		}

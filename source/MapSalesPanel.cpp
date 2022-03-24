@@ -55,8 +55,6 @@ MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 	isOutfitters(isOutfitters),
 	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {
-	if(!isOutfitters)
-		swizzle = GameData::PlayerGovernment()->GetSwizzle();
 }
 
 
@@ -68,8 +66,6 @@ MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {
 	commodity = SHOW_SPECIAL;
-	if(!isOutfitters)
-		swizzle = GameData::PlayerGovernment()->GetSwizzle();
 }
 
 
@@ -195,6 +191,20 @@ bool MapSalesPanel::Scroll(double dx, double dy)
 
 
 
+int MapSalesPanel::SelectedSpriteSwizzle() const
+{
+	return 0;
+}
+
+
+
+int MapSalesPanel::CompareSpriteSwizzle() const
+{
+	return 0;
+}
+
+
+
 void MapSalesPanel::DrawKey() const
 {
 	const Sprite *back = SpriteSet::Get("ui/sales key");
@@ -294,13 +304,13 @@ void MapSalesPanel::DrawInfo() const
 			topLeft.X() += compareInfo.PanelWidth() + box->Width();
 
 			SpriteShader::Draw(box, topLeft + Point(-50., 100.));
-			DrawSprite(topLeft + Point(-95., 5.), SelectedSprite());
-			DrawSprite(topLeft + Point(-95., 105.), CompareSprite());
+			DrawSprite(topLeft + Point(-95., 5.), SelectedSprite(), SelectedSpriteSwizzle());
+			DrawSprite(topLeft + Point(-95., 105.), CompareSprite(), CompareSpriteSwizzle());
 		}
 		else
 		{
 			SpriteShader::Draw(box, topLeft + Point(-60., 50.));
-			DrawSprite(topLeft + Point(-95., 5.), SelectedSprite());
+			DrawSprite(topLeft + Point(-95., 5.), SelectedSprite(), SelectedSpriteSwizzle());
 		}
 		selectedInfo.DrawAttributes(topLeft);
 	}
@@ -329,20 +339,24 @@ bool MapSalesPanel::DrawHeader(Point &corner, const string &category)
 
 
 
-void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite) const
+void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, int swizzle) const
 {
 	if(sprite)
 	{
 		Point iconOffset(.5 * ICON_HEIGHT, .5 * ICON_HEIGHT);
 		double scale = min(.5, min((ICON_HEIGHT - 2.) / sprite->Height(), (ICON_HEIGHT - 2.) / sprite->Width()));
+
+		// No swizzle was specified, so default to the player swizzle.
+		if(swizzle == -1)
+			swizzle = GameData::PlayerGovernment()->GetSwizzle();
 		SpriteShader::Draw(sprite, corner + iconOffset, scale, swizzle);
 	}
 }
 
 
 
-void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, bool isForSale, bool isSelected,
-		const string &name, const string &price, const string &info,
+void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, int swizzle, bool isForSale,
+		bool isSelected, const string &name, const string &price, const string &info,
 		const std::string &storage)
 {
 	const Font &font = FontSet::Get(14);
@@ -363,7 +377,7 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, bool isForSale, bo
 		if(isSelected)
 			FillShader::Fill(corner + .5 * blockSize, blockSize, selectionColor);
 
-		DrawSprite(corner, sprite);
+		DrawSprite(corner, sprite, swizzle);
 
 		const Color &mediumColor = *GameData::Colors().Get("medium");
 		const Color &dimColor = *GameData::Colors().Get("dim");
