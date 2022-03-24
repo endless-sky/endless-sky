@@ -2990,7 +2990,7 @@ mission "Home for Skadenga 1"
 			`	Despite using all your strength, your leg won't budge. The sizzling noise continues and you are overwhelmed with a sharp horrific burning sensation. Your eyes water and you scream out in pain for help and mercy.`
 			`	You keep pulling, trying to break free. The air thickens with the scent of your liquified foot, and something gives as you fall forward. You look down to see your leg missing from the knee down. You try to push it out of your mind as you desperately claw forward, trying to escape the gray-purple blob that is forming up behind you.`			
 			`	Try as you might, you can't cry out Hjlod's name; instead your screams are savage, hollow noises. You reach for her, you reach for anyone, but it's too late. The Ice-Slug has caught up to you, and you feel its acidic tendrils wrapping around your remaining leg and lower torso. The pain is agonizing as your lower body begins to dissolve.`
-			`	You look up one last desperate time, hoping to see Hjlod coming to rescue you, but all you see a gray smudge on the horizon. A distant person who has long left you for dead. You are alone now with the Ice-Slug and the pain. You consider briefly your mistakes before you are dissolved and eaten.`
+			`	You look up one last desperate time, hoping to see Hjlod coming to rescue you, but all you see is a gray smudge on the horizon, a distant person who has long left you for dead. You are alone now with the Ice-Slug and the pain. You consider briefly your mistakes before you are dissolved and eaten.`
 				die
 			label travel
 			`	The cold, monotonous trudging weighs on you as the hours pass. You're dimly aware of Nifel's two suns as they make their journey across the wide open sky.`
@@ -3016,19 +3016,19 @@ mission "Home for Skadenga 1"
 			apply
 				set "Hjlodsaved"
 			choice
-				`	"Woah, woah, woah! What do you mean 'save us all'?"`
+				`	"Woah, woah, woah! What do you mean 'save us all?'"`
 					goto woah
 				`	"Your daughter? Hjlod? Is she alright?"`
 			`	The elderly woman smiles warmly. "It is good of you to ask. Thanks to you, Hjlod will be fine. Had you been any later, she would have lost her hands, or worse. But she is recovering now and will join us later."`
 			choice
-				`	"Woah, woah, woah! What do you mean 'save us all'?"`
+				`	"Woah, woah, woah! What do you mean 'save us all?'"`
 			label woah
 			`	The elderly woman opens her palms and spreads them wide. "This is village of Udainsakr. I am Ondurdis, or leader, and we are Skadenga, daughters of Skade, the Troll-Goddess of ice, mountains, and cold."`
 			`	"For nearly century we have been waiting for person who bore mark of Skade." She points a tattooed hand at the electric burn on your arm you received while repairing the Ice-Crawler. "It seems we have been waiting for you."`
 				goto woahafter
 			label withhjlod
 			choice
-				`	"Woah, woah, woah! What do you mean 'save us all'?"`
+				`	"Woah, woah, woah! What do you mean 'save us all?'"`
 			`	The elderly woman opens her palms and spreads them wide. "This is village of Udainsakr. I am Ondurdis, or leader, and we are Skadenga, daughters of Skade, the Troll-Goddess of ice, mountains, and cold."`
 			`	"For nearly century we have been waiting for person who bore mark of Skade." She points a tattooed hand at the ice burn on your arm you received while traveling through the snow. "It seems we have been waiting for you."`
 			label woahafter
@@ -3424,7 +3424,7 @@ mission "Home for Skadenga 7"
 	on offer
 		dialog
 			`The fleet touches down just outside the over-crowded village of Udainsakr. The landscape is filled with the gathered Skadenga.`
-			`	The Ondurdis approaches you. "Leaving is difficult, but all winters must come to end." As a section of her people board the ships, she adds, "I will be going on first trip to Asgard, but I must rejoin my folk. Thank you for this, and we shall speak again at our new home."`
+			`	The Ondurdis approaches you. "Leaving is difficult, but all winters must come to end." As her people board the ships, she adds, "I will be going on first trip to Asgard, but I must rejoin my folk. Thank you for this, and we shall speak again at our new home."`
 	npc accompany save
 		government "Deep Security"
 		personality timid escort
@@ -3630,7 +3630,7 @@ mission "Home for Skadenga 8"
 			choice
 				`	"How do I find him?"`
 			`	The Union employee begins moving away from you. "Name's Hroar. You can usually find him in the Red Rock Saloon, inside the Muspel Spaceport."`
-			`	The disgruntled Union employee then says, quite loudly, "I do not know where the bracelet shop is, please stop asking me!" And hurries away from you.`
+			`	The disgruntled Union employee then says, quite loudly, "I do not know where the bracelet shop is, please stop asking me!" and hurries away from you.`
 				accept
 	on complete
 		dialog
@@ -3791,7 +3791,7 @@ mission "Home for Skadenga 12"
 	on offer
 		dialog
 			`The fleet touches down just outside the crowded village of Udainsakr. The landscape is filled with the gathered Skadenga.`
-			`	The Ondurdis approaches you. "Leaving is difficult, but all winters must come to end." She watches as a section her people climb aboard the fleet. "I will be taking first trip to Windblain, but I must rejoin my folk. Thank you for this, and we shall speak again at our new home."`
+			`	The Ondurdis approaches you. "Leaving is difficult, but all winters must come to end." She watches as her people climb aboard the fleet. "I will be taking first trip to Windblain, but I must rejoin my folk. Thank you for this, and we shall speak again at our new home."`
 			`	She leaves you with a warm smile in the wintry village.`
 				accept
 	npc accompany save
@@ -3975,7 +3975,7 @@ event "hjlod waits"
 
 mission "Stones of Skadenga 2"
 	name "Stones of Skadenga"
-	description "Take the mourning Skadenga to <stopovers>, so that they can enact the rites of their dead, then take them back to <planet>. Payment is <payment>."
+	description "Take the mourning Skadenga to <stopovers>, so that they can enact the rites of their dead, then return them to <planet>. Payment is <payment>."
 	source "Windblain"
 	stopover "Nifel"
 	passengers 8
@@ -4011,7 +4011,7 @@ mission "Stones of Skadenga 3"
 
 
 mission "Stone-Bearers to Nifel"
-	description "Take the mourning Skadenga to <stopovers>, so that they can enact the rites of their dead, then take them back to <planet>. Payment is <payment>."
+	description "Take the mourning Skadenga to <stopovers>, so that they can enact the rites of their dead, then return them to <planet>. Payment is <payment>."
 	source "Windblain"
 	stopover "Nifel"
 	passengers 1 10 .7
