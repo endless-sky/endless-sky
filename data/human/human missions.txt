@@ -3842,7 +3842,9 @@ mission "Fumbling Mugger Patch"
 		event "fumbling mugger timer" 60
 		fail
 
+
 event "fumbling mugger timer"
+
 
 mission "Fumbling Mugger"
 	name "Transport to <planet>"
@@ -3993,5 +3995,8 @@ mission "Fumbling Mugger"
 		log `Was held up by a girl in her late teens who wanted transport to Maker. Managed to gain the upper hand in the engagment, but decided to take her there anyway.`
 		dialog `The woman who attacked you on <origin> prepares to disembark your ship. She takes off her bandanna and puts down her hoodie, letting her blond hair free. With her bandanna gone, you also notice that she's only in her late teens. Just before she steps off, she turns to look at you. "I'll try to pay you back someday, Captain." She walks off into the bustling spaceport to find her lover.`
 
+
+
 event "fumbling mugger followup timer"
+
 
