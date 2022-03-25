@@ -155,6 +155,14 @@ phrase "ka'mar"
 	word
 		"'mar"
 
+phrase "ka'sei"
+	phrase
+		"builder beginning"
+	word
+		"'sei"
+
+
+
 # Hails:
 phrase "friendly ka'het"
 	word
@@ -599,6 +607,8 @@ phrase "hostile disabled ka'het"
 	word
 		"."
 
+
+
 fleet "Ka'het"
 	government "Ka'het"
 	names "ka'het"
@@ -772,6 +782,17 @@ fleet "Builders Drone"
 		"Selii'mar" 3
 		"Faes'mar" 2
 		"Faes'mar (Strong)"
+
+fleet "Ka'sei"
+	government "Ka'sei"
+	names "ka'sei"
+	cargo 1
+	personality
+		plunders mining harvests
+	variant
+		"Fetri'sei"
+	variant
+		"Fetri'sei (Disable-able)"
 
 
 

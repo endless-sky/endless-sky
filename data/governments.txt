@@ -287,6 +287,21 @@ government "Ka'het (Infighting)"
 	"hostile hail" "hostile ka'het"
 	"hostile disabled hail" "hostile disabled ka'het"
 
+government "Ka'sei"
+	swizzle 0
+	language "Ka'het"
+	
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+	"player reputation" 1
+	"friendly hail" "friendly ka'het"
+	"friendly disabled hail" "friendly disabled ka'het"
+	"hostile hail" "hostile ka'het"
+	"hostile disabled hail" "hostile disabled ka'het"
+
 government "Korath"
 	swizzle 0
 	color .8 .5 .1
