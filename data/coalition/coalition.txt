@@ -319,6 +319,15 @@ outfitter "Heliarch"
 	"Ion Rain Gun"
 	"Local Map"
 
+outfitter "Heliarch Basics"
+	"Ion Rain Gun"
+	"Ion Hail Turret"
+	"Brig"
+	"Scanning Module"
+	"Enforcer Confrontation Gear"
+	"Enforcer Riot Staff"
+	"Local Map"
+
 
 shipyard "Arach"
 	"Arach Courier"
