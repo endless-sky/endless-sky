@@ -1384,7 +1384,7 @@ mission "Resistance: Combat Training 2"
 	on visit
 		dialog `You land on <planet>, but you're not done with the mission yet. Either some of the Lunarium's ships haven't entered the system yet, or some of the pirate ships in <waypoints> haven't been defeated. Return once everything is in order.`
 	npc accompany save
-		government "Resistance"
+		government "Lunarium"
 		personality escort
 		ship "Bastion" "Procellarum"
 		ship "Argosy" "Ingenii"
