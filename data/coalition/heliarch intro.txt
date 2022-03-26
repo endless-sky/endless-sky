@@ -954,7 +954,7 @@ mission "Heliarch Expedition 1"
 			choice
 				`	"I didn't say incomplete, I said broken. I know the difference."`
 				`	"Is this some joke? If you don't care about the broken ringworld, just tell me. Don't waste my time."`
-			`	He leans forward lightly, staring at you. Looking around the table, the other Heliarchs are engaged in a what appears to be a quiet, heated discussion, gesticulating and occasionaly tilting the table with their body weight amidst whispers.`
+			`	He leans forward lightly, staring at you. Looking around the table, the other Heliarchs are engaged in a what appears to be a quiet, heated discussion, gesticulating and occasionally tilting the table with their body weight amidst whispers.`
 			`	"How?" Aulori asks, eyes still locked on you. You explain as best as you can about where Deneb is, and what you saw on the other side of the wormhole. When you get to explaining how the system was discovered, the Heliarchs seem to collectively gasp when you first utter the word "Pug." You pause, and many go back to the quiet, whispering discussions, some laughing it off, and others staying silent.`
 			`	One Saryd moves as if getting up, but sits back down once Aulori stands up, firmly pushing one hand against the table. Conversation around the table dies out, as he stares you down for a long minute. "Leave us for a moment, would you?" He finally says, having some guards bring you outside the room.`
 			`	The whispering discussion from earlier now becomes a much louder debate, though the door muffles it all enough that no translator outside the room manages to pick up what is being said. After half an hour, most voices are cut as someone rapidly hits the table, roughly, yelling something in what you think is the Saryd language.`
@@ -1114,7 +1114,7 @@ mission "Heliarch Containment 1"
 			choice
 				`	"Okay. Bring your friends and the cargo to my ship."`
 					accept
-				`	"That seems a bit excesive for a riot, no?"`
+				`	"That seems a bit excessive for a riot, no?"`
 					goto excessive
 				`	"You'll have to find someone else. I'm not heading there right now."`
 					decline
