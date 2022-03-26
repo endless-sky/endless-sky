@@ -113,13 +113,13 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
 bool OutfitterPanel::HasItem(const string &name) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
-	if((outfitter.Has(outfit) || player.Stock(outfit) > 0) && showForSale)
+	if(showForSale && (outfitter.Has(outfit) || player.Stock(outfit) > 0))
 		return true;
 
-	if(player.Cargo().Get(outfit) && showCargo)
+	if(showCargo && player.Cargo().Get(outfit))
 		return true;
 
-	if(player.Storage() && player.Storage()->Get(outfit) && showStorage)
+	if(showStorage && player.Storage() && player.Storage()->Get(outfit))
 		return true;
 
 	for(const Ship *ship : playerShips)
@@ -770,7 +770,7 @@ void OutfitterPanel::DrawKey()
 	Color color[2] = {*GameData::Colors().Get("medium"), *GameData::Colors().Get("bright")};
 	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
 
-	Point pos = Screen::BottomLeft() + Point(10., -VISIBILITY_CHECKBOXES_SIZE + 10.);
+	Point pos = Screen::BottomLeft() + Point(10., -VisiblityCheckboxesSize() + 10.);
 	Point off = Point(10., -.5 * font.Height());
 	SpriteShader::Draw(box[showForSale], pos);
 	font.Draw("Show outfits for sale", pos + off, color[showForSale]);
