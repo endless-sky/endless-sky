@@ -95,7 +95,7 @@ int OutfitterPanel::TileSize() const
 
 int OutfitterPanel::VisiblityCheckboxesSize() const
 {
-	return VISIBILITY_CHECKBOXES_SIZE;
+	return 60;
 }
 
 

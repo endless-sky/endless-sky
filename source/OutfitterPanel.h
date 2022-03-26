@@ -65,8 +65,6 @@ protected:
 	virtual void ToggleCargo() override;
 
 
-protected:
-	static const int VISIBILITY_CHECKBOXES_SIZE = 60;
 
 
 private:
