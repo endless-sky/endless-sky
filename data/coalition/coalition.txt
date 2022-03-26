@@ -319,6 +319,13 @@ outfitter "Heliarch"
 	"Ion Rain Gun"
 	"Local Map"
 
+outfitter "Resistance Basics"
+	"Refuelling Module"
+	"Decoy Plating"
+	"Shield Refactor Module"
+	"Small Recovery Module"
+	"Anti-Materiel Gun"
+	"Local Map"
 
 shipyard "Arach"
 	"Arach Courier"
