@@ -374,6 +374,17 @@ government "Kor Sestor"
 	
 	"player reputation" -1000
 
+government "Lunarium"
+	swizzle 2
+	"crew attack" 1.2
+	"crew defense" 2.7
+	language "Coalition"
+	"player reputation" 1
+	"attitude toward"
+		"Quarg" .01
+		"Heliarch" -.01
+		"Pirate" -.01
+
 government "Marauder"
 	swizzle 6
 	"player reputation" 1
