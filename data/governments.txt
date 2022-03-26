@@ -197,6 +197,14 @@ government "Heliarch"
 		"Quarg" -.01
 		"Coalition" 1
 
+government "Heliarch Test Dummy"
+	"display name" "Heliarch"
+	swizzle 0
+	color 1 .8 .5
+	"player reputation" -1000
+	"bribe" 0
+	"fine" 0
+
 government "Independent"
 	swizzle 6
 	color .78 .36 .36
