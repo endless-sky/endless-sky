@@ -1330,12 +1330,11 @@ mission "Evacuate Resistance True"
 	description "Pick up the <bunks> Lunarium members on <stopovers>, then bring them to <destination> by <date>."
 	deadline
 	repeat
-	minor
 	to offer
 		random < 10
 		has "Resistance Evacuation 6: done"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done
+		not "Heliarch License: done"
 	to fail
 		has "Heliarch Investigation 2: active"
 		has "Heliarch License: done"
@@ -1363,12 +1362,11 @@ mission "Evacuate Resistance Fail"
 	description "Pick up the <bunks> Lunarium members on <stopovers>, then bring them to <destination> by <date>."
 	deadline
 	repeat
-	minor
 	to offer
 		random < 5
 		has "Resistance Evacuation 6: done"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done
+		not "Heliarch License: done"
 	to fail
 		has "Heliarch Investigation 2: active"
 		has "Heliarch License: done"
@@ -1391,13 +1389,12 @@ mission "Resistance: Armageddon Core Delivery"
 	name "Armageddon Core Delivery"
 	description "The Lunarium is offering <payment> for you to deliver an armageddon core to <destination>."
 	repeat
-	minor
 	to offer
 		random < 4
 		has "Resistance: Reactors: done"
 		not "Resistance: Armageddon Core Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done
+		not "Heliarch License: done"
 	to fail
 		has "Heliarch Investigation 2: active"
 		has "Heliarch License: done"
@@ -1419,13 +1416,12 @@ mission "Resistance: Fusion Reactor Delivery"
 	name "Fusion Reactor Delivery"
 	description "The Lunarium is offering <payment> for you to deliver a fusion reactor to <destination>."
 	repeat
-	minor
 	to offer
 		random < 7
 		has "Resistance: Reactors: done"
 		not "Resistance: Fusion Reactor Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done
+		not "Heliarch License: done"
 	to fail
 		has "Heliarch Investigation 2: active"
 		has "Heliarch License: done"
@@ -1447,13 +1443,12 @@ mission "Resistance: Breeder Reactor Delivery"
 	name "Breeder Reactor Delivery"
 	description "The Lunarium is offering <payment> for you to deliver a breeder reactor to <destination>."
 	repeat
-	minor
 	to offer
 		random < 10
 		has "Resistance: Reactors: done"
 		not "Resistance: Breeder Reactor Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done
+		not "Heliarch License: done"
 	to fail
 		has "Heliarch Investigation 2: active"
 		has "Heliarch License: done"
@@ -1475,13 +1470,12 @@ mission "Resistance: Torpedo Delivery"
 	name "Torpedo Delivery"
 	description "The Lunarium is offering <payment> for you to deliver a torpedo launcher, complete with 30 torpedoes, to <destination>."
 	repeat
-	minor
 	to offer
 		random < 12
 		has "Resistance: Torpedoes: done"
 		not "Resistance: Torpedo Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done
+		not "Heliarch License: done"
 	to fail
 		has "Heliarch Investigation 2: active"
 		has "Heliarch License: done"
@@ -1503,13 +1497,12 @@ mission "Resistance: Typhoon Delivery"
 	name "Typhoon Delivery"
 	description "The Lunarium is offering <payment> for you to deliver a typhoon launcher, complete with 30 typhoon torpedoes, to <destination>."
 	repeat
-	minor
 	to offer
 		random < 7
 		has "Resistance: Torpedoes: done"
 		not "Resistance: Typhoon Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done
+		not "Heliarch License: done"
 	to fail
 		has "Heliarch Investigation 2: active"
 		has "Heliarch License: done"
@@ -1529,13 +1522,12 @@ mission "Resistance: Plasma Delivery"
 	name "Plasma Turret Delivery"
 	description "The Lunarium is offering <payment> for you to deliver a plasma turret to <destination>."
 	repeat
-	minor
 	to offer
 		random < 6
 		has "Resistance: Heat: done"
 		not "Resistance: Plasma Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done
+		not "Heliarch License: done"
 	to fail
 		has "Heliarch Investigation 2: active"
 		has "Heliarch License: done"
@@ -1554,13 +1546,12 @@ mission "Resistance: Flamethrower Delivery"
 	name "Flamethrower Delivery"
 	description "The Lunarium is offering <payment> for you to deliver a pair of flamethrowers to <destination>."
 	repeat
-	minor
 	to offer
 		random < 8
 		has "Resistance: Heat: done"
 		not "Resistance: Flamethrower Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done
+		not "Heliarch License: done"
 	to fail
 		has "Heliarch Investigation 2: active"
 		has "Heliarch License: done"
@@ -1579,13 +1570,12 @@ mission "Resistance: Grenade Delivery"
 	name "Grenade Delivery"
 	description "The Lunarium is offering <payment> for you to deliver six fragmentation grenades to <destination>."
 	repeat
-	minor
 	to offer
 		random < 11
 		has "Resistance: Grenades: done"
 		not "Resistance: Grenade Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done
+		not "Heliarch License: done"
 	to fail
 		has "Heliarch Investigation 2: active"
 		has "Heliarch License: done"
@@ -1604,13 +1594,12 @@ mission "Resistance: Anti-Missile Delivery"
 	name "Anti-Missile Delivery"
 	description "The Lunarium is are offering <payment> for you to deliver a heavy anti-missile turret to <destination>."
 	repeat
-	minor
 	to offer
 		random < 10
 		has "Resistance: AM: done"
 		not "Resistance: Anti-Missile Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done
+		not "Heliarch License: done"
 	to fail
 		has "Heliarch Investigation 2: active"
 		has "Heliarch License: done"
