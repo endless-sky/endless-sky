@@ -932,7 +932,7 @@ mission "Heliarch Expedition 1"
 			has "Heliarch Recon 3-C: done"
 	on offer
 		conversation
-			`Landing on the <origin> ou remember that the Heliarchs have asked you to share with them any information you get on Quarg ships and ringworlds. Would you like to tell them about the destroyed ring you saw on the other side of the wormhole in Deneb?`
+			`Landing on the <origin> you remember that the Heliarchs have asked you to share with them any information you get on Quarg ships and ringworlds. Would you like to tell them about the destroyed ring you saw on the other side of the wormhole in Deneb?`
 			choice
 				`	(Yes.)`
 				`	(Not right now.)`
