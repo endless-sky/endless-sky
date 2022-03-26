@@ -645,6 +645,7 @@ mission "Unwanted Cargo Trigger"
 event "hai in cargo"
 
 mission "Unwanted Cargo"
+	minor
 	landing
 	description "Bring a Hai child who hid in your cargo hold back to <destination>."
 	source
