@@ -454,7 +454,7 @@ mission "House Bebliss 2-FW"
 					goto pug
 				`	"Wait, how do you know of this?"`
 			`	"Know it, the Heliarchs do, so learned about it, we have."`
-			`	"Many resources, our great House posesses," the Arach still by the table adds. "Trivial to acquire such information, for us it is."`
+			`	"Many resources, our great House possesses," the Arach still by the table adds. "Trivial to acquire such information, for us it is."`
 			choice
 				`	"I see. Well, yes, we were invaded by aliens known as the Pug."`
 					goto pug
@@ -551,7 +551,7 @@ mission "House Bebliss 4-FW"
 			branch resistance
 				has "Resistance: Questions: done"
 			`	Everyone quietly listens as you explain to them all you've learned about the Coalition, bringing up a map of the Free Worlds and showing them the rough area of their space, and where it borders human space. You tell them of the three species, about the Heliarchs and how they've taken the three Quarg rings, and talk about the Arach Houses, explaining that House Bebliss are the ones who wish to go study the Pug artifacts with Freya.`
-			`	When you're done, Alondo is the first to speak up, "So far it's definetly better than with the Pug. It's good that they're looking into some diplomacy with us, though I'm not sure it'd be a good idea for the general public to know of them, given past experiences."`
+			`	When you're done, Alondo is the first to speak up, "So far it's definitely better than with the Pug. It's good that they're looking into some diplomacy with us, though I'm not sure it'd be a good idea for the general public to know of them, given past experiences."`
 			`	"Do they have jump drives?" Katya asks. You nod, but say that they can't make their own. "Well, as long as what stockpile they have isn't too large, we shouldn't be in too much trouble."`
 			`	"Except they took three Quarg rings," JJ chimes in. "They've beaten the Quarg? So they're stronger than the Quarg? More advanced?" He asks.`
 			choice
@@ -563,7 +563,7 @@ mission "House Bebliss 4-FW"
 				goto accept
 			label resistance
 			`	Everyone quietly listens as you explain to them all you've learned about the Coalition, bringing up a map of the Free Worlds and showing them the rough area of their space, and where it borders human space. You tell them of the three species, about the Heliarchs and how they've taken the three Quarg rings, and talk about the Arach Houses, explaining that House Bebliss are the ones who wish to go study the Pug artifacts with Freya. You also tell them about the Lunarium, explaining the group's actions and their wish to take down the Heliarch government, and what role House Bebliss has in helping them.`
-			`	When you're done, Alondo is the first to speak up, "So far it's definetly better than with the Pug. It's good that they're looking into some diplomacy with us, though I'm not sure it'd be a good idea for the general public to know of them, given past experiences," he pauses, then addresses you. "It's... bold of you to want to help this resistance group of theirs. There's some sympathy given the Free Worlds' own history, but they sound like they have an even worse shot than what we had."`
+			`	When you're done, Alondo is the first to speak up, "So far it's definitely better than with the Pug. It's good that they're looking into some diplomacy with us, though I'm not sure it'd be a good idea for the general public to know of them, given past experiences," he pauses, then addresses you. "It's... bold of you to want to help this resistance group of theirs. There's some sympathy given the Free Worlds' own history, but they sound like they have an even worse shot than what we had."`
 			`	"Whatever their government is, or whether it's overthrown or not, it doesn't change that they're right at our doorstep," Katya says. "Do they have jump drives?" She asks. You nod, but say that they can't make their own. "Well, as long as what stockpile they have isn't too large, we shouldn't be in too much trouble."`
 			`	"Except they took three Quarg rings," JJ chimes in. "They've beaten the Quarg? So they're stronger than the Quarg? More advanced?" He asks.`
 			choice
@@ -603,7 +603,7 @@ mission "House Bebliss 5-FW"
 			`	"Indeed. Keep it, we would not," another one responds. "Once concluded, our business with your friend Freya is, and returned, we have, give you back the Jump Drive, we would."`
 				goto accept
 			label myself
-			`	"Stay there for some months, we will, and though agreed to help us, your friend Freya has, troubled by our presence, other humans may be," they respond. "So that issues with accomodating us, she does not have, use our ship as a base, we will."`
+			`	"Stay there for some months, we will, and though agreed to help us, your friend Freya has, troubled by our presence, other humans may be," they respond. "So that issues with accommodating us, she does not have, use our ship as a base, we will."`
 			label accept
 			`	You follow them outside, and see them board the Spindle, heading to <destination>. You board your own ship, and head back to the city docks, preparing to meet them on <planet> when you have a spare jump drive for their ship.`
 				accept
@@ -629,7 +629,7 @@ mission "House Bebliss 6-FW"
 			`One of the employees of House Bebliss spots you immediately as you enter the spaceport and guides you to what they claim is one of the top restaurants here. The members of the House are waiting inside, having already ordered their meals when you arrive, they offer to buy you anything you want from the menu. Seeing the selection of "exotic dishes" on the other tables, though, you decide to decline their offer.`
 			`	"Ready for takeoff, our ship is," one of them says, preparing some napkins as the waiters bring their orders to the table. "To the world where your friend is, bring us, you must."`
 			`	Another one bites into something that looks like a goat's leg, albeit much bonier, before saying, "Prepared for concealing our presence, we and the crew are. Worry about that, you need not."`
-			`	"Extra fuel, the ship has. Enough to reach the planet, it is," the last of them tells you. You stay at the resturant for a surprisingly short while, as the Arachi devour the full-course meals in only a few minutes. You leave together, accompanying them to the hangars, where you see their Spindle has landed next to the <ship>. They board it, saying they will follow your ship once you depart, and that you may take off at your earliest convenience.`
+			`	"Extra fuel, the ship has. Enough to reach the planet, it is," the last of them tells you. You stay at the restaurant for a surprisingly short while, as the Arachi devour the full-course meals in only a few minutes. You leave together, accompanying them to the hangars, where you see their Spindle has landed next to the <ship>. They board it, saying they will follow your ship once you depart, and that you may take off at your earliest convenience.`
 				accept
 	npc accompany save
 		personality escort timid
@@ -652,7 +652,7 @@ mission "House Bebliss 6-FW"
 			choice
 				`	"Yeah, though it's not their largest one."`
 				`	"They're civilians, so they can't buy the warships in their space."`
-			`	"It's definetly a lot leaner than most of our own freighters, for a ship of its size," she turns around, and approaches the ship, reaching her hands up to touch it. "Looks like it's got some very tough armor plating..."`
+			`	"It's definitely a lot leaner than most of our own freighters, for a ship of its size," she turns around, and approaches the ship, reaching her hands up to touch it. "Looks like it's got some very tough armor plating..."`
 			choice
 				`	"You think they'll be well hidden here?"`
 				`	"You think they'll be safe here?"`
@@ -727,7 +727,7 @@ mission "Resistance: Evacuation 1"
 				`	"Can't they just lay low until the Punishers have gone away?"`
 			`	"No, no," he shakes his head. "Find them out, they would. They always do." His eyes wander around, as he takes a step back. He blinks repeatedly for a second, then looks back at you. "Seen what they do to the prisoners they take, I have, Captain. If there they remain, found they will be, and lost <bunks> more, I would have."`
 			label accept
-			`	Before you open up your hatch for him to leave, he adds, "Students and their teachers, they are. Picking them up from a school trip, after cancelled on them, the original transport did, you are. Bring them back home to Second Viridian for their tests, you will. Asked to do so by the captain of the original transport ship, you were." He urges you to go there as soon as possible to pick them up, and leaves your ship.`
+			`	Before you open up your hatch for him to leave, he adds, "Students and their teachers, they are. Picking them up from a school trip, after canceled on them, the original transport did, you are. Bring them back home to Second Viridian for their tests, you will. Asked to do so by the captain of the original transport ship, you were." He urges you to go there as soon as possible to pick them up, and leaves your ship.`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort with the <bunks> bunks for the students hasn't arrived in the system yet. Better depart and wait for it.`
@@ -1106,7 +1106,7 @@ mission "Resistance: Propaganda 2"
 				`	"Where are we going now?"`
 					goto where
 				`	"Is everyone here? I made sure to have some bunks free as you said."`
-			`	"Ah thank you Captain. Yes, all <bunks> of us, this time you will be transporting," he answers. "Bring along some more help, I wished to, but cancelled some of the others have. Some more work here, they must do."`
+			`	"Ah thank you Captain. Yes, all <bunks> of us, this time you will be transporting," he answers. "Bring along some more help, I wished to, but canceled some of the others have. Some more work here, they must do."`
 			label where
 			`	He runs one leg over his mandibles in some type of gesture. "To my home, we will go. <destination>. Setting up one of the famous Arachi soirees, some of the locals are, and tasked with helping them gather attention, we were. Paid <payment> once on <planet> we are, you will be."`
 			`	You all leave the cafe, and Tummug and the 10 others follow you to your ship. They bring in <cargo>, and settle in their bunks.`
@@ -1185,7 +1185,7 @@ mission "Resistance: Propaganda 3"
 			label risky
 			`	"Spoken with Elirom, I have. Moving fleets around, the Heliarchs are, for distractions for them in other systems, some of our teams have prepared," he explains. "Fewer ships on the planet there are, and quick about it, we will be, so unlikely for them to find us, it is."`
 			label accept
-			`	Tummug tells the other Arachi to pack up the rest of the robots and flyers, and accompanies you to your ship. In a few minutes the Arachi come dragging carts with boxes filled with the drones, flyers, and cannisters of the red smoke for the skywriting. The Saryds you brought here follow after them, bringing along more and more carts. Tummug says you'll get <payment> once they get to <planet>, and moves to his bunk.`
+			`	Tummug tells the other Arachi to pack up the rest of the robots and flyers, and accompanies you to your ship. In a few minutes the Arachi come dragging carts with boxes filled with the drones, flyers, and canisters of the red smoke for the skywriting. The Saryds you brought here follow after them, bringing along more and more carts. Tummug says you'll get <payment> once they get to <planet>, and moves to his bunk.`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Tummug, his colleagues and the skywriting material hasn't arrived in the system yet. Better depart and wait for it.`
@@ -1283,7 +1283,7 @@ mission "Resistance: Combat Training 1"
 			has "Resistance: Reactors: done"
 		and
 			or
-				not "event: fw supressed Greenrock"
+				not "event: fw suppressed Greenrock"
 				has "event: fw abandoned Greenrock"
 			not "Heliarch Investigation 2: active"
 			not "Heliarch License: done"
