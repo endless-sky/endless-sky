@@ -77,6 +77,10 @@ government "Coalition"
 	"player reputation" 1
 	"attitude toward"
 		"Heliarch" 1
+	"friendly hail" "friendly coalition"
+	"friendly disabled hail" "friendly disabled heliarch"
+	"hostile hail" "hostile coalition"
+	"hostile disabled hail" "hostile disabled coalition"
 
 government "Deep"
 	swizzle 0
@@ -365,6 +369,17 @@ government "Kor Sestor"
 		"Syndicate" -.01
 	
 	"player reputation" -1000
+
+government "Lunarium"
+	swizzle 2
+	"crew attack" 1.2
+	"crew defense" 2.7
+	language "Coalition"
+	"player reputation" 1
+	"attitude toward"
+		"Quarg" .01
+		"Heliarch" -.01
+		"Pirate" -.01
 
 government "Marauder"
 	swizzle 6
