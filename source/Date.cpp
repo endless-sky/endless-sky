@@ -25,7 +25,7 @@ namespace {
 			month += 12;
 		}
 		day = (day + (13 * (month + 1)) / 5 + year + year / 4 + 6 * (year / 100) + year / 400) % 7;
-		
+
 		static const string DAY[] = {"Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"};
 		return DAY[day];
 	}
@@ -53,7 +53,7 @@ const string &Date::ToString() const
 		int day = Day();
 		int month = Month();
 		int year = Year();
-	
+
 		str = Weekday(day, month, year);
 		str.append(", ");
 		str.append(to_string(day));
@@ -64,7 +64,7 @@ const string &Date::ToString() const
 		str.append(" ");
 		str.append(to_string(year));
 	}
-	
+
 	return str;
 }
 
@@ -75,7 +75,7 @@ string Date::LongString() const
 {
 	if(!date)
 		return string();
-	
+
 	int day = Day();
 	string result = "the " + to_string(day);
 	// All numbers in the teens add in "th", as do any numbers ending in 0 or in
@@ -88,7 +88,7 @@ string Date::LongString() const
 		result += "nd";
 	else
 		result += "rd";
-	
+
 	// Write out the month name instead of abbreviating it.
 	result += " of ";
 	static const string MONTH[] = {
@@ -106,7 +106,7 @@ string Date::LongString() const
 		"December"
 	};
 	result += MONTH[Month() - 1];
-	
+
 	return result;
 }
 
@@ -153,11 +153,11 @@ Date Date::operator+(int days) const
 	// If this date is not initialized, adding to it does nothing.
 	if(!date || !days)
 		return *this;
-	
+
 	int day = Day();
 	int month = Month();
 	int year = Year();
-	
+
 	day += days;
 	int leap = !(year % 4) - !(year % 100) + !(year % 400);
 	int MDAYS[] = {31, 28 + leap, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -252,30 +252,30 @@ int Date::DaysSinceEpoch() const
 		daysSinceEpoch = Day();
 		int month = Month();
 		int year = Year();
-		
+
 		// Months contain a variable number of days.
 		int MDAYS[] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
 		daysSinceEpoch += MDAYS[month - 1];
 		// Add in a leap day if this is a leap year and it is after February.
 		if(month > 2 && !(year % 4) && ((year % 100) || !(year % 400)))
 			++daysSinceEpoch;
-		
+
 		// Simplify the calculations by starting from year 1, so that leap years
 		// occur at the very end of the cycle.
 		--year;
-		
+
 		// Every four centuries is 365.2425*400 = 146097 days.
 		daysSinceEpoch += 146097 * (year / 400);
 		year %= 400;
-	
+
 		// Every century since the last one divisible by 400 contains 36524 days.
 		daysSinceEpoch += 36524 * (year / 100);
 		year %= 100;
-	
+
 		// Every four years since the century contain 4 * 365 + 1 = 1461 days.
 		daysSinceEpoch += 1461 * (year / 4);
 		year %= 4;
-	
+
 		// Every year since the last leap year contains 365 days.
 		daysSinceEpoch += 365 * year;
 	}

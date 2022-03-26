@@ -32,16 +32,16 @@ public:
 	ConditionSet() = default;
 	// Construct and Load() at the same time.
 	ConditionSet(const DataNode &node);
-	
+
 	// Load a set of conditions from the children of this node. Prints a
 	// warning if an and/or node contains assignment expressions.
 	void Load(const DataNode &node);
 	// Save a set of conditions.
 	void Save(DataWriter &out) const;
-	
+
 	// Check if there are any entries in this set.
 	bool IsEmpty() const;
-	
+
 	// Read a single condition from a data node.
 	void Add(const DataNode &node);
 	bool Add(const std::string &firstToken, const std::string &secondToken);
@@ -49,7 +49,7 @@ public:
 	bool Add(const std::string &name, const std::string &op, const std::string &value);
 	// Add complex conditions having multiple operators, including parentheses.
 	bool Add(const std::vector<std::string> &lhs, const std::string &op, const std::vector<std::string> &rhs);
-	
+
 	// Check if the given condition values satisfy this set of expressions. First applies
 	// all assignment expressions to create any temporary conditions, then evaluates.
 	bool Test(const Conditions &conditions) const;
@@ -57,15 +57,15 @@ public:
 	// (Order of operations is like the order of specification: all sibling
 	// expressions are applied, then any and/or nodes are applied.)
 	void Apply(Conditions &conditions) const;
-	
-	
+
+
 private:
 	// Compare this set's expressions and the union of created and supplied conditions.
 	bool TestSet(const Conditions &conditions, const Conditions &created) const;
 	// Evaluate this set's assignment expressions and store the result in "created" (for use by TestSet).
 	void TestApply(const Conditions &conditions, Conditions &created) const;
-	
-	
+
+
 private:
 	// This class represents a single expression involving a condition,
 	// either testing what value it has, or modifying it in some way.
@@ -73,25 +73,25 @@ private:
 	public:
 		Expression(const std::vector<std::string> &left, const std::string &op, const std::vector<std::string> &right);
 		Expression(const std::string &left, const std::string &op, const std::string &right);
-		
+
 		void Save(DataWriter &out) const;
 		// Convert this expression into a string, for traces.
 		std::string ToString() const;
-		
+
 		// Determine if this Expression instantiated properly.
 		bool IsEmpty() const;
-		
+
 		// Returns the left side of this Expression.
 		std::string Name() const;
 		// True if this Expression performs a comparison and false if it performs an assignment.
 		bool IsTestable() const;
-		
+
 		// Functions to use this expression:
 		bool Test(const Conditions &conditions, const Conditions &created) const;
 		void Apply(Conditions &conditions, Conditions &created) const;
 		void TestApply(const Conditions &conditions, Conditions &created) const;
-		
-		
+
+
 	private:
 		// A SubExpression results from applying operator-precedence parsing to one side of
 		// an Expression. The operators and tokens needed to recreate the given side are
@@ -101,37 +101,37 @@ private:
 		public:
 			SubExpression(const std::vector<std::string> &side);
 			SubExpression(const std::string &side);
-			
+
 			// Interleave tokens and operators to reproduce the initial string.
 			const std::string ToString() const;
 			// Interleave tokens and operators, but do not combine.
 			const std::vector<std::string> ToStrings() const;
-			
+
 			bool IsEmpty() const;
-			
+
 			// Substitute numbers for any string values and then compute the result.
 			int64_t Evaluate(const Conditions &conditions, const Conditions &created) const;
-			
-			
+
+
 		private:
 			void ParseSide(const std::vector<std::string> &side);
 			void GenerateSequence();
 			bool AddOperation(std::vector<int> &data, size_t &index, const size_t &opIndex);
-			
-			
+
+
 		private:
 			// An Operation has a pointer to its binary function, and the data indices for
 			// its operands. The result is always placed on the back of the data vector.
 			class Operation {
 			public:
 				explicit Operation(const std::string &op, size_t &a, size_t &b);
-				
+
 				int64_t (*fun)(int64_t, int64_t);
 				size_t a;
 				size_t b;
 			};
-			
-			
+
+
 		private:
 			// Iteration of the sequence vector yields the result.
 			std::vector<Operation> sequence;
@@ -141,21 +141,21 @@ private:
 			// The number of true (non-parentheses) operators.
 			int operatorCount = 0;
 		};
-		
-		
+
+
 	private:
 		// String representation of the Expression's binary function.
 		std::string op;
 		// Pointer to a binary function that defines the assignment or
 		// comparison operation to be performed between SubExpressions.
 		int64_t (*fun)(int64_t, int64_t);
-		
+
 		// SubExpressions contain one or more tokens and any number of simple operators.
 		SubExpression left;
 		SubExpression right;
 	};
-	
-	
+
+
 private:
 	// Sets of condition tests can contain nested sets of tests. Each set is
 	// either an "and" grouping (meaning every condition must be true to satisfy

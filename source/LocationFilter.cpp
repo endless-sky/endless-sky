@@ -65,7 +65,7 @@ namespace {
 		}
 		return false;
 	}
-	
+
 	// Check if the given system is within the given distance of the center.
 	int Distance(const System *center, const System *system, int maximum)
 	{
@@ -73,11 +73,11 @@ namespace {
 		// just to be sure, use mutex protection on the static locals.
 		static mutex distanceMutex;
 		lock_guard<mutex> lock(distanceMutex);
-		
+
 		static const System *previousCenter = center;
 		static DistanceMap distance(center, -1, maximum);
 		static int previousMaximum = maximum;
-		
+
 		if(center != previousCenter || maximum > previousMaximum)
 		{
 			previousCenter = center;
@@ -88,7 +88,7 @@ namespace {
 		int d = distance.Days(system);
 		return (d > maximum) ? -1 : d;
 	}
-	
+
 	// Check that at least one neighbor of the hub system matches, for each of the neighbor filters.
 	// False if at least one filter fails to match, true if all filters find at least one match.
 	bool MatchesNeighborFilters(const list<LocationFilter> &neighborFilters, const System *hub, const System *origin)
@@ -107,7 +107,7 @@ namespace {
 		}
 		return true;
 	}
-	
+
 	// Validity check for this filter's sets. Only one element must be valid.
 	template <class T>
 	bool CheckValidity(const set<const T *> &c)
@@ -130,12 +130,12 @@ namespace {
 	{
 		if(l.empty())
 			return true;
-		
+
 		for(auto &&outfits : l)
 			for(auto &&outfit : outfits)
 				if(outfit->IsDefined())
 					return true;
-		
+
 		return false;
 	}
 }
@@ -273,24 +273,24 @@ bool LocationFilter::IsValid() const
 {
 	if(IsEmpty())
 		return true;
-	
+
 	if(!CheckValidity(planets))
 		return false;
-	
+
 	// Attributes are always considered valid.
-	
+
 	if(!CheckValidity(systems))
 		return false;
-	
+
 	// Governments are always considered valid.
-	
+
 	// The "center" of a "near <system>" filter must be valid.
 	if(center && !center->IsValid())
 		return false;
-	
+
 	if(!CheckValidity(outfits))
 		return false;
-	
+
 	if(!shipCategory.empty())
 	{
 		// At least one desired category must be valid.
@@ -299,13 +299,13 @@ bool LocationFilter::IsValid() const
 		if(!SetsIntersect(shipCategory, categoriesSet))
 			return false;
 	}
-	
+
 	if(!CheckValidity(notFilters))
 		return false;
-	
+
 	if(!CheckValidity(neighborFilters))
 		return false;
-	
+
 	return true;
 }
 
@@ -316,29 +316,29 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 {
 	if(!planet || !planet->IsValid())
 		return false;
-	
+
 	// If a ship class was given, do not match planets.
 	if(!shipCategory.empty())
 		return false;
-	
+
 	if(!governments.empty() && !governments.count(planet->GetGovernment()))
 		return false;
-	
+
 	if(!planets.empty() && !planets.count(planet))
 		return false;
 	for(const set<string> &attr : attributes)
 		if(!SetsIntersect(attr, planet->Attributes()))
 			return false;
-	
+
 	for(const LocationFilter &filter : notFilters)
 		if(filter.Matches(planet, origin))
 			return false;
-	
+
 	// If outfits are specified, make sure they can be bought here.
 	for(const set<const Outfit *> &outfitList : outfits)
 		if(!SetsIntersect(outfitList, planet->Outfitter()))
 			return false;
-	
+
 	return Matches(planet->GetSystem(), origin, true);
 }
 
@@ -349,7 +349,7 @@ bool LocationFilter::Matches(const System *system, const System *origin) const
 	// If a ship class was given, do not match systems.
 	if(!shipCategory.empty())
 		return false;
-	
+
 	return Matches(system, origin, false);
 }
 
@@ -364,10 +364,10 @@ bool LocationFilter::Matches(const Ship &ship) const
 		return false;
 	if(!governments.empty() && !governments.count(ship.GetGovernment()))
 		return false;
-	
+
 	if(!shipCategory.empty() && !shipCategory.count(ship.Attributes().Category()))
 		return false;
-	
+
 	if(!attributes.empty())
 	{
 		// Create a set from the positive-valued attributes of this ship.
@@ -379,7 +379,7 @@ bool LocationFilter::Matches(const Ship &ship) const
 			if(!SetsIntersect(attr, shipAttributes))
 				return false;
 	}
-	
+
 	if(!outfits.empty())
 	{
 		// Create a set from all installed and carried outfits.
@@ -394,19 +394,19 @@ bool LocationFilter::Matches(const Ship &ship) const
 			if(!SetsIntersect(outfitSet, shipOutfits))
 				return false;
 	}
-	
+
 	for(const LocationFilter &filter : notFilters)
 		if(filter.Matches(ship))
 			return false;
-	
+
 	if(!MatchesNeighborFilters(neighborFilters, origin, origin))
 		return false;
-	
+
 	// Check if this ship's current system meets a "near <system>" criterion.
 	// (Ships only offer missions, so no "distance" criteria need to be checked.)
 	if(center && Distance(center, origin, centerMaxDistance) < centerMinDistance)
 		return false;
-	
+
 	return true;
 }
 
@@ -418,12 +418,12 @@ LocationFilter LocationFilter::SetOrigin(const System *origin) const
 	// If there is no distance filter, then no conversion is needed.
 	if(IsEmpty() || originMaxDistance < 0)
 		return *this;
-	
+
 	// If the system is invalid, or a "near <system>" filter already
 	// exists, do not convert "distance" to "near".
 	if(!origin || center)
 		return *this;
-	
+
 	// Copy all parts of this instantiated filter into the result.
 	LocationFilter result = *this;
 	// Perform the conversion.
@@ -433,7 +433,7 @@ LocationFilter LocationFilter::SetOrigin(const System *origin) const
 	// Revert "distance" parameters to their default.
 	result.originMinDistance = 0;
 	result.originMaxDistance = -1;
-	
+
 	return result;
 }
 
@@ -487,7 +487,7 @@ void LocationFilter::LoadChild(const DataNode &child)
 	int valueIndex = 1 + isNot;
 	const string &key = child.Token(valueIndex - 1);
 	if(key == "not" || key == "neighbor")
-		child.PrintTrace("Skipping unsupported use of 'not' and 'neighbor'. These keywords must be nested if used together.");
+		child.PrintTrace("Error: Skipping unsupported use of 'not' and 'neighbor'. These keywords must be nested if used together.");
 	else if(key == "planet")
 	{
 		for(int i = valueIndex; i < child.Size(); ++i)
@@ -566,7 +566,7 @@ void LocationFilter::LoadChild(const DataNode &child)
 			outfits.pop_back();
 	}
 	else
-		child.PrintTrace("Unrecognized location filter:");
+		child.PrintTrace("Skipping unrecognized attribute:");
 }
 
 
@@ -577,14 +577,14 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 		return false;
 	if(!systems.empty() && !systems.count(system))
 		return false;
-	
+
 	// Don't check these filters again if they were already checked as a part of
 	// checking if a planet matches.
 	if(!didPlanet)
 	{
 		if(!governments.empty() && !governments.count(system->GetGovernment()))
 			return false;
-		
+
 		// This filter is being applied to a system, not a planet.
 		// Check whether the system, or any planet within it, has one of the
 		// required attributes from each set.
@@ -596,26 +596,26 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 				for(const StellarObject &object : system->Objects())
 					if(object.HasSprite() && object.HasValidPlanet())
 						matches |= SetsIntersect(attr, object.GetPlanet()->Attributes());
-				
+
 				if(!matches)
 					return false;
 			}
 		}
-		
+
 		for(const LocationFilter &filter : notFilters)
 			if(filter.Matches(system, origin))
 				return false;
 	}
-	
+
 	if(!MatchesNeighborFilters(neighborFilters, system, origin))
 		return false;
-	
+
 	// Check this system's distance from the desired reference system.
 	if(center && Distance(center, system, centerMaxDistance) < centerMinDistance)
 		return false;
 	if(origin && originMaxDistance >= 0
 			&& Distance(origin, system, originMaxDistance) < originMinDistance)
 		return false;
-	
+
 	return true;
 }
