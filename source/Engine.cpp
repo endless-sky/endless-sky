@@ -799,10 +799,10 @@ void Engine::Step(bool isActive)
 				info.SetString("target energy", to_string(energy));
 				int heat = round(100. * target->Heat());
 				info.SetString("target heat", to_string(heat) + "%");
-                int turret = round(target->TurretRange());
-                info.SetString("target turret", to_string(turret) + " ");
-                int turn = round(60 * target->TrueTurnRate());
-                info.SetString("target turnrate", to_string(turn) + " ");
+				int turret = round(target->TurretRange());
+				info.SetString("target turret", to_string(turret) + " ");
+				int turn = round(60 * target->TrueTurnRate());
+				info.SetString("target turnrate", to_string(turn) + " ");
 			}
 		}
 	}
