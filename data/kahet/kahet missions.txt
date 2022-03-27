@@ -474,7 +474,7 @@ mission "Ka'het: Patir Mystery 2"
 			label known
 			`You find Taely waiting for you in the spaceport alongside Dusk. They both wave as you approach.`
 			`	"Captain!" Taely says. "I believe you already know Dusk. Dusk, I think you should find this to be right in your area of interest. Now I'll leave you two to your work, as I fear I have to go back to my job now. I would love to continue the exploration with you both, but there are more pressing issues I have to resolve at the moment. I will keep an eye on the activity in Patir, I promise. May the embers burn bright for you both."`
-			`	As Taely wonders off, you turn to Dusk. "Nice to meet you again, Captain!" he says.`
+			`	As Taely wanders off, you turn to Dusk. "Nice to see you again, Captain!" he says.`
 				goto choice
 			
 			label busy
@@ -487,7 +487,7 @@ mission "Ka'het: Patir Mystery 2"
 			`	You contact Dusk, and he agrees to meet you in the cafeteria. When you spot him, he waves to you. "Nice to meet you again, Captain!" he says.`
 			label choice
 			choice
-				`	"Pleased to meet you too, Dusk."`
+				`	"Good to see you too, Dusk."`
 					goto greet
 				`	"Has Taely told you about what we found?"`
 			`	"Yes, a new system has appeared in the Graveyard. How exciting! Taely sent me the data as soon as she could.`

@@ -2275,6 +2275,7 @@ void Ship::DoGeneration()
 	}
 
 	// Don't allow any levels to drop below zero.
+	shields = max(0., shields);
 	energy = max(0., energy);
 	fuel = max(0., fuel);
 	heat = max(0., heat);
