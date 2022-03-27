@@ -1597,7 +1597,8 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 			`They talk about it and then one of the Unfettered elders speak up, "Perfect, hand them over to us, we will see to it they have all the comfort they need, hopefully in exchange for some technology." They discuss among themselves again, then the warlord from earlier speaks, seemingly with a heavy burden. "Now that you officially work for us, you will have a salary of 1000. We will not make you wear our colors yet because it could cause problems with the Hai. We do not want you to get shot on sight."`
 			branch logs
 				has "Unfettered: alpha logs"
-			decline
+			``
+				decline
 			label logs
 			choice
 				`	"There are logs on my ship, apparently speaking about the source of the jump drives. I will send them to you."`
