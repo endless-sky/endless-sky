@@ -1650,7 +1650,7 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 				`	"What kind of materials do you need?"`
 				`	(Leave, I am not interested.)`
 					decline
-			`She notices you and responds to your question explicitly, speaking to all that are present, "Do not bother with lead friends, it is useless for we are not a barbaric people. No, we need a lot of silver and silicon. Also do not forget we are selling asteroid scanners in the outfitter, should you require any."`
+			`	She notices you and responds to your question explicitly, speaking to all that are present, "Do not bother with lead friends, it is useless for we are not a barbaric people. No, we need a lot of silver and silicon. Also do not forget we are selling asteroid scanners in the outfitter, should you require any."`
 			choice
 				`	(I know how and where to mine asteroids, better get going.)`
 					accept
@@ -1982,17 +1982,17 @@ mission "Unfettered: Greenbloom"
 				`	(Give it back to him.)`
 					goto give
 				`	(Do nothing.)`
-			`You still wonder what was on that drawing. It could not have been very important anyway.`
+			`	You still wonder what was on that drawing. It could not have been very important anyway.`
 				decline
 			
 			label take
-			`You wait for them to leave to pick it up but he seems to have suddenly noticed he dropped something and comes back for it. Oh well, no big deal.`
+			`	You wait for them to leave to pick it up but he seems to have suddenly noticed he dropped something and comes back for it. Oh well, no big deal.`
 				decline
 			
 			label give
 			action
 				payment 10000
-			`You take the drawing and give it back to the Hai, he seems happy and gives you <payment>.`
+			`	You take the drawing and give it back to the Hai, he seems happy and gives you <payment>.`
 				accept
 
 mission "Unfettered: Mirrorlake"
@@ -2075,7 +2075,7 @@ mission "Unfettered: Icelake"
 				`	"Sure, it only makes sense for you to have a choice."`
 					accept
 				`	"Sorry but I have other things to do."`
-			`They talk for a bit and after a while still decide to come with you, for the better or the worst.`
+			`	They talk for a bit and after a while still decide to come with you, for the better or the worst.`
 
 mission "Unfettered: Changed Their Mind"
 	name `Return Hai`
@@ -2139,7 +2139,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 	description `Go to <stopovers> and try to discretely learn how their ships are produced.`
 	source "Darkcloak"
 	stopover "Hai-home"
-	cargo "Food" 34
+	cargo "food" 34
 	clearance `After explaining you are here to take a tribute, you receive clearance to land.`
 	to offer
 		has "Unfettered: Solifuge 5: Materials For Ships: done"

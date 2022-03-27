@@ -255,7 +255,7 @@ mission "Unfettered Medicals"
 
 
 
-mission "Unfettered Challenge[0]"
+mission "Unfettered Challenge [0]"
 	name `Defeat the young captain`
 	description `A young Unfettered captain has provoked you in a duel. Disable his ship for <payment>.`
 	job
@@ -275,12 +275,12 @@ mission "Unfettered Challenge[0]"
 		conversation
 			action
 				payment 200000
-				"reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)" + 15
-				fail "Unfettered Challenge[0]"
+				"reputation: Hai (Unfettered)" += 15
+				fail "Unfettered Challenge [0]"
 			`You receive a message from the <npc> : "Did you cheat? If I learn you cheated, I will be the end of you, little monkey! Here are the <payment> but I will want my money back if this was not a fair fight. Otherwise, you may have gained my respect."`
 				decline
 
-mission "Unfettered Challenge[1]"
+mission "Unfettered Challenge [1]"
 	name `Defeat the captain`
 	description `An Unfettered captain has provoked you in a duel. Disable his ship for <payment>.`
 	job
@@ -301,12 +301,12 @@ mission "Unfettered Challenge[1]"
 		conversation
 			action
 				payment 400000
-				"reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)" + 30
-				fail "Unfettered Challenge[1]"
+				"reputation: Hai (Unfettered)" += 30
+				fail "Unfettered Challenge [1]"
 			`You receive a message from the <npc> : "Raaaah... Well you have beaten me alright, so I'll pay up... Here are the <payment> credits, captain. Next time I will not underestimate you anymore!"`
 				decline
 
-mission "Unfettered Challenge[2]"
+mission "Unfettered Challenge [2]"
 	name `Defeat the experienced captain`
 	description `An experienced Unfettered captain has provoked you into a duel. Disable his ship for <payment>.`
 	job
@@ -329,8 +329,8 @@ mission "Unfettered Challenge[2]"
 		conversation
 			action
 				payment 600000
-				"reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)" + 60
-				fail "Unfettered Challenge[2]"
+				"reputation: Hai (Unfettered)" += 60
+				fail "Unfettered Challenge [2]"
 			`You receive a message from the <npc> : "Nicely done! You seem to learn from our encounters as well... But next time will be different, I assure you. For now, here are the agreed <payment> credits, captain. Hopefully it allows you to improve the <ship> before our next battle..."`
 				decline
 
