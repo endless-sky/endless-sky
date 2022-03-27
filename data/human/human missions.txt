@@ -3854,7 +3854,7 @@ mission "Fumbling Mugger"
 	source
 		attributes "dirt belt" "urban"
 	destination "Maker"
-	passenger 1
+	passengers 1
 	to offer
 		random < 45
 		has "event: fumbling mugger timer"
