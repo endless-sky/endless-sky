@@ -730,7 +730,7 @@ mission "There Might Be Riots part 3B"
 
 mission "Drug Running 1"
 	name "Drug Running"
-	description "Bring a shipment of illegal drugs to <destination>. If you are caught with this cargo, you may be fined."
+	description "Bring a shipment of illegal drugs to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
 	source
@@ -765,7 +765,7 @@ mission "Drug Running 1"
 
 mission "Drug Running 2"
 	name "Drug Running"
-	description "Bring a shipment of illegal drugs to <destination>. If you are caught with this cargo, you may be fined."
+	description "Bring a shipment of illegal drugs to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
 	source
@@ -795,7 +795,7 @@ mission "Drug Running 2"
 
 mission "Drug Running 3"
 	name "Drug Running"
-	description "Bring a shipment of illegal drugs to <destination>. If you are caught with this cargo, you may be fined."
+	description "Bring a shipment of illegal drugs to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
 	source
@@ -811,7 +811,7 @@ mission "Drug Running 3"
 		has "Drug Running 2: done"
 	
 	on offer
-		dialog `A well-dressed woman approaches you as you are walking through the spaceport and asks quietly if you would be willing to help facilitate the transport of some "naughty substances" to a certain individual on <planet>.`
+		dialog `A well-dressed woman approaches you as you are walking through the spaceport and asks quietly if you would be willing to help facilitate the transport of some "naughty substances" to a certain individual on <planet> for <payment>.`
 	
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -904,7 +904,7 @@ mission "Hallucination"
 
 mission "Shady passenger transport 1"
 	name "Shady passenger transport"
-	description "Discreetly transport a passenger to <destination>. If you are caught with him, you may be fined."
+	description "Discreetly transport a passenger to <destination>. Payment will be <payment>. If you are caught with him, you may be fined."
 	minor
 	repeat
 	source
@@ -940,7 +940,7 @@ mission "Shady passenger transport 1"
 
 mission "Shady passenger transport 2"
 	name "Shady passenger transport"
-	description "Discreetly transport two passengers to <destination>. If you are caught with them, you may be fined."
+	description "Discreetly transport two passengers to <destination>. Payment will be <payment>. If you are caught with them, you may be fined."
 	minor
 	repeat
 	source
@@ -986,7 +986,7 @@ mission "Shady passenger transport 2"
 
 mission "Shady passenger transport 3"
 	name "Shady passenger transport"
-	description "Discreetly transport <bunks> passengers to <destination>. If you are caught with them, the legal consequences may be severe."
+	description "Discreetly transport <bunks> passengers to <destination>. Payment will be <payment>. If you are caught with them, the legal consequences may be severe."
 	minor
 	repeat
 	source
@@ -1043,7 +1043,7 @@ mission "Shady passenger transport 3"
 
 mission "Shady passenger transport 3 - double cross"
 	name "Shady passenger transport"
-	description "Discreetly transport <bunks> passengers to <destination>. If you are caught with them, the legal consequences may be severe."
+	description "Discreetly transport <bunks> passengers to <destination>. Payment will be 350,000 credits. If you are caught with them, the legal consequences may be severe."
 	minor
 	source
 		attributes "frontier" "dirt belt" "rim" "north" "south" "pirate"
