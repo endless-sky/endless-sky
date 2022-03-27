@@ -35,6 +35,8 @@ public:
 	static const Command LEFT;
 	static const Command RIGHT;
 	static const Command BACK;
+    static const Command STRAFERIGHT;
+    static const Command STRAFELEFT;
 	static const Command PRIMARY;
 	static const Command SECONDARY;
 	static const Command SELECT;
