@@ -534,10 +534,10 @@ mission "Unfettered: Bring Medical Supplies Notification"
 
 
 mission "Unfettered: Bring Medical Supplies"
+	landing
 	name `Bring medicals to <planet>`
 	description `The Unfettered hospitals on Darkcloak are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>.`
 	source "Darkcloak"
-	landing
 	stopover "Snowfeather"
 	cargo "medicals" 120
 	blocked `You need 120 cargo space available to carry the medicals supplies.`
@@ -768,8 +768,8 @@ mission "Unfettered: Prove Your Strength 2"
 
 mission "Unfettered: Attracted Attention"
 	invisible
-	source "Freedom"
 	landing
+	source "Freedom"
 	destination "Darkcloak"
 	to offer
 		has "Unfettered: Prove your strength 2: active"
@@ -785,8 +785,8 @@ mission "Unfettered: Attracted Attention"
 
 mission "Unfettered: Jump Drive Retrieval"
 	invisible
-	source "Freedom"
 	landing
+	source "Freedom"
 	destination "Darkcloak"
 	to offer
 		has "Unfettered: Prove Your Strength 2: active"
@@ -1105,9 +1105,9 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 
 mission "Unfettered: Geocoris Arriving"
 	invisible
+	landing
 	source
 		system "Ya Hai"
-	landing
 	to offer
 		has "Unfettered: entered Ya Hai"
 	on offer
@@ -1221,10 +1221,10 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 
 
 mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
+	landing
 	name `Bring back the scanner logs`
 	description `Now that you have scanned the Alpha ship, return to <destination> to get your reward.`
 	source "Warfeed"
-	landing
 	destination "Firelode"
 	to offer
 		has "Unfettered: Solifuge 2: Auxiliary Design: done"
@@ -1266,10 +1266,10 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 
 
 mission "Unfettered: Escort Hai Fleet"
+	landing
 	name `Escort a Hai convoy`
 	description `Escort a Hai convoy from <stopovers> to <destination> before the truce expires by <date>.`
 	source "Warfeed"
-	landing
 	stopover "Greenbloom"
 	deadline 20
 	to offer
@@ -1362,8 +1362,8 @@ event "end of hai / unfettered truce"
 
 mission "Unfettered: Taking Off With Hai Fleet"
 	invisible
-	source "Greenbloom"
 	landing
+	source "Greenbloom"
 	destination "Warfeed"
 	to offer
 		has "Unfettered: Escort Hai Fleet: active"
@@ -1376,10 +1376,10 @@ mission "Unfettered: Taking Off With Hai Fleet"
 
 
 mission "Unfettered: Pirate Help"
+	landing
 	name `Help the pirates.`
 	description `Once you are strong enough, go to Hai-home and convince the governor to let you help them against their pirate problem. You will instead find a way to help the pirates.`
 	source "Warfeed"
-	landing
 	stopover "Allhome"
 	to offer
 		has "Unfettered: Escort Hai Fleet: done"
@@ -1493,10 +1493,10 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 
 
 mission "Unfettered: Alphas 2: Prove Yourself"
+	landing
 	name `Find and capture the Alpha Auxiliary`
 	description `You found out that the Auxiliary has a leak, try and find traces of fuel around the system you last saw it in, then capture it.`
 	source "Firelode"
-	landing
 	destination "Darkcloak"
 	to offer
 		has "Unfettered: Alphas: Find The Auxiliary: done"
@@ -1612,8 +1612,8 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 
 mission "Unfettered: Alphas 3: Bring The Spoils"
 	invisible
-	source "Avalon"
 	landing
+	source "Avalon"
 	to offer
 		has "Unfettered: Alphas 2: Prove Yourself: active"
 	on offer
@@ -1968,8 +1968,8 @@ mission "Unfettered: The Word Has Spread"
 
 mission "Unfettered: Greenbloom"
 	invisible
-	source "Greenbloom"
 	landing
+	source "Greenbloom"
 	destination "Firelode"
 	to offer
 		has "Unfettered: The Word Has Spread: active"
@@ -1997,8 +1997,8 @@ mission "Unfettered: Greenbloom"
 
 mission "Unfettered: Mirrorlake"
 	invisible
-	source "Mirrorlake"
 	landing
+	source "Mirrorlake"
 	destination "Firelode"
 	cargo "supplies" 15
 	to offer
@@ -2019,8 +2019,8 @@ mission "Unfettered: Mirrorlake"
 
 mission "Unfettered: Makerplace"
 	invisible
-	source "Makerplace"
 	landing
+	source "Makerplace"
 	to offer
 		has "Unfettered: The Word Has Spread: active"
 	on offer
@@ -2030,8 +2030,8 @@ mission "Unfettered: Makerplace"
 
 mission "Unfettered: Newhome"
 	invisible
-	source "Newhome"
 	landing
+	source "Newhome"
 	to offer
 		has "Unfettered: The Word Has Spread: active"
 	on offer
@@ -2041,8 +2041,8 @@ mission "Unfettered: Newhome"
 
 mission "Unfettered: Darkmetal"
 	invisible
-	source "Darkmetal"
 	landing
+	source "Darkmetal"
 	to offer
 		has "Unfettered: The Word Has Spread: active"
 	on offer
@@ -2052,8 +2052,8 @@ mission "Unfettered: Darkmetal"
 
 mission "Unfettered: Snowfeather"
 	invisible
-	source "Snowfeather"
 	landing
+	source "Snowfeather"
 	to offer
 		has "Unfettered: The Word Has Spread: active"
 	on offer
@@ -2063,8 +2063,8 @@ mission "Unfettered: Snowfeather"
 
 mission "Unfettered: Icelake"
 	invisible
-	source "Icelake"
 	landing
+	source "Icelake"
 	destination "Firelode"
 	to offer
 		has "Unfettered: The Word Has Spread: active"
@@ -2118,10 +2118,10 @@ mission "Unfettered: Changed Their Mind"
 
 
 mission "Unfettered: Hai Intel"
+	landing
 	name `Bring Intel`
 	description `Unfettered warlords have asked you to bring your sensor logs of all Hai systems you have come across recently.`
 	source "Firelode"
-	landing
 	destination "Darkcloak"
 	to offer
 		has "Unfettered: The Word Has Spread: done"
@@ -2219,8 +2219,8 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 
 mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 	invisible
-	source "Hai-home"
 	landing
+	source "Hai-home"
 	destination "Darkcloak"
 	to offer
 		has "Unfettered: Solifuge 6: Shipyard Upgrade: active"
@@ -2303,10 +2303,10 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 
 
 mission "Unfettered: Solifuge 8: Useful Korath Scientists"
+	landing
 	name `Primitive Cooling Technology`
 	description `Taer-Fi has asked you to bring coolants to her on <origin>, where she is working with the Korath you rescued from the Alphas to design a better cooling system. Try to bring back 300 tons of nitrogen human cooling.`
 	source "Firelode"
-	landing
 	to offer
 		has "Unfettered: Alphas 2: Prove Yourself: done"
 	on offer
@@ -2388,9 +2388,9 @@ event "Unfettered: new cooling system"
 		add "Hai Zephyr Cooling"
 
 mission "Unfettered: New Cooling Available"
+	landing
 	source
 		attributes "unfettered"
-	landing
 	to offer
 		has "event: Unfettered: new cooling system"
 	on offer
@@ -2452,9 +2452,9 @@ event "Unfettered: shield beetle mass production"
 		add outfitter "Unfettered"
 
 mission "Unfettered: Shield Beetles Available"
+	landing
 	source
 		attributes "unfettered"
-	landing
 	to offer
 		has "event: Unfettered: shield beetle mass production"
 	on offer
@@ -2554,8 +2554,8 @@ mission "Unfettered: Special Cargo"
 
 mission "Unfettered: Special Cargo 1B"
 	invisible
-	source "Stormhold"
 	landing
+	source "Stormhold"
 	destination "Warfeed"
 	to offer
 		has "Unfettered: Special Cargo: active"
@@ -2666,10 +2666,10 @@ mission "Unfettered: Special Cargo 1B"
 
 
 mission "Unfettered: Special Cargo 2"
+	landing
 	name `Mystery Gathering`
 	description `Pretend to bring food to <stopovers> and discretely place the mystery cube there, without anyone noticing.`
 	source "Warfeed"
-	landing
 	stopover "Mirrorlake"
 	cargo "food (tribute)" 93
 	blocked `You need 93 cargo space for the next Unfettered mission.`
@@ -2895,8 +2895,8 @@ mission "Unfettered: Close Quarter"
 
 mission "Bring Pug Staffs"
 	invisible
-	source "Warfeed"
 	landing
+	source "Warfeed"
 	to offer
 		has "Unfettered: Close Quarter: offered"
 	on offer
@@ -2909,8 +2909,8 @@ mission "Bring Pug Staffs"
 
 mission "Bring Coalition Weapons"
 	invisible
-	source "Warfeed"
 	landing
+	source "Warfeed"
 	to offer
 		has "Unfettered: Close Quarter: offered"
 	on offer
@@ -3056,10 +3056,10 @@ mission "Unfettered: Know Your Enemy"
 
 
 mission "Unfettered: Bring Detainer"
+	landing
 	name `Recover a detainer`
 	description `He Yi has asked you to earn a translation device by bringing back a powerful alien weapon, said to be able to neutralize the engines of its target. You should probably look around the sestor automaton's space.`
 	source "Warfeed"
-	landing
 	to offer
 		has "Unfettered: Know Your Enemy: active"
 		has "First Contact: Wanderer: offered"
