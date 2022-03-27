@@ -3835,6 +3835,7 @@ mission "Spaceport Reminder"
 
 
 mission "Fumbling Mugger Patch"
+	landing
 	invisible
 	to offer
 		has "Transport Workers B: done"
