@@ -10,7 +10,8 @@
 
 mission "Heliarch Investigation 1"
 	name "Transport Heliarch Agents"
-	description "Bring three Heliarch agents to <destination>."
+	description "Bring <bunks> Heliarch agents to <destination>."
+	minor
 	passengers 3
 	to offer
 		random < 65
@@ -540,6 +541,7 @@ mission "HI2-RB"
 mission "Heliarch Recon 1"
 	name "Heliarch Reconnaissance"
 	description "Fly to all the Quarg planets and stations the Heliarch asked, land on them, letting your modified ship sensors scan their surroundings, then head back to the <destination>."
+	minor
 	source
 		government "Heliarch"
 	stopover "Lagrange"
@@ -921,6 +923,7 @@ mission "Keep Zug Wardragon"
 mission "Heliarch Expedition 1"
 	name "Extraterritorial Reconnaissance"
 	description "Head through the wormhole in Deneb, land on the planet there, and enter the system with the broken ringworld to get data for the Heliarch."
+	minor
 	landing
 	source "Ring of Wisdom"
 	stopover "Ruin"
@@ -1094,6 +1097,7 @@ mission "Heliarch Expedition 5"
 mission "Heliarch Containment 1"
 	name "Transport Heliarch Soldiers"
 	description "Bring these <bunks> Heliarch soldiers, along with <cargo>, to <destination>, so they can contain a rioting group."
+	minor
 	deadline
 	passengers 33
 	cargo "military supplies" 25
@@ -1356,6 +1360,7 @@ event "resistance detained rb"
 mission "Heliarch Drills 1"
 	name "Refuelling Drill"
 	description "Escort the two Heliarch Judicators to <destination>, as part of a drill testing the Coalition's refuelling capabilities in desperate scenarios."
+	minor
 	source
 		near "Belug" 6 100
 	destination "Belug's Plunge"
@@ -1745,6 +1750,7 @@ mission "Heliarch Drills 3"
 mission "Heliarch License"
 	name "Meet With The Consuls"
 	description "Head to the <destination>, where the Heliarch consuls will make you a Heliarch agent."
+	minor
 	landing
 	source
 		near "Quaru" 1 100
