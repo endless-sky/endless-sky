@@ -984,6 +984,7 @@ Files:
  images/ship/faes'mar*
  images/ship/selii'mar*
  images/ship/vareti'het*
+ images/ship/fetri'sei*
  images/ship/ember?waste?node/*
  images/ship/void?sprite/*
  images/thumbnail/maeri'het*
@@ -993,6 +994,7 @@ Files:
  images/thumbnail/subsidurial*
  images/thumbnail/ember?waste?node*
  images/thumbnail/vareti'het*
+ images/thumbnail/fetri'sei*
  images/thumbnail/void?sprite?adult*
  images/thumbnail/void?sprite?infant*
  images/effect/ravager?impact*
@@ -1061,6 +1063,7 @@ Files:
  images/projectile/mhd*
  images/scene/ringworld?debris*
  images/scene/remnant?station*
+ images/scene/asteroid?scene*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 
@@ -1507,6 +1510,11 @@ Files: images/outfits/skadetear
 images/scenes/hroar
 Copyright: Dane Crowton
 License: CC-BY-SA-4.0
+
+Files: images/land/asteroid0
+Copyright: Becca Tommaso
+License: CC0 (Creative Commons Zero)/Public-Domain
+Comment: Derived from works by ESA/Rosetta spacecraft (under the same license).
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify

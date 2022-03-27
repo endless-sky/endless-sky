@@ -94,6 +94,12 @@ SCENARIO("A player-entered quantity can be parsed to a number", "[Format][Parse]
 			CHECK( Format::Parse("1,234K") == Approx(1234000.) );
 		}
 	}
+
+	GIVEN( "The string 1 523 004" ) {
+		THEN( "parses to 1523004" ) {
+			CHECK( Format::Parse("1 523 004") == Approx(1523004.) );
+		}
+	}
 }
 
 TEST_CASE( "Format::Capitalize", "[Format][Capitalize]") {
