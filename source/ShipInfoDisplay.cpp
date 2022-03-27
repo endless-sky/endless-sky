@@ -129,7 +129,7 @@ void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 
 
 
-void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &depreciation, int day)
+void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &depreciation, int day, const PlayerInfo *player)
 {
 	bool isGeneric = ship.Name().empty() || ship.GetPlanet();
 
@@ -144,7 +144,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	attributeValues.clear();
 
 	const Outfit &attributes = ship.Attributes();
-	
+
 	int64_t fullCost = ship.LocalCost(player->GetPlanet(), player->Conditions());
 	int64_t depreciated = depreciation.Value(ship, day, player);
 	if(depreciated == fullCost)
