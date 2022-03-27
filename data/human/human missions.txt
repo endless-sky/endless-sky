@@ -746,7 +746,7 @@ mission "Drug Running 1"
 		"said no to drugs" < 4
 	
 	on offer
-		dialog `As you are walking through the spaceport, a man pulls you aside and asks if you would like to help transport some "recreational pharmaceuticals" to <planet>. (This sounds like an illegal mission, so you'll need to avoid getting scanned or landing on planets with high security.)`
+		dialog `As you are walking through the spaceport, a man pulls you aside and asks if you would like to help transport some "recreational pharmaceuticals" to <planet> for <payment>. (This sounds like an illegal mission, so you'll need to avoid getting scanned or landing on planets with high security.)`
 	
 	on accept
 		"said no to drugs" --
@@ -781,7 +781,7 @@ mission "Drug Running 2"
 		has "Drug Running 1: done"
 	
 	on offer
-		dialog `When you walk into the local bar, a man sitting in the corner waves you over and says in a hushed voice, "Captain, we've got a shipment of the good stuff that needs to get to <planet>. I promise you this will be a very lucrative operation. What do you say?"`
+		dialog `When you walk into the local bar, a man sitting in the corner waves you over and says in a hushed voice, "Captain, we've got a shipment of the good stuff that needs to get to <planet>. I promise you <payment> for the operation. What do you say?"`
 	
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -1230,7 +1230,7 @@ mission "Courier 1"
 		distance 4 10
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on offer
-		dialog `As you are walking through the spaceport, a man approaches you and says, "Excuse me, Captain. I took on a rush delivery to <planet>, but my ship needs repairs and there's no way I can make it there before <day>. Can you take this job for me?"`
+		dialog `As you are walking through the spaceport, a man approaches you and says, "Excuse me, Captain. I took on a rush delivery to <planet>, but my ship needs repairs and there's no way I can make it there before <day>. Can you take this job for me? The payment for the job is <payment>."`
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1321,7 +1321,7 @@ mission "Courier 3"
 		distance 7 14
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on offer
-		dialog `A woman in a suit walks up to you and says, "Pardon me, Captain. I represent a recently deceased client here on <origin> whose legal papers need to be delivered to his next of kin on <destination>. Would you be willing to do some courier work? The papers must be delivered by <day>."`
+		dialog `A woman in a suit walks up to you and says, "Pardon me, Captain. I represent a recently deceased client here on <origin> whose legal papers need to be delivered to his next of kin on <destination>. Would you be willing to do some courier work? The papers must be delivered by <day>, and you will be paid <payment>."`
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
