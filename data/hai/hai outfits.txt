@@ -111,7 +111,7 @@ outfit "True Unfettered License"
 	"capture attack" 10
 	"capture defense" 10
 	"quantum keystone" 1
-	description "This sword may be bit of a strange license, but whenever I look at it I feel pride, and whenever the Unfettered look at it I see respect in their eyes. This was given to me by one of their warlords as a sign of trust. It is quite handy in fights too, thanks to the special properties of the keystone it is crafted from. It has some useful features, and legends say it allows the user to phase through matter for a short period of time."
+	description "This sword may be bit of a strange license, but it inspires pride to the wearer, and when the Unfettered see it they show respect. This was given by one of their warlords as a sign of trust. It is quite handy in fights too, thanks to the special properties of the keystone it is crafted from. It has some useful features, and legends say it allows the user to phase through matter for a short period of time."
 
 outfit "Ionic Blaster"
 	category "Guns"

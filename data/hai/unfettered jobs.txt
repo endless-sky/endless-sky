@@ -34,7 +34,7 @@ mission "Unfettered Aid [0]"
 	cargo "food (aid)" 25 2 .05
 	to offer
 		random < 40
-		"cargo space" > 80
+		"cargo space" >= 50
 		has "Ask the Hai about the Unfettered: offered"
 	source
 		government "Hai"
@@ -47,6 +47,7 @@ mission "Unfettered Aid [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 1600
+		"reputation: Hai" += 5
 		dialog phrase "unfettered aid payment dialog"
 
 mission "Unfettered Aid [1]"
@@ -58,7 +59,7 @@ mission "Unfettered Aid [1]"
 	cargo "food (aid)" 30 2 .05
 	to offer
 		random < 30
-		"cargo space" > 100
+		"cargo space" > 60
 		has "Ask the Hai about the Unfettered: offered"
 	source
 		government "Hai"
@@ -71,6 +72,7 @@ mission "Unfettered Aid [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 6000 1800
+		"reputation: Hai" += 5
 		dialog phrase "unfettered aid payment dialog"
 
 mission "Unfettered Aid [2]"
@@ -82,7 +84,7 @@ mission "Unfettered Aid [2]"
 	cargo "food (aid)" 35 2 .05
 	to offer
 		random < 20
-		"cargo space" > 120
+		"cargo space" > 65
 		has "Ask the Hai about the Unfettered: offered"
 	source
 		government "Hai"
@@ -95,6 +97,7 @@ mission "Unfettered Aid [2]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 7000 2000
+		"reputation: Hai" += 5
 		dialog phrase "unfettered aid payment dialog"
 
 phrase "unfettered tribute payment dialog"
@@ -137,7 +140,7 @@ mission "Unfettered Tribute 2"
 	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
 	to offer
 		has "Unfettered Jump Drive 2: offered"
-		random < 50
+		random < 60
 	cargo "food (tribute)" 35 2 .05
 	on complete
 		payment 7000 2000
@@ -160,7 +163,7 @@ mission "Unfettered Tribute 3"
 	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
 	to offer
 		has "Unfettered Jump Drive 2: offered"
-		random < 20
+		random < 40
 	cargo "food (tribute)" 45 2 .05
 	on complete
 		payment 9000 2400
