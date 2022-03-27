@@ -3954,7 +3954,7 @@ mission "Fumbling Mugger"
 				`	"I can take you there."`
 				`	"I can't transport you."`
 					goto decline
-			`	"Really?" she says. "You realise that I can't pay you in any way, right?"`
+			`	"Really?" she says. "You realize that I can't pay you in any way, right?"`
 			choice
 				`	"You don't need to pay me."`
 					goto accept
@@ -3991,13 +3991,13 @@ mission "Fumbling Mugger"
 			action
 				payment -15000
 				set "gifted money to mugger"
-				log `Was held up by a woman who wanted transport to Maker. Managed to gain the upper hand in the engagment, but decided to pay for her transport anyway.`
+				log `Was held up by a woman who wanted transport to Maker. Managed to gain the upper hand in the engagement, but decided to pay for her transport anyway.`
 			`	She is almost incredulous at your gift. "I really can't thank you enough for helping me out." The two of you say your farewells as she gets ready to depart your ship.`
 				decline
 	
 	on complete
 		event "fumbling mugger followup timer" 365
-		log `Was held up by a woman who wanted transport to Maker. Managed to gain the upper hand in the engagment, but decided to take her there anyway.`
+		log `Was held up by a woman who wanted transport to Maker. Managed to gain the upper hand in the engagement, but decided to take her there anyway.`
 		dialog `The woman who attacked you on <origin> prepares to disembark your ship. Just before she steps off, she turns to look at you. "I'll try to find some way to repay you, Captain." She walks off into the bustling spaceport to find her lover.`
 
 
