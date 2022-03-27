@@ -11,6 +11,7 @@
 mission "Resistance: Charity 1"
 	name "Charity Delivery"
 	description "Deliver a care package of <cargo> to <destination>, as part of a charity initiative."
+	minor
 	cargo "charity supplies" 22
 	source
 		near "3 Spring Rising" 2 6
@@ -363,6 +364,7 @@ mission "Resistance: Reactors"
 mission "House Bebliss 1-A"
 	name "Eight Legged Hosts"
 	description "Head to <destination> where representatives from an Arach House that supports the Resistance wish to discuss a job offer."
+	minor
 	to offer
 		random < 10
 		has "Coalition: Contributor: done"
@@ -696,6 +698,7 @@ mission "House Bebliss 7-FW"
 mission "Resistance: Evacuation 1"
 	name "Pick Up Students"
 	description "Head to <destination> to pick up <bunks> students and teachers by <date>, and bring them back to their home planet of Second Viridian."
+	minor
 	deadline 10
 	passengers 35
 	source
@@ -1019,6 +1022,7 @@ mission "Resistance: Evacuation 6"
 mission "Resistance: Propaganda 1"
 	name "Promoting Culture"
 	description "Bring Tummug to <destination>, where he'll meet with others to spread a set of images around the planet."
+	minor
 	passengers 1
 	cargo "promotional posters" 1
 	source
@@ -1270,6 +1274,7 @@ mission "Resistance: Propaganda 4"
 mission "Resistance: Combat Training 1"
 	name "Bootcamp"
 	description "Bring <bunks> Lunarium members, along with their <cargo> to <destination>, where they will purchase some ships and use them to fight pirates to train their combat tactics."
+	minor
 	passengers 54
 	cargo "supplies" 9
 	source
@@ -1496,6 +1501,7 @@ mission "Resistance: Combat Training 4"
 mission "Resistance: Questions"
 	name "Lunarium Meeting"
 	description "Now that you've further helped the Lunarium, head to <destination>, where you were invited to meet with their leaders, who have a special task in mind for you."
+	minor
 	landing
 	source
 		government "Coalition"
