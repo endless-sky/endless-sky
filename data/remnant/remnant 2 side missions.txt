@@ -16,17 +16,16 @@ mission "Remnant: Visit to Paradise 1"
 	minor
 	source
 		government "Remnant"
-	destination
-		Caelian
+	destination "Caelian"
 	stopover "Vail"
 	to offer
-		has event "remnant: cognizance calm"
+		has "event: remnant: cognizance calm"
 		or
 			and
 				random > 30
 				not "Remnant: Visit to Paradise 1: defer"
 			and
-				random > 10
+				random > 60
 				has "Remnant: Visit to Paradise 1: defer"
 	on offer
 		conversation
@@ -36,7 +35,7 @@ mission "Remnant: Visit to Paradise 1"
 					goto paradiseexciting
 				`	"Taking a break to relax a bit."`
 			`	She nods sympathetically. "Things have been a bit hectic lately, what with dimensional pockets and mysterious new aliens. I can understand wanting to slow down a bit. With the launch of two new ships in such a short time, I know I feel like I need to just relax a bit." She sighs "It makes me feel guilty, honestly. I have accomplished so much, and there are so many things to be grateful for. I even have more projects in development to focus on." She looks lost in thought for a moment.`
-			goto paradisechoice
+				goto paradisechoice
 			label paradiseexciting
 			`	"I can only imagine what it must be like, constantly meeting new people and traveling to new places." She eats mechanically, lost in thought for a moment.`
 			label paradisechoice
@@ -56,7 +55,8 @@ mission "Remnant: Visit to Paradise 1"
 				`	"I have done a bit of hoverboarding myself."`
 				`	"Maybe later."`
 					goto vaillater
-			set "remnant: hoverboarding"
+			apply
+				set "remnant: hoverboarding"
 			`	"Really? I noted a mention of that in the descriptions, and it looked challenging." Her commlink shifts to display a hologram of a hoverboarder executing a jump with an artistic poof of snow around them. "Anyway, I think this trip should be a good diversion for us both. I will meet you onboard the <ship> shortly."`
 				accept
 			label vailfun
@@ -78,7 +78,7 @@ mission "Remnant: Visit to Paradise 1"
 			branch "havehoverboarded"
 				has "remnant: hoverboarding"
 			`	The resort in question is a more exclusive facility, and thus is located away from the main train lines. You rent a hovercar from one of the rental companies and make the short trek out to the resort. The rest of the day is spent out on the slopes, where both you and Taely eventually develop sufficient skill to graduate from the easy runs up to the medium difficulty. You both fall repeatedly, but Taely's good humor is contagious as she takes the inevitable facefuls of snow good naturedly.`
-			goto vailheadhome
+				goto vailheadhome
 			label havehoverboarded
 			`	The resort in question is a more exclusive facility, and thus is located away from the main train lines. You rent a hovercar from one of the rental companies and make the short trek out to the resort. The rest of the day is spent out on the slopes, where you teach Taely the basics of hoverboarding. By the end of the day Taely has impressed you with her quick learning and you finish off with a few runs down some of the more challenging slopes. Taely spills a few times, but she takes her failures in good humor, and never seems to make the same mistake twice.`
 			label vailheadhome
@@ -114,6 +114,7 @@ mission "Remnant: Visit to Paradise 1"
 				`	"This is a spaceport?"`
 			`	She nods, and guides you amongst the stream of camel drawn hovercarts heading for the gate. "This is one of our earliest spaceports, before we learned new techniques better suited to our new home. Our founding ships brought as much as they could, of course, but as it turns out, the earliest phases of expansion look much the same whether one is looking at historic pre-flight eras, or modern settlement efforts."`
 			label questionloop
+			scene "scene/remnant remote spaceport"
 			choice
 				`	"It still seems odd to see camels pulling levitating platforms."`
 					goto camelcart
