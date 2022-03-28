@@ -1460,7 +1460,7 @@ conversation "deep: remnant"
 	`	"As you mentioned before, a single keystone is sufficient to enter the wormhole," Ivan says. "We've determined that there is a stabilization effect, either on the ship or the wormhole, that allows matter to cross the threshold. However, we'll need much more time and data to fully understand the true mechanism.`
 	branch remnant1
 		has "deep: did reveal remnant"
-	`	"Last time, you mentioned that there were alien creatures able to survive the vacumm of space, correct?"`
+	`	"Last time, you mentioned that there were alien creatures able to survive the vacuum of space, correct?"`
 	`	You nod.`
 	`	"Right. Well, it would be extremely interesting if we were to learn more about these alien creatures.`
 		goto end
