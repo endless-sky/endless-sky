@@ -320,8 +320,6 @@ void PreferencesPanel::DrawControls()
 		Command::LEFT,
 		Command::RIGHT,
 		Command::BACK,
-		Command::STRAFELEFT,
-		Command::STRAFERIGHT,
 		Command::AFTERBURNER,
 		Command::LAND,
 		Command::JUMP,
@@ -346,8 +344,11 @@ void PreferencesPanel::DrawControls()
 		Command::DEPLOY,
 		Command::FIGHT,
 		Command::GATHER,
+		Command::MINING,
 		Command::HOLD,
-		Command::AMMO
+		Command::AMMO,
+		Command::STRAFELEFT,
+		Command::STRAFERIGHT
 	};
 	static const Command *BREAK = &COMMANDS[19];
 	for(const Command &command : COMMANDS)

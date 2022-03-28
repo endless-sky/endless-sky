@@ -386,12 +386,23 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		IssueDeploy(player);
 
 	shared_ptr<Ship> target = flagship->GetTargetShip();
+	shared_ptr<Minable> targetAsteroid = flagship->GetTargetAsteroid();
 	Orders newOrders;
-	if(activeCommands.Has(Command::FIGHT) && target && !target->IsYours())
+	if(activeCommands.Has(Command::FIGHT) && ((target && !target->IsYours()) || targetAsteroid))
 	{
-		newOrders.type = target->IsDisabled() ? Orders::FINISH_OFF : Orders::ATTACK;
-		newOrders.target = target;
-		IssueOrders(player, newOrders, "focusing fire on \"" + target->Name() + "\".");
+		if(target)
+		{
+			newOrders.type = target->IsDisabled() ? Orders::FINISH_OFF : Orders::ATTACK;
+			newOrders.target = target;
+			newOrders.targetAsteroid = targetAsteroid;
+			IssueOrders(player, newOrders, "focusing fire on \"" + target->Name() + "\".");
+		}
+		else if(targetAsteroid)
+		{
+			newOrders.type = Orders::ATTACK;
+			newOrders.targetAsteroid = targetAsteroid;
+			IssueOrders(player, newOrders, "focusing fire on \"" + targetAsteroid->Name() + "\".");
+		}
 	}
 	if(activeCommands.Has(Command::HOLD))
 	{
@@ -404,12 +415,21 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		newOrders.target = player.FlagshipPtr();
 		IssueOrders(player, newOrders, "gathering around your flagship.");
 	}
+	if(activeCommands.Has(Command::MINING)) {
+		newOrders.type = Orders::MINING;
+		IssueOrders(player, newOrders, "mining asteroids.");
+	}
 
 	// Get rid of any invalid orders. Carried ships will retain orders in case they are deployed.
 	for(auto it = orders.begin(); it != orders.end(); )
 	{
 		if(it->second.type & Orders::REQUIRES_TARGET)
 		{
+			//targeted asteroid is always valid unless destroyed
+			if(targetAsteroid) {
+				++it;
+				continue;
+			}
 			shared_ptr<Ship> ship = it->second.target.lock();
 			// Check if the target ship itself is targetable.
 			bool invalidTarget = !ship || !ship->IsTargetable() || (ship->IsDisabled() && it->second.type == Orders::ATTACK);
@@ -599,6 +619,21 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			}
 			if(isCloaking)
 				command |= Command::CLOAK;
+			if(it->Commands().Has(Command::MINING) && it->Cargo().Free() >= 1 && DoHarvesting(*it, command)) {
+				if(it->HasBays())
+				{
+					command |= Command::DEPLOY;
+					Deploy(*it, false);
+				}
+				if(it->Attributes().Get("asteroid scan power") && IsArmed(*it))
+				{
+					command |= Command::MINING;
+					DoMining(*it, command);
+					it->SetCommands(firingCommands);
+				}
+				it->SetCommands(command);
+				continue;
+			}
 		}
 		// Cloak if the AI considers it appropriate.
 		else if(DoCloak(*it, command))
@@ -861,19 +896,6 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			// If we get here, it means that the ship has not decided to return
 			// to its mothership. So, it should continue to be deployed.
 			command |= Command::DEPLOY;
-
-			if(it->IsYours() && !target && it->Attributes().Get("miner") && DoHarvesting(*it, command))
-			{
-				it->SetCommands(command);
-				continue;
-			}
-			// added to allow player carried ships to mine
-			if(it->IsYours() && !target && it->Attributes().Get("miner"))
-			{
-				DoMining(*it, command);
-				it->SetCommands(command);
-				continue;
-			}	
 		}
 		// If this ship has decided to recall all of its fighters because combat has ceased,
 		// it comes to a stop to facilitate their reboarding process.
@@ -1356,6 +1378,7 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 	}
 
 	shared_ptr<Ship> target = it->second.target.lock();
+	shared_ptr<Minable> asteroidTarget = it->second.targetAsteroid.lock();
 	if(type == Orders::MOVE_TO && it->second.targetSystem && ship.GetSystem() != it->second.targetSystem)
 	{
 		// The desired position is in a different system. Find the best
@@ -1388,10 +1411,64 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 		KeepStation(ship, command, *target);
 	else if(type == Orders::GATHER)
 		CircleAround(ship, command, *target);
+	else if(type == Orders::MINING)
+		FleetMining(ship, command);
 	else
 		MoveIndependent(ship, command);
 
 	return true;
+}
+
+
+
+void AI::FleetMining(Ship &ship, Command &command) const {
+/*
+	// This function is only called for ships that are in the player's system.
+	// Update the radius that the ship is searching for asteroids at.
+	bool isNew = !miningAngle.count(&ship);
+	Angle &angle = miningAngle[&ship];
+	if(isNew)
+	{
+		angle = Angle::Random();
+		miningRadius[&ship] = ship.GetSystem()->AsteroidBeltRadius();
+	}
+	angle += Angle::Random(1.) - Angle::Random(1.);
+	double radius = miningRadius[&ship] * pow(2., angle.Unit().X());
+*/
+	shared_ptr<Minable> target = ship.GetTargetAsteroid();
+	if(!target || target->Velocity().Length() > ship.MaxVelocity())
+	{
+		for(const shared_ptr<Minable> &minable : minables)
+		{
+			Point offset = minable->Position() - ship.Position();
+			// Target only nearby minables that are within 45deg of the current heading
+			// and not moving faster than the ship can catch.
+			if(offset.Length() < 800. && offset.Unit().Dot(ship.Facing().Unit()) > .7
+					&& minable->Velocity().Dot(offset.Unit()) < ship.MaxVelocity())
+			{
+				target = minable;
+				ship.SetTargetAsteroid(target);
+				break;
+			}
+		}
+	}
+	if(target)
+	{
+		// If the asteroid has moved well out of reach, stop tracking it.
+		if(target->Position().Distance(ship.Position()) > 1600.)
+			ship.SetTargetAsteroid(nullptr);
+		else
+		{
+			MoveToAttack(ship, command, *target);
+			//AutoFire(ship, firingCommands, *target);
+			return;
+		}
+	}
+
+	Point heading = Angle(30.).Rotate(ship.Position().Unit()) - ship.Position();
+	command.SetTurn(TurnToward(ship, heading));
+	if(ship.Velocity().Dot(heading.Unit()) < .7 * ship.MaxVelocity())
+		command |= Command::FORWARD;
 }
 
 
@@ -3991,6 +4068,7 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 
 	// Find out what the target of these orders is.
 	const Ship *newTarget = newOrders.target.lock().get();
+	const Minable *newTargetAsteroid = newOrders.targetAsteroid.lock().get();
 
 	// Figure out what ships we are giving orders to.
 	vector<const Ship *> ships;
@@ -4035,7 +4113,7 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 
 	// A target is valid if we have no target, or when the target is in the
 	// same system as the flagship.
-	bool isValidTarget = !newTarget || (newTarget && player.Flagship() &&
+	bool isValidTarget = newTargetAsteroid || !newTarget || (newTarget && player.Flagship() &&
 		newTarget->GetSystem() == player.Flagship()->GetSystem());
 
 	// Now, go through all the given ships and set their orders to the new
@@ -4055,6 +4133,7 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 			gaveOrder = true;
 			hasMismatch |= !orders.count(ship);
 
+
 			Orders &existing = orders[ship];
 			// HOLD_ACTIVE cannot be given as manual order, but we make sure here
 			// that any HOLD_ACTIVE order also matches when an HOLD_POSITION
@@ -4064,6 +4143,7 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 
 			hasMismatch |= (existing.type != newOrders.type);
 			hasMismatch |= (existing.target.lock().get() != newTarget);
+			hasMismatch |= (existing.targetAsteroid.lock().get() != newTargetAsteroid);
 			existing = newOrders;
 
 			if(isMoveOrder)
@@ -4075,6 +4155,9 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 				if(offset.Length() > maxSquadOffset)
 					offset = offset.Unit() * maxSquadOffset;
 				existing.point += offset;
+			}
+			else if(newTargetAsteroid) {
+				existing.point += TargetAim(*ship, *newTargetAsteroid);
 			}
 			else if(existing.type == Orders::HOLD_POSITION)
 			{

@@ -87,6 +87,7 @@ private:
 	bool FollowOrders(Ship &ship, Command &command) const;
 	void MoveIndependent(Ship &ship, Command &command) const;
 	void MoveEscort(Ship &ship, Command &command) const;
+	void FleetMining(Ship &ship, Command &command) const;
 	static void Refuel(Ship &ship, Command &command);
 	static bool CanRefuel(const Ship &ship, const StellarObject *target);
 	bool ShouldDock(const Ship &ship, const Ship &parent, const System *playerSystem) const;
@@ -163,12 +164,14 @@ private:
 		static const int GATHER = 0x101;
 		static const int ATTACK = 0x102;
 		static const int FINISH_OFF = 0x103;
+		static const int MINING = 0x104;
 		// Bit mask to figure out which orders are canceled if their target
 		// ceases to be targetable or present.
 		static const int REQUIRES_TARGET = 0x100;
 
 		int type = 0;
 		std::weak_ptr<Ship> target;
+		std::weak_ptr<Minable> targetAsteroid;
 		Point point;
 		const System *targetSystem = nullptr;
 	};
