@@ -3869,39 +3869,20 @@ mission "Fumbling Mugger"
 				`	(Backwards somersault over your attacker and disarm her.)`
 					goto flip
 			
-			branch spinlive
-				random < 10
-			`	You spin around as swiftly as you can as your hand grasps for your pistol. Unfortunately, it's not enough; a bright flash fills the alleyway as your ears are destroyed by the roar of a shotgun. As your body collapses on the ground, you hear the fading sound of running footsteps as the flies begin to crowd your body.`
-				die
-			
-			label spinlive
-			`	You turn around as swiftly as you can as your hand grasps for your pistol. By some miracle, the woman threatening you fails to fire in the second you spend turning, and you manage to land a shot. She falls as a cry escapes from her body. As you walk away, her body fades into the darkness, leaving it indistinguishable from the garbage bags around it.`
+			`	You turn around as swiftly as you can as your hand grasps for your pistol. Due to surprise, or perhaps nervousness, the woman threatening you fails to fire the shotgun she's holding in the second you spend turning. You manage to land a shot, and your quarry falls while a cry escapes from her body. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
 				decline
 			
 			label flip
-			`	You push down as hard as you can with your legs while leaning backwards, rising to the lofty height of two feet above the ground. As you begin to fall back-first uncontrollably, you feel metal dig into your spine as a gasp escapes from your attacker, before landing on a soft body.`
-			choice
-				`	(Get up as quickly as possible.)`
-					goto stand
-				`	(Stay still.)`
-			`	As you lie motionless, you feel something pushing you on the back, forcing you to stand up.`
-			label stand
-			`	When you right yourself, you find yourself face to face with the woman. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and feet placed apart. As you look down, you spot a sawed-off shotgun held single-handed, the end of which is pointed at your abdomen. "Hands up now, Captain."`
+			`	You push down as hard as you can with your legs while leaning backwards, rising to the lofty height of two feet above the ground. As you begin to fall back-first uncontrollably, you feel metal dig into your spine as a gasp escapes from behind you, before landing on a soft body. You pick yourself up as fast as possible, and you end up face-to-face with your attacker. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and feet placed apart. As you look down, you spot a sawed-off breach-action shotgun held single-handed, the end of which is pointed at your abdomen. "Hands up now, Captain."`
 			choice
 				`	(Put your hands up.)`
 					goto handsup
 				`	(Draw your gun and fire.)`
-			branch live
-				random < 30
-			`	You hand darts for your gun, but it's not enough; a bright flash fills the alleyway as your ears are destroyed by the roar of a shotgun. As your body collapses on the ground, and your vision blackens, you hear the fading sound of running footsteps as the flies begin to crowd your body.`
-				die
-			
-			label live
-			`	You hand darts for your gun and you manage to pull the trigger before the woman fires. She falls as a cry escapes from her body. As you walk away, her body fades into the darkness, leaving it indistinguishable from the garbage bags around it.`
+			`	You hand darts for your gun, and you manage to aim and fire before the woman does. She collapses on the ground while a cry escapes from her body. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
 				decline
 			
 			label peaceful
-			`	You raise your arms and turn to face the woman. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and feet placed apart. As you look down, you spot a sawed-off shotgun held single-handed, the end of which is pointed at your abdomen.`
+			`	You raise your arms and turn to face the woman. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and feet placed apart. As you look down, you spot a sawed-off breach-action shotgun held single-handed, the end of which is pointed at your abdomen.`
 			label handsup
 			`	"Very good, Captain," she says. "Now, I have a proposal for you. I need transport to <destination>. Take me there, and the both of us can forget this ever happened."`
 			choice
@@ -3920,14 +3901,14 @@ mission "Fumbling Mugger"
 			`	She scoffs. "All you need to know is that I've got a gun pointed-"`
 			
 			label fail
-			`	The attacker's speech is interrupted by a click as her shotgun swings open, leaving her defenseless. She takes a step back as her eyes widen with panic.`
+			`	The attacker's speech is interrupted by a click as her shotgun swings open. She takes a step back as her eyes widen with panic.`
 			label choice
 			choice
 				`	(Threaten her with your gun.)`
 					goto threaten
 				`	(Shoot her.)`
 			
-			`	Before she can move a muscle, you whip out your pistol and fire, watching as the woman collapses with a cry. As you walk away, her body fades into the darkness, leaving it indistinguishable from the garbage bags around it.`
+			`	Before she can move a muscle, you whip out your pistol and fire, watching as the woman collapses onto the ground with a cry. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
 				decline
 			
 			label threaten
@@ -3940,7 +3921,7 @@ mission "Fumbling Mugger"
 					goto freedom
 				`	(Shoot her.)`
 			
-			`	You pull the trigger and watch as the woman collapses onto the ground with a cry. As you walk away, her body fades into the darkness, leaving it indistinguishable from the garbage bags around it.`
+			`	You pull the trigger and watch as the woman collapses onto the ground with a cry. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
 				decline
 			
 			label freedom
@@ -3948,8 +3929,10 @@ mission "Fumbling Mugger"
 				decline
 			
 			label why2
+			`	The woman looks at you with a confused expression. "Huh? Why would you want to know that?"`
+			`	"Just humor me for a moment," you reply.`
 			`	She sighs. "A while ago, I was in a bad situation. My boyfriend had just moved to <planet> for employment, and I was to join him in a year. My father had other plans. He used my boyfriend's absence to justify marrying me into another, richer family. Wanted a chunk of their fortune, I suppose. I tried everying I could to convince him otherwise, but..." She looks down. "So I snuck off to the spaceport and got a merchant to transport me. She forced me to pay upfront, however, and as soon as we landed on <origin>, she kicked me out to make space for another set of passengers."`
-			`	Her eyebrows furrow. "Wait, you're not actually planning to bring me to <planet>, are you?"`
+			`	Her eyebrows furrow. "Wait, you're not planning to bring me to <planet> after what I've just done, are you?"`
 			choice
 				`	"I can take you there."`
 				`	"I can't transport you."`
@@ -3964,7 +3947,7 @@ mission "Fumbling Mugger"
 			action
 				set "Fumbling Mugger: future payment"
 			label accept
-			`	The woman's eyes light up. "I can't thank you enough for this." The two of you head back to a more civilized portion of the spaceport.`
+			`	The woman's eyes light up. "I can't thank you enough for this." The two of you head out of the alleys and back to the landing pads, and you show her to an empty bunk on your ship.`
 				accept
 			
 			label decline
@@ -3998,7 +3981,7 @@ mission "Fumbling Mugger"
 	on complete
 		event "fumbling mugger followup timer" 365
 		log `Was held up by a woman who wanted transport to Maker. Managed to gain the upper hand in the engagement, but decided to take her there anyway.`
-		dialog `The woman who attacked you on <origin> prepares to disembark your ship. Just before she steps off, she turns to look at you. "I'll try to find some way to repay you, Captain." She walks off into the bustling spaceport to find her lover.`
+		dialog `The hooded woman prepares to disembark your ship. Just before she steps off, she turns to look at you. "I'm sorry for threatening you back on <origin>, Captain. I'll try to find some way to repay you." She walks off into the bustling spaceport to find her lover.`
 
 
 event "fumbling mugger followup timer"
