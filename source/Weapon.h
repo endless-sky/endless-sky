@@ -148,6 +148,7 @@ public:
 	// Normal damage types:
 	double ShieldDamage() const;
 	double HullDamage() const;
+	double DisabledDamage() const;
 	double FuelDamage() const;
 	double HeatDamage() const;
 	double EnergyDamage() const;
@@ -162,6 +163,7 @@ public:
 	// Relative damage types:
 	double RelativeShieldDamage() const;
 	double RelativeHullDamage() const;
+	double RelativeDisabledDamage() const;
 	double RelativeFuelDamage() const;
 	double RelativeHeatDamage() const;
 	double RelativeEnergyDamage() const;
@@ -274,28 +276,30 @@ private:
 	double triggerRadius = 0.;
 	double blastRadius = 0.;
 
-	static const int DAMAGE_TYPES = 18;
+	static const int DAMAGE_TYPES = 20;
 	static const int HIT_FORCE = 0;
 	// Normal damage types:
 	static const int SHIELD_DAMAGE = 1;
 	static const int HULL_DAMAGE = 2;
-	static const int FUEL_DAMAGE = 3;
-	static const int HEAT_DAMAGE = 4;
-	static const int ENERGY_DAMAGE = 5;
+	static const int DISABLED_DAMAGE = 3;
+	static const int FUEL_DAMAGE = 4;
+	static const int HEAT_DAMAGE = 5;
+	static const int ENERGY_DAMAGE = 6;
 	// Status effects:
-	static const int ION_DAMAGE = 6;
-	static const int DISRUPTION_DAMAGE = 7;
-	static const int SLOWING_DAMAGE = 8;
-	static const int DISCHARGE_DAMAGE = 9;
-	static const int CORROSION_DAMAGE = 10;
-	static const int LEAK_DAMAGE = 11;
-	static const int BURN_DAMAGE = 12;
+	static const int ION_DAMAGE = 7;
+	static const int DISRUPTION_DAMAGE = 8;
+	static const int SLOWING_DAMAGE = 9;
+	static const int DISCHARGE_DAMAGE = 10;
+	static const int CORROSION_DAMAGE = 11;
+	static const int LEAK_DAMAGE = 12;
+	static const int BURN_DAMAGE = 13;
 	// Relative damage types:
-	static const int RELATIVE_SHIELD_DAMAGE = 13;
-	static const int RELATIVE_HULL_DAMAGE = 14;
-	static const int RELATIVE_FUEL_DAMAGE = 15;
-	static const int RELATIVE_HEAT_DAMAGE = 16;
-	static const int RELATIVE_ENERGY_DAMAGE = 17;
+	static const int RELATIVE_SHIELD_DAMAGE = 14;
+	static const int RELATIVE_HULL_DAMAGE = 15;
+	static const int RELATIVE_DISABLED_DAMAGE = 16;
+	static const int RELATIVE_FUEL_DAMAGE = 17;
+	static const int RELATIVE_HEAT_DAMAGE = 18;
+	static const int RELATIVE_ENERGY_DAMAGE = 19;
 	mutable double damage[DAMAGE_TYPES] = {};
 
 	double piercing = 0.;
@@ -377,6 +381,7 @@ inline bool Weapon::IsGravitational() const { return isGravitational; }
 
 inline double Weapon::ShieldDamage() const { return TotalDamage(SHIELD_DAMAGE); }
 inline double Weapon::HullDamage() const { return TotalDamage(HULL_DAMAGE); }
+inline double Weapon::DisabledDamage() const { return TotalDamage(DISABLED_DAMAGE); }
 inline double Weapon::FuelDamage() const { return TotalDamage(FUEL_DAMAGE); }
 inline double Weapon::HeatDamage() const { return TotalDamage(HEAT_DAMAGE); }
 inline double Weapon::EnergyDamage() const { return TotalDamage(ENERGY_DAMAGE); }
@@ -391,6 +396,7 @@ inline double Weapon::BurnDamage() const { return TotalDamage(BURN_DAMAGE); }
 
 inline double Weapon::RelativeShieldDamage() const { return TotalDamage(RELATIVE_SHIELD_DAMAGE); }
 inline double Weapon::RelativeHullDamage() const { return TotalDamage(RELATIVE_HULL_DAMAGE); }
+inline double Weapon::RelativeDisabledDamage() const { return TotalDamage(RELATIVE_DISABLED_DAMAGE); }
 inline double Weapon::RelativeFuelDamage() const { return TotalDamage(RELATIVE_FUEL_DAMAGE); }
 inline double Weapon::RelativeHeatDamage() const { return TotalDamage(RELATIVE_HEAT_DAMAGE); }
 inline double Weapon::RelativeEnergyDamage() const { return TotalDamage(RELATIVE_ENERGY_DAMAGE); }

@@ -291,6 +291,10 @@ public:
 	double ShieldLevel() const;
 	// Get how disrupted this ship's shields are.
 	double DisruptionLevel() const;
+	// Get the (absolute) amount of hull that needs to be damaged until the
+	// ship becomes disabled. Returns 0 if the ships hull is already below the
+	// disabled threshold.
+	double HullUntilDisabled() const;
 	// Get the number of jumps this ship can make before running out of fuel.
 	// This depends on how much fuel it has and what sort of hyperdrive it uses.
 	// If followParent is false, this ship will not follow the parent.

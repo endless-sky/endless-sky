@@ -167,7 +167,7 @@ mission "Wanderers: Hai Diplomat"
 	clearance
 	to offer
 		has "First Contact: Wanderer: offered"
-		has "First Contact: Hai"
+		has "First Contact: Hai: offered"
 		not "Wanderers: Diplomacy: offered"
 		not "Unfettered: Know Your Enemy: active"
 	on offer
