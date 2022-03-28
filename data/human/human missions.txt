@@ -781,7 +781,7 @@ mission "Drug Running 2"
 		has "Drug Running 1: done"
 	
 	on offer
-		dialog `When you walk into the local bar, a man sitting in the corner waves you over and says in a hushed voice, "Captain, we've got a shipment of the good stuff that needs to get to <planet>. I promise you <payment> for the operation. What do you say?"`
+		dialog `When you walk into the local bar, a man sitting in the corner waves you over and says in a hushed voice, "Captain, we've got a shipment of the good stuff that needs to get to <planet>. I promise you this will be a very lucrative the operation. What do you say?"`
 	
 	on visit
 		dialog phrase "generic cargo on visit"
