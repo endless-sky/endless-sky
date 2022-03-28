@@ -2196,7 +2196,7 @@ mission "Coalition: Submarines 1"
 				`	"That sounds overly complicated. I wish you luck in getting it all set, but I'm not headed there, so I can't help you."`
 					decline
 			`	Like a bush in the wind, his body shivers wildy at what you said. "No, built underwater, nothing would be. Obvious that is. But, still, make the rules, I do not, Captain, simply following them I am."`
-				choice
+			choice
 				`	"Fair enough. I'll help you, let's head to my ship."`
 				`	"Well, I'm not really interested in this, sorry."`
 					decline
