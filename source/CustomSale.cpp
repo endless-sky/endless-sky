@@ -69,7 +69,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 								relativeOutfitPrices[outfit] += kid.Value(2);
 							else
 								relativeOutfitPrices[outfit] = kid.Value(1);
-							if(child.Size() == 2 + add)
+							if(kid.Size() == 2 + add)
 								relativeOutfitPrices[outfit] /= outfit->Cost();
 						}
 						else if(offset)
@@ -78,7 +78,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 								relativeOutfitOffsets[outfit] += kid.Value(2);
 							else
 								relativeOutfitOffsets[outfit] = kid.Value(1);
-							if(child.Size() == 2 + add)
+							if(kid.Size() == 2 + add)
 								relativeOutfitOffsets[outfit] /= outfit->Cost();
 						}
 					}
