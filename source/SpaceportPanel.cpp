@@ -32,12 +32,12 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 	: player(player)
 {
 	SetTrapAllEvents(false);
-	
+
 	text.SetFont(FontSet::Get(14));
 	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(480);
 	text.Wrap(player.GetPlanet()->SpaceportDescription());
-	
+
 	// Query the news interface to find out the wrap width.
 	// TODO: Allow Interface to handle wrapped text directly.
 	const Interface *newsUi = GameData::Interfaces().Get("news");
@@ -54,9 +54,9 @@ void SpaceportPanel::UpdateNews()
 	if(!news)
 		return;
 	hasNews = true;
-	
+
 	// Randomly pick which portrait, if any, is to be shown. Depending on if
-	// this news has a portrait, different interface information gets filled in. 
+	// this news has a portrait, different interface information gets filled in.
 	auto portrait = news->Portrait();
 	// Cache the randomly picked results until the next update is requested.
 	hasPortrait = portrait;
@@ -90,9 +90,9 @@ void SpaceportPanel::Draw()
 {
 	if(player.IsDead())
 		return;
-	
+
 	text.Draw(Point(-300., 80.), *GameData::Colors().Get("bright"));
-	
+
 	if(hasNews)
 	{
 		const Interface *newsUi = GameData::Interfaces().Get("news");
@@ -116,6 +116,6 @@ const News *SpaceportPanel::PickNews() const
 	for(const auto &it : GameData::SpaceportNews())
 		if(!it.second.IsEmpty() && it.second.Matches(planet, conditions))
 			matches.push_back(&it.second);
-	
+
 	return matches.empty() ? nullptr : matches[Random::Int(matches.size())];
 }
