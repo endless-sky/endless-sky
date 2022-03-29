@@ -112,9 +112,9 @@ mission "Remnant: Visit to Paradise 1"
 			choice
 				`	"I do not know what to make of this."`
 				`	"This is a spaceport?"`
-			`	She nods, and guides you amongst the stream of camel drawn hovercarts heading for the gate. "This is one of our earliest spaceports, before we learned new techniques better suited to our new home. Our founding ships brought as much as they could, of course, but as it turns out, the earliest phases of expansion look much the same whether one is looking at historic pre-flight eras, or modern settlement efforts."`
-			label questionloop
+			`	She nods, and guides you amongst the stream of camel-drawn hovercarts heading for the gate. "This is one of our earliest spaceports, before we learned new techniques better suited to our new home. Our founding ships brought as much as they could, of course, but as it turns out, the earliest phases of expansion look much the same whether one is looking at historic pre-flight eras, or modern settlement efforts."`
 			scene "scene/remnant remote spaceport"
+			label questionloop
 			choice
 				`	"It still seems odd to see camels pulling levitating platforms."`
 					goto camelcart
@@ -126,18 +126,22 @@ mission "Remnant: Visit to Paradise 1"
 				`	"I think I have seen enough."`
 					goto mainreturn
 			label woodproducts
+			scene "scene/remnant remote spaceport"
 			`	Taely picks up a board from a nearby pile. "We were fortunate that Caelian had some vegetation that could be used like this. They are quite different, biologically speaking, but they have similar structural characteristics and grow plentifully in many areas." She offers you the board. "The decision was made early on that anything that could be made from locally sourced materials, should be sourced locally. We wanted to conserve our limited supplies of metals and other rare resources for things that required it." She taps on a barrel. "These are a prime example - a few metal straps enable the wood to hold a significant amount of liquid. It is much the same as how a comparatively small amount of bone in our bodies can provide the necessary structure for a large volume of soft tissues and organs to function."`
 				goto questionloop
 			label camelcart
+			scene "scene/remnant remote spaceport"
 			`	"Is that so? The engineering advantages are quite simple: With the mechanics of the cart focused entirely on supporting the load and the camel providing horizontal motion, the cart can support much larger masses than it could if it had to split the forces." She looks wistful. "In truth, I am somewhat envious of the industrial capacity the ancestral worlds contain - We have accomplished much, but we have had to make choices, and one of those was the decision as to where to spend our industrial capacity. We chose, obviously, to focus on spacecraft and heavy industrial applications. We have no cars, no personal vehicles at all, really. Even these hovercarts are basically the repulsor systems from our spacecraft that have been repurposed to carry massive loads."`
 			`	Taely gestures out through the gate at the distant landscape. "It is ironic that, in many respects, the distant stars are more accessible to us than the metaphorical far side of the mountain. Those of us who explore our worlds often resort to long expeditions with camel trains to carry all their scientific equipment. Spending months away from friends or family while on a project is commonplace, even for those who never leave the surface of our planets. Many of our explorers, in fact, live nomadic lifestyles - moving every couple of weeks to a new research location as they study, document, and analyze the world." Her gestures take on a reverent tone. "Many of our most important discoveries can be attributed to these explorers."`
 			`	Her tone shifts to one of amusement. "We were lucky, though. Our camels were able to sustain themselves on several categories of local vegetation right from the start. It took quite a bit of experimentation with bacterial cultures, however, before we were able to enable them to really forage properly. Now they thrive here. Some experts suspect that, if we were to ever leave, the camels would probably continue to survive here for millennia to come.`
 				goto questionloop
 			label stonewalls
+			scene "scene/remnant remote spaceport"
 			`	Taely's expression becomes mournful as she leads you over to the walls. "We discovered soon after we arrived here that this planet was not as safe as it appeared. It had a variety of natural predators, including swarms of predatory creatures that were very aggressive in hunting us. They preferred darkness, and while they had excellent eyesight, their hearing was even sharper. A swarm could triangulate the position of a person from a single spoken word at great distances."`
 			`	She gestures up at the edge of the wall. "Fortunately, we discovered that while they were quite competent climbers, they could not navigate overhangs. So while such lips are generally considered a structural vulnerability when defending against modern weapons, they are indispensable for containing local wildlife. These walls served as well later on, too, when we had to deal with Korath ground attacks and other more complex threats."`
 				goto questionloop
 			label windturbine
+			scene "scene/remnant remote spaceport"
 			`	"They are indeed wind turbines." She steps through the gate to a spot with a better view. You can see that while the ones on the wall are are only a couple of meters tall, the ones on top of the towers are significantly bigger. "Our ancestors rightly guessed that anywhere that had sufficient atmosphere to dispense with pressure suits would also have wind. The vertical style also has the advantage that it handles high wind speeds and rapid variation in direction much better than some of the shapes that were more traditional at the time of the exodus. A good precaution, which has enabled these to survive the harsh windstorms that can sweep across the continent. While they have been repaired and improved over the centuries, these wind turbines still provide sufficient power for much of the agricultural uses out here, so we let them continue. They are also useful to remind us from where we have come."`
 				goto questionloop
 			label mainreturn
