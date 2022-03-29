@@ -35,21 +35,37 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 		if((token == "clear" || token == "remove"))
 		{
 			if(child.Size() == 1)
-				clear();
-			else if(child.Token(1) == "outfit" && child.Size() >= 3)
+				Clear();
+			else if(child.Token(1) == "outfit")
 			{
-				const Outfit *outfit = outfits.Get(child.Token(2));
-				relativeOutfitPrices.erase(outfit);
-				relativeOutfitOffsets.erase(outfit);
+				if(child.Size() >= 3)
+				{
+					const Outfit *outfit = outfits.Get(child.Token(2));
+					relativeOutfitPrices.erase(outfit);
+					relativeOutfitOffsets.erase(outfit);
+				}
+				else
+				{
+					relativeOutfitOffsets.clear();
+					relativeOutfitPrices.clear();
+				}
 			}
-			else if(child.Token(1) == "outfitter" && child.Size() >= 3)
+			else if(child.Token(1) == "outfitter")
 			{
-				const Sale<Outfit> *item = items.Get(child.Token(2));
-				relativePrices.erase(item);
-				relativeOffsets.erase(item);
+				if(child.Size() >= 3)
+				{
+					const Sale<Outfit> *item = items.Get(child.Token(2));
+					relativePrices.erase(item);
+					relativeOffsets.erase(item);
+				}
+				else
+				{
+					relativeOffsets.clear();
+					relativePrices.clear();
+				}
 			}
 		}
-		else if(token == "outfit")
+		else if(token == "outfits")
 		{
 			for(const DataNode &grandChild : child)
 			{
@@ -89,7 +105,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 				}
 			}
 		}
-		else if(token == "outfitter")
+		else if(token == "outfitters")
 		{
 			for(const DataNode &grandChild : child)
 			{
@@ -139,7 +155,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 				locationFilter.Load(child);
 			else if(child.Size() == 2)
 			{
-				source = GameData::Planets().Get(child.Token(1));
+				location = GameData::Planets().Get(child.Token(1));
 				if(child.HasChildren())
 					child.PrintTrace("Warning: location filter ignored due to use of explicit planet:");
 			}
@@ -147,17 +163,15 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 				child.PrintTrace("Warning: use a location filter to choose from multiple planets:");
 		}
 		else if(token == "conditions")
-			toApply.Load(child);
+			conditions.Load(child);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-	if(sellType == SellType::NONE)
-		sellType = SellType::VISIBLE;
+	CheckIsEmpty();
 }
 
 
 
-// Can only add between CustomSales of same sellType.
 bool CustomSale::Add(const CustomSale &other)
 {
 	// sellType::NONE means a new CustomSale created with no data and default sellType
@@ -204,6 +218,7 @@ bool CustomSale::Add(const CustomSale &other)
 
 double CustomSale::GetRelativeCost(const Outfit *item) const
 {
+	// First look if it is in the outfits, then in the outfitters.
 	const auto& baseRelative = relativeOutfitPrices.find(item);
 	double baseRelativePrice = (baseRelative != relativeOutfitPrices.cend() ? baseRelative->second : DEFAULT);
 	if(baseRelativePrice == DEFAULT)
@@ -222,6 +237,7 @@ double CustomSale::GetRelativeCost(const Outfit *item) const
 				baseOffsetPrice = 0.;
 			baseOffsetPrice += it.second;
 		}
+	// Apply the relative offset on top of the relative price.
 	if(baseRelativePrice != DEFAULT)
 		return baseRelativePrice + (baseOffsetPrice != DEFAULT ? baseRelativePrice * baseOffsetPrice : 0.);
 	else if(baseOffsetPrice != DEFAULT)
@@ -269,19 +285,30 @@ bool CustomSale::Has(const Outfit *item) const
 
 
 
-bool CustomSale::Matches(const Planet *planet, const ConditionSet::Conditions &conditions) const
+bool CustomSale::Matches(const Planet *planet, const ConditionSet::Conditions &playerConditions) const
 {
-	return ((source != nullptr) ? source == planet : locationFilter.Matches(planet)) && 
-		(toApply.IsEmpty() || toApply.Test(conditions));
+	return (location ? location == planet : locationFilter.Matches(planet)) && 
+		(conditions.IsEmpty() || conditions.Test(playerConditions));
 }
 
 
 
-void CustomSale::clear()
+void CustomSale::Clear()
 {
 	sellType = SellType::NONE;
 	relativeOffsets.clear();
 	relativePrices.clear();
 	relativeOutfitOffsets.clear();
 	relativeOutfitPrices.clear();
+}
+
+
+
+void CustomSale::CheckIsEmpty()
+{
+	if(relativeOffsets.empty() && relativePrices.empty() && 
+	   relativeOutfitOffsets.empty() && relativeOutfitPrices.empty())
+		sellType = SellType::NONE;
+	else if(sellType == SellType::NONE)
+		sellType = SellType::VISIBLE;
 }

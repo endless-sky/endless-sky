@@ -42,29 +42,35 @@ public:
 public:
 	void Load(const DataNode &node, const Set<Sale<Outfit>> &items, const Set<Outfit> &outfits);
 	
+	// Adds another CustomSale of the same sellType to this one, or any type if this one is empty.
 	bool Add(const CustomSale &other);
 	
+	// Get the price of the item, one should check the conditions matche first.
 	double GetRelativeCost(const Outfit *item) const;
 	
 	SellType GetSellType() const;
 
+	// Convert the given sellType into a string.
 	static const std::string &GetShown(SellType sellType);
 	
 	const Sale<Outfit> &GetOutfits() const;
 	
 	bool Has(const Outfit *item) const;
 
-	bool Matches(const Planet *planet, const ConditionSet::Conditions &conditions) const;
+	// Check if this planet with the given conditions of the player match the conditions of the CustomSale.
+	bool Matches(const Planet *planet, const ConditionSet::Conditions &playerConditions) const;
 
-	void clear();
+	void Clear();
+
+	void CheckIsEmpty();
 
 	
 private:
 	mutable Sale<Outfit> seen;
 	
 	LocationFilter locationFilter;
-	ConditionSet toApply;
-	const Planet *source = nullptr;
+	ConditionSet conditions;
+	const Planet *location = nullptr;
 	
 	std::map<const Sale<Outfit> *, double> relativePrices;
 	std::map<const Sale<Outfit> *, double> relativeOffsets;
