@@ -292,7 +292,7 @@ void PlanetPanel::TakeOffIfReady()
 		if(missionCargoToSell > 0 || overbooked > 0)
 		{
 			bool both = ((cargoToSell > 0 && cargo.MissionCargoSize()) && overbooked > 0);
-			out << "If you take off now you will fail a mission due to not having enough ";
+			out << "If you take off now you will abort a mission due to not having enough ";
 
 			if(overbooked > 0)
 			{

@@ -32,6 +32,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 	bool isClustered = false;
 	calculatedDamage = false;
 	doesDamage = false;
+	bool disabledDamageSet = false;
+	bool relativeDisabledDamageSet = false;
 
 	for(const DataNode &child : node)
 	{
@@ -205,6 +207,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[SHIELD_DAMAGE] = value;
 			else if(key == "hull damage")
 				damage[HULL_DAMAGE] = value;
+			else if(key == "disabled damage")
+			{
+				damage[DISABLED_DAMAGE] = value;
+				disabledDamageSet = true;
+			}
 			else if(key == "fuel damage")
 				damage[FUEL_DAMAGE] = value;
 			else if(key == "heat damage")
@@ -229,6 +236,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[RELATIVE_SHIELD_DAMAGE] = value;
 			else if(key == "relative hull damage")
 				damage[RELATIVE_HULL_DAMAGE] = value;
+			else if(key == "relative disabled damage")
+			{
+				damage[RELATIVE_DISABLED_DAMAGE] = value;
+				relativeDisabledDamageSet = true;
+			}
 			else if(key == "relative fuel damage")
 				damage[RELATIVE_FUEL_DAMAGE] = value;
 			else if(key == "relative heat damage")
@@ -255,6 +267,12 @@ void Weapon::LoadWeapon(const DataNode &node)
 				child.PrintTrace("Unrecognized weapon attribute: \"" + key + "\":");
 		}
 	}
+	// Disabled damage defaults to hull damage instead of 0.
+	if(!disabledDamageSet)
+		damage[DISABLED_DAMAGE] = damage[HULL_DAMAGE];
+	if(!relativeDisabledDamageSet)
+		damage[RELATIVE_DISABLED_DAMAGE] = damage[RELATIVE_HULL_DAMAGE];
+
 	// Sanity checks:
 	if(burstReload > reload)
 		burstReload = reload;
