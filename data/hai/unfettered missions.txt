@@ -596,7 +596,7 @@ outfit "Gold Bars"
 
 ship "Sea Scorpion" "Sari'Sea Scorpion (Pulse)"
 	outfits
-		"Pulse Cannon" 5
+		"Pulse Cannon" 4
 		"Pulse Turret" 2
 		"Boulder Reactor"
 		"Hai Williwaw Cooling" 2
@@ -3138,6 +3138,7 @@ mission "Unfettered: Cloaking Interest"
 
 ship "Shield Beetle Prototype" "Shield Beetle Prototype (Black)"
 	sprite "ship/hai marauder shield beetle"
+	thumbnail "thumbnail/hai marauder shield beetle"
 	add attributes
 		"hull" 5200
 		"spinal mount" 1

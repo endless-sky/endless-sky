@@ -416,17 +416,17 @@ ship "Sea Scorpion"
 	attributes
 		category "Medium Warship"
 		"cost" 2950000
-		"shields" 10700
-		"hull" 4100
-		"required crew" 15
-		"bunks" 31
-		"mass" 340
+		"shields" 11300
+		"hull" 4300
+		"required crew" 14
+		"bunks" 36
+		"mass" 360
 		"drag" 4.7
 		"heat dissipation" .8
 		"fuel capacity" 500
-		"cargo space" 31
-		"outfit space" 523
-		"weapon capacity" 158
+		"cargo space" 50
+		"outfit space" 510
+		"weapon capacity" 145
 		"engine capacity" 104
 		weapon
 			"blast radius" 84
@@ -434,10 +434,10 @@ ship "Sea Scorpion"
 			"hull damage" 420
 			"hit force" 1260
 	outfits
-		"Hai Tracker Pod" 5
+		"Hai Tracker Pod" 4
 		"Chameleon Anti-Missile" 2
-		"Tracker Storage Pod" 5
-		"Hai Tracker" 420
+		"Tracker Storage Pod" 4
+		"Hai Tracker" 392
 		"Hai Williwaw Cooling" 2
 		"Boulder Reactor"
 		"Hai Ravine Batteries"
@@ -447,17 +447,20 @@ ship "Sea Scorpion"
 		"Hyperdrive"
 		"Pulse Rifle" 15
 
-	turret -17.5 -14.5
-	turret 17.5 -14.5
-	gun -23 -48.5
-	gun 23 -48.5
-	gun -13 -60.5
-	gun 13 -60.5
-	gun 0 -71
-	engine -34.5 60.5 0.6
-	engine 34.5 60.5 0.6
-	engine -15 70 0.8
-	engine 15 70 0.8
+	engine -28.5 68.5
+	engine 28.5 68.5
+	"steering engine" 64.5 23.5
+		angle -90
+		left
+	"steering engine" -64.5 23.5
+		angle 90
+		right
+	turret -35.5 24.5
+	turret 35.5 24.5
+	gun -27 -56
+	gun 27 -56
+	gun -13 -77.5
+	gun 13 -77.5
 	leak "leak" 40 50
 	leak "flame" 40 30
 	explode "tiny explosion" 24
@@ -469,7 +472,7 @@ ship "Sea Scorpion"
 
 ship "Sea Scorpion" "Sea Scorpion (Pulse)"
 	outfits
-		"Pulse Cannon" 5
+		"Pulse Cannon" 4
 		"Pulse Turret" 2
 		"Boulder Reactor"
 		"Hai Williwaw Cooling" 2
@@ -806,7 +809,7 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 
 ship "Shield Beetle Prototype"
 	sprite "ship/hai shield beetle prototype"
-	thumbnail "thumbnail/hai shield beetle"
+	thumbnail "thumbnail/hai shield beetle prototype"
 	attributes
 		category "Heavy Warship"
 		"cost" 25400000
@@ -842,19 +845,19 @@ ship "Shield Beetle Prototype"
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 		"Quantum Keystone"
-	engine -42 134.5
-	engine 42 134.5
-	gun -21.5 -93 "Hai Tracker Pod"
-	gun -34 -71 "Hai Tracker Pod"
-	gun -47.5 -31
-	gun -60.5 -7.5 
-	gun 21.5 -93 "Hai Tracker Pod"
-	gun 34 -71 "Hai Tracker Pod"
-	gun 47.5 -31
-	gun 60.5 -7.5
-	turret -54 74.5 "Ionic Turret"
-	turret 0 15 "Chameleon Anti-Missile"
-	turret 54 74.5 "Ionic Turret"
+	engine -45 123
+	engine 45 123
+	gun -22 -103
+	gun 22 -103
+	gun -34.5 -68 "Hai Tracker Pod"
+	gun 34.5 -68 "Hai Tracker Pod"
+	gun -48 -53.5
+	gun 48 -53.5
+	gun -61.5 -23 "Hai Tracker Pod"
+	gun 61.5 -23 "Hai Tracker Pod"
+	turret -55.5 74.5
+	turret 55.5 74.5
+	turret 0 5 "Chameleon Anti-Missile"
 	leak "leak" 35 45
 	leak "flame" 60 95
 	leak "big leak" 50 45
