@@ -20,11 +20,9 @@ Files:
  images/outfit/fission?hai*
  images/outfit/fusion?hai*
  images/outfit/heavy?anti-missile?hai*
- images/ship/marrow*
  images/ship/mbounder*
  images/ship/mfury*
  images/ship/mmanta*
- images/ship/mquicksilver*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
@@ -402,7 +400,6 @@ Files:
  images/outfit/flamethrower*
  images/outfit/fuel?pod*
  images/outfit/gat*
- images/outfit/grab-strike*
  images/outfit/heavy?anti-missile*
  images/outfit/heavy?laser?turret*
  images/outfit/heavy?laser*
@@ -919,11 +916,13 @@ Files:
  images/ship/falcon*
  images/ship/hawk*
  images/ship/osprey*
+ images/ship/quicksilver*
  images/ship/sparrow*
  images/thumbnail/blackbird*
  images/thumbnail/falcon*
  images/thumbnail/hawk*
  images/thumbnail/osprey*
+ images/thumbnail/quicksilver*
  images/thumbnail/sparrow*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
@@ -931,7 +930,9 @@ Comment: Detailed by Anarchist2.
 
 Files:
  images/ship/mfalcon*
+ images/ship/mquicksilver*
  images/thumbnail/mfalcon*
+ images/thumbnail/mquicksilver*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Anarchist2.
@@ -975,6 +976,7 @@ Files:
  images/ship/faes'mar*
  images/ship/selii'mar*
  images/ship/vareti'het*
+ images/ship/fetri'sei*
  images/ship/ember?waste?node/*
  images/ship/void?sprite/*
  images/thumbnail/maeri'het*
@@ -984,6 +986,7 @@ Files:
  images/thumbnail/subsidurial*
  images/thumbnail/ember?waste?node*
  images/thumbnail/vareti'het*
+ images/thumbnail/fetri'sei*
  images/thumbnail/void?sprite?adult*
  images/thumbnail/void?sprite?infant*
  images/effect/ravager?impact*
@@ -1052,6 +1055,7 @@ Files:
  images/projectile/mhd*
  images/scene/ringworld?debris*
  images/scene/remnant?station*
+ images/scene/asteroid?scene*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 
@@ -1078,6 +1082,13 @@ Files:
 Copyright: Benjamin Jackson (gods.benyamin@outlook.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license)
+
+Files:
+ images/outfit/grab-strike*
+ images/hardpoint/grab-strike*
+Copyright: Lia Gerty (https://github.com/ravenshining)
+License: CC-BY-SA-4.0
+Comment: Derived from work by Michael Zahniser (under the same licence) and Becca Tomaso (under the same licence).
 
 Files:
  images/ship/raider*
@@ -1142,6 +1153,8 @@ Files:
  images/outfit/fuel?module*
  images/outfit/large?cogeneration?module*
  images/outfit/small?cogeneration?module*
+ images/scene/councilofahr1*
+ images/scene/councilofahr2*
 Copyright: Arachi-Lover
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
@@ -1446,6 +1459,36 @@ Files:
  images/outfit/jump?drive?(broken)*
 Copyright: Scrinarii1337#0001
 License: CC-BY-SA-4.0
+
+Files: images/scene/citydark
+images/scene/buildings
+images/scene/busysteet
+images/scene/iceplains
+images/scene/iceplains2
+images/scene/iceplains3
+images/scene/lonelyrock
+images/scene/redrocks
+images/scene/seasidecliffs
+images/scene/Seasunset
+images/scene/smeer
+images/scene/snowfield
+images/scene/snowvillage
+images/scene/sunet
+images/scene/tower
+images/scene/icepicture
+images/scene/snowplains
+Copyright: unsplash.com/
+License: CC0 (Creative Commons Zero)/Public-Domain
+
+Files: images/outfits/skadetear
+images/scenes/hroar
+Copyright: Dane Crowton
+License: CC-BY-SA-4.0
+
+Files: images/land/asteroid0
+Copyright: Becca Tommaso
+License: CC0 (Creative Commons Zero)/Public-Domain
+Comment: Derived from works by ESA/Rosetta spacecraft (under the same license).
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
