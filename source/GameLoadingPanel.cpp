@@ -58,7 +58,10 @@ void GameLoadingPanel::Step()
 		// Set the game's initial internal state.
 		GameData::FinishLoading();
 
-		player.LoadRecent();
+		// Load the last loaded save file. If there is none then play the default landing sound.
+		// (If a save file is loaded then the same sound is played when loading it).
+		if(!player.LoadRecent())
+			Audio::Play(Audio::Get("landing"));
 
 		GetUI()->Pop(this);
 		GetUI()->Push(new MenuPanel(player, gamePanels));
