@@ -2183,7 +2183,7 @@ mission "Coalition: Submarines 1"
 					decline
 			`	"No facilities for such construction, Second Cerulean has," he explains. "Remain mostly untouched, the planet must. Build more than simple research stations on it, we cannot. But in need of sturdier subs, we are, so held a competition to determine what company was to build them, my group did. In my opinion, honestly, not needed such a process was. Obvious that House Mallob would win, it was. Unrivaled in hull integrity, they are."`
 			choice
-				`	"I see. Well, I'd love to help you, let me show you to my ship."`
+				`	"I see. Well, I'd love to help you. Let me show you to my ship."`
 					goto accept
 				`	"What's so special about this planet that you can't do it there? One shipyard shouldn't be too invasive."`
 				`	"Well, I wish you luck, but I'm not headed that way, sorry."`
@@ -2195,9 +2195,9 @@ mission "Coalition: Submarines 1"
 				`	"If the planet's native life is all underwater, how would a shipyard pose any risk? It's not like you'd build it underwater."`
 				`	"That sounds overly complicated. I wish you luck in getting it all set, but I'm not headed there, so I can't help you."`
 					decline
-			`	Like a bush in the wind, his body shivers wildy at what you said. "No, built underwater, nothing would be. Obvious that is. But, still, make the rules, I do not, Captain, simply following them I am."`
+			`	Like a bush in the wind, his body shivers wildly at what you said. "No, built underwater, nothing would be. Obvious that is. But, still, make the rules, I do not, Captain. Simply following them, I am."`
 			choice
-				`	"Fair enough. I'll help you, let's head to my ship."`
+				`	"I see. Well, I'd love to help you. Let me show you to my ship."`
 				`	"Well, I'm not really interested in this, sorry."`
 					decline
 			label accept
@@ -2237,7 +2237,7 @@ mission "Coalition: Submarines 2"
 				`	"Why not just do those tests on Second Cerulean right away?"`
 			`	"Upsetting or startling the local fauna, as well as any structural damage, we wish to avoid, so wait until after the tests, we will, before deploying them in that planet's waters."`
 			choice
-				`	"Let's get on with it then, my ship is ready to carry the subs."`
+				`	"Let's get on with it then. My ship is ready to carry the subs."`
 					goto end
 				`	"Structural damage?"`
 			`	He stares at you blankly for a moment. "Delicately arranged, the glaciers there are. Resting on them, some of our monitoring equipment is. Avoid any damage to them caused by an unforeseen malfunction, we must."`
@@ -2314,13 +2314,13 @@ mission "Coalition: Submarines 4"
 				`	"If it's alright, yeah. Could be interesting."`
 				`	"I'll pass. I need some time to rest after the trip here."`
 					goto refuse
-			`	You head up the ramp to the ship, and after a few minutes it sets off, following the submarines controlled remotely by the Kimek team. Exploring the tanker, you find an odd pile of what looks like broken up ship parts, secured as cargo on the back, the pieces welded together into a shape similar to the cockpit of one of the smaller Heliarch ships, though with many dents on it, as if hit by some explosives. Apri'ie notices you looking at it, and comes to explain that it's the "prop" on which they'll test the repair functions.`
+			`	You head up the ramp to the ship, and after a few minutes it sets off, following the submarines controlled remotely by the Kimek team. Exploring the tanker, you find an odd pile of what looks like broken up ship parts, secured as cargo on the back. The pieces are welded together into a shape similar to the cockpit of one of the smaller Heliarch ships, though it has several dents, as if hit by some explosives. Apri'ie notices you looking at it and comes to explain that it's the "prop" on which they'll test the repair functions.`
 			`	Once the tanker comes to a stop, the smaller ship's crane grabs the prop and slowly maneuvers it away from the tanker before lowering it into the water and letting it sink. The submarines follow the prop as it goes down, until it comes to a stop after a few minutes.`
 			`	The Kimek operators then proceed to take shifts at their computers as everyone waits for a tremor to begin. After the moon is high in the sky, you notice odd shifts on the waves and trembling on the boats, with which the Kimek start their repair work. Once they're done, and after the tremors stop, the subs slowly bring the prop back up, where the crane places it on the tanker again.`
 			`	"Let's see..." Apri'ie heads to the prop to check on the welded parts. "Yes, very good. Performed well, the welder arms have. Good for deployment, they should be." The submarines go ahead once again, lighting the way back to the port as the ships follow them until docking.`
 				goto end
 			label refuse
-			`	He heads to the tanker, and the ships set off, following the submarines. You walk for a while by the spaceport, stopping at a restaurant to have a Saryd pastry dish. As you return to the port at sunset and wait until you finally spot the submarines' lights on the horizon heading towards the shore.`
+			`	He heads to the tanker, and the ships set off, following the submarines. You walk for a while by the spaceport, stopping at a restaurant to have a Saryd pastry dish. You return to the port at sunset and wait until you finally spot the submarines' lights on the horizon heading towards the shore.`
 			`	"Worked perfectly, the welders have. Ready for deployment, the subs should be," Apri'ie tells you as he steps off of the tanker.`
 			label end
 			`	The subs are once again placed atop the sleds and brought into your ship. Apri'ie thanks the Kimek team for handling the subs and heads back into your ship, saying, "Time for their final trip, it is. Bring the vessels and I to <destination>, you may."`
