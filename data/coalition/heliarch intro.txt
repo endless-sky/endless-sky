@@ -1301,7 +1301,7 @@ mission "Heliarch Containment 5"
 		not "Resistance: Questions: done"
 	source "Station Cian"
 	on offer
-		"reputation: Resistance" = -1000
+		"reputation: Lunarium" = -1000
 		event "resistance fleeing rb"
 		conversation
 			`After the transmission with Plortup ends, the station is awfully quiet for a few hours. You head outside your ship to see if you can find something interesting to do, but you don't find anything in particular. You also notice that the job board is completely empty, that the market's trade values are not updating, and any news system is awfully destabilized.`
@@ -1336,6 +1336,7 @@ mission "Heliarch Containment 5"
 			`This ship is equipped with Torpedo Launchers. Somehow, the criminals have acquired human outfits. You're about to enter the ship and look for any hostages that might have been there, but you rush back as a self destruction sequence starts.`
 				launch
 	on complete
+		"reputation: Lunarium" = 1
 		event "resistance detained rb"
 		"assisted heliarch" ++
 		payment 1320000
