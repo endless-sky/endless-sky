@@ -730,7 +730,7 @@ mission "There Might Be Riots part 3B"
 
 mission "Drug Running 1"
 	name "Drug Running"
-	description "Bring a shipment of illegal drugs to <destination>. If you are caught with this cargo, you may be fined."
+	description "Bring a shipment of illegal drugs to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
 	source
@@ -746,7 +746,7 @@ mission "Drug Running 1"
 		"said no to drugs" < 4
 	
 	on offer
-		dialog `As you are walking through the spaceport, a man pulls you aside and asks if you would like to help transport some "recreational pharmaceuticals" to <planet>. (This sounds like an illegal mission, so you'll need to avoid getting scanned or landing on planets with high security.)`
+		dialog `As you are walking through the spaceport, a man pulls you aside and asks if you would like to help transport some "recreational pharmaceuticals" to <planet> for <payment>. (This sounds like an illegal mission, so you'll need to avoid getting scanned or landing on planets with high security.)`
 	
 	on accept
 		"said no to drugs" --
@@ -765,7 +765,7 @@ mission "Drug Running 1"
 
 mission "Drug Running 2"
 	name "Drug Running"
-	description "Bring a shipment of illegal drugs to <destination>. If you are caught with this cargo, you may be fined."
+	description "Bring a shipment of illegal drugs to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
 	source
@@ -795,7 +795,7 @@ mission "Drug Running 2"
 
 mission "Drug Running 3"
 	name "Drug Running"
-	description "Bring a shipment of illegal drugs to <destination>. If you are caught with this cargo, you may be fined."
+	description "Bring a shipment of illegal drugs to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
 	source
@@ -811,7 +811,7 @@ mission "Drug Running 3"
 		has "Drug Running 2: done"
 	
 	on offer
-		dialog `A well-dressed woman approaches you as you are walking through the spaceport and asks quietly if you would be willing to help facilitate the transport of some "naughty substances" to a certain individual on <planet>.`
+		dialog `A well-dressed woman approaches you as you are walking through the spaceport and asks quietly if you would be willing to help facilitate the transport of some "naughty substances" to a certain individual on <planet> for <payment>.`
 	
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -904,7 +904,7 @@ mission "Hallucination"
 
 mission "Shady passenger transport 1"
 	name "Shady passenger transport"
-	description "Discreetly transport a passenger to <destination>. If you are caught with him, you may be fined."
+	description "Discreetly transport a passenger to <destination>. Payment will be <payment>. If you are caught with him, you may be fined."
 	minor
 	repeat
 	source
@@ -940,7 +940,7 @@ mission "Shady passenger transport 1"
 
 mission "Shady passenger transport 2"
 	name "Shady passenger transport"
-	description "Discreetly transport two passengers to <destination>. If you are caught with them, you may be fined."
+	description "Discreetly transport two passengers to <destination>. Payment will be <payment>. If you are caught with them, you may be fined."
 	minor
 	repeat
 	source
@@ -986,7 +986,7 @@ mission "Shady passenger transport 2"
 
 mission "Shady passenger transport 3"
 	name "Shady passenger transport"
-	description "Discreetly transport <bunks> passengers to <destination>. If you are caught with them, the legal consequences may be severe."
+	description "Discreetly transport <bunks> passengers to <destination>. Payment will be <payment>. If you are caught with them, the legal consequences may be severe."
 	minor
 	repeat
 	source
@@ -1043,7 +1043,7 @@ mission "Shady passenger transport 3"
 
 mission "Shady passenger transport 3 - double cross"
 	name "Shady passenger transport"
-	description "Discreetly transport <bunks> passengers to <destination>. If you are caught with them, the legal consequences may be severe."
+	description "Discreetly transport <bunks> passengers to <destination>. Payment will be 350,000 credits. If you are caught with them, the legal consequences may be severe."
 	minor
 	source
 		attributes "frontier" "dirt belt" "rim" "north" "south" "pirate"
@@ -1230,7 +1230,7 @@ mission "Courier 1"
 		distance 4 10
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on offer
-		dialog `As you are walking through the spaceport, a man approaches you and says, "Excuse me, Captain. I took on a rush delivery to <planet>, but my ship needs repairs and there's no way I can make it there before <day>. Can you take this job for me?"`
+		dialog `As you are walking through the spaceport, a man approaches you and says, "Excuse me, Captain. I took on a rush delivery to <planet>, but my ship needs repairs and there's no way I can make it there before <day>. Can you take this job for me? The payment for the job is <payment>."`
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1321,7 +1321,7 @@ mission "Courier 3"
 		distance 7 14
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on offer
-		dialog `A woman in a suit walks up to you and says, "Pardon me, Captain. I represent a recently deceased client here on <origin> whose legal papers need to be delivered to his next of kin on <destination>. Would you be willing to do some courier work? The papers must be delivered by <day>."`
+		dialog `A woman in a suit walks up to you and says, "Pardon me, Captain. I represent a recently deceased client here on <origin> whose legal papers need to be delivered to his next of kin on <destination>. Would you be willing to do some courier work? The papers must be delivered by <day>, and you will be paid <payment>."`
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
