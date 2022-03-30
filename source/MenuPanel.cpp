@@ -73,7 +73,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 
 void MenuPanel::Step()
 {
-	if(GetUI()->IsTop(this) && alpha < 1.f)
+	if(GetUI()->IsTop(this) && alpha < 1.f && !scrollingPaused)
 	{
 		++scroll;
 		if(scroll >= (20 * credits.size() + 300) * scrollSpeed)
@@ -139,7 +139,6 @@ void MenuPanel::Draw()
 	}
 	// END animation TODO
 
-	// TODO: allow pausing the credits scroll
 	int y = 120 - scroll / scrollSpeed;
 	for(const string &line : credits)
 	{
@@ -179,6 +178,8 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == 'q')
 		GetUI()->Quit();
+	else if(key == ' ')
+		scrollingPaused = !scrollingPaused;
 	else
 		return false;
 

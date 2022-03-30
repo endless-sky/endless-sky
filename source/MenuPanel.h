@@ -45,6 +45,7 @@ private:
 
 	std::vector<std::string> credits;
 	unsigned scroll;
+	bool scrollingPaused = false;
 };
 
 
