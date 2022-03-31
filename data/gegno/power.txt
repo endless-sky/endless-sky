@@ -26,7 +26,7 @@ outfit "R03 Warforge Battery"
 	thumbnail outfit/gbatterymed
 	"energy capacity" 4469
 	"outfit space" -41
-	description "Warforge batteries have proved their usefulness over the years. As large, sturdy battery packs, they assist with equally large vollies that are fired from Gegno ships, and help maintain an excess of power for engine usage."
+	description "Warforge batteries have proved their usefulness over the years. As large, sturdy battery packs, they assist with equally large volleys that are fired from Gegno ships, and help maintain an excess of power for engine usage."
 
 outfit "R04 Crusade Battery"
 	category Power
