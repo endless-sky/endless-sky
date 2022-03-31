@@ -710,7 +710,7 @@ ship Felsic
 	explode "small explosion" 28
 	explode "tiny explosion" 16
 	"final explode" "final explosion medium"
-	description "Felsics are essentially stripped Schists repurposed for a more engaging role. In place of the heavier engines that the Vi had mounted on, they have more efficient engines, dedicating the remaining space to a larger cargo capacity. The Scin also outfitted them with two turrent mounts, allowing them to double as a secondary combat vessel, and an extra hand in anti-shell duty when needed."
+	description "Felsics are essentially stripped Schists repurposed for a more engaging role. In place of the heavier engines that the Vi had mounted on, they have more efficient engines, dedicating the remaining space to a larger cargo capacity. The Scin also outfitted them with two turret mounts, allowing them to double as a secondary combat vessel, and an extra hand in anti-shell duty when needed."
 
 ship Felsic "Felsic P"
 	sprite ship/felsicp
