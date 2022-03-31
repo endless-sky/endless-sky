@@ -20,8 +20,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 namespace 
 {
-	const std::map<CustomSale::SellType, const std::string> show{{CustomSale::SellType::NONE, ""}, {CustomSale::SellType::VISIBLE, ""},
-		{CustomSale::SellType::IMPORT, "import"}, {CustomSale::SellType::HIDDEN, "hidden"}};
+	const auto show = std::map<CustomSale::SellType, const std::string> {
+		{CustomSale::SellType::NONE, ""},
+		{CustomSale::SellType::VISIBLE, ""},
+		{CustomSale::SellType::IMPORT, "import"},
+		{CustomSale::SellType::HIDDEN, "hidden"},
+	};
 	const double DEFAULT = -100000.;
 }
 
@@ -181,9 +185,9 @@ bool CustomSale::Add(const CustomSale &other)
 		return false;
 	for(const auto& it : other.relativePrices)
 	{
-		const auto& item = relativePrices.find(it.first);
-		if(item == relativePrices.cend())
-			relativePrices[it.first] = it.second;
+		auto ours = relativePrices.find(it.first);
+		if(ours == relativePrices.end())
+			relativePrices.emplace(it.first, it.second);
 		else if(item->second < it.second)
 			item->second = it.second;
 	}
