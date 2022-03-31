@@ -227,18 +227,18 @@ ship "Auxiliary"
 		"X1700 Ion Thruster"
 		"X5200 Ion Steering"
 		"Scram Drive"
-	engine -40.5 175 0.45
-	engine 40.5 175 0.45
-	gun -12 -186
-	gun 12.5 -186
-	turret 0 -77.5 "Heavy Anti-Missile Turret"
-	turret 0 -22
-	turret 0 28
-	turret 0 79 "Heavy Anti-Missile Turret"
-	bay "Fighter" 0 -77.5
-	bay "Fighter" 0 -22
-	bay "Fighter" 0 28
-	bay "Fighter" 0 79
+	engine -41. 180.5 0.45
+	engine 41. 180.5 0.45
+	gun -12.5 -182
+	gun 12.5 -182
+	turret 0 -74 "Heavy Anti-Missile Turret"
+	turret 0 -17
+	turret 0 32
+	turret 0 83 "Heavy Anti-Missile Turret"
+	bay "Fighter" 0 -74
+	bay "Fighter" 0 -17
+	bay "Fighter" 0 32
+	bay "Fighter" 0 83
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 30 30
@@ -260,14 +260,14 @@ ship "Auxiliary" "Auxiliary (Cargo)"
 		"cargo space" 200
 	gun -12 -186
 	gun 12.5 -186
-	turret 0 -76.5 "Heavy Anti-Missile Turret"
-	turret 0 -24
-	turret 0 28
-	turret 0 79 "Heavy Anti-Missile Turret"
-	bay "Fighter" 0 -76.5
-	bay "Fighter" 0 -24
-	bay "Fighter" 0 28
-	bay "Fighter" 0 79
+	turret 0 -72 "Heavy Anti-Missile Turret"
+	turret 0 -20
+	turret 0 32
+	turret 0 83 "Heavy Anti-Missile Turret"
+	bay "Fighter" 0 -72
+	bay "Fighter" 0 -20
+	bay "Fighter" 0 32
+	bay "Fighter" 0 83
 
 ship "Auxiliary" "Auxiliary (Transport)"
 	plural "Auxiliaries"
@@ -278,14 +278,14 @@ ship "Auxiliary" "Auxiliary (Transport)"
 		"cargo space" -200
 	gun -12 -186
 	gun 12.5 -186
-	turret 0 -77.5 "Heavy Anti-Missile Turret"
-	turret 0 -22
-	turret 0 16.5
-	turret 0 73 "Heavy Anti-Missile Turret"
-	bay "Fighter" 0 -77.5
-	bay "Fighter" 0 -22
-	bay "Fighter" 0 16.5
-	bay "Fighter" 0 73
+	turret 0 -74 "Heavy Anti-Missile Turret"
+	turret 0 -17
+	turret 0 20
+	turret 0 78 "Heavy Anti-Missile Turret"
+	bay "Fighter" 0 -74
+	bay "Fighter" 0 -17
+	bay "Fighter" 0 20
+	bay "Fighter" 0 78
 
 
 
@@ -1031,9 +1031,9 @@ ship "Combat Drone"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		
-	engine -8.5 28 0.9
-	engine 8.5 28 0.9
-	gun 0 -25.5 "Beam Laser"
+	engine -8.5 28.5 0.9
+	engine 8.5 28.5 0.9
+	gun 0 -29 "Beam Laser"
 	explode "tiny explosion" 15
 	description "Combat drones are pilotless attack ships used primarily by the Republic Navy. Although very weak and easy to destroy, they can be very effective in large numbers. Because drones do not need a cockpit, they can be filled entirely with equipment and solid metal, which makes their hulls stronger than other small ships."
 
@@ -2711,14 +2711,14 @@ ship "Rainmaker"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -8.5 45.5 0.4
-	engine 8.5 45.5 0.4
-	gun -11 -30.5 "Energy Blaster"
-	gun 11 -30.5 "Energy Blaster"
-	gun -28.5 3.5 "Meteor Missile Launcher"
-	gun 28.5 3.5 "Meteor Missile Launcher"
-	gun -21.5 3.5 "Meteor Missile Launcher"
-	gun 21.5 3.5 "Meteor Missile Launcher"
+	engine -11.5 44.5 0.4
+	engine 11.5 44.5 0.4
+	gun -7.5 -36.5 "Energy Blaster"
+	gun 7.5 -36.5 "Energy Blaster"
+	gun -27 8 "Meteor Missile Launcher"
+	gun 27 8 "Meteor Missile Launcher"
+	gun -22 8 "Meteor Missile Launcher"
+	gun 22 8 "Meteor Missile Launcher"
 	leak "leak" 50 50
 	explode "tiny explosion" 10
 	explode "small explosion" 20

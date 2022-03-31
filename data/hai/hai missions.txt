@@ -645,10 +645,11 @@ mission "Unwanted Cargo Trigger"
 event "hai in cargo"
 
 mission "Unwanted Cargo"
+	minor
 	landing
 	description "Bring a Hai child who hid in your cargo hold back to <destination>."
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		not government "Hai" "Hai (Unfettered)"
 	destination "Allhome"
 	to offer
 		has "event: hai in cargo"
@@ -686,7 +687,7 @@ mission "Unwanted Cargo"
 			`	The child looks surprised when your translation device speaks to it in Hai. "Take me home!" it yells back at you. You attempt to find out where the child's home is, but it continues to cry for its mother without giving any important information.`
 			
 			label end
-			`	This child must have somehow gotten into your cargo hold while you were in Hai space. Leaving a Hai child on a human world would be an extremely bad idea. Perhaps someone on <destination> will be able to bring the child back to its family.`
+			`	This child must have somehow gotten into your cargo hold while you were in Hai space. Leaving a Hai child on this world would be an extremely bad idea. Perhaps someone on <destination> will be able to bring the child back to its family.`
 				accept
 			
 	on complete
