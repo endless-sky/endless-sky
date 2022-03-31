@@ -104,7 +104,7 @@ outfit "SC-1 Plasma Engines"
 	"flare sprite" effect/scplasma/tiny
 		"frame rate" 0.59999999
 	"flare sound" "scplasma tiny"
-	description "In order to power the small Halite frame, the Gegno Scin developed this smaller engine system. Based on their larger plasma thrusters, these engines are much more efficient than the Vi's larger more sluggish Ion Engines, which would never be compact or light enough to run on a fighter."
+	description "In order to power the small Halite frame, the Gegno Scin developed this smaller engine system. Based on their larger plasma thrusters, these engines are much more efficient than the Vi's larger, more sluggish Ion Engines, which would never be compact or light enough to run on a fighter."
 
 outfit "SC-12 Plasma Thruster"
 	category Engines
