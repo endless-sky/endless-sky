@@ -155,7 +155,7 @@ void MenuPanel::Draw()
 		if(fade)
 		{
 			Color color(((line.empty() || line[0] == ' ') ? .2f : .4f) * fade, 0.f);
-			font.Draw(line, Point(static_cast<int>(creditsRect.Left()), y), color);
+			font.Draw(line, Point(creditsRect.Left(), y), color);
 		}
 		y += 20;
 	}
