@@ -185,3 +185,18 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 	return true;
 }
+
+
+
+bool MenuPanel::Click(int x, int y, int clicks)
+{
+	// Double clicking on the credits pauses/resumes the credits scroll.
+	auto creditsBox = Rectangle::WithCorners(Point(-490., -165.), Point(-230., 115.));
+	if(clicks == 2 && creditsBox.Contains(Point(x, y)))
+	{
+		scrollingPaused = !scrollingPaused;
+		return true;
+	}
+
+	return false;
+}
