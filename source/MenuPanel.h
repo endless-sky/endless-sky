@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+class Interface;
 class PlayerInfo;
 class UI;
 
@@ -43,6 +44,8 @@ protected:
 private:
 	PlayerInfo &player;
 	UI &gamePanels;
+
+	const Interface *mainMenuUi;
 
 	std::vector<std::string> credits;
 	unsigned scroll;

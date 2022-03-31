@@ -67,6 +67,8 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 		gamePanels.StepAll();
 		gamePanels.StepAll();
 	}
+
+	mainMenuUi = GameData::Interfaces().Get("main menu");
 }
 
 
@@ -121,7 +123,7 @@ void MenuPanel::Draw()
 	}
 
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
-	GameData::Interfaces().Get("main menu")->Draw(info, this);
+	mainMenuUi->Draw(info, this);
 	GameData::Interfaces().Get("menu player info")->Draw(info, this);
 
 	// TODO: move this animation (e.g. to a non-fullscreen panel).
@@ -139,18 +141,21 @@ void MenuPanel::Draw()
 	}
 	// END animation TODO
 
-	int y = 120 - scroll / scrollSpeed;
+	const auto creditsRect = mainMenuUi->GetBox("credits");
+	const int top = static_cast<int>(creditsRect.Top());
+	const int bottom = static_cast<int>(creditsRect.Bottom());
+	int y = bottom + 5 - scroll / scrollSpeed;
 	for(const string &line : credits)
 	{
 		float fade = 1.f;
-		if(y < -145)
-			fade = max(0.f, (y + 165) / 20.f);
-		else if(y > 95)
-			fade = max(0.f, (115 - y) / 20.f);
+		if(y < top + 20)
+			fade = max(0.f, (y - top) / 20.f);
+		else if(y > bottom - 20)
+			fade = max(0.f, (bottom - y) / 20.f);
 		if(fade)
 		{
 			Color color(((line.empty() || line[0] == ' ') ? .2f : .4f) * fade, 0.f);
-			font.Draw(line, Point(-470., y), color);
+			font.Draw(line, Point(static_cast<int>(creditsRect.Left()), y), color);
 		}
 		y += 20;
 	}
@@ -191,8 +196,7 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 bool MenuPanel::Click(int x, int y, int clicks)
 {
 	// Double clicking on the credits pauses/resumes the credits scroll.
-	auto creditsBox = Rectangle::WithCorners(Point(-490., -165.), Point(-230., 115.));
-	if(clicks == 2 && creditsBox.Contains(Point(x, y)))
+	if(clicks == 2 && mainMenuUi->GetBox("credits").Contains(Point(x, y)))
 	{
 		scrollingPaused = !scrollingPaused;
 		return true;
