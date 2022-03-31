@@ -233,6 +233,7 @@ ship "Albatross" "Albatross (Ember Shield)"
 	turret
 
 
+
 ship "Gull"
 	sprite "ship/gull"
 	thumbnail "thumbnail/gull"
