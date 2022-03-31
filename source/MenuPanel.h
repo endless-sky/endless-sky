@@ -45,6 +45,10 @@ private:
 
 	std::vector<std::string> credits;
 	unsigned scroll;
+
+	// Credits should only scroll if the menu panel is open and not any other as well,
+	// like the preference panel.
+	bool creditsScrolling = true;
 };
 
 

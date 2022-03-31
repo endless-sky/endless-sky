@@ -46,7 +46,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	float alpha = 1.f;
 	const int scrollSpeed = 2;
 }
 
@@ -73,7 +72,9 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 
 void MenuPanel::Step()
 {
-	if(GetUI()->IsTop(this) && alpha < 1.f)
+	if(GetUI()->IsTop(this))
+		creditsScrolling = true;
+	if(creditsScrolling)
 	{
 		++scroll;
 		if(scroll >= (20 * credits.size() + 300) * scrollSpeed)
@@ -124,21 +125,6 @@ void MenuPanel::Draw()
 	GameData::Interfaces().Get("main menu")->Draw(info, this);
 	GameData::Interfaces().Get("menu player info")->Draw(info, this);
 
-	// TODO: move this animation (e.g. to a non-fullscreen panel).
-	alpha -= .02f;
-	if(alpha > 0.f)
-	{
-		Angle da(6.);
-		Angle a(0.);
-		for(int i = 0; i < 60; ++i)
-		{
-			Color color(.5f * alpha, 0.f);
-			PointerShader::Draw(Point(), a.Unit(), 8.f, 20.f, 140.f * alpha, color);
-			a += da;
-		}
-	}
-	// END animation TODO
-
 	// TODO: allow pausing the credits scroll
 	int y = 120 - scroll / scrollSpeed;
 	for(const string &line : credits)
@@ -164,18 +150,30 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	if(player.IsLoaded() && (key == 'e' || command.Has(Command::MENU)))
 	{
 		gamePanels.CanSave(true);
+
+		// If this panel is not the top panel, then the top panel must be the
+		// MenuAnimationPanel. Pop that top panel as well in that case.
+		if(!GetUI()->IsTop(this))
+			GetUI()->Pop(GetUI()->Top().get());
 		GetUI()->Pop(this);
 	}
 	else if(key == 'p')
+	{
 		GetUI()->Push(new PreferencesPanel());
+		creditsScrolling = false;
+	}
 	else if(key == 'l')
+	{
 		GetUI()->Push(new LoadPanel(player, gamePanels));
+		creditsScrolling = false;
+	}
 	else if(key == 'n' && (!player.IsLoaded() || player.IsDead()))
 	{
 		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
 		// Request that the player chooses a start scenario.
 		// StartConditionsPanel also handles the case where there's no scenarios.
 		GetUI()->Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), nullptr));
+		creditsScrolling = false;
 	}
 	else if(key == 'q')
 		GetUI()->Quit();
