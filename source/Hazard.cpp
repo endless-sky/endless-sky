@@ -58,8 +58,6 @@ void Hazard::Load(const DataNode &node)
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			environmentalEffects[GameData::Effects().Get(child.Token(1))] += count;
 		}
-		else if(key == "around flagship")
-			aroundFlagship = true;
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -95,13 +93,6 @@ bool Hazard::Deviates() const
 int Hazard::Period() const
 {
 	return period;
-}
-
-
-
-bool Hazard::AroundFlagship() const
-{
-	return aroundFlagship;
 }
 
 

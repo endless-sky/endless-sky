@@ -1265,7 +1265,7 @@ void Engine::EnterSystem()
 			}
 		};
 		for(const auto &hazard : system->Hazards())
-			CreateWeather(hazard, hazard.Get()->AroundFlagship() ? flagship->Position() : Point());
+			CreateWeather(hazard, Point());
 		for(const auto &stellar : system->Objects())
 			for(const auto &hazard : stellar.Hazards())
 				CreateWeather(hazard, stellar.Position());
@@ -1757,8 +1757,7 @@ void Engine::GenerateWeather()
 	};
 	// If this system has any hazards, see if any have activated this frame.
 	for(const auto &hazard : player.GetSystem()->Hazards())
-		CreateWeather(hazard, (player.Flagship() && hazard.Get()->AroundFlagship()) ?
-			player.Flagship()->Position() : Point());
+		CreateWeather(hazard, Point());
 	for(const auto &stellar : player.GetSystem()->Objects())
 		for(const auto &hazard : stellar.Hazards())
 			CreateWeather(hazard, stellar.Position());
@@ -2107,7 +2106,6 @@ void Engine::DoWeather(Weather &weather)
 		const Hazard *hazard = weather.GetHazard();
 		const DamageProfile damage(weather.GetInfo());
 
-		// System wide hazards do not act like an explosion, and do not have a limiting range.
 		if(hazard->SystemWide())
 		{
 			const System *system = player.GetSystem();
