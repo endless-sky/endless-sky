@@ -149,11 +149,15 @@ void UI::Pop(const Panel *panel)
 
 
 
-// Remove every panel on the stack.
-void UI::PopAll()
+// Remove the given panel and every panel that is higher in the stack.
+void UI::PopAndHigher(const Panel *panel)
 {
-	for(const auto &panel : stack)
-		toPop.push_back(panel.get());
+	for(auto it = stack.rbegin(); it != stack.rend(); ++it)
+	{
+		toPop.push_back(it->get());
+		if(it->get() == panel)
+			break;
+	}
 }
 
 

@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MenuPanel.h"
 
+#include "Audio.h"
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "Files.h"
@@ -26,7 +27,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "PointerShader.h"
 #include "PreferencesPanel.h"
 #include "Ship.h"
 #include "ShipyardPanel.h"
@@ -51,8 +51,8 @@ namespace {
 
 
 
-MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
-	: player(player), gamePanels(gamePanels), scroll(0)
+MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels, const Panel *animationPanel)
+	: player(player), gamePanels(gamePanels), animationPanel(animationPanel), scroll(0)
 {
 	assert(GameData::IsLoaded() && "MenuPanel should only be created after all data is fully loaded");
 	SetIsFullScreen(true);
@@ -66,15 +66,16 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 		gamePanels.StepAll();
 		gamePanels.StepAll();
 	}
+
+	if(player.GetPlanet())
+		Audio::PlayMusic(player.GetPlanet()->MusicName());
 }
 
 
 
 void MenuPanel::Step()
 {
-	if(GetUI()->IsTop(this))
-		creditsScrolling = true;
-	if(creditsScrolling)
+	if(GetUI()->IsTop(this) || (animationPanel && GetUI()->IsTop(animationPanel)))
 	{
 		++scroll;
 		if(scroll >= (20 * credits.size() + 300) * scrollSpeed)
@@ -150,25 +151,18 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	if(player.IsLoaded() && (key == 'e' || command.Has(Command::MENU)))
 	{
 		gamePanels.CanSave(true);
-		GetUI()->PopAll();
+		GetUI()->PopAndHigher(this);
 	}
 	else if(key == 'p')
-	{
 		GetUI()->Push(new PreferencesPanel());
-		creditsScrolling = false;
-	}
 	else if(key == 'l')
-	{
 		GetUI()->Push(new LoadPanel(player, gamePanels));
-		creditsScrolling = false;
-	}
 	else if(key == 'n' && (!player.IsLoaded() || player.IsDead()))
 	{
 		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
 		// Request that the player chooses a start scenario.
 		// StartConditionsPanel also handles the case where there's no scenarios.
 		GetUI()->Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), nullptr));
-		creditsScrolling = false;
 	}
 	else if(key == 'q')
 		GetUI()->Quit();

@@ -15,8 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "Audio.h"
 #include "Color.h"
-#include "Interface.h"
-#include "Information.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "PointerShader.h"
@@ -28,10 +26,7 @@ MenuAnimationPanel::MenuAnimationPanel(PlayerInfo &player)
 {
 	SetTrapAllEvents(false);
 
-	// Play relevant sounds and music.
 	Audio::Play(Audio::Get("landing"));
-	if(player.GetPlanet())
-		Audio::PlayMusic(player.GetPlanet()->MusicName());
 }
 
 

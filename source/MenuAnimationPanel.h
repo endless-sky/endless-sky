@@ -21,7 +21,7 @@ class PlayerInfo;
 
 // Class representing the menu animation including sound effects and music
 // that appears when the game is started and everything is loaded.
-class MenuAnimationPanel : public Panel {
+class MenuAnimationPanel final : public Panel {
 public:
 	MenuAnimationPanel(PlayerInfo &player);
 

@@ -59,9 +59,13 @@ void GameLoadingPanel::Step()
 		// Set the game's initial internal state.
 		GameData::FinishLoading();
 
+		player.LoadRecent();
+
 		GetUI()->Pop(this);
-		GetUI()->Push(new MenuPanel(player, gamePanels));
-		GetUI()->Push(new MenuAnimationPanel(player));
+		auto *animation = new MenuAnimationPanel(player);
+		GetUI()->Push(new MenuPanel(player, gamePanels, animation));
+		GetUI()->Push(animation);
+
 		finishedLoading = true;
 	}
 }

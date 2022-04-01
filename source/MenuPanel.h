@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -28,7 +29,7 @@ class UI;
 // credits and basic information on the currently loaded player.
 class MenuPanel : public Panel {
 public:
-	MenuPanel(PlayerInfo &player, UI &gamePanels);
+	MenuPanel(PlayerInfo &player, UI &gamePanels, const Panel *animationPanel = nullptr);
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -42,13 +43,10 @@ protected:
 private:
 	PlayerInfo &player;
 	UI &gamePanels;
+	const Panel *animationPanel;
 
 	std::vector<std::string> credits;
 	unsigned scroll;
-
-	// Credits should only scroll if the menu panel is open and not any other as well,
-	// like the preference panel.
-	bool creditsScrolling = true;
 };
 
 
