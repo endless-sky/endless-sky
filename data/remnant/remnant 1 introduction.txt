@@ -3781,7 +3781,7 @@ mission "Remnant: Logistics 1"
 			`You step off the <ship> in <planet> to see a man wandering around your ship taking video with a datapad and softly dictating some running commentary. He dodges around the dock workers unloading and refueling, seemingly intent on recording every aspect of your ship.`
 			`	"Cousin!" he sings with excitement, when you walk up to him. "It is good to meet you and to see your wonderful ship. I've only seen such designs in our historical entertainments." He holds up the datapad facing you and says, I am making a video for my companion. He will not believe me unless I have proof, and maybe not even then!" he laughs. You wave awkwardly at the camera and are relieved when he stops recording.`  
 			`	"I hope I have not offended you. I get carried away looking at ships."`
-			`	You worry briefly that he is going to interrogate you about the <ship> when he continues, I am named Eon. Would you have time to talk about logistics support?"`
+			`	You worry briefly that he is going to interrogate you about the <ship> when he continues, "I am named Eon. Would you have time to talk about logistics support?"`
 			choice
 				`	"Yes, I've been looking for more work with the Remnant."`
 					goto opportunities
