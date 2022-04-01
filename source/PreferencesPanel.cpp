@@ -534,7 +534,7 @@ void PreferencesPanel::DrawSettings()
 		else if(setting == BOARDING_PRIORITY)
 		{
 			isOn = true;
-			text = Preferences::Has(BOARDING_PRIORITY) ? "closest" : "high value";
+			text = Preferences::Has(BOARDING_PRIORITY) ? "proximity" : "value";
 		}
 		else if(setting == REACTIVATE_HELP)
 		{
