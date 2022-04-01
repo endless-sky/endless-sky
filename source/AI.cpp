@@ -3291,7 +3291,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		{
 			if(shift)
 				ship.SetTargetShip(shared_ptr<Ship>());
-			
+
 			double best = numeric_limits<double>::infinity();
 			bool foundEnemy = false;
 			bool foundAnything = false;
@@ -3303,8 +3303,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 						continue;
 
 					bool isEnemy = other->GetGovernment()->IsEnemy(ship.GetGovernment());
-					double distance = other->Position().Distance(ship.Position());
-					double b = distancePriority ? distance : -200. * other->Cost() / (distance ? distance : 1.);
+					double distance = other->Position().DistanceSquared(ship.Position());
+					double b = distancePriority ? distance : -300 * (other->Cost() ^ 2) / distance;
 					if((isEnemy && !foundEnemy) || (b < best && isEnemy == foundEnemy))
 					{
 						best = b;
