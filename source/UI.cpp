@@ -19,7 +19,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <SDL2/SDL.h>
 
 #include <algorithm>
-#include <iterator>
 
 using namespace std;
 
