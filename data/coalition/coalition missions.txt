@@ -2152,3 +2152,185 @@ mission "Coalition: Council of Ahr: On Complete"
 			`A few minutes after the final representative leaves your ship, you receive your payment of 4,500,000 credits. It comes with a message from the royal family, with the symbols of all Arach houses on it. You recognize most from advertisements or offices on some planets, but it's your first time seeing the center one. You imagine it's the emblem of the royal family.`
 			scene "scene/councilofahr2"
 			`	"Greetings, Captain <last>. As the hosts of the Council of Ahr, thank you for your assistance we do. Although certain we are that, to you, appear mundane such kinds of jobs can, difficult, at times it is, to arrange for appropriate transportation for our compatriots from all great houses, so know that deeply grateful for your cooperation, House Oberegt is."`
+
+
+
+mission "Coalition: Submarines 1"
+	minor
+	name "Underwater Delivery"
+	description "Bring Apri'ie to <destination>, where five new deep-sea submarines are waiting to be brought to Second Cerulean."
+	passengers 1
+	to offer
+		has "Coalition: First Contact: done"
+		random < 25
+	source
+		government "Coalition"
+		near "5 Axis" 1 3
+	destination "Market of Gupta"
+	on offer
+		conversation
+			`You notice a Kimek anxiously glancing at the docks from the front of an office building. Once he notices you, he scurries closer. "Say, Captain, willing to do me a service, are you? Transport off-world, I need."`
+			choice
+				`	"Where do you want to go?"`
+				`	"I'm not looking for transport jobs right now, sorry."`
+					decline
+			`	"A prestigious research group from Second Cerulean, I represent, and looking to expand our deep-sea expeditions, we are. For that, just settled the acquisition of five new submarines, my superiors have," he says. "To pick them up from <planet>, I was selected, so transported there, I must be. Permitted to pay you <payment> for the service, I am."`
+			choice
+				`	"Alright, I'll show you to my ship."`
+					goto accept
+				`	"Why weren't they built on Second Cerulean in the first place?"`
+				`	"Sorry, I'm not headed that way."`
+					decline
+			`	"No facilities for such construction, Second Cerulean has," he explains. "Remain mostly untouched, the planet must. Build more than simple research stations on it, we cannot. But in need of sturdier subs, we are, so held a competition to determine what company was to build them, my group did. In my opinion, honestly, not needed such a process was. Obvious that House Mallob would win, it was. Unrivaled in hull integrity, they are."`
+			choice
+				`	"I see. Well, I'd love to help you. Let me show you to my ship."`
+					goto accept
+				`	"What's so special about this planet that you can't do it there? One shipyard shouldn't be too invasive."`
+				`	"Well, I wish you luck, but I'm not headed that way, sorry."`
+					decline
+			`	He thinks for a while, formulating a response. "Centuries ago, when built there, our outpost was, being worried that trouble the delicate, unique food chains there, further expansion would, prohibited all from settling, and us from constructing any more than the necessary structures, the government did. Enough data, we've gathered, that managed to convince them to allow us some extra exploration vessels, we have. More invasive, the studies with them will be, but enough about the fauna and flora, we now know, that avoid any major complications, we can."`
+			choice
+				`	"Seems like a lot of bureaucracy just for some research. Anyway, I'd be glad to help, let's head to my ship."`
+					goto accept
+				`	"If the planet's native life is all underwater, how would a shipyard pose any risk? It's not like you'd build it underwater."`
+				`	"That sounds overly complicated. I wish you luck in getting it all set, but I'm not headed there, so I can't help you."`
+					decline
+			`	Like a bush in the wind, his body shivers wildly at what you said. "No, built underwater, nothing would be. Obvious that is. But, still, make the rules, I do not, Captain. Simply following them, I am."`
+			choice
+				`	"I see. Well, I'd love to help you. Let me show you to my ship."`
+				`	"Well, I'm not really interested in this, sorry."`
+					decline
+			label accept
+			`	"Very good. Thank you, Captain. Called Apri'ie, and a member of the Pale Waters research center, I am. A wonderful trip, may we have." You bring him to your ship and help him settle what little luggage he has in his room.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Apri'ie hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		"coalition jobs" ++
+		payment 90000
+		conversation
+			`Apri'ie has you land by one of House Mallob's offices, which looks like a mix of a skyscraper and a warehouse, and hands you <payment>.`
+			`	"Thank you for the assistance, Captain <last>. Meet with House Mallob's executives, I must, but if to continue helping, you wish, meet you in the spaceport, I will. The proper transportation of the submarines, the next step is, so if interested, you are, free up space for them, you must." He pauses, as if counting the total weight. "About 60 tons, they should take up. At any rate, talk more in detail in the spaceport, we may." He picks up his belongings and heads for the office, disappearing into the building.`
+
+mission "Coalition: Submarines 2"
+	name "Pressurized Stress Test"
+	description "Bring Apri'ie and the <cargo> to <destination>, where the submarines will be subjected to some final high-pressure stress tests."
+	passengers 1
+	cargo "unmanned submarines" 60
+	blocked "You need <capacity> to help Apri'ie move the submarines. Return here when you have the required space free."
+	to offer
+		has "Coalition: Submarines 1: done"
+	source "Market of Gupta"
+	destination "Inmost Blue"
+	on offer
+		conversation
+			`After spending some time in the spaceport, you begin to ask around for Apri'ie and are directed to a small office of House Mallob. There, a manager briefly looks into their systems and informs you that Apri'ie hasn't left his meeting yet, and so you take a seat in the spaceport, occasionally getting up to check back at the entrance of the office he entered. After some hours, you finally see him exit, accompanied by a Saryd speaking on a communication device as they glance at a data pad.`
+			`	"Captain <last>! Glad that you are interested in assisting us further, I am. Prepared to have the submarines loaded into your cargo hold, are you?" Apri'ie asks. "Ready to conduct some final stress tests, colleagues of mine on <planet> are."`
+			choice
+				`	"Sure thing, I've set aside the space for them."`
+					goto end
+				`	"What sort of testing are you going to do?"`
+			`	"Capable of enduring rapid shifts in pressure, the subs must be, so take quick, deep dives in the oceans of <planet>, and then resurface just as quickly, they will," he says. "Performed their own tests, House Mallob has, so most assuredly ready to go, the vessels are, but just as a formality, perform these tests, we must."`
+			choice
+				`	"I see. Well, I'm ready to go, so you can have the submarines brought to my ship."`
+					goto end
+				`	"Why not just do those tests on Second Cerulean right away?"`
+			`	"Upsetting or startling the local fauna, as well as any structural damage, we wish to avoid, so wait until after the tests, we will, before deploying them in that planet's waters."`
+			choice
+				`	"Let's get on with it then. My ship is ready to carry the subs."`
+					goto end
+				`	"Structural damage?"`
+			`	He stares at you blankly for a moment. "Delicately arranged, the glaciers there are. Resting on them, some of our monitoring equipment is. Avoid any damage to them caused by an unforeseen malfunction, we must."`
+			label end
+			`	The Saryd issues a command on the data pad and turns off the communication device and accompanies you and Apri'ie to your ship as the cargo is loaded.`
+			`	There are five submarines in total, strapped to large, sturdy sleds, which are slowly pushed up the ramp to your cargo hold. The subs themselves are somewhat oval in shape but flat on the top and bottom, with retractable mechanical arms on their sides. After the last sub is safely in your cargo hold, Apri'ie heads into your ship and you set a route for <destination>.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Apri'ie and the unmanned submarines hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		"coalition jobs" ++
+		payment 210000
+		conversation
+			`As the workers unload the submarines from your cargo, Apri'ie approaches you, handing you <payment>. "Oversee the stress test I must, so meet you in the spaceport again, I will. If interested in seeing the test you are, however, come with me, you may."`
+			choice
+				`	"Sure, why not? Probably beats waiting around and checking shops over and over."`
+				`	"Thanks for the invitation, but I'm not really interested."`
+					goto refuse
+			`	After all the submarines are out of your cargo hold, they're placed atop trucks with heavy tracks instead of wheels. You and Apri'ie board one of the trucks and begin a trip down to the shore below, reaching a small commercial port with a large set of docks. Once there, Apri'ie introduces you to some of his colleagues who are already waiting to begin the tests. The subs are activated before they are off the trucks, and some of the Kimek begin to test basic functions.`
+			`	Once they're all in the water, everyone boards a sturdy barge which follows the submarines several kilometers off the coast until you can no longer see the shore. At this point they stop, and one of the submarines submerges, resurfacing in about twenty minutes. The Kimek make sure the sub suffered no damage, and proceed to test the other ones. After each one has made the trip to the bottom and back several times, the submarines and the barge head back to the docks.`
+			`	The subs are once again put on the trucks, and you begin the trip back to the spaceport city. Once you've arrived, Apri'ie's colleagues ask him to come with them to discuss something in private, and he tells you he will meet you back on the spaceport.`
+				accept
+			label refuse
+			`	"Then in the spaceport, meet you I will," he says. After all the submarines are out of your cargo hold, they're placed atop large truck-like vehicles, but with the wheels in a system of continuous tracks. Apri'ie boards one of the trucks, and they start making their way down to the shore below. From there, they follow the water out of the fjord to someplace where the submarines can dive deeper.`
+
+mission "Coalition: Submarines 3"
+	name "Tectonic Stress Test"
+	description "Bring Apri'ie and the <cargo> to <destination>, where the submarines will be subjected to more stress tests to assess their repair functions."
+	passengers 1
+	cargo "unmanned submarines" 60
+	blocked "You need <capacity> to take the next mission. Return here when you have the required space free."
+	to offer
+		has "Coalition: Submarines 2: done"
+	source "Inmost Blue"
+	destination "Dusk Companion"
+	on offer
+		conversation
+			`Apri'ie comes to the spaceport followed by one of his colleagues. "Have to perform one more test, we will, Captain. To assess the subs' repair abilities in hazardous environments, Pale Waters wants, so a quick stop at <destination>, we must make."`
+			choice
+				`	"Alright, we'll head there next then."`
+					goto end
+				`	"Assess their 'repair' abilities? What do you mean?"`
+			`	"Equipped with welders, the arms of the submarines are, so that if greatly damaged deep underwater, one of them is, repaired by the others, it can be," he explains. "Unstable tectonics, <planet> has, so a test repair during one of the nightly tremors, we will conduct. That way, assess their abilities without bothering Second Cerulean's fauna, we can."`
+			choice
+				`	"Sounds like you thought of everything for these subs. Let's head there next then."`
+					goto end
+				`	"Why do you need to test under such conditions? Does Second Cerulean have trouble with tectonics too?"`
+			`	"No, no. But, preparing for any eventuality, we are," he answers. "Should the planet's plates grow unstable, or some other troubling factor come up, prepared for it, the subs must be."`
+			label end
+			`	His colleague speaks up. "Headed to <planet>, another team from the research center has. Return to Second Cerulean with the data we have collected, I and the others will. Prepared the subs for your cargo, we already have."`
+			`	You follow him back to your ship and see that the submarines are ready on the giant sleds again. After they're brought into your hold, Apri'ie's colleagues say goodbye to him, and he enters your ship once more.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Apri'ie and the unmanned submarines hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		"coalition jobs" ++
+		payment 130000
+
+mission "Coalition: Submarines 4"
+	landing
+	name "Deliver the Submarines"
+	description "Head to <destination> with Apri'ie and the <cargo>, where the Pale Waters research center will use the new subs to conduct deep-sea expeditions."
+	passengers 1
+	cargo "unmanned submarines" 60
+	to offer
+		has "Coalition: Submarines 3: done"
+	source "Dusk Companion"
+	destination "Second Cerulean"
+	on offer
+		conversation
+			`Apri'ie instructs you to head to some hangars at a large port, where a team is waiting for the repair test. He hands you 130,000 credits when you land, and goes to check with the workers unloading the submarines.`
+			`	They are all taken from your cargo and swiftly put in the water as the team of Kimek boards a large ship that you guess is an old tanker. This ship prepares to follow the subs to the testing area, along with another smaller, newer ship with a thick crane on the front. Apri'ie approaches you before he boards the tanker, asking, "Come with us for the test, would you like, Captain? Take a while, it might. Not expected until after nightfall, the next tremors are."`
+			choice
+				`	"If it's alright, yeah. Could be interesting."`
+				`	"I'll pass. I need some time to rest after the trip here."`
+					goto refuse
+			`	You head up the ramp to the ship, and after a few minutes it sets off, following the submarines controlled remotely by the Kimek team. Exploring the tanker, you find an odd pile of what looks like broken up ship parts, secured as cargo on the back. The pieces are welded together into a shape similar to the cockpit of one of the smaller Heliarch ships, though it has several dents, as if hit by some explosives. Apri'ie notices you looking at it and comes to explain that it's the "prop" on which they'll test the repair functions.`
+			`	Once the tanker comes to a stop, the smaller ship's crane grabs the prop and slowly maneuvers it away from the tanker before lowering it into the water and letting it sink. The submarines follow the prop as it goes down, until it comes to a stop after a few minutes.`
+			`	The Kimek operators then proceed to take shifts at their computers as everyone waits for a tremor to begin. After the moon is high in the sky, you notice odd shifts on the waves and trembling on the boats, with which the Kimek start their repair work. Once they're done, and after the tremors stop, the subs slowly bring the prop back up, where the crane places it on the tanker again.`
+			`	"Let's see..." Apri'ie heads to the prop to check on the welded parts. "Yes, very good. Performed well, the welder arms have. Good for deployment, they should be." The submarines go ahead once again, lighting the way back to the port as the ships follow them until docking.`
+				goto end
+			label refuse
+			`	He heads to the tanker, and the ships set off, following the submarines. You walk for a while by the spaceport, stopping at a restaurant to have a Saryd pastry dish. You return to the port at sunset and wait until you finally spot the submarines' lights on the horizon heading towards the shore.`
+			`	"Worked perfectly, the welders have. Ready for deployment, the subs should be," Apri'ie tells you as he steps off of the tanker.`
+			label end
+			`	The subs are once again placed atop the sleds and brought into your ship. Apri'ie thanks the Kimek team for handling the subs and heads back into your ship, saying, "Time for their final trip, it is. Bring the vessels and I to <destination>, you may."`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Apri'ie and the unmanned submarines hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		"coalition jobs" += 2
+		payment 510000
+		conversation
+			`The local workers carefully unload the submarines off your ship one at a time, bringing them to the icy waters nearby, where they will dive to perform deep sea explorations on the local fauna.`
+			`	Once they're done, Apri'ie invites you to enter the research facility, just a few kilometers away from the spaceport tower, with hangars of its own for your ship. There you're met by a committee of sorts; a handful of the local scientists greet the two of you, and thank you for helping with transporting the subs. "Having trouble reaching deeper sections of the ocean, our older probes were, so able to analyze a multitude of new species, with these new subs we hope to be," one of them tells you.`
+			`	When they're done, they hand you <payment>, and Apri'ie follows you to your ship. "Thankful for you putting up with all the last-minute detours I am, Captain. Safe travels, may you have." He does a short gesture as a form of goodbye: you put your forearm on the ground, and he places one of his legs over it. Once you're done, he heads back to the research center.`
