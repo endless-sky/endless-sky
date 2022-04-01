@@ -48,7 +48,7 @@ public:
 	// a panel to Pop() itself.
 	void Pop(const Panel *panel);
 	// Remove the given panel and every panel that is higher in the stack.
-	void PopAndHigher(const Panel *panel);
+	void PopThrough(const Panel *panel);
 
 	// Check whether the given panel is on top, i.e. is the active one, out of
 	// all panels that are already drawn on this step.

@@ -16,13 +16,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Audio.h"
 #include "Color.h"
 #include "Planet.h"
-#include "PlayerInfo.h"
 #include "PointerShader.h"
 #include "UI.h"
 
 
 
-MenuAnimationPanel::MenuAnimationPanel(PlayerInfo &player)
+MenuAnimationPanel::MenuAnimationPanel()
 {
 	SetTrapAllEvents(false);
 

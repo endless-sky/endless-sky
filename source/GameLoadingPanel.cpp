@@ -62,9 +62,8 @@ void GameLoadingPanel::Step()
 		player.LoadRecent();
 
 		GetUI()->Pop(this);
-		auto *animation = new MenuAnimationPanel(player);
-		GetUI()->Push(new MenuPanel(player, gamePanels, animation));
-		GetUI()->Push(animation);
+		GetUI()->Push(new MenuPanel(player, gamePanels));
+		GetUI()->Push(new MenuAnimationPanel());
 
 		finishedLoading = true;
 	}

@@ -15,18 +15,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
-class PlayerInfo;
-
 
 
 // Class representing the menu animation including sound effects and music
 // that appears when the game is started and everything is loaded.
 class MenuAnimationPanel final : public Panel {
 public:
-	MenuAnimationPanel(PlayerInfo &player);
+	MenuAnimationPanel();
 
-	virtual void Step() override;
-	virtual void Draw() override;
+	void Step() final;
+	void Draw() final;
 
 
 private:

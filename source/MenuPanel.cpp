@@ -51,8 +51,8 @@ namespace {
 
 
 
-MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels, const Panel *animationPanel)
-	: player(player), gamePanels(gamePanels), animationPanel(animationPanel), scroll(0)
+MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
+	: player(player), gamePanels(gamePanels), scroll(0)
 {
 	assert(GameData::IsLoaded() && "MenuPanel should only be created after all data is fully loaded");
 	SetIsFullScreen(true);
@@ -75,7 +75,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels, const Panel *animationP
 
 void MenuPanel::Step()
 {
-	if(GetUI()->IsTop(this) || (animationPanel && GetUI()->IsTop(animationPanel)))
+	if(GetUI()->IsTop(this))
 	{
 		++scroll;
 		if(scroll >= (20 * credits.size() + 300) * scrollSpeed)
@@ -151,7 +151,7 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	if(player.IsLoaded() && (key == 'e' || command.Has(Command::MENU)))
 	{
 		gamePanels.CanSave(true);
-		GetUI()->PopAndHigher(this);
+		GetUI()->PopThrough(this);
 	}
 	else if(key == 'p')
 		GetUI()->Push(new PreferencesPanel());
