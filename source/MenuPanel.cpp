@@ -150,12 +150,7 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	if(player.IsLoaded() && (key == 'e' || command.Has(Command::MENU)))
 	{
 		gamePanels.CanSave(true);
-
-		// If this panel is not the top panel, then the top panel must be the
-		// MenuAnimationPanel. Pop that top panel as well in that case.
-		if(!GetUI()->IsTop(this))
-			GetUI()->Pop(GetUI()->Top().get());
-		GetUI()->Pop(this);
+		GetUI()->PopAll();
 	}
 	else if(key == 'p')
 	{

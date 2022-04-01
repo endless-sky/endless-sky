@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <SDL2/SDL.h>
 
 #include <algorithm>
+#include <iterator>
 
 using namespace std;
 
@@ -145,6 +146,15 @@ void UI::Push(const shared_ptr<Panel> &panel)
 void UI::Pop(const Panel *panel)
 {
 	toPop.push_back(panel);
+}
+
+
+
+// Remove every panel on the stack.
+void UI::PopAll()
+{
+	for(const auto &panel : stack)
+		toPop.push_back(panel.get());
 }
 
 
