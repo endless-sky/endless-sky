@@ -24,6 +24,7 @@ ship "Dromedary Ghost"
 		"outfit scan power" 15
 		"outfit scan speed" 1
 		"tactical scan power" 25
+		"asteroid scan power" 42
 		"atmosphere scan" 100
 		"disruption protection" 100
 		"force protection" 100
@@ -119,6 +120,7 @@ ship "Dromedary Wreck"
 		"outfit scan power" 15
 		"outfit scan speed" 1
 		"tactical scan power" 25
+		"asteroid scan power" 42
 		"atmosphere scan" 100
 		"hull protection" 1
 		"ion protection" 1
@@ -191,17 +193,18 @@ ship Dromedary
 		"hull" 9600
 		"required crew" 95
 		"bunks" 300
-		"mass" 1840
+		"mass" 2140
 		"drag" 15.1
 		"heat dissipation" .6
 		"fuel capacity" 900
 		"cargo space" 550
 		"outfit space" 740
 		"weapon capacity" 270
-		"engine capacity" 180
-		"outfit scan power" 15
+		"engine capacity" 195
+		"outfit scan power" 18
 		"outfit scan speed" 1
-		"tactical scan power" 25
+		"tactical scan power" 39
+		"asteroid scan power" 42
 		"atmosphere scan" 100
 		weapon
 			"blast radius" 260
@@ -243,6 +246,7 @@ ship Dromedary
 	gun -66.5 61 "EMP Torpedo Bay"
 		angle 270
 	bay "Fighter" -51 -54 under
+	bay "Fighter" 47 -40 under
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 50 30
@@ -251,6 +255,6 @@ ship Dromedary
 	explode "large explosion" 45
 	explode "huge explosion" 30
 	"final explode" "final explosion large"
-	description "The Tycho Crater Cooperative's Dromedary was one of the foremost colonization ships during the early era before piracy became too rampant. For those who valued colonization capability over combat abilities, it was highly prized, however "
-	description "	As a memorial to the original Last Light, the Remnant have agreed to build a copy for you. Unfortunately, since they lack the manufacturing facilities that would have normally supported such a production, it will cost massively more than it would have back on Luna."
+	description "The Tycho Crater Cooperative's Dromedary was one of the foremost colonization ships during the early era before piracy became rampant and triggered the necessity for cityships to be more combat-oriented. These ships incorporate extensive hydroponics, large construction equipment installations, and hundreds of densely packed 'coffin quarters' built to transport people in bulk."
+	description "	As a memorial to the original Last Light, the Remnant have agreed to build a copy for you. As the Remnant do not have any original models for it, this is not actually a true Dromedary, but rather a replica of the highly modified ship, built with largely Remnant internal systems. Unfortunately, since they lack the manufacturing facilities that would have normally supported such a production, it will cost massively more than it would have back on Luna."
 
