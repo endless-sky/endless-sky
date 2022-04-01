@@ -278,7 +278,7 @@ mission "Remnant: Logistics Industrial Delivery"
 
 
 mission "Remnant: Logistics Outfitter Delivery"
-	name "Outfitter component delivery to <planet>"
+	name "Component delivery to <planet>"
 	description `Outfitter repair crews on <planet> need <cargo> parts delivered. Logistics adjustment is <payment>.`
 	cargo "remnant outfitter repair" 30 175
 	job
@@ -306,7 +306,7 @@ mission "Remnant: Logistics Outfitter Delivery"
 
 
 mission "Remnant: Logistics Salvage Delivery"
-	name "Outfitter salvage delivery to <planet>"
+	name "Salvage delivery to <planet>"
 	description `Deliver <cargo> components from recent salvage operations to the outfitters on <planet> for research, refurbishment, or recycling. Logistics adjustment is <payment>.`
 	cargo "remnant salvage" 5 100
 	job
