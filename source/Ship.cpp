@@ -2286,6 +2286,7 @@ void Ship::DoGeneration()
 	}
 
 	// Don't allow any levels to drop below zero.
+	shields = max(0., shields);
 	energy = max(0., energy);
 	fuel = max(0., fuel);
 	heat = max(0., heat);
@@ -3043,6 +3044,19 @@ double Ship::ShieldLevel() const
 double Ship::DisruptionLevel() const
 {
 	return disruption;
+}
+
+
+
+// Get the (absolute) amount of hull that needs to be damaged until the
+// ship becomes disabled. Returns 0 if the ships hull is already below the
+// disabled threshold.
+double Ship::HullUntilDisabled() const
+{
+	// Ships become disabled when they surpass their minimum hull threshold,
+	// not when they are directly on it, so account for this by adding a small amount
+	// of hull above the current hull level.
+	return max(0., hull + 0.25 - MinimumHull());
 }
 
 
