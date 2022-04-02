@@ -13,8 +13,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef DATA_WRITER_H_
 #define DATA_WRITER_H_
 
+#include <algorithm>
+#include <map>
 #include <sstream>
 #include <string>
+#include <vector>
 
 class DataNode;
 
@@ -29,13 +32,17 @@ class DataWriter {
 public:
 	// Constructor, specifying the file to write.
 	explicit DataWriter(const std::string &path);
+	DataWriter(const DataWriter &) = delete;
+	DataWriter(DataWriter &&) = delete;
+	DataWriter &operator=(const DataWriter &) = delete;
+	DataWriter operator=(DataWriter &&) = delete;
 	// The file is not actually saved until the destructor is called. This makes
 	// it possible to write the whole file in a single chunk.
 	~DataWriter();
-	
+
 	// The Write() function can take any number of arguments. Each argument is
 	// converted to a token. Arguments may be strings or numeric values.
-  template <class A, class ...B>
+	template <class A, class ...B>
 	void Write(const A &a, B... others);
 	// Write the entire structure represented by a DataNode, including any
 	// children that it has.
@@ -43,24 +50,24 @@ public:
 	// End the current line. This can be used to add line breaks or to terminate
 	// a line you have been writing token by token with WriteToken().
 	void Write();
-	
+
 	// Begin a new line that is a "child" of the previous line.
 	void BeginChild();
-	// Finish writing a block of child nodes and decrese the indentation.
+	// Finish writing a block of child nodes and decrease the indentation.
 	void EndChild();
-	
+
 	// Write a comment. It will be at the current indentation level, and will
 	// have "# " inserted before it.
 	void WriteComment(const std::string &str);
-	
+
 	// Write a token, without writing a whole line. Use this very carefully.
 	void WriteToken(const char *a);
 	void WriteToken(const std::string &a);
 	// Write a token of any arithmetic type.
-  template <class A>
+	template <class A>
 	void WriteToken(const A &a);
-	
-	
+
+
 private:
 	// Save path (in UTF-8).
 	std::string path;
@@ -95,9 +102,39 @@ void DataWriter::WriteToken(const A &a)
 {
 	static_assert(std::is_arithmetic<A>::value,
 		"DataWriter cannot output anything but strings and arithmetic types.");
-	
+
 	out << *before << a;
 	before = &space;
+}
+
+
+
+// Encapsulate the logic for writing the contents of a collection in a sorted manner. The caller
+// should provide a sorting method; it will be called with pointers to the type of the container.
+// The provided write method will be called for each element of the container.
+template <class T, template<class, class...> class C, class... Args, typename A, typename B>
+void WriteSorted(const C<T, Args...> &container, A sortFn, B writeFn)
+{
+	std::vector<const T *> sorted;
+	sorted.reserve(container.size());
+	for(const auto &it : container)
+		sorted.emplace_back(&it);
+	std::sort(sorted.begin(), sorted.end(), sortFn);
+
+	for(const auto &sit : sorted)
+		writeFn(*sit);
+}
+template <class K, class V, class... Args, typename A, typename B>
+void WriteSorted(const std::map<const K *, V, Args...> &container, A sortFn, B writeFn)
+{
+	std::vector<const std::pair<const K *const, V> *> sorted;
+	sorted.reserve(container.size());
+	for(const auto &it : container)
+		sorted.emplace_back(&it);
+	std::sort(sorted.begin(), sorted.end(), sortFn);
+
+	for(const auto &sit : sorted)
+		writeFn(*sit);
 }
 
 

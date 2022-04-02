@@ -32,8 +32,12 @@ void Person::Load(const DataNode &node)
 			frequency = child.Value(1);
 		else if(child.Token(0) == "ship" && child.Size() >= 2)
 		{
-			ships.emplace_back(new Ship);
-			ships.back()->Load(child);
+			// Name ships that are not the flagship with the name provided, if any.
+			// The flagship, and any unnamed fleet members, will be given the name of the Person.
+			bool setName = !ships.empty() && child.Size() >= 3;
+			ships.emplace_back(make_shared<Ship>(child));
+			if(setName)
+				ships.back()->SetName(child.Token(2));
 		}
 		else if(child.Token(0) == "government" && child.Size() >= 2)
 			government = GameData::Governments().Get(child.Token(1));
@@ -65,7 +69,7 @@ int Person::Frequency(const System *system) const
 	// links, don't create them in systems with no links.
 	if(!system || IsDestroyed() || IsPlaced() || system->Links().empty())
 		return 0;
-	
+
 	return (location.IsEmpty() || location.Matches(system)) ? frequency : 0;
 }
 
@@ -105,7 +109,7 @@ bool Person::IsDestroyed() const
 {
 	if(ships.empty() || !ships.front())
 		return true;
-	
+
 	const Ship &flagship = *ships.front();
 	return (flagship.IsDestroyed() || (flagship.GetSystem() && flagship.GetGovernment() != government));
 }
@@ -134,13 +138,13 @@ void Person::Restore()
 
 
 
-// Check if a person is already placed somehwere.
+// Check if a person is already placed somewhere.
 bool Person::IsPlaced() const
 {
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem())
 			return true;
-	
+
 	return false;
 }
 
