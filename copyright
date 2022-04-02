@@ -387,7 +387,6 @@ Files:
  images/outfit/nerve?gas*
  images/outfit/catalytic?ramscoop*
  images/outfit/plasma?repeater*
- images/outfit/afterburner*
  images/outfit/anti-missile*
  images/outfit/blaster?turret*
  images/outfit/blaster*
@@ -1328,6 +1327,7 @@ License: CC-BY-SA-4.0
 Files:
  images/asteroid/livecrystal/livecrystal*
  images/star/neutron*
+ images/outfit/afterburner*
  images/outfit/nuke*
  images/projectile/missile-0*
  images/projectile/missile-1*
