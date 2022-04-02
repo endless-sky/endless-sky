@@ -182,7 +182,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		stock = max(0, player.Stock(outfit));
 	int cargo = player.Cargo().Get(outfit);
 	int storage = player.Storage() ? player.Storage()->Get(outfit) : 0;
-	const std::string show = CustomSale::GetShown(sellType);
+	const std::string &show = CustomSale::GetShown(sellType);
 	
 	string message;
 	if(cargo && storage && stock)
