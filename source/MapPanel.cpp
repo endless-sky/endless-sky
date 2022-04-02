@@ -1144,6 +1144,7 @@ void MapPanel::DrawMissions()
 {
 	// Draw a pointer for each active or available mission.
 	map<const System *, int> pointerCount;
+	map<const System *, pair<int, int>> availableCount;
 
 	const Set<Color> &colors = GameData::Colors();
 	const Color &availableColor = *colors.Get("available job");
@@ -1161,10 +1162,14 @@ void MapPanel::DrawMissions()
 		PointerShader::Draw(pos, a.Unit(), 20.f, 27.f, -4.f, black);
 		PointerShader::Draw(pos, a.Unit(), 11.5f, 21.5f, -6.f, specialColor);
 	}
+	// Calculate the available (and unavailable) jobs, but don't draw them yet.
 	for(const Mission &mission : player.AvailableJobs())
 	{
 		const System *system = mission.Destination()->GetSystem();
-		DrawPointer(system, pointerCount[system], mission.CanAccept(player) ? availableColor : unavailableColor);
+		if(mission.CanAccept(player))
+			++(availableCount[system].first);
+		else
+			++(availableCount[system].second);
 	}
 	for(const Mission &mission : player.Missions())
 	{
@@ -1172,6 +1177,13 @@ void MapPanel::DrawMissions()
 			continue;
 
 		const System *system = mission.Destination()->GetSystem();
+
+		// Reserve a maximum of 6 slots for available missions.
+		const auto &available = availableCount[system];
+		int reserved = min(6, available.first + available.second);
+		if(pointerCount[system] >= 12 - reserved)
+			continue;
+
 		bool blink = false;
 		if(mission.Deadline())
 		{
@@ -1186,6 +1198,16 @@ void MapPanel::DrawMissions()
 			DrawPointer(waypoint, pointerCount[waypoint], waypointColor);
 		for(const Planet *stopover : mission.Stopovers())
 			DrawPointer(stopover->GetSystem(), pointerCount[stopover->GetSystem()], waypointColor);
+	}
+	// Draw the available and unavailable jobs.
+	for(const auto &it : availableCount)
+	{
+		auto &system = it.first;
+		auto &available = it.second;
+		for(int i=0; i < available.first; i++)
+			DrawPointer(system, pointerCount[system], availableColor);
+		for(int i=0; i < available.second; i++)
+			DrawPointer(system, pointerCount[system], unavailableColor);
 	}
 }
 
