@@ -2612,6 +2612,8 @@ ship "Protector"
 	turret 68.5 0.5 "Quad Blaster Turret"
 	turret -48.5 48.5 "Heavy Anti-Missile Turret"
 	turret 48.5 48.5 "Heavy Anti-Missile Turret"
+	turret 0 -28
+	turret 0 30.5
 	leak "leak" 60 50
 	leak "flame" 20 80
 	explode "tiny explosion" 18
