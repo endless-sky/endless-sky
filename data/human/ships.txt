@@ -2588,7 +2588,7 @@ ship "Protector"
 	outfits
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 60
-		"Quad Blaster Turret" 8
+		"Quad Blaster Turret" 6
 		"Heavy Anti-Missile Turret" 2
 		
 		"Fusion Reactor"
