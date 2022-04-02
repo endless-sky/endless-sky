@@ -264,7 +264,7 @@ int64_t Depreciation::Value(const Ship *ship, int day, int count) const
 // Get the value of an outfit.
 int64_t Depreciation::Value(const Outfit *outfit, int day, const PlayerInfo *player, int count) const
 {
-	int64_t cost = outfit->Cost() * (player && player->GetPlanet()) ? player->GetPlanet()->GetLocalRelativePrice(outfit, player->Conditions()) : 1;
+	int64_t cost = outfit->Cost() * ((player && player->GetPlanet()) ? player->GetPlanet()->GetLocalRelativePrice(*outfit, player->Conditions()) : 1);
 	if(outfit->Get("installable") < 0.)
 		return count * cost;
 	

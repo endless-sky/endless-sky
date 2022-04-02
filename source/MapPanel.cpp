@@ -487,7 +487,7 @@ bool MapPanel::Scroll(double dx, double dy)
 
 
 
-void MapPanel::UpdateColor(bool max, double color)
+void MapPanel::UpdateColor(double color)
 {
 	if(color > maxColor)
 		maxColor = color;

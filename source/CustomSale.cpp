@@ -210,8 +210,8 @@ bool CustomSale::Add(const CustomSale &other)
 		auto ours = relativePrices.find(it.first);
 		if(ours == relativePrices.end())
 			relativePrices.emplace(it.first, it.second);
-		else if(item->second < it.second)
-			item->second = it.second;
+		else if(ours->second < it.second)
+			ours->second = it.second;
 	}
 	for(auto&& it : other.relativeOffsets)
 	{
@@ -313,7 +313,7 @@ bool CustomSale::Has(const Outfit &item) const
 
 bool CustomSale::Matches(const Planet &planet, const ConditionSet::Conditions &playerConditions) const
 {
-	return (location ? location == planet : locationFilter.Matches(planet)) && 
+	return (location ? location == &planet : locationFilter.Matches(&planet)) && 
 		(conditions.IsEmpty() || conditions.Test(playerConditions));
 }
 

@@ -1082,8 +1082,8 @@ int64_t Ship::ChassisCost() const
 int64_t Ship::LocalCost(const Planet *planet, const ConditionSet::Conditions &conditions) const
 {
 	int64_t localCost = ChassisCost();
-	for(const auto &it : Outfits())
-		localCost += (planet ? planet->GetLocalRelativePrice(it.first, conditions) : 1.) * it.first->Cost() * it.second;
+	for(auto &&it : Outfits())
+		localCost += (planet ? planet->GetLocalRelativePrice(*it.first, conditions) : 1.) * it.first->Cost() * it.second;
 	return localCost;
 }
 

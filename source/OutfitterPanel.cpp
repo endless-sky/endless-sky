@@ -106,7 +106,7 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
 bool OutfitterPanel::HasItem(const string &name) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
-	const CustomSale::SellType selling = player.GetPlanet()->GetAvailability(outfit, player.Conditions());
+	const CustomSale::SellType selling = player.GetPlanet()->GetAvailability(*outfit, player.Conditions());
 	// Do not show hidden items except if the player has them in stock.
 	if((((selling != CustomSale::SellType::NONE && selling != CustomSale::SellType::HIDDEN) || player.Stock(outfit))) && showForSale)
 		return true;
@@ -177,7 +177,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 	// Don't show the "in stock" amount if the outfit has an unlimited stock or
 	// if it is not something that you can buy.
 	int stock = 0;
-	const CustomSale::SellType sellType = player.GetPlanet()->GetAvailability(outfit, player.Conditions());
+	const CustomSale::SellType sellType = player.GetPlanet()->GetAvailability(*outfit, player.Conditions());
 	if(sellType != CustomSale::SellType::VISIBLE && outfit->Get("installable") >= 0.)
 		stock = max(0, player.Stock(outfit));
 	int cargo = player.Cargo().Get(outfit);
@@ -317,7 +317,7 @@ bool OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 
 	bool isAlreadyOwned = checkAlreadyOwned && IsAlreadyOwned();
 	if(!(isAlreadyOwned || player.Stock(selectedOutfit) > 0 ||
-		player.GetPlanet()->GetAvailability(selectedOutfit, player.Conditions()) == CustomSale::SellType::VISIBLE))
+		player.GetPlanet()->GetAvailability(*selectedOutfit, player.Conditions()) == CustomSale::SellType::VISIBLE))
 		return false;
 
 	int mapSize = selectedOutfit->Get("map");
@@ -406,7 +406,7 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 			else
 			{
 				// Check if the outfit is for sale or in stock so that we can actually buy it.
-				if(player.GetPlanet()->GetAvailability(selectedOutfit, player.Conditions()) != CustomSale::SellType::VISIBLE 
+				if(player.GetPlanet()->GetAvailability(*selectedOutfit, player.Conditions()) != CustomSale::SellType::VISIBLE 
 					&& player.Stock(selectedOutfit) <= 0)
 					continue;
 				player.Cargo().Add(selectedOutfit);
@@ -430,7 +430,7 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 			else if(player.Storage() && player.Storage()->Get(selectedOutfit))
 				player.Storage()->Remove(selectedOutfit);
 			else if(alreadyOwned || !(player.Stock(selectedOutfit) > 0 ||
-				player.GetPlanet()->GetAvailability(selectedOutfit, player.Conditions()) == CustomSale::SellType::VISIBLE))
+				player.GetPlanet()->GetAvailability(*selectedOutfit, player.Conditions()) == CustomSale::SellType::VISIBLE))
 				break;
 			else
 			{
@@ -489,7 +489,7 @@ void OutfitterPanel::FailBuy() const
 		return;
 	}
 	
-	CustomSale::SellType selling = player.GetPlanet()->GetAvailability(selectedOutfit, player.Conditions());
+	CustomSale::SellType selling = player.GetPlanet()->GetAvailability(*selectedOutfit, player.Conditions());
 	if(selling == CustomSale::SellType::IMPORT || selling == CustomSale::SellType::HIDDEN)
 	{
 		GetUI()->Push(new Dialog("You can only sell this outfit here, "
