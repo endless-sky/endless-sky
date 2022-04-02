@@ -108,12 +108,18 @@ namespace {
 
 	bool HasMultipleLandablePlanets(const System &system)
 	{
-		const auto &stellarObjects = system.Objects();
+		const Planet *firstPlanet = nullptr;
+		for(auto &stellarObject : system.Objects())
+			if(stellarObject.HasValidPlanet() && stellarObject.HasSprite() && !stellarObject.GetPlanet()->IsWormhole())
+			{
+				// We can return true once we found 2 different landable planets.
+				if(!firstPlanet)
+					firstPlanet = stellarObject.GetPlanet();
+				else if(firstPlanet != stellarObject.GetPlanet())
+					return true;
+			}
 
-		const auto isRegularPlanet = [] (const StellarObject &stellarObject) {
-			return stellarObject.HasValidPlanet() && stellarObject.HasSprite() && !stellarObject.GetPlanet()->IsWormhole();
-		};
-		return 1 < std::count_if(stellarObjects.begin(), stellarObjects.end(), isRegularPlanet);
+		return false;
 	}
 }
 
