@@ -781,7 +781,7 @@ mission "FW Plasma Testing 1B"
 		log "Assisted a Kraz Cybernetics engineer known as Barmy Edward with a test of a new and extremely powerful plasma cannon turret."
 		conversation
 			scene "scene/loc7"
-			`When you enter the hangar, the Window-Blind has just returned, and a team of engineers are looking it over. Barmy Edward puts down his work to come over and debrief you. "How did the turrets perform?" he asks.`
+			`When you enter the hangar, the Window-Blind has just returned, and a team of engineers is looking it over. Barmy Edward puts down his work to come over and debrief you. "How did the turrets perform?" he asks.`
 			choice
 				`	"Very impressive. I want a few of those on my own ship."`
 					goto impressive
@@ -868,7 +868,7 @@ mission "FW Supply Convoy 1"
 					accept
 			
 			label cattle
-			`	She grins. "Yes, I know it's not terribly glamorous work, and keeping track of a big fleet of slow ships is a pain. But, bulk freighters are just too expensive to use on internal cargo convoys. Just make sure you do a head count when you arrive in each system."`
+			`	She grins. "Yes, I know it's not terribly glamorous work, and keeping track of a big fleet of slow ships is a pain. But, bulk freighters are just too expensive to use on internal cargo convoys. Just make sure you do a headcount when you arrive in each system."`
 			choice
 				`	"Okay, whatever it takes to further the cause of freedom, I'll do it."`
 					accept

@@ -244,7 +244,7 @@ mission "FW Reconciliation 2"
 					goto pessimism
 			
 			label optimism
-			`	You continue to feel optimistic as Sawyer presents his story and his evidence, corroborated by the additional data collected by Ijs and by Raven's team. But as the member of Parliament begin questioning Sawyer, nearly all their questions sound more like an attack on him than an attempt to learn more about the Syndicate's involvement in the terrorist attacks.`
+			`	You continue to feel optimistic as Sawyer presents his story and his evidence, corroborated by the additional data collected by Ijs and by Raven's team. But as the members of Parliament begin questioning Sawyer, nearly all their questions sound more like an attack on him than an attempt to learn more about the Syndicate's involvement in the terrorist attacks.`
 				goto why
 			
 			label pessimism
@@ -1383,7 +1383,7 @@ mission "FW Pug 2C: Side"
 			label end
 			`	"Where did they come from originally?" asks Alondo.`
 			`	"From a star system that was always a neighbor of ours, but wasn't linked to us or to any other part of human space. We always just assumed it was an uninhabited system, but it turns out they were there all along, biding their time, waiting for a good opportunity to attack us."`
-			`	"Well," says Alondo, "they didn't attack us when we jumped in to this system. Perhaps we should go to their home system and see what they have to say for themselves."`
+			`	"Well," says Alondo, "they didn't attack us when we jumped into this system. Perhaps we should go to their home system and see what they have to say for themselves."`
 				decline
 
 
@@ -1465,7 +1465,7 @@ mission "FW Pug 3: Deep"
 		log "The governor of Valhalla, in the Deep, says that the Pug secretly assisted the people of the Deep to fight against the Alphas centuries ago, during the Alpha Wars. He thinks that the Pug have humanity's best interests at heart, but agrees that they can't be allowed to overthrow the Republic."
 		log "Factions" "Pug" `It is possible that the Pug secretly assisted the humans of the Deep centuries ago by providing them with weapons that helped to turn the tide of the Alpha Wars.`
 		conversation
-			`As you are coming in for a landing, you contact Edrick Flint and see if he's available to talk. A few minutes later, you and Alondo are sitting with him in his office in the government center. "I assume you've heard about the alien invasion?" says Alondo. Edrick nods. "The aliens claimed that they had had dealings with the Deep in the past. Do you know anything about that?"`
+			`As you are coming in for a landing, you contact Edrick Flint and see if he's available to talk. A few minutes later, you and Alondo are sitting with him in his office in the government center. "I assume you've heard about the alien invasion?" says Alondo. Edrick nods. "The aliens claimed that they had dealt with the Deep in the past. Do you know anything about that?"`
 			`	Edrick says, "Can you describe what these aliens look like?"`
 			`	"Pale skin, delicate physique, most of them a little under two meters tall," says Alondo. "Long legs, short torsos. And they probably have blue blood."`
 			`	Edrick pauses for several seconds, then says, "Yes, we had contact with a species that matches that description, back during the Alpha Wars. Some of the folk traditions about 'elves' that still persist here in the Deep are a result of those encounters."`
@@ -1500,7 +1500,7 @@ mission "FW Pug 3: Quarg"
 	on complete
 		log "Learned from the Quarg that they have long been aware of the presence of the Pug in the Deneb system. Apparently the Pug are from another galaxy and possess such advanced technology that even the Quarg do not dare to interfere with them."
 		log "However, the Pug are known to treat warfare like a game, intentionally using weaker technology when fighting less advanced species in order to give them a fair chance at winning the battle. So, fighting them will not be a lost cause, but the Quarg are unwilling to provide any assistance."
-		log "Factions" "Pug" `The Quarg claim that the Pug are powerful enough that they could defeat the Quarg, or even the Drak, if they chose to. But the Pug treat warfare like a game. When battling another species, the Pug will limit themselves to ships and weapons that are weak enough that the other species has a chance of defeating them.`
+		log "Factions" "Pug" `The Quarg claim that the Pug treat warfare like a game. When battling another species, the Pug will limit themselves to ships and weapons that are weak enough that the other species has a chance of defeating them.`
 		conversation
 			`When you land on the station, Alondo says, "From what I understand of Quarg diplomacy, we're just supposed to ask any one of them to direct us to someone who can answer our questions." He walks up to a Quarg who is standing near your docking bay and says, "Excuse me, can you lead us to someone we can talk to?"`
 			`	It nods and gestures for you to follow, and leads you to a nook in one of the main hallways, where another Quarg stands behind a desk. You are struck by how little you know about this species: are you speaking to a tour guide, or to a diplomat? Were you led to this individual because this is the governor of the station, or just because this is one who speaks human languages? The Quarg behind the desk says, "Do you have questions for me?"`
@@ -1509,7 +1509,7 @@ mission "FW Pug 3: Quarg"
 				`	"Can you give us information about the Pug?"`
 					goto info
 			
-			`	"No," it says. Several stripes of skin on its grey face turn a dull red; you have heard that this might indicate sadness, or embarrassment, or possibly anger - one more thing about the Quarg that no one understands well. "Long ago we tried to resist the Pug," it says. "In retribution, they broke one of our rings." It points out the window of the station at the half-finished ringworld. "This ring is half complete, and it has taken a thousand of your years to build. The rings are our most precious creations, nearly impossible to destroy, but the Pug know how to twist and cut the fabric of space itself."`
+			`	"No," it says. Several stripes of skin on its gray face turn a dull red; you have heard that this might indicate sadness, or embarrassment, or possibly anger - one more thing about the Quarg that no one understands well. "Long ago we tried to resist the Pug," it says. "In retribution, they broke one of our rings." It points out the window of the station at the half-finished ringworld. "This ring is half complete, and it has taken a thousand of your years to build. The rings are our most precious creations, nearly impossible to destroy, but the Pug know how to twist and cut the fabric of space itself."`
 			`	"So you've encountered the Pug before?" asks Alondo.`
 			
 			label info
@@ -1867,13 +1867,13 @@ mission "FW Pug 4A"
 			names "pug"
 			variant
 				"Pug Maboro"
-				"Pug Enfolta" 
+				"Pug Enfolta"
 				"Pug Zibruka" 2
 		fleet
 			names "pug"
 			variant
 				"Pug Enfolta"
-				"Pug Zibruka" 2	
+				"Pug Zibruka" 2
 	
 	npc disable
 		system Rasalhague
@@ -1884,7 +1884,7 @@ mission "FW Pug 4A"
 			names "pug"
 			variant
 				"Pug Maboro"
-				"Pug Enfolta" 
+				"Pug Enfolta"
 				"Pug Zibruka" 2
 		fleet 3
 			names "pug"
@@ -1951,7 +1951,7 @@ mission "FW Pug 4B: Enemies"
 			names "pug"
 			variant
 				"Pug Maboro"
-				"Pug Enfolta" 
+				"Pug Enfolta"
 				"Pug Zibruka" 2
 
 
@@ -2049,12 +2049,12 @@ mission "FW Pug 5"
 			names "pug"
 			variant
 				"Pug Maboro"
-				"Pug Enfolta" 
+				"Pug Enfolta"
 				"Pug Zibruka" 2
 		fleet
 			names "pug"
 			variant
-				"Pug Enfolta" 
+				"Pug Enfolta"
 				"Pug Zibruka" 2
 
 
@@ -2076,7 +2076,7 @@ mission "FW Pug 5A: Enemies"
 			names "pug"
 			variant
 				"Pug Maboro"
-				"Pug Enfolta" 
+				"Pug Enfolta"
 				"Pug Zibruka" 2
 
 
