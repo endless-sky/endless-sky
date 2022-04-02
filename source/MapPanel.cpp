@@ -56,19 +56,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	// Log how many player ships and stored outfits are in a given system, tracking for
-	// ships if they are parked or in-flight.
-	//
-	// The structure of the map used here is:
-	//  - first        -> ships
-	//  - first.first  -> ships (in-flight)
-	//  - first.second -> ships (parked)
-	//  - second       -> outfits (in storage)
-	void TallyEscortsAndOutfits(const vector<shared_ptr<Ship>> &escorts,
-		const std::map<const Planet *, CargoHold> &outfits,
-		map<const System *, pair<pair<int, int>, int>> &locations)
+	const std::string SHOW_ESCORT_SYSTEMS = "Show escort systems on map";
+	const std::string SHOW_STORED_OUTFITS = "Show stored outfits on map";
+
+	// Log how many player ships are in a given system, tracking whether
+	// they are parked or in-flight.
+	void TallyEscorts(const vector<shared_ptr<Ship>> &escorts,
+		map<const System *, MapPanel::SystemTooltipData> &locations)
 	{
-		locations.clear();
 		for(const auto &ship : escorts)
 		{
 			if(ship->IsDestroyed())
@@ -76,22 +71,30 @@ namespace {
 			if(ship->GetSystem())
 			{
 				if(!ship->IsParked())
-					++locations[ship->GetSystem()].first.first;
+					++locations[ship->GetSystem()].activeShips;
 				else
-					++locations[ship->GetSystem()].first.second;
+					++locations[ship->GetSystem()].parkedShips;
 			}
 			// If this ship has no system but has a parent, it is carried (and thus not parked).
 			else if(ship->CanBeCarried() && ship->GetParent() && ship->GetParent()->GetSystem())
-				++locations[ship->GetParent()->GetSystem()].first.first;
+				++locations[ship->GetParent()->GetSystem()].activeShips;
 		}
+	}
+
+	// Log how many stored outfits are in a given system.
+	void TallyOutfits(const std::map<const Planet *, CargoHold> &outfits,
+		map<const System *, MapPanel::SystemTooltipData> &locations)
+	{
 		for(const auto &hold : outfits)
 		{
 			// Get the system in which the planet storage is located.
-			const System* system = hold.first->GetSystem();
+			const Planet *planet = hold.first;
+			const System *system = planet->GetSystem();
+
 			for(const auto &outfit: hold.second.Outfits())
 				// Only count a system if it actually stores outfits.
 				if(outfit.second)
-					locations[system].second += outfit.second;
+					locations[system].outfits[planet] += outfit.second;
 		}
 	}
 
@@ -102,6 +105,22 @@ namespace {
 	const int HOVER_TIME = 60;
 	// Length in frames of the recentering animation.
 	const int RECENTER_TIME = 20;
+
+	bool HasMultipleLandablePlanets(const System &system)
+	{
+		const Planet *firstPlanet = nullptr;
+		for(auto &stellarObject : system.Objects())
+			if(stellarObject.HasValidPlanet() && stellarObject.HasSprite() && !stellarObject.GetPlanet()->IsWormhole())
+			{
+				// We can return true once we found 2 different landable planets.
+				if(!firstPlanet)
+					firstPlanet = stellarObject.GetPlanet();
+				else if(firstPlanet != stellarObject.GetPlanet())
+					return true;
+			}
+
+		return false;
+	}
 }
 
 const float MapPanel::OUTER = 6.f;
@@ -129,8 +148,14 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	// Recalculate escort positions every time the map is opened, as they may
 	// be changing systems even if the player does not.
 	// The player cannot toggle any preferences without closing the map panel.
-	if(Preferences::Has("Show escort systems on map"))
-		TallyEscortsAndOutfits(player.Ships(), player.PlanetaryStorage(), escortSystems);
+	if(Preferences::Has(SHOW_ESCORT_SYSTEMS) || Preferences::Has(SHOW_STORED_OUTFITS))
+	{
+		escortSystems.clear();
+		if(Preferences::Has(SHOW_ESCORT_SYSTEMS))
+			TallyEscorts(player.Ships(), escortSystems);
+		if(Preferences::Has(SHOW_STORED_OUTFITS))
+			TallyOutfits(player.PlanetaryStorage(), escortSystems);
+	}
 
 	// Initialize a centered tooltip.
 	hoverText.SetFont(FontSet::Get(14));
@@ -966,10 +991,10 @@ void MapPanel::DrawEscorts()
 			Point pos = zoom * (squad.first->Position() + center);
 
 			// Active and parked ships are drawn/indicated by a ring in the center.
-			if(squad.second.first.first || squad.second.first.second)
-				RingShader::Draw(pos, INNER - 1.f, 0.f, squad.second.first.first ? active : parked);
+			if(squad.second.activeShips || squad.second.parkedShips)
+				RingShader::Draw(pos, INNER - 1.f, 0.f, squad.second.activeShips ? active : parked);
 
-			if(squad.second.second)
+			if(squad.second.outfits.size())
 				// Stored outfits are drawn/indicated by 8 short rays out of the system center.
 				for(int i = 0; i < 8; ++i)
 				{
@@ -1173,28 +1198,39 @@ void MapPanel::DrawTooltips()
 	// Create the tooltip text.
 	if(tooltip.empty())
 	{
-		pair<pair<int, int>, int> t = escortSystems.at(hoverSystem);
+		MapPanel::SystemTooltipData t = escortSystems.at(hoverSystem);
+
 		if(hoverSystem == &playerSystem)
 		{
-			--t.first.first;
-			if(t.first.first || t.first.second || t.second)
+			if(player.Flagship())
+				--t.activeShips;
+			if(t.activeShips || t.parkedShips || !t.outfits.empty())
 				tooltip = "You are here, with:\n";
 			else
 				tooltip = "You are here.";
 		}
 		// If you have both active and parked escorts, call the active ones
 		// "active escorts." Otherwise, just call them "escorts."
-		if(t.first.first && t.first.second)
-			tooltip += to_string(t.first.first) + (t.first.first == 1 ? " active escort\n" : " active escorts\n");
-		else if(t.first.first)
-			tooltip += to_string(t.first.first) + (t.first.first == 1 ? " escort" : " escorts");
-		if(t.first.second)
-			tooltip += to_string(t.first.second) + (t.first.second == 1 ? " parked escort" : " parked escorts");
-		if(t.second)
+		if(t.activeShips && t.parkedShips)
+			tooltip += to_string(t.activeShips) + (t.activeShips == 1 ? " active escort\n" : " active escorts\n");
+		else if(t.activeShips)
+			tooltip += to_string(t.activeShips) + (t.activeShips == 1 ? " escort" : " escorts");
+		if(t.parkedShips)
+			tooltip += to_string(t.parkedShips) + (t.parkedShips == 1 ? " parked escort" : " parked escorts");
+		if(!t.outfits.empty())
 		{
-			if(t.first.first || t.first.second)
+			if(t.activeShips || t.parkedShips)
 				tooltip += "\n";
-			tooltip += to_string(t.second) + (t.second == 1 ? " stored outfit" : " stored outfits");
+
+			unsigned sum = 0;
+			for(const auto& it : t.outfits)
+				sum += it.second;
+
+			tooltip += to_string(sum) + (sum == 1 ? " stored outfit" : " stored outfits");
+
+			if(HasMultipleLandablePlanets(*hoverSystem) || t.outfits.size() > 1)
+				for(const auto& it : t.outfits)
+					tooltip += "\n - " + to_string(it.second) + " on " + it.first->Name();
 		}
 
 		hoverText.Wrap(tooltip);

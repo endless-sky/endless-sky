@@ -206,6 +206,8 @@
 		<Unit filename="source/Mask.h" />
 		<Unit filename="source/MaskManager.cpp" />
 		<Unit filename="source/MaskManager.h" />
+		<Unit filename="source/MenuAnimationPanel.cpp" />
+		<Unit filename="source/MenuAnimationPanel.h" />
 		<Unit filename="source/MenuPanel.cpp" />
 		<Unit filename="source/MenuPanel.h" />
 		<Unit filename="source/Messages.cpp" />
