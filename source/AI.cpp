@@ -324,6 +324,16 @@ void AI::IssueShipTarget(const PlayerInfo &player, const shared_ptr<Ship> &targe
 
 
 
+void AI::IssueAsteroidTarget(const PlayerInfo &player, const shared_ptr<Minable> &targetAsteroid)
+{
+	Orders newOrders;
+	newOrders.type = Orders::ATTACK;
+	newOrders.targetAsteroid = targetAsteroid;
+	IssueOrders(player, newOrders, "focusing fire on " + targetAsteroid->Name() + " asteroid.");
+}
+
+
+
 void AI::IssueMoveTarget(const PlayerInfo &player, const Point &target, const System *moveToSystem)
 {
 	Orders newOrders;
@@ -386,12 +396,26 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		IssueDeploy(player);
 
 	shared_ptr<Ship> target = flagship->GetTargetShip();
+	shared_ptr<Minable> targetAsteroid = flagship->GetTargetAsteroid();
 	Orders newOrders;
-	if(activeCommands.Has(Command::FIGHT) && target && !target->IsYours())
+	if(activeCommands.Has(Command::FIGHT) && ((target && !target->IsYours()) || targetAsteroid))
 	{
-		newOrders.type = target->IsDisabled() ? Orders::FINISH_OFF : Orders::ATTACK;
-		newOrders.target = target;
-		IssueOrders(player, newOrders, "focusing fire on \"" + target->Name() + "\".");
+		// targetName is name of ship or type of asteroid
+		string targetDescription;
+		if(target)
+		{
+			newOrders.type = (target->IsDisabled()) ? Orders::FINISH_OFF : Orders::ATTACK;
+			newOrders.target = target;
+			targetDescription = "focusing fire on \"" + target->Name() + "\".";
+		}
+		else
+		{
+			// if not target (ship) then targeting asteroid is assumed
+			newOrders.type = Orders::ATTACK;
+			newOrders.targetAsteroid = targetAsteroid;
+			targetDescription = "focusing fire on " + targetAsteroid->Name() + " asteroid.";
+		}
+		IssueOrders(player, newOrders, targetDescription);
 	}
 	if(activeCommands.Has(Command::HOLD))
 	{
@@ -411,6 +435,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		if(it->second.type & Orders::REQUIRES_TARGET)
 		{
 			shared_ptr<Ship> ship = it->second.target.lock();
+			shared_ptr<Minable> asteroid = it->second.targetAsteroid.lock();
 			// Check if the target ship itself is targetable.
 			bool invalidTarget = !ship || !ship->IsTargetable() || (ship->IsDisabled() && it->second.type == Orders::ATTACK);
 			// Check if the target ship is in a system where we can target.
@@ -418,7 +443,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 			bool targetOutOfReach = !ship || (it->first->GetSystem() && ship->GetSystem() != it->first->GetSystem()
 					&& ship->GetSystem() != flagship->GetSystem());
 
-			if(invalidTarget || targetOutOfReach)
+			if(!asteroid && (invalidTarget || targetOutOfReach))
 			{
 				it = orders.erase(it);
 				continue;
@@ -621,19 +646,27 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 
 		// Pick a target and automatically fire weapons.
 		shared_ptr<Ship> target = it->GetTargetShip();
+		// Find a targeted asteroid but only if the ship is player-owned.
+		shared_ptr<Minable> targetAsteroid = FindTargetAsteroid(*it);
 		if(isPresent && !personality.IsSwarming())
 		{
 			// Each ship only switches targets twice a second, so that it can
 			// focus on damaging one particular ship.
 			targetTurn = (targetTurn + 1) & 31;
-			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled()
-					&& personality.Disables()) || !target->IsTargetable())
+			if(targetTurn == step && targetAsteroid)
+				it->SetTargetAsteroid(targetAsteroid);
+			else if(targetTurn == step || !target || target->IsDestroyed()
+				|| (target->IsDisabled() && personality.Disables()) || !target->IsTargetable())
 				it->SetTargetShip(FindTarget(*it));
 		}
 		if(isPresent)
 		{
 			AimTurrets(*it, firingCommands, it->IsYours() ? opportunisticEscorts : personality.IsOpportunistic());
-			AutoFire(*it, firingCommands);
+			// player-owned ships should attack their targeted asteroid otherwise default behavior
+			if(targetAsteroid)
+				AutoFire(*it, firingCommands, *targetAsteroid);
+			else
+				AutoFire(*it, firingCommands);
 		}
 
 		// If this ship is hyperspacing, or in the act of
@@ -1103,6 +1136,21 @@ bool AI::HasHelper(const Ship &ship, const bool needsFuel)
 
 
 
+// Pick an asteroid target for escort
+shared_ptr<Minable> AI::FindTargetAsteroid(const Ship &ship) const
+{
+	shared_ptr<Minable> targetAsteroid;
+	if(ship.IsYours())
+	{
+		auto it = orders.find(&ship);
+		if(it != orders.end() && (it->second.type == Orders::ATTACK))
+			targetAsteroid = it->second.targetAsteroid.lock();
+	}
+	return targetAsteroid;
+}
+
+
+
 // Pick a new target for the given ship.
 shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 {
@@ -1343,6 +1391,7 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 	}
 
 	shared_ptr<Ship> target = it->second.target.lock();
+	shared_ptr<const Minable> targetAsteroid = it->second.targetAsteroid.lock();
 	if(type == Orders::MOVE_TO && it->second.targetSystem && ship.GetSystem() != it->second.targetSystem)
 	{
 		// The desired position is in a different system. Find the best
@@ -1364,6 +1413,11 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 			Stop(ship, command);
 		else
 			command.SetTurn(TurnToward(ship, TargetAim(ship)));
+	}
+	else if(type == Orders::ATTACK && targetAsteroid)
+	{
+		// escorts should chase the player-targeted asteroid
+		MoveToAttack(ship, command, *targetAsteroid);
 	}
 	else if(!target)
 	{
@@ -3779,7 +3833,8 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 	string who;
 
 	// Find out what the target of these orders is.
-	const Ship *newTarget = newOrders.target.lock().get();
+	const Ship *targetShip = newOrders.target.lock().get();
+	const Minable *targetAsteroid = newOrders.targetAsteroid.lock().get();
 
 	// Figure out what ships we are giving orders to.
 	vector<const Ship *> ships;
@@ -3824,8 +3879,8 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 
 	// A target is valid if we have no target, or when the target is in the
 	// same system as the flagship.
-	bool isValidTarget = !newTarget || (newTarget && player.Flagship() &&
-		newTarget->GetSystem() == player.Flagship()->GetSystem());
+	bool isValidTarget = !targetShip || targetAsteroid
+		|| (targetShip && player.Flagship() && targetShip->GetSystem() == player.Flagship()->GetSystem());
 
 	// Now, go through all the given ships and set their orders to the new
 	// orders. But, if it turns out that they already had the given orders,
@@ -3838,7 +3893,7 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 		for(const Ship *ship : ships)
 		{
 			// Never issue orders to a ship to target itself.
-			if(ship == newTarget)
+			if(targetShip && ship == targetShip)
 				continue;
 
 			gaveOrder = true;
@@ -3852,7 +3907,8 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 				existing.type = Orders::HOLD_POSITION;
 
 			hasMismatch |= (existing.type != newOrders.type);
-			hasMismatch |= (existing.target.lock().get() != newTarget);
+			hasMismatch |= (existing.target.lock().get() != targetShip);
+			hasMismatch |= (existing.targetAsteroid.lock().get() != targetAsteroid);
 			existing = newOrders;
 
 			if(isMoveOrder)

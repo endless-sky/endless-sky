@@ -53,6 +53,7 @@ template <class Type>
 
 	// Fleet commands from the player.
 	void IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &target);
+	void IssueAsteroidTarget(const PlayerInfo &player, const std::shared_ptr<Minable> &targetAsteroid);
 	void IssueMoveTarget(const PlayerInfo &player, const Point &target, const System *moveToSystem);
 	// Commands issued via the keyboard (mostly, to the flagship).
 	void UpdateKeys(PlayerInfo &player, Command &clickCommands);
@@ -81,6 +82,7 @@ private:
 	bool HasHelper(const Ship &ship, const bool needsFuel);
 	// Pick a new target for the given ship.
 	std::shared_ptr<Ship> FindTarget(const Ship &ship) const;
+	std::shared_ptr<Minable> FindTargetAsteroid(const Ship &ship) const;
 	// Obtain a list of ships matching the desired hostility.
 	std::vector<Ship *> GetShipsList(const Ship &ship, bool targetEnemies, double maxRange = -1.) const;
 
@@ -166,6 +168,7 @@ private:
 
 		int type = 0;
 		std::weak_ptr<Ship> target;
+		std::weak_ptr<Minable> targetAsteroid;
 		Point point;
 		const System *targetSystem = nullptr;
 	};
