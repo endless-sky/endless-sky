@@ -633,7 +633,6 @@ Files:
  images/land/station11*
  images/land/station13*
  images/land/station14*
- images/land/station15*
  images/land/station16*
  images/land/station17*
  images/land/station18*
@@ -645,8 +644,6 @@ Files:
  images/land/station24*
  images/land/station25*
  images/land/station26*
- images/land/station27*
- images/land/station28*
  images/land/station29*
  images/land/station30*
  images/land/station31*
@@ -698,27 +695,27 @@ License: public-domain
 
 Files:
  images/land/station8*
-Copyright: Thomas Hawk
-Licence: CC BY-NC 2.0
-Comment: Taken from https://www.flickr.com/photos/thomashawk/49037799721/ and cropped.
+Copyright: MTA of the State of New York
+Licence: CC BY 2.0
+Comment: Taken from https://www.flickr.com/photos/61135621@N03/5836687124 and cropped.
 
 Files:
  images/land/station27*
-Copyright: Thomas Hawk
-Licence: CC BY-NC 2.0
-Comment: Taken from https://www.flickr.com/photos/thomashawk/51198503318/in/album-72157603760635197/ and cropped.
+Copyright: Sebastian Sinisterra
+Licence: CC BY 2.0
+Comment: Taken from https://www.flickr.com/photos/61135621@N03/17755765778 and cropped.
 
 Files:
  images/land/station28*
-Copyright: Thomas Hawk
-Licence: CC BY-NC 2.0
-Comment: Taken from https://www.flickr.com/photos/thomashawk/51731417282/in/album-72157603760635197/ and cropped.
+Copyright: mwewering
+Licence: Pixabay License
+Comment: Taken from https://pixabay.com/photos/corridor-tunnel-architecture-escape-2616414/ and cropped.
 
 Files:
  images/land/station15*
-CopyrightL Thomas Hawk
-Licence: CC BY-NC 2.0
-Comment: Taken from https://www.flickr.com/photos/thomashawk/51772186137/in/album-72157603760635197/ and cropped.
+Copyright: mikecook
+Licence: Pixabay License
+Comment: Taken from https://pixabay.com/photos/step-industry-steel-3104846/ and cropped.
 
 Files:
  images/land/station5.jpg
