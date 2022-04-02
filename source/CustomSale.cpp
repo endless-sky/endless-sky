@@ -205,7 +205,7 @@ bool CustomSale::Add(const CustomSale &other)
 	else if(other.sellType != this->sellType)
 		return false;
 
-	for(auto&& it : other.relativePrices)
+	for(const auto &it : other.relativePrices)
 	{
 		auto ours = relativePrices.find(it.first);
 		if(ours == relativePrices.end())
@@ -213,29 +213,29 @@ bool CustomSale::Add(const CustomSale &other)
 		else if(ours->second < it.second)
 			ours->second = it.second;
 	}
-	for(auto&& it : other.relativeOffsets)
+	for(const auto &it : other.relativeOffsets)
 	{
-		const auto& item = relativeOffsets.find(it.first);
-		if(item == relativeOffsets.cend())
-			relativeOffsets[it.first] = it.second;
+		auto ours = relativeOffsets.find(it.first);
+		if(ours == relativeOffsets.end())
+			relativeOffsets.emplace(it.first, it.second);
 		else
-			item->second += it.second;
+			ours->second += it.second;
 	}
-	for(auto&& it : other.relativeOutfitPrices)
+	for(const auto &it : other.relativeOutfitPrices)
 	{
-		const auto& item = relativeOutfitPrices.find(it.first);
-		if(item == relativeOutfitPrices.cend())
-			relativeOutfitPrices[it.first] = it.second;
-		else if(item->second < it.second)
-			item->second = it.second;
+		auto ours = relativeOutfitPrices.find(it.first);
+		if(ours == relativeOutfitPrices.end())
+			relativeOutfitPrices.emplace(it.first, it.second);
+		else if(ours->second < it.second)
+			ours->second = it.second;
 	}
-	for(auto&& it : other.relativeOutfitOffsets)
+	for(const auto &it : other.relativeOutfitOffsets)
 	{
-		const auto& item = relativeOutfitOffsets.find(it.first);
-		if(item == relativeOutfitOffsets.cend())
-			relativeOutfitOffsets[it.first] = it.second;
+		auto ours = relativeOutfitOffsets.find(it.first);
+		if(ours == relativeOutfitOffsets.end())
+			relativeOutfitOffsets.emplace(it.first, it.second);
 		else
-			item->second += it.second;
+			ours->second += it.second;
 	}
 	return true;
 }
