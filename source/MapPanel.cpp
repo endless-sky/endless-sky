@@ -487,6 +487,16 @@ bool MapPanel::Scroll(double dx, double dy)
 
 
 
+void MapPanel::UpdateColor(bool max, double color)
+{
+	if(color > maxColor)
+		maxColor = color;
+	else if(color < minColor)
+		minColor = color;
+}
+
+
+
 Color MapPanel::MapColor(double value)
 {
 	if(std::isnan(value))

@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef PLANET_H_
 #define PLANET_H_
 
-#include "ConditionSet.h"
 #include "CustomSale.h"
 #include "Sale.h"
 
@@ -23,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+class ConditionSet;
 class DataNode;
 class Fleet;
 class Government;

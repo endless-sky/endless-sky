@@ -1079,7 +1079,7 @@ int64_t Ship::ChassisCost() const
 
 
 // Get the full cost of this ship on the planet, depending on the outfit prices.
-int64_t Ship::LocalCost(const Planet *planet, const ConditionSet::Conditions conditions) const
+int64_t Ship::LocalCost(const Planet *planet, const ConditionSet::Conditions &conditions) const
 {
 	int64_t localCost = ChassisCost();
 	for(const auto &it : Outfits())

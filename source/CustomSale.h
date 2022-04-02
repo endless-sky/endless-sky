@@ -33,9 +33,9 @@ class CustomSale {
 public:
 	enum class SellType {
 		NONE = 0,
-		VISIBLE = (1 << 0),
-		IMPORT = (1 << 1),
-		HIDDEN = (1 << 2)
+		VISIBLE = 1,
+		IMPORT = 2,
+		HIDDEN = 3
 	};
 
 
@@ -46,7 +46,7 @@ public:
 	bool Add(const CustomSale &other);
 	
 	// Get the price of the item, one should check the conditions matche first.
-	double GetRelativeCost(const Outfit *item) const;
+	double GetRelativeCost(const Outfit &item) const;
 	
 	SellType GetSellType() const;
 
@@ -55,10 +55,10 @@ public:
 	
 	const Sale<Outfit> &GetOutfits() const;
 	
-	bool Has(const Outfit *item) const;
+	bool Has(const Outfit &item) const;
 
 	// Check if this planet with the given conditions of the player match the conditions of the CustomSale.
-	bool Matches(const Planet *planet, const ConditionSet::Conditions &playerConditions) const;
+	bool Matches(const Planet &planet, const ConditionSet::Conditions &playerConditions) const;
 
 	void Clear();
 

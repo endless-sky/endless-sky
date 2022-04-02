@@ -148,10 +148,7 @@ double MapShipyardPanel::SystemValue(const System *system) const
 			{
 				double relativeCost = selected->LocalCost(object.GetPlanet(), player.Conditions()) / baseCost;
 				
-				if(relativeCost > MapPanel::maxColor)
-					MapPanel::maxColor = relativeCost;
-				else if(relativeCost < MapPanel::minColor)
-					MapPanel::minColor = relativeCost;
+				MapPanel::UpdateColor(relativeCost);
 				return relativeCost;
 			}
 			if(!shipyard.empty())

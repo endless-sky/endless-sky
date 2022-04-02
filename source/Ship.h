@@ -19,7 +19,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Armament.h"
 #include "CargoHold.h"
 #include "Command.h"
-#include "ConditionSet.h"
 #include "EsUuid.h"
 #include "FireCommand.h"
 #include "Outfit.h"
@@ -33,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+class ConditionSet;
 class DamageDealt;
 class DataNode;
 class DataWriter;
@@ -154,7 +154,7 @@ public:
 	// Get this ship's cost.
 	int64_t Cost() const;
 	int64_t ChassisCost() const;
-	int64_t LocalCost(const Planet *planet, ConditionSet::Conditions conditions) const;
+	int64_t LocalCost(const Planet *planet, ConditionSet::Conditions &conditions) const;
 
 	// Check if this ship is configured in such a way that it would be difficult
 	// or impossible to fly.

@@ -199,7 +199,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		message = "in storage: " + to_string(storage);
 	else if(stock)
 		message = "in stock: " + to_string(stock);
-	else if(!outfitter.count(outfit))
+	else if(!outfitter.Has(outfit))
 		message = "(not sold here)";
 	
 	if(!show.empty())
@@ -316,8 +316,8 @@ bool OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 		return false;
 
 	bool isAlreadyOwned = checkAlreadyOwned && IsAlreadyOwned();
-	if(!(player.GetPlanet()->GetAvailability(selectedOutfit, player.Conditions()) == CustomSale::SellType::VISIBLE
-		|| player.Stock(selectedOutfit) > 0 || isAlreadyOwned))
+	if(!(isAlreadyOwned || player.Stock(selectedOutfit) > 0 ||
+		player.GetPlanet()->GetAvailability(selectedOutfit, player.Conditions()) == CustomSale::SellType::VISIBLE))
 		return false;
 
 	int mapSize = selectedOutfit->Get("map");

@@ -155,10 +155,7 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 					
 					if(sellType != CustomSale::SellType::HIDDEN || storedInSystem)
 					{
-						if(cost > MapPanel::maxColor)
-							MapPanel::maxColor = cost;
-						else if(cost < MapPanel::minColor)
-							MapPanel::minColor = cost;
+						MapPanel::UpdateColor(cost);
 						return cost;
 					}
 				}

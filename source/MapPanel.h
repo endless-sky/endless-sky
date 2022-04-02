@@ -75,6 +75,9 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 
+	// Change the colors for the dynamic price legend if needed.
+	static void UpdateColor(double color);
+
 	// Get the color mapping for various system attributes.
 	static Color MapColor(double value);
 	static Color CommodityColor(double value);
