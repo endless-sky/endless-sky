@@ -118,7 +118,12 @@ void UI::DrawAll()
 			break;
 
 	for( ; it != stack.end(); ++it)
+	{
+		// Panels that are about to be popped shouldn't get drawn.
+		if(count(toPop.begin(), toPop.end(), it->get()))
+			continue;
 		(*it)->Draw();
+	}
 }
 
 
