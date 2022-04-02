@@ -3296,6 +3296,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			bool foundEnemy = false;
 			bool foundAnything = false;
 			bool distancePriority = Preferences::Has("Board target");
+			double agility = ship.Acceleration() * ship.TurnRate();
 			for(const shared_ptr<Ship> &other : ships)
 				if(CanBoard(ship, *other))
 				{
@@ -3304,7 +3305,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 
 					bool isEnemy = other->GetGovernment()->IsEnemy(ship.GetGovernment());
 					double distance = other->Position().DistanceSquared(ship.Position());
-					double b = distancePriority ? distance : -300 * (other->Cost() ^ 2) / distance;
+					double b = distancePriority ? distance : -agility * (other->ChassisCost() ^ 2) / distance;
 					if((isEnemy && !foundEnemy) || (b < best && isEnemy == foundEnemy))
 					{
 						best = b;
