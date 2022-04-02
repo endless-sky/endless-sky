@@ -2918,6 +2918,8 @@ mission "Hauler VI cargo prototype 1"
 	source
 		planet "Deep"
 	destination "Skymoot"
+	to offer
+		"armament deterrence" > 0
 	npc accompany
 		government "Merchant"
 		personality escort timid
