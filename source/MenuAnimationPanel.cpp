@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "Audio.h"
 #include "Color.h"
-#include "Planet.h"
 #include "PointerShader.h"
 #include "UI.h"
 
