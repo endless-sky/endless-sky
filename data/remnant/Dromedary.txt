@@ -38,6 +38,7 @@ ship "Dromedary Ghost"
 		"corrosion protection" 100
 		"leak protection" 100
 		"burn protection" 100
+		inscrutable 1
 		weapon
 			"blast radius" 260
 			"shield damage" 2600
