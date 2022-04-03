@@ -59,6 +59,15 @@ namespace {
 	const std::string SHOW_ESCORT_SYSTEMS = "Show escort systems on map";
 	const std::string SHOW_STORED_OUTFITS = "Show stored outfits on map";
 
+	// Struct to track per system how many pointers are drawn and still
+	// need to be drawn.
+	struct PointerDrawCount{
+		// Amount of systems already drawn.
+		int drawn = 0;
+		int available = 0;
+		int unavailable = 0;
+	};
+
 	// Log how many player ships are in a given system, tracking whether
 	// they are parked or in-flight.
 	void TallyEscorts(const vector<shared_ptr<Ship>> &escorts,
@@ -1143,8 +1152,7 @@ void MapPanel::DrawNames()
 void MapPanel::DrawMissions()
 {
 	// Draw a pointer for each active or available mission.
-	map<const System *, int> pointerCount;
-	map<const System *, pair<int, int>> availableCount;
+	map<const System *, PointerDrawCount> pointerCount;
 
 	const Set<Color> &colors = GameData::Colors();
 	const Color &availableColor = *colors.Get("available job");
@@ -1156,8 +1164,8 @@ void MapPanel::DrawMissions()
 	if(specialSystem)
 	{
 		// The special system pointer is larger than the others.
-		++pointerCount[specialSystem];
-		Angle a = Angle(30. * pointerCount[specialSystem]);
+		++pointerCount[specialSystem].drawn;
+		Angle a = Angle(30. * pointerCount[specialSystem].drawn);
 		Point pos = Zoom() * (specialSystem->Position() + center);
 		PointerShader::Draw(pos, a.Unit(), 20.f, 27.f, -4.f, black);
 		PointerShader::Draw(pos, a.Unit(), 11.5f, 21.5f, -6.f, specialColor);
@@ -1166,10 +1174,11 @@ void MapPanel::DrawMissions()
 	for(const Mission &mission : player.AvailableJobs())
 	{
 		const System *system = mission.Destination()->GetSystem();
+		auto &&it = pointerCount[system];
 		if(mission.CanAccept(player))
-			++availableCount[system].first;
+			++it.available;
 		else
-			++(availableCount[system].second);
+			++it.unavailable;
 	}
 	for(const Mission &mission : player.Missions())
 	{
@@ -1179,9 +1188,9 @@ void MapPanel::DrawMissions()
 		const System *system = mission.Destination()->GetSystem();
 
 		// Reserve a maximum of 6 slots for available missions.
-		const auto &available = availableCount[system];
-		int reserved = min(6, available.first + available.second);
-		if(pointerCount[system] >= 12 - reserved)
+		auto &&it = pointerCount[system];
+		int reserved = min(6, it.available + it.unavailable);
+		if(it.drawn >= 12 - reserved)
 			continue;
 
 		bool blink = false;
@@ -1192,22 +1201,22 @@ void MapPanel::DrawMissions()
 				blink = (step % (10 * days) > 5 * days);
 		}
 		bool isSatisfied = IsSatisfied(player, mission);
-		DrawPointer(system, pointerCount[system], blink ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
+		DrawPointer(system, it.drawn, blink ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
 
 		for(const System *waypoint : mission.Waypoints())
-			DrawPointer(waypoint, pointerCount[waypoint], waypointColor);
+			DrawPointer(waypoint, pointerCount[waypoint].drawn, waypointColor);
 		for(const Planet *stopover : mission.Stopovers())
-			DrawPointer(stopover->GetSystem(), pointerCount[stopover->GetSystem()], waypointColor);
+			DrawPointer(stopover->GetSystem(), pointerCount[stopover->GetSystem()].drawn, waypointColor);
 	}
 	// Draw the available and unavailable jobs.
-	for(const auto &it : availableCount)
+	for(auto &&it : pointerCount)
 	{
 		const auto &system = it.first;
-		const auto &available = it.second;
-		for(int i = 0; i < available.first; ++i)
-			DrawPointer(system, pointerCount[system], availableColor);
-		for(int i = 0; i < available.second; ++i)
-			DrawPointer(system, pointerCount[system], unavailableColor);
+		auto &&counters = it.second;
+		for(int i = 0; i < counters.available; ++i)
+			DrawPointer(system, counters.drawn, availableColor);
+		for(int i = 0; i < counters.unavailable; ++i)
+			DrawPointer(system, counters.drawn, unavailableColor);
 	}
 }
 
