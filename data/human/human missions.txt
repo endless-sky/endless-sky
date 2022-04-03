@@ -55,7 +55,7 @@ mission "Pookie, Part 1"
 	cargo "(reserved)" 1
 	on offer
 		conversation
-			`As you walk through the spaceport, you hear a voice behind you, saying, "Excuse me, captain." You turn around and see a woman trying to flag you down. Her hairdo is tall and somewhat confusing; her high heels are also tall and are giving her considerable trouble as she walks towards you.`
+			`As you walk through the spaceport, you hear a voice behind you, saying, "Excuse me, Captain." You turn around and see a woman trying to flag you down. Her hairdo is tall and somewhat confusing; her high heels are also tall and are giving her considerable trouble as she walks towards you.`
 			`	"You look like the sort of captain I can trust," she says. "My darling Pookie has been visiting her aunt on Shroud, and it's time for her to come home, but she's not used to space travel and it scares her. I would feel so much better if you could go pick her up and bring her back here. Can you do that for me?" You can't help noticing that the jewelry she's wearing probably costs as much as a small fighter craft. This job sounds easy, and has the potential to be quite lucrative.`
 			choice
 				"	(Accept.)"
@@ -107,7 +107,97 @@ mission "Pookie, Part 2"
 		payment 80000
 		dialog "In the past few days, Pookie has barked incessantly and thrown up several times despite being fed perfectly on schedule, and the room you've been keeping her in will likely smell like dog urine for months. You are all too happy to return her to her owner, who pays you <payment>."
 		log "Minor People" "Pocahontas (Pookie)" `A dog...`
-		
+
+
+
+mission "Pookie, Part 3"
+	minor
+	name "Stray Dog"
+	description `Find a home for a stray dog you picked up on <origin> on <destination>.`
+	source "Freedom"
+	destination "Prime"
+	passengers 1
+	to offer
+		has "Pookie, Part 2: done"
+	on offer
+		conversation
+			`The weather on <origin> is unusually rough today: the sky is torn asunder with thunder while rain whips against the pedestrians brave or desperate enough to stay outside. Through the mist, you see a building with neon lettering saying, "East Mesa Indoor Racing Complex: Bets are open!"`
+			choice
+				`	(Check it out.)`
+				`	(Stay dry in your ship.)`
+					decline
+			`	You wade through the mud as you approach the complex. At its entrance is a stout woman in a black uniform holding a shotgun. When she sees you, she looks at a list in her hand, before saying, "You're alright. Feel free to come in."`
+			`	The inside of the racing complex is packed to capacity. Around you is a swarm of elbows and shoulders, jutting into you while worming your way through the crowd. The sounds of rancorous conversation blend in with the pounding of rain on the roof as you glimpse a sight of the main attraction: a large, fenced-off oval. White lines inside the area form racing lanes, and arranged on the far side of the track are four cages covered with cloth.`
+			`	As you reach the boundary of the track, a loud siren fills the air, causing the crowd to fall silent.`
+			choice
+				`	"What's going on?"`
+				`	(Quietly observe.)`
+					goto quiet
+			`	When you try to open your mouth to speak, a hand shushes you, appearing as suddenly as it disappears.`
+			label quiet
+			`	The siren ends, and a greasy voice takes its place. "Welcome, one and all, to the grand biweekly hound race! Before we collect your wagers, let me introduce you to our fine racing stock for the night!"`
+			`	A stagehand hops over the fence and towards the cages while the announcer continues. "Bleedbug is a veteran of the racing track. He's only ever come in second and third before, but perhaps this will be his lucky day!" The stagehand removes the covering of the innermost cage as a cheer rings out. The dog inside begins ferociously barking upon seeing the cacophony around him, but you can't help but notice how withered Bleedbug's body looks.`
+			`	"Our second hound is one that you're all familiar with. He's an 18-time victor of the track," the voice pauses, "even if some of his wins were only by technicality." Already, a jeer rises in the audience. The announcer says, "It's the hound that you don't want to beat: Doom." The booing reaches a peak as the stagehand takes the cover off of the largest cage of the lineup, revealing a gargantuan hound. Doom's body is finely shaped, devoid of the malnutrition plaguing his competitor. As soon as he sets his eyes on Doom, Bleedbug stops yelping and retreats to the corner of his cage, whimpering. Pleased at his reputation, Doom lets out a thunderous bark.`
+			`	"Now, our other two racers for the day are all-new." A murmur of anticipation sweeps through the audience. "Our first newcomer is a fine lady. Rumored to be from the wilderness of Zenith, can everyone put their hands together for Zinc!" The cover over the third cage is taken off to reveal a creature that is clearly not a dog. Her long, gray fur and piercing, golden eyes mark her as a far more graceful and feral beast, though underneath her coat, you spot atrophied muscles. Zinc initially stands unfazed by the crowd and the other dogs. When Doom spots the wolf ignoring him, he begins to bark louder and louder, until she abruptly stares at him with an inscrutable expression.`
+			`	"Our final contestant for the day is a most... unorthodox option. The merchant who graciously donated her to us came with a most facinating story. She said that the hound comes from the Paradise Worlds, and her owner wanted the pet to have a luxury flight to her holiday home. Well, let's see if she can pay her way to victory here, folks." The audience snickers. "Now, give your best welcomes to Puny!" Puny is easily the frailest of the dogs, barely more than skin and bones. White whispers of hair clump around her head, chest, and ankles, and the bottom of her cage is wet. None of the other racers acknowledge her, but the crowd is rearing to volley a variety of curses and slurs at her, as though an actual Paradise World baron was inside the cage. As you look at the poodle, you can't help but feel a strange sense of familiarity.`
+			`	You are nudged in the back, and you turn to see a woman dressed in rags holding four buckets filled with credits. The names of the racers are crudely written on each of them. "Betting is 2,000 credits," she says unusually sweetly.`
+			branch notpoor
+				"credits" >= 2000
+			choice
+				`	(Bet on Bleedbug.)`
+				`	(Bet on Doom.)`
+				`	(Bet on Zinc.)`
+				`	(Bet on Puny.)`
+				`	"I'll pass."`
+					goto nobet
+			`	You dig through your pockets for a credit chip to toss into the bucket, until you realize that you don't have enough money to make a bet. Impatient with your bumbling, the woman turns to take money from a person next to you.`
+				goto next
+			label notpoor
+			choice
+				`	(Bet on Bleedbug.)`
+				`	(Bet on Doom.)`
+				`	(Bet on Zinc.)`
+				`	(Bet on Puny.)`
+				`	"I'll pass."`
+					goto nobet
+			action
+				payment -2000
+			`	You toss a chip into the bucket, and the woman eagerly turns towards a person next to you.`
+				goto next
+			label nobet
+			`	The woman turns to take bets from a person next to you.`
+			label next
+			`	After several minutes pass, the siren sounds again, and the announcer speaks again. "Once again, we at the East Mesa Racing Complex give our thanks to everyone who supports our cause by participating in betting. Now, without further ado..."`
+			`	A red light on the ceiling turns on, and the audience shouts, "Three!" A second one lights up. "Two!" A third light, this time yellow, turns on. "One!"`
+			`	A green light appears, and the crowd descends into chaos as the cages' doors begin to open.`
+			`	The first to move is Bleedbug, desperate to get as far away from Doom as possible. Doom himself has his eyes set on a different target. As soon as the doors open, he rushes over the lane lines towards Zinc and bares his teeth for a bite. Anticipating this, Zinc dodges beneath the attack, and lunges in with her mouth open. Doom responds to the threat by lowering his head and bashing into her, and the two animals are quickly locked into a brutal mess of teeth and blood. The crowd goes wild at the spectacle unfolding before them as the brawl approaches your section of the fence.`
+			choice
+				`	(Continue watching.)`
+				`	(Get away.)`
+					goto leave
+			`	Looking on, you are suddenly thrown backward when the beasts smash into the fence in front of you. Lying on the ground, you look down and see Zinc and Doom tearing into each other just beyond your feet.`
+			choice
+				`	(Get up and run.)`
+					goto live
+				`	(Lie still.)`
+			`	As you lie still, Zinc is kicked on top of you, and Doom dashes in to continue the brawl. Within seconds, your skin is ripped to ribbons by two animals too deep in bloodlust to notice that another body has joined the fray. Your body bleeds out on the floor as the crowd cheers at the slaughter of a fellow human.`
+				die
+			label live
+			`	You scramble to your feet, barely dodging Zinc as she's kicked back by Doom. As the two animals howl in pain, you push your way through the onlooking crowd, hoping to get away from the danger. After getting yourself a reasonable distance away, you turn back to see Zinc and Doom continuing to go at each other's throats.`
+				goto next2
+			label leave
+			`	You turn and head away from the fence. Moments later, you hear two cries of pain harmonizing with the sound of wood splintering. Taking a peek back, you see that Zinc and Doom are fighting outside the track, while the crowd raves at the sight of violence.`
+			label next2
+				`	(Stay and watch.)`
+				`	(Leave the building.)`
+					goto nope
+			`	You look on at the duel, as does the rest of the building. The crowd has already taken sides, with some shouting Zinc's name and others shouting Doom's. Doom initially appears to have the upper hands, ramming himself into Zinc with impunity as she is sent sprawling. However, when Doom goes in for another tackle, Zinc dashes in and sinks her teeth into his neck. His roars of pain quickly deminish into whimpers as blood spills readily on the complex's floor.`
+			`	Suddenly, a gunshot rings out throughout the building. The two beasts fall over in unison as the stagehand steps through the gap in the track holding a shotgun. The crowd is left in silence for a moment, until someone shouts out in anger. Almost instantly, the rest of the audience is driven to jeering and booing, frustrated at how their entertainment was ruined. The stagehand responds to this reaction by pointing his gun up and firing again. "That's enough!" he yells. "If you freaks want your bloodsports, then go to "`
+			label nope
+			`	You head towards the exit, pushing aside audience members completely captivated by the fight. Flinging the door open, you hear a gunshot from behind, and decide to hasten your leave.`
+			label outside
+			`	Immediately after stepping outside, you are greeting by sheets of rain lashing you. The strength of the torrent almost causes you to fall back into the building, but you manage to steady yourself and begin the trek back to your ship. Halfway
+
 
 
 mission "Smuggler's Den, Part 1"
