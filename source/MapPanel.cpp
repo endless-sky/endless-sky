@@ -1156,8 +1156,8 @@ void MapPanel::DrawMissions()
 	if(specialSystem)
 	{
 		// The special system pointer is larger than the others.
-		pointerCount[specialSystem] += 1;
-		Angle a = Angle(30.*pointerCount[specialSystem] );
+		++pointerCount[specialSystem];
+		Angle a = Angle(30. * pointerCount[specialSystem]);
 		Point pos = Zoom() * (specialSystem->Position() + center);
 		PointerShader::Draw(pos, a.Unit(), 20.f, 27.f, -4.f, black);
 		PointerShader::Draw(pos, a.Unit(), 11.5f, 21.5f, -6.f, specialColor);
@@ -1167,7 +1167,7 @@ void MapPanel::DrawMissions()
 	{
 		const System *system = mission.Destination()->GetSystem();
 		if(mission.CanAccept(player))
-			++(availableCount[system].first);
+			++availableCount[system].first;
 		else
 			++(availableCount[system].second);
 	}
@@ -1202,11 +1202,11 @@ void MapPanel::DrawMissions()
 	// Draw the available and unavailable jobs.
 	for(const auto &it : availableCount)
 	{
-		auto &system = it.first;
-		auto &available = it.second;
-		for(int i=0; i < available.first; i++)
+		const auto &system = it.first;
+		const auto &available = it.second;
+		for(int i = 0; i < available.first; ++i)
 			DrawPointer(system, pointerCount[system], availableColor);
-		for(int i=0; i < available.second; i++)
+		for(int i = 0; i < available.second; ++i)
 			DrawPointer(system, pointerCount[system], unavailableColor);
 	}
 }
@@ -1287,10 +1287,9 @@ void MapPanel::DrawPointer(const System *system, int &systemCount, const Color &
 void MapPanel::DrawPointer(Point position, int &systemCount, const Color &color, bool drawBack, bool bigger)
 {
 	++systemCount;
-	Angle angle = Angle(30.*systemCount);
-	if(systemCount>12) {
+	Angle angle = Angle(30. * systemCount);
+	if(systemCount > 12)
 		return;
-	}
 	if(drawBack)
 		PointerShader::Draw(position, angle.Unit(), 14.f + bigger, 19.f + 2 * bigger, -4.f, black);
 	PointerShader::Draw(position, angle.Unit(), 8.f + bigger, 15.f + 2 * bigger, -6.f, color);
