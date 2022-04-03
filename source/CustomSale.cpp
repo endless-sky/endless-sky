@@ -18,9 +18,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <string>
 
+using namespace std;
+
 namespace 
 {
-	const auto show = std::map<CustomSale::SellType, const std::string> {
+	const auto show = map<CustomSale::SellType, const string> {
 		{CustomSale::SellType::NONE, ""},
 		{CustomSale::SellType::VISIBLE, ""},
 		{CustomSale::SellType::IMPORT, "import"},
@@ -31,11 +33,11 @@ namespace
 
 
 
-void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, const Set<Outfit> &outfits, const std::string &mode)
+void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, const Set<Outfit> &outfits, const string &mode)
 {
 	for(const DataNode &child : node)
 	{
-		const std::string &token = child.Token(0);
+		const string &token = child.Token(0);
 		bool isValue = (child.Token(0) == "value");
 		bool isOffset = (child.Token(0) == "offset");
 		if((token == "clear" || token == "remove"))
@@ -117,24 +119,25 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 		}
 		else if(mode == "outfits")
 		{
+			bool isAdd;
+			const Outfit *outfit;
+			auto parseValueOrOffset = [isAdd, outfit](double &amount, const DataNode &line) {
+				if(isAdd)
+					amount += line.Value(2);
+				else
+					amount = line.Value(1);
+				// If there is a third element it means a relative % and not a raw value is specified.
+				if(line.Size() == 2 + isAdd)
+					amount /= outfit->Cost();
+			};
 			if(isValue || isOffset)
 				for(const DataNode &kid : child)
 				{
-					bool isAdd = (kid.Token(0) == "add");
-					const Outfit *outfit = outfits.Get(kid.Token(isAdd));
+					isAdd = (kid.Token(0) == "add");
+					outfit = outfits.Get(kid.Token(isAdd));
 					
 					if(kid.Size() < 2 + isAdd)
 						continue;
-
-					auto parseValueOrOffset = [isAdd, outfit](double &amount, const DataNode &line) {
-						if(isAdd)
-							amount += line.Value(2);
-						else
-							amount = line.Value(1);
-						// If there is a third element it means a relative % and not a raw value is specified.
-						if(line.Size() == 2 + isAdd)
-							amount /= outfit->Cost();
-					};
 
 					if(isValue)
 						parseValueOrOffset(relativeOutfitPrices[outfit], kid);
@@ -145,7 +148,8 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 			else if(child.Size() >= 2)
 			{
 				const Outfit *outfit = outfits.Get(child.Token(0));
-				relativeOutfitPrices[outfit] = child.Value(1) / outfit->Cost();
+				isAdd = (child.Token(0) == "add");
+				parseValueOrOffset(relativeOutfitPrices[outfit], child);
 			}
 			else
 				child.PrintTrace("Skipping unrecognized (outfit assumed) attribute:");
@@ -274,7 +278,7 @@ CustomSale::SellType CustomSale::GetSellType() const
 
 
 
-const std::string &CustomSale::GetShown(CustomSale::SellType sellType)
+const string &CustomSale::GetShown(CustomSale::SellType sellType)
 {
 	return show.find(sellType)->second;
 }

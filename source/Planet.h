@@ -14,10 +14,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define PLANET_H_
 
 #include "CustomSale.h"
-#include "ConditionSet.h"
 #include "Sale.h"
 
 #include <list>
+#include <map>
 #include <memory>
 #include <set>
 #include <string>
@@ -89,9 +89,9 @@ public:
 	// Get the list of outfits available from the outfitter with their custom elements.
 	const Sale<Outfit> &Outfitter() const;
 	// Get the local price of this outfit.
-	double GetLocalRelativePrice(const Outfit &outfit, const ConditionSet::Conditions &conditions) const;
+	double GetLocalRelativePrice(const Outfit &outfit, const std::map<std::string, int64_t> &conditions) const;
 	// Get the availability of this outfit.
-	CustomSale::SellType GetAvailability(const Outfit &outfit, const ConditionSet::Conditions &conditions) const;
+	CustomSale::SellType GetAvailability(const Outfit &outfit, const std::map<std::string, int64_t> &conditions) const;
 	
 	// Get this planet's government. If not set, returns the system's government.
 	const Government *GetGovernment() const;
@@ -153,14 +153,15 @@ private:
 
 	std::set<const Sale<Ship> *> shipSales;
 	std::set<const Sale<Outfit> *> outfitSales;
+	// This list is used as a cache, to be reused if the conditions do not change.
+	mutable CustomSale visibleCustomSale;
 	// The lists above will be converted into actual ship lists when they are
 	// first asked for:
-	mutable CustomSale customSale;
 	mutable Sale<Ship> shipyard;
 	mutable Sale<Outfit> outfitter;
 
 	// Used to check if the player conditions changed, and keep the old visible customSale in cache if they didn't.
-	ConditionSet::Conditions lastConditions;
+	mutable std::map<std::string, int64_t> lastConditions;
 
 	const Government *government = nullptr;
 	double requiredReputation = 0.;
