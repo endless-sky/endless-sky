@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Interface.h"
 #include "Information.h"
+#include "MenuAnimationPanel.h"
 #include "MenuPanel.h"
 #include "MaskManager.h"
 #include "PlayerInfo.h"
@@ -62,6 +63,8 @@ void GameLoadingPanel::Step()
 
 		GetUI()->Pop(this);
 		GetUI()->Push(new MenuPanel(player, gamePanels));
+		GetUI()->Push(new MenuAnimationPanel());
+
 		finishedLoading = true;
 	}
 }
