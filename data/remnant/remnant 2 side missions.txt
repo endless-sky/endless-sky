@@ -22,10 +22,10 @@ mission "Remnant: Visit to Paradise 1"
 		has "event: remnant: cognizance calm"
 		or
 			and
-				random > 30
+				random < 70
 				not "Remnant: Visit to Paradise 1: defer"
 			and
-				random > 60
+				random < 40
 				has "Remnant: Visit to Paradise 1: defer"
 	on offer
 		conversation
