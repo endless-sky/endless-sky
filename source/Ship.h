@@ -362,7 +362,7 @@ public:
 	// Check if this is a ship of a type that can be carried.
 	bool CanBeCarried() const;
 	// Move the given ship into one of the bays, if possible.
-	bool Carry(const std::shared_ptr<Ship> &ship, std::vector<Visual> *visuals = nullptr);
+	bool Carry(const std::shared_ptr<Ship> &ship, std::vector<Visual> *visuals);
 	// Reserve a bay for the given escort.
 	void ReserveBay(const std::shared_ptr<Ship> &escort);
 	// Empty the bays. If the carried ships are not special ships that are

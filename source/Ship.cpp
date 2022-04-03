@@ -1894,7 +1894,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		// If a fighter/drone is boarding, we need to check whether it can board
 		// its bay instead of its target (i.e. parent).
 		if(CanBeCarried() && target == GetParent() && reservedBay)
-			dp = target->Position() + target->Facing().Rotate(reservedBay->point) - position;
+			dp += target->Facing().Rotate(reservedBay->point);
 
 		double distance = dp.Length();
 		Point dv = (target->velocity - velocity);
@@ -3435,7 +3435,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship, vector<Visual> *visuals)
 
 	// Apply any retrieve effects if applicable (for example, no effect should
 	// be generated when launching from a planet).
-	if(visuals)
+	if(visuals && !dockBay.retrieveEffects.empty())
 		for(const Effect *effect : dockBay->retrieveEffects)
 			visuals->emplace_back(*effect, ship->Position(), ship->Velocity(), ship->Facing());
 	return true;
