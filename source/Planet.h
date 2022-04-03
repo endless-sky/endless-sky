@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define PLANET_H_
 
 #include "CustomSale.h"
+#include "ConditionSet.h"
 #include "Sale.h"
 
 #include <list>
@@ -22,7 +23,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
-class ConditionSet;
 class DataNode;
 class Fleet;
 class Government;
@@ -158,6 +158,9 @@ private:
 	mutable CustomSale customSale;
 	mutable Sale<Ship> shipyard;
 	mutable Sale<Outfit> outfitter;
+
+	// Used to check if the player conditions changed, and keep the old visible customSale in cache if they didn't.
+	ConditionSet::Conditions lastConditions;
 
 	const Government *government = nullptr;
 	double requiredReputation = 0.;
