@@ -669,7 +669,7 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 			return false;
 	}
 
-	auto &playerConditions = player.Conditions();
+	const auto &playerConditions = player.Conditions();
 	if(!toOffer.Test(playerConditions))
 		return false;
 
