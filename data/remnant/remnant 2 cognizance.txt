@@ -1622,6 +1622,9 @@ mission "Remnant: Cognizance 38"
 mission "Remnant: Cognizance 39"
 	name "A breath of calm"
 	landing
+	invisible
+	source
+		government "Remnant"
 	to offer
 		has "Remnant: Cognizance 38: done"
 	on offer

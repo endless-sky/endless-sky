@@ -62,6 +62,8 @@ mission "Remnant: Visit to Paradise 1"
 			label vailfun
 			`	"Excellent. I will meet you onboard the <ship> shortly."`
 				accept
+	on defer
+		set "Remnant: Visit to Paradise 1: defer"
 	on stopover
 		conversation
 			branch science
