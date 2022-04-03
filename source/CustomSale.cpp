@@ -31,11 +31,13 @@ namespace
 
 
 
-void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, const Set<Outfit> &outfits)
+void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, const Set<Outfit> &outfits, const std::string &mode)
 {
 	for(const DataNode &child : node)
 	{
 		const std::string &token = child.Token(0);
+		bool isValue = (child.Token(0) == "value");
+		bool isOffset = (child.Token(0) == "offset");
 		if((token == "clear" || token == "remove"))
 		{
 			if(child.Size() == 1)
@@ -84,77 +86,6 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 			else
 				child.PrintTrace("Skipping unrecognized add:");
 		}
-		else if(token == "outfits")
-		{
-			for(const DataNode &grandChild : child)
-			{
-				bool isValue = (grandChild.Token(0) == "value");
-				bool isOffset = (grandChild.Token(0) == "offset");
-				if(isValue || isOffset)
-					for(const DataNode &kid : grandChild)
-					{
-						bool isAdd = (kid.Token(0) == "add");
-						const Outfit *outfit = outfits.Get(kid.Token(isAdd));
-						
-						if(kid.Size() < 2 + isAdd)
-							continue;
-
-						auto parseValueOrOffset = [isAdd, outfit](double &amount, const DataNode &line) {
-							if(isAdd)
-								amount += line.Value(2);
-							else
-								amount = line.Value(1);
-							// If there is a third element it means a relative % and not a raw value is specified.
-							if(line.Size() == 2 + isAdd)
-								amount /= outfit->Cost();
-						};
-
-						if(isValue)
-							parseValueOrOffset(relativeOutfitPrices[outfit], kid);
-						else if(isOffset)
-							parseValueOrOffset(relativeOutfitOffsets[outfit], kid);
-					}
-				else if(grandChild.Size() >= 2)
-				{
-					const Outfit *outfit = outfits.Get(grandChild.Token(0));
-					relativeOutfitPrices[outfit] = grandChild.Value(1) / outfit->Cost();
-				}
-			}
-		}
-		else if(token == "outfitters")
-		{
-			for(const DataNode &grandChild : child)
-			{
-				bool isValue = (grandChild.Token(0) == "value");
-				bool isOffset = (grandChild.Token(0) == "offset");
-				if(isValue || isOffset)
-					for(const DataNode &kid : grandChild)
-					{
-						bool isAdd = (kid.Token(0) == "add");
-						const Sale<Outfit> *outfitter = items.Get(kid.Token(isAdd));
-
-						if(kid.Size() < 2 + isAdd)
-							continue;
-
-						auto parseValueOrOffset = [isAdd, outfitter](double &amount, const DataNode &line) {
-							if(isAdd)
-								amount += line.Value(2);
-							else
-								amount = line.Value(1);
-						};
-
-						if(isValue)
-							parseValueOrOffset(relativePrices[outfitter], kid);
-						else if(isOffset)
-							parseValueOrOffset(relativeOffsets[outfitter], kid);
-					}
-				else if(grandChild.Size() >= 2)
-				{
-					const Sale<Outfit> *outfitter = items.Get(grandChild.Token(0));
-					relativePrices[outfitter] = grandChild.Value(1);
-				}
-			}
-		}
 		else if(token == "hidden")
 			sellType = SellType::HIDDEN;
 		else if(token == "import")
@@ -183,6 +114,73 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 		{
 			conditions = ConditionSet{};
 			conditions.Load(child);
+		}
+		else if(mode == "outfits")
+		{
+			if(isValue || isOffset)
+				for(const DataNode &kid : child)
+				{
+					bool isAdd = (kid.Token(0) == "add");
+					const Outfit *outfit = outfits.Get(kid.Token(isAdd));
+					
+					if(kid.Size() < 2 + isAdd)
+						continue;
+
+					auto parseValueOrOffset = [isAdd, outfit](double &amount, const DataNode &line) {
+						if(isAdd)
+							amount += line.Value(2);
+						else
+							amount = line.Value(1);
+						// If there is a third element it means a relative % and not a raw value is specified.
+						if(line.Size() == 2 + isAdd)
+							amount /= outfit->Cost();
+					};
+
+					if(isValue)
+						parseValueOrOffset(relativeOutfitPrices[outfit], kid);
+					else if(isOffset)
+						parseValueOrOffset(relativeOutfitOffsets[outfit], kid);
+				}
+			// Default behavior assumes value.
+			else if(child.Size() >= 2)
+			{
+				const Outfit *outfit = outfits.Get(child.Token(0));
+				relativeOutfitPrices[outfit] = child.Value(1) / outfit->Cost();
+			}
+			else
+				child.PrintTrace("Skipping unrecognized (outfit assumed) attribute:");
+		}
+		else if(mode == "outfitters")
+		{
+			if(isValue || isOffset)
+				for(const DataNode &kid : child)
+				{
+					bool isAdd = (kid.Token(0) == "add");
+					const Sale<Outfit> *outfitter = items.Get(kid.Token(isAdd));
+
+					if(kid.Size() < 2 + isAdd)
+						continue;
+
+					auto parseValueOrOffset = [isAdd, outfitter](double &amount, const DataNode &line) {
+						if(isAdd)
+							amount += line.Value(2);
+						else
+							amount = line.Value(1);
+					};
+
+					if(isValue)
+						parseValueOrOffset(relativePrices[outfitter], kid);
+					else if(isOffset)
+						parseValueOrOffset(relativeOffsets[outfitter], kid);
+				}
+			// Default behavior assumes value.
+			else if(child.Size() >= 2)
+			{
+				const Sale<Outfit> *outfitter = items.Get(child.Token(0));
+				relativePrices[outfitter] = child.Value(1);
+			}
+			else
+				child.PrintTrace("Skipping unrecognized (outfitter assumed) attribute:");
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");

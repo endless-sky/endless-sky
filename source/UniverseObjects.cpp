@@ -150,8 +150,8 @@ void UniverseObjects::Change(const DataNode &node)
 		governments.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "outfitter" && node.Size() >= 2)
 		outfitSales.Get(node.Token(1))->Load(node, outfits);
-	else if(node.Token(0) == "pricing" && node.Size() >= 2)
-		customSales.Get(node.Token(1))->Load(node, outfitSales, outfits);
+	else if(node.Token(0) == "pricing" && node.Size() >= 3)
+		customSales.Get(node.Token(2))->Load(node, outfitSales, outfits, node.Token(1));
 	else if(node.Token(0) == "planet" && node.Size() >= 2)
 		planets.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "shipyard" && node.Size() >= 2)
@@ -340,7 +340,7 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 		else if(key == "planet" && node.Size() >= 2)
 			planets.Get(node.Token(1))->Load(node);
 		else if(key == "pricing" && node.Size() >= 2)
-			customSales.Get(node.Token(1))->Load(node, outfitSales, outfits);
+			customSales.Get(node.Token(2))->Load(node, outfitSales, outfits, node.Token(1));
 		else if(key == "ship" && node.Size() >= 2)
 		{
 			// Allow multiple named variants of the same ship model.

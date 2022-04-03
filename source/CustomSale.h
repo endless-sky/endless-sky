@@ -40,7 +40,7 @@ public:
 
 
 public:
-	void Load(const DataNode &node, const Set<Sale<Outfit>> &items, const Set<Outfit> &outfits);
+	void Load(const DataNode &node, const Set<Sale<Outfit>> &items, const Set<Outfit> &outfits, const std::string &mode);
 
 	// Adds another CustomSale of the same sellType to this one, or any type if this one is empty.
 	bool Add(const CustomSale &other);
