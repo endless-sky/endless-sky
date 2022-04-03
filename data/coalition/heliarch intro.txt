@@ -551,6 +551,7 @@ mission "Heliarch Recon 1"
 	stopover "Kuwaru Efreti"
 	destination "Ring of Wisdom"
 	to offer
+		"reputation: Quarg" >= 0
 		"coalition jobs" >= 55
 		has "Wanderers: Quarg Assistance 2: done"
 		has "Coalition: Contributor: done"
@@ -582,6 +583,8 @@ mission "Heliarch Recon 1"
 			`	He points to some of the worlds, and you list the places you need to land: <stopovers>.`
 			`	They call for some engineers to come work on your ship's sensors, the whole thing taking just a few minutes. When they're done, the Heliarch agents thank you for your cooperation, and tell you to head for the <destination> when you've collected all the data.`
 				accept
+	to fail
+		"reputation: Quarg" < 0
 	on complete
 		event "heliarch recon break" 10 21
 		"coalition jobs" ++
