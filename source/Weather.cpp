@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Angle.h"
 #include "Hazard.h"
+#include "Screen.h"
 #include "Ship.h"
 #include "Visual.h"
 #include "Random.h"
@@ -77,7 +78,8 @@ void Weather::Step(vector<Visual> &visuals, const Point *effectCenter)
 	// their origin, then creating the effect there.
 	double minRange = hazard->MinRange();
 	// If it is systemwide, only draw around the flagship.
-	double maxRange = hazard->SystemWide() ? 5000. : hazard->MaxRange();
+	double maxRange = hazard->SystemWide() ? 2. * (Screen::Width() > Screen::Height() ? 
+		Screen::Width() : Screen::Height()) : hazard->MaxRange();
 
 	// Estimate the number of visuals to be generated this frame.
 	// MAYBE: create only a subset of possible effects per frame.
