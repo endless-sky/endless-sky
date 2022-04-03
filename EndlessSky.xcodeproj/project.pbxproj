@@ -171,6 +171,7 @@
 		DFAAE2AA1FD4A27B0072C0A8 /* ImageSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFAAE2A81FD4A27B0072C0A8 /* ImageSet.cpp */; };
 		E3D54794A1EEF51CD4859170 /* DamageProfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B4D15899E5F47443D0ED6 /* DamageProfile.cpp */; };
 		ED5E4F2ABA89E9DE00603E69 /* TestContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3134EC4B1CCA5546A10C3EF /* TestContext.cpp */; };
+		F35E4D6EA465D71CDA282EBA /* MenuAnimationPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0FA4800BE72C1B5A7D567B9 /* MenuAnimationPanel.cpp */; };
 		F55745BDBC50E15DCEB2ED5B /* layout.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF4321AF819E944EC02FB9 /* layout.hpp */; settings = {ATTRIBUTES = (Project, ); }; };
 		F78A44BAA8252F6D53B24B69 /* TextReplacements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A4E42FEB3B265A91D5BD2FC /* TextReplacements.cpp */; };
 /* End PBXBuildFile section */
@@ -241,6 +242,7 @@
 		74F543598EEFB3745287E663 /* Bitset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Bitset.cpp; path = source/Bitset.cpp; sourceTree = "<group>"; };
 		86AB4B6E9C4C0490AE7F029B /* EsUuid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EsUuid.h; path = source/EsUuid.h; sourceTree = "<group>"; };
 		86D9414E818561143BD298BC /* TextReplacements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextReplacements.h; path = source/TextReplacements.h; sourceTree = "<group>"; };
+		8CB543A1AA20F764DD7FC15A /* MenuAnimationPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuAnimationPanel.h; path = source/MenuAnimationPanel.h; sourceTree = "<group>"; };
 		8E8A4C648B242742B22A34FA /* Weather.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Weather.cpp; path = source/Weather.cpp; sourceTree = "<group>"; };
 		950742538F8CECF5D4168FBC /* EsUuid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EsUuid.cpp; path = source/EsUuid.cpp; sourceTree = "<group>"; };
 		98104FFDA18E40F4A712A8BE /* CoreStartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreStartData.h; path = source/CoreStartData.h; sourceTree = "<group>"; };
@@ -506,6 +508,7 @@
 		B5DDA6932001B7F600DBA76A /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = News.h; path = source/News.h; sourceTree = "<group>"; };
 		C49D4EA08DF168A83B1C7B07 /* Hazard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Hazard.cpp; path = source/Hazard.cpp; sourceTree = "<group>"; };
 		C62B4D15899E5F47443D0ED6 /* DamageProfile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DamageProfile.cpp; path = source/DamageProfile.cpp; sourceTree = "<group>"; };
+		D0FA4800BE72C1B5A7D567B9 /* MenuAnimationPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuAnimationPanel.cpp; path = source/MenuAnimationPanel.cpp; sourceTree = "<group>"; };
 		DB9A43BA91B3BC47186BF05E /* UniverseObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UniverseObjects.h; path = source/UniverseObjects.h; sourceTree = "<group>"; };
 		DC8146D5A145C2DA87D98F1F /* GameLoadingPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameLoadingPanel.h; path = source/GameLoadingPanel.h; sourceTree = "<group>"; };
 		DE844E2BBF82C39B568527CB /* ByName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ByName.h; path = source/comparators/ByName.h; sourceTree = "<group>"; };
@@ -848,6 +851,8 @@
 				C62B4D15899E5F47443D0ED6 /* DamageProfile.cpp */,
 				19184B47B496B414EC9CE671 /* DamageProfile.h */,
 				5CF247B48EEC7A3C366C1DFA /* DamageDealt.h */,
+				D0FA4800BE72C1B5A7D567B9 /* MenuAnimationPanel.cpp */,
+				8CB543A1AA20F764DD7FC15A /* MenuAnimationPanel.h */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -1203,6 +1208,7 @@
 				CE3F49A88B6DCBE09A711110 /* opengl.cpp in Sources */,
 				027A4E858B292CE9F0A06F89 /* FireCommand.cpp in Sources */,
 				E3D54794A1EEF51CD4859170 /* DamageProfile.cpp in Sources */,
+				F35E4D6EA465D71CDA282EBA /* MenuAnimationPanel.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
