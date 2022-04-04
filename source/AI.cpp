@@ -400,7 +400,6 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	Orders newOrders;
 	if(activeCommands.Has(Command::FIGHT) && ((target && !target->IsYours()) || targetAsteroid))
 	{
-		// targetName is name of ship or type of asteroid
 		string targetDescription;
 		if(target)
 		{
@@ -3893,7 +3892,7 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 		for(const Ship *ship : ships)
 		{
 			// Never issue orders to a ship to target itself.
-			if(targetShip && ship == targetShip)
+			if(ship == targetShip)
 				continue;
 
 			gaveOrder = true;
