@@ -31,7 +31,7 @@ mission "Resistance: Charity 1"
 					decline
 			`	"Very prosperous, many Kimek worlds have become, but still lagging behind, a few of our planets are," she explains. "Very poor, the people of <planet> are, and lack many amenities such as computers and communicators, they do. Want to help them, our more fortunate people do, and offered up many supplies, they have. In need of Captains to transport them to <planet>, we are," she finishes looking at your ship.`
 			choice
-				`	"I'd be glad to help you, have the supplies loaded into my shipo."`
+				`	"I'd be glad to help you, have the supplies loaded into my ship."`
 				`	"That's a noble cause, but I don't work as a cargo hauler, sorry."`
 					decline
 			`	Her mouth produces something of a chirping, clicking sound, "Grateful I am, Captain. Pay you much, we cannot, but helping many, you will be, assure you of that, I do."`
@@ -776,7 +776,7 @@ mission "Resistance: Evacuation 2"
 			`Some of the local Kimek are waiting with transport vehicles for the students. They hand you <payment> once you step off your ship, and one of them appears to tick away at a list with each student that steps off your ship. After the last one leaves, he continues to look at your ship for a few seconds, then to the students, entering the vehicles. He strikes two lines, and thanks you for helping. Back inside your ship, you receive a call from Elirom.`
 			branch resistance
 				has "Resistance: Questions: done"
-			`	"<last>! Thank you for helping, I must," he says. "Difficult it can be, when relying on contractors we are. Prefer to travel in ships of my company, our clients usually do. Glad I am, that no issues with the <bunks> of them, you had. If any more trouble with our usual transports, I have, ask for your services again I may."`
+			`	"<last>! Thank you for helping, I must," he says. "Difficult it can be, when relying on contractors we are. Prefer to travel in ships of my company, our clients usually do. Glad I am, that no issues with the 35 of them, you had. If any more trouble with our usual transports, I have, ask for your services again I may."`
 			choice
 				`	"Sure thing, it's no problem helping with this."`
 					goto end
@@ -784,7 +784,7 @@ mission "Resistance: Evacuation 2"
 			`	"Only... oh, I..." he pauses for a few seconds just as his voice cracks a little. "Forgive me, Captain, mistaken, it appears I was. Mixed up the number of passengers with that of another client, I did. Pay more attention next time, I shall." He thanks you again, and ends the call.`
 				accept
 			label resistance
-			`	"<last>! A life saver, you are, quite literally," he says. "Handling other evacuations, I still am, so be there to thank you in person, I could not, but know that deeply grateful for your saving those <bunks>, I am. Contact you again I will, when in need of more help rescuing members we are."`
+			`	"<last>! A life saver, you are, quite literally," he says. "Handling other evacuations, I still am, so be there to thank you in person, I could not, but know that deeply grateful for your saving those 35, I am. Contact you again I will, when in need of more help rescuing members we are."`
 			choice
 				`	"Of course, I'd be glad to help again."`
 					goto end
