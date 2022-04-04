@@ -718,6 +718,7 @@ mission "Heliarch Recon 2-B"
 mission "Quarg Interrogation"
 	invisible
 	landing
+	deadline 1
 	source
 		government "Quarg"
 		not planet "Humanika"
@@ -743,7 +744,7 @@ mission "Quarg Interrogation"
 					goto truth
 			label lie
 			`	Around ten seconds pass without it saying anything, simply staring at your eyes and blinking slowly. "I see." Without another word, it walks away, headed to the Wardragon.`
-				decline
+				accept
 			label truth
 			`	"And why did you agree? Do you wish to join their ranks, perhaps?" It asks.`
 			choice
@@ -757,6 +758,13 @@ mission "Quarg Interrogation"
 			label end
 			`	It blinks a few more times as a few small stripes on its face rapidly alternate between shades of deep blue and bright red, then ends with, "It would be most wise to cut off all your ties with these 'Heliarchs', human." It walks away, headed to the Wardragon it looked at before.`
 				decline
+	npc save
+		government "Quarg"
+		personality launching uninterested
+		fleet
+			names "quarg"
+			variant
+				"Quarg Wardragon"
 
 mission "Heliarch Recon 3-A"
 	name "Preparations for Scanning"
