@@ -1483,7 +1483,7 @@ mission "Saryd University Lecture"
 		conversation
 			`As you exit a restaurant in the spaceport, you notice a rumpled-looking Saryd staring at you. Attention from others is not new for you in Coalition space, as you are quite an unusual sight here. You don't pay him much mind until he begins to gallop towards you, hailing you down.`
 			`	"Captain! Excited to finally meet you, I am. Heard of the human in our space, I have, but to see you myself, special it is."`
-			`	"A scientist, I am, and invitied to speak at a university seminar, I have been. Be there by <date>, I must. The honor of transporting me to <planet>, will you give me?"`
+			`	"A scientist, I am, and invited to speak at a university seminar, I have been. Be there by <date>, I must. The honor of transporting me to <planet>, will you give me?"`
 			choice
 				`	"What is the seminar about?"`
 					goto xeno
@@ -1534,7 +1534,7 @@ mission "Saryd University Lecture"
 				`	"Sorry, I don't have time."`
 					decline
 			label explanation
-			`	"Contact with a human world, Heliarchs have. Some documents on humanity, the government there gave. Shared their knoweldge with civilian researchers, the Heliarchs have, so analyze the info, we do, so that understand humans better, we may."`
+			`	"Contact with a human world, Heliarchs have. Some documents on humanity, the government there gave. Shared their knowledge with civilian researchers, the Heliarchs have, so analyze the info, we do, so that understand humans better, we may."`
 			choice
 				`	"Sure, I'd be glad to."`
 					goto yes
@@ -1587,11 +1587,12 @@ mission "Saryd University Lecture"
 			label know
 			branch coalitionknow
 				has "coalition knows hai"
+			action
+				set "coalition knows hai"
 			`	"Several members of the audience are delighted. "Unknown to us, this species is," says the Heliarch. "That you have made contact with them despite the Quarg, good news it is."`
 			`	"Tell us more of them, could you?" asks another scientist.`
 			`	As you open your mouth to speak, the Heliarch cuts you off. "Enough questions on the Hai, we have." The crowd looks disappointed at this development.`
-			action
-				set "coalition knows hai"
+				goto nextquestion
 			label coalitionknow
 			`	Several members of the audience are delighted. "Ah, the Hai, we have heard of," says the Heliarch. "That you have made contact with them despite the Quarg, good news it is."`
 			`	"Tell us more of them, could you?" asks another scientist.`
