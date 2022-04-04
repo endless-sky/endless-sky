@@ -2568,8 +2568,8 @@ ship "Protector"
 	attributes
 		category "Heavy Warship"
 		"cost" 5500000
-		"shields" 9500
-		"hull" 6500
+		"shields" 10000
+		"hull" 7800
 		"required crew" 30
 		"bunks" 69
 		"mass" 500
@@ -2577,8 +2577,8 @@ ship "Protector"
 		"heat dissipation" .6
 		"fuel capacity" 400
 		"cargo space" 50
-		"outfit space" 570
-		"weapon capacity" 220
+		"outfit space" 590
+		"weapon capacity" 230
 		"engine capacity" 100
 		weapon
 			"blast radius" 160
@@ -2586,9 +2586,9 @@ ship "Protector"
 			"hull damage" 800
 			"hit force" 2400
 	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
-		"Quad Blaster Turret" 4
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"Quad Blaster Turret" 6
 		"Heavy Anti-Missile Turret" 2
 		
 		"Fusion Reactor"
@@ -2604,14 +2604,16 @@ ship "Protector"
 		
 	engine -12 122.5
 	engine 12 122.5
-	gun -17.5 -101 "Sidewinder Missile Launcher"
-	gun 17.5 -101 "Sidewinder Missile Launcher"
-	turret -48.5 -48 "Quad Blaster Turret"
-	turret 48.5 -48 "Quad Blaster Turret"
-	turret -68.5 0.5 "Quad Blaster Turret"
-	turret 68.5 0.5 "Quad Blaster Turret"
-	turret -48.5 48.5 "Heavy Anti-Missile Turret"
-	turret 48.5 48.5 "Heavy Anti-Missile Turret"
+	gun -17.5 -101 "Meteor Missile Launcher"
+	gun 17.5 -101 "Meteor Missile Launcher"
+	turret 0 -28.5 "Heavy Anti-Missile Turret"
+	turret -48.5 -48.5 "Quad Blaster Turret"
+	turret 48.5 -48.5 "Quad Blaster Turret"
+	turret -68.5 0 "Quad Blaster Turret"
+	turret 68.5 0 "Quad Blaster Turret"
+	turret -48.5 48.5 "Quad Blaster Turret"
+	turret 48.5 48.5 "Quad Blaster Turret"
+	turret 0 30 "Heavy Anti-Missile Turret"
 	leak "leak" 60 50
 	leak "flame" 20 80
 	explode "tiny explosion" 18
