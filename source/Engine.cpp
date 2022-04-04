@@ -2126,6 +2126,7 @@ void Engine::DoWeather(Weather &weather)
 }
 
 
+
 // Check if any ship collected the given flotsam.
 void Engine::DoCollection(Flotsam &flotsam)
 {
