@@ -109,7 +109,7 @@ namespace {
 	bool HasMultipleLandablePlanets(const System &system)
 	{
 		const Planet *firstPlanet = nullptr;
-		for(auto &stellarObject : system.Objects())
+		for(auto &&stellarObject : system.Objects())
 			if(stellarObject.HasValidPlanet() && stellarObject.HasSprite() && !stellarObject.GetPlanet()->IsWormhole())
 			{
 				// We can return true once we found 2 different landable planets.
@@ -1223,13 +1223,13 @@ void MapPanel::DrawTooltips()
 				tooltip += "\n";
 
 			unsigned sum = 0;
-			for(const auto& it : t.outfits)
+			for(const auto &it : t.outfits)
 				sum += it.second;
 
 			tooltip += to_string(sum) + (sum == 1 ? " stored outfit" : " stored outfits");
 
 			if(HasMultipleLandablePlanets(*hoverSystem) || t.outfits.size() > 1)
-				for(const auto& it : t.outfits)
+				for(const auto &it : t.outfits)
 					tooltip += "\n - " + to_string(it.second) + " on " + it.first->Name();
 		}
 
