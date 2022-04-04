@@ -308,7 +308,7 @@ bool CustomSale::Has(const Outfit &item) const
 
 
 
-bool CustomSale::Matches(const Planet &planet, const ConditionSet::Conditions &playerConditions) const
+bool CustomSale::Matches(const Planet &planet, const std::map<std::string, int64_t> &playerConditions) const
 {
 	return (location ? location == &planet : locationFilter.Matches(&planet)) && 
 		(conditions.IsEmpty() || conditions.Test(playerConditions));
