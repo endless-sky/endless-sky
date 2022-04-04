@@ -1475,6 +1475,21 @@ Copyright: Becca Tommaso
 License: CC0 (Creative Commons Zero)/Public-Domain
 Comment: Derived from works by ESA/Rosetta spacecraft (under the same license).
 
+Files:
+ images/ship/dromedary*
+ images/ship/dromedarywreck*
+ images/thumbnail/dromedary*
+ images/thumbnail/dromedarywreck*
+Copyright:  Saugia (https://github.com/Saugia)
+License: CC-BY-SA-4.0 
+
+Files:
+ images/ship/dromedaryghost*
+ images/thumb/dromedaryghost*
+Copyright:  Saugia (https://github.com/Saugia)
+License: CC-BY-SA-4.0 
+Comment: Transparent materials by scrinarii1337.
+
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
