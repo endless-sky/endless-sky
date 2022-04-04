@@ -387,7 +387,7 @@ double Planet::GetLocalRelativePrice(const Outfit &outfit, const map<string, int
 {
 	// We need to know the availability of the outfit so we only consider CustomSales of that availability.
 	CustomSale::SellType sellType = GetAvailability(outfit, conditions);
-	double priceChange;
+	double priceChange = 1.;
 	bool canUseCache = conditions == lastConditions;
 	// Check if we need to udpate the cache of visibleCustomSale.
 	if(sellType == CustomSale::SellType::VISIBLE && !canUseCache)
