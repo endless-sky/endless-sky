@@ -8,7 +8,8 @@ Copyright: Michael Zahniser <mzahniser@gmail.com>
            endless-sky contributors (see credits.txt and changelog)
 License: GPL-3+
 
-Files: images/*
+Files:
+ images/*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 
@@ -190,29 +191,34 @@ License: public-domain
  From NASA, and therefore in the public domain because they were created by
  government employees while doing work for the government.
 
-Files: images/scene/*
+Files:
+ images/scene/*
 Copyright: Various
 License: public-domain
  Taken from morguefile.com, a collection of photographs that have been donated
  and placed in the public domain. (Exceptions noted below.)
 
-Files: images/scene/geoscan*
+Files:
+ images/scene/geoscan*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 
-Files: images/scene/loc*
+Files:
+ images/scene/loc*
 Copyright: Library of Congress
 License: public-domain
  From the Library of Congress. Public domain because they are photographs taken
  by a government employee as part of their job.
 
-Files: images/scene/army*
+Files:
+ images/scene/army*
 Copyright: US Army
 License: public-domain
  From the US Army. Public domain because they are photographs taken by a
  government employee as part of their job.
 
-Files: images/scene/eso*
+Files:
+ images/scene/eso*
 Copyright: ESO/L. Calçada (European Southern Observatory)
 License: CC-BY-4.0
 
@@ -224,49 +230,59 @@ License: public-domain
  From NASA, and therefore in the public domain because they were created by
  government employees while doing work for the government.
 
-Files: images/land/*
+Files:
+ images/land/*
 Copyright: Various
 License: public-domain
  Taken from morgue-file.com, a collection of photographs that have been donated
  and placed in the public domain. (Exceptions noted below.)
 
-Files: images/land/bwerner*
+Files:
+ images/land/bwerner*
 Copyright: Berthold Werner (commons.wikimedia.org/wiki/User:Berthold_Werner)
 License: CC-BY-SA-3.0
 Comment: Taken from Wikimedia commons. Cropped and edited.
 
-Files: images/land/myrabella*
+Files:
+ images/land/myrabella*
 Copyright: Myrabella (commons.wikimedia.org/wiki/User:Myrabella)
 License: CC-BY-SA-3.0
 Comment: Taken from Wikimedia commons. Cropped and edited.
 
-Files: images/land/dmottl*
+Files:
+ images/land/dmottl*
 Copyright: Dmitry A. Mottl (commons.wikimedia.org/wiki/User:Dmottl)
 License: CC-BY-SA-3.0
 Comment: Taken from Wikimedia commons. Cropped and edited.
 
-Files: images/land/mfield*
+Files:
+ images/land/mfield*
 Copyright: Matthew Field (commons.wikimedia.org/wiki/User:Mfield)
 License: CC-BY-SA-3.0
 Comment: Taken from Wikimedia commons. Cropped and edited.
 
-Files: images/land/*-sfiera*
+Files:
+ images/land/*-sfiera*
 Copyright: Chris Pickel (sfiera.net)
 License: CC-BY-SA-4.0
 
-Files: images/land/*-striker*
+Files:
+ images/land/*-striker*
 Copyright: Michael Wilso (sixfootplus@gmail.com)
 License: CC-BY-SA-4.0
 
-Files: images/land/*-harro*
+Files:
+ images/land/*-harro*
 Copyright: @harro.eu (copyright@harro.eu)
 License: CC-BY-SA-4.0
 
-Files: images/land/*-iridium*
+Files:
+ images/land/*-iridium*
 Copyright: @Iridium Ore (blueajp@gmail.com)
 License: CC-BY-SA-4.0
 
-Files: images/land/lava11*
+Files:
+ images/land/lava11*
 Copyright: National Archives and Records Administration
 License: public-domain
 Comment: Taken from Wikimedia Commons. Cropped and edited.
@@ -277,18 +293,21 @@ Copyright: Office of War Information
 License: public-domain
 Comment: Taken from Wikimedia Commons. Cropped and edited.
 
-Files: images/land/*-spfld*
+Files:
+ images/land/*-spfld*
 Copyright: Eric Denni (spfldsatellite@gmail.com)
 License: CC-BY-SA-4.0
 
-Files: images/land/sivael*
+Files:
+ images/land/sivael*
 Copyright: Tymoteusz Kapuściński (Sivael)
 License: CC-BY-SA-4.0
 Comment: Screenshots of environments created with assets purchased by Tymoteusz
  Kapuściński from the Unity Asset Store. Post-processing applied by Michael
  Zahniser to make the images look less artificial.
 
-Files: images/outfit/scan?module*
+Files:
+ images/outfit/scan?module*
 Copyright: Zachary Siple
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (from under the same license).
@@ -487,7 +506,8 @@ Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
-Files: images/outfit/railslug?rack*
+Files:
+ images/outfit/railslug?rack*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Matthew Smestad (under the same license).
@@ -732,34 +752,41 @@ Files:
 Copyright: Azure
 License: CC-BY-SA-4.0
 
-Files: sounds/*
+Files:
+ sounds/*
 Copyright: Various
 License: public-domain
  Based on public domain sounds taken from freesound.org.
 
-Files: sounds/heavy?rocket?hit.wav
+Files:
+ sounds/heavy?rocket?hit.wav
 Copyright: Copyright Mike Koenig
 License: CC-BY-SA-3.0
 Comment: Taken from http://soundbible.com/1467-Grenade-Explosion.html
 
-Files: sounds/missile?hit.wav
+Files:
+ sounds/missile?hit.wav
 Copyright: Copyright "Nbs Dark"
 License: public-domain
 Comment: Taken from https://freesound.org/people/Nbs%20Dark/sounds/94185/
 
-Files: sounds/torpedo?hit.wav
+Files:
+ sounds/torpedo?hit.wav
 License: public-domain
 
-Files: sounds/meteor.wav
+Files:
+ sounds/meteor.wav
 Copyright: Copyright "18hiltc"
 License: CC-BY-SA-3.0
 Comment: Taken from https://freesound.org/people/18hiltc/sounds/202725/
 
-Files: sounds/sidewinder.wav
+Files:
+ sounds/sidewinder.wav
 License: public-domain
 Comment: Taken from https://freesound.org/people/NHMWretched/sounds/151858/
 
-Files: sounds/explosion?huge.wav
+Files:
+ sounds/explosion?huge.wav
 Copyright: Copyright Mike Koenig
 License: CC-BY-SA-3.0
 Comment: Taken from http://soundbible.com/1151-Grenade.html
@@ -928,7 +955,8 @@ Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Anarchist2.
 
-Files: images/ship/mosprey*
+Files:
+ images/ship/mosprey*
 Copyright: Benjamin Hauch (https://github.com/tehhowch)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Anarchist2.
@@ -1188,27 +1216,32 @@ Copyright: @Karirawri (crim@live.no)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
-Files: sounds/dragonflame*
+Files:
+ sounds/dragonflame*
 Copyright: TheHadnot
 License: public-domain
 Comment: Taken from https://freesound.org/people/TheHadnot/sounds/160880/
 
-Files: sounds/pwave*
+Files:
+ sounds/pwave*
 Copyright: aust_paul
 License: public-domain
 Comment: Taken from https://freesound.org/people/aust_paul/sounds/30935/
 
-Files: sounds/hion*
+Files:
+ sounds/hion*
 Copyright: michael_kur95
 License: CC-BY-3.0
 Comment: Taken from https://freesound.org/people/michael_kur95/sounds/332993/ and modified.
 
-Files: images/outfit/emp?rack*
+Files:
+ images/outfit/emp?rack*
 Copyright: Anarchist2
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
-Files: images/planet/*-hot*
+Files:
+ images/planet/*-hot*
 Copyright: Tommaso Becca
 License: CC-BY-SA-4.0
 Comment: Derived from works by ESA/Hubble & NASA (under the same license)
@@ -1227,11 +1260,13 @@ Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Original work by Griffin Schutte (theronepic@gmail.com), finished by Tommaso Becca.
 
-Files: images/outfit/ka'het?compact?engine*
+Files:
+ images/outfit/ka'het?compact?engine*
 Copyright: Griffin Schutte (theronepic@gmail.com)
 License: CC-BY-SA-4.0
 
-Files: images/outfit/plasma?repeater*
+Files:
+ images/outfit/plasma?repeater*
 Copyright: Becca Tommaso
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and Darcy Manoel.
@@ -1333,7 +1368,8 @@ Files:
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
 
-Files: sounds/ionball*
+Files: 
+ sounds/ionball*
 Copyright: pluralz
 License: public-domain
 Comment: Taken from https://freesound.org/people/pluralz/sounds/475806/
@@ -1445,32 +1481,35 @@ Files:
 Copyright: Scrinarii1337#0001
 License: CC-BY-SA-4.0
 
-Files: images/scene/citydark
-images/scene/buildings
-images/scene/busysteet
-images/scene/iceplains
-images/scene/iceplains2
-images/scene/iceplains3
-images/scene/lonelyrock
-images/scene/redrocks
-images/scene/seasidecliffs
-images/scene/Seasunset
-images/scene/smeer
-images/scene/snowfield
-images/scene/snowvillage
-images/scene/sunet
-images/scene/tower
-images/scene/icepicture
-images/scene/snowplains
+Files:
+ images/scene/citydark
+ images/scene/buildings
+ images/scene/busysteet
+ images/scene/iceplains
+ images/scene/iceplains2
+ images/scene/iceplains3
+ images/scene/lonelyrock
+ images/scene/redrocks
+ images/scene/seasidecliffs
+ images/scene/Seasunset
+ images/scene/smeer
+ images/scene/snowfield
+ images/scene/snowvillage
+ images/scene/sunet
+ images/scene/tower
+ images/scene/icepicture
+ images/scene/snowplains
 Copyright: unsplash.com/
 License: CC0 (Creative Commons Zero)/Public-Domain
 
-Files: images/outfits/skadetear
-images/scenes/hroar
+Files: 
+ images/outfits/skadetear
+ images/scenes/hroar
 Copyright: Dane Crowton
 License: CC-BY-SA-4.0
 
-Files: images/land/asteroid0
+Files:
+ images/land/asteroid0
 Copyright: Becca Tommaso
 License: CC0 (Creative Commons Zero)/Public-Domain
 Comment: Derived from works by ESA/Rosetta spacecraft (under the same license).
