@@ -536,6 +536,13 @@ mission "HI2-RB"
 
 
 
+mission "visited alta hai"
+	landing
+	invisible
+	source "Alta Hai"
+	on offer
+		fail
+
 mission "Heliarch Recon 1"
 	name "Heliarch Reconnaissance"
 	description "Fly to all the Quarg planets and stations the Heliarch asked, land on them, letting your modified ship sensors scan their surroundings, then head back to the <destination>."
@@ -551,7 +558,8 @@ mission "Heliarch Recon 1"
 	to offer
 		"reputation: Quarg" >= 0
 		"coalition jobs" >= 55
-		has "Wanderers: Quarg Assistance 2: done"
+		has "visited alta hai: offered"
+		has "First Contact: Kuwaru Efreti: offered"
 		has "Coalition: Contributor: done"
 		not "Resistance: Questions: done"
 	on offer
