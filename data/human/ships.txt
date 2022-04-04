@@ -2886,8 +2886,8 @@ ship "Scout"
 		
 	engine -7 40
 	engine 7 40
-	gun -19.5 -6 "Energy Blaster"
-	gun 19.5 -6 "Energy Blaster"
+	gun -18.5 -6 "Energy Blaster"
+	gun 18.5 -6 "Energy Blaster"
 	turret 0 -2.5 "Anti-Missile Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
