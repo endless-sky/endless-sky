@@ -541,8 +541,11 @@ mission "House Bebliss 4-FW"
 			`JJ is waiting for you when you land, wearing an uniform with some medals on his chest. "It was nice to hear about you from Freya. Until she started going on about how you had some 'critical' information, that is," he says as he shakes your hand. "So much for taking a break from managing fleets," he sighs.`
 			choice
 				`	"Sorry about that. It's nice to see you too, JJ. Are the others here yet?"`
+					goto others
 				`	"Well, you won't need to worry about that when it comes to these aliens. Hopefully."`
-			`	"Katya and Ijs were visiting Zug for a presentation about the Conservatory, and that's where I was during my break. I brought them here once we got Freya's message," he explains as you two walk toward a traffic shuttle. "Alondo's made some time for us, I was waiting to bring you to his office. You can tell us the details there."`
+			`	"Hopefully?" He gives you a mix between a worried look and a stern face. "Let's just go meet up with the others, that way you don't need to repeat what I'm guessing is a long story."`
+			label others
+			`	He beckons you to follow him to a traffic shuttle. "I brought Katya and Ijs here once we got Freya's message. They were visiting Zug for a presentation about the Conservatory, and that's where I happened to be during my break. Alondo's made some time for us, so I'll bring you to his office. You can tell us the details there."`
 			`	You get in the shuttle, and JJ brings you to a tall government building, with a courtyard in front where various flags fly around the Free Worlds' own. "Planetary flags," JJ says as he gets out of the vehicle. "Some of our planets have been making their own recently, so the diplomacy folks are using that in some buildings." You two head inside the building, and go up an elevator, arriving on a floor with a couple rooms to the side, and a larger one opposite to the elevator. You enter the larger room, to see Alondo seated behind a nice wooden desk, Ijs walking around, and Katya sitting on a sofa.`
 			`	"How are you <first>?" Katya gets up to greet you. "We came as soon as we got Freya's message, but I was still a bit surprised to get here before you, given the new toys you must have by now. You and Freya have gotten Ijs all worried and theorizing there," she points to him.`
 			`	"Well one minute I'm speaking on a panel, the other I get word we need to come to <origin> because <first> has something 'critical' to tell all of us. Of course I'll be worried," he stops, and comes to greet you. "Sorry. It's good to see you again <first>, I just... got a bit carried away thinking about Freya's message."`
@@ -1516,6 +1519,7 @@ mission "Resistance: Questions"
 			and
 				"coalition jobs" >= 110
 				"assisted resistance" == 3
+		"reputation: Quarg" >= 0
 		has "First Contact: Quarg: offered"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
@@ -1523,6 +1527,7 @@ mission "Resistance: Questions"
 		or
 			has "Heliarch Investigation 2: active"
 			has "Heliarch License: done"
+			"reputation: Quarg" < 0
 	on offer
 		require "Jump Drive"
 		conversation
@@ -1588,6 +1593,8 @@ mission "Resistance: Quarg Interview"
 			`	The Lunarium leaders spend an hour or so going over the questions proposed for the interview, deciding to ditch some, and adding a few new ones. All the while, Elirom asks in a worried manner if Oobat is sure of this idea. "Forgive me if sounding like a Heliarch, I am, but dangerous to leave, it is. How the Quarg would react to seeing someone from the Coalition in their territory, we do not know."`
 			`	"Understand that, I do, but fine I will be. Unlike the Quarg it is, to attack unprovoked," she answers. "And, if worse comes to worse, trust I do in Captain <last>'s abilities to ensure we escape." The leaders go over the interview questions a while longer, until they've reached a consensus as to its completeness. They wish you and Oobat good luck, and you two are escorted back out of the complex, and to your ship. There, Oobat asks you for the best place for such an interview in human space, and you point to <destination>, where they are constructing their ringworld. "Then head there, we must. In your care I will be, Captain." You show her to her bunk, and plot a course to <planet>.`
 				accept
+	to fail
+		"reputation: Quarg" < 0
 	on visit
 		dialog `You've reached <planet>, but your escort bringing Oobat hasn't entered the system yet. Better depart and wait for it.`
 
