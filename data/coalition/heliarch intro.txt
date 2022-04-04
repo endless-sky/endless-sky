@@ -488,7 +488,7 @@ mission "HI2-IW"
 			`	When you two return to your ship. you leave to pick up Kirrie and Tugroob, who also come back empty handed.`
 				accept
 			label snowdig
-			`	You start clawing your way down the snow as Iplore asks you to stop and continue moving toward the ship You continue, your hands getting colder as the snow steals the heat even through your gloves. You hit a hard surface and start clearing from there, only to see it was, in fact, just a boulder.`
+			`	You start clawing your way down the snow as Iplora asks you to stop and continue moving toward the ship You continue, your hands getting colder as the snow steals the heat even through your gloves. You hit a hard surface and start clearing from there, only to see it was, in fact, just a boulder.`
 			`	"Satisfied? Return, we must. Come now," You turn to see her offering her hand once again.`
 			choice
 				`	(Take her hand.)`
@@ -498,18 +498,16 @@ mission "HI2-IW"
 			`	You stand up and run to another spot where you fell over. Iplora follows you, and even with the snow you can hear her exasperated sigh. She tries to pull you away, but you hit a hard surface yet again, and a faint metallic sound echoes. She takes her hands off of you and lays down, now helping you dig out whatever is there. She stands up once the crate is visible. It's large and looks like a coffin, but much of it is still buried. She asks you to help her get some hooks on it, after which she struggles to try and pull it out.`
 			`	The slippery snow certainly doesn't help her hooves, but it does make the crate slippery as well. It's coaxed out of the ground, bit by bit. You help her as best as you can and eventually get it on top of the snow field. Iplora searches through some tools in her bag and takes out what looks like a crowbar. She starts opening it, a dim light creeping out, but an energy blast, coming from the the top of the hills, hits the ground near the hole, missing you by just about a meter.`
 			`	She yells for you to get down, pulling out her weapon and firing in the direction the shot came from.`
+			apply
+				"resistance evidence" ++
 			choice
 				`	(Take cover.)`
 				`	(Pull out your gun and help her.)`
 					goto help
-			apply
-				"resistance evidence" ++
 			`	You get inside the hole, hoping you'll have enough protection from the blasts, and hear Iplora move around, occasionally peeking to see her shooting and taking cover, running and dodging incoming blasts. The shots stop, and you see her come over, saying you can get out now.`
 			`	"Fled, our attacker has," she claims. From the looks of it she wasn't injured. You two get back to the crate.`
 				goto opencrate
 			label help
-			apply
-				"resistance evidence" ++
 			`	You start shooting the hills above, trying to aim around where Iplora's own shots go to. A shot comes your way, and you jump to the side. Iplora takes cover inside the hole, firing a few more shots from there, then leaves, going uphill. You follow her lead, approaching from another direction.`
 			`	The shots alternate targets, some heading to Iplora, then some to you, then back at her. The blizzard is bad enough that you can't even see the attacker, but it seems that goes both ways, as you and Iplora manage to avoid getting hit without too much trouble.`
 			`	You've barely gotten past the last cave you visited when the shots stop altogether. Iplora still takes aim for a bit, but ultimately lowers her weapon, coming toward you. "Fled, our attacker has," she claims. You two walk back to the crate.`
@@ -1297,7 +1295,7 @@ mission "Heliarch Containment 4-B"
 
 mission "Heliarch Containment 5"
 	name "Stop The Fleeing Ships"
-	description "Defeat the criminal ships that are attempting to flee. Only disable the ships, because the Heliarch wish to find the source of their weapons."
+	description "Defeat the criminal ships that are attempting to flee. You must disable and board their ships, to help the Heliarchs find the source of their weapons."
 	landing
 	to offer
 		has "Heliarch Containment 4-B: done"
