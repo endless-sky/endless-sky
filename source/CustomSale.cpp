@@ -119,8 +119,8 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 		}
 		else if(mode == "outfits")
 		{
-			bool isAdd;
-			const Outfit *outfit;
+			bool isAdd = false;
+			const Outfit *outfit = nullptr;
 			auto parseValueOrOffset = [isAdd, outfit](double &amount, const DataNode &line) {
 				if(isAdd)
 					amount += line.Value(2);
