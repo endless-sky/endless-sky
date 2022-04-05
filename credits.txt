@@ -20,10 +20,6 @@ Developers
   Pointedstick
   Quyykk
   W1zrad
-
-Project Administration
-  Michael Zahniser
-  Benjamin Hauch
   Zitchas
 
 Major Programming
