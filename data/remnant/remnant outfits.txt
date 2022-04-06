@@ -588,10 +588,10 @@ outfit "Crucible-Class Thruster"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"thrust" 18.0
+	"thrust" 17.1
 	"thrusting energy" 2.65
 	"thrusting heat" 2.5
-	"reverse thrust" 10.8
+	"reverse thrust" 10.3
 	"reverse thrusting energy" 1.59
 	"reverse thrusting heat" 1.5
 	"slowing resistance" 0.012
@@ -636,10 +636,10 @@ outfit "Smelter-Class Thruster"
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76
-	"thrust" 76.8
-	"thrusting energy" 10.10
+	"thrust" 80.6
+	"thrusting energy" 10.1
 	"thrusting heat" 10.2
-	"reverse thrust" 46.08
+	"reverse thrust" 48.4
 	"reverse thrusting energy" 6.06
 	"reverse thrusting heat" 6.12
 	"slowing resistance" 0.048
