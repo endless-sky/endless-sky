@@ -527,7 +527,7 @@ outfit "A125 Atomic Steering"
 	"mass" 16
 	"outfit space" -16
 	"engine capacity" -16
-	"turn" 392
+	"turn" 402
 	"turning energy" 0.9
 	"turning heat" 2.2
 	"steering flare sprite" "effect/atomic flare/tiny"
@@ -542,7 +542,7 @@ outfit "A255 Atomic Steering"
 	"mass" 25
 	"outfit space" -25
 	"engine capacity" -25
-	"turn" 687
+	"turn" 704
 	"turning energy" 1.5
 	"turning heat" 3.7
 	"steering flare sprite" "effect/atomic flare/small"
@@ -557,7 +557,7 @@ outfit "A375 Atomic Steering"
 	"mass" 38
 	"outfit space" -38
 	"engine capacity" -38
-	"turn" 1192
+	"turn" 1222
 	"turning energy" 2.5
 	"turning heat" 6.3
 	"steering flare sprite" "effect/atomic flare/medium"
@@ -572,7 +572,7 @@ outfit "A525 Atomic Steering"
 	"mass" 60
 	"outfit space" -60
 	"engine capacity" -60
-	"turn" 2050
+	"turn" 2101
 	"turning energy" 4.1
 	"turning heat" 10.5
 	"steering flare sprite" "effect/atomic flare/large"
@@ -587,7 +587,7 @@ outfit "A865 Atomic Steering"
 	"mass" 92
 	"outfit space" -92
 	"engine capacity" -92
-	"turn" 3509
+	"turn" 3597
 	"turning energy" 6.6
 	"turning heat" 17.5
 	"steering flare sprite" "effect/atomic flare/huge"
