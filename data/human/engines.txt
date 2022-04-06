@@ -98,7 +98,7 @@ outfit "X1700 Ion Thruster"
 		"frame rate" 1.2
 	"flare sound" "ion tiny"
 	description "This is the smallest thruster that you can buy, so weak that anything larger than a drone will accelerate quite slowly when using this engine. On the other hand, it is also very energy-efficient."
-	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
+	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space for the same amount of thrust."
 
 outfit "X2700 Ion Thruster"
 	category "Engines"
@@ -114,7 +114,7 @@ outfit "X2700 Ion Thruster"
 		"frame rate" 1.1
 	"flare sound" "ion small"
 	description "The X2700 ion thruster is intended mostly for use in small, single-person or two-person ships, as well as in fighters. It is also used in larger ships, such as freighters, that have very little space for propulsion systems or energy to drive them. But these larger ships move unbearably slowly as a result."
-	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
+	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space for the same amount of thrust."
 
 outfit "X3700 Ion Thruster"
 	category "Engines"
@@ -130,7 +130,7 @@ outfit "X3700 Ion Thruster"
 		"frame rate" 1.0
 	"flare sound" "ion medium"
 	description "The X3700 ion thruster is designed for heavy freighters and small capital ships. In theory, it could be installed in smaller ships too, if they have enough engine space, to attain almost ridiculous speeds."
-	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
+	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space for the same amount of thrust."
 
 outfit "X4700 Ion Thruster"
 	category "Engines"
@@ -146,7 +146,7 @@ outfit "X4700 Ion Thruster"
 		"frame rate" 0.9
 	"flare sound" "ion large"
 	description "The X4700 ion thruster was developed when the Republic Navy began building warships so large that the X3700 was not sufficient for them. It allows even a capital ship to move at a respectable speed."
-	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
+	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space for the same amount of thrust."
 
 outfit "X5700 Ion Thruster"
 	category "Engines"
@@ -162,7 +162,7 @@ outfit "X5700 Ion Thruster"
 		"frame rate" 0.8
 	"flare sound" "ion huge"
 	description "The X5700 thruster is intended for only the largest of capital ships. When the Syndicate first began producing them, these engines were considered little more than a publicity stunt, because no ship at the time was large enough to hold one."
-	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
+	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space for the same amount of thrust."
 
 
 outfit "X1200 Ion Steering"
@@ -179,7 +179,7 @@ outfit "X1200 Ion Steering"
 		"frame rate" 1.2
 	"steering flare sound" "ion tiny"
 	description "This is the smallest set of steering thrusters that you can buy, generally considered suitable only for tiny, pilotless drones. Occasionally pilots looking for some extra outfit space will try swapping out their larger steering systems for one of these, but the results are invariably disappointing."
-	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
+	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space for the same amount of thrust."
 
 outfit "X2200 Ion Steering"
 	category "Engines"
@@ -195,7 +195,7 @@ outfit "X2200 Ion Steering"
 		"frame rate" 1.1
 	"steering flare sound" "ion small"
 	description "The X2200 steering system is designed for fighters and other small spacecraft, as well as for use in larger ships when maneuverability is not needed."
-	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
+	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space for the same amount of thrust."
 
 outfit "X3200 Ion Steering"
 	category "Engines"
@@ -211,7 +211,7 @@ outfit "X3200 Ion Steering"
 		"frame rate" 1.0
 	"steering flare sound" "ion medium"
 	description "The X3200 steering system is intended for small warships and freighters. It produces enough turning force to lend agility to all but the largest of human ships, and it is considerably more energy-efficient than the plasma-drive alternatives."
-	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
+	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space for the same amount of thrust."
 
 outfit "X4200 Ion Steering"
 	category "Engines"
@@ -227,7 +227,7 @@ outfit "X4200 Ion Steering"
 		"frame rate" 0.9
 	"steering flare sound" "ion large"
 	description "The X4200 is a powerful steering system, designed mostly for warships because quick steering is seldom a requirement in freighter design."
-	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
+	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space for the same amount of thrust."
 
 outfit "X5200 Ion Steering"
 	category "Engines"
@@ -243,7 +243,7 @@ outfit "X5200 Ion Steering"
 		"frame rate" 0.8
 	"steering flare sound" "ion huge"
 	description "The X5200 is a steering system so large and powerful that only a handful of ships can install it. Due to its limited market, it is produced in small numbers."
-	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
+	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space for the same amount of thrust."
 
 
 outfit "X1100 Ion Reverse Thruster"

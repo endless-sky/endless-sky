@@ -465,8 +465,8 @@ outfit `"Baellie" Atomic Engines`
 	"outfit space" -22
 	"engine capacity" -22
 	"thrust" 7.3
-	"thrusting energy" .92
-	"thrusting heat" 1.83
+	"thrusting energy" .87
+	"thrusting heat" 1.7
 	"turn" 250
 	"turning energy" .64
 	"turning heat" 1.28
@@ -486,8 +486,8 @@ outfit `"Basrem" Atomic Thruster`
 	"outfit space" -18
 	"engine capacity" -18
 	"thrust" 12.5
-	"thrusting energy" 1.5
-	"thrusting heat" 2.9
+	"thrusting energy" 1.4
+	"thrusting heat" 2.8
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"flare sound" "atomic tiny"
@@ -501,8 +501,8 @@ outfit `"Benga" Atomic Thruster`
 	"outfit space" -28
 	"engine capacity" -28
 	"thrust" 22.4
-	"thrusting energy" 2.6
-	"thrusting heat" 5.0
+	"thrusting energy" 2.5
+	"thrusting heat" 4.8
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"flare sound" "atomic tiny"
@@ -516,8 +516,8 @@ outfit `"Biroo" Atomic Thruster`
 	"outfit space" -44
 	"engine capacity" -44
 	"thrust" 39.4
-	"thrusting energy" 4.2
-	"thrusting heat" 8.6
+	"thrusting energy" 4
+	"thrusting heat" 8.2
 	"flare sprite" "effect/atomic flare/small"
 		"frame rate" 13
 	"flare sound" "atomic small"
@@ -531,8 +531,8 @@ outfit `"Bondir" Atomic Thruster`
 	"outfit space" -63
 	"engine capacity" -63
 	"thrust" 62.8
-	"thrusting energy" 6.4
-	"thrusting heat" 13.4
+	"thrusting energy" 6.1
+	"thrusting heat" 12.7
 	"flare sprite" "effect/atomic flare/medium"
 		"frame rate" 12
 	"flare sound" "atomic medium"
@@ -546,8 +546,8 @@ outfit `"Bufaer" Atomic Thruster`
 	"outfit space" -104
 	"engine capacity" -104
 	"thrust" 114.1
-	"thrusting energy" 10.9
-	"thrusting heat" 23.8
+	"thrusting energy" 10.4
+	"thrusting heat" 22.6
 	"flare sprite" "effect/atomic flare/large"
 		"frame rate" 11
 	"flare sound" "atomic large"
