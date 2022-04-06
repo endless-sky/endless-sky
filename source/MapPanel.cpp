@@ -58,16 +58,16 @@ using namespace std;
 namespace {
 	const std::string SHOW_ESCORT_SYSTEMS = "Show escort systems on map";
 	const std::string SHOW_STORED_OUTFITS = "Show stored outfits on map";
-	const unsigned int MAX_MISSION_POINTERS_DRAWN = 12;
+	const unsigned MAX_MISSION_POINTERS_DRAWN = 12;
 	const double MISSION_POINTERS_ANGLE_DELTA = 30.;
 
 	// Struct to track per system how many pointers are drawn and still
 	// need to be drawn.
-	struct PointerDrawCount{
+	struct PointerDrawCount {
 		// Amount of systems already drawn.
-		unsigned int drawn = 0;
-		unsigned int available = 0;
-		unsigned int unavailable = 0;
+		unsigned drawn = 0;
+		unsigned available = 0;
+		unsigned unavailable = 0;
 	};
 
 	// Log how many player ships are in a given system, tracking whether
@@ -331,7 +331,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 			RingShader::Draw(to, OUTER, INNER, color);
 		}
 
-		unsigned int missionCounter = 0;
+		unsigned missionCounter = 0;
 		for(const Mission &mission : player.Missions())
 		{
 			if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
@@ -1228,9 +1228,9 @@ void MapPanel::DrawMissions()
 	{
 		const auto &system = it.first;
 		auto &&counters = it.second;
-		for(unsigned int i = 0; i < counters.available; ++i)
+		for(unsigned i = 0; i < counters.available; ++i)
 			DrawPointer(system, counters.drawn, availableColor);
-		for(unsigned int i = 0; i < counters.unavailable; ++i)
+		for(unsigned i = 0; i < counters.unavailable; ++i)
 			DrawPointer(system, counters.drawn, unavailableColor);
 	}
 }
@@ -1301,14 +1301,14 @@ void MapPanel::DrawTooltips()
 
 
 
-void MapPanel::DrawPointer(const System *system, unsigned int &systemCount, const Color &color, bool bigger)
+void MapPanel::DrawPointer(const System *system, unsigned &systemCount, const Color &color, bool bigger)
 {
 	DrawPointer(Zoom() * (system->Position() + center), systemCount, color, true, bigger);
 }
 
 
 
-void MapPanel::DrawPointer(Point position, unsigned int &systemCount, const Color &color, bool drawBack, bool bigger)
+void MapPanel::DrawPointer(Point position, unsigned &systemCount, const Color &color, bool drawBack, bool bigger)
 {
 	if(++systemCount > MAX_MISSION_POINTERS_DRAWN)
 		return;
