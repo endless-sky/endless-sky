@@ -324,10 +324,10 @@ tip "map:"
 	`How many star systems are included in this map.`
 
 tip "mass with no cargo:"
-	`Mass of this ship when not carrying any cargo or fighters. Cargo increases mass, which reduces acceleration and turn rate.`
+	`Mass of this ship when not carrying any cargo or fighters. Cargo increases mass, which reduces acceleration and turn rate and increases maximum heat before overheating.`
 
 tip "mass:"
-	`Mass, in tons. A ship's mass determines how fast it turns and accelerates.`
+	`Mass, in tons. A ship's mass determines how fast it turns and accelerates and its maximum heat before overheating.`
 
 tip "operating costs:"
 	`How many credits per day you need to spend to maintain this outfit while it is in active use.`
