@@ -313,14 +313,14 @@ outfit "Orca Plasma Thruster"
 
 outfit "Tyrant Plasma Thruster"
 	category "Engines"
-	"cost" 478000
+	"cost" 389000
 	thumbnail "outfit/huge plasma thruster"
-	"mass" 167
-	"outfit space" -167
-	"engine capacity" -167
-	"thrust" 130.5
-	"thrusting energy" 10.5
-	"thrusting heat" 23.5
+	"mass" 136
+	"outfit space" -136
+	"engine capacity" -136
+	"thrust" 106.3
+	"thrusting energy" 8.6
+	"thrusting heat" 19.1
 	"flare sprite" "effect/plasma flare/huge"
 		"frame rate" 9
 	"flare sound" "plasma huge"
