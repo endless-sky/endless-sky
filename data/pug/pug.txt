@@ -390,7 +390,7 @@ outfit "Pug Akfar Thruster"
 	"mass" 43
 	"outfit space" -43
 	"engine capacity" -43
-	"thrust" 28.0
+	"thrust" 29.4
 	"thrusting energy" 2.2
 	"thrusting heat" 3.1
 	"flare sprite" "effect/ion flare/medium"
@@ -420,7 +420,7 @@ outfit "Pug Cormet Thruster"
 	"mass" 60
 	"outfit space" -60
 	"engine capacity" -60
-	"thrust" 44.0
+	"thrust" 46.2
 	"thrusting energy" 3.3
 	"thrusting heat" 4.6
 	"flare sprite" "effect/ion flare/large"
@@ -450,7 +450,7 @@ outfit "Pug Lohmar Thruster"
 	"mass" 84
 	"outfit space" -84
 	"engine capacity" -84
-	"thrust" 66.0
+	"thrust" 69.3
 	"thrusting energy" 4.9
 	"thrusting heat" 6.9
 	"flare sprite" "effect/ion flare/huge"
