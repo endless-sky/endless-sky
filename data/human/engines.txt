@@ -15,7 +15,7 @@ outfit "Afterburner"
 	"mass" 15
 	"outfit space" -15
 	"engine capacity" -15
-	"afterburner thrust" 25.0
+	"afterburner thrust" 37.5
 	"afterburner fuel" .5
 	"afterburner heat" 10.0
 	"afterburner effect" "afterburner"
@@ -40,7 +40,7 @@ outfit "Ionic Afterburner"
 	"mass" 24
 	"outfit space" -24
 	"engine capacity" -24
-	"afterburner thrust" 29.0
+	"afterburner thrust" 43.5
 	"afterburner fuel" .1
 	"afterburner energy" 5.1
 	"afterburner heat" 4.0
