@@ -348,7 +348,7 @@ tip "outfit space free:"
 	`How much space this ship has for outfits (including weapons and engines).`
 
 tip "overheat damage rate:"
-	`How much hull damage this ship will take per second that it is overheated.`
+	`How much hull damage this ship will take per second that it is overheated. Overheat damage scales with how far past the overheat threshold the ship is.`
 
 tip "overheat damage threshold:"
 	`Increases the percentage past overheated at which point overheat damage begins.`
