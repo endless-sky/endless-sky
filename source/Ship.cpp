@@ -2205,10 +2205,9 @@ void Ship::DoGeneration()
 	if(heat > MaximumHeat())
 	{
 		isOverheated = true;
-		float cookHeat = attributes.Get("cook temperature");
-		if(cookHeat && Heat() > cookHeat) {
-			hull -= attributes.Get("cooking rate")* Heat();
-		}
+		double heatRatio = Heat() / (1. + attributes.Get("overheat damage threshold"));
+		if(heatRatio > 1.)
+			hull -= attributes.Get("overheat damage rate") * heatRatio;
 	}
 	else if(heat < .9 * MaximumHeat())
 		isOverheated = false;
