@@ -1867,12 +1867,14 @@ ship "Protector" "Protector (Laser)"
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+	turret
 	turret "Heavy Laser Turret"
 	turret "Heavy Laser Turret"
 	turret "Anti-Missile Turret"
 	turret "Anti-Missile Turret"
 	turret "Heavy Laser Turret"
 	turret "Heavy Laser Turret"
+	turret
 
 
 ship "Protector" "Protector (Proton)"
@@ -1890,12 +1892,14 @@ ship "Protector" "Protector (Proton)"
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+	turret
 	turret "Proton Turret"
 	turret "Proton Turret"
 	turret "Heavy Anti-Missile Turret"
 	turret "Heavy Anti-Missile Turret"
 	turret "Proton Turret"
 	turret "Proton Turret"
+	turret
 
 
 
