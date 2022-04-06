@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MenuPanel.h"
 
+#include "Audio.h"
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "Files.h"
@@ -26,7 +27,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "PointerShader.h"
 #include "PreferencesPanel.h"
 #include "Ship.h"
 #include "ShipyardPanel.h"
@@ -37,15 +37,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 #include "UI.h"
 
-#include "gl_header.h"
+#include "opengl.h"
 
 #include <algorithm>
+#include <cassert>
 #include <stdexcept>
 
 using namespace std;
 
 namespace {
-	float alpha = 1.f;
 	const int scrollSpeed = 2;
 }
 
@@ -54,29 +54,32 @@ namespace {
 MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 	: player(player), gamePanels(gamePanels), scroll(0)
 {
+	assert(GameData::IsLoaded() && "MenuPanel should only be created after all data is fully loaded");
 	SetIsFullScreen(true);
-	
+
 	credits = Format::Split(Files::Read(Files::Resources() + "credits.txt"), "\n");
-}
-
-
-
-void MenuPanel::Step()
-{
-	if(GetUI()->IsTop(this) && alpha < 1.f)
-	{
-		++scroll;
-		if(scroll >= (20 * credits.size() + 300) * scrollSpeed)
-			scroll = 0;
-	}
-	progress = static_cast<int>(GameData::Progress() * 60.);
-	if(GameData::IsLoaded() && gamePanels.IsEmpty())
+	if(gamePanels.IsEmpty())
 	{
 		gamePanels.Push(new MainPanel(player));
 		// It takes one step to figure out the planet panel should be created, and
 		// another step to actually place it. So, take two steps to avoid a flicker.
 		gamePanels.StepAll();
 		gamePanels.StepAll();
+	}
+
+	if(player.GetPlanet())
+		Audio::PlayMusic(player.GetPlanet()->MusicName());
+}
+
+
+
+void MenuPanel::Step()
+{
+	if(GetUI()->IsTop(this))
+	{
+		++scroll;
+		if(scroll >= (20 * credits.size() + 300) * scrollSpeed)
+			scroll = 0;
 	}
 }
 
@@ -87,7 +90,7 @@ void MenuPanel::Draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
 	const Font &font = FontSet::Get(14);
-	
+
 	Information info;
 	if(player.IsLoaded() && !player.IsDead())
 	{
@@ -118,25 +121,12 @@ void MenuPanel::Draw()
 		info.SetCondition("no pilot loaded");
 		info.SetString("pilot", "No Pilot Loaded");
 	}
-	
+
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	GameData::Interfaces().Get("main menu")->Draw(info, this);
 	GameData::Interfaces().Get("menu player info")->Draw(info, this);
-	
-	if(progress == 60)
-		alpha -= .02f;
-	if(alpha > 0.f)
-	{
-		Angle da(6.);
-		Angle a(0.);
-		for(int i = 0; i < progress; ++i)
-		{
-			Color color(.5f * alpha, 0.f);
-			PointerShader::Draw(Point(), a.Unit(), 8.f, 20.f, 140.f * alpha, color);
-			a += da;
-		}
-	}
-	
+
+	// TODO: allow pausing the credits scroll
 	int y = 120 - scroll / scrollSpeed;
 	for(const string &line : credits)
 	{
@@ -158,13 +148,10 @@ void MenuPanel::Draw()
 
 bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(!GameData::IsLoaded())
-		return false;
-	
 	if(player.IsLoaded() && (key == 'e' || command.Has(Command::MENU)))
 	{
 		gamePanels.CanSave(true);
-		GetUI()->Pop(this);
+		GetUI()->PopThrough(this);
 	}
 	else if(key == 'p')
 		GetUI()->Push(new PreferencesPanel());
@@ -181,6 +168,6 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		GetUI()->Quit();
 	else
 		return false;
-	
+
 	return true;
 }

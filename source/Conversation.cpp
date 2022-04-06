@@ -32,7 +32,7 @@ namespace {
 		{"die", Conversation::DIE},
 		{"explode", Conversation::EXPLODE}
 	};
-	
+
 	// Get the index of the given special string. 0 means it is "goto", a number
 	// less than 0 means it is an outcome, and 1 means no match.
 	int TokenIndex(const string &token)
@@ -40,17 +40,17 @@ namespace {
 		auto it = TOKEN_INDEX.find(token);
 		return (it == TOKEN_INDEX.end() ? 0 : it->second);
 	}
-	
+
 	// Map an index back to a string, for saving the conversation to a file.
 	string TokenName(int index)
 	{
 		for(const auto &it : TOKEN_INDEX)
 			if(it.second == index)
 				return it.first;
-		
+
 		return to_string(index);
 	}
-	
+
 	// Write a "goto" or endpoint.
 	void WriteToken(int index, DataWriter &out)
 	{
@@ -86,15 +86,15 @@ bool Conversation::RequiresLaunch(int outcome)
 
 
 // Load a conversation from file.
-void Conversation::Load(const DataNode &node)
+void Conversation::Load(const DataNode &node, const string &missionName)
 {
 	// Make sure this really is a conversation specification.
 	if(node.Token(0) != "conversation")
 		return;
-	
+
 	// Free any previously loaded data.
 	nodes.clear();
-	
+
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "scene" && child.Size() >= 2)
@@ -120,22 +120,22 @@ void Conversation::Load(const DataNode &node)
 				// Check for common errors such as indenting a goto incorrectly:
 				if(grand.Size() > 1)
 				{
-					grand.PrintTrace("Conversation choices should be a single token:");
+					grand.PrintTrace("Error: Conversation choices should be a single token:");
 					foundErrors = true;
 					continue;
 				}
-				
+
 				// Store the text of this choice. By default, the choice will
 				// just bring you to the next node in the script.
 				nodes.back().data.emplace_back(grand.Token(0), nodes.size());
 				nodes.back().data.back().first += '\n';
-				
+
 				LoadGotos(grand);
 			}
 			if(nodes.back().data.empty())
 			{
 				if(!foundErrors)
-					child.PrintTrace("Conversation contains an empty \"choice\" node:");
+					child.PrintTrace("Warning: Conversation contains an empty \"choice\" node:");
 				nodes.pop_back();
 			}
 		}
@@ -149,7 +149,7 @@ void Conversation::Load(const DataNode &node)
 			// Don't merge "branch" nodes with any other nodes.
 			nodes.emplace_back();
 			nodes.back().canMergeOnto = false;
-			nodes.back().conditions.Load(child);
+			nodes.back().branch.Load(child);
 			// A branch should always specify what node to go to if the test is
 			// true, and may also specify where to go if it is false.
 			for(int i = 1; i <= 2; ++i)
@@ -166,16 +166,16 @@ void Conversation::Load(const DataNode &node)
 				}
 			}
 		}
-		else if(child.Token(0) == "apply")
+		else if(child.Token(0) == "action" || child.Token(0) == "apply")
 		{
-			// Don't merge "apply" nodes with any other nodes.
+			// Don't merge "action" nodes with any other nodes. Allow the legacy keyword "apply," too.
 			AddNode();
 			nodes.back().canMergeOnto = false;
-			nodes.back().conditions.Load(child);
+			nodes.back().actions.Load(child, missionName);
 		}
 		// Check for common errors such as indenting a goto incorrectly:
 		else if(child.Size() > 1)
-			child.PrintTrace("Conversation text should be a single token:");
+			child.PrintTrace("Error: Conversation text should be a single token:");
 		else
 		{
 			// This is just an ordinary text node.
@@ -184,23 +184,23 @@ void Conversation::Load(const DataNode &node)
 			// paragraph into the previous node.
 			if(nodes.empty() || !nodes.back().canMergeOnto)
 				AddNode();
-			
+
 			// Always append a newline to the end of the text.
 			nodes.back().data.back().first += child.Token(0);
 			nodes.back().data.back().first += '\n';
-			
+
 			// Check whether there is a goto attached to this block of text. If
 			// so, future nodes can't merge onto this one.
 			if(LoadGotos(child))
 				nodes.back().canMergeOnto = false;
 		}
 	}
-	
+
 	// Display a warning if a label was not resolved.
 	if(!unresolved.empty())
 		for(const auto &it : unresolved)
-			node.PrintTrace("Conversation contains unrecognized label \"" + it.first + "\":");
-	
+			node.PrintTrace("Warning: Conversation contains unrecognized label \"" + it.first + "\":");
+
 	// Check for any loops in the conversation.
 	for(const auto &it : labels)
 	{
@@ -210,13 +210,13 @@ void Conversation::Load(const DataNode &node)
 			nodeIndex = NextNode(nodeIndex);
 			if(nodeIndex == it.second)
 			{
-				node.PrintTrace("Conversation contains infinite loop beginning with label \"" + it.first + "\":");
+				node.PrintTrace("Error: Conversation contains infinite loop beginning with label \"" + it.first + "\":");
 				nodes.clear();
 				return;
 			}
 		}
 	}
-	
+
 	// Free the working buffers that we no longer need.
 	labels.clear();
 	unresolved.clear();
@@ -236,22 +236,27 @@ void Conversation::Save(DataWriter &out) const
 			// the label for every node is just its node index.
 			out.Write("label", i);
 			const Node &node = nodes[i];
-			
+
 			if(node.scene)
-				out.Write("scene", node.scene->Name());	
-			if(!node.conditions.IsEmpty())
+				out.Write("scene", node.scene->Name());
+			if(!node.branch.IsEmpty())
 			{
-				// The only thing differentiating a "branch" from an "apply" node
-				// is that a branch has two data entries instead of one.
-				if(node.data.size() > 1)
-					out.Write("branch", TokenName(node.data[0].second), TokenName(node.data[1].second));
-				else
-					out.Write("apply", TokenName(node.data[0].second));
-				
+				out.Write("branch", TokenName(node.data[0].second), TokenName(node.data[1].second));
 				// Write the condition set as a child of this node.
 				out.BeginChild();
 				{
-					node.conditions.Save(out);
+					node.branch.Save(out);
+				}
+				out.EndChild();
+				continue;
+			}
+			if(!node.actions.IsEmpty())
+			{
+				out.Write("action");
+				// Write the GameAction as a child of this node.
+				out.BeginChild();
+				{
+					node.actions.Save(out);
 				}
 				out.EndChild();
 				continue;
@@ -270,7 +275,7 @@ void Conversation::Save(DataWriter &out) const
 				int index = it.second;
 				if(index > 0 && static_cast<unsigned>(index) >= nodes.size())
 					index = Conversation::DECLINE;
-				
+
 				// Write the node that we go to next after this.
 				WriteToken(index, out);
 			}
@@ -301,13 +306,36 @@ bool Conversation::IsValidIntro() const noexcept
 
 
 
-// Do text replacement throughout this conversation.
-Conversation Conversation::Substitute(const map<string, string> &subs) const
+// Check if the actions in this conversation are valid.
+string Conversation::Validate() const
+{
+	for(const Node &node : nodes)
+	{
+		if(!node.actions.IsEmpty())
+		{
+			string reason = node.actions.Validate();
+			if(!reason.empty())
+				return "conversation action " + std::move(reason);
+		}
+	}
+	return "";
+}
+
+
+
+// Do text replacement throughout this conversation, and instantiate any
+// potential actions.
+Conversation Conversation::Instantiate(map<string, string> &subs, int jumps, int payload) const
 {
 	Conversation result = *this;
 	for(Node &node : result.nodes)
+	{
 		for(pair<string, int> &choice : node.data)
 			choice.first = Format::Replace(choice.first, subs);
+		if(!node.actions.IsEmpty())
+			node.actions = node.actions.Instantiate(subs, jumps, payload);
+	}
+
 	return result;
 }
 
@@ -318,7 +346,7 @@ bool Conversation::IsChoice(int node) const
 {
 	if(static_cast<unsigned>(node) >= nodes.size())
 		return false;
-	
+
 	return nodes[node].isChoice;
 }
 
@@ -329,43 +357,53 @@ int Conversation::Choices(int node) const
 {
 	if(static_cast<unsigned>(node) >= nodes.size())
 		return 0;
-	
+
 	return nodes[node].isChoice ? nodes[node].data.size() : 0;
 }
 
 
 
-// Check if the given converation node is a conditional branch.
+// Check if the given conversation node is a conditional branch.
 bool Conversation::IsBranch(int node) const
 {
 	if(static_cast<unsigned>(node) >= nodes.size())
 		return false;
-	
-	return !nodes[node].conditions.IsEmpty() && nodes[node].data.size() > 1;
+
+	return !nodes[node].branch.IsEmpty();
 }
 
 
 
-
-// Check if the given converation node applies changes to condition variables.
-bool Conversation::IsApply(int node) const
+// Check if the given conversation node performs an action.
+bool Conversation::IsAction(int node) const
 {
 	if(static_cast<unsigned>(node) >= nodes.size())
 		return false;
-	
-	return !nodes[node].conditions.IsEmpty() && nodes[node].data.size() == 1;
+
+	return !nodes[node].actions.IsEmpty();
 }
 
 
 
-// Get the list of conditions that the given node tests or applies.
-const ConditionSet &Conversation::Conditions(int node) const
+// Get the list of conditions that the given node tests for branching.
+const ConditionSet &Conversation::Branch(int node) const
 {
 	static ConditionSet empty;
 	if(static_cast<unsigned>(node) >= nodes.size())
 		return empty;
-	
-	return nodes[node].conditions;
+
+	return nodes[node].branch;
+}
+
+
+// Get the action that the given node applies.
+const GameAction &Conversation::GetAction(int node) const
+{
+	static GameAction empty;
+	if(static_cast<unsigned>(node) >= nodes.size())
+		return empty;
+
+	return nodes[node].actions;
 }
 
 
@@ -374,11 +412,11 @@ const ConditionSet &Conversation::Conditions(int node) const
 const string &Conversation::Text(int node, int choice) const
 {
 	static const string empty;
-	
+
 	if(static_cast<unsigned>(node) >= nodes.size()
 			|| static_cast<unsigned>(choice) >= nodes[node].data.size())
 		return empty;
-	
+
 	return nodes[node].data[choice].first;
 }
 
@@ -389,7 +427,7 @@ const Sprite *Conversation::Scene(int node) const
 {
 	if(static_cast<unsigned>(node) >= nodes.size())
 		return nullptr;
-	
+
 	return nodes[node].scene;
 }
 
@@ -401,7 +439,7 @@ int Conversation::NextNode(int node, int choice) const
 	if(static_cast<unsigned>(node) >= nodes.size()
 			|| static_cast<unsigned>(choice) >= nodes[node].data.size())
 		return DECLINE;
-	
+
 	return nodes[node].data[choice].second;
 }
 
@@ -415,7 +453,7 @@ bool Conversation::LoadGotos(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		if(hasGoto)
-			child.PrintTrace("Ignoring extra text in conversation choice:");
+			child.PrintTrace("Warning: Ignoring extra text in conversation choice:");
 		else if(child.Size() == 2 && child.Token(0) == "goto")
 		{
 			// Each choice can only have one goto
@@ -432,7 +470,7 @@ bool Conversation::LoadGotos(const DataNode &node)
 				hasGoto = true;
 			}
 			else
-				child.PrintTrace("Expected goto or endpoint in conversation, found this:");
+				child.PrintTrace("Warning: Expected goto or endpoint in conversation, found this:");
 		}
 	}
 	return hasGoto;
@@ -445,19 +483,19 @@ void Conversation::AddLabel(const string &label, const DataNode &node)
 {
 	if(labels.count(label))
 	{
-		node.PrintTrace("Conversation: label \"" + label + "\" is used more than once:");
+		node.PrintTrace("Error: Conversation: label \"" + label + "\" is used more than once:");
 		return;
 	}
-	
+
 	// If there are any unresolved references to this label, we can now set
 	// their indices correctly.
 	auto range = unresolved.equal_range(label);
-	
+
 	for(auto it = range.first; it != range.second; ++it)
 		nodes[it->second.first].data[it->second.second].second = nodes.size();
-	
+
 	unresolved.erase(range.first, range.second);
-	
+
 	// Remember what index this label points to.
 	labels[label] = nodes.size();
 }
@@ -469,7 +507,7 @@ void Conversation::AddLabel(const string &label, const DataNode &node)
 void Conversation::Goto(const string &label, int node, int choice)
 {
 	auto it = labels.find(label);
-	
+
 	if(it == labels.end())
 		unresolved.insert({label, {node, choice}});
 	else
