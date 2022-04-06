@@ -660,7 +660,7 @@ outfit "Crucible-Class Steering"
 	"mass" 14
 	"outfit space" -14
 	"engine capacity" -14
-	"turn" 492.8
+	"turn" 456
 	"turning energy" 1.32
 	"turning heat" 1.4
 	"slowing resistance" 0.008
@@ -678,7 +678,7 @@ outfit "Forge-Class Steering"
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
-	"turn" 1047.2
+	"turn" 995
 	"turning energy" 2.64
 	"turning heat" 3.0
 	"slowing resistance" 0.016
@@ -696,7 +696,7 @@ outfit "Smelter-Class Steering"
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
-	"turn" 2178
+	"turn" 2123
 	"turning energy" 5.21
 	"turning heat" 6.2
 	"slowing resistance" 0.032
