@@ -83,6 +83,7 @@ private:
 	// Pick a new target for the given ship.
 	std::shared_ptr<Ship> FindTarget(const Ship &ship) const;
 	std::shared_ptr<Minable> FindTargetAsteroid(const Ship &ship) const;
+	bool HarvestAfterAsteroidMining(const Ship &ship) const;
 	// Obtain a list of ships matching the desired hostility.
 	std::vector<Ship *> GetShipsList(const Ship &ship, bool targetEnemies, double maxRange = -1.) const;
 
@@ -162,6 +163,8 @@ private:
 		static const int GATHER = 0x101;
 		static const int ATTACK = 0x102;
 		static const int FINISH_OFF = 0x103;
+		static const int MINING = 0x104;
+		static const int HARVEST = 0x005;
 		// Bit mask to figure out which orders are canceled if their target
 		// ceases to be targetable or present.
 		static const int REQUIRES_TARGET = 0x100;
