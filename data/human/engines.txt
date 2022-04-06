@@ -68,7 +68,7 @@ outfit "X1050 Ion Engines"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"thrust" 4.0
+	"thrust" 4.8
 	"thrusting energy" .4
 	"thrusting heat" .6
 	"turn" 110
@@ -91,7 +91,7 @@ outfit "X1700 Ion Thruster"
 	"mass" 16
 	"outfit space" -16
 	"engine capacity" -16
-	"thrust" 6.0
+	"thrust" 7.2
 	"thrusting energy" .6
 	"thrusting heat" .9
 	"flare sprite" "effect/ion flare/tiny"
@@ -107,7 +107,7 @@ outfit "X2700 Ion Thruster"
 	"mass" 27
 	"outfit space" -27
 	"engine capacity" -27
-	"thrust" 11.5
+	"thrust" 13.8
 	"thrusting energy" 1.1
 	"thrusting heat" 1.7
 	"flare sprite" "effect/ion flare/small"
@@ -123,7 +123,7 @@ outfit "X3700 Ion Thruster"
 	"mass" 46
 	"outfit space" -46
 	"engine capacity" -46
-	"thrust" 22.1
+	"thrust" 26.5
 	"thrusting energy" 1.9
 	"thrusting heat" 3.2
 	"flare sprite" "effect/ion flare/medium"
@@ -139,7 +139,7 @@ outfit "X4700 Ion Thruster"
 	"mass" 79
 	"outfit space" -79
 	"engine capacity" -79
-	"thrust" 42.5
+	"thrust" 51
 	"thrusting energy" 3.5
 	"thrusting heat" 6.2
 	"flare sprite" "effect/ion flare/large"
@@ -155,7 +155,7 @@ outfit "X5700 Ion Thruster"
 	"mass" 134
 	"outfit space" -134
 	"engine capacity" -134
-	"thrust" 81.5
+	"thrust" 97.8
 	"thrusting energy" 6.3
 	"thrusting heat" 11.7
 	"flare sprite" "effect/ion flare/huge"
@@ -246,6 +246,23 @@ outfit "X5200 Ion Steering"
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
 
+outfit "X1100 Ion Reverse Thruster"
+	category "Engines"
+	"cost" 12000
+	thumbnail "outfit/reverse thruster ion"
+	"mass" 16
+	"outfit space" -16
+	"weapon capacity" -16
+	"reverse thrust" 7.2
+	"reverse thrusting energy" .6
+	"reverse thrusting heat" .9
+	"reverse flare sprite" "effect/ion flare/tiny"
+		"frame rate" 1.2
+	"reverse flare sound" "ion tiny"
+	description "Traditionally, ships turn around so that they can use their main thrusters for deceleration. Some ships, however, are too ungainly for such maneuvers to be convenient, or carry sensitive cargo that must not be being swung around quickly. For such ships, a reverse thruster allows them to apply thrust smoothly backwards."
+	description "	Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
+
+
 
 outfit "Chipmunk Plasma Thruster"
 	category "Engines"
@@ -254,7 +271,7 @@ outfit "Chipmunk Plasma Thruster"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"thrust" 9.6
+	"thrust" 11.5
 	"thrusting energy" 1.0
 	"thrusting heat" 1.8
 	"flare sprite" "effect/plasma flare/tiny"
@@ -270,7 +287,7 @@ outfit "Greyhound Plasma Thruster"
 	"mass" 34
 	"outfit space" -34
 	"engine capacity" -34
-	"thrust" 18.4
+	"thrust" 22.1
 	"thrusting energy" 1.8
 	"thrusting heat" 3.4
 	"flare sprite" "effect/plasma flare/small"
@@ -286,7 +303,7 @@ outfit "Impala Plasma Thruster"
 	"mass" 58
 	"outfit space" -58
 	"engine capacity" -58
-	"thrust" 35.4
+	"thrust" 42.5
 	"thrusting energy" 3.2
 	"thrusting heat" 6.5
 	"flare sprite" "effect/plasma flare/medium"
@@ -302,7 +319,7 @@ outfit "Orca Plasma Thruster"
 	"mass" 98
 	"outfit space" -98
 	"engine capacity" -98
-	"thrust" 67.9
+	"thrust" 81.5
 	"thrusting energy" 5.8
 	"thrusting heat" 12.3
 	"flare sprite" "effect/plasma flare/large"
@@ -318,7 +335,7 @@ outfit "Tyrant Plasma Thruster"
 	"mass" 136
 	"outfit space" -136
 	"engine capacity" -136
-	"thrust" 106.3
+	"thrust" 127.6
 	"thrusting energy" 8.6
 	"thrusting heat" 19.1
 	"flare sprite" "effect/plasma flare/huge"
@@ -407,6 +424,23 @@ outfit "Tyrant Plasma Steering"
 	"steering flare sound" "plasma huge"
 	description "As with the corresponding thruster, the Tyrant class steering system is so large and powerful that very few ships can make use of it."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
+
+
+outfit "Capybara Reverse Thruster"
+	category "Engines"
+	"cost" 20000
+	thumbnail "outfit/reverse thruster plasma"
+	"mass" 20
+	"outfit space" -20
+	"weapon capacity" -20
+	"reverse thrust" 11.5
+	"reverse thrusting energy" 1.0
+	"reverse thrusting heat" 1.8
+	"reverse flare sprite" "effect/plasma flare/tiny"
+		"frame rate" 5
+	"reverse flare sound" "plasma tiny"
+	description "Large ships often lack the maneuverability to perform the 180 degree turns needed to come to a stop on short notice. For such massive vessels, a reverse thruster allows them to accelerate smoothly backwards, without needing to turn around."
+	description "	Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
 
 
 
@@ -562,9 +596,6 @@ outfit "A865 Atomic Steering"
 	description "Atomic engines are considered by many to be Deep Sky's crowning achievement. Although they are so expensive that relatively few of them are in use, there are few captains who do not dream of one day installing a set of them."
 
 
-
-# Reverse Thrusters
-
 outfit "AR120 Reverse Thruster"
 	category "Engines"
 	"cost" 140000
@@ -579,36 +610,4 @@ outfit "AR120 Reverse Thruster"
 		"frame rate" 14
 	"reverse flare sound" "atomic tiny"
 	description "For pilots who want to pull fancy tricks that most are not capable of duplicating, a reverse thruster allows a ship to accelerate backwards, without needing to turn around."
-	description "	Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
-
-outfit "Capybara Reverse Thruster"
-	category "Engines"
-	"cost" 20000
-	thumbnail "outfit/reverse thruster plasma"
-	"mass" 20
-	"outfit space" -20
-	"weapon capacity" -20
-	"reverse thrust" 9.6
-	"reverse thrusting energy" 1.0
-	"reverse thrusting heat" 1.8
-	"reverse flare sprite" "effect/plasma flare/tiny"
-		"frame rate" 5
-	"reverse flare sound" "plasma tiny"
-	description "Large ships often lack the maneuverability to perform the 180 degree turns needed to come to a stop on short notice. For such massive vessels, a reverse thruster allows them to accelerate smoothly backwards, without needing to turn around."
-	description "	Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
-
-outfit "X1100 Ion Reverse Thruster"
-	category "Engines"
-	"cost" 12000
-	thumbnail "outfit/reverse thruster ion"
-	"mass" 16
-	"outfit space" -16
-	"weapon capacity" -16
-	"reverse thrust" 6.0
-	"reverse thrusting energy" .6
-	"reverse thrusting heat" .9
-	"reverse flare sprite" "effect/ion flare/tiny"
-		"frame rate" 1.2
-	"reverse flare sound" "ion tiny"
-	description "Traditionally, ships turn around so that they can use their main thrusters for deceleration. Some ships, however, are too ungainly for such maneuvers to be convenient, or carry sensitive cargo that must not be being swung around quickly. For such ships, a reverse thruster allows them to apply thrust smoothly backwards."
 	description "	Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
