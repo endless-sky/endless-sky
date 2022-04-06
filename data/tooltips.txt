@@ -221,8 +221,8 @@ tip "heat generation:"
 tip "heat protection:"
 	`Protection against weapons that do heat damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in heat damage, while a total value of 11 only results in a 10 percent reduction.`
 
-tip "heatsink:"
-	`Materials with high specific heat can make for powerful heatsinks. One "heatsink" is equal to one ton of mass, for holding heat.`
+tip "heat capacity:"
+	`Increases the maximum heat that this ship is able to withstand before becoming overheated. A value of one has the same influence on a ship's maximum heat as one ton of mass, without the effects that mass has on movement.`
 
 tip "hull (repair):"
 	`Total hull strength and repair rate (per second). The smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
