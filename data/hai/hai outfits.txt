@@ -563,7 +563,7 @@ outfit `"Basrem" Atomic Steering`
 	"engine capacity" -12
 	"turn" 301
 	"turning energy" .7
-	"turning heat" 1.6
+	"turning heat" 1.5
 	"steering flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"steering flare sound" "atomic tiny"
@@ -578,7 +578,7 @@ outfit `"Benga" Atomic Steering`
 	"engine capacity" -20
 	"turn" 563
 	"turning energy" 1.1
-	"turning heat" 2.8
+	"turning heat" 2.85
 	"steering flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"steering flare sound" "atomic tiny"
