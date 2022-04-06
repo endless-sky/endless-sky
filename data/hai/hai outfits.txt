@@ -467,7 +467,7 @@ outfit `"Baellie" Atomic Engines`
 	"thrust" 7.3
 	"thrusting energy" .87
 	"thrusting heat" 1.7
-	"turn" 250
+	"turn" 244
 	"turning energy" .64
 	"turning heat" 1.28
 	"flare sprite" "effect/atomic flare/tiny"
@@ -561,7 +561,7 @@ outfit `"Basrem" Atomic Steering`
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"turn" 309
+	"turn" 301
 	"turning energy" .7
 	"turning heat" 1.6
 	"steering flare sprite" "effect/atomic flare/tiny"
@@ -576,7 +576,7 @@ outfit `"Benga" Atomic Steering`
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"turn" 577
+	"turn" 563
 	"turning energy" 1.1
 	"turning heat" 2.8
 	"steering flare sprite" "effect/atomic flare/tiny"
@@ -591,7 +591,7 @@ outfit `"Biroo" Atomic Steering`
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
-	"turn" 1054
+	"turn" 1028
 	"turning energy" 2.0
 	"turning heat" 5.1
 	"steering flare sprite" "effect/atomic flare/small"
@@ -606,7 +606,7 @@ outfit `"Bondir" Atomic Steering`
 	"mass" 49
 	"outfit space" -49
 	"engine capacity" -49
-	"turn" 1758
+	"turn" 1714
 	"turning energy" 3.2
 	"turning heat" 8.2
 	"steering flare sprite" "effect/atomic flare/medium"
@@ -621,7 +621,7 @@ outfit `"Bufaer" Atomic Steering`
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76
-	"turn" 3043
+	"turn" 2967
 	"turning energy" 5.2
 	"turning heat" 13.8
 	"steering flare sprite" "effect/atomic flare/large"
