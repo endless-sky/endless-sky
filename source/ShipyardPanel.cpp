@@ -226,9 +226,9 @@ bool ShipyardPanel::CanBuy(bool checkAlreadyOwned) const
 {
 	if(!selectedShip)
 		return false;
-	
+
 	int64_t cost = player.StockDepreciation().Value(*selectedShip, day, &player);
-	
+
 	// Check that the player has any necessary licenses.
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
@@ -269,9 +269,9 @@ void ShipyardPanel::FailBuy() const
 {
 	if(!selectedShip)
 		return;
-	
+
 	int64_t cost = player.StockDepreciation().Value(*selectedShip, day, &player);
-	
+
 	// Check that the player has any necessary licenses.
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)

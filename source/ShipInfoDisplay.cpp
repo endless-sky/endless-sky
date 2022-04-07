@@ -46,7 +46,7 @@ void ShipInfoDisplay::Update(const Ship &ship, const Depreciation &depreciation,
 	UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
 	UpdateAttributes(ship, depreciation, day, player);
 	UpdateOutfits(ship, depreciation, day, player);
-	
+
 	maximumHeight = max(descriptionHeight, max(attributesHeight, outfitsHeight));
 }
 
@@ -387,8 +387,8 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const Depreciation &deprec
 			outfitsHeight += 20;
 		}
 	}
-	
-	
+
+
 	int64_t totalCost = depreciation.Value(ship, day, player);
 	int64_t chassisCost = depreciation.Value(GameData::Ships().Get(ship.ModelName()), day);
 	saleLabels.clear();

@@ -487,7 +487,7 @@ void OutfitterPanel::FailBuy() const
 			+ Format::Credits(licenseCost) + " credits to buy the necessary licenses."));
 		return;
 	}
-	
+
 	if(!(outfitter.count(selectedOutfit) || player.Stock(selectedOutfit) > 0 || isInCargo || isInStorage))
 	{
 		GetUI()->Push(new Dialog("You cannot buy this outfit here. "
@@ -495,7 +495,7 @@ void OutfitterPanel::FailBuy() const
 			"but this " + planet->Noun() + " does not sell them."));
 		return;
 	}
-	
+
 	CustomSale::SellType selling = player.GetPlanet()->GetAvailability(*selectedOutfit, player.Conditions());
 	if(selling == CustomSale::SellType::IMPORT || selling == CustomSale::SellType::HIDDEN)
 	{
