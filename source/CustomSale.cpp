@@ -121,7 +121,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 		{
 			bool isAdd = false;
 			const Outfit *outfit = nullptr;
-			auto parseValueOrOffset = [isAdd, outfit](double &amount, const DataNode &line) {
+			auto parseValueOrOffset = [&isAdd, &outfit](double &amount, const DataNode &line) {
 				if(isAdd)
 					amount += line.Value(2);
 				else
@@ -292,9 +292,9 @@ const Sale<Outfit> CustomSale::GetOutfits() const
 		seen.insert(it.first);
 	for(auto it : relativeOutfitOffsets)
 		seen.insert(it.first);	
-	for(auto sale : relativePrices)
+	for(auto &&sale : relativePrices)
 		seen.Add(*sale.first);
-	for(auto sale : relativeOffsets)
+	for(auto &&sale : relativeOffsets)
 		seen.Add(*sale.first);	
 	return seen;
 }

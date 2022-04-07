@@ -339,7 +339,7 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 			phrases.Get(node.Token(1))->Load(node);
 		else if(key == "planet" && node.Size() >= 2)
 			planets.Get(node.Token(1))->Load(node);
-		else if(key == "pricing" && node.Size() >= 2)
+		else if(key == "pricing" && node.Size() >= 3)
 			customSales.Get(node.Token(2))->Load(node, outfitSales, outfits, node.Token(1));
 		else if(key == "ship" && node.Size() >= 2)
 		{
