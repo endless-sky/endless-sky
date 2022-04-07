@@ -152,9 +152,9 @@ outfit "X5700 Ion Thruster"
 	category "Engines"
 	"cost" 281000
 	thumbnail "outfit/huge ion thruster"
-	"mass" 134
-	"outfit space" -134
-	"engine capacity" -134
+	"mass" 121
+	"outfit space" -121
+	"engine capacity" -121
 	"thrust" 97.8
 	"thrusting energy" 6.3
 	"thrusting heat" 11.7
@@ -233,9 +233,9 @@ outfit "X5200 Ion Steering"
 	category "Engines"
 	"cost" 225000
 	thumbnail "outfit/huge ion steering"
-	"mass" 100
-	"outfit space" -100
-	"engine capacity" -100
+	"mass" 89
+	"outfit space" -89
+	"engine capacity" -89
 	"turn" 2609
 	"turning energy" 3.5
 	"turning heat" 7.3
@@ -332,9 +332,9 @@ outfit "Tyrant Plasma Thruster"
 	category "Engines"
 	"cost" 389000
 	thumbnail "outfit/huge plasma thruster"
-	"mass" 136
-	"outfit space" -136
-	"engine capacity" -136
+	"mass" 129
+	"outfit space" -129
+	"engine capacity" -129
 	"thrust" 127.6
 	"thrusting energy" 8.6
 	"thrusting heat" 19.1
@@ -413,9 +413,9 @@ outfit "Tyrant Plasma Steering"
 	category "Engines"
 	"cost" 324700
 	thumbnail "outfit/huge plasma steering"
-	"mass" 106
-	"outfit space" -106
-	"engine capacity" -106
+	"mass" 101
+	"outfit space" -101
+	"engine capacity" -101
 	"turn" 3549
 	"turning energy" 4.4
 	"turning heat" 12.5
