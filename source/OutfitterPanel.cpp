@@ -503,7 +503,7 @@ void OutfitterPanel::FailBuy() const
 			"it is meant to be imported, legally or not, generally for a good price."));
 		return;
 	}
-	
+
 	if(selectedOutfit->Get("map"))
 	{
 		GetUI()->Push(new Dialog("You have already mapped all the systems shown by this map, "
