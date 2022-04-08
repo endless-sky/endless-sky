@@ -1506,9 +1506,9 @@ ship "Protector" "Marauder Protector"
 		"heat dissipation" .6
 		"fuel capacity" 400
 		"cargo space" 50
-		"outfit space" 890
-		"weapon capacity" 230
-		"engine capacity" 300
+		"outfit space" 986
+		"weapon capacity" 322
+		"engine capacity" 307
 		weapon
 			"blast radius" 160
 			"shield damage" 1600
@@ -1516,17 +1516,18 @@ ship "Protector" "Marauder Protector"
 			"hit force" 2400
 	outfits
 		"Sidewinder Missile Launcher" 8
-		"Sidewinder Missile" 240
+		"Sidewinder Missile" 360
 		"Quad Blaster Turret" 6
 		"Heavy Anti-Missile Turret" 2
 		
 		"Fusion Reactor"
-		"LP288a Battery Pack"
+		"LP576a Battery Pack"
 		"D67-TM Shield Generator"
 		"Small Radar Jammer" 3
 		"Liquid Nitrogen Cooler"
-		"Laser Rifle" 6
+		"Laser Rifle" 69
 		
+		"Afterburner"
 		"Tyrant Plasma Thruster"
 		"Tyrant Plasma Steering"
 		"Hyperdrive"
