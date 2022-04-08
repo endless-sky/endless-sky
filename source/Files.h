@@ -60,11 +60,11 @@ public:
 	static std::string Name(const std::string &path);
 
 	// File IO.
-	static FILE *Open(const std::string &path, bool write = false);
+	static struct SDL_RWops *Open(const std::string &path, bool write = false);
 	static std::string Read(const std::string &path);
-	static std::string Read(FILE *file);
+	static std::string Read(struct SDL_RWops *file);
 	static void Write(const std::string &path, const std::string &data);
-	static void Write(FILE *file, const std::string &data);
+	static void Write(struct SDL_RWops *file, const std::string &data);
 
 	static void LogError(const std::string &message);
 };

@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cstdio>
 #include <stdexcept>
 #include <vector>
+#include <cstring>
 
 using namespace std;
 
@@ -214,7 +215,24 @@ namespace {
 
 		// MAYBE: Reading in lots of images in a 32-bit process gets really hairy using the standard approach due to
 		// contiguous memory layout requirements. Investigate using an iterative loading scheme for large images.
-		png_init_io(png, file);
+
+		// Not using SDLRW_ops directly here, because of preprocessor conflicts with libjpeg on windows.
+		struct MemBuffer {
+			std::string data;
+			size_t pos;
+		} pngData {
+			Files::Read(file),
+			0
+		};
+		png_set_read_fn(png, &pngData, [](png_struct* png, png_bytep data, size_t length) {
+         MemBuffer* p = reinterpret_cast<MemBuffer*>(png_get_io_ptr(png));
+			if (length + p->pos > p->data.size())
+         {
+            png_error(png, "EOF hit when reading bytes from png file");
+         }
+			memcpy(data, p->data.data() + p->pos, length);
+			p->pos += length;
+      });
 		png_set_sig_bytes(png, 0);
 
 		png_read_info(png, info);
@@ -286,7 +304,8 @@ namespace {
 		jpeg_create_decompress(&cinfo);
 #pragma GCC diagnostic pop
 
-		jpeg_stdio_src(&cinfo, file);
+		std::string jpg_data = Files::Read(file);
+		jpeg_mem_src(&cinfo, reinterpret_cast<unsigned char*>(&jpg_data[0]), jpg_data.size());
 		jpeg_read_header(&cinfo, true);
 		cinfo.out_color_space = JCS_EXT_RGBA;
 

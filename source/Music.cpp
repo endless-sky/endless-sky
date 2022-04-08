@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Files.h"
 
+#include <SDL2/SDL_rwops.h>
 #include <mad.h>
 
 #include <algorithm>
@@ -84,7 +85,7 @@ Music::~Music()
 	// If the decode thread has not yet taken possession of the next file, it is
 	// our job to close it.
 	if(nextFile)
-		fclose(nextFile);
+		SDL_RWclose(nextFile);
 }
 
 
@@ -158,7 +159,7 @@ void Music::Decode()
 	while(true)
 	{
 		// First, wait until a new file has been specified or we're done.
-		FILE *file = nullptr;
+		SDL_RWops *file = nullptr;
 		while(!file)
 		{
 			unique_lock<mutex> lock(decodeMutex);
@@ -206,10 +207,10 @@ void Music::Decode()
 				memcpy(&input.front(), stream.next_frame, remainder);
 
 			// Now, read a chunk of data from the file.
-			size_t read = fread(&input.front() + remainder, 1, INPUT_CHUNK - remainder, file);
+			size_t read = SDL_RWread(file, &input.front() + remainder, 1, INPUT_CHUNK - remainder);
 			// If you get the end of the file, loop around to the beginning.
-			if(!read || feof(file))
-				rewind(file);
+			if(!read)
+				SDL_RWseek(file, 0, RW_SEEK_SET);
 			// If there is nothing to decode, return to the top of this loop.
 			if(!(read + remainder))
 				continue;
@@ -271,6 +272,6 @@ void Music::Decode()
 		mad_synth_finish(&synth);
 		mad_frame_finish(&frame);
 		mad_stream_finish(&stream);
-		fclose(file);
+		SDL_RWclose(file);
 	}
 }

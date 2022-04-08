@@ -18,7 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
-// RAII wrapper for FILE, to make sure it gets closed if an error occurs.
+// RAII wrapper for SDL_RWops, to make sure it gets closed if an error occurs.
 class File {
 public:
 	File() noexcept = default;
@@ -33,10 +33,10 @@ public:
 	File &operator=(File &&) noexcept;
 
 	operator bool() const;
-	operator FILE*() const;
+	operator struct SDL_RWops*() const;
 
 private:
-	FILE *file = nullptr;
+	struct SDL_RWops *file = nullptr;
 };
 
 

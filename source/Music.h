@@ -57,7 +57,7 @@ private:
 	// This pointer holds the file for as long as it is owned by the main
 	// thread. When the decode thread takes possession of it, it sets this
 	// pointer to null.
-	FILE *nextFile = nullptr;
+	struct SDL_RWops *nextFile = nullptr;
 	bool hasNewFile = false;
 	bool done = false;
 

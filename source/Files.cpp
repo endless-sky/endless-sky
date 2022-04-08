@@ -467,13 +467,9 @@ string Files::Name(const string &path)
 
 
 
-FILE *Files::Open(const string &path, bool write)
+struct SDL_RWops *Files::Open(const string &path, bool write)
 {
-#if defined _WIN32
-	return _wfopen(Utf8::ToUTF16(path).c_str(), write ? L"w" : L"rb");
-#else
-	return fopen(path.c_str(), write ? "wb" : "rb");
-#endif
+	return SDL_RWFromFile(path.c_str(), write ? "wb" : "rb");
 }
 
 
@@ -486,24 +482,23 @@ string Files::Read(const string &path)
 
 
 
-string Files::Read(FILE *file)
+string Files::Read(struct SDL_RWops *file)
 {
 	string result;
 	if(!file)
 		return result;
 
 	// Find the remaining number of bytes in the file.
-	size_t start = ftell(file);
-	fseek(file, 0, SEEK_END);
-	size_t size = ftell(file) - start;
+	size_t start = SDL_RWtell(file);
+	size_t size = SDL_RWseek(file, 0, RW_SEEK_END)  - start;
 	// Reserve one extra byte because DataFile appends a '\n' to the end of each
 	// file it reads, and that's the most common use of this function.
 	result.reserve(size + 1);
 	result.resize(size);
-	fseek(file, start, SEEK_SET);
+	SDL_RWseek(file, start, SEEK_SET);
 
 	// Read the file data.
-	size_t bytes = fread(&result[0], 1, result.size(), file);
+	size_t bytes = SDL_RWread(file, &result[0], 1, result.size());
 	if(bytes != result.size())
 		throw runtime_error("Error reading file!");
 
@@ -520,12 +515,12 @@ void Files::Write(const string &path, const string &data)
 
 
 
-void Files::Write(FILE *file, const string &data)
+void Files::Write(struct SDL_RWops *file, const string &data)
 {
 	if(!file)
 		return;
 
-	fwrite(&data[0], 1, data.size(), file);
+	SDL_RWwrite(file, data.data(), 1, data.size());
 }
 
 
@@ -545,6 +540,6 @@ void Files::LogError(const string &message)
 	}
 
 	Write(errorLog, message);
-	fwrite("\n", 1, 1, errorLog);
-	fflush(errorLog);
+	SDL_RWwrite(static_cast<SDL_RWops*>(errorLog), "\n", 1, 1);
+	//fflush(errorLog);
 }

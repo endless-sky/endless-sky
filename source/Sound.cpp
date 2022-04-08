@@ -15,6 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "File.h"
 #include "Files.h"
 
+#include <SDL2/SDL_rwops.h>
+
 #ifndef __APPLE__
 #include <AL/al.h>
 #else
@@ -54,7 +56,7 @@ bool Sound::Load(const string &path, const string &name)
 		return false;
 
 	vector<char> data(bytes);
-	if(fread(&data[0], 1, bytes, in) != bytes)
+	if(SDL_RWread(static_cast<SDL_RWops*>(in), &data[0], 1, bytes) != bytes)
 		return false;
 
 	if(!buffer)
@@ -124,7 +126,7 @@ namespace {
 
 				// Skip any further bytes in this chunk.
 				if(subchunkSize > 16)
-					fseek(in, subchunkSize - 16, SEEK_CUR);
+					SDL_RWseek(static_cast<SDL_RWops*>(in), subchunkSize - 16, RW_SEEK_CUR);
 
 				if(audioFormat != 1)
 					return 0;
@@ -144,7 +146,7 @@ namespace {
 				return subchunkSize;
 			}
 			else
-				fseek(in, subchunkSize, SEEK_CUR);
+				SDL_RWseek(static_cast<SDL_RWops*>(in), subchunkSize, RW_SEEK_CUR);
 		}
 	}
 
@@ -153,7 +155,7 @@ namespace {
 	uint32_t Read4(File &in)
 	{
 		unsigned char data[4];
-		if(fread(data, 1, 4, in) != 4)
+		if(SDL_RWread(static_cast<SDL_RWops*>(in), data, 1, 4) != 4)
 			return 0;
 		uint32_t result = 0;
 		for(int i = 0; i < 4; ++i)
@@ -166,7 +168,7 @@ namespace {
 	uint16_t Read2(File &in)
 	{
 		unsigned char data[2];
-		if(fread(data, 1, 2, in) != 2)
+		if(SDL_RWread(static_cast<SDL_RWops*>(in), data, 1, 2) != 2)
 			return 0;
 		uint16_t result = 0;
 		for(int i = 0; i < 2; ++i)
