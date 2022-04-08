@@ -33,6 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <iostream>
 #include <mutex>
 #include <stdexcept>
+#include <memory>
 
 using namespace std;
 
@@ -47,7 +48,7 @@ namespace {
 	string testPath;
 
 	mutex errorMutex;
-	File errorLog;
+	std::shared_ptr<FILE> errorLog;
 
 	// Convert windows-style directory separators ('\\') to standard '/'.
 #if defined _WIN32
@@ -474,6 +475,13 @@ struct SDL_RWops *Files::Open(const string &path, bool write)
 
 
 
+void Files::Close(struct SDL_RWops * ops)
+{
+	SDL_RWclose(ops);
+}
+
+
+
 string Files::Read(const string &path)
 {
 	File file(path);
@@ -531,7 +539,15 @@ void Files::LogError(const string &message)
 	cerr << message << endl;
 	if(!errorLog)
 	{
-		errorLog = File(config + "errors.txt", true);
+		std::string path = config + "errors.txt";
+		// Not using Files::Open here, since it requires SDL, and the unit tests
+		// don't link with it
+#if defined _WIN32
+		FILE* f = _wfopen(Utf8::ToUTF16(path).c_str(), L"w");
+#else
+		FILE* f = fopen(path.c_str(), "wb");
+#endif
+		errorLog.reset(f, fclose);
 		if(!errorLog)
 		{
 			cerr << "Unable to create \"errors.txt\" " << (config.empty() ? "in current directory" : "in \"" + config + "\"") << endl;
@@ -539,7 +555,6 @@ void Files::LogError(const string &message)
 		}
 	}
 
-	Write(errorLog, message);
-	SDL_RWwrite(static_cast<SDL_RWops*>(errorLog), "\n", 1, 1);
-	//fflush(errorLog);
+	fprintf(errorLog.get(), "%s\n", message.c_str());
+	fflush(errorLog.get());
 }

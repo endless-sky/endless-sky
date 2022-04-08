@@ -61,6 +61,7 @@ public:
 
 	// File IO.
 	static struct SDL_RWops *Open(const std::string &path, bool write = false);
+	static void Close(struct SDL_RWops* ops);
 	static std::string Read(const std::string &path);
 	static std::string Read(struct SDL_RWops *file);
 	static void Write(const std::string &path, const std::string &data);

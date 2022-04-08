@@ -14,7 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Files.h"
 
-#include <SDL2/SDL_rwops.h>
+
 
 using namespace std;
 
@@ -37,7 +37,7 @@ File::File(File &&other) noexcept
 File::~File() noexcept
 {
 	if(file)
-		SDL_RWclose(file);
+		Files::Close(file);
 }
 
 
