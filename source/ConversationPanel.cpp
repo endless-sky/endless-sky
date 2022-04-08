@@ -387,6 +387,8 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 			}
 			node = conversation.NextNode(node, choice);
 		}
+		if(node < 0)
+			break;
 		// Display whatever choices are being offered to the player.
 		bool skippedAChoice = false;
 		for(int i = 0; i < conversation.Choices(node); ++i)
@@ -404,6 +406,8 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 			// It seems there was a `choice` node, but all of the available
 			// choices failed their conditions. Fall through to the next node.
 			++node;
+			if(!conversation.NodeInRange(node))
+				node = Conversation::DECLINE;
 		}
 		else
 		{

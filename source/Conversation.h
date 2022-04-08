@@ -95,6 +95,9 @@ public:
 	const Sprite *Scene(int node) const;
 	int NextNode(int node, int choice = 0) const;
 	bool ShouldSkipText(const std::map<std::string, int64_t> &vars, int node, int choice = 0) const;
+	bool NodeInRange(int node) const {
+		return node >= 0 && static_cast<unsigned>(node) < nodes.size();
+	}
 
 
 private:
