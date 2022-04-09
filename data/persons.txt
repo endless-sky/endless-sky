@@ -1525,7 +1525,7 @@ ship "Protector" "Modified Protector"
 		"heat dissipation" .6
 		"fuel capacity" 400
 		"cargo space" 50
-		"outfit space" 986
+		"outfit space" 998
 		"weapon capacity" 322
 		"engine capacity" 307
 		weapon
@@ -1542,7 +1542,8 @@ ship "Protector" "Modified Protector"
 		"Fusion Reactor"
 		"LP576a Battery Pack"
 		"D67-TM Shield Generator"
-		"Small Radar Jammer" 3
+		"Luxury Accommodations"
+		"Large Radar Jammer"
 		"Liquid Nitrogen Cooler"
 		"Laser Rifle" 69
 		
