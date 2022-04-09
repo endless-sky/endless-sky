@@ -292,7 +292,10 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 		// conversations.
 		else
 			panel->SetCallback(&player, &PlayerInfo::BasicCallback);
+		panel->SetAction(action, ui);
 		ui->Push(panel);
+
+		return;
 	}
 	else if(!dialogText.empty() && ui)
 	{
@@ -309,10 +312,21 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 		// avoid the player being spammed by dialogs if they have multiple
 		// missions active with the same destination (e.g. in the case of
 		// stacking bounty jobs).
+		Dialog *dialog = nullptr;
 		if(isOffer)
-			ui->Push(new Dialog(text, player, destination));
+			dialog = new Dialog(text, player, destination);
 		else if(isUnique || trigger != "visit")
-			ui->Push(new Dialog(text));
+			dialog = new Dialog(text);
+
+		if(dialog)
+		{
+			dialog->SetAction(action, ui);
+			ui->Push(dialog);
+		}
+		else
+			action.Do(player, ui);
+
+		return;
 	}
 	else if(isOffer && ui)
 		player.MissionCallback(Conversation::ACCEPT);

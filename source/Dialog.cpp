@@ -102,6 +102,13 @@ Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Tru
 
 
 
+void Dialog::SetAction(const GameAction &action, UI *ui)
+{
+	actionCallback = [this, &action, &ui] { action.Do(*player, ui); };
+}
+
+
+
 // Draw this panel.
 void Dialog::Draw()
 {
@@ -248,12 +255,18 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 			// don't execute the callback.
 			if(!isOkDisabled)
 			{
+				if(actionCallback)
+					actionCallback();
 				DoCallback();
 				GetUI()->Pop(this);
 			}
 		}
 		else
+		{
+			if(actionCallback)
+				actionCallback();
 			GetUI()->Pop(this);
+		}
 	}
 	else if((key == 'm' || command.Has(Command::MAP)) && system && player)
 		GetUI()->Push(new MapDetailPanel(*player, system));

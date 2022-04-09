@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class Color;
 class Conversation;
+class GameAction;
 class PlayerInfo;
 class Point;
 class Ship;
@@ -43,6 +44,7 @@ public:
 
 template <class T>
 	void SetCallback(T *t, void (T::*fun)(int));
+	void SetAction(const GameAction &action, UI *ui);
 
 	// Draw this panel.
 	virtual void Draw() override;
@@ -104,6 +106,9 @@ private:
 	int node;
 	// This function should be called with the conversation outcome.
 	std::function<void(int)> callback = nullptr;
+	// This function should be called when the conversation is done,
+	// since it is at that point that the action is executed.
+	std::function<void()> actionCallback;
 
 	// Current scroll position.
 	double scroll;

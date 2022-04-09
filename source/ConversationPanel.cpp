@@ -78,6 +78,13 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 
 
 
+void ConversationPanel::SetAction(const GameAction &action, UI *ui)
+{
+	actionCallback = [this, &action, &ui] { action.Do(player, ui); };
+}
+
+
+
 // Draw this panel.
 void ConversationPanel::Draw()
 {
@@ -400,6 +407,9 @@ void ConversationPanel::Exit()
 				&& ship->Position().Distance(player.Flagship()->Position()) <= 1.)
 			GetUI()->Push(new BoardingPanel(player, ship));
 	}
+	// If any mission actions need to be performed, do them now.
+	if(actionCallback)
+		actionCallback();
 	// Call the exit response handler to manage the conversation's effect
 	// on the player's missions, or force takeoff from a planet.
 	if(callback)

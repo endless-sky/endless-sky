@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 class DataNode;
+class GameAction;
 class PlayerInfo;
 class System;
 
@@ -66,6 +67,8 @@ template <class T>
 template <class T>
 	Dialog(T *t, void (T::*fun)(), const std::string &text, Truncate truncate = Truncate::NONE);
 
+	void SetAction(const GameAction &action, UI *ui);
+
 	// Draw this panel.
 	virtual void Draw() override;
 
@@ -89,6 +92,9 @@ private:
 protected:
 	WrappedText text;
 	int height;
+
+	// Used to execute a mission's actions when offering.
+	std::function<void()> actionCallback;
 
 	std::function<void(int)> intFun;
 	std::function<void(const std::string &)> stringFun;
