@@ -100,7 +100,7 @@ help "fleet asteroid mining"
 
 help "fleet asteroid mining shortcuts"
 	`Shortcuts for asteroid targeting:`
-	`<Select nearest hostile ship> will select the nearest asteroid when no hostiles are nearby.`
+	`	<Select nearest asteroid> will select the nearest asteroid and/or toggle fleet harvest.`
 	`	<Fleet: Fight my target> will focus your fleet on mining a targeted asteroid (chase and mine).`
 	``
 	`Alternate targeting:`

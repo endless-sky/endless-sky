@@ -3209,6 +3209,30 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 
 
 
+void AI::PlayerTargetAsteroid(Ship &ship, const PlayerInfo &player, Command &activeCommands)
+{
+	double asteroidRange = 100. * sqrt(ship.Attributes().Get("asteroid scan power"));
+	if(asteroidRange)
+	{
+		for(const shared_ptr<Minable> &asteroid : minables)
+		{
+			double range = ship.Position().Distance(asteroid->Position());
+			if(range < asteroidRange)
+			{
+				ship.SetTargetAsteroid(asteroid);
+				asteroidRange = range;
+			}
+		}
+	}
+	// Since the player is targeting an asteroid the fleet should prepare to harvest.
+	Orders newOrders;
+	newOrders.type = Orders::HARVEST;
+	newOrders.targetAsteroid = ship.GetTargetAsteroid();
+	IssueOrders(player, newOrders, "preparing to harvest.");
+}
+
+
+
 void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands)
 {
 	Command command;
@@ -3302,7 +3326,9 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			ship.SetTargetStellar(system->FindStellar(bestDestination));
 	}
 
-	if(activeCommands.Has(Command::NEAREST))
+	if(activeCommands.Has(Command::NEAREST_ASTEROID))
+		PlayerTargetAsteroid(ship, player, activeCommands);
+	else if(activeCommands.Has(Command::NEAREST))
 	{
 		// Find the nearest ship to the flagship. If `Shift` is held, consider friendly ships too.
 		double closest = numeric_limits<double>::infinity();
@@ -3333,20 +3359,10 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 					found = true;
 				}
 			}
-		// If no ship was found, look for nearby asteroids.
-		double asteroidRange = 100. * sqrt(ship.Attributes().Get("asteroid scan power"));
-		if(!found && asteroidRange)
-		{
-			for(const shared_ptr<Minable> &asteroid : minables)
-			{
-				double range = ship.Position().Distance(asteroid->Position());
-				if(range < asteroidRange)
-				{
-					ship.SetTargetAsteroid(asteroid);
-					asteroidRange = range;
-				}
-			}
-		}
+		// If no ship was found, look for nearby asteroids.  This functionality is preserving behavior before the mining
+		// shortcut was introduced.
+		if(!found)
+			PlayerTargetAsteroid(ship, player, activeCommands);
 	}
 	else if(activeCommands.Has(Command::TARGET))
 	{
@@ -3910,8 +3926,8 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 	// orders. But, if it turns out that they already had the given orders,
 	// their orders will be cleared instead. The only command that does not
 	// toggle is a move command; it always counts as a new command.
-	bool hasMismatch = isMoveOrder;
-	bool gaveOrder = false;
+	bool hasMismatch = isMoveOrder; bool gaveOrder = false;
+	bool alreadyHarvesting = false;
 	if(isValidTarget)
 	{
 		for(const Ship *ship : ships)
@@ -3933,6 +3949,10 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 			hasMismatch |= (existing.type != newOrders.type);
 			hasMismatch |= (existing.target.lock().get() != targetShip);
 			hasMismatch |= (existing.targetAsteroid.lock().get() != targetAsteroid);
+			// Skip giving any new orders if the fleet is already in harvest mode and the player has selected a new
+			// asteroid.
+			if(hasMismatch && targetAsteroid)
+				alreadyHarvesting |= ((existing.type == newOrders.type) && (newOrders.type == Orders::HARVEST));
 			existing = newOrders;
 
 			if(isMoveOrder)
@@ -3956,7 +3976,10 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 		if(!gaveOrder)
 			return;
 	}
-	if(hasMismatch)
+
+	if(alreadyHarvesting)
+		return;
+	else if(hasMismatch)
 		Messages::Add(who + description, Messages::Importance::High);
 	else
 	{

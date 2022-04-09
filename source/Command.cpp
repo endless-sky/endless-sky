@@ -71,6 +71,7 @@ const Command Command::AMMO(1uL << 25, "Fleet: Toggle ammo usage");
 const Command Command::WAIT(1uL << 26, "");
 const Command Command::STOP(1ul << 27, "");
 const Command Command::SHIFT(1uL << 28, "");
+const Command Command::NEAREST_ASTEROID(1uL << 29, "Select nearest asteroid");
 
 
 
@@ -256,6 +257,7 @@ void Command::Load(const DataNode &node)
 			{"gather", Command::GATHER},
 			{"hold", Command::HOLD},
 			{"ammo", Command::AMMO},
+			{"asteroid", Command::NEAREST_ASTEROID},
 			{"wait", Command::WAIT},
 			{"stop", Command::STOP},
 			{"shift", Command::SHIFT}
