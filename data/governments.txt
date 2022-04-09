@@ -258,6 +258,8 @@ government "Ka'het"
 		"Free Worlds" -.01
 		"Hai (Unfettered)" -.01
 		"Wanderer" -.01
+		"Coalition" -.01
+		"Heliarch" -.01
 	
 	"player reputation" -1
 	"friendly hail" "friendly ka'het"
@@ -284,6 +286,8 @@ government "Ka'het (Infighting)"
 		"Free Worlds" -.01
 		"Hai (Unfettered)" -.01
 		"Wanderer" -.01
+		"Coalition" -.01
+		"Heliarch" -.01
 	
 	"player reputation" -1
 	"friendly hail" "friendly ka'het"
