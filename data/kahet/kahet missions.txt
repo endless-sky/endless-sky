@@ -243,7 +243,6 @@ mission "Ringworld Debris: Quarg"
 		attributes "quarg"
 	to offer
 		has "ringworld debris"
-		has "Graveyard Label: offered"
 		has "First Contact: Quarg: offered"
 	on offer
 		conversation

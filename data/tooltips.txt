@@ -221,6 +221,9 @@ tip "heat generation:"
 tip "heat protection:"
 	`Protection against weapons that do heat damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in heat damage, while a total value of 11 only results in a 10 percent reduction.`
 
+tip "heat capacity:"
+	`Increases the maximum heat that this ship is able to withstand before becoming overheated. A value of one has the same influence on a ship's maximum heat as one ton of mass, without the effects that mass has on movement.`
+
 tip "hull (repair):"
 	`Total hull strength and repair rate (per second). The smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
 
@@ -321,10 +324,10 @@ tip "map:"
 	`How many star systems are included in this map.`
 
 tip "mass with no cargo:"
-	`Mass of this ship when not carrying any cargo or fighters. Cargo increases mass, which reduces acceleration and turn rate.`
+	`Mass of this ship when not carrying any cargo or fighters. Cargo increases mass, which reduces acceleration and turn rate and increases maximum heat before overheating.`
 
 tip "mass:"
-	`Mass, in tons. A ship's mass determines how fast it turns and accelerates.`
+	`Mass, in tons. A ship's mass determines how fast it turns and accelerates and its maximum heat before overheating.`
 
 tip "operating costs:"
 	`How many credits per day you need to spend to maintain this outfit while it is in active use.`
