@@ -1148,14 +1148,13 @@ bool AI::HasHelper(const Ship &ship, const bool needsFuel)
 // Pick an asteroid target for escort
 shared_ptr<Minable> AI::FindTargetAsteroid(const Ship &ship) const
 {
-	shared_ptr<Minable> targetAsteroid;
 	if(ship.IsYours())
 	{
 		auto it = orders.find(&ship);
 		if(it != orders.end() && (it->second.type == Orders::MINING))
-			targetAsteroid = it->second.targetAsteroid.lock();
+			return it->second.targetAsteroid.lock();
 	}
-	return targetAsteroid;
+	return nullptr;
 }
 
 
