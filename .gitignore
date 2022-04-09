@@ -64,3 +64,8 @@ ipch/
 CMakeLists.txt
 compile_commands.json
 /.gitmodules
+
+# IDE-related files for https://github.com/samrocketman/endless-sky-vscode-devcontainer
+/.clang-format
+*.AppImage
+.devcontainer
